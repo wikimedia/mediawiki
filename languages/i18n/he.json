@@ -3189,7 +3189,7 @@
 	"pageinfo-robot-index": "מותר",
 	"pageinfo-robot-noindex": "אסור",
 	"pageinfo-watchers": "מספר העוקבים אחר הדף",
-	"pageinfo-visiting-watchers": "מספר העוקבים אחר הדף שביקרו בעריכות ב{{GRAMMAR:תחילית|$1}}",
+	"pageinfo-visiting-watchers": "מספר העוקבים אחר הדף שביקרו {{PLURAL:$1|ביום האחרון|היומיים האחרונים|ב־$1 הימים האחרונים}}",
 	"pageinfo-few-watchers": "פחות {{PLURAL:$1|מעוקב אחד|מ־$1 עוקבים}}",
 	"pageinfo-few-visiting-watchers": "ייתכן שיש וייתכן שאין משתמש שעוקב אחר הדף ומבקר בעריכות האחרונות",
 	"pageinfo-redirects-name": "מספר ההפניות לדף זה",

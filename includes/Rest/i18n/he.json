@@ -69,6 +69,8 @@
 	"rest-invalid-transform": "התמרה בלתי־תקינה: מתסדיר $1 לתסדיר $2",
 	"rest-request-body-expected": "שיטת הבקשה $1 מצפה לגוף הבקשה",
 	"rest-request-body-unaccepted": "שיטת הבקשה $1 אינה מצפה לגוף הבקשה",
+	"rest-unmapped-action-error": "שגיאת מודול פעולה לא ממופה: $1",
+	"rest-unsupported-transform-input": "קלט לא נתמך: $1",
 	"rest-bad-etag": "ETag גרוע: $1",
 	"rest-no-stashed-content": "לא נמצא תוכן שמור במאגר עבור $1",
 	"rest-unsupported-profile-version": "גרסת פרופיל לא נתמכת: $1",
