@@ -1,11 +1,11 @@
 $( function () {
 	/**
-	* Fired on page load to enhance any HTML forms on the page.
-	*
-	* @event ~'htmlform.enhance'
-	* @param {jQuery} document
-	* @memberof Hooks
-	*/
+	 * Fired on page load to enhance any HTML forms on the page.
+	 *
+	 * @event ~'htmlform.enhance'
+	 * @param {jQuery} document
+	 * @memberof Hooks
+	 */
 	mw.hook( 'htmlform.enhance' ).fire( $( document ) );
 } );
 
