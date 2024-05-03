@@ -1547,9 +1547,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $s instanceof Blob ) {
 			$s = $s->fetch();
 		}
-		if ( $s instanceof IExpression ) {
-			return $s->toSql( $this );
-		}
 		if ( $s === null ) {
 			return 'NULL';
 		} elseif ( is_bool( $s ) ) {
