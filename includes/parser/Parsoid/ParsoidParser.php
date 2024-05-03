@@ -186,6 +186,9 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 		$parserOutput->setExtensionData(
 			'core:parsoid-version', Parsoid::version()
 		);
+		$parserOutput->setExtensionData(
+			'core:html-version', Parsoid::defaultHTMLVersion()
+		);
 
 		return $parserOutput;
 	}
