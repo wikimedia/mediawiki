@@ -15,7 +15,7 @@
 
 	/**
 	 * Wrapper around {@link https://vuejs.org/api/application.html#createapp Vue.createApp} that
-	 * adds the {@link Vue#$i18n i18n plugin} and the error handler. These were added
+	 * adds the {@link module:vue#$i18n i18n plugin} and the error handler. These were added
 	 * globally in Vue 2, but Vue 3 does not support global plugins.
 	 *
 	 * To ensure all Vue code has the i18n plugin and the error handler installed, use of
