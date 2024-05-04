@@ -1374,6 +1374,344 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	}
 
 	/**
+	 * @dataProvider provideFormatDurationBetweenTimestamps
+	 * @covers \Language::formatDurationBetweenTimestamps
+	 */
+	public function testFormatDurationBetweenTimestamps(
+		int $timestamp1,
+		int $timestamp2,
+		?int $precision,
+		string $expected
+	): void {
+		$this->assertSame(
+			$expected,
+			$this->getLang()->formatDurationBetweenTimestamps( $timestamp1, $timestamp2, $precision )
+		);
+		$this->assertSame(
+			$expected,
+			$this->getLang()->formatDurationBetweenTimestamps( $timestamp2, $timestamp1, $precision )
+		);
+	}
+
+	public function provideFormatDurationBetweenTimestamps(): array {
+		return [
+			// most test cases ported from provideFormatDuration()
+			[
+				( new DateTime( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				null,
+				'0 seconds',
+			],
+			[
+				( new DateTime( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2024-05-03 20:00:01' ) )->getTimestamp(),
+				null,
+				'1 second',
+			],
+			[
+				( new DateTime( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2024-05-03 20:00:02' ) )->getTimestamp(),
+				null,
+				'2 seconds',
+			],
+			[
+				( new DateTime( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2024-05-03 20:01:00' ) )->getTimestamp(),
+				null,
+				'1 minute',
+			],
+			[
+				( new DateTime( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2024-05-03 20:02:00' ) )->getTimestamp(),
+				null,
+				'2 minutes',
+			],
+			[
+				( new DateTime( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2024-05-03 21:00:00' ) )->getTimestamp(),
+				null,
+				'1 hour',
+			],
+			[
+				( new DateTime( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2024-05-03 22:00:00' ) )->getTimestamp(),
+				null,
+				'2 hours',
+			],
+			[
+				( new DateTime( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2024-05-04 20:00:00' ) )->getTimestamp(),
+				null,
+				'1 day',
+			],
+			[
+				( new DateTime( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2024-05-05 20:00:00' ) )->getTimestamp(),
+				null,
+				'2 days',
+			],
+			[
+				( new DateTime( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2024-06-03 20:00:00' ) )->getTimestamp(),
+				2,
+				'1 month',
+			],
+			[
+				( new DateTime( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2024-07-03 20:00:00' ) )->getTimestamp(),
+				2,
+				'2 months',
+			],
+			[
+				( new DateTime( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2024-07-04 20:00:00' ) )->getTimestamp(),
+				2,
+				'2 months and 1 day',
+			],
+			[
+				( new DateTime( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2025-05-03 20:00:00' ) )->getTimestamp(),
+				2,
+				'1 year',
+			],
+			[
+				( new DateTime( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2026-05-03 20:00:00' ) )->getTimestamp(),
+				null,
+				'2 years',
+			],
+			[
+				( new DateTime( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2034-05-03 20:00:00' ) )->getTimestamp(),
+				null,
+				'1 decade',
+			],
+			[
+				( new DateTime( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2044-05-03 20:00:00' ) )->getTimestamp(),
+				null,
+				'2 decades',
+			],
+			[
+				( new DateTime( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2124-05-03 20:00:00' ) )->getTimestamp(),
+				null,
+				'1 century',
+			],
+			[
+				( new DateTime( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2224-05-03 20:00:00' ) )->getTimestamp(),
+				null,
+				'2 centuries',
+			],
+			[
+				( new DateTime( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '3024-05-03 20:00:00' ) )->getTimestamp(),
+				null,
+				'1 millennium',
+			],
+			[
+				( new DateTime( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '4024-05-03 20:00:00' ) )->getTimestamp(),
+				null,
+				'2 millennia',
+			],
+			[
+				0,
+				9001,
+				null,
+				'2 hours, 30 minutes and 1 second',
+			],
+			[
+				0,
+				3601,
+				null,
+				'1 hour and 1 second',
+			],
+			[
+				( new DateTime( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2025-05-05 22:30:00' ) )->getTimestamp(),
+				null,
+				'1 year, 2 days, 2 hours and 30 minutes',
+			],
+			[
+				( new DateTimeImmutable( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				( new DateTimeImmutable() )->setDate( 44024, 05, 03 )->setTime( 20, 0, 42 )->getTimestamp(),
+				null,
+				'42 millennia and 42 seconds',
+			],
+			[
+				0,
+				60,
+				null,
+				'1 minute',
+			],
+			[
+				0,
+				61,
+				null,
+				'1 minute and 1 second',
+			],
+			[
+				( new DateTimeImmutable( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				( new DateTimeImmutable() )->setDate( 2025, 05, 05 )->setTime( 22, 30, 0 )->getTimestamp(),
+				null,
+				'1 year, 2 days, 2 hours and 30 minutes',
+			],
+			[
+				( new DateTimeImmutable( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				( new DateTimeImmutable( '2024-10-09 20:15:37' ) )->getTimestamp(),
+				1,
+				'5 months',
+			],
+			[
+				( new DateTime( '2022-01-01 10:00:00' ) )->getTimestamp(),
+				( new DateTime( '2022-01-01 12:30:00' ) )->getTimestamp(),
+				2,
+				'2 hours and 30 minutes',
+			],
+			[
+				( new DateTime( '2022-01-01 10:00:00' ) )->getTimestamp(),
+				( new DateTime( '2022-01-02 12:30:00' ) )->getTimestamp(),
+				3,
+				'1 day, 2 hours and 30 minutes',
+			],
+			[
+				( new DateTime( '2022-01-01 10:00:00' ) )->getTimestamp(),
+				( new DateTime( '2022-01-01 10:30:27' ) )->getTimestamp(),
+				1,
+				'30 minutes',
+			],
+			[
+				( new DateTime( '2024-05-03 10:00:00' ) )->getTimestamp(),
+				( new DateTime( '2025-05-03 10:00:00' ) )->getTimestamp(),
+				6,
+				'1 year',
+			],
+			[
+				( new DateTime( '2024-01-28 10:00:00' ) )->getTimestamp(),
+				( new DateTime( '2024-03-01 10:00:00' ) )->getTimestamp(),
+				4,
+				'1 month and 2 days',
+			],
+			[
+				( new DateTime( '2023-01-28 10:00:00' ) )->getTimestamp(),
+				( new DateTime( '2023-03-01 10:00:00' ) )->getTimestamp(),
+				6,
+				'1 month and 1 day',
+			],
+			[
+				( new DateTime( '2023-01-29 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2023-02-28 20:00:00' ) )->getTimestamp(),
+				6,
+				'30 days',
+			],
+			[
+				( new DateTime( '2023-01-29 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2023-03-01 20:00:00' ) )->getTimestamp(),
+				6,
+				'1 month',
+			],
+			[
+				( new DateTime( '2023-01-30 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2023-03-01 20:00:00' ) )->getTimestamp(),
+				6,
+				'30 days',
+			],
+			[
+				( new DateTime( '2023-01-31 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2023-03-01 20:00:00' ) )->getTimestamp(),
+				6,
+				'29 days',
+			],
+			[
+				( new DateTime( '2023-01-31 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2023-01-31 20:00:01' ) )->getTimestamp(),
+				6,
+				'1 second',
+			],
+			[
+				( new DateTime( '2023-01-31 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2023-01-31 20:00:02' ) )->getTimestamp(),
+				6,
+				'2 seconds',
+			],
+			[
+				( new DateTime( '2023-01-31 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2023-01-31 20:01:00' ) )->getTimestamp(),
+				6,
+				'1 minute',
+			],
+			[
+				( new DateTime( '2023-01-31 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2023-01-31 20:02:00' ) )->getTimestamp(),
+				6,
+				'2 minutes',
+			],
+			[
+				( new DateTime( '2023-01-31 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2023-01-31 21:00:00' ) )->getTimestamp(),
+				6,
+				'1 hour',
+			],
+			[
+				( new DateTime( '2023-01-31 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2023-01-31 22:00:00' ) )->getTimestamp(),
+				6,
+				'2 hours',
+			],
+			[
+				( new DateTime( '2023-01-31 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2023-02-01 20:00:00' ) )->getTimestamp(),
+				6,
+				'1 day',
+			],
+			[
+				( new DateTime( '2023-01-31 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2023-02-02 20:00:00' ) )->getTimestamp(),
+				6,
+				'2 days',
+			],
+			[
+				( new DateTime( '2023-03-31 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2023-04-31 20:00:00' ) )->getTimestamp(),
+				6,
+				'1 month',
+			],
+			[
+				( new DateTime( '2023-01-31 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2023-03-31 20:00:00' ) )->getTimestamp(),
+				6,
+				'2 months',
+			],
+			[
+				( new DateTime( '2023-01-31 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '2024-01-31 20:00:00' ) )->getTimestamp(),
+				6,
+				'1 year',
+			],
+			[
+				( new DateTime( '2023-01-27 15:00:00' ) )->getTimestamp(),
+				( new DateTime( '2025-04-31 20:06:00' ) )->getTimestamp(),
+				5,
+				'2 years, 3 months, 4 days, 5 hours and 6 minutes',
+			],
+			[
+				( new DateTime( '2023-01-31 15:00:00' ) )->getTimestamp(),
+				( new DateTime( '3025-04-31 20:06:07' ) )->getTimestamp(),
+				7,
+				'1 millennium, 2 years, 3 months, 5 hours, 6 minutes and 7 seconds',
+			],
+			[
+				( new DateTime( '2023-01-28 20:00:00' ) )->getTimestamp(),
+				( new DateTime( '4030-05-31 22:01:14' ) )->getTimestamp(),
+				9,
+				'2 millennia, 7 years, 4 months, 3 days, 2 hours, 1 minute and 14 seconds',
+			],
+		];
+	}
+
+	/**
 	 * @dataProvider provideCheckTitleEncodingData
 	 * @covers \Language::checkTitleEncoding
 	 */
