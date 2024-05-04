@@ -1011,13 +1011,14 @@ class WebRequest {
 	 * @return-taint tainted
 	 */
 	public function getFullRequestURL() {
+		$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
 		// Pass an explicit PROTO constant instead of PROTO_CURRENT so that we
 		// do not rely on state from the global $wgRequest object (which it would,
 		// via wfGetServerUrl/UrlUtils::expand()/$wgRequest->protocol).
 		if ( $this->getProtocol() === 'http' ) {
-			return wfGetServerUrl( PROTO_HTTP ) . $this->getRequestURL();
+			return ( $urlUtils->getServer( PROTO_HTTP ) ?? '' ) . $this->getRequestURL();
 		} else {
-			return wfGetServerUrl( PROTO_HTTPS ) . $this->getRequestURL();
+			return ( $urlUtils->getServer( PROTO_HTTPS ) ?? '' ) . $this->getRequestURL();
 		}
 	}
 
