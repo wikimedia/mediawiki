@@ -2,6 +2,7 @@
 
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\StaticHookRegistry;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -112,7 +113,7 @@ trait MediaWikiTestCaseTrait {
 	 */
 	protected function createHookContainer( $hooks = [] ) {
 		$hookContainer = new HookContainer(
-			new \MediaWiki\HookContainer\StaticHookRegistry(),
+			new StaticHookRegistry(),
 			$this->createSimpleObjectFactory()
 		);
 		foreach ( $hooks as $name => $callback ) {
