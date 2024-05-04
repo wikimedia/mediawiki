@@ -1826,7 +1826,6 @@
 	"apierror-nosuchsection": "{{doc-apierror}}\n\nParameters:\n* $1 - Section identifier. Probably a number or \"T-\" followed by a number.",
 	"apierror-nosuchsection-what": "{{doc-apierror}}\n\nParameters:\n* $1 - Section identifier. Probably a number or \"T-\" followed by a number.\n* $2 - Page title, revision ID formatted with {{msg-mw|revid}}, or page ID formatted with {{msg-mw|pageid}}.",
 	"apierror-nosuchuserid": "{{doc-apierror}}",
-	"apierror-notarget": "{{doc-apierror}}",
 	"apierror-notpatrollable": "{{doc-apierror}}\n\nParameters:\n* $1 - Revision ID number.",
 	"apierror-nouploadmodule": "{{doc-apierror}}",
 	"apierror-opensearch-json-warnings": "{{doc-apierror}}",

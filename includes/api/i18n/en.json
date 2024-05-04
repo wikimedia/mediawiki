@@ -1923,7 +1923,6 @@
 	"apierror-nosuchsection": "There is no section $1.",
 	"apierror-nosuchsection-what": "There is no section $1 in $2.",
 	"apierror-nosuchuserid": "There is no user with ID $1.",
-	"apierror-notarget": "You have not specified a valid target for this action.",
 	"apierror-notpatrollable": "The revision r$1 can't be patrolled as it's too old.",
 	"apierror-nouploadmodule": "No upload module set.",
 	"apierror-opensearch-json-warnings": "Warnings cannot be represented in OpenSearch JSON format.",
