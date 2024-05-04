@@ -3818,7 +3818,7 @@
 			{
 				"name": "rev_id",
 				"comment": "Unique ID to identify each revision",
-				"type": "integer",
+				"type": "bigint",
 				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
 			},
 			{
@@ -3831,13 +3831,13 @@
 				"name": "rev_comment_id",
 				"comment": "Key to comment.comment_id. Comment summarizing the change",
 				"type": "bigint",
-				"options": { "unsigned": true, "notnull": true, "default": 0 }
+				"options": { "unsigned": true, "notnull": true }
 			},
 			{
 				"name": "rev_actor",
 				"comment": "Key to actor.actor_id of the user or IP who made this edit",
 				"type": "bigint",
-				"options": { "unsigned": true, "notnull": true, "default": 0 }
+				"options": { "unsigned": true, "notnull": true }
 			},
 			{
 				"name": "rev_timestamp",
@@ -3866,7 +3866,7 @@
 			{
 				"name": "rev_parent_id",
 				"comment": "Key to revision.rev_id. This field is used to add support for a tree structure (The Adjacency List Model)",
-				"type": "integer",
+				"type": "bigint",
 				"options": { "unsigned": true, "notnull": false }
 			},
 			{

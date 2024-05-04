@@ -476,6 +476,10 @@ class PostgresUpdater extends DatabaseUpdater {
 
 			// 1.43
 			[ 'migratePagelinks' ],
+			[ 'dropDefault', 'revision', 'rev_actor' ],
+			[ 'dropDefault', 'revision', 'rev_comment_id' ],
+			[ 'changeField', 'revision', 'rev_id', 'BIGINT', '' ],
+			[ 'changeField', 'revision', 'rev_parent_id', 'BIGINT', '' ],
 		];
 	}
 

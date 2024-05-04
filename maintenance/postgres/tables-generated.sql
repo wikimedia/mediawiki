@@ -938,15 +938,15 @@ CREATE TABLE user_autocreate_serial (
 
 
 CREATE TABLE revision (
-  rev_id SERIAL NOT NULL,
+  rev_id BIGSERIAL NOT NULL,
   rev_page INT NOT NULL,
-  rev_comment_id BIGINT DEFAULT 0 NOT NULL,
-  rev_actor BIGINT DEFAULT 0 NOT NULL,
+  rev_comment_id BIGINT NOT NULL,
+  rev_actor BIGINT NOT NULL,
   rev_timestamp TIMESTAMPTZ NOT NULL,
   rev_minor_edit SMALLINT DEFAULT 0 NOT NULL,
   rev_deleted SMALLINT DEFAULT 0 NOT NULL,
   rev_len INT DEFAULT NULL,
-  rev_parent_id INT DEFAULT NULL,
+  rev_parent_id BIGINT DEFAULT NULL,
   rev_sha1 TEXT DEFAULT '' NOT NULL,
   PRIMARY KEY(rev_id)
 );
