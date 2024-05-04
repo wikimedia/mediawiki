@@ -1016,7 +1016,7 @@ class ApiMain extends ApiBase {
 			// parameters and redo.
 			$failed = true;
 			$this->addWarning( 'apiwarn-errorprinterfailed' );
-			foreach ( $ex->getStatusValue()->getErrors() as $error ) {
+			foreach ( $ex->getStatusValue()->getMessages() as $error ) {
 				try {
 					$this->mPrinter->addWarning( $error );
 				} catch ( Throwable $ex2 ) {

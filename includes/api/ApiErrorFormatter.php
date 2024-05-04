@@ -187,7 +187,7 @@ class ApiErrorFormatter {
 	public function addMessagesFromStatus(
 		$modulePath, StatusValue $status, $types = [ 'warning', 'error' ], array $filter = []
 	) {
-		if ( $status->isGood() || !$status->getErrors() ) {
+		if ( $status->isGood() || !$status->getMessages() ) {
 			return;
 		}
 
@@ -293,7 +293,7 @@ class ApiErrorFormatter {
 	 * @return array
 	 */
 	public function arrayFromStatus( StatusValue $status, $type = 'error', $format = null ) {
-		if ( $status->isGood() || !$status->getErrors() ) {
+		if ( $status->isGood() || !$status->getMessages() ) {
 			return [];
 		}
 

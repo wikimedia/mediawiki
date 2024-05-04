@@ -46,7 +46,7 @@ class ApiErrorFormatter_BackCompat extends ApiErrorFormatter {
 	}
 
 	public function arrayFromStatus( StatusValue $status, $type = 'error', $format = null ) {
-		if ( $status->isGood() || !$status->getErrors() ) {
+		if ( $status->isGood() || !$status->getMessages() ) {
 			return [];
 		}
 
