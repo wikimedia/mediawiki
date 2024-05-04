@@ -521,14 +521,13 @@ class RestrictionStore {
 		if ( !$cacheEntry || !array_key_exists( 'create_protection', $cacheEntry ) ) {
 			$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
 			$commentQuery = $this->commentStore->getJoin( 'pt_reason' );
-			$row = $dbr->selectRow(
-				[ 'protected_titles' ] + $commentQuery['tables'],
-				[ 'pt_user', 'pt_expiry', 'pt_create_perm' ] + $commentQuery['fields'],
-				[ 'pt_namespace' => $page->getNamespace(), 'pt_title' => $page->getDBkey() ],
-				__METHOD__,
-				[],
-				$commentQuery['joins']
-			);
+			$row = $dbr->newSelectQueryBuilder()
+				->select( [ 'pt_user', 'pt_expiry', 'pt_create_perm' ] )
+				->from( 'protected_titles' )
+				->where( [ 'pt_namespace' => $page->getNamespace(), 'pt_title' => $page->getDBkey() ] )
+				->queryInfo( $commentQuery )
+				->caller( __METHOD__ )
+				->fetchRow();
 
 			if ( $row ) {
 				$cacheEntry['create_protection'] = [
