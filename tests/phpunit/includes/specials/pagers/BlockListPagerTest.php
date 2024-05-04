@@ -133,7 +133,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		return [
 			[ 'test', 'Unable to format test', $row ],
 			[ 'bl_timestamp', null, $row ],
-			[ 'bl_expiry', 'infinite<br />0 minutes left', $row ],
+			[ 'bl_expiry', 'infinite<br />0 seconds left', $row ],
 		];
 	}
 
@@ -170,7 +170,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				'bl_expiry',
-				'infinite<br />0 minutes left',
+				'infinite<br />0 seconds left',
 				$row,
 			],
 			[
