@@ -15,6 +15,7 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * Class performing complex database queries related to WatchedItems.
@@ -243,14 +244,14 @@ class WatchedItemQueryService {
 			);
 		}
 
-		$res = $db->select(
-			$tables,
-			$fields,
-			$conds,
-			__METHOD__,
-			$dbOptions,
-			$joinConds
-		);
+		$res = $db->newSelectQueryBuilder()
+			->tables( $tables )
+			->fields( $fields )
+			->conds( $conds )
+			->caller( __METHOD__ )
+			->options( $dbOptions )
+			->joinConds( $joinConds )
+			->fetchResultSet();
 
 		$limit = $dbOptions['LIMIT'] ?? INF;
 		$items = [];
@@ -331,25 +332,19 @@ class WatchedItemQueryService {
 
 		$db = $this->dbProvider->getReplicaDatabase();
 
-		$conds = $this->getWatchedItemsForUserQueryConds( $db, $user, $options );
-		$dbOptions = $this->getWatchedItemsForUserQueryDbOptions( $options );
+		$queryBuilder = $db->newSelectQueryBuilder()
+			->select( [ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ] )
+			->from( 'watchlist' )
+			->caller( __METHOD__ );
+		$this->addQueryCondsForWatchedItemsForUser( $db, $user, $options, $queryBuilder );
+		$this->addQueryDbOptionsForWatchedItemsForUser( $options, $queryBuilder );
 
-		$tables = 'watchlist';
-		$joinConds = [];
 		if ( $this->expiryEnabled ) {
 			// If expiries are enabled, join with the watchlist_expiry table and exclude expired items.
-			$tables = [ 'watchlist', 'watchlist_expiry' ];
-			$conds[] = $db->expr( 'we_expiry', '>', $db->timestamp() )->or( 'we_expiry', '=', null );
-			$joinConds['watchlist_expiry'] = [ 'LEFT JOIN', 'wl_id = we_item' ];
+			$queryBuilder->leftJoin( 'watchlist_expiry', null, 'wl_id = we_item' )
+				->andWhere( $db->expr( 'we_expiry', '>', $db->timestamp() )->or( 'we_expiry', '=', null ) );
 		}
-		$res = $db->select(
-			$tables,
-			[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
-			$conds,
-			__METHOD__,
-			$dbOptions,
-			$joinConds
-		);
+		$res = $queryBuilder->fetchResultSet();
 
 		$watchedItems = [];
 		foreach ( $res as $row ) {
@@ -660,36 +655,34 @@ class WatchedItemQueryService {
 		] );
 	}
 
-	private function getWatchedItemsForUserQueryConds(
-		IReadableDatabase $db, UserIdentity $user, array $options
+	private function addQueryCondsForWatchedItemsForUser(
+		IReadableDatabase $db, UserIdentity $user, array $options, SelectQueryBuilder $queryBuilder
 	) {
-		$conds = [ 'wl_user' => $user->getId() ];
+		$queryBuilder->where( [ 'wl_user' => $user->getId() ] );
 		if ( $options['namespaceIds'] ) {
-			$conds['wl_namespace'] = array_map( 'intval', $options['namespaceIds'] );
+			$queryBuilder->where( [ 'wl_namespace' => array_map( 'intval', $options['namespaceIds'] ) ] );
 		}
 		if ( isset( $options['filter'] ) ) {
 			$filter = $options['filter'];
 			if ( $filter === self::FILTER_CHANGED ) {
-				$conds[] = 'wl_notificationtimestamp IS NOT NULL';
+				$queryBuilder->where( 'wl_notificationtimestamp IS NOT NULL' );
 			} else {
-				$conds[] = 'wl_notificationtimestamp IS NULL';
+				$queryBuilder->where( 'wl_notificationtimestamp IS NULL' );
 			}
 		}
 
 		if ( isset( $options['from'] ) ) {
 			$op = $options['sort'] === self::SORT_ASC ? '>=' : '<=';
-			$conds[] = $this->getFromUntilTargetConds( $db, $options['from'], $op );
+			$queryBuilder->where( $this->getFromUntilTargetConds( $db, $options['from'], $op ) );
 		}
 		if ( isset( $options['until'] ) ) {
 			$op = $options['sort'] === self::SORT_ASC ? '<=' : '>=';
-			$conds[] = $this->getFromUntilTargetConds( $db, $options['until'], $op );
+			$queryBuilder->where( $this->getFromUntilTargetConds( $db, $options['until'], $op ) );
 		}
 		if ( isset( $options['startFrom'] ) ) {
 			$op = $options['sort'] === self::SORT_ASC ? '>=' : '<=';
-			$conds[] = $this->getFromUntilTargetConds( $db, $options['startFrom'], $op );
+			$queryBuilder->where( $this->getFromUntilTargetConds( $db, $options['startFrom'], $op ) );
 		}
-
-		return $conds;
 	}
 
 	/**
@@ -725,24 +718,19 @@ class WatchedItemQueryService {
 		return $dbOptions;
 	}
 
-	private function getWatchedItemsForUserQueryDbOptions( array $options ) {
-		$dbOptions = [];
+	private function addQueryDbOptionsForWatchedItemsForUser( array $options, SelectQueryBuilder $queryBuilder ) {
 		if ( array_key_exists( 'sort', $options ) ) {
-			$dbOptions['ORDER BY'] = [
-				"wl_namespace {$options['sort']}",
-				"wl_title {$options['sort']}"
-			];
-			if ( count( $options['namespaceIds'] ) === 1 ) {
-				$dbOptions['ORDER BY'] = "wl_title {$options['sort']}";
+			if ( count( $options['namespaceIds'] ) !== 1 ) {
+				$queryBuilder->orderBy( 'wl_namespace', $options['sort'] );
 			}
+			$queryBuilder->orderBy( 'wl_title', $options['sort'] );
 		}
 		if ( array_key_exists( 'limit', $options ) ) {
-			$dbOptions['LIMIT'] = (int)$options['limit'];
+			$queryBuilder->limit( (int)$options['limit'] );
 		}
 		if ( $this->maxQueryExecutionTime ) {
-			$dbOptions['MAX_EXECUTION_TIME'] = $this->maxQueryExecutionTime;
+			$queryBuilder->setMaxExecutionTime( $this->maxQueryExecutionTime );
 		}
-		return $dbOptions;
 	}
 
 	private function getWatchedItemsWithRCInfoQueryJoinConds( array $options ) {

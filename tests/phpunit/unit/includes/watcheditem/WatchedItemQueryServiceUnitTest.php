@@ -12,6 +12,7 @@ use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -109,6 +110,9 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 			->willReturnCallback( static function ( $a, $b ) {
 				return "($a & $b)";
 			} );
+		$mock->method( 'newSelectQueryBuilder' )->willReturnCallback( static function () use ( $mock ) {
+			return new SelectQueryBuilder( $mock );
+		} );
 
 		return $mock;
 	}
@@ -855,7 +859,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'select' )
 			->with(
-				'watchlist',
+				[ 'watchlist' ],
 				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
 				[ 'wl_user' => 1 ]
 			)
@@ -908,7 +912,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					'sort' => WatchedItemQueryService::SORT_ASC,
 				],
 				[ 'wl_namespace' => [ 0 ], ],
-				[ 'ORDER BY' => 'wl_title ASC' ]
+				[ 'ORDER BY' => [ 'wl_title ASC' ] ]
 			],
 			[
 				[ 'limit' => 10 ],
@@ -944,7 +948,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					'sort' => WatchedItemQueryService::SORT_DESC,
 				],
 				[ 'wl_namespace' => [ 0 ], ],
-				[ 'ORDER BY' => 'wl_title DESC' ]
+				[ 'ORDER BY' => [ 'wl_title DESC' ] ]
 			],
 		];
 	}
@@ -964,7 +968,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'select' )
 			->with(
-				'watchlist',
+				[ 'watchlist' ],
 				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
 				$expectedConds,
 				$this->isType( 'string' ),
@@ -1075,7 +1079,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'select' )
 			->with(
-				'watchlist',
+				[ 'watchlist' ],
 				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
 				$expectedConds,
 				$this->isType( 'string' ),
