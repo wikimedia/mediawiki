@@ -152,12 +152,10 @@ class SpecialDoubleRedirects extends QueryPage {
 					$result->namespace,
 					$result->title
 				);
-				$deep = $this->getDatabaseProvider()->getReplicaDatabase()->selectRow(
-					$qi['tables'],
-					$qi['fields'],
-					$qi['conds'],
-					__METHOD__
-				);
+				$deep = $this->getDatabaseProvider()->getReplicaDatabase()->newSelectQueryBuilder()
+					->queryInfo( $qi )
+					->caller( __METHOD__ )
+					->fetchRow();
 			}
 		}
 

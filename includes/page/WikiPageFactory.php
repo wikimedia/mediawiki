@@ -129,10 +129,11 @@ class WikiPageFactory {
 		}
 		$db = DBAccessObjectUtils::getDBFromRecency( $this->dbProvider, WikiPage::convertSelectType( $from ) );
 		$pageQuery = WikiPage::getQueryInfo();
-		$row = $db->selectRow(
-			$pageQuery['tables'], $pageQuery['fields'], [ 'page_id' => $id ], __METHOD__,
-			[], $pageQuery['joins']
-		);
+		$row = $db->newSelectQueryBuilder()
+			->queryInfo( $pageQuery )
+			->where( [ 'page_id' => $id ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 		if ( !$row ) {
 			return null;
 		}

@@ -760,14 +760,13 @@ class DeletePage {
 		$deleteBatchSize = $this->options->get( MainConfigNames::DeleteRevisionsBatchSize );
 		// Get as many of the page revisions as we are allowed to.  The +1 lets us recognize the
 		// unusual case where there were exactly $deleteBatchSize revisions remaining.
-		$res = $dbw->select(
-			$revQuery['tables'],
-			$revQuery['fields'],
-			[ 'rev_page' => $id ],
-			__METHOD__,
-			[ 'ORDER BY' => 'rev_timestamp ASC, rev_id ASC', 'LIMIT' => $deleteBatchSize + 1 ],
-			$revQuery['joins']
-		);
+		$res = $dbw->newSelectQueryBuilder()
+			->queryInfo( $revQuery )
+			->where( [ 'rev_page' => $id ] )
+			->orderBy( [ 'rev_timestamp', 'rev_id' ] )
+			->limit( $deleteBatchSize + 1 )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		// Build their equivalent archive rows
 		$rowsInsert = [];

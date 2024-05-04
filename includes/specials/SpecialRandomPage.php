@@ -215,16 +215,10 @@ class SpecialRandomPage extends SpecialPage {
 		$dbr = $this->dbProvider->getReplicaDatabase();
 
 		$query = $this->getQueryInfo( $randstr );
-		$res = $dbr->select(
-			$query['tables'],
-			$query['fields'],
-			$query['conds'],
-			$fname,
-			$query['options'],
-			$query['join_conds']
-		);
-
-		return $res->fetchObject();
+		return $dbr->newSelectQueryBuilder()
+			->queryInfo( $query )
+			->caller( $fname )
+			->fetchRow();
 	}
 
 	protected function getGroupName() {

@@ -95,14 +95,12 @@ class RecentChangesUpdateJob extends Job {
 		do {
 			$rcIds = [];
 			$rows = [];
-			$res = $dbw->select(
-				$rcQuery['tables'],
-				$rcQuery['fields'],
-				[ $dbw->expr( 'rc_timestamp', '<', $cutoff ) ],
-				__METHOD__,
-				[ 'LIMIT' => $updateRowsPerQuery ],
-				$rcQuery['joins']
-			);
+			$res = $dbw->newSelectQueryBuilder()
+				->queryInfo( $rcQuery )
+				->where( $dbw->expr( 'rc_timestamp', '<', $cutoff ) )
+				->limit( $updateRowsPerQuery )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 			foreach ( $res as $row ) {
 				$rcIds[] = $row->rc_id;
 				$rows[] = $row;
