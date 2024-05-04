@@ -122,6 +122,7 @@ $( function () {
 
 		/**
 		 * Creates the tooltip if it doesn't already exist and toggles it.
+		 *
 		 * @ignore
 		 */
 		function showTooltip() {

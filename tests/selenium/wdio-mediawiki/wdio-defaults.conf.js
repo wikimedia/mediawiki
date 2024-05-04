@@ -119,6 +119,7 @@ exports.config = {
 	/**
 	 * Gets executed just before initializing the webdriver session and test framework.
 	 * It allows you to manipulate configurations depending on the capability or spec.
+	 *
 	 * @param {Object} config wdio configuration object
 	 * @param {Array.<Object>} capabilities list of capabilities details
 	 * @param {Array.<string>} specs List of spec file paths that are to be run

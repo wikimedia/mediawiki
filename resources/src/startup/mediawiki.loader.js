@@ -61,6 +61,7 @@
 	 * Fired via mw.track on various resource loading errors.
 	 *
 	 * eslint-disable jsdoc/valid-types
+	 *
 	 * @event ~'resourceloader.exception'
 	 * @ignore
 	 * @param {Error|Mixed} e The error that was thrown. Almost always an Error

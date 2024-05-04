@@ -246,6 +246,7 @@
 
 		/**
 		 * Get date user first registered, if available.
+		 *
 		 * @return {boolean|null|Date} False for anonymous users, null if data is
 		 *  unavailable, or Date for when the user registered. For temporary users
 		 *  that is when their temporary account was created.
