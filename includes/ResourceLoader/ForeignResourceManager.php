@@ -29,6 +29,7 @@ use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use SplFileInfo;
 use Symfony\Component\Yaml\Yaml;
+use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
  * Manage foreign resources registered with ResourceLoader.
@@ -79,6 +80,8 @@ class ForeignResourceManager {
 	/** @var array[] */
 	private $registry;
 
+	private GlobalIdGenerator $globalIdGenerator;
+
 	/**
 	 * @param string $registryFile Path to YAML file
 	 * @param string $libDir Path to a modules directory
@@ -94,6 +97,7 @@ class ForeignResourceManager {
 		callable $errorPrinter = null,
 		callable $verbosePrinter = null
 	) {
+		$this->globalIdGenerator = MediaWikiServices::getInstance()->getGlobalIdGenerator();
 		$this->registryFile = $registryFile;
 		$this->libDir = $libDir;
 		$this->infoPrinter = $infoPrinter ?? static function ( $_ ) {
@@ -120,7 +124,7 @@ class ForeignResourceManager {
 	 * @throws LogicException
 	 */
 	public function run( $action, $module ) {
-		$actions = [ 'update', 'verify', 'make-sri' ];
+		$actions = [ 'update', 'verify', 'make-sri', 'make-cdx' ];
 		if ( !in_array( $action, $actions ) ) {
 			$this->error( "Invalid action.\n\nMust be one of " . implode( ', ', $actions ) . '.' );
 			return false;
@@ -139,6 +143,14 @@ class ForeignResourceManager {
 				'.'
 			);
 			return false;
+		}
+
+		if ( $this->action === 'make-cdx' ) {
+			$this->output( json_encode(
+				$this->generateCdx( $modules ),
+			JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR
+			) );
+			return true;
 		}
 
 		foreach ( $modules as $moduleName => $info ) {
@@ -495,6 +507,43 @@ class ForeignResourceManager {
 				. "see <https://spdx.org/licenses/>.\n"
 			);
 		}
+	}
+
+	private function generateCdx( array $modules ): array {
+		$cdx = [
+			'$schema' => 'http://cyclonedx.org/schema/bom-1.6.schema.json',
+			'bomFormat' => 'CycloneDX',
+			'specVersion' => '1.6',
+			'serialNumber' => 'urn:uuid:' . $this->globalIdGenerator->newUUIDv4(),
+			'version' => 1,
+			'components' => [],
+		];
+		foreach ( $modules as $moduleName => $module ) {
+			$moduleCdx = [
+				'type' => 'library',
+				'name' => $moduleName,
+				'version' => $module['version'],
+			];
+			if ( preg_match( '/ (AND|OR|WITH) /', $module['license'] ) ) {
+				$moduleCdx['licenses'][] = [ 'expression' => $module['license'] ];
+			} else {
+				$moduleCdx['licenses'][] = [ 'license' => [ 'id' => $module['license'] ] ];
+			}
+			if ( $module['version'] ?? false ) {
+				$moduleCdx['version'] = $module['version'];
+			}
+			if ( $module['authors'] ?? false ) {
+				$moduleCdx['authors'] = array_map(
+					fn ( $author ) => [ 'name' => $author ],
+					preg_split( '/,( and)? /', $module['authors'] )
+				);
+			}
+			if ( $module['homepage'] ?? false ) {
+				$moduleCdx['externalReferences'] = [ [ 'url' => $module['homepage'], 'type' => 'website' ] ];
+			}
+			$cdx['components'][] = $moduleCdx;
+		}
+		return $cdx;
 	}
 }
 

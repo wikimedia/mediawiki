@@ -56,9 +56,11 @@ publish one themselves. Add or update the urls foreign-resources.yaml as needed,
 but omit (or leave empty) the "integrity" key. Then, run the "make-sri" action
 for the module and copy the integrity into the file. Then, you can use "verify"
 or "update" normally.
+
+The "make-cdx" option generates a CycloneDX SBOM file.
 TEXT
 		);
-		$this->addArg( 'action', 'One of "update", "verify" or "make-sri"', true );
+		$this->addArg( 'action', 'One of "update", "verify", "make-sri" or "make-cdx"', true );
 		$this->addArg( 'module', 'Name of a single module (Default: all)', false );
 		$this->addOption( 'extension', 'Manage foreign resources for the given extension, instead of core',
 			false, true );
