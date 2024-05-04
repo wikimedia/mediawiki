@@ -44,6 +44,7 @@ use MediaWiki\Session\SessionManager;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use MediaWiki\User\UserRigorOptions;
 use MessageSpecifier;
 use RuntimeException;
 use Skin;
@@ -697,14 +698,16 @@ class RequestContext implements IContextSource, MutableContext {
 			throw new InvalidArgumentException( "Invalid client IP address '{$params['ip']}'." );
 		}
 
+		$userFactory = MediaWikiServices::getInstance()->getUserFactory();
+
 		if ( $params['userId'] ) { // logged-in user
-			$user = User::newFromId( $params['userId'] );
+			$user = $userFactory->newFromId( (int)$params['userId'] );
 			$user->load();
 			if ( !$user->isRegistered() ) {
 				throw new InvalidArgumentException( "No user with ID '{$params['userId']}'." );
 			}
 		} else { // anon user
-			$user = User::newFromName( $params['ip'], false );
+			$user = $userFactory->newFromName( $params['ip'], UserRigorOptions::RIGOR_NONE );
 		}
 
 		$importSessionFunc = static function ( User $user, array $params ) {
@@ -756,6 +759,7 @@ class RequestContext implements IContextSource, MutableContext {
 		$oUser = self::getMain()->getUser();
 		$oParams = self::getMain()->exportSession();
 		$oRequest = self::getMain()->getRequest();
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable exceptions triggered above prevent the null case
 		$importSessionFunc( $user, $params );
 
 		// Set callback to save and close the new session and reload the old one
@@ -792,7 +796,10 @@ class RequestContext implements IContextSource, MutableContext {
 		} else {
 			$context->setRequest( new FauxRequest( $request ) );
 		}
-		$context->user = User::newFromName( '127.0.0.1', false );
+		$context->user = MediaWikiServices::getInstance()->getUserFactory()->newFromName(
+			'127.0.0.1',
+			UserRigorOptions::RIGOR_NONE
+		);
 
 		return $context;
 	}
