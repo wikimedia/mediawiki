@@ -33,11 +33,11 @@ use InvalidArgumentException;
 interface JsonSerializer {
 
 	/**
-	 * Encode $value as JSON with an intent to use JsonUnserializer::unserialize
+	 * Encode $value as JSON with an intent to use JsonDeserializer::unserialize
 	 * to decode it back.
 	 *
-	 * @param mixed|JsonUnserializable $value A value to encode. Can be any scalar,
-	 * array, stdClass, JsonUnserializable or any combination of them.
+	 * @param mixed|JsonDeserializable $value A value to encode. Can be any scalar,
+	 * array, stdClass, JsonDeserializable or any combination of them.
 	 * @throws InvalidArgumentException if the value can not be serialized.
 	 * @return string
 	 */

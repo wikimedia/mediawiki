@@ -30,29 +30,46 @@ use InvalidArgumentException;
  * @since 1.36
  * @package MediaWiki\Json
  */
-interface JsonUnserializer {
+interface JsonDeserializer {
 
 	/**
-	 * Restore an instance of simple type or JsonUnserializable subclass
+	 * Restore an instance of simple type or JsonDeserializable subclass
 	 * from the JSON serialization. It supports passing array/object to
 	 * allow manual decoding of the JSON string if needed.
 	 *
-	 * @note JSON objects are unconditionally unserialized as PHP associative
-	 * arrays and not as instances of \stdClass.
+	 * @note JSON objects are unconditionally deserialized as PHP associative
+	 * arrays, and not as instances of \stdClass.
 	 *
 	 * @phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
 	 * @param array|string|object $json
-	 * @param string|null $expectedClass What class to expect in unserialization.
-	 *   If null, no expectation. Must be a descendant of JsonUnserializable.
-	 * @throws InvalidArgumentException if the passed $json can't be unserialized.
+	 * @param string|null $expectedClass What class to expect in deserialization.
+	 *   If null, no expectation. Must be a descendant of JsonDeserializable.
+	 * @throws InvalidArgumentException if the passed $json can't be deserialized.
 	 * @return mixed
+	 */
+	public function deserialize( $json, string $expectedClass = null );
+
+	/**
+	 * Backwards-compatibility alias for deserialize()
+	 *
+	 * @deprecated since 1.43
 	 */
 	public function unserialize( $json, string $expectedClass = null );
 
 	/**
-	 * Helper to unserialize an array of JsonUnserializable instances or simple types.
+	 * Helper to deserialize an array of JsonDeserializable instances or simple types.
 	 * @param array $array
 	 * @return array
 	 */
+	public function deserializeArray( array $array ): array;
+
+	/**
+	 * Backwards-compatibility alias for deserializeArray()
+	 *
+	 * @deprecated since 1.43
+	 */
 	public function unserializeArray( array $array ): array;
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( JsonDeserializer::class, 'MediaWiki\\Json\\JsonUnserializer' );

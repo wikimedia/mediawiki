@@ -21,9 +21,9 @@
  * @ingroup Parser
  */
 
-use MediaWiki\Json\JsonUnserializable;
-use MediaWiki\Json\JsonUnserializableTrait;
-use MediaWiki\Json\JsonUnserializer;
+use MediaWiki\Json\JsonDeserializable;
+use MediaWiki\Json\JsonDeserializableTrait;
+use MediaWiki\Json\JsonDeserializer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserCacheMetadata;
@@ -35,9 +35,9 @@ use Wikimedia\Reflection\GhostFieldAccessTrait;
  *
  * @ingroup Parser
  */
-class CacheTime implements ParserCacheMetadata, JsonUnserializable {
+class CacheTime implements ParserCacheMetadata, JsonDeserializable {
 	use GhostFieldAccessTrait;
-	use JsonUnserializableTrait;
+	use JsonDeserializableTrait;
 
 	/**
 	 * @var true[] ParserOptions which have been taken into account
@@ -262,18 +262,18 @@ class CacheTime implements ParserCacheMetadata, JsonUnserializable {
 		];
 	}
 
-	public static function newFromJsonArray( JsonUnserializer $unserializer, array $json ) {
+	public static function newFromJsonArray( JsonDeserializer $deserializer, array $json ) {
 		$cacheTime = new CacheTime();
-		$cacheTime->initFromJson( $unserializer, $json );
+		$cacheTime->initFromJson( $deserializer, $json );
 		return $cacheTime;
 	}
 
 	/**
 	 * Initialize member fields from an array returned by jsonSerialize().
-	 * @param JsonUnserializer $unserializer
+	 * @param JsonDeserializer $deserializer Unused
 	 * @param array $jsonData
 	 */
-	protected function initFromJson( JsonUnserializer $unserializer, array $jsonData ) {
+	protected function initFromJson( JsonDeserializer $deserializer, array $jsonData ) {
 		// WARNING: When changing how this class is serialized, follow the instructions
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 

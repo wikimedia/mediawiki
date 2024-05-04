@@ -14,7 +14,7 @@ use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFilter;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Tests\Json\JsonUnserializableSuperClass;
+use MediaWiki\Tests\Json\JsonDeserializableSuperClass;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\User;
@@ -614,7 +614,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		yield 'JSON serialization, bad data' => [ 'bla bla' ];
 		yield 'JSON serialization, no _class_' => [ '{"test":"test"}' ];
 		yield 'JSON serialization, non-existing _class_' => [ '{"_class_":"NonExistentBogusClass"}' ];
-		$wrongInstance = new JsonUnserializableSuperClass( 'test' );
+		$wrongInstance = new JsonDeserializableSuperClass( 'test' );
 		yield 'JSON serialization, wrong class' => [ json_encode( $wrongInstance->jsonSerialize() ) ];
 	}
 

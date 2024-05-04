@@ -34,7 +34,7 @@ interface JsonConstants {
 	public const TYPE_ANNOTATION = '_type_';
 	/**
 	 * Name of the marker property to indicate that array contents
-	 * need to be examined during unserialization.
+	 * need to be examined during deserialization.
 	 */
 	public const COMPLEX_ANNOTATION = '_complex_';
 }

@@ -2,15 +2,15 @@
 
 namespace MediaWiki\Tests\Json;
 
-use MediaWiki\Json\JsonUnserializable;
-use MediaWiki\Json\JsonUnserializableTrait;
-use MediaWiki\Json\JsonUnserializer;
+use MediaWiki\Json\JsonDeserializable;
+use MediaWiki\Json\JsonDeserializableTrait;
+use MediaWiki\Json\JsonDeserializer;
 
 /**
- * Testing class for JsonUnserializer unit tests.
+ * Testing class for JsonDeserializer unit tests.
  */
-class JsonUnserializableSuperClass implements JsonUnserializable {
-	use JsonUnserializableTrait;
+class JsonDeserializableSuperClass implements JsonDeserializable {
+	use JsonDeserializableTrait;
 
 	private $superClassField;
 
@@ -22,7 +22,7 @@ class JsonUnserializableSuperClass implements JsonUnserializable {
 		return $this->superClassField;
 	}
 
-	public static function newFromJsonArray( JsonUnserializer $unserializer, array $json ) {
+	public static function newFromJsonArray( JsonDeserializer $deserializer, array $json ) {
 		return new self( $json['super_class_field'] );
 	}
 

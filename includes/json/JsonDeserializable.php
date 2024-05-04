@@ -24,25 +24,28 @@ namespace MediaWiki\Json;
 use JsonSerializable;
 
 /**
- * Classes implementing this interface support round-trip JSON serialization/unserialization
- * using the JsonUnserializer utility.
+ * Classes implementing this interface support round-trip JSON serialization/deserialization
+ * using the JsonDeserializer utility.
  *
- * The resulting JSON must be annotated with class information for unserialization to work.
- * Use JsonUnserializableTrait in implementing classes which annotates the JSON automatically.
+ * The resulting JSON must be annotated with class information for deserialization to work.
+ * Use JsonDeserializableTrait in implementing classes which annotates the JSON automatically.
  *
- * @see JsonUnserializer
- * @see JsonUnserializableTrait
+ * @see JsonDeserializer
+ * @see JsonDeserializableTrait
  * @since 1.36
  * @package MediaWiki\Json
  */
-interface JsonUnserializable extends JsonSerializable {
+interface JsonDeserializable extends JsonSerializable {
 
 	/**
 	 * Creates a new instance of the class and initialized it from the $json array.
-	 * @param JsonUnserializer $unserializer an instance of JsonUnserializer to use
+	 * @param JsonDeserializer $deserializer an instance of JsonDeserializer to use
 	 *   for nested properties if they need special care.
 	 * @param array $json
-	 * @return JsonUnserializable
+	 * @return JsonDeserializable
 	 */
-	public static function newFromJsonArray( JsonUnserializer $unserializer, array $json );
+	public static function newFromJsonArray( JsonDeserializer $deserializer, array $json );
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( JsonDeserializable::class, 'MediaWiki\\Json\\JsonUnserializable' );

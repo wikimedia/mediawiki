@@ -12,7 +12,7 @@ use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Tests\Json\JsonUnserializableSuperClass;
+use MediaWiki\Tests\Json\JsonDeserializableSuperClass;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
@@ -290,7 +290,7 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 		yield 'JSON serialization, no _class_' => [ '{"test":"test"}' ];
 		yield 'JSON serialization, non-existing _class_' => [ '{"_class_":"NonExistentBogusClass"}' ];
 
-		$wrongInstance = new JsonUnserializableSuperClass( 'test' );
+		$wrongInstance = new JsonDeserializableSuperClass( 'test' );
 		yield 'JSON serialization, wrong class' => [ json_encode( $wrongInstance->jsonSerialize() ) ];
 	}
 

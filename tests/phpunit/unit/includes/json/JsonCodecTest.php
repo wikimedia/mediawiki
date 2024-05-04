@@ -15,7 +15,7 @@ use Wikimedia\Assert\PreconditionException;
 
 /**
  * @covers \MediaWiki\Json\JsonCodec
- * @covers \MediaWiki\Json\JsonUnserializableTrait
+ * @covers \MediaWiki\Json\JsonDeserializableTrait
  */
 class JsonCodecTest extends MediaWikiUnitTestCase {
 
@@ -40,7 +40,7 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 		yield 'Unserialization metadata, but class not exist' => [ [
 			JsonConstants::TYPE_ANNOTATION => 'BadClassNotExist'
 		] ];
-		yield 'Unserialization metadata, but class is not JsonUnserializable' => [ [
+		yield 'Unserialization metadata, but class is not JsonDeserializable' => [ [
 			JsonConstants::TYPE_ANNOTATION => Title::class
 		] ];
 	}
@@ -48,8 +48,8 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideSimpleTypes
 	 */
-	public function testSimpleTypesUnserialize( $value, string $serialization ) {
-		$this->assertSame( $value, $this->getCodec()->unserialize( $serialization ) );
+	public function testSimpleTypesDeserialize( $value, string $serialization ) {
+		$this->assertSame( $value, $this->getCodec()->deserialize( $serialization ) );
 	}
 
 	public function testActualClassInstanceIsNotJsonObject() {
@@ -58,10 +58,10 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 
 		// TODO: We probably want this to throw an exception as well
 		$array = [ $object ];
-		$this->assertSame( $array, $this->getCodec()->unserialize( $array ) );
+		$this->assertSame( $array, $this->getCodec()->deserialize( $array ) );
 
 		$this->expectException( InvalidArgumentException::class );
-		$this->getCodec()->unserialize( $object );
+		$this->getCodec()->deserialize( $object );
 	}
 
 	/**
@@ -71,86 +71,86 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 	public function testInvalidJsonDataForClassExpectation( $jsonData, $simpleJsonData = null ) {
 		$jsonData = $simpleJsonData ?? $jsonData;
 		$this->expectException( JsonException::class );
-		$this->getCodec()->unserialize( $jsonData, JsonUnserializableSuperClass::class );
+		$this->getCodec()->deserialize( $jsonData, JsonDeserializableSuperClass::class );
 	}
 
 	public function testExpectedClassMustBeUnserializable() {
 		$this->expectException( PreconditionException::class );
-		$this->getCodec()->unserialize( '{}', self::class );
+		$this->getCodec()->deserialize( '{}', self::class );
 	}
 
-	public function testUnexpectedClassUnserialized() {
+	public function testUnexpectedClassDeserialized() {
 		$this->expectException( JsonException::class );
-		$superClassInstance = new JsonUnserializableSuperClass( 'Godzilla' );
-		$this->getCodec()->unserialize(
+		$superClassInstance = new JsonDeserializableSuperClass( 'Godzilla' );
+		$this->getCodec()->deserialize(
 			$superClassInstance->jsonSerialize(),
-			JsonUnserializableSubClass::class
+			JsonDeserializableSubClass::class
 		);
 	}
 
-	public function testExpectedClassUnserialized() {
-		$subClassInstance = new JsonUnserializableSubClass( 'Godzilla', 'But we are ready!' );
-		$this->assertNotNull( $this->getCodec()->unserialize(
+	public function testExpectedClassDeserialized() {
+		$subClassInstance = new JsonDeserializableSubClass( 'Godzilla', 'But we are ready!' );
+		$this->assertNotNull( $this->getCodec()->deserialize(
 			$subClassInstance->jsonSerialize(),
-			JsonUnserializableSuperClass::class
+			JsonDeserializableSuperClass::class
 		) );
-		$this->assertNotNull( $this->getCodec()->unserialize(
+		$this->assertNotNull( $this->getCodec()->deserialize(
 			$subClassInstance->jsonSerialize(),
-			JsonUnserializableSubClass::class
+			JsonDeserializableSubClass::class
 		) );
 	}
 
 	public function testRoundTripSuperClass() {
-		$superClassInstance = new JsonUnserializableSuperClass( 'Super Value' );
+		$superClassInstance = new JsonDeserializableSuperClass( 'Super Value' );
 		$json = $superClassInstance->jsonSerialize();
-		$superClassUnserialized = $this->getCodec()->unserialize( $json );
-		$this->assertInstanceOf( JsonUnserializableSuperClass::class, $superClassInstance );
-		$this->assertSame( $superClassInstance->getSuperClassField(), $superClassUnserialized->getSuperClassField() );
+		$superClassDeserialized = $this->getCodec()->deserialize( $json );
+		$this->assertInstanceOf( JsonDeserializableSuperClass::class, $superClassInstance );
+		$this->assertSame( $superClassInstance->getSuperClassField(), $superClassDeserialized->getSuperClassField() );
 	}
 
 	public function testRoundTripSuperClassObject() {
-		$superClassInstance = new JsonUnserializableSuperClass( 'Super Value' );
+		$superClassInstance = new JsonDeserializableSuperClass( 'Super Value' );
 		$json = (object)$superClassInstance->jsonSerialize();
-		$superClassUnserialized = $this->getCodec()->unserialize( $json );
-		$this->assertInstanceOf( JsonUnserializableSuperClass::class, $superClassInstance );
-		$this->assertSame( $superClassInstance->getSuperClassField(), $superClassUnserialized->getSuperClassField() );
+		$superClassDeserialized = $this->getCodec()->deserialize( $json );
+		$this->assertInstanceOf( JsonDeserializableSuperClass::class, $superClassInstance );
+		$this->assertSame( $superClassInstance->getSuperClassField(), $superClassDeserialized->getSuperClassField() );
 	}
 
 	public function testRoundTripSubClass() {
-		$subClassInstance = new JsonUnserializableSubClass( 'Super Value', 'Sub Value' );
+		$subClassInstance = new JsonDeserializableSubClass( 'Super Value', 'Sub Value' );
 		$json = $subClassInstance->jsonSerialize();
-		$superClassUnserialized = $this->getCodec()->unserialize( $json );
-		$this->assertInstanceOf( JsonUnserializableSubClass::class, $subClassInstance );
-		$this->assertSame( $subClassInstance->getSuperClassField(), $superClassUnserialized->getSuperClassField() );
-		$this->assertSame( $subClassInstance->getSubClassField(), $superClassUnserialized->getSubClassField() );
+		$superClassDeserialized = $this->getCodec()->deserialize( $json );
+		$this->assertInstanceOf( JsonDeserializableSubClass::class, $subClassInstance );
+		$this->assertSame( $subClassInstance->getSuperClassField(), $superClassDeserialized->getSuperClassField() );
+		$this->assertSame( $subClassInstance->getSubClassField(), $superClassDeserialized->getSubClassField() );
 	}
 
 	public function testRoundTripSubClassNested() {
-		$subClassInstance1 = new JsonUnserializableSubClass( 'Super Value', 'Sub Value' );
-		$superClassInstance1 = new JsonUnserializableSuperClass( 'XYZ' );
-		$superClassInstance2 = new JsonUnserializableSuperClass(
+		$subClassInstance1 = new JsonDeserializableSubClass( 'Super Value', 'Sub Value' );
+		$superClassInstance1 = new JsonDeserializableSuperClass( 'XYZ' );
+		$superClassInstance2 = new JsonDeserializableSuperClass(
 			// To be a bit tricky, wrap the embedded instance in an array
 			[ $superClassInstance1 ]
 		);
-		$subClassInstance2 = new JsonUnserializableSubClass(
+		$subClassInstance2 = new JsonDeserializableSubClass(
 			$subClassInstance1,
 			// Again, we're tricky and wrap this instance in a stdClass object
 			(object)[ 'a' => $superClassInstance1 ]
 		);
 		$json = $this->getCodec()->serialize( $subClassInstance2 );
-		$unserialized = $this->getCodec()->unserialize( $json );
-		$this->assertEquals( $subClassInstance2, $unserialized );
+		$deserialized = $this->getCodec()->deserialize( $json );
+		$this->assertEquals( $subClassInstance2, $deserialized );
 	}
 
 	public function testArrayRoundTrip() {
 		$array = [
-			new JsonUnserializableSuperClass( 'Super Value' ),
-			new JsonUnserializableSubClass( 'Super Value', 'Sub Value' ),
+			new JsonDeserializableSuperClass( 'Super Value' ),
+			new JsonDeserializableSubClass( 'Super Value', 'Sub Value' ),
 			42
 		];
 		$serialized = FormatJson::encode( $array );
-		$unserialized = $this->getCodec()->unserializeArray( FormatJson::decode( $serialized ) );
-		$this->assertArrayEquals( $array, $unserialized );
+		$deserialized = $this->getCodec()->deserializeArray( FormatJson::decode( $serialized ) );
+		$this->assertArrayEquals( $array, $deserialized );
 	}
 
 	public static function provideValidateSerializable() {
@@ -182,18 +182,18 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 		yield 'Nested, non-serializable' => [ [ 'a' => [ 'b' => $classInstance ] ], true, '$.a.b' ];
 		yield 'Nested, non-serializable, in array' => [ [ 'a' => [ 1, 2, $classInstance ] ], true, '$.a.2' ];
 		yield 'Nested, non-serializable, in stdClass' => [ [ 'a' => (object)[ 1, 2, $classInstance ] ], true, '$.a.2' ];
-		yield 'Nested, non-serializable, in JsonUnserializable' => [ new JsonUnserializableSuperClass( $classInstance ), true, '$.super_class_field' ];
-		yield 'JsonUnserializable instance' => [ new JsonUnserializableSuperClass( 'Test' ), true, null ];
-		yield 'JsonUnserializable instance, in array' =>
-			[ [ new JsonUnserializableSuperClass( 'Test' ) ], true, null ];
-		yield 'JsonUnserializable instance, in stdClass' =>
-			[ (object)[ new JsonUnserializableSuperClass( 'Test' ) ], true, null ];
+		yield 'Nested, non-serializable, in JsonDeserializable' => [ new JsonDeserializableSuperClass( $classInstance ), true, '$.super_class_field' ];
+		yield 'JsonDeserializable instance' => [ new JsonDeserializableSuperClass( 'Test' ), true, null ];
+		yield 'JsonDeserializable instance, in array' =>
+			[ [ new JsonDeserializableSuperClass( 'Test' ) ], true, null ];
+		yield 'JsonDeserializable instance, in stdClass' =>
+			[ (object)[ new JsonDeserializableSuperClass( 'Test' ) ], true, null ];
 		yield 'JsonSerializable instance' => [ $serializableClass, false, null ];
 		yield 'JsonSerializable instance, in array' => [ [ $serializableClass ], false, null ];
 		yield 'JsonSerializable instance, in stdClass' => [ (object)[ $serializableClass ], false, null ];
-		yield 'JsonSerializable instance, expect unserialize' => [ $serializableClass, true, '$' ];
-		yield 'JsonSerializable instance, in array, expect unserialize' => [ [ $serializableClass ], true, '$.0' ];
-		yield 'JsonSerializable instance, in stdClass, expect unserialize' =>
+		yield 'JsonSerializable instance, expect deserialize' => [ $serializableClass, true, '$' ];
+		yield 'JsonSerializable instance, in array, expect deserialize' => [ [ $serializableClass ], true, '$.0' ];
+		yield 'JsonSerializable instance, in stdClass, expect deserialize' =>
 			[ (object)[ $serializableClass ], true, '$.0' ];
 		yield 'Bad JsonSerializable instance' => [ $badSerializable, false, '$' ];
 	}
@@ -203,9 +203,9 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Json\JsonCodec::detectNonSerializableData
 	 * @covers \MediaWiki\Json\JsonCodec::detectNonSerializableDataInternal
 	 */
-	public function testValidateSerializable( $value, bool $expectUnserialize, ?string $expected ) {
+	public function testValidateSerializable( $value, bool $expectDeserialize, ?string $expected ) {
 		$actual = $this->getCodec()
-			->detectNonSerializableData( $value, $expectUnserialize );
+			->detectNonSerializableData( $value, $expectDeserialize );
 		// Split off the details string from the detection location
 		if ( $actual !== null ) {
 			$actual = preg_replace( '/:.*$/', '', $actual );
@@ -219,15 +219,15 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Json\JsonCodec::detectNonSerializableDataInternal
 	 * @covers \MediaWiki\Json\JsonCodec::detectNonSerializableDataInternal
 	 */
-	public function testValidateSerializable2( $value, bool $expectUnserialize, ?string $result ) {
-		if ( $result !== null || !$expectUnserialize ) {
+	public function testValidateSerializable2( $value, bool $expectDeserialize, ?string $result ) {
+		if ( $result !== null || !$expectDeserialize ) {
 			$this->assertTrue( true ); // skip this test
 			return;
 		}
 		// Sanity check by ensuring that "serializable" things actually
 		// are unserializable w/o losing value or type
 		$json = $this->getCodec()->serialize( $value );
-		$newValue = $this->getCodec()->unserialize( $json );
+		$newValue = $this->getCodec()->deserialize( $json );
 		$this->assertEquals( $value, $newValue );
 	}
 

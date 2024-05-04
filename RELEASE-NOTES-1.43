@@ -390,6 +390,16 @@ because of Phabricator reports.
   warnings.
 * User::isBlockedFromEmailuser() and User::canSendEmail(), deprecated since
   1.41, now emit deprecation warnings.
+* JsonUnserializable and related classes have been renamed to JsonDeserializable
+  to make it clearer that they're related to converting serialized content back
+  into JSON, rather than stating that things are not representable in JSON. The
+  previous class names have been left behind as deprecated aliases:
+   - JsonUnserializable -> JsonDeserializable
+   - JsonUnserializableTrait -> JsonDeserializableTrait
+   - JsonUnserializer -> JsonDeserializer
+  Additionally, JsonCodec's unserialize() and unserializeArray() methods have
+  also been renamed to deserialize() and deserializeArray(), with the old names
+  deprecated.
 * StatusValue will emit deprecation warnings when an error is given as
   a MessageSpecifier combined with a parameters array, which is usually
   a mistake, as the parameters have always been ignored.

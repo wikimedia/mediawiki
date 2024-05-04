@@ -21,7 +21,7 @@
 
 namespace MediaWiki\Json;
 
-trait JsonUnserializableTrait {
+trait JsonDeserializableTrait {
 
 	public function jsonSerialize(): array {
 		return $this->annotateJsonForDeserialization(
@@ -48,3 +48,6 @@ trait JsonUnserializableTrait {
 	 */
 	abstract protected function toJsonArray(): array;
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( JsonDeserializableTrait::class, 'MediaWiki\\Json\\JsonUnserializableTrait' );

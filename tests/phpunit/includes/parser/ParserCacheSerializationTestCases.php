@@ -512,7 +512,7 @@ abstract class ParserCacheSerializationTestCases {
 					return $jsonCodec->serialize( $obj );
 				},
 				'deserializer' => static function ( $data ) use ( $jsonCodec ) {
-					return $jsonCodec->unserialize( $data );
+					return $jsonCodec->deserialize( $data );
 				}
 			];
 		}

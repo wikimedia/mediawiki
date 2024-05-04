@@ -276,8 +276,8 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\HookContainer\\HookRunnerTestBase' => "$testDir/phpunit/unit/includes/HookContainer/HookRunnerTestBase.php",
 
 	# tests/phpunit/unit/includes/json
-	'MediaWiki\\Tests\\Json\\JsonUnserializableSuperClass' => "$testDir/phpunit/mocks/json/JsonUnserializableSuperClass.php",
-	'MediaWiki\\Tests\\Json\\JsonUnserializableSubClass' => "$testDir/phpunit/mocks/json/JsonUnserializableSubClass.php",
+	'MediaWiki\\Tests\\Json\\JsonDeserializableSuperClass' => "$testDir/phpunit/mocks/json/JsonDeserializableSuperClass.php",
+	'MediaWiki\\Tests\\Json\\JsonDeserializableSubClass' => "$testDir/phpunit/mocks/json/JsonDeserializableSubClass.php",
 
 	# tests/phpunit/unit/includes/language
 	'LanguageCodeTest' => "$testDir/phpunit/unit/includes/language/LanguageCodeTest.php",

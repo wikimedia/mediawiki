@@ -57,9 +57,9 @@ class BenchmarkJsonCodec extends Benchmarker {
 				},
 				'args' => [ $codec, $data ]
 			],
-			"JsonCodec::unserialize ($file)" => [
+			"JsonCodec::deserialize ($file)" => [
 				'function' => static function ( JsonCodec $codec, $bytes ) {
-					$codec->unserialize( $bytes );
+					$codec->deserialize( $bytes );
 				},
 				'args' => [ $codec, $bytes ]
 			],
