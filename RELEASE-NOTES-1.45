@@ -221,7 +221,7 @@ because of Phabricator reports.
   is now removed.
 * The UserNamePrefixSearch class, deprecated in 1.41 has been removed,
   the MediaWiki\User\UserNamePrefixSearch service should be used instead.
-* …
+* UserMailer::sanitizeHeaderValue, deprecated in 1.44 is now removed.
 
 === Deprecations in 1.45 ===
 
