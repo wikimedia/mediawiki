@@ -30,6 +30,7 @@ use ErrorPageError;
 use IDBAccessObject;
 use LogPage;
 use ManualLogEntry;
+use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentStore\CommentStore;
@@ -447,6 +448,7 @@ class EditPage implements IEditObject {
 	private UserFactory $userFactory;
 	private IConnectionProvider $connectionProvider;
 	private BlockErrorFormatter $blockErrorFormatter;
+	private AuthManager $authManager;
 
 	/** @var User|null */
 	private $placeholderTempUser;
@@ -518,6 +520,7 @@ class EditPage implements IEditObject {
 		$this->connectionProvider = $services->getConnectionProvider();
 		$this->blockErrorFormatter = $services->getFormatterFactory()
 			->getBlockErrorFormatter( $this->context );
+		$this->authManager = $services->getAuthManager();
 
 		// XXX: Restore this deprecation as soon as TwoColConflict is fixed (T305028)
 		// $this->deprecatePublicProperty( 'textbox2', '1.38', __CLASS__ );
@@ -823,6 +826,7 @@ class EditPage implements IEditObject {
 			$this->placeholderTempUser = null;
 			$this->unsavedTempUser = null;
 			$this->savedTempUser = $status->getUser();
+			$this->authManager->setRequestContextUserFromSessionUser();
 			$this->tempUserCreateDone = true;
 		}
 		return $status;
