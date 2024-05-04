@@ -1967,8 +1967,7 @@ class ApiMain extends ApiBase {
 		$trxLimits = $this->getConfig()->get( MainConfigNames::TrxProfilerLimits );
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$trxProfiler->setLogger( LoggerFactory::getInstance( 'rdbms' ) );
-		$statsFactory = MediaWikiServices::getInstance()->getStatsdDataFactory();
-		$trxProfiler->setStatsdDataFactory( $statsFactory );
+		$trxProfiler->setStatsFactory( MediaWikiServices::getInstance()->getStatsFactory() );
 		$trxProfiler->setRequestMethod( $request->getMethod() );
 		if ( $request->hasSafeMethod() ) {
 			$trxProfiler->setExpectations( $trxLimits['GET'], __METHOD__ );
