@@ -1043,8 +1043,9 @@ function wfBacktrace( $raw = null ) {
  * wfGetCaller( 2 ) [default] is the caller of the function running wfGetCaller()
  * wfGetCaller( 3 ) is the parent of that.
  *
+ * The format will be the same as for {@see wfFormatStackFrame()}.
  * @param int $level
- * @return string
+ * @return string function name or 'unknown'
  */
 function wfGetCaller( $level = 2 ) {
 	$backtrace = wfDebugBacktrace( $level + 1 );
@@ -1073,6 +1074,12 @@ function wfGetAllCallers( $limit = 3 ) {
 
 /**
  * Return a string representation of frame
+ *
+ * Typically, the returned value will be in one of these formats:
+ * - method
+ * - Fully\Qualified\method
+ * - Fully\Qualified\Class->method
+ * - Fully\Qualified\Class::method
  *
  * @param array $frame
  * @return string
