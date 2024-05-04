@@ -1708,7 +1708,7 @@ class Language implements Bcp47Code {
 	 *       https://en.wikipedia.org/wiki/Minguo_calendar
 	 *
 	 * @param string $ts 14-character timestamp
-	 * @param string $cName Calender name
+	 * @param string $cName Calendar name
 	 * @return array Converted year, month, day
 	 */
 	private static function tsToYear( $ts, $cName ) {
