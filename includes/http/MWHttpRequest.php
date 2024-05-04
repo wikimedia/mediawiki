@@ -92,7 +92,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 
 	/**
 	 * @param string $url Url to use. If protocol-relative, will be expanded to an http:// URL
-	 * @param array $options (optional) extra params to pass (see HttpRequestFactory::create())
+	 * @param array $options extra params to pass (see HttpRequestFactory::create())
 	 * @phpcs:ignore Generic.Files.LineLength
 	 * @phan-param array{timeout?:int|string,connectTimeout?:int|string,postData?:array,proxy?:string,noProxy?:bool,sslVerifyHost?:bool,sslVerifyCert?:bool,caInfo?:string,maxRedirects?:int,followRedirects?:bool,userAgent?:string,logger?:LoggerInterface,username?:string,password?:string,originalRequest?:WebRequest|array{ip:string,userAgent:string},method?:string} $options
 	 * @param string $caller The method making this request, for profiling
@@ -100,12 +100,18 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @throws Exception
 	 */
 	public function __construct(
-		$url, array $options = [], $caller = __METHOD__, Profiler $profiler = null
+		$url, array $options, $caller = __METHOD__, Profiler $profiler = null
 	) {
+		if ( !array_key_exists( 'timeout', $options )
+			|| !array_key_exists( 'connectTimeout', $options ) ) {
+			throw new InvalidArgumentException( "timeout and connectionTimeout options are required" );
+		}
 		$this->url = wfExpandUrl( $url, PROTO_HTTP );
 		$this->parsedUrl = wfParseUrl( $this->url );
 
 		$this->logger = $options['logger'] ?? new NullLogger();
+		$this->timeout = $options['timeout'];
+		$this->connectTimeout = $options['connectTimeout'];
 
 		if ( !$this->parsedUrl || !self::isValidURI( $this->url ) ) {
 			$this->status = StatusValue::newFatal( 'http-invalid-url', $url );
@@ -113,26 +119,6 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 			$this->status = StatusValue::newGood( 100 ); // continue
 		}
 
-		if ( isset( $options['timeout'] ) && $options['timeout'] != 'default' ) {
-			$this->timeout = $options['timeout'];
-		} else {
-			// The timeout should always be set by HttpRequestFactory, so this
-			// should only happen if the class was directly constructed
-			wfDeprecated( __METHOD__ . ' without the timeout option', '1.35' );
-			$httpTimeout = MediaWikiServices::getInstance()->getMainConfig()->get(
-				MainConfigNames::HTTPTimeout );
-			$this->timeout = $httpTimeout;
-		}
-		if ( isset( $options['connectTimeout'] ) && $options['connectTimeout'] != 'default' ) {
-			$this->connectTimeout = $options['connectTimeout'];
-		} else {
-			// The timeout should always be set by HttpRequestFactory, so this
-			// should only happen if the class was directly constructed
-			wfDeprecated( __METHOD__ . ' without the connectTimeout option', '1.35' );
-			$httpConnectTimeout = MediaWikiServices::getInstance()->getMainConfig()->get(
-				MainConfigNames::HTTPConnectTimeout );
-			$this->connectTimeout = $httpConnectTimeout;
-		}
 		if ( isset( $options['userAgent'] ) ) {
 			$this->setUserAgent( $options['userAgent'] );
 		}
