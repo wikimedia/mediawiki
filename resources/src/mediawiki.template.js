@@ -2,6 +2,7 @@
  * An extensible library for rendering templates in different template languages.
  * By default only the `html` template library is provided.
  * The Mustache library is also provided in mediawiki core via the mediawiki.template.mustache library.
+ *
  * @example
  * // returns $( '<div>hello world</div>' );
  * const $node = mw.template.compile( '<div>hello world</div>', 'html' ).render();
