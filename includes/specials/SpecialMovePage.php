@@ -306,7 +306,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			$mp = $this->movePageFactory->newMovePage( $this->oldTitle, $newTitle );
 			$status = $mp->isValidMove();
 			$status->merge( $mp->probablyCanMove( $this->getAuthority() ) );
-			if ( $status->getErrors() ) {
+			if ( $status->getMessages() ) {
 				$err = $status->getErrorsArray();
 			}
 		}
