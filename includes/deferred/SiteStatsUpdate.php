@@ -105,7 +105,7 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 
 	public function doUpdate() {
 		$services = MediaWikiServices::getInstance();
-		$stats = $services->getStatsdDataFactory();
+		$metric = $services->getStatsFactory()->getCounter( 'site_stats_total' );
 		$shards = $services->getMainConfig()->get( MainConfigNames::MultiShardSiteStats ) ?
 			self::SHARDS_ON : self::SHARDS_OFF;
 
@@ -113,7 +113,9 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 		foreach ( self::COUNTERS as $type ) {
 			$delta = $this->$type;
 			if ( $delta !== 0 ) {
-				$stats->updateCount( "site.$type", $delta );
+				$metric->setLabel( 'engagement', $type )
+					->copyToStatsdAt( "site.$type" )
+					->incrementBy( $delta );
 			}
 			$deltaByType[$type] = $delta;
 		}
