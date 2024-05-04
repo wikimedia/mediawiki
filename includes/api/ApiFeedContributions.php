@@ -36,7 +36,6 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
-use MediaWiki\Title\TitleParser;
 use MediaWiki\User\ExternalUserNames;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserRigorOptions;
@@ -49,7 +48,6 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class ApiFeedContributions extends ApiBase {
 
 	private RevisionStore $revisionStore;
-	private TitleParser $titleParser;
 	private LinkRenderer $linkRenderer;
 	private LinkBatchFactory $linkBatchFactory;
 	private HookContainer $hookContainer;
@@ -63,7 +61,6 @@ class ApiFeedContributions extends ApiBase {
 	 * @param ApiMain $main
 	 * @param string $action
 	 * @param RevisionStore $revisionStore
-	 * @param TitleParser $titleParser
 	 * @param LinkRenderer $linkRenderer
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param HookContainer $hookContainer
@@ -76,7 +73,6 @@ class ApiFeedContributions extends ApiBase {
 		ApiMain $main,
 		$action,
 		RevisionStore $revisionStore,
-		TitleParser $titleParser,
 		LinkRenderer $linkRenderer,
 		LinkBatchFactory $linkBatchFactory,
 		HookContainer $hookContainer,
@@ -87,7 +83,6 @@ class ApiFeedContributions extends ApiBase {
 	) {
 		parent::__construct( $main, $action );
 		$this->revisionStore = $revisionStore;
-		$this->titleParser = $titleParser;
 		$this->linkRenderer = $linkRenderer;
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->hookContainer = $hookContainer;
