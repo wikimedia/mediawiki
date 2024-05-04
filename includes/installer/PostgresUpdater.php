@@ -480,6 +480,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropDefault', 'revision', 'rev_comment_id' ],
 			[ 'changeField', 'revision', 'rev_id', 'BIGINT', '' ],
 			[ 'changeField', 'revision', 'rev_parent_id', 'BIGINT', '' ],
+			[ 'changeField', 'recentchanges', 'rc_id', 'BIGINT', '' ],
+			[ 'changeField', 'change_tag', 'ct_rc_id', 'BIGINT', '' ],
 		];
 	}
 
