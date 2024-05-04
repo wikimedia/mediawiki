@@ -231,7 +231,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 			'kw', 'ky', 'la', 'lad', 'lb', 'lbe', 'lez', 'lfn', 'lg', 'li', 'lij', 'liv',
 			'lki', 'lmo', 'ln', 'lo', 'lrc', 'loz', 'lt', 'ltg', 'lus', 'luz', 'lv',
 			'lzh', 'lzz', 'mai', 'map-bms', 'mdf', 'mg', 'mh', 'mhr', 'mi', 'min', 'mk',
-			'ml', 'mn', 'mni', 'mnw', 'mo', 'mr', 'mrj', 'ms', 'mt', 'mus', 'mwl', 'my',
+			'ml', 'mn', 'mnw', 'mo', 'mr', 'mrj', 'ms', 'mt', 'mus', 'mwl', 'my',
 			'myv', 'mzn', 'na', 'nah', 'nan', 'nap', 'nb', 'nds', 'nds-nl', 'ne', 'new',
 			'ng', 'niu', 'nl', 'nl-informal', 'nn', 'no', 'nov', 'nqo', 'nrm', 'nso',
 			'nv', 'ny', 'nys', 'oc', 'olo', 'om', 'or', 'os', 'pa', 'pag', 'pam', 'pap',
@@ -327,6 +327,17 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 				'ku' => 'bidirectional',
 				'ku-arab' => 'bidirectional',
 				'ku-latn' => 'bidirectional'
+			]
+		];
+
+		yield 'mni' => [
+			'mni', 'mni', MniConverter::class,
+			[ 'mni', 'mni-beng' ],
+			[
+				'mni-beng' => 'mni'
+			], [], [], [
+				'mni' => 'bidirectional',
+				'mni-beng' => 'bidirectional'
 			]
 		];
 

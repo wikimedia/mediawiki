@@ -31,6 +31,7 @@ use Language;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\StubObject\StubUserLang;
+use MniConverter;
 use ShConverter;
 use ShiConverter;
 use SrConverter;
@@ -70,6 +71,9 @@ class LanguageConverterFactory {
 		],
 		'ku' => [
 			'class' => KuConverter::class,
+		],
+		'mni' => [
+			'class' => MniConverter::class,
 		],
 		'shi' => [
 			'class' => ShiConverter::class,
