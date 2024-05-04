@@ -2587,52 +2587,6 @@ class WikiPage implements Page, PageRecord {
 	}
 
 	/**
-	 * Back-end article deletion
-	 *
-	 * Only invokes batching via the job queue if necessary per $wgDeleteRevisionsBatchSize.
-	 * Deletions can often be completed inline without involving the job queue.
-	 *
-	 * Potentially called many times per deletion operation for pages with many revisions.
-	 * @deprecated since 1.37 No external caller besides DeletePageJob should use this.
-	 *
-	 * @param string $reason
-	 * @param bool $suppress
-	 * @param UserIdentity $deleter
-	 * @param string[] $tags
-	 * @param string $logsubtype
-	 * @param bool $immediate
-	 * @param string|null $webRequestId
-	 * @return Status
-	 */
-	public function doDeleteArticleBatched(
-		$reason, $suppress, UserIdentity $deleter, $tags,
-		$logsubtype, $immediate = false, $webRequestId = null
-	) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$services = MediaWikiServices::getInstance();
-		$deletePage = $services->getDeletePageFactory()->newDeletePage(
-			$this,
-			$services->getUserFactory()->newFromUserIdentity( $deleter )
-		);
-
-		$status = $deletePage
-			->setSuppress( $suppress )
-			->setTags( $tags )
-			->setLogSubtype( $logsubtype )
-			->forceImmediate( $immediate )
-			->deleteInternal( $this, DeletePage::PAGE_BASE, $reason, $webRequestId );
-		if ( $status->isGood() ) {
-			// BC with old return format
-			if ( $deletePage->deletionsWereScheduled()[DeletePage::PAGE_BASE] ) {
-				$status->warning( 'delete-scheduled', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) );
-			} else {
-				$status->value = $deletePage->getSuccessfulDeletionsIDs()[DeletePage::PAGE_BASE];
-			}
-		}
-		return $status;
-	}
-
-	/**
 	 * Lock the page row for this title+id and return page_latest (or 0)
 	 *
 	 * @return int Returns 0 if no row was found with this title+id
