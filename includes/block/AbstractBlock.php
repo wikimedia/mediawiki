@@ -22,7 +22,6 @@ namespace MediaWiki\Block;
 
 use InvalidArgumentException;
 use MediaWiki\CommentStore\CommentStoreComment;
-use MediaWiki\Context\IContextSource;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -407,32 +406,6 @@ abstract class AbstractBlock implements Block {
 	 */
 	public function getWikiId() {
 		return $this->wikiId;
-	}
-
-	/**
-	 * Get the key and parameters for the corresponding error message.
-	 *
-	 * @deprecated since 1.35 Use BlockErrorFormatter::getMessage instead, and
-	 *  build the array using Message::getKey and Message::getParams. Hard
-	 *  deprecated since 1.40.
-	 * @since 1.22
-	 * @param IContextSource $context
-	 * @return array A message array: either a list of strings, the first of which
-	 *  is the message key and the remaining ones the parameters, or an array with
-	 *  a single MessageSpecifier object.
-	 * @phan-return non-empty-array
-	 */
-	public function getPermissionsError( IContextSource $context ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$message = MediaWikiServices::getInstance()
-			->getFormatterFactory()->getBlockErrorFormatter( $context )
-			->getMessage(
-				$this,
-				$context->getUser(),
-				null,
-				$context->getRequest()->getIP()
-			);
-		return [ $message->getKey(), ...$message->getParams() ];
 	}
 
 	/**
