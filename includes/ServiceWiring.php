@@ -1465,7 +1465,7 @@ return [
 			$services->getNamespaceInfo(),
 			$services->getTitleParser(),
 			$services->getLinkCache(),
-			$services->getStatsdDataFactory()
+			$services->getStatsFactory()
 		);
 	},
 

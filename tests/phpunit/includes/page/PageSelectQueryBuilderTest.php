@@ -42,7 +42,7 @@ class PageSelectQueryBuilderTest extends MediaWikiIntegrationTestCase {
 			$services->getNamespaceInfo(),
 			$services->getTitleParser(),
 			$services->getLinkCache(),
-			$services->getStatsdDataFactory()
+			$services->getStatsFactory()
 		);
 	}
 

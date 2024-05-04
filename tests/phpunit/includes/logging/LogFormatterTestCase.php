@@ -13,6 +13,7 @@ use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserFactory;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -70,7 +71,7 @@ abstract class LogFormatterTestCase extends MediaWikiLangTestCase {
 				$services->getNamespaceInfo(),
 				$services->getTitleParser(),
 				null,
-				null
+				StatsFactory::newNull()
 			] )
 			->getMock();
 		$pageStore->method( 'getPageByName' )
