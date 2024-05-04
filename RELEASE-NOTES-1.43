@@ -162,6 +162,7 @@ because of Phabricator reports.
 * Title::getCdnUrls() and Title::purgeSquid(), deprecated in 1.35, have been
   removed.
 * DatabaseBlock::purgeExpired, deprecated since 1.38, has been removed.
+* AbstractBlock::getPermissionsError, deprecated since 1.35, has been removed.
 * …
 
 === Deprecations in 1.43 ===
