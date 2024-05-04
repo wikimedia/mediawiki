@@ -504,7 +504,7 @@ class SpecialSearch extends SpecialPage {
 			$out->addHTML( $dymWidget->render( $term, $textMatches ) );
 		}
 
-		$hasSearchErrors = $textStatus && $textStatus->getErrors() !== [];
+		$hasSearchErrors = $textStatus && $textStatus->getMessages() !== [];
 		$hasInlineIwResults = $textMatches &&
 			$textMatches->hasInterwikiResults( ISearchResultSet::INLINE_RESULTS );
 		$hasSecondaryIwResults = $textMatches &&
@@ -521,19 +521,19 @@ class SpecialSearch extends SpecialPage {
 
 		$out->addHTML( '<div class="mw-search-results-info">' );
 
-		if ( $hasSearchErrors || $this->loadStatus->getErrors() ) {
+		if ( $hasSearchErrors || $this->loadStatus->getMessages() ) {
 			if ( $textStatus === null ) {
 				$textStatus = $this->loadStatus;
 			} else {
 				$textStatus->merge( $this->loadStatus );
 			}
 			[ $error, $warning ] = $textStatus->splitByErrorType();
-			if ( $error->getErrors() ) {
+			if ( $error->getMessages() ) {
 				$out->addHTML( Html::errorBox(
 					$error->getHTML( 'search-error' )
 				) );
 			}
-			if ( $warning->getErrors() ) {
+			if ( $warning->getMessages() ) {
 				$out->addHTML( Html::warningBox(
 					$warning->getHTML( 'search-warning' )
 				) );
