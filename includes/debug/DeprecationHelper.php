@@ -18,6 +18,11 @@
  * @file
  */
 
+namespace MediaWiki\Debug;
+
+use ReflectionFunction;
+use ReflectionProperty;
+
 /**
  * Trait for issuing warnings on deprecated access.
  *
@@ -295,3 +300,5 @@ trait DeprecationHelper {
 		$setter( $value );
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( DeprecationHelper::class, 'DeprecationHelper' );

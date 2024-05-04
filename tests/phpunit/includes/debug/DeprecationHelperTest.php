@@ -4,7 +4,7 @@ use MediaWiki\MainConfigNames;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \DeprecationHelper
+ * @covers \MediaWiki\Debug\DeprecationHelper
  */
 class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 

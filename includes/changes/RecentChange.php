@@ -22,6 +22,7 @@
 
 use MediaWiki\ChangeTags\Taggable;
 use MediaWiki\Config\Config;
+use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;

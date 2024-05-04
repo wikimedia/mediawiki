@@ -1019,6 +1019,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\DB\\AbstractSchemaValidationError' => __DIR__ . '/includes/db/AbstractSchemaValidationError.php',
 	'MediaWiki\\DB\\AbstractSchemaValidator' => __DIR__ . '/includes/db/AbstractSchemaValidator.php',
 	'MediaWiki\\Debug\\DeprecatablePropertyArray' => __DIR__ . '/includes/debug/DeprecatablePropertyArray.php',
+	'MediaWiki\\Debug\\DeprecationHelper' => __DIR__ . '/includes/debug/DeprecationHelper.php',
 	'MediaWiki\\Debug\\MWDebug' => __DIR__ . '/includes/debug/MWDebug.php',
 	'MediaWiki\\Deferred\\AtomicSectionUpdate' => __DIR__ . '/includes/deferred/AtomicSectionUpdate.php',
 	'MediaWiki\\Deferred\\AutoCommitUpdate' => __DIR__ . '/includes/deferred/AutoCommitUpdate.php',

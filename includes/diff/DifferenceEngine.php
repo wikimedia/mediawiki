@@ -25,6 +25,7 @@ use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\Diff\TextDiffer\ManifoldTextDiffer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;

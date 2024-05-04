@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Debug\DeprecationHelper;
+
 #[\AllowDynamicProperties]
 class TestDeprecatedClass {
 
