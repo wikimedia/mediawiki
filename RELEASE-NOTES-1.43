@@ -98,6 +98,7 @@ For notes on 1.42.x and older releases, see HISTORY.
 * (T219397) New `Language::formatDurationBetweenTimestamps()` function added
   which takes two timestamps and a precision in order to calculate a more
   accurate text representation of duration.
+* Added an interactive mode to the install.php maintenance script.
 * …
 
 === External library changes in 1.43 ===

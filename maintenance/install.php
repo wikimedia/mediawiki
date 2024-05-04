@@ -47,10 +47,11 @@ class CommandLineInstaller extends Maintenance {
 		global $IP;
 
 		$this->addDescription( "CLI-based MediaWiki installation and configuration.\n" .
-			"Default options are indicated in parentheses." );
+			"Default options are indicated in parentheses.\n" .
+			"If no options are provided, the script will run in interactive mode." );
 
-		$this->addArg( 'name', 'The name of the wiki' );
-		$this->addArg( 'admin', 'The username of the wiki administrator.' );
+		$this->addArg( 'name', 'The name of the wiki', false );
+		$this->addArg( 'admin', 'The username of the wiki administrator.', false );
 
 		$this->addOption( 'pass', 'The password for the wiki administrator.', false, true );
 		$this->addOption(
@@ -124,6 +125,63 @@ class CommandLineInstaller extends Maintenance {
 	public function execute() {
 		global $IP;
 
+		if ( $this->hasOption( 'help' ) ) {
+			$this->maybeHelp();
+			return;
+		}
+
+		// Manually check for required arguments, as 0 arguments allows interactive mode to be used
+		if ( $this->getArg( 0 ) && !$this->getArg( 1 ) ) {
+			$this->error( 'Argument <' . $this->getArgName( 1 ) . '> is required!' );
+			return false;
+		}
+
+		// No arguments, means interactive mode
+		if ( !$this->getArg( 0 ) || !$this->getArg( 1 ) ) {
+			$this->output( "Hello, I'm the MediaWiki installer!\n\n" );
+			$this->output( "This script will guide you through the process of installing MediaWiki.\n" );
+			$this->output( "If you actually want to see the help for this script, use --help.\n\n" );
+
+			$siteName = $this->prompt( 'Enter the name of the wiki:', "Wiki" );
+			$language = $this->prompt( 'Enter the language code of the wiki:', 'en' );
+			$server = $this->prompt(
+				'Enter the base URL of the web server the wiki will be on (without a path):',
+				'http://localhost'
+			);
+			$adminName = $this->prompt( 'Enter the username of the MediaWiki account that will be created ' .
+				'at the end of the installation and given administrator rights:', "Admin" );
+			$adminPass = $this->prompt(
+				'Enter the password for the wiki administrator:',
+				$this->generateStrongPassword()
+			);
+			$dbType = $this->prompt( 'Enter the type of database (for example mysql or sqlite):', 'mysql' );
+			// Assume that sqlite is the only db type that needs a path
+			$dbPath = $dbType == 'sqlite' ?
+				$this->prompt(
+					'Enter the path for the SQLite DB (advised to be outside the web root):',
+					"$IP/data"
+				) :
+				null;
+			$dbName = $this->prompt( 'Enter the name of the database:', 'my_wiki' );
+			// Assume that everything other than sqlite needs a server and credentials
+			$dbUser = $dbType == 'sqlite' ? null : $this->prompt( 'Enter the database user:', 'wikiuser' );
+			$dbPass = $dbType == 'sqlite' ? null : $this->prompt( 'Enter the database password:', '' );
+			$dbServer = $dbType == 'sqlite' ? null : $this->prompt( 'Enter the database server:', 'localhost' );
+
+			$this->output( "\n" );
+			$this->setArg( 0, $siteName );
+			$this->setArg( 1, $adminName );
+			$this->setOption( 'lang', $language );
+			$this->setOption( 'server', $server );
+			$this->setOption( 'pass', $adminPass );
+			$this->setOption( 'dbtype', $dbType );
+			$this->setOption( 'dbpath', $dbPath );
+			$this->setOption( 'dbname', $dbName );
+			$this->setOption( 'dbuser', $dbUser );
+			$this->setOption( 'dbpass', $dbPass );
+			$this->setOption( 'dbserver', $dbServer );
+		}
+
 		$siteName = $this->getArg( 0, 'MediaWiki' ); // Will not be set if used with --env-checks
 		$adminName = $this->getArg( 1 );
 		$envChecksOnly = $this->hasOption( 'env-checks' );
@@ -166,6 +224,17 @@ class CommandLineInstaller extends Maintenance {
 		return true;
 	}
 
+	private function generateStrongPassword() {
+		$strongPassword = '';
+		$strongPasswordLength = 20;
+		$strongPasswordChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-={}|;:,.<>?';
+		$strongPasswordCharsLength = strlen( $strongPasswordChars );
+		for ( $i = 0; $i < $strongPasswordLength; $i++ ) {
+			$strongPassword .= $strongPasswordChars[ rand( 0, $strongPasswordCharsLength - 1 ) ];
+		}
+		return $strongPassword;
+	}
+
 	private function setDbPassOption() {
 		$dbpassfile = $this->getOption( 'dbpassfile' );
 		if ( $dbpassfile !== null ) {
@@ -204,7 +273,7 @@ class CommandLineInstaller extends Maintenance {
 
 	public function validateParamsAndArgs() {
 		if ( !$this->hasOption( 'env-checks' ) ) {
-			parent::validateParamsAndArgs();
+			$this->parameters->validate();
 		}
 	}
 }
