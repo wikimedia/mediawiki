@@ -775,25 +775,6 @@ class SpecialBlock extends FormSpecialPage {
 	 * Several parameters are handled for backwards compatability. 'wpTarget' is
 	 * prioritized, since it matches the HTML form.
 	 *
-	 * @deprecated since 1.36. Use BlockUtils::parseBlockTarget directly instead.
-	 *   Hard-deprecated since 1.41.
-	 *
-	 * @param string|null $par Subpage parameter passed to setup, or data value from
-	 *  the HTMLForm
-	 * @param WebRequest|null $request Optionally try and get data from a request too
-	 * @return array [ UserIdentity|string|null, DatabaseBlock::TYPE_ constant|null ]
-	 * @phan-return array{0:UserIdentity|string|null,1:int|null}
-	 */
-	public static function getTargetAndType( ?string $par, WebRequest $request = null ) {
-		wfDeprecated( __METHOD__, '1.36' );
-		return self::getTargetAndTypeInternal( $par, $request );
-	}
-
-	/**
-	 * Get the target and type, given the request and the subpage parameter.
-	 * Several parameters are handled for backwards compatability. 'wpTarget' is
-	 * prioritized, since it matches the HTML form.
-	 *
 	 * @param string|null $par Subpage parameter passed to setup, or data value from
 	 *  the HTMLForm
 	 * @param WebRequest|null $request Optionally try and get data from a request too
