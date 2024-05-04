@@ -21,8 +21,6 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private const WIKITEXT = 'Hello \'\'\'World\'\'\'';
 
-	private const HTML = '<p>Hello <b>World</b></p>';
-
 	/** @var HashBagOStuff */
 	private $parserCacheBagOStuff;
 
@@ -35,11 +33,9 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 	private function getHandler( $name, RequestInterface $request ) {
 		switch ( $name ) {
 			case 'source':
-				return $this->newPageSourceHandler();
 			case 'bare':
 				return $this->newPageSourceHandler();
 			case 'html':
-				return $this->newPageHtmlHandler( $request );
 			case 'with_html':
 				return $this->newPageHtmlHandler( $request );
 			case 'history':
