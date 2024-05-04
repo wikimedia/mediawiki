@@ -656,7 +656,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					$headUnescaped = $this->msg( "createacct-benefit-head$benefitIdx" )->text();
 					$iconClass = $this->msg( "createacct-benefit-icon$benefitIdx" )->text();
 					$benefitList .= Html::rawElement( 'div', [ 'class' => "mw-number-text $iconClass" ],
-						Html::rawElement( 'h3', [],
+						Html::rawElement( 'span', [],
 							$this->msg( "createacct-benefit-head$benefitIdx" )->escaped()
 						)
 						. Html::rawElement( 'p', [],
@@ -665,7 +665,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					);
 				}
 				$benefitsContainer = Html::rawElement( 'div', [ 'class' => 'mw-createacct-benefits-container' ],
-					Html::rawElement( 'h2', [], $this->msg( 'createacct-benefit-heading' )->escaped() )
+					Html::rawElement( 'div', [ 'class' => 'mw-createacct-benefits-heading' ],
+						$this->msg( 'createacct-benefit-heading' )->escaped()
+					)
 					. Html::rawElement( 'div', [ 'class' => 'mw-createacct-benefits-list' ], $benefitList )
 				);
 			} else {
