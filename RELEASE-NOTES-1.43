@@ -227,6 +227,8 @@ because of Phabricator reports.
   a user object to associate log entries and other actions with.
 * Several entries have been removed from the default list of interwikis used
   when installing new wikis. This does not affect existing wikis.
+* User auto-creations are now performed as the target user instead of
+  anonymous IP user.
 * …
 
 == Compatibility ==
