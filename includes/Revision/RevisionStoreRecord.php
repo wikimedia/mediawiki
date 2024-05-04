@@ -71,7 +71,7 @@ class RevisionStoreRecord extends RevisionRecord {
 		$timestamp = ( new MWTimestamp( $row->rev_timestamp ) )->getTimestamp( TS_MW );
 
 		$this->mUser = $user;
-		$this->mMinorEdit = boolval( $row->rev_minor_edit );
+		$this->mMinorEdit = (bool)$row->rev_minor_edit;
 		$this->mTimestamp = $timestamp;
 		$this->mDeleted = intval( $row->rev_deleted );
 
