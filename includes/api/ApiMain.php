@@ -190,7 +190,6 @@ class ApiMain extends ApiBase {
 			'class' => ApiFeedContributions::class,
 			'services' => [
 				'RevisionStore',
-				'TitleParser',
 				'LinkRenderer',
 				'LinkBatchFactory',
 				'HookContainer',
