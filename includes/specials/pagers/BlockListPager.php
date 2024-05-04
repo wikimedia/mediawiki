@@ -181,8 +181,6 @@ class BlockListPager extends TablePager {
 
 		$language = $this->getLanguage();
 
-		$formatted = '';
-
 		$linkRenderer = $this->getLinkRenderer();
 
 		switch ( $name ) {
@@ -578,7 +576,6 @@ class BlockListPager extends TablePager {
 		$lb->setCaller( __METHOD__ );
 
 		$partialBlocks = [];
-		$userIds = [];
 		foreach ( $result as $row ) {
 			$target = $row->bt_address ?? $row->bt_user_text;
 			if ( $target !== null ) {
@@ -593,10 +590,6 @@ class BlockListPager extends TablePager {
 
 			if ( !$row->bl_sitewide ) {
 				$partialBlocks[] = (int)$row->bl_id;
-			}
-
-			if ( $row->bt_user ) {
-				$userIds[] = $row->bt_user;
 			}
 		}
 
