@@ -788,7 +788,7 @@ EOT;
 		string $thumbPath,
 		array $headers
 	): bool {
-		$stats = $this->getServiceContainer()->getStatsdDataFactory();
+		$stats = $this->getServiceContainer()->getStatsFactory();
 
 		if ( $img->getRepo()->fileExists( $thumbPath ) ) {
 			$starttime = microtime( true );
@@ -799,7 +799,9 @@ EOT;
 			$streamtime = microtime( true ) - $starttime;
 
 			if ( $status->isOK() ) {
-				$stats->timing( 'media.thumbnail.stream', $streamtime );
+				$stats->getTiming( 'media_thumbnail_stream_seconds' )
+					->copyToStatsdAt( 'media.thumbnail.stream' )
+					->observe( $streamtime * 1000 );
 			} else {
 				$this->thumbError(
 					500,
