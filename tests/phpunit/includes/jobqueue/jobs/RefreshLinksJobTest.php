@@ -4,6 +4,7 @@ use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Page\PageAssertionException;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * @covers \RefreshLinksJob
@@ -15,6 +16,14 @@ use Wikimedia\Rdbms\Platform\ISQLPlatform;
  * @author Addshore
  */
 class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
+	/** @var StatsFactory */
+	private $statsFactory;
+
+	protected function setUp(): void {
+		parent::setUp();
+		$this->statsFactory = StatsFactory::newNull();
+		$this->setService( 'StatsFactory', $this->statsFactory );
+	}
 
 	/**
 	 * @param string $name
@@ -48,11 +57,50 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 		new RefreshLinksJob( $specialBlankPage, [] );
 	}
 
+	public function testRunForNonexistentPage() {
+		$nonexistentPage = $this->getNonexistingTestPage();
+		$job = new RefreshLinksJob( $nonexistentPage, [] );
+		$totalFailuresCounter = $this->statsFactory->getCounter( 'refreshlinks_failures_total' );
+
+		$result = $job->run();
+
+		$this->assertFalse( $result );
+		$this->assertSame( 1, $totalFailuresCounter->getSampleCount() );
+	}
+
+	public function testUpdateSuperseded() {
+		$page = $this->getExistingTestPage();
+		$job = new RefreshLinksJob( $page->getTitle(), [ 'rootJobTimestamp' => '20240101000000' ] );
+		$supersededUpdatesCounter = $this->statsFactory->getCounter( 'refreshlinks_superseded_updates_total' );
+
+		$result = $job->run();
+
+		$this->assertTrue( $result );
+		$this->assertSame( 1, $supersededUpdatesCounter->getSampleCount() );
+	}
+
+	public function testStaleRevision() {
+		$page = $this->getExistingTestPage();
+		$prevRev = $page->getRevisionRecord();
+		$this->editPage( $page, 'New content' );
+
+		$job = new RefreshLinksJob( $page->getTitle(), [ 'triggeringRevisionId' => $prevRev->getId() ] );
+		$totalFailuresCounter = $this->statsFactory->getCounter( 'refreshlinks_failures_total' );
+
+		$result = $job->run();
+
+		$this->assertFalse( $result );
+		$this->assertSame( 1, $totalFailuresCounter->getSampleCount() );
+		$this->assertSame( "Revision {$prevRev->getId()} is not current", $job->getLastError() );
+	}
+
 	public function testRunForSinglePage() {
 		$this->getServiceContainer()->getSlotRoleRegistry()->defineRoleWithModel(
 			'aux',
 			CONTENT_MODEL_WIKITEXT
 		);
+
+		$cacheOpsCounter = $this->statsFactory->getCounter( 'refreshlinks_parsercache_operations_total' );
 
 		$mainContent = new WikitextContent( 'MAIN [[Kittens]]' );
 		$auxContent = new WikitextContent( 'AUX [[Category:Goats]]' );
@@ -75,7 +123,7 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 
 		// run job
 		$job = new RefreshLinksJob( $page->getTitle(), [ 'parseThreshold' => 0 ] );
-		$job->run();
+		$result = $job->run();
 
 		$this->newSelectQueryBuilder()
 			->select( 'pl_title' )
@@ -87,6 +135,9 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 			->from( 'categorylinks' )
 			->where( [ 'cl_from' => $page->getId() ] )
 			->assertFieldValue( 'Goats' );
+
+		$this->assertTrue( $result );
+		$this->assertSame( 1, $cacheOpsCounter->getSampleCount() );
 	}
 
 	public function testRunForMultiPage() {
