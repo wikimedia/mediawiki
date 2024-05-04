@@ -117,6 +117,7 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 use WikiPage;
 
 /**
@@ -3937,9 +3938,8 @@ class EditPage implements IEditObject {
 	private function getLastDelete(): ?stdClass {
 		$dbr = $this->connectionProvider->getReplicaDatabase();
 		$commentQuery = $this->commentStore->getJoin( 'log_comment' );
-		$data = $dbr->selectRow(
-			array_merge( [ 'logging' ], $commentQuery['tables'], [ 'actor' ] ),
-			[
+		$data = $dbr->newSelectQueryBuilder()
+			->select( [
 				'log_type',
 				'log_action',
 				'log_timestamp',
@@ -3948,19 +3948,19 @@ class EditPage implements IEditObject {
 				'log_params',
 				'log_deleted',
 				'actor_name'
-			] + $commentQuery['fields'],
-			[
+			] )
+			->from( 'logging' )
+			->join( 'actor', null, 'actor_id=log_actor' )
+			->where( [
 				'log_namespace' => $this->mTitle->getNamespace(),
 				'log_title' => $this->mTitle->getDBkey(),
 				'log_type' => 'delete',
 				'log_action' => 'delete',
-			],
-			__METHOD__,
-			[ 'ORDER BY' => [ 'log_timestamp DESC', 'log_id DESC' ] ],
-			[
-				'actor' => [ 'JOIN', 'actor_id=log_actor' ],
-			] + $commentQuery['joins']
-		);
+			] )
+			->orderBy( [ 'log_timestamp', 'log_id' ], SelectQueryBuilder::SORT_DESC )
+			->queryInfo( $commentQuery )
+			->caller( __METHOD__ )
+			->fetchRow();
 		// Quick paranoid permission checks...
 		if ( $data !== false ) {
 			if ( $data->log_deleted & LogPage::DELETED_USER ) {
