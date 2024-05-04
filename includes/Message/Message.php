@@ -212,6 +212,12 @@ class Message implements MessageSpecifier, Serializable {
 	protected $keysToTry;
 
 	/**
+	 * @var ?string The message key that the message was fetched from, if different from
+	 *   all of the requested $keysToTry (the requested key may be overridden by hooks).
+	 */
+	protected $overriddenKey = null;
+
+	/**
 	 * @var array List of parameters which will be substituted into the message.
 	 */
 	protected $parameters = [];
@@ -1039,6 +1045,9 @@ class Message implements MessageSpecifier, Serializable {
 			# Insert a list of alternative message keys for &uselang=qqx.
 			if ( $string === '($*)' ) {
 				$keylist = implode( ' / ', $this->keysToTry );
+				if ( $this->overriddenKey !== null ) {
+					$keylist .= ' = ' . $this->overriddenKey;
+				}
 				$string = "($keylist$*)";
 			}
 			# Replace $* with a list of parameters for &uselang=qqx.
@@ -1533,9 +1542,13 @@ class Message implements MessageSpecifier, Serializable {
 		if ( $this->message === null ) {
 			$cache = MediaWikiServices::getInstance()->getMessageCache();
 
+			$usedKey = null;
 			foreach ( $this->keysToTry as $key ) {
-				$message = $cache->get( $key, $this->useDatabase, $this->getLanguage() );
+				$message = $cache->get( $key, $this->useDatabase, $this->getLanguage(), $usedKey );
 				if ( $message !== false && $message !== '' ) {
+					if ( $usedKey !== $key ) {
+						$this->overriddenKey = $usedKey;
+					}
 					break;
 				}
 			}

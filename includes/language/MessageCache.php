@@ -1044,11 +1044,13 @@ class MessageCache implements LoggerAwareInterface {
 	 *   - If boolean and false, create object from the current users language
 	 *   - If boolean and true, create object from the wikis content language
 	 *   - If language object, use it as given
+	 * @param string &$usedKey @phan-output-reference If given, will be set to the message key
+	 *   that the message was fetched from (the requested key may be overridden by hooks).
 	 *
 	 * @return string|false False if the message doesn't exist, otherwise the
 	 *   message (which can be empty)
 	 */
-	public function get( $key, $useDB = true, $langcode = true ) {
+	public function get( $key, $useDB = true, $langcode = true, &$usedKey = '' ) {
 		if ( is_int( $key ) ) {
 			// Fix numerical strings that somehow become ints on their way here
 			$key = (string)$key;
@@ -1083,6 +1085,8 @@ class MessageCache implements LoggerAwareInterface {
 		}
 
 		$this->hookRunner->onMessageCache__get( $lckey );
+
+		$usedKey = $lckey;
 
 		// Loop through each language in the fallback list until we find something useful
 		$message = $this->getMessageFromFallbackChain(
