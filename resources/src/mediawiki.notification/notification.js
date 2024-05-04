@@ -187,6 +187,7 @@
 
 	/**
 	 * Pause any running auto-hide timer for this notification.
+	 *
 	 * @memberof Notification
 	 */
 	Notification.prototype.pause = function () {
@@ -205,6 +206,7 @@
 	 * Start autoHide timer if not already started.
 	 * Does nothing if autoHide is disabled.
 	 * Either to resume from pause or to make the first start.
+	 *
 	 * @memberof Notification
 	 */
 	Notification.prototype.resume = function () {
@@ -226,6 +228,7 @@
 
 	/**
 	 * Close the notification.
+	 *
 	 * @memberof Notification
 	 */
 	Notification.prototype.close = function () {
@@ -394,6 +397,7 @@
 		/**
 		 * Resume any paused auto-hide timers from the beginning.
 		 * Only the first {@link mw.notification.autoHideLimit} timers will be resumed.
+		 *
 		 * @memberof mw.notification
 		 */
 		resume: function () {
@@ -459,6 +463,7 @@
 
 		/**
 		 * The defaults for [#notify]{@link mw.notification.notify} options parameter.
+		 *
 		 * @memberof mw.notification
 		 * @type {mw.notification.NotificationOptions}
 		 */
