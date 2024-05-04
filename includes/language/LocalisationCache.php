@@ -155,7 +155,7 @@ class LocalisationCache {
 		'datePreferenceMigrationMap', 'defaultDateFormat',
 		'specialPageAliases', 'imageFiles', 'preloadedMessages',
 		'namespaceGenderAliases', 'digitGroupingPattern', 'pluralRules',
-		'pluralRuleTypes', 'compiledPluralRules',
+		'pluralRuleTypes', 'compiledPluralRules', 'formalityIndex',
 	];
 
 	/**
@@ -170,6 +170,7 @@ class LocalisationCache {
 		'minimumGroupingDigits', 'fallback8bitEncoding', 'linkPrefixExtension',
 		'linkTrail', 'linkPrefixCharset', 'datePreferences',
 		'datePreferenceMigrationMap', 'defaultDateFormat', 'digitGroupingPattern',
+		'formalityIndex',
 	];
 
 	/**

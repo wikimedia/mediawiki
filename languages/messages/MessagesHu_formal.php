@@ -6,3 +6,4 @@
  */
 
 $fallback = 'hu';
+$formalityIndex = 1;
