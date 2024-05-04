@@ -44,7 +44,6 @@ use MediaWiki\Message\Message;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Status\Status;
-use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use PermissionsError;
@@ -371,8 +370,14 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				}
 
 				if ( !$this->proxyAccountCreation ) {
+					$context = RequestContext::getMain();
+					$localContext = $this->getContext();
+					if ( $context !== $localContext ) {
+						// remove AuthManagerSpecialPage context hack
+						$this->setContext( $context );
+					}
 					// Ensure that the context user is the same as the session user.
-					$this->setSessionUserForCurrentRequest();
+					$this->getAuthManager()->setRequestContextUserFromSessionUser();
 				}
 
 				$this->successfulAction( true );
@@ -502,30 +507,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	) {
 		$helper = new LoginHelper( $this->getContext() );
 		$helper->showReturnToPage( $type, $returnTo, $returnToQuery, $stickHTTPS );
-	}
-
-	/**
-	 * Replace some globals to make sure the fact that the user has just been logged in is
-	 * reflected in the current request.
-	 */
-	protected function setSessionUserForCurrentRequest() {
-		// phpcs:ignore MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage
-		global $wgLang;
-
-		$context = RequestContext::getMain();
-		$localContext = $this->getContext();
-		if ( $context !== $localContext ) {
-			// remove AuthManagerSpecialPage context hack
-			$this->setContext( $context );
-		}
-
-		$user = $context->getRequest()->getSession()->getUser();
-
-		StubGlobalUser::setUser( $user );
-		$context->setUser( $user );
-
-		// phpcs:ignore MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage
-		$wgLang = $context->getLanguage();
 	}
 
 	/**

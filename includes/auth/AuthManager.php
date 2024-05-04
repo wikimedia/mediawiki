@@ -40,6 +40,7 @@ use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
+use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\User\BotPasswordStore;
 use MediaWiki\User\Options\UserOptionsManager;
 use MediaWiki\User\TempUser\TempUserCreator;
@@ -970,6 +971,35 @@ class AuthManager implements LoggerAwareInterface {
 			}
 		}
 		return array_keys( $ret );
+	}
+
+	/**
+	 * Call this method to set the request context user for the current request
+	 * from the context session user.
+	 *
+	 * Useful in cases where we need to make sure that a MediaWiki request outputs
+	 * correct context data for a user who has just been logged-in.
+	 *
+	 * The method will also update the global language variable based on the
+	 * session's user's context language.
+	 *
+	 * This won't affect objects which already made a copy of the user or the
+	 * context, so it shouldn't be relied on too heavily, but can help to make the
+	 * UI more consistent after changing the user. Typically used after a successful
+	 * AuthManager action that changed the session user (e.g.
+	 * AuthManager::autoCreateUser() with the login flag set).
+	 */
+	public function setRequestContextUserFromSessionUser(): void {
+		$context = RequestContext::getMain();
+		$user = $context->getRequest()->getSession()->getUser();
+
+		StubGlobalUser::setUser( $user );
+		$context->setUser( $user );
+
+		// phpcs:ignore MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage
+		global $wgLang;
+		// phpcs:ignore MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage
+		$wgLang = $context->getLanguage();
 	}
 
 	// endregion -- end of Authentication
