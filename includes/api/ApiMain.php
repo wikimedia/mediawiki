@@ -370,6 +370,10 @@ class ApiMain extends ApiBase {
 		],
 		'emailuser' => [
 			'class' => ApiEmailUser::class,
+			'services' => [
+				'EmailUserFactory',
+				'UserFactory',
+			]
 		],
 		'watch' => [
 			'class' => ApiWatch::class,
