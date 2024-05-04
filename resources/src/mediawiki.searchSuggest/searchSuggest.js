@@ -29,6 +29,7 @@
 	/**
 	 * Convenience library for making searches for titles that match a string.
 	 * Loaded via the `mediawiki.searchSuggest` ResourceLoader library.
+	 *
 	 * @example
 	 * mw.loader.using('mediawiki.searchSuggest').then(() => {
 	 *   var api = new mw.Api();

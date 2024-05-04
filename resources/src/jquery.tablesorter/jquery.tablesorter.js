@@ -12,6 +12,7 @@
  * and mw.language.months.
  *
  * Uses 'tableSorterCollation' in mw.config (if available)
+ *
  * @author Christian Bach/christian.bach@polyester.se
  */
 /**
