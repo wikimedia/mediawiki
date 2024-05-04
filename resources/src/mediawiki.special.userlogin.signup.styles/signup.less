@@ -6,18 +6,14 @@
 	flex-wrap: wrap;
 	column-gap: 100px;
 	row-gap: 50px;
-
-	/* Disable the underline that Vector puts on h2 headings, and bold them. */
-	h2 {
-		border: 0;
-		font-weight: bold;
-	}
 }
 
-.mw-createacct-benefits-container {
-	h2 {
-		margin-bottom: 30px;
-	}
+.mw-createacct-benefits-heading {
+	font-family: @font-family-serif;
+	font-size: 1.5em;
+	font-weight: bold;
+	margin: 0.25em 0;
+	padding-top: 0.5em;
 }
 
 /* stylelint-disable-next-line selector-class-pattern */
@@ -40,9 +36,8 @@
 
 /*
  * Special font for numbers in benefits, same as Vector's `@content-heading-font-family`.
- * Needs to be more specific than Vector's `.mw-body-content h3`.
  */
-.mw-body-content .mw-number-text h3 {
+.mw-body-content .mw-number-text span {
 	color: @color-base;
 	margin: 0;
 	padding: 0;
@@ -51,6 +46,7 @@
 	font-size: 2.2em;
 	line-height: 1.2;
 	text-align: center;
+	display: block;
 }
 
 /* Contains a “headlined” number and explanatory text, with space for an icon */
