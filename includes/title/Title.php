@@ -3083,8 +3083,12 @@ class Title implements LinkTarget, PageIdentity {
 
 		if ( $this->mEstimateRevisions === null ) {
 			$dbr = $this->getDbProvider()->getReplicaDatabase();
-			$this->mEstimateRevisions = $dbr->estimateRowCount( 'revision', '*',
-				[ 'rev_page' => $this->getArticleID() ], __METHOD__ );
+			$this->mEstimateRevisions = $dbr->newSelectQueryBuilder()
+				->select( '*' )
+				->from( 'revision' )
+				->where( [ 'rev_page' => $this->getArticleID() ] )
+				->caller( __METHOD__ )
+				->estimateRowCount();
 		}
 
 		return $this->mEstimateRevisions;
