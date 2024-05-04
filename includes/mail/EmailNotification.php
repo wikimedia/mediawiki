@@ -446,7 +446,7 @@ class EmailNotification {
 		// enotif_body_intro_restored, enotif_body_intro_changed
 		$keys['$PAGEINTRO'] = wfMessage( 'enotif_body_intro_' . $this->pageStatus )
 			->inContentLanguage()
-			->params( $pageTitle, $keys['$PAGEEDITOR'], $pageTitleUrl )
+			->params( $pageTitle, $keys['$PAGEEDITOR'], "<{$pageTitleUrl}>" )
 			->text();
 
 		$body = wfMessage( 'enotif_body' )->inContentLanguage()->plain();
