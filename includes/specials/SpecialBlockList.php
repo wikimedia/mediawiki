@@ -184,14 +184,12 @@ class SpecialBlockList extends SpecialPage {
 		$readStage = $this->getConfig()
 				->get( MainConfigNames::BlockTargetMigrationStage ) & SCHEMA_COMPAT_READ_MASK;
 		if ( $readStage === SCHEMA_COMPAT_READ_OLD ) {
-			$bl_deleted = 'ipb_deleted';
 			$bl_id = 'ipb_id';
 			$bt_auto = 'ipb_auto';
 			$bt_user = 'ipb_user';
 			$bl_expiry = 'ipb_expiry';
 			$bl_sitewide = 'ipb_sitewide';
 		} elseif ( $readStage === SCHEMA_COMPAT_READ_NEW ) {
-			$bl_deleted = 'bl_deleted';
 			$bl_id = 'bl_id';
 			$bt_auto = 'bt_auto';
 			$bt_user = 'bt_user';
