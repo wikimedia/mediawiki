@@ -310,11 +310,14 @@ class AuthManager implements LoggerAwareInterface {
 
 	/**
 	 * Force certain PrimaryAuthenticationProviders
-	 * @deprecated For backwards compatibility only
+	 *
+	 * @deprecated since 1.43; for backwards compatibility only
 	 * @param PrimaryAuthenticationProvider[] $providers
 	 * @param string $why
 	 */
 	public function forcePrimaryAuthenticationProviders( array $providers, $why ) {
+		wfDeprecated( __METHOD__, '1.43' );
+
 		$this->logger->warning( "Overriding AuthManager primary authn because $why" );
 
 		if ( $this->primaryAuthenticationProviders !== null ) {

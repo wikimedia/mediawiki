@@ -1,4 +1,4 @@
-= MediaWiki 1.43 =
+=<<< MediaWiki 1.43 =
 
 == MediaWiki 1.43.0-PRERELEASE ==
 
@@ -188,6 +188,19 @@ because of Phabricator reports.
   warnings. Use ::getConnection() instead.
 * IDatabase::lockForUpdate is deprecated, use
   SelectQueryBuilder::acquireRowLocks instead.
+* wfGetUrlUtils() is deprecated; instead, get a UrlUtils from services.
+* DerivedPageDataUpdater::getPreparedEdit(), provided for back-compatibility, is
+  now deprecated; use the getters directly, instead.
+* AuthManager::forcePrimaryAuthenticationProviders(), provided for back-
+  compatibility, is now deprecated.
+* WikiPage::hasDifferencesOutsideMainSlot(), provided as a stop-gap before
+  refactoring to support MCR, is now deprecated.
+* ChangesList::getTimestamp() has been deprecated; use ::revDateLink() instead.
+* SiteConfig::variants() has been deprecated; use ::variantsFor().
+* ObjectCache::$instances and ::getInstance() have been deprecated; instead, use
+  ObjectCacheFactory::getInstance().
+* ApiTestCase::setExpectedApiException() has been deprecated; instead, use
+  ::expectApiErrorCode() to test error codes instead of messages.
 * User::isBlockedGlobally(), deprecated since 1.40, now emits deprecation
   warnings.
 * User::isBlockedFromEmailuser() and User::canSendEmail(), deprecated since

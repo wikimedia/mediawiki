@@ -246,7 +246,8 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * ApiUsageException::newWithMessage()'s parameters.  This allows checking for an exception
 	 * whose text is given by a message key instead of text, so as not to hard-code the message's
 	 * text into test code.
-	 * @deprecated Use expectApiErrorCode() instead, it's better to test error codes than messages
+	 *
+	 * @deprecated since 1.43; use expectApiErrorCode() instead, it's better to test error codes than messages
 	 * @param string|array|Message $msg
 	 * @param string|null $code
 	 * @param array|null $data

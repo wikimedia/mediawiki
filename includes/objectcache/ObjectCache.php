@@ -29,7 +29,7 @@ use MediaWiki\MediaWikiServices;
  */
 class ObjectCache {
 	/**
-	 * @deprecated Use ObjectCacheFactory instead.
+	 * @deprecated since 1.43; use ObjectCacheFactory instead.
 	 * @var BagOStuff[] Map of (id => BagOStuff)
 	 */
 	public static $instances = [];
@@ -43,7 +43,7 @@ class ObjectCache {
 	/**
 	 * Get a cached instance of the specified type of cache object.
 	 *
-	 * @deprecated Use ObjectCacheFactory::getInstance instead.
+	 * @deprecated since 1.43; use ObjectCacheFactory::getInstance instead.
 	 *
 	 * @param string|int $id A key in $wgObjectCaches.
 	 * @return BagOStuff

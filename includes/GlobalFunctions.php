@@ -458,7 +458,7 @@ function wfAppendQuery( $url, $query ) {
 }
 
 /**
- * @deprecated Get a UrlUtils from services, or construct your own
+ * @deprecated since 1.43; get a UrlUtils from services, or construct your own
  * @internal
  * @return UrlUtils from services if initialized, otherwise make one from globals
  */
