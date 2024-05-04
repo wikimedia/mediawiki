@@ -36,6 +36,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
 use WikiExporter;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * A special page that allows users to export pages in a XML file
@@ -508,14 +509,12 @@ class SpecialExport extends SpecialPage {
 	protected function getTemplates( $inputPages, $pageSet ) {
 		[ $nsField, $titleField ] = $this->linksMigration->getTitleFields( 'templatelinks' );
 		$queryInfo = $this->linksMigration->getQueryInfo( 'templatelinks' );
-		return $this->getLinks( $inputPages, $pageSet,
-			$queryInfo['tables'],
-			[ 'namespace' => $nsField, 'title' => $titleField ],
-			array_merge(
-				[ 'templatelinks' => [ 'JOIN', [ 'page_id=tl_from' ] ] ],
-				$queryInfo['joins']
-			)
-		);
+		$dbr = $this->dbProvider->getReplicaDatabase();
+		$queryBuilder = $dbr->newSelectQueryBuilder()
+			->queryInfo( $queryInfo )
+			->fields( [ 'namespace' => $nsField, 'title' => $titleField ] )
+			->join( 'templatelinks', null, 'page_id=tl_from' );
+		return $this->getLinks( $inputPages, $pageSet, $queryBuilder );
 	}
 
 	/**
@@ -570,11 +569,12 @@ class SpecialExport extends SpecialPage {
 		for ( ; $depth > 0; --$depth ) {
 			[ $nsField, $titleField ] = $this->linksMigration->getTitleFields( 'pagelinks' );
 			$queryInfo = $this->linksMigration->getQueryInfo( 'pagelinks' );
-			$pageSet = $this->getLinks(
-				$inputPages, $pageSet, $queryInfo['tables'],
-				[ 'namespace' => $nsField, 'title' => $titleField ],
-				array_merge( [ 'pagelinks' => [ 'JOIN', [ 'page_id=pl_from' ] ] ], $queryInfo['joins'] )
-			);
+			$dbr = $this->dbProvider->getReplicaDatabase();
+			$queryBuilder = $dbr->newSelectQueryBuilder()
+				->queryInfo( $queryInfo )
+				->fields( [ 'namespace' => $nsField, 'title' => $titleField ] )
+				->join( 'pagelinks', null, 'page_id=pl_from' );
+			$pageSet = $this->getLinks( $inputPages, $pageSet, $queryBuilder );
 			$inputPages = array_keys( $pageSet );
 		}
 
@@ -585,14 +585,12 @@ class SpecialExport extends SpecialPage {
 	 * Expand a list of pages to include items used in those pages.
 	 * @param array $inputPages Array of page titles
 	 * @param array $pageSet
-	 * @param string[] $table
-	 * @param array $fields Array of field names
-	 * @param array $join
+	 * @param SelectQueryBuilder $queryBuilder
 	 * @return array
 	 */
-	protected function getLinks( $inputPages, $pageSet, $table, $fields, $join ) {
-		$dbr = $this->dbProvider->getReplicaDatabase();
-		$table[] = 'page';
+	protected function getLinks( $inputPages, $pageSet, SelectQueryBuilder $queryBuilder ) {
+		$queryBuilder->from( 'page' )
+			->caller( __METHOD__ );
 
 		foreach ( $inputPages as $page ) {
 			$title = Title::newFromText( $page );
@@ -600,17 +598,12 @@ class SpecialExport extends SpecialPage {
 				$pageSet[$title->getPrefixedText()] = true;
 				/// @todo FIXME: May or may not be more efficient to batch these
 				///        by namespace when given multiple input pages.
-				$result = $dbr->select(
-					$table,
-					$fields,
-					[
-						'page_namespace' => $title->getNamespace(),
-						'page_title' => $title->getDBkey()
-					],
-					__METHOD__,
-					[],
-					$join
-				);
+				$result = ( clone $queryBuilder )
+				->where( [
+					'page_namespace' => $title->getNamespace(),
+					'page_title' => $title->getDBkey()
+				] )
+				->fetchResultSet();
 
 				foreach ( $result as $row ) {
 					$template = Title::makeTitle( $row->namespace, $row->title );
