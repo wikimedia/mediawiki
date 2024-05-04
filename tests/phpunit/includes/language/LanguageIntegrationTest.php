@@ -1261,9 +1261,25 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 				'2 days',
 			],
 			[
+				365.2425 * 24 * 3600 / 12,
+				'1 month',
+				[ 'months', 'days' ]
+			],
+			[
+				365.2425 * 24 * 3600 / 12 * 2,
+				'2 months',
+				[ 'months', 'days' ]
+			],
+			[
+				( 365.2425 * 24 * 3600 / 12 * 2 ) + 24 * 3600,
+				'2 months and 1 day',
+				[ 'months', 'days' ]
+			],
+			[
 				// ( 365 + ( 24 * 3 + 25 ) / 400 ) * 86400 = 31556952
 				( 365 + ( 24 * 3 + 25 ) / 400.0 ) * 86400,
 				'1 year',
+				[ 'months', 'years' ]
 			],
 			[
 				2 * 31556952,
@@ -1343,6 +1359,16 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 				42,
 				'0 days',
 				[ 'days', 'years' ],
+			],
+			[
+				( new DateTime( '2025-05-03 20:00:00' ) )->getTimestamp() - ( new DateTime( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				'11 months',
+				[ 'months' ],
+			],
+			[
+				( new DateTime( '2025-05-03 20:00:00' ) )->getTimestamp() - ( new DateTime( '2024-05-03 20:00:00' ) )->getTimestamp(),
+				'11 months, 30 days, 4 hours, 39 minutes and 54 seconds',
+				[ 'years', 'months', 'days', 'hours', 'minutes', 'seconds' ],
 			],
 		];
 	}
