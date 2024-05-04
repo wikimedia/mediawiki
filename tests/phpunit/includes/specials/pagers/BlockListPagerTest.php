@@ -100,9 +100,19 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		MWTimestamp::setFakeTime( MWTimestamp::time() );
 
 		$value = $name === 'bl_timestamp' ? MWTimestamp::time() : '';
-		$expected ??= MWTimestamp::getInstance()->format( 'H:i, j F Y' );
 
 		$row = $row ?: (object)[];
+		$row->bl_id = 1;
+
+		$linkRenderer = $this->getServiceContainer()->getLinkRenderer();
+		$link = $linkRenderer->makeKnownLink(
+			$this->specialPageFactory->getTitleForAlias( 'BlockList' ),
+			MWTimestamp::getInstance()->format( 'H:i, j F Y' ),
+			[],
+			[ 'wpTarget' => "#{$row->bl_id}" ],
+		);
+		$expected ??= $link;
+
 		$pager = $this->getBlockListPager();
 		$wrappedPager = TestingAccessWrapper::newFromObject( $pager );
 		$wrappedPager->mCurrentRow = $row;
