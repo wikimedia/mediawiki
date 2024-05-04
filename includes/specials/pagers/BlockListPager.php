@@ -185,7 +185,14 @@ class BlockListPager extends TablePager {
 
 		switch ( $name ) {
 			case 'bl_timestamp':
-				$formatted = htmlspecialchars( $language->userTimeAndDate( $value, $this->getUser() ) );
+				// Link the timestamp to the block ID. This allows users without permissions to change blocks
+				// to be able to generate a link to a specific block.
+				$formatted = $linkRenderer->makeKnownLink(
+					$this->specialPageFactory->getTitleForAlias( 'BlockList' ),
+					$language->userTimeAndDate( $value, $this->getUser() ),
+					[],
+					[ 'wpTarget' => "#{$row->bl_id}" ],
+				);
 				break;
 
 			case 'target':
