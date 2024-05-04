@@ -422,3 +422,7 @@ The permissions with the `cache/sqlite` directory have to be set manually on Win
 ```sh
 docker compose exec mediawiki chmod -R o+rwx cache/sqlite
 ```
+
+### Linux users, "(Cannot access the database: No database connection (localhost))"
+
+Make sure you have the `MW_DOCKER_UID` and `MW_DOCKER_GID` set in your `.env` file (instructions above).
