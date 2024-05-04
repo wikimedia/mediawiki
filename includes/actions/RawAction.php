@@ -34,6 +34,7 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Session\SessionManager;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserRigorOptions;
 
@@ -77,6 +78,7 @@ class RawAction extends FormlessAction {
 		$this->userFactory = $userFactory;
 	}
 
+	/** @inheritDoc */
 	public function getName() {
 		return 'raw';
 	}
@@ -102,7 +104,8 @@ class RawAction extends FormlessAction {
 		if ( $this->getOutput()->checkLastModified(
 			$this->getWikiPage()->getTouched()
 		) ) {
-			return null; // Client cache fresh and headers sent, nothing more to do.
+			// Client cache fresh and headers sent, nothing more to do.
+			return null;
 		}
 
 		$contentType = $this->getContentType();
@@ -111,9 +114,9 @@ class RawAction extends FormlessAction {
 		$smaxage = $request->getIntOrNull( 'smaxage' );
 		if ( $smaxage === null ) {
 			if (
-				$contentType == 'text/css' ||
-				$contentType == 'application/json' ||
-				$contentType == 'text/javascript'
+				$contentType === 'text/css' ||
+				$contentType === 'application/json' ||
+				$contentType === 'text/javascript'
 			) {
 				// CSS/JSON/JS raw content has its own CDN max age configuration.
 				// Note: HTMLCacheUpdater::getUrls() includes action=raw for css/json/js
@@ -131,8 +134,8 @@ class RawAction extends FormlessAction {
 		// Output may contain user-specific data;
 		// vary generated content for open sessions on private wikis
 		$privateCache = !$this->permissionManager->isEveryoneAllowed( 'read' ) &&
-			( $smaxage == 0 || MediaWiki\Session\SessionManager::getGlobalSession()->isPersistent() );
-		// Don't accidentally cache cookies if user is registered (T55032)
+			( $smaxage === 0 || SessionManager::getGlobalSession()->isPersistent() );
+		// Don't accidentally cache cookies if the user is registered (T55032)
 		$privateCache = $privateCache || $this->getUser()->isRegistered();
 		$mode = $privateCache ? 'private' : 'public';
 		$response->header(
@@ -167,9 +170,9 @@ class RawAction extends FormlessAction {
 		}
 
 		// Don't allow loading non-protected pages as javascript.
-		// In future we may further restrict this to only CONTENT_MODEL_JAVASCRIPT
+		// In the future, we may further restrict this to only CONTENT_MODEL_JAVASCRIPT
 		// in NS_MEDIAWIKI or NS_USER, as well as including other config types,
-		// but for now be more permissive. Allowing protected pages outside of
+		// but for now be more permissive. Allowing protected pages outside
 		// NS_USER and NS_MEDIAWIKI in particular should be considered a temporary
 		// allowance.
 		$pageRestrictions = $this->restrictionStore->getRestrictions( $title, 'edit' );
@@ -196,10 +199,10 @@ class RawAction extends FormlessAction {
 		$text = $this->getRawText();
 
 		// Don't return a 404 response for CSS or JavaScript;
-		// 404s aren't generally cached and it would create
+		// 404s aren't generally cached, and it would create
 		// extra hits when user CSS/JS are on and the user doesn't
 		// have the pages.
-		if ( $text === false && $contentType == 'text/x-wiki' ) {
+		if ( $text === false && $contentType === 'text/x-wiki' ) {
 			$response->statusHeader( 404 );
 		}
 
@@ -226,8 +229,8 @@ class RawAction extends FormlessAction {
 		// Get it from the DB
 		$rev = $this->revisionLookup->getRevisionByTitle( $title, $this->getOldId() );
 		if ( $rev ) {
-			$lastmod = wfTimestamp( TS_RFC2822, $rev->getTimestamp() );
-			$request->response()->header( "Last-modified: $lastmod" );
+			$lastMod = wfTimestamp( TS_RFC2822, $rev->getTimestamp() );
+			$request->response()->header( "Last-modified: $lastMod" );
 
 			// Public-only due to cache headers
 			// Fetch specific slot if defined
@@ -243,11 +246,14 @@ class RawAction extends FormlessAction {
 			}
 
 			if ( $content === null ) {
-				// revision or slot not found (or suppressed)
+				// revision or slot was not found (or suppressed)
 			} elseif ( !$content instanceof TextContent && !method_exists( $content, 'getText' ) ) {
 				// non-text content
-				wfHttpError( 415, "Unsupported Media Type", "The requested page uses the content model `"
-					. $content->getModel() . "` which is not supported via this interface." );
+				wfHttpError(
+					415,
+					"Unsupported Media Type", "The requested page uses the content model `"
+					. $content->getModel() . "` which is not supported via this interface."
+				);
 				die();
 			} else {
 				// want a section?
@@ -256,9 +262,8 @@ class RawAction extends FormlessAction {
 					$content = $content->getSection( $section );
 				}
 
-				if ( $content === null || $content === false ) {
-					// section not found (or section not supported, e.g. for JS, JSON, and CSS)
-				} else {
+				if ( $content !== null && $content !== false ) {
+					// section found (and section supported, e.g. not for JS, JSON, and CSS)
 					$text = $content->getText();
 				}
 			}
@@ -276,49 +281,49 @@ class RawAction extends FormlessAction {
 	}
 
 	/**
-	 * Get the ID of the revision that should used to get the text.
+	 * Get the ID of the revision that should be used to get the text.
 	 *
 	 * @return int
 	 */
 	public function getOldId() {
-		$oldid = $this->getRequest()->getInt( 'oldid' );
+		$oldId = $this->getRequest()->getInt( 'oldid' );
 		$rl = $this->revisionLookup;
 		switch ( $this->getRequest()->getText( 'direction' ) ) {
 			case 'next':
 				# output next revision, or nothing if there isn't one
 				$nextRev = null;
-				if ( $oldid ) {
-					$oldRev = $rl->getRevisionById( $oldid );
+				if ( $oldId ) {
+					$oldRev = $rl->getRevisionById( $oldId );
 					if ( $oldRev ) {
 						$nextRev = $rl->getNextRevision( $oldRev );
 					}
 				}
-				$oldid = $nextRev ? $nextRev->getId() : -1;
+				$oldId = $nextRev ? $nextRev->getId() : -1;
 				break;
 			case 'prev':
 				# output previous revision, or nothing if there isn't one
 				$prevRev = null;
-				if ( !$oldid ) {
+				if ( !$oldId ) {
 					# get the current revision so we can get the penultimate one
-					$oldid = $this->getWikiPage()->getLatest();
+					$oldId = $this->getWikiPage()->getLatest();
 				}
-				$oldRev = $rl->getRevisionById( $oldid );
+				$oldRev = $rl->getRevisionById( $oldId );
 				if ( $oldRev ) {
 					$prevRev = $rl->getPreviousRevision( $oldRev );
 				}
-				$oldid = $prevRev ? $prevRev->getId() : -1;
+				$oldId = $prevRev ? $prevRev->getId() : -1;
 				break;
 			case 'cur':
-				$oldid = 0;
+				$oldId = 0;
 				break;
 		}
 
 		// @phan-suppress-next-line PhanTypeMismatchReturnNullable RevisionRecord::getId does not return null here
-		return $oldid;
+		return $oldId;
 	}
 
 	/**
-	 * Get the content type to use for the response
+	 * Get the content type to be used for the response
 	 *
 	 * @return string
 	 */
@@ -336,7 +341,7 @@ class RawAction extends FormlessAction {
 			}
 		}
 
-		$allowedCTypes = [
+		static $allowedCTypes = [
 			'text/x-wiki',
 			'text/javascript',
 			'text/css',
