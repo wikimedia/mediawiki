@@ -129,7 +129,7 @@ The new option is NOT validated.' );
 				}
 
 				$userValue = $userOptionsLookup->getOption( $user, $option );
-				if ( $userValue <> $defaultOptions[$option] ) {
+				if ( $userValue != $defaultOptions[$option] ) {
 					$ret[$option][$userValue] = ( $ret[$option][$userValue] ?? 0 ) + 1;
 				}
 			} else {
