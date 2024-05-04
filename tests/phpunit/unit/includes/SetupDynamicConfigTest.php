@@ -406,9 +406,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 				'StylePath' => '/resources/skins',
 				'Logo' => '/resources/resources/assets/change-your-logo.svg',
 				'FooterIcons' => [ 'poweredby' => [ 'mediawiki' => [
-					'src' => '/resources/resources/assets/poweredby_mediawiki_88x31.png',
-					'srcset' => '/resources/resources/assets/poweredby_mediawiki_132x47.png 1.5x,' .
-						' /resources/resources/assets/poweredby_mediawiki_176x62.png 2x',
+					'src' => '/resources/resources/assets/poweredby_mediawiki.svg',
 				] ] ],
 			],
 		];

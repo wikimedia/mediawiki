@@ -41,6 +41,10 @@ For notes on 1.42.x and older releases, see HISTORY.
 * wgPageLinksSchemaMigrationStage – (T299947) This temporary setting, which
   controls the database schema migration for the page links table, is now set
   by default to write to both old and new data and read from the new data.
+* wgFooterIcons – (T256190) The default "Powered by MediaWiki" button icon has
+  been updated to an SVG icon, and the footer icons are now wrapped as buttons
+  in HTML, rather than faking it within the icons themselves. You should adjust
+  any footer icons you provide or over-ride to match.
 * The "error-json" channel, configurable via $wgDebugLogGroups, has been
   removed. For structured logging, use the "error" channel directly instead.
   Since MediaWiki 1.25, structured logging is supported via Monolog for all

@@ -216,11 +216,19 @@ class SkinComponentFooter implements SkinComponent {
 				$html = htmlspecialchars( $icon['alt'] ?? '' );
 			}
 			if ( $url ) {
-				$html = Html::rawElement( 'a', [
-					'href' => $url,
-					'target' => $config->get( MainConfigNames::ExternalLinkTarget ),
-				],
-				$html );
+				$html = Html::rawElement(
+					'a',
+					[
+						'href' => $url,
+						// Using a fake Codex link button, as this is the long-expected UX; our apologies.
+						'class' => [
+							'cdx-button', 'cdx-button--fake-button',
+							'cdx-button--size-large', 'cdx-button--fake-button--enabled'
+						],
+						'target' => $config->get( MainConfigNames::ExternalLinkTarget ),
+					],
+					$html
+				);
 			}
 		}
 		return $html;
