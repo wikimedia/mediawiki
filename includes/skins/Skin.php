@@ -851,7 +851,8 @@ abstract class Skin extends ContextSource {
 	 * @return string HTML text with an URL
 	 */
 	public function printSource() {
-		$url = htmlspecialchars( wfExpandIRI( $this->getCanonicalUrl() ) );
+		$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
+		$url = htmlspecialchars( $urlUtils->expandIRI( $this->getCanonicalUrl() ) ?? '' );
 
 		return $this->msg( 'retrievedfrom' )
 			->rawParams( '<a dir="ltr" href="' . $url . '">' . $url . '</a>' )
@@ -1132,7 +1133,9 @@ abstract class Skin extends ContextSource {
 	 * @return string URL
 	 */
 	public static function makeInternalOrExternalUrl( $name ) {
-		if ( preg_match( '/^(?i:' . wfUrlProtocols() . ')/', $name ) ) {
+		$protocols = MediaWikiServices::getInstance()->getUrlUtils()->validAbsoluteProtocols();
+
+		if ( preg_match( '/^(?i:' . $protocols . ')/', $name ) ) {
 			return $name;
 		} else {
 			$title = $name instanceof Title ? $name : Title::newFromText( $name );
@@ -1562,7 +1565,9 @@ abstract class Skin extends ContextSource {
 		$config = $this->getConfig();
 		$messageTitle = $config->get( MainConfigNames::EnableSidebarCache )
 			? Title::newMainPage() : $this->getTitle();
-		$messageCache = MediaWikiServices::getInstance()->getMessageCache();
+		$services = MediaWikiServices::getInstance();
+		$messageCache = $services->getMessageCache();
+		$urlUtils = $services->getUrlUtils();
 
 		foreach ( $lines as $line ) {
 			if ( strpos( $line, '*' ) !== 0 ) {
@@ -1605,13 +1610,15 @@ abstract class Skin extends ContextSource {
 						$text = $line[1];
 					}
 
-					if ( preg_match( '/^(?i:' . wfUrlProtocols() . ')/', $link ) ) {
+					if ( preg_match( '/^(?i:' . $urlUtils->validAbsoluteProtocols() . ')/', $link ) ) {
 						$href = $link;
 
 						// Parser::getExternalLinkAttribs won't work here because of the Namespace things
 						if ( $config->get( MainConfigNames::NoFollowLinks ) &&
-							!wfMatchesDomainList( $href,
-								$config->get( MainConfigNames::NoFollowDomainExceptions ) )
+							!$urlUtils->matchesDomainList(
+								(string)$href,
+								(array)$config->get( MainConfigNames::NoFollowDomainExceptions )
+							)
 						) {
 							$extraAttribs['rel'] = 'nofollow';
 						}
