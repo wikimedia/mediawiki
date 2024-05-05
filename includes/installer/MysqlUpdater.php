@@ -41,19 +41,6 @@ use UpdateRestrictions;
 class MysqlUpdater extends DatabaseUpdater {
 	protected function getCoreUpdateList() {
 		return [
-			// 1.35
-			[ 'addField', 'revision', 'rev_actor', 'patch-revision-actor-comment-MCR.sql' ],
-			[ 'addTable', 'watchlist_expiry', 'patch-watchlist_expiry.sql' ],
-			[ 'modifyField', 'page', 'page_restrictions', 'patch-page_restrictions-null.sql' ],
-			[ 'renameIndex', 'ipblocks', 'ipb_address', 'ipb_address_unique', false,
-				'patch-ipblocks-rename-ipb_address.sql' ],
-			[ 'dropField', 'archive', 'ar_text_id', 'patch-archive-MCR.sql' ],
-			[ 'doLanguageLinksLengthSync' ],
-			[ 'doFixIpbAddressUniqueIndex' ],
-			[ 'modifyField', 'actor', 'actor_name', 'patch-actor-actor_name-varbinary.sql' ],
-			[ 'modifyField', 'sites', 'site_global_key', 'patch-sites-site_global_key.sql' ],
-			[ 'modifyField', 'iwlinks', 'iwl_prefix', 'patch-extend-iwlinks-iwl_prefix.sql' ],
-
 			// 1.36
 			[ 'modifyField', 'redirect', 'rd_title', 'patch-redirect-rd_title-varbinary.sql' ],
 			[ 'modifyField', 'pagelinks', 'pl_title', 'patch-pagelinks-pl_title-varbinary.sql' ],
@@ -203,48 +190,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		$this->output( "...index $index on table $table has no field $field; added.\n" );
 
 		return false;
-	}
-
-	protected function doLanguageLinksLengthSync() {
-		$sync = [
-			[ 'table' => 'l10n_cache', 'field' => 'lc_lang', 'file' => 'patch-l10n_cache-lc_lang-35.sql' ],
-			[ 'table' => 'langlinks', 'field' => 'll_lang', 'file' => 'patch-langlinks-ll_lang-35.sql' ],
-			[ 'table' => 'sites', 'field' => 'site_language', 'file' => 'patch-sites-site_language-35.sql' ],
-		];
-
-		foreach ( $sync as $s ) {
-			$table = $this->db->tableName( $s['table'] );
-			$field = $s['field'];
-			$res = $this->db->query( "SHOW COLUMNS FROM $table LIKE '$field'", __METHOD__ );
-			$row = $res->fetchObject();
-
-			if ( $row && $row->Type !== "varbinary(35)" ) {
-				$this->applyPatch(
-					$s['file'],
-					false,
-					"Updating length of $field in $table"
-				);
-			} else {
-				$this->output( "...$field is up-to-date.\n" );
-			}
-		}
-	}
-
-	protected function doFixIpbAddressUniqueIndex() {
-		if ( !$this->doTable( 'ipblocks' ) ) {
-			return;
-		}
-
-		if ( !$this->indexHasField( 'ipblocks', 'ipb_address_unique', 'ipb_anon_only' ) ) {
-			$this->output( "...ipb_address_unique index up-to-date.\n" );
-			return;
-		}
-
-		$this->applyPatch(
-			'patch-ipblocks-fix-ipb_address_unique.sql',
-			false,
-			'Removing ipb_anon_only column from ipb_address_unique index'
-		);
 	}
 
 	public function getSchemaVars() {
