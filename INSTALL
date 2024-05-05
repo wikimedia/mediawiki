@@ -16,6 +16,7 @@ Required software as of MediaWiki 1.43.0:
 ** json
 ** libxml
 ** mbstring
+** openssl
 ** xml
 ** xmlreader
 * A SQL server, the following types are supported

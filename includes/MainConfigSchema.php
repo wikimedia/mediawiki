@@ -9348,18 +9348,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * If for some reason you can't install the PHP OpenSSL extension,
-	 * you can set this to true to make MediaWiki work again at the cost of storing
-	 * sensitive session data insecurely. But it would be much more secure to just
-	 * install the OpenSSL extension.
-	 *
-	 * @since 1.27
-	 */
-	public const SessionInsecureSecrets = [
-		'default' => false,
-	];
-
-	/**
 	 * Secret for hmac-based key derivation function (fast,
 	 * cryptographically secure random numbers).
 	 *

@@ -3108,12 +3108,6 @@ $wgRestAllowCrossOriginCookieAuth = null;
 $wgSessionSecret = null;
 
 /**
- * Config variable stub for the SessionInsecureSecrets setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::SessionInsecureSecrets
- */
-$wgSessionInsecureSecrets = null;
-
-/**
  * Config variable stub for the HKDFSecret setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::HKDFSecret
  */

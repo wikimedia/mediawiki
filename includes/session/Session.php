@@ -453,9 +453,6 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	 * @return array
 	 */
 	private static function getEncryptionAlgorithm() {
-		$sessionInsecureSecrets = MediaWikiServices::getInstance()->getMainConfig()
-			->get( MainConfigNames::SessionInsecureSecrets );
-
 		if ( self::$encryptionAlgorithm === null ) {
 			if ( function_exists( 'openssl_encrypt' ) ) {
 				$methods = openssl_get_cipher_methods();
@@ -469,17 +466,8 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 				}
 			}
 
-			if ( $sessionInsecureSecrets ) {
-				// @todo: import a pure-PHP library for AES instead of this
-				self::$encryptionAlgorithm = [ 'insecure' ];
-				return self::$encryptionAlgorithm;
-			}
-
 			throw new BadMethodCallException(
-				'Encryption is not available. You really should install the PHP OpenSSL extension. ' .
-				'But if you really can\'t and you\'re willing ' .
-				'to accept insecure storage of sensitive session data, set ' .
-				'$wgSessionInsecureSecrets = true in LocalSettings.php to make this exception go away.'
+				'Encryption is not available. You need to install the PHP OpenSSL extension.'
 			);
 		}
 
@@ -502,7 +490,6 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 		// Chris Steipp's OATHAuthUtils class in Extension::OATHAuth.
 
 		// Encrypt
-		// @todo: import a pure-PHP library for AES instead of doing $wgSessionInsecureSecrets
 		$iv = random_bytes( 16 );
 		$algorithm = self::getEncryptionAlgorithm();
 		switch ( $algorithm[0] ) {
@@ -511,11 +498,6 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 				if ( $ciphertext === false ) {
 					throw new \UnexpectedValueException( 'Encryption failed: ' . openssl_error_string() );
 				}
-				break;
-			case 'insecure':
-				$ex = new RuntimeException( 'No encryption is available, storing data as plain text' );
-				$this->logger->warning( $ex->getMessage(), [ 'exception' => $ex ] );
-				$ciphertext = $serialized;
 				break;
 			default:
 				throw new LogicException( 'invalid algorithm' );
@@ -574,13 +556,6 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 					$this->logger->debug( $ex->getMessage(), [ 'exception' => $ex ] );
 					return $default;
 				}
-				break;
-			case 'insecure':
-				$ex = new RuntimeException(
-					'No encryption is available, retrieving data that was stored as plain text'
-				);
-				$this->logger->warning( $ex->getMessage(), [ 'exception' => $ex ] );
-				$serialized = base64_decode( $ciphertext );
 				break;
 			default:
 				throw new \LogicException( 'invalid algorithm' );
