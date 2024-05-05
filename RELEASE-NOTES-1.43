@@ -55,6 +55,9 @@ For notes on 1.42.x and older releases, see HISTORY.
         $this->getOutput()->addWikiMsg( $msg );
       }
     }
+* (T219397) New `Language::formatDurationBetweenTimestamps()` function added
+  which takes two timestamps and a precision in order to calculate a more
+  accurate text representation of duration.
 * …
 
 === External library changes in 1.43 ===

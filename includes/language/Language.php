@@ -2141,6 +2141,75 @@ class Language implements Bcp47Code {
 	}
 
 	/**
+	 * Takes two timestamps and turns the difference between them into a text using values such as hours and minutes.
+	 *
+	 * @param int $timestamp1 The first timestamp.
+	 * @param int $timestamp2 The second timestamp.
+	 * @param ?int $precision The number of intervals to show.
+	 *
+	 * @return string
+	 */
+	public function formatDurationBetweenTimestamps(
+		int $timestamp1,
+		int $timestamp2,
+		?int $precision = null
+	): string {
+		if ( $precision === null ) {
+			$precision = count( self::DURATION_INTERVALS );
+		}
+
+		$sortedTimestamps = [ $timestamp1, $timestamp2 ];
+		sort( $sortedTimestamps );
+
+		$date1 = ( new DateTimeImmutable() )->setTimestamp( $sortedTimestamps[0] );
+		$date2 = ( new DateTimeImmutable() )->setTimestamp( $sortedTimestamps[1] );
+
+		$interval = $date1->diff( $date2 );
+
+		$format = [];
+		if ( $interval->y >= 1000 ) {
+			$millennia = floor( $interval->y / 1000 );
+			$format[] = $this->msg( 'duration-millennia' )->numParams( $millennia )->text();
+			$interval->y -= $millennia * 1000;
+		}
+		if ( $interval->y >= 100 ) {
+			$centuries = floor( $interval->y / 100 );
+			$format[] = $this->msg( 'duration-centuries' )->numParams( $centuries )->text();
+			$interval->y -= $centuries * 100;
+		}
+		if ( $interval->y >= 10 ) {
+			$decades = floor( $interval->y / 10 );
+			$format[] = $this->msg( 'duration-decades' )->numParams( $decades )->text();
+			$interval->y -= $decades * 10;
+		}
+		if ( $interval->y !== 0 ) {
+			$format[] = $this->msg( 'duration-years' )->numParams( $interval->y )->text();
+		}
+		if ( $interval->m !== 0 ) {
+			$format[] = $this->msg( 'duration-months' )->numParams( $interval->m )->text();
+		}
+		if ( $interval->d !== 0 ) {
+			$format[] = $this->msg( 'duration-days' )->numParams( $interval->d )->text();
+		}
+		if ( $interval->h !== 0 ) {
+			$format[] = $this->msg( 'duration-hours' )->numParams( $interval->h )->text();
+		}
+		if ( $interval->i !== 0 ) {
+			$format[] = $this->msg( 'duration-minutes' )->numParams( $interval->i )->text();
+		}
+		if ( $interval->s !== 0 ) {
+			$format[] = $this->msg( 'duration-seconds' )->numParams( $interval->s )->text();
+		}
+
+		// slice the array to the provided precision
+		$format = array_slice( $format, 0, $precision );
+		// build the string from the array
+		$format = $this->listToText( $format );
+
+		return $format ?: $this->msg( 'duration-seconds' )->numParams( 0 )->text();
+	}
+
+	/**
 	 * Takes a number of seconds and returns an array with a set of corresponding intervals.
 	 * For example, 65 will be turned into [ minutes => 1, seconds => 5 ].
 	 *
