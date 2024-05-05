@@ -51,7 +51,6 @@
 # * `src`: Full URL to the remote resource.
 # * `integrity`: Cryptographic hash (integrity metadata format per <https://www.w3.org/TR/SRI/>).
 # * `dest`: [optional] The file name to use in the module directory. Default: Basename of URL.
-# * `transforms`: [optional] File transformations (see below).
 #
 # For example, the following would produce resources/lib/mymodule/x.js:
 #
@@ -64,7 +63,6 @@
 #
 # Besides the shared ones, the following fields are used:
 # * `files`: An object mapping destination paths to `src` and `integrity` keys.
-# * `transforms`: [optional] File transformations (see below).
 #
 # For example:
 #
@@ -89,8 +87,6 @@
 #    to easily inspect an npm package, like <https://unpkg.com/jquery-client@2.0.2/>.
 #    This field can also be used to extract files to a subdirectory (by default the files and
 #    directories listed in "dest" are extracted to the module directory root).
-# * `transforms`: [optional] File transformations (see below). This field is experimental
-#    and might end up being removed.
 #
 # For example:
 #
@@ -112,24 +108,6 @@
 # This type can be used for packages which are managed in some custom way (e.g. they require a
 # manual build step). manageForeignResources.php will ignore these records, but they will still
 # be shown on Special:Version. Only the shared fields are used.
-#
-# ### File transformations
-#
-# Modification of upstream files is discouraged but sometimes unavoidable. The `transforms` key
-# lets you define per-file transformations, to be applied after fetching the upstream file.
-# It takes a map where the keys are destination file names, and the values are transformation
-# definitions or arrays of transformation definitions.
-#
-# IMPORTANT: File transformations are experimental and might end up being removed. Using them
-# is not recommended at this point.
-#
-# Currently only one transformation is supported: adding /*@nomin*/ to the beginning of a file
-# (which prevents the ResourceLoader minifier from touching it). Example:
-#
-# mymodule:
-#   ...
-#   transforms:
-#     foo.min.js: nomin
 #
 
 CLDRPluralRuleParser:
