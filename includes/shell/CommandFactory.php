@@ -172,6 +172,7 @@ class CommandFactory {
 	/**
 	 * Instantiates a new BoxedCommand.
 	 *
+	 * @since 1.36
 	 * @param ?string $service Name of Shellbox (as configured in
 	 *                         $wgShellboxUrls) that should be used
 	 * @return BoxedCommand
