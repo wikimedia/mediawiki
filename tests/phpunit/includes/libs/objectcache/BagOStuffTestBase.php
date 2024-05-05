@@ -45,7 +45,7 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 		$caches = $this->getConfVar( 'ObjectCaches' );
 		foreach ( $caches as $id => $cache ) {
 			if ( ( $cache['class'] ?? '' ) === $className ) {
-				return ObjectCache::getInstance( $id );
+				return $this->getServiceContainer()->getObjectCacheFactory()->getInstance( $id );
 			}
 		}
 		$this->markTestSkipped( "No $className is configured" );

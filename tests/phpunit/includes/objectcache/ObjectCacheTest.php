@@ -43,7 +43,7 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 	public function testNewAnythingNothing() {
 		$this->assertInstanceOf(
 			SqlBagOStuff::class,
-			ObjectCache::newAnything(),
+			$this->getServiceContainer()->getObjectCacheFactory()->getInstance( ObjectCache::getAnythingId() ),
 			'No available types. Fallback to DB'
 		);
 	}
@@ -53,7 +53,7 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertInstanceOf(
 			HashBagOStuff::class,
-			ObjectCache::newAnything(),
+			$this->getServiceContainer()->getObjectCacheFactory()->getInstance( ObjectCache::getAnythingId() ),
 			'Use an available type (hash)'
 		);
 	}
@@ -63,7 +63,7 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertInstanceOf(
 			HashBagOStuff::class,
-			ObjectCache::newAnything(),
+			$this->getServiceContainer()->getObjectCacheFactory()->getInstance( ObjectCache::getAnythingId() ),
 			'Use an available type (CACHE_ACCEL)'
 		);
 	}
@@ -75,7 +75,7 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertInstanceOf(
 			SqlBagOStuff::class,
-			ObjectCache::newAnything(),
+			$this->getServiceContainer()->getObjectCacheFactory()->getInstance( ObjectCache::getAnythingId() ),
 			'Fallback to DB if available types fall back to Empty'
 		);
 	}
@@ -91,7 +91,7 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertInstanceOf(
 			EmptyBagOStuff::class,
-			ObjectCache::newAnything(),
+			$this->getServiceContainer()->getObjectCacheFactory()->getInstance( ObjectCache::getAnythingId() ),
 			'Fallback to none if available types and DB are unavailable'
 		);
 	}
@@ -101,7 +101,7 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertInstanceOf(
 			EmptyBagOStuff::class,
-			ObjectCache::newAnything(),
+			$this->getServiceContainer()->getObjectCacheFactory()->getInstance( ObjectCache::getAnythingId() ),
 			'No available types or DB. Fallback to none.'
 		);
 	}

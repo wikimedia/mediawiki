@@ -43,7 +43,6 @@ use MediaWiki\Utils\ExtensionInfo;
 use MediaWiki\Utils\GitInfo;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\Utils\UrlUtils;
-use ObjectCache;
 use ParserFactory;
 use Symfony\Component\Yaml\Yaml;
 use Wikimedia\Composer\ComposerInstalled;
@@ -1019,7 +1018,7 @@ class SpecialVersion extends SpecialPage {
 					$this->coreId = $coreHeadSHA1;
 				}
 			}
-			$cache = ObjectCache::getInstance( CACHE_ANYTHING );
+			$cache = MediaWikiServices::getInstance()->getObjectCacheFactory()->getInstance( CACHE_ANYTHING );
 			$memcKey = $cache->makeKey(
 				'specialversion-ext-version-text', $extension['path'], $this->coreId
 			);

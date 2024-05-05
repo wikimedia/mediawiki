@@ -13,7 +13,7 @@ class SqlBagOStuffServerArrayTest extends BagOStuffTestBase {
 		// Extract server config from main load balancer
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		$serverInfo = TestingAccessWrapper::newFromObject( $lb )->serverInfo;
-		return ObjectCache::newFromParams( [
+		return $this->getServiceContainer()->getObjectCacheFactory()->newFromParams( [
 			'class' => SqlBagOStuff::class,
 			'servers' => [ $serverInfo->getServerInfo( 0 ) ]
 		] );

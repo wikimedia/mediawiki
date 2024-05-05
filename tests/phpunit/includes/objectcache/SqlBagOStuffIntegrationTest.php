@@ -6,6 +6,6 @@
  */
 class SqlBagOStuffIntegrationTest extends BagOStuffTestBase {
 	protected function newCacheInstance() {
-		return ObjectCache::getInstance( CACHE_DB );
+		return $this->getServiceContainer()->getObjectCacheFactory()->getInstance( CACHE_DB );
 	}
 }

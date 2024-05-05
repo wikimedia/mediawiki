@@ -513,7 +513,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$jobQueueFactory->makeJobQueueGroup()->get( $type )->delete();
 		}
 
-		ObjectCache::clear();
+		MediaWikiServices::getInstance()->getObjectCacheFactory()->clear();
 		DeferredUpdates::clearPendingUpdates();
 
 		// TODO: move global state into MediaWikiServices
@@ -1349,7 +1349,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$newServices->redefineService(
 			'LocalServerObjectCache',
 			static function ( MediaWikiServices $services ) {
-				return ObjectCache::getInstance( 'hash' );
+				return $services->getObjectCacheFactory()->getInstance( 'hash' );
 			}
 		);
 		$newServices->resetServiceForTesting( 'DBLoadBalancerFactory' );

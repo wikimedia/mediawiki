@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -60,7 +62,7 @@ class ManageJobs extends Maintenance {
 	}
 
 	private function repushAbandoned( JobQueue $queue ) {
-		$cache = ObjectCache::getInstance( CACHE_DB );
+		$cache = MediaWikiServices::getInstance()->getObjectCacheFactory()->getInstance( CACHE_DB );
 		$key = $cache->makeGlobalKey( 'last-job-repush', $queue->getDomain(), $queue->getType() );
 
 		$now = wfTimestampNow();

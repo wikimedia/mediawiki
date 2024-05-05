@@ -21,7 +21,6 @@
 namespace MediaWiki\Maintenance;
 
 use MediaWiki\MediaWikiServices;
-use ObjectCache;
 use RedisConnectionPool;
 use RuntimeException;
 
@@ -176,7 +175,7 @@ class ForkController {
 	protected function prepareEnvironment() {
 		// Don't share DB, storage, or memcached connections
 		MediaWikiServices::resetChildProcessServices();
-		ObjectCache::clear();
+		MediaWikiServices::getInstance()->getObjectCacheFactory()->clear();
 		RedisConnectionPool::destroySingletons();
 	}
 

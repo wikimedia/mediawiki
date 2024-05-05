@@ -85,11 +85,11 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'hash', $this->getServiceContainer()->getMainConfig()->get( MainConfigNames::MainCacheType ) );
 
 		$this->assertInstanceOf( HashBagOStuff::class, ObjectCache::getLocalClusterInstance() );
-		$this->assertInstanceOf( HashBagOStuff::class, ObjectCache::getLocalServerInstance() );
-		$this->assertInstanceOf( HashBagOStuff::class, ObjectCache::getInstance( CACHE_ANYTHING ) );
-		$this->assertInstanceOf( HashBagOStuff::class, ObjectCache::getInstance( CACHE_ACCEL ) );
-		$this->assertInstanceOf( HashBagOStuff::class, ObjectCache::getInstance( CACHE_DB ) );
-		$this->assertInstanceOf( HashBagOStuff::class, ObjectCache::getInstance( CACHE_MEMCACHED ) );
+		$this->assertInstanceOf( HashBagOStuff::class, $this->getServiceContainer()->getObjectCacheFactory()->getLocalServerInstance() );
+		$this->assertInstanceOf( HashBagOStuff::class, $this->getServiceContainer()->getObjectCacheFactory()->getInstance( CACHE_ANYTHING ) );
+		$this->assertInstanceOf( HashBagOStuff::class, $this->getServiceContainer()->getObjectCacheFactory()->getInstance( CACHE_ACCEL ) );
+		$this->assertInstanceOf( HashBagOStuff::class, $this->getServiceContainer()->getObjectCacheFactory()->getInstance( CACHE_DB ) );
+		$this->assertInstanceOf( HashBagOStuff::class, $this->getServiceContainer()->getObjectCacheFactory()->getInstance( CACHE_MEMCACHED ) );
 
 		$this->assertInstanceOf( HashBagOStuff::class, $this->getServiceContainer()->getLocalServerObjectCache() );
 		$this->assertInstanceOf( HashBagOStuff::class, $this->getServiceContainer()->getMainObjectStash() );
@@ -224,10 +224,10 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$name = $this->setMainCache( $cache );
 		$this->assertSame( $cache, ObjectCache::getLocalClusterInstance() );
 		$this->getServiceContainer()->getObjectCacheFactory()->setInstanceForTesting( $name, $cache );
-		$this->assertSame( $cache, ObjectCache::getInstance( $name ) );
+		$this->assertSame( $cache, $this->getServiceContainer()->getObjectCacheFactory()->getInstance( $name ) );
 
 		// Our custom cache object should not replace an existing entry.
-		$this->assertNotSame( $cache, ObjectCache::getInstance( CACHE_HASH ) );
+		$this->assertNotSame( $cache, $this->getServiceContainer()->getObjectCacheFactory()->getInstance( CACHE_HASH ) );
 		$this->setMainCache( CACHE_HASH );
 		$this->assertNotSame( $cache, ObjectCache::getLocalClusterInstance() );
 

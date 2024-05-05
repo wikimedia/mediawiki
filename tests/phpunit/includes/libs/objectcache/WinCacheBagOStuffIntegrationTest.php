@@ -7,6 +7,6 @@
  */
 class WinCacheBagOStuffIntegrationTest extends BagOStuffTestBase {
 	protected function newCacheInstance() {
-		return ObjectCache::getInstance( 'wincache' );
+		return $this->getServiceContainer()->getObjectCacheFactory()->getInstance( 'wincache' );
 	}
 }

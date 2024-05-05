@@ -76,7 +76,7 @@ class ObjectCache {
 	 * then CACHE_ANYTHING will forward to CACHE_DB.
 	 *
 	 * @deprecated since 1.42,
-	 *     Use ObjectCacheFactory::newInstance( ObjectCache::getAnythingId() );
+	 *     Use ObjectCacheFactory::getInstance( ObjectCache::getAnythingId() );
 	 *
 	 * @return BagOStuff
 	 */
