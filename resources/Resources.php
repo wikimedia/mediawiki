@@ -636,6 +636,8 @@ return [
 	],
 
 	'@wikimedia/codex-search' => [
+		'deprecated' => '[1.43] Use a CodexModule with codexComponents to set your specific components used: '
+			. 'https://www.mediawiki.org/wiki/Codex#Using_a_limited_subset_of_components',
 		'class' => CodexModule::class,
 		'codexComponents' => [ 'CdxTypeaheadSearch' ],
 		'codexScriptOnly' => true,
@@ -645,6 +647,8 @@ return [
 	],
 
 	'codex-search-styles' => [
+		'deprecated' => '[1.43] Use a CodexModule with codexComponents to set your specific components used: '
+		. 'https://www.mediawiki.org/wiki/Codex#Using_a_limited_subset_of_components',
 		'class' => CodexModule::class,
 		'codexComponents' => [ 'CdxTypeaheadSearch' ],
 		'codexStyleOnly' => true,
