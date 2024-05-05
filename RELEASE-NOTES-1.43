@@ -15,6 +15,7 @@ oldest supported upgrading version, MediaWiki 1.35.
 
 Some specific notes for MediaWiki 1.43 upgrades are below:
 
+* It is now necessary that the OpenSSL PHP extension is installed.
 * …
 
 For notes on 1.42.x and older releases, see HISTORY.
@@ -36,6 +37,8 @@ For notes on 1.42.x and older releases, see HISTORY.
 
 ==== Removed configuration ====
 
+* wgSessionInsecureSecrets has been removed since OpenSSL is now a required
+  PHP extension.
 * …
 
 === New user-facing features in 1.43 ===
@@ -246,6 +249,7 @@ MediaWiki 1.43 requires PHP 8.1.0 or later and the following PHP extensions:
 * intl
 * json
 * mbstring
+* openssl
 * xml
 
 MariaDB is the recommended database software. MySQL, PostgreSQL, or SQLite can

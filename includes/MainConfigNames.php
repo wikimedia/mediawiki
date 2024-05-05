@@ -3123,12 +3123,6 @@ class MainConfigNames {
 	public const SessionSecret = 'SessionSecret';
 
 	/**
-	 * Name constant for the SessionInsecureSecrets setting, for use with Config::get()
-	 * @see MainConfigSchema::SessionInsecureSecrets
-	 */
-	public const SessionInsecureSecrets = 'SessionInsecureSecrets';
-
-	/**
 	 * Name constant for the HKDFSecret setting, for use with Config::get()
 	 * @see MainConfigSchema::HKDFSecret
 	 */

@@ -1816,7 +1816,6 @@ return [
 			'AllowCrossOrigin' => false,
 			'RestAllowCrossOriginCookieAuth' => false,
 			'SessionSecret' => false,
-			'SessionInsecureSecrets' => false,
 			'HKDFSecret' => false,
 			'HKDFAlgorithm' => 'sha256',
 			'CookieExpiration' => 2592000,
