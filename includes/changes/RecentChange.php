@@ -240,9 +240,11 @@ class RecentChange implements Taggable {
 		$db = ( $dbType === DB_REPLICA ) ? $icp->getReplicaDatabase() : $icp->getPrimaryDatabase();
 
 		$rcQuery = self::getQueryInfo();
-		$row = $db->selectRow(
-			$rcQuery['tables'], $rcQuery['fields'], $conds, $fname, [], $rcQuery['joins']
-		);
+		$row = $db->newSelectQueryBuilder()
+			->queryInfo( $rcQuery )
+			->where( $conds )
+			->caller( $fname )
+			->fetchRow();
 		if ( $row !== false ) {
 			return self::newFromRow( $row );
 		} else {

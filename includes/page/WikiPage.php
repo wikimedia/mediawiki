@@ -357,14 +357,12 @@ class WikiPage implements Page, PageRecord {
 		$this->getHookRunner()->onArticlePageDataBefore(
 			$this, $pageQuery['fields'], $pageQuery['tables'], $pageQuery['joins'] );
 
-		$row = $dbr->selectRow(
-			$pageQuery['tables'],
-			$pageQuery['fields'],
-			$conditions,
-			__METHOD__,
-			$options,
-			$pageQuery['joins']
-		);
+		$row = $dbr->newSelectQueryBuilder()
+			->queryInfo( $pageQuery )
+			->where( $conditions )
+			->caller( __METHOD__ )
+			->options( $options )
+			->fetchRow();
 
 		$this->getHookRunner()->onArticlePageDataAfter( $this, $row );
 

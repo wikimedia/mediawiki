@@ -216,24 +216,18 @@ class DatabaseBlockStore {
 		$dbr = $this->getReplicaDB();
 		if ( $this->readStage === SCHEMA_COMPAT_READ_OLD ) {
 			$blockQuery = $this->getQueryInfo( self::SCHEMA_IPBLOCKS );
-			$res = $dbr->selectRow(
-				$blockQuery['tables'],
-				$blockQuery['fields'],
-				[ 'ipb_id' => $id ],
-				__METHOD__,
-				[],
-				$blockQuery['joins']
-			);
+			$res = $dbr->newSelectQueryBuilder()
+				->queryInfo( $blockQuery )
+				->where( [ 'ipb_id' => $id ] )
+				->caller( __METHOD__ )
+				->fetchRow();
 		} else {
 			$blockQuery = $this->getQueryInfo( self::SCHEMA_BLOCK );
-			$res = $dbr->selectRow(
-				$blockQuery['tables'],
-				$blockQuery['fields'],
-				[ 'bl_id' => $id ],
-				__METHOD__,
-				[],
-				$blockQuery['joins']
-			);
+			$res = $dbr->newSelectQueryBuilder()
+				->queryInfo( $blockQuery )
+				->where( [ 'bl_id' => $id ] )
+				->caller( __METHOD__ )
+				->fetchRow();
 		}
 		if ( $res ) {
 			return $this->newFromRow( $dbr, $res );
@@ -514,14 +508,11 @@ class DatabaseBlockStore {
 		}
 
 		$blockQuery = $this->getQueryInfo( $schema );
-		$res = $db->select(
-			$blockQuery['tables'],
-			$blockQuery['fields'],
-			$db->makeList( $orConds, IDatabase::LIST_OR ),
-			__METHOD__,
-			[],
-			$blockQuery['joins']
-		);
+		$res = $db->newSelectQueryBuilder()
+			->queryInfo( $blockQuery )
+			->where( $db->makeList( $orConds, IDatabase::LIST_OR ) )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$blocks = [];
 		$blockIds = [];

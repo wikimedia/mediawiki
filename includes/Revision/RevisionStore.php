@@ -2186,14 +2186,11 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		}
 
 		$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
-		$slotRows = $db->select(
-			$slotQueryInfo['tables'],
-			$slotQueryInfo['fields'],
-			$slotQueryConds,
-			__METHOD__,
-			[],
-			$slotQueryInfo['joins']
-		);
+		$slotRows = $db->newSelectQueryBuilder()
+			->queryInfo( $slotQueryInfo )
+			->where( $slotQueryConds )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$slotContents = null;
 		if ( $options['blobs'] ?? false ) {
