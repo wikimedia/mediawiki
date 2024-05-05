@@ -6,7 +6,6 @@ use EmptyIterator;
 use IDBAccessObject;
 use InvalidArgumentException;
 use Iterator;
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
@@ -14,13 +13,13 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\TitleParser;
-use NullStatsdDataFactory;
 use stdClass;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * @since 1.36
@@ -43,7 +42,7 @@ class PageStore implements PageLookup {
 	/** @var LinkCache|null */
 	private $linkCache;
 
-	/** @var StatsdDataFactoryInterface */
+	/** @var StatsFactory */
 	private $stats;
 
 	/** @var string|false */
@@ -62,7 +61,7 @@ class PageStore implements PageLookup {
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param TitleParser $titleParser
 	 * @param ?LinkCache $linkCache
-	 * @param ?StatsdDataFactoryInterface $stats
+	 * @param StatsFactory $stats
 	 * @param false|string $wikiId
 	 */
 	public function __construct(
@@ -71,7 +70,7 @@ class PageStore implements PageLookup {
 		NamespaceInfo $namespaceInfo,
 		TitleParser $titleParser,
 		?LinkCache $linkCache,
-		?StatsdDataFactoryInterface $stats,
+		StatsFactory $stats,
 		$wikiId = WikiAwareEntity::LOCAL
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -82,7 +81,7 @@ class PageStore implements PageLookup {
 		$this->titleParser = $titleParser;
 		$this->wikiId = $wikiId;
 		$this->linkCache = $linkCache;
-		$this->stats = $stats ?: new NullStatsdDataFactory();
+		$this->stats = $stats;
 
 		if ( $wikiId !== WikiAwareEntity::LOCAL && $linkCache ) {
 			// LinkCache currently doesn't support cross-wiki PageReferences.
@@ -93,10 +92,25 @@ class PageStore implements PageLookup {
 	}
 
 	/**
-	 * @param string $metric
+	 * Increment a cache hit or miss counter for LinkCache.
+	 * Possible reason labels are:
+	 * - `good`: The page was found in LinkCache and was complete.
+	 * - `bad_early`: The page was known by LinkCache to not exist.
+	 * - `bad_late`: The page was not found in LinkCache and did not exist.
+	 * - `incomplete_loaded`: The page was found in LinkCache but was incomplete.
+	 * - `incomplete_missing`: Incomplete page data was found in LinkCache, and the page did not exist.
+	 *
+	 * @param string $hitOrMiss 'hit' or 'miss'
+	 * @param string $reason Well-known reason string
+	 * @return void
 	 */
-	private function incrementStats( string $metric ) {
-		$this->stats->increment( "PageStore.{$metric}" );
+	private function incrementLinkCacheHitOrMiss( $hitOrMiss, $reason ) {
+		$legacyReason = strtr( $reason, '_', '.' );
+		$this->stats->getCounter( 'pagestore_linkcache_accesses_total' )
+			->setLabel( 'reason', $reason )
+			->setLabel( 'status', $hitOrMiss )
+			->copyToStatsdAt( "LinkCache.$hitOrMiss.$legacyReason" )
+			->increment();
 	}
 
 	/**
@@ -176,7 +190,7 @@ class PageStore implements PageLookup {
 		];
 
 		if ( $queryFlags === IDBAccessObject::READ_NORMAL && $this->linkCache->isBadLink( $conds ) ) {
-			$this->incrementStats( "LinkCache.hit.bad.early" );
+			$this->incrementLinkCacheHitOrMiss( 'hit', 'bad_early' );
 			return null;
 		}
 
@@ -213,7 +227,7 @@ class PageStore implements PageLookup {
 				$page = $this->newPageRecordFromRow( $row );
 
 				// We were able to use the row we got from link cache.
-				$this->incrementStats( "LinkCache.{$hitOrMiss}.good" );
+				$this->incrementLinkCacheHitOrMiss( $hitOrMiss, 'good' );
 			} catch ( InvalidArgumentException $e ) {
 				// The cached row was incomplete or corrupt,
 				// just keep going and load from the database.
@@ -221,18 +235,18 @@ class PageStore implements PageLookup {
 
 				if ( $page ) {
 					// PageSelectQueryBuilder should have added the full row to the LinkCache now.
-					$this->incrementStats( "LinkCache.{$hitOrMiss}.incomplete.loaded" );
+					$this->incrementLinkCacheHitOrMiss( $hitOrMiss, 'incomplete_loaded' );
 				} else {
 					// If we get here, an incomplete row was cached, but we failed to
 					// load the full row from the database. This should only happen
 					// if the page was deleted under out feet, which should be very rare.
 					// Update the LinkCache to reflect the new situation.
 					$this->linkCache->addBadLinkObj( $conds );
-					$this->incrementStats( "LinkCache.{$hitOrMiss}.incomplete.missing" );
+					$this->incrementLinkCacheHitOrMiss( $hitOrMiss, 'incomplete_missing' );
 				}
 			}
 		} else {
-			$this->incrementStats( "LinkCache.{$hitOrMiss}.bad.late" );
+			$this->incrementLinkCacheHitOrMiss( $hitOrMiss, 'bad_late' );
 			$page = null;
 		}
 

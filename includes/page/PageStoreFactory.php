@@ -2,13 +2,13 @@
 
 namespace MediaWiki\Page;
 
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\TitleParser;
 use Wikimedia\Rdbms\ILBFactory;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * @since 1.36
@@ -35,7 +35,7 @@ class PageStoreFactory {
 	/** @var LinkCache */
 	private $linkCache;
 
-	/** @var StatsdDataFactoryInterface */
+	/** @var StatsFactory */
 	private $stats;
 
 	/**
@@ -44,7 +44,7 @@ class PageStoreFactory {
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param TitleParser $titleParser
 	 * @param LinkCache $linkCache
-	 * @param StatsdDataFactoryInterface $stats
+	 * @param StatsFactory $stats
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -52,7 +52,7 @@ class PageStoreFactory {
 		NamespaceInfo $namespaceInfo,
 		TitleParser $titleParser,
 		LinkCache $linkCache,
-		StatsdDataFactoryInterface $stats
+		StatsFactory $stats
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
