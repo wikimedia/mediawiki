@@ -24,13 +24,11 @@
 namespace MediaWiki\Specials;
 
 use ErrorPageError;
-use MediaWiki\Config\Config;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Mail\EmailUserFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Message\Message;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
@@ -224,42 +222,6 @@ class SpecialEmailUser extends SpecialPage {
 			$ret = $msg === 'emailnotarget' ? 'notarget' : preg_replace( '/text$/', '', $msg );
 		}
 		return $ret;
-	}
-
-	/**
-	 * Check whether a user is allowed to send email
-	 *
-	 * @param User $user
-	 * @param string $editToken
-	 * @param Config|null $config optional for backwards compatibility
-	 * @param bool $authorize whether to authorize the immediate sending of mails,
-	 *        rather than just checking beforehand.
-	 *
-	 * @return null|string|array Null on success, string on error, or array on
-	 *  hook error
-	 * @deprecated since 1.41 Use EmailUser::canSend() or EmailUser::authorizeSend()
-	 */
-	public static function getPermissionsError( $user, $editToken, Config $config = null, $authorize = false ) {
-		$emailUser = MediaWikiServices::getInstance()->getEmailUserFactory()->newEmailUserBC( $user, $config );
-		$emailUser->setEditToken( (string)$editToken );
-		$status = $authorize ? $emailUser->authorizeSend() : $emailUser->canSend();
-
-		if ( $status->isGood() ) {
-			return null;
-		}
-		foreach ( $status->getErrors() as $err ) {
-			$errKey = $err['message'] instanceof Message ? $err['message']->getKey() : $err['message'];
-			if ( strpos( $errKey, 'blockedtext' ) !== false ) {
-				// BC for block messages
-				return "blockedemailuser";
-			}
-		}
-		$error = $status->getErrors()[0];
-		if ( $status->getValue() !== null ) {
-			// BC for hook errors intended to be used with ErrorPageError
-			return [ $status->getValue(), $error['message'], $error['params'] ];
-		}
-		return $error['message'];
 	}
 
 	/**
