@@ -194,26 +194,6 @@ class ForeignResourceManager {
 				default:
 					throw new LogicException( "Unknown type '{$info['type']}' for '$moduleName'" );
 			}
-
-			if ( $this->action === 'update' ) {
-				foreach ( $info['transforms'] ?? [] as $file => $transforms ) {
-					$fullFilePath = "$destDir/$file";
-					if ( !file_exists( $fullFilePath ) ) {
-						throw new LogicException( "$moduleName: invalid transform target $file" );
-					}
-					if ( !is_array( $transforms ) || !array_is_list( $transforms ) ) {
-						$transforms = [ $transforms ];
-					}
-					foreach ( $transforms as $transform ) {
-						if ( $transform === 'nomin' ) {
-							// not super efficient but these files aren't expected to be large
-							file_put_contents( $fullFilePath, "/*@nomin*/\n" . file_get_contents( $fullFilePath ) );
-						} else {
-							throw new LogicException( "$moduleName: invalid transform $transform" );
-						}
-					}
-				}
-			}
 		}
 
 		$this->cleanUp();
