@@ -199,31 +199,6 @@ class SpecialEmailUser extends SpecialPage {
 	}
 
 	/**
-	 * Validate target User
-	 *
-	 * @param User $target Target user
-	 * @param User $sender User sending the email
-	 * @return string Error message or empty string if valid.
-	 * @since 1.30
-	 * @deprecated since 1.41 Use EmailUser::validateTarget()
-	 */
-	public static function validateTarget( $target, User $sender ) {
-		if ( !$target instanceof User ) {
-			return 'notarget';
-		}
-		$status = MediaWikiServices::getInstance()->getEmailUserFactory()
-			->newEmailUser( $sender )
-			->validateTarget( $target );
-		if ( $status->isGood() ) {
-			$ret = '';
-		} else {
-			$msg = $status->getErrors()[0]['message'];
-			$ret = $msg === 'emailnotarget' ? 'notarget' : preg_replace( '/text$/', '', $msg );
-		}
-		return $ret;
-	}
-
-	/**
 	 * Form to ask for target user name.
 	 *
 	 * @param string $name User name submitted.

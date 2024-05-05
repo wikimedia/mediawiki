@@ -172,6 +172,7 @@ because of Phabricator reports.
 * WikiPage::doDeleteArticleBatched, hard deprecated since 1.37, has been
   removed.
 * SpecialEmailUser::submit, deprecated since 1.41, has been removed.
+* SpecialEmailUser::validateTarget, deprecated since 1.41, has been removed.
 * …
 
 === Deprecations in 1.43 ===
