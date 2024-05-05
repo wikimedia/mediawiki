@@ -529,6 +529,9 @@ class ForeignResourceManager {
 			} else {
 				$moduleCdx['licenses'][] = [ 'license' => [ 'id' => $module['license'] ] ];
 			}
+			if ( $module['purl'] ?? false ) {
+				$moduleCdx['purl'] = $module['purl'];
+			}
 			if ( $module['version'] ?? false ) {
 				$moduleCdx['version'] = $module['version'];
 			}
