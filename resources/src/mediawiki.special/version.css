@@ -11,7 +11,7 @@
 	white-space: nowrap;
 }
 
-th.mw-version-ext-col-label {
+.mw-body-content thead {
 	font-size: 0.9em;
 }
 

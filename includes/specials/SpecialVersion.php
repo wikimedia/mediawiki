@@ -58,11 +58,6 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class SpecialVersion extends SpecialPage {
 
 	/**
-	 * @var bool
-	 */
-	protected $firstExtOpened = false;
-
-	/**
 	 * @var string The current rev id/SHA hash of MediaWiki core
 	 */
 	protected $coreId = '';
@@ -416,10 +411,10 @@ class SpecialVersion extends SpecialPage {
 
 		$out .= Html::openElement( 'table', [ 'class' => 'wikitable plainlinks', 'id' => 'sv-software' ] );
 
-		$out .= Html::rawElement( 'tr', [],
-			Html::element( 'th', [], $this->msg( 'version-software-product' )->text() ) .
-			Html::element( 'th', [], $this->msg( 'version-software-version' )->text() )
-		);
+		$out .= $this->getTableHeaderHtml( [
+			$this->msg( 'version-software-product' )->text(),
+			$this->msg( 'version-software-version' )->text()
+		] );
 
 		foreach ( $this->getSoftwareInformation() as $name => $version ) {
 			$out .= Html::rawElement(
@@ -595,8 +590,6 @@ class SpecialVersion extends SpecialPage {
 			return $out;
 		}
 
-		$out .= Html::openElement( 'table', [ 'class' => 'wikitable plainlinks', 'id' => 'sv-ext' ] );
-
 		// Find all extensions that do not have a valid type and give them the type 'other'.
 		$credits['other'] ??= [];
 		foreach ( $credits as $type => $extensions ) {
@@ -605,7 +598,6 @@ class SpecialVersion extends SpecialPage {
 			}
 		}
 
-		$this->firstExtOpened = false;
 		// Loop through the extension categories to display their extensions in the list.
 		foreach ( $extensionTypes as $type => $text ) {
 			// Skins have a separate section
@@ -616,8 +608,6 @@ class SpecialVersion extends SpecialPage {
 
 		// We want the 'other' type to be last in the list.
 		$out .= $this->getExtensionCategory( 'other', $extensionTypes['other'], $credits['other'] );
-
-		$out .= Html::closeElement( 'table' );
 
 		return $out;
 	}
@@ -648,7 +638,6 @@ class SpecialVersion extends SpecialPage {
 		}
 		$out .= Html::openElement( 'table', [ 'class' => 'wikitable plainlinks', 'id' => 'sv-skin' ] );
 
-		$this->firstExtOpened = false;
 		$out .= $this->getExtensionCategory( 'skin', null, $credits['skin'] );
 
 		$out .= Html::closeElement( 'table' );
@@ -709,13 +698,14 @@ class SpecialVersion extends SpecialPage {
 			'table',
 			[ 'class' => 'wikitable plainlinks', 'id' => 'sv-libraries' ]
 		);
-		$out .= Html::openElement( 'tr' )
-			. Html::element( 'th', [], $this->msg( 'version-libraries-library' )->text() )
-			. Html::element( 'th', [], $this->msg( 'version-libraries-version' )->text() )
-			. Html::element( 'th', [], $this->msg( 'version-libraries-license' )->text() )
-			. Html::element( 'th', [], $this->msg( 'version-libraries-description' )->text() )
-			. Html::element( 'th', [], $this->msg( 'version-libraries-authors' )->text() )
-			. Html::closeElement( 'tr' );
+
+		$out .= $this->getTableHeaderHtml( [
+			$this->msg( 'version-libraries-library' )->text(),
+			$this->msg( 'version-libraries-version' )->text(),
+			$this->msg( 'version-libraries-license' )->text(),
+			$this->msg( 'version-libraries-description' )->text(),
+			$this->msg( 'version-libraries-authors' )->text(),
+		] );
 
 		foreach ( $dependencies as $name => $info ) {
 			if ( !is_array( $info ) || str_starts_with( $info['type'], 'mediawiki-' ) ) {
@@ -803,13 +793,14 @@ class SpecialVersion extends SpecialPage {
 			'table',
 			[ 'class' => 'wikitable plainlinks', 'id' => 'sv-libraries-client' ]
 		);
-		$out .= Html::openElement( 'tr' )
-			. Html::element( 'th', [], $this->msg( 'version-libraries-library' )->text() )
-			. Html::element( 'th', [], $this->msg( 'version-libraries-version' )->text() )
-			. Html::element( 'th', [], $this->msg( 'version-libraries-license' )->text() )
-			. Html::element( 'th', [], $this->msg( 'version-libraries-authors' )->text() )
-			. Html::element( 'th', [], $this->msg( 'version-libraries-source' )->text() )
-			. Html::closeElement( 'tr' );
+
+		$out .= $this->getTableHeaderHtml( [
+			$this->msg( 'version-libraries-library' )->text(),
+			$this->msg( 'version-libraries-version' )->text(),
+			$this->msg( 'version-libraries-license' )->text(),
+			$this->msg( 'version-libraries-authors' )->text(),
+			$this->msg( 'version-libraries-source' )->text()
+		] );
 
 		foreach ( self::parseForeignResources() as $name => $info ) {
 			// We can safely assume that the libraries' names and descriptions
@@ -936,6 +927,8 @@ class SpecialVersion extends SpecialPage {
 			foreach ( $creditsGroup as $extension ) {
 				$out .= $this->getCreditsForExtension( $type, $extension );
 			}
+
+			$out .= Html::closeElement( 'table' );
 		}
 
 		return $out;
@@ -1191,23 +1184,16 @@ class SpecialVersion extends SpecialPage {
 	private function openExtType( string $text = null, string $name = null ) {
 		$out = '';
 
-		$opt = [ 'colspan' => 5 ];
-		if ( $this->firstExtOpened ) {
-			// Insert a spacing line
-			$out .= Html::rawElement( 'tr', [ 'class' => 'sv-space' ],
-				Html::element( 'td', $opt )
-			);
-		}
-		$this->firstExtOpened = true;
+		$opt = [ 'class' => 'wikitable plainlinks' ];
 
 		if ( $name ) {
 			$opt['id'] = "sv-$name";
 		}
 
+		$out .= Html::openElement( 'table', $opt );
+
 		if ( $text !== null ) {
-			$out .= Html::rawElement( 'tr', [],
-				Html::element( 'th', $opt, $text )
-			);
+			$out .= Html::element( 'caption', [], $text );
 		}
 
 		if ( $name && $text !== null ) {
@@ -1217,19 +1203,35 @@ class SpecialVersion extends SpecialPage {
 		$firstHeadingMsg = ( $name === 'credits-skin' )
 			? 'version-skin-colheader-name'
 			: 'version-ext-colheader-name';
-		$out .= Html::openElement( 'tr' );
-		$out .= Html::element( 'th', [ 'class' => 'mw-version-ext-col-label' ],
-			$this->msg( $firstHeadingMsg )->text() );
-		$out .= Html::element( 'th', [ 'class' => 'mw-version-ext-col-label' ],
-			$this->msg( 'version-ext-colheader-version' )->text() );
-		$out .= Html::element( 'th', [ 'class' => 'mw-version-ext-col-label' ],
-			$this->msg( 'version-ext-colheader-license' )->text() );
-		$out .= Html::element( 'th', [ 'class' => 'mw-version-ext-col-label' ],
-			$this->msg( 'version-ext-colheader-description' )->text() );
-		$out .= Html::element( 'th', [ 'class' => 'mw-version-ext-col-label' ],
-			$this->msg( 'version-ext-colheader-credits' )->text() );
-		$out .= Html::closeElement( 'tr' );
 
+		$out .= $this->getTableHeaderHtml( [
+			$this->msg( $firstHeadingMsg )->text(),
+			$this->msg( 'version-ext-colheader-version' )->text(),
+			$this->msg( 'version-ext-colheader-license' )->text(),
+			$this->msg( 'version-ext-colheader-description' )->text(),
+			$this->msg( 'version-ext-colheader-credits' )->text()
+		] );
+
+		return $out;
+	}
+
+	/**
+	 * Return HTML for a table header with given texts in header cells
+	 *
+	 * Includes thead element and scope="col" attribute for improved accessibility
+	 *
+	 * @param string|array $headers
+	 * @return string HTML
+	 */
+	private function getTableHeaderHtml( $headers ): string {
+		$out = '';
+		$out .= Html::openElement( 'thead' );
+		$out .= Html::openElement( 'tr' );
+		foreach ( $headers as $header ) {
+			$out .= Html::element( 'th', [ 'scope' => 'col' ], $header );
+		}
+		$out .= Html::closeElement( 'tr' );
+		$out .= Html::closeElement( 'thead' );
 		return $out;
 	}
 
@@ -1405,7 +1407,8 @@ class SpecialVersion extends SpecialPage {
 		$language = $this->getLanguage();
 		$thAttributes = [
 			'dir' => $language->getDir(),
-			'lang' => $language->getHtmlCode()
+			'lang' => $language->getHtmlCode(),
+			'scope' => 'col'
 		];
 
 		$this->addTocSection( 'version-entrypoints', 'mw-version-entrypoints' );
@@ -1423,6 +1426,7 @@ class SpecialVersion extends SpecialPage {
 					'lang' => 'en'
 				]
 			) .
+			Html::openElement( 'thead' ) .
 			Html::openElement( 'tr' ) .
 			Html::element(
 				'th',
@@ -1434,7 +1438,8 @@ class SpecialVersion extends SpecialPage {
 				$thAttributes,
 				$this->msg( 'version-entrypoints-header-url' )->text()
 			) .
-			Html::closeElement( 'tr' );
+			Html::closeElement( 'tr' ) .
+			Html::closeElement( 'thead' );
 
 		foreach ( $entryPoints as $message => $value ) {
 			$url = $this->urlUtils->expand( $value, PROTO_RELATIVE );
