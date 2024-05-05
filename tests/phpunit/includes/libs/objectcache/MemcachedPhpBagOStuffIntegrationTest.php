@@ -9,6 +9,6 @@ class MemcachedPhpBagOStuffIntegrationTest extends BagOStuffTestBase {
 		if ( !$this->getConfVar( 'EnableRemoteBagOStuffTests' ) ) {
 			$this->markTestSkipped( '$wgEnableRemoteBagOStuffTests is false' );
 		}
-		return ObjectCache::getInstance( 'memcached-php' );
+		return $this->getServiceContainer()->getObjectCacheFactory()->getInstance( 'memcached-php' );
 	}
 }

@@ -32,7 +32,6 @@ use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
-use ObjectCache;
 use RuntimeException;
 use Wikimedia\Minify\CSSMin;
 use Wikimedia\RequestTimeout\TimeoutException;
@@ -1090,7 +1089,8 @@ class FileModule extends Module {
 		static $cache;
 		// @TODO: dependency injection
 		if ( !$cache ) {
-			$cache = ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
+			$cache = MediaWikiServices::getInstance()->getObjectCacheFactory()
+				->getLocalServerInstance( CACHE_ANYTHING );
 		}
 
 		$skinName = $context->getSkin();

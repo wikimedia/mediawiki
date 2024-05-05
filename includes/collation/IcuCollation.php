@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * @since 1.16.3
@@ -334,7 +335,8 @@ class IcuCollation extends Collation {
 	 */
 	private function getFirstLetterData() {
 		if ( $this->firstLetterData === null ) {
-			$cache = ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
+			$cache = MediaWikiServices::getInstance()->getObjectCacheFactory()
+				->getLocalServerInstance( CACHE_ANYTHING );
 			$cacheKey = $cache->makeKey(
 				'first-letters',
 				static::class,

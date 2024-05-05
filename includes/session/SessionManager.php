@@ -182,6 +182,7 @@ class SessionManager implements SessionManagerInterface {
 	 *  - store: BagOStuff to store session data in.
 	 */
 	public function __construct( $options = [] ) {
+		$services = MediaWikiServices::getInstance();
 		if ( isset( $options['config'] ) ) {
 			$this->config = $options['config'];
 			if ( !$this->config instanceof Config ) {
@@ -190,7 +191,7 @@ class SessionManager implements SessionManagerInterface {
 				);
 			}
 		} else {
-			$this->config = MediaWikiServices::getInstance()->getMainConfig();
+			$this->config = $services->getMainConfig();
 		}
 
 		if ( isset( $options['logger'] ) ) {
@@ -207,7 +208,7 @@ class SessionManager implements SessionManagerInterface {
 		if ( isset( $options['hookContainer'] ) ) {
 			$this->setHookContainer( $options['hookContainer'] );
 		} else {
-			$this->setHookContainer( MediaWikiServices::getInstance()->getHookContainer() );
+			$this->setHookContainer( $services->getHookContainer() );
 		}
 
 		if ( isset( $options['store'] ) ) {
@@ -218,12 +219,13 @@ class SessionManager implements SessionManagerInterface {
 			}
 			$store = $options['store'];
 		} else {
-			$store = \ObjectCache::getInstance( $this->config->get( MainConfigNames::SessionCacheType ) );
+			$store = $services->getObjectCacheFactory()
+				->getInstance( $this->config->get( MainConfigNames::SessionCacheType ) );
 		}
 
 		$this->logger->debug( 'SessionManager using store ' . get_class( $store ) );
 		$this->store = $store instanceof CachedBagOStuff ? $store : new CachedBagOStuff( $store );
-		$this->userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
+		$this->userNameUtils = $services->getUserNameUtils();
 
 		register_shutdown_function( [ $this, 'shutdown' ] );
 	}

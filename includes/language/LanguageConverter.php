@@ -1011,7 +1011,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @param bool $fromCache Whether to load from cache. Defaults to true.
 	 */
 	protected function loadTables( $fromCache = true ) {
-		$languageConverterCacheType = MediaWikiServices::getInstance()
+		$services = MediaWikiServices::getInstance();
+		$languageConverterCacheType = $services
 			->getMainConfig()->get( MainConfigNames::LanguageConverterCacheType );
 
 		if ( $this->mTablesLoaded ) {
@@ -1019,7 +1020,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 		}
 
 		$this->mTablesLoaded = true;
-		$cache = ObjectCache::getInstance( $languageConverterCacheType );
+		$cache = $services->getObjectCacheFactory()->getInstance( $languageConverterCacheType );
 		$cacheKey = $cache->makeKey(
 			'conversiontables', $this->getMainCode(),
 			md5( implode( ',', $this->getVariants() ) ), self::CACHE_VERSION_KEY

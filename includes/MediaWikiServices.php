@@ -188,7 +188,6 @@ use MediaWiki\Watchlist\WatchlistManager;
 use MessageCache;
 use MimeAnalyzer;
 use MWLBFactory;
-use ObjectCache;
 use ObjectCacheFactory;
 use OldRevisionImporter;
 use ParserCache;
@@ -572,7 +571,7 @@ class MediaWikiServices extends ServiceContainer {
 			}
 		);
 
-		ObjectCache::clear();
+		self::getInstance()->getObjectCacheFactory()->clear();
 
 		$this->storageDisabled = true;
 	}

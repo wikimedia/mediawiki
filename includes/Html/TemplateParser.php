@@ -7,7 +7,6 @@ use FileContentsHasher;
 use LightnCandy\LightnCandy;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use ObjectCache;
 use RuntimeException;
 use UnexpectedValueException;
 
@@ -63,7 +62,8 @@ class TemplateParser {
 	 */
 	public function __construct( $templateDir = null, ?BagOStuff $cache = null ) {
 		$this->templateDir = $templateDir ?: __DIR__ . '/../templates';
-		$this->cache = $cache ?: ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
+		$this->cache = $cache ?: MediaWikiServices::getInstance()->getObjectCacheFactory()
+			->getLocalServerInstance( CACHE_ANYTHING );
 
 		// Do not add more flags here without discussion.
 		// If you do add more flags, be sure to update unit tests as well.

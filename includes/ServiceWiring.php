@@ -489,7 +489,7 @@ return [
 		$isMainCacheBad = ObjectCache::isDatabaseId( $mainConfig->get( MainConfigNames::MainCacheType ) );
 
 		if ( is_string( $cpStashType ) ) {
-			$cpStash = ObjectCache::getInstance( $cpStashType );
+			$cpStash = $services->getObjectCacheFactory()->getInstance( $cpStashType );
 		} elseif ( $isMainCacheBad ) {
 			$cpStash = new EmptyBagOStuff();
 		} else {
@@ -1249,7 +1249,8 @@ return [
 
 	'MessageCache' => static function ( MediaWikiServices $services ): MessageCache {
 		$mainConfig = $services->getMainConfig();
-		$clusterCache = ObjectCache::getInstance( $mainConfig->get( MainConfigNames::MessageCacheType ) );
+		$clusterCache = $services->getObjectCacheFactory()
+			->getInstance( $mainConfig->get( MainConfigNames::MessageCacheType ) );
 		$srvCache = $mainConfig->get( MainConfigNames::UseLocalMessageCache )
 			? $services->getLocalServerObjectCache()
 			: new EmptyBagOStuff();
@@ -1525,7 +1526,7 @@ return [
 
 	'ParserCacheFactory' => static function ( MediaWikiServices $services ): ParserCacheFactory {
 		$config = $services->getMainConfig();
-		$cache = ObjectCache::getInstance( $config->get( MainConfigNames::ParserCacheType ) );
+		$cache = $services->getObjectCacheFactory()->getInstance( $config->get( MainConfigNames::ParserCacheType ) );
 		$wanCache = $services->getMainWANObjectCache();
 
 		$options = new ServiceOptions( ParserCacheFactory::CONSTRUCTOR_OPTIONS, $config );
@@ -1617,7 +1618,7 @@ return [
 		//       output for VE edits (T309016).
 		$config = $services->getMainConfig()->get( MainConfigNames::ParsoidCacheConfig );
 		$backend = $config['StashType']
-			? ObjectCache::getInstance( $config['StashType'] )
+			? $services->getObjectCacheFactory()->getInstance( $config['StashType'] )
 			: $services->getMainObjectStash();
 
 		return new SimpleParsoidOutputStash(
