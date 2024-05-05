@@ -273,8 +273,6 @@ class ContribsPager extends RangeChronologicalPager {
 			$order
 		);
 
-		$options['MAX_EXECUTION_TIME'] =
-			$this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries );
 		/*
 		 * This hook will allow extensions to add in additional queries, so they can get their data
 		 * in My Contributions as well. Extensions should append their results to the $data array.
@@ -294,9 +292,15 @@ class ContribsPager extends RangeChronologicalPager {
 		 * $descending: see phpdoc above
 		 */
 		$dbr = $this->getDatabase();
-		$data = [ $dbr->select(
-			$tables, $fields, $conds, $fname, $options, $join_conds
-		) ];
+		$data = [ $dbr->newSelectQueryBuilder()
+			->tables( is_array( $tables ) ? $tables : [ $tables ] )
+			->fields( $fields )
+			->conds( $conds )
+			->caller( $fname )
+			->options( $options )
+			->joinConds( $join_conds )
+			->setMaxExecutionTime( $this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries ) )
+			->fetchResultSet() ];
 		if ( !$this->revisionsOnly ) {
 			// TODO: Range offsets are fairly important and all handlers should take care of it.
 			// If this hook will be replaced (e.g. unified with the DeletedContribsPager one),

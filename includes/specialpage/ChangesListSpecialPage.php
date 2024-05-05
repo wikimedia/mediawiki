@@ -1580,14 +1580,14 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 		$dbr = $this->getDB();
 
-		return $dbr->select(
-			$tables,
-			$fields,
-			$conds,
-			__METHOD__,
-			$query_options,
-			$join_conds
-		);
+		return $dbr->newSelectQueryBuilder()
+			->tables( $tables )
+			->fields( $fields )
+			->conds( $conds )
+			->caller( __METHOD__ )
+			->options( $query_options )
+			->joinConds( $join_conds )
+			->fetchResultSet();
 	}
 
 	protected function runMainQueryHook( &$tables, &$fields, &$conds,

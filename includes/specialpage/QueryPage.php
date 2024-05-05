@@ -577,21 +577,26 @@ abstract class QueryPage extends SpecialPage {
 			$options = isset( $query['options'] ) ? (array)$query['options'] : [];
 			$join_conds = isset( $query['join_conds'] ) ? (array)$query['join_conds'] : [];
 
+			$queryBuilder = $dbr->newSelectQueryBuilder()
+				->tables( $tables )
+				->fields( $fields )
+				->conds( $conds )
+				->caller( $fname )
+				->options( $options )
+				->joinConds( $join_conds );
 			if ( $order ) {
-				$options['ORDER BY'] = $order;
+				$queryBuilder->orderBy( $order );
 			}
 
 			if ( $limit !== false ) {
-				$options['LIMIT'] = intval( $limit );
+				$queryBuilder->limit( intval( $limit ) );
 			}
 
 			if ( $offset !== false ) {
-				$options['OFFSET'] = intval( $offset );
+				$queryBuilder->offset( intval( $offset ) );
 			}
 
-			$res = $dbr->select( $tables, $fields, $conds, $fname,
-					$options, $join_conds
-			);
+			$res = $queryBuilder->fetchResultSet();
 		} else {
 			// Old-fashioned raw SQL style, deprecated
 			MWDebug::detectDeprecatedOverride(

@@ -327,7 +327,14 @@ class ImageListPager extends TablePager {
 		$this->mTableName = 'image';
 		[ $tables, $fields, $conds, $fname, $options, $join_conds ] =
 			$this->buildQueryInfo( $offset, $limit, $order );
-		$imageRes = $dbr->select( $tables, $fields, $conds, $fname, $options, $join_conds );
+		$imageRes = $dbr->newSelectQueryBuilder()
+			->tables( is_array( $tables ) ? $tables : [ $tables ] )
+			->fields( $fields )
+			->conds( $conds )
+			->caller( $fname )
+			->options( $options )
+			->joinConds( $join_conds )
+			->fetchResultSet();
 		$this->mTableName = $prevTableName;
 
 		if ( !$this->mShowAll ) {
@@ -348,7 +355,14 @@ class ImageListPager extends TablePager {
 
 		[ $tables, $fields, $conds, $fname, $options, $join_conds ] =
 			$this->buildQueryInfo( $offset, $limit, $order );
-		$oldimageRes = $dbr->select( $tables, $fields, $conds, $fname, $options, $join_conds );
+		$oldimageRes = $dbr->newSelectQueryBuilder()
+			->tables( is_array( $tables ) ? $tables : [ $tables ] )
+			->fields( $fields )
+			->conds( $conds )
+			->caller( $fname )
+			->options( $options )
+			->joinConds( $join_conds )
+			->fetchResultSet();
 
 		$this->mTableName = $prevTableName;
 		$this->mIndexField = $oldIndex;

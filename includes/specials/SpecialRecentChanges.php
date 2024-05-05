@@ -444,18 +444,15 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		// MediaWiki 1.26 this used to use the plus operator instead, which meant
 		// that extensions weren't able to change these conditions
 		$query_options = array_merge( $orderByAndLimit, $query_options );
-		$query_options['MAX_EXECUTION_TIME'] =
-			$this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries );
-		$rows = $dbr->select(
-			$tables,
-			$fields,
-			$conds,
-			__METHOD__,
-			$query_options,
-			$join_conds
-		);
-
-		return $rows;
+		return $dbr->newSelectQueryBuilder()
+			->tables( $tables )
+			->fields( $fields )
+			->conds( $conds )
+			->caller( __METHOD__ )
+			->options( $query_options )
+			->joinConds( $join_conds )
+			->setMaxExecutionTime( $this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries ) )
+			->fetchResultSet();
 	}
 
 	/**

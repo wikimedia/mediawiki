@@ -1502,7 +1502,14 @@ class LocalFile extends File {
 		$this->getHookRunner()->onLocalFile__getHistory( $this, $tables, $fields,
 			$conds, $opts, $join_conds );
 
-		$res = $dbr->select( $tables, $fields, $conds, __METHOD__, $opts, $join_conds );
+		$res = $dbr->newSelectQueryBuilder()
+			->tables( $tables )
+			->fields( $fields )
+			->conds( $conds )
+			->caller( __METHOD__ )
+			->options( $opts )
+			->joinConds( $join_conds )
+			->fetchResultSet();
 		$r = [];
 
 		foreach ( $res as $row ) {

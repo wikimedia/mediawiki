@@ -649,17 +649,16 @@ class MessageCache implements LoggerAwareInterface {
 			array_diff( $revQuery['tables'], [ 'page' ] )
 		);
 
-		$res = $dbr->select(
-			$revQuery['tables'],
-			$revQuery['fields'],
-			array_merge( $conds, [
-				'page_len <= ' . intval( $this->maxEntrySize ),
+		$res = $dbr->newSelectQueryBuilder()
+			->queryInfo( $revQuery )
+			->where( $conds )
+			->andWhere( [
+				$dbr->expr( 'page_len', '<=', intval( $this->maxEntrySize ) ),
 				'page_latest = rev_id' // get the latest revision only
-			] ),
-			__METHOD__ . "($code)-small",
-			[ 'STRAIGHT_JOIN' ],
-			$revQuery['joins']
-		);
+			] )
+			->caller( __METHOD__ . "($code)-small" )
+			->straightJoinOption()
+			->fetchResultSet();
 
 		// Don't load content from uncacheable rows (T313004)
 		[ $cacheableRows, $uncacheableRows ] = $this->separateCacheableRows( $res );
