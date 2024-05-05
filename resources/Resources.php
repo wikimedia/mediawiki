@@ -878,9 +878,22 @@ return [
 		'styles' => 'resources/src/mediawiki.htmlform.styles/styles.less',
 	],
 	'mediawiki.htmlform.codex.styles' => [
+		'class' => CodexModule::class,
 		'styles' => [
 			'resources/src/mediawiki.htmlform.codex.styles.less'
 		],
+		'codexComponents' => [
+			'CdxMessage',
+			'CdxField',
+			'CdxLabel',
+			'CdxButton',
+			'CdxCheckbox',
+			'CdxRadio',
+			'CdxSelect',
+			'CdxTextArea',
+			'CdxTextInput'
+		],
+		'codexStyleOnly' => true
 	],
 	'mediawiki.htmlform.ooui.styles' => [
 		'styles' => [
