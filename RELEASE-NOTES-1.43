@@ -103,6 +103,8 @@ For notes on 1.42.x and older releases, see HISTORY.
 
 === Action API changes in 1.43 ===
 
+* APIQueryUserInfo now returns null in the field registrationdate for users
+  created before December 2005 (their registration date was not recorded).
 * …
 
 === Action API internal changes in 1.43 ===

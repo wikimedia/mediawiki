@@ -240,7 +240,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		if ( isset( $this->prop['registrationdate'] ) ) {
 			$regDate = $user->getRegistration();
 			if ( $regDate !== false ) {
-				$vals['registrationdate'] = wfTimestamp( TS_ISO_8601, $regDate );
+				$vals['registrationdate'] = wfTimestampOrNull( TS_ISO_8601, $regDate );
 			}
 		}
 
