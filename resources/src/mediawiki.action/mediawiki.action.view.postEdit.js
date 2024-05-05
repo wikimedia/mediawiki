@@ -45,12 +45,13 @@
 
 		data = data || {};
 
-		label = data.message || mw.msg(
+		label = data.message || mw.message(
 			config.EditSubmitButtonLabelPublish ?
 				'postedit-confirmation-published' :
 				'postedit-confirmation-saved',
-			data.user || mw.user
-		);
+			data.user || mw.user,
+			mw.config.get( 'wgRevisionId' )
+		).parseDom();
 
 		data.message = new OO.ui.MessageWidget( {
 			type: 'success',
@@ -137,10 +138,11 @@
 				// * postedit-confirmation-saved
 				// * postedit-confirmation-created
 				// * postedit-confirmation-restored
-				message: mw.msg(
+				message: mw.message(
 					'postedit-confirmation-' + action,
-					mw.user
-				),
+					mw.user,
+					mw.config.get( 'wgRevisionId' )
+				).parseDom(),
 				tempUserCreated: tempUserCreated
 			} );
 		},
