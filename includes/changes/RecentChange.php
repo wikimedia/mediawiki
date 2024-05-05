@@ -59,7 +59,7 @@ use Wikimedia\IPUtils;
  *  rc_last_oldid   rev_id associated with the entry before this one (or zero)
  *  rc_bot          is bot, hidden
  *  rc_ip           IP address of the user in dotted quad notation
- *  rc_new          obsolete, use rc_type==RC_NEW
+ *  rc_new          obsolete, use rc_source=='mw.new'
  *  rc_patrolled    boolean whether or not someone has marked this edit as patrolled
  *  rc_old_len      integer byte length of the text before the edit
  *  rc_new_len      the same after the edit
