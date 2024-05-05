@@ -1,6 +1,5 @@
 <?php
 
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\DeferredUpdates;
@@ -21,6 +20,7 @@ use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * Storage layer class for WatchedItems.
@@ -30,7 +30,7 @@ use Wikimedia\ScopedCallback;
  * @author Addshore
  * @since 1.27
  */
-class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterface {
+class WatchedItemStore implements WatchedItemStoreInterface {
 
 	/**
 	 * @internal For use by ServiceWiring
@@ -102,11 +102,6 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	private $revisionLookup;
 
 	/**
-	 * @var StatsdDataFactoryInterface
-	 */
-	private $stats;
-
-	/**
 	 * @var bool Correlates to $wgWatchlistExpiry feature flag.
 	 */
 	private $expiryEnabled;
@@ -115,6 +110,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @var LinkBatchFactory
 	 */
 	private $linkBatchFactory;
+
+	/** @var StatsFactory */
+	private $statsFactory;
 
 	/**
 	 * @var string|null Maximum configured relative expiry.
@@ -134,6 +132,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param NamespaceInfo $nsInfo
 	 * @param RevisionLookup $revisionLookup
 	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param StatsFactory $statsFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -144,7 +143,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		ReadOnlyMode $readOnlyMode,
 		NamespaceInfo $nsInfo,
 		RevisionLookup $revisionLookup,
-		LinkBatchFactory $linkBatchFactory
+		LinkBatchFactory $linkBatchFactory,
+		StatsFactory $statsFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->updateRowsPerQuery = $options->get( MainConfigNames::UpdateRowsPerQuery );
@@ -157,21 +157,14 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$this->stash = $stash;
 		$this->cache = $cache;
 		$this->readOnlyMode = $readOnlyMode;
-		$this->stats = new NullStatsdDataFactory();
 		$this->deferredUpdatesAddCallableUpdateCallback =
 			[ DeferredUpdates::class, 'addCallableUpdate' ];
 		$this->nsInfo = $nsInfo;
 		$this->revisionLookup = $revisionLookup;
 		$this->linkBatchFactory = $linkBatchFactory;
+		$this->statsFactory = $statsFactory;
 
 		$this->latestUpdateCache = new HashBagOStuff( [ 'maxKeys' => 3 ] );
-	}
-
-	/**
-	 * @param StatsdDataFactoryInterface $stats
-	 */
-	public function setStatsdDataFactory( StatsdDataFactoryInterface $stats ) {
-		$this->stats = $stats;
 	}
 
 	/**
@@ -219,7 +212,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$key = $this->getCacheKey( $user, $target );
 		$this->cache->set( $key, $item );
 		$this->cacheIndex[$target->getNamespace()][$target->getDBkey()][$user->getId()] = $key;
-		$this->stats->increment( 'WatchedItemStore.cache' );
+		$this->statsFactory->getCounter( 'WatchedItemStore_cache_total' )
+			->copyToStatsdAt( 'WatchedItemStore.cache' )
+			->increment();
 	}
 
 	/**
@@ -229,19 +224,28 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	private function uncache( UserIdentity $user, $target ) {
 		$this->cache->delete( $this->getCacheKey( $user, $target ) );
 		unset( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()][$user->getId()] );
-		$this->stats->increment( 'WatchedItemStore.uncache' );
+		$this->statsFactory->getCounter( 'WatchedItemStore_uncache_total' )
+			->copyToStatsdAt( 'WatchedItemStore.uncache' )
+			->increment();
 	}
 
 	/**
 	 * @param LinkTarget|PageIdentity $target
 	 */
 	private function uncacheLinkTarget( $target ) {
-		$this->stats->increment( 'WatchedItemStore.uncacheLinkTarget' );
+		$this->statsFactory->getCounter( 'WatchedItemStore_uncacheLinkTarget_total' )
+			->copyToStatsdAt( 'WatchedItemStore.uncacheLinkTarget' )
+			->increment();
 		if ( !isset( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()] ) ) {
 			return;
 		}
+
+		$uncacheLinkTargetItemsTotal = $this->statsFactory
+			->getCounter( 'WatchedItemStore_uncacheLinkTarget_items_total' )
+			->copyToStatsdAt( 'WatchedItemStore.uncacheLinkTarget.items' );
+
 		foreach ( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()] as $key ) {
-			$this->stats->increment( 'WatchedItemStore.uncacheLinkTarget.items' );
+			$uncacheLinkTargetItemsTotal->increment();
 			$this->cache->delete( $key );
 		}
 	}
@@ -250,11 +254,16 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param UserIdentity $user
 	 */
 	private function uncacheUser( UserIdentity $user ) {
-		$this->stats->increment( 'WatchedItemStore.uncacheUser' );
+		$this->statsFactory->getCounter( 'WatchedItemStore_uncacheUser_total' )
+			->copyToStatsdAt( 'WatchedItemStore.uncacheUser' )
+			->increment();
+		$uncacheUserItemsTotal = $this->statsFactory->getCounter( 'WatchedItemStore_uncacheUser_items_total' )
+			->copyToStatsdAt( 'WatchedItemStore.uncacheUser.items' );
+
 		foreach ( $this->cacheIndex as $dbKeyArray ) {
 			foreach ( $dbKeyArray as $userArray ) {
 				if ( isset( $userArray[$user->getId()] ) ) {
-					$this->stats->increment( 'WatchedItemStore.uncacheUser.items' );
+					$uncacheUserItemsTotal->increment();
 					$this->cache->delete( $userArray[$user->getId()] );
 				}
 			}
@@ -693,10 +702,16 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 		$cached = $this->getCached( $user, $target );
 		if ( $cached && !$cached->isExpired() ) {
-			$this->stats->increment( 'WatchedItemStore.getWatchedItem.cached' );
+			$this->statsFactory->getCounter( 'WatchedItemStore_getWatchedItem_accesses_total' )
+				->setLabel( 'status', 'hit' )
+				->copyToStatsdAt( 'WatchedItemStore.getWatchedItem.cached' )
+				->increment();
 			return $cached;
 		}
-		$this->stats->increment( 'WatchedItemStore.getWatchedItem.load' );
+		$this->statsFactory->getCounter( 'WatchedItemStore_getWatchedItem_accesses_total' )
+			->setLabel( 'status', 'miss' )
+			->copyToStatsdAt( 'WatchedItemStore.getWatchedItem.load' )
+			->increment();
 		return $this->loadWatchedItem( $user, $target );
 	}
 

@@ -2461,9 +2461,9 @@ return [
 			$services->getReadOnlyMode(),
 			$services->getNamespaceInfo(),
 			$services->getRevisionLookup(),
-			$services->getLinkBatchFactory()
+			$services->getLinkBatchFactory(),
+			$services->getStatsFactory()
 		);
-		$store->setStatsdDataFactory( $services->getStatsdDataFactory() );
 
 		if ( $services->getMainConfig()->get( MainConfigNames::ReadOnlyWatchedItemStore ) ) {
 			$store = new NoWriteWatchedItemStore( $store );
