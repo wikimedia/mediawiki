@@ -2858,35 +2858,26 @@ class Title implements LinkTarget, PageIdentity {
 		$db = $this->getDbProvider()->getReplicaDatabase();
 		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
 
+		$queryBuilder = $db->newSelectQueryBuilder();
 		if ( isset( $linksMigration::$mapping[$table] ) ) {
 			[ $blNamespace, $blTitle ] = $linksMigration->getTitleFields( $table );
 			$linktargetQueryInfo = $linksMigration->getQueryInfo( $table );
-			$fields = $linktargetQueryInfo['fields'];
-			$tables = $linktargetQueryInfo['tables'];
-			$joins = $linktargetQueryInfo['joins'];
+			$queryBuilder->queryInfo( $linktargetQueryInfo );
 		} else {
 			$blNamespace = "{$prefix}_namespace";
 			$blTitle = "{$prefix}_title";
-			$fields = [ $blNamespace, $blTitle ];
-			$tables = [ $table ];
-			$joins = [];
+			$queryBuilder->select( [ $blNamespace, $blTitle ] )
+				->from( $table );
 		}
 
 		$pageQuery = WikiPage::getQueryInfo();
-		$res = $db->select(
-			array_merge( $tables, [ 'nestpage' => $pageQuery['tables'] ] ),
-			array_merge(
-				$fields,
-				$pageQuery['fields']
-			),
-			[ "{$prefix}_from" => $id ],
-			__METHOD__,
-			$options,
-			[ 'nestpage' => [
-				'LEFT JOIN',
-				[ "page_namespace=$blNamespace", "page_title=$blTitle" ]
-			] ] + $pageQuery['joins'] + $joins
-		);
+		$res = $queryBuilder
+			->where( [ "{$prefix}_from" => $id ] )
+			->leftJoin( 'page', null, [ "page_namespace=$blNamespace", "page_title=$blTitle" ] )
+			->fields( $pageQuery['fields'] )
+			->options( $options )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$retVal = [];
 		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
