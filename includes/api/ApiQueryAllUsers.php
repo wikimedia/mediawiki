@@ -201,10 +201,14 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 		if ( $fld_groups || $fld_rights ) {
 			$this->addFields( [ 'groups' =>
-				$db->buildGroupConcatField( '|', 'user_groups', 'ug_group', [
-					'ug_user=user_id',
-					$db->expr( 'ug_expiry', '=', null )->or( 'ug_expiry', '>=', $db->timestamp() )
-				] )
+				$db->newSelectQueryBuilder()
+					->table( 'user_groups' )
+					->field( 'ug_group' )
+					->where( [
+						'ug_user=user_id',
+						$db->expr( 'ug_expiry', '=', null )->or( 'ug_expiry', '>=', $db->timestamp() )
+					] )
+					->buildGroupConcatField( '|' )
 			] );
 		}
 
