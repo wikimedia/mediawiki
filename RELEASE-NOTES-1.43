@@ -169,7 +169,9 @@ because of Phabricator reports.
   removed.
 * DatabaseBlock::purgeExpired, deprecated since 1.38, has been removed.
 * AbstractBlock::getPermissionsError, deprecated since 1.35, has been removed.
-* WikiPage::doDeleteArticleBatched, hard deprecated since 1.37 has been removed.
+* WikiPage::doDeleteArticleBatched, hard deprecated since 1.37, has been
+  removed.
+* SpecialEmailUser::submit, deprecated since 1.41, has been removed.
 * …
 
 === Deprecations in 1.43 ===
