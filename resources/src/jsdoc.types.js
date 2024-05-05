@@ -1,6 +1,7 @@
 /**
  * The purpose of this file is to aid the generation of our jsdoc documentation.
  * It documents global JSDoc types. It is never shipped in production.
+ *
  * @ignore
  */
 

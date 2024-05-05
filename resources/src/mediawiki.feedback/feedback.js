@@ -85,6 +85,7 @@
 	/**
 	 * mw.Feedback Dialog
 	 * See FeedbackDialog.js for documentation
+	 *
 	 * @ignore
 	 */
 	mw.Feedback.Dialog = FeedbackDialog;

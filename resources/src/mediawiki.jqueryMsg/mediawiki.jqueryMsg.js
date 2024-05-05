@@ -1501,6 +1501,7 @@ mw.Message.prototype.parser = function ( format ) {
  * Parse the message to DOM nodes, rather than HTML string like {@link mw.Message#parse}.
  *
  * This method is only available when jqueryMsg is loaded.
+ *
  * @example
  * const msg = mw.message( 'key' );
  * mw.loader.using(`mediawiki.jqueryMsg`).then(() => {
@@ -1531,6 +1532,7 @@ mw.Message.prototype.parseDom = ( function () {
  * Check whether the message contains only syntax supported by jqueryMsg.
  *
  * This method is only available when jqueryMsg is loaded.
+ *
  * @example
  * const msg = mw.message( 'key' );
  * mw.loader.using(`mediawiki.jqueryMsg`).then(() => {

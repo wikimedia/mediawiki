@@ -113,6 +113,7 @@
 
 	/**
 	 * Sets the filename based on the filename as it was on the upload.
+	 *
 	 * @name mw.Upload.prototype.setFilenameFromFile
 	 * @method
 	 */

@@ -82,6 +82,7 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 		 * rather than a text input. Mobile screens are too small to accommodate both an
 		 * onscreen keyboard and a popup-menu, so readyOnly is set to disable the keyboard.
 		 * A different icon and shorter message is used for mobile as well. (See T224655 for details).
+		 *
 		 * @ignore
 		 */
 		input: {
