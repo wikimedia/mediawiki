@@ -92,6 +92,8 @@ class DeletePage {
 	private $namespaceInfo;
 	/** @var ITextFormatter */
 	private $contLangMsgTextFormatter;
+	/** @var RedirectStore */
+	private $redirectStore;
 
 	/** @var bool */
 	private $isDeletePageUnitTest = false;
@@ -146,6 +148,7 @@ class DeletePage {
 	 * @param BacklinkCacheFactory $backlinkCacheFactory
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param ITextFormatter $contLangMsgTextFormatter
+	 * @param RedirectStore $redirectStore
 	 * @param ProperPageIdentity $page
 	 * @param Authority $deleter
 	 */
@@ -164,6 +167,7 @@ class DeletePage {
 		BacklinkCacheFactory $backlinkCacheFactory,
 		NamespaceInfo $namespaceInfo,
 		ITextFormatter $contLangMsgTextFormatter,
+		RedirectStore $redirectStore,
 		ProperPageIdentity $page,
 		Authority $deleter
 	) {
@@ -185,6 +189,7 @@ class DeletePage {
 
 		$this->page = $wikiPageFactory->newFromTitle( $page );
 		$this->deleter = $deleter;
+		$this->redirectStore = $redirectStore;
 	}
 
 	/**
@@ -702,6 +707,9 @@ class DeletePage {
 			$archivedRevisionCount
 		);
 		$this->successfulDeletionsIDs[$pageRole] = $logid;
+
+		// Clear any cached redirect status for the now-deleted page.
+		$this->redirectStore->clearCache( $page );
 
 		// Show log excerpt on 404 pages rather than just a link
 		$key = $this->recentDeletesCache->makeKey( 'page-recent-delete', md5( $logTitle->getPrefixedText() ) );

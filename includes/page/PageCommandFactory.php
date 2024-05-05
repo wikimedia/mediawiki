@@ -156,6 +156,8 @@ class PageCommandFactory implements
 	/** @var RestrictionStore */
 	private $restrictionStore;
 	private LinkTargetLookup $linkTargetLookup;
+	/** @var RedirectStore */
+	private $redirectStore;
 
 	public function __construct(
 		Config $config,
@@ -187,7 +189,8 @@ class PageCommandFactory implements
 		ITextFormatter $contLangMsgTextFormatter,
 		ArchivedRevisionLookup $archivedRevisionLookup,
 		RestrictionStore $restrictionStore,
-		LinkTargetLookup $linkTargetLookup
+		LinkTargetLookup $linkTargetLookup,
+		RedirectStore $redirectStore
 	) {
 		$this->config = $config;
 		$this->lbFactory = $lbFactory;
@@ -219,6 +222,7 @@ class PageCommandFactory implements
 		$this->archivedRevisionLookup = $archivedRevisionLookup;
 		$this->restrictionStore = $restrictionStore;
 		$this->linkTargetLookup = $linkTargetLookup;
+		$this->redirectStore = $redirectStore;
 	}
 
 	/**
@@ -262,6 +266,7 @@ class PageCommandFactory implements
 			$this->backlinkCacheFactory,
 			$this->namespaceInfo,
 			$this->contLangMsgTextFormatter,
+			$this->redirectStore,
 			$page,
 			$deleter
 		);

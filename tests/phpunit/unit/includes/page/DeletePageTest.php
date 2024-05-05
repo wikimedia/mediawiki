@@ -15,6 +15,7 @@ use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\ProperPageIdentity;
+use MediaWiki\Page\RedirectStore;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
@@ -113,6 +114,7 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 			$this->createMock( BacklinkCacheFactory::class ),
 			$nsInfo ?? $this->createMock( NamespaceInfo::class ),
 			$this->createMock( ITextFormatter::class ),
+			$this->createMock( RedirectStore::class ),
 			$page,
 			$deleter ?? $this->createMock( Authority::class )
 		);
