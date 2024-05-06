@@ -908,7 +908,6 @@
 	"apierror-noimageredirect": "그림 넘겨주기를 만들 권한이 없습니다.",
 	"apierror-nosuchrevid": "ID $1에 해당하는 판이 없습니다.",
 	"apierror-nosuchuserid": "ID $1에 해당하는 사용자가 없습니다.",
-	"apierror-notarget": "이 작업을 위한 유효한 대상을 지정하지 않았습니다.",
 	"apierror-pagecannotexist": "이름공간은 실제 페이지를 허용하지 않습니다.",
 	"apierror-pagelang-disabled": "이 위키에서 문서의 언어 변경은 허용되지 않습니다.",
 	"apierror-permissiondenied": "$1에 대한 권한이 없습니다.",

@@ -1,0 +1,36 @@
+{
+	"@metadata": {
+		"authors": [
+			"Andibing",
+			"BEANS",
+			"Giorgos456",
+			"Mako001",
+			"Reedy"
+		]
+	},
+	"tog-ccmeonemails": "Send me copies of emails I send to other users",
+	"tog-enotifwatchlistpages": "Email me when a page or a file on my watchlist has changed",
+	"tog-enotifusertalkpages": "Email me when my user talk page has changed",
+	"tog-diffonly": "Do not show page content below diffs",
+	"tog-norollbackdiff": "Don't show diff after performing a rollback",
+	"tog-showhiddencats": "Show hidden categories",
+	"tog-showrollbackconfirmation": "Show a confirmation prompt when clicking on a rollback link",
+	"prefs-description-editing": "Customise how you make, track, and review edits.",
+	"tog-editsectiononrightclick": "Enable section editing by right-clicking on section titles",
+	"tog-editondblclick": "Edit pages on double-click",
+	"editfont-monospace": "Monospaced font",
+	"editfont-sansserif": "Sans serif font",
+	"editfont-serif": "Serif font",
+	"tog-minordefault": "Mark all edits as minor by default",
+	"tog-hidecategorization": "Hide categorisation of pages",
+	"prefs-description-watchlist": "Manage and personalise the list of pages you track.",
+	"tog-watchlistunwatchlinks": "Add direct unwatch/watch markers ({{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}}) to watched pages with changes (JavaScript required for toggle functionality)",
+	"tog-watchlisthideminor": "Hide minor edits from watchlist",
+	"tog-watchlisthidebots": "Hide bot edits from watchlist",
+	"tog-watchlisthideown": "Hide my edits from watchlist",
+	"tog-watchlisthideanons": "Hide edits by anonymous users from watchlist",
+	"tog-watchlisthideliu": "Hide edits by logged in users from watchlist",
+	"tog-watchlistreloadautomatically": "Reload watchlist automatically whenever a filter is changed (JavaScript required)",
+	"tog-watchlisthidecategorization": "Hide categorisation of pages",
+	"tog-watchlisthidepatrolled": "Hide patrolled edits from watchlist"
+}

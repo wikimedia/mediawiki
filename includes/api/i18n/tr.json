@@ -1758,7 +1758,6 @@
 	"apierror-nosuchsection": "Bölüm $1 yok.",
 	"apierror-nosuchsection-what": "$2 bölümünde $1 bölümü yok.",
 	"apierror-nosuchuserid": "$1 kimliğine sahip kullanıcı yok.",
-	"apierror-notarget": "Bu işlem için geçerli bir hedef belirtmediniz.",
 	"apierror-notpatrollable": "r$1 düzeltmesi çok eski olduğundan devriye gezilemez.",
 	"apierror-nouploadmodule": "Yükleme modülü ayarlanmadı.",
 	"apierror-opensearch-json-warnings": "Uyarılar OpenSearch JSON biçiminde gösterilemez.",

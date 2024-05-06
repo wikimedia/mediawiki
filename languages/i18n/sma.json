@@ -17,8 +17,6 @@
 			"아라"
 		]
 	},
-	"underline-always": "Iktesth",
-	"underline-never": "Ij gåessie-gih",
 	"sunday": "aejlege",
 	"monday": "måanta",
 	"tuesday": "dæjsta",
@@ -88,7 +86,6 @@
 	"template-protected": "(vaarjelamme)",
 	"lineno": "Lijne $1:",
 	"viewprevnext": "Vuesehth ($1 {{int:pipe-separator}} $2) ($3)",
-	"yourlanguage": "Gïele:",
 	"rclistfrom": "Vuesehth orre jeatjahtehteme $3 $2 raejeste",
 	"rcshowhideanons": "$1 anonyjme utnijh",
 	"rcshowhidemine": "$1 mov jeatjahtehtemem",

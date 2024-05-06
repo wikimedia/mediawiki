@@ -1841,7 +1841,6 @@
 	"apierror-nosuchsection": "Il n’y a pas de section $1.",
 	"apierror-nosuchsection-what": "Il ’y a pas de section $1 dans $2.",
 	"apierror-nosuchuserid": "Il n’y a pas d’utilisateur ayant l’ID $1.",
-	"apierror-notarget": "Vous n’avez pas spécifié de cible valide pour cette action.",
 	"apierror-notpatrollable": "La révision r$1 ne peut pas être patrouillée car elle est trop ancienne.",
 	"apierror-nouploadmodule": "Aucun module de téléversement défini.",
 	"apierror-opensearch-json-warnings": "Les avertissements ne peuvent pas être représentés dans le format JSON OpenSearch.",

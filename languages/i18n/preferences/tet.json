@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"MF-Warburg"
+		]
+	},
+	"preferences": "Preferénsia",
+	"username": "Naran uza-na'in:",
+	"yourlanguage": "Lian:",
+	"gender-female": "Feto",
+	"gender-male": "Mane",
+	"tog-oldsig": "Asinatura atuál:",
+	"youremail": "Korreiu eletróniku:",
+	"prefs-help-email-required": "Haruka diresaun korreiu eletróniku.",
+	"tog-ccmeonemails": "Haruka ba ha'u kopia korreiu eletróniku nian ne'ebé ha'u korreia",
+	"timezoneregion-africa": "Áfrika",
+	"timezoneregion-america": "Amérika",
+	"timezoneregion-antarctica": "Antártika",
+	"timezoneregion-asia": "Ázia",
+	"timezoneregion-australia": "Austrália",
+	"timezoneregion-europe": "Europa",
+	"tog-underline": "Subliña ligasaun sira:",
+	"underline-never": "Nunka",
+	"underline-always": "Sempre",
+	"tog-showhiddencats": "Hatudu kategoria sira-ne'ebé subar",
+	"prefs-editing": "Edita",
+	"tog-minordefault": "Edita hotu-hotu \"ki'ik\"",
+	"prefs-rc": "Mudansa foufoun sira",
+	"tog-usenewrc": "Iha lista \"mudansa foufoun sira\" no \"lista hateke\": Hatudu mudansa iha grupu sira - grupu ida ba pájina ida",
+	"tog-hideminor": "Lá'os hatudu muda ki-ki'ik iha mudansa foufoun sira",
+	"prefs-watchlist": "Lista hateke",
+	"tog-watchlisthideminor": "Hamsumik muda ki-ki'ik iha lista hateke",
+	"tog-watchlisthidebots": "Hamsumik bot iha lista hateke",
+	"tog-watchlisthideown": "La hatudu ha'u-nia edita iha lista hateke",
+	"tog-watchlisthideanons": "La hatudu edita ema anónimu nian iha lista hateke",
+	"tog-watchlisthideliu": "La hatudu edita ema rejista nian iha lista hateke",
+	"tog-watchlisthidepatrolled": "Hamsumik muda patrolada iha lista hateke",
+	"tog-watchdefault": "Hateke pájina sira-ne'ebé ha'u edita",
+	"tog-watchmoves": "Hateke pájina sira-ne'ebé ha'u book",
+	"tog-watchdeletion": "Hateke pájina sira-ne'ebé ha'u halakon",
+	"tog-watchcreations": "Hateke pájina no imajen sira-ne'ebé ha'u kria/tau iha arkivu laran"
+}

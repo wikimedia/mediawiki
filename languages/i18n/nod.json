@@ -5,8 +5,6 @@
 			"Noktonissian"
 		]
 	},
-	"tog-underline": "ᨡᩦ᩠ᨯᩈᩮ᩠᩶ᨶᨲᩲ᩶ᩃᩥᨦ᩠ᨣ᩼:",
-	"tog-hideminor": "ᨪᩬ᩵ᩁᨠᩣ᩠ᩁᨠᩯ᩶ᨡᩱᨷᩴᨶᩢ᩠ᨠᨶᩲᩉ᩠ᨶ᩶ᩣᨸᩖ᩠᩵ᨿᩁᨷᩕᩯᩃᩪᩁᩈᩩᨯ",
 	"sunday": "ᩅᩢ᩠ᨶᩋᩣᨴᩥᨲ᩠ᨿ᩺",
 	"monday": "ᩅᩢ᩠ᨶᨧᩢᨶ᩠ᨴᩕ᩺",
 	"tuesday": "ᩅᩢ᩠ᨶᩋᩘᨣᩤ᩠ᩁ",
@@ -284,9 +282,7 @@
 	"searchall": "ᨴᩧ᩠ᨦᩉ᩠ᨾᩫᨯᨴᩧ᩠ᨦᩈ᩠᩶ᨿᨦ",
 	"search-showingresults": "{{PLURAL:$4|ᨹᩫ᩠ᩃᨪᩰᩬᩡᩉᩣ <strong>$1</strong> ᩃᩩᨠᨴᩧ᩠ᨦᩈ᩠᩶ᨿᨦ <strong>$3</strong>|ᨹᩫ᩠ᩃᨪᩰᩬᩡᩉᩣ <strong>$1 - $2</strong> ᩃᩩᨠᨴᩧ᩠ᨦᩈ᩠᩶ᨿᨦ <strong>$3</strong>}}",
 	"search-nonefound": "ᨷᩴᨸᩡᨹᩫ᩠ᩃᨪᩰᩬᩡᩉᩣᨴᩦ᩵ᨴᩢ᩠ᨯᨠᩢ᩠ᨷᨣᩤᩴᨡᩬᩴᨡᩬᨦᨴ᩵ᩤ᩠ᨶ",
-	"preferences": "ᨲᩢ᩠᩶ᨦᨣ᩵ᩤ",
 	"mypreferences": "ᨲᩢ᩠᩶ᨦᨣ᩵ᩤ",
-	"yourlanguage": "ᨽᩣᩈᩣ:",
 	"group-bot": "ᨷᩬᨴ",
 	"group-sysop": "ᨤᩫ᩠ᨶᨤᩩᨾᩁᨷᩫ᩠ᨷ",
 	"grouppage-bot": "{{ns:project}}:ᨷᩬᨲ",

@@ -1,0 +1,43 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80",
+			"Gregorynelsonmensah1",
+			"Leonard Nketsia"
+		]
+	},
+	"preferences": "Dza epɛ",
+	"username": "{{GENDER:$1|Dwumadzinyi dzin}}:",
+	"yourpassword": "Kokoa mu ahyɛnsewdze:",
+	"yourlanguage": "Kasa:",
+	"tog-oldsig": "Wo ɔdabaa ɔwɔ hɔ sesei",
+	"tog-fancysig": "Hu ɔdabaa dɛ wikitext (ber a ɔnye mo dwumadzinyi krataafa no nnya twaka amonmu)",
+	"prefs-signature-error-details": "Sua bi kaho",
+	"tog-enotifwatchlistpages": "Ma me Email ber a krataafa anaa fael bi a ɔwɔ dza m'enyi wɔ ho bea hɔ no  asesa.",
+	"tog-enotifusertalkpages": "Ma me imeel ber a mo nkɔmbɔdzibea krataafa no asesa",
+	"tog-enotifminoredits": "Ma me imeel so wɔ nkrataafa na fael ho nsesa kumaa ho",
+	"tog-enotifrevealaddr": "Da me imeel adrɛɛse edzi wɔ nkrato imeel ahorow mu",
+	"tog-underline": "Linke Asetwa",
+	"underline-never": "Daabi da",
+	"underline-always": "Ber nyinaa",
+	"prefs-editing": "Nsesaeɛ",
+	"tog-editsectiononrightclick": "Ma ɔfa yi mu nsesa kwan ber a irimia right click wɔ ɔfa no tsirasɛm no do.",
+	"tog-editondblclick": "Yɛ nkrataafa no mu nsesa ber a emia do mprɛnu",
+	"tog-minordefault": "Yɛ nsesa nyinara nkumaa wɔ berkan mu",
+	"tog-previewonfirst": "Da ahwɛkan edzi ber a nsesa rehyɛ ase",
+	"tog-previewontop": "Da ahwɛkan edzi ansaana nsesamu pon aba",
+	"tog-usenewrc": "Fa krataafa a ɔwɔ nsesa a ɔnnkyɛree na dza w'enyi wɔ ho mu kyekyɛ nsesa ahorow a wɔayɛ mu.",
+	"tog-hideminor": "Suma nsesa kumaa fi nsesa a ɔnnkyɛree no mu",
+	"tog-hidecategorization": "Suma nkratafa nkyekyɛmu",
+	"tog-hidepatrolled": "Suma nsesa a wɔahwɛ mu no fi nsesa a ɔnnkyɛree no mu",
+	"tog-newpageshidepatrolled": "Suma nkrataafa a wɔahwɛ mu fi kratafa fofor ndzidzidodze no mu",
+	"tog-shownumberswatching": "Da dwumadzifo a hɔn enyi wɔ ho no hɔn dodow edzi",
+	"tog-extendwatchlist": "Tserɛw dza w'enyi wɔ ho no mu ma ɔnda nsesa nyinara edzi, na nnyɛ enyimenyim yi ara dze nko",
+	"tog-watchdefault": "Fa nkrataafa na fael a meyɛ mu nsesa no ka dza m'enyi wɔ ho no ho",
+	"tog-watchmoves": "Fa nkrataafa na fael a mebɛsesa ne bea no ka dza m'enyi wɔ ho bea no ho",
+	"tog-watchdeletion": "Fa nkrataafa na fael a mebɛpepa no ka dza m'enyi wɔ ho bea no ho",
+	"tog-watchcreations": "Fa nkrataafa meyɛ na fael a medze ba no ka dza m'enyi wɔ ho no ho",
+	"tog-watchuploads": "Fa fael afofor a medze ba no ka dza m'enyi wɔ ho bea no ho",
+	"tog-watchrollback": "Fa nkrataafa a matwe asan ka dza m'enyi wɔ ho bea no ho",
+	"prefs-searchoptions": "Hwehwɛ"
+}

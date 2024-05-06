@@ -1810,7 +1810,6 @@
 	"apierror-nosuchsection": "Det er ingen seksjon $1.",
 	"apierror-nosuchsection-what": "Det er ingen seksjon $1 i $2.",
 	"apierror-nosuchuserid": "Det er ingen bruker med ID $1.",
-	"apierror-notarget": "Du har ikke angitt et gyldig mål for denne handlingen.",
 	"apierror-notpatrollable": "Sideversjon r$1 kan ikke patruljeres fordi den er for gammel.",
 	"apierror-nouploadmodule": "Ingen opplastingsmodul satt.",
 	"apierror-opensearch-json-warnings": "Advarsel kan ikke representeres OpenSearch JSON-format.",

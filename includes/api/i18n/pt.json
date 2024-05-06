@@ -1812,7 +1812,6 @@
 	"apierror-nosuchsection": "Não existe nenhuma secção $1.",
 	"apierror-nosuchsection-what": "Não existe nenhuma secção $1 em $2.",
 	"apierror-nosuchuserid": "Não existe nenhum utilizador com o identificador $1.",
-	"apierror-notarget": "Não especificou um destino válido para esta operação.",
 	"apierror-notpatrollable": "A revisão r$1 não pode ser patrulhada porque é demasiado antiga.",
 	"apierror-nouploadmodule": "Não foi definido nenhum módulo de carregamento.",
 	"apierror-opensearch-json-warnings": "Os avisos não podem ser representados no formato OpenSearch JSON.",

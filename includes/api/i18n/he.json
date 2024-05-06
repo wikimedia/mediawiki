@@ -1819,7 +1819,6 @@
 	"apierror-nosuchsection": "לא קיים מקטע $1.",
 	"apierror-nosuchsection-what": "אין מקטע $1 ב{{GRAMMAR:תחילית|$2}}.",
 	"apierror-nosuchuserid": "אין משתמש עם המזהה $1.",
-	"apierror-notarget": "לא נתת יעד תקין לפעולה הזאת.",
 	"apierror-notpatrollable": "לא ניתן לנטר את הגרסה $1 כי היא ישנה מדי.",
 	"apierror-nouploadmodule": "לא הוגדר מודול העלאה.",
 	"apierror-opensearch-json-warnings": "לא ניתן לייצג את האזהרות בתסדיר JSON של OpenSearch.",

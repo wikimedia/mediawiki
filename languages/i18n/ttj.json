@@ -5,7 +5,6 @@
 			"Amire80"
 		]
 	},
-	"tog-underline": "Teeka orukarra hansi y'ekiyunga:",
 	"sunday": "Kya Sabiiti",
 	"monday": "Kya Bbalaza",
 	"tuesday": "Kya kabiri",
@@ -160,7 +159,6 @@
 	"viewsourcetext": "Noosobora kurora n'okusubiiriza oburugo bw'orupapura runu.",
 	"userlogin-yourname": "Ibara ly'omukozesa",
 	"userlogin-yourname-ph": "Tamu ibara ly'omukozesa",
-	"yourpassword": "Ekigambo ekihunguza:",
 	"userlogin-yourpassword": "Ekigambo ekirabyaho",
 	"userlogin-yourpassword-ph": "Tamu ekirabyaho kyawe",
 	"createacct-yourpassword-ph": "Tamu ekirabyaho",
@@ -285,8 +283,6 @@
 	"search-nonefound": "Tiharoho ebigarukamu ebiingaine ekikaguzo kinu.",
 	"mypreferences": "Ebyendwa",
 	"searchresultshead": "Serra",
-	"prefs-searchoptions": "Serra",
-	"yourlanguage": "Orulimi:",
 	"userrights-reason": "Ensonga:",
 	"group-bot": "Bboti",
 	"group-sysop": "Abeebembezi",
@@ -530,6 +526,7 @@
 	"feedback-submit": "Hayo",
 	"searchsuggest-search": "Serra {{SITENAME}}",
 	"searchsuggest-containing": "Serra empapura eziina",
+	"api-error-unknownerror": "Ensobi eyetamanywa: \"$1\".",
 	"duration-days": "{{PLURAL:$1|ekiro|ebiro}} $1",
 	"expand_templates_preview": "Eby'omumaiso",
 	"pagelang-name": "Orupapura",

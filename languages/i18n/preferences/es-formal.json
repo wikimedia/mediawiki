@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fitoschido",
+			"MarcoAurelio"
+		]
+	},
+	"savedprefs": "Se han guardado sus preferencias.",
+	"prefs-tabs-navigation-hint": "Sugerencia: Puede utilizar las teclas de flecha izquierda y derecha para navegar entre las pestañas de la lista de pestañas.",
+	"yourpassword": "Contraseña:",
+	"password-substring-username-match": "Su contraseña no debe aparecer dentro de su nombre de usuario.",
+	"password-name-match": "Su contraseña debe ser diferente de su nombre de usuario.",
+	"passwordincommonlist": "La contraseña elegida está en la lista de contraseñas más usadas. Por favor seleccione una contraseña única.",
+	"prefs-help-yourpassword": "Se activó la recuperación de la cuenta. Consulte $1 para más opciones.",
+	"tog-oldsig": "Su firma actual:",
+	"tog-fancysig": "Tratar la firma como wikitexto (sin un enlace automático a su página de usuario)",
+	"noemailprefs": "Especifique una dirección electrónica para habilitar estas características.",
+	"emailconfirmlink": "Confirme su dirección de correo electrónico",
+	"tog-ccmeonemails": "Enviarme una copia de los correos electrónicos que yo envíe a otros usuarios",
+	"tog-underline": "Subrayado de enlaces:",
+	"tog-hideminor": "Ocultar ediciones menores de los cambios recientes",
+	"tog-hidepatrolled": "Ocultar ediciones patrulladas de los cambios recientes",
+	"tog-newpageshidepatrolled": "Ocultar páginas patrulladas de la lista de páginas nuevas"
+}

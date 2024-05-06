@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"C933103",
+			"Diskdance",
+			"LNDDYL",
+			"Liuxinyu970226",
+			"StarrySky",
+			"Winston Sung",
+			"捍粵者"
+		]
+	},
+	"prefs-personal": "用戶檔案",
+	"username": "{{GENDER:$1|用戶名稱}}：",
+	"gender-notknown": "此人",
+	"gender-unknown": "當提到您時，本軟件會盡可能使用性別中性詞彙",
+	"gender-female": "她",
+	"gender-male": "他",
+	"prefs-help-gender": "可填可不填，\n本軟件按選項以適當性別用語稱呼您和在向他人提及您時使用，\n此資料為公開。",
+	"tog-fancysig": "將簽名視為wikitext（不自動將其連結至您的用戶頁）",
+	"prefs-user-pages": "用戶頁面",
+	"tog-underline": "底線標示連結：",
+	"tog-hideminor": "隱藏近期變更中的次要修訂",
+	"tog-watchlisthidebots": "隱藏監視清單中機械人的編輯"
+}

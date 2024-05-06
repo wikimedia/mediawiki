@@ -7,9 +7,6 @@
 			"Umargana1"
 		]
 	},
-	"tog-underline": "Lai link bǝ kurne",
-	"tog-hideminor": "Yasa sunana grane",
-	"underline-always": "Sabiso",
 	"sunday": "Ladǝ",
 	"monday": "lǝtǝlin",
 	"tuesday": "talawu",
@@ -308,9 +305,6 @@
 	"search-nonefound": "Aüo matena də ba",
 	"mypreferences": "Na ruma lan",
 	"searchresultshead": "Matǝ",
-	"prefs-searchoptions": "Matǝ",
-	"username": "{{GENDER:$1|Sunum}}:",
-	"yourlanguage": "Tǝlam:",
 	"group-bot": "Robot",
 	"group-sysop": "Amanzama so",
 	"grouppage-bot": "{{ns:project}}:robots",

@@ -8,8 +8,6 @@
 			"魔琴"
 		]
 	},
-	"tog-underline": "連結底線：",
-	"underline-always": "一直",
 	"sunday": "禮拜日",
 	"monday": "禮拜一",
 	"tuesday": "禮拜二",
@@ -212,7 +210,6 @@
 	"userlogin-yourname": "用戶名",
 	"userlogin-yourname-ph": "敆嚽塊拍入汝兮用戶名",
 	"createacct-another-username-ph": "拍入汝兮用戶名",
-	"yourpassword": "密碼：",
 	"userlogin-yourpassword": "密碼",
 	"userlogin-yourpassword-ph": "拍入汝兮密碼",
 	"createacct-yourpassword-ph": "拍入蜀個密碼",

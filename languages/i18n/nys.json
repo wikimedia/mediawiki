@@ -6,7 +6,6 @@
 			"MinecraftAustralia"
 		]
 	},
-	"underline-never": "Warra",
 	"sunday": "Sunday",
 	"monday": "Monday",
 	"tuesday": "Tuesday",
@@ -273,8 +272,6 @@
 	"search-showingresults": "{{PLURAL:$4|Yuul-man-waangk-in <strong>$1</strong> ung <strong>$3</strong>|Yuul-man-waangk-in <strong>$1 – $2</strong> ung <strong>$3</strong>}}",
 	"search-nonefound": "uart katitjiny",
 	"mypreferences": "Nidj-wer-nidja",
-	"prefs-user-pages": "Niall bibol",
-	"prefs-discussion": "waangelanginy bibol",
 	"group-user": "Niall",
 	"group-bot": "Balyat",
 	"group-sysop": "Brid-iya",

@@ -53,8 +53,10 @@
 	"rest-invalid-transform": "Transformación inválida: $1 a $2",
 	"rest-request-body-expected": "El método de solicitud $1 espera un cuerpo de solicitud",
 	"rest-request-body-unaccepted": "El método de solicitud $1 no acepta un cuerpo de solicitud",
+	"rest-unmapped-action-error": "Error del módulo de acción no asignado: $1",
 	"rest-unsupported-transform-input": "Entrada no admitida: $1",
 	"rest-missing-revision-html": "Falta la revisión de html",
 	"rest-unknown-parsoid-transformation": "Transformación desconocida.",
-	"rest-target-variant-required": "Se requiere variante de destino."
+	"rest-target-variant-required": "Se requiere variante de destino.",
+	"rest-page-bundle-validation-error": "PageBundle no coincide con el contenidoVersión: $1"
 }
