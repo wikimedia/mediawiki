@@ -13,7 +13,6 @@ use ReflectionParameter;
  * Tests that all arguments passed into HookRunner are passed along to HookContainer.
  * @stable to extend
  * @since 1.36
- * @package MediaWiki\Tests\HookContainer
  */
 abstract class HookRunnerTestBase extends MediaWikiUnitTestCase {
 	/**

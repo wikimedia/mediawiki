@@ -16,7 +16,6 @@ use RollbackAction;
 /**
  * @covers \RollbackAction
  * @group Database
- * @package MediaWiki\Tests\Action
  */
 class RollbackActionTest extends MediaWikiIntegrationTestCase {
 

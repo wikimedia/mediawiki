@@ -11,7 +11,6 @@ use MockTitleTrait;
 /**
  * @group Database
  * @coversDefaultClass \LogPage
- * @package MediaWiki\Tests\Log
  */
 class LogPageTest extends \MediaWikiIntegrationTestCase {
 	use MockTitleTrait;

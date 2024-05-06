@@ -23,7 +23,6 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  * or MediaWikiIntegrationTestCase.
  *
  * @stable to use
- * @package MediaWiki\Tests\Rest
  */
 trait RestTestTrait {
 	use SessionHelperTestTrait;

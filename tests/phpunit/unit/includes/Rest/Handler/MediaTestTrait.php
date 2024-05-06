@@ -14,7 +14,6 @@ use ThumbnailImage;
 /**
  * A trait providing utility functions for mocking media-related objects.
  *
- * @package MediaWiki\Tests\Rest\Handler
  */
 trait MediaTestTrait {
 

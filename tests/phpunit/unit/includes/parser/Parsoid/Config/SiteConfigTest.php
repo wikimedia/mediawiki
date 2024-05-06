@@ -31,7 +31,6 @@ use ZhConverter;
 
 /**
  * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig
- * @package MediaWiki\Tests\Unit\Parser\Parsoid\Config
  */
 class SiteConfigTest extends MediaWikiUnitTestCase {
 

@@ -9,7 +9,6 @@ use Wikimedia\Assert\PreconditionException;
 
 /**
  * @covers \MediaWiki\Rest\HeaderParser\Origin
- * @package MediaWiki\Tests\Rest\HeaderParser
  */
 class OriginTest extends MediaWikiUnitTestCase {
 

@@ -7,7 +7,6 @@ use Wikimedia\Tests\SerializationTestUtils;
 
 /**
  * @covers \Wikimedia\Reflection\GhostFieldAccessTrait
- * @package Wikimedia\Tests\Reflection
  */
 class GhostFieldAccessTraitTest extends MediaWikiUnitTestCase {
 

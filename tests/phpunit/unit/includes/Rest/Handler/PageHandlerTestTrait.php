@@ -34,7 +34,7 @@ use Wikimedia\Parsoid\Parsoid;
  * This trait is intended to be used on subclasses of MediaWikiUnitTestCase
  * or MediaWikiIntegrationTestCase.
  *
- * @package MediaWiki\Tests\Rest\Handler
+ * @stable to use
  */
 trait PageHandlerTestTrait {
 

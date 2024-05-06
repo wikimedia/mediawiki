@@ -12,7 +12,6 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  * @group Database
  * @covers \MediaWiki\User\UserSelectQueryBuilder
  * @coversDefaultClass \MediaWiki\User\UserSelectQueryBuilder
- * @package MediaWiki\Tests\User
  */
 class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 

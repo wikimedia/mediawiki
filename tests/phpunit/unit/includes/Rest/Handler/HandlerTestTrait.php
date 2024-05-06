@@ -27,7 +27,6 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  * or MediaWikiIntegrationTestCase.
  *
  * @stable to use
- * @package MediaWiki\Tests\Rest\Handler
  */
 trait HandlerTestTrait {
 	use RestTestTrait;

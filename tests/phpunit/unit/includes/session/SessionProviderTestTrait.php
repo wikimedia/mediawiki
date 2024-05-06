@@ -17,7 +17,6 @@ use Psr\Log\NullLogger;
  * subclasses of MediaWikiIntegrationTestCase or MediaWikiUnitTestCase.
  *
  * @stable to use
- * @package MediaWiki\Session
  */
 trait SessionProviderTestTrait {
 

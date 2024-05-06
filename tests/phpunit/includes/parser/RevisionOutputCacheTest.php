@@ -28,7 +28,6 @@ use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
  * @covers \MediaWiki\Parser\RevisionOutputCache
- * @package MediaWiki\Tests\Parser
  */
 class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 

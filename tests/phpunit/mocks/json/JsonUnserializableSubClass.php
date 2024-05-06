@@ -7,7 +7,6 @@ use MediaWiki\Json\JsonUnserializer;
 
 /**
  * Testing class for JsonUnserializer unit tests.
- * @package MediaWiki\Tests\Json
  */
 class JsonUnserializableSubClass extends JsonUnserializableSuperClass {
 	use JsonUnserializableTrait;

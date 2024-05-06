@@ -9,7 +9,6 @@ use MediaWikiUnitTestCase;
 
 /**
  * @covers \MediaWiki\User\ActorCache
- * @package MediaWiki\Tests\Unit\User
  */
 class ActorCacheTest extends MediaWikiUnitTestCase {
 

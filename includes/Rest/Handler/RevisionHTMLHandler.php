@@ -16,9 +16,6 @@ use Wikimedia\Assert\Assert;
  * A handler that returns Parsoid HTML for the following routes:
  * - /revision/{revision}/html,
  * - /revision/{revision}/with_html
- *
- * Class RevisionHTMLHandler
- * @package MediaWiki\Rest\Handler
  */
 class RevisionHTMLHandler extends SimpleHandler {
 

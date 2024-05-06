@@ -20,7 +20,6 @@ use Wikimedia\Rdbms\ILoadBalancer;
 /**
  * @covers \MediaWiki\User\ActorStoreFactory
  * @covers \MediaWiki\User\ActorStore
- * @package MediaWiki\Tests\User
  */
 class ActorStoreFactoryTest extends MediaWikiUnitTestCase {
 
