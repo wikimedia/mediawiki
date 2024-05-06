@@ -48,11 +48,6 @@ class ContentRendererTest extends MediaWikiUnitTestCase {
 		$this->globalIdGenerator = $this->createMock( GlobalIdGenerator::class );
 	}
 
-	public function testConstructor() {
-		$renderer = new ContentRenderer( $this->contentHandlerFactory, $this->globalIdGenerator );
-		$this->assertInstanceOf( ContentRenderer::class, $renderer );
-	}
-
 	/**
 	 * This method tests the getParserOutput method. It is expected that the method will return a ParserOutput
 	 * object with a render ID, cache revision ID, and revision timestamp.
