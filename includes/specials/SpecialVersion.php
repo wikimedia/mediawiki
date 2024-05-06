@@ -902,6 +902,15 @@ class SpecialVersion extends SpecialPage {
 			)
 		);
 
+		array_walk( $funcHooks, static function ( &$value ) {
+			// Bidirectional isolation ensures it displays as {{#ns}} and not {{ns#}} in RTL wikis
+			$value = Html::rawElement(
+				'bdi',
+				[],
+				Html::element( 'code', [], "{{#$value}}" )
+			);
+		} );
+
 		$out .= $this->listToText( $funcHooks );
 
 		return $out;
