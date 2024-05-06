@@ -3016,7 +3016,7 @@
 	"ipb-block-not-found": "Error message on [[Special:Block]] when the block could not be inserted, but no block could be found.\n\nParameters:\n* $1 - block target, which may be user, IP or IP range",
 	"ipb-blockingself": "Used as confirmation message in [[Special:Block]].\n\nSee also:\n* {{msg-mw|Ipb-confirmhideuser}}",
 	"ipb-confirmhideuser": "Used as confirmation message in [[Special:Block]].\n\nSee also:\n* {{msg-mw|Ipb-blockingself}}",
-	"ipb-confirmaction": "Confirmation message displayed to users asking them to think again before really blocking someone.\n\n<code>to check</code> refers here to a check box with the text \"{{int:ipb-confirm}}\"",
+	"ipb-confirmaction": "A confirmation message displayed to users asking them to think again before really blocking someone.\n\nThe words \"to check\" refer here to checking a box with the text \"{{msg-mw|ipb-confirm}}\".",
 	"ipb-edit-dropdown": "Shown beneath the user block form on the right side. It is a link to {{msg-mw|Ipbreason-dropdown|notext=1}}.\n\nSee also:\n* {{msg-mw|Delete-edit-reasonlist}}\n* {{msg-mw|Protect-edit-reasonlist}}",
 	"ipb-unblock-addr": "Used as page title in [[Special:Block]], if the target user is specified.\n\nParameters:\n* $1 - target username\n\nSee also:\n* {{msg-mw|Ipb-unblock}}\n{{Identical|Unblock}}",
 	"ipb-unblock": "Used as page title in [[Special:Block]], if the target user is not specified.\n\nSee also:\n* {{msg-mw|Ipb-unblock-addr}}",

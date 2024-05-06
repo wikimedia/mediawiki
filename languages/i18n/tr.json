@@ -122,7 +122,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"MrSchipunov",
-			"Amire80"
+			"Amire80",
+			"RuzDD"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çizme:",
@@ -3452,7 +3453,7 @@
 	"version-license-not-found": "Bu uzantı için detaylı lisans bilgisi bulunamadı.",
 	"version-credits-title": "$1 katkıları",
 	"version-credits-not-found": "Bu uzantı için detaylı katkı bilgisi bulunamadı.",
-	"version-poweredby-credits": "Bu viki <strong>[https://www.mediawiki.org/MediaWiki/tr MediaWiki]</strong> programı kullanılarak oluşturulmuştur, copyright © 2001-$1 $2.",
+	"version-poweredby-credits": "Bu viki <strong>[https://www.mediawiki.org/wiki/MediaWiki/tr MediaWiki]</strong> programı kullanılarak oluşturulmuştur, copyright © 2001-$1 $2.",
 	"version-poweredby-others": "diğerleri",
 	"version-poweredby-translators": "translatewiki.net çevirmenleri",
 	"version-poweredby-various": "Çeşitli yazarlar",

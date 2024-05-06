@@ -3212,7 +3212,7 @@
 	"autoredircomment": "Перанакіроўвае на [[$1]]",
 	"autosumm-removed-redirect": "Выдаленае перанакіраваньне на [[$1]]",
 	"autosumm-changed-redirect-target": "Перанакіраваньне зьмененае з [[$1]] на [[$2]]",
-	"autosumm-new": "Створана старонка са зьместам '$1'",
+	"autosumm-new": "Створаная старонка са зьместам „$1“",
 	"autosumm-newblank": "Створаная пустая старонка",
 	"size-bytes": "$1 {{PLURAL:$1|байт|байты|байтаў}}",
 	"size-kilobytes": "$1 кб",

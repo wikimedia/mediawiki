@@ -2836,7 +2836,7 @@
 	"tooltip-watchlistedit-raw-submit": "Opdater overvågningsliste",
 	"tooltip-recreate": "Genopret side, selv om den blev slettet.",
 	"tooltip-upload": "Upload fil",
-	"tooltip-rollback": "\"Rul tilbage\" fjerner den sidste bidragsyders redigering(er) af denne side med et klik",
+	"tooltip-rollback": "\"Rul tilbage\" fjerner den seneste bidragsyders redigering(er) af denne side med et klik",
 	"tooltip-undo": "\"Fjern redigering\" fjerner denne redigering og åbner redigeringssiden med forhåndsvisning.\nDet giver mulighed for at tilføje en begrundelse i sammenfatningen.",
 	"tooltip-preferences-save": "Gem indstillinger",
 	"tooltip-summary": "Indtast en kort opsummering",

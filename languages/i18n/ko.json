@@ -94,7 +94,8 @@
 			"Cerulean",
 			"Adreamy",
 			"Amire80",
-			"밥풀떼기"
+			"밥풀떼기",
+			"Dr1t jg"
 		]
 	},
 	"tog-underline": "링크에 밑줄 긋기:",
@@ -1741,7 +1742,7 @@
 	"filename-tooshort": "파일 이름이 너무 짧습니다.",
 	"filetype-banned": "이 파일의 형식은 금지되어 있습니다.",
 	"verification-error": "이 파일은 파일 확인 절차를 통과하지 않았습니다.",
-	"hookaborted": "수정하려고 한 것이 확장 기능 훅에 의해 중지되었습니다.",
+	"hookaborted": "수정하려고 한 것이 확장 기능에 의해 중지되었습니다.",
 	"illegal-filename": "이 파일 이름은 허용되지 않습니다.",
 	"overwrite": "기존 파일을 덮어쓰는 것은 허용되지 않습니다.",
 	"unknown-error": "알 수 없는 오류가 발생했습니다.",

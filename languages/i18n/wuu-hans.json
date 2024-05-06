@@ -33,7 +33,8 @@
 			"城市酸儒文人挖坑",
 			"姑苏小恐龙",
 			"飞舞回堂前",
-			"아라"
+			"아라",
+			"Diskdance"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -792,7 +793,7 @@
 	"unstrip-size-warning": "已超出Unstrip大小限制（$1）",
 	"unstrip-size-category": "超出unstrip大小限制个页面",
 	"unstrip-size-category-desc": "箇个页面超出仔unstrip个规模极限。",
-	"converter-manual-rule-error": "来手动语言转换规则当中查着错误",
+	"converter-manual-rule-error": "来手动字词转换规则当中查着错误",
 	"undo-success": "箇笔编辑可以畀撤销。\n请检查下头个对比来核实侬想要撤销个内容，接着发布下头个更改来完成撤销。",
 	"undo-failure": "由于相互冲突个中途编辑，箇只编辑𪥸撤销。",
 	"undo-main-slot-only": "编辑没办法撤销，因为伊涉及主位置以外个内容。",

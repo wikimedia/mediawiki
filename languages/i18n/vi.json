@@ -2838,6 +2838,8 @@
 	"movesubpage": "{{PLURAL:$1|Trang con|Các trang con}}",
 	"movesubpagetext": "Trang này có $1 trang con như hiển thị dưới đây.",
 	"movesubpagetalktext": "Trang thảo luận tương ứng có $1 trang con như hiển thị dưới đây.",
+	"movesubpagetext-truncated": "$1 {{PLURAL:$1|trang con}} đầu tiên cho trang này được xuất hiện bên dưới.",
+	"movesubpagetalktext-truncated": "$1 {{PLURAL:$1|trang con}} đầu tiên cho trang thảo luận tương ứng được xuất hiện bên dưới",
 	"movenosubpage": "Trang này không có trang con.",
 	"movereason": "Lý do:",
 	"revertmove": "lùi lại",

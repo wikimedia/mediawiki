@@ -2410,7 +2410,7 @@
 	"revdelete-summary-unhid": "سنوار جو تَتُ اڻ-لڪل",
 	"revdelete-unrestricted": "منتظمن تان پابنديون ھٽايون ويون",
 	"logentry-block-block": "$1، {{GENDER:$4|$3}} تي $5 وقت جي خاتمي تائين {{GENDER:$2|بندش هنئي آهي}} $6",
-	"logentry-move-move": "$1 {{GENDER:$2|چوريو}} صفحو $3 ڏانهن $4",
+	"logentry-move-move": "$1 صفحي $3 کي $4 ڏانھن {{GENDER:$2|چوريو}}",
 	"logentry-move-move-noredirect": "$1 $3 صفحي کي $4 ڏانھن {{GENDER:$2|چوريو}} سواءِ ڪو ريڊائريڪٽ ڇڏيندي",
 	"logentry-move-move_redir": "$1 $3 کي $4 ڏانھن ريڊائريڪٽ مٿان {{GENDER:$2|چوريو}}",
 	"logentry-patrol-patrol-auto": "$1 پاڻمرادو صفحي $3 جي $4 ورجاءَ تي گشت ڪيل طور {{GENDER:$2|نشان لڳايو}}",

@@ -1990,7 +1990,7 @@
 	"listduplicatedfiles-entry": "A(z) [[:File:$1|$1]] fájlnak [[$3|$2 {{PLURAL:$2|duplikátuma}}]] van",
 	"unusedtemplates": "Nem használt sablonok",
 	"unusedtemplatestext": "Ez a lap azon {{ns:template}} névtérbe tartozó lapokat gyűjti össze, amelyek nincsenek beillesztve egyetlen lapon sem.\nNe felejtsd el ellenőrizni az egyéb hivatkozásokat, mielőtt törölnéd őket.",
-	"unusedtemplateswlh": "más hivatkozások",
+	"unusedtemplateswlh": "hivatkozások",
 	"randompage": "Lap találomra",
 	"randompage-nopages": "A következő {{PLURAL:$2|névtérben|névterekben}} nincsenek lapok: $1.",
 	"randomincategory": "Véletlen lap egy kategóriából",

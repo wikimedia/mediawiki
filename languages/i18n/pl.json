@@ -507,7 +507,7 @@
 	"userlogin-signwithsecure": "Użyj bezpiecznego połączenia",
 	"cannotlogin-title": "Nie można się zalogować",
 	"cannotlogin-text": "Logowanie nie jest możliwe.",
-	"cannotloginnow-title": "W tej chwili nie można się teraz zalogować",
+	"cannotloginnow-title": "Nie można się teraz zalogować",
 	"cannotloginnow-text": "Podczas korzystania z $1 nie można się zalogować.",
 	"cannotcreateaccount-title": "Nie można utworzyć kont",
 	"cannotcreateaccount-text": "Bezpośrednie tworzenie konta nie jest włączone na tej wiki.",

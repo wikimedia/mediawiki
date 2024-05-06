@@ -922,7 +922,7 @@
 	"unstrip-size-warning": "Unstrip 大小超出限制 ($1)",
 	"unstrip-size-category": "超出 unstrip 大小限制的頁面",
 	"unstrip-size-category-desc": "頁面超出 unstrip 的大小限制。",
-	"converter-manual-rule-error": "手動語言轉換規則時偵測到錯誤",
+	"converter-manual-rule-error": "手動字詞轉換規則時偵測到錯誤",
 	"undo-success": "此編輯可以被還原。\n請檢查以下比較表，確認您是否要還原，然後發布以下變更以完成編輯還原。",
 	"undo-failure": "由於編輯的修訂間有衝突，此編輯不能還原。",
 	"undo-main-slot-only": "編輯無法還原，因為有包含到在主分配之外的內容。",
