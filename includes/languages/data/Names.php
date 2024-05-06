@@ -351,6 +351,7 @@ class Names {
 		'ms' => 'Bahasa Melayu', # Malay
 		'ms-arab' => 'بهاس ملايو', # Malay (Arabic Jawi script)
 		'mt' => 'Malti', # Maltese
+		'mui' => 'Baso Palembang', # Musi/Palembang
 		'mus' => 'Mvskoke', # Muskogee/Creek
 		'mwl' => 'Mirandés', # Mirandese
 		'my' => 'မြန်မာဘာသာ', # Burmese

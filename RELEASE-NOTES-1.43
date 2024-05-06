@@ -117,6 +117,7 @@ Below only new and removed languages are listed, as well as changes to languages
 because of Phabricator reports.
 
 * (T290657) Added language support for Levantine Arabic (apc).
+* (T364291) Added language support for Musi, also known as Palembang (mui).
 * …
 
 === Breaking changes in 1.43 ===
