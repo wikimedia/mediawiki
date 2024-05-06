@@ -72,7 +72,6 @@ use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;
 use Wikimedia\LightweightObjectStore\StorageAwareness;
 
-// {{{ class MemcachedClient
 /**
  * memcached client class implemented using (p)fsockopen()
  *
@@ -1389,5 +1388,3 @@ class MemcachedClient implements StorageAwareness {
 	// }}}
 	// }}}
 }
-
-// }}}
