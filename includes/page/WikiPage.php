@@ -50,7 +50,6 @@ use MediaWiki\Storage\PreparedUpdate;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArrayFromResult;
-use MediaWiki\User\ActorMigration;
 use MediaWiki\User\User;
 use MediaWiki\User\UserArrayFromResult;
 use MediaWiki\User\UserIdentity;
@@ -63,6 +62,7 @@ use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * @defgroup Page Page
@@ -1142,44 +1142,38 @@ class WikiPage implements Page, PageRecord {
 	public function getContributors() {
 		// @todo: This is expensive; cache this info somewhere.
 
-		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
+		$services = MediaWikiServices::getInstance();
+		$dbr = $services->getConnectionProvider()->getReplicaDatabase();
+		$actorNormalization = $services->getActorNormalization();
+		$userIdentityLookup = $services->getUserIdentityLookup();
 
-		$actorMigration = ActorMigration::newMigration();
-		$actorQuery = $actorMigration->getJoin( 'rev_user' );
-
-		$tables = array_merge( [ 'revision' ], $actorQuery['tables'], [ 'user' ] );
-
-		$revactor_actor = $actorQuery['fields']['rev_actor'];
-		$fields = [
-			'user_id' => $actorQuery['fields']['rev_user'],
-			'user_name' => $actorQuery['fields']['rev_user_text'],
-			'actor_id' => "MIN($revactor_actor)",
-			'user_real_name' => 'MIN(user_real_name)',
-			'timestamp' => 'MAX(rev_timestamp)',
-		];
-
-		$conds = [ 'rev_page' => $this->getId() ];
-
-		// The user who made the top revision gets credited as "this page was last edited by
-		// John, based on contributions by Tom, Dick and Harry", so don't include them twice.
 		$user = $this->getUser()
 			? User::newFromId( $this->getUser() )
 			: User::newFromName( $this->getUserText(), false );
-		$conds[] = 'NOT(' . $actorMigration->getWhere( $dbr, 'rev_user', $user )['conds'] . ')';
 
-		// Username hidden?
-		$conds[] = "{$dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER )} = 0";
-
-		$jconds = [
-			'user' => [ 'LEFT JOIN', $actorQuery['fields']['rev_user'] . ' = user_id' ],
-		] + $actorQuery['joins'];
-
-		$options = [
-			'GROUP BY' => [ $fields['user_id'], $fields['user_name'] ],
-			'ORDER BY' => 'timestamp DESC',
-		];
-
-		$res = $dbr->select( $tables, $fields, $conds, __METHOD__, $options, $jconds );
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [
+				'user_id' => 'actor_user',
+				'user_name' => 'actor_name',
+				'actor_id' => 'MIN(rev_actor)',
+				'user_real_name' => 'MIN(user_real_name)',
+				'timestamp' => 'MAX(rev_timestamp)',
+			] )
+			->from( 'revision' )
+			->join( 'actor', null, 'rev_actor = actor_id' )
+			->leftJoin( 'user', null, 'actor_user = user_id' )
+			->where( [
+				'rev_page' => $this->getId(),
+				// The user who made the top revision gets credited as "this page was last edited by
+				// John, based on contributions by Tom, Dick and Harry", so don't include them twice.
+				$dbr->expr( 'rev_actor', '!=', $actorNormalization->findActorId( $user, $dbr ) ),
+				// Username hidden?
+				$dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER ) . ' = 0',
+			] )
+			->groupBy( [ 'actor_user', 'actor_name' ] )
+			->orderBy( 'timestamp', SelectQueryBuilder::SORT_DESC )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 		return new UserArrayFromResult( $res );
 	}
 
