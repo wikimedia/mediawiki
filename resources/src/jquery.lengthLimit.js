@@ -35,7 +35,7 @@
 	 * @param {string} newVal New value that may have to be trimmed down.
 	 * @param {number} byteLimit Number of bytes the value may be in size.
 	 * @param {Function} [filterFunction] See jQuery#byteLimit.
-	 * @return {StringTrimmed}
+	 * @return {module:mediawiki.String~StringTrimmed}
 	 */
 	mw.log.deprecate( $, 'trimByteLength', trimByteLength,
 		'Use require( \'mediawiki.String\' ).trimByteLength instead.', '$.trimByteLength' );
