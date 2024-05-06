@@ -272,6 +272,10 @@ WARN
 			if ( $this->hasOption( 'old' ) ) {
 				$queryBuilder->andWhere( [ 'up_value' => $old ] );
 			}
+			// need to order by ID so we can use ID ranges for query continuation
+			$queryBuilder
+				->orderBy( 'up_user', SelectQueryBuilder::SORT_ASC )
+				->limit( $this->getBatchSize() );
 
 			$userIds = $queryBuilder->caller( __METHOD__ )->fetchFieldValues();
 			if ( $userIds === [] ) {
