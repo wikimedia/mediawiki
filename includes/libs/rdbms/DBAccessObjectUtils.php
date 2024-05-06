@@ -42,12 +42,14 @@ class DBAccessObjectUtils implements IDBAccessObject {
 	/**
 	 * Get an appropriate DB index and options
 	 *
+	 * @deprecated since 1.43
 	 * @param int $bitfield Bitfield of IDBAccessObject::READ_* constants
 	 * @return array List of DB indexes and options in this order:
 	 *   - DB_PRIMARY or DB_REPLICA constant for the initial query
 	 *   - SELECT options array for the initial query
 	 */
 	public static function getDBOptions( $bitfield ) {
+		wfDeprecated( __METHOD__, '1.43' );
 		if ( self::hasFlags( $bitfield, IDBAccessObject::READ_LATEST_IMMUTABLE ) ) {
 			$index = DB_REPLICA; // override READ_LATEST if set
 		} elseif ( self::hasFlags( $bitfield, IDBAccessObject::READ_LATEST ) ) {

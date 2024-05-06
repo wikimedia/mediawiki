@@ -202,6 +202,8 @@ because of Phabricator reports.
 * OutputPage::showFatalError() is deprecated, use showErrorPage() instead.
 * LoadBalancer::getConnectionRef(), deprecated since 1.39, now emits deprecation
   warnings. Use ::getConnection() instead.
+* DBAccessObjectUtils::getDBOptions() is deprecated, use
+  SelectQueryBuilder::recency() instead.
 * IDatabase::lockForUpdate is deprecated, use
   SelectQueryBuilder::acquireRowLocks instead.
 * wfGetUrlUtils() is deprecated; instead, get a UrlUtils from services.
