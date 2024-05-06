@@ -15,10 +15,7 @@
 			"type": "string"
 		},
 		"info": {
-			"allOf": [
-				{ "$ref": "https://spec.openapis.org/oas/3.0/schema/2021-09-28#/definitions/Info" },
-				{ "$ref": "#/definitions/ExtraInfo" }
-			]
+			"$ref": "#/definitions/Info"
 		},
 		"paths": {
 			"description": "Information about the API routes available for interacting with the wiki.",
@@ -28,6 +25,12 @@
 		}
 	},
 	"definitions": {
+		"Info": {
+			"allOf": [
+				{ "$ref": "https://spec.openapis.org/oas/3.0/schema/2021-09-28#/definitions/Info" },
+				{ "$ref": "#/definitions/ExtraInfo" }
+			]
+		},
 		"ExtraInfo": {
 			"type": "object"
 		},

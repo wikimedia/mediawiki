@@ -2030,6 +2030,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Rest\\Handler\\ActionModuleBasedHandler' => __DIR__ . '/includes/Rest/Handler/ActionModuleBasedHandler.php',
 	'MediaWiki\\Rest\\Handler\\CompareHandler' => __DIR__ . '/includes/Rest/Handler/CompareHandler.php',
 	'MediaWiki\\Rest\\Handler\\CreationHandler' => __DIR__ . '/includes/Rest/Handler/CreationHandler.php',
+	'MediaWiki\\Rest\\Handler\\DiscoveryHandler' => __DIR__ . '/includes/Rest/Handler/DiscoveryHandler.php',
 	'MediaWiki\\Rest\\Handler\\EditHandler' => __DIR__ . '/includes/Rest/Handler/EditHandler.php',
 	'MediaWiki\\Rest\\Handler\\Helper\\HtmlInputTransformHelper' => __DIR__ . '/includes/Rest/Handler/Helper/HtmlInputTransformHelper.php',
 	'MediaWiki\\Rest\\Handler\\Helper\\HtmlMessageOutputHelper' => __DIR__ . '/includes/Rest/Handler/Helper/HtmlMessageOutputHelper.php',

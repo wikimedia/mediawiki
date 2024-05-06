@@ -349,7 +349,7 @@ class Router {
 	/**
 	 * @return string[]
 	 */
-	public function getModuleNames(): array {
+	public function getModuleIds(): array {
 		return array_keys( $this->getModuleMap() );
 	}
 

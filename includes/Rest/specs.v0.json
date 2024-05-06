@@ -1,0 +1,42 @@
+{
+	"mwapi": "1.0.0",
+	"moduleId": "specs/v0",
+	"audience": "dev",
+	"info": {
+		"title": "Specs",
+		"description": "Self-documentation module providing discovery, specs, and schemas for all available modules.",
+		"version": "0.1.0"
+	},
+	"paths": {
+		"/discovery": {
+			"get": {
+				"handler": {
+					"class": "MediaWiki\\Rest\\Handler\\DiscoveryHandler",
+					"services": [
+						"MainConfig"
+					]
+				}
+			}
+		},
+		"/module/{module}": {
+			"get": {
+				"handler": {
+					"class": "MediaWiki\\Rest\\Handler\\ModuleSpecHandler",
+					"services": [
+						"MainConfig"
+					]
+				}
+			}
+		},
+		"/module/{module}/{version}": {
+			"get": {
+				"handler": {
+					"class": "MediaWiki\\Rest\\Handler\\ModuleSpecHandler",
+					"services": [
+						"MainConfig"
+					]
+				}
+			}
+		}
+	}
+}

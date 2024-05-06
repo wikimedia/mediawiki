@@ -243,4 +243,14 @@ class ExtraRoutesModule extends MatcherBasedModule {
 		return $info;
 	}
 
+	public function getOpenApiInfo() {
+		// Note that mwapi-1.0 is based on OAS 3.0, so it doesn't support the
+		// "summary" property introduced in 3.1.
+		return [
+			'title' => 'Extra Routes',
+			'description' => 'REST endpoints not associated with a module',
+			'version' => 'undefined',
+		];
+	}
+
 }

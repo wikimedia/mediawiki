@@ -218,4 +218,5 @@ class SpecBasedModule extends MatcherBasedModule {
 		$def = $this->getModuleDefinition();
 		return $def['info'] ?? [];
 	}
+
 }
