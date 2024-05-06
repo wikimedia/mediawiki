@@ -1858,7 +1858,6 @@
 	"apierror-nosuchsection": "没有章节$1。",
 	"apierror-nosuchsection-what": "在$2中没有章节$1。",
 	"apierror-nosuchuserid": "没有ID为$1的用户。",
-	"apierror-notarget": "您没有为此章节指定有效目标。",
 	"apierror-notpatrollable": "修订版本r$1不能巡查，因为它太旧了。",
 	"apierror-nouploadmodule": "未设置上传模块。",
 	"apierror-opensearch-json-warnings": "警告不能以OpenSearch JSON格式表示。",

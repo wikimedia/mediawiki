@@ -1773,7 +1773,6 @@
 	"apierror-nosuchsection": "Нет раздела $1.",
 	"apierror-nosuchsection-what": "Нет раздела $1 в $2.",
 	"apierror-nosuchuserid": "Нет участника с идентификатором $1.",
-	"apierror-notarget": "Вы не указали корректной цели этого действия.",
 	"apierror-notpatrollable": "Версия r$1 не может быть отпатрулирована, так как она слишком стара.",
 	"apierror-nouploadmodule": "Модуль загрузки не задан.",
 	"apierror-opensearch-json-warnings": "Предупреждения не могут быть представлены в формате OpenSearch JSON.",

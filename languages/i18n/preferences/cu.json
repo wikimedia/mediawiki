@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"ОйЛ"
+		]
+	},
+	"preferences": "строи",
+	"saveprefs": "съхранѥниѥ",
+	"savedprefs": "твои строи иꙁмѣнєнъ ѥстъ",
+	"username": "{{GENDER:$1|польꙃєватєлꙗ имѧ}} :",
+	"prefs-memberingroups": "{{GENDER:$2|польꙃєватєлꙗ|польꙃєватєлицѧ}} {{PLURAL:$1|чинъ|чина|чини}} :",
+	"prefs-edits": "мѣнъ число :",
+	"yourrealname": "истиньно имѧ :",
+	"yourpassword": "таино слово напиши",
+	"prefs-resetpass": "таина словєсє иꙁмѣнѥниѥ",
+	"yourlanguage": "ѩꙁꙑкъ :",
+	"yourgender": "ꙗко жє о тєбѣ пьсати ;",
+	"gender-female": "она исправитъ страницѧ",
+	"gender-male": "онъ исправитъ страницѧ",
+	"prefs-signature": "аѵтографъ",
+	"tog-oldsig": "твои нꙑнѣшьн҄ь аѵтографъ :",
+	"yournick": "новъ аѵтографъ :",
+	"localtime": "мѣстьно врѣмѧ :",
+	"guesstimezone": "иꙁ твоѥго жє съмотрила врѣмєни обраꙁа поѩтиѥ",
+	"timezoneregion-africa": "Афрїка",
+	"timezoneregion-america": "Амєрїка",
+	"timezoneregion-antarctica": "Антарктїка",
+	"timezoneregion-arctic": "Арктїка",
+	"timezoneregion-asia": "Асїꙗ",
+	"timezoneregion-atlantic": "Атлантїчьскъ ѡкєанъ",
+	"timezoneregion-australia": "Аѵстралїꙗ",
+	"timezoneregion-europe": "Єѵрѡпа",
+	"timezoneregion-indian": "Їндїискъ ѡкєанъ",
+	"timezoneregion-pacific": "Тихꙑи ѡкєанъ",
+	"prefs-files": "дѣла",
+	"underline-never": "никъгда",
+	"underline-always": "вьсѥгда",
+	"prefs-editing": "исправлѥниѥ",
+	"prefs-rc": "послѣдьнѩ мѣнꙑ",
+	"prefs-watchlist": "блюдєниꙗ",
+	"prefs-searchoptions": "исканиѥ"
+}

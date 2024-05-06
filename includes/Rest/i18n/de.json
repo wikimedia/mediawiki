@@ -80,7 +80,7 @@
 	"rest-edit-conflict": "Bearbeitungskonflikt ($1)",
 	"rest-unknown-parsoid-transformation": "Unbekannte Transformation.",
 	"rest-target-variant-required": "Zielvariante ist erforderlich.",
-	"rest-unsupported-language-conversion": "Nicht unterstützte Sprachkonvertierung: $1 bis $2",
+	"rest-unsupported-language-conversion": "Nicht unterstützte Sprachkonvertierung: $1 zu $2",
 	"rest-unknown-content-model": "Unbekanntes Inhaltsmodell: $1",
 	"rest-page-bundle-validation-error": "PageBundle stimmt nicht mit contentVersion überein: $1"
 }

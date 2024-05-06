@@ -10,9 +10,6 @@
 			"SawJaemin"
 		]
 	},
-	"tog-hidecategorization": "ပာ်ခူၣ်သူၣ်ကဘျံာ်ပာ်တဖၣ်အကရူၢ်",
-	"tog-editsectiononrightclick": "",
-	"tog-watchlisthidecategorization": "ပာ်ခူသူၣ်ကဘျံးပၤတဖၣ်အကရူၢ်",
 	"sunday": "မုၢ်ဒဲး",
 	"monday": "မုၢ်ဆၣ်",
 	"tuesday": "မုၢ်ယူာ်",
@@ -268,7 +265,6 @@
 	"powersearch-ns": "ကွၢ်ဃုလၢ မံၤစၢပ့ၣ်စ် -",
 	"powersearch-toggleall": "ခဲလၢာ်",
 	"powersearch-remember": "မၤနီၣ်ဂဃၤတၢ်ထၢသ့ၣ်တဖၣ်လၢတၢ်ကွၢ်ဃုဆူညါအဂီၢ်",
-	"preferences": "တၢ်မိၣ်န့ၢ်သး",
 	"mypreferences": "တၢ်မိၣ်န့ၢ်သး",
 	"group-sysop": "ပှၤပၢဆှၢတၢ်",
 	"group-all": "(ခဲလၢာ်)",

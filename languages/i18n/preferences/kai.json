@@ -1,0 +1,39 @@
+{
+	"@metadata": {
+		"authors": [
+			"Musaddam Idriss"
+		]
+	},
+	"saveprefs": "Zā",
+	"prefs-personal": "Asir tà ba wàanò",
+	"group-membership-link-with-expiry": "$1 (ar $2)",
+	"prefs-registration": "Sàrt tà ràjìsta:",
+	"yourrealname": "Sim mà àsàli:",
+	"yourpassword": "Lammba ta asirː",
+	"prefs-resetpass": "Sanja lammba ta asir",
+	"yourlanguage": "Bòo:",
+	"prefs-signature-error-details": "Cìiwàtàa gàm",
+	"youremail": "Àdirès mà Imal:",
+	"prefs-user-pages": "Shàfi ma ba wàanò",
+	"prefs-skin": "Fātā",
+	"prefs-skin-prefs": "Zàaɓi ma fātā",
+	"servertime": "Sàrt tà server:",
+	"localtime": "Sàrt tà jàgo:",
+	"timezonelegend": "Sàrt tà 'yali:",
+	"timezoneregion-africa": "Àfùrka",
+	"timezoneregion-america": "Àmèrikà",
+	"timezoneregion-antarctica": "Antàrtìkà",
+	"timezoneregion-arctic": "Àatik",
+	"timezoneregion-asia": "Asìiya",
+	"timezoneregion-atlantic": "Àuchī mà Àtalantikà",
+	"timezoneregion-australia": "Ostiriliya",
+	"timezoneregion-europe": "Turai",
+	"timezoneregion-indian": "Àuchī ma Indìyà",
+	"timezoneregion-pacific": "Àuchi mà Pasifik",
+	"prefs-files": "Payiil",
+	"underline-never": "Taku",
+	"underline-always": "Fati waike",
+	"prefs-editing": "Yawantu",
+	"prefs-searchoptions": "Màayu",
+	"prefs-searchmisc": "Lauke"
+}

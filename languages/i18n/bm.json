@@ -8,10 +8,6 @@
 			"לערי ריינהארט"
 		]
 	},
-	"tog-hideminor": "Yɛlɛmaliw kura fitini dogo",
-	"tog-hidepatrolled": "Yɛlɛmaliw kura fitini dogo",
-	"underline-always": "Donko don",
-	"underline-never": "Abada",
 	"sunday": "karidon",
 	"monday": "ntɛnɛdon",
 	"tuesday": "taratadon",
@@ -138,8 +134,6 @@
 	"editing": "$1 ka yɛlɛmali",
 	"editingsection": "$1 ka yɛlɛmali (section)",
 	"editingcomment": "$1 ka yɛlɛmali (baro)",
-	"preferences": "Fisayali",
-	"prefs-skin": "Apparence",
 	"action-protect": "Kôlôchi",
 	"hide": "dogo",
 	"file-anchor-link": "Janin",

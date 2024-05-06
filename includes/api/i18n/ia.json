@@ -1801,7 +1801,6 @@
 	"apierror-nosuchsection": "Non existe un section $1.",
 	"apierror-nosuchsection-what": "Non existe un section $1 in $2.",
 	"apierror-nosuchuserid": "Non existe un usator con le identificator $1.",
-	"apierror-notarget": "Tu non ha specificate un destination valide pro iste action.",
 	"apierror-notpatrollable": "Le version r$1 non pote esser patruliate perque illo es troppo ancian.",
 	"apierror-nouploadmodule": "Necun modulo de incargamento ha essite configurate.",
 	"apierror-opensearch-json-warnings": "Advertimentos non pote esser representate in formato JSON OpenSearch.",

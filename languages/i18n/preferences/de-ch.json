@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Filzstift",
+			"Kghbln",
+			"MichaelFrey",
+			"The Evil IP address",
+			"Umherirrender"
+		]
+	},
+	"yourrealname": "Richtiger Name:",
+	"prefs-help-realname": "Dies ist eine freiwillige Angabe. Damit kann dein richtiger Name deinen Beiträgen zugeordnet werden.",
+	"gender-unknown": "«Der Benutzer», «seine Diskussion», «er bearbeitet» usw.",
+	"gender-female": "«Die Benutzerin», «ihre Diskussion», «sie bearbeitet» usw. (weiblich)",
+	"gender-male": "«Der Benutzer», «seine Diskussion», «er bearbeitet» usw. (männlich)",
+	"prefs-help-signature": "Beiträge auf Diskussionsseiten sollten mit «<nowiki>~~~~</nowiki>» signiert werden, was dann in die Signatur mit Zeitstempel umgewandelt wird.",
+	"imagemaxsize": "Maximale Bildgrösse:<br />''(für Dateibeschreibungsseiten)''",
+	"thumbsize": "Standardgrösse der Vorschaubilder:",
+	"tog-minordefault": "Eigene Änderungen standardmässig als minim markieren",
+	"recentchangesdays": "Anzahl der Tage, die die Liste der «Letzten Änderungen» standardmässig umfassen soll:",
+	"recentchangescount": "Anzahl der standardmässig angezeigten Bearbeitungen:",
+	"tog-usenewrc": "Seitenbezogene Gruppierung in den «Letzten Änderungen» und auf der Beobachtungsliste",
+	"rcfilters-preference-label": "«Letzte Änderungen» frei von JavaScript nutzen",
+	"tog-hideminor": "Kleine Änderungen in den «Letzten Änderungen» ausblenden",
+	"tog-hidepatrolled": "Kontrollierte Änderungen in den «Letzten Änderungen» ausblenden",
+	"tog-newpageshidepatrolled": "Kontrollierte Seiten bei den «Neuen Seiten» ausblenden",
+	"prefs-watchlist-days": "Anzahl der Tage, die die Beobachtungsliste standardmässig umfassen soll:",
+	"prefs-watchlist-edits-max": "Maximal 1'000 Einträge"
+}

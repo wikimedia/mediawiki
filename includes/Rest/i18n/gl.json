@@ -66,5 +66,21 @@
 	"rest-html-key-expected": "Agardábase unha clave <var>html</var> no corpo",
 	"rest-invalid-transform": "Transformación non válida: $1 a $2",
 	"rest-request-body-expected": "O método de solicitude $1 agarda un corpo de solicitude",
-	"rest-request-body-unaccepted": "O método de solicitude $1 non acepta un corpo de solicitude"
+	"rest-request-body-unaccepted": "O método de solicitude $1 non acepta un corpo de solicitude",
+	"rest-unmapped-action-error": "Erro do módulo de acción sen asignar: $1",
+	"rest-unsupported-transform-input": "Entrada non admitida: $1",
+	"rest-bad-etag": "Etiqueta incorrecta: $1",
+	"rest-no-stashed-content": "Non se atopou ningún contido agochado para \"$1\"",
+	"rest-unsupported-profile-version": "Versión de perfil non compatible: $1",
+	"rest-no-json-decode": "O JSON da carga útil non decodifica nunha matriz",
+	"rest-parsoid-unsupported-media": "Tipo de soporte non compatible",
+	"rest-missing-revision-html": "Falta a revisión de HTML",
+	"rest-missing-revision-html-content-type": "Falta o tipo de contido da revisión de HTML.",
+	"rest-unsupported-profile-conversion": "Non sabemos como facer esta conversión.",
+	"rest-edit-conflict": "Conflito de edición ($1)",
+	"rest-unknown-parsoid-transformation": "Transformación descoñecida.",
+	"rest-target-variant-required": "Cómpre a variante de destino.",
+	"rest-unsupported-language-conversion": "Conversión de lingua non compatible: $1 a $2",
+	"rest-unknown-content-model": "Modelo de contido descoñecido: $1",
+	"rest-page-bundle-validation-error": "PageBundle non coincide con contentVersion: $1"
 }

@@ -234,7 +234,6 @@
 	"apierror-nodeleteablefile": "Et gëtt keng esou al Versioun vum Fichier.",
 	"apierror-noedit": "Dir hutt net déi néideg Rechter fir Säiten z'änneren.",
 	"apierror-nosuchuserid": "Et gëtt kee Benotzer mat der ID $1.",
-	"apierror-notarget": "Dir hutt kee valabelt Zil fir dës Aktioun spezifizéiert.",
 	"apierror-notpatrollable": "D'Versioun r$1 kann net nogekuckt gi well se ze al ass.",
 	"apierror-pagecannotexist": "Nummraum erlaabt keng aktuell Säiten.",
 	"apierror-pagelang-disabled": "D'Ännere vun der Sprooch vun enger Säit ass op dëser Wiki net erlaabt.",

@@ -1743,7 +1743,6 @@
 	"apierror-nosuchsection": "Não há seção $1.",
 	"apierror-nosuchsection-what": "Não há seção $1 em $2.",
 	"apierror-nosuchuserid": "Não há usuário com ID $1.",
-	"apierror-notarget": "Você não especificou um alvo válido para esta ação.",
 	"apierror-notpatrollable": "A revisão r$1 não pode ser patrulhada, já que é muito antiga.",
 	"apierror-nouploadmodule": "Módulo de upload não definido.",
 	"apierror-opensearch-json-warnings": "Os avisos não podem ser representados no formato JSON do OpenSearch.",

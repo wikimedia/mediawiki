@@ -1746,7 +1746,6 @@
 	"apierror-nosuchsection": "لا يوجد قسم $1.",
 	"apierror-nosuchsection-what": "لا يوجد قسم $1 في $2.",
 	"apierror-nosuchuserid": "لا يوجد مستخدم بالمعرف $1.",
-	"apierror-notarget": "لم تحدد هدفا صالحا لهذا الإجراء.",
 	"apierror-notpatrollable": "لا يمكن إجراء مراجعة للمراجعة $1 لأنها قديمة جدا.",
 	"apierror-nouploadmodule": "لا توجد وحدة رفع محددة.",
 	"apierror-opensearch-json-warnings": "لا يمكن تمثيل التحذيرات بتنسيق OpenSearch JSON.",

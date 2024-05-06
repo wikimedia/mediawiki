@@ -1828,7 +1828,6 @@
 	"apierror-nosuchsection": "沒有 ID 為 $1 的段落。",
 	"apierror-nosuchsection-what": "在$2裡沒有段落$1。",
 	"apierror-nosuchuserid": "沒有 ID 為 $1 的使用者。",
-	"apierror-notarget": "您沒有替此操作指定有效目標。",
 	"apierror-notpatrollable": "因內容過舊，修訂 r$1 無法巡查。",
 	"apierror-nouploadmodule": "未設定上傳模組。",
 	"apierror-opensearch-json-warnings": "警告不能以 OpenSearch JSON 格式表示。",

@@ -1783,7 +1783,6 @@
 	"apierror-nosuchsection": "Немає розділу $1.",
 	"apierror-nosuchsection-what": "Немає розділу $1 на сторінці $2.",
 	"apierror-nosuchuserid": "Немає користувача з ідентифікатором $1.",
-	"apierror-notarget": "Ви не вказали дійсної цілі для цієї дії.",
 	"apierror-notpatrollable": "Версія r$1 не може бути відпатрульована, оскільки вона надто стара.",
 	"apierror-nouploadmodule": "Не встановлено модуля завантаження.",
 	"apierror-opensearch-json-warnings": "Попередження не можуть бути представлені у форматі OpenSearch JSON.",

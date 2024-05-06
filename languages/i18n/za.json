@@ -8,7 +8,6 @@
 			"唐吉訶德的侍從"
 		]
 	},
-	"underline-never": "coengz mbouj swjyungh",
 	"sunday": "Ngoenzsinghgiz",
 	"monday": "Singhgiz it",
 	"tuesday": "Singhgiz ngeih",
@@ -135,7 +134,6 @@
 	"viewsource": "Liuq lagh mae-nej",
 	"yourname": "Ciu bouxdeiz:",
 	"userlogin-yourname": "Coh bouxdeiz",
-	"yourpassword": "Mizmak：",
 	"userlogin-yourpassword": "Mizmak",
 	"login": "Dwnghluz",
 	"nav-login-createaccount": "dwngh haeuj/laebbaen canghu",
@@ -159,7 +157,6 @@
 	"powersearch-legend": "Gauhgiz saeu",
 	"mypreferences": "Doenghgaeq gou hae",
 	"searchresultshead": "Cwmh",
-	"username": "Ciu bouxdeiz:",
 	"group-user-member": "{{GENDER:$1|Bouxsawjyungq}}",
 	"action-edit": "gaij yieb neix",
 	"action-move": "Daen",

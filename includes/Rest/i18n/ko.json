@@ -24,5 +24,6 @@
 	"rest-badtoken": "제공된 CSRF 토큰이 잘못되었습니다.",
 	"rest-badtoken-nosession": "CSRF 오류 - 세션이 없습니다.",
 	"rest-transform-missing-title": "제목 또는 위키텍스트가 지정되지 않았습니다.",
-	"rest-parsoid-error": "파소이드 오류입니다."
+	"rest-parsoid-error": "파소이드 오류입니다.",
+	"rest-unsupported-transform-input": "지원되지 않는 입력: $1"
 }

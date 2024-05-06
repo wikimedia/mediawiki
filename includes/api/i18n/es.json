@@ -1610,7 +1610,6 @@
 	"apierror-nosuchsection": "No hay ninguna sección $1.",
 	"apierror-nosuchsection-what": "No hay ninguna sección $1 en $2.",
 	"apierror-nosuchuserid": "No hay ningún usuario con ID $1.",
-	"apierror-notarget": "No has especificado un destino válido para esta acción.",
 	"apierror-notpatrollable": "La revisión r$1 no se puede patrullar por ser demasiado antigua.",
 	"apierror-opensearch-json-warnings": "No se pueden representar los avisos en formato JSON de OpenSearch.",
 	"apierror-pagecannotexist": "En este espacio de nombres no se permiten páginas reales.",

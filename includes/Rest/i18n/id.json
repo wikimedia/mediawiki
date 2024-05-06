@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Rachmat04"
+			"Rachmat04",
+			"Veracious"
 		]
 	},
 	"rest-prefix-mismatch": "Lintasan yang diminta ($1) tidak berada di dalam lintasan utama REST API ($2)",
@@ -18,5 +19,8 @@
 	"rest-resource-limit-exceeded": "Batasan sumber daya telah melebihi batas untuk memproses permintaan ini.",
 	"rest-pagehistory-incompatible-params": "Parameter \"older_than\" dan \"newer_than\" tidak boleh dimasukkan sekaligus",
 	"rest-pagehistory-param-range-error": "Penanda revisi harus lebih besar dari 0",
-	"rest-pagehistory-timestamp-error": "Tidak dapat mengambil stempel waktu untuk revisi yang dimaksud ($1)"
+	"rest-pagehistory-timestamp-error": "Tidak dapat mengambil stempel waktu untuk revisi yang dimaksud ($1)",
+	"rest-unsupported-profile-conversion": "Kami tidak tahu cara melakukan konversi ini.",
+	"rest-edit-conflict": "Konflik penyuntingan ($1)",
+	"rest-unknown-content-model": "Model konten tidak dikenal: $1"
 }

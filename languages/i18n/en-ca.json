@@ -16,7 +16,6 @@
 			"គីមស៊្រុន"
 		]
 	},
-	"prefs-i18n": "Internationalization",
 	"uploadstash-summary": "This page provides access to files which are uploaded (or in process of uploading) but are not yet published to the wiki. These files are not visible to anyone but the user who uploaded them.",
 	"sessionfailure": "There seems to be a problem with your login session;\nthis action has been cancelled as a precaution against session hijacking.\nPlease resubmit the form.",
 	"ipbreason-dropdown": "*Common block reasons\n** Inserting false information\n** Removing content from pages\n** Spamming links to external sites\n** Inserting nonsense/gibberish into pages\n** Intimidating behaviour/harassment\n** Abusing multiple accounts\n** Unacceptable username",

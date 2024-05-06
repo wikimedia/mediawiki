@@ -5,7 +5,6 @@
 			"Amire80"
 		]
 	},
-	"tog-underline": "Biikiriza ekiyunganiza omusorongo:",
 	"sunday": "kya Sabiiti",
 	"monday": "kya Bbalaza",
 	"tuesday": "kya kabiri",
@@ -160,7 +159,6 @@
 	"yourname": "Ibara ly'omukozesa:",
 	"userlogin-yourname": "Ibara ly'omukozesa",
 	"userlogin-yourname-ph": "Tamu ibara ly'omukozesa",
-	"yourpassword": "Ekigambo ekihinguza:",
 	"userlogin-yourpassword": "Ekigambo ekihinguza",
 	"userlogin-yourpassword-ph": "Tamu ekihinguza kyawe",
 	"createacct-yourpassword-ph": "Tamu ekihinguza",
@@ -286,12 +284,8 @@
 	"searchall": "byona",
 	"search-showingresults": "{{PLURAL:$4|Ekigarukamu <strong>$1</strong> ha<strong>$3</strong>|Ebigarukamu <strong>$1 – $2</strong> ha<strong>$3</strong>}}",
 	"search-nonefound": "Ebigarukamu ebiingaine ekikaguzo kinu tibiroho.",
-	"preferences": "Ebirukwendwa",
 	"mypreferences": "Ebirukwendwa",
-	"prefs-rc": "Ekihindwirwe hati",
-	"prefs-watchlist": "Ebironzibwa",
 	"searchresultshead": "Serra",
-	"prefs-searchoptions": "Serra",
 	"group-bot": "Bboti",
 	"group-sysop": "Abeebembezi",
 	"grouppage-bot": "{{ns:project}}:Bboti",

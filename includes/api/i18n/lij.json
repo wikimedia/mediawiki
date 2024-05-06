@@ -1803,7 +1803,6 @@
 	"apierror-nosuchsection": "No gh'é 'na seçión $1.",
 	"apierror-nosuchsection-what": "No gh'é 'na seçión $1 inte $2.",
 	"apierror-nosuchuserid": "No gh'é de uténti con ID $1.",
-	"apierror-notarget": "Ti no t'æ specificòu 'n òbietîvo vàlido pe st'açión chi.",
 	"apierror-notpatrollable": "A versción r$1 a no peu êse vigilâ dæto ch'a l'é tròppo vêgia.",
 	"apierror-nouploadmodule": "Nisciùn mòdolo de caregaménto inpostòu.",
 	"apierror-opensearch-json-warnings": "I avîsi no pêuan êse raprezentæ into formâto OpenSearch JSON.",

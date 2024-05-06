@@ -15,8 +15,6 @@
 			"ОйЛ"
 		]
 	},
-	"underline-always": "Еснагь",
-	"underline-never": "Ахаангьы",
 	"sunday": "Амҽыша",
 	"monday": "Ашәахьа",
 	"tuesday": "Аҩаша",
@@ -249,12 +247,8 @@
 	"search-result-size": "$1 ({{PLURAL:$2|ажәақәа – 1|ажәақәа – $2}})",
 	"search-redirect": "(аиҭашьҭра «$1» аҿынтә)",
 	"searchall": "зегьы",
-	"preferences": "Архиарақәа",
 	"mypreferences": "Архиарақәа",
 	"searchresultshead": "Аԥшаара",
-	"prefs-files": "Афаилқәа",
-	"yourlanguage": "Абызшәа:",
-	"prefs-signature": "Анапынҵамҭа",
 	"group-user": "Алахәылацәа",
 	"group-bot": "Аботқәа",
 	"group-sysop": "Администраторцәа",
