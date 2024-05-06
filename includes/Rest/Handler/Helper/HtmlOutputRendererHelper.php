@@ -571,10 +571,44 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		return "\"{$eTag}\"";
 	}
 
+	private function isLatest(): bool {
+		$revId = $this->getRevisionId();
+
+		if ( $revId === null ) {
+			return false; // un-saved revision
+		}
+
+		if ( $revId === 0 ) {
+			return true; // latest revision
+		}
+
+		$page = $this->getPageRecord();
+
+		if ( !$page ) {
+			return false; // page doesn't exist. shouldn't happen.
+		}
+
+		return $revId === $page->getLatest();
+	}
+
 	/**
 	 * @inheritDoc
 	 */
 	public function getLastModified(): ?string {
+		if ( $this->isLatest() ) {
+			$page = $this->getPageRecord();
+
+			// $page should never be null here.
+			// If it's null, getParserOutput() will fail nicely below.
+			if ( $page ) {
+				// Using the touch timestamp for this purpose is in line with
+				// the behavior of ViewAction::show(). However,
+				// OutputPage::checkLastModified() applies a lot of additional
+				// limitations.
+				return $page->getTouched();
+			}
+		}
+
 		return $this->getParserOutput()->getCacheTime();
 	}
 
@@ -794,6 +828,28 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		}
 	}
 
+	/**
+	 * Returns the page record, or null if no page is known or the page does not exist.
+	 *
+	 * @return PageRecord|null
+	 */
+	private function getPageRecord(): ?PageRecord {
+		if ( $this->page === null ) {
+			return null;
+		}
+
+		if ( !$this->page instanceof PageRecord ) {
+			$page = $this->pageLookup->getPageByReference( $this->page );
+			if ( !$page ) {
+				return null;
+			}
+
+			$this->page = $page;
+		}
+
+		return $this->page;
+	}
+
 	private function getParserOutputInternal(): Status {
 		// NOTE: ParserOutputAccess::getParserOutput() should be used for revisions
 		//       that come from the database. Either this revision is null to indicate
@@ -812,29 +868,28 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		// either directly or through ParserOutputAccess.
 
 		$flags = $this->parserOutputAccessOptions;
-		// Resolve revision
-		$page = $this->page;
+
+		// Find page
+		$pageRecord = $this->getPageRecord();
 		$revision = $this->revisionOrId;
-		if ( $page === null ) {
-			throw new RevisionAccessException( "No page" );
-		}
+
 		// NOTE: If we have a RevisionRecord already and this is
 		//       not cacheable, just use it, there is no need to
 		//       resolve $page to a PageRecord (and it may not be
 		//       possible if the page doesn't exist).
-		if ( $this->isCacheable || !$revision instanceof RevisionRecord ) {
-			if ( !$page instanceof PageRecord ) {
-				$name = "$page";
-				$page = $this->pageLookup->getPageByReference( $page );
-				if ( !$page ) {
+		if ( $this->isCacheable ) {
+			if ( !$pageRecord ) {
+				if ( $this->page ) {
 					throw new RevisionAccessException(
 						'Page {name} not found',
-						[ 'name' => $name ]
+						[ 'name' => "{$this->page}" ]
 					);
+				} else {
+					throw new RevisionAccessException( "No page" );
 				}
 			}
 
-			$revision ??= $page->getLatest();
+			$revision ??= $pageRecord->getLatest();
 
 			if ( is_int( $revision ) ) {
 				$revId = $revision;
@@ -848,10 +903,10 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 				}
 			}
 
-			if ( $page->getId() !== $revision->getPageId() ) {
+			if ( $pageRecord->getId() !== $revision->getPageId() ) {
 				if ( $this->lenientRevHandling ) {
-					$page = $this->pageLookup->getPageById( $revision->getPageId() );
-					if ( !$page ) {
+					$pageRecord = $this->pageLookup->getPageById( $revision->getPageId() );
+					if ( !$pageRecord ) {
 						// This should ideally never trigger!
 						throw new \RuntimeException(
 							"Unexpected NULL page for pageid " . $revision->getPageId() .
@@ -863,24 +918,23 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 				} else {
 					throw new RevisionAccessException(
 						'Revision {revId} does not belong to page {name}',
-						[ 'name' => $page->getDBkey(), 'revId' => $revision->getId() ]
+						[ 'name' => $pageRecord->getDBkey(), 'revId' => $revision->getId() ]
 					);
 				}
 			}
 		}
 
-		$mainSlot = $revision->getSlot( SlotRecord::MAIN );
-		$contentModel = $mainSlot->getModel();
+		$contentModel = $revision->getMainContentModel();
 		if ( $this->parsoidSiteConfig->supportsContentModel( $contentModel ) ) {
 			$this->parserOptions->setUseParsoid();
 		}
 		if ( $this->isCacheable ) {
 			// phan can't tell that we must have used the block above to
-			// resolve $page to a PageRecord if we've made it to this block.
-			'@phan-var PageRecord $page';
+			// resolve $pageRecord to a PageRecord if we've made it to this block.
+			'@phan-var PageRecord $pageRecord';
 			try {
 				$status = $this->parserOutputAccess->getParserOutput(
-					$page, $this->parserOptions, $revision, $flags
+					$pageRecord, $this->parserOptions, $revision, $flags
 				);
 			} catch ( ClientError $e ) {
 				$status = Status::newFatal( 'parsoid-client-error', $e->getMessage() );
@@ -889,8 +943,9 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			}
 			Assert::invariant( $status->isOK() ? $status->getValue()->getRenderId() !== null : true, "no render id" );
 		} else {
+			'@phan-var RevisionRecord $revision';
 			$status = $this->parseUncacheable(
-				$page,
+				$this->page,
 				$revision,
 				$this->lenientRevHandling
 			);
