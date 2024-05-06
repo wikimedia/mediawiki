@@ -636,11 +636,7 @@ class SpecialVersion extends SpecialPage {
 
 			return $out;
 		}
-		$out .= Html::openElement( 'table', [ 'class' => 'wikitable plainlinks', 'id' => 'sv-skin' ] );
-
 		$out .= $this->getExtensionCategory( 'skin', null, $credits['skin'] );
-
-		$out .= Html::closeElement( 'table' );
 
 		return $out;
 	}
