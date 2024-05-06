@@ -6,9 +6,8 @@
 	font-weight: bold;
 }
 
-.mw-version-ext-license,
 .mw-version-ext-vcs-timestamp {
-	white-space: nowrap;
+	display: block;
 }
 
 .mw-body-content thead {
@@ -32,4 +31,35 @@
 
 .mw-version-license-info em {
 	font-style: normal;
+}
+
+.mw-installed-software {
+	width: 100%;
+	table-layout: fixed;
+	word-break: break-word;
+
+	th:nth-child( 1 ) {
+		/* Name */
+		width: 10em;
+	}
+
+	th:nth-child( 2 ) {
+		/* Version */
+		width: 13em;
+	}
+
+	th:nth-child( 3 ) {
+		/* License */
+		width: 6em;
+	}
+
+	th:nth-child( 4 ) {
+		/* Description */
+		width: 50%;
+	}
+
+	th:nth-child( 5 ) {
+		/* Authors */
+		width: 50%;
+	}
 }

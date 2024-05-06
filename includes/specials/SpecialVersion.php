@@ -696,7 +696,7 @@ class SpecialVersion extends SpecialPage {
 		);
 		$out .= Html::openElement(
 			'table',
-			[ 'class' => 'wikitable plainlinks', 'id' => 'sv-libraries' ]
+			[ 'class' => 'wikitable plainlinks mw-installed-software', 'id' => 'sv-libraries' ]
 		);
 
 		$out .= $this->getTableHeaderHtml( [
@@ -791,7 +791,7 @@ class SpecialVersion extends SpecialPage {
 		);
 		$out .= Html::openElement(
 			'table',
-			[ 'class' => 'wikitable plainlinks', 'id' => 'sv-libraries-client' ]
+			[ 'class' => 'wikitable plainlinks mw-installed-software', 'id' => 'sv-libraries-client' ]
 		);
 
 		$out .= $this->getTableHeaderHtml( [
@@ -1184,7 +1184,7 @@ class SpecialVersion extends SpecialPage {
 	private function openExtType( string $text = null, string $name = null ) {
 		$out = '';
 
-		$opt = [ 'class' => 'wikitable plainlinks' ];
+		$opt = [ 'class' => 'wikitable plainlinks mw-installed-software' ];
 
 		if ( $name ) {
 			$opt['id'] = "sv-$name";
