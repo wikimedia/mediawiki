@@ -115,7 +115,13 @@ div.apihelp-linktrail {
 	}
 
 	.apihelp-parameters dd.info {
-		margin-left: 12em;
+		/* Indent subsequent lines when description is wrapped */
+		/* Support: Chrome – In Firefox and Safari, we could just use `text-indent: 2em hanging;` */
+		/* https://developer.mozilla.org/en-US/docs/Web/CSS/text-indent#browser_compatibility */
+		padding-left: 2em;
 		text-indent: -2em;
+		/* Prevent floated param names from overlapping the text (T364270) */
+		/* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_display/Block_formatting_context */
+		overflow: auto;
 	}
 }
