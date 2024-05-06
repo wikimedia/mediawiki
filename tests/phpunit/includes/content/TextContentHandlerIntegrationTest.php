@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\OutputTransform\Stages\ParsoidLocalizationTest;
 use MediaWiki\Title\Title;
 
 /**
@@ -40,9 +41,10 @@ class TextContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 
 		$html = $po->getText();
 		$html = preg_replace( '#<!--.*?-->#sm', '', $html ); // strip comments
+		$html = ParsoidLocalizationTest::stripParsoidIds( $html );
 
 		if ( $expectedHtml !== null ) {
-			$this->assertEquals( $expectedHtml, trim( $html ) );
+			$this->assertEquals( ParsoidLocalizationTest::stripParsoidIds( $expectedHtml ), trim( $html ) );
 		}
 
 		if ( $expectedFields ) {
