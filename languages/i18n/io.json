@@ -1059,6 +1059,7 @@
 	"right-writeapi": "Uzez API por skribar",
 	"right-delete": "Efacar pagini",
 	"right-bigdelete": "Efacar pagini kun longa historio",
+	"right-deletelogentry": "Efacar e restaurar specifika eniri di registro.",
 	"right-deleterevision": "Efacar e restaurar specifika revizi de la pagini",
 	"right-deletedtext": "Vidar texti efacita e modifikuri inter revizi efacita",
 	"right-browsearchive": "Serchar pagini efacita",
@@ -3037,7 +3038,8 @@
 	"blockedtext-contact-blocker-admin": "Vu povas kontaktar $1 od altra [[{{MediaWiki:Grouppage-sysop}}|administrero]] por diskutar la blokuso.",
 	"blockedtext-block-ip": "Vua nuna IP-adreso esas $1.",
 	"blockedtext-include-details-queries": "Voluntez inkluzar omna detali adsupre en irga demandi quin vu facos.",
-	"renameuser": "Rinomar uzero",
+	"renameuser": "Rinomizar uzero",
+	"renameuser-linkoncontribs": "rinomizar {{GENDER:$1|uzero}}",
 	"renameuserold": "Aktuala uzantonomo:",
 	"renameusernew": "Nova uzantonomo:",
 	"renameuserreason": "Motivo:",
@@ -3053,5 +3055,6 @@
 	"renameuser-page-unmoved": "On ne povis movar la pagino $1 a $2.",
 	"log-name-renameuser": "Registro di uzero-rinomizuri",
 	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|rinomizis}} uzero $4 ({{PLURAL:$6|$6 redakto|$6 redakti}}) kom {{GENDER:$7|$5}}",
-	"right-renameuser": "Rinomar uzanti"
+	"action-renameuser": "rinomizar uzeri",
+	"right-renameuser": "Rinomizar uzeri"
 }

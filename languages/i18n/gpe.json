@@ -3,6 +3,7 @@
 		"authors": [
 			"Afimaame",
 			"Amire80",
+			"Cookai1205",
 			"DaSupremo",
 			"Jwale2"
 		]
@@ -511,7 +512,7 @@
 	"specialloguserlabel": "Performer:",
 	"speciallogtitlelabel": "Target (title anaa {{ns:user}}:username give user):",
 	"log": "Logs",
-	"all-logs-page": "All public logs",
+	"all-logs-page": "Main public logs",
 	"alllogstext": "Display dem combine for all available logs for {{SITENAME}}.\nYou fi to narrow down de view so say you go select log type, de username (case-sensitive), anaa de page affected (san so be case-sensitive).",
 	"logempty": "No matching items for log insyd",
 	"allpages": "All pages",

@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Afalau",
+			"Albertoleoncio",
 			"Amire80",
 			"Arwel Parry",
 			"Cymrodor",
@@ -327,7 +328,7 @@
 	"protectedinterface": "Testun ar gyfer rhyngwyneb y wici yw cynnwys y dudalen hon. Clowyd y dudalen er mwyn ei diogeli. Os am gyfieithu'r neges neu ei newid ym mhob wici yn hytrach nag yn hwn yn unig, defnyddiwch [https://translatewiki.net/ translatewiki.net], y prosiect MediaWiki sy'n hyrwyddo'r gwaith cyfieithu.",
 	"editinginterface": "<strong>Rhybudd:</strong> Rydych chi'n golygu tudalen sy'n destun rhyngwyneb y meddalwedd. Bydd newidiadau i'r dudalen hon yn newid y rhyngwyneb ar gyfer defnyddwyr eraill y wici hwn.",
 	"translateinterface": "I ychwanegu neu newid y cyfieithiad ar gyfer pob wici, defnyddiwch [https://translatewiki.net/ translatewiki.net], sef prosiect lleol MediaWiki.",
-	"cascadeprotected": "Diogelwyd y ddalen hon rhag ei newid, oherwydd ei bod wedi ei chynnwys yn y {{PLURAL:$1|ddalen ganlynol|dalennau canlynol}}, a ddiogelwyd, gyda'r dewisiad hwn yn weithredol: $2",
+	"cascadeprotected": "Diogelwyd y ddalen hon rhag ei newid, oherwydd ei bod wedi ei chynnwys yn y {{PLURAL:$1|ddalen ganlynol|dalennau canlynol}}, a ddiogelwyd, gyda'r dewisiad hwn yn weithredol:\n$2",
 	"namespaceprotected": "Nid oes caniatâd gennych i olygu tudalennau yn y parth '''$1'''.",
 	"customcssprotected": "Nid oes caniatâd ganddoch i olygu'r dudalen CSS hon oherwydd bod gosodiadau personol defnyddiwr arall arno.",
 	"customjsonprotected": "Nid oes gennych yr hawl i olygu tudalen JASON, gan ei bod yn cynnwys dewisiadau (settings) defnyddiwr arall.",

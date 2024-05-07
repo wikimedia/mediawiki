@@ -4,6 +4,7 @@
 			"A Retired User",
 			"Amire80",
 			"Biŋhai",
+			"GolyatGeri",
 			"Hakka",
 			"唐吉訶德的侍從"
 		]
@@ -58,7 +59,10 @@
 	"oct": "Cibnyied",
 	"nov": "Cib'itnyied",
 	"dec": "Cibngeihnyied",
+	"period-am": "VD",
+	"period-pm": "BD",
 	"pagecategories": "{{PLURAL:$1$1 aen|faendingz|faendingz}}",
+	"category_header": "Perlê kategoriyê \"$1\"yi",
 	"subcategories": "Faendingz lwgsai",
 	"about": "Gvendaengz",
 	"article": "Banjbienj",

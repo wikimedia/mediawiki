@@ -165,7 +165,6 @@
 	"privacypage": "Project:隱私權政策",
 	"badaccess": "授權錯誤",
 	"badaccess-group0": "你無允准做你要求的動作。",
-	"badaccess-groups": "Lí beh chò ê tōng-chok chí hān {{PLURAL:$2| tīn| tīn-goân chi it }}: $1 ê iōng-chiá.",
 	"versionrequired": "需要MediaWiki $1版本",
 	"versionrequiredtext": "欲用這頁需要MediaWiki $1版本。請看[[Special:Version|版本頁]]。",
 	"ok": "好",

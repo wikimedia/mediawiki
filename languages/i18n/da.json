@@ -1940,7 +1940,7 @@
 	"allpagesfrom": "Vis sider fra og med:",
 	"allpagesto": "Vis sider til og med:",
 	"allarticles": "Alle sider",
-	"allinnamespace": "Alle sider (i $1 navnerummet)",
+	"allinnamespace": "Alle sider (i $1-navnerummet)",
 	"allpagessubmit": "Vis",
 	"allpagesprefix": "Vis sider der begynder med:",
 	"allpagesbadtitle": "Det indtastede sidenavn er ugyldigt: Det har enten et foranstillet sprog-, en Interwiki-forkortelse eller indeholder et eller flere tegn, som ikke må anvendes i sidenavne.",
