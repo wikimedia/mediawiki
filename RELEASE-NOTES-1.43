@@ -190,6 +190,8 @@ because of Phabricator reports.
   removed.
 * SpecialEmailUser::submit, deprecated since 1.41, has been removed.
 * SpecialEmailUser::validateTarget, deprecated since 1.41, has been removed.
+* SpecialEmailUser::getPermissionsError, deprecated since 1.41 has been
+  removed.
 * SpecialBlock::getTargetAndType, deprecated since 1.36, has been removed.
 * …
 
