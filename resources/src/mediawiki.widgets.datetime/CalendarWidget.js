@@ -29,8 +29,6 @@
 	 * @param {Date|Date[]|null} [config.selected=null] Selected date(s).
 	 */
 	mw.widgets.datetime.CalendarWidget = function MwWidgetsDatetimeCalendarWidget( config ) {
-		var $colgroup, $headTR, headings, i;
-
 		// Configuration initialization
 		config = $.extend( {
 			min: null,
@@ -127,16 +125,16 @@
 				} ).connect( this, { click: 'onNextClick' } ).$element,
 				this.$header
 			);
-		$colgroup = $( '<colgroup>' );
-		$headTR = $( '<tr>' );
+		const $colgroup = $( '<colgroup>' );
+		const $headTR = $( '<tr>' );
 		this.$table
 			.addClass( 'mw-widgets-datetime-calendarWidget-grid' )
 			.append( $colgroup )
 			.append( $( '<thead>' ).append( $headTR ) )
 			.append( this.$tableBody );
 
-		headings = this.formatter.getCalendarHeadings();
-		for ( i = 0; i < headings.length; i++ ) {
+		const headings = this.formatter.getCalendarHeadings();
+		for ( let i = 0; i < headings.length; i++ ) {
 			this.cols[ i ] = $( '<col>' );
 			this.headings[ i ] = $( '<th>' );
 			this.colNullable[ i ] = headings[ i ] === null;
@@ -215,7 +213,7 @@
 	 * @return {mw.widgets.datetime.CalendarWidget}
 	 */
 	mw.widgets.datetime.CalendarWidget.prototype.setSelected = function ( dates ) {
-		var i, changed = false;
+		let i, changed = false;
 
 		if ( dates instanceof Date ) {
 			dates = [ dates ];
@@ -267,7 +265,7 @@
 	 * @return {mw.widgets.datetime.CalendarWidget}
 	 */
 	mw.widgets.datetime.CalendarWidget.prototype.setFocusedDate = function ( date ) {
-		var changePage = false,
+		let changePage = false,
 			updateUI = false;
 
 		if ( this.focusedDate.getTime() === date.getTime() ) {
@@ -307,8 +305,9 @@
 	 * @return {Date}
 	 */
 	mw.widgets.datetime.CalendarWidget.prototype.adjustDate = function ( date, component, delta ) {
-		var newDate,
-			data = this.calendarData;
+		let newDate;
+
+		const data = this.calendarData;
 
 		if ( !data ) {
 			return date;
@@ -352,8 +351,10 @@
 	 * @protected
 	 */
 	mw.widgets.datetime.CalendarWidget.prototype.updateUI = function () {
-		var r, c, row, day, k, $cell,
-			width = this.minWidth,
+		let row, day, k, $cell,
+			width = this.minWidth;
+
+		const
 			nullCols = [],
 			focusedDate = this.getFocusedDate(),
 			selected = this.getSelected(),
@@ -366,10 +367,10 @@
 
 		this.$header.text( this.calendarData.header );
 
-		for ( c = 0; c < this.colNullable.length; c++ ) {
+		for ( let c = 0; c < this.colNullable.length; c++ ) {
 			nullCols[ c ] = this.colNullable[ c ];
 			if ( nullCols[ c ] ) {
-				for ( r = 0; r < this.calendarData.rows.length; r++ ) {
+				for ( let r = 0; r < this.calendarData.rows.length; r++ ) {
 					if ( this.calendarData.rows[ r ][ c ] ) {
 						nullCols[ c ] = false;
 						break;
@@ -379,7 +380,7 @@
 		}
 
 		this.$tableBody.children().detach();
-		for ( r = 0; r < this.calendarData.rows.length; r++ ) {
+		for ( let r = 0; r < this.calendarData.rows.length; r++ ) {
 			if ( !this.rows[ r ] ) {
 				this.rows[ r ] = $( '<tr>' );
 			} else {
@@ -387,7 +388,7 @@
 			}
 			this.$tableBody.append( this.rows[ r ] );
 			row = this.calendarData.rows[ r ];
-			for ( c = 0; c < row.length; c++ ) {
+			for ( let c = 0; c < row.length; c++ ) {
 				day = row[ c ];
 				if ( day === null ) {
 					k = 'empty-' + r + '-' + c;
@@ -426,7 +427,7 @@
 			}
 		}
 
-		for ( c = 0; c < this.cols.length; c++ ) {
+		for ( let c = 0; c < this.cols.length; c++ ) {
 			if ( nullCols[ c ] ) {
 				this.cols[ c ].width( 0 );
 			} else {
@@ -481,7 +482,7 @@
 	 * @param {OO.ui.ButtonWidget} button
 	 */
 	mw.widgets.datetime.CalendarWidget.prototype.onDayClick = function ( button ) {
-		var data = button.getData();
+		const data = button.getData();
 		this.setFocusedDate( data );
 		this.setSelected( [ data ] );
 		if ( !this.$widget || OO.ui.contains( this.$element[ 0 ], document.activeElement, true ) ) {
@@ -512,7 +513,7 @@
 	 * @return {boolean} False to cancel the default event
 	 */
 	mw.widgets.datetime.CalendarWidget.prototype.onKeyDown = function ( e ) {
-		var focusedDate = this.getFocusedDate();
+		const focusedDate = this.getFocusedDate();
 
 		if ( !this.isDisabled() ) {
 			switch ( e.which ) {
@@ -563,7 +564,7 @@
 	 * @private
 	 */
 	mw.widgets.datetime.CalendarWidget.prototype.checkFocus = function () {
-		var containers = [ this.$element[ 0 ], this.$widget[ 0 ] ],
+		const containers = [ this.$element[ 0 ], this.$widget[ 0 ] ],
 			activeElement = document.activeElement;
 
 		if ( !activeElement || !OO.ui.contains( containers, activeElement, true ) ) {
@@ -575,10 +576,8 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.datetime.CalendarWidget.prototype.toggle = function ( visible ) {
-		var change;
-
 		visible = ( visible === undefined ? !this.visible : !!visible );
-		change = visible !== this.isVisible();
+		const change = visible !== this.isVisible();
 
 		// Parent method
 		mw.widgets.datetime.CalendarWidget.super.prototype.toggle.call( this, visible );

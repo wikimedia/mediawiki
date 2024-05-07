@@ -53,7 +53,7 @@
 			prop: [ 'info' ],
 			titles: titles
 		} ).done( function ( response ) {
-			var
+			const
 				normalized = {},
 				pages = {};
 			( response.query.normalized || [] ).forEach( function ( data ) {
@@ -186,7 +186,7 @@
 	 * @param {boolean} missing Whether the page is missing (does not exist)
 	 */
 	mw.widgets.CategoryTagItemWidget.prototype.setMissing = function ( missing ) {
-		var
+		const
 			title = new ForeignTitle( this.title.getPrefixedText() ), // HACK
 			prefix = this.apiUrl.replace( '/w/api.php', '' ); // HACK
 

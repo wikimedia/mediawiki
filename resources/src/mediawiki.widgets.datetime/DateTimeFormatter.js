@@ -191,7 +191,9 @@
 	 * @return {Array}
 	 */
 	mw.widgets.datetime.DateTimeFormatter.prototype.parseFieldSpec = function ( format ) {
-		var m, last, tag, params, spec,
+		let m, last, tag, params, spec;
+
+		const
 			ret = [],
 			re = /(.*?)(\$(!?)\{([^}]+)\})/g;
 
@@ -266,7 +268,7 @@
 	 * @return {FieldSpecificationObject} Field specification object, or null if the tag+params are unrecognized.
 	 */
 	mw.widgets.datetime.DateTimeFormatter.prototype.getFieldForTag = function ( tag, params ) {
-		var c, spec = null;
+		let c, spec = null;
 
 		switch ( tag ) {
 			case 'intercalary':
@@ -303,7 +305,7 @@
 							type: 'toggleLocal',
 							size: 5 + c.length,
 							formatValue: function ( v ) {
-								var o, r;
+								let o, r;
 								if ( v ) {
 									o = new Date().getTimezoneOffset();
 									r = String( Math.abs( o ) % 60 );
@@ -320,7 +322,7 @@
 								}
 							},
 							parseValue: function ( v ) {
-								var m;
+								let m;
 								v = String( v ).trim();
 								if ( ( m = /^([+-−])([0-9]{1,2}):?([0-9]{2})$/.test( v ) ) ) {
 									return ( m[ 2 ] * 60 + m[ 3 ] ) * ( m[ 1 ] === '+' ? -1 : 1 );
@@ -406,7 +408,7 @@
 	 * @return {number|string|null}
 	 */
 	mw.widgets.datetime.DateTimeFormatter.prototype.parseSpecValue = function ( v ) {
-		var k, re;
+		let k;
 
 		if ( v === '' ) {
 			return null;
@@ -425,7 +427,7 @@
 			v = v.normalize();
 		}
 		// eslint-disable-next-line security/detect-non-literal-regexp
-		re = new RegExp( '^\\s*' + mw.util.escapeRegExp( v ), 'i' );
+		const re = new RegExp( '^\\s*' + mw.util.escapeRegExp( v ), 'i' );
 		for ( k in this.values ) {
 			k = +k;
 			if ( !isNaN( k ) && re.test( this.values[ k ] ) ) {
@@ -584,7 +586,7 @@
 	 * @return {Date}
 	 */
 	mw.widgets.datetime.DateTimeFormatter.prototype.mergeDateAndTime = function ( datepart, timepart ) {
-		var ret = new Date( datepart.getTime() );
+		const ret = new Date( datepart.getTime() );
 
 		if ( this.local ) {
 			ret.setHours(

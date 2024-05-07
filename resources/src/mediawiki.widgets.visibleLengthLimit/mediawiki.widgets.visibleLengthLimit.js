@@ -1,6 +1,6 @@
 ( function () {
 
-	var byteLength = require( 'mediawiki.String' ).byteLength,
+	const byteLength = require( 'mediawiki.String' ).byteLength,
 		codePointLength = require( 'mediawiki.String' ).codePointLength,
 		colonSeparator = require( './contentMessages.json' ).colonSeparator;
 
@@ -17,9 +17,9 @@
 			filterFunction = undefined;
 		}
 
-		var lengthFunction = lengthLimiter === 'byteLimit' ? byteLength : codePointLength;
+		const lengthFunction = lengthLimiter === 'byteLimit' ? byteLength : codePointLength;
 		function updateCount() {
-			var value = textInputWidget.getValue(),
+			let value = textInputWidget.getValue(),
 				remaining;
 			if ( filterFunction ) {
 				value = filterFunction( value );
@@ -48,8 +48,8 @@
 	 * @param {number} [limit]
 	 */
 	function internalVisibleLimitWithDropdown( lengthLimiter, textInputWidget, dropdownInputWidget, limit ) {
-		var filterFunction = function ( input ) {
-			var comment = dropdownInputWidget.getValue();
+		const filterFunction = function ( input ) {
+			let comment = dropdownInputWidget.getValue();
 			if ( comment === 'other' ) {
 				comment = input;
 			} else if ( input !== '' ) {

@@ -401,7 +401,7 @@
 	 * @private
 	 */
 	mw.widgets.CalendarWidget.prototype.onUpButtonClick = function () {
-		var
+		const
 			layers = this.getDisplayLayers(),
 			currentLayer = layers.indexOf( this.displayLayer );
 		if ( currentLayer !== layers.length - 1 ) {
@@ -462,7 +462,7 @@
 	 * @param {jQuery.Event} e Click event
 	 */
 	mw.widgets.CalendarWidget.prototype.onBodyClick = function ( e ) {
-		var
+		const
 			$target = $( e.target ),
 			layers = this.getDisplayLayers(),
 			currentLayer = layers.indexOf( this.displayLayer );
@@ -585,11 +585,12 @@
 	 * @return {boolean} False to cancel the default event
 	 */
 	mw.widgets.CalendarWidget.prototype.onKeyDown = function ( e ) {
-		var
+		const
 			dir = OO.ui.Element.static.getDir( this.$element ),
 			nextDirectionKey = dir === 'ltr' ? OO.ui.Keys.RIGHT : OO.ui.Keys.LEFT,
-			prevDirectionKey = dir === 'ltr' ? OO.ui.Keys.LEFT : OO.ui.Keys.RIGHT,
-			changed = true;
+			prevDirectionKey = dir === 'ltr' ? OO.ui.Keys.LEFT : OO.ui.Keys.RIGHT;
+
+		let changed = true;
 
 		if ( !this.isDisabled() ) {
 			switch ( e.which ) {
