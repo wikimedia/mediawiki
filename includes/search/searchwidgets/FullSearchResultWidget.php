@@ -134,25 +134,21 @@ class FullSearchResultWidget implements SearchResultWidget {
 		);
 		$html .= $extract . ' ' . $meta;
 
-		// If the result has a thumbnail, wrap a table around it and the text
+		// If the result has a thumbnail, place it next to the text block
 		if ( $thumb ) {
-			$tableCells = Html::rawElement(
-				'td',
+			$gridCells = Html::rawElement(
+				'div',
 				[ 'class' => 'searchResultImage-thumbnail' ],
 				$thumb
 			) . Html::rawElement(
-				'td',
+				'div',
 				[ 'class' => 'searchResultImage-text' ],
 				$html
 			);
 			$html = Html::rawElement(
-				'table',
+				'div',
 				[ 'class' => 'searchResultImage' ],
-				Html::rawElement(
-					'tr',
-					[],
-					$tableCells
-				)
+				$gridCells
 			);
 		}
 
