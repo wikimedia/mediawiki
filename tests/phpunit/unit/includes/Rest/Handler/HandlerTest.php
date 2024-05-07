@@ -741,6 +741,16 @@ class HandlerTest extends MediaWikiUnitTestCase {
 					415
 				)
 			],
+			'form data not supported' => [
+				new RequestData( [
+					'headers' => [ 'Content-Type' => 'application/x-www-form-urlencoded' ],
+					'postParams' => [ 'test' => 'foo' ]
+				] ),
+				new LocalizedHttpException(
+					new MessageValue( 'rest-unsupported-content-type', [ '' ] ),
+					415
+				)
+			],
 			'malformed json body' => [
 				new RequestData( [
 					'bodyContents' => '{"foo":"bar"',
@@ -963,6 +973,74 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		// Check the value of the 'pathParams' field
 		$validatedParams = $data['validatedParams'];
 		$this->assertEquals( 'bar', $validatedParams[ 'pathParam' ] );
+	}
+
+	/**
+	 * Assert that getSupportedRequestTypes() will detect that "post" parameters
+	 * are declared, so form data is allowed.
+	 */
+	public function testGetSupportedRequestTypes_post() {
+		$paramSettings = [
+			'test' => [
+				Handler::PARAM_SOURCE => 'post',
+			]
+		];
+		$handler = $this->newHandler( [ 'getParamSettings' ] );
+		$handler->method( 'getParamSettings' )->willReturn( $paramSettings );
+
+		$supportedTypes = $handler->getSupportedRequestTypes();
+
+		$this->assertContains( 'application/x-www-form-urlencoded', $supportedTypes );
+		$this->assertContains( 'multipart/form-data', $supportedTypes );
+		$this->assertContains( 'application/json', $supportedTypes );
+
+		// Should accept form data
+		$request = new RequestData( [
+			'headers' => [ 'Content-Type' => 'application/x-www-form-urlencoded' ],
+			'postParams' => [ 'test' => 'foo' ]
+		] );
+		$handler->parseBodyData( $request );
+
+		// The "post" parameter should be processed as "parameter", not as "body".
+		$this->initHandler( $handler, $request );
+		$this->validateHandler( $handler );
+
+		$this->assertArrayNotHasKey( 'test', $handler->getValidatedBody() );
+		$this->assertArrayHasKey( 'test', $handler->getValidatedParams() );
+	}
+
+	/**
+	 * Assert that getSupportedRequestTypes() can be overwritten
+	 * to allow form data.
+	 */
+	public function testGetSupportedRequestTypes_body() {
+		$paramSettings = [
+			'test' => [
+				Handler::PARAM_SOURCE => 'body',
+			]
+		];
+
+		$supportedTypes = [
+			'application/x-www-form-urlencoded'
+		];
+
+		$handler = $this->newHandler( [ 'getParamSettings', 'getSupportedRequestTypes' ] );
+		$handler->method( 'getParamSettings' )->willReturn( $paramSettings );
+		$handler->method( 'getSupportedRequestTypes' )->willReturn( $supportedTypes );
+
+		// Should accept form data
+		$request = new RequestData( [
+			'headers' => [ 'Content-Type' => 'application/x-www-form-urlencoded' ],
+			'postParams' => [ 'test' => 'foo' ]
+		] );
+		$handler->parseBodyData( $request );
+
+		// The "body" parameter should be processed as "body", not as "parameter".
+		$this->initHandler( $handler, $request );
+		$this->validateHandler( $handler );
+
+		$this->assertArrayHasKey( 'test', $handler->getValidatedBody() );
+		$this->assertArrayNotHasKey( 'test', $handler->getValidatedParams() );
 	}
 
 }

@@ -26,6 +26,16 @@
 			"factory": "MediaWiki\\Tests\\Rest\\RouterTest::oldBodyValidatorFactory"
 		},
 		{
+			"method": "POST",
+			"path": "/RouterTest/data-handler",
+			"factory": "MediaWiki\\Tests\\Rest\\RouterTest::dataHandlerFactory"
+		},
+		{
+			"method": "POST",
+			"path": "/RouterTest/form-handler",
+			"factory": "MediaWiki\\Tests\\Rest\\RouterTest::formHandlerFactory"
+		},
+		{
 			"path": "/EntryPoint/header",
 			"factory": "MediaWiki\\Tests\\Rest\\EntryPointTest::mockHandlerHeader"
 		},

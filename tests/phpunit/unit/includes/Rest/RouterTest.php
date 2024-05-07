@@ -127,6 +127,52 @@ class RouterTest extends MediaWikiUnitTestCase {
 		// TODO: add more information to the response body and test for its presence here
 	}
 
+	/**
+	 * Constructs a handler that throws an HttpException
+	 */
+	public static function throwHandlerFactory(): Handler {
+		return new class extends Handler {
+			public function execute() {
+				throw new HttpException( 'Mock error', 555 );
+			}
+		};
+	}
+
+	/**
+	 * Constructs a handler that throws a RuntimeException with a custom code
+	 */
+	public static function fatalHandlerFactory(): Handler {
+		return new class extends Handler {
+			public function execute() {
+				throw new RuntimeException( 'Fatal mock error', 12345 );
+			}
+		};
+	}
+
+	/**
+	 * Constructs a handler that throws a RedirectException
+	 */
+	public static function throwRedirectHandlerFactory(): Handler {
+		return new class extends Handler {
+			public function execute() {
+				throw new RedirectException( 301, 'http://example.com' );
+			}
+		};
+	}
+
+	/**
+	 * Constructs a handler that throws a ResponseException with status 200
+	 */
+	public static function throwWrappedHandlerFactory(): Handler {
+		return new class extends Handler {
+			public function execute() {
+				$response = $this->getResponseFactory()->create();
+				$response->setStatus( 200 );
+				throw new ResponseException( $response );
+			}
+		};
+	}
+
 	public function testHttpException() {
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/v1/RouterTest/throw' ) ] );
 		$router = $this->createRouter( $request );
@@ -355,7 +401,10 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 200, $response->getStatusCode(), (string)$response->getBody() );
 	}
 
-	public static function streamHandlerFactory() {
+	/**
+	 * Constructs a handler that disables body parsing
+	 */
+	public static function streamHandlerFactory(): Handler {
 		return new class extends Handler {
 			public function parseBodyData( RequestInterface $request ): ?array {
 				// Disable parsing
@@ -372,7 +421,10 @@ class RouterTest extends MediaWikiUnitTestCase {
 		};
 	}
 
-	public static function oldBodyValidatorFactory() {
+	/**
+	 * Constructs a handler that uses a BodyValidator object
+	 */
+	public static function oldBodyValidatorFactory(): Handler {
 		return new class extends Handler {
 			private $postValidationSetupCalled = false;
 
@@ -402,6 +454,53 @@ class RouterTest extends MediaWikiUnitTestCase {
 
 			protected function postValidationSetup() {
 				$this->postValidationSetupCalled = true;
+			}
+		};
+	}
+
+	/**
+	 * Constructs a handler that echos a form data request body
+	 */
+	public static function formHandlerFactory(): Handler {
+		return new class extends Handler {
+
+			public function execute() {
+				return $this->getValidatedBody();
+			}
+
+			public function getParamSettings(): array {
+				return [
+					'foo' => [
+						Handler::PARAM_SOURCE => 'body'
+					]
+				];
+			}
+
+			public function getSupportedRequestTypes(): array {
+				return [
+					'application/x-www-form-urlencoded',
+					'multipart/form-data'
+				];
+			}
+		};
+	}
+
+	/**
+	 * Constructs a handler that echos a JSON request body
+	 */
+	public static function dataHandlerFactory(): Handler {
+		return new class extends Handler {
+
+			public function execute() {
+				return $this->getValidatedBody();
+			}
+
+			public function getParamSettings(): array {
+				return [
+					'foo' => [
+						Handler::PARAM_SOURCE => 'body'
+					]
+				];
 			}
 		};
 	}
@@ -503,6 +602,38 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$router = $this->createRouter( $request );
 		$response = $router->execute( $request );
 		$this->assertSame( 415, $response->getStatusCode() );
+	}
+
+	public function testFormDataReturns415() {
+		$request = new RequestData( [
+			// NOTE: The data handler will fail with form data,
+			//       only json is supported per default.
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/data-handler' ),
+			'method' => 'POST',
+			'postParams' => [ 'foo' => 'bar' ],
+			'headers' => [ "content-type" => 'application/x-www-form-urlencoded' ]
+		] );
+		$router = $this->createRouter( $request );
+		$response = $router->execute( $request );
+		$this->assertSame( 415, $response->getStatusCode() );
+	}
+
+	public function testFormDataSupported() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/form-handler' ),
+			'method' => 'POST',
+			'postParams' => [ 'foo' => 'bar' ],
+			'headers' => [ "content-type" => 'application/x-www-form-urlencoded' ]
+		] );
+		$router = $this->createRouter( $request );
+		$response = $router->execute( $request );
+		$this->assertSame( 200, $response->getStatusCode() );
+
+		// Check if the response contains a field called 'parsedBody'
+		$body = $response->getBody();
+		$body->rewind();
+		$data = json_decode( $body->getContents(), true );
+		$this->assertSame( [ 'foo' => 'bar' ], $data );
 	}
 
 	public function testHandlerCanAccessParsedBodyForJsonRequest() {
