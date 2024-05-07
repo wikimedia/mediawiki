@@ -31,7 +31,7 @@
 		"grunt-karma": "4.0.2",
 		"grunt-stylelint": "0.19.0",
 		"jsdoc": "4.0.2",
-		"jsdoc-wmf-theme": "1.0.0",
+		"jsdoc-wmf-theme": "1.0.1",
 		"karma": "6.4.1",
 		"karma-chrome-launcher": "3.1.0",
 		"karma-mocha-reporter": "2.2.5",
