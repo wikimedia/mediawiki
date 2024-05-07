@@ -35,7 +35,8 @@
 			"Võrok",
 			"WikedKentaur",
 			"לערי ריינהארט",
-			"Amire80"
+			"Amire80",
+			"Castellum"
 		]
 	},
 	"tog-underline": "Linkide allakriipsutus:",
@@ -2811,6 +2812,8 @@
 	"movesubpage": "{{PLURAL:$1|Alamlehekülg|Alamleheküljed}}",
 	"movesubpagetext": "Selle lehekülje $1 {{PLURAL:$1|alamlehekülg|alamlehekülge}} on kuvatud allpool.",
 	"movesubpagetalktext": "Seonduval aruteluleheküljel on $1 allnäidatud {{PLURAL:$1|alamlehekülg|alamlehekülge}}.",
+	"movesubpagetext-truncated": "Allpool on näidatud selle lehekülje {{PLURAL:$1|esimene alamlehekülg|esimesed $1 alamlehekülge}}.",
+	"movesubpagetalktext-truncated": "Allpool on näidatud seotud arutelulehekülje {{PLURAL:$1|esimene alamlehekülg|esimesed $1 alamlehekülge}}.",
 	"movenosubpage": "Sellel leheküljel pole alamlehekülgi.",
 	"movereason": "Põhjus:",
 	"moveotherreason": "Muu või täiendav põhjus:",

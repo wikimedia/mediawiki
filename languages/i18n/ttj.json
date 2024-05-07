@@ -527,6 +527,7 @@
 	"feedback-submit": "Hayo",
 	"searchsuggest-search": "Serra {{SITENAME}}",
 	"searchsuggest-containing": "Serra empapura eziina",
+	"api-error-unknownerror": "Ensobi eyetamanywa: \"$1\".",
 	"duration-days": "{{PLURAL:$1|ekiro|ebiro}} $1",
 	"expand_templates_preview": "Eby'omumaiso",
 	"pagelang-name": "Orupapura",
