@@ -857,13 +857,13 @@ class SpecialVersion extends SpecialPage {
 
 		array_walk( $tags, static function ( &$value ) {
 			// Bidirectional isolation improves readability in RTL wikis
-			$value = Html::element(
+			$value = Html::rawElement(
 				'bdi',
 				// Prevent < and > from slipping to another line
 				[
 					'style' => 'white-space: nowrap;',
 				],
-				"<$value>"
+				Html::element( 'code', [], "<$value>" )
 			);
 		} );
 
