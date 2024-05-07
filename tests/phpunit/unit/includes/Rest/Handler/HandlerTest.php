@@ -284,6 +284,104 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $params );
 	}
 
+	public function testGetBodyParamSettings() {
+		$paramSettings = [
+			'pathfoo' => [
+				ParamValidator::PARAM_TYPE => 'string',
+				Handler::PARAM_SOURCE => 'path',
+			],
+			'bodyfoo' => [
+				ParamValidator::PARAM_TYPE => 'string',
+				Handler::PARAM_SOURCE => 'body',
+			],
+			'queryfoo' => [
+				ParamValidator::PARAM_TYPE => 'string',
+				Handler::PARAM_SOURCE => 'query',
+			],
+		];
+
+		$handler = $this->newHandler( [ 'getParamSettings' ] );
+		$handler->method( 'getParamSettings' )->willReturn( $paramSettings );
+
+		$bodyParamSettings = $handler->getBodyParamSettings();
+
+		$expected = [
+			'bodyfoo' => $paramSettings['bodyfoo']
+		];
+
+		$this->assertSame( $expected, $bodyParamSettings );
+	}
+
+	public function testOverrideGetBodyParamSettings() {
+		$paramSettings =
+
+		$handler = new class() extends Handler {
+
+			public function execute() {
+				return [];
+			}
+
+			public function getBodyParamSettings(): array {
+				return [
+					'x' => [
+						ParamValidator::PARAM_TYPE => 'string',
+						Handler::PARAM_SOURCE => 'body',
+					],
+					'y' => [
+						ParamValidator::PARAM_TYPE => 'string',
+						Handler::PARAM_SOURCE => 'body',
+					],
+				];
+			}
+
+			public function getParamSettings(): array {
+				return [
+					'pathfoo' => [
+						ParamValidator::PARAM_TYPE => 'string',
+						ParamValidator::PARAM_DEFAULT => 'foo',
+						Handler::PARAM_SOURCE => 'path',
+					],
+					'bodyfoo' => [ // should not be used for validation
+						ParamValidator::PARAM_TYPE => 'string',
+						ParamValidator::PARAM_DEFAULT => 'foo',
+						Handler::PARAM_SOURCE => 'body',
+					],
+					'queryfoo' => [
+						ParamValidator::PARAM_TYPE => 'string',
+						ParamValidator::PARAM_DEFAULT => 'foo',
+						Handler::PARAM_SOURCE => 'query',
+					],
+				];
+			}
+		};
+
+		$request = new RequestData( [
+			'parsedBody' => [
+				'x' => 'test 1',
+				'y' => 'test 2',
+			],
+		] );
+
+		$this->initHandler( $handler, $request );
+		$this->validateHandler( $handler );
+
+		// The validated body should contain x and y, but not bodyfoo
+		$expectedBody = [
+			'x' => 'test 1',
+			'y' => 'test 2',
+		];
+		$body = $handler->getValidatedBody();
+		$this->assertSame( $expectedBody, $body );
+
+		// The validated params should contain pathfoo and queryfoo, but not bodyfoo
+		$expectedParams = [
+			'pathfoo' => 'foo',
+			'queryfoo' => 'foo',
+		];
+		$params = $handler->getValidatedParams();
+		$this->assertSame( $expectedParams, $params );
+	}
+
 	public function provideValidateBodyParams_invalid() {
 		$paramSettings = [
 			'foo' => [

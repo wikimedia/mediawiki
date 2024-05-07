@@ -249,17 +249,20 @@ abstract class Handler {
 	 * @throws HttpException On validation failure.
 	 */
 	public function validate( Validator $restValidator ) {
-		$paramSettings = $this->getParamSettings();
 		$legacyValidatedBody = $restValidator->validateBody( $this->request, $this );
 
-		$this->validatedParams = $restValidator->validateParams( $paramSettings );
+		$this->validatedParams = $restValidator->validateParams(
+			$this->getParamSettings()
+		);
 
 		if ( $legacyValidatedBody !== null ) {
 			// TODO: warn if $bodyParamSettings is not empty
 			// TODO: trigger a deprecation warning
 			$this->validatedBody = $legacyValidatedBody;
 		} else {
-			$this->validatedBody = $restValidator->validateBodyParams( $paramSettings );
+			$this->validatedBody = $restValidator->validateBodyParams(
+				$this->getBodyParamSettings()
+			);
 
 			// If there is a body, check if it contains extra fields.
 			if ( $this->getRequest()->hasBody() ) {
@@ -288,7 +291,7 @@ abstract class Handler {
 		}
 
 		$restValidator->detectExtraneousBodyFields(
-			$this->getParamSettings(),
+			$this->getBodyParamSettings(),
 			$parsedBody
 		);
 	}
@@ -412,9 +415,12 @@ abstract class Handler {
 	 * Every setting must include self::PARAM_SOURCE to specify which part of
 	 * the request is to contain the parameter.
 	 *
-	 * Can be used for validating parameters inside an application/x-www-form-urlencoded or
-	 * multipart/form-data POST body (i.e. parameters which would be present in PHP's $_POST
-	 * array). For validating other kinds of request bodies, override getBodyValidator().
+	 * Can be used for the request body as well, by setting self::PARAM_SOURCE
+	 * to "post" or "body". Note that the values of "body" parameters will become
+	 * accessible through getValidatedBody(), while the values of "post"
+	 * parameters will be accessible through getValidatedParams(). "post"
+	 * parameters are used with form data (application/x-www-form-urlencoded or
+	 * multipart/form-data).
 	 *
 	 * For "query" and "body" parameters, a PARAM_REQUIRED setting of "false" means the caller
 	 * does not have to supply the parameter. For "path" parameters, the path matcher will always
@@ -430,6 +436,29 @@ abstract class Handler {
 	 */
 	public function getParamSettings() {
 		return [];
+	}
+
+	/**
+	 * Fetch ParamValidator settings for body fields. Parameters defined
+	 * by this method are used to validate the request body. The parameter
+	 * values will become available through getValidatedBody().
+	 *
+	 * The default implementation will call getParamSettings() and filter the
+	 * return value to only include settings for parameters that have
+	 * self::PARAM_SOURCE set to 'body'.
+	 *
+	 * Subclasses may override this method to specify what fields they support
+	 * in the request body. All parameter settings returned by this method must
+	 * have self::PARAM_SOURCE set to 'body'.
+	 *
+	 * @return array[]
+	 */
+	public function getBodyParamSettings(): array {
+		return array_filter( $this->getParamSettings(),
+			static function ( array $settings ) {
+				return ( $settings[self::PARAM_SOURCE] ?? false ) === 'body';
+			}
+		);
 	}
 
 	/**
