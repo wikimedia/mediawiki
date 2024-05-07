@@ -6,7 +6,7 @@
  */
 ( function () {
 
-	var hasOwn = Object.prototype.hasOwnProperty;
+	const hasOwn = Object.prototype.hasOwnProperty;
 
 	/**
 	 * @class mw.widgets.PageExistenceCache
@@ -27,7 +27,7 @@
 	 * @private
 	 */
 	PageExistenceCache.prototype.processExistenceCheckQueue = function () {
-		var cache = this;
+		const cache = this;
 		if ( this.currentRequest ) {
 			// Don't fire off a million requests at the same time
 			this.currentRequest.always( function () {
@@ -36,9 +36,9 @@
 			} );
 			return;
 		}
-		var queue = this.existenceCheckQueue;
+		const queue = this.existenceCheckQueue;
 		this.existenceCheckQueue = {};
-		var titles = Object.keys( queue ).filter( function ( title ) {
+		const titles = Object.keys( queue ).filter( function ( title ) {
 			if ( hasOwn.call( cache.existenceCache, title ) ) {
 				queue[ title ].resolve( cache.existenceCache[ title ] );
 			}
@@ -63,7 +63,7 @@
 				pages[ page.title ] = !page.missing;
 			} );
 			titles.forEach( function ( title ) {
-				var normalizedTitle = title;
+				let normalizedTitle = title;
 				while ( hasOwn.call( normalized, normalizedTitle ) ) {
 					normalizedTitle = normalized[ normalizedTitle ];
 				}
@@ -81,7 +81,7 @@
 	 * @return {jQuery.Promise} Promise resolved with true if the page exists or false otherwise
 	 */
 	PageExistenceCache.prototype.checkPageExistence = function ( title ) {
-		var key = title.getPrefixedText();
+		const key = title.getPrefixedText();
 		if ( !hasOwn.call( this.existenceCheckQueue, key ) ) {
 			this.existenceCheckQueue[ key ] = $.Deferred();
 		}
@@ -125,7 +125,7 @@
 	 * @param {string} [config.apiUrl] API URL, if not the current wiki's API
 	 */
 	mw.widgets.CategoryTagItemWidget = function MWWCategoryTagItemWidget( config ) {
-		var widget = this;
+		const widget = this;
 		// Parent constructor
 		mw.widgets.CategoryTagItemWidget.super.call( this, $.extend( {
 			data: config.title.getMainText(),

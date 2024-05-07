@@ -122,7 +122,7 @@ OO.mixinClass( mw.widgets.RowWidget, OO.ui.mixin.GroupElement );
  * @inheritdoc
  */
 mw.widgets.RowWidget.prototype.addItems = function ( items, index ) {
-	var i, len;
+	let i, len;
 
 	OO.ui.mixin.GroupElement.prototype.addItems.call( this, items, index );
 
@@ -136,12 +136,10 @@ mw.widgets.RowWidget.prototype.addItems = function ( items, index ) {
  * @inheritdoc
  */
 mw.widgets.RowWidget.prototype.removeItems = function ( items ) {
-	var i, len, cells;
-
 	OO.ui.mixin.GroupElement.prototype.removeItems.call( this, items );
 
-	cells = this.getItems();
-	for ( i = 0, len = cells.length; i < len; i++ ) {
+	const cells = this.getItems();
+	for ( let i = 0, len = cells.length; i < len; i++ ) {
 		cells[ i ].setData( i );
 	}
 };
@@ -171,7 +169,7 @@ mw.widgets.RowWidget.prototype.setIndex = function ( index ) {
  * @return {string} The row label
  */
 mw.widgets.RowWidget.prototype.getLabel = function () {
-	var props = this.model.getRowProperties();
+	const props = this.model.getRowProperties();
 
 	if ( props.label === null ) {
 		return '';
@@ -276,10 +274,9 @@ mw.widgets.RowWidget.prototype.onRemoveCell = function ( index ) {
  * Handle clear requests.
  */
 mw.widgets.RowWidget.prototype.onClear = function () {
-	var i, len,
-		cells = this.getItems();
+	const cells = this.getItems();
 
-	for ( i = 0, len = cells.length; i < len; i++ ) {
+	for ( let i = 0, len = cells.length; i < len; i++ ) {
 		cells[ i ].setValue( '' );
 	}
 };
@@ -306,7 +303,7 @@ mw.widgets.RowWidget.prototype.onCellChange = function ( input, value ) {
 	// fed from the cells within.
 	// Right now, the table can't know if it's valid or not because the events
 	// don't get passed through.
-	var self = this;
+	const self = this;
 	input.getValidity().done( function () {
 		self.model.setValue( input.getData(), value );
 	} );

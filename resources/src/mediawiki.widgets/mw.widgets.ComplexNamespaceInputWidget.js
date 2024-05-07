@@ -107,7 +107,7 @@
 	 * @private
 	 */
 	mw.widgets.ComplexNamespaceInputWidget.prototype.updateCheckboxesState = function () {
-		var disabled = this.namespace.getValue() === this.namespace.allValue;
+		const disabled = this.namespace.getValue() === this.namespace.allValue;
 		if ( this.invert ) {
 			this.invert.setDisabled( disabled );
 		}

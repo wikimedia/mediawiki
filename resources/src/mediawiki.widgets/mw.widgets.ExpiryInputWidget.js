@@ -18,7 +18,7 @@
 	 * @param {Object} [config] Configuration options
 	 */
 	mw.widgets.ExpiryWidget = function ( config ) {
-		var RFC2822 = 'ddd, DD MMM YYYY HH:mm:ss [GMT]';
+		const RFC2822 = 'ddd, DD MMM YYYY HH:mm:ss [GMT]';
 
 		// Config initialization
 		config = $.extend( {}, config );
@@ -83,7 +83,7 @@
 				return;
 			}
 
-			var datetime = moment( value );
+			const datetime = moment( value );
 
 			// If the datetime is invlaid for some reason, reset the relative field.
 			if ( !datetime.isValid() ) {
@@ -107,7 +107,7 @@
 
 			// Parsing of free text field may fail, so always check if the date is
 			// valid.
-			var datetime = moment( event );
+			const datetime = moment( event );
 
 			if ( datetime.isValid() ) {
 				this.dateTimeField.setValue( datetime.utc().toISOString() );
@@ -138,7 +138,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.ExpiryWidget.static.reusePreInfuseDOM = function ( node, config ) {
-		var $relativeElement = $( node ).find( '.mw-widget-ExpiryWidget-relative' );
+		const $relativeElement = $( node ).find( '.mw-widget-ExpiryWidget-relative' );
 
 		config = mw.widgets.ExpiryWidget.super.static.reusePreInfuseDOM( node, config );
 
@@ -162,7 +162,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.ExpiryWidget.static.gatherPreInfuseState = function ( node, config ) {
-		var state = mw.widgets.ExpiryWidget.super.static.gatherPreInfuseState( node, config );
+		const state = mw.widgets.ExpiryWidget.super.static.gatherPreInfuseState( node, config );
 
 		state.relativeInput = config.RelativeInputClass.static.gatherPreInfuseState(
 			$( node ).find( '.mw-widget-ExpiryWidget-relative' ),

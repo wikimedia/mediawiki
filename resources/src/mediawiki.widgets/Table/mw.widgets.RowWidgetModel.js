@@ -88,7 +88,7 @@ OO.mixinClass( mw.widgets.RowWidgetModel, OO.EventEmitter );
  * @param {Array} props The initial cell props
  */
 mw.widgets.RowWidgetModel.prototype.initializeProps = function ( props ) {
-	var i, len;
+	let i, len;
 
 	this.cells = [];
 
@@ -120,7 +120,7 @@ mw.widgets.RowWidgetModel.prototype.setupRow = function () {
  * @private
  */
 mw.widgets.RowWidgetModel.prototype.verifyData = function () {
-	var i, len;
+	let i, len;
 
 	for ( i = 0, len = this.cells.length; i < len; i++ ) {
 		if ( this.data[ i ] === undefined ) {
@@ -136,7 +136,7 @@ mw.widgets.RowWidgetModel.prototype.verifyData = function () {
  * @fires mw.widgets.RowWidgetModel.insertCell
  */
 mw.widgets.RowWidgetModel.prototype.buildRow = function () {
-	var i, len;
+	let i, len;
 
 	for ( i = 0, len = this.cells.length; i < len; i++ ) {
 		this.emit( 'insertCell', this.data[ i ], i );
@@ -163,7 +163,7 @@ mw.widgets.RowWidgetModel.prototype.refreshRow = function () {
  * @fires mw.widgets.RowWidgetModel.valueChange
  */
 mw.widgets.RowWidgetModel.prototype.setValue = function ( handle, value ) {
-	var index;
+	let index;
 
 	if ( typeof handle === 'number' ) {
 		index = handle;
@@ -227,8 +227,7 @@ mw.widgets.RowWidgetModel.prototype.setLabel = function ( label ) {
  * @fires mw.widgets.RowWidgetModel.insertCell
  */
 mw.widgets.RowWidgetModel.prototype.insertCell = function ( data, index, key ) {
-	var insertIndex = ( typeof index === 'number' ) ? index : this.cells.length,
-		insertData, i, len;
+	const insertIndex = ( typeof index === 'number' ) ? index : this.cells.length;
 
 	// Add the new cell metadata
 	this.cells.splice( insertIndex, 0, {
@@ -237,11 +236,11 @@ mw.widgets.RowWidgetModel.prototype.insertCell = function ( data, index, key ) {
 	} );
 
 	// Add the new row data
-	insertData = ( typeof data === 'string' || typeof data === 'number' ) ? data : '';
+	const insertData = ( typeof data === 'string' || typeof data === 'number' ) ? data : '';
 	this.data.splice( insertIndex, 0, insertData );
 
 	// Update all indexes in following cells
-	for ( i = insertIndex + 1, len = this.cells.length; i < len; i++ ) {
+	for ( let i = insertIndex + 1, len = this.cells.length; i < len; i++ ) {
 		this.cells[ i ].index++;
 	}
 
@@ -256,8 +255,7 @@ mw.widgets.RowWidgetModel.prototype.insertCell = function ( data, index, key ) {
  * @fires mw.widgets.RowWidgetModel.removeCell
  */
 mw.widgets.RowWidgetModel.prototype.removeCell = function ( handle ) {
-	var cellProps = this.getCellProperties( handle ),
-		i, len;
+	const cellProps = this.getCellProperties( handle );
 
 	// Exit early if the row couldn't be found
 	if ( cellProps === null ) {
@@ -268,7 +266,7 @@ mw.widgets.RowWidgetModel.prototype.removeCell = function ( handle ) {
 	this.data.splice( cellProps.index, 1 );
 
 	// Update all indexes in following cells
-	for ( i = cellProps.index, len = this.cells.length; i < len; i++ ) {
+	for ( let i = cellProps.index, len = this.cells.length; i < len; i++ ) {
 		this.cells[ i ].index--;
 	}
 
@@ -330,7 +328,7 @@ mw.widgets.RowWidgetModel.prototype.getRowProperties = function () {
  * Returns `null` if the cell can't be found.
  */
 mw.widgets.RowWidgetModel.prototype.getCellProperties = function ( handle ) {
-	var cell = null,
+	let cell = null,
 		i, len;
 
 	if ( typeof handle === 'string' ) {

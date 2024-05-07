@@ -5,7 +5,7 @@
  * @license The MIT License (MIT); see LICENSE.txt
  */
 ( function () {
-	var hasOwn = Object.prototype.hasOwnProperty;
+	const hasOwn = Object.prototype.hasOwnProperty;
 
 	/**
 	 * @classdesc Mixin for title widgets.
@@ -118,9 +118,9 @@
 			return $.Deferred().resolve( [] ).promise();
 		}
 
-		var api = this.getApi();
-		var cache = this.constructor.static.interwikiPrefixesPromiseCache;
-		var key = api.defaults.ajax.url;
+		const api = this.getApi();
+		const cache = this.constructor.static.interwikiPrefixesPromiseCache;
+		const key = api.defaults.ajax.url;
 
 		if ( !Object.prototype.hasOwnProperty.call( cache, key ) ) {
 			cache[ key ] = api.get( {
@@ -149,12 +149,12 @@
 	 * @return {jQuery.Promise} Suggestions promise
 	 */
 	mw.widgets.TitleWidget.prototype.getSectionSuggestions = function ( title, fragmentQuery ) {
-		var widget = this;
-		var normalizedTitle = mw.Title.newFromText( title || mw.config.get( 'wgRelevantPageName' ) );
+		const widget = this;
+		const normalizedTitle = mw.Title.newFromText( title || mw.config.get( 'wgRelevantPageName' ) );
 		if ( !normalizedTitle ) {
 			return $.Deferred().resolve( [] ).promise();
 		}
-		var normalizedTitleText = normalizedTitle.getPrefixedText();
+		const normalizedTitleText = normalizedTitle.getPrefixedText();
 		this.sectionsCache[ normalizedTitleText ] = this.sectionsCache[ normalizedTitleText ] || this.getApi().get( {
 			action: 'parse',
 			page: normalizedTitleText,
@@ -166,12 +166,12 @@
 		}
 
 		return this.sectionsCache[ normalizedTitleText ].then( function ( response ) {
-			var sections = OO.getProp( response, 'parse', 'sections' ) || [];
-			var normalizedFragmentQuery = normalizeFragment( fragmentQuery );
-			var results = sections.filter( function ( section ) {
+			const sections = OO.getProp( response, 'parse', 'sections' ) || [];
+			const normalizedFragmentQuery = normalizeFragment( fragmentQuery );
+			const results = sections.filter( function ( section ) {
 				return normalizeFragment( section.line ).indexOf( normalizedFragmentQuery ) !== -1;
 			} ).map( function ( section ) {
-				var fragment = section.linkAnchor.replace( /_/g, ' ' );
+				const fragment = section.linkAnchor.replace( /_/g, ' ' );
 				// TODO: Make promise abortable
 				return {
 					title: title + '#' + fragment,
@@ -203,7 +203,7 @@
 	 * @return {jQuery.Promise} Suggestions promise
 	 */
 	mw.widgets.TitleWidget.prototype.getSuggestionsPromise = function () {
-		var api = this.getApi(),
+		const api = this.getApi(),
 			query = this.getQueryValue(),
 			widget = this,
 			promiseAbortObject = { abort: function () {
@@ -211,7 +211,7 @@
 			} };
 
 		if ( this.searchFragments ) {
-			var hashIndex = query.indexOf( '#' );
+			const hashIndex = query.indexOf( '#' );
 			if ( hashIndex !== -1 ) {
 				return this.getSectionSuggestions( query.slice( 0, hashIndex ), query.slice( hashIndex + 1 ) );
 			}
@@ -226,7 +226,7 @@
 		return this.getInterwikiPrefixesPromise().then( function ( interwikiPrefixes ) {
 			// Optimization: check we have any prefixes.
 			if ( interwikiPrefixes.length ) {
-				var interwiki = query.slice( 0, Math.max( 0, query.indexOf( ':' ) ) );
+				const interwiki = query.slice( 0, Math.max( 0, query.indexOf( ':' ) ) );
 				if (
 					interwiki !== '' &&
 					interwikiPrefixes.indexOf( interwiki ) !== -1
@@ -241,22 +241,22 @@
 				}
 			}
 			// Not a interwiki: do a prefix-search API lookup of the query.
-			var prefixSearchRequest = api.get( widget.getApiParams( query ) );
+			const prefixSearchRequest = api.get( widget.getApiParams( query ) );
 			promiseAbortObject.abort = prefixSearchRequest.abort.bind( prefixSearchRequest ); // TODO ew
 			return prefixSearchRequest.then( function ( prefixSearchResponse ) {
 				if ( !widget.showMissing ) {
 					return prefixSearchResponse;
 				}
-				var title = widget.namespace && widget.getMWTitle( query );
+				const title = widget.namespace && widget.getMWTitle( query );
 				// Add the query title as the first result, after looking up its details.
-				var queryTitleRequest = api.get( {
+				const queryTitleRequest = api.get( {
 					action: 'query',
 					titles: title ? title.getPrefixedDb() : query
 				} );
 				promiseAbortObject.abort = queryTitleRequest.abort.bind( queryTitleRequest );
 				return queryTitleRequest.then( function ( queryTitleResponse ) {
 					// By default, return the prefix-search result.
-					var result = prefixSearchResponse;
+					const result = prefixSearchResponse;
 					if ( prefixSearchResponse.query === undefined ) {
 						// There are no prefix-search results, so make the only result the query title.
 						// The API response structures are identical because both API calls are action=query.
@@ -296,7 +296,7 @@
 			return false;
 		}
 		// Check the targets against the given title.
-		for ( var redirect in apiResponse.query.redirects ) {
+		for ( const redirect in apiResponse.query.redirects ) {
 			if ( apiResponse.query.redirects[ redirect ].to === title ) {
 				return true;
 			}
@@ -312,7 +312,7 @@
 	 * @return {Object} API params
 	 */
 	mw.widgets.TitleWidget.prototype.getApiParams = function ( query ) {
-		var params = {
+		const params = {
 			action: 'query',
 			prop: [ 'info', 'pageprops' ],
 			generator: 'prefixsearch',
@@ -351,7 +351,7 @@
 	 * @return {OO.ui.OptionWidget[]} Menu items
 	 */
 	mw.widgets.TitleWidget.prototype.getOptionsFromData = function ( data ) {
-		var currentPageName = new mw.Title( mw.config.get( 'wgRelevantPageName' ) ).getPrefixedText(),
+		const currentPageName = new mw.Title( mw.config.get( 'wgRelevantPageName' ) ).getPrefixedText(),
 			items = [],
 			titles = [],
 			disambigs = [],
@@ -361,8 +361,8 @@
 			pageData = {};
 
 		if ( data.redirects ) {
-			for ( var r = 0, rLen = data.redirects.length; r < rLen; r++ ) {
-				var redirect = data.redirects[ r ];
+			for ( let r = 0, rLen = data.redirects.length; r < rLen; r++ ) {
+				const redirect = data.redirects[ r ];
 				redirectsTo[ redirect.to ] = redirectsTo[ redirect.to ] || [];
 				redirectsTo[ redirect.to ].push( redirect.from );
 				// Save the lowest index for this redirect target.
@@ -370,8 +370,8 @@
 			}
 		}
 
-		for ( var index in data.pages ) {
-			var suggestionPage = data.pages[ index ];
+		for ( const index in data.pages ) {
+			const suggestionPage = data.pages[ index ];
 
 			// When excludeCurrentPage is set, don't list the current page unless the user has type the full title
 			if ( this.excludeCurrentPage && suggestionPage.title === currentPageName && suggestionPage.title !== titleObj.getPrefixedText() ) {
@@ -400,8 +400,8 @@
 				titles.push( suggestionPage.title );
 			}
 
-			var redirects = hasOwn.call( redirectsTo, suggestionPage.title ) ? redirectsTo[ suggestionPage.title ] : [];
-			for ( var i = 0, iLen = redirects.length; i < iLen; i++ ) {
+			const redirects = hasOwn.call( redirectsTo, suggestionPage.title ) ? redirectsTo[ suggestionPage.title ] : [];
+			for ( let i = 0, iLen = redirects.length; i < iLen; i++ ) {
 				pageData[ redirects[ i ] ] = {
 					missing: false,
 					known: true,
@@ -423,14 +423,14 @@
 		// If not found, run value through mw.Title to avoid treating a match as a
 		// mismatch where normalisation would make them matching (T50476)
 
-		var pageExistsExact = (
+		const pageExistsExact = (
 			hasOwn.call( pageData, this.getQueryValue() ) &&
 			(
 				!pageData[ this.getQueryValue() ].missing ||
 				pageData[ this.getQueryValue() ].known
 			)
 		);
-		var pageExists = pageExistsExact || (
+		const pageExists = pageExistsExact || (
 			titleObj &&
 			hasOwn.call( pageData, titleObj.getPrefixedText() ) &&
 			(
@@ -450,9 +450,9 @@
 			this.cache.set( pageData );
 		}
 
-		for ( var t = 0, tLen = titles.length; t < tLen; t++ ) {
-			var page = hasOwn.call( pageData, titles[ t ] ) ? pageData[ titles[ t ] ] : {};
-			var option = this.createOptionWidget( this.getOptionWidgetData( titles[ t ], page ) );
+		for ( let t = 0, tLen = titles.length; t < tLen; t++ ) {
+			const page = hasOwn.call( pageData, titles[ t ] ) ? pageData[ titles[ t ] ] : {};
+			const option = this.createOptionWidget( this.getOptionWidgetData( titles[ t ], page ) );
 
 			if ( this.showDisambigsLast && page.disambiguation ) {
 				disambigs.push( option );
@@ -482,11 +482,11 @@
 	 * @return {Object} Data for option widget
 	 */
 	mw.widgets.TitleWidget.prototype.getOptionWidgetData = function ( title, data ) {
-		var description = data.description;
+		let description = data.description;
 		if ( !description && ( data.missing && !data.known ) ) {
 			description = mw.msg( 'mw-widgets-titleinput-description-new-page' );
 		}
-		var mwTitle = new mw.Title( OO.getProp( data, 'originalData', 'normalizedTitle' ) || title );
+		const mwTitle = new mw.Title( OO.getProp( data, 'originalData', 'normalizedTitle' ) || title );
 		return {
 			data: this.namespace !== null && this.relative ?
 				mwTitle.getRelativeText( this.namespace ) :
@@ -510,7 +510,7 @@
 	 * @return {mw.Title|null} Title object, or null if value is invalid
 	 */
 	mw.widgets.TitleWidget.prototype.getMWTitle = function ( value ) {
-		var title = value !== undefined ? value : this.getQueryValue(),
+		const title = value !== undefined ? value : this.getQueryValue(),
 			// mw.Title doesn't handle null well
 			titleObj = mw.Title.newFromText( title, this.namespace !== null ? this.namespace : undefined );
 

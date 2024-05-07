@@ -101,7 +101,7 @@
 	 * @private
 	 */
 	mw.widgets.UsersMultiselectWidget.prototype.updateMenuItems = function () {
-		var inputValue = this.input.getValue();
+		const inputValue = this.input.getValue();
 
 		if ( inputValue === this.inputValue ) {
 			// Do not restart api query if nothing has changed in the input
@@ -115,7 +115,7 @@
 		if ( inputValue.length > 0 ) {
 			this.pushPending();
 
-			var isValidIp, isValidRange;
+			let isValidIp, isValidRange;
 			if ( this.ipAllowed || this.ipRangeAllowed ) {
 				isValidIp = mw.util.isIPAddress( inputValue, false );
 				isValidRange = !isValidIp &&
@@ -140,8 +140,9 @@
 					auprefix: inputValue,
 					aulimit: this.limit
 				} ).done( function ( response ) {
-					var suggestions = response.query.allusers,
-						selected = this.getSelectedUsernames();
+					let suggestions = response.query.allusers;
+
+					const selected = this.getSelectedUsernames();
 
 					// Remove usernames, which are already selected from suggestions
 					suggestions = suggestions.map( function ( user ) {

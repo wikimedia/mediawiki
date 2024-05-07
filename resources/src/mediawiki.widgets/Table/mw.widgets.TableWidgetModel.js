@@ -63,7 +63,7 @@ OO.mixinClass( mw.widgets.TableWidgetModel, OO.EventEmitter );
  * properties of the row/column. Returns `null` if the row/column can't be found.
  */
 mw.widgets.TableWidgetModel.static.getEntryFromPropsTable = function ( handle, table ) {
-	var row = null,
+	let row = null,
 		i, len;
 
 	if ( typeof handle === 'string' ) {
@@ -149,7 +149,7 @@ mw.widgets.TableWidgetModel.static.getEntryFromPropsTable = function ( handle, t
 mw.widgets.TableWidgetModel.prototype.initializeProps = function ( rowProps, colProps ) {
 	// FIXME: Account for extra data with missing row/col metadata
 
-	var i, len;
+	let i, len;
 
 	this.rows = [];
 	this.cols = [];
@@ -193,7 +193,7 @@ mw.widgets.TableWidgetModel.prototype.setupTable = function () {
  * @private
  */
 mw.widgets.TableWidgetModel.prototype.verifyData = function () {
-	var i, j, rowLen, colLen;
+	let i, j, rowLen, colLen;
 
 	for ( i = 0, rowLen = this.rows.length; i < rowLen; i++ ) {
 		if ( this.data[ i ] === undefined ) {
@@ -215,7 +215,7 @@ mw.widgets.TableWidgetModel.prototype.verifyData = function () {
  * @fires mw.widgets.TableWidgetModel.insertRow
  */
 mw.widgets.TableWidgetModel.prototype.buildTable = function () {
-	var i, len;
+	let i, len;
 
 	for ( i = 0, len = this.rows.length; i < len; i++ ) {
 		this.emit( 'insertRow', this.data[ i ], i, this.rows[ i ].key, this.rows[ i ].label );
@@ -243,7 +243,7 @@ mw.widgets.TableWidgetModel.prototype.refreshTable = function () {
  * @fires mw.widgets.TableWidgetModel.valueChange
  */
 mw.widgets.TableWidgetModel.prototype.setValue = function ( row, col, value ) {
-	var rowIndex, colIndex;
+	let rowIndex, colIndex;
 
 	if ( typeof row === 'number' ) {
 		rowIndex = row;
@@ -294,9 +294,7 @@ mw.widgets.TableWidgetModel.prototype.setData = function ( data ) {
  * @fires mw.widgets.TableWidgetModel.insertRow
  */
 mw.widgets.TableWidgetModel.prototype.insertRow = function ( data, index, key, label ) {
-	var insertIndex = ( typeof index === 'number' ) ? index : this.rows.length,
-		newRowData = [],
-		insertData, insertDataCell, i, len;
+	const insertIndex = ( typeof index === 'number' ) ? index : this.rows.length;
 
 	// Add the new row metadata
 	this.rows.splice( insertIndex, 0, {
@@ -305,11 +303,15 @@ mw.widgets.TableWidgetModel.prototype.insertRow = function ( data, index, key, l
 		label: label || undefined
 	} );
 
+	const newRowData = [];
+	let insertDataCell;
+
 	// Add the new row data
-	insertData = ( Array.isArray( data ) ) ? data : [];
+	const insertData = ( Array.isArray( data ) ) ? data : [];
 	// Ensure that all columns of data for this row have been supplied,
 	// otherwise fill the remaining data with empty strings
-	for ( i = 0, len = this.cols.length; i < len; i++ ) {
+
+	for ( let i = 0, len = this.cols.length; i < len; i++ ) {
 		insertDataCell = '';
 		if ( typeof insertData[ i ] === 'string' || typeof insertData[ i ] === 'number' ) {
 			insertDataCell = insertData[ i ];
@@ -320,7 +322,7 @@ mw.widgets.TableWidgetModel.prototype.insertRow = function ( data, index, key, l
 	this.data.splice( insertIndex, 0, newRowData );
 
 	// Update all indexes in following rows
-	for ( i = insertIndex + 1, len = this.rows.length; i < len; i++ ) {
+	for ( let i = insertIndex + 1, len = this.rows.length; i < len; i++ ) {
 		this.rows[ i ].index++;
 	}
 
@@ -341,8 +343,7 @@ mw.widgets.TableWidgetModel.prototype.insertRow = function ( data, index, key, l
  * @fires mw.widgets.TableWidgetModel.insertColumn
  */
 mw.widgets.TableWidgetModel.prototype.insertColumn = function ( data, index, key, label ) {
-	var insertIndex = ( typeof index === 'number' ) ? index : this.cols.length,
-		insertDataCell, insertData, i, len;
+	const insertIndex = ( typeof index === 'number' ) ? index : this.cols.length;
 
 	// Add the new column metadata
 	this.cols.splice( insertIndex, 0, {
@@ -352,10 +353,13 @@ mw.widgets.TableWidgetModel.prototype.insertColumn = function ( data, index, key
 	} );
 
 	// Add the new column data
-	insertData = ( Array.isArray( data ) ) ? data : [];
+	const insertData = ( Array.isArray( data ) ) ? data : [];
 	// Ensure that all rows of data for this column have been supplied,
 	// otherwise fill the remaining data with empty strings
-	for ( i = 0, len = this.rows.length; i < len; i++ ) {
+
+	let insertDataCell;
+
+	for ( let i = 0, len = this.rows.length; i < len; i++ ) {
 		insertDataCell = '';
 		if ( typeof insertData[ i ] === 'string' || typeof insertData[ i ] === 'number' ) {
 			insertDataCell = insertData[ i ];
@@ -365,7 +369,7 @@ mw.widgets.TableWidgetModel.prototype.insertColumn = function ( data, index, key
 	}
 
 	// Update all indexes in following cols
-	for ( i = insertIndex + 1, len = this.cols.length; i < len; i++ ) {
+	for ( let i = insertIndex + 1, len = this.cols.length; i < len; i++ ) {
 		this.cols[ i ].index++;
 	}
 
@@ -380,8 +384,7 @@ mw.widgets.TableWidgetModel.prototype.insertColumn = function ( data, index, key
  * @fires mw.widgets.TableWidgetModel.removeRow
  */
 mw.widgets.TableWidgetModel.prototype.removeRow = function ( handle ) {
-	var rowProps = this.getRowProperties( handle ),
-		i, len;
+	const rowProps = this.getRowProperties( handle );
 
 	// Exit early if the row couldn't be found
 	if ( rowProps === null ) {
@@ -392,7 +395,7 @@ mw.widgets.TableWidgetModel.prototype.removeRow = function ( handle ) {
 	this.data.splice( rowProps.index, 1 );
 
 	// Update all indexes in following rows
-	for ( i = rowProps.index, len = this.rows.length; i < len; i++ ) {
+	for ( let i = rowProps.index, len = this.rows.length; i < len; i++ ) {
 		this.rows[ i ].index--;
 	}
 
@@ -407,8 +410,7 @@ mw.widgets.TableWidgetModel.prototype.removeRow = function ( handle ) {
  * @fires mw.widgets.TableWidgetModel.removeColumn
  */
 mw.widgets.TableWidgetModel.prototype.removeColumn = function ( handle ) {
-	var colProps = this.getColumnProperties( handle ),
-		i, len;
+	const colProps = this.getColumnProperties( handle );
 
 	// Exit early if the column couldn't be found
 	if ( colProps === null ) {
@@ -417,12 +419,12 @@ mw.widgets.TableWidgetModel.prototype.removeColumn = function ( handle ) {
 
 	this.cols.splice( colProps.index, 1 );
 
-	for ( i = 0, len = this.data.length; i < len; i++ ) {
+	for ( let i = 0, len = this.data.length; i < len; i++ ) {
 		this.data[ i ].splice( colProps.index, 1 );
 	}
 
 	// Update all indexes in following columns
-	for ( i = colProps.index, len = this.cols.length; i < len; i++ ) {
+	for ( let i = colProps.index, len = this.cols.length; i < len; i++ ) {
 		this.cols[ i ].index--;
 	}
 

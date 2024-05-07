@@ -26,7 +26,7 @@
 		// be reattached until after this function is completed. As such
 		// grab a handle here. If no config.$input is passed tracking of
 		// form submissions won't work.
-		var $form = config.$input ? config.$input.closest( 'form' ) : $();
+		const $form = config.$input ? config.$input.closest( 'form' ) : $();
 
 		config = $.extend( {
 			icon: 'search',
@@ -143,7 +143,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.SearchInputWidget.prototype.getSuggestionsPromise = function () {
-		var api = this.getApi(),
+		const api = this.getApi(),
 			self = this;
 
 		// While the name is, for historical reasons, 'session-start', this indicates
@@ -153,7 +153,7 @@
 		} );
 
 		// reuse the searchSuggest function from mw.searchSuggest
-		var promise = mw.searchSuggest.request( api, this.getQueryValue(), function () {}, this.limit, this.getNamespace() );
+		const promise = mw.searchSuggest.request( api, this.getQueryValue(), function () {}, this.limit, this.getNamespace() );
 
 		// tracking purposes
 		promise.done( function ( data, jqXHR ) {
@@ -170,7 +170,7 @@
 	mw.widgets.SearchInputWidget.prototype.getLookupCacheDataFromResponse = function ( response ) {
 		// mw.widgets.TitleInputWidget uses response.query, which doesn't exist for opensearch,
 		// so return the whole response (titles only, and links)
-		var resp = {
+		const resp = {
 			data: response || {},
 			metadata: {
 				type: this.requestType || 'unknown',
@@ -188,7 +188,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.SearchInputWidget.prototype.getOptionsFromData = function ( data ) {
-		var items = [],
+		const items = [],
 			titles = data.data[ 1 ],
 			descriptions = data.data[ 2 ],
 			urls = data.data[ 3 ],
@@ -241,7 +241,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.SearchInputWidget.prototype.getLookupMenuOptionsFromData = function () {
-		var items = mw.widgets.SearchInputWidget.super.prototype.getLookupMenuOptionsFromData.apply(
+		const items = mw.widgets.SearchInputWidget.super.prototype.getLookupMenuOptionsFromData.apply(
 			this, arguments
 		);
 

@@ -13,7 +13,7 @@
 	 *
 	 * @example
 	 * mw.loader.using( 'mediawiki.widgets.SelectWithInputWidget', function () {
-	 *   var swi = new mw.widgets.SelectWithInputWidget( {
+	 *   let swi = new mw.widgets.SelectWithInputWidget( {
 	 *     or: true,
 	 *     dropdowninput: {
 	 *       options: [
@@ -96,7 +96,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.SelectWithInputWidget.static.gatherPreInfuseState = function ( node, config ) {
-		var state = mw.widgets.SelectWithInputWidget.super.static.gatherPreInfuseState( node, config );
+		const state = mw.widgets.SelectWithInputWidget.super.static.gatherPreInfuseState( node, config );
 		state.dropdowninput = OO.ui.DropdownInputWidget.static.gatherPreInfuseState(
 			$( node ).find( '.oo-ui-dropdownInputWidget' ),
 			config.dropdowninput
@@ -123,7 +123,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.SelectWithInputWidget.prototype.setDisabled = function ( disabled ) {
-		var textinputIsHidden = this.or && this.dropdowninput.getValue() !== 'other';
+		const textinputIsHidden = this.or && this.dropdowninput.getValue() !== 'other';
 		mw.widgets.SelectWithInputWidget.super.prototype.setDisabled.call( this, disabled );
 		this.dropdowninput.setDisabled( disabled );
 		// It is impossible to submit a form with hidden fields failing validation, e.g. one that
@@ -142,7 +142,7 @@
 	 * @param {string|undefined} value
 	 */
 	mw.widgets.SelectWithInputWidget.prototype.setValue = function ( value ) {
-		var selectable = false;
+		let selectable = false;
 
 		if ( this.or ) {
 			if ( value !== 'other' ) {

@@ -5,7 +5,7 @@
  * @license The MIT License (MIT); see LICENSE.txt
  */
 ( function () {
-	var hasOwn = Object.prototype.hasOwnProperty,
+	const hasOwn = Object.prototype.hasOwnProperty,
 		NS_CATEGORY = mw.config.get( 'wgNamespaceIds' ).category;
 
 	/**
@@ -14,7 +14,7 @@
 	 *
 	 * @example
 	 * mw.loader.using( 'mediawiki.widgets.CategoryMultiselectWidget', function () {
-	 *   var selector = new mw.widgets.CategoryMultiselectWidget( {
+	 *   let selector = new mw.widgets.CategoryMultiselectWidget( {
 	 *     searchTypes: [
 	 *       mw.widgets.CategoryMultiselectWidget.SearchType.OpenSearch,
 	 *       mw.widgets.CategoryMultiselectWidget.SearchType.InternalSearch
@@ -89,7 +89,7 @@
 	mw.widgets.CategoryMultiselectWidget.prototype.updateMenuItems = function () {
 		this.getMenu().clearItems();
 		this.getNewMenuItems( this.input.$input.val() ).then( function ( items ) {
-			var menu = this.getMenu();
+			const menu = this.getMenu();
 
 			// Never show the menu if the input lost focus in the meantime
 			if ( !this.input.$input.is( ':focus' ) ) {
@@ -97,12 +97,12 @@
 			}
 
 			// Array of strings of the data of OO.ui.MenuOptionsWidgets
-			var existingItems = menu.getItems().map( function ( item ) {
+			const existingItems = menu.getItems().map( function ( item ) {
 				return item.data;
 			} );
 
 			// Remove if items' data already exists
-			var filteredItems = items.filter( function ( item ) {
+			let filteredItems = items.filter( function ( item ) {
 				return existingItems.indexOf( item ) === -1;
 			} );
 
@@ -136,7 +136,7 @@
 	 * @return {jQuery.Promise} Resolves with an array of categories
 	 */
 	mw.widgets.CategoryMultiselectWidget.prototype.getNewMenuItems = function ( input ) {
-		var deferred = $.Deferred();
+		const deferred = $.Deferred();
 
 		if ( input.trim() === '' ) {
 			deferred.resolve( [] );
@@ -145,21 +145,22 @@
 
 		// Abort all pending requests, we won't need their results
 		this.api.abort();
-		var promises = [];
-		for ( var i = 0; i < this.searchTypes.length; i++ ) {
+		const promises = [];
+		for ( let i = 0; i < this.searchTypes.length; i++ ) {
 			promises.push( this.searchCategories( input, this.searchTypes[ i ] ) );
 		}
 
 		this.pushPending();
 
 		$.when.apply( $, promises ).done( function () {
-			var allData = [],
-				dataSets = Array.prototype.slice.apply( arguments );
+			let allData = [];
+
+			const dataSets = Array.prototype.slice.apply( arguments );
 
 			// Collect values from all results
 			allData = allData.concat.apply( allData, dataSets );
 
-			var categoryNames = allData
+			const categoryNames = allData
 				// Remove duplicates
 				.filter( function ( value, index, self ) {
 					return self.indexOf( value ) === index;
@@ -188,7 +189,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.CategoryMultiselectWidget.prototype.isAllowedData = function ( data ) {
-		var title = mw.Title.makeTitle( NS_CATEGORY, data );
+		const title = mw.Title.makeTitle( NS_CATEGORY, data );
 		if ( !title ) {
 			return false;
 		}
@@ -199,7 +200,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.CategoryMultiselectWidget.prototype.createTagItemWidget = function ( data ) {
-		var title = mw.Title.makeTitle( NS_CATEGORY, data );
+		const title = mw.Title.makeTitle( NS_CATEGORY, data );
 
 		return new mw.widgets.CategoryTagItemWidget( {
 			apiUrl: this.api.apiUrl || undefined,
@@ -213,7 +214,7 @@
 	mw.widgets.CategoryMultiselectWidget.prototype.findItemFromData = function ( data ) {
 		// This is a bit of a hack... We have to canonicalize the data in the same way that
 		// #createItemWidget and CategoryTagItemWidget will do, otherwise we won't find duplicates.
-		var title = mw.Title.makeTitle( NS_CATEGORY, data );
+		const title = mw.Title.makeTitle( NS_CATEGORY, data );
 		if ( !title ) {
 			return null;
 		}
@@ -227,8 +228,9 @@
 	 * @return {boolean}
 	 */
 	mw.widgets.CategoryMultiselectWidget.prototype.validateSearchTypes = function () {
-		var validSearchTypes = false,
-			searchTypeEnumCount = Object.keys( mw.widgets.CategoryMultiselectWidget.SearchType ).length;
+		let validSearchTypes = false;
+
+		const searchTypeEnumCount = Object.keys( mw.widgets.CategoryMultiselectWidget.SearchType ).length;
 
 		// Check if all values are in the SearchType enum
 		validSearchTypes = this.searchTypes.every( function ( searchType ) {
@@ -278,7 +280,7 @@
 	 * @return {jQuery.Promise} Resolves with an array of categories
 	 */
 	mw.widgets.CategoryMultiselectWidget.prototype.searchCategories = function ( input, searchType ) {
-		var deferred = $.Deferred(),
+		const deferred = $.Deferred(),
 			cacheKey = input + searchType.toString();
 
 		// Check cache
@@ -295,7 +297,7 @@
 					limit: this.limit,
 					search: input
 				} ).done( function ( res ) {
-					var categories = res[ 1 ];
+					const categories = res[ 1 ];
 					deferred.resolve( categories );
 				} ).fail( deferred.reject.bind( deferred ) );
 				break;
@@ -310,7 +312,7 @@
 					apfrom: input,
 					apprefix: input
 				} ).done( function ( res ) {
-					var categories = res.query.allpages.map( function ( page ) {
+					const categories = res.query.allpages.map( function ( page ) {
 						return page.title;
 					} );
 					deferred.resolve( categories );
@@ -329,7 +331,7 @@
 					prop: 'info',
 					titles: 'Category:' + input
 				} ).done( function ( res ) {
-					var categories = [];
+					const categories = [];
 
 					res.query.pages.forEach( function ( page ) {
 						if ( !page.missing ) {
@@ -355,7 +357,7 @@
 					cmlimit: this.limit,
 					cmtitle: 'Category:' + input
 				} ).done( function ( res ) {
-					var categories = res.query.categorymembers.map( function ( category ) {
+					const categories = res.query.categorymembers.map( function ( category ) {
 						return category.title;
 					} );
 					deferred.resolve( categories );
@@ -375,7 +377,7 @@
 					cllimit: this.limit,
 					titles: 'Category:' + input
 				} ).done( function ( res ) {
-					var categories = [];
+					const categories = [];
 
 					res.query.pages.forEach( function ( page ) {
 						if ( !page.missing && Array.isArray( page.categories ) ) {
