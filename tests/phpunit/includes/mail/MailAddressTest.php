@@ -7,13 +7,6 @@ class MailAddressTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MailAddress::__construct
-	 */
-	public function testConstructor() {
-		$ma = new MailAddress( 'foo@bar.baz', 'UserName', 'Real name' );
-		$this->assertInstanceOf( MailAddress::class, $ma );
-	}
-
-	/**
 	 * @covers \MailAddress::newFromUser
 	 */
 	public function testNewFromUser() {
