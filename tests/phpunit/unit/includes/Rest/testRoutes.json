@@ -32,6 +32,14 @@
 				}
 			}
 		},
+		"/RouterTest/echo_form_data": {
+			"post": {
+				"handler": {
+					"class": "MediaWiki\\Tests\\Rest\\Handler\\EchoHandler",
+					"postParam": true
+				}
+			}
+		},
 		"/RouterTest/echo/{pathParam}": {
 			"get": {
 				"handler": {

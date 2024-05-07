@@ -830,10 +830,10 @@ abstract class Handler {
 		}
 
 		switch ( $contentType ) {
-			case 'application/x-www-form-urlencoded':
-			case 'multipart/form-data':
+			case RequestInterface::FORM_URLENCODED_CONTENT_TYPE:
+			case RequestInterface::MULTIPART_FORM_DATA_CONTENT_TYPE:
 				return $request->getPostParams();
-			case 'application/json':
+			case RequestInterface::JSON_CONTENT_TYPE:
 				$jsonStream = $request->getBody();
 				$parsedBody = json_decode( "$jsonStream", true );
 				if ( !is_array( $parsedBody ) ) {
@@ -888,13 +888,14 @@ abstract class Handler {
 	 */
 	public function getSupportedRequestTypes(): array {
 		$types = [
-			'application/json'
+			RequestInterface::JSON_CONTENT_TYPE
 		];
 
+		// TODO: remove this once "post" parameters are no longer supported! T362850
 		foreach ( $this->getParamSettings() as $settings ) {
 			if ( ( $settings[self::PARAM_SOURCE] ?? null ) === 'post' ) {
-				$types[] = 'application/x-www-form-urlencoded';
-				$types[] = 'multipart/form-data';
+				$types[] = RequestInterface::FORM_URLENCODED_CONTENT_TYPE;
+				$types[] = RequestInterface::MULTIPART_FORM_DATA_CONTENT_TYPE;
 				break;
 			}
 		}

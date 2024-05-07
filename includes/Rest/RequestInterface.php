@@ -47,10 +47,14 @@ interface RequestInterface {
 	// with the DELETE method "has no defined semantics". We allow it, as it is useful for
 	// passing the csrf token required by some authentication methods.
 
+	public const JSON_CONTENT_TYPE = 'application/json';
+	public const MULTIPART_FORM_DATA_CONTENT_TYPE = 'multipart/form-data';
+	public const FORM_URLENCODED_CONTENT_TYPE = 'application/x-www-form-urlencoded';
+
 	/** @var string[] Content types handled via $_POST */
 	public const FORM_DATA_CONTENT_TYPES = [
-		'application/x-www-form-urlencoded',
-		'multipart/form-data',
+		self::FORM_URLENCODED_CONTENT_TYPE,
+		self::MULTIPART_FORM_DATA_CONTENT_TYPE,
 	];
 
 	/**

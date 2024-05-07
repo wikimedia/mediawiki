@@ -24,7 +24,7 @@ use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
- * @covers \MediaWiki\Rest\Handler\SearchHandler
+ * @covers \MediaWiki\Rest\Handler
  */
 class HandlerTest extends MediaWikiUnitTestCase {
 
@@ -33,11 +33,11 @@ class HandlerTest extends MediaWikiUnitTestCase {
 	/**
 	 * @param string[] $methods
 	 *
-	 * @return Handler|MockObject
+	 * @return Handler&MockObject
 	 */
 	private function newHandler( $methods = [] ) {
 		$methods = array_merge( $methods, [ 'execute' ] );
-		/** @var Handler|MockObject $handler */
+		/** @var Handler&MockObject $handler */
 		$handler = $this->getMockBuilder( Handler::class )
 			->onlyMethods( $methods )
 			->getMock();
@@ -206,9 +206,9 @@ class HandlerTest extends MediaWikiUnitTestCase {
 	}
 
 	public static function provideValidate() {
-		yield 'empty' => [ [], new RequestData(), [] ];
+		yield 'empty' => [ [], new RequestData(), [], [] ];
 
-		yield 'parameter' => [
+		yield 'query parameter' => [
 			[
 				'foo' => [
 					ParamValidator::PARAM_TYPE => 'string',
@@ -217,6 +217,20 @@ class HandlerTest extends MediaWikiUnitTestCase {
 				]
 			],
 			new RequestData( [ 'queryParams' => [ 'foo' => 'kittens' ] ] ),
+			[ 'foo' => 'kittens' ],
+			[]
+		];
+
+		yield 'body parameter' => [
+			[
+				'foo' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					ParamValidator::PARAM_REQUIRED => true,
+					Handler::PARAM_SOURCE => 'body',
+				]
+			],
+			new RequestData( [ 'parsedBody' => [ 'foo' => 'kittens' ] ] ),
+			[],
 			[ 'foo' => 'kittens' ]
 		];
 	}
@@ -224,7 +238,30 @@ class HandlerTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideValidate
 	 */
-	public function testValidate( $paramSettings, $request, $expected ) {
+	public function testValidate( $paramSettings, $request, $expectedParams, $expectedBody ) {
+		$handler = $this->newHandler( [ 'getParamSettings' ] );
+		$handler->method( 'getParamSettings' )->willReturn( $paramSettings );
+
+		$this->initHandler( $handler, $request );
+		$this->validateHandler( $handler );
+
+		$this->assertSame( $expectedParams, $handler->getValidatedParams() );
+		$this->assertSame( $expectedBody, $handler->getValidatedBody() );
+	}
+
+	public function testValidate_post() {
+		$this->expectDeprecationAndContinue( '/The "post" source is deprecated/' );
+
+		$paramSettings = [
+			'foo' => [
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
+				Handler::PARAM_SOURCE => 'post',
+			]
+		];
+
+		$request = new RequestData( [ 'postParams' => [ 'foo' => 'kittens' ] ] );
+
 		$handler = $this->newHandler( [ 'getParamSettings' ] );
 		$handler->method( 'getParamSettings' )->willReturn( $paramSettings );
 
@@ -232,7 +269,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$this->validateHandler( $handler );
 
 		$params = $handler->getValidatedParams();
-		$this->assertSame( $expected, $params );
+		$this->assertSame( [ 'foo' => 'kittens' ], $params );
 	}
 
 	public function testValidate_invalid() {
@@ -763,19 +800,23 @@ class HandlerTest extends MediaWikiUnitTestCase {
 				] ),
 				[ 'foo' => 'bar' ]
 			],
+			'form data' => [
+				new RequestData( [
+					'postParams' => [ 'foo' => 'bar' ],
+					'headers' => [ 'Content-Type' => 'application/x-www-form-urlencoded' ]
+				] ),
+				[ 'foo' => 'bar' ]
+			],
+			'multipart form data' => [
+				new RequestData( [
+					'postParams' => [ 'foo' => 'bar' ],
+					'headers' => [ 'Content-Type' => 'multipart/form-data' ]
+				] ),
+				[ 'foo' => 'bar' ]
+			],
 			'unknown body type' => [
 				new RequestData( [
 					'headers' => [ 'Content-Type' => 'unknown/type' ]
-				] ),
-				new LocalizedHttpException(
-					new MessageValue( 'rest-unsupported-content-type', [ '' ] ),
-					415
-				)
-			],
-			'form data not supported' => [
-				new RequestData( [
-					'headers' => [ 'Content-Type' => 'application/x-www-form-urlencoded' ],
-					'postParams' => [ 'test' => 'foo' ]
 				] ),
 				new LocalizedHttpException(
 					new MessageValue( 'rest-unsupported-content-type', [ '' ] ),
@@ -817,7 +858,13 @@ class HandlerTest extends MediaWikiUnitTestCase {
 
 	/** @dataProvider provideParseBodyData */
 	public function testParseBodyData( $requestData, $expectedResult ) {
-		$handler = $this->newHandler();
+		$handler = $this->newHandler( [ 'getSupportedRequestTypes' ] );
+		$handler->method( 'getSupportedRequestTypes' )->willReturn( [
+			'application/json',
+			'application/x-www-form-urlencoded',
+			'multipart/form-data'
+		] );
+
 		if ( $expectedResult instanceof LocalizedHttpException ) {
 			$this->expectException( LocalizedHttpException::class );
 			$this->expectExceptionCode( $expectedResult->getCode() );
@@ -827,6 +874,24 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			$parsedBody = $handler->parseBodyData( $requestData );
 			$this->assertEquals( $expectedResult, $parsedBody );
 		}
+	}
+
+	public function testPostRequestFailsWithFormData() {
+		$handler = $this->newHandler();
+		$requestData = new RequestData( [
+			'headers' => [ 'Content-Type' => 'application/x-www-form-urlencoded' ],
+			'postParams' => [ 'test' => 'foo' ]
+		] );
+
+		$expectedResult = new LocalizedHttpException(
+			new MessageValue( 'rest-unsupported-content-type', [ '' ] ),
+			415
+		);
+
+		$this->expectException( LocalizedHttpException::class );
+		$this->expectExceptionCode( $expectedResult->getCode() );
+		$this->expectExceptionMessage( $expectedResult->getMessage() );
+		$handler->parseBodyData( $requestData );
 	}
 
 	public function testGetRequestFailsWithBody() {
@@ -1011,6 +1076,8 @@ class HandlerTest extends MediaWikiUnitTestCase {
 	 * are declared, so form data is allowed.
 	 */
 	public function testGetSupportedRequestTypes_post() {
+		$this->expectDeprecationAndContinue( '/The "post" source is deprecated/' );
+
 		$paramSettings = [
 			'test' => [
 				Handler::PARAM_SOURCE => 'post',
@@ -1032,12 +1099,12 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		] );
 		$handler->parseBodyData( $request );
 
-		// The "post" parameter should be processed as "parameter", not as "body".
+		// The "post" parameter should be processed as "parameter" but not as "body".
 		$this->initHandler( $handler, $request );
 		$this->validateHandler( $handler );
 
-		$this->assertArrayNotHasKey( 'test', $handler->getValidatedBody() );
 		$this->assertArrayHasKey( 'test', $handler->getValidatedParams() );
+		$this->assertArrayNotHasKey( 'test', $handler->getValidatedBody() );
 	}
 
 	/**
