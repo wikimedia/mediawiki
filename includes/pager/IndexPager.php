@@ -465,7 +465,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 			$this->buildQueryInfo( $offset, $limit, $order );
 
 		return $this->mDb->newSelectQueryBuilder()
-			->tables( is_array( $tables ) ? $tables : [ $tables ] )
+			->rawTables( $tables )
 			->fields( $fields )
 			->conds( $conds )
 			->caller( $fname )
