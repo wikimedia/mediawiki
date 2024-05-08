@@ -252,7 +252,7 @@ class Parser {
 	private array $mTagHooks = [];
 	/** @var array<string,array{0:callable,1:int}> */
 	private array $mFunctionHooks = [];
-	/** @var array<int,array<string,string>> */
+	/** @var array{0:array<string,string>,1:array<string,string>} */
 	private array $mFunctionSynonyms = [ 0 => [], 1 => [] ];
 	/** @var string[] */
 	private array $mStripList = [];
@@ -5758,7 +5758,7 @@ class Parser {
 
 	/**
 	 * @since 1.32
-	 * @return array
+	 * @return array{0:array<string,string>,1:array<string,string>}
 	 */
 	public function getFunctionSynonyms() {
 		return $this->mFunctionSynonyms;
