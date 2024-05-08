@@ -38,6 +38,9 @@ interface IConnectionProvider {
 	 *
 	 * This should be used when there the code needs to write to the database.
 	 *
+	 * This method accepts virtual domains
+	 * ({@see \MediaWiki\MainConfigSchema::VirtualDomainsMapping}).
+	 *
 	 * @since 1.40
 	 * @param string|false $domain Domain ID, or false for the current domain
 	 * @return IDatabase
@@ -48,6 +51,9 @@ interface IConnectionProvider {
 	 * Get connection to a replica database.
 	 *
 	 * Note that a read can have replication lag.
+	 *
+	 * This method accepts virtual domains
+	 * ({@see \MediaWiki\MainConfigSchema::VirtualDomainsMapping}).
 	 *
 	 * @since 1.40
 	 * @param string|false $domain Domain ID, or false for the current domain
