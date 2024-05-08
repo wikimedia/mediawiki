@@ -1652,7 +1652,7 @@
 	"rcfilters-invalid-filter": "無效的篩選條件",
 	"rcfilters-empty-filter": "沒有使用中的過濾條件。已顯示所有的貢獻。",
 	"rcfilters-filterlist-title": "篩選",
-	"rcfilters-filterlist-whatsthis": "這些是怎樣工作的？",
+	"rcfilters-filterlist-whatsthis": "這些是如何運作的？",
 	"rcfilters-highlightbutton-title": "明顯標示結果",
 	"rcfilters-highlightmenu-title": "選擇顏色",
 	"rcfilters-highlightmenu-help": "選擇要明顯標示此屬性的色彩",
