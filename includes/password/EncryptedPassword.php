@@ -120,4 +120,27 @@ class EncryptedPassword extends ParameterizedPassword {
 
 		return true;
 	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function verify( string $password ): bool {
+		// Clear error string
+		while ( openssl_error_string() !== false );
+
+		// Decrypt the underlying hash
+		$underlyingHash = openssl_decrypt(
+			$this->hash,
+			$this->params['cipher'],
+			$this->config['secrets'][$this->params['secret']],
+			0,
+			base64_decode( $this->args[0] )
+		);
+		if ( $underlyingHash === false ) {
+			throw new PasswordError( 'Error decrypting password: ' . openssl_error_string() );
+		}
+
+		$storedPassword = $this->factory->newFromCiphertext( $underlyingHash );
+		return $storedPassword->verify( $password );
+	}
 }
