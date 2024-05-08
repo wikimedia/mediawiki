@@ -5,13 +5,26 @@
  */
 ( function () {
 
-	// Default options for new spinners,
-	// stored outside the function to share between calls.
+	/**
+	 * Default options for new spinners,
+	 * stored outside the function to share between calls.
+	 *
+	 * @type {jQueryPlugins~SpinnerOpts}
+	 */
 	var defaults = {
 		id: undefined,
 		size: 'small',
 		type: 'inline'
 	};
+
+	/**
+	 * @typedef {Object} jQueryPlugins~SpinnerOpts Options for {@link jQueryPlugins.injectSpinner}.
+	 * @property {string} [id] If given, spinner will be given an id of "mw-spinner-{id}".
+	 * @property {'small'|'large'} [size='small'] 'small' or 'large' for a 20-pixel or 32-pixel spinner.
+	 * @property {'inline'|'block'} [type='inline'] 'inline' or 'block'. Inline creates an inline-block with
+	 *   width and height equal to spinner size. Block is a block-level element with width 100%,
+	 *   height equal to spinner size.
+	 */
 
 	$.extend( {
 		/**
@@ -48,13 +61,8 @@
 		 * @ignore
 		 * @static
 		 * @inheritable
-		 * @param {Object|string} [opts] Options. If a string is given, it will be treated as the value
-		 *   of the `id` option. If an object is given, the possible option keys are:
-		 * @param {string} [opts.id] If given, spinner will be given an id of "mw-spinner-{id}".
-		 * @param {string} [opts.size='small'] 'small' or 'large' for a 20-pixel or 32-pixel spinner.
-		 * @param {string} [opts.type='inline'] 'inline' or 'block'. Inline creates an inline-block with
-		 *   width and height equal to spinner size. Block is a block-level element with width 100%,
-		 *   height equal to spinner size.
+		 * @param {jQueryPlugins~SpinnerOpts|string} [opts] Options. If a string is given, it will be treated as the value
+		 *   of the {@link jQueryPlugins~SpinnerOpts#id} option.
 		 * @return {jQuery}
 		 */
 		createSpinner: function ( opts ) {
@@ -111,7 +119,8 @@
 	 * } );
 	 * @memberof jQueryPlugins
 	 * @method injectSpinner
-	 * @param {Object|string} [opts] See #createSpinner
+	 * @param {jQueryPlugins~SpinnerOpts|string} [opts] Options. If a string is given, it will be treated as the value
+	 *   of the {@link jQueryPlugins~SpinnerOpts#id} option.
 	 * @return {jQuery}
 	 */
 	$.fn.injectSpinner = function ( opts ) {
