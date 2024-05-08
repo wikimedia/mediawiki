@@ -1668,6 +1668,7 @@
 	"filedelete-success": "'''$1''' silinmişdir.",
 	"filedelete-success-old": "<strong>[[Media:$1|$1]]</strong> faylının $3, $2 versiyası silindi.",
 	"filedelete-nofile": "'''$1''' mövcud deyil.",
+	"filedelete-nofile-old": "<strong>$1</strong> faylının göstərilən atributlarla arxivləşdirilmiş versiyası yoxdur.",
 	"filedelete-otherreason": "Başqa/əlavə səbəb:",
 	"filedelete-reason-otherlist": "Başqa səbəb",
 	"filedelete-reason-dropdown": "*Əsas silmə səbəbi\n** Müəllif hüququ pozuntusu\n** Dublikat fayl\n** Keyfiyyətsiz şəkil\n** İstifadəsiz fayl\n** Qeyri-ensiklopedik şəxs\n** Lisenziyasız fayl\n** Azad şəkillə əvəz olundu\n** Müəllif istəyi",

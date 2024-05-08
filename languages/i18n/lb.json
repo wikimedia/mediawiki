@@ -673,7 +673,7 @@
 	"edit-conflict": "Ännerungskonflikt.",
 	"edit-no-change": "Är ännerung gouf ignoréiert, well Dir näischt um Text geännert hutt.",
 	"postedit-confirmation-created": "D'Säit gouf ugeluecht.",
-	"postedit-confirmation-restored": "D'Säit gouf restauréiert.",
+	"postedit-confirmation-restored": "D'Säit gouf [[Special:Diff/$2|restauréiert]].",
 	"postedit-confirmation-saved": "Är Ännerung gouf gespäichert.",
 	"postedit-confirmation-published": "Är Ännerung gouf verëffentlecht.",
 	"postedit-temp-created-label": "Temporäre Benotzerkont",

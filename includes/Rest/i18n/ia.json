@@ -65,5 +65,21 @@
 	"rest-html-key-expected": "Clave <var>html</var> expectate in corpore",
 	"rest-invalid-transform": "Transformation non valide: $1 a $2",
 	"rest-request-body-expected": "Le methodo de requesta $1 expecta un corpore de requesta",
-	"rest-request-body-unaccepted": "Le methodo de requesta $1 non accepta un corpore de requesta`"
+	"rest-request-body-unaccepted": "Le methodo de requesta $1 non accepta un corpore de requesta`",
+	"rest-unmapped-action-error": "Error del modulo de action non assignate: $1",
+	"rest-unsupported-transform-input": "Entrata non supportate: $1",
+	"rest-bad-etag": "Mal ETag: $1",
+	"rest-no-stashed-content": "Necun contento in reserva trovate pro $1",
+	"rest-unsupported-profile-version": "Version de profilo non supportate: $1",
+	"rest-no-json-decode": "Le cargo utile non se decodifica de JSON a un matrice",
+	"rest-parsoid-unsupported-media": "Typo multimedial non supportate",
+	"rest-missing-revision-html": "Manca le HTML del version",
+	"rest-missing-revision-html-content-type": "Manca le typo de contento del HTML del version.",
+	"rest-unsupported-profile-conversion": "Le systema non sape como facer iste conversion.",
+	"rest-edit-conflict": "Conflicto de modification ($1)",
+	"rest-unknown-parsoid-transformation": "Transformation incognite.",
+	"rest-target-variant-required": "Le variante de destination es obligatori.",
+	"rest-unsupported-language-conversion": "Conversion de linguage non supportate: de $1 a $2",
+	"rest-unknown-content-model": "Modello de contento incognite: $1",
+	"rest-page-bundle-validation-error": "PageBundle non corresponde a contentVersion: $1"
 }

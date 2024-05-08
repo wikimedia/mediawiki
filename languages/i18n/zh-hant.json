@@ -2302,7 +2302,7 @@
 	"unwatchthispage": "停止監視",
 	"notanarticle": "非內容的頁面",
 	"notvisiblerev": "最後一次由其他使用者所作的修訂已經被刪除",
-	"watchlist-details": "您的監視清單上共有 $1 個頁面（包含討論頁面）。",
+	"watchlist-details": "您的監視清單上{{PLURAL:$1|有 $1 個|共有 $1 個}}頁面（包含討論頁面）。",
 	"watchlist-expiry-days-left": "剩下 {{PLURAL:$1|$1 天}}",
 	"watchlist-expiring-days-full-text": "在您的監視清單裡還剩 {{PLURAL:$1|$1 天}}",
 	"watchlist-expiry-hours-left": "還剩幾個小時",

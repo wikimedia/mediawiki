@@ -589,6 +589,7 @@
 	"resettokens-resetbutton": "ตั้งโทเค็นที่เลือกใหม่",
 	"editrecovery": "กู้คืนการแก้ไข",
 	"edit-recovery-nojs-placeholder": "จาวาสคริปต์จำเป็นสำหรับคุณสมบัติกู้คืนการแก้ไข",
+	"edit-recovery-special-user-unnamed": "โปรด [[พิเศษ:UserLogin|เข้าสู่ระบบ]] หรือ [[พิเศษ:CreateAccount|สร้างบัญชี]] เพื่อใช้คุณสมบัตินี้",
 	"edit-recovery-special-intro": "คุณมีการเปลี่ยนแปลงในส่วน{{PLURAL:$1|หรือ|และ/หรือ}}ส่วนต่อไปนี้ที่ยังไม่ถูกบันทึก:",
 	"edit-recovery-special-intro-empty": "คุณไม่มีการเปลี่ยนแปลงที่ยังไม่ได้บันทึก",
 	"edit-recovery-special-view": "ดู",
