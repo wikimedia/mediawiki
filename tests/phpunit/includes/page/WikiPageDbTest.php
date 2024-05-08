@@ -475,28 +475,27 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		// Test deletion logging
 		$logId = $status->getValue();
 		$commentQuery = $this->getServiceContainer()->getCommentStore()->getJoin( 'log_comment' );
-		$this->assertSelect(
-			[ 'logging' ] + $commentQuery['tables'], /* table */
-			[
+		$this->newSelectQueryBuilder()
+			->select( [
 				'log_type',
 				'log_action',
 				'log_comment' => $commentQuery['fields']['log_comment_text'],
 				'log_actor',
 				'log_namespace',
 				'log_title',
-			],
-			[ 'log_id' => $logId ],
-			[ [
+			] )
+			->from( 'logging' )
+			->tables( $commentQuery['tables'] )
+			->where( [ 'log_id' => $logId ] )
+			->joinConds( $commentQuery['joins'] )
+			->assertRowValue( [
 				'delete',
 				'delete',
 				$reason,
 				(string)$user->getActorId(),
 				(string)$page->getTitle()->getNamespace(),
 				$page->getTitle()->getDBkey(),
-			] ],
-			[],
-			$commentQuery['joins']
-		);
+			] );
 	}
 
 	/**
@@ -519,28 +518,27 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		// Test suppression logging
 		$logId = $status->getValue();
 		$commentQuery = $this->getServiceContainer()->getCommentStore()->getJoin( 'log_comment' );
-		$this->assertSelect(
-			[ 'logging' ] + $commentQuery['tables'], /* table */
-			[
+		$this->newSelectQueryBuilder()
+			->select( [
 				'log_type',
 				'log_action',
 				'log_comment' => $commentQuery['fields']['log_comment_text'],
 				'log_actor',
 				'log_namespace',
 				'log_title',
-			],
-			[ 'log_id' => $logId ],
-			[ [
+			] )
+			->from( 'logging' )
+			->tables( $commentQuery['tables'] )
+			->where( [ 'log_id' => $logId ] )
+			->joinConds( $commentQuery['joins'] )
+			->assertRowValue( [
 				'suppress',
 				'delete',
 				'testing deletion',
 				(string)$user->getActorId(),
 				(string)$page->getTitle()->getNamespace(),
 				$page->getTitle()->getDBkey(),
-			] ],
-			[],
-			$commentQuery['joins']
-		);
+			] );
 
 		$lookup = $this->getServiceContainer()->getArchivedRevisionLookup();
 		$archivedRevs = $lookup->listRevisions( $page->getTitle() );
@@ -1570,24 +1568,23 @@ more stuff
 		// Make sure the log entry looks good
 		// log_params is not checked here
 		$commentQuery = $this->getServiceContainer()->getCommentStore()->getJoin( 'log_comment' );
-		$this->assertSelect(
-			[ 'logging' ] + $commentQuery['tables'],
-			[
+		$this->newSelectQueryBuilder()
+			->select( [
 				'log_comment' => $commentQuery['fields']['log_comment_text'],
 				'log_actor',
 				'log_namespace',
 				'log_title',
-			],
-			[ 'log_id' => $logId ],
-			[ [
+			] )
+			->from( 'logging' )
+			->tables( $commentQuery['tables'] )
+			->where( [ 'log_id' => $logId ] )
+			->joinConds( $commentQuery['joins'] )
+			->assertRowValue( [
 				'aReason',
 				(string)$user->getActorId(),
 				(string)$page->getTitle()->getNamespace(),
 				$page->getTitle()->getDBkey(),
-			] ],
-			[],
-			$commentQuery['joins']
-		);
+			] );
 	}
 
 	public function testDoUpdateRestrictions_failsOnReadOnly() {

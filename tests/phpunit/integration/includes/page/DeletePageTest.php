@@ -76,9 +76,8 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		int $logID
 	): void {
 		$commentQuery = $this->getServiceContainer()->getCommentStore()->getJoin( 'log_comment' );
-		$this->assertSelect(
-			[ 'logging' ] + $commentQuery['tables'],
-			[
+		$this->newSelectQueryBuilder()
+			->select( [
 				'log_type',
 				'log_action',
 				'log_comment' => $commentQuery['fields']['log_comment_text'],
@@ -86,9 +85,12 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 				'log_namespace',
 				'log_title',
 				'log_page',
-			],
-			[ 'log_id' => $logID ],
-			[ [
+			] )
+			->from( 'logging' )
+			->tables( $commentQuery['tables'] )
+			->where( [ 'log_id' => $logID ] )
+			->joinConds( $commentQuery['joins'] )
+			->assertRowValue( [
 				$suppress ? 'suppress' : 'delete',
 				$logSubtype,
 				$reason,
@@ -96,10 +98,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 				(string)$title->getNamespace(),
 				$title->getDBkey(),
 				$pageID,
-			] ],
-			[],
-			$commentQuery['joins']
-		);
+			] );
 	}
 
 	private function assertArchiveVisibility( Title $title, bool $suppression ): void {

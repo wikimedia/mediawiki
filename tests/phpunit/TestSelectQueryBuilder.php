@@ -67,4 +67,20 @@ class TestSelectQueryBuilder extends SelectQueryBuilder {
 		Assert::assertEquals( $expectedValue, $value,
 			"The field value should match" );
 	}
+
+	/**
+	 * Execute the query, and assert that it returns a single row with the given value.
+	 *
+	 * Unlike fetchRow(), LIMIT 1 is not automatically added.
+	 *
+	 * @since 1.43
+	 * @param array $expectedRow
+	 */
+	public function assertRowValue( array $expectedRow ) {
+		$res = $this->fetchResultSet();
+		Assert::assertSame( 1, $res->numRows(), "There should be one row in the result set" );
+		$row = $res->fetchRow();
+		MediaWikiIntegrationTestCase::stripStringKeys( $row );
+		Assert::assertEquals( $expectedRow, $row, "The row should match" );
+	}
 }
