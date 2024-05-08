@@ -138,10 +138,6 @@ class DBConnRef implements IMaintainableDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function getTopologyBasedServerId() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function getTopologyRole() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}

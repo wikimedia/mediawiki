@@ -414,15 +414,6 @@ class MysqlReplicationReporter extends ReplicationReporter {
 	}
 
 	/**
-	 * @inheritDoc
-	 * @param IDatabase $conn To make queries
-	 * @return string|null 32 bit integer ID; null if not applicable or unknown
-	 */
-	public function getTopologyBasedServerId( IDatabase $conn ) {
-		return $this->getServerId( $conn );
-	}
-
-	/**
 	 * @param IDatabase $conn To make queries
 	 * @return string Value of server_id (32-bit integer, unique to the replication topology)
 	 * @throws DBQueryError
