@@ -191,6 +191,8 @@ because of Phabricator reports.
   be set; this was deprecated in 1.35.
 * DatabaseBlock::purgeExpired, deprecated since 1.38, has been removed.
 * AbstractBlock::getPermissionsError, deprecated since 1.35, has been removed.
+* IDatabase::namedLocksEnqueue() has been removed without deprecation,
+  completely unused.
 * WikiPage::doDeleteArticleBatched, hard deprecated since 1.37, has been
   removed.
 * SpecialEmailUser::submit, deprecated since 1.41, has been removed.

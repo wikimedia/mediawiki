@@ -757,10 +757,6 @@ class DBConnRef implements IMaintainableDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function namedLocksEnqueue() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function getInfinity() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}

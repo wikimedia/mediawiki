@@ -2985,10 +2985,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $unlocker;
 	}
 
-	public function namedLocksEnqueue() {
-		return false;
-	}
-
 	public function dropTable( $table, $fname = __METHOD__ ) {
 		if ( !$this->tableExists( $table, $fname ) ) {
 			return false;
