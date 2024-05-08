@@ -537,10 +537,6 @@ class DatabaseMySQL extends Database {
 		return ( $row->released == 1 );
 	}
 
-	public function namedLocksEnqueue() {
-		return true;
-	}
-
 	protected function doFlushSession( $fname ) {
 		// Note that RELEASE_ALL_LOCKS() is not supported well enough to use here.
 		// https://mariadb.com/kb/en/release_all_locks/

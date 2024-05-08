@@ -1145,14 +1145,6 @@ interface IDatabase extends IReadableDatabase {
 	public function getScopedLockAndFlush( $lockKey, $fname, $timeout );
 
 	/**
-	 * Check to see if a named lock used by lock() use blocking queues
-	 *
-	 * @return bool
-	 * @since 1.26
-	 */
-	public function namedLocksEnqueue();
-
-	/**
 	 * Check if this DB server is marked as read-only according to load balancer info
 	 *
 	 * @note LoadBalancer checks serverIsReadOnly() when setting the load balancer info array
