@@ -9,7 +9,6 @@ use MediaWiki\Specials\SpecialContributions;
  * @author Ammarpad
  * @group Database
  * @covers \MediaWiki\Specials\SpecialContributions
- * @covers \MediaWiki\SpecialPage\ContributionsSpecialPage
  */
 class SpecialContributionsTest extends SpecialPageTestBase {
 	private $pageName = __CLASS__ . 'BlaBlaTest';
