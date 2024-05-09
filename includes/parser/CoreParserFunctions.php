@@ -75,8 +75,8 @@ class CoreParserFunctions {
 		$noHashFunctions = [
 			'ns', 'nse', 'urlencode', 'lcfirst', 'ucfirst', 'lc', 'uc',
 			'localurl', 'localurle', 'fullurl', 'fullurle', 'canonicalurl',
-			'canonicalurle', 'formatnum', 'grammar', 'gender', 'plural', 'bidi',
-			'numberingroup', 'language',
+			'canonicalurle', 'formatnum', 'grammar', 'gender', 'plural', 'formal',
+			'bidi', 'numberingroup', 'language',
 			'padleft', 'padright', 'anchorencode', 'defaultsort', 'filepath',
 			'pagesincategory', 'pagesize', 'protectionlevel', 'protectionexpiry',
 			# The following are the "parser function" forms of magic
@@ -442,6 +442,11 @@ class CoreParserFunctions {
 		settype( $text, ctype_digit( $text ) ? 'int' : 'float' );
 		// @phan-suppress-next-line PhanTypeMismatchArgument Phan does not handle settype
 		return $parser->getTargetLanguage()->convertPlural( $text, $forms );
+	}
+
+	public static function formal( Parser $parser, string ...$forms ): string {
+		$index = $parser->getTargetLanguage()->getFormalityIndex();
+		return $forms[$index] ?? $forms[0];
 	}
 
 	/**

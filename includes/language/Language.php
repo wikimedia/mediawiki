@@ -3918,6 +3918,20 @@ class Language implements Bcp47Code {
 	}
 
 	/**
+	 * Some languages provide translations in different levels of formality (or manner of address),
+	 * for example using the T-V distinction. Since most translations do not differ by formality,
+	 * we provide magic word, e.g. `{{#FORMAL:Du|Sie}}` that allows translating only once
+	 * and defining different forms inline. This only works for languages that have a fallback
+	 * relation. For example `es` and `es-formal`. The return value indicates which form of
+	 * the forms given should be used for this language. Zero-based index.
+	 *
+	 * @since 1.43
+	 */
+	public function getFormalityIndex(): int {
+		return $this->localisationCache->getItem( $this->mCode, 'formalityIndex' ) ?? 0;
+	}
+
+	/**
 	 * Wraps argument with unicode control characters for directionality safety
 	 *
 	 * This solves the problem where directionality-neutral characters at the edge of

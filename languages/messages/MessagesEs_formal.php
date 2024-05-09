@@ -6,3 +6,4 @@
  */
 
 $fallback = 'es';
+$formalityIndex = 1;

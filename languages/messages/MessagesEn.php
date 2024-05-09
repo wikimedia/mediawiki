@@ -254,6 +254,7 @@ $magicWords = [
 	'expectunusedcategory'    => [ 1, '__EXPECTUNUSEDCATEGORY__', ],
 	'filepath'                => [ 0, 'FILEPATH:' ],
 	'forcetoc'                => [ 0, '__FORCETOC__' ],
+	'formal'                  => [ 1, '#FORMAL:' ],
 	'formatdate'              => [ 0, 'formatdate', 'dateformat' ],
 	'formatnum'               => [ 0, 'FORMATNUM' ],
 	'fullpagename'            => [ 1, 'FULLPAGENAME' ],
@@ -668,3 +669,5 @@ $preloadedMessages = [
 ];
 
 $digitGroupingPattern = "#,##0.###";
+
+$formalityIndex = 0;
