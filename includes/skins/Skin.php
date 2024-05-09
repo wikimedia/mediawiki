@@ -1140,7 +1140,7 @@ abstract class Skin extends ContextSource {
 	 * @return string URL
 	 */
 	public static function makeInternalOrExternalUrl( $name ) {
-		$protocols = MediaWikiServices::getInstance()->getUrlUtils()->validAbsoluteProtocols();
+		$protocols = MediaWikiServices::getInstance()->getUrlUtils()->validProtocols();
 
 		if ( preg_match( '/^(?i:' . $protocols . ')/', $name ) ) {
 			return $name;
@@ -1617,7 +1617,7 @@ abstract class Skin extends ContextSource {
 						$text = $line[1];
 					}
 
-					if ( preg_match( '/^(?i:' . $urlUtils->validAbsoluteProtocols() . ')/', $link ) ) {
+					if ( preg_match( '/^(?i:' . $urlUtils->validProtocols() . ')/', $link ) ) {
 						$href = $link;
 
 						// Parser::getExternalLinkAttribs won't work here because of the Namespace things
