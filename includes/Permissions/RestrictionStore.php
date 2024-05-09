@@ -24,8 +24,6 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
- * Class RestrictionStore
- *
  * @since 1.37
  */
 class RestrictionStore {

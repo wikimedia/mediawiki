@@ -1,7 +1,6 @@
 <?php
 
 /**
- * Class JobSpecificationTest
  * @covers \JobSpecification
  */
 class JobSpecificationTest extends MediaWikiUnitTestCase {

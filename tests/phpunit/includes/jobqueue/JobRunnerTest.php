@@ -5,8 +5,6 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 
 /**
- * Class JobRunnerTest
- *
  * @group Database
  * @covers \JobRunner
  */

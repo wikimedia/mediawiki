@@ -1,7 +1,6 @@
 <?php
 
 /**
- * Class CollationTest
  * @covers \Collation
  * @covers \IcuCollation
  * @covers \IdentityCollation
