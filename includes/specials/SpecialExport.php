@@ -109,8 +109,7 @@ class SpecialExport extends SpecialPage {
 					}
 				}
 			}
-		} elseif ( $request->getCheck( 'addns' ) &&
-		$config->get( MainConfigNames::ExportFromNamespaces ) ) {
+		} elseif ( $request->getCheck( 'addns' ) && $config->get( MainConfigNames::ExportFromNamespaces ) ) {
 			$page = $request->getText( 'pages' );
 			$nsindex = $request->getText( 'nsindex', '' );
 
@@ -123,8 +122,7 @@ class SpecialExport extends SpecialPage {
 					$page .= "\n" . implode( "\n", $nspages );
 				}
 			}
-		} elseif ( $request->getCheck( 'exportall' ) &&
-		$config->get( MainConfigNames::ExportAllowAll ) ) {
+		} elseif ( $request->getCheck( 'exportall' ) && $config->get( MainConfigNames::ExportAllowAll ) ) {
 			$this->doExport = true;
 			$exportall = true;
 
@@ -320,8 +318,7 @@ class SpecialExport extends SpecialPage {
 			],
 		];
 
-		if ( $config->get( MainConfigNames::ExportMaxLinkDepth ) ||
-		$this->userCanOverrideExportDepth() ) {
+		if ( $config->get( MainConfigNames::ExportMaxLinkDepth ) || $this->userCanOverrideExportDepth() ) {
 			$formDescriptor += [
 				'pagelink-depth' => [
 					'type' => 'text',
@@ -600,11 +597,11 @@ class SpecialExport extends SpecialPage {
 				/// @todo FIXME: May or may not be more efficient to batch these
 				///        by namespace when given multiple input pages.
 				$result = ( clone $queryBuilder )
-				->where( [
-					'page_namespace' => $title->getNamespace(),
-					'page_title' => $title->getDBkey()
-				] )
-				->fetchResultSet();
+					->where( [
+						'page_namespace' => $title->getNamespace(),
+						'page_title' => $title->getDBkey()
+					] )
+					->fetchResultSet();
 
 				foreach ( $result as $row ) {
 					$template = Title::makeTitle( $row->namespace, $row->title );
