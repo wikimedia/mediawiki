@@ -511,9 +511,11 @@ class SpecialExport extends SpecialPage {
 		$queryInfo = $this->linksMigration->getQueryInfo( 'templatelinks' );
 		$dbr = $this->dbProvider->getReplicaDatabase();
 		$queryBuilder = $dbr->newSelectQueryBuilder()
-			->queryInfo( $queryInfo )
-			->fields( [ 'namespace' => $nsField, 'title' => $titleField ] )
-			->join( 'templatelinks', null, 'page_id=tl_from' );
+			->select( [ 'namespace' => $nsField, 'title' => $titleField ] )
+			->from( 'page' )
+			->join( 'templatelinks', null, 'page_id=tl_from' )
+			->tables( array_diff( $queryInfo['tables'], [ 'templatelinks' ] ) )
+			->joinConds( $queryInfo['joins'] );
 		return $this->getLinks( $inputPages, $pageSet, $queryBuilder );
 	}
 
@@ -571,9 +573,11 @@ class SpecialExport extends SpecialPage {
 			$queryInfo = $this->linksMigration->getQueryInfo( 'pagelinks' );
 			$dbr = $this->dbProvider->getReplicaDatabase();
 			$queryBuilder = $dbr->newSelectQueryBuilder()
-				->queryInfo( $queryInfo )
-				->fields( [ 'namespace' => $nsField, 'title' => $titleField ] )
-				->join( 'pagelinks', null, 'page_id=pl_from' );
+				->select( [ 'namespace' => $nsField, 'title' => $titleField ] )
+				->from( 'page' )
+				->join( 'pagelinks', null, 'page_id=pl_from' )
+				->tables( array_diff( $queryInfo['tables'], [ 'pagelinks' ] ) )
+				->joinConds( $queryInfo['joins'] );
 			$pageSet = $this->getLinks( $inputPages, $pageSet, $queryBuilder );
 			$inputPages = array_keys( $pageSet );
 		}
@@ -589,9 +593,6 @@ class SpecialExport extends SpecialPage {
 	 * @return array
 	 */
 	protected function getLinks( $inputPages, $pageSet, SelectQueryBuilder $queryBuilder ) {
-		$queryBuilder->from( 'page' )
-			->caller( __METHOD__ );
-
 		foreach ( $inputPages as $page ) {
 			$title = Title::newFromText( $page );
 			if ( $title ) {
