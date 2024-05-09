@@ -150,6 +150,34 @@ class SideBarTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	public function testProtocolRelativeExternalUrl() {
+		$this->overrideConfigValues( [
+			MainConfigNames::NoFollowLinks => true,
+			MainConfigNames::NoFollowDomainExceptions => [],
+			MainConfigNames::NoFollowNsExceptions => [],
+		] );
+
+		$bar = [];
+		$text = '* Title
+** //www.mediawiki.org/| Home
+';
+		$this->skin->addToSidebarPlain( $bar, $text );
+		$this->assertEquals(
+			[ 'Title' => [
+				# ** //www.mediawiki.org/| Home
+				[
+					'text' => 'Home',
+					'href' => '//www.mediawiki.org/', // not /wiki///www.mediawiki.org/ (T364539)
+					'id' => 'n-Home',
+					'active' => null,
+					'icon' => null,
+					'rel' => 'nofollow',
+				],
+			] ],
+			$bar
+		);
+	}
+
 	private function getAttribs() {
 		# Sidebar text we will use everytime
 		$text = '* Title
