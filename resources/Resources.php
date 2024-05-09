@@ -594,13 +594,26 @@ return [
 				'name' => 'resources/lib/pinia/pinia.js',
 				'callback' => static function ( Context $context, Config $config ) {
 					// Use the development version if development mode is enabled, or if we're in debug mode
-					$file = $config->get( MainConfigNames::VueDevelopmentMode ) || $context->getDebug() ?
+					$developmentMode = $config->get( MainConfigNames::VueDevelopmentMode ) || $context->getDebug();
+
+					$file = $developmentMode ?
 						'resources/lib/pinia/pinia.iife.js' :
 						'resources/lib/pinia/pinia.iife.prod.js';
+
+					$vueDemi = "require('vue');";
+					if ( $developmentMode ) {
+						// Import vue-demi during development mode to provide .set and .del
+						// functions that are only used during pinia's dev mode HMR.
+						// See T364518
+						$vueDemi = '(function(){var exports={};' .
+							file_get_contents( MW_INSTALL_PATH . '/resources/lib/vue-demi/index.cjs' ) .
+							';return exports;})();';
+					}
+
 					// The file shipped by Pinia does var Pinia = ...;, but doesn't export it
-					// Add module.exports = Pinia; programmatically. We also import VueDemi
-					// by actually loading the vue instance.
-					return "var VueDemi=require('vue');" .
+					// Add module.exports = Pinia; programmatically.
+					return "var VueDemi=" .
+						$vueDemi .
 						file_get_contents( MW_INSTALL_PATH . "/$file" ) .
 						';module.exports=Pinia;';
 				},
