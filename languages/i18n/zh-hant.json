@@ -1529,7 +1529,7 @@
 	"rcfilters-filter-watchlist-watchednew-label": "新監視清單的變更",
 	"rcfilters-filter-watchlist-watchednew-description": "變更後您尚未檢視的監視頁面變更。",
 	"rcfilters-filter-watchlist-notwatched-label": "不在監視清單內",
-	"rcfilters-filter-watchlist-notwatched-description": "除了更改您的監視頁面以外的任何事項。",
+	"rcfilters-filter-watchlist-notwatched-description": "除了您的監視頁面以外的所有變更。",
 	"rcfilters-filtergroup-watchlistactivity": "監視列表活動",
 	"rcfilters-filter-watchlistactivity-unseen-label": "未讀變更",
 	"rcfilters-filter-watchlistactivity-unseen-description": "自從變更發生以來，對您沒有造訪的頁面做出的變更。",

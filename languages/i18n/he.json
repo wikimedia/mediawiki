@@ -59,9 +59,9 @@
 			"תומר ט"
 		]
 	},
-	"sunday": "יוֹם רִאשׁוֹן",
-	"monday": "יוֹם שֵׁנִי",
-	"tuesday": "יוֹם שְׁלִישִׁי",
+	"sunday": "ראשון",
+	"monday": "שני",
+	"tuesday": "שלישי",
 	"wednesday": "רביעי",
 	"thursday": "חמישי",
 	"friday": "שישי",
@@ -85,8 +85,8 @@
 	"october": "אוקטובר",
 	"november": "נובמבר",
 	"december": "דצמבר",
-	"january-gen": "ינואר",
-	"february-gen": "פברואר",
+	"january-gen": "בינואר",
+	"february-gen": "בפברואר",
 	"march-gen": "במרץ",
 	"april-gen": "באפריל",
 	"may-gen": "במאי",

@@ -6,9 +6,11 @@
 			"TomatoCake"
 		]
 	},
-	"rest-prefix-mismatch": "Der angeforderte Pfad ($1) konnte nicht innerhalb des REST-API-Root-Pfades ($2) gefunden werden",
+	"rest-prefix-mismatch": "Der angeforderte Pfad ($1) konnte nicht innerhalb des REST-API-Basis-Pfades ($2) gefunden werden",
+	"rest-bad-prefix": "Der Endpunktpfad ($1) enthält kein gültiges Modulpräfix",
 	"rest-wrong-method": "Die angeforderte Methode ($1) war keine {{PLURAL:$3|erlaubte Methode für diesen Pfad|der erlaubten Methoden für diesen Pfad}} ($2)",
 	"rest-no-match": "Der angeforderte relative Pfad ($1) stimmte mit keinem bekannten Handler überein",
+	"rest-unknown-module": "Der angeforderte Modulname ($1) ist nicht bekannt",
 	"rest-nonexistent-title": "Die angegebene Seite ($1) existiert nicht",
 	"rest-nonexistent-title-revision": "Die angegebene Version ($1) existiert nicht für die angegebene Seite ($2)",
 	"rest-nonexistent-revision": "Die angegebene Version ($1) existiert nicht",

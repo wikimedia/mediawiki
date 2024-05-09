@@ -3151,7 +3151,7 @@
 	"logentry-delete-delete_redir": "$1 premještanjem {{GENDER:$2|presnimava}} preusmjeravanje $3",
 	"logentry-delete-delete_redir2": "$1 premještanjem {{GENDER:$2|presnimava}} preusmjeravanje $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|vratio|vratila}} je stranicu $3 ($4)",
-	"logentry-delete-restore-nocount": "$1 {{GENDER:$2|vratio|vratila}} je stranicu $3",
+	"logentry-delete-restore-nocount": "$1 {{GENDER:$2|vraća}} stranicu $3",
 	"restore-count-revisions": "{{PLURAL:$1|1 izmjena|$1 izmjene|$1 izmjena}}",
 	"restore-count-files": "{{PLURAL:$1|1 datoteka|$1 datoteke|$1 datoteka}}",
 	"logentry-delete-event": "$1 {{GENDER:$2|mijenja}} vidljivost {{PLURAL:$5|zapisa u evidenciji|$5 zapisa u evidenciji}} na $3: $4",
