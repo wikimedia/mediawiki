@@ -287,7 +287,7 @@
 	 * @private
 	 */
 	mw.widgets.DateInputWidget.prototype.onTextInputChange = function () {
-		var
+		const
 			widget = this,
 			value = this.textInput.getValue(),
 			mom = moment( value, this.getInputFormat() ),
@@ -624,7 +624,7 @@
 		// "Half-strict mode": for example, for the format 'YYYY-MM-DD', 2015-1-3 instead of 2015-01-03
 		// is okay, but 2015-01 isn't, and neither is 2015-01-foo. Use Moment's "fuzzy" mode and check
 		// parsing flags for the details (stolen from implementation of moment#isValid).
-		var
+		const
 			mom = moment( date, this.getInputFormat() ),
 			flags = mom.parsingFlags();
 

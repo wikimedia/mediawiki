@@ -206,8 +206,6 @@
 	 * @return {Date|null}
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.parseDateValue = function ( value ) {
-		var date, m;
-
 		value = String( value );
 		switch ( this.type ) {
 			case 'date':
@@ -217,8 +215,11 @@
 				value = '1970-01-01T' + value + 'Z';
 				break;
 		}
+
+		let date;
+
 		// eslint-disable-next-line security/detect-unsafe-regex
-		m = /^(\d{4,})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.(\d{1,3}))?Z$/.exec( value );
+		const m = /^(\d{4,})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.(\d{1,3}))?Z$/.exec( value );
 		if ( m ) {
 			if ( m[ 7 ] ) {
 				while ( m[ 7 ].length < 3 ) {
@@ -252,7 +253,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.cleanUpValue = function ( value ) {
-		var date, pad;
+		let date, pad;
 
 		if ( value === '' ) {
 			return '';
@@ -314,7 +315,9 @@
 	 * @private
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.setupFields = function () {
-		var i, $field, spec, placeholder, sz, maxlength,
+		let i, $field, spec, placeholder, sz, maxlength;
+
+		const
 			spanValFunc = function ( v ) {
 				if ( v === undefined ) {
 					return this.data( 'mw-widgets-datetime-dateTimeInputWidget-value' );
@@ -444,8 +447,9 @@
 	 * @private
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.updateFieldsFromValue = function () {
-		var i, $field, spec, intercalary, sz,
-			date = this.getValueAsDate();
+		let i, $field, spec, intercalary, sz;
+
+		const date = this.getValueAsDate();
 
 		if ( date === null ) {
 			this.components = null;
@@ -508,11 +512,12 @@
 	 * @private
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.updateValueFromFields = function () {
-		var i, v, $field, spec, curDate, newDate,
-			components = {},
+		let i, v, $field, spec, curDate, newDate,
 			anyInvalid = false,
 			anyEmpty = false,
 			allEmpty = true;
+
+		const components = {};
 
 		for ( i = 0; i < this.fields.length; i++ ) {
 			$field = this.fields[ i ];
@@ -559,7 +564,7 @@
 	 * @private
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.onChange = function () {
-		var date;
+		let date;
 
 		this.updateFieldsFromValue();
 
@@ -600,7 +605,7 @@
 	 * @return {boolean} False to cancel the default event
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.onFieldKeyDown = function ( $field, e ) {
-		var spec = $field.data( 'mw-widgets-datetime-dateTimeInputWidget-fieldSpec' );
+		const spec = $field.data( 'mw-widgets-datetime-dateTimeInputWidget-fieldSpec' );
 
 		if ( !this.isDisabled() ) {
 			switch ( e.which ) {
@@ -642,7 +647,7 @@
 	 * @param {jQuery.Event} e Focus event
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.onFieldFocus = function ( $field ) {
-		var spec = $field.data( 'mw-widgets-datetime-dateTimeInputWidget-fieldSpec' );
+		const spec = $field.data( 'mw-widgets-datetime-dateTimeInputWidget-fieldSpec' );
 
 		if ( !this.isDisabled() ) {
 			if ( this.getValueAsDate() === null ) {
@@ -666,7 +671,7 @@
 	 * @param {jQuery.Event} e Click event
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.onFieldClick = function ( $field ) {
-		var spec = $field.data( 'mw-widgets-datetime-dateTimeInputWidget-fieldSpec' );
+		const spec = $field.data( 'mw-widgets-datetime-dateTimeInputWidget-fieldSpec' );
 
 		if ( !this.isDisabled() ) {
 			if ( spec.type === 'boolean' ) {
@@ -687,13 +692,13 @@
 	 * @param {jQuery.Event} e Blur event
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.onFieldBlur = function ( $field ) {
-		var v, date,
-			spec = $field.data( 'mw-widgets-datetime-dateTimeInputWidget-fieldSpec' );
+		let v;
+		const spec = $field.data( 'mw-widgets-datetime-dateTimeInputWidget-fieldSpec' );
 
 		this.updateValueFromFields();
 
 		// Normalize
-		date = this.getValueAsDate();
+		const date = this.getValueAsDate();
 		if ( !date ) {
 			$field.val( '' );
 		} else {
@@ -724,8 +729,8 @@
 	 * @return {boolean} False to cancel the default event
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.onFieldWheel = function ( $field, e ) {
-		var delta = 0,
-			spec = $field.data( 'mw-widgets-datetime-dateTimeInputWidget-fieldSpec' );
+		let delta = 0;
+		const spec = $field.data( 'mw-widgets-datetime-dateTimeInputWidget-fieldSpec' );
 
 		if ( this.isDisabled() || !this.getFocusedField().length ) {
 			return;
@@ -772,7 +777,7 @@
 	 * @private
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.onCalendarChange = function () {
-		var curDate = this.getValueAsDate(),
+		const curDate = this.getValueAsDate(),
 			newDate = this.calendar.getSelected()[ 0 ];
 
 		if ( newDate ) {

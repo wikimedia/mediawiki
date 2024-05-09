@@ -255,10 +255,10 @@
 			};
 		}
 		if ( !this.dayLetters ) {
-			var dayLetters = [];
-			var shortDayNames = this.shortDayNames;
-			for ( var dayOfWeek in shortDayNames ) {
-				var shortDayName = shortDayNames[ dayOfWeek ];
+			const dayLetters = [];
+			const shortDayNames = this.shortDayNames;
+			for ( const dayOfWeek in shortDayNames ) {
+				const shortDayName = shortDayNames[ dayOfWeek ];
 				dayLetters[ dayOfWeek ] = shortDayName.slice( 0, 1 );
 			}
 			this.dayLetters = dayLetters;
@@ -306,7 +306,7 @@
 	 * @return {FieldSpecificationObject} Field specification object, or null if the tag+params are unrecognized.
 	 */
 	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.prototype.getFieldForTag = function ( tag, params ) {
-		var spec = null;
+		let spec = null;
 
 		switch ( tag + '|' + params[ 0 ] ) {
 			case 'year|#':
@@ -443,7 +443,7 @@
 	 * @return {Object} Components
 	 */
 	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.prototype.getComponentsFromDate = function ( date ) {
-		var ret;
+		let ret;
 
 		if ( !( date instanceof Date ) ) {
 			date = this.defaultDate;
@@ -488,7 +488,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.prototype.getDateFromComponents = function ( components ) {
-		var date = new Date();
+		const date = new Date();
 
 		components = $.extend( {}, components );
 		if ( components.hour === undefined && components.hour12 !== undefined && components.hour12period !== undefined ) {
@@ -513,12 +513,12 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.prototype.adjustComponent = function ( date, component, delta, mode ) {
-		var min, max, range, components;
+		let min, max;
 
 		if ( !( date instanceof Date ) ) {
 			date = this.defaultDate;
 		}
-		components = this.getComponentsFromDate( date );
+		const components = this.getComponentsFromDate( date );
 
 		switch ( component ) {
 			case 'year':
@@ -562,7 +562,7 @@
 		}
 
 		components[ component ] += delta;
-		range = max - min + 1;
+		const range = max - min + 1;
 		switch ( mode ) {
 			case 'overflow':
 				// Date() will mostly handle it automatically. But months need
@@ -633,7 +633,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.prototype.getCalendarHeadings = function () {
-		var a = this.dayLetters;
+		const a = this.dayLetters;
 
 		if ( this.weekStartsOn ) {
 			return a.slice( this.weekStartsOn ).concat( a.slice( 0, this.weekStartsOn ) );
@@ -657,22 +657,23 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.prototype.getCalendarData = function ( date ) {
-		var dt, t, d, e, i, row,
-			getDate = this.local ? 'getDate' : 'getUTCDate',
-			setDate = this.local ? 'setDate' : 'setUTCDate',
-			ret = {
-				dayComponent: 'day',
-				monthComponent: 'month'
-			};
+		const getDate = this.local ? 'getDate' : 'getUTCDate',
+			setDate = this.local ? 'setDate' : 'setUTCDate';
+
+		const ret = {
+			dayComponent: 'day',
+			monthComponent: 'month'
+		};
 
 		if ( !( date instanceof Date ) ) {
 			date = this.defaultDate;
 		}
 
-		dt = new Date( date.getTime() );
+		let dt = new Date( date.getTime() );
 		dt[ setDate ]( 1 );
-		t = dt.getTime();
+		const t = dt.getTime();
 
+		let d, e;
 		if ( this.local ) {
 			ret.header = this.fullMonthNames[ dt.getMonth() + 1 ] + ' ' + dt.getFullYear();
 			d = dt.getDay() % 7;
@@ -690,8 +691,8 @@
 
 		ret.rows = [];
 		while ( d <= e ) {
-			row = [];
-			for ( i = 0; i < 7; i++, d++ ) {
+			const row = [];
+			for ( let i = 0; i < 7; i++, d++ ) {
 				dt = new Date( t );
 				dt[ setDate ]( d );
 				row[ i ] = {
