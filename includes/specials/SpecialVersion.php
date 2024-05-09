@@ -898,16 +898,33 @@ class SpecialVersion extends SpecialPage {
 			)
 		);
 
+		$funcSynonyms = $this->parserFactory->getMainInstance()->getFunctionSynonyms();
+		// This will give us the preferred synonyms in the content language, as if
+		// we used MagicWord::getSynonym( 0 ), because they appear first in the arrays.
+		// We can't use MagicWord directly, because only Parser knows whether a function
+		// uses the leading "#" or not. Case-sensitive functions ("1") win over
+		// case-insensitive ones ("0"), like in Parser::callParserFunction().
+		// There should probably be a better API for this.
+		$preferredSynonyms = array_flip( array_reverse( $funcSynonyms[1] + $funcSynonyms[0] ) );
+		array_walk( $funcHooks, static function ( &$value ) use ( $preferredSynonyms ) {
+			$value = $preferredSynonyms[$value];
+		} );
+
+		// Sort case-insensitively, ignoring the leading '#' if present
+		usort( $funcHooks, static function ( $a, $b ) {
+			return strcasecmp( ltrim( $a, '#' ), ltrim( $b, '#' ) );
+		} );
+
 		array_walk( $funcHooks, static function ( &$value ) {
 			// Bidirectional isolation ensures it displays as {{#ns}} and not {{ns#}} in RTL wikis
 			$value = Html::rawElement(
 				'bdi',
 				[],
-				Html::element( 'code', [], "{{#$value}}" )
+				Html::element( 'code', [], '{{' . $value . '}}' )
 			);
 		} );
 
-		$out .= $this->listToText( $funcHooks );
+		$out .= $this->getLanguage()->listToText( $funcHooks );
 
 		return $out;
 	}
