@@ -2159,6 +2159,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Sparql\\SparqlException' => __DIR__ . '/includes/sparql/SparqlException.php',
 	'MediaWiki\\SpecialPage\\AuthManagerSpecialPage' => __DIR__ . '/includes/specialpage/AuthManagerSpecialPage.php',
 	'MediaWiki\\SpecialPage\\ChangesListSpecialPage' => __DIR__ . '/includes/specialpage/ChangesListSpecialPage.php',
+	'MediaWiki\\SpecialPage\\ContributionsSpecialPage' => __DIR__ . '/includes/specialpage/ContributionsSpecialPage.php',
 	'MediaWiki\\SpecialPage\\DisabledSpecialPage' => __DIR__ . '/includes/specialpage/DisabledSpecialPage.php',
 	'MediaWiki\\SpecialPage\\FormSpecialPage' => __DIR__ . '/includes/specialpage/FormSpecialPage.php',
 	'MediaWiki\\SpecialPage\\Hook\\AuthChangeFormFieldsHook' => __DIR__ . '/includes/specialpage/Hook/AuthChangeFormFieldsHook.php',
