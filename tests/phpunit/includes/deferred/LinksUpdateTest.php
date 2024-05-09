@@ -837,7 +837,11 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 
 		$update->doUpdate();
 
-		$this->assertSelect( $table, $fields, $condition, $expectedRows );
+		$this->newSelectQueryBuilder()
+			->select( $fields )
+			->from( $table )
+			->where( $condition )
+			->assertResultSet( $expectedRows );
 		return $update;
 	}
 
