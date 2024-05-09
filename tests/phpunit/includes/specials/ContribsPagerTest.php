@@ -24,7 +24,6 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Database
  * @covers \MediaWiki\Pager\ContribsPager
- * @covers \MediaWiki\Pager\ContributionsPager
  */
 class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	use TempUserTestTrait;
