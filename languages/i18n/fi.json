@@ -1056,6 +1056,7 @@
 	"diff-paragraph-moved-toold": "Kappale siirrettiin. Napsauta hypätäksesi vanhaan sijaintiin.",
 	"diff-inline-tooltip-ins": "Lisätty sisältö",
 	"diff-inline-tooltip-del": "Poistettu sisältö",
+	"diff-inline-format-label": "Rivinsisäinen",
 	"diff-line-deleted": "⟵ poista",
 	"diff-newline": "↲ rivinvaihto",
 	"difference-missing-revision": "{{PLURAL:$2|Yhtä versiota|$2 versiota}} tästä vertailusta ($1) {{PLURAL:$2|ei}} löytynyt.\n\nUseimmiten tämä johtuu vanhentuneesta vertailulinkistä poistettuun sivuun.\nLisätietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokista].",

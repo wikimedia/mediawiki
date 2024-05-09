@@ -372,7 +372,7 @@
 	"apihelp-query+allusers-param-rights": "Inkludera bara användare med de givna rättigheterna. Inkluderar inte rättigheter givna med implicita eller automatiskt promotade grupper som *, användare, eller auto-konfirmerad.",
 	"apihelp-query+allusers-param-limit": "Hur många användarnamn att returnera totalt.",
 	"apihelp-query+allusers-param-witheditsonly": "Lista bara användare som har gjort redigeringar.",
-	"apihelp-query+allusers-param-activeusers": "Lista bara användare aktiva i dem sista $1{{PLURAL:$1|dagen|dagarna}}.",
+	"apihelp-query+allusers-param-activeusers": "Lista bara användare aktiva under de sista $1 {{PLURAL:$1|dagen|dagarna}}.",
 	"apihelp-query+allusers-example-y": "Lista användare som börjar på <kbd>Y</kbd>.",
 	"apihelp-query+authmanagerinfo-summary": "Hämta information om aktuell autentiseringsstatus.",
 	"apihelp-query+backlinks-summary": "Hitta alla sidor som länkar till den givna sidan.",

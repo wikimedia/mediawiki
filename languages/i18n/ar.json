@@ -2649,6 +2649,7 @@
 	"undelete-undeletetalk": "استرجع جميع نسخ صفحة النقاش المرتبطة",
 	"undeleteinvert": "اعكس الاختيار",
 	"undeletecomment": "السبب:",
+	"undeleteothercomment": "سبب آخر/إضافي",
 	"undeletecommentotherlist": "سبب آخر",
 	"undelete-edit-commentlist": "عدل أسباب الاسترجاع",
 	"cannotundelete": "بعض أو كل عملية الاسترجاع فشلت:\n$1",

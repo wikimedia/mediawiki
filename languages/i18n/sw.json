@@ -32,7 +32,8 @@
 			"Wangombe",
 			"Yasen igra",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Sheilawangari"
 		]
 	},
 	"tog-underline": "Wekea mstari viungo:",
@@ -557,7 +558,7 @@
 	"summary-preview": "Hakikisho la muhtasari:",
 	"previewerrortext": "Hitilafu ilitokea wakati ya kujaribu hakikisho mabadiliko yako.",
 	"blockedtitle": "Mtumiaji amezuiwa",
-	"blockedtext": "<strong>Jina lako la mtumiaji au anwani ya IP imezuiwa.</strong> \n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nUnaweza kutumia kipengele cha \"{{int:emailuser}}\" ikiwa barua pepe halali imebainishwa katika [[Special:Preferences|preferences]] yako na hujazuiwa kuitumia. {{int:blockedtext-block-ip|$3}}, na kitambulisho cha kuzuia ni # $5 .\n{{int:blockedtext-include-details-queries}}",
+	"blockedtext": "<strong>Jina lako la mtumiaji au anwani ya IP imezuiwa.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nUnaweza kutumia kipengele cha \"{{int:emailuser}}\" ikiwa barua pepe halali imebainishwa katika [[Special:Preferences|preferences]] yako na hujazuiwa kuitumia. {{int:blockedtext-block-ip|$3}}, na kitambulisho cha kuzuia ni # $5 .\n{{int:blockedtext-include-details-queries}}",
 	"autoblockedtext": "Anwani yako ya IP imezuiwa kiotomatiki kwa sababu ilitumiwa na mtumiaji mwingine, ambaye alizuiwa na $1 .\nSababu iliyotolewa ni:\n\n: <em>$2</em> .\n\n*{{int:blockedtext -wakati wa kuanza|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}} \n\nUnaweza kutumia kipengele cha \"{{int:emailuser}}\" ikiwa barua pepe halali imebainishwa katika [[Special:Preferences|preferences]] yako na hujazuiwa kuitumia. .\n\n{{int:blockedtext-block-ip|$3}}, na kitambulisho cha kuzuia ni # $5 .\n{{int:blockedtext-include-details-queries}}",
 	"blockednoreason": "sababu haikutajwa",
 	"whitelistedittext": "Inabidi $1 ili uweze kuhariri kurasa.",
@@ -794,8 +795,8 @@
 	"showhideselectedversions": "Onyesha/ficha mapitio yaliyoteuliwa",
 	"editundo": "tengua",
 	"diff-empty": "(Hakuna tofauti)",
-	"diff-multi-sameuser": "( {{PLURAL:$1| Sahihisho moja la kati| marekebisho $1 ya kati}} na mtumiaji yuleyule ambaye hajaonyeshwa)",
-	"diff-multi-otherusers": "({{PLURAL:$1| Sahihisho moja la kati| marekebisho ya kati $1 }} ya {{PLURAL:$2| mtumiaji mwingine mmoja| watumiaji $2 }} hayajaonyeshwa)",
+	"diff-multi-sameuser": "({{PLURAL:$1| Sahihisho moja la kati| marekebisho $1 ya kati}} na {{GENDER:$3|mtumizi}} yuleyule ambaye hajaonyeshwa)",
+	"diff-multi-otherusers": "({{PLURAL:$1|Sahihisho moja la kati| marekebisho $1 ya kati}} na {{PLURAL:$2|mtumizi mwingine|watumizi wengine $2}} na yule ambaye hajaonyeshwa)",
 	"searchresults": "Matokeo ya utafutaji",
 	"search-filter-title-prefix": "Kutafuta katika kurasa zenye kichwa kianzacho na \"$1\" pekee",
 	"search-filter-title-prefix-reset": "Tafuta kurasa zote",

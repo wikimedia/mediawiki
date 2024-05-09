@@ -55,7 +55,8 @@
 			"פוילישער",
 			"שומבלע",
 			"שמזן",
-			"תומר ט"
+			"תומר ט",
+			"Purple-bananana"
 		]
 	},
 	"tog-underline": "סימון קישורים בקו תחתי:",
@@ -112,9 +113,9 @@
 	"editfont-monospace": "גופן ברוחב אחיד (monospace)",
 	"editfont-sansserif": "גופן ללא תגים (sans-serif)",
 	"editfont-serif": "גופן עם תגים (serif)",
-	"sunday": "ראשון",
-	"monday": "שני",
-	"tuesday": "שלישי",
+	"sunday": "יוֹם רִאשׁוֹן",
+	"monday": "יוֹם שֵׁנִי",
+	"tuesday": "יוֹם שְׁלִישִׁי",
 	"wednesday": "רביעי",
 	"thursday": "חמישי",
 	"friday": "שישי",
@@ -138,8 +139,8 @@
 	"october": "אוקטובר",
 	"november": "נובמבר",
 	"december": "דצמבר",
-	"january-gen": "בינואר",
-	"february-gen": "בפברואר",
+	"january-gen": "ינואר",
+	"february-gen": "פברואר",
 	"march-gen": "במרץ",
 	"april-gen": "באפריל",
 	"may-gen": "במאי",

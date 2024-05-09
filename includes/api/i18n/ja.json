@@ -25,7 +25,8 @@
 			"Yamagata Yusuke",
 			"Yusuke1109",
 			"Yuukin0248",
-			"ネイ"
+			"ネイ",
+			"Chqaz"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|説明文書]]\n* [[mw:Special:MyLanguage/API:Etiquette|礼儀と使い方ガイド]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ メーリングリスト]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ API 告知]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R バグの報告とリクエスト]\n</div>\n<strong>状態:</strong> MediaWiki APIは、積極的にサポートされ、改善された成熟した安定したインターフェースです。避けようとはしていますが、時には破壊的変更を行う必要があるかもしれません。更新の通知を受け取るには、[https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ mediawiki-api-announce メーリングリスト]に参加してください。\n\n<strong>誤ったリクエスト:</strong> 誤ったリクエストが API に送られた場合、\"MediaWiki-API-Error\" HTTP ヘッダーが送信され、そのヘッダーの値と送り返されるエラーコードは同じ値にセットされます。より詳しい情報は [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Errors and warnings]] を参照してください。\n\n<p class=\"mw-apisandbox-link\"><strong>テスト:</strong> API のリクエストのテストは、[[Special:ApiSandbox]]で簡単に行えます。</p>",
@@ -1142,6 +1143,7 @@
 	"apierror-permissiondenied": "$1に必要な権限がありません。",
 	"apierror-permissiondenied-generic": "アクセスが拒否されました。",
 	"apierror-permissiondenied-unblock": "あなたには利用者のブロックを解除する権限がありません。",
+	"apierror-readapidenied": "このモジュールを使用するにはページを閲覧する権限が必要です。",
 	"apierror-readonly": "ウィキは現在読み取り専用モードです。",
 	"apierror-revwrongpage": "版 $1 は $2 の版ではありません。",
 	"apierror-specialpage-cantexecute": "あなたにはこの特別ページの結果を閲覧する権限がありません。",

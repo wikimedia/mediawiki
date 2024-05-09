@@ -147,7 +147,8 @@
 			"Yiyi",
 			"ZioNicco",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Champ0999"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -1811,6 +1812,7 @@
 	"upload": "Carica un file",
 	"uploadbtn": "Carica",
 	"reuploaddesc": "Torna al modulo per il caricamento.",
+	"upload-refresh": "Aggiorna",
 	"upload-tryagain": "Invia la descrizione del file modificato",
 	"upload-tryagain-nostash": "Invia file ricaricato e descrizione modificata",
 	"uploadnologin": "Accesso non effettuato",
@@ -2866,6 +2868,8 @@
 	"unblocklink": "sblocca",
 	"change-blocklink": "cambia blocco",
 	"empty-username": "(nessun nome utente disponibile)",
+	"blocklist-hidden-placeholder": "(nome utente nascosto)",
+	"blocklist-hidden-param": "nome utente nascosto",
 	"contribslink": "contributi",
 	"emaillink": "invia email",
 	"autoblocker": "Bloccato automaticamente perché l'indirizzo IP è condiviso con l'utente \"[[User:$1|$1]]\".\nIl blocco dell'utente $1 è stato imposto per il seguente motivo: \"$2\".",

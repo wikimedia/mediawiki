@@ -2610,7 +2610,7 @@
 	"immobile-source-namespace": "Ne mogu premjestiti stranice u imenski prostor \"$1\"",
 	"immobile-target-namespace": "Ne mogu premjestiti stranice u imenski prostor \"$1\"",
 	"immobile-target-namespace-iw": "Međuwiki poveznica nije valjano odredište za premještanje stranice.",
-	"immobile-source-page": "Ova stranica je se ne može premjestiti.",
+	"immobile-source-page": "Ova se stranica ne može premjestiti.",
 	"immobile-target-page": "Ne mogu premjestiti na željeni naslov.",
 	"bad-target-model": "Željeno odredište rabi drugačiji tip sadržaja. Ne mogu pretvoriti $1 u $2.",
 	"imagenocrossnamespace": "Datoteka ne može biti premještena u imenski prostor koji nije za datoteke",
