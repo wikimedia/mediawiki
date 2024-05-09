@@ -231,8 +231,7 @@ class SpecialVersion extends SpecialPage {
 					$this->getEntryPointInfo(),
 					$this->getSkinCredits( $credits ),
 					$this->getExtensionCredits( $credits ),
-					$this->getExternalLibraries( $credits ),
-					$this->getClientSideLibraries(),
+					$this->getLibraries( $credits ),
 					$this->getParserTags(),
 					$this->getParserFunctionHooks(),
 					$this->getHooks(),
@@ -642,7 +641,27 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * Generate an HTML table for external libraries that are installed
+	 * Generate the section for installed external libraries
+	 *
+	 * @param array $credits
+	 * @return string
+	 */
+	protected function getLibraries( array $credits ) {
+		$this->addTocSection( 'version-libraries', 'mw-version-libraries' );
+
+		$out = Html::element(
+			'h2',
+			[ 'id' => 'mw-version-libraries' ],
+			$this->msg( 'version-libraries' )->text()
+		);
+
+		return $out
+			. $this->getExternalLibraries( $credits )
+			. $this->getClientSideLibraries();
+	}
+
+	/**
+	 * Generate an HTML table for external server-side libraries that are installed
 	 *
 	 * @param array $credits
 	 * @return string
@@ -683,12 +702,12 @@ class SpecialVersion extends SpecialPage {
 
 		ksort( $dependencies );
 
-		$this->addTocSection( 'version-libraries', 'mw-version-libraries' );
+		$this->addTocSubSection( $this->msg( 'version-libraries-server' )->text(), 'mw-version-libraries-server' );
 
 		$out = Html::element(
-			'h2',
-			[ 'id' => 'mw-version-libraries' ],
-			$this->msg( 'version-libraries' )->text()
+			'h3',
+			[ 'id' => 'mw-version-libraries-server' ],
+			$this->msg( 'version-libraries-server' )->text()
 		);
 		$out .= Html::openElement(
 			'table',
@@ -778,10 +797,10 @@ class SpecialVersion extends SpecialPage {
 	 * @return string HTML output
 	 */
 	private function getClientSideLibraries() {
-		$this->addTocSection( 'version-libraries-client', 'mw-version-libraries-client' );
+		$this->addTocSubSection( $this->msg( 'version-libraries-client' )->text(), 'mw-version-libraries-client' );
 
 		$out = Html::element(
-			'h2',
+			'h3',
 			[ 'id' => 'mw-version-libraries-client' ],
 			$this->msg( 'version-libraries-client' )->text()
 		);
