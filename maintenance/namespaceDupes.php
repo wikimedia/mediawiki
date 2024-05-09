@@ -96,6 +96,9 @@ class NamespaceDupes extends Maintenance {
 			"Talk:File:Foo -> File_Talk:Foo" );
 	}
 
+	/**
+	 * @suppress PhanPluginUnreachableCode
+	 */
 	public function execute() {
 		$options = [
 			'fix' => $this->hasOption( 'fix' ),
@@ -106,6 +109,8 @@ class NamespaceDupes extends Maintenance {
 			'source-pseudo-namespace' => $this->getOption( 'source-pseudo-namespace', '' ),
 			'dest-namespace' => intval( $this->getOption( 'dest-namespace', 0 ) )
 		];
+
+		$this->fatalError( "Unsafe to run at this time. See: T364546\n" );
 
 		if ( $options['source-pseudo-namespace'] !== '' ) {
 			$retval = $this->checkPrefix( $options );
