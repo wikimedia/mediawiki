@@ -56,9 +56,7 @@ abstract class ContentDOMTransformStage implements OutputTransformStage {
 				]
 			);
 			$pb = DOMDataUtils::getPageBundle( $doc );
-			$po = PageBundleParserOutputConverter::parserOutputFromPageBundle(
-				$pb, $po
-			);
+			PageBundleParserOutputConverter::applyPageBundleDataToParserOutput( $pb, $po );
 			$text = ContentUtils::toXML( DOMCompat::getBody( $doc ), [
 				'innerXML' => true,
 			] );
