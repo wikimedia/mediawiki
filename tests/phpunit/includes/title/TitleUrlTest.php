@@ -36,7 +36,6 @@ class TitleUrlTest extends MediaWikiLangTestCase {
 		] );
 
 		// Some tests use interwikis - define valid prefixes and their configuration
-		// DummyServicesTrait::getDummyInterwikiLookup
 		$interwikiLookup = $this->getDummyInterwikiLookup( [
 			[ 'iw_prefix' => 'acme', 'iw_url' => 'https://acme.test/$1' ],
 			[ 'iw_prefix' => 'yy', 'iw_url' => '//yy.wiki.test/wiki/$1', 'iw_local' => true ]

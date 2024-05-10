@@ -44,7 +44,6 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 			CONTENT_MODEL_TEXT => true,
 		] );
 
-		// DummyServicesTrait::getDummyMediaWikiTitleCodec
 		$titleCodec = $this->getDummyMediaWikiTitleCodec();
 
 		/** @var RevisionLookup|MockObject $revisionLookup */

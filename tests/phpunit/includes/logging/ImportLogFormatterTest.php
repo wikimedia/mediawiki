@@ -113,7 +113,6 @@ class ImportLogFormatterTest extends LogFormatterTestCase {
 	 */
 	public function testInterwikiLogDatabaseRows( $row, $extra ) {
 		// Setup importiw: as interwiki prefix
-		// DummyServicesTrait::getDummyInterwikiLookup
 		$interwikiLookup = $this->getDummyInterwikiLookup( [ 'importiw' ] );
 		$this->setService( 'InterwikiLookup', $interwikiLookup );
 
