@@ -1346,6 +1346,14 @@ class DifferenceEngine extends ContextSource {
 		return $this->addHeader( $body, $otitle, $ntitle, $multi, $notice );
 	}
 
+	private function incrementStats( string $cacheStatus ): void {
+		$stats = MediaWikiServices::getInstance()->getStatsFactory();
+		$stats->getCounter( 'diff_cache_total' )
+			->setLabel( 'status', $cacheStatus )
+			->copyToStatsdAt( 'diff_cache.' . $cacheStatus )
+			->increment();
+	}
+
 	/**
 	 * Get the diff table body, without header
 	 *
@@ -1396,7 +1404,7 @@ class DifferenceEngine extends ContextSource {
 			if ( !$this->mRefreshCache ) {
 				$difftext = $cache->get( $key );
 				if ( is_string( $difftext ) ) {
-					$stats->updateCount( 'diff_cache.hit', 1 );
+					$this->incrementStats( 'hit' );
 					$difftext = $this->localiseDiff( $difftext );
 					$this->cacheHitKey = $key;
 					return $difftext;
@@ -1432,12 +1440,12 @@ class DifferenceEngine extends ContextSource {
 
 		// Save to cache for 7 days
 		if ( !$this->hookRunner->onAbortDiffCache( $this ) ) {
-			$stats->updateCount( 'diff_cache.uncacheable', 1 );
+			$this->incrementStats( 'uncacheable' );
 		} elseif ( $key !== false ) {
-			$stats->updateCount( 'diff_cache.miss', 1 );
+			$this->incrementStats( 'miss' );
 			$cache->set( $key, $difftext, 7 * 86400 );
 		} else {
-			$stats->updateCount( 'diff_cache.uncacheable', 1 );
+			$this->incrementStats( 'uncacheable' );
 		}
 		// localise line numbers and title attribute text
 		$difftext = $this->localiseDiff( $difftext );
