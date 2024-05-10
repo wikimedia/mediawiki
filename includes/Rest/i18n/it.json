@@ -5,9 +5,10 @@
 			"GpieroMW"
 		]
 	},
-	"rest-prefix-mismatch": "Il percorso richiesto ($1) non è all'interno del percorso radice REST API ($2)",
+	"rest-prefix-mismatch": "Il percorso richiesto ($1) non è all'interno del percorso base REST API ($2)",
 	"rest-wrong-method": "Il metodo richiesto ($1) non è {{PLURAL:$3|un metodo consentito per questo percorso|uno dei metodi consentiti per questo percorso}} ($2)",
 	"rest-no-match": "Il relativo percorso ($1) richiesto non coincide con nessun controller conosciuto",
+	"rest-unknown-module": "Il nome del modulo richiesto ($1) è sconosciuto",
 	"rest-nonexistent-title": "La pagina indicata ($1) non esiste",
 	"rest-nonexistent-title-revision": "La versione richiesta ($1) non esiste per la pagina indicata ($2)",
 	"rest-nonexistent-revision": "La versione richiesta ($1) non esiste",

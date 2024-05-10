@@ -10,9 +10,11 @@
 			"No se"
 		]
 	},
-	"rest-prefix-mismatch": "La ruta solicitada ($1) no estaba dentro de la ruta raíz ($2) de la API REST",
+	"rest-prefix-mismatch": "La ruta solicitada ($1) no estaba en la ruta base de la API REST ($2)",
+	"rest-bad-prefix": "La ruta del punto final ($1) no contiene un prefijo de módulo válido",
 	"rest-wrong-method": "El método solicitado ($1) no estaba en {{PLURAL:$3|los métodos permitidos para esta ruta|uno de los métodos permitidos para esta ruta}} ($2)",
 	"rest-no-match": "La ruta relativa solicitada ($1) no coincide con ningún controlador conocido",
+	"rest-unknown-module": "Se desconoce el nombre del módulo solicitado ($1)",
 	"rest-nonexistent-title": "El título especificado ($1) no existe",
 	"rest-nonexistent-title-revision": "La versión especificada ($1) no existe para la página especificada ($2)",
 	"rest-nonexistent-revision": "No existe la revisión especificada ($1)",
