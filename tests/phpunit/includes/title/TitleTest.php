@@ -53,7 +53,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->setUserLang( 'en' );
 
 		// Define valid interwiki prefixes and their configuration
-		// DummyServicesTrait::getDummyInterwikiLookup
 		$interwikiLookup = $this->getDummyInterwikiLookup( [
 			// testSecureAndSplitValid, testSecureAndSplitInvalid
 			[ 'iw_prefix' => 'localtestiw', 'iw_url' => 'localtestiw' ],
@@ -73,7 +72,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			[ 'iw_prefix' => 'zz', 'iw_local' => 0 ],
 
 			// Some tests use interwikis - define valid prefixes and their configuration
-			// DummyServicesTrait::getDummyInterwikiLookup
 			[ 'iw_prefix' => 'acme', 'iw_url' => 'https://acme.test/$1' ],
 			[ 'iw_prefix' => 'yy', 'iw_url' => 'https://yy.wiki.test/wiki/$1', 'iw_local' => true ]
 		] );

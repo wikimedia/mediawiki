@@ -58,7 +58,6 @@ class LanguageLinksHandlerTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getHookContainer()
 		);
 
-		// DummyServicesTrait::getDummyMediaWikiTitleCodec
 		$titleCodec = $this->getDummyMediaWikiTitleCodec();
 
 		return new LanguageLinksHandler(

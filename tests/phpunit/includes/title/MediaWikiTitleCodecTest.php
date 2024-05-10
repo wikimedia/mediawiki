@@ -79,7 +79,6 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 	 * @return InterwikiLookup
 	 */
 	private function getInterwikiLookup(): InterwikiLookup {
-		// DummyServicesTrait::getDummyInterwikiLookup
 		return $this->getDummyInterwikiLookup( [ 'localtestiw', 'remotetestiw' ] );
 	}
 
@@ -91,8 +90,6 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 	 * @return NamespaceInfo
 	 */
 	private function getNamespaceInfo(): NamespaceInfo {
-		// DummyServicesTrait::getDummyNamespaceInfo with the relevant overrides (the
-		// namespaces that exist, and the capitalization)
 		return $this->getDummyNamespaceInfo( [
 			'CanonicalNamespaceNames' => [
 				NS_SPECIAL => 'Special',

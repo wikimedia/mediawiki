@@ -137,7 +137,6 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 	 * @return DefaultPreferencesFactory
 	 */
 	protected function getPreferencesFactory( array $options = [] ) {
-		// DummyServicesTrait::getDummyNamespaceInfo
 		$nsInfo = $this->getDummyNamespaceInfo();
 
 		$services = $this->getServiceContainer();

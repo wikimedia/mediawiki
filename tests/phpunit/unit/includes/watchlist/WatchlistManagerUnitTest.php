@@ -63,7 +63,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 		$hookContainer = $params['hookContainer'] ?? $this->createHookContainer();
 
-		// DummyServicesTrait::getDummyNamespaceInfo
 		$nsInfo = $this->getDummyNamespaceInfo( [
 			'hookContainer' => $hookContainer, // in case any of the hooks matter
 		] );
@@ -556,7 +555,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		);
 		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
 
-		// DummyServicesTrait::getDummyWatchedItemStore
 		$watchedItemStore = $this->getDummyWatchedItemStore();
 		$watchedItemStore->expects( $this->exactly( 4 ) )->method( 'addWatch' ); // watch page and its talk page twice
 		$watchedItemStore->expects( $this->never() )->method( 'removeWatch' );
@@ -582,7 +580,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		$performer = $this->mockUserAuthorityWithPermissions( $userIdentity, [ 'editmywatchlist' ] );
 		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
 
-		// DummyServicesTrait::getDummyWatchedItemStore
 		$watchedItemStore = $this->getDummyWatchedItemStore();
 		$watchedItemStore->expects( $this->never() )->method( 'addWatch' );
 		$watchedItemStore->expects( $this->never() )->method( 'removeWatch' );
@@ -608,7 +605,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		);
 		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
 
-		// DummyServicesTrait::getDummyWatchedItemStore
 		$watchedItemStore = $this->getDummyWatchedItemStore();
 		$watchedItemStore->expects( $this->exactly( 2 ) )->method( 'addWatch' ); // watch page and its talk page
 		$watchedItemStore->expects( $this->never() )->method( 'removeWatch' );
@@ -638,7 +634,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		);
 		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
 
-		// DummyServicesTrait::getDummyWatchedItemStore
 		$watchedItemStore = $this->getDummyWatchedItemStore();
 		$watchedItemStore->expects( $this->never() )->method( 'addWatch' );
 		$watchedItemStore->expects( $this->never() )->method( 'removeWatch' );
@@ -664,7 +659,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		);
 		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
 
-		// DummyServicesTrait::getDummyWatchedItemStore
 		$watchedItemStore = $this->getDummyWatchedItemStore();
 		$watchlistManager = $this->getManager( [
 			'userFactory' => $userFactory,
@@ -690,7 +684,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		);
 		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
 
-		// DummyServicesTrait::getDummyWatchedItemStore
 		$watchedItemStore = $this->getDummyWatchedItemStore();
 		$watchlistManager = $this->getManager( [
 			'userFactory' => $userFactory,
@@ -714,7 +707,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		);
 		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
 
-		// DummyServicesTrait::getDummyWatchedItemStore
 		$watchedItemStore = $this->getDummyWatchedItemStore();
 		$watchlistManager = $this->getManager( [
 			'userFactory' => $userFactory,
@@ -738,7 +730,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		);
 		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
 
-		// DummyServicesTrait::getDummyWatchedItemStore
 		$watchedItemStore = $this->getDummyWatchedItemStore();
 		$watchlistManager = $this->getManager( [
 			'userFactory' => $userFactory,
@@ -767,7 +758,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 				return false;
 			},
 		] );
-		// DummyServicesTrait::getDummyWatchedItemStore
 		$watchedItemStore = $this->getDummyWatchedItemStore();
 		$watchlistManager = $this->getManager( [
 			'hookContainer' => $hookContainer,
@@ -794,7 +784,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		);
 		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
 
-		// DummyServicesTrait::getDummyWatchedItemStore
 		$watchedItemStore = $this->getDummyWatchedItemStore();
 		$watchlistManager = $this->getManager( [
 			'userFactory' => $userFactory,

@@ -27,7 +27,6 @@ class ApiQueryTest extends ApiTestCase {
 		parent::setUp();
 
 		// Setup apiquerytestiw: as interwiki prefix
-		// DummyServicesTrait::getDummyInterwikiLookup
 		$interwikiLookup = $this->getDummyInterwikiLookup( [
 			[ 'iw_prefix' => 'apiquerytestiw', 'iw_url' => 'wikipedia' ],
 		] );

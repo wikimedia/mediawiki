@@ -68,7 +68,6 @@ class ExternalUserNamesTest extends MediaWikiIntegrationTestCase {
 	public function testGetUserLinkTitle( $caseDescription, $username, $expected ) {
 		$this->setContentLang( 'en' );
 
-		// DummyServicesTrait::getDummyInterwikiLookup
 		$interwikiLookup = $this->getDummyInterwikiLookup( [ 'valid' ] );
 		$this->setService( 'InterwikiLookup', $interwikiLookup );
 

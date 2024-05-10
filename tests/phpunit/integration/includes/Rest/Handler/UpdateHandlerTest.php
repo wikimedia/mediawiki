@@ -64,7 +64,6 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 			[ CONTENT_MODEL_WIKITEXT => $wikitextContentHandler ]
 		);
 
-		// DummyServicesTrait::getDummyMediaWikiTitleCodec
 		$titleCodec = $this->getDummyMediaWikiTitleCodec();
 
 		/** @var RevisionLookup|MockObject $revisionLookup */

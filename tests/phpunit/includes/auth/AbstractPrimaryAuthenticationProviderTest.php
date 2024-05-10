@@ -148,7 +148,6 @@ class AbstractPrimaryAuthenticationProviderTest extends MediaWikiIntegrationTest
 	 */
 	public function testProviderNormalizeUsername( $name, $expect ) {
 		// fake interwiki map for the 'Interwiki prefix' testcase
-		// DummyServicesTrait::getDummyInterwikiLookup
 		$interwikiLookup = $this->getDummyInterwikiLookup( [ 'interwiki' ] );
 		$this->setService( 'InterwikiLookup', $interwikiLookup );
 
