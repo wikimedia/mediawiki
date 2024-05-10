@@ -1,7 +1,4 @@
-"use strict";
-/* eslint quotes: ["error", "double"] */
-/* eslint quote-props: ["error", "always"] */
-module.exports = {
+{
 	"opts": {
 		"destination": "docs/js",
 		"package": "resources/package.json",
@@ -119,4 +116,4 @@ module.exports = {
 			}
 		}
 	}
-};
+}
