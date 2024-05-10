@@ -44,6 +44,9 @@ class ReadOnlyMode {
 	 *
 	 * Calling this may result in database connection.
 	 *
+	 * This method accepts virtual domains
+	 * ({@see \MediaWiki\MainConfigSchema::VirtualDomainsMapping}).
+	 *
 	 * @param string|false $domain Domain ID, or false for the current domain
 	 * @return string|false String when in read-only mode; false otherwise
 	 */
@@ -52,7 +55,7 @@ class ReadOnlyMode {
 		if ( $reason !== false ) {
 			return $reason;
 		}
-		$reason = $this->lbFactory->getMainLB( $domain )->getReadOnlyReason();
+		$reason = $this->lbFactory->getLoadBalancer( $domain )->getReadOnlyReason();
 		return $reason ?? false;
 	}
 
