@@ -38,7 +38,7 @@ class CentralIdLookupFactoryTest extends MediaWikiUnitTestCase {
 				MainConfigNames::SharedTables => [],
 				MainConfigNames::LocalDatabases => [],
 			] ),
-			'HideUserUtils' => new HideUserUtils( SCHEMA_COMPAT_OLD )
+			'HideUserUtils' => new HideUserUtils( SCHEMA_COMPAT_NEW )
 		];
 		$localIdLookupTest = [
 			'class' => LocalIdLookup::class,

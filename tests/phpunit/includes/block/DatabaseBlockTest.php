@@ -3,6 +3,7 @@
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\DAO\WikiAwareEntity;
@@ -418,11 +419,11 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
-		$blockQuery = DatabaseBlock::getQueryInfo();
+		$blockQuery = $blockStore->getQueryInfo( DatabaseBlockStore::SCHEMA_BLOCK );
 		$row = $this->db->newSelectQueryBuilder()
 			->queryInfo( $blockQuery )
 			->where( [
-				'ipb_id' => $block->getId(),
+				'bl_id' => $block->getId(),
 			] )
 			->caller( __METHOD__ )
 			->fetchRow();

@@ -1153,7 +1153,7 @@ return [
 			'BlockDisablesLogin' => false,
 			'EnablePartialActionBlocks' => false,
 			'EnableMultiBlocks' => false,
-			'BlockTargetMigrationStage' => 3,
+			'BlockTargetMigrationStage' => 768,
 			'WhitelistRead' => false,
 			'WhitelistReadRegexp' => false,
 			'EmailConfirmToEdit' => false,

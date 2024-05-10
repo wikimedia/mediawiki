@@ -69,7 +69,7 @@ class ActorStoreFactoryTest extends MediaWikiUnitTestCase {
 			$this->createNoOpMock( UserNameUtils::class ),
 			$this->createMock( TempUserConfig::class ),
 			new NullLogger(),
-			new HideUserUtils( SCHEMA_COMPAT_READ_OLD )
+			new HideUserUtils( SCHEMA_COMPAT_NEW )
 		);
 		$notFromCache = $factory->getActorStore( $domain );
 		$this->assertInstanceOf( ActorStore::class, $notFromCache );

@@ -4955,7 +4955,7 @@ config-schema:
             If this is false, the number of blocks of a given target is limited to only 1.
             @since 1.42
     BlockTargetMigrationStage:
-        default: 3
+        default: 768
         type: integer
         description: |4-
              Ipblocks table schema migration stage, for normalizing ipb_address field and
@@ -4966,6 +4966,7 @@ config-schema:
               - SCHEMA_COMPAT_NEW
             History:
               - 1.42: Added
+              - 1.43: Default changed from SCHEMA_COMPAT_OLD to SCHEMA_COMPAT_NEW
     WhitelistRead:
         default: false
         description: |-
