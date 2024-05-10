@@ -22,8 +22,8 @@ use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\Message\ITextFormatter;
 
 /**
- * @coversDefaultClass \MediaWiki\Mail\EmailUser
- * @covers ::__construct
+ * @group Mail
+ * @covers \MediaWiki\Mail\EmailUser
  */
 class EmailUserTest extends MediaWikiUnitTestCase {
 	private function getEmailUser(
@@ -60,7 +60,6 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::validateTarget
 	 * @dataProvider provideValidateTarget
 	 */
 	public function testValidateTarget(
@@ -149,7 +148,6 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::authorizeSend
 	 * @dataProvider provideCanSend
 	 * @dataProvider provideAuthorizeSend
 	 */
@@ -170,7 +168,6 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::canSend
 	 * @dataProvider provideCanSend
 	 */
 	public function testCanSend(
@@ -346,7 +343,6 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::sendEmailUnsafe
 	 * @dataProvider provideSubmit
 	 */
 	public function testSubmit(

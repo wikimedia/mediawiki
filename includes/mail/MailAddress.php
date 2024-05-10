@@ -1,7 +1,5 @@
 <?php
 /**
- * Classes used to send e-mails
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -27,23 +25,23 @@
 use MediaWiki\Mail\UserEmailContact;
 
 /**
- * Stores a single person's name and email address.
- * These are passed in via the constructor, and will be returned in SMTP
- * header format when requested.
+ * Represent and format a single name and email address pair for SMTP.
+ *
+ * Used by Emailer, e.g. via EmailUser or EmailNotification.
  *
  * @newable
+ * @since 1.6.0
+ * @ingroup Mail
  */
 class MailAddress {
 
 	public string $name;
-
 	public string $realName;
-
 	public string $address;
 
 	/**
 	 * @stable to call
-	 *
+	 * @since 1.6.0
 	 * @param string $address String with an email address
 	 * @param string|null $name Human-readable name if a string address is given
 	 * @param string|null $realName Human-readable real name if a string address is given
@@ -55,20 +53,18 @@ class MailAddress {
 	}
 
 	/**
-	 * Create a new MailAddress object for the given user
-	 *
+	 * @since 1.24
 	 * @param UserEmailContact $user
 	 * @return MailAddress
-	 * @since 1.24
 	 */
 	public static function newFromUser( UserEmailContact $user ) {
 		return new MailAddress( $user->getEmail(), $user->getUser()->getName(), $user->getRealName() );
 	}
 
 	/**
+	 * @since 1.40
 	 * @param self $other
 	 * @return bool
-	 * @since 1.40
 	 */
 	public function equals( self $other ): bool {
 		return $this->address === $other->address &&
@@ -77,7 +73,9 @@ class MailAddress {
 	}
 
 	/**
-	 * Return formatted and quoted address to insert into SMTP headers
+	 * Format and quote address for insertion in SMTP headers
+	 *
+	 * @since 1.6.0
 	 * @return string
 	 */
 	public function toString() {

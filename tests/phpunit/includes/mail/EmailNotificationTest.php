@@ -5,6 +5,7 @@ use MediaWiki\Title\Title;
 
 /**
  * @group Database
+ * @group Mail
  * @covers \EmailNotification
  */
 class EmailNotificationTest extends MediaWikiIntegrationTestCase {

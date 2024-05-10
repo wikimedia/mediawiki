@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @since 1.42
  */
 
 namespace MediaWiki\Tests\Integration\Mail;
@@ -26,9 +25,9 @@ use MediaWiki\Mail\Emailer;
 use MediaWikiIntegrationTestCase;
 
 /**
- * @covers \MediaWiki\Mail\Emailer
- * @covers \UserMailer::send
  * @group Mail
+ * @covers \MediaWiki\Mail\Emailer
+ * @covers \UserMailer
  */
 class EmailerTest extends MediaWikiIntegrationTestCase {
 
@@ -38,17 +37,12 @@ class EmailerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testSend( $to, MailAddress $from, string $subject, string $bodyText, ?string $bodyHtml = null,
 		array $options = [] ) {
-		// Create a new Emailer object.
 		$emailer = new Emailer();
-		// Send an email.
 		$status = $emailer->send( $to, $from, $subject, $bodyText, $bodyHtml, $options );
 		// The test is successful if the status is good.
 		$this->assertTrue( $status->isGood() );
 	}
 
-	/**
-	 * Tests the send method with a bad address.
-	 */
 	public function testSendWithBadAddress() {
 		// Create a new Emailer object.
 		$emailer = new Emailer();

@@ -24,10 +24,13 @@ use MailAddress;
 use StatusValue;
 
 /**
- * Interface for sending emails.
+ * Interface for sending arbitrary emails.
  *
- * @since 1.35
+ * Default implementation is MediaWiki\Mail\Emailer.
+ *
  * @internal
+ * @since 1.35
+ * @ingroup Mail
  */
 interface IEmailer {
 

@@ -1,7 +1,5 @@
 <?php
 /**
- * Classes used to send e-mails
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -36,25 +34,29 @@ use MediaWiki\User\UserArray;
 use MediaWiki\User\UserIdentity;
 
 /**
- * This module processes the email notifications when the current page is
- * changed. It queries the `watchlist` table to find which users are watching
- * that page.
+ * Find watchers and create email notifications after a page is changed.
+ *
+ * After an edit is published to RCFeed, RecentChange::save calls EmailNotification.
+ * Here we query the `watchlist` table (via WatchedItemStore) to find who is watching
+ * a given page, format the emails in question, and dispatch emails to each of them
+ * via the JobQueue.
  *
  * The current implementation sends independent emails to each watching user for
- * the following reason:
- *
- * - Each watching user will be notified about the page edit time expressed in
- * his/her local time (UTC is shown additionally). To achieve this, we need to
+ * the following reason: Each email mentions the page edit time expressed in
+ * the person's local time (UTC is shown additionally). To achieve this, we need to
  * find the individual timeoffset of each watching user from the preferences.
- *
- * Suggested improvement to reduce the number of sent emails: We could think
- * of sending out bulk mails (bcc:user1,user2...) for all these users having the
- * same timeoffset in their preferences.
  *
  * Visit the documentation pages under
  * https://www.mediawiki.org/wiki/Help:Watching_pages
  *
- * TODO use UserOptionsLookup and other services, consider converting this to a service
+ * @todo If the volume becomes too great, we could send out bulk mails (bcc:user1,user2...)
+ * grouped by users having the same timeoffset in their preferences. This would however
+ * need to carefully consider impact of failure rate, re-try behaviour, and idempotence.
+ *
+ * @todo Use UserOptionsLookup and other services, consider converting this to a service
+ *
+ * @since 1.11.0
+ * @ingroup Mail
  */
 class EmailNotification {
 
@@ -118,6 +120,8 @@ class EmailNotification {
 	 *
 	 * May be deferred via the job queue.
 	 *
+	 * @since 1.11.0
+	 * @since 1.35 returns a boolean indicating whether an email job was created.
 	 * @param Authority $editor
 	 * @param Title $title
 	 * @param string $timestamp
@@ -126,7 +130,6 @@ class EmailNotification {
 	 * @param bool $oldid (default: false)
 	 * @param string $pageStatus (default: 'changed')
 	 * @return bool Whether an email job was created or not.
-	 * @since 1.35 returns a boolean indicating whether an email job was created.
 	 */
 	public function notifyOnPageChange(
 		Authority $editor,
@@ -207,6 +210,8 @@ class EmailNotification {
 	 * Send emails corresponding to the user $editor editing the page $title.
 	 *
 	 * @note Do not call directly. Use notifyOnPageChange so that wl_notificationtimestamp is updated.
+	 *
+	 * @since 1.11.0
 	 * @param Authority $editor
 	 * @param Title $title
 	 * @param string $timestamp Edit timestamp
