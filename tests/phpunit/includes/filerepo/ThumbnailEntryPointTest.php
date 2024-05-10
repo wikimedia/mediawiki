@@ -237,13 +237,41 @@ class ThumbnailEntryPointTest extends MediaWikiIntegrationTestCase {
 		$env->assertStatusCode( 400, $output );
 	}
 
-	public function testTransformError() {
+	public static function provideTransformError() {
+		yield 'MediaTransformError' => [
+			new MediaTransformError( 'testing', 200, 100 ),
+			500
+		];
+
+		yield 'thumbnail_image-failure-limit' => [
+			new MediaTransformError( 'thumbnail_image-failure-limit', 200, 100 ),
+			429
+		];
+
+		yield 'no thumb' => [
+			false,
+			500
+		];
+
+		yield 'no file path' => [
+			new ThumbnailImage(
+				new UnregisteredLocalFile( false, false, 'dummy' ),
+				'',
+				false
+			),
+			500
+		];
+	}
+
+	/**
+	 * @dataProvider provideTransformError
+	 */
+	public function testTransformError( $transformOutput, $expectedCode ) {
 		// Mock transformations to return an error
 		$handler = $this->getMockBuilder( BitmapHandler::class )
 			->onlyMethods( [ 'doTransform' ] )
 			->getMock();
 
-		$transformOutput = new MediaTransformError( 'testing', 200, 100 );
 		$handler->method( 'doTransform' )->willReturn( $transformOutput );
 
 		$factory = $this->createNoOpMock( MediaHandlerFactory::class, [ 'getHandler' ] );
@@ -261,7 +289,7 @@ class ThumbnailEntryPointTest extends MediaWikiIntegrationTestCase {
 		$entryPoint->run();
 		$output = $entryPoint->getCapturedOutput();
 
-		$env->assertStatusCode( 500, $output );
+		$env->assertStatusCode( $expectedCode, $output );
 	}
 
 	public function testContentDisposition() {

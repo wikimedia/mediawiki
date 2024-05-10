@@ -33,6 +33,7 @@ namespace MediaWiki\FileRepo;
 use Exception;
 use File;
 use InvalidArgumentException;
+use MediaTransformError;
 use MediaTransformInvalidParametersException;
 use MediaTransformOutput;
 use MediaWiki\Logger\LoggerFactory;
@@ -45,12 +46,16 @@ use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Request\HeaderCallback;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use Message;
 use MessageSpecifier;
 use ObjectCache;
+use RepoGroup;
 use UnregisteredLocalFile;
 use Wikimedia\AtEase\AtEase;
 
 class ThumbnailEntryPoint extends MediaWikiEntryPoint {
+
+	private $varyHeader = [];
 
 	/**
 	 * Main entry point
@@ -82,6 +87,10 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 		$this->streamThumb( $this->getRequest()->getQueryValuesOnly() );
 	}
 
+	private function getRepoGroup(): RepoGroup {
+		return $this->getServiceContainer()->getRepoGroup();
+	}
+
 	/**
 	 * Stream a thumbnail specified by parameters
 	 *
@@ -93,11 +102,10 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 	 *   thumbName (thumbnail name to potentially extract more parameters from
 	 *   e.g. 'lossy-page1-120px-Foo.tiff' would add page, lossy and width
 	 *   to the parameters)
+	 *
 	 * @return void
 	 */
 	protected function streamThumb( array $params ) {
-		$varyOnXFP = $this->getConfig( MainConfigNames::VaryOnXFP );
-
 		$headers = []; // HTTP headers to send
 
 		$fileName = $params['f'] ?? '';
@@ -123,7 +131,7 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 		$isTemp = ( isset( $params['temp'] ) && $params['temp'] );
 		unset( $params['temp'] ); // handlers don't care
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		// Some basic input validation
 		$fileName = strtr( $fileName, '\\/', '__' );
@@ -164,18 +172,8 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 		}
 
 		// Check permissions if there are read restrictions
-		$varyHeader = [];
-		if ( !$services->getGroupPermissionsLookup()->groupHasPermission( '*', 'read' ) ) {
-			$authority = $this->getContext()->getAuthority();
-			$imgTitle = $img->getTitle();
-
-			if ( !$imgTitle || !$authority->authorizeRead( 'read', $imgTitle ) ) {
-				$this->thumbErrorText( 403, 'Access denied. You do not have permission to access ' .
-					'the source file.' );
-				return;
-			}
-			$headers[] = 'Cache-Control: private';
-			$varyHeader[] = 'Cookie';
+		if ( $this->maybeDenyAccess( $img ) ) {
+			return;
 		}
 
 		// Check if the file is hidden
@@ -195,47 +193,24 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 
 		// Check the source file storage path
 		if ( !$img->exists() ) {
-			$redirectedLocation = false;
-			if ( !$isTemp ) {
-				// Check for file redirect
-				// Since redirects are associated with pages, not versions of files,
-				// we look for the most current version to see if its a redirect.
-				$possRedirFile = $localRepo->findFile( $img->getName() );
-				if ( $possRedirFile && $possRedirFile->getRedirected() !== null ) {
-					$redirTarget = $possRedirFile->getName();
-					$targetFile = $localRepo->newFile( Title::makeTitleSafe( NS_FILE, $redirTarget ) );
-					if ( $targetFile->exists() ) {
-						$newThumbName = $targetFile->thumbName( $params );
-						if ( $isOld ) {
-							$newThumbUrl = $targetFile->getArchiveThumbUrl(
-								$archiveTimestamp . '!' . $targetFile->getName(), $newThumbName );
-						} else {
-							$newThumbUrl = $targetFile->getThumbUrl( $newThumbName );
-						}
-						$redirectedLocation = wfExpandUrl( $newThumbUrl, PROTO_CURRENT );
-					}
-				}
+			$redirected = $this->maybeDoRedirect(
+				$img,
+				$params,
+				$isTemp,
+				$isOld,
+				$archiveTimestamp
+			);
+
+			if ( !$redirected ) {
+				// If it's not a redirect that has a target as a local file, give 404.
+				$this->thumbErrorText(
+					404,
+					"The source file '$fileName' does not exist."
+				);
 			}
 
-			if ( $redirectedLocation ) {
-				// File has been moved. Give redirect.
-				$response = $this->getResponse();
-				$response->statusHeader( 302 );
-				$response->header( 'Location: ' . $redirectedLocation );
-				$response->header( 'Expires: ' .
-					gmdate( 'D, d M Y H:i:s', time() + 12 * 3600 ) . ' GMT' );
-				if ( $varyOnXFP ) {
-					$varyHeader[] = 'X-Forwarded-Proto';
-				}
-				if ( count( $varyHeader ) ) {
-					$response->header( 'Vary: ' . implode( ', ', $varyHeader ) );
-				}
-				$response->header( 'Content-Length: 0' );
-				return;
-			}
+			$this->applyVaryHeader();
 
-			// If it's not a redirect that has a target as a local file, give 404.
-			$this->thumbErrorText( 404, "The source file '$fileName' does not exist." );
 			return;
 		} elseif ( $img->getPath() === false ) {
 			$this->thumbErrorText( 400, "The source file '$fileName' is not locally accessible." );
@@ -244,21 +219,8 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 
 		// Check IMS against the source file
 		// This means that clients can keep a cached copy even after it has been deleted on the server
-		if ( $this->getServerInfo( 'HTTP_IF_MODIFIED_SINCE', '' ) !== '' ) {
-			// Fix IE brokenness
-			$imsString = preg_replace(
-				'/;.*$/',
-				'',
-				$this->getServerInfo( 'HTTP_IF_MODIFIED_SINCE' ) ?? ''
-			);
-			// Calculate time
-			AtEase::suppressWarnings();
-			$imsUnix = strtotime( $imsString );
-			AtEase::restoreWarnings();
-			if ( wfTimestamp( TS_UNIX, $img->getTimestamp() ) <= $imsUnix ) {
-				$this->status( 304 );
-				return;
-			}
+		if ( $this->maybeNotModified( $img ) ) {
+			return;
 		}
 
 		$rel404 = $params['rel404'] ?? null;
@@ -280,6 +242,7 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 				400,
 				'The specified thumbnail parameters are not valid: ' . $e->getMessage()
 			);
+
 			return;
 		}
 
@@ -288,26 +251,16 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 		// Check that the zone relative path matches up so CDN caches won't pick
 		// up thumbs that would not be purged on source file deletion (T36231).
 		if ( $rel404 !== null ) { // thumbnail was handled via 404
-			if ( rawurldecode( $rel404 ) === $img->getThumbRel( $thumbName ) ) {
-				// Request for the canonical thumbnail name
-			} elseif ( rawurldecode( $rel404 ) === $img->getThumbRel( $thumbName2 ) ) {
-				// Request for the "long" thumbnail name; redirect to canonical name
-				$this->status( 301 );
-				$this->header( 'Location: ' .
-					wfExpandUrl( $img->getThumbUrl( $thumbName ), PROTO_CURRENT ) );
-				$this->header( 'Expires: ' .
-					gmdate( 'D, d M Y H:i:s', time() + 7 * 86400 ) . ' GMT' );
-				if ( $varyOnXFP ) {
-					$varyHeader[] = 'X-Forwarded-Proto';
-				}
-				if ( count( $varyHeader ) ) {
-					$this->header( 'Vary: ' . implode( ', ', $varyHeader ) );
-				}
-				return;
-			} else {
-				$this->thumbErrorText( 404, "The given path of the specified thumbnail is incorrect;
-				expected '" . $img->getThumbRel( $thumbName ) . "' but got '" .
-					rawurldecode( $rel404 ) . "'." );
+			if (
+				$this->maybeNormalizeRel404Path(
+					$img,
+					$rel404,
+					$thumbName,
+					$thumbName2
+				)
+			) {
+				$this->applyVaryHeader();
+
 				return;
 			}
 		}
@@ -318,52 +271,16 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 		$headers[] =
 			'Content-Disposition: ' . $img->getThumbDisposition( $thumbName, $dispositionType );
 
-		if ( count( $varyHeader ) ) {
-			$headers[] = 'Vary: ' . implode( ', ', $varyHeader );
-		}
+		$this->applyVaryHeader();
 
 		// Stream the file if it exists already...
 		$thumbPath = $img->getThumbPath( $thumbName );
-		if ( $img->getRepo()->fileExists( $thumbPath ) ) {
-			$starttime = microtime( true );
-			$status = $img->getRepo()->streamFileWithStatus( $thumbPath, $headers );
-			$streamtime = microtime( true ) - $starttime;
 
-			if ( $status->isOK() ) {
-				$services->getStatsdDataFactory()->timing(
-					'media.thumbnail.stream',
-					$streamtime
-				);
-			} else {
-				$this->thumbError(
-					500,
-					'Could not stream the file',
-					$status->getWikiText( false, false, 'en' ),
-					[
-						'file' => $thumbName,
-						'path' => $thumbPath,
-						'error' => $status->getWikiText( false, false, 'en' ),
-					]
-				);
-			}
+		if ( $this->maybeStreamExistingThumbnail( $img, $thumbName, $thumbPath, $headers ) ) {
 			return;
 		}
 
-		$authority = $this->getContext()->getAuthority();
-		$status = PermissionStatus::newEmpty();
-		if ( !wfThumbIsStandard( $img, $params )
-			&& !$authority->authorizeAction( 'renderfile-nonstandard', $status )
-		) {
-			$statusFormatter = $services->getFormatterFactory()
-				->getStatusFormatter( $this->getContext() );
-
-			$this->thumbError( 429, $statusFormatter->getHTML( $status ) );
-			return;
-		} elseif ( !$authority->authorizeAction( 'renderfile', $status ) ) {
-			$statusFormatter = $services->getFormatterFactory()
-				->getStatusFormatter( $this->getContext() );
-
-			$this->thumbError( 429, $statusFormatter->getHTML( $status ) );
+		if ( $this->maybeEnforceRateLimits( $img, $params ) ) {
 			return;
 		}
 
@@ -375,40 +292,17 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 			return;
 		} else {
 			// Generate the thumbnail locally
-			[ $thumb, $errorMsg ] = $this->generateThumbnail( $img, $params, $thumbName, $thumbPath );
-		}
-
-		/** @var MediaTransformOutput|false $thumb */
-
-		// Check for thumbnail generation errors...
-		$msg = $this->getContext()->msg( 'thumbnail_error' );
-		$errorCode = 500;
-
-		if ( !$thumb ) {
-			$errorMsg = $errorMsg ?: $msg->rawParams( 'File::transform() returned false' )->escaped();
-			if ( $errorMsg instanceof MessageSpecifier &&
-				$errorMsg->getKey() === 'thumbnail_image-failure-limit'
-			) {
-				$errorCode = 429;
-			}
-		} elseif ( $thumb->isError() ) {
-			$errorMsg = $thumb->getHtmlMsg();
-			$errorCode = $thumb->getHttpStatusCode();
-		} elseif ( !$thumb->hasFile() ) {
-			$errorMsg = $msg->rawParams( 'No path supplied in thumbnail object' )->escaped();
-		} elseif ( $thumb->fileIsSource() ) {
-			$errorMsg = $msg
-				->rawParams( 'Image was not scaled, is the requested width bigger than the source?' )
-				->escaped();
-			$errorCode = 400;
+			[ $thumb, $errorMsg, $errorCode ] = $this->generateThumbnail( $img, $params, $thumbName, $thumbPath );
 		}
 
 		$this->prepareForOutput();
 
-		if ( $errorMsg !== false ) {
+		if ( !$thumb ) {
+			$errorMsg ??= 'unknown error'; // Just to make Phan happy, shouldn't happen.
 			$this->thumbError( $errorCode, $errorMsg, null, [ 'file' => $thumbName, 'path' => $thumbPath ] );
 		} else {
 			// Stream the file if there were no errors
+			/** @var MediaTransformOutput $thumb */
 			'@phan-var MediaTransformOutput $thumb';
 			$status = $thumb->streamFileWithStatus( $headers );
 			if ( !$status->isOK() ) {
@@ -465,7 +359,9 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 	 * @param array $params
 	 * @param string $thumbName
 	 * @param string $thumbPath
-	 * @return array (MediaTransformOutput|bool, string|bool error message HTML)
+	 * @return array [ $thumb, $errorHtml, $errorCode ], which will be
+	 *         either [MediaTransformOutput, null, int] or [null, string, int].
+	 * @phan-return array{0:?MediaTransformOutput, 1:?string, 2:int}
 	 */
 	protected function generateThumbnail( File $file, array $params, $thumbName, $thumbPath ) {
 		$attemptFailureEpoch = $this->getConfig( MainConfigNames::AttemptFailureEpoch );
@@ -481,7 +377,11 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 
 		// Check if this file keeps failing to render
 		if ( $cache->get( $key ) >= 4 ) {
-			return [ false, $this->getContext()->msg( 'thumbnail_image-failure-limit', 4 ) ];
+			return [
+				null,
+				$this->getContext()->msg( 'thumbnail_image-failure-limit', 4 )->escaped(),
+				500,
+			];
 		}
 
 		$done = false;
@@ -493,8 +393,10 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 			}
 		} );
 
-		$thumb = false;
-		$errorHtml = false;
+		/** @var MediaTransformOutput $thumb|null */
+		$thumb = null;
+		$errorHtml = null;
+		'@phan-var MediaTransformOutput $thumb|false';
 
 		// guard thumbnail rendering with PoolCounter to avoid stampedes
 		// expensive files use a separate PoolCounter config so it is possible
@@ -542,7 +444,40 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 			$cache->incrWithInit( $key, $cache::TTL_HOUR + mt_rand( 0, 300 ) );
 		}
 
-		return [ $thumb, $errorHtml ];
+		// Check for thumbnail generation errors...
+		$msg = $this->getContext()->msg( 'thumbnail_error' );
+		$errorCode = null;
+
+		if ( !$thumb ) {
+			$errorHtml = $errorHtml ?: $msg->rawParams( 'File::transform() returned false' );
+			$errorCode = 500;
+		} elseif ( $thumb instanceof MediaTransformError ) {
+			$errorHtml = $thumb->getMsg();
+			$errorCode = $thumb->getHttpStatusCode();
+		} elseif ( !$thumb->hasFile() ) {
+			$errorHtml = $msg->rawParams( 'No path supplied in thumbnail object' );
+			$errorCode = 500;
+		} elseif ( $thumb->fileIsSource() ) {
+			$errorHtml = $msg
+				->rawParams( 'Image was not scaled, is the requested width bigger than the source?' );
+			$errorCode = 400;
+		}
+
+		if ( $errorCode && $errorHtml ) {
+			if ( $errorHtml instanceof MessageSpecifier &&
+				$errorHtml->getKey() === 'thumbnail_image-failure-limit'
+			) {
+				$errorCode = 429;
+			}
+
+			if ( $errorHtml instanceof Message ) {
+				$errorHtml = $errorHtml->escaped();
+			}
+
+			return [ null, $errorHtml, $errorCode ];
+		}
+
+		return [ $thumb, null, 200 ];
 	}
 
 	/**
@@ -670,6 +605,241 @@ $debug
 EOT;
 		$this->header( 'Content-Length: ' . strlen( $content ) );
 		$this->print( $content );
+	}
+
+	/**
+	 * @return bool true if redirected
+	 */
+	private function maybeDoRedirect(
+		File $img,
+		array $params,
+		bool $isTemp,
+		bool $isOld,
+		?string $archiveTimestamp
+	): bool {
+		$varyOnXFP = $this->getConfig( MainConfigNames::VaryOnXFP );
+
+		$redirectedLocation = false;
+		if ( !$isTemp ) {
+			// Check for file redirect
+			// Since redirects are associated with pages, not versions of files,
+			// we look for the most current version to see if its a redirect.
+			$localRepo = $this->getRepoGroup()->getLocalRepo();
+			$possRedirFile = $localRepo->findFile( $img->getName() );
+			if ( $possRedirFile && $possRedirFile->getRedirected() !== null ) {
+				$redirTarget = $possRedirFile->getName();
+				$targetFile = $localRepo->newFile(
+					Title::makeTitleSafe(
+						NS_FILE,
+						$redirTarget
+					)
+				);
+				if ( $targetFile->exists() ) {
+					$newThumbName = $targetFile->thumbName( $params );
+					if ( $isOld ) {
+						$newThumbUrl = $targetFile->getArchiveThumbUrl(
+							$archiveTimestamp . '!' . $targetFile->getName(),
+							$newThumbName
+						);
+					} else {
+						$newThumbUrl = $targetFile->getThumbUrl( $newThumbName );
+					}
+					$redirectedLocation = wfExpandUrl(
+						$newThumbUrl,
+						PROTO_CURRENT
+					);
+				}
+			}
+		}
+
+		if ( $redirectedLocation ) {
+			// File has been moved. Give redirect.
+			$response = $this->getResponse();
+			$response->statusHeader( 302 );
+			$response->header( 'Location: ' . $redirectedLocation );
+			$response->header(
+				'Expires: ' . gmdate( 'D, d M Y H:i:s', time() + 12 * 3600 ) . ' GMT'
+			);
+			if ( $varyOnXFP ) {
+				$this->vary( 'X-Forwarded-Proto' );
+			}
+			$response->header( 'Content-Length: 0' );
+
+			return true;
+		}
+
+		return false;
+	}
+
+	private function vary( $header ) {
+		$this->varyHeader[] = $header;
+	}
+
+	private function applyVaryHeader() {
+		if ( count( $this->varyHeader ) ) {
+			$this->header( 'Vary: ' . implode( ', ', $this->varyHeader ) );
+		}
+	}
+
+	/**
+	 * @return bool true if access was denied
+	 */
+	private function maybeDenyAccess( File $img ): bool {
+		$permissionLookup = $this->getServiceContainer()->getGroupPermissionsLookup();
+
+		if ( !$permissionLookup->groupHasPermission( '*', 'read' ) ) {
+			$authority = $this->getContext()->getAuthority();
+			$imgTitle = $img->getTitle();
+
+			if ( !$imgTitle || !$authority->authorizeRead( 'read', $imgTitle ) ) {
+				$this->thumbErrorText(
+					403,
+					'Access denied. You do not have permission to access the source file.'
+				);
+
+				return true;
+			}
+			$this->header( 'Cache-Control: private' );
+			$this->vary( 'Cookie' );
+		}
+
+		return false;
+	}
+
+	/**
+	 * @return bool true if not modified
+	 */
+	private function maybeNotModified( File $img ): bool {
+		if ( $this->getServerInfo( 'HTTP_IF_MODIFIED_SINCE', '' ) !== '' ) {
+			// Fix IE brokenness
+			$imsString = preg_replace(
+				'/;.*$/',
+				'',
+				$this->getServerInfo( 'HTTP_IF_MODIFIED_SINCE' ) ?? ''
+			);
+
+			// Calculate time
+			AtEase::suppressWarnings();
+			$imsUnix = strtotime( $imsString );
+			AtEase::restoreWarnings();
+			if ( wfTimestamp( TS_UNIX, $img->getTimestamp() ) <= $imsUnix ) {
+				$this->status( 304 );
+
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * @param File $img
+	 * @param string $rel404
+	 * @param string|false $thumbName
+	 * @param string|false $thumbName2
+	 *
+	 * @return bool
+	 */
+	private function maybeNormalizeRel404Path(
+		File $img,
+		string $rel404,
+		$thumbName,
+		$thumbName2
+	): bool {
+		$varyOnXFP = $this->getConfig( MainConfigNames::VaryOnXFP );
+
+		if ( rawurldecode( $rel404 ) === $img->getThumbRel( $thumbName ) ) {
+			// Request for the canonical thumbnail name
+			return false;
+		} elseif ( rawurldecode( $rel404 ) === $img->getThumbRel( $thumbName2 ) ) {
+			// Request for the "long" thumbnail name; redirect to canonical name
+			$target = wfExpandUrl(
+				$img->getThumbUrl( $thumbName ),
+				PROTO_CURRENT
+			);
+			$this->status( 301 );
+			$this->header( 'Location: ' . $target );
+			$this->header(
+				'Expires: ' . gmdate( 'D, d M Y H:i:s', time() + 7 * 86400 ) . ' GMT'
+			);
+
+			if ( $varyOnXFP ) {
+				$this->vary( 'X-Forwarded-Proto' );
+			}
+
+			return true;
+		} else {
+			$this->thumbErrorText(
+				404,
+				"The given path of the specified thumbnail is incorrect; expected '" .
+				$img->getThumbRel( $thumbName ) . "' but got '" . rawurldecode( $rel404 ) . "'."
+			);
+
+			return true;
+		}
+	}
+
+	/**
+	 * @return bool true if we attempted to stream the thumb, even if it failed.
+	 */
+	private function maybeStreamExistingThumbnail(
+		File $img,
+		string $thumbName,
+		string $thumbPath,
+		array $headers
+	): bool {
+		$stats = $this->getServiceContainer()->getStatsdDataFactory();
+
+		if ( $img->getRepo()->fileExists( $thumbPath ) ) {
+			$starttime = microtime( true );
+			$status = $img->getRepo()->streamFileWithStatus(
+				$thumbPath,
+				$headers
+			);
+			$streamtime = microtime( true ) - $starttime;
+
+			if ( $status->isOK() ) {
+				$stats->timing( 'media.thumbnail.stream', $streamtime );
+			} else {
+				$this->thumbError(
+					500,
+					'Could not stream the file',
+					$status->getWikiText( false, false, 'en' ),
+					[
+						'file' => $thumbName,
+						'path' => $thumbPath,
+						'error' => $status->getWikiText( false, false, 'en' ),
+					]
+				);
+			}
+
+			return true;
+		}
+
+		return false;
+	}
+
+	private function maybeEnforceRateLimits( File $img, array $params ) {
+		$authority = $this->getContext()->getAuthority();
+		$status = PermissionStatus::newEmpty();
+
+		if ( !wfThumbIsStandard( $img, $params )
+			&& !$authority->authorizeAction( 'renderfile-nonstandard', $status )
+		) {
+			$statusFormatter = $this->getServiceContainer()->getFormatterFactory()
+				->getStatusFormatter( $this->getContext() );
+
+			$this->thumbError( 429, $statusFormatter->getHTML( $status ) );
+			return true;
+		} elseif ( !$authority->authorizeAction( 'renderfile', $status ) ) {
+			$statusFormatter = $this->getServiceContainer()->getFormatterFactory()
+				->getStatusFormatter( $this->getContext() );
+
+			$this->thumbError( 429, $statusFormatter->getHTML( $status ) );
+			return true;
+		}
+
+		return false;
 	}
 
 }
