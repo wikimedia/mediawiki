@@ -21,6 +21,10 @@
  * @ingroup Media
  */
 
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
+use Wikimedia\XMPReader\Reader as XMPReader;
+
 /**
  * Handler for Google's WebP format <https://developers.google.com/speed/webp/>
  *
@@ -36,9 +40,13 @@ class WebPHandler extends BitmapHandler {
 	 */
 	private const MINIMUM_CHUNK_HEADER_LENGTH = 18;
 	/**
+	 * Max size of metadata chunk to extract
+	 */
+	private const MAX_METADATA_CHUNK_SIZE = 1024 * 1024 * 2;
+	/**
 	 * Version of the metadata stored in db records
 	 */
-	private const _MW_WEBP_VERSION = 1;
+	private const _MW_WEBP_VERSION = 2;
 
 	private const VP8X_ICC = 32;
 	private const VP8X_ALPHA = 16;
@@ -110,7 +118,6 @@ class WebPHandler extends BitmapHandler {
 				bin2hex( $info['fourCC'] ) );
 			return false;
 		}
-
 		$metadata = self::extractMetadataFromChunks( $info['chunks'], $filename );
 		if ( !$metadata ) {
 			wfDebugLog( 'WebP', __METHOD__ . ": No VP8 chunks found" );
@@ -129,9 +136,12 @@ class WebPHandler extends BitmapHandler {
 	 */
 	public static function extractMetadataFromChunks( $chunks, $filename ) {
 		$vp8Info = [];
+		$exifData = null;
+		$xmpData = null;
 
 		foreach ( $chunks as $chunk ) {
-			if ( !in_array( $chunk['fourCC'], [ 'VP8 ', 'VP8L', 'VP8X' ] ) ) {
+			// Note, spec says it should be 'XMP ' but some real life files use "XMP\0"
+			if ( !in_array( $chunk['fourCC'], [ 'VP8 ', 'VP8L', 'VP8X', 'EXIF', 'XMP ', "XMP\0" ] ) ) {
 				// Not a chunk containing interesting metadata
 				continue;
 			}
@@ -142,19 +152,92 @@ class WebPHandler extends BitmapHandler {
 
 			switch ( $chunk['fourCC'] ) {
 				case 'VP8 ':
-					return array_merge( $vp8Info,
+					$vp8Info = array_merge( $vp8Info,
 						self::decodeLossyChunkHeader( $chunkHeader ) );
+					break;
 				case 'VP8L':
-					return array_merge( $vp8Info,
+					$vp8Info = array_merge( $vp8Info,
 						self::decodeLosslessChunkHeader( $chunkHeader ) );
+					break;
 				case 'VP8X':
 					$vp8Info = array_merge( $vp8Info,
 						self::decodeExtendedChunkHeader( $chunkHeader ) );
 					// Continue looking for other chunks to improve the metadata
 					break;
+				case 'EXIF':
+					// Spec says ignore all but first one
+					if ( $exifData === null ) {
+						$exifData = self::extractChunk( $chunk, $filename );
+					}
+					break;
+				case 'XMP ':
+				case "XMP\0":
+					if ( $xmpData === null ) {
+						$xmpData = self::extractChunk( $chunk, $filename );
+					}
+					break;
 			}
 		}
+		$vp8Info = array_merge( $vp8Info,
+			self::decodeMediaMetadata( $exifData, $xmpData, $filename ) );
 		return $vp8Info;
+	}
+
+	/**
+	 * Decode metadata about the file (XMP & Exif).
+	 *
+	 * @param string|null $exifData Binary exif data from file
+	 * @param string|null $xmpData XMP data from file
+	 * @param string|null $filename (Used for logging only)
+	 * @return array
+	 */
+	private static function decodeMediaMetadata( $exifData, $xmpData, $filename ) {
+		if ( $exifData === null && $xmpData === null ) {
+			// Nothing to do
+			return [];
+		}
+		$bitmapMetadataHandler = new BitmapMetadataHandler;
+
+		if ( $xmpData && XMPReader::isSupported() ) {
+			$xmpReader = new XMPReader( LoggerFactory::getInstance( 'XMP' ), $filename );
+			$xmpReader->parse( $xmpData );
+			$res = $xmpReader->getResults();
+			foreach ( $res as $type => $array ) {
+				$bitmapMetadataHandler->addMetadata( $array, $type );
+			}
+		}
+
+		if ( $exifData ) {
+			// The Exif section of a webp file is basically a tiff file without an image.
+			// Some files start with an Exif\0\0. This is wrong according to standard and
+			// will prevent us from reading file, so remove for compatibility.
+			if ( substr( $exifData, 0, 6 ) === "Exif\x00\x00" ) {
+				$exifData = substr( $exifData, 6 );
+			}
+			$tmpFile = MediaWikiServices::getInstance()->
+				getTempFSFileFactory()->
+				newTempFSFile( 'webp-exif_', 'tiff' );
+
+			$exifDataFile = $tmpFile->getPath();
+			file_put_contents( $exifDataFile, $exifData );
+			$byteOrder = BitmapMetadataHandler::getTiffByteOrder( $exifDataFile );
+			$bitmapMetadataHandler->getExif( $exifDataFile, $byteOrder );
+		}
+		return [ 'media-metadata' => $bitmapMetadataHandler->getMetadataArray() ];
+	}
+
+	/**
+	 * @param array $chunk Information about chunk
+	 * @param string $filename
+	 * @return null|string Contents of chunk (excluding fourcc, size and padding)
+	 */
+	private static function extractChunk( $chunk, $filename ) {
+		if ( $chunk['size'] > self::MAX_METADATA_CHUNK_SIZE || $chunk['size'] < 1 ) {
+			return null;
+		}
+
+		// Skip first 8 bytes as that is the fourCC header followed by size of chunk.
+		return file_get_contents( $filename, false, null, $chunk['start'] + 8, $chunk['size'] );
 	}
 
 	/**
@@ -289,5 +372,19 @@ class WebPHandler extends BitmapHandler {
 	 */
 	protected function getScalerType( $dstPath, $checkDstPath = true ) {
 		return 'im';
+	}
+
+	public function getCommonMetaArray( File $image ) {
+		$meta = $image->getMetadataArray();
+		return $meta['media-metadata'] ?? [];
+	}
+
+	public function formatMetadata( $image, $context = false ) {
+		$meta = $this->getCommonMetaArray( $image );
+		if ( !$meta ) {
+			return false;
+		}
+
+		return $this->formatMetadataHelper( $meta, $context );
 	}
 }

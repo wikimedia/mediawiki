@@ -131,7 +131,7 @@ class WebPHandlerTest extends MediaWikiIntegrationTestCase {
 						'width' => 386,
 						'height' => 395,
 						'metadata' => [
-							'_MW_WEBP_VERSION' => 1,
+							'_MW_WEBP_VERSION' => 2,
 						],
 					],
 				]
@@ -146,7 +146,7 @@ class WebPHandlerTest extends MediaWikiIntegrationTestCase {
 						'width' => 386,
 						'height' => 395,
 						'metadata' => [
-							'_MW_WEBP_VERSION' => 1,
+							'_MW_WEBP_VERSION' => 2,
 						],
 					],
 				]
@@ -163,9 +163,137 @@ class WebPHandlerTest extends MediaWikiIntegrationTestCase {
 						'width' => 300,
 						'height' => 225,
 						'metadata' => [
-							'_MW_WEBP_VERSION' => 1,
+							'_MW_WEBP_VERSION' => 2,
 						],
 					],
+				]
+			],
+			[
+				__DIR__ . '/../../data/media/exif.webp',
+				[
+					'width' => 40,
+					'height' => 10,
+					'metadata' => [
+						'compression' => 'lossy',
+						'animated' => false,
+						'transparency' => false,
+						'width' => 40,
+						'height' => 10,
+						'metadata' => [
+							'_MW_WEBP_VERSION' => 2,
+						],
+						'media-metadata' => [
+							'GPSLatitude' => 88.51805555555555,
+							'GPSLongitude' => -21.12357,
+							'GPSAltitude' => -3.1415926530119025,
+							'GPSDOP' => '5/1',
+							'GPSVersionID' => '2.2.0.0'
+						]
+					]
+				]
+			],
+			// Using non-standard "Exif\0\0" prefix
+			[
+				__DIR__ . '/../../data/media/exif-prefix.webp',
+				[
+					'width' => 40,
+					'height' => 10,
+					'metadata' => [
+						'compression' => 'lossy',
+						'animated' => false,
+						'transparency' => false,
+						'width' => 40,
+						'height' => 10,
+						'metadata' => [
+							'_MW_WEBP_VERSION' => 2,
+						],
+						'media-metadata' => [
+							'GPSLatitude' => 88.51805555555555,
+							'GPSLongitude' => -21.12357,
+							'GPSAltitude' => -3.1415926530119025,
+							'GPSDOP' => '5/1',
+							'GPSVersionID' => '2.2.0.0'
+						]
+					]
+				]
+			],
+			// Using standard "xmp " fourcc
+			[
+				__DIR__ . '/../../data/media/xmp.webp',
+				[
+					'width' => 420,
+					'height' => 300,
+					'metadata' => [
+						'compression' => 'lossy',
+						'animated' => false,
+						'transparency' => false,
+						'width' => 420,
+						'height' => 300,
+						'metadata' => [
+							'_MW_WEBP_VERSION' => 2,
+						],
+						'media-metadata' => [
+							'ImageDescription' => [
+								'x-default' => 'An example image',
+								'en' => 'right translation',
+								'_type' => 'lang'
+							]
+						]
+					]
+				]
+			],
+			// Using the "xmp\0" fourcc (not standard "xmp ").
+			[
+				__DIR__ . '/../../data/media/xmp-null.webp',
+				[
+					'width' => 420,
+					'height' => 300,
+					'metadata' => [
+						'compression' => 'lossy',
+						'animated' => false,
+						'transparency' => false,
+						'width' => 420,
+						'height' => 300,
+						'metadata' => [
+							'_MW_WEBP_VERSION' => 2,
+						],
+						'media-metadata' => [
+							'ImageDescription' => [
+								'x-default' => 'Image with XMPnull byte fourcc',
+								'en' => 'right translation',
+								'_type' => 'lang'
+							]
+						]
+					]
+				]
+			],
+			// Containing both XMP and Exif
+			[
+				__DIR__ . '/../../data/media/xmp-exif.webp',
+				[
+					'width' => 420,
+					'height' => 300,
+					'metadata' => [
+						'compression' => 'lossy',
+						'animated' => false,
+						'transparency' => false,
+						'width' => 420,
+						'height' => 300,
+						'metadata' => [
+							'_MW_WEBP_VERSION' => 2,
+						],
+						'media-metadata' => [
+							'ImageDescription' => [
+								'x-default' => 'right(iptc)',
+								'en' => 'right translation',
+								'_type' => 'lang'
+							],
+							'XResolution' => '72/1',
+							'YResolution' => '72/1',
+							'ResolutionUnit' => 2,
+							'YCbCrPositioning' => 1,
+						]
+					]
 				]
 			],
 
