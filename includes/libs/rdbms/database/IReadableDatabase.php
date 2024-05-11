@@ -169,7 +169,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 *  use unvalidated user input. Can be an array, but must contain exactly 1 element then.
 	 *  {@see select} for details.
 	 * @param-taint $var exec_sql
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<?scalar>>|array<int,string|IExpression> $cond
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>>|array<int,string|IExpression> $cond
 	 *  The condition array. {@see select} for details.
 	 * @param-taint $cond exec_sql_numkey
 	 * @param string $fname The function name of the caller.
@@ -201,7 +201,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * @param string $var The field name to select. This must be a valid SQL
 	 *   fragment: do not use unvalidated user input.
 	 * @param-taint $var exec_sql
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<?scalar>>|array<int,string|IExpression> $cond
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>>|array<int,string|IExpression> $cond
 	 *   The condition array. {@see select} for details.
 	 * @param-taint $cond exec_sql_numkey
 	 * @param string $fname The function name of the caller.
@@ -278,7 +278,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 *
 	 * Untrusted user input must not be passed to this parameter.
 	 *
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<?scalar>>|array<int,string|IExpression> $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>>|array<int,string|IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
 	 *
 	 * May be either a string containing a single condition, or an array of
@@ -435,7 +435,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * @param-taint $table exec_sql
 	 * @param string|array $vars Field names
 	 * @param-taint $vars exec_sql
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<?scalar>>|array<int,string|IExpression> $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>>|array<int,string|IExpression> $conds
 	 *   Conditions
 	 * @param-taint $conds exec_sql_numkey
 	 * @param string $fname Caller function name
@@ -476,7 +476,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * @internal
 	 * @param string|string[] $tables Unqualified name of table(s)
 	 * @param string $var Column for which NULL values are not counted [default "*"]
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<?scalar>>|array<int,string|IExpression> $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>>|array<int,string|IExpression> $conds
 	 *   Filters on the table
 	 * @param string $fname Function name for profiling
 	 * @param array $options Options for select
@@ -505,7 +505,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * @param-taint $tables exec_sql
 	 * @param string $var Column for which NULL values are not counted [default "*"]
 	 * @param-taint $var exec_sql
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<?scalar>>|array<int,string|IExpression> $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>>|array<int,string|IExpression> $conds
 	 *   Filters on the table
 	 * @param-taint $conds exec_sql_numkey
 	 * @param string $fname Function name for profiling

@@ -33,6 +33,14 @@ class RdbmsTypeHintsTest {
 		// Null in arrays is not allowed (unlike in the `$qb->where( 'a' => [ ... ] )` syntax)
 		// @phan-suppress-next-line PhanTypeMismatchArgument
 		$conds[] = $db->expr( 'a', '=', [ 1, null, 2 ] );
+
+		// Associative arrays are not allowed
+		// @phan-suppress-next-line PhanTypeMismatchArgument
+		$conds[] = $db->expr( 'a', '=', [ 'a' => 1, 'b' => 2 ] );
+
+		// Arrays with gaps are not allowed (unlike in the `$qb->where( 'a' => [ ... ] )` syntax)
+		// @phan-suppress-next-line PhanTypeMismatchArgument
+		$conds[] = $db->expr( 'a', '=', array_unique( [ 1, 1, 2, 2 ] ) );
 	}
 
 	function testSelectConds( \Wikimedia\Rdbms\IDatabase $db ) {
@@ -51,5 +59,9 @@ class RdbmsTypeHintsTest {
 		// Nested array in array value
 		// @phan-suppress-next-line PhanTypeMismatchArgument
 		$db->select( 'a', 'b', [ 'x' => [ 1, 2, [ 3 ] ] ] );
+
+		// Associative arrays are not allowed
+		// @phan-suppress-next-line PhanTypeMismatchArgument
+		$db->select( 'a', 'b', [ 'x' => [ 'a' => 1, 'b' => 2 ] ] );
 	}
 }
