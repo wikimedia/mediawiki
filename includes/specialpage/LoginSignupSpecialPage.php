@@ -625,13 +625,13 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				: ( $formBlock . $benefitsContainerHtml );
 		}
 
-		return Html::rawElement( 'div', [ 'class' => 'mw-ui-container' ],
-			$loginPrompt
+		return $loginPrompt
 			. $languageLinks
 			. $signupStart
 			. $noticeHtml
-			. $formAndBenefits
-		);
+			. Html::rawElement( 'div', [ 'class' => 'mw-ui-container' ],
+				$formAndBenefits
+			);
 	}
 
 	/**
