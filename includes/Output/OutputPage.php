@@ -3404,18 +3404,18 @@ class OutputPage extends ContextSource {
 			);
 			if ( $this->contentOverrideCallbacks ) {
 				$this->rlClientContext = new RL\DerivativeContext( $this->rlClientContext );
-				$this->rlClientContext->setContentOverrideCallback( function ( $title ) {
+				$this->rlClientContext->setContentOverrideCallback( function ( $page ) {
 					foreach ( $this->contentOverrideCallbacks as $callback ) {
-						$content = $callback( $title );
+						$content = $callback( $page );
 						if ( $content !== null ) {
 							$text = ( $content instanceof TextContent ) ? $content->getText() : '';
-							if ( strpos( $text, '</script>' ) !== false ) {
+							if ( preg_match( '/<\/?script/i', $text ) ) {
 								// Proactively replace this so that we can display a message
 								// to the user, instead of letting it go to Html::inlineScript(),
 								// where it would be considered a server-side issue.
 								$content = new JavaScriptContent(
 									Html::encodeJsCall( 'mw.log.error', [
-										"Cannot preview $title due to script-closing tag."
+										"Cannot preview $page due to suspecting script tag inside (T200506)."
 									] )
 								);
 							}
