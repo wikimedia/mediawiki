@@ -51,6 +51,7 @@ For notes on 1.42.x and older releases, see HISTORY.
 
 === New user-facing features in 1.43 ===
 
+* (T338341) Support reading XMP and EXIF from WebP files
 * …
 
 === New features for sysadmins in 1.43 ===
