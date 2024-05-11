@@ -23,7 +23,6 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserIdentity;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -96,22 +95,12 @@ class RemoveUnusedAccounts extends Maintenance {
 				->deleteFrom( 'user' )
 				->where( [ 'user_id' => $delUser ] )
 				->caller( __METHOD__ )->execute();
-			# Keep actor rows referenced from ipblocks
-			$stage = $this->getConfig()
-				->get( MainConfigNames::BlockTargetMigrationStage );
-			if ( $stage & SCHEMA_COMPAT_READ_OLD ) {
-				$keep = $dbw->newSelectQueryBuilder()
-					->select( 'ipb_by_actor' )
-					->from( 'ipblocks' )
-					->where( [ 'ipb_by_actor' => $delActor ] )
-					->caller( __METHOD__ )->fetchFieldValues();
-			} else {
-				$keep = $dbw->newSelectQueryBuilder()
-					->select( 'bl_by_actor' )
-					->from( 'block' )
-					->where( [ 'bl_by_actor' => $delActor ] )
-					->caller( __METHOD__ )->fetchFieldValues();
-			}
+			# Keep actor rows referenced from block
+			$keep = $dbw->newSelectQueryBuilder()
+				->select( 'bl_by_actor' )
+				->from( 'block' )
+				->where( [ 'bl_by_actor' => $delActor ] )
+				->caller( __METHOD__ )->fetchFieldValues();
 			$del = array_diff( $delActor, $keep );
 			if ( $del ) {
 				$dbw->newDeleteQueryBuilder()

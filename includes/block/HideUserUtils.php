@@ -20,13 +20,6 @@ class HideUserUtils {
 	 */
 	public const HIDDEN_USERS = 2;
 
-	/** @var int */
-	private $readStage;
-
-	public function __construct( $blockTargetMigrationStage ) {
-		$this->readStage = $blockTargetMigrationStage & SCHEMA_COMPAT_READ_MASK;
-	}
-
 	/**
 	 * Get an SQL expression suitable for use in WHERE clause which will be
 	 * true for either hidden or non-hidden users as specified.
@@ -35,7 +28,7 @@ class HideUserUtils {
 	 *
 	 * @param IReadableDatabase $dbr
 	 * @param string $userIdField The field to be used as the user_id when
-	 *   joining on block/ipblocks. Defaults to "user_id".
+	 *   joining on block. Defaults to "user_id".
 	 * @param int $status Either self::SHOWN_USERS or self::HIDDEN_USERS
 	 *   depending on what sort of user you want to match.
 	 * @return string
@@ -45,33 +38,20 @@ class HideUserUtils {
 		string $userIdField = 'user_id',
 		$status = self::SHOWN_USERS
 	) {
-		if ( $this->readStage === SCHEMA_COMPAT_READ_OLD ) {
-			$cond = $status === self::HIDDEN_USERS ? '' : 'NOT ';
-			$cond .= 'EXISTS (' .
-				$dbr->newSelectQueryBuilder()
-					->select( '1' )
-					->from( 'ipblocks', 'hu_ipblocks' )
-					->where( [ "hu_ipblocks.ipb_user=$userIdField", 'hu_ipblocks.ipb_deleted' => 1 ] )
-					->caller( __METHOD__ )
-					->getSQL() .
-				')';
-		} else {
-			// Use a scalar subquery, not IN/EXISTS, to avoid materialization (T360160)
-			$cond = '(' .
-				$dbr->newSelectQueryBuilder()
-					->select( '1' )
-					// $userIdField may be e.g. block_target.bt_user so an inner table
-					// alias is necessary to ensure that that refers to the outer copy
-					// of the block_target table.
-					->from( 'block_target', 'hu_block_target' )
-					->join( 'block', 'hu_block', 'hu_block.bl_target=hu_block_target.bt_id' )
-					->where( [ "hu_block_target.bt_user=$userIdField", 'hu_block.bl_deleted' => 1 ] )
-					->caller( __METHOD__ )
-					->getSQL() .
-				') ' .
-				( $status === self::HIDDEN_USERS ? 'IS NOT NULL' : 'IS NULL' );
-		}
-		return $cond;
+		// Use a scalar subquery, not IN/EXISTS, to avoid materialization (T360160)
+		return '(' .
+			$dbr->newSelectQueryBuilder()
+				->select( '1' )
+				// $userIdField may be e.g. block_target.bt_user so an inner table
+				// alias is necessary to ensure that that refers to the outer copy
+				// of the block_target table.
+				->from( 'block_target', 'hu_block_target' )
+				->join( 'block', 'hu_block', 'hu_block.bl_target=hu_block_target.bt_id' )
+				->where( [ "hu_block_target.bt_user=$userIdField", 'hu_block.bl_deleted' => 1 ] )
+				->caller( __METHOD__ )
+				->getSQL() .
+			') ' .
+			( $status === self::HIDDEN_USERS ? 'IS NOT NULL' : 'IS NULL' );
 	}
 
 	/**
@@ -91,27 +71,18 @@ class HideUserUtils {
 		$userIdField = 'user_id',
 		$deletedFieldAlias = 'hu_deleted'
 	) {
-		if ( $this->readStage === SCHEMA_COMPAT_READ_OLD ) {
-			$qb
-				->select( [ $deletedFieldAlias => 'ipb_deleted IS NOT NULL' ] )
-				->leftJoin(
-					'ipblocks', 'hide_user_ipblocks',
-					[ "ipb_user=$userIdField", 'ipb_deleted' => 1 ]
-				);
-		} else {
-			$cond = '(' .
-				$qb->newSubquery()
-					->select( '1' )
-					// $userIdField may be e.g. block_target.bt_user so an inner table
-					// alias is necessary to ensure that that refers to the outer copy
-					// of the block_target table.
-					->from( 'block_target', 'hu_block_target' )
-					->join( 'block', 'hu_block', 'hu_block.bl_target=hu_block_target.bt_id' )
-					->where( [ "hu_block_target.bt_user=$userIdField", 'hu_block.bl_deleted' => 1 ] )
-					->caller( __METHOD__ )
-					->getSQL() .
-				') IS NOT NULL';
-			$qb->select( [ $deletedFieldAlias => $cond ] );
-		}
+		$cond = '(' .
+			$qb->newSubquery()
+				->select( '1' )
+				// $userIdField may be e.g. block_target.bt_user so an inner table
+				// alias is necessary to ensure that that refers to the outer copy
+				// of the block_target table.
+				->from( 'block_target', 'hu_block_target' )
+				->join( 'block', 'hu_block', 'hu_block.bl_target=hu_block_target.bt_id' )
+				->where( [ "hu_block_target.bt_user=$userIdField", 'hu_block.bl_deleted' => 1 ] )
+				->caller( __METHOD__ )
+				->getSQL() .
+			') IS NOT NULL';
+		$qb->select( [ $deletedFieldAlias => $cond ] );
 	}
 }

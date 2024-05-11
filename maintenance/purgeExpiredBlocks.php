@@ -21,7 +21,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 /*
- * Remove expired blocks from the ipblocks and ipblocks_restrictions tables
+ * Remove expired blocks from the block and ipblocks_restrictions tables
  *
  * @since 1.35
  * @ingroup Maintenance

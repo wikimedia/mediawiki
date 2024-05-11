@@ -14,7 +14,6 @@ use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\TempUser\TempUserConfig;
@@ -55,9 +54,7 @@ class DatabaseBlockStoreFactoryTest extends MediaWikiUnitTestCase {
 			new ServiceOptions(
 				DatabaseBlockStore::CONSTRUCTOR_OPTIONS,
 				new HashConfig(
-					[
-						MainConfigNames::BlockTargetMigrationStage => SCHEMA_COMPAT_OLD,
-					] + array_fill_keys( DatabaseBlockStore::CONSTRUCTOR_OPTIONS, null )
+					array_fill_keys( DatabaseBlockStore::CONSTRUCTOR_OPTIONS, null )
 				)
 			),
 			$this->createMock( LoggerInterface::class ),

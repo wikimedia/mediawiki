@@ -24,7 +24,7 @@ class BlockRestrictionStoreFactoryTest extends MediaWikiUnitTestCase {
 			->method( 'getMainLB' )
 			->with( $domain )
 			->willReturn( $lb );
-		$factory = new BlockRestrictionStoreFactory( $lbFactory, SCHEMA_COMPAT_OLD );
+		$factory = new BlockRestrictionStoreFactory( $lbFactory );
 
 		$restrictionStore = $factory->getBlockRestrictionStore( $domain );
 		$this->assertInstanceOf( BlockRestrictionStore::class, $restrictionStore );

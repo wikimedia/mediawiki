@@ -19,7 +19,6 @@
  */
 
 use MediaWiki\Block\CompositeBlock;
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
@@ -33,44 +32,6 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  */
 trait ApiQueryBlockInfoTrait {
 	use ApiBlockInfoTrait;
-
-	/**
-	 * Filters hidden users (where the user doesn't have the right to view them)
-	 * Also adds relevant block information
-	 *
-	 * @deprecated since 1.42 use addDeletedUserFilter() or getBlockDetailsForRows()
-	 * @param bool $showBlockInfo
-	 * @return void
-	 */
-	private function addBlockInfoToQuery( $showBlockInfo ) {
-		wfDeprecated( __METHOD__, '1.42' );
-		$db = $this->getDB();
-
-		if ( $showBlockInfo ) {
-			$queryInfo = DatabaseBlock::getQueryInfo();
-		} else {
-			$queryInfo = [
-				'tables' => [ 'ipblocks' ],
-				'fields' => [ 'ipb_deleted' ],
-				'joins' => [],
-			];
-		}
-
-		$this->addTables( [ 'blk' => $queryInfo['tables'] ] );
-		$this->addFields( $queryInfo['fields'] );
-		$this->addJoinConds( $queryInfo['joins'] );
-		$this->addJoinConds( [
-			'blk' => [ 'LEFT JOIN', [
-				'ipb_user=user_id',
-				'ipb_expiry > ' . $db->addQuotes( $db->timestamp() ),
-			] ],
-		] );
-
-		// Don't show hidden names
-		if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
-			$this->addWhere( [ 'ipb_deleted' => [ 0, null ] ] );
-		}
-	}
 
 	/**
 	 * Filter hidden users if the current user does not have the ability to

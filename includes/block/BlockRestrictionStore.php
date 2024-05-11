@@ -44,24 +44,15 @@ class BlockRestrictionStore {
 	private $wikiId;
 
 	/**
-	 * @var int The block_target read stage.
-	 * Temporary -- will be deleted once migration is complete.
-	 */
-	private $readStage;
-
-	/**
 	 * @param IConnectionProvider $dbProvider
-	 * @param int $blockTargetMigrationStage
 	 * @param string|false $wikiId
 	 */
 	public function __construct(
 		IConnectionProvider $dbProvider,
-		$blockTargetMigrationStage,
 		$wikiId = WikiAwareEntity::LOCAL
 	) {
 		$this->dbProvider = $dbProvider;
 		$this->wikiId = $wikiId;
-		$this->readStage = $blockTargetMigrationStage & SCHEMA_COMPAT_READ_MASK;
 	}
 
 	/**
@@ -190,21 +181,12 @@ class BlockRestrictionStore {
 
 		$db = $this->dbProvider->getPrimaryDatabase( $this->wikiId );
 
-		if ( $this->readStage === SCHEMA_COMPAT_READ_OLD ) {
-			$blockIds = $db->newSelectQueryBuilder()
-				->select( [ 'ipb_id' ] )
-				->forUpdate()
-				->from( 'ipblocks' )
-				->where( [ 'ipb_parent_block_id' => $parentBlockId ] )
-				->caller( __METHOD__ )->fetchFieldValues();
-		} else {
-			$blockIds = $db->newSelectQueryBuilder()
-				->select( 'bl_id' )
-				->forUpdate()
-				->from( 'block' )
-				->where( [ 'bl_parent_block_id' => $parentBlockId ] )
-				->caller( __METHOD__ )->fetchFieldValues();
-		}
+		$blockIds = $db->newSelectQueryBuilder()
+			->select( 'bl_id' )
+			->forUpdate()
+			->from( 'block' )
+			->where( [ 'bl_parent_block_id' => $parentBlockId ] )
+			->caller( __METHOD__ )->fetchFieldValues();
 		if ( !$blockIds ) {
 			return true;
 		}

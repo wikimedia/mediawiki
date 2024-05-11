@@ -48,7 +48,6 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 			'AutoblockExpiry' => 86400,
 			'BlockCIDRLimit' => [ 'IPv4' => 16, 'IPv6' => 19 ],
 			'BlockDisablesLogin' => false,
-			'BlockTargetMigrationStage' => SCHEMA_COMPAT_NEW,
 			'PutIPinRC' => true,
 			'UpdateRowsPerQuery' => 10,
 		];
@@ -221,7 +220,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		// duplicates the function itself. Instead, check the structure and the field
 		// aliases. The fact that this query info is everything needed to create a block
 		// is validated by its uses within the service
-		$queryInfo = $this->getStore()->getQueryInfo( DatabaseBlockStore::SCHEMA_BLOCK );
+		$queryInfo = $this->getStore()->getQueryInfo();
 		$this->assertArrayHasKey( 'tables', $queryInfo );
 		$this->assertArrayHasKey( 'fields', $queryInfo );
 		$this->assertArrayHasKey( 'joins', $queryInfo );
@@ -333,7 +332,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	public function testGetRangeCond( $start, $end, $expect ) {
 		$this->assertSame(
 			$expect,
-			$this->getStore()->getRangeCond( $start, $end, DatabaseBlockStore::SCHEMA_BLOCK ) );
+			$this->getStore()->getRangeCond( $start, $end ) );
 	}
 
 	public static function provideGetRangeCondIntegrated() {
@@ -363,8 +362,8 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$store->insertBlock( $this->getBlock( [ 'target' => $blockTarget ] ) );
 		[ $start, $end ] = IPUtils::parseRange( $searchTarget );
 		$rows = $this->db->newSelectQueryBuilder()
-			->queryInfo( $store->getQueryInfo( DatabaseBlockStore::SCHEMA_BLOCK ) )
-			->where( $store->getRangeCond( $start, $end, DatabaseBlockStore::SCHEMA_CURRENT ) )
+			->queryInfo( $store->getQueryInfo() )
+			->where( $store->getRangeCond( $start, $end ) )
 			->fetchResultSet();
 		$this->assertSame( $isBlocked ? 1 : 0, $rows->numRows() );
 	}
@@ -477,11 +476,11 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$target = $this->sysop;
 		$store = $this->getStore();
 		$store->deleteBlocksMatchingConds( [ 'bt_user' => $target->getId() ] );
-
 		$block = $this->getBlock( [
 			'autoblock' => true,
 			'target' => $target,
 		] );
+
 		$result = $store->insertBlock( $block );
 
 		$this->assertIsArray( $result );

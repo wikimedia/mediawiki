@@ -33,7 +33,6 @@ use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
-use MediaWiki\Config\ConfigException;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
@@ -72,9 +71,6 @@ class BlockListPager extends TablePager {
 	/** @var string[] */
 	private $formattedComments = [];
 
-	/** @var int */
-	private $readStage;
-
 	/**
 	 * @param IContextSource $context
 	 * @param BlockActionInfo $blockActionInfo
@@ -105,14 +101,6 @@ class BlockListPager extends TablePager {
 	) {
 		// Set database before parent constructor to avoid setting it there
 		$this->mDb = $dbProvider->getReplicaDatabase();
-		$this->readStage = $this->getConfig()->get( MainConfigNames::BlockTargetMigrationStage )
-			& SCHEMA_COMPAT_READ_MASK;
-		if ( $this->readStage !== SCHEMA_COMPAT_READ_OLD
-			&& $this->readStage !== SCHEMA_COMPAT_READ_NEW
-		) {
-			throw new ConfigException(
-				'$wgBlockTargetMigrationStage has an invalid read stage' );
-		}
 
 		parent::__construct( $context, $linkRenderer );
 
@@ -446,112 +434,65 @@ class BlockListPager extends TablePager {
 
 	public function getQueryInfo() {
 		$db = $this->getDatabase();
-		if ( $this->readStage === SCHEMA_COMPAT_READ_OLD ) {
-			$commentQuery = $this->commentStore->getJoin( 'ipb_reason' );
-			$info = [
-				'tables' => array_merge(
-					[ 'ipblocks', 'ipblocks_by_actor' => 'actor' ],
-					$commentQuery['tables']
-				),
-				'fields' => [
-					'bt_address' => 'ipb_address',
-					'bt_user_text' => 'ipb_address',
-					'bt_user' => 'ipb_user',
-					'bt_auto' => 'ipb_auto',
-					'bt_range_start' => 'ipb_range_start',
-					'bt_range_end' => 'ipb_range_end',
-					'bl_id' => 'ipb_id',
-					'bl_by' => 'ipblocks_by_actor.actor_user',
-					'bl_by_text' => 'ipblocks_by_actor.actor_name',
-					'bl_timestamp' => 'ipb_timestamp',
-					'bl_anon_only' => 'ipb_anon_only',
-					'bl_create_account' => 'ipb_create_account',
-					'bl_enable_autoblock' => 'ipb_enable_autoblock',
-					'bl_expiry' => 'ipb_expiry',
-					'bl_deleted' => 'ipb_deleted',
-					'bl_block_email' => 'ipb_block_email',
-					'bl_allow_usertalk' => 'ipb_allow_usertalk',
-					'bl_sitewide' => 'ipb_sitewide',
-					'bl_reason_text' => $commentQuery['fields']['ipb_reason_text'],
-					'bl_reason_data' => $commentQuery['fields']['ipb_reason_data'],
-					'bl_reason_cid' => $commentQuery['fields']['ipb_reason_cid'],
-					// Aliases for IndexPager::extractResultInfo()
-					'ipb_id',
-					'ipb_timestamp',
-				] + $commentQuery['fields'],
-				'conds' => $this->conds,
-				'join_conds' => [
-					'ipblocks_by_actor' => [ 'JOIN', 'actor_id=ipb_by_actor' ]
-				] + $commentQuery['joins']
-			];
-			# Filter out any expired blocks
-			$info['conds'][] = $db->expr( 'ipb_expiry', '>', $db->timestamp() );
+		$commentQuery = $this->commentStore->getJoin( 'bl_reason' );
+		$info = [
+			'tables' => array_merge(
+				[
+					'block',
+					'block_by_actor' => 'actor',
+					'block_target',
+				],
+				$commentQuery['tables']
+			),
+			'fields' => [
+				// The target fields should be those accepted by BlockUtils::parseBlockTargetRow()
+				'bt_address',
+				'bt_user_text',
+				'bt_user',
+				'bt_auto',
+				'bt_range_start',
+				'bt_range_end',
+				// Block fields and aliases
+				'bl_id',
+				'bl_by' => 'block_by_actor.actor_user',
+				'bl_by_text' => 'block_by_actor.actor_name',
+				'bl_timestamp',
+				'bl_anon_only',
+				'bl_create_account',
+				'bl_enable_autoblock',
+				'bl_expiry',
+				'bl_deleted',
+				'bl_block_email',
+				'bl_allow_usertalk',
+				'bl_sitewide',
+			] + $commentQuery['fields'],
+			'conds' => $this->conds,
+			'join_conds' => [
+				'block_by_actor' => [ 'JOIN', 'actor_id=bl_by_actor' ],
+				'block_target' => [ 'JOIN', 'bt_id=bl_target' ],
+			] + $commentQuery['joins']
+		];
 
-			# Is the user allowed to see hidden blocks?
-			if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
-				$info['conds']['ipb_deleted'] = 0;
-			}
-		} else {
-			$commentQuery = $this->commentStore->getJoin( 'bl_reason' );
-			$info = [
-				'tables' => array_merge(
-					[
-						'block',
-						'block_by_actor' => 'actor',
-						'block_target',
-					],
-					$commentQuery['tables']
-				),
-				'fields' => [
-					// The target fields should be those accepted by BlockUtils::parseBlockTargetRow()
-					'bt_address',
-					'bt_user_text',
-					'bt_user',
-					'bt_auto',
-					'bt_range_start',
-					'bt_range_end',
-					// Block fields and aliases
-					'bl_id',
-					'bl_by' => 'block_by_actor.actor_user',
-					'bl_by_text' => 'block_by_actor.actor_name',
-					'bl_timestamp',
-					'bl_anon_only',
-					'bl_create_account',
-					'bl_enable_autoblock',
-					'bl_expiry',
-					'bl_deleted',
-					'bl_block_email',
-					'bl_allow_usertalk',
-					'bl_sitewide',
-				] + $commentQuery['fields'],
-				'conds' => $this->conds,
-				'join_conds' => [
-					'block_by_actor' => [ 'JOIN', 'actor_id=bl_by_actor' ],
-					'block_target' => [ 'JOIN', 'bt_id=bl_target' ],
-				] + $commentQuery['joins']
-			];
+		# Filter out any expired blocks
+		$info['conds'][] = $db->expr( 'bl_expiry', '>', $db->timestamp() );
 
-			# Filter out any expired blocks
-			$info['conds'][] = $db->expr( 'bl_expiry', '>', $db->timestamp() );
-
-			# Filter out blocks with the deleted option if the user doesn't
-			# have permission to see hidden users
-			# TODO: consider removing this -- we could just redact them instead.
-			# The mere fact that an admin has deleted a user does not need to
-			# be private and could be included in block lists and logs for
-			# transparency purposes. Previously, filtering out deleted blocks
-			# was a convenient way to avoid showing the target name.
-			if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
-				$info['conds']['bl_deleted'] = 0;
-			}
-
-			# Determine if the user is hidden
-			# With multiblocks we can't just rely on bl_deleted in the row being formatted
-			$info['fields']['hu_deleted'] = $this->hideUserUtils->getExpression(
-				$db,
-				$db->tableName( 'block_target' ) . '.bt_user',
-				HideUserUtils::HIDDEN_USERS );
+		# Filter out blocks with the deleted option if the user doesn't
+		# have permission to see hidden users
+		# TODO: consider removing this -- we could just redact them instead.
+		# The mere fact that an admin has deleted a user does not need to
+		# be private and could be included in block lists and logs for
+		# transparency purposes. Previously, filtering out deleted blocks
+		# was a convenient way to avoid showing the target name.
+		if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
+			$info['conds']['bl_deleted'] = 0;
 		}
+
+		# Determine if the user is hidden
+		# With multiblocks we can't just rely on bl_deleted in the row being formatted
+		$info['fields']['hu_deleted'] = $this->hideUserUtils->getExpression(
+			$db,
+			$db->tableName( 'block_target' ) . '.bt_user',
+			HideUserUtils::HIDDEN_USERS );
 		return $info;
 	}
 
@@ -560,11 +501,7 @@ class BlockListPager extends TablePager {
 	}
 
 	public function getIndexField() {
-		if ( $this->readStage === SCHEMA_COMPAT_READ_OLD ) {
-			return [ [ 'ipb_timestamp', 'ipb_id' ] ];
-		} else {
-			return [ [ 'bl_timestamp', 'bl_id' ] ];
-		}
+		return [ [ 'bl_timestamp', 'bl_id' ] ];
 	}
 
 	public function getDefaultSort() {
