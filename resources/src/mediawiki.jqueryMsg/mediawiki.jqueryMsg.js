@@ -1119,7 +1119,7 @@ HtmlEmitter.prototype = {
 		if ( page.charAt( 0 ) === ':' ) {
 			page = page.slice( 1 );
 		}
-		var url = util.getUrl( page );
+		var title = new mw.Title( page );
 
 		var anchor;
 		if ( nodes.length === 1 ) {
@@ -1131,8 +1131,8 @@ HtmlEmitter.prototype = {
 		}
 
 		var $el = $( '<a>' ).attr( {
-			title: page,
-			href: url
+			title: title.getPrefixedText() || null,
+			href: title.getUrl()
 		} );
 		return appendWithoutParsing( $el, anchor );
 	},

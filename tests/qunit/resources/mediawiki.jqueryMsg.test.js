@@ -71,7 +71,8 @@
 				// Localised
 				10: 'Szablon',
 				11: 'Dyskusja szablonu'
-			}
+			},
+			wgCaseSensitiveNamespaces: []
 		},
 		// Messages that are reused in multiple tests
 		messages: {
@@ -508,15 +509,40 @@
 		mw.messages.set( 'jquerymsg-title-fragment', 'Link to [[Title#Fragment]]' );
 		assert.htmlEqual(
 			formatParse( 'jquerymsg-title-fragment' ),
-			'Link to <a title="Title#Fragment" href="/wiki/Title#Fragment">Title#Fragment</a>',
+			'Link to <a title="Title" href="/wiki/Title#Fragment">Title#Fragment</a>',
 			'Link with title and fragment'
 		);
 
 		mw.messages.set( 'jquerymsg-fragment', 'Link to [[#Fragment]]' );
 		assert.htmlEqual(
 			formatParse( 'jquerymsg-fragment' ),
-			'Link to <a title="#Fragment" href="#Fragment">#Fragment</a>',
+			'Link to <a href="#Fragment">#Fragment</a>',
 			'Link with fragment only'
+		);
+	} );
+
+	// Test case sensitive namespaces
+	QUnit.test( 'CaseSensitiveNamespaces', function ( assert ) {
+		var oldCaseSensitiveNamespaces = mw.config.get( 'wgCaseSensitiveNamespaces' );
+		mw.config.set( 'wgCaseSensitiveNamespaces', [ 0 ] );
+
+		mw.messages.set( 'jquerymsg-lowercase-link', 'A [[lowercase]] and [[Uppercase]] wiki-link' );
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-lowercase-link' ),
+			'A <a title="lowercase" href="/wiki/lowercase">lowercase</a> and <a title="Uppercase" href="/wiki/Uppercase">Uppercase</a> wiki-link',
+			'wgCaseSensitiveNamespaces allows lowercase namespaces.'
+		);
+
+		mw.config.set( 'wgCaseSensitiveNamespaces', oldCaseSensitiveNamespaces );
+	} );
+
+	// Test localized namespace names
+	QUnit.test( 'LocalizedNamespaces', function ( assert ) {
+		mw.messages.set( 'jquerymsg-localized-link', 'Link to [[template:foo|template foo]]' );
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-localized-link' ),
+			'Link to <a title="Szablon:Foo" href="/wiki/Szablon:Foo">template foo</a>',
+			'Links have localized namespace names.'
 		);
 	} );
 
@@ -960,7 +986,7 @@
 
 		assert.htmlEqual(
 			formatParse( 'jquerymsg-italics-with-link' ),
-			'An <i>italicized <a title="link" href="/wiki/link">wiki-link</i>',
+			'An <i>italicized <a title="Link" href="/wiki/Link">wiki-link</i>',
 			'Italics with link inside in parse mode'
 		);
 
@@ -1195,7 +1221,7 @@
 			{
 				key: 'jquery-param-wikilink',
 				msg: '[[$1]] [[$1|a]]',
-				expected: '<a title="x" href="/wiki/x">x</a> <a title="x" href="/wiki/x">a</a>'
+				expected: '<a title="X" href="/wiki/X">x</a> <a title="X" href="/wiki/X">a</a>'
 			},
 			{
 				key: 'jquery-param-plural',
