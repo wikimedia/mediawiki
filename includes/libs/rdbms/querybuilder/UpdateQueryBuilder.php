@@ -165,7 +165,7 @@ class UpdateQueryBuilder {
 	 * Add conditions to the query. The supplied conditions will be appended
 	 * to the existing conditions, separated by AND.
 	 *
-	 * @param string|array|IExpression $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<?scalar>>|array<int,string|IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
 	 *
 	 * May be either a string containing a single condition, or an array of
@@ -221,7 +221,7 @@ class UpdateQueryBuilder {
 	/**
 	 * Add conditions to the query. Alias for where().
 	 *
-	 * @param string|array|IExpression $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<?scalar>>|array<int,string|IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
 	 * @return $this
 	 */
@@ -232,7 +232,7 @@ class UpdateQueryBuilder {
 	/**
 	 * Add conditions to the query. Alias for where().
 	 *
-	 * @param string|array|IExpression $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<?scalar>>|array<int,string|IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
 	 * @return $this
 	 */

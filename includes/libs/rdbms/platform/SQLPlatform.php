@@ -227,8 +227,16 @@ class SQLPlatform implements ISQLPlatform {
 			if ( ( $mode == self::LIST_AND || $mode == self::LIST_OR ) && is_numeric( $field ) ) {
 				if ( $value instanceof IExpression ) {
 					$list .= "(" . $value->toSql( $this->quoter ) . ")";
+				} elseif ( is_array( $value ) ) {
+					throw new InvalidArgumentException( __METHOD__ . ": unexpected array value without key" );
 				} else {
 					$list .= "($value)";
+				}
+			} elseif ( $value instanceof IExpression ) {
+				if ( $mode == self::LIST_AND || $mode == self::LIST_OR ) {
+					throw new InvalidArgumentException( __METHOD__ . ": unexpected key $field for IExpression value" );
+				} else {
+					throw new InvalidArgumentException( __METHOD__ . ": unexpected IExpression outside WHERE clause" );
 				}
 			} elseif ( $mode == self::LIST_SET && is_numeric( $field ) ) {
 				$list .= "$value";
@@ -267,6 +275,8 @@ class SQLPlatform implements ISQLPlatform {
 						$list .= " OR $field IS NULL)";
 					}
 				}
+			} elseif ( is_array( $value ) ) {
+				throw new InvalidArgumentException( __METHOD__ . ": unexpected nested array" );
 			} elseif ( $value === null ) {
 				if ( $mode == self::LIST_AND || $mode == self::LIST_OR ) {
 					$list .= "$field IS ";

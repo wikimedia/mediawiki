@@ -926,6 +926,42 @@ class SQLPlatformTest extends TestCase {
 	}
 
 	/**
+	 * @dataProvider provideMakeListInvalid
+	 */
+	public function testMakeListInvalid( $list, $mode, $exception ) {
+		$this->expectException( $exception );
+		$this->platform->makeList( $list, $mode );
+	}
+
+	public static function provideMakeListInvalid() {
+		yield 'missing key for array value' => [
+			[ [ 1, 2, 3 ] ],
+			LIST_AND,
+			InvalidArgumentException::class,
+		];
+		yield 'empty array value' => [
+			[ 'x' => [] ],
+			LIST_AND,
+			InvalidArgumentException::class,
+		];
+		yield 'unexpected key for IExpression value' => [
+			[ 'x' => new Expression( 'x', '=', 1 ) ],
+			LIST_AND,
+			InvalidArgumentException::class,
+		];
+		yield 'unexpected IExpression for UPDATE … SET' => [
+			[ 'x' => new Expression( 'x', '=', 1 ) ],
+			LIST_SET,
+			InvalidArgumentException::class,
+		];
+		yield 'nested array in array value' => [
+			[ 'x' => [ 1, 2, [ 3 ] ] ],
+			LIST_AND,
+			InvalidArgumentException::class,
+		];
+	}
+
+	/**
 	 * @dataProvider provideFactorConds
 	 */
 	public function testFactorConds( $input, $expected ) {

@@ -34,4 +34,22 @@ class RdbmsTypeHintsTest {
 		// @phan-suppress-next-line PhanTypeMismatchArgument
 		$conds[] = $db->expr( 'a', '=', [ 1, null, 2 ] );
 	}
+
+	function testSelectConds( \Wikimedia\Rdbms\IDatabase $db ) {
+		// Missing key for array value
+		// @phan-suppress-next-line PhanTypeMismatchArgument
+		$db->select( 'a', 'b', [ [ 1, 2, 3 ] ] );
+
+		// Empty array value
+		// @phan-suppress-next-line PhanTypeMismatchArgument
+		$db->select( 'a', 'b', [ 'x' => [] ] );
+
+		// Unexpected key for IExpression value
+		// @phan-suppress-next-line PhanTypeMismatchArgument
+		$db->select( 'a', 'b', [ 'x' => $db->expr( 'x', '=', 1 ) ] );
+
+		// Nested array in array value
+		// @phan-suppress-next-line PhanTypeMismatchArgument
+		$db->select( 'a', 'b', [ 'x' => [ 1, 2, [ 3 ] ] ] );
+	}
 }
