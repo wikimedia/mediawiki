@@ -441,7 +441,7 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 			$this->set( 'wsSessionPbkdf2Iterations', $iterations );
 		}
 
-		$keymats = hash_pbkdf2( 'sha256', $wikiSecret, $userSecret, $iterations, 64, true );
+		$keymats = openssl_pbkdf2( $wikiSecret, $userSecret, 64, $iterations, 'sha256' );
 		return [
 			substr( $keymats, 0, 32 ),
 			substr( $keymats, 32, 32 ),
