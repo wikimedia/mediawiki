@@ -504,6 +504,20 @@
 				'HTML in links: ' + key
 			);
 		} );
+
+		mw.messages.set( 'jquerymsg-title-fragment', 'Link to [[Title#Fragment]]' );
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-title-fragment' ),
+			'Link to <a title="Title#Fragment" href="/wiki/Title#Fragment">Title#Fragment</a>',
+			'Link with title and fragment'
+		);
+
+		mw.messages.set( 'jquerymsg-fragment', 'Link to [[#Fragment]]' );
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-fragment' ),
+			'Link to <a title="#Fragment" href="#Fragment">#Fragment</a>',
+			'Link with fragment only'
+		);
 	} );
 
 	QUnit.test( 'Replacements in links', function ( assert ) {
