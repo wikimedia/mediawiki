@@ -101,7 +101,7 @@ const mwString = require( 'mediawiki.String' ),
 
 	/**
 	 * @private
-	 * @method getNamespacePrefix_
+	 * @method getNamespacePrefix
 	 * @param {number} namespace that is valid and known. Callers should call
 	 *  `isKnownNamespace` before executing this method.
 	 * @return {string}
