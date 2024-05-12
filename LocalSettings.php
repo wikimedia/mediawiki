@@ -393,3 +393,10 @@ $wgNamespaceAliases['TW'] = NS_PROJECT;
 $wgNamespaceAliases['TWT'] = NS_PROJECT_TALK;
 
 $wgPygmentizePath = "/usr/local/bin/pygmentize";
+
+$wgRCFeeds['irc'] = [
+	'uri' => 'udp://129.153.11.72:9872',
+	'formatter' => IRCColourfulRCFeedFormatter::class,
+	'add_interwiki_prefix' => false,
+	'omit_bots' => true,
+];
