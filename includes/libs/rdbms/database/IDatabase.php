@@ -374,7 +374,8 @@ interface IDatabase extends IReadableDatabase {
 	 *
 	 * @param string $table Unqualified name of table
 	 * @param-taint $table exec_sql
-	 * @param array $set Combination map/list where each string-keyed entry maps a column
+	 * @param array<string,?scalar>|array<int,string> $set
+	 *   Combination map/list where each string-keyed entry maps a column
 	 *   to a literal assigned value and each integer-keyed value is a SQL expression in the
 	 *   format of a column assignment within UPDATE...SET. The (column => value) entries are
 	 *   convenient due to automatic value quoting and conversion of null to NULL. The SQL
@@ -484,7 +485,8 @@ interface IDatabase extends IReadableDatabase {
 	 *   one such key. Each unique key on the table is "applicable" unless either:
 	 *     - It involves an AUTOINCREMENT column for which no values are assigned in $rows
 	 *     - It involves a UUID column for which newly generated UUIDs are assigned in $rows
-	 * @param array $set Combination map/list where each string-keyed entry maps a column
+	 * @param array<string,?scalar>|array<int,string> $set
+	 *   Combination map/list where each string-keyed entry maps a column
 	 *   to a literal assigned value and each integer-keyed value is a SQL assignment expression
 	 *   of the form "<unquoted alphanumeric column> = <SQL expression>". The (column => value)
 	 *   entries are convenient due to automatic value quoting and conversion of null to NULL.
