@@ -4401,6 +4401,7 @@
 	"paramvalidator-badtitle": "Invalid value \"$2\" for title parameter <var>$1</var>: not a valid title string.",
 	"paramvalidator-missingtitle": "Invalid value \"$2\" for title parameter <var>$1</var>: the page does not exist.",
 	"paramvalidator-notarray": "Invalid value for parameter <var>$1</var>: array expected.",
+	"paramvalidator-schema-validation-failed": "Invalid value for provided schema",
 	"paramvalidator-help-type-title": "Type: page title",
 	"paramvalidator-help-type-title-must-exist": "Only accepts pages that exist.",
 	"paramvalidator-help-type-title-no-must-exist": "Accepts non-existent pages.",
