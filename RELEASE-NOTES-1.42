@@ -4,7 +4,7 @@
 
 THIS IS NOT A RELEASE YET
 
-MediaWiki 1.42 is an alpha-quality development branch, and is not recommended
+MediaWiki 1.42 is a pre-release testing branch, and is not recommended
 for use in production.
 
 == Upgrading notes for 1.42 ==
@@ -20,13 +20,11 @@ Some specific notes for MediaWiki 1.42 upgrades are below:
   and installing packages. See the upstream blog post at
   https://blog.packagist.com/deprecating-composer-1-support/ for further
   information.
-* …
 
 For notes on 1.41.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.42 ===
 * Composer 1.x is no longer supported, and can no longer be used with MediaWiki.
-* …
 
 ==== New configuration ====
 * $wgMicroStashType: The object cache backend for the MicroStash service.
@@ -42,7 +40,6 @@ For notes on 1.41.x and older releases, see HISTORY.
   grants should be considered risky. (T290790)
 * $wgTempAccountCreationThrottle: Like AccountCreationThrottle, but for managing
   temporary account creations.
-* …
 
 ==== Changed configuration ====
 * $wgAutoCreateTempUser: 'matchPattern' now supports multiple match patterns.
@@ -55,7 +52,6 @@ For notes on 1.41.x and older releases, see HISTORY.
   changes were expected. If your wiki used temporary accounts before
   1.42, you will need to override the configuration value to also match
   the old format of *$1.
-* …
 
 ==== Removed configuration ====
 * $wgDisableCookieCheck has been removed.
@@ -77,14 +73,9 @@ For notes on 1.41.x and older releases, see HISTORY.
 * $wgOpenSearchTemplate, deprecated since 1.25, has been removed
   Use $wgOpenSearchTemplates['application/x-suggestions+json'] instead.
 * $wgUseSameSiteLegacyCookies has been removed.
-* …
 
 === New user-facing features in 1.42 ===
 * (T308160) filter: is now allowed in inline CSS in wikitext
-* …
-
-=== New features for sysadmins in 1.42 ===
-* …
 
 === New developer features in 1.42 ===
 * (T326466) MediaWikiIntegrationTestCase's database and set-up code now avoids
@@ -105,17 +96,12 @@ For notes on 1.41.x and older releases, see HISTORY.
   https://www.mediawiki.org/wiki/Codex#Subset_of_components
 * (T345185) The SessionProviderInterface now allows defining providers that
   are exempt from rights checks when auto creating users.
-* …
 
 === External library changes in 1.42 ===
 
 ==== New external libraries ====
 * Added mediawiki/json-codec at v2.2.1.
 * Added mck89/peast at v1.16.2.
-* …
-
-===== New development-only external libraries =====
-* …
 
 ==== Changed external libraries ====
 * Updated OOUI from v0.48.1 to v0.49.1.
@@ -140,7 +126,6 @@ For notes on 1.41.x and older releases, see HISTORY.
 * Updated wikimedia/minify from 2.5.1 to 2.7.0.
 * Updated wikimedia/relpath from 3.0.0 to 4.0.0.
 * Updated wikimedia/shellbox from 4.0.0 to 4.0.1.
-* …
 
 ===== Changed development-only external libraries =====
 * Updated QUnit from v2.19.4 to v2.20.0.
@@ -155,22 +140,11 @@ For notes on 1.41.x and older releases, see HISTORY.
 * Updated psy/psysh from ^0.11.1 to ^0.12.3.
 * Updated seld/jsonlint from 1.8.3 to 1.10.1.
 * Updated wikimedia/testing-access-wrapper from 2.0.0 to 3.0.0.
-* …
-
-==== Removed external libraries ====
-* …
-
-=== Bug fixes in 1.42 ===
-* …
 
 === Action API changes in 1.42 ===
 * APIQueryTags now includes "software" in the "source" array for software
   generated tags. Reliance on the "extension" entries in this array is now
   deprecated, but they will remain for backwards compatibility.
-* …
-
-=== Action API internal changes in 1.42 ===
-* …
 
 === Languages updated in 1.42 ===
 MediaWiki supports over 350 languages. Many localisations are updated regularly.
@@ -189,7 +163,6 @@ because of Phabricator reports.
 * (T354926) Added language support for Nyoro (nyo).
 * (T356616) Added language support for Chinook Jargon (chn).
 * (T357879) Added language support for Ibibio (ibb).
-* …
 
 === Breaking changes in 1.42 ===
 * (T340802) ResourceLoader: The targets system is no longer active; all modules
@@ -478,7 +451,6 @@ because of Phabricator reports.
   removed. Use ::isListed() to read, and over-ride by implementing isListed() or
   by sub-classing UnlistedSpecialPage.
 * BlockListPager::getTotalAutoblocks() was removed.
-* …
 
 === Deprecations in 1.42 ===
 * (T273239) wfGetDB(), deprecated in 1.39, now emits deprecation warnings. Most
@@ -796,18 +768,16 @@ because of Phabricator reports.
   action this function previously handled should be moved into
   incrementConflictStats() and incrementResolvedStats().
 * SQLPlatform::getQueryVerb() is now deprecated.
-* …
 
 === Other changes in 1.42 ===
 * Gallery: Image captions are no longer wrapped in <p> tags. Skins that
   customize rendering for galleries may need to tweak their CSS.
 * Scripts under maintenance/dev/, for quickly setup a local MediaWiki for
   development purposes, have been removed, see DEVELOPERS.md for alternatives.
-* …
 
 == Compatibility ==
 
-MediaWiki 1.42 requires PHP 7.4.3 or later and the following PHP extensions:
+MediaWiki 1.42 requires PHP 8.1.0 or later and the following PHP extensions:
 
 * ctype
 * dom
