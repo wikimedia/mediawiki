@@ -188,6 +188,7 @@ because of Phabricator reports.
   (nan-hant).
 * (T290657) Added language support for Levantine Arabic (apc).
 * (T364291) Added language support for Musi, also known as Palembang (mui).
+* (T364737) Added language support for Haryanvi (bgc).
 * (T365365) Added language support for Chakma (ccp).
 * (T367991) Added language support for Iban (iba).
 * (T367688) Added language support for Interslavic (Latin) (isv-latn).
