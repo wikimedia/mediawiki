@@ -206,12 +206,13 @@ class ChangeTagsStore {
 			throw new InvalidArgumentException( 'Unable to determine appropriate JOIN condition for tagging.' );
 		}
 
-		$tagTables = [ self::CHANGE_TAG, self::CHANGE_TAG_DEF ];
-		$join_cond_ts_tags = [ self::CHANGE_TAG_DEF => [ 'JOIN', 'ct_tag_id=ctd_id' ] ];
-		$field = 'ctd_name';
-
 		return $this->dbProvider->getReplicaDatabase()
-			->buildGroupConcatField( ',', $tagTables, $field, $join_cond, $join_cond_ts_tags );
+			->newSelectQueryBuilder()
+			->table( self::CHANGE_TAG )
+			->join( self::CHANGE_TAG_DEF, null, 'ct_tag_id=ctd_id' )
+			->field( 'ctd_name' )
+			->where( $join_cond )
+			->buildGroupConcatField( ',' );
 	}
 
 	/**

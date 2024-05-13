@@ -81,10 +81,10 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		$baseConcats = [ ',', [ 'change_tag', 'change_tag_def' ], 'ctd_name' ];
 		$joinConds = [ 'change_tag_def' => [ 'JOIN', 'ct_tag_id=ctd_id' ] ];
 		$groupConcats = [
-			'recentchanges' => array_merge( $baseConcats, [ 'ct_rc_id=rc_id', $joinConds ] ),
-			'logging' => array_merge( $baseConcats, [ 'ct_log_id=log_id', $joinConds ] ),
-			'revision' => array_merge( $baseConcats, [ 'ct_rev_id=rev_id', $joinConds ] ),
-			'archive' => array_merge( $baseConcats, [ 'ct_rev_id=ar_rev_id', $joinConds ] ),
+			'recentchanges' => array_merge( $baseConcats, [ [ 'ct_rc_id=rc_id' ], $joinConds ] ),
+			'logging' => array_merge( $baseConcats, [ [ 'ct_log_id=log_id' ], $joinConds ] ),
+			'revision' => array_merge( $baseConcats, [ [ 'ct_rev_id=rev_id' ], $joinConds ] ),
+			'archive' => array_merge( $baseConcats, [ [ 'ct_rev_id=ar_rev_id' ], $joinConds ] ),
 		];
 
 		return [
