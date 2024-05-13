@@ -4,7 +4,6 @@
 # minimal by design, with the idea to make it easily extensible via
 # docker-compose.override.yml. For help with doing that, please see
 # DEVELOPERS.md
-version: '3.7'
 services:
   mediawiki:
     image: docker-registry.wikimedia.org/dev/buster-php81-fpm:1.0.1-s2
