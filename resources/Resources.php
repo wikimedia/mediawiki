@@ -2478,6 +2478,45 @@ return [
 			'user.options',
 		],
 	],
+	'mediawiki.authenticationPopup' => [
+		'packageFiles' => [
+			'resources/src/mediawiki.authenticationPopup/index.js',
+			'resources/src/mediawiki.authenticationPopup/constants.js',
+			'resources/src/mediawiki.authenticationPopup/AuthPopup.js',
+			'resources/src/mediawiki.authenticationPopup/AuthMessageDialog.js',
+			'resources/src/mediawiki.authenticationPopup/AuthPopupError.js',
+			[
+				'name' => 'resources/src/mediawiki.authenticationPopup/config.json',
+				'callback' => static function ( Context $context ) {
+					$specials = MediaWikiServices::getInstance()->getSpecialPageFactory();
+					return [
+						'specialPageNames' => [
+							'UserLogin' => $specials->getLocalNameFor( 'Userlogin' ),
+							'AuthenticationPopupSuccess' => $specials->getLocalNameFor( 'AuthenticationPopupSuccess' ),
+						],
+					];
+				}
+			],
+		],
+		'messages' => [
+			'userlogin-authpopup-loggingin-title',
+			'userlogin-authpopup-loggingin-body',
+			'userlogin-authpopup-loggingin-body-link',
+			'userlogin-authpopup-retry',
+			'userlogin-authpopup-cancel',
+		],
+		'dependencies' => [
+			'jquery.spinner',
+			'mediawiki.Title',
+			'oojs-ui-windows',
+		]
+	],
+	'mediawiki.authenticationPopup.success' => [
+		'packageFiles' => [
+			'resources/src/mediawiki.authenticationPopup/success.js',
+			'resources/src/mediawiki.authenticationPopup/constants.js',
+		]
+	],
 	'mediawiki.special.userlogin.common.styles' => [
 		'styles' => [
 			'resources/src/mediawiki.special.userlogin.common.styles/userlogin.less',

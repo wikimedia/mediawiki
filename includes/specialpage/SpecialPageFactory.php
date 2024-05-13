@@ -49,6 +49,7 @@ use MediaWiki\Specials\SpecialAllPages;
 use MediaWiki\Specials\SpecialAncientPages;
 use MediaWiki\Specials\SpecialApiHelp;
 use MediaWiki\Specials\SpecialApiSandbox;
+use MediaWiki\Specials\SpecialAuthenticationPopupSuccess;
 use MediaWiki\Specials\SpecialAutoblockList;
 use MediaWiki\Specials\SpecialBlankpage;
 use MediaWiki\Specials\SpecialBlock;
@@ -487,6 +488,12 @@ class SpecialPageFactory {
 			'class' => SpecialRemoveCredentials::class,
 			'services' => [
 				'AuthManager',
+			]
+		],
+		'AuthenticationPopupSuccess' => [
+			'class' => SpecialAuthenticationPopupSuccess::class,
+			'services' => [
+				'SkinFactory',
 			]
 		],
 

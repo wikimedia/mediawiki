@@ -407,6 +407,7 @@ $specialPageAliases = [
 	'Ancientpages'              => [ 'AncientPages' ],
 	'ApiHelp'                   => [ 'ApiHelp' ],
 	'ApiSandbox'                => [ 'ApiSandbox' ],
+	'AuthenticationPopupSuccess' => [ 'AuthenticationPopupSuccess' ],
 	'AutoblockList'             => [ 'AutoblockList', 'ListAutoblocks' ],
 	'Badtitle'                  => [ 'Badtitle' ],
 	'Blankpage'                 => [ 'BlankPage' ],
