@@ -1235,6 +1235,7 @@
 	"right-writeapi": "Uzez API por skribar",
 	"right-delete": "Efacar pagini",
 	"right-bigdelete": "Efacar pagini kun longa historio",
+	"right-deletelogentry": "Efacar e restaurar specifika eniri di registro.",
 	"right-deleterevision": "Efacar e restaurar specifika revizi de la pagini",
 	"right-deletedtext": "Vidar texti efacita e modifikuri inter revizi efacita",
 	"right-browsearchive": "Serchar pagini efacita",

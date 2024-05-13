@@ -32,7 +32,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Magotech",
-			"Kisare"
+			"Kisare",
+			"Sheilawangari"
 		]
 	},
 	"tog-underline": "Wekea mstari viungo:",
@@ -794,7 +795,7 @@
 	"editundo": "tengua",
 	"diff-empty": "(Hakuna tofauti)",
 	"diff-multi-sameuser": "( {{PLURAL:$1| Sahihisho moja la kati| marekebisho $1 ya kati}} na mtumiaji yuleyule ambaye hajaonyeshwa)",
-	"diff-multi-otherusers": "({{PLURAL:$1| Sahihisho moja la kati| marekebisho ya kati $1 }} ya {{PLURAL:$2| mtumiaji mwingine mmoja| watumiaji $2 }} hayajaonyeshwa)",
+	"diff-multi-otherusers": "({{PLURAL:$1|Sahihisho moja la kati| marekebisho $1 ya kati}} na {{PLURAL:$2|mtumizi mwingine|watumizi wengine $2}} na yule ambaye hajaonyeshwa)",
 	"searchresults": "Matokeo ya utafutaji",
 	"search-filter-title-prefix": "Kutafuta katika kurasa zenye kichwa kianzacho na \"$1\" pekee",
 	"search-filter-title-prefix-reset": "Tafuta kurasa zote",

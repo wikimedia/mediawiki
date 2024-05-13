@@ -34,7 +34,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Base",
-			"Reedy"
+			"Reedy",
+			"Ponor"
 		]
 	},
 	"tog-underline": "Podvlačenje linkova:",
@@ -2938,7 +2939,7 @@
 	"months": "{{PLURAL:$1|$1 mjesec|$1 mjeseca|$1 mjeseci}}",
 	"years": "{{PLURAL:$1|$1 godina|$1 godine|$1 godina}}",
 	"ago": "prije $1",
-	"just-now": "upravo sad",
+	"just-now": "upravo",
 	"hours-ago": "prije $1 {{PLURAL:$1|sat|sata|sati}}",
 	"minutes-ago": "prije $1 {{PLURAL:$1|minute|minute|minuta}}",
 	"seconds-ago": "prije $1 {{PLURAL:$1|sekunde|sekunde|sekundi}}",

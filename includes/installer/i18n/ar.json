@@ -235,7 +235,7 @@
 	"config-upload-deleted-help": "اختر دليلا لأرشفة الملفات المحذوفة،\nمن الناحية المثالية، لا يمكن الوصول إلى هذا من الويب.",
 	"config-personalization-settings": "التخصيص",
 	"config-logo-summary": "لكل حقل من هذه الحقول ، ستحتاج إلى تحميل صورة بالحجم المناسب ، وإدخال عنوان URL في المربعات أدناه. يمكنك استخدام <code>$wgStylePath</code> أو <code>$wgScriptPath</code> إذا كان شعارك متعلقًا بتلك المسارات. يمكنك ترك أي من هذه المربعات فارغة.",
-	"config-logo-preview-main": "الصفحة الرئيسية",
+	"config-logo-preview-main": "الصفحة الرئيسة",
 	"config-logo-icon": "الشعار (رمز)",
 	"config-logo-icon-help": "يجب أن تكون أيقونة شعارك مربعة وأن يكون حجمها مثاليًا أكثر من 50 بكسل أو بصيغة SVG.",
 	"config-logo-wordmark": "Wordmark (اختياري):",

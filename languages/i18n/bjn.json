@@ -11,7 +11,8 @@
 			"Mnam23",
 			"Riemogerz",
 			"Vlad5250",
-			"아라"
+			"아라",
+			"Albertoleoncio"
 		]
 	},
 	"tog-underline": "Garis bawahi tautan:",
@@ -338,7 +339,7 @@
 	"protectedinterface": "Halaman ngini manyadiakan naskah antarmuha gasan parangkat lunak, wan dilindungi tahadap panyalahgunaan. Gasan manambah atawa mambabak tarjamahan pada sabarataan wiki, muhun pakai [https://translatewiki.net translatewiki.net], rangka-gawi palokalan MediaWiki.",
 	"editinginterface": "<strong>Paringatan:</strong> Pian mambabak suatu laman nang dipakai gasan manyadiaakan naskah antarmuha gasan parangkat lunak.\nPaubahan pada laman ngini pacangan mamangaruhi tampaian ka antarmuha pamakai gasan pamakai lain pada wiki ngini.",
 	"translateinterface": "Gasan manambah atawa maubah tarjamahan pada samunyaan wiki, silakan pakai [https://translatewiki.net/ translatewiki.net], rangka-gawian palukalan MédiaWiki.",
-	"cascadeprotected": "Halaman ini sudah dilindungi matan pambabakan, maraga nangini tamasuk dalam {{PLURAL:$1|halaman}} dudi nang dilindungi \"barénténg\": $2",
+	"cascadeprotected": "Halaman ini sudah dilindungi matan pambabakan, maraga nangini tamasuk dalam {{PLURAL:$1|halaman}} dudi nang dilindungi \"barénténg\":\n$2",
 	"namespaceprotected": "Pian kada baisi ijin hagan mambabak tutungkaran dalam ngaran kamar '''$1'''.",
 	"customcssprotected": "Pian kada baisi ijin mambabak laman CSS ngini, maraga baisi pangaturan paribadi pamakai lain.",
 	"customjsprotected": "Pian kada baisi ijin mambabak laman JavaScript ngini, maraga baisi pangaturan paribadi pamakai lain.",
