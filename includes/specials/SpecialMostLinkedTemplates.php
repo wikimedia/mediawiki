@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Mostlinkedtemplates
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,8 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
- * @author Rob Church <robchur@gmail.com>
  */
 
 namespace MediaWiki\Specials;
@@ -38,10 +34,11 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
- * Special page lists templates with a large number of
- * transclusion links, i.e. "most used" templates
+ * List of templates with a large number of transclusion links,
+ * i.e. "most used" templates
  *
  * @ingroup SpecialPage
+ * @author Rob Church <robchur@gmail.com>
  */
 class SpecialMostLinkedTemplates extends QueryPage {
 

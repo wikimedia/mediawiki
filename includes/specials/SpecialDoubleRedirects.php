@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:DoubleRedirects
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -34,8 +31,10 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
- * A special page listing redirects to redirecting page.
- * The software will automatically not follow double redirects, to prevent loops.
+ * List of redirects to another redirecting page.
+ *
+ * The software will by default not follow double redirects, to prevent loops.
+ * Editors are encouraged to fix these, and can discover them via this page.
  *
  * @ingroup SpecialPage
  */

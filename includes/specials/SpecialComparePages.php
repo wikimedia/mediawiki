@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:ComparePages
- *
  * Copyright © 2010 Derk-Jan Hartman <hartman@videolan.org>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -20,7 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;

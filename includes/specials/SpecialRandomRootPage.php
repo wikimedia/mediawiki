@@ -1,8 +1,5 @@
 <?php
-
 /**
- * Implements Special:Randomrootpage
- *
  * Copyright © 2008 Hojjat (aka Huji)
  *
  * This program is free software; you can redistribute it and/or modify
@@ -21,7 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -31,6 +27,11 @@ use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 
+/**
+ * Redirect to a random page that isn't a subpage.
+ *
+ * @ingroup SpecialPage
+ */
 class SpecialRandomRootPage extends SpecialRandomPage {
 
 	/**

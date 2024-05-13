@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:EmailInvalidation
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -30,10 +27,11 @@ use Profiler;
 use Wikimedia\ScopedCallback;
 
 /**
- * Special page allows users to cancel an email confirmation using the e-mail
- * confirmation code
+ * Cancel an email confirmation using the e-mail confirmation code.
  *
+ * @see SpecialConfirmEmail
  * @ingroup SpecialPage
+ * @ingroup Auth
  */
 class SpecialEmailInvalidate extends UnlistedSpecialPage {
 

@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:ListDuplicatedFiles
- *
  * Copyright © 2013 Brian Wolff
  *
  * This program is free software; you can redistribute it and/or modify
@@ -20,8 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
- * @author Brian Wolff
  */
 
 namespace MediaWiki\Specials;
@@ -37,9 +33,11 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
- * Special:ListDuplicatedFiles Lists all files where the current version is
- *   a duplicate of the current version of some other file.
+ * List all files where the current version is a duplicate of the current
+ * version of another file.
+ *
  * @ingroup SpecialPage
+ * @author Brian Wolff
  */
 class SpecialListDuplicatedFiles extends QueryPage {
 

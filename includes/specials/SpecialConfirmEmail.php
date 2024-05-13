@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Confirmemail
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -39,8 +36,13 @@ use UserNotLoggedIn;
 use Wikimedia\ScopedCallback;
 
 /**
- * Special page allows users to request email confirmation message, and handles
- * processing of the confirmation code when the link in the email is followed
+ * Email confirmation for registered users.
+ *
+ * This page responds to the link with the confirmation code
+ * that is sent in the confirmation email.
+ *
+ * This page can also be accessed directly at any later time
+ * to re-send the confirmation email.
  *
  * @ingroup SpecialPage
  * @author Brooke Vibber

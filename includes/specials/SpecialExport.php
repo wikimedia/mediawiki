@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Export
- *
  * Copyright © 2003-2008 Brooke Vibber <bvibber@wikimedia.org>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -20,7 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -42,6 +39,7 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  * A special page that allows users to export pages in a XML file
  *
  * @ingroup SpecialPage
+ * @ingroup Dump
  */
 class SpecialExport extends SpecialPage {
 	protected bool $curonly;

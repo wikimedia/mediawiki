@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Randompage
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,8 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
- * @author Rob Church <robchur@gmail.com>, Ilmari Karonen
  */
 
 namespace MediaWiki\Specials;
@@ -30,9 +26,10 @@ use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
- * Special page to direct the user to a random page
+ * Redirect to a random page
  *
  * @ingroup SpecialPage
+ * @author Rob Church <robchur@gmail.com>, Ilmari Karonen
  */
 class SpecialRandomPage extends SpecialPage {
 	private $namespaces; // namespaces to select pages from

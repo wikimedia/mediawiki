@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:PageLanguage
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,9 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
- * @author Kunal Grover
- * @since 1.24
  */
 
 namespace MediaWiki\Specials;
@@ -50,6 +45,8 @@ use Xml;
  * Special page for changing the content language of a page
  *
  * @ingroup SpecialPage
+ * @author Kunal Grover
+ * @since 1.24
  */
 class SpecialPageLanguage extends FormSpecialPage {
 	/**

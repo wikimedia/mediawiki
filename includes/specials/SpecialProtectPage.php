@@ -1,7 +1,5 @@
 <?php
 /**
- * Redirect from Special:ProtectPage/$1 to index.php?title=$1&action=protect.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -27,9 +24,11 @@ use MediaWiki\SpecialPage\SpecialRedirectWithAction;
 use SearchEngineFactory;
 
 /**
- * @author Zabe
+ * Redirect from Special:ProtectPage/$1 to index.php?title=$1&action=protect.
  *
  * @since 1.38
+ * @ingroup SpecialPage
+ * @author Zabe
  */
 class SpecialProtectPage extends SpecialRedirectWithAction {
 

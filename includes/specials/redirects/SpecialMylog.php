@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials\Redirects;
@@ -27,7 +26,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 
 /**
- * Special page pointing to current user's Special:Log.
+ * Redirect to Special:Log for the current user's name or IP.
  *
  * @ingroup SpecialPage
  */

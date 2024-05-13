@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Listgrants
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -30,9 +27,11 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\User;
 
 /**
- * This special page lists all defined rights grants and the associated rights.
+ * List all defined rights grants and the associated rights.
+ *
  * See also @ref $wgGrantPermissions and @ref $wgGrantPermissionGroups.
  *
+ * @see SpecialListGroupRights
  * @ingroup SpecialPage
  */
 class SpecialListGrants extends SpecialPage {

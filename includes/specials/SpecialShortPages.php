@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Shortpages
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -37,8 +34,7 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
- * SpecialShortpages extends QueryPage. It is used to return the shortest
- * pages in the database.
+ * List of the shortest pages in the database.
  *
  * @ingroup SpecialPage
  */

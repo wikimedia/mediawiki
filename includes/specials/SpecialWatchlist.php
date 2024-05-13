@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Watchlist
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -53,10 +50,15 @@ use Xml;
 use XmlSelect;
 
 /**
+ * @defgroup Watchlist Users watchlist handling
+ */
+
+/**
  * A special page that lists last changes made to the wiki,
  * limited to user-defined list of titles.
  *
  * @ingroup SpecialPage
+ * @ingroup Watchlist
  */
 class SpecialWatchlist extends ChangesListSpecialPage {
 	/** @var array */

@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:MergeHistory
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -37,8 +34,11 @@ use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
- * Special page allowing users with the appropriate permissions to
- * merge article histories, with some restrictions
+ * Combine the revision history of two articles into one.
+ *
+ * Limited to users with the appropriate permissions,
+ * and with some restrictions on whether a page's history can be
+ * merged.
  *
  * @ingroup SpecialPage
  */

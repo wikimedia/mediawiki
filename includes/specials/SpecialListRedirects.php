@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Listredirects
- *
  * Copyright © 2006 Rob Church
  *
  * This program is free software; you can redistribute it and/or modify
@@ -20,8 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
- * @author Rob Church <robchur@gmail.com>
  */
 
 namespace MediaWiki\Specials;
@@ -38,8 +34,10 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
- * Special:Listredirects - Lists all the redirects on the wiki.
+ * Lists all the redirecting pages on the wiki.
+ *
  * @ingroup SpecialPage
+ * @author Rob Church <robchur@gmail.com>
  */
 class SpecialListRedirects extends QueryPage {
 

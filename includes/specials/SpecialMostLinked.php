@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Mostlinked
- *
  * Copyright © 2005 Ævar Arnfjörð Bjarmason, 2006 Rob Church
  *
  * This program is free software; you can redistribute it and/or modify
@@ -20,9 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
- * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
- * @author Rob Church <robchur@gmail.com>
  */
 
 namespace MediaWiki\Specials;
@@ -41,9 +36,11 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
- * A special page to show pages ordered by the number of pages linking to them.
+ * List of pages ordered by the number of pages linking to them.
  *
  * @ingroup SpecialPage
+ * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+ * @author Rob Church <robchur@gmail.com>
  */
 class SpecialMostLinked extends QueryPage {
 

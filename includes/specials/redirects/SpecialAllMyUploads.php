@@ -1,10 +1,5 @@
 <?php
 /**
- * Special pages that are used to get user independent links pointing to
- * current user's pages (user page, talk page, contributions, etc.).
- * This can let us cache a single copy of some generated content for all
- * users or be linked in wikitext help pages.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials\Redirects;
@@ -31,8 +25,9 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 
 /**
- * Special page pointing to current user's uploaded files (including old versions).
+ * Redirect to current user's uploaded files, including old versions.
  *
+ * @see SpecialMyuploads
  * @ingroup SpecialPage
  */
 class SpecialAllMyUploads extends RedirectSpecialPage {

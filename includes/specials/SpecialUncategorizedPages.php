@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Uncategorizedpages
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -30,10 +27,11 @@ use MediaWiki\Title\NamespaceInfo;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
- * A special page looking for page without any category.
+ * List of pages without any category.
+ *
+ * @todo FIXME: Make $requestedNamespace selectable, unify all subclasses into one
  *
  * @ingroup SpecialPage
- * @todo FIXME: Make $requestedNamespace selectable, unify all subclasses into one
  */
 class SpecialUncategorizedPages extends PageQueryPage {
 	/** @var int|false */

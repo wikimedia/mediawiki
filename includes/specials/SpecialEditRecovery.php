@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * @ingroup SpecialPage
- */
 
 namespace MediaWiki\Specials;
 

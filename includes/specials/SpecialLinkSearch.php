@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:LinkSearch
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,8 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
- * @author Brooke Vibber
  */
 
 namespace MediaWiki\Specials;
@@ -41,7 +37,9 @@ use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Special:LinkSearch to search the external-links table.
+ *
  * @ingroup SpecialPage
+ * @author Brooke Vibber
  */
 class SpecialLinkSearch extends QueryPage {
 	/** @var array|bool */

@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -34,8 +33,7 @@ use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityUtils;
 
 /**
- * A special page that allows users to modify their notification
- * preferences
+ * Modify your own notification preferences
  *
  * @ingroup SpecialPage
  */

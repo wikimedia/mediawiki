@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Wantedcategories
- *
  * Copyright © 2005 Ævar Arnfjörð Bjarmason
  *
  * This program is free software; you can redistribute it and/or modify
@@ -20,7 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -36,7 +33,7 @@ use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
- * A querypage to list the most wanted categories - implements Special:Wantedcategories
+ * List of the most wanted categories
  *
  * @ingroup SpecialPage
  */

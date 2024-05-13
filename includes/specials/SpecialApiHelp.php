@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:ApiHelp
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -31,8 +28,10 @@ use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Utils\UrlUtils;
 
 /**
- * Special page to redirect to API help pages, for situations where linking to
- * the api.php endpoint is not wanted.
+ * Redirect to help pages served by api.php.
+ *
+ * For situations where linking to full api.php URLs is not wanted
+ * or not possible, e.g. in edit summaries.
  *
  * @ingroup SpecialPage
  */

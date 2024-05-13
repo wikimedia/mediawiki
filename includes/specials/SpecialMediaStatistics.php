@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:MediaStatistics
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,8 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
- * @author Brian Wolff
  */
 
 namespace MediaWiki\Specials;
@@ -37,7 +33,10 @@ use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
+ * Implements Special:MediaStatistics
+ *
  * @ingroup SpecialPage
+ * @author Brian Wolff
  */
 class SpecialMediaStatistics extends QueryPage {
 

@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -39,8 +38,9 @@ use Xml;
 use XmlSelect;
 
 /**
- * Special page for adding and removing change tags to individual revisions.
- * A lot of this is copied out of SpecialRevisiondelete.
+ * Add or remove change tags to individual revisions.
+ *
+ * A lot of this was copied out of SpecialRevisiondelete.
  *
  * @ingroup SpecialPage
  * @since 1.25

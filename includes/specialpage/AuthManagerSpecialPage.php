@@ -30,6 +30,7 @@ use UnexpectedValueException;
  * @note Call self::setAuthManager from special page constructor when extending
  *
  * @stable to extend
+ * @ingroup Auth
  */
 abstract class AuthManagerSpecialPage extends SpecialPage {
 	/** @var string[] The list of actions this special page deals with. Subclasses should override

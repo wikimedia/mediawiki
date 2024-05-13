@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Lockdb
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -32,7 +29,9 @@ use MediaWiki\User\User;
 use Wikimedia\AtEase\AtEase;
 
 /**
- * A form to make the database readonly (eg for maintenance purposes).
+ * A form to make the database read-only (eg for maintenance purposes).
+ *
+ * See also @ref $wgReadOnlyFile.
  *
  * @ingroup SpecialPage
  */

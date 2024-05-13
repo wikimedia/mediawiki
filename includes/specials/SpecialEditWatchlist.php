@@ -1,11 +1,5 @@
 <?php
 /**
- * @defgroup Watchlist Users watchlist handling
- */
-
-/**
- * Implements Special:EditWatchlist
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -22,8 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
- * @ingroup Watchlist
  */
 
 namespace MediaWiki\Specials;
@@ -62,8 +54,7 @@ use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\Core\TOCData;
 
 /**
- * Provides the UI through which users can perform editing
- * operations on their watchlist
+ * Users can edit their watchlist via this page.
  *
  * @ingroup SpecialPage
  * @ingroup Watchlist

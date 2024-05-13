@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:ApiSandbox
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -26,8 +23,10 @@ namespace MediaWiki\Specials;
 use MediaWiki\SpecialPage\SpecialPage;
 
 /**
- * @ingroup SpecialPage
+ * Implements Special:ApiSandbox
+ *
  * @since 1.27
+ * @ingroup SpecialPage
  */
 class SpecialApiSandbox extends SpecialPage {
 

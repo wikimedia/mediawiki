@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:ExpandTemplates
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -39,10 +36,11 @@ use ParserOptions;
 use Xml;
 
 /**
- * A special page that expands submitted templates, parser functions,
+ * A special page to enter wikitext and expands its templates, parser functions,
  * and variables, allowing easier debugging of these.
  *
  * @ingroup SpecialPage
+ * @ingroup Parser
  */
 class SpecialExpandTemplates extends SpecialPage {
 

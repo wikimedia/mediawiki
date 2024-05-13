@@ -16,9 +16,13 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 
 /**
- * Special change to change credentials (such as the password).
+ * Change user credentials, such as the password.
  *
- * Also does most of the work for SpecialRemoveCredentials.
+ * This is also powers most of the SpecialRemoveCredentials subclass.
+ *
+ * @see SpecialChangePassword
+ * @ingroup SpecialPage
+ * @ingroup Auth
  */
 class SpecialChangeCredentials extends AuthManagerSpecialPage {
 	protected static $allowedActions = [ AuthManager::ACTION_CHANGE ];
