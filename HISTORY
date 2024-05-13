@@ -62,9 +62,9 @@ This is a security and maintenance release of the MediaWiki 1.41 branch.
 * (T360608) WebRequest: detectServer appends default ports that should be
   omitted.
 * (T357019) allow maintenance/deleteBatch.php to accept page ID.
-* (T355538, CVE-2024-PENDING) XSS in edit summary parser.
-* (T357760, CVE-2024-PENDING) Denial of service vector via GET request to
-  Special:MovePage on pages with thousands of subpages.
+* (T355538, CVE-2024-34507) SECURITY: XSS in edit summary parser.
+* (T357760, CVE-2024-34506) SECURITY: Denial of service vector via GET request
+  to Special:MovePage on pages with thousands of subpages.
 
 === Changes since MediaWiki 1.41.0-rc.0 ===
 * Localisation updates.
@@ -1256,9 +1256,9 @@ This is a security and maintenance release of the MediaWiki 1.40 branch.
 * (T317451) build: Restore Doxygen output for MediaWiki release tags (take 3).
 * docs: Set stable permalink on markdown files.
 * (T357019) allow maintenance/deleteBatch.php to accept page ID.
-* (T355538, CVE-2024-PENDING) XSS in edit summary parser.
-* (T357760, CVE-2024-PENDING) Denial of service vector via GET request to
-  Special:MovePage on pages with thousands of subpages.
+* (T355538, CVE-2024-34507) SECURITY: XSS in edit summary parser.
+* (T357760, CVE-2024-34506) SECURITY: Denial of service vector via GET request
+  to Special:MovePage on pages with thousands of subpages.
 
 == MediaWiki 1.40.2 ==
 
@@ -2075,9 +2075,9 @@ This is a security and maintenance release of the MediaWiki 1.39 branch.
 * (T317451) build: Restore Doxygen output for MediaWiki release tags (take 3).
 * docs: Set stable permalink on markdown files.
 * (T357019) allow maintenance/deleteBatch.php to accept page ID.
-* (T355538, CVE-2024-PENDING) XSS in edit summary parser.
-* (T357760, CVE-2024-PENDING) Denial of service vector via GET request to
-  Special:MovePage on pages with thousands of subpages.
+* (T355538, CVE-2024-34507) SECURITY: XSS in edit summary parser.
+* (T357760, CVE-2024-34506) SECURITY: Denial of service vector via GET request
+  to Special:MovePage on pages with thousands of subpages.
 
 == MediaWiki 1.39.6 ==
 
