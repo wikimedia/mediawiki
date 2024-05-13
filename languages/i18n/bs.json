@@ -965,6 +965,7 @@
 	"userrights-systemuser": "Ovo je {{GENDER:$1|sistemski korisnik|sistemska korisnica|sistemski/-a korisnik/-ca}}.",
 	"userrights-groups-help": "Možete promijeniti grupe kojima ovaj korisnik pripada:\n* Označeni kvadratić znači da je korisnik u toj grupi.\n* Neoznačeni kvadratić znači da korisnik nije u toj grupi.\n* Zvjezdica (*) označava da ne možete ukloniti grupu nakon što je dodate i obrnuto.\n* Taraba (#) označava da jedino možete odložiti vrijeme isteka članstva u ovoj grupi; ne možete ga ubrzati.",
 	"userrights-reason": "Razlog:",
+	"userrights-watchuser": "Prati korisničku stranicu i stranicu za razgovor ovog korisnika",
 	"userrights-no-interwiki": "Nemate dopuštenja da uređujete korisnička prava na drugim wikijima.",
 	"userrights-nodatabase": "Baza podataka $1 ne postoji ili nije lokalna baza.",
 	"userrights-changeable-col": "Grupe koje možete mijenjati",

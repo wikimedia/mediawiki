@@ -3312,6 +3312,7 @@
 	"version-entrypoints-articlepath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticlePath Percorso voci]",
 	"version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgScriptPath Percorso script]",
 	"version-libraries": "Librerie installate",
+	"version-libraries-server": "Librerie lato server installate",
 	"version-libraries-library": "Libreria",
 	"version-libraries-version": "Versione",
 	"version-libraries-license": "Licenza",

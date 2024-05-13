@@ -146,7 +146,7 @@
 	"config-site-name": "Викини аты:",
 	"config-site-name-help": "Бу браузерни башлыкъ панелинде эмда башха джерледе кёрюннюкдю.",
 	"config-site-name-blank": "Сайтны атын киргизигиз.",
-	"config-project-namespace": "Проект ат алан:",
+	"config-project-namespace": "Проект ат алам:",
 	"config-ns-generic": "Проект",
 	"config-ns-site-name": "Викини аты биягъыды: $1",
 	"config-ns-other": "Башза (белгилегиз)",

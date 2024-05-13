@@ -3475,6 +3475,7 @@
 	"version-entrypoints-articlepath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticlePath 条目路径]",
 	"version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgScriptPath 脚本路径]",
 	"version-libraries": "安装的库",
+	"version-libraries-server": "安装的服务器端库",
 	"version-libraries-client": "安装的客户端库",
 	"version-libraries-library": "库",
 	"version-libraries-version": "版本",

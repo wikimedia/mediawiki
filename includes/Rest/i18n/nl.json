@@ -9,7 +9,7 @@
 			"Romaine"
 		]
 	},
-	"rest-prefix-mismatch": "Het gevraagde pad ($1) bevind zich niet in het REST API-rootpad ($2)",
+	"rest-prefix-mismatch": "Het gevraagde pad ($1) bevind zich niet in het basispad van de REST API ($2)",
 	"rest-wrong-method": "De requestmethode ($1) is {{PLURAL:$3|niet de toegestane methode voor dit pad|een van de toegestane methoden voor dit pad}} ($2)",
 	"rest-no-match": "Het gevraagde relatieve pad ($1) komt niet overeen met een bekende handler",
 	"rest-nonexistent-title": "De opgegeven pagina ($1) bestaat niet",

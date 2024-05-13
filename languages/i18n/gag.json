@@ -203,6 +203,7 @@
 	"badtitle": "Yannış yazı adı",
 	"badtitletext": "Girilen sayfa adı beki yannış beki de boş, yaki geçersiz neçin ki diller arası baalantı yaki vikiler arası baalantı içerer. Var nicä içindä olsun bir yaki taa çok nışan angıları yasak başlıklarda kullanılsın.",
 	"viewsource": "Geliniri gör",
+	"skin-action-viewsource": "Geliniri gör",
 	"protectedpagetext": "Bu sayfa diiştirmämää deyni kilitlendi.",
 	"viewsourcetext": "Var nicä görmää hem kopiya etmää bu yapraa gelinirini:",
 	"logouttext": "Sessiyayı kapattınız.\nŞindi var nicä devam etmää kullanmaa {{SITENAME}} saytını kimlik göstermedän yaki <span class='plainlinks'>[$1 enidän sessiya açmaa]</span> (ister hep o kullanıcı adıylan, ister başka bir kullanıcı adıylan). O zamana kadar ani web brauzerinizin keşi temizlenecek bir takım sayfalar var nicä görünsün sansın sessiya hep açık.",

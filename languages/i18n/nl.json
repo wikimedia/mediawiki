@@ -3329,6 +3329,7 @@
 	"version-entrypoints-articlepath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticlePath Paginapad]",
 	"version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgScriptPath Scriptpad]",
 	"version-libraries": "Geïnstalleerde bibliotheken",
+	"version-libraries-server": "Op de server geïnstalleerde bibliotheken",
 	"version-libraries-client": "Aan de cliëntzijde geïnstalleerde bibliotheken",
 	"version-libraries-library": "Bibliotheek",
 	"version-libraries-version": "Versie",

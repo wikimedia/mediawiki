@@ -2076,7 +2076,7 @@
 	"logeventslist-patrol-log": "Ellenőrzési napló (patrol)",
 	"logeventslist-tag-log": "Címkenapló",
 	"logeventslist-newusers-log": "Új szerkesztők naplója",
-	"all-logs-page": "Minden nyilvános napló",
+	"all-logs-page": "Fő nyilvános naplók",
 	"alllogstext": "A(z) {{SITENAME}} naplóinak összesített listája.\nA naplótípus, a felhasználónév (kis- és nagybetűérzékeny) vagy az érintett lap kiválasztásával (ez is kis- és nagybetűérzékeny) szűkítheted a találatok listáját.",
 	"logempty": "Nincs illeszkedő naplóbejegyzés.",
 	"log-title-wildcard": "Így kezdődő címek keresése",

@@ -3327,6 +3327,7 @@
 	"version-entrypoints-articlepath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticlePath?uselang=mk Патека до статијата]",
 	"version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgScriptPath?uselang=mk Патека до скриптата]",
 	"version-libraries": "Востановени библиотеки",
+	"version-libraries-server": "Воспоставени библиотеки од опслужувачка страна",
 	"version-libraries-client": "Воспоставени библиотеки од клиентска страна",
 	"version-libraries-library": "Библиотека",
 	"version-libraries-version": "Верзија",

@@ -2916,7 +2916,7 @@
 	"pageinfo-robot-index": "Тума юрать",
 	"pageinfo-robot-noindex": "Тума юрамасть",
 	"pageinfo-watchers": "Сӑнакансен шучӗ",
-	"pageinfo-visiting-watchers": "Страница хыҫҫӑн сӑнакан, юлашки $1 хушшинче унпа паллашнӑ хутшӑнакансен шучӗ",
+	"pageinfo-visiting-watchers": "Страница хыҫҫӑн сӑнакан, юлашки {{PLURAL:$1|кунта|$1 кун хушшинче}} унпа паллашнӑ хутшӑнакансен шучӗ",
 	"pageinfo-few-watchers": "$1 {{PLURAL:$1|сӑнакантан}} сахалрах",
 	"pageinfo-few-visiting-watchers": "Страницӑна сӑнакан, унти юлашки тӳрлетӳсене курнӑ хутшӑнакансем пулма та пулмасӑр та пултараҫҫӗ",
 	"pageinfo-redirects-name": "Ку страница ҫине каҫаракан каҫӑсен шучӗ",

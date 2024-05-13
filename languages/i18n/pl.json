@@ -2126,7 +2126,7 @@
 	"logeventslist-patrol-log": "Rejestr patrolowania",
 	"logeventslist-tag-log": "Rejestr znaczników",
 	"logeventslist-newusers-log": "Rejestr nowych użytkowników",
-	"all-logs-page": "Rejestr głównych publicznych operacji",
+	"all-logs-page": "Główne publiczne rejestry",
 	"alllogstext": "Wspólny rejestr wszystkich typów operacji dla {{GRAMMAR:D.lp|{{SITENAME}}}}.\nMożesz zawęzić liczbę wyników poprzez wybranie typu rejestru, nazwy użytkownika lub tytułu strony.",
 	"logempty": "W rejestrze nie znaleziono pozycji odpowiadających zapytaniu.",
 	"log-title-wildcard": "Szukaj tytułów zaczynających się od tego tekstu",

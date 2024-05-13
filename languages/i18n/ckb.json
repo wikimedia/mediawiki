@@ -2717,6 +2717,7 @@
 	"searchsuggest-search": "لە {{SITENAME}}دا بگەڕێ",
 	"searchsuggest-containing": "بۆ ئەو پەڕانە بگەڕێ کە ...ی تێدایە",
 	"api-clientside-error-noconnect": "نەتواندرا پەیوەندی بە ڕاژەکارەکەوە بکرێت. دڵنیا ببە لەوەی کە بە ئینتەرنێتەوە پەیوەستیت و دووبارە ھەوڵ بدەرەوە.",
+	"api-clientside-error-timeout": "ڕاژەکەرەکە لە ماوەی کاتی چاوەڕوانکراودا وەڵامی نەدایەوە.",
 	"api-error-unknownerror": "ھەڵەی نەزانراو: «$1».",
 	"duration-seconds": "$1 {{PLURAL:$1|چرکە|چرکە}}",
 	"duration-minutes": "$1 {{PLURAL:$1|خولەک|خولەک}}",

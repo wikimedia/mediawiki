@@ -3364,6 +3364,7 @@
 	"version-entrypoints-articlepath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticlePath 頁面路徑]",
 	"version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgScriptPath 腳本路徑]",
 	"version-libraries": "已安裝的程式庫",
+	"version-libraries-server": "已安裝伺服器端函式庫",
 	"version-libraries-client": "已安裝客戶端函式庫",
 	"version-libraries-library": "程式庫",
 	"version-libraries-version": "版本",

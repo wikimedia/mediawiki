@@ -5,9 +5,11 @@
 			"Eleassar"
 		]
 	},
-	"rest-prefix-mismatch": "Zahtevana pot ($1) ni bila znotraj korenske poti REST API ($2)",
+	"rest-prefix-mismatch": "Zahtevana pot ($1) ni bila znotraj osnovne poti REST API ($2)",
+	"rest-bad-prefix": "Pot končne točke ($1) ne vsebuje veljavne predpone modula",
 	"rest-wrong-method": "Zahtevana metoda ($1) ni {{PLURAL:$3|veljavna metoda|ena od veljavnih metod}} za to pot ($2)",
 	"rest-no-match": "Zahtevana relativna pot ($1) se ni ujemala z nobenim znanim obravnavalnikom",
+	"rest-unknown-module": "Zahtevano ime modula ($1) ni znano",
 	"rest-nonexistent-title": "Navedena stran ($1) ne obstaja",
 	"rest-nonexistent-title-revision": "Navedena redakcija ($1) ne obstaja za izbrano stran ($2)",
 	"rest-nonexistent-revision": "Navedena redakcija ($1) ne obstaja",

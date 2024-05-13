@@ -63,6 +63,7 @@
 	"subcategories": "下類",
 	"category-media-header": "佇類別「$1」的媒體",
 	"category-empty": "<em>這馬咱無這个類別的頁面抑是媒體。</em>",
+	"hidden-categories": "{{PLURAL:$1|Hidden category|藏起來的類別}}",
 	"hidden-category-category": "藏覕類別",
 	"index-category": "有索引的頁",
 	"noindex-category": "無索引的頁",

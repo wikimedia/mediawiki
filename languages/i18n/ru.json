@@ -3481,6 +3481,7 @@
 	"version-entrypoints-articlepath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticlePath Путь к статье]",
 	"version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgScriptPath Путь к скрипту]",
 	"version-libraries": "Установленные библиотеки",
+	"version-libraries-server": "Установленные серверные библиотеки",
 	"version-libraries-client": "Установленные клиентские библиотеки",
 	"version-libraries-library": "Библиотека",
 	"version-libraries-version": "Версия",
