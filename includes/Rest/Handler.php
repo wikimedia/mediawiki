@@ -887,7 +887,7 @@ abstract class Handler {
 	 *
 	 * @stable to override
 	 *
-	 * @return bool|string|int|float|DateTime|null
+	 * @return string|int|float|DateTime|null
 	 */
 	protected function getLastModified() {
 		return null;

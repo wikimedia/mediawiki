@@ -2544,7 +2544,7 @@ class OutputPage extends ContextSource {
 	 * the TTL is higher the older the $mtime timestamp is. Essentially, the
 	 * TTL is 90% of the age of the object, subject to the min and max.
 	 *
-	 * @param string|int|float|bool|null $mtime Last-Modified timestamp
+	 * @param string|int|float|false|null $mtime Last-Modified timestamp
 	 * @param int $minTTL Minimum TTL in seconds [default: 1 minute]
 	 * @param int $maxTTL Maximum TTL in seconds [default: $wgCdnMaxAge]
 	 * @since 1.28
