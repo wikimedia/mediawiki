@@ -25,8 +25,19 @@ use StatusValue;
 use UserMailer;
 
 /**
- * @internal
+ * Send arbitrary emails.
+ *
+ * Obtain instance via ServiceWiring. This service is intended to eventually
+ * replace the stable (but static) functions of the UserMailer class.
+ *
+ * Use of this class is discouraged in favour of higher-level abstractions
+ * whenever possible:
+ *
+ * - EmailNotification: Format and send emails to watchers about a recent change.
+ * - EmailUserFactory: Format and send emails between two wiki users.
+ *
  * @since 1.35
+ * @ingroup Mail
  */
 class Emailer implements IEmailer {
 

@@ -33,26 +33,24 @@ use Wikimedia\Message\ITextFormatter;
 /**
  * Factory for EmailUser objects.
  *
+ * Obtain via ServiceWiring.
+ *
  * @since 1.41
+ * @ingroup Mail
  */
 class EmailUserFactory {
 	private ServiceOptions $options;
-
 	private HookContainer $hookContainer;
-
 	private UserOptionsLookup $userOptionsLookup;
-
 	private CentralIdLookup $centralIdLookup;
-
 	private UserFactory $userFactory;
-
 	private IEmailer $emailer;
-
 	private IMessageFormatterFactory $messageFormatterFactory;
-
 	private ITextFormatter $contLangMsgFormatter;
 
 	/**
+	 * @internal For use by ServiceWiring only.
+	 *
 	 * @param ServiceOptions $options
 	 * @param HookContainer $hookContainer
 	 * @param UserOptionsLookup $userOptionsLookup

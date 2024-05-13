@@ -40,9 +40,14 @@ use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
 
 /**
- * Command for sending emails to users. This class is stateless and can be used for multiple sends.
+ * Send email between two wiki users.
+ *
+ * Obtain via EmailUserFactory
+ *
+ * This class is stateless and can be used for multiple sends.
  *
  * @since 1.40
+ * @ingroup Mail
  */
 class EmailUser {
 	/**
@@ -57,27 +62,21 @@ class EmailUser {
 	];
 
 	private ServiceOptions $options;
-
 	private HookRunner $hookRunner;
-
 	private UserOptionsLookup $userOptionsLookup;
-
 	private CentralIdLookup $centralIdLookup;
-
 	private UserFactory $userFactory;
-
 	private IEmailer $emailer;
-
 	private IMessageFormatterFactory $messageFormatterFactory;
-
 	private ITextFormatter $contLangMsgFormatter;
-
 	private Authority $sender;
 
 	/** @var string Temporary property to support the deprecated EmailUserPermissionsErrors hook */
 	private string $editToken = '';
 
 	/**
+	 * @internal For use by EmailUserFactory.
+	 *
 	 * @param ServiceOptions $options
 	 * @param HookContainer $hookContainer
 	 * @param UserOptionsLookup $userOptionsLookup

@@ -25,6 +25,7 @@ use MediaWiki\User\User;
  * Send an email notification.
  *
  * @ingroup JobQueue
+ * @ingroup Mail
  */
 class EnotifNotifyJob extends Job {
 	public function __construct( Title $title, array $params ) {
