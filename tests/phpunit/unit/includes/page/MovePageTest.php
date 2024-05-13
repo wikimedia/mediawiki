@@ -13,7 +13,6 @@ use MockTitleTrait;
 
 /**
  * @coversDefaultClass \MediaWiki\Page\MovePage
- * @package MediaWiki\Tests\Unit
  * @method MovePage newServiceInstance(string $serviceClass, array $parameterOverrides)
  */
 class MovePageTest extends MediaWikiUnitTestCase {

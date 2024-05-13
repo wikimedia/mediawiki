@@ -11,7 +11,6 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\DAO\WikiAwareEntityTrait
- * @package MediaWiki\Tests\Unit\DAO
  */
 class WikiAwareEntityTraitTest extends MediaWikiUnitTestCase {
 

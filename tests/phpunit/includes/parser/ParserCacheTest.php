@@ -33,7 +33,6 @@ use WikiPage;
 
 /**
  * @covers \ParserCache
- * @package MediaWiki\Tests\Parser
  */
 class ParserCacheTest extends MediaWikiIntegrationTestCase {
 

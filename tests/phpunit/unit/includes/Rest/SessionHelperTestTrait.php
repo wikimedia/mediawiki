@@ -13,7 +13,6 @@ use PHPUnit\Framework\MockObject\MockObject;
  * or MediaWikiIntegrationTestCase.
  *
  * @stable to use
- * @package MediaWiki\Tests\Rest
  */
 trait SessionHelperTestTrait {
 	/**

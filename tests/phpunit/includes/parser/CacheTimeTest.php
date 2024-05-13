@@ -11,7 +11,6 @@ use Wikimedia\Tests\SerializationTestTrait;
 
 /**
  * @covers \CacheTime
- * @package MediaWiki\Tests\Parser
  */
 class CacheTimeTest extends MediaWikiIntegrationTestCase {
 	use SerializationTestTrait;

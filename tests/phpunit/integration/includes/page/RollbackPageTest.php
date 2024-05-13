@@ -27,7 +27,6 @@ use WikitextContent;
  * @group Database
  * @covers \MediaWiki\Page\RollbackPage
  * @coversDefaultClass \MediaWiki\Page\RollbackPage
- * @package MediaWiki\Tests\Page
  * @method RollbackPage newServiceInstance(string $serviceClass, array $parameterOverrides)
  */
 class RollbackPageTest extends MediaWikiIntegrationTestCase {

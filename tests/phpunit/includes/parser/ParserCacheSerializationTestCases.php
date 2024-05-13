@@ -34,7 +34,6 @@ use Wikimedia\Tests\SerializationTestUtils;
  * @see SerializationTestTrait
  * @see SerializationTestUtils
  * @see ValidateParserCacheSerializationTestData
- * @package MediaWiki\Tests\Parser
  */
 abstract class ParserCacheSerializationTestCases {
 

@@ -16,7 +16,6 @@ use Wikimedia\Assert\PreconditionException;
 /**
  * @covers \MediaWiki\Json\JsonCodec
  * @covers \MediaWiki\Json\JsonUnserializableTrait
- * @package MediaWiki\Tests\Json
  */
 class JsonCodecTest extends MediaWikiUnitTestCase {
 

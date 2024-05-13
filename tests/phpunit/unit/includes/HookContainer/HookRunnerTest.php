@@ -11,7 +11,6 @@ use MediaWiki\ResourceLoader as RL;
  * @covers \MediaWiki\HookContainer\HookRunner
  * @covers \MediaWiki\Api\ApiHookRunner
  * @covers \MediaWiki\ResourceLoader\HookRunner
- * @package MediaWiki\Tests\HookContainer
  */
 class HookRunnerTest extends HookRunnerTestBase {
 

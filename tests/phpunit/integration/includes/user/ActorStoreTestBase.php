@@ -11,7 +11,6 @@ use Wikimedia\Rdbms\ILoadBalancer;
 /**
  * Base class with utilities for testing database access to actor table.
  *
- * @package MediaWiki\Tests\User
  */
 abstract class ActorStoreTestBase extends MediaWikiIntegrationTestCase {
 	protected const IP = '2600:1004:B14A:5DDD:3EBE:BBA4:BFBA:F37E';

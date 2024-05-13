@@ -33,7 +33,6 @@ use MediaWikiUnitTestCase;
 
 /**
  * @covers \MediaWiki\Parser\Parsoid\Config\PageContent
- * @package MediaWiki\Tests\Unit\Parser\Parsoid\Config
  */
 class PageContentTest extends MediaWikiUnitTestCase {
 

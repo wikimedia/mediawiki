@@ -12,7 +12,6 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  * Tests that all arguments passed into FauxGlobalHookArray are passed along to HookContainer.
  * @covers \MediaWiki\HookContainer\FauxGlobalHookArray
  * @covers \MediaWiki\HookContainer\FauxHookHandlerArray
- * @package MediaWiki\Tests\HookContainer
  */
 class FauxGlobalHookArrayTest extends MediaWikiUnitTestCase {
 

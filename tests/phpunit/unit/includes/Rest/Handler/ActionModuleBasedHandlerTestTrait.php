@@ -17,7 +17,6 @@ use PHPUnit\Framework\MockObject\MockObject;
  * This trait is intended to be used on subclasses of MediaWikiUnitTestCase
  * or MediaWikiIntegrationTestCase.
  *
- * @package MediaWiki\Tests\Rest\Handler
  * @method MockBuilder getMockBuilder(string $className)
  */
 trait ActionModuleBasedHandlerTestTrait {
