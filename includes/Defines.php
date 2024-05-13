@@ -28,8 +28,9 @@ use Wikimedia\Rdbms\IDatabase;
 /**
  * The running version of MediaWiki.
  *
- * This replaces the $wgVersion global found in earlier versions. When updating,
- * remember to also bump the stand-alone duplicate of this in PHPVersionCheck.
+ * This replaces the $wgVersion global found in earlier versions. When updating
+ * the XX part of 1.XX.YY, please remember to also bump the stand-alone duplicate
+ * of this in PHPVersionCheck.
  *
  * @since 1.35 (also backported to 1.33.3 and 1.34.1)
  */
