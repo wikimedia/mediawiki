@@ -1532,7 +1532,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * use ::setNumericPageProperty().
 	 *
 	 * @param string $name
-	 * @param int|float|string|bool|null $value
+	 * @param ?scalar $value
 	 * @since 1.38
 	 */
 	public function setPageProperty( string $name, $value ): void {
@@ -1588,7 +1588,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * Look up a page property.
 	 * @param string $name The page property name to look up.
-	 * @return int|float|string|bool|null The value previously set using
+	 * @return ?scalar The value previously set using
 	 * ::setPageProperty(), ::setUnsortedPageProperty(), or
 	 * ::setNumericPageProperty().
 	 * Returns null if no value was set for the given property name.
@@ -1613,7 +1613,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 	/**
 	 * Return all the page properties set on this ParserOutput.
-	 * @return array<string,int|float|string|bool|null>
+	 * @return array<string,?scalar>
 	 * @since 1.38
 	 */
 	public function getPageProperties(): array {

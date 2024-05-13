@@ -155,8 +155,8 @@ class FormatJsonTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * Recursively convert arrays into stdClass
-	 * @param array|string|bool|int|float|null $value
-	 * @return stdClass|string|bool|int|float|null
+	 * @param array|?scalar $value
+	 * @return stdClass|?scalar
 	 */
 	public static function toObject( $value ) {
 		return !is_array( $value ) ? $value : (object)array_map( __METHOD__, $value );

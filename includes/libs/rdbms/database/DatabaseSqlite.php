@@ -694,7 +694,7 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
-	 * @param string|int|float|null|bool|Blob $s
+	 * @param ?scalar|Blob $s
 	 * @return string
 	 */
 	public function addQuotes( $s ) {
