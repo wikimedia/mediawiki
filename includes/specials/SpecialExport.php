@@ -508,6 +508,7 @@ class SpecialExport extends SpecialPage {
 		$queryInfo = $this->linksMigration->getQueryInfo( 'templatelinks' );
 		$dbr = $this->dbProvider->getReplicaDatabase();
 		$queryBuilder = $dbr->newSelectQueryBuilder()
+			->caller( __METHOD__ )
 			->select( [ 'namespace' => $nsField, 'title' => $titleField ] )
 			->from( 'page' )
 			->join( 'templatelinks', null, 'page_id=tl_from' )
@@ -570,6 +571,7 @@ class SpecialExport extends SpecialPage {
 			$queryInfo = $this->linksMigration->getQueryInfo( 'pagelinks' );
 			$dbr = $this->dbProvider->getReplicaDatabase();
 			$queryBuilder = $dbr->newSelectQueryBuilder()
+				->caller( __METHOD__ )
 				->select( [ 'namespace' => $nsField, 'title' => $titleField ] )
 				->from( 'page' )
 				->join( 'pagelinks', null, 'page_id=pl_from' )
