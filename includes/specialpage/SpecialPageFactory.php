@@ -42,6 +42,7 @@ use MediaWiki\Specials\Redirects\SpecialMylog;
 use MediaWiki\Specials\Redirects\SpecialMypage;
 use MediaWiki\Specials\Redirects\SpecialMytalk;
 use MediaWiki\Specials\Redirects\SpecialMyuploads;
+use MediaWiki\Specials\Redirects\SpecialTalkPage;
 use MediaWiki\Specials\SpecialActiveUsers;
 use MediaWiki\Specials\SpecialAllMessages;
 use MediaWiki\Specials\SpecialAllPages;
@@ -1206,6 +1207,13 @@ class SpecialPageFactory {
 		],
 		'Contribute' => [
 			'class' => SpecialContribute::class,
+		],
+		'TalkPage' => [
+			'class' => SpecialTalkPage::class,
+			'services' => [
+				'MainConfig',
+				'TitleParser',
+			],
 		],
 	];
 

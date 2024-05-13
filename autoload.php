@@ -2196,6 +2196,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Specials\\Redirects\\SpecialMypage' => __DIR__ . '/includes/specials/redirects/SpecialMypage.php',
 	'MediaWiki\\Specials\\Redirects\\SpecialMytalk' => __DIR__ . '/includes/specials/redirects/SpecialMytalk.php',
 	'MediaWiki\\Specials\\Redirects\\SpecialMyuploads' => __DIR__ . '/includes/specials/redirects/SpecialMyuploads.php',
+	'MediaWiki\\Specials\\Redirects\\SpecialTalkPage' => __DIR__ . '/includes/specials/redirects/SpecialTalkPage.php',
 	'MediaWiki\\Specials\\SpecialActiveUsers' => __DIR__ . '/includes/specials/SpecialActiveUsers.php',
 	'MediaWiki\\Specials\\SpecialAllMessages' => __DIR__ . '/includes/specials/SpecialAllMessages.php',
 	'MediaWiki\\Specials\\SpecialAllPages' => __DIR__ . '/includes/specials/SpecialAllPages.php',
