@@ -783,13 +783,6 @@ TXT;
 			self::getLogContext( $e, $catcher )
 		);
 
-		// TODO: Remove this per T193472.
-		$json = self::jsonSerializeException( $e, false, FormatJson::ALL_OK, $catcher );
-		if ( $json !== false ) {
-			$logger = LoggerFactory::getInstance( "error-json" );
-			$logger->log( $level, $json, [ 'private' => true ] );
-		}
-
 		( new HookRunner( MediaWikiServices::getInstance()->getHookContainer() ) )->onLogException( $e, $suppressed );
 	}
 }

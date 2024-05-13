@@ -41,6 +41,11 @@ For notes on 1.42.x and older releases, see HISTORY.
 * wgPageLinksSchemaMigrationStage – (T299947) This temporary setting, which
   controls the database schema migration for the page links table, is now set
   by default to write to both old and new data and read from the new data.
+* The "error-json" channel, configurable via $wgDebugLogGroups, has been
+  removed. For structured logging, use the "error" channel directly instead.
+  Since MediaWiki 1.25, structured logging is supported via Monolog for all
+  channels, including the "error" channel. For silenced errors, you use the
+  "silenced-error" channel added in MediaWiki 1.42. (T193472)
 * …
 
 ==== Removed configuration ====
