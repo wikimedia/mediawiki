@@ -428,7 +428,6 @@
 							logicalHeight = img.width;
 							break;
 					}
-
 					ctx.clearRect( 0, 0, 180, 180 );
 					ctx.rotate( rotation / 180 * Math.PI );
 					ctx.drawImage( img, x, y, width, height );
@@ -445,7 +444,7 @@
 					clearPreview();
 				};
 				img.src = dataURL;
-			}, mw.config.get( 'wgFileCanRotate' ) ? function ( data ) {
+			}, mw.config.get( 'wgFileCanRotate' ) && !CSS.supports( 'image-orientation', 'from-image' ) ? function ( data ) {
 				var jpegmeta = require( 'mediawiki.libs.jpegmeta' );
 				try {
 					meta = jpegmeta( data, file.fileName );
