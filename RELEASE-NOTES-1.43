@@ -210,6 +210,8 @@ because of Phabricator reports.
 * SpecialBlock::getTargetAndType, deprecated since 1.36, has been removed.
 * ApiQueryBlockInfoTrait::addBlockInfoToQuery(), deprecated since 1.42, has been
   removed.
+* DummyLinker has been removed. The former DummyLinker parameter
+  to the 'ImageBeforeProduceHTML' hook is now null.
 * …
 
 === Deprecations in 1.43 ===
