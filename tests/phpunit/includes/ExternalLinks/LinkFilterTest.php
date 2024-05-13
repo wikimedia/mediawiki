@@ -120,6 +120,8 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 			// (T347574) Only set host if it's not already set (if // is used)
 			[ 'news:', 'comp.compression', 'news://comp.compression' ],
 			[ 'news:', 'comp.compression', 'news:comp.compression' ],
+			// (T364743) Also only set host if it's not already set, but in a different code path
+			[ '', 'news://*.example.com', 'news://example.org', [ 'found' => false ] ],
 
 			[ '', 'git://github.com/prwef/abc-def.git', 'git://github.com/prwef/abc-def.git' ],
 			[ 'git://', 'github.com/', 'git://github.com/prwef/abc-def.git' ],
