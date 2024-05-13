@@ -681,8 +681,7 @@ because of Phabricator reports.
   available in ObjectCacheFactory, use them instead:
   - ::getInstance() -> ObjectCacheFactory::getInstance()
   - ::newFromParams() -> ObjectCacheFactory::newFromParams()
-  - ::newAnything() -> ObjectCacheFactory::newInstance(
-         ObjectCache::getAnythingId() )
+  - ::newAnything() -> ObjectCacheFactory::newInstance( CACHE_ANYTHING )
   - ::getLocalServerInstance() -> ObjectCacheFactory::getLocalServerInstance()
   - ::clear() -> ObjectCacheFactory::clear()
   - In addition, the ObjectCache::$instances member has been deprecated as well.

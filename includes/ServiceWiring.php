@@ -489,7 +489,9 @@ return [
 	'ChronologyProtector' => static function ( MediaWikiServices $services ): ChronologyProtector {
 		$mainConfig = $services->getMainConfig();
 		$cpStashType = $mainConfig->get( MainConfigNames::ChronologyProtectorStash );
-		$isMainCacheBad = ObjectCache::isDatabaseId( $mainConfig->get( MainConfigNames::MainCacheType ) );
+		$isMainCacheBad = $services->getObjectCacheFactory()->isDatabaseId(
+			$mainConfig->get( MainConfigNames::MainCacheType )
+		);
 
 		if ( is_string( $cpStashType ) ) {
 			$cpStash = $services->getObjectCacheFactory()->getInstance( $cpStashType );
@@ -726,7 +728,9 @@ return [
 
 	'DBLoadBalancerFactoryConfigBuilder' => static function ( MediaWikiServices $services ): MWLBFactory {
 		$mainConfig = $services->getMainConfig();
-		if ( ObjectCache::isDatabaseId( $mainConfig->get( MainConfigNames::MainCacheType ) ) ) {
+		if ( $services->getObjectCacheFactory()->isDatabaseId(
+			$mainConfig->get( MainConfigNames::MainCacheType )
+		) ) {
 			$wanCache = WANObjectCache::newEmpty();
 		} else {
 			$wanCache = $services->getMainWANObjectCache();
@@ -2597,9 +2601,7 @@ return [
 	},
 
 	'_LocalClusterCache' => static function ( MediaWikiServices $services ): BagOStuff {
-		$mainConfig = $services->getMainConfig();
-		$id = $mainConfig->get( MainConfigNames::MainCacheType );
-		return $services->getObjectCacheFactory()->getInstance( $id );
+		return $services->getObjectCacheFactory()->getLocalClusterInstance();
 	},
 
 	'_MediaWikiTitleCodec' => static function ( MediaWikiServices $services ): MediaWikiTitleCodec {

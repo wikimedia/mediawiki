@@ -22,6 +22,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Http\Telemetry;
 use MediaWiki\Logger\Spi;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Stats\StatsFactory;
 
 /**
@@ -44,6 +45,12 @@ use Wikimedia\Stats\StatsFactory;
  *    Stored only on the individual web server (typically APC or APCu for web requests,
  *    and EmptyBagOStuff in CLI mode).
  *    Not replicated to the other servers.
+ *
+ * - ObjectCacheFactory::getLocalClusterInstance()
+ *    Purpose: Memory storage for per-cluster coordination and tracking.
+ *    A typical use case would be a rate limit counter or cache regeneration mutex.
+ *    Stored centrally within the local data-center. Not replicated to other DCs.
+ *    Configured by $wgMainCacheType.
  *
  *  - ObjectCacheFactory::getInstance( $cacheType )
  *    Purpose: Special cases (like tiered memory/disk caches).
@@ -70,6 +77,8 @@ class ObjectCacheFactory {
 		MainConfigNames::CachePrefix,
 		MainConfigNames::ObjectCaches,
 		MainConfigNames::MainCacheType,
+		MainConfigNames::MessageCacheType,
+		MainConfigNames::ParserCacheType,
 	];
 
 	private ServiceOptions $options;
@@ -80,6 +89,11 @@ class ObjectCacheFactory {
 	private string $domainId;
 	/** @var callable */
 	private $dbLoadBalancerFactory;
+	/**
+	 * @internal ObjectCacheTest only, needed for b/c.
+	 * @var string
+	 */
+	public static $localServerCacheClass;
 
 	public function __construct(
 		ServiceOptions $options,
@@ -122,7 +136,7 @@ class ObjectCacheFactory {
 	 */
 	private function newFromId( $id ): BagOStuff {
 		if ( $id === CACHE_ANYTHING ) {
-			$id = ObjectCache::getAnythingId();
+			$id = $this->getAnythingId();
 		}
 
 		if ( !isset( $this->options->get( MainConfigNames::ObjectCaches )[$id] ) ) {
@@ -132,7 +146,7 @@ class ObjectCacheFactory {
 			} elseif ( $id === CACHE_HASH ) {
 				return new HashBagOStuff();
 			} elseif ( $id === CACHE_ACCEL ) {
-				return ObjectCache::makeLocalServerCache( $this->getDefaultKeyspace() );
+				return self::makeLocalServerCache( $this->getDefaultKeyspace() );
 			}
 
 			throw new InvalidArgumentException( "Invalid object cache type \"$id\" requested. " .
@@ -157,11 +171,11 @@ class ObjectCacheFactory {
 	}
 
 	/**
+	 * Create a new cache object from parameters specification supplied.
+	 *
 	 * @internal Using this method directly outside of MediaWiki core
 	 *   is discouraged. Use getInstance() instead and supply the ID
 	 *   of the cache instance to be looked up.
-	 *
-	 * Create a new cache object from parameters specification supplied.
 	 *
 	 * @param array $params Must have 'factory' or 'class' property.
 	 *  - factory: Callback passed $params that returns BagOStuff.
@@ -309,16 +323,132 @@ class ObjectCacheFactory {
 	}
 
 	/**
-	 * @internal For tests ONLY.
-	 *
-	 * @param string|int $cacheId
-	 * @param BagOStuff $cache
-	 * @return void
+	 * Get the class which will be used for the local server cache
+	 * @return string
 	 */
-	public function setInstanceForTesting( $cacheId, BagOStuff $cache ): void {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw new LogicException( __METHOD__ . ' can not be called outside of tests' );
+	private static function getLocalServerCacheClass() {
+		if ( self::$localServerCacheClass !== null ) {
+			return self::$localServerCacheClass;
 		}
-		$this->instances[$cacheId] = $cache;
+		if ( function_exists( 'apcu_fetch' ) ) {
+			// Make sure the APCu methods actually store anything
+			if ( PHP_SAPI !== 'cli' || ini_get( 'apc.enable_cli' ) ) {
+				return APCUBagOStuff::class;
+
+			}
+		} elseif ( function_exists( 'wincache_ucache_get' ) ) {
+			return WinCacheBagOStuff::class;
+		}
+
+		return EmptyBagOStuff::class;
+	}
+
+	/**
+	 * Get the ID that will be used for CACHE_ANYTHING
+	 *
+	 * @internal
+	 * @return string|int
+	 */
+	public function getAnythingId() {
+		$candidates = [
+			$this->options->get( MainConfigNames::MainCacheType ),
+			$this->options->get( MainConfigNames::MessageCacheType ),
+			$this->options->get( MainConfigNames::ParserCacheType )
+		];
+		foreach ( $candidates as $candidate ) {
+			if ( $candidate === CACHE_ACCEL ) {
+				// CACHE_ACCEL might default to nothing if no APCu
+				// See includes/ServiceWiring.php
+				$class = self::getLocalServerCacheClass();
+				if ( $class !== EmptyBagOStuff::class ) {
+					return $candidate;
+				}
+			} elseif ( $candidate !== CACHE_NONE && $candidate !== CACHE_ANYTHING ) {
+				return $candidate;
+			}
+		}
+
+		$services = MediaWikiServices::getInstance();
+
+		if ( $services->isServiceDisabled( 'DBLoadBalancer' ) ) {
+			// The DBLoadBalancer service is disabled, so we can't use the database!
+			$candidate = CACHE_NONE;
+		} elseif ( $services->isStorageDisabled() ) {
+			// Storage services are disabled because MediaWikiServices::disableStorage()
+			// was called. This is typically the case during installation.
+			$candidate = CACHE_NONE;
+		} else {
+			$candidate = CACHE_DB;
+		}
+		return $candidate;
+	}
+
+	/**
+	 * Create a new BagOStuff instance for local-server caching.
+	 *
+	 * Only use this if you explicitly require the creation of
+	 * a fresh instance. Whenever possible, use or inject the object
+	 * from MediaWikiServices::getLocalServerObjectCache() instead.
+	 *
+	 * NOTE: This method is called very early via Setup.php by ExtensionRegistry,
+	 * and thus must remain fairly standalone so as to not cause initialization
+	 * of the MediaWikiServices singleton.
+	 *
+	 * @internal For use by ServiceWiring and ExtensionRegistry. There are use
+	 *    cases whereby we want to build up local server cache without service
+	 *    wiring available.
+	 * @since 1.43, previously on ObjectCache.php since 1.35
+	 *
+	 * @param string $keyspace
+	 * @return BagOStuff
+	 */
+	public static function makeLocalServerCache( string $keyspace ) {
+		$params = [
+			'reportDupes' => false,
+			// Even simple caches must use a keyspace (T247562)
+			'keyspace' => $keyspace,
+		];
+		$class = self::getLocalServerCacheClass();
+		return new $class( $params );
+	}
+
+	/**
+	 * Determine whether a config ID would access the database
+	 *
+	 * @internal For use by ServiceWiring.php
+	 * @param string|int $id A key in $wgObjectCaches
+	 * @return bool
+	 */
+	public function isDatabaseId( $id ) {
+		// NOTE: Sanity check if $id is set to CACHE_ANYTHING and
+		// everything is going through service wiring. CACHE_ANYTHING
+		// would default to CACHE_DB, let's handle that early for cases
+		// where all cache configs are set to CACHE_ANYTHING (T362686).
+		if ( $id === CACHE_ANYTHING ) {
+			$id = $this->getAnythingId();
+			return $this->isDatabaseId( $id );
+		}
+
+		if ( !isset( $this->options->get( MainConfigNames::ObjectCaches )[$id] ) ) {
+			return false;
+		}
+		$cache = $this->options->get( MainConfigNames::ObjectCaches )[$id];
+		if ( ( $cache['class'] ?? '' ) === SqlBagOStuff::class ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Get the main cluster-local cache object.
+	 *
+	 * @since 1.43, previously on ObjectCache.php since 1.27
+	 * @return BagOStuff
+	 */
+	public function getLocalClusterInstance() {
+		return $this->getInstance(
+			$this->options->get( MainConfigNames::MainCacheType )
+		);
 	}
 }

@@ -24,7 +24,7 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	protected function tearDown(): void {
-		ObjectCache::$localServerCacheClass = null;
+		ObjectCacheFactory::$localServerCacheClass = null;
 	}
 
 	private function setCacheConfig( $arr = [] ) {
@@ -37,13 +37,14 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( MainConfigNames::ObjectCaches, $arr + $defaults );
 		// Mock ACCEL with 'hash' as being installed.
 		// This makes tests deterministic regardless of APC.
-		ObjectCache::$localServerCacheClass = 'HashBagOStuff';
+		ObjectCacheFactory::$localServerCacheClass = 'HashBagOStuff';
 	}
 
 	public function testNewAnythingNothing() {
+		$ocf = $this->getServiceContainer()->getObjectCacheFactory();
 		$this->assertInstanceOf(
 			SqlBagOStuff::class,
-			$this->getServiceContainer()->getObjectCacheFactory()->getInstance( ObjectCache::getAnythingId() ),
+			$ocf->getInstance( $ocf->getAnythingId() ),
 			'No available types. Fallback to DB'
 		);
 	}
@@ -51,9 +52,10 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 	public function testNewAnythingHash() {
 		$this->setMainCache( CACHE_HASH );
 
+		$ocf = $this->getServiceContainer()->getObjectCacheFactory();
 		$this->assertInstanceOf(
 			HashBagOStuff::class,
-			$this->getServiceContainer()->getObjectCacheFactory()->getInstance( ObjectCache::getAnythingId() ),
+			$ocf->getInstance( $ocf->getAnythingId() ),
 			'Use an available type (hash)'
 		);
 	}
@@ -61,21 +63,23 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 	public function testNewAnythingAccel() {
 		$this->setMainCache( CACHE_ACCEL );
 
+		$ocf = $this->getServiceContainer()->getObjectCacheFactory();
 		$this->assertInstanceOf(
 			HashBagOStuff::class,
-			$this->getServiceContainer()->getObjectCacheFactory()->getInstance( ObjectCache::getAnythingId() ),
+			$ocf->getInstance( $ocf->getAnythingId() ),
 			'Use an available type (CACHE_ACCEL)'
 		);
 	}
 
 	public function testNewAnythingNoAccel() {
 		// Mock APC not being installed (T160519, T147161)
-		ObjectCache::$localServerCacheClass = EmptyBagOStuff::class;
+		ObjectCacheFactory::$localServerCacheClass = EmptyBagOStuff::class;
 		$this->setMainCache( CACHE_ACCEL );
 
+		$ocf = $this->getServiceContainer()->getObjectCacheFactory();
 		$this->assertInstanceOf(
 			SqlBagOStuff::class,
-			$this->getServiceContainer()->getObjectCacheFactory()->getInstance( ObjectCache::getAnythingId() ),
+			$ocf->getInstance( $ocf->getAnythingId() ),
 			'Fallback to DB if available types fall back to Empty'
 		);
 	}
@@ -89,9 +93,10 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 
 		$this->getServiceContainer()->disableStorage();
 
+		$ocf = $this->getServiceContainer()->getObjectCacheFactory();
 		$this->assertInstanceOf(
 			EmptyBagOStuff::class,
-			$this->getServiceContainer()->getObjectCacheFactory()->getInstance( ObjectCache::getAnythingId() ),
+			$ocf->getInstance( $ocf->getAnythingId() ),
 			'Fallback to none if available types and DB are unavailable'
 		);
 	}
@@ -99,9 +104,10 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 	public function testNewAnythingNothingNoDb() {
 		$this->getServiceContainer()->disableStorage();
 
+		$ocf = $this->getServiceContainer()->getObjectCacheFactory();
 		$this->assertInstanceOf(
 			EmptyBagOStuff::class,
-			$this->getServiceContainer()->getObjectCacheFactory()->getInstance( ObjectCache::getAnythingId() ),
+			$ocf->getInstance( $ocf->getAnythingId() ),
 			'No available types or DB. Fallback to none.'
 		);
 	}
@@ -156,6 +162,7 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValues( [
 			MainConfigNames::MainCacheType => $mainCacheType
 		] );
-		$this->assertSame( $expected, ObjectCache::isDatabaseId( $id ) );
+		$ocf = $this->getServiceContainer()->getObjectCacheFactory();
+		$this->assertSame( $expected, $ocf->isDatabaseId( $id ) );
 	}
 }
