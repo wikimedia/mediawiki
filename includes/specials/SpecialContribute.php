@@ -10,6 +10,14 @@ use MediaWiki\Specials\Contribute\ContributeFactory;
 /**
  * Promote ways for editors to contribute.
  *
+ * The cards are produced by MediaWiki\Specials\Contribute\ContributeFactory,
+ * which defaults to a single card promoting Special:Wantedpages, and is
+ * extended by extensions to add additional cards.
+ *
+ * To enable a link to this special page in the skin, which will replace the
+ * link to "Contributions" in the p-personal portlet menu, add the skin name
+ * to $wgSpecialContributeSkinsEnabled.
+ *
  * @ingroup SpecialPage
  */
 class SpecialContribute extends IncludableSpecialPage {
@@ -50,10 +58,6 @@ class SpecialContribute extends IncludableSpecialPage {
 		$templateParser = new TemplateParser( __DIR__ . '/Contribute/Templates' );
 		$templateData = [
 			'cards' => $cards,
-			'userName' => $user->getName(),
-			'userPage' => $user->getUserPage(),
-			'contribute' => $this->msg( 'contribute' )->text(),
-			'viewContributions' => $this->msg( 'viewcontribs' )->text(),
 		];
 		$outputHTML = $templateParser->processTemplate(
 			'SpecialContribute',

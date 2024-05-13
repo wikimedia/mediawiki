@@ -330,9 +330,9 @@ abstract class Skin extends ContextSource {
 	 *     Default: `false`
 	 *
 	 *  - `menus`: Which menus the skin supports, to allow features like SpecialWatchlist
-	 *     and SpecialContribute to render their own navigation in the skins that don't
-	 *     support certain menus. For any key in the array, the skin is promising to render
-	 *     an element e.g. the presence of `associated-pages` means the skin will render a menu
+	 *     to render their own navigation in the skins that don't support certain menus.
+	 *     For any key in the array, the skin is promising to render an element e.g. the
+	 *     presence of `associated-pages` means the skin will render a menu
 	 *     compatible with mw.util.addPortletLink which has the ID p-associated-pages.
 	 *
 	 *     Default: `['namespaces', 'views', 'actions', 'variants']`
