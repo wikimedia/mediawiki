@@ -33,7 +33,6 @@ use Psr\Log\LoggerInterface;
 
 /**
  * Factory creating MWHttpRequest objects.
- * @internal
  */
 class HttpRequestFactory {
 	/** @var ServiceOptions */
