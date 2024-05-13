@@ -184,7 +184,7 @@ class WebInstaller extends Installer {
 			return $this->session;
 		}
 
-		$isCSS = $this->request->getVal( 'css' );
+		$isCSS = $this->request->getCheck( 'css' );
 		if ( $isCSS ) {
 			$this->outputCss();
 			return $this->session;

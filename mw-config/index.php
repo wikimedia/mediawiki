@@ -49,7 +49,7 @@ function wfInstallerMain() {
 	$installer = InstallerOverrides::getWebInstaller( $request );
 
 	if ( !$installer->startSession() ) {
-		if ( $installer->request->getVal( 'css' ) ) {
+		if ( $installer->request->getCheck( 'css' ) ) {
 			// Do not display errors on css pages
 			$installer->outputCss();
 			exit;
