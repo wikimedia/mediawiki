@@ -41,6 +41,7 @@
 #
 # The following fields are shared by all package types:
 # * `license` : SPDX license identifier
+# * `purl` : [optional] package-url specifier ( https://github.com/package-url/purl-spec )
 # * `homepage` : [optional] Homepage URL of library, to be shown on Special:Version
 # * `authors` : [optional] Authors string of library, to be shown on Special:Version
 # * `version` : [optional] Version string of library, to be shown on Special:Version
@@ -115,6 +116,7 @@ CLDRPluralRuleParser:
   homepage: https://github.com/santhoshtr/CLDRPluralRuleParser
   authors: Santhosh Thottingal
   version: 1.3.1-0dda851
+  purl: pkg:github/santhoshtr/CLDRPluralRuleParser@0dda851#src/CLDRPluralRuleParser.js
   type: file
   src: https://raw.githubusercontent.com/santhoshtr/CLDRPluralRuleParser/0dda851/src/CLDRPluralRuleParser.js
   integrity: sha384-M4taeYYG2+9Ob1/La16iO+zlRRmBV5lBR3xUKkQT6kfkJ0aLbCi6yc0RYI1BDzdh
@@ -124,6 +126,7 @@ codex:
   homepage: https://doc.wikimedia.org/codex/
   authors: Design Systems team, Wikimedia Foundation
   version: 1.5.0
+  purl: pkg:npm/@wikimedia/codex@1.5.0
   type: tar
   src: https://registry.npmjs.org/@wikimedia/codex/-/codex-1.5.0.tgz
   integrity: sha384-CCswPQnlAJ8nFBviORlG7H92f5MeeDwkQ7QN7poLUtEI3jld8LfYK67Cc0qhvJ9A
@@ -143,6 +146,7 @@ codex-design-tokens:
   homepage: https://doc.wikimedia.org/codex/
   authors: Design Systems team, Wikimedia Foundation
   version: 1.5.0
+  purl: pkg:npm/@wikimedia/codex-design-tokens@1.5.0
   type: tar
   src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-1.5.0.tgz
   integrity: sha384-ohrA2Egc1HE0hW9COWPBylUpwraGP4Bfq5xGrI7iW/qYjq0vxfyr+1JfBbInF4F1
@@ -158,6 +162,7 @@ codex-icons:
   homepage: https://doc.wikimedia.org/codex/
   authors: Design Systems team, Wikimedia Foundation
   version: 1.5.0
+  purl: pkg:npm/@wikimedia/codex-icons@1.5.0
   type: tar
   src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-1.5.0.tgz
   integrity: sha384-oH7SJFp0HzamZEfvxNyF+VfjzpsYwmoYBqTPyWG7dgH6MNpIJSl0cc5v7KFHspsP
@@ -172,6 +177,7 @@ url:
   homepage: https://github.com/financial-times/polyfill-library
   authors: Financial Times
   version: 3.111.0-0ece79ce32
+  purl: pkg:github/financial-times/polyfill-library@0ece79ce32
   type: multi-file
   files:
     URL.js:
@@ -202,6 +208,7 @@ intersection-observer:
   homepage: https://github.com/GoogleChromeLabs/intersection-observer
   authors: Philip Walton
   version: 0.12.0
+  purl: pkg:npm/intersection-observer@0.12.0
   type: tar
   src: https://registry.npmjs.org/intersection-observer/-/intersection-observer-0.12.0.tgz
   integrity: sha384-zCaiM7krKokKgwmrn87MtEtBUfsddhfofL0x+6KiGr+nHRa4b/ZdcfkBUSEtuEUw
@@ -226,6 +233,7 @@ jquery.chosen:
   homepage: https://harvesthq.github.io/chosen/
   authors: Patrick Filler for Harvest, Matthew Lettini, Patrick Filler, Ken Earley, Christophe Coevoet, Koen Punt, and T.J. Schuck.
   version: 1.8.2
+  purl: pkg:github/harvesthq/chosen@1.8.2
   type: multi-file
   files:
     LICENSE:
@@ -253,6 +261,7 @@ jquery.client:
   homepage: https://www.npmjs.com/package/jquery-client
   authors: Trevor Parscal, Timo Tijhof, and Roan Kattouw
   version: 3.0.0
+  purl: pkg:npm/jquery-client@3.0.0
   type: tar
   src: https://registry.npmjs.org/jquery-client/-/jquery-client-3.0.0.tgz
   integrity: sha256-BRPTsJn7fViZ2ip0YUBT9L90wJ8s0BFE17ccpmLfPUk=
@@ -267,6 +276,7 @@ jquery.i18n:
   homepage: https://github.com/wikimedia/jquery.i18n
   authors: Language Engineering team, Wikimedia Foundation
   version: 1.0.7
+  purl: pkg:github/wikimedia/jquery.i18n@1.0.7
   type: tar
   src: https://codeload.github.com/wikimedia/jquery.i18n/tar.gz/70b5ee20a638cb8fe36baef8d51ac2eb577ce012
   integrity: sha384-/Upo+6ih5h5v7/GW4zzuaMNZfAHmV7cYVhORdjwT9qFTHzmIStN9mPQ+VD0niknE
@@ -291,6 +301,7 @@ moment:
   homepage: https://momentjs.com
   authors: JS Foundation and other contributors
   version: 2.25.2
+  purl: pkg:github/moment/moment@2.25.2
   type: tar
   src: https://codeload.github.com/moment/moment/tar.gz/2.25.2
   integrity: sha384-Kdi8+psMUggMYwnp+uBCuy03sBfDbKFyjzdLWJks/4O8x4DwOFWzYbtm7RbJ4ISU
@@ -306,6 +317,7 @@ mustache:
   homepage: https://github.com/janl/mustache.js
   authors: Michael Jackson, Jan Lehnardt, Phillip Johnsen, and other contributors
   version: 4.2.0
+  purl: pkg:npm/mustache@4.2.0
   type: tar
   src: https://registry.npmjs.org/mustache/-/mustache-4.2.0.tgz
   integrity: sha384-JKpbW4FTGK4zdRNitERF8271K0N5EMpnxY9/yrm8CEUPUE+DZsiBstkkzGd89uJG
@@ -318,6 +330,7 @@ oojs:
   homepage: https://www.mediawiki.org/wiki/OOjs
   authors: OOjs Team and other contributors
   version: 7.0.1
+  purl: pkg:npm/oojs@7.0.1
   type: tar
   src: https://registry.npmjs.org/oojs/-/oojs-7.0.1.tgz
   integrity: sha384-2O0mmkNNV9RilbKtQjCL8wUfIf3Eb+/5CKQEsC4yCbf1NAV1MM67O2GxcC1/cj9Q
@@ -331,7 +344,8 @@ ooui:
   license: MIT
   homepage: https://www.mediawiki.org/wiki/OOUI
   authors: OOUI Team and other contributors
-  version: 0.49.0
+  version: 0.49.1
+  purl: pkg:npm/oojs-ui@0.49.1
   type: tar
   src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.49.1.tgz
   integrity: sha384-A+rqZuEBs57mX/Q5XApnmUG+jbQvq6GwA0Wi6Fipc7gpLqRORooUlm5aT3hFav75
@@ -366,6 +380,7 @@ pako:
   homepage: https://github.com/nodeca/pako
   authors: Andrei Tuputcyn, Vitaly Puzrin, Friedel Ziegelmayer, Kirill Efimov, Jean-loup Gailly, and Mark Adler
   version: 2.1.0
+  purl: pkg:github/nodeca/pako@2.1.0
   type: multi-file
   files:
     pako_deflate.js:
@@ -386,6 +401,7 @@ pinia:
   homepage: https://pinia.vuejs.org/
   authors: Eduardo San Martin Morote
   version: 2.0.16
+  purl: pkg:npm/pinia@2.0.16
   type: tar
   src: https://registry.npmjs.org/pinia/-/pinia-2.0.16.tgz
   integrity: sha512-9/LMVO+/epny1NBfC77vnps4g3JRezxhhoF1xLUk8mZkUIxVnwfEAIRiAX8mYBTD/KCwZqnDMqXc8w3eU0FQGg==
@@ -426,6 +442,7 @@ vue:
   homepage: https://vuejs.org/
   authors: Yuxi (Evan) You
   version: 3.3.9
+  purl: pkg:npm/vue@3.3.9
   type: tar
   src: https://registry.npmjs.org/vue/-/vue-3.3.9.tgz
   integrity: sha512-sy5sLCTR8m6tvUk1/ijri3Yqzgpdsmxgj6n6yl7GXXCXqVbmW2RCXe9atE4cEI6Iv7L89v5f35fZRRr5dChP9w==
@@ -440,6 +457,7 @@ vuex:
   homepage: https://vuex.vuejs.org/
   authors: Yuxi (Evan) You
   version: 4.0.2
+  purl: pkg:npm/vuex@4.0.2
   type: tar
   src: https://registry.npmjs.org/vuex/-/vuex-4.0.2.tgz
   integrity: sha512-M6r8uxELjZIK8kTKDGgZTYX/ahzblnzC4isU1tpmEuOIIKmV+TRdc+H4s8ds2NuZ7wpUTdGRzJRtoj+lI+pc0Q==
