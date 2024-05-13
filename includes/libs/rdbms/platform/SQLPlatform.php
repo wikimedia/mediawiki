@@ -33,6 +33,7 @@ use Wikimedia\Rdbms\LikeMatch;
 use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\Rdbms\Query;
 use Wikimedia\Rdbms\QueryBuilderFromRawSql;
+use Wikimedia\Rdbms\RawSQLValue;
 use Wikimedia\Rdbms\Subquery;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -230,6 +231,8 @@ class SQLPlatform implements ISQLPlatform {
 					$list .= "(" . $value->toSql( $this->quoter ) . ")";
 				} elseif ( is_array( $value ) ) {
 					throw new InvalidArgumentException( __METHOD__ . ": unexpected array value without key" );
+				} elseif ( $value instanceof RawSQLValue ) {
+					throw new InvalidArgumentException( __METHOD__ . ": unexpected raw value without key" );
 				} else {
 					$list .= "($value)";
 				}

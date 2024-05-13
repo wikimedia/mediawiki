@@ -5,7 +5,7 @@ namespace Wikimedia\Rdbms;
 use Wikimedia\Rdbms\Database\DbQuoter;
 
 /**
- * Raw SQL value to be used in expression builders
+ * Raw SQL expression to be used in query builders
  *
  * @note This should be used very rarely and NEVER with user input.
  *
@@ -18,10 +18,19 @@ class RawSQLExpression extends Expression {
 	/**
 	 * This should be used very rarely and NEVER with user input.
 	 *
-	 * Most common usecases include comparing two columns
-	 * or function calls (e.g. COUNT(*))
+	 * It can be used as a boolean expression in a WHERE condition, in cases where `$db->expr()`
+	 * can't be used because the expression doesn't have a left side, operator and right side,
+	 * e.g. for conditions like `WHERE EXISTS( SELECT ... )`.
 	 *
-	 * @param string $expression value of the expression
+	 *   $queryBuilder->where( new RawSQLExpression( 'EXISTS(' . $subqueryBuilder->getSQL() . ')' ) )
+	 *
+	 * Or when the condition is a simple SQL literal and writing it as SQL is the easiest:
+	 *
+	 *   $queryBuilder->where( new RawSQLExpression( 'range_start != range_end' ) )
+	 *
+	 * (See also RawSQLValue, which may be more readable in other cases.)
+	 *
+	 * @param string $expression Expression (SQL fragment)
 	 * @param-taint $expression exec_sql
 	 * @since 1.42
 	 */

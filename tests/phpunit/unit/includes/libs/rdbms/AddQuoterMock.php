@@ -24,6 +24,7 @@ namespace MediaWiki\Tests\Unit\Libs\Rdbms;
 
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\Database\DbQuoter;
+use Wikimedia\Rdbms\RawSQLValue;
 
 class AddQuoterMock implements DbQuoter {
 	/**
@@ -31,6 +32,9 @@ class AddQuoterMock implements DbQuoter {
 	 * @stable to override
 	 */
 	public function addQuotes( $s ) {
+		if ( $s instanceof RawSQLValue ) {
+			return $s->toSql();
+		}
 		if ( $s instanceof Blob ) {
 			$s = $s->fetch();
 		}

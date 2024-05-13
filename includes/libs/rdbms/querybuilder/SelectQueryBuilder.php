@@ -4,6 +4,9 @@ namespace Wikimedia\Rdbms;
 
 use IDBAccessObject;
 
+// Very long type annotations :(
+// phpcs:disable Generic.Files.LineLength
+
 /**
  * Build SELECT queries with a fluent interface.
  *
@@ -283,7 +286,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * Add conditions to the query. The supplied conditions will be appended
 	 * to the existing conditions, separated by AND.
 	 *
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>>|array<int,string|IExpression> $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
 	 *
 	 * May be either a string containing a single condition, or an array of
@@ -339,7 +342,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	/**
 	 * Add conditions to the query. Alias for where().
 	 *
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>>|array<int,string|IExpression> $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
 	 * @return $this
 	 */
@@ -350,7 +353,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	/**
 	 * Add conditions to the query. Alias for where().
 	 *
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>>|array<int,string|IExpression> $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 * @param-taint $conds exec_sql_numkey
 	 * @return $this
 	 */

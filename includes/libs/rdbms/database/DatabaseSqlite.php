@@ -694,11 +694,10 @@ class DatabaseSqlite extends Database {
 		return $b;
 	}
 
-	/**
-	 * @param ?scalar|Blob $s
-	 * @return string
-	 */
 	public function addQuotes( $s ) {
+		if ( $s instanceof RawSQLValue ) {
+			return $s->toSql();
+		}
 		if ( $s instanceof Blob ) {
 			return "x'" . bin2hex( $s->fetch() ) . "'";
 		} elseif ( is_bool( $s ) ) {

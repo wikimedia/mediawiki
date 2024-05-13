@@ -20,7 +20,7 @@ class AndExpressionGroup extends ExpressionGroup {
 	 * @param-taint $field exec_sql
 	 * @param string $op One of '>', '<', '!=', '=', '>=', '<=', IExpression::LIKE, IExpression::NOT_LIKE
 	 * @param-taint $op exec_sql
-	 * @param ?scalar|Blob|LikeValue|non-empty-list<scalar|Blob> $value
+	 * @param ?scalar|RawSQLValue|Blob|LikeValue|non-empty-list<scalar|Blob> $value
 	 * @param-taint $value escapes_sql
 	 * @phan-side-effect-free
 	 */
