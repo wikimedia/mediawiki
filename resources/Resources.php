@@ -1550,6 +1550,7 @@ return [
 			'mediawiki.util',
 			'mediawiki.language',
 			'mediawiki.String',
+			'mediawiki.Title',
 			'user.options',
 		],
 	],
