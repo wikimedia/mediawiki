@@ -127,7 +127,7 @@ $( function () {
 		 */
 		function showTooltip() {
 			return mw.loader.using( [
-				'codex-search-styles',
+				'codex-styles',
 				'oojs-ui-core',
 				'oojs-ui-widgets',
 				'oojs-ui.styles.icons-interactions'
