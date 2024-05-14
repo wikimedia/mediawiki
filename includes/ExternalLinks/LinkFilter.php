@@ -448,7 +448,10 @@ class LinkFilter {
 		// while we want to match the email's domain or news server the same way we are
 		// matching hosts for other URLs.
 		if ( in_array( $bits['scheme'], [ 'mailto', 'news' ] ) ) {
-			$bits['host'] = $bits['path'];
+			// (T364743) Only set host if it's not already set (if // is used)
+			if ( array_key_exists( 'path', $bits ) ) {
+				$bits['host'] = $bits['path'];
+			}
 			$bits['path'] = '';
 		}
 
