@@ -89,26 +89,6 @@ OO.inheritClass( OO.Router, OO.Registry );
  * @param {jQuery.Event} routeEvent
  * @memberof OO.Router
  */
-/**
- * @typedef {Object} OO.Router~Static
- * @property {Function} isSupported Determine if current browser supports this router.
- */
-
-/**
- * Static Methods.
- *
- * @name OO.Router.static
- * @type {OO.Router~Static}
- */
-
-/**
- * Determine if current browser supports this router.
- *
- * @return {boolean} The browser is supported
- */
-OO.Router.static.isSupported = function () {
-	return 'onhashchange' in window;
-};
 
 /* Methods */
 
@@ -240,11 +220,14 @@ OO.Router.prototype.getPath = function () {
 };
 
 /**
- * Deprecated alias for OO.Router.static.isSupported.
+ * Whether the current browser supports 'hashchange' events.
  *
- * @deprecated Use static method
+ * @deprecated No longer needed
+ * @return {boolean} Always true
  */
-OO.Router.prototype.isSupported = OO.Router.static.isSupported;
+OO.Router.prototype.isSupported = function () {
+	return true;
+};
 
 if ( typeof module !== 'undefined' && module.exports ) {
 	module.exports = OO.Router;
