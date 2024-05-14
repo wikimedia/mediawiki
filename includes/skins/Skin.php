@@ -331,12 +331,14 @@ abstract class Skin extends ContextSource {
 	 *
 	 *  - `menus`: Which menus the skin supports, to allow features like SpecialWatchlist
 	 *     and SpecialContribute to render their own navigation in the skins that don't
-	 *     support certain menus.
+	 *     support certain menus. For any key in the array, the skin is promising to render
+	 *     an element e.g. the presence of `associated-pages` means the skin will render a menu
+	 *     compatible with mw.util.addPortletLink which has the ID p-associated-pages.
 	 *
 	 *     Default: `['namespaces', 'views', 'actions', 'variants']`
 	 *
 	 *     Opt-in menus:
-	 *     - `associated-page`
+	 *     - `associated-pages`
 	 *     - `notification`
 	 *     - `user-interface-preferences`
 	 *     - `user-page`
@@ -2430,7 +2432,8 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Does the skin support the named menu?
+	 * Does the skin support the named menu? e.g. has it declared that it
+	 * will render a menu with the given ID?
 	 *
 	 * @since 1.39
 	 * @param string $menu See Skin::__construct for menu names.

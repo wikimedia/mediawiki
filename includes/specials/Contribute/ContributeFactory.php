@@ -47,6 +47,9 @@ class ContributeFactory {
 
 	/**
 	 * Check if the Special:Contribute page is enabled for the current skin
+	 * This can be removed when T323083 is resolved ie. the Special:Contribute feature
+	 * has been shipped by the WMF Language Team.
+	 *
 	 * @param Skin $skin
 	 * @param array $specialContributeSkinsEnabled
 	 *
@@ -56,11 +59,10 @@ class ContributeFactory {
 		Skin $skin,
 		array $specialContributeSkinsEnabled = []
 	): bool {
-		return $skin->supportsMenu( 'special-contribute' )
-			|| in_array(
-			$skin->getSkinName(),
-			$specialContributeSkinsEnabled
-		);
+		return in_array(
+				$skin->getSkinName(),
+				$specialContributeSkinsEnabled
+			);
 	}
 
 	/**
