@@ -63,7 +63,9 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 			'suppressTOC',
 			'targetLanguage',
 		] );
-		$parsoidVersion = 'data-mw-parsoid-version="' . Parsoid::version() . '"';
+		$parsoidVersion =
+			'data-mw-parsoid-version="' . Parsoid::version() . '" ' .
+			'data-mw-html-version="' . Parsoid::defaultHTMLVersion() . '"';
 
 		yield 'Basic render' => [
 			'title' => 'WikitextContentTest_testGetParserOutput',

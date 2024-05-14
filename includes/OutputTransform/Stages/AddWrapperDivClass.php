@@ -30,10 +30,15 @@ class AddWrapperDivClass extends ContentTextTransformStage {
 	protected function transformText( string $text, ParserOutput $po, ?ParserOptions $popts, array &$options ): string {
 		$wrapperDivClass = $options['wrapperDivClass'];
 		$pageLang = $this->getLanguageWithFallbackGuess( $po );
+		$extraAttrs = [];
 		$parsoidVersion = $po->getExtensionData( 'core:parsoid-version' );
-		$extraAttrs = $parsoidVersion === null ? [] : [
-			'data-mw-parsoid-version' => $parsoidVersion,
-		];
+		$htmlVersion = $po->getExtensionData( 'core:html-version' );
+		if ( $parsoidVersion !== null ) {
+			$extraAttrs['data-mw-parsoid-version'] = $parsoidVersion;
+		}
+		if ( $htmlVersion !== null ) {
+			$extraAttrs['data-mw-html-version'] = $htmlVersion;
+		}
 		return Html::rawElement( 'div', [
 			'class' => 'mw-content-' . $pageLang->getDir() . ' ' . $wrapperDivClass,
 			'lang' => $pageLang->toBcp47Code(),
