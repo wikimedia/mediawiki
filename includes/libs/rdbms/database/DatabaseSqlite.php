@@ -634,7 +634,8 @@ class DatabaseSqlite extends Database {
 	 * @return SQLiteField|false False on failure
 	 */
 	public function fieldInfo( $table, $field ) {
-		$tableRaw = $this->tableName( $table, 'raw' );
+		$components = $this->platform->qualifiedTableComponents( $table );
+		$tableRaw = end( $components );
 		$query = new Query(
 			'PRAGMA table_info(' . $this->addQuotes( $tableRaw ) . ')',
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
@@ -953,7 +954,8 @@ class DatabaseSqlite extends Database {
 	}
 
 	protected function getInsertIdColumnForUpsert( $table ) {
-		$tableRaw = $this->tableName( $table, 'raw' );
+		$components = $this->platform->qualifiedTableComponents( $table );
+		$tableRaw = end( $components );
 		$query = new Query(
 			'PRAGMA table_info(' . $this->addQuotes( $tableRaw ) . ')',
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,

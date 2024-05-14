@@ -867,8 +867,8 @@ __INDEXATTR__;
 		} else {
 			$schemas = [ $schema ];
 		}
-		$table = $this->tableName( $table, 'raw' );
-		$etable = $this->addQuotes( $table );
+		$components = $this->platform->qualifiedTableComponents( $table );
+		$etable = $this->addQuotes( end( $components ) );
 		foreach ( $schemas as $schema ) {
 			$eschema = $this->addQuotes( $schema );
 			$sql = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n "
@@ -1107,7 +1107,8 @@ __INDEXATTR__;
 		$column = null;
 
 		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
-		$encTable = $this->addQuotes( $this->tableName( $table, 'raw' ) );
+		$components = $this->platform->qualifiedTableComponents( $table );
+		$encTable = $this->addQuotes( end( $components ) );
 		foreach ( $this->getCoreSchemas() as $schema ) {
 			$encSchema = $this->addQuotes( $schema );
 			$query = new Query(
