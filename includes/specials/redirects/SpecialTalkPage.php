@@ -108,4 +108,9 @@ class SpecialTalkPage extends FormSpecialPage {
 		return 'special-talkpage';
 	}
 
+	public function getDescription() {
+		// "talkpage" is already taken by CologneBlue
+		return $this->msg( 'special-talkpage' );
+	}
+
 }
