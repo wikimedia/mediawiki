@@ -24,7 +24,9 @@
 			"Vlad5250",
 			"Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Albertoleoncio",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Anliure con la sotliniadura",
@@ -362,7 +364,7 @@
 	"protectedinterface": "Costa pàgina-sì a l'ha andrinta un cheicòs che a fa part dl'antërfacia dël programa che a deuvro tùit; donca a l'é proteta për evité che a-i rivo dle ròbe brute.\nPër gionté o modifiché dle tradussion për tute le wiki, për piasì ch'a deuvra [https://translatewiki.net/ translatewiki.net], ël proget ëd localisassion ëd MediaWiki.",
 	"editinginterface": "<strong>Dossman!</strong> A l'é dapress ch'a modìfica na pàgina ch'as deuvra për generé ël test dl'antërfacia dël programa. \nLe modìfiche a sta pàgina a toco l'aparensa ëd l'antërfacia utent a tuti j'utent dzora a sta wiki.",
 	"translateinterface": "Për gionté o modifiché le tradussion për tute le wiki, për piasì ch'a deuvra [https://translatewiki.net/ translatewiki.net], ël proget ëd localisassion ëd MediaWiki.",
-	"cascadeprotected": "Ant sta pàgina-sì as peulo pa fé ëd modìfiche, përché a-i intra ant {{PLURAL:$1|la pàgina|le pàgine}} butà sot a protession con la fonsion «a tombé» viscà ansima a: $2",
+	"cascadeprotected": "Ant sta pàgina-sì as peulo pa fé ëd modìfiche, përché a-i intra ant {{PLURAL:$1|la pàgina|le pàgine}} butà sot a protession con la fonsion «a tombé» viscà ansima a:\n$2",
 	"namespaceprotected": "A l'ha nen ël përmess dë feje dle modìfiche a le pàgine dlë spassi nominal '''$1'''.",
 	"customcssprotected": "Ch'a varda ch'a l'ha pa ël përmess ëd modifiché sta pàgina ëd CSS, për via ch'a l'ha andrinta ij gust ëd n'àutr utent.",
 	"customjsonprotected": "It l'has pa ël përmess ëd modifiché sta pàgina JSON, për via ch'a l'ha andrinta ij gust ëd n'àutr utent.",

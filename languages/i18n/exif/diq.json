@@ -10,7 +10,8 @@
 			"Marmase",
 			"Mirzali",
 			"Orbot707",
-			"Xoser"
+			"Xoser",
+			"GolyatGeri"
 		]
 	},
 	"exif-imagewidth": "Herayiye",
@@ -216,6 +217,8 @@
 	"exif-photometricinterpretation-6": "YCbCr",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (ICC-qodnayış)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (ITU qodnayış)",
+	"exif-photometricinterpretation-32803": "Parzune Renger Reziya",
+	"exif-photometricinterpretation-34892": "Linear roh",
 	"exif-unknowndate": "Tarix nizanyano",
 	"exif-orientation-1": "Normal",
 	"exif-orientation-2": "kıştki-ser çarnayiş",
