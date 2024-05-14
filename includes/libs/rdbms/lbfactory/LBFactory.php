@@ -562,9 +562,11 @@ abstract class LBFactory implements ILBFactory {
 	 */
 	private function getMappedDatabase( $index, $groups, $domain ) {
 		if ( $domain !== false && in_array( $domain, $this->virtualDomains ) ) {
-			$domain = $this->virtualDomainsMapping[$domain]['db'] ?? false;
+			$dbDomain = $this->virtualDomainsMapping[$domain]['db'] ?? false;
+		} else {
+			$dbDomain = $domain;
 		}
-		return $this->getLoadBalancer( $domain )->getConnection( $index, $groups, $domain );
+		return $this->getLoadBalancer( $domain )->getConnection( $index, $groups, $dbDomain );
 	}
 
 	final public function commitAndWaitForReplication( $fname, $ticket, array $opts = [] ) {
