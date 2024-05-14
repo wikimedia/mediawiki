@@ -138,6 +138,8 @@ class ExpressionTest extends TestCase {
 		return [
 			[ 'rev_timestamp', 'bigger', '12345' ],
 			[ 'rev_timestamp', 'bigger', 1234 ],
+			[ 'rev_timestamp', '=', [] ],
+			[ 'rev_timestamp', '=', [ 1234, null, 456 ] ],
 			[ 'rev_timestamp', '>', [ 1234, 456 ] ],
 			[ 'rev_timestamp', '<', [ 1234, 456 ] ],
 			[ 'rev_timestamp', '>', null ],
