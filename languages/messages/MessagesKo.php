@@ -142,6 +142,7 @@ $specialPageAliases = [
 	'Mute'                      => [ '뮤트' ],
 	'Mycontributions'           => [ '내기여', '내기여목록' ],
 	'MyLanguage'                => [ '내언어' ],
+	'Mylog'                     => [ '내기록' ],
 	'Mypage'                    => [ '내사용자문서' ],
 	'Mytalk'                    => [ '내사용자토론' ],
 	'Myuploads'                 => [ '내가올린파일' ],
@@ -170,7 +171,7 @@ $specialPageAliases = [
 	'Recentchangeslinked'       => [ '링크최근바뀜' ],
 	'Redirect'                  => [ '넘겨주기' ],
 	'RemoveCredentials'         => [ '자격증명삭제', '자격증명제거' ],
-	'Renameuser'                => [ '이름바꾸기', '사용자이름바꾸기', '계정이름바꾸기' ],
+	'Renameuser'                => [ '사용자이름바꾸기', '이름바꾸기', '계정이름바꾸기' ],
 	'ResetTokens'               => [ '토큰재설정' ],
 	'Revisiondelete'            => [ '특정판삭제' ],
 	'RunJobs'                   => [ '작업실행' ],
@@ -376,7 +377,7 @@ $magicWords = [
 ];
 
 $bookstoreList = [
-	'Aladin.co.kr' => 'https://www.aladin.co.kr/catalog/book.asp?ISBN=$1',
+	'Aladin.co.kr' => 'https://www.aladin.co.kr/search/wsearchresult.aspx?SearchTarget=All&SearchWord=$1',
 	'National Library of Korea' => 'https://www.nl.go.kr/NL/contents/search.do?srchTarget=cheonggu&kwd=$1',
 	'Naver' => 'https://book.naver.com/search/search.nhn?query=$1',
 	'inherit' => true,
