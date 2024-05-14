@@ -499,6 +499,8 @@ because of Phabricator reports.
   when installing new wikis. This does not affect existing wikis.
 * User auto-creations are now performed as the target user instead of
   anonymous IP user.
+* [Temporary accounts] T359043 Temporary accounts for anonymous edits are
+  enabled in DevelopmentSettings.php when MW_QUIBBLE_CI is set
 * Corrected the interpretation of empty arrays in extension configuration when
   the default value is null. Previously, an empty array specified by the
   administrator would transform into the default null value. It now

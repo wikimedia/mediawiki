@@ -129,7 +129,7 @@ $wgTempAccountNameAcquisitionThrottle = [];
 
 global $wgSQLMode, $wgDBStrictWarnings, $wgLocalisationCacheConf, $wgCiteBookReferencing,
 	$wgCacheDirectory, $wgEnableUploads, $wgUsePigLatinVariant,
-	$wgVisualEditorEnableWikitext, $wgDefaultUserOptions;
+	$wgVisualEditorEnableWikitext, $wgDefaultUserOptions, $wgAutoCreateTempUser;
 
 // Enable MariaDB/MySQL strict mode (T108255)
 $wgSQLMode = 'STRICT_ALL_TABLES,ONLY_FULL_GROUP_BY';
@@ -159,3 +159,8 @@ $wgUseXssLanguage = true;
 $wgVisualEditorEnableWikitext = true;
 // Currently the default, but repeated here for safety since it would break many source editor tests.
 $wgDefaultUserOptions['visualeditor-newwikitext'] = 0;
+
+// Enable creation of temp user accounts on edit (T355880, T359043) in CI
+if ( defined( 'MW_QUIBBLE_CI' ) ) {
+	$wgAutoCreateTempUser['enabled'] = true;
+}
