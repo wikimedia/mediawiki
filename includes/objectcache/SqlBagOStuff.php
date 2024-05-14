@@ -1075,7 +1075,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$seconds = (int)$mtime;
 		[ , $microseconds ] = explode( '.', sprintf( '%.6F', $mtime ) );
 
-		$id = $db->getTopologyBasedServerId() ?? sprintf( '%u', crc32( $db->getServerName() ) );
+		$id = sprintf( '%u', crc32( $db->getServerName() ) );
 
 		$token = implode( '', [
 			// 67 bit integral portion of UNIX timestamp, qualified

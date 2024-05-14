@@ -83,19 +83,6 @@ interface IDatabase extends IReadableDatabase {
 	public const ROLE_UNKNOWN = 'unknown';
 
 	/**
-	 * Get a non-recycled ID that uniquely identifies this server within the replication topology
-	 *
-	 * A replication topology defines which servers can originate changes to a given dataset
-	 * and how those changes propagate among database servers. It is assumed that the server
-	 * only participates in the replication of a single relevant dataset.
-	 *
-	 * @return string|null 32, 64, or 128 bit integer ID; null if not applicable or unknown
-	 * @throws DBQueryError
-	 * @since 1.37
-	 */
-	public function getTopologyBasedServerId();
-
-	/**
 	 * Get the replication topology role of this server
 	 *
 	 * A replication topology defines which servers can originate changes to a given dataset
