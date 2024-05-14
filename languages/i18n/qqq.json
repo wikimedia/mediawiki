@@ -3954,7 +3954,7 @@
 	"fileduplicatesearch-result-1": "Result line after the list of files of [[Special:FileDuplicateSearch]].\n\nParameters:\n* $1 - the name of the requested file",
 	"fileduplicatesearch-result-n": "Result line after the list of files of [[Special:FileDuplicateSearch]]\n\n* $1 is the name of the requested file.\n* $2 is the number of identical duplicates of the requested file",
 	"fileduplicatesearch-noresults": "Parameters:\n* $1 - file name",
-	"talkpage": "Name of special page [[Special:TalkPage]].",
+	"special-talkpage": "Name of special page [[Special:TalkPage]].",
 	"special-talkpage-target": "Input form of [[Special:TalkPage]].",
 	"special-talkpage-submit": "Button label on [[Special:TalkPage]].",
 	"specialpages": "{{doc-special|SpecialPages|unlisted=1}}\nDisplay name of link to [[Special:SpecialPages]] shown on all pages in the toolbox.\n\nSee also:\n* {{msg-mw|Specialpages}}\n* {{msg-mw|Accesskey-t-specialpages}}\n* {{msg-mw|Tooltip-t-specialpages}}\n{{Identical|Special page}}",
