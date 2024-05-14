@@ -323,8 +323,8 @@ interface IDatabase extends IReadableDatabase {
 	/**
 	 * Lock all rows meeting the given conditions/options FOR UPDATE
 	 *
-	 * @param string|string[] $table Table name(s)
-	 * @param array|string $conds Filters on the table
+	 * @param string|string[] $table Unqualified name of table(s) (use an array for a join)
+	 * @param array|string $conds Condition in the format of IDatabase::select() conditions
 	 * @param string $fname Function name for profiling
 	 * @param array $options Options for select ("FOR UPDATE" is added automatically)
 	 * @param array $join_conds Join conditions
@@ -345,7 +345,7 @@ interface IDatabase extends IReadableDatabase {
 	 *
 	 * @internal callers outside of rdbms library should use InsertQueryBuilder instead.
 	 *
-	 * @param string $table Table name
+	 * @param string $table Unqualified name of table
 	 * @param array|array[] $rows Row(s) to insert, as either:
 	 *   - A string-keyed map of (column name => value) defining a new row. Values are
 	 *     treated as literals and quoted appropriately; null is interpreted as NULL.
@@ -371,7 +371,7 @@ interface IDatabase extends IReadableDatabase {
 	 *
 	 * @internal callers outside of rdbms library should use UpdateQueryBuilder instead.
 	 *
-	 * @param string $table Table name
+	 * @param string $table Unqualified name of table
 	 * @param-taint $table exec_sql
 	 * @param array $set Combination map/list where each string-keyed entry maps a column
 	 *   to a literal assigned value and each integer-keyed value is a SQL expression in the
@@ -439,7 +439,7 @@ interface IDatabase extends IReadableDatabase {
 	 *
 	 * @internal callers outside of rdbms library should use ReplaceQueryBuilder instead.
 	 *
-	 * @param string $table The table name
+	 * @param string $table Unqualified name of table
 	 * @param string|string[]|string[][] $uniqueKeys Column name or non-empty list of column
 	 *   name lists that define all applicable unique keys on the table. There must only be
 	 *   one such key. Each unique key on the table is "applicable" unless either:
@@ -469,7 +469,7 @@ interface IDatabase extends IReadableDatabase {
 	 *
 	 * @internal callers outside of rdbms library should use InsertQueryBuilder instead.
 	 *
-	 * @param string $table Table name
+	 * @param string $table Unqualified name of table
 	 * @param array|array[] $rows Row(s) to insert, in the form of either:
 	 *   - A string-keyed map of (column name => value) defining a new row. Values are
 	 *     treated as literals and quoted appropriately; null is interpreted as NULL.
@@ -511,8 +511,8 @@ interface IDatabase extends IReadableDatabase {
 	 * This operation will be seen by affectedRows()/insertId() as one query statement,
 	 * regardless of how many statements are actually sent by the class implementation.
 	 *
-	 * @param string $delTable The table to delete from.
-	 * @param string $joinTable The reference table used by the join (not modified).
+	 * @param string $delTable Unqualified name of table to delete rows from.
+	 * @param string $joinTable Unqualified name of reference table to join on.
 	 * @param string $delVar The variable to join on, in the first table.
 	 * @param string $joinVar The variable to join on, in the second table.
 	 * @param array|string $conds Condition array of field names mapped to variables,
@@ -537,7 +537,7 @@ interface IDatabase extends IReadableDatabase {
 	 *
 	 * @internal callers outside of rdbms library should use DeleteQueryBuilder instead.
 	 *
-	 * @param string $table Table name
+	 * @param string $table Unqualified name of table
 	 * @param-taint $table exec_sql
 	 * @param string|array $conds Array of conditions. See $conds in IDatabase::select()
 	 *   In order to prevent possible performance or replication issues or damaging a data
@@ -563,9 +563,8 @@ interface IDatabase extends IReadableDatabase {
 	 * This operation will be seen by affectedRows()/insertId() as one query statement,
 	 * regardless of how many statements are actually sent by the class implementation.
 	 *
-	 * @param string $destTable The table name to insert into
-	 * @param string|array $srcTable May be either a table name, or an array of table names
-	 *    to include in a join.
+	 * @param string $destTable Unqualified name of destination table
+	 * @param string|array $srcTable Unqualified name of source table(s) (use an array for a join)
 	 * @param array $varMap Must be an associative array of the form
 	 *    [ 'dest1' => 'source1', ... ]. Source items may be literals
 	 *    rather than field names, but strings should be quoted with

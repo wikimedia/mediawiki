@@ -163,7 +163,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 *
 	 * @internal callers outside of rdbms library should use SelectQueryBuilder instead.
 	 *
-	 * @param string|array $table Table name. {@see select} for details.
+	 * @param string|array $table Unqualified name of table. {@see select} for details.
 	 * @param-taint $table exec_sql
 	 * @param string|array $var The field name to select. This must be a valid SQL fragment: do not
 	 *  use unvalidated user input. Can be an array, but must contain exactly 1 element then.
@@ -195,7 +195,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 *
 	 * @internal callers outside of rdbms library should use SelectQueryBuilder instead.
 	 *
-	 * @param string|array $table Table name. {@see select} for details.
+	 * @param string|array $table Unqualified name of table. {@see select} for details.
 	 * @param-taint $table exec_sql
 	 * @param string $var The field name to select. This must be a valid SQL
 	 *   fragment: do not use unvalidated user input.
@@ -224,7 +224,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * New callers should use {@link newSelectQueryBuilder} with {@link SelectQueryBuilder::fetchResultSet}
 	 * instead, which is more readable and less error-prone.
 	 *
-	 * @param string|array $table Table name(s)
+	 * @param string|array $table Unqualified name of table(s)
 	 * @param-taint $table exec_sql
 	 *
 	 * May be either an array of table names, or a single string holding a table
@@ -429,7 +429,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * instead, which is more readable and less error-prone.
 	 *
 	 * @internal
-	 * @param string|array $table Table name
+	 * @param string|array $table Unqualified name of table
 	 * @param-taint $table exec_sql
 	 * @param string|array $vars Field names
 	 * @param-taint $vars exec_sql
@@ -471,7 +471,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * instead, which is more readable and less error-prone.
 	 *
 	 * @internal
-	 * @param string|string[] $tables Table name(s)
+	 * @param string|string[] $tables Unqualified name of table(s)
 	 * @param string $var Column for which NULL values are not counted [default "*"]
 	 * @param array|string $conds Filters on the table
 	 * @param string $fname Function name for profiling
@@ -497,7 +497,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * @since 1.27 Added $join_conds parameter
 	 *
 	 * @internal
-	 * @param string|string[] $tables Table name(s)
+	 * @param string|string[] $tables Unqualified name of table(s)
 	 * @param-taint $tables exec_sql
 	 * @param string $var Column for which NULL values are not counted [default "*"]
 	 * @param-taint $var exec_sql

@@ -92,7 +92,7 @@ class DeleteQueryBuilder {
 	/**
 	 * Manually set the table name to be passed to IDatabase::delete()
 	 *
-	 * @param string $table The table name
+	 * @param string $table Unqualified name of table
 	 * @param-taint $table exec_sql
 	 * @return $this
 	 */
@@ -104,7 +104,7 @@ class DeleteQueryBuilder {
 	/**
 	 * Set table for the query. Alias for table().
 	 *
-	 * @param string $table The table name
+	 * @param string $table Unqualified name of table
 	 * @param-taint $table exec_sql
 	 * @return $this
 	 */
@@ -115,7 +115,7 @@ class DeleteQueryBuilder {
 	/**
 	 * Set table for the query. Alias for table().
 	 *
-	 * @param string $table The table name
+	 * @param string $table Unqualified name of table
 	 * @param-taint $table exec_sql
 	 * @return $this
 	 */

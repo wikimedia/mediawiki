@@ -468,7 +468,7 @@ interface ISQLPlatform {
 	 * Calling this twice will completely clear any old table aliases. Also, note that
 	 * callers are responsible for making sure the schemas and databases actually exist.
 	 *
-	 * @param array[] $aliases Map of (table => (dbname, schema, prefix) map)
+	 * @param array[] $aliases Map of (unqualified table name => (dbname, schema, prefix) map)
 	 * @since 1.28 in IDatabase, moved to ISQLPlatform in 1.39
 	 */
 	public function setTableAliases( array $aliases );
@@ -503,7 +503,7 @@ interface ISQLPlatform {
 	 *
 	 * @see IDatabase::select()
 	 *
-	 * @param string|array $table Table name(s)
+	 * @param string|array $table Unqualified name of table(s)
 	 * @param-taint $table exec_sql
 	 * @param string|array $vars Field names
 	 * @param-taint $vars exec_sql
@@ -539,12 +539,12 @@ interface ISQLPlatform {
 	 *
 	 * @note This function does not sanitize user input. It is not safe to use
 	 *   this function to escape user input.
-	 * @param string $name Database table name
+	 * @param string $name Unqualified name of table (no quotes, db, schema, nor table prefix)
 	 * @param string $format One of:
 	 *   quoted - Automatically pass the table name through addIdentifierQuotes()
 	 *            so that it can be used in a query.
 	 *   raw - Do not add identifier quotes to the table name
-	 * @return string Full database name
+	 * @return string Qualified table name (includes any applicable prefix or foreign db/schema)
 	 */
 	public function tableName( string $name, $format = 'quoted' );
 
@@ -602,7 +602,7 @@ interface ISQLPlatform {
 	 * Code using the results may need to use the PHP unique() or sort() methods.
 	 *
 	 * @param string $delim Glue to bind the results together
-	 * @param string|array $table Table name
+	 * @param string|array $table Unqualified name of table
 	 * @param string $field Field name
 	 * @param string|array $conds Conditions
 	 * @param string|array $join_conds Join conditions
@@ -618,7 +618,7 @@ interface ISQLPlatform {
 	 *
 	 * @see IDatabase::selectSQLText()
 	 *
-	 * @param string|array $table Table name
+	 * @param string|array $table Unqualified name of table
 	 * @param string|array $vars Field names
 	 * @param string|array $conds Conditions
 	 * @param string $fname Caller function name
