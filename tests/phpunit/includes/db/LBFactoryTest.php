@@ -669,11 +669,19 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			'extdomain',
 			$db1->getDomainID()
 		);
+		$this->assertEquals(
+			'extension1',
+			$factory->getLoadBalancer( 'virtualdomain1' )->getClusterName()
+		);
 
 		$db2 = $factory->getPrimaryDatabase( 'virtualdomain2' );
 		$this->assertEquals(
 			'localdomain',
 			$db2->getDomainID()
+		);
+		$this->assertEquals(
+			'extension1',
+			$factory->getLoadBalancer( 'virtualdomain2' )->getClusterName()
 		);
 
 		$db3 = $factory->getPrimaryDatabase( 'virtualdomain3' );
@@ -681,11 +689,19 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			'shareddb',
 			$db3->getDomainID()
 		);
+		$this->assertEquals(
+			'DEFAULT',
+			$factory->getLoadBalancer( 'virtualdomain3' )->getClusterName()
+		);
 
 		$db3 = $factory->getPrimaryDatabase( 'virtualdomain4' );
 		$this->assertEquals(
 			'localdomain',
 			$db3->getDomainID()
+		);
+		$this->assertEquals(
+			'DEFAULT',
+			$factory->getLoadBalancer( 'virtualdomain4' )->getClusterName()
 		);
 	}
 
