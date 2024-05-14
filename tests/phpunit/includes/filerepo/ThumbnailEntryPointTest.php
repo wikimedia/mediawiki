@@ -257,7 +257,8 @@ class ThumbnailEntryPointTest extends MediaWikiIntegrationTestCase {
 			new ThumbnailImage(
 				new UnregisteredLocalFile( false, false, 'dummy' ),
 				'',
-				false
+				false,
+				[ 'width' => 1, 'height' => 1 ]
 			),
 			500
 		];
