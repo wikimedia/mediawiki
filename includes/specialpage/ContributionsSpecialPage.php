@@ -33,6 +33,7 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Pager\ContribsPager;
+use MediaWiki\Pager\ContributionsPager;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\PoolCounter\PoolCounterWorkViaCallback;
 use MediaWiki\Specials\SpecialUserRights;
@@ -927,7 +928,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 
 	/**
 	 * @param UserIdentity $targetUser The normalized target user identity
-	 * @return ContribsPager
+	 * @return ContributionsPager
 	 */
 	protected function getPager( $targetUser ) {
 		// TODO: This class and the classes it extends should be abstract, and this
