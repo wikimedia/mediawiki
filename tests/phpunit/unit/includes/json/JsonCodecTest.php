@@ -161,6 +161,11 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 				return [];
 			}
 		};
+		$badSerializable = new class() implements JsonSerializable {
+			public function jsonSerialize(): \stdClass {
+				return (object)[];
+			}
+		};
 
 		yield 'Number' => [ 1, true, null ];
 		yield 'Null' => [ null, true, null ];
@@ -177,6 +182,7 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 		yield 'Nested, non-serializable' => [ [ 'a' => [ 'b' => $classInstance ] ], true, '$.a.b' ];
 		yield 'Nested, non-serializable, in array' => [ [ 'a' => [ 1, 2, $classInstance ] ], true, '$.a.2' ];
 		yield 'Nested, non-serializable, in stdClass' => [ [ 'a' => (object)[ 1, 2, $classInstance ] ], true, '$.a.2' ];
+		yield 'Nested, non-serializable, in JsonUnserializable' => [ new JsonUnserializableSuperClass( $classInstance ), true, '$.super_class_field' ];
 		yield 'JsonUnserializable instance' => [ new JsonUnserializableSuperClass( 'Test' ), true, null ];
 		yield 'JsonUnserializable instance, in array' =>
 			[ [ new JsonUnserializableSuperClass( 'Test' ) ], true, null ];
@@ -189,6 +195,7 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 		yield 'JsonSerializable instance, in array, expect unserialize' => [ [ $serializableClass ], true, '$.0' ];
 		yield 'JsonSerializable instance, in stdClass, expect unserialize' =>
 			[ (object)[ $serializableClass ], true, '$.0' ];
+		yield 'Bad JsonSerializable instance' => [ $badSerializable, false, '$' ];
 	}
 
 	/**
@@ -196,9 +203,14 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Json\JsonCodec::detectNonSerializableData
 	 * @covers \MediaWiki\Json\JsonCodec::detectNonSerializableDataInternal
 	 */
-	public function testValidateSerializable( $value, bool $expectUnserialize, ?string $result ) {
-		$this->assertSame( $result, $this->getCodec()
-			->detectNonSerializableData( $value, $expectUnserialize ) );
+	public function testValidateSerializable( $value, bool $expectUnserialize, ?string $expected ) {
+		$actual = $this->getCodec()
+			->detectNonSerializableData( $value, $expectUnserialize );
+		// Split off the details string from the detection location
+		if ( $actual !== null ) {
+			$actual = preg_replace( '/:.*$/', '', $actual );
+		}
+		$this->assertSame( $expected, $actual );
 	}
 
 	/**
