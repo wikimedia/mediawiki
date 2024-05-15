@@ -166,6 +166,7 @@ class ExtensionProcessor implements Processor {
 	 */
 	protected $globals = [
 		'wgExtensionMessagesFiles' => [],
+		'wgRestAPIAdditionalRouteFiles' => [],
 		'wgMessagesDirs' => [],
 		'TranslationAliasesDirs' => [],
 	];
@@ -259,6 +260,7 @@ class ExtensionProcessor implements Processor {
 		$dir = dirname( $path );
 		$this->extractHooks( $info, $path );
 		$this->extractExtensionMessagesFiles( $dir, $info );
+		$this->extractRestModuleFiles( $dir, $info );
 		$this->extractMessagesDirs( $dir, $info );
 		$this->extractTranslationAliasesDirs( $dir, $info );
 		$this->extractSkins( $dir, $info );
@@ -675,6 +677,15 @@ class ExtensionProcessor implements Processor {
 				$file = "$dir/$file";
 			}
 			$this->globals["wgExtensionMessagesFiles"] += $info['ExtensionMessagesFiles'];
+		}
+	}
+
+	protected function extractRestModuleFiles( $dir, array $info ) {
+		$var = MainConfigNames::RestAPIAdditionalRouteFiles;
+		if ( isset( $info['RestModuleFiles'] ) ) {
+			foreach ( $info['RestModuleFiles'] as &$file ) {
+				$this->globals["wg$var"][] = "$dir/$file";
+			}
 		}
 	}
 

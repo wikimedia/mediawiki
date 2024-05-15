@@ -736,6 +736,42 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 		}
 	}
 
+	public static function provideExtractRestModuleFiles() {
+		$dir = dirname( self::getExtensionPath() );
+		return [
+			[
+				[ 'RestModuleFiles' => [ 'FooBar.json' ] ],
+				[ 'wgRestAPIAdditionalRouteFiles' => [ $dir . '/FooBar.json' ] ]
+			],
+			[
+				[
+					'RestModuleFiles' => [
+						'FooBar.json',
+						'Xyzzy.json',
+					],
+				],
+				[
+					'wgRestAPIAdditionalRouteFiles' => [
+						$dir . '/FooBar.json',
+						$dir . '/Xyzzy.json',
+					],
+				],
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideExtractRestModuleFiles
+	 */
+	public function testExtractRestModuleFiles( $input, $expected ) {
+		$processor = new ExtensionProcessor();
+		$processor->extractInfo( $this->extensionPath, $input + self::$default, 1 );
+		$out = $processor->getExtractedInfo();
+		foreach ( $expected as $key => $value ) {
+			$this->assertEquals( $value, $out['globals'][$key] );
+		}
+	}
+
 	public static function provideExtractMessagesDirs() {
 		$dir = dirname( self::getExtensionPath() );
 		return [

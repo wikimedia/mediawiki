@@ -1033,6 +1033,10 @@
 			"type": "object",
 			"description": "File paths containing PHP internationalization data"
 		},
+		"RestModuleFiles": {
+			"type": "array",
+			"description": "Paths of REST API module files"
+		},
 		"MessagesDirs": {
 			"type": "object",
 			"description": "Directory paths containing JSON internationalization data"
