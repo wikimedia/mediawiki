@@ -2,8 +2,7 @@
 	"root": true,
 	"extends": [
 		"wikimedia/client-es6",
-		"wikimedia/mediawiki",
-		"wikimedia/jsdoc"
+		"wikimedia/mediawiki"
 	],
 	"rules": {
 		"compat/compat": [
