@@ -11,6 +11,7 @@ use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\RedirectStore;
+use MediaWiki\Parser\Parsoid\Config\SiteConfig as ParsoidSiteConfig;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Rest\RequestInterface;
@@ -37,6 +38,7 @@ class PageRestHelperFactory {
 	private StatsdDataFactoryInterface $stats;
 	private ParserOutputAccess $parserOutputAccess;
 	private ParsoidOutputAccess $parsoidOutputAccess;
+	private ParsoidSiteConfig $parsoidSiteConfig;
 	private HtmlTransformFactory $htmlTransformFactory;
 	private IContentHandlerFactory $contentHandlerFactory;
 	private LanguageFactory $languageFactory;
@@ -52,6 +54,7 @@ class PageRestHelperFactory {
 	 * @param StatsdDataFactoryInterface $statsDataFactory
 	 * @param ParserOutputAccess $parserOutputAccess
 	 * @param ParsoidOutputAccess $parsoidOutputAccess
+	 * @param ParsoidSiteConfig $parsoidSiteConfig
 	 * @param HtmlTransformFactory $htmlTransformFactory
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param LanguageFactory $languageFactory
@@ -67,6 +70,7 @@ class PageRestHelperFactory {
 		StatsdDataFactoryInterface $statsDataFactory,
 		ParserOutputAccess $parserOutputAccess,
 		ParsoidOutputAccess $parsoidOutputAccess,
+		ParsoidSiteConfig $parsoidSiteConfig,
 		HtmlTransformFactory $htmlTransformFactory,
 		IContentHandlerFactory $contentHandlerFactory,
 		LanguageFactory $languageFactory,
@@ -81,6 +85,7 @@ class PageRestHelperFactory {
 		$this->stats = $statsDataFactory;
 		$this->parserOutputAccess = $parserOutputAccess;
 		$this->parsoidOutputAccess = $parsoidOutputAccess;
+		$this->parsoidSiteConfig = $parsoidSiteConfig;
 		$this->htmlTransformFactory = $htmlTransformFactory;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->languageFactory = $languageFactory;
@@ -118,6 +123,10 @@ class PageRestHelperFactory {
 			$this->parsoidOutputStash,
 			$this->stats,
 			$this->parsoidOutputAccess,
+			$this->parserOutputAccess,
+			$this->pageLookup,
+			$this->revisionLookup,
+			$this->parsoidSiteConfig,
 			$this->htmlTransformFactory,
 			$this->contentHandlerFactory,
 			$this->languageFactory,

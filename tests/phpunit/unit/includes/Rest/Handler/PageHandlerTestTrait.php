@@ -130,6 +130,10 @@ trait PageHandlerTestTrait {
 					$parsoidOutputStash,
 					$services->getStatsdDataFactory(),
 					$parsoidOutputAccess,
+					$services->getParserOutputAccess(),
+					$services->getPageStore(),
+					$services->getRevisionLookup(),
+					$services->getParsoidSiteConfig(),
 					$services->getHtmlTransformFactory(),
 					$services->getContentHandlerFactory(),
 					$services->getLanguageFactory()

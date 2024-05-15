@@ -32,8 +32,11 @@ use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageLookup;
+use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\Parsoid\Config\SiteConfig as ParsoidSiteConfig;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
@@ -45,6 +48,7 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
@@ -56,7 +60,9 @@ use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\PageBundle;
+use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
@@ -113,6 +119,14 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	/** @var ParsoidOutputAccess */
 	private $parsoidOutputAccess;
 
+	private ParserOutputAccess $parserOutputAccess;
+
+	private PageLookup $pageLookup;
+
+	private RevisionLookup $revisionLookup;
+
+	private ParsoidSiteConfig $parsoidSiteConfig;
+
 	/** @var ParserOutput */
 	private $parserOutput;
 
@@ -163,6 +177,10 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 * @param ParsoidOutputStash $parsoidOutputStash
 	 * @param StatsdDataFactoryInterface $statsDataFactory
 	 * @param ParsoidOutputAccess $parsoidOutputAccess
+	 * @param ParserOutputAccess $parserOutputAccess
+	 * @param PageLookup $pageLookup
+	 * @param RevisionLookup $revisionLookup
+	 * @param ParsoidSiteConfig $parsoidSiteConfig
 	 * @param HtmlTransformFactory $htmlTransformFactory
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param LanguageFactory $languageFactory
@@ -175,6 +193,10 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		ParsoidOutputStash $parsoidOutputStash,
 		StatsdDataFactoryInterface $statsDataFactory,
 		ParsoidOutputAccess $parsoidOutputAccess,
+		ParserOutputAccess $parserOutputAccess,
+		PageLookup $pageLookup,
+		RevisionLookup $revisionLookup,
+		ParsoidSiteConfig $parsoidSiteConfig,
 		HtmlTransformFactory $htmlTransformFactory,
 		IContentHandlerFactory $contentHandlerFactory,
 		LanguageFactory $languageFactory,
@@ -183,6 +205,10 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		$this->parsoidOutputStash = $parsoidOutputStash;
 		$this->stats = $statsDataFactory;
 		$this->parsoidOutputAccess = $parsoidOutputAccess;
+		$this->parserOutputAccess = $parserOutputAccess;
+		$this->pageLookup = $pageLookup;
+		$this->revisionLookup = $revisionLookup;
+		$this->parsoidSiteConfig = $parsoidSiteConfig;
 		$this->htmlTransformFactory = $htmlTransformFactory;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->languageFactory = $languageFactory;
@@ -779,13 +805,71 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 
 		if ( $this->isCacheable ) {
 			$flags = $this->parsoidOutputAccessOptions;
-			$status = $this->parsoidOutputAccess->getParserOutput(
-				$this->page,
-				$parserOptions,
-				$this->revisionOrId,
-				$flags,
-				$this->lenientRevHandling
-			);
+			// Resolve revision
+			$page = $this->page;
+			$revision = $this->revisionOrId;
+			if ( $page === null ) {
+				throw new RevisionAccessException( "No page" );
+			} elseif ( !$page instanceof PageRecord ) {
+				$name = "$page";
+				$page = $this->pageLookup->getPageByReference( $page );
+				if ( !$page ) {
+					throw new RevisionAccessException(
+						'Page {name} not found',
+						[ 'name' => $name ]
+					);
+				}
+			}
+
+			if ( $revision === null ) {
+				$revision = $page->getLatest();
+			}
+
+			if ( is_int( $revision ) ) {
+				$revId = $revision;
+				$revision = $this->revisionLookup->getRevisionById( $revId );
+
+				if ( !$revision ) {
+					throw new RevisionAccessException(
+						'Revision {revId} not found',
+						[ 'revId' => $revId ]
+					);
+				}
+			}
+
+			if ( $page->getId() !== $revision->getPageId() ) {
+				if ( $this->lenientRevHandling ) {
+					$page = $this->pageLookup->getPageById( $revision->getPageId() );
+					if ( !$page ) {
+						// This should ideally never trigger!
+						throw new \RuntimeException(
+							"Unexpected NULL page for pageid " . $revision->getPageId() .
+							" from revision " . $revision->getId()
+						);
+					}
+					// Don't cache this!
+					$flags |= ParserOutputAccess::OPT_NO_UPDATE_CACHE;
+				} else {
+					throw new RevisionAccessException(
+						'Revision {revId} does not belong to page {name}',
+						[ 'name' => $page->getDBkey(), 'revId' => $revision->getId() ]
+					);
+				}
+			}
+			$mainSlot = $revision->getSlot( SlotRecord::MAIN );
+			$contentModel = $mainSlot->getModel();
+			if ( $this->parsoidSiteConfig->supportsContentModel( $contentModel ) ) {
+				$parserOptions->setUseParsoid();
+			}
+			try {
+				$status = $this->parserOutputAccess->getParserOutput(
+					$page, $parserOptions, $revision, $flags
+				);
+			} catch ( ClientError $e ) {
+				$status = Status::newFatal( 'parsoid-client-error', $e->getMessage() );
+			} catch ( ResourceLimitExceededException $e ) {
+				$status = Status::newFatal( 'parsoid-resource-limit-exceeded', $e->getMessage() );
+			}
 		} else {
 			$status = $this->parsoidOutputAccess->parseUncacheable(
 				$this->page,

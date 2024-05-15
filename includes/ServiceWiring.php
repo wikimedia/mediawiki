@@ -1448,6 +1448,7 @@ return [
 			$services->getStatsdDataFactory(),
 			$services->getParserOutputAccess(),
 			$services->getParsoidOutputAccess(),
+			$services->getParsoidSiteConfig(),
 			$services->getHtmlTransformFactory(),
 			$services->getContentHandlerFactory(),
 			$services->getLanguageFactory(),
