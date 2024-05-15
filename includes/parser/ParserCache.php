@@ -720,7 +720,7 @@ class ParserCache {
 			$this->logger->error( "Unable to serialize JSON", [
 				'name' => $this->name,
 				'cache_key' => $key,
-				'message' => $e->getMessage(),
+				'json_message' => $e->getMessage(),
 			] );
 			return null;
 		}
