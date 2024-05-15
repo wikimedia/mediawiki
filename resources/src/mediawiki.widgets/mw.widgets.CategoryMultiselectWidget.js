@@ -43,7 +43,8 @@
 		// Config initialization
 		config = $.extend( {
 			limit: 10,
-			searchTypes: [ mw.widgets.CategoryMultiselectWidget.SearchType.OpenSearch ]
+			searchTypes: [ mw.widgets.CategoryMultiselectWidget.SearchType.OpenSearch ],
+			placeholder: mw.msg( 'mw-widgets-categoryselector-add-category-placeholder' )
 		}, config );
 		this.limit = config.limit;
 		this.searchTypes = config.searchTypes;
@@ -54,7 +55,6 @@
 			menu: {
 				filterFromInput: false
 			},
-			placeholder: mw.msg( 'mw-widgets-categoryselector-add-category-placeholder' ),
 			// This allows the user to both select non-existent categories, and prevents the selector from
 			// being wiped from #onMenuItemsChange when we change the available options in the dropdown
 			allowArbitrary: true
