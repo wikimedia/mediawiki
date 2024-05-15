@@ -226,6 +226,12 @@ because of Phabricator reports.
 * SpecialBlock::getTargetAndType, deprecated since 1.36, has been removed.
 * ApiQueryBlockInfoTrait::addBlockInfoToQuery(), deprecated since 1.42, has been
   removed.
+* Linker::makeHeadline(), Linker::generateTOC(), Linker::tocIndent(),
+  Linker::tocUnindent(), Linker::tocLine(), Linker::tocLineEnd(), and
+  Linker::tocList(), deprecated in 1.42, have been removed.
+* Linker::formatComment(), Linker::formatLinksInComment(),
+  Linker::commentBlock(), and Linker::revComment(), deprecated in 1.38,
+  have been removed.
 * DummyLinker has been removed. The former DummyLinker parameter
   to the 'ImageBeforeProduceHTML' hook is now null.
 * …
