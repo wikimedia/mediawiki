@@ -3073,8 +3073,7 @@ return [
 
 	'mediawiki.router' => [
 		'packageFiles' => [
-			'resources/src/mediawiki.router/index.js',
-			'resources/src/mediawiki.router/oojs-router.js',
+			'resources/src/mediawiki.router/router.js',
 		],
 		'dependencies' => [
 			'oojs',
