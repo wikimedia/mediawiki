@@ -124,6 +124,12 @@
 				max-width: 100%;
 			}
 		}
+
+		&-filters {
+			.mw-rcfilters-ui-cell {
+				align-self: center;
+			}
+		}
 	}
 
 	&-views {
@@ -169,5 +175,10 @@
 	&-cell-reset {
 		text-align: right;
 		padding-left: 0.5em;
+
+		.oo-ui-buttonElement > .oo-ui-buttonElement-button {
+			// T356467
+			white-space: normal;
+		}
 	}
 }
