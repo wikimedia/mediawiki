@@ -31,8 +31,6 @@
 		}
 
 		&-back {
-			width: 1em;
-
 			.mw-rcfilters-ui-filterMenuHeaderWidget-backButton:first-child {
 				// Overwrite `.oo-ui-buttonElement-frameless.oo-ui-iconElement:first-child`
 				margin-left: 0;
@@ -41,11 +39,11 @@
 
 		&-title {
 			position: relative;
-			width: 100%;
+			flex-grow: 1;
 		}
 	}
 
 	.mw-rcfilters-ui-cell {
-		vertical-align: middle;
+		align-self: center;
 	}
 }

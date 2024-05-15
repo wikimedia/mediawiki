@@ -3,7 +3,7 @@
 .mw-rcfilters-ui-rcTopSectionWidget {
 	&-topLinks {
 		&-table {
-			width: 100%;
+			flex-grow: 1;
 		}
 
 		&-top {
@@ -12,30 +12,16 @@
 		}
 	}
 
-	&-savedLinks {
-		vertical-align: bottom;
-		padding-left: 1em;
+	.mw-rcfilters-ui-row {
+		justify-content: space-between;
+		gap: 1em;
 	}
 }
 
 @media screen and ( max-width: @width-breakpoint-tablet ) {
 	.mw-rcfilters-ui-rcTopSectionWidget {
 		& > .mw-rcfilters-ui-table > .mw-rcfilters-ui-row {
-			display: flex;
 			flex-wrap: wrap;
-		}
-
-		&-savedLinks {
-			padding-left: 0;
-		}
-
-		&-topLinks-table {
-			width: auto;
-			flex-grow: 1;
-		}
-
-		.mw-rcfilters-ui-table-placeholder {
-			width: auto;
 		}
 	}
 }
