@@ -646,7 +646,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 	/**
 	 * @param Database[][] $connsByServer Map of (server index => array of DB handles)
-	 * @return IDatabase|false An appropriate open connection or false if none found
+	 * @return IDatabaseForOwner|false An appropriate open connection or false if none found
 	 */
 	private function pickAnyOpenConnection( array $connsByServer ) {
 		foreach ( $connsByServer as $i => $conns ) {
@@ -800,7 +800,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		// Get an open connection to this server (might trigger a new connection)
 		$conn = $this->reuseOrOpenConnectionForNewRef( $i, $domainInstance, $flags );
 		// Throw an error or otherwise bail out if the connection attempt failed
-		if ( !( $conn instanceof IDatabase ) ) {
+		if ( !( $conn instanceof IDatabaseForOwner ) ) {
 			if ( !self::fieldHasBit( $flags, self::CONN_SILENCE_ERRORS ) ) {
 				$this->reportConnectionError();
 			}
@@ -949,7 +949,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			}
 		}
 
-		if ( $conn instanceof IDatabase ) {
+		if ( $conn instanceof IDatabaseForOwner ) {
 			// Check to make sure that the right domain is selected
 			$this->assertConnectionDomain( $conn, $domain );
 			// Check to make sure that the CONN_* flags are respected
@@ -1132,7 +1132,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 * @return never
 	 */
 	private function reportConnectionError( $extraLbError = '' ) {
-		if ( $this->lastErrorConn instanceof IDatabase ) {
+		if ( $this->lastErrorConn instanceof IDatabaseForOwner ) {
 			$srvName = $this->lastErrorConn->getServerName();
 			$lastDbError = $this->lastErrorConn->lastError() ?: 'unknown error';
 
@@ -1215,6 +1215,9 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			$this->reportConnectionError();
 		}
 
+		// ::getConnectionInternal() should return IDatabaseForOwner but changing signature
+		// is not straightforward (being implemented in Wikibase)
+		'@phan-var IDatabaseForOwner $conn';
 		try {
 			return $conn->getPrimaryPos();
 		} finally {
@@ -1311,9 +1314,9 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 * Using this function makes sure the LoadBalancer knows the connection is closed.
 	 * If you use $conn->close() directly, the load balancer won't update its state.
 	 *
-	 * @param IDatabase $conn
+	 * @param IDatabaseForOwner $conn
 	 */
-	private function closeConnection( IDatabase $conn ) {
+	private function closeConnection( IDatabaseForOwner $conn ) {
 		if ( $conn instanceof DBConnRef ) {
 			// Avoid calling close() but still leaving the handle in the pool
 			throw new RuntimeException( 'Cannot close DBConnRef instance; it must be shareable' );
@@ -1762,10 +1765,10 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 	/**
 	 * @note This method suppresses DBError exceptions in order to avoid severe downtime
-	 * @param IDatabase|null $conn Recently acquired primary connection; null if not applicable
+	 * @param IDatabaseForOwner|null $conn Recently acquired primary connection; null if not applicable
 	 * @return bool Whether the entire primary DB server or the local domain DB is read-only
 	 */
-	private function isPrimaryRunningReadOnly( IDatabase $conn = null ) {
+	private function isPrimaryRunningReadOnly( IDatabaseForOwner $conn = null ) {
 		// Context will often be HTTP GET/HEAD; heavily cache the results
 		return (bool)$this->wanCache->getWithSetCallback(
 			// Note that table prefixes are not related to server-side read-only mode
@@ -1832,7 +1835,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 */
 	private function getOpenPrimaryConnections() {
 		foreach ( $this->conns as $poolConnsByServer ) {
-			/** @var IDatabase $conn */
+			/** @var IDatabaseForOwner $conn */
 			foreach ( ( $poolConnsByServer[ServerInfo::WRITER_INDEX] ?? [] ) as $conn ) {
 				yield $conn;
 			}

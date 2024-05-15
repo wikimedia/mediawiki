@@ -40,7 +40,7 @@ use Wikimedia\ScopedCallback;
  * @ingroup Database
  * @since 1.28
  */
-abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAwareInterface {
+abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, LoggerAwareInterface {
 	/** @var CriticalSectionProvider|null */
 	protected $csProvider;
 	/** @var LoggerInterface */
@@ -2696,7 +2696,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$res['since'] = min( $res['since'], $status['since'] );
 			}
 
-			if ( $db instanceof IDatabase ) {
+			if ( $db instanceof IDatabaseForOwner ) {
 				$res['pending'] = $res['pending'] ?: $db->writesPending();
 			}
 		}

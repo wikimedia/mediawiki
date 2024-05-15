@@ -26,6 +26,7 @@ use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IDatabaseForOwner;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -257,8 +258,8 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$m2Pos = new MySQLPrimaryPos( 'db1064-bin.002400/794074907', $now );
 
 		// Primary DB 1
-		/** @var IDatabase|\PHPUnit\Framework\MockObject\MockObject $mockDB1 */
-		$mockDB1 = $this->createMock( IDatabase::class );
+		/** @var IDatabaseForOwner|\PHPUnit\Framework\MockObject\MockObject $mockDB1 */
+		$mockDB1 = $this->createMock( IDatabaseForOwner::class );
 		$mockDB1->method( 'writesOrCallbacksPending' )->willReturn( true );
 		$mockDB1->method( 'lastDoneWrites' )->willReturn( $now );
 		// Load balancer for primary DB 1
@@ -276,8 +277,8 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$lb1->method( 'getPrimaryPos' )->willReturn( $m1Pos );
 		$lb1->method( 'getServerName' )->with( 0 )->willReturn( 'master1' );
 		// Primary DB 2
-		/** @var IDatabase|\PHPUnit\Framework\MockObject\MockObject $mockDB2 */
-		$mockDB2 = $this->createMock( IDatabase::class );
+		/** @var IDatabaseForOwner|\PHPUnit\Framework\MockObject\MockObject $mockDB2 */
+		$mockDB2 = $this->createMock( IDatabaseForOwner::class );
 		$mockDB2->method( 'writesOrCallbacksPending' )->willReturn( true );
 		$mockDB2->method( 'lastDoneWrites' )->willReturn( $now );
 		// Load balancer for primary DB 2
