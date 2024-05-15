@@ -129,6 +129,13 @@ abstract class ParsoidHandler extends Handler {
 		$this->metrics = $siteConfig->metrics();
 	}
 
+	public function getSupportedRequestTypes(): array {
+		return array_merge( parent::getSupportedRequestTypes(), [
+			'application/x-www-form-urlencoded',
+			'multipart/form-data'
+		] );
+	}
+
 	/**
 	 * Verify that the {domain} path parameter matches the actual domain.
 	 * @todo Remove this when we no longer need to support the {domain}

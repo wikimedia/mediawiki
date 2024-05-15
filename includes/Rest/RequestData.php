@@ -112,6 +112,10 @@ class RequestData extends RequestBase {
 			return true;
 		}
 
+		if ( $this->postParams !== [] ) {
+			return true;
+		}
+
 		if ( $this->getBody()->getSize() > 0 ) {
 			return true;
 		}

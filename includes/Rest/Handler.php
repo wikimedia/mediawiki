@@ -671,20 +671,22 @@ abstract class Handler {
 	protected function getRequestSpec(): ?array {
 		$request = [];
 
-		// XXX: support additional content types?!
-		try {
-			$validator = $this->getBodyValidator( 'application/json' );
+		// TODO: Implement spec generation based on getBodyParamSettings(),
+		//       since BodyValidator is going away soon (T358560).
+		foreach ( $this->getSupportedRequestTypes() as $type ) {
+			try {
+				$validator = $this->getBodyValidator( $type );
 
-			// TODO: all validators should support getBodySpec()!
-			if ( $validator instanceof JsonBodyValidator ) {
-				$schema = $validator->getOpenAPISpec();
+				if ( $validator instanceof JsonBodyValidator ) {
+					$schema = $validator->getOpenAPISpec();
 
-				if ( $schema !== [] ) {
-					$request['content']['application/json']['schema'] = $schema;
+					if ( $schema !== [] ) {
+						$request['content'][$type]['schema'] = $schema;
+					}
 				}
+			} catch ( HttpException $ex ) {
+				// the type is not actually not supported, ignore.
 			}
-		} catch ( HttpException $ex ) {
-			// JSON not supported, ignore.
 		}
 
 		return $request ?: null;
@@ -777,7 +779,8 @@ abstract class Handler {
 	 * Should only be called if $request->hasBody() returns true.
 	 *
 	 * The default implementation handles application/x-www-form-urlencoded
-	 * and multipart/form-data by calling $request->getPostParams().
+	 * and multipart/form-data by calling $request->getPostParams(),
+	 * if the list returned by getSupportedRequestTypes() includes these types.
 	 *
 	 * The default implementation handles application/json by parsing
 	 * the body content as JSON. Only object structures (maps) are supported,
@@ -791,6 +794,10 @@ abstract class Handler {
 	 * with status 415. Subclasses may also return null to indicate that they
 	 * support reading the content, but intend to handle it as an unparsed
 	 * stream in their implementation of the execute() method.
+	 *
+	 * Subclasses that override this method to support additional request types
+	 * should also override getSupportedRequestTypes() to allow  that support
+	 * to be documented in the OpenAPI spec.
 	 *
 	 * @since 1.42
 	 *
@@ -812,6 +819,14 @@ abstract class Handler {
 		if ( !$bodyValidator instanceof NullBodyValidator ) {
 			// TODO: Trigger a deprecation warning.
 			return null;
+		}
+
+		$supportedTypes = $this->getSupportedRequestTypes();
+		if ( $contentType !== null && !in_array( $contentType, $supportedTypes ) ) {
+			throw new LocalizedHttpException(
+				new MessageValue( 'rest-unsupported-content-type', [ $contentType ] ),
+				415
+			);
 		}
 
 		switch ( $contentType ) {
@@ -843,6 +858,48 @@ abstract class Handler {
 					415
 				);
 		}
+	}
+
+	/**
+	 * Returns the content types that should be accepted by parseBodyData().
+	 *
+	 * Subclasses that support request types other than application/json
+	 * should override this method.
+	 *
+	 * If "application/x-www-form-urlencoded" or "multipart/form-data" are
+	 * returned, parseBodyData() will use $request->getPostParams() to determine
+	 * the body data.
+	 *
+	 * @note The return value of this method is ignored for requests
+	 * using a method listed in Validator::NO_BODY_METHODS,
+	 * in particular for the GET method.
+	 *
+	 * @note for backwards compatibility, the default implementation of this
+	 * method will examine the parameter definitions returned by getParamSettings()
+	 * to see if any of the parameters are declared as "post" parameters. If this
+	 * is the case, support for "application/x-www-form-urlencoded" and
+	 * "multipart/form-data" is added. This may change in future releases.
+	 * It is preferred to use "body" parameters and override this method explicitly
+	 * when support for form data is desired.
+	 *
+	 * @stable to override
+	 *
+	 * @return string[] A list of content-types
+	 */
+	public function getSupportedRequestTypes(): array {
+		$types = [
+			'application/json'
+		];
+
+		foreach ( $this->getParamSettings() as $settings ) {
+			if ( ( $settings[self::PARAM_SOURCE] ?? null ) === 'post' ) {
+				$types[] = 'application/x-www-form-urlencoded';
+				$types[] = 'multipart/form-data';
+				break;
+			}
+		}
+
+		return $types;
 	}
 
 	/**
