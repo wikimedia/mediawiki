@@ -3195,6 +3195,7 @@
 	"version-entrypoints-header-entrypoint": "Пурымо точко",
 	"version-entrypoints-header-url": "URL",
 	"version-libraries": "Шындыме библиотеке-влак",
+	"version-libraries-server": "Шындыме сервер библиотеке-влак",
 	"version-libraries-client": "Шындыме клиентлык библиотеке-влак",
 	"version-libraries-library": "Библиотеке",
 	"version-libraries-version": "Версий",

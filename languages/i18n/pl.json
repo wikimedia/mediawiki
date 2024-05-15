@@ -3356,6 +3356,7 @@
 	"version-entrypoints-articlepath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticlePath Ścieżka artykułów]",
 	"version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgScriptPath Ścieżka skryptów]",
 	"version-libraries": "Zainstalowane biblioteki",
+	"version-libraries-server": "Zainstalowane biblioteki po stronie serwera",
 	"version-libraries-client": "Zainstalowane biblioteki po stronie klienta",
 	"version-libraries-library": "Biblioteka",
 	"version-libraries-version": "Wersja",

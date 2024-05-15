@@ -2904,6 +2904,8 @@
 	"fileduplicatesearch-result-1": "De Fichier \"$1\" huet keen identeschen Doublon.",
 	"fileduplicatesearch-result-n": "De Fichier \"$1\" huet {{PLURAL:$2|1 identeschen Doublon|$2 identesch Doublonen}}.",
 	"fileduplicatesearch-noresults": "Et gouf kee Fichier mam Numm \"$1\" fonnt.",
+	"special-talkpage": "Diskussiounssäit",
+	"special-talkpage-submit": "Op d'Diskussiounssäit goen",
 	"specialpages": "Spezialsäiten",
 	"specialpages-note-top": "Erklärung",
 	"specialpages-note-restricted": "* Normal Spezialsäiten.\n* <span class=\"mw-specialpagerestricted\">Spezialsäite fir Benotzer mat méi Rechter.</span>",

@@ -4132,7 +4132,7 @@
 	"pagedata-not-acceptable": "没有找到匹配的格式。支持的MIME类型：$1",
 	"pagedata-bad-title": "无效标题：$1。",
 	"unregistered-user-config": "由于安全原因，JavaScript、CSS和JSON用户子页面不能为非注册用户加载。",
-	"passwordpolicies": "密码方针",
+	"passwordpolicies": "密码策略",
 	"passwordpolicies-summary": "这是此wiki中定义的用户组的有效密码策略列表。",
 	"passwordpolicies-group": "用户组",
 	"passwordpolicies-policies": "策略",

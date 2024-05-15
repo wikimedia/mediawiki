@@ -1353,7 +1353,7 @@
 	"enotif_subject_deleted": "{{SITENAME}} էջը $1 {{GENDER:$2|ջնջվել է}} $2-ի կողմից",
 	"enotif_subject_created": "{{SITENAME}} էջը $1 {{GENDER:$2|ստեղծվել է}} $2-ի կողմից",
 	"enotif_subject_moved": "{{SITENAME}} էջը $1 {{GENDER:$2|վերահղվել է}} $2-ի կողմից",
-	"enotif_body_intro_created": "{{SITENAME}} էջը $1 {{GENDER:$2|ստեղծվել է}} ժամը $PAGEEDITDATE-ին $2-ի կողմից, նայիր $3 ընդացիկ տարբերակը:",
+	"enotif_body_intro_created": "{{SITENAME}} էջը $1 {{GENDER:$2|ստեղծվել է}} ժամը $PAGEEDITDATE-ին $2-ի կողմից, նայիր $3 ընթացիկ տարբերակը:",
 	"enotif_lastvisited": "Տես $1՝ ձեր վերջին այցից ի վեր կատարված փոփոխությունների համար։",
 	"enotif_lastdiff": "Տես $1՝ այս փոփոխությունը դիտելու համար։",
 	"enotif_anon_editor": "անանուն մասնակից $1",

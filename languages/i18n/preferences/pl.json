@@ -80,7 +80,7 @@
 	"prefs-help-signature": "Wypowiedzi na stronach dyskusji powinny być podpisywane za pomocą „<nowiki>~~~~</nowiki>”, dzięki temu automatycznie wstawiany jest Twój podpis wraz z bieżącą datą.",
 	"prefs-signature-invalid-warning": "Twój podpis może powodować problemy z niektórymi narzędziami.",
 	"prefs-signature-invalid-new": "Twój obecny podpis jest nieprawidłowy. Choć wciąż możesz go używać, jego zmiana nie będzie możliwa dopóki jednocześnie go nie poprawisz.",
-	"prefs-signature-invalid-disallow": "Twój obecny podpis jest nieprawidłowy. Do czasu aż go poprawisz do podpisywania komentarzy używany będzie domyślny podpis.",
+	"prefs-signature-invalid-disallow": "Twój obecny podpis jest nieprawidłowy. Do czasu aż go poprawisz, do podpisywania komentarzy używany będzie domyślny podpis.",
 	"prefs-signature-highlight-error": "Pokaż położenie błędu",
 	"prefs-signature-error-details": "Dowiedz się więcej",
 	"badsig": "Nieprawidłowy podpis, sprawdź znaczniki HTML.",

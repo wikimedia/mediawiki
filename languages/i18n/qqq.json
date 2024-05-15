@@ -2947,7 +2947,7 @@
 	"ipblocklist": "Title of [[Special:BlockList]].",
 	"ipblocklist-legend": "Used as legend of the form in [[Special:BlockList]].\n\nSee also:\n* {{msg-mw|Ipblocklist-legend}}\n* {{msg-mw|Ipblocklist-submit}}",
 	"blocklist-autoblocks": "Used as the label for the multi-select checkbox in the form on [[Special:BlockList]]. \n{{Related|Blocklist-blocks}}",
-	"blocklist-userblocks": "Used as the label for the multi-select checkbox in the form on [[Special:BlockList]].\n{{Related|Blocklist-blocks}}",
+	"blocklist-userblocks": "Used as the label for the multi-select checkbox in the form on [[Special:BlockList]]. When checked, this hides all blocks where the target is an account.\n{{Related|Blocklist-blocks}}",
 	"blocklist-tempblocks": "Used as the label for the multi-select checkbox in the form on [[Special:BlockList]].\n{{Related|Blocklist-blocks}}",
 	"blocklist-indefblocks": "Used as the label for the multi-select checkbox in the form on [[Special:BlockList]].\n{{Related|Blocklist-blocks}}",
 	"blocklist-addressblocks": "Used as the label for the multi-select checkbox in the form on [[Special:BlockList]].\n{{Related|Blocklist-blocks}}",
