@@ -81,8 +81,9 @@ class JsonCodec implements JsonUnserializer, JsonSerializer {
 				"Refusing to unserialize: expected $expectedClass, got $class"
 			);
 		}
+
+		unset( $json[JsonConstants::TYPE_ANNOTATION] );
 		if ( $class === stdClass::class ) {
-			unset( $json[JsonConstants::TYPE_ANNOTATION] );
 			return (object)$json;
 		}
 		return $class::newFromJsonArray( $this, $json );
