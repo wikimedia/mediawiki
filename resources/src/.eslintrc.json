@@ -13,6 +13,12 @@
 		"es-x/no-promise-prototype-finally": "off",
 		"max-len": "off",
 		"no-var": "off",
-		"no-jquery/no-global-selector": "off"
+		"no-jquery/no-global-selector": "off",
+		"jsdoc/no-undefined-types": [ 1, {
+			"definedTypes": [
+				"jQueryPlugins",
+				"Hooks"
+			]
+		} ]
 	}
 }

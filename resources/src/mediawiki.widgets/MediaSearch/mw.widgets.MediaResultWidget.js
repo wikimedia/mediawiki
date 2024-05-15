@@ -89,7 +89,6 @@
 	};
 
 	/* Methods */
-	/** */
 	mw.widgets.MediaResultWidget.prototype.onThumbnailLoad = function () {
 		this.$thumb.first().addClass( 've-ui-texture-transparency' );
 		this.$element
@@ -97,7 +96,6 @@
 			.removeClass( 've-ui-texture-pending' );
 	};
 
-	/** */
 	mw.widgets.MediaResultWidget.prototype.onThumbnailError = function () {
 		this.$thumb.last()
 			.css( 'background-image', '' )

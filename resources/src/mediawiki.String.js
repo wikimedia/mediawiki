@@ -185,7 +185,7 @@
 	 * @param {string} newVal New value that may have to be trimmed down.
 	 * @param {number} byteLimit Number of bytes the value may be in size.
 	 * @param {Function} [filterFunction] Function to call on the string before assessing the length.
-	 * @return {StringTrimmed}
+	 * @return {module:mediawiki.String~StringTrimmed}
 	 */
 	function trimByteLength( safeVal, newVal, byteLimit, filterFunction ) {
 		var lengthFn;
@@ -213,7 +213,7 @@
 	 * @param {string} newVal New value that may have to be trimmed down.
 	 * @param {number} codePointLimit Number of characters the value may be in size.
 	 * @param {Function} [filterFunction] Function to call on the string before assessing the length.
-	 * @return {StringTrimmed}
+	 * @return {module:mediawiki.String~StringTrimmed}
 	 */
 	function trimCodePointLength( safeVal, newVal, codePointLimit, filterFunction ) {
 		var lengthFn;
