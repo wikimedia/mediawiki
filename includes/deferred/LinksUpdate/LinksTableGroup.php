@@ -64,9 +64,6 @@ class LinksTableGroup {
 		],
 		'templatelinks' => [
 			'class' => TemplateLinksTable::class,
-			'services' => [
-				'MainConfig'
-			],
 		]
 	];
 

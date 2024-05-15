@@ -30,13 +30,13 @@ class LinksMigrationTest extends MediaWikiUnitTestCase {
 
 		$config = new HashConfig(
 			[
-				MainConfigNames::TemplateLinksSchemaMigrationStage => $configValue
+				MainConfigNames::PageLinksSchemaMigrationStage => $configValue
 			]
 		);
 		$linksMigration = new LinksMigration( $config, $linkTargetStore );
 		$this->assertSame(
-			[ 'tl_target_id' => 1 ],
-			$linksMigration->getLinksConditions( 'templatelinks', $title )
+			[ 'pl_target_id' => 1 ],
+			$linksMigration->getLinksConditions( 'pagelinks', $title )
 		);
 	}
 
@@ -56,13 +56,13 @@ class LinksMigrationTest extends MediaWikiUnitTestCase {
 
 		$config = new HashConfig(
 			[
-				MainConfigNames::TemplateLinksSchemaMigrationStage => $configValue
+				MainConfigNames::PageLinksSchemaMigrationStage => $configValue
 			]
 		);
 		$linksMigration = new LinksMigration( $config, $linkTargetStore );
 		$this->assertSame(
-			[ 'tl_namespace' => 2, 'tl_title' => 'Someuser' ],
-			$linksMigration->getLinksConditions( 'templatelinks', $title )
+			[ 'pl_namespace' => 2, 'pl_title' => 'Someuser' ],
+			$linksMigration->getLinksConditions( 'pagelinks', $title )
 		);
 	}
 

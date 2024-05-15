@@ -2,9 +2,7 @@
 
 namespace MediaWiki\Deferred\LinksUpdate;
 
-use MediaWiki\Config\Config;
-use MediaWiki\Config\ServiceOptions;
-use MediaWiki\MainConfigNames;
+use LogicException;
 use MediaWiki\Parser\ParserOutput;
 
 /**
@@ -13,20 +11,6 @@ use MediaWiki\Parser\ParserOutput;
  * @since 1.38
  */
 class TemplateLinksTable extends GenericPageLinksTable {
-	private const CONSTRUCTOR_OPTIONS = [
-		MainConfigNames::TemplateLinksSchemaMigrationStage,
-	];
-
-	/** @var int */
-	private $migrationStage;
-
-	public function __construct( Config $config ) {
-		$options = new ServiceOptions( self::CONSTRUCTOR_OPTIONS, $config );
-		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-
-		$this->migrationStage = $options->get( MainConfigNames::TemplateLinksSchemaMigrationStage );
-	}
-
 	public function setParserOutput( ParserOutput $parserOutput ) {
 		$this->newLinks = $parserOutput->getTemplates();
 	}
@@ -40,11 +24,13 @@ class TemplateLinksTable extends GenericPageLinksTable {
 	}
 
 	protected function getNamespaceField() {
-		return 'tl_namespace';
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
+		throw new LogicException( 'not supported' );
 	}
 
 	protected function getTitleField() {
-		return 'tl_title';
+		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
+		throw new LogicException( 'not supported' );
 	}
 
 	protected function getFromNamespaceField() {
@@ -60,6 +46,6 @@ class TemplateLinksTable extends GenericPageLinksTable {
 	 * @return int
 	 */
 	protected function linksTargetNormalizationStage(): int {
-		return $this->migrationStage;
+		return MIGRATION_NEW;
 	}
 }

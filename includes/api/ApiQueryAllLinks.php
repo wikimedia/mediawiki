@@ -77,7 +77,6 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				$this->table = 'templatelinks';
 				$this->tablePrefix = 'tl_';
 				$this->dfltNamespace = NS_TEMPLATE;
-				$this->useIndex = 'tl_namespace';
 				$this->indexTag = 't';
 				break;
 			case 'allfileusages':

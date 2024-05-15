@@ -18,7 +18,7 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 		);
 		$this->addOption(
 			'table',
-			'Table name. Like templatelinks.',
+			'Table name. Like pagelinks.',
 			true,
 			true
 		);
