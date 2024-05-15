@@ -5,8 +5,8 @@
 		]
 	},
 	"rest-prefix-mismatch": "Le cammino requestate ($1) non es intra le cammino radice del REST API ($2)",
-	"rest-wrong-method": "Le methodo del requesta ($1) non es {{PLURAL:$3|le methodo|inter le methodos}} permittite pro iste cammino ($2)",
-	"rest-no-match": "Le cammino relative requestate ($1) non corresponde a un gestor cognoscite",
+	"rest-wrong-method": "Le methodo del requesta ($1) non es {{PLURAL:$3|le methodo|inter le methodos}} permittite pro iste percurso ($2)",
+	"rest-no-match": "Le percurso relative requestate ($1) non corresponde a un gestor cognoscite",
 	"rest-nonexistent-title": "Le titulo specificate ($1) non existe",
 	"rest-nonexistent-title-revision": "Le version specificate ($1) non existe pro le pagina specificate ($2)",
 	"rest-nonexistent-revision": "Le version specificate ($1) non existe",

@@ -55,7 +55,8 @@
 			"פוילישער",
 			"שומבלע",
 			"שמזן",
-			"תומר ט"
+			"תומר ט",
+			"Purple-bananana"
 		]
 	},
 	"tog-underline": "סימון קישורים בקו תחתי:",
@@ -3489,7 +3490,7 @@
 	"version-entrypoints-header-entrypoint": "נקודת כניסה",
 	"version-entrypoints-header-url": "כתובת",
 	"version-libraries": "ספריות מותקנות",
-	"version-libraries-client": "ספריות מותקנות בצד הלקוח",
+	"version-libraries-client": "ספריות צד לקוח מותקנות",
 	"version-libraries-library": "ספריה",
 	"version-libraries-version": "גרסה",
 	"version-libraries-license": "רישיון",
