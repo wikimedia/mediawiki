@@ -766,7 +766,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->sessionTempTables
 		);
 		// Get the transaction-aware SQL string used for profiling
-		$prefix = ( $this->getTopologyRole() === self::ROLE_STREAMING_MASTER ) ? 'role-primary: ' : '';
+		$prefix = (
+			$this->replicationReporter->getTopologyRole() === self::ROLE_STREAMING_MASTER
+		) ? 'role-primary: ' : '';
 
 		// Start profile section
 		if ( $sql->getCleanedSql() ) {
@@ -3494,10 +3496,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function getPrimaryPos() {
 		return $this->replicationReporter->getPrimaryPos( $this );
-	}
-
-	public function getTopologyRole() {
-		return $this->replicationReporter->getTopologyRole();
 	}
 
 	public function getLag() {

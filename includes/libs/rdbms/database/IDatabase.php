@@ -83,19 +83,6 @@ interface IDatabase extends IReadableDatabase {
 	public const ROLE_UNKNOWN = 'unknown';
 
 	/**
-	 * Get the replication topology role of this server
-	 *
-	 * A replication topology defines which servers can originate changes to a given dataset
-	 * and how those changes propagate among database servers. It is assumed that the server
-	 * only participates in the replication of a single relevant dataset.
-	 *
-	 * @return string One of the class ROLE_* constants
-	 * @throws DBQueryError
-	 * @since 1.34
-	 */
-	public function getTopologyRole();
-
-	/**
 	 * Gets the current transaction level.
 	 *
 	 * Historically, transactions were allowed to be "nested". This is no

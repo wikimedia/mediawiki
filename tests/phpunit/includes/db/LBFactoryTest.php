@@ -74,12 +74,9 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$lb = $factory->getMainLB();
 
 		$dbw = $lb->getConnection( DB_PRIMARY );
-		$this->assertEquals(
-			$dbw::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'master shows as master' );
-
+		$this->assertNotFalse( $dbw );
 		$dbr = $lb->getConnection( DB_REPLICA );
-		$this->assertEquals(
-			$dbr::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'replica shows as replica' );
+		$this->assertNotFalse( $dbr );
 
 		$this->assertSame( 'DEFAULT', $lb->getClusterName() );
 
@@ -102,16 +99,9 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$lb = $factory->getMainLB();
 
 		$dbw = $lb->getConnection( DB_PRIMARY );
-		$dbw->ensureConnection();
-
-		$this->assertEquals(
-			$dbw::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'primary shows as primary' );
-
+		$this->assertNotFalse( $dbw );
 		$dbr = $lb->getConnection( DB_REPLICA );
-		$dbr->ensureConnection();
-
-		$this->assertEquals(
-			$dbr::ROLE_STREAMING_REPLICA, $dbr->getTopologyRole(), 'replica shows as replica' );
+		$this->assertNotFalse( $dbr );
 
 		$factory->shutdown();
 	}
@@ -121,13 +111,11 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame( 's3', $factory->getMainLB()->getClusterName() );
 
-		$dbw = $factory->getMainLB()->getConnection( DB_PRIMARY );
-		$this->assertEquals(
-			$dbw::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'master shows as master' );
-
-		$dbr = $factory->getMainLB()->getConnection( DB_REPLICA );
-		$this->assertEquals(
-			$dbr::ROLE_STREAMING_REPLICA, $dbr->getTopologyRole(), 'replica shows as replica' );
+		$lb = $factory->getMainLB();
+		$dbw = $lb->getConnection( DB_PRIMARY );
+		$this->assertNotFalse( $dbw );
+		$dbr = $lb->getConnection( DB_REPLICA );
+		$this->assertNotFalse( $dbr );
 
 		// Destructor should trigger without round stage errors
 		unset( $factory );
@@ -766,7 +754,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		// Connection refs should detect the config change, close the old connection,
 		// and get a new connection.
 		$this->assertTrue( $ref->isOpen() );
-		$this->assertSame( IDatabase::ROLE_STREAMING_MASTER, $ref->getTopologyRole() );
 
 		// The old connection should have been closed by DBConnRef.
 		$this->assertFalse( $con->isOpen() );
@@ -831,7 +818,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		// Connection refs should detect the config change, close the old connection,
 		// and get a new connection.
 		$this->assertTrue( $ref->isOpen() );
-		$this->assertSame( IDatabase::ROLE_STREAMING_REPLICA, $ref->getTopologyRole() );
 		// The old connection should have been closed by DBConnRef.
 		$this->assertFalse( $con->isOpen() );
 	}
@@ -888,7 +874,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		// Connection refs should detect the config change, close the old connection,
 		// and get a new connection.
 		$this->assertTrue( $ref->isOpen() );
-		$this->assertSame( IDatabase::ROLE_STREAMING_MASTER, $ref->getTopologyRole() );
 
 		// The old connection should have been called by DBConnRef.
 		$this->assertFalse( $con->isOpen() );
