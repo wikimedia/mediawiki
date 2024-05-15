@@ -272,41 +272,25 @@ class MagicWordArray {
 	public function matchAndRemove( &$text ): array {
 		$found = [];
 		$regexes = $this->getRegex();
-		foreach ( $regexes as $regex ) {
-			$matches = [];
-			$res = preg_match_all( $regex, $text, $matches, PREG_SET_ORDER );
-			if ( $res === false ) {
-				$error = preg_last_error();
-				$errorText = preg_last_error_msg();
-				LoggerFactory::getInstance( 'parser' )->warning( 'preg_match_all error: {code} {errorText}', [
-					'code' => $error,
-					'regex' => $regex,
-					'text' => $text,
-					'errorText' => $errorText
-				] );
-				// T321234: Don't try to fix old revisions with broken UTF-8, just return as is
-				if ( $error === PREG_BAD_UTF8_ERROR ) {
-					continue;
-				}
+		$res = preg_replace_callback( $regexes, function ( $m ) use ( &$found ) {
+			[ $name, $param ] = $this->parseMatch( $m );
+			$found[$name] = $param;
+			return '';
+		}, $text );
+		// T321234: Don't try to fix old revisions with broken UTF-8, just return $text as is
+		if ( $res === null ) {
+			$error = preg_last_error();
+			$errorText = preg_last_error_msg();
+			LoggerFactory::getInstance( 'parser' )->warning( 'preg_match_all error: {code} {errorText}', [
+				'code' => $error,
+				'regex' => $regexes,
+				'text' => $text,
+				'errorText' => $errorText
+			] );
+			if ( $error !== PREG_BAD_UTF8_ERROR ) {
 				throw new LogicException( "preg_match_all error $error: $errorText" );
-			} elseif ( $res ) {
-				foreach ( $matches as $m ) {
-					[ $name, $param ] = $this->parseMatch( $m );
-					$found[$name] = $param;
-				}
 			}
-			$res = preg_replace( $regex, '', $text );
-			if ( $res === null ) {
-				$error = preg_last_error();
-				$errorText = preg_last_error_msg();
-				LoggerFactory::getInstance( 'parser' )->warning( 'preg_replace error: {code} {errorText}', [
-					'code' => $error,
-					'regex' => $regex,
-					'text' => $text,
-					'errorText' => $errorText
-				] );
-				throw new LogicException( "preg_replace error $error: $errorText" );
-			}
+		} else {
 			$text = $res;
 		}
 		return $found;
