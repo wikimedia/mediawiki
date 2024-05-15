@@ -28,16 +28,19 @@ use MediaWiki\Edit\ParsoidRenderID;
 use MediaWiki\Edit\SelserContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageLookup;
+use MediaWiki\Page\PageRecord;
+use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\HtmlToContentTransform;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
-use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Revision\RevisionAccessException;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Status\Status;
 use MWUnknownContentModelException;
@@ -85,10 +88,11 @@ class HtmlInputTransformHelper {
 	 */
 	private $parsoidOutputStash;
 
-	/**
-	 * @var ParsoidOutputAccess
-	 */
-	private $parsoidOutputAccess;
+	private ParserOutputAccess $parserOutputAccess;
+
+	private PageLookup $pageLookup;
+
+	private RevisionLookup $revisionLookup;
 
 	/**
 	 * @var array
@@ -99,14 +103,18 @@ class HtmlInputTransformHelper {
 	 * @param StatsdDataFactoryInterface $statsDataFactory
 	 * @param HtmlTransformFactory $htmlTransformFactory
 	 * @param ParsoidOutputStash $parsoidOutputStash
-	 * @param ParsoidOutputAccess $parsoidOutputAccess
+	 * @param ParserOutputAccess $parserOutputAccess
+	 * @param PageLookup $pageLookup
+	 * @param RevisionLookup $revisionLookup
 	 * @param array $envOptions
 	 */
 	public function __construct(
 		StatsdDataFactoryInterface $statsDataFactory,
 		HtmlTransformFactory $htmlTransformFactory,
 		ParsoidOutputStash $parsoidOutputStash,
-		ParsoidOutputAccess $parsoidOutputAccess,
+		ParserOutputAccess $parserOutputAccess,
+		PageLookup $pageLookup,
+		RevisionLookup $revisionLookup,
 		array $envOptions = []
 	) {
 		$this->stats = $statsDataFactory;
@@ -116,7 +124,9 @@ class HtmlInputTransformHelper {
 			'outputContentVersion' => Parsoid::defaultHTMLVersion(),
 			'offsetType' => 'byte',
 		];
-		$this->parsoidOutputAccess = $parsoidOutputAccess;
+		$this->parserOutputAccess = $parserOutputAccess;
+		$this->pageLookup = $pageLookup;
+		$this->revisionLookup = $revisionLookup;
 	}
 
 	/**
@@ -456,7 +466,7 @@ class HtmlInputTransformHelper {
 			// Try to get a rendering for the given revision, and use it as the basis for selser.
 			// Chances are good that the resulting diff will be reasonably clean.
 			// NOTE: If we don't have a revision ID, we should not attempt selser!
-			$originalRendering = $this->fetchParserOutputFromParsoid( $rev, true );
+			$originalRendering = $this->fetchParserOutputFromParsoid( $this->page, $rev, true );
 
 			if ( $originalRendering ) {
 				$this->stats->increment( 'html_input_transform.original_html.given.as_revid.found' );
@@ -572,22 +582,53 @@ class HtmlInputTransformHelper {
 	}
 
 	/**
-	 * @param RevisionRecord|int $rev
+	 * @param PageIdentity $page
+	 * @param RevisionRecord|int $revision
 	 * @param bool $mayParse
 	 *
 	 * @return ParserOutput|null
 	 * @throws HttpException
 	 */
-	private function fetchParserOutputFromParsoid( $rev, bool $mayParse ): ?ParserOutput {
+	private function fetchParserOutputFromParsoid( PageIdentity $page, $revision, bool $mayParse ): ?ParserOutput {
 		$parserOptions = ParserOptions::newFromAnon();
+		$parserOptions->setUseParsoid();
 
 		try {
+			if ( !$page instanceof PageRecord ) {
+				$name = "$page";
+				$page = $this->pageLookup->getPageByReference( $page );
+				if ( !$page ) {
+					throw new RevisionAccessException( 'Page {name} not found',
+						[ 'name' => $name ] );
+				}
+			}
+
+			if ( is_int( $revision ) ) {
+				$revId = $revision;
+				$revision = $this->revisionLookup->getRevisionById( $revId, 0, $page );
+
+				if ( !$revision ) {
+					throw new RevisionAccessException( 'Revision {revId} not found',
+						[ 'revId' => $revId ] );
+				}
+			}
+
+			if ( $page->getId() !== $revision->getPageId() ) {
+				throw new RevisionAccessException( 'Revision {revId} does not belong to page {name}',
+					[ 'name' => $page->getDBkey(),
+						'revId' => $revision->getId() ] );
+			}
+
 			if ( $mayParse ) {
-				$status = $this->parsoidOutputAccess->getParserOutput(
-					$this->page,
-					$parserOptions,
-					$rev
-				);
+				try {
+					$status = $this->parserOutputAccess->getParserOutput(
+						$page, $parserOptions, $revision
+					);
+				} catch ( ClientError $e ) {
+					$status = Status::newFatal( 'parsoid-client-error', $e->getMessage() );
+				} catch ( ResourceLimitExceededException $e ) {
+					$status = Status::newFatal( 'parsoid-resource-limit-exceeded', $e->getMessage() );
+				}
 
 				if ( !$status->isOK() ) {
 					$this->throwHttpExceptionForStatus( $status );
@@ -595,10 +636,8 @@ class HtmlInputTransformHelper {
 
 				$parserOutput = $status->getValue();
 			} else {
-				$parserOutput = $this->parsoidOutputAccess->getCachedParserOutput(
-					$this->page,
-					$parserOptions,
-					$rev
+				$parserOutput = $this->parserOutputAccess->getCachedParserOutput(
+					$page, $parserOptions, $revision
 				);
 			}
 		} catch ( RevisionAccessException $e ) {
@@ -630,7 +669,7 @@ class HtmlInputTransformHelper {
 			// Try to load it from the parser cache instead.
 			// On a wiki with low edit frequency, there is a good chance that it's still there.
 			try {
-				$parserOutput = $this->fetchParserOutputFromParsoid( $renderID->getRevisionID(), false );
+				$parserOutput = $this->fetchParserOutputFromParsoid( $this->page, $renderID->getRevisionID(), false );
 
 				if ( !$parserOutput ) {
 					$this->stats->increment( 'html_input_transform.original_html.given.as_renderid.' .

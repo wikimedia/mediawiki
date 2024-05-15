@@ -1445,6 +1445,7 @@ return [
 			$services->getPageStore(),
 			$services->getParsoidOutputStash(),
 			$services->getStatsdDataFactory(),
+			$services->getParserOutputAccess(),
 			$services->getParsoidOutputAccess(),
 			$services->getHtmlTransformFactory(),
 			$services->getContentHandlerFactory(),

@@ -9,6 +9,7 @@ use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Page\PageLookup;
+use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\RedirectStore;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
@@ -34,6 +35,7 @@ class PageRestHelperFactory {
 	private PageLookup $pageLookup;
 	private ParsoidOutputStash $parsoidOutputStash;
 	private StatsdDataFactoryInterface $stats;
+	private ParserOutputAccess $parserOutputAccess;
 	private ParsoidOutputAccess $parsoidOutputAccess;
 	private HtmlTransformFactory $htmlTransformFactory;
 	private IContentHandlerFactory $contentHandlerFactory;
@@ -48,6 +50,7 @@ class PageRestHelperFactory {
 	 * @param PageLookup $pageLookup
 	 * @param ParsoidOutputStash $parsoidOutputStash
 	 * @param StatsdDataFactoryInterface $statsDataFactory
+	 * @param ParserOutputAccess $parserOutputAccess
 	 * @param ParsoidOutputAccess $parsoidOutputAccess
 	 * @param HtmlTransformFactory $htmlTransformFactory
 	 * @param IContentHandlerFactory $contentHandlerFactory
@@ -62,6 +65,7 @@ class PageRestHelperFactory {
 		PageLookup $pageLookup,
 		ParsoidOutputStash $parsoidOutputStash,
 		StatsdDataFactoryInterface $statsDataFactory,
+		ParserOutputAccess $parserOutputAccess,
 		ParsoidOutputAccess $parsoidOutputAccess,
 		HtmlTransformFactory $htmlTransformFactory,
 		IContentHandlerFactory $contentHandlerFactory,
@@ -75,6 +79,7 @@ class PageRestHelperFactory {
 		$this->pageLookup = $pageLookup;
 		$this->parsoidOutputStash = $parsoidOutputStash;
 		$this->stats = $statsDataFactory;
+		$this->parserOutputAccess = $parserOutputAccess;
 		$this->parsoidOutputAccess = $parsoidOutputAccess;
 		$this->htmlTransformFactory = $htmlTransformFactory;
 		$this->contentHandlerFactory = $contentHandlerFactory;
@@ -129,7 +134,9 @@ class PageRestHelperFactory {
 			$this->stats,
 			$this->htmlTransformFactory,
 			$this->parsoidOutputStash,
-			$this->parsoidOutputAccess,
+			$this->parserOutputAccess,
+			$this->pageLookup,
+			$this->revisionLookup,
 			$envOptions
 		);
 	}
