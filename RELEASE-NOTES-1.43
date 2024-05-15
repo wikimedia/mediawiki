@@ -202,6 +202,16 @@ because of Phabricator reports.
   removed.
 * Constructing MWHttpRequest objects now requires timeout and connectTimeout to
   be set; this was deprecated in 1.35.
+* Hooks that were run from SpecialContributions are now run from the parent,
+  ContributionsSpecialPage. The page passed in is a ContributionsSpecialPage
+  type, and documentation and type comparisons may need to be updated. Affected
+  hooks are: ContributionsBeforeMainOutputHook, ContributionsToolLinksHook,
+  SpecialContributions__getForm__filtersHook.
+* Hooks that were run from ContribsPager are now run from the parent,
+  ContributionsPager. If a pager is passed in, it is a ContributionsPager type,
+  and documentation and type comparisons may need to be updated. Affected
+  hooks are: ContribsPager__reallyDoQueryHook, ContribsPager__getQueryInfoHook,
+  ContributionsLineEndingHook, SpecialContributions__formatRow__flagsHook.
 * DatabaseBlock::purgeExpired, deprecated since 1.38, has been removed.
 * AbstractBlock::getPermissionsError, deprecated since 1.35, has been removed.
 * IDatabase::namedLocksEnqueue() has been removed without deprecation.
