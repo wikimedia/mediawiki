@@ -561,6 +561,8 @@
 	"resettokens-watchlist-token": "Веб-каналан (Atom/RSS) токен  [[Special:Watchlist|хьан тергаме могӀанан чуьра агӀонашна хийцамаш бар]]",
 	"resettokens-done": "Токенаш кхиссина.",
 	"resettokens-resetbutton": "Къастина токенаш кхоссар",
+	"editrecovery": "Нисдар меттахӀоттор",
+	"edit-recovery-nojs-placeholder": "«Нисдар меттахӀоттор» функцина оьшу JavaScript.",
 	"edit-recovery-loaded-title": "Хийцамаш меттахӀоьттина",
 	"edit-recovery-loaded-message": "Хьан Ӏалашбанза хийцамаш авто-меттахӀоттина.",
 	"edit-recovery-loaded-show": "Гайта хийцамаш",

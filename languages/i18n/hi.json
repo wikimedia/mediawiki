@@ -3096,6 +3096,7 @@
 	"fileduplicatesearch-result-1": "फ़ाईल  \"$1\" में द्विरावृत्ति नही हैं।",
 	"fileduplicatesearch-result-n": "फ़ाईल \"$1\" में {{PLURAL:$2|1 द्विरावृत्ति|$2 द्विरावृत्तियाँ}} मिले हैं।",
 	"fileduplicatesearch-noresults": "कोई फ़ाइल नाम \"$1\" मिला नहीं ।",
+	"special-talkpage": "वार्ता पृष्ठ",
 	"specialpages": "विशेष पृष्ठ",
 	"specialpages-note-top": "कुंजी",
 	"specialpages-note-restricted": "* सामान्य विशेष पृष्ठ।\n* <span class=\"mw-specialpagerestricted\">प्रतिबंधित विशेष पृष्ठ।</span>",

@@ -397,7 +397,7 @@
 	"cannotlogoutnow-title": "এখন প্রস্থান করা যাবে না",
 	"cannotlogoutnow-text": "$1 ব্যবহার করার সময় প্রস্থান করা সম্ভব নয়।",
 	"welcomeuser": "স্বাগতম, $1!",
-	"welcomecreation-msg": "আপনার অ্যাকাউন্ট তৈরী হয়েছে।\nআপনার [[Special:Preferences|{{SITENAME}} পছন্দসমূহ]]  পরিবর্তন করে নিতে ভুলবেন না।",
+	"welcomecreation-msg": "আপনার অ্যাকাউন্ট তৈরী হয়েছে।\nআপনার [[Special:Preferences|{{SITENAME}} পছন্দসমূহ]] পরিবর্তন করে নিতে ভুলবেন না।",
 	"yourname": "ব্যবহারকারী নাম:",
 	"userlogin-yourname": "ব্যবহারকারী নাম",
 	"userlogin-yourname-ph": "আপনার ব্যবহারকারী নাম লিখুন",

@@ -2518,7 +2518,7 @@
 	"lag-warn-high": "Noho ny hataraiky ny lohamilin'ny banky angona, tsy hiseho eto ny fanovana natao tao anatin'ny fotoana latsaky ny $1 segondra{{PLURAL:}}.",
 	"watchlistedit-normal-title": "Hanova ny lisitra ny pejy arahako maso",
 	"watchlistedit-normal-legend": "Hanala lohateny ao amin'ny lisitra",
-	"watchlistedit-normal-explain": "Aseho eo ambany ny lohateny ao amin'ny lisitry ny pejy arahanao.\nTsindrio ny boaty eo akaikiny ary tsindrio  « {{int:Watchlistedit-normal-submit}} ».\nAzonao atao ihany koa ny [[Special:EditWatchlist/raw|manova ilay lisitra amin'ny akorany]].",
+	"watchlistedit-normal-explain": "Aseho eo ambany ny lohateny ao amin'ny lisitry ny pejy arahanao.\nTsindrio ny boaty eo akaikiny ary tsindrio « {{int:Watchlistedit-normal-submit}} ».\nAzonao atao ihany koa ny [[Special:EditWatchlist/raw|manova ilay lisitra amin'ny akorany]].",
 	"watchlistedit-normal-submit": "Hanala ireo lohateny nosafidiana ireo",
 	"watchlistedit-normal-done": "Afaka tamin'ny lisitry ny pejy arahanao ny lohateny $1{{PLURAL:}}",
 	"watchlistedit-raw-title": "Hanova ny lisitra ny pejy arahako maso amin'ny fomba akorany",

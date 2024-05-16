@@ -261,7 +261,7 @@
 	"exception-nologin-text": "ለዚሁ ገጽ ወይም አድራጎት፣ ወደ ዊኪው በአባልነት ስም አስቀድሞ መግባት ግዴታ ነው።",
 	"virus-unknownscanner": "ያልታወቀ antivirus:",
 	"logouttext": "'''አሁን ወጥተዋል።'''\n\nአሁንም በቁጥር መታወቂያዎ ማዘጋጀት ይቻላል። ወይም ደግሞ እንደገና በብዕር ስምዎ መግባት ይችላሉ።\nበጥቂት ሴኮንድ ውስጥ ወደሚከተለው ገጽ በቀጥታ ይመለሳል፦",
-	"welcomeuser": "ሰላምታ $1!  እንኳን ደህናመጡ።",
+	"welcomeuser": "ሰላምታ $1! እንኳን ደህናመጡ።",
 	"yourname": "Username / የብዕር ስም:",
 	"userlogin-yourname": "የብዕር ስም",
 	"userlogin-yourname-ph": "የብዕር ስም ያስገቡ",

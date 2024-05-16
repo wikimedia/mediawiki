@@ -1302,7 +1302,7 @@
 	"wantedpages": "Moo boonantey",
 	"wantedpages-badtitle": "Maa laala hunyan kanandi ra: $1",
 	"wantedfiles": "Tuku boonantey",
-	"wantedfiletext-cat": "Tukey wey ga goyandi  amm'i ši bara. Tukey kaŋ ga hun jišidoo waaniyaŋ ra ga hin ka cebandi b'i ga bara. Deray-bangayrey wey dumey ga <del>tuusandi</del>. Woo banda ga, moɲey kaŋ ra tukey kaŋ ši bara goo ga hantumandi [[:$1]] ra.",
+	"wantedfiletext-cat": "Tukey wey ga goyandi amm'i ši bara. Tukey kaŋ ga hun jišidoo waaniyaŋ ra ga hin ka cebandi b'i ga bara. Deray-bangayrey wey dumey ga <del>tuusandi</del>. Woo banda ga, moɲey kaŋ ra tukey kaŋ ši bara goo ga hantumandi [[:$1]] ra.",
 	"wantedfiletext-cat-noforeign": "Tukey wey ga goyandi amm'i ši bara. Woo bandaa ga, moɲey kaŋ ra tukey kaŋ ši bara goo ga hantumandi [[:$1]] ra.",
 	"wantedfiletext-nocat": "Tukey wey ga goyandi amm'i ši bara. Tukey kaŋ ga hun jišidoo waaniyaŋ ra ga hin ka hantumandi b'i ga bara. Deray-bangayrey wey dumey ga <del>tuusandi</del>.",
 	"wantedfiletext-nocat-noforeign": "Tukey wey ga goyandi ba kaŋ i ši bara.",

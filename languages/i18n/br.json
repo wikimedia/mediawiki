@@ -2073,7 +2073,7 @@
 	"enotif_body": "$WATCHINGUSERNAME ker,\n\n$PAGEINTRO $NEWPAGE $PAGELOG\n\nDiverrañ an aozer : $PAGESUMMARY $PAGEMINOREDIT\n\nMont e darempred gant an aozer :\npostel: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nNemet ez afec'h da welet ar bajenn end-eeun en ur vezañ kevreet, ne vo kemenn all ebet ma vez un tamm obererezh pelloc'h.\n\n\n            Ho reizhiad kemenn {{SITENAME}} muiañ karet\n\n--\nEvit kemmañ arventennoù ho kemennoù dre bostel, sellit ouzh\n{{canonicalurl:{{#special:Preferences}}}}\n\nEvit kemmañ doare ho rollad evezhiañ, sellit ouzh\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nEvit dilemel ar bajenn eus ho rollad evezhiañ, sellit ouzh\n$UNWATCHURL\n\nEvezhiadennoù ha skoazell pelloc'h :\n$HELPPAGE",
 	"enotif_minoredit": "Ur c'hemm dister eo hemañ",
 	"deletepage-deletetalk": "Diverkañ pajenn gaozeal ar pennad",
-	"deletepage-submit": "Diverkañ ur bajenn",
+	"deletepage-submit": "Diverkañ ar bajenn",
 	"confirm": "Kadarnaat",
 	"excontent": "endalc'had '$1'",
 	"excontentauthor": "an danvez a oa : ''$1'' ha ''[[Special:Contributions/$2|$2]]'' ([[User talk:$2|kaozeal]]) a oa bet an implijer nemetañ",

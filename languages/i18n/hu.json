@@ -1944,7 +1944,7 @@
 	"wantedpages-summary": "Legtöbb hivatkozással rendelkező nem létező oldalak, nem számolva az átirányításokat. Azon nem létező oldalak, amelyekre a legtöbb átirányítás mutat, a [[{{#special:BrokenRedirects}}|hibás átirányítások listáján]] szerepelnek.",
 	"wantedpages-badtitle": "Érvénytelen cím található az eredményhalmazban: $1",
 	"wantedfiles": "Keresett fájlok",
-	"wantedfiletext-cat": "A következő fájlok használatban vannak, de nem léteznek. Külső tárhelyről származó fájlok akkor is a listára kerülhetnek, ha léteznek. Az ilyen hamis riasztások <del>áthúzva</del> jelennek meg. Ezen felül az olyan beágyazott fájlok, amelyek nem léteznek a  [[:$1]] kategóriában jelennek meg.",
+	"wantedfiletext-cat": "A következő fájlok használatban vannak, de nem léteznek. Külső tárhelyről származó fájlok akkor is a listára kerülhetnek, ha léteznek. Az ilyen hamis riasztások <del>áthúzva</del> jelennek meg. Ezen felül az olyan beágyazott fájlok, amelyek nem léteznek a [[:$1]] kategóriában jelennek meg.",
 	"wantedfiletext-cat-noforeign": "A következő nem létező fájlok vannak használva. Azon nem létező fájlok listája, amelyek beágyazásra kerültek, itt találhatók: [[:$1]].",
 	"wantedfiletext-nocat": "A következő fájlok használatban vannak, de nem léteznek. Külső tárhelyről származó fájlok akkor is a listára kerülhetnek, ha léteznek. Az ilyen hamis riasztások <del>áthúzva</del> jelennek meg.",
 	"wantedfiletext-nocat-noforeign": "A következő fájlok használatban vannak, de nem léteznek.",

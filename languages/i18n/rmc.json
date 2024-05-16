@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Adehertogh",
+			"Amire80",
 			"Martina Horňáková"
 		]
 	},
@@ -605,7 +606,7 @@
 	"imgmultigoto": "Dža andro sera $1",
 	"watchlisttools-clear": "Te čučarel o zoznamos",
 	"watchlisttools-view": "Te sikhavel o visaribena so džan kethane",
-	"watchlisttools-edit": "Te sikhavel the te prikerel o zoznamos  le dikhle serenge",
+	"watchlisttools-edit": "Te sikhavel the te prikerel o zoznamos le dikhle serenge",
 	"watchlisttools-raw": "Te prikerel e tekstovo verzija le zoznamoske",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|vakeriben]])",
 	"version-editors": "Redaktori",

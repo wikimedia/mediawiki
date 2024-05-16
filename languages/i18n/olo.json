@@ -1854,7 +1854,7 @@
 	"wantedpages-summary": "Luvettelu olemattomis sivulois, kudamih on eniten linkoi. Luguh ei oteta sivuloi, kudamil ollah vaiku ohjavus-sivut. Ku tahtonet kaččuo luvettelun olemattomis sivulois, kudamih viitatah ohjavus-sivut, kačo [[{{#special:BrokenRedirects}}|luvettelu hairahtuksellizis ohjavuksis]].",
 	"wantedpages-badtitle": "Pädemätöi sivun nimi tuloksien joukos: $1",
 	"wantedfiles": "Tarvittavat tiijostot",
-	"wantedfiletext-cat": "Iellizii tiijostoloi opitah käyttiä, ga niidy ei ole olemas. Täh luvetteluh voijah hairahtuksellizesti puuttuo tiijostotgi, kudamat ollah ulgopuolizis varastolois. Moizii viärii merkičendöi ruvetah  merkiččemäh <del>yličiviivattuloikse</del>. Sidä paiči moizet sivut, kudamil on olemas olemattomii tiijostoloi, on luveteltu  [[:$1|täs]].",
+	"wantedfiletext-cat": "Iellizii tiijostoloi opitah käyttiä, ga niidy ei ole olemas. Täh luvetteluh voijah hairahtuksellizesti puuttuo tiijostotgi, kudamat ollah ulgopuolizis varastolois. Moizii viärii merkičendöi ruvetah merkiččemäh <del>yličiviivattuloikse</del>. Sidä paiči moizet sivut, kudamil on olemas olemattomii tiijostoloi, on luveteltu [[:$1|täs]].",
 	"wantedfiletext-cat-noforeign": "Iellizii tiijostoloi käytetäh, ga niidy ei ole olemas. Sidä paiči sivuloi, kudamat viitatah nämmih tiijostoloih, ei ole olemas da net on luveteltu sivul [[:$1]].",
 	"wantedfiletext-nocat": "Iellizii tiijostoloi opitah käyttiä, ga niidy ei ole olemas. Täh luvetteluh voijah hairahtullizesti puuttuo tiijostot, kudamat ollah ulgopuolizis varastolois. Moizet viärät merkičendät roijah merkitty <del>yličiviivattuloikse</del>.",
 	"wantedfiletext-nocat-noforeign": "Iellizii tiijostoloi käytetäh, ga niidy ei ole olemas.",

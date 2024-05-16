@@ -758,7 +758,7 @@
 	"showhideselectedversions": "Boli'a bibilohu lo revisi tilulawoto",
 	"editundo": "pohuwalinga",
 	"diff-empty": "(Diya'a hihedeliyo)",
-	"diff-multi-sameuser": "({{PLURAL:$1|$1 revisi wolota}} pilohutu lo tawu ngota ja pilopobilohu)",
+	"diff-multi-sameuser": "({{PLURAL:$1|Tuwawu revisi intermediate|$1 revisi intermediate}} u tutuwawuwa {{GENDER:$3|ta ohu'uwo}} ja yilumuneto)",
 	"diff-multi-otherusers": "({{PLURAL:$1|Tuwawu lopo'opiyohu wolota|$1 lopo'opiyohu wolota}} pilohutu {{PLURAL:$2|ngota ta ohu'uwo uweewo|$2 ta ohu'uwo}} ja pilopobilohu)",
 	"diff-paragraph-moved-tonew": "Paragrap ma hileyi. Klik wonu ohila lumantia ode lokasi bohu.",
 	"diff-paragraph-moved-toold": "Paragrap ma hileyi. Klik wonu ohila lumanti'a ode lokasi mohihewo.",

@@ -329,7 +329,7 @@
 	"cannotlogoutnow-title": "Abhi log out nai kare saktaa hai",
 	"cannotlogoutnow-text": "$1 ke kaam me laae ke time, loggong out nai hoe sake hai",
 	"welcomeuser": "Swagat, $1!",
-	"welcomecreation-msg": "Aap ke account banae dewa gais hai.\nAapan [[Special:Preferences|{{SITENAME}} pasand]]  ke badle nai bhulna.",
+	"welcomecreation-msg": "Aap ke account banae dewa gais hai.\nAapan [[Special:Preferences|{{SITENAME}} pasand]] ke badle nai bhulna.",
 	"userlogin-yourname": "Aapan username ke likho",
 	"userlogin-yourname-ph": "Aapan username ke likho",
 	"createacct-another-username-ph": "Username ke likho",

@@ -525,7 +525,7 @@
 	"cannotlogoutnow-title": "Невозможно выйти прямо сейчас",
 	"cannotlogoutnow-text": "Нельзя выйти во время использования $1.",
 	"welcomeuser": "Добро пожаловать, $1!",
-	"welcomecreation-msg": "Ваша учётная запись успешно создана.\nТеперь вы также можете провести  [[Special:Preferences|персональную настройку]] сайта {{SITENAME}}.",
+	"welcomecreation-msg": "Ваша учётная запись успешно создана.\nТеперь вы также можете провести [[Special:Preferences|персональную настройку]] сайта {{SITENAME}}.",
 	"yourname": "Имя учётной записи:",
 	"userlogin-yourname": "Имя учётной записи",
 	"userlogin-yourname-ph": "Введите имя вашей учётной записи",

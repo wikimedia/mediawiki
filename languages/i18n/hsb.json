@@ -2567,7 +2567,7 @@
 	"watchlistedit-normal-legend": "Zapiski z wobkedźbowankow wotstronić",
 	"watchlistedit-normal-explain": "Tu su zapiski z twojich wobkedźbowankow. Zo by zapisk wušmórnył, markěruj kašćik pódla njeho a klikń na {{int:Watchlistedit-normal-submit}}\". Móžeš tež swoje wobkedźbowanki [[Special:EditWatchlist/raw|w lisćinowym formaće wobdźěłać]].",
 	"watchlistedit-normal-submit": "Zapiski wotstronić",
-	"watchlistedit-normal-done": "{{PLURAL:$1|1 zapisk bu|$1 zapiskaj buštej|$1 zapiski buchu|$1 zapiskow  bu}} z twojich wobkedźbowankow {{PLURAL:$1|wotstronjeny|wotstronjenej|wotstronjene|wotstronjene}}:",
+	"watchlistedit-normal-done": "{{PLURAL:$1|1 zapisk bu|$1 zapiskaj buštej|$1 zapiski buchu|$1 zapiskow bu}} z twojich wobkedźbowankow {{PLURAL:$1|wotstronjeny|wotstronjenej|wotstronjene|wotstronjene}}:",
 	"watchlistedit-raw-title": "Wobkedźbowanki w lisćinowym formaće wobdźěłać",
 	"watchlistedit-raw-legend": "Wobkedźbowanki w lisćinowym formaće wobdźěłać",
 	"watchlistedit-raw-explain": "Titule mjez twojimi wobkedźbowankach so deleka pokazuja, a dadźa so lisćinje přidać abo z njeje wotstronić;\njedyn titul na linku.\nHdyž sy hotowy, klikń na \"{{int:Watchlistedit-raw-submit}}\".\nMóžeš tež [[Special:EditWatchlist|standardnu wobdźěłowansku stronu]] wužiwać.",
