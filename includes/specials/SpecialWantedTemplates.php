@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Wantedtemplates
- *
  * Copyright © 2008, Danny B.
  * Based on SpecialWantedcategories.php by Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * makeWlhLink() taken from SpecialMostlinkedtemplates by Rob Church <robchur@gmail.com>
@@ -22,8 +20,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
- * @author Danny B.
  */
 
 namespace MediaWiki\Specials;
@@ -34,9 +30,10 @@ use MediaWiki\SpecialPage\WantedQueryPage;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
- * A querypage to list the most wanted templates
+ * List of the most wanted templates
  *
  * @ingroup SpecialPage
+ * @author Danny B.
  */
 class SpecialWantedTemplates extends WantedQueryPage {
 

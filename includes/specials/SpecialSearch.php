@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Search
- *
  * Copyright © 2004 Brooke Vibber <bvibber@wikimedia.org>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -20,7 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -57,8 +54,10 @@ use Wikimedia\Rdbms\ReadOnlyMode;
 use Xml;
 
 /**
- * implements Special:Search - Run text & title search and display the output
+ * Run text & title search and display the output
+ *
  * @ingroup SpecialPage
+ * @ingroup Search
  */
 class SpecialSearch extends SpecialPage {
 	/**

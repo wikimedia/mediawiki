@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:MyLanguage
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,9 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @author Niklas Laxström
- * @author Siebrand Mazeland
- * @copyright Copyright © 2010-2013 Niklas Laxström, Siebrand Mazeland
  */
 
 namespace MediaWiki\Specials;
@@ -31,13 +26,15 @@ use MediaWiki\SpecialPage\RedirectSpecialArticle;
 use MediaWiki\Title\Title;
 
 /**
- * Unlisted special page which redirects the user to the appropriate translated version of
- * a page if it exists.
+ * Redirect to the appropriate translated version of a page if it exists.
  *
  * Usage: [[Special:MyLanguage/Page name|link text]]
  *
  * @since 1.24
  * @ingroup SpecialPage
+ * @author Niklas Laxström
+ * @author Siebrand Mazeland
+ * @copyright Copyright © 2010-2013 Niklas Laxström, Siebrand Mazeland
  */
 class SpecialMyLanguage extends RedirectSpecialArticle {
 

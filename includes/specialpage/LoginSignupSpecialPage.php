@@ -56,6 +56,7 @@ use Wikimedia\ScopedCallback;
  * Holds shared logic for login and account creation pages.
  *
  * @ingroup SpecialPage
+ * @ingroup Auth
  */
 abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	protected $mReturnTo;

@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Randomredirect
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,8 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
- * @author Rob Church <robchur@gmail.com>, Ilmari Karonen
  */
 
 namespace MediaWiki\Specials;
@@ -28,9 +24,10 @@ use MediaWiki\Title\NamespaceInfo;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
- * Special page to direct the user to a random redirect page (minus the second redirect)
+ * Redirect to a random redirect page (minus the second redirect)
  *
  * @ingroup SpecialPage
+ * @author Rob Church <robchur@gmail.com>, Ilmari Karonen
  */
 class SpecialRandomRedirect extends SpecialRandomPage {
 

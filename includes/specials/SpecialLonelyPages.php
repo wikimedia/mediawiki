@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Lonelypages
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -31,7 +28,7 @@ use MediaWiki\Title\NamespaceInfo;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
- * A special page looking for articles with no article linking to them,
+ * List of articles with no article linking to them,
  * thus being lonely.
  *
  * @ingroup SpecialPage

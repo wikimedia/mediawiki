@@ -20,8 +20,9 @@ use UserBlockedError;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
- * Special page that allows authorised users to rename
- * user accounts
+ * Rename a user account.
+ *
+ * @ingroup SpecialPage
  */
 class SpecialRenameUser extends SpecialPage {
 	private IConnectionProvider $dbConns;

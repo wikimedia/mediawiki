@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:ListAdmins
- *
  * Copyright © 2004 Brooke Vibber, lcrocker, Tim Starling,
  * Domas Mituzas, Antoine Musso, Jens Frank, Zhengzhu,
  * 2006 Rob Church <robchur@gmail.com>
@@ -22,7 +20,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials\Redirects;
@@ -30,7 +27,7 @@ namespace MediaWiki\Specials\Redirects;
 use MediaWiki\SpecialPage\SpecialRedirectToSpecial;
 
 /**
- * Redirect page: Special:ListAdmins --> Special:ListUsers/sysop.
+ * Redirect to Special:ListUsers/sysop.
  *
  * @ingroup SpecialPage
  */

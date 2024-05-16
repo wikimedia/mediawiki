@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Unusedtemplates
- *
  * Copyright © 2006 Rob Church
  *
  * This program is free software; you can redistribute it and/or modify
@@ -20,8 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
- * @author Rob Church <robchur@gmail.com>
  */
 
 namespace MediaWiki\Specials;
@@ -35,9 +31,11 @@ use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
- * A special page that lists unused templates
+ * Lists of unused templates
  *
+ * @see SpecialMostLinkedTemplates
  * @ingroup SpecialPage
+ * @author Rob Church <robchur@gmail.com>
  */
 class SpecialUnusedTemplates extends QueryPage {
 

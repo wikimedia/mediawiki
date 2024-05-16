@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Block
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -65,8 +62,8 @@ use OOUI\Widget;
 use Wikimedia\IPUtils;
 
 /**
- * A special page that allows users with 'block' right to block users from
- * editing pages and other actions
+ * Allow users with 'block' user right to block IPs and user accounts from
+ * editing pages and other actions.
  *
  * @ingroup SpecialPage
  */

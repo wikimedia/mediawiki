@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:TrackingCategories
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -29,7 +26,8 @@ use MediaWiki\Html\Html;
 use MediaWiki\SpecialPage\SpecialPage;
 
 /**
- * A special page that displays list of tracking categories
+ * A special page that displays list of tracking categories.
+ *
  * Tracking categories allow pages with certain characteristics to be tracked.
  * It works by adding any such page to a category automatically.
  * Category is specified by the tracking category's system message.
@@ -37,7 +35,6 @@ use MediaWiki\SpecialPage\SpecialPage;
  * @ingroup SpecialPage
  * @since 1.23
  */
-
 class SpecialTrackingCategories extends SpecialPage {
 
 	private LinkBatchFactory $linkBatchFactory;

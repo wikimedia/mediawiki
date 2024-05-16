@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Mostrevisions
- *
  * Copyright © 2005 Ævar Arnfjörð Bjarmason
  *
  * This program is free software; you can redistribute it and/or modify
@@ -20,8 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
- * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
 namespace MediaWiki\Specials;
@@ -31,6 +27,12 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Title\NamespaceInfo;
 use Wikimedia\Rdbms\IConnectionProvider;
 
+/**
+ * Implements Special:Mostrevisions
+ *
+ * @ingroup SpecialPage
+ * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
+ */
 class SpecialMostRevisions extends SpecialFewestRevisions {
 
 	/**

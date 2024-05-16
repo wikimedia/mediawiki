@@ -23,6 +23,9 @@ use MediaWiki\Title\Title;
 use SearchEngineFactory;
 use Xml;
 
+/**
+ * @ingroup SpecialPage
+ */
 class SpecialChangeContentModel extends FormSpecialPage {
 
 	private IContentHandlerFactory $contentHandlerFactory;

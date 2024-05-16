@@ -7,16 +7,12 @@ use MediaWiki\SpecialPage\IncludableSpecialPage;
 use MediaWiki\Specials\Contribute\ContributeFactory;
 
 /**
- * Special:Contribute, show user contribute options in the 1st tab
- *  and a list of contribution on the 2nd tab.
+ * Promote ways for editors to contribute.
  *
  * @ingroup SpecialPage
  */
 class SpecialContribute extends IncludableSpecialPage {
 
-	/**
-	 * SpecialContribute constructor.
-	 */
 	public function __construct() {
 		parent::__construct( 'Contribute' );
 	}

@@ -1,7 +1,5 @@
 <?php
 /**
- * Shortcuts to construct a special page alias.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\SpecialPage;
@@ -26,12 +23,17 @@ namespace MediaWiki\SpecialPage;
 use MediaWiki\Title\Title;
 
 /**
- * Superclass for any RedirectSpecialPage which redirects the user
+ * Helper for any RedirectSpecialPage which redirects the user
  * to a particular article (as opposed to user contributions, logs, etc.).
  *
- * For security reasons these special pages are restricted to pass on
- * the following subset of GET parameters to the target page while
- * removing all others:
+ * This is used by subclasses to create user-independent URLs pointing to
+ * pages about the current user (user page, talk page, contributions, etc.).
+ * This can let us link it statically and cache-safe within wikitext,
+ * e.g. on help pages.
+ *
+ * For security reasons these special pages are restricted to only preserve
+ * the following subset of GET parameters to the target page, while
+ * removing and/or ignoring all others.
  *
  * - useskin, uselang, printable: to alter the appearance of the resulting page
  *
@@ -87,7 +89,6 @@ use MediaWiki\Title\Title;
  * @endcode
  *
  * @stable to extend
- *
  * @ingroup SpecialPage
  */
 abstract class RedirectSpecialArticle extends RedirectSpecialPage {

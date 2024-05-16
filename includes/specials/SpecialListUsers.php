@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Listusers
- *
  * Copyright © 2004 Brooke Vibber, lcrocker, Tim Starling,
  * Domas Mituzas, Antoine Musso, Jens Frank, Zhengzhu,
  * 2006 Rob Church <robchur@gmail.com>
@@ -22,7 +20,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -37,6 +34,8 @@ use MediaWiki\User\UserIdentityLookup;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
+ * Implements Special:Listusers
+ *
  * @ingroup SpecialPage
  */
 class SpecialListUsers extends IncludableSpecialPage {

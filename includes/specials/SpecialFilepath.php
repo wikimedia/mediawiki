@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Filepath
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -29,7 +26,7 @@ use MediaWiki\Title\Title;
 use SearchEngineFactory;
 
 /**
- * A special page that redirects to the URL of a given file
+ * Redirects to the URL of a thumbnail for the given file.
  *
  * @ingroup SpecialPage
  */

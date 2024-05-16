@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Emailuser
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -39,9 +36,12 @@ use MediaWiki\User\UserNameUtils;
 use StatusValue;
 
 /**
- * A special page that allows users to send e-mails to other users
+ * Send an e-mail from one user to another.
+ *
+ * This is discoverable via the sidebar on any user's User namespace page.
  *
  * @ingroup SpecialPage
+ * @ingroup Mail
  */
 class SpecialEmailUser extends SpecialPage {
 

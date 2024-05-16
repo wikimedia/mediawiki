@@ -1,7 +1,5 @@
 <?php
 /**
- * Implements Special:Redirect
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 namespace MediaWiki\Specials;
@@ -33,8 +30,13 @@ use PermissionsError;
 use RepoGroup;
 
 /**
- * A special page that redirects to: the user for a numeric user id,
- * the file for a given filename, or the page for a given revision id.
+ * Redirect dispatcher for user IDs, thumbnails, and various permalinks.
+ *
+ * - user: the user page for a given numeric user ID.
+ * - file: the file thumbnail URL for a given filename.
+ * - revision: permalink for any revision.
+ * - page: permalink for page by numeric page ID.
+ * - logid: permalink for any log entry.
  *
  * @ingroup SpecialPage
  * @since 1.22
