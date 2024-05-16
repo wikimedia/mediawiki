@@ -484,15 +484,16 @@ class ExtensionRegistry {
 				continue;
 			}
 
+			// When at least one of the global value and the default is not an array, the merge
+			// strategy is ignored and the global value will simply override the default.
+			if ( array_key_exists( $key, $GLOBALS ) && ( !is_array( $GLOBALS[$key] ) || !is_array( $val ) ) ) {
+				continue;
+			}
+
 			// Optimistic: If the global is not set, or is an empty array, replace it entirely.
 			// Will be O(1) performance.
 			if ( !array_key_exists( $key, $GLOBALS ) || ( is_array( $GLOBALS[$key] ) && !$GLOBALS[$key] ) ) {
 				$GLOBALS[$key] = $val;
-				continue;
-			}
-
-			if ( !is_array( $GLOBALS[$key] ) || !is_array( $val ) ) {
-				// config setting that has already been overridden, don't set it
 				continue;
 			}
 

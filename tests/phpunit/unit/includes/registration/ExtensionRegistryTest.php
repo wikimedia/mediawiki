@@ -169,10 +169,8 @@ class ExtensionRegistryTest extends MediaWikiUnitTestCase {
 		];
 		$registry = $this->getRegistry();
 		TestingAccessWrapper::newFromObject( $registry )->exportExtractedData( $info );
-		foreach ( $expected as $name => $value ) {
-			$this->assertArrayHasKey( $name, $GLOBALS, $desc );
-			$this->assertEquals( $value, $GLOBALS[$name], $desc );
-		}
+		$result = array_intersect_key( $GLOBALS, $expected );
+		$this->assertEquals( $expected, $result, $desc );
 
 		// Remove mw prefixed globals
 		if ( $before ) {
@@ -464,7 +462,49 @@ class ExtensionRegistryTest extends MediaWikiUnitTestCase {
 				[
 					'wgFlatArray' => [ 1 ]
 				],
-			]
+			],
+			[
+				'a configured value should not turn into a default null value',
+				[
+					'ArrayValue' => [],
+					'BooleanValue' => false,
+					'IntegerValue' => 0,
+					'StringValue' => '',
+				],
+				[
+					'ArrayValue' => null,
+					'BooleanValue' => null,
+					'IntegerValue' => null,
+					'StringValue' => null,
+				],
+				[
+					'ArrayValue' => [],
+					'BooleanValue' => false,
+					'IntegerValue' => 0,
+					'StringValue' => '',
+				],
+			],
+			[
+				'a configured value should not turn into a default empty array value',
+				[
+					'BooleanValue' => false,
+					'IntegerValue' => 0,
+					'NullValue' => null,
+					'StringValue' => '',
+				],
+				[
+					'BooleanValue' => [],
+					'IntegerValue' => [],
+					'NullValue' => [],
+					'StringValue' => [],
+				],
+				[
+					'BooleanValue' => false,
+					'IntegerValue' => 0,
+					'NullValue' => null,
+					'StringValue' => '',
+				],
+			],
 		];
 	}
 
