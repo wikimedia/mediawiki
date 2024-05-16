@@ -7,7 +7,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
-use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
@@ -62,15 +61,6 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 				MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidCacheConfig )
 		];
 
-		$parsoidOutputAccess = new ParsoidOutputAccess(
-			$services->getParsoidParserFactory(),
-			$services->getParserOutputAccess(),
-			$services->getPageStore(),
-			$services->getRevisionLookup(),
-			$services->getParsoidSiteConfig(),
-			$services->getContentHandlerFactory()
-		);
-
 		$helperFactory = $this->createNoOpMock(
 			PageRestHelperFactory::class,
 			[ 'newRevisionContentHelper', 'newHtmlOutputRendererHelper' ]
@@ -88,11 +78,11 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			->willReturn( new HtmlOutputRendererHelper(
 				$this->getParsoidOutputStash(),
 				$services->getStatsdDataFactory(),
-				$parsoidOutputAccess,
 				$services->getParserOutputAccess(),
 				$services->getPageStore(),
 				$services->getRevisionLookup(),
 				$services->getParsoidSiteConfig(),
+				$services->getParsoidParserFactory(),
 				$services->getHtmlTransformFactory(),
 				$services->getContentHandlerFactory(),
 				$services->getLanguageFactory()

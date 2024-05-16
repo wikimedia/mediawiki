@@ -91,11 +91,11 @@ class CompareLanguageConverterOutput extends Maintenance {
 		$helper = new HtmlOutputRendererHelper(
 			$services->getParsoidOutputStash(),
 			new NullStatsdDataFactory(),
-			$services->getParsoidOutputAccess(),
 			$services->getParserOutputAccess(),
 			$services->getPageStore(),
 			$services->getRevisionLookup(),
 			$services->getParsoidSiteConfig(),
+			$services->getParsoidParserFactory(),
 			$services->getHtmlTransformFactory(),
 			$services->getContentHandlerFactory(),
 			$services->getLanguageFactory()

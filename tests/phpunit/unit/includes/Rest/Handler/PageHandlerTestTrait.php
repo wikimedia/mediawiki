@@ -7,7 +7,6 @@ use FileRepo;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
-use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Rest\Handler\Helper\HtmlMessageOutputHelper;
@@ -101,15 +100,6 @@ trait PageHandlerTestTrait {
 				MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidCacheConfig )
 		];
 
-		$parsoidOutputAccess = new ParsoidOutputAccess(
-			$services->getParsoidParserFactory(),
-			$services->getParserOutputAccess(),
-			$services->getPageStore(),
-			$services->getRevisionLookup(),
-			$services->getParsoidSiteConfig(),
-			$services->getContentHandlerFactory()
-		);
-
 		$helperFactory = $this->createNoOpMock(
 			PageRestHelperFactory::class,
 			[ 'newPageContentHelper', 'newHtmlOutputRendererHelper', 'newHtmlMessageOutputHelper', 'newPageRedirectHelper' ]
@@ -129,11 +119,11 @@ trait PageHandlerTestTrait {
 				new HtmlOutputRendererHelper(
 					$parsoidOutputStash,
 					$services->getStatsdDataFactory(),
-					$parsoidOutputAccess,
 					$services->getParserOutputAccess(),
 					$services->getPageStore(),
 					$services->getRevisionLookup(),
 					$services->getParsoidSiteConfig(),
+					$services->getParsoidParserFactory(),
 					$services->getHtmlTransformFactory(),
 					$services->getContentHandlerFactory(),
 					$services->getLanguageFactory()
