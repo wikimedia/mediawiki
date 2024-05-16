@@ -695,14 +695,14 @@ class ParserCache {
 			$this->logger->error( "Unable to unserialize JSON", [
 				'name' => $this->name,
 				'cache_key' => $key,
-				'message' => $e->getMessage()
+				'ex_message' => $e->getMessage()
 			] );
 			return null;
 		} catch ( Exception $e ) {
 			$this->logger->error( "Unexpected failure during cache load", [
 				'name' => $this->name,
 				'cache_key' => $key,
-				'message' => $e->getMessage()
+				'ex_message' => $e->getMessage()
 			] );
 			return null;
 		}
@@ -717,10 +717,20 @@ class ParserCache {
 		try {
 			return $this->jsonCodec->serialize( $obj );
 		} catch ( JsonException $e ) {
+			// Try to collect some additional debugging information, but
+			// wrap this in a try block to ensure we don't make the problem
+			// worse.
+			try {
+				$details = $this->jsonCodec->detectNonSerializableData( $obj, true );
+			} catch ( \Throwable $t ) {
+				$details = $t->getMessage();
+			}
 			$this->logger->error( "Unable to serialize JSON", [
 				'name' => $this->name,
 				'cache_key' => $key,
-				'json_message' => $e->getMessage(),
+				'ex_message' => $e->getMessage(),
+				'details' => $details,
+				'trace' => $e->getTraceAsString(),
 			] );
 			return null;
 		}
