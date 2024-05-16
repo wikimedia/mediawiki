@@ -855,18 +855,13 @@ __INDEXATTR__;
 	 * default mw one if not given)
 	 * @param string $table
 	 * @param array|string $types
-	 * @param bool|string $schema
 	 * @return bool
 	 */
-	private function relationExists( $table, $types, $schema = false ) {
+	private function relationExists( $table, $types ) {
 		if ( !is_array( $types ) ) {
 			$types = [ $types ];
 		}
-		if ( $schema === false ) {
-			$schemas = $this->getCoreSchemas();
-		} else {
-			$schemas = [ $schema ];
-		}
+		$schemas = $this->getCoreSchemas();
 		$components = $this->platform->qualifiedTableComponents( $table );
 		$etable = $this->addQuotes( end( $components ) );
 		foreach ( $schemas as $schema ) {
@@ -888,19 +883,12 @@ __INDEXATTR__;
 		return false;
 	}
 
-	/**
-	 * For backward compatibility, this function checks both tables and views.
-	 * @param string $table
-	 * @param string $fname
-	 * @param bool|string $schema
-	 * @return bool
-	 */
-	public function tableExists( $table, $fname = __METHOD__, $schema = false ) {
-		return $this->relationExists( $table, [ 'r', 'v' ], $schema );
+	public function tableExists( $table, $fname = __METHOD__ ) {
+		return $this->relationExists( $table, [ 'r', 'v' ] );
 	}
 
-	public function sequenceExists( $sequence, $schema = false ) {
-		return $this->relationExists( $sequence, 'S', $schema );
+	public function sequenceExists( $sequence ) {
+		return $this->relationExists( $sequence, 'S' );
 	}
 
 	public function constraintExists( $table, $constraint ) {
