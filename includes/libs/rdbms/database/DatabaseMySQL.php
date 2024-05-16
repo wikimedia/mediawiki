@@ -282,19 +282,6 @@ class DatabaseMySQL extends Database {
 		}
 	}
 
-	/**
-	 * Estimate rows in dataset
-	 * Returns estimated count, based on EXPLAIN output
-	 * Takes same arguments as Database::select()
-	 *
-	 * @param string|array $tables
-	 * @param string|array $var
-	 * @param string|array $conds
-	 * @param string $fname
-	 * @param string|array $options
-	 * @param array $join_conds
-	 * @return int
-	 */
 	public function estimateRowCount(
 		$tables,
 		$var = '*',
@@ -689,14 +676,14 @@ class DatabaseMySQL extends Database {
 	}
 
 	public function selectSQLText(
-		$table,
+		$tables,
 		$vars,
 		$conds = '',
 		$fname = __METHOD__,
 		$options = [],
 		$join_conds = []
 	) {
-		$sql = parent::selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
+		$sql = parent::selectSQLText( $tables, $vars, $conds, $fname, $options, $join_conds );
 		// https://dev.mysql.com/doc/refman/5.7/en/optimizer-hints.html
 		// https://mariadb.com/kb/en/library/aborting-statements/
 		$timeoutMsec = intval( $options['MAX_EXECUTION_TIME'] ?? 0 );

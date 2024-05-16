@@ -504,8 +504,8 @@ interface ISQLPlatform {
 	 *
 	 * @see IDatabase::select()
 	 *
-	 * @param string|array $table Unqualified name of table(s)
-	 * @param-taint $table exec_sql
+	 * @param string|array $tables Table reference(s) using unqualified table names
+	 * @param-taint $tables exec_sql
 	 * @param string|array $vars Field names
 	 * @param-taint $vars exec_sql
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>>|array<int,string|IExpression> $conds
@@ -521,7 +521,7 @@ interface ISQLPlatform {
 	 * @return-taint onlysafefor_sql
 	 */
 	public function selectSQLText(
-		$table,
+		$tables,
 		$vars,
 		$conds = '',
 		$fname = __METHOD__,
@@ -604,7 +604,7 @@ interface ISQLPlatform {
 	 * Code using the results may need to use the PHP unique() or sort() methods.
 	 *
 	 * @param string $delim Glue to bind the results together
-	 * @param string|array $table Unqualified name of table
+	 * @param string|array $tables Table reference(s) using unqualified table names
 	 * @param string $field Field name
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>>|array<int,string|IExpression> $conds
 	 *   Conditions
@@ -613,7 +613,7 @@ interface ISQLPlatform {
 	 * @since 1.23
 	 */
 	public function buildGroupConcatField(
-		$delim, $table, $field, $conds = '', $join_conds = []
+		$delim, $tables, $field, $conds = '', $join_conds = []
 	);
 
 	/**
@@ -621,7 +621,7 @@ interface ISQLPlatform {
 	 *
 	 * @see IDatabase::selectSQLText()
 	 *
-	 * @param string|array $table Unqualified name of table
+	 * @param string|array $tables Table reference(s) using unqualified table names
 	 * @param string|array $vars Field names
 	 * @param string|array $conds Conditions
 	 * @param string $fname Caller function name
@@ -631,7 +631,7 @@ interface ISQLPlatform {
 	 * @since 1.31
 	 */
 	public function buildSelectSubquery(
-		$table,
+		$tables,
 		$vars,
 		$conds = '',
 		$fname = __METHOD__,
