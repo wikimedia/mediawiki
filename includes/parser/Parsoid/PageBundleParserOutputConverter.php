@@ -58,21 +58,23 @@ final class PageBundleParserOutputConverter {
 	 * NOTE: it does NOT apply the text of said pageBundle - this should be done by the calling method, if desired.
 	 * This way, we can modify a ParserOutput's associated bundle without creating a new ParserOutput,
 	 * which makes it easier to deal with in the OutputTransformPipeline.
+	 * @param PageBundle|\stdClass $pageBundle
+	 * @param ParserOutput $parserOutput
 	 * @internal
 	 */
 	public static function applyPageBundleDataToParserOutput(
-		PageBundle $pageBundle, ParserOutput $parserOutput
+		$pageBundle, ParserOutput $parserOutput
 	): void {
 		// Overwriting ExtensionData was deprecated in 1.38 but it's safe inside an OutputTransform pipeline,
 		// which is the only place where this should happen right now.
 		$parserOutput->setExtensionData(
 			self::PARSOID_PAGE_BUNDLE_KEY,
 			[
-				'parsoid' => $pageBundle->parsoid,
-				'mw' => $pageBundle->mw,
-				'version' => $pageBundle->version,
-				'headers' => $pageBundle->headers,
-				'contentmodel' => $pageBundle->contentmodel,
+				'parsoid' => $pageBundle->parsoid ?? null,
+				'mw' => $pageBundle->mw ?? null,
+				'version' => $pageBundle->version ?? null,
+				'headers' => $pageBundle->headers ?? null,
+				'contentmodel' => $pageBundle->contentmodel ?? null,
 			]
 		);
 
