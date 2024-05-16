@@ -2112,7 +2112,7 @@ return [
 				'activityUpdateJob' => 'ActivityUpdateJob',
 				'categoryMembershipChange' => 'CategoryMembershipChangeJob',
 				'clearUserWatchlist' => 'ClearUserWatchlistJob',
-				'watchlistExpiry' => 'WatchlistExpiryJob',
+				'watchlistExpiry' => 'MediaWiki\\Watchlist\\WatchlistExpiryJob',
 				'cdnPurge' => 'CdnPurgeJob',
 				'userGroupExpiry' => 'UserGroupExpiryJob',
 				'clearWatchlistNotifications' => 'ClearWatchlistNotificationsJob',
