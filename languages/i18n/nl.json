@@ -2836,7 +2836,7 @@
 	"ipblocklist": "Geblokkeerde gebruikers",
 	"ipblocklist-legend": "Een geblokkeerde gebruiker zoeken",
 	"blocklist-autoblocks": "Automatische blokkades verbergen",
-	"blocklist-userblocks": "Geblokkeerde accounts verbergen",
+	"blocklist-userblocks": "Accountblokkades verbergen",
 	"blocklist-tempblocks": "Tijdelijke blokkades verbergen",
 	"blocklist-indefblocks": "Verberg blokkades met een oneindige loopduur",
 	"blocklist-addressblocks": "Blokkades van één IP-adres verbergen",

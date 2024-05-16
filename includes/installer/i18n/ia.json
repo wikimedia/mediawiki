@@ -71,7 +71,7 @@
 	"config-gd": "Le bibliotheca graphic GD se trova integrate in le systema.\nLe miniaturas de imagines essera activate si tu activa le incargamento de files.",
 	"config-no-scaling": "Non poteva trovar le bibliotheca GD ni ImageMagick.\nLe miniaturas de imagines essera disactivate.",
 	"config-no-uri": "'''Error:''' Non poteva determinar le URI actual.\nInstallation abortate.",
-	"config-no-cli-uri": "'''Attention''': Cammino al script (<code>--scriptpath</code>) non specificate. Le predefinition es usate: <code>$1</code>.",
+	"config-no-cli-uri": "<strong>Attention:</strong> Le percurso al script (<code>--scriptpath</code>) non es specificate. Le percurso predefinite es usate: <code>$1</code>.",
 	"config-using-server": "Es usate le nomine de servitor \"<nowiki>$1</nowiki>\".",
 	"config-using-uri": "Le URL de servitor \"<nowiki>$1$2</nowiki>\" es usate.",
 	"config-uploads-not-safe": "'''Aviso:''' Le directorio predefinite pro files incargate <code>$1</code> es vulnerabile al execution arbitrari de scripts.\nBen que MediaWiki verifica tote le files incargate contra le menacias de securitate, il es altemente recommendate [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security remediar iste vulnerabilitate de securitate] ante de activar le incargamento de files.",

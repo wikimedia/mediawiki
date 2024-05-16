@@ -128,7 +128,8 @@
 			"Ziko",
 			"Zylbath",
 			"לערי ריינהארט",
-			"✓"
+			"✓",
+			"21 little ducks"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -1442,9 +1443,9 @@
 	"right-suppressrevision": "Bestimmte Versionen vor jedem Benutzer verstecken, wiederherstellen und anschauen",
 	"right-viewsuppressed": "Vor jedem Benutzer versteckte Versionen ansehen",
 	"right-suppressionlog": "Private Logbücher ansehen",
-	"right-block": "Sperren oder entsperren von Benutzern für die Bearbeitung",
-	"right-blockemail": "Sperren oder entsperren eines Benutzer für das Senden von E-Mails",
-	"right-hideuser": "Sperren oder entsperren eines Benutzernamen, verstecken oder wieder Anzeigen vor der Öffentlichkeit",
+	"right-block": "Sperren oder Entsperren von Benutzern für die Bearbeitung",
+	"right-blockemail": "Sperren oder Entsperren eines Benutzers für das Senden von E-Mails",
+	"right-hideuser": "Sperren oder Entsperren eines Benutzernamens, Verstecken oder Wiederanzeigen vor der Öffentlichkeit",
 	"right-ipblock-exempt": "Ausnahme von IP-Sperren, automatischen Sperren und Rangesperren",
 	"right-unblockself": "Sich entsperren",
 	"right-protect": "Schutzeinstellungen ändern und kaskadengeschützte Seiten bearbeiten",
