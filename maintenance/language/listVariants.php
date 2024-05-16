@@ -24,6 +24,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Json\FormatJson;
+
 require_once dirname( __DIR__ ) . '/Maintenance.php';
 
 /**

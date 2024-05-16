@@ -34,6 +34,7 @@ use MediaWiki\Config\Config;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Languages\Data\NormalizeAr;
 use MediaWiki\Languages\Data\NormalizeMl;
 use MediaWiki\Languages\LanguageConverterFactory;

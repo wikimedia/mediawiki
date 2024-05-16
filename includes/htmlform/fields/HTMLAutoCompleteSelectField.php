@@ -2,9 +2,9 @@
 
 namespace MediaWiki\HTMLForm\Field;
 
-use FormatJson;
 use InvalidArgumentException;
 use MediaWiki\HTMLForm\HTMLFormField;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Xml\XmlSelect;
 
 /**

@@ -20,9 +20,9 @@
 
 namespace MediaWiki\Utils;
 
-use FormatJson;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

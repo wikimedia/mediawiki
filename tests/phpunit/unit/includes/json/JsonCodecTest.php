@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Tests\Json;
 
-use FormatJson;
 use InvalidArgumentException;
 use JsonException;
 use JsonSerializable;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Json\JsonConstants;
 use MediaWiki\Title\Title;

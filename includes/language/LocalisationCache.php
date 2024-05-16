@@ -23,6 +23,7 @@ use CLDRPluralRuleParser\Evaluator;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use Psr\Log\LoggerInterface;

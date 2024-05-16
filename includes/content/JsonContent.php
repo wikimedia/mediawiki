@@ -9,6 +9,7 @@
  */
 
 use MediaWiki\Html\Html;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Status\Status;
 
 /**

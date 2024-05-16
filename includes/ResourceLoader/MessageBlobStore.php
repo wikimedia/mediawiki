@@ -22,7 +22,7 @@
 
 namespace MediaWiki\ResourceLoader;
 
-use FormatJson;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;

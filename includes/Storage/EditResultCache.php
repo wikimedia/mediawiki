@@ -21,8 +21,8 @@
 namespace MediaWiki\Storage;
 
 use BagOStuff;
-use FormatJson;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\IConnectionProvider;
 

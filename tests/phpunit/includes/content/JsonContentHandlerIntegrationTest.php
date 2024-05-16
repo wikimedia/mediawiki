@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Content\ValidationParams;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Title\Title;

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;

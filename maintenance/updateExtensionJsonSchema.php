@@ -1,6 +1,7 @@
 <?php
 
 use Composer\Semver\VersionParser;
+use MediaWiki\Json\FormatJson;
 
 require_once __DIR__ . '/Maintenance.php';
 

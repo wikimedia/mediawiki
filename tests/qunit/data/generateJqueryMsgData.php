@@ -7,6 +7,7 @@
  * mapping expected inputs to outputs, which is used then run by QUnit.
  */
 
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Languages\LanguageFactory;
 
 require __DIR__ . '/../../../maintenance/Maintenance.php';

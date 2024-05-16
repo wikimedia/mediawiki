@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\ContentSecurityPolicy;

@@ -20,6 +20,7 @@
 
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;

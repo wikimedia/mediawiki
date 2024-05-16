@@ -20,9 +20,9 @@
 
 namespace MediaWiki\Site;
 
-use FormatJson;
 use InvalidArgumentException;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
 use UtfNormal\Validator;
 

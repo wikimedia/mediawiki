@@ -3,8 +3,8 @@
 namespace MediaWiki\Tests\Rest\Handler;
 
 use ApiUsageException;
-use FormatJson;
 use MediaWiki\Config\HashConfig;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;

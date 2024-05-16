@@ -22,9 +22,9 @@
 
 namespace MediaWiki\User;
 
-use FormatJson;
 use IDBAccessObject;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use MWCryptRand;

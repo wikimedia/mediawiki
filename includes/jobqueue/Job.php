@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Http\Telemetry;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\Title;

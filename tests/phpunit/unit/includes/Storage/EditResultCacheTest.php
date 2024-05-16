@@ -3,8 +3,8 @@
 namespace MediaWiki\Tests\Storage;
 
 use BagOStuff;
-use FormatJson;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\EditResultCache;

@@ -21,6 +21,7 @@
  * @ingroup FileBackend
  */
 
+use MediaWiki\Json\FormatJson;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 

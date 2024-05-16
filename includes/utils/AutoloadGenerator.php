@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Json\FormatJson;
+
 /**
  * Accepts a list of files and directories to search for
  * php files and generates $wgAutoloadLocalClasses or $wgAutoloadClasses

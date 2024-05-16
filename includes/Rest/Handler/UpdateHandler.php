@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use FormatJson;
 use IApiMessage;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;

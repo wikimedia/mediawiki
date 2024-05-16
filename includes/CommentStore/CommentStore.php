@@ -20,9 +20,9 @@
 
 namespace MediaWiki\CommentStore;
 
-use FormatJson;
 use InvalidArgumentException;
 use Language;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;
 use OverflowException;

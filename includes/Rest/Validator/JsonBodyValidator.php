@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Rest\Validator;
 
-use FormatJson;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestInterface;
 use Wikimedia\Message\ListParam;

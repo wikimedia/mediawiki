@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Json\FormatJson;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

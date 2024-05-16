@@ -25,7 +25,7 @@
 
 namespace MediaWiki\Html;
 
-use FormatJson;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\ContentSecurityPolicy;

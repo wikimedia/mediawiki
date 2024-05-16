@@ -20,6 +20,8 @@
  * @file
  * @ingroup FileBackend
  */
+
+use MediaWiki\Json\FormatJson;
 use Psr\Log\LoggerInterface;
 use Wikimedia\RequestTimeout\TimeoutException;
 

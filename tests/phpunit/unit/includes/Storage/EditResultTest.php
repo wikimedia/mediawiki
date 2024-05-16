@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Storage;
 
-use FormatJson;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Storage\EditResult;
 use MediaWikiUnitTestCase;
 

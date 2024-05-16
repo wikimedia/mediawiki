@@ -2,13 +2,13 @@
 
 namespace MediaWiki\HTMLForm;
 
-use FormatJson;
 use HtmlArmor;
 use HTMLCheckField;
 use HTMLFormFieldCloner;
 use InvalidArgumentException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Message\Message;

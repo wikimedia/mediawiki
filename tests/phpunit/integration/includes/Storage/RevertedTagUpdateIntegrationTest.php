@@ -3,8 +3,8 @@
 namespace MediaWiki\Tests\Storage;
 
 use ChangeTags;
-use FormatJson;
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use RecentChange;

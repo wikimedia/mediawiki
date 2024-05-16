@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 
 require_once __DIR__ . '/../Maintenance.php';

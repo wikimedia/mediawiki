@@ -19,6 +19,8 @@
  * @file
  */
 
+use MediaWiki\Json\FormatJson;
+
 /**
  * Format a recent change notification using JSON (https://www.json.org).
  *

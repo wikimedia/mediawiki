@@ -25,6 +25,7 @@ use MediaWiki\Config\Config;
 use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;

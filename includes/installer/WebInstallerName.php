@@ -22,8 +22,8 @@
 
 namespace MediaWiki\Installer;
 
-use FormatJson;
 use MediaWiki\Config\HashConfig;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;

@@ -4,10 +4,10 @@ namespace MediaWiki\Tests\Storage;
 
 use ChangeTags;
 use Content;
-use FormatJson;
 use LogicException;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\RenderedRevision;

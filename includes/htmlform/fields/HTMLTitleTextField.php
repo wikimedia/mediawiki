@@ -2,8 +2,8 @@
 
 namespace MediaWiki\HTMLForm\Field;
 
-use FormatJson;
 use InvalidArgumentException;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;

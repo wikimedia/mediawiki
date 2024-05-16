@@ -2,11 +2,11 @@
 
 namespace MediaWiki\HTMLForm\Field;
 
-use FormatJson;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\HTMLForm\HTMLFormFieldRequiredOptionsException;
 use MediaWiki\HTMLForm\HTMLNestedFilterable;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Xml\Xml;
 

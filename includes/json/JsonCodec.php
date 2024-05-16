@@ -21,7 +21,6 @@
 
 namespace MediaWiki\Json;
 
-use FormatJson;
 use JsonException;
 use JsonSerializable;
 use MediaWiki\Parser\ParserOutput;
