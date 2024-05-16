@@ -19,6 +19,10 @@
  * @file
  */
 
+namespace MediaWiki\RCFeed;
+
+use RecentChange;
+
 /**
  * Interface for RC feed formatters
  *
@@ -38,3 +42,5 @@ interface RCFeedFormatter {
 	 */
 	public function getLine( array $feed, RecentChange $rc, $actionComment );
 }
+/** @deprecated class alias since 1.43 */
+class_alias( RCFeedFormatter::class, 'RCFeedFormatter' );
