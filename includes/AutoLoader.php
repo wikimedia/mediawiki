@@ -70,6 +70,7 @@ class AutoLoader {
 		'MediaWiki\\Parser\\' => __DIR__ . '/parser/',
 		'MediaWiki\\PoolCounter\\' => __DIR__ . '/poolcounter/',
 		'MediaWiki\\Preferences\\' => __DIR__ . '/preferences/',
+		'MediaWiki\\RCFeed\\' => __DIR__ . '/rcfeed/',
 		'MediaWiki\\Search\\' => __DIR__ . '/search/',
 		'MediaWiki\\Search\\SearchWidgets\\' => __DIR__ . '/search/searchwidgets/',
 		'MediaWiki\\Session\\' => __DIR__ . '/session/',
