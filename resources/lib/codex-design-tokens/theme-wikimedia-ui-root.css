@@ -1,5 +1,5 @@
 /**
- * Codex Design Tokens v1.5.0
+ * Codex Design Tokens v1.6.0
  * Design System for Wikimedia
  * See https://doc.wikimedia.org/codex/latest/design-tokens/overview.html
  */
@@ -22,6 +22,7 @@
   --color-destructive--active: #b32424;
   --color-destructive--focus: #36c;
   --color-visited: #6b4ba1; /* 'Visited' color. In combination with progressive. Used for default links. */
+  --color-destructive--visited: #a55858; /* Red link 'Visited' color. Used for visited red links. */
   --color-error: #d73333;
   --color-warning: #edab00; /* Note, this is only meant for warning icon for contrast reasons. */
   --color-success: #14866d; /* Note, this needs to use a tone darker than Red and Yellow for contrast reasons with background White. */

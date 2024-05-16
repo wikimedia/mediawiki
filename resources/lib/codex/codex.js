@@ -50,7 +50,7 @@ var __async = (__this, __arguments, generator) => {
   });
 };
 import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, Comment, warn, watch, withKeys, renderSlot, resolveComponent, createElementVNode, createBlock, resolveDynamicComponent, withCtx, withModifiers, createVNode, Fragment, renderList, createTextVNode, Transition, normalizeStyle, inject, toRef, mergeProps, getCurrentInstance, withDirectives, vModelCheckbox, createSlots, nextTick, vModelDynamic, onUnmounted, vShow, unref, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, Teleport, toRefs, provide, vModelRadio, vModelText } from "vue";
-const M = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', S = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', s1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', n1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', A1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', k1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', c0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', p = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', v0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', g2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', S2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', K2 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', m5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', M3 = M, S3 = S, Y3 = s1, X3 = n1, i4 = A1, m4 = k1, P4 = c0, Y4 = {
+const M = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', S = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', s1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', n1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', M1 = '<path d="M10 15 2 5h16z"/>', A1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', k1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', c0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', p = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', v0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', g2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', S2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', K2 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', t5 = '<path d="M10 0 3 8h14zm0 18-7-8h14z"/>', m5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', Q5 = '<path d="m10 5 8 10H2z"/>', M3 = M, S3 = S, Y3 = s1, X3 = n1, l4 = M1, i4 = A1, m4 = k1, P4 = c0, Y4 = {
   langCodeMap: {
     ar: p
   },
@@ -61,7 +61,7 @@ const M = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 
 }, v7 = {
   ltr: S2,
   shouldFlip: true
-}, I7 = K2, N7 = m5;
+}, I7 = K2, q7 = t5, N7 = m5, g8 = Q5;
 function E8(c, s, h) {
   if (typeof c == "string" || "path" in c)
     return c;
@@ -156,6 +156,13 @@ const ValidationStatusTypes = [
   "error",
   "success"
 ];
+const TableTextAlignments = [
+  "start",
+  "center",
+  "end",
+  // Numbers should be aligned to the right in all reading directionalities.
+  "number"
+];
 const DebounceInterval = 120;
 const PendingDelay = 500;
 const MenuFooterValue = "cdx-menu-footer-item";
@@ -166,8 +173,9 @@ const FieldDescriptionIdKey = Symbol("CdxFieldDescriptionId");
 const FieldStatusKey = Symbol("CdxFieldStatus");
 const DisabledKey = Symbol("CdxDisabled");
 const NoInvertClass = "".concat(LibraryPrefix, "-no-invert");
+const TableRowIdentifier = Symbol("CdxTableRowIdentifier");
 const iconSizeValidator = makeStringTypeValidator(IconSizes);
-const _sfc_main$u = defineComponent({
+const _sfc_main$v = defineComponent({
   name: "CdxIcon",
   props: {
     /** The SVG path or an object containing that path plus other data. */
@@ -256,35 +264,47 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const _hoisted_1$s = ["aria-hidden"];
-const _hoisted_2$k = { key: 0 };
-const _hoisted_3$a = ["innerHTML"];
-const _hoisted_4$7 = ["d"];
-function _sfc_render$u(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("span", {
-    ref: "rootElement",
-    class: normalizeClass(["cdx-icon", _ctx.rootClasses])
-  }, [
-    (openBlock(), createElementBlock("svg", {
-      xmlns: "http://www.w3.org/2000/svg",
-      "xmlns:xlink": "http://www.w3.org/1999/xlink",
-      width: "20",
-      height: "20",
-      viewBox: "0 0 20 20",
-      "aria-hidden": _ctx.iconLabel ? void 0 : true
-    }, [
-      _ctx.iconLabel ? (openBlock(), createElementBlock("title", _hoisted_2$k, toDisplayString(_ctx.iconLabel), 1)) : createCommentVNode("", true),
-      _ctx.iconSvg ? (openBlock(), createElementBlock("g", {
-        key: 1,
-        innerHTML: _ctx.iconSvg
-      }, null, 8, _hoisted_3$a)) : (openBlock(), createElementBlock("path", {
-        key: 2,
-        d: _ctx.iconPath
-      }, null, 8, _hoisted_4$7))
-    ], 8, _hoisted_1$s))
-  ], 2);
+const _hoisted_1$t = ["aria-hidden"];
+const _hoisted_2$l = { key: 0 };
+const _hoisted_3$b = ["innerHTML"];
+const _hoisted_4$8 = ["d"];
+function _sfc_render$v(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock(
+    "span",
+    {
+      ref: "rootElement",
+      class: normalizeClass(["cdx-icon", _ctx.rootClasses])
+    },
+    [
+      (openBlock(), createElementBlock("svg", {
+        xmlns: "http://www.w3.org/2000/svg",
+        "xmlns:xlink": "http://www.w3.org/1999/xlink",
+        width: "20",
+        height: "20",
+        viewBox: "0 0 20 20",
+        "aria-hidden": _ctx.iconLabel ? void 0 : true
+      }, [
+        _ctx.iconLabel ? (openBlock(), createElementBlock(
+          "title",
+          _hoisted_2$l,
+          toDisplayString(_ctx.iconLabel),
+          1
+          /* TEXT */
+        )) : createCommentVNode("v-if", true),
+        _ctx.iconSvg ? (openBlock(), createElementBlock("g", {
+          key: 1,
+          innerHTML: _ctx.iconSvg
+        }, null, 8, _hoisted_3$b)) : (openBlock(), createElementBlock("path", {
+          key: 2,
+          d: _ctx.iconPath
+        }, null, 8, _hoisted_4$8))
+      ], 8, _hoisted_1$t))
+    ],
+    2
+    /* CLASS */
+  );
 }
-const CdxIcon = /* @__PURE__ */ _export_sfc(_sfc_main$u, [["render", _sfc_render$u]]);
+const CdxIcon = /* @__PURE__ */ _export_sfc(_sfc_main$v, [["render", _sfc_render$v]]);
 function flattenSlotContents(slotContents) {
   const flattened = [];
   for (const node of slotContents) {
@@ -359,7 +379,7 @@ function useIconOnlyButton(slot, attrs, componentName) {
 const buttonActionValidator = makeStringTypeValidator(ButtonActions);
 const buttonWeightValidator = makeStringTypeValidator(ButtonWeights);
 const buttonSizeValidator = makeStringTypeValidator(ButtonSizes);
-const _sfc_main$t = defineComponent({
+const _sfc_main$u = defineComponent({
   name: "CdxButton",
   props: {
     /**
@@ -422,18 +442,24 @@ const _sfc_main$t = defineComponent({
   }
 });
 const Button_vue_vue_type_style_index_0_lang = "";
-function _sfc_render$t(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("button", {
-    class: normalizeClass(["cdx-button", _ctx.rootClasses]),
-    onClick: _cache[0] || (_cache[0] = (...args) => _ctx.onClick && _ctx.onClick(...args)),
-    onKeydown: _cache[1] || (_cache[1] = withKeys(($event) => _ctx.setActive(true), ["space", "enter"])),
-    onKeyup: _cache[2] || (_cache[2] = withKeys(($event) => _ctx.setActive(false), ["space", "enter"]))
-  }, [
-    renderSlot(_ctx.$slots, "default")
-  ], 34);
+function _sfc_render$u(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock(
+    "button",
+    {
+      class: normalizeClass(["cdx-button", _ctx.rootClasses]),
+      onClick: _cache[0] || (_cache[0] = (...args) => _ctx.onClick && _ctx.onClick(...args)),
+      onKeydown: _cache[1] || (_cache[1] = withKeys(($event) => _ctx.setActive(true), ["space", "enter"])),
+      onKeyup: _cache[2] || (_cache[2] = withKeys(($event) => _ctx.setActive(false), ["space", "enter"]))
+    },
+    [
+      renderSlot(_ctx.$slots, "default")
+    ],
+    34
+    /* CLASS, NEED_HYDRATION */
+  );
 }
-const CdxButton = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["render", _sfc_render$t]]);
-const _sfc_main$s = defineComponent({
+const CdxButton = /* @__PURE__ */ _export_sfc(_sfc_main$u, [["render", _sfc_render$u]]);
+const _sfc_main$t = defineComponent({
   name: "CdxAccordion",
   components: { CdxButton, CdxIcon },
   props: {
@@ -502,55 +528,63 @@ const _sfc_main$s = defineComponent({
   }
 });
 const Accordion_vue_vue_type_style_index_0_lang = "";
-const _hoisted_1$r = { class: "cdx-accordion__header__title" };
-const _hoisted_2$j = { class: "cdx-accordion__header__description" };
-function _sfc_render$s(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$s = { class: "cdx-accordion__header__title" };
+const _hoisted_2$k = { class: "cdx-accordion__header__description" };
+function _sfc_render$t(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_button = resolveComponent("cdx-button");
-  return openBlock(), createElementBlock("details", {
-    class: normalizeClass(["cdx-accordion", _ctx.rootClasses]),
-    onToggle: _cache[1] || (_cache[1] = (...args) => _ctx.onToggle && _ctx.onToggle(...args))
-  }, [
-    createElementVNode("summary", null, [
-      (openBlock(), createBlock(resolveDynamicComponent(_ctx.headingLevel), { class: "cdx-accordion__header" }, {
-        default: withCtx(() => [
-          createElementVNode("span", _hoisted_1$r, [
-            renderSlot(_ctx.$slots, "title")
+  return openBlock(), createElementBlock(
+    "details",
+    {
+      class: normalizeClass(["cdx-accordion", _ctx.rootClasses]),
+      onToggle: _cache[1] || (_cache[1] = (...args) => _ctx.onToggle && _ctx.onToggle(...args))
+    },
+    [
+      createElementVNode("summary", null, [
+        (openBlock(), createBlock(resolveDynamicComponent(_ctx.headingLevel), { class: "cdx-accordion__header" }, {
+          default: withCtx(() => [
+            createElementVNode("span", _hoisted_1$s, [
+              renderSlot(_ctx.$slots, "title")
+            ]),
+            createElementVNode("span", _hoisted_2$k, [
+              renderSlot(_ctx.$slots, "description")
+            ])
           ]),
-          createElementVNode("span", _hoisted_2$j, [
-            renderSlot(_ctx.$slots, "description")
-          ])
-        ]),
-        _: 3
-      })),
-      _ctx.shouldShowActionButton ? (openBlock(), createBlock(_component_cdx_button, {
-        key: 0,
-        class: "cdx-accordion__action",
-        "aria-label": _ctx.actionButtonLabel,
-        type: "button",
-        weight: "quiet",
-        onClick: withModifiers(_ctx.emitActionButtonClick, ["stop"])
-      }, {
-        default: withCtx(() => [
-          createVNode(_component_cdx_icon, {
-            icon: _ctx.actionIcon,
-            "icon-label": _ctx.actionButtonLabel,
-            size: "medium"
-          }, null, 8, ["icon", "icon-label"])
-        ]),
-        _: 1
-      }, 8, ["aria-label", "onClick"])) : createCommentVNode("", true)
-    ]),
-    createElementVNode("div", {
-      class: "cdx-accordion__content",
-      onClick: _cache[0] || (_cache[0] = withModifiers(() => {
-      }, ["stop"]))
-    }, [
-      renderSlot(_ctx.$slots, "default")
-    ])
-  ], 34);
+          _: 3
+          /* FORWARDED */
+        })),
+        _ctx.shouldShowActionButton ? (openBlock(), createBlock(_component_cdx_button, {
+          key: 0,
+          class: "cdx-accordion__action",
+          "aria-label": _ctx.actionButtonLabel,
+          type: "button",
+          weight: "quiet",
+          onClick: withModifiers(_ctx.emitActionButtonClick, ["stop"])
+        }, {
+          default: withCtx(() => [
+            createVNode(_component_cdx_icon, {
+              icon: _ctx.actionIcon,
+              "icon-label": _ctx.actionButtonLabel,
+              size: "medium"
+            }, null, 8, ["icon", "icon-label"])
+          ]),
+          _: 1
+          /* STABLE */
+        }, 8, ["aria-label", "onClick"])) : createCommentVNode("v-if", true)
+      ]),
+      createElementVNode("div", {
+        class: "cdx-accordion__content",
+        onClick: _cache[0] || (_cache[0] = withModifiers(() => {
+        }, ["stop"]))
+      }, [
+        renderSlot(_ctx.$slots, "default")
+      ])
+    ],
+    34
+    /* CLASS, NEED_HYDRATION */
+  );
 }
-const Accordion = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["render", _sfc_render$s]]);
+const Accordion = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["render", _sfc_render$t]]);
 function getButtonLabel(button) {
   if (button.label === void 0) {
     return button.value;
@@ -560,7 +594,7 @@ function getButtonLabel(button) {
   }
   return button.label;
 }
-const _sfc_main$r = defineComponent({
+const _sfc_main$s = defineComponent({
   name: "CdxButtonGroup",
   components: {
     CdxButton,
@@ -601,34 +635,45 @@ const _sfc_main$r = defineComponent({
   }
 });
 const ButtonGroup_vue_vue_type_style_index_0_lang = "";
-const _hoisted_1$q = { class: "cdx-button-group" };
-function _sfc_render$r(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$r = { class: "cdx-button-group" };
+function _sfc_render$s(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_button = resolveComponent("cdx-button");
-  return openBlock(), createElementBlock("div", _hoisted_1$q, [
-    (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.buttons, (button) => {
-      return openBlock(), createBlock(_component_cdx_button, {
-        key: button.value,
-        disabled: button.disabled || _ctx.disabled,
-        "aria-label": button.ariaLabel,
-        onClick: ($event) => _ctx.$emit("click", button.value)
-      }, {
-        default: withCtx(() => [
-          renderSlot(_ctx.$slots, "default", { button }, () => [
-            button.icon ? (openBlock(), createBlock(_component_cdx_icon, {
-              key: 0,
-              icon: button.icon
-            }, null, 8, ["icon"])) : createCommentVNode("", true),
-            createTextVNode(" " + toDisplayString(_ctx.getButtonLabel(button)), 1)
-          ])
-        ]),
-        _: 2
-      }, 1032, ["disabled", "aria-label", "onClick"]);
-    }), 128))
+  return openBlock(), createElementBlock("div", _hoisted_1$r, [
+    (openBlock(true), createElementBlock(
+      Fragment,
+      null,
+      renderList(_ctx.buttons, (button) => {
+        return openBlock(), createBlock(_component_cdx_button, {
+          key: button.value,
+          disabled: button.disabled || _ctx.disabled,
+          "aria-label": button.ariaLabel,
+          onClick: ($event) => _ctx.$emit("click", button.value)
+        }, {
+          default: withCtx(() => [
+            renderSlot(_ctx.$slots, "default", { button }, () => [
+              button.icon ? (openBlock(), createBlock(_component_cdx_icon, {
+                key: 0,
+                icon: button.icon
+              }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
+              createTextVNode(
+                " " + toDisplayString(_ctx.getButtonLabel(button)),
+                1
+                /* TEXT */
+              )
+            ])
+          ]),
+          _: 2
+          /* DYNAMIC */
+        }, 1032, ["disabled", "aria-label", "onClick"]);
+      }),
+      128
+      /* KEYED_FRAGMENT */
+    ))
   ]);
 }
-const ButtonGroup = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["render", _sfc_render$r]]);
-const _sfc_main$q = defineComponent({
+const ButtonGroup = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["render", _sfc_render$s]]);
+const _sfc_main$r = defineComponent({
   name: "CdxThumbnail",
   components: { CdxIcon },
   props: {
@@ -676,34 +721,41 @@ const _sfc_main$q = defineComponent({
   }
 });
 const Thumbnail_vue_vue_type_style_index_0_lang = "";
-const _hoisted_1$p = { class: "cdx-thumbnail" };
-const _hoisted_2$i = {
+const _hoisted_1$q = { class: "cdx-thumbnail" };
+const _hoisted_2$j = {
   key: 0,
   class: "cdx-thumbnail__placeholder"
 };
-function _sfc_render$q(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$r(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
-  return openBlock(), createElementBlock("span", _hoisted_1$p, [
-    !_ctx.thumbnailLoaded ? (openBlock(), createElementBlock("span", _hoisted_2$i, [
+  return openBlock(), createElementBlock("span", _hoisted_1$q, [
+    !_ctx.thumbnailLoaded ? (openBlock(), createElementBlock("span", _hoisted_2$j, [
       createVNode(_component_cdx_icon, {
         icon: _ctx.placeholderIcon,
         class: "cdx-thumbnail__placeholder__icon--vue"
       }, null, 8, ["icon"])
-    ])) : createCommentVNode("", true),
+    ])) : createCommentVNode("v-if", true),
     createVNode(Transition, { name: "cdx-thumbnail__image" }, {
       default: withCtx(() => [
-        _ctx.thumbnailLoaded ? (openBlock(), createElementBlock("span", {
-          key: 0,
-          style: normalizeStyle(_ctx.thumbnailStyle),
-          class: normalizeClass([_ctx.NoInvertClass, "cdx-thumbnail__image"])
-        }, null, 6)) : createCommentVNode("", true)
+        _ctx.thumbnailLoaded ? (openBlock(), createElementBlock(
+          "span",
+          {
+            key: 0,
+            style: normalizeStyle(_ctx.thumbnailStyle),
+            class: normalizeClass([_ctx.NoInvertClass, "cdx-thumbnail__image"])
+          },
+          null,
+          6
+          /* CLASS, STYLE */
+        )) : createCommentVNode("v-if", true)
       ]),
       _: 1
+      /* STABLE */
     })
   ]);
 }
-const CdxThumbnail = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["render", _sfc_render$q]]);
-const _sfc_main$p = defineComponent({
+const CdxThumbnail = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["render", _sfc_render$r]]);
+const _sfc_main$q = defineComponent({
   name: "CdxCard",
   components: { CdxIcon, CdxThumbnail },
   props: {
@@ -768,17 +820,17 @@ const _sfc_main$p = defineComponent({
   }
 });
 const Card_vue_vue_type_style_index_0_lang = "";
-const _hoisted_1$o = { class: "cdx-card__text" };
-const _hoisted_2$h = { class: "cdx-card__text__title" };
-const _hoisted_3$9 = {
+const _hoisted_1$p = { class: "cdx-card__text" };
+const _hoisted_2$i = { class: "cdx-card__text__title" };
+const _hoisted_3$a = {
   key: 0,
   class: "cdx-card__text__description"
 };
-const _hoisted_4$6 = {
+const _hoisted_4$7 = {
   key: 1,
   class: "cdx-card__text__supporting-text"
 };
-function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$q(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_thumbnail = resolveComponent("cdx-thumbnail");
   const _component_cdx_icon = resolveComponent("cdx-icon");
   return openBlock(), createBlock(resolveDynamicComponent(_ctx.contentTag), {
@@ -799,23 +851,24 @@ function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
         key: 1,
         icon: _ctx.icon,
         class: "cdx-card__icon"
-      }, null, 8, ["icon"])) : createCommentVNode("", true),
-      createElementVNode("span", _hoisted_1$o, [
-        createElementVNode("span", _hoisted_2$h, [
+      }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
+      createElementVNode("span", _hoisted_1$p, [
+        createElementVNode("span", _hoisted_2$i, [
           renderSlot(_ctx.$slots, "title")
         ]),
-        _ctx.$slots.description ? (openBlock(), createElementBlock("span", _hoisted_3$9, [
+        _ctx.$slots.description ? (openBlock(), createElementBlock("span", _hoisted_3$a, [
           renderSlot(_ctx.$slots, "description")
-        ])) : createCommentVNode("", true),
-        _ctx.$slots["supporting-text"] ? (openBlock(), createElementBlock("span", _hoisted_4$6, [
+        ])) : createCommentVNode("v-if", true),
+        _ctx.$slots["supporting-text"] ? (openBlock(), createElementBlock("span", _hoisted_4$7, [
           renderSlot(_ctx.$slots, "supporting-text")
-        ])) : createCommentVNode("", true)
+        ])) : createCommentVNode("v-if", true)
       ])
     ]),
     _: 3
+    /* FORWARDED */
   }, 8, ["href", "class"]);
 }
-const Card = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["render", _sfc_render$p]]);
+const Card = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["render", _sfc_render$q]]);
 function useComputedDisabled(disabledProp) {
   const providedDisabled = inject(DisabledKey, ref(false));
   return computed(() => providedDisabled.value || disabledProp.value);
@@ -867,7 +920,7 @@ function useSplitAttributes(attrs, internalClasses = computed(() => ({}))) {
     otherAttrs
   };
 }
-const _sfc_main$o = defineComponent({
+const _sfc_main$p = defineComponent({
   name: "CdxLabel",
   components: { CdxIcon },
   /**
@@ -958,73 +1011,97 @@ const _sfc_main$o = defineComponent({
   }
 });
 const Label_vue_vue_type_style_index_0_lang = "";
-const _hoisted_1$n = ["for"];
-const _hoisted_2$g = { class: "cdx-label__label__text" };
-const _hoisted_3$8 = {
+const _hoisted_1$o = ["for"];
+const _hoisted_2$h = { class: "cdx-label__label__text" };
+const _hoisted_3$9 = {
   key: 1,
   class: "cdx-label__label__optional-flag"
 };
-const _hoisted_4$5 = ["id"];
-const _hoisted_5$4 = { class: "cdx-label__label" };
-const _hoisted_6$4 = { class: "cdx-label__label__text" };
-const _hoisted_7$1 = {
+const _hoisted_4$6 = ["id"];
+const _hoisted_5$5 = { class: "cdx-label__label" };
+const _hoisted_6$5 = { class: "cdx-label__label__text" };
+const _hoisted_7$2 = {
   key: 1,
   class: "cdx-label__label__optional-flag"
 };
-const _hoisted_8 = {
+const _hoisted_8$1 = {
   key: 0,
   class: "cdx-label__description"
 };
-function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
-  return !_ctx.isLegend ? (openBlock(), createElementBlock("div", {
-    key: 0,
-    class: normalizeClass(["cdx-label", _ctx.rootClasses]),
-    style: normalizeStyle(_ctx.rootStyle)
-  }, [
-    createElementVNode("label", mergeProps({
-      class: "cdx-label__label",
-      for: _ctx.inputId ? _ctx.inputId : void 0
-    }, _ctx.otherAttrs), [
-      _ctx.icon ? (openBlock(), createBlock(_component_cdx_icon, {
-        key: 0,
-        icon: _ctx.icon,
-        class: "cdx-label__label__icon"
-      }, null, 8, ["icon"])) : createCommentVNode("", true),
-      createElementVNode("span", _hoisted_2$g, [
-        renderSlot(_ctx.$slots, "default")
-      ]),
-      _ctx.optionalFlag ? (openBlock(), createElementBlock("span", _hoisted_3$8, toDisplayString(" ") + " " + toDisplayString(_ctx.optionalFlag), 1)) : createCommentVNode("", true)
-    ], 16, _hoisted_1$n),
-    _ctx.$slots.description && _ctx.$slots.description().length > 0 ? (openBlock(), createElementBlock("span", {
+  return !_ctx.isLegend ? (openBlock(), createElementBlock(
+    "div",
+    {
       key: 0,
-      id: _ctx.descriptionId || void 0,
-      class: "cdx-label__description"
-    }, [
-      renderSlot(_ctx.$slots, "description")
-    ], 8, _hoisted_4$5)) : createCommentVNode("", true)
-  ], 6)) : (openBlock(), createElementBlock("legend", mergeProps({
-    key: 1,
-    class: ["cdx-label", _ctx.rootClasses],
-    style: _ctx.rootStyle
-  }, _ctx.otherAttrs), [
-    createElementVNode("span", _hoisted_5$4, [
-      _ctx.icon ? (openBlock(), createBlock(_component_cdx_icon, {
+      class: normalizeClass(["cdx-label", _ctx.rootClasses]),
+      style: normalizeStyle(_ctx.rootStyle)
+    },
+    [
+      createElementVNode("label", mergeProps({
+        class: "cdx-label__label",
+        for: _ctx.inputId ? _ctx.inputId : void 0
+      }, _ctx.otherAttrs), [
+        _ctx.icon ? (openBlock(), createBlock(_component_cdx_icon, {
+          key: 0,
+          icon: _ctx.icon,
+          class: "cdx-label__label__icon"
+        }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
+        createElementVNode("span", _hoisted_2$h, [
+          renderSlot(_ctx.$slots, "default")
+        ]),
+        _ctx.optionalFlag ? (openBlock(), createElementBlock(
+          "span",
+          _hoisted_3$9,
+          toDisplayString(" ") + " " + toDisplayString(_ctx.optionalFlag),
+          1
+          /* TEXT */
+        )) : createCommentVNode("v-if", true)
+      ], 16, _hoisted_1$o),
+      _ctx.$slots.description && _ctx.$slots.description().length > 0 ? (openBlock(), createElementBlock("span", {
         key: 0,
-        icon: _ctx.icon,
-        class: "cdx-label__label__icon"
-      }, null, 8, ["icon"])) : createCommentVNode("", true),
-      createElementVNode("span", _hoisted_6$4, [
-        renderSlot(_ctx.$slots, "default")
+        id: _ctx.descriptionId || void 0,
+        class: "cdx-label__description"
+      }, [
+        renderSlot(_ctx.$slots, "description")
+      ], 8, _hoisted_4$6)) : createCommentVNode("v-if", true)
+    ],
+    6
+    /* CLASS, STYLE */
+  )) : (openBlock(), createElementBlock(
+    "legend",
+    mergeProps({
+      key: 1,
+      class: ["cdx-label", _ctx.rootClasses],
+      style: _ctx.rootStyle
+    }, _ctx.otherAttrs),
+    [
+      createElementVNode("span", _hoisted_5$5, [
+        _ctx.icon ? (openBlock(), createBlock(_component_cdx_icon, {
+          key: 0,
+          icon: _ctx.icon,
+          class: "cdx-label__label__icon"
+        }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
+        createElementVNode("span", _hoisted_6$5, [
+          renderSlot(_ctx.$slots, "default")
+        ]),
+        _ctx.optionalFlag ? (openBlock(), createElementBlock(
+          "span",
+          _hoisted_7$2,
+          toDisplayString(" ") + " " + toDisplayString(_ctx.optionalFlag),
+          1
+          /* TEXT */
+        )) : createCommentVNode("v-if", true)
       ]),
-      _ctx.optionalFlag ? (openBlock(), createElementBlock("span", _hoisted_7$1, toDisplayString(" ") + " " + toDisplayString(_ctx.optionalFlag), 1)) : createCommentVNode("", true)
-    ]),
-    _ctx.$slots.description && _ctx.$slots.description().length > 0 ? (openBlock(), createElementBlock("span", _hoisted_8, [
-      renderSlot(_ctx.$slots, "description")
-    ])) : createCommentVNode("", true)
-  ], 16));
+      _ctx.$slots.description && _ctx.$slots.description().length > 0 ? (openBlock(), createElementBlock("span", _hoisted_8$1, [
+        renderSlot(_ctx.$slots, "description")
+      ])) : createCommentVNode("v-if", true)
+    ],
+    16
+    /* FULL_PROPS */
+  ));
 }
-const CdxLabel = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["render", _sfc_render$o]]);
+const CdxLabel = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["render", _sfc_render$p]]);
 function useLabelChecker(slot, attrs, componentName) {
   useWarnOnce(
     () => useSlotContents(slot).length === 0 && !(attrs == null ? void 0 : attrs["aria-label"]) && !(attrs == null ? void 0 : attrs["aria-labelledby"]),
@@ -1055,7 +1132,7 @@ function useGeneratedId(identifier) {
   }
 }
 const statusValidator$8 = makeStringTypeValidator(ValidationStatusTypes);
-const _sfc_main$n = defineComponent({
+const _sfc_main$o = defineComponent({
   name: "CdxCheckbox",
   components: { CdxLabel },
   props: {
@@ -1076,6 +1153,13 @@ const _sfc_main$n = defineComponent({
     inputValue: {
       type: [String, Number, Boolean],
       default: false
+    },
+    /**
+     * HTML "name" attribute to assign to the input.
+     */
+    name: {
+      type: String,
+      default: null
     },
     /**
      * Whether the disabled attribute should be added to the input.
@@ -1161,52 +1245,66 @@ const _sfc_main$n = defineComponent({
   }
 });
 const Checkbox_vue_vue_type_style_index_0_lang = "";
-const _hoisted_1$m = ["id", "aria-describedby", "value", "disabled", ".indeterminate"];
-const _hoisted_2$f = /* @__PURE__ */ createElementVNode("span", { class: "cdx-checkbox__icon" }, null, -1);
-function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$n = ["id", "aria-describedby", "value", "name", "disabled", ".indeterminate"];
+const _hoisted_2$g = /* @__PURE__ */ createElementVNode(
+  "span",
+  { class: "cdx-checkbox__icon" },
+  null,
+  -1
+  /* HOISTED */
+);
+function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_label = resolveComponent("cdx-label");
-  return openBlock(), createElementBlock("span", {
-    class: normalizeClass(["cdx-checkbox", _ctx.rootClasses])
-  }, [
-    withDirectives(createElementVNode("input", {
-      id: _ctx.checkboxId,
-      ref: "input",
-      "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.wrappedModel = $event),
-      class: "cdx-checkbox__input",
-      type: "checkbox",
-      "aria-describedby": _ctx.$slots.description && _ctx.$slots.description().length > 0 ? _ctx.descriptionId : void 0,
-      value: _ctx.inputValue,
-      disabled: _ctx.computedDisabled,
-      ".indeterminate": _ctx.indeterminate
-    }, null, 40, _hoisted_1$m), [
-      [vModelCheckbox, _ctx.wrappedModel]
-    ]),
-    _hoisted_2$f,
-    _ctx.$slots.default && _ctx.$slots.default().length ? (openBlock(), createBlock(_component_cdx_label, {
-      key: 0,
-      class: "cdx-checkbox__label",
-      "input-id": _ctx.checkboxId,
-      "description-id": _ctx.$slots.description && _ctx.$slots.description().length > 0 ? _ctx.descriptionId : void 0,
-      disabled: _ctx.computedDisabled,
-      "visually-hidden": _ctx.hideLabel
-    }, createSlots({
-      default: withCtx(() => [
-        renderSlot(_ctx.$slots, "default")
+  return openBlock(), createElementBlock(
+    "span",
+    {
+      class: normalizeClass(["cdx-checkbox", _ctx.rootClasses])
+    },
+    [
+      withDirectives(createElementVNode("input", {
+        id: _ctx.checkboxId,
+        ref: "input",
+        "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.wrappedModel = $event),
+        class: "cdx-checkbox__input",
+        type: "checkbox",
+        "aria-describedby": _ctx.$slots.description && _ctx.$slots.description().length > 0 ? _ctx.descriptionId : void 0,
+        value: _ctx.inputValue,
+        name: _ctx.name,
+        disabled: _ctx.computedDisabled,
+        ".indeterminate": _ctx.indeterminate
+      }, null, 40, _hoisted_1$n), [
+        [vModelCheckbox, _ctx.wrappedModel]
       ]),
-      _: 2
-    }, [
-      _ctx.$slots.description && _ctx.$slots.description().length > 0 ? {
-        name: "description",
-        fn: withCtx(() => [
-          renderSlot(_ctx.$slots, "description")
+      _hoisted_2$g,
+      _ctx.$slots.default && _ctx.$slots.default().length ? (openBlock(), createBlock(_component_cdx_label, {
+        key: 0,
+        class: "cdx-checkbox__label",
+        "input-id": _ctx.checkboxId,
+        "description-id": _ctx.$slots.description && _ctx.$slots.description().length > 0 ? _ctx.descriptionId : void 0,
+        disabled: _ctx.computedDisabled,
+        "visually-hidden": _ctx.hideLabel
+      }, createSlots({
+        default: withCtx(() => [
+          renderSlot(_ctx.$slots, "default")
         ]),
-        key: "0"
-      } : void 0
-    ]), 1032, ["input-id", "description-id", "disabled", "visually-hidden"])) : createCommentVNode("", true)
-  ], 2);
+        _: 2
+        /* DYNAMIC */
+      }, [
+        _ctx.$slots.description && _ctx.$slots.description().length > 0 ? {
+          name: "description",
+          fn: withCtx(() => [
+            renderSlot(_ctx.$slots, "description")
+          ]),
+          key: "0"
+        } : void 0
+      ]), 1032, ["input-id", "description-id", "disabled", "visually-hidden"])) : createCommentVNode("v-if", true)
+    ],
+    2
+    /* CLASS */
+  );
 }
-const Checkbox = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["render", _sfc_render$n]]);
-const _sfc_main$m = defineComponent({
+const CdxCheckbox = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["render", _sfc_render$o]]);
+const _sfc_main$n = defineComponent({
   name: "CdxInputChip",
   components: {
     CdxButton,
@@ -1318,9 +1416,9 @@ const _sfc_main$m = defineComponent({
   }
 });
 const InputChip_vue_vue_type_style_index_0_lang = "";
-const _hoisted_1$l = ["aria-description"];
-const _hoisted_2$e = { class: "cdx-input-chip__text" };
-function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$m = ["aria-description"];
+const _hoisted_2$f = { class: "cdx-input-chip__text" };
+function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_button = resolveComponent("cdx-button");
   return openBlock(), createElementBlock("div", {
@@ -1336,8 +1434,8 @@ function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
       key: 0,
       icon: _ctx.icon,
       size: "small"
-    }, null, 8, ["icon"])) : createCommentVNode("", true),
-    createElementVNode("span", _hoisted_2$e, [
+    }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
+    createElementVNode("span", _hoisted_2$f, [
       renderSlot(_ctx.$slots, "default")
     ]),
     createVNode(_component_cdx_button, {
@@ -1355,12 +1453,13 @@ function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
         }, null, 8, ["icon"])
       ]),
       _: 1
+      /* STABLE */
     }, 8, ["disabled"])
-  ], 42, _hoisted_1$l);
+  ], 42, _hoisted_1$m);
 }
-const CdxInputChip = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["render", _sfc_render$m]]);
+const CdxInputChip = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["render", _sfc_render$n]]);
 const statusValidator$7 = makeStringTypeValidator(ValidationStatusTypes);
-const _sfc_main$l = defineComponent({
+const _sfc_main$m = defineComponent({
   name: "CdxChipInput",
   components: {
     CdxInputChip
@@ -1586,78 +1685,95 @@ const _sfc_main$l = defineComponent({
   }
 });
 const ChipInput_vue_vue_type_style_index_0_lang = "";
-const _hoisted_1$k = {
+const _hoisted_1$l = {
   class: "cdx-chip-input__chips",
   role: "listbox",
   "aria-orientation": "horizontal"
 };
-const _hoisted_2$d = ["disabled"];
-const _hoisted_3$7 = {
+const _hoisted_2$e = ["disabled"];
+const _hoisted_3$8 = {
   key: 0,
   class: "cdx-chip-input__separate-input"
 };
-const _hoisted_4$4 = ["disabled"];
-function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_4$5 = ["disabled"];
+function _sfc_render$m(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_input_chip = resolveComponent("cdx-input-chip");
-  return openBlock(), createElementBlock("div", {
-    ref: "rootElement",
-    class: normalizeClass(["cdx-chip-input", _ctx.rootClasses]),
-    style: normalizeStyle(_ctx.rootStyle),
-    onClick: _cache[8] || (_cache[8] = (...args) => _ctx.focusInput && _ctx.focusInput(...args)),
-    onFocusout: _cache[9] || (_cache[9] = (...args) => _ctx.onFocusOut && _ctx.onFocusOut(...args))
-  }, [
-    createElementVNode("div", _hoisted_1$k, [
-      (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.inputChips, (chip, index) => {
-        return openBlock(), createBlock(_component_cdx_input_chip, {
-          key: chip.value,
-          ref_for: true,
-          ref: (ref2) => _ctx.assignChipTemplateRef(ref2, index),
-          class: "cdx-chip-input__item",
-          "chip-aria-description": _ctx.chipAriaDescription,
-          icon: chip.icon,
-          disabled: _ctx.computedDisabled,
-          onClickChip: ($event) => _ctx.handleChipClick(chip),
-          onRemoveChip: (method) => _ctx.handleChipRemove(chip, index, method),
-          onArrowLeft: ($event) => _ctx.moveChipFocus("left", index),
-          onArrowRight: ($event) => _ctx.moveChipFocus("right", index)
-        }, {
-          default: withCtx(() => [
-            createTextVNode(toDisplayString(chip.value), 1)
-          ]),
-          _: 2
-        }, 1032, ["chip-aria-description", "icon", "disabled", "onClickChip", "onRemoveChip", "onArrowLeft", "onArrowRight"]);
-      }), 128)),
-      !_ctx.separateInput ? withDirectives((openBlock(), createElementBlock("input", mergeProps({
-        key: 0,
-        ref: "input",
-        "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.inputValue = $event),
-        class: "cdx-chip-input__input",
-        disabled: _ctx.computedDisabled
-      }, _ctx.otherAttrs, {
-        onBlur: _cache[1] || (_cache[1] = (...args) => _ctx.onInputBlur && _ctx.onInputBlur(...args)),
-        onFocus: _cache[2] || (_cache[2] = (...args) => _ctx.onInputFocus && _ctx.onInputFocus(...args)),
-        onKeydown: _cache[3] || (_cache[3] = (...args) => _ctx.onInputKeydown && _ctx.onInputKeydown(...args))
-      }), null, 16, _hoisted_2$d)), [
-        [vModelDynamic, _ctx.inputValue]
-      ]) : createCommentVNode("", true)
-    ]),
-    _ctx.separateInput ? (openBlock(), createElementBlock("div", _hoisted_3$7, [
-      withDirectives(createElementVNode("input", mergeProps({
-        ref: "input",
-        "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => _ctx.inputValue = $event),
-        class: "cdx-chip-input__input",
-        disabled: _ctx.computedDisabled
-      }, _ctx.otherAttrs, {
-        onBlur: _cache[5] || (_cache[5] = (...args) => _ctx.onInputBlur && _ctx.onInputBlur(...args)),
-        onFocus: _cache[6] || (_cache[6] = (...args) => _ctx.onInputFocus && _ctx.onInputFocus(...args)),
-        onKeydown: _cache[7] || (_cache[7] = (...args) => _ctx.onInputKeydown && _ctx.onInputKeydown(...args))
-      }), null, 16, _hoisted_4$4), [
-        [vModelDynamic, _ctx.inputValue]
-      ])
-    ])) : createCommentVNode("", true)
-  ], 38);
+  return openBlock(), createElementBlock(
+    "div",
+    {
+      ref: "rootElement",
+      class: normalizeClass(["cdx-chip-input", _ctx.rootClasses]),
+      style: normalizeStyle(_ctx.rootStyle),
+      onClick: _cache[8] || (_cache[8] = (...args) => _ctx.focusInput && _ctx.focusInput(...args)),
+      onFocusout: _cache[9] || (_cache[9] = (...args) => _ctx.onFocusOut && _ctx.onFocusOut(...args))
+    },
+    [
+      createElementVNode("div", _hoisted_1$l, [
+        (openBlock(true), createElementBlock(
+          Fragment,
+          null,
+          renderList(_ctx.inputChips, (chip, index) => {
+            return openBlock(), createBlock(_component_cdx_input_chip, {
+              key: chip.value,
+              ref_for: true,
+              ref: (ref2) => _ctx.assignChipTemplateRef(ref2, index),
+              class: "cdx-chip-input__item",
+              "chip-aria-description": _ctx.chipAriaDescription,
+              icon: chip.icon,
+              disabled: _ctx.computedDisabled,
+              onClickChip: ($event) => _ctx.handleChipClick(chip),
+              onRemoveChip: (method) => _ctx.handleChipRemove(chip, index, method),
+              onArrowLeft: ($event) => _ctx.moveChipFocus("left", index),
+              onArrowRight: ($event) => _ctx.moveChipFocus("right", index)
+            }, {
+              default: withCtx(() => [
+                createTextVNode(
+                  toDisplayString(chip.value),
+                  1
+                  /* TEXT */
+                )
+              ]),
+              _: 2
+              /* DYNAMIC */
+            }, 1032, ["chip-aria-description", "icon", "disabled", "onClickChip", "onRemoveChip", "onArrowLeft", "onArrowRight"]);
+          }),
+          128
+          /* KEYED_FRAGMENT */
+        )),
+        !_ctx.separateInput ? withDirectives((openBlock(), createElementBlock("input", mergeProps({
+          key: 0,
+          ref: "input",
+          "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.inputValue = $event),
+          class: "cdx-chip-input__input",
+          disabled: _ctx.computedDisabled
+        }, _ctx.otherAttrs, {
+          onBlur: _cache[1] || (_cache[1] = (...args) => _ctx.onInputBlur && _ctx.onInputBlur(...args)),
+          onFocus: _cache[2] || (_cache[2] = (...args) => _ctx.onInputFocus && _ctx.onInputFocus(...args)),
+          onKeydown: _cache[3] || (_cache[3] = (...args) => _ctx.onInputKeydown && _ctx.onInputKeydown(...args))
+        }), null, 16, _hoisted_2$e)), [
+          [vModelDynamic, _ctx.inputValue]
+        ]) : createCommentVNode("v-if", true)
+      ]),
+      _ctx.separateInput ? (openBlock(), createElementBlock("div", _hoisted_3$8, [
+        withDirectives(createElementVNode("input", mergeProps({
+          ref: "input",
+          "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => _ctx.inputValue = $event),
+          class: "cdx-chip-input__input",
+          disabled: _ctx.computedDisabled
+        }, _ctx.otherAttrs, {
+          onBlur: _cache[5] || (_cache[5] = (...args) => _ctx.onInputBlur && _ctx.onInputBlur(...args)),
+          onFocus: _cache[6] || (_cache[6] = (...args) => _ctx.onInputFocus && _ctx.onInputFocus(...args)),
+          onKeydown: _cache[7] || (_cache[7] = (...args) => _ctx.onInputKeydown && _ctx.onInputKeydown(...args))
+        }), null, 16, _hoisted_4$5), [
+          [vModelDynamic, _ctx.inputValue]
+        ])
+      ])) : createCommentVNode("v-if", true)
+    ],
+    38
+    /* CLASS, STYLE, NEED_HYDRATION */
+  );
 }
-const ChipInput = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$l]]);
+const ChipInput = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["render", _sfc_render$m]]);
 function regExpEscape(value) {
   return value.replace(/([\\{}()|.?*+\-^$[\]])/g, "\\$1");
 }
@@ -1689,7 +1805,7 @@ const stringHelpers = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defin
   regExpEscape,
   splitStringAtMatch
 }, Symbol.toStringTag, { value: "Module" }));
-const _sfc_main$k = defineComponent({
+const _sfc_main$l = defineComponent({
   name: "CdxSearchResultTitle",
   props: {
     /**
@@ -1715,19 +1831,33 @@ const _sfc_main$k = defineComponent({
   }
 });
 const SearchResultTitle_vue_vue_type_style_index_0_lang = "";
-const _hoisted_1$j = { class: "cdx-search-result-title" };
-const _hoisted_2$c = { class: "cdx-search-result-title__match" };
-function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("span", _hoisted_1$j, [
+const _hoisted_1$k = { class: "cdx-search-result-title" };
+const _hoisted_2$d = { class: "cdx-search-result-title__match" };
+function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("span", _hoisted_1$k, [
     createElementVNode("bdi", null, [
-      createTextVNode(toDisplayString(_ctx.titleChunks[0]), 1),
-      createElementVNode("span", _hoisted_2$c, toDisplayString(_ctx.titleChunks[1]), 1),
-      createTextVNode(toDisplayString(_ctx.titleChunks[2]), 1)
+      createTextVNode(
+        toDisplayString(_ctx.titleChunks[0]),
+        1
+        /* TEXT */
+      ),
+      createElementVNode(
+        "span",
+        _hoisted_2$d,
+        toDisplayString(_ctx.titleChunks[1]),
+        1
+        /* TEXT */
+      ),
+      createTextVNode(
+        toDisplayString(_ctx.titleChunks[2]),
+        1
+        /* TEXT */
+      )
     ])
   ]);
 }
-const CdxSearchResultTitle = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$k]]);
-const _sfc_main$j = defineComponent({
+const CdxSearchResultTitle = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["render", _sfc_render$l]]);
+const _sfc_main$k = defineComponent({
   name: "CdxMenuItem",
   components: { CdxIcon, CdxThumbnail, CdxSearchResultTitle },
   props: {
@@ -1928,13 +2058,13 @@ const _sfc_main$j = defineComponent({
   }
 });
 const MenuItem_vue_vue_type_style_index_0_lang = "";
-const _hoisted_1$i = ["id", "aria-disabled", "aria-selected"];
-const _hoisted_2$b = { class: "cdx-menu-item__text" };
-const _hoisted_3$6 = ["lang"];
-const _hoisted_4$3 = ["lang"];
-const _hoisted_5$3 = ["lang"];
-const _hoisted_6$3 = ["lang"];
-function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$j = ["id", "aria-disabled", "aria-selected"];
+const _hoisted_2$c = { class: "cdx-menu-item__text" };
+const _hoisted_3$7 = ["lang"];
+const _hoisted_4$4 = ["lang"];
+const _hoisted_5$4 = ["lang"];
+const _hoisted_6$4 = ["lang"];
+function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_thumbnail = resolveComponent("cdx-thumbnail");
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_search_result_title = resolveComponent("cdx-search-result-title");
@@ -1965,8 +2095,8 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
               key: 1,
               icon: _ctx.icon,
               class: "cdx-menu-item__icon"
-            }, null, 8, ["icon"])) : createCommentVNode("", true),
-            createElementVNode("span", _hoisted_2$b, [
+            }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
+            createElementVNode("span", _hoisted_2$c, [
               _ctx.highlightQuery ? (openBlock(), createBlock(_component_cdx_search_result_title, {
                 key: 0,
                 title: _ctx.title,
@@ -1977,49 +2107,86 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
                 class: "cdx-menu-item__text__label",
                 lang: (_b = _ctx.language) == null ? void 0 : _b.label
               }, [
-                createElementVNode("bdi", null, toDisplayString(_ctx.title), 1)
-              ], 8, _hoisted_3$6)),
-              _ctx.match ? (openBlock(), createElementBlock(Fragment, { key: 2 }, [
-                createTextVNode(toDisplayString(" ") + " "),
-                _ctx.highlightQuery ? (openBlock(), createBlock(_component_cdx_search_result_title, {
-                  key: 0,
-                  title: _ctx.match,
-                  "search-query": _ctx.searchQuery,
-                  lang: (_c = _ctx.language) == null ? void 0 : _c.match
-                }, null, 8, ["title", "search-query", "lang"])) : (openBlock(), createElementBlock("span", {
-                  key: 1,
-                  class: "cdx-menu-item__text__match",
-                  lang: (_d = _ctx.language) == null ? void 0 : _d.match
-                }, [
-                  createElementVNode("bdi", null, toDisplayString(_ctx.match), 1)
-                ], 8, _hoisted_4$3))
-              ], 64)) : createCommentVNode("", true),
-              _ctx.supportingText ? (openBlock(), createElementBlock(Fragment, { key: 3 }, [
-                createTextVNode(toDisplayString(" ") + " "),
-                createElementVNode("span", {
-                  class: "cdx-menu-item__text__supporting-text",
-                  lang: (_e = _ctx.language) == null ? void 0 : _e.supportingText
-                }, [
-                  createElementVNode("bdi", null, toDisplayString(_ctx.supportingText), 1)
-                ], 8, _hoisted_5$3)
-              ], 64)) : createCommentVNode("", true),
+                createElementVNode(
+                  "bdi",
+                  null,
+                  toDisplayString(_ctx.title),
+                  1
+                  /* TEXT */
+                )
+              ], 8, _hoisted_3$7)),
+              _ctx.match ? (openBlock(), createElementBlock(
+                Fragment,
+                { key: 2 },
+                [
+                  createTextVNode(toDisplayString(" ") + " "),
+                  _ctx.highlightQuery ? (openBlock(), createBlock(_component_cdx_search_result_title, {
+                    key: 0,
+                    title: _ctx.match,
+                    "search-query": _ctx.searchQuery,
+                    lang: (_c = _ctx.language) == null ? void 0 : _c.match
+                  }, null, 8, ["title", "search-query", "lang"])) : (openBlock(), createElementBlock("span", {
+                    key: 1,
+                    class: "cdx-menu-item__text__match",
+                    lang: (_d = _ctx.language) == null ? void 0 : _d.match
+                  }, [
+                    createElementVNode(
+                      "bdi",
+                      null,
+                      toDisplayString(_ctx.match),
+                      1
+                      /* TEXT */
+                    )
+                  ], 8, _hoisted_4$4))
+                ],
+                64
+                /* STABLE_FRAGMENT */
+              )) : createCommentVNode("v-if", true),
+              _ctx.supportingText ? (openBlock(), createElementBlock(
+                Fragment,
+                { key: 3 },
+                [
+                  createTextVNode(toDisplayString(" ") + " "),
+                  createElementVNode("span", {
+                    class: "cdx-menu-item__text__supporting-text",
+                    lang: (_e = _ctx.language) == null ? void 0 : _e.supportingText
+                  }, [
+                    createElementVNode(
+                      "bdi",
+                      null,
+                      toDisplayString(_ctx.supportingText),
+                      1
+                      /* TEXT */
+                    )
+                  ], 8, _hoisted_5$4)
+                ],
+                64
+                /* STABLE_FRAGMENT */
+              )) : createCommentVNode("v-if", true),
               _ctx.description ? (openBlock(), createElementBlock("span", {
                 key: 4,
                 class: "cdx-menu-item__text__description",
                 lang: (_f = _ctx.language) == null ? void 0 : _f.description
               }, [
-                createElementVNode("bdi", null, toDisplayString(_ctx.description), 1)
-              ], 8, _hoisted_6$3)) : createCommentVNode("", true)
+                createElementVNode(
+                  "bdi",
+                  null,
+                  toDisplayString(_ctx.description),
+                  1
+                  /* TEXT */
+                )
+              ], 8, _hoisted_6$4)) : createCommentVNode("v-if", true)
             ])
           ];
         }),
         _: 1
+        /* STABLE */
       }, 8, ["href"]))
     ])
-  ], 42, _hoisted_1$i);
+  ], 42, _hoisted_1$j);
 }
-const CdxMenuItem = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$j]]);
-const _sfc_main$i = defineComponent({
+const CdxMenuItem = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["render", _sfc_render$k]]);
+const _sfc_main$j = defineComponent({
   name: "CdxProgressBar",
   props: {
     /**
@@ -2060,20 +2227,26 @@ const _sfc_main$i = defineComponent({
   }
 });
 const ProgressBar_vue_vue_type_style_index_0_lang = "";
-const _hoisted_1$h = ["aria-hidden", "aria-disabled"];
-const _hoisted_2$a = /* @__PURE__ */ createElementVNode("div", { class: "cdx-progress-bar__bar" }, null, -1);
-const _hoisted_3$5 = [
-  _hoisted_2$a
+const _hoisted_1$i = ["aria-hidden", "aria-disabled"];
+const _hoisted_2$b = /* @__PURE__ */ createElementVNode(
+  "div",
+  { class: "cdx-progress-bar__bar" },
+  null,
+  -1
+  /* HOISTED */
+);
+const _hoisted_3$6 = [
+  _hoisted_2$b
 ];
-function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", {
     class: normalizeClass(["cdx-progress-bar", _ctx.rootClasses]),
     role: "progressbar",
     "aria-hidden": _ctx.computedAriaHidden,
     "aria-disabled": _ctx.disabled
-  }, _hoisted_3$5, 10, _hoisted_1$h);
+  }, _hoisted_3$6, 10, _hoisted_1$i);
 }
-const CdxProgressBar = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$i]]);
+const CdxProgressBar = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["render", _sfc_render$j]]);
 function useIntersectionObserver(templateRef, observerOptions) {
   const intersectionRef = ref(false);
   let mounted = false;
@@ -2114,7 +2287,7 @@ function useIntersectionObserver(templateRef, observerOptions) {
   });
   return intersectionRef;
 }
-const _sfc_main$h = defineComponent({
+const _sfc_main$i = defineComponent({
   name: "CdxMenu",
   components: {
     CdxMenuItem,
@@ -2702,78 +2875,91 @@ const _sfc_main$h = defineComponent({
   }
 });
 const Menu_vue_vue_type_style_index_0_lang = "";
-const _hoisted_1$g = ["aria-live", "aria-relevant"];
-const _hoisted_2$9 = {
+const _hoisted_1$h = ["aria-live", "aria-relevant"];
+const _hoisted_2$a = {
   key: 0,
   class: "cdx-menu__pending cdx-menu-item"
 };
-const _hoisted_3$4 = {
+const _hoisted_3$5 = {
   key: 1,
   class: "cdx-menu__no-results cdx-menu-item"
 };
-function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_menu_item = resolveComponent("cdx-menu-item");
   const _component_cdx_progress_bar = resolveComponent("cdx-progress-bar");
-  return withDirectives((openBlock(), createElementBlock("div", {
-    class: normalizeClass(["cdx-menu", _ctx.rootClasses]),
-    style: normalizeStyle(_ctx.rootStyle)
-  }, [
-    createElementVNode("ul", mergeProps({
-      class: "cdx-menu__listbox",
-      role: "listbox",
-      style: _ctx.listBoxStyle,
-      "aria-live": _ctx.showPending ? "polite" : void 0,
-      "aria-relevant": _ctx.showPending ? _ctx.ariaRelevant : void 0
-    }, _ctx.otherAttrs), [
-      _ctx.showPending && _ctx.computedMenuItems.length === 0 && _ctx.$slots.pending ? (openBlock(), createElementBlock("li", _hoisted_2$9, [
-        renderSlot(_ctx.$slots, "pending")
-      ])) : createCommentVNode("", true),
-      _ctx.computedShowNoResultsSlot ? (openBlock(), createElementBlock("li", _hoisted_3$4, [
-        renderSlot(_ctx.$slots, "no-results")
-      ])) : createCommentVNode("", true),
-      (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.computedMenuItems, (menuItem, index) => {
-        var _a, _b;
-        return openBlock(), createBlock(_component_cdx_menu_item, mergeProps({
-          key: menuItem.value,
-          ref_for: true,
-          ref: (ref2) => _ctx.assignTemplateRef(ref2, index)
-        }, menuItem, {
-          selected: menuItem.value === _ctx.selected,
-          active: menuItem.value === ((_a = _ctx.activeMenuItem) == null ? void 0 : _a.value),
-          highlighted: menuItem.value === ((_b = _ctx.highlightedMenuItem) == null ? void 0 : _b.value),
-          "show-thumbnail": _ctx.showThumbnail,
-          "bold-label": _ctx.boldLabel,
-          "hide-description-overflow": _ctx.hideDescriptionOverflow,
-          "search-query": _ctx.searchQuery,
-          onChange: (menuState, setState) => _ctx.handleMenuItemChange(menuState, setState ? menuItem : null),
-          onClick: ($event) => _ctx.$emit("menu-item-click", menuItem)
-        }), {
-          default: withCtx(() => {
-            var _a2, _b2;
-            return [
-              renderSlot(_ctx.$slots, "default", {
-                menuItem,
-                active: menuItem.value === ((_a2 = _ctx.activeMenuItem) == null ? void 0 : _a2.value) && menuItem.value === ((_b2 = _ctx.highlightedMenuItem) == null ? void 0 : _b2.value)
-              })
-            ];
+  return withDirectives((openBlock(), createElementBlock(
+    "div",
+    {
+      class: normalizeClass(["cdx-menu", _ctx.rootClasses]),
+      style: normalizeStyle(_ctx.rootStyle)
+    },
+    [
+      createElementVNode("ul", mergeProps({
+        class: "cdx-menu__listbox",
+        role: "listbox",
+        style: _ctx.listBoxStyle,
+        "aria-live": _ctx.showPending ? "polite" : void 0,
+        "aria-relevant": _ctx.showPending ? _ctx.ariaRelevant : void 0
+      }, _ctx.otherAttrs), [
+        _ctx.showPending && _ctx.computedMenuItems.length === 0 && _ctx.$slots.pending ? (openBlock(), createElementBlock("li", _hoisted_2$a, [
+          renderSlot(_ctx.$slots, "pending")
+        ])) : createCommentVNode("v-if", true),
+        _ctx.computedShowNoResultsSlot ? (openBlock(), createElementBlock("li", _hoisted_3$5, [
+          renderSlot(_ctx.$slots, "no-results")
+        ])) : createCommentVNode("v-if", true),
+        (openBlock(true), createElementBlock(
+          Fragment,
+          null,
+          renderList(_ctx.computedMenuItems, (menuItem, index) => {
+            var _a, _b;
+            return openBlock(), createBlock(_component_cdx_menu_item, mergeProps({
+              key: menuItem.value,
+              ref_for: true,
+              ref: (ref2) => _ctx.assignTemplateRef(ref2, index)
+            }, menuItem, {
+              selected: menuItem.value === _ctx.selected,
+              active: menuItem.value === ((_a = _ctx.activeMenuItem) == null ? void 0 : _a.value),
+              highlighted: menuItem.value === ((_b = _ctx.highlightedMenuItem) == null ? void 0 : _b.value),
+              "show-thumbnail": _ctx.showThumbnail,
+              "bold-label": _ctx.boldLabel,
+              "hide-description-overflow": _ctx.hideDescriptionOverflow,
+              "search-query": _ctx.searchQuery,
+              onChange: (menuState, setState) => _ctx.handleMenuItemChange(menuState, setState ? menuItem : null),
+              onClick: ($event) => _ctx.$emit("menu-item-click", menuItem)
+            }), {
+              default: withCtx(() => {
+                var _a2, _b2;
+                return [
+                  renderSlot(_ctx.$slots, "default", {
+                    menuItem,
+                    active: menuItem.value === ((_a2 = _ctx.activeMenuItem) == null ? void 0 : _a2.value) && menuItem.value === ((_b2 = _ctx.highlightedMenuItem) == null ? void 0 : _b2.value)
+                  })
+                ];
+              }),
+              _: 2
+              /* DYNAMIC */
+            }, 1040, ["selected", "active", "highlighted", "show-thumbnail", "bold-label", "hide-description-overflow", "search-query", "onChange", "onClick"]);
           }),
-          _: 2
-        }, 1040, ["selected", "active", "highlighted", "show-thumbnail", "bold-label", "hide-description-overflow", "search-query", "onChange", "onClick"]);
-      }), 128)),
-      _ctx.showPending ? (openBlock(), createBlock(_component_cdx_progress_bar, {
-        key: 2,
-        class: "cdx-menu__progress-bar",
-        inline: true
-      })) : createCommentVNode("", true)
-    ], 16, _hoisted_1$g)
-  ], 6)), [
+          128
+          /* KEYED_FRAGMENT */
+        )),
+        _ctx.showPending ? (openBlock(), createBlock(_component_cdx_progress_bar, {
+          key: 2,
+          class: "cdx-menu__progress-bar",
+          inline: true
+        })) : createCommentVNode("v-if", true)
+      ], 16, _hoisted_1$h)
+    ],
+    6
+    /* CLASS, STYLE */
+  )), [
     [vShow, _ctx.expanded]
   ]);
 }
-const CdxMenu = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$h]]);
+const CdxMenu = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["render", _sfc_render$i]]);
 const textInputTypeValidator = makeStringTypeValidator(TextInputTypes);
 const statusValidator$6 = makeStringTypeValidator(ValidationStatusTypes);
-const _sfc_main$g = defineComponent({
+const _sfc_main$h = defineComponent({
   name: "CdxTextInput",
   components: { CdxIcon },
   /**
@@ -2996,52 +3182,58 @@ const _sfc_main$g = defineComponent({
   }
 });
 const TextInput_vue_vue_type_style_index_0_lang = "";
-const _hoisted_1$f = ["id", "type", "aria-describedby", "disabled"];
-function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$g = ["id", "type", "aria-describedby", "disabled"];
+function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
-  return openBlock(), createElementBlock("div", {
-    class: normalizeClass(["cdx-text-input", _ctx.rootClasses]),
-    style: normalizeStyle(_ctx.rootStyle)
-  }, [
-    withDirectives(createElementVNode("input", mergeProps({
-      id: _ctx.computedInputId,
-      ref: "input",
-      "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.wrappedModel = $event),
-      class: ["cdx-text-input__input", _ctx.inputClasses]
-    }, _ctx.otherAttrsMinusId, {
-      type: _ctx.inputType,
-      "aria-describedby": _ctx.descriptionId,
-      disabled: _ctx.computedDisabled,
-      size: "1",
-      onInput: _cache[1] || (_cache[1] = (...args) => _ctx.onInput && _ctx.onInput(...args)),
-      onChange: _cache[2] || (_cache[2] = (...args) => _ctx.onChange && _ctx.onChange(...args)),
-      onFocus: _cache[3] || (_cache[3] = (...args) => _ctx.onFocus && _ctx.onFocus(...args)),
-      onBlur: _cache[4] || (_cache[4] = (...args) => _ctx.onBlur && _ctx.onBlur(...args)),
-      onKeydown: _cache[5] || (_cache[5] = (...args) => _ctx.onKeydown && _ctx.onKeydown(...args))
-    }), null, 16, _hoisted_1$f), [
-      [vModelDynamic, _ctx.wrappedModel]
-    ]),
-    _ctx.startIcon ? (openBlock(), createBlock(_component_cdx_icon, {
-      key: 0,
-      icon: _ctx.startIcon,
-      class: "cdx-text-input__icon-vue cdx-text-input__start-icon"
-    }, null, 8, ["icon"])) : createCommentVNode("", true),
-    _ctx.endIcon ? (openBlock(), createBlock(_component_cdx_icon, {
-      key: 1,
-      icon: _ctx.endIcon,
-      class: "cdx-text-input__icon-vue cdx-text-input__end-icon"
-    }, null, 8, ["icon"])) : createCommentVNode("", true),
-    _ctx.isClearable ? (openBlock(), createBlock(_component_cdx_icon, {
-      key: 2,
-      icon: _ctx.cdxIconClear,
-      class: "cdx-text-input__icon-vue cdx-text-input__clear-icon",
-      onMousedown: _cache[6] || (_cache[6] = withModifiers(() => {
-      }, ["prevent"])),
-      onClick: _ctx.onClear
-    }, null, 8, ["icon", "onClick"])) : createCommentVNode("", true)
-  ], 6);
+  return openBlock(), createElementBlock(
+    "div",
+    {
+      class: normalizeClass(["cdx-text-input", _ctx.rootClasses]),
+      style: normalizeStyle(_ctx.rootStyle)
+    },
+    [
+      withDirectives(createElementVNode("input", mergeProps({
+        id: _ctx.computedInputId,
+        ref: "input",
+        "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.wrappedModel = $event),
+        class: ["cdx-text-input__input", _ctx.inputClasses]
+      }, _ctx.otherAttrsMinusId, {
+        type: _ctx.inputType,
+        "aria-describedby": _ctx.descriptionId,
+        disabled: _ctx.computedDisabled,
+        size: "1",
+        onInput: _cache[1] || (_cache[1] = (...args) => _ctx.onInput && _ctx.onInput(...args)),
+        onChange: _cache[2] || (_cache[2] = (...args) => _ctx.onChange && _ctx.onChange(...args)),
+        onFocus: _cache[3] || (_cache[3] = (...args) => _ctx.onFocus && _ctx.onFocus(...args)),
+        onBlur: _cache[4] || (_cache[4] = (...args) => _ctx.onBlur && _ctx.onBlur(...args)),
+        onKeydown: _cache[5] || (_cache[5] = (...args) => _ctx.onKeydown && _ctx.onKeydown(...args))
+      }), null, 16, _hoisted_1$g), [
+        [vModelDynamic, _ctx.wrappedModel]
+      ]),
+      _ctx.startIcon ? (openBlock(), createBlock(_component_cdx_icon, {
+        key: 0,
+        icon: _ctx.startIcon,
+        class: "cdx-text-input__icon-vue cdx-text-input__start-icon"
+      }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
+      _ctx.endIcon ? (openBlock(), createBlock(_component_cdx_icon, {
+        key: 1,
+        icon: _ctx.endIcon,
+        class: "cdx-text-input__icon-vue cdx-text-input__end-icon"
+      }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
+      _ctx.isClearable ? (openBlock(), createBlock(_component_cdx_icon, {
+        key: 2,
+        icon: _ctx.cdxIconClear,
+        class: "cdx-text-input__icon-vue cdx-text-input__clear-icon",
+        onMousedown: _cache[6] || (_cache[6] = withModifiers(() => {
+        }, ["prevent"])),
+        onClick: _ctx.onClear
+      }, null, 8, ["icon", "onClick"])) : createCommentVNode("v-if", true)
+    ],
+    6
+    /* CLASS, STYLE */
+  );
 }
-const CdxTextInput = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$g]]);
+const CdxTextInput = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["render", _sfc_render$h]]);
 const sides = ["top", "right", "bottom", "left"];
 const min = Math.min;
 const max = Math.max;
@@ -4508,7 +4700,7 @@ function useFloatingMenu(referenceElement, menu) {
   });
 }
 const statusValidator$5 = makeStringTypeValidator(ValidationStatusTypes);
-const _sfc_main$f = defineComponent({
+const _sfc_main$g = defineComponent({
   name: "CdxCombobox",
   components: {
     CdxButton,
@@ -4686,79 +4878,93 @@ const _sfc_main$f = defineComponent({
   }
 });
 const Combobox_vue_vue_type_style_index_0_lang = "";
-const _hoisted_1$e = {
+const _hoisted_1$f = {
   ref: "inputWrapper",
   class: "cdx-combobox__input-wrapper"
 };
-function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_text_input = resolveComponent("cdx-text-input");
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_button = resolveComponent("cdx-button");
   const _component_cdx_menu = resolveComponent("cdx-menu");
-  return openBlock(), createElementBlock("div", {
-    class: normalizeClass(["cdx-combobox", _ctx.rootClasses]),
-    style: normalizeStyle(_ctx.rootStyle)
-  }, [
-    createElementVNode("div", _hoisted_1$e, [
-      createVNode(_component_cdx_text_input, mergeProps({
-        ref: "input",
-        modelValue: _ctx.modelWrapper,
-        "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.modelWrapper = $event)
-      }, _ctx.otherAttrs, {
-        class: "cdx-combobox__input",
-        "aria-activedescendant": _ctx.highlightedId,
-        "aria-expanded": _ctx.expanded,
-        "aria-controls": _ctx.menuId,
-        disabled: _ctx.computedDisabled,
-        status: _ctx.status,
-        autocomplete: "off",
-        role: "combobox",
-        onKeydown: _ctx.onKeydown,
-        onInput: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("input", $event)),
-        onChange: _cache[2] || (_cache[2] = ($event) => _ctx.$emit("change", $event)),
-        onFocus: _ctx.onInputFocus,
-        onBlur: _ctx.onInputBlur
-      }), null, 16, ["modelValue", "aria-activedescendant", "aria-expanded", "aria-controls", "disabled", "status", "onKeydown", "onFocus", "onBlur"]),
-      createVNode(_component_cdx_button, {
-        class: "cdx-combobox__expand-button",
-        "aria-hidden": "true",
-        disabled: _ctx.computedDisabled,
-        tabindex: "-1",
-        type: "button",
-        onMousedown: _ctx.onButtonMousedown,
-        onClick: _ctx.onButtonClick
-      }, {
-        default: withCtx(() => [
-          createVNode(_component_cdx_icon, {
-            class: "cdx-combobox__expand-icon",
-            icon: _ctx.cdxIconExpand
-          }, null, 8, ["icon"])
+  return openBlock(), createElementBlock(
+    "div",
+    {
+      class: normalizeClass(["cdx-combobox", _ctx.rootClasses]),
+      style: normalizeStyle(_ctx.rootStyle)
+    },
+    [
+      createElementVNode(
+        "div",
+        _hoisted_1$f,
+        [
+          createVNode(_component_cdx_text_input, mergeProps({
+            ref: "input",
+            modelValue: _ctx.modelWrapper,
+            "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.modelWrapper = $event)
+          }, _ctx.otherAttrs, {
+            class: "cdx-combobox__input",
+            "aria-activedescendant": _ctx.highlightedId,
+            "aria-expanded": _ctx.expanded,
+            "aria-controls": _ctx.menuId,
+            disabled: _ctx.computedDisabled,
+            status: _ctx.status,
+            autocomplete: "off",
+            role: "combobox",
+            onKeydown: _ctx.onKeydown,
+            onInput: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("input", $event)),
+            onChange: _cache[2] || (_cache[2] = ($event) => _ctx.$emit("change", $event)),
+            onFocus: _ctx.onInputFocus,
+            onBlur: _ctx.onInputBlur
+          }), null, 16, ["modelValue", "aria-activedescendant", "aria-expanded", "aria-controls", "disabled", "status", "onKeydown", "onFocus", "onBlur"]),
+          createVNode(_component_cdx_button, {
+            class: "cdx-combobox__expand-button",
+            "aria-hidden": "true",
+            disabled: _ctx.computedDisabled,
+            tabindex: "-1",
+            type: "button",
+            onMousedown: _ctx.onButtonMousedown,
+            onClick: _ctx.onButtonClick
+          }, {
+            default: withCtx(() => [
+              createVNode(_component_cdx_icon, {
+                class: "cdx-combobox__expand-icon",
+                icon: _ctx.cdxIconExpand
+              }, null, 8, ["icon"])
+            ]),
+            _: 1
+            /* STABLE */
+          }, 8, ["disabled", "onMousedown", "onClick"])
+        ],
+        512
+        /* NEED_PATCH */
+      ),
+      createVNode(_component_cdx_menu, mergeProps({
+        id: _ctx.menuId,
+        ref: "menu",
+        selected: _ctx.modelWrapper,
+        "onUpdate:selected": _cache[3] || (_cache[3] = ($event) => _ctx.modelWrapper = $event),
+        expanded: _ctx.expanded,
+        "onUpdate:expanded": _cache[4] || (_cache[4] = ($event) => _ctx.expanded = $event),
+        "menu-items": _ctx.menuItems
+      }, _ctx.menuConfig, {
+        onLoadMore: _cache[5] || (_cache[5] = ($event) => _ctx.$emit("load-more"))
+      }), {
+        default: withCtx(({ menuItem }) => [
+          renderSlot(_ctx.$slots, "menu-item", { menuItem })
         ]),
-        _: 1
-      }, 8, ["disabled", "onMousedown", "onClick"])
-    ], 512),
-    createVNode(_component_cdx_menu, mergeProps({
-      id: _ctx.menuId,
-      ref: "menu",
-      selected: _ctx.modelWrapper,
-      "onUpdate:selected": _cache[3] || (_cache[3] = ($event) => _ctx.modelWrapper = $event),
-      expanded: _ctx.expanded,
-      "onUpdate:expanded": _cache[4] || (_cache[4] = ($event) => _ctx.expanded = $event),
-      "menu-items": _ctx.menuItems
-    }, _ctx.menuConfig, {
-      onLoadMore: _cache[5] || (_cache[5] = ($event) => _ctx.$emit("load-more"))
-    }), {
-      default: withCtx(({ menuItem }) => [
-        renderSlot(_ctx.$slots, "menu-item", { menuItem })
-      ]),
-      "no-results": withCtx(() => [
-        renderSlot(_ctx.$slots, "no-results")
-      ]),
-      _: 3
-    }, 16, ["id", "selected", "expanded", "menu-items"])
-  ], 6);
+        "no-results": withCtx(() => [
+          renderSlot(_ctx.$slots, "no-results")
+        ]),
+        _: 3
+        /* FORWARDED */
+      }, 16, ["id", "selected", "expanded", "menu-items"])
+    ],
+    6
+    /* CLASS, STYLE */
+  );
 }
-const Combobox = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$f]]);
+const Combobox = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$g]]);
 function useResizeObserver(templateRef) {
   const currentDimensions = ref(
     { width: void 0, height: void 0 }
@@ -4803,7 +5009,7 @@ function useResizeObserver(templateRef) {
   });
   return currentDimensions;
 }
-const _sfc_main$e = defineComponent({
+const _sfc_main$f = defineComponent({
   name: "CdxDialog",
   components: {
     CdxButton,
@@ -5057,30 +5263,30 @@ const _sfc_main$e = defineComponent({
   }
 });
 const Dialog_vue_vue_type_style_index_0_lang = "";
-const _hoisted_1$d = ["aria-label", "aria-labelledby"];
-const _hoisted_2$8 = {
+const _hoisted_1$e = ["aria-label", "aria-labelledby"];
+const _hoisted_2$9 = {
   key: 0,
   class: "cdx-dialog__header__title-group"
 };
-const _hoisted_3$3 = ["id"];
-const _hoisted_4$2 = {
+const _hoisted_3$4 = ["id"];
+const _hoisted_4$3 = {
   key: 0,
   class: "cdx-dialog__header__subtitle"
 };
-const _hoisted_5$2 = {
+const _hoisted_5$3 = {
   ref: "focusHolder",
   class: "cdx-dialog-focus-trap",
   tabindex: "-1"
 };
-const _hoisted_6$2 = {
+const _hoisted_6$3 = {
   key: 0,
   class: "cdx-dialog__footer__text"
 };
-const _hoisted_7 = {
+const _hoisted_7$1 = {
   key: 1,
   class: "cdx-dialog__footer__actions"
 };
-function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_button = resolveComponent("cdx-button");
   return openBlock(), createBlock(Teleport, {
@@ -5092,125 +5298,185 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
       appear: ""
     }, {
       default: withCtx(() => [
-        _ctx.open ? (openBlock(), createElementBlock("div", {
-          key: 0,
-          ref: "backdrop",
-          class: "cdx-dialog-backdrop",
-          onClick: _cache[5] || (_cache[5] = (...args) => _ctx.close && _ctx.close(...args)),
-          onKeyup: _cache[6] || (_cache[6] = withKeys((...args) => _ctx.close && _ctx.close(...args), ["escape"]))
-        }, [
-          createElementVNode("div", {
-            ref: "focusTrapStart",
-            tabindex: "0",
-            onFocus: _cache[0] || (_cache[0] = (...args) => _ctx.focusLast && _ctx.focusLast(...args))
-          }, null, 544),
-          createElementVNode("div", mergeProps({
-            ref: "dialogElement",
-            class: ["cdx-dialog", _ctx.rootClasses],
-            role: "dialog"
-          }, _ctx.$attrs, {
-            "aria-label": _ctx.$slots.header || _ctx.hideTitle ? _ctx.title : void 0,
-            "aria-labelledby": !_ctx.$slots.header && !_ctx.hideTitle ? _ctx.labelId : void 0,
-            "aria-modal": "true",
-            onClick: _cache[3] || (_cache[3] = withModifiers(() => {
-            }, ["stop"]))
-          }), [
-            _ctx.showHeader || _ctx.$slots.header ? (openBlock(), createElementBlock("header", {
-              key: 0,
-              class: normalizeClass(["cdx-dialog__header", { "cdx-dialog__header--default": !_ctx.$slots.header }])
-            }, [
-              renderSlot(_ctx.$slots, "header", {}, () => [
-                !_ctx.hideTitle ? (openBlock(), createElementBlock("div", _hoisted_2$8, [
-                  createElementVNode("h2", {
-                    id: _ctx.labelId,
-                    class: "cdx-dialog__header__title"
-                  }, toDisplayString(_ctx.title), 9, _hoisted_3$3),
-                  _ctx.subtitle ? (openBlock(), createElementBlock("p", _hoisted_4$2, toDisplayString(_ctx.subtitle), 1)) : createCommentVNode("", true)
-                ])) : createCommentVNode("", true),
-                _ctx.closeButtonLabel ? (openBlock(), createBlock(_component_cdx_button, {
+        _ctx.open ? (openBlock(), createElementBlock(
+          "div",
+          {
+            key: 0,
+            ref: "backdrop",
+            class: "cdx-dialog-backdrop",
+            onClick: _cache[5] || (_cache[5] = (...args) => _ctx.close && _ctx.close(...args)),
+            onKeyup: _cache[6] || (_cache[6] = withKeys((...args) => _ctx.close && _ctx.close(...args), ["escape"]))
+          },
+          [
+            createElementVNode(
+              "div",
+              {
+                ref: "focusTrapStart",
+                tabindex: "0",
+                onFocus: _cache[0] || (_cache[0] = (...args) => _ctx.focusLast && _ctx.focusLast(...args))
+              },
+              null,
+              544
+              /* NEED_HYDRATION, NEED_PATCH */
+            ),
+            createElementVNode("div", mergeProps({
+              ref: "dialogElement",
+              class: ["cdx-dialog", _ctx.rootClasses],
+              role: "dialog"
+            }, _ctx.$attrs, {
+              "aria-label": _ctx.$slots.header || _ctx.hideTitle ? _ctx.title : void 0,
+              "aria-labelledby": !_ctx.$slots.header && !_ctx.hideTitle ? _ctx.labelId : void 0,
+              "aria-modal": "true",
+              onClick: _cache[3] || (_cache[3] = withModifiers(() => {
+              }, ["stop"]))
+            }), [
+              _ctx.showHeader || _ctx.$slots.header ? (openBlock(), createElementBlock(
+                "header",
+                {
+                  key: 0,
+                  class: normalizeClass(["cdx-dialog__header", { "cdx-dialog__header--default": !_ctx.$slots.header }])
+                },
+                [
+                  renderSlot(_ctx.$slots, "header", {}, () => [
+                    !_ctx.hideTitle ? (openBlock(), createElementBlock("div", _hoisted_2$9, [
+                      createElementVNode("h2", {
+                        id: _ctx.labelId,
+                        class: "cdx-dialog__header__title"
+                      }, toDisplayString(_ctx.title), 9, _hoisted_3$4),
+                      _ctx.subtitle ? (openBlock(), createElementBlock(
+                        "p",
+                        _hoisted_4$3,
+                        toDisplayString(_ctx.subtitle),
+                        1
+                        /* TEXT */
+                      )) : createCommentVNode("v-if", true)
+                    ])) : createCommentVNode("v-if", true),
+                    _ctx.closeButtonLabel ? (openBlock(), createBlock(_component_cdx_button, {
+                      key: 1,
+                      class: "cdx-dialog__header__close-button",
+                      weight: "quiet",
+                      type: "button",
+                      "aria-label": _ctx.closeButtonLabel,
+                      onClick: _ctx.close
+                    }, {
+                      default: withCtx(() => [
+                        createVNode(_component_cdx_icon, {
+                          icon: _ctx.cdxIconClose,
+                          "icon-label": _ctx.closeButtonLabel
+                        }, null, 8, ["icon", "icon-label"])
+                      ]),
+                      _: 1
+                      /* STABLE */
+                    }, 8, ["aria-label", "onClick"])) : createCommentVNode("v-if", true)
+                  ])
+                ],
+                2
+                /* CLASS */
+              )) : createCommentVNode("v-if", true),
+              createElementVNode(
+                "div",
+                _hoisted_5$3,
+                null,
+                512
+                /* NEED_PATCH */
+              ),
+              createElementVNode(
+                "div",
+                {
+                  ref: "dialogBody",
+                  class: normalizeClass(["cdx-dialog__body", {
+                    "cdx-dialog__body--no-header": !(_ctx.showHeader || _ctx.$slots.header),
+                    "cdx-dialog__body--no-footer": !(_ctx.showFooterActions || _ctx.$slots.footer || _ctx.$slots["footer-text"])
+                  }])
+                },
+                [
+                  renderSlot(_ctx.$slots, "default")
+                ],
+                2
+                /* CLASS */
+              ),
+              _ctx.showFooterActions || _ctx.$slots.footer || _ctx.$slots["footer-text"] ? (openBlock(), createElementBlock(
+                "footer",
+                {
                   key: 1,
-                  class: "cdx-dialog__header__close-button",
-                  weight: "quiet",
-                  type: "button",
-                  "aria-label": _ctx.closeButtonLabel,
-                  onClick: _ctx.close
-                }, {
-                  default: withCtx(() => [
-                    createVNode(_component_cdx_icon, {
-                      icon: _ctx.cdxIconClose,
-                      "icon-label": _ctx.closeButtonLabel
-                    }, null, 8, ["icon", "icon-label"])
-                  ]),
-                  _: 1
-                }, 8, ["aria-label", "onClick"])) : createCommentVNode("", true)
-              ])
-            ], 2)) : createCommentVNode("", true),
-            createElementVNode("div", _hoisted_5$2, null, 512),
-            createElementVNode("div", {
-              ref: "dialogBody",
-              class: normalizeClass(["cdx-dialog__body", {
-                "cdx-dialog__body--no-header": !(_ctx.showHeader || _ctx.$slots.header),
-                "cdx-dialog__body--no-footer": !(_ctx.showFooterActions || _ctx.$slots.footer || _ctx.$slots["footer-text"])
-              }])
-            }, [
-              renderSlot(_ctx.$slots, "default")
-            ], 2),
-            _ctx.showFooterActions || _ctx.$slots.footer || _ctx.$slots["footer-text"] ? (openBlock(), createElementBlock("footer", {
-              key: 1,
-              class: normalizeClass(["cdx-dialog__footer", { "cdx-dialog__footer--default": !_ctx.$slots.footer }])
-            }, [
-              renderSlot(_ctx.$slots, "footer", {}, () => [
-                _ctx.$slots["footer-text"] ? (openBlock(), createElementBlock("p", _hoisted_6$2, [
-                  renderSlot(_ctx.$slots, "footer-text")
-                ])) : createCommentVNode("", true),
-                _ctx.showFooterActions ? (openBlock(), createElementBlock("div", _hoisted_7, [
-                  _ctx.primaryAction ? (openBlock(), createBlock(_component_cdx_button, {
-                    key: 0,
-                    class: "cdx-dialog__footer__primary-action",
-                    weight: "primary",
-                    action: _ctx.primaryAction.actionType,
-                    disabled: _ctx.primaryAction.disabled,
-                    onClick: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("primary"))
-                  }, {
-                    default: withCtx(() => [
-                      createTextVNode(toDisplayString(_ctx.primaryAction.label), 1)
-                    ]),
-                    _: 1
-                  }, 8, ["action", "disabled"])) : createCommentVNode("", true),
-                  _ctx.defaultAction ? (openBlock(), createBlock(_component_cdx_button, {
-                    key: 1,
-                    class: "cdx-dialog__footer__default-action",
-                    disabled: _ctx.defaultAction.disabled,
-                    onClick: _cache[2] || (_cache[2] = ($event) => _ctx.$emit("default"))
-                  }, {
-                    default: withCtx(() => [
-                      createTextVNode(toDisplayString(_ctx.defaultAction.label), 1)
-                    ]),
-                    _: 1
-                  }, 8, ["disabled"])) : createCommentVNode("", true)
-                ])) : createCommentVNode("", true)
-              ])
-            ], 2)) : createCommentVNode("", true)
-          ], 16, _hoisted_1$d),
-          createElementVNode("div", {
-            ref: "focusTrapEnd",
-            tabindex: "0",
-            onFocus: _cache[4] || (_cache[4] = (...args) => _ctx.focusFirst && _ctx.focusFirst(...args))
-          }, null, 544)
-        ], 544)) : createCommentVNode("", true)
+                  class: normalizeClass(["cdx-dialog__footer", { "cdx-dialog__footer--default": !_ctx.$slots.footer }])
+                },
+                [
+                  renderSlot(_ctx.$slots, "footer", {}, () => [
+                    _ctx.$slots["footer-text"] ? (openBlock(), createElementBlock("p", _hoisted_6$3, [
+                      renderSlot(_ctx.$slots, "footer-text")
+                    ])) : createCommentVNode("v-if", true),
+                    _ctx.showFooterActions ? (openBlock(), createElementBlock("div", _hoisted_7$1, [
+                      _ctx.primaryAction ? (openBlock(), createBlock(_component_cdx_button, {
+                        key: 0,
+                        class: "cdx-dialog__footer__primary-action",
+                        weight: "primary",
+                        action: _ctx.primaryAction.actionType,
+                        disabled: _ctx.primaryAction.disabled,
+                        onClick: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("primary"))
+                      }, {
+                        default: withCtx(() => [
+                          createTextVNode(
+                            toDisplayString(_ctx.primaryAction.label),
+                            1
+                            /* TEXT */
+                          )
+                        ]),
+                        _: 1
+                        /* STABLE */
+                      }, 8, ["action", "disabled"])) : createCommentVNode("v-if", true),
+                      _ctx.defaultAction ? (openBlock(), createBlock(_component_cdx_button, {
+                        key: 1,
+                        class: "cdx-dialog__footer__default-action",
+                        disabled: _ctx.defaultAction.disabled,
+                        onClick: _cache[2] || (_cache[2] = ($event) => _ctx.$emit("default"))
+                      }, {
+                        default: withCtx(() => [
+                          createTextVNode(
+                            toDisplayString(_ctx.defaultAction.label),
+                            1
+                            /* TEXT */
+                          )
+                        ]),
+                        _: 1
+                        /* STABLE */
+                      }, 8, ["disabled"])) : createCommentVNode("v-if", true)
+                    ])) : createCommentVNode("v-if", true)
+                  ])
+                ],
+                2
+                /* CLASS */
+              )) : createCommentVNode("v-if", true)
+            ], 16, _hoisted_1$e),
+            createElementVNode(
+              "div",
+              {
+                ref: "focusTrapEnd",
+                tabindex: "0",
+                onFocus: _cache[4] || (_cache[4] = (...args) => _ctx.focusFirst && _ctx.focusFirst(...args))
+              },
+              null,
+              544
+              /* NEED_HYDRATION, NEED_PATCH */
+            )
+          ],
+          544
+          /* NEED_HYDRATION, NEED_PATCH */
+        )) : createCommentVNode("v-if", true)
       ]),
       _: 3
+      /* FORWARDED */
     })
   ], 8, ["to", "disabled"]);
 }
-const Dialog = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$e]]);
-const iconMap$1 = {
+const Dialog = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$f]]);
+const iconMap$2 = {
   notice: Y4,
   error: i4,
   warning: M3,
   success: N7
 };
-const _sfc_main$d = defineComponent({
+const _sfc_main$e = defineComponent({
   name: "CdxMessage",
   components: { CdxButton, CdxIcon },
   props: {
@@ -5307,7 +5573,7 @@ const _sfc_main$d = defineComponent({
       };
     });
     const computedIcon = computed(
-      () => props.icon && props.type === "notice" ? props.icon : iconMap$1[props.type]
+      () => props.icon && props.type === "notice" ? props.icon : iconMap$2[props.type]
     );
     const leaveActiveClass = ref("");
     function onDismiss(eventName) {
@@ -5337,9 +5603,9 @@ const _sfc_main$d = defineComponent({
   }
 });
 const Message_vue_vue_type_style_index_0_lang = "";
-const _hoisted_1$c = ["aria-live", "role"];
-const _hoisted_2$7 = { class: "cdx-message__content" };
-function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$d = ["aria-live", "role"];
+const _hoisted_2$8 = { class: "cdx-message__content" };
+function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_button = resolveComponent("cdx-button");
   return openBlock(), createBlock(Transition, {
@@ -5358,7 +5624,7 @@ function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
           class: "cdx-message__icon--vue",
           icon: _ctx.computedIcon
         }, null, 8, ["icon"]),
-        createElementVNode("div", _hoisted_2$7, [
+        createElementVNode("div", _hoisted_2$8, [
           renderSlot(_ctx.$slots, "default")
         ]),
         _ctx.userDismissable ? (openBlock(), createBlock(_component_cdx_button, {
@@ -5376,15 +5642,17 @@ function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
             }, null, 8, ["icon", "icon-label"])
           ]),
           _: 1
-        }, 8, ["aria-label"])) : createCommentVNode("", true)
-      ], 10, _hoisted_1$c)) : createCommentVNode("", true)
+          /* STABLE */
+        }, 8, ["aria-label"])) : createCommentVNode("v-if", true)
+      ], 10, _hoisted_1$d)) : createCommentVNode("v-if", true)
     ]),
     _: 3
+    /* FORWARDED */
   }, 8, ["appear", "leave-active-class"]);
 }
-const CdxMessage = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$d]]);
+const CdxMessage = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$e]]);
 const statusValidator$4 = makeStringTypeValidator(ValidationStatusTypes);
-const _sfc_main$c = defineComponent({
+const _sfc_main$d = defineComponent({
   name: "CdxField",
   components: { CdxLabel, CdxMessage },
   props: {
@@ -5487,13 +5755,13 @@ const _sfc_main$c = defineComponent({
   }
 });
 const Field_vue_vue_type_style_index_0_lang = "";
-const _hoisted_1$b = { class: "cdx-field__control" };
-const _hoisted_2$6 = { class: "cdx-field__help-text" };
-const _hoisted_3$2 = {
+const _hoisted_1$c = { class: "cdx-field__control" };
+const _hoisted_2$7 = { class: "cdx-field__help-text" };
+const _hoisted_3$3 = {
   key: 0,
   class: "cdx-field__validation-message"
 };
-function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_label = resolveComponent("cdx-label");
   const _component_cdx_message = resolveComponent("cdx-message");
   return openBlock(), createBlock(resolveDynamicComponent(_ctx.isFieldset ? "fieldset" : "div"), {
@@ -5516,6 +5784,7 @@ function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
           renderSlot(_ctx.$slots, "label")
         ]),
         _: 2
+        /* DYNAMIC */
       }, [
         _ctx.$slots.description && _ctx.$slots.description().length > 0 ? {
           name: "description",
@@ -5525,34 +5794,40 @@ function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
           key: "0"
         } : void 0
       ]), 1032, ["id", "icon", "visually-hidden", "optional-flag", "input-id", "description-id", "disabled", "is-legend"]),
-      createElementVNode("div", _hoisted_1$b, [
+      createElementVNode("div", _hoisted_1$c, [
         renderSlot(_ctx.$slots, "default")
       ]),
-      createElementVNode("div", _hoisted_2$6, [
+      createElementVNode("div", _hoisted_2$7, [
         renderSlot(_ctx.$slots, "help-text")
       ]),
-      !_ctx.computedDisabled && _ctx.validationMessage ? (openBlock(), createElementBlock("div", _hoisted_3$2, [
+      !_ctx.computedDisabled && _ctx.validationMessage ? (openBlock(), createElementBlock("div", _hoisted_3$3, [
         createVNode(_component_cdx_message, {
           type: _ctx.validationMessageType,
           inline: true
         }, {
           default: withCtx(() => [
-            createTextVNode(toDisplayString(_ctx.validationMessage), 1)
+            createTextVNode(
+              toDisplayString(_ctx.validationMessage),
+              1
+              /* TEXT */
+            )
           ]),
           _: 1
+          /* STABLE */
         }, 8, ["type"])
-      ])) : createCommentVNode("", true)
+      ])) : createCommentVNode("v-if", true)
     ]),
     _: 3
+    /* FORWARDED */
   }, 8, ["class", "aria-disabled", "disabled"]);
 }
-const Field = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$c]]);
-const iconMap = {
+const Field = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$d]]);
+const iconMap$1 = {
   error: i4,
   warning: M3,
   success: N7
 };
-const _sfc_main$b = defineComponent({
+const _sfc_main$c = defineComponent({
   name: "CdxInfoChip",
   components: { CdxIcon },
   props: {
@@ -5582,7 +5857,7 @@ const _sfc_main$b = defineComponent({
       };
     });
     const computedIcon = computed(
-      () => props.status === "notice" ? props.icon : iconMap[props.status]
+      () => props.status === "notice" ? props.icon : iconMap$1[props.status]
     );
     return {
       iconClass,
@@ -5591,24 +5866,24 @@ const _sfc_main$b = defineComponent({
   }
 });
 const InfoChip_vue_vue_type_style_index_0_lang = "";
-const _hoisted_1$a = { class: "cdx-info-chip" };
-const _hoisted_2$5 = { class: "cdx-info-chip--text" };
-function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$b = { class: "cdx-info-chip" };
+const _hoisted_2$6 = { class: "cdx-info-chip--text" };
+function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
-  return openBlock(), createElementBlock("div", _hoisted_1$a, [
+  return openBlock(), createElementBlock("div", _hoisted_1$b, [
     _ctx.computedIcon ? (openBlock(), createBlock(_component_cdx_icon, {
       key: 0,
       class: normalizeClass(["cdx-info-chip__icon", _ctx.iconClass]),
       icon: _ctx.computedIcon
-    }, null, 8, ["class", "icon"])) : createCommentVNode("", true),
-    createElementVNode("span", _hoisted_2$5, [
+    }, null, 8, ["class", "icon"])) : createCommentVNode("v-if", true),
+    createElementVNode("span", _hoisted_2$6, [
       renderSlot(_ctx.$slots, "default")
     ])
   ]);
 }
-const InfoChip = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$b]]);
+const InfoChip = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$c]]);
 const statusValidator$3 = makeStringTypeValidator(ValidationStatusTypes);
-const _sfc_main$a = defineComponent({
+const _sfc_main$b = defineComponent({
   name: "CdxLookup",
   components: {
     CdxMenu,
@@ -5819,57 +6094,64 @@ const _sfc_main$a = defineComponent({
   }
 });
 const Lookup_vue_vue_type_style_index_0_lang = "";
-function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_text_input = resolveComponent("cdx-text-input");
   const _component_cdx_menu = resolveComponent("cdx-menu");
-  return openBlock(), createElementBlock("div", {
-    ref: "rootElement",
-    class: normalizeClass(["cdx-lookup", _ctx.rootClasses]),
-    style: normalizeStyle(_ctx.rootStyle)
-  }, [
-    createVNode(_component_cdx_text_input, mergeProps({
-      ref: "textInput",
-      modelValue: _ctx.inputValue,
-      "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.inputValue = $event)
-    }, _ctx.otherAttrs, {
-      class: "cdx-lookup__input",
-      role: "combobox",
-      autocomplete: "off",
-      "aria-autocomplete": "list",
-      "aria-controls": _ctx.menuId,
-      "aria-expanded": _ctx.expanded,
-      "aria-activedescendant": _ctx.highlightedId,
-      disabled: _ctx.computedDisabled,
-      status: _ctx.status,
-      "onUpdate:modelValue": _ctx.onUpdateInput,
-      onChange: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("change", $event)),
-      onFocus: _ctx.onInputFocus,
-      onBlur: _ctx.onInputBlur,
-      onKeydown: _ctx.onKeydown
-    }), null, 16, ["modelValue", "aria-controls", "aria-expanded", "aria-activedescendant", "disabled", "status", "onUpdate:modelValue", "onFocus", "onBlur", "onKeydown"]),
-    createVNode(_component_cdx_menu, mergeProps({
-      id: _ctx.menuId,
-      ref: "menu",
-      selected: _ctx.modelWrapper,
-      "onUpdate:selected": _cache[2] || (_cache[2] = ($event) => _ctx.modelWrapper = $event),
-      expanded: _ctx.expanded,
-      "onUpdate:expanded": _cache[3] || (_cache[3] = ($event) => _ctx.expanded = $event),
-      "menu-items": _ctx.menuItems
-    }, _ctx.menuConfig, {
-      onLoadMore: _cache[4] || (_cache[4] = ($event) => _ctx.$emit("load-more"))
-    }), {
-      default: withCtx(({ menuItem }) => [
-        renderSlot(_ctx.$slots, "menu-item", { menuItem })
-      ]),
-      "no-results": withCtx(() => [
-        renderSlot(_ctx.$slots, "no-results")
-      ]),
-      _: 3
-    }, 16, ["id", "selected", "expanded", "menu-items"])
-  ], 6);
+  return openBlock(), createElementBlock(
+    "div",
+    {
+      ref: "rootElement",
+      class: normalizeClass(["cdx-lookup", _ctx.rootClasses]),
+      style: normalizeStyle(_ctx.rootStyle)
+    },
+    [
+      createVNode(_component_cdx_text_input, mergeProps({
+        ref: "textInput",
+        modelValue: _ctx.inputValue,
+        "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.inputValue = $event)
+      }, _ctx.otherAttrs, {
+        class: "cdx-lookup__input",
+        role: "combobox",
+        autocomplete: "off",
+        "aria-autocomplete": "list",
+        "aria-controls": _ctx.menuId,
+        "aria-expanded": _ctx.expanded,
+        "aria-activedescendant": _ctx.highlightedId,
+        disabled: _ctx.computedDisabled,
+        status: _ctx.status,
+        "onUpdate:modelValue": _ctx.onUpdateInput,
+        onChange: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("change", $event)),
+        onFocus: _ctx.onInputFocus,
+        onBlur: _ctx.onInputBlur,
+        onKeydown: _ctx.onKeydown
+      }), null, 16, ["modelValue", "aria-controls", "aria-expanded", "aria-activedescendant", "disabled", "status", "onUpdate:modelValue", "onFocus", "onBlur", "onKeydown"]),
+      createVNode(_component_cdx_menu, mergeProps({
+        id: _ctx.menuId,
+        ref: "menu",
+        selected: _ctx.modelWrapper,
+        "onUpdate:selected": _cache[2] || (_cache[2] = ($event) => _ctx.modelWrapper = $event),
+        expanded: _ctx.expanded,
+        "onUpdate:expanded": _cache[3] || (_cache[3] = ($event) => _ctx.expanded = $event),
+        "menu-items": _ctx.menuItems
+      }, _ctx.menuConfig, {
+        onLoadMore: _cache[4] || (_cache[4] = ($event) => _ctx.$emit("load-more"))
+      }), {
+        default: withCtx(({ menuItem }) => [
+          renderSlot(_ctx.$slots, "menu-item", { menuItem })
+        ]),
+        "no-results": withCtx(() => [
+          renderSlot(_ctx.$slots, "no-results")
+        ]),
+        _: 3
+        /* FORWARDED */
+      }, 16, ["id", "selected", "expanded", "menu-items"])
+    ],
+    6
+    /* CLASS, STYLE */
+  );
 }
-const Lookup = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$a]]);
-const _sfc_main$9 = defineComponent({
+const Lookup = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$b]]);
+const _sfc_main$a = defineComponent({
   name: "CdxRadio",
   components: { CdxLabel },
   props: {
@@ -5952,53 +6234,66 @@ const _sfc_main$9 = defineComponent({
   }
 });
 const Radio_vue_vue_type_style_index_0_lang = "";
-const _hoisted_1$9 = ["id", "aria-describedby", "name", "value", "disabled"];
-const _hoisted_2$4 = /* @__PURE__ */ createElementVNode("span", { class: "cdx-radio__icon" }, null, -1);
-function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$a = ["id", "aria-describedby", "name", "value", "disabled"];
+const _hoisted_2$5 = /* @__PURE__ */ createElementVNode(
+  "span",
+  { class: "cdx-radio__icon" },
+  null,
+  -1
+  /* HOISTED */
+);
+function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_label = resolveComponent("cdx-label");
-  return openBlock(), createElementBlock("span", {
-    class: normalizeClass(["cdx-radio", _ctx.rootClasses])
-  }, [
-    withDirectives(createElementVNode("input", {
-      id: _ctx.radioId,
-      ref: "input",
-      "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.wrappedModel = $event),
-      class: "cdx-radio__input",
-      type: "radio",
-      "aria-describedby": _ctx.$slots.description && _ctx.$slots.description().length > 0 ? _ctx.descriptionId : void 0,
-      name: _ctx.name,
-      value: _ctx.inputValue,
-      disabled: _ctx.computedDisabled
-    }, null, 8, _hoisted_1$9), [
-      [vModelRadio, _ctx.wrappedModel]
-    ]),
-    _hoisted_2$4,
-    _ctx.$slots.default && _ctx.$slots.default().length ? (openBlock(), createBlock(_component_cdx_label, {
-      key: 0,
-      class: "cdx-radio__label",
-      "input-id": _ctx.radioId,
-      "description-id": _ctx.$slots.description && _ctx.$slots.description().length > 0 ? _ctx.descriptionId : void 0,
-      disabled: _ctx.computedDisabled,
-      onClick: _ctx.focusInput
-    }, createSlots({
-      default: withCtx(() => [
-        renderSlot(_ctx.$slots, "default")
+  return openBlock(), createElementBlock(
+    "span",
+    {
+      class: normalizeClass(["cdx-radio", _ctx.rootClasses])
+    },
+    [
+      withDirectives(createElementVNode("input", {
+        id: _ctx.radioId,
+        ref: "input",
+        "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.wrappedModel = $event),
+        class: "cdx-radio__input",
+        type: "radio",
+        "aria-describedby": _ctx.$slots.description && _ctx.$slots.description().length > 0 ? _ctx.descriptionId : void 0,
+        name: _ctx.name,
+        value: _ctx.inputValue,
+        disabled: _ctx.computedDisabled
+      }, null, 8, _hoisted_1$a), [
+        [vModelRadio, _ctx.wrappedModel]
       ]),
-      _: 2
-    }, [
-      _ctx.$slots.description && _ctx.$slots.description().length > 0 ? {
-        name: "description",
-        fn: withCtx(() => [
-          renderSlot(_ctx.$slots, "description")
+      _hoisted_2$5,
+      _ctx.$slots.default && _ctx.$slots.default().length ? (openBlock(), createBlock(_component_cdx_label, {
+        key: 0,
+        class: "cdx-radio__label",
+        "input-id": _ctx.radioId,
+        "description-id": _ctx.$slots.description && _ctx.$slots.description().length > 0 ? _ctx.descriptionId : void 0,
+        disabled: _ctx.computedDisabled,
+        onClick: _ctx.focusInput
+      }, createSlots({
+        default: withCtx(() => [
+          renderSlot(_ctx.$slots, "default")
         ]),
-        key: "0"
-      } : void 0
-    ]), 1032, ["input-id", "description-id", "disabled", "onClick"])) : createCommentVNode("", true)
-  ], 2);
+        _: 2
+        /* DYNAMIC */
+      }, [
+        _ctx.$slots.description && _ctx.$slots.description().length > 0 ? {
+          name: "description",
+          fn: withCtx(() => [
+            renderSlot(_ctx.$slots, "description")
+          ]),
+          key: "0"
+        } : void 0
+      ]), 1032, ["input-id", "description-id", "disabled", "onClick"])) : createCommentVNode("v-if", true)
+    ],
+    2
+    /* CLASS */
+  );
 }
-const Radio = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$9]]);
+const Radio = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$a]]);
 const statusValidator$2 = makeStringTypeValidator(ValidationStatusTypes);
-const _sfc_main$8 = defineComponent({
+const _sfc_main$9 = defineComponent({
   name: "CdxSearchInput",
   components: {
     CdxButton,
@@ -6118,49 +6413,60 @@ const _sfc_main$8 = defineComponent({
   }
 });
 const SearchInput_vue_vue_type_style_index_0_lang = "";
-const _hoisted_1$8 = { class: "cdx-search-input__input-wrapper" };
-function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$9 = { class: "cdx-search-input__input-wrapper" };
+function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_text_input = resolveComponent("cdx-text-input");
   const _component_cdx_button = resolveComponent("cdx-button");
-  return openBlock(), createElementBlock("div", {
-    class: normalizeClass(["cdx-search-input", _ctx.rootClasses]),
-    style: normalizeStyle(_ctx.rootStyle)
-  }, [
-    createElementVNode("div", _hoisted_1$8, [
-      createVNode(_component_cdx_text_input, mergeProps({
-        ref: "textInput",
-        modelValue: _ctx.wrappedModel,
-        "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.wrappedModel = $event),
-        class: "cdx-search-input__text-input",
-        "input-type": "search",
-        "start-icon": _ctx.searchIcon,
-        disabled: _ctx.computedDisabled,
-        status: _ctx.status
-      }, _ctx.otherAttrs, {
-        onKeydown: withKeys(_ctx.handleSubmit, ["enter"]),
-        onInput: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("input", $event)),
-        onChange: _cache[2] || (_cache[2] = ($event) => _ctx.$emit("change", $event)),
-        onFocus: _cache[3] || (_cache[3] = ($event) => _ctx.$emit("focus", $event)),
-        onBlur: _cache[4] || (_cache[4] = ($event) => _ctx.$emit("blur", $event))
-      }), null, 16, ["modelValue", "start-icon", "disabled", "status", "onKeydown"]),
-      renderSlot(_ctx.$slots, "default")
-    ]),
-    _ctx.buttonLabel ? (openBlock(), createBlock(_component_cdx_button, {
-      key: 0,
-      class: "cdx-search-input__end-button",
-      disabled: _ctx.computedDisabled,
-      onClick: _ctx.handleSubmit
-    }, {
-      default: withCtx(() => [
-        createTextVNode(toDisplayString(_ctx.buttonLabel), 1)
+  return openBlock(), createElementBlock(
+    "div",
+    {
+      class: normalizeClass(["cdx-search-input", _ctx.rootClasses]),
+      style: normalizeStyle(_ctx.rootStyle)
+    },
+    [
+      createElementVNode("div", _hoisted_1$9, [
+        createVNode(_component_cdx_text_input, mergeProps({
+          ref: "textInput",
+          modelValue: _ctx.wrappedModel,
+          "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.wrappedModel = $event),
+          class: "cdx-search-input__text-input",
+          "input-type": "search",
+          "start-icon": _ctx.searchIcon,
+          disabled: _ctx.computedDisabled,
+          status: _ctx.status
+        }, _ctx.otherAttrs, {
+          onKeydown: withKeys(_ctx.handleSubmit, ["enter"]),
+          onInput: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("input", $event)),
+          onChange: _cache[2] || (_cache[2] = ($event) => _ctx.$emit("change", $event)),
+          onFocus: _cache[3] || (_cache[3] = ($event) => _ctx.$emit("focus", $event)),
+          onBlur: _cache[4] || (_cache[4] = ($event) => _ctx.$emit("blur", $event))
+        }), null, 16, ["modelValue", "start-icon", "disabled", "status", "onKeydown"]),
+        renderSlot(_ctx.$slots, "default")
       ]),
-      _: 1
-    }, 8, ["disabled", "onClick"])) : createCommentVNode("", true)
-  ], 6);
+      _ctx.buttonLabel ? (openBlock(), createBlock(_component_cdx_button, {
+        key: 0,
+        class: "cdx-search-input__end-button",
+        disabled: _ctx.computedDisabled,
+        onClick: _ctx.handleSubmit
+      }, {
+        default: withCtx(() => [
+          createTextVNode(
+            toDisplayString(_ctx.buttonLabel),
+            1
+            /* TEXT */
+          )
+        ]),
+        _: 1
+        /* STABLE */
+      }, 8, ["disabled", "onClick"])) : createCommentVNode("v-if", true)
+    ],
+    6
+    /* CLASS, STYLE */
+  );
 }
-const CdxSearchInput = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$8]]);
+const CdxSearchInput = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$9]]);
 const statusValidator$1 = makeStringTypeValidator(ValidationStatusTypes);
-const _sfc_main$7 = defineComponent({
+const _sfc_main$8 = defineComponent({
   name: "CdxSelect",
   components: {
     CdxIcon,
@@ -6346,9 +6652,9 @@ const _sfc_main$7 = defineComponent({
   }
 });
 const Select_vue_vue_type_style_index_0_lang = "";
-const _hoisted_1$7 = ["aria-disabled"];
-const _hoisted_2$3 = ["id", "aria-controls", "aria-activedescendant", "aria-expanded", "aria-describedby"];
-function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$8 = ["aria-disabled"];
+const _hoisted_2$4 = ["id", "aria-controls", "aria-activedescendant", "aria-expanded", "aria-describedby"];
+function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_menu = resolveComponent("cdx-menu");
   return openBlock(), createElementBlock("div", {
@@ -6375,18 +6681,22 @@ function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
         selectedMenuItem: _ctx.selectedMenuItem,
         defaultLabel: _ctx.defaultLabel
       }, () => [
-        createTextVNode(toDisplayString(_ctx.currentLabel), 1)
+        createTextVNode(
+          toDisplayString(_ctx.currentLabel),
+          1
+          /* TEXT */
+        )
       ]),
       _ctx.startIcon ? (openBlock(), createBlock(_component_cdx_icon, {
         key: 0,
         icon: _ctx.startIcon,
         class: "cdx-select-vue__start-icon"
-      }, null, 8, ["icon"])) : createCommentVNode("", true),
+      }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
       createVNode(_component_cdx_icon, {
         icon: _ctx.cdxIconExpand,
         class: "cdx-select-vue__indicator"
       }, null, 8, ["icon"])
-    ], 16, _hoisted_2$3),
+    ], 16, _hoisted_2$4),
     createVNode(_component_cdx_menu, mergeProps({
       id: _ctx.menuId,
       ref: "menu",
@@ -6402,10 +6712,542 @@ function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
         renderSlot(_ctx.$slots, "menu-item", { menuItem })
       ]),
       _: 3
+      /* FORWARDED */
     }, 16, ["id", "selected", "expanded", "menu-items"])
-  ], 14, _hoisted_1$7);
+  ], 14, _hoisted_1$8);
 }
-const Select = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$7]]);
+const Select = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$8]]);
+const tableTextAlignmentsValidator = makeStringTypeValidator(TableTextAlignments);
+const iconMap = {
+  none: q7,
+  asc: g8,
+  desc: l4
+};
+const sortOrderMap = {
+  none: "none",
+  asc: "ascending",
+  desc: "descending"
+};
+const _sfc_main$7 = defineComponent({
+  name: "CdxTable",
+  components: { CdxCheckbox, CdxIcon },
+  props: {
+    /**
+     * Table caption.
+     *
+     * Required to support users of assistive technology, but can be visually hidden.
+     */
+    caption: {
+      type: String,
+      required: true
+    },
+    /**
+     * Whether to visually hide the caption.
+     */
+    hideCaption: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Column definitions.
+     */
+    columns: {
+      type: Array,
+      default: () => [],
+      validator: (value) => {
+        const ids = value.map((column) => column.id);
+        const hasUniqueIds = new Set(ids).size === ids.length;
+        if (!hasUniqueIds) {
+          console.warn(
+            "Each column in the `columns` prop of CdxTable must have a unique `id`."
+          );
+        }
+        return true;
+      }
+    },
+    /**
+     * Table data.
+     *
+     * An array of objects, with each object representing the data for a table row. Item keys
+     * should align with column IDs, as defined in the `columns` prop.
+     */
+    data: {
+      type: Array,
+      default: () => []
+    },
+    /**
+     * Whether to use `<th>` for the first cell in each row.
+     */
+    useRowHeaders: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Whether vertical borders separating columns should be rendered.
+     */
+    showVerticalBorders: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Whether to enable row selection.
+     */
+    useRowSelection: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * An array of selected row indices. Must be bound with `v-model:selected-rows`.
+     *
+     * If sorting is also enabled, this will be an array of TableRowIdentifiers.
+     */
+    selectedRows: {
+      type: Array,
+      default: () => []
+    },
+    /**
+     * Label for the "select all rows" checkbox.
+     *
+     * This label is visually hidden but needed for assistive technology.
+     */
+    selectAllLabel: {
+      type: String,
+      default: "Select all rows"
+    },
+    /**
+     * Label for the "select row" checkboxes.
+     *
+     * These labels are visually hidden but needed for assistive technology.
+     */
+    selectRowLabel: {
+      type: String,
+      default: "Select row"
+    },
+    /**
+     * Definition of sort order. Column(s) can be sorted ascending, descending, or not sorted.
+     * To display data unsorted initially, set to an empty object initially.
+     * Must be bound with v-model:sort
+     */
+    sort: {
+      type: Object,
+      default: () => ({})
+    },
+    /**
+     * Text that provides additional info for the `<caption>` element when the column header
+     * has sorting is enabled.
+     *
+     * This text is visually hidden but needed for assistive technology.
+     */
+    sortCaption: {
+      type: String,
+      default: ", column headers with buttons are sortable."
+    }
+  },
+  emits: [
+    /**
+     * When the selected row(s) changes.
+     *
+     * @property {string[]} selectedRows The new selected rows.
+     */
+    "update:selectedRows",
+    /**
+     * When the sort order changes emit an event to update the sort order.
+     *
+     * @property {Object} sort The new sort order.
+     */
+    "update:sort"
+  ],
+  setup(props, { emit }) {
+    const wrappedSelectedRows = useModelWrapper(toRef(props, "selectedRows"), emit, "update:selectedRows");
+    const selectAll = ref(props.data.length === wrappedSelectedRows.value.length);
+    const selectAllIndeterminate = ref(false);
+    const activeSortColumn = computed(() => {
+      return Object.keys(props.sort)[0];
+    });
+    const hasSortableColumns = computed(() => {
+      return props.columns.some((column) => column.allowSort);
+    });
+    const tableClasses = computed(() => {
+      var _a;
+      const useFixedLayout = (_a = props.columns) == null ? void 0 : _a.some((column) => "width" in column || "minWidth" in column);
+      return {
+        "cdx-table__table--layout-fixed": useFixedLayout,
+        "cdx-table__table--borders-vertical": props.showVerticalBorders
+      };
+    });
+    function getRowKey(row, index) {
+      return TableRowIdentifier in row ? row[TableRowIdentifier] : index;
+    }
+    function getRowClass(row, rowIndex) {
+      const rowKey = getRowKey(row, rowIndex);
+      return {
+        "cdx-table__row--selected": wrappedSelectedRows.value.indexOf(rowKey) !== -1
+      };
+    }
+    function getRowHeaderScope(columnId) {
+      const firstColumn = props.columns[0].id;
+      if (props.useRowHeaders === true && columnId === firstColumn) {
+        return "row";
+      }
+    }
+    function getCellElement(columnId) {
+      const firstColumn = props.columns[0].id;
+      if (props.useRowHeaders && columnId === firstColumn) {
+        return "th";
+      }
+      return "td";
+    }
+    function getCellClass(column, hasSort = false) {
+      if ("textAlign" in column && !tableTextAlignmentsValidator(column.textAlign)) {
+        console.warn("Invalid value for TableColumn textAlign property.");
+        return void 0;
+      }
+      return {
+        // Don't assign a class for the default value 'start'. Instead, we'll set
+        // text-align: left on the td and th elements.
+        ["cdx-table__table__cell--align-".concat(column.textAlign)]: "textAlign" in column && column.textAlign !== "start",
+        "cdx-table__table__cell--has-sort": hasSort
+      };
+    }
+    function getCellStyle(column) {
+      const styles = {};
+      if ("width" in column) {
+        styles.width = column.width;
+      }
+      if ("minWidth" in column) {
+        styles.minWidth = column.minWidth;
+      }
+      return styles;
+    }
+    function handleRowSelection(newSelectedRows) {
+      if (props.data.length === newSelectedRows.length) {
+        selectAll.value = true;
+        selectAllIndeterminate.value = false;
+        return;
+      }
+      if (selectAll.value === true) {
+        selectAllIndeterminate.value = true;
+        selectAll.value = false;
+      }
+      if (newSelectedRows.length === 0) {
+        selectAllIndeterminate.value = false;
+      }
+    }
+    function handleSelectAll(newValue) {
+      selectAllIndeterminate.value = false;
+      if (newValue) {
+        wrappedSelectedRows.value = props.data.map((row, rowIndex) => getRowKey(row, rowIndex));
+      } else {
+        wrappedSelectedRows.value = [];
+      }
+    }
+    function handleSort(columnId) {
+      var _a;
+      const currentSortOrder = (_a = props.sort[columnId]) != null ? _a : "none";
+      let newSortOrder = "asc";
+      if (currentSortOrder === "asc") {
+        newSortOrder = "desc";
+      }
+      if (currentSortOrder === "desc") {
+        newSortOrder = "none";
+      }
+      emit("update:sort", { [columnId]: newSortOrder });
+    }
+    function getSortIcon(columnId) {
+      var _a;
+      const currentSortOrder = (_a = props.sort[columnId]) != null ? _a : "none";
+      return iconMap[currentSortOrder];
+    }
+    function getSortIconLabel(column) {
+      var _a, _b;
+      const currentSortOrder = (_a = props.sort[column.id]) != null ? _a : "none";
+      const columnLabel = (_b = column == null ? void 0 : column.label) != null ? _b : column.id;
+      if (currentSortOrder !== "none") {
+        return "Sort rows by ".concat(columnLabel.toLowerCase(), " in ").concat(sortOrderMap[currentSortOrder], " order.");
+      }
+    }
+    function getSortOrder(columnId, hasSort = false) {
+      var _a;
+      if (hasSort) {
+        const currentSortOrder = (_a = props.sort[columnId]) != null ? _a : "none";
+        return sortOrderMap[currentSortOrder];
+      }
+    }
+    function validateData() {
+      if (props.columns.length === 0 || props.data.length === 0) {
+        return;
+      }
+      const hasSort = props.columns.some((column) => "allowSort" in column);
+      const rowsHaveIds = props.data.every((row) => TableRowIdentifier in row);
+      if (hasSort && props.useRowSelection && !rowsHaveIds) {
+        console.warn(
+          "For CdxTables with sorting and row selection, each row in the `data` prop must have a `TableRowIdentifier`."
+        );
+      }
+    }
+    onMounted(() => validateData());
+    watch(toRef(props, "columns"), () => validateData());
+    watch(toRef(props, "data"), () => validateData());
+    watch(toRef(props, "useRowSelection"), () => validateData());
+    return {
+      // Row selection constants.
+      wrappedSelectedRows,
+      selectAll,
+      selectAllIndeterminate,
+      // Sorting constants.
+      activeSortColumn,
+      hasSortableColumns,
+      // Template helpers.
+      tableClasses,
+      getRowKey,
+      getRowClass,
+      getRowHeaderScope,
+      getCellElement,
+      getCellClass,
+      getCellStyle,
+      // Row selection methods.
+      handleRowSelection,
+      handleSelectAll,
+      // Sorting methods.
+      handleSort,
+      getSortIcon,
+      getSortIconLabel,
+      getSortOrder
+    };
+  }
+});
+const Table_vue_vue_type_style_index_0_lang = "";
+const _hoisted_1$7 = {
+  class: "cdx-table",
+  tabindex: "0"
+};
+const _hoisted_2$3 = {
+  key: 0,
+  class: "cdx-table__header"
+};
+const _hoisted_3$2 = ["aria-hidden"];
+const _hoisted_4$2 = { class: "cdx-table__header__content" };
+const _hoisted_5$2 = { class: "cdx-table__table-wrapper" };
+const _hoisted_6$2 = { key: 0 };
+const _hoisted_7 = { key: 0 };
+const _hoisted_8 = {
+  key: 0,
+  class: "cdx-table__table__select-rows"
+};
+const _hoisted_9 = ["aria-sort"];
+const _hoisted_10 = ["aria-selected", "onClick"];
+const _hoisted_11 = { key: 0 };
+const _hoisted_12 = { key: 0 };
+const _hoisted_13 = {
+  key: 1,
+  class: "cdx-table__footer"
+};
+function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_cdx_checkbox = resolveComponent("cdx-checkbox");
+  const _component_cdx_icon = resolveComponent("cdx-icon");
+  return openBlock(), createElementBlock("div", _hoisted_1$7, [
+    !_ctx.hideCaption || _ctx.$slots.header && _ctx.$slots.header().length > 0 ? (openBlock(), createElementBlock("div", _hoisted_2$3, [
+      createElementVNode("div", {
+        class: "cdx-table__header__caption",
+        "aria-hidden": _ctx.$slots.header && _ctx.$slots.header().length > 0 ? void 0 : true
+      }, [
+        !_ctx.hideCaption ? (openBlock(), createElementBlock(
+          Fragment,
+          { key: 0 },
+          [
+            createTextVNode(
+              toDisplayString(_ctx.caption),
+              1
+              /* TEXT */
+            )
+          ],
+          64
+          /* STABLE_FRAGMENT */
+        )) : createCommentVNode("v-if", true)
+      ], 8, _hoisted_3$2),
+      createElementVNode("div", _hoisted_4$2, [
+        renderSlot(_ctx.$slots, "header")
+      ])
+    ])) : createCommentVNode("v-if", true),
+    createElementVNode("div", _hoisted_5$2, [
+      createElementVNode(
+        "table",
+        {
+          class: normalizeClass(["cdx-table__table", _ctx.tableClasses])
+        },
+        [
+          createElementVNode("caption", null, [
+            createTextVNode(
+              toDisplayString(_ctx.caption) + " ",
+              1
+              /* TEXT */
+            ),
+            _ctx.hasSortableColumns ? (openBlock(), createElementBlock(
+              "span",
+              _hoisted_6$2,
+              toDisplayString(_ctx.sortCaption),
+              1
+              /* TEXT */
+            )) : createCommentVNode("v-if", true)
+          ]),
+          renderSlot(_ctx.$slots, "thead", {}, () => [
+            _ctx.columns.length > 0 ? (openBlock(), createElementBlock("thead", _hoisted_7, [
+              createElementVNode("tr", null, [
+                _ctx.useRowSelection ? (openBlock(), createElementBlock("th", _hoisted_8, [
+                  createVNode(_component_cdx_checkbox, {
+                    modelValue: _ctx.selectAll,
+                    "onUpdate:modelValue": [
+                      _cache[0] || (_cache[0] = ($event) => _ctx.selectAll = $event),
+                      _ctx.handleSelectAll
+                    ],
+                    "hide-label": true,
+                    indeterminate: _ctx.selectAllIndeterminate
+                  }, {
+                    default: withCtx(() => [
+                      createTextVNode(
+                        toDisplayString(_ctx.selectAllLabel),
+                        1
+                        /* TEXT */
+                      )
+                    ]),
+                    _: 1
+                    /* STABLE */
+                  }, 8, ["modelValue", "indeterminate", "onUpdate:modelValue"])
+                ])) : createCommentVNode("v-if", true),
+                (openBlock(true), createElementBlock(
+                  Fragment,
+                  null,
+                  renderList(_ctx.columns, (column) => {
+                    return openBlock(), createElementBlock("th", {
+                      key: column.id,
+                      scope: "col",
+                      class: normalizeClass(_ctx.getCellClass(column, column.allowSort)),
+                      "aria-sort": _ctx.getSortOrder(column.id, column.allowSort),
+                      style: normalizeStyle(_ctx.getCellStyle(column))
+                    }, [
+                      column.allowSort ? (openBlock(), createElementBlock("button", {
+                        key: 0,
+                        "aria-selected": column.id === _ctx.activeSortColumn,
+                        class: "cdx-table__table__sort-button",
+                        onClick: ($event) => _ctx.handleSort(column.id)
+                      }, [
+                        createTextVNode(
+                          toDisplayString(column.label) + " ",
+                          1
+                          /* TEXT */
+                        ),
+                        createVNode(_component_cdx_icon, {
+                          icon: _ctx.getSortIcon(column.id),
+                          size: "small",
+                          class: "cdx-table__table__sort-icon",
+                          "aria-label": _ctx.getSortIconLabel(column),
+                          "aria-hidden": "true"
+                        }, null, 8, ["icon", "aria-label"])
+                      ], 8, _hoisted_10)) : (openBlock(), createElementBlock(
+                        Fragment,
+                        { key: 1 },
+                        [
+                          createTextVNode(
+                            toDisplayString(column.label),
+                            1
+                            /* TEXT */
+                          )
+                        ],
+                        64
+                        /* STABLE_FRAGMENT */
+                      ))
+                    ], 14, _hoisted_9);
+                  }),
+                  128
+                  /* KEYED_FRAGMENT */
+                ))
+              ])
+            ])) : createCommentVNode("v-if", true)
+          ]),
+          renderSlot(_ctx.$slots, "tbody", {}, () => [
+            _ctx.data.length > 0 ? (openBlock(), createElementBlock("tbody", _hoisted_11, [
+              (openBlock(true), createElementBlock(
+                Fragment,
+                null,
+                renderList(_ctx.data, (row, rowIndex) => {
+                  return openBlock(), createElementBlock(
+                    "tr",
+                    {
+                      key: _ctx.getRowKey(row, rowIndex),
+                      class: normalizeClass(_ctx.getRowClass(row, rowIndex))
+                    },
+                    [
+                      _ctx.useRowSelection ? (openBlock(), createElementBlock("td", _hoisted_12, [
+                        createVNode(_component_cdx_checkbox, {
+                          modelValue: _ctx.wrappedSelectedRows,
+                          "onUpdate:modelValue": [
+                            _cache[1] || (_cache[1] = ($event) => _ctx.wrappedSelectedRows = $event),
+                            _ctx.handleRowSelection
+                          ],
+                          "input-value": _ctx.getRowKey(row, rowIndex),
+                          "hide-label": true
+                        }, {
+                          default: withCtx(() => [
+                            createTextVNode(
+                              toDisplayString(_ctx.selectRowLabel),
+                              1
+                              /* TEXT */
+                            )
+                          ]),
+                          _: 2
+                          /* DYNAMIC */
+                        }, 1032, ["modelValue", "input-value", "onUpdate:modelValue"])
+                      ])) : createCommentVNode("v-if", true),
+                      (openBlock(true), createElementBlock(
+                        Fragment,
+                        null,
+                        renderList(_ctx.columns, (column) => {
+                          return openBlock(), createBlock(resolveDynamicComponent(_ctx.getCellElement(column.id)), {
+                            key: column.id,
+                            scope: _ctx.getRowHeaderScope(column.id),
+                            class: normalizeClass(_ctx.getCellClass(column))
+                          }, {
+                            default: withCtx(() => [
+                              renderSlot(_ctx.$slots, "item-" + column.id, {
+                                item: row[column.id],
+                                row
+                              }, () => [
+                                createTextVNode(
+                                  toDisplayString(row[column.id]),
+                                  1
+                                  /* TEXT */
+                                )
+                              ])
+                            ]),
+                            _: 2
+                            /* DYNAMIC */
+                          }, 1032, ["scope", "class"]);
+                        }),
+                        128
+                        /* KEYED_FRAGMENT */
+                      ))
+                    ],
+                    2
+                    /* CLASS */
+                  );
+                }),
+                128
+                /* KEYED_FRAGMENT */
+              ))
+            ])) : createCommentVNode("v-if", true)
+          ]),
+          renderSlot(_ctx.$slots, "tfoot")
+        ],
+        2
+        /* CLASS */
+      )
+    ]),
+    _ctx.$slots.footer && _ctx.$slots.footer().length > 0 ? (openBlock(), createElementBlock("div", _hoisted_13, [
+      renderSlot(_ctx.$slots, "footer")
+    ])) : createCommentVNode("v-if", true)
+  ]);
+}
+const Table = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$7]]);
 const _sfc_main$6 = defineComponent({
   name: "CdxTab",
   /**
@@ -6775,79 +7617,117 @@ const _hoisted_6$1 = { class: "cdx-tabs__content" };
 function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_button = resolveComponent("cdx-button");
-  return openBlock(), createElementBlock("div", {
-    ref: "rootElement",
-    class: normalizeClass(["cdx-tabs", _ctx.rootClasses])
-  }, [
-    createElementVNode("div", _hoisted_1$5, [
-      withDirectives(createElementVNode("div", _hoisted_2$2, [
-        createVNode(_component_cdx_button, {
-          class: "cdx-tabs__scroll-button",
-          weight: "quiet",
-          type: "button",
-          tabindex: "-1",
-          "aria-hidden": true,
-          onMousedown: _cache[0] || (_cache[0] = withModifiers(() => {
-          }, ["prevent"])),
-          onClick: _cache[1] || (_cache[1] = ($event) => _ctx.scrollTabs("prev"))
-        }, {
-          default: withCtx(() => [
-            createVNode(_component_cdx_icon, { icon: _ctx.cdxIconPrevious }, null, 8, ["icon"])
-          ]),
-          _: 1
-        })
-      ], 512), [
-        [vShow, !_ctx.firstLabelVisible]
+  return openBlock(), createElementBlock(
+    "div",
+    {
+      ref: "rootElement",
+      class: normalizeClass(["cdx-tabs", _ctx.rootClasses])
+    },
+    [
+      createElementVNode("div", _hoisted_1$5, [
+        withDirectives(createElementVNode(
+          "div",
+          _hoisted_2$2,
+          [
+            createVNode(_component_cdx_button, {
+              class: "cdx-tabs__scroll-button",
+              weight: "quiet",
+              type: "button",
+              tabindex: "-1",
+              "aria-hidden": true,
+              onMousedown: _cache[0] || (_cache[0] = withModifiers(() => {
+              }, ["prevent"])),
+              onClick: _cache[1] || (_cache[1] = ($event) => _ctx.scrollTabs("prev"))
+            }, {
+              default: withCtx(() => [
+                createVNode(_component_cdx_icon, { icon: _ctx.cdxIconPrevious }, null, 8, ["icon"])
+              ]),
+              _: 1
+              /* STABLE */
+            })
+          ],
+          512
+          /* NEED_PATCH */
+        ), [
+          [vShow, !_ctx.firstLabelVisible]
+        ]),
+        createElementVNode(
+          "div",
+          _hoisted_3$1,
+          [
+            (openBlock(true), createElementBlock(
+              Fragment,
+              null,
+              renderList(_ctx.tabsData.values(), (tab, index) => {
+                return openBlock(), createElementBlock("button", {
+                  id: "".concat(tab.id, "-label"),
+                  key: index,
+                  ref_for: true,
+                  ref: (ref2) => _ctx.assignTemplateRefForTabButton(ref2, index),
+                  disabled: tab.disabled ? true : void 0,
+                  "aria-controls": tab.id,
+                  "aria-selected": tab.name === _ctx.activeTab,
+                  tabindex: tab.name === _ctx.activeTab ? void 0 : -1,
+                  class: "cdx-tabs__list__item",
+                  role: "tab",
+                  onClick: withModifiers(($event) => _ctx.select(tab.name), ["prevent"]),
+                  onKeyup: withKeys(($event) => _ctx.select(tab.name), ["enter"]),
+                  onKeydown: [
+                    _cache[2] || (_cache[2] = withKeys(withModifiers((...args) => _ctx.onRightArrowKeypress && _ctx.onRightArrowKeypress(...args), ["prevent"]), ["right"])),
+                    _cache[3] || (_cache[3] = withKeys(withModifiers((...args) => _ctx.onDownArrowKeypress && _ctx.onDownArrowKeypress(...args), ["prevent"]), ["down"])),
+                    _cache[4] || (_cache[4] = withKeys(withModifiers((...args) => _ctx.onLeftArrowKeypress && _ctx.onLeftArrowKeypress(...args), ["prevent"]), ["left"]))
+                  ]
+                }, [
+                  createElementVNode(
+                    "span",
+                    null,
+                    toDisplayString(tab.label),
+                    1
+                    /* TEXT */
+                  )
+                ], 40, _hoisted_4$1);
+              }),
+              128
+              /* KEYED_FRAGMENT */
+            ))
+          ],
+          512
+          /* NEED_PATCH */
+        ),
+        withDirectives(createElementVNode(
+          "div",
+          _hoisted_5$1,
+          [
+            createVNode(_component_cdx_button, {
+              class: "cdx-tabs__scroll-button",
+              weight: "quiet",
+              type: "button",
+              tabindex: "-1",
+              "aria-hidden": true,
+              onMousedown: _cache[5] || (_cache[5] = withModifiers(() => {
+              }, ["prevent"])),
+              onClick: _cache[6] || (_cache[6] = ($event) => _ctx.scrollTabs("next"))
+            }, {
+              default: withCtx(() => [
+                createVNode(_component_cdx_icon, { icon: _ctx.cdxIconNext }, null, 8, ["icon"])
+              ]),
+              _: 1
+              /* STABLE */
+            })
+          ],
+          512
+          /* NEED_PATCH */
+        ), [
+          [vShow, !_ctx.lastLabelVisible]
+        ])
       ]),
-      createElementVNode("div", _hoisted_3$1, [
-        (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.tabsData.values(), (tab, index) => {
-          return openBlock(), createElementBlock("button", {
-            id: "".concat(tab.id, "-label"),
-            key: index,
-            ref_for: true,
-            ref: (ref2) => _ctx.assignTemplateRefForTabButton(ref2, index),
-            disabled: tab.disabled ? true : void 0,
-            "aria-controls": tab.id,
-            "aria-selected": tab.name === _ctx.activeTab,
-            tabindex: tab.name === _ctx.activeTab ? void 0 : -1,
-            class: "cdx-tabs__list__item",
-            role: "tab",
-            onClick: withModifiers(($event) => _ctx.select(tab.name), ["prevent"]),
-            onKeyup: withKeys(($event) => _ctx.select(tab.name), ["enter"]),
-            onKeydown: [
-              _cache[2] || (_cache[2] = withKeys(withModifiers((...args) => _ctx.onRightArrowKeypress && _ctx.onRightArrowKeypress(...args), ["prevent"]), ["right"])),
-              _cache[3] || (_cache[3] = withKeys(withModifiers((...args) => _ctx.onDownArrowKeypress && _ctx.onDownArrowKeypress(...args), ["prevent"]), ["down"])),
-              _cache[4] || (_cache[4] = withKeys(withModifiers((...args) => _ctx.onLeftArrowKeypress && _ctx.onLeftArrowKeypress(...args), ["prevent"]), ["left"]))
-            ]
-          }, [
-            createElementVNode("span", null, toDisplayString(tab.label), 1)
-          ], 40, _hoisted_4$1);
-        }), 128))
-      ], 512),
-      withDirectives(createElementVNode("div", _hoisted_5$1, [
-        createVNode(_component_cdx_button, {
-          class: "cdx-tabs__scroll-button",
-          weight: "quiet",
-          type: "button",
-          tabindex: "-1",
-          "aria-hidden": true,
-          onMousedown: _cache[5] || (_cache[5] = withModifiers(() => {
-          }, ["prevent"])),
-          onClick: _cache[6] || (_cache[6] = ($event) => _ctx.scrollTabs("next"))
-        }, {
-          default: withCtx(() => [
-            createVNode(_component_cdx_icon, { icon: _ctx.cdxIconNext }, null, 8, ["icon"])
-          ]),
-          _: 1
-        })
-      ], 512), [
-        [vShow, !_ctx.lastLabelVisible]
+      createElementVNode("div", _hoisted_6$1, [
+        renderSlot(_ctx.$slots, "default")
       ])
-    ]),
-    createElementVNode("div", _hoisted_6$1, [
-      renderSlot(_ctx.$slots, "default")
-    ])
-  ], 2);
+    ],
+    2
+    /* CLASS */
+  );
 }
 const Tabs = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$5]]);
 const statusValidator = makeStringTypeValidator(ValidationStatusTypes);
@@ -6977,33 +7857,39 @@ const TextArea_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$4 = ["id", "aria-describedby", "disabled"];
 function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
-  return openBlock(), createElementBlock("div", {
-    class: normalizeClass(["cdx-text-area", _ctx.rootClasses]),
-    style: normalizeStyle(_ctx.rootStyle)
-  }, [
-    withDirectives(createElementVNode("textarea", mergeProps({
-      id: _ctx.computedInputId,
-      ref: "textarea"
-    }, _ctx.otherAttrsMinusId, {
-      "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.wrappedModel = $event),
-      class: [_ctx.textareaClasses, "cdx-text-area__textarea"],
-      "aria-describedby": _ctx.descriptionId,
-      disabled: _ctx.computedDisabled,
-      onInput: _cache[1] || (_cache[1] = (...args) => _ctx.onInput && _ctx.onInput(...args))
-    }), null, 16, _hoisted_1$4), [
-      [vModelText, _ctx.wrappedModel]
-    ]),
-    _ctx.startIcon ? (openBlock(), createBlock(_component_cdx_icon, {
-      key: 0,
-      icon: _ctx.startIcon,
-      class: "cdx-text-area__icon-vue cdx-text-area__start-icon"
-    }, null, 8, ["icon"])) : createCommentVNode("", true),
-    _ctx.endIcon ? (openBlock(), createBlock(_component_cdx_icon, {
-      key: 1,
-      icon: _ctx.endIcon,
-      class: "cdx-text-area__icon-vue cdx-text-area__end-icon"
-    }, null, 8, ["icon"])) : createCommentVNode("", true)
-  ], 6);
+  return openBlock(), createElementBlock(
+    "div",
+    {
+      class: normalizeClass(["cdx-text-area", _ctx.rootClasses]),
+      style: normalizeStyle(_ctx.rootStyle)
+    },
+    [
+      withDirectives(createElementVNode("textarea", mergeProps({
+        id: _ctx.computedInputId,
+        ref: "textarea"
+      }, _ctx.otherAttrsMinusId, {
+        "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.wrappedModel = $event),
+        class: [_ctx.textareaClasses, "cdx-text-area__textarea"],
+        "aria-describedby": _ctx.descriptionId,
+        disabled: _ctx.computedDisabled,
+        onInput: _cache[1] || (_cache[1] = (...args) => _ctx.onInput && _ctx.onInput(...args))
+      }), null, 16, _hoisted_1$4), [
+        [vModelText, _ctx.wrappedModel]
+      ]),
+      _ctx.startIcon ? (openBlock(), createBlock(_component_cdx_icon, {
+        key: 0,
+        icon: _ctx.startIcon,
+        class: "cdx-text-area__icon-vue cdx-text-area__start-icon"
+      }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
+      _ctx.endIcon ? (openBlock(), createBlock(_component_cdx_icon, {
+        key: 1,
+        icon: _ctx.endIcon,
+        class: "cdx-text-area__icon-vue cdx-text-area__end-icon"
+      }, null, 8, ["icon"])) : createCommentVNode("v-if", true)
+    ],
+    6
+    /* CLASS, STYLE */
+  );
 }
 const TextArea = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["render", _sfc_render$4]]);
 const _sfc_main$3 = defineComponent({
@@ -7168,29 +8054,40 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_toggle_button = resolveComponent("cdx-toggle-button");
   return openBlock(), createElementBlock("div", _hoisted_1$2, [
-    (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.buttons, (button) => {
-      return openBlock(), createBlock(_component_cdx_toggle_button, {
-        key: button.value,
-        "model-value": _ctx.isSelected(button),
-        disabled: button.disabled || _ctx.disabled,
-        "aria-label": button.ariaLabel,
-        "onUpdate:modelValue": ($event) => _ctx.onUpdate(button, $event)
-      }, {
-        default: withCtx(() => [
-          renderSlot(_ctx.$slots, "default", {
-            button,
-            selected: _ctx.isSelected(button)
-          }, () => [
-            button.icon ? (openBlock(), createBlock(_component_cdx_icon, {
-              key: 0,
-              icon: button.icon
-            }, null, 8, ["icon"])) : createCommentVNode("", true),
-            createTextVNode(" " + toDisplayString(_ctx.getButtonLabel(button)), 1)
-          ])
-        ]),
-        _: 2
-      }, 1032, ["model-value", "disabled", "aria-label", "onUpdate:modelValue"]);
-    }), 128))
+    (openBlock(true), createElementBlock(
+      Fragment,
+      null,
+      renderList(_ctx.buttons, (button) => {
+        return openBlock(), createBlock(_component_cdx_toggle_button, {
+          key: button.value,
+          "model-value": _ctx.isSelected(button),
+          disabled: button.disabled || _ctx.disabled,
+          "aria-label": button.ariaLabel,
+          "onUpdate:modelValue": ($event) => _ctx.onUpdate(button, $event)
+        }, {
+          default: withCtx(() => [
+            renderSlot(_ctx.$slots, "default", {
+              button,
+              selected: _ctx.isSelected(button)
+            }, () => [
+              button.icon ? (openBlock(), createBlock(_component_cdx_icon, {
+                key: 0,
+                icon: button.icon
+              }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
+              createTextVNode(
+                " " + toDisplayString(_ctx.getButtonLabel(button)),
+                1
+                /* TEXT */
+              )
+            ])
+          ]),
+          _: 2
+          /* DYNAMIC */
+        }, 1032, ["model-value", "disabled", "aria-label", "onUpdate:modelValue"]);
+      }),
+      128
+      /* KEYED_FRAGMENT */
+    ))
   ]);
 }
 const ToggleButtonGroup = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$2]]);
@@ -7291,53 +8188,66 @@ const _sfc_main$1 = defineComponent({
 });
 const ToggleSwitch_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$1 = ["id", "aria-describedby", "value", "disabled"];
-const _hoisted_2$1 = /* @__PURE__ */ createElementVNode("span", { class: "cdx-toggle-switch__switch" }, [
-  /* @__PURE__ */ createElementVNode("span", { class: "cdx-toggle-switch__switch__grip" })
-], -1);
+const _hoisted_2$1 = /* @__PURE__ */ createElementVNode(
+  "span",
+  { class: "cdx-toggle-switch__switch" },
+  [
+    /* @__PURE__ */ createElementVNode("span", { class: "cdx-toggle-switch__switch__grip" })
+  ],
+  -1
+  /* HOISTED */
+);
 function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_label = resolveComponent("cdx-label");
-  return openBlock(), createElementBlock("span", {
-    class: normalizeClass(["cdx-toggle-switch", _ctx.rootClasses]),
-    style: normalizeStyle(_ctx.rootStyle)
-  }, [
-    withDirectives(createElementVNode("input", mergeProps({
-      id: _ctx.inputId,
-      ref: "input",
-      "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.wrappedModel = $event),
-      class: "cdx-toggle-switch__input",
-      type: "checkbox",
-      role: "switch",
-      "aria-describedby": _ctx.$slots.description && _ctx.$slots.description().length > 0 ? _ctx.descriptionId : void 0,
-      value: _ctx.inputValue,
-      disabled: _ctx.computedDisabled
-    }, _ctx.otherAttrs, {
-      onKeydown: _cache[1] || (_cache[1] = withKeys(withModifiers((...args) => _ctx.clickInput && _ctx.clickInput(...args), ["prevent"]), ["enter"]))
-    }), null, 16, _hoisted_1$1), [
-      [vModelCheckbox, _ctx.wrappedModel]
-    ]),
-    _hoisted_2$1,
-    _ctx.$slots.default && _ctx.$slots.default().length ? (openBlock(), createBlock(_component_cdx_label, {
-      key: 0,
-      class: "cdx-toggle-switch__label",
-      "input-id": _ctx.inputId,
-      "description-id": _ctx.$slots.description && _ctx.$slots.description().length > 0 ? _ctx.descriptionId : void 0,
-      "visually-hidden": _ctx.hideLabel,
-      disabled: _ctx.computedDisabled
-    }, createSlots({
-      default: withCtx(() => [
-        renderSlot(_ctx.$slots, "default")
+  return openBlock(), createElementBlock(
+    "span",
+    {
+      class: normalizeClass(["cdx-toggle-switch", _ctx.rootClasses]),
+      style: normalizeStyle(_ctx.rootStyle)
+    },
+    [
+      withDirectives(createElementVNode("input", mergeProps({
+        id: _ctx.inputId,
+        ref: "input",
+        "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.wrappedModel = $event),
+        class: "cdx-toggle-switch__input",
+        type: "checkbox",
+        role: "switch",
+        "aria-describedby": _ctx.$slots.description && _ctx.$slots.description().length > 0 ? _ctx.descriptionId : void 0,
+        value: _ctx.inputValue,
+        disabled: _ctx.computedDisabled
+      }, _ctx.otherAttrs, {
+        onKeydown: _cache[1] || (_cache[1] = withKeys(withModifiers((...args) => _ctx.clickInput && _ctx.clickInput(...args), ["prevent"]), ["enter"]))
+      }), null, 16, _hoisted_1$1), [
+        [vModelCheckbox, _ctx.wrappedModel]
       ]),
-      _: 2
-    }, [
-      _ctx.$slots.description && _ctx.$slots.description().length > 0 ? {
-        name: "description",
-        fn: withCtx(() => [
-          renderSlot(_ctx.$slots, "description")
+      _hoisted_2$1,
+      _ctx.$slots.default && _ctx.$slots.default().length ? (openBlock(), createBlock(_component_cdx_label, {
+        key: 0,
+        class: "cdx-toggle-switch__label",
+        "input-id": _ctx.inputId,
+        "description-id": _ctx.$slots.description && _ctx.$slots.description().length > 0 ? _ctx.descriptionId : void 0,
+        "visually-hidden": _ctx.hideLabel,
+        disabled: _ctx.computedDisabled
+      }, createSlots({
+        default: withCtx(() => [
+          renderSlot(_ctx.$slots, "default")
         ]),
-        key: "0"
-      } : void 0
-    ]), 1032, ["input-id", "description-id", "visually-hidden", "disabled"])) : createCommentVNode("", true)
-  ], 6);
+        _: 2
+        /* DYNAMIC */
+      }, [
+        _ctx.$slots.description && _ctx.$slots.description().length > 0 ? {
+          name: "description",
+          fn: withCtx(() => [
+            renderSlot(_ctx.$slots, "description")
+          ]),
+          key: "0"
+        } : void 0
+      ]), 1032, ["input-id", "description-id", "visually-hidden", "disabled"])) : createCommentVNode("v-if", true)
+    ],
+    6
+    /* CLASS, STYLE */
+  );
 }
 const ToggleSwitch = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render$1]]);
 const _sfc_main = defineComponent({
@@ -7733,102 +8643,128 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_menu = resolveComponent("cdx-menu");
   const _component_cdx_search_input = resolveComponent("cdx-search-input");
-  return openBlock(), createElementBlock("div", {
-    class: normalizeClass(["cdx-typeahead-search", _ctx.rootClasses]),
-    style: normalizeStyle(_ctx.rootStyle)
-  }, [
-    createElementVNode("form", {
-      id: _ctx.id,
-      ref: "form",
-      class: "cdx-typeahead-search__form",
-      action: _ctx.formAction,
-      onSubmit: _cache[4] || (_cache[4] = (...args) => _ctx.onSubmit && _ctx.onSubmit(...args))
-    }, [
-      createVNode(_component_cdx_search_input, mergeProps({
-        ref: "searchInput",
-        modelValue: _ctx.inputValue,
-        "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => _ctx.inputValue = $event),
-        "button-label": _ctx.buttonLabel
-      }, _ctx.otherAttrs, {
-        class: "cdx-typeahead-search__input",
-        name: "search",
-        role: "combobox",
-        autocomplete: "off",
-        "aria-autocomplete": "list",
-        "aria-controls": _ctx.menuId,
-        "aria-expanded": _ctx.expanded,
-        "aria-activedescendant": _ctx.highlightedId,
-        "onUpdate:modelValue": _ctx.onUpdateInputValue,
-        onFocus: _ctx.onFocus,
-        onBlur: _ctx.onBlur,
-        onKeydown: _ctx.onKeydown
-      }), {
-        default: withCtx(() => [
-          createVNode(_component_cdx_menu, mergeProps({
-            id: _ctx.menuId,
-            ref: "menu",
-            expanded: _ctx.expanded,
-            "onUpdate:expanded": _cache[0] || (_cache[0] = ($event) => _ctx.expanded = $event),
-            class: "cdx-typeahead-search__menu",
-            "show-pending": _ctx.showPending,
-            selected: _ctx.selection,
-            "menu-items": _ctx.searchResults,
-            footer: _ctx.footer,
-            "search-query": _ctx.highlightQuery ? _ctx.searchQuery : "",
-            "show-no-results-slot": _ctx.searchQuery.length > 0 && _ctx.searchResults.length === 0 && _ctx.$slots["search-no-results-text"] && _ctx.$slots["search-no-results-text"]().length > 0
-          }, _ctx.menuConfig, {
-            "aria-label": _ctx.searchResultsLabel,
-            "onUpdate:selected": _ctx.onUpdateMenuSelection,
-            onMenuItemClick: _cache[1] || (_cache[1] = (menuItem) => _ctx.onSearchResultClick(_ctx.asSearchResult(menuItem))),
-            onMenuItemKeyboardNavigation: _ctx.onSearchResultKeyboardNavigation,
-            onLoadMore: _cache[2] || (_cache[2] = ($event) => _ctx.$emit("load-more"))
-          }), {
-            pending: withCtx(() => [
-              createElementVNode("div", {
-                class: normalizeClass(["cdx-menu-item__content cdx-typeahead-search__menu-message", _ctx.menuMessageClass])
-              }, [
-                createElementVNode("span", _hoisted_2, [
-                  renderSlot(_ctx.$slots, "search-results-pending")
-                ])
-              ], 2)
-            ]),
-            "no-results": withCtx(() => [
-              createElementVNode("div", {
-                class: normalizeClass(["cdx-menu-item__content cdx-typeahead-search__menu-message", _ctx.menuMessageClass])
-              }, [
-                createElementVNode("span", _hoisted_3, [
-                  renderSlot(_ctx.$slots, "search-no-results-text")
-                ])
-              ], 2)
-            ]),
-            default: withCtx(({ menuItem, active }) => [
-              menuItem.value === _ctx.MenuFooterValue ? (openBlock(), createElementBlock("a", {
-                key: 0,
-                class: normalizeClass(["cdx-menu-item__content cdx-typeahead-search__search-footer", {
-                  "cdx-typeahead-search__search-footer__active": active
-                }]),
-                href: _ctx.asSearchResult(menuItem).url,
-                onClickCapture: withModifiers(($event) => _ctx.onSearchFooterClick(_ctx.asSearchResult(menuItem)), ["stop"])
-              }, [
-                createVNode(_component_cdx_icon, {
-                  class: "cdx-menu-item__thumbnail cdx-typeahead-search__search-footer__icon",
-                  icon: _ctx.articleIcon
-                }, null, 8, ["icon"]),
-                createElementVNode("span", _hoisted_5, [
-                  renderSlot(_ctx.$slots, "search-footer-text", { searchQuery: _ctx.searchQuery }, () => [
-                    createElementVNode("strong", _hoisted_6, toDisplayString(_ctx.searchQuery), 1)
+  return openBlock(), createElementBlock(
+    "div",
+    {
+      class: normalizeClass(["cdx-typeahead-search", _ctx.rootClasses]),
+      style: normalizeStyle(_ctx.rootStyle)
+    },
+    [
+      createElementVNode("form", {
+        id: _ctx.id,
+        ref: "form",
+        class: "cdx-typeahead-search__form",
+        action: _ctx.formAction,
+        onSubmit: _cache[4] || (_cache[4] = (...args) => _ctx.onSubmit && _ctx.onSubmit(...args))
+      }, [
+        createVNode(_component_cdx_search_input, mergeProps({
+          ref: "searchInput",
+          modelValue: _ctx.inputValue,
+          "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => _ctx.inputValue = $event),
+          "button-label": _ctx.buttonLabel
+        }, _ctx.otherAttrs, {
+          class: "cdx-typeahead-search__input",
+          name: "search",
+          role: "combobox",
+          autocomplete: "off",
+          "aria-autocomplete": "list",
+          "aria-controls": _ctx.menuId,
+          "aria-expanded": _ctx.expanded,
+          "aria-activedescendant": _ctx.highlightedId,
+          "onUpdate:modelValue": _ctx.onUpdateInputValue,
+          onFocus: _ctx.onFocus,
+          onBlur: _ctx.onBlur,
+          onKeydown: _ctx.onKeydown
+        }), {
+          default: withCtx(() => [
+            createVNode(_component_cdx_menu, mergeProps({
+              id: _ctx.menuId,
+              ref: "menu",
+              expanded: _ctx.expanded,
+              "onUpdate:expanded": _cache[0] || (_cache[0] = ($event) => _ctx.expanded = $event),
+              class: "cdx-typeahead-search__menu",
+              "show-pending": _ctx.showPending,
+              selected: _ctx.selection,
+              "menu-items": _ctx.searchResults,
+              footer: _ctx.footer,
+              "search-query": _ctx.highlightQuery ? _ctx.searchQuery : "",
+              "show-no-results-slot": _ctx.searchQuery.length > 0 && _ctx.searchResults.length === 0 && _ctx.$slots["search-no-results-text"] && _ctx.$slots["search-no-results-text"]().length > 0
+            }, _ctx.menuConfig, {
+              "aria-label": _ctx.searchResultsLabel,
+              "onUpdate:selected": _ctx.onUpdateMenuSelection,
+              onMenuItemClick: _cache[1] || (_cache[1] = (menuItem) => _ctx.onSearchResultClick(_ctx.asSearchResult(menuItem))),
+              onMenuItemKeyboardNavigation: _ctx.onSearchResultKeyboardNavigation,
+              onLoadMore: _cache[2] || (_cache[2] = ($event) => _ctx.$emit("load-more"))
+            }), {
+              pending: withCtx(() => [
+                createElementVNode(
+                  "div",
+                  {
+                    class: normalizeClass(["cdx-menu-item__content cdx-typeahead-search__menu-message", _ctx.menuMessageClass])
+                  },
+                  [
+                    createElementVNode("span", _hoisted_2, [
+                      renderSlot(_ctx.$slots, "search-results-pending")
+                    ])
+                  ],
+                  2
+                  /* CLASS */
+                )
+              ]),
+              "no-results": withCtx(() => [
+                createElementVNode(
+                  "div",
+                  {
+                    class: normalizeClass(["cdx-menu-item__content cdx-typeahead-search__menu-message", _ctx.menuMessageClass])
+                  },
+                  [
+                    createElementVNode("span", _hoisted_3, [
+                      renderSlot(_ctx.$slots, "search-no-results-text")
+                    ])
+                  ],
+                  2
+                  /* CLASS */
+                )
+              ]),
+              default: withCtx(({ menuItem, active }) => [
+                menuItem.value === _ctx.MenuFooterValue ? (openBlock(), createElementBlock("a", {
+                  key: 0,
+                  class: normalizeClass(["cdx-menu-item__content cdx-typeahead-search__search-footer", {
+                    "cdx-typeahead-search__search-footer__active": active
+                  }]),
+                  href: _ctx.asSearchResult(menuItem).url,
+                  onClickCapture: withModifiers(($event) => _ctx.onSearchFooterClick(_ctx.asSearchResult(menuItem)), ["stop"])
+                }, [
+                  createVNode(_component_cdx_icon, {
+                    class: "cdx-menu-item__thumbnail cdx-typeahead-search__search-footer__icon",
+                    icon: _ctx.articleIcon
+                  }, null, 8, ["icon"]),
+                  createElementVNode("span", _hoisted_5, [
+                    renderSlot(_ctx.$slots, "search-footer-text", { searchQuery: _ctx.searchQuery }, () => [
+                      createElementVNode(
+                        "strong",
+                        _hoisted_6,
+                        toDisplayString(_ctx.searchQuery),
+                        1
+                        /* TEXT */
+                      )
+                    ])
                   ])
-                ])
-              ], 42, _hoisted_4)) : createCommentVNode("", true)
-            ]),
-            _: 3
-          }, 16, ["id", "expanded", "show-pending", "selected", "menu-items", "footer", "search-query", "show-no-results-slot", "aria-label", "onUpdate:selected", "onMenuItemKeyboardNavigation"])
-        ]),
-        _: 3
-      }, 16, ["modelValue", "button-label", "aria-controls", "aria-expanded", "aria-activedescendant", "onUpdate:modelValue", "onFocus", "onBlur", "onKeydown"]),
-      renderSlot(_ctx.$slots, "default")
-    ], 40, _hoisted_1)
-  ], 6);
+                ], 42, _hoisted_4)) : createCommentVNode("v-if", true)
+              ]),
+              _: 3
+              /* FORWARDED */
+            }, 16, ["id", "expanded", "show-pending", "selected", "menu-items", "footer", "search-query", "show-no-results-slot", "aria-label", "onUpdate:selected", "onMenuItemKeyboardNavigation"])
+          ]),
+          _: 3
+          /* FORWARDED */
+        }, 16, ["modelValue", "button-label", "aria-controls", "aria-expanded", "aria-activedescendant", "onUpdate:modelValue", "onFocus", "onBlur", "onKeydown"]),
+        renderSlot(_ctx.$slots, "default")
+      ], 40, _hoisted_1)
+    ],
+    6
+    /* CLASS, STYLE */
+  );
 }
 const TypeaheadSearch = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render]]);
 export {
@@ -7836,7 +8772,7 @@ export {
   CdxButton,
   ButtonGroup as CdxButtonGroup,
   Card as CdxCard,
-  Checkbox as CdxCheckbox,
+  CdxCheckbox,
   ChipInput as CdxChipInput,
   Combobox as CdxCombobox,
   Dialog as CdxDialog,
@@ -7854,6 +8790,7 @@ export {
   CdxSearchResultTitle,
   Select as CdxSelect,
   CdxTab,
+  Table as CdxTable,
   Tabs as CdxTabs,
   TextArea as CdxTextArea,
   CdxTextInput,
@@ -7862,6 +8799,7 @@ export {
   ToggleButtonGroup as CdxToggleButtonGroup,
   ToggleSwitch as CdxToggleSwitch,
   TypeaheadSearch as CdxTypeaheadSearch,
+  TableRowIdentifier,
   stringHelpers,
   useComputedDirection,
   useComputedDisabled,

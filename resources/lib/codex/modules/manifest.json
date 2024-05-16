@@ -563,6 +563,35 @@
     "isEntry": true,
     "src": "src/components/tab/Tab.vue"
   },
+  "src/components/table/Table.css": {
+    "file": "CdxTable.css",
+    "src": "src/components/table/Table.css"
+  },
+  "src/components/table/Table.vue": {
+    "css": [
+      "CdxTable.css"
+    ],
+    "file": "CdxTable.cjs",
+    "imports": [
+      "_constants.js",
+      "src/composables/useModelWrapper.ts",
+      "src/components/checkbox/Checkbox.vue",
+      "_Icon.js",
+      "__plugin-vue_export-helper.js",
+      "src/components/label/Label.vue",
+      "src/composables/useFieldData.ts",
+      "src/composables/useComputedDisabled.ts",
+      "src/composables/useSplitAttributes.ts",
+      "_useLabelChecker.js",
+      "_useSlotContents.js",
+      "src/composables/useWarnOnce.ts",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts"
+    ],
+    "isEntry": true,
+    "src": "src/components/table/Table.vue"
+  },
   "src/components/tabs/Tabs.css": {
     "file": "CdxTabs.css",
     "src": "src/components/tabs/Tabs.css"

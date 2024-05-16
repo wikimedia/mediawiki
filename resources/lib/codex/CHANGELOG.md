@@ -1,3 +1,60 @@
+# 1.6.0 / 2024-05-15
+
+## Deprecating Changes
+- [DEPRECATING CHANGE] Checkbox, Radio, ToggleSwitch: Always use Label component in CSS-only version (Roan Kattouw)
+
+## Features
+- Table: Move out of WIP (Anne Tomasevich)
+- Table: Add slots for custom table elements (Anne Tomasevich)
+- Table: Add basic CSS-only component and clean up markup (Anne Tomasevich)
+- Table: CSS-only row header, vertical borders, hidden caption (lwatson)
+- Table: Add guidelines (Anne Tomasevich)
+- Table: sortable table headers wrap a button (lwatson)
+- Table: Add `textAlign` option for numbers (Anne Tomasevich)
+- Table: Enable sorting with row selection (Anne Tomasevich)
+
+## Styles
+- ChipInput, styles: Implement error-hover state (Volker E.)
+- Table, styles: Use `color-subtle` for all sorting arrow icons (Volker E.)
+- Table, styles: Apply `text-align` to `th` elements only (Volker E.)
+- styles: prog/dest prim buttons should not invert icons in dark mode (Derk-Jan Hartman)
+- styles: Don't wrap `kbd` text (Volker E.)
+- tokens: Revise component tokens for Link to work with dark mode (Derek Torsani)
+- tokens: Update blue800 value (Derek Torsani)
+
+## Code
+- Checkbox: Add name prop for submittable forms (akiel)
+- Table: Clean up types and styles (Anne Tomasevich)
+- Table: Fix sandbox demos using default slot (Anne Tomasevich)
+- Table: Add demo page (Anne Tomasevich)
+- Table: Add demo of CSS-only row selection (Anne Tomasevich)
+- Table: Clean up styles and CSS classes (Anne Tomasevich)
+- Table: Clean up alignment classes (Anne Tomasevich)
+- Table: Miscellaneous cleanup (Roan Kattouw)
+- Table: Hide visible caption from assistive technology (Anne Tomasevich)
+- Table: fix caption when column headers with buttons are sortable (lwatson)
+- Revert "Table: Add special class to force vertical borders" (Anne Tomasevich)
+- demos: Remove `// @vue/component` from MW demos (Roan Kattouw)
+- demos: add `scope` to table headers in TableWithSlots example (lwatson)
+- sandbox: Centralize the header and layout into DemoBaseLayout (Derk-Jan Hartman)
+- build: update vue-tsc dependency (Eric Gardner)
+- build: Update @vitejs/plugin-vue (Eric Gardner)
+- build: Introduce a general build command with reference (Volker E.)
+
+## Documentation
+- docs: update docker command in releasing doc (lwatson)
+- docs, styles: Increase `z-index` on open flyout menu (nbarnabee)
+- docs: include bidirectionality guidelines (bmartinezcalvo)
+- docs: Expand BEM section on child element block naming logic (Volker E.)
+- docs: Add spacing between paragraphs and lists in custom blocks (Anne Tomasevich)
+- docs: Unify on "sub-components" (Volker E.)
+- docs: include error-hover state in Select, ChipInput and TextArea guidelines (bmartinezcalvo)
+- docs: Amend guideline references and AT notes (Volker E.)
+- docs, vscode: add rewrap to recommended extensions (Volker E.)
+- docs: fix "Interaction states" images in Select, ChipInput and TextArea (bmartinezcalvo)
+- docs: Add reference to Table guidelines (Anne Tomasevich)
+- RELEASING.md: LibraryUpgrader config repo has just moved to GitLab (James D. Forrester)
+
 # 1.5.0 / 2024-04-30
 
 ## Features
