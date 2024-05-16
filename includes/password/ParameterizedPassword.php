@@ -22,9 +22,11 @@
 
 declare( strict_types = 1 );
 
+namespace MediaWiki\Password;
+
 /**
  * Helper class for password hash types that have a delimited set of parameters
- * inside of the hash.
+ * inside the hash.
  *
  * All passwords are in the form of :<TYPE>:... as explained in the main Password
  * class. This class is for hashes in the form of :<TYPE>:<PARAM1>:<PARAM2>:... where
@@ -124,3 +126,6 @@ abstract class ParameterizedPassword extends Password {
 	 */
 	abstract protected function getDefaultParams(): array;
 }
+
+/** @deprecated since 1.43 use MediaWiki\\Password\\ParameterizedPassword */
+class_alias( ParameterizedPassword::class, 'ParameterizedPassword' );

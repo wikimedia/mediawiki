@@ -22,11 +22,12 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Password\Password;
+use MediaWiki\Password\PasswordError;
+use MediaWiki\Password\PasswordFactory;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
-use Password;
-use PasswordFactory;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -76,7 +77,7 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider
 		$passwordFactory = $this->getPasswordFactory();
 		try {
 			return $passwordFactory->newFromCiphertext( $hash );
-		} catch ( \PasswordError $e ) {
+		} catch ( PasswordError $e ) {
 			$class = static::class;
 			$this->logger->debug( "Invalid password hash in {$class}::getPassword()" );
 			return $passwordFactory->newFromCiphertext( null );

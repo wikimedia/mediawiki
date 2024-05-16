@@ -20,6 +20,10 @@
 
 declare( strict_types = 1 );
 
+namespace MediaWiki\Password;
+
+use LogicException;
+
 /**
  * Implements Argon2, a modern key derivation algorithm designed to resist GPU cracking and
  * side-channel attacks.
@@ -97,3 +101,6 @@ class Argon2Password extends Password {
 		return password_needs_rehash( $this->hash, $algo, $params );
 	}
 }
+
+/** @deprecated since 1.43 use MediaWiki\\Password\\Argon2Password */
+class_alias( Argon2Password::class, 'Argon2Password' );

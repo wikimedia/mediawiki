@@ -28,6 +28,8 @@ use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Password\PasswordError;
+use MediaWiki\Password\PasswordFactory;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\SpecialPage\FormSpecialPage;
@@ -35,8 +37,6 @@ use MediaWiki\Status\Status;
 use MediaWiki\User\BotPassword;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\User;
-use PasswordError;
-use PasswordFactory;
 use Psr\Log\LoggerInterface;
 
 /**

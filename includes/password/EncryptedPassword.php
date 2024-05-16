@@ -22,6 +22,8 @@
 
 declare( strict_types = 1 );
 
+namespace MediaWiki\Password;
+
 /**
  * Helper class for passwords that use another password hash underneath it
  * and encrypts that hash with a configured secret.
@@ -144,3 +146,6 @@ class EncryptedPassword extends ParameterizedPassword {
 		return $storedPassword->verify( $password );
 	}
 }
+
+/** @deprecated since 1.43 use MediaWiki\\Password\\EncryptedPassword */
+class_alias( EncryptedPassword::class, 'EncryptedPassword' );

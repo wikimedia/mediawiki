@@ -27,10 +27,10 @@ use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
+use MediaWiki\Password\UserPasswordPolicy;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
-use UserPasswordPolicy;
 
 class WebInstallerName extends WebInstallerPage {
 

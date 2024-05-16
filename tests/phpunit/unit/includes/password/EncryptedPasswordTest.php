@@ -1,9 +1,11 @@
 <?php
 
+use MediaWiki\Password\PasswordError;
+
 /**
- * @covers \EncryptedPassword
- * @covers \ParameterizedPassword
- * @covers \Password
+ * @covers \Mediawiki\Password\EncryptedPassword
+ * @covers \Mediawiki\Password\ParameterizedPassword
+ * @covers \Mediawiki\Password\Password
  */
 class EncryptedPasswordTest extends PasswordTestCase {
 	protected function getTypeConfigs() {

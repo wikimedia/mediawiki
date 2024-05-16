@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Password;
+
 use MediaWiki\Status\Status;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\CommonPasswords\CommonPasswords;
@@ -28,7 +30,7 @@ use Wikimedia\CommonPasswords\CommonPasswords;
  * Functions to check passwords against a policy requirement.
  *
  * $policyVal is the value configured in $wgPasswordPolicy. If the return status is fatal,
- * the user won't be allowed to login. If the status is not good but not fatal, the user
+ * the user won't be allowed to log in. If the status is not good but not fatal, the user
  * will not be allowed to set the given password (on registration or password change),
  * but can still log in after bypassing a warning.
  *
@@ -38,7 +40,7 @@ use Wikimedia\CommonPasswords\CommonPasswords;
 class PasswordPolicyChecks {
 
 	/**
-	 * Check password is longer than minimum, not fatal.
+	 * Check password is longer than the minimum, not fatal.
 	 * @param int $policyVal minimal length
 	 * @param UserIdentity $user
 	 * @param string $password
@@ -53,7 +55,7 @@ class PasswordPolicyChecks {
 	}
 
 	/**
-	 * Check password is longer than minimum, fatal.
+	 * Check password is longer than the minimum, fatal.
 	 * Intended for locking out users with passwords too short to trust, requiring them
 	 * to recover their account by some other means.
 	 * @param int $policyVal minimal length
@@ -70,7 +72,7 @@ class PasswordPolicyChecks {
 	}
 
 	/**
-	 * Check password is shorter than maximum, fatal.
+	 * Check password is shorter than the maximum, fatal.
 	 * Intended for preventing DoS attacks when using a more expensive password hash like PBKDF2.
 	 * @param int $policyVal maximum length
 	 * @param UserIdentity $user
@@ -86,11 +88,11 @@ class PasswordPolicyChecks {
 	}
 
 	/**
-	 * Check if password is a (case-insensitive) substring within the username.
+	 * Check if a password is a (case-insensitive) substring within the username.
 	 * @param bool $policyVal true to force compliance.
 	 * @param UserIdentity $user
 	 * @param string $password
-	 * @return Status error if password is a substring within username, and policy is true
+	 * @return Status error if the password is a substring within username, and the policy is true
 	 */
 	public static function checkPasswordCannotBeSubstringInUsername(
 		$policyVal,
@@ -110,7 +112,7 @@ class PasswordPolicyChecks {
 	 * @param bool $policyVal true to force compliance.
 	 * @param UserIdentity $user
 	 * @param string $password
-	 * @return Status error if username and password match, and policy is true
+	 * @return Status error if the username and password match, and policy is true
 	 */
 	public static function checkPasswordCannotMatchDefaults( $policyVal, UserIdentity $user, $password ) {
 		static $blockedLogins = [

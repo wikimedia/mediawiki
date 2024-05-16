@@ -22,8 +22,12 @@
 
 declare( strict_types = 1 );
 
+namespace MediaWiki\Password;
+
+use InvalidArgumentException;
 use MediaWiki\Config\Config;
 use MediaWiki\MainConfigNames;
+use MWCryptRand;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
@@ -243,10 +247,9 @@ final class PasswordFactory {
 		// stopping at a minimum of 10 chars.
 		$length = max( 10, $minLength );
 		// Multiply by 1.25 to get the number of hex characters we need
-		// Generate random hex chars
 		$hex = MWCryptRand::generateHex( ceil( $length * 1.25 ) );
 		// Convert from base 16 to base 32 to get a proper password like string
-		return substr( Wikimedia\base_convert( $hex, 16, 32, $length ), -$length );
+		return substr( \Wikimedia\base_convert( $hex, 16, 32, $length ), -$length );
 	}
 
 	/**
@@ -265,3 +268,6 @@ final class PasswordFactory {
 		return $password;
 	}
 }
+
+/** @deprecated since 1.43 use MediaWiki\\Password\\PasswordFactory */
+class_alias( PasswordFactory::class, 'PasswordFactory' );

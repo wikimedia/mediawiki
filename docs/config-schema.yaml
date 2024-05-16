@@ -4395,7 +4395,7 @@ config-schema:
     PasswordPolicy:
         default:
             policies: { bureaucrat: { MinimalPasswordLength: 10, MinimumPasswordLengthToLogin: 1 }, sysop: { MinimalPasswordLength: 10, MinimumPasswordLengthToLogin: 1 }, interface-admin: { MinimalPasswordLength: 10, MinimumPasswordLengthToLogin: 1 }, bot: { MinimalPasswordLength: 10, MinimumPasswordLengthToLogin: 1 }, default: { MinimalPasswordLength: { value: 8, suggestChangeOnLogin: true }, PasswordCannotBeSubstringInUsername: { value: true, suggestChangeOnLogin: true }, PasswordCannotMatchDefaults: { value: true, suggestChangeOnLogin: true }, MaximalPasswordLength: { value: 4096, suggestChangeOnLogin: true }, PasswordNotInCommonList: { value: true, suggestChangeOnLogin: true } } }
-            checks: { MinimalPasswordLength: 'PasswordPolicyChecks::checkMinimalPasswordLength', MinimumPasswordLengthToLogin: 'PasswordPolicyChecks::checkMinimumPasswordLengthToLogin', PasswordCannotBeSubstringInUsername: 'PasswordPolicyChecks::checkPasswordCannotBeSubstringInUsername', PasswordCannotMatchDefaults: 'PasswordPolicyChecks::checkPasswordCannotMatchDefaults', MaximalPasswordLength: 'PasswordPolicyChecks::checkMaximalPasswordLength', PasswordNotInCommonList: 'PasswordPolicyChecks::checkPasswordNotInCommonList' }
+            checks: { MinimalPasswordLength: [MediaWiki\Password\PasswordPolicyChecks, checkMinimalPasswordLength], MinimumPasswordLengthToLogin: [MediaWiki\Password\PasswordPolicyChecks, checkMinimumPasswordLengthToLogin], PasswordCannotBeSubstringInUsername: [MediaWiki\Password\PasswordPolicyChecks, checkPasswordCannotBeSubstringInUsername], PasswordCannotMatchDefaults: [MediaWiki\Password\PasswordPolicyChecks, checkPasswordCannotMatchDefaults], MaximalPasswordLength: [MediaWiki\Password\PasswordPolicyChecks, checkMaximalPasswordLength], PasswordNotInCommonList: [MediaWiki\Password\PasswordPolicyChecks, checkPasswordNotInCommonList] }
         type: object
         mergeStrategy: array_replace_recursive
         description: |-
@@ -4454,7 +4454,7 @@ config-schema:
             The check message receives the policy value as a parameter, the flag message
             receives the flag value (or values if it's an array).
             @since 1.26
-            @see \PasswordPolicyChecks
+            @see \MediaWiki\Password\PasswordPolicyChecks
             @see \MediaWiki\User\User::checkPasswordValidity()
     AuthManagerConfig:
         default: null
@@ -4589,13 +4589,13 @@ config-schema:
             @since 1.24
     PasswordConfig:
         default:
-            A: { class: MWOldPassword }
-            B: { class: MWSaltedPassword }
-            pbkdf2-legacyA: { class: LayeredParameterizedPassword, types: [A, pbkdf2] }
-            pbkdf2-legacyB: { class: LayeredParameterizedPassword, types: [B, pbkdf2] }
-            bcrypt: { class: BcryptPassword, cost: 9 }
-            pbkdf2: { factory: [AbstractPbkdf2Password, newInstance], algo: sha512, cost: '30000', length: '64' }
-            argon2: { class: Argon2Password, algo: auto }
+            A: { class: MediaWiki\Password\MWOldPassword }
+            B: { class: MediaWiki\Password\MWSaltedPassword }
+            pbkdf2-legacyA: { class: MediaWiki\Password\LayeredParameterizedPassword, types: [A, pbkdf2] }
+            pbkdf2-legacyB: { class: MediaWiki\Password\LayeredParameterizedPassword, types: [B, pbkdf2] }
+            bcrypt: { class: MediaWiki\Password\BcryptPassword, cost: 9 }
+            pbkdf2: { factory: [MediaWiki\Password\AbstractPbkdf2Password, newInstance], algo: sha512, cost: '30000', length: '64' }
+            argon2: { class: MediaWiki\Password\Argon2Password, algo: auto }
         type: object
         description: |-
             Configuration for built-in password types.

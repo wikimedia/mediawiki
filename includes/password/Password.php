@@ -22,6 +22,11 @@
 
 declare( strict_types = 1 );
 
+namespace MediaWiki\Password;
+
+use InvalidArgumentException;
+use RuntimeException;
+
 /**
  * Represents a password hash for use in authentication
  *
@@ -205,3 +210,6 @@ abstract class Password {
 	 */
 	abstract public function crypt( string $password ): void;
 }
+
+/** @deprecated since 1.43 use MediaWiki\\Password\\PasswordFactory */
+class_alias( Password::class, 'Password' );

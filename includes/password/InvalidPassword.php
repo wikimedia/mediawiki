@@ -22,6 +22,8 @@
 
 declare( strict_types = 1 );
 
+namespace MediaWiki\Password;
+
 /**
  * Represents an invalid password hash. It is represented as the empty string (i.e.,
  * a password hash with no type).
@@ -47,3 +49,6 @@ class InvalidPassword extends Password {
 		return false;
 	}
 }
+
+/** @deprecated since 1.43 use MediaWiki\\Password\\InvalidPassword */
+class_alias( InvalidPassword::class, 'InvalidPassword' );

@@ -22,6 +22,8 @@
 
 declare( strict_types = 1 );
 
+namespace MediaWiki\Password;
+
 /**
  * A PBKDF2-hashed password, using OpenSSL
  *
@@ -81,3 +83,6 @@ class Pbkdf2PasswordUsingOpenSSL extends AbstractPbkdf2Password {
 		return $hash;
 	}
 }
+
+/** @deprecated since 1.43 use MediaWiki\\Password\\Pbkdf2PasswordUsingOpenSSL */
+class_alias( Pbkdf2PasswordUsingOpenSSL::class, 'Pbkdf2PasswordUsingOpenSSL' );

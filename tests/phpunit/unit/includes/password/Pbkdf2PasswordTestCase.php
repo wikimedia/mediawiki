@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Password\PasswordError;
+use MediaWiki\Password\PasswordFactory;
+
 abstract class Pbkdf2PasswordTestCase extends PasswordTestCase {
 	abstract protected static function getPbkdf2PasswordClass();
 
