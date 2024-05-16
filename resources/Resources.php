@@ -600,20 +600,9 @@ return [
 						'resources/lib/pinia/pinia.iife.js' :
 						'resources/lib/pinia/pinia.iife.prod.js';
 
-					$vueDemi = "require('vue');";
-					if ( $developmentMode ) {
-						// Import vue-demi during development mode to provide .set and .del
-						// functions that are only used during pinia's dev mode HMR.
-						// See T364518
-						$vueDemi = '(function(){var exports={};' .
-							file_get_contents( MW_INSTALL_PATH . '/resources/lib/vue-demi/index.cjs' ) .
-							';return exports;})();';
-					}
-
 					// The file shipped by Pinia does var Pinia = ...;, but doesn't export it
-					// Add module.exports = Pinia; programmatically.
-					return "var VueDemi=" .
-						$vueDemi .
+					// Add module.exports = Pinia; programmatically, and inject vue-demi.
+					return "var VueDemi=require('./vue-demi.js');" .
 						file_get_contents( MW_INSTALL_PATH . "/$file" ) .
 						';module.exports=Pinia;';
 				},
@@ -622,6 +611,20 @@ return [
 						'resources/lib/pinia/pinia.iife.js' :
 						'resources/lib/pinia/pinia.iife.prod.js';
 					return new FilePath( $file );
+				}
+			],
+			[
+				'name' => 'resources/lib/pinia/vue-demi.js',
+				'callback' => static function ( Context $context, Config $config ) {
+					$developmentMode = $config->get( MainConfigNames::VueDevelopmentMode ) || $context->getDebug();
+
+					// In non-development mode, Pinia doesn't need vue-demi, so don't load it.
+					// Instead, just wrap Vue.
+					if ( !$developmentMode ) {
+						return "module.exports=require('vue');";
+					}
+
+					return new FilePath( 'resources/lib/vue-demi/index.cjs' );
 				}
 			]
 		],
