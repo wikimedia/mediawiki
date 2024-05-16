@@ -1908,6 +1908,12 @@ class MainConfigNames {
 	public const LoginLanguageSelector = 'LoginLanguageSelector';
 
 	/**
+	 * Name constant for the ExperimentalLoginPopup setting, for use with Config::get()
+	 * @see MainConfigSchema::ExperimentalLoginPopup
+	 */
+	public const ExperimentalLoginPopup = 'ExperimentalLoginPopup';
+
+	/**
 	 * Name constant for the ForceUIMsgAsContentMsg setting, for use with Config::get()
 	 * @see MainConfigSchema::ForceUIMsgAsContentMsg
 	 */

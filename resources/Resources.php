@@ -1674,6 +1674,7 @@ return [
 			'ready.js',
 			'checkboxShift.js',
 			'checkboxHack.js',
+			'experimentalLoginPopup.js',
 			'teleportTarget.js',
 			'toggleAllCollapsibles.js',
 			[ 'name' => 'config.json', 'callback' => static function (
@@ -1684,6 +1685,7 @@ return [
 					'search' => true,
 					'collapsible' => true,
 					'sortable' => true,
+					'experimentalLoginPopup' => $config->get( MainConfigNames::ExperimentalLoginPopup ),
 					'selectorLogoutLink' => '#pt-logout a[data-mw="interface"]'
 				];
 

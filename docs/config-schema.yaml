@@ -3087,6 +3087,11 @@ config-schema:
             Show a bar of language selection links in the user login and user
             registration forms; edit the "loginlanguagelinks" message to
             customise these.
+    ExperimentalLoginPopup:
+        default: false
+        description: |-
+            Add extra login links that open different kinds of modal dialogs instead of navigating the page.
+            As of May 2024, this config option is experimental and may be removed or changed in the future.
     ForceUIMsgAsContentMsg:
         default: {  }
         type: object
