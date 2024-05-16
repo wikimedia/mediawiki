@@ -1,5 +1,8 @@
 <?php
 
+namespace MediaWiki\Watchlist;
+
+use Job;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -29,3 +32,5 @@ class WatchlistExpiryJob extends Job {
 	}
 
 }
+/** @deprecated class alias since 1.43 */
+class_alias( WatchlistExpiryJob::class, 'WatchlistExpiryJob' );
