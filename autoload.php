@@ -1132,6 +1132,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Feed\\RSSFeed' => __DIR__ . '/includes/Feed/RSSFeed.php',
 	'MediaWiki\\FileBackend\\FSFile\\TempFSFileFactory' => __DIR__ . '/includes/libs/filebackend/fsfile/TempFSFileFactory.php',
 	'MediaWiki\\FileBackend\\LockManager\\LockManagerGroupFactory' => __DIR__ . '/includes/filebackend/lockmanager/LockManagerGroupFactory.php',
+	'MediaWiki\\FileRepo\\AuthenticatedFileEntryPoint' => __DIR__ . '/includes/filerepo/AuthenticatedFileEntryPoint.php',
 	'MediaWiki\\FileRepo\\File\\FileSelectQueryBuilder' => __DIR__ . '/includes/filerepo/file/FileSelectQueryBuilder.php',
 	'MediaWiki\\FileRepo\\Thumbnail404EntryPoint' => __DIR__ . '/includes/filerepo/Thumbnail404EntryPoint.php',
 	'MediaWiki\\FileRepo\\ThumbnailEntryPoint' => __DIR__ . '/includes/filerepo/ThumbnailEntryPoint.php',

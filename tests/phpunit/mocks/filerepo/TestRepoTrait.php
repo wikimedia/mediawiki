@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\FileRepo;
 
 use FileBackend;
+use FileBackendGroup;
 use FSFileBackend;
 use LocalRepo;
 use LogicException;
@@ -85,7 +86,10 @@ trait TestRepoTrait {
 	}
 
 	private function installTestRepoGroup( array $options = [] ) {
-		$this->setService( 'RepoGroup', $this->createTestRepoGroup( $options ) );
+		$repoGroup = $this->createTestRepoGroup( $options );
+		$this->setService( 'RepoGroup', $repoGroup );
+
+		$this->installTestBackendGroup( $repoGroup->getLocalRepo()->getBackend() );
 	}
 
 	private function createTestRepoGroup( $options = [], ?MediaWikiServices $services = null ) {
@@ -101,6 +105,27 @@ trait TestRepoTrait {
 			$mimeAnalyzer
 		);
 		return $repoGroup;
+	}
+
+	private function installTestBackendGroup( FileBackend $backend ) {
+		$this->setService( 'FileBackendGroup', $this->createTestBackendGroup( $backend ) );
+	}
+
+	private function createTestBackendGroup( FileBackend $backend ) {
+		$expected = "mwstore://{$backend->getName()}/";
+
+		$backendGroup = $this->createNoOpMock( FileBackendGroup::class, [ 'backendFromPath' ] );
+		$backendGroup->method( 'backendFromPath' )->willReturnCallback(
+			static function ( $path ) use ( $expected, $backend ) {
+				if ( str_starts_with( $path, $expected ) ) {
+					return $backend;
+				}
+
+				return null;
+			}
+		);
+
+		return $backendGroup;
 	}
 
 	private function getLocalFileRepoConfig( $options = [] ): array {
@@ -213,6 +238,45 @@ trait TestRepoTrait {
 		}
 
 		return $file;
+	}
+
+	private function copyFileToTestBackend( string $src, string $dst ) {
+		$repo = self::getTestRepo();
+		$backend = $repo->getBackend();
+
+		$zone = strstr( ltrim( $dst, '/' ), '/', true );
+		$name = basename( $dst );
+
+		$dstFile = $repo->newFile( $name );
+		$dst = $dstFile->getRel();
+
+		if ( $zone !== null ) {
+			$zonePath = $repo->getZonePath( $zone );
+
+			if ( $zonePath ) {
+				$dst = "$zonePath/$dst";
+			}
+		}
+
+		$dir = dirname( $dst );
+
+		if ( $dir !== '' ) {
+			$status = $backend->prepare(
+				[ 'op' => 'prepare', 'dir' => $dir ]
+			);
+
+			if ( !$status->isOK() ) {
+				Assert::fail( "Error copying file $src to $dst: " . $status );
+			}
+		}
+
+		$status = $backend->store(
+			[ 'op' => 'store', 'src' => $src, 'dst' => $dst, ],
+		);
+
+		if ( !$status->isOK() ) {
+			Assert::fail( "Error copying file $src to $dst: " . $status );
+		}
 	}
 
 	private function recordHeader( string $header ) {
