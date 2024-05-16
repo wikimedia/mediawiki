@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\RCFeed\RCFeedFormatter;
+
 /**
  * Base class for RCFeed implementations that use RCFeedFormatter.
  *
