@@ -2257,6 +2257,7 @@ return [
 			'block-save',
 			'htmlform-optional-flag',
 			'ipbcreateaccount',
+			'ipbhidename',
 			'ipbemailban',
 			'ipb-disableusertalk',
 			'ipbenableautoblock',

@@ -55,6 +55,7 @@ module.exports = defineComponent( {
 		const targetUser = ref( '' );
 		const blockAllowsUTEdit = mw.config.get( 'blockAllowsUTEdit' ) || false;
 		const blockEmailBan = mw.config.get( 'blockAllowsEmailBan' ) || false;
+		const hideUser = mw.config.get( 'hideUser' ) || false;
 		const blockDetailsSelected = ref( [] );
 		const blockDetailsOptions = [
 			{
@@ -78,23 +79,30 @@ module.exports = defineComponent( {
 		}
 
 		const additionalDetailsSelected = ref( [] );
-		const additionalDetailsOptions = [
-			{
-				label: mw.message( 'ipbenableautoblock' ),
-				value: 'wpAutoBlock',
-				disabled: false
-			},
-			{
-				label: mw.message( 'ipbwatchuser' ),
-				value: 'wpWatch',
-				disabled: false
-			},
-			{
-				label: mw.message( 'ipb-hardblock' ),
-				value: 'wpHardBlock',
-				disabled: false
-			}
-		];
+		const additionalDetailsOptions = [ {
+			label: mw.message( 'ipbenableautoblock' ),
+			value: 'wpAutoBlock',
+			disabled: false
+		} ];
+
+		if ( hideUser ) {
+			additionalDetailsOptions.push( {
+				label: mw.message( 'ipbhidename' ),
+				value: 'wpHideName'
+			} );
+		}
+
+		additionalDetailsOptions.push( {
+			label: mw.message( 'ipbwatchuser' ),
+			value: 'wpWatch',
+			disabled: false
+		} );
+
+		additionalDetailsOptions.push( {
+			label: mw.message( 'ipb-hardblock' ),
+			value: 'wpHardBlock',
+			disabled: false
+		} );
 
 		function handleSubmit( event ) {
 			event.preventDefault();
@@ -133,6 +141,10 @@ module.exports = defineComponent( {
 
 			if ( additionalDetailsSelected.value.indexOf( 'wpAutoBlock' ) !== -1 ) {
 				params.autoblock = 1;
+			}
+
+			if ( additionalDetailsSelected.value.indexOf( 'wpHideName' ) !== -1 ) {
+				params.hidename = 1;
 			}
 
 			if ( additionalDetailsSelected.value.indexOf( 'wpWatch' ) !== -1 ) {
