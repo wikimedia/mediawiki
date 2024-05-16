@@ -5,7 +5,7 @@ namespace MediaWiki\HTMLForm\Field;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\Request\WebRequest;
-use XmlSelect;
+use MediaWiki\Xml\XmlSelect;
 
 /**
  * Select dropdown field, with an additional "other" textbox.

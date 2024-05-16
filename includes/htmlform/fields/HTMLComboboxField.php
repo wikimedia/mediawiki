@@ -2,7 +2,7 @@
 
 namespace MediaWiki\HTMLForm\Field;
 
-use XmlSelect;
+use MediaWiki\Xml\XmlSelect;
 
 /**
  * A combo box field.

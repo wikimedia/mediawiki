@@ -8,7 +8,7 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Request\DerivativeRequest;
-use Xml;
+use MediaWiki\Xml\Xml;
 
 /**
  * A container for HTMLFormFields that allows for multiple copies of the set of

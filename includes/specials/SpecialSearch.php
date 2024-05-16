@@ -49,12 +49,12 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsManager;
+use MediaWiki\Xml\Xml;
 use RepoGroup;
 use SearchEngine;
 use SearchEngineConfig;
 use SearchEngineFactory;
 use Wikimedia\Rdbms\ReadOnlyMode;
-use Xml;
 
 /**
  * implements Special:Search - Run text & title search and display the output

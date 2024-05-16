@@ -7,8 +7,8 @@ use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\HTMLForm\HTMLNestedFilterable;
 use MediaWiki\HTMLForm\OOUIHTMLForm;
 use MediaWiki\Request\WebRequest;
+use MediaWiki\Xml\Xml;
 use RuntimeException;
-use Xml;
 
 /**
  * Multi-select field

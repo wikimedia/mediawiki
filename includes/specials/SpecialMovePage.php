@@ -43,6 +43,7 @@ use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\Widget\ComplexTitleInputWidget;
+use MediaWiki\Xml\Xml;
 use OOUI\ButtonInputWidget;
 use OOUI\CheckboxInputWidget;
 use OOUI\DropdownInputWidget;
@@ -60,7 +61,6 @@ use ThrottledError;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
-use Xml;
 
 /**
  * Implement Special:Movepage for changing page titles

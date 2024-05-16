@@ -32,8 +32,8 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Xml\Xml;
 use Wikimedia\Rdbms\IConnectionProvider;
-use Xml;
 
 /**
  * @ingroup Pager

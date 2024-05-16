@@ -40,6 +40,7 @@ use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\Utils\MWTimestamp;
+use MediaWiki\Xml\Xml;
 use MessageCache;
 use OOUI\ButtonWidget;
 use OOUI\HtmlSnippet;
@@ -47,7 +48,6 @@ use RecentChange;
 use WatchedItemStoreInterface;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
-use Xml;
 
 /**
  * A special page that lists last changes made to the wiki

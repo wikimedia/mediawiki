@@ -11,12 +11,12 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Specials\SpecialSearch;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Widget\SearchInputWidget;
+use MediaWiki\Xml\Xml;
 use OOUI\ActionFieldLayout;
 use OOUI\ButtonInputWidget;
 use OOUI\CheckboxInputWidget;
 use OOUI\FieldLayout;
 use SearchEngineConfig;
-use Xml;
 
 class SearchFormWidget {
 	/** @internal For use by SpecialSearch only */

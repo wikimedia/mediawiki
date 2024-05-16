@@ -24,10 +24,10 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Xml\XmlSelect;
 use OOUI\ButtonGroupWidget;
 use OOUI\ButtonWidget;
 use stdClass;
-use XmlSelect;
 
 /**
  * Table-based display with a user-selectable sort order

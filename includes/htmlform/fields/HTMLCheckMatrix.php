@@ -8,7 +8,7 @@ use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\HTMLForm\HTMLFormFieldRequiredOptionsException;
 use MediaWiki\HTMLForm\HTMLNestedFilterable;
 use MediaWiki\Request\WebRequest;
-use Xml;
+use MediaWiki\Xml\Xml;
 
 /**
  * A checkbox matrix

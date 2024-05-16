@@ -5,7 +5,7 @@ namespace MediaWiki\HTMLForm\Field;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\Parser\Sanitizer;
-use Xml;
+use MediaWiki\Xml\Xml;
 
 /**
  * Radio checkbox fields.

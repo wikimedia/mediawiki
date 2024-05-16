@@ -32,7 +32,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
-use Xml;
+use MediaWiki\Xml\Xml;
 
 /**
  * Class for the core installer web interface.

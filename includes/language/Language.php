@@ -48,6 +48,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserTimeCorrection;
 use MediaWiki\Utils\MWTimestamp;
+use MediaWiki\Xml\XmlSelect;
 use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Bcp47Code\Bcp47Code;

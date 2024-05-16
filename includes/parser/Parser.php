@@ -83,6 +83,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\Utils\UrlUtils;
+use MediaWiki\Xml\Xml;
 use Message;
 use ParserFactory;
 use ParserOptions;
@@ -110,7 +111,6 @@ use Wikimedia\Parsoid\DOM\Node;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 use Wikimedia\ScopedCallback;
-use Xml;
 
 /**
  * @defgroup Parser Parser

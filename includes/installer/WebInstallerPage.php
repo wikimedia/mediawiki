@@ -23,7 +23,7 @@
 namespace MediaWiki\Installer;
 
 use MediaWiki\Html\Html;
-use Xml;
+use MediaWiki\Xml\Xml;
 
 /**
  * Abstract class to define pages for the web installer.

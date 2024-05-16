@@ -29,8 +29,8 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Xml\Xml;
 use PermissionsError;
-use Xml;
 
 /**
  * A special page that lists tags for edits

@@ -34,12 +34,12 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\Xml\Xml;
 use RepoGroup;
 use UnexpectedValueException;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
-use Xml;
 
 /**
  * @ingroup Pager

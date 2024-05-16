@@ -25,7 +25,7 @@ namespace MediaWiki\Installer;
 use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
-use XmlSelect;
+use MediaWiki\Xml\XmlSelect;
 
 class WebInstallerLanguage extends WebInstallerPage {
 

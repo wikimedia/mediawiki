@@ -24,7 +24,7 @@ namespace MediaWiki\Installer;
 
 use MediaWiki\Html\Html;
 use MediaWiki\Status\Status;
-use Xml;
+use MediaWiki\Xml\Xml;
 
 class WebInstallerDBConnect extends WebInstallerPage {
 

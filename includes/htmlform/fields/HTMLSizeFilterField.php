@@ -4,7 +4,7 @@ namespace MediaWiki\HTMLForm\Field;
 
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Widget\SizeFilterWidget;
-use Xml;
+use MediaWiki\Xml\Xml;
 
 /**
  * A size filter field for use on query-type special pages. It looks a bit like:

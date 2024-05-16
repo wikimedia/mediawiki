@@ -29,6 +29,7 @@
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Xml\Xml;
 
 // This endpoint is supposed to be independent of request cookies and other
 // details of the session. Enforce this constraint with respect to session use.

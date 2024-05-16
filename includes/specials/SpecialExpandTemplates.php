@@ -34,9 +34,9 @@ use MediaWiki\Status\Status;
 use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\Xml\Xml;
 use ParserFactory;
 use ParserOptions;
-use Xml;
 
 /**
  * A special page that expands submitted templates, parser functions,

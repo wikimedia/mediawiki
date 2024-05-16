@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Xml;
+
 use MediaWiki\Html\Html;
 
 /**
@@ -159,3 +161,5 @@ class XmlSelect {
 		return $options;
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( XmlSelect::class, 'XmlSelect' );
