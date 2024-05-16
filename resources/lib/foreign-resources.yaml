@@ -437,6 +437,19 @@ sinonjs:
   integrity: sha384-wR63Jwy75KqwBfzCmXd6gYws6uj3qV/XMAybzXrkEYGYG3AQ58ZWwr1fVpkHa5e8
   dest: sinon.js
 
+vue-demi:
+  license: MIT
+  homepage: https://github.com/vueuse/vue-demi/
+  authors: Anthony Fu
+  version: 0.14.7
+  type: tar
+  src: https://registry.npmjs.org/vue-demi/-/vue-demi-0.14.7.tgz
+  integrity: sha384-QtuGGEowk/dEp/TbptrrLsk775PREnaIEH9eORfmFEy2r6uj71NS0BtNmuU0ITS6
+  dest:
+    package/README.md:
+    package/LICENSE:
+    package/lib/v3/index.cjs:
+
 vue:
   license: MIT
   homepage: https://vuejs.org/
