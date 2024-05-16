@@ -5,7 +5,7 @@ namespace MediaWiki\HTMLForm\Field;
 use FormatJson;
 use InvalidArgumentException;
 use MediaWiki\HTMLForm\HTMLFormField;
-use XmlSelect;
+use MediaWiki\Xml\XmlSelect;
 
 /**
  * Text field for selecting a value from a large list of possible values, with

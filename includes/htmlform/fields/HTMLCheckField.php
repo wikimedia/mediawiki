@@ -8,7 +8,7 @@ use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\HTMLForm\OOUIHTMLForm;
 use MediaWiki\HTMLForm\VFormHTMLForm;
 use MediaWiki\Request\WebRequest;
-use Xml;
+use MediaWiki\Xml\Xml;
 
 /**
  * A checkbox field

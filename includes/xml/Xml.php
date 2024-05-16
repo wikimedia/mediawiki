@@ -20,12 +20,16 @@
  * @file
  */
 
+namespace MediaWiki\Xml;
+
 use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Utils\MWTimestamp;
+use Message;
+use UtfNormal\Validator;
 
 /**
  * Module of static functions for generating XML
@@ -96,7 +100,7 @@ class Xml {
 	 */
 	public static function elementClean( $element, $attribs = [], $contents = '' ) {
 		if ( $attribs ) {
-			$attribs = array_map( [ UtfNormal\Validator::class, 'cleanUp' ], $attribs );
+			$attribs = array_map( [ Validator::class, 'cleanUp' ], $attribs );
 		}
 		if ( $contents ) {
 			$contents =
@@ -906,3 +910,5 @@ class Xml {
 		return $s;
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( Xml::class, 'Xml' );

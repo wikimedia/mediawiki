@@ -610,27 +610,27 @@ class TaintCheckAnnotationsTest {
 	}
 
 	function textXml() {
-		echo \Xml::tags( $_GET['a'], [], '' );// @phan-suppress-current-line SecurityCheck-XSS
-		\Xml::tags( '', [ htmlspecialchars( '' ) ], '' );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
-		echo \Xml::tags( '', $_GET['a'], '' );// Safe
-		echo \Xml::tags( '', [], $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
-		echo \Xml::tags( '', [], '' );// Safe
-		htmlspecialchars( \Xml::tags( '', [], '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
+		echo \MediaWiki\Xml\Xml::tags( $_GET['a'], [], '' );// @phan-suppress-current-line SecurityCheck-XSS
+		\MediaWiki\Xml\Xml::tags( '', [ htmlspecialchars( '' ) ], '' );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
+		echo \MediaWiki\Xml\Xml::tags( '', $_GET['a'], '' );// Safe
+		echo \MediaWiki\Xml\Xml::tags( '', [], $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
+		echo \MediaWiki\Xml\Xml::tags( '', [], '' );// Safe
+		htmlspecialchars( \MediaWiki\Xml\Xml::tags( '', [], '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
 
-		echo \Xml::element( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
-		\Xml::element( '', [ htmlspecialchars( '' ) ] );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
-		echo \Xml::element( '', $_GET['a'] );// Safe
-		echo \Xml::element( '', [], htmlspecialchars( '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
-		echo \Xml::element( '', [], $_GET['a'] );// Safe
-		echo \Xml::element( '', [], '' );// Safe
-		htmlspecialchars( \Xml::element( '', [], '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
+		echo \MediaWiki\Xml\Xml::element( $_GET['a'] );// @phan-suppress-current-line SecurityCheck-XSS
+		\MediaWiki\Xml\Xml::element( '', [ htmlspecialchars( '' ) ] );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
+		echo \MediaWiki\Xml\Xml::element( '', $_GET['a'] );// Safe
+		echo \MediaWiki\Xml\Xml::element( '', [], htmlspecialchars( '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
+		echo \MediaWiki\Xml\Xml::element( '', [], $_GET['a'] );// Safe
+		echo \MediaWiki\Xml\Xml::element( '', [], '' );// Safe
+		htmlspecialchars( \MediaWiki\Xml\Xml::element( '', [], '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
 
-		echo \Xml::encodeJsVar( $_GET['a'] );// Safe
-		echo \Xml::encodeJsVar( htmlspecialchars( '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
+		echo \MediaWiki\Xml\Xml::encodeJsVar( $_GET['a'] );// Safe
+		echo \MediaWiki\Xml\Xml::encodeJsVar( htmlspecialchars( '' ) );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
 
-		echo \Xml::encodeJsCall( $_GET['a'], [] );// @phan-suppress-current-line SecurityCheck-XSS
-		echo \Xml::encodeJsCall( '', $_GET['a'] );// Safe
-		echo \Xml::encodeJsCall( '', [ htmlspecialchars( '' ) ] );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
+		echo \MediaWiki\Xml\Xml::encodeJsCall( $_GET['a'], [] );// @phan-suppress-current-line SecurityCheck-XSS
+		echo \MediaWiki\Xml\Xml::encodeJsCall( '', $_GET['a'] );// Safe
+		echo \MediaWiki\Xml\Xml::encodeJsCall( '', [ htmlspecialchars( '' ) ] );// @phan-suppress-current-line SecurityCheck-DoubleEscaped
 	}
 
 	function testHtmlArmor() {

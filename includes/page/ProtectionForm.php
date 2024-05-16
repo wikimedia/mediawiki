@@ -45,8 +45,8 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Watchlist\WatchlistManager;
-use Xml;
-use XmlSelect;
+use MediaWiki\Xml\Xml;
+use MediaWiki\Xml\XmlSelect;
 
 /**
  * Handles the page protection UI and backend

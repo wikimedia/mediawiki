@@ -20,8 +20,8 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use MediaWiki\Xml\Xml;
 use SearchEngineFactory;
-use Xml;
 
 /**
  * @ingroup SpecialPage

@@ -26,6 +26,7 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArrayFromResult;
+use MediaWiki\Xml\Xml;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**

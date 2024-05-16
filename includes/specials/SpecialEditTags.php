@@ -32,10 +32,10 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use MediaWiki\Xml\Xml;
+use MediaWiki\Xml\XmlSelect;
 use RevisionDeleter;
 use UserBlockedError;
-use Xml;
-use XmlSelect;
 
 /**
  * Add or remove change tags to individual revisions.

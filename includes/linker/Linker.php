@@ -44,12 +44,12 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\ExternalUserNames;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\Xml\Xml;
 use MessageLocalizer;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\RemexHtml\Serializer\SerializerNode;
-use Xml;
 
 /**
  * Some internal bits split of from Skin.php. These functions are used

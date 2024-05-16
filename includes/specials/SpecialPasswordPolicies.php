@@ -27,8 +27,8 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupMembership;
+use MediaWiki\Xml\Xml;
 use UserPasswordPolicy;
-use Xml;
 
 /**
  * This special page lists the defined password policies for user groups.

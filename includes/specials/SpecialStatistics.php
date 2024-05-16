@@ -28,7 +28,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupMembership;
-use Xml;
+use MediaWiki\Xml\Xml;
 
 /**
  * Special page lists various statistics, including the contents of

@@ -21,14 +21,14 @@
 
 namespace MediaWiki\Tests\Unit;
 
+use MediaWiki\Xml\Xml;
 use MediaWikiUnitTestCase;
-use Xml;
 
 /**
  * Split from \XmlTest integration tests
  *
  * @group Xml
- * @covers \Xml
+ * @covers \MediaWiki\Xml\Xml
  */
 class XmlTest extends MediaWikiUnitTestCase {
 

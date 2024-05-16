@@ -33,12 +33,12 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
+use MediaWiki\Xml\Xml;
 use PermissionsError;
 use RepoGroup;
 use RevDelList;
 use RevisionDeleter;
 use UserBlockedError;
-use Xml;
 
 /**
  * Special page allowing users with the appropriate permissions to view

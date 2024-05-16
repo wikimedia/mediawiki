@@ -54,6 +54,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupMembership;
 use MediaWiki\User\UserTimeCorrection;
+use MediaWiki\Xml\Xml;
 use MessageLocalizer;
 use OOUI\ButtonWidget;
 use OOUI\FieldLayout;
@@ -66,7 +67,6 @@ use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 use SkinFactory;
 use UnexpectedValueException;
-use Xml;
 
 /**
  * This is the default implementation of PreferencesFactory.

@@ -35,6 +35,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\Xml\XmlSelect;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 class ChangeTags {

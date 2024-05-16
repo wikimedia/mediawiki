@@ -28,13 +28,13 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserIdentityUtils;
+use MediaWiki\Xml\Xml;
 use MessageCache;
 use RecentChange;
 use SearchEngineFactory;
 use WatchedItemStoreInterface;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Rdbms\Subquery;
-use Xml;
 
 /**
  * This is to display changes made to all articles linked in an article.

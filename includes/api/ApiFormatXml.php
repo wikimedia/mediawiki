@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Title\Title;
+use MediaWiki\Xml\Xml;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

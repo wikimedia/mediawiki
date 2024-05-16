@@ -21,7 +21,7 @@
 namespace MediaWiki\Site;
 
 use InvalidArgumentException;
-use Xml;
+use MediaWiki\Xml\Xml;
 
 /**
  * Utility for exporting site entries to XML.

@@ -33,11 +33,11 @@ use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
+use MediaWiki\Xml\Xml;
 use SearchEngineFactory;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
-use Xml;
 
 /**
  * Implements Special:Whatlinkshere

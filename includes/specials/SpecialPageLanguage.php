@@ -36,10 +36,10 @@ use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
+use MediaWiki\Xml\Xml;
 use SearchEngineFactory;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
-use Xml;
 
 /**
  * Special page for changing the content language of a page

@@ -1,12 +1,13 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Xml\Xml;
 
 /**
  * See also \MediaWiki\Tests\Unit\XmlTest for the pure unit tests
  *
  * @group Xml
- * @covers \Xml
+ * @covers \MediaWiki\Xml\Xml
  */
 class XmlTest extends MediaWikiIntegrationTestCase {
 
@@ -132,7 +133,7 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideMonthSelector
 	 */
 	public function testMonthSelector( $expected, $selected, $allmonths, $id ) {
-		$this->hideDeprecated( 'Xml::monthSelector' );
+		$this->hideDeprecated( 'MediaWiki\Xml\Xml::monthSelector' );
 		$this->assertEquals(
 			$expected,
 			Xml::monthSelector( $selected, $allmonths, $id )
@@ -157,8 +158,8 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 			$nextMonth = 1;
 		}
 
-		$this->hideDeprecated( 'Xml::dateMenu' );
-		$this->hideDeprecated( 'Xml::monthSelector' );
+		$this->hideDeprecated( 'MediaWiki\Xml\Xml::dateMenu' );
+		$this->hideDeprecated( 'MediaWiki\Xml\Xml::monthSelector' );
 
 		$this->assertEquals(
 			'<label for="year">From year (and earlier):</label> ' .
@@ -292,7 +293,7 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testLanguageSelector() {
-		$this->hideDeprecated( 'Xml::languageSelector' );
+		$this->hideDeprecated( 'MediaWiki\Xml\Xml::languageSelector' );
 
 		$select = Xml::languageSelector( 'en', true, null,
 			[ 'id' => 'testlang' ], wfMessage( 'yourlanguage' ) );

@@ -40,6 +40,7 @@ use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
+use MediaWiki\Xml\Xml;
 
 class LogEventsList extends ContextSource {
 	public const NO_ACTION_LINK = 1;

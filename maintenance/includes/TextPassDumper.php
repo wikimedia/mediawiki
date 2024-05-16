@@ -35,6 +35,7 @@ use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\WikiMap\WikiMap;
+use MediaWiki\Xml\Xml;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 

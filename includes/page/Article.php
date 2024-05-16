@@ -50,6 +50,7 @@ use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\Xml\Xml;
 use Wikimedia\IPUtils;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\NonSerializable\NonSerializableTrait;

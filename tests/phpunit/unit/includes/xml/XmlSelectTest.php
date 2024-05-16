@@ -1,8 +1,10 @@
 <?php
 
+use MediaWiki\Xml\XmlSelect;
+
 /**
  * @group Xml
- * @covers \XmlSelect
+ * @covers \MediaWiki\Xml\XmlSelect
  */
 class XmlSelectTest extends MediaWikiUnitTestCase {
 

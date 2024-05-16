@@ -43,10 +43,10 @@ use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\WikiMap\WikiMap;
+use MediaWiki\Xml\Xml;
+use MediaWiki\Xml\XmlSelect;
 use PermissionsError;
 use UserBlockedError;
-use Xml;
-use XmlSelect;
 
 /**
  * Special page to allow managing user group membership

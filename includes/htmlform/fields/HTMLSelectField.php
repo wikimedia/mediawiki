@@ -3,7 +3,7 @@
 namespace MediaWiki\HTMLForm\Field;
 
 use MediaWiki\HTMLForm\HTMLFormField;
-use XmlSelect;
+use MediaWiki\Xml\XmlSelect;
 
 /**
  * A select dropdown field.  Basically a wrapper for Xmlselect class

@@ -57,6 +57,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\Watchlist\WatchlistManager;
+use MediaWiki\Xml\Xml;
 use OOUI\ActionFieldLayout;
 use OOUI\ButtonInputWidget;
 use OOUI\CheckboxInputWidget;
@@ -78,7 +79,6 @@ use TextContent;
 use UserBlockedError;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
-use Xml;
 
 /**
  * Special page allowing users with the appropriate permissions to view

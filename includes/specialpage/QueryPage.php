@@ -66,6 +66,7 @@ use MediaWiki\Specials\SpecialWantedFiles;
 use MediaWiki\Specials\SpecialWantedPages;
 use MediaWiki\Specials\SpecialWantedTemplates;
 use MediaWiki\Specials\SpecialWithoutInterwiki;
+use MediaWiki\Xml\Xml;
 use Skin;
 use stdClass;
 use Wikimedia\Rdbms\DBError;
@@ -75,7 +76,6 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\SelectQueryBuilder;
-use Xml;
 
 /**
  * This is a class for doing query pages; since they're almost all the same,
