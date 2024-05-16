@@ -1594,6 +1594,23 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
+	 * Check if user can exist as an entry in the user table, i.e. it is a user that is not an
+	 * IP address or an external user. Users that can exist are either created from a name, or
+	 * the user is registered (temp or permanent user).
+	 *
+	 * See T316303 for the use case for this.  This method is likely only useful for wiki farms
+	 * where a central user exists and processing is being done with the user name, but the
+	 * corresponding local user on a wiki may not yet have been created.
+	 *
+	 * @return bool
+	 * @since 1.43
+	 */
+	public function canExist() {
+		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
+		return ( ( $this->mFrom === 'name' && $userNameUtils->isUsable( $this->mName ) ) || $this->isRegistered() );
+	}
+
+	/**
 	 * Get the user's actor ID.
 	 * @since 1.31
 	 * @note This method was removed from the UserIdentity interface in 1.36,
