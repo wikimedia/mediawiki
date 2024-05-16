@@ -37,7 +37,6 @@ use MediaWiki\MainConfigNames;
  * @internal
  */
 class CodexModule extends FileModule {
-	protected const CODEX_MODULE_DIR = 'resources/lib/codex/modules/';
 	protected const CODEX_LIBRARY_DIR = 'resources/lib/codex/';
 	private const CODEX_MODULE_DEPENDENCIES = [ 'vue' ];
 
@@ -184,10 +183,7 @@ class CodexModule extends FileModule {
 
 	protected function processStyle( $style, $styleLang, $path, Context $context ) {
 		$pathAsString = $path instanceof FilePath ? $path->getPath() : $path;
-		if (
-			str_starts_with( $pathAsString, static::CODEX_MODULE_DIR ) ||
-			str_starts_with( $pathAsString, static::CODEX_LIBRARY_DIR )
-		) {
+		if ( str_starts_with( $pathAsString, static::CODEX_LIBRARY_DIR ) ) {
 			// This is a Codex style file, don't do any processing.
 			// We need to avoid CSSJanus flipping in particular, because we're using RTL-specific
 			// files instead. Note that we're bypassing all of processStyle() when we really just
@@ -258,7 +254,7 @@ class CodexModule extends FileModule {
 			throw new InvalidArgumentException( "Unknown Codex theme $theme" );
 		}
 		$manifestFile = $themeManifestNames[ $theme ][ $direction ];
-		$manifestFilePath = MW_INSTALL_PATH . '/' . static::CODEX_MODULE_DIR . $manifestFile;
+		$manifestFilePath = MW_INSTALL_PATH . '/' . static::CODEX_LIBRARY_DIR . 'modules/' . $manifestFile;
 		return $manifestFilePath;
 	}
 
@@ -422,7 +418,7 @@ class CodexModule extends FileModule {
 		// Add the CSS files to the module's package file (unless this is a script-only module)
 		if ( !$this->isScriptOnly ) {
 			foreach ( $styles as $fileName ) {
-				$this->styles[] = new FilePath( static::CODEX_MODULE_DIR .
+				$this->styles[] = new FilePath( static::CODEX_LIBRARY_DIR . 'modules/' .
 					$fileName, MW_INSTALL_PATH, $remoteBasePath );
 			}
 		}
@@ -466,7 +462,10 @@ class CodexModule extends FileModule {
 			foreach ( $scripts as $fileName ) {
 				$this->packageFiles[] = [
 					'name' => "_codex/$fileName",
-					'file' => new FilePath( static::CODEX_MODULE_DIR . $fileName, MW_INSTALL_PATH, $remoteBasePath )
+					'file' => new FilePath(
+						static::CODEX_LIBRARY_DIR . 'modules/' . $fileName,
+						MW_INSTALL_PATH, $remoteBasePath
+					)
 				];
 			}
 		}
@@ -484,7 +483,10 @@ class CodexModule extends FileModule {
 		if ( !$this->isStyleOnly ) {
 			$this->packageFiles[] = [
 				'name' => 'codex.js',
-				'file' => new FilePath( 'resources/lib/codex/codex.umd.cjs', MW_INSTALL_PATH, $remoteBasePath )
+				'file' => new FilePath(
+					static::CODEX_LIBRARY_DIR . 'codex.umd.cjs',
+					MW_INSTALL_PATH, $remoteBasePath
+				)
 			];
 		}
 
