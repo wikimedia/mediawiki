@@ -113,6 +113,7 @@ For notes on 1.42.x and older releases, see HISTORY.
 * Updated symfony/yaml from 5.4.35 to 5.4.39.
 * Updated OOUI from v0.49.1 to v0.49.2.
 * Updated wikimedia/less.php from 4.2.1 to 4.4.1.
+* Updated vue from 3.3.9 to 3.4.27.
 * …
 
 ===== Changed development-only external libraries =====

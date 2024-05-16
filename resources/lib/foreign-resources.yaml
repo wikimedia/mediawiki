@@ -455,11 +455,11 @@ vue:
   license: MIT
   homepage: https://vuejs.org/
   authors: Yuxi (Evan) You
-  version: 3.3.9
-  purl: pkg:npm/vue@3.3.9
+  version: 3.4.27
+  purl: pkg:npm/vue@3.4.27
   type: tar
-  src: https://registry.npmjs.org/vue/-/vue-3.3.9.tgz
-  integrity: sha512-sy5sLCTR8m6tvUk1/ijri3Yqzgpdsmxgj6n6yl7GXXCXqVbmW2RCXe9atE4cEI6Iv7L89v5f35fZRRr5dChP9w==
+  src: https://registry.npmjs.org/vue/-/vue-3.4.27.tgz
+  integrity: sha384-NI/upbRDNmqZCbvCtpncGt32Iw2gOsS6j/l3D4wSfz9IVnSXqLhO5mHLbVblRHet
   dest:
     package/README.md:
     package/LICENSE:
