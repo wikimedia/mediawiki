@@ -2139,7 +2139,7 @@ return [
 				'parsoidCachePrewarm' => [
 					'class' => 'ParsoidCachePrewarmJob',
 					'services' => [
-						'ParsoidOutputAccess',
+						'ParserOutputAccess',
 						'PageStore',
 						'RevisionLookup',
 						'ParsoidSiteConfig',

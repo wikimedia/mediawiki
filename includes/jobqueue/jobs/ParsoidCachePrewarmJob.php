@@ -21,11 +21,13 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Page\PageRecord;
+use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig as ParsoidSiteConfig;
-use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Parsoid\Core\ClientError;
+use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 
 /**
  * @ingroup JobQueue
@@ -34,21 +36,21 @@ use Psr\Log\LoggerInterface;
  */
 class ParsoidCachePrewarmJob extends Job {
 	private LoggerInterface $logger;
-	private ParsoidOutputAccess $parsoidOutputAccess;
+	private ParserOutputAccess $parserOutputAccess;
 	private PageLookup $pageLookup;
 	private RevisionLookup $revisionLookup;
 	private ParsoidSiteConfig $parsoidSiteConfig;
 
 	/**
 	 * @param array $params
-	 * @param ParsoidOutputAccess $parsoidOutputAccess
+	 * @param ParserOutputAccess $parserOutputAccess
 	 * @param PageLookup $pageLookup
 	 * @param RevisionLookup $revisionLookup
 	 * @param ParsoidSiteConfig $parsoidSiteConfig
 	 */
 	public function __construct(
 		array $params,
-		ParsoidOutputAccess $parsoidOutputAccess,
+		ParserOutputAccess $parserOutputAccess,
 		PageLookup $pageLookup,
 		RevisionLookup $revisionLookup,
 		ParsoidSiteConfig $parsoidSiteConfig
@@ -57,7 +59,7 @@ class ParsoidCachePrewarmJob extends Job {
 
 		// TODO: find a way to inject the logger
 		$this->logger = LoggerFactory::getInstance( 'ParsoidCachePrewarmJob' );
-		$this->parsoidOutputAccess = $parsoidOutputAccess;
+		$this->parserOutputAccess = $parserOutputAccess;
 		$this->pageLookup = $pageLookup;
 		$this->revisionLookup = $revisionLookup;
 		$this->parsoidSiteConfig = $parsoidSiteConfig;
@@ -68,7 +70,7 @@ class ParsoidCachePrewarmJob extends Job {
 	 * @param PageRecord $page
 	 * @param array $params Additional options for the job. Known keys:
 	 * - causeAction: Indicate what action caused the job to be scheduled. Used for monitoring.
-	 * - options: Flags to be passed to ParsoidOutputAccess:getParserOutput.
+	 * - options: Flags to be passed to ParserOutputAccess:getParserOutput.
 	 *   May be set to ParserOutputAccess::OPT_FORCE_PARSE to force a parsing even if there
 	 *   already is cached output.
 	 *
@@ -124,6 +126,7 @@ class ParsoidCachePrewarmJob extends Job {
 		}
 
 		$parserOpts = ParserOptions::newFromAnon();
+		$parserOpts->setUseParsoid();
 
 		$renderReason = $this->params['causeAction'] ?? $this->command;
 		$parserOpts->setRenderReason( $renderReason );
@@ -140,7 +143,25 @@ class ParsoidCachePrewarmJob extends Job {
 		$options = $this->params['options'] ?? 0;
 
 		// getParserOutput() will write to ParserCache.
-		$status = $this->parsoidOutputAccess->getParserOutput( $page, $parserOpts, $rev, $options );
+		try {
+			$status = $this->parserOutputAccess->getParserOutput(
+				$page,
+				$parserOpts,
+				$rev,
+				$options
+			);
+		} catch ( ClientError $e ) {
+			// This exception is only thrown by Parsoid when (a)
+			// variant language is invalid or (b) when DOMUtils
+			// encounters "a name invalid in XML", neither of which
+			// *should* occur here.  But just in case...
+			$status = Status::newFatal( 'parsoid-client-error', $e->getMessage() );
+		} catch ( ResourceLimitExceededException $e ) {
+			// This exception is only thrown by Parsoid when the
+			// wikitext size limit is exceeded, which shouldn't happen
+			// in any articles retrieved from the DB.
+			$status = Status::newFatal( 'parsoid-resource-limit-exceeded', $e->getMessage() );
+		}
 
 		if ( !$status->isOK() ) {
 			$this->logger->error( __METHOD__ . ': Parsoid error', [

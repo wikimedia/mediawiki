@@ -130,7 +130,7 @@ class JobTest extends MediaWikiIntegrationTestCase {
 				[
 					'class' => ParsoidCachePrewarmJob::class,
 					'services' => [
-						'ParsoidOutputAccess',
+						'ParserOutputAccess',
 						'PageStore',
 						'RevisionLookup',
 						'ParsoidSiteConfig',

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageRecord;
 
@@ -22,6 +23,11 @@ class ParsoidCachePrewarmJobTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	private function getPageRecord( PageIdentity $page ): PageRecord {
+		return $this->getServiceContainer()->getPageStore()
+			->getPageByReference( $page );
+	}
+
 	/**
 	 * @covers \ParsoidCachePrewarmJob::doParsoidCacheUpdate
 	 * @covers \ParsoidCachePrewarmJob::newSpec
@@ -33,7 +39,7 @@ class ParsoidCachePrewarmJobTest extends MediaWikiIntegrationTestCase {
 
 		$parsoidPrewarmJob = new ParsoidCachePrewarmJob(
 			[ 'revId' => $rev1->getId(), 'pageId' => $page->getId() ],
-			$this->getServiceContainer()->getParsoidOutputAccess(),
+			$this->getServiceContainer()->getParserOutputAccess(),
 			$this->getServiceContainer()->getPageStore(),
 			$this->getServiceContainer()->getRevisionLookup(),
 			$this->getServiceContainer()->getParsoidSiteConfig()
@@ -45,9 +51,11 @@ class ParsoidCachePrewarmJobTest extends MediaWikiIntegrationTestCase {
 		$execStatus = $parsoidPrewarmJob->run();
 		$this->assertTrue( $execStatus );
 
-		$parsoidOutput = $this->getServiceContainer()->getParsoidOutputAccess()->getCachedParserOutput(
-			$this->getPageIdentity( $page ),
-			ParserOptions::newFromAnon(),
+		$popts = ParserOptions::newFromAnon();
+		$popts->setUseParsoid();
+		$parsoidOutput = $this->getServiceContainer()->getParserOutputAccess()->getCachedParserOutput(
+			$this->getPageRecord( $this->getPageIdentity( $page ) ),
+			$popts,
 			$rev1
 		);
 
@@ -59,12 +67,12 @@ class ParsoidCachePrewarmJobTest extends MediaWikiIntegrationTestCase {
 		// Post-edit, reset all services!
 		// ParserOutputAccess has a localCache which can incorrectly return stale
 		// content for the previous revision! Resetting ensures that ParsoidCachePrewarmJob
-		// gets a fresh copy of ParserOutputAccess and ParsoidOutputAccess.
+		// gets a fresh copy of ParserOutputAccess.
 		$this->resetServices();
 
 		$parsoidPrewarmJob = new ParsoidCachePrewarmJob(
 			[ 'revId' => $rev2->getId(), 'pageId' => $page->getId(), 'causeAction' => 'just for testing' ],
-			$this->getServiceContainer()->getParsoidOutputAccess(),
+			$this->getServiceContainer()->getParserOutputAccess(),
 			$this->getServiceContainer()->getPageStore(),
 			$this->getServiceContainer()->getRevisionLookup(),
 			$this->getServiceContainer()->getParsoidSiteConfig()
@@ -83,9 +91,9 @@ class ParsoidCachePrewarmJobTest extends MediaWikiIntegrationTestCase {
 		// At this point, we have 0 jobs scheduled for this job type.
 		$this->assertSame( 0, $jobQueueGroup->getQueueSizes()['parsoidCachePrewarm'] );
 
-		$parsoidOutput = $this->getServiceContainer()->getParsoidOutputAccess()->getCachedParserOutput(
-			$this->getPageIdentity( $page ),
-			ParserOptions::newFromAnon(),
+		$parsoidOutput = $this->getServiceContainer()->getParserOutputAccess()->getCachedParserOutput(
+			$this->getPageRecord( $this->getPageIdentity( $page ) ),
+			$popts,
 			$rev2
 		);
 

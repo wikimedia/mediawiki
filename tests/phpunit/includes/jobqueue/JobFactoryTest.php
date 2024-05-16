@@ -48,7 +48,7 @@ class JobFactoryTest extends MediaWikiIntegrationTestCase {
 				[
 					'class' => ParsoidCachePrewarmJob::class,
 					'services' => [
-						'ParsoidOutputAccess',
+						'ParserOutputAccess',
 						'PageStore',
 						'RevisionLookup',
 						'ParsoidSiteConfig',
