@@ -19,11 +19,15 @@
  * @ingroup Watchlist
  */
 
+namespace MediaWiki\Watchlist;
+
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
+use MessageLocalizer;
+use RecentChange;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -237,3 +241,5 @@ class WatchedItem {
 		return $msgLocalizer->msg( 'watchlist-expiring-days-full-text', [ $expiryInDays ] )->text();
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( WatchedItem::class, 'WatchedItem' );
