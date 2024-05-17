@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\RCFeed\RCFeed;
 use MediaWiki\RCFeed\RCFeedFormatter;
 
 /**

@@ -1,7 +1,9 @@
 <?php
 
+use MediaWiki\RCFeed\RCFeed;
+
 /**
- * @covers \RCFeed
+ * @covers MediaWiki\RCFeed\RCFeed
  */
 class RCFeedTest extends MediaWikiUnitTestCase {
 

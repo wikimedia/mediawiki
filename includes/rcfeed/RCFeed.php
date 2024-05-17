@@ -18,6 +18,12 @@
  * @file
  */
 
+namespace MediaWiki\RCFeed;
+
+use RecentChange;
+use RedisPubSubFeedEngine;
+use UDPRCFeedEngine;
+
 /**
  * @see $wgRCFeeds
  * @since 1.29
@@ -45,7 +51,7 @@ abstract class RCFeed {
 	final public static function factory( array $params ): RCFeed {
 		if ( !isset( $params['class'] ) ) {
 			if ( !isset( $params['uri'] ) ) {
-				throw new InvalidArgumentException( 'RCFeeds must have a class set' );
+				throw new \InvalidArgumentException( 'RCFeeds must have a class set' );
 			}
 			if ( strpos( $params['uri'], 'udp:' ) === 0 ) {
 				$params['class'] = UDPRCFeedEngine::class;
@@ -56,10 +62,10 @@ abstract class RCFeed {
 				wfDeprecated( '$wgRCFeeds without class', '1.38' );
 				$scheme = parse_url( $params['uri'], PHP_URL_SCHEME );
 				if ( !$scheme ) {
-					throw new InvalidArgumentException( "Invalid RCFeed uri: {$params['uri']}" );
+					throw new \InvalidArgumentException( "Invalid RCFeed uri: {$params['uri']}" );
 				}
 				if ( !isset( $wgRCEngines[$scheme] ) ) {
-					throw new InvalidArgumentException( "Unknown RCFeed engine: $scheme" );
+					throw new \InvalidArgumentException( "Unknown RCFeed engine: $scheme" );
 				}
 				$params['class'] = $wgRCEngines[$scheme];
 			}
@@ -70,8 +76,10 @@ abstract class RCFeed {
 			return $class;
 		}
 		if ( !class_exists( $class ) ) {
-			throw new InvalidArgumentException( "Unknown class '$class'." );
+			throw new \InvalidArgumentException( "Unknown class '$class'." );
 		}
 		return new $class( $params );
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( RCFeed::class, 'RCFeed' );

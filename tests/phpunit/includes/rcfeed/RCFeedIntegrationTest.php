@@ -11,7 +11,7 @@ use MediaWiki\Title\Title;
  * @covers \RecentChange
  * @covers \JSONRCFeedFormatter
  * @covers \MachineReadableRCFeedFormatter
- * @covers \RCFeed
+ * @covers \MediaWiki\RCFeed\RCFeed
  */
 class RCFeedIntegrationTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
