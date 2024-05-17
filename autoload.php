@@ -1883,6 +1883,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\RenameUser\\Hook\\RenameUserPreRenameHook' => __DIR__ . '/includes/RenameUser/Hook/RenameUserPreRenameHook.php',
 	'MediaWiki\\RenameUser\\Hook\\RenameUserSQLHook' => __DIR__ . '/includes/RenameUser/Hook/RenameUserSQLHook.php',
 	'MediaWiki\\RenameUser\\Hook\\RenameUserWarningHook' => __DIR__ . '/includes/RenameUser/Hook/RenameUserWarningHook.php',
+	'MediaWiki\\RenameUser\\RenameUserJob' => __DIR__ . '/includes/RenameUser/RenameUserJob.php',
 	'MediaWiki\\RenameUser\\RenameuserSQL' => __DIR__ . '/includes/RenameUser/RenameuserSQL.php',
 	'MediaWiki\\Request\\ContentSecurityPolicy' => __DIR__ . '/includes/Request/ContentSecurityPolicy.php',
 	'MediaWiki\\Request\\DerivativeRequest' => __DIR__ . '/includes/Request/DerivativeRequest.php',

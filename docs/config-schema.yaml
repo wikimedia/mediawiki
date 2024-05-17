@@ -7142,7 +7142,7 @@ config-schema:
             'null': NullJob
             userEditCountInit: UserEditCountInitJob
             parsoidCachePrewarm: { class: ParsoidCachePrewarmJob, services: [ParsoidOutputAccess, PageStore, RevisionLookup], needsPage: false }
-            renameUser: { class: RenameUserJob, services: [MainConfig, DBLoadBalancerFactory] }
+            renameUser: { class: MediaWiki\RenameUser\RenameUserJob, services: [MainConfig, DBLoadBalancerFactory] }
         type: object
         description: |-
             Maps jobs to their handlers; extensions

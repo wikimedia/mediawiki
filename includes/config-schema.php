@@ -2130,7 +2130,7 @@ return [
 					'needsPage' => false,
 				],
 				'renameUser' => [
-					'class' => 'RenameUserJob',
+					'class' => 'MediaWiki\\RenameUser\\RenameUserJob',
 					'services' => [
 						'MainConfig',
 						'DBLoadBalancerFactory',
