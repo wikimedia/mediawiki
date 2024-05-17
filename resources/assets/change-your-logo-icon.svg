@@ -1,71 +1,71 @@
-<svg width="50" height="50" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-        <linearGradient id="gradient" gradientUnits="userSpaceOnUse" x1="0" x2="100" y1="100" y2="0">
-            <stop offset="0%" stop-color="#0a00b2"/>
-            <stop offset="50%" stop-color="red"/>
-            <stop offset="100%" stop-color="#fffc00"/>
-        </linearGradient>
-        <linearGradient xlink:href="#gradient" id="linearGradient2464" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <linearGradient xlink:href="#gradient" id="linearGradient2466" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <linearGradient xlink:href="#gradient" id="linearGradient2468" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <linearGradient xlink:href="#gradient" id="linearGradient2470" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <linearGradient xlink:href="#gradient" id="linearGradient2472" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <linearGradient xlink:href="#gradient" id="linearGradient2474" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <linearGradient xlink:href="#gradient" id="linearGradient2476" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <linearGradient xlink:href="#gradient" id="linearGradient2478" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <linearGradient xlink:href="#gradient" id="linearGradient2480" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <linearGradient xlink:href="#gradient" id="linearGradient2482" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <linearGradient xlink:href="#gradient" id="linearGradient2484" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <linearGradient xlink:href="#gradient" id="linearGradient2486" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <linearGradient xlink:href="#gradient" id="linearGradient2488" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <linearGradient xlink:href="#gradient" id="linearGradient2490" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <linearGradient xlink:href="#gradient" id="linearGradient2492" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <linearGradient xlink:href="#gradient" id="linearGradient2494" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <linearGradient xlink:href="#gradient" id="linearGradient2496" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <linearGradient xlink:href="#gradient" id="linearGradient2498" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <linearGradient xlink:href="#gradient" id="linearGradient2500" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <linearGradient xlink:href="#gradient" id="linearGradient2502" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <linearGradient xlink:href="#gradient" id="linearGradient2504" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <linearGradient xlink:href="#gradient" id="linearGradient2506" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <linearGradient xlink:href="#gradient" id="linearGradient2508" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <linearGradient xlink:href="#gradient" id="linearGradient2510" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <linearGradient xlink:href="#gradient" id="linearGradient2512" gradientUnits="userSpaceOnUse" x1="0" y1="100" x2="100" y2="0"/>
-        <style>
-            .petal{opacity:.65}
-        </style>
-    </defs>
-    <g transform="translate(.136 .136) scale(.3108)">
-        <g id="petals" style="fill:url(#linearGradient2512)" transform="matrix(1.60898 0 0 1.609 -.449 -.023)">
-            <path class="petal" d="M33.6 14.8a16.938 16.938 0 0 0 3.116 11.142 11.457 11.457 0 0 0 6.858 4.3 3.033 3.033 0 0 0 2.385-.713 11.924 11.924 0 0 0 3.634-10.837c-1.257-7.54-6.19-12.43-12.4-17A32.468 32.468 0 0 0 33.6 14.8Z" style="fill:url(#linearGradient2464)"/>
-            <path class="petal" d="M25.117 20.232a16.938 16.938 0 0 0 5.893 9.956 11.457 11.457 0 0 0 7.738 2.381 3.033 3.033 0 0 0 2.119-1.306 11.924 11.924 0 0 0 .705-11.409C38.406 12.9 32.376 9.449 25.2 6.642a32.468 32.468 0 0 0-.083 13.59z" style="fill:url(#linearGradient2466)"/>
-            <path class="petal" d="M18.329 27.677a16.937 16.937 0 0 0 8.271 8.092 11.457 11.457 0 0 0 8.09.3 3.033 3.033 0 0 0 1.709-1.81 11.924 11.924 0 0 0-2.271-11.2c-4.859-5.9-11.576-7.67-19.237-8.523a32.466 32.466 0 0 0 3.438 13.141z" style="fill:url(#linearGradient2468)"/>
-            <path class="petal" d="M13.7 36.626A16.938 16.938 0 0 0 23.781 42.3a11.457 11.457 0 0 0 7.891-1.807 3.033 3.033 0 0 0 1.182-2.193 11.924 11.924 0 0 0-5.093-10.233c-6.221-4.443-13.167-4.412-20.787-3.254A32.468 32.468 0 0 0 13.7 36.626Z" style="fill:url(#linearGradient2470)"/>
-            <path class="petal" d="M11.543 46.468a16.938 16.938 0 0 0 11.208 2.873 11.457 11.457 0 0 0 7.155-3.788 3.034 3.034 0 0 0 .575-2.422 11.924 11.924 0 0 0-7.568-8.566c-7.16-2.681-13.861-.854-20.923 2.235a32.468 32.468 0 0 0 9.553 9.668z" style="fill:url(#linearGradient2472)"/>
-            <path class="petal" d="M12.008 56.532a16.938 16.938 0 0 0 11.569-.126 11.457 11.457 0 0 0 5.931-5.51 3.033 3.033 0 0 0-.072-2.488 11.924 11.924 0 0 0-9.527-6.315C12.3 41.356 6.3 44.855.279 49.669a32.467 32.467 0 0 0 11.729 6.863z" style="fill:url(#linearGradient2474)"/>
-            <path class="petal" d="M15.062 66.134A16.938 16.938 0 0 0 26.2 63.018a11.457 11.457 0 0 0 4.3-6.858 3.033 3.033 0 0 0-.713-2.385 11.924 11.924 0 0 0-10.837-3.634c-7.54 1.257-12.43 6.19-17 12.4a32.468 32.468 0 0 0 13.112 3.593z" style="fill:url(#linearGradient2476)"/>
-            <path class="petal" d="M20.5 74.618a16.938 16.938 0 0 0 9.956-5.893 11.457 11.457 0 0 0 2.381-7.738 3.033 3.033 0 0 0-1.306-2.119 11.925 11.925 0 0 0-11.409-.705c-6.958 3.166-10.4 9.2-13.212 16.376a32.466 32.466 0 0 0 13.59.079z" style="fill:url(#linearGradient2478)"/>
-            <path class="petal" d="M27.943 81.406a16.938 16.938 0 0 0 8.092-8.269 11.457 11.457 0 0 0 .3-8.09 3.033 3.033 0 0 0-1.81-1.709 11.924 11.924 0 0 0-11.2 2.271c-5.9 4.859-7.67 11.576-8.523 19.237a32.467 32.467 0 0 0 13.141-3.44z" style="fill:url(#linearGradient2480)"/>
-            <path class="petal" d="M36.891 86.035a16.938 16.938 0 0 0 5.676-10.082 11.457 11.457 0 0 0-1.807-7.891 3.033 3.033 0 0 0-2.191-1.182 11.924 11.924 0 0 0-10.233 5.094c-4.443 6.221-4.412 13.167-3.254 20.787a32.467 32.467 0 0 0 11.809-6.726z" style="fill:url(#linearGradient2482)"/>
-            <path class="petal" d="M46.733 88.191a16.937 16.937 0 0 0 2.873-11.207 11.457 11.457 0 0 0-3.788-7.155 3.033 3.033 0 0 0-2.422-.575 11.924 11.924 0 0 0-8.566 7.568c-2.681 7.159-.854 13.86 2.237 20.921a32.465 32.465 0 0 0 9.666-9.552z" style="fill:url(#linearGradient2484)"/>
-            <path class="petal" d="M56.8 87.726a16.937 16.937 0 0 0-.125-11.569 11.457 11.457 0 0 0-5.511-5.931 3.033 3.033 0 0 0-2.488.072 11.924 11.924 0 0 0-6.315 9.528c-.737 7.609 2.762 13.609 7.576 19.629A32.466 32.466 0 0 0 56.8 87.726Z" style="fill:url(#linearGradient2486)"/>
-            <path class="petal" d="M66.4 84.672a16.938 16.938 0 0 0-3.116-11.142 11.457 11.457 0 0 0-6.858-4.3 3.033 3.033 0 0 0-2.385.713 11.924 11.924 0 0 0-3.634 10.837c1.257 7.54 6.19 12.43 12.4 17A32.468 32.468 0 0 0 66.4 84.672Z" style="fill:url(#linearGradient2488)"/>
-            <path class="petal" d="M74.883 79.237a16.937 16.937 0 0 0-5.893-9.956 11.456 11.456 0 0 0-7.738-2.381 3.033 3.033 0 0 0-2.119 1.306 11.924 11.924 0 0 0-.705 11.409c3.166 6.958 9.2 10.4 16.375 13.212a32.468 32.468 0 0 0 .08-13.59z" style="fill:url(#linearGradient2490)"/>
-            <path class="petal" d="M81.671 71.792A16.938 16.938 0 0 0 73.4 63.7a11.457 11.457 0 0 0-8.09-.3 3.033 3.033 0 0 0-1.708 1.81 11.924 11.924 0 0 0 2.271 11.2c4.859 5.9 11.576 7.67 19.237 8.523a32.466 32.466 0 0 0-3.439-13.141Z" style="fill:url(#linearGradient2492)"/>
-            <path class="petal" d="M86.3 62.843a16.938 16.938 0 0 0-10.082-5.676 11.457 11.457 0 0 0-7.891 1.807 3.033 3.033 0 0 0-1.182 2.191A11.924 11.924 0 0 0 72.239 71.4c6.221 4.443 13.167 4.412 20.787 3.254A32.467 32.467 0 0 0 86.3 62.843Z" style="fill:url(#linearGradient2494)"/>
-            <path class="petal" d="M88.457 53a16.938 16.938 0 0 0-11.207-2.873 11.457 11.457 0 0 0-7.155 3.788 3.033 3.033 0 0 0-.574 2.422 11.925 11.925 0 0 0 7.567 8.563c7.158 2.681 13.86.854 20.921-2.237A32.467 32.467 0 0 0 88.457 53Z" style="fill:url(#linearGradient2496)"/>
-            <path class="petal" d="M87.992 42.936a16.938 16.938 0 0 0-11.569.126 11.457 11.457 0 0 0-5.931 5.511 3.033 3.033 0 0 0 .072 2.488 11.924 11.924 0 0 0 9.527 6.315c7.609.737 13.609-2.762 19.63-7.576a32.468 32.468 0 0 0-11.729-6.864Z" style="fill:url(#linearGradient2498)"/>
-            <path class="petal" d="M84.938 33.335A16.938 16.938 0 0 0 73.8 36.451a11.457 11.457 0 0 0-4.3 6.858 3.033 3.033 0 0 0 .714 2.385 11.924 11.924 0 0 0 10.837 3.634c7.54-1.257 12.43-6.19 17-12.4a32.466 32.466 0 0 0-13.113-3.593Z" style="fill:url(#linearGradient2500)"/>
-            <path class="petal" d="M79.5 24.851a16.938 16.938 0 0 0-9.956 5.893 11.457 11.457 0 0 0-2.381 7.738 3.033 3.033 0 0 0 1.309 2.118 11.924 11.924 0 0 0 11.409.705c6.958-3.166 10.4-9.2 13.212-16.375a32.468 32.468 0 0 0-13.593-.079Z" style="fill:url(#linearGradient2502)"/>
-            <path class="petal" d="M72.057 18.063a16.938 16.938 0 0 0-8.092 8.269 11.457 11.457 0 0 0-.3 8.09 3.033 3.033 0 0 0 1.81 1.709 11.924 11.924 0 0 0 11.2-2.271c5.9-4.859 7.67-11.576 8.523-19.237a32.467 32.467 0 0 0-13.141 3.44z" style="fill:url(#linearGradient2504)"/>
-            <path class="petal" d="M63.109 13.434a16.937 16.937 0 0 0-5.676 10.082 11.457 11.457 0 0 0 1.807 7.891 3.033 3.033 0 0 0 2.191 1.182A11.924 11.924 0 0 0 71.664 27.5c4.443-6.221 4.412-13.167 3.254-20.787a32.466 32.466 0 0 0-11.809 6.721z" style="fill:url(#linearGradient2506)"/>
-            <path class="petal" d="M53.267 11.278a16.937 16.937 0 0 0-2.873 11.207 11.456 11.456 0 0 0 3.788 7.155 3.033 3.033 0 0 0 2.422.575 11.924 11.924 0 0 0 8.566-7.568c2.681-7.159.854-13.86-2.237-20.921a32.466 32.466 0 0 0-9.666 9.552z" style="fill:url(#linearGradient2508)"/>
-            <path class="petal" d="M43.2 11.743a16.938 16.938 0 0 0 .126 11.569 11.457 11.457 0 0 0 5.511 5.931 3.033 3.033 0 0 0 2.488-.072 11.924 11.924 0 0 0 6.315-9.528c.739-7.609-2.76-13.609-7.574-19.629A32.468 32.468 0 0 0 43.2 11.743Z" style="fill:url(#linearGradient2510)"/>
-        </g>
-        <text xml:space="preserve" style="font-weight:700;font-size:24px;font-family:sans-serif;text-align:center;text-anchor:middle" x="79.625" y="22.472"><tspan x="79.625" y="22.472">Set</tspan></text>
-        <text xml:space="preserve" style="font-weight:700;font-size:24px;font-family:sans-serif;text-align:center;text-anchor:middle" x="79.619" y="46.507"><tspan x="79.619" y="46.507">$wgLogos</tspan></text>
-        <text xml:space="preserve" style="font-weight:700;font-size:24px;font-family:sans-serif;text-align:center;text-anchor:middle" x="79.977" y="74.673"><tspan x="79.977" y="74.673">with the URL</tspan></text>
-        <text xml:space="preserve" style="font-weight:700;font-size:24px;font-family:sans-serif;text-align:center;text-anchor:middle" x="79.203" y="100.428"><tspan x="79.203" y="100.428">path to your</tspan></text>
-        <text xml:space="preserve" style="font-weight:700;font-size:24px;font-family:sans-serif;text-align:center;text-anchor:middle" x="80" y="126.35"><tspan x="80" y="126.35">own logo</tspan></text>
-        <text xml:space="preserve" style="font-weight:700;font-size:24px;font-family:sans-serif;text-align:center;text-anchor:middle" x="79.555" y="152.336"><tspan x="79.555" y="152.336">image</tspan></text>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50" height="50">
+	<defs>
+		<linearGradient id="gradient" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse">
+			<stop offset="0%" stop-color="#0a00b2"/>
+			<stop offset="50%" stop-color="red"/>
+			<stop offset="100%" stop-color="#fffc00"/>
+		</linearGradient>
+		<linearGradient xlink:href="#gradient" id="linearGradient2464" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<linearGradient xlink:href="#gradient" id="linearGradient2466" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<linearGradient xlink:href="#gradient" id="linearGradient2468" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<linearGradient xlink:href="#gradient" id="linearGradient2470" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<linearGradient xlink:href="#gradient" id="linearGradient2472" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<linearGradient xlink:href="#gradient" id="linearGradient2474" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<linearGradient xlink:href="#gradient" id="linearGradient2476" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<linearGradient xlink:href="#gradient" id="linearGradient2478" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<linearGradient xlink:href="#gradient" id="linearGradient2480" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<linearGradient xlink:href="#gradient" id="linearGradient2482" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<linearGradient xlink:href="#gradient" id="linearGradient2484" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<linearGradient xlink:href="#gradient" id="linearGradient2486" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<linearGradient xlink:href="#gradient" id="linearGradient2488" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<linearGradient xlink:href="#gradient" id="linearGradient2490" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<linearGradient xlink:href="#gradient" id="linearGradient2492" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<linearGradient xlink:href="#gradient" id="linearGradient2494" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<linearGradient xlink:href="#gradient" id="linearGradient2496" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<linearGradient xlink:href="#gradient" id="linearGradient2498" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<linearGradient xlink:href="#gradient" id="linearGradient2500" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<linearGradient xlink:href="#gradient" id="linearGradient2502" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<linearGradient xlink:href="#gradient" id="linearGradient2504" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<linearGradient xlink:href="#gradient" id="linearGradient2506" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<linearGradient xlink:href="#gradient" id="linearGradient2508" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<linearGradient xlink:href="#gradient" id="linearGradient2510" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<linearGradient xlink:href="#gradient" id="linearGradient2512" x1="0" x2="100" y1="100" y2="0" gradientUnits="userSpaceOnUse"/>
+		<style>
+			.petal{opacity:.65}
+		</style>
+	</defs>
+	<g transform="translate(.136 .136)scale(.3108)">
+		<g id="petals" style="fill:url(#linearGradient2512)" transform="matrix(1.60898 0 0 1.609 -.449 -.023)">
+			<path d="M33.6 14.8a16.94 16.94 0 0 0 3.116 11.142 11.46 11.46 0 0 0 6.858 4.3 3.03 3.03 0 0 0 2.385-.713 11.92 11.92 0 0 0 3.634-10.837c-1.257-7.54-6.19-12.43-12.4-17A32.5 32.5 0 0 0 33.6 14.8" class="petal" style="fill:url(#linearGradient2464)"/>
+			<path d="M25.117 20.232a16.94 16.94 0 0 0 5.893 9.956 11.46 11.46 0 0 0 7.738 2.381 3.03 3.03 0 0 0 2.119-1.306 11.92 11.92 0 0 0 .705-11.409C38.406 12.9 32.376 9.449 25.2 6.642a32.5 32.5 0 0 0-.083 13.59" class="petal" style="fill:url(#linearGradient2466)"/>
+			<path d="M18.329 27.677a16.94 16.94 0 0 0 8.271 8.092 11.46 11.46 0 0 0 8.09.3 3.03 3.03 0 0 0 1.709-1.81 11.92 11.92 0 0 0-2.271-11.2c-4.859-5.9-11.576-7.67-19.237-8.523a32.5 32.5 0 0 0 3.438 13.141" class="petal" style="fill:url(#linearGradient2468)"/>
+			<path d="M13.7 36.626A16.94 16.94 0 0 0 23.781 42.3a11.46 11.46 0 0 0 7.891-1.807 3.03 3.03 0 0 0 1.182-2.193 11.92 11.92 0 0 0-5.093-10.233c-6.221-4.443-13.167-4.412-20.787-3.254A32.5 32.5 0 0 0 13.7 36.626" class="petal" style="fill:url(#linearGradient2470)"/>
+			<path d="M11.543 46.468a16.94 16.94 0 0 0 11.208 2.873 11.46 11.46 0 0 0 7.155-3.788 3.03 3.03 0 0 0 .575-2.422 11.92 11.92 0 0 0-7.568-8.566c-7.16-2.681-13.861-.854-20.923 2.235a32.5 32.5 0 0 0 9.553 9.668" class="petal" style="fill:url(#linearGradient2472)"/>
+			<path d="M12.008 56.532a16.94 16.94 0 0 0 11.569-.126 11.46 11.46 0 0 0 5.931-5.51 3.03 3.03 0 0 0-.072-2.488 11.92 11.92 0 0 0-9.527-6.315C12.3 41.356 6.3 44.855.279 49.669a32.5 32.5 0 0 0 11.729 6.863" class="petal" style="fill:url(#linearGradient2474)"/>
+			<path d="M15.062 66.134A16.94 16.94 0 0 0 26.2 63.018a11.46 11.46 0 0 0 4.3-6.858 3.03 3.03 0 0 0-.713-2.385 11.92 11.92 0 0 0-10.837-3.634c-7.54 1.257-12.43 6.19-17 12.4a32.5 32.5 0 0 0 13.112 3.593" class="petal" style="fill:url(#linearGradient2476)"/>
+			<path d="M20.5 74.618a16.94 16.94 0 0 0 9.956-5.893 11.46 11.46 0 0 0 2.381-7.738 3.03 3.03 0 0 0-1.306-2.119 11.93 11.93 0 0 0-11.409-.705c-6.958 3.166-10.4 9.2-13.212 16.376a32.5 32.5 0 0 0 13.59.079" class="petal" style="fill:url(#linearGradient2478)"/>
+			<path d="M27.943 81.406a16.94 16.94 0 0 0 8.092-8.269 11.46 11.46 0 0 0 .3-8.09 3.03 3.03 0 0 0-1.81-1.709 11.92 11.92 0 0 0-11.2 2.271c-5.9 4.859-7.67 11.576-8.523 19.237a32.5 32.5 0 0 0 13.141-3.44" class="petal" style="fill:url(#linearGradient2480)"/>
+			<path d="M36.891 86.035a16.94 16.94 0 0 0 5.676-10.082 11.46 11.46 0 0 0-1.807-7.891 3.03 3.03 0 0 0-2.191-1.182 11.92 11.92 0 0 0-10.233 5.094c-4.443 6.221-4.412 13.167-3.254 20.787a32.5 32.5 0 0 0 11.809-6.726" class="petal" style="fill:url(#linearGradient2482)"/>
+			<path d="M46.733 88.191a16.94 16.94 0 0 0 2.873-11.207 11.46 11.46 0 0 0-3.788-7.155 3.03 3.03 0 0 0-2.422-.575 11.92 11.92 0 0 0-8.566 7.568c-2.681 7.159-.854 13.86 2.237 20.921a32.5 32.5 0 0 0 9.666-9.552" class="petal" style="fill:url(#linearGradient2484)"/>
+			<path d="M56.8 87.726a16.94 16.94 0 0 0-.125-11.569 11.46 11.46 0 0 0-5.511-5.931 3.03 3.03 0 0 0-2.488.072 11.92 11.92 0 0 0-6.315 9.528c-.737 7.609 2.762 13.609 7.576 19.629A32.5 32.5 0 0 0 56.8 87.726" class="petal" style="fill:url(#linearGradient2486)"/>
+			<path d="M66.4 84.672a16.94 16.94 0 0 0-3.116-11.142 11.46 11.46 0 0 0-6.858-4.3 3.03 3.03 0 0 0-2.385.713 11.92 11.92 0 0 0-3.634 10.837c1.257 7.54 6.19 12.43 12.4 17A32.5 32.5 0 0 0 66.4 84.672" class="petal" style="fill:url(#linearGradient2488)"/>
+			<path d="M74.883 79.237a16.94 16.94 0 0 0-5.893-9.956 11.46 11.46 0 0 0-7.738-2.381 3.03 3.03 0 0 0-2.119 1.306 11.92 11.92 0 0 0-.705 11.409c3.166 6.958 9.2 10.4 16.375 13.212a32.5 32.5 0 0 0 .08-13.59" class="petal" style="fill:url(#linearGradient2490)"/>
+			<path d="M81.671 71.792A16.94 16.94 0 0 0 73.4 63.7a11.46 11.46 0 0 0-8.09-.3 3.03 3.03 0 0 0-1.708 1.81 11.92 11.92 0 0 0 2.271 11.2c4.859 5.9 11.576 7.67 19.237 8.523a32.5 32.5 0 0 0-3.439-13.141" class="petal" style="fill:url(#linearGradient2492)"/>
+			<path d="M86.3 62.843a16.94 16.94 0 0 0-10.082-5.676 11.46 11.46 0 0 0-7.891 1.807 3.03 3.03 0 0 0-1.182 2.191A11.92 11.92 0 0 0 72.239 71.4c6.221 4.443 13.167 4.412 20.787 3.254A32.5 32.5 0 0 0 86.3 62.843" class="petal" style="fill:url(#linearGradient2494)"/>
+			<path d="M88.457 53a16.94 16.94 0 0 0-11.207-2.873 11.46 11.46 0 0 0-7.155 3.788 3.03 3.03 0 0 0-.574 2.422 11.93 11.93 0 0 0 7.567 8.563c7.158 2.681 13.86.854 20.921-2.237A32.5 32.5 0 0 0 88.457 53" class="petal" style="fill:url(#linearGradient2496)"/>
+			<path d="M87.992 42.936a16.94 16.94 0 0 0-11.569.126 11.46 11.46 0 0 0-5.931 5.511 3.03 3.03 0 0 0 .072 2.488 11.92 11.92 0 0 0 9.527 6.315c7.609.737 13.609-2.762 19.63-7.576a32.5 32.5 0 0 0-11.729-6.864" class="petal" style="fill:url(#linearGradient2498)"/>
+			<path d="M84.938 33.335A16.94 16.94 0 0 0 73.8 36.451a11.46 11.46 0 0 0-4.3 6.858 3.03 3.03 0 0 0 .714 2.385 11.92 11.92 0 0 0 10.837 3.634c7.54-1.257 12.43-6.19 17-12.4a32.5 32.5 0 0 0-13.113-3.593" class="petal" style="fill:url(#linearGradient2500)"/>
+			<path d="M79.5 24.851a16.94 16.94 0 0 0-9.956 5.893 11.46 11.46 0 0 0-2.381 7.738 3.03 3.03 0 0 0 1.309 2.118 11.92 11.92 0 0 0 11.409.705c6.958-3.166 10.4-9.2 13.212-16.375a32.5 32.5 0 0 0-13.593-.079" class="petal" style="fill:url(#linearGradient2502)"/>
+			<path d="M72.057 18.063a16.94 16.94 0 0 0-8.092 8.269 11.46 11.46 0 0 0-.3 8.09 3.03 3.03 0 0 0 1.81 1.709 11.92 11.92 0 0 0 11.2-2.271c5.9-4.859 7.67-11.576 8.523-19.237a32.5 32.5 0 0 0-13.141 3.44" class="petal" style="fill:url(#linearGradient2504)"/>
+			<path d="M63.109 13.434a16.94 16.94 0 0 0-5.676 10.082 11.46 11.46 0 0 0 1.807 7.891 3.03 3.03 0 0 0 2.191 1.182A11.92 11.92 0 0 0 71.664 27.5c4.443-6.221 4.412-13.167 3.254-20.787a32.5 32.5 0 0 0-11.809 6.721" class="petal" style="fill:url(#linearGradient2506)"/>
+			<path d="M53.267 11.278a16.94 16.94 0 0 0-2.873 11.207 11.46 11.46 0 0 0 3.788 7.155 3.03 3.03 0 0 0 2.422.575 11.92 11.92 0 0 0 8.566-7.568c2.681-7.159.854-13.86-2.237-20.921a32.5 32.5 0 0 0-9.666 9.552" class="petal" style="fill:url(#linearGradient2508)"/>
+			<path d="M43.2 11.743a16.94 16.94 0 0 0 .126 11.569 11.46 11.46 0 0 0 5.511 5.931 3.03 3.03 0 0 0 2.488-.072 11.92 11.92 0 0 0 6.315-9.528c.739-7.609-2.76-13.609-7.574-19.629A32.5 32.5 0 0 0 43.2 11.743" class="petal" style="fill:url(#linearGradient2510)"/>
+		</g>
+		<text xml:space="preserve" x="79.625" y="22.472" style="font-weight:700;font-size:24px;font-family:sans-serif;text-align:center;text-anchor:middle"><tspan x="79.625" y="22.472">Set</tspan></text>
+		<text xml:space="preserve" x="79.619" y="46.507" style="font-weight:700;font-size:24px;font-family:sans-serif;text-align:center;text-anchor:middle"><tspan x="79.619" y="46.507">$wgLogos</tspan></text>
+		<text xml:space="preserve" x="79.977" y="74.673" style="font-weight:700;font-size:24px;font-family:sans-serif;text-align:center;text-anchor:middle"><tspan x="79.977" y="74.673">with the URL</tspan></text>
+		<text xml:space="preserve" x="79.203" y="100.428" style="font-weight:700;font-size:24px;font-family:sans-serif;text-align:center;text-anchor:middle"><tspan x="79.203" y="100.428">path to your</tspan></text>
+		<text xml:space="preserve" x="80" y="126.35" style="font-weight:700;font-size:24px;font-family:sans-serif;text-align:center;text-anchor:middle"><tspan x="80" y="126.35">own logo</tspan></text>
+		<text xml:space="preserve" x="79.555" y="152.336" style="font-weight:700;font-size:24px;font-family:sans-serif;text-align:center;text-anchor:middle"><tspan x="79.555" y="152.336">image</tspan></text>
+	</g>
 </svg>
