@@ -1,6 +1,14 @@
 @import 'mediawiki.skin.variables.less';
 
 .mw-rcfilters-ui-watchlistTopSectionWidget {
+	&-editWatchlistButton,
+	.mw-rcfilters-ui-markSeenButtonWidget {
+		.oo-ui-buttonElement-button {
+			// T356467
+			white-space: normal;
+		}
+	}
+
 	&-watchlistDetails {
 		flex-grow: 1;
 	}
