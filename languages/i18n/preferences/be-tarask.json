@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"ElDaredo",
 			"EugeneZelenko",
 			"Jim-by",
@@ -168,7 +169,7 @@
 	"prefs-advancedrc": "Дадатковыя налады",
 	"tog-usenewrc": "Групаваць зьмены па старонках у апошніх зьменах і сьпісе назіраньня",
 	"rcfilters-preference-label": "Выкарыстоўваць інтэрфэйс без JavaScript",
-	"rcfilters-preference-help": "  бязь фільтраў пошуку ці інструмэнтаў вылучэньня.\n\nЗагружае [[{{#special:RecentChanges}}|апошнія зьмены]] і [[{{#special:RecentChangesLinked}}|зьвязаныя праўкі]] без фільтраванага пошуку ці функцыяў вылучэньня.",
+	"rcfilters-preference-help": "Загружае [[{{#special:RecentChanges}}|апошнія зьмены]] і [[{{#special:RecentChangesLinked}}|зьвязаныя праўкі]] без фільтраванага пошуку ці функцыяў вылучэньня.",
 	"prefs-changesrc": "Паказваць зьменаў",
 	"tog-hideminor": "Хаваць дробныя праўкі ў сьпісе апошніх зьменаў",
 	"tog-hidecategorization": "Схаваць катэгарызацыю старонак",

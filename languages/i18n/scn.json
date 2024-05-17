@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Ajeje Brazorf",
+			"Amire80",
 			"Aushulz",
 			"DannyS712",
 			"Fitoschido",
@@ -1087,7 +1088,7 @@
 	"rcfilters-filter-previousrevision-description": "Tutti li canciamenti chi nun sunnu la \"virsioni attuali\".",
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:nun</strong> $1",
 	"rcfilters-watchlist-edit-watchlist-button": "Cancia lu tò elencu di pàggini taliata",
-	"rcfilters-target-page-placeholder": "Nzirisci lu nomu di na  pàggina (o catigurìa)",
+	"rcfilters-target-page-placeholder": "Nzirisci lu nomu di na pàggina (o catigurìa)",
 	"rcfilters-allcontents-label": "Tutti li cuntinuti",
 	"rcfilters-alldiscussions-label": "Tutti li discussioni",
 	"rcnotefrom": "Ccassutta {{PLURAL:$5|c'è lu canciamentu|ci sù li canciamenti}} a pàrtiri dû <strong>$3, $4</strong> (nn'havi ammustrati nfina a <strong>$1</strong>).",

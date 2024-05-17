@@ -1356,7 +1356,7 @@
 	"rcfilters-highlightmenu-help": "Seleçiónn-a 'n cô p'evidençiâ sta propiêtæ chi",
 	"rcfilters-filterlist-noresults": "Nisciùn fìltro atrovòu",
 	"rcfilters-noresults-conflict": "Nisciùn rizultâto tròvou percöse i critêi de riçèrca són in conflìtto",
-	"rcfilters-state-message-subset": "Sto fìltro chi o no gh'à d'efètto percöse i sò rizultâti són inclûxi con quélli  {{PLURAL:$2|do fìltro aprêuvo ciù ànpio|di fìltri aprêuvo ciù ànpi}} (prêuva a evidençiâli pe distìngoili): $1",
+	"rcfilters-state-message-subset": "Sto fìltro chi o no gh'à d'efètto percöse i sò rizultâti són inclûxi con quélli {{PLURAL:$2|do fìltro aprêuvo ciù ànpio|di fìltri aprêuvo ciù ànpi}} (prêuva a evidençiâli pe distìngoili): $1",
 	"rcfilters-state-message-fullcoverage": "Seleçionâ tùtti i filtri inte sto grùppo chi l'é cómme no seleçionâne nisciùn, coscì che sto fìltro chi o no gh'à d'efètto. O grùppo o l'inclùdde: $1",
 	"rcfilters-filtergroup-authorship": "Outô do contribûto",
 	"rcfilters-filter-editsbyself-label": "E tò modìfiche",

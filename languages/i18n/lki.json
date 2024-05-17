@@ -1369,7 +1369,7 @@
 	"randompage-nopages": "هیچ صفحه‌ای در این {{PLURAL:$2|فضای نام|فضاهای نام}} موجود نیست: $1.",
 	"randomincategory": "وەڵگە بەختەکی أڕ ڕِزگ",
 	"randomincategory-invalidcategory": "«$1» نامی معتبر برای یک ردهٔ نیست.",
-	"randomincategory-nopages": "  .وجود نئرێ[[:Category:$1|$1]]هؤیج وەڵگە وە ڕِزگ",
+	"randomincategory-nopages": "وجود نئرێ[[:Category:$1|$1]]هؤیج وەڵگە وە ڕِزگ",
 	"randomincategory-category": "ڕِزگ:",
 	"randomincategory-legend": "وەڵگە بەختەکی أڕ ڕِزگ",
 	"randomincategory-submit": "بِچۆ",

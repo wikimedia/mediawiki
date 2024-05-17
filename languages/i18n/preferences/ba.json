@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Alfiya55",
+			"Amire80",
 			"Assele",
 			"Bashkorttan",
 			"Haqmar",
@@ -175,7 +176,7 @@
 	"prefs-advancedrc": "Киңәйтелгән көйләүҙәр",
 	"tog-usenewrc": "Һуңғы һәм күҙәтеү исемлегендәге үҙгәртеүҙәрҙе төркөмләргә",
 	"rcfilters-preference-label": "Интерфейсты JavaScript-һыҙ ҡулланырға",
-	"rcfilters-preference-help": "[[{{#special:RecentChanges}}|яңы үҙгәртеүҙәр]]ҙе һәм  [[{{#special:RecentChangesLinked}}|бәйле үҙгәртеүҙәрҙе]] фильтр буйынса эҙләмәйенсә йәки һөҙөмтәләрҙе икенсе төҫ менән билдәләмәйенсә йөкләй.",
+	"rcfilters-preference-help": "[[{{#special:RecentChanges}}|яңы үҙгәртеүҙәр]]ҙе һәм [[{{#special:RecentChangesLinked}}|бәйле үҙгәртеүҙәрҙе]] фильтр буйынса эҙләмәйенсә йәки һөҙөмтәләрҙе икенсе төҫ менән билдәләмәйенсә йөкләй.",
 	"prefs-changesrc": "Күрһәтелгән үҙгәртеүҙәр",
 	"tog-hideminor": "Һуңғы үҙгәртеүҙәрҙең әһәмиәте әҙ булғандарын йәшерергә",
 	"tog-hidecategorization": "Биттәрҙе категориялаштырыуҙы йәшерергә",

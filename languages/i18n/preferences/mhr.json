@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Azim",
 			"Lifeway",
 			"Mxalexandrov86",
@@ -173,7 +174,7 @@
 	"prefs-advancedrc": "Кумдаҥдыме келыштарымаш",
 	"tog-usenewrc": "У тӧрлымаште да эскерыме спискыште вашталтышлам тӱшкалаш",
 	"rcfilters-preference-label": "JavaScript деч посна интерфейсым кучылташ",
-	"rcfilters-preference-help": "Фильтр дене кычалмаш але лектышым волгалтарыме йӧн деч посна [[{{#special:RecentChanges}}|у тӧрлымашым]] да  [[{{#special:RecentChangesLinked}}|кылдалтше тӧрлымашым]] вераҥда.",
+	"rcfilters-preference-help": "Фильтр дене кычалмаш але лектышым волгалтарыме йӧн деч посна [[{{#special:RecentChanges}}|у тӧрлымашым]] да [[{{#special:RecentChangesLinked}}|кылдалтше тӧрлымашым]] вераҥда.",
 	"prefs-changesrc": "Ончыктымо вашталтыш",
 	"tog-hideminor": "У тӧрлымаш списке-влак гыч изи вашталтышым шылташ",
 	"tog-hidecategorization": "Эскерыме категорийын ужаш-влакшын вашталтмыжым шылташ",

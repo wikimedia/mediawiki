@@ -264,7 +264,7 @@
 	"config-logo-tagline": "标语（可选）：",
 	"config-logo-tagline-help": "您的站点标语。仅在您已定义了字标时使用。如未定义，将以文本作为后备值。标语和字标的合计高度一般不应超过50px。",
 	"config-logo-sidebar": "侧边栏标志（可选）：",
-	"config-logo-filedrop": "拖拽图片文件至此",
+	"config-logo-filedrop": "拖放图像文件到这里",
 	"config-logo-sidebar-help": "部分MediaWiki皮肤的侧边栏菜单中包含一个高度为160px的标志。如未定义，则与上面定义的图标相同。您可能希望设置一个结合了字标和图标的专用标志。",
 	"config-instantcommons": "启用即时共享资源",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons 即时共享资源]可以让wiki使用来自[https://commons.wikimedia.org/ 维基共享资源]网站的图像、音频和其他媒体文件。\n要启用该功能，MediaWiki必须能够访问互联网。\n\n有关此功能的详细信息，包括如何将资源来源设为非维基共享资源的wiki，请参考[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos 手册]。",

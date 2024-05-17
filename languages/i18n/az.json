@@ -2087,7 +2087,7 @@
 	"actioncomplete": "Əməliyyat yerinə yetirildi",
 	"actionfailed": "Əməliyyat yerinə yetirilmədi",
 	"deletedtext": "\"$1\" silindi.\nSonuncu silinmələrə bax: $2.",
-	"deleted-page-and-talkpage": "\" $1 \" və \" $2 \" silindi.\nSon silinmələrin jurnalı üçün $3na baxın.",
+	"deleted-page-and-talkpage": "\"$1\" və \"$2\" silindi.\nSon silinmələrin jurnalı üçün $3na baxın.",
 	"dellogpage": "Silmə jurnalı",
 	"dellogpagetext": "Ən son silinmiş səhifələrin siyahısı.",
 	"deletionlog": "silmə jurnalı",

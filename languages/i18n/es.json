@@ -1646,7 +1646,7 @@
 	"rcfilters-filter-accountcreations-label": "Creaciones de cuentas",
 	"rcfilters-filter-accountcreations-description": "Entradas de registro sobre creación de cuentas. Debes también seleccionar acciones registradas.",
 	"rcfilters-hideminor-conflicts-typeofchange-global": "El filtro \"Ediciones menores\" está en conflicto con uno o más Tipos de filtros de Cambio, ya que ciertos tipos de cambio no pueden ser designados como \"menores\". Los filtros en conflicto están marcados en el área Filtros activos, anterior.",
-	"rcfilters-hideminor-conflicts-typeofchange": "Ciertos tipos de cambio no pueden ser designados como \"menores\", por lo que este filtro entra en conflicto con los siguientes  Tipos de filtros de Cambio: $1",
+	"rcfilters-hideminor-conflicts-typeofchange": "Ciertos tipos de cambio no pueden ser designados como \"menores\", por lo que este filtro entra en conflicto con los siguientes Tipos de filtros de Cambio: $1",
 	"rcfilters-typeofchange-conflicts-hideminor": "Este filtro «Tipo de cambio» entra en conflicto con el filtro «Ediciones menores». Hay ciertos tipos de cambios que no pueden denominarse «menores».",
 	"rcfilters-filtergroup-lastrevision": "Últimas revisiones",
 	"rcfilters-filter-lastrevision-label": "Última revisión",

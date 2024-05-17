@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Agilight",
+			"Amire80",
 			"Karak-Kyzyl",
 			"Riverman",
 			"Sborsody"
@@ -167,7 +168,7 @@
 	"prefs-advancedrc": "Калбак өйлээшкиннер",
 	"tog-usenewrc": "Сөөлгү өскертилгелерде база хайгаарал даңзызында өскертилгелерни бөлүктээр",
 	"rcfilters-preference-label": "Интерфейстти JavaScript чок ажыглаар",
-	"rcfilters-preference-help": "Шүүрлер ажыглаар дилээшкин чок азы түңнелдерни чырыдып каар арга чок [[{{#special:RecentChanges}}|чаа эдилгелерни]] база  [[{{#special:RecentChangesLinked}}|харылзаалыг эдилгелерни]] чүдүрүп турар.",
+	"rcfilters-preference-help": "Шүүрлер ажыглаар дилээшкин чок азы түңнелдерни чырыдып каар арга чок [[{{#special:RecentChanges}}|чаа эдилгелерни]] база [[{{#special:RecentChangesLinked}}|харылзаалыг эдилгелерни]] чүдүрүп турар.",
 	"prefs-changesrc": "Көргүстүнген өскертилгелер",
 	"tog-hideminor": "Чаа өскерлиишкиннер даңзызындан бичии эдилгелерни чажырар",
 	"tog-hidecategorization": "Арыннар аңгылалдаашкынын чажырар",

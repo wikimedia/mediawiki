@@ -193,7 +193,7 @@
 	"tog-extendwatchlist": "Чаклан лыдъетэз паськытатоно но берлооссэ гинэ ӧвӧл, вань воштэтъёсты возьматоно.",
 	"tog-watchlistunwatchlinks": "Воштэтъёсын бамъёсты учкылон понна, учкон/чакланэз шонерак берланьтӥсь маркеръёс ватсалэ ({{int:Watchlist-unwatch}}/{{int:Watchlist\n-unwatch-undo}}) (функциоссэ вошъян понна  JavaScript кулэ).",
 	"rcfilters-watchlist-preference-label": "Тус-пуштросэз JavaScript-тэк кутоно",
-	"rcfilters-watchlist-preference-help": "Инъялэ [[{{#special:Watchlist}}|Watchlist]]  утчан сӥсъетъёстэк яке пусъён функцитэк",
+	"rcfilters-watchlist-preference-help": "Инъялэ [[{{#special:Watchlist}}|Watchlist]] утчан сӥсъетъёстэк яке пусъён функцитэк",
 	"prefs-changeswatchlist": "Возьматэм воштонъёс",
 	"tog-watchlisthideminor": "Чаклан лыдъетысь чыры-пыры тупатонъёсты ватоно",
 	"tog-watchlisthidebots": "Чаклан лыдъетысь ботлэсь тупатонъёссэ ватоно",

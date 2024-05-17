@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Bjarki S",
 			"Friðrik Bragi Dýrfjörð",
 			"Jóna Þórunn",
@@ -170,7 +171,7 @@
 	"prefs-advancedrc": "Háþróaðir möguleikar",
 	"tog-usenewrc": "Flokka breytingar eftir síðu í nýlegum breytingum og vaktlista",
 	"rcfilters-preference-label": "Nota viðmót án JavaScript",
-	"rcfilters-preference-help": "Hleður [[{{#special:RecentChanges}}|nýlegum breytingum]] og  [[{{#special:RecentChangesLinked}}|skyldum breytingum]] án síuðu leitarinnar eða ljómunarvirkni.",
+	"rcfilters-preference-help": "Hleður [[{{#special:RecentChanges}}|nýlegum breytingum]] og [[{{#special:RecentChangesLinked}}|skyldum breytingum]] án síuðu leitarinnar eða ljómunarvirkni.",
 	"prefs-changesrc": "Birtar breytingar",
 	"tog-hideminor": "Fela minniháttar breytingar í nýlegum breytingum",
 	"tog-hidecategorization": "Fela flokkun á síðum",

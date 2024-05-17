@@ -185,7 +185,7 @@
 	"prefs-preview": "预览",
 	"tog-previewonfirst": "开始编辑时显示预览",
 	"tog-previewontop": "在编辑框上方显示预览",
-	"tog-uselivepreview": "在不重新加载页面的情况下显示预览",
+	"tog-uselivepreview": "显示预览时不重新加载页面",
 	"prefs-discussion": "讨论页",
 	"prefs-developertools": "开发者工具",
 	"prefs-rc": "最近更改",

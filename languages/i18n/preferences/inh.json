@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Adam-Yourist",
+			"Amire80",
 			"ElizaMag",
 			"McDutchie",
 			"Sapral Mikail"
@@ -167,7 +168,7 @@
 	"prefs-advancedrc": "Кхыдола шердаь оттамаш",
 	"tog-usenewrc": "Керда хувцамашка а зем-листама чу а хувцамех тоабаш е",
 	"rcfilters-preference-label": "Лелае JavaScript йоаца интерфейс",
-	"rcfilters-preference-help": "[[{{#special:RecentChanges}}|Керда хувцамаш]] а  [[{{#special:RecentChangesLinked}}|хетта хувцамаш]] а хьагойт укхо фильтрашца лахар а доацаш е корадаьр хьасийрдаде вӀаштӀехьа а доацаш.",
+	"rcfilters-preference-help": "[[{{#special:RecentChanges}}|Керда хувцамаш]] а [[{{#special:RecentChangesLinked}}|хетта хувцамаш]] а хьагойт укхо фильтрашца лахар а доацаш е корадаьр хьасийрдаде вӀаштӀехьа а доацаш.",
 	"prefs-changesrc": "Гойташ дола хувцамаш",
 	"tog-hideminor": "Къайладаха керда хувцамашта юкъе зӀамига хувцамаш",
 	"tog-hidecategorization": "Къайладаха оагӀонаш тӀа оагӀаташ тӀатохар",

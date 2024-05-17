@@ -926,7 +926,7 @@
 	"revdelete-otherreason": "অন্য/বাড়তি কারণ:",
 	"revdelete-reasonotherlist": "অন্য কারণ",
 	"revdelete-edit-reasonlist": "অপসারণের কারণ সম্পাদনা",
-	"revdelete-edit-reasonlist-suppress": "দমনের কারণ সম্পাদনা করুন",
+	"revdelete-edit-reasonlist-suppress": "গোপন করার কারণ সম্পাদনা করুন",
 	"revdelete-offender": "সংশোধন লেখক:",
 	"suppressionlog": "দমন লগ",
 	"suppressionlogtext": "নিচের তালিকায় প্রশাসকদের কাছ থেকে লুকানো রয়েছে এমন তথ্যসহ অপসারণ এবং বাধাদানের লগ রয়েছে।\nঅনুগ্রহ করে অস্থায়ী ব্যান এবং বাধাদানের লগ সম্পর্কে বিস্তারিত জানতে [[Special:BlockList|বাধাদানের লগ দেখুন]]।",

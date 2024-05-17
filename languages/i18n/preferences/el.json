@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Assassingr",
 			"Badseed",
 			"Consta",
@@ -187,7 +188,7 @@
 	"prefs-advancedrc": "Προηγμένες επιλογές",
 	"tog-usenewrc": "Ομαδοποίηση αλλαγών κατά σελίδα σε πρόσφατες αλλαγές και λίστα παρακολούθησης",
 	"rcfilters-preference-label": "Χρήση διεπαφής χωρίς JavaScript",
-	"rcfilters-preference-help": "Φορτώνει τις [[{{#special:RecentChanges}}|πρόσφατες αλλαγές]] και τις [[{{#special:RecentChangesLinked}}|σχετικές αλλαγές]] χωρίς τη λειτουργία  φιλτραρισμένης αναζήτησης ή επισήμανσης.",
+	"rcfilters-preference-help": "Φορτώνει τις [[{{#special:RecentChanges}}|πρόσφατες αλλαγές]] και τις [[{{#special:RecentChangesLinked}}|σχετικές αλλαγές]] χωρίς τη λειτουργία φιλτραρισμένης αναζήτησης ή επισήμανσης.",
 	"prefs-changesrc": "Αλλαγές που εμφανίζονται",
 	"tog-hideminor": "Απόκρυψη μικρών τροποποιήσεων από πρόσφατες αλλαγές",
 	"tog-hidecategorization": "Απόκρυψη κατηγοριοποίησης σελίδων",

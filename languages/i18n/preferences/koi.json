@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Enye Lav",
 			"Yufereff",
 			"Римма"
@@ -166,7 +167,7 @@
 	"prefs-advancedrc": "Паськӧтӧм лӧсьӧтаннэз",
 	"tog-usenewrc": "Юклыны вежсьӧммез бӧрья вильмӧтӧммезын и синмалан нимлёдзын",
 	"rcfilters-preference-label": "JavaScript-тӧг интерфейс уджӧтӧм",
-	"rcfilters-preference-help": "Кӧрталӧ [[{{#special:RecentChanges}}|бӧрья вильмӧтӧммез]] и  [[{{#special:RecentChangesLinked}}|кӧрталӧм вильмӧтӧммез]] весалӧм  кошшӧмтӧг да торйӧтан функцияэзтӧг.",
+	"rcfilters-preference-help": "Кӧрталӧ [[{{#special:RecentChanges}}|бӧрья вильмӧтӧммез]] и [[{{#special:RecentChangesLinked}}|кӧрталӧм вильмӧтӧммез]] весалӧм кошшӧмтӧг да торйӧтан функцияэзтӧг.",
 	"prefs-changesrc": "Мыччалӧм вежсьӧммез",
 	"tog-hideminor": "Дзебны неыджыт вежсьӧммез бӧрья вильмӧтӧм нимлёдззезісь",
 	"tog-hidecategorization": "Сайӧвтны листбоккесӧ категорияэз вылӧ юклӧмсӧ",
@@ -189,7 +190,7 @@
 	"tog-extendwatchlist": "Паськӧтны видзӧтӧм нимлёдзсӧ, абу дзик бӧрья,а быдӧс вежсьӧммез пыртӧмӧн",
 	"tog-watchlistunwatchlinks": "Содтыны веськыт пассэз пыртӧм/чышкӧм вылӧ синмалан нимлёдзись({{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}})вежсьӧммезӧн видзӧтан листбоккесӧ (вуджӧм функция понда колӧ JavaScript)",
 	"rcfilters-watchlist-preference-label": "JavaScript-тӧг интерфейс уджӧтӧм",
-	"rcfilters-watchlist-preference-help": "  Кӧрталӧ [[{{#special:Watchlist}}| синмалан нимлёдз]]  весалӧм кошшӧмтӧг да торйӧтан функцияэзтӧг.",
+	"rcfilters-watchlist-preference-help": "Кӧрталӧ [[{{#special:Watchlist}}| синмалан нимлёдз]] весалӧм кошшӧмтӧг да торйӧтан функцияэзтӧг.",
 	"prefs-changeswatchlist": "Мыччалӧм вежсьӧммез",
 	"tog-watchlisthideminor": "Дзебны неыджыт вильмӧтӧммез синмалан нимлёдзись",
 	"tog-watchlisthidebots": "Дзебны ботлісь вильмӧтӧммез синмалан нимлёдзісь",

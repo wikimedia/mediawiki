@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Muotâ",
 			"Seipinne",
 			"Trondtr",
@@ -126,7 +127,7 @@
 	"prefs-advancedrc": "Laseasâttâsah",
 	"tog-usenewrc": "Jyevi nubástusâid siijđo mield vorâs nubástusâi listoost já tarkkumlistoost",
 	"rcfilters-preference-label": "Keevti kevttimloovtâ JavaScripttáá",
-	"rcfilters-preference-help": "Luođii sillejum uuccâmttáá teikkâ tiäduttâstoimâttáá [[{{#special:RecentChanges}}|vorâs nubástusâid]] já  [[{{#special:RecentChangesLinked}}|siämmáálágánijd siijđoid]].",
+	"rcfilters-preference-help": "Luođii sillejum uuccâmttáá teikkâ tiäduttâstoimâttáá [[{{#special:RecentChanges}}|vorâs nubástusâid]] já [[{{#special:RecentChangesLinked}}|siämmáálágánijd siijđoid]].",
 	"prefs-changesrc": "Nubástusah čäittimnáál",
 	"tog-hideminor": "Čievâ smavvâ nubástusâid \"vorâs nubástusah\" -listoost",
 	"tog-hidecategorization": "Čievâ siijđoi luokittâllâm",
