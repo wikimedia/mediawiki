@@ -1,13 +1,14 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\RCFeed\FormattedRCFeed;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 
 /**
  * @group medium
  * @group Database
- * @covers \FormattedRCFeed
+ * @covers \MediaWiki\RCFeed\FormattedRCFeed
  * @covers \RecentChange
  * @covers \JSONRCFeedFormatter
  * @covers \MachineReadableRCFeedFormatter

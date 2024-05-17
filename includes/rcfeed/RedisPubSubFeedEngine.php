@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\RCFeed\FormattedRCFeed;
+
 /**
  * Send recent change to a Redis Pub/Sub channel.
  *
