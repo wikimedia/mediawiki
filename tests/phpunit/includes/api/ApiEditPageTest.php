@@ -4,9 +4,9 @@ namespace MediaWiki\Tests\Api;
 
 use ApiUsageException;
 use IDBAccessObject;
-use JavaScriptContent;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;

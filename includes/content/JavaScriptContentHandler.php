@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Html\Html;

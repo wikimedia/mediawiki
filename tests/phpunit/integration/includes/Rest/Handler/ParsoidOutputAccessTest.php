@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Edit\ParsoidRenderID;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\ParserOutputFlags;
