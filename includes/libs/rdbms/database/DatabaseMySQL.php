@@ -358,15 +358,6 @@ class DatabaseMySQL extends Database {
 		return $res->getInternalFieldInfo( $field );
 	}
 
-	/**
-	 * Get information about an index into an object
-	 * Returns false if the index does not exist
-	 *
-	 * @param string $table
-	 * @param string $index
-	 * @param string $fname
-	 * @return bool|array|null False or null on failure
-	 */
 	public function indexInfo( $table, $index, $fname = __METHOD__ ) {
 		# https://dev.mysql.com/doc/mysql/en/SHOW_INDEX.html
 		$index = $this->platform->indexName( $index );
@@ -377,19 +368,13 @@ class DatabaseMySQL extends Database {
 		);
 		$res = $this->query( $query, $fname );
 
-		if ( !$res ) {
-			return null;
-		}
-
-		$result = [];
-
 		foreach ( $res as $row ) {
-			if ( $row->Key_name == $index ) {
-				$result[] = $row;
+			if ( $row->Key_name === $index ) {
+				return [ 'unique' => !$row->Non_unique ];
 			}
 		}
 
-		return $result ?: false;
+		return false;
 	}
 
 	/**

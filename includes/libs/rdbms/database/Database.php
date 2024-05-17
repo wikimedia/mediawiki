@@ -401,16 +401,6 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 	}
 
 	/**
-	 * Get information about an index into an object
-	 *
-	 * @param string $table Table name
-	 * @param string $index Index name
-	 * @param string $fname Calling function name
-	 * @return mixed Database-specific index description class or false if the index does not exist
-	 */
-	abstract public function indexInfo( $table, $index, $fname = __METHOD__ );
-
-	/**
 	 * Wrapper for addslashes()
 	 *
 	 * @param string $s String to be slashed.
@@ -1450,30 +1440,30 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 		return (bool)$info;
 	}
 
-	public function indexExists( $table, $index, $fname = __METHOD__ ) {
-		if ( !$this->tableExists( $table, $fname ) ) {
-			return null;
-		}
-
-		$info = $this->indexInfo( $table, $index, $fname );
-		if ( $info === null ) {
-			return null;
-		} else {
-			return $info !== false;
-		}
-	}
-
 	abstract public function tableExists( $table, $fname = __METHOD__ );
 
-	public function indexUnique( $table, $index, $fname = __METHOD__ ) {
-		$indexInfo = $this->indexInfo( $table, $index, $fname );
+	public function indexExists( $table, $index, $fname = __METHOD__ ) {
+		$info = $this->indexInfo( $table, $index, $fname );
 
-		if ( !$indexInfo ) {
-			return false;
-		}
-
-		return !$indexInfo[0]->Non_unique;
+		return (bool)$info;
 	}
+
+	public function indexUnique( $table, $index, $fname = __METHOD__ ) {
+		$info = $this->indexInfo( $table, $index, $fname );
+
+		return $info ? $info['unique'] : null;
+	}
+
+	/**
+	 * Get information about an index into an object
+	 *
+	 * @param string $table Unqualified name of table
+	 * @param string $index Index name
+	 * @param string $fname Calling function name
+	 * @return array<string,mixed>|false Index info map; false if it does not exist
+	 * @phan-return array{unique:bool}|false
+	 */
+	abstract public function indexInfo( $table, $index, $fname = __METHOD__ );
 
 	public function insert( $table, $rows, $fname = __METHOD__, $options = [] ) {
 		$query = $this->platform->dispatchingInsertSqlText( $table, $rows, $options );

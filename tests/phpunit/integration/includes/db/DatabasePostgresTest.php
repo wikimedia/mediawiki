@@ -370,6 +370,48 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $this->db->affectedRows() );
 	}
 
+	/**
+	 * @covers \Wikimedia\Rdbms\DatabasePostgres::fieldExists()
+	 * @covers \Wikimedia\Rdbms\DatabasePostgres::indexExists()
+	 * @covers \Wikimedia\Rdbms\DatabasePostgres::indexUnique()
+	 * @covers \Wikimedia\Rdbms\DatabasePostgres::fieldInfo()
+	 * @covers \Wikimedia\Rdbms\DatabasePostgres::indexInfo()
+	 */
+	public function testFieldAndIndexInfo() {
+		global $wgDBname;
+
+		$this->db->selectDomain( $wgDBname );
+		$this->db->query(
+			"CREATE TEMPORARY TABLE tmp_schema_tbl (" .
+			"n serial not null, " .
+			"k text not null, " .
+			"v integer, " .
+			"t integer, " .
+			"PRIMARY KEY(n)" .
+			")"
+		);
+		$this->db->query( "CREATE UNIQUE INDEX k ON tmp_schema_tbl (k)" );
+		$this->db->query( "CREATE INDEX t ON tmp_schema_tbl (t)" );
+
+		$this->assertTrue( $this->db->fieldExists( 'tmp_schema_tbl', 'n' ) );
+		$this->assertTrue( $this->db->fieldExists( 'tmp_schema_tbl', 'k' ) );
+		$this->assertTrue( $this->db->fieldExists( 'tmp_schema_tbl', 'v' ) );
+		$this->assertTrue( $this->db->fieldExists( 'tmp_schema_tbl', 't' ) );
+		$this->assertFalse( $this->db->fieldExists( 'tmp_schema_tbl', 'x' ) );
+
+		$this->assertTrue( $this->db->indexExists( 'tmp_schema_tbl', 'k' ) );
+		$this->assertTrue( $this->db->indexExists( 'tmp_schema_tbl', 't' ) );
+		$this->assertFalse( $this->db->indexExists( 'tmp_schema_tbl', 'x' ) );
+		$this->assertFalse( $this->db->indexExists( 'tmp_schema_tbl', 'PRIMARY' ) );
+		$this->assertTrue( $this->db->indexExists( 'tmp_schema_tbl', 'tmp_schema_tbl_pkey' ) );
+
+		$this->assertTrue( $this->db->indexUnique( 'tmp_schema_tbl', 'k' ) );
+		$this->assertFalse( $this->db->indexUnique( 'tmp_schema_tbl', 't' ) );
+		$this->assertNull( $this->db->indexUnique( 'tmp_schema_tbl', 'x' ) );
+		$this->assertNull( $this->db->indexUnique( 'tmp_schema_tbl', 'PRIMARY' ) );
+		$this->assertTrue( $this->db->indexExists( 'tmp_schema_tbl', 'tmp_schema_tbl_pkey' ) );
+	}
+
 	private function assertNWhereKEqualsLuca( $expected, $table ) {
 		$this->assertSame( $expected, (int)$this->db->newSelectQueryBuilder()
 			->select( 'n' )
