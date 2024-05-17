@@ -1,5 +1,8 @@
 <?php
 
+namespace MediaWiki\RenameUser;
+
+use Job;
 use MediaWiki\Config\Config;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
@@ -88,7 +91,7 @@ class RenameUserJob extends Job {
 		} elseif ( $uniqueKey !== null && $keyId !== null ) {
 			$conds[$uniqueKey] = $keyId;
 		} else {
-			throw new InvalidArgumentException( 'Expected ID batch or time range' );
+			throw new \InvalidArgumentException( 'Expected ID batch or time range' );
 		}
 
 		# Actually update the rows for this job...
@@ -122,3 +125,5 @@ class RenameUserJob extends Job {
 		return true;
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( RenameUserJob::class, 'RenameUserJob' );
