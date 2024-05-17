@@ -28,6 +28,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use Wikimedia\Rdbms\Database;
 
 require_once __DIR__ . '/Maintenance.php';
 
