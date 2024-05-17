@@ -11,8 +11,8 @@ use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
+use MediaWiki\Watchlist\WatchedItemQueryService;
 use RecentChange;
-use WatchedItemQueryService;
 
 /**
  * @group medium
@@ -20,7 +20,7 @@ use WatchedItemQueryService;
  * @group Database
  *
  * @covers \ApiQueryWatchlist
- * @covers \WatchedItemQueryService
+ * @covers \MediaWiki\Watchlist\WatchedItemQueryService
  */
 class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	use TempUserTestTrait;

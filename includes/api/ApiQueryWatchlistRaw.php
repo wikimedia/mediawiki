@@ -25,6 +25,7 @@ use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
+use MediaWiki\Watchlist\WatchedItemQueryService;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use WatchedItemQueryService;
+use MediaWiki\Watchlist\WatchedItemQueryService;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

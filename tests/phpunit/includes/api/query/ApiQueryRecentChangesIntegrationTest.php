@@ -9,8 +9,8 @@ use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\Watchlist\WatchedItemQueryService;
 use RecentChange;
-use WatchedItemQueryService;
 
 /**
  * @group API

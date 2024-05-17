@@ -8,6 +8,7 @@ use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\WatchedItem;
+use MediaWiki\Watchlist\WatchedItemQueryService;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -17,7 +18,7 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \WatchedItemQueryService
+ * @covers \MediaWiki\Watchlist\WatchedItemQueryService
  */
 class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 

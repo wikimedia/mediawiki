@@ -1,5 +1,10 @@
 <?php
 
+namespace MediaWiki\Watchlist;
+
+use ApiUsageException;
+use ChangeTags;
+use LogPage;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -11,7 +16,9 @@ use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\Watchlist\WatchedItem;
+use RecentChange;
+use WatchedItemQueryServiceExtension;
+use WatchedItemStoreInterface;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IExpression;
@@ -364,7 +371,7 @@ class WatchedItemQueryService {
 		return $watchedItems;
 	}
 
-	private function getRecentChangeFieldsFromRow( stdClass $row ) {
+	private function getRecentChangeFieldsFromRow( \stdClass $row ) {
 		return array_filter(
 			get_object_vars( $row ),
 			static function ( $key ) {
@@ -766,3 +773,5 @@ class WatchedItemQueryService {
 	}
 
 }
+/** @deprecated class alias since 1.43 */
+class_alias( WatchedItemQueryService::class, 'WatchedItemQueryService' );
