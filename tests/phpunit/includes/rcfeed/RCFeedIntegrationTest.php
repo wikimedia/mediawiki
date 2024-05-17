@@ -2,6 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\RCFeed\FormattedRCFeed;
+use MediaWiki\RCFeed\JSONRCFeedFormatter;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 
@@ -10,7 +11,7 @@ use MediaWiki\Title\Title;
  * @group Database
  * @covers \MediaWiki\RCFeed\FormattedRCFeed
  * @covers \RecentChange
- * @covers \JSONRCFeedFormatter
+ * @covers \MediaWiki\RCFeed\JSONRCFeedFormatter
  * @covers \MachineReadableRCFeedFormatter
  * @covers \MediaWiki\RCFeed\RCFeed
  */
