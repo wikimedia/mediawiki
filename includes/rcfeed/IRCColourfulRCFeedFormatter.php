@@ -19,11 +19,13 @@
  * @file
  */
 
+namespace MediaWiki\RCFeed;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
-use MediaWiki\RCFeed\RCFeedFormatter;
 use MediaWiki\Title\Title;
+use RecentChange;
 
 /**
  * Format a notification as a human-readable string using IRC colour codes.
@@ -141,3 +143,5 @@ class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 		);
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( IRCColourfulRCFeedFormatter::class, 'IRCColourfulRCFeedFormatter' );
