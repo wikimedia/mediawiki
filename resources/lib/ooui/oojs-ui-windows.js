@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.49.1
+ * OOUI v0.49.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-04-04T18:19:04Z
+ * Date: 2024-05-17T04:45:00Z
  */
 ( function ( OO ) {
 
@@ -150,9 +150,9 @@ OO.ui.ActionWidget.prototype.getModes = function () {
  *     };
  *     MyProcessDialog.prototype.getSetupProcess = function ( data ) {
  *         return MyProcessDialog.super.prototype.getSetupProcess.call( this, data )
- *             .next( function () {
+ *             .next( () => {
  *                 this.actions.setMode( 'edit' );
- *             }, this );
+ *             } );
  *     };
  *     MyProcessDialog.prototype.getActionProcess = function ( action ) {
  *         if ( action === 'help' ) {
@@ -162,9 +162,8 @@ OO.ui.ActionWidget.prototype.getModes = function () {
  *             this.actions.setMode( 'edit' );
  *             this.stackLayout.setItem( this.panel1 );
  *         } else if ( action === 'continue' ) {
- *             const dialog = this;
- *             return new OO.ui.Process( function () {
- *                 dialog.close();
+ *             return new OO.ui.Process( () => {
+ *                 this.close();
  *             } );
  *         }
  *         return MyProcessDialog.super.prototype.getActionProcess.call( this, action );
@@ -901,21 +900,15 @@ OO.ui.WindowInstance = function OoUiWindowInstance() {
 	/**
 	 * @property {jQuery.Promise}
 	 */
-	this.opened = this.opening.then( function () {
-		return deferreds.opened;
-	} );
+	this.opened = this.opening.then( () => deferreds.opened );
 	/**
 	 * @property {jQuery.Promise}
 	 */
-	this.closing = this.opened.then( function () {
-		return deferreds.closing;
-	} );
+	this.closing = this.opened.then( () => deferreds.closing );
 	/**
 	 * @property {jQuery.Promise}
 	 */
-	this.closed = this.closing.then( function () {
-		return deferreds.closed;
-	} );
+	this.closed = this.closing.then( () => deferreds.closed );
 };
 
 /* Setup */
@@ -1362,7 +1355,6 @@ OO.ui.WindowManager.prototype.getCurrentWindow = function () {
  * @fires OO.ui.WindowManager#opening
  */
 OO.ui.WindowManager.prototype.openWindow = function ( win, data, lifecycle, compatOpening ) {
-	const manager = this;
 	data = data || {};
 
 	// Internal parameter 'lifecycle' allows this method to always return
@@ -1374,7 +1366,7 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data, lifecycle, comp
 	// Turn lifecycle into a Thenable for backwards-compatibility with
 	// the deprecated nested-promise behaviour, see T163510.
 	[ 'state', 'always', 'catch', 'pipe', 'then', 'promise', 'progress', 'done', 'fail' ]
-		.forEach( function ( method ) {
+		.forEach( ( method ) => {
 			lifecycle[ method ] = function () {
 				OO.ui.warnDeprecation(
 					'Using the return value of openWindow as a promise is deprecated. ' +
@@ -1387,10 +1379,10 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data, lifecycle, comp
 	// Argument handling
 	if ( typeof win === 'string' ) {
 		this.getWindow( win ).then(
-			function ( w ) {
-				manager.openWindow( w, data, lifecycle, compatOpening );
+			( w ) => {
+				this.openWindow( w, data, lifecycle, compatOpening );
 			},
-			function ( err ) {
+			( err ) => {
 				lifecycle.deferreds.opening.reject( err );
 			}
 		);
@@ -1416,51 +1408,51 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data, lifecycle, comp
 	// If a window is currently closing, wait for it to complete
 	this.preparingToOpen = $.when( this.lifecycle && this.lifecycle.closed );
 	// Ensure handlers get called after preparingToOpen is set
-	this.preparingToOpen.done( function () {
-		if ( manager.isModal() ) {
-			manager.toggleGlobalEvents( true, win );
-			manager.toggleIsolation( true );
+	this.preparingToOpen.done( () => {
+		if ( this.isModal() ) {
+			this.toggleGlobalEvents( true, win );
+			this.toggleIsolation( true );
 		}
-		manager.$returnFocusTo = data.$returnFocusTo !== undefined ?
+		this.$returnFocusTo = data.$returnFocusTo !== undefined ?
 			data.$returnFocusTo :
 			$( document.activeElement );
-		manager.currentWindow = win;
-		manager.lifecycle = lifecycle;
-		manager.preparingToOpen = null;
-		manager.emit( 'opening', win, compatOpening, data );
+		this.currentWindow = win;
+		this.lifecycle = lifecycle;
+		this.preparingToOpen = null;
+		this.emit( 'opening', win, compatOpening, data );
 		lifecycle.deferreds.opening.resolve( data );
-		setTimeout( function () {
-			manager.compatOpened = $.Deferred();
-			win.setup( data ).then( function () {
+		setTimeout( () => {
+			this.compatOpened = $.Deferred();
+			win.setup( data ).then( () => {
 				compatOpening.notify( { state: 'setup' } );
-				setTimeout( function () {
-					win.ready( data ).then( function () {
+				setTimeout( () => {
+					win.ready( data ).then( () => {
 						compatOpening.notify( { state: 'ready' } );
 						lifecycle.deferreds.opened.resolve( data );
-						compatOpening.resolve( manager.compatOpened.promise(), data );
-						manager.togglePreventIosScrolling( true );
-					}, function ( dataOrErr ) {
+						compatOpening.resolve( this.compatOpened.promise(), data );
+						this.togglePreventIosScrolling( true );
+					}, ( dataOrErr ) => {
 						lifecycle.deferreds.opened.reject();
 						compatOpening.reject();
-						manager.closeWindow( win );
+						this.closeWindow( win );
 						if ( dataOrErr instanceof Error ) {
-							setTimeout( function () {
+							setTimeout( () => {
 								throw dataOrErr;
 							} );
 						}
 					} );
-				}, manager.getReadyDelay() );
-			}, function ( dataOrErr ) {
+				}, this.getReadyDelay() );
+			}, ( dataOrErr ) => {
 				lifecycle.deferreds.opened.reject();
 				compatOpening.reject();
-				manager.closeWindow( win );
+				this.closeWindow( win );
 				if ( dataOrErr instanceof Error ) {
-					setTimeout( function () {
+					setTimeout( () => {
 						throw dataOrErr;
 					} );
 				}
 			} );
-		}, manager.getSetupDelay() );
+		}, this.getSetupDelay() );
 	} );
 
 	return lifecycle;
@@ -1477,7 +1469,6 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data, lifecycle, comp
  * @fires OO.ui.WindowManager#closing
  */
 OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
-	const manager = this;
 	const compatClosing = $.Deferred();
 	let lifecycle = this.lifecycle;
 
@@ -1512,7 +1503,7 @@ OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
 	// Turn lifecycle into a Thenable for backwards-compatibility with
 	// the deprecated nested-promise behaviour, see T163510.
 	[ 'state', 'always', 'catch', 'pipe', 'then', 'promise', 'progress', 'done', 'fail' ]
-		.forEach( function ( method ) {
+		.forEach( ( method ) => {
 			lifecycle[ method ] = function () {
 				OO.ui.warnDeprecation(
 					'Using the return value of closeWindow as a promise is deprecated. ' +
@@ -1531,35 +1522,35 @@ OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
 	// If the window is currently opening, close it when it's done
 	this.preparingToClose = $.when( this.lifecycle.opened );
 	// Ensure handlers get called after preparingToClose is set
-	this.preparingToClose.always( function () {
-		manager.preparingToClose = null;
-		manager.emit( 'closing', win, compatClosing, data );
+	this.preparingToClose.always( () => {
+		this.preparingToClose = null;
+		this.emit( 'closing', win, compatClosing, data );
 		lifecycle.deferreds.closing.resolve( data );
-		const compatOpened = manager.compatOpened;
-		manager.compatOpened = null;
+		const compatOpened = this.compatOpened;
+		this.compatOpened = null;
 		compatOpened.resolve( compatClosing.promise(), data );
-		manager.togglePreventIosScrolling( false );
-		setTimeout( function () {
-			win.hold( data ).then( function () {
+		this.togglePreventIosScrolling( false );
+		setTimeout( () => {
+			win.hold( data ).then( () => {
 				compatClosing.notify( { state: 'hold' } );
-				setTimeout( function () {
-					win.teardown( data ).then( function () {
+				setTimeout( () => {
+					win.teardown( data ).then( () => {
 						compatClosing.notify( { state: 'teardown' } );
-						if ( manager.isModal() ) {
-							manager.toggleGlobalEvents( false );
-							manager.toggleIsolation( false );
+						if ( this.isModal() ) {
+							this.toggleGlobalEvents( false );
+							this.toggleIsolation( false );
 						}
-						if ( manager.$returnFocusTo && manager.$returnFocusTo.length ) {
-							manager.$returnFocusTo[ 0 ].focus();
+						if ( this.$returnFocusTo && this.$returnFocusTo.length ) {
+							this.$returnFocusTo[ 0 ].focus();
 						}
-						manager.currentWindow = null;
-						manager.lifecycle = null;
+						this.currentWindow = null;
+						this.lifecycle = null;
 						lifecycle.deferreds.closed.resolve( data );
 						compatClosing.resolve( data );
 					} );
-				}, manager.getTeardownDelay() );
+				}, this.getTeardownDelay() );
 			} );
-		}, manager.getHoldDelay() );
+		}, this.getHoldDelay() );
 	} );
 
 	return lifecycle;
@@ -1649,20 +1640,18 @@ OO.ui.WindowManager.prototype.addWindows = function ( windows ) {
  * @throws {Error} An error is thrown if the named windows are not managed by the window manager.
  */
 OO.ui.WindowManager.prototype.removeWindows = function ( names ) {
-	const manager = this;
-
-	function cleanup( name, win ) {
-		delete manager.windows[ name ];
+	const cleanup = ( name, win ) => {
+		delete this.windows[ name ];
 		win.$element.detach();
-	}
+	};
 
-	const promises = names.map( function ( name ) {
-		const win = manager.windows[ name ];
+	const promises = names.map( ( name ) => {
+		const win = this.windows[ name ];
 		if ( !win ) {
 			throw new Error( 'Cannot remove window' );
 		}
 		const cleanupWindow = cleanup.bind( null, name, win );
-		return manager.closeWindow( name ).closed.then( cleanupWindow, cleanupWindow );
+		return this.closeWindow( name ).closed.then( cleanupWindow, cleanupWindow );
 	} );
 
 	return $.when.apply( $, promises );
@@ -2173,21 +2162,20 @@ OO.ui.Window.prototype.withoutSizeTransitions = function ( callback ) {
  * @return {number} The height of the window contents (the dialog head, body and foot) in pixels
  */
 OO.ui.Window.prototype.getContentHeight = function () {
-	const win = this;
 	const body = this.$body[ 0 ];
 	const frame = this.$frame[ 0 ];
 
 	let bodyHeight;
 	// Temporarily resize the frame so getBodyHeight() can use scrollHeight measurements.
 	// Disable transitions first, otherwise we'll get values from when the window was animating.
-	this.withoutSizeTransitions( function () {
+	this.withoutSizeTransitions( () => {
 		const oldHeight = frame.style.height;
 		const oldPosition = body.style.position;
 		const scrollTop = body.scrollTop;
 		frame.style.height = '1px';
 		// Force body to resize to new width
 		body.style.position = 'relative';
-		bodyHeight = win.getBodyHeight();
+		bodyHeight = this.getBodyHeight();
 		frame.style.height = oldHeight;
 		body.style.position = oldPosition;
 		body.scrollTop = scrollTop;
@@ -2374,16 +2362,15 @@ OO.ui.Window.prototype.updateSize = function () {
  * @return {OO.ui.Window} The window, for chaining
  */
 OO.ui.Window.prototype.setDimensions = function ( dim ) {
-	const win = this,
-		styleObj = this.$frame[ 0 ].style;
+	const styleObj = this.$frame[ 0 ].style;
 
 	let height;
 	// Calculate the height we need to set using the correct width
 	if ( dim.height === undefined ) {
-		this.withoutSizeTransitions( function () {
+		this.withoutSizeTransitions( () => {
 			const oldWidth = styleObj.width;
-			win.$frame.css( 'width', dim.width || '' );
-			height = win.getContentHeight();
+			this.$frame.css( 'width', dim.width || '' );
+			height = this.getContentHeight();
 			styleObj.width = oldWidth;
 		} );
 	} else {
@@ -2525,15 +2512,13 @@ OO.ui.Window.prototype.close = function ( data ) {
  * @return {jQuery.Promise} Promise resolved when window is setup
  */
 OO.ui.Window.prototype.setup = function ( data ) {
-	const win = this;
-
 	this.toggle( true );
 
-	return this.getSetupProcess( data ).execute().then( function () {
-		win.updateSize();
+	return this.getSetupProcess( data ).execute().then( () => {
+		this.updateSize();
 		// Force redraw by asking the browser to measure the elements' widths
-		win.$element.addClass( 'oo-ui-window-active oo-ui-window-setup' ).width();
-		win.$content.addClass( 'oo-ui-window-content-setup' ).width();
+		this.$element.addClass( 'oo-ui-window-active oo-ui-window-setup' ).width();
+		this.$content.addClass( 'oo-ui-window-content-setup' ).width();
 	} );
 };
 
@@ -2547,13 +2532,11 @@ OO.ui.Window.prototype.setup = function ( data ) {
  * @return {jQuery.Promise} Promise resolved when window is ready
  */
 OO.ui.Window.prototype.ready = function ( data ) {
-	const win = this;
-
 	this.$content.trigger( 'focus' );
-	return this.getReadyProcess( data ).execute().then( function () {
+	return this.getReadyProcess( data ).execute().then( () => {
 		// Force redraw by asking the browser to measure the elements' widths
-		win.$element.addClass( 'oo-ui-window-ready' ).width();
-		win.$content.addClass( 'oo-ui-window-content-ready' ).width();
+		this.$element.addClass( 'oo-ui-window-ready' ).width();
+		this.$content.addClass( 'oo-ui-window-content-ready' ).width();
 	} );
 };
 
@@ -2567,12 +2550,10 @@ OO.ui.Window.prototype.ready = function ( data ) {
  * @return {jQuery.Promise} Promise resolved when window is held
  */
 OO.ui.Window.prototype.hold = function ( data ) {
-	const win = this;
-
-	return this.getHoldProcess( data ).execute().then( function () {
+	return this.getHoldProcess( data ).execute().then( () => {
 		// Get the focused element within the window's content
-		const $focus = win.$content.find(
-			OO.ui.Element.static.getDocument( win.$content ).activeElement
+		const $focus = this.$content.find(
+			OO.ui.Element.static.getDocument( this.$content ).activeElement
 		);
 
 		// Blur the focused element
@@ -2581,8 +2562,8 @@ OO.ui.Window.prototype.hold = function ( data ) {
 		}
 
 		// Force redraw by asking the browser to measure the elements' widths
-		win.$element.removeClass( 'oo-ui-window-ready oo-ui-window-setup' ).width();
-		win.$content.removeClass( 'oo-ui-window-content-ready oo-ui-window-content-setup' ).width();
+		this.$element.removeClass( 'oo-ui-window-ready oo-ui-window-setup' ).width();
+		this.$content.removeClass( 'oo-ui-window-content-ready oo-ui-window-content-setup' ).width();
 	} );
 };
 
@@ -2596,13 +2577,11 @@ OO.ui.Window.prototype.hold = function ( data ) {
  * @return {jQuery.Promise} Promise resolved when window is torn down
  */
 OO.ui.Window.prototype.teardown = function ( data ) {
-	const win = this;
-
-	return this.getTeardownProcess( data ).execute().then( function () {
+	return this.getTeardownProcess( data ).execute().then( () => {
 		// Force redraw by asking the browser to measure the elements' widths
-		win.$element.removeClass( 'oo-ui-window-active' ).width();
+		this.$element.removeClass( 'oo-ui-window-active' ).width();
 
-		win.toggle( false );
+		this.toggle( false );
 	} );
 };
 
@@ -2805,13 +2784,13 @@ OO.ui.Dialog.prototype.getActions = function () {
  */
 OO.ui.Dialog.prototype.getActionProcess = function ( action ) {
 	return new OO.ui.Process()
-		.next( function () {
+		.next( () => {
 			if ( !action ) {
 				// An empty action always closes the dialog without data, which should always be
 				// safe and make no changes
 				this.close();
 			}
-		}, this );
+		} );
 };
 
 /**
@@ -2828,7 +2807,7 @@ OO.ui.Dialog.prototype.getSetupProcess = function ( data ) {
 
 	// Parent method
 	return OO.ui.Dialog.super.prototype.getSetupProcess.call( this, data )
-		.next( function () {
+		.next( () => {
 			const config = this.constructor.static,
 				actions = data.actions !== undefined ? data.actions : config.actions,
 				title = data.title !== undefined ? data.title : config.title;
@@ -2837,7 +2816,7 @@ OO.ui.Dialog.prototype.getSetupProcess = function ( data ) {
 			this.actions.add( this.getActionWidgets( actions ) );
 
 			this.$element.on( 'keydown', this.onDialogKeyDownHandler );
-		}, this );
+		} );
 };
 
 /**
@@ -2846,12 +2825,12 @@ OO.ui.Dialog.prototype.getSetupProcess = function ( data ) {
 OO.ui.Dialog.prototype.getTeardownProcess = function ( data ) {
 	// Parent method
 	return OO.ui.Dialog.super.prototype.getTeardownProcess.call( this, data )
-		.first( function () {
+		.first( () => {
 			this.$element.off( 'keydown', this.onDialogKeyDownHandler );
 
 			this.actions.clear();
 			this.currentAction = null;
-		}, this );
+		} );
 };
 
 /**
@@ -3078,9 +3057,9 @@ OO.ui.MessageDialog.prototype.toggleVerticalActionLayout = function ( value ) {
  */
 OO.ui.MessageDialog.prototype.getActionProcess = function ( action ) {
 	if ( action ) {
-		return new OO.ui.Process( function () {
+		return new OO.ui.Process( () => {
 			this.close( { action: action } );
-		}, this );
+		} );
 	}
 	return OO.ui.MessageDialog.super.prototype.getActionProcess.call( this, action );
 };
@@ -3100,7 +3079,7 @@ OO.ui.MessageDialog.prototype.getSetupProcess = function ( data ) {
 
 	// Parent method
 	return OO.ui.MessageDialog.super.prototype.getSetupProcess.call( this, data )
-		.next( function () {
+		.next( () => {
 			this.title.setLabel(
 				data.title !== undefined ? data.title : this.constructor.static.title
 			);
@@ -3108,7 +3087,7 @@ OO.ui.MessageDialog.prototype.getSetupProcess = function ( data ) {
 				data.message !== undefined ? data.message : this.constructor.static.message
 			);
 			this.size = data.size !== undefined ? data.size : this.constructor.static.size;
-		}, this );
+		} );
 };
 
 /**
@@ -3119,16 +3098,14 @@ OO.ui.MessageDialog.prototype.getReadyProcess = function ( data ) {
 
 	// Parent method
 	return OO.ui.MessageDialog.super.prototype.getReadyProcess.call( this, data )
-		.next( function () {
+		.next( () => {
 			// Focus the primary action button
 			let actions = this.actions.get();
-			actions = actions.filter( function ( action ) {
-				return action.getFlags().indexOf( 'primary' ) > -1;
-			} );
+			actions = actions.filter( ( action ) => action.getFlags().indexOf( 'primary' ) > -1 );
 			if ( actions.length > 0 ) {
 				actions[ 0 ].focus();
 			}
-		}, this );
+		} );
 };
 
 /**
@@ -3152,15 +3129,14 @@ OO.ui.MessageDialog.prototype.getBodyHeight = function () {
  * @inheritdoc
  */
 OO.ui.MessageDialog.prototype.setDimensions = function ( dim ) {
-	const dialog = this,
-		$scrollable = this.container.$element;
+	const $scrollable = this.container.$element;
 
 	// Parent method
 	OO.ui.MessageDialog.super.prototype.setDimensions.call( this, dim );
 
 	// Twiddle the overflow property, otherwise an unnecessary scrollbar will be produced.
 	// Need to do it after transition completes (250ms), add 50ms just in case.
-	setTimeout( function () {
+	setTimeout( () => {
 		const oldOverflow = $scrollable[ 0 ].style.overflow,
 			activeElement = document.activeElement;
 
@@ -3177,10 +3153,10 @@ OO.ui.MessageDialog.prototype.setDimensions = function ( dim ) {
 		$scrollable[ 0 ].style.overflow = oldOverflow;
 	}, 300 );
 
-	dialog.fitActions();
+	this.fitActions();
 	// Wait for CSS transition to finish and do it again :(
-	setTimeout( function () {
-		dialog.fitActions();
+	setTimeout( () => {
+		this.fitActions();
 	}, 300 );
 
 	return this;
@@ -3311,10 +3287,9 @@ OO.ui.MessageDialog.prototype.fitActions = function () {
  *         this.$body.append( this.content.$element );
  *     };
  *     MyProcessDialog.prototype.getActionProcess = function ( action ) {
- *         const dialog = this;
  *         if ( action ) {
- *             return new OO.ui.Process( function () {
- *                 dialog.close( { action: action } );
+ *             return new OO.ui.Process( () => {
+ *                 this.close( { action: action } );
  *             } );
  *         }
  *         return MyProcessDialog.super.prototype.getActionProcess.call( this, action );
@@ -3495,10 +3470,9 @@ OO.ui.ProcessDialog.prototype.attachActions = function () {
  * @inheritdoc
  */
 OO.ui.ProcessDialog.prototype.executeAction = function ( action ) {
-	const dialog = this;
 	return OO.ui.ProcessDialog.super.prototype.executeAction.call( this, action )
-		.fail( function ( errors ) {
-			dialog.showErrors( errors || [] );
+		.fail( ( errors ) => {
+			this.showErrors( errors || [] );
 		} );
 };
 
@@ -3506,8 +3480,6 @@ OO.ui.ProcessDialog.prototype.executeAction = function ( action ) {
  * @inheritdoc
  */
 OO.ui.ProcessDialog.prototype.setDimensions = function () {
-	const dialog = this;
-
 	// Parent method
 	OO.ui.ProcessDialog.super.prototype.setDimensions.apply( this, arguments );
 
@@ -3516,10 +3488,10 @@ OO.ui.ProcessDialog.prototype.setDimensions = function () {
 	// If there are many actions, they might be shown on multiple lines. Their layout can change
 	// when resizing the dialog and when changing the actions. Adjust the height of the footer to
 	// fit them.
-	dialog.$body.css( 'bottom', dialog.$foot.outerHeight( true ) );
+	this.$body.css( 'bottom', this.$foot.outerHeight( true ) );
 	// Wait for CSS transition to finish and do it again :(
-	setTimeout( function () {
-		dialog.$body.css( 'bottom', dialog.$foot.outerHeight( true ) );
+	setTimeout( () => {
+		this.$body.css( 'bottom', this.$foot.outerHeight( true ) );
 	}, 300 );
 };
 
@@ -3648,11 +3620,11 @@ OO.ui.ProcessDialog.prototype.hideErrors = function () {
 OO.ui.ProcessDialog.prototype.getTeardownProcess = function ( data ) {
 	// Parent method
 	return OO.ui.ProcessDialog.super.prototype.getTeardownProcess.call( this, data )
-		.first( function () {
+		.first( () => {
 			// Make sure to hide errors.
 			this.hideErrors();
 			this.fitOnOpen = false;
-		}, this );
+		} );
 };
 
 /**
@@ -3693,9 +3665,7 @@ OO.ui.alert = function ( text, options ) {
 	return OO.ui.getWindowManager().openWindow( 'message', $.extend( {
 		message: text,
 		actions: [ OO.ui.MessageDialog.static.actions[ 0 ] ]
-	}, options ) ).closed.then( function () {
-		return undefined;
-	} );
+	}, options ) ).closed.then( () => undefined );
 };
 
 /**
@@ -3724,9 +3694,7 @@ OO.ui.alert = function ( text, options ) {
 OO.ui.confirm = function ( text, options ) {
 	return OO.ui.getWindowManager().openWindow( 'message', $.extend( {
 		message: text
-	}, options ) ).closed.then( function ( data ) {
-		return !!( data && data.action === 'accept' );
-	} );
+	}, options ) ).closed.then( ( data ) => !!( data && data.action === 'accept' ) );
 };
 
 /**
@@ -3769,16 +3737,14 @@ OO.ui.prompt = function ( text, options ) {
 	}, options ) );
 
 	// TODO: This is a little hacky, and could be done by extending MessageDialog instead.
-	instance.opened.then( function () {
-		textInput.on( 'enter', function () {
+	instance.opened.then( () => {
+		textInput.on( 'enter', () => {
 			manager.getCurrentWindow().close( { action: 'accept' } );
 		} );
 		textInput.focus();
 	} );
 
-	return instance.closed.then( function ( data ) {
-		return data && data.action === 'accept' ? textInput.getValue() : null;
-	} );
+	return instance.closed.then( ( data ) => data && data.action === 'accept' ? textInput.getValue() : null );
 };
 
 }( OO ) );

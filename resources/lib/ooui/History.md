@@ -1,5 +1,24 @@
 # OOUI Release History
 
+## v0.49.2 / 2024-05-16
+
+### Code
+* ListToolGroup: Apply a very tiny JS code optimization (Thiemo Kreuz)
+* Prefer arrow callbacks (Ed Sanders)
+* Remove unnecessary context binding when using arrow functions (Ed Sanders)
+* Use ES6 variadic arguments (Ed Sanders)
+* Use arrow callbacks with OO.ui.Process, jQuery each (Ed Sanders)
+* JSDoc: Load all plugins (Ed Sanders)
+* JSDoc: Sort and group externals (Ed Sanders)
+* JSDoc: Use externals plugin for OOJS core (Ed Sanders)
+* JSDoc: {Mixed} -> {any} (Ed Sanders)
+* Move eslintignores out of Gruntfile, fix issues (Ed Sanders)
+* Update minus-x to 1.1.3 (Alexander Vorwerk)
+* build: Updating dependencies ([BOT] libraryupgrader)
+* build: Updating jsdoc-wmf-theme to 1.0.0 ([BOT] libraryupgrader)
+* build: Updating npm dependencies ([BOT] libraryupgrader)
+* .nvmrc: Update version from 18.17.0 to 18.20.2 (James D. Forrester)
+
 ## v0.49.1 / 2024-04-02
 
 ### Styles

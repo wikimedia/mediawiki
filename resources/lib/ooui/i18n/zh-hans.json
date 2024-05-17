@@ -8,6 +8,7 @@
 			"Hydra",
 			"Hzy980512",
 			"Liangent",
+			"LittlePaw365",
 			"Liuxinyu970226",
 			"Nbdd0121",
 			"Qiyue2001",
@@ -40,8 +41,8 @@
 	"ooui-selectfile-button-select": "选择一个文件",
 	"ooui-selectfile-button-select-multiple": "选择文件",
 	"ooui-selectfile-placeholder": "没有选定文件",
-	"ooui-selectfile-dragdrop-placeholder": "将文件拖动至此",
-	"ooui-selectfile-dragdrop-placeholder-multiple": "将文件拖放到此处",
+	"ooui-selectfile-dragdrop-placeholder": "拖放文件到这里",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "拖放文件到这里",
 	"ooui-popup-widget-close-button-aria-label": "关闭",
 	"ooui-field-help": "帮助"
 }

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.49.1
+ * OOUI v0.49.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-04-04T18:19:04Z
+ * Date: 2024-05-17T04:45:00Z
  */
 ( function ( OO ) {
 
@@ -143,8 +143,6 @@ OO.ui.mixin.DraggableElement.prototype.onDragMouseDown = function ( e ) {
  * @fires OO.ui.mixin.DraggableElement#dragstart
  */
 OO.ui.mixin.DraggableElement.prototype.onDragStart = function ( e ) {
-	const element = this;
-
 	if ( !this.wasHandleUsed || !this.isDraggable() ) {
 		return false;
 	}
@@ -175,8 +173,8 @@ OO.ui.mixin.DraggableElement.prototype.onDragStart = function ( e ) {
 	// Briefly add a 'clone' class to style the browser's native drag image
 	this.$element.addClass( 'oo-ui-draggableElement-clone' );
 	// Add placeholder class after the browser has rendered the clone
-	setTimeout( function () {
-		element.$element
+	setTimeout( () => {
+		this.$element
 			.removeClass( 'oo-ui-draggableElement-clone' )
 			.addClass( 'oo-ui-draggableElement-placeholder' );
 	} );
@@ -339,9 +337,9 @@ OO.ui.mixin.DraggableGroupElement.prototype.toggleDraggable = function ( isDragg
 		this.draggable = isDraggable;
 
 		// Tell the items their draggable state changed
-		this.getItems().forEach( function ( item ) {
+		this.getItems().forEach( ( item ) => {
 			item.toggleDraggable( this.draggable );
-		}.bind( this ) );
+		} );
 
 		// Emit event
 		this.emit( 'draggable', this.draggable );
@@ -524,8 +522,7 @@ OO.initClass( OO.ui.mixin.RequestManager );
  *  promise may not be rejected, depending on what jQuery feels like doing.
  */
 OO.ui.mixin.RequestManager.prototype.getRequestData = function () {
-	const widget = this,
-		value = this.getRequestQuery(),
+	const value = this.getRequestQuery(),
 		deferred = $.Deferred();
 
 	this.abortRequest();
@@ -538,34 +535,34 @@ OO.ui.mixin.RequestManager.prototype.getRequestData = function () {
 		this.requestQuery = value;
 		const ourRequest = this.requestRequest = this.getRequest();
 		ourRequest
-			.always( function () {
+			.always( () => {
 				// We need to pop pending even if this is an old request, otherwise
 				// the widget will remain pending forever.
 				// TODO: this assumes that an aborted request will fail or succeed soon after
 				// being aborted, or at least eventually. It would be nice if we could popPending()
 				// at abort time, but only if we knew that we hadn't already called popPending()
 				// for that request.
-				if ( widget.showPendingRequest ) {
-					widget.popPending();
+				if ( this.showPendingRequest ) {
+					this.popPending();
 				}
 			} )
-			.done( function ( response ) {
+			.done( ( response ) => {
 				// If this is an old request (and aborting it somehow caused it to still succeed),
 				// ignore its success completely
-				if ( ourRequest === widget.requestRequest ) {
-					widget.requestQuery = null;
-					widget.requestRequest = null;
-					widget.requestCache[ value ] =
-						widget.getRequestCacheDataFromResponse( response );
-					deferred.resolve( widget.requestCache[ value ] );
+				if ( ourRequest === this.requestRequest ) {
+					this.requestQuery = null;
+					this.requestRequest = null;
+					this.requestCache[ value ] =
+						this.getRequestCacheDataFromResponse( response );
+					deferred.resolve( this.requestCache[ value ] );
 				}
 			} )
-			.fail( function () {
+			.fail( () => {
 				// If this is an old request (or a request failing because it's being aborted),
 				// ignore its failure completely
-				if ( ourRequest === widget.requestRequest ) {
-					widget.requestQuery = null;
-					widget.requestRequest = null;
+				if ( ourRequest === this.requestRequest ) {
+					this.requestQuery = null;
+					this.requestRequest = null;
 					deferred.reject();
 				}
 			} );
@@ -618,8 +615,8 @@ OO.ui.mixin.RequestManager.prototype.getRequest = null;
  * @protected
  * @method
  * @abstract
- * @param {Mixed} response Response from server
- * @return {Mixed} Cached result data
+ * @param {any} response Response from server
+ * @return {any} Cached result data
  */
 OO.ui.mixin.RequestManager.prototype.getRequestCacheDataFromResponse = null;
 
@@ -858,8 +855,7 @@ OO.ui.mixin.LookupElement.prototype.closeLookupMenu = function () {
  * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.LookupElement.prototype.populateLookupMenu = function () {
-	const widget = this,
-		value = this.getValue();
+	const value = this.getValue();
 
 	if ( this.lookupsDisabled || this.isReadOnly() ) {
 		return;
@@ -871,20 +867,20 @@ OO.ui.mixin.LookupElement.prototype.populateLookupMenu = function () {
 	// Skip population if there is already a request pending for the current value
 	} else if ( value !== this.lookupQuery ) {
 		this.getLookupMenuItems()
-			.done( function ( items ) {
-				widget.lookupMenu.clearItems();
+			.done( ( items ) => {
+				this.lookupMenu.clearItems();
 				if ( items.length ) {
-					widget.lookupMenu
+					this.lookupMenu
 						.addItems( items )
 						.toggle( true );
-					widget.initializeLookupMenuSelection();
+					this.initializeLookupMenuSelection();
 				} else {
-					widget.lookupMenu.toggle( false );
+					this.lookupMenu.toggle( false );
 				}
 			} )
-			.fail( function () {
-				widget.lookupMenu.clearItems();
-				widget.lookupMenu.toggle( false );
+			.fail( () => {
+				this.lookupMenu.clearItems();
+				this.lookupMenu.toggle( false );
 			} );
 	}
 
@@ -912,9 +908,7 @@ OO.ui.mixin.LookupElement.prototype.initializeLookupMenuSelection = function () 
  *   will not be rejected: it will remain pending forever.
  */
 OO.ui.mixin.LookupElement.prototype.getLookupMenuItems = function () {
-	return this.getRequestData().then( function ( data ) {
-		return this.getLookupMenuOptionsFromData( data );
-	}.bind( this ) );
+	return this.getRequestData().then( ( data ) => this.getLookupMenuOptionsFromData( data ) );
 };
 
 /**
@@ -945,8 +939,8 @@ OO.ui.mixin.LookupElement.prototype.getLookupRequest = null;
  * @protected
  * @method
  * @abstract
- * @param {Mixed} response Response from server
- * @return {Mixed} Cached result data
+ * @param {any} response Response from server
+ * @return {any} Cached result data
  */
 OO.ui.mixin.LookupElement.prototype.getLookupCacheDataFromResponse = null;
 
@@ -957,7 +951,7 @@ OO.ui.mixin.LookupElement.prototype.getLookupCacheDataFromResponse = null;
  * @protected
  * @method
  * @abstract
- * @param {Mixed} data Cached result data, usually an array
+ * @param {any} data Cached result data, usually an array
  * @return {OO.ui.MenuOptionWidget[]} Menu items
  */
 OO.ui.mixin.LookupElement.prototype.getLookupMenuOptionsFromData = null;
@@ -1564,7 +1558,7 @@ OO.ui.StackLayout.prototype.resetScroll = function () {
 		return OO.ui.StackLayout.super.prototype.resetScroll.call( this );
 	}
 	// Reset each panel
-	this.getItems().forEach( function ( panel ) {
+	this.getItems().forEach( ( panel ) => {
 		// eslint-disable-next-line no-jquery/no-class-state
 		const hidden = panel.$element.hasClass( 'oo-ui-element-hidden' );
 		// Scroll can only be reset when panel is visible
@@ -1589,16 +1583,15 @@ OO.ui.StackLayout.prototype.resetScroll = function () {
  * @param {OO.ui.Layout} [selectedItem] Selected item to show
  */
 OO.ui.StackLayout.prototype.updateHiddenState = function ( items, selectedItem ) {
-	const layout = this;
 	if ( !this.isContinuous() ) {
-		items.forEach( function ( item ) {
+		items.forEach( ( item ) => {
 			if ( !selectedItem || selectedItem !== item ) {
 				// If the panel is a TabPanelLayout which has a disabled tab, then
 				// fully hide it so we don't search inside it and automatically switch
 				// to it.
 				const isDisabled = item instanceof OO.ui.TabPanelLayout &&
 					item.getTabItem() && item.getTabItem().isDisabled();
-				const hideUntilFound = !isDisabled && layout.hideUntilFound;
+				const hideUntilFound = !isDisabled && this.hideUntilFound;
 				// jQuery "fixes" the value of the hidden attribute to always be "hidden"
 				// Browsers which don't support 'until-found' will still hide the element
 				item.$element[ 0 ].setAttribute( 'hidden', hideUntilFound ? 'until-found' : 'hidden' );
@@ -1610,7 +1603,7 @@ OO.ui.StackLayout.prototype.updateHiddenState = function ( items, selectedItem )
 			selectedItem.$element.removeAttr( 'aria-hidden' );
 		}
 	} else {
-		items.forEach( function ( item ) {
+		items.forEach( ( item ) => {
 			item.$element[ 0 ].removeAttribute( 'hidden' );
 			item.$element.removeAttr( 'aria-hidden' );
 		} );
@@ -2045,7 +2038,6 @@ OO.ui.BookletLayout.prototype.onStackLayoutFocus = function ( e ) {
  * @param {OO.ui.PanelLayout|null} page The page panel that is now the current panel
  */
 OO.ui.BookletLayout.prototype.onStackLayoutSet = function ( page ) {
-	const layout = this;
 	// If everything is unselected, do nothing
 	if ( !page ) {
 		return;
@@ -2060,8 +2052,8 @@ OO.ui.BookletLayout.prototype.onStackLayoutSet = function ( page ) {
 	// Focus the first element on the newly selected panel.
 	// Don't focus if the page was set by scrolling.
 	if ( this.autoFocus && !OO.ui.isMobile() && !this.scrolling ) {
-		promise.done( function () {
-			layout.focus();
+		promise.done( () => {
+			this.focus();
 		} );
 	}
 };
@@ -2152,8 +2144,6 @@ OO.ui.BookletLayout.prototype.isOutlineVisible = function () {
  * @return {OO.ui.BookletLayout} The layout, for chaining
  */
 OO.ui.BookletLayout.prototype.toggleOutline = function ( show ) {
-	const booklet = this;
-
 	if ( this.outlined ) {
 		show = show === undefined ? !this.outlineVisible : !!show;
 		this.outlineVisible = show;
@@ -2162,8 +2152,8 @@ OO.ui.BookletLayout.prototype.toggleOutline = function ( show ) {
 			// HACK: Kill dumb scrollbars when the sidebar stops animating, see T161798.
 			// Only necessary when outline controls are present, delay matches transition on
 			// `.oo-ui-menuLayout-menu`.
-			setTimeout( function () {
-				OO.ui.Element.static.reconsiderScrollbars( booklet.outlinePanel.$element[ 0 ] );
+			setTimeout( () => {
+				OO.ui.Element.static.reconsiderScrollbars( this.outlinePanel.$element[ 0 ] );
 			}, OO.ui.theme.getDialogTransitionDuration() );
 		}
 	}
@@ -2544,7 +2534,7 @@ OO.ui.IndexLayout = function OoUiIndexLayout( config ) {
 	if ( config.tabSelectWidget ) {
 		// If we are using a custom tabSelectWidget (e.g. infusing) then
 		// ensure the tabPanels are linked to tabItems
-		this.stackLayout.getItems().forEach( function ( tabPanel, i ) {
+		this.stackLayout.getItems().forEach( ( tabPanel, i ) => {
 			if ( !tabPanel.getTabItem() ) {
 				tabPanel.setTabItem( config.tabSelectWidget.items[ i ] || null );
 			}
@@ -2662,7 +2652,7 @@ OO.ui.IndexLayout.prototype.onStackLayoutSet = function ( tabPanel ) {
 OO.ui.IndexLayout.prototype.onStackLayoutBeforeMatch = function ( event ) {
 	let tabPanel;
 	// Find TabPanel from DOM node
-	this.stackLayout.getItems().some( function ( item ) {
+	this.stackLayout.getItems().some( ( item ) => {
 		if ( item.$element[ 0 ] === event.target ) {
 			tabPanel = item;
 			return true;
@@ -4040,7 +4030,7 @@ OO.ui.TagItemWidget = function OoUiTagItemWidget( config ) {
 		// are more deliberate. When the tag is clicked, it will emit the
 		// selection event (similar to how #OO.ui.MultioptionWidget emits 'change')
 		// and can be handled separately.
-		.on( 'mousedown', function ( e ) {
+		.on( 'mousedown', ( e ) => {
 			e.stopPropagation();
 		} );
 
@@ -4277,7 +4267,7 @@ OO.ui.TagItemWidget.prototype.isValid = function () {
  * @param {boolean} [config.allowEditTags=true] Allow editing of the tags by clicking them
  * @param {boolean} [config.allowArbitrary=false] Allow data items to be added even if
  *  not present in the menu.
- * @param {Mixed[]} [config.allowedValues] An array representing the allowed items
+ * @param {any[]} [config.allowedValues] An array representing the allowed items
  *  by their datas.
  * @param {boolean} [config.allowDuplicates=false] Allow duplicate items to be added
  * @param {boolean} [config.allowDisplayInvalidTags=false] Allow the display of
@@ -4295,7 +4285,6 @@ OO.ui.TagItemWidget.prototype.isValid = function () {
  */
 OO.ui.TagMultiselectWidget = function OoUiTagMultiselectWidget( config ) {
 	const rAF = window.requestAnimationFrame || setTimeout,
-		widget = this,
 		$tabFocus = $( '<span>' ).addClass( 'oo-ui-tagMultiselectWidget-focusTrap' );
 
 	config = config || {};
@@ -4425,9 +4414,9 @@ OO.ui.TagMultiselectWidget = function OoUiTagMultiselectWidget( config ) {
 
 	// HACK: Input size needs to be calculated after everything
 	// else is rendered
-	rAF( function () {
-		if ( widget.hasInput ) {
-			widget.updateInputSize();
+	rAF( () => {
+		if ( this.hasInput ) {
+			this.updateInputSize();
 		}
 	} );
 };
@@ -4511,12 +4500,11 @@ OO.ui.TagMultiselectWidget.prototype.onInputKeyPress = function ( e ) {
  * @return {boolean}
  */
 OO.ui.TagMultiselectWidget.prototype.onInputKeyDown = function ( e ) {
-	const widget = this,
-		withMetaKey = e.metaKey || e.ctrlKey;
+	const withMetaKey = e.metaKey || e.ctrlKey;
 
-	function isMovementInsideInput( dir ) {
-		const inputRange = widget.input.getRange(),
-			inputValue = widget.hasInput && widget.input.getValue();
+	const isMovementInsideInput = ( dir ) => {
+		const inputRange = this.input.getRange(),
+			inputValue = this.hasInput && this.input.getValue();
 
 		if ( dir === 'forwards' && inputRange.to > inputValue.length - 1 ) {
 			return false;
@@ -4527,7 +4515,7 @@ OO.ui.TagMultiselectWidget.prototype.onInputKeyDown = function ( e ) {
 		}
 
 		return true;
-	}
+	};
 
 	if ( !this.isDisabled() ) {
 		// 'keypress' event is not triggered for Backspace key
@@ -4755,7 +4743,7 @@ OO.ui.TagMultiselectWidget.prototype.setDisabled = function ( isDisabled ) {
 	}
 
 	if ( this.items ) {
-		this.getItems().forEach( function ( item ) {
+		this.getItems().forEach( ( item ) => {
 			item.setDisabled( !!isDisabled );
 		} );
 	}
@@ -4824,7 +4812,7 @@ OO.ui.TagMultiselectWidget.prototype.clearInput = function () {
  * Check whether the given value is a duplicate of an existing
  * tag already in the list.
  *
- * @param {Mixed} data Requested value
+ * @param {any} data Requested value
  * @return {boolean} Value is duplicate
  */
 OO.ui.TagMultiselectWidget.prototype.isDuplicateData = function ( data ) {
@@ -4834,7 +4822,7 @@ OO.ui.TagMultiselectWidget.prototype.isDuplicateData = function ( data ) {
 /**
  * Check whether a given value is allowed to be added
  *
- * @param {Mixed} data Requested value
+ * @param {any} data Requested value
  * @return {boolean} Value is allowed
  */
 OO.ui.TagMultiselectWidget.prototype.isAllowedData = function ( data ) {
@@ -4851,9 +4839,7 @@ OO.ui.TagMultiselectWidget.prototype.isAllowedData = function ( data ) {
 
 	// Check with allowed values
 	if (
-		this.getAllowedValues().some( function ( value ) {
-			return data === value;
-		} )
+		this.getAllowedValues().some( ( value ) => data === value )
 	) {
 		return true;
 	}
@@ -4864,7 +4850,7 @@ OO.ui.TagMultiselectWidget.prototype.isAllowedData = function ( data ) {
 /**
  * Get the allowed values list
  *
- * @return {Mixed[]} Allowed data values
+ * @return {any[]} Allowed data values
  */
 OO.ui.TagMultiselectWidget.prototype.getAllowedValues = function () {
 	return this.allowedValues;
@@ -4873,7 +4859,7 @@ OO.ui.TagMultiselectWidget.prototype.getAllowedValues = function () {
 /**
  * Add a value to the allowed values list
  *
- * @param {Mixed} value Allowed data value
+ * @param {any} value Allowed data value
  */
 OO.ui.TagMultiselectWidget.prototype.addAllowedValue = function ( value ) {
 	if ( this.allowedValues.indexOf( value ) === -1 ) {
@@ -4884,16 +4870,12 @@ OO.ui.TagMultiselectWidget.prototype.addAllowedValue = function ( value ) {
 /**
  * Get the datas of the currently selected items
  *
- * @return {Mixed[]} Datas of currently selected items
+ * @return {any[]} Datas of currently selected items
  */
 OO.ui.TagMultiselectWidget.prototype.getValue = function () {
 	return this.getItems()
-		.filter( function ( item ) {
-			return item.isValid();
-		} )
-		.map( function ( item ) {
-			return item.getData();
-		} );
+		.filter( ( item ) => item.isValid() )
+		.map( ( item ) => item.getData() );
 };
 
 /**
@@ -4917,13 +4899,13 @@ OO.ui.TagMultiselectWidget.prototype.setValue = function ( valueObject ) {
 	valueObject = Array.isArray( valueObject ) ? valueObject : [ valueObject ];
 
 	this.clearItems();
-	valueObject.forEach( function ( obj ) {
+	valueObject.forEach( ( obj ) => {
 		if ( typeof obj === 'object' ) {
 			this.addTag( obj.data, obj.label );
 		} else {
 			this.addTag( String( obj ) );
 		}
-	}.bind( this ) );
+	} );
 };
 
 /**
@@ -4931,7 +4913,7 @@ OO.ui.TagMultiselectWidget.prototype.setValue = function ( valueObject ) {
  *
  * Performs a validation check on the tag to be added.
  *
- * @param {Mixed} data Tag data
+ * @param {any} data Tag data
  * @param {string|jQuery} [label=data] Tag label. If no label is provided, the
  *  stringified version of the data will be used instead.
  * @return {boolean} Item was added successfully
@@ -4975,7 +4957,7 @@ OO.ui.TagMultiselectWidget.prototype.removeTagByData = function ( data ) {
  * Construct a OO.ui.TagItemWidget (or a subclass thereof) from given label and data.
  *
  * @protected
- * @param {Mixed} data Item data
+ * @param {any} data Item data
  * @param {string|jQuery} [label=data] The label text or JQuery collection.
  * @return {OO.ui.TagItemWidget}
  */
@@ -5135,9 +5117,7 @@ OO.ui.TagMultiselectWidget.prototype.updateIfHeightChanged = function () {
  * @return {boolean} Widget is valid
  */
 OO.ui.TagMultiselectWidget.prototype.checkValidity = function () {
-	return this.getItems().every( function ( item ) {
-		return item.isValid();
-	} );
+	return this.getItems().every( ( item ) => item.isValid() );
 };
 
 /**
@@ -5370,7 +5350,7 @@ OO.ui.MenuTagMultiselectWidget = function OoUiMenuTagMultiselectWidget( config )
 	let options = config.options || [];
 	const selected = config.selected || [];
 	options = options.concat(
-		selected.map( function ( option ) {
+		selected.map( ( option ) => {
 			if ( typeof option === 'string' ) {
 				return {
 					data: option,
@@ -5506,11 +5486,11 @@ OO.ui.MenuTagMultiselectWidget.prototype.onMenuToggle = function ( isVisible ) {
 		this.menu.highlightItem( null );
 		this.menu.scrollToTop();
 	}
-	setTimeout( function () {
+	setTimeout( () => {
 		// Remove MenuSelectWidget's generic focus owner ARIA attribute
 		// TODO: Should this widget have a `role` that is compatible with this attribute?
 		this.menu.$focusOwner.removeAttr( 'aria-expanded' );
-	}.bind( this ) );
+	} );
 };
 
 /**
@@ -5545,16 +5525,14 @@ OO.ui.MenuTagMultiselectWidget.prototype.onTagSelect = function ( tagItem ) {
  * @inheritdoc
  */
 OO.ui.MenuTagMultiselectWidget.prototype.removeItems = function ( items ) {
-	const widget = this;
-
 	// Parent
 	OO.ui.MenuTagMultiselectWidget.super.prototype.removeItems.call( this, items );
 
-	items.forEach( function ( tagItem ) {
-		const menuItem = widget.menu.findItemFromData( tagItem.getData() );
+	items.forEach( ( tagItem ) => {
+		const menuItem = this.menu.findItemFromData( tagItem.getData() );
 		if ( menuItem ) {
 			// Synchronize the menu selection - unselect the removed tag
-			widget.menu.unselectItem( menuItem );
+			this.menu.unselectItem( menuItem );
 		}
 	} );
 };
@@ -5573,7 +5551,7 @@ OO.ui.MenuTagMultiselectWidget.prototype.setValue = function ( valueObject ) {
 	}
 
 	this.clearItems();
-	valueObject.forEach( function ( obj ) {
+	valueObject.forEach( ( obj ) => {
 		let data, label;
 
 		if ( typeof obj === 'string' ) {
@@ -5595,7 +5573,7 @@ OO.ui.MenuTagMultiselectWidget.prototype.setValue = function ( valueObject ) {
 			// allow for arbitrary values
 			this.addTag( data, label );
 		}
-	}.bind( this ) );
+	} );
 };
 
 /**
@@ -5663,15 +5641,14 @@ OO.ui.MenuTagMultiselectWidget.prototype.createMenuWidget = function ( menuConfi
  * @param {Object[]} menuOptions Object defining options
  */
 OO.ui.MenuTagMultiselectWidget.prototype.addOptions = function ( menuOptions ) {
-	const widget = this,
-		optionsData = [],
+	const optionsData = [],
 		items = [];
 
-	menuOptions.forEach( function ( obj ) {
+	menuOptions.forEach( ( obj ) => {
 		if ( optionsData.indexOf( obj.data ) === -1 ) {
 			optionsData.push( obj.data );
 			items.push(
-				widget.createMenuOptionWidget( obj.data, obj.label, obj.icon )
+				this.createMenuOptionWidget( obj.data, obj.label, obj.icon )
 			);
 		}
 	} );
@@ -5713,9 +5690,7 @@ OO.ui.MenuTagMultiselectWidget.prototype.getAllowedValues = function () {
 	let menuDatas = [];
 	if ( this.menu ) {
 		// If the parent constructor is calling us, we're not ready yet, this.menu is not set up.
-		menuDatas = this.menu.getItems().map( function ( menuItem ) {
-			return menuItem.getData();
-		} );
+		menuDatas = this.menu.getItems().map( ( menuItem ) => menuItem.getData() );
 	}
 	return this.allowedValues.concat( menuDatas );
 };
