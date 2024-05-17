@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Content\JavaScriptContentHandler;
 use MediaWiki\MainConfigNames;
 
 /**

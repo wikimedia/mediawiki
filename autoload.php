@@ -1000,6 +1000,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Content\\Hook\\SearchDataForIndexHook' => __DIR__ . '/includes/content/Hook/SearchDataForIndexHook.php',
 	'MediaWiki\\Content\\IContentHandlerFactory' => __DIR__ . '/includes/content/IContentHandlerFactory.php',
 	'MediaWiki\\Content\\JavaScriptContent' => __DIR__ . '/includes/content/JavaScriptContent.php',
+	'MediaWiki\\Content\\JavaScriptContentHandler' => __DIR__ . '/includes/content/JavaScriptContentHandler.php',
 	'MediaWiki\\Content\\Renderer\\ContentParseParams' => __DIR__ . '/includes/content/Renderer/ContentParseParams.php',
 	'MediaWiki\\Content\\Renderer\\ContentRenderer' => __DIR__ . '/includes/content/Renderer/ContentRenderer.php',
 	'MediaWiki\\Content\\Transform\\ContentTransformer' => __DIR__ . '/includes/content/Transform/ContentTransformer.php',

@@ -2030,7 +2030,7 @@ config-schema:
     ContentHandlers:
         default:
             wikitext: { class: WikitextContentHandler, services: [TitleFactory, ParserFactory, GlobalIdGenerator, LanguageNameUtils, LinkRenderer, MagicWordFactory, ParsoidParserFactory] }
-            javascript: JavaScriptContentHandler
+            javascript: MediaWiki\Content\JavaScriptContentHandler
             json: JsonContentHandler
             css: CssContentHandler
             text: TextContentHandler
