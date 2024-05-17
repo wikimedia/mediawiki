@@ -476,6 +476,8 @@ because of Phabricator reports.
 * UserOptionsManager::resetOptions(), ::listOptionKinds and ::getOptionKinds are
   deprecated and will emit deprecation warnings. Use the corresponding methods
   in PreferencesFactory and UserOptionsManager::resetOptionsByName().
+* ParsoidOutputAccess and all of its methods have been deprecated.  Use
+  ParserOutputAccess with ParserOptions::setUseParsoid() instead.
 * To support a future change allowing serializing of MessageValue objects
   as JSON, the methods MessageValue::objectParams(), Message::objectParams()
   and Message::objectParam() are deprecated. The UserGroupMembershipParam

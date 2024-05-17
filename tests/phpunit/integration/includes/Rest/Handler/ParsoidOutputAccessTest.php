@@ -33,6 +33,12 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	private const MOCKED_HTML = 'mocked HTML';
 	private const ENV_OPTS = [ 'pageBundle' => true ];
 
+	protected function setUp(): void {
+		parent::setUp();
+		// This class is deprecated, as all are its methods.
+		$this->filterDeprecated( '/' . preg_quote( ParsoidOutputAccess::class, '/' ) . '/' );
+	}
+
 	/**
 	 * @param int $expectedCalls
 	 * @param string|null $version
