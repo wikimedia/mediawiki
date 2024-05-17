@@ -294,14 +294,14 @@ class ActorMigrationBase {
 	 * @return array With four keys:
 	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()` or `SelectQueryBuilder::tables`
 	 *   - conds: (string) to include in the `$cond` to `IDatabase->select()` or `SelectQueryBuilder::conds`
-	 *   - orconds: (array[]) array of alternatives in case a union of multiple
+	 *   - orconds: (string[]) array of alternatives in case a union of multiple
 	 *     queries would be more efficient than a query with OR. May have keys
 	 *     'actor', 'userid', 'username'.
 	 *     Since 1.32, this is guaranteed to contain just one alternative if
 	 *     $users contains a single user.
 	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()` or `SelectQueryBuilder::joinConds`
 	 *  All tables and joins are aliased, so `+` is safe to use.
-	 * @phan-return array{tables:string[],conds:string,orconds:array[],joins:array}
+	 * @phan-return array{tables:string[],conds:string,orconds:string[],joins:array}
 	 */
 	public function getWhere( IReadableDatabase $db, $key, $users, $useId = true ) {
 		$this->checkDeprecation( $key );
