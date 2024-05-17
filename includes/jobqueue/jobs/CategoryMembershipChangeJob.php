@@ -25,6 +25,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\RawSQLExpression;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -134,7 +135,7 @@ class CategoryMembershipChangeJob extends Job {
 			->from( 'revision' )
 			->where( [ 'rev_page' => $page->getId() ] )
 			->andWhere( $dbr->expr( 'rev_timestamp', '>=', $dbr->timestamp( $cutoffUnix ) ) )
-			->andWhere( 'EXISTS (' . $subQuery->caller( __METHOD__ )->getSQL() . ')' )
+			->andWhere( new RawSQLExpression( 'EXISTS (' . $subQuery->getSQL() . ')' ) )
 			->orderBy( [ 'rev_timestamp', 'rev_id' ], SelectQueryBuilder::SORT_DESC )
 			->caller( __METHOD__ )->fetchRow();
 
