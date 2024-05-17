@@ -505,7 +505,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * reset services here.
 	 */
 	public static function resetNonServiceCaches() {
-		global $wgRequest, $wgJobClasses;
+		global $wgRequest, $wgJobClasses, $wgTitle;
+
+		/* Prevent global wgTitle state from carrying over between test cases
+		 * @see T365130 */
+		$wgTitle = null;
 
 		$jobQueueFactory = MediaWikiServices::getInstance()->getJobQueueGroupFactory();
 
