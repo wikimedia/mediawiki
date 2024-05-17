@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Api;
 
-use CssContent;
 use HashBagOStuff;
+use MediaWiki\Content\CssContent;
 use MediaWiki\Storage\PageEditStash;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;

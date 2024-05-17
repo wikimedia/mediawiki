@@ -3,11 +3,11 @@
 namespace MediaWiki\Tests\ResourceLoader;
 
 use Content;
-use CssContent;
 use EmptyResourceLoader;
 use LinkCacheTestTrait;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
+use MediaWiki\Content\CssContent;
 use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\JavaScriptContentHandler;
 use MediaWiki\MainConfigNames;

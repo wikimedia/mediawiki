@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Tests\Rest\Handler\Helper;
 
-use CssContent;
 use EmptyBagOStuff;
 use Exception;
 use HashBagOStuff;
+use MediaWiki\Content\CssContent;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Edit\ParsoidRenderID;

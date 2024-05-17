@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Content\CssContent;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 
