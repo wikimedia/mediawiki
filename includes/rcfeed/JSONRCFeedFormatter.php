@@ -19,6 +19,9 @@
  * @file
  */
 
+namespace MediaWiki\RCFeed;
+
+use MachineReadableRCFeedFormatter;
 use MediaWiki\Json\FormatJson;
 
 /**
@@ -37,3 +40,5 @@ class JSONRCFeedFormatter extends MachineReadableRCFeedFormatter {
 		return FormatJson::encode( $packet );
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( JSONRCFeedFormatter::class, 'JSONRCFeedFormatter' );
