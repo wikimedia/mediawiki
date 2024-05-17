@@ -41,6 +41,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\Watchlist\WatchedItem;
 use OOUI\IconWidget;
 use Wikimedia\Rdbms\IResultWrapper;
 

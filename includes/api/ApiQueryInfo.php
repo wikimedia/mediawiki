@@ -40,6 +40,7 @@ use MediaWiki\Title\TitleValue;
 use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserFactory;
 use MediaWiki\Utils\UrlUtils;
+use MediaWiki\Watchlist\WatchedItem;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 

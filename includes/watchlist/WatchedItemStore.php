@@ -11,6 +11,7 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
+use MediaWiki\Watchlist\WatchedItem;
 use MediaWiki\Watchlist\WatchlistExpiryJob;
 use Wikimedia\Assert\Assert;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;

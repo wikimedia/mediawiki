@@ -16,6 +16,7 @@ use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\Watchlist\WatchedItem;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;

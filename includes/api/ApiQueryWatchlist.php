@@ -29,6 +29,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\User\TempUser\TempUserConfig;
+use MediaWiki\Watchlist\WatchedItem;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 

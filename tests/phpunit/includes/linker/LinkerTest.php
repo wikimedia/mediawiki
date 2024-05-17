@@ -9,6 +9,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use MediaWiki\Watchlist\WatchedItem;
 
 /**
  * @group Database

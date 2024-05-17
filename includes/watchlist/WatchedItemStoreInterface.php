@@ -22,6 +22,7 @@
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\Watchlist\WatchedItem;
 
 /**
  * @author Addshore

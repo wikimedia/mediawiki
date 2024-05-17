@@ -15,6 +15,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\Watchlist\WatchedItem;
 use MediaWiki\Watchlist\WatchlistManager;
 
 /**

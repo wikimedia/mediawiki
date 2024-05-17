@@ -11,6 +11,7 @@ use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\Watchlist\WatchedItem;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IExpression;

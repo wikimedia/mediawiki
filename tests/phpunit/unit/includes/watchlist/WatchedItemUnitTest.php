@@ -2,10 +2,11 @@
 
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\Watchlist\WatchedItem;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
- * @covers \WatchedItem
+ * @covers \MediaWiki\Watchlist\WatchedItem
  */
 class WatchedItemUnitTest extends MediaWikiUnitTestCase {
 
