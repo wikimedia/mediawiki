@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\RCFeed\FormattedRCFeed;
+
 /**
  * Send recent change notifications to a destination address over UDP.
  *

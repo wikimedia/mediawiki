@@ -1876,6 +1876,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Preferences\\TimezoneFilter' => __DIR__ . '/includes/preferences/TimezoneFilter.php',
 	'MediaWiki\\ProcOpenError' => __DIR__ . '/includes/exception/ProcOpenError.php',
 	'MediaWiki\\Profiler\\ProfilingContext' => __DIR__ . '/includes/profiler/ProfilingContext.php',
+	'MediaWiki\\RCFeed\\FormattedRCFeed' => __DIR__ . '/includes/rcfeed/FormattedRCFeed.php',
 	'MediaWiki\\RCFeed\\RCFeed' => __DIR__ . '/includes/rcfeed/RCFeed.php',
 	'MediaWiki\\RCFeed\\RCFeedFormatter' => __DIR__ . '/includes/rcfeed/RCFeedFormatter.php',
 	'MediaWiki\\RenameUser\\Hook\\RenameUserAbortHook' => __DIR__ . '/includes/RenameUser/Hook/RenameUserAbortHook.php',

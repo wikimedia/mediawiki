@@ -18,8 +18,9 @@
  * @file
  */
 
-use MediaWiki\RCFeed\RCFeed;
-use MediaWiki\RCFeed\RCFeedFormatter;
+namespace MediaWiki\RCFeed;
+
+use RecentChange;
 
 /**
  * Base class for RCFeed implementations that use RCFeedFormatter.
@@ -71,3 +72,5 @@ abstract class FormattedRCFeed extends RCFeed {
 		return $this->send( $params, $line );
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( FormattedRCFeed::class, 'FormattedRCFeed' );
