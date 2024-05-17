@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 
@@ -69,7 +70,7 @@ class JavaScriptContentTest extends TextContentTest {
 	}
 
 	/**
-	 * @covers \JavaScriptContent::addSectionHeader
+	 * @covers \MediaWiki\Content\JavaScriptContent::addSectionHeader
 	 */
 	public function testAddSectionHeader() {
 		$content = $this->newContent( 'hello world' );
@@ -170,7 +171,7 @@ class JavaScriptContentTest extends TextContentTest {
 	}
 
 	/**
-	 * @covers \JavaScriptContent::matchMagicWord
+	 * @covers \MediaWiki\Content\JavaScriptContent::matchMagicWord
 	 */
 	public function testMatchMagicWord() {
 		$mw = $this->getServiceContainer()->getMagicWordFactory()->get( "staticredirect" );
@@ -183,7 +184,7 @@ class JavaScriptContentTest extends TextContentTest {
 	}
 
 	/**
-	 * @covers \JavaScriptContent::updateRedirect
+	 * @covers \MediaWiki\Content\JavaScriptContent::updateRedirect
 	 * @dataProvider provideUpdateRedirect
 	 */
 	public function testUpdateRedirect( $oldText, $expectedText ) {
@@ -216,7 +217,7 @@ class JavaScriptContentTest extends TextContentTest {
 	}
 
 	/**
-	 * @covers \JavaScriptContent::getModel
+	 * @covers \MediaWiki\Content\JavaScriptContent::getModel
 	 */
 	public function testGetModel() {
 		$content = $this->newContent( "hello world." );
@@ -225,7 +226,7 @@ class JavaScriptContentTest extends TextContentTest {
 	}
 
 	/**
-	 * @covers \JavaScriptContent::getContentHandler
+	 * @covers \MediaWiki\Content\JavaScriptContent::getContentHandler
 	 */
 	public function testGetContentHandler() {
 		$content = $this->newContent( "hello world." );
@@ -243,7 +244,7 @@ class JavaScriptContentTest extends TextContentTest {
 	}
 
 	/**
-	 * @covers \JavaScriptContent::getRedirectTarget
+	 * @covers \MediaWiki\Content\JavaScriptContent::getRedirectTarget
 	 * @dataProvider provideGetRedirectTarget
 	 */
 	public function testGetRedirectTarget( $title, $text ) {

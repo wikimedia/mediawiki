@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Title\Title;

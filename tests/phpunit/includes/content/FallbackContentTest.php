@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Content\JavaScriptContent;
+
 /**
  * @group ContentHandler
  */

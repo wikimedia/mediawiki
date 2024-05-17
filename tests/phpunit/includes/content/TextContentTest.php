@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;

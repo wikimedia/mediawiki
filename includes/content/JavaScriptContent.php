@@ -25,7 +25,10 @@
  * @author Daniel Kinzler
  */
 
+namespace MediaWiki\Content;
+
 use MediaWiki\Title\Title;
+use TextContent;
 
 /**
  * Content for JavaScript pages.
@@ -97,3 +100,5 @@ class JavaScriptContent extends TextContent {
 	}
 
 }
+/** @deprecated class alias since 1.43 */
+class_alias( JavaScriptContent::class, 'JavaScriptContent' );
