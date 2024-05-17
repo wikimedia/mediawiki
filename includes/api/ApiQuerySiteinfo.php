@@ -998,7 +998,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			'query',
 			$property,
 			$this->processAutoPromote(
-				$this->getConfig()->get( 'Autopromote' ),
+				$this->getConfig()->get( MainConfigNames::Autopromote ),
 				$this->getAutoPromoteConds()
 			)
 		);
@@ -1007,7 +1007,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	private function appendAutoPromoteOnce( $property ) {
 		$allowedConditions = $this->getAutoPromoteConds();
 		$data = [];
-		foreach ( $this->getConfig()->get( 'AutopromoteOnce' ) as $key => $value ) {
+		foreach ( $this->getConfig()->get( MainConfigNames::AutopromoteOnce ) as $key => $value ) {
 			$data[$key] = $this->processAutoPromote( $value, $allowedConditions );
 		}
 		return $this->getResult()->addValue( 'query', $property, $data );

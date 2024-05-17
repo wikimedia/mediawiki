@@ -3,6 +3,7 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Html\TemplateParser;
+use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\IncludableSpecialPage;
 use MediaWiki\Specials\Contribute\ContributeFactory;
 
@@ -92,7 +93,7 @@ class SpecialContribute extends IncludableSpecialPage {
 	public function isShowable(): bool {
 		return ContributeFactory::isEnabledOnCurrentSkin(
 			$this->getSkin(),
-			$this->getConfig()->get( 'SpecialContributeSkinsEnabled' )
+			$this->getConfig()->get( MainConfigNames::SpecialContributeSkinsEnabled )
 		);
 	}
 }

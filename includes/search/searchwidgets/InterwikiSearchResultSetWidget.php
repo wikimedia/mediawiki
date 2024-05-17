@@ -6,6 +6,7 @@ use ISearchResultSet;
 use MediaWiki\Html\Html;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Specials\SpecialSearch;
 use MediaWiki\Title\Title;
@@ -47,7 +48,7 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 		$this->iwLookup = $iwLookup;
 		$this->output = $specialSearch->getOutput();
 		$this->showMultimedia = $showMultimedia;
-		$this->iwLogoOverrides = $this->specialSearch->getConfig()->get( 'InterwikiLogoOverride' );
+		$this->iwLogoOverrides = $this->specialSearch->getConfig()->get( MainConfigNames::InterwikiLogoOverride );
 	}
 
 	/**
