@@ -2,73 +2,48 @@
 
 .mw-rcfilters-ui-watchlistTopSectionWidget {
 	&-watchlistDetails {
-		width: 100%;
+		flex-grow: 1;
 	}
 
 	&-savedLinksTable {
 		margin-top: 1em;
-
-		// T358424: Stack < 1120px
-		// At this resolution, particularly in Vector 2022, the
-		// UI becomes more cluttered. Forcing these onto separate lines
-		// avoids the buttons spilling out of content area.
-		.mw-rcfilters-ui-row {
-			@media only screen and ( max-width: @max-width-breakpoint-tablet ) {
-				display: flex;
-				flex-flow: column;
-				align-items: start;
-			}
-		}
 	}
 
 	&-separator {
 		margin-top: 1em;
 		border-top: 2px @border-style-base #eaecf0;
 	}
-}
 
-// On small screens, remove the table properties from the
-// top section. T225127#5518870
-@media screen and ( max-width: @width-breakpoint-tablet ) {
-	.mw-rcfilters-ui-watchlistTopSectionWidget {
-		.mw-rcfilters-ui-table,
-		.mw-rcfilters-ui-row,
-		.mw-rcfilters-ui-cell {
-			display: block;
-		}
+	.mw-rcfilters-ui-row {
+		justify-content: space-between;
+		gap: 1em;
+	}
 
-		.mw-rcfilters-ui-cell {
-			margin-bottom: 1em;
-			width: 100%;
-		}
-
-		&-editWatchlistButton {
-			margin-top: 1em;
+	// On small screens, remove the table properties from the
+	// top section. T225127#5518870
+	@media screen and ( max-width: @width-breakpoint-tablet ) {
+		.mw-rcfilters-ui-row {
+			flex-direction: column;
 		}
 	}
-}
 
-// styles that should only kick in for tablet mode:
-@media screen and ( min-width: @width-breakpoint-tablet ) {
-	.mw-rcfilters-ui-watchlistTopSectionWidget {
-
-		// T235535
-		&-editWatchlistButton {
-			vertical-align: bottom;
-			// Match the width that we are setting up for the loading
-			// of the .watchlistDetails in mw.rcfilters.less
-			min-width: 20em;
-			text-align: right;
-
-			// actual button
-			.oo-ui-buttonWidget {
-				margin-left: 3em;
+	// styles that should only kick in for tablet mode:
+	@media screen and ( min-width: @width-breakpoint-tablet ) {
+		// T358424
+		&-savedLinksTable {
+			.mw-rcfilters-ui-row {
+				flex-wrap: wrap;
+				gap: 1em;
 			}
 		}
 
-		// T235536
-		&-savedLinks {
-			float: right;
+		// T235535
+		&-editWatchlistButton {
+			// Match the width that we are setting up for the loading
+			// of the .watchlistDetails in mw.rcfilters.less
+			min-width: 19em;
+			text-align: right;
+			align-self: end;
 		}
 	}
 }
