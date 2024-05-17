@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Content\JavaScriptContent;
+use MediaWiki\Content\JavaScriptContentHandler;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 
@@ -8,7 +9,7 @@ class JavaScriptContentHandlerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideMakeRedirectContent
-	 * @covers \JavaScriptContentHandler::makeRedirectContent
+	 * @covers \MediaWiki\Content\JavaScriptContentHandler::makeRedirectContent
 	 */
 	public function testMakeRedirectContent( $title, $expected ) {
 		$this->overrideConfigValues( [

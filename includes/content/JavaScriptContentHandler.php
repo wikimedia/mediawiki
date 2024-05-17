@@ -18,7 +18,10 @@
  * @file
  */
 
-use MediaWiki\Content\JavaScriptContent;
+namespace MediaWiki\Content;
+
+use CodeContentHandler;
+use Content;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Html\Html;
@@ -27,6 +30,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Title\Title;
+use WikiPage;
 
 /**
  * Content handler for JavaScript pages.
@@ -162,3 +166,5 @@ class JavaScriptContentHandler extends CodeContentHandler {
 		$output->setSections( [] );
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( JavaScriptContentHandler::class, 'JavaScriptContentHandler' );

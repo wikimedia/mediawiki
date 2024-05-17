@@ -408,7 +408,7 @@ return [
 						'ParsoidParserFactory',
 					],
 				],
-				'javascript' => 'JavaScriptContentHandler',
+				'javascript' => 'MediaWiki\\Content\\JavaScriptContentHandler',
 				'json' => 'JsonContentHandler',
 				'css' => 'CssContentHandler',
 				'text' => 'TextContentHandler',
