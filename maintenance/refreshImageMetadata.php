@@ -30,8 +30,10 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -234,7 +236,8 @@ class RefreshImageMetadata extends Maintenance {
 		}
 		if ( $like ) {
 			$queryBuilder->andWhere(
-				$fieldPrefix . 'metadata ' . $dbw->buildLike( $dbw->anyString(), $like, $dbw->anyString() )
+				$dbw->expr( $fieldPrefix . 'metadata', IExpression::LIKE,
+					new LikeValue( $dbw->anyString(), $like, $dbw->anyString() ) )
 			);
 		}
 	}
