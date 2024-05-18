@@ -85,7 +85,6 @@ class CoreTagHooks {
 			[ '&gt;', '&lt;' ],
 			$content
 		);
-		// @phan-suppress-next-line SecurityCheck-XSS Ad-hoc escaping above.
 		return Html::rawElement( 'pre', $attribs, $content );
 	}
 

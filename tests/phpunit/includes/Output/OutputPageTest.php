@@ -1823,7 +1823,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	public function testAddWikiTextAsInterfaceNoTitle() {
 		$this->expectException( RuntimeException::class );
-		$this->expectExceptionMessage( 'Title is null' );
+		$this->expectExceptionMessage( 'No title' );
 
 		$op = $this->newInstance( [], null, 'notitle' );
 		$op->addWikiTextAsInterface( 'a' );
@@ -1831,7 +1831,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	public function testAddWikiTextAsContentNoTitle() {
 		$this->expectException( RuntimeException::class );
-		$this->expectExceptionMessage( 'Title is null' );
+		$this->expectExceptionMessage( 'No title' );
 
 		$op = $this->newInstance( [], null, 'notitle' );
 		$op->addWikiTextAsContent( 'a' );
@@ -1993,21 +1993,21 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	public function testParseAsContentNullTitle() {
 		$this->expectException( RuntimeException::class );
-		$this->expectExceptionMessage( 'Empty $mTitle in MediaWiki\Output\OutputPage::parseInternal' );
+		$this->expectExceptionMessage( 'No title' );
 		$op = $this->newInstance( [], null, 'notitle' );
 		$op->parseAsContent( '' );
 	}
 
 	public function testParseAsInterfaceNullTitle() {
 		$this->expectException( RuntimeException::class );
-		$this->expectExceptionMessage( 'Empty $mTitle in MediaWiki\Output\OutputPage::parseInternal' );
+		$this->expectExceptionMessage( 'No title' );
 		$op = $this->newInstance( [], null, 'notitle' );
 		$op->parseAsInterface( '' );
 	}
 
 	public function testParseInlineAsInterfaceNullTitle() {
 		$this->expectException( RuntimeException::class );
-		$this->expectExceptionMessage( 'Empty $mTitle in MediaWiki\Output\OutputPage::parseInternal' );
+		$this->expectExceptionMessage( 'No title' );
 		$op = $this->newInstance( [], null, 'notitle' );
 		$op->parseInlineAsInterface( '' );
 	}
