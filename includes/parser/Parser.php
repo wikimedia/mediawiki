@@ -2956,9 +2956,10 @@ class Parser {
 		if ( $frame === false ) {
 			$frame = $this->getPreprocessor()->newFrame();
 		} elseif ( !( $frame instanceof PPFrame ) ) {
-			$this->logger->debug(
+			wfDeprecated(
 				__METHOD__ . " called using plain parameters instead of " .
-				"a PPFrame instance. Creating custom frame."
+				"a PPFrame instance. Creating custom frame.",
+				'1.43'
 			);
 			$frame = $this->getPreprocessor()->newCustomFrame( $frame );
 		}
