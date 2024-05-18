@@ -2,9 +2,11 @@
 
 use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Password\PasswordError;
+use MediaWiki\Password\PasswordFactory;
 
 /**
- * @covers \PasswordFactory
+ * @covers \MediaWiki\Password\PasswordFactory
  */
 class PasswordFactoryTest extends MediaWikiUnitTestCase {
 	public function testConstruct() {

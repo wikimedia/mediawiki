@@ -24,6 +24,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\Parser\Sanitizer;
+use MediaWiki\Password\PasswordFactory;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
 

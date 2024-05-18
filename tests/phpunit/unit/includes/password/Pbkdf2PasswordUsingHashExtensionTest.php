@@ -2,8 +2,8 @@
 
 /**
  * @group large
- * @covers \AbstractPbkdf2Password
- * @covers \Pbkdf2PasswordUsingHashExtension
+ * @covers \Mediawiki\Password\AbstractPbkdf2Password
+ * @covers \Mediawiki\Password\Pbkdf2PasswordUsingHashExtension
  */
 class Pbkdf2PasswordUsingHashExtensionTest extends Pbkdf2PasswordTestCase {
 	protected static function getPbkdf2PasswordClass() {

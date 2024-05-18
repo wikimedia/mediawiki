@@ -1,10 +1,12 @@
 <?php
 
+use MediaWiki\Password\Argon2Password;
+
 /**
  * @group large
- * @covers \Argon2Password
- * @covers \Password
- * @covers \ParameterizedPassword
+ * @covers \MediaWiki\Password\Argon2Password
+ * @covers \MediaWiki\Password\Password
+ * @covers \MediaWiki\Password\ParameterizedPassword
  */
 class Argon2PasswordTest extends PasswordTestCase {
 
@@ -36,7 +38,7 @@ class Argon2PasswordTest extends PasswordTestCase {
 	 * @return array
 	 */
 	public static function providePasswordTests() {
-		$result = [
+		return [
 			[
 				true,
 				':argon2:$argon2i$v=19$m=1024,t=2,p=2$RHpGTXJPeFlSV2NDTEswNA$VeW7rumZY4pL8XO4KeQkKD43r5uX3eazVJRtrFN7lNc',
@@ -64,8 +66,6 @@ class Argon2PasswordTest extends PasswordTestCase {
 				'password'
 			]
 		];
-
-		return $result;
 	}
 
 	/**

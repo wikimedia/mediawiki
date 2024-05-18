@@ -22,6 +22,10 @@
 
 declare( strict_types = 1 );
 
+namespace MediaWiki\Password;
+
+use MWCryptRand;
+
 /**
  * The old style of MediaWiki password hashing, with a salt. It involves
  * running MD5 on the password, and then running MD5 on the salt concatenated
@@ -50,3 +54,6 @@ class MWSaltedPassword extends ParameterizedPassword {
 		}
 	}
 }
+
+/** @deprecated since 1.43 use MediaWiki\\Password\\MWSaltedPassword */
+class_alias( MWSaltedPassword::class, 'MWSaltedPassword' );

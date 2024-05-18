@@ -23,15 +23,15 @@
 
 namespace MediaWiki\Tests\Unit;
 
+use MediaWiki\Password\PasswordPolicyChecks;
 use MediaWiki\User\User;
 use MediaWikiUnitTestCase;
-use PasswordPolicyChecks;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * Split from \PasswordPolicyChecksTest integration tests
  *
- * @coversDefaultClass \PasswordPolicyChecks
+ * @coversDefaultClass \MediaWiki\Password\PasswordPolicyChecks
  */
 class PasswordPolicyChecksTest extends MediaWikiUnitTestCase {
 

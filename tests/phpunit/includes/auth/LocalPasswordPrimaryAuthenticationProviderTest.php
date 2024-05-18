@@ -13,6 +13,7 @@ use MediaWiki\Auth\PrimaryAuthenticationProvider;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Password\PasswordFactory;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
@@ -20,7 +21,6 @@ use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\User;
 use MediaWiki\User\UserNameUtils;
 use MediaWikiIntegrationTestCase;
-use PasswordFactory;
 use StatusValue;
 use Wikimedia\TestingAccessWrapper;
 

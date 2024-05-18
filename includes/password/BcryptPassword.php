@@ -22,6 +22,10 @@
 
 declare( strict_types = 1 );
 
+namespace MediaWiki\Password;
+
+use RuntimeException;
+
 /**
  * A Bcrypt-hashed password
  *
@@ -89,3 +93,6 @@ class BcryptPassword extends ParameterizedPassword {
 		$this->hash = substr( $parts[1], 22 );
 	}
 }
+
+/** @deprecated since 1.43 use MediaWiki\\Password\\BcryptPassword */
+class_alias( BcryptPassword::class, 'BcryptPassword' );

@@ -11,12 +11,9 @@
 // phpcs:disable Generic.Files.LineLength.TooLong
 namespace MediaWiki;
 
-use AbstractPbkdf2Password;
 use ActivityUpdateJob;
 use APCUBagOStuff;
-use Argon2Password;
 use AssembleUploadChunksJob;
-use BcryptPassword;
 use BlockLogFormatter;
 use CategoryMembershipChangeJob;
 use CdnPurgeJob;
@@ -41,12 +38,26 @@ use ImportLogFormatter;
 use InvalidArgumentException;
 use JobQueueDB;
 use JsonContentHandler;
-use LayeredParameterizedPassword;
 use LocalisationCache;
 use LocalRepo;
 use LogFormatter;
+use MediaWiki\Auth\CheckBlocksSecondaryAuthenticationProvider;
+use MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider;
+use MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider;
+use MediaWiki\Auth\PasswordAuthenticationRequest;
+use MediaWiki\Auth\ResetPasswordSecondaryAuthenticationProvider;
+use MediaWiki\Auth\TemporaryPasswordAuthenticationRequest;
+use MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider;
+use MediaWiki\Auth\ThrottlePreAuthenticationProvider;
 use MediaWiki\Content\JavaScriptContentHandler;
 use MediaWiki\Deferred\SiteStatsUpdate;
+use MediaWiki\Password\AbstractPbkdf2Password;
+use MediaWiki\Password\Argon2Password;
+use MediaWiki\Password\BcryptPassword;
+use MediaWiki\Password\LayeredParameterizedPassword;
+use MediaWiki\Password\MWOldPassword;
+use MediaWiki\Password\MWSaltedPassword;
+use MediaWiki\Password\PasswordPolicyChecks;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\RenameUser\RenameUserJob;
 use MediaWiki\Request\WebRequest;
@@ -61,8 +72,6 @@ use MemcachedPeclBagOStuff;
 use MemcachedPhpBagOStuff;
 use MergeLogFormatter;
 use MoveLogFormatter;
-use MWOldPassword;
-use MWSaltedPassword;
 use NullJob;
 use ParsoidCachePrewarmJob;
 use PatrolLogFormatter;
@@ -6956,7 +6965,7 @@ class MainConfigSchema {
 	 * receives the flag value (or values if it's an array).
 	 *
 	 * @since 1.26
-	 * @see \PasswordPolicyChecks
+	 * @see \MediaWiki\Password\PasswordPolicyChecks
 	 * @see \MediaWiki\User\User::checkPasswordValidity()
 	 */
 	public const PasswordPolicy = [
@@ -6990,13 +6999,12 @@ class MainConfigSchema {
 				],
 			],
 			'checks' => [
-				'MinimalPasswordLength' => 'PasswordPolicyChecks::checkMinimalPasswordLength',
-				'MinimumPasswordLengthToLogin' => 'PasswordPolicyChecks::checkMinimumPasswordLengthToLogin',
-				'PasswordCannotBeSubstringInUsername' =>
-					'PasswordPolicyChecks::checkPasswordCannotBeSubstringInUsername',
-				'PasswordCannotMatchDefaults' => 'PasswordPolicyChecks::checkPasswordCannotMatchDefaults',
-				'MaximalPasswordLength' => 'PasswordPolicyChecks::checkMaximalPasswordLength',
-				'PasswordNotInCommonList' => 'PasswordPolicyChecks::checkPasswordNotInCommonList',
+				'MinimalPasswordLength' => [ PasswordPolicyChecks::class, 'checkMinimalPasswordLength' ],
+				'MinimumPasswordLengthToLogin' => [ PasswordPolicyChecks::class, 'checkMinimumPasswordLengthToLogin' ],
+				'PasswordCannotBeSubstringInUsername' => [ PasswordPolicyChecks::class, 'checkPasswordCannotBeSubstringInUsername' ],
+				'PasswordCannotMatchDefaults' => [ PasswordPolicyChecks::class, 'checkPasswordCannotMatchDefaults' ],
+				'MaximalPasswordLength' => [ PasswordPolicyChecks::class, 'checkMaximalPasswordLength' ],
+				'PasswordNotInCommonList' => [ PasswordPolicyChecks::class, 'checkPasswordNotInCommonList' ],
 			],
 		],
 		'type' => 'map',
@@ -7034,8 +7042,8 @@ class MainConfigSchema {
 	public const AuthManagerAutoConfig = [
 		'default' => [
 			'preauth' => [
-				\MediaWiki\Auth\ThrottlePreAuthenticationProvider::class => [
-					'class' => \MediaWiki\Auth\ThrottlePreAuthenticationProvider::class,
+				ThrottlePreAuthenticationProvider::class => [
+					'class' => ThrottlePreAuthenticationProvider::class,
 					'sort' => 0,
 				],
 			],
@@ -7047,8 +7055,8 @@ class MainConfigSchema {
 				// won't work right. Do not remove this (or change the key) or
 				// auto-configuration of other such providers in extensions will
 				// probably auto-insert themselves in the wrong place.
-				\MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider::class => [
-					'class' => \MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider::class,
+				TemporaryPasswordPrimaryAuthenticationProvider::class => [
+					'class' => TemporaryPasswordPrimaryAuthenticationProvider::class,
 					'services' => [
 						'DBLoadBalancerFactory',
 						'UserOptionsLookup',
@@ -7059,8 +7067,8 @@ class MainConfigSchema {
 					] ],
 					'sort' => 0,
 				],
-				\MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider::class => [
-					'class' => \MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider::class,
+				LocalPasswordPrimaryAuthenticationProvider::class => [
+					'class' => LocalPasswordPrimaryAuthenticationProvider::class,
 					'services' => [
 						'DBLoadBalancerFactory',
 					],
@@ -7075,12 +7083,12 @@ class MainConfigSchema {
 				],
 			],
 			'secondaryauth' => [
-				\MediaWiki\Auth\CheckBlocksSecondaryAuthenticationProvider::class => [
-					'class' => \MediaWiki\Auth\CheckBlocksSecondaryAuthenticationProvider::class,
+				CheckBlocksSecondaryAuthenticationProvider::class => [
+					'class' => CheckBlocksSecondaryAuthenticationProvider::class,
 					'sort' => 0,
 				],
-				\MediaWiki\Auth\ResetPasswordSecondaryAuthenticationProvider::class => [
-					'class' => \MediaWiki\Auth\ResetPasswordSecondaryAuthenticationProvider::class,
+				ResetPasswordSecondaryAuthenticationProvider::class => [
+					'class' => ResetPasswordSecondaryAuthenticationProvider::class,
 					'sort' => 100,
 				],
 				// Linking during login is experimental, enable at your own risk - T134952
@@ -7088,8 +7096,8 @@ class MainConfigSchema {
 				//   'class' => MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider::class,
 				//   'sort' => 100,
 				// ],
-				\MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider::class => [
-					'class' => \MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider::class,
+				EmailNotificationSecondaryAuthenticationProvider::class => [
+					'class' => EmailNotificationSecondaryAuthenticationProvider::class,
 					'services' => [
 						'DBLoadBalancerFactory',
 					],
@@ -7191,7 +7199,7 @@ class MainConfigSchema {
 	 */
 	public const ChangeCredentialsBlacklist = [
 		'default' => [
-			\MediaWiki\Auth\TemporaryPasswordAuthenticationRequest::class,
+			TemporaryPasswordAuthenticationRequest::class,
 		],
 		'type' => 'list',
 		'items' => [ 'type' => 'string', ],
@@ -7209,7 +7217,7 @@ class MainConfigSchema {
 	 */
 	public const RemoveCredentialsBlacklist = [
 		'default' => [
-			\MediaWiki\Auth\PasswordAuthenticationRequest::class,
+			PasswordAuthenticationRequest::class,
 		],
 		'type' => 'list',
 		'items' => [ 'type' => 'string', ],
@@ -7302,9 +7310,9 @@ class MainConfigSchema {
 				// Algorithm used:
 				// * 'argon2i' is optimized against side-channel attacks
 				// * 'argon2id' is optimized against both side-channel and GPU cracking
-				// * 'auto' to use best available algorithm. If you're using more than one server, be
+				// * 'auto' to use the best available algorithm. If you're using more than one server, be
 				//   careful when you're mixing PHP versions because newer PHP might generate hashes that
-				//   older versions might would not understand.
+				//   older versions would not understand.
 				'algo' => 'auto',
 
 				// The parameters below are the same as options accepted by password_hash().

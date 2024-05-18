@@ -20,12 +20,13 @@
  * @file
  */
 
+use MediaWiki\Password\UserPasswordPolicy;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
 
 /**
  * @group Database
- * @covers \UserPasswordPolicy
+ * @covers \MediaWiki\Password\UserPasswordPolicy
  */
 class UserPasswordPolicyTest extends MediaWikiIntegrationTestCase {
 
@@ -55,12 +56,12 @@ class UserPasswordPolicyTest extends MediaWikiIntegrationTestCase {
 	];
 
 	protected $checks = [
-		'MinimalPasswordLength' => 'PasswordPolicyChecks::checkMinimalPasswordLength',
-		'MinimumPasswordLengthToLogin' => 'PasswordPolicyChecks::checkMinimumPasswordLengthToLogin',
+		'MinimalPasswordLength' => 'MediaWiki\Password\PasswordPolicyChecks::checkMinimalPasswordLength',
+		'MinimumPasswordLengthToLogin' => 'MediaWiki\Password\PasswordPolicyChecks::checkMinimumPasswordLengthToLogin',
 		'PasswordCannotBeSubstringInUsername' =>
-			'PasswordPolicyChecks::checkPasswordCannotBeSubstringInUsername',
-		'PasswordCannotMatchDefaults' => 'PasswordPolicyChecks::checkPasswordCannotMatchDefaults',
-		'MaximalPasswordLength' => 'PasswordPolicyChecks::checkMaximalPasswordLength',
+			'MediaWiki\Password\PasswordPolicyChecks::checkPasswordCannotBeSubstringInUsername',
+		'PasswordCannotMatchDefaults' => 'MediaWiki\Password\PasswordPolicyChecks::checkPasswordCannotMatchDefaults',
+		'MaximalPasswordLength' => 'MediaWiki\Password\PasswordPolicyChecks::checkMaximalPasswordLength',
 	];
 
 	private function getUserPasswordPolicy() {

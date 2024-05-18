@@ -1,9 +1,11 @@
 <?php
 
+use MediaWiki\Password\MWSaltedPassword;
+
 /**
- * @covers \MWSaltedPassword
- * @covers \ParameterizedPassword
- * @covers \Password
+ * @covers \MediaWiki\Password\MWSaltedPassword
+ * @covers \MediaWiki\Password\ParameterizedPassword
+ * @covers \MediaWiki\Password\Password
  */
 class MWSaltedPasswordTest extends PasswordTestCase {
 	protected function getTypeConfigs() {

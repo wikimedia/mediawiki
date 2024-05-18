@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Password\PasswordFactory;
+
 /**
  * @since 1.24
  */

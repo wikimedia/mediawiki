@@ -1,10 +1,13 @@
 <?php
 
+use MediaWiki\Password\PasswordFactory;
+use PHPUnit\Framework\TestCase;
+
 /**
  * @group large
- * @covers \AbstractPbkdf2Password
+ * @covers \MediaWiki\Password\AbstractPbkdf2Password
  */
-class AbstractPbkdf2PasswordTest extends \PHPUnit\Framework\TestCase {
+class AbstractPbkdf2PasswordTest extends TestCase {
 	public function testNewInstanceUsesSpecifiedSubclass() {
 		$factory = new PasswordFactory();
 		$class = get_class( $this->createStub( AbstractPbkdf2Password::class ) );

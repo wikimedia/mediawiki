@@ -24,7 +24,7 @@ namespace MediaWiki\Auth;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use PasswordFactory;
+use MediaWiki\Password\PasswordFactory;
 
 /**
  * This represents the intention to set a temporary password for the user.
@@ -93,8 +93,7 @@ class TemporaryPasswordAuthenticationRequest extends AuthenticationRequest {
 	 * @return TemporaryPasswordAuthenticationRequest
 	 */
 	public static function newInvalid() {
-		$request = new self( null );
-		return $request;
+		return new self( null );
 	}
 
 	/**

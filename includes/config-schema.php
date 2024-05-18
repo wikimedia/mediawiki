@@ -885,12 +885,30 @@ return [
 					],
 				],
 				'checks' => [
-					'MinimalPasswordLength' => 'PasswordPolicyChecks::checkMinimalPasswordLength',
-					'MinimumPasswordLengthToLogin' => 'PasswordPolicyChecks::checkMinimumPasswordLengthToLogin',
-					'PasswordCannotBeSubstringInUsername' => 'PasswordPolicyChecks::checkPasswordCannotBeSubstringInUsername',
-					'PasswordCannotMatchDefaults' => 'PasswordPolicyChecks::checkPasswordCannotMatchDefaults',
-					'MaximalPasswordLength' => 'PasswordPolicyChecks::checkMaximalPasswordLength',
-					'PasswordNotInCommonList' => 'PasswordPolicyChecks::checkPasswordNotInCommonList',
+					'MinimalPasswordLength' => [
+						'MediaWiki\\Password\\PasswordPolicyChecks',
+						'checkMinimalPasswordLength',
+					],
+					'MinimumPasswordLengthToLogin' => [
+						'MediaWiki\\Password\\PasswordPolicyChecks',
+						'checkMinimumPasswordLengthToLogin',
+					],
+					'PasswordCannotBeSubstringInUsername' => [
+						'MediaWiki\\Password\\PasswordPolicyChecks',
+						'checkPasswordCannotBeSubstringInUsername',
+					],
+					'PasswordCannotMatchDefaults' => [
+						'MediaWiki\\Password\\PasswordPolicyChecks',
+						'checkPasswordCannotMatchDefaults',
+					],
+					'MaximalPasswordLength' => [
+						'MediaWiki\\Password\\PasswordPolicyChecks',
+						'checkMaximalPasswordLength',
+					],
+					'PasswordNotInCommonList' => [
+						'MediaWiki\\Password\\PasswordPolicyChecks',
+						'checkPasswordNotInCommonList',
+					],
 				],
 			],
 			'AuthManagerConfig' => null,
@@ -963,32 +981,32 @@ return [
 			'PasswordDefault' => 'pbkdf2',
 			'PasswordConfig' => [
 				'A' => [
-					'class' => 'MWOldPassword',
+					'class' => 'MediaWiki\\Password\\MWOldPassword',
 				],
 				'B' => [
-					'class' => 'MWSaltedPassword',
+					'class' => 'MediaWiki\\Password\\MWSaltedPassword',
 				],
 				'pbkdf2-legacyA' => [
-					'class' => 'LayeredParameterizedPassword',
+					'class' => 'MediaWiki\\Password\\LayeredParameterizedPassword',
 					'types' => [
 						'A',
 						'pbkdf2',
 					],
 				],
 				'pbkdf2-legacyB' => [
-					'class' => 'LayeredParameterizedPassword',
+					'class' => 'MediaWiki\\Password\\LayeredParameterizedPassword',
 					'types' => [
 						'B',
 						'pbkdf2',
 					],
 				],
 				'bcrypt' => [
-					'class' => 'BcryptPassword',
+					'class' => 'MediaWiki\\Password\\BcryptPassword',
 					'cost' => 9,
 				],
 				'pbkdf2' => [
 					'factory' => [
-						'AbstractPbkdf2Password',
+						'MediaWiki\\Password\\AbstractPbkdf2Password',
 						'newInstance',
 					],
 					'algo' => 'sha512',
@@ -996,7 +1014,7 @@ return [
 					'length' => '64',
 				],
 				'argon2' => [
-					'class' => 'Argon2Password',
+					'class' => 'MediaWiki\\Password\\Argon2Password',
 					'algo' => 'auto',
 				],
 			],

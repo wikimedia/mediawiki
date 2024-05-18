@@ -22,6 +22,8 @@
 
 declare( strict_types = 1 );
 
+namespace MediaWiki\Password;
+
 /**
  * A PBKDF2-hashed password
  *
@@ -44,7 +46,7 @@ abstract class AbstractPbkdf2Password extends ParameterizedPassword {
 	 * Create a new AbstractPbkdf2Password object.
 	 *
 	 * In the default configuration, this is used as a factory function
-	 * in order to select a PBKDF2 implementation automatically.
+	 * to select a PBKDF2 implementation automatically.
 	 *
 	 * @internal
 	 * @see Password::__construct
@@ -145,3 +147,6 @@ abstract class AbstractPbkdf2Password extends ParameterizedPassword {
 		int $length
 	): string;
 }
+
+/** @deprecated since 1.43 use MediaWiki\\Password\\AbstractPbkdf2Password */
+class_alias( AbstractPbkdf2Password::class, 'AbstractPbkdf2Password' );

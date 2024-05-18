@@ -29,15 +29,15 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Password\Password;
+use MediaWiki\Password\PasswordError;
+use MediaWiki\Password\PasswordFactory;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\BotPasswordSessionProvider;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Status\Status;
 use MWRestrictions;
 use ObjectCache;
-use Password;
-use PasswordError;
-use PasswordFactory;
 use stdClass;
 use UnexpectedValueException;
 use Wikimedia\Rdbms\IDatabase;
@@ -208,7 +208,7 @@ class BotPassword {
 	}
 
 	/**
-	 * Get the separator for combined user name + app ID
+	 * Get the separator for combined username + app ID
 	 * @return string
 	 */
 	public static function getSeparator() {

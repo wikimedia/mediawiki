@@ -22,6 +22,11 @@
 
 declare( strict_types = 1 );
 
+namespace MediaWiki\Password;
+
+use InvalidArgumentException;
+use UnexpectedValueException;
+
 /**
  * This password hash type layers one or more parameterized password types
  * on top of each other.
@@ -144,3 +149,6 @@ class LayeredParameterizedPassword extends ParameterizedPassword {
 		$this->hash = $lastHash;
 	}
 }
+
+/** @deprecated since 1.43 use MediaWiki\\Password\\LayeredParameterizedPassword */
+class_alias( LayeredParameterizedPassword::class, 'LayeredParameterizedPassword' );

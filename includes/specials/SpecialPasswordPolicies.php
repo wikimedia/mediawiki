@@ -23,12 +23,12 @@ namespace MediaWiki\Specials;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Sanitizer;
+use MediaWiki\Password\UserPasswordPolicy;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupMembership;
 use MediaWiki\Xml\Xml;
-use UserPasswordPolicy;
 
 /**
  * This special page lists the defined password policies for user groups.
