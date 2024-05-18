@@ -26,7 +26,7 @@
 		"eslint-config-wikimedia": "0.27.0",
 		"eslint-plugin-vue": "^9.23.0",
 		"grunt": "1.6.1",
-		"grunt-banana-checker": "0.11.1",
+		"grunt-banana-checker": "0.13.0",
 		"grunt-contrib-watch": "1.1.0",
 		"grunt-eslint": "24.3.0",
 		"grunt-karma": "4.0.2",
