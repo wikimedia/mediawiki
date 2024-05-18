@@ -91,18 +91,8 @@ class PageConfig extends IPageConfig {
 	}
 
 	/** @inheritDoc */
-	public function getTitle(): string {
-		return $this->title->getPrefixedText();
-	}
-
-	/** @inheritDoc */
 	public function getLinkTarget(): Title {
 		return $this->title;
-	}
-
-	/** @inheritDoc */
-	public function getNs(): int {
-		return $this->title->getNamespace();
 	}
 
 	/** @inheritDoc */
