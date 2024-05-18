@@ -40,6 +40,7 @@ use UnexpectedValueException;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\Subquery;
 
 /**
  * @ingroup Pager
@@ -296,11 +297,12 @@ class ImageListPager extends TablePager {
 		# Depends on $wgMiserMode
 		# Will also not happen if mShowAll is true.
 		if ( array_key_exists( 'count', $this->getFieldNames() ) ) {
-			$fields['count'] = $dbr->buildSelectSubquery(
-				'oldimage',
-				'COUNT(oi_archive_name)',
-				'oi_name = img_name',
-				__METHOD__
+			$fields['count'] = new Subquery( $dbr->newSelectQueryBuilder()
+				->select( 'COUNT(oi_archive_name)' )
+				->from( 'oldimage' )
+				->where( 'oi_name = img_name' )
+				->caller( __METHOD__ )
+				->getSQL()
 			);
 		}
 
