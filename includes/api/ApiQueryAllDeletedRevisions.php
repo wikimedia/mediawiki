@@ -39,6 +39,8 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserFactory;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\Rdbms\IExpression;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * Query module to enumerate all deleted revisions.
@@ -228,49 +230,64 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 				$isDirNewer = ( $dir === 'newer' );
 				$after = ( $isDirNewer ? '>=' : '<=' );
 				$before = ( $isDirNewer ? '<=' : '>=' );
-				$where = [];
+				$titleParts = [];
 				foreach ( $namespaces as $ns ) {
-					$w = [];
 					if ( $params['from'] !== null ) {
-						$w[] = 'ar_title' . $after .
-							$db->addQuotes( $this->titlePartToKey( $params['from'], $ns ) );
+						$fromTitlePart = $this->titlePartToKey( $params['from'], $ns );
+					} else {
+						$fromTitlePart = '';
 					}
 					if ( $params['to'] !== null ) {
-						$w[] = 'ar_title' . $before .
-							$db->addQuotes( $this->titlePartToKey( $params['to'], $ns ) );
+						$toTitlePart = $this->titlePartToKey( $params['to'], $ns );
+					} else {
+						$toTitlePart = '';
 					}
-					$w = $db->makeList( $w, LIST_AND );
-					$where[$w][] = $ns;
+					$titleParts[$fromTitlePart . '|' . $toTitlePart][] = $ns;
 				}
-				if ( count( $where ) == 1 ) {
-					$where = key( $where );
-					$this->addWhere( $where );
-				} else {
-					$where2 = [];
-					foreach ( $where as $w => $ns ) {
-						$where2[] = $db->makeList( [ $w, 'ar_namespace' => $ns ], LIST_AND );
+				if ( count( $titleParts ) === 1 ) {
+					[ $fromTitlePart, $toTitlePart, ] = explode( '|', key( $titleParts ), 2 );
+					if ( $fromTitlePart !== '' ) {
+						$this->addWhere( $db->expr( 'ar_title', $after, $fromTitlePart ) );
 					}
-					$this->addWhere( $db->makeList( $where2, LIST_OR ) );
+					if ( $toTitlePart !== '' ) {
+						$this->addWhere( $db->expr( 'ar_title', $before, $toTitlePart ) );
+					}
+				} else {
+					$where = [];
+					foreach ( $titleParts as $titlePart => $ns ) {
+						[ $fromTitlePart, $toTitlePart, ] = explode( '|', $titlePart, 2 );
+						$expr = $db->expr( 'ar_namespace', '=', $ns );
+						if ( $fromTitlePart !== '' ) {
+							$expr = $expr->and( 'ar_title', $after, $fromTitlePart );
+						}
+						if ( $toTitlePart !== '' ) {
+							$expr = $expr->and( 'ar_title', $before, $toTitlePart );
+						}
+						$where[] = $expr;
+					}
+					$this->addWhere( $db->makeList( $where, LIST_OR ) );
 				}
 			}
 
 			if ( isset( $params['prefix'] ) ) {
-				$where = [];
+				$titleParts = [];
 				foreach ( $namespaces as $ns ) {
-					$w = 'ar_title' . $db->buildLike(
-						$this->titlePartToKey( $params['prefix'], $ns ),
-						$db->anyString() );
-					$where[$w][] = $ns;
+					$prefixTitlePart = $this->titlePartToKey( $params['prefix'], $ns );
+					$titleParts[$prefixTitlePart][] = $ns;
 				}
-				if ( count( $where ) == 1 ) {
-					$where = key( $where );
-					$this->addWhere( $where );
+				if ( count( $titleParts ) === 1 ) {
+					$prefixTitlePart = key( $titleParts );
+					$this->addWhere( $db->expr( 'ar_title', IExpression::LIKE,
+						new LikeValue( $prefixTitlePart, $db->anyString() )
+					) );
 				} else {
-					$where2 = [];
-					foreach ( $where as $w => $ns ) {
-						$where2[] = $db->makeList( [ $w, 'ar_namespace' => $ns ], LIST_AND );
+					$where = [];
+					foreach ( $titleParts as $prefixTitlePart => $ns ) {
+						$where[] = $db->expr( 'ar_namespace', '=', $ns )
+							->and( 'ar_title', IExpression::LIKE,
+								new LikeValue( $prefixTitlePart, $db->anyString() ) );
 					}
-					$this->addWhere( $db->makeList( $where2, LIST_OR ) );
+					$this->addWhere( $db->makeList( $where, LIST_OR ) );
 				}
 			}
 		} else {
