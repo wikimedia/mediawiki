@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Content\CssContent;
 use Wikimedia\Assert\ParameterTypeException;
 use Wikimedia\TestingAccessWrapper;
 

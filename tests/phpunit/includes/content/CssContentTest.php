@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Content\CssContent;
 use MediaWiki\MainConfigNames;
 
 /**
@@ -40,7 +41,7 @@ class CssContentTest extends TextContentTest {
 	}
 
 	/**
-	 * @covers \CssContent::getModel
+	 * @covers \MediaWiki\Content\CssContent::getModel
 	 */
 	public function testGetModel() {
 		$content = $this->newContent( 'hello world.' );
@@ -49,7 +50,7 @@ class CssContentTest extends TextContentTest {
 	}
 
 	/**
-	 * @covers \CssContent::getContentHandler
+	 * @covers \MediaWiki\Content\CssContent::getContentHandler
 	 */
 	public function testGetContentHandler() {
 		$content = $this->newContent( 'hello world.' );
@@ -70,7 +71,7 @@ class CssContentTest extends TextContentTest {
 	}
 
 	/**
-	 * @covers \CssContent::getRedirectTarget
+	 * @covers \MediaWiki\Content\CssContent::getRedirectTarget
 	 * @dataProvider provideGetRedirectTarget
 	 */
 	public function testGetRedirectTarget( $title, $text ) {
@@ -114,7 +115,7 @@ class CssContentTest extends TextContentTest {
 
 	/**
 	 * @dataProvider dataEquals
-	 * @covers \CssContent::equals
+	 * @covers \MediaWiki\Content\CssContent::equals
 	 */
 	public function testEquals( Content $a, Content $b = null, $equal = false ) {
 		$this->assertEquals( $equal, $a->equals( $b ) );

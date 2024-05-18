@@ -985,6 +985,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Config\\ServiceOptions' => __DIR__ . '/includes/config/ServiceOptions.php',
 	'MediaWiki\\Config\\SiteConfiguration' => __DIR__ . '/includes/config/SiteConfiguration.php',
 	'MediaWiki\\Content\\ContentHandlerFactory' => __DIR__ . '/includes/content/ContentHandlerFactory.php',
+	'MediaWiki\\Content\\CssContent' => __DIR__ . '/includes/content/CssContent.php',
 	'MediaWiki\\Content\\Hook\\ContentAlterParserOutputHook' => __DIR__ . '/includes/content/Hook/ContentAlterParserOutputHook.php',
 	'MediaWiki\\Content\\Hook\\ContentGetParserOutputHook' => __DIR__ . '/includes/content/Hook/ContentGetParserOutputHook.php',
 	'MediaWiki\\Content\\Hook\\ContentHandlerForModelIDHook' => __DIR__ . '/includes/content/Hook/ContentHandlerForModelIDHook.php',

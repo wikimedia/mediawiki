@@ -21,6 +21,7 @@
  * @ingroup Content
  */
 
+use MediaWiki\Content\CssContent;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Html\Html;
