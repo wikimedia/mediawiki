@@ -469,9 +469,9 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 	 */
 	private function createUserOptionsManagerMock( array $userOptions, bool $defaultOptions = false ) {
 		$services = $this->getServiceContainer();
-		$defaults = $services->getMainConfig()->get( 'DefaultUserOptions' );
+		$defaults = $services->getMainConfig()->get( MainConfigNames::DefaultUserOptions );
 		$defaults['language'] = $services->getContentLanguage()->getCode();
-		$defaults['skin'] = Skin::normalizeKey( $services->getMainConfig()->get( 'DefaultSkin' ) );
+		$defaults['skin'] = Skin::normalizeKey( $services->getMainConfig()->get( MainConfigNames::DefaultSkin ) );
 		( new HookRunner( $services->getHookContainer() ) )->onUserGetDefaultOptions( $defaults );
 		$userOptions += $defaults;
 

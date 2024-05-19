@@ -146,7 +146,7 @@ class SpecialBlock extends FormSpecialPage {
 	public function execute( $par ) {
 		parent::execute( $par );
 
-		if ( $this->getConfig()->get( 'UseCodexSpecialBlock' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock ) ) {
 			$this->getOutput()->addModules( 'mediawiki.special.block.codex' );
 			$this->getOutput()->addJsConfigVars( $this->codexFormData );
 		}
@@ -235,7 +235,7 @@ class SpecialBlock extends FormSpecialPage {
 	}
 
 	protected function getDisplayFormat() {
-		return $this->getConfig()->get( 'UseCodexSpecialBlock' ) ? 'codex' : 'ooui';
+		return $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock ) ? 'codex' : 'ooui';
 	}
 
 	/**
@@ -275,7 +275,7 @@ class SpecialBlock extends FormSpecialPage {
 			'section' => 'target',
 		];
 
-		$editingRestrictionOptions = $this->getConfig()->get( 'UseCodexSpecialBlock' ) ?
+		$editingRestrictionOptions = $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock ) ?
 			// If we're using Codex, use the option-descriptions feature, which is only supported by Codex
 			[
 				'options-messages' => [

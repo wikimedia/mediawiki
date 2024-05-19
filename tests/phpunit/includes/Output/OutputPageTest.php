@@ -1119,7 +1119,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $op->isSyndicated() );
 		$this->assertSame( [], $op->getSyndicationLinks() );
 
-		$feedTypes = $op->getConfig()->get( 'AdvertisedFeedTypes' );
+		$feedTypes = $op->getConfig()->get( MainConfigNames::AdvertisedFeedTypes );
 
 		$op->addFeedLink( $feedTypes[0], 'def' );
 		$this->assertTrue( $op->isSyndicated() );

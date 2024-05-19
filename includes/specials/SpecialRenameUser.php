@@ -6,6 +6,7 @@ use Language;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\RenameUser\RenameuserSQL;
@@ -201,7 +202,7 @@ class SpecialRenameUser extends SpecialPage {
 				->caller( __METHOD__ )
 				->fetchField();
 			if ( $uid === false ) {
-				if ( !$this->getConfig()->get( 'CapitalLinks' ) ) {
+				if ( !$this->getConfig()->get( MainConfigNames::CapitalLinks ) ) {
 					$uid = 0; // We are on a lowercase wiki but lowercase username does not exist
 				} else {
 					// We are on a standard uppercase wiki, use normal

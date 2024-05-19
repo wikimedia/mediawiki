@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\Options\StaticUserOptionsLookup;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
@@ -10,7 +11,7 @@ use MediaWiki\Utils\MWTimestamp;
 class MWTimestampTest extends MediaWikiLangTestCase {
 
 	private function setMockUserOptions( array $options ) {
-		$defaults = $this->getServiceContainer()->getMainConfig()->get( 'DefaultUserOptions' );
+		$defaults = $this->getServiceContainer()->getMainConfig()->get( MainConfigNames::DefaultUserOptions );
 
 		// $options are set as the options for "Pamela", the name used in the tests
 		$userOptionsLookup = new StaticUserOptionsLookup(

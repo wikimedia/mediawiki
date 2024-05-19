@@ -278,7 +278,7 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		// Now configure BotPasswordSessionProvider for further tests...
 		$mainConfig = $this->getServiceContainer()->getMainConfig();
 		$config = new HashConfig( [
-			MainConfigNames::SessionProviders => $mainConfig->get( 'SessionProviders' ) + [
+			MainConfigNames::SessionProviders => $mainConfig->get( MainConfigNames::SessionProviders ) + [
 				MediaWiki\Session\BotPasswordSessionProvider::class => [
 					'class' => MediaWiki\Session\BotPasswordSessionProvider::class,
 					'args' => [ [ 'priority' => 40 ] ],

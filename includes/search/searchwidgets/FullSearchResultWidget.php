@@ -10,6 +10,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Search\Entity\SearchResultThumbnail;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Specials\SpecialSearch;
@@ -351,7 +352,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 			return null;
 		}
 
-		$namespacesWithThumbnails = $this->specialPage->getConfig()->get( 'ThumbnailNamespaces' );
+		$namespacesWithThumbnails = $this->specialPage->getConfig()->get( MainConfigNames::ThumbnailNamespaces );
 		$showThumbnail = in_array( $title->getNamespace(), $namespacesWithThumbnails );
 		if ( !$showThumbnail ) {
 			return null;
@@ -421,7 +422,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 		// player must remain at the size we want, regardless of whether or
 		// not it fits the thumb limits, which in this case are irrelevant)
 		if ( $rescaledWidth !== $thumbnail->getWidth() ) {
-			$thumbLimits = $this->specialPage->getConfig()->get( 'ThumbLimits' );
+			$thumbLimits = $this->specialPage->getConfig()->get( MainConfigNames::ThumbLimits );
 			$largerThumbLimits = array_filter(
 				$thumbLimits,
 				static function ( $limit ) use ( $rescaledWidth ) {

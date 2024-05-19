@@ -598,7 +598,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testSetLocaltimezone(): void {
 		// Make sure the configured timezone ewas applied to the PHP runtime.
-		$tz = $this->getServiceContainer()->getMainConfig()->get( 'Localtimezone' );
+		$tz = $this->getServiceContainer()->getMainConfig()->get( MainConfigNames::Localtimezone );
 		$this->assertSame( $tz, date_default_timezone_get() );
 	}
 }

@@ -23,6 +23,7 @@ namespace MediaWiki\Specials;
 use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Pager\ContribsPager;
 use MediaWiki\Permissions\PermissionManager;
@@ -146,7 +147,7 @@ class SpecialContributions extends ContributionsSpecialPage {
 		if (
 			ContributeFactory::isEnabledOnCurrentSkin(
 				$this->getSkin(),
-				$this->getConfig()->get( 'SpecialContributeSkinsEnabled' )
+				$this->getConfig()->get( MainConfigNames::SpecialContributeSkinsEnabled )
 			)
 		) {
 			return ContributeFactory::getAssociatedNavigationLinks(

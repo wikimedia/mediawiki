@@ -1640,7 +1640,7 @@ class SkinTemplate extends Skin {
 	private function isSpecialContributeShowable(): bool {
 		return ContributeFactory::isEnabledOnCurrentSkin(
 			$this,
-			$this->getConfig()->get( 'SpecialContributeSkinsEnabled' )
+			$this->getConfig()->get( MainConfigNames::SpecialContributeSkinsEnabled )
 		);
 	}
 

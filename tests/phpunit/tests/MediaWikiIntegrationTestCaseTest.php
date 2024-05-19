@@ -128,7 +128,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 	public function testOverrideConfigValues__before() {
 		$nsInfo1 = $this->getServiceContainer()->getNamespaceInfo();
 
-		$oldSitename = $this->getServiceContainer()->getMainConfig()->get( 'Sitename' );
+		$oldSitename = $this->getServiceContainer()->getMainConfig()->get( MainConfigNames::Sitename );
 
 		$this->overrideConfigValue( MainConfigNames::Sitename, 'TestingSitenameOverride' );
 		$nsInfo2 = $this->getServiceContainer()->getNamespaceInfo();
