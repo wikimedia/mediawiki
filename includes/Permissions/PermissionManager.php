@@ -489,11 +489,11 @@ class PermissionManager {
 				[ $this, 'checkReadPermissions' ],
 				[ $this, 'checkUserBlock' ], // for wgBlockDisablesLogin
 			];
+		} elseif ( $action === 'create' ) {
 			# Don't call checkSpecialsAndNSPermissions, checkSiteConfigPermissions
 			# or checkUserConfigPermissions here as it will lead to duplicate
 			# error messages. This is okay to do since anywhere that checks for
 			# create will also check for edit, and those checks are called for edit.
-		} elseif ( $action === 'create' ) {
 			$checks = [
 				[ $this, 'checkQuickPermissions' ],
 				[ $this, 'checkPermissionHooks' ],
