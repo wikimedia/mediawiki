@@ -410,7 +410,7 @@ return [
 				],
 				'javascript' => 'MediaWiki\\Content\\JavaScriptContentHandler',
 				'json' => 'JsonContentHandler',
-				'css' => 'CssContentHandler',
+				'css' => 'MediaWiki\\Content\\CssContentHandler',
 				'text' => 'TextContentHandler',
 				'unknown' => 'FallbackContentHandler',
 			],

@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Content\CssContent;
+use MediaWiki\Content\CssContentHandler;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 
@@ -8,7 +9,7 @@ class CssContentHandlerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideMakeRedirectContent
-	 * @covers \CssContentHandler::makeRedirectContent
+	 * @covers \MediaWiki\Content\CssContentHandler::makeRedirectContent
 	 */
 	public function testMakeRedirectContent( int $namespace, string $title, $expected ) {
 		$this->overrideConfigValues( [

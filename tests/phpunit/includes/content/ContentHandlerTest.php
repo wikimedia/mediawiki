@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Content\CssContentHandler;
 use MediaWiki\Content\JavaScriptContentHandler;
 use MediaWiki\Content\ValidationParams;
 use MediaWiki\Context\RequestContext;

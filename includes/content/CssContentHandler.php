@@ -21,7 +21,10 @@
  * @ingroup Content
  */
 
-use MediaWiki\Content\CssContent;
+namespace MediaWiki\Content;
+
+use CodeContentHandler;
+use Content;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Html\Html;
@@ -31,6 +34,7 @@ use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Title\Title;
 use Wikimedia\Minify\CSSMin;
+use WikiPage;
 
 /**
  * Content handler for CSS pages.
@@ -63,12 +67,14 @@ class CssContentHandler extends CodeContentHandler {
 	 *
 	 * @param Title $destination
 	 * @param string $text ignored
+	 *
 	 * @return CssContent
 	 */
 	public function makeRedirectContent( Title $destination, $text = '' ) {
 		// The parameters are passed as a string so the / is not url-encoded by wfArrayToCgi
 		$url = $destination->getFullURL( 'action=raw&ctype=text/css', false, PROTO_RELATIVE );
 		$class = $this->getContentClass();
+
 		return new $class( '/* #REDIRECT */@import ' . CSSMin::buildUrlValue( $url ) . ';' );
 	}
 
@@ -144,3 +150,5 @@ class CssContentHandler extends CodeContentHandler {
 		$output->setSections( [] );
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( CssContentHandler::class, 'CssContentHandler' );

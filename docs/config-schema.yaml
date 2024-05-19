@@ -2032,7 +2032,7 @@ config-schema:
             wikitext: { class: WikitextContentHandler, services: [TitleFactory, ParserFactory, GlobalIdGenerator, LanguageNameUtils, LinkRenderer, MagicWordFactory, ParsoidParserFactory] }
             javascript: MediaWiki\Content\JavaScriptContentHandler
             json: JsonContentHandler
-            css: CssContentHandler
+            css: MediaWiki\Content\CssContentHandler
             text: TextContentHandler
             unknown: FallbackContentHandler
         type: object
