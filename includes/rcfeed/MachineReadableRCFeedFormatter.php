@@ -19,10 +19,12 @@
  * @file
  */
 
+namespace MediaWiki\RCFeed;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\RCFeed\RCFeedFormatter;
 use MediaWiki\WikiMap\WikiMap;
+use RecentChange;
 
 /**
  * Abstract class so there can be multiple formatters outputting the same data
@@ -33,17 +35,22 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 
 	/**
 	 * Take the packet and return the formatted string
+	 *
 	 * @param array $packet
+	 *
 	 * @return string
 	 */
 	abstract protected function formatArray( array $packet );
 
 	/**
 	 * Generates a notification that can be easily interpreted by a machine.
+	 *
 	 * @see RCFeedFormatter::getLine
+	 *
 	 * @param array $feed
 	 * @param RecentChange $rc
 	 * @param string|null $actionComment
+	 *
 	 * @return string|null
 	 */
 	public function getLine( array $feed, RecentChange $rc, $actionComment ) {
@@ -139,3 +146,5 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 		return $this->formatArray( $packet );
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( MachineReadableRCFeedFormatter::class, 'MachineReadableRCFeedFormatter' );
