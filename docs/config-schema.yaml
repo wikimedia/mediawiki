@@ -6568,7 +6568,7 @@ config-schema:
             @since 1.22
     RCEngines:
         default:
-            redis: RedisPubSubFeedEngine
+            redis: MediaWiki\RCFeed\RedisPubSubFeedEngine
             udp: UDPRCFeedEngine
         type: object
         description: |-

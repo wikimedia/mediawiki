@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\RCFeed\RCFeed;
+use MediaWiki\RCFeed\RedisPubSubFeedEngine;
 
 /**
  * @covers MediaWiki\RCFeed\RCFeed

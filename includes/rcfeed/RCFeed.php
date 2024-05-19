@@ -22,7 +22,6 @@ namespace MediaWiki\RCFeed;
 
 use InvalidArgumentException;
 use RecentChange;
-use RedisPubSubFeedEngine;
 use UDPRCFeedEngine;
 
 /**
