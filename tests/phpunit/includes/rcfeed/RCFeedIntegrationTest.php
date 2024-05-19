@@ -12,7 +12,7 @@ use MediaWiki\Title\Title;
  * @covers \MediaWiki\RCFeed\FormattedRCFeed
  * @covers \RecentChange
  * @covers \MediaWiki\RCFeed\JSONRCFeedFormatter
- * @covers \MachineReadableRCFeedFormatter
+ * @covers \MediaWiki\RCFeed\MachineReadableRCFeedFormatter
  * @covers \MediaWiki\RCFeed\RCFeed
  */
 class RCFeedIntegrationTest extends MediaWikiIntegrationTestCase {

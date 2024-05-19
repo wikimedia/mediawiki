@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\RCFeed\MachineReadableRCFeedFormatter;
+
 /**
  * @since 1.23
  */

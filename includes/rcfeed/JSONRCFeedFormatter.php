@@ -21,7 +21,6 @@
 
 namespace MediaWiki\RCFeed;
 
-use MachineReadableRCFeedFormatter;
 use MediaWiki\Json\FormatJson;
 
 /**
