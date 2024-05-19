@@ -161,17 +161,19 @@ class SpecialUserRights extends SpecialPage {
 		$out->addModules( [ 'mediawiki.special.userrights' ] );
 
 		$this->mTarget = $par ?? $request->getVal( 'user' );
+		if ( $this->mTarget === null ) {
+			$fetchedStatus = Status::newFatal( 'nouserspecified' );
 
-		if ( is_string( $this->mTarget ) ) {
+		} else {
 			$this->mTarget = trim( $this->mTarget );
+
+			if ( $this->userNameUtils->getCanonical( $this->mTarget ) === $user->getName() ) {
+				$this->isself = true;
+			}
+
+			$fetchedStatus = $this->fetchUser( $this->mTarget, true );
 		}
 
-		if ( $this->mTarget !== null && $this->userNameUtils->getCanonical( $this->mTarget ) === $user->getName() ) {
-			$this->isself = true;
-		}
-
-		$fetchedStatus = $this->mTarget === null ? Status::newFatal( 'nouserspecified' ) :
-			$this->fetchUser( $this->mTarget, true );
 		if ( $fetchedStatus->isOK() ) {
 			$this->mFetchedUser = $fetchedUser = $fetchedStatus->value;
 			// Phan false positive on Status object - T323205
@@ -260,7 +262,7 @@ class SpecialUserRights extends SpecialPage {
 				) );
 			} else {
 				$status = $this->saveUserGroups(
-					$request->getVal( 'user-reason' ),
+					$request->getText( 'user-reason' ),
 					$targetUser
 				);
 
@@ -332,7 +334,7 @@ class SpecialUserRights extends SpecialPage {
 	 * @param UserIdentity $user
 	 * @return Status
 	 */
-	protected function saveUserGroups( $reason, $user ) {
+	protected function saveUserGroups( string $reason, UserIdentity $user ) {
 		if ( $this->userNameUtils->isTemp( $user->getName() ) ) {
 			return Status::newFatal( 'userrights-no-tempuser' );
 		}
@@ -417,7 +419,7 @@ class SpecialUserRights extends SpecialPage {
 	 *   containing only those groups that are to have new expiry values set
 	 * @return array Tuple of added, then removed groups
 	 */
-	public function doSaveUserGroups( $user, array $add, array $remove, $reason = '',
+	public function doSaveUserGroups( $user, array $add, array $remove, string $reason = '',
 		array $tags = [], array $groupExpiries = []
 	) {
 		// Validate input set...
@@ -533,7 +535,7 @@ class SpecialUserRights extends SpecialPage {
 	 * @param array $oldUGMs Associative array of (group name => UserGroupMembership)
 	 * @param array $newUGMs Associative array of (group name => UserGroupMembership)
 	 */
-	protected function addLogEntry( $user, array $oldGroups, array $newGroups, $reason,
+	protected function addLogEntry( $user, array $oldGroups, array $newGroups, string $reason,
 		array $tags, array $oldUGMs, array $newUGMs
 	) {
 		// make sure $oldUGMs and $newUGMs are in the same order, and serialise
@@ -552,7 +554,7 @@ class SpecialUserRights extends SpecialPage {
 		$logEntry = new ManualLogEntry( 'rights', 'rights' );
 		$logEntry->setPerformer( $this->getUser() );
 		$logEntry->setTarget( Title::makeTitle( NS_USER, $this->getDisplayUsername( $user ) ) );
-		$logEntry->setComment( is_string( $reason ) ? $reason : "" );
+		$logEntry->setComment( $reason );
 		$logEntry->setParameters( [
 			'4::oldgroups' => $oldGroups,
 			'5::newgroups' => $newGroups,
