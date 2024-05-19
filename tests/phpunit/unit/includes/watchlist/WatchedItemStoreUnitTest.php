@@ -16,6 +16,7 @@ use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\Watchlist\ActivityUpdateJob;
 use MediaWiki\Watchlist\WatchedItem;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\DeleteQueryBuilder;

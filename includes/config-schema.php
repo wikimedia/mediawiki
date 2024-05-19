@@ -2127,7 +2127,7 @@ return [
 				'recentChangesUpdate' => 'RecentChangesUpdateJob',
 				'refreshLinksPrioritized' => 'RefreshLinksJob',
 				'refreshLinksDynamic' => 'RefreshLinksJob',
-				'activityUpdateJob' => 'ActivityUpdateJob',
+				'activityUpdateJob' => 'MediaWiki\\Watchlist\\ActivityUpdateJob',
 				'categoryMembershipChange' => 'CategoryMembershipChangeJob',
 				'clearUserWatchlist' => 'ClearUserWatchlistJob',
 				'watchlistExpiry' => 'MediaWiki\\Watchlist\\WatchlistExpiryJob',

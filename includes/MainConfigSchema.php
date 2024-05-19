@@ -11,7 +11,6 @@
 // phpcs:disable Generic.Files.LineLength.TooLong
 namespace MediaWiki;
 
-use ActivityUpdateJob;
 use APCUBagOStuff;
 use AssembleUploadChunksJob;
 use BlockLogFormatter;
@@ -67,6 +66,7 @@ use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\CentralId\LocalIdLookup;
 use MediaWiki\User\Registration\LocalUserRegistrationProvider;
+use MediaWiki\Watchlist\ActivityUpdateJob;
 use MediaWiki\Watchlist\WatchlistExpiryJob;
 use MemcachedPeclBagOStuff;
 use MemcachedPhpBagOStuff;
