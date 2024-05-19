@@ -2,6 +2,7 @@
 
 namespace MediaWiki\RenameUser;
 
+use InvalidArgumentException;
 use Job;
 use MediaWiki\Config\Config;
 use MediaWiki\MainConfigNames;
@@ -91,7 +92,7 @@ class RenameUserJob extends Job {
 		} elseif ( $uniqueKey !== null && $keyId !== null ) {
 			$conds[$uniqueKey] = $keyId;
 		} else {
-			throw new \InvalidArgumentException( 'Expected ID batch or time range' );
+			throw new InvalidArgumentException( 'Expected ID batch or time range' );
 		}
 
 		# Actually update the rows for this job...

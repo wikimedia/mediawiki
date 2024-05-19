@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Deferred\LinksUpdate;
 
+use InvalidArgumentException;
 use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
@@ -530,7 +531,7 @@ abstract class LinksTable {
 				return $this->getNewLinkIDs();
 
 			default:
-				throw new \InvalidArgumentException( __METHOD__ . ": Unknown link type" );
+				throw new InvalidArgumentException( __METHOD__ . ": Unknown link type" );
 		}
 	}
 

@@ -43,7 +43,7 @@ trait SearchResultTrait {
 			$type = is_object( $extensionData )
 				? get_class( $extensionData )
 				: gettype( $extensionData );
-			throw new \InvalidArgumentException(
+			throw new InvalidArgumentException(
 				__METHOD__ . " must be called with Closure|array, but received $type" );
 		}
 	}

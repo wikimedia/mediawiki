@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Diff\TextDiffer;
 
+use InvalidArgumentException;
 use MediaWiki\Html\Html;
 use MediaWiki\Output\OutputPage;
 use MessageLocalizer;
@@ -61,7 +62,7 @@ abstract class BaseTextDiffer implements TextDiffer {
 	protected function validateFormats( $formats ) {
 		$badFormats = array_diff( $formats, $this->getFormats() );
 		if ( $badFormats ) {
-			throw new \InvalidArgumentException( 'The requested format is not supported by this engine' );
+			throw new InvalidArgumentException( 'The requested format is not supported by this engine' );
 		}
 	}
 

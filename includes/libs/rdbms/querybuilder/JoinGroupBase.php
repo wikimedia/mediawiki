@@ -2,6 +2,8 @@
 
 namespace Wikimedia\Rdbms;
 
+use InvalidArgumentException;
+
 /**
  * Shared code between SelectQueryBuilder and JoinGroup to represent tables and join conditions.
  *
@@ -37,11 +39,11 @@ abstract class JoinGroupBase {
 			$table = new Subquery( $table->getSQL() );
 		} elseif ( $table instanceof Subquery ) {
 			if ( $alias === null ) {
-				throw new \InvalidArgumentException( __METHOD__ .
+				throw new InvalidArgumentException( __METHOD__ .
 					': Subquery as table must provide an alias.' );
 			}
 		} elseif ( !is_string( $table ) ) {
-			throw new \InvalidArgumentException( __METHOD__ .
+			throw new InvalidArgumentException( __METHOD__ .
 				': $table must be either string, JoinGroup or SelectQueryBuilder' );
 		}
 		if ( $alias === null ) {
@@ -139,7 +141,7 @@ abstract class JoinGroupBase {
 		} elseif ( is_string( $table ) ) {
 			$this->tables[$alias] = $table;
 		} else {
-			throw new \InvalidArgumentException( __METHOD__ .
+			throw new InvalidArgumentException( __METHOD__ .
 				': $table must be either string, JoinGroup or SelectQueryBuilder' );
 		}
 		$this->joinConds[$alias] = [ $type, $joinConds ];

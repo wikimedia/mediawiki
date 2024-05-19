@@ -23,6 +23,7 @@
 
 namespace MediaWiki\Session;
 
+use InvalidArgumentException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
@@ -91,7 +92,7 @@ final class UserInfo {
 		// Ensure the ID actually exists
 		$user->load();
 		if ( $user->isAnon() ) {
-			throw new \InvalidArgumentException( 'Invalid ID' );
+			throw new InvalidArgumentException( 'Invalid ID' );
 		}
 
 		return new self( $user, $verified );
@@ -109,7 +110,7 @@ final class UserInfo {
 			UserRigorOptions::RIGOR_USABLE
 		);
 		if ( !$user ) {
-			throw new \InvalidArgumentException( 'Invalid user name' );
+			throw new InvalidArgumentException( 'Invalid user name' );
 		}
 		return new self( $user, $verified );
 	}

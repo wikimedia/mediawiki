@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Message;
 
+use InvalidArgumentException;
 use Stringable;
 
 /**
@@ -22,14 +23,14 @@ class ScalarParam extends MessageParam {
 	 */
 	public function __construct( $type, $value ) {
 		if ( $type === ParamType::LIST ) {
-			throw new \InvalidArgumentException(
+			throw new InvalidArgumentException(
 				'ParamType::LIST cannot be used with ScalarParam; use ListParam instead'
 			);
 		}
 		if ( !is_string( $value ) && !is_numeric( $value ) &&
 			!$value instanceof MessageValue && !$value instanceof Stringable ) {
 			$type = is_object( $value ) ? get_class( $value ) : gettype( $value );
-			throw new \InvalidArgumentException(
+			throw new InvalidArgumentException(
 				"Scalar parameter must be a string, number, or MessageValue; got $type"
 			);
 		}

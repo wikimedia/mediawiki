@@ -25,6 +25,7 @@ namespace MediaWiki\Session;
 
 use ApiUsageException;
 use ErrorPageError;
+use InvalidArgumentException;
 use Language;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\RequestContext;
@@ -580,7 +581,7 @@ abstract class SessionProvider implements SessionProviderInterface {
 	public function getAllowedUserRights( SessionBackend $backend ) {
 		if ( $backend->getProvider() !== $this ) {
 			// Not that this should ever happen...
-			throw new \InvalidArgumentException( 'Backend\'s provider isn\'t $this' );
+			throw new InvalidArgumentException( 'Backend\'s provider isn\'t $this' );
 		}
 
 		return null;
@@ -692,12 +693,12 @@ abstract class SessionProvider implements SessionProviderInterface {
 	 */
 	final protected function hashToSessionId( $data, $key = null ) {
 		if ( !is_string( $data ) ) {
-			throw new \InvalidArgumentException(
+			throw new InvalidArgumentException(
 				'$data must be a string, ' . gettype( $data ) . ' was passed'
 			);
 		}
 		if ( $key !== null && !is_string( $key ) ) {
-			throw new \InvalidArgumentException(
+			throw new InvalidArgumentException(
 				'$key must be a string or null, ' . gettype( $key ) . ' was passed'
 			);
 		}

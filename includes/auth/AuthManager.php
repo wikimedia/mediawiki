@@ -24,6 +24,7 @@
 namespace MediaWiki\Auth;
 
 use IDBAccessObject;
+use InvalidArgumentException;
 use Language;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Config\Config;
@@ -1793,7 +1794,7 @@ class AuthManager implements LoggerAwareInterface {
 		if ( !in_array( $source, $validSources, true )
 			&& !$this->getAuthenticationProvider( $source ) instanceof PrimaryAuthenticationProvider
 		) {
-			throw new \InvalidArgumentException( "Unknown auto-creation source: $source" );
+			throw new InvalidArgumentException( "Unknown auto-creation source: $source" );
 		}
 
 		$username = $user->getName();

@@ -25,6 +25,7 @@ namespace MediaWiki\Session;
 
 use BagOStuff;
 use CachedBagOStuff;
+use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\RequestContext;
@@ -186,7 +187,7 @@ class SessionManager implements SessionManagerInterface {
 		if ( isset( $options['config'] ) ) {
 			$this->config = $options['config'];
 			if ( !$this->config instanceof Config ) {
-				throw new \InvalidArgumentException(
+				throw new InvalidArgumentException(
 					'$options[\'config\'] must be an instance of Config'
 				);
 			}
@@ -196,7 +197,7 @@ class SessionManager implements SessionManagerInterface {
 
 		if ( isset( $options['logger'] ) ) {
 			if ( !$options['logger'] instanceof LoggerInterface ) {
-				throw new \InvalidArgumentException(
+				throw new InvalidArgumentException(
 					'$options[\'logger\'] must be an instance of LoggerInterface'
 				);
 			}
@@ -213,7 +214,7 @@ class SessionManager implements SessionManagerInterface {
 
 		if ( isset( $options['store'] ) ) {
 			if ( !$options['store'] instanceof BagOStuff ) {
-				throw new \InvalidArgumentException(
+				throw new InvalidArgumentException(
 					'$options[\'store\'] must be an instance of BagOStuff'
 				);
 			}
@@ -256,7 +257,7 @@ class SessionManager implements SessionManagerInterface {
 
 	public function getSessionById( $id, $create = false, WebRequest $request = null ) {
 		if ( !self::validateSessionId( $id ) ) {
-			throw new \InvalidArgumentException( 'Invalid session ID' );
+			throw new InvalidArgumentException( 'Invalid session ID' );
 		}
 		if ( !$request ) {
 			$request = new FauxRequest;
@@ -308,12 +309,12 @@ class SessionManager implements SessionManagerInterface {
 	private function getEmptySessionInternal( WebRequest $request = null, $id = null ) {
 		if ( $id !== null ) {
 			if ( !self::validateSessionId( $id ) ) {
-				throw new \InvalidArgumentException( 'Invalid session ID' );
+				throw new InvalidArgumentException( 'Invalid session ID' );
 			}
 
 			$key = $this->store->makeKey( 'MWSession', $id );
 			if ( is_array( $this->store->get( $key ) ) ) {
-				throw new \InvalidArgumentException( 'Session ID already exists' );
+				throw new InvalidArgumentException( 'Session ID already exists' );
 			}
 		}
 		if ( !$request ) {
@@ -719,7 +720,7 @@ class SessionManager implements SessionManagerInterface {
 					} else {
 						$userInfo = UserInfo::newAnonymous();
 					}
-				} catch ( \InvalidArgumentException $ex ) {
+				} catch ( InvalidArgumentException $ex ) {
 					$this->logger->error( 'Session "{session}": {exception}', [
 						'session' => $info->__toString(),
 						'exception' => $ex,
@@ -965,7 +966,7 @@ class SessionManager implements SessionManagerInterface {
 			$this->allSessionBackends[$id] !== $backend ||
 			$this->allSessionIds[$id] !== $backend->getSessionId()
 		) {
-			throw new \InvalidArgumentException( 'Backend was not registered with this SessionManager' );
+			throw new InvalidArgumentException( 'Backend was not registered with this SessionManager' );
 		}
 
 		unset( $this->allSessionBackends[$id] );
@@ -984,7 +985,7 @@ class SessionManager implements SessionManagerInterface {
 			$this->allSessionBackends[$oldId] !== $backend ||
 			$this->allSessionIds[$oldId] !== $sessionId
 		) {
-			throw new \InvalidArgumentException( 'Backend was not registered with this SessionManager' );
+			throw new InvalidArgumentException( 'Backend was not registered with this SessionManager' );
 		}
 
 		$newId = $this->generateSessionId();
