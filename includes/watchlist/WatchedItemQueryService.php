@@ -17,7 +17,6 @@ use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use RecentChange;
-use WatchedItemQueryServiceExtension;
 use WatchedItemStoreInterface;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IConnectionProvider;

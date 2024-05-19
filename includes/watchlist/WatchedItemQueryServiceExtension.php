@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Watchlist;
+
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -57,3 +59,5 @@ interface WatchedItemQueryServiceExtension {
 	);
 
 }
+/** @deprecated class alias since 1.43 */
+class_alias( WatchedItemQueryServiceExtension::class, 'WatchedItemQueryServiceExtension' );
