@@ -1,0 +1,12 @@
+@import 'mediawiki.skin.variables.less';
+@import 'mediawiki.mixins.less';
+
+.mw-protection-indicator-icon {
+	&--lock {
+		.cdx-mixin-css-icon( @cdx-icon-lock );
+
+		> span {
+			.mixin-screen-reader-text();
+		}
+	}
+}

@@ -34,6 +34,8 @@ For notes on 1.42.x and older releases, see HISTORY.
   More information: https://www.mediawiki.org/wiki/Heading_HTML_changes
   In a future release the new markup will become the default,
   and later this option will be removed.
+* (T12347) $wgEnableProtectionIndicators - Defaults to false, setting it to true
+  shows a lock icon indicator on protected pages.
 * …
 
 ==== Changed configuration ====

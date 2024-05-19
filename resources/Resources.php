@@ -2283,6 +2283,9 @@ return [
 			'ipb-hardblock'
 		],
 	],
+	'mediawiki.protectionIndicators.styles' => [
+		'styles' => 'resources/src/mediawiki.protectionIndicators/styles.less',
+	],
 	'mediawiki.special.changeslist' => [
 		'styles' => [
 			'resources/src/mediawiki.special.changeslist/changeslist.less'
