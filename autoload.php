@@ -3179,6 +3179,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\EventRelayer\\EventRelayer' => __DIR__ . '/includes/libs/eventrelayer/EventRelayer.php',
 	'Wikimedia\\EventRelayer\\EventRelayerGroup' => __DIR__ . '/includes/libs/eventrelayer/EventRelayerGroup.php',
 	'Wikimedia\\EventRelayer\\EventRelayerNull' => __DIR__ . '/includes/libs/eventrelayer/EventRelayerNull.php',
+	'Wikimedia\\FileBackend\\FileBackend' => __DIR__ . '/includes/libs/filebackend/FileBackend.php',
 	'Wikimedia\\Http\\HttpAcceptNegotiator' => __DIR__ . '/includes/libs/http/HttpAcceptNegotiator.php',
 	'Wikimedia\\Http\\HttpAcceptParser' => __DIR__ . '/includes/libs/http/HttpAcceptParser.php',
 	'Wikimedia\\Http\\TelemetryHeadersInterface' => __DIR__ . '/includes/libs/http/TelemetryHeadersInterface.php',

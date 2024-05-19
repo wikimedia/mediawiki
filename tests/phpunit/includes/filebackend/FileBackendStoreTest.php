@@ -2,9 +2,9 @@
 
 namespace phpunit\includes\filebackend;
 
-use FileBackend;
 use MediaWikiIntegrationTestCase;
 use MemoryFileBackend;
+use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\TestingAccessWrapper;
 
 /**

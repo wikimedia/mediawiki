@@ -37,6 +37,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\FileBackend\FileBackend;
 
 /**
  * @defgroup Upload Upload related

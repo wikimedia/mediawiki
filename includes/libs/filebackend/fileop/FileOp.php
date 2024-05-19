@@ -23,6 +23,7 @@
 
 use MediaWiki\Json\FormatJson;
 use Psr\Log\LoggerInterface;
+use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**

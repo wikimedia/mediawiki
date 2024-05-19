@@ -19,6 +19,7 @@ use MediaWiki\PoolCounter\PoolCounterWorkViaCallback;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\FileBackend\FileBackend;
 
 /**
  * Base code for files.

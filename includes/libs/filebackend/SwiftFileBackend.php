@@ -26,6 +26,7 @@ use MediaWiki\Json\FormatJson;
 use MediaWiki\Utils\MWTimestamp;
 use Psr\Log\LoggerInterface;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**

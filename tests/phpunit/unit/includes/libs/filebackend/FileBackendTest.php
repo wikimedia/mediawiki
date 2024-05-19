@@ -5,7 +5,6 @@ declare( strict_types = 1 );
 namespace Wikimedia\Tests\FileBackend;
 
 use Closure;
-use FileBackend;
 use InvalidArgumentException;
 use LockManager;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
@@ -14,11 +13,12 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\NullLogger;
 use ScopedLock;
 use StatusValue;
+use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \FileBackend
+ * @covers \Wikimedia\FileBackend\FileBackend
  */
 class FileBackendTest extends MediaWikiUnitTestCase {
 	/**

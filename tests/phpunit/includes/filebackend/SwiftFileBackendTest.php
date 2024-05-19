@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Logger\LoggerFactory;
+use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\TestingAccessWrapper;
 
 /**

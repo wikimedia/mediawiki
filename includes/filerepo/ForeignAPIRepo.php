@@ -25,6 +25,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
+use Wikimedia\FileBackend\FileBackend;
 
 /**
  * A foreign repository for a remote MediaWiki accessible through api.php requests.

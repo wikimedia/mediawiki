@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Output\StreamFile;
+use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\Rdbms\IDatabase;
 
 /**

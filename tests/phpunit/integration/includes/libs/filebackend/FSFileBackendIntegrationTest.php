@@ -8,7 +8,7 @@ use MediaWiki\WikiMap\WikiMap;
  * @group FileBackend
  * @group medium
  *
- * @covers \FileBackend
+ * @covers \Wikimedia\FileBackend\FileBackend
  *
  * @covers \CopyFileOp
  * @covers \CreateFileOp

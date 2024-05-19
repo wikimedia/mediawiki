@@ -28,10 +28,20 @@
  * @file
  * @ingroup FileBackend
  */
+
+namespace Wikimedia\FileBackend;
+
+use FSFile;
+use InvalidArgumentException;
+use LockManager;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
+use NullLockManager;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use ScopedLock;
+use StatusValue;
+use TempFSFile;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -191,7 +201,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *   - profiler : Optional callback that takes a section name argument and returns
 	 *      a ScopedCallback instance that ends the profile section in its destructor.
 	 *   - statusWrapper : Optional callback that is used to wrap returned StatusValues
-	 * @throws InvalidArgumentException
+	 * @throws \InvalidArgumentException
 	 */
 	public function __construct( array $config ) {
 		if ( !array_key_exists( 'name', $config ) ) {
@@ -1293,7 +1303,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @param array $params Parameters include:
 	 *   - dir     : storage directory
 	 *   - topOnly : only return direct child dirs of the directory
-	 * @return Traversable|array|null Directory list enumerator or null (initial I/O error)
+	 * @return \Traversable|array|null Directory list enumerator or null (initial I/O error)
 	 * @since 1.20
 	 */
 	abstract public function getDirectoryList( array $params );
@@ -1311,7 +1321,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *
 	 * @param array $params Parameters include:
 	 *   - dir : storage directory
-	 * @return Traversable|array|null Directory list enumerator or null (initial I/O error)
+	 * @return \Traversable|array|null Directory list enumerator or null (initial I/O error)
 	 * @since 1.20
 	 */
 	final public function getTopDirectoryList( array $params ) {
@@ -1337,7 +1347,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *   - topOnly    : only return direct child files of the directory (since 1.20)
 	 *   - adviseStat : set to true if stat requests will be made on the files (since 1.22)
 	 *   - forWrite   : true if the list will inform a write operations (since 1.41)
-	 * @return Traversable|array|null File list enumerator or null (initial I/O error)
+	 * @return \Traversable|array|null File list enumerator or null (initial I/O error)
 	 */
 	abstract public function getFileList( array $params );
 
@@ -1354,7 +1364,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @param array $params Parameters include:
 	 *   - dir        : storage directory
 	 *   - adviseStat : set to true if stat requests will be made on the files (since 1.22)
-	 * @return Traversable|array|null File list enumerator or null on failure
+	 * @return \Traversable|array|null File list enumerator or null on failure
 	 * @since 1.20
 	 */
 	final public function getTopFileList( array $params ) {
@@ -1631,7 +1641,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *
 	 * @param string $type One of (attachment, inline)
 	 * @param string $filename Suggested file name (should not contain slashes)
-	 * @throws InvalidArgumentException
+	 * @throws \InvalidArgumentException
 	 * @return string
 	 * @since 1.20
 	 */
@@ -1745,3 +1755,5 @@ abstract class FileBackend implements LoggerAwareInterface {
 		return $this->streamerOptions;
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( FileBackend::class, 'FileBackend' );

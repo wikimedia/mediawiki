@@ -22,6 +22,7 @@
  */
 
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**

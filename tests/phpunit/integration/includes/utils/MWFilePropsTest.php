@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\FileBackend\FileBackend;
+
 /**
  * @covers \MWFileProps
  */

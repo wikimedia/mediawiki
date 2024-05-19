@@ -20,6 +20,8 @@
  * @file
  */
 
+use Wikimedia\FileBackend\FileBackend;
+
 /**
  * MimeMagic helper wrapper
  *
