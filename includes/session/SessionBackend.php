@@ -24,6 +24,7 @@
 namespace MediaWiki\Session;
 
 use CachedBagOStuff;
+use InvalidArgumentException;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -158,15 +159,15 @@ final class SessionBackend {
 		$this->usePhpSessionHandling = $phpSessionHandling !== 'disable';
 
 		if ( $info->getUserInfo() && !$info->getUserInfo()->isVerified() ) {
-			throw new \InvalidArgumentException(
+			throw new InvalidArgumentException(
 				"Refusing to create session for unverified user {$info->getUserInfo()}"
 			);
 		}
 		if ( $info->getProvider() === null ) {
-			throw new \InvalidArgumentException( 'Cannot create session without a provider' );
+			throw new InvalidArgumentException( 'Cannot create session without a provider' );
 		}
 		if ( $info->getId() !== $id->getId() ) {
-			throw new \InvalidArgumentException( 'SessionId and SessionInfo don\'t match' );
+			throw new InvalidArgumentException( 'SessionId and SessionInfo don\'t match' );
 		}
 
 		$this->id = $id;
@@ -412,7 +413,7 @@ final class SessionBackend {
 	 */
 	public function getRequest( $index ) {
 		if ( !isset( $this->requests[$index] ) ) {
-			throw new \InvalidArgumentException( 'Invalid session index' );
+			throw new InvalidArgumentException( 'Invalid session index' );
 		}
 		return $this->requests[$index];
 	}
@@ -481,7 +482,7 @@ final class SessionBackend {
 	 */
 	public function suggestLoginUsername( $index ) {
 		if ( !isset( $this->requests[$index] ) ) {
-			throw new \InvalidArgumentException( 'Invalid session index' );
+			throw new InvalidArgumentException( 'Invalid session index' );
 		}
 		return $this->provider->suggestLoginUsername( $this->requests[$index] );
 	}
@@ -551,7 +552,7 @@ final class SessionBackend {
 	 */
 	public function setProviderMetadata( $metadata ) {
 		if ( $metadata !== null && !is_array( $metadata ) ) {
-			throw new \InvalidArgumentException( '$metadata must be an array or null' );
+			throw new InvalidArgumentException( '$metadata must be an array or null' );
 		}
 		if ( $this->providerMetadata !== $metadata ) {
 			$this->providerMetadata = $metadata;

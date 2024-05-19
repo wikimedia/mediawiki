@@ -23,6 +23,7 @@
 namespace MediaWiki\Deferred\LinksUpdate;
 
 use IDBAccessObject;
+use InvalidArgumentException;
 use Job;
 use MediaWiki\Cache\BacklinkCache;
 use MediaWiki\Deferred\AutoCommitUpdate;
@@ -503,7 +504,7 @@ class LinksUpdate extends DataUpdate {
 		if ( $table instanceof TitleLinksTable ) {
 			return $table->getPageReferenceIterator( $setType );
 		} else {
-			throw new \InvalidArgumentException(
+			throw new InvalidArgumentException(
 				__METHOD__ . ": $tableName does not have a list of titles" );
 		}
 	}

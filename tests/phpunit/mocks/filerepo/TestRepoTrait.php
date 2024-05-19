@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\FileRepo;
 
 use FileBackendGroup;
 use FSFileBackend;
+use InvalidArgumentException;
 use LocalRepo;
 use LogicException;
 use MediaWiki\MediaWikiServices;
@@ -72,12 +73,12 @@ trait TestRepoTrait {
 		}
 
 		if ( !str_starts_with( $dir, wfTempDir() ) ) {
-			throw new \InvalidArgumentException( "Not in temp dir: $dir" );
+			throw new InvalidArgumentException( "Not in temp dir: $dir" );
 		}
 
 		$name = basename( $dir );
 		if ( !str_starts_with( $name, 'mw-mock-repo-' ) ) {
-			throw new \InvalidArgumentException( "Not a mock repo dir: $dir" );
+			throw new InvalidArgumentException( "Not a mock repo dir: $dir" );
 		}
 
 		// TODO: Recursively delete the directory. Scary!

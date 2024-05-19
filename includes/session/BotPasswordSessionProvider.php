@@ -23,6 +23,7 @@
 
 namespace MediaWiki\Session;
 
+use InvalidArgumentException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Request\WebRequest;
@@ -56,12 +57,12 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 		parent::__construct( $params );
 
 		if ( !isset( $params['priority'] ) ) {
-			throw new \InvalidArgumentException( __METHOD__ . ': priority must be specified' );
+			throw new InvalidArgumentException( __METHOD__ . ': priority must be specified' );
 		}
 		if ( $params['priority'] < SessionInfo::MIN_PRIORITY ||
 			$params['priority'] > SessionInfo::MAX_PRIORITY
 		) {
-			throw new \InvalidArgumentException( __METHOD__ . ': Invalid priority' );
+			throw new InvalidArgumentException( __METHOD__ . ': Invalid priority' );
 		}
 
 		$this->priority = $params['priority'];
@@ -195,7 +196,7 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 
 	public function getAllowedUserRights( SessionBackend $backend ) {
 		if ( $backend->getProvider() !== $this ) {
-			throw new \InvalidArgumentException( 'Backend\'s provider isn\'t $this' );
+			throw new InvalidArgumentException( 'Backend\'s provider isn\'t $this' );
 		}
 		$data = $backend->getProviderMetadata();
 		if ( $data && isset( $data['rights'] ) && is_array( $data['rights'] ) ) {
@@ -211,7 +212,7 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 		if ( $data && isset( $data['restrictions'] ) && is_string( $data['restrictions'] ) ) {
 			try {
 				return MWRestrictions::newFromJson( $data['restrictions'] );
-			} catch ( \InvalidArgumentException $e ) {
+			} catch ( InvalidArgumentException $e ) {
 				$this->logger->warning( __METHOD__ . ': Failed to parse restrictions: {restrictions}', [
 					'restrictions' => $data['restrictions']
 				] );

@@ -23,6 +23,7 @@
 
 namespace MediaWiki\Session;
 
+use InvalidArgumentException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\User;
@@ -65,16 +66,16 @@ class CookieSessionProvider extends SessionProvider {
 		// @codeCoverageIgnoreEnd
 
 		if ( !isset( $params['priority'] ) ) {
-			throw new \InvalidArgumentException( __METHOD__ . ': priority must be specified' );
+			throw new InvalidArgumentException( __METHOD__ . ': priority must be specified' );
 		}
 		if ( $params['priority'] < SessionInfo::MIN_PRIORITY ||
 			$params['priority'] > SessionInfo::MAX_PRIORITY
 		) {
-			throw new \InvalidArgumentException( __METHOD__ . ': Invalid priority' );
+			throw new InvalidArgumentException( __METHOD__ . ': Invalid priority' );
 		}
 
 		if ( !is_array( $params['cookieOptions'] ) ) {
-			throw new \InvalidArgumentException( __METHOD__ . ': cookieOptions must be an array' );
+			throw new InvalidArgumentException( __METHOD__ . ': cookieOptions must be an array' );
 		}
 
 		$this->priority = $params['priority'];
@@ -121,7 +122,7 @@ class CookieSessionProvider extends SessionProvider {
 		if ( $userId !== null ) {
 			try {
 				$userInfo = UserInfo::newFromId( $userId );
-			} catch ( \InvalidArgumentException $ex ) {
+			} catch ( InvalidArgumentException $ex ) {
 				return null;
 			}
 

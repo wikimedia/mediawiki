@@ -9,6 +9,7 @@ use ApiLogout;
 use ApiMain;
 use ApiModuleManager;
 use ApiRsd;
+use InvalidArgumentException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserFactory;
@@ -388,7 +389,7 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 	public function testAddModuleWithIncompleteSpec() {
 		$moduleManager = $this->getModuleManager();
 
-		$this->expectException( \InvalidArgumentException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( '$spec must define a class name' );
 		$moduleManager->addModule(
 			'logout',

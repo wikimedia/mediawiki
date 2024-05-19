@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Storage;
 
+use InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 use WANObjectCache;
 use Wikimedia\Rdbms\ILBFactory;
@@ -93,7 +94,7 @@ class NameTableStoreFactory {
 	public function get( $tableName, $wiki = false ): NameTableStore {
 		$infos = self::getTableInfo();
 		if ( !isset( $infos[$tableName] ) ) {
-			throw new \InvalidArgumentException( "Invalid table name \$tableName" );
+			throw new InvalidArgumentException( "Invalid table name \$tableName" );
 		}
 		if ( $wiki !== false && $wiki === $this->lbFactory->getLocalDomainID() ) {
 			$wiki = false;

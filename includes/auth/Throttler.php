@@ -22,6 +22,7 @@
 namespace MediaWiki\Auth;
 
 use BagOStuff;
+use InvalidArgumentException;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -65,7 +66,7 @@ class Throttler implements LoggerAwareInterface {
 		$invalidParams = array_diff_key( $params,
 			array_fill_keys( [ 'type', 'cache', 'warningLimit' ], true ) );
 		if ( $invalidParams ) {
-			throw new \InvalidArgumentException( 'unrecognized parameters: '
+			throw new InvalidArgumentException( 'unrecognized parameters: '
 				. implode( ', ', array_keys( $invalidParams ) ) );
 		}
 
@@ -113,7 +114,7 @@ class Throttler implements LoggerAwareInterface {
 	 */
 	public function increase( $username = null, $ip = null, $caller = null ) {
 		if ( $username === null && $ip === null ) {
-			throw new \InvalidArgumentException( 'Either username or IP must be set for throttling' );
+			throw new InvalidArgumentException( 'Either username or IP must be set for throttling' );
 		}
 
 		$userKey = $username ? md5( $username ) : null;
