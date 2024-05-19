@@ -1,4 +1,7 @@
 <?php
+
+use Wikimedia\Http\MultiHttpClient;
+
 /**
  * @group BagOStuff
  *

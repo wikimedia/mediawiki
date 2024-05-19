@@ -27,6 +27,7 @@ use MediaWiki\Utils\MWTimestamp;
 use Psr\Log\LoggerInterface;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\FileBackend\FileBackend;
+use Wikimedia\Http\MultiHttpClient;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**

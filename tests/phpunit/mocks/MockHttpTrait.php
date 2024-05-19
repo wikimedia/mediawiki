@@ -24,6 +24,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\Http\MultiHttpClient;
 
 /**
  * Trait for test cases that need to mock HTTP requests.

@@ -3,13 +3,14 @@
 use MediaWiki\Status\Status;
 use PHPUnit\Framework\Constraint\IsType;
 use PHPUnit\Framework\MockObject\MockObject;
+use Wikimedia\Http\MultiHttpClient;
 use Wikimedia\Http\TelemetryHeadersInterface;
 use Wikimedia\TestingAccessWrapper;
 
 /**
  * The urls herein are not actually called, because we mock the return results.
  *
- * @covers \MultiHttpClient
+ * @covers \Wikimedia\Http\MultiHttpClient
  */
 class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 	/**

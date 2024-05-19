@@ -3182,6 +3182,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\FileBackend\\FileBackend' => __DIR__ . '/includes/libs/filebackend/FileBackend.php',
 	'Wikimedia\\Http\\HttpAcceptNegotiator' => __DIR__ . '/includes/libs/http/HttpAcceptNegotiator.php',
 	'Wikimedia\\Http\\HttpAcceptParser' => __DIR__ . '/includes/libs/http/HttpAcceptParser.php',
+	'Wikimedia\\Http\\MultiHttpClient' => __DIR__ . '/includes/libs/http/MultiHttpClient.php',
 	'Wikimedia\\Http\\TelemetryHeadersInterface' => __DIR__ . '/includes/libs/http/TelemetryHeadersInterface.php',
 	'Wikimedia\\LightweightObjectStore\\ExpirationAwareness' => __DIR__ . '/includes/libs/objectcache/utils/ExpirationAwareness.php',
 	'Wikimedia\\LightweightObjectStore\\StorageAwareness' => __DIR__ . '/includes/libs/objectcache/utils/StorageAwareness.php',

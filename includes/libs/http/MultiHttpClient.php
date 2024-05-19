@@ -20,11 +20,13 @@
  * @file
  */
 
+namespace Wikimedia\Http;
+
+use InvalidArgumentException;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use Wikimedia\Http\TelemetryHeadersInterface;
 
 /**
  * Class to handle multiple HTTP requests
@@ -115,7 +117,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - caBundlePath      : path to specific Certificate Authority bundle (if any)
 	 *   - headers           : an array of default headers to send with every request
 	 *   - telemetry         : a \Wikimedia\Http\RequestTelemetry instance to track telemetry data
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	public function __construct( array $options ) {
 		if ( isset( $options['caBundlePath'] ) ) {
@@ -193,7 +195,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - httpVersion     : One of 'v1.0', 'v1.1', 'v2' or 'v2.0'. Leave empty to use
 	 *                       PHP/curl's default
 	 * @return array[] $reqs With response array populated for each
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	public function runMulti( array $reqs, array $opts = [] ) {
 		$this->normalizeRequests( $reqs );
@@ -253,7 +255,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - httpVersion:    : HTTP version to use
 	 * @phan-param array{connTimeout?:int,reqTimeout?:int,usePipelining?:bool,maxConnsPerHost?:int} $opts
 	 * @return array $reqs With response array populated for each
-	 * @throws Exception
+	 * @throws \Exception
 	 * @suppress PhanTypeInvalidDimOffset
 	 */
 	private function runMultiCurl( array $reqs, array $opts ) {
@@ -356,7 +358,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - httpVersion: default HTTP version
 	 * @phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintReturn
 	 * @return resource|object
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	protected function getCurlHandle( array &$req, array $opts ) {
 		$ch = curl_init();
@@ -489,7 +491,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 * @param array $opts
 	 * @phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintReturn
 	 * @return resource|object
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	protected function getCurlMulti( array $opts ) {
 		if ( !$this->cmh ) {
@@ -559,7 +561,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - reqTimeout      : post-connection timeout per request (seconds)
 	 * @phan-param array{connTimeout:int,reqTimeout:int} $opts
 	 * @return array $reqs With response array populated for each
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	private function runMultiHttp( array $reqs, array $opts = [] ) {
 		$httpOptions = [
@@ -812,3 +814,5 @@ class MultiHttpClient implements LoggerAwareInterface {
 	}
 
 }
+/** @deprecated class alias since 1.43 */
+class_alias( MultiHttpClient::class, 'MultiHttpClient' );

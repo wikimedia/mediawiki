@@ -15,7 +15,7 @@ use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
 use MediaWikiIntegrationTestCase;
-use MultiHttpClient;
+use Wikimedia\Http\MultiHttpClient;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;

@@ -2,6 +2,7 @@
 
 use MediaWiki\Config\ConfigException;
 use MediaWiki\Config\EtcdConfig;
+use Wikimedia\Http\MultiHttpClient;
 use Wikimedia\TestingAccessWrapper;
 
 /**
