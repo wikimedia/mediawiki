@@ -21,6 +21,8 @@
  * @ingroup FileBackend
  */
 
+use Wikimedia\FileBackend\FileBackend;
+
 /**
  * Change metadata for a file at the given storage path in the backend.
  * Parameters for this operation are outlined in FileBackend::doOperations().

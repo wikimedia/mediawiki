@@ -21,6 +21,8 @@
  * @ingroup FileBackend
  */
 
+use Wikimedia\FileBackend\FileBackend;
+
 /**
  * Move a file from one storage path to another in the backend.
  * Parameters for this operation are outlined in FileBackend::doOperations().

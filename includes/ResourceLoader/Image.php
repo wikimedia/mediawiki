@@ -21,7 +21,6 @@
 namespace MediaWiki\ResourceLoader;
 
 use DOMDocument;
-use FileBackend;
 use InvalidArgumentException;
 use InvalidSVGException;
 use MediaWiki\Languages\LanguageFallback;
@@ -31,6 +30,7 @@ use MediaWiki\Shell\Shell;
 use RuntimeException;
 use SvgHandler;
 use SVGReader;
+use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\Minify\CSSMin;
 
 /**

@@ -21,6 +21,8 @@
  * @ingroup FileBackend
  */
 
+use Wikimedia\FileBackend\FileBackend;
+
 /**
  * Delete a file at the given storage path from the backend.
  * Parameters for this operation are outlined in FileBackend::doOperations().

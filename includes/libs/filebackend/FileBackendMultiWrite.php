@@ -23,6 +23,7 @@
 
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Json\FormatJson;
+use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**

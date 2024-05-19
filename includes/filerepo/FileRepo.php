@@ -18,6 +18,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\FileBackend\FileBackend;
 
 /**
  * Base code for file repositories.

@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use Wikimedia\FileBackend\FileBackend;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**

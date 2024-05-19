@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\FileBackend\FileBackend;
 
 /**
  * External storage in a FileBackend.

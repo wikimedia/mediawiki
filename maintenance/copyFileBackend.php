@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Status\Status;
+use Wikimedia\FileBackend\FileBackend;
 
 require_once __DIR__ . '/Maintenance.php';
 

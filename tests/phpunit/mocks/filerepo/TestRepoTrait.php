@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\FileRepo;
 
-use FileBackend;
 use FileBackendGroup;
 use FSFileBackend;
 use LocalRepo;
@@ -11,6 +10,7 @@ use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\Assert;
 use RepoGroup;
 use Title;
+use Wikimedia\FileBackend\FileBackend;
 
 trait TestRepoTrait {
 

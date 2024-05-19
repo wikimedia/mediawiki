@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Status\Status;
+use Wikimedia\FileBackend\FileBackend;
 
 abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCase {
 

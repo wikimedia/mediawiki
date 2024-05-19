@@ -28,6 +28,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Output\StreamFile;
 use MediaWiki\Status\Status;
+use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
