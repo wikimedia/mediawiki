@@ -21,7 +21,6 @@
 namespace MediaWiki\RCFeed;
 
 use RecentChange;
-use RedisPubSubFeedEngine;
 use UDPRCFeedEngine;
 
 /**

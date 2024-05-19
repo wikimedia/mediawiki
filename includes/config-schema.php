@@ -1986,7 +1986,7 @@ return [
 			'RCFeeds' => [
 			],
 			'RCEngines' => [
-				'redis' => 'RedisPubSubFeedEngine',
+				'redis' => 'MediaWiki\\RCFeed\\RedisPubSubFeedEngine',
 				'udp' => 'UDPRCFeedEngine',
 			],
 			'RCWatchCategoryMembership' => false,

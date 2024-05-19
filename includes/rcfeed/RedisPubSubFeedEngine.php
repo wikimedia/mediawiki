@@ -18,7 +18,9 @@
  * @file
  */
 
-use MediaWiki\RCFeed\FormattedRCFeed;
+namespace MediaWiki\RCFeed;
+
+use RedisConnectionPool;
 
 /**
  * Send recent change to a Redis Pub/Sub channel.
@@ -81,3 +83,5 @@ class RedisPubSubFeedEngine extends FormattedRCFeed {
 		return false;
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( RedisPubSubFeedEngine::class, 'RedisPubSubFeedEngine' );
