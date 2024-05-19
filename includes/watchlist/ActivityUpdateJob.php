@@ -18,6 +18,10 @@
  * @file
  */
 
+namespace MediaWiki\Watchlist;
+
+use InvalidArgumentException;
+use Job;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
@@ -101,3 +105,5 @@ class ActivityUpdateJob extends Job {
 			->caller( __METHOD__ )->execute();
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( ActivityUpdateJob::class, 'ActivityUpdateJob' );

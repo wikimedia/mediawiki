@@ -2505,6 +2505,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Utils\\GitInfo' => __DIR__ . '/includes/utils/GitInfo.php',
 	'MediaWiki\\Utils\\MWTimestamp' => __DIR__ . '/includes/utils/MWTimestamp.php',
 	'MediaWiki\\Utils\\UrlUtils' => __DIR__ . '/includes/utils/UrlUtils.php',
+	'MediaWiki\\Watchlist\\ActivityUpdateJob' => __DIR__ . '/includes/watchlist/ActivityUpdateJob.php',
 	'MediaWiki\\Watchlist\\WatchedItem' => __DIR__ . '/includes/watchlist/WatchedItem.php',
 	'MediaWiki\\Watchlist\\WatchedItemQueryService' => __DIR__ . '/includes/watchlist/WatchedItemQueryService.php',
 	'MediaWiki\\Watchlist\\WatchedItemQueryServiceExtension' => __DIR__ . '/includes/watchlist/WatchedItemQueryServiceExtension.php',
