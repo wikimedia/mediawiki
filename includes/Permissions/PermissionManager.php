@@ -1368,7 +1368,11 @@ class PermissionManager {
 		}
 
 		// Check $wgNamespaceProtection for restricted namespaces
-		if ( $this->isNamespaceProtected( $title->getNamespace(), $user ) ) {
+		if ( $this->isNamespaceProtected( $title->getNamespace(), $user )
+			// Allow admins and oversighters to view deleted content, even if they
+			// cannot restore it. See T362536.
+			&& !in_array( $action, [ 'deletedhistory', 'deletedtext', 'viewsuppressed' ], true )
+		) {
 			$ns = $title->getNamespace() === NS_MAIN ?
 				wfMessage( 'nstab-main' )->text() : $title->getNsText();
 			$errors[] = $title->getNamespace() === NS_MEDIAWIKI ?
