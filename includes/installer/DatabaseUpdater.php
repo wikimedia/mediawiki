@@ -592,8 +592,10 @@ abstract class DatabaseUpdater {
 			if ( $hasVirtualDomain === true ) {
 				$virtualDomain = array_shift( $params );
 				$oldDb = $this->db;
-				$this->db = $lbFactory->getPrimaryDatabase( $virtualDomain );
-				'@phan-var IMaintainableDatabase $this->db';
+				$virtualDb = $lbFactory->getPrimaryDatabase( $virtualDomain );
+				'@phan-var IMaintainableDatabase $virtualDb';
+				$this->maintenance->setDB( $virtualDb );
+				$this->db = $virtualDb;
 			}
 			$func = array_shift( $params );
 			if ( !is_array( $func ) && method_exists( $this, $func ) ) {
@@ -604,6 +606,7 @@ abstract class DatabaseUpdater {
 			$ret = $func( ...$params );
 			if ( $hasVirtualDomain === true && $oldDb ) {
 				$this->db = $oldDb;
+				$this->maintenance->setDB( $oldDb );
 			}
 
 			flush();
