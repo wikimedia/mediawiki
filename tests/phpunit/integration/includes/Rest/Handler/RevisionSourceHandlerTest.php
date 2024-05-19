@@ -4,13 +4,13 @@ namespace MediaWiki\Tests\Rest\Handler;
 
 use BagOStuff;
 use Exception;
+use MediaWiki\Content\TextContent;
 use MediaWiki\Rest\Handler\RevisionSourceHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWikiIntegrationTestCase;
-use TextContent;
 use Wikimedia\Message\MessageValue;
 
 /**

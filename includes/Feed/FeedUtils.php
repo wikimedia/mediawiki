@@ -24,6 +24,7 @@
 namespace MediaWiki\Feed;
 
 use LogFormatter;
+use MediaWiki\Content\TextContent;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
@@ -33,7 +34,6 @@ use MediaWiki\Output\OutputPage;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
-use TextContent;
 use UtfNormal;
 
 /**

@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\Content\TextContent;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;

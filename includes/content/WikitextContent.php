@@ -25,6 +25,7 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\Content\TextContent;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;

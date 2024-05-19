@@ -1,5 +1,6 @@
 <?php
 // phpcs:disable MediaWiki.Files.ClassMatchesFilename.NotMatch
+use MediaWiki\Content\TextContent;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;

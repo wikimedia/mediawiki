@@ -1005,6 +1005,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Content\\JavaScriptContentHandler' => __DIR__ . '/includes/content/JavaScriptContentHandler.php',
 	'MediaWiki\\Content\\Renderer\\ContentParseParams' => __DIR__ . '/includes/content/Renderer/ContentParseParams.php',
 	'MediaWiki\\Content\\Renderer\\ContentRenderer' => __DIR__ . '/includes/content/Renderer/ContentRenderer.php',
+	'MediaWiki\\Content\\TextContent' => __DIR__ . '/includes/content/TextContent.php',
 	'MediaWiki\\Content\\Transform\\ContentTransformer' => __DIR__ . '/includes/content/Transform/ContentTransformer.php',
 	'MediaWiki\\Content\\Transform\\PreSaveTransformParams' => __DIR__ . '/includes/content/Transform/PreSaveTransformParams.php',
 	'MediaWiki\\Content\\Transform\\PreSaveTransformParamsValue' => __DIR__ . '/includes/content/Transform/PreSaveTransformParamsValue.php',

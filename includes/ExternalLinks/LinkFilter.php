@@ -21,10 +21,10 @@
 namespace MediaWiki\ExternalLinks;
 
 use Content;
+use MediaWiki\Content\TextContent;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use StringUtils;
-use TextContent;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeMatch;

@@ -8,6 +8,7 @@
  * @author Kunal Mehta <legoktm@gmail.com>
  */
 
+use MediaWiki\Content\TextContent;
 use MediaWiki\Html\Html;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Status\Status;

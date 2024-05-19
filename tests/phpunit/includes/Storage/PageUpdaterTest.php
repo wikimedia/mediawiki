@@ -6,6 +6,7 @@ use ChangeTags;
 use Content;
 use LogicException;
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Content\TextContent;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Message\Message;
@@ -21,7 +22,6 @@ use MediaWiki\User\UserIdentity;
 use MediaWikiIntegrationTestCase;
 use ParserOptions;
 use RecentChange;
-use TextContent;
 use WikiPage;
 use WikitextContent;
 

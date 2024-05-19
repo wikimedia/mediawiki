@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Content\JavaScriptContent;
+use MediaWiki\Content\TextContent;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
@@ -56,7 +57,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider dataGetRedirectTarget
-	 * @covers \TextContent::getRedirectTarget
+	 * @covers \MediaWiki\Content\TextContent::getRedirectTarget
 	 */
 	public function testGetRedirectTarget( $text, $expected ) {
 		$content = $this->newContent( $text );
@@ -71,7 +72,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider dataGetRedirectTarget
-	 * @covers \TextContent::isRedirect
+	 * @covers \MediaWiki\Content\TextContent::isRedirect
 	 */
 	public function testIsRedirect( $text, $expected ) {
 		$content = $this->newContent( $text );
@@ -96,7 +97,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider dataIsCountable
-	 * @covers \TextContent::isCountable
+	 * @covers \MediaWiki\Content\TextContent::isCountable
 	 */
 	public function testIsCountable( $text, $hasLinks, $mode, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::ArticleCountMethod, $mode );
@@ -133,7 +134,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider dataGetTextForSummary
-	 * @covers \TextContent::getTextForSummary
+	 * @covers \MediaWiki\Content\TextContent::getTextForSummary
 	 */
 	public function testGetTextForSummary( $text, $maxlength, $expected ) {
 		$content = $this->newContent( $text );
@@ -142,7 +143,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \TextContent::getTextForSearchIndex
+	 * @covers \MediaWiki\Content\TextContent::getTextForSearchIndex
 	 */
 	public function testGetTextForSearchIndex() {
 		$content = $this->newContent( 'hello world.' );
@@ -151,7 +152,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \TextContent::copy
+	 * @covers \MediaWiki\Content\TextContent::copy
 	 */
 	public function testCopy() {
 		$content = $this->newContent( 'hello world.' );
@@ -162,7 +163,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \TextContent::getSize
+	 * @covers \MediaWiki\Content\TextContent::getSize
 	 */
 	public function testGetSize() {
 		$content = $this->newContent( 'hello world.' );
@@ -171,7 +172,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \TextContent::getText
+	 * @covers \MediaWiki\Content\TextContent::getText
 	 */
 	public function testGetText() {
 		$content = $this->newContent( 'hello world.' );
@@ -180,7 +181,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \TextContent::getNativeData
+	 * @covers \MediaWiki\Content\TextContent::getNativeData
 	 */
 	public function testGetNativeData() {
 		$content = $this->newContent( 'hello world.' );
@@ -189,7 +190,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \TextContent::getWikitextForTransclusion
+	 * @covers \MediaWiki\Content\TextContent::getWikitextForTransclusion
 	 */
 	public function testGetWikitextForTransclusion() {
 		$content = $this->newContent( 'hello world.' );
@@ -198,7 +199,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \TextContent::getModel
+	 * @covers \MediaWiki\Content\TextContent::getModel
 	 */
 	public function testGetModel() {
 		$content = $this->newContent( "hello world." );
@@ -207,7 +208,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \TextContent::getContentHandler
+	 * @covers \MediaWiki\Content\TextContent::getContentHandler
 	 */
 	public function testGetContentHandler() {
 		$content = $this->newContent( "hello world." );
@@ -226,7 +227,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider dataIsEmpty
-	 * @covers \TextContent::isEmpty
+	 * @covers \MediaWiki\Content\TextContent::isEmpty
 	 */
 	public function testIsEmpty( $text, $empty ) {
 		$content = $this->newContent( $text );
@@ -246,7 +247,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider dataEquals
-	 * @covers \TextContent::equals
+	 * @covers \MediaWiki\Content\TextContent::equals
 	 */
 	public function testEquals( Content $a, Content $b = null, $equal = false ) {
 		$this->assertEquals( $equal, $a->equals( $b ) );
@@ -283,7 +284,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideConvert
-	 * @covers \TextContent::convert
+	 * @covers \MediaWiki\Content\TextContent::convert
 	 */
 	public function testConvert( $text, $model, $lossy, $expectedNative ) {
 		$content = $this->newContent( $text );
@@ -300,7 +301,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \TextContent::normalizeLineEndings
+	 * @covers \MediaWiki\Content\TextContent::normalizeLineEndings
 	 * @dataProvider provideNormalizeLineEndings
 	 */
 	public function testNormalizeLineEndings( $input, $expected ) {
@@ -325,7 +326,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \TextContent::__construct
+	 * @covers \MediaWiki\Content\TextContent::__construct
 	 * @covers \TextContentHandler::serializeContent
 	 */
 	public function testSerialize() {

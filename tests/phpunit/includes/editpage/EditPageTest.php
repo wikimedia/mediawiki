@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Content\TextContent;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\EditPage\EditPage;

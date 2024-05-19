@@ -28,7 +28,6 @@
 namespace MediaWiki\Content;
 
 use MediaWiki\Title\Title;
-use TextContent;
 
 /**
  * Content for JavaScript pages.

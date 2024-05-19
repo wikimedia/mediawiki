@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Content\TextContent;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Diff\TextDiffer\ManifoldTextDiffer;
 use MediaWiki\Diff\TextDiffer\Wikidiff2TextDiffer;
@@ -105,7 +106,7 @@ class TextSlotDiffRendererTest extends MediaWikiIntegrationTestCase {
 			'non-text right content' => [
 				[ "aaa\nbbb\nccc" ],
 				[ '', 'testing-nontext' ],
-				new ParameterTypeException( '$newContent', 'TextContent|null' ),
+				new ParameterTypeException( '$newContent', 'MediaWiki\Content\TextContent|null' ),
 			],
 		];
 	}
