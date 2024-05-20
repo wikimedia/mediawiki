@@ -2855,35 +2855,91 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	public function __wakeup() {
+		$oldAliases = [
+			// This was the pre-namespace name of the class, which is still
+			// used in pre-1.42 serialized objects.
+			'ParserOutput',
+		];
 		// Backwards compatibility, pre 1.36
-		$priorAccessedOptions = $this->getGhostFieldValue( 'mAccessedOptions' );
+		$priorAccessedOptions = $this->getGhostFieldValue( 'mAccessedOptions', ...$oldAliases );
 		if ( $priorAccessedOptions ) {
 			$this->mParseUsedOptions = $priorAccessedOptions;
 		}
 		// Backwards compatibility, pre 1.39
-		$priorIndexPolicy = $this->getGhostFieldValue( 'mIndexPolicy' );
+		$priorIndexPolicy = $this->getGhostFieldValue( 'mIndexPolicy', ...$oldAliases );
 		if ( $priorIndexPolicy ) {
 			$this->setIndexPolicy( $priorIndexPolicy );
 		}
 		// Backwards compatibility, pre 1.40
-		$mSections = $this->getGhostFieldValue( 'mSections' );
+		$mSections = $this->getGhostFieldValue( 'mSections', ...$oldAliases );
 		if ( $mSections !== null && $mSections !== [] ) {
 			$this->setSections( $mSections );
 		}
 		// Backwards compatibility, pre 1.42
-		$mModules = $this->getGhostFieldValue( 'mModules' );
+		$mModules = $this->getGhostFieldValue( 'mModules', ...$oldAliases );
 		if ( $mModules !== null && $mModules !== [] ) {
 			$this->addModules( $mModules );
 		}
 		// Backwards compatibility, pre 1.42
-		$mModuleStyles = $this->getGhostFieldValue( 'mModuleStyles' );
+		$mModuleStyles = $this->getGhostFieldValue( 'mModuleStyles', ...$oldAliases );
 		if ( $mModuleStyles !== null && $mModuleStyles !== [] ) {
 			$this->addModuleStyles( $mModuleStyles );
 		}
 		// Backwards compatibility, pre 1.42
-		$mText = $this->getGhostFieldValue( 'mText' );
+		$mText = $this->getGhostFieldValue( 'mText', ...$oldAliases );
 		if ( $mText !== null ) {
 			$this->setRawText( $mText );
+		}
+		// Backward compatibility with private fields, pre 1.42
+		$oldPrivateFields = [
+			'mRawText',
+			'mLanguageLinks',
+			'mCategories',
+			'mIndicators',
+			'mTitleText',
+			'mLinks',
+			'mLinksSpecial',
+			'mTemplates',
+			'mTemplateIds',
+			'mImages',
+			'mFileSearchOptions',
+			'mExternalLinks',
+			'mInterwikiLinks',
+			'mNewSection',
+			'mHideNewSection',
+			'mNoGallery',
+			'mHeadItems',
+			'mModuleSet',
+			'mModuleStyleSet',
+			'mJsConfigVars',
+			'mWarnings',
+			'mWarningMsgs',
+			'mTOCData',
+			'mProperties',
+			'mTimestamp',
+			'mEnableOOUI',
+			'mIndexSet',
+			'mNoIndexSet',
+			'mExtensionData',
+			'mLimitReportData',
+			'mLimitReportJSData',
+			'mCacheMessage',
+			'mParseStartTime',
+			'mTimeProfile',
+			'mPreventClickjacking',
+			'mExtraScriptSrcs',
+			'mExtraDefaultSrcs',
+			'mExtraStyleSrcs',
+			'mFlags',
+			'mSpeculativeRevId',
+			'speculativePageIdUsed',
+			'revisionTimestampUsed',
+			'revisionUsedSha1Base36',
+			'mWrapperDivClasses',
+			'mMaxAdaptiveExpiry',
+		];
+		foreach ( $oldPrivateFields as $f ) {
+			$this->restoreAliasedGhostField( $f, ...$oldAliases );
 		}
 	}
 

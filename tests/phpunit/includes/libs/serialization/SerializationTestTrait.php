@@ -160,6 +160,7 @@ trait SerializationTestTrait {
 	 * @param string|null $propName
 	 */
 	private function validateArrayEquality( $expected, $actual, ?string $propName = null ) {
+		$this->assertIsArray( $actual, "$propName: Expected array." );
 		$eKeys = array_keys( $expected );
 		$aKeys = array_keys( $actual );
 		$this->assertSame( count( $eKeys ), count( $aKeys ), "$propName: Expected equal-sized arrays." );

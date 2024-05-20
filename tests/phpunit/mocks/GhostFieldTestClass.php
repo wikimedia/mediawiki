@@ -3,6 +3,7 @@
 namespace Wikimedia\Tests\Reflection;
 
 use Wikimedia\Reflection\GhostFieldAccessTrait;
+use Wikimedia\Reflection\GhostFieldTestClass as OldGhostFieldTestClass;
 
 /**
  * This class used to contain a $privateField, $protectedField and $publicField.
@@ -15,7 +16,7 @@ class GhostFieldTestClass {
 	use GhostFieldAccessTrait;
 
 	public function getPrivateField() {
-		return $this->getGhostFieldValue( 'privateField' );
+		return $this->getGhostFieldValue( 'privateField', OldGhostFieldTestClass::class );
 	}
 
 	public function getProtectedField() {
@@ -26,3 +27,5 @@ class GhostFieldTestClass {
 		return $this->getGhostFieldValue( 'publicField' );
 	}
 }
+// Do not delete this alias; it is needed for GhostFieldAccessTraitTest
+class_alias( GhostFieldTestClass::class, 'Wikimedia\\Reflection\\GhostFieldTestClass' );
