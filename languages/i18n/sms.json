@@ -353,7 +353,7 @@
 	"permissionserrorstext": "Tuʹst ij leäkku vuõiggâdvuõtt tän tuejjeed {{PLURAL:$1|tän määinast|täin määinain}}:",
 	"permissionserrorstext-withaction": "Tuʹst ij leäkku vuõiggâdvuõtt $2 {{PLURAL:$1|tän määinast|täin määinain}}:",
 	"edit-gone-missing": "Seeid peiʹvveem ij oʹnnstam. Tõt lij deʹbe jaukkuum.",
-	"postedit-confirmation-saved": "Tuu muttâz ruõʹǩǩeš.",
+	"postedit-confirmation-saved": "[[Special:Diff/$2|Tuu muttâz]] ruõʹǩǩeš.",
 	"postedit-temp-created-label": "Kõskkpoddsaž õõʹnnitobdldõk",
 	"invalid-content-data": "Vââǥǥlaž siiskâž",
 	"invalid-json-data": "Vââǥǥlaž JSON: $1",

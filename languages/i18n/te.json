@@ -577,6 +577,7 @@
 	"resettokens-resetbutton": "ఎంచుకున్న టోకెన్లను రీసెట్ చెయ్యి",
 	"editrecovery": "దిద్దుబాటు రికవరీ",
 	"edit-recovery-nojs-placeholder": "దిద్దుబాటు రికవరీ అంశం కోసం జావాస్క్రిప్టు ఆవశ్యకం",
+	"edit-recovery-special-intro-empty": "మీరు భద్రపరచని మార్పులేవీ లేవు.",
 	"edit-recovery-special-recovered-on": "$1 నుండి",
 	"edit-recovery-loaded-title": "మార్పులను రికవరు చేసాం",
 	"edit-recovery-loaded-message": "భద్రపరచని మీ మార్పులు ఆటోమాటిగ్గా రికవరయ్యాయి.",

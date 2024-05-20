@@ -3979,7 +3979,7 @@
 	"userjsispublic": "Uwaga: Podstrony z kodem JavaScript są widoczne publicznie i nie powinny zawierać poufnych danych.",
 	"userjsonispublic": "Uwaga: podstrony JSON nie powinny zawierać poufnych danych, ponieważ są dostępne dla innych użytkowników.",
 	"usercssispublic": "Uwaga: Podstrony z kodem CSS są widoczne publicznie i nie powinny zawierać poufnych danych.",
-	"userjsdangerous": "Uwaga: Skrypty dodane na tej stronie zostaną uruchomione za każdym razem podczas ładowania strony. Dodany tutaj złośliwy kod może spowodować przejęcie konta. Kod zostanie wykonany podczas podglądu zmian na stronie.",
+	"userjsdangerous": "Uwaga: Skrypty dodane na tej stronie zostaną uruchomione za każdym razem podczas ładowania strony. Dodanie tutaj złośliwego kodu może spowodować przejęcie konta. Kod zostanie wykonany podczas podglądu zmian na stronie.",
 	"restrictionsfield-badip": "Nieprawidłowy adres IP lub zakres adresów: $1",
 	"restrictionsfield-label": "Dozwolone zakresy adresów IP:",
 	"restrictionsfield-help": "Jeden adres IP lub zakres CIDR w wierszu. Aby zaznaczyć wszystkie, użyj:<pre>0.0.0.0/0\n::/0</pre>",

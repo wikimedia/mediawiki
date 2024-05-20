@@ -4,7 +4,9 @@
 			"Olve Utne"
 		]
 	},
+	"preferences": "Hiebedime",
 	"saveprefs": "Vurrki",
+	"tooltip-preferences-save": "Vurrki hiebadime",
 	"prefs-personal": "Muv adnejdáhtá",
 	"username": "{{GENDER:$1|Adnejnamma}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Sebrulatj}} {{PLURAL:$1|gruhpa|gruhpaj}} sinne:",

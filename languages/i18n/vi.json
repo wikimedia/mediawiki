@@ -2084,7 +2084,7 @@
 	"logeventslist-patrol-log": "Nhật trình tuần tra",
 	"logeventslist-tag-log": "Nhật trình thẻ đánh dấu",
 	"logeventslist-newusers-log": "Nhật trình mở tài khoản",
-	"all-logs-page": "Tất cả nhật trình công khai",
+	"all-logs-page": "Nhật trình công khai chính",
 	"alllogstext": "Xem tất cả nhật trình của {{SITENAME}}.\nBạn có thể thu hẹp kết quả bằng cách chọn loại nhật trình, tên thành viên (phân biệt chữ hoa-chữ thường), hoặc các trang bị ảnh hưởng (cũng phân biệt chữ hoa-chữ thường).",
 	"logempty": "Không có mục nào khớp với từ khóa.",
 	"log-title-wildcard": "Tìm các tựa trang bắt đầu bằng các chữ này",

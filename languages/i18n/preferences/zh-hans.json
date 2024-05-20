@@ -55,7 +55,7 @@
 	"prefs-edits": "编辑数：",
 	"prefs-registration": "注册时间：",
 	"yourrealname": "真实姓名：",
-	"prefs-help-realname": "真实姓名是选填项目。\n如果提供，它可能用于署名您的贡献。",
+	"prefs-help-realname": "真实姓名是选填项。若提供，则可能用于给您的贡献署名。",
 	"yourpassword": "密码：",
 	"prefs-resetpass": "更改密码",
 	"passwordtooshort": "您的密码至少需要$1个字符。",
