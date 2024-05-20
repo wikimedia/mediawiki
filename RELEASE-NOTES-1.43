@@ -108,6 +108,7 @@ For notes on 1.42.x and older releases, see HISTORY.
 * Updated pear/net_smtp from 1.11.1 to 1.12.1.
 * Updated monolog/monolog from 2.9.2 to 2.9.3.
 * Updated symfony/yaml from 5.4.35 to 5.4.39.
+* Updated OOUI from v0.49.1 to v0.49.2.
 * …
 
 ===== Changed development-only external libraries =====

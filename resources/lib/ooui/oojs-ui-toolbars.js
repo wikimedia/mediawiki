@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.49.1
+ * OOUI v0.49.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-04-04T18:19:04Z
+ * Date: 2024-05-17T04:45:00Z
  */
 ( function ( OO ) {
 
@@ -369,7 +369,7 @@ OO.mixinClass( OO.ui.Toolbar, OO.ui.mixin.GroupElement );
  * changes, and an update to the state of tools is required.
  *
  * @event OO.ui.Toolbar#updateState
- * @param {...Mixed} data Application-defined parameters
+ * @param {...any} data Application-defined parameters
  */
 
 /**
@@ -382,6 +382,7 @@ OO.mixinClass( OO.ui.Toolbar, OO.ui.mixin.GroupElement );
 
 /**
  * Toolbar has resized to a point where narrow mode has changed
+ *
  * @event OO.ui.Toolbar#resize
  */
 
@@ -857,7 +858,7 @@ OO.ui.Tool.static.autoAddToGroup = true;
  * must also call this method so that the compatibility check can be performed.
  *
  * @static
- * @param {Mixed} data Data to check
+ * @param {any} data Data to check
  * @return {boolean} Tool can be used with data
  */
 OO.ui.Tool.static.isCompatibleWith = function () {
@@ -2521,7 +2522,7 @@ OO.ui.ListToolGroup = function OoUiListToolGroup( toolbar, config ) {
 	// Properties (must be set before parent constructor, which calls #populate)
 	this.allowCollapse = config.allowCollapse;
 	this.forceExpand = config.forceExpand;
-	this.expanded = config.expanded !== undefined ? config.expanded : false;
+	this.expanded = !!config.expanded;
 	this.collapsibleTools = [];
 
 	// Parent constructor

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.49.1
+ * OOUI v0.49.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-04-04T18:19:04Z
+ * Date: 2024-05-17T04:45:00Z
  */
 ( function ( OO ) {
 
@@ -142,10 +142,10 @@ OO.ui.findFocusable = function ( $container, backwards ) {
 		$focusableCandidates = Array.prototype.reverse.call( $focusableCandidates );
 	}
 
-	$focusableCandidates.each( function () {
-		const $this = $( this );
-		if ( OO.ui.isFocusableElement( $this ) ) {
-			$focusable = $this;
+	$focusableCandidates.each( ( i, el ) => {
+		const $el = $( el );
+		if ( OO.ui.isFocusableElement( $el ) ) {
+			$focusable = $el;
 			return false;
 		}
 	} );
@@ -169,10 +169,10 @@ OO.ui.getUserLanguages = function () {
 /**
  * Get a value in an object keyed by language code.
  *
- * @param {Object.<string,Mixed>} obj Object keyed by language code
+ * @param {Object.<string,any>} obj Object keyed by language code
  * @param {string|null} [lang] Language code, if omitted or null defaults to any user language
  * @param {string} [fallback] Fallback code, used if no matching language can be found
- * @return {Mixed} Local value
+ * @return {any} Local value
  */
 OO.ui.getLocalValue = function ( obj, lang, fallback ) {
 	// Requested language
@@ -383,18 +383,17 @@ OO.ui.infuse = function ( node, config ) {
  *     } );
  *
  * @param {string} key Message key
- * @param {...Mixed} [params] Message parameters
+ * @param {...any} [params] Message parameters
  * @return {string} Translated message with parameters substituted
  */
-OO.ui.msg = function ( key ) {
+OO.ui.msg = function ( key, ...params ) {
 	// `OO.ui.msg.messages` is defined in code generated during the build process
 	const messages = OO.ui.msg.messages;
-	const params = Array.prototype.slice.call( arguments, 1 );
 
 	let message = messages[ key ];
 	if ( typeof message === 'string' ) {
 		// Perform $1 substitution
-		message = message.replace( /\$(\d+)/g, function ( unused, n ) {
+		message = message.replace( /\$(\d+)/g, ( unused, n ) => {
 			const i = parseInt( n, 10 );
 			return params[ i - 1 ] !== undefined ? params[ i - 1 ] : '$' + n;
 		} );
@@ -411,14 +410,12 @@ OO.ui.msg = function ( key ) {
  * Use this when you are statically specifying a message and the message may not yet be present.
  *
  * @param {string} key Message key
- * @param {...Mixed} [params] Message parameters
+ * @param {...any} [params] Message parameters
  * @return {Function} Function that returns the resolved message when executed
  */
 OO.ui.deferMsg = function () {
-	const args = arguments;
-	return function () {
-		return OO.ui.msg.apply( OO.ui, args );
-	};
+	// eslint-disable-next-line mediawiki/msg-doc
+	return () => OO.ui.msg( ...arguments );
 };
 
 /**
@@ -426,8 +423,8 @@ OO.ui.deferMsg = function () {
  *
  * If the message is a function it will be executed, otherwise it will pass through directly.
  *
- * @param {Function|string|Mixed} msg
- * @return {string|Mixed} Resolved message when there was something to resolve, pass through
+ * @param {Function|string|any} msg
+ * @return {string|any} Resolved message when there was something to resolve, pass through
  *  otherwise
  */
 OO.ui.resolveMsg = function ( msg ) {
@@ -620,7 +617,7 @@ OO.ui.mixin = {};
  *  Instances of OO.ui.Element will have their $element appended.
  * @param {jQuery} [config.$content] Content elements to append (after #text).
  * @param {jQuery} [config.$element] Wrapper element. Defaults to a new element with #getTagName.
- * @param {Mixed} [config.data] Custom data of any type or combination of types (e.g., string, number,
+ * @param {any} [config.data] Custom data of any type or combination of types (e.g., string, number,
  *  array, object).
  *  Data can also be specified with the #setData method.
  */
@@ -654,7 +651,7 @@ OO.ui.Element = function OoUiElement( config ) {
 		// The `content` property treats plain strings as text; use an
 		// HtmlSnippet to append HTML content.  `OO.ui.Element`s get their
 		// appropriate $element appended.
-		this.$element.append( config.content.map( function ( v ) {
+		this.$element.append( config.content.map( ( v ) => {
 			if ( typeof v === 'string' ) {
 				// Escape string so it is properly represented in HTML.
 				// Don't create empty text nodes for empty strings.
@@ -760,7 +757,7 @@ OO.ui.Element.static.unsafeInfuse = function ( elem, config, domPromise ) {
 			domPromise.done( data.restorePreInfuseState.bind( data, stateCache ) );
 			const infusedChildrenCache = $elem.data( 'ooui-infused-children' );
 			if ( infusedChildrenCache && infusedChildrenCache.length ) {
-				infusedChildrenCache.forEach( function ( childData ) {
+				infusedChildrenCache.forEach( ( childData ) => {
 					const childState = childData.constructor.static.gatherPreInfuseState(
 						$elem,
 						childData
@@ -804,7 +801,7 @@ OO.ui.Element.static.unsafeInfuse = function ( elem, config, domPromise ) {
 	$elem.data( 'ooui-infused', true ); // prevent loops
 	data.id = id; // implicit
 	const infusedChildren = [];
-	data = OO.copy( data, null, function deserialize( value ) {
+	data = OO.copy( data, null, ( value ) => {
 		let infused;
 		if ( OO.isPlainObject( value ) ) {
 			if ( value.tag && doc.getElementById( value.tag ) ) {
@@ -1514,7 +1511,7 @@ OO.ui.Element.prototype.isVisible = function () {
 /**
  * Get element data.
  *
- * @return {Mixed} Element data
+ * @return {any} Element data
  */
 OO.ui.Element.prototype.getData = function () {
 	return this.data;
@@ -1523,7 +1520,7 @@ OO.ui.Element.prototype.getData = function () {
 /**
  * Set element data.
  *
- * @param {Mixed} data Element data
+ * @param {any} data Element data
  * @chainable
  * @return {OO.ui.Element} The element, for chaining
  */
@@ -1569,10 +1566,7 @@ OO.ui.Element.prototype.supports = function ( methods ) {
 		return typeof this[ methods ] === 'function';
 	}
 
-	const element = this;
-	return methods.every( function ( method ) {
-		return typeof element[ method ] === 'function';
-	} );
+	return methods.every( ( method ) => typeof this[ method ] === 'function' );
 };
 
 /**
@@ -2563,7 +2557,7 @@ OO.ui.mixin.GroupElement.prototype.setGroupElement = function ( $group ) {
  * Only the first item with matching data will be returned. To return all matching items,
  * use the #findItemsFromData method.
  *
- * @param {Mixed} data Item data to search for
+ * @param {any} data Item data to search for
  * @return {OO.ui.Element|null} Item with equivalent data, `null` if none exists
  */
 OO.ui.mixin.GroupElement.prototype.findItemFromData = function ( data ) {
@@ -2585,7 +2579,7 @@ OO.ui.mixin.GroupElement.prototype.findItemFromData = function ( data ) {
  * All items with matching data will be returned. To return only the first match, use the
  * #findItemFromData method instead.
  *
- * @param {Mixed} data Item data to search for
+ * @param {any} data Item data to search for
  * @return {OO.ui.Element[]} Items with equivalent data
  */
 OO.ui.mixin.GroupElement.prototype.findItemsFromData = function ( data ) {
@@ -3407,9 +3401,7 @@ OO.ui.mixin.FlaggedElement.static.flags = null;
  * @param {jQuery} $flagged Element that should be flagged
  */
 OO.ui.mixin.FlaggedElement.prototype.setFlaggedElement = function ( $flagged ) {
-	const classNames = Object.keys( this.flags ).map( function ( flag ) {
-		return 'oo-ui-flaggedElement-' + flag;
-	} );
+	const classNames = Object.keys( this.flags ).map( ( flag ) => 'oo-ui-flaggedElement-' + flag );
 
 	if ( this.$flagged ) {
 		this.$flagged.removeClass( classNames );
@@ -4167,9 +4159,7 @@ OO.ui.ButtonWidget.prototype.setNoFollow = function ( noFollow ) {
 		if ( noFollow ) {
 			rel = this.rel.concat( [ 'nofollow' ] );
 		} else {
-			rel = this.rel.filter( function ( value ) {
-				return value !== 'nofollow';
-			} );
+			rel = this.rel.filter( ( value ) => value !== 'nofollow' );
 		}
 		this.setRel( rel );
 	}
@@ -4504,9 +4494,9 @@ OO.ui.LabelWidget = function OoUiLabelWidget( config ) {
 		if ( this.input.getInputId() ) {
 			this.$element.attr( 'for', this.input.getInputId() );
 		} else {
-			this.$label.on( 'click', function () {
+			this.$label.on( 'click', () => {
 				this.input.simulateLabelClick();
-			}.bind( this ) );
+			} );
 		}
 	}
 	this.$element.addClass( 'oo-ui-labelWidget' );
@@ -4911,14 +4901,13 @@ OO.ui.ToggleSwitchWidget.prototype.simulateLabelClick = function () {
  *         return 100;
  *     }
  *     MessageDialog.prototype.getActionProcess = function ( action ) {
- *         const dialog = this;
  *         if ( action === 'save' ) {
- *             dialog.getActions().get({actions: 'save'})[0].pushPending();
+ *             this.getActions().get({actions: 'save'})[0].pushPending();
  *             return new OO.ui.Process()
- *             .next( 1000 )
- *             .next( function () {
- *                 dialog.getActions().get({actions: 'save'})[0].popPending();
- *             } );
+ *                 .next( 1000 )
+ *                 .next( () => {
+ *                     this.getActions().get({actions: 'save'})[0].popPending();
+ *                 } );
  *         }
  *         return MessageDialog.super.prototype.getActionProcess.call( this, action );
  *     };
@@ -6351,8 +6340,6 @@ OO.ui.PopupWidget.prototype.setSize = function ( width, height, transition ) {
  * @chainable
  */
 OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
-	const widget = this;
-
 	// Prevent transition from being interrupted
 	clearTimeout( this.transitionTimeout );
 	if ( transition ) {
@@ -6364,8 +6351,8 @@ OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 
 	if ( transition ) {
 		// Prevent transitioning after transition is complete
-		this.transitionTimeout = setTimeout( function () {
-			widget.$element.removeClass( 'oo-ui-popupWidget-transitioning' );
+		this.transitionTimeout = setTimeout( () => {
+			this.$element.removeClass( 'oo-ui-popupWidget-transitioning' );
 		}, 200 );
 	} else {
 		// Prevent transitioning immediately
@@ -7519,13 +7506,12 @@ OO.ui.SelectWidget.prototype.unbindDocumentKeyDownListener = function () {
  * @param {OO.ui.OptionWidget} item Item to scroll into view
  */
 OO.ui.SelectWidget.prototype.scrollItemIntoView = function ( item ) {
-	const widget = this;
 	// Chromium's Blink engine will generate spurious 'mouseover' events during programmatic
 	// scrolling and around 100-150 ms after it is finished.
 	this.blockMouseOverEvents++;
-	item.scrollElementIntoView().done( function () {
-		setTimeout( function () {
-			widget.blockMouseOverEvents--;
+	item.scrollElementIntoView().done( () => {
+		setTimeout( () => {
+			this.blockMouseOverEvents--;
 		}, 200 );
 	} );
 };
@@ -7708,9 +7694,7 @@ OO.ui.SelectWidget.prototype.findSelectedItems = function () {
 		return this.findFirstSelectedItem();
 	}
 
-	return this.items.filter( function ( item ) {
-		return item.isSelected();
-	} );
+	return this.items.filter( ( item ) => item.isSelected() );
 };
 
 /**
@@ -8556,9 +8540,7 @@ OO.ui.MenuSelectWidget.prototype.onDocumentKeyDown = function ( e ) {
  * @return {OO.ui.MenuOptionWidget[]} Visible items
  */
 OO.ui.MenuSelectWidget.prototype.getVisibleItems = function () {
-	return this.getItems().filter( function ( item ) {
-		return item.isVisible();
-	} );
+	return this.getItems().filter( ( item ) => item.isVisible() );
 };
 
 /**
@@ -8654,9 +8636,9 @@ OO.ui.MenuSelectWidget.prototype.bindDocumentKeyPressListener = function () {
 				'keydown mouseup cut paste change input select',
 				this.onInputEditHandler
 			);
-			this.$input.one( 'keypress', function () {
+			this.$input.one( 'keypress', () => {
 				this.previouslySelectedValue = null;
-			}.bind( this ) );
+			} );
 			this.previouslySelectedValue = this.$input.val();
 			this.updateItemVisibility();
 		}
@@ -9145,7 +9127,7 @@ OO.ui.DropdownWidget.prototype.setLabelledBy = function ( id ) {
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @param {Mixed} [config.data]
+ * @param {any} [config.data]
  */
 OO.ui.RadioOptionWidget = function OoUiRadioOptionWidget( config ) {
 	// Configuration initialization
@@ -9441,9 +9423,7 @@ OO.mixinClass( OO.ui.MultiselectWidget, OO.ui.mixin.TitledElement );
  * @return {OO.ui.MultioptionWidget[]} Selected options
  */
 OO.ui.MultiselectWidget.prototype.findSelectedItems = function () {
-	return this.items.filter( function ( item ) {
-		return item.isSelected();
-	} );
+	return this.items.filter( ( item ) => item.isSelected() );
 };
 
 /**
@@ -9452,9 +9432,7 @@ OO.ui.MultiselectWidget.prototype.findSelectedItems = function () {
  * @return {Object[]|string[]} Values of selected options
  */
 OO.ui.MultiselectWidget.prototype.findSelectedItemsData = function () {
-	return this.findSelectedItems().map( function ( item ) {
-		return item.data;
-	} );
+	return this.findSelectedItems().map( ( item ) => item.data );
 };
 
 /**
@@ -9466,7 +9444,7 @@ OO.ui.MultiselectWidget.prototype.findSelectedItemsData = function () {
  */
 OO.ui.MultiselectWidget.prototype.selectItems = function ( items ) {
 	const itemsSet = new Set( items );
-	this.items.forEach( function ( item ) {
+	this.items.forEach( ( item ) => {
 		const selected = itemsSet.has( item );
 		item.setSelected( selected );
 	} );
@@ -9481,10 +9459,8 @@ OO.ui.MultiselectWidget.prototype.selectItems = function ( items ) {
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.MultiselectWidget.prototype.selectItemsByData = function ( datas ) {
-	const dataHashSet = new Set( datas.map( function ( data ) {
-		return OO.getHash( data );
-	} ) );
-	this.items.forEach( function ( item ) {
+	const dataHashSet = new Set( datas.map( ( data ) => OO.getHash( data ) ) );
+	this.items.forEach( ( item ) => {
 		const selected = dataHashSet.has( OO.getHash( item.getData() ) );
 		item.setSelected( selected );
 	} );
@@ -9717,7 +9693,7 @@ OO.ui.CheckboxMultiselectWidget.prototype.onClick = function ( e ) {
 			// clicks on the <input> and on the <label> and there are additional fake clicks fired
 			// for non-click actions that change the checkboxes.
 			e.preventDefault();
-			setTimeout( function () {
+			setTimeout( () => {
 				if ( !items[ nowClickedIndex ].isDisabled() ) {
 					items[ nowClickedIndex ].setSelected( !wasSelected );
 				}
@@ -10005,15 +9981,14 @@ OO.ui.InputWidget.prototype.getInputElement = function () {
  * @param {jQuery.Event} e Key down, mouse up, cut, paste, change, input, or select event
  */
 OO.ui.InputWidget.prototype.onEdit = function () {
-	const widget = this;
 	if ( !this.isDisabled() ) {
-		widget.setValue( widget.$input.val() );
+		this.setValue( this.$input.val() );
 		// Allow the stack to clear so the value will be updated
 		// TODO: This appears to only be used by TextInputWidget, and in current browsers
 		// they always the value immediately, however it is mostly harmless so this can be
 		// left in until more thoroughly tested.
-		setTimeout( function () {
-			widget.setValue( widget.$input.val() );
+		setTimeout( () => {
+			this.setValue( this.$input.val() );
 		} );
 	}
 };
@@ -10441,12 +10416,11 @@ OO.ui.CheckboxInputWidget.prototype.getInputElement = function () {
  * @inheritdoc
  */
 OO.ui.CheckboxInputWidget.prototype.onEdit = function () {
-	const widget = this;
 	if ( !this.isDisabled() ) {
 		// Allow the stack to clear so the value will be updated
-		setTimeout( function () {
-			widget.setSelected( widget.$input.prop( 'checked' ) );
-			widget.setIndeterminate( widget.$input.prop( 'indeterminate' ) );
+		setTimeout( () => {
+			this.setSelected( this.$input.prop( 'checked' ) );
+			this.setIndeterminate( this.$input.prop( 'indeterminate' ) );
 		} );
 	}
 };
@@ -10711,8 +10685,6 @@ OO.ui.DropdownInputWidget.prototype.setOptions = function ( options ) {
  * @private
  */
 OO.ui.DropdownInputWidget.prototype.setOptionsData = function ( options ) {
-	const widget = this;
-
 	this.optionsDirty = true;
 
 	// Go through all the supplied option configs and create either
@@ -10725,13 +10697,13 @@ OO.ui.DropdownInputWidget.prototype.setOptionsData = function ( options ) {
 		let optionWidget;
 		if ( opt.optgroup !== undefined ) {
 			// Create a <optgroup> menu item.
-			optionWidget = widget.createMenuSectionOptionWidget( opt.optgroup );
+			optionWidget = this.createMenuSectionOptionWidget( opt.optgroup );
 			previousOptgroup = optionWidget;
 
 		} else {
 			// Create a normal <option> menu item.
-			const optValue = widget.cleanUpValue( opt.data );
-			optionWidget = widget.createMenuOptionWidget(
+			const optValue = this.cleanUpValue( opt.data );
+			optionWidget = this.createMenuOptionWidget(
 				optValue,
 				opt.label !== undefined ? opt.label : optValue
 			);
@@ -10791,11 +10763,10 @@ OO.ui.DropdownInputWidget.prototype.updateOptionsInterface = function () {
 	let $optionsContainer = this.$input;
 
 	const defaultValue = this.defaultValue;
-	const widget = this;
 
 	this.$input.empty();
 
-	this.dropdownWidget.getMenu().getItems().forEach( function ( optionWidget ) {
+	this.dropdownWidget.getMenu().getItems().forEach( ( optionWidget ) => {
 		let $optionNode;
 
 		if ( !( optionWidget instanceof OO.ui.MenuSectionOptionWidget ) ) {
@@ -10811,7 +10782,7 @@ OO.ui.DropdownInputWidget.prototype.updateOptionsInterface = function () {
 		} else {
 			$optionNode = $( '<optgroup>' )
 				.attr( 'label', optionWidget.getLabel() );
-			widget.$input.append( $optionNode );
+			this.$input.append( $optionNode );
 			$optionsContainer = $optionNode;
 		}
 
@@ -11154,12 +11125,10 @@ OO.ui.RadioSelectInputWidget.prototype.setOptions = function ( options ) {
  * @private
  */
 OO.ui.RadioSelectInputWidget.prototype.setOptionsData = function ( options ) {
-	const widget = this;
-
 	this.radioSelectWidget
 		.clearItems()
-		.addItems( options.map( function ( opt ) {
-			const optValue = widget.cleanUpValue( opt.data );
+		.addItems( options.map( ( opt ) => {
+			const optValue = this.cleanUpValue( opt.data );
 			return new OO.ui.RadioOptionWidget( {
 				data: optValue,
 				label: opt.label !== undefined ? opt.label : optValue
@@ -11259,9 +11228,7 @@ OO.ui.CheckboxMultiselectInputWidget.static.gatherPreInfuseState = function ( no
 		node, config
 	);
 	state.value = $( node ).find( '.oo-ui-checkboxInputWidget .oo-ui-inputWidget-input:checked' )
-		.toArray().map( function ( el ) {
-			return el.value;
-		} );
+		.toArray().map( ( el ) => el.value );
 	return state;
 };
 
@@ -11300,9 +11267,7 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.onCheckboxesSelect = function () 
  */
 OO.ui.CheckboxMultiselectInputWidget.prototype.getValue = function () {
 	const value = this.$element.find( '.oo-ui-checkboxInputWidget .oo-ui-inputWidget-input:checked' )
-		.toArray().map( function ( el ) {
-			return el.value;
-		} );
+		.toArray().map( ( el ) => el.value );
 	if ( !OO.compare( this.value, value ) ) {
 		this.setValue( value );
 	}
@@ -11335,9 +11300,7 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.cleanUpValue = function ( value )
 	if ( !Array.isArray( value ) ) {
 		return cleanValue;
 	}
-	const dataHashSet = new Set( this.checkboxMultiselectWidget.getItems().map( function ( item ) {
-		return OO.getHash( item.getData() );
-	} ) );
+	const dataHashSet = new Set( this.checkboxMultiselectWidget.getItems().map( ( item ) => OO.getHash( item.getData() ) ) );
 	for ( let i = 0; i < value.length; i++ ) {
 		const singleValue = OO.ui.CheckboxMultiselectInputWidget.super.prototype.cleanUpValue
 			.call( this, value[ i ] );
@@ -11390,15 +11353,13 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.setOptions = function ( options )
  * @private
  */
 OO.ui.CheckboxMultiselectInputWidget.prototype.setOptionsData = function ( options ) {
-	const widget = this;
-
 	this.optionsDirty = true;
 
 	this.checkboxMultiselectWidget
 		.clearItems()
-		.addItems( options.map( function ( opt ) {
+		.addItems( options.map( ( opt ) => {
 			const optValue = OO.ui.CheckboxMultiselectInputWidget.super.prototype.cleanUpValue
-				.call( widget, opt.data );
+				.call( this, opt.data );
 			const optDisabled = opt.disabled !== undefined ? opt.disabled : false;
 			const item = new OO.ui.CheckboxMultioptionWidget( {
 				data: optValue,
@@ -11406,7 +11367,7 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.setOptionsData = function ( optio
 				disabled: optDisabled
 			} );
 			// Set the 'name' and 'value' for form submission
-			item.checkbox.$input.attr( 'name', widget.inputName );
+			item.checkbox.$input.attr( 'name', this.inputName );
 			item.checkbox.setValue( optValue );
 			return item;
 		} ) );
@@ -11422,7 +11383,7 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.setOptionsData = function ( optio
 OO.ui.CheckboxMultiselectInputWidget.prototype.updateOptionsInterface = function () {
 	const defaultValueSet = new Set( this.defaultValue );
 
-	this.checkboxMultiselectWidget.getItems().forEach( function ( item ) {
+	this.checkboxMultiselectWidget.getItems().forEach( ( item ) => {
 		// Remember original selection state. This property can be later used to check whether
 		// the selection state of the input has been changed since it was created.
 		const isDefault = defaultValueSet.has( item.getData() );
@@ -11921,22 +11882,21 @@ OO.ui.TextInputWidget.prototype.setValidation = function ( validate ) {
  * @param {boolean} [isValid] Optionally override validation result
  */
 OO.ui.TextInputWidget.prototype.setValidityFlag = function ( isValid ) {
-	const widget = this,
-		setFlag = function ( valid ) {
-			if ( !valid ) {
-				widget.$input.attr( 'aria-invalid', 'true' );
-			} else {
-				widget.$input.removeAttr( 'aria-invalid' );
-			}
-			widget.setFlags( { invalid: !valid } );
-		};
+	const setFlag = ( valid ) => {
+		if ( !valid ) {
+			this.$input.attr( 'aria-invalid', 'true' );
+		} else {
+			this.$input.removeAttr( 'aria-invalid' );
+		}
+		this.setFlags( { invalid: !valid } );
+	};
 
 	if ( isValid !== undefined ) {
 		setFlag( isValid );
 	} else {
-		this.getValidity().then( function () {
+		this.getValidity().then( () => {
 			setFlag( true );
-		}, function () {
+		}, () => {
 			setFlag( false );
 		} );
 	}
@@ -11971,9 +11931,7 @@ OO.ui.TextInputWidget.prototype.getValidity = function () {
 	if ( this.validate instanceof Function ) {
 		result = this.validate( this.getValue() );
 		if ( result && typeof result.promise === 'function' ) {
-			return result.promise().then( function ( valid ) {
-				return rejectOrResolve( valid );
-			} );
+			return result.promise().then( ( valid ) => rejectOrResolve( valid ) );
 		}
 	} else {
 		// The only other type we accept is a RegExp, see #setValidation
@@ -12766,12 +12724,10 @@ OO.ui.ComboBoxInputWidget.prototype.setReadOnly = function () {
 OO.ui.ComboBoxInputWidget.prototype.setOptions = function ( options ) {
 	this.getMenu()
 		.clearItems()
-		.addItems( options.map( function ( opt ) {
-			return new OO.ui.MenuOptionWidget( {
-				data: opt.data,
-				label: opt.label !== undefined ? opt.label : opt.data
-			} );
-		} ) );
+		.addItems( options.map( ( opt ) => new OO.ui.MenuOptionWidget( {
+			data: opt.data,
+			label: opt.label !== undefined ? opt.label : opt.data
+		} ) ) );
 
 	return this;
 };
@@ -13191,13 +13147,13 @@ OO.ui.FieldLayout.prototype.createHelpElement = function ( help, $overlay ) {
 			invisibleLabel: true
 		} );
 
-		helpWidget.popup.on( 'ready', function () {
+		helpWidget.popup.on( 'ready', () => {
 			const $popupElement = helpWidget.popup.$element;
 			$popupElement.attr( 'tabindex', 0 );
 			$popupElement.trigger( 'focus' );
 		} );
 
-		helpWidget.popup.on( 'closing', function () {
+		helpWidget.popup.on( 'closing', () => {
 			helpWidget.$button.trigger( 'focus' );
 		} );
 
@@ -14347,7 +14303,7 @@ OO.ui.SelectFileInputWidget.prototype.setValue = function ( files ) {
 	if ( this.canSetFiles ) {
 		// Convert File[] array back to FileList for setting DOM value
 		const dataTransfer = new DataTransfer();
-		Array.prototype.forEach.call( this.currentFiles || [], function ( file ) {
+		Array.prototype.forEach.call( this.currentFiles || [], ( file ) => {
 			dataTransfer.items.add( file );
 		} );
 		this.$input[ 0 ].files = dataTransfer.files;
@@ -14370,9 +14326,7 @@ OO.ui.SelectFileInputWidget.prototype.setValue = function ( files ) {
  * @return {string} Filename
  */
 OO.ui.SelectFileInputWidget.prototype.getFilename = function () {
-	return this.currentFiles.map( function ( file ) {
-		return file.name;
-	} ).join( ', ' );
+	return this.currentFiles.map( ( file ) => file.name ).join( ', ' );
 };
 
 /**
@@ -14412,18 +14366,18 @@ OO.ui.SelectFileInputWidget.prototype.updateUI = function () {
 		if ( this.showDropTarget ) {
 			if ( !this.multiple ) {
 				this.pushPending();
-				this.loadAndGetImageUrl( this.currentFiles[ 0 ] ).done( function ( url ) {
+				this.loadAndGetImageUrl( this.currentFiles[ 0 ] ).done( ( url ) => {
 					this.$thumbnail.css( 'background-image', 'url( ' + url + ' )' );
-				}.bind( this ) ).fail( function () {
+				} ).fail( () => {
 					this.$thumbnail.append(
 						new OO.ui.IconWidget( {
 							icon: 'attachment',
 							classes: [ 'oo-ui-selectFileInputWidget-noThumbnail-icon oo-ui-selectFileWidget-noThumbnail-icon' ]
 						} ).$element
 					);
-				}.bind( this ) ).always( function () {
+				} ).always( () => {
 					this.popPending();
-				}.bind( this ) );
+				} );
 			}
 			this.$element.off( 'click' );
 		}
@@ -14459,7 +14413,7 @@ OO.ui.SelectFileInputWidget.prototype.loadAndGetImageUrl = function ( file ) {
 	) {
 		reader.onload = function ( event ) {
 			const img = document.createElement( 'img' );
-			img.addEventListener( 'load', function () {
+			img.addEventListener( 'load', () => {
 				if (
 					img.naturalWidth === 0 ||
 					img.naturalHeight === 0 ||
