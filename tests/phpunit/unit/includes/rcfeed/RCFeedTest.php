@@ -2,6 +2,7 @@
 
 use MediaWiki\RCFeed\RCFeed;
 use MediaWiki\RCFeed\RedisPubSubFeedEngine;
+use MediaWiki\RCFeed\UDPRCFeedEngine;
 
 /**
  * @covers MediaWiki\RCFeed\RCFeed

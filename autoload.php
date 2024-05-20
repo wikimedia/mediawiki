@@ -1903,6 +1903,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\RCFeed\\RCFeed' => __DIR__ . '/includes/rcfeed/RCFeed.php',
 	'MediaWiki\\RCFeed\\RCFeedFormatter' => __DIR__ . '/includes/rcfeed/RCFeedFormatter.php',
 	'MediaWiki\\RCFeed\\RedisPubSubFeedEngine' => __DIR__ . '/includes/rcfeed/RedisPubSubFeedEngine.php',
+	'MediaWiki\\RCFeed\\UDPRCFeedEngine' => __DIR__ . '/includes/rcfeed/UDPRCFeedEngine.php',
 	'MediaWiki\\RenameUser\\Hook\\RenameUserAbortHook' => __DIR__ . '/includes/RenameUser/Hook/RenameUserAbortHook.php',
 	'MediaWiki\\RenameUser\\Hook\\RenameUserCompleteHook' => __DIR__ . '/includes/RenameUser/Hook/RenameUserCompleteHook.php',
 	'MediaWiki\\RenameUser\\Hook\\RenameUserPreRenameHook' => __DIR__ . '/includes/RenameUser/Hook/RenameUserPreRenameHook.php',

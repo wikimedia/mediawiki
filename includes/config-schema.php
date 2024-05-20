@@ -1987,7 +1987,7 @@ return [
 			],
 			'RCEngines' => [
 				'redis' => 'MediaWiki\\RCFeed\\RedisPubSubFeedEngine',
-				'udp' => 'UDPRCFeedEngine',
+				'udp' => 'MediaWiki\\RCFeed\\UDPRCFeedEngine',
 			],
 			'RCWatchCategoryMembership' => false,
 			'UseRCPatrol' => true,
