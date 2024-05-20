@@ -371,8 +371,8 @@ $wgAddGroups['sysop'] = array( 'editor', 'reviewer', 'autoreview', 'autopatrol',
 'researcher', 'chatmod', 'blockedfromchat'  );
 $wgRemoveGroups['sysop'] = array( 'editor', 'reviewer', 'autoreview', 'autopatrol', 'patroller', 'translateadmin', 'confirmed', 
 'researcher', 'chatmod', 'blockedfromchat' );
-$wgAddGroups['steward'] = array( 'sysop', 'interface-admin', 'bureaucrat', 'steward', 'checkuser', 'suppress', 'non-stewardsuppress' );
-$wgRemoveGroups['steward'] = array( 'sysop', 'interface-admin', 'bureaucrat', 'steward', 'checkuser', 'suppress', 'non-stewardsuppress' );
+$wgAddGroups['steward'] = array( 'sysop', 'interface-admin', 'bureaucrat', 'steward', 'checkuser', 'suppress', 'non-stewardsuppress', 'abusefilter-admin', 'abusefilter-restricted' );
+$wgRemoveGroups['steward'] = array( 'sysop', 'interface-admin', 'bureaucrat', 'steward', 'checkuser', 'suppress', 'non-stewardsuppress', 'abusefilter-admin', 'abusefilter-restricted' );
 $wgAddGroups['bureaucrat'] = array( 'bot', 'sysop', 'bureaucrat', 'interwiki-admin' );
 $wgRemoveGroups['bureaucrat'] = array( 'bot', 'sysop', 'bureaucrat', 'interwiki-admin' );
 $wgGroupsRemoveFromSelf['sysop'] = array( 'sysop' );
