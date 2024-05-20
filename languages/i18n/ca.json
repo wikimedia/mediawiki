@@ -77,7 +77,9 @@
 			"Rbndev",
 			"Salvemm el lombard",
 			"Robertgarrigos",
-			"Iketsi"
+			"Iketsi",
+			"Lluis Cat",
+			"V27t"
 		]
 	},
 	"tog-underline": "Subratlla els enllaços:",
@@ -1528,7 +1530,7 @@
 	"rcfilters-highlighted-filters-list": "Destacat: $1",
 	"rcfilters-quickfilters": "Filtres desats",
 	"rcfilters-quickfilters-placeholder-title": "Encara no s’ha desat cap filtre",
-	"rcfilters-quickfilters-placeholder-description": "Per desar els teus filtres i usar-los  després, premeu l'icona de marcador de pàgina a l'àrea de Filtres Actius, més avall.",
+	"rcfilters-quickfilters-placeholder-description": "Per desar els teus filtres i usar-los després, premeu l'icona de marcador de pàgina a l'àrea de Filtres Actius, més avall.",
 	"rcfilters-savedqueries-defaultlabel": "Filtres desats",
 	"rcfilters-savedqueries-rename": "Reanomena",
 	"rcfilters-savedqueries-setdefault": "Defineix per defecte",

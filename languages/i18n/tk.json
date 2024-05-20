@@ -2723,7 +2723,7 @@
 	"watchlistedit-normal-done": "{{PLURAL:$1|1 sany at|$1 sany at}} gözegçilik sanawyndan aýyryldy:",
 	"watchlistedit-raw-title": "Işlenmedik gözegçilik sanawyny redaktirle",
 	"watchlistedit-raw-legend": "Işlenmedik gözegçilik sanawyny redaktirle",
-	"watchlistedit-raw-explain": "Gözegçilik sanawyňyzdaky atlar aşakda görkezilýär. Her setirde bir at goşmak ýa-da aýyrmak arkaly sanawy üýtgedip bilersiňiz. \nBolanyňyzdan soňra \"{{int:Watchlistedit-raw-submit}}\" düwmesine basyň. \nŞeýle-de siz  [[Special:EditWatchlist|adaty usuldan]] hem peýdalanyp bilersiňiz.",
+	"watchlistedit-raw-explain": "Gözegçilik sanawyňyzdaky atlar aşakda görkezilýär. Her setirde bir at goşmak ýa-da aýyrmak arkaly sanawy üýtgedip bilersiňiz. \nBolanyňyzdan soňra \"{{int:Watchlistedit-raw-submit}}\" düwmesine basyň. \nŞeýle-de siz [[Special:EditWatchlist|adaty usuldan]] hem peýdalanyp bilersiňiz.",
 	"watchlistedit-raw-titles": "Atlar:",
 	"watchlistedit-raw-submit": "Gözegçilik sanawyny täzele",
 	"watchlistedit-raw-done": "Gözegçilik sanawyňyz täzelendi.",

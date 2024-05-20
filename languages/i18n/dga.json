@@ -433,7 +433,7 @@
 	"watchlistfor2": "Bonne $1",
 	"watch": "Kaa",
 	"unwatch": "Neɛ zaa ba tɔŋ o",
-	"watchlist-details": "{{PLURAL:$1|$1   Gampɛle  $1 gampɛlɛ be la}} a fo yelzuri poɔ (ane yeli gampɛlɛ ).",
+	"watchlist-details": "{{PLURAL:$1|$1 gampɛle|$1 gampɛlɛ be la}} a fo yelzuri poɔ (ane yeli gampɛlɛ).",
 	"wlheader-showupdated": "Gama na ba naŋ leɛ male ayi a saŋe na fo naŋ kpɛ a wulluu poɔ<strong>bold</strong>.",
 	"wlnote": "Puliŋ {{PLURAL:$1|a leɛroo daŋweɛ soba|e la a baara <strong>$1</strong> leɛore}} be la a baaraa {{PLURAL:$2|gbelime|<strong>$2</strong> gbelimeri}}, a wo $3, $4.",
 	"watchlist-hide": "Sɔgle",

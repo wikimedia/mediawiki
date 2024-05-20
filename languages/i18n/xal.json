@@ -387,7 +387,7 @@
 	"cannotlogoutnow-title": "Мөн ода һарх болмҗ уга",
 	"cannotlogoutnow-text": "$1 ашглх цагт һарх болмҗ уга.",
 	"welcomeuser": "$1, тавта мөрлтн!",
-	"welcomecreation-msg": "Тана бүрткл кегдв.\nТа эврәннь [[Special:Preferences|{{SITENAME}}-н тохрлһан]]  хүврүлхән бичә марттн.",
+	"welcomecreation-msg": "Тана бүрткл кегдв.\nТа эврәннь [[Special:Preferences|{{SITENAME}}-н тохрлһан]] хүврүлхән бичә марттн.",
 	"yourname": "Кергләчин нерн",
 	"userlogin-yourname": "Кергләчин нерн",
 	"userlogin-yourname-ph": "Кергләчин нер орултн",

@@ -1640,7 +1640,7 @@
 	"rcfilters-filter-categorization-description": "Dodanie lub usunięcie strony z kategorii",
 	"rcfilters-filter-logactions-label": "Działania rejestrowane",
 	"rcfilters-filter-logactions-description": "Działania administracyjne, tworzenie kont, usuwanie stron, przesyłanie plików…",
-	"rcfilters-hideminor-conflicts-typeofchange-global": "Filtr „Drobne zmiany” koliduje z jednym lub wieloma filtrami Rodzaju zmian, ponieważ niektóre rodzaje zmian nie mogą być uznawane za  „drobne”. Kolidujące filtry zostały powyżej odpowiednio zaznaczone na pasku aktywnych filtrów.",
+	"rcfilters-hideminor-conflicts-typeofchange-global": "Filtr „Drobne zmiany” koliduje z jednym lub wieloma filtrami Rodzaju zmian, ponieważ niektóre rodzaje zmian nie mogą być uznawane za „drobne”. Kolidujące filtry zostały powyżej odpowiednio zaznaczone na pasku aktywnych filtrów.",
 	"rcfilters-hideminor-conflicts-typeofchange": "Niektóre rodzaje zmian nie mogą być uznawane za „drobne”, dlatego ten filtr koliduje z następującymi filtrami Rodzaju zmian: $1",
 	"rcfilters-typeofchange-conflicts-hideminor": "Ten filtr Rodzaju zmian koliduje z filtrem „Drobne zmiany”. Nie wszystkie zmiany mogą być uznawane za „drobne”.",
 	"rcfilters-filtergroup-lastrevision": "Ostatnie wersje",

@@ -9,7 +9,8 @@
 			"Amire80",
 			"СерМар",
 			"Марина",
-			"Albertoleoncio"
+			"Albertoleoncio",
+			"Mićadźoridź"
 		]
 	},
 	"tog-underline": "Ыстӧг визьйӧдлӧм:",
@@ -1482,7 +1483,7 @@
 	"rcfilters-filter-watchlistactivity-unseen-label": "Видлавтӧм вежӧмъяс",
 	"rcfilters-filter-watchlistactivity-unseen-description": "Лист бокъясын вежӧмъяс, мыйясӧс ті энӧ на видзӧдлӧй найӧс вӧчӧм бӧрын.",
 	"rcfilters-filter-watchlistactivity-seen-label": "Видлалӧм вежӧмъяс",
-	"rcfilters-filter-watchlistactivity-seen-description": "Лист бокъясын вежӧмъяс, мыйясӧс ті  аддзылінныд найӧс вӧчӧм бӧрын.",
+	"rcfilters-filter-watchlistactivity-seen-description": "Лист бокъясын вежӧмъяс, мыйясӧс ті аддзылінныд найӧс вӧчӧм бӧрын.",
 	"rcfilters-filtergroup-changetype": "Вежӧмлӧн сикас",
 	"rcfilters-filter-pageedits-label": "Лист бокын вежӧмъяс",
 	"rcfilters-filter-pageedits-description": "Вики пытшкӧс, сёрнитӧмъяс, категория серпасалӧм вежӧм...",
@@ -1746,7 +1747,7 @@
 	"zip-file-open-error": "Лоис сорсьӧм ZIP файл прӧверитӧм могысь файл восьтігӧн.",
 	"zip-wrong-format": "Индӧм файлыс оз ло ZIP файлӧн.",
 	"zip-bad": "Тайӧ ZIP файлыс жугӧдӧма либӧ сійӧс оз позь лыддьыны.\nСійӧс оз позь колана ногӧн прӧверитны.",
-	"zip-unsupported": "Тайӧ ZIP файлыс вӧдитчӧ позянлунъясӧн, кодъяс оз уджавны тайӧ MediaWiki-ын.  \nСійӧс оз позь колана ногӧн прӧверитны.",
+	"zip-unsupported": "Тайӧ ZIP файлыс вӧдитчӧ позянлунъясӧн, кодъяс оз уджавны тайӧ MediaWiki-ын.\nСійӧс оз позь колана ногӧн прӧверитны.",
 	"uploadstash": "Пыртӧдны недырся видзанінӧ",
 	"uploadstash-summary": "Тайӧ лист бокыс сетӧ позянлун пырны файлъясӧ, кодъяс вӧліны пыртӧдӧмаӧсь (либӧ найӧс пыртӧдӧны ӧні), но абу на йӧзӧдӧмаӧсь викиын. Тайӧ файлъяссӧ оз аддзы некод, найӧс пыртӧдысь пырӧдчысь кындзи.",
 	"uploadstash-clear": "Весавны недыр видзан файлъяссӧ",
@@ -1954,7 +1955,7 @@
 	"uncategorized-categories-exceptionlist": " # Сетӧма категорияяс лыддьӧг, кодъясӧс оз ков казьтывны Special:UncategorizedCategories-ын. \"*\" символсянь заводитчысь визьын ӧтикӧн. Мӧд символсянь (тшӧтш и коставлӧм) заводитчысь визьяс лоасны ӧтдортӧмаӧсь. Вӧдитчӧй \"#\"-ӧн комментъясын.",
 	"unusedcategories": "Вӧдитчытӧм категорияяс",
 	"unusedimages": "Вӧдитчытӧм файлъяс",
-	"wantedcategories": "Колана  категорияяс",
+	"wantedcategories": "Колана категорияяс",
 	"wantedpages": "Колана лист бокъяс",
 	"wantedpages-summary": "Медуна ыстӧга абутӧм лист бокъяс лыддьӧг, лист бокъяс кындзи, кӧні эм сӧмын на вылӧ индысь мӧдлаӧ ыстӧмъяса лист бокъяс.На вылӧ индысь мӧдлаӧ ыстӧмъяса лист бокъяс лыддьӧг босьтӧм могысь видзӧд [[{{#special:BrokenRedirects}}|уджавтӧм мӧдлаӧ ыстӧмъяс лыддьӧг]].",
 	"wantedpages-badtitle": "Лӧсявтӧм юрним корсьӧм бӧртасын: $1",

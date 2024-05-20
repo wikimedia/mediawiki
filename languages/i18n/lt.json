@@ -422,7 +422,7 @@
 	"logout-failed": "Negalite atsijungti: $1",
 	"cannotlogoutnow-title": "Negali atsijungti dabar",
 	"cannotlogoutnow-text": "Atsijungimas negalimas, kai naudojama $1.",
-	"welcomeuser": "Sveiki,  $1 !",
+	"welcomeuser": "Sveiki, $1!",
 	"welcomecreation-msg": "Jūsų paskyra buvo sukurta.\nNepamirškite pakeisti savo [[Special:Preferences|{{SITENAME}} nustatymų]].",
 	"yourname": "Naudotojo vardas:",
 	"userlogin-yourname": "Naudotojo vardas",
