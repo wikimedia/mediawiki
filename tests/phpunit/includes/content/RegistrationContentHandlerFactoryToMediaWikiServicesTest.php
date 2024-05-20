@@ -2,6 +2,7 @@
 
 use MediaWiki\Content\CssContentHandler;
 use MediaWiki\Content\JavaScriptContentHandler;
+use MediaWiki\Content\TextContentHandler;
 use MediaWiki\MainConfigNames;
 
 /**

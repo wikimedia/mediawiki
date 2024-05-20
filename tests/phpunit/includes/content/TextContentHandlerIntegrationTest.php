@@ -29,7 +29,7 @@ class TextContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideGetParserOutput
-	 * @covers \TextContentHandler::fillParserOutput
+	 * @covers \MediaWiki\Content\TextContentHandler::fillParserOutput
 	 */
 	public function testGetParserOutput( $title, $model, $text, $expectedHtml,
 		$expectedFields = null, $parserOptions = null

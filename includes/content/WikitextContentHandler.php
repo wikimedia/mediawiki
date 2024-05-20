@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\Content\Renderer\ContentParseParams;
+use MediaWiki\Content\TextContentHandler;
 use MediaWiki\Content\Transform\PreloadTransformParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Languages\LanguageNameUtils;

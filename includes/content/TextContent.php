@@ -34,7 +34,6 @@ use Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MWUnknownContentModelException;
-use TextContentHandler;
 use Wikimedia\Diff\Diff;
 use WikitextContent;
 
