@@ -115,6 +115,7 @@ class Names {
 		'bxr' => 'буряад', # Buryat (Russia)
 		'ca' => 'català', # Catalan
 		'cbk-zam' => 'Chavacano de Zamboanga', # Zamboanga Chavacano, T124657
+		'ccp' => '𑄌𑄋𑄴𑄟𑄳𑄦', # Chakma
 		'cdo' => '閩東語 / Mìng-dĕ̤ng-ngṳ̄', # Min-dong (multiple scripts - defaults to Latin)
 		'ce' => 'нохчийн', # Chechen
 		'ceb' => 'Cebuano', # Cebuano
