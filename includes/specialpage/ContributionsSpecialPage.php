@@ -69,6 +69,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class ContributionsSpecialPage extends IncludableSpecialPage {
 	protected $opts = [];
+	protected $formErrors = false;
 
 	protected IConnectionProvider $dbProvider;
 	protected NamespaceInfo $namespaceInfo;
@@ -297,6 +298,9 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 			$notExternal ? $userObj->getId() : 0, $userObj, $this )
 		) {
 			$out->addHTML( $this->getForm( $this->opts ) );
+			if ( $this->formErrors ) {
+				return;
+			}
 			// We want a pure UserIdentity for imported actors, so the first letter
 			// of them is in lowercase and queryable.
 			$userIdentity = $notExternal ? $userObj :
@@ -894,6 +898,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 		if ( !( $result === true || ( $result instanceof Status && $result->isGood() ) ) ) {
 			// Uncollapse if there are errors
 			$htmlForm->setCollapsibleOptions( false );
+			$this->formErrors = true;
 		}
 
 		return $htmlForm->getHTML( $result );
