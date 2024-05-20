@@ -4,7 +4,9 @@
 /* eslint-disable no-console */
 
 /**
- * Library for logging developer warnings to the JavaScript console.
+ * Log debug messages and developer warnings to the browser console.
+ *
+ * See [mw.log()]{@link mw.log(2)} for verbose debug logging.
  *
  * @namespace mw.log
  */

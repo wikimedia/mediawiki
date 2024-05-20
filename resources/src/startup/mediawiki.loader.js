@@ -21,10 +21,6 @@
 	 *
 	 * @see <https://www.mediawiki.org/wiki/ResourceLoader/Features>
 	 * @namespace mw.loader
-	 * @memberof mw
-	 * @singleton
-	 * @hideconstructor
-	 * @static
 	 */
 
 	/**

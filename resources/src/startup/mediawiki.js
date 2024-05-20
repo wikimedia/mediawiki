@@ -10,22 +10,41 @@
 
 	/**
 	 * @class mw.Map
-	 * @classdesc ES3-compatible class similar to [ES6 Map]{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map}.
+	 * @classdesc Collection of values by string keys.
 	 *
-	 * @example
-	 * const map = new mw.Map();
-	 * map.set( 'foo', 5 );
-	 * alert( 5 === map.get( 'foo' ) );
+	 * This is an internal class that backs the mw.config and mw.messages APIs.
 	 *
-	 * @constructor
-	 * @description Create an object that can be read from or written to via methods that allow
-	 * interaction both with single and multiple properties at once.
+	 * It allows reading and writing to the collection via public methods,
+	 * and allows batch iteraction for all its methods.
+	 *
+	 * For mw.config, scripts sometimes choose to "import" a set of keys locally,
+	 * like so:
+	 *
+	 * ```
+	 * var conf = mw.config.get( [ 'wgServerName', 'wgUserName', 'wgPageName' ] );
+	 * conf.wgServerName; // "example.org"
+	 * ```
+	 *
+	 * Check the existence ("AND" condition) of multiple keys:
+	 *
+	 * ```
+	 * if ( mw.config.exists( [ 'wgFoo', 'wgBar' ] ) );
+	 * ```
+	 *
+	 * For mw.messages, the {@link mw.Map#set} method allows mw.loader and mw.Api to essentially
+	 * extend the object, and batch-apply all their loaded values in one go:
+	 *
+	 * ```
+	 * mw.messages.set( { "mon": "Monday", "tue": "Tuesday" } );
+	 * ```
+	 *
+	 * @hideconstructor
 	 */
 	function Map() {
 		this.values = Object.create( null );
 	}
 
-	Map.prototype = {
+	Map.prototype = /** @lends mw.Map.prototype */ {
 		constructor: Map,
 
 		/**
@@ -33,7 +52,6 @@
 		 *
 		 * If called with no arguments, all values are returned.
 		 *
-		 * @memberof mw.Map
 		 * @param {string|Array} [selection] Key or array of keys to retrieve values for.
 		 * @param {any} [fallback=null] Value for keys that don't exist.
 		 * @return {any|Object|null} If selection was a string, returns the value,
@@ -79,7 +97,6 @@
 		/**
 		 * Set one or more key/value pairs.
 		 *
-		 * @memberof mw.Map
 		 * @param {string|Object} selection Key to set value for, or object mapping keys to values
 		 * @param {any} [value] Value to set (optional, only in use when key is a string)
 		 * @return {boolean} True on success, false on failure
@@ -105,7 +122,6 @@
 		/**
 		 * Check if a given key exists in the map.
 		 *
-		 * @memberof mw.Map
 		 * @param {string} selection Key to check
 		 * @return {boolean} True if the key exists
 		 */
@@ -117,10 +133,13 @@
 	/**
 	 * Write a verbose message to the browser's console in debug mode.
 	 *
-	 * This method is mainly intended for verbose logging. It is a no-op in production mode.
-	 * In ResourceLoader debug mode, it will use the browser's console.
+	 * In ResourceLoader debug mode, this writes to the browser's console.
+	 * In production mode, it is a no-op.
 	 *
-	 * @ignore
+	 * See {@link mw.log} for other logging methods.
+	 *
+	 * @memberof mw
+	 * @variation 2
 	 * @param {...string} msg Messages to output to console.
 	 */
 	var log = function () {
@@ -143,11 +162,8 @@
 	 * [frontend stable interface policy](https://www.mediawiki.org/wiki/Special:MyLanguage/Stable_interface_policy/Frontend).
 	 *
 	 * @namespace mw
-	 * @singleton
-	 * @hideconstructor
-	 * @static
 	 */
-	var mw = {
+	var mw = /** @lends mw */ {
 		/**
 		 * Get the current time, measured in milliseconds since January 1, 1970 (UTC).
 		 *
@@ -155,7 +171,6 @@
 		 * floating-point values with microsecond precision that are guaranteed to be monotonic.
 		 * On all other browsers, it will fall back to using `Date`.
 		 *
-		 * @memberof mw
 		 * @return {number} Current time
 		 */
 		now: function () {
@@ -220,11 +235,7 @@
 			}
 		},
 
-		/**
-		 * Library that predates the ES6 Map class with similar functionality.
-		 *
-		 * @type {mw.Map}
-		 */
+		// Expose mw.Map
 		Map: Map,
 
 		/**
@@ -233,7 +244,6 @@
 		 * Check out [the complete list of configuration values](https://www.mediawiki.org/wiki/Manual:Interface/JavaScript#mw.config)
 		 * on mediawiki.org.
 		 *
-		 * @memberof mw
 		 * @type {mw.Map}
 		 */
 		config: new Map(),
@@ -241,7 +251,6 @@
 		/**
 		 * Store for messages.
 		 *
-		 * @memberof mw
 		 * @type {mw.Map}
 		 */
 		messages: new Map(),
@@ -250,7 +259,6 @@
 		 * Store for templates associated with a module.
 		 *
 		 * @type {mw.Map}
-		 * @memberof mw
 		 */
 		templates: new Map(),
 
