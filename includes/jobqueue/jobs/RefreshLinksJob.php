@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
+use MediaWiki\Deferred\RefreshSecondaryDataUpdate;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
