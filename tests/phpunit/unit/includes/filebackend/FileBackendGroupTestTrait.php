@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\FileBackend\FileBackendGroup;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Logger\LoggerFactory;

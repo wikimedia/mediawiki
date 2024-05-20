@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Tests\FileRepo;
 
-use FileBackendGroup;
 use FSFileBackend;
 use InvalidArgumentException;
 use LocalRepo;
 use LogicException;
+use MediaWiki\FileBackend\FileBackendGroup;
 use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\Assert;
 use RepoGroup;

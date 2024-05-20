@@ -22,7 +22,7 @@ use MediaWiki\WikiMap\WikiMap;
  * @covers \FSFileOpHandle
  * @covers \FileBackendDBRepoWrapper
  * @covers \FileBackendError
- * @covers \FileBackendGroup
+ * @covers \MediaWiki\FileBackend\FileBackendGroup
  * @covers \FileBackendMultiWrite
  * @covers \FileBackendStore
  * @covers \FileBackendStoreOpHandle

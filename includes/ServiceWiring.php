@@ -94,6 +94,7 @@ use MediaWiki\EditPage\IntroMessageBuilder;
 use MediaWiki\EditPage\PreloadedContentBuilder;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\Export\WikiExporterFactory;
+use MediaWiki\FileBackend\FileBackendGroup;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\HookContainer\FauxGlobalHookArray;
