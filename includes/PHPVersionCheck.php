@@ -155,25 +155,22 @@ HTML;
 	 */
 	function checkVendorExistence() {
 		if ( !file_exists( dirname( __FILE__ ) . '/../vendor/autoload.php' ) ) {
-			$cliText = "Error: You are missing some external dependencies. \n"
-				. "MediaWiki has external dependencies that need to be installed via Composer\n"
+			$cliText = "Error: You are missing some dependencies. \n"
+				. "MediaWiki has dependencies that need to be installed via Composer\n"
 				. "or from a separate repository. Please see\n"
-				. "https://www.mediawiki.org/wiki/Manual:Installation_requirements#PHP and\n"
 				. "https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries\n"
-				. "for help on installing the required components.";
+				. "for help with installing them.";
 
 			$web = array();
-			$web['intro'] = "Installing some external dependencies (e.g. via composer) is required.";
-			$web['longTitle'] = 'External dependencies';
+			$web['intro'] = "Installing some dependencies is required.";
+			$web['longTitle'] = 'Dependencies';
 			// phpcs:disable Generic.Files.LineLength
 			$web['longHtml'] = <<<HTML
 		<p>
-		MediaWiki has external dependencies that need to be installed via Composer
+		MediaWiki has dependencies that need to be installed via Composer
 		or from a separate repository. Please see the
-		<a href="https://www.mediawiki.org/wiki/Manual:Installation_requirements#PHP">PHP
-		installation requirements</a> and the
 		<a href="https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries">instructions
-		for installing PHP libraries</a> on mediawiki.org for help on installing the required components.
+		for installing external libraries</a> on MediaWiki.org.
 		</p>
 HTML;
 			// phpcs:enable Generic.Files.LineLength
@@ -203,18 +200,21 @@ HTML;
 					. "(<a href=\"$baseUrl/$ext\">more information</a>)</li>";
 			}
 
-			$cliText = "Error: Missing one or more required components of PHP.\n"
-				. "You are missing a required extension to PHP that MediaWiki needs.\n"
-				. "Please install:\n" . $missingExtText;
+			$cliText = "Error: Missing one or more required PHP extensions. Please see\n"
+				. "https://www.mediawiki.org/wiki/Manual:Installation_requirements#PHP\n"
+				. "for help with installing them.\n"
+				. "Please install or enable:\n" . $missingExtText;
 
 			$web = array();
 			$web['intro'] = "Installing some PHP extensions is required.";
-			$web['longTitle'] = 'Required components';
+			$web['longTitle'] = 'Required PHP extensions';
 			$web['longHtml'] = <<<HTML
 		<p>
-		You are missing a required extension to PHP that MediaWiki
-		requires to run. Please install:
+		You are missing one or more extensions to PHP that MediaWiki requires to run. Please see the
+		<a href="https://www.mediawiki.org/wiki/Manual:Installation_requirements#PHP">PHP
+		installation requirements</a> on MediaWiki.org.
 		</p>
+		<p>Please install or enable:</p>
 		<ul>
 		$missingExtHtml
 		</ul>
