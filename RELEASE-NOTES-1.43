@@ -242,6 +242,9 @@ because of Phabricator reports.
 * The methods StatusValue::getErrors() and StatusValue::getErrorsByType(),
   as well as Status::getErrorsArray() and Status::getWarningsArray(), have
   been deprecated in favor of new method StatusValue::getMessages().
+* MessageCache::get() with $language other than Language or null is
+  deprecated and emits deprecation warnings. For high-level access,
+  use wfMessage() or RequestContext::msg() instead.
 * SearchEngineConfig::getConfig() has been deprecated, use DI with
   ServiceOptions to inject the required options.
 * Using the "post" source in parameter declarations returned from

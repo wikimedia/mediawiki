@@ -1037,19 +1037,21 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param string $key The message key
 	 * @param bool $useDB If true, look for the message in the DB, false
 	 *   to use only the compiled l10n cache.
-	 * @param bool|string|Language $langcode Code of the language to get the message for.
+	 * @param bool|string|Language|null $language Code of the language to get the message for.
 	 *   - If string and a valid code, will create a standard language object
 	 *   - If string but not a valid code, will create a basic language object
-	 *   - If boolean and false, create object from the current users language
-	 *   - If boolean and true, create object from the wikis content language
+	 *   - If false, create object from the current users language
+	 *   - If true or null, create object from the wikis content language
 	 *   - If language object, use it as given
+	 *   - If this parameter omitted the object from the wikis content language is used
+	 *   - Other values than a Language object or null are deprecated.
 	 * @param string &$usedKey @phan-output-reference If given, will be set to the message key
 	 *   that the message was fetched from (the requested key may be overridden by hooks).
 	 *
 	 * @return string|false False if the message doesn't exist, otherwise the
 	 *   message (which can be empty)
 	 */
-	public function get( $key, $useDB = true, $langcode = true, &$usedKey = '' ) {
+	public function get( $key, $useDB = true, $language = null, &$usedKey = '' ) {
 		if ( is_int( $key ) ) {
 			// Fix numerical strings that somehow become ints on their way here
 			$key = (string)$key;
@@ -1060,7 +1062,8 @@ class MessageCache implements LoggerAwareInterface {
 			return false;
 		}
 
-		$language = $this->getLanguageObject( $langcode );
+		$language ??= $this->contLang;
+		$language = $this->getLanguageObject( $language );
 
 		// Normalise title-case input (with some inlining)
 		$lckey = self::normalizeKey( $key );
@@ -1153,6 +1156,7 @@ class MessageCache implements LoggerAwareInterface {
 			return $langcode;
 		}
 
+		wfDeprecated( __METHOD__ . ' with not a Language object in $langcode', '1.43' );
 		if ( $langcode === true || $langcode === $this->contLangCode ) {
 			# $langcode is the language code of the wikis content language object.
 			# or it is a boolean and value is true
