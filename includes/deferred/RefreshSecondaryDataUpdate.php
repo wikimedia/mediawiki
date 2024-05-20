@@ -20,15 +20,17 @@
  * @file
  */
 
-use MediaWiki\Deferred\DataUpdate;
-use MediaWiki\Deferred\DeferredUpdates;
-use MediaWiki\Deferred\EnqueueableDataUpdate;
+namespace MediaWiki\Deferred;
+
+use Exception;
+use JobSpecification;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
-use MediaWiki\Deferred\TransactionRoundAwareUpdate;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\DerivedPageDataUpdater;
 use MediaWiki\User\UserIdentity;
+use MWExceptionHandler;
 use Wikimedia\Rdbms\ILBFactory;
+use WikiPage;
 
 /**
  * Update object handling the cleanup of secondary data after a page was edited.
@@ -143,3 +145,5 @@ class RefreshSecondaryDataUpdate extends DataUpdate
 		];
 	}
 }
+/** @deprecated class alias since 1.42 */
+class_alias( RefreshSecondaryDataUpdate::class, 'RefreshSecondaryDataUpdate' );

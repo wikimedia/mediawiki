@@ -1055,6 +1055,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Deferred\\MWCallableUpdate' => __DIR__ . '/includes/deferred/MWCallableUpdate.php',
 	'MediaWiki\\Deferred\\MergeableUpdate' => __DIR__ . '/includes/deferred/MergeableUpdate.php',
 	'MediaWiki\\Deferred\\MessageCacheUpdate' => __DIR__ . '/includes/deferred/MessageCacheUpdate.php',
+	'MediaWiki\\Deferred\\RefreshSecondaryDataUpdate' => __DIR__ . '/includes/deferred/RefreshSecondaryDataUpdate.php',
 	'MediaWiki\\Deferred\\SearchUpdate' => __DIR__ . '/includes/deferred/SearchUpdate.php',
 	'MediaWiki\\Deferred\\SendPasswordResetEmailUpdate' => __DIR__ . '/includes/deferred/SendPasswordResetEmailUpdate.php',
 	'MediaWiki\\Deferred\\SiteStatsUpdate' => __DIR__ . '/includes/deferred/SiteStatsUpdate.php',
