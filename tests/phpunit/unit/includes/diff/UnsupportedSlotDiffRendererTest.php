@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Content\TextContent;
+
 /**
  * @covers \UnsupportedSlotDiffRenderer
  */

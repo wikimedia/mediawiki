@@ -25,9 +25,18 @@
  * @author Daniel Kinzler
  */
 
+namespace MediaWiki\Content;
+
+use AbstractContent;
+use Content;
+use InvalidArgumentException;
+use Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MWUnknownContentModelException;
+use TextContentHandler;
 use Wikimedia\Diff\Diff;
+use WikitextContent;
 
 /**
  * Content object implementation for representing flat text.
@@ -276,3 +285,5 @@ class TextContent extends AbstractContent {
 	}
 
 }
+/** @deprecated class alias since 1.43 */
+class_alias( TextContent::class, 'TextContent' );

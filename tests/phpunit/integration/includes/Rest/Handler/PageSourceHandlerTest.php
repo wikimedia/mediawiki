@@ -3,13 +3,13 @@
 namespace MediaWiki\Tests\Rest\Handler;
 
 use Exception;
+use MediaWiki\Content\TextContent;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\Handler\PageSourceHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Revision\SlotRecord;
 use MediaWikiIntegrationTestCase;
-use TextContent;
 use Wikimedia\Message\MessageValue;
 use WikiPage;
 

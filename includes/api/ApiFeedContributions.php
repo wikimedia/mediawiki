@@ -23,6 +23,7 @@
 use MediaWiki\Api\ApiHookRunner;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\Content\TextContent;
 use MediaWiki\Feed\FeedItem;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;

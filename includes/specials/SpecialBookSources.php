@@ -20,13 +20,13 @@
 
 namespace MediaWiki\Specials;
 
+use MediaWiki\Content\TextContent;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\TitleFactory;
-use TextContent;
 use UnexpectedValueException;
 
 /**

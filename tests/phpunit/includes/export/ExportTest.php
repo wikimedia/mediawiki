@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Content\Renderer\ContentParseParams;
+use MediaWiki\Content\TextContent;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 

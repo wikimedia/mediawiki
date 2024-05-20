@@ -3,6 +3,7 @@
 namespace MediaWiki\Rest\Handler\Helper;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Content\TextContent;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\ExistingPageRecord;
@@ -20,7 +21,6 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
-use TextContent;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use WikitextContent;

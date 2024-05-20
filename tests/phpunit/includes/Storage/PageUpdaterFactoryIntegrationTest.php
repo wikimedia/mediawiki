@@ -3,9 +3,9 @@
 namespace MediaWiki\Tests\Storage;
 
 use ContentHandler;
+use MediaWiki\Content\TextContent;
 use MediaWiki\Revision\SlotRecord;
 use MediaWikiIntegrationTestCase;
-use TextContent;
 
 /**
  * @covers \MediaWiki\Storage\PageUpdaterFactory

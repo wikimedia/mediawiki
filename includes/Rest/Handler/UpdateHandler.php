@@ -3,12 +3,12 @@
 namespace MediaWiki\Rest\Handler;
 
 use IApiMessage;
+use MediaWiki\Content\TextContent;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Utils\MWTimestamp;
-use TextContent;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 

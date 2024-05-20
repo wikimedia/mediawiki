@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Revision;
 
 use InvalidArgumentException;
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Content\TextContent;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\RevisionRecord;
@@ -16,7 +17,6 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use stdClass;
-use TextContent;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Timestamp\TimestampException;
 

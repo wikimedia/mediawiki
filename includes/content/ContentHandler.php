@@ -28,6 +28,7 @@
 
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\Renderer\ContentParseParams;
+use MediaWiki\Content\TextContent;
 use MediaWiki\Content\Transform\PreloadTransformParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Content\ValidationParams;

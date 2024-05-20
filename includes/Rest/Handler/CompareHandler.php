@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use MediaWiki\Content\TextContent;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\StringStream;
@@ -11,7 +12,6 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
 use ParserFactory;
-use TextContent;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 

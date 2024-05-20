@@ -21,6 +21,7 @@
  * @ingroup DifferenceEngine
  */
 
+use MediaWiki\Content\TextContent;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Diff\TextDiffer\ManifoldTextDiffer;
