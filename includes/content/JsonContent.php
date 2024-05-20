@@ -8,7 +8,8 @@
  * @author Kunal Mehta <legoktm@gmail.com>
  */
 
-use MediaWiki\Content\TextContent;
+namespace MediaWiki\Content;
+
 use MediaWiki\Html\Html;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Status\Status;
@@ -100,7 +101,7 @@ class JsonContent extends TextContent {
 	/**
 	 * Create HTML table representing a JSON object.
 	 *
-	 * @param stdClass $mapping
+	 * @param \stdClass $mapping
 	 * @return string HTML
 	 */
 	protected function objectTable( $mapping ) {
@@ -207,3 +208,5 @@ class JsonContent extends TextContent {
 		return FormatJson::encode( $val );
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( JsonContent::class, 'JsonContent' );

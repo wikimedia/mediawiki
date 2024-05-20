@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Content\JsonContent;
+
 class JsonContentHandlerTest extends \MediaWikiUnitTestCase {
 
 	/**

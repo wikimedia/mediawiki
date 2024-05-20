@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Content\JsonContent;
 use MediaWiki\Content\ValidationParams;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Page\PageIdentity;

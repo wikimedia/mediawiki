@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Content\JsonContent;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Content\ValidationParams;

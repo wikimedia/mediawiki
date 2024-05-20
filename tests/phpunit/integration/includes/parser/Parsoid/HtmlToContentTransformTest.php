@@ -3,9 +3,9 @@
 namespace MediaWiki\Tests\Parser\Parsoid;
 
 use Composer\Semver\Semver;
-use JsonContent;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
+use MediaWiki\Content\JsonContent;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Page\PageIdentityValue;

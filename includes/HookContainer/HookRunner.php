@@ -4,9 +4,9 @@ namespace MediaWiki\HookContainer;
 
 use Article;
 use File;
-use JsonContent;
 use MailAddress;
 use ManualLogEntry;
+use MediaWiki\Content\JsonContent;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
