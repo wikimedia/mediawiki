@@ -10,6 +10,7 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\WatchedItem;
 use MediaWiki\Watchlist\WatchedItemQueryService;
 use MediaWiki\Watchlist\WatchedItemQueryServiceExtension;
+use MediaWiki\Watchlist\WatchedItemStore;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;

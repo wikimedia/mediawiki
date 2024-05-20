@@ -25,6 +25,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
 use MediaWiki\Watchlist\WatchedItem;
+use MediaWiki\Watchlist\WatchedItemStore;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\Xml\XmlSelect;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;

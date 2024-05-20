@@ -31,6 +31,7 @@ use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
+use MediaWiki\Watchlist\WatchedItemStore;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

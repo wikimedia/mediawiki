@@ -12,7 +12,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  *
  * @group Database
  *
- * @covers \WatchedItemStore
+ * @covers \MediaWiki\Watchlist\WatchedItemStore
  */
 class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 

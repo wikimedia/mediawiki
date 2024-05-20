@@ -1,5 +1,15 @@
 <?php
 
+namespace MediaWiki\Watchlist;
+
+use BagOStuff;
+use ClearUserWatchlistJob;
+use ClearWatchlistNotificationsJob;
+use DateInterval;
+use HashBagOStuff;
+use JobQueueGroup;
+use LogicException;
+use MapCacheLRU;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\DeferredUpdates;
@@ -11,9 +21,8 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
-use MediaWiki\Watchlist\ActivityUpdateJob;
-use MediaWiki\Watchlist\WatchedItem;
-use MediaWiki\Watchlist\WatchlistExpiryJob;
+use stdClass;
+use WatchedItemStoreInterface;
 use Wikimedia\Assert\Assert;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Rdbms\IDatabase;
@@ -830,7 +839,7 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 	 * Construct a new WatchedItem given a row from watchlist/watchlist_expiry.
 	 * @param UserIdentity $user
 	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
-	 * @param stdClass $row
+	 * @param \stdClass $row
 	 * @return WatchedItem
 	 */
 	private function getWatchedItemFromRow(
@@ -858,7 +867,7 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 	 * @param array $orderBy array of columns
 	 * @param LinkTarget|LinkTarget[]|PageIdentity|PageIdentity[]|null $target null if selecting all
 	 *        watched items - deprecated passing LinkTarget or LinkTarget[] since 1.36
-	 * @return IResultWrapper|stdClass|false
+	 * @return IResultWrapper|\stdClass|false
 	 */
 	private function fetchWatchedItems(
 		IReadableDatabase $db,
@@ -1859,3 +1868,5 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 		$this->lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( WatchedItemStore::class, 'WatchedItemStore' );
