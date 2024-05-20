@@ -1,12 +1,13 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\FileBackend\FileBackendGroup;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 
 /**
- * @coversDefaultClass \FileBackendGroup
+ * @coversDefaultClass \MediaWiki\FileBackend\FileBackendGroup
  */
 class FileBackendGroupTest extends MediaWikiUnitTestCase {
 	use DummyServicesTrait;

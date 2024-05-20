@@ -21,6 +21,13 @@
  * @ingroup FileBackend
  */
 
+namespace MediaWiki\FileBackend;
+
+use BagOStuff;
+use FileBackendMultiWrite;
+use FSFileBackend;
+use InvalidArgumentException;
+use LogicException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
@@ -28,6 +35,9 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Output\StreamFile;
 use MediaWiki\Status\Status;
+use MimeAnalyzer;
+use Profiler;
+use WANObjectCache;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\ReadOnlyMode;
@@ -285,3 +295,5 @@ class FileBackendGroup {
 		return $type ?: 'unknown/unknown';
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( FileBackendGroup::class, 'FileBackendGroup' );

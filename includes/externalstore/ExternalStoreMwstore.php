@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\FileBackend\FileBackendGroup;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\FileBackend\FileBackend;
 

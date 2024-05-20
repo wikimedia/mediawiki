@@ -1,12 +1,13 @@
 <?php
 
+use MediaWiki\FileBackend\FileBackendGroup;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\WikiMap\WikiMap;
 
 /**
- * @coversDefaultClass \FileBackendGroup
+ * @coversDefaultClass \MediaWiki\FileBackend\FileBackendGroup
  */
 class FileBackendGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 	use FileBackendGroupTestTrait;
