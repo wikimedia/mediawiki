@@ -18,7 +18,9 @@
  * @file
  */
 
-use MediaWiki\RCFeed\MachineReadableRCFeedFormatter;
+namespace MediaWiki\RCFeed;
+
+use ApiFormatXml;
 
 /**
  * @since 1.23
@@ -29,3 +31,5 @@ class XMLRCFeedFormatter extends MachineReadableRCFeedFormatter {
 		return ApiFormatXml::recXmlPrint( 'recentchange', $packet, 0 );
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( XMLRCFeedFormatter::class, 'XMLRCFeedFormatter' );
