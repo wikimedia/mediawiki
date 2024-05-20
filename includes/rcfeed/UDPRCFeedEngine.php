@@ -18,7 +18,9 @@
  * @file
  */
 
-use MediaWiki\RCFeed\FormattedRCFeed;
+namespace MediaWiki\RCFeed;
+
+use UDPTransport;
 
 /**
  * Send recent change notifications to a destination address over UDP.
@@ -53,3 +55,5 @@ class UDPRCFeedEngine extends FormattedRCFeed {
 		return true;
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( UDPRCFeedEngine::class, 'UDPRCFeedEngine' );

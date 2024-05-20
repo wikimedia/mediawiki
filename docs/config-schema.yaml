@@ -6569,7 +6569,7 @@ config-schema:
     RCEngines:
         default:
             redis: MediaWiki\RCFeed\RedisPubSubFeedEngine
-            udp: UDPRCFeedEngine
+            udp: MediaWiki\RCFeed\UDPRCFeedEngine
         type: object
         description: |-
             Used by RecentChange::getEngine to find the correct engine for a given URI scheme.
