@@ -1705,19 +1705,19 @@
 		 *
 		 * - `registered`:
 		 *    The module is known to the system but not yet required.
-		 *    Meta data is stored by mw.loader#register.
+		 *    Meta data is stored by `register()`.
 		 *    Calls to that method are generated server-side by StartupModule.
 		 * - `loading`:
 		 *    The module was required through mw.loader (either directly or as dependency of
 		 *    another module). The client will fetch module contents from mw.loader.store
-		 *    or from the server. The contents should later be received by mw.loader#implement.
+		 *    or from the server. The contents should later be received by `implement()`.
 		 * - `loaded`:
-		 *    The module has been received by mw.loader#implement.
+		 *    The module has been received by `implement()`.
 		 *    Once the module has no more dependencies in-flight, the module will be executed,
-		 *    controlled via #setAndPropagate and #doPropagation.
+		 *    controlled via `setAndPropagate()` and `doPropagation()`.
 		 * - `executing`:
 		 *    The module is being executed (apply messages and stylesheets, execute scripts)
-		 *    by mw.loader#execute.
+		 *    by `execute()`.
 		 * - `ready`:
 		 *    The module has been successfully executed.
 		 * - `error`:

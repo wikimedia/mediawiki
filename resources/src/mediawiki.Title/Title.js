@@ -795,7 +795,7 @@ Title.prototype = /** @lends mw.Title.prototype */ {
 	 * Get the namespace prefix (in the content language).
 	 *
 	 * Example: "File:" for "File:Example_image.svg".
-	 * In #NS_MAIN this is '', otherwise namespace name plus ':'
+	 * In `NS_MAIN` this is '', otherwise namespace name plus ':'
 	 *
 	 * @return {string}
 	 */

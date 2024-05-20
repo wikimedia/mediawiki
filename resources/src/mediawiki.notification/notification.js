@@ -494,7 +494,7 @@
 		 * auto-hiding after the previous messages have been closed.
 		 *
 		 * This basically represents the minimal number of notifications the user should
-		 * be able to process during the {@link #defaults default} #autoHideSeconds time.
+		 * be able to process during the {@link mw.notification.defaults default} `autoHideSeconds` time.
 		 *
 		 * @memberof mw.notification
 		 * @type {number}
