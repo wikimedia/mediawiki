@@ -411,7 +411,7 @@ return [
 				'javascript' => 'MediaWiki\\Content\\JavaScriptContentHandler',
 				'json' => 'JsonContentHandler',
 				'css' => 'MediaWiki\\Content\\CssContentHandler',
-				'text' => 'TextContentHandler',
+				'text' => 'MediaWiki\\Content\\TextContentHandler',
 				'unknown' => 'FallbackContentHandler',
 			],
 			'NamespaceContentModels' => [

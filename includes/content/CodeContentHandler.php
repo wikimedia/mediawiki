@@ -21,6 +21,7 @@
  * @ingroup Content
  */
 
+use MediaWiki\Content\TextContentHandler;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 

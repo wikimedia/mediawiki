@@ -1,11 +1,13 @@
 <?php
 
+use MediaWiki\Content\TextContentHandler;
+
 /**
  * @group ContentHandler
  */
 class TextContentHandlerTest extends MediaWikiUnitTestCase {
 	/**
-	 * @covers \TextContentHandler::supportsDirectEditing
+	 * @covers \MediaWiki\Content\TextContentHandler::supportsDirectEditing
 	 */
 	public function testSupportsDirectEditing() {
 		$handler = new TextContentHandler();
