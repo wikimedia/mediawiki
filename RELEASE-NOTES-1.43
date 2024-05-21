@@ -243,6 +243,63 @@ because of Phabricator reports.
 * The methods StatusValue::getErrors() and StatusValue::getErrorsByType(),
   as well as Status::getErrorsArray() and Status::getWarningsArray(), have
   been deprecated in favor of new method StatusValue::getMessages().
+* (T166010) All PHP code in MediaWiki is slowly being moved to be in a class
+  namespace as appropriate, so that we can use PSR-4 auto-loading, which will
+  speed up general code loading of MediaWiki. The old global namespace class
+  names are being left behind as deprecated aliases.
+
+  In this release of MediaWiki, XYZ classes now have a namespace and XYZ do
+  not yet (XYZ% done, up from 69% in MediaWiki 1.42.0). The following have newly
+  been moved:
+  - MediaWiki\Content:
+    - CssContent
+    - CssContentHandler
+    - JavaScriptContent
+    - JavaScriptContentHandler
+    - JsonContent
+    - JsonContentHandler
+    - TextContent
+    - TextContentHandler
+  - MediaWiki\Debug:
+    - DeprecationHelper
+    - MWDebug
+  - MediaWiki\Deferred:
+    - RefreshSecondaryDataUpdate
+  - MediaWiki\FileBackend:
+    - FileBackendGroup – FIXME: Should this be in Wikimedia\FileBackend instead?
+  - MediaWiki\Json:
+    - FormatJson
+  - MediaWiki\RCFeed:
+    - FormattedRCFeed
+    - IRCColourfulRCFeedFormatter
+    - JSONRCFeedFormatter
+    - MachineReadableRCFeedFormatter
+    - RCFeed
+    - RCFeedFormatter
+    - RedisPubSubFeedEngine
+    - UDPRCFeedEngine
+    - XMLRCFeedFormatter
+  - MediaWiki\RenameUser:
+    - RenameUserJob
+  - MediaWiki\RevisionList:
+    - RevisionItem
+    - RevisionItemBase
+    - RevisionList
+    - RevisionListBase
+  - MediaWiki\Watchlist:
+    - ActivityUpdateJob
+    - WatchedItem
+    - WatchedItemQueryService
+    - WatchedItemQueryServiceExtension
+    - WatchedItemStore
+    - WatchlistExpiryJob
+  - MediaWiki\Xml:
+    - Xml
+    - XmlSelect
+  - Wikimedia\FileBackend:
+    - FileBackend
+  - Wikimedia\Http:
+    - MultiHttpClient
 * MessageCache::get() with $language other than Language or null is
   deprecated and emits deprecation warnings. For high-level access,
   use wfMessage() or RequestContext::msg() instead.
