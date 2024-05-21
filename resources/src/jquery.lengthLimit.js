@@ -1,5 +1,18 @@
 /**
- * jQuery plugin for limiting string length.
+ * Limit string length.
+ *
+ * This module provides {@link jQuery} plugins that place different types of limits on strings.
+ * To use the plugins, load the module with {@link mw.loader}.
+ *
+ * For other methods for managing strings, see {@link module:mediawiki.String}.
+ *
+ * @example
+ * mw.loader.using( 'jquery.lengthLimit' ).then( () => {
+ *   // Create an input that only accepts values <= 4 bytes. For example: 💪💪 is not a permitted value.
+ *   $( '<input type="text" value="💪">' ).byteLimit( 4 ).appendTo(document.body);
+ * } );
+ *
+ * @module jquery.lengthLimit
  */
 ( function () {
 
@@ -25,7 +38,6 @@
 	 * limit is 4 will result in "fobo", not "foba". Basically emulating the
 	 * native maxlength by reconstructing where the insertion occurred.
 	 *
-	 * @memberof jQueryPlugins
 	 * @method trimByteLength
 	 * @deprecated Use {@link module:mediawiki.String.trimByteLength require( 'mediawiki.String' ).trimByteLength}
 	 * instead.
@@ -174,7 +186,6 @@
 	 * value), a filter function (in case the limit should apply to something other than the
 	 * exact input value), or both. Order of parameters is important!
 	 *
-	 * @memberof jQueryPlugins
 	 * @method byteLimit
 	 * @param {number} [limit] Limit to enforce, fallsback to maxLength-attribute,
 	 *  called with fetched value as argument.
@@ -200,7 +211,6 @@
 	 * value), a filter function (in case the limit should apply to something other than the
 	 * exact input value), or both. Order of parameters is important!
 	 *
-	 * @memberof jQueryPlugins
 	 * @method codePointLimit
 	 * @param {number} [limit] Limit to enforce, fallsback to maxLength-attribute,
 	 *  called with fetched value as argument.
