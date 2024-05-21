@@ -151,6 +151,7 @@ class Validator {
 					'source' => $source,
 				] );
 			} catch ( ValidationException $e ) {
+				// NOTE: error data structure must match the one used by validateBodyParams
 				throw new LocalizedHttpException( $e->getFailureMessage(), 400, [
 					'error' => 'parameter-validation-failed',
 					'name' => $e->getParamName(),
@@ -197,7 +198,11 @@ class Validator {
 					'rest-extraneous-body-fields',
 					[ new ListParam( ListType::COMMA, array_keys( $unvalidatedKeys ) ) ]
 				),
-				400
+				400,
+				[ // match fields used by validateBodyParams()
+					'error' => 'parameter-validation-failed',
+					'failureCode' => 'extraneous-body-fields'
+				]
 			);
 		}
 	}
@@ -234,6 +239,7 @@ class Validator {
 					[ $e->getFailureMessage() ]
 				);
 
+				// NOTE: error data structure must match the one used by validateParams
 				throw new LocalizedHttpException( $wrappedMsg, 400, [
 					'error' => 'parameter-validation-failed',
 					'name' => $e->getParamName(),

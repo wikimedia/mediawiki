@@ -235,7 +235,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $params );
 	}
 
-	public function provideValidate_invalid() {
+	public function testValidate_invalid() {
 		$paramSettings = [
 			'foo' => [
 				ParamValidator::PARAM_TYPE => 'string',
@@ -254,7 +254,9 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			$this->validateHandler( $handler );
 			$this->fail( 'Expected LocalizedHttpException' );
 		} catch ( LocalizedHttpException $ex ) {
-			$this->assertSame( 'paramvalidator-missingparam', $ex->getMessageValue()->getKey() );
+			$data = $ex->getErrorData();
+			$this->assertSame( 'parameter-validation-failed', $data['error'] ?? null );
+			$this->assertSame( 'missingparam', $data['failureCode'] ?? null );
 		}
 	}
 
@@ -402,23 +404,50 @@ class HandlerTest extends MediaWikiUnitTestCase {
 	}
 
 	public function provideValidateBodyParams_invalid() {
-		$paramSettings = [
+		$paramDefintions = [
 			'foo' => [
-				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_TYPE => 'integer',
 				ParamValidator::PARAM_REQUIRED => true,
 				Handler::PARAM_SOURCE => 'body',
 			]
 		];
 
-		$request = new RequestData(
-			[
-				'parsedBody' => [
-					'foo' => 'kittens',
-					'xyzzy' => 'lizzards',
-				],
-			]
-		);
+		yield 'missing param' => [
+			$paramDefintions,
+			new RequestData( [ 'parsedBody' => [], ] ),
+			'missingparam'
+		];
 
+		yield 'extra param' => [
+			$paramDefintions,
+			new RequestData(
+				[
+					'parsedBody' => [
+						'foo' => 23,
+						'xyzzy' => 'lizzards',
+					],
+				]
+			),
+			'extraneous-body-fields'
+		];
+
+		yield 'bad param' => [
+			$paramDefintions,
+			new RequestData(
+				[
+					'parsedBody' => [
+						'foo' => 'kittens',
+					],
+				]
+			),
+			'badinteger'
+		];
+	}
+
+	/**
+	 * @dataProvider provideValidateBodyParams_invalid
+	 */
+	public function testValidateBodyParams_invalid( $paramSettings, $request, $expectedError ) {
 		$handler = $this->newHandler( [ 'getParamSettings' ] );
 		$handler->method( 'getParamSettings' )->willReturn( $paramSettings );
 
@@ -427,7 +456,9 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			$this->validateHandler( $handler );
 			$this->fail( 'Expected LocalizedHttpException' );
 		} catch ( LocalizedHttpException $ex ) {
-			$this->assertSame( 'paramvalidator-missingparam', $ex->getMessageValue()->getKey() );
+			$data = $ex->getErrorData();
+			$this->assertSame( 'parameter-validation-failed', $data['error'] ?? null );
+			$this->assertSame( $expectedError, $data['failureCode'] ?? null );
 		}
 	}
 
