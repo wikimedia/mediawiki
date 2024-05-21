@@ -4,7 +4,7 @@ namespace MediaWiki\Tests\Page;
 
 use ChangeTags;
 use DatabaseLogEntry;
-use JsonContent;
+use MediaWiki\Content\JsonContent;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
