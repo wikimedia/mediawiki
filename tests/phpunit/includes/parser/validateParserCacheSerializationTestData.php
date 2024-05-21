@@ -2,10 +2,8 @@
 
 namespace MediaWiki\Tests\Parser;
 
-use CacheTime;
 use Maintenance;
 use MediaWiki\Logger\ConsoleLogger;
-use MediaWiki\Parser\ParserOutput;
 use Wikimedia\Tests\SerializationTestUtils;
 
 define( 'MW_AUTOLOAD_TEST_CLASSES', true );
@@ -33,18 +31,13 @@ class ValidateParserCacheSerializationTestData extends Maintenance {
 	}
 
 	public function execute() {
-		$this->validateSerialization(
-			CacheTime::class,
-			array_map( static function ( $testCase ) {
-				return $testCase['instance'];
-			}, ParserCacheSerializationTestCases::getCacheTimeTestCases() )
-		);
-		$this->validateSerialization(
-			ParserOutput::class,
-			array_map( static function ( $testCase ) {
-				return $testCase['instance'];
-			}, ParserCacheSerializationTestCases::getParserOutputTestCases() )
-		);
+		$testClasses = [ CacheTimeTest::class, ParserOutputTest::class ];
+		foreach ( $testClasses as $testClass ) {
+			$this->validateSerialization( $testClass,
+				array_map( static function ( $testCase ) {
+					return $testCase['instance'];
+				}, $testClass::getTestInstancesAndAssertions() ) );
+		}
 	}
 
 	/**
@@ -52,14 +45,15 @@ class ValidateParserCacheSerializationTestData extends Maintenance {
 	 * If the respective options are set in the constructor, this will create missing files or
 	 * update mismatching files.
 	 *
-	 * @param string $className
+	 * @param string $testClassName
 	 * @param array $testInstances
 	 */
-	public function validateSerialization( string $className, array $testInstances ) {
-		$supportedFormats = ParserCacheSerializationTestCases::getSupportedSerializationFormats( $className );
+	public function validateSerialization( string $testClassName, array $testInstances ) {
+		$className = $testClassName::getClassToTest();
+		$supportedFormats = $testClassName::getSupportedSerializationFormats();
 		foreach ( $supportedFormats as $serializationFormat ) {
 			$serializationUtils = new SerializationTestUtils(
-				$this->getArg( 1 ) ?: __DIR__ . '/../../data/ParserCache',
+				$this->getArg( 1 ) ?: $testClassName::getSerializedDataPath(),
 				$testInstances,
 				$serializationFormat['ext'],
 				$serializationFormat['serializer'],

@@ -153,6 +153,8 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\OutputTransform\\OutputTransformStageTestBase' => "$testDir/phpunit/includes/OutputTransform/OutputTransformStageTestBase.php",
 
 	# tests/phpunit/includes/parser
+	'MediaWiki\\Tests\\Parser\\CacheTimeTest' => "$testDir/phpunit/includes/parser/CacheTimeTest.php",
+	'MediaWiki\\Tests\\Parser\\ParserOutputTest' => "$testDir/phpunit/includes/parser/ParserOutputTest.php",
 	'ParserIntegrationTest' => "$testDir/phpunit/suites/ParserIntegrationTest.php",
 	'MediaWiki\\Tests\\Parser\\ParserCacheSerializationTestCases' =>
 		"$testDir/phpunit/includes/parser/ParserCacheSerializationTestCases.php",
