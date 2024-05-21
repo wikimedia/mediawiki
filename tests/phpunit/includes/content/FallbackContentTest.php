@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Content\FallbackContent;
+use MediaWiki\Content\FallbackContentHandler;
 use MediaWiki\Content\JavaScriptContent;
 
 /**
@@ -28,7 +30,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \FallbackContent::getRedirectTarget
+	 * @covers \MediaWiki\Content\FallbackContent::getRedirectTarget
 	 */
 	public function testGetRedirectTarget() {
 		$content = $this->newContent( '#REDIRECT [[Horkyporky]]' );
@@ -36,7 +38,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \FallbackContent::isRedirect
+	 * @covers \MediaWiki\Content\FallbackContent::isRedirect
 	 */
 	public function testIsRedirect() {
 		$content = $this->newContent( '#REDIRECT [[Horkyporky]]' );
@@ -44,7 +46,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \FallbackContent::isCountable
+	 * @covers \MediaWiki\Content\FallbackContent::isCountable
 	 */
 	public function testIsCountable() {
 		$content = $this->newContent( '[[Horkyporky]]' );
@@ -52,7 +54,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \FallbackContent::getTextForSummary
+	 * @covers \MediaWiki\Content\FallbackContent::getTextForSummary
 	 */
 	public function testGetTextForSummary() {
 		$content = $this->newContent( 'Horkyporky' );
@@ -60,7 +62,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \FallbackContent::getTextForSearchIndex
+	 * @covers \MediaWiki\Content\FallbackContent::getTextForSearchIndex
 	 */
 	public function testGetTextForSearchIndex() {
 		$content = $this->newContent( 'Horkyporky' );
@@ -68,7 +70,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \FallbackContent::copy
+	 * @covers \MediaWiki\Content\FallbackContent::copy
 	 */
 	public function testCopy() {
 		$content = $this->newContent( 'hello world.' );
@@ -78,7 +80,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \FallbackContent::getSize
+	 * @covers \MediaWiki\Content\FallbackContent::getSize
 	 */
 	public function testGetSize() {
 		$content = $this->newContent( 'hello world.' );
@@ -87,7 +89,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \FallbackContent::getData
+	 * @covers \MediaWiki\Content\FallbackContent::getData
 	 */
 	public function testGetData() {
 		$content = $this->newContent( 'hello world.' );
@@ -96,7 +98,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \FallbackContent::getNativeData
+	 * @covers \MediaWiki\Content\FallbackContent::getNativeData
 	 */
 	public function testGetNativeData() {
 		$content = $this->newContent( 'hello world.' );
@@ -105,7 +107,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \FallbackContent::getWikitextForTransclusion
+	 * @covers \MediaWiki\Content\FallbackContent::getWikitextForTransclusion
 	 */
 	public function testGetWikitextForTransclusion() {
 		$content = $this->newContent( 'hello world.' );
@@ -114,7 +116,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \FallbackContent::getModel
+	 * @covers \MediaWiki\Content\FallbackContent::getModel
 	 */
 	public function testGetModel() {
 		$content = $this->newContent( "hello world.", 'horkyporky' );
@@ -123,7 +125,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \FallbackContent::getContentHandler
+	 * @covers \MediaWiki\Content\FallbackContent::getContentHandler
 	 */
 	public function testGetContentHandler() {
 		$this->mergeMwGlobalArrayValue(
@@ -148,7 +150,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider dataIsEmpty
-	 * @covers \FallbackContent::isEmpty
+	 * @covers \MediaWiki\Content\FallbackContent::isEmpty
 	 */
 	public function testIsEmpty( $text, $empty ) {
 		$content = $this->newContent( $text );
@@ -168,7 +170,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideEquals
-	 * @covers \FallbackContent::equals
+	 * @covers \MediaWiki\Content\FallbackContent::equals
 	 */
 	public function testEquals( Content $a, Content $b = null, $equal = false ) {
 		$this->assertEquals( $equal, $a->equals( $b ) );
@@ -204,7 +206,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \FallbackContent::convert
+	 * @covers \MediaWiki\Content\FallbackContent::convert
 	 */
 	public function testConvert() {
 		$content = $this->newContent( 'More horkyporky?' );
@@ -213,8 +215,8 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \FallbackContent::__construct
-	 * @covers \FallbackContentHandler::serializeContent
+	 * @covers \MediaWiki\Content\FallbackContent::__construct
+	 * @covers \MediaWiki\Content\FallbackContentHandler::serializeContent
 	 */
 	public function testSerialize() {
 		$content = $this->newContent( 'Hörkypörky', 'horkyporky' );

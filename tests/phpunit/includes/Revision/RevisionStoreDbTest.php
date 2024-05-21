@@ -4,11 +4,11 @@ namespace MediaWiki\Tests\Revision;
 
 use Content;
 use Exception;
-use FallbackContent;
 use HashBagOStuff;
 use IDBAccessObject;
 use InvalidArgumentException;
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Content\FallbackContent;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
