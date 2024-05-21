@@ -253,7 +253,7 @@ class ExtensionRegistry {
 			$keyspace = ( is_string( $wgCachePrefix ) && $wgCachePrefix !== '' )
 				? $wgCachePrefix
 				: WikiMap::getCurrentWikiDbDomain()->getId();
-			return ObjectCache::makeLocalServerCache( $keyspace );
+			return ObjectCacheFactory::makeLocalServerCache( $keyspace );
 		}
 
 		return $this->cache;

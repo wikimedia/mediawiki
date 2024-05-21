@@ -224,7 +224,6 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$cache = new HashBagOStuff();
 		$name = $this->setMainCache( $cache );
 		$this->assertSame( $cache, ObjectCache::getLocalClusterInstance() );
-		$this->getServiceContainer()->getObjectCacheFactory()->setInstanceForTesting( $name, $cache );
 		$this->assertSame( $cache, $this->getServiceContainer()->getObjectCacheFactory()->getInstance( $name ) );
 
 		// Our custom cache object should not replace an existing entry.

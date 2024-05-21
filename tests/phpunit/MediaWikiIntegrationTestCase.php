@@ -961,8 +961,14 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	protected function setMainCache( $cache ) {
 		if ( $cache instanceof BagOStuff ) {
 			$cacheId = 'UTCache';
-			$this->getServiceContainer()->getObjectCacheFactory()
-				->setInstanceForTesting( $cacheId, $cache );
+			$objectCaches = $this->getServiceContainer()->getMainConfig()
+				->get( MainConfigNames::ObjectCaches );
+			$objectCaches[$cacheId] = [
+				'factory' => static function () use ( $cache ) {
+					return $cache;
+				}
+			];
+			$this->overrideConfigValue( MainConfigNames::ObjectCaches, $objectCaches );
 		} else {
 			$cacheId = $cache;
 			$cache = $this->getServiceContainer()->getObjectCacheFactory()
