@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\RevisionList;
+
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
@@ -168,3 +170,5 @@ class RevisionItem extends RevisionItemBase {
 		return "<li>$difflink $revlink $userlink $comment</li>";
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( RevisionItem::class, 'RevisionItem' );

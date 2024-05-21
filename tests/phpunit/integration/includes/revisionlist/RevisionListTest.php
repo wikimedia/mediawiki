@@ -2,12 +2,14 @@
 
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\RevisionList\RevisionItem;
+use MediaWiki\RevisionList\RevisionList;
 
 /**
- * @covers \RevisionList
- * @covers \RevisionListBase
- * @covers \RevisionItem
- * @covers \RevisionItemBase
+ * @covers \MediaWiki\RevisionList\RevisionList
+ * @covers \MediaWiki\RevisionList\RevisionListBase
+ * @covers \MediaWiki\RevisionList\RevisionItem
+ * @covers \MediaWiki\RevisionList\RevisionItemBase
  * @group Database
  *
  * @author DannyS712

@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\RevisionList;
+
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
@@ -48,3 +50,5 @@ class RevisionList extends RevisionListBase {
 		return new RevisionItem( $this, $row );
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( RevisionList::class, 'RevisionList' );

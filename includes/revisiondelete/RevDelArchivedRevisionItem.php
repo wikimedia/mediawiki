@@ -19,6 +19,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\RevisionList\RevisionListBase;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
