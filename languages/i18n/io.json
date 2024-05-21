@@ -3017,6 +3017,7 @@
 	"specialmute": "Silencigez",
 	"specialmute-label-mute-email": "Silencigez e-posti de ca {{GENDER:$1|uzero}}",
 	"specialmute-header": "Voluntez selektar vua silenco-preferaji por uzero <b>{{BIDI:[[User:$1]]}}</b>.",
+	"specialmute-email-footer": "Por administrar preferaji pri e-posto dil uzero {{BIDI:$2}}, voluntez vizitar la sequanta URL: <$1>.",
 	"mute-preferences": "Tacema preferaji",
 	"revid": "revizuro $1",
 	"gotointerwiki-external": "Tu balde livos {{SITENAME}} por vizitar [[$2]], quo esas diferanta ret-pagino.\n\n'''[$1 irez a $1]'''",
