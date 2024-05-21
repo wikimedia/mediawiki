@@ -179,10 +179,11 @@ class Router extends OO.Registry {
 	 */
 	back() {
 		const router = this;
+		// eslint-disable-next-line prefer-const
+		let timeoutID;
 		const deferred = $.Deferred();
 
 		this.once( 'popstate', function () {
-		// eslint-disable-next-line no-use-before-define
 			clearTimeout( timeoutID );
 			deferred.resolve();
 		} );
@@ -195,7 +196,7 @@ class Router extends OO.Registry {
 		// and resolving the deferred request for them individually.
 		// See https://connect.microsoft.com/IE/feedback/details/793618/history-back-popstate-not-working-as-expected-in-webview-control
 		// Give browser a few ms to update its history.
-		const timeoutID = setTimeout( function () {
+		timeoutID = setTimeout( function () {
 			router.off( 'popstate' );
 			deferred.resolve();
 		}, 50 );
