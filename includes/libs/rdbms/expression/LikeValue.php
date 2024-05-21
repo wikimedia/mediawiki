@@ -12,8 +12,13 @@ use Wikimedia\Rdbms\Database\DbQuoter;
  * @since 1.42
  */
 class LikeValue {
+	/** @var (string|LikeMatch)[] */
 	private array $values = [];
 
+	/**
+	 * @param string|LikeMatch $value
+	 * @param string|LikeMatch ...$values
+	 */
 	public function __construct( $value, ...$values ) {
 		if ( !is_string( $value ) && !( $value instanceof LikeMatch ) ) {
 			throw new InvalidArgumentException( "Value $value must be either string or LikeMatch" );
