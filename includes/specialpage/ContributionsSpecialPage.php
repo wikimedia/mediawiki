@@ -72,14 +72,13 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 
 	protected IConnectionProvider $dbProvider;
 	protected NamespaceInfo $namespaceInfo;
-
-	private PermissionManager $permissionManager;
-	private UserNameUtils $userNameUtils;
-	private UserNamePrefixSearch $userNamePrefixSearch;
-	private UserOptionsLookup $userOptionsLookup;
-	private UserFactory $userFactory;
-	private UserIdentityLookup $userIdentityLookup;
-	private DatabaseBlockStore $blockStore;
+	protected PermissionManager $permissionManager;
+	protected UserNameUtils $userNameUtils;
+	protected UserNamePrefixSearch $userNamePrefixSearch;
+	protected UserOptionsLookup $userOptionsLookup;
+	protected UserFactory $userFactory;
+	protected UserIdentityLookup $userIdentityLookup;
+	protected DatabaseBlockStore $blockStore;
 
 	/**
 	 * @param PermissionManager $permissionManager
