@@ -144,6 +144,7 @@ because of Phabricator reports.
 
 * (T290657) Added language support for Levantine Arabic (apc).
 * (T364291) Added language support for Musi, also known as Palembang (mui).
+* (T365365) Added language support for Chakma (ccp).
 * …
 
 === Breaking changes in 1.43 ===
