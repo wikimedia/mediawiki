@@ -9,6 +9,8 @@ use MediaWiki\Tests\Unit\Libs\Rdbms\SQLPlatformTestHelper;
 use MediaWikiCoversValidator;
 use MediaWikiTestCaseTrait;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\LogLevel;
+use TestLogger;
 use Wikimedia\Rdbms\DBLanguageError;
 use Wikimedia\Rdbms\Expression;
 use Wikimedia\Rdbms\LikeMatch;
@@ -958,6 +960,61 @@ class SQLPlatformTest extends TestCase {
 			[ 'x' => [ 1, 2, [ 3 ] ] ],
 			LIST_AND,
 			InvalidArgumentException::class,
+		];
+	}
+
+	/**
+	 * @dataProvider provideMakeListWarning
+	 */
+	public function testMakeListWarning( $list, $mode, $warning, $context ) {
+		$logger = new TestLogger( true, null, true );
+		$platform = new SQLPlatformTestHelper( new AddQuoterMock(), $logger );
+
+		$platform->makeList( $list, $mode );
+
+		// Use assertSame() to check that only one warning is emitted per makeList() call
+		$this->assertSame(
+			[ [ LogLevel::WARNING, $warning, $context ] ],
+			$logger->getBuffer()
+		);
+	}
+
+	public static function provideMakeListWarning() {
+		yield 'associative keys in WHERE array value' => [
+			[ 'x' => [ 'a' => 1, 'b' => 2 ] ],
+			LIST_AND,
+			'Wikimedia\Rdbms\Platform\SQLPlatform::makeList: array key {key} in list of values ignored',
+			[ 'key' => 'a' ]
+		];
+		yield 'associative keys in WHERE array value (single)' => [
+			[ 'x' => [ 'b' => 1 ] ],
+			LIST_AND,
+			'Wikimedia\Rdbms\Platform\SQLPlatform::makeList: array key {key} in list of values ignored',
+			[ 'key' => 'b' ]
+		];
+		yield 'associative keys in comma list' => [
+			[ 'a' => 1, 'b' => 2 ],
+			LIST_COMMA,
+			'Wikimedia\Rdbms\Platform\SQLPlatform::makeList: array key {key} in list of values ignored',
+			[ 'key' => 'a' ]
+		];
+		yield 'associative keys in comma list (single)' => [
+			[ 'b' => 1 ],
+			LIST_COMMA,
+			'Wikimedia\Rdbms\Platform\SQLPlatform::makeList: array key {key} in list of values ignored',
+			[ 'key' => 'b' ]
+		];
+		yield 'associative keys in field list' => [
+			[ 'a' => 'x', 'b' => 'y' ],
+			LIST_NAMES,
+			'Wikimedia\Rdbms\Platform\SQLPlatform::makeList: array key {key} in list of fields ignored',
+			[ 'key' => 'a' ]
+		];
+		yield 'associative keys in field list (single)' => [
+			[ 'b' => 'y' ],
+			LIST_NAMES,
+			'Wikimedia\Rdbms\Platform\SQLPlatform::makeList: array key {key} in list of fields ignored',
+			[ 'key' => 'b' ]
 		];
 	}
 

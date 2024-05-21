@@ -210,6 +210,7 @@ class SQLPlatform implements ISQLPlatform {
 	public function makeList( array $a, $mode = self::LIST_COMMA ) {
 		$first = true;
 		$list = '';
+		$keyWarning = null;
 
 		foreach ( $a as $field => $value ) {
 			if ( $first ) {
@@ -263,10 +264,8 @@ class SQLPlatform implements ISQLPlatform {
 					}
 					if ( count( $value ) == 1 ) {
 						// Special-case single values, as IN isn't terribly efficient
-						// Don't necessarily assume the single key is 0; we don't
-						// enforce linear numeric ordering on other arrays here.
-						$value = array_values( $value )[0];
-						$list .= $field . " = " . $this->quoter->addQuotes( $value );
+						// (but call makeList() so that warnings are emitted if needed)
+						$list .= $field . " = " . $this->makeList( $value );
 					} else {
 						$list .= $field . " IN (" . $this->makeList( $value ) . ") ";
 					}
@@ -282,6 +281,10 @@ class SQLPlatform implements ISQLPlatform {
 					$list .= "$field IS ";
 				} elseif ( $mode == self::LIST_SET ) {
 					$list .= "$field = ";
+				} elseif ( $mode === self::LIST_COMMA && !is_numeric( $field ) ) {
+					$keyWarning ??= [ __METHOD__ . ": array key {key} in list of values ignored", [ 'key' => $field ] ];
+				} elseif ( $mode === self::LIST_NAMES && !is_numeric( $field ) ) {
+					$keyWarning ??= [ __METHOD__ . ": array key {key} in list of fields ignored", [ 'key' => $field ] ];
 				}
 				$list .= 'NULL';
 			} else {
@@ -289,9 +292,19 @@ class SQLPlatform implements ISQLPlatform {
 					$mode == self::LIST_AND || $mode == self::LIST_OR || $mode == self::LIST_SET
 				) {
 					$list .= "$field = ";
+				} elseif ( $mode === self::LIST_COMMA && !is_numeric( $field ) ) {
+					$keyWarning ??= [ __METHOD__ . ": array key {key} in list of values ignored", [ 'key' => $field ] ];
+				} elseif ( $mode === self::LIST_NAMES && !is_numeric( $field ) ) {
+					$keyWarning ??= [ __METHOD__ . ": array key {key} in list of fields ignored", [ 'key' => $field ] ];
 				}
 				$list .= $mode == self::LIST_NAMES ? $value : $this->quoter->addQuotes( $value );
 			}
+		}
+
+		if ( $keyWarning ) {
+			// Only log one warning about this per function call, to reduce log spam when a dynamically
+			// generated associative array is passed
+			$this->logger->warning( ...$keyWarning );
 		}
 
 		return $list;
