@@ -153,7 +153,7 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 		}
 
 		$this->conds(
-			$this->db->expr( 'user_registration', ( $direction ? '< ' : '> ' ), $this->db->timestamp( $timestamp ) )
+			$this->db->expr( 'user_registration', ( $direction ? '<' : '>' ), $this->db->timestamp( $timestamp ) )
 		);
 		return $this;
 	}
