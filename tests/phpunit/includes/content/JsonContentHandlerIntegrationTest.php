@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Content\JsonContent;
+use MediaWiki\Content\JsonContentHandler;
 use MediaWiki\Content\ValidationParams;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Page\PageIdentity;
@@ -60,7 +61,7 @@ class JsonContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideDataAndParserText
-	 * @covers \JsonContentHandler::fillParserOutput
+	 * @covers \MediaWiki\Content\JsonContentHandler::fillParserOutput
 	 */
 	public function testFillParserOutput( $data, $expected ) {
 		if ( !is_string( $data ) ) {
@@ -85,7 +86,7 @@ class JsonContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \JsonContentHandler::validateSave
+	 * @covers \MediaWiki\Content\JsonContentHandler::validateSave
 	 */
 	public function testValidateSave() {
 		$handler = new JsonContentHandler();

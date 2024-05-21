@@ -3,6 +3,7 @@
 use MediaWiki\Content\CssContentHandler;
 use MediaWiki\Content\JavaScriptContentHandler;
 use MediaWiki\Content\JsonContent;
+use MediaWiki\Content\JsonContentHandler;
 use MediaWiki\Content\TextContentHandler;
 use MediaWiki\Content\ValidationParams;
 use MediaWiki\Context\RequestContext;
