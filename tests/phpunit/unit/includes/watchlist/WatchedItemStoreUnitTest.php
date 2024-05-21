@@ -18,6 +18,7 @@ use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\ActivityUpdateJob;
 use MediaWiki\Watchlist\WatchedItem;
+use MediaWiki\Watchlist\WatchedItemStore;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\DeleteQueryBuilder;
 use Wikimedia\Rdbms\FakeResultWrapper;
@@ -34,7 +35,7 @@ use Wikimedia\TestingAccessWrapper;
  * @author Addshore
  * @author DannyS712
  *
- * @covers \WatchedItemStore
+ * @covers \MediaWiki\Watchlist\WatchedItemStore
  */
 class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	use DummyServicesTrait;
@@ -938,7 +939,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 					'wl_namespace' => 0,
 					'wl_title' => 'Old_Title',
 				],
-				'WatchedItemStore::fetchWatchedItemsForPage',
+				'MediaWiki\Watchlist\WatchedItemStore::fetchWatchedItemsForPage',
 				[ 'FOR UPDATE' ],
 				[ 'watchlist_expiry' => [ 'LEFT JOIN', [ 'wl_id = we_item' ] ] ]
 			)
@@ -3146,7 +3147,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 					'wl_notificationtimestamp' => null,
 					'we_expiry IS NULL OR we_expiry > 20200101000000',
 				],
-				'WatchedItemStore::updateNotificationTimestamp',
+				'MediaWiki\Watchlist\WatchedItemStore::updateNotificationTimestamp',
 				[],
 				[ 'watchlist_expiry' => [ 'LEFT JOIN', 'wl_id = we_item' ] ]
 			)
