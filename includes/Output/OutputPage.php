@@ -4133,11 +4133,10 @@ class OutputPage extends ContextSource {
 		}
 
 		# OpenSearch description link
-		$restPath = $config->get( MainConfigNames::RestPath );
 		$tags['opensearch'] = Html::element( 'link', [
 			'rel' => 'search',
 			'type' => 'application/opensearchdescription+xml',
-			'href' => "$restPath/v1/search",
+			'href' => wfScript( 'rest' ) . '/v1/search',
 			'title' => $this->msg( 'opensearch-desc' )->inContentLanguage()->text(),
 		] );
 
