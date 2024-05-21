@@ -130,7 +130,7 @@ ERROR
 				->set( [ 'user_password = ' . $dbw->buildConcat( [ $dbw->addQuotes( ':null:' ),
 						'user_password' ] ) ] )
 				->where( [
-					'NOT (user_password ' . $dbw->buildLike( ':null:', $dbw->anyString() ) . ')',
+					$dbw->expr( 'user_password', IExpression::NOT_LIKE, new LikeValue( ':null:', $dbw->anyString() ) ),
 					$dbw->expr( 'user_password', '!=', PasswordFactory::newInvalidPassword()->toString() ),
 					'user_password IS NOT NULL',
 					'user_name' => $userBatch,

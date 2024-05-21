@@ -33,7 +33,9 @@ use Skin;
 use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\LikeValue;
 
 /**
  * Special:LinkSearch to search the external-links table.
@@ -188,7 +190,7 @@ class SpecialLinkSearch extends QueryPage {
 		];
 		if ( $this->mQuery === '*' && $this->mProt !== '' ) {
 			$this->mungedQuery = [
-				$field . $dbr->buildLike( $this->mProt, $dbr->anyString() ),
+				$dbr->expr( $field, IExpression::LIKE, new LikeValue( $this->mProt, $dbr->anyString() ) ),
 			];
 		} else {
 			$this->mungedQuery = LinkFilter::getQueryConditions( $this->mQuery, [

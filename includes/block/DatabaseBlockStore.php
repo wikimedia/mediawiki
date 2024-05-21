@@ -514,7 +514,6 @@ class DatabaseBlockStore {
 		// so we can improve performance by filtering on a LIKE clause
 		$chunk = $this->getIpFragment( $start );
 		$dbr = $this->getReplicaDB();
-		$like = $dbr->buildLike( $chunk, $dbr->anyString() );
 		$end ??= $start;
 
 		if ( $schema === self::SCHEMA_CURRENT ) {
@@ -524,7 +523,8 @@ class DatabaseBlockStore {
 		if ( $schema === self::SCHEMA_IPBLOCKS ) {
 			return $dbr->makeList(
 				[
-					"ipb_range_start $like",
+					$dbr->expr( 'ipb_range_start', IExpression::LIKE,
+						new LikeValue( $chunk, $dbr->anyString() ) ),
 					$dbr->expr( 'ipb_range_start', '<=', $start ),
 					$dbr->expr( 'ipb_range_end', '>=', $end ),
 				],
