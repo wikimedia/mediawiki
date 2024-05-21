@@ -1997,6 +1997,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Rest\\Handler\\MediaFileHandler' => __DIR__ . '/includes/Rest/Handler/MediaFileHandler.php',
 	'MediaWiki\\Rest\\Handler\\MediaLinksHandler' => __DIR__ . '/includes/Rest/Handler/MediaLinksHandler.php',
 	'MediaWiki\\Rest\\Handler\\ModuleSpecHandler' => __DIR__ . '/includes/Rest/Handler/ModuleSpecHandler.php',
+	'MediaWiki\\Rest\\Handler\\OpenSearchDescriptionHandler' => __DIR__ . '/includes/Rest/Handler/OpenSearchDescriptionHandler.php',
 	'MediaWiki\\Rest\\Handler\\PageHTMLHandler' => __DIR__ . '/includes/Rest/Handler/PageHTMLHandler.php',
 	'MediaWiki\\Rest\\Handler\\PageHistoryCountHandler' => __DIR__ . '/includes/Rest/Handler/PageHistoryCountHandler.php',
 	'MediaWiki\\Rest\\Handler\\PageHistoryHandler' => __DIR__ . '/includes/Rest/Handler/PageHistoryHandler.php',

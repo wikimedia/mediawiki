@@ -66,6 +66,14 @@
 		"format": "bare"
 	},
 	{
+		"path": "/v1/search",
+		"class": "MediaWiki\\Rest\\Handler\\OpenSearchDescriptionHandler",
+		"services": [
+			"MainConfig",
+			"UrlUtils"
+		]
+	},
+	{
 		"path": "/v1/search/page",
 		"class": "MediaWiki\\Rest\\Handler\\SearchHandler",
 		"services": [
