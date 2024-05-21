@@ -409,7 +409,7 @@ return [
 					],
 				],
 				'javascript' => 'MediaWiki\\Content\\JavaScriptContentHandler',
-				'json' => 'JsonContentHandler',
+				'json' => 'MediaWiki\\Content\\JsonContentHandler',
 				'css' => 'MediaWiki\\Content\\CssContentHandler',
 				'text' => 'MediaWiki\\Content\\TextContentHandler',
 				'unknown' => 'FallbackContentHandler',

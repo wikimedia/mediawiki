@@ -18,11 +18,14 @@
  * @file
  */
 
-use MediaWiki\Content\JsonContent;
+namespace MediaWiki\Content;
+
+use CodeContentHandler;
+use Content;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
-use MediaWiki\Content\ValidationParams;
 use MediaWiki\Parser\ParserOutput;
+use StatusValue;
 
 /**
  * Content handler for JSON text.
@@ -133,3 +136,5 @@ class JsonContentHandler extends CodeContentHandler {
 		}
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( JsonContentHandler::class, 'JsonContentHandler' );

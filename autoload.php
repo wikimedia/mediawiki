@@ -1004,6 +1004,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Content\\JavaScriptContent' => __DIR__ . '/includes/content/JavaScriptContent.php',
 	'MediaWiki\\Content\\JavaScriptContentHandler' => __DIR__ . '/includes/content/JavaScriptContentHandler.php',
 	'MediaWiki\\Content\\JsonContent' => __DIR__ . '/includes/content/JsonContent.php',
+	'MediaWiki\\Content\\JsonContentHandler' => __DIR__ . '/includes/content/JsonContentHandler.php',
 	'MediaWiki\\Content\\Renderer\\ContentParseParams' => __DIR__ . '/includes/content/Renderer/ContentParseParams.php',
 	'MediaWiki\\Content\\Renderer\\ContentRenderer' => __DIR__ . '/includes/content/Renderer/ContentRenderer.php',
 	'MediaWiki\\Content\\TextContent' => __DIR__ . '/includes/content/TextContent.php',
