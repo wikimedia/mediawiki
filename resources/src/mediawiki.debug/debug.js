@@ -16,12 +16,9 @@
 	};
 
 	/**
-	 * @classdesc Access the debug toolbar. Enabled server-side through `$wgDebugToolbar`.
+	 * Access the debug toolbar. Enabled server-side through `$wgDebugToolbar`.
 	 *
-	 * @class mw.Debug
-	 * @singleton
-	 * @constructor
-	 * @description Create an instance of `mw.Debug`.
+	 * @namespace mw.Debug
 	 * @author John Du Hart
 	 * @since 1.19
 	 */

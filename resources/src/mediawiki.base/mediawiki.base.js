@@ -583,7 +583,6 @@ mw.hook = function ( name ) {
  * mw.log( output ); // <div><img src="&lt;"/></div>
  *
  * @namespace mw.html
- * @singleton
  */
 
 function escapeCallback( s ) {
@@ -869,7 +868,6 @@ mw.loader.getScript = function ( url ) {
 // Skeleton user object, extended by the 'mediawiki.user' module.
 /**
  * @namespace mw.user
- * @singleton
  * @ignore
  */
 mw.user = {
