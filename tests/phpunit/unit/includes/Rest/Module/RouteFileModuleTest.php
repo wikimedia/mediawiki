@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Rest\Module;
 
 use GuzzleHttp\Psr7\Uri;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\Module\Module;
@@ -92,6 +93,12 @@ class RouteFileModuleTest extends \MediaWikiUnitTestCase {
 		return $module;
 	}
 
+	private function createMockStats( string $method, ...$with ): StatsdDataFactoryInterface {
+		$stats = $this->createNoOpMock( StatsdDataFactoryInterface::class, [ $method ] );
+		$stats->expects( $this->atLeastOnce() )->method( $method )->with( ...$with );
+		return $stats;
+	}
+
 	public function testWrongMethod() {
 		$request = new RequestData( [
 			'uri' => new Uri( '/rest/mock.v1/ModuleTest/hello' ),
@@ -116,11 +123,18 @@ class RouteFileModuleTest extends \MediaWikiUnitTestCase {
 
 	public function testFlatRouteFile() {
 		$request = new RequestData( [
-			'uri' => new Uri( '/rest/foobar/ModuleTest/hello/two' ),
+			'uri' => new Uri( '/rest/foobar/ModuleTest/greetings/you' ),
 			'method' => 'HEAD'
 		] );
 		$module = $this->createRouteFileModule( $request );
-		$response = $module->execute( '/ModuleTest/hello', $request );
+
+		$module->setStats( $this->createMockStats(
+			'timing',
+			'rest_api_latency._mock_v1_foobar_ModuleTest_greetings_-name-.HEAD.200',
+			$this->greaterThan( 0 )
+		) );
+
+		$response = $module->execute( '/foobar/ModuleTest/greetings/you', $request );
 		$this->assertSame( 200, $response->getStatusCode() );
 	}
 
@@ -135,6 +149,12 @@ class RouteFileModuleTest extends \MediaWikiUnitTestCase {
 	public function testHttpException() {
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock.v1/ModuleTest/throw' ) ] );
 		$module = $this->createRouteFileModule( $request );
+
+		$module->setStats( $this->createMockStats(
+			'increment',
+			'rest_api_errors._mock_v1_ModuleTest_throw.GET.555'
+		) );
+
 		$response = $module->execute( '/ModuleTest/throw', $request );
 		$this->assertSame( 555, $response->getStatusCode() );
 		$body = $response->getBody();
