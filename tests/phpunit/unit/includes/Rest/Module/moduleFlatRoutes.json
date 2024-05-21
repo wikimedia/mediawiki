@@ -1,6 +1,6 @@
 [
 	{
-		"path": "/mock.v1/ModuleTest/hello/two",
+		"path": "/foobar/ModuleTest/greetings/{name}",
 		"class": "MediaWiki\\Tests\\Rest\\Handler\\HelloHandler"
 	}
 ]

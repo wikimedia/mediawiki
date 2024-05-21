@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Rest\Module;
 
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
 use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
@@ -17,6 +18,7 @@ use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
+use NullStatsdDataFactory;
 use Throwable;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectFactory\ObjectFactory;
@@ -42,8 +44,9 @@ abstract class Module {
 	private ObjectFactory $objectFactory;
 	private Validator $restValidator;
 	private ErrorReporter $errorReporter;
-
 	private Router $router;
+
+	private StatsdDataFactoryInterface $stats;
 	private ?CorsUtils $cors = null;
 
 	/**
@@ -71,6 +74,8 @@ abstract class Module {
 		$this->objectFactory = $objectFactory;
 		$this->restValidator = $restValidator;
 		$this->errorReporter = $errorReporter;
+
+		$this->stats = new NullStatsdDataFactory();
 	}
 
 	public function getPathPrefix(): string {
@@ -252,6 +257,7 @@ abstract class Module {
 	 */
 	public function execute( string $path, RequestInterface $request ): ResponseInterface {
 		$handler = null;
+		$startTime = microtime( true );
 
 		try {
 			$handler = $this->getHandlerForPath( $path, $request, true );
@@ -265,7 +271,38 @@ abstract class Module {
 			$response = $this->responseFactory->createFromException( $e );
 		}
 
+		$this->recordMetrics( $handler, $request, $response, $startTime );
+
 		return $response;
+	}
+
+	private function recordMetrics(
+		?Handler $handler,
+		RequestInterface $request,
+		ResponseInterface $response,
+		float $startTime
+	) {
+		$microtime = ( microtime( true ) - $startTime ) * 1000;
+
+		// NOTE: The "/" prefix is for consistency with old logs. It's rather ugly.
+		$pathForMetrics = '/' . $this->getPathPrefix();
+		$pathForMetrics .= $handler ? $handler->getPath() : '/UNKNOWN';
+
+		// Replace any characters that may have a special meaning in the metrics DB.
+		$pathForMetrics = strtr( $pathForMetrics, '{}:/.', '---__' );
+
+		$statusCode = $response->getStatusCode();
+		$requestMethod = $request->getMethod();
+		if ( $statusCode >= 400 ) {
+			// count how often we return which error code
+			$this->stats->increment( "rest_api_errors.$pathForMetrics.$requestMethod.$statusCode" );
+		} else {
+			// measure how long it takes to generate a response
+			$this->stats->timing(
+				"rest_api_latency.$pathForMetrics.$requestMethod.$statusCode",
+				$microtime
+			);
+		}
 	}
 
 	/**
@@ -343,6 +380,19 @@ abstract class Module {
 	 */
 	public function setCors( CorsUtils $cors ): self {
 		$this->cors = $cors;
+
+		return $this;
+	}
+
+	/**
+	 * @internal for use by Router
+	 *
+	 * @param StatsdDataFactoryInterface $stats
+	 *
+	 * @return self
+	 */
+	public function setStats( StatsdDataFactoryInterface $stats ): self {
+		$this->stats = $stats;
 
 		return $this;
 	}

@@ -15,7 +15,6 @@ use MediaWiki\Rest\PathTemplateMatcher\ModuleConfigurationException;
 use MediaWiki\Rest\Reporter\ErrorReporter;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\Session;
-use NullStatsdDataFactory;
 use Throwable;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectFactory\ObjectFactory;
@@ -85,8 +84,8 @@ class Router {
 	/** @var Session */
 	private $session;
 
-	/** @var StatsdDataFactoryInterface */
-	private $stats;
+	/** @var ?StatsdDataFactoryInterface */
+	private $stats = null;
 
 	/**
 	 * @internal
@@ -143,8 +142,6 @@ class Router {
 		$this->errorReporter = $errorReporter;
 		$this->hookContainer = $hookContainer;
 		$this->session = $session;
-
-		$this->stats = new NullStatsdDataFactory();
 	}
 
 	/**
@@ -396,6 +393,10 @@ class Router {
 			$module->setCors( $this->cors );
 		}
 
+		if ( $this->stats ) {
+			$module->setStats( $this->stats );
+		}
+
 		$this->modules[$name] = $module;
 		return $module;
 	}
@@ -460,8 +461,6 @@ class Router {
 	}
 
 	private function doExecute( string $fullPath, RequestInterface $request ): ResponseInterface {
-		$requestMethod = $request->getMethod();
-
 		[ $modulePrefix, $path ] = $this->splitPath( $fullPath );
 		$module = $this->getModule( $modulePrefix );
 
@@ -473,29 +472,7 @@ class Router {
 			);
 		}
 
-		// Replace any characters that may have a special meaning in the metrics DB.
-		$pathForMetrics = $path;
-		$pathForMetrics = strtr( $pathForMetrics, '{}:', '-' );
-		$pathForMetrics = strtr( $pathForMetrics, '/.', '_' );
-
-		$statTime = microtime( true );
-		$response = $module->execute( $path, $request );
-
-		// gather metrics
-		$statusCode = $response->getStatusCode();
-		if ( $response->getStatusCode() >= 400 ) {
-			// count how often we return which error code
-			$this->stats->increment( "rest_api_errors.$pathForMetrics.$requestMethod.$statusCode" );
-		} else {
-			// measure how long it takes to generate a response
-			$microtime = ( microtime( true ) - $statTime ) * 1000;
-			$this->stats->timing(
-				"rest_api_latency.$pathForMetrics.$requestMethod.$statusCode",
-				$microtime
-			);
-		}
-
-		return $response;
+		return $module->execute( $path, $request );
 	}
 
 	/**
