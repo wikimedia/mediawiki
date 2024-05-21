@@ -340,15 +340,19 @@ class SpecialBlock extends FormSpecialPage {
 
 		if ( $conf->get( MainConfigNames::EnablePartialActionBlocks ) ) {
 			$blockActions = $this->blockActionInfo->getAllBlockActions();
+			$optionMessages = array_combine(
+				array_map( static function ( $action ) {
+					return "ipb-action-$action";
+				}, array_keys( $blockActions ) ),
+				$blockActions
+			);
+
+			$this->codexFormData[ 'partialBlockActionOptions'] = $optionMessages;
+
 			$a['ActionRestrictions'] = [
 				'type' => 'multiselect',
 				'cssclass' => 'mw-htmlform-checkradio-indent mw-block-partial-restriction mw-block-action-restriction',
-				'options-messages' => array_combine(
-					array_map( static function ( $action ) {
-						return "ipb-action-$action";
-					}, array_keys( $blockActions ) ),
-					$blockActions
-				),
+				'options-messages' => $optionMessages,
 				'section' => 'actions',
 			];
 		}

@@ -2250,16 +2250,21 @@ return [
 				'callback' => 'MediaWiki\\ResourceLoader\\CodexModule::getIcons',
 				'callbackParam' => [
 					'cdxIconSearch'
-				]
-			]
+				],
+			],
 		],
 		'dependencies' => [
 			'vue',
 			'@wikimedia/codex',
 		],
 		'messages' => [
+			'block-actions',
 			'block-details',
 			'block-details-description',
+			'blocklist-type-opt-partial',
+			'blocklist-type-opt-sitewide',
+			'ipb-sitewide-help',
+			'ipb-partial-help',
 			'block-options',
 			'block-options-description',
 			'block-user-label',
@@ -2267,6 +2272,9 @@ return [
 			'block-user-placeholder',
 			'block-save',
 			'htmlform-optional-flag',
+			'ipb-action-create',
+			'ipb-action-move',
+			'ipb-action-upload',
 			'ipbcreateaccount',
 			'ipbemailban',
 			'ipb-disableusertalk',
