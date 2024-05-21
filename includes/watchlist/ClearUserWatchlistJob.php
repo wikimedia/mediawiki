@@ -1,5 +1,9 @@
 <?php
 
+namespace MediaWiki\Watchlist;
+
+use GenericParameterJob;
+use Job;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
@@ -111,3 +115,5 @@ class ClearUserWatchlistJob extends Job implements GenericParameterJob {
 	}
 
 }
+/** @deprecated class alias since 1.43 */
+class_alias( ClearUserWatchlistJob::class, 'ClearUserWatchlistJob' );

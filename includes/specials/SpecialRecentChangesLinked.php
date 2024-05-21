@@ -28,11 +28,11 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserIdentityUtils;
+use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Xml\Xml;
 use MessageCache;
 use RecentChange;
 use SearchEngineFactory;
-use WatchedItemStoreInterface;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Rdbms\Subquery;
 

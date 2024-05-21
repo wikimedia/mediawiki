@@ -19,10 +19,11 @@
  * @ingroup Watchlist
  */
 
+namespace MediaWiki\Watchlist;
+
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\Watchlist\WatchedItem;
 
 /**
  * @author Addshore
@@ -423,3 +424,5 @@ interface WatchedItemStoreInterface {
 	 */
 	public function removeExpired( int $limit, bool $deleteOrphans = false ): void;
 }
+/** @deprecated class alias since 1.43 */
+class_alias( WatchedItemStoreInterface::class, 'WatchedItemStoreInterface' );

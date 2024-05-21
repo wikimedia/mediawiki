@@ -7,6 +7,7 @@ use MediaWiki\Specials\SpecialRecentChanges;
 use MediaWiki\Tests\SpecialPage\AbstractChangesListSpecialPageTestCase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
+use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use Wikimedia\TestingAccessWrapper;
 
 /**

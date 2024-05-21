@@ -37,6 +37,7 @@ use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
+use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
