@@ -22,6 +22,7 @@
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\RevisionList\RevisionItem;
 
 /**
  * Item class for a live revision table row with its associated change tags.

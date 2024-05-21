@@ -1,10 +1,12 @@
 <?php
 
+use MediaWiki\RevisionList\RevisionItemBase;
+use MediaWiki\RevisionList\RevisionListBase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \RevisionListBase
+ * @covers \MediaWiki\RevisionList\RevisionListBase
  *
  * @author DannyS712
  */

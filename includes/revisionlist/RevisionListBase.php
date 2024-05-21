@@ -20,12 +20,16 @@
  * @file
  */
 
+namespace MediaWiki\RevisionList;
+
+use Iterator;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
+use stdClass;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -187,3 +191,5 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 	 */
 	abstract public function newItem( $row );
 }
+/** @deprecated class alias since 1.43 */
+class_alias( RevisionListBase::class, 'RevisionListBase' );

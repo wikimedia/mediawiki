@@ -21,6 +21,7 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\RevisionList\RevisionItemBase;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 

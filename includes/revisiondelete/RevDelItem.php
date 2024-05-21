@@ -19,6 +19,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\RevisionList\RevisionItemBase;
 use MediaWiki\Status\Status;
 
 /**

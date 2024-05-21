@@ -20,8 +20,11 @@
  * @file
  */
 
+namespace MediaWiki\RevisionList;
+
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use stdClass;
 
 /**
  * Abstract base class for revision items
@@ -179,3 +182,5 @@ abstract class RevisionItemBase {
 		return MediaWikiServices::getInstance()->getLinkRenderer();
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( RevisionItemBase::class, 'RevisionItemBase' );

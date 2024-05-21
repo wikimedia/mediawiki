@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\RevisionList\RevisionListBase;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\Xml\Xml;

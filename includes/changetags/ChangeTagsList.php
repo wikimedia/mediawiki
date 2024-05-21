@@ -23,6 +23,7 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\RevisionList\RevisionListBase;
 use MediaWiki\Status\Status;
 
 /**

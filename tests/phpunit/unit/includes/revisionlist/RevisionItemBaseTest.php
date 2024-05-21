@@ -1,7 +1,9 @@
 <?php
 
+use MediaWiki\RevisionList\RevisionItemBase;
+
 /**
- * @covers \RevisionItemBase
+ * @covers \MediaWiki\RevisionList\RevisionItemBase
  *
  * @author DannyS712
  */
