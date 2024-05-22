@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
-use IBufferingStatsdDataFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * @covers \GetLagTimes
@@ -52,7 +52,7 @@ class GetLagTimesTest extends MaintenanceBaseTestCase {
 		$this->expectOutputRegex( $expected );
 	}
 
-	public function testSendsToStatsd() {
+	public function testStats() {
 		$lbFactory = $this->createMock( LBFactory::class );
 		$lbFactory->method( 'getAllMainLBs' )
 			->willReturn( [
@@ -65,25 +65,29 @@ class GetLagTimesTest extends MaintenanceBaseTestCase {
 			] );
 		$this->setService( 'DBLoadBalancerFactory', $lbFactory );
 
-		// The Statsd service
-		$gaugeArgs = [
-			[ 'loadbalancer.lag.cluster1.localhost', 1000 ],
-			[ 'loadbalancer.lag.cluster2.localhost', 0 ],
-			[ 'loadbalancer.lag.external.localhost', 14000 ],
-		];
-		$stats = $this->createMock( IBufferingStatsdDataFactory::class );
-		$stats->expects( $this->exactly( 3 ) )
-			->method( 'gauge' )
-			->willReturnCallback( function ( $key, $value ) use ( &$gaugeArgs ): void {
-				[ $nextKey, $nextValue ] = array_shift( $gaugeArgs );
-				$this->assertSame( $nextKey, $key );
-				$this->assertSame( $nextValue, $value );
-			} );
-
-		$this->setService( 'StatsdDataFactory', $stats );
+		$dummyGauge = StatsFactory::newNull()->getGauge( 'dummy' );
+		$sfmock = $this->createConfiguredMock( StatsFactory::class, [
+			'getGauge' => $dummyGauge
+		] );
+		$this->setService( 'StatsFactory', $sfmock );
 
 		$this->maintenance->setOption( 'report', true );
 		$this->maintenance->execute();
+
+		$expectedSamples = [
+			// milliseconds
+			[ 'cluster1.localhost', 1000.0 ],
+			[ 'cluster2.localhost', 0.0 ],
+			[ 'external.localhost', 14000.0 ],
+			// seconds
+			[ 'cluster1.localhost', 1.0 ],
+			[ 'cluster2.localhost', 0.0 ],
+			[ 'external.localhost', 14.0 ],
+		];
+		foreach ( $dummyGauge->getSamples() as $sample ) {
+			$namespaced = implode( '.', $sample->getLabelValues() );
+			$this->assertContains( [ $namespaced, $sample->getValue() ], $expectedSamples );
+		}
 	}
 
 }
