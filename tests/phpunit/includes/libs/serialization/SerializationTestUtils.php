@@ -209,19 +209,24 @@ class SerializationTestUtils {
 		string $version = null
 	) {
 		$classFile = self::classToFile( $class );
+		$curPath = "$this->serializedDataPath/{$this->getCurrentVersion()}-$classFile-$testCaseName.$this->ext";
 		if ( $version ) {
 			$path = "$this->serializedDataPath/$version-$classFile-$testCaseName.$this->ext";
 		} else {
 			// Find the latest version we have saved.
-			$savedFiles = glob( "$this->serializedDataPath/?.??-$classFile-$testCaseName.$this->ext" );
-			sort( $savedFiles );
-			$path = count( $savedFiles ) > 0 ? $savedFiles[count( $savedFiles ) - 1] : null;
-		}
-		$curPath = "$this->serializedDataPath/{$this->getCurrentVersion()}-$classFile-$testCaseName.$this->ext";
-		if ( $path === null ) {
-			// Handle creation of a new test case from scratch (no prior
-			// serialization file exists)
-			$path = $curPath;
+			$savedFiles = glob( "$this->serializedDataPath/?.??*-$classFile-$testCaseName.$this->ext" );
+			if ( count( $savedFiles ) > 0 ) {
+				// swap _ and - to ensure that 1.43-foo sorts after 1.43_wmf...-foo
+				usort(
+					$savedFiles,
+					fn ( $a, $b ) => strtr( $a, '-_', '_-' ) <=> strtr( $b, '-_', '_-' )
+				);
+				$path = end( $savedFiles );
+			} else {
+				// Handle creation of a new test case from scratch (no prior
+				// serialization file exists)
+				$path = $curPath;
+			}
 		}
 
 		return (object)[
