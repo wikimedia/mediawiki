@@ -442,6 +442,7 @@ vue-demi:
   homepage: https://github.com/vueuse/vue-demi/
   authors: Anthony Fu
   version: 0.14.7
+  purl: pkg:npm/vue-demi@0.14.7
   type: tar
   src: https://registry.npmjs.org/vue-demi/-/vue-demi-0.14.7.tgz
   integrity: sha384-QtuGGEowk/dEp/TbptrrLsk775PREnaIEH9eORfmFEy2r6uj71NS0BtNmuU0ITS6
