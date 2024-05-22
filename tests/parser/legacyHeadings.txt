@@ -2849,3 +2849,35 @@ wgParserEnableLegacyHeadingDOM=true
 <h2 id="Normal_heading_with_existing_wrapper!" data-parsoid='{"dsr":[211,252,2,2]}'><span id="Normal_heading_with_existing_wrapper.21" typeof="mw:FallbackId" data-parsoid='{"dsr":[213,213,null,null]}'></span>Normal heading with existing wrapper!</h2>
 </div>
 !! end
+
+!! test
+T365413: Headings with dollar signs
+!! options
+wgParserEnableLegacyHeadingDOM=true
+!! wikitext
+==$text==
+
+==$ text==
+
+==text $text==
+
+==\$text==
+
+==$$text==
+!! html/php
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#.24text"><span class="tocnumber">1</span> <span class="toctext">$text</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#.24_text"><span class="tocnumber">2</span> <span class="toctext">$ text</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#text_.24text"><span class="tocnumber">3</span> <span class="toctext">text $text</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#.5C.24text"><span class="tocnumber">4</span> <span class="toctext">\$text</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#.24.24text"><span class="tocnumber">5</span> <span class="toctext">$$text</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id=".24text">$text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: $text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id=".24_text">$ text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: $ text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="text_.24text">text $text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: text $text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id=".5C.24text">\$text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: \$text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id=".24.24text">$$text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: $$text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+!! end
