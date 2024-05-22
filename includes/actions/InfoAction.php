@@ -246,6 +246,7 @@ class InfoAction extends FormlessAction {
 	 * @param string $name The name of the row
 	 * @param string $value The value of the row
 	 * @param string|null $id The ID to use for the 'tr' element
+	 * @param-taint $id none
 	 * @return string HTML
 	 */
 	private function getRow( $name, $value, $id ) {
