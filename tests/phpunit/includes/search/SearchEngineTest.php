@@ -91,6 +91,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		$this->insertPage( 'DomainName', 'example.com' );
 		$this->insertPage( 'Category:search is not Search', '' );
 		$this->insertPage( 'Category:Search is not search', '' );
+		$this->insertPage( 'Talk:1', 'Did you know titles can be numbers?' );
 	}
 
 	protected function fetchIds( $results ) {
@@ -266,6 +267,11 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 				'Smithee',
 				[ NS_MAIN ],
 			],
+			'Numeric title works (T365565)' => [
+				'1',
+				'Talk:1',
+				[ NS_TALK ],
+			]
 		];
 	}
 

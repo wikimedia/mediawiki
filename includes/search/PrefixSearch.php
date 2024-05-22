@@ -289,7 +289,7 @@ abstract class PrefixSearch {
 				$expr = $expr->and(
 					'page_title',
 					IExpression::LIKE,
-					new LikeValue( $prefix, $dbr->anyString() )
+					new LikeValue( (string)$prefix, $dbr->anyString() )
 				);
 			}
 			$conds[] = $expr;
