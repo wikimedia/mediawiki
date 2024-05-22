@@ -2950,7 +2950,7 @@
 	"confirmemail_noemail": "Yew emaîlê tu raştîyê çin o ke [[Special:Preferences|tercihê karberî]] ayar bike.",
 	"confirmemail_text": "Qey gurweyayışê e-postayê wikiyi gani veror e-postayê şıma araşt bıbo.\nAdresa şıma re qey erşawıtışê e-postayê araştin, butonê cêrıni pıploxnê.\nE-posta yo ke erşawiyeno tede gıreyê kodê araşti esto, gıreyi pıploxne akerê u e-postayê xo araşt kerê.",
 	"confirmemail_pending": "Yew codê konfirmasyonî ma ti ra şiravt;\nEka ti newe hesabê xo viraşt, ti gani yew di dekika vindero u email xo kontrol bike, yani reyna yew hesab meviraz.",
-	"confirmemail_send": "Yo kod ë arast kerdışi bıerşaw Epostayi",
+	"confirmemail_send": "Yew kodê pêqayılbiyene bırışe",
 	"confirmemail_sent": "Emailê konfirmasyonî şiravt",
 	"confirmemail_oncreate": "Yew codê konfirmasyonî ma ti ra şiravt;\nEna kod semed ci kewtîşî lazim niyo, feqat ti gani sistem rê eno kod bimocne ke ti opsiyonê emailî wîkî a bike.",
 	"confirmemail_sendfailed": "{{SITENAME}} nieşkenî ti ra yew emailê konfirmasyonî bişiravî.\nRica keno ke adresê emailî xo kontrol bike.\n\nEmail şawitoğ eno reyna ard: $1",

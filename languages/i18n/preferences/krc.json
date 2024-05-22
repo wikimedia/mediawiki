@@ -19,7 +19,7 @@
 	"prefs-sections-navigation-hint": "Насихат: джарашдырыу бёлюмлени арасында айландырыр ючюн Tab эмда Shift + Tab тиеклени хайырланыргъа боллукъсуз.",
 	"prefs-personal": "Энчи билгиле",
 	"prefs-description-personal": "Къалай кёрюннгенигизни, байлам къургъаныгъызны эмда ушагъыгъызны тинтгенлей туругъуз.",
-	"prefs-info": "Баш билгиле",
+	"prefs-info": "Тамал информация",
 	"username": "{{GENDER:$1|Къошулуучу ат}}:",
 	"prefs-memberingroups": "{{PLURAL:$1|Къауумну|къауумланы}} {{GENDER:$2|къошулуучусу}}",
 	"group-membership-link-with-expiry": "$1 ($2 дери)",
