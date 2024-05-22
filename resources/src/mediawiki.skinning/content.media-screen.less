@@ -1,5 +1,8 @@
+/* stylelint-disable selector-class-pattern */
 @import 'mediawiki.skin.variables.less';
 @import 'content.variables.less';
+
+@margin-horizontal-image: 3px;
 
 figure[ typeof~='mw:File/Thumb' ],
 figure[ typeof~='mw:File/Frame' ] {
@@ -36,23 +39,30 @@ figure[ typeof~='mw:File/Thumb' ] {
 
 		// Default where page content language is not set
 		// Allow to flip
-		margin: 0 0 0 3px;
+		margin: 0 0 0 @margin-horizontal-image;
 		float: right;
 
 		// Defaults for page content language
 
 		.mw-content-ltr & {
 			/* @noflip */
-			margin: 0 0 0 3px;
+			margin: 0 0 0 @margin-horizontal-image;
 			/* @noflip */
 			float: right;
 		}
 
 		.mw-content-rtl & {
 			/* @noflip */
-			margin: 0 3px 0 0;
+			margin: 0 @margin-horizontal-image 0 0;
 			/* @noflip */
 			float: left;
+		}
+
+		body.skin--responsive & {
+			/** Disable magnifying glass at lower resolutions */
+			@media all and ( max-width: @max-width-breakpoint-mobile ) {
+				content: none;
+			}
 		}
 	}
 
@@ -92,6 +102,52 @@ figure[ typeof~='mw:File/Thumb' ] {
 				/* @noflip */
 				background-image: @background-image-magnify-rtl;
 			}
+
+			/** Disable magnifying glass at lower resolutions to maximize space for caption. */
+			@media all and ( max-width: @max-width-breakpoint-mobile ) {
+				/* stylelint-disable-next-line declaration-no-important */
+				background-image: none !important;
+			}
+		}
+	}
+}
+
+/**
+ * RESPONSIVE IMAGES FOR RESPONSIVE SKINS (T113101)
+ * Applies to all images directly inside a link or a noscript tag inside the parser output.
+ * A noscript tag is included as this applies to lazy loaded images which can be enabled by
+ * extensions such as MobileFrontend (T191893).
+ * Note we restrict to img's to avoid conflicts with VisualEditor shields.
+ */
+a,
+noscript {
+	> img {
+		body.skin--responsive .mw-parser-output & {
+			// Note height auto is required and only applied to images.
+			// It must be !important to override any inline style
+			// declarations. (T64460)
+			/* stylelint-disable-next-line declaration-no-important */
+			height: auto !important;
+			// make sure that images in articles don't cause a horizontal scrollbar
+			// on small screens. It must be !important to override any inline style
+			// declarations.
+			/* stylelint-disable-next-line declaration-no-important */
+			max-width: @size-full !important;
+		}
+
+		// Note: If the image is a thumbnail, the max-width also needs to take into account margin.
+		figure[ typeof~='mw:File/Thumb' ] & {
+			/* stylelint-disable-next-line declaration-no-important */
+			max-width: calc( @size-full - @margin-horizontal-image - @margin-horizontal-image ) !important;
+		}
+
+		/**
+		* When the noresize class is used e.g. on a panorama or image map
+		* with clickable regions (T22030), do not subject the image to a max-width rule.
+		*/
+		body.skin--responsive .noresize & {
+			/* stylelint-disable-next-line declaration-no-important */
+			max-width: none !important;
 		}
 	}
 }

@@ -1,3 +1,4 @@
+/* stylelint-disable selector-class-pattern */
 @import 'mediawiki.skin.variables.less';
 @import 'content.variables.less';
 
@@ -196,6 +197,21 @@ figure[ typeof~='mw:File/Frame' ] {
 
 		/* taken from .thumbcaption, plus .thumbinner */
 		padding: 0 6px 6px 6px;
+	}
+}
+
+/**
+ * Disable floating on mobile devices and automatically center on the page.
+ * This overrides any inline styles in the process.
+ */
+figure {
+	body.skin--responsive & {
+		@media all and ( max-width: @max-width-breakpoint-mobile ) {
+			/* stylelint-disable-next-line declaration-no-important */
+			margin: 0 auto !important;
+			/* stylelint-disable-next-line declaration-no-important */
+			float: none !important;
+		}
 	}
 }
 
