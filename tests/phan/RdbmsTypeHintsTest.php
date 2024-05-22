@@ -22,6 +22,10 @@ class RdbmsTypeHintsTest {
 		// @phan-suppress-next-line PhanPluginUseReturnValueKnown
 		$expr->and( 'a', '=', 1 );
 
+		// Typo in the operator
+		// @phan-suppress-next-line PhanTypeMismatchArgumentProbablyReal
+		$conds[] = $db->expr( 'a', '=<', 1 );
+
 		// We accept lots of types, but not all
 		// @phan-suppress-next-line PhanTypeMismatchArgumentProbablyReal
 		$conds[] = $db->expr( 'a', '=', new \stdClass );
