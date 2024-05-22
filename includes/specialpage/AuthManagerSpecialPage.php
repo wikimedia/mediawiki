@@ -578,6 +578,12 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 			$params[$this->getTokenName()] = $this->getToken()->toString();
 		}
 
+		// Allow authentication extensions like CentralAuth to preserve their own
+		// query params during and after the authentication process.
+		$this->getHookRunner()->onAuthPreserveQueryParams(
+			$params, [ 'reset' => $options['reset'] ]
+		);
+
 		return array_filter( $params, fn ( $val ) => $val !== null );
 	}
 
