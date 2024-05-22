@@ -207,15 +207,27 @@ class SerializationTestUtils {
 		string $testCaseName,
 		string $version = null
 	) {
+		$classFile = self::classToFile( $class );
+		$curPath = "$this->serializedDataPath/{$this->getCurrentVersion()}-$classFile-$testCaseName.$this->ext";
 		if ( $version ) {
-			$path = "$this->serializedDataPath/$version-$class-$testCaseName.$this->ext";
+			$path = "$this->serializedDataPath/$version-$classFile-$testCaseName.$this->ext";
 		} else {
 			// Find the latest version we have saved.
-			$savedFiles = glob( "$this->serializedDataPath/?.??-$class-$testCaseName.$this->ext" );
-			sort( $savedFiles );
-			$path = $savedFiles[count( $savedFiles ) - 1];
+			$savedFiles = glob( "$this->serializedDataPath/?.??*-$classFile-$testCaseName.$this->ext" );
+			if ( count( $savedFiles ) > 0 ) {
+				// swap _ and - to ensure that 1.43-foo sorts after 1.43_wmf...-foo
+				usort(
+					$savedFiles,
+					fn ( $a, $b ) => strtr( $a, '-_', '_-' ) <=> strtr( $b, '-_', '_-' )
+				);
+				$path = end( $savedFiles );
+			} else {
+				// Handle creation of a new test case from scratch (no prior
+				// serialization file exists)
+				$path = $curPath;
+			}
 		}
-		$curPath = "$this->serializedDataPath/{$this->getCurrentVersion()}-$class-$testCaseName.$this->ext";
+
 		return (object)[
 			'version' => $version,
 			'class' => $class,
@@ -225,6 +237,21 @@ class SerializationTestUtils {
 			'currentVersionPath' => $curPath,
 			'data' => is_file( $path ) ? file_get_contents( $path ) : null,
 		];
+	}
+
+	/**
+	 * Clean up the class name to make a filename.
+	 *
+	 * At the moment this strips the namespace prefix; in the future
+	 * we might consider keeping it but replacing backslashes with
+	 * dashes or some such.
+	 *
+	 * @param class-string $class
+	 * @return string A cleaned-up filename
+	 */
+	private static function classToFile( string $class ): string {
+		$arr = explode( '\\', $class );
+		return end( $arr );
 	}
 
 	/**

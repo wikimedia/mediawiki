@@ -49,11 +49,13 @@ class ValidateParserCacheSerializationTestData extends Maintenance {
 	 * If the respective options are set in the constructor, this will create missing files or
 	 * update mismatching files.
 	 *
-	 * @param string $className
+	 * @param class-string $testClassName
 	 * @param array $testInstances
 	 */
-	public function validateSerialization( string $className, array $testInstances ) {
-		$supportedFormats = ParserCacheSerializationTestCases::getSupportedSerializationFormats( $className );
+	public function validateSerialization( string $testClassName, array $testInstances ) {
+		$className = $testClassName::getClassToTest();
+		$supportedFormats = $testClassName::getSupportedSerializationFormats();
+		$ok = true;
 		foreach ( $supportedFormats as $serializationFormat ) {
 			$serializationUtils = new \Wikimedia\Tests\SerializationTestUtils(
 				$this->getArg( 1 ) ?: __DIR__ . '/../../data/ParserCache',
@@ -66,12 +68,21 @@ class ValidateParserCacheSerializationTestData extends Maintenance {
 			foreach ( $serializationUtils->getSerializedInstances() as $testCaseName => $currentSerialized ) {
 				$expected = $serializationUtils
 					->getStoredSerializedInstance( $className, $testCaseName, $this->getOption( 'version' ) );
-				$this->validateSerializationData( $currentSerialized, $expected );
+				$ok = $this->validateSerializationData( $currentSerialized, $expected ) && $ok;
 			}
+		}
+		if ( !$ok ) {
+			$this->output( "\n\n" );
+			$this->fatalError( "Serialization data mismatch! "
+				. "If this was expected, rerun the script with the --update option "
+				. "to update the expected serialization. WARNING: make sure "
+				. "a forward compatible version of the code is live before deploying a "
+				. "serialization change!\n"
+			);
 		}
 	}
 
-	private function validateSerializationData( $data, $fileInfo ) {
+	private function validateSerializationData( $data, $fileInfo ): bool {
 		if ( !$fileInfo->data ) {
 			if ( $this->hasOption( 'create' ) ) {
 				$this->output( 'Creating file: ' . $fileInfo->path . "\n" );
@@ -87,16 +98,14 @@ class ValidateParserCacheSerializationTestData extends Maintenance {
 					$this->output( 'Data mismatch, updating file: ' . $fileInfo->currentVersionPath . "\n" );
 					file_put_contents( $fileInfo->currentVersionPath, $data );
 				} else {
-					$this->fatalError( "Serialization data mismatch: {$fileInfo->path}. "
-						. "If this was expected, rerun the script with the --update option "
-						. "to update the expected serialization. WARNING: make sure "
-						. "a forward compatible version of the code is live before deploying a "
-						. "serialization change!" );
+					$this->output( 'Serialization MISMATCH: ' . $fileInfo->path . "\n" );
+					return false;
 				}
 			} else {
 				$this->output( "Serialization OK: " . $fileInfo->path . "\n" );
 			}
 		}
+		return true;
 	}
 }
 
