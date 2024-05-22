@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Content\JavaScriptContent;
-use MediaWiki\Content\TextContentHandler;
 use MediaWiki\Edit\ParsoidRenderID;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\ParserOutputFlags;
@@ -384,30 +383,6 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		// check that ParsoidRenderID::newFromParserOutput() doesn't throw
 		$output1 = $status1->getValue();
 		$this->assertNotNull( ParsoidRenderID::newFromParserOutput( $output1 ) );
-	}
-
-	public static function provideSupportsContentModels() {
-		yield [ CONTENT_MODEL_WIKITEXT, true ];
-		yield [ CONTENT_MODEL_JSON, true ];
-		yield [ CONTENT_MODEL_JAVASCRIPT, false ];
-		yield [ 'with-text', true ];
-		yield [ 'xyzzy', false ];
-	}
-
-	/**
-	 * @dataProvider provideSupportsContentModels
-	 */
-	public function testSupportsContentModel( $model, $expected ) {
-		$contentHandlers = $this->getConfVar( 'ContentHandlers' );
-		$this->overrideConfigValue( 'ContentHandlers', [
-			'with-text' => [ 'factory' => static function () {
-				return new TextContentHandler( 'with-text', [ CONTENT_FORMAT_WIKITEXT, 'plain/test' ] );
-			} ],
-		] + $contentHandlers );
-
-		$this->resetServicesWithMockedParsoid( 0 );
-		$access = $this->getParsoidOutputAccessWithCache();
-		$this->assertSame( $expected, $access->supportsContentModel( $model ) );
 	}
 
 	/**

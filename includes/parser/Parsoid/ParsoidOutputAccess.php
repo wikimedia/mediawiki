@@ -25,14 +25,13 @@ use MediaWiki\Page\PageLookup;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\Parsoid\Config\SiteConfig;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
-use MWUnknownContentModelException;
 use ParserOptions;
-use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 
@@ -79,32 +78,6 @@ class ParsoidOutputAccess {
 		$this->revisionLookup = $revisionLookup;
 		$this->siteConfig = $siteConfig;
 		$this->contentHandlerFactory = $contentHandlerFactory;
-	}
-
-	/**
-	 * @param string $model
-	 *
-	 * @return bool
-	 */
-	public function supportsContentModel( string $model ): bool {
-		if ( $model === CONTENT_MODEL_WIKITEXT ) {
-			return true;
-		}
-
-		// Check if the content model serializes to wikitext.
-		// NOTE: We could use isSupportedFormat( CONTENT_FORMAT_WIKITEXT ) if PageContent::getContent()
-		//       would specify the format when calling serialize().
-		try {
-			$handler = $this->contentHandlerFactory->getContentHandler( $model );
-			if ( $handler->getDefaultFormat() === CONTENT_FORMAT_WIKITEXT ) {
-				return true;
-			}
-		} catch ( MWUnknownContentModelException $ex ) {
-			// If the content model is not known, it can't be supported.
-			return false;
-		}
-
-		return $this->siteConfig->getContentModelHandler( $model ) !== null;
 	}
 
 	/**
@@ -272,7 +245,7 @@ class ParsoidOutputAccess {
 	private function adjustParserOptions( RevisionRecord $revision, ParserOptions $parserOpts ): void {
 		$mainSlot = $revision->getSlot( SlotRecord::MAIN );
 		$contentModel = $mainSlot->getModel();
-		if ( $this->supportsContentModel( $contentModel ) ) {
+		if ( $this->siteConfig->supportsContentModel( $contentModel ) ) {
 			// Since we know Parsoid supports this content model, explicitly
 			// call ParserOptions::setUseParsoid. This ensures that when
 			// we query the parser-cache, the right cache key is called.

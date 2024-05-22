@@ -6,6 +6,7 @@ use ILanguageConverter;
 use Language;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
@@ -107,6 +108,7 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 			$this->createMockOrOverride( LanguageConverterFactory::class, $serviceOverrides ),
 			$this->createMockOrOverride( LanguageNameUtils::class, $serviceOverrides ),
 			$this->createMockOrOverride( UrlUtils::class, $serviceOverrides ),
+			$this->createMockOrOverride( IContentHandlerFactory::class, $serviceOverrides ),
 			[],
 			$this->createMockOrOverride( ParserFactory::class, $serviceOverrides ),
 			new HashConfig( $configOverrides ),

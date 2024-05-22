@@ -2144,6 +2144,7 @@ return [
 						'ParsoidOutputAccess',
 						'PageStore',
 						'RevisionLookup',
+						'ParsoidSiteConfig',
 					],
 					'needsPage' => false,
 				],

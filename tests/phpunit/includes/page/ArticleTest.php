@@ -205,10 +205,8 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 
 		$parsoidOutputAccess = $this->createNoOpMock(
 			ParsoidOutputAccess::class,
-			[ 'getParserOutput', 'supportsContentModel' ]
+			[ 'getParserOutput' ]
 		);
-		$parsoidOutputAccess->method( 'supportsContentModel' )
-			->willReturn( true );
 		$parsoidOutputAccess
 			->expects( $this->once() ) // This is the key assertion in this test case.
 			->method( 'getParserOutput' )

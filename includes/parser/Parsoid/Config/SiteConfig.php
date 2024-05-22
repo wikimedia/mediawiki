@@ -28,6 +28,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\MutableConfig;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
@@ -43,6 +44,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\Utils\UrlUtils;
 use MediaWiki\WikiMap\WikiMap;
+use MWUnknownContentModelException;
 use ParserFactory;
 use PrefixingStatsdDataFactoryProxy;
 use Psr\Log\LoggerInterface;
@@ -113,6 +115,7 @@ class SiteConfig extends ISiteConfig {
 	private LanguageConverterFactory $languageConverterFactory;
 	private LanguageNameUtils $languageNameUtils;
 	private UrlUtils $urlUtils;
+	private IContentHandlerFactory $contentHandlerFactory;
 	private ?string $baseUri = null;
 	private ?string $relativeLinkPrefix = null;
 	private ?array $interwikiMap = null;
@@ -135,6 +138,7 @@ class SiteConfig extends ISiteConfig {
 	 * @param LanguageConverterFactory $languageConverterFactory
 	 * @param LanguageNameUtils $languageNameUtils
 	 * @param UrlUtils $urlUtils
+	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param array $extensionParsoidModules
 	 * @param ParserFactory $parserFactory
 	 * @param Config $mwConfig
@@ -155,6 +159,7 @@ class SiteConfig extends ISiteConfig {
 		LanguageConverterFactory $languageConverterFactory,
 		LanguageNameUtils $languageNameUtils,
 		UrlUtils $urlUtils,
+		IContentHandlerFactory $contentHandlerFactory,
 		array $extensionParsoidModules,
 		// $parserFactory is temporary and may be removed once a better solution is found.
 		ParserFactory $parserFactory, // T268776
@@ -181,6 +186,7 @@ class SiteConfig extends ISiteConfig {
 		$this->languageConverterFactory = $languageConverterFactory;
 		$this->languageNameUtils = $languageNameUtils;
 		$this->urlUtils = $urlUtils;
+		$this->contentHandlerFactory = $contentHandlerFactory;
 
 		// Override parent default
 		if ( isset( $this->parsoidSettings['linting'] ) ) {
@@ -763,4 +769,33 @@ class SiteConfig extends ISiteConfig {
 	public function getExternalLinkTarget() {
 		return $this->config->get( MainConfigNames::ExternalLinkTarget );
 	}
+
+	// MW-specific helper
+
+	/**
+	 * Returns true iff Parsoid natively supports the given content model.
+	 * @param string $model content model identifier
+	 * @return bool
+	 */
+	public function supportsContentModel( string $model ): bool {
+		if ( $model === CONTENT_MODEL_WIKITEXT ) {
+			return true;
+		}
+
+		// Check if the content model serializes to wikitext.
+		// NOTE: We could use isSupportedFormat( CONTENT_FORMAT_WIKITEXT ) if PageContent::getContent()
+		//       would specify the format when calling serialize().
+		try {
+			$handler = $this->contentHandlerFactory->getContentHandler( $model );
+			if ( $handler->getDefaultFormat() === CONTENT_FORMAT_WIKITEXT ) {
+				return true;
+			}
+		} catch ( MWUnknownContentModelException $ex ) {
+			// If the content model is not known, it can't be supported.
+			return false;
+		}
+
+		return $this->getContentModelHandler( $model ) !== null;
+	}
+
 }
