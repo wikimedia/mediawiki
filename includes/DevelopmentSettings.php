@@ -160,7 +160,5 @@ $wgVisualEditorEnableWikitext = true;
 // Currently the default, but repeated here for safety since it would break many source editor tests.
 $wgDefaultUserOptions['visualeditor-newwikitext'] = 0;
 
-// Enable creation of temp user accounts on edit (T355880, T359043) in CI
-if ( defined( 'MW_QUIBBLE_CI' ) ) {
-	$wgAutoCreateTempUser['enabled'] = true;
-}
+// Enable creation of temp user accounts on edit (T355880, T359043)
+$wgAutoCreateTempUser['enabled'] = true;
