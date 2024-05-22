@@ -1534,10 +1534,13 @@ abstract class Skin extends ContextSource {
 				)
 				: $callback();
 
-			$sidebar['TOOLBOX'] = $this->makeToolbox(
-				$this->buildNavUrls(),
-				$this->buildFeedUrls()
+			$sidebar['TOOLBOX'] = array_merge(
+				$this->makeToolbox(
+					$this->buildNavUrls(),
+					$this->buildFeedUrls()
+				), $sidebar['TOOLBOX'] ?? []
 			);
+
 			$sidebar['LANGUAGES'] = $this->getLanguages();
 			// Apply post-processing to the cached value
 			$this->getHookRunner()->onSidebarBeforeOutput( $this, $sidebar );
