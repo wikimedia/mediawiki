@@ -43,7 +43,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	 * Overrides SerializationTestTrait::getClassToTest
 	 * @return string
 	 */
-	protected function getClassToTest(): string {
+	public static function getClassToTest(): string {
 		return ParserOutput::class;
 	}
 
@@ -51,7 +51,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	 * Overrides SerializationTestTrait::getSerializedDataPath
 	 * @return string
 	 */
-	protected function getSerializedDataPath(): string {
+	public static function getSerializedDataPath(): string {
 		return __DIR__ . '/../../data/ParserCache';
 	}
 
@@ -59,7 +59,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	 * Overrides SerializationTestTrait::getTestInstancesAndAssertions
 	 * @return array
 	 */
-	protected function getTestInstancesAndAssertions(): array {
+	public static function getTestInstancesAndAssertions(): array {
 		return ParserCacheSerializationTestCases::getParserOutputTestCases();
 	}
 
@@ -67,9 +67,9 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	 * Overrides SerializationTestTrait::getSupportedSerializationFormats
 	 * @return array
 	 */
-	protected function getSupportedSerializationFormats(): array {
+	public static function getSupportedSerializationFormats(): array {
 		return ParserCacheSerializationTestCases::getSupportedSerializationFormats(
-			$this->getClassToTest() );
+			self::getClassToTest() );
 	}
 
 	public static function provideIsLinkInternal() {
