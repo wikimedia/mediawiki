@@ -36,7 +36,7 @@ use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Revision\ArchivedRevisionLookup;
-use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Revision\RevisionStoreFactory;
 use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
@@ -90,8 +90,8 @@ class PageCommandFactory implements
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
-	/** @var RevisionStore */
-	private $revisionStore;
+	/** @var RevisionStoreFactory */
+	private $revisionStoreFactory;
 
 	/** @var SpamChecker */
 	private $spamChecker;
@@ -165,7 +165,7 @@ class PageCommandFactory implements
 		RepoGroup $repoGroup,
 		ReadOnlyMode $readOnlyMode,
 		IContentHandlerFactory $contentHandlerFactory,
-		RevisionStore $revisionStore,
+		RevisionStoreFactory $revisionStoreFactory,
 		SpamChecker $spamChecker,
 		TitleFormatter $titleFormatter,
 		HookContainer $hookContainer,
@@ -196,7 +196,7 @@ class PageCommandFactory implements
 		$this->repoGroup = $repoGroup;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->contentHandlerFactory = $contentHandlerFactory;
-		$this->revisionStore = $revisionStore;
+		$this->revisionStoreFactory = $revisionStoreFactory;
 		$this->spamChecker = $spamChecker;
 		$this->titleFormatter = $titleFormatter;
 		$this->hookContainer = $hookContainer;
@@ -235,7 +235,7 @@ class PageCommandFactory implements
 		return new ContentModelChange(
 			$this->contentHandlerFactory,
 			$this->hookContainer,
-			$this->revisionStore,
+			$this->revisionStoreFactory->getRevisionStore(),
 			$this->userFactory,
 			$performer,
 			$wikipage,
@@ -249,7 +249,7 @@ class PageCommandFactory implements
 	public function newDeletePage( ProperPageIdentity $page, Authority $deleter ): DeletePage {
 		return new DeletePage(
 			$this->hookContainer,
-			$this->revisionStore,
+			$this->revisionStoreFactory->getRevisionStore(),
 			$this->lbFactory,
 			$this->jobQueueGroup,
 			$this->commentStore,
@@ -284,7 +284,7 @@ class PageCommandFactory implements
 			$timestamp,
 			$this->lbFactory,
 			$this->contentHandlerFactory,
-			$this->revisionStore,
+			$this->revisionStoreFactory->getRevisionStore(),
 			$this->watchedItemStore,
 			$this->spamChecker,
 			$this->hookContainer,
@@ -310,7 +310,7 @@ class PageCommandFactory implements
 			$this->watchedItemStore,
 			$this->repoGroup,
 			$this->contentHandlerFactory,
-			$this->revisionStore,
+			$this->revisionStoreFactory->getRevisionStore(),
 			$this->spamChecker,
 			$this->hookContainer,
 			$this->wikiPageFactory,
@@ -341,7 +341,7 @@ class PageCommandFactory implements
 			$this->lbFactory,
 			$this->userFactory,
 			$this->readOnlyMode,
-			$this->revisionStore,
+			$this->revisionStoreFactory->getRevisionStore(),
 			$this->titleFormatter,
 			$this->hookContainer,
 			$this->wikiPageFactory,
@@ -364,7 +364,7 @@ class PageCommandFactory implements
 			$this->readOnlyMode,
 			$this->repoGroup,
 			$this->undeletePageLogger,
-			$this->revisionStore,
+			$this->revisionStoreFactory->getRevisionStoreForUndelete(),
 			$this->wikiPageFactory,
 			$this->pageUpdaterFactory,
 			$this->contentHandlerFactory,

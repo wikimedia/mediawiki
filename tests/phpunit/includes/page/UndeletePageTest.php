@@ -3,6 +3,7 @@
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Page\UndeletePage;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\IPUtils;
@@ -12,6 +13,9 @@ use Wikimedia\IPUtils;
  * @coversDefaultClass \MediaWiki\Page\UndeletePage
  */
 class UndeletePageTest extends MediaWikiIntegrationTestCase {
+
+	use TempUserTestTrait;
+
 	/**
 	 * @var array
 	 */
@@ -37,6 +41,7 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 	 * @param string $content
 	 */
 	private function setupPage( string $titleText, int $ns, string $content ): void {
+		$this->disableAutoCreateTempUser();
 		$title = Title::makeTitle( $ns, $titleText );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 		$performer = static::getTestUser()->getUser();
@@ -56,6 +61,8 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers ::undeleteUnsafe
 	 * @covers ::undeleteRevisions
+	 * @covers \MediaWiki\Revision\RevisionStoreFactory::getRevisionStoreForUndelete
+	 * @covers \MediaWiki\User\ActorStoreFactory::getActorStoreForUndelete
 	 */
 	public function testUndeleteRevisions() {
 		// TODO: MCR: Test undeletion with multiple slots. Check that slots remain untouched.
@@ -88,6 +95,9 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 			$this->assertFalse( $row );
 		}
 
+		// Enable autocreation of temporary users to test that undeletion of revisions performed by IP addresses works
+		// when temporary accounts are enabled.
+		$this->enableAutoCreateTempUser();
 		// Restore the page
 		$undeletePage = $this->getServiceContainer()->getUndeletePageFactory()->newUndeletePage(
 			$this->pages[0]['page'],

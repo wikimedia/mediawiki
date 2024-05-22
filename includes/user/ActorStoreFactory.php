@@ -121,11 +121,20 @@ class ActorStoreFactory {
 	}
 
 	/**
+	 * @since 1.43
 	 * @param string|false $wikiId
-	 * @param bool $forImport
 	 * @return ActorStore
 	 */
-	private function getStore( $wikiId, $forImport ): ActorStore {
+	public function getActorStoreForUndelete( $wikiId = WikiAwareEntity::LOCAL ): ActorStore {
+		return $this->getStore( $wikiId, true );
+	}
+
+	/**
+	 * @param string|false $wikiId
+	 * @param bool $allowingIpActorCreation
+	 * @return ActorStore
+	 */
+	private function getStore( $wikiId, bool $allowingIpActorCreation ): ActorStore {
 		// During the transition from User, we still have old User objects
 		// representing users from a different wiki, so we still have IDatabase::getDomainId
 		// passed as $wikiId, so we need to remap it back to LOCAL.
@@ -133,11 +142,11 @@ class ActorStoreFactory {
 			$wikiId = WikiAwareEntity::LOCAL;
 		}
 
-		$storeCacheKey = ( $forImport ? 'import' : '' ) .
+		$storeCacheKey = ( $allowingIpActorCreation ? 'allowing-ip-actor-creation-' : '' ) .
 			( $wikiId === WikiAwareEntity::LOCAL ? 'LOCAL' : $wikiId );
 
 		if ( !isset( $this->storeCache[$storeCacheKey] ) ) {
-			$store = $this->storeCache[$storeCacheKey] = new ActorStore(
+			$store = new ActorStore(
 				$this->getLoadBalancerForTable( 'actor', $wikiId ),
 				$this->userNameUtils,
 				$this->tempUserConfig,
@@ -145,7 +154,7 @@ class ActorStoreFactory {
 				$this->hideUserUtils,
 				$wikiId
 			);
-			if ( $forImport ) {
+			if ( $allowingIpActorCreation ) {
 				$store->setAllowCreateIpActors( true );
 			}
 			$this->storeCache[$storeCacheKey] = $store;
