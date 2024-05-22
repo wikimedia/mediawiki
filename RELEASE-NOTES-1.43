@@ -314,6 +314,10 @@ because of Phabricator reports.
   when installing new wikis. This does not affect existing wikis.
 * User auto-creations are now performed as the target user instead of
   anonymous IP user.
+* Corrected the interpretation of empty arrays in extension configuration when
+  the default value is null. Previously, an empty array specified by the
+  administrator would transform into the default null value. It now
+  appropriately retains its empty array state.
 * …
 
 == Compatibility ==
