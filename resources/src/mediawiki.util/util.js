@@ -517,20 +517,30 @@ var util = {
 	/**
 	 * Creates a detached portlet Element in the skin with no elements.
 	 *
+	 * @example
+	 * // Create a portlet with 2 menu items that is styled as a dropdown in certain skins.
+	 * const p = mw.util.addPortlet('myportlet', 'My label', '#p-cactions' );
+	 * mw.util.addPortletLink('myportlet', '#', 'Link 1' )
+	 * mw.util.addPortletLink('myportlet', '#', 'Link 2' )
 	 * @param {string} id of the new portlet.
 	 * @param {string} [label] of the new portlet.
-	 * @param {string} [before] selector of the element preceding the new portlet. If not passed
-	 *  the caller is responsible for appending the element to the DOM before using addPortletLink.
-	 *  To add a portlet after a selector instead of before, you can create the portlet before the
-	 *  element (make sure to also assign the result to a variable), then use
-	 *  ```p.parentNode.appendChild( p );``` or similar to move it after the element. Dropdown
-	 *  menus in vector and vector-2022 can be created by targeting '#p-cactions'.
+	 * @param {string} [selectorHint] selector of the element the new portlet would like to
+	 *  be inserted near. Typically the portlet will be inserted after this selector, but in some
+	 *  skins, the skin may relocate the element when provided to the closest available space.
+	 *  If this argument is not passed then the caller is responsible for appending the element
+	 *  to the DOM before using addPortletLink.
+	 *  To add a portlet in an exact position do not rely on this parameter, instead using the return
+	 *  element (make sure to also assign the result to a variable), use
+	 *  ```p.parentNode.appendChild( p );```
+	 *  When provided, skins can use the parameter to infer information about how the user intended
+	 *  the menu to be rendered. For example, in vector and vector-2022 targeting '#p-cactions' will
+	 *  result in the creation of a dropdown.
 	 * @fires Hooks~'util.addPortlet'
 	 * @return {HTMLElement|null} will be null if it was not possible to create an portlet with
-	 *  the required information e.g. the selector given in before parameter could not be resolved
+	 *  the required information e.g. the selector given in `selectorHint` parameter could not be resolved
 	 *  to an existing element in the page.
 	 */
-	addPortlet: function ( id, label, before ) {
+	addPortlet: function ( id, label, selectorHint ) {
 		const portlet = document.createElement( 'div' );
 		// These classes should be kept in sync with includes/skins/components/SkinComponentMenu.php.
 		// eslint-disable-next-line mediawiki/class-doc
@@ -548,10 +558,10 @@ var util = {
 		const list = document.createElement( 'ul' );
 		listWrapper.appendChild( list );
 		portlet.appendChild( listWrapper );
-		if ( before ) {
+		if ( selectorHint ) {
 			var referenceNode;
 			try {
-				referenceNode = document.querySelector( before );
+				referenceNode = document.querySelector( selectorHint );
 			} catch ( e ) {
 				// CSS selector not supported by browser.
 			}
@@ -568,14 +578,14 @@ var util = {
 		 * @event ~'util.addPortlet'
 		 * @memberof Hooks
 		 * @param {HTMLElement} portlet the portlet that was created.
-		 * @param {string|null} before the css selector used to append to the DOM.
+		 * @param {string|null} selectorHint the css selector used to append to the DOM.
 		 *
 		 * @example
 		 * mw.hook( 'util.addPortlet' ).add( ( p ) => {
 		 *     p.style.border = 'solid 1px black';
 		 * } );
 		 */
-		mw.hook( 'util.addPortlet' ).fire( portlet, before );
+		mw.hook( 'util.addPortlet' ).fire( portlet, selectorHint );
 		return portlet;
 	},
 	/**
