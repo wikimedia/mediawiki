@@ -388,6 +388,7 @@ class Parser {
 	private MagicWordFactory $magicWordFactory;
 	private Language $contLang;
 	private LanguageConverterFactory $languageConverterFactory;
+	private LanguageNameUtils $languageNameUtils;
 	private ParserFactory $factory;
 	private SpecialPageFactory $specialPageFactory;
 	private TitleFormatter $titleFormatter;
@@ -457,6 +458,7 @@ class Parser {
 	 * @param LoggerInterface $logger
 	 * @param BadFileLookup $badFileLookup
 	 * @param LanguageConverterFactory $languageConverterFactory
+	 * @param LanguageNameUtils $languageNameUtils
 	 * @param HookContainer $hookContainer
 	 * @param TidyDriverBase $tidy
 	 * @param WANObjectCache $wanCache
@@ -480,6 +482,7 @@ class Parser {
 		LoggerInterface $logger,
 		BadFileLookup $badFileLookup,
 		LanguageConverterFactory $languageConverterFactory,
+		LanguageNameUtils $languageNameUtils,
 		HookContainer $hookContainer,
 		TidyDriverBase $tidy,
 		WANObjectCache $wanCache,
@@ -521,6 +524,7 @@ class Parser {
 		$this->badFileLookup = $badFileLookup;
 
 		$this->languageConverterFactory = $languageConverterFactory;
+		$this->languageNameUtils = $languageNameUtils;
 
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
@@ -2691,12 +2695,11 @@ class Parser {
 				# Interwikis
 				if (
 					$iw && $this->mOptions->getInterwikiMagic() && $nottalk && (
-						MediaWikiServices::getInstance()->getLanguageNameUtils()
-							->getLanguageName(
-								$iw,
-								LanguageNameUtils::AUTONYMS,
-								LanguageNameUtils::DEFINED
-							)
+						$this->languageNameUtils->getLanguageName(
+							$iw,
+							LanguageNameUtils::AUTONYMS,
+							LanguageNameUtils::DEFINED
+						)
 						|| in_array( $iw, $this->svcOptions->get( MainConfigNames::ExtraInterlanguageLinkPrefixes ) )
 					)
 				) {

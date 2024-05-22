@@ -8,6 +8,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Page\File\BadFileLookup;
 use MediaWiki\Page\PageReference;
@@ -70,6 +71,7 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 			new NullLogger(),
 			$this->createNoOpMock( BadFileLookup::class ),
 			$this->createNoOpMock( LanguageConverterFactory::class, [ 'isConversionDisabled' ] ),
+			$this->createNoOpMock( LanguageNameUtils::class ),
 			$this->createNoOpMock( HookContainer::class, [ 'run' ] ),
 			$this->createNoOpMock( TidyDriverBase::class ),
 			$this->createNoOpMock( WANObjectCache::class ),
