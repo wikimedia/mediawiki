@@ -2,6 +2,7 @@
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Page\ParserOutputAccess;
+use MediaWiki\Parser\Parsoid\Config\SiteConfig as ParsoidSiteConfig;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -23,6 +24,7 @@ class PrewarmParsoidParserCache extends Maintenance {
 	private ParsoidOutputAccess $parsoidOutputAccess;
 	private PageLookup $pageLookup;
 	private RevisionLookup $revisionLookup;
+	private ParsoidSiteConfig $parsoidSiteConfig;
 
 	public function __construct() {
 		parent::__construct();
@@ -55,6 +57,11 @@ class PrewarmParsoidParserCache extends Maintenance {
 	private function getParsoidOutputAccess(): ParsoidOutputAccess {
 		$this->parsoidOutputAccess = $this->getServiceContainer()->getParsoidOutputAccess();
 		return $this->parsoidOutputAccess;
+	}
+
+	private function getParsoidSiteConfig(): ParsoidSiteConfig {
+		$this->parsoidSiteConfig = $this->getServiceContainer()->getParsoidSiteConfig();
+		return $this->parsoidSiteConfig;
 	}
 
 	private function getQueryBuilder(): SelectQueryBuilder {
@@ -149,7 +156,7 @@ class PrewarmParsoidParserCache extends Maintenance {
 				$mainSlot = $revision->getSlot( SlotRecord::MAIN );
 
 				// POA will write a dummy output to PC, but we don't want that here. Just skip!
-				if ( !$this->getParsoidOutputAccess()->supportsContentModel( $mainSlot->getModel() ) ) {
+				if ( !$this->getParsoidSiteConfig()->supportsContentModel( $mainSlot->getModel() ) ) {
 					$this->output(
 						'[Skipped] Content model "' .
 						$mainSlot->getModel() .

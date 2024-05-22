@@ -35,7 +35,8 @@ class ParsoidCachePrewarmJobTest extends MediaWikiIntegrationTestCase {
 			[ 'revId' => $rev1->getId(), 'pageId' => $page->getId() ],
 			$this->getServiceContainer()->getParsoidOutputAccess(),
 			$this->getServiceContainer()->getPageStore(),
-			$this->getServiceContainer()->getRevisionLookup()
+			$this->getServiceContainer()->getRevisionLookup(),
+			$this->getServiceContainer()->getParsoidSiteConfig()
 		);
 
 		// NOTE: calling ->run() will not run the job scheduled in the queue but will
@@ -65,7 +66,8 @@ class ParsoidCachePrewarmJobTest extends MediaWikiIntegrationTestCase {
 			[ 'revId' => $rev2->getId(), 'pageId' => $page->getId(), 'causeAction' => 'just for testing' ],
 			$this->getServiceContainer()->getParsoidOutputAccess(),
 			$this->getServiceContainer()->getPageStore(),
-			$this->getServiceContainer()->getRevisionLookup()
+			$this->getServiceContainer()->getRevisionLookup(),
+			$this->getServiceContainer()->getParsoidSiteConfig()
 		);
 
 		$jobQueueGroup = $this->getServiceContainer()->getJobQueueGroup();

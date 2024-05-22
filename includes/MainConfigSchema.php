@@ -11445,7 +11445,8 @@ class MainConfigSchema {
 				'services' => [
 					'ParsoidOutputAccess',
 					'PageStore',
-					'RevisionLookup'
+					'RevisionLookup',
+					'ParsoidSiteConfig',
 				],
 				// tell the JobFactory not to include the $page parameter in the constructor call
 				'needsPage' => false

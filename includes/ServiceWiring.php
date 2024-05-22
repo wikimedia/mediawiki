@@ -245,7 +245,6 @@ use Wikimedia\EventRelayer\EventRelayerGroup;
 use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Parsoid\Config\DataAccess;
-use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
@@ -1653,7 +1652,7 @@ return [
 		);
 	},
 
-	'ParsoidSiteConfig' => static function ( MediaWikiServices $services ): SiteConfig {
+	'ParsoidSiteConfig' => static function ( MediaWikiServices $services ): MWSiteConfig {
 		$mainConfig = $services->getMainConfig();
 		$parsoidSettings = $mainConfig->get( MainConfigNames::ParsoidSettings );
 		return new MWSiteConfig(
@@ -1671,6 +1670,7 @@ return [
 			$services->getLanguageConverterFactory(),
 			$services->getLanguageNameUtils(),
 			$services->getUrlUtils(),
+			$services->getContentHandlerFactory(),
 			ExtensionRegistry::getInstance()->getAttribute( 'ParsoidModules' ),
 			// These arguments are temporary and will be removed once
 			// better solutions are found.

@@ -21,6 +21,7 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Page\PageRecord;
+use MediaWiki\Parser\Parsoid\Config\SiteConfig as ParsoidSiteConfig;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
@@ -36,18 +37,21 @@ class ParsoidCachePrewarmJob extends Job {
 	private ParsoidOutputAccess $parsoidOutputAccess;
 	private PageLookup $pageLookup;
 	private RevisionLookup $revisionLookup;
+	private ParsoidSiteConfig $parsoidSiteConfig;
 
 	/**
 	 * @param array $params
 	 * @param ParsoidOutputAccess $parsoidOutputAccess
 	 * @param PageLookup $pageLookup
 	 * @param RevisionLookup $revisionLookup
+	 * @param ParsoidSiteConfig $parsoidSiteConfig
 	 */
 	public function __construct(
 		array $params,
 		ParsoidOutputAccess $parsoidOutputAccess,
 		PageLookup $pageLookup,
-		RevisionLookup $revisionLookup
+		RevisionLookup $revisionLookup,
+		ParsoidSiteConfig $parsoidSiteConfig
 	) {
 		parent::__construct( 'parsoidCachePrewarm', $params );
 
@@ -56,6 +60,7 @@ class ParsoidCachePrewarmJob extends Job {
 		$this->parsoidOutputAccess = $parsoidOutputAccess;
 		$this->pageLookup = $pageLookup;
 		$this->revisionLookup = $revisionLookup;
+		$this->parsoidSiteConfig = $parsoidSiteConfig;
 	}
 
 	/**
@@ -124,7 +129,7 @@ class ParsoidCachePrewarmJob extends Job {
 		$parserOpts->setRenderReason( $renderReason );
 
 		$mainSlot = $rev->getSlot( SlotRecord::MAIN );
-		if ( !$this->parsoidOutputAccess->supportsContentModel( $mainSlot->getModel() ) ) {
+		if ( !$this->parsoidSiteConfig->supportsContentModel( $mainSlot->getModel() ) ) {
 			$this->logger->debug( __METHOD__ . ': Parsoid does not support content model ' . $mainSlot->getModel() );
 			return;
 		}
