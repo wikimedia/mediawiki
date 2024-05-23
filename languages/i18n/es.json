@@ -938,7 +938,7 @@
 	"postedit-confirmation-created": "Se ha [[Special:Diff/$2|creado]] la página.",
 	"postedit-confirmation-restored": "Se ha [[Special:Diff/$2|restaurado]] la página.",
 	"postedit-confirmation-saved": "Se ha guardado [[Special:Diff/$2|tu edición]].",
-	"postedit-confirmation-published": "Se publicó [[Special:Diff/$2|Tu edición]].",
+	"postedit-confirmation-published": "Se ha publicado [[Special:Diff/$2|tu edición]].",
 	"postedit-temp-created-label": "Cuenta temporal",
 	"postedit-temp-created": "Se ha creado una [[$2|cuenta autogenerada]] para usted agregando una cookie a su navegador. Para elegir un nombre de su elección y obtener más funciones, considere [$1 crear una cuenta].",
 	"edit-already-exists": "No se pudo crear una página nueva.\nYa existe.",

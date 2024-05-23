@@ -3655,6 +3655,7 @@
 	"skin-action-undelete": "Restaurar",
 	"skin-action-delete": "Desaniciar",
 	"skin-action-move": "Treslladar",
+	"blockedtext-made-by": "El bloqueo foi fechu por $1.",
 	"blockedtext-block-ip": "La to direición IP actual ye $1.",
 	"renameuser": "Renomar usuariu",
 	"renameuser-linkoncontribs": "renomar {{GENDER:$1|usuariu|usuaria}}",
