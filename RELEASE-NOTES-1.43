@@ -77,6 +77,8 @@ For notes on 1.42.x and older releases, see HISTORY.
         $this->getOutput()->addWikiMsg( $msg );
       }
     }
+* The REST API framework now supports defining redirects in route definition
+  files. See MediaWiki\Rest\Handler\RedirectHandler for details.
 * (T13555) Skins can enable the 'supportsMwHeading' option for new, more
   accessible HTML markup for wikitext headings. MediaWiki's own styles and
   scripts have been updated to support it, but your skin may also need updates.
