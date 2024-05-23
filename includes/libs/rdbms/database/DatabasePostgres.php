@@ -167,7 +167,7 @@ class DatabasePostgres extends Database {
 			);
 		} else {
 			$this->currentDomain = $domain;
-			$this->platform->setCurrentDomain( $this->currentDomain );
+			$this->platform->setCurrentDomain( $domain );
 		}
 
 		return true;

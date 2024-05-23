@@ -417,7 +417,7 @@ class DatabaseSqlite extends Database {
 				null,
 				$domain->getTablePrefix()
 			);
-			$this->platform->setPrefix( $domain->getTablePrefix() );
+			$this->platform->setCurrentDomain( $this->currentDomain );
 
 			return true;
 		}
@@ -431,7 +431,7 @@ class DatabaseSqlite extends Database {
 
 		// Update that domain fields on success (no exception thrown)
 		$this->currentDomain = $domain;
-		$this->platform->setPrefix( $domain->getTablePrefix() );
+		$this->platform->setCurrentDomain( $domain );
 
 		return true;
 	}

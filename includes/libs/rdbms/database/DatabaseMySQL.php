@@ -142,7 +142,7 @@ class DatabaseMySQL extends Database {
 				null,
 				$tablePrefix
 			);
-			$this->platform->setPrefix( $tablePrefix );
+			$this->platform->setCurrentDomain( $this->currentDomain );
 
 			$set = [];
 			if ( !$this->flagsHolder->getFlag( self::DBO_GAUGE ) ) {
@@ -191,7 +191,7 @@ class DatabaseMySQL extends Database {
 				null,
 				$domain->getTablePrefix()
 			);
-			$this->platform->setPrefix( $domain->getTablePrefix() );
+			$this->platform->setCurrentDomain( $this->currentDomain );
 
 			return true;
 		}
@@ -208,7 +208,7 @@ class DatabaseMySQL extends Database {
 
 		// Update that domain fields on success (no exception thrown)
 		$this->currentDomain = $domain;
-		$this->platform->setPrefix( $domain->getTablePrefix() );
+		$this->platform->setCurrentDomain( $domain );
 
 		return true;
 	}
