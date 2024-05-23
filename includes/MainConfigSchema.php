@@ -12826,7 +12826,7 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * List of skins to not show the Special:Contribute page
+	 * List of skins that show a link to the Special:Contribute page
 	 *
 	 * @since 1.40
 	 */

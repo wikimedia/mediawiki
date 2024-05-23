@@ -8023,7 +8023,7 @@ config-schema:
         default: []
         type: array
         description: |-
-            List of skins to not show the Special:Contribute page
+            List of skins that show a link to the Special:Contribute page
             @since 1.40
     EnableEditRecovery:
         default: false
