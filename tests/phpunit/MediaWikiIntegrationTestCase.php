@@ -975,8 +975,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$this->overrideConfigValue( MainConfigNames::ObjectCaches, $objectCaches );
 		} else {
 			$cacheId = $cache;
-			$cache = $this->getServiceContainer()->getObjectCacheFactory()
-				->getInstance( $cacheId );
 		}
 
 		if ( !is_string( $cacheId ) && !is_int( $cacheId ) ) {
@@ -984,7 +982,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		$this->overrideConfigValue( MainConfigNames::MainCacheType, $cacheId );
-		$this->setService( '_LocalClusterCache', $cache );
 		return $cacheId;
 	}
 
