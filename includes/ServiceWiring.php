@@ -2624,7 +2624,7 @@ return [
 			$services->getRepoGroup(),
 			$services->getReadOnlyMode(),
 			$services->getContentHandlerFactory(),
-			$services->getRevisionStore(),
+			$services->getRevisionStoreFactory(),
 			$services->getSpamChecker(),
 			$services->getTitleFormatter(),
 			$services->getHookContainer(),
