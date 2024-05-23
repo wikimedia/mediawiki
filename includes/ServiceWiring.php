@@ -1221,7 +1221,7 @@ return [
 	'MainWANObjectCache' => static function ( MediaWikiServices $services ): WANObjectCache {
 		$mainConfig = $services->getMainConfig();
 
-		$store = $services->get( '_LocalClusterCache' );
+		$store = $services->getObjectCacheFactory()->getLocalClusterInstance();
 		$logger = $store->getLogger();
 		$logger->debug( 'MainWANObjectCache using store {class}', [
 			'class' => get_class( $store )
@@ -2619,10 +2619,6 @@ return [
 			// UserRateLimitConstraint
 			$services->getRateLimiter()
 		);
-	},
-
-	'_LocalClusterCache' => static function ( MediaWikiServices $services ): BagOStuff {
-		return $services->getObjectCacheFactory()->getLocalClusterInstance();
 	},
 
 	'_MediaWikiTitleCodec' => static function ( MediaWikiServices $services ): MediaWikiTitleCodec {
