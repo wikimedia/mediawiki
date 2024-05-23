@@ -5,7 +5,8 @@
 			"Isidore Dantas",
 			"Matma Rex",
 			"The Discoverer",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Duvyenche odhorekhon:",
@@ -604,7 +605,7 @@
 	"rcfilters-filterlist-noresults": "Kosleoch gallnneo mellunk nant",
 	"rcfilters-noresults-conflict": "Sodache nikox kijilant asat dekhun porinnam mellunk nant.",
 	"rcfilters-state-message-subset": "Hea gallnnek kosloch porinnam na kiteak tache porinnam fuddem ievpi odik rundaiechea {{PLURAL:$2|gallnnent}} aspav kela (sor korunk vhodd-uzvadd ghalun proiotn kor): $1",
-	"rcfilters-state-message-fullcoverage": "Hea pongddantle soglleo gallnneo vinchop mhonnche kainch vinchop na, hea khatir he challnnek kainch porinnam na. Pongddant  hacho aspav asa: $1",
+	"rcfilters-state-message-fullcoverage": "Hea pongddantle soglleo gallnneo vinchop mhonnche kainch vinchop na, hea khatir he challnnek kainch porinnam na. Pongddant hacho aspav asa: $1",
 	"rcfilters-filtergroup-authorship": "Iogdanachem borovp",
 	"rcfilters-filter-editsbyself-label": "Tuven kel'leo bodol",
 	"rcfilters-filter-editsbyself-description": "Tujim svotachim yogdanam.",
@@ -659,9 +660,9 @@
 	"rcfilters-filter-categorization-description": "Vorgant savn panam zoddloleachi vo kaddloleachi nond",
 	"rcfilters-filter-logactions-label": "Sotran nond zal’lem kario",
 	"rcfilters-filter-logactions-description": "Karbhari kario, khatem rochop, pana kaddun uddovp, uploads...",
-	"rcfilters-hideminor-conflicts-typeofchange-global": "\"Dhkatte sompadon\" gallnnechem kijil ek vo odik \"Bodolacho prokar\" gallnnek asa, kiteak thoddea bodolache prokarank \"dhaktte\" mhonn nemunk zaina. Kijilacheo gallnneo Kriaxil gallnnechea kxetrant  voir khunnaileat.",
+	"rcfilters-hideminor-conflicts-typeofchange-global": "\"Dhkatte sompadon\" gallnnechem kijil ek vo odik \"Bodolacho prokar\" gallnnek asa, kiteak thoddea bodolache prokarank \"dhaktte\" mhonn nemunk zaina. Kijilacheo gallnneo Kriaxil gallnnechea kxetrant voir khunnaileat.",
 	"rcfilters-hideminor-conflicts-typeofchange": "Thoddea bodolache prokarank \"dhaktte\" mhonn nemunk zaina, hea khatir he gallnnek fuddem ievpi Bodlopache Prokar gallnnent kijil asa: $1",
-	"rcfilters-typeofchange-conflicts-hideminor": "Hea \"Bodolacho prokar\" gallnnechem kijil  asa \"Dhaktte sompadon\"  gallnnek. Thoddea bodolache prokarank \"dhaktte\" mhonn nemunk zaina.",
+	"rcfilters-typeofchange-conflicts-hideminor": "Hea \"Bodolacho prokar\" gallnnechem kijil asa \"Dhaktte sompadon\" gallnnek. Thoddea bodolache prokarank \"dhaktte\" mhonn nemunk zaina.",
 	"rcfilters-filtergroup-lastrevision": "Akherchim uzollnnim",
 	"rcfilters-filter-lastrevision-label": "Sogleanvon novi uzollnni",
 	"rcfilters-filter-lastrevision-description": "Ek panak fokot nimannem bodol",
