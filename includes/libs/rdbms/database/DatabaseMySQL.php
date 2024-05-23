@@ -688,33 +688,6 @@ class DatabaseMySQL extends Database {
 		return $qb->fetchFieldValues();
 	}
 
-	/**
-	 * Lists VIEWs in the database
-	 *
-	 * @since 1.22
-	 * @deprecated since 1.42
-	 *
-	 * @param string|null $prefix Only show VIEWs with this prefix, eg.
-	 * unit_test_, or $wgDBprefix. Default: null, would return all views.
-	 * @param string $fname Name of calling function
-	 * @return array
-	 */
-	public function listViews( $prefix = null, $fname = __METHOD__ ) {
-		wfDeprecated( __METHOD__, '1.42' );
-		$qb = $this->newSelectQueryBuilder()
-			->select( 'table_name' )
-			->from( 'information_schema.views' )
-			->where( [ 'table_schema' => $this->currentDomain->getDatabase() ] )
-			->caller( $fname );
-
-		if ( $prefix !== null && $prefix !== '' ) {
-			$qb->andWhere( $this->expr(
-				'table_name', IExpression::LIKE, new LikeValue( $prefix, $this->anyString() )
-			) );
-		}
-		return $qb->fetchFieldValues();
-	}
-
 	public function selectSQLText(
 		$table,
 		$vars,

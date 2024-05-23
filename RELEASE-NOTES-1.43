@@ -236,6 +236,7 @@ because of Phabricator reports.
   have been removed.
 * DummyLinker has been removed. The former DummyLinker parameter
   to the 'ImageBeforeProduceHTML' hook is now null.
+* IMaintainableDatabase::listViews(), deprecated since 1.42, has been removed.
 * …
 
 === Deprecations in 1.43 ===
