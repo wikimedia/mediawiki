@@ -249,8 +249,7 @@ abstract class Handler {
 	}
 
 	/**
-	 * Get the Router. The return type declaration causes it to raise
-	 * a fatal error if init() has not yet been called.
+	 * Get the Router.
 	 *
 	 * @return Router
 	 */
@@ -311,7 +310,7 @@ abstract class Handler {
 
 	/**
 	 * Get the current request. The return type declaration causes it to raise
-	 * a fatal error if init() has not yet been called.
+	 * a fatal error if initForExecute() has not yet been called.
 	 *
 	 * @return RequestInterface
 	 */
@@ -321,7 +320,7 @@ abstract class Handler {
 
 	/**
 	 * Get the current acting authority. The return type declaration causes it to raise
-	 * a fatal error if init() has not yet been called.
+	 * a fatal error if initServices() has not yet been called.
 	 *
 	 * @since 1.36
 	 * @return Authority
@@ -332,7 +331,7 @@ abstract class Handler {
 
 	/**
 	 * Get the configuration array for the current route. The return type
-	 * declaration causes it to raise a fatal error if init() has not
+	 * declaration causes it to raise a fatal error if initContext() has not
 	 * been called.
 	 *
 	 * @return array
@@ -343,7 +342,7 @@ abstract class Handler {
 
 	/**
 	 * Get the ResponseFactory which can be used to generate Response objects.
-	 * This will raise a fatal error if init() has not been
+	 * This will raise a fatal error if initServices() has not been
 	 * called.
 	 *
 	 * @return ResponseFactory
@@ -354,7 +353,7 @@ abstract class Handler {
 
 	/**
 	 * Get the Session.
-	 * This will raise a fatal error if init() has not been
+	 * This will raise a fatal error if initSession() has not been
 	 * called.
 	 *
 	 * @return Session
@@ -608,7 +607,7 @@ abstract class Handler {
 		$parameters = [];
 
 		// XXX: Maybe we want to be able to define a spec file in the route definition?
-		// NOTE: the route definition may not be loaded when this is called before init()!
+		// NOTE: the route definition may not be loaded if this is called before initContext()!
 
 		$supportedPathParams = array_flip( $this->getSupportedPathParams() );
 
@@ -1046,8 +1045,8 @@ abstract class Handler {
 	}
 
 	/**
-	 * The handler can override this to do any necessary setup after init()
-	 * is called to inject the dependencies.
+	 * The handler can override this to do any necessary setup after the init functions
+	 * are called to inject dependencies.
 	 *
 	 * @stable to override
 	 * @throws HttpException if the handler does not accept the request for
