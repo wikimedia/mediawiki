@@ -7,6 +7,15 @@
 
 @import 'mediawiki.skin.variables.less';
 
+@media all and ( max-width: @width-breakpoint-tablet ) {
+	// T330527
+	.mw-parser-output table {
+		display: block;
+		overflow: auto;
+		max-width: 100%;
+	}
+}
+
 .wikitable {
 	background-color: @background-color-neutral-subtle;
 	color: @color-base;
