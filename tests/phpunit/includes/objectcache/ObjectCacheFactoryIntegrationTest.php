@@ -111,6 +111,35 @@ class ObjectCacheFactoryIntegrationTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	public function testNewFromIdWincacheAccel() {
+		$ocf = $this->getServiceContainer()->getObjectCacheFactory();
+		$className = get_class( $ocf );
+
+		$this->expectDeprecationAndContinue( "/^Use of $className::newFromId with cache ID \"wincache\"\s/" );
+
+		$this->assertInstanceOf(
+			HashBagOStuff::class,
+			$ocf->getInstance( 'wincache' ),
+			'Fallback to APCu for deprecated wincache'
+		);
+	}
+
+	public function testNewFromIdWincacheNoAccel() {
+		// Mock APC not being installed (T160519, T147161)
+		ObjectCacheFactory::$localServerCacheClass = EmptyBagOStuff::class;
+
+		$ocf = $this->getServiceContainer()->getObjectCacheFactory();
+		$className = get_class( $ocf );
+
+		$this->expectDeprecationAndContinue( "/^Use of $className::newFromId with cache ID \"wincache\"\s/" );
+
+		$this->assertInstanceOf(
+			EmptyBagOStuff::class,
+			$ocf->getInstance( 'wincache' ),
+			'No caching if APCu is not available'
+		);
+	}
+
 	public function provideLocalServerKeyspace() {
 		$dbDomain = static function ( $dbName, $dbPrefix ) {
 			global $wgDBmwschema;

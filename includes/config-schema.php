@@ -491,10 +491,6 @@ return [
 					'class' => 'Wikimedia\\ObjectCache\\APCUBagOStuff',
 					'reportDupes' => false,
 				],
-				'wincache' => [
-					'class' => 'Wikimedia\\ObjectCache\\WinCacheBagOStuff',
-					'reportDupes' => false,
-				],
 			],
 			'WANObjectCache' => [
 			],

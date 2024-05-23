@@ -440,7 +440,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			CACHE_MEMCACHED => $hashCache,
 			'apc' => $hashCache,
 			'apcu' => $hashCache,
-			'wincache' => $hashCache,
 			'UTCache' => $hashCache,
 		] + $baseConfig->get( MainConfigNames::ObjectCaches );
 
