@@ -25,6 +25,11 @@
  * @author Daniel Kinzler
  */
 
+namespace MediaWiki\Content;
+
+use AbstractContent;
+use Content;
+
 /**
  * Content object implementation representing unknown content.
  *
@@ -147,3 +152,5 @@ class FallbackContent extends AbstractContent {
 	}
 
 }
+/** @deprecated class alias since 1.43 */
+class_alias( FallbackContent::class, 'FallbackContent' );

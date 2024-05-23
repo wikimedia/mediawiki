@@ -254,6 +254,8 @@ because of Phabricator reports.
   - MediaWiki\Content:
     - CssContent
     - CssContentHandler
+    - FallbackContent
+    - FallbackContentHandler
     - JavaScriptContent
     - JavaScriptContentHandler
     - JsonContent

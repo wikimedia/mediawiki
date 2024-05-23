@@ -23,10 +23,16 @@
  * @ingroup Content
  */
 
+namespace MediaWiki\Content;
+
+use Content;
+use ContentHandler;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\Parser\ParserOutput;
+use SlotDiffRenderer;
+use UnsupportedSlotDiffRenderer;
 
 /**
  * Content handler implementation for unknown content.
@@ -137,3 +143,5 @@ class FallbackContentHandler extends ContentHandler {
 		return new UnsupportedSlotDiffRenderer( $context );
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( FallbackContentHandler::class, 'FallbackContentHandler' );

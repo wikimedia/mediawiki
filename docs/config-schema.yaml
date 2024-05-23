@@ -2034,7 +2034,7 @@ config-schema:
             json: MediaWiki\Content\JsonContentHandler
             css: MediaWiki\Content\CssContentHandler
             text: MediaWiki\Content\TextContentHandler
-            unknown: FallbackContentHandler
+            unknown: MediaWiki\Content\FallbackContentHandler
         type: object
         description: |-
             Plugins for page content model handling.

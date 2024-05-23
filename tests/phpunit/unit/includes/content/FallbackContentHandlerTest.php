@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Unit;
 
-use FallbackContent;
-use FallbackContentHandler;
+use MediaWiki\Content\FallbackContent;
+use MediaWiki\Content\FallbackContentHandler;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRenderingProvider;
 use MediaWiki\Title\Title;
@@ -13,7 +13,7 @@ use MediaWikiUnitTestCase;
  * Split from \FallbackContentHandlerTest integration tests
  *
  * @group ContentHandler
- * @coversDefaultClass \FallbackContentHandler
+ * @coversDefaultClass \MediaWiki\Content\FallbackContentHandler
  */
 class FallbackContentHandlerTest extends MediaWikiUnitTestCase {
 	/**

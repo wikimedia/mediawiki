@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Content\FallbackContent;
+use MediaWiki\Content\FallbackContentHandler;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Parser\ParserObserver;
 use MediaWiki\Request\FauxRequest;
@@ -52,7 +54,7 @@ class FallbackContentHandlerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \FallbackContentHandler::fillParserOutput
+	 * @covers \MediaWiki\Content\FallbackContentHandler::fillParserOutput
 	 */
 	public function testGetParserOutput() {
 		$this->setUserLang( 'en' );

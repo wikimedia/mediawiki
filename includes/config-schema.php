@@ -412,7 +412,7 @@ return [
 				'json' => 'MediaWiki\\Content\\JsonContentHandler',
 				'css' => 'MediaWiki\\Content\\CssContentHandler',
 				'text' => 'MediaWiki\\Content\\TextContentHandler',
-				'unknown' => 'FallbackContentHandler',
+				'unknown' => 'MediaWiki\\Content\\FallbackContentHandler',
 			],
 			'NamespaceContentModels' => [
 			],
