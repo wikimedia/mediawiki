@@ -5,7 +5,7 @@
 
 /* stylelint-disable selector-class-pattern */
 
-@import 'mediawiki.skin.variables';
+@import 'mediawiki.skin.variables.less';
 @import 'content.variables.less';
 @import 'mediawiki.mixins.less';
 
@@ -17,7 +17,7 @@ table.floatright {
 	float: right;
 
 	body.skin--responsive & {
-		@media all and ( max-width: @width-breakpoint-tablet ) {
+		@media all and ( max-width: @max-width-breakpoint-mobile ) {
 			clear: both;
 			float: none;
 		}
@@ -31,7 +31,7 @@ table.floatleft {
 	float: left;
 	clear: left;
 
-	@media all and ( max-width: @width-breakpoint-tablet ) {
+	@media all and ( max-width: @max-width-breakpoint-mobile ) {
 		body.skin--responsive & {
 			clear: both;
 			float: none;
@@ -89,7 +89,7 @@ div.thumbinner {
 // Avoid image child overflowing the container (T200518)/
 // T38030 and T148505
 
-@media all and ( max-width: @width-breakpoint-tablet ) {
+@media all and ( max-width: @max-width-breakpoint-mobile ) {
 	body.skin--responsive & {
 		.mw-parser-output {
 			.thumb .thumbinner {
