@@ -4,9 +4,10 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\Watchlist\ClearUserWatchlistJob;
 
 /**
- * @covers \ClearUserWatchlistJob
+ * @covers \MediaWiki\Watchlist\ClearUserWatchlistJob
  *
  * @group JobQueue
  * @group Database

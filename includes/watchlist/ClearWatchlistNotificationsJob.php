@@ -18,6 +18,11 @@
  * @file
  */
 
+namespace MediaWiki\Watchlist;
+
+use GenericParameterJob;
+use InvalidArgumentException;
+use Job;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
@@ -92,3 +97,5 @@ class ClearWatchlistNotificationsJob extends Job implements GenericParameterJob 
 		return true;
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( ClearWatchlistNotificationsJob::class, 'ClearWatchlistNotificationsJob' );

@@ -3,8 +3,6 @@
 namespace MediaWiki\Watchlist;
 
 use BagOStuff;
-use ClearUserWatchlistJob;
-use ClearWatchlistNotificationsJob;
 use DateInterval;
 use HashBagOStuff;
 use JobQueueGroup;
@@ -22,7 +20,6 @@ use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 use stdClass;
-use WatchedItemStoreInterface;
 use Wikimedia\Assert\Assert;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Rdbms\IDatabase;

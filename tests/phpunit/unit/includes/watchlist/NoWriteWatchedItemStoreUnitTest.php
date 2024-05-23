@@ -2,12 +2,14 @@
 
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\Watchlist\NoWriteWatchedItemStore;
+use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use Wikimedia\Rdbms\DBReadOnlyError;
 
 /**
  * @author Addshore
  *
- * @covers \NoWriteWatchedItemStore
+ * @covers \MediaWiki\Watchlist\NoWriteWatchedItemStore
  */
 class NoWriteWatchedItemStoreUnitTest extends \MediaWikiUnitTestCase {
 

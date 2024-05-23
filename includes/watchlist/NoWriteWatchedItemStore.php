@@ -19,6 +19,8 @@
  * @ingroup Watchlist
  */
 
+namespace MediaWiki\Watchlist;
+
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\DBReadOnlyError;
 
@@ -217,3 +219,5 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 }
+/** @deprecated class alias since 1.43 */
+class_alias( NoWriteWatchedItemStore::class, 'NoWriteWatchedItemStore' );

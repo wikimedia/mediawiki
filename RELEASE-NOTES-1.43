@@ -293,10 +293,14 @@ because of Phabricator reports.
     - RevisionListBase
   - MediaWiki\Watchlist:
     - ActivityUpdateJob
+    - ClearUserWatchlistJob
+    - ClearWatchlistNotificationsJob
+    - NoWriteWatchedItemStore
     - WatchedItem
     - WatchedItemQueryService
     - WatchedItemQueryServiceExtension
     - WatchedItemStore
+    - WatchedItemStoreInterface
     - WatchlistExpiryJob
   - MediaWiki\Xml:
     - Xml
