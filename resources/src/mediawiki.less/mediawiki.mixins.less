@@ -49,8 +49,6 @@
 	// Chrome 55-87 only supports `auto` exclusively on Mac platform.
 	/* stylelint-disable plugin/no-unsupported-browser-features */
 	-webkit-hyphens: @value; // Safari 5.1+, iOS 4.2+
-	-moz-hyphens: @value;    // Firefox 6-42
-	-ms-hyphens: @value;     // IE 10-11, Edge 12-18
 	hyphens: @value;         // Firefox 43+, Chrome 55+, Android 62+, UC Browser 11.8+, Samsung 6.2+
 	/* stylelint-enable plugin/no-unsupported-browser-features */
 }
@@ -76,7 +74,6 @@
 .user-select( @value ) {
 	-webkit-user-select: @value; // Chrome 4-53, Safari 3.1-, Opera 15-40, Android 2.1-4.4.4
 	-moz-user-select: @value; // Firefox 2-68
-	-ms-user-select: @value; // IE 10-11, Edge 12-18
 	user-select: @value;
 }
 
@@ -89,19 +86,16 @@
 }
 
 .column-count( @value ) {
-	-webkit-column-count: @value; // Chrome 4-49, Safari 3.1-8.4, iOS 3.2-8.4
 	-moz-column-count: @value; // Firefox 2-51
 	column-count: @value; // Chrome 50+, Firefox 52+, Edge, IE 10+, Opera 11.5+, Android 90+
 }
 
 .column-width( @value ) {
-	-webkit-column-width: @value; // Chrome 4-49, Safari 3.2-8.4
 	-moz-column-width: @value; // Firefox 1.5-49
 	column-width: @value; // IE 10+, Opera 11.5+
 }
 
 .column-break-inside-avoid() {
-	-webkit-column-break-inside: avoid; // Chrome 4-49, Safari 3-8.4, Opera 15-36
 	page-break-inside: avoid; // Firefox 1.5-51
 	break-inside: avoid-column; // IE 10+, Opera 11.1-12.1
 }
@@ -158,14 +152,6 @@
 .mixin-placeholder( @rules ) {
 	// Chrome 4-56, WebKit, Blink, Edge 12-18
 	&::-webkit-input-placeholder {
-		@rules();
-	}
-	// Internet Explorer 10-11
-	&:-ms-input-placeholder {
-		@rules();
-	}
-	// Firefox 19-50
-	&::-moz-placeholder {
 		@rules();
 	}
 	// W3C Standard Selectors Level 4
