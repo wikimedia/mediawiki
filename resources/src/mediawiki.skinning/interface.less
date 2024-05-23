@@ -23,3 +23,12 @@
 .client-nojs #t-print {
 	display: none; /* T167956 */
 }
+
+// The noresize class is @stable for use by editors to mark large content that should not
+// be subject to responsive styling. When the class is used, the image or table will gain a
+// horizontal scrollbar if it is larger than the viewport. This is primarily for tables
+// but also be applied to images in certain contexts.
+.noresize {
+	max-width: 100%;
+	overflow-x: auto;
+}
