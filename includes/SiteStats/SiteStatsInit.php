@@ -46,7 +46,7 @@ class SiteStatsInit {
 	/**
 	 * @param bool|IReadableDatabase $database
 	 * - bool: Whether to use the primary DB
-	 * - IDatabase: Database connection to use
+	 * - IReadableDatabase: Database connection to use
 	 */
 	public function __construct( $database = false ) {
 		if ( $database instanceof IReadableDatabase ) {
@@ -133,9 +133,9 @@ class SiteStatsInit {
 	 * Do all updates and commit them. More or less a replacement
 	 * for the original initStats, but without output.
 	 *
-	 * @param IDatabase|bool $database
+	 * @param IReadableDatabase|bool $database
 	 * - bool: Whether to use the primary DB
-	 * - IDatabase: Database connection to use
+	 * - IReadableDatabase: Database connection to use
 	 * @param array $options Array of options, may contain the following values
 	 * - activeUsers bool: Whether to update the number of active users (default: false)
 	 */

@@ -41,8 +41,8 @@ use Psr\Log\NullLogger;
 use stdClass;
 use WANObjectCache;
 use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * Cache for article titles (prefixed DB keys) and ids linked from one source
@@ -470,7 +470,7 @@ class LinkCache implements LoggerAwareInterface {
 	 * @param int $ns
 	 * @param string $dbkey
 	 * @param callable|null $fetchCallback A callback that will retrieve the link row with the
-	 *        signature ( IDatabase $db, int $ns, string $dbkey, array $queryOptions ): ?stdObj.
+	 *        signature ( IReadableDatabase $db, int $ns, string $dbkey, array $queryOptions ): ?stdObj.
 	 * @param int $queryFlags IDBAccessObject::READ_XXX
 	 *
 	 * @return stdClass|null
@@ -550,13 +550,13 @@ class LinkCache implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param int $ns
 	 * @param string $dbkey
 	 * @param array $options Query options, see IDatabase::select() for details.
 	 * @return stdClass|false
 	 */
-	private function fetchPageRow( IDatabase $db, int $ns, string $dbkey, $options = [] ) {
+	private function fetchPageRow( IReadableDatabase $db, int $ns, string $dbkey, $options = [] ) {
 		$queryBuilder = $db->newSelectQueryBuilder()
 			->select( self::getSelectFields() )
 			->from( 'page' )

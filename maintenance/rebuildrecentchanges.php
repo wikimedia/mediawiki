@@ -26,6 +26,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -366,7 +367,7 @@ class RebuildRecentchanges extends Maintenance {
 	/**
 	 * Find rc_id values that have a user with one of the specified groups
 	 *
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param string[] $groups
 	 * @param array $conds Extra query conditions
 	 * @return int[]

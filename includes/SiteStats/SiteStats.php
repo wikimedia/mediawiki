@@ -27,8 +27,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use stdClass;
 use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * Static accessor class for site_stats and related things
@@ -234,10 +234,10 @@ class SiteStats {
 	}
 
 	/**
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @return stdClass|false
 	 */
-	private static function doLoadFromDB( IDatabase $db ) {
+	private static function doLoadFromDB( IReadableDatabase $db ) {
 		$fields = self::selectFields();
 		$rows = $db->newSelectQueryBuilder()
 			->select( $fields )

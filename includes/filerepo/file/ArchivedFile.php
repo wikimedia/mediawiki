@@ -25,7 +25,6 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\Blob;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
@@ -494,10 +493,10 @@ class ArchivedFile {
 	 * returning their addresses.
 	 *
 	 * @internal
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @return string|Blob
 	 */
-	public function getMetadataForDb( IDatabase $db ) {
+	public function getMetadataForDb( IReadableDatabase $db ) {
 		$this->load();
 		if ( !$this->metadataArray && !$this->metadataBlobs ) {
 			$s = '';
@@ -551,7 +550,7 @@ class ArchivedFile {
 
 	/**
 	 * Unserialize a metadata string which came from some non-DB source, or is
-	 * the return value of IDatabase::decodeBlob().
+	 * the return value of IReadableDatabase::decodeBlob().
 	 *
 	 * @since 1.37
 	 * @param string $metadataString

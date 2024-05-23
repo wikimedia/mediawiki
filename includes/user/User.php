@@ -1251,11 +1251,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * protected against race conditions using a compare-and-set (CAS) mechanism
 	 * based on comparing $this->mTouched with the user_touched field.
 	 *
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param array $conditions WHERE conditions for use with Database::update
 	 * @return array WHERE conditions for use with Database::update
 	 */
-	protected function makeUpdateConditions( IDatabase $db, array $conditions ) {
+	protected function makeUpdateConditions( IReadableDatabase $db, array $conditions ) {
 		if ( $this->mTouched ) {
 			// CAS check: only update if the row wasn't changed since it was loaded.
 			$conditions['user_touched'] = $db->timestamp( $this->mTouched );

@@ -28,6 +28,7 @@ use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
@@ -360,11 +361,11 @@ class NameTableStore {
 	/**
 	 * Gets the table from the db
 	 *
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 *
 	 * @return string[]
 	 */
-	private function loadTable( IDatabase $db ) {
+	private function loadTable( IReadableDatabase $db ) {
 		$result = $db->newSelectQueryBuilder()
 			->select( [
 				'id' => $this->idField,
