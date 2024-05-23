@@ -712,16 +712,24 @@ class DatabaseTest extends TestCase {
 		$oldSchema = $this->db->dbSchema();
 		$oldPrefix = $this->db->tablePrefix();
 
+		/** @var SQLPlatform $platform */
+		$platform = TestingAccessWrapper::newFromObject( $this->db )->platform;
+
 		$this->db->selectDomain( 'testselectdb-xxx_' );
 		$this->assertSame( 'testselectdb', $this->db->getDBname() );
 		$this->assertSame( '', $this->db->dbSchema() );
 		$this->assertSame( 'xxx_', $this->db->tablePrefix() );
+		$this->assertSame( 'testselectdb', $platform->getCurrentDomain()->getDatabase() );
+		$this->assertSame( 'xxx_', $platform->getCurrentDomain()->getTablePrefix() );
 
 		$this->db->selectDomain( $oldDomain );
 		$this->assertSame( $oldDatabase, $this->db->getDBname() );
 		$this->assertSame( $oldSchema, $this->db->dbSchema() );
 		$this->assertSame( $oldPrefix, $this->db->tablePrefix() );
 		$this->assertSame( $oldDomain, $this->db->getDomainID() );
+		$this->assertSame( $oldDatabase, $platform->getCurrentDomain()->getDatabase() );
+		$this->assertSame( $oldPrefix, $platform->getCurrentDomain()->getTablePrefix() );
+		$this->assertSame( $oldDomain, $platform->getCurrentDomain()->getId() );
 
 		$this->db->selectDomain( 'testselectdb-schema-xxx_' );
 		$this->assertSame( 'testselectdb', $this->db->getDBname() );

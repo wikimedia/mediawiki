@@ -632,6 +632,14 @@ class SQLPlatform implements ISQLPlatform {
 		$this->currentDomain = $currentDomain;
 	}
 
+	/**
+	 * @internal For use by tests
+	 * @return DatabaseDomain
+	 */
+	public function getCurrentDomain() {
+		return $this->currentDomain;
+	}
+
 	public function selectSQLText(
 		$table, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
