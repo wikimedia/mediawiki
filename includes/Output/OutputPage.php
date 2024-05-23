@@ -2907,7 +2907,8 @@ class OutputPage extends ContextSource {
 			return $return ? '' : null;
 		}
 
-		$response = $this->getRequest()->response();
+		$request = $this->getRequest();
+		$response = $request->response();
 		$config = $this->getConfig();
 
 		if ( $this->mRedirect != '' ) {
@@ -2957,7 +2958,6 @@ class OutputPage extends ContextSource {
 		# Buffer output; final headers may depend on later processing
 		ob_start();
 
-		$response->header( 'Content-type: ' . $config->get( MainConfigNames::MimeType ) . '; charset=UTF-8' );
 		$response->header( 'Content-language: ' .
 			MediaWikiServices::getInstance()->getContentLanguage()->getHtmlCode() );
 
@@ -2990,6 +2990,7 @@ class OutputPage extends ContextSource {
 		}
 
 		if ( $this->mArticleBodyOnly ) {
+			$response->header( 'Content-type: ' . $config->get( MainConfigNames::MimeType ) . '; charset=UTF-8' );
 			if ( $this->cspOutputMode === self::CSP_HEADERS ) {
 				$this->CSP->sendHeaders();
 			}
@@ -3001,6 +3002,15 @@ class OutputPage extends ContextSource {
 			}
 
 			$sk = $this->getSkin();
+			$skinOptions = $sk->getOptions();
+
+			if ( $skinOptions['format'] === 'json' ) {
+				$response->header( 'Content-type: application/json; charset=UTF-8' );
+				return json_encode( [
+					$this->msg( 'skin-json-warning' )->escaped() => $this->msg( 'skin-json-warning-message' )->escaped()
+				] + $sk->getTemplateData() );
+			}
+			$response->header( 'Content-type: ' . $config->get( MainConfigNames::MimeType ) . '; charset=UTF-8' );
 			$this->loadSkinModules( $sk );
 
 			MWDebug::addModules( $this );

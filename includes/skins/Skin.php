@@ -272,6 +272,11 @@ abstract class Skin extends ContextSource {
 	 *  - `name`: Required. Internal skin name, generally in lowercase to comply with conventions
 	 *     for interface message keys and CSS class names which embed this value.
 	 *
+	 *  - `format`: Enable rendering of skin as json or html.
+	 *
+	 *     Since: MW 1.43
+	 *     Default: `html`
+	 *
 	 *  - `styles`: ResourceLoader style modules to load on all pages. Default: `[]`
 	 *
 	 *  - `scripts`: ResourceLoader script modules to load on all pages. Default: `[]`
@@ -2411,6 +2416,7 @@ abstract class Skin extends ContextSource {
 			'styles' => [],
 			'scripts' => [],
 			'toc' => true,
+			'format' => 'html',
 			'bodyClasses' => [],
 			'bodyOnly' => false,
 			'clientPrefEnabled' => false,

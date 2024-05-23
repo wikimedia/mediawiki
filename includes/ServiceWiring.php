@@ -2161,6 +2161,19 @@ return [
 				]
 			]
 		], true );
+		// Register a hidden skin for outputting skin json
+		$factory->register( 'json', 'SkinJSON', [
+			'class' => SkinApi::class,
+			'args' => [
+				[
+					'name' => 'json',
+					'styles' => [],
+					'supportsMwHeading' => true,
+					'format' => 'json',
+					'templateDirectory' => __DIR__ . '/skins/templates/apioutput',
+				]
+			]
+		] );
 
 		return $factory;
 	},
