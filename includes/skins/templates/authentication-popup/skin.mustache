@@ -1,0 +1,47 @@
+<div class="mw-body">
+	<header>
+		{{#data-logos}}
+			<a href="{{link-mainpage}}" target="_blank" class="mw-logo">
+				{{#icon}}
+				{{! alt is provided for valid HTML but given aria-hidden not needed. }}
+				<img class="mw-logo-icon" src="{{.}}" alt="" aria-hidden="true" height="50" width="50">
+				{{/icon}}
+				<span class="mw-logo-container">
+					{{#wordmark}}
+					<img class="mw-logo-wordmark" alt="{{msg-sitetitle}}" src="{{src}}" style="{{style}}">
+					{{/wordmark}}
+					{{^wordmark}}
+					<strong class="mw-logo-wordmark">{{msg-sitetitle}}</strong>
+					{{/wordmark}}
+					{{#tagline}}
+					<img class="mw-logo-tagline" alt="{{msg-sitesubtitle}}" src="{{src}}" width="{{width}}" height="{{height}}" style="{{style}}">
+					{{/tagline}}
+				</span>
+			</a>
+		{{/data-logos}}
+
+		<h1>{{{html-title}}}</h1>
+	</header>
+
+	<main>
+		{{{html-body-content}}}
+	</main>
+
+	<footer>
+		{{#data-footer}}
+			<ul>
+				{{#data-info}}
+				{{#array-items}}<li>{{{html}}}</li>{{/array-items}}
+				{{/data-info}}
+
+				{{#data-places}}
+				{{#array-items}}<li>{{{html}}}</li>{{/array-items}}
+				{{/data-places}}
+
+				{{#data-icons}}
+				{{#array-items}}<li>{{{html}}}</li>{{/array-items}}
+				{{/data-icons}}
+			</ul>
+		{{/data-footer}}
+	</footer>
+</div>

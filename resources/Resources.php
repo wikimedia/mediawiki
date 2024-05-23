@@ -2491,6 +2491,9 @@ return [
 			'default' => 'resources/src/mediawiki.special.userlogin.login.styles/login.less',
 		],
 	],
+	'mediawiki.special.userlogin.authentication-popup' => [
+		'styles' => 'resources/src/mediawiki.special.userlogin.common.styles/authentication-popup.less',
+	],
 	'mediawiki.special.createaccount' => [
 		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.special.createaccount',
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.special.createaccount",

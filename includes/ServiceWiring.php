@@ -2134,6 +2134,26 @@ return [
 				]
 			]
 		], true );
+		// Register a hidden skin for Special:UserLogin and Special:CreateAccount
+		$factory->register( 'authentication-popup', 'Authentication popup', [
+			'class' => SkinAuthenticationPopup::class,
+			'args' => [
+				[
+					'name' => 'authentication-popup',
+					'styles' => [
+						'mediawiki.skinning.interface',
+						'mediawiki.special.userlogin.authentication-popup',
+					],
+					'bodyClasses' => [ 'mw-authentication-popup' ],
+					'responsive' => true,
+					'messages' => [
+						'sitesubtitle',
+						'sitetitle',
+					],
+					'templateDirectory' => __DIR__ . '/skins/templates/authentication-popup',
+				]
+			]
+		], true );
 
 		return $factory;
 	},

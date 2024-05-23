@@ -2870,6 +2870,7 @@ $wgAutoloadLocalClasses = [
 	'SiteStore' => __DIR__ . '/includes/site/SiteStore.php',
 	'Skin' => __DIR__ . '/includes/skins/Skin.php',
 	'SkinApi' => __DIR__ . '/includes/skins/SkinApi.php',
+	'SkinAuthenticationPopup' => __DIR__ . '/includes/skins/SkinAuthenticationPopup.php',
 	'SkinException' => __DIR__ . '/includes/skins/SkinException.php',
 	'SkinFactory' => __DIR__ . '/includes/skins/SkinFactory.php',
 	'SkinFallback' => __DIR__ . '/includes/skins/SkinFallback.php',

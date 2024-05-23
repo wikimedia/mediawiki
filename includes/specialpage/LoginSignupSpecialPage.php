@@ -70,6 +70,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	protected $mFromHTTP;
 	protected $mEntryError = '';
 	protected $mEntryErrorType = 'error';
+	protected $mDisplay = 'page';
 
 	protected $mLoaded = false;
 	protected $mLoadedRequest = false;
@@ -132,6 +133,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$this->mVariant = $request->getText( 'variant' );
 		$this->mReturnTo = $request->getVal( 'returnto', '' );
 		$this->mReturnToQuery = $request->getVal( 'returntoquery', '' );
+		if ( $request->getVal( 'display' ) === 'popup' ) {
+			$this->mDisplay = 'popup';
+		}
 	}
 
 	/**
@@ -172,6 +176,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			[
 				'returnto' => $this->mReturnTo,
 				'returntoquery' => $this->mReturnToQuery,
+				'display' => $this->mDisplay !== 'page' ? $this->mDisplay : null,
 				'uselang' => $this->mLanguage ?: null,
 				'variant' => $this->mVariant ?: null,
 				'fromhttp' => $this->getConfig()->get( MainConfigNames::SecureLogin ) &&
@@ -215,6 +220,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		if ( $this->getConfig()->get( MainConfigNames::SecureLogin ) && !$this->isSignup() ) {
 			$params['fromhttp'] = $this->mFromHTTP ? '1' : null;
 		}
+		if ( $this->mDisplay !== 'page' ) {
+			$params['display'] = $this->mDisplay;
+		}
 		return $params;
 	}
 
@@ -252,6 +260,16 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$this->getOutput()->disableClientCache();
 
 		$this->load( $subPage );
+
+		// Do this early, so that it affects how error pages are rendered too
+		if ( $this->mDisplay === 'popup' ) {
+			// Replace the default skin with a "micro-skin" that omits most of the interface. (T362706)
+			// In the future, we might allow normal skins to serve this mode too, if they advise that
+			// they support it by setting a skin option, so that colors and fonts could stay consistent.
+			$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
+			$this->getContext()->setSkin( $skinFactory->makeSkin( 'authentication-popup' ) );
+		}
+
 		$this->setHeaders();
 		$this->checkPermissions();
 
@@ -1139,7 +1157,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 								[
 									'id' => 'mw-createaccount-join' . ( $isLoggedIn ? '-loggedin' : '' ),
 									'href' => $linkTitle->getLocalURL( $params['linkQuery'] ),
-									'class' => $isLoggedIn ? '' : $buttonClasses,
+									'class' => [ 'mw-authentication-popup-link', $buttonClasses => !$isLoggedIn ],
+									'target' => '_self',
 									'tabindex' => 100,
 								],
 								$this->msg(
@@ -1183,6 +1202,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			if ( $this->mReturnToQuery !== '' ) {
 				$returnto .= '&returntoquery=' . wfUrlencode( $this->mReturnToQuery );
 			}
+		}
+		if ( $this->mDisplay !== 'page' ) {
+			$returnto .= '&display=' . wfUrlencode( $this->mDisplay );
 		}
 		return $returnto;
 	}
@@ -1247,11 +1269,15 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			$query['returnto'] = $this->mReturnTo;
 			$query['returntoquery'] = $this->mReturnToQuery;
 		}
+		if ( $this->mDisplay !== 'page' ) {
+			$query['display'] = $this->mDisplay;
+		}
 
 		$attr = [];
 		$targetLanguage = MediaWikiServices::getInstance()->getLanguageFactory()
 			->getLanguage( $lang );
 		$attr['lang'] = $attr['hreflang'] = $targetLanguage->getHtmlCode();
+		$attr['class'] = 'mw-authentication-popup-link';
 
 		return $this->getLinkRenderer()->makeKnownLink(
 			$this->getPageTitle(),
