@@ -22,6 +22,7 @@ use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\ScopedCallback;
 
@@ -815,10 +816,10 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @param IJobSpecification $job
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @return array
 	 */
-	protected function insertFields( IJobSpecification $job, IDatabase $db ) {
+	protected function insertFields( IJobSpecification $job, IReadableDatabase $db ) {
 		return [
 			// Fields that describe the nature of the job
 			'job_cmd' => $job->getType(),
@@ -903,10 +904,10 @@ class JobQueueDB extends JobQueue {
 	}
 
 	/**
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @return ScopedCallback
 	 */
-	private function getScopedNoTrxFlag( IDatabase $db ) {
+	private function getScopedNoTrxFlag( IReadableDatabase $db ) {
 		$autoTrx = $db->getFlag( DBO_TRX ); // get current setting
 		$db->clearFlag( DBO_TRX ); // make each query its own transaction
 

@@ -2783,12 +2783,12 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 *
 	 * MCR migration note: this corresponded to Revision::getPreviousRevisionId
 	 *
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param RevisionRecord $rev
 	 *
 	 * @return int
 	 */
-	private function getPreviousRevisionId( IDatabase $db, RevisionRecord $rev ) {
+	private function getPreviousRevisionId( IReadableDatabase $db, RevisionRecord $rev ) {
 		$this->checkDatabaseDomain( $db );
 
 		if ( $rev->getPageId( $this->wikiId ) === null ) {
@@ -2881,11 +2881,11 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 *
 	 * MCR migration note: this replaced Revision::countByTitle
 	 *
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param PageIdentity $page
 	 * @return int
 	 */
-	public function countRevisionsByTitle( IDatabase $db, PageIdentity $page ) {
+	public function countRevisionsByTitle( IReadableDatabase $db, PageIdentity $page ) {
 		$id = $this->getArticleId( $page );
 		if ( $id ) {
 			return $this->countRevisionsByPageId( $db, $id );
@@ -2904,14 +2904,14 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 *       logic in EditPage that uses this seems conceptually dubious. Revision::userWasLastToEdit
 	 *       had been deprecated since 1.24 (the Revision class was removed entirely in 1.37).
 	 *
-	 * @param IDatabase $db The Database to perform the check on.
+	 * @param IReadableDatabase $db The Database to perform the check on.
 	 * @param int $pageId The ID of the page in question
 	 * @param int $userId The ID of the user in question
 	 * @param string $since Look at edits since this time
 	 *
 	 * @return bool True if the given user was the only one to edit since the given timestamp
 	 */
-	public function userWasLastToEdit( IDatabase $db, $pageId, $userId, $since ) {
+	public function userWasLastToEdit( IReadableDatabase $db, $pageId, $userId, $since ) {
 		$this->checkDatabaseDomain( $db );
 
 		if ( !$userId ) {

@@ -16,7 +16,6 @@ use MediaWiki\Title\TitleParser;
 use stdClass;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Stats\StatsFactory;
@@ -202,7 +201,7 @@ class PageStore implements PageLookup {
 		$row = $this->linkCache->getGoodLinkRow(
 			$namespace,
 			$dbKey,
-			function ( IDatabase $dbr, $ns, $dbkey, array $options )
+			function ( IReadableDatabase $dbr, $ns, $dbkey, array $options )
 				use ( $conds, $caller, &$hitOrMiss )
 			{
 				$hitOrMiss = 'miss';
