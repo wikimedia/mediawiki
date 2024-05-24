@@ -9,10 +9,20 @@
 
 @media all and ( max-width: @max-width-breakpoint-mobile ) {
 	// T330527
-	.mw-parser-output table {
-		display: block;
-		overflow: auto;
-		max-width: 100%;
+	.mw-parser-output {
+		table {
+			display: block;
+			overflow: auto;
+			max-width: 100%;
+		}
+
+		/**
+		 * Disable the above behaviour when noresize is present.
+		 * See mediawiki.skinning/interface for more information.
+		 */
+		.noresize table {
+			display: table;
+		}
 	}
 }
 
