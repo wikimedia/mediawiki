@@ -38,7 +38,8 @@
 	 * limit is 4 will result in "fobo", not "foba". Basically emulating the
 	 * native maxlength by reconstructing where the insertion occurred.
 	 *
-	 * @method trimByteLength
+	 * @method '$.fn.trimByteLength'
+	 * @memberof module:jquery.lengthLimit
 	 * @deprecated Use {@link module:mediawiki.String.trimByteLength require( 'mediawiki.String' ).trimByteLength}
 	 * instead.
 	 * @static
@@ -186,7 +187,7 @@
 	 * value), a filter function (in case the limit should apply to something other than the
 	 * exact input value), or both. Order of parameters is important!
 	 *
-	 * @method byteLimit
+	 * @memberof module:jquery.lengthLimit
 	 * @param {number} [limit] Limit to enforce, fallsback to maxLength-attribute,
 	 *  called with fetched value as argument.
 	 * @param {Function} [filterFunction] Function to call on the string before assessing the length.
@@ -211,7 +212,7 @@
 	 * value), a filter function (in case the limit should apply to something other than the
 	 * exact input value), or both. Order of parameters is important!
 	 *
-	 * @method codePointLimit
+	 * @memberof module:jquery.lengthLimit
 	 * @param {number} [limit] Limit to enforce, fallsback to maxLength-attribute,
 	 *  called with fetched value as argument.
 	 * @param {Function} [filterFunction] Function to call on the string before assessing the length.
