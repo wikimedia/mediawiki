@@ -1,5 +1,5 @@
 /**
- * @typedef {Object} mw.cookie.CookieOptions Custom scope for cookie key, must match the way it was set.
+ * @typedef {Object} module:mediawiki.cookie~CookieOptions Custom scope for cookie key, must match the way it was set.
  * @property {string} [path] The path attribute of the cookie. Defaults to wgCookiePath.
  * @property {string} [prefix] The prefix of the key. Defaults to wgCookiePrefix.
  * @property {string} [domain] Custom scope for cookie key. The domain attribute of the cookie.

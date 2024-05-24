@@ -17,12 +17,11 @@ require( './jquery.js' );
 /**
  * Manage cookies in a way that is syntactically and functionally similar
  * to the `WebRequest#getCookie` and `WebResponse#setcookie` methods in PHP.
- * Provided by the mediawiki.cookie ResourceLoader module.
  *
  * @author Sam Smith <samsmith@wikimedia.org>
  * @author Matthew Flaschen <mflaschen@wikimedia.org>
  *
- * @namespace mw.cookie
+ * @module mediawiki.cookie
  * @example
  * mw.loader.using( 'mediawiki.cookie' ).then( () => {
  *   mw.cookie.set('hello', 'world' );
@@ -51,7 +50,8 @@ mw.cookie = {
 	 * @param {string} key
 	 * @param {string|null} value Value of cookie. If `value` is `null` then this method will
 	 *   instead remove a cookie by name of `key`.
-	 * @param {mw.cookie.CookieOptions|Date|number} [options] Options object, or expiry date
+	 * @param {module:mediawiki.cookie~CookieOptions|Date|number} [options] Options object, or expiry date
+	 * @memberof module:mediawiki.cookie
 	 */
 
 	set: function ( key, value, options ) {
@@ -98,6 +98,7 @@ mw.cookie = {
 	 * @param {null|string} [defaultValue] defaults to null
 	 * @return {string|null} If the cookie exists, then the value of the
 	 *   cookie, otherwise `defaultValue`
+	 * @memberof module:mediawiki.cookie
 	 */
 	get: function ( key, prefix, defaultValue ) {
 		var result;
@@ -125,6 +126,7 @@ mw.cookie = {
 	 * @param {null|string} [defaultValue]
 	 * @return {string|null} If the cookie exists, then the value of the
 	 *   cookie, otherwise `defaultValue`
+	 * @memberof module:mediawiki.cookie
 	 */
 	getCrossSite: function ( key, prefix, defaultValue ) {
 		var value;
