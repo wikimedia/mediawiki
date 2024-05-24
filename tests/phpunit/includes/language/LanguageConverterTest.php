@@ -179,10 +179,10 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	 * @covers \LanguageConverter::getURLVariant
 	 */
 	public function testGetPreferredVariantDefaultLanguageVsUrlVariant() {
-		global $wgDefaultLanguageVariant, $wgRequest;
+		global $wgRequest;
 
 		$this->setContentLang( 'tg-latn' );
-		$wgDefaultLanguageVariant = 'tg';
+		$this->overrideConfigValue( MainConfigNames::DefaultLanguageVariant, 'tg' );
 		$wgRequest->setVal( 'variant', null );
 		$this->assertEquals( 'tg', $this->lc->getPreferredVariant() );
 	}
