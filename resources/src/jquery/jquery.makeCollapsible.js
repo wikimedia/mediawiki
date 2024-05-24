@@ -8,6 +8,11 @@
  * - CC BY 3.0 <https://creativecommons.org/licenses/by/3.0>
  * - GPL2 <http://www.gnu.org/licenses/old-licenses/gpl-2.0.html>
  */
+/**
+ * Collapse a collection of elements.
+ *
+ * @module jquery.makeCollapsible
+ */
 ( function () {
 	/**
 	 * Handler for a click on a collapsible toggler.
@@ -187,13 +192,14 @@
 
 	/**
 	 * Enable collapsible-functionality on all elements in the collection.
-	 * Provided by the jquery.makeCollapsible ResourceLoader module.
 	 *
 	 * - Will prevent binding twice to the same element.
 	 * - Initial state is expanded by default, this can be overridden by adding class
 	 *   "mw-collapsed" to the "mw-collapsible" element.
 	 * - Elements made collapsible have jQuery data "mw-made-collapsible" set to true.
 	 * - The inner content is wrapped in a "div.mw-collapsible-content" (except for tables and lists).
+	 *
+	 * To use this {@link jQuery} plugin, load the `jquery.makeCollapsible` module with {@link mw.loader}.
 	 *
 	 * @example
 	 * mw.loader.using( 'jquery.makeCollapsible' ).then( () => {
@@ -218,8 +224,8 @@
 	 *   item separately for lists) and don't wrap other elements in
 	 *   div.mw-collapsible-content. May only be used with custom togglers.
 	 * @return {jQuery}
-	 * @memberof jQueryPlugins
-	 * @method makeCollapsible
+	 * @memberof module:jquery.makeCollapsible
+	 * @method
 	 */
 	$.fn.makeCollapsible = function ( options ) {
 		options = options || {};
@@ -427,10 +433,5 @@
 
 	// Run hash handler right now in case the URL already has a hash
 	hashHandler();
-
-	/**
-	 * @class jQuery
-	 * @mixes jQuery.plugin.makeCollapsible
-	 */
 
 }() );
