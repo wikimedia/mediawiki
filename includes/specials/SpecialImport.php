@@ -331,7 +331,7 @@ class SpecialImport extends SpecialPage {
 					'type' => 'text',
 					'name' => 'usernamePrefix',
 					'label-message' => 'import-upload-username-prefix',
-					// TODO: Is this field required?
+					'required' => true,
 				],
 				'assignKnownUsers' => [
 					'type' => 'check',
