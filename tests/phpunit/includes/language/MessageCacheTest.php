@@ -195,17 +195,17 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	}
 
 	public function testNoDBAccessContentLanguage() {
-		global $wgLanguageCode;
+		$languageCode = $this->getServiceContainer()->getMainConfig()->get( MainConfigNames::LanguageCode );
 
 		$dbr = $this->getDb();
 
 		$messageCache = $this->getServiceContainer()->getMessageCache();
-		$messageCache->getMsgFromNamespace( 'allpages', $wgLanguageCode );
+		$messageCache->getMsgFromNamespace( 'allpages', $languageCode );
 
 		$this->assertSame( 0, $dbr->trxLevel() );
 		$dbr->setFlag( DBO_TRX, $dbr::REMEMBER_PRIOR ); // make queries trigger TRX
 
-		$messageCache->getMsgFromNamespace( 'go', $wgLanguageCode );
+		$messageCache->getMsgFromNamespace( 'go', $languageCode );
 
 		$dbr->restoreFlags();
 
