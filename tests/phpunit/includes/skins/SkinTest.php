@@ -585,4 +585,43 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayContains( [ 'myhook' => 'foo 1' ], $foo2->buildSidebar(), 'cache hit' );
 		$this->assertArrayContains( [ 'myhook' => 'bar 2' ], $bar->buildSidebar(), 'cache miss' );
 	}
+
+	public function testBuildSidebarWithUserAddedContent() {
+		$this->overrideConfigValues( [
+			MainConfigNames::UseDatabaseMessages => true,
+			MainConfigNames::EnableSidebarCache => false
+		] );
+		$foo1 = new class( 'foo' ) extends Skin {
+			public function outputPage() {
+			}
+		};
+		$this->editPage( 'MediaWiki:Sidebar', <<<EOS
+		* navigation
+		** mainpage|mainpage-description
+		** recentchanges-url|recentchanges
+		** randompage-url|randompage
+		** helppage|help-mediawiki
+		* SEARCH
+		* TOOLBOX
+		** A|B
+		* LANGUAGES
+		** C|D
+		EOS );
+
+		$context = RequestContext::newExtraneousContext( Title::makeTitle( NS_MAIN, 'Main Page' ) );
+		$foo1->setContext( $context );
+
+		$this->assertArrayContains( [ [ 'id' => 'n-B', 'text' => 'B' ] ], $foo1->buildSidebar()['TOOLBOX'], 'Toolbox has user defined links' );
+
+		$hasUserDefinedLinks = false;
+		$languageLinks = $foo1->buildSidebar()['LANGUAGES'];
+		foreach ( $languageLinks as $languageLink ) {
+			if ( $languageLink['id'] === 'n-D' ) {
+				$hasUserDefinedLinks = true;
+				break;
+			}
+		}
+
+		$this->assertSame( false, $hasUserDefinedLinks, 'Languages does not support user defined links' );
+	}
 }
