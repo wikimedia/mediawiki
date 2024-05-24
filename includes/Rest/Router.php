@@ -7,6 +7,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MainConfigSchema;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
 use MediaWiki\Rest\Module\Module;
@@ -50,6 +51,9 @@ class Router {
 
 	/** @var string */
 	private $rootPath;
+
+	/** @var string */
+	private $scriptPath;
 
 	/** @var BagOStuff */
 	private $cacheBag;
@@ -95,6 +99,7 @@ class Router {
 		MainConfigNames::CanonicalServer,
 		MainConfigNames::InternalServer,
 		MainConfigNames::RestPath,
+		MainConfigNames::ScriptPath,
 	];
 
 	/**
@@ -133,6 +138,7 @@ class Router {
 		$this->baseUrl = $options->get( MainConfigNames::CanonicalServer );
 		$this->privateBaseUrl = $options->get( MainConfigNames::InternalServer );
 		$this->rootPath = $options->get( MainConfigNames::RestPath );
+		$this->scriptPath = $options->get( MainConfigNames::ScriptPath );
 		$this->cacheBag = $cacheBag;
 		$this->responseFactory = $responseFactory;
 		$this->basicAuth = $basicAuth;
@@ -145,17 +151,29 @@ class Router {
 	}
 
 	/**
-	 * Remove the path prefix $this->rootPath. Return the part of the path with the
+	 * Remove the REST path prefix. Return the part of the path with the
 	 * prefix removed, or false if the prefix did not match.
+	 * Both the $this->rootPath and the default REST path are accepted,
+	 * so on a site that uses /api as the RestPath, requests to /w/rest.php
+	 * still work. This is equivalent to supporting both /wiki and /w/index.php
+	 * for page views.
 	 *
 	 * @param string $path
 	 * @return false|string
 	 */
 	private function getRelativePath( $path ) {
-		if ( !str_starts_with( $path, $this->rootPath ) ) {
-			return false;
+		$allowed = [
+			$this->rootPath,
+			MainConfigSchema::getDefaultRestPath( $this->scriptPath )
+		];
+
+		foreach ( $allowed as $prefix ) {
+			if ( str_starts_with( $path, $prefix ) ) {
+				return substr( $path, strlen( $prefix ) );
+			}
 		}
-		return substr( $path, strlen( $this->rootPath ) );
+
+		return false;
 	}
 
 	/**

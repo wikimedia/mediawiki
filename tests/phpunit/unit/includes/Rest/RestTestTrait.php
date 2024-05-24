@@ -47,6 +47,7 @@ trait RestTestTrait {
 			MainConfigNames::CanonicalServer => 'https://wiki.example.com',
 			MainConfigNames::InternalServer => 'http://api.local:8080',
 			MainConfigNames::RestPath => '/rest',
+			MainConfigNames::ScriptPath => '/w',
 			MainConfigNames::RightsUrl => 'https://rights.url',
 			MainConfigNames::RightsText => 'your rights',
 			MainConfigNames::EmergencyContact => 'admin@test.test',

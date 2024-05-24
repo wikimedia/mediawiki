@@ -63,7 +63,8 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$config = [
 			MainConfigNames::CanonicalServer => self::CANONICAL_SERVER,
 			MainConfigNames::InternalServer => self::INTERNAL_SERVER,
-			MainConfigNames::RestPath => '/rest'
+			MainConfigNames::RestPath => '/rest',
+			MainConfigNames::ScriptPath => '/w'
 		];
 
 		return $this->newRouter( [
@@ -99,6 +100,16 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 405, $response->getStatusCode() );
 		$this->assertSame( 'Method Not Allowed', $response->getReasonPhrase() );
 		$this->assertSame( 'HEAD, GET', $response->getHeaderLine( 'Allow' ) );
+	}
+
+	public function testGetFromUglyPath() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/w/rest.php/mock/v1/RouterTest/hello' ),
+			'method' => 'GET'
+		] );
+		$router = $this->createRouter( $request );
+		$response = $router->execute( $request );
+		$this->assertSame( 200, $response->getStatusCode() );
 	}
 
 	public function testHeadToGet() {
