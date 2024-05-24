@@ -616,7 +616,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 					'value' => '1',
 				] ),
 				[
-					'label' => $this->msg( 'delete_and_move_confirm' )->text(),
+					'label' => $this->msg( 'delete_and_move_confirm', $newTitle->getPrefixedText() )->text(),
 					'align' => 'inline',
 				]
 			);
