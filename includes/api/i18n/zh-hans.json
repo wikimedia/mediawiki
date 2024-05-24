@@ -1119,7 +1119,7 @@
 	"apihelp-query+protectedtitles-param-end": "列举至此保护时间戳为止。",
 	"apihelp-query+protectedtitles-param-prop": "要获取的属性：",
 	"apihelp-query+protectedtitles-paramvalue-prop-timestamp": "添加保护被添加时的时间戳。",
-	"apihelp-query+protectedtitles-paramvalue-prop-user": "添加对页面添加保护的用户。",
+	"apihelp-query+protectedtitles-paramvalue-prop-user": "添加执行添加页面保护操作的用户。",
 	"apihelp-query+protectedtitles-paramvalue-prop-userid": "添加对页面添加保护的用户ID。",
 	"apihelp-query+protectedtitles-paramvalue-prop-comment": "为保护添加摘要。",
 	"apihelp-query+protectedtitles-paramvalue-prop-parsedcomment": "为保护添加解析的摘要。",
