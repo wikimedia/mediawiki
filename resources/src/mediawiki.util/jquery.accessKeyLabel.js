@@ -171,10 +171,11 @@ function updateTooltip( element ) {
 
 /**
  * Update the titles for all elements in a jQuery selection.
- * Installed by [mediawiki.util]{@link module:mediawiki.util} module.
  *
- * @memberof jQueryPlugins
- * @method updateTooltipAccessKeys
+ * To use this {@link jQuery} plugin, load the `mediawiki.util` module using {@link mw.loader}.
+ *
+ * @memberof module:mediawiki.util
+ * @method
  * @return {jQuery}
  * @example
  * // Converts tooltip "[z]" to associated browser shortcut key e.g. "[ctrl-option-z]"
