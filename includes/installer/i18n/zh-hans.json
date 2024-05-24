@@ -322,7 +322,7 @@
 	"config-install-stats": "初始化统计",
 	"config-install-keys": "生成密钥中",
 	"config-install-updates": "防止运行不需要的更新",
-	"config-install-updates-failed": "<strong>错误：</strong>表格中插入更新关键字失败并出现如下错误：$1",
+	"config-install-updates-failed": "<strong>错误：</strong>插入更新键到表格内失败，错误如下：$1",
 	"config-install-sysop": "正在创建管理员用户账号",
 	"config-install-subscribe-fail": "无法订阅[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]：$1",
 	"config-install-subscribe-notpossible": "没有安装cURL，<code>allow_url_fopen</code>也不可用。",
