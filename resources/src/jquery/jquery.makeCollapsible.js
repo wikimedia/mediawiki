@@ -260,6 +260,10 @@
 				var $currentCollapsible = $.contains( $collapsible.get( 0 ), this ) ?
 					$collapsible :
 					$( this ).closest( '.mw-collapsible' );
+				// However, if we still can't find the collapsible, fallback to original
+				if ( $currentCollapsible.length === 0 ) {
+					$currentCollapsible = $collapsible;
+				}
 
 				togglingHandler( $( this ), $currentCollapsible, e, opts );
 			};

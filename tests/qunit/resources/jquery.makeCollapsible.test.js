@@ -473,4 +473,39 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 		} );
 		$toggleInner.find( 'a' ).trigger( 'click' );
 	} );
+
+	QUnit.test( 'T364712 - toggle moved outside of collapsible should still work', ( assert ) => {
+		const $wrapper = $( $.parseHTML( (
+			'<div>' +
+				'<p>' + loremIpsum + '</p>' +
+				'<dl>' +
+					'<dt>' + loremIpsum + '</dt>' +
+					'<dd>' + loremIpsum + '</dd>' +
+				'</dl>' +
+			'</div>'
+		) ) ).appendTo( '#qunit-fixture' );
+
+		const $collapsible = $wrapper.find( 'dl' ).makeCollapsible( {
+			collapsed: true
+		} );
+		$collapsible.children( '.mw-collapsible-toggle' ).each( function () {
+			var $this = $( this );
+			$this.parent().prev( 'p' ).append( $this );
+		} );
+
+		const $p = $wrapper.find( 'p' );
+		const $toggle = $p.find( '.mw-collapsible-toggle' );
+		const $content = $collapsible.find( '.mw-collapsible-content' );
+
+		assert.strictEqual( $toggle.length, 1, 'toggle moved to p' );
+		assert.strictEqual( $content.length, 1, 'content exists' );
+
+		assert.true( $collapsible.hasClass( 'mw-collapsed' ) );
+		assert.strictEqual( $content.css( 'display' ), 'none', 'content is hidden' );
+
+		$toggle.trigger( 'click' );
+
+		assert.false( $collapsible.hasClass( 'mw-collapsed' ), 'after expanding: toggle works after move' );
+		assert.notStrictEqual( $content.css( 'display' ), 'none', 'after expanding: content is visible' );
+	} );
 } );
