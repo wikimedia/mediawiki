@@ -1,9 +1,9 @@
 /**
- * jQuery confirmable plugin
+ * Enable inline confirmation for clickable elements.
  *
- * Released under the MIT License.
- *
+ * @module jquery.confirmable
  * @author Bartosz Dziewoński
+ * @license MIT
  */
 ( function () {
 	var identity = function ( data ) {
@@ -12,7 +12,6 @@
 
 	/**
 	 * Enable inline confirmation for given clickable element (like `<a />` or `<button />`).
-	 * Provided by the jquery.confirmable ResourceLoader module.
 	 *
 	 * An additional inline confirmation step being shown before the default action is carried out on
 	 * click.
@@ -25,12 +24,14 @@
 	 * If the computed values for the element are different when you make it confirmable, you might
 	 * encounter unexpected behavior.
 	 *
+	 * To use this {@link jQuery} plugin, load the `jquery.confirmable` module with {@link mw.loader}.
+	 *
 	 * @example
 	 * mw.loader.using( 'jquery.confirmable' ).then( () => {
 	 *       $( 'button' ).confirmable();
 	 * } );
-	 * @memberof jQueryPlugins
-	 * @method confirmable
+	 * @memberof module:jquery.confirmable
+	 * @method
 	 * @param {Object} [options]
 	 * @param {string} [options.events='click'] Events to hook to.
 	 * @param {Function} [options.wrapperCallback] Callback to fire when preparing confirmable

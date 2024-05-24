@@ -1,7 +1,10 @@
 /**
- * Plugin that highlights matched word partials in a given element.
- * TODO: Add a function for restoring the previous text.
- * TODO: Accept mappings for converting shortcuts like WP: to Wikipedia:.
+ * Highlight matched word partials in a given element.
+ *
+ * @todo Add a function for restoring the previous text.
+ * @todo Accept mappings for converting shortcuts like WP: to Wikipedia:.
+ *
+ * @module jquery.highlightText
  */
 ( function () {
 
@@ -88,7 +91,8 @@
 
 	/**
 	 * Highlight certain text in current nodes (by wrapping it in `<span class="highlight">...</span>`).
-	 * Provided by the jquery.highlightText ResourceLoader module.
+	 *
+	 * To use this {@link jQuery} plugin, load the `jquery.highlightText` module with {@link mw.loader}.
 	 *
 	 * @example
 	 * mw.loader.using( 'jquery.highlightText' ).then( () => {
@@ -96,8 +100,8 @@
 	 *       mw.util.addCSS( `.highlight { background: yellow; }` )
 	 *       $( '#bodyContent' ).highlightText( 'bear' );
 	 * } );
-	 * @memberof jQueryPlugins
-	 * @method highlightText
+	 * @memberof module:jquery.highlightText
+	 * @method
 	 * @param {string} matchString String to match
 	 * @param {Object} [options]
 	 * @param {string} [options.method='splitAndHighlight'] Method of matching to use, one of:
