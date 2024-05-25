@@ -327,6 +327,7 @@ class HookRunner implements
 	\MediaWiki\Hook\PreferencesGetLayoutHook,
 	\MediaWiki\Hook\PreferencesGetLegendHook,
 	\MediaWiki\Hook\PrefsEmailAuditHook,
+	\MediaWiki\Hook\UserCanChangeEmailHook,
 	\MediaWiki\Hook\ProtectionForm__buildFormHook,
 	\MediaWiki\Hook\ProtectionForm__saveHook,
 	\MediaWiki\Hook\ProtectionForm__showLogExtractHook,
@@ -4802,6 +4803,14 @@ class HookRunner implements
 		return $this->container->run(
 			'userCan',
 			[ $title, $user, $action, &$result ]
+		);
+	}
+
+	/** @inheritDoc */
+	public function onUserCanChangeEmail( $user, $oldaddr, $newaddr, &$status ) {
+		return $this->container->run(
+			'UserCanChangeEmail',
+			[ $user, $oldaddr, $newaddr, &$status ]
 		);
 	}
 

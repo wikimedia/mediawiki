@@ -134,6 +134,7 @@ For notes on 1.44.x and older releases, see HISTORY.
   en.json and qqq.json files, and then configured as 'ignored' in translatewiki.
   From now on, such messages should be added to the en.json and qqq.json file
   under nontranslatable/.
+* (T315128) The UserCanChangeEmail hook was added.
 * …
 
 === External library changes in 1.45 ===

@@ -1761,6 +1761,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\UploadStashFileHook' => __DIR__ . '/includes/upload/Hook/UploadStashFileHook.php',
 	'MediaWiki\\Hook\\UploadVerifyFileHook' => __DIR__ . '/includes/upload/Hook/UploadVerifyFileHook.php',
 	'MediaWiki\\Hook\\UploadVerifyUploadHook' => __DIR__ . '/includes/upload/Hook/UploadVerifyUploadHook.php',
+	'MediaWiki\\Hook\\UserCanChangeEmailHook' => __DIR__ . '/includes/specials/Hook/UserCanChangeEmailHook.php',
 	'MediaWiki\\Hook\\UserEditCountUpdateHook' => __DIR__ . '/includes/deferred/Hook/UserEditCountUpdateHook.php',
 	'MediaWiki\\Hook\\UserGetLanguageObjectHook' => __DIR__ . '/includes/context/Hook/UserGetLanguageObjectHook.php',
 	'MediaWiki\\Hook\\UserLoginCompleteHook' => __DIR__ . '/includes/specials/Hook/UserLoginCompleteHook.php',
