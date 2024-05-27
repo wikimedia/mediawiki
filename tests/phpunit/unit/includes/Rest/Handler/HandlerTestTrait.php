@@ -166,9 +166,18 @@ trait HandlerTestTrait {
 	 * @return Validator|MockObject
 	 */
 	private function getMockValidator( array $queryPathParams, array $bodyParams ): Validator {
-		$validator = $this->createNoOpMock( Validator::class, [ 'validateParams', 'validateBody' ] );
+		$validator = $this->createNoOpMock(
+			Validator::class,
+			[
+				'validateParams',
+				'validateBodyParams',
+				'validateBody',
+				'detectExtraneousBodyFields',
+			]
+		);
+		$validator->method( 'validateBody' )->willReturn( null );
 		$validator->method( 'validateParams' )->willReturn( $queryPathParams );
-		$validator->method( 'validateBody' )->willReturn( $bodyParams );
+		$validator->method( 'validateBodyParams' )->willReturn( $bodyParams );
 		return $validator;
 	}
 
