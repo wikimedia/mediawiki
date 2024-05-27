@@ -187,6 +187,7 @@
 	"tog-newpageshidepatrolled": "Сакривај патролиране странице са списка нових страница",
 	"tog-shownumberswatching": "Прикажи број корисника који надгледају",
 	"prefs-watchlist": "Списак надгледања",
+	"prefs-description-watchlist": "Управљате и прилагођавате списак страница које пратите.",
 	"prefs-editwatchlist": "Уређивање списка надгледања",
 	"prefs-editwatchlist-label": "Управљајте ставкама на списку надгледања:",
 	"prefs-editwatchlist-edit": "Уреди списак надгледања",

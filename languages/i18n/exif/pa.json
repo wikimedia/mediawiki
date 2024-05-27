@@ -3,6 +3,7 @@
 		"authors": [
 			"Aalam",
 			"Babanwalia",
+			"Cabal",
 			"Raj Singh",
 			"Satdeep gill",
 			"ਪ੍ਰਚਾਰਕ"
@@ -29,7 +30,7 @@
 	"exif-make": "ਕੈਮਰਾ ਨਿਰਮਾਤਾ",
 	"exif-model": "ਕੈਮਰਾ ਮਾਡਲ",
 	"exif-software": "ਵਰਤਿਆ ਸਾਫਟਵੇਅਰ",
-	"exif-artist": "ਲੇਖਕ",
+	"exif-artist": "ਲਿਖਾਰੀ",
 	"exif-copyright": "ਕਾਪੀਰਾਈਟ ਟਾਇਟਲ",
 	"exif-exifversion": "ਐਗਜ਼ਿਫ਼ ਦਾ ਰੂਪ",
 	"exif-colorspace": "ਰੰਗ ਸਪੇਸ",

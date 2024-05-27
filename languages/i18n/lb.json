@@ -2394,7 +2394,7 @@
 	"movereasonotherlist": "Anere Grond",
 	"revertmove": "zréck réckelen",
 	"delete_and_move_text": "D'Zilsäit \"[[:$1]]\" gëtt et schonn. \nWëll Dir se läsche fir d'Réckelen ze erméiglechen?",
-	"delete_and_move_confirm": "Jo, läsch d'Säit",
+	"delete_and_move_confirm": "Jo, läsch d'Säit „$1“",
 	"delete_and_move_reason": "Geläscht fir Plaz ze maache fir \"[[$1]]\" heihin ze réckelen",
 	"selfmove": "Den Titel ass deeselwechten;\neng Säit kann net op sech selwer geréckelt ginn.",
 	"immobile-source-namespace": "Säite am Nummraum: $1 kënnen net geréckelt ginn",

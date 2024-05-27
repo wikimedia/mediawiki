@@ -2797,7 +2797,7 @@
 	"revertmove-summary": "Zurücksetzung",
 	"delete_and_move_text": "Die Seite „[[:$1]]“ existiert bereits.\nMöchtest du diese löschen, um die Seite verschieben zu können?",
 	"delete_redirect_and_move_text": "Die Zielseite „[[:$1]]“ existiert bereits als Weiterleitung.\nMöchtest du diese löschen, um die Seite verschieben zu können?",
-	"delete_and_move_confirm": "Ja, Seite löschen",
+	"delete_and_move_confirm": "Ja, Seite „$1“ löschen",
 	"delete_and_move_reason": "Gelöscht, um Platz für die Verschiebung von „[[$1]]“ zu machen",
 	"selfmove": "Der Titel ist gleich.\nEine Seite kann nicht auf sich selbst verschoben werden.",
 	"immobile-source-namespace": "Seiten des „$1“-Namensraums können nicht verschoben werden",
