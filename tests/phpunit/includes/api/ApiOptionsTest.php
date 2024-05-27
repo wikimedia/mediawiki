@@ -64,16 +64,18 @@ class ApiOptionsTest extends ApiTestCase {
 
 		$this->userOptionsManagerMock = $this->createNoOpMock(
 			UserOptionsManager::class,
-			[ 'getOptions', 'listOptionKinds', 'getOptionKinds', 'resetOptions', 'setOption' ]
+			[ 'getOptions', 'resetOptionsByName', 'setOption' ]
 		);
 		// Needs to return something
 		$this->userOptionsManagerMock->method( 'getOptions' )->willReturn( [] );
 
-		// Set up callback for UserOptionsManager::getOptionKinds
-		$this->userOptionsManagerMock->method( 'getOptionKinds' )
-			->willReturnCallback( [ $this, 'getOptionKinds' ] );
-
-		$this->userOptionsManagerMock->method( 'listOptionKinds' )->willReturn(
+		$preferencesFactory = $this->createNoOpMock(
+			DefaultPreferencesFactory::class,
+			[ 'getFormDescriptor', 'listResetKinds', 'getResetKinds', 'getOptionNamesForReset' ]
+		);
+		$preferencesFactory->method( 'getFormDescriptor' )
+			->willReturnCallback( [ $this, 'getPreferencesFormDescription' ] );
+		$preferencesFactory->method( 'listResetKinds' )->willReturn(
 			[
 				'registered',
 				'registered-multiselect',
@@ -83,13 +85,10 @@ class ApiOptionsTest extends ApiTestCase {
 				'unused'
 			]
 		);
-
-		$preferencesFactory = $this->createNoOpMock(
-			DefaultPreferencesFactory::class,
-			[ 'getFormDescriptor' ]
-		);
-		$preferencesFactory->method( 'getFormDescriptor' )
-			->willReturnCallback( [ $this, 'getPreferencesFormDescription' ] );
+		$preferencesFactory->method( 'getResetKinds' )
+			->willReturnCallback( [ $this, 'getResetKinds' ] );
+		$preferencesFactory->method( 'getOptionNamesForReset' )
+			->willReturn( [] );
 
 		$this->mTested = new ApiOptions( $main, 'options', $this->userOptionsManagerMock, $preferencesFactory );
 
@@ -141,7 +140,7 @@ class ApiOptionsTest extends ApiTestCase {
 	 *
 	 * @return array
 	 */
-	public function getOptionKinds( $unused, IContextSource $context, $options = null ) {
+	public function getResetKinds( $unused, IContextSource $context, $options = null ) {
 		// Match with above.
 		$kinds = [
 			'name' => 'registered',
@@ -236,7 +235,7 @@ class ApiOptionsTest extends ApiTestCase {
 		$this->mUserMock->method( 'isRegistered' )->willReturn( true );
 		$this->mUserMock->method( 'isNamed' )->willReturn( true );
 		$this->userOptionsManagerMock->expects( $this->never() )
-			->method( 'resetOptions' );
+			->method( 'resetOptionsByName' );
 
 		$this->userOptionsManagerMock->expects( $this->never() )
 			->method( 'setOption' );
@@ -270,11 +269,11 @@ class ApiOptionsTest extends ApiTestCase {
 		$this->mUserMock->method( 'isNamed' )->willReturn( $isNamed );
 
 		if ( $expectException ) {
-			$this->userOptionsManagerMock->expects( $this->never() )->method( 'resetOptions' );
+			$this->userOptionsManagerMock->expects( $this->never() )->method( 'resetOptionsByName' );
 			$this->userOptionsManagerMock->expects( $this->never() )->method( 'setOption' );
 			$this->mUserMock->expects( $this->never() )->method( 'saveSettings' );
 		} else {
-			$this->userOptionsManagerMock->expects( $this->once() )->method( 'resetOptions' );
+			$this->userOptionsManagerMock->expects( $this->once() )->method( 'resetOptionsByName' );
 			$this->userOptionsManagerMock->expects( $this->never() )->method( 'setOption' );
 			$this->mUserMock->expects( $this->once() )->method( 'saveSettings' );
 		}
@@ -303,10 +302,10 @@ class ApiOptionsTest extends ApiTestCase {
 		$this->mUserMock->method( 'isNamed' )->willReturn( $isNamed );
 		if ( $expectException ) {
 			$this->mUserMock->expects( $this->never() )->method( 'saveSettings' );
-			$this->userOptionsManagerMock->expects( $this->never() )->method( 'resetOptions' );
+			$this->userOptionsManagerMock->expects( $this->never() )->method( 'resetOptionsByName' );
 			$this->userOptionsManagerMock->expects( $this->never() )->method( 'setOption' );
 		} else {
-			$this->userOptionsManagerMock->expects( $this->once() )->method( 'resetOptions' );
+			$this->userOptionsManagerMock->expects( $this->once() )->method( 'resetOptionsByName' );
 			$this->userOptionsManagerMock->expects( $this->never() )->method( 'setOption' );
 			$this->mUserMock->expects( $this->once() )->method( 'saveSettings' );
 		}
@@ -335,11 +334,11 @@ class ApiOptionsTest extends ApiTestCase {
 		$this->mUserMock->method( 'isNamed' )->willReturn( $isNamed );
 
 		if ( $expectException ) {
-			$this->userOptionsManagerMock->expects( $this->never() )->method( 'resetOptions' );
+			$this->userOptionsManagerMock->expects( $this->never() )->method( 'resetOptionsByName' );
 			$this->userOptionsManagerMock->expects( $this->never() )->method( 'setOption' );
 			$this->mUserMock->expects( $this->never() )->method( 'saveSettings' );
 		} else {
-			$this->userOptionsManagerMock->expects( $this->once() )->method( 'resetOptions' );
+			$this->userOptionsManagerMock->expects( $this->once() )->method( 'resetOptionsByName' );
 			$expectedOptions = [
 				'willBeHappy' => 'Happy',
 				'name' => 'value',
@@ -388,7 +387,7 @@ class ApiOptionsTest extends ApiTestCase {
 		$this->mUserMock->method( 'isRegistered' )->willReturn( true );
 		$this->mUserMock->method( 'isNamed' )->willReturn( true );
 		$this->userOptionsManagerMock->expects( $this->never() )
-			->method( 'resetOptions' );
+			->method( 'resetOptionsByName' );
 
 		$expectedOptions = [];
 		foreach ( $setOptions as [ $opt, $val ] ) {

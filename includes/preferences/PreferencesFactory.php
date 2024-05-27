@@ -83,4 +83,67 @@ interface PreferencesFactory {
 	 * @return string[]
 	 */
 	public function getSaveBlacklist();
+
+	/**
+	 * Return an associative array mapping preferences keys to the kind of a
+	 * preference they're used for. Different kinds are handled differently
+	 * when setting or reading preferences.
+	 *
+	 * See PreferencesFactory::listResetKinds for the list of valid option
+	 * types that can be provided.
+	 *
+	 * @since 1.43
+	 * @param User $user
+	 * @param IContextSource $context
+	 * @param array|null $options Assoc. array with options keys to check as keys.
+	 *   Defaults to all user options.
+	 * @return string[] The key => kind mapping data
+	 */
+	public function getResetKinds(
+		User $user,
+		IContextSource $context,
+		$options = null
+	): array;
+
+	/**
+	 * Return a list of the types of user options currently returned by
+	 * getResetKinds().
+	 *
+	 * Currently, the option kinds are:
+	 * - 'registered' - preferences which are registered in core MediaWiki or
+	 *                  by extensions using the UserGetDefaultOptions hook.
+	 * - 'registered-multiselect' - as above, using the 'multiselect' type.
+	 * - 'registered-checkmatrix' - as above, using the 'checkmatrix' type.
+	 * - 'userjs' - preferences with names starting with 'userjs-', intended to
+	 *              be used by user scripts.
+	 * - 'special' - "preferences" that are not accessible via
+	 *              UserOptionsLookup::getOptions or UserOptionsManager::setOptions.
+	 * - 'unused' - preferences about which MediaWiki doesn't know anything.
+	 *              These are usually legacy options, removed in newer versions.
+	 *
+	 * The API (and possibly others) use this function to determine the possible
+	 * option types for validation purposes, so make sure to update this when a
+	 * new option kind is added.
+	 *
+	 * @since 1.43
+	 * @return string[] Option kinds
+	 */
+	public function listResetKinds();
+
+	/**
+	 * Get the list of option names which have been saved by the user, thus
+	 * having non-default values, which match the specified set of kinds.
+	 *
+	 * @since 1.43
+	 * @param User $user
+	 * @param IContextSource $context
+	 * @param string|string[] $kinds List of option kinds, which may be any of
+	 *   the kinds returned by listResetKinds(), or "all" for all options.
+	 * @return string[]
+	 */
+	public function getOptionNamesForReset(
+		User $user,
+		IContextSource $context,
+		$kinds
+	);
 }

@@ -178,7 +178,7 @@ class SpecialPreferences extends SpecialPage {
 		}
 
 		$user = $this->getUser()->getInstanceForUpdate();
-		$this->userOptionsManager->resetOptions( $user, $this->getContext(), 'all' );
+		$this->userOptionsManager->resetAllOptions( $user );
 		$user->saveSettings();
 
 		// Set session data for the success message

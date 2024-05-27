@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Preferences;
 
+use IDBAccessObject;
 use ILanguageConverter;
 use Language;
 use LanguageCode;
@@ -31,6 +32,8 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\Field\HTMLCheckMatrix;
+use MediaWiki\HTMLForm\Field\HTMLMultiSelectField;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\HTMLForm\HTMLNestedFilterable;
@@ -2005,7 +2008,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			}
 
 			// Keep old preferences from interfering due to back-compat code, etc.
-			$this->userOptionsManager->resetOptions( $user, $form->getContext(), 'unused' );
+			$optionsToReset = $this->getOptionNamesForReset( $user, $form->getContext(), 'unused' );
+			$this->userOptionsManager->resetOptionsByName( $user, $optionsToReset );
 
 			foreach ( $formData as $key => $value ) {
 				$this->userOptionsManager->setOption( $user, $key, $value );
@@ -2079,5 +2083,112 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		}
 
 		return ( $res === true ? Status::newGood() : $res );
+	}
+
+	public function getResetKinds(
+		User $user, IContextSource $context, $options = null
+	): array {
+		if ( $options === null ) {
+			$options = $this->userOptionsManager->loadUserOptions( $user );
+		}
+
+		$prefs = $this->getFormDescriptor( $user, $context );
+		$mapping = [];
+
+		// Pull out the "special" options, so they don't get converted as
+		// multiselect or checkmatrix.
+		$specialOptions = array_fill_keys( $this->getSaveBlacklist(), true );
+		foreach ( $specialOptions as $name => $value ) {
+			unset( $prefs[$name] );
+		}
+
+		// Multiselect and checkmatrix options are stored in the database with
+		// one key per option, each having a boolean value. Extract those keys.
+		$multiselectOptions = [];
+		foreach ( $prefs as $name => $info ) {
+			if ( ( isset( $info['type'] ) && $info['type'] == 'multiselect' ) ||
+				( isset( $info['class'] ) && $info['class'] == HTMLMultiSelectField::class )
+			) {
+				$opts = HTMLFormField::flattenOptions( $info['options'] ?? $info['options-messages'] );
+				$prefix = $info['prefix'] ?? $name;
+
+				foreach ( $opts as $value ) {
+					$multiselectOptions["$prefix$value"] = true;
+				}
+
+				unset( $prefs[$name] );
+			}
+		}
+		$checkmatrixOptions = [];
+		foreach ( $prefs as $name => $info ) {
+			if ( ( isset( $info['type'] ) && $info['type'] == 'checkmatrix' ) ||
+				( isset( $info['class'] ) && $info['class'] == HTMLCheckMatrix::class )
+			) {
+				$columns = HTMLFormField::flattenOptions( $info['columns'] );
+				$rows = HTMLFormField::flattenOptions( $info['rows'] );
+				$prefix = $info['prefix'] ?? $name;
+
+				foreach ( $columns as $column ) {
+					foreach ( $rows as $row ) {
+						$checkmatrixOptions["$prefix$column-$row"] = true;
+					}
+				}
+
+				unset( $prefs[$name] );
+			}
+		}
+
+		// $value is ignored
+		foreach ( $options as $key => $value ) {
+			if ( isset( $prefs[$key] ) ) {
+				$mapping[$key] = 'registered';
+			} elseif ( isset( $multiselectOptions[$key] ) ) {
+				$mapping[$key] = 'registered-multiselect';
+			} elseif ( isset( $checkmatrixOptions[$key] ) ) {
+				$mapping[$key] = 'registered-checkmatrix';
+			} elseif ( isset( $specialOptions[$key] ) ) {
+				$mapping[$key] = 'special';
+			} elseif ( str_starts_with( $key, 'userjs-' ) ) {
+				$mapping[$key] = 'userjs';
+			} else {
+				$mapping[$key] = 'unused';
+			}
+		}
+
+		return $mapping;
+	}
+
+	public function listResetKinds() {
+		return [
+			'registered',
+			'registered-multiselect',
+			'registered-checkmatrix',
+			'userjs',
+			'special',
+			'unused'
+		];
+	}
+
+	public function getOptionNamesForReset( User $user, IContextSource $context, $kinds ) {
+		$oldOptions = $this->userOptionsManager->loadUserOptions( $user, IDBAccessObject::READ_LATEST );
+
+		if ( !is_array( $kinds ) ) {
+			$kinds = [ $kinds ];
+		}
+
+		if ( in_array( 'all', $kinds ) ) {
+			return array_keys( $oldOptions );
+		} else {
+			$optionKinds = $this->getResetKinds( $user, $context );
+			$kinds = array_intersect( $kinds, $this->listResetKinds() );
+			$optionNames = [];
+
+			foreach ( $oldOptions as $key => $value ) {
+				if ( in_array( $optionKinds[$key], $kinds ) ) {
+					$optionNames[] = $key;
+				}
+			}
+			return $optionNames;
+		}
 	}
 }

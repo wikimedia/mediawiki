@@ -112,7 +112,7 @@ class ApiOptions extends ApiBase {
 		}
 
 		$prefs = $this->getPreferences();
-		$prefsKinds = $this->userOptionsManager->getOptionKinds( $user, $this->getContext(), $changes );
+		$prefsKinds = $this->preferencesFactory->getResetKinds( $user, $this->getContext(), $changes );
 
 		$htmlForm = new HTMLForm( DefaultPreferencesFactory::simplifyFormDescriptor( $prefs ), $this );
 		foreach ( $changes as $key => $value ) {
@@ -216,7 +216,9 @@ class ApiOptions extends ApiBase {
 	 * @param string[] $kinds One or more types returned by UserOptionsManager::listOptionKinds() or 'all'
 	 */
 	protected function resetPreferences( array $kinds ) {
-		$this->userOptionsManager->resetOptions( $this->getUserForUpdates(), $this->getContext(), $kinds );
+		$optionNames = $this->preferencesFactory->getOptionNamesForReset(
+			$this->getUserForUpdates(), $this->getContext(), $kinds );
+		$this->userOptionsManager->resetOptionsByName( $this->getUserForUpdates(), $optionNames );
 	}
 
 	/**
@@ -245,7 +247,7 @@ class ApiOptions extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		$optionKinds = $this->userOptionsManager->listOptionKinds();
+		$optionKinds = $this->preferencesFactory->listResetKinds();
 		$optionKinds[] = 'all';
 
 		return [

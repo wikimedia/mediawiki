@@ -21,8 +21,6 @@
 namespace MediaWiki\User\Options;
 
 use DBAccessObjectUtils;
-use HTMLCheckMatrix;
-use HTMLMultiSelectField;
 use IDBAccessObject;
 use InvalidArgumentException;
 use LanguageCode;
@@ -31,7 +29,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -244,6 +241,8 @@ class UserOptionsManager extends UserOptionsLookup {
 	 *
 	 * @note You need to call saveOptions() to actually write to the database.
 	 *
+	 * @deprecated since 1.43 use resetOptionsByName() with PreferencesFactory::getOptionNamesForReset()
+	 *
 	 * @param UserIdentity $user
 	 * @param IContextSource $context Context source used when $resetKinds does not contain 'all'.
 	 * @param array|string $resetKinds Which kinds of preferences to reset.
@@ -254,159 +253,71 @@ class UserOptionsManager extends UserOptionsLookup {
 		IContextSource $context,
 		$resetKinds = [ 'registered', 'registered-multiselect', 'registered-checkmatrix', 'unused' ]
 	) {
-		$oldOptions = $this->loadUserOptions( $user, IDBAccessObject::READ_LATEST );
-		$defaultOptions = $this->defaultOptionsLookup->getDefaultOptions( $user );
-
-		if ( !is_array( $resetKinds ) ) {
-			$resetKinds = [ $resetKinds ];
-		}
-
-		if ( in_array( 'all', $resetKinds ) ) {
-			$newOptions = $defaultOptions + array_fill_keys( array_keys( $oldOptions ), null );
-		} else {
-			$optionKinds = $this->getOptionKinds( $user, $context );
-			$resetKinds = array_intersect( $resetKinds, $this->listOptionKinds() );
-			$newOptions = [];
-
-			// Use default values for the options that should be deleted, and
-			// copy old values for the ones that shouldn't.
-			foreach ( $oldOptions as $key => $value ) {
-				if ( in_array( $optionKinds[$key], $resetKinds ) ) {
-					if ( array_key_exists( $key, $defaultOptions ) ) {
-						$newOptions[$key] = $defaultOptions[$key];
-					}
-				} else {
-					$newOptions[$key] = $value;
-				}
-			}
-		}
-		$this->modifiedOptions[$this->getCacheKey( $user )] = $newOptions;
+		wfDeprecated( __METHOD__, '1.43' );
+		$preferencesFactory = MediaWikiServices::getInstance()->getPreferencesFactory();
+		$optionsToReset = $preferencesFactory->getOptionNamesForReset(
+			$this->userFactory->newFromUserIdentity( $user ), $context, $resetKinds );
+		$this->resetOptionsByName( $user, $optionsToReset );
 	}
 
 	/**
-	 * Return a list of the types of user options currently returned by
-	 * UserOptionsManager::getOptionKinds().
+	 * Reset a list of options to the site defaults
 	 *
-	 * Currently, the option kinds are:
-	 * - 'registered' - preferences which are registered in core MediaWiki or
-	 *                  by extensions using the UserGetDefaultOptions hook.
-	 * - 'registered-multiselect' - as above, using the 'multiselect' type.
-	 * - 'registered-checkmatrix' - as above, using the 'checkmatrix' type.
-	 * - 'userjs' - preferences with names starting with 'userjs-', intended to
-	 *              be used by user scripts.
-	 * - 'special' - "preferences" that are not accessible via
-	 *              UserOptionsLookup::getOptions or UserOptionsManager::setOptions.
-	 * - 'unused' - preferences about which MediaWiki doesn't know anything.
-	 *              These are usually legacy options, removed in newer versions.
+	 * @note You need to call saveOptions() to actually write to the database.
 	 *
-	 * The API (and possibly others) use this function to determine the possible
-	 * option types for validation purposes, so make sure to update this when a
-	 * new option kind is added.
+	 * @param UserIdentity $user
+	 * @param string[] $optionNames
+	 */
+	public function resetOptionsByName(
+		UserIdentity $user,
+		array $optionNames
+	) {
+		foreach ( $optionNames as $name ) {
+			$this->setOption( $user, $name, null );
+		}
+	}
+
+	/**
+	 * Reset all options that were set to a non-default value by the given user
 	 *
-	 * @see getOptionKinds
+	 * @note You need to call saveOptions() to actually write to the database.
+	 *
+	 * @param UserIdentity $user
+	 */
+	public function resetAllOptions( UserIdentity $user ) {
+		foreach ( $this->loadUserOptions( $user ) as $name => $value ) {
+			$this->setOption( $user, $name, null );
+		}
+	}
+
+	/**
+	 * @deprecated since 1.43 use PreferencesFactory::listResetKinds()
+	 *
 	 * @return string[] Option kinds
 	 */
 	public function listOptionKinds(): array {
-		return [
-			'registered',
-			'registered-multiselect',
-			'registered-checkmatrix',
-			'userjs',
-			'special',
-			'unused'
-		];
+		wfDeprecated( __METHOD__, '1.43' );
+		$preferencesFactory = MediaWikiServices::getInstance()->getPreferencesFactory();
+		return $preferencesFactory->listResetKinds();
 	}
 
 	/**
-	 * Return an associative array mapping preferences keys to the kind of a preference they're
-	 * used for. Different kinds are handled differently when setting or reading preferences.
+	 * @deprecated since 1.43 use PreferencesFactory::getResetKinds
 	 *
-	 * See UserOptionsManager::listOptionKinds for the list of valid option types that can be provided.
-	 *
-	 * @see UserOptionsManager::listOptionKinds
 	 * @param UserIdentity $userIdentity
 	 * @param IContextSource $context
-	 * @param array|null $options Assoc. array with options keys to check as keys.
-	 *   Defaults user options.
-	 * @return string[] The key => kind mapping data
+	 * @param array|null $options
+	 * @return string[]
 	 */
 	public function getOptionKinds(
 		UserIdentity $userIdentity,
 		IContextSource $context,
 		$options = null
 	): array {
-		if ( $options === null ) {
-			$options = $this->loadUserOptions( $userIdentity );
-		}
-
-		// TODO: injecting the preferences factory creates a cyclic dependency between
-		// PreferencesFactory and UserOptionsManager. See T250822
-		$preferencesFactory = MediaWikiServices::getInstance()->getPreferencesFactory();
+		wfDeprecated( __METHOD__, '1.43' );
 		$user = $this->userFactory->newFromUserIdentity( $userIdentity );
-		$prefs = $preferencesFactory->getFormDescriptor( $user, $context );
-		$mapping = [];
-
-		// Pull out the "special" options, so they don't get converted as
-		// multiselect or checkmatrix.
-		$specialOptions = array_fill_keys( $preferencesFactory->getSaveBlacklist(), true );
-		foreach ( $specialOptions as $name => $value ) {
-			unset( $prefs[$name] );
-		}
-
-		// Multiselect and checkmatrix options are stored in the database with
-		// one key per option, each having a boolean value. Extract those keys.
-		$multiselectOptions = [];
-		foreach ( $prefs as $name => $info ) {
-			if ( ( isset( $info['type'] ) && $info['type'] == 'multiselect' ) ||
-				( isset( $info['class'] ) && $info['class'] == HTMLMultiSelectField::class )
-			) {
-				$opts = HTMLFormField::flattenOptions( $info['options'] ?? $info['options-messages'] );
-				$prefix = $info['prefix'] ?? $name;
-
-				foreach ( $opts as $value ) {
-					$multiselectOptions["$prefix$value"] = true;
-				}
-
-				unset( $prefs[$name] );
-			}
-		}
-		$checkmatrixOptions = [];
-		foreach ( $prefs as $name => $info ) {
-			if ( ( isset( $info['type'] ) && $info['type'] == 'checkmatrix' ) ||
-				( isset( $info['class'] ) && $info['class'] == HTMLCheckMatrix::class )
-			) {
-				$columns = HTMLFormField::flattenOptions( $info['columns'] );
-				$rows = HTMLFormField::flattenOptions( $info['rows'] );
-				$prefix = $info['prefix'] ?? $name;
-
-				foreach ( $columns as $column ) {
-					foreach ( $rows as $row ) {
-						$checkmatrixOptions["$prefix$column-$row"] = true;
-					}
-				}
-
-				unset( $prefs[$name] );
-			}
-		}
-
-		// $value is ignored
-		foreach ( $options as $key => $value ) {
-			if ( isset( $prefs[$key] ) ) {
-				$mapping[$key] = 'registered';
-			} elseif ( isset( $multiselectOptions[$key] ) ) {
-				$mapping[$key] = 'registered-multiselect';
-			} elseif ( isset( $checkmatrixOptions[$key] ) ) {
-				$mapping[$key] = 'registered-checkmatrix';
-			} elseif ( isset( $specialOptions[$key] ) ) {
-				$mapping[$key] = 'special';
-			} elseif ( str_starts_with( $key, 'userjs-' ) ) {
-				$mapping[$key] = 'userjs';
-			} else {
-				$mapping[$key] = 'unused';
-			}
-		}
-
-		return $mapping;
+		$preferencesFactory = MediaWikiServices::getInstance()->getPreferencesFactory();
+		return $preferencesFactory->getResetKinds( $user, $context, $options );
 	}
 
 	/**

@@ -398,6 +398,9 @@ because of Phabricator reports.
   DatabaseBlockStore.
 * DatabaseBlockStore::getReadStage() and ::getWriteStage() are deprecated.
   Use the new schema unconditionally.
+* UserOptionsManager::resetOptions(), ::listOptionKinds and ::getOptionKinds are
+  deprecated and will emit deprecation warnings. Use the corresponding methods
+  in PreferencesFactory and UserOptionsManager::resetOptionsByName().
 * To support a future change allowing serializing of MessageValue objects
   as JSON, the methods MessageValue::objectParams(), Message::objectParams()
   and Message::objectParam() are deprecated. The UserGroupMembershipParam
