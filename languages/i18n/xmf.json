@@ -2545,7 +2545,7 @@
 	"blanknamespace": "(დუდი)",
 	"contributions": "მახვარებუშ მიშნაღელი თია",
 	"tool-link-contributions": "{{GENDER:$1|მახვარებუშ}} მიშნაღელ თია",
-	"contributions-title": "$1-შა მახვარებუშ მიშნაღელი თია",
+	"contributions-title": "მახვარებუ $1-შ მიშნაღელი თია",
 	"mycontris": "ჩქიმი მიშნაღელი თია",
 	"anoncontribs": "მიშნაღელი თიეფი",
 	"contribsub2": "მახვარებუ {{GENDER:$3|$1}} მიშნაღელი თია ($2)",

@@ -128,7 +128,8 @@
 			"Abcdefg",
 			"Iketsi",
 			"KimKelting",
-			"TomatoCake"
+			"TomatoCake",
+			"21 little ducks"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -1453,7 +1454,7 @@
 	"rightslogtext": "Dies ist das Logbuch der Änderungen der Benutzerrechte.",
 	"action-read": "die Seite zu lesen",
 	"skin-action-addsection": "Abschnitt hinzufügen",
-	"action-edit": "diese Seite bearbeiten",
+	"action-edit": "die Seite zu bearbeiten",
 	"action-createpage": "diese Seite zu erstellen",
 	"action-createtalk": "diese Diskussionsseite zu erstellen",
 	"action-createaccount": "dieses Benutzerkonto erstellen",

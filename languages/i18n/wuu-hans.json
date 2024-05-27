@@ -34,7 +34,8 @@
 			"姑苏小恐龙",
 			"飞舞回堂前",
 			"아라",
-			"Diskdance"
+			"Diskdance",
+			"LittlePaw365"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -1675,7 +1676,7 @@
 	"pageinfo-header-restrictions": "页面保护",
 	"pageinfo-header-properties": "页面属性",
 	"pageinfo-display-title": "显示题目头",
-	"pageinfo-default-sort": "默认排序关键字",
+	"pageinfo-default-sort": "默认排序键",
 	"pageinfo-length": "页面长度（字节）",
 	"pageinfo-article-id": "页面ID",
 	"pageinfo-language": "页面内容闲话",

@@ -55,7 +55,8 @@
 			"Rotem Liss",
 			"מקף",
 			"Dee",
-			"נדב ס"
+			"נדב ס",
+			"Purple-bananana"
 		]
 	},
 	"tog-underline": "סימון קישורים בקו תחתי:",
@@ -2124,7 +2125,7 @@
 	"apihelp-no-such-module": "המודול \"$1\" לא נמצא.",
 	"apisandbox": "ארגז החול של ה־API",
 	"apisandbox-jsonly": "דרוש JavaScript כדי להשתמש בארגז החול של ה־API.",
-	"apisandbox-intro": "ניתן להשתמש בדף הזה כדי להתנסות בשימוש ב<strong>שירות ה־API המבוסס הווב של מדיה־ויקי</strong>.\nאפשר לעיין ב[https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page תיעוד של ה־API] למידע נוסף על שימוש ב־API. למשל: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query חיפוש כותרות דפים שתואמות למילת חיפוש מסוימת]. יש לבחור בפעולה (action) לדוגמאות נוספות.\n\nלתשומת ליבך: אף שמדובר ב\"ארגז חול\", פעולות שנעשות כאן עשויות לשנות את התוכן של אתר הוויקי.",
+	"apisandbox-intro": "ניתן להשתמש בדף הזה כדי להתנסות בשימוש ב<strong>שירות ה־API מבוסס הווב של מדיה־ויקי</strong>.\nאפשר לעיין ב[https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page תיעוד של ה־API] למידע נוסף על שימוש ב־API. למשל: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query חיפוש כותרות דפים שתואמות למילת חיפוש מסוימת]. יש לבחור בפעולה (action) לדוגמאות נוספות.\n\nלתשומת ליבך: אף שמדובר ב\"ארגז חול\", פעולות שנעשות כאן עשויות לשנות את התוכן של אתר הוויקי.",
 	"apisandbox-submit": "ביצוע הבקשה",
 	"apisandbox-reset": "ניקוי",
 	"apisandbox-retry": "ניסיון נוסף",
