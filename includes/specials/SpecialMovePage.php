@@ -347,9 +347,9 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			}
 		}
 
-		$oldTalk = $this->oldTitle->getTalkPage();
+		$oldTalk = $this->oldTitle->getTalkPageIfDefined();
 		$oldTitleSubpages = $this->oldTitle->hasSubpages();
-		$oldTitleTalkSubpages = $this->oldTitle->getTalkPage()->hasSubpages();
+		$oldTitleTalkSubpages = $this->oldTitle->getTalkPageIfDefined()->hasSubpages();
 
 		$canMoveSubpage = ( $oldTitleSubpages || $oldTitleTalkSubpages ) &&
 			$this->permManager->quickUserCan(
