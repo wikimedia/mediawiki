@@ -104,6 +104,10 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 		$this->setGroupPermissions( '*', 'editmyoptions', true );
 
+		$this->setGroupPermissions( 'deleted-viewer', 'deletedhistory', true );
+		$this->setGroupPermissions( 'deleted-viewer', 'deletedtext', true );
+		$this->setGroupPermissions( 'deleted-viewer', 'viewsuppressed', true );
+
 		$this->setGroupPermissions( 'interface-admin', 'editinterface', true );
 		$this->setGroupPermissions( 'interface-admin', 'editsitejs', true );
 		$this->setGroupPermissions( 'interface-admin', 'edituserjs', true );
@@ -1347,7 +1351,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * Enuser normal admins can view deleted javascript, but not restore it
+	 * Ensure normal admins can view deleted javascript, but not restore it
 	 * See T202989
 	 */
 	public function testSysopInterfaceAdminRights() {
@@ -1365,6 +1369,62 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $permManager->userCan( 'deletedtext', $interfaceAdmin, $userJs ) );
 		$this->assertFalse( $permManager->userCan( 'undelete', $admin, $userJs ) );
 		$this->assertTrue( $permManager->userCan( 'undelete', $interfaceAdmin, $userJs ) );
+	}
+
+	/**
+	 * Ensure specific users can view deleted contents regardless of Namespace
+	 * Protection, but not restore it
+	 * See T362536
+	 *
+	 * @dataProvider provideDeletedViewerRights
+	 */
+	public function testDeletedViewerRights(
+		$userGroup,
+		$userPerms,
+		$expectedUserCan
+	) {
+		$currentUser = $this->getTestUser( $userGroup )->getUser();
+		$permManager = $this->getServiceContainer()->getPermissionManager();
+		$targetPage = Title::makeTitle( NS_MEDIAWIKI, 'Example' );
+		foreach ( $userPerms as $userPerm ) {
+			$this->assertSame(
+				$expectedUserCan,
+				$permManager->userCan( $userPerm, $currentUser, $targetPage )
+			);
+		}
+	}
+
+	public static function provideDeletedViewerRights() {
+		yield [
+			'usergroup' => '*',
+			'user permissions' => [
+				'delete',
+				'deletedhistory',
+				'deletedtext',
+				'suppressrevision',
+				'undelete',
+				'viewsuppressed'
+			],
+			'user can' => false
+		];
+		yield [
+			'usergroup' => 'deleted-viewer',
+			'user permissions' => [
+				'delete',
+				'suppressrevision',
+				'undelete'
+			],
+			'user can' => false
+		];
+		yield [
+			'usergroup' => 'deleted-viewer',
+			'user permissions' => [
+				'deletedhistory',
+				'deletedtext',
+				'viewsuppressed'
+			],
+			'user can' => true
+		];
 	}
 
 	/**

@@ -386,6 +386,9 @@ because of Phabricator reports.
   the default value is null. Previously, an empty array specified by the
   administrator would transform into the default null value. It now
   appropriately retains its empty array state.
+* (T362536) Exempted "deletedhistory", "deletedtext", and "viewsuppressed"
+  rights from namespace protection ($wgNamespaceProtection) since that's
+  only meant to prevent write actions.
 * …
 
 == Compatibility ==
