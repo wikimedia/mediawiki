@@ -265,6 +265,8 @@ because of Phabricator reports.
 * IMaintainableDatabase::listViews(), deprecated since 1.42, has been removed.
 * IMaintainableDatabase::truncate(), deprecated since 1.42, has been removed.
 * IMaintainableDatabase::textFieldSize() was removed without deprecation.
+* The "options" parameter to User::createNew() and the $data parameter to
+  UserOptionsManager::loadUserOptions() were removed.
 * `.list-style-image()` mixin from mediawiki.mixins.less, deprecated since 1.38,
   has been removed.
 * `.background-image()` mixin from mediawiki.mixins.less, deprecated since 1.38,

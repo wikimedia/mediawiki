@@ -2475,7 +2475,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 *   - email: The user's email address.
 	 *   - email_authenticated: The email authentication timestamp.
 	 *   - real_name: The user's real name.
-	 *   - options: An associative array of non-default options.
 	 *   - token: Random authentication token. Do not set.
 	 *   - registration: Registration timestamp. Do not set.
 	 * @return User|null User object, or null if the username already exists.
@@ -2504,12 +2503,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		$user = new User;
 		$user->load();
 		$user->setToken(); // init token
-		if ( isset( $params['options'] ) ) {
-			MediaWikiServices::getInstance()
-				->getUserOptionsManager()
-				->loadUserOptions( $user, $user->queryFlagsUsed, $params['options'] );
-			unset( $params['options'] );
-		}
 		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
 
 		$noPass = PasswordFactory::newInvalidPassword()->toString();

@@ -428,19 +428,18 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * obtained from a replica and doesn't have ID set due to replication lag,
 	 * it will be treated as anon regardless of the query flags passed here.
 	 *
+	 * @internal
+	 *
 	 * @param UserIdentity $user
 	 * @param int $queryFlags
-	 * @param array|null $data associative array of non-default options.
 	 * @return array
-	 * @internal To be called by User loading code to provide the $data
 	 */
 	public function loadUserOptions(
 		UserIdentity $user,
-		int $queryFlags = IDBAccessObject::READ_NORMAL,
-		array $data = null
+		int $queryFlags = IDBAccessObject::READ_NORMAL
 	): array {
 		$userKey = $this->getCacheKey( $user );
-		$originalOptions = $this->loadOriginalOptions( $user, $queryFlags, $data );
+		$originalOptions = $this->loadOriginalOptions( $user, $queryFlags );
 		return array_merge( $originalOptions, $this->modifiedOptions[$userKey] ?? [] );
 	}
 
@@ -462,32 +461,20 @@ class UserOptionsManager extends UserOptionsLookup {
 	 *
 	 * @param UserIdentity $user
 	 * @param int $queryFlags a bit field composed of READ_XXX flags
-	 * @param array|null $prefetchedOptions
 	 * @return array
 	 */
 	private function loadOptionsFromDb(
 		UserIdentity $user,
-		int $queryFlags,
-		array $prefetchedOptions = null
+		int $queryFlags
 	): array {
-		if ( $prefetchedOptions === null ) {
-			$this->logger->debug( 'Loading options from database', [ 'user_id' => $user->getId() ] );
-			$dbr = DBAccessObjectUtils::getDBFromRecency( $this->dbProvider, $queryFlags );
-			$res = $dbr->newSelectQueryBuilder()
-				->select( [ 'up_property', 'up_value' ] )
-				->from( 'user_properties' )
-				->where( [ 'up_user' => $user->getId() ] )
-				->recency( $queryFlags )
-				->caller( __METHOD__ )->fetchResultSet();
-		} else {
-			$res = [];
-			foreach ( $prefetchedOptions as $name => $value ) {
-				$res[] = [
-					'up_property' => $name,
-					'up_value' => $value,
-				];
-			}
-		}
+		$this->logger->debug( 'Loading options from database', [ 'user_id' => $user->getId() ] );
+		$dbr = DBAccessObjectUtils::getDBFromRecency( $this->dbProvider, $queryFlags );
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'up_property', 'up_value' ] )
+			->from( 'user_properties' )
+			->where( [ 'up_user' => $user->getId() ] )
+			->recency( $queryFlags )
+			->caller( __METHOD__ )->fetchResultSet();
 		return $this->setOptionsFromDb( $user, $queryFlags, $res );
 	}
 
@@ -528,13 +515,11 @@ class UserOptionsManager extends UserOptionsLookup {
 	 *
 	 * @param UserIdentity $user
 	 * @param int $queryFlags
-	 * @param array|null $data associative array of non-default options
 	 * @return array
 	 */
 	private function loadOriginalOptions(
 		UserIdentity $user,
-		int $queryFlags = IDBAccessObject::READ_NORMAL,
-		array $data = null
+		int $queryFlags = IDBAccessObject::READ_NORMAL
 	): array {
 		$userKey = $this->getCacheKey( $user );
 		$defaultOptions = $this->defaultOptionsLookup->getDefaultOptions( $user );
@@ -558,7 +543,7 @@ class UserOptionsManager extends UserOptionsLookup {
 			return $this->originalOptionsCache[$userKey];
 		}
 
-		$options = $this->loadOptionsFromDb( $user, $queryFlags, $data ) + $defaultOptions;
+		$options = $this->loadOptionsFromDb( $user, $queryFlags ) + $defaultOptions;
 
 		// Replace deprecated language codes
 		$options['language'] = LanguageCode::replaceDeprecatedCodes( $options['language'] );
