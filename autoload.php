@@ -1859,7 +1859,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Message\\Message' => __DIR__ . '/includes/Message/Message.php',
 	'MediaWiki\\Message\\MessageFormatterFactory' => __DIR__ . '/includes/Message/MessageFormatterFactory.php',
 	'MediaWiki\\Message\\TextFormatter' => __DIR__ . '/includes/Message/TextFormatter.php',
-	'MediaWiki\\Message\\UserGroupMembershipParam' => __DIR__ . '/includes/Message/UserGroupMembershipParam.php',
 	'MediaWiki\\Navigation\\PagerNavigationBuilder' => __DIR__ . '/includes/Navigation/PagerNavigationBuilder.php',
 	'MediaWiki\\OutputHandler' => __DIR__ . '/includes/Output/OutputHandler.php',
 	'MediaWiki\\OutputTransform\\ContentDOMTransformStage' => __DIR__ . '/includes/OutputTransform/ContentDOMTransformStage.php',

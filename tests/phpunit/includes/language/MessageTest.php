@@ -5,10 +5,8 @@ use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
-use MediaWiki\Message\UserGroupMembershipParam;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\Title;
-use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Assert\ParameterTypeException;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Message\MessageSpecifier;
@@ -530,21 +528,6 @@ class MessageTest extends MediaWikiLangTestCase {
 			'(group-bot)',
 			$msg->userGroupParams( 'bot' )->plain(),
 			'user group is handled correctly'
-		);
-	}
-
-	public function testUserGroupMemberParams() {
-		$this->expectDeprecationAndContinue( '/UserGroupMembershipParam/' );
-		$this->expectDeprecationAndContinue( '/objectParams/' );
-		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'qqx' );
-		$msg = new RawMessage( '$1' );
-		$this->setUserLang( $lang );
-		$this->assertSame(
-			'(group-bot-member: user)',
-			$msg->objectParams(
-				new UserGroupMembershipParam( 'bot', new UserIdentityValue( 1, 'user' ) )
-			)->plain(),
-			'user group member is handled correctly'
 		);
 	}
 

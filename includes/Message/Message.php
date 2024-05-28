@@ -729,30 +729,6 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	}
 
 	/**
-	 * Add parameters that represent stringable objects
-	 *
-	 * @since 1.38
-	 * @deprecated since 1.43
-	 *
-	 * @param Stringable|Stringable[] ...$params stringable parameters,
-	 * or a single argument that is an array of stringable parameters.
-	 *
-	 * @return self $this
-	 */
-	public function objectParams( ...$params ) {
-		wfDeprecated( __METHOD__, '1.43' );
-		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
-			$params = $params[0];
-		}
-		foreach ( $params as $param ) {
-			// Suppress redundant deprecation warning
-			// phpcs:ignore Generic.PHP.NoSilencedErrors
-			$this->parameters[] = @self::objectParam( $param );
-		}
-		return $this;
-	}
-
-	/**
 	 * Add parameters that are times and will be passed through
 	 * Language::time before substitution
 	 *
@@ -1288,19 +1264,6 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	}
 
 	/**
-	 * @since 1.38
-	 * @deprecated since 1.43
-	 *
-	 * @param Stringable $object
-	 *
-	 * @return ScalarParam
-	 */
-	public static function objectParam( Stringable $object ): ScalarParam {
-		wfDeprecated( __METHOD__, '1.43' );
-		return new ScalarParam( ParamType::OBJECT, $object );
-	}
-
-	/**
 	 * @since 1.22
 	 *
 	 * @param int|float $period
@@ -1432,16 +1395,6 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 					return [ 'before', $this->getLanguage()->formatBitrate( $param->getValue() ) ];
 				case ParamType::PLAINTEXT:
 					return [ 'after', $this->formatPlaintext( $param->getValue(), $format ) ];
-				case ParamType::OBJECT:
-					$obj = $param->getValue();
-					if ( $obj instanceof UserGroupMembershipParam ) {
-						return [
-						'before',
-						$this->getLanguage()->getGroupMemberName( $obj->getGroup(), $obj->getMember() )
-						];
-					} else {
-						return [ 'before', $obj->__toString() ];
-					}
 				case ParamType::TEXT: // impossible because we unwrapped it in params()
 				default:
 					throw new \LogicException( "Invalid ScalarParam type: {$param->getType()}" );

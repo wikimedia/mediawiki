@@ -1199,9 +1199,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 	/**
 	 * Add a warning to the output for this page.
-	 * @param MessageValue $mv Note that the parameters must be serializable/deserializable
-	 *   with JsonCodec; see the @note on ParserOutput::setExtensionData(). MessageValue guarantees
-	 *   that unless the deprecated ParamType::OBJECT or the ->objectParams() method is used.
+	 * @param MessageValue $mv
 	 * @since 1.43
 	 */
 	public function addWarningMsgVal( MessageValue $mv ) {

@@ -11,10 +11,6 @@ use Stringable;
  *
  * Message parameter classes are pure value objects and are safely newable.
  *
- * When using the deprecated ParamType::OBJECT, the parameter value
- * should be (de)serializable, otherwise (de)serialization of the
- * ScalarParam object will fail.
- *
  * @newable
  */
 class ScalarParam extends MessageParam {
@@ -24,7 +20,6 @@ class ScalarParam extends MessageParam {
 	 * @stable to call.
 	 *
 	 * @param string $type One of the ParamType constants.
-	 *   Using ParamType::OBJECT is deprecated since 1.43.
 	 * @param string|int|float|MessageSpecifier|Stringable $value
 	 */
 	public function __construct( $type, $value ) {
@@ -36,11 +31,8 @@ class ScalarParam extends MessageParam {
 				'ParamType::LIST cannot be used with ScalarParam; use ListParam instead'
 			);
 		}
-		if ( $type === ParamType::OBJECT ) {
-			wfDeprecatedMsg( 'Using ParamType::OBJECT was deprecated in MediaWiki 1.43', '1.43' );
-		} elseif ( $value instanceof MessageSpecifier ) {
+		if ( $value instanceof MessageSpecifier ) {
 			// Ensure that $this->value is JSON-serializable, even if $value is not
-			// (but don't do it when using ParamType::OBJECT, since those objects may not expect it)
 			$value = MessageValue::newFromSpecifier( $value );
 		} elseif ( is_object( $value ) && (
 			$value instanceof Stringable || is_callable( [ $value, '__toString' ] )

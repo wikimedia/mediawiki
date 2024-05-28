@@ -93,6 +93,10 @@ because of Phabricator reports.
 
 === Breaking changes in 1.44 ===
 
+* The methods MessageValue::objectParams(), Message::objectParams()
+  and Message::objectParam(), deprecated in 1.43, have been removed.
+* The UserGroupMembershipParam class, deprecated in 1.43, has been removed.
+* The ParamType::OBJECT constant, deprecated in 1.43, has been removed.
 * …
 
 === Deprecations in 1.44 ===
