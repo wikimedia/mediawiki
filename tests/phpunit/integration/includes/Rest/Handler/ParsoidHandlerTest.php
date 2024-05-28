@@ -1396,7 +1396,9 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 					new NullStatsdDataFactory(),
 					$factory,
 					$this->getServiceContainer()->getParsoidOutputStash(),
-					$this->getServiceContainer()->getParsoidOutputAccess()
+					$this->getServiceContainer()->getParserOutputAccess(),
+					$this->getServiceContainer()->getPageStore(),
+					$this->getServiceContainer()->getRevisionLookup()
 				);
 
 				$helper->init( $page, [ 'html' => $html ], [] );

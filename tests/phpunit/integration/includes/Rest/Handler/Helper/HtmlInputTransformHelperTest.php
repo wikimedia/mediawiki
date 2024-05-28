@@ -85,7 +85,9 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 			$stats ?: new NullStatsdDataFactory(),
 			$this->newMockHtmlTransformFactory( $transformMethodOverrides ),
 			$this->getServiceContainer()->getParsoidOutputStash(),
-			$this->getServiceContainer()->getParsoidOutputAccess()
+			$this->getServiceContainer()->getParserOutputAccess(),
+			$this->getServiceContainer()->getPageStore(),
+			$this->getServiceContainer()->getRevisionLookup()
 		);
 
 		return $helper;
@@ -1031,9 +1033,11 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		// Call getParserOutput() to make sure a rendering is in the ParserCache.
 		// Even though we find a rendering, it should be discarded because it doesn't match
 		// the ETag.
-		$access = $this->getServiceContainer()->getParsoidOutputAccess();
+		$access = $this->getServiceContainer()->getParserOutputAccess();
+		$pageLookup = $this->getServiceContainer()->getPageStore();
 		$popt = ParserOptions::newFromAnon();
-		$access->getParserOutput( $page, $popt )->getValue();
+		$popt->setUseParsoid();
+		$access->getParserOutput( $pageLookup->getPageByReference( $page ), $popt )->getValue();
 
 		$revid = $page->getLatest();
 		$eTag = "\"$revid/nope-nope-nope\"";
@@ -1073,10 +1077,12 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		$rev = $this->editPage( __METHOD__, $oldWikitext )->value['revision-record'];
 		$page = $rev->getPage();
 
-		$access = $this->getServiceContainer()->getParsoidOutputAccess();
+		$access = $this->getServiceContainer()->getParserOutputAccess();
+		$pageLookup = $this->getServiceContainer()->getPageStore();
 
 		$popt = ParserOptions::newFromAnon();
-		$pout = $access->getParserOutput( $page, $popt )->getValue();
+		$popt->setUseParsoid();
+		$pout = $access->getParserOutput( $pageLookup->getPageByReference( $page ), $popt )->getValue();
 
 		$key = ParsoidRenderID::newFromParserOutput( $pout )->getKey();
 		$html = $pout->getRawText();
@@ -1103,10 +1109,12 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		$rev = $this->editPage( __METHOD__, $oldWikitext )->value['revision-record'];
 		$page = $rev->getPage();
 
-		$access = $this->getServiceContainer()->getParsoidOutputAccess();
+		$access = $this->getServiceContainer()->getParserOutputAccess();
+		$pageLookup = $this->getServiceContainer()->getPageStore();
 
 		$popt = ParserOptions::newFromAnon();
-		$pout = $access->getParserOutput( $page, $popt )->getValue();
+		$popt->setUseParsoid();
+		$pout = $access->getParserOutput( $pageLookup->getPageByReference( $page ), $popt )->getValue();
 		$html = $pout->getRawText();
 
 		// Load the original data based on the ETag
