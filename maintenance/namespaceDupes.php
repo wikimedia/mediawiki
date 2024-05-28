@@ -381,7 +381,9 @@ class NamespaceDupes extends Maintenance {
 		if ( isset( $linksMigration::$mapping[$table] ) ) {
 			$sqb->queryInfo( $linksMigration->getQueryInfo( $table ) );
 			[ $namespaceField, $titleField ] = $linksMigration->getTitleFields( $table );
-			$schemaMigrationStage = $this->getConfig()->get( $linksMigration::$mapping[$table]['config'] );
+			$schemaMigrationStage = $linksMigration::$mapping[$table]['config'] === -1
+				? MIGRATION_NEW
+				: $this->getConfig()->get( $linksMigration::$mapping[$table]['config'] );
 			$linkTargetLookup = $this->getServiceContainer()->getLinkTargetLookup();
 			$targetIdField = $linksMigration::$mapping[$table]['target_id'];
 		} else {

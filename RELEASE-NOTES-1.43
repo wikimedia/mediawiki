@@ -52,6 +52,7 @@ For notes on 1.42.x and older releases, see HISTORY.
 
 * wgSessionInsecureSecrets has been removed since OpenSSL is now a required
   PHP extension.
+* $wgTemplateLinksSchemaMigrationStage has been removed.
 * …
 
 === New user-facing features in 1.43 ===

@@ -1254,12 +1254,6 @@ class MainConfigNames {
 	public const VirtualDomainsMapping = 'VirtualDomainsMapping';
 
 	/**
-	 * Name constant for the TemplateLinksSchemaMigrationStage setting, for use with Config::get()
-	 * @see MainConfigSchema::TemplateLinksSchemaMigrationStage
-	 */
-	public const TemplateLinksSchemaMigrationStage = 'TemplateLinksSchemaMigrationStage';
-
-	/**
 	 * Name constant for the PageLinksSchemaMigrationStage setting, for use with Config::get()
 	 * @see MainConfigSchema::PageLinksSchemaMigrationStage
 	 */

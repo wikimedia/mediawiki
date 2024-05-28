@@ -3272,25 +3272,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Templatelinks table schema migration stage, for normalizing tl_namespace and tl_title fields.
-	 *
-	 * Use the SCHEMA_COMPAT_XXX flags. Supported values:
-	 *
-	 *   - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
-	 *   - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW
-	 *   - SCHEMA_COMPAT_NEW
-	 *
-	 * History:
-	 *   - 1.38: Added
-	 *   - 1.39: Default has changed to SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
-	 *     and support for SCHEMA_COMPAT_OLD is dropped.
-	 */
-	public const TemplateLinksSchemaMigrationStage = [
-		'default' => SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_NEW,
-		'type' => 'integer',
-	];
-
-	/**
 	 * Pagelinks table schema migration stage, for normalizing pl_namespace and pl_title fields.
 	 *
 	 * Use the SCHEMA_COMPAT_XXX flags. Supported values:
