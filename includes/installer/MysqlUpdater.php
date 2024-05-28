@@ -171,29 +171,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		];
 	}
 
-	/**
-	 * Check whether an index contains a field
-	 *
-	 * @param string $table Table name
-	 * @param string $index Index name to check
-	 * @param string $field Field that should be in the index
-	 * @return bool
-	 */
-	protected function indexHasField( $table, $index, $field ) {
-		$info = $this->db->indexInfo( $table, $index, __METHOD__ );
-		if ( $info ) {
-			foreach ( $info as $row ) {
-				if ( $row->Column_name == $field ) {
-					$this->output( "...index $index on table $table includes field $field.\n" );
-					return true;
-				}
-			}
-		}
-		$this->output( "...index $index on table $table has no field $field; added.\n" );
-
-		return false;
-	}
-
 	public function getSchemaVars() {
 		global $wgDBTableOptions;
 

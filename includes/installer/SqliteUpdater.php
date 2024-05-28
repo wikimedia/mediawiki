@@ -151,27 +151,4 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'dropTable', 'ipblocks' ],
 		];
 	}
-
-	/**
-	 * Check whether an index contains a field
-	 *
-	 * @param string $table Table name
-	 * @param string $index Index name to check
-	 * @param string $field Field that should be in the index
-	 * @return bool
-	 */
-	protected function indexHasField( $table, $index, $field ) {
-		$info = $this->db->indexInfo( $table, $index, __METHOD__ );
-		if ( $info ) {
-			foreach ( $info as $column ) {
-				if ( $column == $field ) {
-					$this->output( "...index $index on table $table includes field $field.\n" );
-					return true;
-				}
-			}
-		}
-		$this->output( "...index $index on table $table has no field $field; added.\n" );
-
-		return false;
-	}
 }
