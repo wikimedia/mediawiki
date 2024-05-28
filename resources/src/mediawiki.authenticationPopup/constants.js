@@ -1,0 +1,3 @@
+module.exports = {
+	SUCCESS_PAGE_MESSAGE: 'SUCCESS_PAGE_MESSAGE'
+};

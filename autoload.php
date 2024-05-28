@@ -2248,6 +2248,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Specials\\SpecialAncientPages' => __DIR__ . '/includes/specials/SpecialAncientPages.php',
 	'MediaWiki\\Specials\\SpecialApiHelp' => __DIR__ . '/includes/specials/SpecialApiHelp.php',
 	'MediaWiki\\Specials\\SpecialApiSandbox' => __DIR__ . '/includes/specials/SpecialApiSandbox.php',
+	'MediaWiki\\Specials\\SpecialAuthenticationPopupSuccess' => __DIR__ . '/includes/specials/SpecialAuthenticationPopupSuccess.php',
 	'MediaWiki\\Specials\\SpecialAutoblockList' => __DIR__ . '/includes/specials/SpecialAutoblockList.php',
 	'MediaWiki\\Specials\\SpecialBlankpage' => __DIR__ . '/includes/specials/SpecialBlankpage.php',
 	'MediaWiki\\Specials\\SpecialBlock' => __DIR__ . '/includes/specials/SpecialBlock.php',
