@@ -178,7 +178,7 @@ class Parser {
 	/** RegExp to make image URLs (embeds IPv6 part of Parser::EXT_LINK_ADDR) */
 	// phpcs:ignore Generic.Files.LineLength
 	private const EXT_IMAGE_REGEX = '/^(http:\/\/|https:\/\/)((?:\\[(?i:[0-9a-f:.]+)\\])?[^][<>"\\x00-\\x20\\x7F\p{Zs}\x{FFFD}]+)
-		\\/([A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]+)\\.((?i)gif|png|jpg|jpeg)$/Sxu';
+		\\/([A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]+)\\.((?i)avif|gif|jpg|jpeg|png|svg|webp)$/Sxu';
 
 	/** Regular expression for a non-newline space */
 	private const SPACE_NOT_NL = '(?:\t|&nbsp;|&\#0*160;|&\#[Xx]0*[Aa]0;|\p{Zs})';
