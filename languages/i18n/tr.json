@@ -212,7 +212,7 @@
 	"variants": "Değişkenler",
 	"navigation-heading": "Gezinti menüsü",
 	"errorpagetitle": "Hata",
-	"returnto": "$1 sayfasına geri dön.",
+	"returnto": "$1 sayfasına geri {{#FORMAL:dön|dönün}}.",
 	"tagline": "{{SITENAME}} sitesinden",
 	"help": "Yardım",
 	"help-mediawiki": "MediaWiki hakkında yardım",

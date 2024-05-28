@@ -2772,7 +2772,7 @@
 	"revertmove": "ripristina",
 	"delete_and_move_text": "La pagina specificata come destinazione \"[[:$1]]\" esiste già.\nVuoi cancellarla per proseguire con lo spostamento?",
 	"delete_redirect_and_move_text": "La pagina specificata come destinazione \"[[:$1]]\" esiste già sotto forma di redirect.\nVuoi cancellarla per proseguire con lo spostamento?",
-	"delete_and_move_confirm": "Sì, sovrascrivi la pagina esistente",
+	"delete_and_move_confirm": "Sì, cancella la pagina \"$1\"",
 	"delete_and_move_reason": "Cancellata per rendere possibile lo spostamento da \"[[$1]]\"",
 	"selfmove": "Il titolo è lo stesso, non è possibile spostare una pagina su sé stessa.",
 	"immobile-source-namespace": "Non è possibile spostare pagine del namespace \"$1\"",

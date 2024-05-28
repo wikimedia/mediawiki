@@ -2778,7 +2778,7 @@
 	"revertmove-summary": "Cofnięcie edycji",
 	"delete_and_move_text": "Strona docelowa „[[:$1]]” już istnieje.\nCzy chcesz ją usunąć, by zrobić miejsce dla przenoszonej strony?",
 	"delete_redirect_and_move_text": "Strona docelowa „[[:$1]]” już istnieje jako przekierowanie.\nCzy chcesz ją usunąć, by zrobić miejsce dla przenoszonej strony?",
-	"delete_and_move_confirm": "Tak, usuń stronę",
+	"delete_and_move_confirm": "Tak, usuń stronę „$1”",
 	"delete_and_move_reason": "Usunięto, by zrobić miejsce dla przenoszonej strony „[[$1]]”",
 	"selfmove": "Ta sama nazwa strony;\nstrony nie można przenieść na nią samą.",
 	"immobile-source-namespace": "Nie można przenieść stron w przestrzeni nazw „$1”.",
