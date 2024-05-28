@@ -188,7 +188,7 @@ class MessageValueTest extends TestCase {
 
 	public function testUserGroupMemberParams() {
 		$mv = new MessageValue( 'key' );
-		$mv2 = $mv->objectParams(
+		$mv2 = @$mv->objectParams(
 			new UserGroupMembershipParam( 'bot', new UserIdentityValue( 1, 'user' ) )
 		);
 		$this->assertSame( '<message key="key">' .

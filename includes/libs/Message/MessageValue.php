@@ -97,10 +97,12 @@ class MessageValue {
 	/**
 	 * Chainable mutator which adds object parameters
 	 *
+	 * @deprecated since 1.43
 	 * @param Stringable ...$values stringable object values
 	 * @return $this
 	 */
 	public function objectParams( ...$values ) {
+		wfDeprecated( __METHOD__, '1.43' );
 		foreach ( $values as $value ) {
 			$this->params[] = new ScalarParam( ParamType::OBJECT, $value );
 		}

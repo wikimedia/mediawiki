@@ -68,6 +68,7 @@ class ParamType {
 	/**
 	 * For arbitrary stringable objects
 	 * @since 1.38
+	 * @deprecated since 1.43
 	 */
 	public const OBJECT = 'object';
 

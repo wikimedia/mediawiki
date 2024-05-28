@@ -718,6 +718,7 @@ class Message implements MessageSpecifier, Serializable {
 	 * Add parameters that represent stringable objects
 	 *
 	 * @since 1.38
+	 * @deprecated since 1.43
 	 *
 	 * @param Stringable|Stringable[] ...$params stringable parameters,
 	 * or a single argument that is an array of stringable parameters.
@@ -725,11 +726,14 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return self $this
 	 */
 	public function objectParams( ...$params ) {
+		wfDeprecated( __METHOD__, '1.43' );
 		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
 			$params = $params[0];
 		}
 		foreach ( $params as $param ) {
-			$this->parameters[] = self::objectParam( $param );
+			// Suppress redundant deprecation warning
+			// phpcs:ignore Generic.PHP.NoSilencedErrors
+			$this->parameters[] = @self::objectParam( $param );
 		}
 		return $this;
 	}
@@ -1285,12 +1289,14 @@ class Message implements MessageSpecifier, Serializable {
 
 	/**
 	 * @since 1.38
+	 * @deprecated since 1.43
 	 *
 	 * @param Stringable $object
 	 *
 	 * @return Stringable[] Array with a single "object" key.
 	 */
 	public static function objectParam( Stringable $object ) {
+		wfDeprecated( __METHOD__, '1.43' );
 		return [ 'object' => $object ];
 	}
 

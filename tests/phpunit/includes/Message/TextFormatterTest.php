@@ -95,7 +95,8 @@ class TextFormatterTest extends MediaWikiIntegrationTestCase {
 			'test (group-bot) $2'
 		];
 
-		yield [ ( new MessageValue( 'test' ) )
+		// Deprecated, silence deprecation warnings
+		@yield [ ( new MessageValue( 'test' ) )
 			->objectParams(
 				new UserGroupMembershipParam( 'bot', new UserIdentityValue( 1, 'user' ) )
 			),
