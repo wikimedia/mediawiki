@@ -184,7 +184,7 @@ class Router {
 	private function splitPath( string $fullPath ): array {
 		$pathWithModule = $this->getRelativePath( $fullPath );
 
-		if ( !$pathWithModule ) {
+		if ( $pathWithModule === false ) {
 			throw new LocalizedHttpException(
 				( new MessageValue( 'rest-prefix-mismatch' ) )
 					->plaintextParams( $fullPath, $this->rootPath ),
@@ -192,17 +192,15 @@ class Router {
 			);
 		}
 
-		if ( !preg_match( self::PREFIX_PATTERN, $pathWithModule, $matches ) ) {
-			throw new LocalizedHttpException(
-				( new MessageValue( 'rest-bad-prefix' ) )
-					->plaintextParams( $pathWithModule ),
-				404
-			);
+		if ( preg_match( self::PREFIX_PATTERN, $pathWithModule, $matches ) ) {
+			[ , $module, $pathUnderModule ] = $matches;
+		} else {
+			// No prefix found in the given path, assume prefix-less module.
+			$module = '';
+			$pathUnderModule = $pathWithModule;
 		}
 
-		[ , $module, $pathUnderModule ] = $matches;
-
-		if ( !$this->getModuleInfo( $module ) ) {
+		if ( $module !== '' && !$this->getModuleInfo( $module ) ) {
 			// Prefix doesn't match any module, try the prefix-less module...
 			// TODO: At some point in the future, we'll want to warn and redirect...
 			$module = '';
@@ -480,6 +478,14 @@ class Router {
 
 	private function doExecute( string $fullPath, RequestInterface $request ): ResponseInterface {
 		[ $modulePrefix, $path ] = $this->splitPath( $fullPath );
+
+		// If there is no path at all, redirect to "/".
+		// That's the minimal path that can be routed.
+		if ( $modulePrefix === '' && $path === '' ) {
+			$target = $this->getRoutePath( '/' );
+			return $this->responseFactory->createRedirect( $target, 308 );
+		}
+
 		$module = $this->getModule( $modulePrefix );
 
 		if ( !$module ) {

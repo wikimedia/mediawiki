@@ -20,6 +20,7 @@ use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\StringStream;
 use MediaWiki\Rest\Validator\JsonBodyValidator;
+use MediaWiki\Tests\Rest\Handler\HelloHandler;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use PHPUnit\Framework\Assert;
@@ -67,8 +68,13 @@ class RouterTest extends MediaWikiUnitTestCase {
 			MainConfigNames::ScriptPath => '/w'
 		];
 
+		$extraRoutes = [
+			[ 'path' => '/', 'class' => HelloHandler::class ]
+		];
+
 		return $this->newRouter( [
 			'routeFiles' => $routeFiles,
+			'extraRoutes' => $extraRoutes,
 			'request' => $request,
 			'config' => $config,
 			'cacheBag' => $this->cacheBag,
@@ -81,6 +87,25 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$stats = $this->createNoOpMock( StatsdDataFactoryInterface::class, [ $method ] );
 		$stats->expects( $this->atLeastOnce() )->method( $method )->with( ...$with );
 		return $stats;
+	}
+
+	public function testEmptyPath() {
+		// The URI doesn't contain the "/" suffix, so the relative path is empty.
+		$request = new RequestData( [ 'uri' => new Uri( '/rest' ) ] );
+		$router = $this->createRouter( $request );
+		$response = $router->execute( $request );
+		$this->assertSame( 308, $response->getStatusCode() );
+		$this->assertSame( '/rest/', $response->getHeaderLine( 'location' ) );
+	}
+
+	public function testRootPath() {
+		// The URI contains only the "/" suffix.
+		// This should be sufficient to be routed to the prefix-less modules.
+		// The "/" path is mapped to the HelloHandler in createRouter().
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/' ) ] );
+		$router = $this->createRouter( $request );
+		$response = $router->execute( $request );
+		$this->assertSame( 200, $response->getStatusCode() );
 	}
 
 	public function testPrefixMismatch() {
