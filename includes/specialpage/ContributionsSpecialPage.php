@@ -371,7 +371,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 			} elseif ( $userObj->isHidden() &&
 				!$this->permissionManager->userHasRight( $this->getUser(), 'hideuser' )
 			) {
-				// User is registered, but make sure that the viewer can see them, to avoid
+				// User is registered, but make sure that the viewer can't see them, to avoid
 				// having different behavior for missing and hidden users; see T120883
 				$message = '';
 			} else {
