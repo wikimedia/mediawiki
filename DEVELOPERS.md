@@ -97,7 +97,6 @@ Linux users: If you'd like to use Xdebug features inside your IDE, then create a
 well:
 
 ```yaml
-version: '3.7'
 services:
   mediawiki:
     # For Linux: This extra_hosts section enables Xdebug-IDE communication:
@@ -251,7 +250,6 @@ To install the EventLogging extension:
     `docker-compose.override.yml`. This is comparable to a symlink, but those are not well-supported in Docker.
 
     ```yaml
-   version: '3.7'
    services:
      mediawiki:
        volumes:
@@ -370,7 +368,6 @@ On Linux, you need to create a `docker-compose.override.yml` file with the follo
 contents:
 
 ```yaml
-version: '3.7'
 services:
   mediawiki:
     extra_hosts:
