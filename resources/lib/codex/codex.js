@@ -256,7 +256,6 @@ const _sfc_main$v = defineComponent({
     };
   }
 });
-const Icon_vue_vue_type_style_index_0_lang = "";
 const _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
   for (const [key, val] of props) {
@@ -335,10 +334,9 @@ function isComponentVNode(node, componentName) {
 }
 function isTagVNode(node, tagName) {
   if (typeof node.type === "string") {
-    if (tagName !== void 0) {
+    {
       return node.type === tagName.toLowerCase();
     }
-    return true;
   }
   return false;
 }
@@ -441,7 +439,6 @@ const _sfc_main$u = defineComponent({
     };
   }
 });
-const Button_vue_vue_type_style_index_0_lang = "";
 function _sfc_render$u(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock(
     "button",
@@ -527,7 +524,6 @@ const _sfc_main$t = defineComponent({
     };
   }
 });
-const Accordion_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$s = { class: "cdx-accordion__header__title" };
 const _hoisted_2$k = { class: "cdx-accordion__header__description" };
 function _sfc_render$t(_ctx, _cache, $props, $setup, $data, $options) {
@@ -634,7 +630,6 @@ const _sfc_main$s = defineComponent({
     };
   }
 });
-const ButtonGroup_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$r = { class: "cdx-button-group" };
 function _sfc_render$s(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
@@ -720,7 +715,6 @@ const _sfc_main$r = defineComponent({
     };
   }
 });
-const Thumbnail_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$q = { class: "cdx-thumbnail" };
 const _hoisted_2$j = {
   key: 0,
@@ -819,7 +813,6 @@ const _sfc_main$q = defineComponent({
     };
   }
 });
-const Card_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$p = { class: "cdx-card__text" };
 const _hoisted_2$i = { class: "cdx-card__text__title" };
 const _hoisted_3$a = {
@@ -1010,7 +1003,6 @@ const _sfc_main$p = defineComponent({
     };
   }
 });
-const Label_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$o = ["for"];
 const _hoisted_2$h = { class: "cdx-label__label__text" };
 const _hoisted_3$9 = {
@@ -1244,7 +1236,6 @@ const _sfc_main$o = defineComponent({
     };
   }
 });
-const Checkbox_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$n = ["id", "aria-describedby", "value", "name", "disabled", ".indeterminate"];
 const _hoisted_2$g = /* @__PURE__ */ createElementVNode(
   "span",
@@ -1415,7 +1406,6 @@ const _sfc_main$n = defineComponent({
     }
   }
 });
-const InputChip_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$m = ["aria-description"];
 const _hoisted_2$f = { class: "cdx-input-chip__text" };
 function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
@@ -1684,7 +1674,6 @@ const _sfc_main$m = defineComponent({
     };
   }
 });
-const ChipInput_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$l = {
   class: "cdx-chip-input__chips",
   role: "listbox",
@@ -1830,7 +1819,6 @@ const _sfc_main$l = defineComponent({
     };
   }
 });
-const SearchResultTitle_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$k = { class: "cdx-search-result-title" };
 const _hoisted_2$d = { class: "cdx-search-result-title__match" };
 function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
@@ -1994,6 +1982,13 @@ const _sfc_main$k = defineComponent({
       default: () => {
         return {};
       }
+    },
+    /**
+     * MenuItems inside a MenuButton can also support an "action" prop
+     */
+    action: {
+      type: String,
+      default: "default"
     }
   },
   emits: [
@@ -2035,6 +2030,7 @@ const _sfc_main$k = defineComponent({
         // the item will be selected.
         "cdx-menu-item--active": props.active && props.highlighted,
         "cdx-menu-item--highlighted": props.highlighted,
+        "cdx-menu-item--destructive": props.action && props.action === "destructive",
         "cdx-menu-item--enabled": !props.disabled,
         "cdx-menu-item--disabled": props.disabled,
         "cdx-menu-item--highlight-query": highlightQuery.value,
@@ -2057,7 +2053,6 @@ const _sfc_main$k = defineComponent({
     };
   }
 });
-const MenuItem_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$j = ["id", "aria-disabled", "aria-selected"];
 const _hoisted_2$c = { class: "cdx-menu-item__text" };
 const _hoisted_3$7 = ["lang"];
@@ -2226,7 +2221,6 @@ const _sfc_main$j = defineComponent({
     };
   }
 });
-const ProgressBar_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$i = ["aria-hidden", "aria-disabled"];
 const _hoisted_2$b = /* @__PURE__ */ createElementVNode(
   "div",
@@ -2874,7 +2868,6 @@ const _sfc_main$i = defineComponent({
     }
   }
 });
-const Menu_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$h = ["aria-live", "aria-relevant"];
 const _hoisted_2$a = {
   key: 0,
@@ -3181,7 +3174,6 @@ const _sfc_main$h = defineComponent({
     }
   }
 });
-const TextInput_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$g = ["id", "type", "aria-describedby", "disabled"];
 function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
@@ -3699,6 +3691,76 @@ const hide$1 = function(options) {
             return {};
           }
         }
+      });
+    }
+  };
+};
+function convertValueToCoords(state, options) {
+  return __async(this, null, function* () {
+    const {
+      placement,
+      platform: platform2,
+      elements
+    } = state;
+    const rtl = yield platform2.isRTL == null ? void 0 : platform2.isRTL(elements.floating);
+    const side = getSide(placement);
+    const alignment = getAlignment(placement);
+    const isVertical = getSideAxis(placement) === "y";
+    const mainAxisMulti = ["left", "top"].includes(side) ? -1 : 1;
+    const crossAxisMulti = rtl && isVertical ? -1 : 1;
+    const rawValue = evaluate(options, state);
+    let {
+      mainAxis,
+      crossAxis,
+      alignmentAxis
+    } = typeof rawValue === "number" ? {
+      mainAxis: rawValue,
+      crossAxis: 0,
+      alignmentAxis: null
+    } : __spreadValues({
+      mainAxis: 0,
+      crossAxis: 0,
+      alignmentAxis: null
+    }, rawValue);
+    if (alignment && typeof alignmentAxis === "number") {
+      crossAxis = alignment === "end" ? alignmentAxis * -1 : alignmentAxis;
+    }
+    return isVertical ? {
+      x: crossAxis * crossAxisMulti,
+      y: mainAxis * mainAxisMulti
+    } : {
+      x: mainAxis * mainAxisMulti,
+      y: crossAxis * crossAxisMulti
+    };
+  });
+}
+const offset = function(options) {
+  if (options === void 0) {
+    options = 0;
+  }
+  return {
+    name: "offset",
+    options,
+    fn(state) {
+      return __async(this, null, function* () {
+        var _middlewareData$offse, _middlewareData$arrow;
+        const {
+          x,
+          y,
+          placement,
+          middlewareData
+        } = state;
+        const diffCoords = yield convertValueToCoords(state, options);
+        if (placement === ((_middlewareData$offse = middlewareData.offset) == null ? void 0 : _middlewareData$offse.placement) && (_middlewareData$arrow = middlewareData.arrow) != null && _middlewareData$arrow.alignmentOffset) {
+          return {};
+        }
+        return {
+          x: x + diffCoords.x,
+          y: y + diffCoords.y,
+          data: __spreadProps(__spreadValues({}, diffCoords), {
+            placement
+          })
+        };
       });
     }
   };
@@ -4591,23 +4653,26 @@ function unwrapElement(element) {
 }
 const clipPadding = 16;
 const minClipHeight = 128;
-function useFloatingMenu(referenceElement, menu) {
+function useFloatingMenu(referenceElement, menu, opt) {
+  var _a;
   const menuIsExpanded = () => {
-    var _a;
-    return (_a = menu.value) == null ? void 0 : _a.isExpanded();
+    var _a2;
+    return (_a2 = menu.value) == null ? void 0 : _a2.isExpanded();
   };
   const middleware = [
+    offset(opt == null ? void 0 : opt.offset),
     size({
       // Don't size the menu to take up exactly all of the available height, because that
       // makes it look like it's cut off. Instead, leave 16px of free space between the bottom
       // of the menu and the bottom edge of the viewport / scrollable container.
       padding: clipPadding,
-      apply({ rects, elements, availableHeight }) {
+      apply({ rects, elements, availableHeight, availableWidth }) {
         Object.assign(elements.floating.style, {
-          // Set the width of the menu to be equal to the width of the triggering element.
+          // Optionally use all available width
+          // Else, set the width of the menu to match the width of the triggering element.
           // This is needed in Dialogs, when the menu's position is set relative to
           // the dialog, not the triggering element.
-          width: "".concat(rects.reference.width, "px"),
+          width: "".concat((opt == null ? void 0 : opt.useAvailableWidth) ? availableWidth : rects.reference.width, "px"),
           // Set the max-height to the available height, to prevent the menu from
           // extending past the edge of the viewport or scrollable container. But don't
           // allow the menu to be shrunk to less than 128px; this is necessary to make
@@ -4639,18 +4704,21 @@ function useFloatingMenu(referenceElement, menu) {
   const { floatingStyles, placement, middlewareData, update } = useFloating(
     referenceElement,
     menu,
-    { middleware }
+    {
+      middleware,
+      placement: (_a = opt == null ? void 0 : opt.placement) != null ? _a : "bottom"
+    }
   );
   const menuVisibility = computed(() => {
-    var _a, _b;
-    const isHidden = !menuIsExpanded() || !!((_a = middlewareData.value.hide) == null ? void 0 : _a.escaped) || ((_b = middlewareData.value.hide) == null ? void 0 : _b.referenceHidden);
+    var _a2, _b;
+    const isHidden = !menuIsExpanded() || !!((_a2 = middlewareData.value.hide) == null ? void 0 : _a2.escaped) || ((_b = middlewareData.value.hide) == null ? void 0 : _b.referenceHidden);
     return isHidden ? "hidden" : "visible";
   });
   watch(
     [floatingStyles, menuVisibility, placement],
     ([newStyles, newVisibility, newPlacement]) => {
-      var _a, _b, _c, _d, _e;
-      Object.assign((_b = (_a = menu.value) == null ? void 0 : _a.$el.style) != null ? _b : {}, {
+      var _a2, _b, _c, _d, _e;
+      Object.assign((_b = (_a2 = menu.value) == null ? void 0 : _a2.$el.style) != null ? _b : {}, {
         visibility: newVisibility,
         position: newStyles.position,
         top: "".concat(newStyles.top, "px"),
@@ -4662,6 +4730,7 @@ function useFloatingMenu(referenceElement, menu) {
         // the screen, which is what FloatingUI expects when it calculates the translate-x
         // value for both LTR and RTL.
         left: "".concat(newStyles.left, "px"),
+        // If menuWidth is specified, transform shifts negative, for now ignore that
         transform: (_c = newStyles.transform) != null ? _c : "none",
         // Zero out border-radius on the corners of the menu where it touches the reference
         // element. Which corners these are depends on whether the menu is flipped
@@ -4682,13 +4751,13 @@ function useFloatingMenu(referenceElement, menu) {
   );
   let cleanupAutoUpdate = null;
   watch(menuIsExpanded, (newExpanded) => {
-    var _a;
+    var _a2;
     if (newExpanded) {
       cleanupAutoUpdate = autoUpdate(
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         referenceElement.value && "$el" in referenceElement.value ? referenceElement.value.$el : referenceElement,
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
-        (_a = menu.value) == null ? void 0 : _a.$el,
+        (_a2 = menu.value) == null ? void 0 : _a2.$el,
         update
       );
     } else {
@@ -4877,7 +4946,6 @@ const _sfc_main$g = defineComponent({
     };
   }
 });
-const Combobox_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$f = {
   ref: "inputWrapper",
   class: "cdx-combobox__input-wrapper"
@@ -5262,7 +5330,6 @@ const _sfc_main$f = defineComponent({
     };
   }
 });
-const Dialog_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$e = ["aria-label", "aria-labelledby"];
 const _hoisted_2$9 = {
   key: 0,
@@ -5602,7 +5669,6 @@ const _sfc_main$e = defineComponent({
     };
   }
 });
-const Message_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$d = ["aria-live", "role"];
 const _hoisted_2$8 = { class: "cdx-message__content" };
 function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
@@ -5754,7 +5820,6 @@ const _sfc_main$d = defineComponent({
     };
   }
 });
-const Field_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$c = { class: "cdx-field__control" };
 const _hoisted_2$7 = { class: "cdx-field__help-text" };
 const _hoisted_3$3 = {
@@ -5865,7 +5930,6 @@ const _sfc_main$c = defineComponent({
     };
   }
 });
-const InfoChip_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$b = { class: "cdx-info-chip" };
 const _hoisted_2$6 = { class: "cdx-info-chip--text" };
 function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
@@ -6093,7 +6157,6 @@ const _sfc_main$b = defineComponent({
     };
   }
 });
-const Lookup_vue_vue_type_style_index_0_lang = "";
 function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_text_input = resolveComponent("cdx-text-input");
   const _component_cdx_menu = resolveComponent("cdx-menu");
@@ -6233,7 +6296,6 @@ const _sfc_main$a = defineComponent({
     };
   }
 });
-const Radio_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$a = ["id", "aria-describedby", "name", "value", "disabled"];
 const _hoisted_2$5 = /* @__PURE__ */ createElementVNode(
   "span",
@@ -6412,7 +6474,6 @@ const _sfc_main$9 = defineComponent({
     }
   }
 });
-const SearchInput_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$9 = { class: "cdx-search-input__input-wrapper" };
 function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_text_input = resolveComponent("cdx-text-input");
@@ -6651,7 +6712,6 @@ const _sfc_main$8 = defineComponent({
     };
   }
 });
-const Select_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$8 = ["aria-disabled"];
 const _hoisted_2$4 = ["id", "aria-controls", "aria-activedescendant", "aria-expanded", "aria-describedby"];
 function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
@@ -6723,7 +6783,7 @@ const iconMap = {
   asc: g8,
   desc: l4
 };
-const sortOrderMap = {
+const sortDirectionMap = {
   none: "none",
   asc: "ascending",
   desc: "descending"
@@ -6820,8 +6880,8 @@ const _sfc_main$7 = defineComponent({
      * These labels are visually hidden but needed for assistive technology.
      */
     selectRowLabel: {
-      type: String,
-      default: "Select row"
+      type: Function,
+      default: (x, y) => "Select row ".concat(x, " of ").concat(y)
     },
     /**
      * Definition of sort order. Column(s) can be sorted ascending, descending, or not sorted.
@@ -6836,7 +6896,7 @@ const _sfc_main$7 = defineComponent({
      * Text that provides additional info for the `<caption>` element when the column header
      * has sorting is enabled.
      *
-     * This text is visually hidden but needed for assistive technology.
+     * This text is visually hidden but needed for assistive technology when sort is enabled.
      */
     sortCaption: {
       type: String,
@@ -6925,9 +6985,9 @@ const _sfc_main$7 = defineComponent({
         selectAllIndeterminate.value = false;
         return;
       }
-      if (selectAll.value === true) {
+      selectAll.value = false;
+      if (props.data.length > newSelectedRows.length) {
         selectAllIndeterminate.value = true;
-        selectAll.value = false;
       }
       if (newSelectedRows.length === 0) {
         selectAllIndeterminate.value = false;
@@ -6958,19 +7018,11 @@ const _sfc_main$7 = defineComponent({
       const currentSortOrder = (_a = props.sort[columnId]) != null ? _a : "none";
       return iconMap[currentSortOrder];
     }
-    function getSortIconLabel(column) {
-      var _a, _b;
-      const currentSortOrder = (_a = props.sort[column.id]) != null ? _a : "none";
-      const columnLabel = (_b = column == null ? void 0 : column.label) != null ? _b : column.id;
-      if (currentSortOrder !== "none") {
-        return "Sort rows by ".concat(columnLabel.toLowerCase(), " in ").concat(sortOrderMap[currentSortOrder], " order.");
-      }
-    }
     function getSortOrder(columnId, hasSort = false) {
       var _a;
       if (hasSort) {
         const currentSortOrder = (_a = props.sort[columnId]) != null ? _a : "none";
-        return sortOrderMap[currentSortOrder];
+        return currentSortOrder === "none" ? void 0 : sortDirectionMap[currentSortOrder];
       }
     }
     function validateData() {
@@ -7011,12 +7063,10 @@ const _sfc_main$7 = defineComponent({
       // Sorting methods.
       handleSort,
       getSortIcon,
-      getSortIconLabel,
       getSortOrder
     };
   }
 });
-const Table_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$7 = {
   class: "cdx-table",
   tabindex: "0"
@@ -7140,9 +7190,8 @@ function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
                           icon: _ctx.getSortIcon(column.id),
                           size: "small",
                           class: "cdx-table__table__sort-icon",
-                          "aria-label": _ctx.getSortIconLabel(column),
                           "aria-hidden": "true"
-                        }, null, 8, ["icon", "aria-label"])
+                        }, null, 8, ["icon"])
                       ], 8, _hoisted_10)) : (openBlock(), createElementBlock(
                         Fragment,
                         { key: 1 },
@@ -7189,7 +7238,7 @@ function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
                         }, {
                           default: withCtx(() => [
                             createTextVNode(
-                              toDisplayString(_ctx.selectRowLabel),
+                              toDisplayString(_ctx.selectRowLabel(rowIndex + 1, _ctx.data.length)),
                               1
                               /* TEXT */
                             )
@@ -7298,7 +7347,6 @@ const _sfc_main$6 = defineComponent({
     };
   }
 });
-const Tab_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$6 = ["id", "aria-hidden", "aria-labelledby"];
 function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
   return withDirectives((openBlock(), createElementBlock("section", {
@@ -7597,7 +7645,6 @@ const _sfc_main$5 = defineComponent({
     }
   }
 });
-const Tabs_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$5 = { class: "cdx-tabs__header" };
 const _hoisted_2$2 = {
   ref: "prevScroller",
@@ -7853,7 +7900,6 @@ const _sfc_main$4 = defineComponent({
     };
   }
 });
-const TextArea_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$4 = ["id", "aria-describedby", "disabled"];
 function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
@@ -7954,7 +8000,6 @@ const _sfc_main$3 = defineComponent({
     };
   }
 });
-const ToggleButton_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$3 = ["aria-pressed", "disabled"];
 function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("button", {
@@ -8048,7 +8093,6 @@ const _sfc_main$2 = defineComponent({
     };
   }
 });
-const ToggleButtonGroup_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$2 = { class: "cdx-toggle-button-group" };
 function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
@@ -8186,7 +8230,6 @@ const _sfc_main$1 = defineComponent({
     };
   }
 });
-const ToggleSwitch_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1$1 = ["id", "aria-describedby", "value", "disabled"];
 const _hoisted_2$1 = /* @__PURE__ */ createElementVNode(
   "span",
@@ -8632,7 +8675,6 @@ const _sfc_main = defineComponent({
     }
   }
 });
-const TypeaheadSearch_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1 = ["id", "action"];
 const _hoisted_2 = { class: "cdx-typeahead-search__menu-message__text" };
 const _hoisted_3 = { class: "cdx-typeahead-search__menu-message__text" };

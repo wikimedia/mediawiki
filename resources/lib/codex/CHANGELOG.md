@@ -1,3 +1,40 @@
+# 1.6.1 / 2024-05-29
+
+## Features
+- Table: Update indeterminate behavior of "select all rows" checkbox (lwatson)
+- Table: Update a11y text for sort order (Anne Tomasevich)
+- Table: update select row label (lwatson)
+- Table: update checkbox label in CSS-only version (lwatson)
+- MenuButton: implement new component (Dan Andreescu)
+- MenuButton: Minor code cleanup (Roan Kattouw)
+
+## Styles
+- Table, styles: Add transition properties to the sort button (lwatson)
+- Table: Improve multiline sortable column headings (Anne Tomasevich)
+- Table: fix border when hidden caption and vertical borders are enabled (lwatson)
+- Table: Improve wrapping behavior of Table header (Anne Tomasevich)
+
+## Code
+- build: Make the prepare-release script pin the icons dependency (Roan Kattouw)
+- build: Update eslint config for the correct Vue version (Roan Kattouw)
+- build: Update Vue, Vite and Vitepress, and related dependencies (Eric Gardner)
+- build: Publish the sandbox on doc.wikimedia.org (Roan Kattouw)
+- build: Move "npm run branch-deploy" into its own bash script (Roan Kattouw)
+- build: Upgrade browserslist-config-wikimedia to 0.7.0 (James D. Forrester)
+- components: Remove unnecessary `../components/` in import paths (Roan Kattouw)
+
+## Documentation
+- demos: Clean up DemoBaseLayout code (Roan Kattouw)
+- demos: Use DemoBaseLayout for the table demos page (Roan Kattouw)
+- docs: include "Content overflow" guidelines (bmartinezcalvo)
+- docs: improve titles within components guidelines (bmartinezcalvo)
+- docs: Clean up borders post-VitePress-update (Anne Tomasevich)
+- docs: Add syntax highlighting to code examples that didn't have it (Roan Kattouw)
+- docs: Remove double `dir` attribute on sandbox subpages (Roan Kattouw)
+- docs: update info in the design contribution guidelines (bmartinezcalvo)
+- docs: fix image in the fade don't example (bmartinezcalvo)
+- docs: include MenuButton guidelines (bmartinezcalvo)
+
 # 1.6.0 / 2024-05-15
 
 ## Deprecating Changes

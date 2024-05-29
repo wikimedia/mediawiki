@@ -1,31 +1,32 @@
 {
-  "Icon.css": {
-    "file": "CdxIcon-rtl.css",
-    "src": "Icon.css"
-  },
   "_Icon.js": {
-    "css": [
-      "CdxIcon-rtl.css"
-    ],
     "file": "Icon.js",
+    "name": "Icon",
     "imports": [
       "src/composables/useComputedDirection.ts",
       "src/composables/useComputedLanguage.ts",
       "_constants.js",
       "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxIcon-rtl.css"
     ]
   },
   "__plugin-vue_export-helper.js": {
-    "file": "_plugin-vue_export-helper.js"
+    "file": "_plugin-vue_export-helper.js",
+    "name": "_plugin-vue_export-helper"
   },
   "_buttonHelpers.js": {
-    "file": "buttonHelpers.js"
+    "file": "buttonHelpers.js",
+    "name": "buttonHelpers"
   },
   "_constants.js": {
-    "file": "constants.js"
+    "file": "constants.js",
+    "name": "constants"
   },
   "_useIconOnlyButton.js": {
     "file": "useIconOnlyButton.js",
+    "name": "useIconOnlyButton",
     "imports": [
       "_useSlotContents.js",
       "src/composables/useWarnOnce.ts"
@@ -33,109 +34,78 @@
   },
   "_useLabelChecker.js": {
     "file": "useLabelChecker.js",
+    "name": "useLabelChecker",
     "imports": [
       "_useSlotContents.js",
       "src/composables/useWarnOnce.ts"
     ]
   },
   "_useSlotContents.js": {
-    "file": "useSlotContents.js"
-  },
-  "src/components/accordion/Accordion.css": {
-    "file": "CdxAccordion-rtl.css",
-    "src": "src/components/accordion/Accordion.css"
+    "file": "useSlotContents.js",
+    "name": "useSlotContents"
   },
   "src/components/accordion/Accordion.vue": {
-    "css": [
-      "CdxAccordion-rtl.css"
-    ],
     "file": "CdxAccordion.cjs",
+    "name": "CdxAccordion",
+    "src": "src/components/accordion/Accordion.vue",
+    "isEntry": true,
     "imports": [
       "_Icon.js",
       "src/components/button/Button.vue",
-      "__plugin-vue_export-helper.js",
-      "src/composables/useComputedDirection.ts",
-      "src/composables/useComputedLanguage.ts",
-      "_constants.js",
-      "_useIconOnlyButton.js",
-      "_useSlotContents.js",
-      "src/composables/useWarnOnce.ts"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/accordion/Accordion.vue"
-  },
-  "src/components/button-group/ButtonGroup.css": {
-    "file": "CdxButtonGroup-rtl.css",
-    "src": "src/components/button-group/ButtonGroup.css"
+    "css": [
+      "CdxCdxAccordion-rtl.css"
+    ]
   },
   "src/components/button-group/ButtonGroup.vue": {
-    "css": [
-      "CdxButtonGroup-rtl.css"
-    ],
     "file": "CdxButtonGroup.cjs",
+    "name": "CdxButtonGroup",
+    "src": "src/components/button-group/ButtonGroup.vue",
+    "isEntry": true,
     "imports": [
       "_buttonHelpers.js",
       "src/components/button/Button.vue",
       "_Icon.js",
-      "__plugin-vue_export-helper.js",
-      "_constants.js",
-      "_useIconOnlyButton.js",
-      "_useSlotContents.js",
-      "src/composables/useWarnOnce.ts",
-      "src/composables/useComputedDirection.ts",
-      "src/composables/useComputedLanguage.ts"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/button-group/ButtonGroup.vue"
-  },
-  "src/components/button/Button.css": {
-    "file": "CdxButton-rtl.css",
-    "src": "src/components/button/Button.css"
+    "css": [
+      "CdxCdxButtonGroup-rtl.css"
+    ]
   },
   "src/components/button/Button.vue": {
-    "css": [
-      "CdxButton-rtl.css"
-    ],
     "file": "CdxButton.cjs",
+    "name": "CdxButton",
+    "src": "src/components/button/Button.vue",
+    "isEntry": true,
     "imports": [
       "_constants.js",
       "_useIconOnlyButton.js",
-      "__plugin-vue_export-helper.js",
-      "_useSlotContents.js",
-      "src/composables/useWarnOnce.ts"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/button/Button.vue"
-  },
-  "src/components/card/Card.css": {
-    "file": "CdxCard-rtl.css",
-    "src": "src/components/card/Card.css"
+    "css": [
+      "CdxCdxButton-rtl.css"
+    ]
   },
   "src/components/card/Card.vue": {
-    "css": [
-      "CdxCard-rtl.css"
-    ],
     "file": "CdxCard.cjs",
+    "name": "CdxCard",
+    "src": "src/components/card/Card.vue",
+    "isEntry": true,
     "imports": [
       "_Icon.js",
       "src/components/thumbnail/Thumbnail.vue",
-      "__plugin-vue_export-helper.js",
-      "src/composables/useComputedDirection.ts",
-      "src/composables/useComputedLanguage.ts",
-      "_constants.js"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/card/Card.vue"
-  },
-  "src/components/checkbox/Checkbox.css": {
-    "file": "CdxCheckbox-rtl.css",
-    "src": "src/components/checkbox/Checkbox.css"
+    "css": [
+      "CdxCdxCard-rtl.css"
+    ]
   },
   "src/components/checkbox/Checkbox.vue": {
-    "css": [
-      "CdxCheckbox-rtl.css"
-    ],
     "file": "CdxCheckbox.cjs",
+    "name": "CdxCheckbox",
+    "src": "src/components/checkbox/Checkbox.vue",
+    "isEntry": true,
     "imports": [
       "src/components/label/Label.vue",
       "_useLabelChecker.js",
@@ -143,27 +113,17 @@
       "src/composables/useGeneratedId.ts",
       "src/composables/useFieldData.ts",
       "_constants.js",
-      "__plugin-vue_export-helper.js",
-      "_Icon.js",
-      "src/composables/useComputedDirection.ts",
-      "src/composables/useComputedLanguage.ts",
-      "src/composables/useSplitAttributes.ts",
-      "_useSlotContents.js",
-      "src/composables/useWarnOnce.ts",
-      "src/composables/useComputedDisabled.ts"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/checkbox/Checkbox.vue"
-  },
-  "src/components/chip-input/ChipInput.css": {
-    "file": "CdxChipInput-rtl.css",
-    "src": "src/components/chip-input/ChipInput.css"
+    "css": [
+      "CdxCdxCheckbox-rtl.css"
+    ]
   },
   "src/components/chip-input/ChipInput.vue": {
-    "css": [
-      "CdxChipInput-rtl.css"
-    ],
     "file": "CdxChipInput.cjs",
+    "name": "CdxChipInput",
+    "src": "src/components/chip-input/ChipInput.vue",
+    "isEntry": true,
     "imports": [
       "src/components/button/Button.vue",
       "_Icon.js",
@@ -171,25 +131,17 @@
       "_constants.js",
       "src/composables/useSplitAttributes.ts",
       "src/composables/useFieldData.ts",
-      "src/composables/useComputedDirection.ts",
-      "_useIconOnlyButton.js",
-      "_useSlotContents.js",
-      "src/composables/useWarnOnce.ts",
-      "src/composables/useComputedLanguage.ts",
-      "src/composables/useComputedDisabled.ts"
+      "src/composables/useComputedDirection.ts"
     ],
-    "isEntry": true,
-    "src": "src/components/chip-input/ChipInput.vue"
-  },
-  "src/components/combobox/Combobox.css": {
-    "file": "CdxCombobox-rtl.css",
-    "src": "src/components/combobox/Combobox.css"
+    "css": [
+      "CdxCdxChipInput-rtl.css"
+    ]
   },
   "src/components/combobox/Combobox.vue": {
-    "css": [
-      "CdxCombobox-rtl.css"
-    ],
     "file": "CdxCombobox.cjs",
+    "name": "CdxCombobox",
+    "src": "src/components/combobox/Combobox.vue",
+    "isEntry": true,
     "imports": [
       "_Icon.js",
       "src/components/button/Button.vue",
@@ -201,138 +153,89 @@
       "src/composables/useFieldData.ts",
       "src/composables/useFloatingMenu.ts",
       "_constants.js",
-      "__plugin-vue_export-helper.js",
-      "src/composables/useComputedDirection.ts",
-      "src/composables/useComputedLanguage.ts",
-      "_useIconOnlyButton.js",
-      "_useSlotContents.js",
-      "src/composables/useWarnOnce.ts",
-      "src/components/menu-item/MenuItem.vue",
-      "src/components/thumbnail/Thumbnail.vue",
-      "src/components/search-result-title/SearchResultTitle.vue",
-      "src/components/progress-bar/ProgressBar.vue",
-      "src/composables/useIntersectionObserver.ts",
-      "src/composables/useComputedDisabled.ts"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/combobox/Combobox.vue"
-  },
-  "src/components/dialog/Dialog.css": {
-    "file": "CdxDialog-rtl.css",
-    "src": "src/components/dialog/Dialog.css"
+    "css": [
+      "CdxCdxCombobox-rtl.css"
+    ]
   },
   "src/components/dialog/Dialog.vue": {
-    "css": [
-      "CdxDialog-rtl.css"
-    ],
     "file": "CdxDialog.cjs",
+    "name": "CdxDialog",
+    "src": "src/components/dialog/Dialog.vue",
+    "isEntry": true,
     "imports": [
       "src/components/button/Button.vue",
       "_Icon.js",
       "src/composables/useGeneratedId.ts",
       "src/composables/useResizeObserver.ts",
-      "__plugin-vue_export-helper.js",
-      "_constants.js",
-      "_useIconOnlyButton.js",
-      "_useSlotContents.js",
-      "src/composables/useWarnOnce.ts",
-      "src/composables/useComputedDirection.ts",
-      "src/composables/useComputedLanguage.ts"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/dialog/Dialog.vue"
-  },
-  "src/components/field/Field.css": {
-    "file": "CdxField-rtl.css",
-    "src": "src/components/field/Field.css"
+    "css": [
+      "CdxCdxDialog-rtl.css"
+    ]
   },
   "src/components/field/Field.vue": {
-    "css": [
-      "CdxField-rtl.css"
-    ],
     "file": "CdxField.cjs",
+    "name": "CdxField",
+    "src": "src/components/field/Field.vue",
+    "isEntry": true,
     "imports": [
       "src/components/label/Label.vue",
       "src/components/message/Message.vue",
       "_constants.js",
       "src/composables/useGeneratedId.ts",
       "src/composables/useComputedDisabled.ts",
-      "__plugin-vue_export-helper.js",
-      "_Icon.js",
-      "src/composables/useComputedDirection.ts",
-      "src/composables/useComputedLanguage.ts",
-      "src/composables/useFieldData.ts",
-      "src/composables/useSplitAttributes.ts",
-      "src/components/button/Button.vue",
-      "_useIconOnlyButton.js",
-      "_useSlotContents.js",
-      "src/composables/useWarnOnce.ts"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/field/Field.vue"
+    "css": [
+      "CdxCdxField-rtl.css"
+    ]
   },
   "src/components/icon/Icon.vue": {
     "file": "CdxIcon.cjs",
+    "name": "CdxIcon",
+    "src": "src/components/icon/Icon.vue",
+    "isEntry": true,
     "imports": [
       "_Icon.js",
-      "__plugin-vue_export-helper.js",
-      "src/composables/useComputedDirection.ts",
-      "src/composables/useComputedLanguage.ts",
-      "_constants.js"
-    ],
-    "isEntry": true,
-    "src": "src/components/icon/Icon.vue"
-  },
-  "src/components/info-chip/InfoChip.css": {
-    "file": "CdxInfoChip-rtl.css",
-    "src": "src/components/info-chip/InfoChip.css"
+      "__plugin-vue_export-helper.js"
+    ]
   },
   "src/components/info-chip/InfoChip.vue": {
-    "css": [
-      "CdxInfoChip-rtl.css"
-    ],
     "file": "CdxInfoChip.cjs",
+    "name": "CdxInfoChip",
+    "src": "src/components/info-chip/InfoChip.vue",
+    "isEntry": true,
     "imports": [
       "_constants.js",
       "_Icon.js",
-      "__plugin-vue_export-helper.js",
-      "src/composables/useComputedDirection.ts",
-      "src/composables/useComputedLanguage.ts"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/info-chip/InfoChip.vue"
-  },
-  "src/components/label/Label.css": {
-    "file": "CdxLabel-rtl.css",
-    "src": "src/components/label/Label.css"
+    "css": [
+      "CdxCdxInfoChip-rtl.css"
+    ]
   },
   "src/components/label/Label.vue": {
-    "css": [
-      "CdxLabel-rtl.css"
-    ],
     "file": "CdxLabel.cjs",
+    "name": "CdxLabel",
+    "src": "src/components/label/Label.vue",
+    "isEntry": true,
     "imports": [
       "_Icon.js",
       "src/composables/useFieldData.ts",
       "src/composables/useSplitAttributes.ts",
-      "__plugin-vue_export-helper.js",
-      "src/composables/useComputedDirection.ts",
-      "src/composables/useComputedLanguage.ts",
-      "_constants.js",
-      "src/composables/useComputedDisabled.ts"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/label/Label.vue"
-  },
-  "src/components/lookup/Lookup.css": {
-    "file": "CdxLookup-rtl.css",
-    "src": "src/components/lookup/Lookup.css"
+    "css": [
+      "CdxCdxLabel-rtl.css"
+    ]
   },
   "src/components/lookup/Lookup.vue": {
-    "css": [
-      "CdxLookup-rtl.css"
-    ],
     "file": "CdxLookup.cjs",
+    "name": "CdxLookup",
+    "src": "src/components/lookup/Lookup.vue",
+    "isEntry": true,
     "imports": [
       "src/components/menu/Menu.vue",
       "src/components/text-input/TextInput.vue",
@@ -342,145 +245,94 @@
       "src/composables/useFieldData.ts",
       "src/composables/useFloatingMenu.ts",
       "_constants.js",
-      "__plugin-vue_export-helper.js",
-      "src/components/menu-item/MenuItem.vue",
-      "_Icon.js",
-      "src/composables/useComputedDirection.ts",
-      "src/composables/useComputedLanguage.ts",
-      "src/components/thumbnail/Thumbnail.vue",
-      "src/components/search-result-title/SearchResultTitle.vue",
-      "src/components/progress-bar/ProgressBar.vue",
-      "src/composables/useWarnOnce.ts",
-      "src/composables/useIntersectionObserver.ts",
-      "src/composables/useComputedDisabled.ts"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/lookup/Lookup.vue"
-  },
-  "src/components/menu-item/MenuItem.css": {
-    "file": "CdxMenuItem-rtl.css",
-    "src": "src/components/menu-item/MenuItem.css"
+    "css": [
+      "CdxCdxLookup-rtl.css"
+    ]
   },
   "src/components/menu-item/MenuItem.vue": {
-    "css": [
-      "CdxMenuItem-rtl.css"
-    ],
     "file": "CdxMenuItem.cjs",
+    "name": "CdxMenuItem",
+    "src": "src/components/menu-item/MenuItem.vue",
+    "isEntry": true,
     "imports": [
       "_Icon.js",
       "src/components/thumbnail/Thumbnail.vue",
       "src/components/search-result-title/SearchResultTitle.vue",
-      "__plugin-vue_export-helper.js",
-      "src/composables/useComputedDirection.ts",
-      "src/composables/useComputedLanguage.ts",
-      "_constants.js"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/menu-item/MenuItem.vue"
-  },
-  "src/components/menu/Menu.css": {
-    "file": "CdxMenu-rtl.css",
-    "src": "src/components/menu/Menu.css"
+    "css": [
+      "CdxCdxMenuItem-rtl.css"
+    ]
   },
   "src/components/menu/Menu.vue": {
-    "css": [
-      "CdxMenu-rtl.css"
-    ],
     "file": "CdxMenu.cjs",
+    "name": "CdxMenu",
+    "src": "src/components/menu/Menu.vue",
+    "isEntry": true,
     "imports": [
       "src/components/menu-item/MenuItem.vue",
       "src/components/progress-bar/ProgressBar.vue",
       "src/composables/useGeneratedId.ts",
       "src/composables/useIntersectionObserver.ts",
       "src/composables/useSplitAttributes.ts",
-      "__plugin-vue_export-helper.js",
-      "_Icon.js",
-      "src/composables/useComputedDirection.ts",
-      "src/composables/useComputedLanguage.ts",
-      "_constants.js",
-      "src/components/thumbnail/Thumbnail.vue",
-      "src/components/search-result-title/SearchResultTitle.vue",
-      "src/composables/useWarnOnce.ts"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/menu/Menu.vue"
-  },
-  "src/components/message/Message.css": {
-    "file": "CdxMessage-rtl.css",
-    "src": "src/components/message/Message.css"
+    "css": [
+      "CdxCdxMenu-rtl.css"
+    ]
   },
   "src/components/message/Message.vue": {
-    "css": [
-      "CdxMessage-rtl.css"
-    ],
     "file": "CdxMessage.cjs",
+    "name": "CdxMessage",
+    "src": "src/components/message/Message.vue",
+    "isEntry": true,
     "imports": [
       "_Icon.js",
       "src/components/button/Button.vue",
       "_constants.js",
-      "__plugin-vue_export-helper.js",
-      "src/composables/useComputedDirection.ts",
-      "src/composables/useComputedLanguage.ts",
-      "_useIconOnlyButton.js",
-      "_useSlotContents.js",
-      "src/composables/useWarnOnce.ts"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/message/Message.vue"
-  },
-  "src/components/progress-bar/ProgressBar.css": {
-    "file": "CdxProgressBar-rtl.css",
-    "src": "src/components/progress-bar/ProgressBar.css"
+    "css": [
+      "CdxCdxMessage-rtl.css"
+    ]
   },
   "src/components/progress-bar/ProgressBar.vue": {
-    "css": [
-      "CdxProgressBar-rtl.css"
-    ],
     "file": "CdxProgressBar.cjs",
+    "name": "CdxProgressBar",
+    "src": "src/components/progress-bar/ProgressBar.vue",
+    "isEntry": true,
     "imports": [
       "src/composables/useWarnOnce.ts",
       "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/progress-bar/ProgressBar.vue"
-  },
-  "src/components/radio/Radio.css": {
-    "file": "CdxRadio-rtl.css",
-    "src": "src/components/radio/Radio.css"
+    "css": [
+      "CdxCdxProgressBar-rtl.css"
+    ]
   },
   "src/components/radio/Radio.vue": {
-    "css": [
-      "CdxRadio-rtl.css"
-    ],
     "file": "CdxRadio.cjs",
+    "name": "CdxRadio",
+    "src": "src/components/radio/Radio.vue",
+    "isEntry": true,
     "imports": [
       "src/components/label/Label.vue",
       "_useLabelChecker.js",
       "src/composables/useModelWrapper.ts",
       "src/composables/useGeneratedId.ts",
       "src/composables/useFieldData.ts",
-      "__plugin-vue_export-helper.js",
-      "_Icon.js",
-      "src/composables/useComputedDirection.ts",
-      "src/composables/useComputedLanguage.ts",
-      "_constants.js",
-      "src/composables/useSplitAttributes.ts",
-      "_useSlotContents.js",
-      "src/composables/useWarnOnce.ts",
-      "src/composables/useComputedDisabled.ts"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/radio/Radio.vue"
-  },
-  "src/components/search-input/SearchInput.css": {
-    "file": "CdxSearchInput-rtl.css",
-    "src": "src/components/search-input/SearchInput.css"
+    "css": [
+      "CdxCdxRadio-rtl.css"
+    ]
   },
   "src/components/search-input/SearchInput.vue": {
-    "css": [
-      "CdxSearchInput-rtl.css"
-    ],
     "file": "CdxSearchInput.cjs",
+    "name": "CdxSearchInput",
+    "src": "src/components/search-input/SearchInput.vue",
+    "isEntry": true,
     "imports": [
       "_Icon.js",
       "src/components/button/Button.vue",
@@ -489,41 +341,29 @@
       "src/composables/useSplitAttributes.ts",
       "src/composables/useFieldData.ts",
       "_constants.js",
-      "__plugin-vue_export-helper.js",
-      "src/composables/useComputedDirection.ts",
-      "src/composables/useComputedLanguage.ts",
-      "_useIconOnlyButton.js",
-      "_useSlotContents.js",
-      "src/composables/useWarnOnce.ts",
-      "src/composables/useComputedDisabled.ts"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/search-input/SearchInput.vue"
-  },
-  "src/components/search-result-title/SearchResultTitle.css": {
-    "file": "CdxSearchResultTitle-rtl.css",
-    "src": "src/components/search-result-title/SearchResultTitle.css"
+    "css": [
+      "CdxCdxSearchInput-rtl.css"
+    ]
   },
   "src/components/search-result-title/SearchResultTitle.vue": {
-    "css": [
-      "CdxSearchResultTitle-rtl.css"
-    ],
     "file": "CdxSearchResultTitle.cjs",
+    "name": "CdxSearchResultTitle",
+    "src": "src/components/search-result-title/SearchResultTitle.vue",
+    "isEntry": true,
     "imports": [
       "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/search-result-title/SearchResultTitle.vue"
-  },
-  "src/components/select/Select.css": {
-    "file": "CdxSelect-rtl.css",
-    "src": "src/components/select/Select.css"
+    "css": [
+      "CdxCdxSearchResultTitle-rtl.css"
+    ]
   },
   "src/components/select/Select.vue": {
-    "css": [
-      "CdxSelect-rtl.css"
-    ],
     "file": "CdxSelect.cjs",
+    "name": "CdxSelect",
+    "src": "src/components/select/Select.vue",
+    "isEntry": true,
     "imports": [
       "_Icon.js",
       "src/components/menu/Menu.vue",
@@ -533,74 +373,46 @@
       "src/composables/useSplitAttributes.ts",
       "src/composables/useFloatingMenu.ts",
       "_constants.js",
-      "__plugin-vue_export-helper.js",
-      "src/composables/useComputedDirection.ts",
-      "src/composables/useComputedLanguage.ts",
-      "src/components/menu-item/MenuItem.vue",
-      "src/components/thumbnail/Thumbnail.vue",
-      "src/components/search-result-title/SearchResultTitle.vue",
-      "src/components/progress-bar/ProgressBar.vue",
-      "src/composables/useWarnOnce.ts",
-      "src/composables/useIntersectionObserver.ts",
-      "src/composables/useComputedDisabled.ts"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/select/Select.vue"
-  },
-  "src/components/tab/Tab.css": {
-    "file": "CdxTab-rtl.css",
-    "src": "src/components/tab/Tab.css"
+    "css": [
+      "CdxCdxSelect-rtl.css"
+    ]
   },
   "src/components/tab/Tab.vue": {
-    "css": [
-      "CdxTab-rtl.css"
-    ],
     "file": "CdxTab.cjs",
+    "name": "CdxTab",
+    "src": "src/components/tab/Tab.vue",
+    "isEntry": true,
     "imports": [
       "_constants.js",
       "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/tab/Tab.vue"
-  },
-  "src/components/table/Table.css": {
-    "file": "CdxTable-rtl.css",
-    "src": "src/components/table/Table.css"
+    "css": [
+      "CdxCdxTab-rtl.css"
+    ]
   },
   "src/components/table/Table.vue": {
-    "css": [
-      "CdxTable-rtl.css"
-    ],
     "file": "CdxTable.cjs",
+    "name": "CdxTable",
+    "src": "src/components/table/Table.vue",
+    "isEntry": true,
     "imports": [
       "_constants.js",
       "src/composables/useModelWrapper.ts",
       "src/components/checkbox/Checkbox.vue",
       "_Icon.js",
-      "__plugin-vue_export-helper.js",
-      "src/components/label/Label.vue",
-      "src/composables/useFieldData.ts",
-      "src/composables/useComputedDisabled.ts",
-      "src/composables/useSplitAttributes.ts",
-      "_useLabelChecker.js",
-      "_useSlotContents.js",
-      "src/composables/useWarnOnce.ts",
-      "src/composables/useGeneratedId.ts",
-      "src/composables/useComputedDirection.ts",
-      "src/composables/useComputedLanguage.ts"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/table/Table.vue"
-  },
-  "src/components/tabs/Tabs.css": {
-    "file": "CdxTabs-rtl.css",
-    "src": "src/components/tabs/Tabs.css"
+    "css": [
+      "CdxCdxTable-rtl.css"
+    ]
   },
   "src/components/tabs/Tabs.vue": {
-    "css": [
-      "CdxTabs-rtl.css"
-    ],
     "file": "CdxTabs.cjs",
+    "name": "CdxTabs",
+    "src": "src/components/tabs/Tabs.vue",
+    "isEntry": true,
     "imports": [
       "_Icon.js",
       "src/components/button/Button.vue",
@@ -611,130 +423,93 @@
       "src/composables/useIntersectionObserver.ts",
       "_useSlotContents.js",
       "_constants.js",
-      "__plugin-vue_export-helper.js",
-      "src/composables/useComputedLanguage.ts",
-      "_useIconOnlyButton.js",
-      "src/composables/useWarnOnce.ts"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/tabs/Tabs.vue"
-  },
-  "src/components/text-area/TextArea.css": {
-    "file": "CdxTextArea-rtl.css",
-    "src": "src/components/text-area/TextArea.css"
+    "css": [
+      "CdxCdxTabs-rtl.css"
+    ]
   },
   "src/components/text-area/TextArea.vue": {
-    "css": [
-      "CdxTextArea-rtl.css"
-    ],
     "file": "CdxTextArea.cjs",
+    "name": "CdxTextArea",
+    "src": "src/components/text-area/TextArea.vue",
+    "isEntry": true,
     "imports": [
       "_Icon.js",
       "src/composables/useSplitAttributes.ts",
       "src/composables/useModelWrapper.ts",
       "src/composables/useFieldData.ts",
       "_constants.js",
-      "__plugin-vue_export-helper.js",
-      "src/composables/useComputedDirection.ts",
-      "src/composables/useComputedLanguage.ts",
-      "src/composables/useComputedDisabled.ts"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/text-area/TextArea.vue"
-  },
-  "src/components/text-input/TextInput.css": {
-    "file": "CdxTextInput-rtl.css",
-    "src": "src/components/text-input/TextInput.css"
+    "css": [
+      "CdxCdxTextArea-rtl.css"
+    ]
   },
   "src/components/text-input/TextInput.vue": {
-    "css": [
-      "CdxTextInput-rtl.css"
-    ],
     "file": "CdxTextInput.cjs",
+    "name": "CdxTextInput",
+    "src": "src/components/text-input/TextInput.vue",
+    "isEntry": true,
     "imports": [
       "_Icon.js",
       "_constants.js",
       "src/composables/useModelWrapper.ts",
       "src/composables/useSplitAttributes.ts",
       "src/composables/useFieldData.ts",
-      "__plugin-vue_export-helper.js",
-      "src/composables/useComputedDirection.ts",
-      "src/composables/useComputedLanguage.ts",
-      "src/composables/useComputedDisabled.ts"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/text-input/TextInput.vue"
-  },
-  "src/components/thumbnail/Thumbnail.css": {
-    "file": "CdxThumbnail-rtl.css",
-    "src": "src/components/thumbnail/Thumbnail.css"
+    "css": [
+      "CdxCdxTextInput-rtl.css"
+    ]
   },
   "src/components/thumbnail/Thumbnail.vue": {
-    "css": [
-      "CdxThumbnail-rtl.css"
-    ],
     "file": "CdxThumbnail.cjs",
+    "name": "CdxThumbnail",
+    "src": "src/components/thumbnail/Thumbnail.vue",
+    "isEntry": true,
     "imports": [
       "_Icon.js",
       "_constants.js",
-      "__plugin-vue_export-helper.js",
-      "src/composables/useComputedDirection.ts",
-      "src/composables/useComputedLanguage.ts"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/thumbnail/Thumbnail.vue"
-  },
-  "src/components/toggle-button-group/ToggleButtonGroup.css": {
-    "file": "CdxToggleButtonGroup-rtl.css",
-    "src": "src/components/toggle-button-group/ToggleButtonGroup.css"
+    "css": [
+      "CdxCdxThumbnail-rtl.css"
+    ]
   },
   "src/components/toggle-button-group/ToggleButtonGroup.vue": {
-    "css": [
-      "CdxToggleButtonGroup-rtl.css"
-    ],
     "file": "CdxToggleButtonGroup.cjs",
+    "name": "CdxToggleButtonGroup",
+    "src": "src/components/toggle-button-group/ToggleButtonGroup.vue",
+    "isEntry": true,
     "imports": [
       "_buttonHelpers.js",
       "_Icon.js",
       "src/components/toggle-button/ToggleButton.vue",
-      "__plugin-vue_export-helper.js",
-      "src/composables/useComputedDirection.ts",
-      "src/composables/useComputedLanguage.ts",
-      "_constants.js",
-      "_useIconOnlyButton.js",
-      "_useSlotContents.js",
-      "src/composables/useWarnOnce.ts"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/toggle-button-group/ToggleButtonGroup.vue"
-  },
-  "src/components/toggle-button/ToggleButton.css": {
-    "file": "CdxToggleButton-rtl.css",
-    "src": "src/components/toggle-button/ToggleButton.css"
+    "css": [
+      "CdxCdxToggleButtonGroup-rtl.css"
+    ]
   },
   "src/components/toggle-button/ToggleButton.vue": {
-    "css": [
-      "CdxToggleButton-rtl.css"
-    ],
     "file": "CdxToggleButton.cjs",
+    "name": "CdxToggleButton",
+    "src": "src/components/toggle-button/ToggleButton.vue",
+    "isEntry": true,
     "imports": [
       "_useIconOnlyButton.js",
-      "__plugin-vue_export-helper.js",
-      "_useSlotContents.js",
-      "src/composables/useWarnOnce.ts"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/toggle-button/ToggleButton.vue"
-  },
-  "src/components/toggle-switch/ToggleSwitch.css": {
-    "file": "CdxToggleSwitch-rtl.css",
-    "src": "src/components/toggle-switch/ToggleSwitch.css"
+    "css": [
+      "CdxCdxToggleButton-rtl.css"
+    ]
   },
   "src/components/toggle-switch/ToggleSwitch.vue": {
-    "css": [
-      "CdxToggleSwitch-rtl.css"
-    ],
     "file": "CdxToggleSwitch.cjs",
+    "name": "CdxToggleSwitch",
+    "src": "src/components/toggle-switch/ToggleSwitch.vue",
+    "isEntry": true,
     "imports": [
       "src/components/label/Label.vue",
       "_useLabelChecker.js",
@@ -742,27 +517,17 @@
       "src/composables/useGeneratedId.ts",
       "src/composables/useSplitAttributes.ts",
       "src/composables/useFieldData.ts",
-      "__plugin-vue_export-helper.js",
-      "_Icon.js",
-      "src/composables/useComputedDirection.ts",
-      "src/composables/useComputedLanguage.ts",
-      "_constants.js",
-      "_useSlotContents.js",
-      "src/composables/useWarnOnce.ts",
-      "src/composables/useComputedDisabled.ts"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/toggle-switch/ToggleSwitch.vue"
-  },
-  "src/components/typeahead-search/TypeaheadSearch.css": {
-    "file": "CdxTypeaheadSearch-rtl.css",
-    "src": "src/components/typeahead-search/TypeaheadSearch.css"
+    "css": [
+      "CdxCdxToggleSwitch-rtl.css"
+    ]
   },
   "src/components/typeahead-search/TypeaheadSearch.vue": {
-    "css": [
-      "CdxTypeaheadSearch-rtl.css"
-    ],
     "file": "CdxTypeaheadSearch.cjs",
+    "name": "CdxTypeaheadSearch",
+    "src": "src/components/typeahead-search/TypeaheadSearch.vue",
+    "isEntry": true,
     "imports": [
       "_Icon.js",
       "src/components/menu/Menu.vue",
@@ -770,97 +535,95 @@
       "src/composables/useGeneratedId.ts",
       "src/composables/useSplitAttributes.ts",
       "_constants.js",
-      "__plugin-vue_export-helper.js",
-      "src/composables/useComputedDirection.ts",
-      "src/composables/useComputedLanguage.ts",
-      "src/components/menu-item/MenuItem.vue",
-      "src/components/thumbnail/Thumbnail.vue",
-      "src/components/search-result-title/SearchResultTitle.vue",
-      "src/components/progress-bar/ProgressBar.vue",
-      "src/composables/useWarnOnce.ts",
-      "src/composables/useIntersectionObserver.ts",
-      "src/components/button/Button.vue",
-      "_useIconOnlyButton.js",
-      "_useSlotContents.js",
-      "src/components/text-input/TextInput.vue",
-      "src/composables/useModelWrapper.ts",
-      "src/composables/useFieldData.ts",
-      "src/composables/useComputedDisabled.ts"
+      "__plugin-vue_export-helper.js"
     ],
-    "isEntry": true,
-    "src": "src/components/typeahead-search/TypeaheadSearch.vue"
+    "css": [
+      "CdxCdxTypeaheadSearch-rtl.css"
+    ]
   },
   "src/composables/useComputedDirection.ts": {
     "file": "useComputedDirection.cjs",
-    "isEntry": true,
-    "src": "src/composables/useComputedDirection.ts"
+    "name": "useComputedDirection",
+    "src": "src/composables/useComputedDirection.ts",
+    "isEntry": true
   },
   "src/composables/useComputedDisabled.ts": {
     "file": "useComputedDisabled.cjs",
+    "name": "useComputedDisabled",
+    "src": "src/composables/useComputedDisabled.ts",
+    "isEntry": true,
     "imports": [
       "_constants.js"
-    ],
-    "isEntry": true,
-    "src": "src/composables/useComputedDisabled.ts"
+    ]
   },
   "src/composables/useComputedLanguage.ts": {
     "file": "useComputedLanguage.cjs",
-    "isEntry": true,
-    "src": "src/composables/useComputedLanguage.ts"
+    "name": "useComputedLanguage",
+    "src": "src/composables/useComputedLanguage.ts",
+    "isEntry": true
   },
   "src/composables/useFieldData.ts": {
     "file": "useFieldData.cjs",
+    "name": "useFieldData",
+    "src": "src/composables/useFieldData.ts",
+    "isEntry": true,
     "imports": [
       "src/composables/useComputedDisabled.ts",
       "_constants.js"
-    ],
-    "isEntry": true,
-    "src": "src/composables/useFieldData.ts"
+    ]
   },
   "src/composables/useFloatingMenu.ts": {
     "file": "useFloatingMenu.cjs",
-    "isEntry": true,
-    "src": "src/composables/useFloatingMenu.ts"
+    "name": "useFloatingMenu",
+    "src": "src/composables/useFloatingMenu.ts",
+    "isEntry": true
   },
   "src/composables/useGeneratedId.ts": {
     "file": "useGeneratedId.cjs",
+    "name": "useGeneratedId",
+    "src": "src/composables/useGeneratedId.ts",
+    "isEntry": true,
     "imports": [
       "_constants.js"
-    ],
-    "isEntry": true,
-    "src": "src/composables/useGeneratedId.ts"
+    ]
   },
   "src/composables/useIntersectionObserver.ts": {
     "file": "useIntersectionObserver.cjs",
-    "isEntry": true,
-    "src": "src/composables/useIntersectionObserver.ts"
+    "name": "useIntersectionObserver",
+    "src": "src/composables/useIntersectionObserver.ts",
+    "isEntry": true
   },
   "src/composables/useModelWrapper.ts": {
     "file": "useModelWrapper.cjs",
-    "isEntry": true,
-    "src": "src/composables/useModelWrapper.ts"
+    "name": "useModelWrapper",
+    "src": "src/composables/useModelWrapper.ts",
+    "isEntry": true
   },
   "src/composables/useResizeObserver.ts": {
     "file": "useResizeObserver.cjs",
-    "isEntry": true,
-    "src": "src/composables/useResizeObserver.ts"
+    "name": "useResizeObserver",
+    "src": "src/composables/useResizeObserver.ts",
+    "isEntry": true
   },
   "src/composables/useSlotContents.ts": {
     "file": "useSlotContents.cjs",
+    "name": "useSlotContents",
+    "src": "src/composables/useSlotContents.ts",
+    "isEntry": true,
     "imports": [
       "_useSlotContents.js"
-    ],
-    "isEntry": true,
-    "src": "src/composables/useSlotContents.ts"
+    ]
   },
   "src/composables/useSplitAttributes.ts": {
     "file": "useSplitAttributes.cjs",
-    "isEntry": true,
-    "src": "src/composables/useSplitAttributes.ts"
+    "name": "useSplitAttributes",
+    "src": "src/composables/useSplitAttributes.ts",
+    "isEntry": true
   },
   "src/composables/useWarnOnce.ts": {
     "file": "useWarnOnce.cjs",
-    "isEntry": true,
-    "src": "src/composables/useWarnOnce.ts"
+    "name": "useWarnOnce",
+    "src": "src/composables/useWarnOnce.ts",
+    "isEntry": true
   }
 }

@@ -1,1 +1,1 @@
-"use strict";const e=require("./useSlotContents.js");require("vue");module.exports=e.useSlotContents;
+"use strict";const t=require("./useSlotContents.js");module.exports=t.useSlotContents;
