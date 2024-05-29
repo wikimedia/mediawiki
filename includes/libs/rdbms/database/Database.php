@@ -3005,13 +3005,6 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 		$this->query( $query, $fname );
 	}
 
-	public function truncate( $tables, $fname = __METHOD__ ) {
-		$tables = is_array( $tables ) ? $tables : [ $tables ];
-		foreach ( $tables as $table ) {
-			$this->truncateTable( $table, $fname );
-		}
-	}
-
 	public function isReadOnly() {
 		return ( $this->getReadOnlyReason() !== null );
 	}
