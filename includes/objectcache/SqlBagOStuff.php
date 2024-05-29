@@ -31,6 +31,7 @@ use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Rdbms\RawSQLValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
@@ -1173,11 +1174,11 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 					$updateExpression,
 					$column
 				);
-				$set[] = "{$column}=" . trim( $rhs );
+				$set[$column] = new RawSQLValue( $rhs );
 			}
 		} else {
 			foreach ( $expressionsByColumn as $column => $updateExpression ) {
-				$set[] = "{$column}={$updateExpression}";
+				$set[$column] = new RawSQLValue( $updateExpression );
 			}
 		}
 
@@ -1225,7 +1226,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				$updateExpression,
 				$initExpression
 			);
-			$set[] = "{$column}=" . trim( $rhs );
+			$set[$column] = new RawSQLValue( $rhs );
 		}
 
 		return $set;
