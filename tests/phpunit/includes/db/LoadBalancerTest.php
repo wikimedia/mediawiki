@@ -95,15 +95,10 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 
 		$dbw->ensureConnection();
 		$this->assertFalse( $called, "Session replication pos not used with single server" );
-		$this->assertSame(
-			$dbw::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'master shows as master'
-		);
 		$this->assertTrue( $dbw->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on master" );
 		$this->assertWriteAllowed( $dbw );
 
 		$dbr = $lb->getConnection( DB_REPLICA );
-		$this->assertSame(
-			$dbr::ROLE_STREAMING_MASTER, $dbr->getTopologyRole(), 'DB_REPLICA also gets the master' );
 		$this->assertTrue( $dbr->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on replica" );
 
 		if ( !$lb->getServerAttributes( $lb->getWriterIndex() )[Database::ATTR_DB_LEVEL_LOCKING] ) {
@@ -156,8 +151,6 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$wConn = TestingAccessWrapper::newFromObject( $dbw )->conn;
 		$wConnWrap = TestingAccessWrapper::newFromObject( $wConn );
 
-		$this->assertSame(
-			$dbw::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'primary shows as primary' );
 		$this->assertTrue( $dbw->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on primary" );
 		$this->assertWriteAllowed( $dbw );
 
@@ -166,8 +159,6 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$rConn = TestingAccessWrapper::newFromObject( $dbr )->conn;
 		$rConnWrap = TestingAccessWrapper::newFromObject( $rConn );
 
-		$this->assertSame(
-			$dbr::ROLE_STREAMING_REPLICA, $dbr->getTopologyRole(), 'replica shows as replica' );
 		$this->assertTrue( $dbr->isReadOnly(), 'replica shows as replica' );
 		$this->assertTrue( $dbr->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on replica" );
 		$this->assertSame( $dbr->getLBInfo( 'serverIndex' ), $lb->getReaderIndex() );
