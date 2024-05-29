@@ -24,6 +24,7 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\RawSQLValue;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -386,11 +387,11 @@ class LocalFileMoveBatch {
 			->update( 'oldimage' )
 			->set( [
 				'oi_name' => $this->newName,
-				'oi_archive_name = ' . $dbw->strreplace(
+				'oi_archive_name' => new RawSQLValue( $dbw->strreplace(
 					'oi_archive_name',
 					$dbw->addQuotes( $this->oldName ),
 					$dbw->addQuotes( $this->newName )
-				),
+				) ),
 			] )
 			->where( [ 'oi_name' => $this->oldName ] )
 			->caller( __METHOD__ )->execute();

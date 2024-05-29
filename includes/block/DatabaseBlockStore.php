@@ -46,6 +46,7 @@ use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\Rdbms\OrExpressionGroup;
+use Wikimedia\Rdbms\RawSQLValue;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use function array_key_exists;
@@ -937,7 +938,7 @@ class DatabaseBlockStore {
 	private function releaseTargets( IDatabase $dbw, $targetIds, int $delta = 1 ) {
 		$dbw->newUpdateQueryBuilder()
 			->update( 'block_target' )
-			->set( "bt_count=bt_count-$delta" )
+			->set( [ 'bt_count' => new RawSQLValue( "bt_count-$delta" ) ] )
 			->where( [ 'bt_id' => $targetIds ] )
 			->caller( __METHOD__ )
 			->execute();
@@ -1155,7 +1156,7 @@ class DatabaseBlockStore {
 		// connection.
 		$dbw->newUpdateQueryBuilder()
 			->update( 'block_target' )
-			->set( 'bt_count=bt_count+1' )
+			->set( [ 'bt_count' => new RawSQLValue( 'bt_count+1' ) ] )
 			->where( $condsWithCount )
 			->caller( __METHOD__ )->execute();
 		$numUpdatedRows = $dbw->affectedRows();
@@ -1448,11 +1449,11 @@ class DatabaseBlockStore {
 		// Don't lengthen -- that is only done when the IP address is actually
 		// used by the blocked user.
 		if ( $block->getExpiry() !== 'infinity' ) {
-			$blockArray[] = 'bl_expiry=' . $dbw->conditional(
+			$blockArray['bl_expiry'] = new RawSQLValue( $dbw->conditional(
 					$dbw->expr( 'bl_expiry', '>', $dbw->timestamp( $block->getExpiry() ) ),
 					$dbw->addQuotes( $dbw->timestamp( $block->getExpiry() ) ),
 					'bl_expiry'
-				);
+				) );
 		}
 
 		$commentArray = $this->commentStore->insert(

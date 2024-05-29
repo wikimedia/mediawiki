@@ -62,6 +62,7 @@ use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Rdbms\RawSQLValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -2891,11 +2892,11 @@ class WikiPage implements Page, PageRecord {
 		$type = MediaWikiServices::getInstance()->getNamespaceInfo()->
 			getCategoryLinkType( $this->getTitle()->getNamespace() );
 
-		$addFields = [ 'cat_pages = cat_pages + 1' ];
-		$removeFields = [ 'cat_pages = cat_pages - 1' ];
+		$addFields = [ 'cat_pages' => new RawSQLValue( 'cat_pages + 1' ) ];
+		$removeFields = [ 'cat_pages' => new RawSQLValue( 'cat_pages - 1' ) ];
 		if ( $type !== 'page' ) {
-			$addFields[] = "cat_{$type}s = cat_{$type}s + 1";
-			$removeFields[] = "cat_{$type}s = cat_{$type}s - 1";
+			$addFields["cat_{$type}s"] = new RawSQLValue( "cat_{$type}s + 1" );
+			$removeFields["cat_{$type}s"] = new RawSQLValue( "cat_{$type}s - 1" );
 		}
 
 		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();

@@ -25,6 +25,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\RawSQLValue;
 
 /**
  * Backend functions for suppressing and unsuppressing all references to a given user,
@@ -78,42 +79,42 @@ class RevisionDeleteUser {
 			# Hide name from live edits
 			$dbw->newUpdateQueryBuilder()
 				->update( 'revision' )
-				->set( [ self::buildSetBitDeletedField( 'rev_deleted', $op, $delUser, $dbw ) ] )
+				->set( self::buildSetBitDeletedField( 'rev_deleted', $op, $delUser, $dbw ) )
 				->where( [ 'rev_actor' => $actorId ] )
 				->caller( __METHOD__ )->execute();
 
 			# Hide name from deleted edits
 			$dbw->newUpdateQueryBuilder()
 				->update( 'archive' )
-				->set( [ self::buildSetBitDeletedField( 'ar_deleted', $op, $delUser, $dbw ) ] )
+				->set( self::buildSetBitDeletedField( 'ar_deleted', $op, $delUser, $dbw ) )
 				->where( [ 'ar_actor' => $actorId ] )
 				->caller( __METHOD__ )->execute();
 
 			# Hide name from logs
 			$dbw->newUpdateQueryBuilder()
 				->update( 'logging' )
-				->set( [ self::buildSetBitDeletedField( 'log_deleted', $op, $delUser, $dbw ) ] )
+				->set( self::buildSetBitDeletedField( 'log_deleted', $op, $delUser, $dbw ) )
 				->where( [ 'log_actor' => $actorId, $dbw->expr( 'log_type', '!=', 'suppress' ) ] )
 				->caller( __METHOD__ )->execute();
 
 			# Hide name from RC
 			$dbw->newUpdateQueryBuilder()
 				->update( 'recentchanges' )
-				->set( [ self::buildSetBitDeletedField( 'rc_deleted', $op, $delUser, $dbw ) ] )
+				->set( self::buildSetBitDeletedField( 'rc_deleted', $op, $delUser, $dbw ) )
 				->where( [ 'rc_actor' => $actorId ] )
 				->caller( __METHOD__ )->execute();
 
 			# Hide name from live images
 			$dbw->newUpdateQueryBuilder()
 				->update( 'oldimage' )
-				->set( [ self::buildSetBitDeletedField( 'oi_deleted', $op, $delUser, $dbw ) ] )
+				->set( self::buildSetBitDeletedField( 'oi_deleted', $op, $delUser, $dbw ) )
 				->where( [ 'oi_actor' => $actorId ] )
 				->caller( __METHOD__ )->execute();
 
 			# Hide name from deleted images
 			$dbw->newUpdateQueryBuilder()
 				->update( 'filearchive' )
-				->set( [ self::buildSetBitDeletedField( 'fa_deleted', $op, $delUser, $dbw ) ] )
+				->set( self::buildSetBitDeletedField( 'fa_deleted', $op, $delUser, $dbw ) )
 				->where( [ 'fa_actor' => $actorId ] )
 				->caller( __METHOD__ )->execute();
 		}
@@ -121,7 +122,7 @@ class RevisionDeleteUser {
 		# Hide log entries pointing to the user page
 		$dbw->newUpdateQueryBuilder()
 			->update( 'logging' )
-			->set( [ self::buildSetBitDeletedField( 'log_deleted', $op, $delAction, $dbw ) ] )
+			->set( self::buildSetBitDeletedField( 'log_deleted', $op, $delAction, $dbw ) )
 			->where( [
 				'log_namespace' => NS_USER,
 				'log_title' => $userDbKey,
@@ -132,7 +133,7 @@ class RevisionDeleteUser {
 		# Hide RC entries pointing to the user page
 		$dbw->newUpdateQueryBuilder()
 			->update( 'recentchanges' )
-			->set( [ self::buildSetBitDeletedField( 'rc_deleted', $op, $delAction, $dbw ) ] )
+			->set( self::buildSetBitDeletedField( 'rc_deleted', $op, $delAction, $dbw ) )
 			->where( [ 'rc_namespace' => NS_USER, 'rc_title' => $userDbKey, 'rc_logid > 0' ] )
 			->caller( __METHOD__ )->execute();
 
@@ -140,9 +141,10 @@ class RevisionDeleteUser {
 	}
 
 	private static function buildSetBitDeletedField( $field, $op, $value, IDatabase $dbw ) {
-		return $field . ' = ' . ( $op === '&'
+		return [ $field => new RawSQLValue( $op === '&'
 			? $dbw->bitAnd( $field, $value )
-			: $dbw->bitOr( $field, $value ) );
+			: $dbw->bitOr( $field, $value )
+		) ];
 	}
 
 	/**

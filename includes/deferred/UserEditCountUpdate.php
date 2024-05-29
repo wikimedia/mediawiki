@@ -27,6 +27,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use RuntimeException;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Rdbms\RawSQLValue;
 
 /**
  * Handles increment the edit count for a given set of users
@@ -80,7 +81,11 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 			foreach ( $this->infoByUser as $userId => $info ) {
 				$dbw->newUpdateQueryBuilder()
 					->update( 'user' )
-					->set( [ 'user_editcount=user_editcount+' . (int)$info->getIncrement() ] )
+					->set( [
+						'user_editcount' => new RawSQLValue(
+							'user_editcount+' . (int)$info->getIncrement()
+						)
+					] )
 					->where( [ 'user_id' => $userId, 'user_editcount IS NOT NULL' ] )
 					->caller( $fname )->execute();
 				// Lazy initialization check...
