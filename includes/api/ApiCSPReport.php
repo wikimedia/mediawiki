@@ -186,10 +186,7 @@ class ApiCSPReport extends ApiBase {
 		}
 		$status = FormatJson::parse( $postBody, FormatJson::FORCE_ASSOC );
 		if ( !$status->isGood() ) {
-			$msg = $status->getErrors()[0]['message'];
-			if ( $msg instanceof Message ) {
-				$msg = $msg->getKey();
-			}
+			$msg = $status->getMessages()[0]->getKey();
 			$this->error( $msg, __METHOD__ );
 		}
 

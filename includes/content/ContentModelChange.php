@@ -302,7 +302,7 @@ class ContentModelChange {
 			return $status;
 		}
 		if ( !$status->isOK() ) {
-			if ( !$status->getErrors() ) {
+			if ( !$status->getMessages() ) {
 				$status->fatal( 'hookaborted' );
 			}
 			return $status;

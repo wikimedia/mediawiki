@@ -178,8 +178,8 @@ class ApiDelete extends ApiBase {
 		if ( $deleteTalk ) {
 			$checkStatus = $deletePage->canProbablyDeleteAssociatedTalk();
 			if ( !$checkStatus->isGood() ) {
-				foreach ( $checkStatus->getErrors() as $error ) {
-					$this->addWarning( $error );
+				foreach ( $checkStatus->getMessages() as $msg ) {
+					$this->addWarning( $msg );
 				}
 			} else {
 				$deletePage->setDeleteAssociatedTalk( true );

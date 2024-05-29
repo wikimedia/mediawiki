@@ -396,7 +396,7 @@ class McrUndoAction extends FormAction {
 
 					return $status;
 				} elseif ( !$status->isOK() ) {
-					if ( !$status->getErrors() ) {
+					if ( !$status->getMessages() ) {
 						$status->error( 'hookaborted' );
 					}
 					return $status;

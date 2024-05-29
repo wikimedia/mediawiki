@@ -256,26 +256,21 @@ class UploadStash {
 
 		if ( !$storeStatus->isOK() ) {
 			// It is a convention in MediaWiki to only return one error per API
-			// exception, even if multiple errors are available. We use reset()
-			// to pick the "first" thing that was wrong, preferring errors to
-			// warnings. This is a bit lame, as we may have more info in the
+			// exception, even if multiple errors are available.[citation needed]
+			// Pick the "first" thing that was wrong, preferring errors to warnings.
+			// This is a bit lame, as we may have more info in the
 			// $storeStatus and we're throwing it away, but to fix it means
 			// redesigning API errors significantly.
 			// $storeStatus->value just contains the virtual URL (if anything)
 			// which is probably useless to the caller.
-			$error = $storeStatus->getErrorsArray();
-			$error = reset( $error );
-			if ( !count( $error ) ) {
-				$error = $storeStatus->getWarningsArray();
-				$error = reset( $error );
-				if ( !count( $error ) ) {
-					$error = [ 'unknown', 'no error recorded' ];
-				}
+			foreach ( $storeStatus->getMessages( 'error' ) as $msg ) {
+				throw new UploadStashFileException( $msg );
 			}
-			// At this point, $error should contain the single "most important"
-			// error, plus any parameters.
-			$errorMsg = array_shift( $error );
-			throw new UploadStashFileException( wfMessage( $errorMsg, $error ) );
+			foreach ( $storeStatus->getMessages( 'warning' ) as $msg ) {
+				throw new UploadStashFileException( $msg );
+			}
+			// XXX: This isn't a real message, hopefully this case is unreachable
+			throw new UploadStashFileException( [ 'unknown', 'no error recorded' ] );
 		}
 		$stashPath = $storeStatus->value;
 

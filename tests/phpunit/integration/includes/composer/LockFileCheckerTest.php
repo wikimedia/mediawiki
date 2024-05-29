@@ -49,10 +49,9 @@ class LockFileCheckerTest extends MediaWikiIntegrationTestCase {
 		$checker = new LockFileChecker( $json, $lock );
 		$status = $checker->check();
 		$this->assertFalse( $status->isGood() );
-		$errors = $status->getErrors();
 		$msgs = [];
-		foreach ( $errors as $error ) {
-			$msgs[] = wfMessage( $error['message'], ...$error['params'] )->plain();
+		foreach ( $status->getMessages() as $msg ) {
+			$msgs[] = wfMessage( $msg )->plain();
 		}
 		$this->assertArrayEquals( [
 			'wikimedia/relpath: 2.9.9 installed, 3.0.0 required.',
