@@ -490,7 +490,7 @@ class JobQueueDB extends JobQueue {
 						'job_token_timestamp' => $dbw->timestamp(),
 						'job_attempts' => new RawSQLValue( 'job_attempts+1' ),
 					] )
-					->where( [ 'job_id = (' . $qb->getSQL() . ')' ] )
+					->where( [ 'job_id' => new RawSQLValue( '(' . $qb->getSQL() . ')' ) ] )
 					->caller( __METHOD__ )->execute();
 			}
 

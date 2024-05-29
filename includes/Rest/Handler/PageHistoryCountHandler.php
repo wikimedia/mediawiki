@@ -22,6 +22,7 @@ use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\RawSQLExpression;
 
 /**
  * Handler class for Core REST API endpoints that perform operations on revisions
@@ -484,7 +485,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 				$dbr->expr( 'ug_expiry', '=', null )->or( 'ug_expiry', '>=', $dbr->timestamp() )
 			] );
 
-		$queryBuilder->andWhere( 'EXISTS(' . $subquery->getSQL() . ')' );
+		$queryBuilder->andWhere( new RawSQLExpression( 'EXISTS(' . $subquery->getSQL() . ')' ) );
 		if ( $fromRev ) {
 			$queryBuilder->andWhere( $dbr->buildComparison( '>', [
 				'rev_timestamp' => $dbr->timestamp( $fromRev->getTimestamp() ),

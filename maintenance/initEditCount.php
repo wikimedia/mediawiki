@@ -25,6 +25,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\Rdbms\RawSQLValue;
 
 class InitEditCount extends Maintenance {
 	public function __construct() {
@@ -97,7 +98,6 @@ class InitEditCount extends Maintenance {
 		} else {
 			$this->output( "Using single-query mode...\n" );
 
-			$user = $dbw->tableName( 'user' );
 			$subquery = $dbw->newSelectQueryBuilder()
 				->select( 'COUNT(*)' )
 				->from( 'revision' )
@@ -105,7 +105,11 @@ class InitEditCount extends Maintenance {
 				->where( 'user_id = actor_rev_user.actor_user' )
 				->caller( __METHOD__ )->getSQL();
 
-			$dbw->query( "UPDATE $user SET user_editcount=($subquery)", __METHOD__ );
+			$dbw->newUpdateQueryBuilder()
+				->table( 'user' )
+				->set( [ 'user_editcount' => new RawSQLValue( "($subquery)" ) ] )
+				->caller( __METHOD__ )
+				->execute();
 		}
 
 		$this->output( "Done!\n" );
