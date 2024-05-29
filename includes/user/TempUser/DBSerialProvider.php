@@ -3,6 +3,7 @@
 namespace MediaWiki\User\TempUser;
 
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\RawSQLValue;
 
 /**
  * Base class for serial acquisition code shared between core and CentralAuth.
@@ -42,7 +43,7 @@ abstract class DBSerialProvider implements SerialProvider {
 			] )
 			->onDuplicateKeyUpdate()
 			->uniqueIndexFields( [ 'uas_shard', 'uas_year' ] )
-			->set( [ 'uas_value=uas_value+1' ] )
+			->set( [ 'uas_value' => new RawSQLValue( 'uas_value+1' ) ] )
 			->caller( __METHOD__ )->execute();
 		$value = $dbw->newSelectQueryBuilder()
 			->select( 'uas_value' )
