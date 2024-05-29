@@ -67,7 +67,6 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 			'affectedRows' => null,
 			'insertId' => null,
 			'getSessionLagStatus' => null,
-			'writesPending' => null,
 			'onTransactionPreCommitOrIdle' => null,
 			'onAtomicSectionCancel' => null,
 			'doAtomicSection' => null,

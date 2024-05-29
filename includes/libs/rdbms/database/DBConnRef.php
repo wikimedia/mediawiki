@@ -33,7 +33,7 @@ use InvalidArgumentException;
  * @ingroup Database
  * @since 1.22
  */
-class DBConnRef implements IMaintainableDatabase {
+class DBConnRef implements IMaintainableDatabase, IDatabaseForOwner {
 	/** @var ILoadBalancer */
 	private $lb;
 	/** @var Database|null Live connection handle */

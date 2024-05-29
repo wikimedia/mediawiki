@@ -160,33 +160,6 @@ interface IDatabase extends IReadableDatabase {
 	public function lastDoneWrites();
 
 	/**
-	 * @return bool Whether there is a transaction open with possible write queries
-	 * @since 1.27
-	 */
-	public function writesPending();
-
-	/**
-	 * Whether there is a transaction open with either possible write queries
-	 * or unresolved pre-commit/commit/resolution callbacks pending
-	 *
-	 * This does *not* count recurring callbacks, e.g. from setTransactionListener().
-	 *
-	 * @return bool
-	 */
-	public function writesOrCallbacksPending();
-
-	/**
-	 * Get the time spend running write queries for this transaction
-	 *
-	 * High values could be due to scanning, updates, locking, and such.
-	 *
-	 * @param string $type IDatabase::ESTIMATE_* constant [default: ESTIMATE_ALL]
-	 * @return float|false Returns false if not transaction is active
-	 * @since 1.26
-	 */
-	public function pendingWriteQueryDuration( $type = self::ESTIMATE_TOTAL );
-
-	/**
 	 * Get the list of method names that did write queries for this transaction
 	 *
 	 * @return array
@@ -603,22 +576,6 @@ interface IDatabase extends IReadableDatabase {
 	);
 
 	/**
-	 * Get the replication position of this primary DB server
-	 *
-	 * @return DBPrimaryPos|false Position; false if this is not a primary DB
-	 * @throws DBError If an error occurs, {@see query}
-	 * @since 1.37
-	 */
-	public function getPrimaryPos();
-
-	/**
-	 * @return bool Whether this DB server is running in server-side read-only mode
-	 * @throws DBError If an error occurs, {@see query}
-	 * @since 1.28
-	 */
-	public function serverIsReadOnly();
-
-	/**
 	 * Run a callback when the current transaction commits or rolls back
 	 *
 	 * An error is thrown if no transaction is pending.
@@ -743,25 +700,6 @@ interface IDatabase extends IReadableDatabase {
 	 * @since 1.34
 	 */
 	public function onAtomicSectionCancel( callable $callback, $fname = __METHOD__ );
-
-	/**
-	 * Run a callback after each time any transaction commits or rolls back
-	 *
-	 * The callback takes two arguments:
-	 *   - IDatabase::TRIGGER_COMMIT or IDatabase::TRIGGER_ROLLBACK
-	 *   - This IDatabase object
-	 * Callbacks must commit any transactions that they begin.
-	 *
-	 * Registering a callback here will not affect writesOrCallbacks() pending.
-	 *
-	 * Since callbacks from this or onTransactionCommitOrIdle() can start and end transactions,
-	 * a single call to IDatabase::commit might trigger multiple runs of the listener callbacks.
-	 *
-	 * @param string $name Callback name
-	 * @param callable|null $callback Use null to unset a listener
-	 * @since 1.28
-	 */
-	public function setTransactionListener( $name, callable $callback = null );
 
 	/**
 	 * Begin an atomic section of SQL statements

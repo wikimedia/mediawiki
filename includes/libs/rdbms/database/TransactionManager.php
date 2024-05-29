@@ -361,7 +361,7 @@ class TransactionManager {
 		return $this->trxLevel() && ( $this->trxAtomicLevels || !$this->trxAutomatic );
 	}
 
-	public function trxCheckBeforeClose( IDatabase $db, $fname ) {
+	public function trxCheckBeforeClose( IDatabaseForOwner $db, $fname ) {
 		$error = null;
 		if ( $this->trxAtomicLevels ) {
 			// Cannot let incomplete atomic sections be committed

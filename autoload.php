@@ -3290,6 +3290,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\IBlob' => __DIR__ . '/includes/libs/rdbms/encasing/IBlob.php',
 	'Wikimedia\\Rdbms\\IConnectionProvider' => __DIR__ . '/includes/libs/rdbms/lbfactory/IConnectionProvider.php',
 	'Wikimedia\\Rdbms\\IDatabase' => __DIR__ . '/includes/libs/rdbms/database/IDatabase.php',
+	'Wikimedia\\Rdbms\\IDatabaseForOwner' => __DIR__ . '/includes/libs/rdbms/database/IDatabaseForOwner.php',
 	'Wikimedia\\Rdbms\\IExpression' => __DIR__ . '/includes/libs/rdbms/expression/IExpression.php',
 	'Wikimedia\\Rdbms\\ILBFactory' => __DIR__ . '/includes/libs/rdbms/lbfactory/ILBFactory.php',
 	'Wikimedia\\Rdbms\\ILoadBalancer' => __DIR__ . '/includes/libs/rdbms/loadbalancer/ILoadBalancer.php',
