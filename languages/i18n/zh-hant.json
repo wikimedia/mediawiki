@@ -2597,7 +2597,7 @@
 	"ipb-hardblock": "封鎖使用此IP位址的登入使用者",
 	"ipbcreateaccount": "帳號建立",
 	"ipbemailban": "傳送電子郵件",
-	"ipbenableautoblock": "自動封鎖此使用者最後使用的IP位址，以及所有其隨後嘗試用於編輯的IP位址，持續時間為$1",
+	"ipbenableautoblock": "自動將此使用者最後所使用的，以及後續編輯所在的所有IP位址封鎖$1",
 	"ipbsubmit": "封鎖此使用者",
 	"ipbother": "其他時間：",
 	"ipboptions": "2 小時:2 hours,1 天:1 day,3 天:3 days,1 週:1 week,2 週:2 weeks,1 個月:1 month,3 個月:3 months,6 個月:6 months,1 年:1 year,無限期:infinite",
