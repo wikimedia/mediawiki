@@ -20,7 +20,7 @@
 
 namespace MediaWiki\User\Options;
 
-use DBAccessObjectUtils;
+use ExtensionRegistry;
 use IDBAccessObject;
 use InvalidArgumentException;
 use LanguageCode;
@@ -37,8 +37,8 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserTimeCorrection;
 use Psr\Log\LoggerInterface;
+use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\IConnectionProvider;
-use Wikimedia\Rdbms\IDatabase;
 
 /**
  * A service class to control user options
@@ -59,35 +59,39 @@ class UserOptionsManager extends UserOptionsLookup {
 	 */
 	public const MAX_BYTES_OPTION_VALUE = 65530;
 
+	/**
+	 * If the option was set globally, ignore the update.
+	 * @since 1.43
+	 */
+	public const GLOBAL_IGNORE = 'ignore';
+
+	/**
+	 * If the option was set globally, add a local override.
+	 * @since 1.43
+	 */
+	public const GLOBAL_OVERRIDE = 'override';
+
+	/**
+	 * If the option was set globally, update the global value.
+	 * @since 1.43
+	 */
+	public const GLOBAL_UPDATE = 'update';
+
 	private ServiceOptions $serviceOptions;
 	private DefaultOptionsLookup $defaultOptionsLookup;
 	private LanguageConverterFactory $languageConverterFactory;
 	private IConnectionProvider $dbProvider;
 	private UserFactory $userFactory;
 	private LoggerInterface $logger;
-
-	/** @var array options modified within this request */
-	private $modifiedOptions = [];
-
-	/**
-	 * @var array Cached original user options with all the adjustments
-	 *            like time correction and hook changes applied.
-	 *            Ready to be returned.
-	 */
-	private $originalOptionsCache = [];
-
-	/**
-	 * @var array Cached original user options as fetched from database,
-	 *            no adjustments applied.
-	 */
-	private $optionsFromDb = [];
-
 	private HookRunner $hookRunner;
-
-	/** @var array Query flags used to retrieve options from database */
-	private $queryFlagsUsedForCaching = [];
-
 	private UserNameUtils $userNameUtils;
+	private ObjectFactory $objectFactory;
+
+	/** @var UserOptionsCacheEntry[] */
+	private $cache = [];
+
+	/** @var UserOptionsStore[]|null */
+	private $stores;
 
 	/**
 	 * @param ServiceOptions $options
@@ -98,6 +102,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @param HookContainer $hookContainer
 	 * @param UserFactory $userFactory
 	 * @param UserNameUtils $userNameUtils
+	 * @param ObjectFactory $objectFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -107,7 +112,8 @@ class UserOptionsManager extends UserOptionsLookup {
 		LoggerInterface $logger,
 		HookContainer $hookContainer,
 		UserFactory $userFactory,
-		UserNameUtils $userNameUtils
+		UserNameUtils $userNameUtils,
+		ObjectFactory $objectFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->serviceOptions = $options;
@@ -118,6 +124,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userFactory = $userFactory;
 		$this->userNameUtils = $userNameUtils;
+		$this->objectFactory = $objectFactory;
 	}
 
 	/**
@@ -188,7 +195,7 @@ class UserOptionsManager extends UserOptionsLookup {
 			$defaultOptions = $this->defaultOptionsLookup->getDefaultOptions( null );
 			foreach ( $options as $option => $value ) {
 				if ( array_key_exists( $option, $defaultOptions )
-					&& $this->isValueEqual( $value, $defaultOptions[$option] )
+					&& self::isValueEqual( $value, $defaultOptions[$option] )
 				) {
 					unset( $options[$option] );
 				}
@@ -220,16 +227,32 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * changing when the default changes. You can instead use $wgConditionalUserOptions to
 	 * split the default based on user registration date.
 	 *
+	 * If a global user option exists with the given name, the behaviour depends on the value
+	 * of $global.
+	 *
 	 * @param UserIdentity $user
 	 * @param string $oname The option to set
 	 * @param mixed $val New value to set.
+	 * @param string $global Since 1.43. What to do if the option was set
+	 *   globally using the GlobalPreferences extension. One of the
+	 *   self::GLOBAL_* constants:
+	 *   - GLOBAL_IGNORE: Do nothing. The option remains with its previous value.
+	 *   - GLOBAL_OVERRIDE: Add a local override.
+	 *   - GLOBAL_UPDATE: Update the option globally.
+	 *   The UI should typically ask for the user's consent before setting a global
+	 *   option.
 	 */
-	public function setOption( UserIdentity $user, string $oname, $val ) {
+	public function setOption( UserIdentity $user, string $oname, $val,
+		$global = self::GLOBAL_IGNORE
+	) {
 		// Explicitly NULL values should refer to defaults
 		if ( $val === null ) {
 			$val = $this->defaultOptionsLookup->getDefaultOption( $oname, $user );
 		}
-		$this->modifiedOptions[$this->getCacheKey( $user )][$oname] = $val;
+		$userKey = $this->getCacheKey( $user );
+		$info = $this->cache[$userKey] ??= new UserOptionsCacheEntry;
+		$info->modifiedValues[$oname] = $val;
+		$info->globalUpdateActions[$oname] = $global;
 	}
 
 	/**
@@ -329,7 +352,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	 */
 	public function saveOptions( UserIdentity $user ) {
 		$dbw = $this->dbProvider->getPrimaryDatabase();
-		$changed = $this->saveOptionsInternal( $user, $dbw );
+		$changed = $this->saveOptionsInternal( $user );
 		$legacyUser = $this->userFactory->newFromUserIdentity( $user );
 		// Before UserOptionsManager, User::saveSettings was used for user options
 		// saving. Some extensions might depend on UserSaveSettings hook being run
@@ -349,74 +372,59 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * setOption(), in the database's "user_properties" (preferences) table.
 	 *
 	 * @param UserIdentity $user
-	 * @param IDatabase $dbw
 	 * @return bool true if options were changed and new options successfully saved.
 	 * @internal only public for use in User::saveSettings
 	 */
-	public function saveOptionsInternal( UserIdentity $user, IDatabase $dbw ): bool {
+	public function saveOptionsInternal( UserIdentity $user ): bool {
 		if ( !$user->isRegistered() || $this->userNameUtils->isTemp( $user->getName() ) ) {
 			throw new InvalidArgumentException( __METHOD__ . ' was called on anon or temporary user' );
 		}
 
 		$userKey = $this->getCacheKey( $user );
-		$modifiedOptions = $this->modifiedOptions[$userKey] ?? [];
+		$cache = $this->cache[$userKey] ?? new UserOptionsCacheEntry;
+		$modifiedOptions = $cache->modifiedValues;
+
+		// FIXME: should probably use READ_LATEST here
 		$originalOptions = $this->loadOriginalOptions( $user );
+
 		if ( !$this->hookRunner->onSaveUserOptions( $user, $modifiedOptions, $originalOptions ) ) {
 			return false;
 		}
 
-		$rowsToInsert = [];
-		$keysToDelete = [];
+		$updatesByStore = [];
 		foreach ( $modifiedOptions as $key => $value ) {
 			// Don't store unchanged or default values
 			$defaultValue = $this->defaultOptionsLookup->getDefaultOption( $key, $user );
-			$oldDbValue = $this->optionsFromDb[$userKey][$key] ?? null;
-			if ( $value === null || $this->isValueEqual( $value, $defaultValue ) ) {
-				if ( array_key_exists( $key, $this->optionsFromDb[$userKey] ) ) {
-					// Delete the default value from the database
-					$keysToDelete[] = $key;
-				}
-			} elseif ( !$this->isValueEqual( $value, $oldDbValue ) ) {
-				// Update by deleting (if old value exists) and reinserting
-				$rowsToInsert[] = [
-					'up_user' => $user->getId(),
-					'up_property' => $key,
-					'up_value' => mb_strcut( $value, 0, self::MAX_BYTES_OPTION_VALUE ),
-				];
-				if ( array_key_exists( $key, $this->optionsFromDb[$userKey] ) ) {
-					$keysToDelete[] = $key;
+			if ( $value === null || self::isValueEqual( $value, $defaultValue ) ) {
+				$valOrNull = null;
+			} else {
+				$valOrNull = (string)$value;
+			}
+			$source = $cache->sources[$key] ?? 'local';
+			if ( $source === 'local' ) {
+				$updatesByStore['local'][$key] = $valOrNull;
+			} else {
+				$updateAction = $cache->globalUpdateActions[$key] ?? self::GLOBAL_IGNORE;
+				if ( $updateAction === self::GLOBAL_UPDATE ) {
+					$updatesByStore[$source][$key] = $valOrNull;
+				} elseif ( $updateAction === self::GLOBAL_OVERRIDE ) {
+					$updatesByStore['local'][$key] = $valOrNull;
+					$updatesByStore['local'][$key . self::LOCAL_EXCEPTION_SUFFIX] = '1';
 				}
 			}
 		}
+		$changed = false;
+		$stores = $this->getStores();
+		foreach ( $updatesByStore as $source => $updates ) {
+			$changed = $stores[$source]->store( $user, $updates ) || $changed;
+		}
 
-		if ( !count( $keysToDelete ) && !count( $rowsToInsert ) ) {
-			// Nothing to do
+		if ( !$changed ) {
 			return false;
 		}
 
-		// Do the DELETE
-		if ( $keysToDelete ) {
-			$dbw->newDeleteQueryBuilder()
-				->deleteFrom( 'user_properties' )
-				->where( [ 'up_user' => $user->getId() ] )
-				->andWhere( [ 'up_property' => $keysToDelete ] )
-				->caller( __METHOD__ )->execute();
-		}
-		if ( $rowsToInsert ) {
-			// Insert the new preference rows
-			$dbw->newInsertQueryBuilder()
-				->insertInto( 'user_properties' )
-				->ignore()
-				->rows( $rowsToInsert )
-				->caller( __METHOD__ )->execute();
-		}
-
-		// It's pretty cheap to recalculate new original later
-		// to apply whatever adjustments we apply when fetching from DB
-		// and re-merge with the defaults.
-		unset( $this->originalOptionsCache[$userKey] );
-		// And nothing is modified anymore
-		unset( $this->modifiedOptions[$userKey] );
+		// Clear the cache and the update queue
+		unset( $this->cache[$userKey] );
 		return true;
 	}
 
@@ -440,7 +448,12 @@ class UserOptionsManager extends UserOptionsLookup {
 	): array {
 		$userKey = $this->getCacheKey( $user );
 		$originalOptions = $this->loadOriginalOptions( $user, $queryFlags );
-		return array_merge( $originalOptions, $this->modifiedOptions[$userKey] ?? [] );
+		$cache = $this->cache[$userKey] ?? null;
+		if ( $cache ) {
+			return array_merge( $originalOptions, $cache->modifiedValues );
+		} else {
+			return $originalOptions;
+		}
 	}
 
 	/**
@@ -449,11 +462,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @param UserIdentity $user
 	 */
 	public function clearUserOptionsCache( UserIdentity $user ) {
-		$cacheKey = $this->getCacheKey( $user );
-		unset( $this->modifiedOptions[$cacheKey] );
-		unset( $this->optionsFromDb[$cacheKey] );
-		unset( $this->originalOptionsCache[$cacheKey] );
-		unset( $this->queryFlagsUsedForCaching[$cacheKey] );
+		unset( $this->cache[ $this->getCacheKey( $user ) ] );
 	}
 
 	/**
@@ -463,50 +472,51 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @param int $queryFlags a bit field composed of READ_XXX flags
 	 * @return array
 	 */
-	private function loadOptionsFromDb(
+	private function loadOptionsFromStore(
 		UserIdentity $user,
 		int $queryFlags
 	): array {
 		$this->logger->debug( 'Loading options from database', [ 'user_id' => $user->getId() ] );
-		$dbr = DBAccessObjectUtils::getDBFromRecency( $this->dbProvider, $queryFlags );
-		$res = $dbr->newSelectQueryBuilder()
-			->select( [ 'up_property', 'up_value' ] )
-			->from( 'user_properties' )
-			->where( [ 'up_user' => $user->getId() ] )
-			->recency( $queryFlags )
-			->caller( __METHOD__ )->fetchResultSet();
-		return $this->setOptionsFromDb( $user, $queryFlags, $res );
+		$mergedOptions = [];
+		$cache = $this->cache[ $this->getCacheKey( $user ) ] ??= new UserOptionsCacheEntry;
+		foreach ( $this->getStores() as $storeName => $store ) {
+			$options = $store->fetch( $user, $queryFlags );
+			foreach ( $options as $name => $value ) {
+				// Handle a local exception which is the default
+				if ( str_ends_with( $name, self::LOCAL_EXCEPTION_SUFFIX ) && $value ) {
+					$baseName = substr( $name, 0, -strlen( self::LOCAL_EXCEPTION_SUFFIX ) );
+					if ( !isset( $options[$baseName] ) ) {
+						unset( $mergedOptions[$baseName] );
+					}
+				}
+
+				// Handle a non-default option or non-default local exception
+				if ( !isset( $mergedOptions[$name] )
+					|| !empty( $options[$name . self::LOCAL_EXCEPTION_SUFFIX] )
+				) {
+					$cache->sources[$name] = $storeName;
+					$mergedOptions[$name] = $this->normalizeValueType( $value );
+				}
+			}
+		}
+		return $mergedOptions;
 	}
 
 	/**
-	 * Builds associative options array from rows fetched from DB.
+	 * Convert '0' to 0. PHP's boolean conversion considers them both
+	 * false, but e.g. JavaScript considers the former as true.
 	 *
-	 * @param UserIdentity $user
-	 * @param int $queryFlags
-	 * @param iterable<object|array> $rows
-	 * @return array
+	 * @todo T54542 Somehow determine the desired type (string/int/bool)
+	 *   and convert all values here.
+	 *
+	 * @param string $value
+	 * @return mixed
 	 */
-	private function setOptionsFromDb(
-		UserIdentity $user,
-		int $queryFlags,
-		iterable $rows
-	): array {
-		$userKey = $this->getCacheKey( $user );
-		$options = [];
-		foreach ( $rows as $row ) {
-			$row = (object)$row;
-			// Convert '0' to 0. PHP's boolean conversion considers them both
-			// false, but e.g. JavaScript considers the former as true.
-			// @todo: T54542 Somehow determine the desired type (string/int/bool)
-			//  and convert all values here.
-			if ( $row->up_value === '0' ) {
-				$row->up_value = 0;
-			}
-			$options[$row->up_property] = $row->up_value;
+	private function normalizeValueType( $value ) {
+		if ( $value === '0' ) {
+			$value = 0;
 		}
-		$this->optionsFromDb[$userKey] = $options;
-		$this->queryFlagsUsedForCaching[$userKey] = $queryFlags;
-		return $options;
+		return $value;
 	}
 
 	/**
@@ -523,6 +533,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	): array {
 		$userKey = $this->getCacheKey( $user );
 		$defaultOptions = $this->defaultOptionsLookup->getDefaultOptions( $user );
+		$cache = $this->cache[$userKey] ??= new UserOptionsCacheEntry;
 		if ( !$user->isRegistered() || $this->userNameUtils->isTemp( $user->getName() ) ) {
 			// For unlogged-in users, load language/variant options from request.
 			// There's no need to do it for logged-in users: they can set preferences,
@@ -531,19 +542,19 @@ class UserOptionsManager extends UserOptionsLookup {
 			$variant = $this->languageConverterFactory->getLanguageConverter()->getDefaultVariant();
 			$defaultOptions['variant'] = $variant;
 			$defaultOptions['language'] = $variant;
-			$this->originalOptionsCache[$userKey] = $defaultOptions;
+			$cache->originalValues = $defaultOptions;
 			return $defaultOptions;
 		}
 
 		// In case options were already loaded from the database before and no options
 		// changes were saved to the database, we can use the cached original options.
-		if ( $this->canUseCachedValues( $user, $queryFlags )
-			&& isset( $this->originalOptionsCache[$userKey] )
+		if ( $cache->canUseCachedValues( $queryFlags )
+			&& $cache->originalValues !== null
 		) {
-			return $this->originalOptionsCache[$userKey];
+			return $cache->originalValues;
 		}
 
-		$options = $this->loadOptionsFromDb( $user, $queryFlags ) + $defaultOptions;
+		$options = $this->loadOptionsFromStore( $user, $queryFlags ) + $defaultOptions;
 
 		// Replace deprecated language codes
 		$options['language'] = LanguageCode::replaceDeprecatedCodes( $options['language'] );
@@ -567,15 +578,15 @@ class UserOptionsManager extends UserOptionsLookup {
 
 		// Need to store what we have so far before the hook to prevent
 		// infinite recursion if the hook attempts to reload options
-		$this->originalOptionsCache[$userKey] = $options;
-		$this->queryFlagsUsedForCaching[$userKey] = $queryFlags;
+		$cache->originalValues = $options;
+		$cache->recency = $queryFlags;
 		$this->hookRunner->onLoadUserOptions( $user, $options );
-		$this->originalOptionsCache[$userKey] = $options;
+		$cache->originalValues = $options;
 		return $options;
 	}
 
 	/**
-	 * Gets a key for various caches.
+	 * Get a cache key for a user
 	 * @param UserIdentity $user
 	 * @return string
 	 */
@@ -588,32 +599,17 @@ class UserOptionsManager extends UserOptionsLookup {
 	}
 
 	/**
-	 * Determines if it's ok to use cached options values for a given user and query flags
-	 * @param UserIdentity $user
-	 * @param int $queryFlags
-	 * @return bool
-	 */
-	private function canUseCachedValues( UserIdentity $user, int $queryFlags ): bool {
-		if ( !$user->isRegistered() || $this->userNameUtils->isTemp( $user->getName() ) ) {
-			// Anon & temp users don't have options stored in the database,
-			// so $queryFlags are ignored.
-			return true;
-		}
-		$userKey = $this->getCacheKey( $user );
-		$queryFlagsUsed = $this->queryFlagsUsedForCaching[$userKey] ?? IDBAccessObject::READ_NONE;
-		return $queryFlagsUsed >= $queryFlags;
-	}
-
-	/**
 	 * Determines whether two values are sufficiently similar that the database
 	 * does not need to be updated to reflect the change. This is basically the
 	 * same as comparing the result of Database::addQuotes().
+	 *
+	 * @since 1.43
 	 *
 	 * @param mixed $a
 	 * @param mixed $b
 	 * @return bool
 	 */
-	private function isValueEqual( $a, $b ) {
+	public static function isValueEqual( $a, $b ) {
 		// null is only equal to another null (T355086)
 		if ( $a === null || $b === null ) {
 			return $a === $b;
@@ -626,6 +622,29 @@ class UserOptionsManager extends UserOptionsLookup {
 			$b = (int)$b;
 		}
 		return (string)$a === (string)$b;
+	}
+
+	/**
+	 * Get the storage backends in descending order of priority
+	 *
+	 * @return UserOptionsStore[]
+	 */
+	private function getStores() {
+		if ( !$this->stores ) {
+			$stores = [ 'local' => new LocalUserOptionsStore( $this->dbProvider ) ];
+			$specs = ExtensionRegistry::getInstance()
+				->getAttribute( 'UserOptionsStoreProviders' );
+			foreach ( $specs as $name => $spec ) {
+				$store = $this->objectFactory->createObject( $spec );
+				if ( !$store instanceof UserOptionsStore ) {
+					throw new \RuntimeException( "Invalid type for extension store \"$name\"" );
+				}
+				$stores[$name] = $store;
+			}
+			// Query global providers first, preserve keys
+			$this->stores = array_reverse( $stores, true );
+		}
+		return $this->stores;
 	}
 }
 

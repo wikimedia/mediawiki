@@ -2431,7 +2431,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 
 		$this->mTouched = $newTouched;
 		if ( $this->isNamed() ) {
-			MediaWikiServices::getInstance()->getUserOptionsManager()->saveOptionsInternal( $this, $dbw );
+			MediaWikiServices::getInstance()->getUserOptionsManager()->saveOptionsInternal( $this );
 		}
 
 		$this->getHookRunner()->onUserSaveSettings( $this );

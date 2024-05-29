@@ -49,7 +49,8 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 			new NullLogger(),
 			$overrides['hookContainer'] ?? $services->getHookContainer(),
 			$services->getUserFactory(),
-			$services->getUserNameUtils()
+			$services->getUserNameUtils(),
+			$services->getObjectFactory()
 		);
 	}
 

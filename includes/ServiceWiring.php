@@ -2456,7 +2456,8 @@ return [
 			LoggerFactory::getInstance( 'UserOptionsManager' ),
 			$services->getHookContainer(),
 			$services->getUserFactory(),
-			$services->getUserNameUtils()
+			$services->getUserNameUtils(),
+			$services->getObjectFactory()
 		);
 	},
 
