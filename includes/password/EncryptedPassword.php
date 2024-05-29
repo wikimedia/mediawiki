@@ -36,12 +36,12 @@ class EncryptedPassword extends ParameterizedPassword {
 	protected function getDefaultParams(): array {
 		return [
 			'cipher' => $this->config['cipher'],
-			'secret' => count( $this->config['secrets'] ) - 1
+			'secret' => (string)( count( $this->config['secrets'] ) - 1 )
 		];
 	}
 
 	public function crypt( string $password ): void {
-		$secret = $this->config['secrets'][$this->params['secret']];
+		$secret = $this->config['secrets'][(int)$this->params['secret']];
 
 		// Clear error string
 		while ( openssl_error_string() !== false );
@@ -92,7 +92,7 @@ class EncryptedPassword extends ParameterizedPassword {
 		$underlyingHash = openssl_decrypt(
 			$this->hash,
 			$this->params['cipher'],
-			$this->config['secrets'][$this->params['secret']],
+			$this->config['secrets'][(int)$this->params['secret']],
 			0,
 			base64_decode( $this->args[0] )
 		);
@@ -108,7 +108,7 @@ class EncryptedPassword extends ParameterizedPassword {
 		$this->hash = openssl_encrypt(
 				$underlyingHash,
 				$this->params['cipher'],
-				$this->config['secrets'][$this->params['secret']],
+				$this->config['secrets'][(int)$this->params['secret']],
 				0,
 				$iv
 			);
@@ -132,7 +132,7 @@ class EncryptedPassword extends ParameterizedPassword {
 		$underlyingHash = openssl_decrypt(
 			$this->hash,
 			$this->params['cipher'],
-			$this->config['secrets'][$this->params['secret']],
+			$this->config['secrets'][(int)$this->params['secret']],
 			0,
 			base64_decode( $this->args[0] )
 		);
