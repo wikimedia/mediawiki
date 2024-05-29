@@ -884,6 +884,6 @@ class DBConnRef implements IMaintainableDatabase, IDatabaseForOwner {
 	 * @return int|mixed
 	 */
 	protected function normalizeServerIndex( $i ) {
-		return ( $i === ILoadBalancer::DB_PRIMARY ) ? $this->lb->getWriterIndex() : $i;
+		return ( $i === ILoadBalancer::DB_PRIMARY ) ? ServerInfo::WRITER_INDEX : $i;
 	}
 }

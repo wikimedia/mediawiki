@@ -219,7 +219,7 @@ interface ILoadBalancer {
 	 *      weights. If a query group list is provided in $groups, then each recognized group
 	 *      will be tried, left-to-right, until server index selection succeeds or all groups
 	 *      have been tried, in which case the generic group will be tried.
-	 *   - DB_PRIMARY: the primary server index will be used; the same as getWriterIndex().
+	 *   - DB_PRIMARY: the primary server index will be used; the same as ServerInfo::WRITER_INDEX.
 	 *      The value of $groups should be [] when using this server index.
 	 *   - Specific server index: a positive integer can be provided to use the server with
 	 *      that index. An error will be thrown in no such server index is recognized. This
@@ -320,19 +320,6 @@ interface ILoadBalancer {
 	 * @return DBConnRef
 	 */
 	public function getMaintenanceConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): DBConnRef;
-
-	/**
-	 * Get the specific server index of the "writer server"
-	 *
-	 * The "writer server" is the server that should be used to source writes and critical reads
-	 * originating from the local datacenter. The "writer server" will be one of the following:
-	 *   - The primary, for single-primary setups (even if it resides in a remote datacenter)
-	 *   - The "preferred" co-primary relative to the local datacenter, for multi-primary setups
-	 *   - The "preferred" static clone, for static clone server setups (e.g. no replication)
-	 *
-	 * @return int Specific server index
-	 */
-	public function getWriterIndex();
 
 	/**
 	 * Get the number of servers defined in configuration

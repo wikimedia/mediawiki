@@ -28,6 +28,7 @@ use MediaWiki\Installer\DatabaseUpdater;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\ServerInfo;
 
 /**
  * Maintenance script that sends SQL queries from the specified file to the database.
@@ -77,7 +78,8 @@ class MwSql extends Maintenance {
 					break;
 				}
 			}
-			if ( $index === null || $index === $lb->getWriterIndex() ) {
+			// @phan-suppress-next-line PhanSuspiciousValueComparison
+			if ( $index === null || $index === ServerInfo::WRITER_INDEX ) {
 				$this->fatalError( "No replica DB server configured with the name '$replicaDB'." );
 			}
 		} else {

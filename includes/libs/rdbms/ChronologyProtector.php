@@ -302,7 +302,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 		}
 
 		$cluster = $lb->getClusterName();
-		$primaryName = $lb->getServerName( $lb->getWriterIndex() );
+		$primaryName = $lb->getServerName( ServerInfo::WRITER_INDEX );
 
 		$pos = $this->getStartupSessionPositions()[$primaryName] ?? null;
 		if ( $pos instanceof DBPrimaryPos ) {
@@ -332,7 +332,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 		}
 
 		$cluster = $lb->getClusterName();
-		$masterName = $lb->getServerName( $lb->getWriterIndex() );
+		$masterName = $lb->getServerName( ServerInfo::WRITER_INDEX );
 
 		if ( $lb->hasStreamingReplicaServers() ) {
 			$pos = $lb->getPrimaryPos();

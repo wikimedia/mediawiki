@@ -206,7 +206,7 @@ class LoadMonitor implements ILoadMonitor {
 			'rdbms-gauge',
 			self::VERSION,
 			$this->lb->getClusterName(),
-			$this->lb->getServerName( $this->lb->getWriterIndex() ),
+			$this->lb->getServerName( ServerInfo::WRITER_INDEX ),
 			$this->lb->getServerName( $i )
 		);
 	}

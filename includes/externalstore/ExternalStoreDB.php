@@ -23,6 +23,7 @@ use Wikimedia\Rdbms\DBUnexpectedError;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\Query;
+use Wikimedia\Rdbms\ServerInfo;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -161,7 +162,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		return $lb->getConnection(
 			DB_REPLICA,
 			[],
-			$this->getDomainId( $lb->getServerInfo( $lb->getWriterIndex() ) ),
+			$this->getDomainId( $lb->getServerInfo( ServerInfo::WRITER_INDEX ) ),
 			$lb::CONN_TRX_AUTOCOMMIT
 		);
 	}
@@ -179,7 +180,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		return $lb->getMaintenanceConnectionRef(
 			DB_PRIMARY,
 			[],
-			$this->getDomainId( $lb->getServerInfo( $lb->getWriterIndex() ) ),
+			$this->getDomainId( $lb->getServerInfo( ServerInfo::WRITER_INDEX ) ),
 			$lb::CONN_TRX_AUTOCOMMIT
 		);
 	}
@@ -221,7 +222,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	public function getTable( $db, $cluster = null ) {
 		if ( $cluster !== null ) {
 			$lb = $this->getLoadBalancer( $cluster );
-			$info = $lb->getServerInfo( $lb->getWriterIndex() );
+			$info = $lb->getServerInfo( ServerInfo::WRITER_INDEX );
 			if ( isset( $info['blobs table'] ) ) {
 				return $info['blobs table'];
 			}

@@ -56,8 +56,6 @@ class LoadMonitorTest extends MediaWikiUnitTestCase {
 
 		$lbMock->method( 'getClusterName' )
 			->willReturn( 'test-cluster' );
-		$lbMock->method( 'getWriterIndex' )
-			->willReturn( 0 );
 
 		$wanMock = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
 
@@ -96,8 +94,6 @@ class LoadMonitorTest extends MediaWikiUnitTestCase {
 
 		$lbMock->method( 'getClusterName' )
 			->willReturn( 'test-cluster' );
-		$lbMock->method( 'getWriterIndex' )
-			->willReturn( 0 );
 
 		$wanMock = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
 

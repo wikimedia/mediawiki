@@ -226,6 +226,8 @@ because of Phabricator reports.
 * IDatabase::getTopologyBasedServerId() has been removed without deprecation.
   Use IDatabase::getServerName() instead.
 * IReadableDatabase::wasDeadlock() has been removed without deprecation.
+* ILoadBalancer::getWriterIndex() has been removed without deprecation.
+  Use ServerInfo::WRITER_INDEX constant instead.
 * WikiPage::doDeleteArticleBatched, hard deprecated since 1.37, has been
   removed.
 * SpecialEmailUser::submit, deprecated since 1.41, has been removed.

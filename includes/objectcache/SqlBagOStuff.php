@@ -33,6 +33,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\RawSQLValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Rdbms\ServerInfo;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -1670,7 +1671,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	private function getConnectionViaLoadBalancer() {
 		$lb = $this->getLoadBalancer();
 
-		if ( $lb->getServerAttributes( $lb->getWriterIndex() )[Database::ATTR_DB_LEVEL_LOCKING] ) {
+		if ( $lb->getServerAttributes( ServerInfo::WRITER_INDEX )[Database::ATTR_DB_LEVEL_LOCKING] ) {
 			// Use the main connection to avoid transaction deadlocks
 			$conn = $lb->getMaintenanceConnectionRef( DB_PRIMARY, [], $this->dbDomain );
 		} else {

@@ -1175,10 +1175,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		throw $exception;
 	}
 
-	public function getWriterIndex() {
-		return ServerInfo::WRITER_INDEX;
-	}
-
 	public function getServerCount() {
 		return $this->serverInfo->getServerCount();
 	}

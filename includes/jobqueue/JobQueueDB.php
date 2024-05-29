@@ -25,6 +25,7 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\RawSQLValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Rdbms\ServerInfo;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -891,7 +892,7 @@ class JobQueueDB extends JobQueue {
 				? $lbFactory->getExternalLB( $this->cluster )
 				: $lbFactory->getMainLB( $this->domain );
 
-			if ( $lb->getServerType( $lb->getWriterIndex() ) !== 'sqlite' ) {
+			if ( $lb->getServerType( ServerInfo::WRITER_INDEX ) !== 'sqlite' ) {
 				// Keep a separate connection to avoid contention and deadlocks;
 				// However, SQLite has the opposite behavior due to DB-level locking.
 				$flags = $lb::CONN_TRX_AUTOCOMMIT;

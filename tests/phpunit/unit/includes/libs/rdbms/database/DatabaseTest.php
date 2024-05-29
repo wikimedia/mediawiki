@@ -25,6 +25,7 @@ use Wikimedia\Rdbms\LBFactorySingle;
 use Wikimedia\Rdbms\Platform\SQLPlatform;
 use Wikimedia\Rdbms\QueryStatus;
 use Wikimedia\Rdbms\Replication\ReplicationReporter;
+use Wikimedia\Rdbms\ServerInfo;
 use Wikimedia\Rdbms\TransactionManager;
 use Wikimedia\RequestTimeout\CriticalSectionScope;
 use Wikimedia\TestingAccessWrapper;
@@ -257,7 +258,7 @@ class DatabaseTest extends TestCase {
 		// Ask for the connection so that LB sets internal state
 		// about this connection being the primary connection
 		$lb = $lbFactory->getMainLB();
-		$conn = $lb->getConnectionInternal( $lb->getWriterIndex() );
+		$conn = $lb->getConnectionInternal( ServerInfo::WRITER_INDEX );
 		$this->assertSame( $db, $conn, 'Same DB instance' );
 		$this->assertTrue( $db->getFlag( DBO_TRX ), 'DBO_TRX is set' );
 
@@ -346,7 +347,7 @@ class DatabaseTest extends TestCase {
 		// Ask for the connection so that LB sets internal state
 		// about this connection being the primary connection
 		$lb = $lbFactory->getMainLB();
-		$conn = $lb->getConnectionInternal( $lb->getWriterIndex() );
+		$conn = $lb->getConnectionInternal( ServerInfo::WRITER_INDEX );
 		$this->assertSame( $db, $conn, 'Same DB instance' );
 
 		$this->assertFalse( $lb->hasPrimaryChanges() );

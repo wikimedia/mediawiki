@@ -25,6 +25,7 @@
 
 use MediaWiki\Shell\Shell;
 use Wikimedia\IPUtils;
+use Wikimedia\Rdbms\ServerInfo;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -93,7 +94,7 @@ class MysqlMaintenance extends Maintenance {
 				$this->fatalError( "Error: Host not configured: \"$host\"" );
 			}
 		} elseif ( $this->hasOption( 'write' ) ) {
-			$index = $lb->getWriterIndex();
+			$index = ServerInfo::WRITER_INDEX;
 		} else {
 			$group = $this->getOption( 'group', false );
 			$index = $lb->getReaderIndex( $group );

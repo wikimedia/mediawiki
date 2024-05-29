@@ -402,7 +402,7 @@ abstract class LBFactory implements ILBFactory {
 	private function logIfMultiDbTransaction() {
 		$callersByDB = [];
 		foreach ( $this->getLBsForOwner() as $lb ) {
-			$primaryName = $lb->getServerName( $lb->getWriterIndex() );
+			$primaryName = $lb->getServerName( ServerInfo::WRITER_INDEX );
 			$callers = $lb->pendingPrimaryChangeCallers();
 			if ( $callers ) {
 				$callersByDB[$primaryName] = $callers;
@@ -493,7 +493,7 @@ abstract class LBFactory implements ILBFactory {
 			if ( $primaryPositions[$i] ) {
 				// The RDBMS may not support getPrimaryPos()
 				if ( !$lb->waitForAll( $primaryPositions[$i], $opts['timeout'] ) ) {
-					$failed[] = $lb->getServerName( $lb->getWriterIndex() );
+					$failed[] = $lb->getServerName( ServerInfo::WRITER_INDEX );
 				}
 			}
 		}

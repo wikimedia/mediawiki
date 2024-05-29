@@ -27,6 +27,7 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\LoadMonitorNull;
+use Wikimedia\Rdbms\ServerInfo;
 use Wikimedia\Rdbms\TransactionManager;
 use Wikimedia\TestingAccessWrapper;
 
@@ -101,7 +102,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$dbr = $lb->getConnection( DB_REPLICA );
 		$this->assertTrue( $dbr->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on replica" );
 
-		if ( !$lb->getServerAttributes( $lb->getWriterIndex() )[Database::ATTR_DB_LEVEL_LOCKING] ) {
+		if ( !$lb->getServerAttributes( ServerInfo::WRITER_INDEX )[Database::ATTR_DB_LEVEL_LOCKING] ) {
 			$dbwAC1 = $lb->getConnection( DB_PRIMARY, [], false, $lb::CONN_TRX_AUTOCOMMIT );
 			$this->assertFalse(
 				$dbwAC1->getFlag( $dbw::DBO_TRX ),
@@ -163,7 +164,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $dbr->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on replica" );
 		$this->assertSame( $dbr->getLBInfo( 'serverIndex' ), $lb->getReaderIndex() );
 
-		if ( !$lb->getServerAttributes( $lb->getWriterIndex() )[Database::ATTR_DB_LEVEL_LOCKING] ) {
+		if ( !$lb->getServerAttributes( ServerInfo::WRITER_INDEX )[Database::ATTR_DB_LEVEL_LOCKING] ) {
 			$dbwAC1 = $lb->getConnection( DB_PRIMARY, [], false, $lb::CONN_TRX_AUTOCOMMIT );
 			$this->assertFalse(
 				$dbwAC1->getFlag( $dbw::DBO_TRX ),
@@ -440,7 +441,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 
 	public function testOpenConnection() {
 		$lb = $this->newSingleServerLocalLoadBalancer();
-		$i = $lb->getWriterIndex();
+		$i = ServerInfo::WRITER_INDEX;
 
 		$this->assertFalse( $lb->getAnyOpenConnection( $i ) );
 		$this->assertFalse( $lb->getAnyOpenConnection( $i, $lb::CONN_TRX_AUTOCOMMIT ) );
@@ -536,7 +537,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		/** @var LoadBalancer $lbWrapper */
 		$lbWrapper = TestingAccessWrapper::newFromObject( $lb );
 
-		$conn1 = $lb->getConnection( $lb->getWriterIndex(), [], false );
+		$conn1 = $lb->getConnection( ServerInfo::WRITER_INDEX, [], false );
 		$count = iterator_count( $lbWrapper->getOpenPrimaryConnections() );
 		$this->assertSame( 0, $count, 'Connection handle count' );
 		$conn1->getServerName();
@@ -544,7 +545,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 0, $count, 'Connection handle count' );
 		$conn1->ensureConnection();
 
-		$conn2 = $lb->getConnection( $lb->getWriterIndex(), [], '' );
+		$conn2 = $lb->getConnection( ServerInfo::WRITER_INDEX, [], '' );
 		$count = iterator_count( $lbWrapper->getOpenPrimaryConnections() );
 		$this->assertSame( 1, $count, 'Connection handle count' );
 		$conn2->getServerName();
@@ -753,7 +754,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$lb = $this->newMultiServerLocalLoadBalancer( [], [ 'flags' => DBO_DEFAULT ], true );
 		// Make sure that no infinite loop occurs (T226678)
 		$rGeneric = $lb->getConnection( DB_REPLICA );
-		$this->assertSame( $lb->getWriterIndex(), $rGeneric->getLBInfo( 'serverIndex' ) );
+		$this->assertSame( ServerInfo::WRITER_INDEX, $rGeneric->getLBInfo( 'serverIndex' ) );
 	}
 
 	public function testSetDomainAliases() {
