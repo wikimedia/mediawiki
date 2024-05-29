@@ -260,7 +260,7 @@ class InsertQueryBuilder {
 	 * Add SET part to the query. It takes an array containing arrays of column names map to
 	 * the set values.
 	 *
-	 * @param string|array<string,?scalar>|array<int,string> $set
+	 * @param string|array<string,?scalar|RawSQLValue>|array<int,string> $set
 	 * @param-taint $set exec_sql_numkey
 	 *
 	 * Combination map/list where each string-keyed entry maps a column
@@ -296,7 +296,7 @@ class InsertQueryBuilder {
 	/**
 	 * Add set values to the query. Alias for set().
 	 *
-	 * @param string|array<string,?scalar>|array<int,string> $set
+	 * @param string|array<string,?scalar|RawSQLValue>|array<int,string> $set
 	 * @param-taint $set exec_sql_numkey
 	 * @return $this
 	 */

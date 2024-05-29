@@ -28,6 +28,9 @@ use Wikimedia\ScopedCallback;
  * and query specifics/optimisations.
  */
 
+// Very long type annotations :(
+// phpcs:disable Generic.Files.LineLength
+
 /**
  * Basic database interface for live and lazy-loaded relation database handles
  *
@@ -284,7 +287,7 @@ interface IDatabase extends IReadableDatabase {
 	 * Lock all rows meeting the given conditions/options FOR UPDATE
 	 *
 	 * @param string|string[] $table Unqualified name of table(s) (use an array for a join)
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>>|array<int,string|IExpression> $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 *   Condition in the format of IDatabase::select() conditions
 	 * @param string $fname Function name for profiling
 	 * @param array $options Options for select ("FOR UPDATE" is added automatically)
@@ -334,7 +337,7 @@ interface IDatabase extends IReadableDatabase {
 	 *
 	 * @param string $table Unqualified name of table
 	 * @param-taint $table exec_sql
-	 * @param array<string,?scalar>|array<int,string> $set
+	 * @param array<string,?scalar|RawSQLValue>|array<int,string> $set
 	 *   Combination map/list where each string-keyed entry maps a column
 	 *   to a literal assigned value and each integer-keyed value is a SQL expression in the
 	 *   format of a column assignment within UPDATE...SET. The (column => value) entries are
@@ -343,7 +346,7 @@ interface IDatabase extends IReadableDatabase {
 	 *   have no defined execution order, so they should not depend on each other. Do not
 	 *   modify AUTOINCREMENT or UUID columns in assignments.
 	 * @param-taint $set exec_sql_numkey
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>>|array<int,string|IExpression> $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 *   Condition in the format of IDatabase::select() conditions.
 	 *   In order to prevent possible performance or replication issues or damaging a data
 	 *   accidentally, an empty condition for 'update' queries isn't allowed.
@@ -445,7 +448,7 @@ interface IDatabase extends IReadableDatabase {
 	 *   one such key. Each unique key on the table is "applicable" unless either:
 	 *     - It involves an AUTOINCREMENT column for which no values are assigned in $rows
 	 *     - It involves a UUID column for which newly generated UUIDs are assigned in $rows
-	 * @param array<string,?scalar>|array<int,string> $set
+	 * @param array<string,?scalar|RawSQLValue>|array<int,string> $set
 	 *   Combination map/list where each string-keyed entry maps a column
 	 *   to a literal assigned value and each integer-keyed value is a SQL assignment expression
 	 *   of the form "<unquoted alphanumeric column> = <SQL expression>". The (column => value)
@@ -479,7 +482,7 @@ interface IDatabase extends IReadableDatabase {
 	 * @param string $joinTable Unqualified name of reference table to join on.
 	 * @param string $delVar The variable to join on, in the first table.
 	 * @param string $joinVar The variable to join on, in the second table.
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>>|array<int,string|IExpression> $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 *   Condition array of field names mapped to variables,
 	 *   ANDed together in the WHERE clause
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
@@ -504,7 +507,7 @@ interface IDatabase extends IReadableDatabase {
 	 *
 	 * @param string $table Unqualified name of table
 	 * @param-taint $table exec_sql
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>>|array<int,string|IExpression> $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 *   Array of conditions. See $conds in IDatabase::select()
 	 *   In order to prevent possible performance or replication issues or damaging a data
 	 *   accidentally, an empty condition for 'delete' queries isn't allowed.
@@ -535,7 +538,7 @@ interface IDatabase extends IReadableDatabase {
 	 *    [ 'dest1' => 'source1', ... ]. Source items may be literals
 	 *    rather than field names, but strings should be quoted with
 	 *    IDatabase::addQuotes()
-	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>>|array<int,string|IExpression> $conds
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 *    Condition array. See $conds in IDatabase::select() for
 	 *    the details of the format of condition arrays. May be "*" to copy the
 	 *    whole table.

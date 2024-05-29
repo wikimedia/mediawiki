@@ -980,6 +980,9 @@ __INDEXATTR__;
 	}
 
 	public function addQuotes( $s ) {
+		if ( $s instanceof RawSQLValue ) {
+			return $s->toSql();
+		}
 		$conn = $this->getBindingHandle();
 
 		if ( $s === null ) {

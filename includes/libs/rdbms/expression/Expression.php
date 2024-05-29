@@ -24,7 +24,7 @@ class Expression implements IExpression {
 	 * @param string $op One of '>', '<', '!=', '=', '>=', '<=', IExpression::LIKE, IExpression::NOT_LIKE
 	 * @phan-param '\x3E'|'\x3C'|'!='|'='|'\x3E='|'\x3C='|'LIKE'|'NOT LIKE' $op
 	 * @param-taint $op exec_sql
-	 * @param ?scalar|Blob|LikeValue|non-empty-list<scalar|Blob> $value
+	 * @param ?scalar|RawSQLValue|Blob|LikeValue|non-empty-list<scalar|Blob> $value
 	 * @param-taint $value escapes_sql
 	 * @internal Outside of rdbms, Use IReadableDatabase::expr() to create an expression object.
 	 */
@@ -71,7 +71,7 @@ class Expression implements IExpression {
 	 * @param string $op One of '>', '<', '!=', '=', '>=', '<=', IExpression::LIKE, IExpression::NOT_LIKE
 	 * @phan-param '\x3E'|'\x3C'|'!='|'='|'\x3E='|'\x3C='|'LIKE'|'NOT LIKE' $op
 	 * @param-taint $op exec_sql
-	 * @param ?scalar|Blob|LikeValue|non-empty-list<scalar|Blob> $value
+	 * @param ?scalar|RawSQLValue|Blob|LikeValue|non-empty-list<scalar|Blob> $value
 	 * @param-taint $value escapes_sql
 	 * @phan-side-effect-free
 	 */
@@ -86,7 +86,7 @@ class Expression implements IExpression {
 	 * @param string $op One of '>', '<', '!=', '=', '>=', '<=', IExpression::LIKE, IExpression::NOT_LIKE
 	 * @phan-param '\x3E'|'\x3C'|'!='|'='|'\x3E='|'\x3C='|'LIKE'|'NOT LIKE' $op
 	 * @param-taint $op exec_sql
-	 * @param ?scalar|Blob|LikeValue|non-empty-list<scalar|Blob> $value
+	 * @param ?scalar|RawSQLValue|Blob|LikeValue|non-empty-list<scalar|Blob> $value
 	 * @param-taint $value escapes_sql
 	 * @phan-side-effect-free
 	 */

@@ -34,6 +34,7 @@ use Wikimedia\Rdbms\DeleteQueryBuilder;
 use Wikimedia\Rdbms\Expression;
 use Wikimedia\Rdbms\InsertQueryBuilder;
 use Wikimedia\Rdbms\RawSQLExpression;
+use Wikimedia\Rdbms\RawSQLValue;
 use Wikimedia\Rdbms\ReplaceQueryBuilder;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Rdbms\UnionQueryBuilder;
@@ -468,6 +469,10 @@ class TaintCheckAnnotationsTest {
 		new Expression( $_GET['field'], '=', 'a' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		new Expression( 'a', $_GET['op'], 'a' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		new Expression( 'a', '=', $_GET['value'] ); // Safe
+
+		new Expression( $_GET['field'], '=', new RawSQLValue( 'a' ) ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		new Expression( 'a', $_GET['op'], new RawSQLValue( 'a' ) ); // @phan-suppress-current-line SecurityCheck-SQLInjection
+		new Expression( 'a', '=', new RawSQLValue( $_GET['value'] ) ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 
 		$safeExpr = new Expression( 'a', '=', 'a' );
 		$safeExpr->and( $_GET['field'], '=', 'a' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
