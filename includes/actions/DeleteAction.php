@@ -29,6 +29,7 @@ use MediaWiki\Message\Message;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\DeletePageFactory;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\TitleFactory;
@@ -162,9 +163,15 @@ class DeleteAction extends FormAction {
 			return;
 		}
 
+		$hasValidCsrfToken = $this->getContext()
+			->getCsrfTokenSet()
+			->matchTokenField(
+				CsrfTokenSet::DEFAULT_FIELD_NAME,
+				[ 'delete', $title->getPrefixedText() ]
+			);
+
 		# If we are not processing the results of the deletion confirmation dialog, show the form
-		$token = $request->getVal( 'wpEditToken' );
-		if ( !$request->wasPosted() || !$user->matchEditToken( $token, [ 'delete', $title->getPrefixedText() ] ) ) {
+		if ( !$request->wasPosted() || !$hasValidCsrfToken ) {
 			$this->tempConfirmDelete();
 			return;
 		}
