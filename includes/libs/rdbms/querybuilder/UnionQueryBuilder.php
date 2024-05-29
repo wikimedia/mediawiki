@@ -14,10 +14,10 @@ use Wikimedia\Rdbms\Platform\ISQLPlatform;
  * @ingroup Database
  */
 class UnionQueryBuilder {
-	/** @var string sort the results in ascending order */
+	/** sort the results in ascending order */
 	public const SORT_ASC = 'ASC';
 
-	/** @var string sort the results in descending order */
+	/** sort the results in descending order */
 	public const SORT_DESC = 'DESC';
 
 	/**

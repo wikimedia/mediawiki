@@ -124,16 +124,16 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 	/** @var DBUnexpectedError|null Last unresolved critical section error */
 	private $csmError;
 
-	/** @var string Whether the database is a file on disk */
+	/** Whether the database is a file on disk */
 	public const ATTR_DB_IS_FILE = 'db-is-file';
-	/** @var string Lock granularity is on the level of the entire database */
+	/** Lock granularity is on the level of the entire database */
 	public const ATTR_DB_LEVEL_LOCKING = 'db-level-locking';
-	/** @var string The SCHEMA keyword refers to a grouping of tables in a database */
+	/** The SCHEMA keyword refers to a grouping of tables in a database */
 	public const ATTR_SCHEMAS_AS_TABLE_GROUPS = 'supports-schemas';
 
-	/** @var int New Database instance will not be connected yet when returned */
+	/** New Database instance will not be connected yet when returned */
 	public const NEW_UNCONNECTED = 0;
-	/** @var int New Database instance will already be connected when returned */
+	/** New Database instance will already be connected when returned */
 	public const NEW_CONNECTED = 1;
 
 	/** No errors occurred during the query */

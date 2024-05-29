@@ -30,11 +30,11 @@ use UnexpectedValueException;
  * @internal This class should not be used outside of Database
  */
 class TransactionManager {
-	/** @var int Transaction is in a error state requiring a full or savepoint rollback */
+	/** Transaction is in a error state requiring a full or savepoint rollback */
 	public const STATUS_TRX_ERROR = 1;
-	/** @var int Transaction is active and in a normal state */
+	/** Transaction is active and in a normal state */
 	public const STATUS_TRX_OK = 2;
-	/** @var int No transaction is active */
+	/** No transaction is active */
 	public const STATUS_TRX_NONE = 3;
 
 	/** Session is in a error state requiring a reset */
@@ -46,7 +46,7 @@ class TransactionManager {
 	private const TINY_WRITE_SEC = 0.010;
 	/** @var float Consider a write slow if it took more than this many seconds */
 	private const SLOW_WRITE_SEC = 0.500;
-	/** @var int Assume an insert of this many rows or less should be fast to replicate */
+	/** Assume an insert of this many rows or less should be fast to replicate */
 	private const SMALL_WRITE_ROWS = 100;
 
 	/** @var string Prefix to the atomic section counter used to make savepoint IDs */

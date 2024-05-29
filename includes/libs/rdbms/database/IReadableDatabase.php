@@ -35,9 +35,9 @@ use Wikimedia\Rdbms\Platform\ISQLPlatform;
  */
 interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 
-	/** @var bool Parameter to unionQueries() for UNION ALL */
+	/** Parameter to unionQueries() for UNION ALL */
 	public const UNION_ALL = true;
-	/** @var bool Parameter to unionQueries() for UNION DISTINCT */
+	/** Parameter to unionQueries() for UNION DISTINCT */
 	public const UNION_DISTINCT = false;
 
 	/**

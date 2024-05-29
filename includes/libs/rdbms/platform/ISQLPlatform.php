@@ -37,41 +37,41 @@ use Wikimedia\Rdbms\Subquery;
  */
 interface ISQLPlatform {
 
-	/** @var int Combine list with comma delimiters */
+	/** Combine list with comma delimiters */
 	public const LIST_COMMA = 0;
-	/** @var int Combine list with AND clauses */
+	/** Combine list with AND clauses */
 	public const LIST_AND = 1;
-	/** @var int Convert map into a SET clause */
+	/** Convert map into a SET clause */
 	public const LIST_SET = 2;
-	/** @var int Treat as field name and do not apply value escaping */
+	/** Treat as field name and do not apply value escaping */
 	public const LIST_NAMES = 3;
-	/** @var int Combine list with OR clauses */
+	/** Combine list with OR clauses */
 	public const LIST_OR = 4;
 
-	/** @var string Unconditional update/delete of whole table */
+	/** Unconditional update/delete of whole table */
 	public const ALL_ROWS = '*';
 
-	/** @var int Idiom for "no special flags" */
+	/** Idiom for "no special flags" */
 	public const QUERY_NORMAL = 0;
-	/** @var int Ignore query errors and return false when they happen */
+	/** Ignore query errors and return false when they happen */
 	public const QUERY_SILENCE_ERRORS = 1; // b/c for 1.32 query() argument; (int)true = 1
 	/** Track a TEMPORARY table CREATE as if it was for a permanent table (for testing) */
 	public const QUERY_PSEUDO_PERMANENT = 2;
-	/** @var int Enforce that a query does not make effective writes */
+	/** Enforce that a query does not make effective writes */
 	public const QUERY_REPLICA_ROLE = 4;
-	/** @var int Ignore the current presence of any DBO_TRX flag */
+	/** Ignore the current presence of any DBO_TRX flag */
 	public const QUERY_IGNORE_DBO_TRX = 8;
-	/** @var int Do not try to retry the query if the connection was lost */
+	/** Do not try to retry the query if the connection was lost */
 	public const QUERY_NO_RETRY = 16;
-	/** @var int Query is a read-only Data Query Language query */
+	/** Query is a read-only Data Query Language query */
 	public const QUERY_CHANGE_NONE = 32;
-	/** @var int Query is a Transaction Control Language command (BEGIN, USE, SET, ...) */
+	/** Query is a Transaction Control Language command (BEGIN, USE, SET, ...) */
 	public const QUERY_CHANGE_TRX = 64 | self::QUERY_IGNORE_DBO_TRX;
-	/** @var int Query is a Data Manipulation Language command (INSERT, DELETE, LOCK, ...) */
+	/** Query is a Data Manipulation Language command (INSERT, DELETE, LOCK, ...) */
 	public const QUERY_CHANGE_ROWS = 128;
-	/** @var int Query is a Data Definition Language command */
+	/** Query is a Data Definition Language command */
 	public const QUERY_CHANGE_SCHEMA = 256 | self::QUERY_IGNORE_DBO_TRX;
-	/** @var int Query is a command for advisory locks */
+	/** Query is a command for advisory locks */
 	public const QUERY_CHANGE_LOCKS = 512 | self::QUERY_IGNORE_DBO_TRX;
 
 	/**

@@ -37,52 +37,52 @@ use Wikimedia\ScopedCallback;
  * @ingroup Database
  */
 interface IDatabase extends IReadableDatabase {
-	/** @var int Callback triggered immediately due to no active transaction */
+	/** Callback triggered immediately due to no active transaction */
 	public const TRIGGER_IDLE = 1;
-	/** @var int Callback triggered by COMMIT */
+	/** Callback triggered by COMMIT */
 	public const TRIGGER_COMMIT = 2;
-	/** @var int Callback triggered by ROLLBACK */
+	/** Callback triggered by ROLLBACK */
 	public const TRIGGER_ROLLBACK = 3;
-	/** @var int Callback triggered by atomic section cancel (ROLLBACK TO SAVEPOINT) */
+	/** Callback triggered by atomic section cancel (ROLLBACK TO SAVEPOINT) */
 	public const TRIGGER_CANCEL = 4;
 
-	/** @var string Transaction is requested by regular caller outside of the DB layer */
+	/** Transaction is requested by regular caller outside of the DB layer */
 	public const TRANSACTION_EXPLICIT = '';
-	/** @var string Transaction is requested internally via DBO_TRX/startAtomic() */
+	/** Transaction is requested internally via DBO_TRX/startAtomic() */
 	public const TRANSACTION_INTERNAL = 'implicit';
 
-	/** @var string Atomic section is not cancelable */
+	/** Atomic section is not cancelable */
 	public const ATOMIC_NOT_CANCELABLE = '';
-	/** @var string Atomic section is cancelable */
+	/** Atomic section is cancelable */
 	public const ATOMIC_CANCELABLE = 'cancelable';
 
-	/** @var string Commit/rollback is from outside the IDatabase handle and connection manager */
+	/** Commit/rollback is from outside the IDatabase handle and connection manager */
 	public const FLUSHING_ONE = '';
-	/** @var string Commit/rollback is from the connection manager for the IDatabase handle */
+	/** Commit/rollback is from the connection manager for the IDatabase handle */
 	public const FLUSHING_ALL_PEERS = 'flush';
-	/** @var string Commit/rollback is from the IDatabase handle internally */
+	/** Commit/rollback is from the IDatabase handle internally */
 	public const FLUSHING_INTERNAL = 'flush-internal';
 
-	/** @var string Estimate total time (RTT, scanning, waiting on locks, applying) */
+	/** Estimate total time (RTT, scanning, waiting on locks, applying) */
 	public const ESTIMATE_TOTAL = 'total';
-	/** @var string Estimate time to apply (scanning, applying) */
+	/** Estimate time to apply (scanning, applying) */
 	public const ESTIMATE_DB_APPLY = 'apply';
 
 	/** Flag to return the lock acquisition timestamp (null if not acquired) */
 	public const LOCK_TIMESTAMP = 1;
 
-	/** @var string Field for getLBInfo()/setLBInfo() */
+	/** Field for getLBInfo()/setLBInfo() */
 	public const LB_TRX_ROUND_ID = 'trxRoundId';
-	/** @var string Field for getLBInfo()/setLBInfo() */
+	/** Field for getLBInfo()/setLBInfo() */
 	public const LB_READ_ONLY_REASON = 'readOnlyReason';
 
-	/** @var string Primary server than can stream writes to replica servers */
+	/** Primary server than can stream writes to replica servers */
 	public const ROLE_STREAMING_MASTER = 'streaming-master';
-	/** @var string Replica server that receives writes from a primary server */
+	/** Replica server that receives writes from a primary server */
 	public const ROLE_STREAMING_REPLICA = 'streaming-replica';
-	/** @var string Replica server within a static dataset */
+	/** Replica server within a static dataset */
 	public const ROLE_STATIC_CLONE = 'static-clone';
-	/** @var string Server with unknown topology role */
+	/** Server with unknown topology role */
 	public const ROLE_UNKNOWN = 'unknown';
 
 	/**
