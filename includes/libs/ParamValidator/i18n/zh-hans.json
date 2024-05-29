@@ -2,14 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"Diskdance",
-			"Func"
+			"Func",
+			"LittlePaw365"
 		]
 	},
 	"paramvalidator-badbool": "布尔类型参数\"$1\"的值\"$2\"无效。传递 $3 为真，或 $5 为假。",
 	"paramvalidator-badexpiry": "日期类型参数\"$1\"的值\"$2\"无效。",
 	"paramvalidator-badexpiry-duration": "提供给参数<var>$1</var>的值\"$2\"超过了最大值\"$3\"。",
 	"paramvalidator-badexpiry-duration-max": "提供给参数<var>$1</var>的值\"$2\"超过了最大值\"$3\"。使用最大值代替。",
-	"paramvalidator-badexpiry-past": "到期参数“$1”的值“$2”是过去的时间。",
+	"paramvalidator-badexpiry-past": "期限参数“$1”的值“$2”位于过去。",
 	"paramvalidator-badfloat": "浮点参数“$1”的值“$2”无效。",
 	"paramvalidator-badfloat-notfinite": "浮点参数“$1”的值“$2”太大或不是数字。",
 	"paramvalidator-badinteger": "整数参数“$1”的值“$2”无效。",
