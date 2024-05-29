@@ -405,7 +405,8 @@ interface ISQLPlatform {
 	 *
 	 * This doesn't need to be overridden unless CASE isn't supported in the RDBMS.
 	 *
-	 * @param string|array|IExpression $cond SQL condition expression (yields a boolean)
+	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>>|array<int,string|IExpression> $cond
+	 *  SQL condition expression (yields a boolean)
 	 * @param string $caseTrueExpression SQL expression to return when the condition is true
 	 * @param string $caseFalseExpression SQL expression to return when the condition is false
 	 * @return string SQL fragment
