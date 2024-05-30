@@ -753,6 +753,7 @@ class Sanitizer {
 				| -o-link-source\s*:
 				| -o-replace\s*:
 				| url\s*\(
+				| src\s*\(
 				| image\s*\(
 				| image-set\s*\(
 				| attr\s*\([^)]+[\s,]+url
