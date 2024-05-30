@@ -686,9 +686,12 @@ class WebInstaller extends Installer {
 	}
 
 	public function showStatusMessage( Status $status ) {
-		$errors = array_merge( $status->getErrorsArray(), $status->getWarningsArray() );
-		foreach ( $errors as $error ) {
-			$this->showMessage( ...$error );
+		// Show errors at the top in web installer to make them easier to notice
+		foreach ( $status->getMessages( 'error' ) as $msg ) {
+			$this->showMessage( $msg );
+		}
+		foreach ( $status->getMessages( 'warning' ) as $msg ) {
+			$this->showMessage( $msg );
 		}
 	}
 
