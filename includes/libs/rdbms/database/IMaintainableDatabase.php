@@ -35,7 +35,7 @@ interface IMaintainableDatabase extends IDatabase {
 	/**
 	 * Returns the size of a text field, or -1 for "unlimited"
 	 *
-	 * @param string $table
+	 * @param string $table Unqualified name of table
 	 * @param string $field
 	 * @return int
 	 * @deprecated Since 1.43

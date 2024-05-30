@@ -98,11 +98,11 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * which were already set. This can be used to interface with legacy code.
 	 * If a key is omitted, the previous value will be retained.
 	 *
-	 * The parameters must be formatted as required by Database::select. For
+	 * The parameters must be formatted as required by IReadableDatabase::select. For
 	 * example, JoinGroup cannot be used.
 	 *
 	 * @param array $info Associative array of query info, with keys:
-	 *   - tables: The raw array of tables to be passed to Database::select()
+	 *   - tables: The raw array of tables to be passed to IReadableDatabase::select()
 	 *   - fields: The fields
 	 *   - conds: The conditions
 	 *   - options: The query options
@@ -139,7 +139,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	}
 
 	/**
-	 * Given a table or table array as might be passed to Database::select(),
+	 * Given a table or table array as might be passed to IReadableDatabase::select(),
 	 * append it to the existing tables, interpreting nested arrays as join
 	 * groups.
 	 *
@@ -147,7 +147,8 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * groups as nested arrays. In new code, join groups should generally
 	 * be created with newJoinGroup(), which provides a fluent interface.
 	 *
-	 * @param string|array $tables
+	 * @param string|array $tables Table references; see {@link IReadableDatabase::select}
+	 *  for details
 	 * @return $this
 	 */
 	public function rawTables( $tables ) {
@@ -194,7 +195,8 @@ class SelectQueryBuilder extends JoinGroupBase {
 	/**
 	 * Add a single table to the SELECT query. Alias for table().
 	 *
-	 * @param string|JoinGroup|SelectQueryBuilder $table The table, see table() for details
+	 * @param string|JoinGroup|SelectQueryBuilder $table Table reference; see {@link table}
+	 *  for details
 	 * @param-taint $table exec_sql
 	 * @param string|null $alias The table alias, or null for no alias
 	 * @param-taint $alias exec_sql
@@ -207,7 +209,8 @@ class SelectQueryBuilder extends JoinGroupBase {
 	/**
 	 * Add multiple tables. It's recommended to use join() and leftJoin() instead in new code.
 	 *
-	 * @param string[] $tables
+	 * @param string[] $tables Table references (string keys are aliases). See {@link table}
+	 *  for details.
 	 * @param-taint $tables exec_sql
 	 * @return $this
 	 */
@@ -863,7 +866,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 
 	/**
 	 * Get an associative array describing the query in terms of its raw parameters to
-	 * Database::select(). This can be used to interface with legacy code.
+	 * IReadableDatabase::select(). This can be used to interface with legacy code.
 	 *
 	 * @param string $joinsName The name of the join_conds key
 	 * @return array The query info array, with keys:

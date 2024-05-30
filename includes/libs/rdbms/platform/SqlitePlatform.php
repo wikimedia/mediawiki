@@ -102,11 +102,11 @@ class SqlitePlatform extends SQLPlatform {
 	}
 
 	public function buildGroupConcatField(
-		$delim, $table, $field, $conds = '', $join_conds = []
+		$delim, $tables, $field, $conds = '', $join_conds = []
 	) {
 		$fld = "group_concat($field," . $this->quoter->addQuotes( $delim ) . ')';
 
-		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
+		return '(' . $this->selectSQLText( $tables, $fld, $conds, null, [], $join_conds ) . ')';
 	}
 
 	protected function makeInsertNonConflictingVerbAndOptions() {

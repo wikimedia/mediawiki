@@ -332,26 +332,26 @@ class DBConnRef implements IMaintainableDatabase, IDatabaseForOwner {
 	}
 
 	public function selectField(
-		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
+		$tables, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
 	public function selectFieldValues(
-		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
+		$tables, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
 	): array {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
 	public function select(
-		$table, $vars, $conds = '', $fname = __METHOD__,
+		$tables, $vars, $conds = '', $fname = __METHOD__,
 		$options = [], $join_conds = []
 	) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
 	public function selectSQLText(
-		$table, $vars, $conds = '', $fname = __METHOD__,
+		$tables, $vars, $conds = '', $fname = __METHOD__,
 		$options = [], $join_conds = []
 	) {
 		return $this->__call( __FUNCTION__, func_get_args() );
@@ -362,7 +362,7 @@ class DBConnRef implements IMaintainableDatabase, IDatabaseForOwner {
 	}
 
 	public function selectRow(
-		$table, $vars, $conds, $fname = __METHOD__,
+		$tables, $vars, $conds, $fname = __METHOD__,
 		$options = [], $join_conds = []
 	) {
 		return $this->__call( __FUNCTION__, func_get_args() );
@@ -445,7 +445,7 @@ class DBConnRef implements IMaintainableDatabase, IDatabaseForOwner {
 	}
 
 	public function buildGroupConcatField(
-		$delim, $table, $field, $conds = '', $join_conds = []
+		$delim, $tables, $field, $conds = '', $join_conds = []
 	) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
@@ -475,7 +475,7 @@ class DBConnRef implements IMaintainableDatabase, IDatabaseForOwner {
 	}
 
 	public function buildSelectSubquery(
-		$table, $vars, $conds = '', $fname = __METHOD__,
+		$tables, $vars, $conds = '', $fname = __METHOD__,
 		$options = [], $join_conds = []
 	) {
 		return $this->__call( __FUNCTION__, func_get_args() );

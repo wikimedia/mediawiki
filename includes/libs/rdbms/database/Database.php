@@ -1289,7 +1289,7 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 	}
 
 	public function selectField(
-		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
+		$tables, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
 		if ( $var === '*' ) {
 			throw new DBUnexpectedError( $this, "Cannot use a * field" );
@@ -1300,7 +1300,7 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 		$options = $this->platform->normalizeOptions( $options );
 		$options['LIMIT'] = 1;
 
-		$res = $this->select( $table, $var, $cond, $fname, $options, $join_conds );
+		$res = $this->select( $tables, $var, $cond, $fname, $options, $join_conds );
 		if ( $res === false ) {
 			throw new DBUnexpectedError( $this, "Got false from select()" );
 		}
@@ -1314,7 +1314,7 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 	}
 
 	public function selectFieldValues(
-		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
+		$tables, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
 	): array {
 		if ( $var === '*' ) {
 			throw new DBUnexpectedError( $this, "Cannot use a * field" );
@@ -1323,7 +1323,7 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 		}
 
 		$options = $this->platform->normalizeOptions( $options );
-		$res = $this->select( $table, [ 'value' => $var ], $cond, $fname, $options, $join_conds );
+		$res = $this->select( $tables, [ 'value' => $var ], $cond, $fname, $options, $join_conds );
 		if ( $res === false ) {
 			throw new DBUnexpectedError( $this, "Got false from select()" );
 		}
@@ -1337,11 +1337,11 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 	}
 
 	public function select(
-		$table, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
+		$tables, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
 		$options = (array)$options;
 		// Don't turn this into using platform directly, DatabaseMySQL overrides this.
-		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
+		$sql = $this->selectSQLText( $tables, $vars, $conds, $fname, $options, $join_conds );
 		// Treat SELECT queries with FOR UPDATE as writes. This matches
 		// how MySQL enforces read_only (FOR SHARE and LOCK IN SHADE MODE are allowed).
 		$flags = in_array( 'FOR UPDATE', $options, true )
@@ -1352,13 +1352,13 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 		return $this->query( $query, $fname );
 	}
 
-	public function selectRow( $table, $vars, $conds, $fname = __METHOD__,
+	public function selectRow( $tables, $vars, $conds, $fname = __METHOD__,
 		$options = [], $join_conds = []
 	) {
 		$options = (array)$options;
 		$options['LIMIT'] = 1;
 
-		$res = $this->select( $table, $vars, $conds, $fname, $options, $join_conds );
+		$res = $this->select( $tables, $vars, $conds, $fname, $options, $join_conds );
 		if ( $res === false ) {
 			throw new DBUnexpectedError( $this, "Got false from select()" );
 		}
@@ -1689,7 +1689,7 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 	}
 
 	/**
-	 * @param string $table
+	 * @param string $table Unqualified name of table
 	 * @return string|null The AUTO_INCREMENT/SERIAL column; null if not needed
 	 */
 	protected function getInsertIdColumnForUpsert( $table ) {
@@ -1697,7 +1697,7 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 	}
 
 	/**
-	 * @param string $table
+	 * @param string $table Unqualified name of table
 	 * @return array<string,string> Map of (column => type); [] if not needed
 	 */
 	protected function getValueTypesForWithClause( $table ) {
@@ -1803,8 +1803,8 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 	 * Implementation of insertSelect() based on select() and insert()
 	 *
 	 * @see IDatabase::insertSelect()
-	 * @param string $destTable
-	 * @param string|array $srcTable
+	 * @param string $destTable Unqualified name of destination table
+	 * @param string|array $srcTable Unqualified name of source table
 	 * @param array $varMap
 	 * @param array $conds
 	 * @param string $fname
@@ -1871,8 +1871,8 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 	 * we don't want to select everything into memory
 	 *
 	 * @see IDatabase::insertSelect()
-	 * @param string $destTable
-	 * @param string|array $srcTable
+	 * @param string $destTable Unqualified name of destination table
+	 * @param string|array $srcTable Unqualified name of source table
 	 * @param array $varMap
 	 * @param array $conds
 	 * @param string $fname
@@ -3323,9 +3323,9 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 	}
 
 	public function selectSQLText(
-		$table, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
+		$tables, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
-		return $this->platform->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
+		return $this->platform->selectSQLText( $tables, $vars, $conds, $fname, $options, $join_conds );
 	}
 
 	public function buildComparison( string $op, array $conds ): string {
@@ -3465,16 +3465,16 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 	}
 
 	public function buildGroupConcatField(
-		$delim, $table, $field, $conds = '', $join_conds = []
+		$delim, $tables, $field, $conds = '', $join_conds = []
 	) {
-		return $this->platform->buildGroupConcatField( $delim, $table, $field, $conds, $join_conds );
+		return $this->platform->buildGroupConcatField( $delim, $tables, $field, $conds, $join_conds );
 	}
 
 	public function buildSelectSubquery(
-		$table, $vars, $conds = '', $fname = __METHOD__,
+		$tables, $vars, $conds = '', $fname = __METHOD__,
 		$options = [], $join_conds = []
 	) {
-		return $this->platform->buildSelectSubquery( $table, $vars, $conds, $fname, $options, $join_conds );
+		return $this->platform->buildSelectSubquery( $tables, $vars, $conds, $fname, $options, $join_conds );
 	}
 
 	public function buildExcludedValue( $column ) {

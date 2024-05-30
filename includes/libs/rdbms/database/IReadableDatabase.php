@@ -166,8 +166,9 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 *
 	 * @internal callers outside of rdbms library should use SelectQueryBuilder instead.
 	 *
-	 * @param string|array $table Unqualified name of table. {@see select} for details.
-	 * @param-taint $table exec_sql
+	 * @param string|array $tables Table reference(s) using unqualified table names.
+	 *  {@see select} for details.
+	 * @param-taint $tables exec_sql
 	 * @param string|array $var The field name to select. This must be a valid SQL fragment: do not
 	 *  use unvalidated user input. Can be an array, but must contain exactly 1 element then.
 	 *  {@see select} for details.
@@ -186,7 +187,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function selectField(
-		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
+		$tables, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
 	);
 
 	/**
@@ -199,8 +200,9 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 *
 	 * @internal callers outside of rdbms library should use SelectQueryBuilder instead.
 	 *
-	 * @param string|array $table Unqualified name of table. {@see select} for details.
-	 * @param-taint $table exec_sql
+	 * @param string|array $tables Table reference(s) using unqualified table names.
+	 *   {@see select} for details.
+	 * @param-taint $tables exec_sql
 	 * @param string $var The field name to select. This must be a valid SQL
 	 *   fragment: do not use unvalidated user input.
 	 * @param-taint $var exec_sql
@@ -220,7 +222,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * @since 1.25
 	 */
 	public function selectFieldValues(
-		$table, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
+		$tables, $var, $cond = '', $fname = __METHOD__, $options = [], $join_conds = []
 	): array;
 
 	/**
@@ -229,11 +231,25 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * New callers should use {@link newSelectQueryBuilder} with {@link SelectQueryBuilder::fetchResultSet}
 	 * instead, which is more readable and less error-prone.
 	 *
-	 * @param string|array $table Unqualified name of table(s)
-	 * @param-taint $table exec_sql
+	 * @param string|array $tables Table reference(s) using unqualified table names.
+	 * @param-taint $tables exec_sql
 	 *
-	 * May be either an array of table names, or a single string holding a table
-	 * name. If an array is given, table aliases can be specified, for example:
+	 * Each table reference assigns a table name to a specified collection of rows
+	 * for the context of the query (e.g. field expressions, WHERE clause, GROUP BY
+	 * clause, HAVING clause, ect...). Use of multiple table references implies a JOIN.
+	 *
+	 * If a string is given, it must hold the name of the table having the specified
+	 * collection of rows. If an array is given, each entry must be one of the following:
+	 *   - A string holding the name of the existing table which has the collection
+	 *     of rows. If keyed by a string, the key will be the assigned table name.
+	 *   - A Subquery instance which specifies the collection of rows derived from
+	 *     a subquery. If keyed by a string, the key will be the assigned table name.
+	 *     Otherwise, the SQL text of the subquery will be the assigned table name.
+	 *   - An array specifying the collection of rows derived from a parenthesized
+	 *     JOIN. It must be keyed by a string, which will be used as the assigned
+	 *     table name.
+	 *
+	 * String keys allow table aliases to be specified, for example:
 	 *
 	 *    [ 'a' => 'user' ]
 	 *
@@ -415,7 +431,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function select(
-		$table,
+		$tables,
 		$vars,
 		$conds = '',
 		$fname = __METHOD__,
@@ -434,8 +450,9 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * instead, which is more readable and less error-prone.
 	 *
 	 * @internal
-	 * @param string|array $table Unqualified name of table
-	 * @param-taint $table exec_sql
+	 * @param string|array $tables Table reference(s) using unqualified table names.
+	 *   {@see select} for details.
+	 * @param-taint $tables exec_sql
 	 * @param string|array $vars Field names
 	 * @param-taint $vars exec_sql
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
@@ -452,7 +469,7 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function selectRow(
-		$table,
+		$tables,
 		$vars,
 		$conds,
 		$fname = __METHOD__,

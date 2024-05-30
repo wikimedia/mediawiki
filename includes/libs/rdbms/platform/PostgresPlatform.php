@@ -62,7 +62,7 @@ class PostgresPlatform extends SQLPlatform {
 	}
 
 	public function selectSQLText(
-		$table, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
+		$tables, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
 		if ( is_string( $options ) ) {
 			$options = [ $options ];
@@ -81,7 +81,7 @@ class PostgresPlatform extends SQLPlatform {
 				unset( $options[$forUpdateKey] );
 				$options['FOR UPDATE'] = [];
 
-				$toCheck = $table;
+				$toCheck = $tables;
 				reset( $toCheck );
 				while ( $toCheck ) {
 					$alias = key( $toCheck );
@@ -116,7 +116,7 @@ class PostgresPlatform extends SQLPlatform {
 			}
 		}
 
-		return parent::selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
+		return parent::selectSQLText( $tables, $vars, $conds, $fname, $options, $join_conds );
 	}
 
 	protected function makeSelectOptions( array $options ) {
@@ -158,11 +158,11 @@ class PostgresPlatform extends SQLPlatform {
 	}
 
 	public function buildGroupConcatField(
-		$delim, $table, $field, $conds = '', $join_conds = []
+		$delim, $tables, $field, $conds = '', $join_conds = []
 	) {
 		$fld = "array_to_string(array_agg($field)," . $this->quoter->addQuotes( $delim ) . ')';
 
-		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
+		return '(' . $this->selectSQLText( $tables, $fld, $conds, null, [], $join_conds ) . ')';
 	}
 
 	public function makeInsertLists( array $rows, $aliasPrefix = '', array $typeByColumn = [] ) {

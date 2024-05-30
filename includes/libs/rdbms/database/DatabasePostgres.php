@@ -277,21 +277,6 @@ class DatabasePostgres extends Database {
 		return '00000';
 	}
 
-	/**
-	 * Estimate rows in dataset
-	 * Returns estimated count, based on EXPLAIN output
-	 * This is not necessarily an accurate estimate, so use sparingly
-	 * Returns -1 if count cannot be found
-	 * Takes same arguments as Database::select()
-	 *
-	 * @param string $table
-	 * @param string $var
-	 * @param string $conds
-	 * @param string $fname
-	 * @param array $options
-	 * @param array $join_conds
-	 * @return int
-	 */
 	public function estimateRowCount( $table, $var = '*', $conds = '',
 		$fname = __METHOD__, $options = [], $join_conds = []
 	): int {
@@ -409,24 +394,6 @@ __INDEXATTR__;
 		return $res && $res->numRows() > 0;
 	}
 
-	/**
-	 * INSERT SELECT wrapper
-	 * $varMap must be an associative array of the form [ 'dest1' => 'source1', ... ]
-	 * Source items may be literals rather then field names, but strings should
-	 * be quoted with Database::addQuotes()
-	 * $conds may be "*" to copy the whole table
-	 * srcTable may be an array of tables.
-	 * @todo FIXME: Implement this a little better (separate select/insert)?
-	 *
-	 * @param string $destTable
-	 * @param array|string $srcTable
-	 * @param array $varMap
-	 * @param array $conds
-	 * @param string $fname
-	 * @param array $insertOptions
-	 * @param array $selectOptions
-	 * @param array $selectJoinConds
-	 */
 	protected function doInsertSelectNative(
 		$destTable,
 		$srcTable,
@@ -464,10 +431,6 @@ __INDEXATTR__;
 		return new NextSequenceValue;
 	}
 
-	/**
-	 * @param string $table
-	 * @return array<string,string>
-	 */
 	public function getValueTypesForWithClause( $table ) {
 		$typesByColumn = [];
 

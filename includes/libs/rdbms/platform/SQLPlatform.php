@@ -644,16 +644,16 @@ class SQLPlatform implements ISQLPlatform {
 	}
 
 	public function selectSQLText(
-		$table, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
+		$tables, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
-		if ( is_array( $table ) ) {
-			$tables = $table;
-		} elseif ( $table === '' || $table === null || $table === false ) {
-			$tables = [];
-		} elseif ( is_string( $table ) ) {
-			$tables = [ $table ];
-		} else {
-			throw new DBLanguageError( __METHOD__ . ' called with incorrect table parameter' );
+		if ( !is_array( $tables ) ) {
+			if ( $tables === '' || $tables === null || $tables === false ) {
+				$tables = [];
+			} elseif ( is_string( $tables ) ) {
+				$tables = [ $tables ];
+			} else {
+				throw new DBLanguageError( __METHOD__ . ' called with incorrect table parameter' );
+			}
 		}
 
 		if ( is_array( $vars ) ) {
@@ -828,7 +828,7 @@ class SQLPlatform implements ISQLPlatform {
 	 * Get the aliased table name clause for a FROM clause
 	 * which might have a JOIN and/or USE INDEX or IGNORE INDEX clause
 	 *
-	 * @param array $tables ( [alias] => table )
+	 * @param array $tables Array of ([alias] => table reference)
 	 * @param array $use_index Same as for select()
 	 * @param array $ignore_index Same as for select()
 	 * @param array $join_conds Same as for select()
@@ -961,7 +961,7 @@ class SQLPlatform implements ISQLPlatform {
 	 * and "(SELECT * from tableA) newTablename" for subqueries (e.g. derived tables)
 	 *
 	 * @see Database::tableName()
-	 * @param string|Subquery $table Table name or object with a 'sql' field
+	 * @param string|Subquery $table Unqualified table name or subquery
 	 * @param string|false $alias Table alias (optional)
 	 * @return string SQL name for aliased table. Will not alias a table to its own name
 	 */
@@ -1285,19 +1285,19 @@ class SQLPlatform implements ISQLPlatform {
 	}
 
 	public function buildGroupConcatField(
-		$delim, $table, $field, $conds = '', $join_conds = []
+		$delim, $tables, $field, $conds = '', $join_conds = []
 	) {
 		$fld = "GROUP_CONCAT($field SEPARATOR " . $this->quoter->addQuotes( $delim ) . ')';
 
-		return '(' . $this->selectSQLText( $table, $fld, $conds, __METHOD__, [], $join_conds ) . ')';
+		return '(' . $this->selectSQLText( $tables, $fld, $conds, __METHOD__, [], $join_conds ) . ')';
 	}
 
 	public function buildSelectSubquery(
-		$table, $vars, $conds = '', $fname = __METHOD__,
+		$tables, $vars, $conds = '', $fname = __METHOD__,
 		$options = [], $join_conds = []
 	) {
 		return new Subquery(
-			$this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds )
+			$this->selectSQLText( $tables, $vars, $conds, $fname, $options, $join_conds )
 		);
 	}
 
@@ -1480,7 +1480,7 @@ class SQLPlatform implements ISQLPlatform {
 	}
 
 	/**
-	 * @param string $table
+	 * @param string $table Unqualified name of table
 	 * @param string|array $conds
 	 * @return Query
 	 */
