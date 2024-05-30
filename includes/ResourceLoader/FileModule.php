@@ -1128,7 +1128,7 @@ class FileModule extends Module {
 			// T253055: store the implicit dependency paths in a form relative to any install
 			// path so that multiple version of the application can share the cache for identical
 			// less stylesheets. This also avoids churn during application updates.
-			$files = $compiler->AllParsedFiles();
+			$files = $compiler->getParsedFiles();
 			$data = [
 				'css'   => $css,
 				'files' => Module::getRelativePaths( $files ),
