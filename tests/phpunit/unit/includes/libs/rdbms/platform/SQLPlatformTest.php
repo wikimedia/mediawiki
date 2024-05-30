@@ -29,7 +29,7 @@ class SQLPlatformTest extends TestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->platform = new SQLPlatformTestHelper( new AddQuoterMock() );
+		$this->platform = new SQLPlatformTestHelper( new AddQuoterMock(), new TestLogger() );
 	}
 
 	/**

@@ -1342,7 +1342,7 @@ class SQLPlatform implements ISQLPlatform {
 				);
 			}
 			// Make the value tuple that defines this row
-			$valueTuples[] = '(' . $this->makeList( $row, self::LIST_COMMA ) . ')';
+			$valueTuples[] = '(' . $this->makeList( array_values( $row ), self::LIST_COMMA ) . ')';
 		}
 
 		$magicAliasFields = [];
