@@ -1080,6 +1080,7 @@
 	"linterror-misnested-tag": "Misnested tag which should be properly nested",
 	"linterror-missing-end-tag": "Missing end tag",
 	"linterror-missing-end-tag-in-heading": "Missing end tag in heading",
+	"linterror-missing-image-alt-text": "Missing image alt text",
 	"linterror-multi-colon-escape": "Multi colon escape",
 	"linterror-multiline-html-table-in-list": "Multiline HTML5 table inside a list",
 	"linterror-multiple-unclosed-formatting-tags": "Multiple unclosed formatting tags on the page",
