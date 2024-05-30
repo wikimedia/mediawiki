@@ -38,6 +38,29 @@
 .mw-content-ltr .redirectText li:first-child {
 	padding-left: 47px;
 	background: transparent url( images/redirect-ltr.svg ) bottom left no-repeat;
+
+	html.skin-theme-clientpref-night & {
+		filter: invert( 1 );
+
+		> a {
+			filter: invert( 1 );
+		}
+	}
+
+	/**
+	* Auto night mode.
+	*
+	* Applies the night mode color palette only in response to system settings.
+	*/
+	@media ( prefers-color-scheme: dark ) {
+		html.skin-theme-clientpref-os & {
+			filter: invert( 1 );
+
+			> a {
+				filter: invert( 1 );
+			}
+		}
+	}
 }
 
 /* @noflip */
