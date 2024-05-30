@@ -96,9 +96,6 @@ class NamespaceDupes extends Maintenance {
 			"Talk:File:Foo -> File_Talk:Foo" );
 	}
 
-	/**
-	 * @suppress PhanPluginUnreachableCode
-	 */
 	public function execute() {
 		$options = [
 			'fix' => $this->hasOption( 'fix' ),
@@ -109,8 +106,6 @@ class NamespaceDupes extends Maintenance {
 			'source-pseudo-namespace' => $this->getOption( 'source-pseudo-namespace', '' ),
 			'dest-namespace' => intval( $this->getOption( 'dest-namespace', 0 ) )
 		];
-
-		$this->fatalError( "Unsafe to run at this time. See: T364546\n" );
 
 		if ( $options['source-pseudo-namespace'] !== '' ) {
 			$retval = $this->checkPrefix( $options );
@@ -642,10 +637,14 @@ class NamespaceDupes extends Maintenance {
 
 		// Update *_from_namespace in links tables
 		$fromNamespaceTables = [
-			[ 'pagelinks', 'pl', [ 'pl_namespace', 'pl_title' ] ],
 			[ 'templatelinks', 'tl', [ 'tl_target_id' ] ],
 			[ 'imagelinks', 'il', [ 'il_to' ] ]
 		];
+		if ( $this->getConfig()->get( MainConfigNames::PageLinksSchemaMigrationStage ) & SCHEMA_COMPAT_WRITE_OLD ) {
+			$fromNamespaceTables[] = [ 'pagelinks', 'pl', [ 'pl_namespace', 'pl_title' ] ];
+		} else {
+			$fromNamespaceTables[] = [ 'pagelinks', 'pl', [ 'pl_target_id' ] ];
+		}
 		$updateRowsPerQuery = $this->getConfig()->get( MainConfigNames::UpdateRowsPerQuery );
 		foreach ( $fromNamespaceTables as [ $table, $fieldPrefix, $additionalPrimaryKeyFields ] ) {
 			$fromField = "{$fieldPrefix}_from";
