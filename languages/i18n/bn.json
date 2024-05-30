@@ -1222,6 +1222,7 @@
 	"linterror-bogus-image-options": "ভুয়া ফাইল বিকল্প",
 	"linterror-deletable-table-tag": "টেবিল ট্যাগ যা মুছে ফেলা উচিত",
 	"linterror-html5-misnesting": "মিসনেস্টিং (এখন ভাঙা)",
+	"linterror-inline-media-caption": "অদৃশ্য ক্যাপশন",
 	"linterror-large-tables": "অতি বড় টেবিল যা মোবাইল ডিভাইসগুলোতে ভেঙে যেতে পারে",
 	"linterror-misc-tidy-replacement-issues": "বিবিধ মার্কআপ ত্রুটি",
 	"linterror-misnested-tag": "ত্রুটি যুক্ত নেস্টেড তথা আন্ত-অন্তর্ভুক্ত ট্যাগ, এটিকে সঠিকভাবে অন্তর্ভুক্ত করা উচিত",

@@ -95,7 +95,8 @@
 			"밥풀떼기",
 			"아라",
 			"양념파닭",
-			"콩가루"
+			"콩가루",
+			"Suleiman the Magnificent Television"
 		]
 	},
 	"tog-underline": "링크에 밑줄 긋기:",
@@ -711,6 +712,7 @@
 	"edit-recovery-special-edit": "편집",
 	"edit-recovery-loaded-title": "변경사항 복구됨",
 	"edit-recovery-loaded-message": "저장되지 않은 변경사항은 자동으로 복구되었습니다.",
+	"edit-recovery-loaded-message-different-rev": "<em>해당 페이지가 편집을 시작하고서 변경되었을 수 있습니다.</em>",
 	"edit-recovery-loaded-message-different-rev-publish": "<em>게시하기 전에 변경사항을 검토해 주십시오.</em>",
 	"edit-recovery-loaded-message-different-rev-save": "<em>저장하기 전에 변경사항을 검토해 주십시오.</em>",
 	"edit-recovery-loaded-show": "차이 보기",

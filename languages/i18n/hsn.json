@@ -6,7 +6,8 @@
 			"Rhapsodier",
 			"SolidBlock",
 			"TheChampionMan1234",
-			"YulouCN"
+			"YulouCN",
+			"LittlePaw365"
 		]
 	},
 	"tog-underline": "連結加下劃線",
@@ -447,7 +448,7 @@
 	"move": "移走",
 	"pager-newer-n": "{{PLURAL:$1|新$1只}}",
 	"pager-older-n": "{{PLURAL:$1|后$1只}}",
-	"booksources": "网络书源",
+	"booksources": "图书来源",
 	"booksources-search-legend": "搜索图书来源",
 	"booksources-search": "尋",
 	"specialloguserlabel": "执行者：",
