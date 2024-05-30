@@ -14,6 +14,8 @@ use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMDataUtils;
 use Wikimedia\Parsoid\Utils\DOMUtils;
+use Wikimedia\Parsoid\Utils\PHPUtils;
+use Wikimedia\Parsoid\Utils\Utils;
 
 /**
  * OutputTransformStages that modify the content as a HTML DOM tree.
@@ -32,10 +34,11 @@ abstract class ContentDOMTransformStage extends OutputTransformStage {
 		// TODO will use HTMLHolder in the future
 		$doc = null;
 		$hasPageBundle = PageBundleParserOutputConverter::hasPageBundle( $po );
+		$origPb = null;
 		if ( $hasPageBundle ) {
-			$pb = PageBundleParserOutputConverter::pageBundleFromParserOutput( $po );
+			$origPb = PageBundleParserOutputConverter::pageBundleFromParserOutput( $po );
 			$doc = DOMUtils::parseHTML( $po->getContentHolderText() );
-			PageBundle::apply( $doc, $pb );
+			PageBundle::apply( $doc, $origPb );
 			DOMDataUtils::prepareDoc( $doc );
 			$body = DOMCompat::getBody( $doc );
 			'@phan-var Element $body'; // assert non-null
@@ -60,7 +63,8 @@ abstract class ContentDOMTransformStage extends OutputTransformStage {
 				]
 			);
 			$pb = DOMDataUtils::getPageBundle( $doc );
-			$pb = self::workaroundT365036( $doc, $pb );
+			$pb = self::workaroundT365036( $pb );
+			$pb = self::combinePageBundles( $pb, $origPb );
 
 			PageBundleParserOutputConverter::applyPageBundleDataToParserOutput( $pb, $po );
 			$text = ContentUtils::toXML( $body, [
@@ -75,18 +79,26 @@ abstract class ContentDOMTransformStage extends OutputTransformStage {
 		return $po;
 	}
 
+	private function combinePageBundles( stdClass $pb, ?PageBundle $origPb ): stdClass {
+		if ( $origPb === null ) {
+			return $pb;
+		}
+		$headers = $origPb->headers;
+		$pb->headers = $headers ? Utils::clone( $headers ) : null;
+		$pb->version = $origPb->version;
+		$pb->contentmodel = $origPb->contentmodel;
+		return $pb;
+	}
+
 	/**
-	 * This function is necessary because PageBundle can have
-	 * non-serializable DataParsoid objects inside which need
-	 * to be converted to stdClass. (T365036) We should replace this
+	 * This function is necessary (T365036) because PageBundle can have
+	 * non-serializable DataParsoid  inside which need
+	 * to be converted to stdClass and string, respectively. We should replace this
 	 * ugly workaround with something nicer.
 	 */
-	private function workaroundT365036( Document $doc, PageBundle $pb ): stdClass {
-		DOMDataUtils::injectPageBundle( $doc, $pb );
-		$convertedPageBundle = DOMDataUtils::extractPageBundle( $doc );
-		// Tell phan that $convertedPageBundle is non-null since $pb was non-null
-		'@phan-var stdClass $convertedPageBundle';
-		return $convertedPageBundle;
+	private function workaroundT365036( PageBundle $pb ): stdClass {
+		$arrayPageBundle = PHPUtils::jsonDecode( PHPUtils::jsonEncode( $pb ) );
+		return (object)$arrayPageBundle;
 	}
 
 	/** Applies the transformation to a DOM document */
