@@ -353,7 +353,7 @@ $magicWords = [
 	'img_thumbnail'             => [ '1', 'mini', 'umanjeno', 'thumbnail', 'thumb' ],
 	'img_top'                   => [ '1', 'vrh', 'top' ],
 	'img_upright'               => [ '1', 'uspravno', 'uspravno=$1', 'uspravno_$1', 'upright', 'upright=$1', 'upright $1' ],
-	'img_width'                 => [ '1', '$1p', '$1piskel', '$1px' ],
+	'img_width'                 => [ '1', '$1p', '$1piksel', '$1px' ],
 	'index'                     => [ '1', '__INDEKSIRAJ__', '__INDEKSIRANJE__', '__INDEKS__', '__INDEX__' ],
 	'language'                  => [ '0', '#JEZIK:', '#LANGUAGE:' ],
 	'lcfirst'                   => [ '0', 'LCPRVI:', 'LCFIRST:' ],
