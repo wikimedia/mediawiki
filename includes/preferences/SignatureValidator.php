@@ -163,6 +163,7 @@ class SignatureValidator {
 				// * linterror-misnested-tag
 				// * linterror-missing-end-tag
 				// * linterror-missing-end-tag-in-heading
+				// * linterror-missing-image-alt-text
 				// * linterror-multi-colon-escape
 				// * linterror-multiline-html-table-in-list
 				// * linterror-multiple-unclosed-formatting-tags

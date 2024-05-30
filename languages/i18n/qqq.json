@@ -1338,6 +1338,7 @@
 	"linterror-misnested-tag": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-misnested-tag-details}}.",
 	"linterror-missing-end-tag": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-missing-end-tag-details}}.",
 	"linterror-missing-end-tag-in-heading": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-missing-end-tag-in-heading-details}}.",
+	"linterror-missing-image-alt-text": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-missing-image-alt-text-details}}.",
 	"linterror-multi-colon-escape": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-multi-colon-escape-details}}.",
 	"linterror-multiline-html-table-in-list": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-multiline-html-table-in-list-details}}.",
 	"linterror-multiple-unclosed-formatting-tags": "Error message, follows {{msg-mw|badsightml}}.\n\nSee also {{msg-mw|linter-pager-multiple-unclosed-formatting-tags-details}}.",
