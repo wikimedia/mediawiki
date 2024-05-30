@@ -188,29 +188,20 @@ class ApiErrorFormatter {
 	public function addMessagesFromStatus(
 		$modulePath, StatusValue $status, $types = [ 'warning', 'error' ], array $filter = []
 	) {
-		if ( $status->isGood() || !$status->getMessages() ) {
+		if ( $status->isGood() ) {
 			return;
 		}
 
-		$types = (array)$types;
-		foreach ( $status->getErrors() as $error ) {
-			if ( !in_array( $error['type'], $types, true ) ) {
-				continue;
-			}
-
-			if ( $error['type'] === 'error' ) {
-				$tag = 'error';
-			} else {
-				// Assume any unknown type is a warning
-				$tag = 'warning';
-			}
-
-			$msg = ApiMessage::create( $error )
-				->inLanguage( $this->lang )
-				->page( $this->getContextTitle() )
-				->useDatabase( $this->useDB );
-			if ( !in_array( $msg->getKey(), $filter, true ) ) {
-				$this->addWarningOrError( $tag, $modulePath, $msg );
+		$types = array_unique( (array)$types );
+		foreach ( $types as $type ) {
+			foreach ( $status->getMessages( $type ) as $msg ) {
+				$msg = ApiMessage::create( $msg )
+					->inLanguage( $this->lang )
+					->page( $this->getContextTitle() )
+					->useDatabase( $this->useDB );
+				if ( !in_array( $msg->getKey(), $filter, true ) ) {
+					$this->addWarningOrError( $type, $modulePath, $msg );
+				}
 			}
 		}
 	}

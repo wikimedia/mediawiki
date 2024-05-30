@@ -46,18 +46,19 @@ class ApiErrorFormatter_BackCompat extends ApiErrorFormatter {
 	}
 
 	public function arrayFromStatus( StatusValue $status, $type = 'error', $format = null ) {
-		if ( $status->isGood() || !$status->getMessages() ) {
+		if ( $status->isGood() ) {
 			return [];
 		}
 
 		$result = [];
-		foreach ( $status->getErrorsByType( $type ) as $error ) {
-			$msg = ApiMessage::create( $error );
+		foreach ( $status->getMessages( $type ) as $msg ) {
+			$msg = ApiMessage::create( $msg );
 			$error = [
 				'message' => $msg->getKey(),
 				'params' => $msg->getParams(),
 				'code' => $msg->getApiCode(),
-			] + $error;
+				'type' => $type,
+			];
 			ApiResult::setIndexedTagName( $error['params'], 'param' );
 			$result[] = $error;
 		}
