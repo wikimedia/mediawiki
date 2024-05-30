@@ -1,5 +1,5 @@
 <?php
-/** كوردي (عەرەبی) (كوردي (عەرەبی))
+/** Northern Kurdish, Arabic script (کوردیی باکووری, عەرەبی)
  *
  * @file
  * @ingroup Languages

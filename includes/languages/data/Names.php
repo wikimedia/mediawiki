@@ -295,7 +295,9 @@ class Names {
 		'ksh' => 'Ripoarisch', # Ripuarian
 		'ksw' => 'စှီၤ', # S'gaw Karen
 		'ku' => 'kurdî', # Kurdish (multiple scripts - defaults to Latin)
-		'ku-arab' => 'كوردي (عەرەبی)', # Northern Kurdish (Arabic script) (falls back to ckb)
+		# Note: The first word here is the same as the name of ckb.
+		# It should probably be made less ambiguous.
+		'ku-arab' => 'کوردی (عەرەبی)', # Northern Kurdish (Arabic script) (falls back to ckb)
 		'ku-latn' => 'kurdî (latînî)', # Northern Kurdish (Latin script)
 		'kum' => 'къумукъ', # Kumyk (Cyrillic, 'kum-latn' for Latin script)
 		'kus' => 'Kʋsaal', # Kusaal
