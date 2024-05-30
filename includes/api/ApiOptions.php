@@ -23,6 +23,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\User\Options\UserOptionsManager;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * API module that facilitates the changing of user's preferences.
@@ -57,6 +58,16 @@ class ApiOptions extends ApiOptionsBase {
 		$this->getHookRunner()->onApiOptions( $this, $user, $changes, $resetKinds );
 	}
 
+	protected function shouldIgnoreKey( $key ) {
+		$user = $this->getUserForUpdates();
+		$manager = $this->getUserOptionsManager();
+		if ( $this->getGlobalParam() === 'ignore' && $manager->isOptionGlobal( $user, $key ) ) {
+			$this->addWarning( $this->msg( 'apiwarn-global-option-ignored', $key ) );
+			return true;
+		}
+		return false;
+	}
+
 	protected function resetPreferences( array $kinds ) {
 		$optionNames = $this->getPreferencesFactory()->getOptionNamesForReset(
 			$this->getUserForUpdates(), $this->getContext(), $kinds );
@@ -64,7 +75,22 @@ class ApiOptions extends ApiOptionsBase {
 	}
 
 	protected function setPreference( $preference, $value ) {
-		$this->getUserOptionsManager()->setOption( $this->getUserForUpdates(), $preference, $value );
+		$globalUpdateType = [
+			'ignore' => UserOptionsManager::GLOBAL_IGNORE,
+			'update' => UserOptionsManager::GLOBAL_UPDATE,
+			'override' => UserOptionsManager::GLOBAL_OVERRIDE
+		][ $this->getGlobalParam() ];
+
+		$this->getUserOptionsManager()->setOption(
+			$this->getUserForUpdates(),
+			$preference,
+			$value,
+			$globalUpdateType
+		);
+	}
+
+	private function getGlobalParam() {
+		return $this->extractRequestParams()['global'];
 	}
 
 	protected function commitChanges() {
@@ -84,6 +110,15 @@ class ApiOptions extends ApiOptionsBase {
 			'action=options&reset=&change=skin=monobook&optionname=nickname&' .
 				'optionvalue=[[User:Beau|Beau]]%20([[User_talk:Beau|talk]])&token=123ABC'
 				=> 'apihelp-options-example-complex',
+		];
+	}
+
+	public function getAllowedParams() {
+		return parent::getAllowedParams() + [
+			'global' => [
+				ParamValidator::PARAM_TYPE => [ 'ignore', 'update', 'override' ],
+				ParamValidator::PARAM_DEFAULT => 'ignore'
+			]
 		];
 	}
 }
