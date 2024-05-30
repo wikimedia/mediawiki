@@ -152,6 +152,9 @@ function isIos() {
  * The page opened in the popup should communicate success using the authSuccess.js script. If it
  * doesn't, we also check for a login success when the user interacts with the parent window.
  *
+ * The constructor is not publicly accessible in MediaWiki. Use the instance exposed by the
+ * {@link module:mediawiki.authenticationPopup mediawiki.authenticationPopup} module.
+ *
  * **This library is not stable yet (as of May 2024). We're still testing which of the
  * methods work from the technical side, and which methods are understandable for users.
  * Some methods or the whole library may be removed in the future.**
