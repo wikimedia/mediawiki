@@ -135,24 +135,24 @@
 }
 
 /*
- * Classes for Exif data display
+ * Classes for Exif data display table.
  */
 .mw_metadata {
-	font-size: 0.8em;
-	margin-bottom: 0.5em;
+	font-size: @font-size-x-small;
+	margin-bottom: @spacing-100;
 	border: 0;
 	border-collapse: collapse;
 	width: 400px;
 
 	caption {
-		font-weight: bold;
+		font-weight: @font-weight-bold;
 	}
 
 	td,
 	th {
 		border: @border-base;
-		padding-left: 5px;
-		padding-right: 5px;
+		padding-left: @spacing-35;
+		padding-right: @spacing-35;
 
 		html.skin-theme-clientpref-night & {
 			background-color: @background-color-transparent;
@@ -167,21 +167,20 @@
 
 	th {
 		background-color: @background-color-neutral-subtle;
-		font-weight: normal;
-		text-align: center;
+		font-weight: @font-weight-normal;
+		text-align: right;
 	}
 
 	td {
-		background-color: #fcfcfc;
-		padding-top: 0.1em;
-		padding-bottom: 0.1em;
+		padding-top: @spacing-25;
+		padding-bottom: @spacing-25;
 	}
 
+	// Unordered list for cells like image description or copyright.
 	.metadata-langlist {
 		list-style: none;
-		padding-right: 5px;
-		padding-left: 5px;
 		margin: 0;
+		padding-left: 0;
 	}
 }
 
@@ -190,7 +189,7 @@
 }
 
 /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-@supports (aspect-ratio: 16 / 9) {
+@supports ( aspect-ratio: 16 / 9 ) {
 	#file img {
 		max-width: 100%;
 		height: auto;
