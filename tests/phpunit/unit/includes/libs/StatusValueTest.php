@@ -6,6 +6,9 @@ use MediaWiki\Message\Message;
 use MediaWikiUnitTestCase;
 use StatusValue;
 
+/**
+ * @covers \StatusValue
+ */
 class StatusValueTest extends MediaWikiUnitTestCase {
 
 	public function provideToString() {
@@ -168,7 +171,6 @@ class StatusValueTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideToString
-	 * @covers \StatusValue::__toString
 	 */
 	public function testToString( bool $sucess, $message, $errors, string $expected, string $testExplanation ) {
 		$status = StatusValue::newGood();
@@ -189,11 +191,6 @@ class StatusValueTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( $expected, $status->__toString(), $testExplanation );
 	}
 
-	/**
-	 * @covers \StatusValue::getErrors
-	 * @covers \StatusValue::getErrorsByType
-	 * @covers \StatusValue::getMessages
-	 */
 	public function testGetErrorsByType() {
 		$status = new StatusValue();
 		$warning = new Message( 'warning111' );
@@ -213,5 +210,4 @@ class StatusValueTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( 'warning111', $status->getMessages( 'warning' )[0]->getKey() );
 		$this->assertEquals( 'error111', $status->getMessages( 'error' )[0]->getKey() );
 	}
-
 }
