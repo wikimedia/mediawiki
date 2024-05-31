@@ -825,10 +825,6 @@ class DBConnRef implements IMaintainableDatabase, IDatabaseForOwner {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function textFieldSize( $table, $field ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function streamStatementEnd( &$sql, &$newLine ) {
 		return $this->__call( __FUNCTION__, [ &$sql, &$newLine ] );
 	}

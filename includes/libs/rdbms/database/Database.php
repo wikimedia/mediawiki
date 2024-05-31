@@ -1717,28 +1717,6 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 		$this->query( $query, $fname );
 	}
 
-	public function textFieldSize( $table, $field ) {
-		wfDeprecated( __METHOD__, '1.43' );
-		$tableName = $this->tableName( $table );
-		$query = new Query(
-			"SHOW COLUMNS FROM $tableName LIKE \"$field\"",
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
-			'SHOW'
-		);
-		$res = $this->query( $query, __METHOD__ );
-		$row = $res->fetchObject();
-
-		$m = [];
-
-		if ( preg_match( '/\((.*)\)/', $row->Type, $m ) ) {
-			$size = $m[1];
-		} else {
-			$size = -1;
-		}
-
-		return $size;
-	}
-
 	public function delete( $table, $conds, $fname = __METHOD__ ) {
 		$this->query( $this->platform->deleteSqlText( $table, $conds ), $fname );
 

@@ -244,6 +244,7 @@ because of Phabricator reports.
   to the 'ImageBeforeProduceHTML' hook is now null.
 * IMaintainableDatabase::listViews(), deprecated since 1.42, has been removed.
 * IMaintainableDatabase::truncate(), deprecated since 1.42, has been removed.
+* IMaintainableDatabase::textFieldSize() was removed without deprecation.
 * …
 
 === Deprecations in 1.43 ===
@@ -323,7 +324,6 @@ because of Phabricator reports.
   deprecated. Use their equivalents in ObjectCacheFactory.
 * Using the "post" source in parameter declarations returned from
   Handler::getParamSettings() is deprecated, use "body" instead.
-* IMaintainableDatabase::textFieldSize() is now deprecated.
 * ISQLPlatform::tableNamesN() is now deprecated.
 * The implementation in SQLPlatform of ISQLPlatform::tableNames(), deprecated in
   MediaWiki 1.39, now emits deprecation warnings.

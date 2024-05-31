@@ -33,16 +33,6 @@ use RuntimeException;
  */
 interface IMaintainableDatabase extends IDatabase {
 	/**
-	 * Returns the size of a text field, or -1 for "unlimited"
-	 *
-	 * @param string $table Unqualified name of table
-	 * @param string $field
-	 * @return int
-	 * @deprecated Since 1.43
-	 */
-	public function textFieldSize( $table, $field );
-
-	/**
 	 * Read and execute SQL commands from a file.
 	 *
 	 * Returns true on success, error string or exception on failure (depending
