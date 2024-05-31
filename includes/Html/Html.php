@@ -404,18 +404,11 @@ class Html {
 			}
 		}
 		if ( $element === 'select' && isset( $attribs['size'] ) ) {
-			if ( in_array( 'multiple', $attribs )
-				|| ( isset( $attribs['multiple'] ) && $attribs['multiple'] !== false )
-			) {
-				// A multi-select
-				if ( strval( $attribs['size'] ) == '4' ) {
-					unset( $attribs['size'] );
-				}
-			} else {
-				// Single select
-				if ( strval( $attribs['size'] ) == '1' ) {
-					unset( $attribs['size'] );
-				}
+			$multiple = ( $attribs['multiple'] ?? false ) !== false ||
+				in_array( 'multiple', $attribs );
+			$default = $multiple ? 4 : 1;
+			if ( (int)$attribs['size'] === $default ) {
+				unset( $attribs['size'] );
 			}
 		}
 
