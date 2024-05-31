@@ -3248,19 +3248,24 @@ class OutputPage extends ContextSource {
 		}
 
 		if ( count( $errors ) > 1 ) {
-			$text .= '<ul class="permissions-errors">' . "\n";
-
+			$text .= Html::openElement( "ul", [ "class" => "permissions-errors" ] );
 			foreach ( $errors as $error ) {
-				$text .= '<li>';
-				$text .= $this->msg( ...$error )->plain();
-				$text .= "</li>\n";
+				$text .= Html::rawElement(
+					"li",
+					[ "class" => "mw-permissionerror-" . $error[ 0 ] ],
+					$this->msg( ...$error )->plain()
+				);
 			}
-			$text .= '</ul>';
+			$text .= Html::closeElement( "ul" );
 		} else {
-			$text .= "<div class=\"permissions-errors\">\n" .
-					// @phan-suppress-next-line PhanParamTooFewUnpack Elements of $errors already annotated as non-empty
-					$this->msg( ...reset( $errors ) )->plain() .
-					"\n</div>";
+			$text .= Html::openElement( "div", [ "class" => "permissions-errors" ] );
+			$text .= Html::rawElement(
+				"div",
+				[ "class" => "mw-permissionerror-" . $errors[ 0 ][ 0 ] ],
+				// @phan-suppress-next-line PhanParamTooFewUnpack Elements of $errors already annotated as non-empty
+				$this->msg( ...reset( $errors ) )->plain()
+			);
+			$text .= Html::closeElement( "div" );
 		}
 
 		return $text;
