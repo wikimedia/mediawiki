@@ -5,14 +5,12 @@
 */
 
 @import 'mediawiki.skin.variables.less';
+@import 'mediawiki.mixins.less';
 
 /* See also jquery.makeCollapsible.js */
 .mw-collapsible-toggle {
 	float: right;
-	-moz-user-select: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+	.user-select( none );
 }
 
 .mw-collapsible-toggle-default {

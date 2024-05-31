@@ -9,6 +9,7 @@
 /* stylelint-disable selector-class-pattern */
 @import 'mediawiki.skin.variables.less';
 @import 'content.variables.less';
+@import 'mediawiki.mixins.less';
 
 /* Thumbnails */
 
@@ -50,10 +51,7 @@ div.thumbinner {
 		/* Default styles when there's no .mw-content-ltr or .mw-content-rtl, overridden below */
 		background-image: @background-image-magnify-ltr;
 		/* Don't annoy people who copy-paste everything too much */
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
-		user-select: none;
+		.user-select( none );
 	}
 }
 

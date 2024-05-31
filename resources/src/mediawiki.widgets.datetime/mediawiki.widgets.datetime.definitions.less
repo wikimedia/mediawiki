@@ -1,4 +1,5 @@
 @import 'mediawiki.skin.variables.less';
+@import 'mediawiki.mixins.less';
 
 /*!
  * OOUI definitions used by the existing CSS (will make it easier to put this
@@ -7,10 +8,7 @@
 
 .oo-ui-unselectable() {
 	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+	.user-select( none );
 }
 
 .oo-ui-inline-spacing( @spacing, @cancelled-spacing: 0 ) {

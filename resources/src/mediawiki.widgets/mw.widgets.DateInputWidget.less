@@ -6,13 +6,11 @@
  */
 
 @import 'mediawiki.skin.variables.less';
+@import 'mediawiki.mixins.less';
 
 .oo-ui-unselectable() {
 	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+	.user-select( none );
 }
 
 @size-indicator: unit( 12 / 16 / 0.8, em );

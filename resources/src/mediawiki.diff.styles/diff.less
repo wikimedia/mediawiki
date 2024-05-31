@@ -10,6 +10,7 @@
  */
 
 @import 'mediawiki.skin.variables.less';
+@import 'mediawiki.mixins.less';
 
 @diffInserted: #a3d3ff;
 @diffDeleted: #ffe49c;
@@ -68,10 +69,7 @@
 
 .diff-lineno {
 	font-weight: bold;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+	.user-select( none );
 }
 
 .mw-diff-inline-added,
@@ -265,11 +263,7 @@
 	&:visited,
 	&:active {
 		display: block;
-		color: transparent;
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
-		user-select: none;
+		.user-select( none );
 	}
 
 	&:hover {
@@ -306,10 +300,7 @@
 /* Lock selection to a single side */
 .diff[ data-selected-side='deleted' ] .diff-side-added,
 .diff[ data-selected-side='added' ] .diff-side-deleted {
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+	.user-select( none );
 	cursor: text;
 }
 
