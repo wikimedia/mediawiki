@@ -486,12 +486,14 @@ abstract class File implements MediaHandlerState {
 	public function getLocalRefPath() {
 		$this->assertRepoDefined();
 		if ( !isset( $this->fsFile ) ) {
-			$starttime = microtime( true );
+			$timer = MediaWikiServices::getInstance()->getStatsFactory()
+				->getTiming( 'media_thumbnail_generate_fetchoriginal_seconds' )
+				->copyToStatsdAt( 'media.thumbnail.generate.fetchoriginal' );
+			$timer->start();
+
 			$this->fsFile = $this->repo->getLocalReference( $this->getPath() );
 
-			$statTiming = microtime( true ) - $starttime;
-			MediaWikiServices::getInstance()->getStatsdDataFactory()->timing(
-				'media.thumbnail.generate.fetchoriginal', 1000 * $statTiming );
+			$timer->stop();
 
 			if ( !$this->fsFile ) {
 				$this->fsFile = false; // null => false; cache negative hits
@@ -1297,7 +1299,7 @@ abstract class File implements MediaHandlerState {
 			);
 		}
 
-		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+		$statsFactory = MediaWikiServices::getInstance()->getStatsFactory();
 
 		$handler = $this->getHandler();
 
@@ -1318,14 +1320,15 @@ abstract class File implements MediaHandlerState {
 			$this->generateBucketsIfNeeded( $normalisedParams, $flags );
 		}
 
-		$starttime = microtime( true );
+		$timer = $statsFactory->getTiming( 'media_thumbnail_generate_transform_seconds' )
+			->copyToStatsdAt( 'media.thumbnail.generate.transform' );
+		$timer->start();
 
 		// Actually render the thumbnail...
 		$thumb = $handler->doTransform( $this, $tmpThumbPath, $thumbUrl, $transformParams );
 		$tmpFile->bind( $thumb ); // keep alive with $thumb
 
-		$statTiming = microtime( true ) - $starttime;
-		$stats->timing( 'media.thumbnail.generate.transform', 1000 * $statTiming );
+		$timer->stop();
 
 		if ( !$thumb ) { // bad params?
 			$thumb = false;
@@ -1340,7 +1343,9 @@ abstract class File implements MediaHandlerState {
 		} elseif ( $this->repo && $thumb->hasFile() && !$thumb->fileIsSource() ) {
 			// Copy the thumbnail from the file system into storage...
 
-			$starttime = microtime( true );
+			$timer = $statsFactory->getTiming( 'media_thumbnail_generate_store_seconds' )
+				->copyToStatsdAt( 'media.thumbnail.generate.store' );
+			$timer->start();
 
 			$disposition = $this->getThumbDisposition( $thumbName );
 			$status = $this->repo->quickImport( $tmpThumbPath, $thumbPath, $disposition );
@@ -1350,8 +1355,7 @@ abstract class File implements MediaHandlerState {
 				$thumb = $this->transformErrorOutput( $thumbPath, $thumbUrl, $transformParams, $flags );
 			}
 
-			$statTiming = microtime( true ) - $starttime;
-			$stats->timing( 'media.thumbnail.generate.store', 1000 * $statTiming );
+			$timer->stop();
 
 			// Give extensions a chance to do something with this thumbnail...
 			$this->getHookRunner()->onFileTransformed( $this, $thumb, $tmpThumbPath, $thumbPath );
@@ -1386,7 +1390,10 @@ abstract class File implements MediaHandlerState {
 			return false;
 		}
 
-		$starttime = microtime( true );
+		$timer = MediaWikiServices::getInstance()->getStatsFactory()
+			->getTiming( 'media_thumbnail_generate_bucket_seconds' )
+			->copyToStatsdAt( 'media.thumbnail.generate.bucket' );
+		$timer->start();
 
 		$params['physicalWidth'] = $bucket;
 		$params['width'] = $bucket;
@@ -1401,19 +1408,16 @@ abstract class File implements MediaHandlerState {
 
 		$thumb = $this->generateAndSaveThumb( $tmpFile, $params, $flags );
 
-		$buckettime = microtime( true ) - $starttime;
-
 		if ( !$thumb || $thumb->isError() ) {
 			return false;
 		}
+
+		$timer->stop();
 
 		$this->tmpBucketedThumbCache[$bucket] = $tmpFile->getPath();
 		// For the caching to work, we need to make the tmp file survive as long as
 		// this object exists
 		$tmpFile->bind( $this );
-
-		MediaWikiServices::getInstance()->getStatsdDataFactory()->timing(
-			'media.thumbnail.generate.bucket', 1000 * $buckettime );
 
 		return true;
 	}
