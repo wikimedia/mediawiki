@@ -646,6 +646,8 @@
 	"createacct-loginerror": "La cuenta se ha creado correctamente, pero no se pudo ingresar automáticamente. Procede al [[Special:UserLogin|acceso manual]].",
 	"createacct-temp-warning": "Las ediciones que hiciste con tu cuenta temporal <strong>$1</strong> no serán transladados a tu cuenta permanente.",
 	"noname": "No se ha especificado un nombre de usuario válido.",
+	"userlogin-authpopup-retry": "Intentar de nuevo",
+	"userlogin-authpopup-cancel": "Cancelar",
 	"loginsuccesstitle": "Has accedido",
 	"loginsuccess": "<strong>Has accedido a {{SITENAME}} como «$1».</strong>",
 	"nosuchuser": "No existe ninguna cuenta llamada «$1».\nLos nombres de usuario distinguen mayúsculas y minúsculas.\nComprueba que lo has escrito correctamente o [[Special:CreateAccount|crea una cuenta nueva]].",

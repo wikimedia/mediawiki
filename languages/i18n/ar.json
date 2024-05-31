@@ -3643,7 +3643,7 @@
 	"htmlform-user-not-valid": "اسم المستخدم <strong>$1</strong> غير صالح.",
 	"htmlform-tag-not-allowed": "$1 هو ليس وسما مقبولا",
 	"logentry-delete-delete": "{{GENDER:$2|حذف|حذفت}} $1 صفحة $3",
-	"logentry-delete-delete_redir": "$1 {{GENDER:$2|حذف|حذفت}} التحويلة $3 بواسطة إعادة الكتابة",
+	"logentry-delete-delete_redir": "$1 {{GENDER:$2|حذف|حذفت}} التحويلة $3 بالكتابة فوقها",
 	"logentry-delete-delete_redir2": "$1 {{GENDER:$2|حذف|حذفت}} التحويلة $3 بواسطة إعادة الكتابة",
 	"logentry-delete-restore": "{{GENDER:$2|استرجع|استرجعت}} $1 الصفحة $3 ($4)",
 	"logentry-delete-restore-nocount": "$1 {{GENDER:$2|استرجع|استرجعت}} الصفحة $3",

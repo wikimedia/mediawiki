@@ -1133,6 +1133,7 @@
 	"linterror-misnested-tag": "Falsch verschachtelte Tags, die ordnungsgemäß verschachtelt werden sollten.",
 	"linterror-missing-end-tag": "Fehlendes End-Tag",
 	"linterror-missing-end-tag-in-heading": "Fehlendes End-Tag in der Überschrift",
+	"linterror-missing-image-alt-text": "Fehlender Alternativtext für Bilder",
 	"linterror-multi-colon-escape": "Mehrere Doppelpunkte",
 	"linterror-multiline-html-table-in-list": "Mehrzeilen-HTML5-Tabelle innerhalb einer Liste",
 	"linterror-multiple-unclosed-formatting-tags": "Mehrere nicht geschlossene Formatierungstags auf der Seite",

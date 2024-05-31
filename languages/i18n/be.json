@@ -246,6 +246,7 @@
 	"showtoc": "паказаць",
 	"hidetoc": "не паказваць",
 	"collapsible-collapse": "Згарнуць",
+	"collapsible-collapse-all-text": "Згарнуць усё",
 	"collapsible-expand": "Разгарнуць",
 	"confirmable-confirm": "{{GENDER:$1|Вы}} ўпэўнены?",
 	"confirmable-yes": "Так",
