@@ -4734,7 +4734,5 @@
 	"benefit-1-description": "The text for the first benefit shown on signup for temporary users.",
 	"benefit-2-description": "The text for the second benefit shown on signup for temporary users.",
 	"benefit-3-description": "The text for the third benefit shown on signup for temporary users.",
-	"temp-user-unable-to-acquire": "The error message shown when the server was unable to acquire a temporary account username for the user.",
-	"composer-deps-outdated": "Error in check composer-installed dependencies. Parameters:\n* $1 - Dependency name.\n* $2 - Installed version\n* $3 - Required version.",
-	"composer-deps-notinstalled": "Error message if a composer dependency is not install. Parameters:\n* $1 - Dependency name.\n* $2 - Required version."
+	"temp-user-unable-to-acquire": "The error message shown when the server was unable to acquire a temporary account username for the user."
 }
