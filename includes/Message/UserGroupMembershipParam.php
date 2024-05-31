@@ -28,6 +28,7 @@ use Stringable;
 
 /**
  * @since 1.38
+ * @deprecated since 1.43 Use Language::getGroupMemberName() instead
  */
 class UserGroupMembershipParam implements Stringable {
 	/** @var string */
@@ -37,6 +38,7 @@ class UserGroupMembershipParam implements Stringable {
 	private $member;
 
 	public function __construct( string $group, UserIdentity $member ) {
+		wfDeprecated( __CLASS__, '1.43' );
 		$this->group = $group;
 		$this->member = $member;
 	}

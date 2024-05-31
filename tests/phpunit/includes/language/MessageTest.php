@@ -493,6 +493,8 @@ class MessageTest extends MediaWikiLangTestCase {
 	}
 
 	public function testUserGroupMemberParams() {
+		$this->expectDeprecationAndContinue( '/UserGroupMembershipParam/' );
+		$this->expectDeprecationAndContinue( '/objectParams/' );
 		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'qqx' );
 		$msg = new RawMessage( '$1' );
 		$this->setUserLang( $lang );

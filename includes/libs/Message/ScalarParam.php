@@ -20,6 +20,7 @@ class ScalarParam extends MessageParam {
 	 *
 	 * @param string $type One of the ParamType constants.
 	 * @param string|int|float|MessageValue|Stringable $value
+	 *   Using Stringable objects is deprecated since 1.43.
 	 */
 	public function __construct( $type, $value ) {
 		if ( $type === ParamType::LIST ) {
@@ -27,8 +28,11 @@ class ScalarParam extends MessageParam {
 				'ParamType::LIST cannot be used with ScalarParam; use ListParam instead'
 			);
 		}
-		if ( !is_string( $value ) && !is_numeric( $value ) &&
-			!$value instanceof MessageValue && !$value instanceof Stringable ) {
+		if ( $value instanceof Stringable ) {
+			wfDeprecatedMsg( 'Passing Stringable objects to ScalarParam' .
+				' was deprecated in MediaWiki 1.43', '1.43' );
+		} elseif ( !is_string( $value ) && !is_numeric( $value ) &&
+			!$value instanceof MessageValue ) {
 			$type = is_object( $value ) ? get_class( $value ) : gettype( $value );
 			throw new InvalidArgumentException(
 				"Scalar parameter must be a string, number, or MessageValue; got $type"

@@ -370,6 +370,11 @@ because of Phabricator reports.
   DatabaseBlockStore.
 * DatabaseBlockStore::getReadStage() and ::getWriteStage() are deprecated.
   Use the new schema unconditionally.
+* To support a future change allowing serializing of MessageValue objects
+  as JSON, the methods MessageValue::objectParams(), Message::objectParams()
+  and Message::objectParam() are deprecated. The UserGroupMembershipParam
+  class, the ParamType::OBJECT constant, and passing Stringable objects to
+  ScalarParam are likewise deprecated.
 * …
 
 === Other changes in 1.43 ===

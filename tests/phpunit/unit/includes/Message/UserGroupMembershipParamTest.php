@@ -41,7 +41,7 @@ class UserGroupMembershipParamTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testConstruct() {
-		$param = new UserGroupMembershipParam( $this->group, $this->member );
+		$param = @new UserGroupMembershipParam( $this->group, $this->member );
 		$this->assertSame( $this->group, $param->getGroup() );
 		$this->assertSame( $this->member, $param->getMember() );
 	}
@@ -50,7 +50,7 @@ class UserGroupMembershipParamTest extends MediaWikiUnitTestCase {
 		$groupMock = 'users';
 		$userNameMock = 'MockUser';
 		$userIdentityMock = new UserIdentityValue( 1, $userNameMock );
-		$param = new UserGroupMembershipParam( $groupMock, $userIdentityMock );
+		$param = @new UserGroupMembershipParam( $groupMock, $userIdentityMock );
 		$this->assertSame( $groupMock, $param->getGroup(),
 			'Group name should match the constructor argument.' );
 	}
@@ -59,7 +59,7 @@ class UserGroupMembershipParamTest extends MediaWikiUnitTestCase {
 		$groupMock = 'users';
 		$userNameMock = 'MockUser';
 		$userIdentityMock = new UserIdentityValue( 1, $userNameMock );
-		$param = new UserGroupMembershipParam( $groupMock, $userIdentityMock );
+		$param = @new UserGroupMembershipParam( $groupMock, $userIdentityMock );
 		$this->assertSame( $userIdentityMock, $param->getMember(),
 			'User identity object should match the constructor argument.' );
 	}
@@ -70,7 +70,7 @@ class UserGroupMembershipParamTest extends MediaWikiUnitTestCase {
 		$userIdentityMock = new UserIdentityValue( 2, 'MockAdminUser' );
 
 		// Create the UserGroupMembershipParam instance with mocks.
-		$param = new UserGroupMembershipParam( $groupMock, $userIdentityMock );
+		$param = @new UserGroupMembershipParam( $groupMock, $userIdentityMock );
 		$expectedString = 'sysop:MockAdminUser';
 		// Asserting if the string representation is as expected.
 		$this->assertSame( $expectedString, (string)$param,
