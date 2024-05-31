@@ -1417,7 +1417,7 @@ return [
 			$services->getObjectCacheFactory()->getLocalClusterInstance(),
 			$services->getConnectionProvider(),
 			LoggerFactory::getInstance( 'StashEdit' ),
-			$services->getStatsdDataFactory(),
+			$services->getStatsFactory(),
 			$services->getUserEditTracker(),
 			$services->getUserFactory(),
 			$services->getWikiPageFactory(),
