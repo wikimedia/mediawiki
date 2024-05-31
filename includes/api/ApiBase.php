@@ -1497,7 +1497,7 @@ abstract class ApiBase extends ContextSource {
 	 *
 	 * @note If you want to abort processing, use self::dieWithError() instead.
 	 * @since 1.29
-	 * @param string|array|Message $msg See ApiErrorFormatter::addError()
+	 * @param string|array|MessageSpecifier $msg See ApiErrorFormatter::addError()
 	 * @param string|null $code See ApiErrorFormatter::addError()
 	 * @param array|null $data See ApiErrorFormatter::addError()
 	 */
@@ -1529,7 +1529,7 @@ abstract class ApiBase extends ContextSource {
 	 * message key by stripping any "apiwarn-" or "apierror-" prefix.
 	 *
 	 * @since 1.29
-	 * @param string|array|Message $msg See ApiErrorFormatter::addError()
+	 * @param string|array|MessageSpecifier $msg See ApiErrorFormatter::addError()
 	 * @param string|null $code See ApiErrorFormatter::addError()
 	 * @param array|null $data See ApiErrorFormatter::addError()
 	 * @param int $httpCode HTTP error code to use
@@ -1551,7 +1551,6 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function dieWithException( Throwable $exception, array $options = [] ) {
 		$this->dieWithError(
-			// @phan-suppress-next-line PhanTypeMismatchArgument
 			$this->getErrorFormatter()->getMessageFromException( $exception, $options )
 		);
 	}

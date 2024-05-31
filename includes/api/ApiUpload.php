@@ -895,7 +895,6 @@ class ApiUpload extends ApiBase {
 				}
 				ApiResult::setIndexedTagName( $details, 'detail' );
 				$msg->setApiData( $msg->getApiData() + [ 'details' => $details ] );
-				// @phan-suppress-next-line PhanTypeMismatchArgument
 				$this->dieWithError( $msg );
 				// dieWithError prevents continuation
 
