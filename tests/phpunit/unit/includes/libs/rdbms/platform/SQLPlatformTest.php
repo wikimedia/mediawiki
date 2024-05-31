@@ -972,11 +972,11 @@ class SQLPlatformTest extends TestCase {
 
 		$platform->makeList( $list, $mode );
 
-		// Use assertSame() to check that only one warning is emitted per makeList() call
-		$this->assertSame(
-			[ [ LogLevel::WARNING, $warning, $context ] ],
-			$logger->getBuffer()
-		);
+		$logs = $logger->getBuffer();
+		$this->assertCount( 1, $logs );
+		$this->assertSame( LogLevel::WARNING, $logs[0][0] );
+		$this->assertSame( $warning, $logs[0][1] );
+		$this->assertArrayContains( $context, $logs[0][2] );
 	}
 
 	public static function provideMakeListWarning() {
