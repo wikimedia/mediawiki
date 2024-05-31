@@ -593,15 +593,6 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	public function getServerName();
 
 	/**
-	 * Determines if the last failure was due to a deadlock
-	 *
-	 * Note that during a deadlock, the prior transaction will have been lost
-	 *
-	 * @return bool
-	 */
-	public function wasDeadlock();
-
-	/**
 	 * Determines if the last failure was due to the database being read-only
 	 *
 	 * @return bool

@@ -225,6 +225,7 @@ because of Phabricator reports.
 * IDatabase::getTopologyRole() has been removed without deprecation.
 * IDatabase::getTopologyBasedServerId() has been removed without deprecation.
   Use IDatabase::getServerName() instead.
+* IReadableDatabase::wasDeadlock() has been removed without deprecation.
 * WikiPage::doDeleteArticleBatched, hard deprecated since 1.37, has been
   removed.
 * SpecialEmailUser::submit, deprecated since 1.41, has been removed.
