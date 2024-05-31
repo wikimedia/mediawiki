@@ -563,13 +563,6 @@ class DatabaseSqlite extends Database {
 	/**
 	 * @return bool
 	 */
-	public function wasDeadlock() {
-		return $this->lastErrno() == 5; // SQLITE_BUSY
-	}
-
-	/**
-	 * @return bool
-	 */
 	public function wasReadOnlyError() {
 		return $this->lastErrno() == 8; // SQLITE_READONLY;
 	}

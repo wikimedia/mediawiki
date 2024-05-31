@@ -585,15 +585,6 @@ class DatabaseMySQL extends Database {
 	}
 
 	/**
-	 * Determines if the last failure was due to a deadlock
-	 *
-	 * @return bool
-	 */
-	public function wasDeadlock() {
-		return $this->lastErrno() == 1213;
-	}
-
-	/**
 	 * Determines if the last failure was due to the database being read-only.
 	 *
 	 * @return bool

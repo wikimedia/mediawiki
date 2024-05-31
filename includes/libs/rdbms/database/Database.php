@@ -1888,10 +1888,6 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 		$this->query( $query, $fname );
 	}
 
-	public function wasDeadlock() {
-		return false;
-	}
-
 	public function wasReadOnlyError() {
 		return false;
 	}
