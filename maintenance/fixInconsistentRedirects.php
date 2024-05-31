@@ -42,6 +42,7 @@ class FixInconsistentRedirects extends LoggedUpdateMaintenance {
 		$dbr = $this->getReplicaDB();
 
 		$builder = $dbr->newSelectQueryBuilder()
+			->caller( __METHOD__ )
 			->from( 'page' )
 			->where( [ 'page_is_redirect' => 1 ] );
 
