@@ -50,6 +50,7 @@ class CheckSignatures extends Maintenance {
 				->andWhere( $dbr->expr( 'up_user', '>', $maxUserId ) )
 				->orderBy( [ 'up_property', 'up_user' ] )
 				->limit( $this->getBatchSize() )
+				->caller( __METHOD__ )
 				->fetchResultSet();
 
 			foreach ( $res as $row ) {

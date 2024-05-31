@@ -51,6 +51,7 @@ class CheckUsernames extends Maintenance {
 				->where( 'user_id > ' . $maxUserId )
 				->orderBy( 'user_id' )
 				->limit( $this->getBatchSize() )
+				->caller( __METHOD__ )
 				->fetchResultSet();
 
 			foreach ( $res as $row ) {

@@ -31,6 +31,7 @@ class PruneUnusedLinkTargetRows extends Maintenance {
 		$maxLtId = (int)$dbr->newSelectQueryBuilder()
 			->select( 'MAX(lt_id)' )
 			->from( 'linktarget' )
+			->caller( __METHOD__ )
 			->fetchField();
 		// To avoid race condition of newly added linktarget rows
 		// being deleted before getting a chance to be used, let's ignore the newest ones.
