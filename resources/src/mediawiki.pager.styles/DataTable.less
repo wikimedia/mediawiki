@@ -4,7 +4,7 @@
  * After legacy.less has been removed, this file can be merged into TablePager.less.
  */
 @import 'mediawiki.skin.variables.less';
-
+/* stylelint-disable selector-class-pattern */
 .mw-datatable {
 	border: @border-base;
 	border-collapse: collapse;
@@ -17,6 +17,16 @@
 
 	th {
 		background-color: #eaeeff;
+
+		html.skin-theme-clientpref-night & {
+			background-color: @background-color-transparent;
+		}
+
+		@media ( prefers-color-scheme: dark ) {
+			html.skin-theme-clientpref-os & {
+				background-color: @background-color-transparent;
+			}
+		}
 	}
 
 	td {
