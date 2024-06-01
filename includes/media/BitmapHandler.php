@@ -56,7 +56,7 @@ class BitmapHandler extends TransformationalImageHandler {
 			$scaler = 'im';
 		} elseif ( $customConvertCommand ) {
 			$scaler = 'custom';
-		} elseif ( function_exists( 'imagecreatetruecolor' ) ) {
+		} elseif ( $this->hasGDSupport() && function_exists( 'imagecreatetruecolor' ) ) {
 			$scaler = 'gd';
 		} elseif ( class_exists( 'Imagick' ) ) {
 			$scaler = 'imext';
@@ -65,6 +65,16 @@ class BitmapHandler extends TransformationalImageHandler {
 		}
 
 		return $scaler;
+	}
+
+	/**
+	 * Whether the php-gd extension supports this type of file.
+	 *
+	 * @stable to override
+	 * @return bool
+	 */
+	protected function hasGDSupport() {
+		return true;
 	}
 
 	/**
