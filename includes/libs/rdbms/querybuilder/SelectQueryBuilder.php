@@ -726,6 +726,15 @@ class SelectQueryBuilder extends JoinGroupBase {
 	}
 
 	/**
+	 * get the method name of the caller, for use in sub classes
+	 *
+	 * @since 1.43
+	 */
+	final protected function getCaller(): string {
+		return $this->caller;
+	}
+
+	/**
 	 * Run the constructed SELECT query and return all results.
 	 *
 	 * @return IResultWrapper
