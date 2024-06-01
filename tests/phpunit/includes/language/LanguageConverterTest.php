@@ -61,8 +61,8 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideGetPreferredVariant
 	 */
 	public function testGetPreferredVariant( $requestVal, $expected ) {
-		global $wgRequest;
-		$wgRequest->setVal( 'variant', $requestVal );
+		$request = RequestContext::getMain()->getRequest();
+		$request->setVal( 'variant', $requestVal );
 
 		$this->assertEquals( $expected, $this->lc->getPreferredVariant() );
 	}
@@ -77,8 +77,8 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideGetPreferredVariantHeaders
 	 */
 	public function testGetPreferredVariantHeaders( $headerVal, $expected ) {
-		global $wgRequest;
-		$wgRequest->setHeader( 'Accept-Language', $headerVal );
+		$request = RequestContext::getMain()->getRequest();
+		$request->setHeader( 'Accept-Language', $headerVal );
 
 		$this->assertEquals( $expected, $this->lc->getPreferredVariant() );
 	}
@@ -127,10 +127,10 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	}
 
 	public function testGetPreferredVariantHeaderUserVsUrl() {
-		global $wgRequest;
+		$request = RequestContext::getMain()->getRequest();
 
 		$this->setContentLang( 'tg-latn' );
-		$wgRequest->setVal( 'variant', 'tg' );
+		$request->setVal( 'variant', 'tg' );
 
 		$user = User::newFromId( "admin" );
 		$user->setId( 1 );
@@ -162,11 +162,11 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	}
 
 	public function testGetPreferredVariantDefaultLanguageVsUrlVariant() {
-		global $wgRequest;
+		$request = RequestContext::getMain()->getRequest();
 
 		$this->setContentLang( 'tg-latn' );
 		$this->overrideConfigValue( MainConfigNames::DefaultLanguageVariant, 'tg' );
-		$wgRequest->setVal( 'variant', null );
+		$request->setVal( 'variant', null );
 		$this->assertEquals( 'tg', $this->lc->getPreferredVariant() );
 	}
 
