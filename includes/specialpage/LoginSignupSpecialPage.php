@@ -1185,9 +1185,12 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @return bool
 	 */
 	protected function hasSessionCookie() {
-		$config = $this->getConfig();
-		return $config->get( 'InitialSessionId' ) &&
-			$this->getRequest()->getSession()->getId() === (string)$config->get( 'InitialSessionId' );
+		// This is not a config setting (T313840)
+		// phpcs:ignore MediaWiki.Usage.ExtendClassUsage.FunctionConfigUsage
+		global $wgInitialSessionId;
+
+		return $wgInitialSessionId &&
+			$this->getRequest()->getSession()->getId() === (string)$wgInitialSessionId;
 	}
 
 	/**
