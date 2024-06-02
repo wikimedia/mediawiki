@@ -167,15 +167,8 @@ class XCFHandler extends BitmapHandler {
 		return self::METADATA_GOOD;
 	}
 
-	/**
-	 * Must use "im" for XCF
-	 *
-	 * @param string|null $dstPath
-	 * @param bool $checkDstPath
-	 * @return string
-	 */
-	protected function getScalerType( $dstPath, $checkDstPath = true ) {
-		return "im";
+	protected function hasGDSupport() {
+		return false;
 	}
 
 	/**

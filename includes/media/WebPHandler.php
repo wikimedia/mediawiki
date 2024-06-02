@@ -363,15 +363,8 @@ class WebPHandler extends BitmapHandler {
 		return [ 'png', 'image/png' ];
 	}
 
-	/**
-	 * Must use "im" for XCF
-	 *
-	 * @param string|null $dstPath
-	 * @param bool $checkDstPath
-	 * @return string
-	 */
-	protected function getScalerType( $dstPath, $checkDstPath = true ) {
-		return 'im';
+	protected function hasGDSupport() {
+		return function_exists( 'gd_info' ) && ( gd_info()['WebP Support'] ?? false );
 	}
 
 	public function getCommonMetaArray( File $image ) {
