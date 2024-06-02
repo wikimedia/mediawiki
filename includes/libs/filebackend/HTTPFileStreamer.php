@@ -286,9 +286,11 @@ class HTTPFileStreamer {
 			case 'png':
 				return 'image/png';
 			case 'jpg':
-				return 'image/jpeg';
 			case 'jpeg':
 				return 'image/jpeg';
+			// T366422: Support webp here as well for consistency
+			case 'webp':
+				return 'image/webp';
 		}
 
 		return 'unknown/unknown';

@@ -110,6 +110,8 @@ class StreamFile {
 				case 'jpg':
 				case 'jpeg':
 					return 'image/jpeg';
+				case 'webp':
+					return 'image/webp';
 			}
 
 			return self::UNKNOWN_CONTENT_TYPE;
