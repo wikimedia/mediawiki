@@ -3,6 +3,7 @@
 namespace Wikimedia\Rdbms;
 
 use IDBAccessObject;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 // Very long type annotations :(
 // phpcs:disable Generic.Files.LineLength
@@ -869,7 +870,9 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * @return string
 	 */
 	public function getSQL() {
-		return $this->db->selectSQLText( $this->tables, $this->fields, $this->conds, $this->caller,
+		// Assume that whoever is calling this method is doing it to build a subquery
+		$caller = $this->isCallerOverridden ? $this->caller : ISQLPlatform::CALLER_SUBQUERY;
+		return $this->db->selectSQLText( $this->tables, $this->fields, $this->conds, $caller,
 			$this->options, $this->joinConds );
 	}
 

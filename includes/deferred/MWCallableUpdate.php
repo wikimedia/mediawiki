@@ -3,6 +3,7 @@
 namespace MediaWiki\Deferred;
 
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
  * DeferrableUpdate for closure/callable
@@ -25,7 +26,7 @@ class MWCallableUpdate
 	 * @param IDatabase|IDatabase[]|null $dbws Cancel the update if a DB transaction
 	 *  is rolled back [optional] (since 1.28)
 	 */
-	public function __construct( callable $callback, $fname = 'unknown', $dbws = [] ) {
+	public function __construct( callable $callback, $fname = ISQLPlatform::CALLER_UNKNOWN, $dbws = [] ) {
 		$this->callback = $callback;
 		$this->fname = $fname;
 

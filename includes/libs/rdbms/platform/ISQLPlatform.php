@@ -75,6 +75,19 @@ interface ISQLPlatform {
 	public const QUERY_CHANGE_LOCKS = 512 | self::QUERY_IGNORE_DBO_TRX;
 
 	/**
+	 * Special value for ->caller() / $fname parameter used when providing a caller is not
+	 * expected, because we're formatting a subquery that won't be executed directly.
+	 * @since 1.43
+	 */
+	public const CALLER_SUBQUERY = 'subquery';
+
+	/**
+	 * Special value for ->caller() / $fname parameter used when a caller is not provided.
+	 * @since 1.43
+	 */
+	public const CALLER_UNKNOWN = 'unknown';
+
+	/**
 	 * @param string|int $field
 	 * @return string
 	 */

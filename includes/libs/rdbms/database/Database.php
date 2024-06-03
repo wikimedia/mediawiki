@@ -1738,7 +1738,7 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 		$insertOptions = $this->platform->normalizeOptions( $insertOptions );
 		$selectOptions = $this->platform->normalizeOptions( $selectOptions );
 
-		if ( $this->cliMode && $this->isInsertSelectSafe( $insertOptions, $selectOptions ) ) {
+		if ( $this->cliMode && $this->isInsertSelectSafe( $insertOptions, $selectOptions, $fname ) ) {
 			// For massive migrations with downtime, we don't want to select everything
 			// into memory and OOM, so do all this native on the server side if possible.
 			$this->doInsertSelectNative(
@@ -1770,10 +1770,11 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 	/**
 	 * @param array $insertOptions
 	 * @param array $selectOptions
+	 * @param string $fname
 	 * @return bool Whether an INSERT SELECT with these options will be replication safe
 	 * @since 1.31
 	 */
-	protected function isInsertSelectSafe( array $insertOptions, array $selectOptions ) {
+	protected function isInsertSelectSafe( array $insertOptions, array $selectOptions, $fname = __METHOD__ ) {
 		return true;
 	}
 

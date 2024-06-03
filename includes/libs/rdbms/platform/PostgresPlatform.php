@@ -162,7 +162,7 @@ class PostgresPlatform extends SQLPlatform {
 	) {
 		$fld = "array_to_string(array_agg($field)," . $this->quoter->addQuotes( $delim ) . ')';
 
-		return '(' . $this->selectSQLText( $tables, $fld, $conds, null, [], $join_conds ) . ')';
+		return '(' . $this->selectSQLText( $tables, $fld, $conds, static::CALLER_SUBQUERY, [], $join_conds ) . ')';
 	}
 
 	public function makeInsertLists( array $rows, $aliasPrefix = '', array $typeByColumn = [] ) {
