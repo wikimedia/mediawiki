@@ -22,7 +22,7 @@
 
 .hyphens( @value: auto ) {
 	& when ( @value = auto ) {
-		// Legacy `word-wrap`; IE 6-11, Edge 12+, Firefox 3.5+, Chrome 4+, Safari 3.1+,
+		// Legacy `word-wrap`; Edge 12+, Firefox 3.5+, Chrome 4+, Safari 3.1+,
 		//   Opera 11.5+, iOS 3.2+, Android 2.1+
 		// `overflow-wrap` is W3 standard, but it doesn't seem as if browser vendors
 		//   will abandon `word-wrap` (it has wider support), therefore no duplication.
@@ -33,7 +33,7 @@
 	}
 
 	// CSS3 hyphenation
-	// Chrome < 55 and Android 4.0 Browser support "-webkit-hyphens: none",
+	// Chrome < 55 support "-webkit-hyphens: none",
 	// but not the "auto" property. It is advisable to set the @lang attribute
 	// on the HTML element to enable hyphenation support and improve accessibility.
 	// Chrome 55-87 only supports `auto` exclusively on Mac platform.
@@ -62,12 +62,12 @@
 // Enable (`text` or `element`) or prevent (`none`) text/element selection.
 // Since MW 1.38
 .user-select( @value ) {
-	-webkit-user-select: @value; // Chrome 4-53, Safari 3.1-, Opera 15-40, Android 2.1-4.4.4
+	-webkit-user-select: @value; // Chrome 4-53, Safari 3.1-, Opera 15-40
 	-moz-user-select: @value; // Firefox 2-68
 	user-select: @value;
 }
 
-// Not supported in IE11, Chrome <= 55, Opera < 42
+// Not supported in Chrome <= 55, Firefox <= 31, Opera <= 41
 .position-sticky() {
 	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	-webkit-position: sticky; // Support: Safari < 13
@@ -77,22 +77,23 @@
 
 .column-count( @value ) {
 	-moz-column-count: @value; // Firefox 2-51
-	column-count: @value; // Chrome 50+, Firefox 52+, Edge, IE 10+, Opera 11.5+, Android 90+
+	column-count: @value; // Chrome 50+, Firefox 52+, Edge, Opera 11.5+, Android 90+
 }
 
 .column-width( @value ) {
 	-moz-column-width: @value; // Firefox 1.5-49
-	column-width: @value; // IE 10+, Opera 11.5+
+	column-width: @value; // Chrome 50+, Firefox 50+, Edge, Opera 11.5+, Safari 9+
 }
 
 .column-break-inside-avoid() {
-	page-break-inside: avoid; // Firefox 1.5-51
-	break-inside: avoid-column; // IE 10+, Opera 11.1-12.1
+	page-break-inside: avoid; // Firefox 1.5-91
+	break-inside: avoid-column; // Chrome 80+, Firefox 92+, Edge 80+, Safari 13.1+, Opera 67+
 }
 
 // Deprecated in MW v1.43.0, use just CSS property now.
 .column-break-after-avoid() {
-	break-after: avoid-column; // IE 10+, Opera 11.1-12.1, Chrome 108+
+	// Not supported by Firefox
+	break-after: avoid-column; // Chrome 80+, Firefox 92+, Edge 80+, Safari 13.1+, Opera 67+
 }
 
 .flex-display( @display: flex ) {
@@ -118,7 +119,7 @@
 // See https://www.cssmojo.com/the-very-latest-clearfix-reloaded/
 // In future we might replace the `&:after` pseudo-element with
 // `display: flow-root;` altogether.
-// Support: Firefox 3.5+, Safari 4+, Chrome, Opera 15+, IE 8+
+// Support: Firefox 3.5+, Safari 4+, Chrome, Opera 15+
 .mixin-clearfix( @collapse: true ) {
 	&::after {
 		clear: both;
