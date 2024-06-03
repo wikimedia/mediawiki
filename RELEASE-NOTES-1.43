@@ -380,6 +380,8 @@ because of Phabricator reports.
   and Message::objectParam() are deprecated. The UserGroupMembershipParam
   class, the ParamType::OBJECT constant, and passing Stringable objects to
   ScalarParam are likewise deprecated.
+* The Less mixin .column-break-after-avoid() is deprecated. Use just the
+  CSS rule `break-after: avoid-column;` instead now.
 * …
 
 === Other changes in 1.43 ===
