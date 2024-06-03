@@ -152,13 +152,9 @@
 
 		this.pushPending();
 
-		$.when.apply( $, promises ).done( function () {
-			let allData = [];
-
-			const dataSets = Array.prototype.slice.apply( arguments );
-
-			// Collect values from all results
-			allData = allData.concat.apply( allData, dataSets );
+		$.when.apply( $, promises ).done( function ( ...dataSets ) {
+			// Flatten array
+			const allData = Array.prototype.concat.apply( [], dataSets );
 
 			const categoryNames = allData
 				// Remove duplicates
