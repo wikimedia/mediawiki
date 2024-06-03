@@ -467,6 +467,7 @@
 	"createacct-temp-warning": "Redigeringene du har gjort med den midlertidige kontoen din, <strong>$1</strong>, blir ikke overført til den permanente kontoen.",
 	"noname": "Du har ikke oppgitt et gyldig brukernavn.",
 	"userlogin-authpopup-loggingin-title": "Logger inn …",
+	"userlogin-authpopup-loggingin-body": "Et sprettoppvindu skal ha åpnet seg. Hvis du ikke ser det kan du prøve å åpne det på nytt. Eller så kan du [$1 logge inn på gamlemåten].",
 	"userlogin-authpopup-loggingin-body-link": "Alternativt skjema",
 	"userlogin-authpopup-retry": "Prøv igjen",
 	"userlogin-authpopup-cancel": "Avbryt",
@@ -1067,6 +1068,7 @@
 	"linterror-misnested-tag": "Feilplasserte tagger som bør plasseres korrekt",
 	"linterror-missing-end-tag": "Manglende slutt-tagg",
 	"linterror-missing-end-tag-in-heading": "Manglende slutt-tagg i overskrift",
+	"linterror-missing-image-alt-text": "Manglende alt-tekst for bilde",
 	"linterror-multi-colon-escape": "Flere kolon",
 	"linterror-multiline-html-table-in-list": "Flerlinjers HTML5-tabell inni liste",
 	"linterror-multiple-unclosed-formatting-tags": "Flere ikke-lukkede formateringstagger på siden",
@@ -4061,7 +4063,5 @@
 	"benefit-1-description": "Overvåkningslister som lar deg følge med på sider du er interessert i.",
 	"benefit-2-description": "Permanent liste over dine bidrag til prosjektet.",
 	"benefit-3-description": "Innstillinger som lar deg tilpasse brukeropplevelsen din.",
-	"temp-user-unable-to-acquire": "Kunne ikke hente brukernavn for midlertidig konto. Prøv gjerne på nytt.",
-	"composer-deps-outdated": "$1: $2 installert, $3 påkrevd.",
-	"composer-deps-notinstalled": "$1: ikke installert, $2 påkrevd."
+	"temp-user-unable-to-acquire": "Kunne ikke hente brukernavn for midlertidig konto. Prøv gjerne på nytt."
 }

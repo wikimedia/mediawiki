@@ -4095,7 +4095,5 @@
 	"benefit-1-description": "Daftar pantauan yang memungkinkan Anda melacak halaman yang Anda minati.",
 	"benefit-2-description": "Daftar permanen berisi kontribusi yang Anda berikan pada suatu proyek.",
 	"benefit-3-description": "Preferensi yang memungkinkan Anda menyesuaikan pengalaman Anda.",
-	"temp-user-unable-to-acquire": "Tidak dapat memperoleh nama pengguna akun sementara. Silakan coba lagi.",
-	"composer-deps-outdated": "$1: $2 terpasang, $3 diperlukan.",
-	"composer-deps-notinstalled": "$1: tidak terpasang, $2 diperlukan."
+	"temp-user-unable-to-acquire": "Tidak dapat memperoleh nama pengguna akun sementara. Silakan coba lagi."
 }

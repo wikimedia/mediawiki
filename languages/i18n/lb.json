@@ -3443,6 +3443,5 @@
 	"renameuser-move-log": "Duerch d'Réckele vum  {{GENDER:$1|Benotzer}} \"[[User:$1|$1]]\" op \"[[User:$2|$2]]\" goufen déi follgend Säiten automatesch matgeréckelt:",
 	"action-renameuser": "Benotzer ëmbenennen",
 	"right-renameuser": "Erlaabt et Benotzer ëmzebenennen",
-	"renameuser-renamed-notice": "Dëse Benotzer gouf ëmbenannt.\nD'Logbuch mat den Ëmbenunngen ass hei ënnendrënner.",
-	"composer-deps-notinstalled": "$1: net installéiert, $2 néideg."
+	"renameuser-renamed-notice": "Dëse Benotzer gouf ëmbenannt.\nD'Logbuch mat den Ëmbenunngen ass hei ënnendrënner."
 }

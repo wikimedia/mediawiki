@@ -4042,7 +4042,5 @@
 	"right-renameuser": "사용자 이름 바꾸기",
 	"renameuser-renamed-notice": "이 사용자의 이름을 바꾸었습니다.\n참조를 위해 아래에 이름 바꾸기 기록을 제공합니다.",
 	"createacct-benefit-heading-temp-user": "{{SITENAME}}에 기여해 주셔서 감사합니다. 더 많은 기능에 접근하려면 계정을 만드세요.",
-	"createacct-benefit-subheading-temp-user": "{{SITENAME}} 사이트는 여러분과 같은 사람들이 만듭니다. 계정을 사용하면 다음과 같은 기능에 접근하여 영구적이고 안전한 신원을 가질 수 있습니다:",
-	"composer-deps-outdated": "$1: $2 설치됨, $3 필요함.",
-	"composer-deps-notinstalled": "$1: 설치되지 않음, $2 필요함."
+	"createacct-benefit-subheading-temp-user": "{{SITENAME}} 사이트는 여러분과 같은 사람들이 만듭니다. 계정을 사용하면 다음과 같은 기능에 접근하여 영구적이고 안전한 신원을 가질 수 있습니다:"
 }

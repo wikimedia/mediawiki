@@ -589,7 +589,7 @@
 	"resettokens-resetbutton": "ตั้งโทเค็นที่เลือกใหม่",
 	"editrecovery": "กู้คืนการแก้ไข",
 	"edit-recovery-nojs-placeholder": "จาวาสคริปต์จำเป็นสำหรับคุณสมบัติกู้คืนการแก้ไข",
-	"edit-recovery-special-user-unnamed": "โปรด [[พิเศษ:UserLogin|เข้าสู่ระบบ]] หรือ [[พิเศษ:CreateAccount|สร้างบัญชี]] เพื่อใช้คุณสมบัตินี้",
+	"edit-recovery-special-user-unnamed": "โปรด[[Special:UserLogin|เข้าสู่ระบบ]]หรือ[[Special:CreateAccount|สร้างบัญชี]]เพื่อใช้คุณสมบัตินี้",
 	"edit-recovery-special-intro": "คุณมีการเปลี่ยนแปลงในส่วน{{PLURAL:$1|หรือ|และ/หรือ}}ส่วนต่อไปนี้ที่ยังไม่ถูกบันทึก:",
 	"edit-recovery-special-intro-empty": "คุณไม่มีการเปลี่ยนแปลงที่ยังไม่ได้บันทึก",
 	"edit-recovery-special-view": "ดู",
@@ -3987,7 +3987,5 @@
 	"benefit-1-description": "รายการเฝ้าดูที่คุณสามารถติดตามการเปลี่ยนแปลงในหน้าที่สนใจได้",
 	"benefit-2-description": "รายการการมีส่วนร่วมและแก้ไขแบบถาวรที่คุณได้ทำในโครงการ",
 	"benefit-3-description": "การตั้งค่าเพื่อปรับแต่งประสบการณ์การใช้งานของคุณ",
-	"temp-user-unable-to-acquire": "ไม่สามารถรับชื่อผู้ใช้บัญชีชั่วคราวได้ กรุณาลองอีกครั้ง",
-	"composer-deps-outdated": "$1: ติดตั้ง $2 แล้ว, ต้องการ $3",
-	"composer-deps-notinstalled": "$1: ไม่ได้ติดตั้ง, ต้องการ $2"
+	"temp-user-unable-to-acquire": "ไม่สามารถรับชื่อผู้ใช้บัญชีชั่วคราวได้ กรุณาลองอีกครั้ง"
 }

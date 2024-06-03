@@ -1128,6 +1128,7 @@
 	"linterror-misnested-tag": "İç içe geçmiş ve hatalı yerleştirilmiş etiket",
 	"linterror-missing-end-tag": "Eksik bitiş etiketi",
 	"linterror-missing-end-tag-in-heading": "Başlıktaki eksik bitiş etiketi",
+	"linterror-missing-image-alt-text": "Eksik görsel alternatif metni",
 	"linterror-multi-colon-escape": "Çoklu iki nokta hatası",
 	"linterror-multiline-html-table-in-list": "Bir liste içinde çok satırlı HTML5 tablosu",
 	"linterror-multiple-unclosed-formatting-tags": "Sayfadaki birden çok kapatılmamış biçimlendirme etiketi",
@@ -4132,7 +4133,5 @@
 	"benefit-1-description": "İlgilendiğiniz sayfaları takip etmenize olanak tanıyan izleme listeleri.",
 	"benefit-2-description": "Projeye yaptığınız katkıların kalıcı listesi.",
 	"benefit-3-description": "Deneyiminizi özelleştirmenize olanak tanıyan seçenekler.",
-	"temp-user-unable-to-acquire": "Geçici bir hesap kullanıcı adı alınamıyor. Lütfen tekrar deneyin.",
-	"composer-deps-outdated": "$1: $2 kurulu, $3 gerekli.",
-	"composer-deps-notinstalled": "$1: kurulu değil, $2 gerekli."
+	"temp-user-unable-to-acquire": "Geçici bir hesap kullanıcı adı alınamıyor. Lütfen tekrar deneyin."
 }

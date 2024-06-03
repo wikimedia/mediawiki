@@ -3924,7 +3924,5 @@
 	"benefit-1-description": "Stebėjimo sąrašai, leidžiantys sekti jus dominančius puslapius.",
 	"benefit-2-description": "Nuolatinis jūsų įnašų į projektą sąrašas.",
 	"benefit-3-description": "Parinktys, leidžiančios tinkinti savo patirtį.",
-	"temp-user-unable-to-acquire": "Nepavyko gauti laikino paskyros naudotojo vardo. Prašome pabandyti dar kartą.",
-	"composer-deps-outdated": "$1: $2 įdiegta, reikia $3.",
-	"composer-deps-notinstalled": "$1: neįdiegta, reikia $2."
+	"temp-user-unable-to-acquire": "Nepavyko gauti laikino paskyros naudotojo vardo. Prašome pabandyti dar kartą."
 }

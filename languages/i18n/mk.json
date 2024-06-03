@@ -1038,6 +1038,7 @@
 	"linterror-misnested-tag": "Погрешно вгнездена ознака која треба правилно да се вгнезди",
 	"linterror-missing-end-tag": "Отсутна завршна ознака",
 	"linterror-missing-end-tag-in-heading": "Недостасува завршна ознака во заглавието",
+	"linterror-missing-image-alt-text": "Недостасува алтернативен текст за сликата",
 	"linterror-multi-colon-escape": "Додавка на повеќе двоточија",
 	"linterror-multiline-html-table-in-list": "Повеќередна HTML5-табела во список",
 	"linterror-multiple-unclosed-formatting-tags": "Повеќе незатворени форматни ознаки на страницата",
@@ -4093,7 +4094,5 @@
 	"benefit-1-description": "Набљудувања кои ви овозможуваат да ги следите страниците кои ве интересираат.",
 	"benefit-2-description": "Траен список на ваши придонеси на проектот.",
 	"benefit-3-description": "Нагодувања со кои можете да го прилагодите вашето доживување.",
-	"temp-user-unable-to-acquire": "Не можев да го добијам корисничкото име за привремена сметка. Обидете се повторно.",
-	"composer-deps-outdated": "$1: воспоставена $2, се бара $3.",
-	"composer-deps-notinstalled": "$1: не е воспоставена, се бара $2."
+	"temp-user-unable-to-acquire": "Не можев да го добијам корисничкото име за привремена сметка. Обидете се повторно."
 }

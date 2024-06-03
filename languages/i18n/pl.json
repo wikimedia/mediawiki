@@ -515,6 +515,12 @@
 	"createacct-loginerror": "Konto zostało pomyślnie utworzone, ale nie mogłeś zostać zalogowany automatycznie. Proszę, [[Special:UserLogin|zalogować się ręcznie]].",
 	"createacct-temp-warning": "Edycje wykonane z konta tymczasowego <strong> $1 </strong> nie zostaną przeniesione do stałego konta.",
 	"noname": "To nie jest poprawna nazwa użytkownika.",
+	"userlogin-authpopup-loggingin-title": "Logowanie…",
+	"userlogin-authpopup-loggingin-body": "Powinno zostać otwarte okno logowania. Jeśli go nie widzisz, spróbuj otworzyć je ponownie. Możesz również [$1 zalogować się tradycyjną metodą].",
+	"userlogin-authpopup-loggingin-body-link": "Alternatywny formularz",
+	"userlogin-authpopup-retry": "Spróbuj ponownie",
+	"userlogin-authpopup-cancel": "Anuluj",
+	"userlogin-authpopup-closeme": "Jeśli widzisz ten komunikat, możesz zamknąć to okno.",
 	"loginsuccesstitle": "Zalogowano",
 	"loginsuccess": "'''{{GENDER:|Zalogowałeś się|Zalogowałaś się|Zalogowano}} do {{GRAMMAR:D.lp|{{SITENAME}}}} jako „$1”.'''",
 	"nosuchuser": "Brak użytkownika o nazwie „$1”.\nW nazwie użytkownika ma znaczenie wielkość znaków.\nSprawdź pisownię lub [[Special:CreateAccount|utwórz nowe konto]].",
@@ -1111,6 +1117,7 @@
 	"linterror-misnested-tag": "Źle zagnieżdżony znacznik, który należy poprawnie zagnieździć",
 	"linterror-missing-end-tag": "Brak znacznika zamykającego",
 	"linterror-missing-end-tag-in-heading": "Brak znacznika zamykającego w nagłówku",
+	"linterror-missing-image-alt-text": "Brak tekstu alternatywnego obrazu",
 	"linterror-multi-colon-escape": "Wiele dwukropków poprzedzających",
 	"linterror-multiline-html-table-in-list": "Wieloliniowa tabela HTML5 wewnątrz listy",
 	"linterror-multiple-unclosed-formatting-tags": "Wiele niezamkniętych znaczników formatujących na stronie",
@@ -4113,7 +4120,5 @@
 	"benefit-1-description": "Lista obserwowanych, pozwalająca śledzić interesujące cię strony.",
 	"benefit-2-description": "Trwała lista edycji, które zostały przez Ciebie wniesione do projektu.",
 	"benefit-3-description": "Preferencje pozwalające dostosować twoje korzystanie z projektu.",
-	"temp-user-unable-to-acquire": "Nie udało się uzyskać nazwy tymczasowego konta użytkownika. Spróbuj ponownie.",
-	"composer-deps-outdated": "$1: zainstalowano $2, wymagane $3.",
-	"composer-deps-notinstalled": "$1: nie zainstalowano, wymagane $2."
+	"temp-user-unable-to-acquire": "Nie udało się uzyskać nazwy tymczasowego konta użytkownika. Spróbuj ponownie."
 }

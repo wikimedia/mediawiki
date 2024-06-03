@@ -29,8 +29,6 @@
 	"prefs-signature-invalid-warning": "Ihre Unterschrift kann bei einigen Tools Probleme verursachen.",
 	"prefs-signature-invalid-new": "Ihre aktuelle Unterschrift ist ungültig. Sie können sie zwar noch verwenden, aber nicht mehr ändern, bis Sie sie korrigiert haben.",
 	"prefs-signature-invalid-disallow": "Ihre aktuelle Unterschrift ist ungültig. Bis Sie sie korrigieren, wird beim Signieren deiner Kommentare die Standardsignatur verwendet.",
-	"badsigsubst": "Ihre Unterschrift enthält verschachtelte Ersetzungen (z.B. <code>subst:</code> oder <code><nowiki>~~~~~~</nowiki></code>).",
-	"badsightml": "Ihre Unterschrift enthält ungültige oder veraltete HTML-Syntax:",
 	"badsiglinks": "Ihre Unterschrift muss einen Link zu Ihrer Benutzerseite, Diskussionsseite oder Ihren Beiträgen in diesem Wiki enthalten. Bitte fügen Sie ihn hinzu, zum Beispiel: <code>$1</code>.",
 	"badsiglinebreak": "Ihre Unterschrift muss aus einer einzigen Zeile Wikitext bestehen.",
 	"prefs-help-email": "Die Angabe einer E-Mail-Adresse ist optional, ermöglicht aber die Zusendung eines Ersatzpasswortes, sofern Sie Ihr Passwort vergessen haben.",

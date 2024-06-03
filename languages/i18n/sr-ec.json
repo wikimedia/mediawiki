@@ -455,6 +455,7 @@
 	"createacct-temp-warning": "Измене које сте начинили Вашим приверменим налогом <strong> $1 </strong> неће бити пренете на стални налог.",
 	"noname": "Није наведено важеће корисничко име.",
 	"userlogin-authpopup-loggingin-title": "Пријављивање…",
+	"userlogin-authpopup-loggingin-body-link": "Алтернативни образац",
 	"userlogin-authpopup-retry": "Покушај поново",
 	"userlogin-authpopup-cancel": "Откажи",
 	"loginsuccesstitle": "Успешно пријављивање",
@@ -1052,6 +1053,7 @@
 	"linterror-tidy-font-bug": "Ознака font покушава да промени боју везе",
 	"linterror-tidy-whitespace-bug": "Грешка при рашчлањивању размака",
 	"linterror-unclosed-quotes-in-heading": "Незатворени апостроф који утиче на текст ван прегледа садржаја",
+	"linterror-wikilink-in-extlink": "Везе у везама",
 	"email": "Имејл",
 	"userrights": "Корисничка права",
 	"userrights-lookup-user": "Избор корисника",
@@ -4037,7 +4039,5 @@
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} је пројекат који стварају људи попут Вас. Са налогом имате трајан и безбедан идентитет са приступом следећим бенефитима:",
 	"benefit-1-description": "Списак надгледања који Вам омогућава да пратите странице за које сте заинтересовани.",
 	"benefit-2-description": "Трајни списак свих Ваших доприноса на пројекту.",
-	"benefit-3-description": "Прилагођавање Вашег доживљаја у подешавањима.",
-	"composer-deps-outdated": "$1: инсталирана $2, потребна $3.",
-	"composer-deps-notinstalled": "$1: није инсталирано, потребна $2."
+	"benefit-3-description": "Прилагођавање Вашег доживљаја у подешавањима."
 }

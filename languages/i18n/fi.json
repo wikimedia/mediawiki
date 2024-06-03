@@ -4016,7 +4016,5 @@
 	"action-renameuser": "nimetä käyttäjätunnuksia uudelleen",
 	"right-renameuser": "Nimetä käyttäjätunnuksia uudelleen",
 	"renameuser-renamed-notice": "Tämä käyttäjä on nimetty uudelleen.\nAlla on ote tunnusten vaihtolokista.",
-	"log-unknown-action": "suoritti tuntemattoman toiminnon \"$2\" sivulla [[$1]]",
-	"composer-deps-outdated": "$1: $2 asennettu, $3 vaaditaan.",
-	"composer-deps-notinstalled": "$1:  ei asennettu,  $2 vaaditaan."
+	"log-unknown-action": "suoritti tuntemattoman toiminnon \"$2\" sivulla [[$1]]"
 }

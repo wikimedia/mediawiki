@@ -207,7 +207,7 @@
 	"hidden-category-category": "隱藏分類",
 	"category-subcat-count": "{{PLURAL:$2|此分類僅包含以下 1 個子分類。|此分類包含以下 $1 個子分類，共 $2 個。}}",
 	"category-subcat-count-limited": "此分類包含以下 $1 個子分類。",
-	"category-article-count": "{{PLURAL:$2|此分類包含以下 1 個頁面。|此分類包含以下 $1 個頁面，共 $2 個。}}",
+	"category-article-count": "{{PLURAL:$2|此分類僅包含以下頁面。|此分類共有 $2 個頁面，以下顯示其中 {{PLURAL:$1|$1 個頁面}}。}}",
 	"category-article-count-limited": "此分類包含以下 $1 個頁面。",
 	"category-file-count": "{{PLURAL:$2|此分類僅包含以下 1 個檔案。|此分類包含以下 $1 個檔案，共 $2 個。}}",
 	"category-file-count-limited": "此分類包含 $1 個檔案。",
@@ -4128,7 +4128,5 @@
 	"benefit-1-description": "監視列表，可讓您監視您感興趣的頁面。",
 	"benefit-2-description": "您對該專案所做貢獻的永久記錄。",
 	"benefit-3-description": "參數設置，讓您自訂使用體驗。",
-	"temp-user-unable-to-acquire": "無法取得臨時帳號的使用者名稱，請再試一次。",
-	"composer-deps-outdated": "$1：已安裝$2，但需要版本$3。",
-	"composer-deps-notinstalled": "$1：未安裝，需要版本$2。"
+	"temp-user-unable-to-acquire": "無法取得臨時帳號的使用者名稱，請再試一次。"
 }

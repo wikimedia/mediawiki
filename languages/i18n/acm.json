@@ -404,6 +404,7 @@
 	"createacct-loginerror": "الحساب سويناه تلقائيا بس ما كدرنه نسجل دخولك تلقائيا. من فضلك امشي لـ [[Special:UserLogin|تسجيل الدخول اليدوي]].",
 	"createacct-temp-warning": "التعديلات التي تسويها بحسابك المؤقت <strong>$1</strong> ما تروح لحسابك الدايم.",
 	"noname": "ما حددت اسم مستخدم صحيح.",
+	"userlogin-authpopup-closeme": "اذا شفت هاي الرساله، راح تكدر تطلع من هاي النافذه.",
 	"loginsuccesstitle": "تم الدخول",
 	"loginsuccess": "<strong>سجلت الدخول ل{{SITENAME}} باسم \"$1\".</strong>",
 	"nosuchuser": "ماكو مستخدم بالاسم \"$1\".\nأسماء المستخدمين حساسة لحالة الحروف.\nتأكد من إملاء الاسم، أو [[Special:CreateAccount|سوي حساب جديد]].",

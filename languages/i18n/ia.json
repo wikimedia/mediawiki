@@ -1021,6 +1021,7 @@
 	"linterror-misnested-tag": "Etiquetta mal annidate que deberea esser annidate correctemente",
 	"linterror-missing-end-tag": "Etiquetta de fin mancante",
 	"linterror-missing-end-tag-in-heading": "Etiquetta final mancante in capite",
+	"linterror-missing-image-alt-text": "Imagine sin texto alternative",
 	"linterror-multi-colon-escape": "Escappamento a duo-punctos multiple",
 	"linterror-multiline-html-table-in-list": "Tabella HTML5 multilinea intra un lista",
 	"linterror-multiple-unclosed-formatting-tags": "Plure etiquettas de formatation non claudite sur le pagina",
@@ -3979,7 +3980,5 @@
 	"benefit-1-description": "Le observatorio, que te permitte sequer le paginas de tu interesse.",
 	"benefit-2-description": "Lista permanente del contributiones que tu ha apportate al projecto.",
 	"benefit-3-description": "Preferentias que te permitte personalisar tu experientia.",
-	"temp-user-unable-to-acquire": "Fallimento del acquisition de un nomine de usator pro le conto temporari. Per favor tenta lo de novo.",
-	"composer-deps-outdated": "$1: $2 installate, $3 necessari.",
-	"composer-deps-notinstalled": "$1: non installate, $2 necessari."
+	"temp-user-unable-to-acquire": "Fallimento del acquisition de un nomine de usator pro le conto temporari. Per favor tenta lo de novo."
 }

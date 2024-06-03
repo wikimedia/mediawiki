@@ -4313,7 +4313,5 @@
 	"benefit-1-description": "Listes de suivi qui vous permettent de garder trace des pages qui vous intéressent.",
 	"benefit-2-description": "Liste permanente des contributions que vous avez faites au projet.",
 	"benefit-3-description": "Préférences qui vous permettent de personnaliser votre expérience.",
-	"temp-user-unable-to-acquire": "Impossible d'acquérir un nom d'utilisateur temporaire. S'il vous plaît, réessayez.",
-	"composer-deps-outdated": "$1 : $2 installé, $3 requis.",
-	"composer-deps-notinstalled": "$1 : non installé, $2 requis."
+	"temp-user-unable-to-acquire": "Impossible d'acquérir un nom d'utilisateur temporaire. S'il vous plaît, réessayez."
 }

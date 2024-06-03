@@ -4015,7 +4015,5 @@
 	"benefit-1-description": "Figyelőlisták, amelyek segítségével nyomon követheted a téged érdeklő lapokat.",
 	"benefit-2-description": "A projekthez nyújtott közreműködéseid állandó listája.",
 	"benefit-3-description": "Beállítások, amelyek lehetővé teszik a felhasználói élmény testreszabását.",
-	"temp-user-unable-to-acquire": "Nem sikerült az ideiglenes felhasználói fiókhoz felhasználói nevet szerezni. Kérlek próbáld újra.",
-	"composer-deps-outdated": "$1 : $2 telepítve, $3 szükséges.",
-	"composer-deps-notinstalled": "$1 : nincs telepítve, $2 szükséges."
+	"temp-user-unable-to-acquire": "Nem sikerült az ideiglenes felhasználói fiókhoz felhasználói nevet szerezni. Kérlek próbáld újra."
 }

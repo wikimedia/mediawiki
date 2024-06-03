@@ -4105,7 +4105,5 @@
 	"benefit-1-description": "Seznami za spremljanje, ki vam omogočajo, da spremljate strani, ki vas zanimajo.",
 	"benefit-2-description": "Trajni seznam prispevkov, ki ste jih prispevali k projektu.",
 	"benefit-3-description": "Nastavitve, ki vam omogočajo prilagajanje vaše izkušnje.",
-	"temp-user-unable-to-acquire": "Ni mogoče pridobiti začasnega uporabniškega imena za račun. Prosimo, poskusite znova.",
-	"composer-deps-outdated": "$1: nameščeno je $2, potrebno je $3.",
-	"composer-deps-notinstalled": "$1: ni nameščeno, potrebno je $2."
+	"temp-user-unable-to-acquire": "Ni mogoče pridobiti začasnega uporabniškega imena za račun. Prosimo, poskusite znova."
 }

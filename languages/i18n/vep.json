@@ -3934,7 +3934,5 @@
 	"benefit-1-description": "Kacundlugetišed abutaba sinei kacta da tarkištada melentartuižid lehtpolid.",
 	"benefit-2-description": "Kaikenaigaine tehtud radon lugetiž, miččen sinä panid projektaha.",
 	"benefit-3-description": "Valičused, miččed abutaba ladida sinun tehtud radod.",
-	"temp-user-unable-to-acquire": "Ei sa sada nimed keskaigaižen kävutajan täht. Ole hüvä, tege völ kerdan.",
-	"composer-deps-outdated": "$1: $2 om pandud, $3 pidab.",
-	"composer-deps-notinstalled": "$1: ei ole pandud, $2 pidab."
+	"temp-user-unable-to-acquire": "Ei sa sada nimed keskaigaižen kävutajan täht. Ole hüvä, tege völ kerdan."
 }

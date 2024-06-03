@@ -1061,6 +1061,7 @@
 	"linterror-misnested-tag": "תג שמקונן באופן שגוי אמור להיות מקונן נכון",
 	"linterror-missing-end-tag": "תג מסיים חסר",
 	"linterror-missing-end-tag-in-heading": "תג מסיים חסר בכותרת",
+	"linterror-missing-image-alt-text": "חסר טקסט חלופי לתמונה",
 	"linterror-multi-colon-escape": "חילוף נקודתיים מרובים",
 	"linterror-multiline-html-table-in-list": "טבלאות HTML5 מרובות־שורות בתוך רשימה",
 	"linterror-multiple-unclosed-formatting-tags": "תגי עיצוב לא סגורים מרובים בדף",
@@ -4098,7 +4099,5 @@
 	"benefit-1-description": "רשימות מעקב שמאפשרות לך לעקוב אחרי דפים שמעניינים אותך.",
 	"benefit-2-description": "רשימה קבועה של תרומות שלך למיזם.",
 	"benefit-3-description": "העדפות שמאפשרות לך להתאים אישית את החוויה שלך.",
-	"temp-user-unable-to-acquire": "לא ניתן לקבל שם חשבון זמני. נא לנסות שוב.",
-	"composer-deps-outdated": "$1: מותקנת $2, נדרשת $3.",
-	"composer-deps-notinstalled": "$1: לא מותקנת, נדרשת גרסה $2."
+	"temp-user-unable-to-acquire": "לא ניתן לקבל שם חשבון זמני. נא לנסות שוב."
 }

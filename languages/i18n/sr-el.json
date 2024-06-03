@@ -4019,7 +4019,5 @@
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} je projekat koji stvaraju ljudi poput Vas. Sa nalogom imate trajan i bezbedan identitet sa pristupom sledećim benefitima:",
 	"benefit-1-description": "Spisak nadgledanja koji Vam omogućava da pratite stranice za koje ste zainteresovani.",
 	"benefit-2-description": "Trajni spisak svih Vaših doprinosa na projektu.",
-	"benefit-3-description": "Prilagođavanje Vašeg doživljaja u podešavanjima.",
-	"composer-deps-outdated": "$1: instalirana $2, potrebna $3.",
-	"composer-deps-notinstalled": "$1: nije instalirano, potrebna $2."
+	"benefit-3-description": "Prilagođavanje Vašeg doživljaja u podešavanjima."
 }

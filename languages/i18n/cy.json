@@ -3607,7 +3607,5 @@
 	"right-renameuser": "Ail-enwi defnyddwyr",
 	"renameuser-renamed-notice": "Mae'r defnyddiwr hwn wedi ei ail-enwi.\nMae'r lòg ail-enwi defnyddwyr i'w weld isod.",
 	"createacct-benefit-heading-temp-user": "Diolch am gyfrannu at {{SITENAME}}.\nCrëwch gyfrif i gael mynediad at ragor o nodweddion.",
-	"temp-user-unable-to-acquire": "Ni ellir cael enw defnyddiwr cyfrif dros dro. Ceisiwch eto.",
-	"composer-deps-outdated": "$1: $2 wedi'i osod, $3 sydd ei angen.",
-	"composer-deps-notinstalled": "$1: heb ei osod, $2 sydd ei angen."
+	"temp-user-unable-to-acquire": "Ni ellir cael enw defnyddiwr cyfrif dros dro. Ceisiwch eto."
 }
