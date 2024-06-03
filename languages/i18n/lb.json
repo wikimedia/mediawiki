@@ -2562,7 +2562,7 @@
 	"protectedpagemovewarning": "<strong>OPGEPASST:</strong> Dës Säit gouf gespaart sou datt nëmme Benotzer mat Administreursrechter se réckele kënnen.\nDéi lescht Zeil aus de Logbicher fannt Dir zu Ärer Informatioun hei ënnendrënner.",
 	"semiprotectedpagemovewarning": "<strong>Bemierkung:</strong> Dës Säit gouf gespaart sou datt nëmme confirméiert Benotzer se réckele kënnen. Déi lescht Zeil aus de Logbicher fannt Dir zu Ärer Informatioun hei ënnendrënner.",
 	"move-over-sharedrepo": "== De Fichier gëtt et ==\n[[:$1]] gëtt et op engem gedeelte Repertoire. Wann Dir e Fichier op dësen Titel réckelt da gëtt dee gedeelte Fichier verstoppt.",
-	"file-exists-sharedrepo": "Den Numm vum Fichier deen Dir erausgesicht hutt gëtt schonn op engem gemeinsame Repertoire benotzt.\nSicht Iech wgl. en aneren Numm.",
+	"file-exists-sharedrepo": "Den Numm vum Fichier, deen Dir erausgesicht hutt, gëtt schonn op engem gemeinsame Repertoire benotzt. Sicht Iech wgl. en aneren Numm.",
 	"export": "Säiten exportéieren",
 	"exporttext": "Dir kënnt den Text an den Historique vun enger bestëmmter Säit, oder engem Set vu Säiten, an XML agepakt, exportéieren, déi dann an eng aner Wiki mat MediaWiki Software importéiert gi mat Hëllef vun der [[Special:Import|Import-Säit]].\n\nFir eng Säit z'exportéieren, gitt den Titel an d'Textkëscht heidrënner an, een Titel pro Linn, a wielt aus op Dir nëmmen déi aktuell Versioun oder all Versioune mam ganzen Historique exportéiere wëllt.\n\nWann nëmmen déi aktuell Versioun exportéiert soll ginn, kënnt Dir och e Link benotze wéi z. B. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] fir d'\"[[{{MediaWiki:Mainpage}}]]\".",
 	"exportall": "All Säiten Exportéieren",

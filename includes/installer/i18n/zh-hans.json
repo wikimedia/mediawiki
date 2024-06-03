@@ -59,7 +59,7 @@
 	"config-localsettings-incomplete": "当前的<code>LocalSettings.php</code>并不完整。\n没有设置变量$1。\n请在<code>LocalSettings.php</code>中设置该变量，然后单击“{{int:Config-continue}}”。",
 	"config-localsettings-connection-error": "使用<code>LocalSettings.php</code>中指定的设置连接到数据库时遇到错误。请修复这些设置，然后重试。\n\n$1",
 	"config-session-error": "启动会话出错：$1",
-	"config-session-expired": "您的会话数据似乎已过期。\n会话的生命周期配置为$1。\n您可以通过在php.ini中设置<code>session.gc_maxlifetime</code>来增加它。\n重新启动安装进程。",
+	"config-session-expired": "您的会话数据似乎已到期。会话配置的生命期限为$1。您可以设置php.ini内<code>session.gc_maxlifetime</code>来增加它。请重新启动安装过程。",
 	"config-no-session": "您的会话数据丢失了！\n请检查您的php.ini文件，并确保<code>session.save_path</code>被设置到适当的目录。",
 	"config-your-language": "您的语言：",
 	"config-your-language-help": "选择在安装过程中使用的语言。",

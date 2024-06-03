@@ -84,7 +84,8 @@
 			"Amire80",
 			"Iketsi",
 			"Zakawer2",
-			"Reedy"
+			"Reedy",
+			"Dreamy Jazz"
 		]
 	},
 	"tog-underline": "Understregning af links:",
@@ -1228,7 +1229,7 @@
 	"group-autoconfirmed": "Registrerede brugere",
 	"group-bot": "Robotter",
 	"group-sysop": "Administratorer",
-	"group-interface-admin": "Brugerfladeredaktører",
+	"group-interface-admin": "Grænsesnitadministratorer",
 	"group-bureaucrat": "Bureaukrater",
 	"group-suppress": "Undertrykkere",
 	"group-all": "(alle)",

@@ -47,7 +47,8 @@
 			"Base",
 			"Dream Star.cn",
 			"Winston Sung",
-			"Cookai1205"
+			"Cookai1205",
+			"物灵"
 		]
 	},
 	"tog-underline": "以底線識鏈接：",
@@ -345,12 +346,15 @@
 	"delete-hook-aborted": "鈎纂消矣。\n無解也。",
 	"badtitle": "無此題",
 	"badtitletext": "或別、或缺、或違、或他山謬鏈，此題不存也。",
+	"title-invalid-interwiki": "需䈎之名，有站間渡，不可爲也。",
+	"title-invalid-too-long": "需䈎之名冗。必不逾$1{{PLURAL:$1|字節}}。",
 	"perfcached": "下為謄本，恐不新也。 A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
 	"perfcachedts": "下為謄本，$1新之。 A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
 	"viewsource": "覽源",
+	"skin-action-viewsource": "閱碼",
 	"viewsource-title": "查$1之案",
 	"actionthrottled": "無為",
-	"actionthrottledtext": "基反垃圾之量，於短時中限欲，爾之上限已過。數分後再試之。",
+	"actionthrottledtext": "以對謬用故，一時之作有數，而君逾之。\n其閲數分而更試。",
 	"protectedpagetext": "此頁見錮以避纂也。",
 	"viewsourcetext": "爾可視及複之本頁之原始碼。",
 	"protectedinterface": "此頁司版，錮之以遠濫。",

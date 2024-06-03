@@ -147,7 +147,8 @@
 			"M1660661",
 			"翻訳者a",
 			"Salvare",
-			"Khsmty"
+			"Khsmty",
+			"Yushu-kasai"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -762,7 +763,7 @@
 	"preview": "プレビュー",
 	"showpreview": "プレビューを表示",
 	"showdiff": "差分を表示",
-	"blankarticle": "<strong>警告:</strong>作成しようとしているページの内容がありません。{{Int:savearticle}}\"をもう一度クリックすると、中身の無いページが作成されます。",
+	"blankarticle": "<strong>警告:</strong> 作成しようとしているページの内容がありません。「$1」をもう一度クリックすると、中身の無いページが作成されます。",
 	"anoneditwarning": "<strong>警告:</strong> ログインしていません。編集を行うと、あなたの IP アドレスが公開されます。<strong>[$1 ログイン]</strong>または<strong>[$2 アカウントを作成]</strong>すれば、あなたの編集はその利用者名とともに表示されるほか、その他の利点もあります。",
 	"autocreate-edit-warning": "<strong>警告:</strong>あなたはログインしていません。このまま編集するとあなたのIPアドレスが公開されます。<strong>[$1|ログイン]</strong>または<strong>[$2|アカウントを作成]</strong>することで、IPアドレスの代わりに利用者名が公開されるほか、様々なメリットを受けられます。",
 	"anonpreviewwarning": "<em>ログインしていません。投稿すると、あなたのIPアドレスがこのページの履歴に記録されます。</em>",
