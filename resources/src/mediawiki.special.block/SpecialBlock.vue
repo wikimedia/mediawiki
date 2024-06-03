@@ -4,8 +4,8 @@
 		<target-active-blocks></target-active-blocks>
 		<target-block-log></target-block-log>
 		<block-type-field
-			:partial-block-options="blockPartialOptions"
 			v-model="blockPartialOptionsSelected"
+			:partial-block-options="blockPartialOptions"
 		></block-type-field>
 		<expiration-field></expiration-field>
 		<reason-field></reason-field>

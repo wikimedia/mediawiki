@@ -15,7 +15,7 @@
 				<span v-i18n-html="radio.descriptionMsg"></span>
 			</template>
 		</cdx-radio>
-		<div id="partial-options" v-if="blockTypeValue === 'partial' ">
+		<div v-if="blockTypeValue === 'partial' " id="partial-options">
 			<div>
 				Pages Placeholder
 			</div>
@@ -25,8 +25,8 @@
 			<cdx-checkbox
 				v-for="checkbox in partialBlockOptions"
 				:key="'checkbox-' + checkbox.value"
-				:input-value="checkbox.value"
 				v-model="wrappedModel"
+				:input-value="checkbox.value"
 			>
 				{{ checkbox.label }}
 			</cdx-checkbox>
