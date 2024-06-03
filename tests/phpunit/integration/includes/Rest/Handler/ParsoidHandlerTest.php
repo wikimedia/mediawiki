@@ -72,7 +72,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			'prefix' => 'exwiki',
 			'domain' => 'wiki.example.com',
 			'pageName' => '',
-			'offsetType' => 'byte',
 			'cookie' => '',
 			'reqId' => 'test+test+test',
 			'userAgent' => 'UTAgent',
@@ -1087,9 +1086,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		// DSR offsetType mismatch: UCS2 vs byte ///////////////////////////////
 		$attribs = [
 			'offsetType' => 'byte',
-			'envOptions' => [
-				'offsetType' => 'byte',
-			],
+			'envOptions' => [],
 			'opts' => [
 				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
 				'original' => [
@@ -1119,9 +1116,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		// DSR offsetType mismatch: byte vs UCS2 ///////////////////////////////
 		$attribs = [
 			'offsetType' => 'UCS2',
-			'envOptions' => [
-				'offsetType' => 'UCS2',
-			],
+			'envOptions' => [],
 			'opts' => [
 				// Enable selser
 				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
