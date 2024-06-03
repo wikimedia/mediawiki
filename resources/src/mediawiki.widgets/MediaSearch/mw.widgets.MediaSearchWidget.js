@@ -174,7 +174,7 @@
 		search.noItemsMessage.toggle( false );
 
 		this.currentQueue.get( this.constructor.static.limit )
-			.then( function ( items ) {
+			.then( ( items ) => {
 				if ( items.length > 0 ) {
 					search.processQueueResults( items );
 					search.currentItemCache = search.currentItemCache.concat( items );
@@ -392,7 +392,7 @@
 
 		// Add method to a queue; this queue will only run when the widget
 		// is visible
-		this.layoutQueue.push( function () {
+		this.layoutQueue.push( () => {
 			const maxRowWidth = search.results.$element.width() - 15;
 
 			// Go over the added items

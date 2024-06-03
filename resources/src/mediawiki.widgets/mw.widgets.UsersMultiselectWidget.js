@@ -139,13 +139,13 @@
 					list: 'allusers',
 					auprefix: inputValue,
 					aulimit: this.limit
-				} ).done( function ( response ) {
+				} ).done( ( response ) => {
 					let suggestions = response.query.allusers;
 
 					const selected = this.getSelectedUsernames();
 
 					// Remove usernames, which are already selected from suggestions
-					suggestions = suggestions.map( function ( user ) {
+					suggestions = suggestions.map( ( user ) => {
 						if ( selected.indexOf( user.name ) === -1 ) {
 							return new OO.ui.MenuOptionWidget( {
 								data: user.name,
@@ -154,9 +154,7 @@
 							} );
 						}
 						return undefined;
-					} ).filter( function ( item ) {
-						return item !== undefined;
-					} );
+					} ).filter( ( item ) => item !== undefined );
 
 					// Remove all items from menu add fill it with new
 					this.menu.clearItems();
@@ -171,7 +169,7 @@
 					this.menu.toggle( true );
 
 					this.popPending();
-				}.bind( this ) ).fail( this.popPending.bind( this ) );
+				} ).fail( this.popPending.bind( this ) );
 			}
 
 		} else {

@@ -330,7 +330,7 @@
 			} else if ( fade === 'next' || fade === 'down' ) {
 				this.$body.insertAfter( this.$oldBody );
 			}
-			setTimeout( function () {
+			setTimeout( () => {
 				// The following classes are used here:
 				// * mw-widget-calendarWidget-body-wrapper-fade-up
 				// * mw-widget-calendarWidget-body-wrapper-fade-down

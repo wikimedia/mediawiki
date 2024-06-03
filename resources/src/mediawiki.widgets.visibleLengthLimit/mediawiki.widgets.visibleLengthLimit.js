@@ -62,7 +62,7 @@
 		internalVisibleLimit( lengthLimiter, textInputWidget, limit, filterFunction );
 
 		// Keep the remaining counter in sync when reason list changed
-		dropdownInputWidget.on( 'change', function () {
+		dropdownInputWidget.on( 'change', () => {
 			textInputWidget.emit( 'change' );
 		} );
 	}

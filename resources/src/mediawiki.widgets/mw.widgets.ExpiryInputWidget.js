@@ -56,7 +56,7 @@
 		// Events
 
 		// Toggle the visible inputs.
-		this.inputSwitch.on( 'choose', function ( event ) {
+		this.inputSwitch.on( 'choose', ( event ) => {
 			switch ( event.getData() ) {
 				case 'date':
 					this.dateTimeField.toggle( true );
@@ -67,11 +67,11 @@
 					this.relativeField.toggle( true );
 					break;
 			}
-		}.bind( this ) );
+		} );
 
 		// When the date time field update, update the relative
 		// field.
-		this.dateTimeField.on( 'change', function ( value ) {
+		this.dateTimeField.on( 'change', ( value ) => {
 			// Do not alter the visible input.
 			if ( this.relativeField.isVisible() ) {
 				return;
@@ -92,11 +92,11 @@
 
 			// Set the relative field value. The field only accepts English strings.
 			this.relativeField.setValue( datetime.utc().locale( 'en' ).format( RFC2822 ) );
-		}.bind( this ) );
+		} );
 
 		// When the relative field update, update the date time field if it's a
 		// value that moment understands.
-		this.relativeField.on( 'change', function ( event ) {
+		this.relativeField.on( 'change', ( event ) => {
 			// Emit a change event for this widget.
 			this.emit( 'change', event );
 
@@ -114,7 +114,7 @@
 			} else {
 				this.dateTimeField.setValue( undefined );
 			}
-		}.bind( this ) );
+		} );
 
 		// Initialization
 		this.$element

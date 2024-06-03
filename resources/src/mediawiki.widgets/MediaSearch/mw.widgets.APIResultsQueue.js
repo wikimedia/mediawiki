@@ -69,16 +69,14 @@
 		if ( this.queue.length < howMany + this.threshold ) {
 			// Call for more results
 			fetchingPromise = this.queryProviders( howMany + this.threshold )
-				.then( function ( items ) {
+				.then( ( items ) => {
 					// Add to the queue
 					me.queue = me.queue.concat.apply( me.queue, items );
 				} );
 		}
 
 		return $.when( fetchingPromise )
-			.then( function () {
-				return me.queue.splice( 0, howMany );
-			} );
+			.then( () => me.queue.splice( 0, howMany ) );
 
 	};
 
@@ -95,7 +93,7 @@
 
 		// Make sure there are resources set up
 		return this.setup()
-			.then( function () {
+			.then( () => {
 				// Abort previous requests
 				for ( let i = 0, iLen = queue.providerPromises.length; i < iLen; i++ ) {
 					queue.providerPromises[ i ].abort();

@@ -132,11 +132,7 @@
 				smaxage: 60 * 60 * 24,
 				// Workaround T97096 by setting uselang=content
 				uselang: 'content'
-			} ).then( function ( data ) {
-				return data.query.interwikimap.map( function ( interwiki ) {
-					return interwiki.prefix;
-				} );
-			} );
+			} ).then( ( data ) => data.query.interwikimap.map( ( interwiki ) => interwiki.prefix ) );
 		}
 		return cache[ key ];
 	};
@@ -165,12 +161,10 @@
 			return fragment.toLowerCase().replace( /_/g, ' ' );
 		}
 
-		return this.sectionsCache[ normalizedTitleText ].then( function ( response ) {
+		return this.sectionsCache[ normalizedTitleText ].then( ( response ) => {
 			const sections = OO.getProp( response, 'parse', 'sections' ) || [];
 			const normalizedFragmentQuery = normalizeFragment( fragmentQuery );
-			const results = sections.filter( function ( section ) {
-				return normalizeFragment( section.line ).indexOf( normalizedFragmentQuery ) !== -1;
-			} ).map( function ( section ) {
+			const results = sections.filter( ( section ) => normalizeFragment( section.line ).indexOf( normalizedFragmentQuery ) !== -1 ).map( ( section ) => {
 				const fragment = section.linkAnchor.replace( /_/g, ' ' );
 				// TODO: Make promise abortable
 				return {
@@ -184,9 +178,7 @@
 				};
 			} );
 			// Sorting also happens later, but we need to do it now before we truncate
-			results.sort( function ( a, b ) {
-				return a.index - b.index;
-			} );
+			results.sort( ( a, b ) => a.index - b.index );
 			// Fake query result
 			return {
 				query: {
@@ -223,7 +215,7 @@
 			return $.Deferred().resolve( {} ).promise( promiseAbortObject );
 		}
 
-		return this.getInterwikiPrefixesPromise().then( function ( interwikiPrefixes ) {
+		return this.getInterwikiPrefixesPromise().then( ( interwikiPrefixes ) => {
 			// Optimization: check we have any prefixes.
 			if ( interwikiPrefixes.length ) {
 				const interwiki = query.slice( 0, Math.max( 0, query.indexOf( ':' ) ) );
@@ -243,7 +235,7 @@
 			// Not a interwiki: do a prefix-search API lookup of the query.
 			const prefixSearchRequest = api.get( widget.getApiParams( query ) );
 			promiseAbortObject.abort = prefixSearchRequest.abort.bind( prefixSearchRequest ); // TODO ew
-			return prefixSearchRequest.then( function ( prefixSearchResponse ) {
+			return prefixSearchRequest.then( ( prefixSearchResponse ) => {
 				if ( !widget.showMissing ) {
 					return prefixSearchResponse;
 				}
@@ -254,7 +246,7 @@
 					titles: title ? title.getPrefixedDb() : query
 				} );
 				promiseAbortObject.abort = queryTitleRequest.abort.bind( queryTitleRequest );
-				return queryTitleRequest.then( function ( queryTitleResponse ) {
+				return queryTitleRequest.then( ( queryTitleResponse ) => {
 					// By default, return the prefix-search result.
 					const result = prefixSearchResponse;
 					if ( prefixSearchResponse.query === undefined ) {
@@ -416,9 +408,7 @@
 			}
 		}
 
-		titles.sort( function ( a, b ) {
-			return pageData[ a ].index - pageData[ b ].index;
-		} );
+		titles.sort( ( a, b ) => pageData[ a ].index - pageData[ b ].index );
 
 		// If not found, run value through mw.Title to avoid treating a match as a
 		// mismatch where normalisation would make them matching (T50476)

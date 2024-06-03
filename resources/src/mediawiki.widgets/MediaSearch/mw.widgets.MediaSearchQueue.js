@@ -37,7 +37,7 @@
 	mw.widgets.MediaSearchQueue.prototype.setup = function () {
 		const queue = this;
 
-		return this.getFileRepos().then( function ( sources ) {
+		return this.getFileRepos().then( ( sources ) => {
 			if ( queue.providers.length === 0 ) {
 				// Set up the providers
 				for ( let i = 0, len = sources.length; i < len; i++ ) {

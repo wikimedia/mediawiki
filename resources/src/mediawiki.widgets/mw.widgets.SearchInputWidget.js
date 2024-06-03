@@ -51,7 +51,7 @@
 		}
 		this.setLookupsDisabled( !this.suggestions );
 
-		$form.on( 'submit', function () {
+		$form.on( 'submit', () => {
 			mw.track( 'mw.widgets.SearchInputWidget', {
 				action: 'submit-form',
 				numberOfResults: this.lastLookupItems.length,
@@ -61,7 +61,7 @@
 					this.$input.val()
 				)
 			} );
-		}.bind( this ) );
+		} );
 
 		this.connect( this, {
 			change: 'onChange'
@@ -153,10 +153,10 @@
 		} );
 
 		// reuse the searchSuggest function from mw.searchSuggest
-		const promise = mw.searchSuggest.request( api, this.getQueryValue(), function () {}, this.limit, this.getNamespace() );
+		const promise = mw.searchSuggest.request( api, this.getQueryValue(), () => {}, this.limit, this.getNamespace() );
 
 		// tracking purposes
-		promise.done( function ( data, jqXHR ) {
+		promise.done( ( data, jqXHR ) => {
 			self.requestType = jqXHR.getResponseHeader( 'X-OpenSearch-Type' );
 			self.searchId = jqXHR.getResponseHeader( 'X-Search-ID' );
 		} );
@@ -195,7 +195,7 @@
 			self = this;
 
 		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( titles, function ( i, result ) {
+		$.each( titles, ( i, result ) => {
 			items.push( new mw.widgets.TitleOptionWidget(
 				self.getOptionWidgetData(
 					result,
@@ -245,9 +245,7 @@
 			this, arguments
 		);
 
-		this.lastLookupItems = items.map( function ( item ) {
-			return item.data;
-		} );
+		this.lastLookupItems = items.map( ( item ) => item.data );
 
 		return items;
 	};

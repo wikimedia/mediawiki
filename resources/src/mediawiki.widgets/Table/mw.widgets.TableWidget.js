@@ -543,12 +543,12 @@ mw.widgets.TableWidget.prototype.setDisabled = function ( disabled ) {
 		return;
 	}
 
-	this.getItems().forEach( function ( row ) {
+	this.getItems().forEach( ( row ) => {
 		row.setDisabled( disabled );
 	} );
 
 	if ( this.model.getTableProperties().allowRowInsertion ) {
-		this.insertionRow.getItems().forEach( function ( row ) {
+		this.insertionRow.getItems().forEach( ( row ) => {
 			row.setDisabled( disabled );
 		} );
 	}
