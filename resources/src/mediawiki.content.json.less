@@ -4,7 +4,7 @@
  * @file
  * @author Munaf Assaf <massaf@wikimedia.org>
  */
-
+/* stylelint-disable selector-class-pattern */
 @import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins.less';
 
@@ -15,7 +15,7 @@
 
 	th,
 	td {
-		border: 1px solid #72777d;
+		border: @border-base;
 		/* TODO: Re-evaluate whether we should keep this over-ride or switch to ems */
 		/* stylelint-disable-next-line declaration-property-unit-disallowed-list */
 		font-size: 16px;
@@ -28,7 +28,7 @@
 	}
 
 	th {
-		background-color: #fff;
+		background-color: @background-color-base;
 		font-weight: normal;
 		vertical-align: top;
 
@@ -44,13 +44,23 @@
 	background-color: #dcfae3;
 	font-family: monospace, monospace;
 	white-space: pre-wrap;
+
+	html.skin-theme-clientpref-night & {
+		background-color: @background-color-transparent;
+	}
+
+	@media ( prefers-color-scheme: dark ) {
+		html.skin-theme-clientpref-os & {
+			background-color: @background-color-transparent;
+		}
+	}
 }
 
 .mw-json-single-value {
-	background-color: #eaecf0;
+	background-color: @background-color-neutral;
 }
 
 .mw-json-empty {
-	background-color: #fff;
+	background-color: @background-color-base;
 	font-style: italic;
 }
