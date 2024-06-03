@@ -1567,10 +1567,6 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 		return new Expression( $field, $op, $value );
 	}
 
-	public function nextSequenceValue( $seqName ) {
-		return null;
-	}
-
 	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {
 		$uniqueKey = $this->platform->normalizeUpsertParams( $uniqueKeys, $rows );
 		if ( !$rows ) {

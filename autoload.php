@@ -3319,7 +3319,6 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\MySQLField' => __DIR__ . '/includes/libs/rdbms/field/MySQLField.php',
 	'Wikimedia\\Rdbms\\MySQLPrimaryPos' => __DIR__ . '/includes/libs/rdbms/database/position/MySQLPrimaryPos.php',
 	'Wikimedia\\Rdbms\\MysqliResultWrapper' => __DIR__ . '/includes/libs/rdbms/database/resultwrapper/MysqliResultWrapper.php',
-	'Wikimedia\\Rdbms\\NextSequenceValue' => __DIR__ . '/includes/libs/rdbms/database/utils/NextSequenceValue.php',
 	'Wikimedia\\Rdbms\\OrExpressionGroup' => __DIR__ . '/includes/libs/rdbms/expression/OrExpressionGroup.php',
 	'Wikimedia\\Rdbms\\Platform\\ISQLPlatform' => __DIR__ . '/includes/libs/rdbms/platform/ISQLPlatform.php',
 	'Wikimedia\\Rdbms\\Platform\\MySQLPlatform' => __DIR__ . '/includes/libs/rdbms/platform/MySQLPlatform.php',
