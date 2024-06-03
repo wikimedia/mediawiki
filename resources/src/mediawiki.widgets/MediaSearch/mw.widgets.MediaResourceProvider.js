@@ -73,7 +73,6 @@
 	 * properties are set.
 	 */
 	mw.widgets.MediaResourceProvider.prototype.loadSiteInfo = function () {
-		const provider = this;
 
 		if ( !this.siteInfoPromise ) {
 			this.siteInfoPromise = new mw.Api().get( {
@@ -81,11 +80,11 @@
 				meta: 'siteinfo'
 			} )
 				.then( ( data ) => {
-					provider.setImageSizes( data.query.general.imagelimits || [] );
-					provider.setThumbSizes( data.query.general.thumblimits || [] );
-					provider.setUserParams( {
+					this.setImageSizes( data.query.general.imagelimits || [] );
+					this.setThumbSizes( data.query.general.thumblimits || [] );
+					this.setUserParams( {
 						// Standard width per resource
-						iiurlwidth: provider.getStandardWidth()
+						iiurlwidth: this.getStandardWidth()
 					} );
 				} );
 		}
@@ -103,27 +102,25 @@
 		let xhr,
 			aborted = false;
 
-		const provider = this;
-
 		return this.loadSiteInfo()
 			.then( () => {
 				if ( aborted ) {
 					return $.Deferred().reject();
 				}
-				xhr = provider.fetchAPIresults( howMany );
+				xhr = this.fetchAPIresults( howMany );
 				return xhr;
 			} )
 			.then(
 				( results ) => {
 					if ( !results || results.length === 0 ) {
-						provider.toggleDepleted( true );
+						this.toggleDepleted( true );
 						return [];
 					}
 					return results;
 				},
 				// Process failed, return an empty promise
 				() => {
-					provider.toggleDepleted( true );
+					this.toggleDepleted( true );
 					return $.Deferred().resolve( [] );
 				}
 			)
@@ -171,8 +168,6 @@
 	 *  the fetched data.
 	 */
 	mw.widgets.MediaResourceProvider.prototype.fetchAPIresults = function ( howMany ) {
-		const provider = this;
-
 		if ( !this.isValid() ) {
 			return $.Deferred().reject().promise( { abort: function () {} } );
 		}
@@ -184,16 +179,16 @@
 				const results = [];
 
 				if ( data.error ) {
-					provider.toggleDepleted( true );
+					this.toggleDepleted( true );
 					return [];
 				}
 
 				if ( data.continue ) {
 					// Update the offset for next time
-					provider.setContinue( data.continue );
+					this.setContinue( data.continue );
 				} else {
 					// This is the last available set of results. Mark as depleted!
-					provider.toggleDepleted( true );
+					this.toggleDepleted( true );
 				}
 
 				// If the source returned no results, it will not have a
@@ -218,7 +213,7 @@
 						}
 					}
 				}
-				return provider.sort( results );
+				return this.sort( results );
 			} )
 			.promise( { abort: xhr.abort } );
 	};

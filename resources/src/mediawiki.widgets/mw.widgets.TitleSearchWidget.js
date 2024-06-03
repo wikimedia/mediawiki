@@ -75,17 +75,15 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.TitleSearchWidget.prototype.onQueryChange = function () {
-		const widget = this;
-
 		this.getRequestData().done( ( data ) => {
-			if ( widget.query.isReadOnly() ) {
+			if ( this.query.isReadOnly() ) {
 				// The request object is always abortable, so just
 				// prevent the results from displaying
 				return;
 			}
 			// Parent method
-			mw.widgets.TitleSearchWidget.super.prototype.onQueryChange.call( widget );
-			widget.results.addItems( widget.getOptionsFromData( data ) );
+			mw.widgets.TitleSearchWidget.super.prototype.onQueryChange.call( this );
+			this.results.addItems( this.getOptionsFromData( data ) );
 		} );
 	};
 

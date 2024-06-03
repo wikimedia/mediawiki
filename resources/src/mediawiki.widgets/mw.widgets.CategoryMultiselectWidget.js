@@ -152,7 +152,7 @@
 
 			const categoryNames = allData
 				// Remove duplicates
-				.filter( ( value, index, self ) => self.indexOf( value ) === index )
+				.filter( ( value, index, arr ) => arr.indexOf( value ) === index )
 				// Get Title objects
 				.map( ( name ) => mw.Title.newFromText( name ) )
 				// Keep only titles from 'Category' namespace
