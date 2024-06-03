@@ -25,11 +25,6 @@
 	background-image: linear-gradient( to bottom, @startColor @startPos, @endColor @endPos );
 }
 
-// Deprecated in MW v1.38.0, use unprefixed `list-style-image:` now.
-.list-style-image( @url ) {
-	list-style-image: url( @url );
-}
-
 .hyphens( @value: auto ) {
 	& when ( @value = auto ) {
 		// Legacy `word-wrap`; IE 6-11, Edge 12+, Firefox 3.5+, Chrome 4+, Safari 3.1+,
