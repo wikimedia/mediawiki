@@ -289,13 +289,12 @@ class CliInstaller extends Installer {
 	}
 
 	public function showStatusMessage( Status $status ) {
-		$warnings = array_merge( $status->getWarningsArray(),
-			$status->getErrorsArray() );
-
-		if ( count( $warnings ) !== 0 ) {
-			foreach ( $warnings as $w ) {
-				$this->showMessage( ...$w );
-			}
+		// Show errors at the end in CLI installer to make them easier to notice
+		foreach ( $status->getMessages( 'warning' ) as $msg ) {
+			$this->showMessage( $msg );
+		}
+		foreach ( $status->getMessages( 'error' ) as $msg ) {
+			$this->showMessage( $msg );
 		}
 	}
 
