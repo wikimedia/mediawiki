@@ -1536,15 +1536,6 @@ abstract class File implements MediaHandlerState {
 	}
 
 	/**
-	 * Hook into transform() to allow migration of thumbnail files
-	 * STUB
-	 * @stable to override
-	 * @param string $thumbName
-	 */
-	protected function migrateThumbFile( $thumbName ) {
-	}
-
-	/**
 	 * Get a MediaHandler instance for this file
 	 *
 	 * @return MediaHandler|false Registered MediaHandler for file's MIME type
