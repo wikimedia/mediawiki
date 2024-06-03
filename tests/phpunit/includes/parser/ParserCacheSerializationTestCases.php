@@ -7,10 +7,12 @@ use JsonSerializable;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Tests\Json\JsonDeserializableSubClass;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
+use stdClass;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Tests\SerializationTestUtils;
 
@@ -30,6 +32,9 @@ use Wikimedia\Tests\SerializationTestUtils;
  * script. The same script should be run when more acceptance tests are added
  * to generate and save serialized object, which would be used for acceptance
  * deserialization tests.
+ *
+ * See:
+ * https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility
  *
  * @see SerializationTestTrait
  * @see SerializationTestUtils
@@ -186,6 +191,15 @@ abstract class ParserCacheSerializationTestCases {
 		foreach ( self::MOCK_EXT_DATA as $key => $value ) {
 			$parserOutputWithExtensionData->setExtensionData( $key, $value );
 		}
+
+		$parserOutputWithCodecableExtensionData = new ParserOutput( '' );
+		$parserOutputWithCodecableExtensionData->setExtensionData(
+			'map',
+			[
+				'a' => new JsonDeserializableSubClass( 'super', 'sub' ),
+				'b' => (object)[ 'r' => 2, 'd' => '2' ],
+			]
+		);
 
 		$parserOutputWithProperties = new ParserOutput( '' );
 		foreach ( self::MOCK_EXT_DATA as $key => $value ) {
@@ -353,6 +367,31 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertSame( self::MOCK_EXT_DATA['string'], $object->getExtensionData( 'string' ) );
 					$testCase->assertArrayEquals( self::MOCK_EXT_DATA['array'], $object->getExtensionData( 'array' ) );
 					$testCase->assertSame( self::MOCK_EXT_DATA['map'], $object->getExtensionData( 'map' ) );
+				}
+			],
+			'codecableExtensionData' => [
+				'instance' => $parserOutputWithCodecableExtensionData,
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+					$actual = $object->getExtensionData( 'map' );
+					$testCase->assertIsArray( $actual );
+					$testCase->assertArrayHasKey( 'a', $actual );
+					$testCase->assertInstanceOf(
+						JsonDeserializableSubClass::class, $actual['a']
+					);
+					$testCase->assertSame( 'super', $actual['a']->getSuperClassField() );
+					$testCase->assertSame( 'sub', $actual['a']->getSubClassField() );
+					$testCase->assertArrayHasKey( 'b', $actual );
+					$testCase->assertInstanceOf(
+						stdClass::class, $actual['b']
+					);
+					$testCase->assertSame(
+						2, $actual['b']->r
+					);
+					$testCase->assertSame(
+						'2', $actual['b']->d
+					);
+					$testCase->assertCount( 2, (array)$actual['b'] );
+					$testCase->assertCount( 2, $actual );
 				}
 			],
 			'pageProperties' => [
