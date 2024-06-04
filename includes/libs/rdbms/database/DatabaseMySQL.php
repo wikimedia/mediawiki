@@ -584,16 +584,6 @@ class DatabaseMySQL extends Database {
 		$this->lastQueryAffectedRows = min( $this->lastQueryAffectedRows, count( $rows ) );
 	}
 
-	/**
-	 * Determines if the last failure was due to the database being read-only.
-	 *
-	 * @return bool
-	 */
-	public function wasReadOnlyError() {
-		return $this->lastErrno() == 1223 ||
-			( $this->lastErrno() == 1290 && strpos( $this->lastError(), '--read-only' ) !== false );
-	}
-
 	protected function isConnectionError( $errno ) {
 		// https://mariadb.com/kb/en/mariadb-error-codes/
 		// https://dev.mysql.com/doc/mysql-errors/8.0/en/server-error-reference.html

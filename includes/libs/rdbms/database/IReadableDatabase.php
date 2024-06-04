@@ -593,13 +593,6 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	public function getServerName();
 
 	/**
-	 * Determines if the last failure was due to the database being read-only
-	 *
-	 * @return bool
-	 */
-	public function wasReadOnlyError();
-
-	/**
 	 * Wait for the replica server to catch up to a given primary server position
 	 *
 	 * Note that this does not start any new transactions.

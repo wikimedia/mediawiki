@@ -1885,10 +1885,6 @@ abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, Log
 		$this->query( $query, $fname );
 	}
 
-	public function wasReadOnlyError() {
-		return false;
-	}
-
 	/**
 	 * Do not use this method outside of Database/DBError classes
 	 *

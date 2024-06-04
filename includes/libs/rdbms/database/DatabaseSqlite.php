@@ -560,13 +560,6 @@ class DatabaseSqlite extends Database {
 		$this->query( $query, $fname );
 	}
 
-	/**
-	 * @return bool
-	 */
-	public function wasReadOnlyError() {
-		return $this->lastErrno() == 8; // SQLITE_READONLY;
-	}
-
 	protected function isConnectionError( $errno ) {
 		return $errno == 17; // SQLITE_SCHEMA;
 	}
