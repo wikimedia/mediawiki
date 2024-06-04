@@ -131,6 +131,7 @@
 	"apierror-invalidlang": "Virheellinen kielikoodi parametrille <var>$1</var>.",
 	"apierror-mustbeloggedin-generic": "Sinun täytyy olla sisäänkirjautuneena.",
 	"apierror-noapiwrite": "Tämän wikin muokkaaminen APIn kautta on estetty.",
+	"apierror-permissiondenied": "Sinulla ei ole oikeutta $1.",
 	"apierror-unknownerror-nocode": "Tuntematon virhe.",
 	"apierror-unknownerror": "Tuntematon virhe: \"$1\".",
 	"api-feed-error-title": "Virhe ($1)"

@@ -3623,7 +3623,7 @@
 	"version-entrypoints-articlepath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticlePath 記事のパス]",
 	"version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgScriptPath スクリプトパス]",
 	"version-libraries": "インストールされているライブラリ",
-	"version-libraries-client": "インストール済みのクライエント側ライブラリ",
+	"version-libraries-client": "インストール済みのクライアント側ライブラリ",
 	"version-libraries-library": "ライブラリ",
 	"version-libraries-version": "バージョン",
 	"version-libraries-license": "ライセンス",

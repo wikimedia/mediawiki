@@ -12,7 +12,8 @@
 			"Ndołkah",
 			"Poquil",
 			"Remember the dot",
-			"아라"
+			"아라",
+			"Cuatro Remos"
 		]
 	},
 	"tog-underline": "Miñchewirin trarintuku:",
@@ -823,5 +824,12 @@
 	"skin-action-protect": "Nürüfkünun",
 	"skin-action-undelete": "Wüñoñamümün",
 	"skin-action-delete": "Liftun",
-	"skin-action-move": "Nengümün"
+	"skin-action-move": "Nengümün",
+	"blockedtext-made-by": "Tañi rakizu am $1.",
+	"blockedtext-reason-comment": "Tañi mogen mew wenvayewa <em>$1</em>.",
+	"blockedtext-start-time": "Pewma rakizu: $1",
+	"blockedtext-expiration-time": "Pewma rakizu: $1 piwke",
+	"blockedtext-intended-blockee": "Rakizu pu mew: $1",
+	"blockedtext-contact-blocker-admin": "Zugun mew kisunchi $1 ka kureyenke [[{{MediaWiki:Grouppage-sysop}}|ülkantun]] kiñe rakizu mew am.",
+	"blockedtext-include-details-queries": "Fijke piwke ta kisuñwirin ñi mew ñi kisunchi."
 }
