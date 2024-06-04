@@ -4584,6 +4584,7 @@ class Language implements Bcp47Code {
 			'digitTransformTable' => $this->digitTransformTable(),
 			'separatorTransformTable' => $this->separatorTransformTable(),
 			'minimumGroupingDigits' => $this->minimumGroupingDigits(),
+			'formalityIndex' => $this->getFormalityIndex(),
 			'grammarForms' => $this->getGrammarForms(),
 			'grammarTransformations' => $this->getGrammarTransformations(),
 			'pluralRules' => $this->getPluralRules(),

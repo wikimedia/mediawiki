@@ -6,7 +6,8 @@
 	 * functionality of the Language class in MediaWiki:
 	 *
 	 *   - storing and retrieving language data
-	 *   - transforming message syntax (`{{PLURAL:}}`, `{{GRAMMAR:}}`, `{{GENDER:}}`)
+	 *   - transforming message syntax (`{{PLURAL:}}`, `{{GRAMMAR:}}`,
+	 *     `{{GENDER:}}`, `{{#FORMAL:}}`)
 	 *   - formatting numbers
 	 *
 	 * @namespace mw.language
@@ -37,6 +38,7 @@
 		 *  - `digitTransformTable`
 		 *  - `separatorTransformTable`
 		 *  - `minimumGroupingDigits`
+		 *  - `formalityIndex`
 		 *  - `grammarForms`
 		 *  - `pluralRules`
 		 *  - `digitGroupingPattern`
