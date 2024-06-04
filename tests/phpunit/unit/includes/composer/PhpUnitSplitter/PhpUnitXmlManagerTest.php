@@ -21,7 +21,7 @@ class PhpUnitXmlManagerTest extends TestCase {
 		parent::setUp();
 		$this->testDir = implode( DIRECTORY_SEPARATOR, [ sys_get_temp_dir(), uniqid( 'PhpUnitTest' ) ] );
 		mkdir( $this->testDir );
-		$this->manager = new PhpUnitXmlManager( $this->testDir );
+		$this->manager = new PhpUnitXmlManager( $this->testDir, 'tests-list.xml' );
 		$this->setupTestFolder();
 	}
 

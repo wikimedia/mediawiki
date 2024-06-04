@@ -52,6 +52,9 @@ class ForkController {
 
 	protected static $RESTARTABLE_SIGNALS = [];
 
+	/** @var int[] */
+	protected $exitStatuses = [];
+
 	/**
 	 * Pass this flag to __construct() to cause the class to automatically restart
 	 * workers that exit with non-zero exit status or a signal such as SIGSEGV.
@@ -93,6 +96,7 @@ class ForkController {
 	 * This will return 'child' in the child processes. In the parent process,
 	 * it will run until all the child processes exit or a TERM signal is
 	 * received. It will then return 'done'.
+	 *
 	 * @return string
 	 */
 	public function start() {
@@ -135,6 +139,13 @@ class ForkController {
 						}
 					}
 				}
+
+				if ( pcntl_wifexited( $status ) ) {
+					$exitStatus = pcntl_wexitstatus( $status );
+					echo "Worker exited with status $exitStatus\n";
+					$this->exitStatuses[] = $exitStatus;
+				}
+
 				// Throttle restarts
 				if ( $this->procsToStart ) {
 					usleep( 500_000 );
@@ -160,6 +171,20 @@ class ForkController {
 		} while ( count( $this->children ) );
 		pcntl_signal( SIGTERM, SIG_DFL );
 		return 'done';
+	}
+
+	/**
+	 * Return true if all completed child processes exited with an exit
+	 * status / return code of 0.
+	 *
+	 * @return bool
+	 */
+	public function allSuccessful(): bool {
+		return array_reduce(
+			$this->exitStatuses,
+			static fn ( $acc, $status ) => $acc && ( $status === 0 ),
+			true
+		);
 	}
 
 	/**

@@ -20,6 +20,14 @@ class PhpUnitXml {
 		$this->xml = new SimpleXMLElement( file_get_contents( $phpUnitXmlFile ) );
 	}
 
+	public static function isPhpUnitXmlPrepared( string $targetFile ): bool {
+		if ( !file_exists( $targetFile ) ) {
+			return false;
+		}
+		$unitFile = new PhpUnitXml( $targetFile );
+		return $unitFile->containsSplitGroups();
+	}
+
 	public function containsSplitGroups(): bool {
 		if ( !property_exists( $this->xml, "testsuites" ) ||
 			!property_exists( $this->xml->testsuites, "testsuite" ) ) {
