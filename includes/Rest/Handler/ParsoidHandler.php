@@ -409,7 +409,9 @@ abstract class ParsoidHandler extends Handler {
 		$services = MediaWikiServices::getInstance();
 
 		$helper = $services->getPageRestHelperFactory()->newHtmlInputTransformHelper(
-			$attribs['envOptions']
+			$attribs['envOptions'] + [
+				'offsetType' => $attribs['offsetType'],
+			]
 		);
 
 		$metrics = $this->siteConfig->metrics();
