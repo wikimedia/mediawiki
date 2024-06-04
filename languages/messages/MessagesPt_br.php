@@ -270,7 +270,7 @@ $magicWords = [
 	'img_top'                   => [ '1', 'acima', 'top' ],
 	'img_upright'               => [ '1', 'superiordireito', 'superiordireito=$1', 'superiordireito_$1', 'superiordireito $1', 'upright', 'upright=$1', 'upright $1' ],
 	'index'                     => [ '1', '__INDEXAR__', '__INDEX__' ],
-	'language'                  => [ '0', '#IDIOMA:', '#LANGUAGE:' ],
+	'language'                  => [ '0', '#IDIOMA', '#LANGUAGE' ],
 	'lc'                        => [ '0', 'MINUSCULA', 'MINÚSCULA', 'MINUSCULAS', 'MINÚSCULAS', 'LC:' ],
 	'lcfirst'                   => [ '0', 'PRIMEIRAMINUSCULA:', 'PRIMEIRAMINÚSCULA:', 'LCFIRST:' ],
 	'localday'                  => [ '1', 'DIALOCAL', 'LOCALDAY' ],

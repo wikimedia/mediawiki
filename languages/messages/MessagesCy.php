@@ -57,7 +57,7 @@ $magicWords = [
 	'img_thumbnail'             => [ '1', 'bawd', 'ewin_bawd', 'mân-lun', 'thumb', 'thumbnail' ],
 	'img_top'                   => [ '1', 'brig', 'top' ],
 	'img_upright'               => [ '1', 'unionsyth', 'unionsyth=$1', 'unionsyth_$1', 'upright', 'upright=$1', 'upright $1' ],
-	'language'                  => [ '0', '#IAITH:', '#LANGUAGE:' ],
+	'language'                  => [ '0', '#IAITH', '#LANGUAGE' ],
 	'localtimestamp'            => [ '1', 'STAMPAMSERLLEOL', 'LOCALTIMESTAMP' ],
 	'namespace'                 => [ '1', 'PARTH', 'NAMESPACE' ],
 	'namespacee'                => [ '1', 'NAMESPACE', 'PARTHE', 'NAMESPACEE' ],

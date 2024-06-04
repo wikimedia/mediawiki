@@ -83,7 +83,7 @@ $magicWords = [
 	'img_thumbnail'             => [ '1', 'miniatura', 'mini', 'thumb', 'thumbnail' ],
 	'img_top'                   => [ '1', 'sus', 'top' ],
 	'img_upright'               => [ '1', 'dreaptasus', 'dreaptasus=$1', 'dreaptasus $1', 'upright', 'upright=$1', 'upright $1' ],
-	'language'                  => [ '0', '#LIMBA:', '#LANGUAGE:' ],
+	'language'                  => [ '0', '#LIMBA', '#LANGUAGE' ],
 	'lc'                        => [ '0', 'MINUSCULA:', 'LC:' ],
 	'lcfirst'                   => [ '0', 'MINUSCULAPRIMA:', 'LCFIRST:' ],
 	'localday'                  => [ '1', 'ZIUALOCALA', 'LOCALDAY' ],

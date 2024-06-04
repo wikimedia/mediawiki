@@ -303,7 +303,7 @@ $magicWords = [
 	'img_top'                   => [ '1', 'góra', 'top' ],
 	'img_upright'               => [ '1', 'skala', 'skala=$1', 'skala $1', 'skaluj', 'skaluj=$1', 'skaluj $1', 'upright', 'upright=$1', 'upright $1' ],
 	'index'                     => [ '1', '__INDEKSUJ__', '__INDEX__' ],
-	'language'                  => [ '0', '#JĘZYK:', '#LANGUAGE:' ],
+	'language'                  => [ '0', '#JĘZYK', '#LANGUAGE' ],
 	'lc'                        => [ '0', 'MAŁE:', 'LC:' ],
 	'lcfirst'                   => [ '0', 'ZMAŁEJ:', 'ODMAŁEJ:', 'LCFIRST:' ],
 	'localday'                  => [ '1', 'DZIEŃ', 'LOCALDAY' ],

@@ -183,7 +183,7 @@ $magicWords = [
 	'img_upright'               => [ '1', 'tikti', 'tiktik=$1', 'tiktik $1', 'тікті', 'тіктік=$1', 'тіктік $1', 'upright', 'upright=$1', 'upright $1' ],
 	'img_width'                 => [ '1', '$1 nükte', '$1 нүкте', '$1px' ],
 	'int'                       => [ '0', 'İŞKİ:', 'ІШКІ:', 'INT:' ],
-	'language'                  => [ '0', '#TİL:', '#ТІЛ:', '#LANGUAGE:' ],
+	'language'                  => [ '0', '#TİL', '#ТІЛ', '#LANGUAGE' ],
 	'lc'                        => [ '0', 'KÄ:', 'KİŞİÄRİPPEN:', 'КӘ:', 'КІШІӘРІППЕН:', 'LC:' ],
 	'lcfirst'                   => [ '0', 'KÄ1:', 'KİŞİÄRİPPEN1:', 'КӘ1:', 'КІШІӘРІППЕН1:', 'LCFIRST:' ],
 	'localday'                  => [ '1', 'JERGİLİKTİKÜN', 'ЖЕРГІЛІКТІКҮН', 'LOCALDAY' ],

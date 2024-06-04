@@ -250,7 +250,7 @@ $magicWords = [
 	'img_top'                   => [ '1', 'topp', 'top' ],
 	'img_upright'               => [ '1', 'stående', 'stående=$1', 'stående $1', 'upright', 'upright=$1', 'upright $1' ],
 	'index'                     => [ '1', '__INDEXERA__', '__INDEX__' ],
-	'language'                  => [ '0', '#SPRÅK:', '#LANGUAGE:' ],
+	'language'                  => [ '0', '#SPRÅK', '#LANGUAGE' ],
 	'lc'                        => [ '0', 'LB:', 'LC:' ],
 	'lcfirst'                   => [ '0', 'LBFÖRST:', 'LCFIRST:' ],
 	'localday'                  => [ '1', 'LOKALDAG', 'LOCALDAY' ],

@@ -12927,8 +12927,8 @@ Ignore pipe between table row attributes
 </td></tr></tbody></table>
 !! end
 
-!!test
-Language parser function
+!! test
+Language parser function (autonym)
 !! wikitext
 {{#language:ar}}
 !! html/php
@@ -12936,6 +12936,65 @@ Language parser function
 </p>
 !! html/parsoid+integrated
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#language:ar","function":"language"},"params":{},"i":0}}]}'>العربية</span></p>
+!! end
+
+!! test
+Language parser function (case-insensitive)
+!! wikitext
+{{#language:AR}}
+!! html/php
+<p>العربية
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#language:AR","function":"language"},"params":{},"i":0}}]}'>العربية</span></p>
+!! end
+
+!! test
+Language parser function (non-autonym)
+!! wikitext
+{{#language:aR|En}}
+!! html/php
+<p>Arabic
+</p>
+!! html/parsoid+integrated
+<p><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#language:aR","function":"language"},"params":{"1":{"wt":"En"}},"i":0}}]}'>Arabic</span></p>
+!! end
+
+!! test
+Language parser function (bcp-47 codes)
+!! wikitext
+{{#language:de-x-formal|en-simple}}
+!! html/php
+<p>German (formal address)
+</p>
+!! html/parsoid+integrated
+<p><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#language:de-x-formal","function":"language"},"params":{"1":{"wt":"en-simple"}},"i":0}}]}'>German (formal address)</span></p>
+!! end
+
+!! test
+Language parser function (target language)
+!! options
+language=ar
+!! wikitext
+{{#language}} / {{#language:}}
+!! html/php
+<p>العربية / العربية
+</p>
+!! html/parsoid+integrated
+<p><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#language","function":"language"},"params":{},"i":0}}]}'>العربية</span> / <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#language:","function":"language"},"params":{},"i":0}}]}'>العربية</span></p>
+!! end
+
+!! test
+Language parser function (target language, non-autonym)
+!! options
+language=ar
+!! wikitext
+{{#language:|en}}
+!! html/php
+<p>Arabic
+</p>
+!! html/parsoid+integrated
+<p><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#language:","function":"language"},"params":{"1":{"wt":"en"}},"i":0}}]}'>Arabic</span></p>
 !! end
 
 !! test

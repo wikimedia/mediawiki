@@ -194,7 +194,7 @@ $magicWords = [
 	'img_thumbnail'             => [ '1', 'pisi', 'pisipilt', 'thumb', 'thumbnail' ],
 	'img_upright'               => [ '1', 'püsti', 'püsti=$1', 'upright', 'upright=$1', 'upright $1' ],
 	'index'                     => [ '1', 'INDEKSIGA', '__INDEX__' ],
-	'language'                  => [ '0', '#KEEL:', '#LANGUAGE:' ],
+	'language'                  => [ '0', '#KEEL', '#LANGUAGE' ],
 	'lc'                        => [ '0', 'VT:', 'LC:' ],
 	'lcfirst'                   => [ '0', 'ESIVT:', 'LCFIRST:' ],
 	'localday'                  => [ '1', 'KOHALIKKUUPÄEV', 'LOCALDAY' ],

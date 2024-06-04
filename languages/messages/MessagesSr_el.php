@@ -355,7 +355,7 @@ $magicWords = [
 	'img_upright'               => [ '1', 'uspravno', 'uspravno=$1', 'uspravno_$1', 'upright', 'upright=$1', 'upright $1' ],
 	'img_width'                 => [ '1', '$1p', '$1piksel', '$1px' ],
 	'index'                     => [ '1', '__INDEKSIRAJ__', '__INDEKSIRANJE__', '__INDEKS__', '__INDEX__' ],
-	'language'                  => [ '0', '#JEZIK:', '#LANGUAGE:' ],
+	'language'                  => [ '0', '#JEZIK', '#LANGUAGE' ],
 	'lcfirst'                   => [ '0', 'LCPRVI:', 'LCFIRST:' ],
 	'localday'                  => [ '1', 'LOKALNIDAN', 'LOKALNI_DAN', 'LOCALDAY' ],
 	'localday2'                 => [ '1', 'LOKALNIDAN2', 'LOKALNI_DAN2', 'LOCALDAY2' ],

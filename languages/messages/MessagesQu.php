@@ -199,7 +199,7 @@ $magicWords = [
 	'img_upright'               => [ '1', 'sayaq', 'sayaq=$1', 'upright', 'upright=$1', 'upright $1' ],
 	'index'                     => [ '1', '__UNANCHAY__', '__INDEXAR__', '__INDEX__' ],
 	'int'                       => [ '0', 'WILLAY:', 'INT:' ],
-	'language'                  => [ '0', '#RIMAY:', '#IDIOMA:', '#LANGUAGE:' ],
+	'language'                  => [ '0', '#RIMAY', '#IDIOMA', '#LANGUAGE' ],
 	'lc'                        => [ '0', 'UCHUY:', 'MINUS:', 'MINÚS:', 'LC:' ],
 	'lcfirst'                   => [ '0', 'UCHUYÑAWPAQ:', 'UCHUYNAWPAQ:', 'PRIMEROMINUS;', 'PRIMEROMINÚS:', 'PRIMEROMINUS:', 'LCFIRST:' ],
 	'localday'                  => [ '1', 'KAYPIPUNCHAW', 'DÍALOCAL', 'DIALOCAL', 'LOCALDAY' ],

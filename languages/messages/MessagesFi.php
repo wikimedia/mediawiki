@@ -194,7 +194,7 @@ $magicWords = [
 	'img_thumbnail'             => [ '1', 'pienoiskuva', 'pienois', 'thumb', 'thumbnail' ],
 	'img_top'                   => [ '1', 'ylös', 'ylhäällä', 'top' ],
 	'img_upright'               => [ '1', 'pysty', 'pysty=$1', 'pysty_$1', 'yläoikea', 'yläoikea=$1', 'yläoikea_$1', 'upright', 'upright=$1', 'upright $1' ],
-	'language'                  => [ '0', '#KIELI:', '#LANGUAGE:' ],
+	'language'                  => [ '0', '#KIELI', '#LANGUAGE' ],
 	'localday'                  => [ '1', 'PAIKALLINENPÄIVÄ', 'LOCALDAY' ],
 	'localday2'                 => [ '1', 'PAIKALLINENPÄIVÄ2', 'LOCALDAY2' ],
 	'localdayname'              => [ '1', 'PAIKALLINENPÄIVÄNIMI', 'LOCALDAYNAME' ],

@@ -187,7 +187,7 @@ $magicWords = [
 	'img_top'                   => [ '1', 'sopra', 'top' ],
 	'img_upright'               => [ '1', 'verticale', 'verticale=$1', 'verticale_$1', 'upright', 'upright=$1', 'upright $1' ],
 	'index'                     => [ '1', '__INDICIZZARE__', '__INDICE__', '__INDEX__' ], // T314165
-	'language'                  => [ '0', '#LINGUA', '#LANGUAGE:' ],
+	'language'                  => [ '0', '#LINGUA', '#LANGUAGE' ],
 	'localday'                  => [ '1', 'GIORNOLOCALE', 'LOCALDAY' ],
 	'localday2'                 => [ '1', 'GIORNOLOCALE2', 'LOCALDAY2' ],
 	'localdayname'              => [ '1', 'NOMEGIORNOLOCALE', 'LOCALDAYNAME' ],
