@@ -38,7 +38,7 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use Wikimedia\ParamValidator\ParamValidator;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -906,7 +906,7 @@ class ApiPageSet extends ApiBase {
 	 * Note that the query result must include the columns returned by
 	 * $this->getPageTableFields().
 	 *
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db Unused since 2011
 	 * @param IResultWrapper $queryResult
 	 */
 	public function populateFromQueryResult( $db, $queryResult ) {
