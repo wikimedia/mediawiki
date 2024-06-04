@@ -2684,7 +2684,7 @@
 	"markedaspatrollederrortext": "Morate odabrati inačicu koju treba označiti za pregledanu.",
 	"markedaspatrollederror-noautopatrol": "Ne možete vlastite promjene označiti patroliranima.",
 	"markedaspatrollednotify": "Uređivanje stranice $1 označeno je pregledanim.",
-	"patrol-log-page": "Evidencija ophodnji i samoophodnji",
+	"patrol-log-page": "Evidencija ophodnji",
 	"patrol-log-header": "Ovo su evidencije ophođenih izmjena.",
 	"confirm-markpatrolled-button": "U redu",
 	"confirm-markpatrolled-top": "Označiti izmjenu $3 stranice $2 pregledanom?",

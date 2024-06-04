@@ -3434,7 +3434,7 @@
 	"signature-temp": "[[{{#special:Contributions}}/$1|$2]]（[[{{ns:user_talk}}:$1|留言]]）",
 	"timezone-local": "本地",
 	"duplicate-defaultsort": "<strong>警告：</strong>默认排序键“$2”覆盖了之前的默认排序键“$1”。",
-	"duplicate-displaytitle": "<strong>警告：</strong>显示的标题“$2”重写了此前显示的标题“$1”。",
+	"duplicate-displaytitle": "<strong>警告：</strong>显示标题“$2”覆盖了之前的显示标题“$1”。",
 	"restricted-displaytitle": "<strong>警告：</strong>显示标题“$1”被忽略，因为它不等同于页面的实际标题。",
 	"invalid-indicator-name": "<strong>错误：</strong>页面状态指示器的<code>name</code>属性必须不为空。",
 	"invalid-langconvert-attrs": "<strong>错误：</strong>Langconvert标记<code>from</code>以及<code>to</code>属性不能为空，并且必须包含相同语言可转换变体的BCP 47代码。",

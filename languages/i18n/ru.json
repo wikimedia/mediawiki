@@ -1197,6 +1197,7 @@
 	"linterror-misnested-tag": "Неверно вложенный тег, который должен быть правильно вложен",
 	"linterror-missing-end-tag": "Отсутствующий закрывающий тег",
 	"linterror-missing-end-tag-in-heading": "Отсутствует конечный тег в заголовке",
+	"linterror-missing-image-alt-text": "Отсутствует текст подписи (alt) изображения",
 	"linterror-multi-colon-escape": "Многократное экранирование двоеточием",
 	"linterror-multiline-html-table-in-list": "Многострочная таблица HTML5 внутри списка",
 	"linterror-multiple-unclosed-formatting-tags": "Несколько незакрытых тегов форматирования на странице",
