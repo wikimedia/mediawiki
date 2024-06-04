@@ -22,7 +22,7 @@ interface SpecialPage_initListHook {
 	 * Override SpecialPage::userCanExecute or set a user right when calling SpecialPage::__construct,
 	 * after registering the special page for all users, to restrict the access for users allowed to use the page.
 	 * When replacing a (core) special page in the list, it is possible to depend on the request context,
-	 * but this hook is also called from Setup and the the user is not always safe to load,
+	 * but this hook is also called from Setup and the user is not always safe to load,
 	 * call User::isSafeToLoad before using any User class function or one of the user services like
 	 * UserOptionsLookup/UserOptionsManager.
 	 * Also the title may not be set for all requests (for e.g. api.php or load.php),
