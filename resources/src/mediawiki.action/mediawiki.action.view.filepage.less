@@ -153,10 +153,20 @@
 		border: @border-base;
 		padding-left: 5px;
 		padding-right: 5px;
+
+		html.skin-theme-clientpref-night & {
+			background-color: @background-color-transparent;
+		}
+
+		@media ( prefers-color-scheme: dark ) {
+			html.skin-theme-clientpref-os & {
+				background-color: @background-color-transparent;
+			}
+		}
 	}
 
 	th {
-		background-color: #f8f9fa;
+		background-color: @background-color-neutral-subtle;
 		font-weight: normal;
 		text-align: center;
 	}
