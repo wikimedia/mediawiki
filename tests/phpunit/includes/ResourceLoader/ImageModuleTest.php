@@ -262,14 +262,19 @@ class ImageModuleTest extends ResourceLoaderTestCase {
 				'data:image/svg+xml',
 				'background-image: url(data:image/svg+xml);',
 			],
+			[
+				'data:image/svg+xml',
+				"--webkit-mask-image: url(data:image/svg+xml);\n	mask-image: url(data:image/svg+xml);",
+				true
+			]
 		];
 	}
 
 	/**
 	 * @dataProvider providerGetStyleDeclarations
 	 */
-	public function testGetStyleDeclarations( $dataUriReturnValue, $expected ) {
-		$module = TestingAccessWrapper::newFromObject( new ImageModule() );
+	public function testGetStyleDeclarations( $dataUriReturnValue, $expected, $useMaskImage = false ) {
+		$module = TestingAccessWrapper::newFromObject( new ImageModule( [ 'useMaskImage' => $useMaskImage ] ) );
 		$context = $this->getResourceLoaderContext();
 		$image = $this->getImageMock( $context, $dataUriReturnValue );
 

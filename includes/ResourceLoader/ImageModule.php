@@ -30,6 +30,8 @@ use Wikimedia\Minify\CSSMin;
  * @since 1.25
  */
 class ImageModule extends Module {
+	/** @var bool */
+	private $useMaskImage;
 	/** @var array|null */
 	protected $definition;
 
@@ -69,6 +71,9 @@ class ImageModule extends Module {
 	 * @par Construction options:
 	 * @code
 	 *     [
+	 *         // When set the icon will use mask-image instead of background-image for the CSS output. Using mask-image
+	 *         // allows colorization of SVGs in Codex. Defaults to false for backwards compatibility.
+	 *         'useMaskImage' => false,
 	 *         // Base path to prepend to all local paths in $options. Defaults to $IP
 	 *         'localBasePath' => [base path],
 	 *         // Path to JSON file that contains any of the settings below
@@ -113,6 +118,7 @@ class ImageModule extends Module {
 	 * @endcode
 	 */
 	public function __construct( array $options = [], $localBasePath = null ) {
+		$this->useMaskImage = $options['useMaskImage'] ?? false;
 		$this->localBasePath = static::extractLocalBasePath( $options, $localBasePath );
 
 		$this->definition = $options;
@@ -355,6 +361,7 @@ class ImageModule extends Module {
 		}
 
 		$style = implode( "\n", $rules );
+
 		return [ 'all' => $style ];
 	}
 
@@ -391,9 +398,22 @@ class ImageModule extends Module {
 	 */
 	protected function getCssDeclarations( $primary ): array {
 		$primaryUrl = CSSMin::buildUrlValue( $primary );
+		if ( $this->supportsMaskImage() ) {
+			return [
+				"--webkit-mask-image: $primaryUrl;",
+				"mask-image: $primaryUrl;",
+			];
+		}
 		return [
 			"background-image: $primaryUrl;",
 		];
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function supportsMaskImage() {
+		return $this->useMaskImage;
 	}
 
 	/**
