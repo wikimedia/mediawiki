@@ -374,17 +374,16 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				$lang->userDate( $oimage->getTimestamp(), $user ),
 				$lang->userTime( $oimage->getTimestamp(), $user ) );
 			$this->getOutput()->addHTML(
-				Xml::openElement( 'form', [
+				Html::rawElement( 'form', [
 					'method' => 'POST',
 					'action' => $this->getPageTitle()->getLocalURL( [
 							'target' => $this->targetObj->getPrefixedDBkey(),
 							'file' => $archiveName,
 							'token' => $user->getEditToken( $archiveName ),
 						] )
-					]
-				) .
-				Xml::submitButton( $this->msg( 'revdelete-show-file-submit' )->text() ) .
-				'</form>'
+					],
+					Xml::submitButton( $this->msg( 'revdelete-show-file-submit' )->text() )
+				)
 			);
 
 			return;

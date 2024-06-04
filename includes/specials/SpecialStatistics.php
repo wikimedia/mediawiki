@@ -139,10 +139,10 @@ class SpecialStatistics extends SpecialPage {
 		$linkRenderer = $this->getLinkRenderer();
 
 		$specialAllPagesTitle = SpecialPage::getTitleFor( 'Allpages' );
-		$pageStatsHtml = Xml::openElement( 'tr' ) .
-			Xml::tags( 'th', [ 'colspan' => '2' ], $this->msg( 'statistics-header-pages' )
-				->parse() ) .
-			Xml::closeElement( 'tr' ) .
+		$pageStatsHtml = Html::rawElement( 'tr', [],
+			Xml::tags( 'th', [ 'colspan' => '2' ],
+				$this->msg( 'statistics-header-pages' )->parse()
+			) ) .
 				$this->formatRow(
 					$this->getConfig()->get( MainConfigNames::MiserMode )
 						? $this->msg( 'statistics-articles' )->escaped()
@@ -172,10 +172,10 @@ class SpecialStatistics extends SpecialPage {
 	}
 
 	private function getEditStats() {
-		return Xml::openElement( 'tr' ) .
+		return Html::rawElement( 'tr', [],
 			Xml::tags( 'th', [ 'colspan' => '2' ],
-				$this->msg( 'statistics-header-edits' )->parse() ) .
-			Xml::closeElement( 'tr' ) .
+				$this->msg( 'statistics-header-edits' )->parse()
+			) ) .
 			$this->formatRow( $this->msg( 'statistics-edits' )->parse(),
 				$this->getLanguage()->formatNum( $this->edits ),
 				[ 'class' => 'mw-statistics-edits' ]
@@ -188,10 +188,10 @@ class SpecialStatistics extends SpecialPage {
 	}
 
 	private function getUserStats() {
-		return Xml::openElement( 'tr' ) .
+		return Html::rawElement( 'tr', [],
 			Xml::tags( 'th', [ 'colspan' => '2' ],
-				$this->msg( 'statistics-header-users' )->parse() ) .
-			Xml::closeElement( 'tr' ) .
+				$this->msg( 'statistics-header-users' )->parse()
+			) ) .
 			$this->formatRow( $this->msg( 'statistics-users' )->parse() . ' ' .
 				$this->getLinkRenderer()->makeKnownLink(
 					SpecialPage::getTitleFor( 'Listusers' ),
@@ -308,9 +308,9 @@ class SpecialStatistics extends SpecialPage {
 	 * @return string
 	 */
 	private function formatRowHeader( $header ) {
-		return Xml::openElement( 'tr' ) .
-			Xml::tags( 'th', [ 'colspan' => '2' ], $this->msg( $header )->parse() ) .
-			Xml::closeElement( 'tr' );
+		return Html::rawElement( 'tr', [],
+			Xml::tags( 'th', [ 'colspan' => '2' ], $this->msg( $header )->parse() )
+		);
 	}
 
 	protected function getGroupName() {

@@ -557,12 +557,12 @@ class ImagePage extends Article {
 					$out->addHTML(
 						'<div class="mw-filepage-multipage-navigation multipageimagenavbox">' .
 						$linkPrev .
-						Xml::openElement( 'form', $formParams ) .
-						Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
-						$context->msg( 'imgmultigoto' )->rawParams( $select )->parse() .
-						$context->msg( 'word-separator' )->escaped() .
-						Xml::submitButton( $context->msg( 'imgmultigo' )->text() ) .
-						Xml::closeElement( 'form' ) .
+						Html::rawElement( 'form', $formParams,
+							Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
+							$context->msg( 'imgmultigoto' )->rawParams( $select )->parse() .
+							$context->msg( 'word-separator' )->escaped() .
+							Xml::submitButton( $context->msg( 'imgmultigo' )->text() )
+						) .
 						"$thumbPrevPage\n$thumbNextPage\n$linkNext</div></div>"
 					);
 				}
