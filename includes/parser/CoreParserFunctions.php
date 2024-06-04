@@ -120,6 +120,7 @@ class CoreParserFunctions {
 
 			# These magic words already contain the hash, and the no-args form
 			# is the same as passing an empty first argument
+			'bcp47',
 			'dir',
 		];
 		foreach ( $noHashFunctions as $func ) {
@@ -1046,6 +1047,22 @@ class CoreParserFunctions {
 			}
 		}
 		return $lang->getDir();
+	}
+
+	/**
+	 * Gives the BCP-47 code for a language given the mediawiki internal
+	 * language code.
+	 * @param Parser $parser
+	 * @param string $code a language code. If missing, the parser target
+	 *  language will be used.
+	 * @return string the corresponding BCP-47 code
+	 */
+	public static function bcp47( Parser $parser, string $code = '' ): string {
+		if ( $code === '' ) {
+			return $parser->getTargetLanguage()->toBcp47Code();
+		} else {
+			return LanguageCode::bcp47( $code );
+		}
 	}
 
 	/**
