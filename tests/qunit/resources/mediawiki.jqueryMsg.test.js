@@ -350,6 +350,22 @@
 		assert.strictEqual( formatParse( 'grammar-msg-wrong-syntax' ), 'Przeszukaj ', 'Grammar Test with wrong grammar template syntax' );
 	} );
 
+	QUnit.test( 'Formal', ( assert ) => {
+		mw.language.setData( mw.config.get( 'wgUserLanguage' ), 'formalityIndex', 0 );
+		mw.messages.set( 'formal-msg', '{{#FORMAL:Du hast|Sie haben}}' );
+		assert.strictEqual( formatParse( 'formal-msg' ), 'Du hast', 'Formal Test ' );
+
+		mw.messages.set( 'formal-msg-no-arguments', 'a{{#FORMAL:}}b' );
+		assert.strictEqual( formatParse( 'formal-msg-no-arguments' ), 'ab', 'Formal Test with wrong formal template syntax' );
+
+		mw.messages.set( 'formal-msg-one-argument', '{{#FORMAL:Single form}}' );
+		assert.strictEqual( formatParse( 'formal-msg-one-argument' ), 'Single form', 'Formal Test with a single argument' );
+
+		mw.language.setData( mw.config.get( 'wgUserLanguage' ), 'formalityIndex', 1 );
+		assert.strictEqual( formatParse( 'formal-msg' ), 'Sie haben', 'Formal Test' );
+		assert.strictEqual( formatParse( 'formal-msg-one-argument' ), 'Single form', 'Formal Test with a single argument when the second argument should be chosen' );
+	} );
+
 	QUnit.test( 'Variables', ( assert ) => {
 		mw.messages.set( 'variables-pagename', '{{PAGENAME}}' );
 		assert.strictEqual( formatParse( 'variables-pagename' ), '2 + 2', 'PAGENAME' );

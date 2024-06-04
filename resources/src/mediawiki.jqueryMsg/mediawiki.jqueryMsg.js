@@ -576,7 +576,7 @@ Parser.prototype = {
 		function templateName() {
 			// see $wgLegalTitleChars
 			// not allowing : due to the need to catch "PLURAL:$1"
-			const templateNameRegex = makeRegexParser( /^[ !"$&'()*,./0-9;=?@A-Z^_`a-z~\x80-\xFF+-]+/ );
+			const templateNameRegex = makeRegexParser( /^#?[ !"$&'()*,./0-9;=?@A-Z^_`a-z~\x80-\xFF+-]+/ );
 			const result = templateNameRegex();
 			return result === null ? null : result.toString();
 		}
@@ -1208,6 +1208,27 @@ HtmlEmitter.prototype = {
 			}
 		}
 		return appendWithoutParsing( $el.empty(), contents );
+	},
+
+	/**
+	 * Transform formal syntax
+	 *
+	 * @param {string[]} nodes List of nodes
+	 * @return {string|jQuery} selected (in)formal form according to the current language
+	 */
+	'#formal': function ( nodes ) {
+		const formalityIndex = this.language.getData(
+			mw.config.get( 'wgUserLanguage' ),
+			'formalityIndex'
+		);
+
+		if ( nodes.length === 0 ) {
+			return '';
+		} else if ( nodes.length === 1 ) {
+			return nodes[ 0 ];
+		}
+
+		return nodes[ formalityIndex ];
 	},
 
 	/**
