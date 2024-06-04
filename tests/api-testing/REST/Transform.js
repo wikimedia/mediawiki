@@ -518,6 +518,31 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
+		it( 'should lint multibyte wikitext', function ( done ) {
+			if ( skipForNow ) {
+				return this.skip();
+			} // Enable linting config
+			client.req
+				.post( endpointPrefix + '/transform/wikitext/to/lint/' )
+				.send( {
+					wikitext: {
+						headers: {
+							'content-type': 'text/plain;profile="https://www.mediawiki.org/wiki/Specs/wikitext/1.0.0"'
+						},
+						body: "ăăă ''test"
+					}
+				} )
+				.expect( status200 )
+				.expect( function ( res ) {
+					res.body.should.be.instanceof( Array );
+					res.body.length.should.equal( 1 );
+					res.body[ 0 ].type.should.equal( 'missing-end-tag' );
+					// res.body[ 0 ].dsr.should.eql( [ 7, 13, 2, 0 ] ); // 'byte' offsets
+					res.body[ 0 ].dsr.should.eql( [ 4, 10, 2, 0 ] ); // 'ucs2' offsets
+				} )
+				.end( done );
+		} );
+
 	} );
 
 	describe( 'wt2html', function () {

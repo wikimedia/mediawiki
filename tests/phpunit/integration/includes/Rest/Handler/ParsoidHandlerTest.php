@@ -1969,6 +1969,34 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			$lintHeaders
 		];
 
+		// should lint the given wikitext 3 ///////////////////////////////////
+
+		// Multibyte characters before lint error
+		$wikitext = "ăăă ''test";
+
+		$expectedText = [
+			'"type":"missing-end-tag"',
+			// '"dsr":[7,13,2,0]', // 'byte' offsets
+			'"dsr":[4,10,2,0]', // 'ucs2' offsets
+		];
+
+		$unexpectedText = [
+			'<html'
+		];
+
+		$attribs = [
+			'opts' => [ 'format' => ParsoidFormatHelper::FORMAT_LINT ],
+			'offsetType' => 'ucs2',
+		];
+
+		yield 'should lint the given wikitext 3' => [
+			$attribs,
+			$wikitext,
+			$expectedText,
+			$unexpectedText,
+			$lintHeaders
+		];
+
 		// should parse the given JSON ///////////////////////////////////
 		$wikitext = '{ "color": "green" }';
 

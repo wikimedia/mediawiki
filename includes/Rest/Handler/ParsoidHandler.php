@@ -659,6 +659,7 @@ abstract class ParsoidHandler extends Handler {
 	) {
 		$envOptions = $attribs['envOptions'] + [
 			'linterOverrides' => $linterOverrides,
+			'offsetType' => $attribs['offsetType'],
 		];
 		try {
 			$parsoid = $this->newParsoid();
