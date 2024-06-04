@@ -8,7 +8,7 @@
 		"lint": "grunt lint",
 		"test": "grunt lint && npm run doc",
 		"qunit": "grunt qunit",
-		"doc": "jsdoc -c jsdoc.js",
+		"doc": "jsdoc -c .jsdoc.json",
 		"selenium-daily": "npm run selenium-test -- --mochaOpts.grep @daily",
 		"selenium-test": "wdio ./tests/selenium/wdio.conf.js"
 	},
