@@ -225,6 +225,8 @@ because of Phabricator reports.
 * IDatabase::getTopologyRole() has been removed without deprecation.
 * IDatabase::getTopologyBasedServerId() has been removed without deprecation.
   Use IDatabase::getServerName() instead.
+* IReadableDatabase::wasReadOnlyError() has been removed without deprecation.
+  Use IDatabase::isReadOnly() instead.
 * IReadableDatabase::wasDeadlock() has been removed without deprecation.
 * ILoadBalancer::getWriterIndex() has been removed without deprecation.
   Use ServerInfo::WRITER_INDEX constant instead.

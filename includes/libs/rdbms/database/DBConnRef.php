@@ -594,10 +594,6 @@ class DBConnRef implements IMaintainableDatabase, IDatabaseForOwner {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function wasReadOnlyError() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function primaryPosWait( DBPrimaryPos $pos, $timeout ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}

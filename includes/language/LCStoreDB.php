@@ -104,7 +104,7 @@ class LCStoreDB implements LCStore {
 			}
 			$this->writesDone = true;
 		} catch ( DBQueryError $e ) {
-			if ( $dbw->wasReadOnlyError() ) {
+			if ( $dbw->isReadOnly() ) {
 				$this->readOnly = true; // just avoid site downtime
 			} else {
 				throw $e;
