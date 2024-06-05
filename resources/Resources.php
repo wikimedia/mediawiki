@@ -1438,7 +1438,7 @@ return [
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.redirect.js',
 	],
 	'mediawiki.action.view.redirectPage' => [
-		'styles' => 'resources/src/mediawiki.action/mediawiki.action.view.redirectPage.css',
+		'styles' => 'resources/src/mediawiki.action/mediawiki.action.view.redirectPage.less',
 	],
 	'mediawiki.action.edit.editWarning' => [
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.edit.editWarning.js',
