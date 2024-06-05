@@ -92,6 +92,10 @@ class CompareLanguageConverterOutput extends Maintenance {
 			$services->getParsoidOutputStash(),
 			new NullStatsdDataFactory(),
 			$services->getParsoidOutputAccess(),
+			$services->getParserOutputAccess(),
+			$services->getPageStore(),
+			$services->getRevisionLookup(),
+			$services->getParsoidSiteConfig(),
 			$services->getHtmlTransformFactory(),
 			$services->getContentHandlerFactory(),
 			$services->getLanguageFactory()
