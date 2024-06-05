@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amankel'dy",
 			"Arystanbek",
 			"Casserium",
 			"Daniyar",
@@ -45,7 +46,7 @@
 	"prefs-i18n": "Халықаралықтандыру",
 	"yourlanguage": "Тіл:",
 	"yourgender": "Сізді не деп сипаттағанды қалайсыз?",
-	"gender-notknown": "Бинарлық емес",
+	"gender-notknown": "Бинар емес",
 	"gender-unknown": "Сіз туралы айтқанда бағдарламалық жасақтама мүмкін болғанда гендерлік нейтралды сөз қолданады",
 	"gender-female": "Әйел",
 	"gender-male": "Ер",

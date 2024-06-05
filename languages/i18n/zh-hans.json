@@ -2208,7 +2208,7 @@
 	"apisandbox-param-limit": "输入<kbd>max</kbd>以使用最大限制。",
 	"apisandbox-multivalue-all-namespaces": "$1（所有命名空间）",
 	"apisandbox-multivalue-all-values": "$1（所有值）",
-	"booksources": "图书来源",
+	"booksources": "网络书源",
 	"booksources-search-legend": "搜索图书来源",
 	"booksources-isbn": "ISBN：",
 	"booksources-search": "搜索",

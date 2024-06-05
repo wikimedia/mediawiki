@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			555,
 			"Almondega",
 			"Amgauna",
 			"Anaclaudiaml",
@@ -29,8 +30,7 @@
 			"Tuliouel",
 			"Walesson",
 			"Warley Felipe C.",
-			"YuriNikolai",
-			555
+			"YuriNikolai"
 		]
 	},
 	"config-desc": "O instalador do MediaWiki",

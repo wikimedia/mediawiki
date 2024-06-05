@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			555,
 			"Giro720",
 			"Hamilton Abreu",
 			"Luckas",
@@ -8,8 +9,7 @@
 			"Opraco",
 			"Vitorvicentevalente",
 			"Waldir",
-			"Waldyrious",
-			555
+			"Waldyrious"
 		]
 	},
 	"exif-imagewidth": "Largura",

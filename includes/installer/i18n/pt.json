@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			555,
 			"Athena in Wonderland",
 			"Cainamarques",
 			"CaiusSPQR",
@@ -22,8 +23,7 @@
 			"Vitorvicentevalente",
 			"Waldir",
 			"Waldyrious",
-			"아라",
-			555
+			"아라"
 		]
 	},
 	"config-desc": "O instalador do MediaWiki",
