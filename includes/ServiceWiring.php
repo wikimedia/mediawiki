@@ -757,6 +757,10 @@ return [
 	},
 
 	'DefaultOutputPipeline' => static function ( MediaWikiServices $services ): OutputTransformPipeline {
+		$mobileContext = null;
+		if ( $services->has( 'MobileFrontend.Context' ) ) {
+			$mobileContext = $services->get( 'MobileFrontend.Context' );
+		}
 		return ( new DefaultOutputPipelineFactory(
 			new ServiceOptions( DefaultOutputPipelineFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getHookContainer(),
@@ -764,7 +768,8 @@ return [
 			$services->getLanguageFactory(),
 			$services->getContentLanguage(),
 			LoggerFactory::getInstance( 'Parser' ),
-			$services->getTitleFactory()
+			$services->getTitleFactory(),
+			$mobileContext
 		) )->buildPipeline();
 	},
 

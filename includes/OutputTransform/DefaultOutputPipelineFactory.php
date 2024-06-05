@@ -42,6 +42,8 @@ class DefaultOutputPipelineFactory {
 	private LanguageFactory $langFactory;
 	private Language $contentLang;
 	private TitleFactory $titleFactory;
+	// @phan-suppress-next-line PhanUndeclaredTypeProperty
+	private ?\MobileContext $mobileContext;
 
 	public function __construct(
 		ServiceOptions $options,
@@ -50,7 +52,9 @@ class DefaultOutputPipelineFactory {
 		LanguageFactory $langFactory,
 		Language $contentLang,
 		LoggerInterface $logger,
-		TitleFactory $titleFactory
+		TitleFactory $titleFactory,
+		// @phan-suppress-next-line PhanUndeclaredTypeParameter
+		?\MobileContext $mobileContext
 	) {
 		$this->options = $options;
 		$this->hookContainer = $hookContainer;
@@ -59,6 +63,7 @@ class DefaultOutputPipelineFactory {
 		$this->contentLang = $contentLang;
 		$this->tidy = $tidy;
 		$this->titleFactory = $titleFactory;
+		$this->mobileContext = $mobileContext;
 	}
 
 	/**
@@ -69,7 +74,7 @@ class DefaultOutputPipelineFactory {
 	 */
 	public function buildPipeline(): OutputTransformPipeline {
 		return ( new OutputTransformPipeline() )
-			->addStage( new ExtractBody( $this->logger ) )
+			->addStage( new ExtractBody( $this->logger, $this->mobileContext ) )
 			->addStage( new AddRedirectHeader() )
 			->addStage( new RenderDebugInfo( $this->hookContainer ) )
 			->addStage( new ParsoidLocalization( $this->logger ) )
