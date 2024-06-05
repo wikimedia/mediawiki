@@ -65,7 +65,7 @@ class MysqlSettingsForm extends DatabaseSettingsForm {
 					'user' => $this->getVar( 'wgDBuser' ),
 					'password' => $this->getVar( 'wgDBpassword' ),
 					'ssl' => $this->getVar( 'wgDBssl' ),
-					'dbname' => false,
+					'dbname' => null,
 					'flags' => 0,
 					'tablePrefix' => $this->getVar( 'wgDBprefix' )
 				] );

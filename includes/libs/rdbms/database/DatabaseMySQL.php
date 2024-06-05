@@ -138,7 +138,7 @@ class DatabaseMySQL extends Database {
 
 		try {
 			$this->currentDomain = new DatabaseDomain(
-				$db && strlen( $db ) ? $db : null,
+				( $db !== '' ) ? $db : null,
 				null,
 				$tablePrefix
 			);

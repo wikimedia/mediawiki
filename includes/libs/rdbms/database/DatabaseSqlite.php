@@ -298,7 +298,7 @@ class DatabaseSqlite extends Database {
 	/**
 	 * Generates a database file name. Explicitly public for installer.
 	 * @param string $dir Directory where database resides
-	 * @param string|bool $dbName Database name (or false from Database::factory, validated here)
+	 * @param string|null $dbName Database name (or null from Database::factory, validated here)
 	 * @return string
 	 * @throws DBUnexpectedError
 	 */

@@ -114,7 +114,7 @@ class MysqlInstaller extends DatabaseInstaller {
 				'user' => $this->getVar( '_InstallUser' ),
 				'password' => $this->getVar( '_InstallPassword' ),
 				'ssl' => $this->getVar( 'wgDBssl' ),
-				'dbname' => false,
+				'dbname' => null,
 				'flags' => 0,
 				'tablePrefix' => $this->getVar( 'wgDBprefix' ) ] );
 			$status->setDB( $db );
@@ -378,7 +378,7 @@ class MysqlInstaller extends DatabaseInstaller {
 					'user' => $dbUser,
 					'password' => $password,
 					'ssl' => $this->getVar( 'wgDBssl' ),
-					'dbname' => false,
+					'dbname' => null,
 					'flags' => 0,
 					'tablePrefix' => $this->getVar( 'wgDBprefix' )
 				] );
