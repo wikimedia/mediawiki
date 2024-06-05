@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Integration\Permissions;
 
 use Action;
+use ApiMessage;
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
@@ -1505,7 +1506,32 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 		$this->assertSame( [
 			[ 'noignore', 'param' ],
-			'noignore',
+			[ 'noignore' ],
 		], $errors );
+	}
+
+	/**
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkQuickPermissions
+	 */
+	public function testGetPermissionErrors_objectFromHookResult() {
+		$msg = ApiMessage::create( 'mymessage', 'mymessagecode', [ 'mydata' => true ] );
+		$this->setTemporaryHook(
+			'TitleQuickPermissions',
+			static function ( $hookTitle, $hookUser, $hookAction, &$errors, $doExpensiveQueries, $short ) use ( $msg ) {
+				$errors[] = [ $msg ];
+				return false;
+			}
+		);
+
+		$pm = $this->getServiceContainer()->getPermissionManager();
+
+		$errorsStatus = $pm->getPermissionStatus( 'create', $this->user, $this->title );
+		$errorsArray = $pm->getPermissionErrors( 'create', $this->user, $this->title );
+
+		$this->assertSame(
+			[ $msg ],
+			$errorsStatus->getMessages(),
+			'getPermissionStatus() preserves ApiMessage objects'
+		);
 	}
 }

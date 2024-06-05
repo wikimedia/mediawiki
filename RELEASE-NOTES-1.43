@@ -295,6 +295,8 @@ because of Phabricator reports.
 * The methods StatusValue::getErrors() and StatusValue::getErrorsByType(),
   as well as Status::getErrorsArray() and Status::getWarningsArray(), have
   been deprecated in favor of new method StatusValue::getMessages().
+* PermissionManager::getPermissionErrors() has been deprecated in favor
+  of getPermissionStatus().
 * (T166010) All PHP code in MediaWiki is slowly being moved to be in a class
   namespace as appropriate, so that we can use PSR-4 auto-loading, which will
   speed up general code loading of MediaWiki. The old global namespace class
