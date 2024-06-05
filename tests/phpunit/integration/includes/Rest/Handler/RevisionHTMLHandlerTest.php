@@ -74,19 +74,27 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 				$services->getPageStore()
 			) );
 
+		$parsoidOutputStash = $this->getParsoidOutputStash();
 		$helperFactory->method( 'newHtmlOutputRendererHelper' )
-			->willReturn( new HtmlOutputRendererHelper(
-				$this->getParsoidOutputStash(),
-				$services->getStatsdDataFactory(),
-				$services->getParserOutputAccess(),
-				$services->getPageStore(),
-				$services->getRevisionLookup(),
-				$services->getParsoidSiteConfig(),
-				$services->getParsoidParserFactory(),
-				$services->getHtmlTransformFactory(),
-				$services->getContentHandlerFactory(),
-				$services->getLanguageFactory()
-			) );
+			->willReturnCallback( static function ( $page, $parameters, $authority, $revision, $lenientRevHandling ) use ( $services, $parsoidOutputStash ) {
+				return new HtmlOutputRendererHelper(
+					$parsoidOutputStash,
+					$services->getStatsdDataFactory(),
+					$services->getParserOutputAccess(),
+					$services->getPageStore(),
+					$services->getRevisionLookup(),
+					$services->getParsoidSiteConfig(),
+					$services->getParsoidParserFactory(),
+					$services->getHtmlTransformFactory(),
+					$services->getContentHandlerFactory(),
+					$services->getLanguageFactory(),
+					$page,
+					$parameters,
+					$authority,
+					$revision,
+					$lenientRevHandling
+				);
+			} );
 
 		$handler = new RevisionHTMLHandler(
 			$helperFactory

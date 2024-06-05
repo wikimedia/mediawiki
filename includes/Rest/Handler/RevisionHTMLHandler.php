@@ -19,12 +19,13 @@ use Wikimedia\Assert\Assert;
  */
 class RevisionHTMLHandler extends SimpleHandler {
 
+	private ?HtmlOutputRendererHelper $htmlHelper = null;
+	private PageRestHelperFactory $helperFactory;
 	private RevisionContentHelper $contentHelper;
-	private HtmlOutputRendererHelper $htmlHelper;
 
 	public function __construct( PageRestHelperFactory $helperFactory ) {
+		$this->helperFactory = $helperFactory;
 		$this->contentHelper = $helperFactory->newRevisionContentHelper();
-		$this->htmlHelper = $helperFactory->newHtmlOutputRendererHelper();
 	}
 
 	protected function postValidationSetup() {
@@ -35,7 +36,9 @@ class RevisionHTMLHandler extends SimpleHandler {
 		$revision = $this->contentHelper->getTargetRevision();
 
 		if ( $page && $revision ) {
-			$this->htmlHelper->init( $page, $this->getValidatedParams(), $authority, $revision );
+			$this->htmlHelper = $this->helperFactory->newHtmlOutputRendererHelper(
+				$page, $this->getValidatedParams(), $authority, $revision
+			);
 
 			$request = $this->getRequest();
 			$acceptLanguage = $request->getHeaderLine( 'Accept-Language' ) ?: null;
@@ -130,7 +133,7 @@ class RevisionHTMLHandler extends SimpleHandler {
 	public function getParamSettings(): array {
 		return array_merge(
 			$this->contentHelper->getParamSettings(),
-			$this->htmlHelper->getParamSettings()
+			HtmlOutputRendererHelper::getParamSettings()
 		);
 	}
 

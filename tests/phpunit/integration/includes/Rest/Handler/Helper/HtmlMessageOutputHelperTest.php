@@ -10,8 +10,8 @@ use MediaWikiIntegrationTestCase;
  * @group Database
  */
 class HtmlMessageOutputHelperTest extends MediaWikiIntegrationTestCase {
-	private function newHelper(): HtmlMessageOutputHelper {
-		return new HtmlMessageOutputHelper();
+	private function newHelper( $page ): HtmlMessageOutputHelper {
+		return new HtmlMessageOutputHelper( $page );
 	}
 
 	/**
@@ -21,8 +21,7 @@ class HtmlMessageOutputHelperTest extends MediaWikiIntegrationTestCase {
 	public function testGetHtml() {
 		$page = $this->getNonexistingTestPage( 'MediaWiki:Logouttext' );
 
-		$helper = $this->newHelper();
-		$helper->init( $page );
+		$helper = $this->newHelper( $page );
 
 		$this->assertSame( 0, $page->getLatest() );
 
@@ -41,8 +40,7 @@ class HtmlMessageOutputHelperTest extends MediaWikiIntegrationTestCase {
 	public function testGetETag() {
 		$page = $this->getNonexistingTestPage( 'MediaWiki:Logouttext' );
 
-		$helper = $this->newHelper();
-		$helper->init( $page );
+		$helper = $this->newHelper( $page );
 
 		$etag = $helper->getETag();
 
@@ -56,8 +54,7 @@ class HtmlMessageOutputHelperTest extends MediaWikiIntegrationTestCase {
 	public function testGetHtmlWithLanguageCode() {
 		$page = $this->getNonexistingTestPage( 'MediaWiki:Logouttext/de' );
 
-		$helper = $this->newHelper();
-		$helper->init( $page );
+		$helper = $this->newHelper( $page );
 
 		$this->assertSame( 0, $page->getLatest() );
 

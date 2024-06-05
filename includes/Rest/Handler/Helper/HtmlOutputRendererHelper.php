@@ -161,6 +161,28 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	private LanguageFactory $languageFactory;
 	private ParsoidParserFactory $parsoidParserFactory;
 
+	/**
+	 * @param ParsoidOutputStash $parsoidOutputStash
+	 * @param StatsdDataFactoryInterface $statsDataFactory
+	 * @param ParserOutputAccess $parserOutputAccess
+	 * @param PageLookup $pageLookup
+	 * @param RevisionLookup $revisionLookup
+	 * @param ParsoidSiteConfig $parsoidSiteConfig
+	 * @param ParsoidParserFactory $parsoidParserFactory
+	 * @param HtmlTransformFactory $htmlTransformFactory
+	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param LanguageFactory $languageFactory
+	 * @param PageIdentity|null $page
+	 * @param array $parameters
+	 * @param Authority|null $authority
+	 * @param RevisionRecord|int|null $revision
+	 * @param bool $lenientRevHandling Should we ignore mismatches
+	 *    $page and the page that $revision belongs to? Usually happens
+	 *    because of page moves. This should be set to true only for
+	 *    internal API calls.
+	 * @note Since 1.43, setting $page and $authority arguments to null
+	 *    has been deprecated.
+	 */
 	public function __construct(
 		ParsoidOutputStash $parsoidOutputStash,
 		StatsdDataFactoryInterface $statsDataFactory,
@@ -172,6 +194,10 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		HtmlTransformFactory $htmlTransformFactory,
 		IContentHandlerFactory $contentHandlerFactory,
 		LanguageFactory $languageFactory,
+		?PageIdentity $page = null,
+		array $parameters = [],
+		?Authority $authority = null,
+		$revision = null,
 		bool $lenientRevHandling = false
 	) {
 		$this->parsoidOutputStash = $parsoidOutputStash;
@@ -185,6 +211,12 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->languageFactory = $languageFactory;
 		$this->lenientRevHandling = $lenientRevHandling;
+		if ( $page !== null && $authority !== null ) {
+			$this->init( $page, $parameters, $authority, $revision );
+		} else {
+			// Constructing without $page and $authority parameters
+			// is deprecated since 1.43.
+		}
 	}
 
 	/**
@@ -382,6 +414,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 * @param array $parameters
 	 * @param Authority $authority
 	 * @param RevisionRecord|int|null $revision
+	 * @deprecated since 1.43, use parameters in constructor instead
 	 */
 	public function init(
 		PageIdentity $page,
@@ -538,7 +571,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	/**
 	 * @inheritDoc
 	 */
-	public function getParamSettings(): array {
+	public static function getParamSettings(): array {
 		return [
 			'stash' => [
 				Handler::PARAM_SOURCE => 'query',

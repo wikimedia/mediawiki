@@ -97,6 +97,11 @@ class HtmlInputTransformHelper {
 	 * @param PageLookup $pageLookup
 	 * @param RevisionLookup $revisionLookup
 	 * @param array $envOptions
+	 * @param ?PageIdentity $page
+	 * @param array|string $body Body structure, or an HTML string
+	 * @param array $parameters
+	 * @param RevisionRecord|null $originalRevision
+	 * @param Bcp47Code|null $pageLanguage
 	 */
 	public function __construct(
 		StatsdDataFactoryInterface $statsDataFactory,
@@ -105,7 +110,12 @@ class HtmlInputTransformHelper {
 		ParserOutputAccess $parserOutputAccess,
 		PageLookup $pageLookup,
 		RevisionLookup $revisionLookup,
-		array $envOptions = []
+		array $envOptions = [],
+		?PageIdentity $page = null,
+		$body = '',
+		array $parameters = [],
+		?RevisionRecord $originalRevision = null,
+		?Bcp47Code $pageLanguage = null
 	) {
 		$this->stats = $statsDataFactory;
 		$this->htmlTransformFactory = $htmlTransformFactory;
@@ -117,6 +127,9 @@ class HtmlInputTransformHelper {
 		$this->parserOutputAccess = $parserOutputAccess;
 		$this->pageLookup = $pageLookup;
 		$this->revisionLookup = $revisionLookup;
+		if ( $page !== null ) {
+			$this->init( $page, $body, $parameters, $originalRevision, $pageLanguage );
+		}
 	}
 
 	/**

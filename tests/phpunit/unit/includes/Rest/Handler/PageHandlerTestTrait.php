@@ -115,8 +115,8 @@ trait PageHandlerTestTrait {
 
 		$parsoidOutputStash = $this->getParsoidOutputStash();
 		$helperFactory->method( 'newHtmlOutputRendererHelper' )
-			->willReturn(
-				new HtmlOutputRendererHelper(
+			->willReturnCallback( static function ( $page, $parameters, $authority, $revision, $lenientRevHandling ) use ( $services, $parsoidOutputStash ) {
+				return new HtmlOutputRendererHelper(
 					$parsoidOutputStash,
 					$services->getStatsdDataFactory(),
 					$services->getParserOutputAccess(),
@@ -126,11 +126,18 @@ trait PageHandlerTestTrait {
 					$services->getParsoidParserFactory(),
 					$services->getHtmlTransformFactory(),
 					$services->getContentHandlerFactory(),
-					$services->getLanguageFactory()
-				)
-			);
+					$services->getLanguageFactory(),
+					$page,
+					$parameters,
+					$authority,
+					$revision,
+					$lenientRevHandling
+				);
+			} );
 		$helperFactory->method( 'newHtmlMessageOutputHelper' )
-			->willReturn( new HtmlMessageOutputHelper() );
+			->willReturnCallback( static function ( $page ) {
+				return new HtmlMessageOutputHelper( $page );
+			} );
 
 		$request ??= new RequestData( [] );
 		$responseFactory = new ResponseFactory( [] );

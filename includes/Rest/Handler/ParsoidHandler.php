@@ -348,12 +348,13 @@ abstract class ParsoidHandler extends Handler {
 
 		// Request lenient rev handling
 		$lenientRevHandling = true;
-		$helper = $services->getPageRestHelperFactory()->newHtmlOutputRendererHelper( $lenientRevHandling );
 
 		$authority = $this->getAuthority();
 
 		$params = [];
-		$helper->init( $page, $params, $authority, $revId );
+		$helper = $services->getPageRestHelperFactory()->newHtmlOutputRendererHelper(
+			$page, $params, $authority, $revId, $lenientRevHandling
+		);
 
 		// XXX: should default to the page's content model?
 		$model = $attribs['opts']['contentmodel']
@@ -396,10 +397,18 @@ abstract class ParsoidHandler extends Handler {
 	): HtmlInputTransformHelper {
 		$services = MediaWikiServices::getInstance();
 
+		$parameters = $attribs['opts'] + $attribs;
+		$body = $attribs['opts'];
+
+		$body['html'] = $html;
+
 		$helper = $services->getPageRestHelperFactory()->newHtmlInputTransformHelper(
 			$attribs['envOptions'] + [
 				'offsetType' => $attribs['offsetType'],
-			]
+			],
+			$page,
+			$body,
+			$parameters
 		);
 
 		$metrics = $this->siteConfig->metrics();
@@ -407,13 +416,6 @@ abstract class ParsoidHandler extends Handler {
 		if ( $metrics ) {
 			$helper->setMetrics( $metrics );
 		}
-
-		$parameters = $attribs['opts'] + $attribs;
-		$body = $attribs['opts'];
-
-		$body['html'] = $html;
-
-		$helper->init( $page, $body, $parameters );
 
 		return $helper;
 	}
