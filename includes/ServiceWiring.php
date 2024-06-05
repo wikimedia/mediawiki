@@ -493,12 +493,13 @@ return [
 			$mainConfig->get( MainConfigNames::MainCacheType )
 		);
 
+		$objectCacheFactory = $services->getObjectCacheFactory();
 		if ( is_string( $cpStashType ) ) {
-			$cpStash = $services->getObjectCacheFactory()->getInstance( $cpStashType );
+			$cpStash = $objectCacheFactory->getInstance( $cpStashType );
 		} elseif ( $isMainCacheBad ) {
 			$cpStash = new EmptyBagOStuff();
 		} else {
-			$cpStash = ObjectCache::getLocalClusterInstance();
+			$cpStash = $objectCacheFactory->getLocalClusterInstance();
 		}
 
 		$chronologyProtector = new ChronologyProtector(
@@ -655,7 +656,7 @@ return [
 		// Setup salt cache. Use APC, or fallback to the main cache if it isn't setup
 		$cache = $services->getLocalServerObjectCache();
 		if ( $cache instanceof EmptyBagOStuff ) {
-			$cache = ObjectCache::getLocalClusterInstance();
+			$cache = $services->getObjectCacheFactory()->getLocalClusterInstance();
 		}
 
 		return new CryptHKDF( $secret, $config->get( MainConfigNames::HKDFAlgorithm ), $cache, $context );
@@ -1417,7 +1418,7 @@ return [
 
 	'PageEditStash' => static function ( MediaWikiServices $services ): PageEditStash {
 		return new PageEditStash(
-			ObjectCache::getLocalClusterInstance(),
+			$services->getObjectCacheFactory()->getLocalClusterInstance(),
 			$services->getConnectionProvider(),
 			LoggerFactory::getInstance( 'StashEdit' ),
 			$services->getStatsdDataFactory(),
@@ -1745,7 +1746,7 @@ return [
 		return new Pingback(
 			$services->getMainConfig(),
 			$services->getConnectionProvider(),
-			ObjectCache::getLocalClusterInstance(),
+			$services->getObjectCacheFactory()->getLocalClusterInstance(),
 			$services->getHttpRequestFactory(),
 			LoggerFactory::getInstance( 'Pingback' )
 		);
@@ -2082,7 +2083,7 @@ return [
 
 		$cache = $services->getLocalServerObjectCache();
 		if ( $cache instanceof EmptyBagOStuff ) {
-			$cache = ObjectCache::getLocalClusterInstance();
+			$cache = $services->getObjectCacheFactory()->getLocalClusterInstance();
 		}
 
 		return new CachingSiteStore( $rawSiteStore, $cache );
@@ -2266,14 +2267,14 @@ return [
 				$services->getMainConfig()->get( MainConfigNames::TempAccountCreationThrottle ),
 				[
 					'type' => 'tempacctcreate',
-					'cache' => ObjectCache::getLocalClusterInstance(),
+					'cache' => $services->getObjectCacheFactory()->getLocalClusterInstance(),
 				]
 			),
 			new Throttler(
 				$services->getMainConfig()->get( MainConfigNames::TempAccountNameAcquisitionThrottle ),
 				[
 					'type' => 'tempacctnameacquisition',
-					'cache' => ObjectCache::getLocalClusterInstance(),
+					'cache' => $services->getObjectCacheFactory()->getLocalClusterInstance(),
 				]
 			)
 		);

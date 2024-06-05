@@ -35,6 +35,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
@@ -258,6 +259,7 @@ class AuthManager implements LoggerAwareInterface {
 	 * @param UserFactory $userFactory
 	 * @param UserIdentityLookup $userIdentityLookup
 	 * @param UserOptionsManager $userOptionsManager
+	 *
 	 */
 	public function __construct(
 		WebRequest $request,
@@ -1406,7 +1408,7 @@ class AuthManager implements LoggerAwareInterface {
 			}
 
 			// Avoid account creation races on double submissions
-			$cache = \ObjectCache::getLocalClusterInstance();
+			$cache = MediaWikiServices::getInstance()->getObjectCacheFactory()->getLocalClusterInstance();
 			$lock = $cache->getScopedLock( $cache->makeGlobalKey( 'account', md5( $user->getName() ) ) );
 			if ( !$lock ) {
 				// Don't clear AuthManager::accountCreationState for this code
@@ -1907,7 +1909,7 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		// Avoid account creation races on double submissions
-		$cache = \ObjectCache::getLocalClusterInstance();
+		$cache = MediaWikiServices::getInstance()->getObjectCacheFactory()->getLocalClusterInstance();
 		$lock = $cache->getScopedLock( $cache->makeGlobalKey( 'account', md5( $username ) ) );
 		if ( !$lock ) {
 			$this->logger->debug( __METHOD__ . ': Could not acquire account creation lock', [

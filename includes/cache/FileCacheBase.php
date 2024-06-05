@@ -28,7 +28,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
-use ObjectCache;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;
 
@@ -262,7 +261,8 @@ abstract class FileCacheBase {
 				: IPUtils::sanitizeRange( "$ip/16" );
 
 			# Bail out if a request already came from this range...
-			$cache = ObjectCache::getLocalClusterInstance();
+			$cache = MediaWikiServices::getInstance()->getObjectCacheFactory()
+				->getLocalClusterInstance();
 			$key = $cache->makeKey( static::class, 'attempt', $this->mType, $this->mKey, $ip );
 			if ( !$cache->add( $key, 1, self::MISS_TTL_SEC ) ) {
 				return; // possibly the same user
@@ -278,7 +278,8 @@ abstract class FileCacheBase {
 	 * @return int
 	 */
 	public function getMissesRecent() {
-		$cache = ObjectCache::getLocalClusterInstance();
+		$cache = MediaWikiServices::getInstance()->getObjectCacheFactory()
+			->getLocalClusterInstance();
 
 		return self::MISS_FACTOR * $cache->get( $this->cacheMissKey( $cache ) );
 	}

@@ -70,18 +70,21 @@ class Throttler implements LoggerAwareInterface {
 				. implode( ', ', array_keys( $invalidParams ) ) );
 		}
 
+		$services = MediaWikiServices::getInstance();
+		$objectCacheFactory = $services->getObjectCacheFactory();
+
 		if ( $conditions === null ) {
-			$config = MediaWikiServices::getInstance()->getMainConfig();
+			$config = $services->getMainConfig();
 			$conditions = $config->get( MainConfigNames::PasswordAttemptThrottle );
 			$params += [
 				'type' => 'password',
-				'cache' => \ObjectCache::getLocalClusterInstance(),
+				'cache' => $objectCacheFactory->getLocalClusterInstance(),
 				'warningLimit' => 50,
 			];
 		} else {
 			$params += [
 				'type' => 'custom',
-				'cache' => \ObjectCache::getLocalClusterInstance(),
+				'cache' => $objectCacheFactory->getLocalClusterInstance(),
 				'warningLimit' => INF,
 			];
 		}

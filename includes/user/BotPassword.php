@@ -37,7 +37,6 @@ use MediaWiki\Session\BotPasswordSessionProvider;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Status\Status;
 use MWRestrictions;
-use ObjectCache;
 use stdClass;
 use UnexpectedValueException;
 use Wikimedia\Rdbms\IDatabase;
@@ -407,7 +406,8 @@ class BotPassword {
 		if ( $passwordAttemptThrottle ) {
 			$throttle = new Throttler( $passwordAttemptThrottle, [
 				'type' => 'botpassword',
-				'cache' => ObjectCache::getLocalClusterInstance(),
+				'cache' => MediaWikiServices::getInstance()->getObjectCacheFactory()
+					->getLocalClusterInstance(),
 			] );
 			$result = $throttle->increase( $user->getName(), $request->getIP(), __METHOD__ );
 			if ( $result ) {

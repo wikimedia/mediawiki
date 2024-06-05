@@ -61,7 +61,7 @@ use MediaWiki\Watchlist\WatchlistManager;
 use MediaWikiIntegrationTestCase;
 use Message;
 use MessageSpecifier;
-use ObjectCache;
+use ObjectCacheFactory;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\Builder\InvocationMocker;
 use PHPUnit\Framework\MockObject\Rule\InvocationOrder;
@@ -140,6 +140,9 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 	/** @var UserOptionsManager */
 	private $userOptionsManager;
+
+	/** @var ObjectCacheFactory */
+	private $objectCacheFactory;
 
 	/**
 	 * Sets a mock on a hook
@@ -272,7 +275,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 				$this->getServiceContainer()->getDatabaseBlockStore(),
 				$this->getServiceContainer()->getProxyLookup()
 			) extends BlockManager
-{
+			{
 				protected function checkHost( $hostname ) {
 					return '127.0.0.1';
 				}
@@ -312,6 +315,9 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		if ( $regen || !$this->userOptionsManager ) {
 			$this->userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
 		}
+		if ( $regen || !$this->objectCacheFactory ) {
+			$this->objectCacheFactory = $this->getServiceContainer()->getObjectCacheFactory();
+		}
 		if ( !$this->logger ) {
 			$this->logger = new TestLogger();
 		}
@@ -334,7 +340,8 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			$this->botPasswordStore,
 			$this->userFactory,
 			$this->userIdentityLookup,
-			$this->userOptionsManager
+			$this->userOptionsManager,
+			$this->objectCacheFactory
 		);
 		$this->manager->setLogger( $this->logger );
 		$this->managerPriv = TestingAccessWrapper::newFromObject( $this->manager );
@@ -2052,7 +2059,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 		$this->request->getSession()->setSecret( AuthManager::ACCOUNT_CREATION_STATE, $session );
 		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->never() );
-		$cache = ObjectCache::getLocalClusterInstance();
+		$cache = $this->objectCacheFactory->getLocalClusterInstance();
 		$lock = $cache->getScopedLock( $cache->makeGlobalKey( 'account', md5( $username ) ) );
 		$ret = $this->manager->continueAccountCreation( [] );
 		unset( $lock );
@@ -2882,7 +2889,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$session->clear();
 		$user = User::newFromName( $username );
 		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->never() );
-		$cache = ObjectCache::getLocalClusterInstance();
+		$cache = $this->objectCacheFactory->getLocalClusterInstance();
 		$lock = $cache->getScopedLock( $cache->makeGlobalKey( 'account', md5( $username ) ) );
 		$ret = $this->manager->autoCreateUser( $user, AuthManager::AUTOCREATE_SOURCE_SESSION, true, true );
 		unset( $lock );
@@ -2949,7 +2956,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		);
 
 		// Test backoff
-		$cache = ObjectCache::getLocalClusterInstance();
+		$cache = $this->objectCacheFactory->getLocalClusterInstance();
 		$backoffKey = $cache->makeKey( 'AuthManager', 'autocreate-failed', md5( $username ) );
 		$cache->set( $backoffKey, true );
 		$session->clear();
@@ -2988,7 +2995,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( null, $session->get( AuthManager::AUTOCREATE_BLOCKLIST ) );
 
 		// Test addToDatabase throws an exception
-		$cache = ObjectCache::getLocalClusterInstance();
+		$cache = $this->objectCacheFactory->getLocalClusterInstance();
 		$backoffKey = $cache->makeKey( 'AuthManager', 'autocreate-failed', md5( $username ) );
 		$this->assertFalse( $cache->get( $backoffKey ) );
 		$session->clear();
