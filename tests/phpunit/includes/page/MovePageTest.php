@@ -79,7 +79,8 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		$this->getExistingTestPage( 'File:Existent.jpg' );
 		$this->getExistingTestPage( 'File:Existent2.jpg' );
 		$this->getExistingTestPage( 'File:Non-file.jpg' );
-		$this->getExistingTestPage( 'MediaWiki:Existent.js' );
+		// Special treatment as we can't just add wikitext to a JS page
+		$this->insertPage( 'MediaWiki:Existent.js', '// Hello this is JavaScript!' );
 		$this->getExistingTestPage( 'Hooked in place' );
 		$this->getNonexistingTestPage( 'Nonexistent' );
 		$this->getNonexistingTestPage( 'Nonexistent2' );
