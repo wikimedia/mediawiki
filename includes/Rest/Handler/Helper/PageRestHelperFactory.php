@@ -143,6 +143,13 @@ class PageRestHelperFactory {
 			// Backward compatibility w/ pre-1.43 (deprecated)
 			$lenientRevHandling = $page;
 			$page = null;
+			wfDeprecated( __METHOD__ . ' with boolean first parameter', '1.43' );
+		}
+		if ( $page === null ) {
+			wfDeprecated( __METHOD__ . ' with null $page', '1.43' );
+		}
+		if ( $authority === null ) {
+			wfDeprecated( __METHOD__ . ' with null $authority', '1.43' );
 		}
 		return new HtmlOutputRendererHelper(
 			$this->parsoidOutputStash,
@@ -167,6 +174,9 @@ class PageRestHelperFactory {
 	 * @note Since 1.43, passing a null $page is deprecated.
 	 */
 	public function newHtmlMessageOutputHelper( ?PageIdentity $page = null ): HtmlMessageOutputHelper {
+		if ( $page === null ) {
+			wfDeprecated( __METHOD__ . ' with null $page', '1.43' );
+		}
 		return new HtmlMessageOutputHelper( $page );
 	}
 
@@ -178,6 +188,9 @@ class PageRestHelperFactory {
 		?RevisionRecord $originalRevision = null,
 		?Bcp47Code $pageLanguage = null
 	): HtmlInputTransformHelper {
+		if ( $page === null || $body === null ) {
+			wfDeprecated( __METHOD__ . ' without $page or $body' );
+		}
 		return new HtmlInputTransformHelper(
 			$this->stats,
 			$this->htmlTransformFactory,
