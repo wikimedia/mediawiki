@@ -69,6 +69,7 @@
 
 	// Any element with a placeholder toggle will have special treatment
 	// (this is a separate rule, because :has() is not supported by all browsers yet)
+	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	.mw-collapsible:not( @{exclude} ):has( .mw-collapsible-toggle, .mw-collapsible-toggle-placeholder ) th::before,
 	.mw-collapsible:not( @{exclude} ):has( .mw-collapsible-toggle, .mw-collapsible-toggle-placeholder )::before {
 		content: none !important; // stylelint-disable-line declaration-no-important

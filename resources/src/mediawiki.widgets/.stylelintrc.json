@@ -1,0 +1,8 @@
+{
+	"extends": [
+		"stylelint-config-wikimedia/support-modern"
+	],
+	"rules": {
+		"no-descending-specificity": null
+	}
+}

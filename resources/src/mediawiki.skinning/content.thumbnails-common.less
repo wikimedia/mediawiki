@@ -94,11 +94,8 @@ div.thumbinner {
 		.mw-parser-output {
 			.thumb .thumbinner {
 				.flex-display();
-				justify-content: center;
-				flex-wrap: wrap;
-				align-content: flex-start;
-				// stylelint-disable-next-line declaration-block-no-redundant-longhand-properties
-				flex-direction: column;
+				place-content: flex-start center;
+				flex-flow: column wrap;
 
 				> .thumbcaption {
 					.flex( 1, 0, 100% );

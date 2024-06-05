@@ -52,6 +52,7 @@
 	*
 	* Applies the night mode color palette only in response to system settings.
 	*/
+	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	@media ( prefers-color-scheme: dark ) {
 		html.skin-theme-clientpref-os & {
 			filter: invert( 1 );

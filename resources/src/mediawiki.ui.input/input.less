@@ -71,10 +71,8 @@
 	// Normalize styling for `<input type="search">`
 	&[ type='search' ] {
 		// Support: Safari/iOS `none` needed, Chrome would accept `textfield` as well.
-		/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 		-webkit-appearance: none;
 		// Support: Firefox.
-		/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 		-moz-appearance: textfield;
 
 		// Remove proprietary clear button in IE 10-11, Edge 12+
@@ -85,7 +83,6 @@
 		// Remove the inner padding and cancel buttons in Chrome on OS X and Safari on OS X
 		&::-webkit-search-cancel-button,
 		&::-webkit-search-decoration {
-			/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 			-webkit-appearance: none;
 		}
 	}
