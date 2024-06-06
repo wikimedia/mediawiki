@@ -20,10 +20,10 @@
 	},
 	"plugins": [
 		"node_modules/jsdoc-wmf-theme/plugins/allow-dots-in-modules",
-		"plugins/markdown",
+		"node_modules/jsdoc-wmf-theme/plugins/betterlinks",
 		"node_modules/jsdoc-wmf-theme/plugins/externals",
 		"node_modules/jsdoc-wmf-theme/plugins/summarize",
-		"node_modules/jsdoc-wmf-theme/plugins/betterlinks"
+		"plugins/markdown"
 	],
 	"source": {
 		"include": [
@@ -59,12 +59,12 @@
 				"HTMLElement": "https://developer.mozilla.org/docs/Web/API/HTMLElement",
 				"HTMLInputElement": "https://developer.mozilla.org/docs/Web/API/HTMLInputElement",
 				"HTMLStyleElement": "https://developer.mozilla.org/docs/Web/API/HTMLStyleElement",
-				"JSON.parse": "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse",
-				"jQuery": "https://api.jquery.com/jQuery/",
-				"jQuery.fn": "https://api.jquery.com/jQuery/",
 				"jQuery.Deferred": "https://api.jquery.com/Types/#Deferred",
 				"jQuery.Event": "https://api.jquery.com/Types/#Event",
+				"jQuery.fn": "https://api.jquery.com/jQuery/",
 				"jQuery.Promise": "https://api.jquery.com/Types/#Promise",
+				"jQuery": "https://api.jquery.com/jQuery/",
+				"JSON.parse": "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse",
 				"Node": "https://developer.mozilla.org/docs/Web/API/Node",
 				"number": "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number",
 				"Object": "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object",
