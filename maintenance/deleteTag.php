@@ -5,7 +5,6 @@
  * @see bug T75181
  */
 
-use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Storage\NameTableAccessException;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -32,8 +31,7 @@ class DeleteTag extends Maintenance {
 
 		$status = ChangeTags::canDeleteTag( $tag, null, ChangeTags::BYPASS_MAX_USAGE_CHECK );
 		if ( !$status->isOK() ) {
-			$message = $status->getHTML( false, false, 'en' );
-			$this->fatalError( Sanitizer::stripAllTags( $message ) );
+			$this->fatalError( $status );
 		}
 
 		$this->output( "Deleting tag '$tag'...\n" );

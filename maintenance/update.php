@@ -143,8 +143,7 @@ class UpdateMediaWiki extends Maintenance {
 		$status = $dbInstallerClass::meetsMinimumRequirement( $db );
 		if ( !$status->isOK() ) {
 			// This might output some wikitext like <strong> but it should be comprehensible
-			$text = $status->getWikiText();
-			$this->fatalError( $text );
+			$this->fatalError( $status );
 		}
 
 		$dbDomain = WikiMap::getCurrentWikiDbDomain()->getId();

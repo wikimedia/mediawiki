@@ -99,7 +99,8 @@ class MoveBatch extends Maintenance {
 				->newMovePage( $source, $dest );
 			$status = $mp->move( $user, $reason, !$noRedirects );
 			if ( !$status->isOK() ) {
-				$this->output( "\nFAILED: " . $status->getMessage( false, false, 'en' )->text() );
+				$this->output( " FAILED\n" );
+				$this->error( $status );
 			}
 			$this->commitTransaction( $dbw, __METHOD__ );
 			$this->output( "\n" );

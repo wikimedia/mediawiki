@@ -147,7 +147,7 @@ class RefreshFileHeaders extends Maintenance {
 		$status = $repo->getBackend()->doQuickOperations( $backendOperations );
 
 		if ( !$status->isGood() ) {
-			$this->error( "Encountered error: " . print_r( $status, true ) );
+			$this->error( $status );
 		}
 	}
 }

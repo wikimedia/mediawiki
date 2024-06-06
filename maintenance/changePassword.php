@@ -51,7 +51,7 @@ class ChangePassword extends Maintenance {
 		if ( $status->isGood() ) {
 			$this->output( "Password set for " . $user->getName() . "\n" );
 		} else {
-			$this->fatalError( $status->getMessage( false, false, 'en' )->text() );
+			$this->fatalError( $status );
 		}
 	}
 }

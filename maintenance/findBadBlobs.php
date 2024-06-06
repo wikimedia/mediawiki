@@ -24,7 +24,6 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Status\Status;
 use MediaWiki\Storage\BlobStore;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -458,14 +457,10 @@ class FindBadBlobs extends Maintenance {
 
 	private function handleStatus( StatusValue $status ) {
 		if ( !$status->isOK() ) {
-			$this->fatalError(
-				Status::wrap( $status )->getMessage( false, false, 'en' )->text()
-			);
+			$this->fatalError( $status );
 		}
 		if ( !$status->isGood() ) {
-			$this->error(
-				"\t! " . Status::wrap( $status )->getMessage( false, false, 'en' )->text()
-			);
+			$this->error( $status );
 		}
 	}
 

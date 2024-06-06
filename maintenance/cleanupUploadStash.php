@@ -26,7 +26,6 @@
  */
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\Status\Status;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -155,7 +154,7 @@ class CleanupUploadStash extends Maintenance {
 	protected function doOperations( FileRepo $tempRepo, array $ops ) {
 		$status = $tempRepo->getBackend()->doQuickOperations( $ops );
 		if ( !$status->isOK() ) {
-			$this->error( print_r( Status::wrap( $status )->getErrorsArray(), true ) );
+			$this->error( $status );
 		}
 	}
 }

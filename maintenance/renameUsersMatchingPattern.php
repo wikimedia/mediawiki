@@ -213,9 +213,8 @@ class RenameUsersMatchingPattern extends Maintenance {
 			$status->merge( $movePage->moveSubpages(
 				$this->performer, $logMessage, !$this->suppressRedirect ) );
 			if ( !$status->isGood() ) {
-				$this->output( "Failed to rename user page: " .
-					$status->getWikiText( false, false, 'en' ) .
-					"\n" );
+				$this->output( "Failed to rename user page\n" );
+				$this->error( $status );
 			}
 		}
 		return true;

@@ -170,8 +170,11 @@ class CleanupCaps extends TableCleanup {
 			$mp = $this->getServiceContainer()->getMovePageFactory()
 				->newMovePage( $current, $target );
 			$status = $mp->move( $this->user, $reason, $createRedirect );
-			$ok = $status->isOK() ? 'OK' : $status->getMessage( false, false, 'en' )->text();
+			$ok = $status->isOK() ? 'OK' : 'FAILED';
 			$this->output( "\"$display\" -> \"$targetDisplay\": $ok\n" );
+			if ( !$status->isOK() ) {
+				$this->error( $status );
+			}
 		}
 
 		return $ok === 'OK';
