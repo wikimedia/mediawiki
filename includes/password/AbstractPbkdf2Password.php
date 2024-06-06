@@ -34,55 +34,13 @@ namespace MediaWiki\Password;
  * hash algorithms, the following subclasses are available:
  *
  * - Pbkdf2PasswordUsingOpenSSL is the preferred, more efficient option
- *   and is used by default when possible.
+ *   and is used by default.
  * - Pbkdf2PasswordUsingHashExtension provides compatibility with PBKDF2
- *   password hashes computed using legacy algorithms, as well as PHP
- *   installations lacking OpenSSL support.
+ *   password hashes computed using legacy algorithms.
  *
  * @since 1.40
  */
 abstract class AbstractPbkdf2Password extends ParameterizedPassword {
-	/**
-	 * Create a new AbstractPbkdf2Password object.
-	 *
-	 * In the default configuration, this is used as a factory function
-	 * to select a PBKDF2 implementation automatically.
-	 *
-	 * @internal
-	 * @see Password::__construct
-	 * @param PasswordFactory $factory Factory object that created the password
-	 * @param array $config Array of engine configuration options for hashing
-	 * @param string|null $hash The raw hash, including the type
-	 * @return AbstractPbkdf2Password The created object
-	 */
-	public static function newInstance(
-		PasswordFactory $factory,
-		array $config,
-		string $hash = null
-	): self {
-		if ( isset( $config['class'] ) && is_subclass_of( $config['class'], self::class ) ) {
-			// Use the configured subclass
-			return new $config['class']( $factory, $config, $hash );
-		} elseif ( self::canUseOpenSSL() ) {
-			return new Pbkdf2PasswordUsingOpenSSL( $factory, $config, $hash );
-		} else {
-			return new Pbkdf2PasswordUsingHashExtension( $factory, $config, $hash );
-		}
-	}
-
-	/**
-	 * Check if OpenSSL can be used for computing PBKDF2 password hashes.
-	 *
-	 * @return bool
-	 */
-	protected static function canUseOpenSSL(): bool {
-		// OpenSSL 1.0.1f (released 2014-01-06) is the earliest version supported by
-		// PHP 7.1 through 8.0 that hashes the HMAC key blocks only once rather than
-		// on each iteration. Once support for these PHP versions is dropped, the
-		// version check can be removed. (PHP 8.1 requires OpenSSL >= 1.0.2)
-		return function_exists( 'openssl_pbkdf2' ) && OPENSSL_VERSION_NUMBER >= 0x1000106f;
-	}
-
 	protected function getDefaultParams(): array {
 		return [
 			'algo' => $this->config['algo'],
