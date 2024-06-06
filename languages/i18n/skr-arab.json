@@ -318,6 +318,8 @@
 	"createacct-error": "کھاتہ بݨاوݨ وچ غلطی",
 	"createaccounterror": "کھاتہ نی کھُل سڳیا:$1",
 	"noname": "تساں ٹھیک ورتݨ ناں کائنی چݨیا۔",
+	"userlogin-authpopup-loggingin-title": "لاگ ان تھیندا پئے۔۔۔",
+	"userlogin-authpopup-retry": "ولدا کوشش کرو",
 	"userlogin-authpopup-cancel": "منسوخ",
 	"loginsuccesstitle": "لاگ ان تھی ڳیا",
 	"nouserspecified": "تہاکوں ہک ورتݨ ناں مخصوص کرݨاں پوسی۔",
