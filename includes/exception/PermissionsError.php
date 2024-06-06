@@ -21,7 +21,6 @@
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;
-use MediaWiki\User\UserGroupMembership;
 
 /**
  * Show an error when a user tries to do something they do not have the necessary
@@ -56,20 +55,11 @@ class PermissionsError extends ErrorPageError {
 		$this->permission = $permission;
 
 		if ( !count( $errors ) ) {
-			$groups = [];
-			foreach ( MediaWikiServices::getInstance()
-				->getGroupPermissionsLookup()
+			$errors = MediaWikiServices::getInstance()
+				->getPermissionManager()
 				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Null on permission is check when used here
-				->getGroupsWithPermission( $this->permission ) as $group
-			) {
-				$groups[] = UserGroupMembership::getLinkWiki( $group, RequestContext::getMain() );
-			}
-
-			if ( $groups ) {
-				$errors[] = [ 'badaccess-groups', Message::listParam( $groups, 'comma' ), count( $groups ) ];
-			} else {
-				$errors[] = [ 'badaccess-group0' ];
-			}
+				->newFatalPermissionDeniedStatus( $this->permission, RequestContext::getMain() )
+				->toLegacyErrorArray();
 		}
 
 		$this->errors = $errors;
