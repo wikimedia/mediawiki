@@ -10,12 +10,13 @@
 		 *
 		 * @param {string} name
 		 * @param {string|null} value
+		 * @param {Object} params additional parameters for API.
 		 * @return {jQuery.Promise}
 		 */
-		saveOption: function ( name, value ) {
-			var param = {};
-			param[ name ] = value;
-			return this.saveOptions( param );
+		saveOption: function ( name, value, params ) {
+			const options = {};
+			options[ name ] = value;
+			return this.saveOptions( options, params );
 		},
 
 		/**
@@ -34,9 +35,10 @@
 		 * would fail anyway. See T214963.
 		 *
 		 * @param {Object} options Options as a `{ name: value, … }` object
+		 * @param {Object} params additional parameters for API.
 		 * @return {jQuery.Promise}
 		 */
-		saveOptions: function ( options ) {
+		saveOptions: function ( options, params ) {
 			var name, value, bundleable,
 				grouped = [],
 				promise;
@@ -83,32 +85,32 @@
 				} else {
 					if ( value !== null ) {
 						promise = promise.then( function ( n, v ) {
-							return this.postWithToken( 'csrf', {
+							return this.postWithToken( 'csrf', Object.assign( {
 								formatversion: 2,
 								action: 'options',
 								optionname: n,
 								optionvalue: v
-							} );
+							}, params ) );
 						}.bind( this, name, value ) );
 					} else {
 						// Omitting value resets the option
 						promise = promise.then( function ( n ) {
-							return this.postWithToken( 'csrf', {
+							return this.postWithToken( 'csrf', Object.assign( {
 								formatversion: 2,
 								action: 'options',
 								optionname: n
-							} );
+							}, params ) );
 						}.bind( this, name ) );
 					}
 				}
 			}
 
 			if ( grouped.length ) {
-				promise = promise.then( () => this.postWithToken( 'csrf', {
+				promise = promise.then( () => this.postWithToken( 'csrf', Object.assign( {
 					formatversion: 2,
 					action: 'options',
 					change: grouped
-				} ) );
+				}, params ) ) );
 			}
 
 			saveOptionsRequests[ this.defaults.ajax.url ] = promise;
