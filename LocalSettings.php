@@ -452,7 +452,6 @@ $wgAddGroups['bureaucrat'] = array(
 	'bureaucrat',
 	'confirmed',
 	'patroller',
-	'suppress',
 	'sysop',
 	'translateadmin'
 );
@@ -462,7 +461,6 @@ $wgRemoveGroups['bureaucrat'] = array(
 	'bureaucrat',
 	'confirmed',
 	'patroller',
-	'suppress',
 	'sysop',
 	'translateadmin'
 );
