@@ -13,11 +13,14 @@
 if ( !defined( 'MEDIAWIKI' ) ) {
 	exit;
 }
+
 require_once( "/var/www/html/PrivateSettings.php" );
+
 ## Uncomment this to disable output compression
 # $wgDisableOutputCompression = true;
 $wgSitename = "Test Wiki";
 $wgMetaNamespace = "Test_Wiki";
+
 ## The URL base path to the directory containing the wiki;
 ## defaults for all runtime URL paths are based off of this.
 ## For more information on customizing the URLs
@@ -25,12 +28,15 @@ $wgMetaNamespace = "Test_Wiki";
 ## https://www.mediawiki.org/wiki/Manual:Short_URL
 $wgScriptPath = "";
 $wgArticlePath = "/wiki/$1";
+
 ## The protocol and server name to use in fully-qualified URLs
 $wgServer = "https://testwiki.wiki";
+
 ## The URL path to static resources (images, scripts, etc.)
 $wgResourceBasePath = $wgScriptPath;
 $wgLoadScript = "https://bits.testwiki.wiki/load.php";
 $wgUploadPath = "https://static.testwiki.wiki";
+
 ## The URL path to the logo.  Make sure you change this from the default,
 ## or else you'll overwrite your logo when you upgrade!
 $wgLogo = "$wgResourceBasePath/images/9/9b/TestWiki_Logo.svg";
@@ -74,7 +80,13 @@ $wgUseImageMagick = true;
 $wgImageMagickConvertCommand = "/usr/bin/convert";
 $wgSVGConverters['inkscape'] = '$path/inkscape -w $width -o $output $input';
 $wgSVGConverter = 'inkscape';
-$wgFileExtensions = [ 'png', 'gif', 'jpg', 'jpeg', 'webp', 'svg' ];
+$wgFileExtensions = [
+	'png',
+	'gif',
+	'jpg',
+	'jpeg',
+	'webp',
+	'svg' ];
 # InstantCommons allows wiki to use images from https://commons.wikimedia.org
 $wgUseInstantCommons = true;
 # Periodically send a pingback to https://www.mediawiki.org/ with basic data
@@ -106,8 +118,7 @@ $wgDiff3 = "";
 ## Default skin: you can change the default skin. Use the internal symbolic
 ## names, ie 'vector', 'monobook':
 $wgDefaultSkin = "vector";
-# Enabled skins.
-# The following skins were automatically enabled:
+
 wfLoadSkins( array( 
 	'CologneBlue',
 	'Cosmos',
@@ -116,11 +127,8 @@ wfLoadSkins( array(
 	'Vector' ,
 	'Refreshed',
 	'Timeless',
-) );
-# Enabled extensions. Most of the extensions are enabled by adding
-# wfLoadExtensions('ExtensionName');
-# to LocalSettings.php. Check specific extension documentation for more details.
-# The following extensions were automatically enabled:
+));
+
 wfLoadExtensions( array(
 	'AbuseFilter',
 	'AntiSpoof',
@@ -166,19 +174,22 @@ wfLoadExtensions( array(
 	'WebAuthn',
 	'WikiEditor',
 	'WikiLove',
-) );
-wfLoadExtension( 'Parsoid',  __DIR__ .'/vendor/wikimedia/parsoid/extension.json' );
+));
+
+wfLoadExtension(
+	'Parsoid',  __DIR__ .'/vendor/wikimedia/parsoid/extension.json'
+);
 
 $wgVisualEditorEnableWikitext = true;
 $wgMWOAuthSecureTokenTransfer = true;
 $wgOAuth2RequireCodeChallengeForPublicClients = false;
 $wgScribuntoDefaultEngine = 'luasandbox';
-# End of automatically generated settings.
-# Add more configuration options below.
+
 // Chat
-	$wgChatKicks = true;
-	$wgChatMeCommand = true;
-	$wgChatLinkUsernames = true;
+$wgChatKicks = true;
+$wgChatMeCommand = true;
+$wgChatLinkUsernames = true;
+
 // Other
 $wgDefaultMobileSkin = 'timeless';
 $wgULSGeoService = false;
@@ -189,6 +200,7 @@ $wgCopyUploadsFromSpecialUpload = true;
 $wgMassMessageAccountUsername = 'Test Wiki message delivery';
 $wgLocaltimezone = "UTC";
 date_default_timezone_set( $wgLocaltimezone );
+
 $wgAutoConfirmAge = 86400;
 $wgAutoConfirmCount = 1;
 $wgEnableScaryTranscluding = true;
@@ -201,199 +213,347 @@ $wgScribuntoUseCodeEditor = true;
 $wgDefaultUserOptions['visualeditor-enable'] = 1;
 $wgDefaultUserOptions['visualeditor-editor'] = "visualeditor";
 $wgVirtualRestConfig['modules']['parsoid'] = [
-    'url' =>  'https://testwiki.wiki/rest.php',
-    'domain' => 'testwiki.wiki',
+	'url' => 'https://testwiki.wiki/rest.php',
+	'domain' => 'testwiki.wiki',
 ];
 $wgStaffPowersShoutWikiMessages = false;
 $wgTitleBlacklistSources = array(
   array(
-    'type' => 'localpage',
-    'src'  => 'MediaWiki:Titleblacklist'
+	'type' => 'localpage',
+	'src'  => 'MediaWiki:Titleblacklist'
   )
 );
-//MatomoAnalytics
+
+// MatomoAnalytics
 $wgMatomoAnalyticsServerURL = 'https://piwik.testwiki.wiki/';
 $wgMatomoAnalyticsSiteID = 3;
+
 // WikiEditor
 $wgDefaultUserOptions['usebetatoolbar'] = 1;
 $wgDefaultUserOptions['usebetatoolbar-cgd'] = 1;
 $wgDefaultUserOptions['wikieditor-preview'] = 0;
 $wgDefaultUserOptions['wikieditor-publish'] = 0;
+
 // User rights
-$wgGroupPermissions['*']['abusefilter-view'] = true;
+/// All
 $wgGroupPermissions['*']['abusefilter-log'] = true;
+$wgGroupPermissions['*']['abusefilter-view'] = true;
 $wgGroupPermissions['*']['oathauth-enable'] = false;
 $wgGroupPermissions['*']['patrolmarks'] = true;
-$wgGroupPermissions['user']['move'] = false;
-$wgGroupPermissions['user']['move-subpages'] = false;
-$wgGroupPermissions['user']['move-rootuserpages'] = false; // can move root userpages
-$wgGroupPermissions['user']['move-categorypages'] = false;
+
+/// User
+$wgGroupPermissions['user']['createpage'] = false;
+$wgGroupPermissions['user']['createtalk'] = false;
+$wgGroupPermissions['user']['edit'] = false;
 $wgGroupPermissions['user']['movefile'] = false;
-$wgGroupPermissions['user']['user'] = true;
+$wgGroupPermissions['user']['move'] = false;
+$wgGroupPermissions['user']['move-categorypages'] = false;
+$wgGroupPermissions['user']['move-rootuserpages'] = false; // can move root userpages
+$wgGroupPermissions['user']['move-subpages'] = false;
+$wgGroupPermissions['user']['read'] = false;
 $wgGroupPermissions['user']['translate'] = true;
-$wgGroupPermissions['user']['translate-messagereview'] = true;
 $wgGroupPermissions['user']['translate-groupreview'] = true;
 $wgGroupPermissions['user']['translate-import'] = true;
-$wgGroupPermissions['user']['createtalk'] = false;
-$wgGroupPermissions['user']['createpage'] = false;
-$wgGroupPermissions['user']['edit'] = false;
-$wgGroupPermissions['user']['read'] = false;
+$wgGroupPermissions['user']['translate-messagereview'] = true;
+$wgGroupPermissions['user']['user'] = true;
 $wgGroupPermissions['user']['writeapi'] = false;
-$wgGroupPermissions['bot']['writeapi'] = false;
-$wgGroupPermissions['sysop']['oathauth-enable'] = true;
-$wgGroupPermissions['sysop']['pagetranslation'] = true;
-$wgGroupPermissions['sysop']['translate-manage'] = true;
-$wgGroupPermissions['sysop']['deleterevision'] = true;
-$wgGroupPermissions['sysop']['interwiki'] = false;
-$wgGroupPermissions['sysop']['editinterface'] = false;
-$wgGroupPermissions['sysop']['upload_by_url'] = true;
-$wgGroupPermissions['sysop']['oathauth-disable-for-user'] = false;
-$wgGroupPermissions['sysop']['abusefilter-modify'] = true;
-$wgGroupPermissions['sysop']['abusefilter-log-detail'] = true;
-$wgGroupPermissions['sysop']['abusefilter-modify-restricted'] = false;
-$wgGroupPermissions['sysop']['abusefilter-revert'] = true;
-$wgGroupPermissions['sysop']['checkuser-limited'] = true;
-$wgGroupPermissions['sysop']['review'] = true;
-$wgGroupPermissions['sysop']['validate'] = true;
-$wgGroupPermissions['sysop']['nuke'] = false;
-$wgGroupPermissions['sysop']['unblockself'] = false;
-$wgGroupPermissions['sysop']['avatarremove'] = false;
-$wgGroupPermissions['sysop']['import'] = false;
-$wgGroupPermissions['sysop']['importupload'] = false;
-$wgGroupPermissions['sysop']['unreviewedpages'] = true;
-$wgGroupPermissions['sysop']['pagelang'] = true;
-$wgGroupPermissions['sysop']['reupload-shared'] = false;
-$wgGroupPermissions['sysop']['reupload'] = false;
-$wgGroupPermissions['sysop']['upload'] = false;
-$wgGroupPermissions['sysop']['createaccount'] = false;
-$wgGroupPermissions['sysop']['chat'] = false;
-$wgGroupPermissions['sysop']['edituserjson'] = false;
-$wgGroupPermissions['sysop']['editsitejson'] = false;
-$wgGroupPermissions['sysop']['mwoauthproposeconsumer'] = true;
-$wgGroupPermissions['sysop']['mwoauthupdateownconsumer'] = true;
-$wgGroupPermissions['sysop']['replacetext'] = false;
-$wgGroupPermissions['translateadmin']['translate-manage'] = true;
-$wgGroupPermissions['translateadmin']['pagetranslation'] = true;
-$wgGroupPermissions['translateadmin']['pagelang'] = true;
-$wgGroupPermissions['autoconfirmed']['move'] = true;
-$wgGroupPermissions['autoconfirmed']['move-subpages'] = true;
-$wgGroupPermissions['autoconfirmed']['move-rootuserpages'] = true; // can move root userpages
-$wgGroupPermissions['autoconfirmed']['move-categorypages'] = true;
+
+/// Confirmed
+$wgGroupPermissions['confirmed']['autoconfirmed'] = true;
+$wgGroupPermissions['confirmed']['editsemiprotected'] = true;
+$wgGroupPermissions['confirmed']['movefile'] = true;
+$wgGroupPermissions['confirmed']['move'] = true;
+$wgGroupPermissions['confirmed']['move-categorypages'] = true;
+$wgGroupPermissions['confirmed']['move-rootuserpages'] = true; // can move root userpages
+$wgGroupPermissions['confirmed']['move-subpages'] = true;
+$wgGroupPermissions['confirmed']['skipcaptcha'] = true;
+
+/// Auto confirmed users
 $wgGroupPermissions['autoconfirmed']['movefile'] = true;
+$wgGroupPermissions['autoconfirmed']['move'] = true;
+$wgGroupPermissions['autoconfirmed']['move-categorypages'] = true;
+$wgGroupPermissions['autoconfirmed']['move-rootuserpages'] = true; // can move root userpages
+$wgGroupPermissions['autoconfirmed']['move-subpages'] = true;
 $wgGroupPermissions['autoconfirmed']['skipcaptcha'] = true;
-$wgGroupPermissions['patroller']['patrol'] = true;
+
+/// Auto patrollers
+$wgGroupPermissions['autopatrol']['autopatrol'] = true;
+
+/// Patrollers
 $wgGroupPermissions['patroller']['autopatrol'] = true;
-$wgGroupPermissions['patroller']['rollback'] = true;
 $wgGroupPermissions['patroller']['noratelimit'] = true;
+$wgGroupPermissions['patroller']['patrol'] = true;
+$wgGroupPermissions['patroller']['rollback'] = true;
 $wgGroupPermissions['patroller']['suppressredirect'] = true;
 $wgGroupPermissions['patroller']['upload_by_url'] = true;
-$wgGroupPermissions['confirmed']['move'] = true;
-$wgGroupPermissions['confirmed']['move-subpages'] = true;
-$wgGroupPermissions['confirmed']['move-rootuserpages'] = true; // can move root userpages
-$wgGroupPermissions['confirmed']['move-categorypages'] = true;
-$wgGroupPermissions['confirmed']['movefile'] = true;
-$wgGroupPermissions['confirmed']['skipcaptcha'] = true;
-$wgGroupPermissions['confirmed']['editsemiprotected'] = true;
-$wgGroupPermissions['confirmed']['autoconfirmed'] = true;
-$wgGroupPermissions['bureaucrat']['editinterface'] = true;
-$wgGroupPermissions['bureaucrat']['deletelogentry'] = true;
-$wgGroupPermissions['bureaucrat']['nuke'] = true;
-$wgGroupPermissions['bureaucrat']['unblockself'] = true;
+
+/// Translation administrators
+$wgGroupPermissions['translateadmin']['pagelang'] = true;
+$wgGroupPermissions['translateadmin']['pagetranslation'] = true;
+$wgGroupPermissions['translateadmin']['translate-manage'] = true;
+
+/// Chat moderators
+$wgGroupPermissions['chatmod']['chat'] = false;
+
+/// Interwiki administrators
+$wgGroupPermissions['interwiki-admin']['interwiki'] = true;
+
+/// Bot
+$wgGroupPermissions['bot']['writeapi'] = false;
+
+/// Abusefilter restricted users
+$wgRevokePermissions['abusefilter-restricted']['abusefilter-log'] = true;
+$wgRevokePermissions['abusefilter-restricted']['abusefilter-log-detail'] = true;
+$wgRevokePermissions['abusefilter-restricted']['abusefilter-log-private'] = true;
+$wgRevokePermissions['abusefilter-restricted']['abusefilter-modify'] = true;
+$wgRevokePermissions['abusefilter-restricted']['abusefilter-modify-restricted'] = true;
+$wgRevokePermissions['abusefilter-restricted']['abusefilter-revert'] = true;
+$wgRevokePermissions['abusefilter-restricted']['abusefilter-view'] = true;
+$wgRevokePermissions['abusefilter-restricted']['abusefilter-view-private'] = true;
+
+/// Abusefilter administrators
+$wgGroupPermissions['abusefilter-admin']['abusefilter-log'] = true;
+$wgGroupPermissions['abusefilter-admin']['abusefilter-log-detail'] = true;
+$wgGroupPermissions['abusefilter-admin']['abusefilter-log-private'] = true;
+$wgGroupPermissions['abusefilter-admin']['abusefilter-modify'] = true;
+$wgGroupPermissions['abusefilter-admin']['abusefilter-modify-blocked-external-domains'] = true;
+$wgGroupPermissions['abusefilter-admin']['abusefilter-modify-restricted'] = true;
+$wgGroupPermissions['abusefilter-admin']['abusefilter-revert'] = true;
+$wgGroupPermissions['abusefilter-admin']['abusefilter-view'] = true;
+$wgGroupPermissions['abusefilter-admin']['abusefilter-view-private'] = true;
+
+/// Administrators
+$wgGroupPermissions['sysop']['abusefilter-log-detail'] = true;
+$wgGroupPermissions['sysop']['abusefilter-modify'] = true;
+$wgGroupPermissions['sysop']['abusefilter-modify-restricted'] = false;
+$wgGroupPermissions['sysop']['abusefilter-revert'] = true;
+$wgGroupPermissions['sysop']['avatarremove'] = false;
+$wgGroupPermissions['sysop']['chat'] = false;
+$wgGroupPermissions['sysop']['checkuser-limited'] = true;
+$wgGroupPermissions['sysop']['createaccount'] = false;
+$wgGroupPermissions['sysop']['deleterevision'] = true;
+$wgGroupPermissions['sysop']['editinterface'] = false;
+$wgGroupPermissions['sysop']['editsitejson'] = false;
+$wgGroupPermissions['sysop']['edituserjson'] = false;
+$wgGroupPermissions['sysop']['importupload'] = false;
+$wgGroupPermissions['sysop']['import'] = true;
+$wgGroupPermissions['sysop']['interwiki'] = false;
+$wgGroupPermissions['sysop']['mwoauthproposeconsumer'] = true;
+$wgGroupPermissions['sysop']['mwoauthupdateownconsumer'] = true;
+$wgGroupPermissions['sysop']['nuke'] = false;
+$wgGroupPermissions['sysop']['oathauth-disable-for-user'] = false;
+$wgGroupPermissions['sysop']['oathauth-enable'] = true;
+$wgGroupPermissions['sysop']['pagelang'] = true;
+$wgGroupPermissions['sysop']['pagetranslation'] = true;
+$wgGroupPermissions['sysop']['replacetext'] = false;
+$wgGroupPermissions['sysop']['reupload'] = false;
+$wgGroupPermissions['sysop']['reupload-shared'] = false;
+$wgGroupPermissions['sysop']['review'] = true;
+$wgGroupPermissions['sysop']['translate-manage'] = true;
+$wgGroupPermissions['sysop']['unblockself'] = false;
+$wgGroupPermissions['sysop']['unreviewedpages'] = true;
+$wgGroupPermissions['sysop']['upload'] = false;
+$wgGroupPermissions['sysop']['upload_by_url'] = true;
+$wgGroupPermissions['sysop']['validate'] = true;
+
+/// Bureaucrats
 $wgGroupPermissions['bureaucrat']['bureaucrat'] = true;
-$wgGroupPermissions['bureaucrat']['renameuser'] = false;
-$wgGroupPermissions['bureaucrat']['noratelimit'] = false;
-$wgGroupPermissions['bureaucrat']['userrights'] = false;
-$wgGroupPermissions['bureaucrat']['import'] = true;
-$wgGroupPermissions['bureaucrat']['importupload'] = true;
-$wgGroupPermissions['bureaucrat']['edituserjson'] = true;
+$wgGroupPermissions['bureaucrat']['deletelogentry'] = true;
+$wgGroupPermissions['bureaucrat']['editinterface'] = true;
+$wgGroupPermissions['bureaucrat']['editprotected'] = true;
 $wgGroupPermissions['bureaucrat']['editsitejson'] = true;
-$wgGroupPermissions['steward']['interwiki'] = true;
-$wgGroupPermissions['steward']['abusefilter-modify-restricted'] = true;
-$wgGroupPermissions['steward']['unblockself'] = true;
-$wgGroupPermissions['steward']['abusefilter-view-private'] = true;
+$wgGroupPermissions['bureaucrat']['edituserjson'] = true;
+$wgGroupPermissions['bureaucrat']['importupload'] = true;
+$wgGroupPermissions['bureaucrat']['import'] = true;
+$wgGroupPermissions['bureaucrat']['noratelimit'] = false;
+$wgGroupPermissions['bureaucrat']['nuke'] = true;
+$wgGroupPermissions['bureaucrat']['renameuser'] = false;
+$wgGroupPermissions['bureaucrat']['unblockself'] = true;
+$wgGroupPermissions['bureaucrat']['userrights'] = false;
+
+/// Suppressors
+$wgGroupPermissions['suppress']['abusefilter-log-detail'] = true;
+$wgGroupPermissions['suppress']['abusefilter-log-private'] = true;
+$wgGroupPermissions['suppress']['abusefilter-view-private'] = true;
+$wgGroupPermissions['suppress']['blockemail'] = true;
+$wgGroupPermissions['suppress']['block'] = true;
+$wgGroupPermissions['suppress']['browsearchive'] = true;
+$wgGroupPermissions['suppress']['deletedhistory'] = true;
+$wgGroupPermissions['suppress']['deletedtext'] = true;
+
+/// Stewards
 $wgGroupPermissions['steward']['abusefilter-log-private'] = true;
-$wgGroupPermissions['steward']['unblockable'] = true;
-$wgGroupPermissions['steward']['override-export-depth'] = true;
+$wgGroupPermissions['steward']['abusefilter-modify-restricted'] = true;
+$wgGroupPermissions['steward']['abusefilter-view-private'] = true;
+$wgGroupPermissions['steward']['checkuser-log'] = true;
+$wgGroupPermissions['steward']['editsitecss'] = true;
+$wgGroupPermissions['steward']['editsitejs'] = true;
+$wgGroupPermissions['steward']['interwiki'] = true;
+$wgGroupPermissions['steward']['mwoauthmanageconsumer'] = true;
+$wgGroupPermissions['steward']['mwoauthproposeconsumer'] = true;
+$wgGroupPermissions['steward']['mwoauthsuppress'] = true;
+$wgGroupPermissions['steward']['mwoauthupdateownconsumer'] = true;
 $wgGroupPermissions['steward']['mwoauthviewprivate'] = true;
 $wgGroupPermissions['steward']['mwoauthviewsuppressed'] = true;
-$wgGroupPermissions['steward']['mwoauthsuppress'] = true;
-$wgGroupPermissions['steward']['mwoauthmanageconsumer'] = true;
-$wgGroupPermissions['steward']['mwoauthupdateownconsumer'] = true;
-$wgGroupPermissions['steward']['mwoauthproposeconsumer'] = true;
+$wgGroupPermissions['steward']['override-export-depth'] = true;
 $wgGroupPermissions['steward']['renameuser'] = true;
-$wgGroupPermissions['steward']['steward'] = true;
-$wgGroupPermissions['steward']['editsitejs'] = true;
-$wgGroupPermissions['steward']['editsitecss'] = true;
-$wgGroupPermissions['steward']['viewpmlog'] = true;
-$wgGroupPermissions['steward']['checkuser-log'] = true;
-$wgGroupPermissions['steward']['suppressionlog'] = true;
 $wgGroupPermissions['steward']['replacetext'] = true;
+$wgGroupPermissions['steward']['steward'] = true;
+$wgGroupPermissions['steward']['suppressionlog'] = true;
+$wgGroupPermissions['steward']['unblockable'] = true;
+$wgGroupPermissions['steward']['unblockself'] = true;
+$wgGroupPermissions['steward']['viewpmlog'] = true;
+
+/// System administrators
 $wgGroupPermissions['sysadmin']['editsitecss'] = true;
 $wgGroupPermissions['sysadmin']['editsitejs'] = true;
+$wgGroupPermissions['sysadmin']['oathauth-disable-for-user'] = true;
 $wgGroupPermissions['sysadmin']['siteadmin'] = true;
 $wgGroupPermissions['sysadmin']['unblockable'] = true;
 $wgGroupPermissions['sysadmin']['unblockself'] = true;
 $wgGroupPermissions['sysadmin']['userrights'] = true;
-$wgGroupPermissions['sysadmin']['oathauth-disable-for-user'] = true;
-$wgGroupPermissions['suppress']['block'] = true;
-$wgGroupPermissions['suppress']['blockemail'] = true;
-$wgGroupPermissions['suppress']['abusefilter-log-detail'] = true;
-$wgGroupPermissions['suppress']['abusefilter-view-private'] = true;
-$wgGroupPermissions['suppress']['abusefilter-log-private'] = true;
-$wgGroupPermissions['suppress']['browsearchive'] = true;
-$wgGroupPermissions['suppress']['deletedhistory'] = true;
-$wgGroupPermissions['suppress']['deletedtext'] = true;
-$wgRevokePermissions['exampleuser']['editmyoptions'] = true;
-$wgRevokePermissions['exampleuser']['editmyprivateinfo'] = true;
-$wgRevokePermissions['exampleuser']['oathauth-enable'] = true;
-$wgGroupPermissions['chatmod']['chat'] = false;
-$wgGroupPermissions['autopatrol']['autopatrol'] = true;
-$wgGroupPermissions['interwiki-admin']['interwiki'] = true;
-$wgGroupPermissions['abusefilter-admin']['abusefilter-modify'] = true;
-$wgGroupPermissions['abusefilter-admin']['abusefilter-view'] = true;
-$wgGroupPermissions['abusefilter-admin']['abusefilter-log'] = true;
-$wgGroupPermissions['abusefilter-admin']['abusefilter-log-detail'] = true;
-$wgGroupPermissions['abusefilter-admin']['abusefilter-modify-restricted'] = true;
-$wgGroupPermissions['abusefilter-admin']['abusefilter-revert'] = true;
-$wgGroupPermissions['abusefilter-admin']['abusefilter-view-private'] = true;
-$wgGroupPermissions['abusefilter-admin']['abusefilter-log-private'] = true;
-$wgGroupPermissions['abusefilter-admin']['abusefilter-modify-blocked-external-domains'] = true;
-$wgRevokePermissions['abusefilter-restricted']['abusefilter-modify'] = true;
-$wgRevokePermissions['abusefilter-restricted']['abusefilter-view'] = true;
-$wgRevokePermissions['abusefilter-restricted']['abusefilter-log'] = true;
-$wgRevokePermissions['abusefilter-restricted']['abusefilter-log-detail'] = true;
-$wgRevokePermissions['abusefilter-restricted']['abusefilter-modify-restricted'] = true;
-$wgRevokePermissions['abusefilter-restricted']['abusefilter-revert'] = true;
-$wgRevokePermissions['abusefilter-restricted']['abusefilter-view-private'] = true;
-$wgRevokePermissions['abusefilter-restricted']['abusefilter-log-private'] = true;
-$wgRevokePermissions['abusefilter-restricted']['abusefilter-modify-blocked-external-domains'] = true;
-$wgAddGroups['sysop'] = array( 'editor', 'reviewer', 'autoreview', 'autopatrol', 'patroller', 'translateadmin', 'confirmed', 
-'researcher', 'chatmod', 'blockedfromchat'  );
-$wgRemoveGroups['sysop'] = array( 'editor', 'reviewer', 'autoreview', 'autopatrol', 'patroller', 'translateadmin', 'confirmed', 
-'researcher', 'chatmod', 'blockedfromchat' );
-$wgAddGroups['steward'] = array( 'sysop', 'interface-admin', 'bureaucrat', 'steward', 'checkuser', 'suppress', 'non-stewardsuppress', 'abusefilter-admin', 'abusefilter-restricted' );
-$wgRemoveGroups['steward'] = array( 'sysop', 'interface-admin', 'bureaucrat', 'steward', 'checkuser', 'suppress', 'non-stewardsuppress', 'abusefilter-admin', 'abusefilter-restricted' );
-$wgAddGroups['bureaucrat'] = array( 'bot', 'sysop', 'bureaucrat', 'interwiki-admin' );
-$wgRemoveGroups['bureaucrat'] = array( 'bot', 'sysop', 'bureaucrat', 'interwiki-admin' );
-$wgGroupsRemoveFromSelf['sysop'] = array( 'sysop' );
-$wgRestrictionLevels = array( '', 'user', 'bureaucrat', 'sysop', 'autoconfirmed', 'steward' );
-$wgRestrictionTypes = array( 'create', 'edit', 'move', 'upload', 'delete', 'protect' );
-$wgCascadingRestrictionLevels = array( 'bureaucrat', 'sysop', 'steward' );
-$wgSemiprotectedRestrictionLevels = array( 'user', 'autoconfirmed', );
-unset( $wgGroupPermissions['staff'] );
-unset( $wgGroupPermissions['editor'] );
-$wgExtensionFunctions[] = function() use ( &$wgGroupPermissions ) {
-    unset( $wgGroupPermissions['staff'] );
-    unset( $wgGroupPermissions['editor'] );
-};
-$wgShowExceptionDetails = true;
 
-$wgGrantPermissions['editprotected']['bureaucrat'] = true;
-
-// Non-Steward suppressors
+/// Non-Steward suppressors
 $wgGroupPermissions['non-stewardsuppress']['suppressionlog'] = true;
 $wgGroupsAddToSelf['non-stewardsuppress'] = array( 'suppress' );
 $wgGroupsRemoveFromSelf['non-stewardsuppress'] = array( 'suppress' );
+
+// Permission assignments
+/// Administrators
+$wgAddGroups['sysop'] = array(
+	'autopatrol',
+	'autoreview',
+	'blockedfromchat',
+	'chatmod',
+	'confirmed',
+	'editor',
+	'patroller',
+	'researcher',
+	'reviewer',
+	'translateadmin'
+);
+$wgRemoveGroups['sysop'] = array(
+	'autopatrol',
+	'autoreview',
+	'blockedfromchat',
+	'chatmod',
+	'confirmed',
+	'editor',
+	'patroller',
+	'researcher',
+	'reviewer',
+	'translateadmin'
+);
+
+/// Bureaucrats
+$wgAddGroups['bureaucrat'] = array(
+	'autoconfirmed',
+	'autopatrol',
+	'bureaucrat',
+	'confirmed',
+	'patroller',
+	'suppress',
+	'sysop',
+	'translateadmin'
+);
+$wgRemoveGroups['bureaucrat'] = array(
+	'autoconfirmed',
+	'autopatrol',
+	'bureaucrat',
+	'confirmed',
+	'patroller',
+	'suppress',
+	'sysop',
+	'translateadmin'
+);
+
+/// Stewards
+$wgAddGroups['steward'] = array(
+	'abusefilter-admin',
+	'abusefilter-restricted',
+	'autoconfirmed',
+	'bureaucrat',
+	'confirmed',
+	'non-stewardsuppress',
+	'patroller',
+	'steward',
+	'suppress',
+	'sysop',
+	'translateadmin'
+);
+$wgRemoveGroups['steward'] = array(
+	'abusefilter-admin',
+	'abusefilter-restricted',
+	'autoconfirmed',
+	'bureaucrat',
+	'confirmed',
+	'non-stewardsuppress',
+	'patroller',
+	'steward',
+	'suppress',
+	'sysop',
+	'translateadmin'
+);
+
+// Restriction settings
+$wgRestrictionLevels = array(
+	'*',
+	'user',
+	'autoconfirmed',
+	'autoreview',
+	'reviewer',
+	'sysop',
+	'bureaucrat',
+	'steward',
+	'sysadmin'
+);
+
+$wgRestrictionTypes = array(
+	'create',
+	'edit',
+	'move',
+	'upload',
+	'delete',
+	'protect'
+);
+
+$wgCascadingRestrictionLevels = array(
+	'sysop',
+	'bureaucrat',
+	'steward',
+	'sysadmin'
+);
+
+$wgSemiprotectedRestrictionLevels = array(
+	'user',
+	'autoconfirmed',
+);
+
+// Unsets
+unset( $wgGroupPermissions['staff'] );
+
+unset( $wgGroupPermissions['editor'] );
+
+$wgExtensionFunctions[] = function() use ( &$wgGroupPermissions ) {
+    unset( $wgGroupPermissions['staff']
+);
+    unset( $wgGroupPermissions['editor']
+);
+
+};
+
+// RC feed settings
+$wgRCFeeds['irc'] = [
+	'uri' =>
+	'udp://129.153.11.72:9872',
+	'formatter' => IRCColourfulRCFeedFormatter::class,
+	'add_interwiki_prefix' => false,
+	'omit_bots' => true,
+];
+
+// Other settings
+
+$wgShowExceptionDetails = true;
 
 $wgVisualEditorEnableWikitext = true;
 $wgShowDBErrorBacktrace = true;
@@ -404,17 +564,10 @@ $wgCookieWarningGeoIp2Path = '/var/www/html/piwik/misc/DBIP-City.mmdb';
 $wgEnablePartialBlocks = true;
 
 $wgParsoidSettings = [
-    'linting' => true
+	'linting' => true
 ];
 
 $wgNamespaceAliases['TW'] = NS_PROJECT;
 $wgNamespaceAliases['TWT'] = NS_PROJECT_TALK;
 
 $wgPygmentizePath = "/usr/local/bin/pygmentize";
-
-$wgRCFeeds['irc'] = [
-	'uri' => 'udp://129.153.11.72:9872',
-	'formatter' => IRCColourfulRCFeedFormatter::class,
-	'add_interwiki_prefix' => false,
-	'omit_bots' => true,
-];
