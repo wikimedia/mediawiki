@@ -54,9 +54,9 @@
 
 		// Events
 		this.dropdowninput.on( 'change', this.onChange.bind( this ) );
-		this.textinput.on( 'change', function () {
+		this.textinput.on( 'change', () => {
 			this.emit( 'change', this.getValue() );
-		}.bind( this ) );
+		} );
 
 		// Parent constructor
 		mw.widgets.SelectWithInputWidget.super.call( this, config );

@@ -64,17 +64,13 @@
 				.appendTo( this.$element );
 			// Update with preset values
 			// Set the default value (it might be different from just being empty)
-			this.$hiddenInput.prop( 'defaultValue', this.getItems().map( function ( item ) {
-				return item.getData();
-			} ).join( '\n' ) );
-			this.on( 'change', function ( items ) {
-				this.$hiddenInput.val( items.map( function ( item ) {
-					return item.getData();
-				} ).join( '\n' ) );
+			this.$hiddenInput.prop( 'defaultValue', this.getItems().map( ( item ) => item.getData() ).join( '\n' ) );
+			this.on( 'change', ( items ) => {
+				this.$hiddenInput.val( items.map( ( item ) => item.getData() ).join( '\n' ) );
 				// Trigger a 'change' event as if a user edited the text
 				// (it is not triggered when changing the value from JS code).
 				this.$hiddenInput.trigger( 'change' );
-			}.bind( this ) );
+			} );
 		}
 
 	};
@@ -99,11 +95,11 @@
 		const widget = this;
 
 		this.getRequestData()
-			.then( function ( data ) {
+			.then( ( data ) => {
 				// Reset
 				widget.menu.clearItems();
 				widget.menu.addItems( widget.getOptionsFromData( data ) );
-			} ).always( function () {
+			} ).always( () => {
 				// Parent method
 				mw.widgets.TitlesMultiselectWidget.super.prototype.onInputChange.call( widget );
 			} );

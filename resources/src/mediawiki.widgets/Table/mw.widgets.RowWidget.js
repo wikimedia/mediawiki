@@ -304,7 +304,7 @@ mw.widgets.RowWidget.prototype.onCellChange = function ( input, value ) {
 	// Right now, the table can't know if it's valid or not because the events
 	// don't get passed through.
 	const self = this;
-	input.getValidity().done( function () {
+	input.getValidity().done( () => {
 		self.model.setValue( input.getData(), value );
 	} );
 };
@@ -334,7 +334,7 @@ mw.widgets.RowWidget.prototype.setDisabled = function ( disabled ) {
 		this.deleteButton.setDisabled( disabled );
 	}
 
-	this.getItems().forEach( function ( cell ) {
+	this.getItems().forEach( ( cell ) => {
 		cell.setDisabled( disabled );
 	} );
 };

@@ -77,7 +77,7 @@
 	mw.widgets.TitleSearchWidget.prototype.onQueryChange = function () {
 		const widget = this;
 
-		this.getRequestData().done( function ( data ) {
+		this.getRequestData().done( ( data ) => {
 			if ( widget.query.isReadOnly() ) {
 				// The request object is always abortable, so just
 				// prevent the results from displaying

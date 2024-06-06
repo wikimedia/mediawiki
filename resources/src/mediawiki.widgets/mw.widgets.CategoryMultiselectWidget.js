@@ -88,7 +88,7 @@
 	 */
 	mw.widgets.CategoryMultiselectWidget.prototype.updateMenuItems = function () {
 		this.getMenu().clearItems();
-		this.getNewMenuItems( this.input.$input.val() ).then( function ( items ) {
+		this.getNewMenuItems( this.input.$input.val() ).then( ( items ) => {
 			const menu = this.getMenu();
 
 			// Never show the menu if the input lost focus in the meantime
@@ -97,25 +97,19 @@
 			}
 
 			// Array of strings of the data of OO.ui.MenuOptionsWidgets
-			const existingItems = menu.getItems().map( function ( item ) {
-				return item.data;
-			} );
+			const existingItems = menu.getItems().map( ( item ) => item.data );
 
 			// Remove if items' data already exists
-			let filteredItems = items.filter( function ( item ) {
-				return existingItems.indexOf( item ) === -1;
-			} );
+			let filteredItems = items.filter( ( item ) => existingItems.indexOf( item ) === -1 );
 
 			// Map to an array of OO.ui.MenuOptionWidgets
-			filteredItems = filteredItems.map( function ( item ) {
-				return new OO.ui.MenuOptionWidget( {
-					data: item,
-					label: item
-				} );
-			} );
+			filteredItems = filteredItems.map( ( item ) => new OO.ui.MenuOptionWidget( {
+				data: item,
+				label: item
+			} ) );
 
 			menu.addItems( filteredItems ).toggle( true );
-		}.bind( this ) );
+		} );
 	};
 
 	/**
@@ -152,27 +146,19 @@
 
 		this.pushPending();
 
-		$.when.apply( $, promises ).done( function ( ...dataSets ) {
+		$.when.apply( $, promises ).done( ( ...dataSets ) => {
 			// Flatten array
 			const allData = Array.prototype.concat.apply( [], dataSets );
 
 			const categoryNames = allData
 				// Remove duplicates
-				.filter( function ( value, index, self ) {
-					return self.indexOf( value ) === index;
-				} )
+				.filter( ( value, index, self ) => self.indexOf( value ) === index )
 				// Get Title objects
-				.map( function ( name ) {
-					return mw.Title.newFromText( name );
-				} )
+				.map( ( name ) => mw.Title.newFromText( name ) )
 				// Keep only titles from 'Category' namespace
-				.filter( function ( title ) {
-					return title && title.getNamespaceId() === NS_CATEGORY;
-				} )
+				.filter( ( title ) => title && title.getNamespaceId() === NS_CATEGORY )
 				// Convert back to strings, strip 'Category:' prefix
-				.map( function ( title ) {
-					return title.getMainText();
-				} );
+				.map( ( title ) => title.getMainText() );
 
 			deferred.resolve( categoryNames );
 
@@ -229,9 +215,7 @@
 		const searchTypeEnumCount = Object.keys( mw.widgets.CategoryMultiselectWidget.SearchType ).length;
 
 		// Check if all values are in the SearchType enum
-		validSearchTypes = this.searchTypes.every( function ( searchType ) {
-			return searchType > -1 && searchType < searchTypeEnumCount;
-		} );
+		validSearchTypes = this.searchTypes.every( ( searchType ) => searchType > -1 && searchType < searchTypeEnumCount );
 
 		if ( validSearchTypes === false ) {
 			throw new Error( 'Unknown searchType in searchTypes' );
@@ -292,7 +276,7 @@
 					namespace: NS_CATEGORY,
 					limit: this.limit,
 					search: input
-				} ).done( function ( res ) {
+				} ).done( ( res ) => {
 					const categories = res[ 1 ];
 					deferred.resolve( categories );
 				} ).fail( deferred.reject.bind( deferred ) );
@@ -307,10 +291,8 @@
 					aplimit: this.limit,
 					apfrom: input,
 					apprefix: input
-				} ).done( function ( res ) {
-					const categories = res.query.allpages.map( function ( page ) {
-						return page.title;
-					} );
+				} ).done( ( res ) => {
+					const categories = res.query.allpages.map( ( page ) => page.title );
 					deferred.resolve( categories );
 				} ).fail( deferred.reject.bind( deferred ) );
 				break;
@@ -326,10 +308,10 @@
 					action: 'query',
 					prop: 'info',
 					titles: 'Category:' + input
-				} ).done( function ( res ) {
+				} ).done( ( res ) => {
 					const categories = [];
 
-					res.query.pages.forEach( function ( page ) {
+					res.query.pages.forEach( ( page ) => {
 						if ( !page.missing ) {
 							categories.push( page.title );
 						}
@@ -352,10 +334,8 @@
 					cmtype: 'subcat',
 					cmlimit: this.limit,
 					cmtitle: 'Category:' + input
-				} ).done( function ( res ) {
-					const categories = res.query.categorymembers.map( function ( category ) {
-						return category.title;
-					} );
+				} ).done( ( res ) => {
+					const categories = res.query.categorymembers.map( ( category ) => category.title );
 					deferred.resolve( categories );
 				} ).fail( deferred.reject.bind( deferred ) );
 				break;
@@ -372,14 +352,12 @@
 					prop: 'categories',
 					cllimit: this.limit,
 					titles: 'Category:' + input
-				} ).done( function ( res ) {
+				} ).done( ( res ) => {
 					const categories = [];
 
-					res.query.pages.forEach( function ( page ) {
+					res.query.pages.forEach( ( page ) => {
 						if ( !page.missing && Array.isArray( page.categories ) ) {
-							categories.push.apply( categories, page.categories.map( function ( category ) {
-								return category.title;
-							} ) );
+							categories.push.apply( categories, page.categories.map( ( category ) => category.title ) );
 						}
 					} );
 

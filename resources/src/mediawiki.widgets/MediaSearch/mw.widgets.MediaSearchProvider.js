@@ -57,9 +57,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.MediaSearchProvider.prototype.sort = function ( results ) {
-		return results.sort( function ( a, b ) {
-			return a.index - b.index;
-		} );
+		return results.sort( ( a, b ) => a.index - b.index );
 	};
 
 	/**

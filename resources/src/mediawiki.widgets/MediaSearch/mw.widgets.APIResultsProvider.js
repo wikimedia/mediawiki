@@ -60,7 +60,7 @@
 			allParams = $.extend( {}, this.getStaticParams(), this.getUserParams() );
 
 		const xhr = $.getJSON( this.getAPIurl(), allParams )
-			.done( function ( data ) {
+			.done( ( data ) => {
 				if ( Array.isArray( data ) && data.length ) {
 					deferred.resolve( data );
 				} else {

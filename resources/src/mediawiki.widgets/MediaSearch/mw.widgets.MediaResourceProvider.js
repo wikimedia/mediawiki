@@ -80,7 +80,7 @@
 				action: 'query',
 				meta: 'siteinfo'
 			} )
-				.then( function ( data ) {
+				.then( ( data ) => {
 					provider.setImageSizes( data.query.general.imagelimits || [] );
 					provider.setThumbSizes( data.query.general.thumblimits || [] );
 					provider.setUserParams( {
@@ -106,7 +106,7 @@
 		const provider = this;
 
 		return this.loadSiteInfo()
-			.then( function () {
+			.then( () => {
 				if ( aborted ) {
 					return $.Deferred().reject();
 				}
@@ -114,7 +114,7 @@
 				return xhr;
 			} )
 			.then(
-				function ( results ) {
+				( results ) => {
 					if ( !results || results.length === 0 ) {
 						provider.toggleDepleted( true );
 						return [];
@@ -122,7 +122,7 @@
 					return results;
 				},
 				// Process failed, return an empty promise
-				function () {
+				() => {
 					provider.toggleDepleted( true );
 					return $.Deferred().resolve( [] );
 				}
@@ -180,7 +180,7 @@
 		const api = this.isLocal ? new mw.Api() : new mw.ForeignApi( this.getAPIurl(), { anonymous: true } );
 		const xhr = api.get( $.extend( {}, this.getStaticParams(), this.getUserParams(), this.getContinueData( howMany ) ) );
 		return xhr
-			.then( function ( data ) {
+			.then( ( data ) => {
 				const results = [];
 
 				if ( data.error ) {

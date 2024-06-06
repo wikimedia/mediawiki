@@ -46,12 +46,8 @@
 				action: 'query',
 				meta: 'filerepoinfo'
 			} ).then(
-				function ( resp ) {
-					return resp.query && resp.query.repos || defaultSource;
-				},
-				function () {
-					return $.Deferred().resolve( defaultSource );
-				}
+				( resp ) => resp.query && resp.query.repos || defaultSource,
+				() => $.Deferred().resolve( defaultSource )
 			);
 		}
 

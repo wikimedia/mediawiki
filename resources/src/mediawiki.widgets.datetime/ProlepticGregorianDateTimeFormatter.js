@@ -39,28 +39,28 @@
 		if ( config.fullMonthNames && !config.shortMonthNames ) {
 			config.shortMonthNames = {};
 			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( config.fullMonthNames, function ( k, v ) {
+			$.each( config.fullMonthNames, ( k, v ) => {
 				config.shortMonthNames[ k ] = v.slice( 0, 3 );
 			} );
 		}
 		if ( config.shortDayNames && !config.dayLetters ) {
 			config.dayLetters = [];
 			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( config.shortDayNames, function ( k, v ) {
+			$.each( config.shortDayNames, ( k, v ) => {
 				config.dayLetters[ k ] = v.slice( 0, 1 );
 			} );
 		}
 		if ( config.fullDayNames && !config.dayLetters ) {
 			config.dayLetters = [];
 			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( config.fullDayNames, function ( k, v ) {
+			$.each( config.fullDayNames, ( k, v ) => {
 				config.dayLetters[ k ] = v.slice( 0, 1 );
 			} );
 		}
 		if ( config.fullDayNames && !config.shortDayNames ) {
 			config.shortDayNames = {};
 			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( config.fullDayNames, function ( k, v ) {
+			$.each( config.fullDayNames, ( k, v ) => {
 				config.shortDayNames[ k ] = v.slice( 0, 3 );
 			} );
 		}
@@ -173,30 +173,30 @@
 		if ( this.fullMonthNames && !this.shortMonthNames ) {
 			this.shortMonthNames = {};
 			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( this.fullMonthNames, function ( k, v ) {
+			$.each( this.fullMonthNames, ( k, v ) => {
 				this.shortMonthNames[ k ] = v.slice( 0, 3 );
-			}.bind( this ) );
+			} );
 		}
 		if ( this.shortDayNames && !this.dayLetters ) {
 			this.dayLetters = [];
 			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( this.shortDayNames, function ( k, v ) {
+			$.each( this.shortDayNames, ( k, v ) => {
 				this.dayLetters[ k ] = v.slice( 0, 1 );
-			}.bind( this ) );
+			} );
 		}
 		if ( this.fullDayNames && !this.dayLetters ) {
 			this.dayLetters = [];
 			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( this.fullDayNames, function ( k, v ) {
+			$.each( this.fullDayNames, ( k, v ) => {
 				this.dayLetters[ k ] = v.slice( 0, 1 );
-			}.bind( this ) );
+			} );
 		}
 		if ( this.fullDayNames && !this.shortDayNames ) {
 			this.shortDayNames = {};
 			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( this.fullDayNames, function ( k, v ) {
+			$.each( this.fullDayNames, ( k, v ) => {
 				this.shortDayNames[ k ] = v.slice( 0, 3 );
-			}.bind( this ) );
+			} );
 		}
 
 		if ( !this.fullMonthNames ) {
@@ -413,9 +413,7 @@
 			if ( spec.values ) {
 				spec.size = Math.max.apply(
 					// eslint-disable-next-line no-jquery/no-map-util
-					null, $.map( spec.values, function ( v ) {
-						return v.length;
-					} )
+					null, $.map( spec.values, ( v ) => v.length )
 				);
 			}
 		}

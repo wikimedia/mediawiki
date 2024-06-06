@@ -44,7 +44,7 @@
 
 		// Iterate over the columns object (ignore the value)
 		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( this.columns, function ( columnLabel ) {
+		$.each( this.columns, ( columnLabel ) => {
 			$headRow.append( $( '<th>' ).html( columnLabel ) );
 		} );
 		const $thead = $( '<thead>' );
@@ -53,7 +53,7 @@
 		const $tbody = $( '<tbody>' );
 		// Build table
 		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( this.rows, function ( rowLabel, rowTag ) {
+		$.each( this.rows, ( rowLabel, rowTag ) => {
 			const $row = $( '<tr>' ),
 				labelField = new OO.ui.FieldLayout(
 					new OO.ui.Widget(), // Empty widget, since we don't have the checkboxes here
@@ -70,7 +70,7 @@
 
 			// Columns
 			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( widget.columns, function ( columnLabel, columnTag ) {
+			$.each( widget.columns, ( columnLabel, columnTag ) => {
 				const thisTag = columnTag + '-' + rowTag,
 					checkbox = new OO.ui.CheckboxInputWidget( {
 						value: thisTag,
@@ -149,7 +149,7 @@
 		if ( this.checkboxes ) {
 			// Propagate to all checkboxes and update their disabled state
 			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( this.checkboxes, function ( name, checkbox ) {
+			$.each( this.checkboxes, ( name, checkbox ) => {
 				checkbox.setDisabled( widget.isTagDisabled( name ) );
 			} );
 		}
