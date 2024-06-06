@@ -158,7 +158,7 @@ class FeedUtils {
 		$services = MediaWikiServices::getInstance();
 		$anon = $services->getUserFactory()->newAnonymous();
 		$permManager = $services->getPermissionManager();
-		$accErrors = $permManager->getPermissionErrors(
+		$userCan = $permManager->userCan(
 			'read',
 			$anon,
 			$title
@@ -166,7 +166,7 @@ class FeedUtils {
 
 		// Can't diff special pages, unreadable pages or pages with no new revision
 		// to compare against: just return the text.
-		if ( $title->getNamespace() < 0 || $accErrors || !$newid ) {
+		if ( $title->getNamespace() < 0 || !$userCan || !$newid ) {
 			return $completeText;
 		}
 

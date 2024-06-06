@@ -324,10 +324,7 @@ abstract class Action implements MessageLocalizer {
 		$right = $this->getRestriction();
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		if ( $right !== null ) {
-			$errors = $permissionManager->getPermissionErrors( $right, $user, $this->getTitle() );
-			if ( count( $errors ) ) {
-				throw new PermissionsError( $right, $errors );
-			}
+			$permissionManager->throwPermissionErrors( $right, $user, $this->getTitle() );
 		}
 
 		// If the action requires an unblock, explicitly check the user's block.

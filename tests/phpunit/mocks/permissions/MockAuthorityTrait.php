@@ -10,6 +10,7 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Permissions\RateLimitSubject;
 use MediaWiki\Permissions\SimpleAuthority;
@@ -341,6 +342,7 @@ trait MockAuthorityTrait {
 				'userHasAnyRight',
 				'userHasAllRights',
 				'userCan',
+				'getPermissionStatus',
 				'getPermissionErrors',
 				'isBlockedFrom',
 				'getApplicableBlock',
@@ -374,21 +376,24 @@ trait MockAuthorityTrait {
 
 		$fakeBlockMessageParams = $this->getFakeBlockMessageParams();
 		// If the user has a block, the block applies to all actions except for 'read'
+		$permissionManager->method( 'getPermissionStatus' )->willReturnCallback(
+			static function ( $permission, $user, $target ) use ( $permissionManager, $fakeBlockMessageParams ) {
+				$status = PermissionStatus::newEmpty();
+				if ( !$permissionManager->userCan( $permission, $user, $target ) ) {
+					$status->fatal( 'permissionserrors' );
+				}
+				if ( $user->getBlock() && $permission !== 'read' ) {
+					$status->fatal( 'blockedtext-partial', ...$fakeBlockMessageParams );
+				}
+				return $status;
+			}
+		);
+
 		$permissionManager->method( 'getPermissionErrors' )->willReturnCallback(
 			static function ( $permission, $user, $target ) use ( $permissionManager, $fakeBlockMessageParams ) {
-				$errors = [];
-				if ( !$permissionManager->userCan( $permission, $user, $target ) ) {
-					$errors[] = [ 'permissionserrors' ];
-				}
-
-				if ( $user->getBlock() && $permission !== 'read' ) {
-					$errors[] = array_merge(
-						[ 'blockedtext-partial' ],
-						$fakeBlockMessageParams
-					);
-				}
-
-				return $errors;
+				return $permissionManager
+					->getPermissionStatus( $permission, $user, $target )
+					->toLegacyErrorArray();
 			}
 		);
 

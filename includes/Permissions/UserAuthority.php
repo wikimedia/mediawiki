@@ -324,6 +324,17 @@ class UserAuthority implements Authority {
 		return !$status || $status->isOK();
 	}
 
+	// See ApiBase::BLOCK_CODE_MAP
+	private const BLOCK_CODES = [
+		'blockedtext',
+		'blockedtext-partial',
+		'autoblockedtext',
+		'systemblockedtext',
+		'blockedtext-composite',
+		'blockedtext-tempuser',
+		'autoblockedtext-tempuser',
+	];
+
 	/**
 	 * @param string $rigor
 	 * @param string $action
@@ -358,27 +369,32 @@ class UserAuthority implements Authority {
 		if ( $status ) {
 			$status->setPermission( $action );
 
-			$errors = $this->permissionManager->getPermissionErrors(
+			$tempStatus = $this->permissionManager->getPermissionStatus(
 				$action,
 				$this->actor,
 				$target,
 				$rigor
 			);
 
-			foreach ( $errors as $err ) {
-				$status->fatal( wfMessage( ...$err ) );
+			if ( $tempStatus->isGood() ) {
+				// Nothing to merge, return early
+				return $status->isOK();
+			}
 
+			$status->merge( $tempStatus );
+
+			foreach ( self::BLOCK_CODES as $code ) {
 				// HACK: Detect whether the permission was denied because the user is blocked.
-				//       A similar hack exists in ApiBase::$blockMsgMap.
+				//       A similar hack exists in ApiBase::BLOCK_CODE_MAP.
 				//       When permission checking logic is moved out of PermissionManager,
 				//       we can record the block info directly when first checking the block,
 				//       rather than doing that here.
-				if ( strpos( $err[0], 'blockedtext' ) !== false ) {
+				if ( $tempStatus->hasMessage( $code ) ) {
 					$block = $this->getBlock();
-
 					if ( $block ) {
 						$status->setBlock( $block );
 					}
+					break;
 				}
 			}
 
