@@ -247,6 +247,18 @@ because of Phabricator reports.
   have been removed.
 * DummyLinker has been removed. The former DummyLinker parameter
   to the 'ImageBeforeProduceHTML' hook is now null.
+* The following methods of IDatabase have been moved to internal interface
+  IDatabaseForOwner without deprecation. These methods are internal and
+  shouldn't be used outside of rdbms library:
+  - ::pendingWriteCallers()
+  - ::flushSession()
+  - ::lastDoneWrites()
+  - ::setTransactionListener()
+  - ::serverIsReadOnly()
+  - ::getPrimaryPos()
+  - ::pendingWriteQueryDuration()
+  - ::writesOrCallbacksPending()
+  - ::writesPending()
 * IMaintainableDatabase::listViews(), deprecated since 1.42, has been removed.
 * IMaintainableDatabase::truncate(), deprecated since 1.42, has been removed.
 * IMaintainableDatabase::textFieldSize() was removed without deprecation.
