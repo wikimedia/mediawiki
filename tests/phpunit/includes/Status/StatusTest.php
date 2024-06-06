@@ -1,6 +1,8 @@
 <?php
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Language\RawMessage;
+use MediaWiki\Message\Message;
 use MediaWiki\Status\Status;
 use Wikimedia\Message\MessageValue;
 
@@ -781,6 +783,9 @@ class StatusTest extends MediaWikiLangTestCase {
 		yield [ $message, $message ];
 		yield [ $message, [ 'foo', 1, 2 ] ];
 		yield [ [ 'foo', 1, 2 ], $message ];
+		$messageWithContext1 = ( new Message( 'foo' ) )->setContext( RequestContext::getMain() );
+		$messageWithContext2 = ( new Message( 'foo' ) )->setContext( RequestContext::getMain() );
+		yield [ $messageWithContext1, $messageWithContext2 ];
 	}
 
 	/**
