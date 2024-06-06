@@ -1214,6 +1214,7 @@
 	"linterror-tidy-font-bug": "Ознака font покушава да промени боју везе",
 	"linterror-tidy-whitespace-bug": "Грешка при рашчлањивању размака",
 	"linterror-unclosed-quotes-in-heading": "Незатворени апостроф који утиче на текст ван прегледа садржаја",
+	"linterror-wikilink-in-extlink": "Везе у везама",
 	"yourgender": "Пол:",
 	"gender-unknown": "Кад вас помиње, софтвер ће користити родно неутралне речи кад год је то могуће",
 	"gender-notknown": "неодређен",
