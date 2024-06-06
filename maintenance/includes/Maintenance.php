@@ -505,7 +505,7 @@ abstract class Maintenance {
 		) {
 			fwrite( STDERR, $err . "\n" );
 		} else {
-			print $err;
+			print $err . "\n";
 		}
 	}
 
