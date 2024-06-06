@@ -62,8 +62,9 @@ $( function () {
 	/**
 	 * There is a bug on iPad and maybe other browsers where if initial-scale is not set
 	 * the page cannot be zoomed. If the initial-scale is set on the server side, this will result
-	 * in an unwanted zoom on mobile devices. To avoid this we check innerWidth and set the initial-scale
-	 * on the client where needed. The width must be synced with the value in Skin::initPage.
+	 * in an unwanted zoom on mobile devices. To avoid this we check innerWidth and set the
+	 * initial-scale on the client where needed. The width must be synced with the value in
+	 * Skin::initPage.
 	 * More information on this bug in [[phab:T311795]].
 	 *
 	 * @ignore
@@ -73,12 +74,15 @@ $( function () {
 		var content = $viewport.attr( 'content' );
 		var scale = window.outerWidth / window.innerWidth;
 		// This adjustment is limited to tablet devices. It must be a non-zero value to work.
-		// (these values correspond to @width-breakpoint-tablet and @width-breakpoint-desktop
-		if ( window.innerWidth >= 720 && window.innerWidth <= 1000 &&
+		// (these values correspond to @min-width-breakpoint-tablet and @min-width-breakpoint-desktop
+		// See https://doc.wikimedia.org/codex/main/design-tokens/breakpoint.html
+		if ( window.innerWidth >= 640 && window.innerWidth < 1120 &&
 			content && content.indexOf( 'initial-scale' ) === -1
 		) {
-			// Note: If the value is 1 the font-size adjust feature will not work on iPad
-			$viewport.attr( 'content', 'width=1000,initial-scale=' + scale );
+			// Note:
+			// - The `width` value must be equal to @min-width-breakpoint-desktop above
+			// - If `initial-scale` value is 1 the font-size adjust feature will not work on iPad
+			$viewport.attr( 'content', 'width=1120,initial-scale=' + scale );
 		}
 	}
 

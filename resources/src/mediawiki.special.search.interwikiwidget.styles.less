@@ -112,7 +112,7 @@
 	}
 
 	/* Tablet and up */
-	@media only screen and ( min-width: @width-breakpoint-tablet ) {
+	@media only screen and ( min-width: @min-width-breakpoint-tablet ) {
 		#mw-interwiki-results {
 			display: inline-block;
 			width: ~'calc( 100% / 12 * 4 )';
@@ -144,7 +144,7 @@
 
 .mw-searchresults-has-iw.mw-searchresults-has-offset {
 	/* Tablet and up */
-	@media only screen and ( max-width: @width-breakpoint-tablet ) {
+	@media only screen and ( max-width: @max-width-breakpoint-mobile ) {
 		#mw-interwiki-results {
 			display: none;
 		}
