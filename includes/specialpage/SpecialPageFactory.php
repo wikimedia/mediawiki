@@ -984,7 +984,6 @@ class SpecialPageFactory {
 		'Import' => [
 			'class' => SpecialImport::class,
 			'services' => [
-				'PermissionManager',
 				'WikiImporterFactory',
 			]
 		],
