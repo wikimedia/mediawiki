@@ -384,8 +384,6 @@
 	 * @param {mw.widgets.MediaResultWidget[]} items An array of item elements
 	 */
 	mw.widgets.MediaSearchWidget.prototype.onResultsChange = function ( items ) {
-		const search = this;
-
 		if ( !items.length ) {
 			return;
 		}
@@ -393,10 +391,10 @@
 		// Add method to a queue; this queue will only run when the widget
 		// is visible
 		this.layoutQueue.push( () => {
-			const maxRowWidth = search.results.$element.width() - 15;
+			const maxRowWidth = this.results.$element.width() - 15;
 
 			// Go over the added items
-			let row = search.getAvailableRow();
+			let row = this.getAvailableRow();
 			for ( let i = 0, ilen = items.length; i < ilen; i++ ) {
 
 				// Check item has just been added
@@ -407,43 +405,43 @@
 				const itemWidth = items[ i ].$element.outerWidth( true );
 
 				// Add items to row until it is full
-				if ( search.rows[ row ].width + itemWidth >= maxRowWidth ) {
+				if ( this.rows[ row ].width + itemWidth >= maxRowWidth ) {
 					// Mark this row as full
-					search.rows[ row ].isFull = true;
-					search.rows[ row ].$element.attr( 'data-full', true );
+					this.rows[ row ].isFull = true;
+					this.rows[ row ].$element.attr( 'data-full', true );
 
 					// Find the resize factor
-					const effectiveWidth = search.rows[ row ].width;
+					const effectiveWidth = this.rows[ row ].width;
 					const resizeFactor = maxRowWidth / effectiveWidth;
 
-					search.rows[ row ].$element.attr( 'data-effectiveWidth', effectiveWidth );
-					search.rows[ row ].$element.attr( 'data-resizeFactor', resizeFactor );
-					search.rows[ row ].$element.attr( 'data-row', row );
+					this.rows[ row ].$element.attr( 'data-effectiveWidth', effectiveWidth );
+					this.rows[ row ].$element.attr( 'data-resizeFactor', resizeFactor );
+					this.rows[ row ].$element.attr( 'data-row', row );
 
 					// Resize all images in the row to fit the width
-					for ( let j = 0, jlen = search.rows[ row ].items.length; j < jlen; j++ ) {
-						search.rows[ row ].items[ j ].resizeThumb( resizeFactor );
+					for ( let j = 0, jlen = this.rows[ row ].items.length; j < jlen; j++ ) {
+						this.rows[ row ].items[ j ].resizeThumb( resizeFactor );
 					}
 
 					// find another row
-					row = search.getAvailableRow();
+					row = this.getAvailableRow();
 				}
 
 				// Add the cumulative
-				search.rows[ row ].width += itemWidth;
+				this.rows[ row ].width += itemWidth;
 
 				// Store reference to the item and to the row
-				search.rows[ row ].items.push( items[ i ] );
+				this.rows[ row ].items.push( items[ i ] );
 				items[ i ].setRow( row );
 
 				// Append the item
-				search.rows[ row ].$element.append( items[ i ].$element );
+				this.rows[ row ].$element.append( items[ i ].$element );
 
 			}
 
 			// If we have less than 4 rows, call for more images
-			if ( search.rows.length < 4 ) {
-				search.queryMediaQueue();
+			if ( this.rows.length < 4 ) {
+				this.queryMediaQueue();
 			}
 		} );
 		this.runLayoutQueue();

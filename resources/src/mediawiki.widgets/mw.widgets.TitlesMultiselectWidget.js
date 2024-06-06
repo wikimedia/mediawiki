@@ -92,16 +92,14 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.TitlesMultiselectWidget.prototype.onInputChange = function () {
-		const widget = this;
-
 		this.getRequestData()
 			.then( ( data ) => {
 				// Reset
-				widget.menu.clearItems();
-				widget.menu.addItems( widget.getOptionsFromData( data ) );
+				this.menu.clearItems();
+				this.menu.addItems( this.getOptionsFromData( data ) );
 			} ).always( () => {
 				// Parent method
-				mw.widgets.TitlesMultiselectWidget.super.prototype.onInputChange.call( widget );
+				mw.widgets.TitlesMultiselectWidget.super.prototype.onInputChange.call( this );
 			} );
 	};
 

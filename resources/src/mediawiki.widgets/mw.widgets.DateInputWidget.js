@@ -341,16 +341,15 @@
 	 * @private
 	 */
 	mw.widgets.DateInputWidget.prototype.onBlur = function () {
-		const widget = this;
 		setTimeout( () => {
 			const $focussed = $( ':focus' );
 			// Deactivate unless the focus moved to something else inside this widget
 			if (
-				!OO.ui.contains( widget.$element[ 0 ], $focussed[ 0 ], true ) &&
+				!OO.ui.contains( this.$element[ 0 ], $focussed[ 0 ], true ) &&
 				// Calendar might be in an $overlay
-				!OO.ui.contains( widget.calendar.$element[ 0 ], $focussed[ 0 ], true )
+				!OO.ui.contains( this.calendar.$element[ 0 ], $focussed[ 0 ], true )
 			) {
-				widget.deactivate();
+				this.deactivate();
 			}
 		}, 0 );
 	};

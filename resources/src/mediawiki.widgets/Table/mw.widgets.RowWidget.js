@@ -303,9 +303,8 @@ mw.widgets.RowWidget.prototype.onCellChange = function ( input, value ) {
 	// fed from the cells within.
 	// Right now, the table can't know if it's valid or not because the events
 	// don't get passed through.
-	const self = this;
 	input.getValidity().done( () => {
-		self.model.setValue( input.getData(), value );
+		this.model.setValue( input.getData(), value );
 	} );
 };
 

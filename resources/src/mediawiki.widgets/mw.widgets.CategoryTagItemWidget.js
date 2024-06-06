@@ -27,22 +27,21 @@
 	 * @private
 	 */
 	PageExistenceCache.prototype.processExistenceCheckQueue = function () {
-		const cache = this;
 		if ( this.currentRequest ) {
 			// Don't fire off a million requests at the same time
 			this.currentRequest.always( () => {
-				cache.currentRequest = null;
-				cache.processExistenceCheckQueueDebounced();
+				this.currentRequest = null;
+				this.processExistenceCheckQueueDebounced();
 			} );
 			return;
 		}
 		const queue = this.existenceCheckQueue;
 		this.existenceCheckQueue = {};
 		const titles = Object.keys( queue ).filter( ( title ) => {
-			if ( hasOwn.call( cache.existenceCache, title ) ) {
-				queue[ title ].resolve( cache.existenceCache[ title ] );
+			if ( hasOwn.call( this.existenceCache, title ) ) {
+				queue[ title ].resolve( this.existenceCache[ title ] );
 			}
-			return !hasOwn.call( cache.existenceCache, title );
+			return !hasOwn.call( this.existenceCache, title );
 		} );
 		if ( !titles.length ) {
 			return;
@@ -67,8 +66,8 @@
 				while ( hasOwn.call( normalized, normalizedTitle ) ) {
 					normalizedTitle = normalized[ normalizedTitle ];
 				}
-				cache.existenceCache[ title ] = pages[ normalizedTitle ];
-				queue[ title ].resolve( cache.existenceCache[ title ] );
+				this.existenceCache[ title ] = pages[ normalizedTitle ];
+				queue[ title ].resolve( this.existenceCache[ title ] );
 			} );
 		} );
 	};
@@ -125,7 +124,6 @@
 	 * @param {string} [config.apiUrl] API URL, if not the current wiki's API
 	 */
 	mw.widgets.CategoryTagItemWidget = function MWWCategoryTagItemWidget( config ) {
-		const widget = this;
 		// Parent constructor
 		mw.widgets.CategoryTagItemWidget.super.call( this, $.extend( {
 			data: config.title.getMainText(),
@@ -155,7 +153,7 @@
 		this.constructor.static.pageExistenceCaches[ this.apiUrl ]
 			.checkPageExistence( new ForeignTitle( this.title.getPrefixedText() ) )
 			.done( ( exists ) => {
-				widget.setMissing( !exists );
+				this.setMissing( !exists );
 			} );
 	};
 

@@ -145,7 +145,6 @@
 	 * @return {jQuery.Promise} Suggestions promise
 	 */
 	mw.widgets.TitleWidget.prototype.getSectionSuggestions = function ( title, fragmentQuery ) {
-		const widget = this;
 		const normalizedTitle = mw.Title.newFromText( title || mw.config.get( 'wgRelevantPageName' ) );
 		if ( !normalizedTitle ) {
 			return $.Deferred().resolve( [] ).promise();
@@ -182,7 +181,7 @@
 			// Fake query result
 			return {
 				query: {
-					pages: results.slice( 0, widget.limit )
+					pages: results.slice( 0, this.limit )
 				}
 			};
 		} ).promise( { abort: function () {} } );
@@ -197,7 +196,6 @@
 	mw.widgets.TitleWidget.prototype.getSuggestionsPromise = function () {
 		const api = this.getApi(),
 			query = this.getQueryValue(),
-			widget = this,
 			promiseAbortObject = { abort: function () {
 				// Do nothing. This is just so OOUI doesn't break due to abort being undefined.
 			} };
@@ -233,13 +231,13 @@
 				}
 			}
 			// Not a interwiki: do a prefix-search API lookup of the query.
-			const prefixSearchRequest = api.get( widget.getApiParams( query ) );
+			const prefixSearchRequest = api.get( this.getApiParams( query ) );
 			promiseAbortObject.abort = prefixSearchRequest.abort.bind( prefixSearchRequest ); // TODO ew
 			return prefixSearchRequest.then( ( prefixSearchResponse ) => {
-				if ( !widget.showMissing ) {
+				if ( !this.showMissing ) {
 					return prefixSearchResponse;
 				}
-				const title = widget.namespace && widget.getMWTitle( query );
+				const title = this.namespace && this.getMWTitle( query );
 				// Add the query title as the first result, after looking up its details.
 				const queryTitleRequest = api.get( {
 					action: 'query',
@@ -254,7 +252,7 @@
 						// The API response structures are identical because both API calls are action=query.
 						result.query = queryTitleResponse.query;
 					} else if ( queryTitleResponse.query.pages && queryTitleResponse.query.pages[ -1 ] !== undefined &&
-						!widget.responseContainsNonExistingTitle( prefixSearchResponse, queryTitleResponse.query.pages[ -1 ].title )
+						!this.responseContainsNonExistingTitle( prefixSearchResponse, queryTitleResponse.query.pages[ -1 ].title )
 					) {
 						// There are prefix-search results, but the query title isn't in them,
 						// so add it as a new result. It's under the new key 'queryTitle', because

@@ -22,7 +22,6 @@
 	 *  (as HTML). Takes precedence over text tooltips.
 	 */
 	mw.widgets.CheckMatrixWidget = function MWWCheckMatrixWidget( config ) {
-		const widget = this;
 		config = config || {};
 
 		// Parent constructor
@@ -59,8 +58,8 @@
 					new OO.ui.Widget(), // Empty widget, since we don't have the checkboxes here
 					{
 						label: new OO.ui.HtmlSnippet( rowLabel ),
-						help: widget.tooltips[ rowLabel ] ||
-							widget.tooltipsHtml[ rowLabel ] && new OO.ui.HtmlSnippet( widget.tooltipsHtml[ rowLabel ] ),
+						help: this.tooltips[ rowLabel ] ||
+							this.tooltipsHtml[ rowLabel ] && new OO.ui.HtmlSnippet( this.tooltipsHtml[ rowLabel ] ),
 						align: 'inline'
 					}
 				);
@@ -70,17 +69,17 @@
 
 			// Columns
 			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( widget.columns, ( columnLabel, columnTag ) => {
+			$.each( this.columns, ( columnLabel, columnTag ) => {
 				const thisTag = columnTag + '-' + rowTag,
 					checkbox = new OO.ui.CheckboxInputWidget( {
 						value: thisTag,
-						name: widget.name ? widget.name + '[]' : undefined,
-						id: widget.id ? widget.id + '-' + thisTag : undefined,
-						selected: widget.isTagSelected( thisTag ),
-						disabled: widget.isTagDisabled( thisTag )
+						name: this.name ? this.name + '[]' : undefined,
+						id: this.id ? this.id + '-' + thisTag : undefined,
+						selected: this.isTagSelected( thisTag ),
+						disabled: this.isTagDisabled( thisTag )
 					} );
 
-				widget.checkboxes[ thisTag ] = checkbox;
+				this.checkboxes[ thisTag ] = checkbox;
 				$row.append( $( '<td>' ).append( checkbox.$element ) );
 			} );
 
@@ -140,8 +139,6 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.CheckMatrixWidget.prototype.setDisabled = function ( isDisabled ) {
-		const widget = this;
-
 		// Parent method
 		mw.widgets.CheckMatrixWidget.super.prototype.setDisabled.call( this, isDisabled );
 
@@ -150,7 +147,7 @@
 			// Propagate to all checkboxes and update their disabled state
 			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( this.checkboxes, ( name, checkbox ) => {
-				checkbox.setDisabled( widget.isTagDisabled( name ) );
+				checkbox.setDisabled( this.isTagDisabled( name ) );
 			} );
 		}
 	};

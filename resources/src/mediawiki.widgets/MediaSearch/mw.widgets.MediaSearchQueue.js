@@ -35,23 +35,21 @@
 	 * @return {jQuery.Promise} Promise that resolves when the resources are set up
 	 */
 	mw.widgets.MediaSearchQueue.prototype.setup = function () {
-		const queue = this;
-
 		return this.getFileRepos().then( ( sources ) => {
-			if ( queue.providers.length === 0 ) {
+			if ( this.providers.length === 0 ) {
 				// Set up the providers
 				for ( let i = 0, len = sources.length; i < len; i++ ) {
-					queue.addProvider( new mw.widgets.MediaSearchProvider(
+					this.addProvider( new mw.widgets.MediaSearchProvider(
 						sources[ i ].apiurl,
 						{
 							name: sources[ i ].name,
 							local: sources[ i ].local,
 							scriptDirUrl: sources[ i ].scriptDirUrl,
 							userParams: {
-								gsrsearch: queue.getSearchQuery()
+								gsrsearch: this.getSearchQuery()
 							},
 							staticParams: {
-								iiurlheight: queue.getMaxHeight()
+								iiurlheight: this.getMaxHeight()
 							}
 						} )
 					);
