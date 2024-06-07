@@ -39,3 +39,8 @@ Or, you can list the module in your extension's [ResourceLoader module](https://
 const module = require( 'mediawiki.util' );
 module.clearSubtitle();
 ```
+
+## jQuery plugins
+
+MediaWiki uses the jQuery library. You can access and extend the jQuery object using plugins
+included with MediaWiki core by loading certain ResourceLoader modules.

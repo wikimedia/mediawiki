@@ -67,7 +67,6 @@ Log errors, send deprecation warnings, and debug your code.
 - [mw.log](mw.log.html)
 
 ### Upstream
-- [jQuery plugins](jQueryPlugins.html)
 - [OOjs](https://doc.wikimedia.org/oojs/master/index.html) — JavaScript library for working with objects
 - [OOUI](https://doc.wikimedia.org/oojs-ui/master/js/) — component-based JavaScript UI library
 

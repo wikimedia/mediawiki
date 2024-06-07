@@ -13,11 +13,6 @@ For a list of stable hooks provided by MediaWiki core, see [Hooks](Hooks.html).
 
 Extensions and skins can also add hooks. See the documentation for those codebases for more information on the hooks they provide.
 
-## [jQueryPlugins](jQueryPlugins.html)
-
-MediaWiki uses the jQuery library. You can access and extend the jQuery global using plugins
-included with MediaWiki core by loading certain [ResourceLoader modules](modules.html).
-
 ## [window](window.html)
 
 Historical methods defined on the window object.
