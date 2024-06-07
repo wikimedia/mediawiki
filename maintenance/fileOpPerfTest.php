@@ -106,7 +106,7 @@ class FileOpPerfTest extends Maintenance {
 		$this->output( $backend->getName() . ": Stored " . count( $ops1 ) . " files in $e ms.\n" );
 
 		$start = microtime( true );
-		$backend->$method( $ops2, $opts );
+		$status = $backend->$method( $ops2, $opts );
 		$e = ( microtime( true ) - $start ) * 1000;
 		if ( $status->getErrorsArray() ) {
 			print_r( $status->getErrorsArray() );
@@ -115,7 +115,7 @@ class FileOpPerfTest extends Maintenance {
 		$this->output( $backend->getName() . ": Copied " . count( $ops2 ) . " files in $e ms.\n" );
 
 		$start = microtime( true );
-		$backend->$method( $ops3, $opts );
+		$status = $backend->$method( $ops3, $opts );
 		$e = ( microtime( true ) - $start ) * 1000;
 		if ( $status->getErrorsArray() ) {
 			print_r( $status->getErrorsArray() );
@@ -124,7 +124,7 @@ class FileOpPerfTest extends Maintenance {
 		$this->output( $backend->getName() . ": Moved " . count( $ops3 ) . " files in $e ms.\n" );
 
 		$start = microtime( true );
-		$backend->$method( $ops4, $opts );
+		$status = $backend->$method( $ops4, $opts );
 		$e = ( microtime( true ) - $start ) * 1000;
 		if ( $status->getErrorsArray() ) {
 			print_r( $status->getErrorsArray() );
@@ -133,7 +133,7 @@ class FileOpPerfTest extends Maintenance {
 		$this->output( $backend->getName() . ": Deleted " . count( $ops4 ) . " files in $e ms.\n" );
 
 		$start = microtime( true );
-		$backend->$method( $ops5, $opts );
+		$status = $backend->$method( $ops5, $opts );
 		$e = ( microtime( true ) - $start ) * 1000;
 		if ( $status->getErrorsArray() ) {
 			print_r( $status->getErrorsArray() );
