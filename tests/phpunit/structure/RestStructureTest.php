@@ -22,6 +22,7 @@ use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -60,14 +61,14 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 				'getHookContainer',
 				'getObjectFactory',
 				'getLocalServerObjectCache',
-				'getStatsdDataFactory',
+				'getStatsFactory',
 			]
 		);
 		$services->method( 'getMainConfig' )->willReturn( $config );
 		$services->method( 'getHookContainer' )->willReturn( $hookContainer );
 		$services->method( 'getObjectFactory' )->willReturn( $objectFactory );
 		$services->method( 'getLocalServerObjectCache' )->willReturn( new EmptyBagOStuff() );
-		$services->method( 'getStatsdDataFactory' )->willReturn( new NullStatsdDataFactory() );
+		$services->method( 'getStatsFactory' )->willReturn( StatsFactory::newNull() );
 
 		return $services;
 	}

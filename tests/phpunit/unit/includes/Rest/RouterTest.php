@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\Rest;
 
 use GuzzleHttp\Psr7\Uri;
 use HashBagOStuff;
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
@@ -25,9 +24,14 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\MockObject;
+use Psr\Log\NullLogger;
 use RuntimeException;
 use Throwable;
+use UDPTransport;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\Stats\OutputFormats;
+use Wikimedia\Stats\StatsCache;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -83,10 +87,21 @@ class RouterTest extends MediaWikiUnitTestCase {
 		] );
 	}
 
-	private function createMockStats( string $method, ...$with ): StatsdDataFactoryInterface {
-		$stats = $this->createNoOpMock( StatsdDataFactoryInterface::class, [ $method ] );
-		$stats->expects( $this->atLeastOnce() )->method( $method )->with( ...$with );
-		return $stats;
+	private function createMockStatsFactory( string $expectedValue ): StatsFactory {
+		$statsCache = new StatsCache();
+		$emitter = OutputFormats::getNewEmitter(
+			'mediawiki',
+			$statsCache,
+			OutputFormats::getNewFormatter( OutputFormats::DOGSTATSD )
+		);
+
+		$transport = $this->createMock( UDPTransport::class );
+
+		$transport->expects( $this->once() )->method( "emit" )
+			->with( $this->matchesRegularExpression( $expectedValue ) );
+
+		$emitter = $emitter->withTransport( $transport );
+		return new StatsFactory( $statsCache, $emitter, new NullLogger );
 	}
 
 	public function testEmptyPath() {
@@ -223,12 +238,13 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/v1/RouterTest/throw' ) ] );
 		$router = $this->createRouter( $request );
 
-		$router->setStats( $this->createMockStats(
-			'increment',
-			'rest_api_errors._mock_v1_RouterTest_throw.GET.555'
-		) );
+		$stats = $this->createMockStatsFactory(
+			"/^mediawiki\.rest_api_errors_total:1\|c\|#path:mock_v1_RouterTest_throw,method:GET,status:555\nmediawiki\.stats_buffered_total:1\|c$/"
+		);
+		$router->setStats( $stats );
 
 		$response = $router->execute( $request );
+		$stats->flush();
 		$this->assertSame( 555, $response->getStatusCode(), (string)$response->getBody() );
 		$body = $response->getBody();
 		$body->rewind();
@@ -253,13 +269,13 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/v1/RouterTest/throwRedirect' ) ] );
 		$router = $this->createRouter( $request );
 
-		$router->setStats( $this->createMockStats(
-			'timing',
-			'rest_api_latency._mock_v1_RouterTest_throwRedirect.GET.301',
-			$this->greaterThan( 0 )
-		) );
+		$stats = $this->createMockStatsFactory(
+			"/^mediawiki\.rest_api_latency_seconds:\d+\.\d+\|ms\|#path:mock_v1_RouterTest_throwRedirect,method:GET,status:301\nmediawiki\.stats_buffered_total:1\|c$/"
+		);
+		$router->setStats( $stats );
 
 		$response = $router->execute( $request );
+		$stats->flush();
 		$this->assertSame( 301, $response->getStatusCode(), (string)$response->getBody() );
 		$this->assertSame( 'http://example.com', $response->getHeaderLine( 'Location' ) );
 	}
@@ -277,13 +293,13 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/v1/RouterTest/throwWrapped' ) ] );
 		$router = $this->createRouter( $request );
 
-		$router->setStats( $this->createMockStats(
-			'timing',
-			'rest_api_latency._mock_v1_RouterTest_throwWrapped.GET.200',
-			$this->greaterThan( 0 )
-		) );
+		$stats = $this->createMockStatsFactory(
+			"/^mediawiki\.rest_api_latency_seconds:\d+\.\d+\|ms\|#path:mock_v1_RouterTest_throwWrapped,method:GET,status:200\nmediawiki\.stats_buffered_total:1\|c$/"
+		);
+		$router->setStats( $stats );
 
 		$response = $router->execute( $request );
+		$stats->flush();
 		$this->assertSame( 200, $response->getStatusCode(), (string)$response->getBody() );
 	}
 

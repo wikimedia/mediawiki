@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Rest\Module;
 
 use GuzzleHttp\Psr7\Uri;
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\Module\Module;
@@ -16,8 +15,13 @@ use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Tests\Rest\RestTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use PHPUnit\Framework\MockObject\MockObject;
+use Psr\Log\NullLogger;
 use RuntimeException;
 use Throwable;
+use UDPTransport;
+use Wikimedia\Stats\OutputFormats;
+use Wikimedia\Stats\StatsCache;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -93,10 +97,21 @@ class RouteFileModuleTest extends \MediaWikiUnitTestCase {
 		return $module;
 	}
 
-	private function createMockStats( string $method, ...$with ): StatsdDataFactoryInterface {
-		$stats = $this->createNoOpMock( StatsdDataFactoryInterface::class, [ $method ] );
-		$stats->expects( $this->atLeastOnce() )->method( $method )->with( ...$with );
-		return $stats;
+	private function createMockStatsFactory( string $expectedPattern ): StatsFactory {
+		$statsCache = new StatsCache();
+		$emitter = OutputFormats::getNewEmitter(
+			'mediawiki',
+			$statsCache,
+			OutputFormats::getNewFormatter( OutputFormats::DOGSTATSD )
+		);
+
+		$transport = $this->createMock( UDPTransport::class );
+
+		$transport->expects( $this->once() )->method( "emit" )
+			->with( $this->matchesRegularExpression( $expectedPattern ) );
+
+		$emitter = $emitter->withTransport( $transport );
+		return new StatsFactory( $statsCache, $emitter, new NullLogger );
 	}
 
 	public function testWrongMethod() {
@@ -128,13 +143,13 @@ class RouteFileModuleTest extends \MediaWikiUnitTestCase {
 		] );
 		$module = $this->createRouteFileModule( $request );
 
-		$module->setStats( $this->createMockStats(
-			'timing',
-			'rest_api_latency._mock_v1_foobar_ModuleTest_greetings_-name-.HEAD.200',
-			$this->greaterThan( 0 )
-		) );
+		$stats = $this->createMockStatsFactory(
+			"/^mediawiki\.rest_api_latency_seconds:\d+\.\d+\|ms\|#path:mock_v1_foobar_ModuleTest_greetings_name,method:HEAD,status:200\nmediawiki\.stats_buffered_total:1\|c$/"
+		);
+		$module->setStats( $stats );
 
 		$response = $module->execute( '/foobar/ModuleTest/greetings/you', $request );
+		$stats->flush();
 		$this->assertSame( 200, $response->getStatusCode() );
 	}
 
@@ -150,12 +165,13 @@ class RouteFileModuleTest extends \MediaWikiUnitTestCase {
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock.v1/ModuleTest/throw' ) ] );
 		$module = $this->createRouteFileModule( $request );
 
-		$module->setStats( $this->createMockStats(
-			'increment',
-			'rest_api_errors._mock_v1_ModuleTest_throw.GET.555'
-		) );
+		$stats = $this->createMockStatsFactory(
+			"/^mediawiki\.rest_api_errors_total:1\|c\|#path:mock_v1_ModuleTest_throw,method:GET,status:555\nmediawiki\.stats_buffered_total:1\|c$/"
+		);
+		$module->setStats( $stats );
 
 		$response = $module->execute( '/ModuleTest/throw', $request );
+		$stats->flush();
 		$this->assertSame( 555, $response->getStatusCode() );
 		$body = $response->getBody();
 		$body->rewind();
