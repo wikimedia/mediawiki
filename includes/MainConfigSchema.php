@@ -7631,7 +7631,15 @@ class MainConfigSchema {
 	 *
 	 * An associative array with the following keys:
 	 *
-	 *   - enabled: (bool) Whether auto-creation is enabled.
+	 *   - known: (bool) Whether auto-creation is known about. Set this to 'true' if
+	 *     temp accounts have been created on this wiki already. This setting allows
+	 *     temp users to be recognized even if auto-creation is currently disabled.
+	 *     If auto-creation is enabled via the 'enabled' property, then 'known' is
+	 *     overriden to true.
+	 *   - enabled: (bool) Whether auto-creation is enabled. If changing this
+	 *     value from 'true' to 'false', you should also set 'known' to true, so
+	 *     that relevant code can continue to identify temporary accounts as
+	 *     visually and conceptually distinct from anonymous accounts and named accounts.
 	 *   - actions: (array) A list of actions for which the feature is enabled.
 	 *     Currently only "edit" is supported.
 	 *   - genPattern: (string) The pattern used when generating new usernames.
@@ -7686,6 +7694,7 @@ class MainConfigSchema {
 	 */
 	public const AutoCreateTempUser = [
 		'properties' => [
+			'known' => [ 'type' => 'bool', 'default' => false ],
 			'enabled' => [ 'type' => 'bool', 'default' => false ],
 			'actions' => [ 'type' => 'list', 'default' => [ 'edit' ] ],
 			'genPattern' => [ 'type' => 'string', 'default' => '~$1' ],

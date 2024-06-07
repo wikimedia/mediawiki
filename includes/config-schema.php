@@ -1145,6 +1145,7 @@ return [
 			],
 			'AllowRequiringEmailForResets' => false,
 			'AutoCreateTempUser' => [
+				'known' => false,
 				'enabled' => false,
 				'actions' => [
 					'edit',

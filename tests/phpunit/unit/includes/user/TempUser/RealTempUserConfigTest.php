@@ -66,4 +66,42 @@ class RealTempUserConfigTest extends MediaWikiUnitTestCase {
 			'Auto creation is disabled' => [ false ],
 		];
 	}
+
+	public function testIsKnownWhenEnabledIsTrue() {
+		$realTempUserConfig = new RealTempUserConfig( [
+			'enabled' => true,
+			'actions' => [ 'edit' ],
+			'genPattern' => '',
+			'serialProvider' => '',
+			'serialMapping' => '',
+			'known' => false,
+		] );
+		$this->assertTrue( $realTempUserConfig->isKnown() );
+	}
+
+	public function testIsTempNameWhenKnownIsTrueAndEnabledIsFalse() {
+		$realTempUserConfig = new RealTempUserConfig( [
+			'enabled' => false,
+			'known' => true,
+			'actions' => [ 'edit' ],
+			'genPattern' => '',
+			'serialProvider' => '',
+			'serialMapping' => '',
+			'matchPattern' => [ '~$1' ],
+		] );
+		$this->assertTrue( $realTempUserConfig->isTempName( '~2024-foo' ) );
+	}
+
+	public function testIsTempNameWhenKnownIsFalseAndEnabledIsFalse() {
+		$realTempUserConfig = new RealTempUserConfig( [
+			'enabled' => false,
+			'known' => false,
+			'actions' => [ 'edit' ],
+			'genPattern' => '',
+			'serialProvider' => '',
+			'serialMapping' => '',
+			'matchPattern' => [ '~$1' ],
+		] );
+		$this->assertFalse( $realTempUserConfig->isTempName( '~2024-foo' ) );
+	}
 }
