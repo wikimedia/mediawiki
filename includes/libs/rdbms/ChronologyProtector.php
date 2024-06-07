@@ -173,7 +173,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 	 *
 	 * If the clientId wasn't passed by the incoming request, lazyStartup()
 	 * can skip fetching position data, and thus LoadBalancer can skip
-	 * its IDatabase::primaryPosWait() call.
+	 * its IDatabaseForOwner::primaryPosWait() call.
 	 *
 	 * See also: <https://phabricator.wikimedia.org/T314434>
 	 *
