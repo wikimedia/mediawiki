@@ -900,8 +900,11 @@ parsoid={
 </td></tr></tbody></table>
 !! end
 
+# This test introduces a newline in a fosterable position which tangentially
+# tests template-wrapping behavior more explicitly tested by the # next test
+# ("2b: Delete ...").
 !! test
-2. Template-generated table cell attributes and cell content
+2a. Template-generated table cell attributes and cell content
 !! wikitext
 {|
 |{{table_attribs_2}}
@@ -916,8 +919,30 @@ parsoid={
 </td></tr></tbody></table>
 !! html/parsoid
 <table>
-<tbody><tr><td about="#mwt1" typeof="mw:Transclusion" data-sort-value="" style="color:red;" data-mw='{"parts":["|",{"template":{"target":{"wt":"table_attribs_2","href":"./Template:Table_attribs_2"},"params":{},"i":0}}]}'>Foo</td>
-<td about="#mwt1">Bar</td><td about="#mwt1">Baz</td></tr>
+<tbody><tr><td about="#mwt1" typeof="mw:Transclusion" data-sort-value="" style="color:red;" data-mw='{"parts":["|",{"template":{"target":{"wt":"table_attribs_2","href":"./Template:Table_attribs_2"},"params":{},"i":0}}]}'>Foo</td><td about="#mwt1">Bar</td><td about="#mwt1">Baz</td></tr>
+</tbody></table>
+!! end
+
+!! test
+2b: Delete whitespace/comments if found in fosterable position while template-wrapping
+!! options
+!! wikitext
+<table>
+<tr>
+<td>hi</td>
+{{1x|<td>ho</td>
+<!--comment-->
+<td>hi</td>}}
+<td>ho</td>
+</tr>
+</table>
+!! html/parsoid
+<table data-parsoid='{"stx":"html"}'>
+<tbody><tr>
+<td data-parsoid='{"stx":"html"}'>hi</td>
+<td about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;td>ho&lt;/td>\n&lt;!--comment-->\n&lt;td>hi&lt;/td>"}},"i":0}}]}'>ho</td><td about="#mwt1">hi</td>
+<td>ho</td>
+</tr>
 </tbody></table>
 !! end
 
