@@ -479,8 +479,13 @@
 		},
 
 		/**
-		 * @private
-		 * @property {Object}
+		 * Map of predefined auto-hide timeout keys to second values. `short` is
+		 * used by default, and other values can be added for use in [#notify]{@link mw.notification.notify}.
+		 *
+		 * @memberof mw.notification
+		 * @type {Object.<string, number>}
+		 * @property {number} short 5 seconds (default)
+		 * @property {number} long 30 seconds
 		 */
 		autoHideSeconds: {
 			short: 5,
