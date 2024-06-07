@@ -23,8 +23,8 @@ parsoid=wt2html
 <span class="error"><strong>Error:</strong> Page status indicators' <code>name</code> attribute must not be empty.</span>
 </p>
 !! html/parsoid
-<p><span typeof="mw:Extension/indicator mw:Error" data-mw='{"name":"indicator","attrs":{"name":""},"body":{"extsrc":""},"errors":[{"key":"invalid-indicator-name"}]}' data-mw-i18n='{"/":{"lang":"x-user","key":"invalid-indicator-name","params":[]}}'>invalid-indicator-name</span>
-<span typeof="mw:Extension/indicator mw:Error" data-mw='{"name":"indicator","attrs":{},"body":{"extsrc":""},"errors":[{"key":"invalid-indicator-name"}]}' data-mw-i18n='{"/":{"lang":"x-user","key":"invalid-indicator-name","params":[]}}'>invalid-indicator-name</span></p>
+<p><span typeof="mw:I18n mw:Extension/indicator mw:Error" about="#mwt2" data-mw='{"name":"indicator","attrs":{"name":""},"body":{"extsrc":""},"errors":[{"key":"invalid-indicator-name"}]}' data-mw-i18n='{"/":{"lang":"x-user","key":"invalid-indicator-name","params":[]}}'></span>
+<span typeof="mw:I18n mw:Extension/indicator mw:Error" about="#mwt4" data-mw='{"name":"indicator","attrs":{},"body":{"extsrc":""},"errors":[{"key":"invalid-indicator-name"}]}' data-mw-i18n='{"/":{"lang":"x-user","key":"invalid-indicator-name","params":[]}}'></span></p>
 !! end
 
 !! test
