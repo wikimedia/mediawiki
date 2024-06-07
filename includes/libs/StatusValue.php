@@ -221,8 +221,8 @@ class StatusValue {
 
 			$isEqual = static function ( $key, $params ) use ( $newError ) {
 				if ( $key instanceof MessageSpecifier ) {
-					// compare attributes of both MessageSpecifiers
-					return $newError['message'] == $key;
+					return $newError['message']->getKey() === $key->getKey() &&
+						$newError['message']->getParams() === $key->getParams();
 				} else {
 					return $newError['message']->getKey() === $key &&
 						$newError['message']->getParams() === $params;
