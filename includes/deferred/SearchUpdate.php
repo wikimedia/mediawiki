@@ -31,6 +31,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Title\Title;
 use SearchEngine;
 use Wikimedia\Rdbms\IDBAccessObject;
 
@@ -134,10 +135,6 @@ class SearchUpdate implements DeferrableUpdate {
 		$text = preg_replace( $p1, "\\1 ", $text );
 		$text = preg_replace( $p2, "\\1 \\3 ", $text );
 
-		# Internal image links
-		$pat2 = "/\\[\\[image:([{$uc}]+)\\.(gif|png|jpg|jpeg)([^{$uc}])/i";
-		$text = preg_replace( $pat2, " \\1 \\3", $text );
-
 		$text = preg_replace( "/([^{$lc}])([{$lc}]+)]]([a-z]+)/",
 			"\\1\\2 \\2\\3", $text ); # Handle [[game]]s
 
@@ -196,8 +193,7 @@ class SearchUpdate implements DeferrableUpdate {
 	 */
 	private function getNormalizedTitle( SearchEngine $search ) {
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-		$ns = $this->page->getNamespace();
-		$title = str_replace( '_', ' ', $this->page->getDBkey() );
+		$title = Title::newFromPageIdentity( $this->page )->getText();
 
 		$lc = $search->legalSearchChars() . '&#;';
 		$t = $contLang->normalizeForSearch( $title );
@@ -209,10 +205,6 @@ class SearchUpdate implements DeferrableUpdate {
 		$t = preg_replace( "/([{$lc}]+)s'( |$)/", "\\1s ", $t );
 
 		$t = preg_replace( "/\\s+/", ' ', $t );
-
-		if ( $ns === NS_FILE ) {
-			$t = preg_replace( "/ (png|gif|jpg|jpeg|ogg)$/", "", $t );
-		}
 
 		return $search->normalizeText( trim( $t ) );
 	}
