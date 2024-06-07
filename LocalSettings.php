@@ -450,18 +450,22 @@ $wgAddGroups['bureaucrat'] = array(
 	'autoconfirmed',
 	'autopatrol',
 	'bureaucrat',
+	'bot'
 	'confirmed',
 	'patroller',
 	'sysop',
+	'interwiki-admin',
 	'translateadmin'
 );
 $wgRemoveGroups['bureaucrat'] = array(
 	'autoconfirmed',
 	'autopatrol',
 	'bureaucrat',
+	'bot',
 	'confirmed',
 	'patroller',
 	'sysop',
+	'interwiki-admin',
 	'translateadmin'
 );
 
@@ -472,6 +476,8 @@ $wgAddGroups['steward'] = array(
 	'autoconfirmed',
 	'bureaucrat',
 	'confirmed',
+	'checkuser',
+	'interface-admin',
 	'non-stewardsuppress',
 	'patroller',
 	'steward',
@@ -485,6 +491,8 @@ $wgRemoveGroups['steward'] = array(
 	'autoconfirmed',
 	'bureaucrat',
 	'confirmed',
+	'checkuser',
+	'interface-admin',
 	'non-stewardsuppress',
 	'patroller',
 	'steward',
