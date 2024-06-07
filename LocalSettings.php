@@ -450,7 +450,7 @@ $wgAddGroups['bureaucrat'] = array(
 	'autoconfirmed',
 	'autopatrol',
 	'bureaucrat',
-	'bot'
+	'bot',
 	'confirmed',
 	'patroller',
 	'sysop',
