@@ -848,12 +848,12 @@ class OutputPage extends ContextSource {
 	 */
 	public function checkLastModified( $timestamp ) {
 		if ( !$timestamp || $timestamp == '19700101000000' ) {
-			wfDebug( __METHOD__ . ": CACHE DISABLED, NO TIMESTAMP" );
+			wfDebug( __METHOD__ . ': CACHE DISABLED, NO TIMESTAMP' );
 			return false;
 		}
 		$config = $this->getConfig();
 		if ( !$config->get( MainConfigNames::CachePages ) ) {
-			wfDebug( __METHOD__ . ": CACHE DISABLED" );
+			wfDebug( __METHOD__ . ': CACHE DISABLED' );
 			return false;
 		}
 
@@ -876,7 +876,7 @@ class OutputPage extends ContextSource {
 
 		$clientHeader = $this->getRequest()->getHeader( 'If-Modified-Since' );
 		if ( $clientHeader === false ) {
-			wfDebug( __METHOD__ . ": client did not send If-Modified-Since header", 'private' );
+			wfDebug( __METHOD__ . ': client did not send If-Modified-Since header', 'private' );
 			return false;
 		}
 
@@ -905,9 +905,9 @@ class OutputPage extends ContextSource {
 			$info .= "$name=" . wfTimestamp( TS_ISO_8601, $value );
 		}
 
-		wfDebug( __METHOD__ . ": client sent If-Modified-Since: " .
+		wfDebug( __METHOD__ . ': client sent If-Modified-Since: ' .
 			wfTimestamp( TS_ISO_8601, $clientHeaderTime ), 'private' );
-		wfDebug( __METHOD__ . ": effective Last-Modified: " .
+		wfDebug( __METHOD__ . ': effective Last-Modified: ' .
 			wfTimestamp( TS_ISO_8601, $maxModified ), 'private' );
 		if ( $clientHeaderTime < $maxModified ) {
 			wfDebug( __METHOD__ . ": STALE, $info", 'private' );
@@ -1219,11 +1219,11 @@ class OutputPage extends ContextSource {
 		$text = $this->getDisplayTitle();
 
 		// Create a regexp with matching groups as placeholders for the namespace, separator and main text
-		$pageTitleRegexp = "/^" . str_replace(
+		$pageTitleRegexp = '/^' . str_replace(
 			preg_quote( '(.+?)', '/' ),
 			'(.+?)',
 			preg_quote( Parser::formatPageTitle( '(.+?)', '(.+?)', '(.+?)' ), '/' )
-		) . "$/";
+		) . '$/';
 		$matches = [];
 		if ( preg_match( $pageTitleRegexp, $text, $matches ) ) {
 			// The regexp above could be manipulated by malicious user input,
@@ -2658,7 +2658,7 @@ class OutputPage extends ContextSource {
 				return true;
 			}
 		}
-		wfDebug( __METHOD__ . ": no cache-varying cookies found" );
+		wfDebug( __METHOD__ . ': no cache-varying cookies found' );
 		return false;
 	}
 
@@ -2855,7 +2855,7 @@ class OutputPage extends ContextSource {
 					": local proxy caching; {$this->mLastModified} **", 'private' );
 				# start with a shorter timeout for initial testing
 				# header( "Cache-Control: s-maxage=2678400, must-revalidate, max-age=0" );
-				$response->header( "Cache-Control: " .
+				$response->header( 'Cache-Control: ' .
 					"s-maxage={$this->mCdnMaxage}, must-revalidate, max-age=0" );
 			} else {
 				# We do want clients to cache if they can, but they *must* check for updates
@@ -2863,13 +2863,13 @@ class OutputPage extends ContextSource {
 				wfDebug( __METHOD__ . ": private caching ($privateReason); {$this->mLastModified} **", 'private' );
 
 				$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
-				$response->header( "Cache-Control: private, must-revalidate, max-age=0" );
+				$response->header( 'Cache-Control: private, must-revalidate, max-age=0' );
 			}
 			if ( $this->mLastModified ) {
 				$response->header( "Last-Modified: {$this->mLastModified}" );
 			}
 		} else {
-			wfDebug( __METHOD__ . ": no caching **", 'private' );
+			wfDebug( __METHOD__ . ': no caching **', 'private' );
 
 			# In general, the absence of a last modified header should be enough to prevent
 			# the client from using its cache. We send a few other things just to make sure.
@@ -3248,24 +3248,24 @@ class OutputPage extends ContextSource {
 		}
 
 		if ( count( $errors ) > 1 ) {
-			$text .= Html::openElement( "ul", [ "class" => "permissions-errors" ] );
+			$text .= Html::openElement( 'ul', [ 'class' => 'permissions-errors' ] );
 			foreach ( $errors as $error ) {
 				$text .= Html::rawElement(
-					"li",
-					[ "class" => "mw-permissionerror-" . $error[ 0 ] ],
+					'li',
+					[ 'class' => 'mw-permissionerror-' . $error[ 0 ] ],
 					$this->msg( ...$error )->plain()
 				);
 			}
-			$text .= Html::closeElement( "ul" );
+			$text .= Html::closeElement( 'ul' );
 		} else {
-			$text .= Html::openElement( "div", [ "class" => "permissions-errors" ] );
+			$text .= Html::openElement( 'div', [ 'class' => 'permissions-errors' ] );
 			$text .= Html::rawElement(
-				"div",
-				[ "class" => "mw-permissionerror-" . $errors[ 0 ][ 0 ] ],
+				'div',
+				[ 'class' => 'mw-permissionerror-' . $errors[ 0 ][ 0 ] ],
 				// @phan-suppress-next-line PhanParamTooFewUnpack Elements of $errors already annotated as non-empty
 				$this->msg( ...reset( $errors ) )->plain()
 			);
-			$text .= Html::closeElement( "div" );
+			$text .= Html::closeElement( 'div' );
 		}
 
 		return $text;
@@ -3397,11 +3397,11 @@ class OutputPage extends ContextSource {
 		);
 		// Redirect if the user has no ResourceLoader
 		$this->addScript( Html::inlineScript(
-			"(window.NORLQ=window.NORLQ||[]).push(" .
-				"function(){" .
-					"location.href=" . json_encode( $fallbackUrl ) . ";" .
-				"}" .
-			");"
+			'(window.NORLQ=window.NORLQ||[]).push(' .
+				'function(){' .
+					'location.href=' . json_encode( $fallbackUrl ) . ';' .
+				'}' .
+			');'
 		) );
 	}
 
