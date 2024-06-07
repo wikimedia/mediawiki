@@ -1,5 +1,4 @@
 <?php
-// phpcs:disable Generic.Arrays.DisallowLongArraySyntax
 /**
  * New version of MediaWiki web-based config/installation
  *
@@ -11,12 +10,12 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Installer\Installer;
 use MediaWiki\Installer\InstallerOverrides;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\PHPVersionCheck;
 
 // Bail on old versions of PHP, or if composer has not been run yet to install
-// dependencies. Using dirname( __FILE__ ) here because __DIR__ is PHP5.3+.
-// phpcs:ignore MediaWiki.Usage.DirUsage.FunctionFound
-require_once dirname( __FILE__ ) . '/../includes/PHPVersionCheck.php';
-wfEntryPointCheck( 'html', dirname( dirname( $_SERVER['SCRIPT_NAME'] ) ) );
+// dependencies.
+require_once __DIR__ . '/../includes/PHPVersionCheck.php';
+( new PHPVersionCheck( 'html', dirname( dirname( $_SERVER['SCRIPT_NAME'] ) ) ) )->run();
 
 define( 'MW_CONFIG_CALLBACK', [ Installer::class, 'overrideConfig' ] );
 define( 'MEDIAWIKI_INSTALL', true );
@@ -51,7 +50,7 @@ function wfInstallerMain() {
 	if ( isset( $_SESSION['installData'][$fingerprint] ) ) {
 		$session = $_SESSION['installData'][$fingerprint];
 	} else {
-		$session = array();
+		$session = [];
 	}
 
 	$services = MediaWikiServices::getInstance();

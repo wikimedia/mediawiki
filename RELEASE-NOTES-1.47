@@ -198,6 +198,10 @@ because of Phabricator reports.
 
 === Breaking changes in 1.47 ===
 
+* Certain compatibility hacks relating to PHPVersionCheck were removed; they
+  existed so that error messages could be shown in PHP 4 through 5.3. Custom
+  entry points that call wfEntryPointCheck() or use PHPVersionCheck would be
+  broken by these changes.
 * The minimum supported version of MariaDB has been raised to 10.11 (from 2022),
   up from 10.3 (from 2017).
 * It is no longer possible to pass null to the $output parameter of

@@ -18,7 +18,6 @@ class AutoLoaderTest extends MediaWikiIntegrationTestCase {
 		\HistoryBlobUtils::class,
 		\MediaWiki::class,
 		\MemcachedClient::class,
-		\PHPVersionCheck::class,
 
 		// No alias, needs to extends instead - T428663
 		\ConstantDependency::class,

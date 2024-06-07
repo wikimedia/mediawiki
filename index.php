@@ -24,14 +24,14 @@ use MediaWiki\Actions\ActionEntryPoint;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\EntryPointEnvironment;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\PHPVersionCheck;
 
 define( 'MW_ENTRY_POINT', 'index' );
 
 // Bail on old versions of PHP, or if composer has not been run yet to install
-// dependencies. Using dirname( __FILE__ ) here because __DIR__ is PHP5.3+.
-// phpcs:ignore MediaWiki.Usage.DirUsage.FunctionFound
-require_once dirname( __FILE__ ) . '/includes/PHPVersionCheck.php';
-wfEntryPointCheck( 'html', dirname( $_SERVER['SCRIPT_NAME'] ) );
+// dependencies.
+require_once __DIR__ . '/includes/PHPVersionCheck.php';
+( new PHPVersionCheck( 'html', dirname( $_SERVER['SCRIPT_NAME'] ) ) )->run();
 
 require __DIR__ . '/includes/WebStart.php';
 
