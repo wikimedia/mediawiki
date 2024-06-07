@@ -533,7 +533,7 @@
 	"noname": "Du musst einen gültigen Benutzernamen angeben.",
 	"userlogin-authpopup-loggingin-title": "Anmelden in …",
 	"userlogin-authpopup-loggingin-body": "Ein Popup-Fenster sollte sich geöffnet haben. Wenn du es nicht sehen kannst, können wir versuchen, es erneut zu öffnen. Oder du kannst dich [$1 auf die bisherige Art anmelden].",
-	"userlogin-authpopup-loggingin-body-link": "Alternative Form",
+	"userlogin-authpopup-loggingin-body-link": "Alternatives Formular",
 	"userlogin-authpopup-retry": "Erneut versuchen",
 	"userlogin-authpopup-cancel": "Abbrechen",
 	"userlogin-authpopup-closeme": "Wenn {{#FORMAL:du|Sie}} diese Meldung {{#FORMAL:siehst|sehen}}, {{#FORMAL:kannst du|können Sie}} dieses Fenster schließen.",

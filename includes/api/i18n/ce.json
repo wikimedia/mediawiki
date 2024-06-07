@@ -37,7 +37,7 @@
 	"apihelp-emailuser-param-subject": "Хьедаран корта.",
 	"apihelp-emailuser-param-text": "Кехатан чулацам",
 	"apihelp-expandtemplates-param-title": "АгӀонан корта.",
-	"apihelp-expandtemplates-paramvalue-prop-wikitext": "Шордина вики-йоза.",
+	"apihelp-expandtemplates-paramvalue-prop-wikitext": "Шордина вики-текст.",
 	"apihelp-feedcontributions-param-feedformat": "Лентан формат.",
 	"apihelp-feedcontributions-param-year": "Шарера (хьалхо а):",
 	"apihelp-feedcontributions-param-month": "Баттачохь (хьалхо а).",

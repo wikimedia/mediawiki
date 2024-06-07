@@ -521,6 +521,7 @@
 	"group-user-member": "{{GENDER:$1|Úsáideoir}}",
 	"group-bot-member": "Róbó",
 	"group-sysop-member": "Riarthóir",
+	"group-interface-admin-member": "{{GENDER:$1| riarthóir comhéadain }}",
 	"group-bureaucrat-member": "Maorlathach",
 	"grouppage-bot": "{{ns:project}}:Róbónna",
 	"grouppage-sysop": "{{ns:project}}:Riarthóirí",
