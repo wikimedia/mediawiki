@@ -1154,7 +1154,7 @@ var util = {
 		if ( !config.AutoCreateTempUser.enabled ) {
 			return false;
 		}
-		/** @type{string|string[]} */
+		/** @type {string|string[]} */
 		var matchPatterns = config.AutoCreateTempUser.matchPattern;
 		if ( typeof matchPatterns === 'string' ) {
 			matchPatterns = [ matchPatterns ];
