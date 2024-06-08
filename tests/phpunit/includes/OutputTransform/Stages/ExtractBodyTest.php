@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\OutputTransform\Stages;
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\ExtractBody;
 use MediaWiki\Parser\ParserOutput;
@@ -15,7 +16,7 @@ use Psr\Log\NullLogger;
 class ExtractBodyTest extends OutputTransformStageTestBase {
 
 	public function createStage(): OutputTransformStage {
-		return new ExtractBody( new NullLogger(), null );
+		return new ExtractBody( new ServiceOptions( [] ), new NullLogger(), null );
 	}
 
 	public function provideShouldRun(): array {

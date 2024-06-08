@@ -2,6 +2,7 @@
 
 namespace MediaWiki\OutputTransform\Stages;
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\OutputTransform\ContentDOMTransformStage;
 use Message;
 use ParserOptions;
@@ -26,7 +27,7 @@ class ParsoidLocalization extends ContentDOMTransformStage {
 
 	private LoggerInterface $logger;
 
-	public function __construct( LoggerInterface $logger ) {
+	public function __construct( ServiceOptions $options, LoggerInterface $logger ) {
 		$this->logger = $logger;
 	}
 
