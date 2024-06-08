@@ -1781,7 +1781,7 @@ parsoid=wt2html,html2html
 !! config
 wgParserEnableLegacyHeadingDOM=true
 !! wikitext
-===
+=== 
 The line above must have a trailing space!
 === <!--
 --> <!-- -->
@@ -1794,7 +1794,7 @@ But just in case it doesn't...
 <p>But just in case it doesn't...
 </p>
 !! html/parsoid
-<h1 id="="><span id=".3D" typeof="mw:FallbackId"></span>=</h1>
+<h1 id="="><span id=".3D" typeof="mw:FallbackId"></span>=</h1> 
 <p>The line above must have a trailing space!</p>
 <h1 id="=_2"><span id=".3D_2" typeof="mw:FallbackId"></span>=</h1> <!--
 --> <!-- -->
