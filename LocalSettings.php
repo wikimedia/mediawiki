@@ -531,6 +531,9 @@ $wgSemiprotectedRestrictionLevels = array(
 	'autoconfirmed',
 );
 
+// Grants
+$wgGrantPermissions['editprotected']['bureaucrat'] = true;
+
 // Unsets
 unset( $wgGroupPermissions['staff'] );
 
