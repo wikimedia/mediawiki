@@ -20,7 +20,6 @@
 
 namespace MediaWiki;
 
-use CryptHKDF;
 use ExternalStoreAccess;
 use ExternalStoreFactory;
 use JobQueueGroup;
@@ -1019,13 +1018,6 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getCriticalSectionProvider(): CriticalSectionProvider {
 		return $this->getService( 'CriticalSectionProvider' );
-	}
-
-	/**
-	 * @since 1.28
-	 */
-	public function getCryptHKDF(): CryptHKDF {
-		return $this->getService( 'CryptHKDF' );
 	}
 
 	/**

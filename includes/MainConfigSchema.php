@@ -9406,32 +9406,6 @@ class MainConfigSchema {
 		'default' => false,
 	];
 
-	/**
-	 * Secret for hmac-based key derivation function (fast,
-	 * cryptographically secure random numbers).
-	 *
-	 * This should be set in LocalSettings.php, otherwise $wgSecretKey will
-	 * be used.
-	 * See also: $wgHKDFAlgorithm
-	 *
-	 * @since 1.24
-	 */
-	public const HKDFSecret = [
-		'default' => false,
-	];
-
-	/**
-	 * Algorithm for hmac-based key derivation function (fast,
-	 * cryptographically secure random numbers).
-	 *
-	 * See also: $wgHKDFSecret
-	 *
-	 * @since 1.24
-	 */
-	public const HKDFAlgorithm = [
-		'default' => 'sha256',
-	];
-
 	// endregion -- end of security
 
 	/***************************************************************************/
