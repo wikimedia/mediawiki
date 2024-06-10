@@ -11,11 +11,8 @@ use Wikimedia\ParamValidator\Callbacks;
 
 class ParamValidatorCallbacks implements Callbacks {
 
-	/** @var Authority */
-	private $authority;
-
-	/** @var RequestInterface */
-	private $request;
+	private RequestInterface $request;
+	private Authority $authority;
 
 	public function __construct(
 		RequestInterface $request,

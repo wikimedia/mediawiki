@@ -22,20 +22,10 @@ class CorsUtils implements BasicAuthorizerInterface {
 		MainConfigNames::CrossSiteAJAXdomainExceptions,
 	];
 
-	/** @var ServiceOptions */
-	private $options;
+	private ServiceOptions $options;
+	private ResponseFactory $responseFactory;
+	private UserIdentity $user;
 
-	/** @var ResponseFactory */
-	private $responseFactory;
-
-	/** @var UserIdentity */
-	private $user;
-
-	/**
-	 * @param ServiceOptions $options
-	 * @param ResponseFactory $responseFactory
-	 * @param UserIdentity $user
-	 */
 	public function __construct(
 		ServiceOptions $options,
 		ResponseFactory $responseFactory,

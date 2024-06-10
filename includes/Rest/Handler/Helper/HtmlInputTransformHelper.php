@@ -69,14 +69,8 @@ class HtmlInputTransformHelper {
 		MainConfigNames::ParsoidCacheConfig
 	];
 
-	/** @var HtmlTransformFactory */
-	private $htmlTransformFactory;
-
 	/** @var PageIdentity|null */
 	private $page = null;
-
-	/** @var StatsdDataFactoryInterface */
-	private $stats;
 
 	/**
 	 * @var HtmlToContentTransform
@@ -84,20 +78,16 @@ class HtmlInputTransformHelper {
 	private $transform;
 
 	/**
-	 * @var ParsoidOutputStash
-	 */
-	private $parsoidOutputStash;
-
-	private ParserOutputAccess $parserOutputAccess;
-
-	private PageLookup $pageLookup;
-
-	private RevisionLookup $revisionLookup;
-
-	/**
 	 * @var array
 	 */
 	private $envOptions;
+
+	private StatsdDataFactoryInterface $stats;
+	private HtmlTransformFactory $htmlTransformFactory;
+	private ParsoidOutputStash $parsoidOutputStash;
+	private ParserOutputAccess $parserOutputAccess;
+	private PageLookup $pageLookup;
+	private RevisionLookup $revisionLookup;
 
 	/**
 	 * @param StatsdDataFactoryInterface $statsDataFactory

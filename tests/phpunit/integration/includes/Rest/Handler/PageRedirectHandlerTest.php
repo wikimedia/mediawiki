@@ -21,8 +21,7 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private const WIKITEXT = 'Hello \'\'\'World\'\'\'';
 
-	/** @var HashBagOStuff */
-	private $parserCacheBagOStuff;
+	private HashBagOStuff $parserCacheBagOStuff;
 
 	protected function setUp(): void {
 		parent::setUp();

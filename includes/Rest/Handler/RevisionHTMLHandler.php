@@ -19,11 +19,8 @@ use Wikimedia\Assert\Assert;
  */
 class RevisionHTMLHandler extends SimpleHandler {
 
-	/** @var HtmlOutputRendererHelper */
-	private $htmlHelper;
-
-	/** @var RevisionContentHelper */
-	private $contentHelper;
+	private RevisionContentHelper $contentHelper;
+	private HtmlOutputRendererHelper $htmlHelper;
 
 	public function __construct( PageRestHelperFactory $helperFactory ) {
 		$this->contentHelper = $helperFactory->newRevisionContentHelper();

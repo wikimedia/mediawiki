@@ -65,24 +65,20 @@ use Wikimedia\Parsoid\Utils\DOMUtils;
 use Wikimedia\Parsoid\Utils\Timing;
 use WikitextContent;
 
+// TODO logging, timeouts(?), CORS
+// TODO content negotiation (routes.js routes.acceptable)
+// TODO handle MaxConcurrentCallsError (pool counter?)
+
 /**
  * Base class for Parsoid handlers.
  * @internal For use by the Parsoid extension
  */
 abstract class ParsoidHandler extends Handler {
 
-	// TODO logging, timeouts(?), CORS
-	// TODO content negotiation (routes.js routes.acceptable)
-	// TODO handle MaxConcurrentCallsError (pool counter?)
-
-	/** @var SiteConfig */
-	protected $siteConfig;
-
-	/** @var PageConfigFactory */
-	protected $pageConfigFactory;
-
-	/** @var DataAccess */
-	protected $dataAccess;
+	private RevisionLookup $revisionLookup;
+	protected SiteConfig $siteConfig;
+	protected PageConfigFactory $pageConfigFactory;
+	protected DataAccess $dataAccess;
 
 	/** @var ExtensionRegistry */
 	protected $extensionRegistry;
@@ -92,8 +88,6 @@ abstract class ParsoidHandler extends Handler {
 
 	/** @var array */
 	private $requestAttributes;
-
-	private RevisionLookup $revisionLookup;
 
 	/**
 	 * @return static
@@ -109,12 +103,6 @@ abstract class ParsoidHandler extends Handler {
 		);
 	}
 
-	/**
-	 * @param RevisionLookup $revisionLookup
-	 * @param SiteConfig $siteConfig
-	 * @param PageConfigFactory $pageConfigFactory
-	 * @param DataAccess $dataAccess
-	 */
 	public function __construct(
 		RevisionLookup $revisionLookup,
 		SiteConfig $siteConfig,

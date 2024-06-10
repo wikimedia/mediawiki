@@ -92,9 +92,6 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	/** @var string[] */
 	private const OUTPUT_FLAVORS = [ 'view', 'stash', 'fragment', 'edit' ];
 
-	/** @var ParsoidOutputStash */
-	private $parsoidOutputStash;
-
 	/** @var PageIdentity|null */
 	private $page = null;
 
@@ -110,22 +107,8 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	/** @var bool */
 	private $stash = false;
 
-	/** @var IBufferingStatsdDataFactory */
-	private $stats;
-
 	/** @var Authority */
 	private $authority;
-
-	/** @var ParsoidOutputAccess */
-	private $parsoidOutputAccess;
-
-	private ParserOutputAccess $parserOutputAccess;
-
-	private PageLookup $pageLookup;
-
-	private RevisionLookup $revisionLookup;
-
-	private ParsoidSiteConfig $parsoidSiteConfig;
 
 	/** @var ParserOutput */
 	private $parserOutput;
@@ -133,22 +116,16 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	/** @var ParserOutput */
 	private $processedParserOutput;
 
-	/** @var HtmlTransformFactory */
-	private $htmlTransformFactory;
-
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
-	/** @var LanguageFactory */
-	private $languageFactory;
-
 	/** @var ?Bcp47Code */
 	private $sourceLanguage = null;
 
 	/** @var ?Bcp47Code */
 	private $targetLanguage = null;
 
-	/** Should we ignore mismatched $page and $revisionOrId values? */
+	/**
+	 * Should we ignore mismatches $page and the page that $revision belongs to?
+	 * Usually happens because of page moves. This should be set to true only for internal API calls.
+	 */
 	private bool $lenientRevHandling = false;
 
 	/**
@@ -173,22 +150,17 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 */
 	private $isCacheable = true;
 
-	/**
-	 * @param ParsoidOutputStash $parsoidOutputStash
-	 * @param StatsdDataFactoryInterface $statsDataFactory
-	 * @param ParsoidOutputAccess $parsoidOutputAccess
-	 * @param ParserOutputAccess $parserOutputAccess
-	 * @param PageLookup $pageLookup
-	 * @param RevisionLookup $revisionLookup
-	 * @param ParsoidSiteConfig $parsoidSiteConfig
-	 * @param HtmlTransformFactory $htmlTransformFactory
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param LanguageFactory $languageFactory
-	 * @param bool $lenientRevHandling Should we ignore mismatches
-	 *    $page and the page that $revision belongs to? Usually happens
-	 *    because of page moves. This should be set to true only for
-	 *    internal API calls.
-	 */
+	private ParsoidOutputStash $parsoidOutputStash;
+	private IBufferingStatsdDataFactory $stats;
+	private ParsoidOutputAccess $parsoidOutputAccess;
+	private ParserOutputAccess $parserOutputAccess;
+	private PageLookup $pageLookup;
+	private RevisionLookup $revisionLookup;
+	private ParsoidSiteConfig $parsoidSiteConfig;
+	private HtmlTransformFactory $htmlTransformFactory;
+	private IContentHandlerFactory $contentHandlerFactory;
+	private LanguageFactory $languageFactory;
+
 	public function __construct(
 		ParsoidOutputStash $parsoidOutputStash,
 		StatsdDataFactoryInterface $statsDataFactory,

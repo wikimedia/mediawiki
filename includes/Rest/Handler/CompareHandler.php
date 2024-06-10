@@ -16,11 +16,8 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class CompareHandler extends Handler {
-	/** @var RevisionLookup */
-	private $revisionLookup;
-
-	/** @var ParserFactory */
-	private $parserFactory;
+	private RevisionLookup $revisionLookup;
+	private ParserFactory $parserFactory;
 
 	/** @var RevisionRecord[] */
 	private $revisions = [];
