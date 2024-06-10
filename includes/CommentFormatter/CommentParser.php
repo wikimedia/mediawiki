@@ -15,6 +15,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\Sanitizer;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
@@ -260,7 +261,8 @@ class CommentParser {
 						$auto = $this->makeSectionLink(
 							$sectionTitle,
 							$this->userLang->getArrow() . $this->userLang->getDirMark() . $sectionText,
-							$wikiId
+							$wikiId,
+							$selfLinkTarget
 						);
 					}
 				}
@@ -292,14 +294,15 @@ class CommentParser {
 	 * @param string $text
 	 * @param string|false|null $wikiId Id of the wiki to link to (if not the local wiki),
 	 *  as used by WikiMap.
+	 * @param LinkTarget $contextTitle
 	 *
 	 * @return string HTML link
 	 */
 	private function makeSectionLink(
-		LinkTarget $target, $text, $wikiId
+		LinkTarget $target, $text, $wikiId, LinkTarget $contextTitle
 	) {
 		if ( $wikiId !== null && $wikiId !== false && !$target->isExternal() ) {
-			return Linker::makeExternalLink(
+			return $this->linkRenderer->makeExternalLink(
 				WikiMap::getForeignURL(
 					$wikiId,
 					$target->getNamespace() === 0
@@ -308,8 +311,8 @@ class CommentParser {
 						':' . $target->getDBkey(),
 					$target->getFragment()
 				),
-				$text,
-				/* escape = */ false // Already escaped
+				new HtmlArmor( $text ), // Already escaped
+				$contextTitle
 			);
 		}
 		return $this->linkRenderer->makePreloadedLink( $target, new HtmlArmor( $text ), '' );
@@ -415,7 +418,16 @@ class CommentParser {
 								$target = $selfLinkTarget->createFragmentTarget( $target->getFragment() );
 							}
 
-							$linkMarker = $this->addPageLink( $target, $linkText . $inside, $wikiId );
+							// We should deprecate `null` as a valid value for
+							// $selfLinkTarget to ensure that we can use it as
+							// the title context for the external link.
+							global $wgTitle;
+							$linkMarker = $this->addPageLink(
+								$target,
+								$linkText . $inside,
+								$wikiId,
+								$selfLinkTarget ?? $wgTitle ?? SpecialPage::getTitleFor( 'Badtitle' )
+							);
 							$linkMarker .= $trail;
 						} catch ( MalformedTitleException $e ) {
 							// Fall through
@@ -462,12 +474,13 @@ class CommentParser {
 	 * @param LinkTarget $target
 	 * @param string $text
 	 * @param string|false|null $wikiId
+	 * @param LinkTarget $contextTitle
 	 * @return string
 	 */
-	private function addPageLink( LinkTarget $target, $text, $wikiId ) {
+	private function addPageLink( LinkTarget $target, $text, $wikiId, LinkTarget $contextTitle ) {
 		if ( $wikiId !== null && $wikiId !== false && !$target->isExternal() ) {
 			// Handle links from a foreign wiki ID
-			return Linker::makeExternalLink(
+			return $this->linkRenderer->makeExternalLink(
 				WikiMap::getForeignURL(
 					$wikiId,
 					$target->getNamespace() === 0
@@ -476,8 +489,8 @@ class CommentParser {
 						':' . $target->getDBkey(),
 					$target->getFragment()
 				),
-				$text,
-				/* escape = */ false // Already escaped
+				new HtmlArmor( $text ), // Already escaped
+				$contextTitle
 			);
 		} elseif ( $this->linkCache->getGoodLinkID( $target ) ||
 			Title::newFromLinkTarget( $target )->isAlwaysKnown()

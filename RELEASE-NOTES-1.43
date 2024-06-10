@@ -239,6 +239,9 @@ because of Phabricator reports.
 * SpecialBlock::getTargetAndType, deprecated since 1.36, has been removed.
 * ApiQueryBlockInfoTrait::addBlockInfoToQuery(), deprecated since 1.42, has been
   removed.
+* Linker::makeExternalLink() has been deprecated in favor of
+  LinkRenderer::makeExternalLink(), which has a improved API to help phan's
+  SecurityCheckPlugin provide more accurate checks for escaping issues.
 * Linker::makeHeadline(), Linker::generateTOC(), Linker::tocIndent(),
   Linker::tocUnindent(), Linker::tocLine(), Linker::tocLineEnd(), and
   Linker::tocList(), deprecated in 1.42, have been removed.

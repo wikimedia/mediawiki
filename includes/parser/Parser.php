@@ -1856,13 +1856,12 @@ class Parser {
 			}
 			$url = wfMessage( $urlmsg, $id )->inContentLanguage()->text();
 			$this->addTrackingCategory( $trackingCat );
-			return Linker::makeExternalLink(
+			return $this->getLinkRenderer()->makeExternalLink(
 				$url,
 				"{$keyword} {$id}",
-				true,
+				$this->getTitle(),
 				$cssClass,
-				[],
-				$this->getTitle()
+				[]
 			);
 		} elseif ( isset( $m[6] ) && $m[6] !== ''
 			&& $this->mOptions->getMagicISBNLinks()
@@ -1955,13 +1954,12 @@ class Parser {
 		$text = $this->maybeMakeExternalImage( $url );
 		if ( $text === false ) {
 			# Not an image, make a link
-			$text = Linker::makeExternalLink(
+			$text = $this->getLinkRenderer()->makeExternalLink(
 				$url,
 				$this->getTargetLanguageConverter()->markNoConversion( $url ),
-				true,
+				$this->getTitle(),
 				'free',
-				$this->getExternalLinkAttribs( $url ),
-				$this->getTitle()
+				$this->getExternalLinkAttribs( $url )
 			);
 			# Register it in the output object...
 			$this->mOutput->addExternalLink( $url );
@@ -2254,9 +2252,14 @@ class Parser {
 			# This means that users can paste URLs directly into the text
 			# Funny characters like ö aren't valid in URLs anyway
 			# This was changed in August 2004
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped
-			$s .= Linker::makeExternalLink( $url, $text, false, $linktype,
-				$this->getExternalLinkAttribs( $url ), $this->getTitle() ) . $dtrail . $trail;
+			$s .= $this->getLinkRenderer()->makeExternalLink(
+				$url,
+				// @phan-suppress-next-line SecurityCheck-XSS
+				new HtmlArmor( $text ),
+				$this->getTitle(),
+				$linktype,
+				$this->getExternalLinkAttribs( $url )
+			) . $dtrail . $trail;
 
 			# Register link in the output object.
 			$this->mOutput->addExternalLink( $url );

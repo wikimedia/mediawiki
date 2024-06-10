@@ -30,7 +30,6 @@ use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
-use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -748,9 +747,11 @@ class SpecialVersion extends SpecialPage {
 				. Html::rawElement(
 					'td',
 					[],
-					Linker::makeExternalLink(
-						"https://packagist.org/packages/$name", $name,
-						true, '',
+					$this->getLinkRenderer()->makeExternalLink(
+						"https://packagist.org/packages/$name",
+						$name,
+						$this->getFullTitle(),
+						'',
 						[ 'class' => 'mw-version-library-name' ]
 					)
 				)
@@ -830,9 +831,11 @@ class SpecialVersion extends SpecialPage {
 				. Html::rawElement(
 					'td',
 					[],
-					Linker::makeExternalLink(
-						$info['homepage'], $info['name'],
-						true, '',
+					$this->getLinkRenderer()->makeExternalLink(
+						$info['homepage'],
+						$info['name'],
+						$this->getFullTitle(),
+						'',
 						[ 'class' => 'mw-version-library-name' ]
 					)
 				)
@@ -867,9 +870,10 @@ class SpecialVersion extends SpecialPage {
 			Html::rawElement(
 				'span',
 				[ 'class' => 'plainlinks' ],
-				Linker::makeExternalLink(
+				$this->getLinkRenderer()->makeExternalLink(
 					'https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Tag_extensions',
-					$this->msg( 'version-parser-extensiontags' )->text()
+					$this->msg( 'version-parser-extensiontags' ),
+					$this->getFullTitle()
 				)
 			)
 		);
@@ -910,9 +914,10 @@ class SpecialVersion extends SpecialPage {
 			Html::rawElement(
 				'span',
 				[ 'class' => 'plainlinks' ],
-				Linker::makeExternalLink(
+				$this->getLinkRenderer()->makeExternalLink(
 					'https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Parser_functions',
-					$this->msg( 'version-parser-function-hooks' )->text()
+					$this->msg( 'version-parser-function-hooks' ),
+					$this->getFullTitle()
 				)
 			)
 		);
@@ -1010,19 +1015,19 @@ class SpecialVersion extends SpecialPage {
 		// ... such as extension names and links
 		if ( isset( $extension['namemsg'] ) ) {
 			// Localized name of extension
-			$extensionName = $this->msg( $extension['namemsg'] )->text();
+			$extensionName = $this->msg( $extension['namemsg'] );
 		} elseif ( isset( $extension['name'] ) ) {
 			// Non localized version
 			$extensionName = $extension['name'];
 		} else {
-			$extensionName = $this->msg( 'version-no-ext-name' )->text();
+			$extensionName = $this->msg( 'version-no-ext-name' );
 		}
 
 		if ( isset( $extension['url'] ) ) {
-			$extensionNameLink = Linker::makeExternalLink(
+			$extensionNameLink = $this->getLinkRenderer()->makeExternalLink(
 				$extension['url'],
 				$extensionName,
-				true,
+				$this->getFullTitle(),
 				'',
 				[ 'class' => 'mw-version-ext-name' ]
 			);
@@ -1081,10 +1086,10 @@ class SpecialVersion extends SpecialPage {
 
 		if ( $vcsVersion ) {
 			if ( $vcsLink ) {
-				$vcsVerString = Linker::makeExternalLink(
+				$vcsVerString = $this->getLinkRenderer()->makeExternalLink(
 					$vcsLink,
-					$this->msg( 'version-version', $vcsVersion )->text(),
-					true,
+					$this->msg( 'version-version', $vcsVersion ),
+					$this->getFullTitle(),
 					'',
 					[ 'class' => 'mw-version-ext-vcs-version' ]
 				);

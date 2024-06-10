@@ -492,7 +492,6 @@ class ImagePage extends Article {
 				if ( $isMulti ) {
 					$linkPrev = $linkNext = '';
 					$count = $this->displayImg->pageCount();
-					$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 					if ( !$enableLegacyMediaDOM ) {
 						$out->addModules( 'mediawiki.page.media' );
 					}
@@ -501,7 +500,7 @@ class ImagePage extends Article {
 						$label = $context->msg( 'imgmultipageprev' )->text();
 						// on the client side, this link is generated in ajaxifyPageNavigation()
 						// in the mediawiki.page.image.pagination module
-						$linkPrev = $linkRenderer->makeKnownLink(
+						$linkPrev = $this->linkRenderer->makeKnownLink(
 							$this->getTitle(),
 							$label,
 							[],
@@ -521,7 +520,7 @@ class ImagePage extends Article {
 
 					if ( $page < $count ) {
 						$label = $context->msg( 'imgmultipagenext' )->text();
-						$linkNext = $linkRenderer->makeKnownLink(
+						$linkNext = $this->linkRenderer->makeKnownLink(
 							$this->getTitle(),
 							$label,
 							[],
@@ -820,9 +819,10 @@ EOT
 				$this->getFile() )
 		) {
 			// "Upload a new version of this file" link
-			$ulink = Linker::makeExternalLink(
+			$ulink = $this->linkRenderer->makeExternalLink(
 				$this->getUploadUrl(),
-				$this->getContext()->msg( 'uploadnewversion-linktext' )->text()
+				$this->getContext()->msg( 'uploadnewversion-linktext' ),
+				$this->getTitle()
 			);
 			$attrs = [ 'class' => 'plainlinks', 'id' => 'mw-imagepage-reupload-link' ];
 			$linkPara = Html::rawElement( 'p', $attrs, $ulink );
@@ -941,8 +941,6 @@ EOT
 		// Sort the list by namespace:title
 		usort( $rows, [ $this, 'compare' ] );
 
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-
 		// Create links for every element
 		$currentCount = 0;
 		foreach ( $rows as $element ) {
@@ -951,7 +949,7 @@ EOT
 				break;
 			}
 
-			$link = $linkRenderer->makeKnownLink(
+			$link = $this->linkRenderer->makeKnownLink(
 				Title::makeTitle( $element->page_namespace, $element->page_title ),
 				null,
 				[],
@@ -975,7 +973,7 @@ EOT
 						break;
 					}
 
-					$link2 = $linkRenderer->makeKnownLink(
+					$link2 = $this->linkRenderer->makeKnownLink(
 						Title::makeTitle( $row->page_namespace, $row->page_title ) );
 					$li .= Html::rawElement(
 						'li',
@@ -1025,18 +1023,19 @@ EOT
 		);
 		$out->addHTML( "<ul class='mw-imagepage-duplicates'>\n" );
 
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-
 		/**
 		 * @var File $file
 		 */
 		foreach ( $dupes as $file ) {
 			$fromSrc = '';
 			if ( $file->isLocal() ) {
-				$link = $linkRenderer->makeKnownLink( $file->getTitle() );
+				$link = $this->linkRenderer->makeKnownLink( $file->getTitle() );
 			} else {
-				$link = Linker::makeExternalLink( $file->getDescriptionUrl(),
-					$file->getTitle()->getPrefixedText() );
+				$link = $this->linkRenderer->makeExternalLink(
+					$file->getDescriptionUrl(),
+					$file->getTitle()->getPrefixedText(),
+					$this->getTitle()
+				);
 				$fromSrc = $this->getContext()->msg(
 					'shared-repo-from',
 					$file->getRepo()->getDisplayName()

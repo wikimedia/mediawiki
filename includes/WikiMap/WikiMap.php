@@ -20,9 +20,9 @@
 
 namespace MediaWiki\WikiMap;
 
-use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Site\MediaWikiSite;
+use MediaWiki\SpecialPage\SpecialPage;
 use Wikimedia\Rdbms\DatabaseDomain;
 
 /**
@@ -149,6 +149,7 @@ class WikiMap {
 	 * @return string|false HTML link or false if the wiki was not found
 	 */
 	public static function makeForeignLink( $wikiID, $page, $text = null ) {
+		global $wgTitle;
 		if ( !$text ) {
 			$text = $page;
 		}
@@ -158,7 +159,12 @@ class WikiMap {
 			return false;
 		}
 
-		return Linker::makeExternalLink( $url, $text );
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		return $linkRenderer->makeExternalLink(
+			$url,
+			$text,
+			$wgTitle ?? SpecialPage::getTitleFor( 'Badtitle' )
+		);
 	}
 
 	/**

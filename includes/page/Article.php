@@ -1190,7 +1190,7 @@ class Article implements Page {
 			// This is an externally redirected view, from some other wiki.
 			// If it was reported from a trusted site, supply a backlink.
 			if ( $redirectSources && preg_match( $redirectSources, $rdfrom ) ) {
-				$redir = Linker::makeExternalLink( $rdfrom, $rdfrom );
+				$redir = $this->linkRenderer->makeExternalLink( $rdfrom, $rdfrom, $this->getTitle() );
 				$outputPage->addSubtitle( "<span class=\"mw-redirectedfrom\">" .
 					$context->msg( 'redirectedfrom' )->rawParams( $redir )->parse()
 				. "</span>" );
