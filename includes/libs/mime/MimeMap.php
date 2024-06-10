@@ -524,5 +524,10 @@ class MimeMap {
 		'image/jpeg2000' => 'image/jp2',
 		'image/jpeg2000-image' => 'image/jp2',
 		'image/x-jpeg2000-image' => 'image/jp2',
+		'application/csv' => 'text/csv',
+		'application/x-csv' => 'text/csv',
+		'text/x-csv' => 'text/csv',
+		'text/comma-separated-values' => 'text/csv',
+		'text/x-comma-separated-values' => 'text/csv',
 	];
 }
