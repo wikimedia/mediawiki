@@ -64,45 +64,8 @@ class DeletePage {
 	public const PAGE_BASE = 'base';
 	public const PAGE_TALK = 'talk';
 
-	/** @var HookRunner */
-	private $hookRunner;
-	/** @var RevisionStore */
-	private $revisionStore;
-	/** @var LBFactory */
-	private $lbFactory;
-	/** @var JobQueueGroup */
-	private $jobQueueGroup;
-	/** @var CommentStore */
-	private $commentStore;
-	/** @var ServiceOptions */
-	private $options;
-	/** @var BagOStuff */
-	private $recentDeletesCache;
-	/** @var string */
-	private $localWikiID;
-	/** @var string */
-	private $webRequestID;
-	/** @var UserFactory */
-	private $userFactory;
-	/** @var BacklinkCacheFactory */
-	private $backlinkCacheFactory;
-	/** @var WikiPageFactory */
-	private $wikiPageFactory;
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-	/** @var ITextFormatter */
-	private $contLangMsgTextFormatter;
-	/** @var RedirectStore */
-	private $redirectStore;
-
 	/** @var bool */
 	private $isDeletePageUnitTest = false;
-
-	/** @var WikiPage */
-	private $page;
-	/** @var Authority */
-	private $deleter;
-
 	/** @var bool */
 	private $suppress = false;
 	/** @var string[] */
@@ -132,25 +95,26 @@ class DeletePage {
 	/** @var bool Whether a deletion was attempted */
 	private $attemptedDeletion = false;
 
+	private HookRunner $hookRunner;
+	private RevisionStore $revisionStore;
+	private LBFactory $lbFactory;
+	private JobQueueGroup $jobQueueGroup;
+	private CommentStore $commentStore;
+	private ServiceOptions $options;
+	private BagOStuff $recentDeletesCache;
+	private string $localWikiID;
+	private string $webRequestID;
+	private WikiPageFactory $wikiPageFactory;
+	private UserFactory $userFactory;
+	private BacklinkCacheFactory $backlinkCacheFactory;
+	private NamespaceInfo $namespaceInfo;
+	private ITextFormatter $contLangMsgTextFormatter;
+	private RedirectStore $redirectStore;
+	private WikiPage $page;
+	private Authority $deleter;
+
 	/**
 	 * @internal Create via the PageDeleteFactory service.
-	 * @param HookContainer $hookContainer
-	 * @param RevisionStore $revisionStore
-	 * @param LBFactory $lbFactory
-	 * @param JobQueueGroup $jobQueueGroup
-	 * @param CommentStore $commentStore
-	 * @param ServiceOptions $serviceOptions
-	 * @param BagOStuff $recentDeletesCache
-	 * @param string $localWikiID
-	 * @param string $webRequestID
-	 * @param WikiPageFactory $wikiPageFactory
-	 * @param UserFactory $userFactory
-	 * @param BacklinkCacheFactory $backlinkCacheFactory
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param ITextFormatter $contLangMsgTextFormatter
-	 * @param RedirectStore $redirectStore
-	 * @param ProperPageIdentity $page
-	 * @param Authority $deleter
 	 */
 	public function __construct(
 		HookContainer $hookContainer,

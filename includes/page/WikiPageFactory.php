@@ -19,18 +19,10 @@ use WikiPage;
  * @since 1.36
  */
 class WikiPageFactory {
-	/** @var TitleFactory */
-	private $titleFactory;
-	/** @var WikiPageFactoryHook */
-	private $wikiPageFactoryHookRunner;
-	/** @var IConnectionProvider */
-	private $dbProvider;
+	private TitleFactory $titleFactory;
+	private WikiPageFactoryHook $wikiPageFactoryHookRunner;
+	private IConnectionProvider $dbProvider;
 
-	/**
-	 * @param TitleFactory $titleFactory
-	 * @param WikiPageFactoryHook $wikiPageFactoryHookRunner
-	 * @param IConnectionProvider $dbProvider
-	 */
 	public function __construct(
 		TitleFactory $titleFactory,
 		WikiPageFactoryHook $wikiPageFactoryHookRunner,

@@ -111,42 +111,16 @@ class Article implements Page {
 	 */
 	protected $viewIsRenderAction = false;
 
-	/**
-	 * @var LinkRenderer
-	 */
-	protected $linkRenderer;
-
-	/**
-	 * @var RevisionStore
-	 */
-	private $revisionStore;
-
-	/**
-	 * @var UserNameUtils
-	 */
-	private $userNameUtils;
-
-	/**
-	 * @var UserOptionsLookup
-	 */
-	private $userOptionsLookup;
-
-	/** @var CommentFormatter */
-	private $commentFormatter;
-
-	/** @var WikiPageFactory */
-	private $wikiPageFactory;
-
-	/** @var JobQueueGroup */
-	private $jobQueueGroup;
-
-	/** @var ArchivedRevisionLookup */
-	private $archivedRevisionLookup;
-
+	protected LinkRenderer $linkRenderer;
+	private RevisionStore $revisionStore;
+	private UserNameUtils $userNameUtils;
+	private UserOptionsLookup $userOptionsLookup;
+	private CommentFormatter $commentFormatter;
+	private WikiPageFactory $wikiPageFactory;
+	private JobQueueGroup $jobQueueGroup;
+	private ArchivedRevisionLookup $archivedRevisionLookup;
 	protected IConnectionProvider $dbProvider;
-
-	/** @var DatabaseBlockStore */
-	protected $blockStore;
+	protected DatabaseBlockStore $blockStore;
 
 	/**
 	 * @var RevisionRecord|null Revision to be shown

@@ -66,85 +66,24 @@ use WikitextContent;
  */
 class MovePage {
 
-	/**
-	 * @var Title
-	 */
-	protected $oldTitle;
-
-	/**
-	 * @var Title
-	 */
-	protected $newTitle;
-
-	/**
-	 * @var ServiceOptions
-	 */
-	protected $options;
-
-	/**
-	 * @var IConnectionProvider
-	 */
-	protected $dbProvider;
-
-	/**
-	 * @var NamespaceInfo
-	 */
-	protected $nsInfo;
-
-	/**
-	 * @var WatchedItemStoreInterface
-	 */
-	protected $watchedItems;
-
-	/**
-	 * @var RepoGroup
-	 */
-	protected $repoGroup;
-
-	/**
-	 * @var IContentHandlerFactory
-	 */
-	private $contentHandlerFactory;
-
-	/**
-	 * @var RevisionStore
-	 */
-	private $revisionStore;
-
-	/**
-	 * @var SpamChecker
-	 */
-	private $spamChecker;
-
-	/**
-	 * @var HookRunner
-	 */
-	private $hookRunner;
-
-	/**
-	 * @var WikiPageFactory
-	 */
-	private $wikiPageFactory;
-
-	/**
-	 * @var UserFactory
-	 */
-	private $userFactory;
-
-	/** @var UserEditTracker */
-	private $userEditTracker;
-
-	/** @var MovePageFactory */
-	private $movePageFactory;
-
-	/** @var CollationFactory */
-	public $collationFactory;
-
-	/** @var PageUpdaterFactory */
-	private $pageUpdaterFactory;
-
-	/** @var RestrictionStore */
-	private $restrictionStore;
+	protected Title $oldTitle;
+	protected Title $newTitle;
+	protected ServiceOptions $options;
+	protected IConnectionProvider $dbProvider;
+	protected NamespaceInfo $nsInfo;
+	protected WatchedItemStoreInterface $watchedItems;
+	protected RepoGroup $repoGroup;
+	private IContentHandlerFactory $contentHandlerFactory;
+	private RevisionStore $revisionStore;
+	private SpamChecker $spamChecker;
+	private HookRunner $hookRunner;
+	private WikiPageFactory $wikiPageFactory;
+	private UserFactory $userFactory;
+	private UserEditTracker $userEditTracker;
+	private MovePageFactory $movePageFactory;
+	public CollationFactory $collationFactory;
+	private PageUpdaterFactory $pageUpdaterFactory;
+	private RestrictionStore $restrictionStore;
 
 	/** @var int */
 	private $maximumMovedPages;
@@ -159,25 +98,6 @@ class MovePage {
 
 	/**
 	 * @see MovePageFactory
-	 *
-	 * @param Title $oldTitle
-	 * @param Title $newTitle
-	 * @param ServiceOptions $options
-	 * @param IConnectionProvider $dbProvider
-	 * @param NamespaceInfo $nsInfo
-	 * @param WatchedItemStoreInterface $watchedItems
-	 * @param RepoGroup $repoGroup
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param RevisionStore $revisionStore
-	 * @param SpamChecker $spamChecker
-	 * @param HookContainer $hookContainer
-	 * @param WikiPageFactory $wikiPageFactory
-	 * @param UserFactory $userFactory
-	 * @param UserEditTracker $userEditTracker
-	 * @param MovePageFactory $movePageFactory
-	 * @param CollationFactory $collationFactory
-	 * @param PageUpdaterFactory $pageUpdaterFactory
-	 * @param RestrictionStore $restrictionStore
 	 */
 	public function __construct(
 		Title $oldTitle,

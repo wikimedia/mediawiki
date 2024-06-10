@@ -66,45 +66,6 @@ class RollbackPage {
 		MainConfigNames::DisableAnonTalk,
 	];
 
-	/** @var ServiceOptions */
-	private $options;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var ReadOnlyMode */
-	private $readOnlyMode;
-
-	/** @var TitleFormatter */
-	private $titleFormatter;
-
-	/** @var RevisionStore */
-	private $revisionStore;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var WikiPageFactory */
-	private $wikiPageFactory;
-
-	/** @var ActorMigration */
-	private $actorMigration;
-
-	/** @var ActorNormalization */
-	private $actorNormalization;
-
-	/** @var PageIdentity */
-	private $page;
-
-	/** @var Authority */
-	private $performer;
-
-	/** @var UserIdentity who made the edits we are rolling back */
-	private $byUser;
-
 	/** @var string */
 	private $summary = '';
 
@@ -114,21 +75,23 @@ class RollbackPage {
 	/** @var string[] */
 	private $tags = [];
 
+	private ServiceOptions $options;
+	private IConnectionProvider $dbProvider;
+	private UserFactory $userFactory;
+	private ReadOnlyMode $readOnlyMode;
+	private RevisionStore $revisionStore;
+	private TitleFormatter $titleFormatter;
+	private HookRunner $hookRunner;
+	private WikiPageFactory $wikiPageFactory;
+	private ActorMigration $actorMigration;
+	private ActorNormalization $actorNormalization;
+	private PageIdentity $page;
+	private Authority $performer;
+	/** @var UserIdentity who made the edits we are rolling back */
+	private UserIdentity $byUser;
+
 	/**
 	 * @internal Create via the RollbackPageFactory service.
-	 * @param ServiceOptions $options
-	 * @param IConnectionProvider $dbProvider
-	 * @param UserFactory $userFactory
-	 * @param ReadOnlyMode $readOnlyMode
-	 * @param RevisionStore $revisionStore
-	 * @param TitleFormatter $titleFormatter
-	 * @param HookContainer $hookContainer
-	 * @param WikiPageFactory $wikiPageFactory
-	 * @param ActorMigration $actorMigration
-	 * @param ActorNormalization $actorNormalization
-	 * @param PageIdentity $page
-	 * @param Authority $performer
-	 * @param UserIdentity $byUser who made the edits we are rolling back
 	 */
 	public function __construct(
 		ServiceOptions $options,

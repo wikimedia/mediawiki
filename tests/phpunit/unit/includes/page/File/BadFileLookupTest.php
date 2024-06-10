@@ -26,8 +26,7 @@ Comment line, no effect [[File:Good.jpg]]
 * [[File:Bad5.jpg]] before [[malformed title<>]] does not ignore the line
 WIKITEXT;
 
-	/** @var HookContainer */
-	private $hookContainer;
+	private HookContainer $hookContainer;
 
 	/**
 	 * Shared with GlobalWithDBTest

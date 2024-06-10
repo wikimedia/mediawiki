@@ -101,29 +101,14 @@ class MergeHistory {
 	/** @var int Number of revisions merged (for Special:MergeHistory success message) */
 	protected $revisionsMerged;
 
-	/** @var IContentHandlerFactory */
-	private $contentHandlerFactory;
-
-	/** @var RevisionStore */
-	private $revisionStore;
-
-	/** @var WatchedItemStoreInterface */
-	private $watchedItemStore;
-
-	/** @var SpamChecker */
-	private $spamChecker;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var WikiPageFactory */
-	private $wikiPageFactory;
-
-	/** @var TitleFormatter */
-	private $titleFormatter;
-
-	/** @var TitleFactory */
-	private $titleFactory;
+	private IContentHandlerFactory $contentHandlerFactory;
+	private RevisionStore $revisionStore;
+	private WatchedItemStoreInterface $watchedItemStore;
+	private SpamChecker $spamChecker;
+	private HookRunner $hookRunner;
+	private WikiPageFactory $wikiPageFactory;
+	private TitleFormatter $titleFormatter;
+	private TitleFactory $titleFactory;
 	private LinkTargetLookup $linkTargetLookup;
 
 	/**

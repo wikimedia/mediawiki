@@ -26,24 +26,12 @@ use Wikimedia\Stats\StatsFactory;
  */
 class PageStore implements PageLookup {
 
-	/** @var ServiceOptions */
-	private $options;
-
-	/** @var ILoadBalancer */
-	private $dbLoadBalancer;
-
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-
-	/** @var TitleParser */
-	private $titleParser;
-
-	/** @var LinkCache|null */
-	private $linkCache;
-
-	/** @var StatsFactory */
-	private $stats;
-
+	private ServiceOptions $options;
+	private ILoadBalancer $dbLoadBalancer;
+	private NamespaceInfo $namespaceInfo;
+	private TitleParser $titleParser;
+	private ?LinkCache $linkCache;
+	private StatsFactory $stats;
 	/** @var string|false */
 	private $wikiId;
 
