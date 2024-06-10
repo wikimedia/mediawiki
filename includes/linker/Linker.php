@@ -1128,6 +1128,7 @@ class Linker {
 	 * @param string $url URL to link to
 	 * @param-taint $url escapes_html
 	 * @param string $text Text of link
+	 * @param-taint $text none
 	 * @param bool $escape Do we escape the link text?
 	 * @param-taint $escape none
 	 * @param string $linktype Type of external link. Gets added to the classes
@@ -1148,7 +1149,7 @@ class Linker {
 		return $linkRenderer->makeExternalLink(
 			$url,
 			$escape ? $text : new HtmlArmor( $text ),
-			$title ?? $wgTitle,
+			$title ?? $wgTitle ?? SpecialPage::getTitleFor( 'Badtitle' ),
 			$linktype,
 			$attribs
 		);
