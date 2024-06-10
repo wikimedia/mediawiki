@@ -2361,7 +2361,7 @@ describe( '/transform/ endpoint', function () {
 		it( '/transform/ should refuse non-matching ETags in header', async () => {
 			const { status, text } = await client.req
 				.post( endpointPrefix + `/transform/html/to/wikitext/${ page }/${ revid }` )
-				.set( 'If-Match', '"13337/deadbeef"' )
+				.set( 'If-Match', '"1219844647/deadbeef"' )
 				.send( {
 					html: '<p>hello</p>'
 				} );
@@ -2374,7 +2374,7 @@ describe( '/transform/ endpoint', function () {
 				.post( endpointPrefix + `/transform/html/to/wikitext/${ page }` )
 				.send( {
 					html: '<p>hello</p>',
-					original: { etag: '"13337/deadbeef"' }
+					original: { etag: '"1219844647/deadbeef"' }
 				} );
 
 			assert.deepEqual( status, 412, text );
@@ -2412,7 +2412,7 @@ describe( '/transform/ endpoint', function () {
 			// request page HTML, but do not set 'stash' parameter!
 			const transformResponse = await client.req
 				.post( endpointPrefix + '/transform/html/to/wikitext/' )
-				.set( 'If-Match', '"12345/dummy"' )
+				.set( 'If-Match', '"1219844647/dummy"' )
 				.send( {
 					html: '<p>test</p>'
 				} );
@@ -2453,7 +2453,7 @@ describe( '/transform/ endpoint', function () {
 				.send( {
 					html: '<p>test</p>',
 					original: {
-						renderid: '"12345/dummy"'
+						renderid: '"1219844647/dummy"'
 					}
 				} );
 
