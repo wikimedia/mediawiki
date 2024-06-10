@@ -29,6 +29,7 @@
 			"Xiplus",
 			"列维劳德",
 			"蘭斯特",
+			"铁桶",
 			"아라"
 		]
 	},
@@ -189,7 +190,7 @@
 	"config-admin-name-invalid": "指定的使用者名稱 \"<nowiki>$1</nowiki>\" 無效，請改用其他使用者名稱。",
 	"config-admin-password-blank": "輸入管理員帳號密碼。",
 	"config-admin-password-mismatch": "兩次輸入的密碼並不相同。",
-	"config-admin-email": "電子郵件地址：",
+	"config-admin-email": "電子郵件位址：",
 	"config-admin-email-help": "在此輸入的電子郵件信箱可用來接收 Wiki 上其他使用者所傳送的訊息、重設您的密碼與通知監視清單中頁面更動。您可將此欄位留空。",
 	"config-admin-error-user": "建立管理員帳號 \"<nowiki>$1</nowiki>\" 時發生內部錯誤。",
 	"config-admin-error-password": "設定管理員 \"<nowiki>$1</nowiki>\" 的密碼時發生內部錯誤：<pre>$2</pre>",

@@ -10,7 +10,7 @@
 			"Shirayuki"
 		]
 	},
-	"rest-prefix-mismatch": "リクエストされたパス ($1) は REST API ルートパス ($2) 内にありませんでした",
+	"rest-prefix-mismatch": "リクエストされたパス ($1) は REST API ベースパス ($2) 内にありませんでした",
 	"rest-wrong-method": "このリクエストメソッド（$1）はこのパスで使用可能なメソッド{{PLURAL:$3||の一つ}}（$2）ではありません。",
 	"rest-no-match": "リクエストした相対パス（$1）は既知のハンドラーのどれにも一致しませんでした",
 	"rest-nonexistent-title": "指定されたページ ($1) は存在しません",
@@ -40,7 +40,7 @@
 	"rest-page-source-type-error": "リクエストしたページソースのコンテンツタイプはサポートされていません。",
 	"rest-no-revision": "タイトル$1の版を取得できません",
 	"rest-media-too-many-links": "見つけたタイトル$1のメディアリンクは多すぎます（最大は$2）",
-	"rest-html-backend-error": "Parsoid HTML をフェッチできません",
+	"rest-html-backend-error": "Parsoid HTML をフェッチできません: $1",
 	"rest-bad-json-body": "無効なリクエストボディです。JSON オブジェクトでなければなりません。",
 	"rest-json-body-parse-error": "リクエストボディを JSON として解析に失敗：$1",
 	"rest-missing-body-field": "必須フィールド「$1」はリクエストボディに含まれていません。",

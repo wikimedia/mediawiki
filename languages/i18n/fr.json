@@ -1213,6 +1213,7 @@
 	"linterror-misnested-tag": "Balise mal imbriquée qui devrait l’être correctement",
 	"linterror-missing-end-tag": "Balise de fin manquante",
 	"linterror-missing-end-tag-in-heading": "Balise de fin manquante dans le titre",
+	"linterror-missing-image-alt-text": "Texte alternatif de l'image manquant",
 	"linterror-multi-colon-escape": "Échappement de deux-points multiples",
 	"linterror-multiline-html-table-in-list": "Tableau HTML5 multiligne à l’intérieur d’une liste",
 	"linterror-multiple-unclosed-formatting-tags": "Plusieurs balises de mise en forme non closes sur la page",

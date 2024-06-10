@@ -313,6 +313,8 @@
 	"config-screenshot": "צילום מסך",
 	"config-extension-not-found": "לא היה אפשר למצוא את קובץ הרישום של ההרחבה \"$1\"",
 	"config-extension-dependency": "שגיאת תלות נמצאה בזמן התקנת ההרחבה \"$1\"‏: $2",
+	"config-composerlock-missing": "<strong>אזהרה:</strong> לא היה אפשר למצוא את התלויות של composer. אלה כלולות בהורדה של מדיה־ויקי. אם מפתחים מגיט, [https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries נא להתקין את התלויות של Composer] לפני המשך.",
+	"config-composerlock-stale": "קובץ ה־composer.lock שלך אינו מעודכן. נא [https://www.mediawiki.org/wiki/Special:MyLanguage/Composer#Usage_in_MediaWiki_core לעדכן את התלויות של Composer] לפני המשך.",
 	"config-ext-skins-more-info": "מידע נוסף",
 	"mainpagetext": "<strong>תוכנת מדיה־ויקי הותקנה בהצלחה.</strong>",
 	"mainpagedocfooter": "היעזרו ב[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents מדריך למשתמש] למידע על שימוש בתוכנת הוויקי.\n\n== קישורים שימושיים ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings רשימת ההגדרות]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ שאלות ותשובות על מדיה־ויקי]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ רשימת התפוצה על השקת גרסאות]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources תרגום מדיה־ויקי לשפה שלך]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam איך להיאבק נגד ספאם באתר הוויקי שלך]"

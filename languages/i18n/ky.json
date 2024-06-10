@@ -1375,7 +1375,7 @@
 	"pageinfo-robot-noindex": "Уруксат берилбейт",
 	"pageinfo-watchers": "Баракты байкоочулардын саны",
 	"pageinfo-redirects-name": "Бул баракка багыттамалардын саны",
-	"pageinfo-firstuser": "Барактын {{GENDER:$1|түзүүчүсү}}",
+	"pageinfo-firstuser": "Барак {{GENDER:$1|түзүүчү}}",
 	"pageinfo-firsttime": "Барак түзүлгөн датасы",
 	"pageinfo-lastuser": "Акыркы {{GENDER:$1|түзөтүүчү}}",
 	"pageinfo-lasttime": "Соңку түзөтүүнүн датасы",
