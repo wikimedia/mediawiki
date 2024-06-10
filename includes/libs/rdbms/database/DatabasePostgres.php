@@ -301,19 +301,20 @@ class DatabasePostgres extends Database {
 	}
 
 	public function indexInfo( $table, $index, $fname = __METHOD__ ) {
+		$components = $this->platform->qualifiedTableComponents( $table );
+		$encTable = $this->addQuotes( end( $components ) );
+		$encIndex = $this->addQuotes( $this->platform->indexName( $index ) );
 		$query = new Query(
-			"SELECT indexname FROM pg_indexes WHERE tablename='$table'",
+			"SELECT indexname,indexdef FROM pg_indexes " .
+				"WHERE tablename=$encTable AND indexname=$encIndex",
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
 			'SELECT'
 		);
 		$res = $this->query( $query );
-		if ( !$res ) {
-			return null;
-		}
-		foreach ( $res as $row ) {
-			if ( $row->indexname == $this->platform->indexName( $index ) ) {
-				return $row;
-			}
+		$row = $res->fetchObject();
+
+		if ( $row ) {
+			return [ 'unique' => ( strpos( $row->indexdef, 'CREATE UNIQUE ' ) === 0 ) ];
 		}
 
 		return false;
@@ -382,16 +383,6 @@ __INDEXATTR__;
 			}
 		}
 		return null;
-	}
-
-	public function indexUnique( $table, $index, $fname = __METHOD__ ) {
-		$sql = "SELECT indexname FROM pg_indexes WHERE tablename='{$table}'" .
-			" AND indexdef LIKE 'CREATE UNIQUE%(" .
-			$this->strencode( $this->platform->indexName( $index ) ) .
-			")'";
-		$query = new Query( $sql, self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE, 'SELECT' );
-		$res = $this->query( $query, $fname );
-		return $res && $res->numRows() > 0;
 	}
 
 	protected function doInsertSelectNative(

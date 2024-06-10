@@ -600,6 +600,43 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( 0, $db->insertId() );
 	}
 
+	/**
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::fieldExists()
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::indexExists()
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::indexUnique()
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::fieldInfo()
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::indexInfo()
+	 */
+	public function testFieldAndIndexInfo() {
+		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
+		$db->query(
+			"CREATE TABLE tmp_schema_tbl (" .
+			"n integer not null primary key autoincrement, " .
+			"k text, " .
+			"v integer, " .
+			"t integer" .
+			")"
+		);
+		$db->query( "CREATE UNIQUE INDEX tmp_schema_tbl_k ON tmp_schema_tbl (k)" );
+		$db->query( "CREATE INDEX tmp_schema_tbl_t ON tmp_schema_tbl (t)" );
+
+		$this->assertTrue( $db->fieldExists( 'tmp_schema_tbl', 'n' ) );
+		$this->assertTrue( $db->fieldExists( 'tmp_schema_tbl', 'k' ) );
+		$this->assertTrue( $db->fieldExists( 'tmp_schema_tbl', 'v' ) );
+		$this->assertTrue( $db->fieldExists( 'tmp_schema_tbl', 't' ) );
+		$this->assertFalse( $db->fieldExists( 'tmp_schema_tbl', 'x' ) );
+
+		$this->assertTrue( $db->indexExists( 'tmp_schema_tbl', 'tmp_schema_tbl_k' ) );
+		$this->assertTrue( $db->indexExists( 'tmp_schema_tbl', 'tmp_schema_tbl_t' ) );
+		$this->assertFalse( $db->indexExists( 'tmp_schema_tbl', 'tmp_schema_tbl_x' ) );
+		$this->assertFalse( $db->indexExists( 'tmp_schema_tbl', 'PRIMARY' ) );
+
+		$this->assertTrue( $db->indexUnique( 'tmp_schema_tbl', 'tmp_schema_tbl_k' ) );
+		$this->assertFalse( $db->indexUnique( 'tmp_schema_tbl', 'tmp_schema_tbl_t' ) );
+		$this->assertNull( $db->indexUnique( 'tmp_schema_tbl', 'tmp_schema_tbl_x' ) );
+		$this->assertNull( $db->indexUnique( 'tmp_schema_tbl', 'PRIMARY' ) );
+	}
+
 	private function createSourceTable( IDatabase $db ) {
 		$db->query( "DROP TABLE IF EXISTS tmp_src_tbl" );
 		$db->query(

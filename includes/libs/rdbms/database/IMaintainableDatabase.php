@@ -138,17 +138,6 @@ interface IMaintainableDatabase extends IDatabase {
 	public function listTables( $prefix = null, $fname = __METHOD__ );
 
 	/**
-	 * Determines if a given index is unique
-	 *
-	 * @param string $table Unqualified name of table
-	 * @param string $index
-	 * @param string $fname Calling function name
-	 *
-	 * @return bool
-	 */
-	public function indexUnique( $table, $index, $fname = __METHOD__ );
-
-	/**
 	 * Get information about a field
 	 * Returns false if the field doesn't exist
 	 *
@@ -176,10 +165,21 @@ interface IMaintainableDatabase extends IDatabase {
 	 * @param string $table Unqualified name of table
 	 * @param string $index
 	 * @param string $fname
-	 * @return bool|null
+	 * @return bool
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function indexExists( $table, $index, $fname = __METHOD__ );
+
+	/**
+	 * Determines if a given index is unique
+	 *
+	 * @param string $table Unqualified name of table
+	 * @param string $index
+	 * @param string $fname Calling function name
+	 * @return bool|null Returns null if the index does not exist
+	 * @throws DBError If an error occurs, {@see query}
+	 */
+	public function indexUnique( $table, $index, $fname = __METHOD__ );
 
 	/**
 	 * Query whether a given table exists

@@ -486,59 +486,24 @@ class DatabaseSqlite extends Database {
 		return (bool)$res->numRows();
 	}
 
-	/**
-	 * Returns information about an index
-	 * Returns false if the index does not exist
-	 * - if errors are explicitly ignored, returns NULL on failure
-	 *
-	 * @param string $table
-	 * @param string $index
-	 * @param string $fname
-	 * @return array|false
-	 */
 	public function indexInfo( $table, $index, $fname = __METHOD__ ) {
+		$indexName = $this->platform->indexName( $index );
+		$components = $this->platform->qualifiedTableComponents( $table );
+		$tableRaw = end( $components );
 		$query = new Query(
-			'PRAGMA index_info(' . $this->addQuotes( $this->platform->indexName( $index ) ) . ')',
+			'PRAGMA index_list(' . $this->addQuotes( $tableRaw ) . ')',
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
 			'PRAGMA'
 		);
 		$res = $this->query( $query, $fname );
-		if ( !$res || $res->numRows() == 0 ) {
-			return false;
-		}
-		$info = [];
+
 		foreach ( $res as $row ) {
-			$info[] = $row->name;
+			if ( $row->name === $indexName ) {
+				return [ 'unique' => (bool)$row->unique ];
+			}
 		}
 
-		return $info;
-	}
-
-	/**
-	 * @param string $table
-	 * @param string $index
-	 * @param string $fname
-	 * @return bool|null
-	 */
-	public function indexUnique( $table, $index, $fname = __METHOD__ ) {
-		$row = $this->selectRow( 'sqlite_master', '*',
-			[
-				'type' => 'index',
-				'name' => $this->platform->indexName( $index ),
-			], $fname );
-		if ( !$row || !isset( $row->sql ) ) {
-			return null;
-		}
-
-		// $row->sql will be of the form CREATE [UNIQUE] INDEX ...
-		$indexPos = strpos( $row->sql, 'INDEX' );
-		if ( $indexPos === false ) {
-			return null;
-		}
-		$firstPart = substr( $row->sql, 0, $indexPos );
-		$options = explode( ' ', $firstPart );
-
-		return in_array( 'UNIQUE', $options );
+		return false;
 	}
 
 	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {

@@ -500,6 +500,46 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $this->conn->affectedRows(), 'Key conflict, nothing changed on database' );
 	}
 
+	/**
+	 * @covers \Wikimedia\Rdbms\DatabaseMySQL::fieldExists()
+	 * @covers \Wikimedia\Rdbms\DatabaseMySQL::indexExists()
+	 * @covers \Wikimedia\Rdbms\DatabaseMySQL::indexUnique()
+	 * @covers \Wikimedia\Rdbms\DatabaseMySQL::fieldInfo()
+	 * @covers \Wikimedia\Rdbms\DatabaseMySQL::indexInfo()
+	 */
+	public function testFieldAndIndexInfo() {
+		global $wgDBname;
+
+		$this->conn->selectDomain( $wgDBname );
+		$this->conn->query(
+			"CREATE TEMPORARY TABLE tmp_schema_tbl (" .
+			"n integer not null auto_increment, " .
+			"k varchar(255), " .
+			"v integer, " .
+			"t integer," .
+			"PRIMARY KEY (n)," .
+			"UNIQUE INDEX k (k)," .
+			"INDEX t (t)" .
+			")"
+		);
+
+		$this->assertTrue( $this->conn->fieldExists( 'tmp_schema_tbl', 'n' ) );
+		$this->assertTrue( $this->conn->fieldExists( 'tmp_schema_tbl', 'k' ) );
+		$this->assertTrue( $this->conn->fieldExists( 'tmp_schema_tbl', 'v' ) );
+		$this->assertTrue( $this->conn->fieldExists( 'tmp_schema_tbl', 't' ) );
+		$this->assertFalse( $this->conn->fieldExists( 'tmp_schema_tbl', 'x' ) );
+
+		$this->assertTrue( $this->conn->indexExists( 'tmp_schema_tbl', 'k' ) );
+		$this->assertTrue( $this->conn->indexExists( 'tmp_schema_tbl', 't' ) );
+		$this->assertFalse( $this->conn->indexExists( 'tmp_schema_tbl', 'x' ) );
+		$this->assertTrue( $this->conn->indexExists( 'tmp_schema_tbl', 'PRIMARY' ) );
+
+		$this->assertTrue( $this->conn->indexUnique( 'tmp_schema_tbl', 'k' ) );
+		$this->assertFalse( $this->conn->indexUnique( 'tmp_schema_tbl', 't' ) );
+		$this->assertNull( $this->conn->indexUnique( 'tmp_schema_tbl', 'x' ) );
+		$this->assertTrue( $this->conn->indexUnique( 'tmp_schema_tbl', 'PRIMARY' ) );
+	}
+
 	private function createSourceTable() {
 		global $wgDBname;
 
