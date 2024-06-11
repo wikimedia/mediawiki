@@ -3640,6 +3640,12 @@ wgParserEnableLegacyHeadingDOM=false
 <ul><li><ul><li>bar</li></ul></li></ul>
 <div class="mw-heading mw-heading2"><h2 id="A_heading">A heading</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: A heading">edit</a><span class="mw-editsection-bracket">]</span></span></div>
 <ul><li>Another list item</li></ul>
+!! html/parsoid
+<ul><li>foo</li></ul>
+
+<ul><li><ul><li>bar</li></ul></li></ul>
+<h2 id="A_heading">A heading</h2>
+<ul><li>Another list item</li></ul>
 !!end
 
 !! test
