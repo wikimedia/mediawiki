@@ -1,5 +1,5 @@
 /**
- * Codex Design Tokens v1.6.1
+ * Codex Design Tokens v1.7.0
  * Design System for Wikimedia
  * See https://doc.wikimedia.org/codex/latest/design-tokens/overview.html
  */
@@ -23,8 +23,8 @@
   --color-warning: #fc3; /* Note, this is only meant for warning icon for contrast reasons. */
   --color-success: #00af89; /* Note, this needs to use a tone darker than Red and Yellow for contrast reasons with background White. */
   --color-notice: #f8f9fa;
-  --color-content-added: #6d8af2;
-  --color-content-removed: #ad822b;
+  --color-content-added: #74c9ac;
+  --color-content-removed: #ef8174;
   --box-shadow-color-base: #fff;
   --box-shadow-color-inverted: #000;
   --background-color-interactive: #27292d;
@@ -40,7 +40,7 @@
   --background-color-warning-subtle: #301d00;
   --background-color-success-subtle: #00261e;
   --background-color-notice-subtle: #202122;
-  --background-color-content-added: #36c;
+  --background-color-content-added: #2a4b8d;
   --background-color-content-removed: #a66200;
   --background-color-backdrop-light: rgba( 0, 0, 0, 0.65 ); /* Backdrop is the term used by CSS Fullscreen API and is used to dim the background when a modal Dialog is open. Also known as overlay mask. */
   --background-color-backdrop-dark: rgba( 255, 255, 255, 0.65 );
@@ -58,6 +58,6 @@
   --border-color-warning: #fc3;
   --border-color-success: #00af89;
   --border-color-notice: #c8ccd1;
-  --border-color-content-added: #36c;
+  --border-color-content-added: #2a4b8d;
   --border-color-content-removed: #a66200;
 }
