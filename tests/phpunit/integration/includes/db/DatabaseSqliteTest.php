@@ -11,6 +11,9 @@ use Wikimedia\Rdbms\ResultWrapper;
 use Wikimedia\Rdbms\TransactionProfiler;
 
 /**
+ * @covers \Wikimedia\Rdbms\Database
+ * @covers \Wikimedia\Rdbms\DatabaseSqlite
+ * @covers \Wikimedia\Rdbms\Platform\SqlitePlatform
  * @group sqlite
  * @group Database
  * @group medium
@@ -126,7 +129,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideAddQuotes()
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::addQuotes
 	 */
 	public function testAddQuotes( $value, $expected ) {
 		// check quoting
@@ -150,9 +152,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		}
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::duplicateTableStructure
-	 */
 	public function testDuplicateTableStructure() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$db->query( 'CREATE TABLE foo(foo, barfoo)' );
@@ -202,9 +201,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::duplicateTableStructure
-	 */
 	public function testDuplicateTableStructureVirtual() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		if ( $db->getFulltextSearchModule() != 'FTS3' ) {
@@ -233,9 +229,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::deleteJoin
-	 */
 	public function testDeleteJoin() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$db->query( 'CREATE TABLE a (a_1)', __METHOD__ );
@@ -274,9 +267,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$this->assertTrue( $result, $result );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insertId
-	 */
 	public function testInsertIdType() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 
@@ -288,9 +278,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$this->assertTrue( $db->close(), "closing database" );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insert
-	 */
 	public function testInsertAffectedRows() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$db->query( 'CREATE TABLE testInsertAffectedRows ( foo )', __METHOD__ );
@@ -320,9 +307,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$this->assertFalse( (bool)$row['a'] );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::__toString
-	 */
 	public function testToString() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 
@@ -331,16 +315,12 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'sqlite object', $toString );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::getAttributes()
-	 */
 	public function testsAttributes() {
 		$dbFactory = $this->getServiceContainer()->getDatabaseFactory();
 		$this->assertTrue( $dbFactory->attributesFromType( 'sqlite' )[Database::ATTR_DB_LEVEL_LOCKING] );
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insert()
 	 * @param string $version
 	 * @param string $table
 	 * @param array $rows
@@ -378,7 +358,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::replace()
 	 * @param string $version
 	 * @param string $table
 	 * @param array $ukeys
@@ -418,10 +397,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insert()
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insertId()
-	 */
 	public function testInsertIdAfterInsert() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$dTable = $this->createDestTable( $db );
@@ -437,10 +412,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( 0, $db->insertId() );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insert()
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insertId()
-	 */
 	public function testInsertIdAfterInsertIgnore() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$dTable = $this->createDestTable( $db );
@@ -461,10 +432,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( 0, $db->insertId() );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::replace()
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insertId()
-	 */
 	public function testInsertIdAfterReplace() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$dTable = $this->createDestTable( $db );
@@ -485,10 +452,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( 0, $db->insertId() );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::upsert()
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insertId()
-	 */
 	public function testInsertIdAfterUpsert() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$dTable = $this->createDestTable( $db );
@@ -518,10 +481,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( 0, $db->insertId() );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insertSelect()
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insertId()
-	 */
 	public function testInsertIdAfterInsertSelect() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$sTable = $this->createSourceTable( $db );
@@ -553,10 +512,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( 0, $db->insertId() );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insertSelect()
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insertId()
-	 */
 	public function testInsertIdAfterInsertSelectIgnore() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$sTable = $this->createSourceTable( $db );
@@ -600,13 +555,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( 0, $db->insertId() );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::fieldExists()
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::indexExists()
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::indexUnique()
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::fieldInfo()
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::indexInfo()
-	 */
 	public function testFieldAndIndexInfo() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$db->query(

@@ -13,6 +13,9 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\TransactionManager;
 
 /**
+ * @covers \Wikimedia\Rdbms\Database
+ * @covers \Wikimedia\Rdbms\DatabaseMySQL
+ * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform
  * @group mysql
  * @group Database
  * @group medium
@@ -44,9 +47,6 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		parent::tearDown();
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::query()
-	 */
 	public function testQueryTimeout() {
 		try {
 			$this->conn->query(
@@ -62,9 +62,6 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( 'x', $row->v, "Still connected/usable" );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::query()
-	 */
 	public function testConnectionKill() {
 		try {
 			$this->conn->query( 'KILL (SELECT connection_id())', __METHOD__ );
@@ -77,11 +74,6 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( 'x', $row->v, "Recovered" );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::query()
-	 * @covers \Wikimedia\Rdbms\Database::rollback()
-	 * @covers \Wikimedia\Rdbms\Database::flushSession()
-	 */
 	public function testConnectionLossQuery() {
 		$row = $this->conn->query( 'SELECT connection_id() AS id', __METHOD__ )->fetchObject();
 		$encId = intval( $row->id );
@@ -155,9 +147,6 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		$adminConn->close( __METHOD__ );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::getScopedLockAndFlush()
-	 */
 	public function testConnectionLossScopedLock() {
 		$row = $this->conn->query( 'SELECT connection_id() AS id', __METHOD__ )->fetchObject();
 		$encId = intval( $row->id );
@@ -182,12 +171,6 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		$this->conn->unlock( 'x', __METHOD__ );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::query()
-	 * @covers \Wikimedia\Rdbms\Database::cancelAtomic()
-	 * @covers \Wikimedia\Rdbms\Database::rollback()
-	 * @covers \Wikimedia\Rdbms\Database::flushSession()
-	 */
 	public function testTransactionError() {
 		$this->assertSame( TransactionManager::STATUS_TRX_NONE, $this->conn->trxStatus() );
 
@@ -249,10 +232,7 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		$adminConn->close( __METHOD__ );
 	}
 
-	/**
-	 * @return DatabaseMySQL
-	 */
-	private function newConnection() {
+	private function newConnection(): DatabaseMySQL {
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		$dbFactory = MediaWikiServices::getInstance()->getDatabaseFactory();
 		/** @var DatabaseMySQL $conn */
@@ -271,10 +251,6 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		return $conn;
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::insert()
-	 * @covers \Wikimedia\Rdbms\Database::insertId()
-	 */
 	public function testInsertIdAfterInsert() {
 		$dTable = $this->createDestTable();
 
@@ -291,10 +267,6 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		$this->dropDestTable();
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::insert()
-	 * @covers \Wikimedia\Rdbms\Database::insertId()
-	 */
 	public function testInsertIdAfterInsertIgnore() {
 		$dTable = $this->createDestTable();
 
@@ -316,10 +288,6 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		$this->dropDestTable();
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::replace()
-	 * @covers \Wikimedia\Rdbms\Database::insertId()
-	 */
 	public function testInsertIdAfterReplace() {
 		$dTable = $this->createDestTable();
 
@@ -341,10 +309,6 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		$this->dropDestTable();
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::upsert()
-	 * @covers \Wikimedia\Rdbms\Database::insertId()
-	 */
 	public function testInsertIdAfterUpsert() {
 		$dTable = $this->createDestTable();
 
@@ -370,10 +334,6 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		$this->dropDestTable();
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::insertSelect()
-	 * @covers \Wikimedia\Rdbms\Database::insertId()
-	 */
 	public function testInsertIdAfterInsertSelect() {
 		$sTable = $this->createSourceTable();
 		$dTable = $this->createDestTable();
@@ -403,10 +363,6 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		$this->dropDestTable();
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::insertSelect()
-	 * @covers \Wikimedia\Rdbms\Database::insertId()
-	 */
 	public function testInsertIdAfterInsertSelectIgnore() {
 		$sTable = $this->createSourceTable();
 		$dTable = $this->createDestTable();
@@ -500,13 +456,6 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $this->conn->affectedRows(), 'Key conflict, nothing changed on database' );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseMySQL::fieldExists()
-	 * @covers \Wikimedia\Rdbms\DatabaseMySQL::indexExists()
-	 * @covers \Wikimedia\Rdbms\DatabaseMySQL::indexUnique()
-	 * @covers \Wikimedia\Rdbms\DatabaseMySQL::fieldInfo()
-	 * @covers \Wikimedia\Rdbms\DatabaseMySQL::indexInfo()
-	 */
 	public function testFieldAndIndexInfo() {
 		global $wgDBname;
 
@@ -586,8 +535,6 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 
 	/**
 	 * Insert a null value into a field that is not nullable using INSERT IGNORE
-	 *
-	 * @covers \Wikimedia\Rdbms\DatabaseMySQL::checkInsertWarnings
 	 */
 	public function testInsertIgnoreNull() {
 		$this->expectException( DBQueryError::class );
