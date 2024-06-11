@@ -106,7 +106,7 @@ For notes on 1.42.x and older releases, see HISTORY.
 
 ==== Changed external libraries ====
 * Updated codex, codex-design-tokens and codex-icons
-  from v1.3.6 to v1.6.1.
+  from v1.3.6 to v1.7.0.
 * Updated guzzlehttp/guzzle from 7.7.1 to 7.8.1.
 * Updated pear/net_smtp from 1.11.1 to 1.12.1.
 * Updated monolog/monolog from 2.9.2 to 2.9.3.

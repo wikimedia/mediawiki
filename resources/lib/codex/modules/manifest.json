@@ -9,7 +9,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxIcon.css"
+      "Icon.css"
     ]
   },
   "__plugin-vue_export-helper.js": {
@@ -55,7 +55,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxAccordion.css"
+      "CdxAccordion.css"
     ]
   },
   "src/components/button-group/ButtonGroup.vue": {
@@ -70,7 +70,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxButtonGroup.css"
+      "CdxButtonGroup.css"
     ]
   },
   "src/components/button/Button.vue": {
@@ -84,7 +84,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxButton.css"
+      "CdxButton.css"
     ]
   },
   "src/components/card/Card.vue": {
@@ -98,7 +98,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxCard.css"
+      "CdxCard.css"
     ]
   },
   "src/components/checkbox/Checkbox.vue": {
@@ -116,7 +116,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxCheckbox.css"
+      "CdxCheckbox.css"
     ]
   },
   "src/components/chip-input/ChipInput.vue": {
@@ -134,7 +134,7 @@
       "src/composables/useComputedDirection.ts"
     ],
     "css": [
-      "CdxCdxChipInput.css"
+      "CdxChipInput.css"
     ]
   },
   "src/components/combobox/Combobox.vue": {
@@ -156,7 +156,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxCombobox.css"
+      "CdxCombobox.css"
     ]
   },
   "src/components/dialog/Dialog.vue": {
@@ -172,7 +172,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxDialog.css"
+      "CdxDialog.css"
     ]
   },
   "src/components/field/Field.vue": {
@@ -189,7 +189,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxField.css"
+      "CdxField.css"
     ]
   },
   "src/components/icon/Icon.vue": {
@@ -213,7 +213,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxInfoChip.css"
+      "CdxInfoChip.css"
     ]
   },
   "src/components/label/Label.vue": {
@@ -228,7 +228,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxLabel.css"
+      "CdxLabel.css"
     ]
   },
   "src/components/lookup/Lookup.vue": {
@@ -248,7 +248,26 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxLookup.css"
+      "CdxLookup.css"
+    ]
+  },
+  "src/components/menu-button/MenuButton.vue": {
+    "file": "CdxMenuButton.cjs",
+    "name": "CdxMenuButton",
+    "src": "src/components/menu-button/MenuButton.vue",
+    "isEntry": true,
+    "imports": [
+      "src/components/toggle-button/ToggleButton.vue",
+      "src/components/menu/Menu.vue",
+      "src/composables/useFieldData.ts",
+      "src/composables/useFloatingMenu.ts",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useModelWrapper.ts",
+      "src/composables/useSplitAttributes.ts",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxMenuButton.css"
     ]
   },
   "src/components/menu-item/MenuItem.vue": {
@@ -263,7 +282,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxMenuItem.css"
+      "CdxMenuItem.css"
     ]
   },
   "src/components/menu/Menu.vue": {
@@ -280,7 +299,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxMenu.css"
+      "CdxMenu.css"
     ]
   },
   "src/components/message/Message.vue": {
@@ -295,7 +314,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxMessage.css"
+      "CdxMessage.css"
     ]
   },
   "src/components/progress-bar/ProgressBar.vue": {
@@ -308,7 +327,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxProgressBar.css"
+      "CdxProgressBar.css"
     ]
   },
   "src/components/radio/Radio.vue": {
@@ -325,7 +344,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxRadio.css"
+      "CdxRadio.css"
     ]
   },
   "src/components/search-input/SearchInput.vue": {
@@ -344,7 +363,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxSearchInput.css"
+      "CdxSearchInput.css"
     ]
   },
   "src/components/search-result-title/SearchResultTitle.vue": {
@@ -356,7 +375,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxSearchResultTitle.css"
+      "CdxSearchResultTitle.css"
     ]
   },
   "src/components/select/Select.vue": {
@@ -376,7 +395,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxSelect.css"
+      "CdxSelect.css"
     ]
   },
   "src/components/tab/Tab.vue": {
@@ -389,7 +408,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxTab.css"
+      "CdxTab.css"
     ]
   },
   "src/components/table/Table.vue": {
@@ -405,7 +424,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxTable.css"
+      "CdxTable.css"
     ]
   },
   "src/components/tabs/Tabs.vue": {
@@ -426,7 +445,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxTabs.css"
+      "CdxTabs.css"
     ]
   },
   "src/components/text-area/TextArea.vue": {
@@ -443,7 +462,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxTextArea.css"
+      "CdxTextArea.css"
     ]
   },
   "src/components/text-input/TextInput.vue": {
@@ -460,7 +479,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxTextInput.css"
+      "CdxTextInput.css"
     ]
   },
   "src/components/thumbnail/Thumbnail.vue": {
@@ -474,7 +493,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxThumbnail.css"
+      "CdxThumbnail.css"
     ]
   },
   "src/components/toggle-button-group/ToggleButtonGroup.vue": {
@@ -489,7 +508,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxToggleButtonGroup.css"
+      "CdxToggleButtonGroup.css"
     ]
   },
   "src/components/toggle-button/ToggleButton.vue": {
@@ -502,7 +521,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxToggleButton.css"
+      "CdxToggleButton.css"
     ]
   },
   "src/components/toggle-switch/ToggleSwitch.vue": {
@@ -520,7 +539,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxToggleSwitch.css"
+      "CdxToggleSwitch.css"
     ]
   },
   "src/components/typeahead-search/TypeaheadSearch.vue": {
@@ -538,7 +557,7 @@
       "__plugin-vue_export-helper.js"
     ],
     "css": [
-      "CdxCdxTypeaheadSearch.css"
+      "CdxTypeaheadSearch.css"
     ]
   },
   "src/composables/useComputedDirection.ts": {

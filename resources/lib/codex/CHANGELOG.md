@@ -1,3 +1,43 @@
+# 1.7.0 / 2024-06-11
+
+## Deprecating changes
+- [DEPRECATING CHANGE] icons: Unify capitalization (Winston Sung)
+
+This release renames `cdxIconWikiText` to `cdxIconWikitext`, and
+`cdxIconNoWikiText` to `cdxIconNoWikitext`. The old names are deprecated,
+but can still be used.
+
+## Features
+- MenuButton: Publish the MenuButton component (Lauralyn Watson)
+- Radio: Add disabled+selected state styles (akiel)
+- tokens: Update `content-added` and `content-removed` token values (Derek Torsani)
+
+## Styles
+- tokens: Make CSS variable output include references (Roan Kattouw)
+- tokens: Don't reformat tokens without references (Roan Kattouw)
+
+## Code
+- build: Remove unneeded filename prefix (Anne Tomasevich)
+- demos: Add Vue version of disabled Radio group (Anne Tomasevich)
+- tokens: Move font-family theme tokens to work around SD bug (Roan Kattouw)
+- generateMWExamples: Fix script on Windows (Bartosz Dziewoński)
+- ToggleButton: Use component name in icon-only warning (Anne Tomasevich)
+- MenuButton: update the maximum width (Lauralyn Watson)
+- MenuButton: refactor the API for consistency (Lauralyn Watson)
+- MenuButton: Remove unnecessary `../components/` in import paths (Roan Kattouw)
+
+## Documentation
+- docs: remove `export` from public types (Lauralyn Watson)
+- docs: add MenuButton to Menu docs (Lauralyn Watson)
+- docs: add MenuButton demos (Lauralyn Watson)
+- docs: update "Content" recommendations (Bárbara Martínez Calvo)
+- docs: clean up MenuButton demo files and demo order (Anne Tomasevich)
+- docs: make small corrections in “Bidirectionality” guidelines (Bárbara Martínez Calvo)
+- docs, MenuButton: demo a selection triggering an action (Lauralyn Watson)
+- docs, MenuButton: update demos based on design feedback (Lauralyn Watson)
+- docs: update MenuButton max-width in the guidelines (Bárbara Martínez Calvo)
+- docs: update MenuButton's "Component limitations" guidelines (Bárbara Martínez Calvo)
+
 # 1.6.1 / 2024-05-29
 
 ## Features
