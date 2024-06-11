@@ -26,7 +26,7 @@ SavedLinksListWidget = function MwRcfiltersUiSavedLinksListWidget( controller, m
 	config = config || {};
 
 	// Parent
-	SavedLinksListWidget.super.call( this, $.extend( {
+	SavedLinksListWidget.super.call( this, Object.assign( {
 		classes: [ 'mw-rcfilters-ui-savedLinksListWidget-button' ],
 		label: mw.msg( 'rcfilters-quickfilters' ),
 		icon: 'bookmark',

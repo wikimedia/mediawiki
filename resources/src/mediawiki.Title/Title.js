@@ -117,7 +117,7 @@ const mwString = require( 'mediawiki.String' ),
 	rSplit = /^(.+?)_*:_*(.*)$/,
 
 	// See MediaWikiTitleCodec.php#getTitleInvalidRegex
-	// eslint-disable-next-line security/detect-non-literal-regexp
+
 	rInvalid = new RegExp(
 		'[^' + mw.config.get( 'wgLegalTitleChars' ) + ']' +
 		// URL percent encoding sequences interfere with the ability
@@ -169,7 +169,7 @@ const mwString = require( 'mediawiki.String' ),
 		},
 		// slash, colon (not supported by file systems like NTFS/Windows, Mac OS 9 [:], ext4 [/])
 		{
-			// eslint-disable-next-line security/detect-non-literal-regexp
+
 			pattern: new RegExp( '[' + mw.config.get( 'wgIllegalFileChars', '' ) + ']', 'g' ),
 			replace: '-',
 			fileRule: true
@@ -188,7 +188,7 @@ const mwString = require( 'mediawiki.String' ),
 		},
 		// everything that wasn't covered yet
 		{
-			// eslint-disable-next-line security/detect-non-literal-regexp
+
 			pattern: new RegExp( rInvalid.source, 'g' ),
 			replace: '-',
 			generalRule: true
@@ -528,7 +528,7 @@ Title.newFromUserInput = function ( title, defaultNamespace, options ) {
 	let namespace = parseInt( defaultNamespace ) || NS_MAIN;
 
 	// merge options into defaults
-	options = $.extend( {
+	options = Object.assign( {
 		forUploading: true
 	}, options );
 

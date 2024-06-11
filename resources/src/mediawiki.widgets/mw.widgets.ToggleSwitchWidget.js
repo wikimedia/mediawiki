@@ -18,7 +18,7 @@
 	 */
 	mw.widgets.ToggleSwitchWidget = function MwWidgetsToggleWidget( config ) {
 		// Parent constructor
-		mw.widgets.ToggleSwitchWidget.super.call( this, $.extend( {}, config, {} ) );
+		mw.widgets.ToggleSwitchWidget.super.call( this, Object.assign( {}, config, {} ) );
 
 		if ( 'name' in config ) {
 			// Use this instead of <input type="hidden">, because hidden inputs do not have separate

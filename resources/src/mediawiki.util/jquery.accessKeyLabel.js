@@ -122,7 +122,7 @@ function updateTooltipOnElement( element, titleElement ) {
 
 	var separatorMsg = mw.message( 'word-separator' ).plain();
 	var parts = ( separatorMsg + mw.message( 'brackets' ).plain() ).split( '$1' );
-	// eslint-disable-next-line security/detect-non-literal-regexp
+
 	var regexp = new RegExp( parts.map( mw.util.escapeRegExp ).join( '.*?' ) + '$' );
 	var newTitle = oldTitle.replace( regexp, '' );
 	var accessKeyLabel = getAccessKeyLabel( element );

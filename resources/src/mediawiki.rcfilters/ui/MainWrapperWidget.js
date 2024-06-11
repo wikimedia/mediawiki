@@ -30,7 +30,7 @@ var SavedLinksListWidget = require( './SavedLinksListWidget.js' ),
 MainWrapperWidget = function MwRcfiltersUiMainWrapperWidget(
 	controller, model, savedQueriesModel, changesListModel, config
 ) {
-	config = $.extend( {}, config );
+	config = Object.assign( {}, config );
 
 	// Parent
 	MainWrapperWidget.super.call( this, config );

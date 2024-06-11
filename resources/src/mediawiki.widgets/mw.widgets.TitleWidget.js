@@ -41,7 +41,7 @@
 	 */
 	mw.widgets.TitleWidget = function MwWidgetsTitleWidget( config ) {
 		// Config initialization
-		config = $.extend( {
+		config = Object.assign( {
 			maxLength: 255,
 			limit: 10
 		}, config );

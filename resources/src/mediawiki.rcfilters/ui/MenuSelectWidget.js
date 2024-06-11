@@ -46,7 +46,7 @@ MenuSelectWidget = function MwRcfiltersUiMenuSelectWidget( controller, model, co
 	this.footers = [];
 
 	// Parent
-	MenuSelectWidget.super.call( this, $.extend( config, {
+	MenuSelectWidget.super.call( this, Object.assign( config, {
 		$autoCloseIgnore: this.$overlay,
 		width: config.isMobile ? undefined : 650,
 		// Our filtering is done through the model

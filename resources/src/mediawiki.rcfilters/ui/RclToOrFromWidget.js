@@ -25,7 +25,7 @@ var RclToOrFromWidget = function MwRcfiltersUiRclToOrFromWidget(
 	} );
 
 	// Parent
-	RclToOrFromWidget.super.call( this, $.extend( {
+	RclToOrFromWidget.super.call( this, Object.assign( {
 		classes: [ 'mw-rcfilters-ui-rclToOrFromWidget' ],
 		menu: { items: [ this.showLinkedFrom, this.showLinkedTo ] }
 	}, config ) );

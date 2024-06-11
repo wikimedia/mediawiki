@@ -23,7 +23,7 @@ FilterItem = function MwRcfiltersDmFilterItem( param, groupModel, config ) {
 	this.groupModel = groupModel;
 
 	// Parent
-	FilterItem.super.call( this, param, $.extend( {
+	FilterItem.super.call( this, param, Object.assign( {
 		namePrefix: this.groupModel.getNamePrefix()
 	}, config ) );
 	// Mixin constructor
@@ -270,7 +270,7 @@ FilterItem.prototype.isFullyCovered = function () {
  * @return {Object} Filter conflicts
  */
 FilterItem.prototype.getConflicts = function () {
-	return $.extend( {}, this.conflicts, this.getGroupModel().getConflicts() );
+	return Object.assign( {}, this.conflicts, this.getGroupModel().getConflicts() );
 };
 
 /**

@@ -474,7 +474,7 @@
 
 		if ( !config.showDiff ) {
 			params[ config.textParam ] = config.$textareaNode.textSelection( 'getContents' );
-			$.extend( params, {
+			Object.assign( params, {
 				prop: 'text|indicators|displaytitle|modules|jsconfigvars|categorieshtml|sections|templates|langlinks|limitreporthtml|parsewarningshtml',
 				pst: true,
 				preview: true,
@@ -493,7 +493,7 @@
 			delete params.summary;
 		}
 
-		$.extend( params, config.parseParams );
+		Object.assign( params, config.parseParams );
 
 		return api.post( params, { headers: { 'Promise-Non-Write-API-Action': 'true' } } );
 	}
@@ -693,7 +693,7 @@
 	 * @stable
 	 */
 	function doPreview( config ) {
-		config = $.extend( {
+		config = Object.assign( {
 			$previewNode: $( '#wikiPreview' ),
 			$diffNode: $( '#wikiDiff' ),
 			$formNode: $( '#editform' ),

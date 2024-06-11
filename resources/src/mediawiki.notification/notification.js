@@ -423,7 +423,7 @@
 		 */
 		notify: function ( message, options ) {
 			var notif;
-			options = $.extend( {}, notification.defaults, options );
+			options = Object.assign( {}, notification.defaults, options );
 
 			notif = new Notification( message, options );
 

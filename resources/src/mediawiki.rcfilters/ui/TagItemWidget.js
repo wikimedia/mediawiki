@@ -25,7 +25,7 @@ var TagItemWidget = function MwRcfiltersUiTagItemWidget(
 	this.itemModel = itemModel;
 	this.selected = false;
 
-	TagItemWidget.super.call( this, $.extend( {
+	TagItemWidget.super.call( this, Object.assign( {
 		data: this.itemModel.getName()
 	}, config ) );
 
@@ -33,7 +33,7 @@ var TagItemWidget = function MwRcfiltersUiTagItemWidget(
 	this.popupLabel = new OO.ui.LabelWidget();
 
 	// Mixin constructors
-	OO.ui.mixin.PopupElement.call( this, $.extend( {
+	OO.ui.mixin.PopupElement.call( this, Object.assign( {
 		popup: {
 			padded: false,
 			align: 'center',

@@ -41,7 +41,7 @@
 	 */
 	mw.widgets.CategoryMultiselectWidget = function MWCategoryMultiselectWidget( config ) {
 		// Config initialization
-		config = $.extend( {
+		config = Object.assign( {
 			limit: 10,
 			searchTypes: [ mw.widgets.CategoryMultiselectWidget.SearchType.OpenSearch ],
 			placeholder: mw.msg( 'mw-widgets-categoryselector-add-category-placeholder' )
@@ -61,7 +61,7 @@
 		} ) );
 
 		// Mixin constructors
-		OO.ui.mixin.PendingElement.call( this, $.extend( {}, config, { $pending: this.$handle } ) );
+		OO.ui.mixin.PendingElement.call( this, Object.assign( {}, config, { $pending: this.$handle } ) );
 
 		// Event handler to call the autocomplete methods
 		this.input.$input.on( 'change input cut paste', OO.ui.debounce( this.updateMenuItems.bind( this ), 100 ) );

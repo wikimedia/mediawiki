@@ -21,7 +21,7 @@
 	 */
 	mw.widgets.NamespaceInputWidget = function MwWidgetsNamespaceInputWidget( config ) {
 		// Configuration initialization
-		config = $.extend( {}, config, { options: this.constructor.static.getNamespaceDropdownOptions( config ) } );
+		config = Object.assign( {}, config, { options: this.constructor.static.getNamespaceDropdownOptions( config ) } );
 
 		// Parent constructor
 		mw.widgets.NamespaceInputWidget.super.call( this, config );

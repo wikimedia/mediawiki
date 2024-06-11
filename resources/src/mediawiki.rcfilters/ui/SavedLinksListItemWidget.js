@@ -15,7 +15,7 @@ var SavedLinksListItemWidget = function MwRcfiltersUiSavedLinksListWidget( model
 	this.model = model;
 
 	// Parent
-	SavedLinksListItemWidget.super.call( this, $.extend( {
+	SavedLinksListItemWidget.super.call( this, Object.assign( {
 		data: this.model.getID(),
 		label: this.model.getLabel(),
 		title: this.model.getLabel()

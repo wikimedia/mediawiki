@@ -31,7 +31,7 @@
 	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter = function MwWidgetsDatetimeProlepticGregorianDateTimeFormatter( config ) {
 		this.constructor.static.setupDefaults();
 
-		config = $.extend( {
+		config = Object.assign( {
 			weekStartsOn: 0,
 			hour12Periods: this.constructor.static.hour12Periods
 		}, config );
@@ -64,7 +64,7 @@
 				config.shortDayNames[ k ] = v.slice( 0, 3 );
 			} );
 		}
-		config = $.extend( {
+		config = Object.assign( {
 			fullMonthNames: this.constructor.static.fullMonthNames,
 			shortMonthNames: this.constructor.static.shortMonthNames,
 			fullDayNames: this.constructor.static.fullDayNames,
@@ -488,11 +488,11 @@
 	mw.widgets.datetime.ProlepticGregorianDateTimeFormatter.prototype.getDateFromComponents = function ( components ) {
 		const date = new Date();
 
-		components = $.extend( {}, components );
+		components = Object.assign( {}, components );
 		if ( components.hour === undefined && components.hour12 !== undefined && components.hour12period !== undefined ) {
 			components.hour = ( components.hour12 % 12 ) + ( components.hour12period ? 12 : 0 );
 		}
-		components = $.extend( {}, this.getComponentsFromDate( null ), components );
+		components = Object.assign( {}, this.getComponentsFromDate( null ), components );
 
 		if ( components.zone ) {
 			// Can't just use the constructor because that's stupid about ancient years.

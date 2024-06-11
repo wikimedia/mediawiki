@@ -33,7 +33,7 @@
 	 */
 	mw.widgets.UsersMultiselectWidget = function MwWidgetsUsersMultiselectWidget( config ) {
 		// Config initialization
-		config = $.extend( {
+		config = Object.assign( {
 			limit: 10,
 			ipAllowed: false,
 			ipRangeAllowed: false,
@@ -44,10 +44,10 @@
 		}, config );
 
 		// Parent constructor
-		mw.widgets.UsersMultiselectWidget.super.call( this, $.extend( {}, config, {} ) );
+		mw.widgets.UsersMultiselectWidget.super.call( this, Object.assign( {}, config, {} ) );
 
 		// Mixin constructors
-		OO.ui.mixin.PendingElement.call( this, $.extend( {}, config, { $pending: this.$handle } ) );
+		OO.ui.mixin.PendingElement.call( this, Object.assign( {}, config, { $pending: this.$handle } ) );
 
 		// Properties
 		this.limit = config.limit;

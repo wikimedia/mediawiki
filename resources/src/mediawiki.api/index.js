@@ -56,11 +56,11 @@
 	 *  [ajax()]{@link mw.Api#ajax}) later on.
 	 */
 	mw.Api = function ( options ) {
-		var defaults = $.extend( {}, options ),
+		var defaults = Object.assign( {}, options ),
 			setsUrl = options && options.ajax && options.ajax.url !== undefined;
 
-		defaults.parameters = $.extend( {}, defaultOptions.parameters, defaults.parameters );
-		defaults.ajax = $.extend( {}, defaultOptions.ajax, defaults.ajax );
+		defaults.parameters = Object.assign( {}, defaultOptions.parameters, defaults.parameters );
+		defaults.ajax = Object.assign( {}, defaultOptions.ajax, defaults.ajax );
 
 		// Force a string if we got a mw.Uri object
 		if ( setsUrl ) {
@@ -230,8 +230,8 @@
 				apiDeferred = $.Deferred(),
 				xhr, key, formData;
 
-			parameters = $.extend( {}, this.defaults.parameters, parameters );
-			ajaxOptions = $.extend( {}, this.defaults.ajax, ajaxOptions );
+			parameters = Object.assign( {}, this.defaults.parameters, parameters );
+			ajaxOptions = Object.assign( {}, this.defaults.ajax, ajaxOptions );
 
 			// Ensure that token parameter is last (per [[mw:API:Edit#Token]]).
 			if ( parameters.token ) {
@@ -418,7 +418,7 @@
 			}
 
 			if ( !d ) {
-				apiPromise = this.get( $.extend( {
+				apiPromise = this.get( Object.assign( {
 					action: 'query',
 					meta: 'tokens',
 					type: type

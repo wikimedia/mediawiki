@@ -20,7 +20,7 @@ var ChangesListWrapperWidget = function MwRcfiltersUiChangesListWrapperWidget(
 	$changesListRoot,
 	config
 ) {
-	config = $.extend( {}, config, {
+	config = Object.assign( {}, config, {
 		$element: $changesListRoot
 	} );
 

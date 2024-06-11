@@ -401,6 +401,7 @@
 
 	/**
 	 * Execute a textSelection command about the element.
+	 *
 	 * @example
 	 * var $textbox = $( '#wpTextbox1' );
 	 * $textbox.textSelection( 'setContents', 'This is bold!' );
@@ -434,7 +435,7 @@
 			// case 'getSelection': // no params
 			// case 'replaceSelection': // no params with defaults
 			case 'encapsulateSelection':
-				commandOptions = $.extend( {
+				commandOptions = Object.assign( {
 					pre: '',
 					peri: '',
 					post: '',
@@ -447,12 +448,12 @@
 				}, commandOptions );
 				break;
 			case 'getCaretPosition':
-				commandOptions = $.extend( {
+				commandOptions = Object.assign( {
 					startAndEnd: false
 				}, commandOptions );
 				break;
 			case 'setSelection':
-				commandOptions = $.extend( {
+				commandOptions = Object.assign( {
 					start: undefined,
 					end: undefined
 				}, commandOptions );
@@ -461,7 +462,7 @@
 				}
 				break;
 			case 'scrollToCaretPosition':
-				commandOptions = $.extend( {
+				commandOptions = Object.assign( {
 					force: false
 				}, commandOptions );
 				break;

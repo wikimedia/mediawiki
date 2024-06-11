@@ -61,9 +61,7 @@ function runThroughMainPageRequests( runCount = 1 ) {
 class RunJobs {
 
 	static run() {
-		browser.call( () => {
-			return runThroughMainPageRequests();
-		} );
+		browser.call( () => runThroughMainPageRequests() );
 	}
 }
 

@@ -12,7 +12,7 @@
 		 */
 		parse: function ( content, additionalParams ) {
 			var apiPromise,
-				config = $.extend( {
+				config = Object.assign( {
 					formatversion: 2,
 					action: 'parse',
 					// Minimize the JSON we get back, there is no way to access anything else anyway

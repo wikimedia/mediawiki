@@ -21,7 +21,7 @@
 		const RFC2822 = 'ddd, DD MMM YYYY HH:mm:ss [GMT]';
 
 		// Config initialization
-		config = $.extend( {}, config );
+		config = Object.assign( {}, config );
 
 		this.relativeField = new config.RelativeInputClass( config.relativeInput );
 		this.relativeField.$element.addClass( 'mw-widget-ExpiryWidget-relative' );

@@ -50,7 +50,7 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.MediaResourceProvider.prototype.getStaticParams = function () {
-		return $.extend(
+		return Object.assign(
 			{},
 			// Parent method
 			mw.widgets.MediaResourceProvider.super.prototype.getStaticParams.call( this ),
@@ -173,7 +173,7 @@
 		}
 
 		const api = this.isLocal ? new mw.Api() : new mw.ForeignApi( this.getAPIurl(), { anonymous: true } );
-		const xhr = api.get( $.extend( {}, this.getStaticParams(), this.getUserParams(), this.getContinueData( howMany ) ) );
+		const xhr = api.get( Object.assign( {}, this.getStaticParams(), this.getUserParams(), this.getContinueData( howMany ) ) );
 		return xhr
 			.then( ( data ) => {
 				const results = [];

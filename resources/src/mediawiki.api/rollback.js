@@ -11,7 +11,7 @@
 		 * @return {jQuery.Promise}
 		 */
 		rollback: function ( page, user, params ) {
-			return this.postWithToken( 'rollback', $.extend( {
+			return this.postWithToken( 'rollback', Object.assign( {
 				action: 'rollback',
 				title: String( page ),
 				user: user,

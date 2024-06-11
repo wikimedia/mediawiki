@@ -24,7 +24,7 @@
 	 */
 	mw.widgets.TagMultiselectWidget = function MwWidgetsTagMultiselectWidget( config ) {
 		// Parent constructor
-		mw.widgets.TagMultiselectWidget.super.call( this, $.extend( {}, config, {} ) );
+		mw.widgets.TagMultiselectWidget.super.call( this, Object.assign( {}, config, {} ) );
 
 		if ( 'name' in config ) {
 			// Use this instead of <input type="hidden">, because hidden inputs do not have separate

@@ -567,7 +567,7 @@
 	 * @return {string|null} Resolved path, or null if relativePath does not start with ./ or ../
 	 */
 	function resolveRelativePath( relativePath, basePath ) {
-		// eslint-disable-next-line security/detect-unsafe-regex
+
 		var relParts = relativePath.match( /^((?:\.\.?\/)+)(.*)$/ );
 		if ( !relParts ) {
 			return null;
@@ -1644,7 +1644,7 @@
 		 * @throws {Error} If type is invalid
 		 */
 		load: function ( modules, type ) {
-			// eslint-disable-next-line security/detect-unsafe-regex
+
 			if ( typeof modules === 'string' && /^(https?:)?\/?\//.test( modules ) ) {
 				// Called with a url like so:
 				// - "https://example.org/x.js"

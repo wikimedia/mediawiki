@@ -19,7 +19,7 @@
 	 */
 	mw.widgets.MediaSearchWidget = function MwWidgetsMediaSearchWidget( config ) {
 		// Configuration initialization
-		config = $.extend( {
+		config = Object.assign( {
 			placeholder: mw.msg( 'mw-widgets-mediasearch-input-placeholder' )
 		}, config );
 
@@ -43,7 +43,6 @@
 		this.promises = [];
 		this.$panels = config.$panels;
 
-		// eslint-disable-next-line security/detect-non-literal-regexp
 		this.externalLinkUrlProtocolsRegExp = new RegExp(
 			'^(' + mw.config.get( 'wgUrlProtocols' ) + ')',
 			'i'

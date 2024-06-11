@@ -120,7 +120,7 @@ module.exports = ( function () {
 				url += ( url.indexOf( '?' ) !== -1 ? '&' : '?' ) +
 					'origin=' + encodeURIComponent( origin );
 			}
-			newAjaxOptions = $.extend( {}, ajaxOptions, { url: url } );
+			newAjaxOptions = Object.assign( {}, ajaxOptions, { url: url } );
 		} else {
 			newAjaxOptions = ajaxOptions;
 		}

@@ -14,7 +14,7 @@
 			var that = this;
 			options = options || {};
 			messages = Array.isArray( messages ) ? messages : [ messages ];
-			return this.get( $.extend( {
+			return this.get( Object.assign( {
 				action: 'query',
 				meta: 'allmessages',
 				ammessages: messages.slice( 0, 50 ),
@@ -42,7 +42,7 @@
 				return that.getMessages( messages.slice( 50 ), options ).then(
 					function ( innerResult ) {
 						// Merge result objects
-						return $.extend( result, innerResult );
+						return Object.assign( result, innerResult );
 					}
 				);
 			} );

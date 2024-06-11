@@ -63,10 +63,8 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 		const seq = [
 			{ init: $content.css( 'display' ) }
 		];
-		$collapsible.on( 'afterCollapse.mw-collapsible', () =>
-			seq.push( { afterCollapse: $content.css( 'display' ) } ) );
-		$collapsible.on( 'afterExpand.mw-collapsible', () =>
-			seq.push( { afterExpand: $content.css( 'display' ) } ) );
+		$collapsible.on( 'afterCollapse.mw-collapsible', () => seq.push( { afterCollapse: $content.css( 'display' ) } ) );
+		$collapsible.on( 'afterExpand.mw-collapsible', () => seq.push( { afterExpand: $content.css( 'display' ) } ) );
 
 		$toggle.trigger( 'click' ); // Collapse
 		$toggle.trigger( 'click' ); // Expand
@@ -94,10 +92,8 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 		const seq = [
 			'init', { header: $header.css( 'display' ), content: $content.css( 'display' ) }
 		];
-		$collapsible.on( 'afterCollapse.mw-collapsible', () =>
-			seq.push( 'afterCollapse', { header: $header.css( 'display' ), content: $content.css( 'display' ) } ) );
-		$collapsible.on( 'afterExpand.mw-collapsible', () =>
-			seq.push( 'afterExpand', { header: $header.css( 'display' ), content: $content.css( 'display' ) } ) );
+		$collapsible.on( 'afterCollapse.mw-collapsible', () => seq.push( 'afterCollapse', { header: $header.css( 'display' ), content: $content.css( 'display' ) } ) );
+		$collapsible.on( 'afterExpand.mw-collapsible', () => seq.push( 'afterExpand', { header: $header.css( 'display' ), content: $content.css( 'display' ) } ) );
 
 		$toggle.trigger( 'click' ); // Collapse
 		$toggle.trigger( 'click' ); // Expand
@@ -174,10 +170,8 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 		const seq = [
 			'init', { toggle: $toggleItem.css( 'display' ), content: $content.css( 'display' ) }
 		];
-		$collapsible.on( 'afterCollapse.mw-collapsible', () =>
-			seq.push( 'afterCollapse', { toggle: $toggleItem.css( 'display' ), content: $content.css( 'display' ) } ) );
-		$collapsible.on( 'afterExpand.mw-collapsible', () =>
-			seq.push( 'afterExpand', { toggle: $toggleItem.css( 'display' ), content: $content.css( 'display' ) } ) );
+		$collapsible.on( 'afterCollapse.mw-collapsible', () => seq.push( 'afterCollapse', { toggle: $toggleItem.css( 'display' ), content: $content.css( 'display' ) } ) );
+		$collapsible.on( 'afterExpand.mw-collapsible', () => seq.push( 'afterExpand', { toggle: $toggleItem.css( 'display' ), content: $content.css( 'display' ) } ) );
 
 		$toggle.trigger( 'click' );
 		$toggle.trigger( 'click' );

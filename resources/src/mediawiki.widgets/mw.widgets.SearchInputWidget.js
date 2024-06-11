@@ -28,7 +28,7 @@
 		// form submissions won't work.
 		const $form = config.$input ? config.$input.closest( 'form' ) : $();
 
-		config = $.extend( {
+		config = Object.assign( {
 			icon: 'search',
 			maxLength: undefined,
 			showPendingRequest: false,

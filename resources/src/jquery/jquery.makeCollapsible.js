@@ -257,7 +257,7 @@
 					toggleARIA: true,
 					toggleText: { collapseText: collapseText, expandText: expandText }
 				};
-				opts = $.extend( defaultOpts, options, opts );
+				opts = Object.assign( defaultOpts, options, opts );
 
 				// Take care of cloned content (e.g. in reference popups): if the toggle
 				// link is not inside the original collapsible, make it toggle the
@@ -302,7 +302,7 @@
 			if ( $customTogglers && $customTogglers.length ) {
 				actionHandler = function ( e, opts ) {
 					var defaultOpts = {};
-					opts = $.extend( defaultOpts, options, opts );
+					opts = Object.assign( defaultOpts, options, opts );
 					togglingHandler( $( this ), $collapsible, e, opts );
 				};
 

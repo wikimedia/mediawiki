@@ -39,8 +39,8 @@
 		mw.widgets.CalendarWidget.super.call( this, config );
 
 		// Mixin constructors
-		OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, { $tabIndexed: this.$element } ) );
-		OO.ui.mixin.ClippableElement.call( this, $.extend( { $clippable: this.$element }, config ) );
+		OO.ui.mixin.TabIndexedElement.call( this, Object.assign( {}, config, { $tabIndexed: this.$element } ) );
+		OO.ui.mixin.ClippableElement.call( this, Object.assign( { $clippable: this.$element }, config ) );
 		OO.ui.mixin.FloatableElement.call( this, config );
 
 		// Flipping implementation derived from MenuSelectWidget

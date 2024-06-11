@@ -13,7 +13,7 @@ var LiveUpdateButtonWidget = function MwRcfiltersUiLiveUpdateButtonWidget( contr
 	config = config || {};
 
 	// Parent
-	LiveUpdateButtonWidget.super.call( this, $.extend( {
+	LiveUpdateButtonWidget.super.call( this, Object.assign( {
 		label: mw.msg( 'rcfilters-liveupdates-button' )
 	}, config ) );
 

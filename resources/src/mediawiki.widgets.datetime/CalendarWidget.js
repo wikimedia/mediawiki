@@ -30,7 +30,7 @@
 	 */
 	mw.widgets.datetime.CalendarWidget = function MwWidgetsDatetimeCalendarWidget( config ) {
 		// Configuration initialization
-		config = $.extend( {
+		config = Object.assign( {
 			min: null,
 			max: null,
 			focusedDate: new Date(),
@@ -42,7 +42,7 @@
 		mw.widgets.datetime.CalendarWidget.super.call( this, config );
 
 		// Mixin constructors
-		OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, { $tabIndexed: this.$element } ) );
+		OO.ui.mixin.TabIndexedElement.call( this, Object.assign( {}, config, { $tabIndexed: this.$element } ) );
 
 		// Properties
 		if ( config.min instanceof Date && config.min.getTime() >= -62167219200000 ) {

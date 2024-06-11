@@ -213,7 +213,7 @@
 		for ( var key in actionPaths ) {
 			var parts = actionPaths[ key ].split( '$1' );
 			parts = parts.map( mw.util.escapeRegExp );
-			// eslint-disable-next-line security/detect-non-literal-regexp
+
 			var m = new RegExp( parts.join( '(.+)' ) ).exec( url );
 			if ( m && m[ 1 ] ) {
 				return key;

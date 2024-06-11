@@ -251,7 +251,7 @@ function loadSearchModule( moduleName ) {
 		window.performance &&
 		performance.mark &&
 		performance.measure &&
-		// eslint-disable-next-line compat/compat
+
 		performance.getEntriesByName ),
 		loadStartMark = 'mwVectorLegacySearchLoadStart',
 		loadEndMark = 'mwVectorLegacySearchLoadEnd';

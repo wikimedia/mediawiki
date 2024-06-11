@@ -24,7 +24,7 @@
 	mw.widgets.datetime.DateTimeFormatter = function MwWidgetsDatetimeDateTimeFormatter( config ) {
 		this.constructor.static.setupDefaults();
 
-		config = $.extend( {
+		config = Object.assign( {
 			format: '@default',
 			local: false,
 			fullZones: this.constructor.static.fullZones,
@@ -424,7 +424,7 @@
 		if ( v.normalize ) {
 			v = v.normalize();
 		}
-		// eslint-disable-next-line security/detect-non-literal-regexp
+
 		const re = new RegExp( '^\\s*' + mw.util.escapeRegExp( v ), 'i' );
 		for ( k in this.values ) {
 			k = +k;

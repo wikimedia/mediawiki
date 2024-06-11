@@ -25,7 +25,7 @@
 
 		// Properties
 		this.namespace = new mw.widgets.NamespaceInputWidget( config.namespace );
-		this.title = new mw.widgets.TitleInputWidget( $.extend(
+		this.title = new mw.widgets.TitleInputWidget( Object.assign(
 			{},
 			config.title,
 			{

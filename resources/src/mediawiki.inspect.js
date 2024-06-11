@@ -207,7 +207,7 @@
 	 */
 	inspect.grep = function ( pattern ) {
 		if ( typeof pattern.test !== 'function' ) {
-			// eslint-disable-next-line security/detect-non-literal-regexp
+
 			pattern = new RegExp( mw.util.escapeRegExp( pattern ), 'g' );
 		}
 
@@ -307,7 +307,7 @@
 		store: function () {
 			var raw, stats = { enabled: mw.loader.store.enabled };
 			if ( stats.enabled ) {
-				$.extend( stats, mw.loader.store.stats );
+				Object.assign( stats, mw.loader.store.stats );
 				try {
 					raw = localStorage.getItem( mw.loader.store.key );
 					stats.totalSizeInBytes = byteLength( raw );
