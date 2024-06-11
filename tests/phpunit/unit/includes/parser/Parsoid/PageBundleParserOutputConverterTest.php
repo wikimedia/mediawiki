@@ -162,6 +162,14 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 		];
 	}
 
+	public function testLanguageTransfer() {
+		$parserOutput = new ParserOutput( '' );
+		$parserOutput->setLanguage( new Bcp47CodeValue( 'de' ) );
+		$pb = PageBundleParserOutputConverter::pageBundleFromParserOutput( $parserOutput );
+		$this->assertIsString( $pb->headers['content-language'] );
+		$this->assertEquals( 'de', $pb->headers['content-language'] );
+	}
+
 	private function getParsoidOutput(
 		string $rawText,
 		?array $pageBundleData

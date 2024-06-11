@@ -101,7 +101,7 @@ final class PageBundleParserOutputConverter {
 		$headers = $pageBundleData['headers'] ?? [];
 
 		if ( $lang ) {
-			$headers['content-language'] = $lang;
+			$headers['content-language'] = $lang->toBcp47Code();
 		}
 
 		return new PageBundle(
