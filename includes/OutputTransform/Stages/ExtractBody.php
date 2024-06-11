@@ -3,7 +3,6 @@
 namespace MediaWiki\OutputTransform\Stages;
 
 use MediaWiki\Html\HtmlHelper;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\OutputTransform\ContentTextTransformStage;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOutput;
@@ -19,9 +18,13 @@ use Wikimedia\RemexHtml\Serializer\SerializerNode;
 class ExtractBody extends ContentTextTransformStage {
 
 	private LoggerInterface $logger;
+	// @phan-suppress-next-line PhanUndeclaredTypeProperty
+	private ?\MobileContext $mobileContext;
 
-	public function __construct( LoggerInterface $logger ) {
+	// @phan-suppress-next-line PhanUndeclaredTypeParameter
+	public function __construct( LoggerInterface $logger, ?\MobileContext $mobileContext ) {
 		$this->logger = $logger;
+		$this->mobileContext = $mobileContext;
 	}
 
 	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
@@ -69,11 +72,10 @@ class ExtractBody extends ContentTextTransformStage {
 		$baseHref = '';
 		if ( preg_match( '{<base href=["\']([^"\']+)["\'][^>]+>}', $text, $matches ) === 1 ) {
 			$baseHref = $matches[1];
-			$services = MediaWikiServices::getInstance();
-			$mobileContext = $services->has( 'MobileFrontend.Context' ) ?
-				$services->get( 'MobileFrontend.Context' ) : null;
-			if ( $mobileContext !== null && $mobileContext->usingMobileDomain() ) {
-				$mobileUrl = $mobileContext->getMobileUrl( $baseHref );
+			// @phan-suppress-next-line PhanUndeclaredClassMethod
+			if ( $this->mobileContext !== null && $this->mobileContext->usingMobileDomain() ) {
+				// @phan-suppress-next-line PhanUndeclaredClassMethod
+				$mobileUrl = $this->mobileContext->getMobileUrl( $baseHref );
 				if ( $mobileUrl !== false ) {
 					$baseHref = $mobileUrl;
 				}

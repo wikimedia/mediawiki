@@ -15,7 +15,7 @@ use Psr\Log\NullLogger;
 class ExtractBodyTest extends OutputTransformStageTestBase {
 
 	public function createStage(): OutputTransformStage {
-		return new ExtractBody( new NullLogger() );
+		return new ExtractBody( new NullLogger(), null );
 	}
 
 	public function provideShouldRun(): array {
