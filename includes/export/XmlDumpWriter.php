@@ -275,6 +275,7 @@ class XmlDumpWriter {
 				},
 				'Failed to get redirect target of page ' . $page->getId()
 			);
+			$redirect = Title::castFromLinkTarget( $redirect );
 			if ( $redirect instanceof Title && $redirect->isValidRedirectTarget() ) {
 				$out .= '    ';
 				$out .= Xml::element( 'redirect', [ 'title' => self::canonicalTitle( $redirect ) ] );

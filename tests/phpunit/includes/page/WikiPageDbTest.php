@@ -662,6 +662,8 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			MainConfigNames::ForeignFileRepos => [],
 		] );
 
+		$titleFormatter = $this->getServiceContainer()->getTitleFormatter();
+
 		$page = $this->createPage( $title, $text, $model );
 
 		# double check, because this test seems to fail for no reason for some people.
@@ -671,7 +673,8 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		# now, test the actual redirect
 		$redirectStore = $this->getServiceContainer()->getRedirectStore();
 		$t = $redirectStore->getRedirectTarget( $page );
-		$this->assertEquals( $target, $t ? $t->getFullText() : null );
+
+		$this->assertEquals( $target, $t ? $titleFormatter->getFullText( $t ) : null );
 	}
 
 	/**
@@ -1268,11 +1271,11 @@ more stuff
 			? Title::newFromText( $redirectTitle )
 			: $redirectTitle;
 
-		$success = TestingAccessWrapper::newFromObject( $page )
-			->updateRedirectOn( $this->db, $redirectTitle, $lastRevIsRedirect );
+		$success = $this->getServiceContainer()->getRedirectStore()
+			->updateRedirectTarget( $page, $redirectTitle, $lastRevIsRedirect );
 		$this->assertSame( $expectedSuccess, $success, 'Success assertion' );
 		/**
-		 * updateRedirectOn explicitly updates the redirect table (and not the page table).
+		 * updateRedirectTarget explicitly updates the redirect table (and not the page table).
 		 * Most of core checks the page table for redirect status, so we have to be ugly and
 		 * assert a select from the table here.
 		 */
@@ -1294,7 +1297,8 @@ more stuff
 		$targetTitle = Title::newFromText( 'SomeTarget#Frag' );
 		$reflectedTitle = TestingAccessWrapper::newFromObject( $targetTitle );
 		$reflectedTitle->mInterwiki = 'eninter';
-		$page->insertRedirectEntry( $targetTitle, null );
+		$this->getServiceContainer()->getRedirectStore()
+			->updateRedirectTarget( $page, $targetTitle );
 
 		$this->newSelectQueryBuilder()
 			->select( [ 'rd_from', 'rd_namespace', 'rd_title', 'rd_fragment', 'rd_interwiki' ] )
@@ -1307,40 +1311,6 @@ more stuff
 				strval( $targetTitle->getFragment() ),
 				strval( $targetTitle->getInterwiki() ),
 			] ] );
-	}
-
-	public function testInsertRedirectEntry_insertsRedirectEntryWithPageLatest() {
-		$page = $this->createPage( Title::newFromText( __METHOD__ ), 'A' );
-		$this->assertRedirectTableCountForPageId( $page->getId(), [] );
-
-		$targetTitle = Title::newFromText( 'SomeTarget#Frag' );
-		$reflectedTitle = TestingAccessWrapper::newFromObject( $targetTitle );
-		$reflectedTitle->mInterwiki = 'eninter';
-		$page->insertRedirectEntry( $targetTitle, $page->getLatest() );
-
-		$this->newSelectQueryBuilder()
-			->select( [ 'rd_from', 'rd_namespace', 'rd_title', 'rd_fragment', 'rd_interwiki' ] )
-			->from( 'redirect' )
-			->where( [ 'rd_from' => $page->getId() ] )
-			->assertResultSet( [ [
-				strval( $page->getId() ),
-				strval( $targetTitle->getNamespace() ),
-				strval( $targetTitle->getDBkey() ),
-				strval( $targetTitle->getFragment() ),
-				strval( $targetTitle->getInterwiki() ),
-			] ] );
-	}
-
-	public function testInsertRedirectEntry_doesNotInsertIfPageLatestIncorrect() {
-		$page = $this->createPage( Title::newFromText( __METHOD__ ), 'A' );
-		$this->assertRedirectTableCountForPageId( $page->getId(), [] );
-
-		$targetTitle = Title::newFromText( 'SomeTarget#Frag' );
-		$reflectedTitle = TestingAccessWrapper::newFromObject( $targetTitle );
-		$reflectedTitle->mInterwiki = 'eninter';
-		$page->insertRedirectEntry( $targetTitle, 215251 );
-
-		$this->assertRedirectTableCountForPageId( $page->getId(), [] );
 	}
 
 	public function testInsertRedirectEntry_T278367() {
@@ -1348,7 +1318,8 @@ more stuff
 		$this->assertRedirectTableCountForPageId( $page->getId(), [] );
 
 		$targetTitle = Title::newFromText( '#Frag' );
-		$ok = $page->insertRedirectEntry( $targetTitle );
+		$ok = $this->getServiceContainer()->getRedirectStore()
+			->updateRedirectTarget( $page, $targetTitle );
 
 		$this->assertFalse( $ok );
 		$this->assertRedirectTableCountForPageId( $page->getId(), [] );

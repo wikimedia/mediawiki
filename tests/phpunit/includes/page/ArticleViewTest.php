@@ -164,13 +164,14 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$article->view();
 
 		$redirectStore = $this->getServiceContainer()->getRedirectStore();
+		$titleFormatter = $this->getServiceContainer()->getTitleFormatter();
 
 		$this->assertNotNull(
-			$redirectStore->getRedirectTarget( $article->getPage() )->getPrefixedDBkey()
+			$redirectStore->getRedirectTarget( $article->getPage() )
 		);
 		$this->assertSame(
 			$target->getPrefixedDBkey(),
-			$redirectStore->getRedirectTarget( $article->getPage() )->getPrefixedDBkey()
+			$titleFormatter->getPrefixedDBkey( $redirectStore->getRedirectTarget( $article->getPage() ) )
 		);
 
 		$output = $article->getContext()->getOutput();

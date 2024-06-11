@@ -140,9 +140,12 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 
 		$fragment = '';
 		if ( $base->isRedirect() ) {
-			$base = $this->redirectLookup->getRedirectTarget( $base );
-			// Preserve the fragment from the redirect target
-			$fragment = $base->getFragment();
+			$target = $this->redirectLookup->getRedirectTarget( $base );
+			if ( $target !== null ) {
+				$base = Title::newFromLinkTarget( $target );
+				// Preserve the fragment from the redirect target
+				$fragment = $base->getFragment();
+			}
 		}
 
 		$uiLang = $this->getLanguage();

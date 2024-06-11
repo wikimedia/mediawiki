@@ -1830,7 +1830,13 @@ return [
 	},
 
 	'RedirectStore' => static function ( MediaWikiServices $services ): RedirectStore {
-		return new RedirectStore( $services->getWikiPageFactory() );
+		return new RedirectStore(
+			$services->getConnectionProvider(),
+			$services->getPageStore(),
+			$services->getTitleParser(),
+			$services->getRepoGroup(),
+			LoggerFactory::getInstance( 'RedirectStore' )
+		);
 	},
 
 	'RepoGroup' => static function ( MediaWikiServices $services ): RepoGroup {
@@ -2663,7 +2669,8 @@ return [
 			),
 			$services->getArchivedRevisionLookup(),
 			$services->getRestrictionStore(),
-			$services->getLinkTargetLookup()
+			$services->getLinkTargetLookup(),
+			$services->getRedirectStore()
 		);
 	},
 

@@ -81,24 +81,6 @@ class WikiFilePage extends WikiPage {
 	}
 
 	/**
-	 * @return mixed|null|Title
-	 */
-	public function getRedirectTarget() {
-		$this->loadFile();
-		if ( $this->mFile->isLocal() ) {
-			return parent::getRedirectTarget();
-		}
-		// Foreign image page
-		$from = $this->mFile->getRedirected();
-		$to = $this->mFile->getName();
-		if ( $from === null || $from === $to ) {
-			return null;
-		}
-		$this->mRedirectTarget = Title::makeTitle( NS_FILE, $to );
-		return $this->mRedirectTarget;
-	}
-
-	/**
 	 * @return bool|Title|string False, Title of in-wiki target, or string with URL
 	 */
 	public function followRedirect() {

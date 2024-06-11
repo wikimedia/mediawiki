@@ -103,13 +103,6 @@ class WikiPage implements Page, PageRecord {
 	private $mPageIsRedirectField = false;
 
 	/**
-	 * The cache of the redirect target
-	 *
-	 * @var Title|null
-	 */
-	protected $mRedirectTarget = null;
-
-	/**
 	 * @var bool
 	 */
 	private $mIsNew = false;
@@ -279,7 +272,6 @@ class WikiPage implements Page, PageRecord {
 	 */
 	protected function clearCacheFields() {
 		$this->mId = null;
-		$this->mRedirectTarget = null; // Title object if set
 		$this->mPageIsRedirectField = false;
 		$this->mLastRevision = null; // Latest revision
 		$this->mTouched = '19700101000000';
@@ -573,7 +565,13 @@ class WikiPage implements Page, PageRecord {
 	 * @return bool
 	 */
 	public function isRedirect() {
-		return $this->getRedirectTarget() !== null;
+		$this->loadPageData();
+		if ( $this->mPageIsRedirectField ) {
+			return MediaWikiServices::getInstance()->getRedirectLookup()
+					->getRedirectTarget( $this->getTitle() ) !== null;
+		}
+
+		return false;
 	}
 
 	/**
@@ -963,124 +961,20 @@ class WikiPage implements Page, PageRecord {
 	 * @return Title|null Title object, or null if this page is not a redirect
 	 */
 	public function getRedirectTarget() {
-		if ( $this->mRedirectTarget !== null ) {
-			return $this->mRedirectTarget;
-		}
-		if ( !$this->mDataLoaded ) {
-			$this->loadPageData();
-		}
-		if ( !$this->mPageIsRedirectField ) {
-			return null;
-		}
-
-		// Query the redirect table
-		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
-		$row = $dbr->newSelectQueryBuilder()
-			->select( [ 'rd_namespace', 'rd_title', 'rd_fragment', 'rd_interwiki' ] )
-			->from( 'redirect' )
-			->where( [ 'rd_from' => $this->getId() ] )
-			->caller( __METHOD__ )->fetchRow();
-
-		if ( !$row ) {
-			LoggerFactory::getInstance( 'wikipage' )->info(
-				'WikiPage found inconsistent redirect status; probably the page was deleted after it was loaded'
-			);
-			return null;
-		}
-
-		$this->mRedirectTarget = self::createRedirectTarget(
-			$row->rd_namespace, $row->rd_title,
-			$row->rd_fragment, $row->rd_interwiki
-		);
-		return $this->mRedirectTarget;
-	}
-
-	/**
-	 * Truncate link fragment to maximum storable value
-	 *
-	 * @param string $fragment The link fragment (after the "#")
-	 * @return string
-	 */
-	private static function truncateFragment( $fragment ) {
-		return mb_strcut( $fragment, 0, 255 );
-	}
-
-	/**
-	 * Create a Title object appropriate for WikiPage::$mRedirectTarget
-	 *
-	 * @param int $namespace The namespace of the article
-	 * @param string $title Database key form
-	 * @param string $fragment The link fragment (after the "#")
-	 * @param string $interwiki Interwiki prefix
-	 * @return Title|null Title object, or null if this is not a valid redirect
-	 */
-	private static function createRedirectTarget( $namespace, $title, $fragment, $interwiki ): ?Title {
-		// (T203942) We can't redirect to Media namespace because it's virtual.
-		// We don't want to modify Title objects farther down the
-		// line. So, let's fix this here by changing to File namespace.
-		if ( $namespace == NS_MEDIA ) {
-			$namespace = NS_FILE;
-		}
-
-		// mimic behaviour of self::insertRedirectEntry for fragments that didn't
-		// come from the redirect table
-		$fragment = self::truncateFragment( $fragment );
-
-		// T261347: be defensive when fetching data from the redirect table.
-		// Use Title::makeTitleSafe(), and if that returns null, ignore the
-		// row. In an ideal world, the DB would be cleaned up after a
-		// namespace change, but nobody could be bothered to do that.
-		$title = Title::makeTitleSafe( $namespace, $title, $fragment, $interwiki );
-		if ( $title !== null && $title->isValidRedirectTarget() ) {
-			return $title;
-		}
-		return null;
+		$target = MediaWikiServices::getInstance()->getRedirectLookup()->getRedirectTarget( $this );
+		return Title::castFromLinkTarget( $target );
 	}
 
 	/**
 	 * Insert or update the redirect table entry for this page to indicate it redirects to $rt
+	 * @deprecated since 1.43; use {@link RedirectStore::updateRedirectTarget()} instead.
 	 * @param LinkTarget $rt Redirect target
 	 * @param int|null $oldLatest Prior page_latest for check and set
 	 * @return bool Success
 	 */
 	public function insertRedirectEntry( LinkTarget $rt, $oldLatest = null ) {
-		$rt = Title::newFromLinkTarget( $rt );
-		if ( !$rt->isValidRedirectTarget() ) {
-			// Don't put a bad redirect into the database (T278367)
-			return false;
-		}
-
-		$dbw = MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
-		$dbw->startAtomic( __METHOD__ );
-
-		if ( !$oldLatest || $oldLatest == $this->lockAndGetLatest() ) {
-			$truncatedFragment = self::truncateFragment( $rt->getFragment() );
-			$dbw->newInsertQueryBuilder()
-				->insertInto( 'redirect' )
-				->row( [
-					'rd_from' => $this->getId(),
-					'rd_namespace' => $rt->getNamespace(),
-					'rd_title' => $rt->getDBkey(),
-					'rd_fragment' => $truncatedFragment,
-					'rd_interwiki' => $rt->getInterwiki(),
-				] )
-				->onDuplicateKeyUpdate()
-				->uniqueIndexFields( [ 'rd_from' ] )
-				->set( [
-					'rd_namespace' => $rt->getNamespace(),
-					'rd_title' => $rt->getDBkey(),
-					'rd_fragment' => $truncatedFragment,
-					'rd_interwiki' => $rt->getInterwiki(),
-				] )
-				->caller( __METHOD__ )->execute();
-			$success = true;
-		} else {
-			$success = false;
-		}
-
-		$dbw->endAtomic( __METHOD__ );
-
-		return $success;
+		return MediaWikiServices::getInstance()->getRedirectStore()
+			->updateRedirectTarget( $this, $rt );
 	}
 
 	/**
@@ -1416,10 +1310,9 @@ class WikiPage implements Page, PageRecord {
 			}
 
 			$this->mTitle->loadFromRow( $insertedRow );
-			$this->updateRedirectOn( $dbw, $rt, $lastRevIsRedirect );
+			MediaWikiServices::getInstance()->getRedirectStore()
+				->updateRedirectTarget( $this, $rt, $lastRevIsRedirect );
 			$this->setLastEdit( $revision );
-			$this->mRedirectTarget = $rt == null ? null : self::createRedirectTarget(
-				$rt->getNamespace(), $rt->getDBkey(), $rt->getFragment(), $rt->getInterwiki() );
 			$this->mPageIsRedirectField = (bool)$rt;
 			$this->mIsNew = $isNew;
 
@@ -1432,45 +1325,6 @@ class WikiPage implements Page, PageRecord {
 		}
 
 		return $result;
-	}
-
-	/**
-	 * Add row to the redirect table if this is a redirect, remove otherwise.
-	 *
-	 * @param IDatabase $dbw
-	 * @param Title|null $redirectTitle Title object pointing to the redirect target,
-	 *   or NULL if this is not a redirect
-	 * @param null|bool $lastRevIsRedirect If given, will optimize adding and
-	 *   removing rows in redirect table.
-	 * @return bool True on success, false on failure
-	 */
-	private function updateRedirectOn( $dbw, $redirectTitle, $lastRevIsRedirect = null ) {
-		// Always update redirects (target link might have changed)
-		// Update/Insert if we don't know if the last revision was a redirect or not
-		// Delete if changing from redirect to non-redirect
-		$isRedirect = $redirectTitle !== null;
-
-		if ( !$isRedirect && $lastRevIsRedirect === false ) {
-			return true;
-		}
-
-		if ( $isRedirect ) {
-			$success = $this->insertRedirectEntry( $redirectTitle );
-		} else {
-			// This is not a redirect, remove row from redirect table
-			$dbw->newDeleteQueryBuilder()
-				->deleteFrom( 'redirect' )
-				->where( [ 'rd_from' => $this->getId() ] )
-				->caller( __METHOD__ )->execute();
-			$success = true;
-		}
-
-		if ( $this->getTitle()->getNamespace() === NS_FILE ) {
-			MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
-				->invalidateImageRedirect( $this->getTitle() );
-		}
-
-		return $success;
 	}
 
 	/**
