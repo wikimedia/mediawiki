@@ -124,7 +124,7 @@ CLDRPluralRuleParser:
 codex:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
-  authors: Design Systems team, Wikimedia Foundation
+  authors: Design System team, Wikimedia Foundation
   version: 1.7.0
   purl: pkg:npm/@wikimedia/codex@1.7.0
   type: tar
@@ -144,7 +144,7 @@ codex:
 codex-design-tokens:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
-  authors: Design Systems team, Wikimedia Foundation
+  authors: Design System team, Wikimedia Foundation
   version: 1.7.0
   purl: pkg:npm/@wikimedia/codex-design-tokens@1.7.0
   type: tar
@@ -160,7 +160,7 @@ codex-design-tokens:
 codex-icons:
   license: MIT
   homepage: https://doc.wikimedia.org/codex/
-  authors: Design Systems team, Wikimedia Foundation
+  authors: Design System team, Wikimedia Foundation
   version: 1.7.0
   purl: pkg:npm/@wikimedia/codex-icons@1.7.0
   type: tar
