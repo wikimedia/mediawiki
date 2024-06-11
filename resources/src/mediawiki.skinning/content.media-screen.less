@@ -136,7 +136,7 @@ noscript {
 		}
 
 		// Note: If the image is a thumbnail, the max-width also needs to take into account margin.
-		figure[ typeof~='mw:File/Thumb' ] & {
+		body.skin--responsive .mw-parser-output figure[ typeof~='mw:File/Thumb' ] & {
 			/* stylelint-disable-next-line declaration-no-important */
 			max-width: calc( @size-full - @margin-horizontal-image - @margin-horizontal-image ) !important;
 		}
