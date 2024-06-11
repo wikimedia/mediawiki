@@ -37,18 +37,12 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @since 1.38
  */
 class RedirectStore implements RedirectLookup {
-	/** @var IConnectionProvider */
-	private $connectionProvider;
-	/** @var PageLookup */
-	private $pageLookup;
-	/** @var TitleParser */
-	private $titleParser;
-	/** @var RepoGroup */
-	private $repoGroup;
-	/** @var LoggerInterface */
-	private $logger;
-	/** @var MapCacheLRU */
-	private $procCache;
+	private IConnectionProvider $connectionProvider;
+	private PageLookup $pageLookup;
+	private TitleParser $titleParser;
+	private RepoGroup $repoGroup;
+	private LoggerInterface $logger;
+	private MapCacheLRU $procCache;
 
 	public function __construct(
 		IConnectionProvider $connectionProvider,

@@ -34,8 +34,7 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  */
 class PageArchive {
 
-	/** @var Title */
-	protected $title;
+	protected Title $title;
 
 	/**
 	 * @param Title $title

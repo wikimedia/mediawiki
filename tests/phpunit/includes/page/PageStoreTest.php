@@ -30,11 +30,8 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 	use MockTitleTrait;
 	use LinkCacheTestTrait;
 
-	/** @var StatsFactory */
-	private $statsFactory;
-
-	/** @var MetricInterface */
-	private $linkCacheAccesses;
+	private StatsFactory $statsFactory;
+	private MetricInterface $linkCacheAccesses;
 
 	protected function setUp(): void {
 		parent::setUp();

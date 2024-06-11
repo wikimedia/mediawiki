@@ -14,20 +14,13 @@ class BadFileLookup {
 	/** @var callable Returns contents of bad file list (see comment for isBadFile()) */
 	private $listCallback;
 
-	/** @var BagOStuff Cache of parsed bad image list */
-	private $cache;
-
-	/** @var RepoGroup */
-	private $repoGroup;
-
-	/** @var TitleParser */
-	private $titleParser;
+	private BagOStuff $cache;
+	private RepoGroup $repoGroup;
+	private TitleParser $titleParser;
+	private HookRunner $hookRunner;
 
 	/** @var array<string,array<int,array<string,true>>>|null Parsed bad file list */
 	private $badFiles;
-
-	/** @var HookRunner */
-	private $hookRunner;
 
 	/**
 	 * Do not call directly. Use MediaWikiServices.

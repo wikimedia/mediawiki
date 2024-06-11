@@ -35,25 +35,10 @@ use MediaWiki\Title\Title;
 class ImageHistoryList extends ContextSource {
 	use ProtectedHookAccessorTrait;
 
-	/**
-	 * @var Title
-	 */
-	protected $title;
-
-	/**
-	 * @var File
-	 */
-	protected $img;
-
-	/**
-	 * @var ImagePage
-	 */
-	protected $imagePage;
-
-	/**
-	 * @var File
-	 */
-	protected $current;
+	protected Title $title;
+	protected File $img;
+	protected ImagePage $imagePage;
+	protected File $current;
 
 	protected $repo;
 	protected bool $showThumb;

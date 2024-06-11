@@ -20,32 +20,13 @@ class PageStoreFactory {
 	 */
 	public const CONSTRUCTOR_OPTIONS = PageStore::CONSTRUCTOR_OPTIONS;
 
-	/** @var ServiceOptions */
-	private $options;
+	private ServiceOptions $options;
+	private ILBFactory $dbLoadBalancerFactory;
+	private NamespaceInfo $namespaceInfo;
+	private TitleParser $titleParser;
+	private LinkCache $linkCache;
+	private StatsFactory $stats;
 
-	/** @var ILBFactory */
-	private $dbLoadBalancerFactory;
-
-	/** @var NamespaceInfo */
-	private $namespaceInfo;
-
-	/** @var TitleParser */
-	private $titleParser;
-
-	/** @var LinkCache */
-	private $linkCache;
-
-	/** @var StatsFactory */
-	private $stats;
-
-	/**
-	 * @param ServiceOptions $options
-	 * @param ILBFactory $dbLoadBalancerFactory
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param TitleParser $titleParser
-	 * @param LinkCache $linkCache
-	 * @param StatsFactory $stats
-	 */
 	public function __construct(
 		ServiceOptions $options,
 		ILBFactory $dbLoadBalancerFactory,

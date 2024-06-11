@@ -582,6 +582,8 @@ class LogEventsList extends ContextSource {
 			$msgKey = [ $msgKey ];
 		}
 
+		// ???
+		// @phan-suppress-next-line PhanRedundantCondition
 		if ( $out instanceof OutputPage ) {
 			$context = $out->getContext();
 		} else {

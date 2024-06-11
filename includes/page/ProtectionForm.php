@@ -82,49 +82,20 @@ class ProtectionForm {
 	/** @var array Map of action to the expiry time of the existing protection */
 	protected $mExistingExpiry = [];
 
-	/** @var Article */
-	protected $mArticle;
-
-	/** @var Title */
-	protected $mTitle;
-
-	/** @var bool */
-	protected $disabled;
-
-	/** @var array */
-	protected $disabledAttrib;
-
-	/** @var IContextSource */
-	private $mContext;
-
-	/** @var WebRequest */
-	private $mRequest;
-
-	/** @var Authority */
-	private $mPerformer;
-
-	/** @var Language */
-	private $mLang;
-
-	/** @var OutputPage */
-	private $mOut;
-
-	/** @var PermissionManager */
-	private $permManager;
-
-	/**
-	 * @var WatchlistManager
-	 */
-	private $watchlistManager;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var RestrictionStore */
-	private $restrictionStore;
-
-	/** @var TitleFormatter */
-	private $titleFormatter;
+	protected Article $mArticle;
+	protected Title $mTitle;
+	protected bool $disabled;
+	protected array $disabledAttrib;
+	private IContextSource $mContext;
+	private WebRequest $mRequest;
+	private Authority $mPerformer;
+	private Language $mLang;
+	private OutputPage $mOut;
+	private PermissionManager $permManager;
+	private HookRunner $hookRunner;
+	private WatchlistManager $watchlistManager;
+	private TitleFormatter $titleFormatter;
+	private RestrictionStore $restrictionStore;
 
 	public function __construct( Article $article ) {
 		// Set instance variables.

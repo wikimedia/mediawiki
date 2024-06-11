@@ -121,8 +121,6 @@ class ParserOutputAccess {
 	/** @var string Use secondary cache */
 	private const CACHE_SECONDARY = 'secondary';
 
-	private ParserCacheFactory $parserCacheFactory;
-
 	/**
 	 * In cases that an extension tries to get the same ParserOutput of
 	 * the page right after it was parsed (T301310).
@@ -130,39 +128,16 @@ class ParserOutputAccess {
 	 */
 	private MapCacheLRU $localCache;
 
-	/** @var RevisionLookup */
-	private $revisionLookup;
-
-	/** @var RevisionRenderer */
-	private $revisionRenderer;
-
-	/** @var IBufferingStatsdDataFactory */
-	private $statsDataFactory;
-
-	/** @var ILBFactory */
-	private $lbFactory;
+	private ParserCacheFactory $parserCacheFactory;
+	private RevisionLookup $revisionLookup;
+	private RevisionRenderer $revisionRenderer;
+	private IBufferingStatsdDataFactory $statsDataFactory;
+	private ILBFactory $lbFactory;
 	private ChronologyProtector $chronologyProtector;
+	private LoggerSpi $loggerSpi;
+	private WikiPageFactory $wikiPageFactory;
+	private TitleFormatter $titleFormatter;
 
-	/** @var LoggerSpi */
-	private $loggerSpi;
-
-	/** @var WikiPageFactory */
-	private $wikiPageFactory;
-
-	/** @var TitleFormatter */
-	private $titleFormatter;
-
-	/**
-	 * @param ParserCacheFactory $parserCacheFactory
-	 * @param RevisionLookup $revisionLookup
-	 * @param RevisionRenderer $revisionRenderer
-	 * @param IBufferingStatsdDataFactory $statsDataFactory
-	 * @param ILBFactory $lbFactory
-	 * @param ChronologyProtector $chronologyProtector
-	 * @param LoggerSpi $loggerSpi
-	 * @param WikiPageFactory $wikiPageFactory
-	 * @param TitleFormatter $titleFormatter
-	 */
 	public function __construct(
 		ParserCacheFactory $parserCacheFactory,
 		RevisionLookup $revisionLookup,
