@@ -62,8 +62,8 @@
 	 * @param {mw.Rest.Options} [options] See {@link mw.Rest.Options}
 	 */
 	mw.Rest = function ( options ) {
-		var defaults = $.extend( {}, options );
-		defaults.ajax = $.extend( {}, defaultOptions.ajax, defaults.ajax );
+		var defaults = Object.assign( {}, options );
+		defaults.ajax = Object.assign( {}, defaultOptions.ajax, defaults.ajax );
 
 		this.url = defaults.ajax.url;
 		delete defaults.ajax.url;
@@ -122,7 +122,7 @@
 			headers = objectKeysToLowerCase( headers );
 			return this.ajax( path, {
 				type: 'POST',
-				headers: $.extend( headers, { 'content-type': 'application/json' } ),
+				headers: Object.assign( headers, { 'content-type': 'application/json' } ),
 				data: JSON.stringify( body )
 			} );
 		},
@@ -142,7 +142,7 @@
 			headers = objectKeysToLowerCase( headers );
 			return this.ajax( path, {
 				type: 'PUT',
-				headers: $.extend( headers, { 'content-type': 'application/json' } ),
+				headers: Object.assign( headers, { 'content-type': 'application/json' } ),
 				data: JSON.stringify( body )
 			} );
 		},
@@ -162,7 +162,7 @@
 			headers = objectKeysToLowerCase( headers );
 			return this.ajax( path, {
 				type: 'DELETE',
-				headers: $.extend( headers, { 'content-type': 'application/json' } ),
+				headers: Object.assign( headers, { 'content-type': 'application/json' } ),
 				data: JSON.stringify( body )
 			} );
 		},
@@ -181,7 +181,7 @@
 				apiDeferred = $.Deferred(),
 				xhr, requestIndex;
 
-			ajaxOptions = $.extend( {}, this.defaults.ajax, ajaxOptions );
+			ajaxOptions = Object.assign( {}, this.defaults.ajax, ajaxOptions );
 			ajaxOptions.url = this.url + path;
 
 			// Make the AJAX request.

@@ -29,11 +29,11 @@
 	 */
 	mw.widgets.SizeFilterWidget = function MwWidgetsSizeFilterWidget( config ) {
 		// Config initialization
-		config = $.extend( { selectMin: true }, config );
-		config.textinput = $.extend( {
+		config = Object.assign( { selectMin: true }, config );
+		config.textinput = Object.assign( {
 			type: 'number'
 		}, config.textinput );
-		config.radioselectinput = $.extend( {
+		config.radioselectinput = Object.assign( {
 			options: [
 				{ data: 'min', label: mw.msg( 'minimum-size' ) },
 				{ data: 'max', label: mw.msg( 'maximum-size' ) }

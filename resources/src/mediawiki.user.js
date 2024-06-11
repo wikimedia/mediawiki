@@ -409,7 +409,7 @@
 			get: function ( feature ) {
 				var featurePrefix = feature + CLIENTPREF_SUFFIX;
 				var docClass = document.documentElement.className;
-				// eslint-disable-next-line security/detect-non-literal-regexp
+
 				var featureRegEx = new RegExp(
 					'(^| )' + mw.util.escapeRegExp( featurePrefix ) + '([a-zA-Z0-9]+)( |$)'
 				);

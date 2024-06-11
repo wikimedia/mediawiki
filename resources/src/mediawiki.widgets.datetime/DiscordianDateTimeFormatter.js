@@ -19,7 +19,7 @@
 	 * @param {Object} [config] Configuration options
 	 */
 	mw.widgets.datetime.DiscordianDateTimeFormatter = function MwWidgetsDatetimeDiscordianDateTimeFormatter( config ) {
-		config = $.extend( {}, config );
+		config = Object.assign( {}, config );
 
 		// Parent constructor
 		mw.widgets.datetime.DiscordianDateTimeFormatter.super.call( this, config );
@@ -148,7 +148,7 @@
 						return mw.widgets.datetime.DateTimeFormatter.prototype.formatSpecValue.call( this, v );
 					},
 					parseValue: function ( v ) {
-						// eslint-disable-next-line security/detect-unsafe-regex
+
 						if ( /^\s*(st.?\s*)?tib('?s)?(\s*day)?\s*$/i.test( v ) ) {
 							return 'tib';
 						}
@@ -473,7 +473,7 @@
 			date = new Date(),
 			monthDays = [ 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365 ];
 
-		components = $.extend( {}, this.getComponentsFromDate( null ), components );
+		components = Object.assign( {}, this.getComponentsFromDate( null ), components );
 		if ( components.Day === 'tib' ) {
 			month = 1;
 			day = 29;

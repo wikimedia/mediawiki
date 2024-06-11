@@ -163,7 +163,7 @@
 				defaultUri = getDefaultUri();
 
 			options = typeof options === 'object' ? options : { strictMode: !!options };
-			options = $.extend( {
+			options = Object.assign( {
 				strictMode: false,
 				overrideKeys: false,
 				arrayParams: false
@@ -334,7 +334,7 @@
 				q = {};
 				// using replace to iterate over a string
 				if ( uri.query ) {
-					// eslint-disable-next-line security/detect-unsafe-regex
+
 					uri.query.replace( /(?:^|&)([^&=]*)(?:(=)([^&]*))?/g, function ( match, k, eq, v ) {
 						var arrayKeyMatch, i;
 						if ( k ) {
@@ -492,7 +492,7 @@
 			 * @return {Object} This URI object
 			 */
 			extend: function ( parameters ) {
-				$.extend( this.query, parameters );
+				Object.assign( this.query, parameters );
 				return this;
 			}
 		};

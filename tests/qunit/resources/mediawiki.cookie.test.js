@@ -89,7 +89,7 @@
 
 		// Per MainConfigSchema, if the CookieExpiration setting is 0,
 		// then the default should be session cookies
-		setDefaults( $.extend( {}, defaults, { expires: 0 } ) );
+		setDefaults( Object.assign( {}, defaults, { expires: 0 } ) );
 
 		mw.cookie.set( 'foo', 'bar' );
 		options = jqcookie.lastCall.args[ 2 ];

@@ -19,7 +19,7 @@
 		// XXX: Parameter addParams is undocumented because we inherit this
 		// documentation in the public method...
 		var apiPromise = this.postWithToken( 'watch',
-			$.extend(
+			Object.assign(
 				{
 					formatversion: 2,
 					action: 'watch',

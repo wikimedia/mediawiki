@@ -270,9 +270,7 @@ class AuthPopup {
 	 *     Rejected when an unexpected error stops the login process.
 	 */
 	startNewTabOrWindow() {
-		const openWindow = () => {
-			return window.open( this.loginPopupUrl, '_blank' );
-		};
+		const openWindow = () => window.open( this.loginPopupUrl, '_blank' );
 
 		return this.showDialog( {
 			initOpenWindow: openWindow,

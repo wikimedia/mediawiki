@@ -96,12 +96,10 @@ module.exports = defineComponent( {
 					}
 
 					// Build an array of menu items.
-					const results = data.allusers.map( ( result ) => {
-						return {
-							label: result.name,
-							value: result.name
-						};
-					} );
+					const results = data.allusers.map( ( result ) => ( {
+						label: result.name,
+						value: result.name
+					} ) );
 
 					// Update menuItems.
 					menuItems.value = results;

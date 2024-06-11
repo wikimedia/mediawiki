@@ -119,7 +119,7 @@ class Router extends OO.Registry {
 	addRoute( path, callback ) {
 		const entry = {
 			path: typeof path === 'string' ?
-				// eslint-disable-next-line security/detect-non-literal-regexp
+
 				new RegExp( '^' + path.replace( /[\\^$*+?.()|[\]{}]/g, '\\$&' ) + '$' ) :
 				path,
 			callback: callback

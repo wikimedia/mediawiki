@@ -305,9 +305,9 @@
 							required: Util.apiBool( pi.required )
 						} );
 						widget.paramInfo = pi;
-						$.extend( widget, WidgetMethods.textInputWidget );
+						Object.assign( widget, WidgetMethods.textInputWidget );
 						widget.setValidation( Validators.generic );
-						$.extend( widget, WidgetMethods.tokenWidget );
+						Object.assign( widget, WidgetMethods.tokenWidget );
 						break;
 					}
 					// intentional fall through
@@ -320,13 +320,13 @@
 							$overlay: true
 						} );
 						widget.paramInfo = pi;
-						$.extend( widget, WidgetMethods.tagWidget );
+						Object.assign( widget, WidgetMethods.tagWidget );
 					} else {
 						widget = new OO.ui.TextInputWidget( {
 							required: Util.apiBool( pi.required )
 						} );
 						widget.paramInfo = pi;
-						$.extend( widget, WidgetMethods.textInputWidget );
+						Object.assign( widget, WidgetMethods.textInputWidget );
 						widget.setValidation( Validators.generic );
 					}
 					break;
@@ -337,7 +337,7 @@
 						required: Util.apiBool( pi.required )
 					} );
 					widget.paramInfo = pi;
-					$.extend( widget, WidgetMethods.textInputWidget );
+					Object.assign( widget, WidgetMethods.textInputWidget );
 					widget.setValidation( Validators.generic );
 					break;
 
@@ -359,7 +359,7 @@
 						required: Util.apiBool( pi.required )
 					} );
 					widget.paramInfo = pi;
-					$.extend( widget, WidgetMethods.textInputWidget );
+					Object.assign( widget, WidgetMethods.textInputWidget );
 					multiModeAllowed = true;
 					multiModeInput = widget;
 					break;
@@ -411,14 +411,14 @@
 							$overlay: true
 						} );
 						widget.paramInfo = pi;
-						$.extend( widget, WidgetMethods.tagWidget );
+						Object.assign( widget, WidgetMethods.tagWidget );
 					} else {
 						widget = new OO.ui.DropdownWidget( {
 							menu: { items: items },
 							$overlay: true
 						} );
 						widget.paramInfo = pi;
-						$.extend( widget, WidgetMethods.dropdownWidget );
+						Object.assign( widget, WidgetMethods.dropdownWidget );
 					}
 					break;
 
@@ -433,7 +433,7 @@
 							tagLimit: pi.limit || undefined
 						} );
 						widget.paramInfo = pi;
-						$.extend( widget, WidgetMethods.tagWidget );
+						Object.assign( widget, WidgetMethods.tagWidget );
 					} else {
 						widget = new mw.widgets.TitleInputWidget( {
 							required: Util.apiBool( pi.required ),
@@ -444,7 +444,7 @@
 							addQueryInput: !Util.apiBool( pi.mustExist )
 						} );
 						widget.paramInfo = pi;
-						$.extend( widget, WidgetMethods.textInputWidget );
+						Object.assign( widget, WidgetMethods.textInputWidget );
 					}
 					break;
 
@@ -487,7 +487,7 @@
 							$overlay: true
 						} );
 						widget.paramInfo = pi;
-						$.extend( widget, WidgetMethods.tagWidget );
+						Object.assign( widget, WidgetMethods.tagWidget );
 						if ( Util.apiBool( pi.submodules ) ) {
 							widget.getSubmodules = WidgetMethods.submoduleWidget.multi;
 							widget.on( 'change', ApiSandbox.updateUI );
@@ -498,7 +498,7 @@
 							$overlay: true
 						} );
 						widget.paramInfo = pi;
-						$.extend( widget, WidgetMethods.dropdownWidget );
+						Object.assign( widget, WidgetMethods.dropdownWidget );
 						if ( Util.apiBool( pi.submodules ) ) {
 							widget.getSubmodules = WidgetMethods.submoduleWidget.single;
 							widget.getMenu().on( 'select', ApiSandbox.updateUI );
@@ -543,7 +543,7 @@
 					}
 				} );
 				widget.paramInfo = pi;
-				$.extend( widget, WidgetMethods.tagWidget );
+				Object.assign( widget, WidgetMethods.tagWidget );
 
 				var func = function () {
 					if ( !innerWidget.isDisabled() ) {
@@ -940,7 +940,7 @@
 
 			if ( !paramsAreForced ) {
 				// forced params means we are continuing a query; the base query should be preserved
-				baseRequestParams = $.extend( {}, params );
+				baseRequestParams = Object.assign( {}, params );
 			}
 
 			$.when.apply( $, deferreds ).done( function () {
@@ -1079,7 +1079,7 @@
 
 				location.href = oldhash = '#' + query;
 
-				api[ method ]( params, $.extend( ajaxOptions, {
+				api[ method ]( params, Object.assign( ajaxOptions, {
 					dataType: 'text',
 					xhr: function () {
 						var xhr = new window.XMLHttpRequest();
@@ -1166,7 +1166,7 @@
 									new OO.ui.ButtonWidget( {
 										label: mw.msg( 'apisandbox-continue' )
 									} ).on( 'click', function () {
-										ApiSandbox.sendRequest( $.extend( {}, baseRequestParams, data.continue ) );
+										ApiSandbox.sendRequest( Object.assign( {}, baseRequestParams, data.continue ) );
 									} ).setDisabled( !data.continue ).$element,
 									( clear = new OO.ui.ButtonWidget( {
 										label: mw.msg( 'apisandbox-continue-clear' )
@@ -1295,7 +1295,7 @@
 	 * @param {Object} [config] Configuration options
 	 */
 	ApiSandbox.PageLayout = function ( config ) {
-		config = $.extend( { prefix: '', expanded: false }, config );
+		config = Object.assign( { prefix: '', expanded: false }, config );
 		this.displayText = config.key;
 		this.apiModule = config.path;
 		this.prefix = config.prefix;
@@ -1539,7 +1539,7 @@
 			return {
 				name: prefix + info.name,
 				info: info,
-				vars: $.extend( {}, info.templatevars ),
+				vars: Object.assign( {}, info.templatevars ),
 				usedVars: []
 			};
 		} );
@@ -1596,7 +1596,7 @@
 						tmp = layout.templatedItemsCache[ name ];
 					} else {
 						tmp = layout.makeWidgetFieldLayouts(
-							$.extend( {}, p.info, { usedTemplateVars: usedVars } ), name
+							Object.assign( {}, p.info, { usedTemplateVars: usedVars } ), name
 						);
 						layout.templatedItemsCache[ name ] = tmp;
 					}

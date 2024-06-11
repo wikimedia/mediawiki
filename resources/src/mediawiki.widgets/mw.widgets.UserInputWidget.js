@@ -24,7 +24,7 @@
 		config = config || {};
 
 		// Parent constructor
-		mw.widgets.UserInputWidget.super.call( this, $.extend( {}, config, { autocomplete: false } ) );
+		mw.widgets.UserInputWidget.super.call( this, Object.assign( {}, config, { autocomplete: false } ) );
 
 		// Mixin constructors
 		OO.ui.mixin.LookupElement.call( this, config );

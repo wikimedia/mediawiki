@@ -36,7 +36,7 @@
 			// * mw-foo-clientpref-enabled       -> mw-foo-clientpref-disabled
 			// * mw-display-clientpref-dark      -> mw-display-clientpref-light
 			className = className.replace(
-				// eslint-disable-next-line security/detect-non-literal-regexp
+
 				new RegExp( '(^| )' + pref.replace( /-clientpref-\w+$|[^\w-]+/g, '' ) + '-clientpref-\\w+( |$)' ),
 				'$1' + pref + '$2'
 			);

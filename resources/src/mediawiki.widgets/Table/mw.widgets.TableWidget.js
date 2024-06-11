@@ -129,9 +129,9 @@ OO.mixinClass( mw.widgets.TableWidget, OO.ui.mixin.GroupElement );
 
 /* Static Properties */
 mw.widgets.TableWidget.static.patterns = {
-	// eslint-disable-next-line security/detect-unsafe-regex
+
 	validate: /^[0-9]+(\.[0-9]+)?$/,
-	// eslint-disable-next-line security/detect-unsafe-regex
+
 	filter: /[0-9]+(\.[0-9]+)?/
 };
 

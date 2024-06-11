@@ -71,7 +71,7 @@
 				}
 			}
 
-			data = $.extend( {}, this.defaults.parameters, { action: 'upload' }, data );
+			data = Object.assign( {}, this.defaults.parameters, { action: 'upload' }, data );
 			if ( !data.chunk ) {
 				data.file = file;
 			}
@@ -331,7 +331,7 @@
 				api = this;
 
 			function finishUpload( moreData ) {
-				return api.uploadFromStash( filekey, $.extend( data, moreData ) );
+				return api.uploadFromStash( filekey, Object.assign( data, moreData ) );
 			}
 
 			return uploadPromise.then(

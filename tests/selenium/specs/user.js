@@ -35,9 +35,7 @@ describe( 'User', function () {
 		await UserLoginPage.login( username, password );
 
 		// check
-		const actualUsername = await browser.execute( () => {
-			return mw.config.get( 'wgUserName' );
-		} );
+		const actualUsername = await browser.execute( () => mw.config.get( 'wgUserName' ) );
 		assert.strictEqual( await actualUsername, username );
 	} );
 } );

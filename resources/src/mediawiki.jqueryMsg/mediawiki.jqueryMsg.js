@@ -180,7 +180,7 @@ function getFailableParserFn( options ) {
  * @param {Object} data New data to extend parser defaults with
  */
 const setParserDefaults = function ( data ) {
-	$.extend( parserDefaults, data );
+	Object.assign( parserDefaults, data );
 };
 
 /**
@@ -192,7 +192,7 @@ const setParserDefaults = function ( data ) {
  * @return {Object}
  */
 const getParserDefaults = function () {
-	return $.extend( {}, parserDefaults );
+	return Object.assign( {}, parserDefaults );
 };
 
 /**
@@ -280,7 +280,7 @@ const getPlugin = function ( options ) {
  * @param {Object} options
  */
 function Parser( options ) {
-	this.settings = $.extend( {}, parserDefaults, options );
+	this.settings = Object.assign( {}, parserDefaults, options );
 	this.settings.onlyCurlyBraceTransform = ( this.settings.format === 'text' || this.settings.format === 'escaped' );
 	this.astCache = {};
 
@@ -1201,7 +1201,7 @@ HtmlEmitter.prototype = {
 				} );
 			} else {
 				var target = textify( arg );
-				// eslint-disable-next-line security/detect-non-literal-regexp
+
 				if ( target.search( new RegExp( '^(/|' + mw.config.get( 'wgUrlProtocols' ) + ')' ) ) !== -1 ) {
 					$el.attr( 'href', target );
 					if ( target.search( '^' + mw.config.get( 'wgArticlePath' ).replace( /\$1/g, '.+?' ) + '$' ) === -1 ) {

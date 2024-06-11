@@ -8,7 +8,8 @@
 	},
 	"rules": {
 		"max-len": "off",
-		"no-var": "off"
+		"no-var": "off",
+		"prefer-arrow-callback": "off"
 	},
 	"overrides": [
 		{

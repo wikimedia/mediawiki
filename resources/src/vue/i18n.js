@@ -108,12 +108,10 @@ module.exports = {
 				// changes in binding.arg; we can't detect those, so there's a warning in the
 				// documentation above explaining that using a dynamic argument is not supported.
 
-				const areArraysEqual = ( arr1, arr2 ) =>
-					Array.isArray( arr1 ) && Array.isArray( arr2 ) &&
+				const areArraysEqual = ( arr1, arr2 ) => Array.isArray( arr1 ) && Array.isArray( arr2 ) &&
 					arr1.length === arr2.length &&
 					arr1.every( ( val, index ) => arr2[ index ] === val );
-				const areMessagesEqual = ( msg1, msg2 ) =>
-					msg1 instanceof mw.Message && msg2 instanceof mw.Message &&
+				const areMessagesEqual = ( msg1, msg2 ) => msg1 instanceof mw.Message && msg2 instanceof mw.Message &&
 					msg1.key === msg2.key &&
 					areArraysEqual( msg1.parameters, msg2.parameters );
 

@@ -44,7 +44,7 @@
 	 */
 	mw.widgets.datetime.DateTimeInputWidget = function MwWidgetsDatetimeDateTimeInputWidget( config ) {
 		// Configuration initialization
-		config = $.extend( {
+		config = Object.assign( {
 			type: 'datetime',
 			clearable: true,
 			required: false,
@@ -128,7 +128,7 @@
 		if ( this.type === 'time' || config.calendar === null ) {
 			this.calendar = null;
 		} else {
-			config.calendar = $.extend( {}, config.calendar, {
+			config.calendar = Object.assign( {}, config.calendar, {
 				formatter: this.formatter,
 				widget: this,
 				min: this.min,
@@ -218,7 +218,6 @@
 
 		let date;
 
-		// eslint-disable-next-line security/detect-unsafe-regex
 		const m = /^(\d{4,})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.(\d{1,3}))?Z$/.exec( value );
 		if ( m ) {
 			if ( m[ 7 ] ) {

@@ -137,7 +137,7 @@ module.exports = function ( grunt ) {
 		}
 	} );
 
-	grunt.registerTask( 'assert-mw-env', function () {
+	grunt.registerTask( 'assert-mw-env', () => {
 		let ok = true;
 		if ( !process.env.MW_SERVER ) {
 			grunt.log.error( 'Environment variable MW_SERVER must be set.\n' +

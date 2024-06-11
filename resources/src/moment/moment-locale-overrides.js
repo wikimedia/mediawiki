@@ -17,7 +17,7 @@
 			if ( mw.config.get( 'wgTranslateNumerals' ) ) {
 				for ( var i = 0; i < 10; i++ ) {
 					if ( table[ i ] !== undefined ) {
-						// eslint-disable-next-line security/detect-non-literal-regexp
+
 						s = s.replace( new RegExp( mw.util.escapeRegExp( table[ i ] ), 'g' ), i );
 					}
 				}
@@ -35,7 +35,7 @@
 			if ( mw.config.get( 'wgTranslateNumerals' ) ) {
 				for ( var i = 0; i < 10; i++ ) {
 					if ( table[ i ] !== undefined ) {
-						// eslint-disable-next-line security/detect-non-literal-regexp
+
 						s = s.replace( new RegExp( i, 'g' ), table[ i ] );
 					}
 				}

@@ -26,7 +26,7 @@
 		config = config || {};
 
 		// Parent constructor
-		mw.widgets.TitleInputWidget.super.call( this, $.extend( {}, config, {
+		mw.widgets.TitleInputWidget.super.call( this, Object.assign( {}, config, {
 			validate: config.validate !== undefined ? config.validate : this.isQueryValid.bind( this ),
 			autocomplete: false
 		} ) );

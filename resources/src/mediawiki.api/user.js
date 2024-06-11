@@ -63,7 +63,7 @@
 				assertParams.assert = 'anon';
 			}
 
-			return $.extend( assertParams, query );
+			return Object.assign( assertParams, query );
 		}
 
 	} );

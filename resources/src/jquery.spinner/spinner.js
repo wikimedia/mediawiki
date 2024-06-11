@@ -26,6 +26,7 @@
 	 *   height equal to spinner size.
 	 */
 
+	// eslint-disable-next-line no-jquery/no-extend
 	$.extend( {
 		/**
 		 * Create a spinner element
@@ -74,7 +75,7 @@
 				};
 			}
 
-			opts = $.extend( {}, defaults, opts );
+			opts = Object.assign( {}, defaults, opts );
 
 			$spinner = $( '<div>' ).addClass( 'mw-spinner' );
 			if ( opts.id !== undefined ) {

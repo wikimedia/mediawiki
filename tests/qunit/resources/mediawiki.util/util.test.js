@@ -664,7 +664,7 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		'$'
 	], function ( assert, str ) {
 		assert.propEqual(
-			// eslint-disable-next-line security/detect-non-literal-regexp
+
 			str.match( new RegExp( mw.util.escapeRegExp( str ) ) ),
 			[ str ],
 			'confirm correct escaping by being able to match itself'

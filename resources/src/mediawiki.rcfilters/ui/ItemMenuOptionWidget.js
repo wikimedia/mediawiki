@@ -33,7 +33,7 @@ ItemMenuOptionWidget = function MwRcfiltersUiItemMenuOptionWidget(
 	this.itemModel = itemModel;
 
 	// Parent
-	ItemMenuOptionWidget.super.call( this, $.extend( {
+	ItemMenuOptionWidget.super.call( this, Object.assign( {
 		// Override the 'check' icon that OOUI defines
 		icon: '',
 		data: this.itemModel.getName(),

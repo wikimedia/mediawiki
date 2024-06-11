@@ -835,7 +835,7 @@
 			model.getFiltersFromParameters( {
 				filter2: '1'
 			} ),
-			$.extend( {}, baseFilterRepresentation, {
+			Object.assign( {}, baseFilterRepresentation, {
 				group1__filter1: true, // The text is "show filter 1"
 				group1__filter2: false, // The text is "show filter 2"
 				group1__filter3: true // The text is "show filter 3"
@@ -849,7 +849,7 @@
 				filter2: '1',
 				filter3: '1'
 			} ),
-			$.extend( {}, baseFilterRepresentation, {
+			Object.assign( {}, baseFilterRepresentation, {
 				group1__filter1: false, // The text is "show filter 1"
 				group1__filter2: false, // The text is "show filter 2"
 				group1__filter3: false // The text is "show filter 3"
@@ -881,7 +881,7 @@
 		// The result here is ignoring the first toggleFiltersSelected call
 		assert.deepEqual(
 			model.getSelectedState(),
-			$.extend( {}, baseFilterRepresentation, {
+			Object.assign( {}, baseFilterRepresentation, {
 				group2__filter4: true,
 				group2__filter5: true,
 				group2__filter6: false
@@ -900,7 +900,7 @@
 		);
 		assert.deepEqual(
 			model.getSelectedState(),
-			$.extend( {}, baseFilterRepresentation, {
+			Object.assign( {}, baseFilterRepresentation, {
 				group3__filter7: true,
 				group3__filter8: false,
 				group3__filter9: false
@@ -915,7 +915,7 @@
 		);
 		assert.deepEqual(
 			model.getSelectedState(),
-			$.extend( {}, baseFilterRepresentation, {
+			Object.assign( {}, baseFilterRepresentation, {
 				group3__filter7: true,
 				group3__filter8: true,
 				group3__filter9: false
@@ -930,7 +930,7 @@
 		);
 		assert.deepEqual(
 			model.getSelectedState(),
-			$.extend( {}, baseFilterRepresentation, {
+			Object.assign( {}, baseFilterRepresentation, {
 				group3__filter7: true,
 				group3__filter8: true,
 				group3__filter9: true
@@ -945,7 +945,7 @@
 		);
 		assert.deepEqual(
 			model.getSelectedState(),
-			$.extend( {}, baseFilterRepresentation, {
+			Object.assign( {}, baseFilterRepresentation, {
 				group3__filter7: true,
 				group3__filter8: true,
 				group3__filter9: true
@@ -960,7 +960,7 @@
 		);
 		assert.deepEqual(
 			model.getSelectedState(),
-			$.extend( {}, baseFilterRepresentation, {
+			Object.assign( {}, baseFilterRepresentation, {
 				group3__filter7: true,
 				group3__filter8: false,
 				group3__filter9: true
@@ -975,7 +975,7 @@
 		);
 		assert.deepEqual(
 			model.getSelectedState(),
-			$.extend( {}, baseFilterRepresentation, {
+			Object.assign( {}, baseFilterRepresentation, {
 				group4__option1: true,
 				group4__option2: false
 			} ),
@@ -1004,7 +1004,7 @@
 		);
 		assert.deepEqual(
 			model.getSelectedState(),
-			$.extend( {}, baseFilterRepresentation, {
+			Object.assign( {}, baseFilterRepresentation, {
 				group4__option2: true
 			} ),
 			'A \'single_option\' parameter always reflects the latest selected value.'
@@ -1169,7 +1169,7 @@
 		// Group2 (full coverage) has all items selected, all its items are muted
 		assert.deepEqual(
 			getCurrentItemsMutedState(),
-			$.extend( {}, baseMuteState, {
+			Object.assign( {}, baseMuteState, {
 				group2__filter4: true,
 				group2__filter5: true,
 				group2__filter6: true
@@ -1185,7 +1185,7 @@
 		// Group1 (full coverage) has all items selected, no items in it are muted (non full coverage)
 		assert.deepEqual(
 			getCurrentItemsMutedState(),
-			$.extend( {}, baseMuteState, {
+			Object.assign( {}, baseMuteState, {
 				group2__filter4: true,
 				group2__filter5: true,
 				group2__filter6: true

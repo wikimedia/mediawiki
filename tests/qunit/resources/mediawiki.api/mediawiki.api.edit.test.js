@@ -37,9 +37,7 @@ QUnit.module( 'mediawiki.api.edit', ( hooks ) => {
 			}
 		} );
 
-		const edit = await new mw.Api().edit( 'Sandbox', ( revision ) => {
-			return revision.content.replace( 'Sand', 'Box' );
-		} );
+		const edit = await new mw.Api().edit( 'Sandbox', ( revision ) => revision.content.replace( 'Sand', 'Box' ) );
 		assert.strictEqual( edit.newrevid, 13 );
 	} );
 
@@ -75,9 +73,7 @@ QUnit.module( 'mediawiki.api.edit', ( hooks ) => {
 			}
 		} );
 
-		const edit = await new mw.Api().edit( new mw.Title( 'Sandbox' ), ( revision ) => {
-			return revision.content.replace( 'Sand', 'Box' );
-		} );
+		const edit = await new mw.Api().edit( new mw.Title( 'Sandbox' ), ( revision ) => revision.content.replace( 'Sand', 'Box' ) );
 		assert.strictEqual( edit.newrevid, 13 );
 	} );
 
@@ -113,9 +109,7 @@ QUnit.module( 'mediawiki.api.edit', ( hooks ) => {
 			}
 		} );
 
-		const edit = await new mw.Api().edit( 'Async', async ( revision ) => {
-			return Promise.resolve( revision.content.replace( 'Async', 'Promise' ) );
-		} );
+		const edit = await new mw.Api().edit( 'Async', async ( revision ) => Promise.resolve( revision.content.replace( 'Async', 'Promise' ) ) );
 		assert.strictEqual( edit.newrevid, 23 );
 	} );
 
@@ -172,9 +166,7 @@ QUnit.module( 'mediawiki.api.edit', ( hooks ) => {
 			}
 		} );
 
-		const promise = new mw.Api().edit( '|', ( revision ) => {
-			return revision.content.replace( 'Sand', 'Box' );
-		} );
+		const promise = new mw.Api().edit( '|', ( revision ) => revision.content.replace( 'Sand', 'Box' ) );
 		assert.rejects( promise, 'invalidtitle' );
 	} );
 

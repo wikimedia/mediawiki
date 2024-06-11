@@ -157,7 +157,7 @@
 		var numberPattern,
 			transformTable = mw.language.getSeparatorTransformTable(),
 			group = transformTable[ ',' ] || ',',
-			// eslint-disable-next-line security/detect-unsafe-regex
+
 			numberPatternRE = /[#0,]*[#0](?:\.0*#*)?/, // not precise, but good enough
 			decimal = transformTable[ '.' ] || '.',
 			patternList = pattern.split( ';' ),

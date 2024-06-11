@@ -261,7 +261,7 @@ FiltersViewModel.prototype.initializeFilters = function ( filterGroups, views ) 
 						filter = model.getItemByName( filterName );
 
 						// Rename
-						adjustedConflicts[ filterName ] = $.extend(
+						adjustedConflicts[ filterName ] = Object.assign(
 							{},
 							conflict,
 							{
@@ -276,7 +276,7 @@ FiltersViewModel.prototype.initializeFilters = function ( filterGroups, views ) 
 						// Get the relevant group items
 						model.groups[ conflict.group ].getItems().forEach( function ( groupItem ) {
 							// Rebuild the conflict
-							adjustedConflicts[ groupItem.getName() ] = $.extend(
+							adjustedConflicts[ groupItem.getName() ] = Object.assign(
 								{},
 								conflict,
 								{
@@ -770,7 +770,7 @@ FiltersViewModel.prototype.getParametersFromFilters = function ( filterDefinitio
 
 	// eslint-disable-next-line no-jquery/no-each-util
 	$.each( groupItems, function ( group, model ) {
-		$.extend(
+		Object.assign(
 			result,
 			model.getParamRepresentation(
 				groupItemDefinition ?

@@ -119,7 +119,7 @@
 	mw.widgets.APIResultsQueue.prototype.setParams = function ( params ) {
 		if ( !OO.compare( params, this.params, true ) ) {
 			this.reset();
-			this.params = $.extend( this.params, params );
+			this.params = Object.assign( this.params, params );
 			// Reset queue
 			this.queue = [];
 			// Reset promises

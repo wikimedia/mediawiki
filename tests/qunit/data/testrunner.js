@@ -328,7 +328,7 @@
 		}
 	};
 
-	$.extend( QUnit.assert, addons );
+	Object.assign( QUnit.assert, addons );
 
 	// Small test suite to confirm proper functionality of the utilities and
 	// initializations defined above in this file.

@@ -125,7 +125,7 @@
 	 */
 	mw.widgets.CategoryTagItemWidget = function MWWCategoryTagItemWidget( config ) {
 		// Parent constructor
-		mw.widgets.CategoryTagItemWidget.super.call( this, $.extend( {
+		mw.widgets.CategoryTagItemWidget.super.call( this, Object.assign( {
 			data: config.title.getMainText(),
 			label: config.title.getMainText()
 		}, config ) );

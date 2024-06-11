@@ -44,7 +44,7 @@
 	 */
 	mw.widgets.SelectWithInputWidget = function MwWidgetsSelectWithInputWidget( config ) {
 		// Config initialization
-		config = $.extend( { or: false, required: false }, config );
+		config = Object.assign( { or: false, required: false }, config );
 
 		// Properties
 		this.textinput = new OO.ui.TextInputWidget( config.textinput );

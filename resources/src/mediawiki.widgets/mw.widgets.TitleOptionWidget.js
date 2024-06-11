@@ -42,7 +42,7 @@
 		}
 
 		// Config initialization
-		config = $.extend( {
+		config = Object.assign( {
 			icon: icon,
 			label: config.data,
 			autoFitLabel: false,

@@ -58,12 +58,12 @@ module.exports = defineComponent( {
 		const targetUser = ref( '' );
 
 		const blockPartialOptions = mw.config.get( 'partialBlockActionOptions' ) ?
-			Object.keys( mw.config.get( 'partialBlockActionOptions' ) ).map( ( key ) =>
+			Object.keys( mw.config.get( 'partialBlockActionOptions' ) ).map(
 				// Messages that can be used here:
 				// * ipb-action-upload
 				// * ipb-action-move
 				// * ipb-action-create
-				Object( { label: mw.message( key ).text(), value: key } ) ) :
+				( key ) => Object( { label: mw.message( key ).text(), value: key } ) ) :
 			[];
 		const blockPartialOptionsSelected = ref( [ 'ipb-action-create' ] );
 		const blockAllowsUTEdit = mw.config.get( 'blockAllowsUTEdit' ) || false;

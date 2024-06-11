@@ -373,7 +373,7 @@ var util = {
 	 */
 	getParamValue: function ( param, url ) {
 		// Get last match, stop at hash
-		// eslint-disable-next-line security/detect-non-literal-regexp
+
 		var re = new RegExp( '^[^#]*[&?]' + util.escapeRegExp( param ) + '=([^&#]*)' ),
 			m = re.exec( url !== undefined ? url : location.href );
 
@@ -406,7 +406,7 @@ var util = {
 	 * @return {string[]|null} Parameter value, or null if parameter was not found.
 	 */
 	getArrayParam: function ( param, params ) {
-		// eslint-disable-next-line security/detect-non-literal-regexp
+
 		var paramRe = new RegExp( '^' + util.escapeRegExp( param ) + '\\[(\\d*)\\]$' );
 
 		if ( !params ) {
@@ -855,7 +855,6 @@ var util = {
 
 		block = allowBlock ? '(?:\\/(?:3[0-2]|[12]?\\d))?' : '';
 
-		// eslint-disable-next-line security/detect-non-literal-regexp
 		return ( new RegExp( '^' + RE_IP_ADD + block + '$' ).test( address ) );
 	},
 
@@ -902,7 +901,6 @@ var util = {
 				'){7}' +
 			')';
 
-		// eslint-disable-next-line security/detect-non-literal-regexp
 		if ( new RegExp( '^' + RE_IPV6_ADD + block + '$' ).test( address ) ) {
 			return true;
 		}
@@ -915,7 +913,7 @@ var util = {
 			'){1,6}';
 
 		return (
-			// eslint-disable-next-line security/detect-non-literal-regexp
+
 			new RegExp( '^' + RE_IPV6_ADD + block + '$' ).test( address ) &&
 			/::/.test( address ) &&
 			!/::.*::/.test( address )
@@ -974,7 +972,7 @@ var util = {
 				// /<hash prefix>/<name>/[<options>-]<width>-<name*>[.<ext>]
 				// where <name*> could be the filename, 'thumbnail.<ext>' (for long filenames)
 				// or the base-36 SHA1 of the filename.
-				// eslint-disable-next-line security/detect-unsafe-regex
+
 				/\/[\da-f]\/[\da-f]{2}\/([^\s/]+)\/(?:[^\s/]+-)?(\d+)px-(?:\1|thumbnail|[a-z\d]{31})(\.[^\s/]+)?$/,
 
 				// Full size images
@@ -983,7 +981,7 @@ var util = {
 
 				// Thumbnails in non-hashed upload directories
 				// /<name>/[<options>-]<width>-<name*>[.<ext>]
-				// eslint-disable-next-line security/detect-unsafe-regex
+
 				/\/([^\s/]+)\/(?:[^\s/]+-)?(\d+)px-(?:\1|thumbnail|[a-z\d]{31})[^\s/]*$/,
 
 				// Full-size images in non-hashed upload directories
@@ -1229,7 +1227,7 @@ mw.log.deprecate( mw.RegExp, 'escape', util.escapeRegExp, 'Use mw.util.escapeReg
 if ( window.QUnit ) {
 	// Not allowed outside unit tests
 	util.setOptionsForTest = function ( opts ) {
-		config = !opts ? require( './config.json' ) : $.extend( {}, config, opts );
+		config = !opts ? require( './config.json' ) : Object.assign( {}, config, opts );
 	};
 	util.init = init;
 } else {

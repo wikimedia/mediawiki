@@ -46,7 +46,7 @@
 		 * @return {jQuery.Promise} API response
 		 */
 		create: function ( title, params, content ) {
-			return this.postWithEditToken( $.extend( this.assertCurrentUser( {
+			return this.postWithEditToken( Object.assign( this.assertCurrentUser( {
 				action: 'edit',
 				title: String( title ),
 				text: content,
@@ -151,7 +151,7 @@
 				} )
 				.then( function ( params ) {
 					var editParams = typeof params === 'object' ? params : { text: String( params ) };
-					return api.postWithEditToken( $.extend( {
+					return api.postWithEditToken( Object.assign( {
 						action: 'edit',
 						title: title,
 						formatversion: '2',
@@ -179,7 +179,7 @@
 		 * @return {jQuery.Promise}
 		 */
 		newSection: function ( title, header, message, additionalParams ) {
-			return this.postWithEditToken( $.extend( {
+			return this.postWithEditToken( Object.assign( {
 				action: 'edit',
 				section: 'new',
 				title: String( title ),

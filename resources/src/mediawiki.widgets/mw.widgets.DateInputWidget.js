@@ -93,7 +93,7 @@
 	 */
 	mw.widgets.DateInputWidget = function MWWDateInputWidget( config ) {
 		// Config initialization
-		config = $.extend( {
+		config = Object.assign( {
 			precision: 'day',
 			longDisplayFormat: false,
 			required: false,
@@ -126,7 +126,7 @@
 			placeholder: placeholderDateFormat,
 			validate: this.validateDate.bind( this )
 		} );
-		this.calendar = new mw.widgets.CalendarWidget( $.extend( {
+		this.calendar = new mw.widgets.CalendarWidget( Object.assign( {
 			lazyInitOnToggle: true,
 			// Can't pass `$floatableContainer: this.$element` here, the latter is not set yet.
 			// Instead we call setFloatableContainer() below.

@@ -20,7 +20,7 @@
 	mw.widgets.MediaUserUploadsProvider = function MwWidgetsMediaUserUploadsProvider( apiurl, config ) {
 		config = config || {};
 
-		config.staticParams = $.extend( {
+		config.staticParams = Object.assign( {
 			generator: 'allimages',
 			gaisort: 'timestamp',
 			gaidir: 'descending'

@@ -20,7 +20,7 @@
 	mw.widgets.MediaSearchProvider = function MwWidgetsMediaSearchProvider( apiurl, config ) {
 		config = config || {};
 
-		config.staticParams = $.extend( {
+		config.staticParams = Object.assign( {
 			generator: 'search',
 			gsrnamespace: mw.config.get( 'wgNamespaceIds' ).file,
 			uselang: mw.config.get( 'wgUserLanguage' )

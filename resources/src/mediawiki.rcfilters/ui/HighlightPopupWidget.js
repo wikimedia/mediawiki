@@ -14,7 +14,7 @@ HighlightPopupWidget = function MwRcfiltersUiHighlightPopupWidget( controller, c
 	config = config || {};
 
 	// Parent
-	HighlightPopupWidget.super.call( this, $.extend( {
+	HighlightPopupWidget.super.call( this, Object.assign( {
 		autoClose: true,
 		anchor: false,
 		padded: true,

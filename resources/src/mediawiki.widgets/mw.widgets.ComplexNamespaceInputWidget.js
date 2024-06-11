@@ -33,7 +33,7 @@
 	 */
 	mw.widgets.ComplexNamespaceInputWidget = function MwWidgetsComplexNamespaceInputWidget( config ) {
 		// Configuration initialization
-		config = $.extend(
+		config = Object.assign(
 			{
 				// Config options for nested widgets
 				namespace: {},
@@ -53,28 +53,28 @@
 
 		this.namespace = new mw.widgets.NamespaceInputWidget( config.namespace );
 		if ( config.associated !== null ) {
-			this.associated = new OO.ui.CheckboxInputWidget( $.extend(
+			this.associated = new OO.ui.CheckboxInputWidget( Object.assign(
 				{ value: '1' },
 				config.associated
 			) );
 			// TODO Should use a LabelWidget? But they don't work like HTML <label>s yet
 			this.associatedLabel = new OO.ui.FieldLayout(
 				this.associated,
-				$.extend(
+				Object.assign(
 					{ align: 'inline' },
 					config.associatedLabel
 				)
 			);
 		}
 		if ( config.invert !== null ) {
-			this.invert = new OO.ui.CheckboxInputWidget( $.extend(
+			this.invert = new OO.ui.CheckboxInputWidget( Object.assign(
 				{ value: '1' },
 				config.invert
 			) );
 			// TODO Should use a LabelWidget? But they don't work like HTML <label>s yet
 			this.invertLabel = new OO.ui.FieldLayout(
 				this.invert,
-				$.extend(
+				Object.assign(
 					{ align: 'inline' },
 					config.invertLabel
 				)
