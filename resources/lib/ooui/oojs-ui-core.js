@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.49.2
+ * OOUI v0.50.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-05-17T04:45:00Z
+ * Date: 2024-06-11T21:26:26Z
  */
 ( function ( OO ) {
 
@@ -1111,9 +1111,6 @@ OO.ui.Element.static.getDimensions = function ( el ) {
 			if ( definer.scrollLeft === 0 ) {
 				// Firefox, old Opera
 				rtlScrollType = 'negative';
-			} else {
-				// Internet Explorer, Edge
-				rtlScrollType = 'reverse';
 			}
 		}
 		$definer.remove();

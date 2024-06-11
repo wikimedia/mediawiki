@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.49.2
+ * OOUI v0.50.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-05-17T04:45:03Z
+ * Date: 2024-06-11T21:26:30Z
  */
 
 .oo-ui-window {
@@ -107,7 +107,7 @@
   text-overflow: ellipsis;
 }
 .oo-ui-messageDialog-content > .oo-ui-window-foot {
-  outline: 1px solid #a2a9b1;
+  outline: var(--border-base, 1px solid #a2a9b1);
 }
 .oo-ui-messageDialog-title,
 .oo-ui-messageDialog-message {
@@ -117,11 +117,11 @@
 }
 .oo-ui-messageDialog-title {
   font-size: 1.5em;
-  color: #000;
+  color: var(--color-emphasized, #000);
 }
 .oo-ui-messageDialog-message {
   font-size: 1.1em;
-  color: #202122;
+  color: var(--color-base, #202122);
   text-align: left;
 }
 .oo-ui-messageDialog-actions .oo-ui-actionWidget {
@@ -151,7 +151,7 @@
   background-color: rgba(212, 83, 83, 0.1);
 }
 .oo-ui-messageDialog-actions-horizontal .oo-ui-actionWidget {
-  border-right: 1px solid #a2a9b1;
+  border-right: var(--border-base, 1px solid #a2a9b1);
   margin: 0;
 }
 .oo-ui-messageDialog-actions-horizontal .oo-ui-actionWidget:first-child > .oo-ui-buttonElement-button {
@@ -167,7 +167,7 @@
   border-radius: 0 0 2px 2px;
 }
 .oo-ui-messageDialog-actions-vertical .oo-ui-actionWidget {
-  border-bottom: 1px solid #a2a9b1;
+  border-bottom: var(--border-base, 1px solid #a2a9b1);
   margin: 0;
 }
 .oo-ui-messageDialog-actions-vertical .oo-ui-actionWidget:last-child {
@@ -215,7 +215,7 @@
 }
 .oo-ui-processDialog-content > .oo-ui-window-head,
 .oo-ui-processDialog-content > .oo-ui-window-foot {
-  outline: 1px solid #c8ccd1;
+  outline: var(--border-subtle, 1px solid #c8ccd1);
 }
 .oo-ui-processDialog-content > .oo-ui-window-head {
   min-height: 3em;
@@ -249,11 +249,11 @@
 }
 .oo-ui-processDialog .oo-ui-actionWidget:not( .oo-ui-flaggedElement-progressive ):not( .oo-ui-flaggedElement-destructive ) > .oo-ui-buttonElement-button:hover,
 .oo-ui-processDialog .oo-ui-actionWidget:not( .oo-ui-flaggedElement-progressive ):not( .oo-ui-flaggedElement-destructive ) > .oo-ui-buttonElement-button:active {
-  border-right-color: #c8ccd1;
+  border-right-color: var(--border-color-subtle, #c8ccd1);
   border-left-color: transparent;
 }
 .oo-ui-processDialog .oo-ui-actionWidget:not( .oo-ui-flaggedElement-progressive ):not( .oo-ui-flaggedElement-destructive ) > .oo-ui-buttonElement-button:focus {
-  border-color: #36c;
+  border-color: var(--border-color-progressive--focus, #36c);
 }
 .oo-ui-processDialog .oo-ui-actionWidget.oo-ui-iconElement > .oo-ui-buttonElement-button {
   min-height: 3em;
@@ -271,20 +271,20 @@
   padding-left: 2.42857143em;
 }
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget > .oo-ui-buttonElement-button {
-  border-left-color: #c8ccd1;
+  border-left-color: var(--border-color-subtle, #c8ccd1);
   border-right-color: transparent;
 }
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget:not( .oo-ui-flaggedElement-progressive ):not( .oo-ui-flaggedElement-destructive ) > .oo-ui-buttonElement-button:hover,
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget:not( .oo-ui-flaggedElement-progressive ):not( .oo-ui-flaggedElement-destructive ) > .oo-ui-buttonElement-button:active {
-  border-left-color: #c8ccd1;
+  border-left-color: var(--border-color-subtle, #c8ccd1);
   border-right-color: transparent;
 }
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget:not( .oo-ui-flaggedElement-progressive ):not( .oo-ui-flaggedElement-destructive ) > .oo-ui-buttonElement-button:focus {
-  border-color: #36c;
+  border-color: var(--border-color-progressive--focus, #36c);
 }
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget > .oo-ui-buttonElement-button,
 .oo-ui-processDialog-actions-other .oo-ui-actionWidget > .oo-ui-buttonElement-button {
-  border-right-color: #c8ccd1;
+  border-right-color: var(--border-color-subtle, #c8ccd1);
   border-left-color: transparent;
 }
 .oo-ui-processDialog-actions-safe .oo-ui-widget-enabled.oo-ui-iconElement:not( .oo-ui-labelElement ) > .oo-ui-buttonElement-button {
@@ -292,15 +292,15 @@
   border-right-color: transparent;
 }
 .oo-ui-processDialog-actions-safe .oo-ui-widget-enabled.oo-ui-iconElement:not( .oo-ui-labelElement ) > .oo-ui-buttonElement-button:hover {
-  background-color: #f8f9fa;
-  border-right-color: #c8ccd1;
+  background-color: var(--background-color-interactive-subtle, #f8f9fa);
+  border-right-color: var(--border-color-subtle, #c8ccd1);
 }
 .oo-ui-processDialog-actions-safe .oo-ui-widget-enabled.oo-ui-iconElement:not( .oo-ui-labelElement ) > .oo-ui-buttonElement-button:active {
-  background-color: #eaecf0;
-  border-right-color: #c8ccd1;
+  background-color: var(--background-color-interactive, #eaecf0);
+  border-right-color: var(--border-color-subtle, #c8ccd1);
 }
 .oo-ui-processDialog-actions-safe .oo-ui-widget-enabled.oo-ui-iconElement:not( .oo-ui-labelElement ) > .oo-ui-buttonElement-button:focus {
-  border-color: #36c;
+  border-color: var(--border-color-progressive--focus, #36c);
 }
 .oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-buttonElement {
   margin-right: 0;
@@ -314,7 +314,7 @@
 }
 .oo-ui-processDialog-errors-title {
   font-size: 1.5em;
-  color: #000;
+  color: var(--color-emphasized, #000);
   margin-bottom: 1.5em;
   text-align: center;
 }
@@ -396,13 +396,13 @@ html.oo-ui-windowManager-modal-active:not( .oo-ui-windowManager-modal-active-ful
   overflow: hidden;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog {
-  background-color: rgba(255, 255, 255, 0.65);
+  background-color: var(--background-color-backdrop-light, rgba(255, 255, 255, 0.65));
   opacity: 0;
   transition-property: opacity;
   transition-duration: 250ms;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog > .oo-ui-window-frame {
-  background-color: #fff;
+  background-color: var(--background-color-base, #fff);
   opacity: 0;
   transform: scale(0.5);
   transition-property: all;
@@ -420,7 +420,7 @@ html.oo-ui-windowManager-modal-active:not( .oo-ui-windowManager-modal-active-ful
   bottom: 1em;
   max-height: 100%;
   max-height: calc( 100% - 2em );
-  border: 1px solid #a2a9b1;
+  border: var(--border-base, 1px solid #a2a9b1);
   border-radius: 2px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }

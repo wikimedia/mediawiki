@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"555",
 			"Cainamarques",
 			"Dianakc",
 			"Eduardo Addad de Oliveira",
@@ -13,8 +14,7 @@
 			"Luckas",
 			"OTAVIO1981",
 			"TheEduGobi",
-			"TheGabrielZaum",
-			555
+			"TheGabrielZaum"
 		]
 	},
 	"ooui-copytextlayout-copy": "Copiar",
