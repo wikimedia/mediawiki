@@ -30,6 +30,7 @@ use Wikimedia\RequestTimeout\RequestTimeout;
  * @covers \Wikimedia\Rdbms\LBFactory
  * @covers \Wikimedia\Rdbms\LBFactorySimple
  * @covers \Wikimedia\Rdbms\LBFactoryMulti
+ * @covers \MWLBFactory
  */
 class MWLBFactoryTest extends MediaWikiUnitTestCase {
 
@@ -47,7 +48,6 @@ class MWLBFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MWLBFactory::getLBFactoryClass
 	 * @dataProvider getLBFactoryClassProvider
 	 */
 	public function testGetLBFactoryClass( $config, $expected ) {
@@ -69,7 +69,6 @@ class MWLBFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MWLBFactory::setDomainAliases()
 	 * @dataProvider setDomainAliasesProvider
 	 */
 	public function testDomainAliases( $dbname, $prefix, $expectedDomain ) {

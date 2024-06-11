@@ -7,7 +7,7 @@ use Wikimedia\Rdbms\Platform\SQLPlatform;
 use Wikimedia\Rdbms\QueryBuilderFromRawSql;
 
 /**
- * @covers \Wikimedia\Rdbms\QueryBuilderFromRawSql::buildQuery
+ * @covers \Wikimedia\Rdbms\QueryBuilderFromRawSql
  */
 class QueryBuilderFromRawSqlTest extends MediaWikiUnitTestCase {
 
@@ -131,9 +131,6 @@ class QueryBuilderFromRawSqlTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $res, $query->isWriteQuery() );
 	}
 
-	/**
-	 * @return array
-	 */
 	public static function provideIsWriteQuery(): array {
 		return [
 			[ 'SELECT foo', false ],

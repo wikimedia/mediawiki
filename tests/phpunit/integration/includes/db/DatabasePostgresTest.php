@@ -8,6 +8,9 @@ use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
 /**
+ * @covers \Wikimedia\Rdbms\Database
+ * @covers \Wikimedia\Rdbms\DatabasePostgres
+ * @covers \Wikimedia\Rdbms\Platform\PostgresPlatform
  * @group Database
  */
 class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
@@ -86,7 +89,6 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * FIXME: See https://phabricator.wikimedia.org/T259084.
 	 * @group Broken
-	 * @covers \Wikimedia\Rdbms\DatabasePostgres::insert
 	 */
 	public function testInsertIgnoreOld() {
 		if ( $this->db->getServerVersion() < 9.5 ) {
@@ -107,7 +109,6 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * FIXME: See https://phabricator.wikimedia.org/T259084.
 	 * @group Broken
-	 * @covers \Wikimedia\Rdbms\DatabasePostgres::insert
 	 */
 	public function testInsertIgnoreNew() {
 		if ( $this->db->getServerVersion() < 9.5 ) {
@@ -178,7 +179,6 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * FIXME: See https://phabricator.wikimedia.org/T259084.
 	 * @group Broken
-	 * @covers \Wikimedia\Rdbms\DatabasePostgres::doInsertSelectNative
 	 */
 	public function testInsertSelectIgnoreOld() {
 		if ( $this->db->getServerVersion() < 9.5 ) {
@@ -199,7 +199,6 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * FIXME: See https://phabricator.wikimedia.org/T259084.
 	 * @group Broken
-	 * @covers \Wikimedia\Rdbms\DatabasePostgres::doInsertSelectNative
 	 */
 	public function testInsertSelectIgnoreNew() {
 		if ( $this->db->getServerVersion() < 9.5 ) {
@@ -209,9 +208,6 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		$this->doTestInsertSelectIgnore();
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabasePostgres::getAttributes
-	 */
 	public function testAttributes() {
 		$dbFactory = $this->getServiceContainer()->getDatabaseFactory();
 		$this->assertTrue(
@@ -219,10 +215,6 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::insert()
-	 * @covers \Wikimedia\Rdbms\Database::insertId()
-	 */
 	public function testInsertIdAfterInsert() {
 		$rows = [ [ 'k' => 'Luca', 'v' => mt_rand( 1, 100 ), 't' => time() ] ];
 
@@ -234,10 +226,6 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $this->db->affectedRows() );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::insert()
-	 * @covers \Wikimedia\Rdbms\Database::insertId()
-	 */
 	public function testInsertIdAfterInsertIgnore() {
 		$rows = [ [ 'k' => 'Luca', 'v' => mt_rand( 1, 100 ), 't' => time() ] ];
 
@@ -254,10 +242,6 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $this->db->affectedRows() );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::replace()
-	 * @covers \Wikimedia\Rdbms\Database::insertId()
-	 */
 	public function testInsertIdAfterReplace() {
 		$rows = [ [ 'k' => 'Luca', 'v' => mt_rand( 1, 100 ), 't' => time() ] ];
 
@@ -274,10 +258,6 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $this->db->affectedRows() );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::upsert()
-	 * @covers \Wikimedia\Rdbms\Database::insertId()
-	 */
 	public function testInsertIdAfterUpsert() {
 		$rows = [ [ 'k' => 'Luca', 'v' => mt_rand( 1, 100 ), 't' => time() ] ];
 		$set = [
@@ -298,10 +278,6 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $this->db->affectedRows() );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::insertSelect()
-	 * @covers \Wikimedia\Rdbms\Database::insertId()
-	 */
 	public function testInsertIdAfterInsertSelect() {
 		$rows = [ [ 'sk' => 'Luca', 'sv' => mt_rand( 1, 100 ), 'st' => time() ] ];
 		$this->db->insert( self::SRC_TABLE, $rows, __METHOD__, 'IGNORE' );
@@ -328,10 +304,6 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $this->db->affectedRows() );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::insertSelect()
-	 * @covers \Wikimedia\Rdbms\Database::insertId()
-	 */
 	public function testInsertIdAfterInsertSelectIgnore() {
 		$rows = [ [ 'sk' => 'Luca', 'sv' => mt_rand( 1, 100 ), 'st' => time() ] ];
 		$this->db->insert( self::SRC_TABLE, $rows, __METHOD__, 'IGNORE' );
@@ -370,13 +342,6 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $this->db->affectedRows() );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabasePostgres::fieldExists()
-	 * @covers \Wikimedia\Rdbms\DatabasePostgres::indexExists()
-	 * @covers \Wikimedia\Rdbms\DatabasePostgres::indexUnique()
-	 * @covers \Wikimedia\Rdbms\DatabasePostgres::fieldInfo()
-	 * @covers \Wikimedia\Rdbms\DatabasePostgres::indexInfo()
-	 */
 	public function testFieldAndIndexInfo() {
 		global $wgDBname;
 
