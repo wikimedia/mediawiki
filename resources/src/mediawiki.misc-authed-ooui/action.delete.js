@@ -6,7 +6,7 @@
 		return;
 	}
 
-	$( function () {
+	$( () => {
 		var reasonList = OO.ui.infuse( $( '#wpDeleteReasonList' ) ),
 			reason = OO.ui.infuse( $( '#wpReason' ) );
 

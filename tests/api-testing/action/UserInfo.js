@@ -2,7 +2,7 @@
 
 const { action, assert, utils } = require( 'api-testing' );
 
-describe( "Changing a user's `editfont` option", function getUserOptions() {
+describe( "Changing a user's `editfont` option", () => {
 	let Rick = action.getAnon();
 	const randomPage = utils.title( 'random' );
 	const text = 'Random text';

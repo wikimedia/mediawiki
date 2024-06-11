@@ -6,7 +6,7 @@ QUnit.module( 'mediawiki.api.edit', ( hooks ) => {
 	} );
 
 	QUnit.test( 'edit( title, transform String )', async ( assert ) => {
-		server.respond( function ( req ) {
+		server.respond( ( req ) => {
 			if ( /query.+titles=Sandbox/.test( req.url ) ) {
 				req.respond( 200, { 'Content-Type': 'application/json' }, JSON.stringify( {
 					curtimestamp: '2016-01-02T12:00:00Z',
@@ -42,7 +42,7 @@ QUnit.module( 'mediawiki.api.edit', ( hooks ) => {
 	} );
 
 	QUnit.test( 'edit( mw.Title, transform String )', async ( assert ) => {
-		server.respond( function ( req ) {
+		server.respond( ( req ) => {
 			if ( /query.+titles=Sandbox/.test( req.url ) ) {
 				req.respond( 200, { 'Content-Type': 'application/json' }, JSON.stringify( {
 					curtimestamp: '2016-01-02T12:00:00Z',
@@ -78,7 +78,7 @@ QUnit.module( 'mediawiki.api.edit', ( hooks ) => {
 	} );
 
 	QUnit.test( 'edit( title, transform Promise )', async ( assert ) => {
-		server.respond( function ( req ) {
+		server.respond( ( req ) => {
 			if ( /query.+titles=Async/.test( req.url ) ) {
 				req.respond( 200, { 'Content-Type': 'application/json' }, JSON.stringify( {
 					curtimestamp: '2016-02-02T12:00:00Z',
@@ -114,7 +114,7 @@ QUnit.module( 'mediawiki.api.edit', ( hooks ) => {
 	} );
 
 	QUnit.test( 'edit( title, transform Object )', async ( assert ) => {
-		server.respond( function ( req ) {
+		server.respond( ( req ) => {
 			if ( /query.+titles=Param/.test( req.url ) ) {
 				req.respond( 200, { 'Content-Type': 'application/json' }, JSON.stringify( {
 					curtimestamp: '2016-03-02T12:00:00Z',
@@ -145,14 +145,12 @@ QUnit.module( 'mediawiki.api.edit', ( hooks ) => {
 			}
 		} );
 
-		const edit = await new mw.Api().edit( 'Param', function () {
-			return { text: 'Content', summary: 'Sum' };
-		} );
+		const edit = await new mw.Api().edit( 'Param', () => ( { text: 'Content', summary: 'Sum' } ) );
 		assert.strictEqual( edit.newrevid, 33 );
 	} );
 
 	QUnit.test( 'edit( invalid-title, transform String )', ( assert ) => {
-		server.respond( function ( req ) {
+		server.respond( ( req ) => {
 			if ( /query.+titles=%1F%7C/.test( req.url ) ) {
 				req.respond( 200, { 'Content-Type': 'application/json' }, JSON.stringify( {
 					query: {
@@ -171,7 +169,7 @@ QUnit.module( 'mediawiki.api.edit', ( hooks ) => {
 	} );
 
 	QUnit.test( 'create( title, content )', async ( assert ) => {
-		server.respond( function ( req ) {
+		server.respond( ( req ) => {
 			if ( /edit.+text=Sand/.test( req.requestBody ) ) {
 				req.respond( 200, { 'Content-Type': 'application/json' }, JSON.stringify( {
 					edit: {

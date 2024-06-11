@@ -4,7 +4,7 @@
 const inlineFormatToggle = require( './inlineFormatToggle.js' );
 
 ( function () {
-	$( function setDiffSideProtection() {
+	$( () => {
 		/**
 		 * @param {Node} node
 		 * @return {string|undefined}

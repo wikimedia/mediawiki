@@ -2,7 +2,7 @@
 
 const { action, utils, assert, wiki } = require( 'api-testing' );
 
-describe( 'The tag action module', function () {
+describe( 'The tag action module', () => {
 
 	const tagName = 'foo-bar';
 	const tag2Name = 'foo-bar-baz';

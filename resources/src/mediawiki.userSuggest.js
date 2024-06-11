@@ -16,10 +16,8 @@
 				list: 'allusers',
 				auprefix: userInput,
 				aulimit: maxRows
-			} ).done( function ( data ) {
-				var users = data.query.allusers.map( function ( userObj ) {
-					return userObj.name;
-				} );
+			} ).done( ( data ) => {
+				var users = data.query.allusers.map( ( userObj ) => userObj.name );
 				response( users );
 			} ) );
 		},
@@ -34,7 +32,7 @@
 		}
 	};
 
-	$( function () {
+	$( () => {
 		$( '.mw-autocomplete-user' ).suggestions( config );
 	} );
 }() );

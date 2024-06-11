@@ -142,14 +142,10 @@ ChangesListWrapperWidget.prototype.onModelUpdate = function (
 
 			// remove all classes matching mw-changeslist-*
 			// eslint-disable-next-line mediawiki/class-doc
-			this.$element.removeClass( function ( elementIndex, allClasses ) {
-				return allClasses
-					.split( ' ' )
-					.filter( function ( className ) {
-						return className.indexOf( 'mw-changeslist-' ) === 0;
-					} )
-					.join( ' ' );
-			} );
+			this.$element.removeClass( ( elementIndex, allClasses ) => allClasses
+				.split( ' ' )
+				.filter( ( className ) => className.indexOf( 'mw-changeslist-' ) === 0 )
+				.join( ' ' ) );
 		}
 
 		this.$element.append( $message );
@@ -169,7 +165,7 @@ ChangesListWrapperWidget.prototype.onModelUpdate = function (
 
 	this.$element.prepend( $( '<div>' ).addClass( 'mw-changeslist-overlay' ) );
 
-	loaderPromise.done( function () {
+	loaderPromise.done( () => {
 		if ( !isInitialDOM && !isEmpty ) {
 			// Make sure enhanced RC re-initializes correctly
 			mw.hook( 'wikipage.content' ).fire( widget.$element );
@@ -261,9 +257,7 @@ ChangesListWrapperWidget.prototype.updateEnhancedParentHighlight = function () {
 	var activeHighlightClasses,
 		$enhancedTopPageCell = this.$element.find( 'table.mw-enhanced-rc' );
 
-	activeHighlightClasses = this.filtersViewModel.getCurrentlyUsedHighlightColors().map( function ( color ) {
-		return 'mw-rcfilters-highlight-color-' + color;
-	} );
+	activeHighlightClasses = this.filtersViewModel.getCurrentlyUsedHighlightColors().map( ( color ) => 'mw-rcfilters-highlight-color-' + color );
 
 	// Go over top pages and their children, and figure out if all sub-pages have the
 	// same highlights between themselves. If they do, the parent should be highlighted
@@ -274,20 +268,20 @@ ChangesListWrapperWidget.prototype.updateEnhancedParentHighlight = function () {
 			$table = $( this );
 
 		// Collect the relevant classes from the first nested child
-		firstChildClasses = activeHighlightClasses.filter( function ( className ) {
+		firstChildClasses = activeHighlightClasses.filter(
 			// eslint-disable-next-line no-jquery/no-class-state
-			return $table.find( 'tr' ).eq( 2 ).hasClass( className );
-		} );
+			( className ) => $table.find( 'tr' ).eq( 2 ).hasClass( className )
+		);
 		// Filter the non-head rows and see if they all have the same classes
 		// to the first row
 		$rowsWithDifferentHighlights = $table.find( 'tr:not(:first-child)' ).filter( function () {
 			var classesInThisRow,
 				$this = $( this );
 
-			classesInThisRow = activeHighlightClasses.filter( function ( className ) {
+			classesInThisRow = activeHighlightClasses.filter(
 				// eslint-disable-next-line no-jquery/no-class-state
-				return $this.hasClass( className );
-			} );
+				( className ) => $this.hasClass( className )
+			);
 
 			return !OO.compare( firstChildClasses, classesInThisRow );
 		} );
@@ -315,7 +309,7 @@ ChangesListWrapperWidget.prototype.applyHighlight = function () {
 		return;
 	}
 
-	this.filtersViewModel.getHighlightedItems().forEach( function ( filterItem ) {
+	this.filtersViewModel.getHighlightedItems().forEach( ( filterItem ) => {
 		var $elements = this.$element.find( '.' + filterItem.getCssClass() );
 
 		// Add highlight class to all highlighted list items
@@ -342,7 +336,7 @@ ChangesListWrapperWidget.prototype.applyHighlight = function () {
 				filters.push( filterItem.getLabel() );
 			}
 		} );
-	}.bind( this ) );
+	} );
 	// Apply a title to each highlighted item, with a list of filters
 	this.$element.find( '.mw-rcfilters-highlighted' ).each( function () {
 		var filters = $( this ).data( 'highlightedFilters' );
@@ -368,7 +362,7 @@ ChangesListWrapperWidget.prototype.applyHighlight = function () {
  */
 ChangesListWrapperWidget.prototype.clearHighlight = function () {
 	// Remove highlight classes
-	HighlightColors.forEach( function ( color ) {
+	HighlightColors.forEach( ( color ) => {
 		// The following classes are used here:
 		// * mw-rcfilters-highlight-color-c1
 		// * mw-rcfilters-highlight-color-c2
@@ -378,7 +372,7 @@ ChangesListWrapperWidget.prototype.clearHighlight = function () {
 		this.$element
 			.find( '.mw-rcfilters-highlight-color-' + color )
 			.removeClass( 'mw-rcfilters-highlight-color-' + color );
-	}.bind( this ) );
+	} );
 
 	this.$element.find( '.mw-rcfilters-highlighted' )
 		.removeAttr( 'title' )

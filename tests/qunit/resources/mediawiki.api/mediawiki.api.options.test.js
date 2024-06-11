@@ -1,4 +1,4 @@
-QUnit.module( 'mediawiki.api.options', QUnit.newMwEnvironment(), function ( hooks ) {
+QUnit.module( 'mediawiki.api.options', QUnit.newMwEnvironment(), ( hooks ) => {
 	mw.config.set( {
 		wgUserName: 'Foo'
 	} );
@@ -32,7 +32,7 @@ QUnit.module( 'mediawiki.api.options', QUnit.newMwEnvironment(), function ( hook
 		);
 
 		// Requests are POST, match requestBody instead of url
-		this.server.respond( function ( request ) {
+		this.server.respond( ( request ) => {
 			if ( !request.requestBody ) {
 				// GET request for the token, already responded above
 			} else if ( [
@@ -85,7 +85,7 @@ QUnit.module( 'mediawiki.api.options', QUnit.newMwEnvironment(), function ( hook
 		);
 
 		// Requests are POST, match requestBody instead of url
-		this.server.respond( function ( request ) {
+		this.server.respond( ( request ) => {
 			if ( !request.requestBody ) {
 				// GET request for the token, already responded above
 			} else if ( [

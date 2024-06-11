@@ -12,7 +12,7 @@
 ( function () {
 	'use strict';
 
-	$( function () {
+	$( () => {
 		// FIXME: This shouldn't be a global selector to avoid conflicts
 		// with unrelated content on the same page. (T131318)
 		var $checkboxes = $( 'li input[type="checkbox"]' );
@@ -21,16 +21,14 @@
 			$checkboxes.prop( 'checked', check ).trigger( 'change' );
 		}
 
-		$( '.mw-checkbox-all' ).on( 'click', function () {
+		$( '.mw-checkbox-all' ).on( 'click', () => {
 			selectAll( true );
 		} );
-		$( '.mw-checkbox-none' ).on( 'click', function () {
+		$( '.mw-checkbox-none' ).on( 'click', () => {
 			selectAll( false );
 		} );
-		$( '.mw-checkbox-invert' ).on( 'click', function () {
-			$checkboxes.prop( 'checked', function ( i, val ) {
-				return !val;
-			} ).trigger( 'change' );
+		$( '.mw-checkbox-invert' ).on( 'click', () => {
+			$checkboxes.prop( 'checked', ( i, val ) => !val ).trigger( 'change' );
 		} );
 
 	} );

@@ -18,11 +18,11 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 		}
 	} );
 
-	QUnit.test( 'options', function ( assert ) {
+	QUnit.test( 'options', ( assert ) => {
 		assert.true( mw.user.options instanceof mw.Map, 'options instance of mw.Map' );
 	} );
 
-	QUnit.test( 'getters (anonymous)', function ( assert ) {
+	QUnit.test( 'getters (anonymous)', ( assert ) => {
 		// Forge an anonymous user
 		mw.config.set( 'wgUserName', null );
 		mw.config.set( 'wgUserId', null );
@@ -32,7 +32,7 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 		assert.strictEqual( mw.user.getId(), 0, 'getId()' );
 	} );
 
-	QUnit.test( 'getters (logged-in)', function ( assert ) {
+	QUnit.test( 'getters (logged-in)', ( assert ) => {
 		mw.config.set( 'wgUserName', 'John' );
 		mw.config.set( 'wgUserIsTemp', false );
 		mw.config.set( 'wgUserId', 123 );
@@ -46,20 +46,20 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 		assert.strictEqual( mw.user.id(), 'John', 'user.id()' );
 	} );
 
-	QUnit.test( 'getGroups (callback)', function ( assert ) {
+	QUnit.test( 'getGroups (callback)', ( assert ) => {
 		var done = assert.async();
 		mw.config.set( 'wgUserGroups', [ '*', 'user' ] );
 
-		mw.user.getGroups( function ( groups ) {
+		mw.user.getGroups( ( groups ) => {
 			assert.deepEqual( groups, [ '*', 'user' ], 'Result' );
 			done();
 		} );
 	} );
 
-	QUnit.test( 'getGroups (Promise)', function ( assert ) {
+	QUnit.test( 'getGroups (Promise)', ( assert ) => {
 		mw.config.set( 'wgUserGroups', [ '*', 'user' ] );
 
-		return mw.user.getGroups().then( function ( groups ) {
+		return mw.user.getGroups().then( ( groups ) => {
 			assert.deepEqual( groups, [ '*', 'user' ], 'Result' );
 		} );
 	} );
@@ -71,7 +71,7 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 			'{ "query": { "userinfo": { "groups": [ "unused" ], "rights": [ "read", "edit", "createtalk" ] } } }'
 		] );
 
-		mw.user.getRights( function ( rights ) {
+		mw.user.getRights( ( rights ) => {
 			assert.deepEqual( rights, [ 'read', 'edit', 'createtalk' ], 'Result (callback)' );
 			done();
 		} );
@@ -82,12 +82,12 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 			'{ "query": { "userinfo": { "groups": [ "unused" ], "rights": [ "read", "edit", "createtalk" ] } } }'
 		] );
 
-		return mw.user.getRights().then( function ( rights ) {
+		return mw.user.getRights().then( ( rights ) => {
 			assert.deepEqual( rights, [ 'read', 'edit', 'createtalk' ], 'Result (promise)' );
 		} );
 	} );
 
-	QUnit.test( 'generateRandomSessionId', function ( assert ) {
+	QUnit.test( 'generateRandomSessionId', ( assert ) => {
 		var result, result2;
 
 		result = mw.user.generateRandomSessionId();
@@ -100,7 +100,7 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 
 	} );
 
-	QUnit.test( 'generateRandomSessionId (fallback)', function ( assert ) {
+	QUnit.test( 'generateRandomSessionId (fallback)', ( assert ) => {
 		var result, result2;
 
 		// Pretend crypto API is not there to test the Math.random fallback
@@ -122,7 +122,7 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 		assert.notStrictEqual( result, result2, 'different when called multiple times' );
 	} );
 
-	QUnit.test( 'getPageviewToken', function ( assert ) {
+	QUnit.test( 'getPageviewToken', ( assert ) => {
 		var result = mw.user.getPageviewToken(),
 			result2 = mw.user.getPageviewToken();
 		assert.strictEqual( typeof result, 'string', 'type' );
@@ -130,7 +130,7 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 		assert.strictEqual( result2, result, 'sticky' );
 	} );
 
-	QUnit.test( 'sessionId', function ( assert ) {
+	QUnit.test( 'sessionId', ( assert ) => {
 		var result = mw.user.sessionId(),
 			result2 = mw.user.sessionId();
 		assert.strictEqual( typeof result, 'string', 'type' );
@@ -142,7 +142,7 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 		var CLIENT_PREF_COOKIE_NAME = 'mwclientpreferences';
 		var docClass;
 
-		hooks.beforeEach( function () {
+		hooks.beforeEach( () => {
 			docClass = document.documentElement.getAttribute( 'class' );
 			document.documentElement.setAttribute( 'class', '' );
 			// reset any cookies
@@ -150,12 +150,12 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 			// simulate logged-out status for most clientPrefs tests
 			mw.config.set( { wgUserName: null } );
 		} );
-		hooks.afterEach( function () {
+		hooks.afterEach( () => {
 			mw.cookie.set( CLIENT_PREF_COOKIE_NAME, null );
 			document.documentElement.setAttribute( 'class', docClass );
 		} );
 
-		QUnit.test( 'get() [from HTML element]', function ( assert ) {
+		QUnit.test( 'get() [from HTML element]', ( assert ) => {
 			document.documentElement.setAttribute( 'class', 'client-js font-size-clientpref-1 font-size-clientpref-unrelated-class invalid-clientpref-bad-value ambiguous-clientpref-off ambiguous-clientpref-on' );
 			var result = mw.user.clientPrefs.get( 'font-size' );
 			var badValue = mw.user.clientPrefs.get( 'invalid' );
@@ -165,14 +165,14 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 			assert.strictEqual( ambiguousValue, false, 'ambiguous values are resolved to false' );
 		} );
 
-		QUnit.test( 'get() [never read from cookie]', function ( assert ) {
+		QUnit.test( 'get() [never read from cookie]', ( assert ) => {
 			mw.cookie.set( CLIENT_PREF_COOKIE_NAME, 'unknown~500' );
 			var resultUnknown = mw.user.clientPrefs.get( 'unknown' );
 			assert.false( resultUnknown,
 				'if an appropriate class is not on the HTML element it returns false even if there is a value in the cookie' );
 		} );
 
-		QUnit.test( 'set() [valid preferences]', function ( assert ) {
+		QUnit.test( 'set() [valid preferences]', ( assert ) => {
 			document.documentElement.classList.add( 'limited-width-clientpref-1', 'font-size-clientpref-100' );
 			var resultLimitedWidth = mw.user.clientPrefs.set( 'limited-width', '0' );
 			var resultFontSize = mw.user.clientPrefs.set( 'font-size', '10' );
@@ -191,14 +191,14 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 			);
 		} );
 
-		QUnit.test( 'set() [invalid preferences]', function ( assert ) {
+		QUnit.test( 'set() [invalid preferences]', ( assert ) => {
 			document.documentElement.classList.add( 'client-js' );
 			var result = mw.user.clientPrefs.set( 'client', 'nojs' );
 			assert.false( result, 'the client preference was rejected (lacking -clientpref- suffix)' );
 			assert.true( document.documentElement.classList.contains( 'client-js' ), 'the classes on the document were not changed' );
 		} );
 
-		QUnit.test( 'set() [invalid characters]', function ( assert ) {
+		QUnit.test( 'set() [invalid characters]', ( assert ) => {
 			document.documentElement.setAttribute( 'class', 'client-js bar-clientpref-1' );
 			[
 				[ 'client-js bar', 'nojs' ],
@@ -208,7 +208,7 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 				[ '', 'nothing' ],
 				[ 'feature', '' ],
 				[ 'foo!client~no-js!bar', 'hi' ]
-			].forEach( function ( test, i ) {
+			].forEach( ( test, i ) => {
 				var result = mw.user.clientPrefs.set( test[ 0 ], test[ 1 ] );
 				assert.false( result, 'the client preference was rejected (invalid characters in name) (test case ' + i + ')' );
 			} );
@@ -216,7 +216,7 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 			assert.strictEqual( document.documentElement.getAttribute( 'class' ), 'client-js bar-clientpref-1' );
 		} );
 
-		QUnit.test( 'set() [create cookie on change]', function ( assert ) {
+		QUnit.test( 'set() [create cookie on change]', ( assert ) => {
 			document.documentElement.setAttribute( 'class', 'dark-mode-clientpref-enabled' );
 			var result = mw.user.clientPrefs.set( 'dark-mode', 'disabled' );
 			assert.true( result, 'the client preference was stored successfully' );
@@ -246,7 +246,7 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 			);
 		} );
 
-		QUnit.test( 'set() [always store values]', function ( assert ) {
+		QUnit.test( 'set() [always store values]', ( assert ) => {
 			// set cookie and body classes
 			document.documentElement.setAttribute( 'class', 'client-js not-a-feature-clientpref-bad-value font-clientpref-32 dark-mode-clientpref-32 limited-width-clientpref-enabled' );
 			mw.user.clientPrefs.set( 'dark-mode', 'enabled' );
@@ -258,7 +258,7 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 			);
 		} );
 
-		QUnit.test( 'set() [throw if registered user]', function ( assert ) {
+		QUnit.test( 'set() [throw if registered user]', ( assert ) => {
 			mw.config.set( { wgUserName: 'Example' } );
 
 			assert.throws( () => {

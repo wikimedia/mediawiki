@@ -148,7 +148,7 @@ UriProcessor.prototype.getUnrecognizedParams = function ( params ) {
 		unrecognizedParams = $.extend( true, {}, params );
 
 	// Extract unrecognized parameters
-	Object.keys( this.filtersModel.getEmptyParameterState() ).forEach( function ( paramName ) {
+	Object.keys( this.filtersModel.getEmptyParameterState() ).forEach( ( paramName ) => {
 		// Remove recognized params
 		if ( givenParamNames.indexOf( paramName ) > -1 ) {
 			delete unrecognizedParams[ paramName ];
@@ -213,9 +213,9 @@ UriProcessor.prototype.isNewState = function ( currentUriQuery, updatedUriQuery 
 	var currentParamState, updatedParamState,
 		notEquivalent = function ( obj1, obj2 ) {
 			var keys = Object.keys( obj1 ).concat( Object.keys( obj2 ) );
-			return keys.some( function ( key ) {
-				return obj1[ key ] != obj2[ key ]; // eslint-disable-line eqeqeq
-			} );
+			return keys.some(
+				( key ) => obj1[ key ] != obj2[ key ] // eslint-disable-line eqeqeq
+			);
 		};
 
 	// Compare states instead of parameters
@@ -251,9 +251,7 @@ UriProcessor.prototype.doesQueryContainRecognizedParams = function ( uriQuery ) 
 
 	uriQuery = uriQuery || new mw.Uri().query;
 
-	anyValidInUrl = Object.keys( uriQuery ).some( function ( parameter ) {
-		return validParameterNames.indexOf( parameter ) > -1;
-	} );
+	anyValidInUrl = Object.keys( uriQuery ).some( ( parameter ) => validParameterNames.indexOf( parameter ) > -1 );
 
 	// URL version 2 is allowed to be empty or within nonrecognized params
 	return anyValidInUrl || this.getVersion( uriQuery ) === 2;

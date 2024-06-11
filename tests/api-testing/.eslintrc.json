@@ -6,7 +6,6 @@
 	],
 	"rules": {
 		"camelcase": "off",
-		"prefer-arrow-callback": "off",
 		"mocha/no-setup-in-describe": "off",
 		"security/detect-non-literal-regexp": "off"
 	}

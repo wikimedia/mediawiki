@@ -4,7 +4,7 @@ const config = require( './config.json' );
 function checkLoggedIn() {
 	return ( new mw.Api() ).get( {
 		meta: 'userinfo'
-	} ).then( function ( resp ) {
+	} ).then( ( resp ) => {
 		const userinfo = resp.query.userinfo;
 		if ( userinfo.anon !== undefined || userinfo.temp !== undefined ) {
 			return null;

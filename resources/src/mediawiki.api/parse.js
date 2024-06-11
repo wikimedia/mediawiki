@@ -31,9 +31,7 @@
 			}
 
 			return apiPromise
-				.then( function ( data ) {
-					return data.parse.text;
-				} )
+				.then( ( data ) => data.parse.text )
 				.promise( { abort: apiPromise.abort } );
 		}
 	} );

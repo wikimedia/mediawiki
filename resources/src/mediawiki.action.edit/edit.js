@@ -15,7 +15,7 @@
  *   editform, usually #editform.
  */
 
-$( function () {
+$( () => {
 	var $wpSummary = $( '#wpSummaryWidget' );
 
 	// The summary field might not be there, e.g. when extensions replace it
@@ -36,12 +36,12 @@ $( function () {
 		if ( scrollTop.value ) {
 			editBox.scrollTop = scrollTop.value;
 		}
-		$editForm.on( 'submit', function () {
+		$editForm.on( 'submit', () => {
 			scrollTop.value = editBox.scrollTop;
 		} );
 	}
 
-	mw.hook( 'wikipage.watchlistChange' ).add( function ( isWatched, expiry, expirySelected ) {
+	mw.hook( 'wikipage.watchlistChange' ).add( ( isWatched, expiry, expirySelected ) => {
 		// Update the "Watch this page" checkbox on action=edit when the
 		// page is watched or unwatched via the tab (T14395).
 		var watchCheckbox = document.getElementById( 'wpWatchthisWidget' );

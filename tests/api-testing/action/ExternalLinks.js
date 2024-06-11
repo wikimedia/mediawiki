@@ -2,7 +2,7 @@
 
 const { action, assert, utils } = require( 'api-testing' );
 
-describe( 'ExternalLinks', function testExternalLinks() {
+describe( 'ExternalLinks', () => {
 	const page = utils.title( 'ExternalLinkTest_' );
 	const links = [
 		'http://example.org/search-me',

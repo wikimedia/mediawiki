@@ -168,9 +168,9 @@
 				.addClass( 'mw-notification-visible' );
 		} else {
 			$area.append( $notification );
-			requestAnimationFrame( function () {
+			requestAnimationFrame( () => {
 				// This frame renders the element in the area (invisible)
-				requestAnimationFrame( function () {
+				requestAnimationFrame( () => {
 					$notification.addClass( 'mw-notification-visible' );
 				} );
 			} );
@@ -218,7 +218,7 @@
 		// Start any autoHide timeouts
 		if ( notif.options.autoHide ) {
 			notif.isPaused = false;
-			notif.timeoutId = notif.timeout.set( function () {
+			notif.timeoutId = notif.timeout.set( () => {
 				// Already finished, so don't try to re-clear it
 				delete notif.timeoutId;
 				notif.close();
@@ -253,10 +253,10 @@
 		// notification that has now become one of the first {autoHideLimit} notifications.
 		notification.resume();
 
-		requestAnimationFrame( function () {
+		requestAnimationFrame( () => {
 			notif.$notification.removeClass( 'mw-notification-visible' );
 
-			setTimeout( function () {
+			setTimeout( () => {
 				if ( openNotificationCount === 0 ) {
 					// Hide the area after the last notification closes. Otherwise, the padding on
 					// the area can be obscure content, despite the area being empty/invisible (T54659). // FIXME
@@ -342,14 +342,14 @@
 			// Stop click events from <a> and <select> tags from propagating to prevent clicks
 			// from hiding a notification. stopPropagation() bubbles up, not down,
 			// hence this should not conflict with OOUI's own click handlers.
-			.on( 'click', 'a, select, .oo-ui-dropdownInputWidget', function ( e ) {
+			.on( 'click', 'a, select, .oo-ui-dropdownInputWidget', ( e ) => {
 				e.stopPropagation();
 			} );
 
 		// Read from the DOM:
 		// Must be in the next frame to avoid synchronous layout
 		// computation from offset()/getBoundingClientRect().
-		requestAnimationFrame( function () {
+		requestAnimationFrame( () => {
 			var notif;
 
 			offset = $area.offset();

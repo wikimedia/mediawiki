@@ -31,7 +31,7 @@ function appendToCloner( $createButton ) {
 	mw.hook( 'htmlform.enhance' ).fire( $li );
 }
 
-mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
+mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 	var $deleteElement = $root.find( '.mw-htmlform-cloner-delete-button' ),
 		$createElement = $root.find( '.mw-htmlform-cloner-create-button' );
 
@@ -41,7 +41,7 @@ mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 		// eslint-disable-next-line no-jquery/no-class-state
 		if ( $element.hasClass( 'oo-ui-widget' ) ) {
 			var deleteButton = OO.ui.infuse( $element );
-			deleteButton.on( 'click', function () {
+			deleteButton.on( 'click', () => {
 				deleteButton.$element.closest( 'li.mw-htmlform-cloner-li' ).remove();
 			} );
 		} else {
@@ -59,7 +59,7 @@ mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 		// eslint-disable-next-line no-jquery/no-class-state
 		if ( $element.hasClass( 'oo-ui-widget' ) ) {
 			var createButton = OO.ui.infuse( $element );
-			createButton.on( 'click', function () {
+			createButton.on( 'click', () => {
 				appendToCloner( createButton.$element );
 			} );
 		} else {

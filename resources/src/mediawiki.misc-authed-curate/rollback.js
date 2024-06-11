@@ -7,7 +7,7 @@
 	// If a rollback was successful, RollbackAction.php will export wgRollbackSuccess
 	var wgRollbackSuccess = mw.config.get( 'wgRollbackSuccess' );
 	if ( wgRollbackSuccess ) {
-		mw.loader.using( 'mediawiki.action.view.postEdit', function () {
+		mw.loader.using( 'mediawiki.action.view.postEdit', () => {
 			// wgCurRevisionId is set to the revision of the rollback
 			// in OutputPage::getJSVars. wgRevisionId is 0, since we're looking at
 			// the success page for the rollback and not the content of the page.

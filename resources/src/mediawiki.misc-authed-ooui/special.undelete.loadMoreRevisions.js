@@ -6,7 +6,7 @@
 	var $linkSpan = $( '#mw-load-more-revisions' );
 	var $link = $( '<a>' );
 
-	$link = $linkSpan.wrapAll( $link ).on( 'click', function () {
+	$link = $linkSpan.wrapAll( $link ).on( 'click', () => {
 		// Get the URL of the last link in the list
 		var urlString = $( '.mw-undelete-revlist li:last-child a' ).prop( 'href' );
 		// Extract the timestamp

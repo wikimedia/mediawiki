@@ -64,7 +64,7 @@
 				action: 'query',
 				meta: 'filerepoinfo',
 				friprop: [ 'name', 'scriptDirUrl', 'canUpload' ]
-			} ).then( function ( data ) {
+			} ).then( ( data ) => {
 				var i, repo,
 					repos = data.query.repos;
 
@@ -126,7 +126,7 @@
 	 */
 	ForeignUpload.prototype.upload = function () {
 		var upload = this;
-		return this.apiPromise.then( function ( api ) {
+		return this.apiPromise.then( ( api ) => {
 			upload.api = api;
 			return mw.Upload.prototype.upload.call( upload );
 		} );
@@ -139,7 +139,7 @@
 	 */
 	ForeignUpload.prototype.uploadToStash = function () {
 		var upload = this;
-		return this.apiPromise.then( function ( api ) {
+		return this.apiPromise.then( ( api ) => {
 			upload.api = api;
 			return mw.Upload.prototype.uploadToStash.call( upload );
 		} );

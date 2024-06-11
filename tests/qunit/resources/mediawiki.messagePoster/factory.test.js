@@ -1,7 +1,7 @@
 QUnit.module( 'mediawiki.messagePoster', ( hooks ) => {
 	const TEST_MODEL = 'test-content-model';
 
-	hooks.afterEach( function () {
+	hooks.afterEach( () => {
 		mw.messagePoster.factory.unregister( TEST_MODEL );
 	} );
 
@@ -16,7 +16,7 @@ QUnit.module( 'mediawiki.messagePoster', ( hooks ) => {
 		);
 
 		assert.throws(
-			function () {
+			() => {
 				mw.messagePoster.factory.register( TEST_MODEL, MessagePosterConstructor );
 			},
 			new RegExp( 'Content model "' + TEST_MODEL + '" is already registered' ),

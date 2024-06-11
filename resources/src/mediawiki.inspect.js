@@ -27,7 +27,7 @@
 
 	function sortByProperty( array, prop, descending ) {
 		var order = descending ? -1 : 1;
-		return array.sort( function ( a, b ) {
+		return array.sort( ( a, b ) => {
 			if ( a[ prop ] === undefined || b[ prop ] === undefined ) {
 				// Sort undefined to the end, regardless of direction
 				return a[ prop ] !== undefined ? -1 : b[ prop ] !== undefined ? 1 : 0;
@@ -65,7 +65,7 @@
 		var modules = inspect.getLoadedModules(),
 			graph = {};
 
-		modules.forEach( function ( moduleName ) {
+		modules.forEach( ( moduleName ) => {
 			var dependencies = mw.loader.moduleRegistry[ moduleName ].dependencies || [];
 
 			if ( !hasOwn.call( graph, moduleName ) ) {
@@ -73,7 +73,7 @@
 			}
 			graph[ moduleName ].requires = dependencies;
 
-			dependencies.forEach( function ( depName ) {
+			dependencies.forEach( ( depName ) => {
 				if ( !hasOwn.call( graph, depName ) ) {
 					graph[ depName ] = { requiredBy: [] };
 				}
@@ -153,9 +153,7 @@
 	 * @method mediawiki.inspect.getLoadedModules
 	 */
 	inspect.getLoadedModules = function () {
-		return mw.loader.getModuleNames().filter( function ( module ) {
-			return mw.loader.getState( module ) === 'ready';
-		} );
+		return mw.loader.getModuleNames().filter( ( module ) => mw.loader.getState( module ) === 'ready' );
 	};
 
 	/**
@@ -182,7 +180,7 @@
 			Array.prototype.slice.call( arguments ) :
 			Object.keys( inspect.reports );
 
-		reports.forEach( function ( name ) {
+		reports.forEach( ( name ) => {
 			if ( console.group ) {
 				console.group( 'mw.inspect ' + name + ' report' );
 			} else {
@@ -211,7 +209,7 @@
 			pattern = new RegExp( mw.util.escapeRegExp( pattern ), 'g' );
 		}
 
-		return inspect.getLoadedModules().filter( function ( moduleName ) {
+		return inspect.getLoadedModules().filter( ( moduleName ) => {
 			var module = mw.loader.moduleRegistry[ moduleName ];
 
 			// Grep module's JavaScript
@@ -246,18 +244,16 @@
 		 */
 		size: function () {
 			// Map each module to a descriptor object.
-			var modules = inspect.getLoadedModules().map( function ( module ) {
-				return {
-					name: module,
-					size: inspect.getModuleSize( module )
-				};
-			} );
+			var modules = inspect.getLoadedModules().map( ( module ) => ( {
+				name: module,
+				size: inspect.getModuleSize( module )
+			} ) );
 
 			// Sort module descriptors by size, largest first.
 			sortByProperty( modules, 'size', true );
 
 			// Convert size to human-readable string.
-			modules.forEach( function ( module ) {
+			modules.forEach( ( module ) => {
 				module.sizeInBytes = module.size;
 				module.size = humanSize( module.size );
 			} );
@@ -274,7 +270,7 @@
 		css: function () {
 			var modules = [];
 
-			inspect.getLoadedModules().forEach( function ( name ) {
+			inspect.getLoadedModules().forEach( ( name ) => {
 				var css, stats, module = mw.loader.moduleRegistry[ name ];
 
 				try {
@@ -334,20 +330,18 @@
 			}
 
 			modules = inspect.getLoadedModules()
-				.map( function ( moduleName ) {
-					return mw.loader.profiler.getProfile( moduleName );
-				} )
-				.filter( function ( perf ) {
+				.map( ( moduleName ) => mw.loader.profiler.getProfile( moduleName ) )
+				.filter(
 					// Exclude modules that reached "ready" state without involvement from mw.loader.
 					// This is primarily styles-only as loaded via <link rel="stylesheet">.
-					return perf !== null;
-				} );
+					( perf ) => perf !== null
+				);
 
 			// Sort by total time spent, highest first.
 			sortByProperty( modules, 'total', true );
 
 			// Add human-readable strings
-			modules.forEach( function ( module ) {
+			modules.forEach( ( module ) => {
 				module.totalInMs = module.total;
 				module.total = module.totalInMs.toLocaleString() + ' ms';
 			} );

@@ -192,7 +192,7 @@ QUnit.module( 'jquery.highlightText', () => {
 			highlight: 'بو',
 			expected: '<span class="highlight">بو</span>ل إيردوس'
 		}
-	], function ( assert, item ) {
+	], ( assert, item ) => {
 		const $fixture = $( '<p>' ).text( item.text ).highlightText( item.highlight );
 		assert.strictEqual(
 			$fixture.html(),

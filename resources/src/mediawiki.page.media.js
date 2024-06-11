@@ -2,7 +2,7 @@
  * Add magnify links to thumbs and resize broken media spans, where needed
  */
 ( function () {
-	mw.hook( 'wikipage.content' ).add( function ( $content ) {
+	mw.hook( 'wikipage.content' ).add( ( $content ) => {
 		$content.find(
 			'figure[typeof~="mw:File/Thumb"] > :not(figcaption) .mw-file-element'
 		).each( function () {

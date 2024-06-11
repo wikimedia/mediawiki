@@ -192,13 +192,13 @@ function gatherOOUIModules( $fields ) {
 	return modules;
 }
 
-mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
+mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 	var $exclude = $root.find( '.mw-htmlform-autoinfuse-lazy' )
 		.find( '.mw-htmlform-hide-if, .mw-htmlform-disable-if' );
 	var $fields = $root.find( '.mw-htmlform-hide-if, .mw-htmlform-disable-if' ).not( $exclude );
 
 	// Load modules for the fields we will hide/disable
-	mw.loader.using( gatherOOUIModules( $fields ) ).done( function () {
+	mw.loader.using( gatherOOUIModules( $fields ) ).done( () => {
 		$fields.each( function () {
 			var $el = $( this );
 
@@ -220,7 +220,7 @@ mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 
 			var fields = [];
 			var test = {};
-			[ 'hide', 'disable' ].forEach( function ( type ) {
+			[ 'hide', 'disable' ].forEach( ( type ) => {
 				if ( spec[ type ] ) {
 					var v = conditionParse( $form, spec[ type ] );
 					fields = fields.concat( fields, v[ 0 ] );
@@ -270,16 +270,16 @@ mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 				}
 			};
 
-			var oouiNodes = fields.map( function ( $node ) {
+			var oouiNodes = fields.map(
 				// We expect undefined for non-OOUI nodes (T308626)
-				return $node.closest( '.oo-ui-fieldLayout[data-ooui]' )[ 0 ];
-			} ).filter( function ( node ) {
+				( $node ) => $node.closest( '.oo-ui-fieldLayout[data-ooui]' )[ 0 ]
+			).filter(
 				// Remove undefined
-				return !!node;
-			} );
+				( node ) => !!node
+			);
 
 			// Load modules for the fields whose state we will check
-			mw.loader.using( gatherOOUIModules( $( oouiNodes ) ) ).done( function () {
+			mw.loader.using( gatherOOUIModules( $( oouiNodes ) ) ).done( () => {
 				for ( var i = 0; i < fields.length; i++ ) {
 					var widget = getWidget( fields[ i ] );
 					if ( widget ) {

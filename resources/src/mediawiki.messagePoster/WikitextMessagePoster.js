@@ -47,7 +47,7 @@
 			subject,
 			body,
 			additionalParams
-		).then( function ( resp, jqXHR ) {
+		).then( ( resp, jqXHR ) => {
 			if ( resp.edit.result === 'Success' ) {
 				return $.Deferred().resolve( resp, jqXHR );
 			} else {
@@ -55,9 +55,7 @@
 				// request fails, but it's not caught there?
 				return $.Deferred().reject( 'api-unexpected' );
 			}
-		}, function ( code, details ) {
-			return $.Deferred().reject( 'api-fail', code, details );
-		} ).promise();
+		}, ( code, details ) => $.Deferred().reject( 'api-fail', code, details ) ).promise();
 	};
 
 	mw.messagePoster.factory.register( 'wikitext', WikitextMessagePoster );

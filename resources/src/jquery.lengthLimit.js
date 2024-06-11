@@ -68,7 +68,7 @@
 		}
 
 		// The following is specific to each element in the collection.
-		return this.each( function ( i, el ) {
+		return this.each( ( i, el ) => {
 			var $el, elLimit, prevSafeVal;
 
 			$el = $( el );

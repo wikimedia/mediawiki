@@ -2,14 +2,14 @@
  * JavaScript for change credentials form.
  */
 ( function () {
-	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
+	mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 		var api = new mw.Api();
 
 		$root.find( '.mw-changecredentials-validate-password.oo-ui-fieldLayout' ).each( function () {
 			var currentApiPromise,
 				self = OO.ui.FieldLayout.static.infuse( $( this ) );
 
-			self.getField().setValidation( function ( passwordValue ) {
+			self.getField().setValidation( ( passwordValue ) => {
 				if ( currentApiPromise ) {
 					currentApiPromise.abort();
 					currentApiPromise = undefined;
@@ -30,7 +30,7 @@
 					errorformat: 'html',
 					errorsuselocal: true,
 					uselang: mw.config.get( 'wgUserLanguage' )
-				} ).done( function ( resp ) {
+				} ).done( ( resp ) => {
 					var pwinfo = resp.validatepassword,
 						good = pwinfo.validity === 'Good';
 
@@ -38,9 +38,7 @@
 
 					var errors;
 					if ( !good ) {
-						errors = pwinfo.validitymessages.map( function ( m ) {
-							return new OO.ui.HtmlSnippet( m.html );
-						} );
+						errors = pwinfo.validitymessages.map( ( m ) => new OO.ui.HtmlSnippet( m.html ) );
 					}
 					self.setErrors( errors || [] );
 					d.resolve( good );

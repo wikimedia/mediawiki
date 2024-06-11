@@ -1,4 +1,4 @@
-$( function () {
+$( () => {
 	/**
 	 * Fired on page load to enhance any HTML forms on the page.
 	 *
@@ -9,7 +9,7 @@ $( function () {
 	mw.hook( 'htmlform.enhance' ).fire( $( document ) );
 } );
 
-mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
+mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 	// Turn HTML5 form validation back on, in cases where it was disabled server-side (see
 	// HTMLForm::needsJSForHtml5FormValidation()) because we need extra logic implemented in JS to
 	// validate correctly. Currently, this is only used for forms containing fields with 'hide-if'.
@@ -18,7 +18,7 @@ mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 	// Enable collapsible forms
 	var $collapsible = $root.find( '.mw-htmlform-ooui .oo-ui-fieldsetLayout.mw-collapsible' );
 	if ( $collapsible.length ) {
-		mw.loader.using( 'jquery.makeCollapsible' ).then( function () {
+		mw.loader.using( 'jquery.makeCollapsible' ).then( () => {
 			$collapsible.makeCollapsible();
 		} );
 	}

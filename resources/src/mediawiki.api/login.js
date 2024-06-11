@@ -20,10 +20,10 @@
 			apiPromise = api.post( params );
 
 			return apiPromise
-				.then( function ( data ) {
+				.then( ( data ) => {
 					params.lgtoken = data.login.token;
 					innerPromise = api.post( params )
-						.then( function ( response ) {
+						.then( ( response ) => {
 							var code;
 							if ( response.login.result !== 'Success' ) {
 								// Set proper error code whenever possible

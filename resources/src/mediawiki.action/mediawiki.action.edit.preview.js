@@ -25,7 +25,7 @@
 		e.preventDefault();
 	}
 
-	$( function () {
+	$( () => {
 		var selector;
 
 		// Enable only live diff on user .js/.css pages, as there's no sensible way of

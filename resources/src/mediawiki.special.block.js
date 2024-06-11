@@ -10,7 +10,7 @@
 		return OO.ui.infuse( $el );
 	}
 
-	$( function () {
+	$( () => {
 		var blockTargetWidget, anonOnlyWidget, enableAutoblockWidget, hideUserWidget, watchUserWidget,
 			expiryWidget, editingRestrictionWidget, partialActionsRestrictionsWidget, preventTalkPageEditWidget,
 			pageRestrictionsWidget, namespaceRestrictionsWidget, createAccountWidget,
@@ -24,7 +24,7 @@
 			}
 
 			// 'disable' event fires if disabled state changes
-			widget.on( 'disable', function ( disabled ) {
+			widget.on( 'disable', ( disabled ) => {
 				if ( disabled ) {
 					// Disabling an enabled widget
 					// Save selected and set selected to false
@@ -108,7 +108,7 @@
 			}
 			blockTargetWidget = infuseIfExists( $wpTarget );
 			if ( blockTargetWidget ) {
-				blockTargetWidget.on( 'change', function () {
+				blockTargetWidget.on( 'change', () => {
 					updateWatchOption( blockTargetWidget.getValue().trim() );
 				} );
 				updateWatchOption( blockTargetWidget.getValue().trim() );
@@ -131,7 +131,7 @@
 			anonOnlyWidget = OO.ui.infuse( $( '#mw-input-wpHardBlock' ) );
 			blockTargetWidget.on( 'change', updateBlockOptions );
 			expiryWidget.on( 'change', updateBlockOptions );
-			createAccountWidget.on( 'change', function () {
+			createAccountWidget.on( 'change', () => {
 				if ( !updatingBlockOptions ) {
 					userChangedCreateAccount = true;
 				}

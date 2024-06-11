@@ -2,7 +2,7 @@
 
 const { action, assert, utils, wiki } = require( 'api-testing' );
 
-describe( 'The rollback action', function testEditRollback() {
+describe( 'The rollback action', () => {
 	let alice, bob, mindy;
 
 	before( async () => {

@@ -68,11 +68,11 @@
 		mw.storage.remove( 'foo' );
 		assert.strictEqual( mw.storage.get( EXPIRY_PREFIX + 'baz' ), null, 'Removed item has no expiry' );
 
-		assert.throws( function () {
+		assert.throws( () => {
 			mw.storage.set( EXPIRY_PREFIX + 'foo', 'test', 60 * 60 );
 		}, 'Error thrown when key prefix conflicts with EXPIRY_PREFIX' );
 
-		mw.storage.clearExpired().then( function () {
+		mw.storage.clearExpired().then( () => {
 			assert.deepEqual( Object.keys( data ), [ 'baz' ], 'Only unexpired keys present after #clearExpired' );
 			done();
 		} );
@@ -102,7 +102,7 @@
 		assert.strictEqual( mw.storage.remove( 'bar' ), false );
 	} );
 
-	QUnit.test( 'set/get(Object) with storage object disabled', function ( assert ) {
+	QUnit.test( 'set/get(Object) with storage object disabled', ( assert ) => {
 		// On other browsers, these entire object is disabled.
 		// `'localStorage' in window` would be true (and pass feature test)
 		// but trying to read the object as window.localStorage would throw
@@ -125,7 +125,7 @@
 	QUnit.test( 'set/get with expiry - partial failure', function ( assert ) {
 		var store = {};
 		var stub = {
-			setItem: this.sandbox.spy( function ( k, v ) {
+			setItem: this.sandbox.spy( ( k, v ) => {
 				if ( k.startsWith( EXPIRY_PREFIX ) ) {
 					// Mock a failing store when trying to set a key with expiry
 					throw new Error();

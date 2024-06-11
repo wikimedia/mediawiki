@@ -2,7 +2,7 @@
 
 const { action, assert, utils } = require( 'api-testing' );
 
-describe( 'Move action', function () {
+describe( 'Move action', () => {
 	const userPage = utils.title( 'MoveWith_' );
 	const page1 = utils.title( 'MoveWithout_' );
 	const page2 = `User:${ userPage }`;

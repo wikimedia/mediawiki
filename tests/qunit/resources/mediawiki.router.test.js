@@ -1,7 +1,7 @@
-QUnit.module( 'mediawiki.router', function () {
+QUnit.module( 'mediawiki.router', () => {
 	var router = require( 'mediawiki.router' );
 
-	QUnit.test( 'instance', function ( assert ) {
+	QUnit.test( 'instance', ( assert ) => {
 		assert.true( router instanceof OO.Router );
 	} );
 } );

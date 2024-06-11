@@ -2,7 +2,7 @@
  * JavaScript for Special:Preferences: Timezone field enhancements.
  */
 ( function () {
-	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
+	mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 		var $target = $root.find( '#wpTimeCorrection' );
 
 		if (

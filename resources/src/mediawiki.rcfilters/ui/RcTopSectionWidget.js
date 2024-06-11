@@ -37,12 +37,12 @@ var RcTopSectionWidget = function MwRcfiltersUiRcTopSectionWidget(
 			collapsed: topLinksCookieValue === 'collapsed',
 			$customTogglers: toplinksTitle.$element
 		} )
-		.on( 'beforeExpand.mw-collapsible', function () {
+		.on( 'beforeExpand.mw-collapsible', () => {
 			mw.cookie.set( topLinksCookieName, 'expanded' );
 			toplinksTitle.setIndicator( 'up' );
 			widget.switchTopLinks( 'expanded' );
 		} )
-		.on( 'beforeCollapse.mw-collapsible', function () {
+		.on( 'beforeCollapse.mw-collapsible', () => {
 			mw.cookie.set( topLinksCookieName, 'collapsed' );
 			toplinksTitle.setIndicator( 'down' );
 			widget.switchTopLinks( 'collapsed' );

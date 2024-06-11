@@ -1,7 +1,7 @@
 /*!
  * JavaScript for History action
  */
-$( function () {
+$( () => {
 	var
 		$pagehistory = $( '#pagehistory' ),
 		$lis = $pagehistory.find( '.mw-contributions-list > li' );

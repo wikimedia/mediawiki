@@ -2,7 +2,7 @@
  * JavaScript for Special:Preferences: signature field enhancements.
  */
 ( function () {
-	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
+	mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 		var $signatureInput = $root.find( '#mw-input-wpnickname' );
 		if (
 			// This preference could theoretically be disabled ($wgHiddenPrefs)
@@ -31,7 +31,7 @@
 		var $fancyToggleInput = $root.find( '#mw-input-wpfancysig' );
 		if ( $fancyToggleInput.length ) {
 			var fancyToggleInput = OO.ui.infuse( $fancyToggleInput );
-			fancyToggleInput.on( 'change', function () {
+			fancyToggleInput.on( 'change', () => {
 				updateFont( fancyToggleInput.isSelected() );
 			} );
 			// !!+ casts '0' to false
@@ -47,7 +47,7 @@
 					label: mw.msg( 'prefs-signature-highlight-error' )
 				} );
 
-			button.on( 'click', function () {
+			button.on( 'click', () => {
 				signatureInput.selectRange( location[ 0 ], location[ 1 ] );
 			} );
 

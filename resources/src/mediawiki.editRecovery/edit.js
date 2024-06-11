@@ -39,7 +39,7 @@ function onLoadHandler( $editForm ) {
 	// Monitor all text-entry inputs for changes/typing.
 	const inputsToMonitorSelector = 'textarea, select, input:not([type="hidden"], [type="submit"])';
 	const $inputsToMonitor = $editForm.find( inputsToMonitorSelector );
-	$inputsToMonitor.each( function ( _i, field ) {
+	$inputsToMonitor.each( ( _i, field ) => {
 		if ( field.classList.contains( 'oo-ui-inputWidget-input' ) ) {
 			try {
 				inputFields[ field.name ] = OO.ui.infuse( field.closest( '.oo-ui-widget' ) );
@@ -53,14 +53,14 @@ function onLoadHandler( $editForm ) {
 	// Save the contents of all of those, as well as the following hidden inputs.
 	const inputsToSaveNames = [ 'wpSection', 'editRevId', 'oldid', 'parentRevId', 'format', 'model' ];
 	const $inputsToSave = $editForm.find( '[name="' + inputsToSaveNames.join( '"], [name="' ) + '"]' );
-	$inputsToSave.each( function ( _i, field ) {
+	$inputsToSave.each( ( _i, field ) => {
 		inputFields[ field.name ] = field;
 	} );
 
 	// Store the original data for later comparing to the data-to-save. Use the defaultValue/defaultChecked in order to
 	// avoid using any data remembered by the browser. Note that we have to be careful to store with the same types as
 	// it will be done later, in order to correctly compare it (e.g. checkboxes as booleans).
-	Object.keys( inputFields ).forEach( function ( fieldName ) {
+	Object.keys( inputFields ).forEach( ( fieldName ) => {
 		const field = inputFields[ fieldName ];
 		if ( field.nodeName === 'INPUT' || field.nodeName === 'TEXTAREA' ) {
 			if ( field.type === 'checkbox' ) {
@@ -87,7 +87,7 @@ function onLoadHandler( $editForm ) {
 		mw.storage.session.set( pageName + '-editRecoverySection', section, 300 );
 	}
 	// Open indexedDB database and load any saved data that might be there.
-	storage.openDatabase().then( function () {
+	storage.openDatabase().then( () => {
 		// Check for and delete any expired data for any page, before loading any saved data for the current page.
 		storage.deleteExpiredData().then( () => {
 			storage.loadData( pageName, section ).then( onLoadData );
@@ -96,13 +96,13 @@ function onLoadHandler( $editForm ) {
 
 	// Set up cancel handler to delete data.
 	const cancelButton = OO.ui.infuse( $editForm.find( '#mw-editform-cancel' )[ 0 ] );
-	cancelButton.on( 'click', function () {
-		windowManager.openWindow( 'abandonedit' ).closed.then( function ( data ) {
+	cancelButton.on( 'click', () => {
+		windowManager.openWindow( 'abandonedit' ).closed.then( ( data ) => {
 			if ( data && data.action === 'discard' ) {
 				// Note that originalData is used below in onLoadData() but that's always called before this method.
 				// Here we set originalData to null in order to signal to saveFormData() to deleted the stored data.
 				originalData = null;
-				storage.deleteData( pageName, section ).finally( function () {
+				storage.deleteData( pageName, section ).finally( () => {
 					mw.storage.session.remove( pageName + '-editRecoverySection' );
 					// Release the beforeunload handler from mediawiki.action.edit.editWarning,
 					// per the documentation there
@@ -136,17 +136,17 @@ function onLoadData( pageData ) {
 
 		const notification = loadNotification.getNotification();
 		// On 'show changes'.
-		loadNotification.getDiffButton().on( 'click', function () {
+		loadNotification.getDiffButton().on( 'click', () => {
 			// use live diff view rather than reloading the whole page.
-			mw.loader.using( [ 'mediawiki.page.preview' ] ).then( function () {
+			mw.loader.using( [ 'mediawiki.page.preview' ] ).then( () => {
 				const pagePreview = require( 'mediawiki.page.preview' );
 				pagePreview.doPreview( { showDiff: true } );
 			} );
 		} );
 		// On 'discard changes'.
-		loadNotification.getDiscardButton().on( 'click', function () {
+		loadNotification.getDiscardButton().on( 'click', () => {
 			loadData( originalData );
-			storage.deleteData( pageName, section ).then( function () {
+			storage.deleteData( pageName, section ).then( () => {
 				$( '#wikiDiff' ).hide();
 				notification.close();
 			} );
@@ -156,7 +156,7 @@ function onLoadData( pageData ) {
 	}
 
 	// Add change handlers.
-	Object.keys( inputFields ).forEach( function ( fieldName ) {
+	Object.keys( inputFields ).forEach( ( fieldName ) => {
 		const field = inputFields[ fieldName ];
 		if ( field.nodeName !== undefined && field.nodeName === 'TEXTAREA' ) {
 			field.addEventListener( 'input', fieldChangeHandler );
@@ -183,7 +183,7 @@ function onLoadData( pageData ) {
 }
 
 function loadData( pageData ) {
-	Object.keys( inputFields ).forEach( function ( fieldName ) {
+	Object.keys( inputFields ).forEach( ( fieldName ) => {
 		if ( pageData[ fieldNamePrefix + fieldName ] === undefined ) {
 			return;
 		}
@@ -264,7 +264,7 @@ function saveFormData() {
  */
 function getFormData() {
 	const formData = {};
-	Object.keys( inputFields ).forEach( function ( fieldName ) {
+	Object.keys( inputFields ).forEach( ( fieldName ) => {
 		const field = inputFields[ fieldName ];
 		var newValue = null;
 		if ( !( field instanceof OO.ui.Widget ) && field.nodeName !== undefined && field.nodeName === 'TEXTAREA' ) {

@@ -156,7 +156,7 @@ FeedbackDialog.prototype.getSetupProcess = function ( data ) {
 					inprop: 'url',
 					formatversion: 2,
 					titles: data.settings.title.getPrefixedText()
-				} ).then( function ( response ) {
+				} ).then( ( response ) => {
 					dialog.feedbackPageUrl = OO.getProp( response, 'query', 'pages', 0, 'canonicalurl' );
 				} );
 			} else {
@@ -243,16 +243,12 @@ FeedbackDialog.prototype.getActionProcess = function ( action ) {
 			}
 
 			// Post the message
-			return this.messagePosterPromise.then( function ( poster ) {
-				return fb.postMessage( poster, subject, message );
-			}, function () {
+			return this.messagePosterPromise.then( ( poster ) => fb.postMessage( poster, subject, message ), () => {
 				fb.status = 'error4';
 				mw.log.warn( 'Feedback report failed because MessagePoster could not be fetched' );
-			} ).then( function () {
+			} ).then( () => {
 				fb.close();
-			}, function () {
-				return fb.getErrorMessage();
-			} );
+			}, () => fb.getErrorMessage() );
 		}, this );
 	}
 	// Fallback to parent handler
@@ -292,9 +288,9 @@ FeedbackDialog.prototype.postMessage = function ( poster, subject, message ) {
 	return poster.post(
 		subject,
 		message
-	).then( function () {
+	).then( () => {
 		fb.status = 'submitted';
-	}, function ( mainCode, secondaryCode, details ) {
+	}, ( mainCode, secondaryCode, details ) => {
 		if ( mainCode === 'api-fail' ) {
 			if ( secondaryCode === 'http' ) {
 				fb.status = 'error3';

@@ -28,12 +28,10 @@
 
 		// TODO Don't fetch the entire page. Ideally we'd only fetch the content portion or the data
 		// (thumbnail urls) and update the interface manually.
-		jqXhr = $.ajax( url ).then( function ( data ) {
-			return $( data ).find( '.mw-filepage-multipage' ).contents();
-		} );
+		jqXhr = $.ajax( url ).then( ( data ) => $( data ).find( '.mw-filepage-multipage' ).contents() );
 
 		// Handle cache updates
-		jqXhr.done( function ( $contents ) {
+		jqXhr.done( ( $contents ) => {
 			jqXhr = undefined;
 
 			// Cache the newly loaded page
@@ -75,7 +73,7 @@
 			$multipageimage.empty().append( $spinner );
 		}
 
-		promise.done( function ( $contents ) {
+		promise.done( ( $contents ) => {
 			$spinner = undefined;
 
 			// Replace table contents
@@ -113,7 +111,7 @@
 		} );
 	}
 
-	$( function () {
+	$( () => {
 		if ( mw.config.get( 'wgCanonicalNamespace' ) !== 'File' ) {
 			return;
 		}
@@ -126,7 +124,7 @@
 
 		// Update the url using the History API
 		history.replaceState( { tag: 'mw-pagination' }, '' );
-		$( window ).on( 'popstate', function ( e ) {
+		$( window ).on( 'popstate', ( e ) => {
 			var state = e.originalEvent.state;
 			if ( state && state.tag === 'mw-pagination' ) {
 				switchPage( location.href, true );

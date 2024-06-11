@@ -236,7 +236,7 @@ mw.widgets = {};
 mw.inspect = function () {
 	var args = arguments;
 	// Lazy-load
-	mw.loader.using( 'mediawiki.inspect', function () {
+	mw.loader.using( 'mediawiki.inspect', () => {
 		mw.inspect.runReports.apply( mw.inspect, args );
 	} );
 };
@@ -254,9 +254,7 @@ mw.internalDoTransformFormatForQqx = function ( formatString, parameters ) {
 	if ( formatString.indexOf( '$*' ) !== -1 ) {
 		var replacement = '';
 		if ( parameters.length ) {
-			replacement = ': ' + parameters.map( function ( _, i ) {
-				return '$' + ( i + 1 );
-			} ).join( ', ' );
+			replacement = ': ' + parameters.map( ( _, i ) => '$' + ( i + 1 ) ).join( ', ' );
 		}
 		return formatString.replace( '$*', replacement );
 	}
@@ -297,7 +295,7 @@ mw.internalWikiUrlencode = function ( str ) {
 mw.format = function ( formatString ) {
 	var parameters = slice.call( arguments, 1 );
 	formatString = mw.internalDoTransformFormatForQqx( formatString, parameters );
-	return formatString.replace( /\$(\d+)/g, function ( str, match ) {
+	return formatString.replace( /\$(\d+)/g, ( str, match ) => {
 		var index = parseInt( match, 10 ) - 1;
 		return parameters[ index ] !== undefined ? parameters[ index ] : '$' + match;
 	} );
@@ -350,9 +348,7 @@ mw.msg = function () {
  */
 mw.notify = function ( message, options ) {
 	// Lazy load
-	return mw.loader.using( 'mediawiki.notification' ).then( function () {
-		return mw.notification.notify( message, options );
-	} );
+	return mw.loader.using( 'mediawiki.notification' ).then( () => mw.notification.notify( message, options ) );
 };
 
 var trackCallbacks = $.Callbacks( 'memory' );
@@ -424,7 +420,7 @@ mw.trackSubscribe = function ( topic, callback ) {
  * @param {Function} callback
  */
 mw.trackUnsubscribe = function ( callback ) {
-	trackHandlers = trackHandlers.filter( function ( fns ) {
+	trackHandlers = trackHandlers.filter( ( fns ) => {
 		if ( fns[ 1 ] === callback ) {
 			trackCallbacks.remove( fns[ 0 ] );
 			// Ensure the tuple is removed to avoid holding on to closures
@@ -500,7 +496,7 @@ mw.hook = function ( name ) {
 		var memory;
 		var fns = [];
 		function rethrow( e ) {
-			setTimeout( function () {
+			setTimeout( () => {
 				throw e;
 			} );
 		}
@@ -688,7 +684,7 @@ mw.html = {
  * @param {Function} fn
  */
 window.addOnloadHook = function ( fn ) {
-	$( function () {
+	$( () => {
 		fn();
 	} );
 };
@@ -830,7 +826,7 @@ mw.loader.using = function ( dependencies, ready, error ) {
 
 	mw.loader.enqueue(
 		dependencies,
-		function () {
+		() => {
 			deferred.resolve( mw.loader.require );
 		},
 		deferred.reject
@@ -860,7 +856,7 @@ mw.loader.using = function ( dependencies, ready, error ) {
  */
 mw.loader.getScript = function ( url ) {
 	return $.ajax( url, { dataType: 'script', cache: true } )
-		.catch( function () {
+		.catch( () => {
 			throw new Error( 'Failed to load script' );
 		} );
 };
@@ -913,7 +909,7 @@ while ( queue[ 0 ] ) {
  * @ignore
  * @deprecated since 1.26
  */
-[ 'write', 'writeln' ].forEach( function ( func ) {
+[ 'write', 'writeln' ].forEach( ( func ) => {
 	mw.log.deprecate( document, func, function () {
 		$( document.body ).append( $.parseHTML( slice.call( arguments ).join( '' ) ) );
 	}, 'Use jQuery or mw.loader.load instead.', 'document.' + func );

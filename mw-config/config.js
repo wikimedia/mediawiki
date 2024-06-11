@@ -1,6 +1,6 @@
 /* global extDependencyMap */
 ( function () {
-	$( function () {
+	$( () => {
 		var $label, labelText;
 
 		function syncText() {
@@ -20,7 +20,7 @@
 			$( document.getElementById( $( this ).attr( 'rel' ) ) ).hide();
 		} );
 		$( document.getElementById( $( '.dbRadio:checked' ).attr( 'rel' ) ) ).show();
-		$( '.dbRadio' ).on( 'click', function () {
+		$( '.dbRadio' ).on( 'click', () => {
 			var $checked = $( '.dbRadio:checked' ),
 				$wrapper = $( document.getElementById( $checked.attr( 'rel' ) ) );
 			// eslint-disable-next-line no-jquery/no-sizzle
@@ -89,7 +89,7 @@
 		$( '#config_wgSitename' ).on( 'keyup change', syncText ).each( syncText );
 
 		// Show/Hide memcached servers when needed
-		$( 'input[name$="config__MainCacheType"]' ).on( 'change', function () {
+		$( 'input[name$="config__MainCacheType"]' ).on( 'change', () => {
 			var $memc = $( '#config-memcachewrapper' );
 			if ( $( 'input[name$="config__MainCacheType"]:checked' ).val() === 'memcached' ) {
 				// FIXME: Use CSS transition
@@ -131,7 +131,7 @@
 
 		// Disable checkboxes if the extension has dependencies
 		$( '.mw-ext-with-dependencies input' ).prop( 'disabled', true );
-		$( '.config-ext-input[data-name]' ).on( 'change', function () {
+		$( '.config-ext-input[data-name]' ).on( 'change', () => {
 			$( '.mw-ext-with-dependencies input' ).each( function () {
 				var name = this.getAttribute( 'data-name' );
 				if ( areReqsSatisfied( name ) ) {
@@ -160,7 +160,7 @@
 		// setup live preview of logos
 		function getLogoData() {
 			var data = {};
-			Object.keys( nodes ).forEach( function ( key ) {
+			Object.keys( nodes ).forEach( ( key ) => {
 				var input = document.getElementById( nodes[ key ] );
 				if ( input ) {
 					data[ key ] = getLogoPath( input.value );
@@ -204,7 +204,7 @@
 			var fallback = {
 				wordmark: $( '[name=config_LogoSiteName]' ).val()
 			};
-			[ 'wordmark', 'tagline' ].forEach( function ( key ) {
+			[ 'wordmark', 'tagline' ].forEach( ( key ) => {
 				var src = data[ key ];
 				var $el = src ?
 					$( '<img>' ).attr( 'src', src ) :
@@ -225,13 +225,13 @@
 		 * @param {string} tooltip
 		 */
 		function addDroppers( $preview, tooltip ) {
-			Object.keys( nodes ).forEach( function ( key ) {
+			Object.keys( nodes ).forEach( ( key ) => {
 				var dropper = document.createElement( 'div' );
 				var input = document.getElementById( nodes[ key ] );
 				dropper.textContent = tooltip;
 				input.parentNode.insertBefore( dropper, input.nextSibling );
 				dropper.classList.add( 'logo-dropper' );
-				dropper.addEventListener( 'dragover', function ( ev ) {
+				dropper.addEventListener( 'dragover', ( ev ) => {
 					ev.preventDefault();
 				} );
 				dropper.addEventListener( 'drop', function ( ev ) {
@@ -258,7 +258,7 @@
 		var $pOptions = $( '.config-personalization-options' );
 		if ( $pOptions.length ) {
 			var $previewArea = $pOptions.find( '.logo-preview-area' );
-			$pOptions.find( ' input' ).on( 'input', function () {
+			$pOptions.find( ' input' ).on( 'input', () => {
 				renderLogo( $previewArea );
 			} );
 			addDroppers( $previewArea, $previewArea.data( 'filedrop' ) );

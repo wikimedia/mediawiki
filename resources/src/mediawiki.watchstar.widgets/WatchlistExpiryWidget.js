@@ -39,7 +39,7 @@ function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
 	 * avoid listening to every keystroke for the entire session.
 	 */
 	function addTabKeyListener() {
-		$( window ).one( 'keydown.watchlistExpiry', function ( e ) {
+		$( window ).one( 'keydown.watchlistExpiry', ( e ) => {
 			if ( ( e.keyCode || e.which ) !== OO.ui.Keys.TAB ) {
 				return;
 			}
@@ -65,7 +65,7 @@ function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
 	if ( action === 'watch' ) {
 		addTabKeyListener();
 
-		Object.keys( dataExpiryOptions ).forEach( function ( key ) {
+		Object.keys( dataExpiryOptions ).forEach( ( key ) => {
 			expiryOptions.push( { data: dataExpiryOptions[ key ], label: key } );
 		} );
 
@@ -89,7 +89,7 @@ function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
 			notif.pause();
 			api = new mw.Api();
 			api.watch( pageTitle, value )
-				.done( function ( watchResponse ) {
+				.done( ( watchResponse ) => {
 					var message,
 						mwTitle = mw.Title.newFromText( pageTitle ),
 						isInfinity = mw.util.isInfinity( value );
@@ -112,7 +112,7 @@ function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
 
 					updateWatchLink( mwTitle, 'unwatch', 'idle', watchResponse.expiry, value );
 				} )
-				.fail( function ( code, data ) {
+				.fail( ( code, data ) => {
 					// Format error message
 					var $msg = api.getErrorMessage( data );
 

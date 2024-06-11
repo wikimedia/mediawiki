@@ -54,12 +54,12 @@
 		options = $.extend( true, {}, $.fn.confirmable.defaultOptions, options || {} );
 
 		if ( options.delegate === null ) {
-			return this.on( options.events, function ( e ) {
+			return this.on( options.events, ( e ) => {
 				$.fn.confirmable.handler( e, options );
 			} );
 		}
 
-		return this.on( options.events, options.delegate, function ( e ) {
+		return this.on( options.events, options.delegate, ( e ) => {
 			$.fn.confirmable.handler( e, options );
 		} );
 	};
@@ -144,7 +144,7 @@
 				.removeClass( 'hidden' )
 				.data( 'jquery-confirmable-button', true )
 				.text( options.i18n.no )
-				.on( options.events, function ( e ) {
+				.on( options.events, ( e ) => {
 					$element
 						.css( sideMargin, elementSideMargin )
 						.removeClass( 'hidden' );
@@ -180,7 +180,7 @@
 
 		// Hide element, show interface. This triggers both transitions.
 		// In a timeout to trigger the 'width' transition.
-		setTimeout( function () {
+		setTimeout( () => {
 			$element.css( sideMargin, -elementWidth - elementPadding );
 			$interface
 				.css( 'width', interfaceWidth )

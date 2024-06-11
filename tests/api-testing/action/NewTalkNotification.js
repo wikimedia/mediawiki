@@ -2,7 +2,7 @@
 
 const { action, assert } = require( 'api-testing' );
 
-describe( 'Testing a new talk page notification', function () {
+describe( 'Testing a new talk page notification', () => {
 	let kam = action.getAnon();
 	let alice;
 

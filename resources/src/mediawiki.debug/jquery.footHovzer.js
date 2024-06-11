@@ -52,7 +52,7 @@
 				$spacer.appendTo( $body );
 			}
 			// Ensure CSS is applied by browser before using .outerHeight()
-			setTimeout( function () {
+			setTimeout( () => {
 				$spacer.css( 'height', getHovzer().outerHeight( /* includeMargin = */ true ) );
 			}, 0 );
 		}

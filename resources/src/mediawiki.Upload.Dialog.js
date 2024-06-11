@@ -208,7 +208,7 @@
 			return new OO.ui.Process( this.uploadBooklet.saveFile() );
 		}
 		if ( action === 'insert' ) {
-			return new OO.ui.Process( function () {
+			return new OO.ui.Process( () => {
 				dialog.close( dialog.upload );
 			} );
 		}

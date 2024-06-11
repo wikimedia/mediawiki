@@ -12,8 +12,8 @@
 		return;
 	}
 
-	$( function () {
-		$( '#mw-content-text' ).on( 'dblclick', function ( e ) {
+	$( () => {
+		$( '#mw-content-text' ).on( 'dblclick', ( e ) => {
 			// Trigger native HTMLElement click instead of opening URL (T45052)
 			const $a = $( '#ca-edit a' );
 			// Not every page has an edit link (T59713)

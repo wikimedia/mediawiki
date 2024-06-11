@@ -8,7 +8,7 @@ QUnit.module( 'mediawiki.template.mustache', ( hooks ) => {
 		} );
 	} );
 
-	QUnit.test( 'render', function ( assert ) {
+	QUnit.test( 'render', ( assert ) => {
 		const template = mw.template.get( 'stub', 'test_greeting.mustache' );
 		const partial = mw.template.get( 'stub', 'test_greeting_suffix.mustache' );
 		const data = {

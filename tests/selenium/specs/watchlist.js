@@ -7,7 +7,7 @@ const WatchablePage = require( '../pageobjects/watchable.page' );
 const LoginPage = require( 'wdio-mediawiki/LoginPage' );
 const Util = require( 'wdio-mediawiki/Util' );
 
-describe( 'Special:Watchlist', function () {
+describe( 'Special:Watchlist', () => {
 	let bot;
 
 	before( async () => {
@@ -15,12 +15,12 @@ describe( 'Special:Watchlist', function () {
 		bot = await Api.bot();
 	} );
 
-	beforeEach( async function () {
+	beforeEach( async () => {
 		await LoginPage.loginAdmin();
 	} );
 
 	// Skipped on 2022-12-07 because of T324237
-	it.skip( 'should show page with new edit @daily', async function () {
+	it.skip( 'should show page with new edit @daily', async () => {
 		const title = Util.getTestString( 'Title-' );
 
 		// create

@@ -4,7 +4,7 @@
 var HtmlformChecker = require( './HtmlformChecker.js' );
 
 // When sending password by email, hide the password input fields.
-$( function () {
+$( () => {
 	// Always required if checked, otherwise it depends, so we use the original
 	var $emailLabel = $( 'label[for="wpEmail"] .cdx-label__label__text' ),
 		originalText = $emailLabel.text(),
@@ -33,7 +33,7 @@ $( function () {
 } );
 
 // Check if the username is invalid or already taken; show username normalisation warning
-mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
+mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 	var $usernameInput = $root.find( '#wpName2' ),
 		$passwordInput = $root.find( '#wpPassword2' ),
 		$emailInput = $root.find( '#wpEmail' ),
@@ -60,7 +60,7 @@ mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 			errorsuselocal: true,
 			uselang: mw.config.get( 'wgUserLanguage' )
 		} )
-			.done( function ( resp ) {
+			.done( ( resp ) => {
 				var userinfo = resp.query.users[ 0 ];
 
 				if ( resp.query.users.length !== 1 || userinfo.invalid ) {
@@ -70,9 +70,7 @@ mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 				} else if ( !userinfo.cancreate ) {
 					d.resolve( {
 						valid: false,
-						messages: userinfo.cancreateerror ? userinfo.cancreateerror.map( function ( m ) {
-							return m.html;
-						} ) : []
+						messages: userinfo.cancreateerror ? userinfo.cancreateerror.map( ( m ) => m.html ) : []
 					} );
 				} else if ( userinfo.name !== username ) {
 					d.resolve( { valid: true, messages: [
@@ -108,14 +106,12 @@ mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 			errorsuselocal: true,
 			uselang: mw.config.get( 'wgUserLanguage' )
 		} )
-			.done( function ( resp ) {
+			.done( ( resp ) => {
 				var pwinfo = resp.validatepassword || {};
 
 				d.resolve( {
 					valid: pwinfo.validity === 'Good',
-					messages: pwinfo.validitymessages ? pwinfo.validitymessages.map( function ( m ) {
-						return m.html;
-					} ) : []
+					messages: pwinfo.validitymessages ? pwinfo.validitymessages.map( ( m ) => m.html ) : []
 				} );
 			} )
 			.fail( d.reject );

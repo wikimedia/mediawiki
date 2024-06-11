@@ -96,7 +96,7 @@ MenuSelectWidget = function MwRcfiltersUiMenuSelectWidget( controller, model, co
 	// Append all footers; we will control their visibility
 	// based on view
 	config.footers = config.isMobile ? [] : config.footers || [];
-	config.footers.forEach( function ( footerData ) {
+	config.footers.forEach( ( footerData ) => {
 		var isSticky = footerData.sticky === undefined ? true : !!footerData.sticky,
 			adjustedData = {
 				// Wrap the element with our own footer wrapper
@@ -119,7 +119,7 @@ MenuSelectWidget = function MwRcfiltersUiMenuSelectWidget( controller, model, co
 				this.$body.append( adjustedData.$element );
 			}
 		}
-	}.bind( this ) );
+	} );
 
 	// Switch to the correct view
 	this.updateView();
@@ -167,7 +167,7 @@ MenuSelectWidget.prototype.lazyMenuCreation = function () {
 
 	// Count groups per view
 	// eslint-disable-next-line no-jquery/no-each-util
-	$.each( groups, function ( groupName, groupModel ) {
+	$.each( groups, ( groupName, groupModel ) => {
 		if ( !groupModel.isHidden() ) {
 			viewGroupCount[ groupModel.getView() ] = viewGroupCount[ groupModel.getView() ] || 0;
 			viewGroupCount[ groupModel.getView() ]++;
@@ -175,7 +175,7 @@ MenuSelectWidget.prototype.lazyMenuCreation = function () {
 	} );
 
 	// eslint-disable-next-line no-jquery/no-each-util
-	$.each( groups, function ( groupName, groupModel ) {
+	$.each( groups, ( groupName, groupModel ) => {
 		var currentItems = [],
 			view = groupModel.getView();
 
@@ -196,7 +196,7 @@ MenuSelectWidget.prototype.lazyMenuCreation = function () {
 			}
 
 			// Add items
-			widget.model.getGroupFilters( groupName ).forEach( function ( filterItem ) {
+			widget.model.getGroupFilters( groupName ).forEach( ( filterItem ) => {
 				currentItems.push(
 					new FilterMenuOptionWidget(
 						widget.controller,
@@ -267,7 +267,7 @@ MenuSelectWidget.prototype.updateView = function () {
 MenuSelectWidget.prototype.updateFooterVisibility = function ( currentView ) {
 	currentView = currentView || this.model.getCurrentView();
 
-	this.footers.forEach( function ( data ) {
+	this.footers.forEach( ( data ) => {
 		data.$element.toggle(
 			// This footer should only be shown if it is configured
 			// for all views or for this specific view
@@ -306,9 +306,7 @@ MenuSelectWidget.prototype.postProcessItems = function () {
 		}
 	}
 
-	this.noResults.toggle( !this.getItems().some( function ( item ) {
-		return item.isVisible();
-	} ) );
+	this.noResults.toggle( !this.getItems().some( ( item ) => item.isVisible() ) );
 };
 
 /**
@@ -320,9 +318,7 @@ MenuSelectWidget.prototype.postProcessItems = function () {
  */
 MenuSelectWidget.prototype.getItemFromModel = function ( model ) {
 	this.lazyMenuCreation();
-	return this.views[ model.getGroupModel().getView() ].filter( function ( item ) {
-		return item.getName() === model.getName();
-	} )[ 0 ];
+	return this.views[ model.getGroupModel().getView() ].filter( ( item ) => item.getName() === model.getName() )[ 0 ];
 };
 
 /**

@@ -430,7 +430,7 @@ function bind( window, checkbox, button, target ) {
 	];
 
 	return function () {
-		cleanups.forEach( function ( cleanup ) {
+		cleanups.forEach( ( cleanup ) => {
 			cleanup();
 		} );
 	};

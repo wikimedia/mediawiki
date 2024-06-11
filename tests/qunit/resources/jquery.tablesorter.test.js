@@ -27,7 +27,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		wgDigitTransformTable: [ '', '' ],
 		wgPageContentLanguage: 'en'
 	}
-} ), function () {
+} ), () => {
 	/**
 	 * Create an HTML table from an array of row arrays containing text strings.
 	 * First row will be header row. No fancy rowspan/colspan stuff.
@@ -42,7 +42,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		var $tbody = $table.find( 'tbody' );
 		var $tr = $( '<tr>' );
 
-		header.forEach( function ( str ) {
+		header.forEach( ( str ) => {
 			var $th = $( '<th>' );
 			$th.text( str ).appendTo( $tr );
 		} );
@@ -51,7 +51,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		for ( var i = 0; i < data.length; i++ ) {
 			$tr = $( '<tr>' );
 			// eslint-disable-next-line no-loop-func
-			data[ i ].forEach( function ( str ) {
+			data[ i ].forEach( ( str ) => {
 				var $td = $( '<td>' );
 				$td.text( str ).appendTo( $tr );
 			} );
@@ -69,9 +69,9 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	function tableExtract( $table ) {
 		var data = [];
 
-		$table.find( 'tbody tr' ).each( function ( i, tr ) {
+		$table.find( 'tbody tr' ).each( ( i, tr ) => {
 			var row = [];
-			$( tr ).find( 'td, th' ).each( function ( j, td ) {
+			$( tr ).find( 'td, th' ).each( ( j, td ) => {
 				row.push( $( td ).text() );
 			} );
 			data.push( row );
@@ -89,7 +89,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	 * @param {Function} callback Callback on $table before we compare
 	 */
 	function tableTestHTML( msg, html, expected, callback ) {
-		QUnit.test( msg, function ( assert ) {
+		QUnit.test( msg, ( assert ) => {
 			var $table = $( html );
 
 			// Let caller manipulate the table and setup sorting
@@ -140,7 +140,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 
 	QUnit.test(
 		'Planets: initial sort ascending by name',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( planetHeader, planets );
 			$table.tablesorter( { sortList: [
 				{ 0: 'asc' }
@@ -151,7 +151,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	);
 	QUnit.test(
 		'Planets: initial sort descending by radius',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( planetHeader, planets );
 			$table.tablesorter( { sortList: [
 				{ 1: 'desc' }
@@ -162,7 +162,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	);
 	QUnit.test(
 		'Planets: ascending by name',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( planetHeader, planets );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
@@ -172,7 +172,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	);
 	QUnit.test(
 		'Planets: ascending by name (again)',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( planetHeader, planets );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
@@ -182,7 +182,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	);
 	QUnit.test(
 		'Planets: ascending by name (multiple clicks)',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( planetHeader, planets );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
@@ -194,7 +194,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	);
 	QUnit.test(
 		'Planets: descending by name',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( planetHeader, planets );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' ).trigger( 'click' );
@@ -204,7 +204,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	);
 	QUnit.test(
 		'Planets: return to initial sort',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( planetHeader, planets );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' ).trigger( 'click' ).trigger( 'click' );
@@ -214,7 +214,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	);
 	QUnit.test(
 		'Planets: ascending radius',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( planetHeader, planets );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 1 ).trigger( 'click' );
@@ -224,7 +224,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	);
 	QUnit.test(
 		'Planets: descending radius',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( planetHeader, planets );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 1 ).trigger( 'click' ).trigger( 'click' );
@@ -234,7 +234,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	);
 	QUnit.test(
 		'Sorting multiple columns by passing sort list',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( planetHeader, simple );
 			$table.tablesorter(
 				{ sortList: [
@@ -248,7 +248,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	);
 	QUnit.test(
 		'Sorting multiple columns by programmatically triggering sort()',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( planetHeader, simple );
 			$table.tablesorter();
 			$table.data( 'tablesorter' ).sort(
@@ -263,7 +263,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	);
 	QUnit.test(
 		'Reset to initial sorting by triggering sort() without any parameters',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( planetHeader, simple );
 			$table.tablesorter(
 				{ sortList: [
@@ -284,7 +284,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	);
 	QUnit.test(
 		'Sort via click event after having initialized the tablesorter with initial sorting',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( planetHeader, simple );
 			$table.tablesorter(
 				{ sortList: [ { 0: 'asc' }, { 1: 'asc' } ] }
@@ -296,7 +296,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	);
 	QUnit.test(
 		'Multi-sort via click event after having initialized the tablesorter with initial sorting',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( planetHeader, simple );
 			$table.tablesorter(
 				{ sortList: [ { 0: 'desc' }, { 1: 'desc' } ] }
@@ -314,7 +314,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 			assert.deepEqual( tableExtract( $table ), simpleAsc );
 		}
 	);
-	QUnit.test( 'Reset sorting making table appear unsorted', function ( assert ) {
+	QUnit.test( 'Reset sorting making table appear unsorted', ( assert ) => {
 		var $table = tableCreate( planetHeader, simple );
 		$table.tablesorter(
 			{ sortList: [
@@ -352,7 +352,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	var caa4 = [ 'C', 'A', 'A', '4' ];
 	var colspanInitial = [ aab5, aaa1, abc3, bbc2, caa4 ];
 	QUnit.test( 'Sorting with colspanned headers: spanned column',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( header4, colspanInitial );
 			// Make colspanned header for test
 			$table.find( 'tr th' ).eq( 1 ).remove();
@@ -366,7 +366,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		}
 	);
 	QUnit.test( 'Sorting with colspanned headers: sort spanned column twice',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( header4, colspanInitial );
 			// Make colspanned header for test
 			$table.find( 'tr th' ).eq( 1 ).remove();
@@ -381,7 +381,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		}
 	);
 	QUnit.test( 'Sorting with colspanned headers: subsequent column',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( header4, colspanInitial );
 			// Make colspanned header for test
 			$table.find( 'tr th' ).eq( 1 ).remove();
@@ -395,7 +395,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		}
 	);
 	QUnit.test( 'Sorting with colspanned headers: sort subsequent column twice',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( header4, colspanInitial );
 			// Make colspanned header for test
 			$table.find( 'tr th' ).eq( 1 ).remove();
@@ -410,7 +410,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		}
 	);
 
-	QUnit.test( 'Basic planet table: one unsortable column', function ( assert ) {
+	QUnit.test( 'Basic planet table: one unsortable column', ( assert ) => {
 		var $table = tableCreate( planetHeader, planets );
 		$table.find( 'tr > th' ).eq( 0 ).addClass( 'unsortable' );
 
@@ -443,7 +443,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 
 	QUnit.test(
 		'T30775: German-style (dmy) short numeric dates',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( [ 'Date' ], [
 				// German-style dates are day-month-year
 				[ '11.11.2011' ],
@@ -470,7 +470,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 
 	QUnit.test(
 		'T30775: American-style (mdy) short numeric dates',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( [ 'Date' ], [
 				// American-style dates are month-day-year
 				[ '11.11.2011' ],
@@ -519,7 +519,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	];
 	QUnit.test(
 		'IPv4 address sorting (T19141)',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( [ 'IP' ], ipv4 );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
@@ -529,7 +529,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	);
 	QUnit.test(
 		'IPv4 address reverse sorting (T19141)',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( [ 'IP' ], ipv4 );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' ).trigger( 'click' );
@@ -582,7 +582,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	];
 	QUnit.test(
 		'Accented Characters with custom collation',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( [ 'Name' ], umlautWords );
 			mw.config.set( 'tableSorterCollation', {
 				ä: 'ae',
@@ -599,7 +599,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	);
 	QUnit.test(
 		'Accented Characters Swedish locale',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( [ 'Name' ], umlautWords );
 			mw.config.set( 'wgPageContentLanguage', 'sv' );
 
@@ -612,7 +612,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	);
 	QUnit.test(
 		'Digraphs with custom collation',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( [ 'City' ], [
 				[ 'London' ],
 				[ 'Ljubljana' ],
@@ -640,7 +640,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		}
 	);
 
-	QUnit.test( 'Rowspan not exploded on init', function ( assert ) {
+	QUnit.test( 'Rowspan not exploded on init', ( assert ) => {
 		var $table = tableCreate( planetHeader, planets );
 
 		// Modify the table to have a multiple-row-spanning cell:
@@ -671,7 +671,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	var planetsRowspanII = [ jupiter, mercury, saturn, venus, [ 'Venus', '6371.0' ], [ 'Venus', '3390.0' ] ];
 	QUnit.test(
 		'Basic planet table: same value for multiple rows via rowspan',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( planetHeader, planets );
 			// Modify the table to have a multiple-row-spanning cell:
 			// - Remove 2nd cell of 4th row, and, 2nd cell or 5th row.
@@ -689,7 +689,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	);
 	QUnit.test(
 		'Basic planet table: same value for multiple rows via rowspan (sorting initially)',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( planetHeader, planets );
 			// Modify the table to have a multiple-row-spanning cell:
 			// - Remove 2nd cell of 4th row, and, 2nd cell or 5th row.
@@ -708,7 +708,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	);
 	QUnit.test(
 		'Basic planet table: Same value for multiple rows via rowspan II',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( planetHeader, planets );
 			// Modify the table to have a multiple-row-spanning cell:
 			// - Remove 1st cell of 4th row, and, 1st cell or 5th row.
@@ -727,7 +727,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 
 	QUnit.test(
 		'Complex date parsing I',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( [ 'Date' ], [
 				[ 'January, 19 2010' ],
 				[ 'April 21 1991' ],
@@ -752,7 +752,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 
 	QUnit.test(
 		'Currency parsing I',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( [ 'Currency' ], [
 				[ '1.02 $' ],
 				[ '$ 3.00' ],
@@ -781,7 +781,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 
 	QUnit.test(
 		'Handling of .sortbottom',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( planetHeader, planets.concat( planetsTotal ) );
 			$table.find( 'tr' ).last().addClass( 'sortbottom' );
 			$table.tablesorter();
@@ -793,7 +793,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 
 	QUnit.test(
 		'Handling of .sorttop',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( planetHeader, planetsTotal.concat( planets ) );
 			$table.find( 'tbody > tr' ).first().addClass( 'sorttop' );
 			$table.tablesorter();
@@ -803,7 +803,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		}
 	);
 
-	QUnit.test( 'Rowspan invalid value (T265503)', function ( assert ) {
+	QUnit.test( 'Rowspan invalid value (T265503)', ( assert ) => {
 		var rowspanText = 'Row 1 col 3, Row 2 col 3, row 3 col 3 (but there is no row 3)';
 		var $table = $(
 			'<table class="sortable">' +
@@ -825,7 +825,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		);
 	} );
 
-	QUnit.test( 'Test sort buttons not added to .sorttop row', function ( assert ) {
+	QUnit.test( 'Test sort buttons not added to .sorttop row', ( assert ) => {
 		var $table = $(
 			'<table class="sortable">' +
 				'<tr><th>Data</th></tr>' +
@@ -842,7 +842,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		);
 	} );
 
-	QUnit.test( 'Test detection routine', function ( assert ) {
+	QUnit.test( 'Test detection routine', ( assert ) => {
 		var $table = $(
 			'<table class="sortable">' +
 				'<caption>CAPTION</caption>' +
@@ -862,7 +862,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	} );
 
 	// FIXME: the diff output is not very readeable.
-	QUnit.test( 'T34047 - caption must be before thead', function ( assert ) {
+	QUnit.test( 'T34047 - caption must be before thead', ( assert ) => {
 		var $table = $(
 			'<table class="sortable">' +
 				'<caption>CAPTION</caption>' +
@@ -881,7 +881,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		);
 	} );
 
-	QUnit.test( 'data-sort-value attribute, when available, should override sorting position', function ( assert ) {
+	QUnit.test( 'data-sort-value attribute, when available, should override sorting position', ( assert ) => {
 		// Example 1: All cells except one cell without data-sort-value,
 		// which should be sorted at it's text content value.
 		var $table = $(
@@ -897,8 +897,8 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		$table.tablesorter().find( '.headerSort' ).eq( 0 ).trigger( 'click' );
 
 		var data = [];
-		$table.find( 'tbody > tr' ).each( function ( i, tr ) {
-			$( tr ).find( 'td' ).each( function ( j, td ) {
+		$table.find( 'tbody > tr' ).each( ( i, tr ) => {
+			$( tr ).find( 'td' ).each( ( j, td ) => {
 				data.push( {
 					data: $( td ).data( 'sortValue' ),
 					text: $( td ).text()
@@ -944,8 +944,8 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		$table.tablesorter().find( '.headerSort' ).eq( 0 ).trigger( 'click' );
 
 		data = [];
-		$table.find( 'tbody > tr' ).each( function ( i, tr ) {
-			$( tr ).find( 'td' ).each( function ( j, td ) {
+		$table.find( 'tbody > tr' ).each( ( i, tr ) => {
+			$( tr ).find( 'td' ).each( ( j, td ) => {
 				data.push( {
 					data: $( td ).data( 'sortValue' ),
 					text: $( td ).text()
@@ -1009,8 +1009,8 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
 
 		data = [];
-		$table.find( 'tbody > tr' ).each( function ( i, tr ) {
-			$( tr ).find( 'td' ).each( function ( j, td ) {
+		$table.find( 'tbody > tr' ).each( ( i, tr ) => {
+			$( tr ).find( 'td' ).each( ( j, td ) => {
 				data.push( {
 					data: $( td ).data( 'sortValue' ),
 					text: $( td ).text()
@@ -1059,7 +1059,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		[ '13,000' ]
 	];
 	QUnit.test( 'T10115: sort numbers with commas (ascending)',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( [ 'Numbers' ], numbers );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
@@ -1069,7 +1069,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	);
 
 	QUnit.test( 'T10115: sort numbers with commas (descending)',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( [ 'Numbers' ], numbers );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' ).trigger( 'click' );
@@ -1079,7 +1079,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	);
 	// TODO add numbers sorting tests for T10115 with a different language
 
-	QUnit.test( 'T34888 - Tables inside a tableheader cell', function ( assert ) {
+	QUnit.test( 'T34888 - Tables inside a tableheader cell', ( assert ) => {
 		var $table = $(
 			'<table class="sortable" id="mw-bug-32888">' +
 				'<tr><th>header<table id="mw-bug-32888-2">' +
@@ -1105,7 +1105,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 
 	QUnit.test(
 		'Correct date sorting I',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( [ 'Date' ], [
 				[ '01 January 2010' ],
 				[ '05 February 2010' ],
@@ -1126,7 +1126,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 
 	QUnit.test(
 		'Correct date sorting II',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( [ 'Date' ], [
 				[ 'January 01 2010' ],
 				[ 'February 05 2010' ],
@@ -1147,7 +1147,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 
 	QUnit.test(
 		'ISO date sorting',
-		function ( assert ) {
+		( assert ) => {
 			var $table = tableCreate( [ 'ISO date' ], [
 				[ '2010-02-01' ],
 				[ '2009-12-25T12:30:45.001Z' ],
@@ -1175,7 +1175,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		}
 	);
 
-	QUnit.test( 'Sorting images using alt text', function ( assert ) {
+	QUnit.test( 'Sorting images using alt text', ( assert ) => {
 		var $table = $(
 			'<table class="sortable">' +
 				'<tr><th>THEAD</th></tr>' +
@@ -1192,7 +1192,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		);
 	} );
 
-	QUnit.test( 'Sorting images using alt text (complex)', function ( assert ) {
+	QUnit.test( 'Sorting images using alt text (complex)', ( assert ) => {
 		var $table = $(
 			'<table class="sortable">' +
 				'<tr><th>THEAD</th></tr>' +
@@ -1213,7 +1213,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		);
 	} );
 
-	QUnit.test( 'Sorting images using alt text (with format autodetection)', function ( assert ) {
+	QUnit.test( 'Sorting images using alt text (with format autodetection)', ( assert ) => {
 		var $table = $(
 			'<table class="sortable">' +
 				'<tr><th>THEAD</th></tr>' +
@@ -1232,7 +1232,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		);
 	} );
 
-	QUnit.test( 'T40911 - The row with the largest amount of columns should receive the sort indicators', function ( assert ) {
+	QUnit.test( 'T40911 - The row with the largest amount of columns should receive the sort indicators', ( assert ) => {
 		var $table = $(
 			'<table class="sortable">' +
 				'<thead>' +
@@ -1262,7 +1262,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		);
 	} );
 
-	QUnit.test( 'rowspans in table headers should prefer the last row when rows are equal in length', function ( assert ) {
+	QUnit.test( 'rowspans in table headers should prefer the last row when rows are equal in length', ( assert ) => {
 		var $table = $(
 			'<table class="sortable">' +
 				'<thead>' +
@@ -1287,7 +1287,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		);
 	} );
 
-	QUnit.test( 'holes in the table headers should not throw JS errors', function ( assert ) {
+	QUnit.test( 'holes in the table headers should not throw JS errors', ( assert ) => {
 		var $table = $(
 			'<table class="sortable">' +
 				'<thead>' +
@@ -1310,7 +1310,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	} );
 
 	// T55527
-	QUnit.test( 'td cells in thead should not be taken into account for longest row calculation', function ( assert ) {
+	QUnit.test( 'td cells in thead should not be taken into account for longest row calculation', ( assert ) => {
 		var $table = $(
 			'<table class="sortable">' +
 				'<thead>' +
@@ -1347,7 +1347,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 
 	// T55211 - exploding rowspans in more complex cases
 	QUnit.test(
-		'Rowspan exploding with row headers and colspans', function ( assert ) {
+		'Rowspan exploding with row headers and colspans', ( assert ) => {
 			var $table = $( '<table class="sortable">' +
 				'<thead><tr><th rowspan="2">n</th><th colspan="2">foo</th><th rowspan="2">baz</th></tr>' +
 				'<tr><th>foo</th><th>bar</th></tr></thead>' +
@@ -1464,7 +1464,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		]
 	);
 
-	QUnit.test( 'T105731 - incomplete rows in table body', function ( assert ) {
+	QUnit.test( 'T105731 - incomplete rows in table body', ( assert ) => {
 		var $table = $(
 			'<table class="sortable">' +
 				'<tr><th>A</th><th>B</th></tr>' +
@@ -1498,7 +1498,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		);
 	} );
 
-	QUnit.test( 'bug T114721 - use of expand-child class', function ( assert ) {
+	QUnit.test( 'bug T114721 - use of expand-child class', ( assert ) => {
 		var $table = $(
 			'<table class="sortable">' +
 				'<tr><th>A</th><th>B</th></tr>' +
@@ -1531,7 +1531,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 			'detectParserForColumn() detect parser.id "number" for second column'
 		);
 	} );
-	QUnit.test( 'T29745 - References ignored in sortkey', function ( assert ) {
+	QUnit.test( 'T29745 - References ignored in sortkey', ( assert ) => {
 		var $table = $(
 			'<table class="sortable">' +
 				'<tr><th>A</th></tr>' +
@@ -1559,7 +1559,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		);
 	} );
 
-	QUnit.test( 'T311145 - style tags ignored in sortkey', function ( assert ) {
+	QUnit.test( 'T311145 - style tags ignored in sortkey', ( assert ) => {
 		var $table = $(
 			'<table class="sortable">' +
 			'<tr><th>A</th></tr>' +
@@ -1588,7 +1588,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		);
 	} );
 
-	QUnit.module( 'parsers', function ( hooks ) {
+	QUnit.module( 'parsers', ( hooks ) => {
 		hooks.beforeEach( function () {
 			/**
 			 * Check how the parser recognizes and transforms the data
@@ -1603,7 +1603,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 			 */
 			this.parser = function assertParser( assert, parserId, data ) {
 				var parser = $.tablesorter.getParser( parserId );
-				data.forEach( function ( testcase ) {
+				data.forEach( ( testcase ) => {
 					var extractedR = parser.is( testcase[ 0 ] );
 					var extractedF = parser.format( testcase[ 0 ] );
 
@@ -1777,7 +1777,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 			] );
 		} );
 
-		QUnit.test( 'T114604 - Breaking tfoot with rowspans', function ( assert ) {
+		QUnit.test( 'T114604 - Breaking tfoot with rowspans', ( assert ) => {
 			var $table = $(
 					'<table class="sortable">' +
 					'<tr><th>A1</th><th>A2</th></tr>' +

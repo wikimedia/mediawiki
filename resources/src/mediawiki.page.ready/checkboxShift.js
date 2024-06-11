@@ -9,7 +9,7 @@
 module.exports = function ( $box ) {
 	var prev;
 	// When our boxes are clicked..
-	$box.on( 'click', function ( e ) {
+	$box.on( 'click', ( e ) => {
 		// And one has been clicked before...
 		if ( prev && e.shiftKey ) {
 			// Check or uncheck this one and all in-between checkboxes,

@@ -73,7 +73,7 @@ function startVideo( ffmpeg, title ) {
 		] );
 		const logBuffer = function ( buffer, prefix ) {
 			const lines = buffer.toString().trim().split( '\n' );
-			lines.forEach( function ( line ) {
+			lines.forEach( ( line ) => {
 				console.log( prefix + line );
 			} );
 		};

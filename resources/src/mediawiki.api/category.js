@@ -16,13 +16,11 @@
 			} );
 
 			return apiPromise
-				.then( function ( data ) {
-					return !!(
-						data.query && // query is missing on title=""
+				.then( ( data ) => !!(
+					data.query && // query is missing on title=""
 						data.query.pages && // query.pages is missing on title="#" or title="mw:"
 						data.query.pages[ 0 ].categoryinfo
-					);
-				} )
+				) )
 				.promise( { abort: apiPromise.abort } );
 		},
 
@@ -44,11 +42,7 @@
 			} );
 
 			return apiPromise
-				.then( function ( data ) {
-					return data.query.allpages.map( function ( category ) {
-						return new mw.Title( category.title ).getMainText();
-					} );
-				} )
+				.then( ( data ) => data.query.allpages.map( ( category ) => new mw.Title( category.title ).getMainText() ) )
 				.promise( { abort: apiPromise.abort } );
 		},
 
@@ -67,7 +61,7 @@
 			} );
 
 			return apiPromise
-				.then( function ( data ) {
+				.then( ( data ) => {
 					var page;
 
 					if ( !data.query || !data.query.pages ) {
@@ -77,9 +71,7 @@
 					if ( !page.categories ) {
 						return false;
 					}
-					return page.categories.map( function ( cat ) {
-						return new mw.Title( cat.title );
-					} );
+					return page.categories.map( ( cat ) => new mw.Title( cat.title ) );
 				} )
 				.promise( { abort: apiPromise.abort } );
 		}

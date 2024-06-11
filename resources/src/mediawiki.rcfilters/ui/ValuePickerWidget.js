@@ -85,12 +85,10 @@ ValuePickerWidget.prototype.onSelectWidgetChoose = function ( chosenItem ) {
 ValuePickerWidget.prototype.initializeSelectWidget = function () {
 	var items = this.model.getItems()
 		.filter( this.itemFilter )
-		.map( function ( filterItem ) {
-			return new OO.ui.ButtonOptionWidget( {
-				data: filterItem.getName(),
-				label: filterItem.getLabel()
-			} );
-		} );
+		.map( ( filterItem ) => new OO.ui.ButtonOptionWidget( {
+			data: filterItem.getName(),
+			label: filterItem.getLabel()
+		} ) );
 
 	this.selectWidget.clearItems();
 	this.selectWidget.addItems( items );

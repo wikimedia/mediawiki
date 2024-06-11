@@ -72,7 +72,7 @@ HtmlformChecker.prototype.validate = function () {
 	}
 
 	this.currentRequest = currentRequestInternal = this.validator( value )
-		.done( function ( info ) {
+		.done( ( info ) => {
 			var forceReplacement = value !== that.currentValue;
 
 			// Another request was fired in the meantime, the result we got here is no longer current.
@@ -86,7 +86,7 @@ HtmlformChecker.prototype.validate = function () {
 			that.currentValue = value;
 
 			that.setErrors( info.valid, info.messages, forceReplacement );
-		} ).fail( function () {
+		} ).fail( () => {
 			that.currentValue = null;
 			that.setErrors( true, [] );
 		} );
@@ -115,7 +115,7 @@ HtmlformChecker.prototype.setErrors = function ( valid, errors, forceReplacement
 	if ( errors.length === 0 ) {
 		// FIXME: Use CSS transition
 		// eslint-disable-next-line no-jquery/no-slide
-		$errorBox.slideUp( function () {
+		$errorBox.slideUp( () => {
 			$errorBox
 				.removeAttr( 'class' )
 				.empty();
@@ -134,9 +134,7 @@ HtmlformChecker.prototype.setErrors = function ( valid, errors, forceReplacement
 			} else {
 				$text.append(
 					$( '<ul>' ).append(
-						errors.map( function ( e ) {
-							return $( '<li>' ).append( e );
-						} )
+						errors.map( ( e ) => $( '<li>' ).append( e ) )
 					)
 				);
 			}
@@ -168,9 +166,7 @@ HtmlformChecker.prototype.setErrors = function ( valid, errors, forceReplacement
 			} else {
 				$errorBox.append(
 					$( '<ul>' ).append(
-						errors.map( function ( e ) {
-							return $( '<li>' ).append( e );
-						} )
+						errors.map( ( e ) => $( '<li>' ).append( e ) )
 					)
 				);
 			}

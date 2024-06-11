@@ -172,7 +172,7 @@
 			}
 
 			segments = languageTag.split( '-' );
-			formatted = segments.map( function ( segment ) {
+			formatted = segments.map( ( segment ) => {
 				var newSegment;
 
 				// when previous segment is x, it is a private segment and should be lc

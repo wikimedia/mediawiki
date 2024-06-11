@@ -121,7 +121,7 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 			}
 		);
 
-		this.saveQueryButton.$element.on( 'mousedown', function ( e ) {
+		this.saveQueryButton.$element.on( 'mousedown', ( e ) => {
 			e.stopPropagation();
 		} );
 
@@ -143,10 +143,10 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 	this.hideShowButton.connect( this, { click: 'onHideShowButtonClick' } );
 	// Stop propagation for mousedown, so that the widget doesn't
 	// trigger the focus on the input and scrolls up when we click the reset button
-	this.resetButton.$element.on( 'mousedown', function ( e ) {
+	this.resetButton.$element.on( 'mousedown', ( e ) => {
 		e.stopPropagation();
 	} );
-	this.hideShowButton.$element.on( 'mousedown', function ( e ) {
+	this.hideShowButton.$element.on( 'mousedown', ( e ) => {
 		e.stopPropagation();
 	} );
 	this.model.connect( this, {
@@ -280,7 +280,7 @@ FilterTagMultiselectWidget.prototype.createViewsSelectWidget = function () {
 		]
 	} );
 
-	viewsSelectWidget.items.forEach( function ( item ) {
+	viewsSelectWidget.items.forEach( ( item ) => {
 		item.$button.attr( 'aria-label', item.title );
 	} );
 
@@ -409,9 +409,9 @@ FilterTagMultiselectWidget.prototype.onMenuToggle = function ( isVisible ) {
 			// This has to be in a setTimeout so the menu has time
 			// to be positioned and fixed
 			setTimeout(
-				function () {
+				() => {
 					this.getMenu().scrollToTop();
-				}.bind( this )
+				}
 			);
 		}
 
@@ -617,19 +617,19 @@ FilterTagMultiselectWidget.prototype.onModelHighlightChange = function ( isHighl
 
 	if ( isHighlightEnabled ) {
 		// Add capsule widgets
-		highlightedItems.forEach( function ( filterItem ) {
+		highlightedItems.forEach( ( filterItem ) => {
 			this.addTag( filterItem.getName(), filterItem.getLabel() );
-		}.bind( this ) );
+		} );
 	} else {
 		// Remove capsule widgets if they're not selected
-		highlightedItems.forEach( function ( filterItem ) {
+		highlightedItems.forEach( ( filterItem ) => {
 			if ( !filterItem.isSelected() ) {
 				// Only attempt to remove the tag if we can find an item for it (T198140, T198231)
 				if ( this.findItemFromData( filterItem.getName() ) !== null ) {
 					this.removeTagByData( filterItem.getName() );
 				}
 			}
-		}.bind( this ) );
+		} );
 	}
 
 	this.setSavedQueryVisibility();
@@ -797,15 +797,15 @@ FilterTagMultiselectWidget.prototype.emphasize = function () {
 			.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-emphasize' )
 			.addClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-animate' );
 
-		setTimeout( function () {
+		setTimeout( () => {
 			this.$handle
 				.removeClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-emphasize' );
 
-			setTimeout( function () {
+			setTimeout( () => {
 				this.$handle
 					.removeClass( 'mw-rcfilters-ui-filterTagMultiselectWidget-animate' );
-			}.bind( this ), 1000 );
-		}.bind( this ), 500 );
+			}, 1000 );
+		}, 500 );
 
 	}
 };

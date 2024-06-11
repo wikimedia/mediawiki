@@ -30,7 +30,7 @@ var FilterItemHighlightButton = function MwRcfiltersUiFilterItemHighlightButton(
 	// This lives inside a MenuOptionWidget, which intercepts mousedown
 	// to select the item. We want to prevent that when we click the highlight
 	// button
-	this.$element.on( 'mousedown', function ( e ) {
+	this.$element.on( 'mousedown', ( e ) => {
 		e.stopPropagation();
 	} );
 
@@ -73,7 +73,7 @@ FilterItemHighlightButton.prototype.updateUiBasedOnModel = function () {
 		currentColor !== null
 	);
 
-	HighlightColors.forEach( function ( c ) {
+	HighlightColors.forEach( ( c ) => {
 		// The following classes are used here:
 		// * mw-rcfilters-ui-filterItemHighlightButton-circle-color-c1
 		// * mw-rcfilters-ui-filterItemHighlightButton-circle-color-c2

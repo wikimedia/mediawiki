@@ -13,7 +13,7 @@ if ( mw.config.get( 'wgBreakFrames' ) ) {
 	}
 }
 
-mw.hook( 'wikipage.content' ).add( function ( $content ) {
+mw.hook( 'wikipage.content' ).add( ( $content ) => {
 	var modules = [];
 
 	var $collapsible;
@@ -34,7 +34,7 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 
 	if ( modules.length ) {
 		// Both modules are preloaded by Skin::getDefaultModules()
-		mw.loader.using( modules ).then( function () {
+		mw.loader.using( modules ).then( () => {
 			// For tables that are both sortable and collapsible,
 			// it must be made sortable first and collapsible second.
 			// This is because jquery.tablesorter stumbles on the
@@ -58,7 +58,7 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 require( './toggleAllCollapsibles.js' );
 
 // Handle elements outside the wikipage content
-$( function () {
+$( () => {
 	/**
 	 * There is a bug on iPad and maybe other browsers where if initial-scale is not set
 	 * the page cannot be zoomed. If the initial-scale is set on the server side, this will result
@@ -158,7 +158,7 @@ $( function () {
 		mw.hook( 'wikipage.diff' ).fire( $nodes.eq( 0 ) );
 	}
 
-	$( '#t-print a' ).on( 'click', function ( e ) {
+	$( '#t-print a' ).on( 'click', ( e ) => {
 		window.print();
 		e.preventDefault();
 	} );
@@ -200,10 +200,10 @@ $( function () {
 		api.postWithToken( 'csrf', {
 			action: 'logout'
 		} ).then(
-			function () {
+			() => {
 				location.href = href;
 			},
-			function ( err, data ) {
+			( err, data ) => {
 				mw.notify(
 					api.getErrorMessage( data ),
 					{ type: 'error', tag: 'logout', autoHide: false }
@@ -260,7 +260,7 @@ function loadSearchModule( moduleName ) {
 		if ( shouldTestSearch ) {
 			performance.mark( loadStartMark );
 		}
-		mw.loader.using( moduleName, function () {
+		mw.loader.using( moduleName, () => {
 			if ( shouldTestSearch && performance.getEntriesByName( loadStartMark ).length ) {
 				performance.mark( loadEndMark );
 				performance.measure( 'mwVectorLegacySearchLoadStartToLoadEnd', loadStartMark, loadEndMark );

@@ -2,7 +2,7 @@
 
 const { action, assert } = require( 'api-testing' );
 
-describe( "Changing a user's preferences", function () {
+describe( "Changing a user's preferences", () => {
 	let alice;
 	let token;
 

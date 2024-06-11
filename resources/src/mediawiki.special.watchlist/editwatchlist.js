@@ -2,24 +2,20 @@
  * JavaScript for Special:EditWatchlist
  */
 ( function () {
-	$( function () {
+	$( () => {
 		var checkAllChangeOngoing = false;
 		var multiselectChangeOngoing = false;
 
 		var checkAllCheckboxes = $( '.mw-watchlistedit-checkall .oo-ui-checkboxInputWidget' )
 			.toArray()
-			.map( function ( element ) {
-				return OO.ui.infuse( element );
-			} );
+			.map( ( element ) => OO.ui.infuse( element ) );
 
 		var multiselects = $( '.mw-watchlistedit-check .oo-ui-checkboxMultiselectInputWidget' )
 			.toArray()
-			.map( function ( element ) {
-				return OO.ui.infuse( element ).checkboxMultiselectWidget;
-			} );
+			.map( ( element ) => OO.ui.infuse( element ).checkboxMultiselectWidget );
 
-		checkAllCheckboxes.forEach( function ( checkbox, index ) {
-			checkbox.on( 'change', function ( isChecked ) {
+		checkAllCheckboxes.forEach( ( checkbox, index ) => {
+			checkbox.on( 'change', ( isChecked ) => {
 				if ( multiselectChangeOngoing ) {
 					return;
 				}
@@ -33,8 +29,8 @@
 			} );
 		} );
 
-		multiselects.forEach( function ( multiselect, index ) {
-			multiselect.on( 'change', function () {
+		multiselects.forEach( ( multiselect, index ) => {
+			multiselect.on( 'change', () => {
 				if ( checkAllChangeOngoing ) {
 					return;
 				}

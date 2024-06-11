@@ -19,7 +19,7 @@
 		}
 	} ) );
 
-	QUnit.test( 'mw.language getData and setData', function ( assert ) {
+	QUnit.test( 'mw.language getData and setData', ( assert ) => {
 		mw.language.setData( 'en', 'testkey', 'testvalue' );
 		assert.strictEqual( mw.language.getData( 'en', 'testkey' ), 'testvalue', 'Getter setter test for mw.language' );
 		assert.strictEqual( mw.language.getData( 'en', 'invalidkey' ), null, 'Getter setter test for mw.language with invalid key' );
@@ -28,7 +28,7 @@
 		assert.strictEqual( mw.language.getData( 'en-US', 'testkey' ), 'testvalue', 'Case insensitive test for mw.language' );
 	} );
 
-	QUnit.test( 'mw.language.convertNumber', function ( assert ) {
+	QUnit.test( 'mw.language.convertNumber', ( assert ) => {
 		mw.language.setData( 'en', 'digitGroupingPattern', null );
 		mw.language.setData( 'en', 'digitTransformTable', null );
 		mw.language.setData( 'en', 'separatorTransformTable', { ',': '.', '.': ',' } );
@@ -54,7 +54,7 @@
 		assert.strictEqual( mw.language.convertNumber( 180000 ), '180.000', 'formatting 6-digit with minimumGroupingDigits=3' );
 	} );
 
-	QUnit.test( 'mw.language.convertNumber - digitTransformTable', function ( assert ) {
+	QUnit.test( 'mw.language.convertNumber - digitTransformTable', ( assert ) => {
 		mw.config.set( 'wgUserLanguage', 'hi' );
 		mw.config.set( 'wgTranslateNumerals', true );
 		mw.language.setData( 'hi', 'digitGroupingPattern', null );
@@ -82,7 +82,7 @@
 	function grammarTest( langCode, test ) {
 		// The test works only if the content language is opt.language
 		// because it requires [lang].js to be loaded.
-		QUnit.test( 'Grammar test for lang=' + langCode, function ( assert ) {
+		QUnit.test( 'Grammar test for lang=' + langCode, ( assert ) => {
 			var i;
 			for ( i = 0; i < test.length; i++ ) {
 				assert.strictEqual(
@@ -746,13 +746,13 @@
 	};
 
 	// eslint-disable-next-line no-jquery/no-each-util
-	$.each( grammarTests, function ( langCode, test ) {
+	$.each( grammarTests, ( langCode, test ) => {
 		if ( langCode === mw.config.get( 'wgUserLanguage' ) ) {
 			grammarTest( langCode, test );
 		}
 	} );
 
-	QUnit.test( 'List to text test', function ( assert ) {
+	QUnit.test( 'List to text test', ( assert ) => {
 		assert.strictEqual( mw.language.listToText( [] ), '', 'Blank list' );
 		assert.strictEqual( mw.language.listToText( [ 'a' ] ), 'a', 'Single item' );
 		assert.strictEqual( mw.language.listToText( [ 'a', 'b' ] ), 'a and b', 'Two items' );
@@ -884,7 +884,7 @@
 
 	QUnit.test( 'mw.language.bcp47', function ( assert ) {
 		mw.language.data = this.liveLangData;
-		bcp47Tests.forEach( function ( data ) {
+		bcp47Tests.forEach( ( data ) => {
 			var input = data[ 0 ],
 				expected = data[ 1 ];
 			assert.strictEqual( mw.language.bcp47( input ), expected );

@@ -35,7 +35,7 @@
 				iiprop: 'uploadwarning',
 				errorformat: 'html',
 				errorlang: mw.config.get( 'wgUserLanguage' )
-			} ).then( function ( result ) {
+			} ).then( ( result ) => {
 				var
 					resultOut = '',
 					page = result.query.pages[ 0 ];
@@ -46,7 +46,7 @@
 				}
 				uploadWarning.setWarning( resultOut );
 				$spinnerDestCheck.remove();
-			} ).catch( function () {
+			} ).catch( () => {
 				$spinnerDestCheck.remove();
 			} );
 		},
@@ -92,9 +92,9 @@
 				prop: 'text',
 				pst: true,
 				uselang: mw.config.get( 'wgUserLanguage' )
-			} ).done( function ( result ) {
+			} ).done( ( result ) => {
 				uploadTemplatePreview.processResult( result, template, $previewContainer );
-			} ).always( function () {
+			} ).always( () => {
 				$spinner.remove();
 			} );
 		},
@@ -110,7 +110,7 @@
 
 	};
 
-	$( function () {
+	$( () => {
 		// Insert an event handler that fetches upload warnings when wpDestFile
 		// has been changed
 		$( '#wpDestFile' ).on( 'change', function () {
@@ -128,7 +128,7 @@
 		var $license = $( '#wpLicense' );
 		if ( mw.config.get( 'wgAjaxLicensePreview' ) && $license.length ) {
 			// License selector check
-			$license.on( 'change', function () {
+			$license.on( 'change', () => {
 				// We might show a preview
 				uploadTemplatePreview.getPreview( $license, $( '#mw-license-preview' ) );
 			} );
@@ -145,7 +145,7 @@
 		// fillDestFile setup. Note if the upload wiki does not allow uploads,
 		// e.g. Polish Wikipedia -  this code still runs amnd this will be undefined,
 		// so fallback to empty array.
-		mw.config.get( 'wgUploadSourceIds', [] ).forEach( function ( sourceId ) {
+		mw.config.get( 'wgUploadSourceIds', [] ).forEach( ( sourceId ) => {
 			$( '#' + sourceId ).on( 'change', function () {
 				var path, slash, backslash, fname, title;
 				if ( !mw.config.get( 'wgUploadAutoFill' ) ) {
@@ -177,9 +177,7 @@
 				) {
 					if (
 						fname.lastIndexOf( '.' ) === -1 ||
-						mw.config.get( 'wgFileExtensions' ).map( function ( element ) {
-							return element.toLowerCase();
-						} ).indexOf( fname.slice( fname.lastIndexOf( '.' ) + 1 ).toLowerCase() ) === -1
+						mw.config.get( 'wgFileExtensions' ).map( ( element ) => element.toLowerCase() ).indexOf( fname.slice( fname.lastIndexOf( '.' ) + 1 ).toLowerCase() ) === -1
 					) {
 						// Not a valid extension
 						// Clear the upload and set mw-upload-permitted to error
@@ -218,7 +216,7 @@
 	} );
 
 	// Add a preview to the upload form
-	$( function () {
+	$( () => {
 		/**
 		 * Is the FileAPI available with sufficient functionality?
 		 *
@@ -363,7 +361,7 @@
 			ctx = $canvas[ 0 ].getContext( '2d' );
 			$( '#mw-htmlform-source' ).parent().prepend( thumb );
 
-			fetchPreview( file, function ( dataURL ) {
+			fetchPreview( file, ( dataURL ) => {
 				var img = new Image(),
 					rotation = 0;
 
@@ -444,7 +442,7 @@
 					clearPreview();
 				};
 				img.src = dataURL;
-			}, mw.config.get( 'wgFileCanRotate' ) && !CSS.supports( 'image-orientation', 'from-image' ) ? function ( data ) {
+			}, mw.config.get( 'wgFileCanRotate' ) && !CSS.supports( 'image-orientation', 'from-image' ) ? ( data ) => {
 				var jpegmeta = require( 'mediawiki.libs.jpegmeta' );
 				try {
 					meta = jpegmeta( data, file.fileName );
@@ -514,7 +512,7 @@
 	} );
 
 	// Disable all upload source fields except the selected one
-	$( function () {
+	$( () => {
 		var $rows = $( '.mw-htmlform-field-UploadSourceField' );
 
 		$rows.on( 'change', 'input[type="radio"]', function ( e ) {
@@ -543,7 +541,7 @@
 		}
 	} );
 
-	$( function () {
+	$( () => {
 		// Prevent losing work
 		var allowCloseWindow,
 			$uploadForm = $( '#mw-upload-form' );
@@ -565,13 +563,13 @@
 			}
 		} );
 
-		$uploadForm.on( 'submit', function () {
+		$uploadForm.on( 'submit', () => {
 			allowCloseWindow.release();
 		} );
 	} );
 
 	// Add tabindex to mw-editTools
-	$( function () {
+	$( () => {
 		// Function to change tabindex for all links within mw-editTools
 		function setEditTabindex( $val ) {
 			$( '.mw-editTools' ).find( 'a' ).each( function () {
@@ -594,7 +592,7 @@
 		} );
 
 		// Reset tabindex for elements when user focused out mw-editTools
-		$( '.mw-editTools' ).on( 'focusout', function ( e ) {
+		$( '.mw-editTools' ).on( 'focusout', ( e ) => {
 			// Don't continue if relatedTarget is within mw-editTools
 			if ( e.relatedTarget !== null && $( e.relatedTarget ).closest( '.mw-editTools' ).length > 0 ) {
 				return;

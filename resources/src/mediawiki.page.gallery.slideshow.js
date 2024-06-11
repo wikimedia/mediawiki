@@ -117,11 +117,11 @@
 		);
 
 		// Disable thumbnails' link, instead show the image in the carousel
-		this.$galleryBox.on( 'click', function ( e ) {
+		this.$galleryBox.on( 'click', ( e ) => {
 			this.$currentImage = $( e.currentTarget );
 			this.showCurrentImage();
 			return false;
-		}.bind( this ) );
+		} );
 	};
 
 	/* Setup */
@@ -247,7 +247,7 @@
 
 		// Make the image smaller in case the current image
 		// size is larger than the original file size.
-		this.getImageInfo( this.$thumbnail ).then( function ( info ) {
+		this.getImageInfo( this.$thumbnail ).then( ( info ) => {
 			// NOTE: There will be a jump when resizing the window
 			// because the cache is cleared and this a new network request.
 			if (
@@ -259,7 +259,7 @@
 					height: info.thumbheight + 'px'
 				} );
 			}
-		}.bind( this ) );
+		} );
 	};
 
 	/**
@@ -312,7 +312,7 @@
 
 		$thumbnail = this.$thumbnail;
 		// 5. Load image at the required size
-		this.loadImage( this.$thumbnail ).done( function ( info ) {
+		this.loadImage( this.$thumbnail ).done( ( info ) => {
 			// Show this image to the user only if its still the current one
 			if ( this.$thumbnail.attr( 'src' ) === $thumbnail.attr( 'src' ) ) {
 				this.$img.attr( 'src', info.thumburl );
@@ -325,11 +325,11 @@
 				// Pre-fetch the next image
 				this.loadImage( this.getNextImage().find( 'img' ) );
 			}
-		}.bind( this ) ).fail( function () {
+		} ).fail( () => {
 			// Image didn't load
 			var title = mw.Title.newFromImg( this.$img );
 			this.$imgContainer.text( title ? title.getMainText() : '' );
-		}.bind( this ) );
+		} );
 	};
 
 	/**
@@ -340,7 +340,7 @@
 	 *  element once the image has loaded.
 	 */
 	mw.GallerySlideshow.prototype.loadImage = function ( $img ) {
-		return this.getImageInfo( $img ).then( function ( info ) {
+		return this.getImageInfo( $img ).then( ( info ) => {
 			var img, d = $.Deferred();
 			img = new Image();
 			img.src = info.thumburl;
@@ -389,7 +389,7 @@
 				params.iiurlwidth = this.imageWidth;
 			}
 
-			this.imageInfoCache[ imageSrc ] = api.get( params ).then( function ( data ) {
+			this.imageInfoCache[ imageSrc ] = api.get( params ).then( ( data ) => {
 				if ( OO.getProp( data, 'query', 'pages', 0, 'imageinfo', 0, 'thumburl' ) !== undefined ) {
 					return data.query.pages[ 0 ].imageinfo[ 0 ];
 				} else {
@@ -487,7 +487,7 @@
 	};
 
 	// Bootstrap all slideshow galleries
-	mw.hook( 'wikipage.content' ).add( function ( $content ) {
+	mw.hook( 'wikipage.content' ).add( ( $content ) => {
 		$content.find( '.mw-gallery-slideshow' ).filter( function () {
 			// This gallery slideshow feature depends on img tags being present in the DOM.
 			// This might not be true - for example in MobileFrontend - where images are lazy loaded.

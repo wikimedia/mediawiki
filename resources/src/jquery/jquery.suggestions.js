@@ -134,7 +134,7 @@
 		// Allow custom rendering - but otherwise don't do any rendering
 		if ( typeof context.config.special.render === 'function' ) {
 			// Wait for the browser to update the value
-			setTimeout( function () {
+			setTimeout( () => {
 				// Render special
 				var $special = context.data.$container.find( '.suggestions-special' );
 				context.config.special.render.call( $special, context.data.$textbox.val(), context );
@@ -189,7 +189,7 @@
 					context.config.fetch.call(
 						context.data.$textbox,
 						val,
-						function ( suggestions, metadata ) {
+						( suggestions, metadata ) => {
 							suggestions = suggestions.slice( 0, context.config.maxRows );
 							context.data.$textbox.suggestions( 'suggestions', suggestions );
 							if ( typeof context.config.update.after === 'function' ) {
@@ -652,10 +652,10 @@
 							// Can't use click() because the container div is hidden when the
 							// textbox loses focus. Instead, listen for a mousedown followed
 							// by a mouseup on the same div.
-							.on( 'mousedown', function ( e ) {
+							.on( 'mousedown', ( e ) => {
 								context.data.$mouseDownOn = $( e.target ).closest( '.suggestions-results .suggestions-result' );
 							} )
-							.on( 'mouseup', function ( e ) {
+							.on( 'mouseup', ( e ) => {
 								var $result = $( e.target ).closest( '.suggestions-results .suggestions-result' ),
 									$other = context.data.$mouseDownOn;
 
@@ -671,7 +671,7 @@
 								if ( !( e.which !== 1 || e.altKey || e.ctrlKey || e.shiftKey || e.metaKey ) ) {
 									// This will hide the link we're just clicking on, which causes problems
 									// when done synchronously in at least Firefox 3.6 (T64858).
-									setTimeout( function () {
+									setTimeout( () => {
 										hide( context );
 									} );
 								}
@@ -685,10 +685,10 @@
 							// Can't use click() because the container div is hidden when the
 							// textbox loses focus. Instead, listen for a mousedown followed
 							// by a mouseup on the same div.
-							.on( 'mousedown', function ( e ) {
+							.on( 'mousedown', ( e ) => {
 								context.data.$mouseDownOn = $( e.target ).closest( '.suggestions-special' );
 							} )
-							.on( 'mouseup', function ( e ) {
+							.on( 'mouseup', ( e ) => {
 								var $special = $( e.target ).closest( '.suggestions-special' ),
 									$other = context.data.$mouseDownOn;
 
@@ -703,7 +703,7 @@
 								if ( !( e.which !== 1 || e.altKey || e.ctrlKey || e.shiftKey || e.metaKey ) ) {
 									// This will hide the link we're just clicking on, which causes problems
 									// when done synchronously in at least Firefox 3.6 (T64858).
-									setTimeout( function () {
+									setTimeout( () => {
 										hide( context );
 									} );
 								}
@@ -711,7 +711,7 @@
 								// if they were just typing.
 								context.data.$textbox.trigger( 'focus' );
 							} )
-							.on( 'mousemove', function ( e ) {
+							.on( 'mousemove', ( e ) => {
 								context.data.selectedWithMouse = true;
 								highlight(
 									context, $( e.target ).closest( '.suggestions-special' ), false
@@ -723,16 +723,16 @@
 				$( this )
 					// Stop browser autocomplete from interfering
 					.attr( 'autocomplete', 'off' )
-					.on( 'keydown', function ( e ) {
+					.on( 'keydown', ( e ) => {
 						// Store key pressed to handle later
 						context.data.keypressed = e.which;
 						context.data.keypressedCount = 0;
 					} )
-					.on( 'keypress', function ( e ) {
+					.on( 'keypress', ( e ) => {
 						context.data.keypressedCount++;
 						keypress( e, context, context.data.keypressed );
 					} )
-					.on( 'keyup', function ( e ) {
+					.on( 'keyup', ( e ) => {
 						// The keypress event is fired when a key is pressed down and that key normally
 						// produces a character value. We also want to handle some keys that don't
 						// produce a character value so we also attach to the keydown/keyup events.
@@ -753,7 +753,7 @@
 							keypress( e, context, context.data.keypressed );
 						}
 					} )
-					.on( 'blur', function () {
+					.on( 'blur', () => {
 						// When losing focus because of a mousedown
 						// on a suggestion, don't hide the suggestions
 						if ( context.data.$mouseDownOn.length > 0 ) {

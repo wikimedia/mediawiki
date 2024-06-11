@@ -3,7 +3,7 @@
  *
  * See also PageEditStash in PHP.
  */
-$( function () {
+$( () => {
 	var PRIORITY_LOW = 1;
 	var PRIORITY_HIGH = 2;
 
@@ -81,7 +81,7 @@ $( function () {
 
 		var req = api.postWithToken( 'csrf', params );
 		stashReq = req;
-		req.then( function ( data ) {
+		req.then( ( data ) => {
 			if ( req === stashReq ) {
 				stashReq = null;
 			}

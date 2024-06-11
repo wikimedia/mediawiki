@@ -324,7 +324,7 @@
 
 				// Apply parser regex and set all properties based on the result
 				matches = parser[ options.strictMode ? 'strict' : 'loose' ].exec( str );
-				properties.forEach( function ( property, i ) {
+				properties.forEach( ( property, i ) => {
 					uri[ property ] = matches[ i + 1 ];
 				} );
 
@@ -335,7 +335,7 @@
 				// using replace to iterate over a string
 				if ( uri.query ) {
 
-					uri.query.replace( /(?:^|&)([^&=]*)(?:(=)([^&]*))?/g, function ( match, k, eq, v ) {
+					uri.query.replace( /(?:^|&)([^&=]*)(?:(=)([^&]*))?/g, ( match, k, eq, v ) => {
 						var arrayKeyMatch, i;
 						if ( k ) {
 							k = Uri.decode( k );
@@ -427,12 +427,12 @@
 			getQueryString: function () {
 				var args = [],
 					arrayParams = this.arrayParams;
-				Object.keys( this.query ).forEach( function ( key ) {
+				Object.keys( this.query ).forEach( ( key ) => {
 					var val = this.query[ key ];
 					var k = Uri.encode( key ),
 						isArrayParam = Array.isArray( val ),
 						vals = isArrayParam ? val : [ val ];
-					vals.forEach( function ( v, i ) {
+					vals.forEach( ( v, i ) => {
 						var ki = k;
 						if ( arrayParams && isArrayParam ) {
 							ki += Uri.encode( '[' + i + ']' );
@@ -445,7 +445,7 @@
 							args.push( ki + '=' + Uri.encode( v ) );
 						}
 					} );
-				}.bind( this ) );
+				} );
 				return args.join( '&' );
 			},
 
@@ -506,8 +506,6 @@
 	 * @ignore
 	 * @return {mw.Uri}
 	 */
-	mw.Uri = mw.UriRelative( function () {
-		return location.href;
-	} );
+	mw.Uri = mw.UriRelative( () => location.href );
 
 }() );

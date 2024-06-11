@@ -2,7 +2,7 @@
 
 const { action, assert, utils } = require( 'api-testing' );
 
-describe( 'The block/unblock action', function testBlockingAUser() {
+describe( 'The block/unblock action', () => {
 	const pageTitle = utils.title( 'Block_' );
 	let eve = action.getAnon();
 	let mindy;

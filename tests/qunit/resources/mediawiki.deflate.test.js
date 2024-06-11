@@ -1,4 +1,4 @@
-QUnit.module( 'mediawiki.deflate', function () {
+QUnit.module( 'mediawiki.deflate', () => {
 	var seed = 1234567890;
 	function getPseudoRandom() {
 		seed = seed * 16807 % 2147483646;
@@ -31,7 +31,7 @@ QUnit.module( 'mediawiki.deflate', function () {
 			expectedHead: '7Nbbsi10mR',
 			expectedTail: 'Inf9LJDw=='
 		}
-	}, function ( assert, data ) {
+	}, ( assert, data ) => {
 		if ( data.expected ) {
 			assert.strictEqual( mw.deflate( data.data ), data.expected );
 		} else {

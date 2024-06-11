@@ -2,7 +2,7 @@
 	const jqueryMsg = require( 'mediawiki.jqueryMsg' ).test;
 	QUnit.module( 'mediawiki' );
 
-	QUnit.test( 'Initial check', function ( assert ) {
+	QUnit.test( 'Initial check', ( assert ) => {
 		assert.strictEqual( typeof window.jQuery, 'function', 'jQuery defined' );
 		assert.strictEqual( typeof window.$, 'function', '$ defined' );
 		assert.strictEqual( window.$, window.jQuery, '$ alias to jQuery' );
@@ -12,7 +12,7 @@
 		assert.strictEqual( window.mw, window.mediaWiki, 'mw alias to mediaWiki' );
 	} );
 
-	QUnit.test( 'mw.format', function ( assert ) {
+	QUnit.test( 'mw.format', ( assert ) => {
 		assert.strictEqual(
 			mw.format( 'Format $1 $2', 'foo', 'bar' ),
 			'Format foo bar',
@@ -25,7 +25,7 @@
 		);
 	} );
 
-	QUnit.test( 'mw.now', function ( assert ) {
+	QUnit.test( 'mw.now', ( assert ) => {
 		assert.strictEqual( typeof mw.now(), 'number', 'Return a number' );
 		assert.strictEqual(
 			String( Math.round( mw.now() ) ).length,
@@ -34,9 +34,9 @@
 		);
 	} );
 
-	QUnit.module( 'mw.Message', function ( hooks ) {
+	QUnit.module( 'mw.Message', ( hooks ) => {
 		var parserDefaults;
-		hooks.before( function () {
+		hooks.before( () => {
 			parserDefaults = jqueryMsg.getParserDefaults();
 			jqueryMsg.setParserDefaults( {
 				magic: {
@@ -48,12 +48,12 @@
 				script: '<script  >alert( "Who?" );</script>'
 			} );
 		} );
-		hooks.after( function () {
+		hooks.after( () => {
 			jqueryMsg.setParserDefaults( parserDefaults );
 			mw.config.set( 'wgUserLanguage', 'qqx' );
 		} );
 
-		QUnit.test( 'Construct', function ( assert ) {
+		QUnit.test( 'Construct', ( assert ) => {
 			var hello = mw.message( 'hello' );
 
 			assert.strictEqual( hello.map, mw.messages, 'internal "map" property' );
@@ -61,28 +61,28 @@
 			assert.deepEqual( hello.parameters, [], 'internal "parameters" property' );
 		} );
 
-		QUnit.test( 'plain()', function ( assert ) {
+		QUnit.test( 'plain()', ( assert ) => {
 			var hello = mw.message( 'hello' );
 			assert.strictEqual( hello.plain(), 'Hello <b>awesome</b> world', 'hello' );
 			var script = mw.message( 'script' );
 			assert.strictEqual( script.plain(), '<script  >alert( "Who?" );</script>', 'script' );
 		} );
 
-		QUnit.test( 'escaped()', function ( assert ) {
+		QUnit.test( 'escaped()', ( assert ) => {
 			var hello = mw.message( 'hello' );
 			assert.strictEqual( hello.escaped(), 'Hello &lt;b&gt;awesome&lt;/b&gt; world', 'hello' );
 			var script = mw.message( 'script' );
 			assert.strictEqual( script.escaped(), '&lt;script  &gt;alert( &quot;Who?&quot; );&lt;/script&gt;', 'script' );
 		} );
 
-		QUnit.test( 'parse()', function ( assert ) {
+		QUnit.test( 'parse()', ( assert ) => {
 			var hello = mw.message( 'hello' );
 			assert.strictEqual( hello.parse(), 'Hello <b>awesome</b> world', 'hello' );
 			var script = mw.message( 'script' );
 			assert.strictEqual( script.parse(), '&lt;script  &gt;alert( "Who?" );&lt;/script&gt;', 'script' );
 		} );
 
-		QUnit.test( 'exists()', function ( assert ) {
+		QUnit.test( 'exists()', ( assert ) => {
 			var hello = mw.message( 'hello' );
 			assert.true( hello.exists(), 'Existing message' );
 
@@ -90,7 +90,7 @@
 			assert.false( goodbye.exists(), 'Non-existing message' );
 		} );
 
-		QUnit.test( 'toString() non-existing', function ( assert ) {
+		QUnit.test( 'toString() non-existing', ( assert ) => {
 			var obj = mw.message( 'good<>bye' );
 			var expected = '⧼good&lt;&gt;bye⧽';
 			assert.strictEqual( obj.plain(), expected, 'plain' );
@@ -111,7 +111,7 @@
 
 		// Basic integration test for magic words
 		// See mediawiki.jqueryMsg.test.js for deep coverage.
-		QUnit.test( 'jqueryMsg / Magic words', function ( assert ) {
+		QUnit.test( 'jqueryMsg / Magic words', ( assert ) => {
 			mw.messages.set( {
 				'multiple-curly-brace': '"{{SITENAME}}" is the home of {{int:other-message}}',
 				'other-message': 'Other Message',
@@ -145,7 +145,7 @@
 			assert.strictEqual( obj.escaped(), '&quot;My Wiki&quot; is the home of Other Message', 'Expand sitename and int' );
 		} );
 
-		QUnit.test( 'mw.msg()', function ( assert ) {
+		QUnit.test( 'mw.msg()', ( assert ) => {
 			mw.messages.set( 'hello', 'Hello <b>awesome</b> world' );
 			assert.strictEqual( mw.msg( 'goodbye' ), '⧼goodbye⧽', 'Non-existing message' );
 			assert.strictEqual( mw.msg( 'hello' ), 'Hello <b>awesome</b> world', 'Shortcut does not escape' );

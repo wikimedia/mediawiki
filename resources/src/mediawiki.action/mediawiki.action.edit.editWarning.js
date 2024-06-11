@@ -4,7 +4,7 @@
 ( function () {
 	'use strict';
 
-	$( function () {
+	$( () => {
 		var allowCloseWindow,
 			$textBox = $( '#wpTextbox1' ),
 			$summary = $( '#wpSummary' ),
@@ -16,7 +16,7 @@
 		}
 
 		// Save the original value of the text fields
-		$both.each( function ( index, element ) {
+		$both.each( ( index, element ) => {
 			var $element = $( element );
 			$element.data( 'origtext', $element.textSelection( 'getContents' ) );
 		} );
@@ -36,7 +36,7 @@
 		} );
 
 		// Add form submission handler
-		$( '#editform' ).on( 'submit', function () {
+		$( '#editform' ).on( 'submit', () => {
 			allowCloseWindow.release();
 		} );
 	} );

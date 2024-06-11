@@ -2,7 +2,7 @@
 
 const { assert, action, utils } = require( 'api-testing' );
 
-describe( 'Categories', function testCategories() {
+describe( 'Categories', () => {
 	const pageX = utils.title( 'CatTest_X_' );
 	const pageY = utils.title( 'Talk:CatTest_Y_' );
 
