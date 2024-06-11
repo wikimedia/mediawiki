@@ -415,6 +415,9 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * Insert a new revision into the database, returning the new revision record
 	 * on success and dies horribly on failure.
 	 *
+	 * This should be followed up by a WikiPage::updateRevisionOn on call to update
+	 * page_latest on the page the revision is added to.
+	 *
 	 * MCR migration note: this replaced Revision::insertOn
 	 *
 	 * @param RevisionRecord $rev
