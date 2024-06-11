@@ -3,7 +3,6 @@
 namespace MediaWiki\Rest;
 
 use BagOStuff;
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
@@ -19,6 +18,7 @@ use MediaWiki\Session\Session;
 use Throwable;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectFactory\ObjectFactory;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * The REST router is responsible for gathering module configuration, matching
@@ -88,7 +88,7 @@ class Router {
 	/** @var Session */
 	private $session;
 
-	/** @var ?StatsdDataFactoryInterface */
+	/** @var ?StatsFactory */
 	private $stats = null;
 
 	/**
@@ -528,11 +528,13 @@ class Router {
 	}
 
 	/**
-	 * @param StatsdDataFactoryInterface $stats
+	 * @internal
+	 *
+	 * @param StatsFactory $stats
 	 *
 	 * @return self
 	 */
-	public function setStats( StatsdDataFactoryInterface $stats ): self {
+	public function setStats( StatsFactory $stats ): self {
 		$this->stats = $stats;
 
 		return $this;

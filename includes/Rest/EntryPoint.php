@@ -60,7 +60,7 @@ class EntryPoint extends MediaWikiEntryPoint {
 			$authority
 		);
 
-		$stats = $services->getStatsdDataFactory();
+		$stats = $services->getStatsFactory();
 
 		return ( new Router(
 			self::getRouteFiles( $conf ),

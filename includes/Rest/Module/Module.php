@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Rest\Module;
 
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
 use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
@@ -18,10 +17,10 @@ use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
-use NullStatsdDataFactory;
 use Throwable;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectFactory\ObjectFactory;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * A REST module represents a collection of endpoints.
@@ -46,7 +45,7 @@ abstract class Module {
 	private ErrorReporter $errorReporter;
 	private Router $router;
 
-	private StatsdDataFactoryInterface $stats;
+	private StatsFactory $stats;
 	private ?CorsUtils $cors = null;
 
 	/**
@@ -75,7 +74,7 @@ abstract class Module {
 		$this->restValidator = $restValidator;
 		$this->errorReporter = $errorReporter;
 
-		$this->stats = new NullStatsdDataFactory();
+		$this->stats = StatsFactory::newNull();
 	}
 
 	public function getPathPrefix(): string {
@@ -282,7 +281,7 @@ abstract class Module {
 		ResponseInterface $response,
 		float $startTime
 	) {
-		$microtime = ( microtime( true ) - $startTime ) * 1000;
+		$latency = ( microtime( true ) - $startTime ) * 1000;
 
 		// NOTE: The "/" prefix is for consistency with old logs. It's rather ugly.
 		$pathForMetrics = '/' . $this->getPathPrefix();
@@ -295,13 +294,20 @@ abstract class Module {
 		$requestMethod = $request->getMethod();
 		if ( $statusCode >= 400 ) {
 			// count how often we return which error code
-			$this->stats->increment( "rest_api_errors.$pathForMetrics.$requestMethod.$statusCode" );
+			$this->stats->getCounter( 'rest_api_errors_total' )
+				->setLabel( 'path', $pathForMetrics )
+				->setLabel( 'method', $requestMethod )
+				->setLabel( 'status', "$statusCode" )
+				->copyToStatsdAt( [ "rest_api_errors.$pathForMetrics.$requestMethod.$statusCode" ] )
+				->increment();
 		} else {
 			// measure how long it takes to generate a response
-			$this->stats->timing(
-				"rest_api_latency.$pathForMetrics.$requestMethod.$statusCode",
-				$microtime
-			);
+			$this->stats->getTiming( 'rest_api_latency_seconds' )
+				->setLabel( 'path', $pathForMetrics )
+				->setLabel( 'method', $requestMethod )
+				->setLabel( 'status', "$statusCode" )
+				->copyToStatsdAt( "rest_api_latency.$pathForMetrics.$requestMethod.$statusCode" )
+				->observe( $latency );
 		}
 	}
 
@@ -387,11 +393,11 @@ abstract class Module {
 	/**
 	 * @internal for use by Router
 	 *
-	 * @param StatsdDataFactoryInterface $stats
+	 * @param StatsFactory $stats
 	 *
 	 * @return self
 	 */
-	public function setStats( StatsdDataFactoryInterface $stats ): self {
+	public function setStats( StatsFactory $stats ): self {
 		$this->stats = $stats;
 
 		return $this;
