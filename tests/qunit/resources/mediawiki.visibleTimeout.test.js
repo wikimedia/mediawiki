@@ -32,9 +32,7 @@ QUnit.module( 'mediawiki.visibleTimeout', QUnit.newMwEnvironment( {
 
 		this.sandbox.useFakeTimers();
 		// mw.now() doesn't respect the fake clock injected by useFakeTimers
-		this.stub( mw, 'now', ( function () {
-			return this.sandbox.clock.now;
-		} ).bind( this ) );
+		this.stub( mw, 'now', ( () => this.sandbox.clock.now ) );
 	},
 	afterEach: function () {
 		// Restore
@@ -44,7 +42,7 @@ QUnit.module( 'mediawiki.visibleTimeout', QUnit.newMwEnvironment( {
 
 QUnit.test( 'visibleTimeoutId is always a positive integer', function ( assert ) {
 	var called = 0,
-		visibleTimeoutId = this.visibleTimeout.set( function () {
+		visibleTimeoutId = this.visibleTimeout.set( () => {
 			called++;
 		}, 0 );
 
@@ -53,14 +51,14 @@ QUnit.test( 'visibleTimeoutId is always a positive integer', function ( assert )
 	this.visibleTimeout.clear( visibleTimeoutId );
 	assert.strictEqual( called, 0 );
 
-	visibleTimeoutId = this.visibleTimeout.set( function () {
+	visibleTimeoutId = this.visibleTimeout.set( () => {
 		called++;
 	}, 100 );
 	assert.strictEqual( visibleTimeoutId, 2 );
 	this.visibleTimeout.clear( visibleTimeoutId );
 	assert.strictEqual( called, 0 );
 
-	visibleTimeoutId = this.visibleTimeout.set( function () {
+	visibleTimeoutId = this.visibleTimeout.set( () => {
 		called++;
 	}, 0 );
 	assert.strictEqual( visibleTimeoutId, 3 );
@@ -68,7 +66,7 @@ QUnit.test( 'visibleTimeoutId is always a positive integer', function ( assert )
 
 	// VisibleTimeoutId should still be incremented even when
 	// the previous value was not cleared
-	visibleTimeoutId = this.visibleTimeout.set( function () {
+	visibleTimeoutId = this.visibleTimeout.set( () => {
 		called++;
 	}, 0 );
 	assert.strictEqual( visibleTimeoutId, 4 );
@@ -78,7 +76,7 @@ QUnit.test( 'visibleTimeoutId is always a positive integer', function ( assert )
 QUnit.test( 'basic usage when visible', function ( assert ) {
 	var called = 0;
 
-	this.visibleTimeout.set( function () {
+	this.visibleTimeout.set( () => {
 		called++;
 	}, 0 );
 	assert.strictEqual( called, 0 );
@@ -88,7 +86,7 @@ QUnit.test( 'basic usage when visible', function ( assert ) {
 	this.sandbox.clock.tick( 100 );
 	assert.strictEqual( called, 1 );
 
-	this.visibleTimeout.set( function () {
+	this.visibleTimeout.set( () => {
 		called++;
 	}, 10 );
 	this.sandbox.clock.tick( 10 );
@@ -107,7 +105,7 @@ QUnit.test( 'basic usage - fallback assumes visible', function ( assert ) {
 
 	called = 0;
 
-	visible.set( function () {
+	visible.set( () => {
 		called++;
 	}, 1 );
 	// expect call after next tick
@@ -119,7 +117,7 @@ QUnit.test( 'basic usage - fallback assumes visible', function ( assert ) {
 	this.sandbox.clock.tick( 100 );
 	assert.strictEqual( called, 1 );
 
-	visible.set( function () {
+	visible.set( () => {
 		called++;
 	}, 10 );
 	// expect call not until after delay has elapsed
@@ -134,7 +132,7 @@ QUnit.test( 'basic usage - fallback assumes visible', function ( assert ) {
 
 QUnit.test( 'can cancel timeout', function ( assert ) {
 	var called = 0,
-		timeout = this.visibleTimeout.set( function () {
+		timeout = this.visibleTimeout.set( () => {
 			called++;
 		}, 0 );
 
@@ -142,7 +140,7 @@ QUnit.test( 'can cancel timeout', function ( assert ) {
 	this.sandbox.clock.tick( 10 );
 	assert.strictEqual( called, 0 );
 
-	timeout = this.visibleTimeout.set( function () {
+	timeout = this.visibleTimeout.set( () => {
 		called++;
 	}, 100 );
 	this.sandbox.clock.tick( 50 );
@@ -156,7 +154,7 @@ QUnit.test( 'start hidden and become visible', function ( assert ) {
 	var called = 0;
 
 	this.mockDocument.hidden = true;
-	this.visibleTimeout.set( function () {
+	this.visibleTimeout.set( () => {
 		called++;
 	}, 0 );
 	this.sandbox.clock.tick( 10 );
@@ -170,7 +168,7 @@ QUnit.test( 'start hidden and become visible', function ( assert ) {
 QUnit.test( 'timeout is cumulative', function ( assert ) {
 	var called = 0;
 
-	this.visibleTimeout.set( function () {
+	this.visibleTimeout.set( () => {
 		called++;
 	}, 100 );
 	this.sandbox.clock.tick( 50 );

@@ -8,22 +8,22 @@ module.exports = function experimentalLoginPopup() {
 	for ( const mode in modes ) {
 		const method = modes[ mode ];
 
-		$( `#pt-login-experimental-${ mode }` ).on( 'mouseenter', function () {
+		$( `#pt-login-experimental-${ mode }` ).on( 'mouseenter', () => {
 			// Load early
 			mw.loader.using( 'mediawiki.authenticationPopup' );
 		} );
 
-		$( `#pt-login-experimental-${ mode } a` ).on( 'click', function ( e ) {
+		$( `#pt-login-experimental-${ mode } a` ).on( 'click', ( e ) => {
 			e.preventDefault();
-			mw.loader.using( 'mediawiki.authenticationPopup' ).then( function ( require ) {
+			mw.loader.using( 'mediawiki.authenticationPopup' ).then( ( require ) => {
 				const authPopup = require( 'mediawiki.authenticationPopup' );
-				authPopup[ method ]().then( function ( userinfo ) {
+				authPopup[ method ]().then( ( userinfo ) => {
 					if ( userinfo ) {
 						mw.notify( 'LOGGED IN', { type: 'success' } );
 					} else {
 						mw.notify( 'CANCELLED' );
 					}
-				} ).catch( function ( error ) {
+				} ).catch( ( error ) => {
 					mw.notify( String( error ), { type: 'error' } );
 				} );
 			} );

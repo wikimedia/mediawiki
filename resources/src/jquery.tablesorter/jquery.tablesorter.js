@@ -67,7 +67,7 @@
 			// Iterate the NodeList (not an array).
 			// Also uses null-return as filter in the same pass.
 			// eslint-disable-next-line no-jquery/no-map-util
-			return $.map( currentNode.childNodes, function ( elem ) {
+			return $.map( currentNode.childNodes, ( elem ) => {
 				if ( elem.nodeType === Node.ELEMENT_NODE ) {
 					var nodeName = elem.nodeName.toLowerCase();
 					if ( nodeName === 'img' ) {
@@ -313,7 +313,7 @@
 
 	function uniqueElements( array ) {
 		var uniques = [];
-		array.forEach( function ( elem ) {
+		array.forEach( ( elem ) => {
 			if ( elem !== undefined && uniques.indexOf( elem ) === -1 ) {
 				uniques.push( elem );
 			}
@@ -334,9 +334,9 @@
 			var exploded = [];
 
 			// Loop through all the dom cells of the thead
-			$tableRows.each( function ( rowIndex, row ) {
+			$tableRows.each( ( rowIndex, row ) => {
 				// eslint-disable-next-line no-jquery/no-each-util
-				$.each( row.cells, function ( columnIndex, cell ) {
+				$.each( row.cells, ( columnIndex, cell ) => {
 					var rowspan = Number( cell.rowSpan );
 					var colspan = Number( cell.colSpan );
 
@@ -361,7 +361,7 @@
 			} );
 			var longestTR;
 			// We want to find the row that has the most columns (ignoring colspan)
-			exploded.forEach( function ( cellArray, index ) {
+			exploded.forEach( ( cellArray, index ) => {
 				var headerCount = $( uniqueElements( cellArray ) ).filter( 'th' ).length;
 				if ( headerCount >= maxSeen ) {
 					maxSeen = headerCount;
@@ -442,9 +442,9 @@
 	 */
 	function setHeadersOrder( $headers, sortList, headerToColumns ) {
 		// Loop through all headers to retrieve the indices of the columns the header spans across:
-		headerToColumns.forEach( function ( columns, headerIndex ) {
+		headerToColumns.forEach( ( columns, headerIndex ) => {
 
-			columns.forEach( function ( columnIndex, i ) {
+			columns.forEach( ( columnIndex, i ) => {
 				var header = $headers[ headerIndex ],
 					$header = $( header );
 
@@ -648,7 +648,7 @@
 		// Re-sort whenever a rowspanned cell's realCellIndex is changed, because it
 		// might change the sort order.
 		function resortCells() {
-			rowspanCells = rowspanCells.sort( function ( a, b ) {
+			rowspanCells = rowspanCells.sort( ( a, b ) => {
 				var cellAData = $.data( a, 'tablesorter' );
 				var cellBData = $.data( b, 'tablesorter' );
 				var ret = cellAData.realCellIndex - cellBData.realCellIndex;
@@ -657,7 +657,7 @@
 				}
 				return ret;
 			} );
-			rowspanCells.forEach( function ( cellNode ) {
+			rowspanCells.forEach( ( cellNode ) => {
 				$.data( cellNode, 'tablesorter' ).needResort = false;
 			} );
 		}
@@ -811,9 +811,9 @@
 	 */
 	function convertSortList( sortObjects ) {
 		var sortList = [];
-		sortObjects.forEach( function ( sortObject ) {
+		sortObjects.forEach( ( sortObject ) => {
 			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( sortObject, function ( columnIndex, order ) {
+			$.each( sortObject, ( columnIndex, order ) => {
 				var orderIndex = ( order === 'desc' ) ? 1 : 0;
 				sortList.push( [ parseInt( columnIndex, 10 ), orderIndex ] );
 			} );
@@ -850,7 +850,7 @@
 		 * @return {jQuery}
 		 */
 		construct: function ( $tables, settings ) {
-			return $tables.each( function ( i, table ) {
+			return $tables.each( ( i, table ) => {
 				// Declare and cache.
 				var cache,
 					$table = $( table ),
@@ -979,9 +979,7 @@
 
 						// Get current column index
 						var columns = config.headerToColumns[ $cell.data( 'headerIndex' ) ];
-						var newSortList = columns.map( function ( c ) {
-							return [ c, $cell.data( 'order' ) ];
-						} );
+						var newSortList = columns.map( ( c ) => [ c, $cell.data( 'order' ) ] );
 						// Index of first column belonging to this header
 						var col = columns[ 0 ];
 
@@ -1161,7 +1159,7 @@
 		format: function ( s ) {
 			if ( ts.collationRegex ) {
 				var tsc = ts.collationTable;
-				s = s.replace( ts.collationRegex, function ( match ) {
+				s = s.replace( ts.collationRegex, ( match ) => {
 					var upper = match.toUpperCase(),
 						lower = match.toLowerCase();
 					var r;

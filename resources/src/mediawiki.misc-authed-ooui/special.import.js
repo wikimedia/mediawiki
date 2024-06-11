@@ -1,7 +1,7 @@
 /*!
  * JavaScript for Special:Import
  */
-$( function () {
+$( () => {
 
 	if ( mw.config.get( 'wgCanonicalSpecialPageName' ) !== 'Import' ) {
 		return;
@@ -11,7 +11,7 @@ $( function () {
 
 	function updateImportSubprojectList() {
 		var project = projectDropdownInput.getValue();
-		subprojectDropdownInput.dropdownWidget.getMenu().getItems().forEach( function ( item ) {
+		subprojectDropdownInput.dropdownWidget.getMenu().getItems().forEach( ( item ) => {
 			item.toggle( item.getData().indexOf( project + '::' ) === 0 );
 		} );
 
@@ -31,7 +31,7 @@ $( function () {
 
 	// HACK: Move namespace selector next to the corresponding input, between other radio inputs.
 	var sources = [ 'upload', 'interwiki' ];
-	sources.forEach( function ( name ) {
+	sources.forEach( ( name ) => {
 		// IDs: mw-import-mapping-upload, mw-import-mapping-interwiki
 		var $mappingInput = $( '#mw-import-mapping-' + name );
 		// IDs: mw-import-namespace-upload, mw-import-namespace-interwiki

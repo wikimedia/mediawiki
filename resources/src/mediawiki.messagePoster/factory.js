@@ -94,7 +94,7 @@
 			action: 'query',
 			prop: 'info',
 			titles: title.getPrefixedDb()
-		} ).then( function ( data ) {
+		} ).then( ( data ) => {
 			var contentModel, page = data.query.pages[ 0 ];
 			if ( !page ) {
 				return $.Deferred().reject( 'unexpected-response', 'Unexpected API response' );
@@ -104,9 +104,7 @@
 				return $.Deferred().reject( 'content-model-unknown', 'No handler for "' + contentModel + '"' );
 			}
 			return new factory.contentModelToClass[ contentModel ]( title, api );
-		}, function ( error, details ) {
-			return $.Deferred().reject( 'content-model-query-failed', error, details );
-		} );
+		}, ( error, details ) => $.Deferred().reject( 'content-model-query-failed', error, details ) );
 	};
 
 	/**

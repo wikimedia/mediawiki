@@ -7,7 +7,7 @@
 		return;
 	}
 
-	$( function () {
+	$( () => {
 		var wpReason = OO.ui.infuse( $( '#wpReason' ) );
 
 		// Infuse for pretty dropdown

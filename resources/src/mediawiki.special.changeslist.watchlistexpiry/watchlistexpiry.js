@@ -23,7 +23,7 @@
 			.text( mw.msg( 'parentheses', msg ) ) );
 	}
 
-	$( function () {
+	$( () => {
 		if ( 'ontouchstart' in document.documentElement ) {
 			$( '.mw-changesList-watchlistExpiry' ).one( 'click', addDaysLeftMessages );
 		}

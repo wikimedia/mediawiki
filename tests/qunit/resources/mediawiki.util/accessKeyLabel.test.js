@@ -37,7 +37,7 @@
 		return '<input title="' + title + '" ' + ( accessKey ? 'accessKey="' + accessKey + '" ' : '' ) + ' />';
 	}
 
-	QUnit.test( 'getAccessKeyPrefix', function ( assert ) {
+	QUnit.test( 'getAccessKeyPrefix', ( assert ) => {
 		var i;
 		for ( i = 0; i < getAccessKeyPrefixTestData.length; i++ ) {
 			assert.strictEqual( $.fn.updateTooltipAccessKeys.getAccessKeyPrefix( {
@@ -47,7 +47,7 @@
 		}
 	} );
 
-	QUnit.test( 'updateTooltipAccessKeys - current browser', function ( assert ) {
+	QUnit.test( 'updateTooltipAccessKeys - current browser', ( assert ) => {
 		var title = $( makeInput( 'Title', 'a' ) ).updateTooltipAccessKeys().prop( 'title' ),
 			// The new title should be something like "Title [alt-a]", but the exact label will depend on the browser.
 			// The "a" could be capitalized, and the prefix could be anything, e.g. a simple "^" for ctrl-
@@ -57,7 +57,7 @@
 		assert.notStrictEqual( result[ 1 ], 'test-', 'Prefix used for testing shouldn\'t be used in production.' );
 	} );
 
-	QUnit.test( 'updateTooltipAccessKeys - no access key', function ( assert ) {
+	QUnit.test( 'updateTooltipAccessKeys - no access key', ( assert ) => {
 		var i, oldTitle, $input, newTitle;
 		for ( i = 0; i < updateTooltipAccessKeysTestData.length; i++ ) {
 			oldTitle = 'Title' + updateTooltipAccessKeysTestData[ i ];
@@ -68,7 +68,7 @@
 		}
 	} );
 
-	QUnit.test( 'updateTooltipAccessKeys - with access key', function ( assert ) {
+	QUnit.test( 'updateTooltipAccessKeys - with access key', ( assert ) => {
 		var i, oldTitle, $input, newTitle;
 		$.fn.updateTooltipAccessKeys.setTestMode( true );
 		for ( i = 0; i < updateTooltipAccessKeysTestData.length; i++ ) {
@@ -81,7 +81,7 @@
 		$.fn.updateTooltipAccessKeys.setTestMode( false );
 	} );
 
-	QUnit.test( 'updateTooltipAccessKeys with label element', function ( assert ) {
+	QUnit.test( 'updateTooltipAccessKeys with label element', ( assert ) => {
 		var html, $label, $input;
 		$.fn.updateTooltipAccessKeys.setTestMode( true );
 		html = '<label for="testInput" title="Title">Label</label><input id="testInput" accessKey="a" />';
@@ -94,7 +94,7 @@
 		$.fn.updateTooltipAccessKeys.setTestMode( false );
 	} );
 
-	QUnit.test( 'updateTooltipAccessKeys with label element as parent', function ( assert ) {
+	QUnit.test( 'updateTooltipAccessKeys with label element as parent', ( assert ) => {
 		var html, $label, $input;
 		$.fn.updateTooltipAccessKeys.setTestMode( true );
 		html = '<label title="Title">Label<input id="testInput" accessKey="a" /></label>';

@@ -1,4 +1,4 @@
-QUnit.module( 'jquery.textSelection', function () {
+QUnit.module( 'jquery.textSelection', () => {
 	const sig = {
 		pre: '--~~~~'
 	};
@@ -129,7 +129,7 @@ QUnit.module( 'jquery.textSelection', function () {
 			},
 			replace: ulist
 		}
-	}, function ( assert, opt ) {
+	}, ( assert, opt ) => {
 		var $textarea = $( '<textarea>' ).appendTo( '#qunit-fixture' );
 		$textarea.textSelection( 'setContents', opt.before.text );
 		var replace = Object.assign( {
@@ -150,7 +150,7 @@ QUnit.module( 'jquery.textSelection', function () {
 	const caretSample = 'Some big text that we like to work with. Nothing fancy... you know what I mean?';
 
 	// Default/empty selection, T36820, T33847
-	QUnit.test( 'getCaretPosition [initial]', function ( assert ) {
+	QUnit.test( 'getCaretPosition [initial]', ( assert ) => {
 		const $textarea = $( '<textarea>' ).text( caretSample ).appendTo( '#qunit-fixture' );
 		const pos = $textarea.textSelection( 'getCaretPosition', { startAndEnd: true } );
 		assert.strictEqual( pos[ 0 ], 0, 'default start' );
@@ -166,7 +166,7 @@ QUnit.module( 'jquery.textSelection', function () {
 			start: 6,
 			end: 11
 		}
-	}, function ( assert, options ) {
+	}, ( assert, options ) => {
 		const $textarea = $( '<textarea>' ).text( caretSample ).appendTo( '#qunit-fixture' );
 
 		$textarea.textSelection( 'setSelection', {

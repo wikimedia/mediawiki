@@ -2,7 +2,7 @@
 
 const { action, assert, utils, wiki } = require( 'api-testing' );
 
-describe( 'The edit action', function testEditAction() {
+describe( 'The edit action', () => {
 	let alice;
 	let Clark = action.getAnon();
 

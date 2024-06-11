@@ -3,7 +3,7 @@
 	QUnit.module( 'mediawiki.rcfilters - FilterItem' );
 	const rcfilters = require( 'mediawiki.rcfilters.filters.ui' );
 
-	QUnit.test( 'Initializing filter item', function ( assert ) {
+	QUnit.test( 'Initializing filter item', ( assert ) => {
 		var item,
 			group1 = new rcfilters.dm.FilterGroup( 'group1' ),
 			group2 = new rcfilters.dm.FilterGroup( 'group2' );
@@ -154,13 +154,13 @@
 
 	} );
 
-	QUnit.test( 'Emitting events', function ( assert ) {
+	QUnit.test( 'Emitting events', ( assert ) => {
 		var group1 = new rcfilters.dm.FilterGroup( 'group1' ),
 			item = new rcfilters.dm.FilterItem( 'filter1', group1 ),
 			events = [];
 
 		// Listen to update events
-		item.on( 'update', function () {
+		item.on( 'update', () => {
 			events.push( item.getState() );
 		} );
 
@@ -186,7 +186,7 @@
 		);
 	} );
 
-	QUnit.test( 'get/set boolean value', function ( assert ) {
+	QUnit.test( 'get/set boolean value', ( assert ) => {
 		var group = new rcfilters.dm.FilterGroup( 'group1', { type: 'boolean' } ),
 			item = new rcfilters.dm.FilterItem( 'filter1', group );
 
@@ -195,7 +195,7 @@
 		assert.strictEqual( item.getValue(), true, 'Value is coerced to boolean' );
 	} );
 
-	QUnit.test( 'get/set any value', function ( assert ) {
+	QUnit.test( 'get/set any value', ( assert ) => {
 		var group = new rcfilters.dm.FilterGroup( 'group1', { type: 'any_value' } ),
 			item = new rcfilters.dm.FilterItem( 'filter1', group );
 

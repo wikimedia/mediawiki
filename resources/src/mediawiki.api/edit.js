@@ -53,9 +53,7 @@
 				formatversion: '2',
 				// Protect against conflicts
 				createonly: true
-			} ), params ) ).then( function ( data ) {
-				return data.edit;
-			} );
+			} ), params ) ).then( ( data ) => data.edit );
 		},
 
 		/**
@@ -129,7 +127,7 @@
 				formatversion: '2',
 				curtimestamp: true
 			} )
-				.then( function ( data ) {
+				.then( ( data ) => {
 					var page, revision;
 					if ( !data.query || !data.query.pages ) {
 						return $.Deferred().reject( 'unknown' );
@@ -149,7 +147,7 @@
 						content: revision.content
 					} );
 				} )
-				.then( function ( params ) {
+				.then( ( params ) => {
 					var editParams = typeof params === 'object' ? params : { text: String( params ) };
 					return api.postWithEditToken( Object.assign( {
 						action: 'edit',
@@ -163,9 +161,7 @@
 						nocreate: true
 					}, editParams ) );
 				} )
-				.then( function ( data ) {
-					return data.edit;
-				} );
+				.then( ( data ) => data.edit );
 		},
 
 		/**

@@ -21,7 +21,7 @@ function SafeStorage( store ) {
 	// Purge expired items once per page session
 	if ( !window.QUnit ) {
 		var storage = this;
-		setTimeout( function () {
+		setTimeout( () => {
 			storage.clearExpired();
 		}, 2000 );
 	}
@@ -161,24 +161,22 @@ var MIN_WORK_TIME = 3;
  */
 SafeStorage.prototype.clearExpired = function () {
 	var storage = this;
-	return this.getExpiryKeys().then( function ( keys ) {
-		return $.Deferred( function ( d ) {
-			mw.requestIdleCallback( function iterate( deadline ) {
-				while ( keys[ 0 ] !== undefined && deadline.timeRemaining() > MIN_WORK_TIME ) {
-					var key = keys.shift();
-					if ( storage.isExpired( key ) ) {
-						storage.remove( key );
-					}
+	return this.getExpiryKeys().then( ( keys ) => $.Deferred( ( d ) => {
+		mw.requestIdleCallback( function iterate( deadline ) {
+			while ( keys[ 0 ] !== undefined && deadline.timeRemaining() > MIN_WORK_TIME ) {
+				var key = keys.shift();
+				if ( storage.isExpired( key ) ) {
+					storage.remove( key );
 				}
-				if ( keys[ 0 ] !== undefined ) {
-					// Ran out of time with keys still to remove, continue later
-					mw.requestIdleCallback( iterate );
-				} else {
-					return d.resolve();
-				}
-			} );
+			}
+			if ( keys[ 0 ] !== undefined ) {
+				// Ran out of time with keys still to remove, continue later
+				mw.requestIdleCallback( iterate );
+			} else {
+				return d.resolve();
+			}
 		} );
-	} );
+	} ) );
 };
 
 /**
@@ -190,8 +188,8 @@ SafeStorage.prototype.clearExpired = function () {
  */
 SafeStorage.prototype.getExpiryKeys = function () {
 	var store = this.store;
-	return $.Deferred( function ( d ) {
-		mw.requestIdleCallback( function ( deadline ) {
+	return $.Deferred( ( d ) => {
+		mw.requestIdleCallback( ( deadline ) => {
 			var prefixLength = EXPIRY_PREFIX.length;
 			var keys = [];
 			var length = 0;

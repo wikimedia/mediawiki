@@ -49,22 +49,22 @@
 
 		if ( this.target === 'local' ) {
 			deferred = $.Deferred();
-			setTimeout( function () {
+			setTimeout( () => {
 				// Resolve asynchronously, so that it's harder to accidentally write synchronous code that
 				// will break for cross-wiki uploads
 				deferred.resolve( upload.config );
 			} );
 			this.configPromise = deferred.promise();
 		} else {
-			this.configPromise = this.apiPromise.then( function ( api ) {
+			this.configPromise = this.apiPromise.then(
 				// Get the config from the foreign wiki
-				return api.get( {
+				( api ) => api.get( {
 					action: 'query',
 					meta: 'siteinfo',
 					siprop: 'uploaddialog',
 					// For convenient true/false booleans
 					formatversion: 2
-				} ).then( function ( resp ) {
+				} ).then( ( resp ) => {
 					// Foreign wiki might be running a pre-1.27 MediaWiki, without support for this
 					if ( resp.query && resp.query.uploaddialog ) {
 						upload.config = resp.query.uploaddialog;
@@ -72,10 +72,8 @@
 					} else {
 						return $.Deferred().reject( 'upload-foreign-cant-load-config' );
 					}
-				}, function () {
-					return $.Deferred().reject( 'upload-foreign-cant-load-config' );
-				} );
-			} );
+				}, () => $.Deferred().reject( 'upload-foreign-cant-load-config' ) )
+			);
 		}
 
 		return this.configPromise;
@@ -183,11 +181,9 @@
 	 */
 	ForeignStructuredUpload.prototype.getDescriptions = function () {
 		var upload = this;
-		return this.descriptions.map( function ( desc ) {
-			return upload.config.format.description
-				.replace( '$LANGUAGE', desc.language )
-				.replace( '$TEXT', desc.text );
-		} ).join( '\n' );
+		return this.descriptions.map( ( desc ) => upload.config.format.description
+			.replace( '$LANGUAGE', desc.language )
+			.replace( '$TEXT', desc.text ) ).join( '\n' );
 	};
 
 	/**
@@ -202,9 +198,7 @@
 			return this.config.format.uncategorized;
 		}
 
-		return this.categories.map( function ( cat ) {
-			return '[[Category:' + cat + ']]';
-		} ).join( '\n' );
+		return this.categories.map( ( cat ) => '[[Category:' + cat + ']]' ).join( '\n' );
 	};
 
 	/**

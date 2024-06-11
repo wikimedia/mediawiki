@@ -10,13 +10,13 @@
 		return s.endsWith( ' ' ) ? s.slice( 0, s.length - 1 ) : s;
 	}
 
-	$( function () {
+	$( () => {
 		var api = new mw.Api(), $progressBar, $resetForm = $( '#mw-watchlist-resetbutton' );
 
 		// If the user wants to reset their watchlist, use an API call to do so (no reload required)
 		// Adapted from a user script by User:NQ of English Wikipedia
 		// (User:NQ/WatchlistResetConfirm.js)
-		$resetForm.on( 'submit', function ( event ) {
+		$resetForm.on( 'submit', ( event ) => {
 			var $button = $resetForm.find( 'input[name=mw-watchlist-reset-submit]' );
 
 			event.preventDefault();
@@ -37,7 +37,7 @@
 			// then set all watchlist lines accordingly
 			api.postWithToken( 'csrf', {
 				formatversion: 2, action: 'setnotificationtimestamp', entirewatchlist: true
-			} ).done( function () {
+			} ).done( () => {
 				// Enable button again
 				$button.prop( 'disabled', false );
 				// Hide the button because further clicks can not generate any visual changes
@@ -46,7 +46,7 @@
 				$( '.mw-changeslist-line-watched' )
 					.removeClass( 'mw-changeslist-line-watched' )
 					.addClass( 'mw-changeslist-line-not-watched' );
-			} ).fail( function () {
+			} ).fail( () => {
 				// On error, fall back to server-side reset
 				// First remove this submit listener and then re-submit the form
 				$resetForm.off( 'submit' ).trigger( 'submit' );
@@ -56,7 +56,7 @@
 		// if the user wishes to reload the watchlist whenever a filter changes
 		if ( mw.user.options.get( 'watchlistreloadautomatically' ) ) {
 			// add a listener on all form elements in the header form
-			$( '#mw-watchlist-form input, #mw-watchlist-form select' ).on( 'change', function () {
+			$( '#mw-watchlist-form input, #mw-watchlist-form select' ).on( 'change', () => {
 				// submit the form when one of the input fields is modified
 				$( '#mw-watchlist-form' ).trigger( 'submit' );
 			} );
@@ -111,9 +111,9 @@
 				// eslint-disable-next-line no-jquery/no-class-state
 				if ( $unwatchLink.hasClass( 'mw-unwatch-link' ) ) {
 					api.unwatch( pageTitle )
-						.done( function () {
+						.done( () => {
 							forEachMatchingTitle( pageTitle,
-								function ( rowPageTitle, $row, $rowUnwatchLink ) {
+								( rowPageTitle, $row, $rowUnwatchLink ) => {
 									$rowUnwatchLink
 										.text( mw.msg( 'watchlist-unwatch-undo' ) )
 										.attr( 'title', mw.msg( 'tooltip-ca-watch' ) )
@@ -133,9 +133,9 @@
 						} );
 				} else {
 					api.watch( pageTitle )
-						.then( function () {
+						.then( () => {
 							forEachMatchingTitle( pageTitle,
-								function ( rowPageTitle, $row, $rowUnwatchLink ) {
+								( rowPageTitle, $row, $rowUnwatchLink ) => {
 									$rowUnwatchLink
 										.text( mw.msg( 'watchlist-unwatch' ) )
 										.attr( 'title', mw.msg( 'tooltip-ca-unwatch' ) )

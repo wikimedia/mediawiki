@@ -3,7 +3,7 @@
  * closed when any form field is changed.
  */
 ( function () {
-	$( function () {
+	$( () => {
 		// Check if all of the form values are unchanged.
 		// (This function could be changed to infuse and check OOUI widgets, but that would only make it
 		// slower and more complicated. It works fine to treat them as HTML elements.)
@@ -50,10 +50,10 @@
 		//   so the event is not fired on descendant elements
 		// * Attach to the document because the dropdowns are in the .oo-ui-defaultOverlay element
 		//   (and it doesn't exist yet at this point, so we can't attach them to it)
-		[ 'change', 'keyup', 'mouseup' ].forEach( function ( eventType ) {
-			document.addEventListener( eventType, function () {
+		[ 'change', 'keyup', 'mouseup' ].forEach( ( eventType ) => {
+			document.addEventListener( eventType, () => {
 				// Make sure SelectWidget's event handlers run first
-				setTimeout( function () {
+				setTimeout( () => {
 					saveButton.setDisabled( !isPrefsChanged() );
 				} );
 			}, true );

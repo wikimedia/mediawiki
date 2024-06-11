@@ -2,7 +2,7 @@
 
 const { action, assert, utils } = require( 'api-testing' );
 
-describe( 'Backlinks', function () {
+describe( 'Backlinks', () => {
 	const randomPage = utils.title( 'Esther' );
 
 	const linksToEsther1 = utils.title( 'LinksToEsther1' );

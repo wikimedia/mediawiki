@@ -26,7 +26,7 @@
 	 * @private
 	 */
 	function objectKeysToLowerCase( headers ) {
-		return Object.keys( headers || {} ).reduce( function ( updatedHeaders, key ) {
+		return Object.keys( headers || {} ).reduce( ( updatedHeaders, key ) => {
 			updatedHeaders[ key.toLowerCase() ] = headers[ key ];
 			return updatedHeaders;
 		}, {} );
@@ -79,7 +79,7 @@
 		 * @method
 		 */
 		abort: function () {
-			this.requests.forEach( function ( request ) {
+			this.requests.forEach( ( request ) => {
 				if ( request ) {
 					request.abort();
 				}
@@ -190,18 +190,18 @@
 			// Save it to make it possible to abort.
 			requestIndex = this.requests.length;
 			this.requests.push( xhr );
-			xhr.always( function () {
+			xhr.always( () => {
 				self.requests[ requestIndex ] = null;
 			} );
 
 			xhr.then(
 				// AJAX success just means "200 OK" response.
-				function ( result, textStatus, jqXHR ) {
+				( result, textStatus, jqXHR ) => {
 					apiDeferred.resolve( result, jqXHR );
 				},
 				// If AJAX fails, reject API call with error code 'http'
 				// and details in second argument.
-				function ( jqXHR, textStatus, exception ) {
+				( jqXHR, textStatus, exception ) => {
 					apiDeferred.reject( 'http', {
 						xhr: jqXHR,
 						textStatus: textStatus,

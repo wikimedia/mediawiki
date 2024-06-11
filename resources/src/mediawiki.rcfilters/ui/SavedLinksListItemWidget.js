@@ -80,7 +80,7 @@ var SavedLinksListItemWidget = function MwRcfiltersUiSavedLinksListWidget( model
 	this.$icon.on( { click: this.onDefaultIconClick.bind( this ) } );
 
 	// Prevent clicks on interactive elements from closing the parent menu
-	this.buttonMenu.$element.add( this.$icon ).on( 'mousedown', function ( e ) {
+	this.buttonMenu.$element.add( this.$icon ).on( 'mousedown', ( e ) => {
 		e.stopPropagation();
 	} );
 

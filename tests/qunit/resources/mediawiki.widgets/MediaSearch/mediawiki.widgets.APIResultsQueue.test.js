@@ -44,7 +44,7 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 		itemCounter = i;
 
 		timer = setTimeout(
-			function () {
+			() => {
 				// Always resolve with some values
 				deferred.resolve( result );
 			},
@@ -59,7 +59,7 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 		var provider = this,
 			deferred = $.Deferred(),
 			timer = setTimeout(
-				function () {
+				() => {
 					provider.toggleDepleted( true );
 					// Always resolve with empty value
 					deferred.resolve( [] );
@@ -77,7 +77,7 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 			deferred = $.Deferred();
 
 		timer = setTimeout(
-			function () {
+			() => {
 				provider.toggleDepleted( howMany > 1 );
 				// Always resolve with one value
 				deferred.resolve( [ 'one result (' + ( itemCounter++ + 1 ) + ')' ] );
@@ -91,7 +91,7 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 
 	/* Tests */
 
-	QUnit.test( 'Query providers', function ( assert ) {
+	QUnit.test( 'Query providers', ( assert ) => {
 		var done = assert.async(),
 			providers = [
 				new FullResourceProvider(),
@@ -109,7 +109,7 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 		queue.setParams( { foo: 'bar' } );
 
 		queue.get( 10 )
-			.then( function ( data ) {
+			.then( ( data ) => {
 				// Check that we received all requested results
 				assert.strictEqual( data.length, 10, 'Query 1: Results received.' );
 				// We've asked for 10 items + 2 threshold from all providers.
@@ -127,7 +127,7 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 				// Ask for more results
 				return queue.get( 10 );
 			} )
-			.then( function ( data1 ) {
+			.then( ( data1 ) => {
 				// This time, only provider 1 was queried, because the other
 				// two were marked as depleted.
 				// * We asked for 10 items
@@ -147,7 +147,7 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 
 				return queue.get( 10 );
 			} )
-			.then( function ( data2 ) {
+			.then( ( data2 ) => {
 				// This should be the same as the very first result
 				assert.strictEqual( data2.length, 10, 'Query 2: Results received.' );
 				assert.strictEqual( queue.getQueueSize(), 3, 'Query 2: Remaining queue size.' );
@@ -160,7 +160,7 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 			.then( done );
 	} );
 
-	QUnit.test( 'Abort providers', function ( assert ) {
+	QUnit.test( 'Abort providers', ( assert ) => {
 		var done = assert.async(),
 			completed = false,
 			biggerQueue = new mw.widgets.APIResultsQueue( {
@@ -173,7 +173,7 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 			];
 
 		// Make the delay higher
-		providers.forEach( function ( provider ) {
+		providers.forEach( ( provider ) => {
 			provider.responseDelay = 3;
 		} );
 
@@ -182,19 +182,19 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 
 		biggerQueue.setParams( { foo: 'bar' } );
 		biggerQueue.get( 100 )
-			.always( function () {
+			.always( () => {
 				// This should only run if the promise wasn't aborted
 				completed = true;
 			} );
 
 		// Make the delay higher
-		providers.forEach( function ( provider ) {
+		providers.forEach( ( provider ) => {
 			provider.responseDelay = 5;
 		} );
 
 		biggerQueue.setParams( { foo: 'baz' } );
 		biggerQueue.get( 10 )
-			.then( function () {
+			.then( () => {
 				assert.strictEqual( completed, false, 'Provider promises aborted.' );
 			} )
 			// Finish the async test

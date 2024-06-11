@@ -2,7 +2,7 @@
  * JavaScript for Special:Search
  */
 ( function () {
-	$( function () {
+	$( () => {
 		var $checkboxes, $headerLinks, updateHeaderLinks, searchWidget;
 
 		// Emulate HTML5 autofocus behavior in non HTML5 compliant browsers
@@ -12,10 +12,10 @@
 
 		// Attach handler for check all/none buttons
 		$checkboxes = $( '#powersearch input[id^=mw-search-ns]' );
-		$( '#mw-search-toggleall' ).on( 'click', function () {
+		$( '#mw-search-toggleall' ).on( 'click', () => {
 			$checkboxes.prop( 'checked', true );
 		} );
-		$( '#mw-search-togglenone' ).on( 'click', function () {
+		$( '#mw-search-togglenone' ).on( 'click', () => {
 			$checkboxes.prop( 'checked', false );
 		} );
 

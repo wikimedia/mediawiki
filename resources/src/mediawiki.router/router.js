@@ -32,15 +32,15 @@ class Router extends OO.Registry {
 		this.oldHash = this.getPath();
 
 		const router = this;
-		window.addEventListener( 'popstate', function () {
+		window.addEventListener( 'popstate', () => {
 			router.emit( 'popstate' );
 		} );
 
-		window.addEventListener( 'hashchange', function () {
+		window.addEventListener( 'hashchange', () => {
 			router.emit( 'hashchange' );
 		} );
 
-		this.on( 'hashchange', function () {
+		this.on( 'hashchange', () => {
 			// event.originalEvent.newURL is undefined on Android 2.x
 			let routeEvent;
 
@@ -183,7 +183,7 @@ class Router extends OO.Registry {
 		let timeoutID;
 		const deferred = $.Deferred();
 
-		this.once( 'popstate', function () {
+		this.once( 'popstate', () => {
 			clearTimeout( timeoutID );
 			deferred.resolve();
 		} );
@@ -196,7 +196,7 @@ class Router extends OO.Registry {
 		// and resolving the deferred request for them individually.
 		// See https://connect.microsoft.com/IE/feedback/details/793618/history-back-popstate-not-working-as-expected-in-webview-control
 		// Give browser a few ms to update its history.
-		timeoutID = setTimeout( function () {
+		timeoutID = setTimeout( () => {
 			router.off( 'popstate' );
 			deferred.resolve();
 		}, 50 );

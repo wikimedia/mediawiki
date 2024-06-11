@@ -2,7 +2,7 @@
 
 const { action, assert, utils } = require( 'api-testing' );
 
-describe( 'Prefix Search', function () {
+describe( 'Prefix Search', () => {
 	const prefix = `R${ utils.title( utils.uniq() ) }`;
 	const firstPage = `${ prefix }_first`;
 	const secondPage = `${ prefix }_second`;

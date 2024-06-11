@@ -15,7 +15,7 @@
 
 	QUnit.module( 'mediawiki.rcfilters - SavedQueryItemModel' );
 
-	QUnit.test( 'Initializing and getters', function ( assert ) {
+	QUnit.test( 'Initializing and getters', ( assert ) => {
 		var model;
 
 		model = new rcfilters.dm.SavedQueryItemModel(
@@ -49,7 +49,7 @@
 		);
 	} );
 
-	QUnit.test( 'Default', function ( assert ) {
+	QUnit.test( 'Default', ( assert ) => {
 		var model;
 
 		model = new rcfilters.dm.SavedQueryItemModel(

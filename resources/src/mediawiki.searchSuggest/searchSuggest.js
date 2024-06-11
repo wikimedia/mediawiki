@@ -3,7 +3,7 @@
  */
 ( function () {
 	// eslint-disable-next-line no-jquery/no-map-util
-	var searchNS = $.map( mw.config.get( 'wgFormattedNamespaces' ), function ( nsName, nsID ) {
+	var searchNS = $.map( mw.config.get( 'wgFormattedNamespaces' ), ( nsName, nsID ) => {
 			if ( nsID >= 0 && mw.user.options.get( 'searchNs' + nsID ) ) {
 			// Cast string key to number
 				return Number( nsID );
@@ -68,7 +68,7 @@
 				search: query,
 				namespace: namespace || searchNS,
 				limit
-			} ).done( function ( data, jqXHR ) {
+			} ).done( ( data, jqXHR ) => {
 				response( data[ 1 ], {
 					type: jqXHR.getResponseHeader( 'X-OpenSearch-Type' ),
 					searchId: jqXHR.getResponseHeader( 'X-Search-ID' ),
@@ -78,7 +78,7 @@
 		}
 	};
 
-	$( function () {
+	$( () => {
 		var api, searchboxesSelectors,
 			// Region where the suggestions box will appear directly below
 			// (using the same width). Can be a container element or the input
@@ -199,8 +199,8 @@
 				// execute before the rendering steps happen (e.g. layout and paint). A
 				// nested rAF will execute after these rendering steps have completed
 				// and ensure the search results are visible to the user.
-				requestAnimationFrame( function () {
-					requestAnimationFrame( function () {
+				requestAnimationFrame( () => {
+					requestAnimationFrame( () => {
 						if ( !performance.getEntriesByName( queryMark ).length ) {
 							return;
 						}
@@ -436,7 +436,7 @@
 			// Track the form submit event.
 			// Note that the form is mainly submitted for manual user input;
 			// selecting a suggestion is tracked as a click instead (see selectFunction()).
-			.on( 'submit', function () {
+			.on( 'submit', () => {
 				var context = $searchInput.data( 'suggestionsContext' );
 				mw.track( 'mediawiki.searchSuggest', {
 					action: 'submit-form',

@@ -14,7 +14,6 @@
 		"max-len": "off",
 		"no-var": "off",
 		"no-jquery/no-global-selector": "off",
-		"prefer-arrow-callback": "off",
 		"jsdoc/no-undefined-types": [ 1, {
 			"definedTypes": [
 				"jQueryPlugins",

@@ -40,7 +40,7 @@ AuthMessageDialog.prototype.getActionProcess = function ( action ) {
 	this.emit( action || 'cancel' );
 	// Unlike in normal OOUI windows, none of the actions closes the dialog.
 	// It may be closed from the outside by the module in response to this event.
-	return new OO.ui.Process( function () {} );
+	return new OO.ui.Process( () => {} );
 };
 
 module.exports = AuthMessageDialog;

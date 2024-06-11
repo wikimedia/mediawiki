@@ -10,7 +10,7 @@
 
 		let hidden = false;
 
-		toggleNode.addEventListener( 'change', function () {
+		toggleNode.addEventListener( 'change', () => {
 			hidden = !hidden;
 			mw.cookie.set( 'hidetoc', hidden ? '1' : null );
 		} );
@@ -22,7 +22,7 @@
 		}
 	}
 
-	mw.hook( 'wikipage.content' ).add( function ( $content ) {
+	mw.hook( 'wikipage.content' ).add( ( $content ) => {
 		const tocs = $content[ 0 ] ? $content[ 0 ].querySelectorAll( '.toc' ) : [];
 		let i = tocs.length;
 		while ( i-- ) {

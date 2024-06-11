@@ -111,22 +111,22 @@
 			this.setLabel( $label );
 
 			this.pushPending();
-			this.loadAndGetImageUrl().done( function ( url, mime ) {
+			this.loadAndGetImageUrl().done( ( url, mime ) => {
 				this.$thumbnail.css( 'background-image', 'url( ' + url + ' )' );
 				if ( mime ) {
 					$filetype.text( mime );
 					this.setLabel( $label );
 				}
-			}.bind( this ) ).fail( function () {
+			} ).fail( () => {
 				this.$thumbnail.append(
 					new OO.ui.IconWidget( {
 						icon: 'attachment',
 						classes: [ 'mw-widgets-stashedFileWidget-noThumbnail-icon' ]
 					} ).$element
 				);
-			}.bind( this ) ).always( function () {
+			} ).always( () => {
 				this.popPending();
-			}.bind( this ) );
+			} );
 		} else {
 			this.$element.addClass( 'mw-widgets-stashedFileWidget-empty' );
 			this.setLabel( '' );
@@ -143,7 +143,7 @@
 				siifilekey: filekey,
 				siiprop: [ 'size', 'url', 'mime' ],
 				siiurlwidth: 220
-			} ).then( function ( data ) {
+			} ).then( ( data ) => {
 				const sii = data.query.stashimageinfo[ 0 ];
 
 				return $.Deferred().resolve( sii.thumburl, sii.mime );

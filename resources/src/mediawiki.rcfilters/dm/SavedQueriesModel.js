@@ -109,7 +109,7 @@ SavedQueriesModel.prototype.initialize = function ( savedQueries ) {
 		//   }
 		// }
 		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( savedQueries.queries || {}, function ( id, obj ) {
+		$.each( savedQueries.queries || {}, ( id, obj ) => {
 			if ( obj.data && obj.data.filters ) {
 				obj.data = model.convertToParameters( obj.data );
 			}
@@ -121,7 +121,7 @@ SavedQueriesModel.prototype.initialize = function ( savedQueries ) {
 
 	// Initialize the query items
 	// eslint-disable-next-line no-jquery/no-each-util
-	$.each( savedQueries.queries || {}, function ( id, obj ) {
+	$.each( savedQueries.queries || {}, ( id, obj ) => {
 		var normalizedData = obj.data,
 			isDefault = String( savedQueries.default ) === String( id );
 
@@ -202,7 +202,7 @@ SavedQueriesModel.prototype.convertToParameters = function ( data ) {
 	// Highlights: appending _color to keys
 	newData.highlights = {};
 	// eslint-disable-next-line no-jquery/no-each-util
-	$.each( data.highlights, function ( highlightedFilterName, value ) {
+	$.each( data.highlights, ( highlightedFilterName, value ) => {
 		if ( value ) {
 			newData.highlights[ highlightedFilterName + '_color' ] = data.highlights[ highlightedFilterName ];
 		}
@@ -232,7 +232,7 @@ SavedQueriesModel.prototype.addNewQuery = function ( label, fulldata, isDefault,
 
 	// Split highlight/params
 	// eslint-disable-next-line no-jquery/no-each-util
-	$.each( data, function ( param, value ) {
+	$.each( data, ( param, value ) => {
 		if ( param !== 'highlight' && highlightParamNames.indexOf( param ) > -1 ) {
 			normalizedData.highlights[ param ] = value;
 		} else {
@@ -301,12 +301,10 @@ SavedQueriesModel.prototype.findMatchingQuery = function ( fullQueryComparison )
 		delete fullQueryComparison.invert;
 	}
 
-	return this.getItems().filter( function ( item ) {
-		return OO.compare(
-			item.getCombinedData(),
-			fullQueryComparison
-		);
-	} )[ 0 ];
+	return this.getItems().filter( ( item ) => OO.compare(
+		item.getCombinedData(),
+		fullQueryComparison
+	) )[ 0 ];
 };
 
 /**
@@ -318,9 +316,7 @@ SavedQueriesModel.prototype.findMatchingQuery = function ( fullQueryComparison )
  *  the search. Undefined if not found.
  */
 SavedQueriesModel.prototype.getItemByID = function ( queryID ) {
-	return this.getItems().filter( function ( item ) {
-		return item.getID() === queryID;
-	} )[ 0 ];
+	return this.getItems().filter( ( item ) => item.getID() === queryID )[ 0 ];
 };
 
 /**
@@ -370,7 +366,7 @@ SavedQueriesModel.prototype.getState = function () {
 	var obj = { queries: {}, version: '2' };
 
 	// Translate the items to the saved object
-	this.getItems().forEach( function ( item ) {
+	this.getItems().forEach( ( item ) => {
 		obj.queries[ item.getID() ] = item.getState();
 	} );
 
@@ -392,7 +388,7 @@ SavedQueriesModel.prototype.setDefault = function ( itemID ) {
 		this.default = itemID;
 
 		// Set for individual itens
-		this.getItems().forEach( function ( item ) {
+		this.getItems().forEach( ( item ) => {
 			item.toggleDefault( item.getID() === itemID );
 		} );
 

@@ -149,7 +149,7 @@
 		var altPromises = [];
 
 		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( arguments, function ( i, arg ) {
+		$.each( arguments, ( i, arg ) => {
 			var alt = $.Deferred();
 			altPromises.push( alt );
 
@@ -172,7 +172,7 @@
 	function getDomStructure( node ) {
 		if ( node.nodeType === Node.ELEMENT_NODE ) {
 			var processedChildren = [];
-			$( node ).contents().each( function ( i, el ) {
+			$( node ).contents().each( ( i, el ) => {
 				if ( el.nodeType === Node.ELEMENT_NODE || el.nodeType === Node.TEXT_NODE ) {
 					processedChildren.push( getDomStructure( el ) );
 				}
@@ -180,7 +180,7 @@
 
 			var attribs = {};
 			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( node.attributes, function ( i, attrib ) {
+			$.each( node.attributes, ( i, attrib ) => {
 				attribs[ attrib.name ] = attrib.value;
 			} );
 
@@ -350,9 +350,9 @@
 		messages: {
 			testMsg: 'Foo.'
 		}
-	} ), function () {
+	} ), () => {
 
-		QUnit.test( 'beforeEach', function ( assert ) {
+		QUnit.test( 'beforeEach', ( assert ) => {
 			assert.strictEqual( mw.html.escape( 'foo' ), 'mocked', 'callback ran' );
 			assert.strictEqual( mw.config.get( 'testVar' ), 'foo', 'config applied' );
 			assert.strictEqual( mw.messages.get( 'testMsg' ), 'Foo.', 'messages applied' );
@@ -361,12 +361,12 @@
 			mw.messages.set( 'testMsg', 'Bar.' );
 		} );
 
-		QUnit.test( 'afterEach', function ( assert ) {
+		QUnit.test( 'afterEach', ( assert ) => {
 			assert.strictEqual( mw.config.get( 'testVar' ), 'foo', 'config restored' );
 			assert.strictEqual( mw.messages.get( 'testMsg' ), 'Foo.', 'messages restored' );
 		} );
 
-		QUnit.test( 'Loader status', function ( assert ) {
+		QUnit.test( 'Loader status', ( assert ) => {
 			var modules = mw.loader.getModuleNames();
 			var error = [];
 			var missing = [];
@@ -384,7 +384,7 @@
 			assert.deepEqual( missing, [], 'Modules in missing state' );
 		} );
 
-		QUnit.test( 'assert.htmlEqual', function ( assert ) {
+		QUnit.test( 'assert.htmlEqual', ( assert ) => {
 			assert.htmlEqual(
 				'<div><p class="some classes" data-length="10">Child paragraph with <a href="http://example.com">A link</a></p>Regular text<span>A span</span></div>',
 				'<div><p data-length=\'10\'  class=\'some classes\'>Child paragraph with <a href=\'http://example.com\' >A link</a></p>Regular text<span>A span</span></div>',
@@ -440,14 +440,14 @@
 			}
 		} );
 
-		QUnit.test( 'beforeEach', function ( assert ) {
+		QUnit.test( 'beforeEach', ( assert ) => {
 			assert.true( beforeEachRan );
 		} );
 	} );
 
 	QUnit.module( 'testrunner-next' );
 
-	QUnit.test( 'afterEach', function ( assert ) {
+	QUnit.test( 'afterEach', ( assert ) => {
 		assert.strictEqual( mw.html.escape( '<' ), '&lt;', 'mock not leaked to next module' );
 		assert.strictEqual( mw.config.get( 'testVar' ), null, 'config not leaked to next module' );
 		assert.strictEqual( mw.messages.get( 'testMsg' ), null, 'messages not lekaed to next module' );

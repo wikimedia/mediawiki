@@ -63,7 +63,7 @@ OO.inheritClass( ViewSwitchWidget, OO.ui.Widget );
 ViewSwitchWidget.prototype.onModelUpdate = function () {
 	var currentView = this.model.getCurrentView();
 
-	this.buttons.getItems().forEach( function ( buttonWidget ) {
+	this.buttons.getItems().forEach( ( buttonWidget ) => {
 		buttonWidget.setActive( buttonWidget.getData() === currentView );
 	} );
 };

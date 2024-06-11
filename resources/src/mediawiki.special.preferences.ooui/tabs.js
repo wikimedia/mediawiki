@@ -3,7 +3,7 @@
  */
 ( function () {
 	var nav = require( './nav.js' );
-	$( function () {
+	$( () => {
 		var $tabNavigationHint = nav.insertHints( mw.msg( 'prefs-tabs-navigation-hint' ) );
 
 		var tabs = OO.ui.infuse( $( '.mw-prefs-tabs' ) );
@@ -110,7 +110,7 @@
 						var dropdown = OO.ui.infuse( $dropdown[ 0 ] );
 						var dropdownWidget = ( dropdown.dropdowninput || dropdown ).dropdownWidget;
 						if ( dropdownWidget ) {
-							dropdownWidget.getMenu().getItems().forEach( function ( option ) {
+							dropdownWidget.getMenu().getItems().forEach( ( option ) => {
 								// Highlight the dropdown handle and the matched label, for when the dropdown is opened
 								addToIndex( option.$label, dropdownWidget.$handle );
 								addToIndex( option.$label, option.$label );
@@ -124,7 +124,7 @@
 		}
 
 		function infuseAllPanels() {
-			tabs.stackLayout.items.forEach( function ( tabPanel ) {
+			tabs.stackLayout.items.forEach( ( tabPanel ) => {
 				var wasVisible = tabPanel.isVisible();
 				// Force panel to be visible while infusing
 				tabPanel.toggle( true );
@@ -138,7 +138,7 @@
 
 		var searchWrapper = OO.ui.infuse( $( '.mw-prefs-search' ) );
 		var search = searchWrapper.fieldWidget;
-		search.$input.on( 'focus', function () {
+		search.$input.on( 'focus', () => {
 			if ( !index ) {
 				// Lazy-build index on first focus
 				// Infuse all widgets as we may end up showing a large subset of them
@@ -147,7 +147,7 @@
 			}
 		} );
 		var $noResults = $( '<div>' ).addClass( 'mw-prefs-noresults' ).text( mw.msg( 'searchprefs-noresults' ) );
-		search.on( 'change', function ( val ) {
+		search.on( 'change', ( val ) => {
 			if ( !index ) {
 				// In case 'focus' hasn't fired yet
 				infuseAllPanels();
@@ -163,11 +163,11 @@
 			var countResults = 0;
 			if ( isSearching ) {
 				val = val.toLowerCase();
-				texts.forEach( function ( text ) {
+				texts.forEach( ( text ) => {
 					// TODO: Could use Intl.Collator.prototype.compare like OO.ui.mixin.LabelElement.static.highlightQuery
 					// but might be too slow.
 					if ( text.indexOf( val ) !== -1 ) {
-						index[ text ].forEach( function ( item ) {
+						index[ text ].forEach( ( item ) => {
 							// eslint-disable-next-line no-jquery/no-class-state
 							if ( !item.$field.hasClass( 'mw-prefs-search-matched' ) ) {
 								// Count each matched preference as one result, not the number of matches in the text
@@ -202,7 +202,7 @@
 
 			// Make Enter jump to the results, if there are any
 			if ( isSearching && countResults !== 0 ) {
-				search.on( 'enter', function () {
+				search.on( 'enter', () => {
 					tabs.focusFirstFocusable();
 				} );
 			} else {

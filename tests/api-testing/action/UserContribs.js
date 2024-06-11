@@ -2,7 +2,7 @@
 
 const { action, assert, utils } = require( 'api-testing' );
 
-describe( 'The usercontribs list query', function testUserContribsListQuery() {
+describe( 'The usercontribs list query', () => {
 	const titleX = utils.title( 'Contribs_' );
 	const titleY = utils.title( 'Talk:Contribs_' );
 

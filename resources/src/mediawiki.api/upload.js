@@ -92,7 +92,7 @@
 					if ( xhr.upload ) {
 						// need to bind this event before we open the connection (see note at
 						// https://developer.mozilla.org/en-US/docs/DOM/XMLHttpRequest/Using_XMLHttpRequest#Monitoring_progress)
-						xhr.upload.addEventListener( 'progress', function ( ev ) {
+						xhr.upload.addEventListener( 'progress', ( ev ) => {
 							if ( ev.lengthComputable ) {
 								deferred.notify( ev.loaded / ev.total );
 							}
@@ -101,7 +101,7 @@
 					return xhr;
 				}
 			} )
-				.done( function ( result ) {
+				.done( ( result ) => {
 					deferred.notify( 1 );
 					if ( result.upload && result.upload.warnings ) {
 						deferred.reject( getFirstKey( result.upload.warnings ), result );
@@ -109,7 +109,7 @@
 						deferred.resolve( result );
 					}
 				} )
-				.fail( function ( errorCode, result ) {
+				.fail( ( errorCode, result ) => {
 					deferred.notify( 1 );
 					deferred.reject( errorCode, result );
 				} );
@@ -206,7 +206,7 @@
 			upload = this.uploadWithFormData( file, data );
 			return upload.then(
 				null,
-				function ( code, result ) {
+				( code, result ) => {
 					var retry;
 
 					// uploadWithFormData will reject uploads with warnings, but
@@ -236,12 +236,10 @@
 					retry = api.uploadChunk.bind( api, file, data, start, end, filekey, retries - 1 );
 					return api.retry( code, result, retry );
 				},
-				function ( fraction ) {
-					// Since we're only uploading small parts of a file, we
-					// need to adjust the reported progress to reflect where
-					// we actually are in the combined upload
-					return ( start + fraction * ( end - start ) ) / file.size;
-				}
+				// Since we're only uploading small parts of a file, we
+				// need to adjust the reported progress to reflect where
+				// we actually are in the combined upload
+				( fraction ) => ( start + fraction * ( end - start ) ) / file.size
 			).promise( { abort: upload.abort } );
 		},
 
@@ -335,11 +333,11 @@
 			}
 
 			return uploadPromise.then(
-				function ( result ) {
+				( result ) => {
 					filekey = result.upload.filekey;
 					return finishUpload;
 				},
-				function ( errorCode, result ) {
+				( errorCode, result ) => {
 					if ( result && result.upload && result.upload.result === 'Success' && result.upload.filekey ) {
 						// When a file is uploaded with `ignorewarnings` and there are warnings,
 						// the promise will be rejected (because of those warnings, e.g. 'duplicate')
@@ -435,7 +433,7 @@
 				throw new Error( 'Filename not included in file data.' );
 			}
 
-			return this.postWithEditToken( data ).then( function ( result ) {
+			return this.postWithEditToken( data ).then( ( result ) => {
 				if ( result.upload && result.upload.warnings ) {
 					return $.Deferred().reject( getFirstKey( result.upload.warnings ), result ).promise();
 				}

@@ -5,7 +5,7 @@
  * @ignore
  */
 
-$( function () {
+$( () => {
 
 	var config = require( './config.json' ),
 		$tempUserBannerEl = $( '.mw-temp-user-banner ' ),
@@ -131,7 +131,7 @@ $( function () {
 				'oojs-ui-core',
 				'oojs-ui-widgets',
 				'oojs-ui.styles.icons-interactions'
-			] ).then( function () {
+			] ).then( () => {
 				var shouldShowExpiration = shouldShowExpirationAlert();
 				if ( !popup ) {
 					popup = new OO.ui.PopupWidget( {
@@ -148,7 +148,7 @@ $( function () {
 					$tooltipEl.append( popup.$element );
 
 					if ( shouldShowExpiration ) {
-						popup.on( 'toggle', function ( visible ) {
+						popup.on( 'toggle', ( visible ) => {
 							if ( !visible ) {
 								localStorage.setItem( 'tempUserExpirationAlertDismissed', true );
 								popup = null;

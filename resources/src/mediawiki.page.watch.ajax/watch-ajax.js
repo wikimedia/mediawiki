@@ -154,7 +154,7 @@
 	 */
 	function updatePageWatchStatus( isWatched, expiry, expirySelected ) {
 		// Update all watchstars associated with the current page
-		( watchstarsByTitle[ pageTitle ] || [] ).forEach( function ( w ) {
+		( watchstarsByTitle[ pageTitle ] || [] ).forEach( ( w ) => {
 			w.update( isWatched, expiry );
 		} );
 
@@ -185,7 +185,7 @@
 			// Assumed state is 'idle' when update a group of watchstars by title
 			var isWatched = action === 'unwatch';
 			var normalizedTitle = titleOrLink.getPrefixedDb();
-			( watchstarsByTitle[ normalizedTitle ] || [] ).forEach( function ( w ) {
+			( watchstarsByTitle[ normalizedTitle ] || [] ).forEach( ( w ) => {
 				w.update( isWatched, expiry, expirySelected );
 			} );
 			if ( normalizedTitle === pageTitle ) {
@@ -347,7 +347,7 @@
 
 			var api = new mw.Api();
 			api[ action ]( title )
-				.done( function ( watchResponse ) {
+				.done( ( watchResponse ) => {
 					var isWatched = watchResponse.watched === true;
 
 					var message = isWatched ? 'addedwatchtext' : 'removedwatchtext';
@@ -364,7 +364,7 @@
 							message = mwTitle.isTalkPage() ? 'addedwatchindefinitelytext-talk' : 'addedwatchindefinitelytext';
 						}
 
-						notifyPromise = mw.loader.using( 'mediawiki.watchstar.widgets' ).then( function ( require ) {
+						notifyPromise = mw.loader.using( 'mediawiki.watchstar.widgets' ).then( ( require ) => {
 							var WatchlistExpiryWidget = require( 'mediawiki.watchstar.widgets' );
 
 							if ( !watchlistPopup ) {
@@ -407,9 +407,9 @@
 					// once it is resolved. Otherwise, if $wgWatchlistExpiry set, the loading of
 					// OOUI could cause a race condition and the link is updated before the popup
 					// actually is shown. See T263135
-					notifyPromise.always( function () {
+					notifyPromise.always( () => {
 						// Update all watchstars associated with this title
-						watchstarsByTitle[ normalizedTitle ].forEach( function ( w ) {
+						watchstarsByTitle[ normalizedTitle ].forEach( ( w ) => {
 							w.update( isWatched );
 						} );
 
@@ -419,7 +419,7 @@
 						}
 					} );
 				} )
-				.fail( function ( code, data ) {
+				.fail( ( code, data ) => {
 					// Reset link to non-loading mode
 					updateWatchLinkAttributes( $link, action );
 

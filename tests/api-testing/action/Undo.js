@@ -2,7 +2,7 @@
 
 const { action, assert, utils } = require( 'api-testing' );
 
-describe( 'Testing undo functionality', function () {
+describe( 'Testing undo functionality', () => {
 	const title = utils.title( 'Undo_' );
 	let alice, revisionID;
 

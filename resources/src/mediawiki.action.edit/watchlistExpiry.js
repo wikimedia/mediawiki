@@ -5,7 +5,7 @@
 
 // Toggle the watchlist-expiry dropdown's disabled state according to the
 // selected state of the watchthis checkbox.
-$( function () {
+$( () => {
 	// The 'wpWatchthis' and 'wpWatchlistExpiry' fields come from EditPage.php.
 	var watchThisNode = document.getElementById( 'wpWatchthisWidget' ),
 		expiryNode = document.getElementById( 'wpWatchlistExpiryWidget' );
@@ -17,7 +17,7 @@ $( function () {
 		expiryWidget.setDisabled( !watchThisWidget.isSelected() );
 
 		// Change state on every change of the watchthis checkbox.
-		watchThisWidget.on( 'change', function ( enabled ) {
+		watchThisWidget.on( 'change', ( enabled ) => {
 			expiryWidget.setDisabled( !enabled );
 		} );
 	}

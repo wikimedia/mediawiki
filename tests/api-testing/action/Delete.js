@@ -2,7 +2,7 @@
 
 const { action, assert, utils } = require( 'api-testing' );
 
-describe( 'The delete/undelete action', function testDeleteAction() {
+describe( 'The delete/undelete action', () => {
 	const title = utils.title( 'Delete_' );
 	let alice, mindy;
 

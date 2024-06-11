@@ -11,7 +11,7 @@ QUnit.module( 'mediawiki.rest', ( hooks ) => {
 		let headers;
 		server.respondWith( 'GET',
 			/rest.php\/test\/rest\/path\?queryParam=%2Fslash-will-be-encoded%3F$/,
-			function ( request ) {
+			( request ) => {
 				headers = request.requestHeaders;
 				request.respond( 200, { 'Content-Type': 'application/json' }, '{}' );
 			}
@@ -51,7 +51,7 @@ QUnit.module( 'mediawiki.rest', ( hooks ) => {
 		let headers, body;
 		server.respondWith( 'POST',
 			/rest.php\/test\/bla\/bla\/bla$/,
-			function ( request ) {
+			( request ) => {
 				headers = request.requestHeaders;
 				body = request.requestBody;
 				request.respond( 201, { 'Content-Type': 'application/json' }, '{}' );
@@ -78,7 +78,7 @@ QUnit.module( 'mediawiki.rest', ( hooks ) => {
 		let headers, body;
 		server.respondWith( 'PUT',
 			/rest.php\/test\/bla\/bla\/bla$/,
-			function ( request ) {
+			( request ) => {
 				headers = request.requestHeaders;
 				body = request.requestBody;
 				request.respond( 201, { 'Content-Type': 'application/json' }, '{}' );
@@ -105,7 +105,7 @@ QUnit.module( 'mediawiki.rest', ( hooks ) => {
 		let headers, body;
 		server.respond( 'DELETE',
 			/rest.php\/test\/bla\/bla\/bla$/,
-			function ( request ) {
+			( request ) => {
 				headers = request.requestHeaders;
 				body = request.requestBody;
 				request.respond( 201, { 'Content-Type': 'application/json' }, '{}' );

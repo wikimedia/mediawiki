@@ -22,13 +22,13 @@
 			action: 'patrol',
 			rcid: mw.util.getParamValue( 'rcid', link.href )
 		} )
-			.then( function ( data ) {
+			.then( ( data ) => {
 				var title = new mw.Title( data.patrol.title );
 				mw.notify( mw.msg( 'markedaspatrollednotify', title.toText() ) );
 				// Remove link wrapper (including the spinner).
 				$( link ).closest( '.patrollink' ).remove();
 			} )
-			.catch( function ( code, data ) {
+			.catch( ( code, data ) => {
 				// Restore the link. This allows the user to try again
 				// (or open it in a new window, bypassing this ajax handler).
 				$spinner.remove();
@@ -46,7 +46,7 @@
 		return;
 	}
 
-	$( function () {
+	$( () => {
 		$( '.patrollink[data-mw="interface"] a' ).on( 'click', function ( e ) {
 			patrol( this );
 			e.preventDefault();

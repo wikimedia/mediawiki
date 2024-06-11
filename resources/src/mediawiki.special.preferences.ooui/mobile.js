@@ -8,7 +8,7 @@
 	// Define a window manager to control the dialogs
 	var dialogFactory = new OO.Factory();
 	var windowManager = new OO.ui.WindowManager( { factory: dialogFactory } );
-	windowManager.on( 'opening', function ( win ) {
+	windowManager.on( 'opening', ( win ) => {
 		if ( !win.$body.data( 'mw-section-infused' ) ) {
 			win.$body.removeClass( 'mw-htmlform-autoinfuse-lazy' );
 			mw.hook( 'htmlform.enhance' ).fire( win.$body );
@@ -25,11 +25,11 @@
 			windowManager.closeWindow( win );
 		}
 		// Work in the window isn't necessarily done when 'then` fires
-		windowManager.openWindow( 'mw-mobile-prefs-' + section ).opened.then( function () {
+		windowManager.openWindow( 'mw-mobile-prefs-' + section ).opened.then( () => {
 			// Scroll to a fieldset if provided.
 			if ( fieldset ) {
 				// setTimout is ie11-compatible and queues up tasks for async exec
-				setTimeout( function () {
+				setTimeout( () => {
 					fieldset.scrollIntoView( { behavior: 'smooth' } );
 				} );
 			}
@@ -67,7 +67,7 @@
 		PrefDialog.prototype.getActionProcess = function ( action ) {
 			var dialog = this;
 			if ( action ) {
-				return new OO.ui.Process( function () {
+				return new OO.ui.Process( () => {
 					dialog.close( { action: action } );
 				} );
 			}
@@ -87,13 +87,13 @@
 		var sections = preferencesForm.querySelectorAll( '.mw-mobile-prefsection' );
 
 		// Move the form buttons (such as save) into the dialog after opening.
-		windowManager.on( 'opening', function ( win, opened ) {
+		windowManager.on( 'opening', ( win, opened ) => {
 			if ( opened ) {
 				win.$foot[ 0 ].appendChild( prefButtons );
 			}
 		} );
 		// Move the form buttons (such as save) back to the main form while closing.
-		windowManager.on( 'closing', function ( _win, closed ) {
+		windowManager.on( 'closing', ( _win, closed ) => {
 			document.getElementById( 'preferences' ).appendChild( prefButtons );
 			if ( closed ) {
 				location.hash = '';
@@ -102,7 +102,7 @@
 		// Add the window manager to the form
 		$( preferencesForm ).append( windowManager.$element );
 		// Add event listeners and register a dialog for each section
-		Array.prototype.forEach.call( sections, function ( section ) {
+		Array.prototype.forEach.call( sections, ( section ) => {
 			var sectionContent = document.getElementById( section.id + '-content' );
 			var sectionBody = sectionContent.querySelector( 'div > div.oo-ui-widget' );
 			var sectionText = sectionContent.querySelector( '.mw-prefs-title' ).textContent;
@@ -112,13 +112,13 @@
 		prefSelect.aggregate( {
 			click: 'itemClick'
 		} );
-		prefSelect.on( 'itemClick', function ( button ) {
+		prefSelect.on( 'itemClick', ( button ) => {
 			setSection( button.getData() );
 		} );
 
 	}
 	// DOM-dependant code
-	$( function () {
+	$( () => {
 		initDialogs();
 		nav.onLoad( setSection );
 	} );

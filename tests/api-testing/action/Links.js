@@ -2,7 +2,7 @@
 
 const { action, assert, utils } = require( 'api-testing' );
 
-describe( 'Links', function testLinks() {
+describe( 'Links', () => {
 	const titles = ( list ) => list.map( ( p ) => utils.dbkey( p.title ) );
 
 	const pageX = utils.title( 'LinkTest_X_' );

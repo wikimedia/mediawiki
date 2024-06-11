@@ -11,20 +11,20 @@ const ProtectPage = require( '../pageobjects/protect.page' );
 const UserLoginPage = require( 'wdio-mediawiki/LoginPage' );
 const Util = require( 'wdio-mediawiki/Util' );
 
-describe( 'Page', function () {
+describe( 'Page', () => {
 	let content, name, bot;
 
 	before( async () => {
 		bot = await Api.bot();
 	} );
 
-	beforeEach( async function () {
+	beforeEach( async () => {
 		await browser.deleteAllCookies();
 		content = Util.getTestString( 'beforeEach-content-' );
 		name = Util.getTestString( 'BeforeEach-name-' );
 	} );
 
-	it( 'should be previewable @daily', async function () {
+	it( 'should be previewable @daily', async () => {
 		await UserLoginPage.loginAdmin();
 		await EditPage.preview( name, content );
 
@@ -39,7 +39,7 @@ describe( 'Page', function () {
 		await browser.reloadSession();
 	} );
 
-	it( 'should be creatable', async function () {
+	it( 'should be creatable', async () => {
 		// create
 		await UserLoginPage.loginAdmin();
 		await EditPage.edit( name, content );
@@ -49,7 +49,7 @@ describe( 'Page', function () {
 		assert.strictEqual( await EditPage.displayedContent.getText(), content );
 	} );
 
-	it( 'should be re-creatable', async function () {
+	it( 'should be re-creatable', async () => {
 		const initialContent = Util.getTestString( 'initialContent-' );
 
 		// create and delete
@@ -65,7 +65,7 @@ describe( 'Page', function () {
 		assert.strictEqual( await EditPage.displayedContent.getText(), content );
 	} );
 
-	it( 'should be editable @daily', async function () {
+	it( 'should be editable @daily', async () => {
 		// create
 		await bot.edit( name, content, 'create for edit' );
 
@@ -79,7 +79,7 @@ describe( 'Page', function () {
 		assert.match( await EditPage.displayedContent.getText(), new RegExp( editContent ) );
 	} );
 
-	it( 'should have history @daily', async function () {
+	it( 'should have history @daily', async () => {
 		// create
 		await bot.edit( name, content, `created with "${ content }"` );
 
@@ -88,7 +88,7 @@ describe( 'Page', function () {
 		assert.strictEqual( await HistoryPage.comment.getText(), `created with "${ content }"` );
 	} );
 
-	it( 'should be deletable', async function () {
+	it( 'should be deletable', async () => {
 		// create
 		await bot.edit( name, content, 'create for delete' );
 
@@ -102,7 +102,7 @@ describe( 'Page', function () {
 		assert.match( await DeletePage.displayedContent.getText(), new RegExp( `"${ name }" has been deleted.` ) );
 	} );
 
-	it( 'should be restorable', async function () {
+	it( 'should be restorable', async () => {
 		// create and delete
 		await bot.edit( name, content, 'create for delete' );
 		await bot.delete( name, 'delete for restore' );
@@ -117,7 +117,7 @@ describe( 'Page', function () {
 		assert.strictEqual( await RestorePage.displayedContent.getText(), name + ' has been undeleted\n\nConsult the deletion log for a record of recent deletions and restorations.' );
 	} );
 
-	it( 'should be protectable', async function () {
+	it( 'should be protectable', async () => {
 
 		await bot.edit( name, content, 'create for protect' );
 
@@ -139,7 +139,7 @@ describe( 'Page', function () {
 		assert.strictEqual( await EditPage.heading.getText(), 'View source for ' + name );
 	} );
 
-	it( 'should be undoable @daily', async function () {
+	it( 'should be undoable @daily', async () => {
 
 		// create
 		await bot.edit( name, content, 'create to edit and undo' );

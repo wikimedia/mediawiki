@@ -2,7 +2,7 @@
 
 const { action, assert, utils } = require( 'api-testing' );
 
-describe( 'Listing Users', function () {
+describe( 'Listing Users', () => {
 	let prefix;
 
 	// users

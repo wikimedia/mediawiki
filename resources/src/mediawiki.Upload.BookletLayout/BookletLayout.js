@@ -188,28 +188,26 @@
 		}
 
 		return this.upload.getApi().then(
-			function ( api ) {
-				// If the user can't upload anything, don't give them the option to.
-				return api.getUserInfo().then(
-					function ( userInfo ) {
-						booklet.setPage( 'upload' );
-						if ( userInfo.rights.indexOf( 'upload' ) === -1 ) {
-							if ( !mw.user.isNamed() ) {
-								booklet.getPage( 'upload' ).$element.msg( 'apierror-mustbeloggedin', mw.msg( 'action-upload' ) );
-							} else {
-								booklet.getPage( 'upload' ).$element.msg( 'apierror-permissiondenied', mw.msg( 'action-upload' ) );
-							}
+			// If the user can't upload anything, don't give them the option to.
+			( api ) => api.getUserInfo().then(
+				( userInfo ) => {
+					booklet.setPage( 'upload' );
+					if ( userInfo.rights.indexOf( 'upload' ) === -1 ) {
+						if ( !mw.user.isNamed() ) {
+							booklet.getPage( 'upload' ).$element.msg( 'apierror-mustbeloggedin', mw.msg( 'action-upload' ) );
+						} else {
+							booklet.getPage( 'upload' ).$element.msg( 'apierror-permissiondenied', mw.msg( 'action-upload' ) );
 						}
-						return $.Deferred().resolve();
-					},
-					// Always resolve, never reject
-					function () {
-						booklet.setPage( 'upload' );
-						return $.Deferred().resolve();
 					}
-				);
-			},
-			function ( errorMsg ) {
+					return $.Deferred().resolve();
+				},
+				// Always resolve, never reject
+				() => {
+					booklet.setPage( 'upload' );
+					return $.Deferred().resolve();
+				}
+			),
+			( errorMsg ) => {
 				booklet.setPage( 'upload' );
 				// eslint-disable-next-line mediawiki/msg-doc
 				booklet.getPage( 'upload' ).$element.msg( errorMsg );
@@ -275,15 +273,15 @@
 		this.upload.setFilename( this.getFilename() );
 
 		this.uploadPromise = this.upload.uploadToStash();
-		this.uploadPromise.then( function () {
+		this.uploadPromise.then( () => {
 			deferred.resolve();
 			layout.emit( 'fileUploaded' );
-		}, function () {
+		}, () => {
 			// These errors will be thrown while the user is on the info page.
-			layout.getErrorMessageForStateDetails().then( function ( errorMessage ) {
+			layout.getErrorMessageForStateDetails().then( ( errorMessage ) => {
 				deferred.reject( errorMessage );
 			} );
-		}, function ( progress ) {
+		}, ( progress ) => {
 			var elapsedTime = mw.now() - startTime,
 				estimatedTotalTime = ( 1 / progress ) * elapsedTime,
 				estimatedRemainingTime = moment.duration( estimatedTotalTime - elapsedTime );
@@ -291,7 +289,7 @@
 		} );
 
 		// If there is an error in uploading, come back to the upload page
-		deferred.fail( function () {
+		deferred.fail( () => {
 			layout.setPage( 'upload' );
 		} );
 
@@ -316,8 +314,8 @@
 		this.upload.setFilename( this.getFilename() );
 		this.upload.setText( this.getText() );
 
-		this.uploadPromise.then( function () {
-			layout.upload.finishStashUpload().then( function () {
+		this.uploadPromise.then( () => {
+			layout.upload.finishStashUpload().then( () => {
 				var name;
 
 				// Normalize page name and localise the 'File:' prefix
@@ -327,8 +325,8 @@
 
 				deferred.resolve();
 				layout.emit( 'fileSaved', layout.upload.getImageInfo() );
-			}, function () {
-				layout.getErrorMessageForStateDetails().then( function ( errorMessage ) {
+			}, () => {
+				layout.getErrorMessageForStateDetails().then( ( errorMessage ) => {
 					deferred.reject( errorMessage );
 				} );
 			} );
@@ -380,7 +378,7 @@
 					{ recoverable: false }
 				) );
 			} else if ( Array.isArray( warnings.duplicate ) ) {
-				warnings.duplicate.forEach( function ( filename ) {
+				warnings.duplicate.forEach( ( filename ) => {
 					var $a = $( '<a>' ).text( filename ),
 						href = mw.Title.makeTitle( mw.config.get( 'wgNamespaceIds' ).file, filename ).getUrl( {} );
 
@@ -450,7 +448,7 @@
 		// Validation (if the SFW is for a stashed file, this never fires)
 		this.selectFileWidget.on( 'change', this.onUploadFormChange.bind( this ) );
 
-		this.selectFileWidget.on( 'change', function () {
+		this.selectFileWidget.on( 'change', () => {
 			layout.updateFilePreview();
 		} );
 
@@ -480,11 +478,11 @@
 	 * @protected
 	 */
 	mw.Upload.BookletLayout.prototype.updateFilePreview = function () {
-		this.selectFileWidget.loadAndGetImageUrl().done( function ( url ) {
+		this.selectFileWidget.loadAndGetImageUrl().done( ( url ) => {
 			this.filePreview.$element.find( 'p' ).remove();
 			this.filePreview.$element.css( 'background-image', 'url(' + url + ')' );
 			this.infoForm.$element.addClass( 'mw-upload-bookletLayout-hasThumbnail' );
-		}.bind( this ) ).fail( function () {
+		} ).fail( () => {
 			this.filePreview.$element.find( 'p' ).remove();
 			if ( this.selectFileWidget.getValue() ) {
 				this.filePreview.$element.append(
@@ -493,7 +491,7 @@
 			}
 			this.filePreview.$element.css( 'background-image', '' );
 			this.infoForm.$element.removeClass( 'mw-upload-bookletLayout-hasThumbnail' );
-		}.bind( this ) );
+		} );
 	};
 
 	/**
@@ -557,9 +555,9 @@
 			items: [ this.filePreview, fieldset ]
 		} );
 
-		this.on( 'fileUploadProgress', function ( progress ) {
+		this.on( 'fileUploadProgress', ( progress ) => {
 			this.progressBarWidget.setProgress( progress * 100 );
-		}.bind( this ) );
+		} );
 
 		this.filenameWidget.on( 'change', this.onInfoFormChange.bind( this ) );
 		this.descriptionWidget.on( 'change', this.onInfoFormChange.bind( this ) );
@@ -578,9 +576,9 @@
 		$.when(
 			this.filenameWidget.getValidity(),
 			this.descriptionWidget.getValidity()
-		).done( function () {
+		).done( () => {
 			layout.emit( 'infoValid', true );
-		} ).fail( function () {
+		} ).fail( () => {
 			layout.emit( 'infoValid', false );
 		} );
 	};

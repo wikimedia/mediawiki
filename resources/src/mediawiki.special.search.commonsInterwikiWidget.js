@@ -5,7 +5,7 @@
 
 	function itemTemplate( results ) {
 
-		return results.map( function ( result ) {
+		return results.map( ( result ) => {
 			var imageThumbnailSrc = result.thumbnail ? result.thumbnail.source : '';
 
 			return $( '<div>' ).addClass( 'iw-result__mini-gallery' ).append(
@@ -56,7 +56,7 @@
 		piprop: 'thumbnail',
 		pithumbsize: 300,
 		formatversion: 2
-	} ).done( function ( resp ) {
+	} ).done( ( resp ) => {
 		var results = resp.query && resp.query.pages || false,
 			multimediaWidgetTemplate;
 
@@ -64,13 +64,11 @@
 			return;
 		}
 
-		results.sort( function ( a, b ) {
-			return a.index - b.index;
-		} );
+		results.sort( ( a, b ) => a.index - b.index );
 
 		multimediaWidgetTemplate = itemWrapperTemplate( pageUrl.query.search, itemTemplate( results ) );
 		/* we really only need to wait for document ready for DOM manipulation */
-		$( function () {
+		$( () => {
 			$( '.iw-results' ).append( multimediaWidgetTemplate );
 		} );
 	} );

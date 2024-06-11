@@ -111,7 +111,7 @@
 
 	QUnit.module( 'mediawiki.rcfilters - SavedQueriesModel' );
 
-	QUnit.test( 'Initializing queries', function ( assert ) {
+	QUnit.test( 'Initializing queries', ( assert ) => {
 		var filtersModel = new rcfilters.dm.FiltersViewModel(),
 			queriesModel = new rcfilters.dm.SavedQueriesModel( filtersModel ),
 			exampleQueryStructure = {
@@ -205,7 +205,7 @@
 
 		filtersModel.initializeFilters( filterDefinition );
 
-		cases.forEach( function ( testCase ) {
+		cases.forEach( ( testCase ) => {
 			queriesModel.initialize( testCase.input );
 			assert.deepEqual(
 				queriesModel.getState(),
@@ -215,7 +215,7 @@
 		} );
 	} );
 
-	QUnit.test( 'Adding new queries', function ( assert ) {
+	QUnit.test( 'Adding new queries', ( assert ) => {
 		var filtersModel = new rcfilters.dm.FiltersViewModel(),
 			queriesModel = new rcfilters.dm.SavedQueriesModel( filtersModel ),
 			cases = [
@@ -288,7 +288,7 @@
 		// Start with an empty saved queries model
 		queriesModel.initialize( {} );
 
-		cases.forEach( function ( testCase ) {
+		cases.forEach( ( testCase ) => {
 			var itemID = queriesModel.addNewQuery.apply( queriesModel, testCase.methodParams ),
 				item = queriesModel.getItemByID( itemID );
 
@@ -314,7 +314,7 @@
 		} );
 	} );
 
-	QUnit.test( 'Manipulating queries', function ( assert ) {
+	QUnit.test( 'Manipulating queries', ( assert ) => {
 		var id1, id2, item1, matchingItem,
 			queriesStructure = {},
 			filtersModel = new rcfilters.dm.FiltersViewModel(),
@@ -442,7 +442,7 @@
 		);
 	} );
 
-	QUnit.test( 'Testing invert property', function ( assert ) {
+	QUnit.test( 'Testing invert property', ( assert ) => {
 		var itemID, item,
 			filtersModel = new rcfilters.dm.FiltersViewModel(),
 			queriesModel = new rcfilters.dm.SavedQueriesModel( filtersModel ),

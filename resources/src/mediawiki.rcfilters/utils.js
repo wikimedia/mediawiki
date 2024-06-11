@@ -13,7 +13,7 @@ module.exports = {
 	addArrayElementsUnique: function ( arr, elements ) {
 		elements = Array.isArray( elements ) ? elements : [ elements ];
 
-		elements.forEach( function ( element ) {
+		elements.forEach( ( element ) => {
 			if ( arr.indexOf( element ) === -1 ) {
 				arr.push( element );
 			}
@@ -43,7 +43,7 @@ module.exports = {
 		// valid ones
 		// Example: param=valid1,valid2,invalid1,valid1
 		// Result: param=valid1,valid2
-		givenOptions.forEach( function ( value ) {
+		givenOptions.forEach( ( value ) => {
 			if (
 				legalOptions.indexOf( value ) > -1 &&
 				result.indexOf( value ) === -1

@@ -18,13 +18,13 @@ QUnit.module( 'mediawiki.String', () => {
 		// https://codepoints.net/U+24B62
 		// https://www.fileformat.info/info/unicode/char/24B62/index.htm
 		'U+24B62 Han surrogate': [ '\uD852\uDF62', 4 ]
-	}, function ( assert, [ input, expected ] ) {
+	}, ( assert, [ input, expected ] ) => {
 		assert.strictEqual( byteLength( input ), expected );
 	} );
 
 	const { charAt } = require( 'mediawiki.String' );
 
-	QUnit.test( 'charAt() [simple]', function ( assert ) {
+	QUnit.test( 'charAt() [simple]', ( assert ) => {
 		var azLc = 'abcdefghijklmnopqrstuvwxyz';
 
 		assert.strictEqual( charAt( azLc, 0 ), 'a', 'First char' );
@@ -33,7 +33,7 @@ QUnit.module( 'mediawiki.String', () => {
 		assert.strictEqual( charAt( azLc, 26 ), '', 'Big offset' );
 	} );
 
-	QUnit.test( 'charAt() UTF-16 text', function ( assert ) {
+	QUnit.test( 'charAt() UTF-16 text', ( assert ) => {
 		assert.strictEqual( charAt( '\uD803\uDC80', 0 ), '\uD803\uDC80', 'U+10C80' );
 		assert.strictEqual( charAt( '\uD803', 0 ), '\uD803', 'First surrogate only' );
 		assert.strictEqual( charAt( '\uD803x', 0 ), '\uD803', 'First surrogate with char' );
@@ -58,7 +58,7 @@ QUnit.module( 'mediawiki.String', () => {
 			'\uD803\uDC80\uD803\uDCC0',
 			'\uD803\uDCC0\uD803\uDCC0'
 		]
-	}, function ( assert, [ input, expected ] ) {
+	}, ( assert, [ input, expected ] ) => {
 		assert.strictEqual( lcFirst( input ), expected );
 	} );
 
@@ -77,7 +77,7 @@ QUnit.module( 'mediawiki.String', () => {
 			'\uD803\uDCC0\uD803\uDCC0',
 			'\uD803\uDC80\uD803\uDCC0'
 		]
-	}, function ( assert, [ input, expected ] ) {
+	}, ( assert, [ input, expected ] ) => {
 		assert.strictEqual( ucFirst( input ), expected );
 	} );
 
@@ -154,7 +154,7 @@ QUnit.module( 'mediawiki.String', () => {
 			sample: '\uD800\uD800\uDFFF',
 			expected: '\uD800'
 		}
-	}, function ( assert, opt ) {
+	}, ( assert, opt ) => {
 		var res = trimByteLength( opt.initial || '', opt.sample, opt.limit, opt.fn || null );
 		assert.strictEqual(
 			res.newVal,

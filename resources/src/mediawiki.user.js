@@ -32,7 +32,7 @@
 	function saveClientPrefs( feature, value ) {
 		var existingCookie = mw.cookie.get( CLIENTPREF_COOKIE_NAME ) || '';
 		var data = {};
-		existingCookie.split( CLIENTPREF_DELIMITER ).forEach( function ( keyValuePair ) {
+		existingCookie.split( CLIENTPREF_DELIMITER ).forEach( ( keyValuePair ) => {
 			var m = keyValuePair.match( /^([\w-]+)-clientpref-(\w+)$/ );
 			if ( m ) {
 				data[ m[ 1 ] ] = m[ 2 ];
@@ -40,9 +40,7 @@
 		} );
 		data[ feature ] = value;
 
-		var newCookie = Object.keys( data ).map( function ( key ) {
-			return key + CLIENTPREF_SUFFIX + data[ key ];
-		} ).join( CLIENTPREF_DELIMITER );
+		var newCookie = Object.keys( data ).map( ( key ) => key + CLIENTPREF_SUFFIX + data[ key ] ).join( CLIENTPREF_DELIMITER );
 		mw.cookie.set( CLIENTPREF_COOKIE_NAME, newCookie );
 	}
 
@@ -213,13 +211,13 @@
 				tempUserNamePromise = $.Deferred().resolve( mw.config.get( 'wgTempUserName' ) );
 			} else {
 				var api = new mw.Api();
-				tempUserNamePromise = api.post( { action: 'acquiretempusername' } ).then( function ( resp ) {
+				tempUserNamePromise = api.post( { action: 'acquiretempusername' } ).then( ( resp ) => {
 					mw.config.set( 'wgTempUserName', resp.acquiretempusername );
 					return resp.acquiretempusername;
-				} ).catch( function () {
+				} ).catch(
 					// Ignore failures. The temp name should not be necessary for anything to work.
-					return null;
-				} );
+					() => null
+				);
 			}
 
 			return tempUserNamePromise;
@@ -326,12 +324,8 @@
 		 */
 		getRights: function ( callback ) {
 			return getUserInfo().then(
-				function ( userInfo ) {
-					return userInfo.rights;
-				},
-				function () {
-					return [];
-				}
+				( userInfo ) => userInfo.rights,
+				() => []
 			).then( callback );
 		},
 

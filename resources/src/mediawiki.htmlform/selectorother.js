@@ -33,7 +33,7 @@ $.fn.goOut = function ( instantToggle ) {
 	return this.stop( true, true ).fadeOut();
 };
 
-mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
+mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 	/**
 	 * @ignore
 	 * @param {boolean|jQuery.Event} instant

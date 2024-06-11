@@ -52,12 +52,11 @@
 				// Avoid long chains of promises, they may cause memory leaks
 				saveOptionsRequests[ this.defaults.ajax.url ].state() === 'pending'
 			) {
-				promise = saveOptionsRequests[ this.defaults.ajax.url ].then( function () {
+				promise = saveOptionsRequests[ this.defaults.ajax.url ].then(
 					// Don't expose the old promise's result, it would be confusing
-					return $.Deferred().resolve();
-				}, function () {
-					return $.Deferred().resolve();
-				} );
+					() => $.Deferred().resolve(),
+					() => $.Deferred().resolve()
+				);
 			} else {
 				promise = $.Deferred().resolve();
 			}
@@ -105,13 +104,11 @@
 			}
 
 			if ( grouped.length ) {
-				promise = promise.then( function () {
-					return this.postWithToken( 'csrf', {
-						formatversion: 2,
-						action: 'options',
-						change: grouped
-					} );
-				}.bind( this ) );
+				promise = promise.then( () => this.postWithToken( 'csrf', {
+					formatversion: 2,
+					action: 'options',
+					change: grouped
+				} ) );
 			}
 
 			saveOptionsRequests[ this.defaults.ajax.url ] = promise;

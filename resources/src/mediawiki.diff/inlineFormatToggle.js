@@ -10,7 +10,7 @@ module.exports = function ( $inlineToggleSwitchLayout ) {
 		inlineToggleSwitchLayout = OO.ui.FieldLayout.static.infuse( $inlineToggleSwitchLayout ),
 		inlineToggleSwitch = inlineToggleSwitchLayout.getField();
 
-	inlineToggleSwitch.on( 'change', function ( e ) {
+	inlineToggleSwitch.on( 'change', ( e ) => {
 		onDiffTypeInlineChange( e, true );
 	} );
 	inlineToggleSwitch.on( 'disable', onDiffTypeInlineDisabled );
@@ -42,7 +42,7 @@ module.exports = function ( $inlineToggleSwitchLayout ) {
 
 		if ( saveDiffTypeOption ) {
 			api.saveOption( 'diff-type', isInline ? 'inline' : 'table' )
-				.fail( function ( error ) {
+				.fail( ( error ) => {
 					if ( error === 'notloggedin' ) {
 						// Can't save preference, so use query parameter stickiness
 						switchQueryParams( isInline );
@@ -134,7 +134,7 @@ module.exports = function ( $inlineToggleSwitchLayout ) {
 			difftype: diffType
 		};
 
-		api.get( apiParams ).done( function ( diffData ) {
+		api.get( apiParams ).done( ( diffData ) => {
 			if ( isInline ) {
 				$wikitextDiffBodyInline = $( diffData.compare[ '*' ] );
 			} else {

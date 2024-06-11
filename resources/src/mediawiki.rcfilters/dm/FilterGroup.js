@@ -104,7 +104,7 @@ FilterGroup.prototype.initializeFilters = function ( filterDefinition, groupDefa
 		model = this,
 		items = [];
 
-	filterDefinition.forEach( function ( filter ) {
+	filterDefinition.forEach( ( filter ) => {
 		// Instantiate an item
 		var subsetNames = [],
 			filterItem = new FilterItem( filter.name, model, {
@@ -118,13 +118,11 @@ FilterGroup.prototype.initializeFilters = function ( filterDefinition, groupDefa
 			} );
 
 		if ( filter.subset ) {
-			filter.subset = filter.subset.map( function ( el ) {
-				return el.filter;
-			} );
+			filter.subset = filter.subset.map( ( el ) => el.filter );
 
 			subsetNames = [];
 
-			filter.subset.forEach( function ( subsetFilterName ) {
+			filter.subset.forEach( ( subsetFilterName ) => {
 				// Subsets (unlike conflicts) are always inside the same group
 				// We can re-map the names of the filters we are getting from
 				// the subsets with the group prefix
@@ -169,7 +167,7 @@ FilterGroup.prototype.initializeFilters = function ( filterDefinition, groupDefa
 	this.addItems( items );
 
 	// Now that we have all items, we can apply the superset map
-	this.getItems().forEach( function ( filterItem ) {
+	this.getItems().forEach( ( filterItem ) => {
 		filterItem.setSuperset( supersetMap[ filterItem.getName() ] );
 	} );
 
@@ -185,9 +183,7 @@ FilterGroup.prototype.initializeFilters = function ( filterDefinition, groupDefa
 				groupDefault.split( this.getSeparator() ) :
 				[],
 			// Legal values
-			this.getItems().map( function ( item ) {
-				return item.getParamName();
-			} )
+			this.getItems().map( ( item ) => item.getParamName() )
 		).join( this.getSeparator() );
 	} else if ( this.getType() === 'single_option' ) {
 		defaultParam = groupDefault !== undefined ?
@@ -199,11 +195,11 @@ FilterGroup.prototype.initializeFilters = function ( filterDefinition, groupDefa
 	}
 
 	// add highlights to defaultParams
-	this.getItems().forEach( function ( filterItem ) {
+	this.getItems().forEach( ( filterItem ) => {
 		if ( filterItem.isHighlighted() ) {
 			this.defaultParams[ filterItem.getName() + '_color' ] = filterItem.getHighlightColor();
 		}
-	}.bind( this ) );
+	} );
 
 	// Store default filter state based on default params
 	this.defaultFilters = this.getFilterRepresentation( this.getDefaultParams() );
@@ -259,7 +255,7 @@ FilterGroup.prototype.onFilterItemUpdate = function ( item ) {
 			// This should only happen if the item given
 			// is the one that is selected, so unselect
 			// all items that is not it
-			this.findSelectedItems().forEach( function ( itemModel ) {
+			this.findSelectedItems().forEach( ( itemModel ) => {
 				// Note that in case the given item is actually
 				// not selected, this loop will end up unselecting
 				// all items, which would trigger the case above
@@ -444,9 +440,7 @@ FilterGroup.prototype.existsInConflicts = function ( filterItem ) {
  * @return {boolean} Any items in the group are selected
  */
 FilterGroup.prototype.areAnySelected = function () {
-	return this.getItems().some( function ( filterItem ) {
-		return filterItem.isSelected();
-	} );
+	return this.getItems().some( ( filterItem ) => filterItem.isSelected() );
 };
 
 /**
@@ -458,7 +452,7 @@ FilterGroup.prototype.areAllSelected = function () {
 	var selected = [],
 		unselected = [];
 
-	this.getItems().forEach( function ( filterItem ) {
+	this.getItems().forEach( ( filterItem ) => {
 		if ( filterItem.isSelected() ) {
 			selected.push( filterItem );
 		} else {
@@ -471,11 +465,7 @@ FilterGroup.prototype.areAllSelected = function () {
 	}
 
 	// check if every unselected is a subset of a selected
-	return unselected.every( function ( unselectedFilterItem ) {
-		return selected.some( function ( selectedFilterItem ) {
-			return selectedFilterItem.existsInSubset( unselectedFilterItem.getName() );
-		} );
-	} );
+	return unselected.every( ( unselectedFilterItem ) => selected.some( ( selectedFilterItem ) => selectedFilterItem.existsInSubset( unselectedFilterItem.getName() ) ) );
 };
 
 /**
@@ -488,9 +478,7 @@ FilterGroup.prototype.areAllSelected = function () {
 FilterGroup.prototype.findSelectedItems = function ( excludeItem ) {
 	var excludeName = ( excludeItem && excludeItem.getName() ) || '';
 
-	return this.getItems().filter( function ( item ) {
-		return item.getName() !== excludeName && item.isSelected();
-	} );
+	return this.getItems().filter( ( item ) => item.getName() !== excludeName && item.isSelected() );
 };
 
 /**
@@ -507,9 +495,7 @@ FilterGroup.prototype.areAllSelectedInConflictWith = function ( filterItem ) {
 			// The group as a whole is in conflict with this item
 			this.existsInConflicts( filterItem ) ||
 			// All selected items are in conflict individually
-			selectedItems.every( function ( selectedFilter ) {
-				return selectedFilter.existsInConflicts( filterItem );
-			} )
+			selectedItems.every( ( selectedFilter ) => selectedFilter.existsInConflicts( filterItem ) )
 		);
 };
 
@@ -526,9 +512,7 @@ FilterGroup.prototype.areAnySelectedInConflictWith = function ( filterItem ) {
 		// The group as a whole is in conflict with this item
 		this.existsInConflicts( filterItem ) ||
 		// Any selected items are in conflict individually
-		selectedItems.some( function ( selectedFilter ) {
-			return selectedFilter.existsInConflicts( filterItem );
-		} )
+		selectedItems.some( ( selectedFilter ) => selectedFilter.existsInConflicts( filterItem ) )
 	);
 };
 
@@ -554,7 +538,7 @@ FilterGroup.prototype.getParamRepresentation = function ( filterRepresentation )
 
 			// Find if any are selected
 			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( filters, function ( name, value ) {
+			$.each( filters, ( name, value ) => {
 				if ( value ) {
 					selected.push( name );
 				}
@@ -567,7 +551,7 @@ FilterGroup.prototype.getParamRepresentation = function ( filterRepresentation )
 	filterRepresentation = filterRepresentation || {};
 
 	// Create or complete the filterRepresentation definition
-	this.getItems().forEach( function ( item ) {
+	this.getItems().forEach( ( item ) => {
 		// Map filter names to their parameter names
 		filterParamNames[ item.getName() ] = item.getParamName();
 
@@ -603,7 +587,7 @@ FilterGroup.prototype.getParamRepresentation = function ( filterRepresentation )
 
 		// Go over the items and define the correct values
 		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( filterRepresentation, function ( name, value ) {
+		$.each( filterRepresentation, ( name, value ) => {
 			// We must store all parameter values as strings '0' or '1'
 			if ( model.getType() === 'send_unselected_if_any' ) {
 				result[ filterParamNames[ name ] ] = areAnySelected ?
@@ -621,7 +605,7 @@ FilterGroup.prototype.getParamRepresentation = function ( filterRepresentation )
 		values = [];
 
 		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( filterRepresentation, function ( name, value ) {
+		$.each( filterRepresentation, ( name, value ) => {
 			// Collect values
 			if ( value ) {
 				values.push( filterParamNames[ name ] );
@@ -671,7 +655,7 @@ FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation )
 		this.getType() === 'any_value'
 	) {
 		// Go over param representation; map and check for selections
-		this.getItems().forEach( function ( filterItem ) {
+		this.getItems().forEach( ( filterItem ) => {
 			var paramName = filterItem.getParamName();
 
 			expandedParams[ paramName ] = paramRepresentation[ paramName ] || '0';
@@ -683,7 +667,7 @@ FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation )
 		} );
 
 		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( expandedParams, function ( paramName, paramValue ) {
+		$.each( expandedParams, ( paramName, paramValue ) => {
 			var filterItem = paramToFilterMap[ paramName ];
 
 			if ( model.getType() === 'send_unselected_if_any' ) {
@@ -712,13 +696,11 @@ FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation )
 				this.getSeparator()
 			),
 			// Allowed values
-			this.getItems().map( function ( filterItem ) {
-				return filterItem.getParamName();
-			} ),
+			this.getItems().map( ( filterItem ) => filterItem.getParamName() ),
 			this.getSupportsAll()
 		);
 		// Translate the parameter values into a filter selection state
-		this.getItems().forEach( function ( filterItem ) {
+		this.getItems().forEach( ( filterItem ) => {
 			// If the parameter is set to 'all', set all filters to true
 			result[ filterItem.getName() ] = (
 				this.getSupportsAll() && paramValues.length === 1 && paramValues[ 0 ] === 'all'
@@ -726,10 +708,10 @@ FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation )
 				true :
 				// Otherwise, the filter is selected only if it appears in the parameter values
 				paramValues.indexOf( filterItem.getParamName() ) > -1;
-		}.bind( this ) );
+		} );
 	} else if ( this.getType() === 'single_option' ) {
 		// There is parameter that fits a single filter and if not, get the default
-		this.getItems().forEach( function ( filterItem ) {
+		this.getItems().forEach( ( filterItem ) => {
 			var selected = filterItem.getParamName() === paramRepresentation[ model.getName() ];
 
 			result[ filterItem.getName() ] = selected;
@@ -739,11 +721,11 @@ FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation )
 
 	// Go over result and make sure all filters are represented.
 	// If any filters are missing, they will get a falsey value
-	this.getItems().forEach( function ( filterItem ) {
+	this.getItems().forEach( ( filterItem ) => {
 		if ( result[ filterItem.getName() ] === undefined ) {
 			result[ filterItem.getName() ] = this.getFalsyValue();
 		}
-	}.bind( this ) );
+	} );
 
 	// Make sure that at least one option is selected in
 	// single_option groups, no matter what path was taken
@@ -780,7 +762,7 @@ FilterGroup.prototype.getFalsyValue = function () {
 FilterGroup.prototype.getSelectedState = function () {
 	var state = {};
 
-	this.getItems().forEach( function ( filterItem ) {
+	this.getItems().forEach( ( filterItem ) => {
 		state[ filterItem.getName() ] = filterItem.getValue();
 	} );
 
@@ -795,9 +777,7 @@ FilterGroup.prototype.getSelectedState = function () {
  * @return {mw.rcfilters.dm.FilterItem} Filter item
  */
 FilterGroup.prototype.getItemByName = function ( filterName ) {
-	return this.getItems().filter( function ( item ) {
-		return item.getName() === filterName;
-	} )[ 0 ];
+	return this.getItems().filter( ( item ) => item.getName() === filterName )[ 0 ];
 };
 
 /**
@@ -806,7 +786,7 @@ FilterGroup.prototype.getItemByName = function ( filterName ) {
  * @param {string} paramName Filter parameter name
  */
 FilterGroup.prototype.selectItemByParamName = function ( paramName ) {
-	this.getItems().forEach( function ( item ) {
+	this.getItems().forEach( ( item ) => {
 		item.toggleSelected( item.getParamName() === String( paramName ) );
 	} );
 };
@@ -819,9 +799,7 @@ FilterGroup.prototype.selectItemByParamName = function ( paramName ) {
  * @return {mw.rcfilters.dm.FilterItem} Filter item
  */
 FilterGroup.prototype.getItemByParamName = function ( paramName ) {
-	return this.getItems().filter( function ( item ) {
-		return item.getParamName() === String( paramName );
-	} )[ 0 ];
+	return this.getItems().filter( ( item ) => item.getParamName() === String( paramName ) )[ 0 ];
 };
 
 /**
@@ -979,7 +957,7 @@ FilterGroup.prototype.isVisible = function () {
  * @param {mw.rcfilters.dm.ItemModel[]} visibleItems An array of visible items
  */
 FilterGroup.prototype.setVisibleItems = function ( visibleItems ) {
-	this.getItems().forEach( function ( itemModel ) {
+	this.getItems().forEach( ( itemModel ) => {
 		itemModel.toggleVisible( visibleItems.indexOf( itemModel ) !== -1 );
 	} );
 };

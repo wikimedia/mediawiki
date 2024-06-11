@@ -2,7 +2,7 @@
 
 const { assert, action, utils } = require( 'api-testing' );
 
-describe( 'Testing default autopatrolling rights', function () {
+describe( 'Testing default autopatrolling rights', () => {
 	const anonymousUser = action.getAnon();
 	let title, mindy;
 

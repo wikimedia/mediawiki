@@ -2,7 +2,7 @@
 
 const { action, assert, utils } = require( 'api-testing' );
 
-describe( 'The parse action', function () {
+describe( 'The parse action', () => {
 	let alice;
 	const pageTitle = utils.title( 'Parsing_' );
 	const edits = {};

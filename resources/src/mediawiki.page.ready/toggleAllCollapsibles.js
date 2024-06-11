@@ -4,7 +4,7 @@
  */
 let toggleAll;
 
-mw.hook( 'wikipage.content' ).add( function () {
+mw.hook( 'wikipage.content' ).add( () => {
 	// return early if the link was already added
 	if ( toggleAll ) {
 		return;
@@ -36,13 +36,13 @@ mw.hook( 'wikipage.content' ).add( function () {
 	let allExpanded = false;
 
 	// on click, expand/collapse all collapsibles, then prepare to do the opposite on the next click
-	toggleAll.addEventListener( 'click', function ( e ) {
+	toggleAll.addEventListener( 'click', ( e ) => {
 		// Prevent scrolling
 		e.preventDefault();
 		// expand
 		if ( !allExpanded ) {
 			const collapsed = document.querySelectorAll( '#mw-content-text .mw-parser-output .mw-made-collapsible.mw-collapsed' );
-			Array.prototype.forEach.call( collapsed, function ( collapsible ) {
+			Array.prototype.forEach.call( collapsed, ( collapsible ) => {
 				$( collapsible ).data( 'mw-collapsible' ).expand();
 			} );
 			toggleAll.textContent = mw.msg( 'collapsible-collapse-all-text' );
@@ -52,7 +52,7 @@ mw.hook( 'wikipage.content' ).add( function () {
 		// collapse
 		} else {
 			const expanded = document.querySelectorAll( '#mw-content-text .mw-parser-output .mw-made-collapsible:not( .mw-collapsed )' );
-			Array.prototype.forEach.call( expanded, function ( collapsible ) {
+			Array.prototype.forEach.call( expanded, ( collapsible ) => {
 				$( collapsible ).data( 'mw-collapsible' ).collapse();
 			} );
 			toggleAll.textContent = mw.msg( 'collapsible-expand-all-text' );

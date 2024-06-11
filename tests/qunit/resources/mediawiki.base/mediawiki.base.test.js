@@ -3,8 +3,8 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 		this.clock = this.sandbox.useFakeTimers();
 	} );
 
-	QUnit.test( 'mw.hook - add() and fire()', function ( assert ) {
-		mw.hook( 'test.basic' ).add( function () {
+	QUnit.test( 'mw.hook - add() and fire()', ( assert ) => {
+		mw.hook( 'test.basic' ).add( () => {
 			assert.step( 'call' );
 		} );
 
@@ -12,8 +12,8 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 		assert.verifySteps( [ 'call' ] );
 	} );
 
-	QUnit.test( 'mw.hook - "hasOwnProperty" as hook name', function ( assert ) {
-		mw.hook( 'hasOwnProperty' ).add( function () {
+	QUnit.test( 'mw.hook - "hasOwnProperty" as hook name', ( assert ) => {
+		mw.hook( 'hasOwnProperty' ).add( () => {
 			assert.step( 'call' );
 		} );
 
@@ -21,7 +21,7 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 		assert.verifySteps( [ 'call' ] );
 	} );
 
-	QUnit.test( 'mw.hook - Number of arguments', function ( assert ) {
+	QUnit.test( 'mw.hook - Number of arguments', ( assert ) => {
 		// eslint-disable-next-line no-unused-vars
 		mw.hook( 'test.numargs' ).add( function ( one, two ) {
 			assert.step( String( arguments.length ) );
@@ -36,9 +36,9 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 		);
 	} );
 
-	QUnit.test( 'mw.hook - Variadic firing data and array data type', function ( assert ) {
+	QUnit.test( 'mw.hook - Variadic firing data and array data type', ( assert ) => {
 		var data;
-		mw.hook( 'test.data' ).add( function ( one, two ) {
+		mw.hook( 'test.data' ).add( ( one, two ) => {
 			data = { arg1: one, arg2: two };
 		} );
 
@@ -59,7 +59,7 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 		} );
 	} );
 
-	QUnit.test( 'mw.hook - Chainable', function ( assert ) {
+	QUnit.test( 'mw.hook - Chainable', ( assert ) => {
 		let hook;
 
 		hook = mw.hook( 'test.chainable' );
@@ -70,17 +70,17 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 		hook = mw.hook( 'test.detach' );
 		const add = hook.add;
 		const fire = hook.fire;
-		add( function ( data ) {
+		add( ( data ) => {
 			assert.step( data );
 		} );
 		fire( 'x' );
 		assert.verifySteps( [ 'x' ], 'Data from detached method' );
 	} );
 
-	QUnit.test( 'mw.hook - Memory from before', function ( assert ) {
+	QUnit.test( 'mw.hook - Memory from before', ( assert ) => {
 		mw.hook( 'test.fireBefore' )
 			.fire( 'x' )
-			.add( function ( data ) {
+			.add( ( data ) => {
 				assert.step( data );
 			} );
 		assert.verifySteps( [ 'x' ], 'Remember data from earlier firing' );
@@ -88,13 +88,13 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 		mw.hook( 'test.fireTwiceBefore' )
 			.fire( 'x1' )
 			.fire( 'x2' )
-			.add( function ( data ) {
+			.add( ( data ) => {
 				assert.step( data );
 			} );
 		assert.verifySteps( [ 'x2' ], 'Remember only the most recent firing' );
 	} );
 
-	QUnit.test( 'mw.hook - functions always registered before firing', function ( assert ) {
+	QUnit.test( 'mw.hook - functions always registered before firing', ( assert ) => {
 		mw.hook( 'test.register' ).fire();
 
 		function onceHandler() {
@@ -109,16 +109,16 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 		assert.verifySteps( [ 'call' ] );
 	} );
 
-	QUnit.test( 'mw.hook - Multiple consumers with memory between fires', function ( assert ) {
+	QUnit.test( 'mw.hook - Multiple consumers with memory between fires', ( assert ) => {
 		mw.hook( 'test.many' )
-			.add( function ( data ) {
+			.add( ( data ) => {
 				// Receive each fire as it happens
 				assert.step( 'early ' + data );
 			} )
 			.fire( 'x' )
 			.fire( 'y' )
 			.fire( 'z' )
-			.add( function ( data ) {
+			.add( ( data ) => {
 				// Receive memory from last fire
 				assert.step( 'late ' + data );
 			} );
@@ -131,7 +131,7 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 		] );
 	} );
 
-	QUnit.test( 'mw.hook - Memory is not wiped when consumed.', function ( assert ) {
+	QUnit.test( 'mw.hook - Memory is not wiped when consumed.', ( assert ) => {
 		function handler( data ) {
 			assert.step( data + '1' );
 		}
@@ -139,7 +139,7 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 		mw.hook( 'test.memory' ).fire( 'A' );
 		mw.hook( 'test.memory' ).add( handler );
 		mw.hook( 'test.memory' )
-			.add( function ( data ) {
+			.add( ( data ) => {
 				assert.step( data + '2' );
 			} );
 
@@ -152,7 +152,7 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 		);
 	} );
 
-	QUnit.test( 'mw.hook - Unregistering handler.', function ( assert ) {
+	QUnit.test( 'mw.hook - Unregistering handler.', ( assert ) => {
 		function handler( data ) {
 			assert.step( data );
 		}
@@ -171,14 +171,14 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 		assert.verifySteps( [ 'A' ], 'The handler runs with memory event before it is unregistered.' );
 	} );
 
-	QUnit.test( 'mw.hook - Limit impact of consumer errors T223352', function ( assert ) {
+	QUnit.test( 'mw.hook - Limit impact of consumer errors T223352', ( assert ) => {
 		mw.hook( 'test.catch' )
-			.add( function callerA( data ) {
+			.add( ( data ) => {
 				assert.step( 'A' + data );
 				throw new Error( 'Fail A' );
 			} )
 			.fire( '1' )
-			.add( function callerB( data ) {
+			.add( ( data ) => {
 				assert.step( 'B' + data );
 			} )
 			.fire( '2' );
@@ -190,7 +190,7 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 		}, /Fail A/, 'Global error' );
 	} );
 
-	QUnit.test( 'mw.hook - Variadic add and remove', function ( assert ) {
+	QUnit.test( 'mw.hook - Variadic add and remove', ( assert ) => {
 		function callerA( data ) {
 			assert.step( 'A' + data );
 		}
@@ -199,16 +199,14 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 			.add(
 				callerA,
 				callerA,
-				function callerB( data ) {
+				( data ) => {
 					assert.step( 'B' + data );
 				},
 				callerA
 			)
 			.fire( '1' )
 			.remove(
-				function callerC() {
-					return 'was never here';
-				},
+				() => 'was never here',
 				callerA
 			)
 			.fire( '2' )
@@ -230,12 +228,12 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 		var track = [];
 		var log = [];
 		var fn;
-		this.sandbox.stub( mw, 'track', function ( topic, key ) {
+		this.sandbox.stub( mw, 'track', ( topic, key ) => {
 			if ( topic === 'mw.deprecate' ) {
 				track.push( key );
 			}
 		} );
-		this.sandbox.stub( mw.log, 'warn', function ( msg ) {
+		this.sandbox.stub( mw.log, 'warn', ( msg ) => {
 			log.push( msg );
 		} );
 
@@ -259,12 +257,12 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 	QUnit.test( 'mw.log.deprecate()', function ( assert ) {
 		var track = [];
 		var log = [];
-		this.sandbox.stub( mw, 'track', function ( topic, key ) {
+		this.sandbox.stub( mw, 'track', ( topic, key ) => {
 			if ( topic === 'mw.deprecate' ) {
 				track.push( key );
 			}
 		} );
-		this.sandbox.stub( mw.log, 'warn', function ( msg ) {
+		this.sandbox.stub( mw.log, 'warn', ( msg ) => {
 			log.push( msg );
 		} );
 		function getFoo() {
@@ -297,16 +295,16 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 		assert.deepEqual( log, [ 'Use of "obj.foo thing" is deprecated. Hey there!' ], 'custom log' );
 	} );
 
-	QUnit.test( 'RLQ.push', function ( assert ) {
+	QUnit.test( 'RLQ.push', ( assert ) => {
 		/* global RLQ */
 		let loaded = 0;
-		mw.loader.implement( 'test.rlq-push', function () {
+		mw.loader.implement( 'test.rlq-push', () => {
 			loaded++;
 		} );
 
 		// Regression test for T208093
 		let called = 0;
-		RLQ.push( function () {
+		RLQ.push( () => {
 			called++;
 		} );
 		assert.strictEqual( called, 1, 'Invoke plain callbacks' );

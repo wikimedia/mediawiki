@@ -2,7 +2,7 @@
  * HTMLForm enhancements:
  * Infuse some OOUI HTMLForm fields (those which benefit from always being infused).
  */
-mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
+mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 	var $oouiNodes = $root.find( '.mw-htmlform-autoinfuse' );
 
 	$oouiNodes = $oouiNodes.filter( function () {
@@ -21,7 +21,7 @@ mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 				modules.push.apply( modules, extraModules );
 			}
 		} );
-		mw.loader.using( modules ).done( function () {
+		mw.loader.using( modules ).done( () => {
 			$oouiNodes.each( function () {
 				OO.ui.infuse( this );
 			} );

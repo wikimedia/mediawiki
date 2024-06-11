@@ -1,8 +1,8 @@
 QUnit.module( 'mediawiki.base/html', () => {
 
-	QUnit.test( 'escape', function ( assert ) {
+	QUnit.test( 'escape', ( assert ) => {
 		assert.throws(
-			function () {
+			() => {
 				mw.html.escape();
 			},
 			TypeError,
@@ -16,7 +16,7 @@ QUnit.module( 'mediawiki.base/html', () => {
 		);
 	} );
 
-	QUnit.test( 'element()', function ( assert ) {
+	QUnit.test( 'element()', ( assert ) => {
 		assert.strictEqual(
 			mw.html.element(),
 			'<undefined/>',
@@ -24,11 +24,11 @@ QUnit.module( 'mediawiki.base/html', () => {
 		);
 	} );
 
-	QUnit.test( 'element( tagName )', function ( assert ) {
+	QUnit.test( 'element( tagName )', ( assert ) => {
 		assert.strictEqual( mw.html.element( 'div' ), '<div/>', 'DIV' );
 	} );
 
-	QUnit.test( 'element( tagName, attrs )', function ( assert ) {
+	QUnit.test( 'element( tagName, attrs )', ( assert ) => {
 		assert.strictEqual( mw.html.element( 'div', {} ), '<div/>', 'DIV' );
 
 		assert.strictEqual(
@@ -42,7 +42,7 @@ QUnit.module( 'mediawiki.base/html', () => {
 		);
 	} );
 
-	QUnit.test( 'element( tagName, attrs, content )', function ( assert ) {
+	QUnit.test( 'element( tagName, attrs, content )', ( assert ) => {
 		assert.strictEqual( mw.html.element( 'div', {}, '' ), '<div></div>', 'DIV with empty attributes and content' );
 		assert.strictEqual( mw.html.element( 'p', {}, 12 ), '<p>12</p>', 'numbers as content cast to strings' );
 		assert.strictEqual( mw.html.element( 'p', { title: 12 }, '' ), '<p title="12"></p>', 'number as attribute value' );

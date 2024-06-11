@@ -5,8 +5,5 @@
 	],
 	"globals": {
 		"mw": "readonly"
-	},
-	"rules": {
-		"prefer-arrow-callback": "off"
 	}
 }

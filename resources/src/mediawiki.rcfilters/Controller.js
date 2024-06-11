@@ -187,9 +187,7 @@ Controller.prototype.initialize = function ( filterStructure, namespaceStructure
 				},
 				default: mw.user.options.get( this.limitPreferenceName, displayConfig.limitDefault ),
 				sticky: true,
-				filters: displayConfig.limitArray.map( function ( num ) {
-					return controller._createFilterDataFromNumber( num, num );
-				} )
+				filters: displayConfig.limitArray.map( ( num ) => controller._createFilterDataFromNumber( num, num ) )
 			},
 			{
 				name: 'days',
@@ -218,13 +216,11 @@ Controller.prototype.initialize = function ( filterStructure, namespaceStructure
 					0.04166, 0.0833, 0.25, 0.5
 				// Days
 				].concat( displayConfig.daysArray )
-					.map( function ( num ) {
-						return controller._createFilterDataFromNumber(
-							num,
-							// Convert fractions of days to number of hours for the labels
-							num < 1 ? Math.round( num * 24 ) : num
-						);
-					} )
+					.map( ( num ) => controller._createFilterDataFromNumber(
+						num,
+						// Convert fractions of days to number of hours for the labels
+						num < 1 ? Math.round( num * 24 ) : num
+					) )
 			}
 		]
 	};
@@ -252,7 +248,7 @@ Controller.prototype.initialize = function ( filterStructure, namespaceStructure
 	// groups; if we ever expand it, this might need further generalization:
 	for ( var viewName in views ) {
 		var viewData = views[ viewName ];
-		viewData.groups.forEach( function ( groupData ) {
+		viewData.groups.forEach( ( groupData ) => {
 			var extraValues = [];
 			if ( groupData.allowArbitrary ) {
 				// If the value in the URI isn't in the group, add it
@@ -418,9 +414,7 @@ Controller.prototype.addNumberValuesToGroup = function ( groupData, arbitraryVal
 
 	// Normalize the arbitrary values and the default value for a range
 	if ( groupData.range ) {
-		arbitraryValues = arbitraryValues.map( function ( val ) {
-			return normalizeWithinRange( groupData.range, val );
-		} );
+		arbitraryValues = arbitraryValues.map( ( val ) => normalizeWithinRange( groupData.range, val ) );
 
 		// Normalize the default, since that's user defined
 		if ( groupData.default !== undefined ) {
@@ -432,7 +426,7 @@ Controller.prototype.addNumberValuesToGroup = function ( groupData, arbitraryVal
 	// We assume these are the only groups that will allow for
 	// arbitrary, since it doesn't make any sense for the other
 	// groups.
-	arbitraryValues.forEach( function ( val ) {
+	arbitraryValues.forEach( ( val ) => {
 		if (
 			// If the group allows for arbitrary data
 			groupData.allowArbitrary &&
@@ -444,9 +438,7 @@ Controller.prototype.addNumberValuesToGroup = function ( groupData, arbitraryVal
 			( !groupData.validate || groupData.validate( val ) ) &&
 			// but if that value isn't already in the definition
 			groupData.filters
-				.map( function ( filterData ) {
-					return String( filterData.name );
-				} )
+				.map( ( filterData ) => String( filterData.name ) )
 				.indexOf( String( val ) ) === -1
 		) {
 			// Add the filter information
@@ -576,9 +568,7 @@ Controller.prototype.toggleInvertedTags = function () {
 
 	if (
 		this.filtersModel.getFiltersByView( 'tags' ).filter(
-			function ( filterItem ) {
-				return filterItem.isSelected();
-			}
+			( filterItem ) => filterItem.isSelected()
 		).length
 	) {
 		// Only re-fetch results if there are tags items that are actually selected
@@ -596,9 +586,7 @@ Controller.prototype.toggleInvertedNamespaces = function () {
 
 	if (
 		this.filtersModel.getFiltersByView( 'namespaces' ).filter(
-			function ( filterItem ) {
-				return filterItem.isSelected();
-			}
+			( filterItem ) => filterItem.isSelected()
 		).length
 	) {
 		// Only re-fetch results if there are namespace items that are actually selected
@@ -692,7 +680,7 @@ Controller.prototype._doLiveUpdate = function () {
 	}
 
 	this._checkForNewChanges()
-		.then( function ( statusCode ) {
+		.then( ( statusCode ) => {
 			// no result is 204 with the 'peek' param
 			// logged out is 205
 			var newChanges = statusCode === 200;
@@ -719,7 +707,7 @@ Controller.prototype._doLiveUpdate = function () {
 					this.changesListModel.setNewChangesExist( true );
 				}
 			}
-		}.bind( this ) )
+		} )
 		.always( this._scheduleLiveUpdate.bind( this ) );
 };
 
@@ -751,9 +739,7 @@ Controller.prototype._checkForNewChanges = function () {
 		isAnon: mw.user.isAnon()
 	};
 	return this._queryChangesList( 'liveUpdate', params ).then(
-		function ( data ) {
-			return data.status;
-		}
+		( data ) => data.status
 	);
 };
 
@@ -1021,7 +1007,7 @@ Controller.prototype.updateChangesList = function ( params, updateMode ) {
 	return this._fetchChangesList()
 		.then(
 			// Success
-			function ( pieces ) {
+			( pieces ) => {
 				var $changesListContent = pieces.changes,
 					$fieldset = pieces.fieldset;
 				this.changesListModel.update(
@@ -1032,12 +1018,12 @@ Controller.prototype.updateChangesList = function ( params, updateMode ) {
 					// separator between old and new changes
 					updateMode === this.SHOW_NEW_CHANGES || updateMode === this.LIVE_UPDATE
 				);
-			}.bind( this )
+			}
 			// Do nothing for failure
 		)
-		.always( function () {
+		.always( () => {
 			this.updatingChangesList = false;
-		}.bind( this ) );
+		} );
 };
 
 /**
@@ -1090,7 +1076,7 @@ Controller.prototype._queryChangesList = function ( counterId, params ) {
 
 	return $.ajax( uri.toString() )
 		.then(
-			function ( content, message, jqXHR ) {
+			( content, message, jqXHR ) => {
 				if ( !latestRequest() ) {
 					return $.Deferred().reject();
 				}
@@ -1100,7 +1086,7 @@ Controller.prototype._queryChangesList = function ( counterId, params ) {
 				};
 			},
 			// RC returns 404 when there is no results
-			function ( jqXHR ) {
+			( jqXHR ) => {
 				if ( latestRequest() ) {
 					return $.Deferred().resolve(
 						{
@@ -1122,7 +1108,7 @@ Controller.prototype._queryChangesList = function ( counterId, params ) {
 Controller.prototype._fetchChangesList = function () {
 	return this._queryChangesList( 'updateChangesList' )
 		.then(
-			function ( data ) {
+			( data ) => {
 				var $parsed;
 
 				// Status code 0 is not HTTP status code,
@@ -1143,7 +1129,7 @@ Controller.prototype._fetchChangesList = function () {
 				) ) );
 
 				return this._extractChangesListInfo( $parsed, data.status );
-			}.bind( this )
+			}
 		);
 };
 
@@ -1174,9 +1160,9 @@ Controller.prototype.markAllChangesAsSeen = function () {
 		formatversion: 2,
 		action: 'setnotificationtimestamp',
 		entirewatchlist: true
-	} ).then( function () {
+	} ).then( () => {
 		this.updateChangesList( null, 'markSeen' );
-	}.bind( this ) );
+	} );
 };
 
 /**

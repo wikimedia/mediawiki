@@ -80,7 +80,7 @@ function contentTypeMatcher( expectedMime, expectedSpec, expectedVersion ) {
 }
 
 // TODO: Replace all occurrences of (Lint Page/Lint_Page) with `page`.
-describe( '/transform/ endpoint', function () {
+describe( '/transform/ endpoint', () => {
 	const client = new REST();
 	const endpointPrefix = client.pathPrefix = 'rest.php/v1';
 	const page = utils.title( 'TransformSource_' );
@@ -104,9 +104,9 @@ describe( '/transform/ endpoint', function () {
 		edit.result.should.equal( 'Success' );
 	} );
 
-	describe( 'formats', function () {
+	describe( 'formats', () => {
 
-		it( 'should accept application/x-www-form-urlencoded', function ( done ) {
+		it( 'should accept application/x-www-form-urlencoded', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
 				.type( 'form' )
@@ -114,13 +114,13 @@ describe( '/transform/ endpoint', function () {
 					wikitext: '== h2 =='
 				} )
 				.expect( status200 )
-				.expect( function ( res ) {
+				.expect( ( res ) => {
 					validateDoc( domino.createDocument( res.text ), 'H2', true );
 				} )
 				.end( done );
 		} );
 
-		it( 'should accept application/json', function ( done ) {
+		it( 'should accept application/json', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
 				.type( 'json' )
@@ -128,18 +128,18 @@ describe( '/transform/ endpoint', function () {
 					wikitext: '== h2 =='
 				} )
 				.expect( status200 )
-				.expect( function ( res ) {
+				.expect( ( res ) => {
 					validateDoc( domino.createDocument( res.text ), 'H2', true );
 				} )
 				.end( done );
 		} );
 
-		it( 'should accept multipart/form-data', function ( done ) {
+		it( 'should accept multipart/form-data', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
 				.field( 'wikitext', '== h2 ==' )
 				.expect( status200 )
-				.expect( function ( res ) {
+				.expect( ( res ) => {
 					validateDoc( domino.createDocument( res.text ), 'H2', true );
 				} )
 				.end( done );
@@ -189,15 +189,15 @@ describe( '/transform/ endpoint', function () {
 		};
 	};
 
-	describe( 'accepts', function () {
+	describe( 'accepts', () => {
 
-		it( 'should not accept requests for older content versions (html)', function ( done ) {
+		it( 'should not accept requests for older content versions (html)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
 				.set( 'Accept', 'text/html; profile="https://www.mediawiki.org/wiki/Specs/HTML/0.0.0"' )
 				.send( { wikitext: '== h2 ==' } )
 				.expect( 406 )
-				.expect( function ( res ) {
+				.expect( ( res ) => {
 					// FIXME: See skipped html error test above
 					JSON.parse( res.error.text ).errorKey.should.equal(
 						'rest-unsupported-target-format'
@@ -207,13 +207,13 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should not accept requests for older content versions (pagebundle)', function ( done ) {
+		it.skip( 'should not accept requests for older content versions (pagebundle)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.set( 'Accept', 'application/json; profile="https://www.mediawiki.org/wiki/Specs/HTML/0.0.0"' )
 				.send( { wikitext: '== h2 ==' } )
 				.expect( 406 )
-				.expect( function ( res ) {
+				.expect( ( res ) => {
 					JSON.parse( res.error.text ).message.should.equal(
 						'Not acceptable'
 					);
@@ -221,7 +221,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should not accept requests for other profiles (html)', function ( done ) {
+		it( 'should not accept requests for other profiles (html)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
 				.set( 'Accept', 'text/html; profile="something different"' )
@@ -231,7 +231,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should not accept requests for other profiles (pagebundle)', function ( done ) {
+		it.skip( 'should not accept requests for other profiles (pagebundle)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.set( 'Accept', 'application/json; profile="something different"' )
@@ -240,7 +240,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should accept wildcards (html)', function ( done ) {
+		it( 'should accept wildcards (html)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
 				.set( 'Accept', '*/*' )
@@ -251,7 +251,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should accept wildcards (pagebundle)', function ( done ) {
+		it.skip( 'should accept wildcards (pagebundle)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.set( 'Accept', '*/*' )
@@ -262,7 +262,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// T347426: Support for non-default major HTML versions has been disabled
-		it.skip( 'should prefer higher quality (html)', function ( done ) {
+		it.skip( 'should prefer higher quality (html)', ( done ) => {
 			const contentVersion = '999.0.0';
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
@@ -276,7 +276,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should prefer higher quality (pagebundle)', function ( done ) {
+		it.skip( 'should prefer higher quality (pagebundle)', ( done ) => {
 			const contentVersion = '999.0.0';
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
@@ -289,7 +289,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should accept requests for the latest content version (html)', function ( done ) {
+		it( 'should accept requests for the latest content version (html)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
 				.send( { wikitext: '== h2 ==' } )
@@ -299,7 +299,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should accept requests for the latest content version (pagebundle)', function ( done ) {
+		it.skip( 'should accept requests for the latest content version (pagebundle)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.send( { wikitext: '== h2 ==' } )
@@ -308,7 +308,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should accept requests for content version 2.x (html)', function ( done ) {
+		it( 'should accept requests for content version 2.x (html)', ( done ) => {
 			const contentVersion = '2.4.0';
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
@@ -320,14 +320,14 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should accept requests for content version 2.x (pagebundle)', function ( done ) {
+		it.skip( 'should accept requests for content version 2.x (pagebundle)', ( done ) => {
 			const contentVersion = '2.4.0';
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.set( 'Accept', 'application/json; profile="https://www.mediawiki.org/wiki/Specs/pagebundle/' + contentVersion + '"' )
 				.send( { wikitext: '{{1x|hi}}' } )
 				.expect( status200 )
-				.expect( acceptablePageBundleResponse( contentVersion, function ( html ) {
+				.expect( acceptablePageBundleResponse( contentVersion, ( html ) => {
 					// In < 999.x, data-mw is still inline.
 					html.should.match( /\s+data-mw\s*=\s*['"]/ );
 				} ) )
@@ -336,7 +336,7 @@ describe( '/transform/ endpoint', function () {
 
 		// Note that these tests aren't that useful directly after a major version bump
 
-		it( 'should accept requests for older content version 2.x (html)', function ( done ) {
+		it( 'should accept requests for older content version 2.x (html)', ( done ) => {
 			const contentVersion = '2.4.0';
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
@@ -348,14 +348,14 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should accept requests for older content version 2.x (pagebundle)', function ( done ) {
+		it.skip( 'should accept requests for older content version 2.x (pagebundle)', ( done ) => {
 			const contentVersion = '2.4.0';
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.set( 'Accept', 'application/json; profile="https://www.mediawiki.org/wiki/Specs/pagebundle/2.0.0"' ) // Keep this on the older version
 				.send( { wikitext: '{{1x|hi}}' } )
 				.expect( status200 )
-				.expect( acceptablePageBundleResponse( contentVersion, function ( html ) {
+				.expect( acceptablePageBundleResponse( contentVersion, ( html ) => {
 					// In < 999.x, data-mw is still inline.
 					html.should.match( /\s+data-mw\s*=\s*['"]/ );
 				} ) )
@@ -363,7 +363,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should sanity check 2.x content (pagebundle)', function ( done ) {
+		it.skip( 'should sanity check 2.x content (pagebundle)', ( done ) => {
 			// Missing files in wiki
 			const contentVersion = '2.4.0';
 			client.req
@@ -371,7 +371,7 @@ describe( '/transform/ endpoint', function () {
 				.set( 'Accept', 'application/json; profile="https://www.mediawiki.org/wiki/Specs/pagebundle/' + contentVersion + '"' )
 				.send( { wikitext: '[[File:Audio.oga]]' } )
 				.expect( status200 )
-				.expect( acceptablePageBundleResponse( contentVersion, function ( html ) {
+				.expect( acceptablePageBundleResponse( contentVersion, ( html ) => {
 					const doc = domino.createDocument( html );
 					doc.querySelectorAll( 'audio' ).length.should.equal( 1 );
 					doc.querySelectorAll( 'video' ).length.should.equal( 0 );
@@ -380,7 +380,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// T347426: Support for non-default major HTML versions has been disabled
-		it.skip( 'should accept requests for content version 999.x (html)', function ( done ) {
+		it.skip( 'should accept requests for content version 999.x (html)', ( done ) => {
 			const contentVersion = '999.0.0';
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
@@ -392,14 +392,14 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should accept requests for content version 999.x (pagebundle)', function ( done ) {
+		it.skip( 'should accept requests for content version 999.x (pagebundle)', ( done ) => {
 			const contentVersion = '999.0.0';
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.set( 'Accept', 'application/json; profile="https://www.mediawiki.org/wiki/Specs/pagebundle/' + contentVersion + '"' )
 				.send( { wikitext: '{{1x|hi}}' } )
 				.expect( status200 )
-				.expect( acceptablePageBundleResponse( contentVersion, function ( html ) {
+				.expect( acceptablePageBundleResponse( contentVersion, ( html ) => {
 					// In 999.x, data-mw is in the pagebundle.
 					html.should.not.match( /\s+data-mw\s*=\s*['"]/ );
 				} ) )
@@ -461,7 +461,7 @@ describe( '/transform/ endpoint', function () {
 		};
 	};
 
-	describe( 'wt2lint', function () {
+	describe( 'wt2lint', () => {
 
 		it( 'should lint the given wikitext', function ( done ) {
 			if ( skipForNow ) {
@@ -478,7 +478,7 @@ describe( '/transform/ endpoint', function () {
 					}
 				} )
 				.expect( status200 )
-				.expect( function ( res ) {
+				.expect( ( res ) => {
 					res.body.should.be.instanceof( Array );
 					res.body.length.should.equal( 1 );
 					res.body[ 0 ].type.should.equal( 'fostered' );
@@ -494,7 +494,7 @@ describe( '/transform/ endpoint', function () {
 				.post( endpointPrefix + '/transform/wikitext/to/lint/Lint_Page/102' )
 				.send( {} )
 				.expect( status200 )
-				.expect( function ( res ) {
+				.expect( ( res ) => {
 					res.body.should.be.instanceof( Array );
 					res.body.length.should.equal( 1 );
 					res.body[ 0 ].type.should.equal( 'fostered' );
@@ -510,7 +510,7 @@ describe( '/transform/ endpoint', function () {
 				.post( endpointPrefix + '/transform/wikitext/to/lint/Lint_Page' )
 				.send( {} )
 				.expect( status200 )
-				.expect( function ( res ) {
+				.expect( ( res ) => {
 					res.body.should.be.instanceof( Array );
 					res.body.length.should.equal( 1 );
 					res.body[ 0 ].type.should.equal( 'fostered' );
@@ -533,7 +533,7 @@ describe( '/transform/ endpoint', function () {
 					}
 				} )
 				.expect( status200 )
-				.expect( function ( res ) {
+				.expect( ( res ) => {
 					res.body.should.be.instanceof( Array );
 					res.body.length.should.equal( 1 );
 					res.body[ 0 ].type.should.equal( 'missing-end-tag' );
@@ -545,62 +545,62 @@ describe( '/transform/ endpoint', function () {
 
 	} );
 
-	describe( 'wt2html', function () {
+	describe( 'wt2html', () => {
 
-		it( 'should accept wikitext as a string for html', function ( done ) {
+		it( 'should accept wikitext as a string for html', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
 				.send( {
 					wikitext: '== h2 =='
 				} )
-				.expect( validHtmlResponse( function ( doc ) {
+				.expect( validHtmlResponse( ( doc ) => {
 					validateDoc( doc, 'H2', true );
 				} ) )
 				.end( done );
 		} );
 
-		it( 'should accept json contentmodel as a string for html', function ( done ) {
+		it( 'should accept json contentmodel as a string for html', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
 				.send( {
 					wikitext: '{"1":2}',
 					contentmodel: 'json'
 				} )
-				.expect( validHtmlResponse( function ( doc ) {
+				.expect( validHtmlResponse( ( doc ) => {
 					doc.body.firstChild.nodeName.should.equal( 'TABLE' );
 				} ) )
 				.end( done );
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should accept wikitext as a string for pagebundle', function ( done ) {
+		it.skip( 'should accept wikitext as a string for pagebundle', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.send( {
 					wikitext: '== h2 =='
 				} )
-				.expect( validPageBundleResponse( function ( doc ) {
+				.expect( validPageBundleResponse( ( doc ) => {
 					validateDoc( doc, 'H2', true );
 				} ) )
 				.end( done );
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should accept json contentmodel as a string for pagebundle', function ( done ) {
+		it.skip( 'should accept json contentmodel as a string for pagebundle', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.send( {
 					wikitext: '{"1":2}',
 					contentmodel: 'json'
 				} )
-				.expect( validPageBundleResponse( function ( doc ) {
+				.expect( validPageBundleResponse( ( doc ) => {
 					doc.body.firstChild.nodeName.should.equal( 'TABLE' );
 					should.not.exist( doc.querySelector( '*[typeof="mw:Error"]' ) );
 				} ) )
 				.end( done );
 		} );
 
-		it( 'should accept wikitext with headers', function ( done ) {
+		it( 'should accept wikitext with headers', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
 				.send( {
@@ -611,13 +611,13 @@ describe( '/transform/ endpoint', function () {
 						body: '== h2 =='
 					}
 				} )
-				.expect( validHtmlResponse( function ( doc ) {
+				.expect( validHtmlResponse( ( doc ) => {
 					validateDoc( doc, 'H2', true );
 				} ) )
 				.end( done );
 		} );
 
-		it( 'should require a title when no wikitext is provided (html)', function ( done ) {
+		it( 'should require a title when no wikitext is provided (html)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
 				.send( {} )
@@ -626,7 +626,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should require a title when no wikitext is provided (pagebundle)', function ( done ) {
+		it.skip( 'should require a title when no wikitext is provided (pagebundle)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.send( {} )
@@ -634,7 +634,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should error when revision not found (transform, wt2html)', function ( done ) {
+		it( 'should error when revision not found (transform, wt2html)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/Doesnotexist' )
 				.send( {} )
@@ -643,7 +643,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should error when revision not found (transform, wt2pb)', function ( done ) {
+		it.skip( 'should error when revision not found (transform, wt2pb)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/Doesnotexist' )
 				.send( {} )
@@ -651,7 +651,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should accept an original title (html)', function ( done ) {
+		it( 'should accept an original title (html)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
 				.send( {
@@ -665,7 +665,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should accept an original title (pagebundle)', function ( done ) {
+		it.skip( 'should accept an original title (pagebundle)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.send( {
@@ -678,7 +678,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should accept an original title, other than main', function ( done ) {
+		it( 'should accept an original title, other than main', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
 				.send( {
@@ -690,13 +690,13 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should not require a title when empty wikitext is provided (html)', function ( done ) {
+		it( 'should not require a title when empty wikitext is provided (html)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
 				.send( {
 					wikitext: ''
 				} )
-				.expect( validHtmlResponse( function ( doc ) {
+				.expect( validHtmlResponse( ( doc ) => {
 					doc.body.children.length.should.equal( 1 ); // empty lead section
 					doc.body.firstChild.nodeName.should.equal( 'SECTION' );
 					doc.body.firstChild.children.length.should.equal( 0 );
@@ -705,7 +705,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should not require a title when empty wikitext is provided (pagebundle)', function ( done ) {
+		it.skip( 'should not require a title when empty wikitext is provided (pagebundle)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.send( {
@@ -715,31 +715,31 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should not require a title when wikitext is provided', function ( done ) {
+		it( 'should not require a title when wikitext is provided', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
 				.send( {
 					wikitext: '== h2 =='
 				} )
-				.expect( validHtmlResponse( function ( doc ) {
+				.expect( validHtmlResponse( ( doc ) => {
 					validateDoc( doc, 'H2', true );
 				} ) )
 				.end( done );
 		} );
 
-		it( 'should not require a rev id when wikitext and a title is provided', function ( done ) {
+		it( 'should not require a rev id when wikitext and a title is provided', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/Main_Page' )
 				.send( {
 					wikitext: '== h2 =='
 				} )
-				.expect( validHtmlResponse( function ( doc ) {
+				.expect( validHtmlResponse( ( doc ) => {
 					validateDoc( doc, 'H2', true );
 				} ) )
 				.end( done );
 		} );
 
-		it( 'should accept the wikitext source as original data', function ( done ) {
+		it( 'should accept the wikitext source as original data', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/Main_Page/1' )
 				.send( {
@@ -752,7 +752,7 @@ describe( '/transform/ endpoint', function () {
 						}
 					}
 				} )
-				.expect( validHtmlResponse( function ( doc ) {
+				.expect( validHtmlResponse( ( doc ) => {
 					validateDoc( doc, 'H2', true );
 				} ) )
 				.end( done );
@@ -774,7 +774,7 @@ describe( '/transform/ endpoint', function () {
 						}
 					}
 				} )
-				.expect( validHtmlResponse( function ( doc ) {
+				.expect( validHtmlResponse( ( doc ) => {
 					validateDoc( doc, 'P', false );
 					const span = doc.querySelector( 'span[typeof="mw:Transclusion"]' );
 					const dmw = JSON.parse( span.getAttribute( 'data-mw' ) );
@@ -786,7 +786,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should accept the wikitext source as original without a title or revision', function ( done ) {
+		it( 'should accept the wikitext source as original without a title or revision', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
 				.send( {
@@ -799,13 +799,13 @@ describe( '/transform/ endpoint', function () {
 						}
 					}
 				} )
-				.expect( validHtmlResponse( function ( doc ) {
+				.expect( validHtmlResponse( ( doc ) => {
 					validateDoc( doc, 'H2', true );
 				} ) )
 				.end( done );
 		} );
 
-		it( 'should respect body parameter in wikitext->html (body_only)', function ( done ) {
+		it( 'should respect body parameter in wikitext->html (body_only)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
 				.send( {
@@ -813,7 +813,7 @@ describe( '/transform/ endpoint', function () {
 					body_only: 1
 				} )
 				.expect( validHtmlResponse() )
-				.expect( function ( res ) {
+				.expect( ( res ) => {
 					// v3 only returns children of <body>
 					res.text.should.not.match( /<body/ );
 					res.text.should.match( /<p/ );
@@ -822,7 +822,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should respect body parameter in wikitext->pagebundle requests (body_only)', function ( done ) {
+		it.skip( 'should respect body parameter in wikitext->pagebundle requests (body_only)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.send( {
@@ -830,7 +830,7 @@ describe( '/transform/ endpoint', function () {
 					body_only: 1
 				} )
 				.expect( validPageBundleResponse() )
-				.expect( function ( res ) {
+				.expect( ( res ) => {
 					// v3 only returns children of <body>
 					res.body.html.body.should.not.match( /<body/ );
 					res.body.html.body.should.match( /<p/ );
@@ -847,7 +847,7 @@ describe( '/transform/ endpoint', function () {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
 				.send( { wikitext: '{{1x|foo}}', subst: 'true' } )
-				.expect( validHtmlResponse( function ( doc ) {
+				.expect( validHtmlResponse( ( doc ) => {
 					const body = doc.body;
 					// <body> should have one child, <section>, the lead section
 					body.childElementCount.should.equal( 1 );
@@ -869,7 +869,7 @@ describe( '/transform/ endpoint', function () {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
 				.send( { wikitext: '{{1x|foo {{1x|bar}} baz}}', subst: 'true' } )
-				.expect( validHtmlResponse( function ( doc ) {
+				.expect( validHtmlResponse( ( doc ) => {
 					const body = doc.body;
 					// <body> should have one child, <section>, the lead section
 					body.childElementCount.should.equal( 1 );
@@ -890,7 +890,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should not allow subst with pagebundle', function ( done ) {
+		it.skip( 'should not allow subst with pagebundle', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.send( { wikitext: '{{1x|foo}}', subst: 'true' } )
@@ -898,7 +898,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should return a request too large error when just over limit (post wt)', function ( done ) {
+		it( 'should return a request too large error when just over limit (post wt)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
 				.send( {
@@ -910,7 +910,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should not return a request too large error when just under limit (post wt)', function ( done ) {
+		it( 'should not return a request too large error when just under limit (post wt)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/html/' )
 				.send( {
@@ -931,7 +931,7 @@ describe( '/transform/ endpoint', function () {
 				.send( {
 					wikitext: '[[Special:Version]] [[Doesnotexist]] [[Redirected]]'
 				} )
-				.expect( validHtmlResponse( function ( doc ) {
+				.expect( validHtmlResponse( ( doc ) => {
 					doc.body.querySelectorAll( 'a' ).length.should.equal( 3 );
 					const redLinks = doc.body.querySelectorAll( '.new' );
 					redLinks.length.should.equal( 1 );
@@ -952,7 +952,7 @@ describe( '/transform/ endpoint', function () {
 				.send( {
 					wikitext: '[[Special:Version]] [[Doesnotexist]] [[Redirected]]'
 				} )
-				.expect( validPageBundleResponse( function ( doc ) {
+				.expect( validPageBundleResponse( ( doc ) => {
 					doc.body.querySelectorAll( 'a' ).length.should.equal( 3 );
 					const redLinks = doc.body.querySelectorAll( '.new' );
 					redLinks.length.should.equal( 1 );
@@ -966,9 +966,9 @@ describe( '/transform/ endpoint', function () {
 
 		// Continue to accept sr-el for a while in headers, to remain compatible
 		// with apps which might still be sending the old codes
-		[ 'sr-Latn', 'sr-el' ].forEach( function ( srLatn ) {
-			describe( 'Variant conversion ' + srLatn, function () {
-				it( 'should perform variant conversion for transform given pagelanguage in HTTP header (html)', function ( done ) {
+		[ 'sr-Latn', 'sr-el' ].forEach( ( srLatn ) => {
+			describe( 'Variant conversion ' + srLatn, () => {
+				it( 'should perform variant conversion for transform given pagelanguage in HTTP header (html)', ( done ) => {
 					client.req
 						.post( endpointPrefix + '/transform/wikitext/to/html/' )
 						.set( 'Accept-Language', srLatn )
@@ -1008,7 +1008,7 @@ describe( '/transform/ endpoint', function () {
 						.end( done );
 				} );
 
-				it( 'should perform variant conversion for transform given pagelanguage in JSON header (html)', function ( done ) {
+				it( 'should perform variant conversion for transform given pagelanguage in JSON header (html)', ( done ) => {
 					client.req
 						.post( endpointPrefix + '/transform/wikitext/to/html/' )
 						.set( 'Accept-Language', srLatn )
@@ -1056,7 +1056,7 @@ describe( '/transform/ endpoint', function () {
 						.end( done );
 				} );
 
-				it( 'should perform variant conversion for transform given pagelanguage from oldid (html)', function ( done ) {
+				it( 'should perform variant conversion for transform given pagelanguage from oldid (html)', ( done ) => {
 					client.req
 						.post( endpointPrefix + '/transform/wikitext/to/html/' )
 						.set( 'Accept-Language', srLatn )
@@ -1109,7 +1109,7 @@ describe( '/transform/ endpoint', function () {
 		return fs.readFileSync( __dirname + '/../data/Transform/' + name, 'utf-8' ).trim();
 	};
 
-	describe( 'html2wt', function () {
+	describe( 'html2wt', () => {
 		const htmlOfMainPageWithDataParsoid = getTextFromFile( 'MainPage-data-parsoid.html' );
 		const htmlOfMainPageWithDataParsoid_1_1_1 = getTextFromFile( 'MainPage-data-parsoid-1.1.1.html' );
 		const htmlOfMainPageOriginal = getTextFromFile( 'MainPage-original.html' );
@@ -1117,7 +1117,7 @@ describe( '/transform/ endpoint', function () {
 		const htmlOfImage = getTextFromFile( 'Image.html' );
 		const htmlOfImageWithDataMW = getTextFromFile( 'Image-data-mw.html' );
 
-		it( 'should require html when serializing', function ( done ) {
+		it( 'should require html when serializing', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/html/to/wikitext/' )
 				.send( {} )
@@ -1125,7 +1125,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should error when revision not found (transform, html2wt)', function ( done ) {
+		it( 'should error when revision not found (transform, html2wt)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/html/to/wikitext/Doesnotexist/2020' )
 				.send( {
@@ -1135,7 +1135,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should not error when oldid not supplied (transform, html2wt)', function ( done ) {
+		it( 'should not error when oldid not supplied (transform, html2wt)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/html/to/wikitext/Doesnotexist' )
 				.send( {
@@ -1145,7 +1145,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should accept html as a string', function ( done ) {
+		it( 'should accept html as a string', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/html/to/wikitext/' )
 				.send( {
@@ -1156,7 +1156,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		const htmlOfJsonConfig = getTextFromFile( 'JsonConfig.html' );
-		it( 'should accept html for json contentmodel as a string', function ( done ) {
+		it( 'should accept html for json contentmodel as a string', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/html/to/wikitext/' )
 				.send( {
@@ -1172,7 +1172,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should accept html with headers', function ( done ) {
+		it( 'should accept html with headers', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/html/to/wikitext/' )
 				.send( {
@@ -1187,7 +1187,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should allow a title in the url', function ( done ) {
+		it( 'should allow a title in the url', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/html/to/wikitext/Main_Page' )
 				.send( {
@@ -1197,7 +1197,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should allow a title in the original data', function ( done ) {
+		it( 'should allow a title in the original data', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/html/to/wikitext/' )
 				.send( {
@@ -1210,7 +1210,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should allow a revision id in the url', function ( done ) {
+		it( 'should allow a revision id in the url', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/html/to/wikitext/Main_Page/1' )
 				.send( {
@@ -1221,7 +1221,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should allow a revision id in the original data', function ( done ) {
+		it( 'should allow a revision id in the original data', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/html/to/wikitext/' )
 				.send( {
@@ -1235,7 +1235,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should accept original wikitext as src', function ( done ) {
+		it( 'should accept original wikitext as src', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/html/to/wikitext/' )
 				.send( {
@@ -1254,7 +1254,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should accept original html for selser (default)', function ( done ) {
+		it.skip( 'should accept original html for selser (default)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1279,7 +1279,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should accept original html for selser (1.1.1, meta)', function ( done ) {
+		it.skip( 'should accept original html for selser (1.1.1, meta)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1304,7 +1304,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should accept original html for selser (1.1.1, headers)', function ( done ) {
+		it.skip( 'should accept original html for selser (1.1.1, headers)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1330,7 +1330,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should return http 400 if supplied data-parsoid is empty', function ( done ) {
+		it.skip( 'should return http 400 if supplied data-parsoid is empty', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1356,7 +1356,7 @@ describe( '/transform/ endpoint', function () {
 
 		// FIXME: This test never passed. Pagebundle validation in general is needed
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should return http 400 if supplied data-parsoid is a string', function ( done ) {
+		it.skip( 'should return http 400 if supplied data-parsoid is a string', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1389,7 +1389,7 @@ describe( '/transform/ endpoint', function () {
 		// was used.
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should use selser with supplied wikitext', function ( done ) {
+		it.skip( 'should use selser with supplied wikitext', ( done ) => {
 			// Create Junk Page
 			// New and old html are identical, which should produce no diffs
 			// and reuse the original wikitext.
@@ -1431,7 +1431,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should use selser with wikitext fetched from the mw api', function ( done ) {
+		it.skip( 'should use selser with wikitext fetched from the mw api', ( done ) => {
 			// Creat Junk Page
 			// New and old html are identical, which should produce no diffs
 			// and reuse the original wikitext.
@@ -1465,7 +1465,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should fallback to non-selective serialization', function ( done ) {
+		it.skip( 'should fallback to non-selective serialization', ( done ) => {
 			// Without the original wikitext and an unavailable
 			// TemplateFetch for the source (no revision id provided),
 			// it should fallback to non-selective serialization.
@@ -1498,7 +1498,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should apply data-parsoid to duplicated ids', function ( done ) {
+		it.skip( 'should apply data-parsoid to duplicated ids', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1528,7 +1528,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should return a 400 for missing inline data-mw (2.x)', function ( done ) {
+		it.skip( 'should return a 400 for missing inline data-mw (2.x)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1553,7 +1553,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should return a 400 for not supplying data-mw', function ( done ) {
+		it.skip( 'should return a 400 for not supplying data-mw', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1578,7 +1578,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should apply original data-mw', function ( done ) {
+		it.skip( 'should apply original data-mw', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1619,7 +1619,7 @@ describe( '/transform/ endpoint', function () {
 
 		// Sanity check data-mw was applied in the previous test
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should return a 400 for missing modified data-mw', function ( done ) {
+		it.skip( 'should return a 400 for missing modified data-mw', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1649,7 +1649,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should give precedence to inline data-mw over original', function ( done ) {
+		it.skip( 'should give precedence to inline data-mw over original', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1679,7 +1679,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should not apply original data-mw if modified is supplied', function ( done ) {
+		it.skip( 'should not apply original data-mw if modified is supplied', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1731,7 +1731,7 @@ describe( '/transform/ endpoint', function () {
 		//   inline-data-mw > non-inline-data-mw
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should apply original data-mw when modified is absent (captions 1)', function ( done ) {
+		it.skip( 'should apply original data-mw when modified is absent (captions 1)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1770,7 +1770,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should give precedence to inline data-mw over modified (captions 2)', function ( done ) {
+		it.skip( 'should give precedence to inline data-mw over modified (captions 2)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1816,7 +1816,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should give precedence to modified data-mw over original (captions 3)', function ( done ) {
+		it.skip( 'should give precedence to modified data-mw over original (captions 3)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1861,7 +1861,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should apply extra normalizations', function ( done ) {
+		it( 'should apply extra normalizations', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/html/to/wikitext/' )
 				.send( {
@@ -1874,7 +1874,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should return a request too large error when just over limit', function ( done ) {
+		it( 'should return a request too large error when just over limit', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/html/to/wikitext/' )
 				.send( {
@@ -1886,7 +1886,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should not return a request too large error when just under limit', function ( done ) {
+		it( 'should not return a request too large error when just under limit', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/html/to/wikitext/' )
 				.send( {
@@ -1899,7 +1899,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Support for transforming from/to pagebundle is disabled in production.
-		it.skip( 'should fail to downgrade the original version for an unknown transition', function ( done ) {
+		it.skip( 'should fail to downgrade the original version for an unknown transition', ( done ) => {
 			const htmlOfMinimal = getTextFromFile( 'Minimal.html' );
 			const htmlOfMinimal2222 = getTextFromFile( 'Minimal-2222.html' );
 			client.req
@@ -1924,9 +1924,9 @@ describe( '/transform/ endpoint', function () {
 	} ); // end html2wt
 
 	// Support for transforming from/to pagebundle is disabled in production.
-	describe.skip( 'pb2pb', function () {
+	describe.skip( 'pb2pb', () => {
 
-		it( 'should require an original or previous version', function ( done ) {
+		it( 'should require an original or previous version', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/pagebundle/Reuse_Page/100' )
 				.send( {} )
@@ -1955,7 +1955,7 @@ describe( '/transform/ endpoint', function () {
 			}
 		};
 
-		it( 'should error when revision not found (transform, pb2pb)', function ( done ) {
+		it( 'should error when revision not found (transform, pb2pb)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/pagebundle/Doesnotexist' )
 				.send( {
@@ -1966,13 +1966,13 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// FIXME: Expansion reuse wasn't ported, see T98995
-		it.skip( 'should accept the previous revision to reuse expansions', function ( done ) {
+		it.skip( 'should accept the previous revision to reuse expansions', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/pagebundle/Reuse_Page/100' )
 				.send( {
 					previous: previousRevHTML
 				} )
-				.expect( validPageBundleResponse( function ( doc ) {
+				.expect( validPageBundleResponse( ( doc ) => {
 					doc.body.firstChild.textContent.should.match( /pink/ );
 				} ) )
 				.end( done );
@@ -1982,7 +1982,7 @@ describe( '/transform/ endpoint', function () {
 		origHTML.revid = 100;
 
 		// FIXME: Expansion reuse wasn't ported, see T98995
-		it.skip( 'should accept the original and reuse certain expansions', function ( done ) {
+		it.skip( 'should accept the original and reuse certain expansions', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/pagebundle/Reuse_Page/100' )
 				.send( {
@@ -1991,13 +1991,13 @@ describe( '/transform/ endpoint', function () {
 					},
 					original: origHTML
 				} )
-				.expect( validPageBundleResponse( function ( doc ) {
+				.expect( validPageBundleResponse( ( doc ) => {
 					doc.body.firstChild.textContent.should.match( /purple/ );
 				} ) )
 				.end( done );
 		} );
 
-		it( 'should refuse an unknown conversion (2.x -> 999.x)', function ( done ) {
+		it( 'should refuse an unknown conversion (2.x -> 999.x)', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/pagebundle/Reuse_Page/100' )
 				.set( 'Accept', 'application/json; profile="https://www.mediawiki.org/wiki/Specs/pagebundle/999.0.0"' )
@@ -2008,7 +2008,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should downgrade 999.x content to 2.x', function ( done ) {
+		it( 'should downgrade 999.x content to 2.x', ( done ) => {
 			const contentVersion = '2.4.0';
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/pagebundle/' )
@@ -2045,7 +2045,7 @@ describe( '/transform/ endpoint', function () {
 					}
 				} )
 				.expect( status200 )
-				.expect( acceptablePageBundleResponse( contentVersion, function ( html ) {
+				.expect( acceptablePageBundleResponse( contentVersion, ( html ) => {
 					// In < 999.x, data-mw is still inline.
 					html.should.match( /\s+data-mw\s*=\s*['"]/ );
 					html.should.not.match( /\s+data-parsoid\s*=\s*['"]/ );
@@ -2086,7 +2086,7 @@ describe( '/transform/ endpoint', function () {
 						}
 					}
 				} )
-				.expect( acceptablePageBundleResponse( contentVersion, function ( html ) {
+				.expect( acceptablePageBundleResponse( contentVersion, ( html ) => {
 					const doc = domino.createDocument( html );
 					doc.body.querySelectorAll( 'a' ).length.should.equal( 3 );
 					const redLinks = doc.body.querySelectorAll( '.new' );
@@ -2099,9 +2099,9 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		( skipForNow ? describe.skip : describe )( 'Variant conversion', function () {
+		( skipForNow ? describe.skip : describe )( 'Variant conversion', () => {
 
-			it( 'should refuse variant conversion on en page', function ( done ) {
+			it( 'should refuse variant conversion on en page', ( done ) => {
 				client.req
 					.post( endpointPrefix + '/transform/pagebundle/to/pagebundle/' )
 					.send( {
@@ -2122,7 +2122,7 @@ describe( '/transform/ endpoint', function () {
 					.end( done );
 			} );
 
-			it( 'should accept the original and do variant conversion (given oldid)', function ( done ) {
+			it( 'should accept the original and do variant conversion (given oldid)', ( done ) => {
 				client.req
 					.post( endpointPrefix + '/transform/pagebundle/to/pagebundle/' )
 					.send( {
@@ -2146,7 +2146,7 @@ describe( '/transform/ endpoint', function () {
 						// in order to make validPageBundleResponse() pass.
 						res.body[ 'data-parsoid' ].body = {};
 					} )
-					.expect( validPageBundleResponse( function ( doc ) {
+					.expect( validPageBundleResponse( ( doc ) => {
 						doc.body.textContent.should.equal( 'abvg abcd x' );
 					} ) )
 					.expect( ( res ) => {
@@ -2159,7 +2159,7 @@ describe( '/transform/ endpoint', function () {
 					.end( done );
 			} );
 
-			it( 'should accept the original and do variant conversion (given pagelanguage)', function ( done ) {
+			it( 'should accept the original and do variant conversion (given pagelanguage)', ( done ) => {
 				client.req
 					.post( endpointPrefix + '/transform/pagebundle/to/pagebundle/' )
 					.set( 'Content-Language', 'sr' )
@@ -2184,7 +2184,7 @@ describe( '/transform/ endpoint', function () {
 						// in order to make validPageBundleResponse() pass.
 						res.body[ 'data-parsoid' ].body = {};
 					} )
-					.expect( validPageBundleResponse( function ( doc ) {
+					.expect( validPageBundleResponse( ( doc ) => {
 						doc.body.textContent.should.equal( 'abvg abcd' );
 					} ) )
 					.expect( ( res ) => {
@@ -2197,7 +2197,7 @@ describe( '/transform/ endpoint', function () {
 					.end( done );
 			} );
 
-			it( 'should not perform variant conversion w/ invalid variant (given pagelanguage)', function ( done ) {
+			it( 'should not perform variant conversion w/ invalid variant (given pagelanguage)', ( done ) => {
 				client.req
 					.post( endpointPrefix + '/transform/pagebundle/to/pagebundle/' )
 					.set( 'Content-Language', 'sr' )
@@ -2222,7 +2222,7 @@ describe( '/transform/ endpoint', function () {
 						// in order to make validPageBundleResponse() pass.
 						res.body[ 'data-parsoid' ].body = {};
 					} )
-					.expect( validPageBundleResponse( function ( doc ) {
+					.expect( validPageBundleResponse( ( doc ) => {
 						doc.body.textContent.should.equal( 'абвг abcd' );
 					} ) )
 					.expect( ( res ) => {
@@ -2241,8 +2241,8 @@ describe( '/transform/ endpoint', function () {
 
 	// Since we're disabling the pagebundle transform, let's make sure that trying to
 	// send a request to the endpoint returns a 404 error.
-	describe( 'Pagebundle transform (from/format) disabled, should return 404 as response code', function () {
-		it( '/transform/pagebundle/to/pagebundle/Reuse_Page/100', function ( done ) {
+	describe( 'Pagebundle transform (from/format) disabled, should return 404 as response code', () => {
+		it( '/transform/pagebundle/to/pagebundle/Reuse_Page/100', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/pagebundle/Reuse_Page/100' )
 				.send( {} )
@@ -2250,7 +2250,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( '/transform/pagebundle/to/wikitext/', function ( done ) {
+		it( '/transform/pagebundle/to/wikitext/', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -2293,13 +2293,13 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( '/transform/wikitext/to/pagebundle/', function ( done ) {
+		it( '/transform/wikitext/to/pagebundle/', ( done ) => {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.set( 'Accept', 'application/json; profile="https://www.mediawiki.org/wiki/Specs/HTML/0.0.0"' )
 				.send( { wikitext: '== h2 ==' } )
 				.expect( 404 )
-				.expect( function ( res ) {
+				.expect( ( res ) => {
 					JSON.parse( res.error.text ).errorKey.should.equal(
 						'rest-invalid-transform'
 					);
@@ -2308,7 +2308,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 	} );
 
-	describe( 'ETags', function () {
+	describe( 'ETags', () => {
 		it( '/transform/ should use ETag from If-Match header', async () => {
 			const { statusCode: status1, headers: headers1, text: text1 } = await client.req
 				.get( `rest.php/v1/revision/${ revid }/html` )
@@ -2381,7 +2381,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 	} );
 
-	describe( 'stashing with If-Match header', function () {
+	describe( 'stashing with If-Match header', () => {
 
 		// TODO: The /transform/html endpoint should handle the If-Match header
 		//       by checking whether it has a rendering with the correct key
@@ -2421,7 +2421,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 	} );
 
-	describe( 'stashing with renderid in body', function () {
+	describe( 'stashing with renderid in body', () => {
 		it( 'should trigger on renderid field in the body', async () => {
 			const pageResponse = await client.req
 				.get( `rest.php/v1/page/${ pageEncoded }/html` )
@@ -2461,7 +2461,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 	} );
 
-	describe( 'selser using rendering based on revid', function () {
+	describe( 'selser using rendering based on revid', () => {
 		it( 'should trigger on revid field in the body', async () => {
 			const pageResponse = await client.req
 				.get( `rest.php/v1/page/${ pageEncoded }/with_html` );

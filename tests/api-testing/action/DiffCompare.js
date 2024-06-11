@@ -2,7 +2,7 @@
 
 const { action, assert, utils } = require( 'api-testing' );
 
-describe( 'Diff Compare with Variables', function () {
+describe( 'Diff Compare with Variables', () => {
 	let wikiuser;
 	const title = utils.title( 'DiffCompare' );
 	const variables = {};

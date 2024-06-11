@@ -205,7 +205,7 @@ describe( 'Search', () => {
 		// enable XML parsing
 		function parseXML( res, cb ) {
 			res.text = '';
-			res.on( 'data', function ( chunk ) {
+			res.on( 'data', ( chunk ) => {
 				res.text += chunk;
 			} );
 			res.on( 'end', () => xml2js.parseString( res.text, cb ) );

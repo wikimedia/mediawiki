@@ -33,11 +33,7 @@
 			},
 			apiCheckValid: function ( shouldSuppressErrors ) {
 				var widget = this;
-				return this.getValidity().then( function () {
-					return $.Deferred().resolve( true ).promise();
-				}, function () {
-					return $.Deferred().resolve( false ).promise();
-				} ).done( function ( ok ) {
+				return this.getValidity().then( () => $.Deferred().resolve( true ).promise(), () => $.Deferred().resolve( false ).promise() ).done( ( ok ) => {
 					ok = ok || shouldSuppressErrors;
 					widget.setIcon( ok ? null : 'alert' );
 					widget.setTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
@@ -170,9 +166,7 @@
 			multi: function () {
 				var map = this.paramInfo.submodules,
 					v = this.isDisabled() ? this.paramInfo.default : this.getApiValue();
-				return v === undefined || v === '' ? [] : String( v ).split( '|' ).map( function ( val ) {
-					return { value: val, path: map[ val ] };
-				} );
+				return v === undefined || v === '' ? [] : String( v ).split( '|' ).map( ( val ) => ( { value: val, path: map[ val ] } ) );
 			}
 		}
 	};
@@ -207,7 +201,7 @@
 					modules: module,
 					helpformat: 'html',
 					uselang: mw.config.get( 'wgUserLanguage' )
-				} ).done( function ( data ) {
+				} ).done( ( data ) => {
 					if ( data.warnings && data.warnings.paraminfo ) {
 						deferred.reject( '???', data.warnings.paraminfo[ '*' ] );
 						return;
@@ -221,7 +215,7 @@
 
 					moduleInfoCache[ module ] = info[ 0 ];
 					deferred.resolve( info[ 0 ] );
-				} ).fail( function ( code, details ) {
+				} ).fail( ( code, details ) => {
 					if ( code === 'http' ) {
 						details = 'HTTP error: ' + details.exception;
 					} else if ( details.error ) {
@@ -249,7 +243,7 @@
 
 				var subpages = page.getSubpages();
 				// eslint-disable-next-line no-loop-func
-				subpages.forEach( function ( subpage ) {
+				subpages.forEach( ( subpage ) => {
 					if ( Object.prototype.hasOwnProperty.call( pages, subpage.key ) ) {
 						checkPages.push( pages[ subpage.key ] );
 					}
@@ -390,14 +384,12 @@
 
 				case 'namespace':
 					// eslint-disable-next-line no-jquery/no-map-util
-					items = $.map( mw.config.get( 'wgFormattedNamespaces' ), function ( name, ns ) {
+					items = $.map( mw.config.get( 'wgFormattedNamespaces' ), ( name, ns ) => {
 						if ( ns === '0' ) {
 							name = mw.msg( 'blanknamespace' );
 						}
 						return new OO.ui.MenuOptionWidget( { data: ns, label: name } );
-					} ).sort( function ( a, b ) {
-						return a.data - b.data;
-					} );
+					} ).sort( ( a, b ) => a.data - b.data );
 					if ( Util.apiBool( pi.multi ) ) {
 						if ( pi.allspecifier !== undefined ) {
 							items.unshift( new OO.ui.MenuOptionWidget( {
@@ -453,7 +445,7 @@
 						throw new Error( 'Unknown parameter type ' + pi.type );
 					}
 
-					items = pi.type.map( function ( v ) {
+					items = pi.type.map( ( v ) => {
 						var optionWidget = new OO.ui.MenuOptionWidget( {
 							data: String( v ),
 							label: String( v )
@@ -471,9 +463,7 @@
 							);
 						}
 						return optionWidget;
-					} ).sort( function ( a, b ) {
-						return a.label < b.label ? -1 : ( a.label > b.label ? 1 : 0 );
-					} );
+					} ).sort( ( a, b ) => a.label < b.label ? -1 : ( a.label > b.label ? 1 : 0 ) );
 					if ( Util.apiBool( pi.multi ) ) {
 						if ( pi.allspecifier !== undefined ) {
 							items.unshift( new OO.ui.MenuOptionWidget( {
@@ -547,7 +537,7 @@
 
 				var func = function () {
 					if ( !innerWidget.isDisabled() ) {
-						innerWidget.apiCheckValid( suppressErrors ).done( function ( ok ) {
+						innerWidget.apiCheckValid( suppressErrors ).done( ( ok ) => {
 							if ( ok ) {
 								widget.addTag( innerWidget.getApiValue() );
 								innerWidget.setApiValue( undefined );
@@ -571,7 +561,7 @@
 				finalWidget.paramInfo = pi;
 				if ( widget.getSubmodules ) {
 					finalWidget.getSubmodules = widget.getSubmodules.bind( widget );
-					finalWidget.on( 'disable', function () {
+					finalWidget.on( 'disable', () => {
 						setTimeout( ApiSandbox.updateUI );
 					} );
 				}
@@ -657,7 +647,7 @@
 								autosize: true,
 								maxRows: 6
 							}
-						} ).on( 'toggle', function ( visible ) {
+						} ).on( 'toggle', ( visible ) => {
 							if ( visible ) {
 								// Call updatePosition instead of adjustSize
 								// because the latter has weird caching
@@ -671,13 +661,13 @@
 						data: phpLayout = new mw.widgets.CopyTextLayout( {
 							label: Util.parseMsg( 'apisandbox-request-php-label' ),
 							copyText: '[\n' +
-								Object.keys( displayParams ).map( function ( param ) {
+								Object.keys( displayParams ).map(
 									// displayParams is a dictionary of strings or numbers
-									return '\t' +
+									( param ) => '\t' +
 										JSON.stringify( param ) +
 										' => ' +
-										JSON.stringify( displayParams[ param ] ).replace( /\$/g, '\\$' );
-								} ).join( ',\n' ) +
+										JSON.stringify( displayParams[ param ] ).replace( /\$/g, '\\$' )
+								).join( ',\n' ) +
 								'\n]',
 							multiline: true,
 							textInput: {
@@ -685,7 +675,7 @@
 								autosize: true,
 								maxRows: 6
 							}
-						} ).on( 'toggle', function ( visible ) {
+						} ).on( 'toggle', ( visible ) => {
 							if ( visible ) {
 								// Call updatePosition instead of adjustSize
 								// because the latter has weird caching
@@ -709,7 +699,7 @@
 				selected = menu.findFirstSelectedItem(),
 				selectedField = selected ? selected.getData() : null;
 
-			menu.getItems().forEach( function ( item ) {
+			menu.getItems().forEach( ( item ) => {
 				item.getData().toggle( item.getData() === selectedField );
 			} );
 		}
@@ -851,7 +841,7 @@
 					if ( page.getSubpages ) {
 						var subpages = page.getSubpages();
 						// eslint-disable-next-line no-loop-func
-						subpages.forEach( function ( subpage, k ) {
+						subpages.forEach( ( subpage, k ) => {
 							if ( !Object.prototype.hasOwnProperty.call( pages, subpage.key ) ) {
 								subpage.indentLevel = page.indentLevel + 1;
 								pages[ subpage.key ] = new ApiSandbox.PageLayout( subpage );
@@ -931,7 +921,7 @@
 				}
 				var subpages = checkPage.getSubpages();
 				// eslint-disable-next-line no-loop-func
-				subpages.forEach( function ( subpage ) {
+				subpages.forEach( ( subpage ) => {
 					if ( Object.prototype.hasOwnProperty.call( pages, subpage.key ) ) {
 						checkPages.push( pages[ subpage.key ] );
 					}
@@ -967,9 +957,7 @@
 					var deferred;
 					if ( tokenWidgets.length ) {
 						// Check all token widgets' validity separately
-						deferred = $.when.apply( $, tokenWidgets.map( function ( w ) {
-							return w.apiCheckValid( suppressErrors );
-						} ) );
+						deferred = $.when.apply( $, tokenWidgets.map( ( w ) => w.apiCheckValid( suppressErrors ) ) );
 
 						deferred.done( function () {
 							// If only the tokens are invalid, offer to fix them
@@ -986,12 +974,12 @@
 					} else {
 						deferred = $.Deferred().resolve();
 					}
-					deferred.always( function () {
+					deferred.always( () => {
 						windowManager.openWindow( 'errorAlert', {
 							title: Util.parseMsg( 'apisandbox-submit-invalid-fields-title' ),
 							message: Util.parseMsg( 'apisandbox-submit-invalid-fields-message' ),
 							actions: actions
-						} ).closed.then( function ( data ) {
+						} ).closed.then( ( data ) => {
 							if ( data && data.action === 'fix' ) {
 								ApiSandbox.fixTokenAndResend();
 							}
@@ -1054,9 +1042,7 @@
 								label: Util.parseMsg( 'apisandbox-request-selectformat-label' )
 							}
 						).$element,
-						formatItems.map( function ( item ) {
-							return item.getData().$element;
-						} )
+						formatItems.map( ( item ) => item.getData().$element )
 					);
 
 				if ( method === 'post' ) {
@@ -1083,7 +1069,7 @@
 					dataType: 'text',
 					xhr: function () {
 						var xhr = new window.XMLHttpRequest();
-						xhr.upload.addEventListener( 'progress', function ( e ) {
+						xhr.upload.addEventListener( 'progress', ( e ) => {
 							if ( !progressLoading ) {
 								if ( e.lengthComputable ) {
 									progress.setProgress( e.loaded * 100 / e.total );
@@ -1092,7 +1078,7 @@
 								}
 							}
 						} );
-						xhr.addEventListener( 'progress', function ( e ) {
+						xhr.addEventListener( 'progress', ( e ) => {
 							if ( !progressLoading ) {
 								progressLoading = true;
 								$progressText.text( mw.msg( 'apisandbox-loading-results' ) );
@@ -1118,7 +1104,7 @@
 						}
 						return d.promise();
 					} )
-					.then( function ( data, jqXHR ) {
+					.then( ( data, jqXHR ) => {
 						var ct = jqXHR.getResponseHeader( 'Content-Type' ),
 							loginSuppressed = jqXHR.getResponseHeader( 'MediaWiki-Login-Suppressed' ) || 'false';
 
@@ -1165,12 +1151,12 @@
 								$( '<div>' ).append(
 									new OO.ui.ButtonWidget( {
 										label: mw.msg( 'apisandbox-continue' )
-									} ).on( 'click', function () {
+									} ).on( 'click', () => {
 										ApiSandbox.sendRequest( Object.assign( {}, baseRequestParams, data.continue ) );
 									} ).setDisabled( !data.continue ).$element,
 									( clear = new OO.ui.ButtonWidget( {
 										label: mw.msg( 'apisandbox-continue-clear' )
-									} ).on( 'click', function () {
+									} ).on( 'click', () => {
 										ApiSandbox.updateUI( baseRequestParams );
 										clear.setDisabled( true );
 										booklet.setPage( '|results|' );
@@ -1208,7 +1194,7 @@
 								.on( 'click', button.setDisabled, [ true ], button )
 								.$element.appendTo( $result );
 						}
-					}, function ( code, data ) {
+					}, ( code, data ) => {
 						var details = 'HTTP error: ' + data.exception;
 						$result.empty()
 							.append(
@@ -1255,7 +1241,7 @@
 
 				var subpages = page.getSubpages();
 				// eslint-disable-next-line no-loop-func
-				subpages.forEach( function ( subpage ) {
+				subpages.forEach( ( subpage ) => {
 					if ( Object.prototype.hasOwnProperty.call( pages, subpage.key ) ) {
 						checkPages.push( pages[ subpage.key ] );
 					}
@@ -1276,7 +1262,7 @@
 				page.apiCheckValid();
 				var subpages = page.getSubpages();
 				// eslint-disable-next-line no-loop-func
-				subpages.forEach( function ( subpage ) {
+				subpages.forEach( ( subpage ) => {
 					if ( Object.prototype.hasOwnProperty.call( pages, subpage.key ) ) {
 						checkPages.push( pages[ subpage.key ] );
 					}
@@ -1527,7 +1513,7 @@
 
 		var toRemove = {};
 		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( this.templatedItemsCache, function ( k, el ) {
+		$.each( this.templatedItemsCache, ( k, el ) => {
 			if ( el.widget.isElementAttached() ) {
 				toRemove[ k ] = el;
 			}
@@ -1535,14 +1521,12 @@
 
 		// This bit duplicates the PHP logic in ApiBase::extractRequestParams().
 		// If you update this, see if that needs updating too.
-		var toProcess = pi.templatedparameters.map( function ( info ) {
-			return {
-				name: prefix + info.name,
-				info: info,
-				vars: Object.assign( {}, info.templatevars ),
-				usedVars: []
-			};
-		} );
+		var toProcess = pi.templatedparameters.map( ( info ) => ( {
+			name: prefix + info.name,
+			info: info,
+			vars: Object.assign( {}, info.templatevars ),
+			usedVars: []
+		} ) );
 		var p;
 		var doProcess = function ( placeholder, target ) {
 			target = prefix + target;
@@ -1583,7 +1567,7 @@
 					}
 				}
 			}
-			values.forEach( function ( value ) {
+			values.forEach( ( value ) => {
 				if ( !/^[^{}]*$/.exec( value ) ) {
 					// Skip values that make invalid parameter names
 					return;
@@ -1614,7 +1598,7 @@
 				} else {
 					var newVars = {};
 					// eslint-disable-next-line no-jquery/no-each-util
-					$.each( p.vars, function ( k, v ) {
+					$.each( p.vars, ( k, v ) => {
 						newVars[ k ] = v.replace( placeholder, value );
 					} );
 					toProcess.push( {
@@ -1634,7 +1618,7 @@
 		}
 
 		// eslint-disable-next-line no-jquery/no-map-util
-		toRemove = $.map( toRemove, function ( el, name ) {
+		toRemove = $.map( toRemove, ( el, name ) => {
 			delete layout.widgets[ name ];
 			return [ el.widgetField, el.helpField ];
 		} );
@@ -1712,7 +1696,7 @@
 			);
 
 		Util.fetchModuleInfo( this.apiModule )
-			.done( function ( pi ) {
+			.done( ( pi ) => {
 				var items = [],
 					deprecatedItems = [],
 					buttons = [],
@@ -1726,14 +1710,14 @@
 				// and for 'format' we also want to simplify the dropdown since
 				// we always send the 'fm' variant.
 				if ( layout.apiModule === 'main' ) {
-					pi.parameters.forEach( function ( parameter ) {
+					pi.parameters.forEach( ( parameter ) => {
 						if ( parameter.name === 'action' ) {
 							parameter.required = true;
 							delete parameter.default;
 						}
 						if ( parameter.name === 'format' ) {
 							var types = parameter.type;
-							types.forEach( function ( type ) {
+							types.forEach( ( type ) => {
 								availableFormats[ type ] = true;
 							} );
 							parameter.type = types.filter( filterFmModules );
@@ -1747,14 +1731,10 @@
 				// and make formatversion default to the latest version for humans
 				// (even though machines get a different default for b/c)
 				if ( pi.group === 'format' ) {
-					pi.parameters = pi.parameters.filter( function ( p ) {
-						return p.name !== 'wrappedhtml';
-					} ).map( function ( p ) {
+					pi.parameters = pi.parameters.filter( ( p ) => p.name !== 'wrappedhtml' ).map( ( p ) => {
 						if ( p.name === 'formatversion' ) {
 							// Use the highest numeric value
-							p.default = p.type.reduce( function ( prev, current ) {
-								return !isNaN( current ) ? Math.max( prev, current ) : prev;
-							} );
+							p.default = p.type.reduce( ( prev, current ) => !isNaN( current ) ? Math.max( prev, current ) : prev );
 							p.required = true;
 						}
 						return p;
@@ -1788,12 +1768,10 @@
 							width: 'auto',
 							padded: true,
 							classes: [ 'mw-apisandbox-popup-help' ],
-							$content: $( '<ul>' ).append( pi.helpurls.map( function ( link ) {
-								return $( '<li>' ).append( $( '<a>' )
-									.attr( { href: link, target: '_blank' } )
-									.text( link )
-								);
-							} ) )
+							$content: $( '<ul>' ).append( pi.helpurls.map( ( link ) => $( '<li>' ).append( $( '<a>' )
+								.attr( { href: link, target: '_blank' } )
+								.text( link )
+							) ) )
 						}
 					} ) );
 				}
@@ -1807,7 +1785,7 @@
 							width: 'auto',
 							padded: true,
 							classes: [ 'mw-apisandbox-popup-help' ],
-							$content: $( '<ul>' ).append( pi.examples.map( function ( example ) {
+							$content: $( '<ul>' ).append( pi.examples.map( ( example ) => {
 								var $a = $( '<a>' )
 									.attr( 'href', '#' + example.query )
 									.html( example.description );
@@ -1828,7 +1806,7 @@
 
 				if ( pi.parameters.length ) {
 					var prefix = layout.prefix + pi.prefix;
-					pi.parameters.forEach( function ( parameter ) {
+					pi.parameters.forEach( ( parameter ) => {
 						var tmpLayout = layout.makeWidgetFieldLayouts( parameter, prefix + parameter.name );
 						layout.widgets[ prefix + parameter.name ] = tmpLayout.widget;
 						if ( Util.apiBool( parameter.deprecated ) ) {
@@ -1921,7 +1899,7 @@
 				} else {
 					layout.apiCheckValid();
 				}
-			} ).fail( function ( code, detail ) {
+			} ).fail( ( code, detail ) => {
 				layout.$element.empty()
 					.append(
 						new OO.ui.LabelWidget( {
@@ -1947,9 +1925,7 @@
 			return [];
 		} else {
 			// eslint-disable-next-line no-jquery/no-map-util
-			var promises = $.map( this.widgets, function ( widget ) {
-				return widget.apiCheckValid( suppressErrors );
-			} );
+			var promises = $.map( this.widgets, ( widget ) => widget.apiCheckValid( suppressErrors ) );
 			$.when.apply( $, promises ).then( function () {
 				layout.apiIsValid = Array.prototype.indexOf.call( arguments, false ) === -1;
 				if ( layout.getOutlineItem() ) {
@@ -1973,7 +1949,7 @@
 			this.loadFromQueryParams = params;
 		} else {
 			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( this.widgets, function ( name, widget ) {
+			$.each( this.widgets, ( name, widget ) => {
 				var v = Object.prototype.hasOwnProperty.call( params, name ) ? params[ name ] : undefined;
 				widget.setApiValue( v );
 			} );
@@ -1991,7 +1967,7 @@
 	 */
 	ApiSandbox.PageLayout.prototype.getQueryParams = function ( params, displayParams, ajaxOptions ) {
 		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( this.widgets, function ( name, widget ) {
+		$.each( this.widgets, ( name, widget ) => {
 			var value = widget.getApiValue();
 			if ( value !== undefined ) {
 				params[ name ] = value;
@@ -2014,9 +1990,9 @@
 	ApiSandbox.PageLayout.prototype.getSubpages = function () {
 		var ret = [];
 		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( this.widgets, function ( name, widget ) {
+		$.each( this.widgets, ( name, widget ) => {
 			if ( typeof widget.getSubmodules === 'function' ) {
-				widget.getSubmodules().forEach( function ( submodule ) {
+				widget.getSubmodules().forEach( ( submodule ) => {
 					ret.push( {
 						key: name + '=' + submodule.value,
 						path: submodule.path,

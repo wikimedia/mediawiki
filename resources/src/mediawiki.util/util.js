@@ -414,7 +414,7 @@ var util = {
 		}
 
 		var arr = [];
-		params.forEach( function ( v, k ) {
+		params.forEach( ( v, k ) => {
 			var paramMatch = k.match( paramRe );
 			if ( paramMatch ) {
 				var i = paramMatch[ 1 ];

@@ -1,8 +1,8 @@
 QUnit.module( 'mediawiki.base/track', () => {
 
-	QUnit.test( 'track', function ( assert ) {
+	QUnit.test( 'track', ( assert ) => {
 		var sequence = [];
-		mw.trackSubscribe( 'simple', function ( topic, data ) {
+		mw.trackSubscribe( 'simple', ( topic, data ) => {
 			sequence.push( [ topic, data ] );
 		} );
 		mw.track( 'simple', { key: 1 } );
@@ -14,11 +14,11 @@ QUnit.module( 'mediawiki.base/track', () => {
 		], 'Events after subscribing' );
 	} );
 
-	QUnit.test( 'trackSubscribe', function ( assert ) {
+	QUnit.test( 'trackSubscribe', ( assert ) => {
 		var sequence = [];
 		mw.track( 'before', { key: 1 } );
 		mw.track( 'before', { key: 2 } );
-		mw.trackSubscribe( 'before', function ( topic, data ) {
+		mw.trackSubscribe( 'before', ( topic, data ) => {
 			sequence.push( [ topic, data ] );
 		} );
 		mw.track( 'before', { key: 3 } );
@@ -36,7 +36,7 @@ QUnit.module( 'mediawiki.base/track', () => {
 		} );
 	} );
 
-	QUnit.test( 'trackUnsubscribe', function ( assert ) {
+	QUnit.test( 'trackUnsubscribe', ( assert ) => {
 		var sequence = [];
 		function unsubber( topic, data ) {
 			sequence.push( [ topic, data ] );

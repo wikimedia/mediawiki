@@ -106,9 +106,7 @@
 		var upload = this;
 
 		this.setState( Upload.State.STASHED );
-		this.stashPromise = $.Deferred().resolve( function ( data ) {
-			return upload.api.uploadFromStash( filekey, data );
-		} );
+		this.stashPromise = $.Deferred().resolve( ( data ) => upload.api.uploadFromStash( filekey, data ) );
 	};
 
 	/**
@@ -318,11 +316,11 @@
 			comment: this.getComment(),
 			filename: this.getFilename(),
 			text: this.getText()
-		} ).then( function ( result ) {
+		} ).then( ( result ) => {
 			upload.setState( Upload.State.UPLOADED );
 			upload.imageinfo = result.upload.imageinfo;
 			return result;
-		}, function ( errorCode, result ) {
+		}, ( errorCode, result ) => {
 			if ( result && result.upload && result.upload.warnings ) {
 				upload.setState( Upload.State.WARNING, result );
 			} else {
@@ -355,10 +353,10 @@
 		this.stashPromise = this.api.chunkedUploadToStash( this.getFile(), {
 			ignorewarnings: true,
 			filename: this.getFilename()
-		} ).then( function ( finishStash ) {
+		} ).then( ( finishStash ) => {
 			upload.setState( Upload.State.STASHED );
 			return finishStash;
-		}, function ( errorCode, result ) {
+		}, ( errorCode, result ) => {
 			if ( result && result.upload && result.upload.warnings ) {
 				upload.setState( Upload.State.WARNING, result );
 			} else {
@@ -384,7 +382,7 @@
 			return $.Deferred().reject( 'This upload has not been stashed, please upload it to the stash first.' );
 		}
 
-		return this.stashPromise.then( function ( finishStash ) {
+		return this.stashPromise.then( ( finishStash ) => {
 			upload.setState( Upload.State.UPLOADING );
 
 			return finishStash( {
@@ -393,11 +391,11 @@
 				comment: upload.getComment(),
 				filename: upload.getFilename(),
 				text: upload.getText()
-			} ).then( function ( result ) {
+			} ).then( ( result ) => {
 				upload.setState( Upload.State.UPLOADED );
 				upload.imageinfo = result.upload.imageinfo;
 				return result;
-			}, function ( errorCode, result ) {
+			}, ( errorCode, result ) => {
 				if ( result && result.upload && result.upload.warnings ) {
 					upload.setState( Upload.State.WARNING, result );
 				} else {

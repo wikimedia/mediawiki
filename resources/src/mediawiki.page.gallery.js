@@ -262,7 +262,7 @@
 		}
 	}
 
-	mw.hook( 'wikipage.content' ).add( function ( $content ) {
+	mw.hook( 'wikipage.content' ).add( ( $content ) => {
 		if ( isTouchScreen ) {
 			// Always show the caption for a touch screen.
 			$content.find( 'ul.mw-gallery-packed-hover' )
@@ -280,7 +280,7 @@
 
 		$galleries = $content.find( 'ul.mw-gallery-packed-overlay, ul.mw-gallery-packed-hover, ul.mw-gallery-packed' );
 		// Call the justification asynchronous because live preview fires the hook with detached $content.
-		setTimeout( function () {
+		setTimeout( () => {
 			$galleries.each( justify );
 
 			// Bind here instead of in the top scope as the callbacks use $galleries.

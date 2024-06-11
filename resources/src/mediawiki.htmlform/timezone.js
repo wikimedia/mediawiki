@@ -10,8 +10,8 @@ function minutesToHours( min ) {
 	return tzString;
 }
 
-mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
-	mw.loader.using( 'mediawiki.widgets.SelectWithInputWidget', function () {
+mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
+	mw.loader.using( 'mediawiki.widgets.SelectWithInputWidget', () => {
 		$root.find( '.mw-htmlform-timezone-field' ).each( function () {
 			// This is identical to OO.ui.infuse( ... ), but it makes the class name of the result known.
 			var timezoneWidget = mw.widgets.SelectWithInputWidget.static.infuse( $( this ) );

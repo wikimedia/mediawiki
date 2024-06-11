@@ -43,7 +43,7 @@ module.exports = function ( options ) {
 	let notif = mw.notification.notify( msg, { autoHide: autoHide, type: type } );
 	if ( !autoHide ) {
 		// 'change' event not reliable!
-		$( document ).one( 'keydown mousedown', function () {
+		$( document ).one( 'keydown mousedown', () => {
 			if ( notif ) {
 				notif.close();
 				notif = null;

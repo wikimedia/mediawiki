@@ -51,13 +51,11 @@
 	 */
 	function showIndicators( indicators ) {
 		// eslint-disable-next-line no-jquery/no-map-util
-		indicators = $.map( indicators, function ( indicator, name ) {
-			return $( '<div>' )
-				.addClass( 'mw-indicator' )
-				.attr( 'id', mw.util.escapeIdForAttribute( 'mw-indicator-' + name ) )
-				.html( indicator )
-				.get( 0 );
-		} );
+		indicators = $.map( indicators, ( indicator, name ) => $( '<div>' )
+			.addClass( 'mw-indicator' )
+			.attr( 'id', mw.util.escapeIdForAttribute( 'mw-indicator-' + name ) )
+			.html( indicator )
+			.get( 0 ) );
 		if ( indicators.length ) {
 			mw.hook( 'wikipage.indicators' ).fire( $( indicators ) );
 		}
@@ -65,7 +63,7 @@
 		// Add whitespace between the <div>s because
 		// they get displayed with display: inline-block
 		var newList = [];
-		indicators.forEach( function ( indicator ) {
+		indicators.forEach( ( indicator ) => {
 			newList.push( indicator, document.createTextNode( '\n' ) );
 		} );
 
@@ -116,9 +114,7 @@
 			// Build a list of template names for this batch.
 			var titles = templates
 				.slice( batch, batch + batchSize )
-				.map( function ( template ) {
-					return template.title;
-				} );
+				.map( ( template ) => template.title );
 			requests.push( api.post( {
 				action: 'query',
 				format: 'json',
@@ -137,7 +133,7 @@
 				// Response is either the whole argument, or the 0th element of it.
 				var response = arguments[ r ][ 0 ] || arguments[ r ];
 				var templatesInfo = ( response.query && response.query.pages ) || [];
-				templatesInfo.forEach( function ( ti ) {
+				templatesInfo.forEach( ( ti ) => {
 					templatesAllInfo.push( {
 						title: mw.Title.newFromText( ti.title ),
 						apiData: ti
@@ -145,7 +141,7 @@
 				} );
 			}
 			// Sort alphabetically.
-			templatesAllInfo.sort( function ( t1, t2 ) {
+			templatesAllInfo.sort( ( t1, t2 ) => {
 				// Compare titles with the same rules of Title::compare() in PHP.
 				if ( t1.title.getNamespaceId() !== t2.title.getNamespaceId() ) {
 					return t1.title.getNamespaceId() - t2.title.getNamespaceId();
@@ -159,11 +155,11 @@
 			// Add new template list, and update the list header.
 			var $listNew = $( '<ul>' );
 			addItemToTemplateListPromise( $listNew, templatesAllInfo, 0 )
-				.then( function () {
+				.then( () => {
 					$list.html( $listNew.html() );
 				} );
 			$explanation.msg( 'templatesusedpreview', templatesAllInfo.length );
-		} ).always( function () {
+		} ).always( () => {
 			$parent.removeClass( 'mw-preview-loading-elements-loading' );
 		} );
 	}
@@ -181,7 +177,7 @@
 	 * @return {jQuery.Promise}
 	 */
 	function addItemToTemplateListPromise( $list, templatesInfo, templateIndex ) {
-		return addItemToTemplateList( $list, templatesInfo[ templateIndex ] ).then( function () {
+		return addItemToTemplateList( $list, templatesInfo[ templateIndex ] ).then( () => {
 			if ( templatesInfo[ templateIndex + 1 ] !== undefined ) {
 				return addItemToTemplateListPromise( $list, templatesInfo, templateIndex + 1 );
 			}
@@ -217,7 +213,7 @@
 			.append( mw.msg( canEdit ? 'editlink' : 'viewsourcelink' ) );
 		var wordSep = mw.message( 'word-separator' ).escaped();
 		return getRestrictionsText( template.apiData.protection || [] )
-			.then( function ( restrictionsList ) {
+			.then( ( restrictionsList ) => {
 				// restrictionsList is a comma-separated parentheses-wrapped localized list of restriction level names.
 				var editLinkParens = parenthesesWrap( $editLink[ 0 ].outerHTML );
 				var $li = $( '<li>' ).append( $link, wordSep, editLinkParens, wordSep, restrictionsList );
@@ -242,7 +238,7 @@
 
 		// Record other restriction levels, in case it's protected for others.
 		var restrictionLevels = [];
-		restrictions.forEach( function ( r ) {
+		restrictions.forEach( ( r ) => {
 			if ( r.type !== 'edit' ) {
 				return;
 			}
@@ -263,7 +259,7 @@
 		// Otherwise, if the edit restriction isn't one of the backwards-compatible ones,
 		// use the (possibly custom) restriction-level-* messages.
 		var msgs = [];
-		restrictionLevels.forEach( function ( level ) {
+		restrictionLevels.forEach( ( level ) => {
 			msgs.push( 'restriction-level-' + level );
 		} );
 		if ( msgs.length === 0 ) {
@@ -271,13 +267,13 @@
 		}
 
 		// Custom restriction levels don't have their messages loaded, so we have to do that.
-		return api.loadMessagesIfMissing( msgs ).then( function () {
-			var localizedMessages = msgs.map( function ( m ) {
+		return api.loadMessagesIfMissing( msgs ).then( () => {
+			var localizedMessages = msgs.map(
 				// Messages that can be used here include:
 				// * restriction-level-sysop
 				// * restriction-level-autoconfirmed
-				return mw.message( m ).parse();
-			} );
+				( m ) => mw.message( m ).parse()
+			);
 			// There's no commaList in JS, so just join with commas (doesn't handle the last item).
 			return parenthesesWrap( localizedMessages.join( mw.msg( 'comma-separator' ) ) );
 		} );
@@ -291,7 +287,7 @@
 	 * @param {Array} langLinks
 	 */
 	function showLanguageLinks( langLinks ) {
-		var newList = langLinks.map( function ( langLink ) {
+		var newList = langLinks.map( ( langLink ) => {
 			var bcp47 = mw.language.bcp47( langLink.lang );
 			// eslint-disable-next-line mediawiki/class-doc
 			return $( '<li>' )
@@ -340,9 +336,7 @@
 							.attr( 'href', '#' + config.$formNode.attr( 'id' ) )
 							.text( arrow + ' ' + mw.msg( 'continue-editing' ) )
 						),
-					response.parse.parsewarningshtml.map( function ( warning ) {
-						return $( '<p>' ).append( warning );
-					} )
+					response.parse.parsewarningshtml.map( ( warning ) => $( '<p>' ).append( warning ) )
 				)
 			);
 
@@ -765,9 +759,7 @@
 
 		var parseRequest, diffRequest;
 
-		parseRequest = tempUserNamePromise.then( function () {
-			return getParseRequest( config, section );
-		} );
+		parseRequest = tempUserNamePromise.then( () => getParseRequest( config, section ) );
 
 		if ( config.showDiff ) {
 			config.$previewNode.hide();
@@ -798,16 +790,14 @@
 			// deleted after the user started editing. Luckily the parse API returns pageid so we
 			// can wait for that.
 			// TODO: Show "Warning: This page was deleted after you started editing!"?
-			diffRequest = parseRequest.then( function ( parseResponse ) {
-				return getDiffRequest( config, section, parseResponse.parse.pageid !== 0 );
-			} );
+			diffRequest = parseRequest.then( ( parseResponse ) => getDiffRequest( config, section, parseResponse.parse.pageid !== 0 ) );
 
 		} else if ( config.$diffNode ) {
 			config.$diffNode.hide();
 		}
 
 		return $.when( parseRequest, diffRequest )
-			.done( function ( parseResponse, diffResponse ) {
+			.done( ( parseResponse, diffResponse ) => {
 				if ( config.responseHandler ) {
 					/**
 					 * @callback module:mediawiki.page.preview~responseHandler
@@ -832,13 +822,13 @@
 
 				mw.hook( 'wikipage.editform' ).fire( config.$formNode );
 			} )
-			.fail( function ( _code, result ) {
+			.fail( ( _code, result ) => {
 				if ( config.isLivePreview ) {
 					// This just shows the error for whatever request failed first
 					showError( config, api.getErrorMessage( result ) );
 				}
 			} )
-			.always( function () {
+			.always( () => {
 				if ( config.$spinnerNode && config.$spinnerNode.length ) {
 					config.$spinnerNode.hide();
 				}

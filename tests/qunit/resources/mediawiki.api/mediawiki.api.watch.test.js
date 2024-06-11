@@ -6,7 +6,7 @@ QUnit.module( 'mediawiki.api.watch', ( hooks ) => {
 	} );
 
 	QUnit.test( '.watch( string )', async ( assert ) => {
-		server.respond( function ( req ) {
+		server.respond( ( req ) => {
 			// Match POST requestBody
 			if ( /action=watch.*&titles=Foo(&|$)/.test( req.requestBody ) ) {
 				req.respond( 200, { 'Content-Type': 'application/json' },
@@ -22,7 +22,7 @@ QUnit.module( 'mediawiki.api.watch', ( hooks ) => {
 	// Ensure we don't mistake a single item array for a single item and vice versa.
 	// The query parameter in request is the same either way (separated by pipe).
 	QUnit.test( '.watch( Array ) - single', async ( assert ) => {
-		server.respond( function ( req ) {
+		server.respond( ( req ) => {
 			// Match POST requestBody
 			if ( /action=watch.*&titles=Foo(&|$)/.test( req.requestBody ) ) {
 				req.respond( 200, { 'Content-Type': 'application/json' },
@@ -36,7 +36,7 @@ QUnit.module( 'mediawiki.api.watch', ( hooks ) => {
 	} );
 
 	QUnit.test( '.watch( Array ) - multi', async ( assert ) => {
-		server.respond( function ( req ) {
+		server.respond( ( req ) => {
 			// Match POST requestBody
 			if ( /action=watch.*&titles=Foo%7CBar/.test( req.requestBody ) ) {
 				req.respond( 200, { 'Content-Type': 'application/json' },

@@ -32,7 +32,7 @@
 		invalidateSkinPrefsDisplay( $root );
 
 		// Observe skin radio state selection changes.
-		OO.ui.infuse( $skins ).on( 'change', function () {
+		OO.ui.infuse( $skins ).on( 'change', () => {
 			invalidateSkinPrefsDisplay( $root );
 		} );
 	}
