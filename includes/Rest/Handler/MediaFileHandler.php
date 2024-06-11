@@ -19,11 +19,8 @@ use Wikimedia\ParamValidator\ParamValidator;
 class MediaFileHandler extends SimpleHandler {
 	use MediaFileTrait;
 
-	/** @var RepoGroup */
-	private $repoGroup;
-
-	/** @var PageLookup */
-	private $pageLookup;
+	private RepoGroup $repoGroup;
+	private PageLookup $pageLookup;
 
 	/**
 	 * @var ExistingPageRecord|false|null
@@ -35,10 +32,6 @@ class MediaFileHandler extends SimpleHandler {
 	 */
 	private $file = false;
 
-	/**
-	 * @param RepoGroup $repoGroup
-	 * @param PageLookup $pageLookup
-	 */
 	public function __construct(
 		RepoGroup $repoGroup,
 		PageLookup $pageLookup

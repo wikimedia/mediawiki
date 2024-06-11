@@ -39,8 +39,7 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private const HTML = '>World<';
 
-	/** @var HashBagOStuff */
-	private $parserCacheBagOStuff;
+	private HashBagOStuff $parserCacheBagOStuff;
 
 	/** @var int */
 	private static $uuidCounter = 0;

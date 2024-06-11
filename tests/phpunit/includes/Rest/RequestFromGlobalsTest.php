@@ -9,10 +9,8 @@ use MediaWiki\Rest\RequestFromGlobals;
  * @covers \MediaWiki\Rest\RequestFromGlobals
  */
 class RequestFromGlobalsTest extends MediaWikiIntegrationTestCase {
-	/**
-	 * @var RequestFromGlobals
-	 */
-	private $reqFromGlobals;
+
+	private RequestFromGlobals $reqFromGlobals;
 
 	/**
 	 * @var array

@@ -39,17 +39,10 @@ class PageContentHelper {
 		MainConfigNames::RightsText,
 	];
 
-	/** @var ServiceOptions */
-	protected $options;
-
-	/** @var RevisionLookup */
-	protected $revisionLookup;
-
-	/** @var TitleFormatter */
-	protected $titleFormatter;
-
-	/** @var PageLookup */
-	protected $pageLookup;
+	protected ServiceOptions $options;
+	protected RevisionLookup $revisionLookup;
+	protected TitleFormatter $titleFormatter;
+	protected PageLookup $pageLookup;
 
 	/** @var Authority|null */
 	protected $authority = null;
@@ -66,12 +59,6 @@ class PageContentHelper {
 	/** @var PageIdentity|false|null */
 	private $pageIdentity = false;
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param RevisionLookup $revisionLookup
-	 * @param TitleFormatter $titleFormatter
-	 * @param PageLookup $pageLookup
-	 */
 	public function __construct(
 		ServiceOptions $options,
 		RevisionLookup $revisionLookup,

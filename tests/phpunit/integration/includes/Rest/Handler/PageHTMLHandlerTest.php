@@ -36,8 +36,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private const HTML = '>World</';
 
-	/** @var HashBagOStuff */
-	private $parserCacheBagOStuff;
+	private HashBagOStuff $parserCacheBagOStuff;
 
 	protected function setUp(): void {
 		parent::setUp();

@@ -105,8 +105,7 @@ class Validator {
 		'multipart/form-data',
 	];
 
-	/** @var ParamValidator */
-	private $paramValidator;
+	private ParamValidator $paramValidator;
 
 	/**
 	 * @param ObjectFactory $objectFactory

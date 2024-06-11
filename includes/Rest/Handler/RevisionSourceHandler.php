@@ -17,12 +17,8 @@ use MediaWiki\Revision\RevisionRecord;
  */
 class RevisionSourceHandler extends SimpleHandler {
 
-	/** @var RevisionContentHelper */
-	private $contentHelper;
+	private RevisionContentHelper $contentHelper;
 
-	/**
-	 * @param PageRestHelperFactory $helperFactory
-	 */
 	public function __construct( PageRestHelperFactory $helperFactory ) {
 		$this->contentHelper = $helperFactory->newRevisionContentHelper();
 	}

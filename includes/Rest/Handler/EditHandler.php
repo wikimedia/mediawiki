@@ -23,36 +23,12 @@ use Wikimedia\Message\MessageValue;
 abstract class EditHandler extends ActionModuleBasedHandler {
 	use TokenAwareHandlerTrait;
 
-	/** @var Config */
-	protected $config;
+	protected Config $config;
+	protected IContentHandlerFactory $contentHandlerFactory;
+	protected TitleParser $titleParser;
+	protected TitleFormatter $titleFormatter;
+	protected RevisionLookup $revisionLookup;
 
-	/**
-	 * @var IContentHandlerFactory
-	 */
-	protected $contentHandlerFactory;
-
-	/**
-	 * @var TitleParser
-	 */
-	protected $titleParser;
-
-	/**
-	 * @var TitleFormatter
-	 */
-	protected $titleFormatter;
-
-	/**
-	 * @var RevisionLookup
-	 */
-	protected $revisionLookup;
-
-	/**
-	 * @param Config $config
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param TitleParser $titleParser
-	 * @param TitleFormatter $titleFormatter
-	 * @param RevisionLookup $revisionLookup
-	 */
 	public function __construct(
 		Config $config,
 		IContentHandlerFactory $contentHandlerFactory,

@@ -55,38 +55,21 @@ class Router {
 	/** @var string */
 	private $scriptPath;
 
-	/** @var BagOStuff */
-	private $cacheBag;
-
 	/** @var string|null */
 	private $configHash = null;
-
-	/** @var ResponseFactory */
-	private $responseFactory;
-
-	/** @var BasicAuthorizerInterface */
-	private $basicAuth;
-
-	/** @var Authority */
-	private $authority;
-
-	/** @var ObjectFactory */
-	private $objectFactory;
-
-	/** @var Validator */
-	private $restValidator;
 
 	/** @var CorsUtils|null */
 	private $cors;
 
-	/** @var ErrorReporter */
-	private $errorReporter;
-
-	/** @var HookContainer */
-	private $hookContainer;
-
-	/** @var Session */
-	private $session;
+	private BagOStuff $cacheBag;
+	private ResponseFactory $responseFactory;
+	private BasicAuthorizerInterface $basicAuth;
+	private Authority $authority;
+	private ObjectFactory $objectFactory;
+	private Validator $restValidator;
+	private ErrorReporter $errorReporter;
+	private HookContainer $hookContainer;
+	private Session $session;
 
 	/** @var ?StatsFactory */
 	private $stats = null;
