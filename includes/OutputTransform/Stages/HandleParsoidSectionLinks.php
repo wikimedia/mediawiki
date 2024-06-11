@@ -25,13 +25,12 @@ use Wikimedia\Parsoid\Utils\DOMCompat;
  */
 class HandleParsoidSectionLinks extends ContentDOMTransformStage {
 
-	private LoggerInterface $logger;
 	private TitleFactory $titleFactory;
 
 	public function __construct(
 		ServiceOptions $options, LoggerInterface $logger, TitleFactory $titleFactory
 	) {
-		$this->logger = $logger;
+		parent::__construct( $options, $logger );
 		$this->titleFactory = $titleFactory;
 	}
 

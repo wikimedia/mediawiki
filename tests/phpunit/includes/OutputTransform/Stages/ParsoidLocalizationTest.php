@@ -26,7 +26,10 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function createStage(): ParsoidLocalization {
-		return new ParsoidLocalization( new ServiceOptions( [] ), new NullLogger() );
+		return new ParsoidLocalization(
+			new ServiceOptions( [] ),
+			new NullLogger()
+		);
 	}
 
 	/**

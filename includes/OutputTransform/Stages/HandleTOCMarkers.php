@@ -28,6 +28,7 @@ class HandleTOCMarkers extends ContentTextTransformStage {
 	public function __construct(
 		ServiceOptions $options, LoggerInterface $logger, TidyDriverBase $tidy
 	) {
+		parent::__construct( $options, $logger );
 		$this->tidy = $tidy;
 	}
 

@@ -2,8 +2,10 @@
 
 namespace MediaWiki\OutputTransform;
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Parser\ParserOutput;
 use ParserOptions;
+use Psr\Log\LoggerInterface;
 
 /**
  * Classes implementing the OutputTransformStage aim at being added to a pipeline of transformations that transform
@@ -11,7 +13,21 @@ use ParserOptions;
  * do not suffer from side effects is the caller's (typically the pipeline's) responsibility.
  * @unstable
  */
-interface OutputTransformStage {
+abstract class OutputTransformStage {
+	protected ServiceOptions $options;
+	protected LoggerInterface $logger;
+
+	/** @internal */
+	public const CONSTRUCTOR_OPTIONS = [];
+
+	/** @internal */
+	public function __construct( ServiceOptions $options, LoggerInterface $logger ) {
+		// Note this is static:: not self:: so we use the subclass options
+		$options->assertRequiredOptions( static::CONSTRUCTOR_OPTIONS );
+		$this->options = $options;
+		$this->logger = $logger;
+	}
+
 	/**
 	 * Decides whether or not the stage should be run
 	 * @param ParserOutput $po
@@ -20,7 +36,7 @@ interface OutputTransformStage {
 	 * @param array $options
 	 * @return bool
 	 */
-	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool;
+	abstract public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool;
 
 	/**
 	 * Transforms the input ParserOutput into the returned ParserOutput.
@@ -32,5 +48,5 @@ interface OutputTransformStage {
 	 * Modifying $options during this pass is considered deprecated.
 	 * @unstable
 	 */
-	public function transform( ParserOutput $po, ?ParserOptions $popts, array &$options ): ParserOutput;
+	abstract public function transform( ParserOutput $po, ?ParserOptions $popts, array &$options ): ParserOutput;
 }

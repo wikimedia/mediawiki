@@ -10,7 +10,7 @@ use ParserOptions;
  * transform() method (either directly by inheritance or by calling them in the overloaded method).
  * @internal
  */
-abstract class ContentTextTransformStage implements OutputTransformStage {
+abstract class ContentTextTransformStage extends OutputTransformStage {
 
 	public function transform( ParserOutput $po, ?ParserOptions $popts, array &$options ): ParserOutput {
 		$text = $po->getContentHolderText();

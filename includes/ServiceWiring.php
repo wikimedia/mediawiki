@@ -758,7 +758,7 @@ return [
 
 	'DefaultOutputPipeline' => static function ( MediaWikiServices $services ): OutputTransformPipeline {
 		return ( new DefaultOutputPipelineFactory(
-			new ServiceOptions( DefaultOutputPipelineFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			$services->getMainConfig(),
 			LoggerFactory::getInstance( 'Parser' ),
 			$services->getObjectFactory()
 		) )->buildPipeline();

@@ -24,6 +24,7 @@ class AddWrapperDivClass extends ContentTextTransformStage {
 		ServiceOptions $options, LoggerInterface $logger, LanguageFactory $langFactory,
 		Language $contentLang
 	) {
+		parent::__construct( $options, $logger );
 		$this->langFactory = $langFactory;
 		$this->contentLang = $contentLang;
 	}

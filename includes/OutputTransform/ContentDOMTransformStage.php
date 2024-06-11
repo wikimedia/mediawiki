@@ -23,7 +23,7 @@ use Wikimedia\Parsoid\Utils\DOMUtils;
  *
  * @internal
  */
-abstract class ContentDOMTransformStage implements OutputTransformStage {
+abstract class ContentDOMTransformStage extends OutputTransformStage {
 
 	/**
 	 * @inheritDoc
