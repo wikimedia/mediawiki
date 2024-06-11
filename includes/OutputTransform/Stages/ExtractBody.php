@@ -3,6 +3,7 @@
 namespace MediaWiki\OutputTransform\Stages;
 
 use MediaWiki\Html\HtmlHelper;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\OutputTransform\ContentTextTransformStage;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOutput;
@@ -68,6 +69,15 @@ class ExtractBody extends ContentTextTransformStage {
 		$baseHref = '';
 		if ( preg_match( '{<base href=["\']([^"\']+)["\'][^>]+>}', $text, $matches ) === 1 ) {
 			$baseHref = $matches[1];
+			$services = MediaWikiServices::getInstance();
+			$mobileContext = $services->has( 'MobileFrontend.Context' ) ?
+				$services->get( 'MobileFrontend.Context' ) : null;
+			if ( $mobileContext !== null && $mobileContext->usingMobileDomain() ) {
+				$mobileUrl = $mobileContext->getMobileUrl( $baseHref );
+				if ( $mobileUrl !== false ) {
+					$baseHref = $mobileUrl;
+				}
+			}
 		}
 		$title = $po->getExtensionData( ParsoidParser::PARSOID_TITLE_KEY );
 		if ( !$title ) {
