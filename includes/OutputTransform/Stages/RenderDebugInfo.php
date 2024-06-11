@@ -2,6 +2,7 @@
 
 namespace MediaWiki\OutputTransform\Stages;
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\RawMessage;
@@ -9,6 +10,7 @@ use MediaWiki\Message\Message;
 use MediaWiki\OutputTransform\ContentTextTransformStage;
 use MediaWiki\Parser\ParserOutput;
 use ParserOptions;
+use Psr\Log\LoggerInterface;
 
 /**
  * Adds debug info to the output
@@ -18,7 +20,9 @@ class RenderDebugInfo extends ContentTextTransformStage {
 
 	private HookRunner $hookRunner;
 
-	public function __construct( HookContainer $hookContainer ) {
+	public function __construct(
+		ServiceOptions $options, LoggerInterface $logger, HookContainer $hookContainer
+	) {
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 

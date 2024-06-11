@@ -2,6 +2,7 @@
 
 namespace MediaWiki\OutputTransform\Stages;
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Html\HtmlHelper;
 use MediaWiki\OutputTransform\ContentTextTransformStage;
 use MediaWiki\Parser\Parser;
@@ -21,8 +22,11 @@ class ExtractBody extends ContentTextTransformStage {
 	// @phan-suppress-next-line PhanUndeclaredTypeProperty
 	private ?\MobileContext $mobileContext;
 
-	// @phan-suppress-next-line PhanUndeclaredTypeParameter
-	public function __construct( LoggerInterface $logger, ?\MobileContext $mobileContext ) {
+	public function __construct(
+		ServiceOptions $options, LoggerInterface $logger,
+		// @phan-suppress-next-line PhanUndeclaredTypeParameter
+		?\MobileContext $mobileContext
+	) {
 		$this->logger = $logger;
 		$this->mobileContext = $mobileContext;
 	}

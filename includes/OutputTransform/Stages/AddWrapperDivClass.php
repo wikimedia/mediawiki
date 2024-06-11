@@ -3,11 +3,13 @@
 namespace MediaWiki\OutputTransform\Stages;
 
 use Language;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\OutputTransform\ContentTextTransformStage;
 use MediaWiki\Parser\ParserOutput;
 use ParserOptions;
+use Psr\Log\LoggerInterface;
 
 /**
  * Wrap the output in a div with the provided class name
@@ -18,7 +20,10 @@ class AddWrapperDivClass extends ContentTextTransformStage {
 	private LanguageFactory $langFactory;
 	private Language $contentLang;
 
-	public function __construct( LanguageFactory $langFactory, Language $contentLang ) {
+	public function __construct(
+		ServiceOptions $options, LoggerInterface $logger, LanguageFactory $langFactory,
+		Language $contentLang
+	) {
 		$this->langFactory = $langFactory;
 		$this->contentLang = $contentLang;
 	}

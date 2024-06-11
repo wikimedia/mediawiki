@@ -2,10 +2,12 @@
 
 namespace MediaWiki\Tests\OutputTransform\Stages;
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\RenderDebugInfo;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
+use Psr\Log\NullLogger;
 
 /**
  * @covers \MediaWiki\OutputTransform\Stages\RenderDebugInfo
@@ -13,7 +15,11 @@ use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 class RenderDebugInfoTest extends OutputTransformStageTestBase {
 
 	public function createStage(): OutputTransformStage {
-		return new RenderDebugInfo( $this->getServiceContainer()->getHookContainer() );
+		return new RenderDebugInfo(
+			new ServiceOptions( [] ),
+			new NullLogger(),
+			$this->getServiceContainer()->getHookContainer()
+		);
 	}
 
 	public function provideShouldRun(): array {

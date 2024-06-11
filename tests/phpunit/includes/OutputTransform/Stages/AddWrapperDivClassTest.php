@@ -2,19 +2,25 @@
 
 namespace MediaWiki\Tests\OutputTransform\Stages;
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\AddWrapperDivClass;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 use MediaWiki\Tests\OutputTransform\TestUtils;
+use Psr\Log\NullLogger;
 
 /**
  * @covers \MediaWiki\OutputTransform\Stages\AddWrapperDivClass
  */
 class AddWrapperDivClassTest extends OutputTransformStageTestBase {
 	public function createStage(): OutputTransformStage {
-		return new AddWrapperDivClass( $this->getServiceContainer()->getLanguageFactory(),
-			$this->getServiceContainer()->getContentLanguage() );
+		return new AddWrapperDivClass(
+			new ServiceOptions( [] ),
+			new NullLogger(),
+			$this->getServiceContainer()->getLanguageFactory(),
+			$this->getServiceContainer()->getContentLanguage()
+		);
 	}
 
 	public function provideShouldRun(): array {

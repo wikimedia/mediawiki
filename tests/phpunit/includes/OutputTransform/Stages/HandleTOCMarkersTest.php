@@ -3,11 +3,13 @@
 namespace MediaWiki\Tests\OutputTransform\Stages;
 
 use Language;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\HandleTOCMarkers;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 use MediaWiki\Tests\OutputTransform\TestUtils;
+use Psr\Log\NullLogger;
 use Skin;
 
 /**
@@ -16,7 +18,11 @@ use Skin;
 class HandleTOCMarkersTest extends OutputTransformStageTestBase {
 
 	public function createStage(): OutputTransformStage {
-		return new HandleTOCMarkers( $this->getServiceContainer()->getTidy() );
+		return new HandleTOCMarkers(
+			new ServiceOptions( [] ),
+			new NullLogger(),
+			$this->getServiceContainer()->getTidy()
+		);
 	}
 
 	public function provideShouldRun(): array {

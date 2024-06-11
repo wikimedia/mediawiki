@@ -14,6 +14,7 @@ use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Title\TitleFactory;
 use ParserOptions;
+use Psr\Log\LoggerInterface;
 use Skin;
 
 /**
@@ -29,8 +30,7 @@ class HandleSectionLinks extends ContentTextTransformStage {
 	private TitleFactory $titleFactory;
 
 	public function __construct(
-		ServiceOptions $options,
-		TitleFactory $titleFactory
+		ServiceOptions $options, LoggerInterface $logger, TitleFactory $titleFactory
 	) {
 		$this->options = $options;
 		$this->titleFactory = $titleFactory;

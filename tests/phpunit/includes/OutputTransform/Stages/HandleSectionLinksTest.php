@@ -12,6 +12,7 @@ use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 use MediaWiki\Tests\OutputTransform\TestUtils;
 use ParserOptions;
+use Psr\Log\NullLogger;
 use Skin;
 
 /** @covers \MediaWiki\OutputTransform\Stages\HandleSectionLinks */
@@ -19,9 +20,13 @@ class HandleSectionLinksTest extends OutputTransformStageTestBase {
 
 	public function createStage(): OutputTransformStage {
 		return new HandleSectionLinks(
-			new ServiceOptions( DefaultOutputPipelineFactory::CONSTRUCTOR_OPTIONS, new HashConfig( [
-				MainConfigNames::ParserEnableLegacyHeadingDOM => false,
-			] ) ),
+			new ServiceOptions(
+				DefaultOutputPipelineFactory::CONSTRUCTOR_OPTIONS,
+				new HashConfig( [
+					MainConfigNames::ParserEnableLegacyHeadingDOM => false,
+				] )
+			),
+			new NullLogger(),
 			$this->getServiceContainer()->getTitleFactory()
 		);
 	}

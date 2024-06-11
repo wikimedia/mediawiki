@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\OutputTransform\Stages;
 
 use Language;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\HandleParsoidSectionLinks;
 use MediaWiki\Parser\ParserOutput;
@@ -19,6 +20,7 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 
 	public function createStage(): OutputTransformStage {
 		return new HandleParsoidSectionLinks(
+			new ServiceOptions( [] ),
 			new NullLogger(),
 			$this->getServiceContainer()->getTitleFactory()
 		);

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\OutputTransform\Stages;
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWikiIntegrationTestCase;
@@ -24,14 +25,20 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( MainConfigNames::MessagesDirs, $msgDirs );
 	}
 
+	public function createStage(): ParsoidLocalization {
+		return new ParsoidLocalization( new ServiceOptions( [] ), new NullLogger() );
+	}
+
 	/**
 	 * @covers \Mediawiki\OutputTransform\Stages\ParsoidLocalization::transform
 	 * @dataProvider provideDocsToLocalize
 	 */
-	public function testApplyTransformation( string $input, string $expected, string $pagelang,
-											 string $userlang, string $message ) {
+	public function testApplyTransformation(
+		string $input, string $expected, string $pagelang, string $userlang,
+		string $message
+	) {
 		$this->setUserLang( $userlang );
-		$loc = new ParsoidLocalization( new NullLogger() );
+		$loc = $this->createStage();
 		$po = PageBundleParserOutputConverter::parserOutputFromPageBundle( new PageBundle( $input ) );
 		$po->setLanguage( new Bcp47CodeValue( $pagelang ) );
 		$opts = [];
@@ -46,7 +53,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 	public function testTransformGeneratedSpans( string $key, array $params, string $expected, string $message ) {
 		// one of the messages we use resolves a link
 		$this->overrideConfigValue( MainConfigNames::ArticlePath, '/wiki/$1' );
-		$loc = new ParsoidLocalization( new NullLogger() );
+		$loc = $this->createStage();
 		$doc = ContentUtils::createDocument();
 		$p = $doc->createElement( 'p' );
 		$doc->body->appendChild( $p );
@@ -64,7 +71,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideAttrs
 	 */
 	public function testTransformGeneratedAttrs( string $key, array $params, string $expected, string $message ) {
-		$loc = new ParsoidLocalization( new NullLogger() );
+		$loc = $this->createStage();
 		$doc = ContentUtils::createDocument();
 		$a = $doc->createElement( 'a' );
 		$doc->body->appendChild( $a );
