@@ -2,8 +2,8 @@
 
 namespace MediaWiki\OutputTransform;
 
+use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\MainConfigNames;
 use MediaWiki\OutputTransform\Stages\AddRedirectHeader;
 use MediaWiki\OutputTransform\Stages\AddWrapperDivClass;
 use MediaWiki\OutputTransform\Stages\DeduplicateStyles;
@@ -26,12 +26,7 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  */
 class DefaultOutputPipelineFactory {
 
-	/** @internal */
-	public const CONSTRUCTOR_OPTIONS = [
-		MainConfigNames::ParserEnableLegacyHeadingDOM, // For HandleSectionLinks
-	];
-
-	private ServiceOptions $options;
+	private Config $config;
 	private LoggerInterface $logger;
 	private ObjectFactory $objectFactory;
 
@@ -97,11 +92,11 @@ class DefaultOutputPipelineFactory {
 	];
 
 	public function __construct(
-		ServiceOptions $options,
+		Config $config,
 		LoggerInterface $logger,
 		ObjectFactory $objectFactory
 	) {
-		$this->options = $options;
+		$this->config = $config;
 		$this->logger = $logger;
 		$this->objectFactory = $objectFactory;
 	}
@@ -115,12 +110,16 @@ class DefaultOutputPipelineFactory {
 	public function buildPipeline(): OutputTransformPipeline {
 		$otp = new OutputTransformPipeline();
 		foreach ( self::CORE_LIST as $spec ) {
+			$class = $spec['class'];
+			$svcOptions = new ServiceOptions(
+				$class::CONSTRUCTOR_OPTIONS, $this->config
+			);
 			// @phan-suppress-next-line PhanTypeInvalidCallableArraySize
 			$transform = $this->objectFactory->createObject(
 				$spec,
 				[
 					'assertClass' => OutputTransformStage::class,
-					'extraArgs' => [ $this->options, $this->logger ],
+					'extraArgs' => [ $svcOptions, $this->logger ],
 				]
 			);
 			$otp->addStage( $transform );

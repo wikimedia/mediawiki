@@ -18,7 +18,6 @@ use Wikimedia\RemexHtml\Serializer\SerializerNode;
  */
 class ExtractBody extends ContentTextTransformStage {
 
-	private LoggerInterface $logger;
 	// @phan-suppress-next-line PhanUndeclaredTypeProperty
 	private ?\MobileContext $mobileContext;
 
@@ -27,7 +26,7 @@ class ExtractBody extends ContentTextTransformStage {
 		// @phan-suppress-next-line PhanUndeclaredTypeParameter
 		?\MobileContext $mobileContext
 	) {
-		$this->logger = $logger;
+		parent::__construct( $options, $logger );
 		$this->mobileContext = $mobileContext;
 	}
 

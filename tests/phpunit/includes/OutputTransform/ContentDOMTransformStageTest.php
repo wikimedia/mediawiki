@@ -2,11 +2,13 @@
 
 namespace MediaWiki\OutputTransform;
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Tests\OutputTransform\DummyDOMTransformStage;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\NullLogger;
 use Wikimedia\Parsoid\Core\PageBundle;
 
 class ContentDOMTransformStageTest extends TestCase {
@@ -20,7 +22,10 @@ class ContentDOMTransformStageTest extends TestCase {
 		$html = "<div>some output</div>";
 		$po = new ParserOutput( $html );
 		PageBundleParserOutputConverter::applyPageBundleDataToParserOutput( new PageBundle( $html ), $po );
-		$transform = new DummyDOMTransformStage();
+		$transform = new DummyDOMTransformStage(
+			new ServiceOptions( [] ),
+			new NullLogger()
+		);
 		$options = [];
 		$po = $transform->transform( $po, null, $options );
 		$json = MediaWikiServices::getInstance()->getJsonCodec()->serialize( $po );

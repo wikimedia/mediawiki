@@ -2,11 +2,13 @@
 
 namespace MediaWiki\Tests\OutputTransform\Stages;
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\DeduplicateStyles;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 use MediaWiki\Tests\OutputTransform\TestUtils;
+use Psr\Log\NullLogger;
 
 /**
  * @covers \MediaWiki\OutputTransform\Stages\DeduplicateStyles
@@ -14,7 +16,10 @@ use MediaWiki\Tests\OutputTransform\TestUtils;
 class DeduplicateStylesTest extends OutputTransformStageTestBase {
 
 	public function createStage(): OutputTransformStage {
-		return new DeduplicateStyles();
+		return new DeduplicateStyles(
+			new ServiceOptions( [] ),
+			new NullLogger()
+		);
 	}
 
 	public function provideShouldRun(): array {

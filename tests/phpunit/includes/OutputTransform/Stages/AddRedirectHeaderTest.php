@@ -2,10 +2,12 @@
 
 namespace MediaWiki\Tests\OutputTransform\Stages;
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\AddRedirectHeader;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
+use Psr\Log\NullLogger;
 
 /**
  * @covers \MediaWiki\OutputTransform\Stages\AddRedirectHeader
@@ -15,7 +17,10 @@ use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 class AddRedirectHeaderTest extends OutputTransformStageTestBase {
 
 	public function createStage(): OutputTransformStage {
-		return new AddRedirectHeader();
+		return new AddRedirectHeader(
+			new ServiceOptions( [] ),
+			new NullLogger()
+		);
 	}
 
 	public function provideShouldRun(): iterable {

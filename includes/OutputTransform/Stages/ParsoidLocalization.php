@@ -2,12 +2,10 @@
 
 namespace MediaWiki\OutputTransform\Stages;
 
-use MediaWiki\Config\ServiceOptions;
 use MediaWiki\OutputTransform\ContentDOMTransformStage;
 use Message;
 use ParserOptions;
 use ParserOutput;
-use Psr\Log\LoggerInterface;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Parsoid\DOM\Document;
@@ -24,12 +22,6 @@ use Wikimedia\Parsoid\Utils\DOMUtils;
  * @internal
  */
 class ParsoidLocalization extends ContentDOMTransformStage {
-
-	private LoggerInterface $logger;
-
-	public function __construct( ServiceOptions $options, LoggerInterface $logger ) {
-		$this->logger = $logger;
-	}
 
 	public function transformDOM(
 		Document $doc, ParserOutput $po, ?ParserOptions $popts, array &$options

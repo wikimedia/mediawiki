@@ -1,10 +1,12 @@
 <?php
 namespace MediaWiki\Tests\OutputTransform\Stages;
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\ExpandToAbsoluteUrls;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
+use Psr\Log\NullLogger;
 
 /**
  * @covers \MediaWiki\OutputTransform\Stages\ExpandToAbsoluteUrls
@@ -12,7 +14,10 @@ use MediaWiki\Tests\OutputTransform\OutputTransformStageTestBase;
 class ExpandToAbsoluteUrlsTest extends OutputTransformStageTestBase {
 
 	public function createStage(): OutputTransformStage {
-		return new ExpandToAbsoluteUrls();
+		return new ExpandToAbsoluteUrls(
+			new ServiceOptions( [] ),
+			new NullLogger()
+		);
 	}
 
 	public function provideShouldRun(): array {

@@ -5,7 +5,6 @@ namespace MediaWiki\Tests\OutputTransform\Stages;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
-use MediaWiki\OutputTransform\DefaultOutputPipelineFactory;
 use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\HandleSectionLinks;
 use MediaWiki\Parser\ParserOutput;
@@ -21,7 +20,7 @@ class HandleSectionLinksTest extends OutputTransformStageTestBase {
 	public function createStage(): OutputTransformStage {
 		return new HandleSectionLinks(
 			new ServiceOptions(
-				DefaultOutputPipelineFactory::CONSTRUCTOR_OPTIONS,
+				HandleSectionLinks::CONSTRUCTOR_OPTIONS,
 				new HashConfig( [
 					MainConfigNames::ParserEnableLegacyHeadingDOM => false,
 				] )
