@@ -20,9 +20,9 @@
 			"Şeyx Şamil"
 		]
 	},
-	"preferences": "Parametrlər",
-	"prefsnologintext2": "Parametrləri yadda saxlamaq üçün istifadəçi hesabınıza daxil olun.",
-	"searchprefs": "Axtarış seçimləri",
+	"preferences": "Nizamlamalar",
+	"prefsnologintext2": "Nizamlamaları yadda saxlamaq üçün istifadəçi hesabınıza daxil olun.",
+	"searchprefs": "Nizamlamalarda axtar",
 	"searchprefs-noresults": "Nəticə yoxdur",
 	"searchprefs-results": "$1 {{PLURAL:$1|nəticə}}",
 	"saveprefs": "Yadda saxla",
@@ -231,7 +231,7 @@
 	"prefs-description-searchoptions": "Avtomatik tamamlama və nəticələrin necə işlədiyini seçin.",
 	"prefs-searchmisc": "Ümumi",
 	"searchlimit-label": "Hər səhifədə göstəriləcək axtarış nəticəsi sayı:",
-	"searchlimit-help": "Maksimum: 500",
+	"searchlimit-help": "Maksimum: $1",
 	"search-thumbnail-extra-namespaces-label": "İş masası rejimində Xüsusi:Axtar səhifəsində miniatürləri göstər",
 	"prefs-advancedsearchoptions": "Ətraflı variantlar",
 	"prefs-reset-intro": "Bu səhifəni parametrlər ilkin vəziyyətə gətirmək üçün istifadə edə bilərsiniz. Bu əməliyyat geri qaytarıla bilməz.",

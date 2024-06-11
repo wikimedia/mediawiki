@@ -2490,6 +2490,7 @@
 	"whatlinkshere-page": "Sivu:",
 	"linkshere": "Seuraavilta sivuilta on linkki sivulle <strong>$2</strong>:",
 	"nolinkshere": "Sivulle <strong>$2</strong> ei ole linkkejä.",
+	"nolinkshere-filter": "Yksikään sivu ei linkitä sivulle <strong>$2</strong> nykyisillä asetuksilla.",
 	"nolinkshere-ns": "Sivulle <strong>$2</strong> ei ole linkkejä valitussa nimiavaruudessa.",
 	"isredirect": "ohjaussivu",
 	"istemplate": "sisällytetty",
