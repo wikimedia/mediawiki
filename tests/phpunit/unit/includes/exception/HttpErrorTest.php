@@ -40,7 +40,7 @@ class HttpErrorTest extends MediaWikiUnitTestCase {
 		return [
 			[
 				[
-					'head html' => '<head><title>Server Error 123</title></head>',
+					'head html' => '<head><title>Server Error 123</title>',
 					'body html' => '<body><h1>Server Error 123</h1>'
 						. '<p>a server error!</p></body>'
 				],
@@ -49,7 +49,7 @@ class HttpErrorTest extends MediaWikiUnitTestCase {
 			],
 			[
 				[
-					'head html' => '<head><title>loginerror</title></head>',
+					'head html' => '<head><title>loginerror</title>',
 					'body html' => '<body><h1>loginerror</h1>'
 					. '<p>suspicious-userlogout</p></body>'
 				],
@@ -58,7 +58,7 @@ class HttpErrorTest extends MediaWikiUnitTestCase {
 			],
 			[
 				[
-					'head html' => '<html><head><title>Internal Server Error</title></head>',
+					'head html' => '<html><head><title>Internal Server Error</title>',
 					'body html' => '<body><h1>Internal Server Error</h1>'
 						. '<p>a server error!</p></body></html>'
 				],

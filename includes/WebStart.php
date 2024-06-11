@@ -102,7 +102,7 @@ if ( !defined( 'MW_API' ) && !defined( 'MW_REST_API' ) &&
 	$content = <<<HTML
 <!DOCTYPE html>
 <html>
-<head><meta charset="UTF-8" /></head>
+<head><meta charset="UTF-8" /><meta name="color-scheme" content="light dark" /></head>
 <body>
 $errorHtml
 </body>

@@ -136,6 +136,7 @@ class DumpRenderer extends Maintenance {
 			"<html lang=\"en\" dir=\"ltr\">\n" .
 			"<head>\n" .
 			"<meta charset=\"UTF-8\" />\n" .
+			"<meta name=\"color-scheme\" content=\"light dark\">" .
 			"<title>" . htmlspecialchars( $display, ENT_COMPAT ) . "</title>\n" .
 			"</head>\n" .
 			"<body>\n" .

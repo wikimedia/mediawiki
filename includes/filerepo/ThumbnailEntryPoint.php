@@ -591,6 +591,7 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 <!DOCTYPE html>
 <html><head>
 <meta charset="UTF-8" />
+<meta name="color-scheme" content="light dark" />
 <title>Error generating thumbnail</title>
 </head>
 <body>
