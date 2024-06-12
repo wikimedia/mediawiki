@@ -51,8 +51,9 @@ function escapeIdInternal( str, mode ) {
  * Library providing useful common skin-agnostic utility functions. Please see
  * [mediawiki.util]{@link module:mediawiki.util}.
  *
+ * Alias for the [mediawiki.util]{@link module:mediawiki.util} module.
+ *
  * @namespace mw.util
- * @classdesc Alias for the [mediawiki.util]{@link module:mediawiki.util} module.
  */
 
 /**
