@@ -20,10 +20,10 @@
 	},
 	"plugins": [
 		"node_modules/jsdoc-wmf-theme/plugins/allow-dots-in-modules",
-		"node_modules/jsdoc-wmf-theme/plugins/betterlinks",
+		"plugins/markdown",
 		"node_modules/jsdoc-wmf-theme/plugins/externals",
 		"node_modules/jsdoc-wmf-theme/plugins/summarize",
-		"plugins/markdown"
+		"node_modules/jsdoc-wmf-theme/plugins/betterlinks"
 	],
 	"source": {
 		"include": [
