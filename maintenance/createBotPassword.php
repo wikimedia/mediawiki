@@ -128,10 +128,8 @@ class CreateBotPassword extends Maintenance {
 			$this->output( "Success.\n" );
 			$this->output( "Log in using username:'{$username}@{$appId}' and password:'{$password}'.\n" );
 		} else {
-			$this->fatalError(
-				"Bot password creation failed. Does this appid already exist for the user perhaps?\n\nErrors:\n" .
-				print_r( $status->getErrors(), true )
-			);
+			$this->error( "Bot password creation failed. Does this appid already exist for the user perhaps?" );
+			$this->fatalError( $status );
 		}
 	}
 

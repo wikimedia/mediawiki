@@ -55,7 +55,7 @@ class AddChangeTag extends Maintenance {
 		);
 
 		if ( !$status->isGood() ) {
-			$this->fatalError( $status->getMessage( false, false, 'en' )->text() );
+			$this->fatalError( $status );
 		}
 
 		$this->output( "$tag was created.\n" );

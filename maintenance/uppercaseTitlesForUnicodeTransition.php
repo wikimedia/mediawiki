@@ -403,10 +403,8 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 		$movePage = $mpFactory->newMovePage( $oldTitle, $newTitle );
 		$status = $movePage->isValidMove();
 		if ( !$status->isOK() ) {
-			$this->error(
-				"Invalid move {$oldTitle->getPrefixedText()} → {$newTitle->getPrefixedText()}: "
-				. $status->getMessage( false, false, 'en' )->useDatabase( false )->plain()
-			);
+			$this->error( "Invalid move {$oldTitle->getPrefixedText()} → {$newTitle->getPrefixedText()}:" );
+			$this->error( $status );
 			return false;
 		}
 
@@ -424,10 +422,8 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 
 		$status = $movePage->move( $this->user, $this->reason, false, $this->tags );
 		if ( !$status->isOK() ) {
-			$this->error(
-				"Move {$oldTitle->getPrefixedText()} → {$newTitle->getPrefixedText()} failed: "
-				. $status->getMessage( false, false, 'en' )->useDatabase( false )->plain()
-			);
+			$this->error( "Move {$oldTitle->getPrefixedText()} → {$newTitle->getPrefixedText()} failed:" );
+			$this->error( $status );
 		}
 		$this->output( "Renamed {$oldTitle->getPrefixedText()} → {$newTitle->getPrefixedText()}\n" );
 
@@ -452,10 +448,8 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 				->forceImmediate( true )
 				->deleteUnsafe( $deletionReason );
 			if ( !$status->isOK() ) {
-				$this->error(
-					"Deletion of {$newTitle->getPrefixedText()} failed: "
-					. $status->getMessage( false, false, 'en' )->useDatabase( false )->plain()
-				);
+				$this->error( "Deletion of {$newTitle->getPrefixedText()} failed:" );
+				$this->error( $status );
 				return false;
 			}
 			$this->output( "Deleted {$newTitle->getPrefixedText()}\n" );

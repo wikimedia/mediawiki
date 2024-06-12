@@ -134,7 +134,7 @@ class CreateAndPromote extends Maintenance {
 				$status = $user->checkPasswordValidity( $password );
 
 				if ( !$status->isGood() ) {
-					$this->fatalError( $status->getMessage( false, false, 'en' )->text() );
+					$this->fatalError( $status );
 				}
 			}
 
@@ -146,7 +146,7 @@ class CreateAndPromote extends Maintenance {
 				false
 			);
 			if ( !$status->isGood() ) {
-				$this->fatalError( $status->getMessage( false, false, 'en' )->text() );
+				$this->fatalError( $status );
 			}
 		}
 

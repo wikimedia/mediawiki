@@ -490,13 +490,26 @@ abstract class Maintenance {
 	 * Throw an error to the user. Doesn't respect --quiet, so don't use
 	 * this for non-error output
 	 * @stable to override
-	 * @param string $err The error to display
+	 * @param string|StatusValue $err The error to display
 	 * @param int $die Deprecated since 1.31, use Maintenance::fatalError() instead
 	 */
 	protected function error( $err, $die = 0 ) {
 		if ( intval( $die ) !== 0 ) {
 			wfDeprecated( __METHOD__ . '( $err, $die )', '1.31' );
 			$this->fatalError( $err, intval( $die ) );
+		}
+		if ( $err instanceof StatusValue ) {
+			foreach ( [ 'warning' => 'Warning: ', 'error' => 'Error: ' ] as $type => $prefix ) {
+				foreach ( $err->getMessages( $type ) as $msg ) {
+					$this->error(
+						$prefix . wfMessage( $msg )
+							->inLanguage( 'en' )
+							->useDatabase( false )
+							->text()
+					);
+				}
+			}
+			return;
 		}
 		$this->outputChanneled( false );
 		if (
@@ -513,7 +526,7 @@ abstract class Maintenance {
 	 * Output a message and terminate the current script.
 	 *
 	 * @stable to override
-	 * @param string $msg Error message
+	 * @param string|StatusValue $msg Error message
 	 * @param int $exitCode PHP exit status. Should be in range 1-254.
 	 * @since 1.31
 	 * @return never

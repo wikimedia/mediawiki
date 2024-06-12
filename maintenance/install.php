@@ -141,7 +141,7 @@ class CommandLineInstaller extends Maintenance {
 		try {
 			$installer = InstallerOverrides::getCliInstaller( $siteName, $adminName, $this->parameters->getOptions() );
 		} catch ( InstallException $e ) {
-			$this->error( $e->getStatus()->getMessage( false, false, 'en' )->text() . "\n" );
+			$this->error( $e->getStatus() );
 			return false;
 		}
 

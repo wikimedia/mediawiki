@@ -151,9 +151,8 @@ class RenameUser extends Maintenance {
 			if ( $status->isGood() ) {
 				$numRenames++;
 			} else {
-				$this->output( "Failed to rename $kind page: " .
-					$status->getWikiText( false, false, 'en' ) .
-					"\n" );
+				$this->output( "Failed to rename $kind page\n" );
+				$this->error( $status );
 			}
 		}
 
@@ -162,8 +161,8 @@ class RenameUser extends Maintenance {
 			if ( $status->isGood() ) {
 				$numRenames++;
 			} else {
-				$this->output( "Failed to rename $kind subpage \"$titleText\": " .
-					$status->getWikiText( false, false, 'en' ) . "\n" );
+				$this->output( "Failed to rename $kind subpage \"$titleText\"\n" );
+				$this->error( $status );
 			}
 		}
 		return $numRenames;

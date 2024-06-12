@@ -99,8 +99,8 @@ class FileOpPerfTest extends Maintenance {
 		$start = microtime( true );
 		$status = $backend->$method( $ops1, $opts );
 		$e = ( microtime( true ) - $start ) * 1000;
-		if ( $status->getErrorsArray() ) {
-			print_r( $status->getErrorsArray() );
+		if ( !$status->isGood() ) {
+			$this->error( $status );
 			return;
 		}
 		$this->output( $backend->getName() . ": Stored " . count( $ops1 ) . " files in $e ms.\n" );
@@ -108,8 +108,8 @@ class FileOpPerfTest extends Maintenance {
 		$start = microtime( true );
 		$status = $backend->$method( $ops2, $opts );
 		$e = ( microtime( true ) - $start ) * 1000;
-		if ( $status->getErrorsArray() ) {
-			print_r( $status->getErrorsArray() );
+		if ( !$status->isGood() ) {
+			$this->error( $status );
 			return;
 		}
 		$this->output( $backend->getName() . ": Copied " . count( $ops2 ) . " files in $e ms.\n" );
@@ -117,8 +117,8 @@ class FileOpPerfTest extends Maintenance {
 		$start = microtime( true );
 		$status = $backend->$method( $ops3, $opts );
 		$e = ( microtime( true ) - $start ) * 1000;
-		if ( $status->getErrorsArray() ) {
-			print_r( $status->getErrorsArray() );
+		if ( !$status->isGood() ) {
+			$this->error( $status );
 			return;
 		}
 		$this->output( $backend->getName() . ": Moved " . count( $ops3 ) . " files in $e ms.\n" );
@@ -126,8 +126,8 @@ class FileOpPerfTest extends Maintenance {
 		$start = microtime( true );
 		$status = $backend->$method( $ops4, $opts );
 		$e = ( microtime( true ) - $start ) * 1000;
-		if ( $status->getErrorsArray() ) {
-			print_r( $status->getErrorsArray() );
+		if ( !$status->isGood() ) {
+			$this->error( $status );
 			return;
 		}
 		$this->output( $backend->getName() . ": Deleted " . count( $ops4 ) . " files in $e ms.\n" );
@@ -135,8 +135,8 @@ class FileOpPerfTest extends Maintenance {
 		$start = microtime( true );
 		$status = $backend->$method( $ops5, $opts );
 		$e = ( microtime( true ) - $start ) * 1000;
-		if ( $status->getErrorsArray() ) {
-			print_r( $status->getErrorsArray() );
+		if ( !$status->isGood() ) {
+			$this->error( $status );
 			return;
 		}
 		$this->output( $backend->getName() . ": Deleted " . count( $ops5 ) . " files in $e ms.\n" );
