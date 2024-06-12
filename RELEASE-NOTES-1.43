@@ -58,6 +58,8 @@ For notes on 1.42.x and older releases, see HISTORY.
 === New user-facing features in 1.43 ===
 
 * (T338341) Support reading XMP and EXIF from WebP files
+* (T365636) Wiki's with wgAllowExternalImages enabled now detect urls
+  with AVIF, SVG and WebP images.
 * (T242346) Special:TalkPage is a new special page that will redirect to the
   associated talk namespace page, e.g. [[Special:TalkPage/Foo]] redirects to
   [[Talk:Foo]]; [[Special:TalkPage/Project:Foo]] goes to [[Project talk:Foo]].
