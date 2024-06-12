@@ -48,7 +48,6 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use Message;
 use MessageSpecifier;
-use ObjectCache;
 use RepoGroup;
 use UnregisteredLocalFile;
 use Wikimedia\AtEase\AtEase;
@@ -366,7 +365,9 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 	protected function generateThumbnail( File $file, array $params, $thumbName, $thumbPath ) {
 		$attemptFailureEpoch = $this->getConfig( MainConfigNames::AttemptFailureEpoch );
 
-		$cache = ObjectCache::getLocalClusterInstance();
+		$services = MediaWikiServices::getInstance()->getObjectCacheFactory();
+
+		$cache = $services->getLocalClusterInstance();
 		$key = $cache->makeKey(
 			'attempt-failures',
 			$attemptFailureEpoch,

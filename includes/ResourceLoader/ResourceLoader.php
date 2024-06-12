@@ -49,7 +49,6 @@ use MediaWiki\WikiMap\WikiMap;
 use MWExceptionHandler;
 use MWExceptionRenderer;
 use Net_URL2;
-use ObjectCache;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -521,7 +520,8 @@ class ResourceLoader implements LoggerAwareInterface {
 			DeferredUpdates::addCallableUpdate( function () {
 				$updatesByEntity = $this->depStoreUpdateBuffer;
 				$this->depStoreUpdateBuffer = [];
-				$cache = ObjectCache::getLocalClusterInstance();
+				$cache = MediaWikiServices::getInstance()
+					->getObjectCacheFactory()->getLocalClusterInstance();
 
 				$scopeLocks = [];
 				$depsByEntity = [];

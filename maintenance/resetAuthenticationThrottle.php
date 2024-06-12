@@ -24,6 +24,7 @@
 use MediaWiki\Auth\Throttler;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\IPUtils;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -113,9 +114,11 @@ class ResetAuthenticationThrottle extends Maintenance {
 			return;
 		}
 
+		$objectCacheFactory = $this->getServiceContainer()->getInstance()->getObjectCacheFactory();
+
 		$throttler = new Throttler( $passwordAttemptThrottle, [
 			'type' => 'password',
-			'cache' => ObjectCache::getLocalClusterInstance(),
+			'cache' => $objectCacheFactory->getLocalClusterInstance(),
 		] );
 		if ( $rawUsername !== null ) {
 			$usernames = $this->getServiceContainer()->getAuthManager()
@@ -132,7 +135,7 @@ class ResetAuthenticationThrottle extends Maintenance {
 
 		$botPasswordThrottler = new Throttler( $passwordAttemptThrottle, [
 			'type' => 'botpassword',
-			'cache' => ObjectCache::getLocalClusterInstance(),
+			'cache' => $objectCacheFactory->getLocalClusterInstance(),
 		] );
 		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable T240141
 		$botPasswordThrottler->clear( $username, $ip );
@@ -159,7 +162,8 @@ class ResetAuthenticationThrottle extends Maintenance {
 		}
 		$throttler = new Throttler( $accountCreationThrottle, [
 			'type' => 'acctcreate',
-			'cache' => ObjectCache::getLocalClusterInstance(),
+			'cache' => MediaWikiServices::getInstance()->getObjectCacheFactory()
+				->getLocalClusterInstance(),
 		] );
 
 		$throttler->clear( null, $ip );
@@ -177,7 +181,8 @@ class ResetAuthenticationThrottle extends Maintenance {
 		}
 		$throttler = new Throttler( $tempAccountCreationThrottle, [
 			'type' => 'tempacctcreate',
-			'cache' => ObjectCache::getLocalClusterInstance(),
+			'cache' => MediaWikiServices::getInstance()->getObjectCacheFactory()
+				->getLocalClusterInstance(),
 		] );
 
 		$throttler->clear( null, $ip );
@@ -197,7 +202,8 @@ class ResetAuthenticationThrottle extends Maintenance {
 		}
 		$throttler = new Throttler( $tempAccountNameAcquisitionThrottle, [
 			'type' => 'tempacctnameacquisition',
-			'cache' => ObjectCache::getLocalClusterInstance(),
+			'cache' => MediaWikiServices::getInstance()->getObjectCacheFactory()
+				->getLocalClusterInstance(),
 		] );
 
 		$throttler->clear( null, $ip );

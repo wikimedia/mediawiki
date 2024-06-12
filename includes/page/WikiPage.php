@@ -2878,7 +2878,8 @@ class WikiPage implements Page, PageRecord {
 			if ( $this->getLinksTimestamp() > $this->getTouched() ) {
 				// If a page is uncacheable, do not keep spamming a job for it.
 				// Although it would be de-duplicated, it would still waste I/O.
-				$cache = ObjectCache::getLocalClusterInstance();
+				$services = MediaWikiServices::getInstance()->getObjectCacheFactory();
+				$cache = $services->getLocalClusterInstance();
 				$key = $cache->makeKey( 'dynamic-linksupdate', 'last', $this->getId() );
 				$ttl = max( $parserOutput->getCacheExpiry(), 3600 );
 				if ( $cache->add( $key, time(), $ttl ) ) {

@@ -85,7 +85,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 	public function testObjectCache() {
 		$this->assertSame( 'hash', $this->getServiceContainer()->getMainConfig()->get( MainConfigNames::MainCacheType ) );
 
-		$this->assertInstanceOf( HashBagOStuff::class, ObjectCache::getLocalClusterInstance() );
+		$this->assertInstanceOf( HashBagOStuff::class, $this->getServiceContainer()->getObjectCacheFactory()->getLocalClusterInstance() );
 		$this->assertInstanceOf( HashBagOStuff::class, $this->getServiceContainer()->getObjectCacheFactory()->getLocalServerInstance() );
 		$this->assertInstanceOf( HashBagOStuff::class, $this->getServiceContainer()->getObjectCacheFactory()->getInstance( CACHE_ANYTHING ) );
 		$this->assertInstanceOf( HashBagOStuff::class, $this->getServiceContainer()->getObjectCacheFactory()->getInstance( CACHE_ACCEL ) );
@@ -213,27 +213,29 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 
 	public function testSetMainCache() {
 		// Cache should be set to a hash by default.
-		$this->assertInstanceOf( HashBagOStuff::class, ObjectCache::getLocalClusterInstance() );
+		$this->assertInstanceOf( HashBagOStuff::class, $this->getServiceContainer()
+			->getObjectCacheFactory()->getLocalClusterInstance() );
 
 		// Use HashBagOStuff.
 		$this->setMainCache( CACHE_HASH );
-		$cache = ObjectCache::getLocalClusterInstance();
+		$cache = $this->getServiceContainer()->getObjectCacheFactory()->getLocalClusterInstance();
 		$this->assertInstanceOf( HashBagOStuff::class, $cache );
 
 		// Install different HashBagOStuff
 		$cache = new HashBagOStuff();
 		$name = $this->setMainCache( $cache );
-		$this->assertSame( $cache, ObjectCache::getLocalClusterInstance() );
+		$this->assertSame( $cache, $this->getServiceContainer()->getObjectCacheFactory()->getLocalClusterInstance() );
 		$this->assertSame( $cache, $this->getServiceContainer()->getObjectCacheFactory()->getInstance( $name ) );
 
 		// Our custom cache object should not replace an existing entry.
 		$this->assertNotSame( $cache, $this->getServiceContainer()->getObjectCacheFactory()->getInstance( CACHE_HASH ) );
 		$this->setMainCache( CACHE_HASH );
-		$this->assertNotSame( $cache, ObjectCache::getLocalClusterInstance() );
+		$this->assertNotSame( $cache, $this->getServiceContainer()->getObjectCacheFactory()->getLocalClusterInstance() );
 
 		// We should be able to disable the cache.
 		$this->assertSame( CACHE_NONE, $this->setMainCache( CACHE_NONE ) );
-		$this->assertInstanceOf( EmptyBagOStuff::class, ObjectCache::getLocalClusterInstance() );
+		$this->assertInstanceOf( EmptyBagOStuff::class, $this->getServiceContainer()
+			->getObjectCacheFactory()->getLocalClusterInstance() );
 	}
 
 	public function testOverrideMwServices() {
