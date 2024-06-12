@@ -7,6 +7,7 @@ use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\DBLanguageError;
 use Wikimedia\Rdbms\Platform\SqlitePlatform;
 
 /**
@@ -138,4 +139,90 @@ class SqlitePlatformTest extends TestCase {
 		$this->assertEquals( '"foo_bar"', $platform->tableName( 'bar' ) );
 	}
 
+	public static function provideTableIdentifiers() {
+		// No DB name set
+		yield [
+			'table',
+			new DatabaseDomain( null, null, '' ),
+			[ null, 'table' ],
+			null
+		];
+		yield [
+			'database.table',
+			new DatabaseDomain( null, null, '' ),
+			[ 'database', 'table' ],
+			null
+		];
+		yield [
+			'database.schema.table',
+			new DatabaseDomain( null, null, '' ),
+			[ 'database', 'table' ],
+			DBLanguageError::class
+		];
+		yield [
+			'"database"."schema"."table"',
+			new DatabaseDomain( null, null, '' ),
+			[ 'database', 'table' ],
+			DBLanguageError::class
+		];
+		yield [
+			'"database"."table"',
+			new DatabaseDomain( null, null, '' ),
+			[ 'database', 'table' ],
+			null
+		];
+		// DB name set
+		yield [
+			'table',
+			new DatabaseDomain( 'database', null, '' ),
+			[ 'database', 'table' ],
+			null
+		];
+		yield [
+			'database.table',
+			new DatabaseDomain( 'database', null, '' ),
+			[ 'database', 'table' ],
+			null
+		];
+		yield [
+			'database.schema.table',
+			new DatabaseDomain( 'database', null, '' ),
+			[ 'database', 'table' ],
+			DBLanguageError::class
+		];
+		yield [
+			'"database"."schema"."table"',
+			new DatabaseDomain( 'database', null, '' ),
+			[ 'database', 'table' ],
+			DBLanguageError::class
+		];
+		yield [
+			'"database"."table"',
+			new DatabaseDomain( 'database', null, '' ),
+			[ 'database', 'table' ],
+			null
+		];
+	}
+
+	/**
+	 * @dataProvider provideTableIdentifiers
+	 */
+	public function testGetDatabaseAndTableIdentifiers(
+		$tableName,
+		$domain,
+		$expectedIdentifiers,
+		$expectedException
+	) {
+		$platform = new SqlitePlatform( new AddQuoterMock(), null, $domain );
+
+		if ( $expectedException !== null ) {
+			$this->expectException( DBLanguageError::class );
+			$platform->getDatabaseAndTableIdentifier( $tableName );
+		} else {
+			$this->assertSame(
+				$expectedIdentifiers,
+				$platform->getDatabaseAndTableIdentifier( $tableName )
+			);
+		}
+	}
 }

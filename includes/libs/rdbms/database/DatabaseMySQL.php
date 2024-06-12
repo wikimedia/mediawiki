@@ -314,25 +314,17 @@ class DatabaseMySQL extends Database {
 	}
 
 	public function tableExists( $table, $fname = __METHOD__ ) {
-		$components = $this->platform->qualifiedTableComponents( $table );
-		if ( count( $components ) === 1 ) {
-			$db = $this->currentDomain->getDatabase();
-			$tableName = $components[0];
-		} elseif ( count( $components ) === 2 ) {
-			[ $db, $tableName ] = $components;
-		} else {
-			throw new DBLanguageError( 'Too many table components' );
-		}
-
-		if ( isset( $this->sessionTempTables[$tableName] ) ) {
+		[ $db, $pt ] = $this->platform->getDatabaseAndTableIdentifier( $table );
+		if ( isset( $this->sessionTempTables[$db][$pt] ) ) {
 			return true; // already known to exist and won't be found in the query anyway
 		}
+
 		return (bool)$this->newSelectQueryBuilder()
 			->select( '1' )
 			->from( 'information_schema.tables' )
 			->where( [
 				'table_schema' => $db,
-				'table_name' => $tableName,
+				'table_name' => $pt,
 			] )
 			->caller( $fname )
 			->fetchField();

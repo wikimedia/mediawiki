@@ -10,6 +10,8 @@ use Wikimedia\Rdbms\DBSessionStateError;
 use Wikimedia\Rdbms\DBTransactionStateError;
 use Wikimedia\Rdbms\DBUnexpectedError;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
+use Wikimedia\Rdbms\Query;
 use Wikimedia\Rdbms\TransactionManager;
 
 /**
@@ -543,5 +545,81 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 			->ignore()
 			->row( [ 'ls_field' => 'test', 'ls_value' => null, 'ls_log_id' => 1 ] )
 			->execute();
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\DatabaseMySQL::query
+	 * @covers \Wikimedia\Rdbms\DatabaseMySQL::dropTable
+	 */
+	public function testTempTableDomains() {
+		global $wgDBname;
+
+		$table = 'temp_test_tbl';
+
+		$this->conn->selectDomain( $wgDBname . '-xxx1_' );
+		$this->assertFalse( $this->conn->tableExists( $table ) );
+
+		$query = new Query(
+			"CREATE TEMPORARY TABLE " . $this->conn->tableName( $table ) .
+			" (n integer not null unique key)",
+			ISQLPlatform::QUERY_CHANGE_SCHEMA,
+			"CREATE TEMPORARY",
+			$table
+		);
+		$this->conn->query( $query, __METHOD__ );
+		$this->assertTrue( $this->conn->tableExists( $table ) );
+
+		$this->conn->selectDomain( $wgDBname . '-xxx2_' );
+		$this->assertFalse( $this->conn->tableExists( $table ) );
+
+		$query = new Query(
+			"CREATE TEMPORARY TABLE " . $this->conn->tableName( $table ) .
+			" (n integer not null unique key)",
+			ISQLPlatform::QUERY_CHANGE_SCHEMA,
+			"CREATE TEMPORARY",
+			$table
+		);
+		$this->conn->query( $query, __METHOD__ );
+		$this->assertTrue( $this->conn->tableExists( $table ) );
+
+		$this->conn->selectDomain( $wgDBname . '-xxx1_' );
+		$this->conn->dropTable( $table );
+		$this->assertFalse( $this->conn->tableExists( $table ) );
+
+		$this->conn->selectDomain( $wgDBname . '-xxx2_' );
+		$this->conn->dropTable( $table );
+		$this->assertFalse( $this->conn->tableExists( $table ) );
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\DatabaseMySQL::query
+	 * @covers \Wikimedia\Rdbms\DatabaseMySQL::dropTable
+	 */
+	public function testTempTableDomainsTableWithDot() {
+		global $wgDBname;
+
+		$table = '.temp_test_tbl';
+
+		$this->conn->selectDomain( $wgDBname . '-xxx1_' );
+		$this->assertFalse( $this->conn->tableExists( $table ) );
+
+		$query = new Query(
+			"CREATE TEMPORARY TABLE " . $this->conn->tableName( $table ) .
+			" (n integer not null unique key)",
+			ISQLPlatform::QUERY_CHANGE_SCHEMA,
+			"CREATE TEMPORARY",
+			$table
+		);
+		$this->conn->query( $query, __METHOD__ );
+		$this->assertTrue( $this->conn->tableExists( $table ) );
+
+		$this->conn->selectDomain( $wgDBname . '-xxx2_' );
+		$this->assertTrue( $this->conn->tableExists( $table ) );
+
+		$this->conn->dropTable( $table );
+		$this->assertFalse( $this->conn->tableExists( $table ) );
+
+		$this->conn->selectDomain( $wgDBname . '-xxx1_' );
+		$this->assertFalse( $this->conn->tableExists( $table ) );
 	}
 }

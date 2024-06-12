@@ -196,7 +196,7 @@ class DatabaseSqlite extends Database {
 		}
 
 		$this->currentDomain = new DatabaseDomain( $db, null, $tablePrefix );
-		$this->platform->setPrefix( $tablePrefix );
+		$this->platform->setCurrentDomain( $this->currentDomain );
 
 		try {
 			// Enforce LIKE to be case sensitive, just like MySQL
@@ -470,12 +470,12 @@ class DatabaseSqlite extends Database {
 	}
 
 	public function tableExists( $table, $fname = __METHOD__ ) {
-		$tableRaw = $this->tableName( $table, 'raw' );
-		if ( isset( $this->sessionTempTables[$tableRaw] ) ) {
+		[ $db, $pt ] = $this->platform->getDatabaseAndTableIdentifier( $table );
+		if ( isset( $this->sessionTempTables[$db][$pt] ) ) {
 			return true; // already known to exist
 		}
 
-		$encTable = $this->addQuotes( $tableRaw );
+		$encTable = $this->addQuotes( $pt );
 		$query = new Query(
 			"SELECT 1 FROM sqlite_master WHERE type='table' AND name=$encTable",
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
