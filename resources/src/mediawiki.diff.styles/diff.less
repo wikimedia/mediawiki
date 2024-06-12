@@ -12,9 +12,6 @@
 @import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins.less';
 
-@diffInserted: #a3d3ff;
-@diffDeleted: #ffe49c;
-
 /* stylelint-disable selector-class-pattern */
 
 .diff {
@@ -95,13 +92,13 @@
 .mw-diff-inline-added ins,
 .mw-diff-inline-changed ins,
 .mw-diff-inline-moved ins {
-	background: @diffInserted;
+	background: @background-color-content-added;
 }
 
 .mw-diff-inline-deleted del,
 .mw-diff-inline-changed del,
 .mw-diff-inline-moved del {
-	background: @diffDeleted;
+	background: @background-color-content-removed;
 }
 
 .mw-diff-table-prefix {
@@ -120,11 +117,11 @@
 		}
 
 		.mw-diff-inline-legend-ins {
-			background: @diffInserted;
+			background: @background-color-content-added;
 		}
 
 		.mw-diff-inline-legend-del {
-			background: @diffDeleted;
+			background: @background-color-content-removed;
 		}
 	}
 
@@ -191,11 +188,11 @@
 }
 
 .diff-addedline {
-	border-color: @diffInserted;
+	border-color: @background-color-content-added;
 }
 
 .diff-deletedline {
-	border-color: @diffDeleted;
+	border-color: @background-color-content-removed;
 }
 
 .diffchange {
@@ -209,11 +206,11 @@
 	}
 
 	.diff-addedline & {
-		background: #d8ecff;
+		background: @background-color-content-added;
 	}
 
 	.diff-deletedline & {
-		background: #feeec8;
+		background: @background-color-content-removed;
 	}
 }
 
@@ -324,14 +321,14 @@
 .mw-inline-diff-newline {
 	&::after {
 		content: '@{msg-diff-newline}';
-		background: @diffInserted;
+		background: @background-color-content-added;
 	}
 }
 
 .mw-diff-inline-deleted.mw-diff-empty-line {
 	&::after {
 		content: '@{msg-diff-line-deleted}';
-		background: @diffDeleted;
+		background: @background-color-content-removed;
 	}
 }
 
