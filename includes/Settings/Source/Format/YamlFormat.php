@@ -4,12 +4,13 @@ namespace MediaWiki\Settings\Source\Format;
 
 use InvalidArgumentException;
 use LogicException;
+use Stringable;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Yaml;
 use UnexpectedValueException;
 use Wikimedia\AtEase\AtEase;
 
-class YamlFormat implements SettingsFormat {
+class YamlFormat implements Stringable, SettingsFormat {
 
 	public const PARSER_PHP_YAML = 'php-yaml';
 

@@ -11,6 +11,7 @@ use GuzzleHttp\Psr7\Uri;
 use MediaWiki\Settings\Cache\CacheableSource;
 use MediaWiki\Settings\SettingsBuilderException;
 use MediaWiki\Settings\Source\Format\JsonFormat;
+use Stringable;
 use UnexpectedValueException;
 
 /**
@@ -18,7 +19,7 @@ use UnexpectedValueException;
  *
  * @since 1.38
  */
-class EtcdSource implements CacheableSource {
+class EtcdSource implements Stringable, CacheableSource {
 	/**
 	 * Default HTTP client connection and request timeout (2 seconds).
 	 */

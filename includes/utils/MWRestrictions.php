@@ -28,7 +28,7 @@ use Wikimedia\IPUtils;
 /**
  * A class to check request restrictions expressed as a JSON object
  */
-class MWRestrictions {
+class MWRestrictions implements Stringable {
 
 	private $ipAddresses = [ '0.0.0.0/0', '::/0' ];
 

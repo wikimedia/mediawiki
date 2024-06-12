@@ -155,7 +155,7 @@ use Wikimedia\Bcp47Code\Bcp47Code;
  * @newable
  * @ingroup Language
  */
-class Message implements MessageSpecifier, Serializable {
+class Message implements Stringable, MessageSpecifier, Serializable {
 	/** Use message text as-is */
 	public const FORMAT_PLAIN = 'plain';
 	/** Use normal wikitext -> HTML parsing (the result will be wrapped in a block-level HTML tag) */

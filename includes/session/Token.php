@@ -23,13 +23,15 @@
 
 namespace MediaWiki\Session;
 
+use Stringable;
+
 /**
  * Value object representing a CSRF token
  *
  * @ingroup Session
  * @since 1.27
  */
-class Token {
+class Token implements Stringable {
 	/** CSRF token suffix. Plus and terminal backslash are included to stop
 	 * editing from certain broken proxies.
 	 */

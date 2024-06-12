@@ -3,6 +3,7 @@
 namespace Wikimedia\Rdbms;
 
 use InvalidArgumentException;
+use Stringable;
 
 /**
  * DBPrimaryPos implementation for MySQL and MariaDB.
@@ -17,7 +18,7 @@ use InvalidArgumentException;
  * @see https://dev.mysql.com/doc/refman/5.6/en/replication-gtids-concepts.html
  * @internal
  */
-class MySQLPrimaryPos implements DBPrimaryPos {
+class MySQLPrimaryPos implements Stringable, DBPrimaryPos {
 	/** @var string One of (BINARY_LOG, GTID_MYSQL, GTID_MARIA) */
 	private $style;
 	/** @var string|null Base name of all Binary Log files */

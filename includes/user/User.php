@@ -60,6 +60,7 @@ use MWCryptRand;
 use MWExceptionHandler;
 use RuntimeException;
 use stdClass;
+use Stringable;
 use UnexpectedValueException;
 use WANObjectCache;
 use Wikimedia\Assert\Assert;
@@ -90,7 +91,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @note {@}newable in 1.35 only, the constructor is {@}internal since 1.36
  */
 #[AllowDynamicProperties]
-class User implements Authority, UserIdentity, UserEmailContact {
+class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	use DebugInfoTrait;
 	use ProtectedHookAccessorTrait;
 	use WikiAwareEntityTrait;

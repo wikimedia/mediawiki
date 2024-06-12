@@ -21,6 +21,7 @@
 namespace MediaWiki\Page;
 
 use MediaWiki\DAO\WikiAwareEntityTrait;
+use Stringable;
 use Wikimedia\Assert\Assert;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 
@@ -39,7 +40,7 @@ use Wikimedia\NonSerializable\NonSerializableTrait;
  *
  * @since 1.37
  */
-class PageReferenceValue implements PageReference {
+class PageReferenceValue implements Stringable, PageReference {
 
 	/* Use JSON, but beware the note on serialization above. */
 	use NonSerializableTrait;

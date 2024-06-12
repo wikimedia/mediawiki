@@ -26,6 +26,7 @@ namespace MediaWiki\Title;
 use InvalidArgumentException;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
+use Stringable;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\ParameterAssertionException;
 use Wikimedia\Assert\ParameterTypeException;
@@ -43,7 +44,7 @@ use Wikimedia\Parsoid\Core\LinkTargetTrait;
  * @see https://www.mediawiki.org/wiki/Manual:Modeling_pages
  * @since 1.23
  */
-class TitleValue implements LinkTarget {
+class TitleValue implements Stringable, LinkTarget {
 	use LinkTargetTrait;
 
 	/** @var int */

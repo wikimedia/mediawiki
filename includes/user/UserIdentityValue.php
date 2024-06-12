@@ -23,6 +23,7 @@
 namespace MediaWiki\User;
 
 use MediaWiki\DAO\WikiAwareEntityTrait;
+use Stringable;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -32,7 +33,7 @@ use Wikimedia\Assert\Assert;
  *
  * @since 1.31
  */
-class UserIdentityValue implements UserIdentity {
+class UserIdentityValue implements Stringable, UserIdentity {
 	use WikiAwareEntityTrait;
 
 	/**

@@ -4,6 +4,7 @@ namespace MediaWiki\Widget;
 
 use Exception;
 use MediaWiki\Html\Html;
+use Stringable;
 
 /**
  * PHP version of jquery.spinner.
@@ -14,7 +15,7 @@ use MediaWiki\Html\Html;
  * @copyright 2011-2020 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license MIT
  */
-class SpinnerWidget {
+class SpinnerWidget implements Stringable {
 
 	private $attributes;
 	private $content;

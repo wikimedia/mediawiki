@@ -24,12 +24,13 @@
 namespace MediaWiki\Title;
 
 use RuntimeException;
+use Stringable;
 
 /**
  * A simple, immutable structure to hold the title of a page on a foreign
  * MediaWiki installation.
  */
-class ForeignTitle {
+class ForeignTitle implements Stringable {
 	/**
 	 * @var int|null
 	 * Null if we don't know the namespace ID (e.g. interwiki links)
