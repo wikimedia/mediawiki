@@ -327,8 +327,6 @@
 	"config-screenshot": "Link text for the link in {{msg-mw|config-skins-screenshot}}\n{{Identical|Screenshot}}",
 	"config-extension-not-found": "An error shown when an extension or skin named by the user could not be found.\n* $1 is the extension name",
 	"config-extension-dependency": "Used as error message shown if an extension could not be loaded due to it depending on the wrong version of MediaWiki or an uninstallable extension.\n\nParameters:\n* $1 — extension name\n* $2 — more detailed explanation, in English",
-	"config-composerlock-missing": "An error shown by the installer if the Composer check failed.",
-	"config-composerlock-stale": "An error shown by the installer if the Composer check failed.",
 	"config-ext-skins-more-info": "Link to mediawiki.org page of extensions/skins for more information",
 	"mainpagetext": "Along with {{msg-mw|mainpagedocfooter}}, the text you will see on the Main Page when your wiki is installed.",
 	"mainpagedocfooter": "Along with {{msg-mw|mainpagetext}}, the text you will see on the Main Page when your wiki is installed.\nThis might be a good place to put information about <nowiki>{{GRAMMAR:}}</nowiki>. See [[{{NAMESPACE}}:{{BASEPAGENAME}}/fi]] for an example. For languages having grammatical distinctions and not having an appropriate <nowiki>{{GRAMMAR:}}</nowiki> software available, a suggestion to check and possibly amend the messages having <nowiki>{{SITENAME}}</nowiki> may be valuable. See [[{{NAMESPACE}}:{{BASEPAGENAME}}/ksh]] for an example."
