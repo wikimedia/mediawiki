@@ -1,22 +1,21 @@
 @import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins.less';
 
-/* Uses standard message block colors, compare mediawiki.legacy/shared.css */
 .mw-email-not-authenticated .oo-ui-labelWidget,
 .mw-email-none .oo-ui-labelWidget {
-	color: #000;
+	color: @color-emphasized;
 	border-width: @border-width-base;
 	border-style: @border-style-base;
 	padding: 8px 12px;
 }
 
 .mw-email-not-authenticated .oo-ui-labelWidget {
-	background-color: #fef6e7;
-	border-color: #fc3;
+	background-color: @background-color-warning-subtle;
+	border-color: @border-color-warning;
 }
 
 .mw-email-none .oo-ui-labelWidget {
-	background-color: #eaecf0;
+	background-color: @background-color-notice-subtle;
 	border-color: @border-color-base;
 }
 
@@ -41,7 +40,7 @@
 		bottom: 0;
 		margin: -@border-width-base -1em -1em -1em;
 		padding: 1em;
-		background-color: #fff;
+		background-color: @background-color-base;
 		border-top: @border-width-base @border-style-base @border-color-subtle;
 		// Add top box shadow on top only to emphasize content is scrollable underneath `sticky`.
 		box-shadow: 0 -4px 4px -4px rgba( 0, 0, 0, 0.25 );
@@ -93,7 +92,7 @@
 
 		.oo-ui-tabPanelLayout.mw-prefs-search-matched {
 			> fieldset > legend {
-				background: #eaecf0;
+				background: @background-color-neutral;
 				padding: 5px 10px;
 				margin: 0 0 10px 0;
 				max-width: none;
@@ -119,7 +118,8 @@
 
 // Highlight could be in an overlay
 .mw-prefs-search-highlight {
-	background: #eaf3ff !important; /* stylelint-disable-line declaration-no-important */
+	// FIXME: Codex needs to standardize search highlights.
+	background: @background-color-progressive-subtle !important; /* stylelint-disable-line declaration-no-important */
 	outline: 3px solid #eaf3ff !important; /* stylelint-disable-line declaration-no-important */
 	border-radius: @border-radius-base !important; /* stylelint-disable-line declaration-no-important */
 }
@@ -251,7 +251,7 @@
 // Highlight section header when linking to a section, e.g. Special:Preferences#mw-prefsection-editing-preview.
 .mw-prefs-tabs:not( .mw-prefs-tabs-searching ) .oo-ui-fieldsetLayout:target > .oo-ui-fieldsetLayout-header > .oo-ui-labelElement-label {
 	width: 100%;
-	background-color: #eaf3ff;
+	background-color: @background-color-progressive-subtle;
 	outline: 4px solid #eaf3ff;
 }
 
@@ -341,7 +341,7 @@ with params ?useskin=vector&useformat=mobile
 	font-weight: normal;
 	font-size: 0.875em;
 	line-height: 1.25em;
-	color: #72777d;
+	color: @color-subtle;
 	margin-top: 0 !important; /* stylelint-disable-line declaration-no-important */
 	white-space: normal;
 }
@@ -368,7 +368,7 @@ with params ?useskin=vector&useformat=mobile
 	/* T317110: sub-section title  */
 	.mw-prefs-fieldset-wrapper {
 		.oo-ui-fieldsetLayout-header {
-			border-bottom: @border-width-base @border-style-base #000;
+			border-bottom: @border-width-base @border-style-base @border-color-base;
 			max-width: 100%;
 
 			.oo-ui-labelElement-label {
@@ -410,7 +410,7 @@ with params ?useskin=vector&useformat=mobile
 
 	/* T317110: non-interactive text */
 	.mw-htmlform-field-HTMLInfoField {
-		color: #72777d;
+		color: @color-subtle;
 	}
 }
 
@@ -421,7 +421,7 @@ with params ?useskin=vector&useformat=mobile
 }
 
 .oo-ui-window-body .oo-ui-fieldLayout-messages {
-	background-color: #fff;
+	background-color: @background-color-base;
 }
 
 .oo-ui-iconWidget.mw-prefs-header-icon {
