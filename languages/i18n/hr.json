@@ -1898,6 +1898,7 @@
 	"trackingcategories-desc": "Kriteriji za uključenje u kategoriju",
 	"restricted-displaytitle-ignored": "Stranice sa zanemarenim naslovima za prikaz",
 	"restricted-displaytitle-ignored-desc": "Na stranici je zanemaren <code><nowiki>{{DISPLAYTITLE}}</nowiki></code> jer ne odgovara trenutačnom naslovu stranice.",
+	"nonnumeric-formatnum": "Stranice s nenumeričkim argumentima formatnum",
 	"trackingcategories-nodesc": "Opis nije dostupan.",
 	"trackingcategories-disabled": "Kategorija onemogućena",
 	"mailnologin": "Nema adrese pošiljatelja",

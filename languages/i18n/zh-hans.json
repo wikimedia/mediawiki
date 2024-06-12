@@ -1244,7 +1244,7 @@
 	"userrights-unchangeable-col": "您不能更改的用户组",
 	"userrights-no-shorten-expiry-marker": "$1#",
 	"userrights-expiry-current": "期限为$1",
-	"userrights-expiry-none": "不会期满",
+	"userrights-expiry-none": "不会过期",
 	"userrights-expiry": "期限：",
 	"userrights-expiry-existing": "现有期限：$2 $3",
 	"userrights-expiry-othertime": "其他时间：",

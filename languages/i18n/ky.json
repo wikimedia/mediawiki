@@ -639,7 +639,7 @@
 	"searchall": "бардыгы",
 	"search-showingresults": "{{PLURAL:$4|Жалпы <strong>$3</strong> натыйжадан <strong>$1</strong> көрсөтүлүүдө|Жалпы <strong>$3</strong> натыйжадан <strong>$1 – $2</strong> көрсөтүлүүдө}}",
 	"search-nonefound": "Талапка төп маалымат табылган жок.",
-	"powersearch-legend": "Кеңейтилген издөө",
+	"powersearch-legend": "Дыкат издөө",
 	"powersearch-ns": "Аталыш мейкиндиктеринен издөө:",
 	"powersearch-togglelabel": "Белгилөө:",
 	"powersearch-toggleall": "Баары",
