@@ -4,6 +4,7 @@
 			"Bosogo"
 		]
 	},
+	"ooui-copytextlayout-copy": "Көчүрүү",
 	"ooui-toolbar-more": "Көбүрөөк",
 	"ooui-toolgroup-expand": "Көбүрөөк",
 	"ooui-dialog-message-accept": "Макул",
@@ -11,5 +12,6 @@
 	"ooui-dialog-process-dismiss": "Баш тартуу",
 	"ooui-dialog-process-continue": "Улантуу",
 	"ooui-selectfile-button-select": "Файлды тандоо",
+	"ooui-popup-widget-close-button-aria-label": "Жабуу",
 	"ooui-field-help": "Жардам"
 }

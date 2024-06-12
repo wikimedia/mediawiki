@@ -1,5 +1,20 @@
 # OOUI Release History
 
+## v0.50.0 / 2024-06-11
+
+## Features
+* WikimediaUI Theme: minimum updates for dark mode compatibility (Eric Gardner)
+
+## Styles
+* WikimediaUI theme: Replace local `background-color` var with Codex token (Volker E.)
+* WikimediaUI theme: Replace local variable with Codex token (Volker E.)
+* styles, demos: Remove further IE 11 CSS workarounds (Volker E.)
+* styles: Remove IE 11 placeholder workaround (Volker E.)
+
+## Code
+* build: Updating grunt-banana-checker to 0.13.0 ([BOT] libraryupgrader)
+* Element: Remove IE specific `rtlScrollType` handling (Volker E.)
+
 ## v0.49.2 / 2024-05-16
 
 ### Code

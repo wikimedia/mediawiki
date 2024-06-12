@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Arystanbek"
+			"Arystanbek",
+			"Casserium"
 		]
 	},
+	"ooui-copytextlayout-copy": "Көшіру",
 	"ooui-outline-control-move-down": "Элементті төмен жылжыту",
 	"ooui-outline-control-move-up": "Элементті жоғары жылжыту",
 	"ooui-outline-control-remove": "Элементті алып тастау",
@@ -14,9 +16,10 @@
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "Қажет емес",
 	"ooui-dialog-process-error": "Бірдеңеден қате кетті",
-	"ooui-dialog-process-dismiss": "Тоқтату",
+	"ooui-dialog-process-dismiss": "Жабу",
 	"ooui-dialog-process-retry": "Қайта байқап көріңіз",
 	"ooui-dialog-process-continue": "Жалғастыру",
+	"ooui-combobox-button-label": "Опцияларды ауыстыру",
 	"ooui-selectfile-button-select": "Файлды таңдау",
 	"ooui-selectfile-button-select-multiple": "Файлдарды таңдау",
 	"ooui-selectfile-placeholder": "Файл таңдалмады",
