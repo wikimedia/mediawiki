@@ -3,12 +3,17 @@
 namespace Wikimedia\Message;
 
 use InvalidArgumentException;
+use MediaWiki\Json\JsonDeserializer;
 use Stringable;
 
 /**
  * Value object representing a message parameter holding a single value.
  *
  * Message parameter classes are pure value objects and are safely newable.
+ *
+ * When using the deprecated ParamType::OBJECT, the parameter value
+ * should be (de)serializable, otherwise (de)serialization of the
+ * ScalarParam object will fail.
  *
  * @newable
  */
@@ -50,5 +55,25 @@ class ScalarParam extends MessageParam {
 			$contents = htmlspecialchars( (string)$this->value );
 		}
 		return "<{$this->type}>" . $contents . "</{$this->type}>";
+	}
+
+	public function toJsonArray(): array {
+		// WARNING: When changing how this class is serialized, follow the instructions
+		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
+		return [
+			$this->type => $this->value,
+		];
+	}
+
+	public static function newFromJsonArray( JsonDeserializer $deserializer, array $json ) {
+		// WARNING: When changing how this class is serialized, follow the instructions
+		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
+		if ( count( $json ) !== 1 ) {
+			throw new InvalidArgumentException( 'Invalid format' );
+		}
+		// Use a dummy loop to get the first (and only) key/value pair in the array.
+		foreach ( $json as $type => $value ) {
+			return new self( $type, $value );
+		}
 	}
 }

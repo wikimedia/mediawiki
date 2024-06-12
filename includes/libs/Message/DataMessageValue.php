@@ -2,6 +2,8 @@
 
 namespace Wikimedia\Message;
 
+use MediaWiki\Json\JsonDeserializer;
+
 /**
  * Value object representing a message for i18n with alternative
  * machine-readable data.
@@ -16,7 +18,7 @@ namespace Wikimedia\Message;
  * `[ 'min' => 1, 'max' => 10 ]` rather than
  * `[ 0 => new ScalarParam( ParamType::TEXT, 1 ), 1 => new ScalarParam( ParamType::TEXT, 10 ) ]`.
  *
- * DataMessageValues are pure value objects and are safely newable.
+ * DataMessageValues are pure value objects and are newable and (de)serializable.
  *
  * @newable
  */
@@ -90,5 +92,20 @@ class DataMessageValue extends MessageValue {
 			. ' code="' . htmlspecialchars( $this->code ) . '">'
 			. $contents
 			. '</datamessage>';
+	}
+
+	public function toJsonArray(): array {
+		// WARNING: When changing how this class is serialized, follow the instructions
+		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
+		return parent::toJsonArray() + [
+			'code' => $this->code,
+			'data' => $this->data,
+		];
+	}
+
+	public static function newFromJsonArray( JsonDeserializer $deserializer, array $json ) {
+		// WARNING: When changing how this class is serialized, follow the instructions
+		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
+		return new self( $json['key'], $json['params'], $json['code'], $json['data'] );
 	}
 }

@@ -291,6 +291,14 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Unit\\Libs\\Rdbms\\AddQuoterMock' => "$testDir/phpunit/unit/includes/libs/rdbms/AddQuoterMock.php",
 	'MediaWiki\\Tests\\Unit\\Libs\\Rdbms\\SQLPlatformTestHelper' => "$testDir/phpunit/unit/includes/libs/rdbms/SQLPlatformTestHelper.php",
 
+	# tests/phpunit/unit/includes/libs/Message
+	'Wikimedia\\Tests\\Message\\DataMessageValueTest' => "$testDir/phpunit/unit/includes/libs/Message/DataMessageValueTest.php",
+	'Wikimedia\\Tests\\Message\\ListParamTest' => "$testDir/phpunit/unit/includes/libs/Message/ListParamTest.php",
+	'Wikimedia\\Tests\\Message\\MessageParamTest' => "$testDir/phpunit/unit/includes/libs/Message/MessageParamTest.php",
+	'Wikimedia\\Tests\\Message\\MessageSerializationTestTrait' => "$testDir/phpunit/unit/includes/libs/Message/MessageSerializationTestTrait.php",
+	'Wikimedia\\Tests\\Message\\MessageValueTest' => "$testDir/phpunit/unit/includes/libs/Message/MessageValueTest.php",
+	'Wikimedia\\Tests\\Message\\ScalarParamTest' => "$testDir/phpunit/unit/includes/libs/Message/ScalarParamTest.php",
+
 	# tests/phpunit/unit/includes/utils
 	'UrlUtilsProviders' => "$testDir/phpunit/unit/includes/utils/UrlUtilsProviders.php",
 

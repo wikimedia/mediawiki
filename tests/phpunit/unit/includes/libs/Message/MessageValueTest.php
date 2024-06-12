@@ -2,9 +2,10 @@
 
 namespace Wikimedia\Tests\Message;
 
+use MediaWiki\Json\JsonCodec;
 use MediaWiki\Message\UserGroupMembershipParam;
 use MediaWiki\User\UserIdentityValue;
-use PHPUnit\Framework\TestCase;
+use MediaWikiUnitTestCase;
 use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
@@ -13,33 +14,58 @@ use Wikimedia\Message\ScalarParam;
 /**
  * @covers \Wikimedia\Message\MessageValue
  */
-class MessageValueTest extends TestCase {
+class MessageValueTest extends MediaWikiUnitTestCase {
+	use MessageSerializationTestTrait;
+
+	/**
+	 * Overrides SerializationTestTrait::getClassToTest
+	 * @return string
+	 */
+	public static function getClassToTest(): string {
+		return MessageValue::class;
+	}
+
 	public static function provideConstruct() {
 		return [
-			[
-				[],
+			'empty' => [
+				[ 'key', [] ],
 				'<message key="key"></message>',
 			],
-			[
-				[ 'a' ],
+			'withText' => [
+				[ 'key', [ 'a' ] ],
 				'<message key="key"><text>a</text></message>'
 			],
-			[
-				[ new ScalarParam( ParamType::BITRATE, 100 ) ],
+			'withScalarParam' => [
+				[ 'key', [ new ScalarParam( ParamType::BITRATE, 100 ) ] ],
 				'<message key="key"><bitrate>100</bitrate></message>'
 			],
 		];
 	}
 
 	/** @dataProvider provideConstruct */
-	public function testConstruct( $input, $expected ) {
-		$mv = new MessageValue( 'key', $input );
+	public function testSerialize( $args, $_ ) {
+		[ $key, $input ] = $args;
+		$codec = new JsonCodec;
+		$obj = new MessageValue( $key, $input );
+
+		$serialized = $codec->serialize( $obj );
+		$newObj = $codec->deserialize( $serialized );
+
+		// XXX: would be nice to have a proper ::equals() method.
+		$this->assertEquals( $obj->dump(), $newObj->dump() );
+	}
+
+	/** @dataProvider provideConstruct */
+	public function testConstruct( $args, $expected ) {
+		[ $key, $input ] = $args;
+		$mv = new MessageValue( $key, $input );
 		$this->assertSame( $expected, $mv->dump() );
 	}
 
 	/** @dataProvider provideConstruct */
-	public function testNew( $input, $expected ) {
-		$mv = MessageValue::new( 'key', $input );
+	public function testNew( $args, $expected ) {
+		[ $key, $input ] = $args;
+		$mv = MessageValue::new( $key, $input );
 		$this->assertSame( $expected, $mv->dump() );
 	}
 
