@@ -4899,7 +4899,7 @@ class Parser {
 		$callback = static function ( array $matches ) use( &$replaced, $toc ): string {
 			if ( !$replaced ) {
 				$replaced = true;
-				return StringUtils::escapeRegexReplacement( $toc );
+				return $toc;
 			}
 			return '';
 		};
