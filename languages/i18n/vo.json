@@ -16,7 +16,8 @@
 			"Smeira",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"IJzeren Jan"
 		]
 	},
 	"tog-underline": "Dislienükön yümis:",
@@ -240,7 +241,7 @@
 	"page-atom-feed": "Kanad (Atom) „$1“",
 	"red-link-title": "$1 (pad no dabinon)",
 	"nstab-main": "Pad",
-	"nstab-user": "Gebanapad",
+	"nstab-user": "{{GENDER:$1|Gebanapad}}",
 	"nstab-media": "Nünamakanädapad",
 	"nstab-special": "Pad patik",
 	"nstab-project": "Proyegapad",
