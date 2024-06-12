@@ -1,3 +1,5 @@
+@import 'mediawiki.skin.variables.less';
+
 .mw-notification-area-overlay {
 	position: absolute;
 	top: 0;
@@ -22,9 +24,9 @@
 .mw-notification {
 	padding: 0.75em 1.5em;
 	margin-bottom: 0.5em;
-	border: solid 1px #ddd;
-	background-color: #fff;
-	color: #000;
+	border: @border-width-base @border-style-base @border-color-notice;
+	background-color: @background-color-base;
+	color: @color-emphasized;
 	/* Click handler in mediawiki.notification.js */
 	cursor: pointer;
 	opacity: 0;
@@ -50,22 +52,16 @@
 }
 
 .mw-notification.mw-notification-type-warn {
-	/* Yellow100 */
-	background-color: #fef6e7;
-	/* Yellow600 */
-	border-color: #fc3;
+	background-color: @background-color-warning-subtle;
+	border-color: @border-color-warning;
 }
 
 .mw-notification.mw-notification-type-error {
-	/* Red100 */
-	background-color: #fee7e6;
-	/* Red600 */
-	border-color: #d73333;
+	background-color: @background-color-error-subtle;
+	border-color: @border-color-error;
 }
 
 .mw-notification.mw-notification-type-success {
-	/* Green100 */
-	background-color: #d5fdf4;
-	/* Green700 */
-	border-color: #14866d;
+	background-color: @background-color-success-subtle;
+	border-color: @border-color-success;
 }
