@@ -4662,6 +4662,7 @@
 	"paramvalidator-badtitle": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.",
 	"paramvalidator-missingtitle": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.",
 	"paramvalidator-notarray": "Error in API parameter and request body validation. Parameters:\n* $1 - Parameter name.",
+	"paramvalidator-schema-validation-failed": "Error in API parameter and request body validation.",
 	"paramvalidator-help-type-title": "Used to indicate that a parameter is a page title or list of page titles.",
 	"paramvalidator-help-type-title-must-exist": "Used with {{msg-mw|paramvalidator-help-type-title}} to indicate that only titles referring to existing pages are valid.",
 	"paramvalidator-help-type-title-no-must-exist": "Used with {{msg-mw|paramvalidator-help-type-title}} to indicate that titles referring to non-existent pages are also valid.",
