@@ -214,6 +214,7 @@
 // For cross-browser support and standards alignment Less calculations and not `calc()` is used.
 // CSS standard doesn't specify complex values for media queries.
 // See https://www.w3.org/TR/mediaqueries-4/#mq-features
+// These have to be wrapped in parentheses, otherwise the Less calculation breaks (T367103)
 @max-width-breakpoint-mobile: ( @min-width-breakpoint-tablet - 1px );
 @max-width-breakpoint-tablet: ( @min-width-breakpoint-desktop - 1px );
 @max-width-breakpoint-desktop: ( @min-width-breakpoint-desktop-wide - 1px );
