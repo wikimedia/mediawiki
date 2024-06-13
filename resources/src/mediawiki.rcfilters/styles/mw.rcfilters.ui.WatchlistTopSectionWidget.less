@@ -29,14 +29,14 @@
 
 	// On small screens, remove the table properties from the
 	// top section. T225127#5518870
-	@media screen and ( max-width: @width-breakpoint-tablet ) {
+	@media screen and ( max-width: @max-width-breakpoint-tablet ) {
 		.mw-rcfilters-ui-row {
 			flex-direction: column;
 		}
 	}
 
 	// styles that should only kick in for tablet mode:
-	@media screen and ( min-width: @width-breakpoint-tablet ) {
+	@media screen and ( min-width: @min-width-breakpoint-tablet ) {
 		// T358424
 		&-savedLinksTable {
 			.mw-rcfilters-ui-row {
