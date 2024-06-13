@@ -12,7 +12,7 @@ use ParserOptions;
  * @group Database
  * @group Parser
  *
- * @covers \Parser
+ * @covers \MediaWiki\Parser\Parser
  * @covers \BlockLevelPass
  * @covers \StripState
  *

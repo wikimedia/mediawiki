@@ -5,7 +5,7 @@ use MediaWiki\Title\Title;
 /**
  * @group Database
  * @group Cache
- * @covers \BacklinkCache
+ * @covers \MediaWiki\Cache\BacklinkCache
  */
 class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 	private static $backlinkCacheTest;
@@ -40,7 +40,7 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideCasesForHasLink
-	 * @covers \BacklinkCache::hasLinks
+	 * @covers \MediaWiki\Cache\BacklinkCache::hasLinks
 	 */
 	public function testHasLink( bool $expected, string $title, string $table, string $msg = '' ) {
 		$blcFactory = $this->getServiceContainer()->getBacklinkCacheFactory();
@@ -59,7 +59,7 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideCasesForGetNumLinks
-	 * @covers \BacklinkCache::getNumLinks
+	 * @covers \MediaWiki\Cache\BacklinkCache::getNumLinks
 	 */
 	public function testGetNumLinks( int $numLinks, string $title, string $table, $max = INF ) {
 		$blcFactory = $this->getServiceContainer()->getBacklinkCacheFactory();
@@ -102,7 +102,7 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideCasesForGetLinks
-	 * @covers \BacklinkCache::getLinkPages
+	 * @covers \MediaWiki\Cache\BacklinkCache::getLinkPages
 	 */
 	public function testGetLinkPages(
 		array $expectedTitles, string $title, string $table, $startId = false, $endId = false, $max = INF
@@ -120,7 +120,7 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \BacklinkCache::partition
+	 * @covers \MediaWiki\Cache\BacklinkCache::partition
 	 */
 	public function testPartition() {
 		$targetId = $this->getServiceContainer()->getLinkTargetLookup()->acquireLinkTargetId(

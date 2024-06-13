@@ -15,7 +15,7 @@ use Wikimedia\Parsoid\ParserTests\TestMode as ParserTestMode;
  * @group Parser
  * @group ParserTests
  *
- * @covers \Parser
+ * @covers \MediaWiki\Parser\Parser
  * @covers \BlockLevelPass
  * @covers \CoreParserFunctions
  * @covers \CoreTagHooks

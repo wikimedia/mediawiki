@@ -19,7 +19,7 @@ use Skin;
 use SkinFallback;
 
 /**
- * @covers \RequestContext
+ * @covers \MediaWiki\Context\RequestContext
  * @group Database
  * @group RequestContext
  */
@@ -65,8 +65,8 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Test the relationship between title and wikipage in RequestContext
-	 * @covers \RequestContext::getWikiPage
-	 * @covers \RequestContext::getTitle
+	 * @covers \MediaWiki\Context\RequestContext::getWikiPage
+	 * @covers \MediaWiki\Context\RequestContext::getTitle
 	 */
 	public function testWikiPageTitle() {
 		$context = new RequestContext();
@@ -91,7 +91,7 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \RequestContext::importScopedSession
+	 * @covers \MediaWiki\Context\RequestContext::importScopedSession
 	 */
 	public function testImportScopedSession() {
 		// Make sure session handling is started
@@ -172,10 +172,10 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \RequestContext::getUser
-	 * @covers \RequestContext::setUser
-	 * @covers \RequestContext::getAuthority
-	 * @covers \RequestContext::setAuthority
+	 * @covers \MediaWiki\Context\RequestContext::getUser
+	 * @covers \MediaWiki\Context\RequestContext::setUser
+	 * @covers \MediaWiki\Context\RequestContext::getAuthority
+	 * @covers \MediaWiki\Context\RequestContext::setAuthority
 	 */
 	public function testTestGetSetAuthority() {
 		$context = new RequestContext();
@@ -195,7 +195,7 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \RequestContext
+	 * @covers \MediaWiki\Context\RequestContext
 	 */
 	public function testGetActionName() {
 		$factory = $this->createMock( ActionFactory::class );
@@ -214,7 +214,7 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \RequestContext
+	 * @covers \MediaWiki\Context\RequestContext
 	 */
 	public function testSetActionName() {
 		$factory = $this->createMock( ActionFactory::class );
@@ -229,7 +229,7 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \RequestContext
+	 * @covers \MediaWiki\Context\RequestContext
 	 */
 	public function testOverideActionName() {
 		$factory = $this->createMock( ActionFactory::class );

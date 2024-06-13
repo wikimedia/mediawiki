@@ -12,7 +12,7 @@ use ParserOptions;
  * Basic tests for Parser::getPreloadText
  * @author Antoine Musso
  *
- * @covers \Parser
+ * @covers \MediaWiki\Parser\Parser
  * @covers \StripState
  *
  * @covers \Preprocessor_Hash

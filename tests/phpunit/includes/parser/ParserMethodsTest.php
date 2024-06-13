@@ -159,7 +159,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \Parser
+	 * @covers \MediaWiki\Parser\Parser
 	 * @covers \MediaWiki\Parser\ParserOutput::getSections
 	 */
 	public function testGetSections() {
