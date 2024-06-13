@@ -49,13 +49,13 @@ use MediaWiki\Content\JavaScriptContentHandler;
 use MediaWiki\Content\JsonContentHandler;
 use MediaWiki\Content\TextContentHandler;
 use MediaWiki\Deferred\SiteStatsUpdate;
-use MediaWiki\Password\AbstractPbkdf2Password;
 use MediaWiki\Password\Argon2Password;
 use MediaWiki\Password\BcryptPassword;
 use MediaWiki\Password\LayeredParameterizedPassword;
 use MediaWiki\Password\MWOldPassword;
 use MediaWiki\Password\MWSaltedPassword;
 use MediaWiki\Password\PasswordPolicyChecks;
+use MediaWiki\Password\Pbkdf2PasswordUsingOpenSSL;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\RCFeed\RedisPubSubFeedEngine;
 use MediaWiki\RCFeed\UDPRCFeedEngine;
@@ -7289,7 +7289,7 @@ class MainConfigSchema {
 				'cost' => 9,
 			],
 			'pbkdf2' => [
-				'factory' => [ AbstractPbkdf2Password::class, 'newInstance' ],
+				'class' => Pbkdf2PasswordUsingOpenSSL::class,
 				'algo' => 'sha512',
 				'cost' => '30000',
 				'length' => '64',

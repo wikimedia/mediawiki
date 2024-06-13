@@ -27,9 +27,9 @@ namespace MediaWiki\Password;
 /**
  * A PBKDF2-hashed password, using PHP's hash extension
  *
- * This class exists for compatibility purposes only! Unless an installation's existing
- * password hashes were generated using an algorithm not supported by OpenSSL, or the
- * OpenSSL PHP extension is unavailable, Pbkdf2PasswordUsingOpenSSL should be used.
+ * This class exists for compatibility purposes only! Unless an installation's
+ * existing password hashes were generated using an algorithm not supported by
+ * OpenSSL, Pbkdf2PasswordUsingOpenSSL should be used.
  *
  * @since 1.40 (since 1.29 under the old name)
  */

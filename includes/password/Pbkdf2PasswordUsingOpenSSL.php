@@ -56,10 +56,6 @@ class Pbkdf2PasswordUsingOpenSSL extends AbstractPbkdf2Password {
 		'sha512' => 'sha512',
 	];
 
-	protected function isSupported(): bool {
-		return self::canUseOpenSSL();
-	}
-
 	protected function getDigestAlgo( string $algo ): ?string {
 		if ( !isset( self::$digestAlgos ) ) {
 			self::$digestAlgos = array_intersect( self::DIGEST_ALGOS, openssl_get_md_methods() );

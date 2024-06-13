@@ -1005,10 +1005,7 @@ return [
 					'cost' => 9,
 				],
 				'pbkdf2' => [
-					'factory' => [
-						'MediaWiki\\Password\\AbstractPbkdf2Password',
-						'newInstance',
-					],
+					'class' => 'MediaWiki\\Password\\Pbkdf2PasswordUsingOpenSSL',
 					'algo' => 'sha512',
 					'cost' => '30000',
 					'length' => '64',

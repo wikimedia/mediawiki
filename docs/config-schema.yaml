@@ -4586,7 +4586,7 @@ config-schema:
             pbkdf2-legacyA: { class: MediaWiki\Password\LayeredParameterizedPassword, types: [A, pbkdf2] }
             pbkdf2-legacyB: { class: MediaWiki\Password\LayeredParameterizedPassword, types: [B, pbkdf2] }
             bcrypt: { class: MediaWiki\Password\BcryptPassword, cost: 9 }
-            pbkdf2: { factory: [MediaWiki\Password\AbstractPbkdf2Password, newInstance], algo: sha512, cost: '30000', length: '64' }
+            pbkdf2: { class: MediaWiki\Password\Pbkdf2PasswordUsingOpenSSL, algo: sha512, cost: '30000', length: '64' }
             argon2: { class: MediaWiki\Password\Argon2Password, algo: auto }
         type: object
         description: |-
