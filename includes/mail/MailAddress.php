@@ -33,7 +33,7 @@ use MediaWiki\Mail\UserEmailContact;
  * @since 1.6.0
  * @ingroup Mail
  */
-class MailAddress {
+class MailAddress implements Stringable {
 
 	public string $name;
 	public string $realName;

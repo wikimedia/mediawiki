@@ -46,7 +46,7 @@ use Wikimedia\Message\MessageValue;
  * @stable to extend
  * @since 1.25
  */
-class StatusValue {
+class StatusValue implements Stringable {
 
 	/**
 	 * @var bool

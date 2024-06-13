@@ -59,6 +59,7 @@ use MessageLocalizer;
 use MWException;
 use RuntimeException;
 use stdClass;
+use Stringable;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
@@ -75,7 +76,7 @@ use WikiPage;
  * @note Consider using a TitleValue object instead. TitleValue is more lightweight
  *       and does not rely on global state or the database.
  */
-class Title implements LinkTarget, PageIdentity {
+class Title implements Stringable, LinkTarget, PageIdentity {
 	use WikiAwareEntityTrait;
 	use LinkTargetTrait;
 

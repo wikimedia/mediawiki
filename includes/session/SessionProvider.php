@@ -37,6 +37,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserNameUtils;
 use MWRestrictions;
 use Psr\Log\LoggerInterface;
+use Stringable;
 
 /**
  * A SessionProvider provides SessionInfo and support for Session
@@ -84,7 +85,7 @@ use Psr\Log\LoggerInterface;
  * @since 1.27
  * @see https://www.mediawiki.org/wiki/Manual:SessionManager_and_AuthManager
  */
-abstract class SessionProvider implements SessionProviderInterface {
+abstract class SessionProvider implements Stringable, SessionProviderInterface {
 
 	/** @var LoggerInterface */
 	protected $logger;

@@ -77,7 +77,7 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  *
  * @ingroup Page
  */
-class WikiPage implements Page, PageRecord {
+class WikiPage implements Stringable, Page, PageRecord {
 	use NonSerializableTrait;
 	use ProtectedHookAccessorTrait;
 	use WikiAwareEntityTrait;

@@ -4,12 +4,13 @@ namespace MediaWiki\Block;
 
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\UserIdentity;
+use Stringable;
 use WeakReference;
 
 /**
  * @internal For use by BlockManager
  */
-class BlockCacheKey {
+class BlockCacheKey implements Stringable {
 	/** Whether the key includes a non-null request */
 	private bool $hasRequest;
 	/** A reference to the WebRequest or null */

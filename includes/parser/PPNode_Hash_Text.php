@@ -23,7 +23,7 @@
  * @ingroup Parser
  */
 // phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
-class PPNode_Hash_Text implements PPNode {
+class PPNode_Hash_Text implements Stringable, PPNode {
 
 	/** @var string */
 	public $value;

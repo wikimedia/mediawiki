@@ -7,6 +7,7 @@ use MediaWiki\Settings\SettingsBuilderException;
 use MediaWiki\Settings\Source\Format\JsonFormat;
 use MediaWiki\Settings\Source\Format\SettingsFormat;
 use MediaWiki\Settings\Source\Format\YamlFormat;
+use Stringable;
 use UnexpectedValueException;
 use Wikimedia\AtEase\AtEase;
 
@@ -15,7 +16,7 @@ use Wikimedia\AtEase\AtEase;
  *
  * @since 1.38
  */
-class FileSource implements CacheableSource, SettingsIncludeLocator {
+class FileSource implements Stringable, CacheableSource, SettingsIncludeLocator {
 	private const BUILT_IN_FORMATS = [
 		JsonFormat::class,
 		YamlFormat::class,

@@ -27,6 +27,7 @@ use InvalidArgumentException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
+use Stringable;
 
 /**
  * Object holding data about a session's user
@@ -51,7 +52,7 @@ use MediaWiki\User\UserRigorOptions;
  * @ingroup Session
  * @since 1.27
  */
-final class UserInfo {
+final class UserInfo implements Stringable {
 	/** @var bool */
 	private $verified = false;
 

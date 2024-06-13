@@ -3,6 +3,7 @@
 namespace MediaWiki\Rest;
 
 use InvalidArgumentException;
+use Stringable;
 
 /**
  * A stream class which uses a string as the underlying storage. Surprisingly,
@@ -15,7 +16,7 @@ use InvalidArgumentException;
  * Seeking is supported, however seeking past the end of the string does not
  * fill with null bytes as in a real file, it throws an exception instead.
  */
-class StringStream implements CopyableStreamInterface {
+class StringStream implements Stringable, CopyableStreamInterface {
 
 	/** @var string */
 	private $contents;

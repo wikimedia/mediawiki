@@ -24,6 +24,7 @@
 namespace MediaWiki\Session;
 
 use InvalidArgumentException;
+use Stringable;
 
 /**
  * Value object returned by SessionProvider
@@ -36,7 +37,7 @@ use InvalidArgumentException;
  * @ingroup Session
  * @since 1.27
  */
-class SessionInfo {
+class SessionInfo implements Stringable {
 	/** Minimum allowed priority */
 	public const MIN_PRIORITY = 1;
 

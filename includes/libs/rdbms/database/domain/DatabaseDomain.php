@@ -20,6 +20,7 @@
 namespace Wikimedia\Rdbms;
 
 use InvalidArgumentException;
+use Stringable;
 
 /**
  * Class to handle database/schema/prefix specifications for IDatabase
@@ -38,7 +39,7 @@ use InvalidArgumentException;
  *
  * @ingroup Database
  */
-class DatabaseDomain {
+class DatabaseDomain implements Stringable {
 	/** @var string|null */
 	private $database;
 	/** @var string|null */

@@ -10,6 +10,7 @@ use InvalidArgumentException;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use RuntimeException;
+use Stringable;
 use UnexpectedValueException;
 
 /**
@@ -1420,7 +1421,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 	}
 }
 
-class ApiResultTestStringifiableObject {
+class ApiResultTestStringifiableObject implements Stringable {
 	private $ret;
 
 	public function __construct( $ret = 'Ok' ) {

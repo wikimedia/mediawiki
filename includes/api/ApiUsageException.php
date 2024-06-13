@@ -28,7 +28,7 @@ use MediaWiki\Status\Status;
  * @newable
  * @ingroup API
  */
-class ApiUsageException extends MWException implements ILocalizedException {
+class ApiUsageException extends MWException implements Stringable, ILocalizedException {
 
 	protected $modulePath;
 	protected $status;

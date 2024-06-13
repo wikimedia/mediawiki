@@ -6,6 +6,7 @@ use Closure;
 use MediaWiki\Settings\SettingsBuilderException;
 use ReflectionClass;
 use ReflectionException;
+use Stringable;
 
 /**
  * Constructs a settings array based on a PHP class by inspecting class
@@ -34,7 +35,7 @@ use ReflectionException;
  *
  * @since 1.39
  */
-class ReflectionSchemaSource implements SettingsSource {
+class ReflectionSchemaSource implements Stringable, SettingsSource {
 	use JsonSchemaTrait;
 
 	/**

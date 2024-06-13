@@ -942,7 +942,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	}
 }
 
-class HtmlTestValue {
+class HtmlTestValue implements Stringable {
 	public function __toString() {
 		return 'stringValue';
 	}

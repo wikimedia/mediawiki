@@ -4,6 +4,7 @@ namespace MediaWiki\Edit;
 
 use InvalidArgumentException;
 use MediaWiki\Parser\ParserOutput;
+use Stringable;
 
 /**
  * Represents the identity of a specific rendering of a specific revision
@@ -12,7 +13,7 @@ use MediaWiki\Parser\ParserOutput;
  * @since 1.39
  * @unstable since 1.39, should be stable by 1.39 release.
  */
-class ParsoidRenderID {
+class ParsoidRenderID implements Stringable {
 	private int $revisionID;
 	private string $uniqueID;
 	private string $stashKey;

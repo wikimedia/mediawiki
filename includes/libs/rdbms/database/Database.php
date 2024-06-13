@@ -25,6 +25,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
+use Stringable;
 use Throwable;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Database\DatabaseFlags;
@@ -40,7 +41,7 @@ use Wikimedia\ScopedCallback;
  * @ingroup Database
  * @since 1.28
  */
-abstract class Database implements IDatabaseForOwner, IMaintainableDatabase, LoggerAwareInterface {
+abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableDatabase, LoggerAwareInterface {
 	/** @var CriticalSectionProvider|null */
 	protected $csProvider;
 	/** @var LoggerInterface */
