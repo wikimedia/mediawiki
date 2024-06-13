@@ -1,11 +1,21 @@
 = MediaWiki 1.42 =
 
-== MediaWiki 1.42.0-PRERELEASE ==
+PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
+PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
+PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 
-THIS IS NOT A RELEASE YET
+== MediaWiki 1.42.0 ==
 
-MediaWiki 1.42 is a pre-release testing branch, and is not recommended
-for use in production.
+=== Changes since MediaWiki 1.42.0-rc.0 ===
+* Localisation updates.
+* wrapOldPasswords: Improve progress output and decrease batch size.
+* (T365060) Serialization test cases: fix filename after ParserOutput
+  namespacing.
+* Use virtual domain when running update maintenance scripts.
+* (T361367) ApiFeedWatchlist: Fix handling of array parameters.
+* (T366130) EncryptedPassword: Store default parameters as strings.
+
+== MediaWiki 1.42.0-rc.0 ==
 
 == Upgrading notes for 1.42 ==
 Don't forget to always back up your database before upgrading!
