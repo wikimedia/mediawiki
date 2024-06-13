@@ -51,7 +51,8 @@
 			"Yardom78",
 			"Ата",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Paskooda"
 		]
 	},
 	"tog-underline": "Podčiarkovať odkazy:",
@@ -209,6 +210,7 @@
 	"permalink": "Trvalý odkaz",
 	"print": "Tlač",
 	"view": "Zobraziť",
+	"viewcontribs": "Zobraziť príspevky",
 	"skin-view-view": "Čítať",
 	"skin-view-foreign": "Prehliadnuť na {{GRAMMAR:lokál|$1}}",
 	"edit": "Upraviť",
@@ -225,6 +227,8 @@
 	"skin-action-unprotect": "Zmeniť stav ochrany",
 	"unprotect": "Zmeniť stav ochrany",
 	"newpage": "Nová stránka",
+	"newpage-desc": "Založte novú stránku na požadovanú tému.",
+	"view-missing-pages": "Zobraziť chýbajúce stránky",
 	"talkpagelinktext": "diskusia",
 	"specialpage": "Špeciálna stránka",
 	"personaltools": "Osobné nástroje",
@@ -297,7 +301,11 @@
 	"showtoc": "zobraziť",
 	"hidetoc": "skryť",
 	"collapsible-collapse": "Skryť",
+	"collapsible-collapse-all-text": "Zbaliť všetko",
+	"collapsible-collapse-all-tooltip": "Zbaliť všetky skladacie prvky na aktuálnej stránke",
 	"collapsible-expand": "Rozbaliť",
+	"collapsible-expand-all-text": "Rozbaliť všetko",
+	"collapsible-expand-all-tooltip": "Rozbaliť všetky skladacie prvky na aktuálnej stránke",
 	"confirmable-confirm": "Ste si {{GENDER:$1|istý|istá|istí}}?",
 	"confirmable-yes": "Áno",
 	"confirmable-no": "Nie",
