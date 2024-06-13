@@ -389,11 +389,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		$this->assertArrayEquals(
 			[
 				'enabled' => true,
-				'actions' => [ 'edit' ],
-				'genPattern' => '~$1',
-				'matchPattern' => '~$1',
-				'serialProvider' => [ 'type' => 'local', 'useYear' => true ],
-				'serialMapping' => [ 'type' => 'plain-numeric' ],
+				'matchPatterns' => [ '~$1' ],
 			],
 			$this->doQuery( 'autocreatetempuser' ),
 			false,

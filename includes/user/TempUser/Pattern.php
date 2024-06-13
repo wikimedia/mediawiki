@@ -2,6 +2,7 @@
 
 namespace MediaWiki\User\TempUser;
 
+use Stringable;
 use UnexpectedValueException;
 use Wikimedia\Rdbms\LikeValue;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
@@ -12,7 +13,7 @@ use Wikimedia\Rdbms\Platform\ISQLPlatform;
  *
  * @internal
  */
-class Pattern {
+class Pattern implements Stringable {
 	/** @var string */
 	private $debugName;
 	/** @var string */
@@ -125,5 +126,9 @@ class Pattern {
 			$this->prefix = substr( $this->pattern, 0, $varPos );
 			$this->suffix = substr( $this->pattern, $varPos + strlen( '$1' ) );
 		}
+	}
+
+	public function __toString() {
+		return $this->pattern;
 	}
 }

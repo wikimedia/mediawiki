@@ -524,6 +524,7 @@ class ApiQuery extends ApiBase {
 				'DBLoadBalancer',
 				'ReadOnlyMode',
 				'UrlUtils',
+				'TempUserConfig'
 			]
 		],
 		'userinfo' => [

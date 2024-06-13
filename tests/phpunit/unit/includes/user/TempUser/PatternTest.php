@@ -100,4 +100,9 @@ class PatternTest extends TestCase {
 			$pattern->generate( '123', '2000' )
 		);
 	}
+
+	public function testToString() {
+		$pattern = new Pattern( 'test', '*$1' );
+		$this->assertSame( '*$1', (string)$pattern );
+	}
 }
