@@ -88,10 +88,6 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 	 * @stable to override
 	 */
 	public function getInputHTML( $value ) {
-		if ( isset( $this->mParams['dropdown'] ) ) {
-			$this->mParent->getOutput()->addModules( 'jquery.chosen' );
-		}
-
 		$value = HTMLFormField::forceToStringRecursive( $value );
 		$html = $this->formatOptions( $this->getOptions(), $value );
 
