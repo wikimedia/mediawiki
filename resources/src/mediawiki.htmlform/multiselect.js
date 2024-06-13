@@ -3,54 +3,6 @@
  * Convert multiselect fields from checkboxes to Chosen selector when requested.
  */
 
-function addMulti( $oldContainer, $container ) {
-	var name = $oldContainer.find( 'input:first-child' ).attr( 'name' ),
-		oldClass = ( ' ' + $oldContainer.attr( 'class' ) + ' ' ).replace( /(mw-htmlform-field-[A-Za-z]+|mw-htmlform-dropdown)/g, '' ),
-		$select = $( '<select>' ),
-		dataPlaceholder = mw.message( 'htmlform-chosen-placeholder' );
-	oldClass = oldClass.trim();
-	$select.attr( {
-		name: name,
-		multiple: 'multiple',
-		'data-placeholder': dataPlaceholder.plain(),
-		class: 'htmlform-chzn-select mw-input ' + oldClass
-	} );
-	$oldContainer.find( 'input' ).each( function () {
-		var $oldInput = $( this ),
-			checked = $oldInput.prop( 'checked' ),
-			$option = $( '<option>' );
-		$option.prop( 'value', $oldInput.prop( 'value' ) );
-		if ( checked ) {
-			$option.prop( 'selected', true );
-		}
-		$option.text( $oldInput.prop( 'value' ) );
-		$select.append( $option );
-	} );
-	$container.append( $select );
-}
-
-function convertCheckboxesToMulti( $oldContainer, type ) {
-	var $fieldLabel = $( '<td>' ),
-		$td = $( '<td>' ),
-		$fieldLabelText = $( '<label>' ),
-		$container;
-	if ( type === 'tr' ) {
-		addMulti( $oldContainer, $td );
-		$container = $( '<tr>' );
-		$container.append( $td );
-	} else if ( type === 'div' ) {
-		$fieldLabel = $( '<div>' );
-		$container = $( '<div>' );
-		addMulti( $oldContainer, $container );
-	}
-	$fieldLabel.attr( 'class', 'mw-label' );
-	$fieldLabelText.text( $oldContainer.find( '.mw-label label' ).text() );
-	$fieldLabel.append( $fieldLabelText );
-	$container.prepend( $fieldLabel );
-	$oldContainer.replaceWith( $container );
-	return $container;
-}
-
 function convertCheckboxesWidgetToTags( fieldLayout ) {
 	var checkboxesWidget = fieldLayout.fieldWidget;
 	var checkboxesOptions = checkboxesWidget.checkboxMultiselectWidget.getItems();
@@ -119,12 +71,6 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 				}
 				mw.loader.using( modules, () => {
 					convertCheckboxesWidgetToTags( OO.ui.FieldLayout.static.infuse( $el ) );
-				} );
-			} else {
-				mw.loader.using( 'jquery.chosen', () => {
-					var type = $el.is( 'tr' ) ? 'tr' : 'div',
-						$converted = convertCheckboxesToMulti( $el, type );
-					$converted.find( '.htmlform-chzn-select' ).chosen( { width: 'auto' } );
 				} );
 			}
 		} );

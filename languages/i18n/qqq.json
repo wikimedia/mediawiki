@@ -4173,7 +4173,6 @@
 	"htmlform-selectorother-other": "Used in drop-down boxes in [[Special:Preferences]] as follows:\n* selection of timezone (date and time tab)\n\n{{Identical|Other}}",
 	"htmlform-no": "Used in form, such as with radio buttons, for generic yes / no questions.\n{{Identical|No}}",
 	"htmlform-yes": "Used in form, such as with radio buttons, for generic yes / no questions.\n{{Identical|Yes}}",
-	"htmlform-chosen-placeholder": "Used as initial placeholder text in select multiple \"chosen\" input boxes",
 	"htmlform-cloner-create": "Used as the text for the button that adds a row to a multi-input HTML form element.\n\nSee also:\n* {{msg-mw|htmlform-cloner-delete}}\n* {{msg-mw|htmlform-cloner-required}}",
 	"htmlform-cloner-delete": "Used as the text for the button that removes a row from a multi-input HTML form element\n\nSee also:\n* {{msg-mw|htmlform-cloner-create}}\n* {{msg-mw|htmlform-cloner-required}}\n{{Identical|Remove}}",
 	"htmlform-cloner-required": "Used as an error message in HTML forms.\n\nSee also:\n* {{msg-mw|htmlform-required}}\n* {{msg-mw|htmlform-cloner-create}}\n* {{msg-mw|htmlform-cloner-delete}}",

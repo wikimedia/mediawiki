@@ -879,10 +879,7 @@ return [
 		'dependencies' => [
 			'mediawiki.util',
 			'mediawiki.widgets.visibleLengthLimit',
-		],
-		'messages' => [
-			'htmlform-chosen-placeholder',
-		],
+		]
 	],
 	'mediawiki.htmlform.ooui' => [
 		'scripts' => [
