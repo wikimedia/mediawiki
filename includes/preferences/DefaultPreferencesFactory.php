@@ -2012,7 +2012,12 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			$this->userOptionsManager->resetOptionsByName( $user, $optionsToReset );
 
 			foreach ( $formData as $key => $value ) {
-				$this->userOptionsManager->setOption( $user, $key, $value );
+				// If we're creating a new local override, we need to explicitly pass
+				// GLOBAL_OVERRIDE to setOption(), otherwise the update would be ignored
+				// due to the conflicting global option.
+				$except = !empty( $formData[$key . UserOptionsLookup::LOCAL_EXCEPTION_SUFFIX] );
+				$this->userOptionsManager->setOption( $user, $key, $value,
+					$except ? UserOptionsManager::GLOBAL_OVERRIDE : UserOptionsManager::GLOBAL_IGNORE );
 			}
 
 			$this->hookRunner->onPreferencesFormPreSave(
@@ -2150,6 +2155,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				$mapping[$key] = 'special';
 			} elseif ( str_starts_with( $key, 'userjs-' ) ) {
 				$mapping[$key] = 'userjs';
+			} elseif ( str_starts_with( $key, UserOptionsLookup::LOCAL_EXCEPTION_SUFFIX ) ) {
+				$mapping[$key] = 'local-exception';
 			} else {
 				$mapping[$key] = 'unused';
 			}

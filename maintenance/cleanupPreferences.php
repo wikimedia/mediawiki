@@ -27,6 +27,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 
@@ -83,7 +84,10 @@ class CleanupPreferences extends Maintenance {
 		if ( $unknown ) {
 			$defaultUserOptions = $this->getServiceContainer()->getUserOptionsLookup()->getDefaultOptions( null );
 			$where = [
-				$dbr->expr( 'up_property', IExpression::NOT_LIKE, new LikeValue( 'userjs-', $dbr->anyString() ) ),
+				$dbr->expr( 'up_property', IExpression::NOT_LIKE,
+					new LikeValue( 'userjs-', $dbr->anyString() ) ),
+				$dbr->expr( 'up_property', IExpression::NOT_LIKE,
+					new LikeValue( UserOptionsLookup::LOCAL_EXCEPTION_SUFFIX, $dbr->anyString() ) ),
 				$dbr->expr( 'up_property', '!=', array_keys( $defaultUserOptions ) ),
 			];
 			// Allow extensions to add to the where clause to prevent deletion of their own prefs.

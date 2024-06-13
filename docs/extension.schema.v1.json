@@ -1393,6 +1393,33 @@
 				}
 			}
 		},
+		"UserOptionsStoreProviders": {
+			"type": "object",
+			"description": "Map of user options store providers (specs for ObjectFactory, indexed by provider name). The class should implement the UserOptionsStore interface.",
+			"patternProperties": {
+				".*": {
+					"type": "object",
+					"properties": {
+						"factory": {
+							"type": [ "string", "array" ],
+							"description": "A factory function"
+						},
+						"class": {
+							"type": "string",
+							"description": "The fully-qualified class name of the store. This should be omitted if a factory is specified."
+						},
+						"args": {
+							"type": "array",
+							"description": "The arguments passed to the constructor or factory"
+						},
+						"services": {
+							"type": "array",
+							"description": "If supplied and non-empty, the named services are requested from the service container and prepended before 'args'."
+						}
+					}
+				}
+			}
+		},
 		"UserRegistrationProviders": {
 			"type": "object",
 			"description": "Map of user registration timestamp providers (specs for ObjectFactory, indexed by provider name)",

@@ -35,6 +35,13 @@ abstract class UserOptionsLookup {
 	public const EXCLUDE_DEFAULTS = 1;
 
 	/**
+	 * The suffix appended to preference names for the associated preference
+	 * that tracks whether they have a local override.
+	 * @since 1.43
+	 */
+	public const LOCAL_EXCEPTION_SUFFIX = '-local-exception';
+
+	/**
 	 * Combine the language default options with any site-specific and user-specific defaults
 	 * and add the default language variants.
 	 *
