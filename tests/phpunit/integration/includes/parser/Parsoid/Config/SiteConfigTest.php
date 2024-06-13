@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Parser\Parsoid\Config;
 
+use MediaWiki\Content\TextContentHandler;
 use MediaWikiIntegrationTestCase;
-use TextContentHandler;
 
 /**
  * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Message\Message;
+
 /**
  * @todo tests for HttpError::report
  *

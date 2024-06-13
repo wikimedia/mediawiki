@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Integration\HTMLForm;
 
-use HTMLForm;
 use InvalidArgumentException;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWikiIntegrationTestCase;
 

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\WikiMap\WikiMap;
+
 /**
  * @group FileBackend
  * @covers MemoryFileBackend

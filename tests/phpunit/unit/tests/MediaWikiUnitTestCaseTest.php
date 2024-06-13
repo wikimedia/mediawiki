@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Config\HashConfig;
 use Wikimedia\Services\NoSuchServiceException;
 
 /**

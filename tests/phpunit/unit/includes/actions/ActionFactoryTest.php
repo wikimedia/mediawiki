@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Actions\ActionFactory;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;

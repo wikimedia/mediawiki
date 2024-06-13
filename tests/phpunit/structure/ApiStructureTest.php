@@ -2,6 +2,7 @@
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
 use Wikimedia\TestingAccessWrapper;
 

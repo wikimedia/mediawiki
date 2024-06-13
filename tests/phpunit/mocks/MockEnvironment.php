@@ -3,12 +3,12 @@
 namespace MediaWiki\Tests;
 
 use Exception;
-use HashConfig;
+use MediaWiki\Config\HashConfig;
+use MediaWiki\Config\MultiConfig;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\EntryPointEnvironment;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\FauxResponse;
-use MultiConfig;
 use PHPUnit\Framework\Assert;
 
 /**

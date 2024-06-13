@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Password\BcryptPassword;
+
 /**
  * @group large
  * @covers \MediaWiki\Password\BcryptPassword

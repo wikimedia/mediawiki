@@ -1,6 +1,9 @@
 <?php
 
+use MediaWiki\Password\BcryptPassword;
 use MediaWiki\Password\LayeredParameterizedPassword;
+use MediaWiki\Password\ParameterizedPassword;
+use MediaWiki\Password\Pbkdf2PasswordUsingHashExtension;
 
 /**
  * @covers \MediaWiki\Password\LayeredParameterizedPassword

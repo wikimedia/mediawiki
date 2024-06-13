@@ -1,6 +1,8 @@
 <?php
 
+use MediaWiki\Password\EncryptedPassword;
 use MediaWiki\Password\PasswordError;
+use MediaWiki\Password\Pbkdf2PasswordUsingHashExtension;
 
 /**
  * @covers \Mediawiki\Password\EncryptedPassword

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Utils\MWTimestamp;
 use PHPUnit\Framework\TestCase;
 
 /**

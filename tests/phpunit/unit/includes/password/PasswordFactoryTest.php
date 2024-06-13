@@ -2,6 +2,9 @@
 
 use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Password\InvalidPassword;
+use MediaWiki\Password\MWOldPassword;
+use MediaWiki\Password\MWSaltedPassword;
 use MediaWiki\Password\PasswordError;
 use MediaWiki\Password\PasswordFactory;
 

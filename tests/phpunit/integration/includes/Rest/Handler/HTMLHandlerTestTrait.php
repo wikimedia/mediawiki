@@ -4,8 +4,8 @@ namespace MediaWiki\Tests\Rest\Handler;
 
 use Exception;
 use HashBagOStuff;
-use IContextSource;
 use MediaWiki\Block\BlockErrorFormatter;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Edit\ParsoidRenderID;
 use MediaWiki\Edit\SimpleParsoidOutputStash;

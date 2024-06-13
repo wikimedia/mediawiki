@@ -6,8 +6,8 @@ use Exception;
 use InvalidArgumentException;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
+use MediaWiki\Message\Message;
 use MediaWikiUnitTestCase;
-use Message;
 
 /**
  * @group AuthManager

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\HTMLForm\HTMLForm;
+
 /**
  * @covers \Licenses
  */

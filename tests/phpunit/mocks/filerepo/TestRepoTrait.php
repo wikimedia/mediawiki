@@ -8,9 +8,9 @@ use LocalRepo;
 use LogicException;
 use MediaWiki\FileBackend\FileBackendGroup;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use PHPUnit\Framework\Assert;
 use RepoGroup;
-use Title;
 use Wikimedia\FileBackend\FileBackend;
 
 trait TestRepoTrait {
