@@ -82,7 +82,7 @@
 		// Show a cursor pointer to make it clear it's clickable.
 		.client-js & {
 			// Note: This currently only happens at low resolutions.
-			@media only screen and ( max-width: @width-breakpoint-tablet ) {
+			@media only screen and ( max-width: @max-width-breakpoint-tablet ) {
 				cursor: pointer;
 			}
 		}
@@ -351,7 +351,7 @@
 }
 
 // Hide the diff legend at lower resolutions.
-@media only screen and ( max-width: @width-breakpoint-tablet ) {
+@media only screen and ( max-width: @max-width-breakpoint-tablet ) {
 	.mw-diff-inline-legend {
 		display: none;
 	}
