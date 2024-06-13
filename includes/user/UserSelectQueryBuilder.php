@@ -206,8 +206,8 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 	 * @return UserSelectQueryBuilder
 	 */
 	public function named(): self {
-		if ( !$this->tempUserConfig->isEnabled() ) {
-			// nothing to do: getMatchCondition throws if temp accounts aren't enabled
+		if ( !$this->tempUserConfig->isKnown() ) {
+			// nothing to do: getMatchCondition throws if temp accounts aren't known
 			return $this;
 		}
 		$this->conds( $this->tempUserConfig->getMatchCondition( $this->db, 'actor_name', IExpression::NOT_LIKE ) );
@@ -220,8 +220,8 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 	 * @return UserSelectQueryBuilder
 	 */
 	public function temp(): self {
-		if ( !$this->tempUserConfig->isEnabled() ) {
-			// nothing to do: getMatchCondition throws if temp accounts aren't enabled
+		if ( !$this->tempUserConfig->isKnown() ) {
+			// nothing to do: getMatchCondition throws if temp accounts aren't known
 			return $this;
 		}
 		$this->conds( $this->tempUserConfig->getMatchCondition( $this->db, 'actor_name', IExpression::LIKE ) );

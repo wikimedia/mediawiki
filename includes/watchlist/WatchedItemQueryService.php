@@ -546,7 +546,7 @@ class WatchedItemQueryService {
 
 		// Treat temporary users as 'anon', to match ChangesListSpecialPage
 		if ( in_array( self::FILTER_ANON, $options['filters'] ) ) {
-			if ( $this->tempUserConfig->isEnabled() ) {
+			if ( $this->tempUserConfig->isKnown() ) {
 				$conds[] = $dbr->expr( 'watchlist_actor.actor_user', '=', null )
 					->orExpr( $this->tempUserConfig->getMatchCondition( $dbr,
 						'watchlist_actor.actor_name', IExpression::LIKE ) );
@@ -555,7 +555,7 @@ class WatchedItemQueryService {
 			}
 		} elseif ( in_array( self::FILTER_NOT_ANON, $options['filters'] ) ) {
 			$conds[] = 'watchlist_actor.actor_user IS NOT NULL';
-			if ( $this->tempUserConfig->isEnabled() ) {
+			if ( $this->tempUserConfig->isKnown() ) {
 				$conds[] = $this->tempUserConfig->getMatchCondition( $dbr,
 					'watchlist_actor.actor_name', IExpression::NOT_LIKE );
 			}
