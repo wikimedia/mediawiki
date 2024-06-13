@@ -67,7 +67,7 @@ class RealTempUserConfigTest extends \MediaWikiIntegrationTestCase {
 		if ( $enabled ) {
 			$this->enableAutoCreateTempUser( $configOverrides );
 		} else {
-			$this->disableAutoCreateTempUser( $configOverrides['reservedPattern'] ?? null );
+			$this->disableAutoCreateTempUser( $configOverrides );
 		}
 		$tuc = $this->getServiceContainer()->getTempUserConfig();
 		$this->assertSame( $expected, $tuc->isAutoCreateAction( $action ) );
@@ -189,7 +189,7 @@ class RealTempUserConfigTest extends \MediaWikiIntegrationTestCase {
 		return [
 			'no matchPattern when disabled' => [
 				'enabled' => false,
-				'configOverrides' => [],
+				'configOverrides' => [ 'reservedPattern' => null ],
 				'name' => '~39',
 				'expected' => false,
 			],
@@ -225,7 +225,7 @@ class RealTempUserConfigTest extends \MediaWikiIntegrationTestCase {
 		if ( $enabled ) {
 			$this->enableAutoCreateTempUser( $configOverrides );
 		} else {
-			$this->disableAutoCreateTempUser( $configOverrides['reservedPattern'] ?? null );
+			$this->disableAutoCreateTempUser( $configOverrides );
 		}
 		$tuc = $this->getServiceContainer()->getTempUserConfig();
 		$this->assertSame( $expected, $tuc->isReservedName( $name ) );

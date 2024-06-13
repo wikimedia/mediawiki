@@ -14,6 +14,23 @@ use MediaWiki\MainConfigNames;
 trait TempUserTestTrait {
 
 	/**
+	 * Array of default configuration to use in tests.
+	 *
+	 * @return array
+	 */
+	private function getTempAccountConfigTestDefaults(): array {
+		return [
+			'expireAfterDays' => 365,
+			'notifyBeforeExpirationDays' => 10,
+			'actions' => [ 'edit' ],
+			'genPattern' => '~$1',
+			'reservedPattern' => '~$1',
+			'serialProvider' => [ 'type' => 'local', 'useYear' => true ],
+			'serialMapping' => [ 'type' => 'plain-numeric' ],
+		];
+	}
+
+	/**
 	 * Loads configuration that enables the automatic creation of temporary accounts using the defaults
 	 * for the generation pattern and match pattern.
 	 *
@@ -22,22 +39,14 @@ trait TempUserTestTrait {
 	 * @since 1.42
 	 */
 	protected function enableAutoCreateTempUser( array $configOverrides = [] ): void {
+		$configOverrides['enabled'] = true;
 		$this->overrideConfigValue(
 			MainConfigNames::TempAccountNameAcquisitionThrottle,
 			[ 'count' => 0, 'seconds' => 86400 ]
 		);
 		$this->overrideConfigValue(
 			MainConfigNames::AutoCreateTempUser,
-			array_merge( [
-				'enabled' => true,
-				'expireAfterDays' => 365,
-				'notifyBeforeExpirationDays' => 10,
-				'actions' => [ 'edit' ],
-				'genPattern' => '~$1',
-				'reservedPattern' => '~$1',
-				'serialProvider' => [ 'type' => 'local', 'useYear' => true ],
-				'serialMapping' => [ 'type' => 'plain-numeric' ],
-			], $configOverrides )
+			array_merge( $this->getTempAccountConfigTestDefaults(), $configOverrides )
 		);
 		$this->setGroupPermissions( '*', 'createaccount', true );
 	}
@@ -47,16 +56,16 @@ trait TempUserTestTrait {
 	 *
 	 * This is done to avoid exceptions when a test or the code being tested creates an actor for an IP address.
 	 *
-	 * @param ?string $reservedPattern The value for the reservedPattern key. Specify null to not include the key. Default is to not
-	 *   include the key.
+	 * @param array $configOverrides Specify overrides to the default wgAutoCreateTempUser configuration
+	 *     setting (all values are the default except 'enabled' which is set to false).
 	 * @since 1.42
 	 */
-	protected function disableAutoCreateTempUser( ?string $reservedPattern = null ): void {
-		$config = [ 'enabled' => false ];
-		if ( $reservedPattern !== null ) {
-			$config['reservedPattern'] = $reservedPattern;
-		}
-		$this->overrideConfigValue( MainConfigNames::AutoCreateTempUser, $config );
+	protected function disableAutoCreateTempUser( array $configOverrides = [] ): void {
+		$configOverrides['enabled'] = false;
+		$this->overrideConfigValue(
+			MainConfigNames::AutoCreateTempUser,
+			array_merge( $this->getTempAccountConfigTestDefaults(), $configOverrides )
+		);
 	}
 
 	/**

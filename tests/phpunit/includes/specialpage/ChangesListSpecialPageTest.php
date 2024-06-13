@@ -517,8 +517,8 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	/** @see TempUserTestTrait::disableAutoCreateTempUser */
-	protected function disableAutoCreateTempUser( ?string $reservedPattern = null ): void {
-		$this->_disableAutoCreateTempUser( $reservedPattern );
+	protected function disableAutoCreateTempUser( array $configOverrides = [] ): void {
+		$this->_disableAutoCreateTempUser( $configOverrides );
 		$this->changesListSpecialPage->setTempUserConfig( $this->getServiceContainer()->getTempUserConfig() );
 	}
 
