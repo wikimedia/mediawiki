@@ -211,41 +211,33 @@ class StatusValue implements Stringable {
 	 * @return $this
 	 */
 	private function addError( array $newError ) {
-		if ( $newError[ 'message' ] instanceof MessageSpecifier ) {
-			if ( $newError['params'] ) {
+		[ 'type' => $newType, 'message' => $newKey, 'params' => $newParams ] = $newError;
+		if ( $newKey instanceof MessageSpecifier ) {
+			if ( $newParams ) {
 				// Deprecate code like `Status::newFatal( wfMessage( 'foo' ), 'param' )`
 				// - the parameters have always been ignored, so this is usually a mistake.
 				wfDeprecatedMsg( 'Combining MessageSpecifier and parameters array' .
 					' was deprecated in MediaWiki 1.43', '1.43' );
 			}
-
-			$isEqual = static function ( $key, $params ) use ( $newError ) {
-				if ( $key instanceof MessageSpecifier ) {
-					return $newError['message']->getKey() === $key->getKey() &&
-						$newError['message']->getParams() === $key->getParams();
-				} else {
-					return $newError['message']->getKey() === $key &&
-						$newError['message']->getParams() === $params;
-				}
-			};
-		} else {
-			$isEqual = static function ( $key, $params ) use ( $newError ) {
-				if ( $key instanceof MessageSpecifier ) {
-					$params = $key->getParams();
-					$key = $key->getKey();
-				}
-				return $newError['message'] === $key && $newError['params'] === $params;
-			};
+			$newParams = $newKey->getParams();
+			$newKey = $newKey->getKey();
 		}
+
 		foreach ( $this->errors as [ 'type' => &$type, 'message' => $key, 'params' => $params ] ) {
-			if ( $isEqual( $key, $params ) ) {
-				if ( $type === 'warning' && $newError['type'] === 'error' ) {
+			if ( $key instanceof MessageSpecifier ) {
+				$params = $key->getParams();
+				$key = $key->getKey();
+			}
+			if ( $newKey === $key && $newParams === $params ) {
+				if ( $type === 'warning' && $newType === 'error' ) {
 					$type = 'error';
 				}
 				return $this;
 			}
 		}
+
 		$this->errors[] = $newError;
+
 		return $this;
 	}
 
