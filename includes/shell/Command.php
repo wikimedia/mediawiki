@@ -28,6 +28,7 @@ use Psr\Log\NullLogger;
 use Shellbox\Command\UnboxedCommand;
 use Shellbox\Command\UnboxedExecutor;
 use Shellbox\Command\UnboxedResult;
+use Stringable;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -35,7 +36,7 @@ use Wikimedia\ScopedCallback;
  *
  * @since 1.30
  */
-class Command extends UnboxedCommand {
+class Command extends UnboxedCommand implements Stringable {
 	private bool $everExecuted = false;
 
 	/** @var string */

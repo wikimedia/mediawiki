@@ -20,6 +20,7 @@
  */
 namespace MediaWiki\Linker;
 
+use Stringable;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 
 /**
@@ -29,7 +30,7 @@ use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
  *
  * @since 1.27
  */
-interface LinkTarget extends ParsoidLinkTarget {
+interface LinkTarget extends Stringable, ParsoidLinkTarget {
 
 	/**
 	 * Get the namespace index.

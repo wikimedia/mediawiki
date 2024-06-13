@@ -2,6 +2,8 @@
 
 namespace Wikimedia\Rdbms;
 
+use Stringable;
+
 /**
  * An object representing a primary or replica DB position in a replicated setup.
  *
@@ -9,7 +11,7 @@ namespace Wikimedia\Rdbms;
  *
  * @since 1.37
  */
-interface DBPrimaryPos {
+interface DBPrimaryPos extends Stringable {
 	/**
 	 * @since 1.25
 	 * @return float UNIX timestamp

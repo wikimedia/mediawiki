@@ -1434,7 +1434,7 @@ class ApiResultTestStringifiableObject implements Stringable {
 }
 
 #[AllowDynamicProperties]
-class ApiResultTestSerializableObject {
+class ApiResultTestSerializableObject implements Stringable {
 	private $ret;
 
 	public function __construct( $ret ) {

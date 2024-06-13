@@ -24,7 +24,7 @@
  * @ingroup Dump
  * @since 1.28
  */
-class DumpStringOutput extends DumpOutput {
+class DumpStringOutput extends DumpOutput implements Stringable {
 	/** @var string */
 	private $output = '';
 

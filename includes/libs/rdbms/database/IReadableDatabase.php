@@ -20,6 +20,7 @@
 namespace Wikimedia\Rdbms;
 
 use stdClass;
+use Stringable;
 use Wikimedia\Rdbms\Database\DbQuoter;
 use Wikimedia\Rdbms\Database\IDatabaseFlags;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
@@ -33,7 +34,7 @@ use Wikimedia\Rdbms\Platform\ISQLPlatform;
  * @since 1.40
  * @ingroup Database
  */
-interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
+interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabaseFlags {
 
 	/** Parameter to unionQueries() for UNION ALL */
 	public const UNION_ALL = true;

@@ -21,6 +21,7 @@
 namespace MediaWiki\Page;
 
 use MediaWiki\DAO\WikiAwareEntity;
+use Stringable;
 
 /**
  * Interface for objects (potentially) representing a page that can be viewable and linked to
@@ -48,7 +49,7 @@ use MediaWiki\DAO\WikiAwareEntity;
  * @since 1.37
  * @ingroup Page
  */
-interface PageReference extends WikiAwareEntity {
+interface PageReference extends Stringable, WikiAwareEntity {
 
 	/**
 	 * Get the ID of the wiki this page belongs to.
