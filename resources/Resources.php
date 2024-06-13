@@ -2281,6 +2281,7 @@ return [
 			'ipb-action-move',
 			'ipb-action-upload',
 			'ipbcreateaccount',
+			'ipbhidename',
 			'ipbemailban',
 			'ipb-disableusertalk',
 			'ipbenableautoblock',

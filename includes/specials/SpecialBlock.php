@@ -435,6 +435,8 @@ class SpecialBlock extends FormSpecialPage {
 				'cssclass' => 'mw-block-hideuser',
 				'section' => 'options',
 			];
+
+			$this->codexFormData[ 'hideUser'] = true;
 		}
 
 		// Watchlist their user page? (Only if user is logged in)
