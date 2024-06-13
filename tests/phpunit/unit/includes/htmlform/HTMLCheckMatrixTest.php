@@ -6,7 +6,7 @@ use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\HTMLForm\HTMLFormFieldRequiredOptionsException;
 
 /**
- * @covers \HTMLCheckMatrix
+ * @covers \MediaWiki\HTMLForm\Field\HTMLCheckMatrix
  */
 class HTMLCheckMatrixTest extends MediaWikiUnitTestCase {
 	private $defaultOptions = [

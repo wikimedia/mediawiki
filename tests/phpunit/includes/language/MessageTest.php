@@ -15,7 +15,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group Database
  * @covers ::wfMessage
- * @covers \Message
+ * @covers \MediaWiki\Message\Message
  */
 class MessageTest extends MediaWikiLangTestCase {
 
@@ -739,7 +739,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \Message
+	 * @covers \MediaWiki\Message\Message
 	 * @covers \LanguageQqx
 	 */
 	public function testQqxPlaceholders() {

@@ -9,7 +9,7 @@ use MediaWiki\Title\TitleValue;
 /**
  * @group Database
  * @group Cache
- * @covers \LinkCache
+ * @covers \MediaWiki\Cache\LinkCache
  */
 class LinkCacheTest extends MediaWikiIntegrationTestCase {
 	use LinkCacheTestTrait;
@@ -59,11 +59,11 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider providePageAndLinkAndArray
-	 * @covers \LinkCache::addGoodLinkObjFromRow()
-	 * @covers \LinkCache::getGoodLinkRow()
-	 * @covers \LinkCache::getGoodLinkID()
-	 * @covers \LinkCache::getGoodLinkFieldObj()
-	 * @covers \LinkCache::clearLink()
+	 * @covers \MediaWiki\Cache\LinkCache::addGoodLinkObjFromRow()
+	 * @covers \MediaWiki\Cache\LinkCache::getGoodLinkRow()
+	 * @covers \MediaWiki\Cache\LinkCache::getGoodLinkID()
+	 * @covers \MediaWiki\Cache\LinkCache::getGoodLinkFieldObj()
+	 * @covers \MediaWiki\Cache\LinkCache::clearLink()
 	 */
 	public function testAddGoodLinkObjFromRow( $page ) {
 		$linkCache = $this->newLinkCache();
@@ -125,10 +125,10 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \LinkCache::addGoodLinkObjFromRow()
-	 * @covers \LinkCache::getGoodLinkRow()
-	 * @covers \LinkCache::getGoodLinkID()
-	 * @covers \LinkCache::getGoodLinkFieldObj()
+	 * @covers \MediaWiki\Cache\LinkCache::addGoodLinkObjFromRow()
+	 * @covers \MediaWiki\Cache\LinkCache::getGoodLinkRow()
+	 * @covers \MediaWiki\Cache\LinkCache::getGoodLinkID()
+	 * @covers \MediaWiki\Cache\LinkCache::getGoodLinkFieldObj()
 	 */
 	public function testAddGoodLinkObjWithAllParameters() {
 		$linkCache = $this->getServiceContainer()->getLinkCache();
@@ -164,10 +164,10 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \LinkCache::addGoodLinkObjFromRow()
-	 * @covers \LinkCache::getGoodLinkRow()
-	 * @covers \LinkCache::getGoodLinkID()
-	 * @covers \LinkCache::getGoodLinkFieldObj()
+	 * @covers \MediaWiki\Cache\LinkCache::addGoodLinkObjFromRow()
+	 * @covers \MediaWiki\Cache\LinkCache::getGoodLinkRow()
+	 * @covers \MediaWiki\Cache\LinkCache::getGoodLinkID()
+	 * @covers \MediaWiki\Cache\LinkCache::getGoodLinkFieldObj()
 	 */
 	public function testAddGoodLinkObjFromRowWithMinimalParameters() {
 		$linkCache = $this->getServiceContainer()->getLinkCache();
@@ -216,7 +216,7 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \LinkCache::addGoodLinkObjFromRow()
+	 * @covers \MediaWiki\Cache\LinkCache::addGoodLinkObjFromRow()
 	 */
 	public function testAddGoodLinkObjFromRowWithInterwikiLink() {
 		$linkCache = $this->getServiceContainer()->getLinkCache();
@@ -230,9 +230,9 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider providePageAndLink
-	 * @covers \LinkCache::addBadLinkObj()
-	 * @covers \LinkCache::isBadLink()
-	 * @covers \LinkCache::clearLink()
+	 * @covers \MediaWiki\Cache\LinkCache::addBadLinkObj()
+	 * @covers \MediaWiki\Cache\LinkCache::isBadLink()
+	 * @covers \MediaWiki\Cache\LinkCache::clearLink()
 	 */
 	public function testAddBadLinkObj( $key ) {
 		$linkCache = $this->getServiceContainer()->getLinkCache();
@@ -249,7 +249,7 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \LinkCache::addBadLinkObj()
+	 * @covers \MediaWiki\Cache\LinkCache::addBadLinkObj()
 	 */
 	public function testAddBadLinkObjWithInterwikiLink() {
 		$linkCache = $this->newLinkCache();
@@ -261,8 +261,8 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \LinkCache::addLinkObj()
-	 * @covers \LinkCache::getGoodLinkFieldObj
+	 * @covers \MediaWiki\Cache\LinkCache::addLinkObj()
+	 * @covers \MediaWiki\Cache\LinkCache::getGoodLinkFieldObj
 	 */
 	public function testAddLinkObj() {
 		$existing = $this->getExistingTestPage();
@@ -284,7 +284,7 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \LinkCache::addLinkObj()
+	 * @covers \MediaWiki\Cache\LinkCache::addLinkObj()
 	 */
 	public function testAddLinkObjUsesCachedInfo() {
 		$existing = $this->getExistingTestPage();
@@ -309,7 +309,7 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \LinkCache::addLinkObj()
+	 * @covers \MediaWiki\Cache\LinkCache::addLinkObj()
 	 */
 	public function testAddLinkObjUsesWANCache() {
 		// For some namespaces we cache data (Template, File, etc)
@@ -376,7 +376,7 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideInvalidPageParams
-	 * @covers \LinkCache::getGoodLinkRow()
+	 * @covers \MediaWiki\Cache\LinkCache::getGoodLinkRow()
 	 */
 	public function testGetGoodLinkRowWithBadParams( $ns, $dbkey ) {
 		$linkCache = $this->newLinkCache();
@@ -392,8 +392,8 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \LinkCache::getGoodLinkRow()
-	 * @covers \LinkCache::getGoodLinkFieldObj
+	 * @covers \MediaWiki\Cache\LinkCache::getGoodLinkRow()
+	 * @covers \MediaWiki\Cache\LinkCache::getGoodLinkFieldObj
 	 */
 	public function testGetGoodLinkRow() {
 		$existing = new TitleValue( NS_MAIN, 'Existing' );
@@ -416,7 +416,7 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \LinkCache::getGoodLinkRow()
+	 * @covers \MediaWiki\Cache\LinkCache::getGoodLinkRow()
 	 */
 	public function testGetGoodLinkRowUsesCachedInfo() {
 		$existing = new TitleValue( NS_MAIN, 'Existing' );

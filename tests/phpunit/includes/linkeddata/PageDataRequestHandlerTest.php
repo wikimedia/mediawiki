@@ -10,7 +10,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 
 /**
- * @covers \PageDataRequestHandler
+ * @covers \MediaWiki\LinkedData\PageDataRequestHandler
  * @group PageData
  */
 class PageDataRequestHandlerTest extends \MediaWikiLangTestCase {

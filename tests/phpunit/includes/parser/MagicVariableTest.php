@@ -24,7 +24,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Database
- * @covers \Parser::expandMagicVariable
+ * @covers \MediaWiki\Parser\Parser::expandMagicVariable
  */
 class MagicVariableTest extends MediaWikiIntegrationTestCase {
 	/**

@@ -33,7 +33,7 @@ use ReflectionObject;
 use WANObjectCache;
 
 /**
- * @covers \Parser::__construct
+ * @covers \MediaWiki\Parser\Parser::__construct
  */
 class ParserTest extends MediaWikiIntegrationTestCase {
 	/**
@@ -86,7 +86,7 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \Parser::__construct
+	 * @covers \MediaWiki\Parser\Parser::__construct
 	 */
 	public function testConstructorArguments() {
 		$args = $this->createConstructorArguments();
@@ -139,9 +139,9 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \Parser::setPage
-	 * @covers \Parser::getPage
-	 * @covers \Parser::getTitle
+	 * @covers \MediaWiki\Parser\Parser::setPage
+	 * @covers \MediaWiki\Parser\Parser::getPage
+	 * @covers \MediaWiki\Parser\Parser::getTitle
 	 */
 	public function testSetPage() {
 		$parser = $this->newParser();
@@ -154,9 +154,9 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \Parser::setPage
-	 * @covers \Parser::getPage
-	 * @covers \Parser::getTitle
+	 * @covers \MediaWiki\Parser\Parser::setPage
+	 * @covers \MediaWiki\Parser\Parser::getPage
+	 * @covers \MediaWiki\Parser\Parser::getTitle
 	 */
 	public function testSetTitle() {
 		$parser = $this->newParser();
