@@ -82,9 +82,9 @@ class ApiUsageException extends MWException implements Stringable, ILocalizedExc
 	 * @return ApiMessage
 	 */
 	private function getApiMessage() {
-		$errors = $this->status->getErrorsByType( 'error' );
+		$errors = $this->status->getMessages( 'error' );
 		if ( !$errors ) {
-			$errors = $this->status->getErrors();
+			$errors = $this->status->getMessages();
 		}
 		if ( !$errors ) {
 			$msg = new ApiMessage( 'apierror-unknownerror-nocode', 'unknownerror' );

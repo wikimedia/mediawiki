@@ -85,7 +85,7 @@ class ApiParamInfo extends ApiBase {
 					try {
 						$module = $this->getModuleFromPath( $path );
 					} catch ( ApiUsageException $ex ) {
-						foreach ( $ex->getStatusValue()->getErrors() as $error ) {
+						foreach ( $ex->getStatusValue()->getMessages() as $error ) {
 							$this->addWarning( $error );
 						}
 						continue;
@@ -132,7 +132,7 @@ class ApiParamInfo extends ApiBase {
 			try {
 				$module = $this->getModuleFromPath( $m );
 			} catch ( ApiUsageException $ex ) {
-				foreach ( $ex->getStatusValue()->getErrors() as $error ) {
+				foreach ( $ex->getStatusValue()->getMessages() as $error ) {
 					$this->addWarning( $error );
 				}
 				continue;

@@ -554,7 +554,7 @@ class ApiEditPage extends ApiBase {
 					$apiResult->addValue( null, $this->getModuleName(), $r );
 					return;
 				}
-				if ( !$status->getErrors() ) {
+				if ( !$status->getMessages() ) {
 					// This appears to be unreachable right now, because all
 					// code paths will set an error.  Could change, though.
 					$status->fatal( 'hookaborted' ); // @codeCoverageIgnore
@@ -634,7 +634,7 @@ class ApiEditPage extends ApiBase {
 				break;
 
 			default:
-				if ( !$status->getErrors() ) {
+				if ( !$status->getMessages() ) {
 					// EditPage sometimes only sets the status code without setting
 					// any actual error messages. Supply defaults for those cases.
 					switch ( $statusValue ) {

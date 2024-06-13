@@ -605,7 +605,7 @@ class ApiUpload extends ApiBase {
 	 */
 	public function dieStatusWithCode( $status, $overrideCode, $moreExtraData = null ) {
 		$sv = StatusValue::newGood();
-		foreach ( $status->getErrors() as $error ) {
+		foreach ( $status->getMessages() as $error ) {
 			$msg = ApiMessage::create( $error, $overrideCode );
 			if ( $moreExtraData ) {
 				$msg->setApiData( $msg->getApiData() + $moreExtraData );
@@ -1145,7 +1145,7 @@ class ApiUpload extends ApiBase {
 						'status' => (string)$status
 					]
 				);
-				$this->dieRecoverableError( $status->getErrors() );
+				$this->dieRecoverableError( $status->getMessages() );
 			}
 			$result['result'] = 'Success';
 		}
