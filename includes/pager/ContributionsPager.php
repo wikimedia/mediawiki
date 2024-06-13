@@ -39,6 +39,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
@@ -60,6 +61,11 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	 * @var string[] Local cache for escaped messages
 	 */
 	private $messages;
+
+	/**
+	 * @var bool Get revisions from the archive table (if true) or the revision table (if false)
+	 */
+	protected $isArchive;
 
 	/**
 	 * @var string User name, or a string describing an IP address range
@@ -145,6 +151,20 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	private $tagsCache;
 
 	/**
+	 * Field names for various attributes. These may be overridden in a subclass,
+	 * for example for getting revisions from the archive table.
+	 */
+	protected string $revisionIdField = 'rev_id';
+	protected string $revisionParentIdField = 'rev_parent_id';
+	protected string $revisionTimestampField = 'rev_timestamp';
+	protected string $revisionLengthField = 'rev_len';
+	protected string $revisionDeletedField = 'rev_deleted';
+	protected string $revisionMinorField = 'rev_minor_edit';
+	protected string $userNameField = 'rev_user_text';
+	protected string $pageNamespaceField = 'page_namespace';
+	protected string $pageTitleField = 'page_title';
+
+	/**
 	 * @param LinkRenderer $linkRenderer
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param HookContainer $hookContainer
@@ -168,6 +188,8 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		array $options,
 		?UserIdentity $targetUser
 	) {
+		$this->isArchive = $options['isArchive'] ?? false;
+
 		// Set ->target before calling parent::__construct() so
 		// parent can call $this->getIndexField() and get the right result. Set
 		// the rest too just to keep things simple.
@@ -213,6 +235,9 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			'pipe-separator',
 			'uctop',
 			'changeslist-nocomment',
+			'undeleteviewlink',
+			'undeleteviewlink',
+			'deletionlog',
 		];
 
 		foreach ( $msgs as $msg ) {
@@ -292,7 +317,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			->joinConds( $join_conds )
 			->setMaxExecutionTime( $this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries ) )
 			->fetchResultSet() ];
-		if ( !$this->revisionsOnly ) {
+		if ( !$this->revisionsOnly && !$this->isArchive ) {
 			// TODO: Range offsets are fairly important and all handlers should take care of it.
 			// If this hook will be replaced (e.g. unified with the DeletedContribsPager one),
 			// please consider passing [ $this->endOffset, $this->startOffset ] to it (T167577).
@@ -342,19 +367,19 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		$queryInfo = $this->getRevisionQuery();
 
 		if ( $this->deletedOnly ) {
-			$queryInfo['conds'][] = 'rev_deleted != 0';
+			$queryInfo['conds'][] = $this->revisionDeletedField . ' != 0';
 		}
 
 		if ( $this->topOnly ) {
-			$queryInfo['conds'][] = 'rev_id = page_latest';
+			$queryInfo['conds'][] = $this->revisionIdField . ' = page_latest';
 		}
 
 		if ( $this->newOnly ) {
-			$queryInfo['conds'][] = 'rev_parent_id = 0';
+			$queryInfo['conds'][] = $this->revisionParentIdField . ' = 0';
 		}
 
 		if ( $this->hideMinor ) {
-			$queryInfo['conds'][] = 'rev_minor_edit = 0';
+			$queryInfo['conds'][] = $this->revisionMinorField . ' = 0';
 		}
 
 		$queryInfo['conds'] = array_merge( $queryInfo['conds'], $this->getNamespaceCond() );
@@ -363,17 +388,17 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		$dbr = $this->getDatabase();
 		if ( !$this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
 			$queryInfo['conds'][] = $dbr->bitAnd(
-				'rev_deleted', RevisionRecord::DELETED_USER
+				$this->revisionDeletedField, RevisionRecord::DELETED_USER
 				) . ' = 0';
 		} elseif ( !$this->getAuthority()->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 			$queryInfo['conds'][] = $dbr->bitAnd(
-				'rev_deleted', RevisionRecord::SUPPRESSED_USER
+				$this->revisionDeletedField, RevisionRecord::SUPPRESSED_USER
 				) . ' != ' . RevisionRecord::SUPPRESSED_USER;
 		}
 
 		// $this->getIndexField() must be in the result rows, as reallyDoQuery() tries to access it.
 		$indexField = $this->getIndexField();
-		if ( $indexField !== 'rev_timestamp' ) {
+		if ( $indexField !== $this->revisionTimestampField ) {
 			$queryInfo['fields'][] = $indexField;
 		}
 
@@ -387,7 +412,9 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			$this->tagInvert,
 		);
 
-		$this->hookRunner->onContribsPager__getQueryInfo( $this, $queryInfo );
+		if ( !$this->isArchive ) {
+			$this->hookRunner->onContribsPager__getQueryInfo( $this, $queryInfo );
+		}
 
 		return $queryInfo;
 	}
@@ -400,15 +427,15 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			$bool_op = $this->nsInvert ? 'AND' : 'OR';
 
 			if ( !$this->associated ) {
-				return [ "page_namespace $eq_op $selectedNS" ];
+				return [ $this->pageNamespaceField . " $eq_op $selectedNS" ];
 			}
 
 			$associatedNS = $dbr->addQuotes( $this->namespaceInfo->getAssociated( $this->namespace ) );
 
 			return [
-				"page_namespace $eq_op $selectedNS " .
+				$this->pageNamespaceField . " $eq_op $selectedNS " .
 				$bool_op .
-				" page_namespace $eq_op $associatedNS"
+				" " . $this->pageNamespaceField . " $eq_op $associatedNS"
 			];
 		}
 
@@ -459,17 +486,17 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		$linkBatch = $this->linkBatchFactory->newLinkBatch();
 		# Give some pointers to make (last) links
 		foreach ( $this->mResult as $row ) {
-			if ( isset( $row->rev_parent_id ) && $row->rev_parent_id ) {
-				$parentRevIds[] = (int)$row->rev_parent_id;
+			if ( isset( $row->{$this->revisionParentIdField} ) && $row->{$this->revisionParentIdField} ) {
+				$parentRevIds[] = (int)$row->{$this->revisionParentIdField};
 			}
-			if ( $this->revisionStore->isRevisionRow( $row ) ) {
-				$this->mParentLens[(int)$row->rev_id] = $row->rev_len;
-				if ( $this->target !== $row->rev_user_text ) {
+			if ( $this->revisionStore->isRevisionRow( $row, $this->isArchive ? 'archive' : 'revision' ) ) {
+				$this->mParentLens[(int)$row->{$this->revisionIdField}] = $row->{$this->revisionLengthField};
+				if ( $this->target !== $row->{$this->userNameField} ) {
 					// If the target does not match the author, batch the author's talk page
-					$linkBatch->add( NS_USER_TALK, $row->rev_user_text );
+					$linkBatch->add( NS_USER_TALK, $row->{$this->userNameField} );
 				}
-				$linkBatch->add( $row->page_namespace, $row->page_title );
-				$revisions[$row->rev_id] = $this->revisionStore->newRevisionFromRow( $row );
+				$linkBatch->add( $row->{$this->pageNamespaceField}, $row->{$this->pageTitleField} );
+				$revisions[$row->{$this->revisionIdField}] = $this->createRevisionRecord( $row );
 			}
 		}
 		# Fetch rev_len for revisions not already scanned above
@@ -516,15 +543,42 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	 * @return RevisionRecord|null
 	 */
 	public function tryCreatingRevisionRecord( $row, $title = null ) {
-		if ( $row instanceof stdClass && isset( $row->rev_id )
-			&& isset( $this->revisions[$row->rev_id] )
+		if ( $row instanceof stdClass && isset( $row->{$this->revisionIdField} )
+			&& isset( $this->revisions[$row->{$this->revisionIdField}] )
 		) {
-			return $this->revisions[$row->rev_id];
-		} elseif ( $this->revisionStore->isRevisionRow( $row ) ) {
-			return $this->revisionStore->newRevisionFromRow( $row, 0, $title );
-		} else {
-			return null;
+			return $this->revisions[$row->{$this->revisionIdField}];
 		}
+
+		if (
+			$this->isArchive &&
+			$this->revisionStore->isRevisionRow( $row, 'archive' )
+		) {
+			return $this->revisionStore->newRevisionFromArchiveRow( $row, 0, $title );
+		}
+
+		if (
+			!$this->isArchive &&
+			$this->revisionStore->isRevisionRow( $row )
+		) {
+			return $this->revisionStore->newRevisionFromRow( $row, 0, $title );
+		}
+
+		return null;
+	}
+
+	/**
+	 * Create a revision record from a $row that models a revision.
+	 *
+	 * @param mixed $row
+	 * @param Title|null $title
+	 * @return RevisionRecord
+	 */
+	public function createRevisionRecord( $row, $title = null ) {
+		if ( $this->isArchive ) {
+			return $this->revisionStore->newRevisionFromArchiveRow( $row, 0, $title );
+		}
+
+		return $this->revisionStore->newRevisionFromRow( $row, 0, $title );
 	}
 
 	/**
@@ -549,9 +603,10 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		$page = null;
 		// Create a title for the revision if possible
 		// Rows from the hook may not include title information
-		if ( isset( $row->page_namespace ) && isset( $row->page_title ) ) {
-			$page = Title::newFromRow( $row );
+		if ( isset( $row->{$this->pageNamespaceField} ) && isset( $row->{$this->pageTitleField} ) ) {
+			$page = Title::makeTitle( $row->{$this->pageNamespaceField}, $row->{$this->pageTitleField} );
 		}
+
 		// Flow overrides the ContribsPager::reallyDoQuery hook, causing this
 		// function to be called with a special object for $row. It expects us
 		// skip formatting so that the row can be formatted by the
@@ -559,7 +614,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		// FIXME: have some better way for extensions to provide formatted rows.
 		$revRecord = $this->tryCreatingRevisionRecord( $row, $page );
 		if ( $revRecord && $page ) {
-			$revRecord = $this->revisionStore->newRevisionFromRow( $row, 0, $page );
+			$revRecord = $this->createRevisionRecord( $row, $page );
 			$attribs['data-mw-revid'] = $revRecord->getId();
 
 			$link = $linkRenderer->makeLink(
@@ -571,63 +626,120 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			# Mark current revisions
 			$topmarktext = '';
 
-			$pagerTools = new PagerTools(
-				$revRecord,
-				null,
-				$row->rev_id === $row->page_latest && !$row->page_is_new,
-				$this->hookRunner,
-				$page,
-				$this->getContext(),
-				$this->getLinkRenderer()
-			);
-			if ( $row->rev_id === $row->page_latest ) {
-				$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
-				$classes[] = 'mw-contributions-current';
-			}
-			if ( $pagerTools->shouldPreventClickjacking() ) {
-				$this->setPreventClickjacking( true );
-			}
-			$topmarktext .= $pagerTools->toHTML();
-			# Is there a visible previous revision?
-			if ( $revRecord->getParentId() !== 0 &&
-				$revRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() )
-			) {
-				$difftext = $linkRenderer->makeKnownLink(
-					$page,
-					new HtmlArmor( $this->messages['diff'] ),
-					[ 'class' => 'mw-changeslist-diff' ],
+			// Add links for seeing history, diff, etc.
+			if ( $this->isArchive ) {
+				// Add the same links as DeletedContribsPager::formatRevisionRow
+				$undelete = SpecialPage::getTitleFor( 'Undelete' );
+				if ( $this->getAuthority()->isAllowed( 'deletedtext' ) ) {
+					$last = $linkRenderer->makeKnownLink(
+						$undelete,
+						new HtmlArmor( $this->messages['diff'] ),
+						[],
+						[
+							'target' => $page->getPrefixedText(),
+							'timestamp' => $revRecord->getTimestamp(),
+							'diff' => 'prev'
+						]
+					);
+				} else {
+					$last = $this->messages['diff'];
+				}
+
+				$logs = SpecialPage::getTitleFor( 'Log' );
+				$dellog = $linkRenderer->makeKnownLink(
+					$logs,
+					new HtmlArmor( $this->messages['deletionlog'] ),
+					[],
 					[
-						'diff' => 'prev',
-						'oldid' => $row->rev_id
+						'type' => 'delete',
+						'page' => $page->getPrefixedText()
 					]
 				);
-			} else {
-				$difftext = $this->messages['diff'];
-			}
-			$histlink = $linkRenderer->makeKnownLink(
-				$page,
-				new HtmlArmor( $this->messages['hist'] ),
-				[ 'class' => 'mw-changeslist-history' ],
-				[ 'action' => 'history' ]
-			);
 
-			if ( $row->rev_parent_id === null ) {
+				$reviewlink = $linkRenderer->makeKnownLink(
+					SpecialPage::getTitleFor( 'Undelete', $page->getPrefixedDBkey() ),
+					new HtmlArmor( $this->messages['undeleteviewlink'] )
+				);
+
+				$diffHistLinks = Html::rawElement(
+					'span',
+					[ 'class' => 'mw-deletedcontribs-tools' ],
+					$this->msg( 'parentheses' )->rawParams( $this->getLanguage()->pipeList(
+						[ $last, $dellog, $reviewlink ] ) )->escaped()
+				);
+
+			} else {
+				$pagerTools = new PagerTools(
+					$revRecord,
+					null,
+					$row->{$this->revisionIdField} === $row->page_latest && !$row->page_is_new,
+					$this->hookRunner,
+					$page,
+					$this->getContext(),
+					$this->getLinkRenderer()
+				);
+				if ( $row->{$this->revisionIdField} === $row->page_latest ) {
+					$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
+					$classes[] = 'mw-contributions-current';
+				}
+				if ( $pagerTools->shouldPreventClickjacking() ) {
+					$this->setPreventClickjacking( true );
+				}
+				$topmarktext .= $pagerTools->toHTML();
+				# Is there a visible previous revision?
+				if ( $revRecord->getParentId() !== 0 &&
+					$revRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() )
+				) {
+					$difftext = $linkRenderer->makeKnownLink(
+						$page,
+						new HtmlArmor( $this->messages['diff'] ),
+						[ 'class' => 'mw-changeslist-diff' ],
+						[
+							'diff' => 'prev',
+							'oldid' => $row->{$this->revisionIdField},
+						]
+					);
+				} else {
+					$difftext = $this->messages['diff'];
+				}
+				$histlink = $linkRenderer->makeKnownLink(
+					$page,
+					new HtmlArmor( $this->messages['hist'] ),
+					[ 'class' => 'mw-changeslist-history' ],
+					[ 'action' => 'history' ]
+				);
+
+				// While it might be tempting to use a list here
+				// this would result in clutter and slows down navigating the content
+				// in assistive technology.
+				// See https://phabricator.wikimedia.org/T205581#4734812
+				$diffHistLinks = Html::rawElement( 'span',
+					[ 'class' => 'mw-changeslist-links' ],
+					// The spans are needed to ensure the dividing '|' elements are not
+					// themselves styled as links.
+					Html::rawElement( 'span', [], $difftext ) .
+					' ' . // Space needed for separating two words.
+					Html::rawElement( 'span', [], $histlink )
+				);
+			}
+
+			if ( $row->{$this->revisionParentIdField} === null ) {
 				// For some reason rev_parent_id isn't populated for this row.
 				// Its rumoured this is true on wikipedia for some revisions (T36922).
 				// Next best thing is to have the total number of bytes.
 				$chardiff = ' <span class="mw-changeslist-separator"></span> ';
-				$chardiff .= Linker::formatRevisionSize( $row->rev_len );
+				$chardiff .= Linker::formatRevisionSize( $row->{$this->revisionLengthField} );
 				$chardiff .= ' <span class="mw-changeslist-separator"></span> ';
 			} else {
 				$parentLen = 0;
-				if ( isset( $this->mParentLens[$row->rev_parent_id] ) ) {
-					$parentLen = $this->mParentLens[$row->rev_parent_id];
+				if ( isset( $this->mParentLens[$row->{$this->revisionParentIdField}] ) ) {
+					$parentLen = $this->mParentLens[$row->{$this->revisionParentIdField}];
 				}
 
 				$chardiff = ' <span class="mw-changeslist-separator"></span> ';
 				$chardiff .= ChangesList::showCharacterDifference(
 					$parentLen,
-					$row->rev_len,
+					$row->{$this->revisionLengthField},
 					$this->getContext()
 				);
 				$chardiff .= ' <span class="mw-changeslist-separator"></span> ';
@@ -635,7 +747,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 
 			$lang = $this->getLanguage();
 
-			$comment = $this->formattedComments[$row->rev_id];
+			$comment = $this->formattedComments[$row->{$this->revisionIdField}];
 
 			if ( $comment === '' ) {
 				$defaultComment = $this->messages['changeslist-nocomment'];
@@ -674,19 +786,6 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 				$del .= ' ';
 			}
 
-			// While it might be tempting to use a list here
-			// this would result in clutter and slows down navigating the content
-			// in assistive technology.
-			// See https://phabricator.wikimedia.org/T205581#4734812
-			$diffHistLinks = Html::rawElement( 'span',
-				[ 'class' => 'mw-changeslist-links' ],
-				// The spans are needed to ensure the dividing '|' elements are not
-				// themselves styled as links.
-				Html::rawElement( 'span', [], $difftext ) .
-				' ' . // Space needed for separating two words.
-				Html::rawElement( 'span', [], $histlink )
-			);
-
 			# Tags, if any. Save some time using a cache.
 			[ $tagSummary, $newClasses ] = $this->tagsCache->getWithSetCallback(
 				$this->tagsCache->makeKey(
@@ -702,8 +801,10 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			);
 			$classes = array_merge( $classes, $newClasses );
 
-			$this->hookRunner->onSpecialContributions__formatRow__flags(
-				$this->getContext(), $row, $flags );
+			if ( !$this->isArchive ) {
+				$this->hookRunner->onSpecialContributions__formatRow__flags(
+					$this->getContext(), $row, $flags );
+			}
 
 			$templateParams = [
 				'del' => $del,
@@ -730,12 +831,14 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			);
 		}
 
-		// Let extensions add data
-		$this->hookRunner->onContributionsLineEnding( $this, $ret, $row, $classes, $attribs );
-		$attribs = array_filter( $attribs,
-			[ Sanitizer::class, 'isReservedDataAttribute' ],
-			ARRAY_FILTER_USE_KEY
-		);
+		if ( !$this->isArchive ) {
+			// Let extensions add data
+			$this->hookRunner->onContributionsLineEnding( $this, $ret, $row, $classes, $attribs );
+			$attribs = array_filter( $attribs,
+				[ Sanitizer::class, 'isReservedDataAttribute' ],
+				ARRAY_FILTER_USE_KEY
+			);
+		}
 
 		// TODO: Handle exceptions in the catch block above.  Do any extensions rely on
 		// receiving empty rows?
