@@ -26,7 +26,6 @@
 	 *   height equal to spinner size.
 	 */
 
-	// eslint-disable-next-line no-jquery/no-extend
 	$.extend( {
 		/**
 		 * Create a spinner element
