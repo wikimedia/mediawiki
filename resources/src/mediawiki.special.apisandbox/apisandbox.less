@@ -2,11 +2,11 @@
 @import 'mediawiki.mixins.less';
 
 .mw-apisandbox-toolbar {
-	background: #fff;
+	background: @background-color-base;
 	.position-sticky();
 	top: 0;
 	padding: 0.5em 0;
-	box-shadow: 0 2px 0 0 rgba( 0, 0, 0, 0.1 );
+	box-shadow: @box-shadow-drop-small;
 	text-align: right;
 	z-index: 1;
 }
@@ -51,7 +51,7 @@
 }
 
 .mw-apisandbox-help-field {
-	border-bottom: 1px solid rgba( 0, 0, 0, 0.1 );
+	border-bottom: @border-subtle;
 	padding-bottom: 12px;
 
 	&:last-child {
