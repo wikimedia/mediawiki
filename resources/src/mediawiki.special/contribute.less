@@ -3,6 +3,8 @@
  */
 @import 'mediawiki.skin.variables.less';
 
+/* Flexbox gap not supported by all browsers */
+/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 .mw-special-Contribute {
 	.mw-contribute-wrapper {
 		// Ensure this is user's specified font size.
@@ -18,11 +20,12 @@
 		background-color: @background-color-neutral-subtle;
 	}
 
+	/* Flexbox gap not supported by all browsers */
+	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	.mw-contribute-content-area {
 		display: flex;
 		flex-flow: row wrap;
-		column-gap: 24px;
-		row-gap: 24px;
+		gap: 24px 24px;
 	}
 
 	.mw-contribute-card {

@@ -6,6 +6,8 @@
 
 @import 'mediawiki.skin.variables.less';
 
+/* Flexbox gap not supported by all browsers */
+/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 .mw-temp-user-banner {
 	display: flex;
 	flex-wrap: wrap;
@@ -22,6 +24,8 @@
 	font-weight: bold;
 }
 
+/* Flexbox gap not supported by all browsers */
+/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 .mw-temp-user-banner-buttons {
 	display: flex;
 	gap: @spacing-50;

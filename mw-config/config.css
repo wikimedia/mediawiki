@@ -8,7 +8,6 @@
 html {
 	line-height: 1.4;
 	font-size: 1em;
-	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	-webkit-text-size-adjust: 100%;
 }
 
@@ -68,8 +67,7 @@ main {
 	width: calc( 100vw - 64px );
 	max-width: 320px;
 	opacity: 0;
-	overflow-x: hidden;
-	overflow-y: auto;
+	overflow: hidden auto;
 	transform: translate( -100% );
 	transition: opacity 0.5s, transform 0.25s ease;
 	overflow-wrap: break-word;
@@ -122,6 +120,8 @@ main {
 
 @media ( min-width: 1440px ) {
 	#mw-panel {
+		/* CSS math (max) not supported by all browsers */
+		/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 		padding-left: max( 32px, calc( (100% - (1440px - 64px)) / 2 ) );
 		width: calc( (100% - (1440px - 64px)) / 2 + 240px );
 	}

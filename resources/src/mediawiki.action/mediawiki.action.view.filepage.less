@@ -160,6 +160,7 @@
 			background-color: @background-color-transparent;
 		}
 
+		/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 		@media ( prefers-color-scheme: dark ) {
 			html.skin-theme-clientpref-os & {
 				background-color: @background-color-transparent;
@@ -190,7 +191,6 @@
 	display: none;
 }
 
-/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 @supports ( aspect-ratio: 16 / 9 ) {
 	#file img {
 		max-width: 100%;

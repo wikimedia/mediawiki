@@ -1,11 +1,12 @@
 @import 'mediawiki.skin.variables.less';
 
+/* Flexbox gap not supported by all browsers, and warns here for some reason */
+/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 .mw-ui-container {
 	/* Benefits column CSS to the right (if it fits) of the form, otherwise below. */
 	display: flex;
 	flex-wrap: wrap;
-	column-gap: 100px;
-	row-gap: 50px;
+	gap: 50px 100px;
 }
 
 .mw-createacct-benefits-heading {
@@ -76,6 +77,8 @@
 	}
 }
 
+/* Flexbox gap not supported by all browsers */
+/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 .mw-benefit-list-wrapper {
 	margin-top: 8px;
 	display: flex;
@@ -84,6 +87,8 @@
 	gap: 16px;
 	padding-left: 21px;
 
+	/* Flexbox gap not supported by all browsers */
+	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	.mw-benefit-item {
 		display: flex;
 		gap: 16px;
