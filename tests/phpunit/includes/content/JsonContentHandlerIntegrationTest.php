@@ -6,6 +6,7 @@ use MediaWiki\Content\ValidationParams;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\Title;
 
 class JsonContentHandlerIntegrationTest extends MediaWikiLangTestCase {

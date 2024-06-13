@@ -1,11 +1,13 @@
 <?php
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\FileRepo\ThumbnailEntryPoint;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\FileRepo\TestRepoTrait;
 use MediaWiki\Tests\MockEnvironment;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 
 /**

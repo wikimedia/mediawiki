@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Message\Message;
 use PHPUnit\Framework\TestCase;
 
 /**

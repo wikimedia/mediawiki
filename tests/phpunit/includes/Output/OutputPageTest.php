@@ -12,6 +12,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Page\PageStoreRecord;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\ContentSecurityPolicy;

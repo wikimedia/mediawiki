@@ -4,8 +4,8 @@ namespace MediaWiki\Tests\Auth;
 
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\PasswordAuthenticationRequest;
+use MediaWiki\Message\Message;
 use MediaWikiIntegrationTestCase;
-use Message;
 use UnexpectedValueException;
 
 /**

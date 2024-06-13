@@ -3,7 +3,9 @@
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
+use MediaWiki\Message\Message;
 use MediaWiki\Page\ParserOutputAccess;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;

@@ -3,6 +3,7 @@
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\MockBlockTrait;

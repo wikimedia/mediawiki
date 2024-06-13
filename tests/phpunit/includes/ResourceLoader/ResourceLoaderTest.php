@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\ResourceLoader;
 
-use EmptyResourceLoader;
 use Exception;
 use ExtensionRegistry;
 use InvalidArgumentException;

@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\ResourceLoader;
 
 use InvalidArgumentException;
 use MediaWiki\ResourceLoader\CodexModule;
-use ResourceLoaderTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**

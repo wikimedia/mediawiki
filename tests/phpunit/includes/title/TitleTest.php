@@ -4,6 +4,7 @@ use MediaWiki\Cache\BacklinkCache;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Message\Message;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Tests\Unit\DummyServicesTrait;

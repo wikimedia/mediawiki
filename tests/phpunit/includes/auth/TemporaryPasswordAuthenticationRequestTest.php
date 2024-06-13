@@ -5,7 +5,7 @@ namespace MediaWiki\Tests\Auth;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\TemporaryPasswordAuthenticationRequest;
 use MediaWiki\MainConfigNames;
-use Message;
+use MediaWiki\Message\Message;
 
 /**
  * @group AuthManager

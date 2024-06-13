@@ -4,6 +4,7 @@ use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\TextContent;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Parser\ParserOutput;
 
 /**
  * Test class for Export methods.

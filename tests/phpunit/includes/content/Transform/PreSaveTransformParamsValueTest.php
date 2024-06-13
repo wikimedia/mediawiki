@@ -23,11 +23,11 @@ namespace MediaWiki\Tests\Content\Transform;
 
 use MediaWiki\Content\Transform\PreSaveTransformParamsValue;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWikiIntegrationTestCase;
 use ParserOptions;
-use Title;
-use User;
 
 /**
  * @covers \MediaWiki\Content\Transform\PreSaveTransformParamsValue

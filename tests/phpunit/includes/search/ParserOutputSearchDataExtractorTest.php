@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Search\ParserOutputSearchDataExtractor;
 use MediaWiki\Title\Title;
 

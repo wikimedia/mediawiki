@@ -1,7 +1,10 @@
 <?php
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Language\RawMessage;
+use MediaWiki\Message\Message;
 use MediaWiki\Status\StatusFormatter;
+use MediaWiki\User\User;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\TestingAccessWrapper;
 

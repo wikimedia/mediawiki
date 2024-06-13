@@ -4,7 +4,7 @@ namespace MediaWiki\Tests\Auth;
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\PasswordAuthenticationRequest;
-use Message;
+use MediaWiki\Message\Message;
 
 /**
  * @group AuthManager

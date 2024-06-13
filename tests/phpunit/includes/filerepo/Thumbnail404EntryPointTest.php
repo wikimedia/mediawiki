@@ -1,10 +1,12 @@
 <?php
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\FileRepo\Thumbnail404EntryPoint;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\FileRepo\TestRepoTrait;
 use MediaWiki\Tests\MockEnvironment;
+use MediaWiki\Title\Title;
 
 /**
  * @covers \MediaWiki\FileRepo\Thumbnail404EntryPoint

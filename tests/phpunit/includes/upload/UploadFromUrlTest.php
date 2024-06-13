@@ -2,6 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\File\FileDeleteForm;
+use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Title\Title;
 use Wikimedia\TestingAccessWrapper;
 

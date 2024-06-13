@@ -3,11 +3,11 @@
 namespace MediaWiki\Tests\Action;
 
 use BadTitleError;
-use DeferredUpdates;
-use DeferredUpdatesScopeStack;
 use MediaWiki\Actions\ActionEntryPoint;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\DeferredUpdatesScopeMediaWikiStack;
+use MediaWiki\Deferred\DeferredUpdatesScopeStack;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\FauxResponse;
