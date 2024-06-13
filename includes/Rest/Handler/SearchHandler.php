@@ -138,8 +138,7 @@ class SearchHandler extends Handler {
 			if ( $results instanceof StatusValue ) {
 				$status = $results;
 				if ( !$status->isOK() ) {
-					[ $error ] = $status->splitByErrorType();
-					if ( $error->getErrors() ) { // Only throw for errors, suppress warnings (for now)
+					if ( $status->getMessages( 'error' ) ) { // Only throw for errors, suppress warnings (for now)
 						$this->throwExceptionForStatus( $status, 'rest-search-error', 500 );
 					}
 				}

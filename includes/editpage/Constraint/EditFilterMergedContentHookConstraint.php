@@ -20,7 +20,6 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use ApiMessage;
 use MediaWiki\Content\Content;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
@@ -97,7 +96,7 @@ class EditFilterMergedContentHookConstraint implements IEditConstraint {
 				// being set. This is used by ConfirmEdit to display a captcha
 				// without any error message cruft.
 			} else {
-				if ( !$this->status->getErrors() ) {
+				if ( !$this->status->getMessages() ) {
 					// Provide a fallback error message if none was set
 					$this->status->fatal( 'hookaborted' );
 				}
@@ -114,7 +113,7 @@ class EditFilterMergedContentHookConstraint implements IEditConstraint {
 		if ( !$this->status->isOK() ) {
 			// ...or the hook could be expecting us to produce an error
 			// FIXME this sucks, we should just use the Status object throughout
-			if ( !$this->status->getErrors() ) {
+			if ( !$this->status->getMessages() ) {
 				// Provide a fallback error message if none was set
 				$this->status->fatal( 'hookaborted' );
 			}
@@ -152,10 +151,8 @@ class EditFilterMergedContentHookConstraint implements IEditConstraint {
 	 */
 	private function formatStatusErrors( Status $status ): string {
 		$ret = '';
-		foreach ( $status->getErrors() as $rawError ) {
-			// XXX: This interface is ugly, but it seems to be the only convenient way to convert a message specifier
-			// as used in Status to a Message without all the cruft that Status::getMessage & friends add.
-			$msg = Message::newFromSpecifier( ApiMessage::create( $rawError ) );
+		foreach ( $status->getMessages() as $msg ) {
+			$msg = Message::newFromSpecifier( $msg );
 			$ret .= Html::errorBox( "\n" . $msg->inLanguage( $this->language )->plain() . "\n" );
 		}
 		return $ret;

@@ -114,8 +114,8 @@ abstract class ActionModuleBasedHandler extends Handler {
 			$apiMain->execute();
 		} catch ( ApiUsageException $ex ) {
 			// use a fake loop to throw the first error
-			foreach ( $ex->getStatusValue()->getErrorsByType( 'error' ) as $error ) {
-				$msg = ApiMessage::create( $error );
+			foreach ( $ex->getStatusValue()->getMessages( 'error' ) as $msg ) {
+				$msg = ApiMessage::create( $msg );
 				$this->throwHttpExceptionForActionModuleError( $msg, $ex->getCode() ?: 400 );
 			}
 
@@ -199,7 +199,7 @@ abstract class ActionModuleBasedHandler extends Handler {
 	 * @stable to override
 	 *
 	 * @param IApiMessage $msg A message object representing an error in an action module,
-	 *        typically from calling getStatusValue()->getErrorsByType( 'error' ) on
+	 *        typically from calling getStatusValue()->getMessages( 'error' ) on
 	 *        an ApiUsageException.
 	 * @param int $statusCode The HTTP status indicated by the original exception
 	 *

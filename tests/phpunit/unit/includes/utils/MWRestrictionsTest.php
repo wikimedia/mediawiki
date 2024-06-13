@@ -106,7 +106,7 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 				FormatJson::encode( $restrictions, true, FormatJson::ALL_OK ),
 				$ret->toJson( true )
 			);
-			$this->assertSame( $expect->getErrors(), $ret->validity->getErrors() );
+			$this->assertStatusMessagesExactly( $expect, $ret->validity );
 		} else {
 			try {
 				MWRestrictions::newFromJson( $json );

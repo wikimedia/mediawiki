@@ -3136,13 +3136,11 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $page->getTitle()->getDBkey(),
 			$records[$revRecord1->getId()]->getPageAsLinkTarget()->getDBkey() );
 		$this->assertNull( $records[$invalidRow->rev_id] );
-		$this->assertSame( [ [
-			'type' => 'warning',
-			'message' => 'internalerror_info',
-			'params' => [
-				"Couldn't find slots for rev 100500"
-			]
-		] ], $result->getErrors() );
+		$this->assertStatusMessagesExactly(
+			StatusValue::newGood()
+				->warning( 'internalerror_info', "Couldn't find slots for rev 100500" ),
+			$result
+		);
 	}
 
 	/**
