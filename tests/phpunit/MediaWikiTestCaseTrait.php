@@ -4,6 +4,7 @@ use MediaWiki\Debug\MWDebug;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Message\Message;
+use MediaWiki\Tests\Unit\FakeQqxMessageLocalizer;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -407,6 +408,42 @@ trait MediaWikiTestCaseTrait {
 		} else {
 			$this->addToAssertionCount( 1 );
 		}
+	}
+
+	/**
+	 * Check if the status contains exactly the same messages as the expected status.
+	 *
+	 * Prefer using assertStatusError / assertStatusWarning unless you really need to check the
+	 * parameters, count and order of the messages too.
+	 *
+	 * This method does not compare isGood() vs isOK() or the values of the statuses, use dedicated
+	 * assertion methods for that.
+	 *
+	 * Note that some differences between the internals of the objects are allowed (such as their own
+	 * class, use of MessageSpecifier vs string keys, use of strings vs other scalars for parameters).
+	 *
+	 * @param StatusValue $expected
+	 * @param StatusValue $actual
+	 * @param string $message
+	 */
+	protected function assertStatusMessagesExactly( StatusValue $expected, StatusValue $actual, $message = '' ) {
+		$localizer = $this instanceof MediaWikiUnitTestCase ? new FakeQqxMessageLocalizer() : new MockMessageLocalizer();
+
+		foreach ( [ 'error', 'warning' ] as $type ) {
+			foreach (
+				array_map( null, $expected->getMessages( $type ), $actual->getMessages( $type ) )
+					as [ $expectedMsg, $actualMsg ]
+			) {
+				if (
+					$expectedMsg === null || $actualMsg === null ||
+					$localizer->msg( $expectedMsg )->text() !== $localizer->msg( $actualMsg )->text()
+				) {
+					$this->failStatus( $actual, "Status messages should be exactly like: $expected\nActual:", $message );
+				}
+			}
+		}
+
+		$this->addToAssertionCount( 1 );
 	}
 
 	protected function assertStatusValue( $expected, StatusValue $status, $message = 'Status value' ) {

@@ -48,7 +48,7 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 			$ret = MWRestrictions::newFromArray( $data );
 			$this->assertInstanceOf( MWRestrictions::class, $ret );
 			$this->assertSame( $data, $ret->toArray() );
-			$this->assertSame( $ret->validity->getErrors(), $expect->getErrors() );
+			$this->assertStatusMessagesExactly( $expect, $ret->validity );
 		} else {
 			try {
 				MWRestrictions::newFromArray( $data );

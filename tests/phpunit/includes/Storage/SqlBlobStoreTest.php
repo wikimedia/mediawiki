@@ -11,6 +11,7 @@ use MediaWiki\Storage\BadBlobException;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiIntegrationTestCase;
+use StatusValue;
 use WANObjectCache;
 use Wikimedia\Rdbms\LoadBalancer;
 
@@ -298,43 +299,15 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		ksort( $resultBlobs );
 		$this->assertSame( $expected, $resultBlobs );
 
-		$this->assertSame( [
-			[
-				'type' => 'warning',
-				'message' => 'internalerror',
-				'params' => [
-					'Bad blob address: tt:this_will_not_exist. Use findBadBlobs.php to remedy.'
-				]
-			],
-			[
-				'type' => 'warning',
-				'message' => 'internalerror',
-				'params' => [
-					'Bad blob address: tt:0. Use findBadBlobs.php to remedy.'
-				]
-			],
-			[
-				'type' => 'warning',
-				'message' => 'internalerror',
-				'params' => [
-					'Bad blob address: tt:-1. Use findBadBlobs.php to remedy.'
-				]
-			],
-			[
-				'type' => 'warning',
-				'message' => 'internalerror',
-				'params' => [
-					'Unknown blob address schema: bla. Use findBadBlobs.php to remedy.'
-				]
-			],
-			[
-				'type' => 'warning',
-				'message' => 'internalerror',
-				'params' => [
-					'Unable to fetch blob at tt:10000. Use findBadBlobs.php to remedy.'
-				]
-			]
-		], $result->getErrors() );
+		$this->assertStatusMessagesExactly(
+			StatusValue::newGood()
+				->warning( 'internalerror', 'Bad blob address: tt:this_will_not_exist. Use findBadBlobs.php to remedy.' )
+				->warning( 'internalerror', 'Bad blob address: tt:0. Use findBadBlobs.php to remedy.' )
+				->warning( 'internalerror', 'Bad blob address: tt:-1. Use findBadBlobs.php to remedy.' )
+				->warning( 'internalerror', 'Unknown blob address schema: bla. Use findBadBlobs.php to remedy.' )
+				->warning( 'internalerror', 'Unable to fetch blob at tt:10000. Use findBadBlobs.php to remedy.' ),
+			$result
+		);
 	}
 
 	public function testSimpleStoragePartialNonExistentBlobBatch() {
@@ -350,15 +323,11 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		ksort( $expected );
 		ksort( $resultBlobs );
 		$this->assertSame( $expected, $resultBlobs );
-		$this->assertSame( [
-			[
-				'type' => 'warning',
-				'message' => 'internalerror',
-				'params' => [
-					'Bad blob address: tt:this_will_not_exist_too. Use findBadBlobs.php to remedy.'
-				]
-			],
-		], $result->getErrors() );
+		$this->assertStatusMessagesExactly(
+			StatusValue::newGood()
+				->warning( 'internalerror', 'Bad blob address: tt:this_will_not_exist_too. Use findBadBlobs.php to remedy.' ),
+			$result
+		);
 	}
 
 	/**

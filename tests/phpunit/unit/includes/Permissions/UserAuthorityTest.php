@@ -381,10 +381,8 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		$this->assertStatusError( 'blockedtext-partial', $permissionStatus );
 		$this->assertNotNull( $permissionStatus->getBlock() );
 
-		$errors = $permissionStatus->getErrors();
-
 		// The actual index is not relevant and depends on the implementation
-		$message = $errors[2]['message'];
+		$message = $permissionStatus->getMessages()[2];
 		$this->assertEquals( 'blockedtext-partial', $message->getKey() );
 		$this->assertArrayEquals(
 			$this->getFakeBlockMessageParams(),
