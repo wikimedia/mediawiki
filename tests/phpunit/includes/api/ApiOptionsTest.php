@@ -64,7 +64,7 @@ class ApiOptionsTest extends ApiTestCase {
 
 		$this->userOptionsManagerMock = $this->createNoOpMock(
 			UserOptionsManager::class,
-			[ 'getOptions', 'resetOptionsByName', 'setOption' ]
+			[ 'getOptions', 'resetOptionsByName', 'setOption', 'isOptionGlobal' ]
 		);
 		// Needs to return something
 		$this->userOptionsManagerMock->method( 'getOptions' )->willReturn( [] );

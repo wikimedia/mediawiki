@@ -205,6 +205,12 @@ class UserOptionsManager extends UserOptionsLookup {
 		return $options;
 	}
 
+	public function isOptionGlobal( UserIdentity $user, string $key ) {
+		$this->getOptions( $user );
+		$source = $this->cache[ $this->getCacheKey( $user ) ]->sources[$key] ?? 'local';
+		return $source !== 'local';
+	}
+
 	/**
 	 * Set the given option for a user.
 	 *

@@ -50,6 +50,9 @@ abstract class ApiOptionsBase extends ApiBase {
 	/** @var string[]|null */
 	private $prefsKinds;
 
+	/** @var array */
+	private $params;
+
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
@@ -118,6 +121,9 @@ abstract class ApiOptionsBase extends ApiBase {
 		$this->prefsKinds = $this->preferencesFactory->getResetKinds( $user, $this->getContext(), $changes );
 
 		foreach ( $changes as $key => $value ) {
+			if ( $this->shouldIgnoreKey( $key ) ) {
+				continue;
+			}
 			$validation = $this->validate( $key, $value );
 			if ( $validation === true ) {
 				$this->setPreference( $key, $value );
@@ -142,6 +148,18 @@ abstract class ApiOptionsBase extends ApiBase {
 	 * @param string[] $resetKinds
 	 */
 	protected function runHook( $user, $changes, $resetKinds ) {
+	}
+
+	/**
+	 * Check whether a key should be ignored.
+	 *
+	 * This may be overridden to emit a warning as well as returning true.
+	 *
+	 * @param string $key
+	 * @return bool
+	 */
+	protected function shouldIgnoreKey( $key ) {
+		return false;
 	}
 
 	/**
