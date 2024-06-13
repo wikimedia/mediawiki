@@ -540,7 +540,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 	}
 
 	protected function insertRestriction( $blockId, $type, $value ) {
-		$this->db->newInsertQueryBuilder()
+		$this->getDb()->newInsertQueryBuilder()
 			->insertInto( 'ipblocks_restrictions' )
 			->row( [
 				'ir_ipb_id' => $blockId,

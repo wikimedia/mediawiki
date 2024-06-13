@@ -45,7 +45,7 @@ class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
 	 * @param int|null $count
 	 */
 	private function setDbEditCount( $user, $count ) {
-		$this->db->newUpdateQueryBuilder()
+		$this->getDb()->newUpdateQueryBuilder()
 			->update( 'user' )
 			->set( [ 'user_editcount' => $count ] )
 			->where( [ 'user_id' => $user->getId() ] )
@@ -133,7 +133,7 @@ class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
 
 		$editCountStart = $tracker->getUserEditCount( $user );
 
-		$this->db->startAtomic( __METHOD__ ); // let deferred updates queue up
+		$this->getDb()->startAtomic( __METHOD__ ); // let deferred updates queue up
 
 		$tracker->incrementUserEditCount( $user );
 		$this->assertSame(
@@ -149,7 +149,7 @@ class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
 			'No update queued for anonymous user'
 		);
 
-		$this->db->endAtomic( __METHOD__ ); // run deferred updates
+		$this->getDb()->endAtomic( __METHOD__ ); // run deferred updates
 		$this->assertSame(
 			0,
 			DeferredUpdates::pendingUpdatesCount(),

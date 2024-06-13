@@ -280,7 +280,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 			'bl_by' => $admin->getId(),
 			'bl_by_text' => $admin->getName(),
 			'bl_sitewide' => 1,
-			'bl_timestamp' => $this->db->timestamp( wfTimestamp( TS_MW ) ),
+			'bl_timestamp' => $this->getDb()->timestamp( wfTimestamp( TS_MW ) ),
 			'bl_reason_text' => '[[Comment link]]',
 			'bl_reason_data' => null,
 		];
@@ -317,7 +317,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 			'address' => $target,
 			'by' => $this->getTestSysop()->getUser(),
 			'reason' => 'Parce que',
-			'expiry' => $this->db->getInfinity(),
+			'expiry' => $this->getDb()->getInfinity(),
 			'sitewide' => false,
 		] );
 		$block->setRestrictions( [
@@ -327,7 +327,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		$blockStore->insertBlock( $block );
 
 		$pager = $this->getBlockListPager();
-		$result = $this->db->newSelectQueryBuilder()
+		$result = $this->getDb()->newSelectQueryBuilder()
 			->queryInfo( $pager->getQueryInfo() )
 			->where( [ 'bl_id' => $block->getId() ] )
 			->caller( __METHOD__ )
@@ -352,7 +352,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 	 * @coversNothing
 	 */
 	public function testOffset() {
-		if ( $this->db->getType() === 'postgres' ) {
+		if ( $this->getDb()->getType() === 'postgres' ) {
 			$this->markTestSkipped( "PostgreSQL fatals when the first part of " .
 				"the offset parameter has the wrong timestamp format" );
 		}

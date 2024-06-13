@@ -759,7 +759,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNewFromMissingId() {
 		// Testing return of null for an id that does not exist
-		$maxPageId = (int)$this->db->newSelectQueryBuilder()
+		$maxPageId = (int)$this->getDb()->newSelectQueryBuilder()
 			->select( 'max(page_id)' )
 			->from( 'page' )
 			->caller( __METHOD__ )->fetchField();

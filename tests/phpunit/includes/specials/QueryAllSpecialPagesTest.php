@@ -60,8 +60,8 @@ class QueryAllSpecialPagesTest extends MediaWikiIntegrationTestCase {
 			// With MySQL, skips special pages reopening a temporary table
 			// See https://bugs.mysql.com/bug.php?id=10327
 			if (
-				$this->db->getType() === 'mysql' &&
-				str_contains( $this->db->getSoftwareLink(), 'MySQL' ) &&
+				$this->getDb()->getType() === 'mysql' &&
+				str_contains( $this->getDb()->getSoftwareLink(), 'MySQL' ) &&
 				in_array( $page->getName(), $this->reopensTempTable )
 			) {
 				$this->markTestSkipped( "SQL query for page {$page->getName()} "

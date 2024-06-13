@@ -483,7 +483,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$conf = [
 			'servers' => [ $serverA, $serverB ],
 			'clusterName' => 'A',
-			'localDomain' => $this->db->getDomainID()
+			'localDomain' => $this->getDb()->getDomainID()
 		];
 
 		$lb = new LoadBalancer( $conf );

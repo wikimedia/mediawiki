@@ -110,12 +110,12 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 		$parserCache = $this->getServiceContainer()->getParserCache();
 		$parserCache->deleteOptionsKey( $page );
 
-		$this->db->newDeleteQueryBuilder()
+		$this->getDb()->newDeleteQueryBuilder()
 			->deleteFrom( 'pagelinks' )
 			->where( ISQLPlatform::ALL_ROWS )
 			->caller( __METHOD__ )
 			->execute();
-		$this->db->newDeleteQueryBuilder()
+		$this->getDb()->newDeleteQueryBuilder()
 			->deleteFrom( 'categorylinks' )
 			->where( ISQLPlatform::ALL_ROWS )
 			->caller( __METHOD__ )
@@ -162,12 +162,12 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 		$parserCache->deleteOptionsKey( $page1 );
 		$parserCache->deleteOptionsKey( $page2 );
 
-		$this->db->newDeleteQueryBuilder()
+		$this->getDb()->newDeleteQueryBuilder()
 			->deleteFrom( 'pagelinks' )
 			->where( ISQLPlatform::ALL_ROWS )
 			->caller( __METHOD__ )
 			->execute();
-		$this->db->newDeleteQueryBuilder()
+		$this->getDb()->newDeleteQueryBuilder()
 			->deleteFrom( 'categorylinks' )
 			->where( ISQLPlatform::ALL_ROWS )
 			->caller( __METHOD__ )

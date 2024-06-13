@@ -314,7 +314,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			'address' => $username,
 			'reason' => 'crosswiki block...',
 			'timestamp' => wfTimestampNow(),
-			'expiry' => $this->db->getInfinity(),
+			'expiry' => $this->getDb()->getInfinity(),
 			'createAccount' => true,
 			'enableAutoblock' => true,
 			'hideName' => true,
@@ -419,7 +419,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$blockStore->insertBlock( $block );
 
 		$blockQuery = $blockStore->getQueryInfo();
-		$row = $this->db->newSelectQueryBuilder()
+		$row = $this->getDb()->newSelectQueryBuilder()
 			->queryInfo( $blockQuery )
 			->where( [
 				'bl_id' => $block->getId(),
@@ -634,7 +634,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertFalse( $result );
 
 		// Ensure that there are no restrictions where the blockId is 0.
-		$count = $this->db->newSelectQueryBuilder()
+		$count = $this->getDb()->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'ipblocks_restrictions' )
 			->where( [ 'ir_ipb_id' => 0 ] )

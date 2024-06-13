@@ -721,7 +721,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$user->saveSettings();
 		$this->assertSame(
 			$user->getName(),
-			$this->db->newSelectQueryBuilder()
+			$this->getDb()->newSelectQueryBuilder()
 				->select( 'actor_name' )
 				->from( 'actor' )
 				->where( [ 'actor_id' => $user->getActorId() ] )
@@ -730,7 +730,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$ip = '192.168.12.34';
-		$this->db->newDeleteQueryBuilder()
+		$this->getDb()->newDeleteQueryBuilder()
 			->deleteFrom( 'actor' )
 			->where( [ 'actor_name' => $ip ] )
 			->caller( __METHOD__ )
@@ -1254,12 +1254,12 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 			case 'actor':
 				$name = 'TestNewSystemUser ' . TestUserRegistry::getNextId();
-				$this->db->newInsertQueryBuilder()
+				$this->getDb()->newInsertQueryBuilder()
 					->insertInto( 'actor' )
 					->row( [ 'actor_name' => $name ] )
 					->caller( __METHOD__ )
 					->execute();
-				$actorId = (int)$this->db->insertId();
+				$actorId = (int)$this->getDb()->insertId();
 				break;
 
 			case 'user':
@@ -1677,7 +1677,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 		$user = User::newFromName( $name );
 		$user->addToDatabase();
-		$field = $this->db->newSelectQueryBuilder()
+		$field = $this->getDb()->newSelectQueryBuilder()
 			->select( 'user_is_temp' )
 			->from( 'user' )
 			->where( [ 'user_name' => $name ] )

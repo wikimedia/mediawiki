@@ -254,7 +254,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$namespaces = $this->getServiceContainer()->getNamespaceInfo()->getSubjectNamespaces();
 		$this->assertConditions(
 			[ # expected
-				'rc_namespace IN (' . $this->db->makeList( $namespaces ) . ')',
+				'rc_namespace IN (' . $this->getDb()->makeList( $namespaces ) . ')',
 			],
 			[
 				'namespace' => 'all-contents',
@@ -282,7 +282,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		sort( $namespaces );
 		$this->assertConditions(
 			[ # expected
-				'rc_namespace IN (' . $this->db->makeList( $namespaces ) . ')',
+				'rc_namespace IN (' . $this->getDb()->makeList( $namespaces ) . ')',
 			],
 			[
 				'namespace' => 'all-contents;1;invalid',
@@ -293,7 +293,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 	public function testRcHidemyselfFilter() {
 		$user = $this->getTestUser()->getUser();
-		$encName = $this->db->addQuotes( $user->getName() );
+		$encName = $this->getDb()->addQuotes( $user->getName() );
 		$this->assertConditions(
 			[ # expected
 				"actor_name != $encName",

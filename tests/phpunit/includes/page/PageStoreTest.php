@@ -131,7 +131,7 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Page\PageStore::getPageForLink
 	 */
 	public function testGetPageForLink_crossWiki() {
-		$wikiId = $this->db->getDomainID(); // pretend sister site
+		$wikiId = $this->getDb()->getDomainID(); // pretend sister site
 
 		$nonexistingPage = $this->getNonexistingTestPage();
 		$pageStore = $this->getPageStore( [], [ 'wikiId' => $wikiId, 'linkCache' => null ] );
@@ -663,7 +663,7 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 		$existingPage = $this->getExistingTestPage();
 		$pageStore = $this->getPageStore();
 
-		$row = $this->db->newSelectQueryBuilder()
+		$row = $this->getDb()->newSelectQueryBuilder()
 			->select( $pageStore->getSelectFields() )
 			->from( 'page' )
 			->where( [ 'page_id' => $existingPage->getId() ] )

@@ -24,9 +24,9 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		parent::setUp();
 
 		// Search tests require MySQL or SQLite with FTS
-		$dbType = $this->db->getType();
+		$dbType = $this->getDb()->getType();
 		$dbSupported = ( $dbType === 'mysql' )
-			|| ( $dbType === 'sqlite' && $this->db->getFulltextSearchModule() == 'FTS3' );
+			|| ( $dbType === 'sqlite' && $this->getDb()->getFulltextSearchModule() == 'FTS3' );
 
 		if ( !$dbSupported ) {
 			$this->markTestSkipped( "MySQL or SQLite with FTS3 only" );

@@ -63,9 +63,9 @@ class ApiComparePagesTest extends ApiTestCase {
 			self::$repl['revB4'] => '20040404044404',
 		];
 		foreach ( $updateTimestamps as $id => $ts ) {
-			$this->db->newUpdateQueryBuilder()
+			$this->getDb()->newUpdateQueryBuilder()
 				->update( 'revision' )
-				->set( [ 'rev_timestamp' => $this->db->timestamp( $ts ) ] )
+				->set( [ 'rev_timestamp' => $this->getDb()->timestamp( $ts ) ] )
 				->where( [ 'rev_id' => $id ] )
 				->caller( __METHOD__ )
 				->execute();

@@ -48,13 +48,13 @@ class ActorStoreTest extends ActorStoreTestBase {
 	 * @dataProvider provideGetActorById
 	 */
 	public function testGetActorById( $argument, ?UserIdentity $expected ) {
-		$actor = $this->getStore()->getActorById( $argument, $this->db );
+		$actor = $this->getStore()->getActorById( $argument, $this->getDb() );
 		if ( $expected ) {
 			$this->assertNotNull( $actor );
 			$this->assertSameActors( $expected, $actor );
 
 			// test caching
-			$cachedActor = $this->getStore()->getActorById( $argument, $this->db );
+			$cachedActor = $this->getStore()->getActorById( $argument, $this->getDb() );
 			$this->assertSame( $actor, $cachedActor );
 		} else {
 			$this->assertNull( $actor );
@@ -142,15 +142,15 @@ class ActorStoreTest extends ActorStoreTestBase {
 	 */
 	public function testSequentialCacheRetrieval( UserIdentity $expected ) {
 		// ensure UserIdentity is cached
-		$actorId = $this->getStore()->findActorId( $expected, $this->db );
+		$actorId = $this->getStore()->findActorId( $expected, $this->getDb() );
 
-		$cachedActorId = $this->getStore()->findActorId( $expected, $this->db );
+		$cachedActorId = $this->getStore()->findActorId( $expected, $this->getDb() );
 		$this->assertSame( $actorId, $cachedActorId );
 
-		$cachedActorId = $this->getStore()->acquireActorId( $expected, $this->db );
+		$cachedActorId = $this->getStore()->acquireActorId( $expected, $this->getDb() );
 		$this->assertSame( $actorId, $cachedActorId );
 
-		$cached = $this->getStore()->getActorById( $actorId, $this->db );
+		$cached = $this->getStore()->getActorById( $actorId, $this->getDb() );
 		$this->assertNotNull( $cached );
 		$this->assertSameActors( $expected, $cached );
 
@@ -168,7 +168,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 
 	public function testGetActorByIdRealUser() {
 		$user = $this->getTestUser()->getUser();
-		$actor = $this->getStore()->getActorById( $user->getActorId(), $this->db );
+		$actor = $this->getStore()->getActorById( $user->getActorId(), $this->getDb() );
 		$this->assertSameActors( $user, $actor );
 	}
 
@@ -415,7 +415,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 			$this->executeWithForeignStore(
 				$wikiId,
 				function ( ActorStore $store ) use ( $expected, $actor ) {
-					$this->assertSame( $expected, $store->findActorId( $actor, $this->db ) );
+					$this->assertSame( $expected, $store->findActorId( $actor, $this->getDb() ) );
 
 					if ( $actor instanceof User ) {
 						$this->assertSame( $expected ?: 0, $actor->getActorId() );
@@ -423,7 +423,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 				}
 			);
 		} else {
-			$this->assertSame( $expected, $this->getStore()->findActorId( $actor, $this->db ) );
+			$this->assertSame( $expected, $this->getStore()->findActorId( $actor, $this->getDb() ) );
 
 			if ( $actor instanceof User ) {
 				$this->assertSame( $expected ?: 0, $actor->getActorId() );
@@ -436,7 +436,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 		$this->expectException( PreconditionException::class );
 		$this->getStore()->findActorId(
 			new UserIdentityValue( 0, self::IP, 'acmewiki' ),
-			$this->db
+			$this->getDb()
 		);
 	}
 
@@ -483,7 +483,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 	 * @dataProvider provideFindActorIdByName
 	 */
 	public function testFindActorIdByName( $name, $expected ) {
-		$this->assertSame( $expected, $this->getStore()->findActorIdByName( $name, $this->db ) );
+		$this->assertSame( $expected, $this->getStore()->findActorIdByName( $name, $this->getDb() ) );
 	}
 
 	public static function provideAcquireActorId() {
@@ -503,7 +503,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 	 */
 	public function testAcquireActorId( callable $userCallback ) {
 		$user = $userCallback( $this->getServiceContainer() );
-		$actorId = $this->getStore()->acquireActorId( $user, $this->db );
+		$actorId = $this->getStore()->acquireActorId( $user, $this->getDb() );
 		$this->assertTrue( $actorId > 0 );
 
 		if ( $user instanceof User ) {
@@ -546,7 +546,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 		$this->executeWithForeignStore(
 			'acmewiki',
 			function ( ActorStore $store ) use ( $user, $method ) {
-				$actorId = $store->$method( $user, $this->db );
+				$actorId = $store->$method( $user, $this->getDb() );
 				$this->assertTrue( $actorId > 0 );
 				if ( $user instanceof User ) {
 					$this->assertSame( $actorId, $user->getActorId() );
@@ -610,25 +610,25 @@ class ActorStoreTest extends ActorStoreTestBase {
 		// We rely on DB to protect against duplicates when inserting new actor
 		$this->setNullLogger( 'rdbms' );
 		$this->expectException( CannotCreateActorException::class );
-		$this->getStore()->$method( $actor, $this->db );
+		$this->getStore()->$method( $actor, $this->getDb() );
 	}
 
 	public function testAcquireNowActorId_existing() {
 		// We rely on DB to protect against duplicates when inserting new actor
 		$this->setNullLogger( 'rdbms' );
 		$this->expectException( CannotCreateActorException::class );
-		$this->getStore()->createNewActor( new UserIdentityValue( 24, 'TestUser' ), $this->db );
+		$this->getStore()->createNewActor( new UserIdentityValue( 24, 'TestUser' ), $this->getDb() );
 	}
 
 	public function testAcquireActorId_autocreateTempIP() {
 		$this->enableAutoCreateTempUser();
 		$this->expectException( CannotCreateActorException::class );
-		$this->getStore()->createNewActor( new UserIdentityValue( 0, '127.3.2.1' ), $this->db );
+		$this->getStore()->createNewActor( new UserIdentityValue( 0, '127.3.2.1' ), $this->getDb() );
 	}
 
 	public function testAcquireActorId_autocreateTempIPallowed() {
 		$this->enableAutoCreateTempUser();
-		$actorId = $this->getStoreForImport()->createNewActor( new UserIdentityValue( 0, '127.3.2.1' ), $this->db );
+		$actorId = $this->getStoreForImport()->createNewActor( new UserIdentityValue( 0, '127.3.2.1' ), $this->getDb() );
 		$this->assertTrue( $actorId > 0 );
 	}
 
@@ -651,14 +651,14 @@ class ActorStoreTest extends ActorStoreTestBase {
 	 * @dataProvider provideAcquireActorId_existing
 	 */
 	public function testAcquireActorId_existing( UserIdentityValue $actor, int $expected ) {
-		$this->assertSame( $expected, $this->getStore()->acquireActorId( $actor, $this->db ) );
+		$this->assertSame( $expected, $this->getStore()->acquireActorId( $actor, $this->getDb() ) );
 	}
 
 	public function testAcquireActorId_domain_mismatch() {
 		$this->expectException( InvalidArgumentException::class );
 		$this->getStore( 'fancywiki' )->acquireActorId(
 			new UserIdentityValue( 15, 'Test', 'fancywiki' ),
-			$this->db
+			$this->getDb()
 		);
 	}
 
@@ -666,7 +666,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 		$this->expectException( InvalidArgumentException::class );
 		$this->getStore( 'fancywiki' )->createNewActor(
 			new UserIdentityValue( 15, 'Test', 'fancywiki' ),
-			$this->db
+			$this->getDb()
 		);
 	}
 
@@ -674,7 +674,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 		$this->expectException( InvalidArgumentException::class );
 		$this->getStore( 'fancywiki' )->acquireSystemActorId(
 			new UserIdentityValue( 15, 'Test', 'fancywiki' ),
-			$this->db
+			$this->getDb()
 		);
 	}
 
@@ -683,36 +683,36 @@ class ActorStoreTest extends ActorStoreTestBase {
 		$this->expectException( PreconditionException::class );
 		$this->getStore()->acquireActorId(
 			new UserIdentityValue( 0, self::IP, 'acmewiki' ),
-			$this->db
+			$this->getDb()
 		);
 	}
 
 	public function testAcquireActorId_clearCacheOnRollback() {
 		$rolledBackActor = new UserIdentityValue( 0, '127.0.0.10' );
 		$store = $this->getStore();
-		$this->db->startAtomic( __METHOD__ );
-		$rolledBackActorId = $store->acquireActorId( $rolledBackActor, $this->db );
+		$this->getDb()->startAtomic( __METHOD__ );
+		$rolledBackActorId = $store->acquireActorId( $rolledBackActor, $this->getDb() );
 		$this->assertTrue( $rolledBackActorId > 0 );
-		$foundActorId = $store->findActorId( $rolledBackActor, $this->db );
+		$foundActorId = $store->findActorId( $rolledBackActor, $this->getDb() );
 		$this->assertSame( $rolledBackActorId, $foundActorId );
-		$this->db->rollback( __METHOD__ );
+		$this->getDb()->rollback( __METHOD__ );
 
 		// Insert some other user identity using another store
 		// so that we take over the rolled back actor ID.
 		$anotherActor = new UserIdentityValue( 0, '127.0.0.11' );
-		$anotherActorId = $this->getStore()->acquireActorId( $anotherActor, $this->db );
+		$anotherActorId = $this->getStore()->acquireActorId( $anotherActor, $this->getDb() );
 
 		// Make sure no actor ID associated with rolled back actor.
-		$foundActorIdAfterRollback = $store->findActorId( $rolledBackActor, $this->db );
+		$foundActorIdAfterRollback = $store->findActorId( $rolledBackActor, $this->getDb() );
 		$this->assertNull( $foundActorIdAfterRollback );
 
 		// Make sure we can acquire new actor ID for the rolled back actor
-		$newActorId = $store->acquireActorId( $rolledBackActor, $this->db );
+		$newActorId = $store->acquireActorId( $rolledBackActor, $this->getDb() );
 		$this->assertTrue( $newActorId > 0 );
 		$this->assertNotSame( $newActorId, $rolledBackActorId );
 
 		// Make sure we find correct actor by rolled back actor ID
-		$this->assertSameActors( $anotherActor, $store->getActorById( $anotherActorId, $this->db ) );
+		$this->assertSameActors( $anotherActor, $store->getActorById( $anotherActorId, $this->getDb() ) );
 	}
 
 	public function testUserRenameUpdatesActor() {
@@ -720,13 +720,13 @@ class ActorStoreTest extends ActorStoreTestBase {
 		$oldName = $user->getName();
 
 		$store = $this->getStore();
-		$actorId = $store->findActorId( $user, $this->db );
+		$actorId = $store->findActorId( $user, $this->getDb() );
 		$this->assertTrue( $actorId > 0 );
 
 		$user->setName( 'NewName' );
 		$user->saveSettings();
 
-		$this->assertSameActors( $user, $store->getActorById( $actorId, $this->db ) );
+		$this->assertSameActors( $user, $store->getActorById( $actorId, $this->getDb() ) );
 		$this->assertSameActors( $user, $store->getUserIdentityByName( 'NewName' ) );
 		$this->assertSameActors( $user, $store->getUserIdentityByUserId( $user->getId() ) );
 		$this->assertNull( $store->getUserIdentityByName( $oldName ) );
@@ -735,14 +735,14 @@ class ActorStoreTest extends ActorStoreTestBase {
 	public function testAcquireSystemActorId() {
 		$store = $this->getStore();
 		$originalActor = new UserIdentityValue( 0, '129.0.0.1' );
-		$actorId = $store->createNewActor( $originalActor, $this->db );
+		$actorId = $store->createNewActor( $originalActor, $this->getDb() );
 		$this->assertTrue( $actorId > 0, 'Acquired new actor ID' );
 
 		$updatedActor = new UserIdentityValue( 56789, '129.0.0.1' );
-		$this->assertSame( $actorId, $store->acquireSystemActorId( $updatedActor, $this->db ) );
-		$this->assertSame( 56789, $store->getActorById( $actorId, $this->db )->getId() );
+		$this->assertSame( $actorId, $store->acquireSystemActorId( $updatedActor, $this->getDb() ) );
+		$this->assertSame( 56789, $store->getActorById( $actorId, $this->getDb() )->getId() );
 		// Try with another store to verify not just cache was updated
-		$this->assertSame( 56789, $this->getStore()->getActorById( $actorId, $this->db )->getId() );
+		$this->assertSame( 56789, $this->getStore()->getActorById( $actorId, $this->getDb() )->getId() );
 	}
 
 	public function testAcquireSystemActorId_replaceReserved() {
@@ -752,42 +752,42 @@ class ActorStoreTest extends ActorStoreTestBase {
 		);
 		$store = $this->getStore();
 		$originalActor = new UserIdentityValue( 0, 'RESERVED' );
-		$actorId = $store->createNewActor( $originalActor, $this->db );
+		$actorId = $store->createNewActor( $originalActor, $this->getDb() );
 		$this->assertTrue( $actorId > 0, 'Acquired new actor ID' );
 
 		$updatedActor = new UserIdentityValue( 80, 'RESERVED' );
-		$this->assertSame( $actorId, $store->acquireSystemActorId( $updatedActor, $this->db ) );
-		$this->assertSame( 80, $store->getActorById( $actorId, $this->db )->getId() );
+		$this->assertSame( $actorId, $store->acquireSystemActorId( $updatedActor, $this->getDb() ) );
+		$this->assertSame( 80, $store->getActorById( $actorId, $this->getDb() )->getId() );
 		// Try with another store to verify not just cache was updated
-		$this->assertSame( 80, $this->getStore()->getActorById( $actorId, $this->db )->getId() );
+		$this->assertSame( 80, $this->getStore()->getActorById( $actorId, $this->getDb() )->getId() );
 	}
 
 	public function testAcquireSystemActorId_assignsNew() {
 		$store = $this->getStore();
 
 		$newActor = new UserIdentityValue( 456789, '129.0.0.2' );
-		$newActorId = $store->acquireSystemActorId( $newActor, $this->db );
+		$newActorId = $store->acquireSystemActorId( $newActor, $this->getDb() );
 		$this->assertTrue( $newActorId > 0 );
-		$this->assertSame( 456789, $store->getActorById( $newActorId, $this->db )->getId() );
+		$this->assertSame( 456789, $store->getActorById( $newActorId, $this->getDb() )->getId() );
 		// Try with another store to verify not just cache was updated
-		$this->assertSame( 456789, $this->getStore()->getActorById( $newActorId, $this->db )->getId() );
+		$this->assertSame( 456789, $this->getStore()->getActorById( $newActorId, $this->getDb() )->getId() );
 	}
 
 	public function testDelete() {
 		$store = $this->getStore();
 		$actor = new UserIdentityValue( 9999, 'DeleteTest' );
-		$actorId = $store->acquireActorId( $actor, $this->db );
-		$this->assertTrue( $store->deleteActor( $actor, $this->db ) );
+		$actorId = $store->acquireActorId( $actor, $this->getDb() );
+		$this->assertTrue( $store->deleteActor( $actor, $this->getDb() ) );
 
-		$this->assertNull( $store->findActorId( $actor, $this->db ) );
+		$this->assertNull( $store->findActorId( $actor, $this->getDb() ) );
 		$this->assertNull( $store->getUserIdentityByUserId( $actor->getId() ) );
 		$this->assertNull( $store->getUserIdentityByName( $actor->getName() ) );
-		$this->assertNull( $store->getActorById( $actorId, $this->db ) );
+		$this->assertNull( $store->getActorById( $actorId, $this->getDb() ) );
 	}
 
 	public function testDeleteDoesNotExist() {
 		$this->assertFalse(
-			$this->getStore()->deleteActor( new UserIdentityValue( 9998, 'DoesNotExist' ), $this->db )
+			$this->getStore()->deleteActor( new UserIdentityValue( 9998, 'DoesNotExist' ), $this->getDb() )
 		);
 	}
 
@@ -827,7 +827,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 
 	public function testNewSelectQueryBuilderWithDB() {
 		$store = $this->getStore();
-		$queryBuilder = $store->newSelectQueryBuilder( $this->db );
+		$queryBuilder = $store->newSelectQueryBuilder( $this->getDb() );
 		$this->assertInstanceOf( UserSelectQueryBuilder::class, $queryBuilder );
 	}
 

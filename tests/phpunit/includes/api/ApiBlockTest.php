@@ -150,7 +150,7 @@ class ApiBlockTest extends ApiTestCase {
 			new UltimateAuthority( $this->getTestSysop()->getUser() )
 		);
 
-		$this->assertSame( '1', $this->db->newSelectQueryBuilder()
+		$this->assertSame( '1', $this->getDb()->newSelectQueryBuilder()
 			->select( 'bl_deleted' )
 			->from( 'block' )
 			->where( [ 'bl_id' => $res[0]['block']['id'] ] )

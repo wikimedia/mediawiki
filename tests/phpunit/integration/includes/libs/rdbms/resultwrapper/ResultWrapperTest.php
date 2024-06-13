@@ -39,7 +39,7 @@ class ResultWrapperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testIteration() {
-		$this->db->insert(
+		$this->getDb()->insert(
 			'ResultWrapperTest', [
 				[ 'col_a' => '1', 'col_b' => 'a' ],
 				[ 'col_a' => '2', 'col_b' => 'b' ],
@@ -64,7 +64,7 @@ class ResultWrapperTest extends MediaWikiIntegrationTestCase {
 			7 => (object)[ 'col_a' => '8', 'col_b' => 'h' ]
 		];
 
-		$res = $this->db->newSelectQueryBuilder()
+		$res = $this->getDb()->newSelectQueryBuilder()
 			->select( [ 'col_a', 'col_b' ] )
 			->from( 'ResultWrapperTest' )
 			->where( '1 = 1' )
@@ -107,7 +107,7 @@ class ResultWrapperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testCurrentNoResults() {
-		$res = $this->db->newSelectQueryBuilder()
+		$res = $this->getDb()->newSelectQueryBuilder()
 			->select( [ 'col_a', 'col_b' ] )
 			->from( 'ResultWrapperTest' )
 			->where( '1 = 0' )
@@ -116,7 +116,7 @@ class ResultWrapperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testValidNoResults() {
-		$res = $this->db->newSelectQueryBuilder()
+		$res = $this->getDb()->newSelectQueryBuilder()
 			->select( [ 'col_a', 'col_b' ] )
 			->from( 'ResultWrapperTest' )
 			->where( '1 = 0' )
@@ -125,7 +125,7 @@ class ResultWrapperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testSeekNoResults() {
-		$res = $this->db->newSelectQueryBuilder()
+		$res = $this->getDb()->newSelectQueryBuilder()
 			->select( [ 'col_a', 'col_b' ] )
 			->from( 'ResultWrapperTest' )
 			->where( '1 = 0' )
@@ -141,11 +141,11 @@ class ResultWrapperTest extends MediaWikiIntegrationTestCase {
 	/** @dataProvider provideSeekOutOfBounds */
 	public function testSeekOutOfBounds( $numRows, $seekPos ) {
 		for ( $i = 0; $i < $numRows; $i++ ) {
-			$this->db->insert( 'ResultWrapperTest',
+			$this->getDb()->insert( 'ResultWrapperTest',
 				[ [ 'col_a' => $i, 'col_b' => $i ] ],
 				__METHOD__ );
 		}
-		$res = $this->db->newSelectQueryBuilder()
+		$res = $this->getDb()->newSelectQueryBuilder()
 			->select( [ 'col_a', 'col_b' ] )
 			->from( 'ResultWrapperTest' )
 			->where( '1 = 0' )

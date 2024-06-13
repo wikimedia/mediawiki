@@ -46,8 +46,8 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 
 		$actorId = $this->getServiceContainer()
 			->getActorStore()
-			->acquireActorId( $this->testUser, $this->db );
-		$this->db->newInsertQueryBuilder()
+			->acquireActorId( $this->testUser, $this->getDb() );
+		$this->getDb()->newInsertQueryBuilder()
 			->insertInto( 'image' )
 			->row( [
 				'img_name' => 'Random-11m.png',
@@ -61,14 +61,14 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 				'img_minor_mime' => 'png',
 				'img_description_id' => $this->getServiceContainer()
 					->getCommentStore()
-					->createComment( $this->db, "'''comment'''" )->id,
+					->createComment( $this->getDb(), "'''comment'''" )->id,
 				'img_actor' => $actorId,
-				'img_timestamp' => $this->db->timestamp( self::NEW_IMAGE_TIMESTAMP ),
+				'img_timestamp' => $this->getDb()->timestamp( self::NEW_IMAGE_TIMESTAMP ),
 				'img_sha1' => 'sy02psim0bgdh0jt4vdltuzoh7j80ru',
 			] )
 			->caller( __METHOD__ )
 			->execute();
-		$this->db->newInsertQueryBuilder()
+		$this->getDb()->newInsertQueryBuilder()
 			->insertInto( 'oldimage' )
 			->row( [
 				'oi_name' => 'Random-11m.png',
@@ -83,9 +83,9 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 				'oi_minor_mime' => 'png',
 				'oi_description_id' => $this->getServiceContainer()
 					->getCommentStore()
-					->createComment( $this->db, 'deleted comment' )->id,
+					->createComment( $this->getDb(), 'deleted comment' )->id,
 				'oi_actor' => $actorId,
-				'oi_timestamp' => $this->db->timestamp( self::OLD_IMAGE_TIMESTAMP ),
+				'oi_timestamp' => $this->getDb()->timestamp( self::OLD_IMAGE_TIMESTAMP ),
 				'oi_sha1' => 'sy02psim0bgdh0jt4vdltuzoh7j80ru',
 				'oi_deleted' => File::DELETED_FILE | File::DELETED_COMMENT | File::DELETED_USER,
 			] )
@@ -102,9 +102,9 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 				'oi_minor_mime' => 'png',
 				'oi_description_id' => $this->getServiceContainer()
 					->getCommentStore()
-					->createComment( $this->db, '' )->id,
+					->createComment( $this->getDb(), '' )->id,
 				'oi_actor' => $actorId,
-				'oi_timestamp' => $this->db->timestamp( self::NO_COMMENT_TIMESTAMP ),
+				'oi_timestamp' => $this->getDb()->timestamp( self::NO_COMMENT_TIMESTAMP ),
 				'oi_sha1' => 'sy02psim0bgdh0jt4vdltuzoh7j80ru',
 				'oi_deleted' => 0,
 			] )
@@ -118,8 +118,8 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 			->create( null, new FauxRequest() )->getUser();
 		$tempActorId = $this->getServiceContainer()
 			->getActorStore()
-			->acquireActorId( $this->tempUser, $this->db );
-		$this->db->newInsertQueryBuilder()
+			->acquireActorId( $this->tempUser, $this->getDb() );
+		$this->getDb()->newInsertQueryBuilder()
 			->insertInto( 'image' )
 			->row( [
 				'img_name' => self::IMAGE_2_NAME,
@@ -133,9 +133,9 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 				'img_minor_mime' => 'png',
 				'img_description_id' => $this->getServiceContainer()
 					->getCommentStore()
-					->createComment( $this->db, "'''comment'''" )->id,
+					->createComment( $this->getDb(), "'''comment'''" )->id,
 				'img_actor' => $tempActorId,
-				'img_timestamp' => $this->db->timestamp( self::IMAGE_2_TIMESTAMP ),
+				'img_timestamp' => $this->getDb()->timestamp( self::IMAGE_2_TIMESTAMP ),
 				'img_sha1' => 'aaaaasim0bgdh0jt4vdltuzoh7',
 			] )
 			->caller( __METHOD__ )

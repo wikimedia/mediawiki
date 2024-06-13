@@ -125,12 +125,12 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 	public function testPartition() {
 		$targetId = $this->getServiceContainer()->getLinkTargetLookup()->acquireLinkTargetId(
 			Title::makeTitle( NS_MAIN, 'BLCTest1234' ),
-			$this->db
+			$this->getDb()
 		);
 		$targetRow = [
 			'tl_target_id' => $targetId,
 		];
-		$this->db->newInsertQueryBuilder()
+		$this->getDb()->newInsertQueryBuilder()
 			->insertInto( 'templatelinks' )
 			->rows( [
 				[ 'tl_from' => 56890, 'tl_from_namespace' => 0 ] + $targetRow,
