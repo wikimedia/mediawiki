@@ -23,6 +23,7 @@
 	"prefsnologintext2": "Por favor, inicie sessão para alterar as suas preferências.",
 	"searchprefs": "Procurar nas preferências",
 	"searchprefs-noresults": "Não há resultados",
+	"searchprefs-results": "$1 {{PLURAL:$1|resultado|resultados}}",
 	"saveprefs": "Gravar",
 	"tooltip-preferences-save": "Gravar preferências",
 	"savedprefs": "As suas preferências foram gravadas.",

@@ -307,8 +307,6 @@
 	"config-screenshot": "captura de schermo",
 	"config-extension-not-found": "Impossibile trovar le file de registration pro le extension \"$1\"",
 	"config-extension-dependency": "Un error de dependentia se ha producite durante le installation del extension \"$1\": $2",
-	"config-composerlock-missing": "<strong>Attention:</strong> Non poteva trovar le dependentias de Composer. Istes es includite con un discargamento de MediaWiki. Si tu disveloppa a partir de Git, [https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries installa le dependentias de Composer] ante de continuar.",
-	"config-composerlock-stale": "Tu file composer.lock non es actual. Per favor [https://www.mediawiki.org/wiki/Special:MyLanguage/Composer#Usage_in_MediaWiki_core actualisa le dependentias de Composer] ante de continuar.",
 	"config-ext-skins-more-info": "plus information",
 	"mainpagetext": "<strong>MediaWiki ha essite installate.</strong>",
 	"mainpagedocfooter": "Consulta le [https://meta.wikimedia.org/wiki/Help:Contents Guida del usator] pro information sur le uso del software wiki.\n\n== Pro initiar ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista de configurationes]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ FAQ a proposito de MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Lista de diffusion pro annuncios de nove versiones de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Traducer MediaWiki in tu lingua]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Como combatter le spam in tu wiki]"

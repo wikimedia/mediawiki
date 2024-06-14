@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"IJzeren Jan"
+		]
+	},
+	"preferences": "Nastavjenja",
+	"prefsnologintext2": "Prosimo, že prijavite se, da byste izměnili svoje nastavjenja.",
+	"searchprefs": "Iskati nastavjenja",
+	"searchprefs-noresults": "Nemaje rezultatov",
+	"searchprefs-results": "$1 {{PLURAL:$1|rezultat|rezultatov}}",
+	"saveprefs": "Zapisati",
+	"tooltip-preferences-save": "Zapisati nastavjenja",
+	"savedprefs": "Vaše nastavjenja sut zapisane.",
+	"prefs-back-title": "Vratiti se k nastavjenjam",
+	"prefs-tabs-navigation-hint": "Sovět: Vy možete posluživati se klavišami strělok vlěvo i vpravo za navigaciju medžu zakladkami.",
+	"prefs-sections-navigation-hint": "Sovět: Vy može posluživati se klavišami SHIFT + TAB za navigaciju medžu razdělami nastavjenj.",
+	"prefs-personal": "Profil koristnika",
+	"prefs-description-personal": "Kontrolujte, kako izgledaje vaš profil, kako povezate se i kako razgovarjajete.",
+	"prefs-info": "Osnovne informacije",
+	"username": "{{GENDER:$1|Koristničsko ime}}",
+	"prefs-memberingroups": "{{GENDER:$2|Člen}} {{PLURAL:$1|grupy|grup}}:",
+	"group-membership-link-with-expiry": "$1 (do $2)",
+	"prefs-edits": "Kolikost pravok:",
+	"prefs-registration": "Data i vrěme registracije:",
+	"yourrealname": "Pravdivo ime:",
+	"prefs-help-realname": "Pravdivo ime jest opcionalno. \nAko rěšite, že go podate, ono može služiti k pripisanja avtorstva vašej raboty.",
+	"yourpassword": "Parola:",
+	"prefs-resetpass": "Izměniti parolu",
+	"passwordtooshort": "Trěba, že parola sostoji se minimalno iz $1 {{PLURAL:$1|znaka|znakov}}.",
+	"passwordtoolong": "Parola ne može byti dolžejša neželi {{PLURAL:$1|1 znak|$1 znakov}}.",
+	"password-substring-username-match": "Vaša parola ne povinna jest byti čest vašego koristničskogo imene.",
+	"password-name-match": "Vaša parola povinna jest odličati se od vašego koristničskogo imene.",
+	"password-login-forbidden": "Upotrěba togo koristničskogo imene i paroly jest zabranjena.",
+	"passwordincommonlist": "Vvedena parola jest na spisku mnogo često koristanyh parol. Prosimo, že izberite bolje unikalnu parolu.",
+	"prefs-help-yourpassword": "Obnovjenje konta jest vključeno. Za veče nastavjenj pozrite $1.",
+	"tog-prefershttps": "Vsegda upotrěbjajte bezpečnu svez pri prijavjenju se",
+	"prefs-help-prefershttps": "Tuto nastavjenje bude priměnjeno, kogda prijavite se ponovno.",
+	"prefs-user-downloaddata-label": "Dostup k danym konta:",
+	"prefs-user-downloaddata-info": "Dane mojego konta iz tutogo projekta",
+	"prefs-user-restoreprefs-label": "Resetovati nastavjenja:"
+}
