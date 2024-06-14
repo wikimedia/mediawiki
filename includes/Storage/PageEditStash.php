@@ -22,7 +22,6 @@ namespace MediaWiki\Storage;
 
 use BagOStuff;
 use Content;
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Page\PageIdentity;
@@ -38,6 +37,7 @@ use Psr\Log\LoggerInterface;
 use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Stats\StatsFactory;
 use WikiPage;
 
 /**
@@ -58,7 +58,7 @@ class PageEditStash {
 	private $dbProvider;
 	/** @var LoggerInterface */
 	private $logger;
-	/** @var StatsdDataFactoryInterface */
+	/** @var StatsFactory */
 	private $stats;
 	/** @var ParserOutputStashForEditHook */
 	private $hookRunner;
@@ -90,7 +90,7 @@ class PageEditStash {
 	 * @param BagOStuff $cache
 	 * @param IConnectionProvider $dbProvider
 	 * @param LoggerInterface $logger
-	 * @param StatsdDataFactoryInterface $stats
+	 * @param StatsFactory $stats
 	 * @param UserEditTracker $userEditTracker
 	 * @param UserFactory $userFactory
 	 * @param WikiPageFactory $wikiPageFactory
@@ -101,7 +101,7 @@ class PageEditStash {
 		BagOStuff $cache,
 		IConnectionProvider $dbProvider,
 		LoggerInterface $logger,
-		StatsdDataFactoryInterface $stats,
+		StatsFactory $stats,
 		UserEditTracker $userEditTracker,
 		UserFactory $userFactory,
 		WikiPageFactory $wikiPageFactory,
@@ -269,7 +269,7 @@ class PageEditStash {
 
 		$editInfo = $this->getAndWaitForStashValue( $key );
 		if ( !is_object( $editInfo ) || !$editInfo->output ) {
-			$this->incrStatsByContent( 'cache_misses.no_stash', $content );
+			$this->incrCacheReadStats( 'miss', 'no_stash', $content );
 			if ( $this->recentStashEntryCount( $user ) > 0 ) {
 				$logger->info( "Empty cache for key '{key}' but not for user.", $logContext );
 			} else {
@@ -285,28 +285,28 @@ class PageEditStash {
 		$isCacheUsable = true;
 		if ( $age <= self::PRESUME_FRESH_TTL_SEC ) {
 			// Assume nothing changed in this time
-			$this->incrStatsByContent( 'cache_hits.presumed_fresh', $content );
+			$this->incrCacheReadStats( 'hit', 'presumed_fresh', $content );
 			$logger->debug( "Timestamp-based cache hit for key '{key}'.", $logContext );
 		} elseif ( !$user->isRegistered() ) {
 			$lastEdit = $this->lastEditTime( $user );
 			$cacheTime = $editInfo->output->getCacheTime();
 			if ( $lastEdit < $cacheTime ) {
 				// Logged-out user made no local upload/template edits in the meantime
-				$this->incrStatsByContent( 'cache_hits.presumed_fresh', $content );
+				$this->incrCacheReadStats( 'hit', 'presumed_fresh', $content );
 				$logger->debug( "Edit check based cache hit for key '{key}'.", $logContext );
 			} else {
 				$isCacheUsable = false;
-				$this->incrStatsByContent( 'cache_misses.proven_stale', $content );
+				$this->incrCacheReadStats( 'miss', 'proven_stale', $content );
 				$logger->info( "Stale cache for key '{key}' due to outside edits.", $logContext );
 			}
 		} else {
 			if ( $editInfo->edits === $this->userEditTracker->getUserEditCount( $user ) ) {
 				// Logged-in user made no local upload/template edits in the meantime
-				$this->incrStatsByContent( 'cache_hits.presumed_fresh', $content );
+				$this->incrCacheReadStats( 'hit', 'presumed_fresh', $content );
 				$logger->debug( "Edit count based cache hit for key '{key}'.", $logContext );
 			} else {
 				$isCacheUsable = false;
-				$this->incrStatsByContent( 'cache_misses.proven_stale', $content );
+				$this->incrCacheReadStats( 'miss', 'proven_stale', $content );
 				$logger->info( "Stale cache for key '{key}'due to outside edits.", $logContext );
 			}
 		}
@@ -347,12 +347,20 @@ class PageEditStash {
 	}
 
 	/**
-	 * @param string $subkey
+	 * @param string $result
+	 * @param string $reason
 	 * @param Content $content
 	 */
-	private function incrStatsByContent( $subkey, Content $content ) {
-		$this->stats->increment( 'editstash.' . $subkey ); // overall for b/c
-		$this->stats->increment( 'editstash_by_model.' . $content->getModel() . '.' . $subkey );
+	private function incrCacheReadStats( $result, $reason, Content $content ) {
+		static $subtypeByResult = [ 'miss' => 'cache_misses', 'hit' => 'cache_hits' ];
+		$this->stats->getCounter( "editstash_cache_checks_total" )
+			->setLabel( 'reason', $reason )
+			->setLabel( 'result', $result )
+			->setLabel( 'model', $content->getModel() )
+			->copyToStatsdAt( [
+				'editstash.' . $subtypeByResult[ $result ] . '.' . $reason,
+				'editstash_by_model.' . $content->getModel() . '.' . $subtypeByResult[ $result ] . '.' . $reason ] )
+			->increment();
 	}
 
 	/**
@@ -373,7 +381,9 @@ class PageEditStash {
 			}
 
 			$timeMs = 1000 * max( 0, microtime( true ) - $start );
-			$this->stats->timing( 'editstash.lock_wait_time', $timeMs );
+			$this->stats->getTiming( 'editstash_lock_wait_seconds' )
+				->copyToStatsdAt( 'editstash.lock_wait_time' )
+				->observe( $timeMs );
 		}
 
 		return $editInfo;
