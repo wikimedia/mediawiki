@@ -15,7 +15,7 @@ QUnit.module( 'mediawiki.api.options', QUnit.newMwEnvironment(), ( hooks ) => {
 		api.saveOption( 'foo', 'bar' );
 
 		assert.true( stub.calledOnce, '#saveOptions called once' );
-		assert.deepEqual( stub.getCall( 0 ).args, [ { foo: 'bar' } ], '#saveOptions called correctly' );
+		assert.deepEqual( stub.getCall( 0 ).args, [ { foo: 'bar' }, undefined ], '#saveOptions called correctly' );
 	} );
 
 	QUnit.test( 'saveOptions without Unit Separator', async function ( assert ) {
