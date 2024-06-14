@@ -25,34 +25,42 @@ class SpecialPageFatalTest extends MediaWikiIntegrationTestCase {
 		$this->filterDeprecated( '//' );
 	}
 
-	public function testSpecialPageDoesNotFatal() {
+	public static function provideSpecialPageDoesNotFatal() {
 		$spf = MediaWikiServices::getInstance()->getSpecialPageFactory();
 		foreach ( $spf->getNames() as $name ) {
-
-			$page = $spf->getPage( $name );
-			if ( !$page ) {
-				$this->markTestSkipped( "Could not create special page $name" );
-			}
-
-			$executor = new SpecialPageExecutor();
-			$authority = new UltimateAuthority( new UserIdentityValue( 42, 'SpecialPageTester' ) );
-
-			try {
-				$executor->executeSpecialPage( $page, '', null, 'qqx', $authority );
-			} catch ( \PHPUnit\Framework\Error\Error $error ) {
-				// Let phpunit settings working:
-				// - convertDeprecationsToExceptions="true"
-				// - convertErrorsToExceptions="true"
-				// - convertNoticesToExceptions="true"
-				// - convertWarningsToExceptions="true"
-				throw $error;
-			} catch ( Exception $e ) {
-				// Other exceptions are allowed
-			}
-
-			// If the page fataled phpunit will have already died
-			$this->addToAssertionCount( 1 );
+			yield $name => [ $name ];
 		}
+	}
+
+	/**
+	 * @dataProvider provideSpecialPageDoesNotFatal
+	 */
+	public function testSpecialPageDoesNotFatal( string $name ) {
+		$spf = $this->getServiceContainer()->getSpecialPageFactory();
+
+		$page = $spf->getPage( $name );
+		if ( !$page ) {
+			$this->markTestSkipped( "Could not create special page $name" );
+		}
+
+		$executor = new SpecialPageExecutor();
+		$authority = new UltimateAuthority( new UserIdentityValue( 42, 'SpecialPageTester' ) );
+
+		try {
+			$executor->executeSpecialPage( $page, '', null, 'qqx', $authority );
+		} catch ( \PHPUnit\Framework\Error\Error $error ) {
+			// Let phpunit settings working:
+			// - convertDeprecationsToExceptions="true"
+			// - convertErrorsToExceptions="true"
+			// - convertNoticesToExceptions="true"
+			// - convertWarningsToExceptions="true"
+			throw $error;
+		} catch ( Exception $e ) {
+			// Other exceptions are allowed
+		}
+
+		// If the page fataled phpunit will have already died
+		$this->addToAssertionCount( 1 );
 	}
 
 }

@@ -2470,6 +2470,8 @@ return [
 			],
 			'RestAPIAdditionalRouteFiles' => [
 			],
+			'RestSandboxSpecs' => [
+			],
 			'MaxShellMemory' => 307200,
 			'MaxShellFileSize' => 102400,
 			'MaxShellTime' => 180,
@@ -2974,6 +2976,7 @@ return [
 			'CrossSiteAJAXdomainExceptions' => 'object',
 			'AllowedCorsHeaders' => 'array',
 			'RestAPIAdditionalRouteFiles' => 'array',
+			'RestSandboxSpecs' => 'object',
 			'ShellRestrictionMethod' => [
 				'string',
 				'boolean',
@@ -3402,6 +3405,27 @@ return [
 		'RangeContributionsCIDRLimit' => [
 			'additionalProperties' => [
 				'type' => 'integer',
+			],
+		],
+		'RestSandboxSpecs' => [
+			'additionalProperties' => [
+				'type' => 'object',
+				'properties' => [
+					'url' => [
+						'type' => 'string',
+						'format' => 'url',
+					],
+					'name' => [
+						'type' => 'string',
+					],
+					'msg' => [
+						'type' => 'string',
+						'description' => 'a message key',
+					],
+				],
+				'required' => [
+					'url',
+				],
 			],
 		],
 		'ShellboxUrls' => [
