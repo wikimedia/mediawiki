@@ -35,6 +35,7 @@ use MediaWiki\Specials\SpecialVersion;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\Utils\ExtensionInfo;
 use MediaWiki\Utils\GitInfo;
@@ -67,6 +68,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	private ILoadBalancer $loadBalancer;
 	private ReadOnlyMode $readOnlyMode;
 	private UrlUtils $urlUtils;
+	private TempUserConfig $tempUserConfig;
 
 	/**
 	 * @param ApiQuery $query
@@ -86,6 +88,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	 * @param ILoadBalancer $loadBalancer
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param UrlUtils $urlUtils
+	 * @param TempUserConfig $tempUserConfig
 	 */
 	public function __construct(
 		ApiQuery $query,
@@ -104,7 +107,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		SkinFactory $skinFactory,
 		ILoadBalancer $loadBalancer,
 		ReadOnlyMode $readOnlyMode,
-		UrlUtils $urlUtils
+		UrlUtils $urlUtils,
+		TempUserConfig $tempUserConfig
 	) {
 		parent::__construct( $query, $moduleName, 'si' );
 		$this->userOptionsLookup = $userOptionsLookup;
@@ -122,6 +126,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$this->loadBalancer = $loadBalancer;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->urlUtils = $urlUtils;
+		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	public function execute() {
@@ -648,21 +653,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendAutoCreateTempUser( $property ) {
-		$config = $this->getConfig()->get( MainConfigNames::AutoCreateTempUser );
-
-		$data = [ 'enabled' => false ];
-		if ( $config['enabled'] ?? false ) {
-			$data['enabled'] = true;
-			$data['actions'] = $config['actions'];
-			$data['genPattern'] = $config['genPattern'];
-			$data['matchPattern'] = $config['matchPattern'] ?? $data['genPattern'];
-			$data['serialProvider'] = $config['serialProvider'];
-			$data['serialMapping'] = $config['serialMapping'];
+		$data = [ 'enabled' => $this->tempUserConfig->isEnabled() ];
+		if ( $this->tempUserConfig->isEnabled() ) {
+			$data['matchPatterns'] = $this->tempUserConfig->getMatchPatterns();
 		}
-		if ( isset( $config['reservedPattern'] ) ) {
-			$data['reservedPattern'] = $config['reservedPattern'];
-		}
-
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
