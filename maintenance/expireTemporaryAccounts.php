@@ -142,7 +142,7 @@ class ExpireTemporaryAccounts extends Maintenance {
 	public function execute() {
 		$this->initServices();
 
-		if ( !$this->tempUserConfig->isEnabled() ) {
+		if ( !$this->tempUserConfig->isKnown() ) {
 			$this->output( 'Temporary accounts are disabled' . PHP_EOL );
 			return;
 		}

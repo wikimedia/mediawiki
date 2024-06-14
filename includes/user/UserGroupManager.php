@@ -281,7 +281,7 @@ class UserGroupManager {
 				$groups[] = 'temp';
 			} elseif ( $user->isRegistered() ) {
 				$groups[] = 'user';
-				if ( $this->tempUserConfig->isEnabled() ) {
+				if ( $this->tempUserConfig->isKnown() ) {
 					$groups[] = 'named';
 				}
 				$groups = array_unique( array_merge(

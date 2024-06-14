@@ -169,7 +169,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 					[
 						'name' => 'unregistered',
 						'label' => 'rcfilters-filter-user-experience-level-unregistered-label',
-						'description' => $this->tempUserConfig->isEnabled() ?
+						'description' => $this->tempUserConfig->isKnown() ?
 							'rcfilters-filter-user-experience-level-unregistered-description-temp' :
 							'rcfilters-filter-user-experience-level-unregistered-description',
 						'cssClassSuffix' => 'user-unregistered',
@@ -1804,7 +1804,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	private function getRegisteredExpr( $isRegistered, $dbr ): IExpression {
 		$expr = $dbr->expr( 'actor_user', $isRegistered ? '!=' : '=', null );
-		if ( !$this->tempUserConfig->isEnabled() ) {
+		if ( !$this->tempUserConfig->isKnown() ) {
 			return $expr;
 		}
 		if ( $isRegistered ) {

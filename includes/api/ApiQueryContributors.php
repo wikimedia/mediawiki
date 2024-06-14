@@ -307,7 +307,7 @@ class ApiQueryContributors extends ApiQueryBase {
 	}
 
 	protected function getSummaryMessage() {
-		if ( $this->tempUserConfig->isEnabled() ) {
+		if ( $this->tempUserConfig->isKnown() ) {
 			return 'apihelp-query+contributors-summary-tempusers-enabled';
 		}
 		return parent::getSummaryMessage();

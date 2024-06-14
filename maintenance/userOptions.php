@@ -200,7 +200,7 @@ WARN
 			$queryBuilderTemplate->andWhere( $dbr->expr( 'user_id', '<=', $toUserId ) );
 		}
 
-		if ( $tempUserConfig->isEnabled() ) {
+		if ( $tempUserConfig->isKnown() ) {
 			$queryBuilderTemplate->andWhere(
 				$tempUserConfig->getMatchCondition( $dbr, 'user_name', IExpression::NOT_LIKE )
 			);

@@ -190,7 +190,7 @@ class ApiFeedRecentChanges extends ApiBase {
 			'hidebots' => false,
 			'hideanons' => [
 				ParamValidator::PARAM_DEFAULT => false,
-				ApiBase::PARAM_HELP_MSG => $this->tempUserConfig->isEnabled() ?
+				ApiBase::PARAM_HELP_MSG => $this->tempUserConfig->isKnown() ?
 					'apihelp-feedrecentchanges-param-hideanons-temp' :
 					'apihelp-feedrecentchanges-param-hideanons',
 			],

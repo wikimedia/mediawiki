@@ -654,7 +654,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	protected function appendAutoCreateTempUser( $property ) {
 		$data = [ 'enabled' => $this->tempUserConfig->isEnabled() ];
-		if ( $this->tempUserConfig->isEnabled() ) {
+		if ( $this->tempUserConfig->isKnown() ) {
 			$data['matchPatterns'] = $this->tempUserConfig->getMatchPatterns();
 		}
 		return $this->getResult()->addValue( 'query', $property, $data );

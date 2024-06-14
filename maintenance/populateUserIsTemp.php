@@ -55,8 +55,8 @@ class PopulateUserIsTemp extends LoggedUpdateMaintenance {
 	protected function doDBUpdates() {
 		$this->initServices();
 
-		if ( !$this->tempUserConfig->isEnabled() ) {
-			// If temporary user auto-creation is disabled, then just return early as there will be no rows to update.
+		if ( !$this->tempUserConfig->isKnown() ) {
+			// If temporary user auto-creation is not known, then just return early as there will be no rows to update.
 			return true;
 		}
 
