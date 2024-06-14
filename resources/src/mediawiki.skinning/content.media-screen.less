@@ -3,6 +3,7 @@
 @import 'content.variables.less';
 
 @margin-horizontal-image: 3px;
+@border-width-image: 1px;
 
 figure[ typeof~='mw:File/Thumb' ],
 figure[ typeof~='mw:File/Frame' ] {
@@ -113,41 +114,34 @@ figure[ typeof~='mw:File/Thumb' ] {
 }
 
 /**
- * RESPONSIVE IMAGES FOR RESPONSIVE SKINS (T113101)
- * Applies to all images directly inside a link or a noscript tag inside the parser output.
- * A noscript tag is included as this applies to lazy loaded images which can be enabled by
- * extensions such as MobileFrontend (T191893).
+ * RESPONSIVE IMAGES FOR RESPONSIVE SKINS (T113101 and T367463)
  * Note we restrict to img's to avoid conflicts with VisualEditor shields.
+ * Note this currently doesn't apply to frameless images (tracked in T367831) and
+ * does not currently apply to responsive images in MobileFrontend.
  */
-a,
-noscript {
-	> img {
-		body.skin--responsive .mw-parser-output & {
-			// Note height auto is required and only applied to images.
-			// It must be !important to override any inline style
-			// declarations. (T64460)
-			/* stylelint-disable-next-line declaration-no-important */
-			height: auto !important;
-			// make sure that images in articles don't cause a horizontal scrollbar
-			// on small screens. It must be !important to override any inline style
-			// declarations.
-			/* stylelint-disable-next-line declaration-no-important */
-			max-width: @size-full !important;
-		}
+body.skin--responsive .mw-parser-output {
+	// Only block images should be responsive to prevent 0 sizing in tables
+	// Inline images do not use figure. We do not target audio and video or other content
+	// We target .mw-file-element, as there can be img inside captions...
+	figure img.mw-file-element {
+		// Note height auto is required and only applied to images.
+		height: auto;
+		// make sure that images in articles don't cause a horizontal scrollbar
+		// on small screens.
+		max-width: @size-full;
+	}
 
-		// Note: If the image is a thumbnail, the max-width also needs to take into account margin.
-		body.skin--responsive .mw-parser-output figure[ typeof~='mw:File/Thumb' ] & {
-			/* stylelint-disable-next-line declaration-no-important */
-			max-width: calc( @size-full - @margin-horizontal-image - @margin-horizontal-image ) !important;
-		}
+	// Note: If the image is a thumbnail, max-width also needs to take into account margin and border.
+	figure[ typeof~='mw:File/Thumb' ] img.mw-file-element,
+	figure[ typeof~='mw:File/Frame' ] img.mw-file-element {
+		max-width: calc( @size-full - ( 2 * @margin-horizontal-image ) - ( 2 * @border-width-image ) );
+	}
 
-		/**
-		* When the noresize class is used e.g. on a panorama or image map
-		* with clickable regions (T22030), do not subject the image to a max-width rule.
-		*/
-		body.skin--responsive .noresize & {
-			/* stylelint-disable-next-line declaration-no-important */
-			max-width: none !important;
-		}
+	/**
+	* When the noresize class is used e.g. on a panorama or image map
+	* with clickable regions (T22030), do not subject the image to a max-width rule.
+	*/
+	.noresize figure img.mw-file-element {
+		max-width: none;
 	}
 }
