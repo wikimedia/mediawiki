@@ -1150,8 +1150,8 @@ var util = {
 	 * @return {boolean}
 	 */
 	isTemporaryUser: function ( username ) {
-		// Just return early if temporary accounts are disabled.
-		if ( !config.AutoCreateTempUser.enabled ) {
+		// Just return early if temporary accounts are not known about.
+		if ( !config.AutoCreateTempUser.enabled && !config.AutoCreateTempUser.known ) {
 			return false;
 		}
 		/** @type {string|string[]} */
