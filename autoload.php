@@ -831,6 +831,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Api\\Hook\\ApiDeprecationHelpHook' => __DIR__ . '/includes/api/Hook/ApiDeprecationHelpHook.php',
 	'MediaWiki\\Api\\Hook\\ApiFeedContributions__feedItemHook' => __DIR__ . '/includes/api/Hook/ApiFeedContributions__feedItemHook.php',
 	'MediaWiki\\Api\\Hook\\ApiFormatHighlightHook' => __DIR__ . '/includes/api/Hook/ApiFormatHighlightHook.php',
+	'MediaWiki\\Api\\Hook\\ApiLogFeatureUsageHook' => __DIR__ . '/includes/api/Hook/ApiLogFeatureUsageHook.php',
 	'MediaWiki\\Api\\Hook\\ApiMain__moduleManagerHook' => __DIR__ . '/includes/api/Hook/ApiMain__moduleManagerHook.php',
 	'MediaWiki\\Api\\Hook\\ApiMain__onExceptionHook' => __DIR__ . '/includes/api/Hook/ApiMain__onExceptionHook.php',
 	'MediaWiki\\Api\\Hook\\ApiMakeParserOptionsHook' => __DIR__ . '/includes/api/Hook/ApiMakeParserOptionsHook.php',
