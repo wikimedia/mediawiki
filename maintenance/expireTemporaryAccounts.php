@@ -36,6 +36,12 @@ class ExpireTemporaryAccounts extends Maintenance {
 
 		$this->addDescription( 'Expire temporary accounts that exist for more than N days' );
 		$this->addOption( 'frequency', 'How frequently the script runs [days]', true, true );
+		$this->addOption(
+			'expiry',
+			'Expire accounts older than this number of days. Use 0 to expire all temporary accounts',
+			false,
+			true
+		);
 		$this->addOption( 'verbose', 'Verbose logging output' );
 	}
 
@@ -148,8 +154,12 @@ class ExpireTemporaryAccounts extends Maintenance {
 		}
 
 		$frequencyDays = (int)$this->getOption( 'frequency' );
-		$expiryAfterDays = $this->tempUserConfig->getExpireAfterDays();
-		if ( !$expiryAfterDays ) {
+		if ( $this->getOption( 'expiry' ) !== null ) {
+			$expiryAfterDays = (int)$this->getOption( 'expiry' );
+		} else {
+			$expiryAfterDays = $this->tempUserConfig->getExpireAfterDays();
+		}
+		if ( $expiryAfterDays === null ) {
 			$this->output( 'Temporary account expiry is not enabled' . PHP_EOL );
 			return;
 		}
