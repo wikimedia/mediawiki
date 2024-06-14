@@ -29,6 +29,18 @@ use WikitextContent;
  * @internal for use by core REST infrastructure
  */
 class PageContentHelper {
+
+	/**
+	 * The maximum cache duration for page content.
+	 *
+	 * If this is set to a value higher than about 60 seconds, active purging
+	 * will have to be employed to make sure clients do not receive overly stale
+	 * content. This is especially important to avoid distributing vandalized
+	 * content for too long.
+	 *
+	 * Active purging can be enabled by adding the relevant URLs to
+	 * HTMLCacheUpdater. See T365630 for more discussion.
+	 */
 	private const MAX_AGE_200 = 5;
 
 	/**
