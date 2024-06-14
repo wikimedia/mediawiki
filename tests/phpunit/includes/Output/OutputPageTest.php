@@ -26,6 +26,7 @@ use MediaWiki\Tests\ResourceLoader\ResourceLoaderTestCase;
 use MediaWiki\Tests\ResourceLoader\ResourceLoaderTestModule;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -1125,22 +1126,26 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op = $this->newInstance();
 		$this->assertSame( [], $op->getLanguageLinks() );
 
-		$op->addLanguageLinks( [ 'fr:A', 'it:B' ] );
-		$this->assertSame( [ 'fr:A', 'it:B' ], $op->getLanguageLinks() );
+		$op->addLanguageLinks( [ 'fr:A#x', 'it:B' ] );
+		$this->assertSame( [ 'fr:A#x', 'it:B' ], $op->getLanguageLinks() );
 
-		$op->addLanguageLinks( [ 'de:C', 'es:D' ] );
-		$this->assertSame( [ 'fr:A', 'it:B', 'de:C', 'es:D' ], $op->getLanguageLinks() );
+		$op->addLanguageLinks( [
+			TitleValue::tryNew( NS_MAIN, 'C', '', 'de' ),
+			TitleValue::tryNew( NS_MAIN, 'D', '', 'es' ),
+		] );
+		$this->assertSame( [ 'fr:A#x', 'it:B', 'de:C', 'es:D' ], $op->getLanguageLinks() );
 
-		$op->setLanguageLinks( [ 'pt:E' ] );
+		$op->setLanguageLinks( [ TitleValue::tryNew( NS_MAIN, 'E', '', 'pt' ) ] );
 		$this->assertSame( [ 'pt:E' ], $op->getLanguageLinks() );
 
-		$pOut1 = $this->createParserOutputStub( 'getLanguageLinks', [ 'he:F', 'ar:G' ] );
+		$pOut1 = $this->createParserOutputStub( 'getLanguageLinks', [ 'he:F', 'ar:G#y' ] );
 		$op->addParserOutputMetadata( $pOut1 );
-		$this->assertSame( [ 'pt:E', 'he:F', 'ar:G' ], $op->getLanguageLinks() );
+		$this->assertSame( [ 'pt:E', 'he:F', 'ar:G#y' ], $op->getLanguageLinks() );
 
+		# Duplicates are removed in OutputPage (T26502)
 		$pOut2 = $this->createParserOutputStub( 'getLanguageLinks', [ 'pt:H' ] );
 		$op->addParserOutput( $pOut2 );
-		$this->assertSame( [ 'pt:E', 'he:F', 'ar:G', 'pt:H' ], $op->getLanguageLinks() );
+		$this->assertSame( [ 'pt:E', 'he:F', 'ar:G#y' ], $op->getLanguageLinks() );
 	}
 
 	// @todo Are these category links tests too abstract and complicated for what they test?  Would

@@ -250,6 +250,8 @@ because of Phabricator reports.
 * SerializedValueContainer::isUnified(), deprecated in 1.42, has been
   removed.
 * Parser::getFreshParser(), deprecated in 1.39, has been removed.
+* ParserOutput::getLanguageLinks() no longer returns a reference to the
+  internal array.
 * ConfigFactory::getDefaultInstance(), deprecated since 1.27, has been
   removed.
 * wfGetLangObj(), deprecated since 1.41, has been removed in favor of
@@ -721,6 +723,8 @@ because of Phabricator reports.
   now emits deprecation warnings. Use formatPermissionStatus() instead.
 * OutputPage::setCategoryLinks() has been deprecated and emits deprecation
   warnings.  Use ::addCategoryLinks() instead.
+* OutputPage::setLanguageLinks() has been deprecated; use ::addLanguageLinks()
+  instead.
 * LoadBalancer::getConnectionRef(), deprecated since 1.39, now emits deprecation
   warnings. Use ::getConnection() instead.
 * DBAccessObjectUtils::getDBOptions() is deprecated, use

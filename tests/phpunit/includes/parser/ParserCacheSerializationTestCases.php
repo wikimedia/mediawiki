@@ -178,6 +178,7 @@ abstract class ParserCacheSerializationTestCases {
 	 */
 	public static function getParserOutputTestCases() {
 		MWDebug::filterDeprecationForTest( '/::setPageProperty with non-scalar value/' );
+		MWDebug::filterDeprecationForTest( '/::addLanguageLink without prefix/' );
 		$parserOutputWithCacheTimeProps = new ParserOutput( 'CacheTime' );
 		$parserOutputWithCacheTimeProps->setCacheTime( self::CACHE_TIME );
 		$parserOutputWithCacheTimeProps->updateCacheExpiry( 10 );
@@ -553,6 +554,14 @@ abstract class ParserCacheSerializationTestCases {
 					return $jsonCodec->deserialize( $data );
 				}
 			];
+		}
+		// T374736: hack for old test cases
+		foreach ( $serializationFormats as [ 'deserializer' => &$d ] ) {
+			$oldDeserializer = $d;
+			$d = static function ( $data ) use ( $oldDeserializer ) {
+				MWDebug::filterDeprecationForTest( '/::addLanguageLink without prefix/' );
+				return $oldDeserializer( $data );
+			};
 		}
 		return $serializationFormats;
 	}
