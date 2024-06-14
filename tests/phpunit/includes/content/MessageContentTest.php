@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Language\RawMessage;
+use MediaWiki\Message\Message;
 
 /**
  * @group ContentHandler

@@ -7,6 +7,7 @@ use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use PHPUnit\Framework\MockObject\MockObject;

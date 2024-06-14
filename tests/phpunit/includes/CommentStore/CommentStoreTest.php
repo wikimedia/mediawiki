@@ -3,6 +3,7 @@
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Language\RawMessage;
+use MediaWiki\Message\Message;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**

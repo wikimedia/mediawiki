@@ -1,10 +1,13 @@
 <?php
 
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Message\Message;
 use MediaWiki\Page\MergeHistory;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
+use MediaWiki\Utils\MWTimestamp;
 
 /**
  * @group Database

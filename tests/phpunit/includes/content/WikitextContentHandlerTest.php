@@ -2,6 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;

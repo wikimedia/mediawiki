@@ -7,6 +7,7 @@ use MediaWiki\Content\TextContent;
 use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;

@@ -25,8 +25,8 @@ namespace MediaWiki\Tests\ChangeTags;
 use ChangeTagsList;
 use ChangeTagsLogList;
 use ChangeTagsRevisionList;
-use IContextSource;
 use InvalidArgumentException;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Page\PageIdentity;
 use MediaWikiIntegrationTestCase;
 

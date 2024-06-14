@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Cache\LinkCache;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;

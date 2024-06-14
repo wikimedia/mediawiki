@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Message\Message;
 use MediaWiki\Permissions\PermissionStatus;
 
 /**

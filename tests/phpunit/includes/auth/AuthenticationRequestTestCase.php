@@ -3,8 +3,8 @@
 namespace MediaWiki\Tests\Auth;
 
 use MediaWiki\Auth\AuthenticationRequest;
+use MediaWiki\Message\Message;
 use MediaWikiIntegrationTestCase;
-use Message;
 use ReflectionMethod;
 use const E_USER_DEPRECATED;
 

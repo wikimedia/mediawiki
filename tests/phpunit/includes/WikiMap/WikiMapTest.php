@@ -2,6 +2,7 @@
 
 use MediaWiki\Config\SiteConfiguration;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Tests\Site\TestSites;
 use MediaWiki\WikiMap\WikiMap;
 use MediaWiki\WikiMap\WikiReference;
 use Wikimedia\Rdbms\DatabaseDomain;

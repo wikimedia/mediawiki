@@ -8,6 +8,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Pager\ContributionsPager;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Title\NamespaceInfo;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 

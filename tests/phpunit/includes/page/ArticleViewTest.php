@@ -5,6 +5,7 @@ use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;

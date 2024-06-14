@@ -3,6 +3,7 @@
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Password\InvalidPassword;
 use MediaWiki\Password\Password;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\SessionManager;

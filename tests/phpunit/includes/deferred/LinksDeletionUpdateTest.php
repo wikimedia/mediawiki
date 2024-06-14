@@ -2,6 +2,7 @@
 
 use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\TitleValue;
 
 /**

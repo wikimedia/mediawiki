@@ -2,6 +2,7 @@
 
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
 
 /**
  * @covers \WikiFilePage

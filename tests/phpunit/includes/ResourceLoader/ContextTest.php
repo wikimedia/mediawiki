@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\ResourceLoader;
 
-use EmptyResourceLoader;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;

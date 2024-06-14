@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
