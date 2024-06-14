@@ -17,7 +17,9 @@
  */
 
 /**
+ * @group Language
  * @covers \UzConverter
+ * @covers \LanguageConverter
  */
 class UzConverterTest extends MediaWikiIntegrationTestCase {
 
@@ -25,7 +27,6 @@ class UzConverterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @author Nikola Smolenski
-	 * @covers \LanguageConverter::convertTo
 	 */
 	public function testConversionToCyrillic() {
 		// A convertion of Latin to Cyrillic
@@ -46,9 +47,6 @@ class UzConverterTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers \LanguageConverter::convertTo
-	 */
 	public function testConversionToLatin() {
 		// A simple convertion of Latin to Latin
 		$this->assertEquals( 'abdef',

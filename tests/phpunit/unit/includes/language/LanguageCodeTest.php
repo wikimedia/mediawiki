@@ -5,8 +5,8 @@ use MediaWiki\Tests\Unit\DummyServicesTrait;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 
 /**
- * @covers \LanguageCode
  * @group Language
+ * @covers \LanguageCode
  *
  * @author Thiemo Kreuz
  */
@@ -201,8 +201,6 @@ class LanguageCodeTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \LanguageCode::bcp47()
-	 * @covers \LanguageCode::bcp47ToInternal()
 	 * @dataProvider provideBcp47ToInternal()
 	 */
 	public function testBcp47ToInternal( $expected, $bcp47 ) {
@@ -211,7 +209,6 @@ class LanguageCodeTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \LanguageCode::bcp47ToInternal()
 	 * @dataProvider provideSupportedLanguageCodes()
 	 */
 	public function testBcp47ToInternalLanguage( $internalCode ) {
@@ -261,9 +258,7 @@ class LanguageCodeTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * Test LanguageCode::isWellFormedLanguageTag()
 	 * @dataProvider provideWellFormedLanguageTags
-	 * @covers \LanguageCode::isWellFormedLanguageTag
 	 */
 	public function testWellFormedLanguageTag( $code, $message = '' ) {
 		$this->assertTrue(
@@ -315,9 +310,7 @@ class LanguageCodeTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * Negative test for LanguageCode::isWellFormedLanguageTag()
 	 * @dataProvider provideMalformedLanguageTags
-	 * @covers \LanguageCode::isWellFormedLanguageTag
 	 */
 	public function testMalformedLanguageTag( $code, $message = '' ) {
 		$this->assertFalse(
@@ -370,10 +363,6 @@ class LanguageCodeTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	/**
-	 * Negative test for LanguageCode::isWellFormedLanguageTag()
-	 * @covers \LanguageCode::isWellFormedLanguageTag
-	 */
 	public function testLenientLanguageTag() {
 		$this->assertTrue(
 			LanguageCode::isWellFormedLanguageTag( 'pa_guru', true ),

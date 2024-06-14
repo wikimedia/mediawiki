@@ -7,6 +7,8 @@
  * Code to test the getFallbackFor, getFallbacksFor, and getFallbacksIncludingSiteLanguage methods
  * that have historically been static methods of the Language class. It can be used to test any
  * class or object that implements those three methods.
+ *
+ * @internal For LanguageFallbackTest and LanguageFallbackIntegrationTest
  */
 trait LanguageFallbackTestTrait {
 	/**
@@ -71,7 +73,6 @@ trait LanguageFallbackTestTrait {
 	 * @param array $expected
 	 * @param array $options
 	 * @dataProvider provideGetAll
-	 * @covers \MediaWiki\Languages\LanguageFallback::getFirst
 	 */
 	public function testGetFirst( $code, array $expected, array $options = [] ) {
 		$callee = $this->getCallee( $options );
@@ -84,7 +85,6 @@ trait LanguageFallbackTestTrait {
 	 * @param array $expected
 	 * @param array $options
 	 * @dataProvider provideGetAll
-	 * @covers \MediaWiki\Languages\LanguageFallback::getAll
 	 */
 	public function testGetAll( $code, array $expected, array $options = [] ) {
 		$this->assertSame( $expected,
@@ -96,7 +96,6 @@ trait LanguageFallbackTestTrait {
 	 * @param array $expected
 	 * @param array $options
 	 * @dataProvider provideGetAll
-	 * @covers \MediaWiki\Languages\LanguageFallback::getAll
 	 */
 	public function testGetAll_messages( $code, array $expected, array $options = [] ) {
 		$this->assertSame( $expected,
@@ -120,7 +119,6 @@ trait LanguageFallbackTestTrait {
 	 * @param array $expected
 	 * @param array $options
 	 * @dataProvider provideGetAll_strict
-	 * @covers \MediaWiki\Languages\LanguageFallback::getAll
 	 */
 	public function testGetAll_strict( $code, array $expected, array $options = [] ) {
 		$this->assertSame( $expected,
@@ -139,9 +137,6 @@ trait LanguageFallbackTestTrait {
 		];
 	}
 
-	/**
-	 * @covers \MediaWiki\Languages\LanguageFallback::getAll
-	 */
 	public function testGetAll_invalidMode() {
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'Invalid fallback mode "7"' );
@@ -163,7 +158,6 @@ trait LanguageFallbackTestTrait {
 	 * @param array $expected
 	 * @param int $expectedGets
 	 * @dataProvider provideGetAllIncludingSiteLanguage
-	 * @covers \MediaWiki\Languages\LanguageFallback::getAllIncludingSiteLanguage
 	 */
 	public function testGetAllIncludingSiteLanguage(
 		$code, $siteLangCode, array $expected, $expectedGets = 1

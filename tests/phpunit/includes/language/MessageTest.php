@@ -13,6 +13,7 @@ use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\TestingAccessWrapper;
 
 /**
+ * @group Language
  * @group Database
  * @covers ::wfMessage
  * @covers \MediaWiki\Message\Message

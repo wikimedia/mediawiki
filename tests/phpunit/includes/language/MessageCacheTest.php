@@ -9,8 +9,8 @@ use MediaWiki\Title\Title;
 use Wikimedia\TestingAccessWrapper;
 
 /**
+ * @group Language
  * @group Database
- * @group Cache
  * @covers \MessageCache
  */
 class MessageCacheTest extends MediaWikiLangTestCase {
