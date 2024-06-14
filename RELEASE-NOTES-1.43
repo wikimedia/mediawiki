@@ -264,6 +264,7 @@ because of Phabricator reports.
   - ::pendingWriteQueryDuration()
   - ::writesOrCallbacksPending()
   - ::writesPending()
+  - ::primaryPosWait()
 * IMaintainableDatabase::listViews(), deprecated since 1.42, has been removed.
 * IMaintainableDatabase::truncate(), deprecated since 1.42, has been removed.
 * IMaintainableDatabase::textFieldSize() was removed without deprecation.

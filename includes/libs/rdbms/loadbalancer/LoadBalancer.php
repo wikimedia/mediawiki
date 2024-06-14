@@ -1910,7 +1910,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			$this->closeConnection( $primaryConn );
 		}
 
-		if ( $pos instanceof DBPrimaryPos ) {
+		if ( $pos instanceof DBPrimaryPos && $conn instanceof IDatabaseForOwner ) {
 			$this->logger->debug( __METHOD__ . ': waiting' );
 			$result = $conn->primaryPosWait( $pos, self::MAX_WAIT_DEFAULT );
 			$ok = ( $result !== null && $result != -1 );
