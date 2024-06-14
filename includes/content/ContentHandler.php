@@ -642,7 +642,6 @@ abstract class ContentHandler {
 	 * Create a TextSlotDiffRenderer and inject dependencies
 	 *
 	 * @since 1.41
-	 *
 	 * @param array $options See getSlotDiffRenderer()
 	 * @return TextSlotDiffRenderer
 	 */
