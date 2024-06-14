@@ -508,16 +508,6 @@
 				"options": { "notnull": true, "unsigned": true, "default": 0 }
 			},
 			{
-				"name": "pl_namespace",
-				"type": "integer",
-				"options": { "notnull": true, "default": 0 }
-			},
-			{
-				"name": "pl_title",
-				"type": "binary",
-				"options": { "notnull": true, "length": 255, "default": "" }
-			},
-			{
 				"name": "pl_from_namespace",
 				"type": "integer",
 				"comment": "Namespace for pl_from page",
@@ -532,18 +522,6 @@
 		],
 		"indexes": [
 			{
-				"name": "pl_namespace",
-				"columns": [ "pl_namespace", "pl_title", "pl_from" ],
-				"comment": "Reverse index, for Special:Whatlinkshere",
-				"unique": false
-			},
-			{
-				"name": "pl_backlinks_namespace",
-				"columns": [ "pl_from_namespace", "pl_namespace", "pl_title", "pl_from" ],
-				"comment": "Index for Special:Whatlinkshere with namespace filter",
-				"unique": false
-			},
-			{
 				"name": "pl_target_id",
 				"columns": [ "pl_target_id", "pl_from" ],
 				"comment": "Reverse index, for Special:Whatlinkshere",
@@ -556,7 +534,7 @@
 				"unique": false
 			}
 		],
-		"pk": [ "pl_from", "pl_namespace", "pl_title" ]
+		"pk": [ "pl_from", "pl_target_id" ]
 	},
 	{
 		"name": "templatelinks",

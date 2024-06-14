@@ -1110,19 +1110,20 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		// links table update
 		$pageLinks = $this->getDb()->newSelectQueryBuilder()
-			->select( '*' )
+			->select( 'lt_title' )
 			->from( 'pagelinks' )
+			->join( 'linktarget', null, 'pl_target_id=lt_id' )
 			->where( [ 'pl_from' => $pageId ] )
-			->orderBy( [ 'pl_namespace', 'pl_title' ] )
+			->orderBy( [ 'lt_namespace', 'lt_title' ] )
 			->caller( __METHOD__ )->fetchResultSet();
 
 		$pageLinksRow = $pageLinks->fetchObject();
 		$this->assertIsObject( $pageLinksRow );
-		$this->assertSame( 'Main', $pageLinksRow->pl_title );
+		$this->assertSame( 'Main', $pageLinksRow->lt_title );
 
 		$pageLinksRow = $pageLinks->fetchObject();
 		$this->assertIsObject( $pageLinksRow );
-		$this->assertSame( 'Nix', $pageLinksRow->pl_title );
+		$this->assertSame( 'Nix', $pageLinksRow->lt_title );
 
 		// parser cache update
 		$cached = $pcache->get( $page, $updater->getCanonicalParserOptions() );

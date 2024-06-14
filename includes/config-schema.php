@@ -391,7 +391,7 @@ return [
 			'MaxExecutionTimeForExpensiveQueries' => 0,
 			'VirtualDomainsMapping' => [
 			],
-			'PageLinksSchemaMigrationStage' => 769,
+			'PageLinksSchemaMigrationStage' => 768,
 			'ExternalLinksDomainGaps' => [
 			],
 			'ContentHandlers' => [

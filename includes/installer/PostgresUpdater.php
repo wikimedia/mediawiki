@@ -81,11 +81,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropFkey', 'redirect', 'rd_from' ],
 			[ 'changeField', 'redirect', 'rd_interwiki', 'VARCHAR(32)', '' ],
 			[ 'dropFkey', 'pagelinks', 'pl_from' ],
-			[ 'changeField', 'pagelinks', 'pl_namespace', 'INT', 'pl_namespace::INT DEFAULT 0' ],
-			[ 'setDefault', 'pagelinks', 'pl_title', '' ],
-			[ 'addPgIndex', 'pagelinks', 'pl_namespace', '(pl_namespace,pl_title,pl_from)' ],
-			[ 'addPgIndex', 'pagelinks', 'pl_backlinks_namespace',
-				'(pl_from_namespace,pl_namespace,pl_title,pl_from)' ],
 			[ 'dropPgIndex', 'pagelinks', 'pagelink_unique' ],
 			[ 'dropPgIndex', 'pagelinks', 'pagelinks_title' ],
 			[ 'dropFkey', 'templatelinks', 'tl_from' ],
@@ -443,6 +438,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeField', 'change_tag', 'ct_rc_id', 'BIGINT', '' ],
 			[ 'runMaintenance', \MigrateBlocks::class, 'maintenance/migrateBlocks.php' ],
 			[ 'dropTable', 'ipblocks' ],
+			[ 'dropField', 'pagelinks', 'pl_title', 'patch-pagelinks-drop-pl_title.sql' ],
 		];
 	}
 

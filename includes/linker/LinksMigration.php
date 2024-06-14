@@ -54,7 +54,10 @@ class LinksMigration {
 			'ns' => 'pl_namespace',
 			'title' => 'pl_title',
 			'target_id' => 'pl_target_id',
-			'deprecated_configs' => [],
+			'deprecated_configs' => [
+				SCHEMA_COMPAT_WRITE_OLD,
+				SCHEMA_COMPAT_READ_OLD
+			],
 		],
 	];
 
@@ -161,13 +164,16 @@ class LinksMigration {
 			);
 		}
 
-		if ( self::$mapping[$table]['config'] !== -1 ) {
+		if ( self::$mapping[$table]['config'] !== -1 && self::$mapping[$table]['deprecated_configs'] ) {
 			$config = $this->config->get( self::$mapping[$table]['config'] );
-			if ( in_array( $config, self::$mapping[$table]['deprecated_configs'] ) ) {
-				throw new InvalidArgumentException(
-					"LinksMigration config $config on $table table is not supported anymore"
-				);
+			foreach ( self::$mapping[$table]['deprecated_configs'] as $deprecatedConfig ) {
+				if ( $config & $deprecatedConfig ) {
+					throw new InvalidArgumentException(
+						"LinksMigration config $config on $table table is not supported anymore"
+					);
+				}
 			}
+
 		}
 	}
 }
