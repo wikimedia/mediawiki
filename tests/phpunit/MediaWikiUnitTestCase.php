@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Config\ConfigException;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\DeferredUpdatesScopeMediaWikiStack;
 use MediaWiki\Deferred\DeferredUpdatesScopeStack;

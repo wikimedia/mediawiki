@@ -7,6 +7,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Rest\CorsUtils;

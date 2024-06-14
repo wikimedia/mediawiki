@@ -3,6 +3,7 @@
 use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Edit\ParsoidRenderID;
 use MediaWiki\Page\ParserOutputAccess;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Languages\LanguageFactory;

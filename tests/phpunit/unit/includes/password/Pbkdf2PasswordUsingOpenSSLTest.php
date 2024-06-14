@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Password\Pbkdf2PasswordUsingOpenSSL;
+
 /**
  * @group large
  * @covers \MediaWiki\Password\AbstractPbkdf2Password

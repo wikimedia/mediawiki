@@ -1,11 +1,11 @@
 <?php
 namespace MediaWiki\Tests;
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiEntryPoint;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
 use MediaWikiIntegrationTestCase;
-use RequestContext;
 use Wikimedia\TestingAccessWrapper;
 
 /**

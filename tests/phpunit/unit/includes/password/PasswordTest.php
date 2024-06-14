@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Password\MWOldPassword;
 use MediaWiki\Password\Password;
 use MediaWiki\Password\PasswordError;
 use MediaWiki\Password\PasswordFactory;

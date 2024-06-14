@@ -4,10 +4,10 @@ namespace MediaWiki\Tests\Parser;
 
 use DummyContentForTesting;
 use MediaWiki\Parser\ParserObserver;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\Title;
 use MediaWikiUnitTestCase;
 use ParserOptions;
-use ParserOutput;
 use TestLogger;
 
 /**

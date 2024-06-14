@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Content\Renderer\ContentParseParams;
+use MediaWiki\Parser\ParserOutput;
 
 class DummyNonTextContentHandler extends DummyContentHandlerForTesting {
 

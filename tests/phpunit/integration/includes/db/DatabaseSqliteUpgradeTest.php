@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Installer\DatabaseUpdater;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseSqlite;

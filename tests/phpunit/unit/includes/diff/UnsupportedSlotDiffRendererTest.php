@@ -4,6 +4,7 @@ use MediaWiki\Content\FallbackContent;
 use MediaWiki\Content\FallbackContentHandler;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Content\TextContentHandler;
+use MediaWiki\Message\Message;
 
 /**
  * @covers \UnsupportedSlotDiffRenderer

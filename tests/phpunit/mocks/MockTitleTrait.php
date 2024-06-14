@@ -4,6 +4,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleFactory;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**
