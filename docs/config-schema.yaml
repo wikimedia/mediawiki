@@ -4833,6 +4833,7 @@ config-schema:
             or function outside of Wikimedia Foundation wikis.
     AutoCreateTempUser:
         properties:
+            known: { type: boolean, default: false }
             enabled: { type: boolean, default: false }
             actions: { type: array, default: [edit] }
             genPattern: { type: string, default: ~$1 }
@@ -4849,7 +4850,15 @@ config-schema:
             do not explicitly create an account.
             @warning This is EXPERIMENTAL, enabling may break extensions.
             An associative array with the following keys:
-              - enabled: (bool) Whether auto-creation is enabled.
+              - known: (bool) Whether auto-creation is known about. Set this to 'true' if
+                temp accounts have been created on this wiki already. This setting allows
+                temp users to be recognized even if auto-creation is currently disabled.
+                If auto-creation is enabled via the 'enabled' property, then 'known' is
+                overriden to true.
+              - enabled: (bool) Whether auto-creation is enabled. If changing this
+                value from 'true' to 'false', you should also set 'known' to true, so
+                that relevant code can continue to identify temporary accounts as
+                visually and conceptually distinct from anonymous accounts and named accounts.
               - actions: (array) A list of actions for which the feature is enabled.
                 Currently only "edit" is supported.
               - genPattern: (string) The pattern used when generating new usernames.

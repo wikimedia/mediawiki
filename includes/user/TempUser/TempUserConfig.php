@@ -24,6 +24,14 @@ interface TempUserConfig {
 	public function isEnabled();
 
 	/**
+	 * Are temporary accounts a known concept on the wiki?
+	 * This should return true if any temporary accounts exist.
+	 *
+	 * @return bool
+	 */
+	public function isKnown();
+
+	/**
 	 * Is the action valid for user auto-creation?
 	 *
 	 * @param string $action

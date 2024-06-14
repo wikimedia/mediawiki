@@ -135,6 +135,10 @@ class TempUserCreator implements TempUserConfig {
 		return $this->config->isEnabled();
 	}
 
+	public function isKnown() {
+		return $this->config->isKnown();
+	}
+
 	public function isAutoCreateAction( string $action ) {
 		return $this->config->isAutoCreateAction( $action );
 	}
