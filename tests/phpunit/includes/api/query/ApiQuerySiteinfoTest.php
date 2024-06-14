@@ -376,7 +376,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testAutoCreateTempUser() {
-		$this->disableAutoCreateTempUser();
+		$this->disableAutoCreateTempUser( [ 'reservedPattern' => null ] );
 		$this->assertSame(
 			[ 'enabled' => false ],
 			$this->doQuery( 'autocreatetempuser' ),
