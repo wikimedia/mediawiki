@@ -53,7 +53,7 @@ class PagerTools {
 				);
 				if ( $rollbackLink ) {
 					$this->preventClickjacking = true;
-					$tools[] = $rollbackLink;
+					$tools['mw-rollback'] = $rollbackLink;
 				}
 			}
 		}
@@ -75,7 +75,7 @@ class PagerTools {
 						'undo' => $revRecord->getId()
 					]
 				);
-				$tools[] = "<span class=\"mw-history-undo\">{$undolink}</span>";
+				$tools['mw-undo'] = "<span class=\"mw-history-undo\">{$undolink}</span>";
 			}
 		}
 		// Allow extension to add their own links here
