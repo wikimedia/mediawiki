@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 
 /**
  * This class represents the result of the API operations.

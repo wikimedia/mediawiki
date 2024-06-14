@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Message\Message;
 use MediaWiki\Parser\Parser;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\User\UserFactory;

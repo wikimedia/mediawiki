@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Mail\EmailUserFactory;
 use MediaWiki\Status\Status;
 use MediaWiki\User\UserFactory;

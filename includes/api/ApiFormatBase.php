@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Html\Html;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
