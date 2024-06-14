@@ -40,7 +40,7 @@
 	"rest-page-source-type-error": "リクエストしたページソースのコンテンツタイプはサポートされていません。",
 	"rest-no-revision": "タイトル$1の版を取得できません",
 	"rest-media-too-many-links": "見つけたタイトル$1のメディアリンクは多すぎます（最大は$2）",
-	"rest-html-backend-error": "Parsoid HTML をフェッチできません",
+	"rest-html-backend-error": "Parsoid HTML をフェッチできません: $1",
 	"rest-bad-json-body": "無効なリクエストボディです。JSON オブジェクトでなければなりません。",
 	"rest-json-body-parse-error": "リクエストボディを JSON として解析に失敗：$1",
 	"rest-missing-body-field": "必須フィールド「$1」はリクエストボディに含まれていません。",
