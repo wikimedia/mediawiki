@@ -6,12 +6,12 @@
 * @author mflaschen@wikimedia.org
 */
 /**
- * @typedef {string|string[]} jQueryPlugins~Replacements
+ * @typedef {string|string[]} module:mediawiki.jqueryMsg~Replacements
  * @ignore
  */
 /**
- * @callback {Function} jQueryPlugins~MessageFormatterFunction
- * @param {Array<jQueryPlugins~Replacements>} replacements Optional variable replacements (variadically or an array).
+ * @callback {Function} module:mediawiki.jqueryMsg~MessageFormatterFunction
+ * @param {Array<module:mediawiki.jqueryMsg~Replacements>} replacements Optional variable replacements (variadically or an array).
  *   This is a mixed array of strings or arrays of string. This is equivalent to Array<string|string[]> but cannot be documented until the
  *   jsdoc theme has been patched (T354716).
  * @return {jQuery} Rendered HTML.
@@ -20,7 +20,7 @@
 
 /**
  * @callback {Function} MessageFormatterFunctionGenerator
- * @return {jQueryPlugins~MessageFormatterFunction}
+ * @return {module:mediawiki.jqueryMsg~MessageFormatterFunction}
  * @ignore
  */
 
@@ -200,7 +200,7 @@ const getParserDefaults = function () {
  *
  * @ignore
  * @param {Object} options parser options
- * @return {jQueryPlugins~MessageFormatterFunction}
+ * @return {module:mediawiki.jqueryMsg~MessageFormatterFunction}
  */
 const defaultMessageFunction = function ( options ) {
 	var failableParserFn, format;
@@ -232,7 +232,7 @@ let messageFunction = defaultMessageFunction;
 /**
  * @ignore
  * @param {Object} options parser options
- * @return {jQueryPlugins~MessageFormatterFunction} options
+ * @return {module:mediawiki.jqueryMsg~MessageFormatterFunction} options
  */
 const getMessageFunction = function ( options ) {
 	return messageFunction( options );
@@ -257,7 +257,7 @@ const setMessageFunction = function ( msgFunction ) {
  *
  * @ignore
  * @param {Object} [options] Parser options
- * @return {jQueryPlugins~MessageFormatterFunction}
+ * @return {module:mediawiki.jqueryMsg~MessageFormatterFunction}
  */
 const getPlugin = function ( options ) {
 	var failableParserFn;
@@ -1441,14 +1441,19 @@ HtmlEmitter.prototype = {
 };
 
 /**
+ * Provides a {@link jQuery} plugin that parses messages.
+ *
+ * @module mediawiki.jqueryMsg
+ */
+/**
  * Parses the message in the message key, doing replacements optionally, and appends the nodes to
  * the current selector. Bindings to passed-in jquery elements are preserved. Functions become click handlers for [$1 linktext] links.
  *
- * @memberof jQueryPlugins
- * @name msg
+ * To use this {@link jQuery} plugin, load the `mediawiki.jqueryMsg` module with {@link mw.loader}.
+ *
+ * @memberof module:mediawiki.jqueryMsg
  * @param {string} message key
  * @param {...string[]} arguments
- * @method
  * @example
  * mw.loader.using('mediawiki.jqueryMsg' ).then(() => {
  *        var $userlink = $( '<a>' ).click( function () { alert( "hello!!" ) } );

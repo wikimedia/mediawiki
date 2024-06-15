@@ -16,7 +16,6 @@
 		"no-jquery/no-global-selector": "off",
 		"jsdoc/no-undefined-types": [ 1, {
 			"definedTypes": [
-				"jQueryPlugins",
 				"Hooks"
 			]
 		} ]

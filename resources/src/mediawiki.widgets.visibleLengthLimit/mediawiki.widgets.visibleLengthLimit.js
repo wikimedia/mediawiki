@@ -72,7 +72,7 @@
 	 *
 	 * Loaded from `mediawiki.widgets.visibleLengthLimit` module.
 	 *
-	 * Uses {@link jQueryPlugins.byteLimit} to enforce the limit.
+	 * Uses {@link module:jquery.lengthLimit.$.fn.byteLimit byteLimit} to enforce the limit.
 	 *
 	 * @param {OO.ui.TextInputWidget} textInputWidget
 	 * @param {number} [limit] Byte limit, defaults to input's `maxlength` attribute
@@ -87,7 +87,7 @@
 	 *
 	 * Loaded from `mediawiki.widgets.visibleLengthLimit` module.
 	 *
-	 * Uses {@link jQueryPlugins.codePointLimit} to enforce the limit.
+	 * Uses {@link module:jquery.lengthLimit.$.fn.codePointLimit codePointLimit} to enforce the limit.
 	 *
 	 * @param {OO.ui.TextInputWidget} textInputWidget
 	 * @param {number} [limit] Code point limit, defaults to input's `maxlength` attribute
@@ -104,7 +104,7 @@
 	 *
 	 * Loaded from `mediawiki.widgets.visibleLengthLimit` module.
 	 *
-	 * Uses {@link jQueryPlugins.byteLimit} to enforce the limit.
+	 * Uses {@link module:jquery.lengthLimit.$.fn.byteLimit byteLimit} to enforce the limit.
 	 *
 	 * @param {OO.ui.TextInputWidget} textInputWidget
 	 * @param {OO.ui.DropdownInputWidget} dropdownInputWidget
@@ -121,7 +121,7 @@
 	 *
 	 * Loaded from `mediawiki.widgets.visibleLengthLimit` module.
 	 *
-	 * Uses {@link jQueryPlugins.codePointLimit} to enforce the limit.
+	 * Uses {@link module:jquery.lengthLimit.$.fn.codePointLimit codePointLimit} to enforce the limit.
 	 *
 	 * @param {OO.ui.TextInputWidget} textInputWidget
 	 * @param {OO.ui.DropdownInputWidget} dropdownInputWidget

@@ -6,8 +6,6 @@
 /**
  * jQuery plugin to fade or snap to visible state.
  *
- * @memberof jQueryPlugins
- * @method goIn
  * @param {boolean} [instantToggle=false]
  * @return {jQuery}
  */
@@ -21,8 +19,6 @@ $.fn.goIn = function ( instantToggle ) {
 /**
  * jQuery plugin to fade or snap to hiding state.
  *
- * @memberof jQueryPlugins
- * @method goOut
  * @param {boolean} [instantToggle=false]
  * @return {jQuery}
  */

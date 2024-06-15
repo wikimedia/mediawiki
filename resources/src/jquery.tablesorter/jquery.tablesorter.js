@@ -1,22 +1,17 @@
 /**
- * TableSorter for MediaWiki
- *
- * Written 2011 Leo Koppelkamm
- * Based on tablesorter.com plugin, written (c) 2007 Christian Bach.
- *
- * Dual licensed under the MIT and GPL licenses:
- * http://www.opensource.org/licenses/mit-license.php
- * http://www.gnu.org/licenses/gpl.html
+ * Provides a {@link jQuery} plugin that creates a sortable table.
  *
  * Depends on mw.config (wgDigitTransformTable, wgDefaultDateFormat, wgPageContentLanguage)
- * and mw.language.months.
+ * and {@link mw.language.months}.
  *
- * Uses 'tableSorterCollation' in mw.config (if available)
+ * Uses 'tableSorterCollation' in {@link mw.config} (if available).
  *
- * @author Christian Bach/christian.bach@polyester.se
+ * @module jquery.tablesorter
+ * @author Written 2011 Leo Koppelkamm. Based on tablesorter.com plugin, written (c) 2007 Christian Bach/christian.bach@polyester.se
+ * @license Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) and  GPL (http://www.gnu.org/licenses/gpl.html) licenses
  */
 /**
- * @typedef {Object} jQueryPlugins~TableSorterOptions
+ * @typedef {Object} module:jquery.tablesorter~TableSorterOptions
  * @property {string} [cssHeader="headerSort"] A string of the class name to be appended to sortable
  *         tr elements in the thead of the table.
  * @property {string} [cssAsc="headerSortUp"] A string of the class name to be appended to
@@ -1038,6 +1033,7 @@
 				 * making the table appear unsorted).
 				 *
 				 * @param {Array} [sortList] List of sort objects.
+				 * @ignore
 				 */
 				$table.data( 'tablesorter' ).sort = function ( sortList ) {
 
@@ -1130,10 +1126,11 @@
 
 	// Register as jQuery prototype method
 	/**
-	 * Create a sortable table with multi-column sorting capabilities. Provided by jquery.tablesorter ResourceLoader module.
+	 * Create a sortable table with multi-column sorting capabilities.
 	 *
-	 * @memberof jQueryPlugins
-	 * @method tablesorter
+	 * To use this {@link jQuery} plugin, load the `jquery.tablesorter` module with {@link mw.loader}.
+	 *
+	 * @memberof module:jquery.tablesorter
 	 * @example
 	 * mw.loader.using( 'jquery.tablesorter' ).then( () => {
 	 *      // Create a simple tablesorter interface
@@ -1143,7 +1140,7 @@
 	 *      $( 'table' ).tablesorter( { sortList: [ { 0: 'desc' }, { 1: 'asc' } ] } )
 	 *          .on( 'sortEnd.tablesorter', () => console.log( 'Triggered as soon as any sorting has been applied.' ) );
 	 * } );
-	 * @param {jQueryPlugins~TableSorterOptions} settings
+	 * @param {module:jquery.tablesorter~TableSorterOptions} settings
 	 * @return {jQuery}
 	 */
 	$.fn.tablesorter = function ( settings ) {
