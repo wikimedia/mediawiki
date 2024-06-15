@@ -54,6 +54,13 @@ class TransformHandler extends ParsoidHandler {
 				ParamValidator::PARAM_REQUIRED => false, ], ];
 	}
 
+	/**
+	 * @inheritDoc
+	 */
+	public function needsWriteAccess() {
+		return false;
+	}
+
 	public function checkPreconditions() {
 		// NOTE: disable all precondition checks.
 		// If-(not)-Modified-Since is not supported by the /transform/ handler.
