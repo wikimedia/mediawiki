@@ -25,6 +25,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\RawSQLValue;
 
 class InitEditCount extends Maintenance {
@@ -108,6 +109,7 @@ class InitEditCount extends Maintenance {
 			$dbw->newUpdateQueryBuilder()
 				->table( 'user' )
 				->set( [ 'user_editcount' => new RawSQLValue( "($subquery)" ) ] )
+				->where( IDatabase::ALL_ROWS )
 				->caller( __METHOD__ )
 				->execute();
 		}
