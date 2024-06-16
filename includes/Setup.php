@@ -61,6 +61,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\Request\HeaderCallback;
 use MediaWiki\Settings\DynamicDefaultValues;
 use MediaWiki\Settings\LocalSettingsLoader;

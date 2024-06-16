@@ -25,6 +25,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Libs\UnpackFailedException;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\ProcOpenError;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Shell\Shell;

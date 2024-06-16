@@ -26,9 +26,9 @@ use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Utils\MWTimestamp;
-use Message;
 use UtfNormal\Validator;
 
 /**

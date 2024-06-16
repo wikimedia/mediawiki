@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Message\Message;
+
 /**
  * Interface for localizing messages in MediaWiki
  *

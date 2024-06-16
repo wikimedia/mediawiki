@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\Cache\FileCacheBase;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;

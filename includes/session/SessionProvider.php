@@ -32,6 +32,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Message\Message;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\User;
 use MediaWiki\User\UserNameUtils;
@@ -625,7 +626,7 @@ abstract class SessionProvider implements Stringable, SessionProviderInterface {
 	 * @warning This will be called early during MediaWiki startup. Do not
 	 *  use $wgUser, $wgLang, $wgOut, the global Parser, or their equivalents via
 	 *  RequestContext from this method!
-	 * @return \Message
+	 * @return Message
 	 */
 	protected function describeMessage() {
 		return wfMessage(

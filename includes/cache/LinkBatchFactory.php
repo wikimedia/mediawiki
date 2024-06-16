@@ -23,10 +23,7 @@
 
 namespace MediaWiki\Cache;
 
-use GenderCache;
 use Language;
-use LinkBatch;
-use LinkCache;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;

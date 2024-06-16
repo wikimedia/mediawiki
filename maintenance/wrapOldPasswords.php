@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Password\LayeredParameterizedPassword;
+use MediaWiki\Password\ParameterizedPassword;
 use MediaWiki\User\User;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;

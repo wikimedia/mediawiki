@@ -25,6 +25,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Skin\SkinComponentUtils;

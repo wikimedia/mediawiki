@@ -31,6 +31,7 @@ use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 
 require_once __DIR__ . '/Maintenance.php';
 

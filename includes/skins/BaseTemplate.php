@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Html\Html;
+use MediaWiki\Message\Message;
 use MediaWiki\Parser\Sanitizer;
 
 /**

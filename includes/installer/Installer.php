@@ -55,7 +55,7 @@ use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Status\Status;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
-use MediaWiki\User\StaticUserOptionsLookup;
+use MediaWiki\User\Options\StaticUserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\Utils\UrlUtils;
 use MessageSpecifier;

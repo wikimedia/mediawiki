@@ -22,6 +22,7 @@ use MediaWiki\Json\FormatJson;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
+use MediaWiki\Title\Title;
 use Wikimedia\IPSet;
 use Wikimedia\IPUtils;
 

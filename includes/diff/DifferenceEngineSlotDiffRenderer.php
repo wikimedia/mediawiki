@@ -20,6 +20,7 @@
  * @file
  * @ingroup DifferenceEngine
  */
+use MediaWiki\Context\DerivativeContext;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 

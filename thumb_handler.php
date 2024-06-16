@@ -30,6 +30,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\EntryPointEnvironment;
 use MediaWiki\FileRepo\Thumbnail404EntryPoint;
 use MediaWiki\MediaWikiServices;

@@ -24,6 +24,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\EntryPointEnvironment;
 use MediaWiki\FileRepo\ThumbnailEntryPoint;
 use MediaWiki\MediaWikiServices;
