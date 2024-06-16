@@ -11,15 +11,13 @@ DROP TABLE IF EXISTS /*_*/searchindex_segdir;
 DROP TABLE IF EXISTS /*_*/searchindex_segments;
 
 CREATE TABLE /*_*/searchindex (
-  -- Key to page_id
-  -- Disabled, instead we use the built-in rowid column
-  -- si_page INTEGER NOT NULL,
-
-  -- Munged version of title
-  si_title TEXT,
-
-  -- Munged version of body text
-  si_text TEXT
+  si_page INTEGER UNSIGNED NOT NULL,
+  si_title CLOB NOT NULL,
+  si_text CLOB NOT NULL,
+  PRIMARY KEY(si_page)
 );
+
+CREATE INDEX si_title ON /*_*/searchindex (si_title);
+CREATE INDEX si_text ON /*_*/searchindex (si_text);
 
 DELETE FROM /*_*/updatelog WHERE ul_key='fts3';
