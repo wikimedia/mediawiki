@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Status\Status;
+
 /**
  * Upload a file by URL, via the jobqueue.
  *

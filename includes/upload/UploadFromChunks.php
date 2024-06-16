@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Deferred\AutoCommitUpdate;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequestUpload;

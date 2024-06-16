@@ -21,6 +21,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\Context\IContextSource;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**

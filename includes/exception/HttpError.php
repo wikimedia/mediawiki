@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Message\Message;
 
 /**
  * Show an error that looks like an HTTP server error.

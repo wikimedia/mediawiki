@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parser;

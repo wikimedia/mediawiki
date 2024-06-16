@@ -23,6 +23,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\Request\WebRequest;
 use Wikimedia\AtEase;
 use Wikimedia\Rdbms\DBConnectionError;

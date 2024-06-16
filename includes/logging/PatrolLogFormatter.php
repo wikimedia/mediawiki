@@ -23,6 +23,8 @@
  * @since 1.22
  */
 
+use MediaWiki\Message\Message;
+
 /**
  * This class formats patrol log entries.
  *

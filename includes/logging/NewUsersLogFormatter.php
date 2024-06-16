@@ -23,6 +23,7 @@
  * @since 1.22
  */
 
+use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 

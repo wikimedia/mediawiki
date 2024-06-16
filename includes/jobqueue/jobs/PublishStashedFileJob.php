@@ -19,6 +19,8 @@
  * @defgroup JobQueue JobQueue
  */
 
+use MediaWiki\Status\Status;
+
 /**
  * Upload a file from the upload stash into the local file repo.
  *
