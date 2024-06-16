@@ -1480,7 +1480,8 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 			// Message objects should not be before parameters because
 			// then they'll get double escaped. If the message needs to be
 			// escaped, it'll happen right here when we call toString().
-			return [ 'after', $msg->format( $format ) ];
+			// (Using the public toString() to allow mocking / subclassing.)
+			return [ 'after', $msg->toString( $format ) ];
 		} else {
 			return [ 'before', $param ];
 		}
