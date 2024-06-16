@@ -22,8 +22,8 @@
 
 namespace MediaWiki\Specials;
 
-use HTMLTextAreaField;
 use MediaWiki\Export\WikiExporterFactory;
+use MediaWiki\HTMLForm\Field\HTMLTextAreaField;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Logger\LoggerFactory;

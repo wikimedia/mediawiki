@@ -21,13 +21,13 @@
 namespace MediaWiki\Specials;
 
 use ErrorPageError;
-use HTMLRestrictionsField;
-use InvalidPassword;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\Field\HTMLRestrictionsField;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Password\InvalidPassword;
 use MediaWiki\Password\PasswordError;
 use MediaWiki\Password\PasswordFactory;
 use MediaWiki\Permissions\GrantsInfo;

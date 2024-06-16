@@ -3,13 +3,13 @@
 namespace MediaWiki\SpecialPage;
 
 use ErrorPageError;
-use HTMLInfoField;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Context\DerivativeContext;
+use MediaWiki\HTMLForm\Field\HTMLInfoField;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Logger\LoggerFactory;

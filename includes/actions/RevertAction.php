@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\Context\IContextSource;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Status\Status;

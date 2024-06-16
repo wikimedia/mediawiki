@@ -20,6 +20,7 @@
 
 use MediaWiki\Category\Category;
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Edit\PreparedEdit;

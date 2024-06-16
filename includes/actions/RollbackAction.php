@@ -25,6 +25,7 @@ use MediaWiki\Config\ConfigException;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

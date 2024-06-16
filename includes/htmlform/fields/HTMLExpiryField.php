@@ -85,7 +85,7 @@ class HTMLExpiryField extends HTMLFormField {
 	 * Get the HTMLForm field by the type string.
 	 *
 	 * @param string $type
-	 * @return \HTMLFormField
+	 * @return HTMLFormField
 	 */
 	protected function getFieldByType( $type ) {
 		$class = HTMLForm::$typeMappings[$type];

@@ -25,17 +25,17 @@
 
 namespace MediaWiki\Pager;
 
-use HTMLHiddenField;
-use HTMLInfoField;
-use HTMLSelectField;
-use HTMLSubmitField;
-use HTMLUserTextField;
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\Field\HTMLHiddenField;
+use MediaWiki\HTMLForm\Field\HTMLInfoField;
+use MediaWiki\HTMLForm\Field\HTMLSelectField;
+use MediaWiki\HTMLForm\Field\HTMLSubmitField;
+use MediaWiki\HTMLForm\Field\HTMLUserTextField;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Logger\LoggerFactory;

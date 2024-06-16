@@ -5,7 +5,7 @@ namespace MediaWiki\HTMLForm\Field;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\HTMLForm\VFormHTMLForm;
-use Message;
+use MediaWiki\Message\Message;
 
 /**
  * Adds a generic button inline to the form. Does not do anything, you must add

@@ -22,6 +22,7 @@ use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

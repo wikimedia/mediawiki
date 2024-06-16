@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Context\IContextSource;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;

@@ -26,6 +26,7 @@ use MediaWiki\Feed\FeedItem;
 use MediaWiki\Feed\FeedUtils;
 use MediaWiki\Feed\RSSFeed;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Pager\HistoryPager;

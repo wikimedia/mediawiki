@@ -2,7 +2,6 @@
 
 namespace MediaWiki\HTMLForm\Field;
 
-use HTMLTextField;
 use InvalidArgumentException;
 use MediaWiki\Html\Html;
 use MediaWiki\Request\WebRequest;

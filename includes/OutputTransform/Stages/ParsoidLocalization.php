@@ -2,10 +2,10 @@
 
 namespace MediaWiki\OutputTransform\Stages;
 
+use MediaWiki\Message\Message;
 use MediaWiki\OutputTransform\ContentDOMTransformStage;
-use Message;
+use MediaWiki\Parser\ParserOutput;
 use ParserOptions;
-use ParserOutput;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Parsoid\DOM\Document;

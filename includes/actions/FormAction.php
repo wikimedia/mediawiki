@@ -20,6 +20,7 @@
  * @ingroup Actions
  */
 
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Status\Status;
 
 /**
