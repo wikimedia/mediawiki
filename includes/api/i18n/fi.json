@@ -130,6 +130,7 @@
 	"apierror-badtoken": "Virheellinen CSRF-poletti.",
 	"apierror-invalidlang": "Virheellinen kielikoodi parametrille <var>$1</var>.",
 	"apierror-mustbeloggedin-generic": "Sinun täytyy olla sisäänkirjautuneena.",
+	"apierror-mustbeloggedin": "Et voi $1, koska et ole kirjautunut sisään.",
 	"apierror-noapiwrite": "Tämän wikin muokkaaminen APIn kautta on estetty.",
 	"apierror-permissiondenied": "Sinulla ei ole oikeutta $1.",
 	"apierror-unknownerror-nocode": "Tuntematon virhe.",

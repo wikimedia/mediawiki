@@ -260,7 +260,9 @@
 			"Iketsi",
 			"Ponor",
 			"Stjn",
-			"Cabal"
+			"Cabal",
+			"PerfektesChaos",
+			"Shizhao"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -2510,7 +2512,7 @@
 	"apisandbox-param-limit": "Additional documentation text for 'limit'-type parameters.",
 	"apisandbox-multivalue-all-namespaces": "Used as an entry in a multiple-namespace widget to select all available namespaces. Parameters:\n* $1 - API input value meaning \"all namespaces\".",
 	"apisandbox-multivalue-all-values": "Used as an entry in a multiple-value widget to select all available values. Parameters:\n* $1 - API input value meaning \"all values\".",
-	"booksources": "{{doc-special|BookSources}}\n\n'''This message shouldn't be changed unless it has serious mistakes.'''\n\nIt's used as the page name of the configuration page of [[Special:BookSources]]. Changing it breaks existing sites using the default version of this message.\n\nSee also:\n* {{msg-mw|Booksources|title}}\n* {{msg-mw|Booksources-text|text}}",
+	"booksources": "{{doc-special|BookSources}}\n\n<span style=\"color:red\">'''This message shouldn't be changed unless it has serious mistakes.'''</span>\n\nIt's used as the page name of the configuration page of [[Special:BookSources]]. Changing it breaks existing sites using the default version of this message.\n\nSee also:\n* {{msg-mw|Booksources|title}}\n* {{msg-mw|Booksources-text|text}}",
 	"booksources-summary": "{{doc-specialpagesummary|booksources}}",
 	"booksources-search-legend": "Box heading on [[Special:BookSources|book sources]] special page. The box is for searching for places where a particular book can be bought or viewed.",
 	"booksources-isbn": "{{optional}}\nThis is a label that appears before a text input field on the Special:BookSources page.\n{{Identical|ISBN}}",

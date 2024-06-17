@@ -316,7 +316,7 @@
 	"config-extensions-requires": "$1 (require $2)",
 	"config-screenshot": "captura de pantalla",
 	"config-extension-not-found": "Non se poido atopar o ficheiro de rexistro para a extensión \"$1\"",
-	"config-extension-dependency": "Un erro de dependencias ocorreu mentres se instalaba a extensión \"$1\": $2",
+	"config-extension-dependency": "Produciuse un erro de dependencias mentres se instalaba a extensión \"$1\": $2",
 	"mainpagetext": "<strong>Instalouse MediaWiki.</strong>",
 	"mainpagedocfooter": "Consulte a [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents guía de usuario] para obter máis información sobre como usar o software wiki.\n\n== Primeiros pasos ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista das opcións de configuración]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Preguntas máis frecuentes sobre MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Lista de correo dos lanzamentos de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localice MediaWiki á súa lingua]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Aprenda como combater a spam no seu wiki]"
 }

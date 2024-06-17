@@ -200,6 +200,8 @@
 	"exif-photometricinterpretation-5": "Eraldatud (arvatavasti CMYK)",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (ICC kodeering)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (ITU kodeering)",
+	"exif-photometricinterpretation-32803": "Värvifiltrite massiiv",
+	"exif-photometricinterpretation-34892": "Lineaarsed toorandmed",
 	"exif-unknowndate": "Kuupäev teadmata",
 	"exif-orientation-1": "Normaalne",
 	"exif-orientation-2": "Pööratud pikali",

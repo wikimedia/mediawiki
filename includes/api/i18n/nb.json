@@ -530,7 +530,7 @@
 	"apihelp-query+alllinks-example-unique-generator": "Henter alle lenkede titler og markerer de som mangler.",
 	"apihelp-query+alllinks-example-generator": "Hent sider som inneholder lenkene.",
 	"apihelp-query+allmessages-summary": "Returnerer meldinger fra denne siden.",
-	"apihelp-query+allmessages-param-messages": "Hvilke beskjeder som skal gis som utdata. <kbd>*</kbd> (standard) betyr alle beskjder.",
+	"apihelp-query+allmessages-param-messages": "Hvilke beskjeder som skal gis som utdata. <kbd>*</kbd> (standard) betyr alle beskjeder.",
 	"apihelp-query+allmessages-param-prop": "Hvilke egenskaper som skal hentes.",
 	"apihelp-query+allmessages-param-enableparser": "Sett for å slå på tolking, vil prosessere wikiteksten til beskjeden (erstatte magiske ord, håndtere maler osv.).",
 	"apihelp-query+allmessages-param-nocontent": "Hvis denne er satt inkluderes ikke innholdet til beskjedene i utdataene.",

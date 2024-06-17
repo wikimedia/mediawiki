@@ -11,7 +11,8 @@
 			"Meqqal",
 			"Jilorisa",
 			"CorrelMoris38",
-			"Jjurieee"
+			"Jjurieee",
+			"AnderGapoh"
 		]
 	},
 	"tog-underline": "Mangagaris pioputan:",
@@ -273,6 +274,7 @@
 	"red-link-title": "$1 (bolikan amu nokoimbulai)",
 	"sort-descending": "Uludo poinruhuk",
 	"sort-ascending": "Uludo pointakad",
+	"sort-initial": "Uludo ponogulu",
 	"sort-rowspan-error": "Liwang diti nopo nga' kisuang do jadual miampai atribut rowspan di nokolobi ginumu baris id suang do jadual dii. Milo ko monginsonong dii miampai monyunting id liwang diti.",
 	"nstab-main": "Bolikan",
 	"nstab-user": "{{GENDER:$1|Bolikon momomoguno}}",
@@ -296,10 +298,12 @@
 	"databaseerror-query": "Timuhot: $1",
 	"databaseerror-function": "Gunoon: $1",
 	"databaseerror-error": "Silap: $1",
+	"transaction-duration-limit-exceeded": "Mongilag do ponopidan norikot linidut, notingkod pitahakan diti tu' linaid mamagarit ($1) nokolombus do wolit $2 kiop.",
+	"transaction-max-statement-time-exceeded": "Mongilag do saan tangkob kopoihaan tawagat, pongihuman diti notingkod tu' linaid dau nokolombus do wolit.\nNung ogumu kotos sanlaang birion nu, umbalai kotob katandaan lobi okoro.",
 	"laggedreplicamode": "'''Panansarahan:''' Awu moti kaanto nopinwoguan suang do bolikon diti.",
 	"readonly": "Nokunsian databing",
 	"enterlockreason": "Posuango sabab do mongunsi, poobion do gisom soira oukaban kunsi",
-	"readonlytext": "Databing diti nokunsian mantad monuang-suang om nogi pinsimbanan, koubasan do maso doropion, nga koguli miagal kasari do opongoh po ilo.\n\nMandur di minongunsi minomisunud do: $1",
+	"readonlytext": "Tangkob kopoihaan diti noontilan do pinsuanan wagu om pinsimbanan suai, tu' kodoropian koubasan kaanto, nga' koguli miagal kasasari do opongo po ilo.\n\nMomomogompi di minongontil minomisunud do: $1",
 	"missing-article": "Paildata diti awu nokokito do tik id bolikon diti ih mositi do gunoon, iri pinungaranan do \"$1\" $2.\n\nKoubasan do ajadi miagal diti tu haro nopingalanan toi ko toput mongoi id bolikon laid nopugas nodi.\n\nNung opurimanannu do okon ko iti o sabab, korubo ko do bug id posusuangon diti.\nMangai poruputo iti hilod [[Special:ListUsers/sysop|mantatamong]], miampai nota kokomoi do 'URL'.",
 	"missingarticle-rev": "(sinimakan#: $1)",
 	"missingarticle-diff": "(Dip: $1, $2)",

@@ -265,7 +265,7 @@
 	"config-install-user-grant-failed": "การกำหนดสิทธิผู้ใช้ \"$1\" ล้มเหลว: $2",
 	"config-install-user-missing": "ผู้ใช้ \"$1\" ที่ระบุไม่มีอยู่",
 	"config-install-user-missing-create": "ผู้ใช้ \"$1\" ที่ระบุไม่มีอยู่\nกรุณาคลิกกล่อง \"สร้างบัญชี\" ด้านล่างถ้าคุณต้องการสร้างขึ้น",
-	"config-install-logo-blank": "ป้อน URL โลโก้ที่ถูกต้อง",
+	"config-install-logo-blank": "กรอก URL โลโก้ที่ถูกต้อง",
 	"config-install-restore-services": "กำลังเรียกคืนบริการ MediaWiki",
 	"config-install-tables": "กำลังสร้างตาราง ขั้นตอนแรก",
 	"config-install-tables-exist": "<strong>คำเตือน:</strong> ตารางมีเดียวิกิดูเหมือนว่ามีอยู่แล้ว\nข้ามการสร้างไป",
