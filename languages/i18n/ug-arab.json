@@ -2347,7 +2347,6 @@
 	"htmlform-selectorother-other": "باشقا",
 	"htmlform-no": "ياق",
 	"htmlform-yes": "ھەئە",
-	"htmlform-chosen-placeholder": "بىرنى تاللاڭ",
 	"logentry-delete-delete": "$1 $3 بەتنى {{GENDER:$2|ئۆچۈرىۋەتتى}}",
 	"logentry-delete-restore": "$1 $3 بەتنى {{GENDER:$2|ئەسلىگە قايتۇردى}}",
 	"logentry-delete-event": "$1 ئىشلەتكۈچى $3 دىكى {{PLURAL:$5|خاتىرە ھادىسە}}سىنىڭ كۆۈنۈشچانلىقىنى ئۆزگەرتتى: $4",

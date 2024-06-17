@@ -2574,7 +2574,6 @@
 	"htmlform-selectorother-other": "অন্য",
 	"htmlform-no": "নহয়",
 	"htmlform-yes": "হয়",
-	"htmlform-chosen-placeholder": "এটা বিকল্প বাছনি কৰক",
 	"htmlform-cloner-create": "আৰু যোগ কৰক",
 	"htmlform-cloner-delete": "আঁতৰাওক",
 	"logentry-delete-delete": "$3 পৃষ্ঠাটো $1ৰদ্বাৰা {{GENDER:$2|বিলোপ কৰা হ'ল}}",

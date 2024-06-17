@@ -1428,7 +1428,7 @@
 	"movelogpagetext": "下底是撥拉捅盪个頁面列表。",
 	"movereason": "由頭：",
 	"revertmove": "恢復",
-	"delete_and_move_confirm": "對哉，刪脫該只頁面",
+	"delete_and_move_confirm": "對个，刪脫該只頁面「$1」",
 	"semiprotectedpagemovewarning": "<strong>注意：</strong>箇只頁面畀保護來許，只有自動確認用戶纔好移動渠。下底提供最近个日誌畀儂參考：",
 	"export": "頁面導出",
 	"allmessages": "系統訊息",

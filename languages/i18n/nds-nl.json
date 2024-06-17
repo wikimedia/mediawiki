@@ -2417,7 +2417,6 @@
 	"htmlform-selectorother-other": "Aanders",
 	"htmlform-no": "Nee",
 	"htmlform-yes": "Ja",
-	"htmlform-chosen-placeholder": "Kies n opsie",
 	"logentry-delete-delete": "$1 hevt de syde $3 {{GENDER:$2|vordsmeaten}}",
 	"logentry-delete-delete_redir": "$1 hevt de döärverwysing $3 {{GENDER:$2|vordsmeaten}} döär et te oaverskryven",
 	"logentry-delete-restore": "$1 {{GENDER:$2|hevt}} de syde $3 ($4) weaderümmeplaatsd",

@@ -2466,7 +2466,6 @@
 	"htmlform-selectorother-other": "Інше",
 	"htmlform-no": "Нє",
 	"htmlform-yes": "Гей",
-	"htmlform-chosen-placeholder": "Звольте параметер",
 	"logentry-delete-delete": "$1 {{GENDER:$2|змазав|змазала}} сторінку $3",
 	"logentry-delete-delete_redir": "$1 {{GENDER:$2|змазав|змазала}} напрямлїня $3 переписавши го",
 	"logentry-delete-restore": "$1 {{GENDER:$2|обновив|обновила}} сторінку $3",

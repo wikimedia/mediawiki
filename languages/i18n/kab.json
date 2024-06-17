@@ -2487,7 +2487,6 @@
 	"htmlform-selectorother-other": "Nniḍen",
 	"htmlform-no": "Ala",
 	"htmlform-yes": "Ih",
-	"htmlform-chosen-placeholder": "Fren taxtiṛit",
 	"logentry-delete-delete": "$1 {{GENDER:$2|yemḥa}} asebtar $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|yerra-d|terra-d}} asebter $3 ($4)",
 	"logentry-delete-event": "$1 {{GENDER:$2|yebeddel|tebeddel}} tabanit {{PLURAL:$5|n tadyant n uɣmis|n $5 tidyanin n uɣmis}} ɣef $3: $4",
