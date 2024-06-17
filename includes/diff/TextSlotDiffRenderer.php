@@ -104,6 +104,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	}
 
 	/**
+	 * @internal Use ContentHandler::createTextSlotDiffRenderer instead
 	 * @param IBufferingStatsdDataFactory $statsdDataFactory
 	 */
 	public function setStatsdDataFactory( IBufferingStatsdDataFactory $statsdDataFactory ) {
@@ -121,6 +122,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	}
 
 	/**
+	 * @internal Use ContentHandler::createTextSlotDiffRenderer instead
 	 * @since 1.41
 	 * @param HookContainer $hookContainer
 	 */
