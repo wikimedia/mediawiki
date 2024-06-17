@@ -2138,19 +2138,8 @@ return [
 		],
 	],
 	'mediawiki.special.restsandbox.styles' => [
-		'localBasePath' => MW_INSTALL_PATH . '/resources',
-		'remoteBasePath' => "$wgResourceBasePath/resources",
-		'packageFiles' => [
-			"src/mediawiki.special.restsandbox/restsandbox.js",
-			"lib/swagger-ui/swagger-ui-bundle.js",
-			"lib/swagger-ui/swagger-ui-standalone-preset.js",
-			[
-				'name' => 'src/mediawiki.special.restsandbox/config.json',
-				'config' => [ 'RestSandboxSpecs' ],
-			],
-		],
 		'styles' => [
-			'src/mediawiki.special.restsandbox/restsandbox.css',
+			'resources/src/mediawiki.special.restsandbox/restsandbox.css',
 		],
 	],
 	'mediawiki.special.restsandbox' => [
