@@ -643,7 +643,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 
 		$this->assertStatusValue( 'myvalue', $status );
 		$this->assertSame( $lockStatus->isOK(), $status->isOK() );
-		$this->assertSame( $lockStatus->getErrors(), $status->getErrors() );
+		$this->assertStatusMessagesExactly( $lockStatus, $status );
 
 		if ( !$lockStatus->isOK() ) {
 			$this->assertNull( $scopedLock );
@@ -655,8 +655,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 
 		$this->assertStatusValue( 'myvalue', $status );
 		$this->assertSame( $lockStatus->isOK(), $status->isOK() );
-		$this->assertSame( array_merge( $lockStatus->getErrors(), $unlockStatus->getErrors() ),
-			$status->getErrors() );
+		$this->assertStatusMessagesExactly( $lockStatus->merge( $unlockStatus ), $status );
 	}
 
 	public static function provideGetScopedFileLocks(): array {

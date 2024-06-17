@@ -112,10 +112,12 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 			->willReturn( $limit + 1 );
 
 		$status = $mh->isValidMerge();
-		$this->assertStatusError( 'mergehistory-fail-toobig', $status );
-		$errors = $status->getErrorsByType( 'error' );
-		$params = $errors[0]['params'];
-		$this->assertEquals( $params[0], Message::numParam( $limit ) );
+
+		$this->assertStatusNotOK( $status );
+		$this->assertStatusMessagesExactly(
+			StatusValue::newFatal( 'mergehistory-fail-toobig', Message::numParam( $limit ) ),
+			$status
+		);
 	}
 
 	/**

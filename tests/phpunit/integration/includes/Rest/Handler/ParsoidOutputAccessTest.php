@@ -517,10 +517,10 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$parsoidOutputAccess = $this->getServiceContainer()->getParsoidOutputAccess();
 		$status = $parsoidOutputAccess->parseUncacheable( $page->getTitle(), $pOpts, $revRecord );
 
-		$this->assertStatusError( 'parsoid-revision-access', $status );
-		$this->assertSame(
-			[ 'parsoid-revision-access', 'Not an available content version.' ],
-			$status->getErrorsArray()[0] ?? []
+		$this->assertStatusNotOK( $status );
+		$this->assertStatusMessagesExactly(
+			StatusValue::newFatal( 'parsoid-revision-access', 'Not an available content version.' ),
+			$status
 		);
 	}
 
