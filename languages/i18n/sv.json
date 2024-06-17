@@ -2849,6 +2849,8 @@
 	"movesubpage": "{{PLURAL:$1|Undersida|Undersidor}}",
 	"movesubpagetext": "Denna sida har $1 {{PLURAL:$1|undersida|undersidor}} som visas nedan.",
 	"movesubpagetalktext": "Den motsvarande diskussionssidan har $1 {{PLURAL:$1|undersida|undersidor}} som visas nedan.",
+	"movesubpagetext-truncated": "{{PLURAL:$1|Den $1 första undersidan|De $1 första undersidorna}} för denna sida visas nedan.",
+	"movesubpagetalktext-truncated": "{{PLURAL:$1|Den $1 första undersidan|De $1 första undersidorna}} för motsvarande diskussionssida visas nedan.",
 	"movenosubpage": "Denna sida har inga undersidor.",
 	"movereason": "Anledning:",
 	"revertmove": "återställ",

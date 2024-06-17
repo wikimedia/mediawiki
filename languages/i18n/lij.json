@@ -2761,6 +2761,8 @@
 	"movesubpage": "{{PLURAL:$1|Sotopàgina|Sotopàgine}}",
 	"movesubpagetext": "Sta pàgina chi a gh'à $1 {{PLURAL:$1|sotopàgina mostrâ|sotopàgine mostræ}} chi de sótta.",
 	"movesubpagetalktext": "A pàgina de discusción corispondénte a gh'à $1 {{PLURAL:$1|sotopàgina mostrâ|sotopàgine mostræ}} chi aprêuvo.",
+	"movesubpagetext-truncated": "{{PLURAL:$1|A prìmma sotopàgina pe sta pàgina chi a l'é mostrâ|E prìmme sotopàgine pe sta pàgina chi són mostræ}} chi de sótta.",
+	"movesubpagetalktext-truncated": "{{PLURAL:$1|A prìmma sotopàgina pi-â pàgina de discusción corispondénte a l'é mostrâ|E prìmme sotopàgine pi-â pàgina de discusción corispondénte són mostræ}} chi de sótta.",
 	"movenosubpage": "Sta pàgina chi a no gh'à de sotopàgine.",
 	"movereason": "Raxón:",
 	"revertmove": "riprìstina",
