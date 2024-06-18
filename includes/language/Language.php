@@ -43,6 +43,7 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\Parser\MagicWord;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\User;

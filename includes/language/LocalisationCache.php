@@ -20,6 +20,7 @@
 
 use CLDRPluralRuleParser\Error as CLDRPluralRuleError;
 use CLDRPluralRuleParser\Evaluator;
+use MediaWiki\Config\ConfigException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;

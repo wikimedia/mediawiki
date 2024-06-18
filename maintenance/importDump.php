@@ -26,6 +26,7 @@
 
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\UltimateAuthority;
+use MediaWiki\User\User;
 
 require_once __DIR__ . '/Maintenance.php';
 

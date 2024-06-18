@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Http\Telemetry;
 use MediaWiki\Logger\Spi;
 use MediaWiki\MainConfigNames;

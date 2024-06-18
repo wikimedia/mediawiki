@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Installer;
 
-use Status;
+use MediaWiki\Status\Status;
 use Wikimedia\Rdbms\Database;
 
 /**

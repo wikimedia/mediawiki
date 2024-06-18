@@ -23,6 +23,7 @@
 
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Shell\Shell;
+use MediaWiki\User\User;
 
 require_once __DIR__ . '/../Maintenance.php';
 

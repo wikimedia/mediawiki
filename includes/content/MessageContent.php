@@ -26,6 +26,8 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\Message\Message;
+
 /**
  * Wrapper allowing us to handle a system message as a Content object.
  * Note that this is generally *not* used to represent content from the

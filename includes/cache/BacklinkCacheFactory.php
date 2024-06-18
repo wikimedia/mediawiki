@@ -23,7 +23,6 @@
 
 namespace MediaWiki\Cache;
 
-use BacklinkCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinksMigration;
