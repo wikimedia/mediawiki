@@ -337,6 +337,7 @@ $wgGroupPermissions['sysop']['editsitejson'] = false;
 $wgGroupPermissions['sysop']['edituserjson'] = false;
 $wgGroupPermissions['sysop']['importupload'] = false;
 $wgGroupPermissions['sysop']['import'] = true;
+$wgGroupPermissions['sysop']['handle-reports'] = false;
 $wgGroupPermissions['sysop']['interwiki'] = false;
 $wgGroupPermissions['sysop']['mwoauthproposeconsumer'] = true;
 $wgGroupPermissions['sysop']['mwoauthupdateownconsumer'] = true;
@@ -395,6 +396,7 @@ $wgGroupPermissions['steward']['mwoauthsuppress'] = true;
 $wgGroupPermissions['steward']['mwoauthupdateownconsumer'] = true;
 $wgGroupPermissions['steward']['mwoauthviewprivate'] = true;
 $wgGroupPermissions['steward']['mwoauthviewsuppressed'] = true;
+$wgGroupPermissions['steward']['handle-reports'] = true;
 $wgGroupPermissions['steward']['override-export-depth'] = true;
 $wgGroupPermissions['steward']['renameuser'] = true;
 $wgGroupPermissions['steward']['replacetext'] = true;
@@ -414,6 +416,7 @@ $wgGroupPermissions['sysadmin']['unblockself'] = true;
 $wgGroupPermissions['sysadmin']['userrights'] = true;
 
 /// Non-Steward suppressors
+$wgGroupPermissions['non-stewardsuppress']['handle-reports'] = true;
 $wgGroupPermissions['non-stewardsuppress']['suppressionlog'] = true;
 $wgGroupsAddToSelf['non-stewardsuppress'] = array( 'suppress' );
 $wgGroupsRemoveFromSelf['non-stewardsuppress'] = array( 'suppress' );
