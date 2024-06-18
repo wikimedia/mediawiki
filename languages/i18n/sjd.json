@@ -719,6 +719,7 @@
 	"tag-filter": "[[Special:Tags|Тӣһт]] фӣльтэр:",
 	"tag-hidden": "$1 (пя̄ҋҋтма тӣһт)",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|1=Тӣһт|Тӣт}}]]: $2",
+	"tag-mw-new-redirect": "о̄дт эвтэс вӯлкхэмушш",
 	"tags-title": "Тӣт",
 	"tags-actions-header": "Лыһкмуж",
 	"tags-active-yes": "Ныдтҍ",

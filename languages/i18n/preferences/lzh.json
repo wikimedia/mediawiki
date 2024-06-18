@@ -3,6 +3,7 @@
 		"authors": [
 			"Amire80",
 			"Bowleerin",
+			"Cookai1205",
 			"Davidzdh",
 			"FakeGreenHand",
 			"Itsmine",
@@ -74,7 +75,7 @@
 	"prefs-rendering": "觀",
 	"prefs-skin": "面版",
 	"skin-preview": "草覽",
-	"prefs-common-config": "共CSS/JSON/JavaScript於面版：",
+	"prefs-common-config": "共CSS/JavaScript於面版：",
 	"prefs-custom-css": "定之CSS",
 	"prefs-custom-js": "定之JavaScript",
 	"prefs-dateformat": "日格",

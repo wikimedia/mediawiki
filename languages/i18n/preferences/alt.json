@@ -3,6 +3,7 @@
 		"authors": [
 			"Altai uul",
 			"Bakpay",
+			"Cookai1205",
 			"Soul Train",
 			"Батыр Комдошев"
 		]
@@ -96,7 +97,7 @@
 	"prefs-description-rendering": "Тыш-бӱдӱминиҥ темазын, јааны-кичинегин ле кычыратан јазалталарды эптештирер.",
 	"prefs-skin": "Тыш бӱдӱмниҥ темазы",
 	"skin-preview": "Озолодо кӧрӧри",
-	"prefs-common-config": "Јаҥыс CSS/JSON/JavaScript бастыра тыш бӱдӱмдерге:",
+	"prefs-common-config": "Јаҥыс CSS/JavaScript бастыра тыш бӱдӱмдерге:",
 	"prefs-custom-css": "Бойыныҥ CSS",
 	"prefs-custom-js": "Бойыныҥ JavaScript",
 	"prefs-custom-cssjs-safemode": "Эмдиги ӧйдӧ, каршу болдырбас режимге кӧчсӧ, туружаачылардыҥ CSS/JavaScript токтодылган.  CSS/JavaScript эдинерге [[#mw-input-wpforcesafemode|каршу болдырбас режимди токтодор]].",
