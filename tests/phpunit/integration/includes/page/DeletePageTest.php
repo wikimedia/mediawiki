@@ -177,8 +177,9 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 			Title::makeTitle( NS_TEMPLATE, 'Multiple_issues' )
 		);
 		$this->newSelectQueryBuilder()
-			->select( [ 'pl_namespace', 'pl_title' ] )
+			->select( [ 'lt_namespace', 'lt_title' ] )
 			->from( 'pagelinks' )
+			->join( 'linktarget', null, 'pl_target_id=lt_id' )
 			->where( [ 'pl_from' => $pageID ] )
 			->assertResultSet( [ [ 0, 'Stuart_Little' ], [ NS_TEMPLATE, 'Multiple_issues' ] ] );
 		$this->newSelectQueryBuilder()
@@ -204,8 +205,9 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$this->newSelectQueryBuilder()
-			->select( [ 'pl_namespace', 'pl_title' ] )
+			->select( [ 'lt_namespace', 'lt_title' ] )
 			->from( 'pagelinks' )
+			->join( 'linktarget', null, 'pl_target_id=lt_id' )
 			->where( [ 'pl_from' => $pageID ] )
 			->assertEmptyResult();
 		$this->newSelectQueryBuilder()

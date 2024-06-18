@@ -558,8 +558,9 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 
 		// ensure links tables where updated
 		$this->newSelectQueryBuilder()
-			->select( [ 'pl_namespace', 'pl_title', 'pl_from_namespace' ] )
+			->select( [ 'lt_namespace', 'lt_title', 'pl_from_namespace' ] )
 			->from( 'pagelinks' )
+			->join( 'linktarget', null, 'pl_target_id=lt_id' )
 			->where( [ 'pl_from' => $pageId ] )
 			->assertResultSet( [
 				[ NS_MAIN, 'Test', NS_PROJECT ]

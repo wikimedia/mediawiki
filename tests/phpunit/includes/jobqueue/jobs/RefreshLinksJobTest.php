@@ -126,8 +126,9 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 		$result = $job->run();
 
 		$this->newSelectQueryBuilder()
-			->select( 'pl_title' )
+			->select( 'lt_title' )
 			->from( 'pagelinks' )
+			->join( 'linktarget', null, 'pl_target_id=lt_id' )
 			->where( [ 'pl_from' => $page->getId() ] )
 			->assertFieldValue( 'Kittens' );
 		$this->newSelectQueryBuilder()
@@ -180,8 +181,9 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 		$job->run();
 
 		$this->newSelectQueryBuilder()
-			->select( 'pl_title' )
+			->select( 'lt_title' )
 			->from( 'pagelinks' )
+			->join( 'linktarget', null, 'pl_target_id=lt_id' )
 			->where( [ 'pl_from' => $page1->getId() ] )
 			->assertFieldValue( 'Kittens' );
 		$this->newSelectQueryBuilder()
@@ -190,8 +192,9 @@ class RefreshLinksJobTest extends MediaWikiIntegrationTestCase {
 			->where( [ 'cl_from' => $page1->getId() ] )
 			->assertFieldValue( 'Goats' );
 		$this->newSelectQueryBuilder()
-			->select( 'pl_title' )
+			->select( 'lt_title' )
 			->from( 'pagelinks' )
+			->join( 'linktarget', null, 'pl_target_id=lt_id' )
 			->where( [ 'pl_from' => $page2->getId() ] )
 			->assertFieldValue( 'Dogs' );
 		$this->newSelectQueryBuilder()

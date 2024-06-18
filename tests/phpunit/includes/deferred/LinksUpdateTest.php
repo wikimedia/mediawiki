@@ -107,7 +107,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'pagelinks',
-			[ 'pl_namespace', 'pl_title' ],
+			[ 'lt_namespace', 'lt_title' ],
 			[ 'pl_from' => self::$testingPageId ],
 			[
 				[ NS_MAIN, 'Bar' ],
@@ -130,7 +130,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'pagelinks',
-			[ 'pl_namespace', 'pl_title' ],
+			[ 'lt_namespace', 'lt_title' ],
 			[ 'pl_from' => self::$testingPageId ],
 			[
 				[ NS_MAIN, 'Bar' ],
@@ -155,7 +155,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'pagelinks',
-			[ 'pl_namespace', 'pl_title', 'pl_from_namespace' ],
+			[ 'lt_namespace', 'lt_title', 'pl_from_namespace' ],
 			[ 'pl_from' => self::$testingPageId ],
 			[
 				[ NS_MAIN, 'Foo', NS_MAIN ],
@@ -169,7 +169,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			new PageIdentityValue( 2, 0, "Foo", false ),
 			$po,
 			'pagelinks',
-			[ 'pl_namespace', 'pl_title', 'pl_from_namespace' ],
+			[ 'lt_namespace', 'lt_title', 'pl_from_namespace' ],
 			[ 'pl_from' => self::$testingPageId ],
 			[
 				[ NS_MAIN, 'Foo', NS_USER ],
@@ -838,11 +838,14 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 
 		$update->doUpdate();
 
-		$this->newSelectQueryBuilder()
+		$qb = $this->newSelectQueryBuilder()
 			->select( $fields )
 			->from( $table )
-			->where( $condition )
-			->assertResultSet( $expectedRows );
+			->where( $condition );
+		if ( $table === 'pagelinks' ) {
+			$qb->join( 'linktarget', null, 'pl_target_id=lt_id' );
+		}
+		$qb->assertResultSet( $expectedRows );
 		return $update;
 	}
 

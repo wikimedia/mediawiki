@@ -168,6 +168,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'change_tag', 'ct_rc_id', 'patch-change_tag-ct_rc_id.sql' ],
 			[ 'runMaintenance', \MigrateBlocks::class, 'maintenance/migrateBlocks.php' ],
 			[ 'dropTable', 'ipblocks' ],
+			[ 'dropField', 'pagelinks', 'pl_title', 'patch-pagelinks-drop-pl_title.sql' ],
 		];
 	}
 

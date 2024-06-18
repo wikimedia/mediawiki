@@ -49,6 +49,7 @@ class LinksMigrationTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Linker\LinksMigration::getLinksConditions
 	 */
 	public function testGetLinksConditionsReadOld( $configValue ) {
+		$this->markTestSkipped( 'No table currently with support for read old' );
 		$title = new TitleValue( NS_USER, 'Someuser' );
 		$linkTargetStore = $this->createMock( LinkTargetLookup::class );
 		$linkTargetStore->expects( $this->never() )->method( 'getLinkTargetId' );
