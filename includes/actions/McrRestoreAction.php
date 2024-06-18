@@ -5,6 +5,8 @@
  * @ingroup Actions
  */
 
+use MediaWiki\HTMLForm\HTMLForm;
+
 /**
  * Temporary action for restoring multi-content revisions.
  *

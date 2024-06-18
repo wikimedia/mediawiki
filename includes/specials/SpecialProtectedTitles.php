@@ -20,8 +20,8 @@
 
 namespace MediaWiki\Specials;
 
-use HTMLSelectNamespace;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\HTMLForm\Field\HTMLSelectNamespace;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\ProtectedTitlesPager;

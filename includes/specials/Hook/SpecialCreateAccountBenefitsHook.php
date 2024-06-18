@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Hook;
 
+use MediaWiki\HTMLForm\HTMLForm;
+
 /**
  * This is a hook handler interface, see docs/Hooks.md.
  * Use the hook name "SpecialCreateAccountBenefits" to register handlers implementing this interface.
@@ -20,7 +22,7 @@ interface SpecialCreateAccountBenefitsHook {
 	 * @param array $info Array of information:
 	 *   - context: (IContextSource) Context object.
 	 *   - form: (HTMLForm) The signup form. Read-only - the form HTML has already been generated.
-	 * @phan-param array{context:\MediaWiki\Context\IContextSource,form:\HTMLForm} $info
+	 * @phan-param array{context:\MediaWiki\Context\IContextSource,form:HTMLForm} $info
 	 * @param array &$options Array of modifiable options:
 	 *   - beforeForm: (bool, default false) Whether to insert the HTML before the form. This is
 	 *     mainly useful on mobile (where the login form might push the benefits out of view; but

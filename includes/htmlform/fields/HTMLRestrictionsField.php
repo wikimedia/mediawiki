@@ -4,8 +4,8 @@ namespace MediaWiki\HTMLForm\Field;
 
 use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\Request\WebRequest;
-use Message;
 use MWRestrictions;
 
 /**

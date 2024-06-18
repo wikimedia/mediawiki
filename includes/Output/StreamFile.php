@@ -25,9 +25,9 @@ namespace MediaWiki\Output;
 
 use HTTPFileStreamer;
 use InvalidArgumentException;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use RequestContext;
 use UploadBase;
 use Wikimedia\FileBackend\FileBackend;
 
