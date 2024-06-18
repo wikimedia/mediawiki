@@ -22,6 +22,7 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Message\Message;
 
 /**
  * Check if the user is blocked, and prevent authentication if so.
@@ -68,7 +69,7 @@ class CheckBlocksSecondaryAuthenticationProvider extends AbstractSecondaryAuthen
 		// blocks banning specific users.
 		if ( $block && $block->isSitewide() && $block->isBlocking( $user ) ) {
 			return AuthenticationResponse::newFail(
-				new \Message( 'login-userblocked', [ $user->getName() ] )
+				new Message( 'login-userblocked', [ $user->getName() ] )
 			);
 		} else {
 			return AuthenticationResponse::newPass();

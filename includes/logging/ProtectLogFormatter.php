@@ -22,6 +22,7 @@
  * @since 1.26
  */
 
+use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
 
 /**

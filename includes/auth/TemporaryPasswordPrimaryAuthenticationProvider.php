@@ -23,6 +23,7 @@ namespace MediaWiki\Auth;
 
 use IDBAccessObject;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Password\InvalidPassword;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
@@ -198,7 +199,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			->where( [ 'user_name' => $username ] )
 			->caller( __METHOD__ )->fetchRow();
 		return $row &&
-			!( $this->getPassword( $row->user_newpassword ) instanceof \InvalidPassword ) &&
+			!( $this->getPassword( $row->user_newpassword ) instanceof InvalidPassword ) &&
 			$this->isTimestampValid( $row->user_newpass_time );
 	}
 

@@ -21,6 +21,8 @@
  * @ingroup Media
  */
 
+use MediaWiki\Message\Message;
+
 /**
  * Basic media transform error class
  *

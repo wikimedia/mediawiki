@@ -21,6 +21,7 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\Message\Message;
 use MediaWiki\User\User;
 
 /**
@@ -79,7 +80,7 @@ class ResetPasswordSecondaryAuthenticationProvider extends AbstractSecondaryAuth
 
 		if ( !isset( $data->msg ) ) {
 			throw new \UnexpectedValueException( 'reset-pass msg is missing' );
-		} elseif ( !$data->msg instanceof \Message ) {
+		} elseif ( !$data->msg instanceof Message ) {
 			throw new \UnexpectedValueException( 'reset-pass msg is not valid' );
 		} elseif ( !isset( $data->hard ) ) {
 			throw new \UnexpectedValueException( 'reset-pass hard is missing' );
@@ -123,7 +124,7 @@ class ResetPasswordSecondaryAuthenticationProvider extends AbstractSecondaryAuth
 		}
 
 		if ( $req->password !== $req->retype ) {
-			return AuthenticationResponse::newUI( $needReqs, new \Message( 'badretype' ), 'error' );
+			return AuthenticationResponse::newUI( $needReqs, new Message( 'badretype' ), 'error' );
 		}
 
 		$req->username = $user->getName();

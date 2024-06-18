@@ -24,6 +24,7 @@ namespace MediaWiki\Auth;
 use IDBAccessObject;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Password\InvalidPassword;
 use MediaWiki\User\UserRigorOptions;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -180,7 +181,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 			return true;
 		}
 
-		return !$this->getPassword( $row->user_password ) instanceof \InvalidPassword;
+		return !$this->getPassword( $row->user_password ) instanceof InvalidPassword;
 	}
 
 	public function testUserExists( $username, $flags = IDBAccessObject::READ_NORMAL ) {

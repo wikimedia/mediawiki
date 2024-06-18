@@ -16,6 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use MediaWiki\Message\Message;
 use MediaWiki\SpecialPage\SpecialPage;
 
 /**

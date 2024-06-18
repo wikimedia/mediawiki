@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Message\Message;
+
 /**
  * An error page which can definitely be safely rendered using the OutputPage.
  *

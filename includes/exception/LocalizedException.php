@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Message\Message;
 use MediaWiki\Parser\Sanitizer;
 
 /**

@@ -33,6 +33,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\Field\HTMLCheckMatrix;
+use MediaWiki\HTMLForm\Field\HTMLInfoField;
 use MediaWiki\HTMLForm\Field\HTMLMultiSelectField;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\HTMLForm\HTMLFormField;
@@ -280,7 +281,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			// Info fields are useless and can use complicated closure to provide
 			// text, skip all of them.
 			if ( ( isset( $params['type'] ) && $params['type'] === 'info' ) ||
-				( isset( $params['class'] ) && $params['class'] === \HTMLInfoField::class )
+				// Checking old alias for compatibility with unchanged extensions
+				( isset( $params['class'] ) && $params['class'] === \HTMLInfoField::class ) ||
+				( isset( $params['class'] ) && $params['class'] === HTMLInfoField::class )
 			) {
 				unset( $descriptor[$name] );
 				continue;
@@ -405,7 +408,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		// Handling for multiselect preferences
 		if ( ( isset( $info['type'] ) && $info['type'] == 'multiselect' ) ||
-				( isset( $info['class'] ) && $info['class'] == \HTMLMultiSelectField::class ) ) {
+			// Checking old alias for compatibility with unchanged extensions
+			( isset( $info['class'] ) && $info['class'] === \HTMLMultiSelectField::class ) ||
+			( isset( $info['class'] ) && $info['class'] === HTMLMultiSelectField::class )
+		) {
 			$options = HTMLFormField::flattenOptions( $info['options-messages'] ?? $info['options'] );
 			$prefix = $info['prefix'] ?? $name;
 			$val = [];
@@ -419,7 +425,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		// Handling for checkmatrix preferences
 		if ( ( isset( $info['type'] ) && $info['type'] == 'checkmatrix' ) ||
-				( isset( $info['class'] ) && $info['class'] == \HTMLCheckMatrix::class ) ) {
+			// Checking old alias for compatibility with unchanged extensions
+			( isset( $info['class'] ) && $info['class'] === \HTMLCheckMatrix::class ) ||
+			( isset( $info['class'] ) && $info['class'] === HTMLCheckMatrix::class )
+		) {
 			$columns = HTMLFormField::flattenOptions( $info['columns'] );
 			$rows = HTMLFormField::flattenOptions( $info['rows'] );
 			$prefix = $info['prefix'] ?? $name;
@@ -468,7 +477,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$defaultPreferences['usergroups'] = [
 			'type' => 'info',
 			'label-message' => [ 'prefs-memberingroups',
-				\Message::numParam( count( $userEffectiveGroups ) ), $userName ],
+				Message::numParam( count( $userEffectiveGroups ) ), $userName ],
 			'default' => function () use ( $user, $userEffectiveGroups, $context, $lang, $userName ) {
 				$userGroupMemberships = $this->userGroupManager->getUserGroupMemberships( $user );
 				$userGroups = $userMembers = $userTempGroups = $userTempMembers = [];
@@ -2112,7 +2121,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$multiselectOptions = [];
 		foreach ( $prefs as $name => $info ) {
 			if ( ( isset( $info['type'] ) && $info['type'] == 'multiselect' ) ||
-				( isset( $info['class'] ) && $info['class'] == HTMLMultiSelectField::class )
+				// Checking old alias for compatibility with unchanged extensions
+				( isset( $info['class'] ) && $info['class'] === \HTMLMultiSelectField::class ) ||
+				( isset( $info['class'] ) && $info['class'] === HTMLMultiSelectField::class )
 			) {
 				$opts = HTMLFormField::flattenOptions( $info['options'] ?? $info['options-messages'] );
 				$prefix = $info['prefix'] ?? $name;
@@ -2127,7 +2138,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$checkmatrixOptions = [];
 		foreach ( $prefs as $name => $info ) {
 			if ( ( isset( $info['type'] ) && $info['type'] == 'checkmatrix' ) ||
-				( isset( $info['class'] ) && $info['class'] == HTMLCheckMatrix::class )
+				// Checking old alias for compatibility with unchanged extensions
+				( isset( $info['class'] ) && $info['class'] === \HTMLCheckMatrix::class ) ||
+				( isset( $info['class'] ) && $info['class'] === HTMLCheckMatrix::class )
 			) {
 				$columns = HTMLFormField::flattenOptions( $info['columns'] );
 				$rows = HTMLFormField::flattenOptions( $info['rows'] );

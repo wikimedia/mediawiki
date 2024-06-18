@@ -22,6 +22,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\Context\IContextSource;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
