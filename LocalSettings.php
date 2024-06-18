@@ -171,6 +171,7 @@ wfLoadExtensions( array(
 	'TorBlock',
 	'Translate',
 	'UniversalLanguageSelector',
+        'UnusedRedirects',
 	'VisualEditor',
 	'WebAuthn',
 	'WikiEditor',
