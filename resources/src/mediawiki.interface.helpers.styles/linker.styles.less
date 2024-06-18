@@ -32,8 +32,7 @@
 
 /** Class is added by Linker::userLink */
 .mw-tempuserlink {
-	// @background-color-interactive
-	background-color: #eaecf0;
+	background-color: @background-color-interactive;
 	padding: 2px 8px;
 	border-radius: @border-radius-base;
 }
@@ -53,14 +52,14 @@ span.comment {
 .autocomment,
 .autocomment a,
 .autocomment a:visited {
-	color: #72777d;
+	color: @color-base--subtle;
 }
 
 /** rev_deleted stuff */
 li span.deleted,
 span.history-deleted {
 	text-decoration: line-through;
-	color: #72777d;
+	color: @color-base--subtle;
 	font-style: italic;
 }
 
