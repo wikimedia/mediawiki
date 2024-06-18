@@ -19,6 +19,7 @@
  * @since 1.23
  */
 
+use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Feed\ChannelFeed;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\DerivativeRequest;

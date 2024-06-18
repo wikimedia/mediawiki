@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Message\Message;
+
 /**
  * Message subclass that prepends wikitext for API help.
  *
