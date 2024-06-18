@@ -1893,12 +1893,6 @@ $wgUseXssLanguage = null;
 $wgLoginLanguageSelector = null;
 
 /**
- * Config variable stub for the ExperimentalLoginPopup setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::ExperimentalLoginPopup
- */
-$wgExperimentalLoginPopup = null;
-
-/**
  * Config variable stub for the ForceUIMsgAsContentMsg setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ForceUIMsgAsContentMsg
  */
