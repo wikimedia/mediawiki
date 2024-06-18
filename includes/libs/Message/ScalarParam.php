@@ -24,8 +24,8 @@ class ScalarParam extends MessageParam {
 	 * @stable to call.
 	 *
 	 * @param string $type One of the ParamType constants.
+	 *   Using ParamType::OBJECT is deprecated since 1.43.
 	 * @param string|int|float|MessageValue|Stringable $value
-	 *   Using Stringable objects is deprecated since 1.43.
 	 */
 	public function __construct( $type, $value ) {
 		if ( $type === ParamType::LIST ) {
@@ -33,9 +33,12 @@ class ScalarParam extends MessageParam {
 				'ParamType::LIST cannot be used with ScalarParam; use ListParam instead'
 			);
 		}
-		if ( $value instanceof Stringable ) {
-			wfDeprecatedMsg( 'Passing Stringable objects to ScalarParam' .
-				' was deprecated in MediaWiki 1.43', '1.43' );
+		if ( $type === ParamType::OBJECT ) {
+			wfDeprecatedMsg( 'Using ParamType::OBJECT was deprecated in MediaWiki 1.43', '1.43' );
+		} elseif ( $value instanceof Stringable ) {
+			// Stringify the stringable to ensure that $this->value is JSON-serializable
+			// (but don't do it when using ParamType::OBJECT, since those objects may not expect it)
+			$value = (string)$value;
 		} elseif ( !is_string( $value ) && !is_numeric( $value ) &&
 			!$value instanceof MessageValue ) {
 			$type = is_object( $value ) ? get_class( $value ) : gettype( $value );

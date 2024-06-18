@@ -485,8 +485,7 @@ because of Phabricator reports.
 * To support a future change allowing serializing of MessageValue objects
   as JSON, the methods MessageValue::objectParams(), Message::objectParams()
   and Message::objectParam() are deprecated. The UserGroupMembershipParam
-  class, the ParamType::OBJECT constant, and passing Stringable objects to
-  ScalarParam are likewise deprecated.
+  class and the ParamType::OBJECT constant are likewise deprecated.
 * The Less mixin .column-break-after-avoid() is deprecated. Use just the
   CSS rule `break-after: avoid-column;` instead now.
 * The following method are deprecated; instead call the appropriate

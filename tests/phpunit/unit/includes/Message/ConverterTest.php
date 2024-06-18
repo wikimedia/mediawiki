@@ -7,6 +7,7 @@ use Language;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Converter;
 use MediaWiki\Message\Message;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use Wikimedia\Message\MessageValue;
 
@@ -44,6 +45,12 @@ class ConverterTest extends MediaWikiUnitTestCase {
 		yield 'Scalar text params' => [
 			new Message( 'foobar', [ 'one', 2, 3 ] ),
 			new MessageValue( 'foobar', [ 'one', 2, 3 ] ),
+		];
+
+		$u = new UserIdentityValue( 1, 'Username' );
+		yield 'Stringable params' => [
+			new Message( 'foobar', [ $u ] ),
+			new MessageValue( 'foobar', [ $u ] ),
 		];
 
 		yield 'Message(Value) as param' => [
