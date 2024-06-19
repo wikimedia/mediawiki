@@ -2192,7 +2192,7 @@
 	"deletepage-submit": "ДIаяккха оагIув",
 	"confirm": "Бакъде",
 	"excontent": "чудар: «$1»",
-	"excontentauthor": "чухьнахьадар: «$1», цу оагIон цаI марка воаца автор ва [[Special:Contributions/$2|$2]] ([[User talk:$2|дувцара оагIув]])",
+	"excontentauthor": "чухьнахьадар: «$1», цу оагIон цаI мара воаца автор ва(я) [[Special:Contributions/$2|$2]] ([[User talk:$2|къамаьл-оагӀув]])",
 	"exbeforeblank": "цӀенъелехь дола чурадар: «$1»",
 	"delete-confirm": "$1 — дӀаяккхар",
 	"delete-legend": "ДӀаяккхар",

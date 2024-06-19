@@ -801,5 +801,6 @@
 	"skin-action-move": "ڤينده",
 	"blockedtext-made-by": "سکتن تله دبوات اوليه $1.",
 	"blockedtext-reason-comment": "سبب يڠ دبري اياله <em>$1</em>",
-	"blockedtext-start-time": "مولا سکت: $1"
+	"blockedtext-start-time": "مولا سکت: $1",
+	"blockedtext-expiration-time": "تمت تيمڤوه سکتن: $1"
 }

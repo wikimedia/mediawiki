@@ -331,7 +331,7 @@
 	"apihelp-mergehistory-param-from": "Titel der Seite, von der aus der Verlauf zusammengeführt wird. Kann nicht zusammen mit <var>$1fromid</var> verwendet werden.",
 	"apihelp-mergehistory-param-fromid": "Seiten-ID der Seite, von der aus die Versionsgeschichte zusammengeführt wird. Kann nicht zusammen mit <var>$1from</var> verwendet werden.",
 	"apihelp-mergehistory-param-to": "Titel der Seite, zu der die Geschichte zusammengeführt wird. Kann nicht zusammen mit <var>$1toid</var> verwendet werden.",
-	"apihelp-mergehistory-param-toid": "Seiten-ID der Seite, zu der die Historie zusammengeführt werden soll. Kann nicht zusammen mit <var>$1to</var> verwendet werden.",
+	"apihelp-mergehistory-param-toid": "Seiten-ID der Seite, zu der die Versionsgeschichte zusammengeführt werden soll. Kann nicht zusammen mit <var>$1to</var> verwendet werden.",
 	"apihelp-mergehistory-param-timestamp": "Zeitstempel, bis zu dem Revisionen aus der Historie der Quellseite in die Historie der Zielseite verschoben werden sollen. Wenn du nichts angibst, wird der gesamte Seitenverlauf der Quellseite mit der Zielseite zusammengeführt.",
 	"apihelp-mergehistory-param-reason": "Grund für die Zusammenführung der Versionsgeschichten",
 	"apihelp-mergehistory-example-merge": "Fügt alle Versionen von <kbd>Oldpage</kbd> der Versionsgeschichte von <kbd>Newpage</kbd> hinzu.",
