@@ -467,54 +467,63 @@ class ExtensionRegistry {
 	}
 
 	protected function exportExtractedData( array $info ) {
-		foreach ( $info['globals'] as $key => $val ) {
-			// If a merge strategy is set, read it and remove it from the value
-			// so it doesn't accidentally end up getting set.
-			if ( is_array( $val ) && isset( $val[self::MERGE_STRATEGY] ) ) {
-				$mergeStrategy = $val[self::MERGE_STRATEGY];
-				unset( $val[self::MERGE_STRATEGY] );
-			} else {
-				$mergeStrategy = 'array_merge';
-			}
+		if ( $info['globals'] ) {
+			// Create a copy of the keys to allow fast access via isset also for null values
+			// Since php8.1 always a read-only copy is created when the whole object is passed on function calls
+			// (like for array_key_exists). See T366547 - https://wiki.php.net/rfc/restrict_globals_usage
+			$knownGlobals = array_fill_keys( array_keys( $GLOBALS ), true );
 
-			if ( $mergeStrategy === 'provide_default' ) {
-				if ( !array_key_exists( $key, $GLOBALS ) ) {
-					$GLOBALS[$key] = $val;
+			foreach ( $info['globals'] as $key => $val ) {
+				// If a merge strategy is set, read it and remove it from the value
+				// so it doesn't accidentally end up getting set.
+				if ( is_array( $val ) && isset( $val[self::MERGE_STRATEGY] ) ) {
+					$mergeStrategy = $val[self::MERGE_STRATEGY];
+					unset( $val[self::MERGE_STRATEGY] );
+				} else {
+					$mergeStrategy = 'array_merge';
 				}
-				continue;
-			}
 
-			// When at least one of the global value and the default is not an array, the merge
-			// strategy is ignored and the global value will simply override the default.
-			if ( array_key_exists( $key, $GLOBALS ) && ( !is_array( $GLOBALS[$key] ) || !is_array( $val ) ) ) {
-				continue;
-			}
+				if ( $mergeStrategy === 'provide_default' ) {
+					if ( !isset( $knownGlobals[$key] ) ) {
+						$GLOBALS[$key] = $val;
+						$knownGlobals[$key] = true;
+					}
+					continue;
+				}
 
-			// Optimistic: If the global is not set, or is an empty array, replace it entirely.
-			// Will be O(1) performance.
-			if ( !array_key_exists( $key, $GLOBALS ) || ( is_array( $GLOBALS[$key] ) && !$GLOBALS[$key] ) ) {
-				$GLOBALS[$key] = $val;
-				continue;
-			}
+				// When at least one of the global value and the default is not an array, the merge
+				// strategy is ignored and the global value will simply override the default.
+				if ( isset( $knownGlobals[$key] ) && ( !is_array( $GLOBALS[$key] ) || !is_array( $val ) ) ) {
+					continue;
+				}
 
-			switch ( $mergeStrategy ) {
-				case 'array_merge_recursive':
-					$GLOBALS[$key] = array_merge_recursive( $GLOBALS[$key], $val );
-					break;
-				case 'array_replace_recursive':
-					$GLOBALS[$key] = array_replace_recursive( $val, $GLOBALS[$key] );
-					break;
-				case 'array_plus_2d':
-					$GLOBALS[$key] = wfArrayPlus2d( $GLOBALS[$key], $val );
-					break;
-				case 'array_plus':
-					$GLOBALS[$key] += $val;
-					break;
-				case 'array_merge':
-					$GLOBALS[$key] = array_merge( $val, $GLOBALS[$key] );
-					break;
-				default:
-					throw new UnexpectedValueException( "Unknown merge strategy '$mergeStrategy'" );
+				// Optimistic: If the global is not set, or is an empty array, replace it entirely.
+				// Will be O(1) performance.
+				if ( !isset( $knownGlobals[$key] ) || ( is_array( $GLOBALS[$key] ) && !$GLOBALS[$key] ) ) {
+					$GLOBALS[$key] = $val;
+					$knownGlobals[$key] = true;
+					continue;
+				}
+
+				switch ( $mergeStrategy ) {
+					case 'array_merge_recursive':
+						$GLOBALS[$key] = array_merge_recursive( $GLOBALS[$key], $val );
+						break;
+					case 'array_replace_recursive':
+						$GLOBALS[$key] = array_replace_recursive( $val, $GLOBALS[$key] );
+						break;
+					case 'array_plus_2d':
+						$GLOBALS[$key] = wfArrayPlus2d( $GLOBALS[$key], $val );
+						break;
+					case 'array_plus':
+						$GLOBALS[$key] += $val;
+						break;
+					case 'array_merge':
+						$GLOBALS[$key] = array_merge( $val, $GLOBALS[$key] );
+						break;
+					default:
+						throw new UnexpectedValueException( "Unknown merge strategy '$mergeStrategy'" );
+				}
 			}
 		}
 
