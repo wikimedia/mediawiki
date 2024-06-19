@@ -314,6 +314,8 @@
 	"querypage-no-updates": "Updates for this page are currently disabled.\nData here will not presently be refreshed.",
 	"querypage-updates-periodical": "Updates for this page are run periodically.",
 	"viewsource": "View source",
+	"protection-indicator-title-infinity": "This page is protected so that only users with the \"$1\" permission can edit it.",
+	"protection-indicator-title": "This page is protected so that only users with the \"$1\" permission can edit it until $2.",
 	"skin-action-viewsource": "View source",
 	"viewsource-title": "View source for $1",
 	"actionthrottled": "Action throttled",

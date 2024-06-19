@@ -12899,6 +12899,16 @@ class MainConfigSchema {
 		'default' => false,
 		'type' => 'boolean',
 	];
+
+	/**
+	 * Whether to show indicators on a page when it is protected.
+	 *
+	 * @since 1.43
+	 */
+	public const EnableProtectionIndicators = [
+		'default' => false,
+		'type' => 'boolean',
+	];
 	// endregion -- End Miscellaneous
 
 }

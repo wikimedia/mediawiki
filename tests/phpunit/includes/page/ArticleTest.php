@@ -226,4 +226,56 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'Old Kittens', $article->getContext()->getOutput()->getHTML() );
 	}
 
+	/**
+	 * Ensure that protection indicators are shown when the page is protected.
+	 * @covers \Article::showProtectionIndicator
+	 */
+	public function testShowProtectionIndicator() {
+		$this->overrideConfigValue(
+			MainConfigNames::EnableProtectionIndicators,
+			true
+		);
+		$title = $this->getExistingTestPage()->getTitle();
+		$article = $this->newArticle( $title );
+
+		$wikiPage = new WikiPage( $title );
+		$cascade = false;
+		$wikiPage->doUpdateRestrictions( [
+				'edit' => 'autoconfirmed',
+			],
+			[ 'edit' => 'infinity' ],
+			$cascade,
+			'Test reason',
+			$this->getTestSysop()->getUser()
+		);
+
+		$article->showProtectionIndicator();
+		$output = $article->getContext()->getOutput();
+		$this->assertArrayHasKey( 'protection-autoconfirmed', $output->getIndicators(), 'Protection indicators are shown when a page is protected' );
+
+		$templateTitle = Title::newFromText( 'CascadeProtectionTest', NS_TEMPLATE );
+		$this->editPage( $templateTitle, 'Some text here', 'Test', NS_TEMPLATE, $this->getTestSysop()->getUser() );
+		$articleTitle = $this->getExistingTestPage()->getTitle();
+		$this->editPage( $articleTitle, '{{CascadeProtectionTest}}', 'Test', NS_MAIN, $this->getTestSysop()->getUser() );
+		$wikiPage = new WikiPage( $articleTitle );
+		$cascade = true;
+		$wikiPage->doUpdateRestrictions( [
+				'edit' => 'sysop',
+			],
+			[ 'edit' => 'infinity' ],
+			$cascade,
+			'Test reason',
+			$this->getTestSysop()->getUser()
+		);
+
+		$template = $this->newArticle( $templateTitle );
+
+		$template->showProtectionIndicator();
+		$output = $template->getContext()->getOutput();
+		$this->assertArrayHasKey(
+			'protection-sysop-cascade',
+			$output->getIndicators(),
+			'Protection indicators are shown when a page protected using cascade protection'
+		);
+	}
 }

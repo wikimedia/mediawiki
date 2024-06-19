@@ -40,6 +40,7 @@ use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\BadRevisionException;
 use MediaWiki\Revision\RevisionRecord;
@@ -123,6 +124,8 @@ class Article implements Page {
 	protected IConnectionProvider $dbProvider;
 	protected DatabaseBlockStore $blockStore;
 
+	protected RestrictionStore $restrictionStore;
+
 	/**
 	 * @var RevisionRecord|null Revision to be shown
 	 *
@@ -150,6 +153,7 @@ class Article implements Page {
 		$this->archivedRevisionLookup = $services->getArchivedRevisionLookup();
 		$this->dbProvider = $services->getConnectionProvider();
 		$this->blockStore = $services->getDatabaseBlockStore();
+		$this->restrictionStore = $services->getRestrictionStore();
 	}
 
 	/**
@@ -481,6 +485,8 @@ class Article implements Page {
 			return;
 		}
 
+		$this->showProtectionIndicator();
+
 		# Set page title (may be overridden from ParserOutput if title conversion is enabled or DISPLAYTITLE is used)
 		$outputPage->setPageTitle( Parser::formatPageTitle(
 			str_replace( '_', ' ', $this->getTitle()->getNsText() ),
@@ -580,6 +586,89 @@ class Article implements Page {
 				$outputPage->addModules( 'mediawiki.editRecovery.postEdit' );
 			}
 		}
+	}
+
+	/**
+	 * Show a lock icon above the article body if the page is protected.
+	 */
+	public function showProtectionIndicator(): void {
+		$title = $this->getTitle();
+		$context = $this->getContext();
+		$outputPage = $context->getOutput();
+
+		$protectionIndicatorsAreEnabled = $context->getConfig()
+			->get( MainConfigNames::EnableProtectionIndicators );
+
+		if ( !$protectionIndicatorsAreEnabled || $title->isMainPage() ) {
+			return;
+		}
+
+		$protection = $this->restrictionStore->getRestrictions( $title, 'edit' );
+
+		$cascadeProtection = $this->restrictionStore->getCascadeProtectionSources( $title )[1];
+
+		$isCascadeProtected = array_key_exists( 'edit', $cascadeProtection );
+
+		if ( !$protection && !$isCascadeProtected ) {
+			return;
+		}
+
+		if ( $isCascadeProtected ) {
+			// Cascade-protected pages are protected at the sysop level. So it
+			// should not matter if we take the protection level of the first
+			// or last page that is being cascaded to the current page.
+			$protectionLevel = $cascadeProtection['edit'][0];
+		} else {
+			$protectionLevel = $protection[0];
+		}
+
+		// Protection levels are stored in the database as plain text, but
+		// they are expected to be valid protection levels. So we should be able to
+		// safely use them. However phan thinks this could be a XSS problem so we
+		// are being paranoid and escaping them once more.
+		$protectionLevel = htmlspecialchars( $protectionLevel );
+
+		$protectionExpiry = $this->restrictionStore->getRestrictionExpiry( $title, 'edit' );
+		$formattedProtectionExpiry = $context->getLanguage()
+			->formatExpiry( $protectionExpiry ?? '' );
+
+		$protectionMsg = 'protection-indicator-title';
+		if ( $protectionExpiry === 'infinity' || !$protectionExpiry ) {
+			$protectionMsg .= '-infinity';
+		}
+
+		// Potential values: 'protection-sysop', 'protection-autoconfirmed',
+		// 'protection-sysop-cascade' etc.
+		// If the wiki has more protection levels, the additional ids that get
+		// added take the form 'protection-<protectionLevel>' and
+		// 'protection-<protectionLevel>-cascade'.
+		$protectionIndicatorId = 'protection-' . $protectionLevel;
+		$protectionIndicatorId .= ( $isCascadeProtected ? '-cascade' : '' );
+
+		// Messages 'protection-indicator-title', 'protection-indicator-title-infinity'
+		$protectionMsg = $outputPage->msg( $protectionMsg, $protectionLevel, $formattedProtectionExpiry )->text();
+
+		// Use a trick similar to the one used in Action::addHelpLink() to allow wikis
+		// to customize where the help link points to.
+		$protectionHelpLink = $outputPage->msg( $protectionIndicatorId . '-helppage' );
+		if ( $protectionHelpLink->isDisabled() ) {
+			$protectionHelpLink = 'https://mediawiki.org/wiki/Special:MyLanguage/Help:Protection';
+		} else {
+			$protectionHelpLink = $protectionHelpLink->text();
+		}
+
+		$outputPage->setIndicators( [
+			$protectionIndicatorId => Html::rawElement( 'a', [
+				'class' => 'mw-protection-indicator-icon--lock',
+				'title' => $protectionMsg,
+				'href' => $protectionHelpLink
+			],
+			// Screen reader-only text describing the same thing as
+			// was mentioned in the title attribute.
+			Html::element( 'span', [], $protectionMsg ) )
+		] );
+
+		$outputPage->addModuleStyles( 'mediawiki.protectionIndicators.styles' );
 	}
 
 	/**

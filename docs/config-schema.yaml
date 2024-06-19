@@ -8066,3 +8066,9 @@ config-schema:
             Whether to display a confirmation screen during user log out.
             @unstable Temporary feature flag, T357484
             @since 1.42
+    EnableProtectionIndicators:
+        default: false
+        type: boolean
+        description: |-
+            Whether to show indicators on a page when it is protected.
+            @since 1.43

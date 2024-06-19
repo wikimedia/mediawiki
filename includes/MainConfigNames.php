@@ -4468,4 +4468,10 @@ class MainConfigNames {
 	 */
 	public const ShowLogoutConfirmation = 'ShowLogoutConfirmation';
 
+	/**
+	 * Name constant for the EnableProtectionIndicators setting, for use with Config::get()
+	 * @see MainConfigSchema::EnableProtectionIndicators
+	 */
+	public const EnableProtectionIndicators = 'EnableProtectionIndicators';
+
 }

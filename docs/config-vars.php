@@ -4452,3 +4452,9 @@ $wgUseCodexSpecialBlock = null;
  * @see MediaWiki\MainConfigSchema::ShowLogoutConfirmation
  */
 $wgShowLogoutConfirmation = null;
+
+/**
+ * Config variable stub for the EnableProtectionIndicators setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::EnableProtectionIndicators
+ */
+$wgEnableProtectionIndicators = null;
