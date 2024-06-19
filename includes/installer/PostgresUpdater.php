@@ -394,9 +394,9 @@ class PostgresUpdater extends DatabaseUpdater {
 
 			// 1.39
 			[ 'addTable', 'user_autocreate_serial', 'patch-user_autocreate_serial.sql' ],
-			[ 'runMaintenance', MigrateRevisionActorTemp::class, 'maintenance/migrateRevisionActorTemp.php' ],
+			[ 'runMaintenance', MigrateRevisionActorTemp::class ],
 			[ 'dropTable', 'revision_actor_temp' ],
-			[ 'runMaintenance', UpdateRestrictions::class, 'maintenance/updateRestrictions.php' ],
+			[ 'runMaintenance', UpdateRestrictions::class ],
 			[ 'dropPgField', 'page', 'page_restrictions' ],
 			[ 'migrateTemplatelinks' ],
 			[ 'changeNullableField', 'templatelinks', 'tl_target_id', 'NOT NULL', true ],
@@ -408,13 +408,13 @@ class PostgresUpdater extends DatabaseUpdater {
 
 			// 1.41
 			[ 'addField', 'user', 'user_is_temp', 'patch-user-user_is_temp.sql' ],
-			[ 'runMaintenance', MigrateRevisionCommentTemp::class, 'maintenance/migrateRevisionCommentTemp.php' ],
+			[ 'runMaintenance', MigrateRevisionCommentTemp::class ],
 			[ 'dropTable', 'revision_comment_temp' ],
-			[ 'runMaintenance', MigrateExternallinks::class, 'maintenance/migrateExternallinks.php' ],
+			[ 'runMaintenance', MigrateExternallinks::class ],
 			[ 'modifyField', 'externallinks', 'el_to', 'patch-externallinks-el_to_default.sql' ],
 			[ 'addField', 'pagelinks', 'pl_target_id', 'patch-pagelinks-target_id.sql' ],
 			[ 'dropField', 'externallinks', 'el_to', 'patch-externallinks-drop-el_to.sql' ],
-			[ 'runMaintenance', FixInconsistentRedirects::class, 'maintenance/fixInconsistentRedirects.php' ],
+			[ 'runMaintenance', FixInconsistentRedirects::class ],
 			[ 'modifyField', 'image', 'img_size', 'patch-image-img_size_to_bigint.sql' ],
 			[ 'modifyField', 'filearchive', 'fa_size', 'patch-filearchive-fa_size_to_bigint.sql' ],
 			[ 'modifyField', 'oldimage', 'oi_size', 'patch-oldimage-oi_size_to_bigint.sql' ],
@@ -424,7 +424,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addField', 'user_autocreate_serial', 'uas_year', 'patch-user_autocreate_serial-uas_year.sql' ],
 			[ 'addTable', 'block_target', 'patch-block_target.sql' ],
 			[ 'dropIndex', 'categorylinks', 'cl_collation_ext', 'patch-drop-cl_collation_ext.sql' ],
-			[ 'runMaintenance', PopulateUserIsTemp::class, 'maintenance/populateUserIsTemp.php' ],
+			[ 'runMaintenance', PopulateUserIsTemp::class ],
 			[ 'dropIndex', 'sites', 'site_type', 'patch-sites-drop_indexes.sql' ],
 			[ 'dropIndex', 'iwlinks', 'iwl_prefix_from_title', 'patch-iwlinks-drop-iwl_prefix_from_title.sql' ],
 
@@ -436,7 +436,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeField', 'revision', 'rev_parent_id', 'BIGINT', '' ],
 			[ 'changeField', 'recentchanges', 'rc_id', 'BIGINT', '' ],
 			[ 'changeField', 'change_tag', 'ct_rc_id', 'BIGINT', '' ],
-			[ 'runMaintenance', \MigrateBlocks::class, 'maintenance/migrateBlocks.php' ],
+			[ 'runMaintenance', \MigrateBlocks::class ],
 			[ 'dropTable', 'ipblocks' ],
 			[ 'dropField', 'pagelinks', 'pl_title', 'patch-pagelinks-drop-pl_title.sql' ],
 		];

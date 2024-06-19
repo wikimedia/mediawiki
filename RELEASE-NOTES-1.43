@@ -136,6 +136,8 @@ For notes on 1.42.x and older releases, see HISTORY.
 
 === Bug fixes in 1.43 ===
 
+* When using the 'runMaintenance' method in a LoadExtensionSchemaUpdates hook
+  handler, only the script's class name is required, not its path. (T367918)
 * …
 
 === Action API changes in 1.43 ===
