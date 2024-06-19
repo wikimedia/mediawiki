@@ -518,16 +518,6 @@ class SkinTemplate extends Skin {
 					? 'login'
 					: 'login-private';
 				$personal_urls[$key] = $login_url;
-
-				if ( $this->getConfig()->get( MainConfigNames::ExperimentalLoginPopup ) ) {
-					// Allow testing the new login flows (T364941).
-					// The label is not localized because this is temporary and not to be enabled in production.
-					foreach ( [ 'popup', 'iframe', 'newtab' ] as $mode ) {
-						$personal_urls["login-experimental-$mode"] = $login_url;
-						unset( $personal_urls["login-experimental-$mode"]['single-id'] );
-						$personal_urls["login-experimental-$mode"]['text'] .= " (TEST: $mode)";
-					}
-				}
 			}
 		}
 

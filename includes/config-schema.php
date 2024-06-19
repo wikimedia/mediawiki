@@ -605,7 +605,6 @@ return [
 			'VariantArticlePath' => false,
 			'UseXssLanguage' => false,
 			'LoginLanguageSelector' => false,
-			'ExperimentalLoginPopup' => false,
 			'ForceUIMsgAsContentMsg' => [
 			],
 			'RawHtmlMessages' => [

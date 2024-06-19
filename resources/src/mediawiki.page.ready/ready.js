@@ -1,6 +1,5 @@
 var checkboxShift = require( './checkboxShift.js' );
 var config = require( './config.json' );
-var experimentalLoginPopup = require( './experimentalLoginPopup.js' );
 var teleportTarget = require( './teleportTarget.js' );
 
 // Break out of framesets
@@ -174,10 +173,6 @@ $( () => {
 	if ( $permanentLink.length ) {
 		$( window ).on( 'hashchange', updatePermanentLinkHash );
 		updatePermanentLinkHash();
-	}
-
-	if ( config.experimentalLoginPopup ) {
-		experimentalLoginPopup();
 	}
 
 	/**

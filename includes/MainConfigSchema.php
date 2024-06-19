@@ -4971,15 +4971,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Add extra login links that open different kinds of modal dialogs instead of navigating the page.
-	 *
-	 * As of May 2024, this config option is experimental and may be removed or changed in the future.
-	 */
-	public const ExperimentalLoginPopup = [
-		'default' => false,
-	];
-
-	/**
 	 * When translating messages with wfMessage(), it is not always clear what
 	 * should be considered UI messages and what should be content messages.
 	 *
