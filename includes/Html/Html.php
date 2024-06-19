@@ -1231,6 +1231,31 @@ class Html {
 
 		return $optionsOoui;
 	}
+
+	/**
+	 * Convert options for a drop-down box into a format accepted by OOUI\DropdownInputWidget etc.
+	 *
+	 * TODO Find a better home for this function.
+	 *
+	 * @param array $options Options, as returned e.g. by Html::listDropdownOptions()
+	 * @return array
+	 */
+	public static function listDropdownOptionsCodex( $options ) {
+		$optionsCodex = [];
+
+		foreach ( $options as $text => $value ) {
+			if ( is_array( $value ) ) {
+				// No support for optgroups in Codex yet (T367241)
+				$optionsCodex[] = [ 'label' => (string)$text, 'value' => '', 'disabled' => true ];
+				foreach ( $value as $text2 => $value2 ) {
+					$optionsCodex[] = [ 'label' => (string)$text2, 'value' => (string)$value2 ];
+				}
+			} else {
+				$optionsCodex[] = [ 'label' => (string)$text, 'value' => (string)$value ];
+			}
+		}
+		return $optionsCodex;
+	}
 }
 
 /** @deprecated class alias since 1.40 */

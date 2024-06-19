@@ -940,6 +940,29 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 			] )
 		);
 	}
+
+	public function testListDropdownOptionsCodex(): void {
+		$this->assertEquals(
+			[
+				[ 'label' => 'other reasons', 'value' => 'other' ],
+				[ 'label' => 'Foo', 'value' => '', 'disabled' => true ],
+				[ 'label' => 'Foo 1', 'value' => 'Foo 1' ],
+				[ 'label' => 'Example', 'value' => 'Example' ],
+				[ 'label' => 'Bar', 'value' => '', 'disabled' => true ],
+				[ 'label' => 'Bar 1', 'value' => 'Bar 1' ],
+			],
+			Html::listDropdownOptionsCodex( [
+				'other reasons' => 'other',
+				'Foo' => [
+					'Foo 1' => 'Foo 1',
+					'Example' => 'Example',
+				],
+				'Bar' => [
+					'Bar 1' => 'Bar 1',
+				],
+			] )
+		);
+	}
 }
 
 class HtmlTestValue implements Stringable {

@@ -7,13 +7,17 @@ const { mount } = require( '@vue/test-utils' );
 const mockConfig = {
 	blockAllowsEmailBan: true,
 	blockAllowsUTEdit: true,
+	blockAutoblockExpiry: '1 day',
+	blockDefaultExpiry: 'infinite',
+	blockHideUser: true,
 	blockExpiryOptions: {
 		infinite: 'infinite',
 		'Other time:': 'other'
 	},
-	blockDefaultExpiry: 'infinite',
-	blockAutoblockExpiry: '1 day',
-	hideUser: true
+	blockReasonOptions: [
+		{ label: 'block-reason-1', value: 'block-reason-1' },
+		{ label: 'block-reason-2', value: 'block-reason-2' }
+	]
 };
 mw.config.get.mockImplementation( ( key ) => mockConfig[ key ] );
 
