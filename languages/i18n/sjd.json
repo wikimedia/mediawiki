@@ -268,7 +268,7 @@
 	"accmailtitle": "Пя̄ҋҋтса̄ннҍ вӯлкхувэ",
 	"newarticle": "(О̄дт)",
 	"noarticletext": "Адтҍ тэнн лыстэсьт элля нимӣ кырьйха.\nТо̄нн вуаяк [[Special:Search/{{PAGENAME}}|тэнн лыст нэ̄м мудта лыстэнҍ о̄дзлассьтэ]],\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} пе̄ййвкыррьй тӣтэтҍ коа̄ввнэ] вай [{{fullurl:{{FULLPAGENAME}}|action=edit}} лыст мугка нэ̄мэнҍ лыһкэ]</span>.",
-	"previewnote": "<strong>Мушт, тэдта лӣ лышэ э̄ввткӣһмушш.</strong>\nТо̄нн воа̄йхэз вя̄л евла э̄ллмсаһтма!",
+	"previewnote": "<strong>Мушт, тэдта лӣ лышэ э̄ввткӣһчмушш.</strong>\nТо̄нн воа̄йхэз вя̄л евла э̄ллмсаһтма!",
 	"continue-editing": "Ю̄ттҍкэ воа̄йхэмуж",
 	"editing": "Воа̄йхэмушш: $1",
 	"creating": "Лыһкэ лыст $1",

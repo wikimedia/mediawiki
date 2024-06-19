@@ -261,7 +261,9 @@
 			"Ponor",
 			"Stjn",
 			"Cabal",
-			"PerfektesChaos"
+			"PerfektesChaos",
+			"Jack who built the house",
+			"Shizhao"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -2538,7 +2540,7 @@
 	"apisandbox-param-limit": "Additional documentation text for 'limit'-type parameters.",
 	"apisandbox-multivalue-all-namespaces": "Used as an entry in a multiple-namespace widget to select all available namespaces. Parameters:\n* $1 - API input value meaning \"all namespaces\".",
 	"apisandbox-multivalue-all-values": "Used as an entry in a multiple-value widget to select all available values. Parameters:\n* $1 - API input value meaning \"all values\".",
-	"booksources": "{{doc-special|BookSources}}\n\n'''This message shouldn't be changed unless it has serious mistakes.'''\n\nIt's used as the page name of the configuration page of [[Special:BookSources]]. Changing it breaks existing sites using the default version of this message.\n\nSee also:\n* {{msg-mw|Booksources|title}}\n* {{msg-mw|Booksources-text|text}}",
+	"booksources": "{{doc-special|BookSources}}\n\n<span style=\"color:red\">'''This message shouldn't be changed unless it has serious mistakes.'''</span>\n\nIt's used as the page name of the configuration page of [[Special:BookSources]]. Changing it breaks existing sites using the default version of this message.\n\nSee also:\n* {{msg-mw|Booksources|title}}\n* {{msg-mw|Booksources-text|text}}",
 	"booksources-summary": "{{doc-specialpagesummary|booksources}}",
 	"booksources-search-legend": "Box heading on [[Special:BookSources|book sources]] special page. The box is for searching for places where a particular book can be bought or viewed.",
 	"booksources-isbn": "{{optional}}\nThis is a label that appears before a text input field on the Special:BookSources page.\n{{Identical|ISBN}}",
@@ -3301,7 +3303,7 @@
 	"thumbnail_image-size-zero": "This is the parameter 1 of the message {{msg-mw|thumbnail error}}.\n*$1 is the path incl. filename of the image with zero size",
 	"thumbnail_image-missing": "This is the parameter 1 of the message {{msg-mw|thumbnail error}}.\n*$1 is the path incl. filename of the missing image",
 	"thumbnail_image-failure-limit": "Used as <code>$1</code> in {{msg-mw|Thumbnail error}}.\n\nParameters:\n* $1 - the maximum allowed number of failed attempts",
-	"import": "The title of the special page [[Special:Import]];",
+	"import": "{{doc-special|Import}}",
 	"import-summary": "{{doc-specialpagesummary|import}}",
 	"importinterwiki": "Used as legend for the Import form in [[Special:Import]].",
 	"import-interwiki-text": "Used as summary for the Import form in [[Special:Import]].",
@@ -3776,7 +3778,7 @@
 	"confirmemail_body_changed": "This message is sent as an email to users when they add or change their email address in [[Special:Preferences]].\n\nParameters:\n* $1 - the IP address of the user that changed the email address\n* $2 - the name of the user\n* $3 - a URL to [[Special:ConfirmEmail]]\n* $4 - a time and date (duplicated by $6 and $7)\n* $5 - a URL to [[Special:InvalidateEmail]]\n* $6 - (Optional) a date\n* $7 - (Optional) a time\n{{Related|Confirmemail body}}",
 	"confirmemail_body_set": "This is used in a confirmation email sent when a contact email address is set.\n\nSee also [[MediaWiki:Confirmemail body changed]].\n\nParameters:\n* $1 - the IP address of the user that set the email address\n* $2 - the name of the user\n* $3 - a URL to [[Special:ConfirmEmail]]\n* $4 - a time and date (duplicated by $6 and $7)\n* $5 - a URL to [[Special:InvalidateEmail]]\n* $6 - (Optional) a date\n* $7 - (Optional) a time\n{{Related|Confirmemail body}}",
 	"confirmemail_invalidated": "This is the text of the special page [[Special:InvalidateEmail|InvalidateEmail]] (with the title in {{msg-mw|Invalidateemail}}) where user goes if he chooses the cancel e-mail confirmation link from the confirmation e-mail.",
-	"invalidateemail": "This is the '''name of the special page''' where user goes if he chooses the cancel e-mail confirmation link from the confirmation e-mail.",
+	"invalidateemail": "{{doc-special|InvalidateEmail|unlisted=1}}\n\nThe user goes to that page if they choose the cancel e-mail confirmation link from the confirmation e-mail.",
 	"notificationemail_subject_changed": "Subject of the email sent to the previously registered email address notifying them about the change in the registered email address.",
 	"notificationemail_subject_removed": "Subject of the email sent to the previously registered email address notifying them about the removal of the registered email address.",
 	"notificationemail_body_changed": "Body of the email sent on the previously registered email address notifying them about the change in the registered email address.",
