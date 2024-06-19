@@ -393,8 +393,6 @@ class PageStore implements PageLookup {
 	}
 
 	/**
-	 * @unstable
-	 *
 	 * @param IReadableDatabase|int $dbOrFlags The database connection to use, or a READ_XXX constant
 	 *        indicating what kind of database connection to use.
 	 *
