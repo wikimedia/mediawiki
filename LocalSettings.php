@@ -314,15 +314,7 @@ $wgRevokePermissions['abusefilter-restricted']['abusefilter-view'] = true;
 $wgRevokePermissions['abusefilter-restricted']['abusefilter-view-private'] = true;
 
 /// Abusefilter administrators
-$wgGroupPermissions['abusefilter-admin']['abusefilter-log'] = true;
-$wgGroupPermissions['abusefilter-admin']['abusefilter-log-detail'] = true;
-$wgGroupPermissions['abusefilter-admin']['abusefilter-log-private'] = true;
-$wgGroupPermissions['abusefilter-admin']['abusefilter-modify'] = true;
-$wgGroupPermissions['abusefilter-admin']['abusefilter-modify-blocked-external-domains'] = true;
 $wgGroupPermissions['abusefilter-admin']['abusefilter-modify-restricted'] = true;
-$wgGroupPermissions['abusefilter-admin']['abusefilter-revert'] = true;
-$wgGroupPermissions['abusefilter-admin']['abusefilter-view'] = true;
-$wgGroupPermissions['abusefilter-admin']['abusefilter-view-private'] = true;
 
 /// Administrators
 $wgGroupPermissions['sysop']['abusefilter-log-detail'] = true;
