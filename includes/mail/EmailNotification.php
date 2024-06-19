@@ -430,7 +430,7 @@ class EmailNotification {
 			$keys['$PAGEEDITOR_EMAIL'] = $emailPage->getCanonicalURL();
 		}
 
-		$keys['$PAGEEDITOR_WIKI'] = $this->editor->getUserPage()->getCanonicalURL();
+		$keys['$PAGEEDITOR_WIKI'] = $this->editor->getTalkPage()->getCanonicalURL();
 		$keys['$HELPPAGE'] = wfExpandUrl(
 			Skin::makeInternalOrExternalUrl( wfMessage( 'helppage' )->inContentLanguage()->text() )
 		);
