@@ -15,7 +15,6 @@ use MediaWiki\Rest\BasicAccess\CompoundAuthorizer;
 use MediaWiki\Rest\BasicAccess\MWBasicAuthorizer;
 use MediaWiki\Rest\Reporter\MWErrorReporter;
 use MediaWiki\Rest\Validator\Validator;
-use MediaWiki\Title\Title;
 use MWExceptionRenderer;
 use Wikimedia\Message\ITextFormatter;
 
@@ -101,14 +100,6 @@ class EntryPoint extends MediaWikiEntryPoint {
 		parent::doSetup();
 
 		$context = RequestContext::getMain();
-
-		// Set $wgTitle and the title in RequestContext, as in api.php
-		global $wgTitle;
-		$wgTitle = Title::makeTitle(
-			NS_SPECIAL,
-			'Badtitle/rest.php'
-		);
-		$context->setTitle( $wgTitle );
 
 		$responseFactory = new ResponseFactory( $this->getTextFormatters() );
 		$responseFactory->setShowExceptionDetails(
