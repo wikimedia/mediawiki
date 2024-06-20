@@ -421,11 +421,11 @@ abstract class QueryPage extends SpecialPage {
 	 * @stable to override
 	 *
 	 * @param int|false $limit Limit for SQL statement or false for no limit
-	 * @param bool $ignoreErrors Whether to ignore database errors
+	 * @param bool $unused Unused since 1.43, kept for backwards-compatibility
 	 * @throws DBError|Exception
 	 * @return bool|int
 	 */
-	public function recache( $limit, $ignoreErrors = true ) {
+	public function recache( $limit, $unused = true ) {
 		if ( !$this->isCacheable() ) {
 			return 0;
 		}
@@ -433,66 +433,59 @@ abstract class QueryPage extends SpecialPage {
 		$fname = static::class . '::recache';
 		$dbw = $this->getDatabaseProvider()->getPrimaryDatabase();
 
-		try {
-			// Do query
-			$res = $this->reallyDoQuery( $limit, false );
-			$num = false;
-			if ( $res ) {
-				$num = $res->numRows();
-				// Fetch results
-				$vals = [];
-				foreach ( $res as $i => $row ) {
-					if ( isset( $row->value ) ) {
-						if ( $this->usesTimestamps() ) {
-							$value = (int)wfTimestamp( TS_UNIX, $row->value );
-						} else {
-							$value = intval( $row->value ); // T16414
-						}
+		// Do query
+		$res = $this->reallyDoQuery( $limit, false );
+		$num = false;
+		if ( $res ) {
+			$num = $res->numRows();
+			// Fetch results
+			$vals = [];
+			foreach ( $res as $i => $row ) {
+				if ( isset( $row->value ) ) {
+					if ( $this->usesTimestamps() ) {
+						$value = (int)wfTimestamp( TS_UNIX, $row->value );
 					} else {
-						$value = $i;
+						$value = intval( $row->value ); // T16414
 					}
-
-					$vals[] = [
-						'qc_type' => $this->getName(),
-						'qc_namespace' => $row->namespace,
-						'qc_title' => $row->title,
-						'qc_value' => $value
-					];
+				} else {
+					$value = $i;
 				}
 
-				$dbw->doAtomicSection(
-					$fname,
-					function ( IDatabase $dbw, $fname ) use ( $vals ) {
-						// Clear out any old cached data
-						$dbw->newDeleteQueryBuilder()
-							->deleteFrom( 'querycache' )
-							->where( [ 'qc_type' => $this->getName() ] )
-							->caller( $fname )->execute();
-						// Update the querycache_info record for the page
-						$dbw->newInsertQueryBuilder()
-							->insertInto( 'querycache_info' )
-							->row( [ 'qci_type' => $this->getName(), 'qci_timestamp' => $dbw->timestamp() ] )
-							->onDuplicateKeyUpdate()
-							->uniqueIndexFields( [ 'qci_type' ] )
-							->set( [ 'qci_timestamp' => $dbw->timestamp() ] )
-							->caller( $fname )->execute();
-					}
-				);
-				// Save results into the querycache table on the primary DB
-				if ( count( $vals ) ) {
-					foreach ( array_chunk( $vals, 500 ) as $chunk ) {
-						$dbw->newInsertQueryBuilder()
-							->insertInto( 'querycache' )
-							->rows( $chunk )
-							->caller( $fname )->execute();
-					}
+				$vals[] = [
+					'qc_type' => $this->getName(),
+					'qc_namespace' => $row->namespace,
+					'qc_title' => $row->title,
+					'qc_value' => $value
+				];
+			}
+
+			$dbw->doAtomicSection(
+				$fname,
+				function ( IDatabase $dbw, $fname ) use ( $vals ) {
+					// Clear out any old cached data
+					$dbw->newDeleteQueryBuilder()
+						->deleteFrom( 'querycache' )
+						->where( [ 'qc_type' => $this->getName() ] )
+						->caller( $fname )->execute();
+					// Update the querycache_info record for the page
+					$dbw->newInsertQueryBuilder()
+						->insertInto( 'querycache_info' )
+						->row( [ 'qci_type' => $this->getName(), 'qci_timestamp' => $dbw->timestamp() ] )
+						->onDuplicateKeyUpdate()
+						->uniqueIndexFields( [ 'qci_type' ] )
+						->set( [ 'qci_timestamp' => $dbw->timestamp() ] )
+						->caller( $fname )->execute();
+				}
+			);
+			// Save results into the querycache table on the primary DB
+			if ( count( $vals ) ) {
+				foreach ( array_chunk( $vals, 500 ) as $chunk ) {
+					$dbw->newInsertQueryBuilder()
+						->insertInto( 'querycache' )
+						->rows( $chunk )
+						->caller( $fname )->execute();
 				}
 			}
-		} catch ( DBError $e ) {
-			if ( !$ignoreErrors ) {
-				throw $e; // report query error
-			}
-			$num = false; // set result to false to indicate error
 		}
 
 		return $num;
