@@ -1665,12 +1665,12 @@ class AuthManager implements LoggerAwareInterface {
 
 				// Log the creation
 				if ( $this->config->get( MainConfigNames::NewUserLog ) ) {
-					$isAnon = $creator->isAnon();
+					$isNamed = $creator->isNamed();
 					$logEntry = new \ManualLogEntry(
 						'newusers',
-						$logSubtype ?: ( $isAnon ? 'create' : 'create2' )
+						$logSubtype ?: ( $isNamed ? 'create2' : 'create' )
 					);
-					$logEntry->setPerformer( $isAnon ? $user : $creator );
+					$logEntry->setPerformer( $isNamed ? $creator : $user );
 					$logEntry->setTarget( $user->getUserPage() );
 					/** @var CreationReasonAuthenticationRequest $req */
 					$req = AuthenticationRequest::getRequestByClass(
