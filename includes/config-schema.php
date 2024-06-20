@@ -1156,7 +1156,7 @@ return [
 				'serialMapping' => [
 					'type' => 'plain-numeric',
 				],
-				'expireAfterDays' => 365,
+				'expireAfterDays' => 90,
 				'notifyBeforeExpirationDays' => 10,
 			],
 			'AutoblockExpiry' => 86400,
