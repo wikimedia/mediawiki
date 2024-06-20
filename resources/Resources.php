@@ -934,7 +934,7 @@ return [
 				=> [ 'media' => 'print' ],
 		],
 		'skinStyles' => [
-			'default' => 'resources/src/mediawiki.notification/default.css',
+			'default' => 'resources/src/mediawiki.notification/default.less',
 		],
 		'scripts' => 'resources/src/mediawiki.notification/notification.js',
 		'dependencies' => [
