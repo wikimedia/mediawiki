@@ -168,6 +168,11 @@
 			.append( this.$handle );
 
 		if ( this.calendar ) {
+			const date = this.getValueAsDate();
+			this.calendar.setSelected( date );
+			if ( date ) {
+				this.calendar.setFocusedDate( date );
+			}
 			this.$element.append( this.calendar.$element );
 		}
 	};
