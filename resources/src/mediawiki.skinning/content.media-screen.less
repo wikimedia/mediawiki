@@ -138,10 +138,15 @@ body.skin--responsive .mw-parser-output {
 	}
 
 	/**
-	* When the noresize class is used e.g. on a panorama or image map
-	* with clickable regions (T22030), do not subject the image to a max-width rule.
-	*/
-	.noresize figure img.mw-file-element {
-		max-width: none;
+	 * When the noresize class is used e.g. on a panorama or image map
+	 * with clickable regions (T22030), do not subject the image to a max-width rule.
+	 *
+	 * [[File:example.jpg|thumb|class=noresize]] and imagemap extension put the class on figure itself (T368034)
+	 */
+	.noresize figure,
+	figure.noresize {
+		img.mw-file-element {
+			max-width: none;
+		}
 	}
 }
