@@ -206,7 +206,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 	}
 
 	public static function provideValidate() {
-		yield 'empty' => [ [], new RequestData(), [], [] ];
+		yield 'empty' => [ [], [], new RequestData(), [], [] ];
 
 		yield 'query parameter' => [
 			[
@@ -216,12 +216,14 @@ class HandlerTest extends MediaWikiUnitTestCase {
 					Handler::PARAM_SOURCE => 'query',
 				]
 			],
+			[],
 			new RequestData( [ 'queryParams' => [ 'foo' => 'kittens' ] ] ),
 			[ 'foo' => 'kittens' ],
 			[]
 		];
 
 		yield 'body parameter' => [
+			[],
 			[
 				'foo' => [
 					ParamValidator::PARAM_TYPE => 'string',
@@ -233,33 +235,15 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			[],
 			[ 'foo' => 'kittens' ]
 		];
-
-		yield 'body parameter with type coercion' => [
-			[
-				'foo' => [
-					ParamValidator::PARAM_TYPE => 'integer',
-					ParamValidator::PARAM_REQUIRED => true,
-					Handler::PARAM_SOURCE => 'body',
-				]
-			],
-			// Form data automatically enabled type coercion
-			new RequestData( [
-				'headers' => [
-					'Content-Type' => RequestInterface::FORM_URLENCODED_CONTENT_TYPE
-				],
-				'parsedBody' => [ 'foo' => '1234' ]
-			] ),
-			[],
-			[ 'foo' => 1234 ]
-		];
 	}
 
 	/**
 	 * @dataProvider provideValidate
 	 */
-	public function testValidate( $paramSettings, $request, $expectedParams, $expectedBody ) {
-		$handler = $this->newHandler( [ 'getParamSettings' ] );
+	public function testValidate( $paramSettings, $bodyParamSettings, $request, $expectedParams, $expectedBody ) {
+		$handler = $this->newHandler( [ 'getParamSettings', 'getBodyParamSettings' ] );
 		$handler->method( 'getParamSettings' )->willReturn( $paramSettings );
+		$handler->method( 'getBodyParamSettings' )->willReturn( $bodyParamSettings );
 
 		$this->initHandler( $handler, $request );
 		$this->validateHandler( $handler );
@@ -306,25 +290,6 @@ class HandlerTest extends MediaWikiUnitTestCase {
 				'failureCode' => 'missingparam'
 			]
 		];
-
-		yield 'body parameter without type coercion' => [
-			[
-				'foo' => [
-					ParamValidator::PARAM_TYPE => 'integer',
-					ParamValidator::PARAM_REQUIRED => true,
-					Handler::PARAM_SOURCE => 'body',
-				]
-			],
-			[ // JSON doesn't enable type coercion
-				'headers' => [ 'Content-Type' => 'application/json', ],
-				'parsedBody' => [ 'foo' => '1234' ]
-			],
-			[],
-			[
-				'error' => 'parameter-validation-failed',
-				'failureCode' => 'badinteger-type'
-			]
-		];
 	}
 
 	/**
@@ -368,15 +333,28 @@ class HandlerTest extends MediaWikiUnitTestCase {
 					ParamValidator::PARAM_TYPE => 'string',
 					ParamValidator::PARAM_REQUIRED => true,
 					Handler::PARAM_SOURCE => 'body',
-				],
-				'pathfoo' => [
-					ParamValidator::PARAM_TYPE => 'string',
-					ParamValidator::PARAM_REQUIRED => false,
-					Handler::PARAM_SOURCE => 'path',
-				],
+				]
 			],
 			new RequestData( [ 'parsedBody' => [ 'foo' => 'kittens' ] ] ),
 			[ 'foo' => 'kittens' ]
+		];
+
+		yield 'body parameter with type coercion' => [
+			[
+				'foo' => [
+					ParamValidator::PARAM_TYPE => 'integer',
+					ParamValidator::PARAM_REQUIRED => true,
+					Handler::PARAM_SOURCE => 'body',
+				]
+			],
+			new RequestData( [
+				'headers' => [
+					// Form data automatically enabled type coercion
+					'Content-Type' => RequestInterface::FORM_URLENCODED_CONTENT_TYPE
+				],
+				'parsedBody' => [ 'foo' => '1234' ]
+			] ),
+			[ 'foo' => 1234 ]
 		];
 	}
 
@@ -384,8 +362,8 @@ class HandlerTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideValidateBodyParams
 	 */
 	public function testValidateBodyParams( $paramSettings, $request, $expected ) {
-		$handler = $this->newHandler( [ 'getParamSettings' ] );
-		$handler->method( 'getParamSettings' )->willReturn( $paramSettings );
+		$handler = $this->newHandler( [ 'getBodyParamSettings' ] );
+		$handler->method( 'getBodyParamSettings' )->willReturn( $paramSettings );
 
 		$this->initHandler( $handler, $request );
 		$this->validateHandler( $handler );
@@ -395,28 +373,19 @@ class HandlerTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testGetBodyParamSettings() {
-		$paramSettings = [
-			'pathfoo' => [
-				ParamValidator::PARAM_TYPE => 'string',
-				Handler::PARAM_SOURCE => 'path',
-			],
+		$bodyParamSettings = [
 			'bodyfoo' => [
 				ParamValidator::PARAM_TYPE => 'string',
 				Handler::PARAM_SOURCE => 'body',
-			],
-			'queryfoo' => [
-				ParamValidator::PARAM_TYPE => 'string',
-				Handler::PARAM_SOURCE => 'query',
-			],
+			]
 		];
+		$handler = $this->newHandler( [ 'getBodyParamSettings' ] );
+		$handler->method( 'getBodyParamSettings' )->willReturn( $bodyParamSettings );
 
-		$handler = $this->newHandler( [ 'getParamSettings' ] );
-		$handler->method( 'getParamSettings' )->willReturn( $paramSettings );
-
-		$bodyParamSettings = $handler->getBodyParamSettings();
+		$bodyParams = $handler->getBodyParamSettings();
 
 		$expected = [
-			'bodyfoo' => $paramSettings['bodyfoo']
+			'bodyfoo' => $bodyParamSettings['bodyfoo']
 		];
 
 		$this->assertSame( $expected, $bodyParamSettings );
@@ -531,14 +500,30 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			),
 			'badtimestamp'
 		];
+
+		yield 'body parameter without type coercion' => [
+			[
+				'foo' => [
+					ParamValidator::PARAM_TYPE => 'integer',
+					ParamValidator::PARAM_REQUIRED => true,
+					Handler::PARAM_SOURCE => 'body',
+				]
+			],
+			new RequestData( [
+				// JSON doesn't enable type coercion
+				'headers' => [ 'Content-Type' => 'application/json', ],
+				'parsedBody' => [ 'foo' => '1234' ]
+			] ),
+			'badinteger-type'
+		];
 	}
 
 	/**
 	 * @dataProvider provideValidateBodyParams_invalid
 	 */
 	public function testValidateBodyParams_invalid( $paramSettings, $request, $expectedError ) {
-		$handler = $this->newHandler( [ 'getParamSettings' ] );
-		$handler->method( 'getParamSettings' )->willReturn( $paramSettings );
+		$handler = $this->newHandler( [ 'getBodyParamSettings' ] );
+		$handler->method( 'getBodyParamSettings' )->willReturn( $paramSettings );
 
 		try {
 			$this->initHandler( $handler, $request );
@@ -1203,8 +1188,8 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			'application/x-www-form-urlencoded'
 		];
 
-		$handler = $this->newHandler( [ 'getParamSettings', 'getSupportedRequestTypes' ] );
-		$handler->method( 'getParamSettings' )->willReturn( $paramSettings );
+		$handler = $this->newHandler( [ 'getBodyParamSettings', 'getSupportedRequestTypes' ] );
+		$handler->method( 'getBodyParamSettings' )->willReturn( $paramSettings );
 		$handler->method( 'getSupportedRequestTypes' )->willReturn( $supportedTypes );
 
 		// Should accept form data

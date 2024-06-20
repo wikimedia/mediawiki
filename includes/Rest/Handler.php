@@ -553,13 +553,11 @@ abstract class Handler {
 	 * the request is to contain the parameter.
 	 *
 	 * Can be used for the request body as well, by setting self::PARAM_SOURCE
-	 * to "post" or "body". Note that the values of "body" parameters will become
-	 * accessible through getValidatedBody(), while the values of "post"
-	 * parameters will be accessible through getValidatedParams(). "post"
-	 * parameters are used with form data (application/x-www-form-urlencoded or
-	 * multipart/form-data).
+	 * to "post". Note that the values of "post" parameters will be accessible
+	 * through getValidatedParams(). "post" parameters are used with
+	 * form data (application/x-www-form-urlencoded or multipart/form-data).
 	 *
-	 * For "query" and "body" parameters, a PARAM_REQUIRED setting of "false" means the caller
+	 * For "query" parameters, a PARAM_REQUIRED setting of "false" means the caller
 	 * does not have to supply the parameter. For "path" parameters, the path matcher will always
 	 * require the caller to supply all path parameters for a route, regardless of the
 	 * PARAM_REQUIRED setting. However, "path" parameters may be specified in getParamSettings()
@@ -580,10 +578,6 @@ abstract class Handler {
 	 * by this method are used to validate the request body. The parameter
 	 * values will become available through getValidatedBody().
 	 *
-	 * The default implementation will call getParamSettings() and filter the
-	 * return value to only include settings for parameters that have
-	 * self::PARAM_SOURCE set to 'body'.
-	 *
 	 * Subclasses may override this method to specify what fields they support
 	 * in the request body. All parameter settings returned by this method must
 	 * have self::PARAM_SOURCE set to 'body'.
@@ -591,11 +585,7 @@ abstract class Handler {
 	 * @return array[]
 	 */
 	public function getBodyParamSettings(): array {
-		return array_filter( $this->getParamSettings(),
-			static function ( array $settings ) {
-				return ( $settings[self::PARAM_SOURCE] ?? false ) === 'body';
-			}
-		);
+		return [];
 	}
 
 	/**
