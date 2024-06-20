@@ -20,7 +20,7 @@ trait TempUserTestTrait {
 	 */
 	private function getTempAccountConfigTestDefaults(): array {
 		return [
-			'expireAfterDays' => 365,
+			'expireAfterDays' => 90,
 			'notifyBeforeExpirationDays' => 10,
 			'actions' => [ 'edit' ],
 			'genPattern' => '~$1',

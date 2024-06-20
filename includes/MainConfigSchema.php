@@ -7671,7 +7671,7 @@ class MainConfigSchema {
 	 *       - uppercase: (bool) With "filtered-radix", whether to use uppercase
 	 *         letters, default false.
 	 *       - offset: (int) With "plain-numeric", a constant to add to the stored index.
-	 *    - expireAfterDays: (int|null, default 365) If not null, how many days should the temporary
+	 *    - expireAfterDays: (int|null, default 90) If not null, how many days should the temporary
 	 *      accounts expire? Requires expireTemporaryAccounts.php to be periodically executed in
 	 *      order to work.
 	 *    - notifyBeforeExpirationDays: (int|null, default 10) If not null, how many days before the
@@ -7690,7 +7690,7 @@ class MainConfigSchema {
 			'reservedPattern' => [ 'type' => 'string|null', 'default' => '~$1' ],
 			'serialProvider' => [ 'type' => 'object', 'default' => [ 'type' => 'local', 'useYear' => true ] ],
 			'serialMapping' => [ 'type' => 'object', 'default' => [ 'type' => 'plain-numeric' ] ],
-			'expireAfterDays' => [ 'type' => 'int|null', 'default' => 365 ],
+			'expireAfterDays' => [ 'type' => 'int|null', 'default' => 90 ],
 			'notifyBeforeExpirationDays' => [ 'type' => 'int|null', 'default' => 10 ],
 		],
 		'type' => 'object',
