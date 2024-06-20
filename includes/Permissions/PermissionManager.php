@@ -1053,16 +1053,14 @@ class PermissionManager {
 				// User can't move anything
 				$userCanMove = $this->groupPermissionsLookup
 					->groupHasPermission( 'user', 'move' );
-				$namedCanMove = $this->groupPermissionsLookup
-					->groupHasPermission( 'named', 'move' );
 				$autoconfirmedCanMove = $this->groupPermissionsLookup
 					->groupHasPermission( 'autoconfirmed', 'move' );
 				if ( $user->isAnon()
-					&& ( $userCanMove || $namedCanMove || $autoconfirmedCanMove )
+					&& ( $userCanMove || $autoconfirmedCanMove )
 				) {
 					// custom message if logged-in users without any special rights can move
 					$errors[] = [ 'movenologintext' ];
-				} elseif ( $user->isTemp() && ( $namedCanMove || $autoconfirmedCanMove ) ) {
+				} elseif ( $user->isTemp() && $autoconfirmedCanMove ) {
 					// Temp user may be able to move if they log in as a proper account
 					$errors[] = [ 'movenologintext' ];
 				} else {

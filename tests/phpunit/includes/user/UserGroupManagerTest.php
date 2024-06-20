@@ -190,13 +190,13 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$manager = $this->getManager();
 		$user = $this->getTestUser( 'unittesters' )->getUser();
 		$this->assertArrayEquals(
-			[ '*', 'user', 'named', 'autoconfirmed' ],
+			[ '*', 'user', 'autoconfirmed' ],
 			$manager->getUserImplicitGroups( $user )
 		);
 
 		$user = $this->getTestUser( [ 'bureaucrat', 'test' ] )->getUser();
 		$this->assertArrayEquals(
-			[ '*', 'user', 'named', 'autoconfirmed' ],
+			[ '*', 'user', 'autoconfirmed' ],
 			$manager->getUserImplicitGroups( $user )
 		);
 
@@ -205,7 +205,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 			'added user to group'
 		);
 		$this->assertArrayEquals(
-			[ '*', 'user', 'named', 'autoconfirmed' ],
+			[ '*', 'user', 'autoconfirmed' ],
 			$manager->getUserImplicitGroups( $user )
 		);
 
@@ -217,27 +217,27 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		] ] );
 		$user = $this->getTestUser()->getUser();
 		$this->assertArrayEquals(
-			[ '*', 'user', 'named' ],
+			[ '*', 'user' ],
 			$manager->getUserImplicitGroups( $user )
 		);
 		$this->assertArrayEquals(
-			[ '*', 'user', 'named' ],
+			[ '*', 'user' ],
 			$manager->getUserEffectiveGroups( $user )
 		);
 		$user->confirmEmail();
 		$this->assertArrayEquals(
-			[ '*', 'user', 'named', 'dummy' ],
+			[ '*', 'user', 'dummy' ],
 			$manager->getUserImplicitGroups( $user, IDBAccessObject::READ_NORMAL, true )
 		);
 		$this->assertArrayEquals(
-			[ '*', 'user', 'named', 'dummy' ],
+			[ '*', 'user', 'dummy' ],
 			$manager->getUserEffectiveGroups( $user )
 		);
 
 		$user = $this->getTestUser( [ 'dummy' ] )->getUser();
 		$user->confirmEmail();
 		$this->assertArrayEquals(
-			[ '*', 'user', 'named', 'dummy' ],
+			[ '*', 'user', 'dummy' ],
 			$manager->getUserImplicitGroups( $user )
 		);
 
@@ -250,9 +250,9 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideGetEffectiveGroups() {
-		yield [ [], [ '*', 'user', 'named', 'autoconfirmed' ] ];
-		yield [ [ 'bureaucrat', 'test' ], [ '*', 'user', 'named', 'autoconfirmed', 'bureaucrat', 'test' ] ];
-		yield [ [ 'autoconfirmed', 'test' ], [ '*', 'user', 'named', 'autoconfirmed', 'test' ] ];
+		yield [ [], [ '*', 'user', 'autoconfirmed' ] ];
+		yield [ [ 'bureaucrat', 'test' ], [ '*', 'user', 'autoconfirmed', 'bureaucrat', 'test' ] ];
+		yield [ [ 'autoconfirmed', 'test' ], [ '*', 'user', 'autoconfirmed', 'test' ] ];
 	}
 
 	/**
