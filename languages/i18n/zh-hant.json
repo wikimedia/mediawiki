@@ -2707,7 +2707,7 @@
 	"emaillink": "傳送電子郵件",
 	"autoblocker": "您的IP位址因最近被[[User:$1|$1]]使用過而被自動封鎖。封鎖$1的原因為「$2」",
 	"blocklogpage": "封鎖日誌",
-	"blocklog-showlog": "此{{GENDER:$1|使用者}}先前被封鎖過。\n以下提供用於參考的封鎖日誌項目：",
+	"blocklog-showlog": "此{{GENDER:$1|使用者}}先前被封鎖過。以下提供用於參考的封鎖日誌項目：",
 	"blocklog-showsuppresslog": "此{{GENDER:$1|使用者}}先前被封鎖並且隱藏過。\n以下為監督日誌以供參考：",
 	"unblocklog-showlog": "此{{GENDER:$1|使用者}}的封鎖日誌項目在下方提供，用於參考：",
 	"unblocklog-showsuppresslog": "此{{GENDER:$1|使用者}}的監督日誌項目在下方提供，用於參考：",

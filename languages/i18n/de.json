@@ -419,6 +419,8 @@
 	"querypage-no-updates": "Die Aktualisierungsfunktion dieser Seite ist zurzeit deaktiviert.\nDie Daten werden bis auf Weiteres nicht erneuert.",
 	"querypage-updates-periodical": "Aktualisierungen für diese Seite werden periodisch erneuert.",
 	"viewsource": "Quelltext anzeigen",
+	"protection-indicator-title-infinity": "Diese Seite ist geschützt, sodass nur Benutzer mit der Berechtigung „$1“ sie bearbeiten können.",
+	"protection-indicator-title": "Diese Seite ist geschützt, so dass nur Benutzer mit der Berechtigung „$1“ sie bis $2 bearbeiten können.",
 	"skin-action-viewsource": "Quelltext anzeigen",
 	"viewsource-title": "Quelltext der Seite $1",
 	"actionthrottled": "Aktionsanzahl limitiert",
