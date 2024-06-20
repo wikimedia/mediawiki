@@ -9,6 +9,8 @@
 	},
 	"paramvalidator-badexpiry": "Ongeldige waarde \"$2\" voor vervaldatumparameter \"$1\".",
 	"paramvalidator-badexpiry-past": "Waarde \"$2\" voor vervaldatumparameter \"$1\" is in het verleden.",
+	"paramvalidator-param-deprecated": "De parameter \"$1\" is verouderd.",
+	"paramvalidator-toomanyvalues": "Er zijn te veel waarden opgegeven voor parameter \"$1\". De limiet is $2.",
 	"paramvalidator-unrecognizedvalues": "Niet herkende {{PLURAL:$4|waarde|waarden}} voor parameter \"$1\": $3",
 	"paramvalidator-help-default": "Standaard: $1",
 	"paramvalidator-help-default-empty": "Standaard: (leeg)",

@@ -53,5 +53,9 @@
 	"rest-requires-safe-against-csrf": "Ten endpoint wymaga sesji odpornej na CSRF.",
 	"rest-badtoken": "Podany token CSRF jest nieprawidłowy.",
 	"rest-badtoken-missing": "Parametr <var>token</var> jest wymagany, chyba że używana jest bezpieczna dla CSRF metoda uwierzytelniania.",
-	"rest-badtoken-nosession": "Błąd CSRF – brak sesji."
+	"rest-badtoken-nosession": "Błąd CSRF – brak sesji.",
+	"rest-specified-revision-unavailable": "Wskazana wersja została usunięta lub ukryta.",
+	"rest-previous-revision-unavailable": "Nie można znaleźć poprzedniej wersji. Czy strona została zablokowana lub usunięta?",
+	"rest-transform-missing-html": "Nie podano kodu HTML.",
+	"rest-transform-missing-title": "Nie podano tytułu albo wikitekstu."
 }

@@ -30,7 +30,8 @@
 			"Winston Sung",
 			"Нұрлан Рахымжанов",
 			"СеніңШешең",
-			"아라"
+			"아라",
+			"Amankel'dy"
 		]
 	},
 	"tog-underline": "Сілтеме астын сызу:",
@@ -642,6 +643,8 @@
 	"edit-recovery-nojs-placeholder": "Өңдеуді қалпына келтіру үшін JavaScript қажет.",
 	"edit-recovery-special-intro": "Мына {{PLURAL:$1|бет не бөлімде|бет не бөлімдерде}} сақталмаған өңдеулеріңіз бар:",
 	"edit-recovery-special-intro-empty": "Сақталмаған өңдеулеріңіз жоқ.",
+	"edit-recovery-special-view": "көру",
+	"edit-recovery-special-edit": "өңдеу",
 	"edit-recovery-loaded-title": "Өзгерістер сақталды.",
 	"edit-recovery-loaded-message": "Сақталмаған өзгерістеріңіз автоматты түрде қалпына келтірілді",
 	"edit-recovery-loaded-show": "Өзгерістерді көрсету",
@@ -2433,7 +2436,7 @@
 	"contribsub2": "{{GENDER:$3|$1}} үлесі ($2)",
 	"contributions-subtitle": "{{GENDER:$2|$1}} үлесі",
 	"contributions-edit-count": "Қатысушының $2 өңдемесі бар.",
-	"contributions-account-creation-date": "Тіркелгі $1 құрылған.",
+	"contributions-account-creation-date": "Akkaunt $1-sánesinde jaratılǵan.",
 	"contributions-userdoesnotexist": "«$1» қатысушы акаунты тіркелмеді.",
 	"nocontribs": "Осы іздеу шартына сәйкес өзгерістер табылған жоқ.",
 	"uctop": "қазіргі",
@@ -3196,6 +3199,8 @@
 	"tag-mw-new-redirect-description": "Жаңа бағыттағыш жасайтын немесе бетті бағыттағышқа өзгертетін өңдемелер",
 	"tag-mw-removed-redirect": "Бағыттағыш өшірілді",
 	"tag-mw-removed-redirect-description": "Бағыттағыш бетті бағыттағышсыз бетке ауыстыратын өңдемелер",
+	"tag-mw-changed-redirect-target": "Нысана бет өзгертілді",
+	"tag-mw-changed-redirect-target-description": "Бағыттайтын беттің нысанасын өзгертетін өңдемелер",
 	"tag-mw-blank": "Тазарту",
 	"tag-mw-blank-description": "Бетті тазартатын өңдемелер",
 	"tag-mw-replace": "Алмастырылды",

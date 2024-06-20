@@ -665,7 +665,7 @@
 	"resettokens-watchlist-token": "אסימון להזנת הרשת (Atom/RSS) של [[Special:Watchlist|שינויים של דפים ברשימת המעקב]]",
 	"resettokens-done": "האסימונים אופסו.",
 	"resettokens-resetbutton": "איפוס האסימונים שנבחרו",
-	"editrecovery": "שחוזר עריכה אבודה",
+	"editrecovery": "שחזור עריכה אבודה",
 	"edit-recovery-nojs-placeholder": "תמיכה ב־JavaScript נדרשת להפעלת אפשרות שחזור עריכה אבודה",
 	"edit-recovery-special-intro": "יש לך שינויים שלא נשמרו {{PLURAL:$1|בדף או בפרק הבא|בדפים או בפרקים הבאים}}:",
 	"edit-recovery-special-intro-empty": "אין לך שינויים שלא נשמרו.",
