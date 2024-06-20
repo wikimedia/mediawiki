@@ -838,6 +838,17 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		assert.strictEqual( util.isTemporaryUser( username[ 1 ] ), username[ 2 ] );
 	} );
 
+	QUnit.test.each( 'isTemporaryUser matchPattern null', {
+		'prefix mismatch': [ '*$1', 'Test', false, true ],
+		'prefix match': [ '*$1', '*Some user', true, true ]
+	}, ( assert, username ) => {
+		mw.util.setOptionsForTest( {
+			AutoCreateTempUser: { enabled: username[ 3 ], genPattern: username[ 0 ], matchPattern: null }
+		} );
+
+		assert.strictEqual( util.isTemporaryUser( username[ 1 ] ), username[ 2 ] );
+	} );
+
 	QUnit.test( 'isInfinity', ( assert ) => {
 		assert.true( util.isInfinity( 'indefinite' ) );
 		assert.true( util.isInfinity( 'infinite' ) );
