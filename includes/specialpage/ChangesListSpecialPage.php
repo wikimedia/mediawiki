@@ -35,6 +35,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\User\TempUser\TempUserConfig;
+use MediaWiki\User\UserArray;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
 use MWExceptionHandler;
@@ -697,18 +698,27 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
 			$batch = $linkBatchFactory->newLinkBatch();
+			$userNames = [];
 			foreach ( $rows as $row ) {
 				$batch->add( NS_USER, $row->rc_user_text );
 				$batch->add( NS_USER_TALK, $row->rc_user_text );
+				$userNames[] = $row->rc_user_text;
 				$batch->add( $row->rc_namespace, $row->rc_title );
 				if ( $row->rc_source === RecentChange::SRC_LOG ) {
 					$formatter = LogFormatter::newFromRow( $row );
 					foreach ( $formatter->getPreloadTitles() as $title ) {
 						$batch->addObj( $title );
+						if ( $title->inNamespace( NS_USER ) || $title->inNamespace( NS_USER_TALK ) ) {
+							$userNames[] = $title->getText();
+						}
 					}
 				}
 			}
 			$batch->execute();
+			foreach ( UserArray::newFromNames( $userNames ) as $_ ) {
+				// Trigger UserEditTracker::setCachedUserEditCount via User::loadFromRow
+				// Preloads edit count for User::getExperienceLevel() and Linker::userToolLinks()
+			}
 
 			$this->setHeaders();
 			$this->outputHeader();
