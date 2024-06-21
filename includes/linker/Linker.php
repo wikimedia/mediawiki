@@ -1716,7 +1716,7 @@ class Linker {
 			->getBoolOption( $context->getUser(), 'showrollbackconfirmation' )
 		) {
 			$services->getStatsFactory()
-				->getCounter( 'rollbaseconfirmation_event_load_total' )
+				->getCounter( 'rollbackconfirmation_event_load_total' )
 				->copyToStatsdAt( 'rollbackconfirmation.event.load' )
 				->increment();
 			$context->getOutput()->addModules( 'mediawiki.misc-authed-curate' );
