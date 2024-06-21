@@ -1158,6 +1158,8 @@ var util = {
 		var matchPatterns = config.AutoCreateTempUser.matchPattern;
 		if ( typeof matchPatterns === 'string' ) {
 			matchPatterns = [ matchPatterns ];
+		} else if ( matchPatterns === null ) {
+			matchPatterns = [ config.AutoCreateTempUser.genPattern ];
 		}
 		for ( var i = 0; i < matchPatterns.length; i++ ) {
 			var autoCreateUserMatchPattern = matchPatterns[ i ];
