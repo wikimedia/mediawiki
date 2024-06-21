@@ -391,21 +391,13 @@ class SpecialMovePage extends UnlistedSpecialPage {
 				$errMsg = $err[0];
 				$errMsgName = array_shift( $errMsg );
 
-				if ( $errMsgName == 'hookaborted' ) {
-					$errMsgHtml .= "<p>{$errMsg[0]}</p>\n";
-				} else {
-					$errMsgHtml .= $this->msg( $errMsgName, $errMsg )->parseAsBlock();
-				}
+				$errMsgHtml .= $this->msg( $errMsgName, $errMsg )->parseAsBlock();
 			} else {
 				$errStr = [];
 
 				foreach ( $err as $errMsg ) {
-					if ( $errMsg[0] == 'hookaborted' ) {
-						$errStr[] = $errMsg[1];
-					} else {
-						$errMsgName = array_shift( $errMsg );
-						$errStr[] = $this->msg( $errMsgName, $errMsg )->parse();
-					}
+					$errMsgName = array_shift( $errMsg );
+					$errStr[] = $this->msg( $errMsgName, $errMsg )->parse();
 				}
 
 				$errMsgHtml .= '<ul><li>' . implode( "</li>\n<li>", $errStr ) . "</li></ul>\n";
