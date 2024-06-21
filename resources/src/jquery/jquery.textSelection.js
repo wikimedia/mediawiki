@@ -428,6 +428,13 @@
 	$.fn.textSelection = function ( command, commandOptions ) {
 		var alternateFn = $( this ).data( 'jquery.textSelection' );
 
+		// Prevent values of `undefined` overwriting defaults (T368102)
+		for ( var key in commandOptions ) {
+			if ( commandOptions[ key ] === undefined ) {
+				delete commandOptions[ key ];
+			}
+		}
+
 		// Apply defaults
 		switch ( command ) {
 			// case 'getContents': // no params
