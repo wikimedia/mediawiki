@@ -509,12 +509,10 @@ class HtmlInputTransformHelper {
 		}
 
 		if ( $originalRendering->parsoid !== null ) {
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Silly Phan, we just checked.
 			$this->transform->setOriginalDataParsoid( $originalRendering->parsoid );
 		}
 
 		if ( $originalRendering->mw !== null ) {
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Silly Phan, we just checked.
 			$this->transform->setOriginalDataMW( $originalRendering->mw );
 		}
 	}
