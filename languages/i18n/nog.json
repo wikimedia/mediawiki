@@ -281,7 +281,6 @@
 	"searchresultshead": "Излев",
 	"userrights-reason": "Себеп:",
 	"group-user": "Кулланувшылар",
-	"group-named": "Кириш еткен кулланувшылар",
 	"group-bot": "Ботлар",
 	"group-sysop": "Идареджилер",
 	"group-user-member": "{{GENDER:$1|кулланувшы}}",

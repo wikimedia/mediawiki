@@ -807,7 +807,6 @@
 	"group-bureaucrat-member": "{{GENDER:$1|bureaucrat}}",
 	"group-suppress-member": "{{GENDER:$1|suppressor}}",
 	"grouppage-user": "{{ns:project}}:Users",
-	"grouppage-named": "{{ns:project}}:ban suhi soli kpe",
 	"grouppage-temp": "{{ns:project}}:ban suhi so' ŋmahi",
 	"grouppage-autoconfirmed": "{{ns:project}}:Autoconfirmed users",
 	"grouppage-bot": "{{ns:project}}:Niŋdi ntoli",

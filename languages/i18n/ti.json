@@ -362,7 +362,6 @@
 	"userrights-expiry-options": "1 መዓልቲ:1 day,1 ሰሙን:1 week,1 ወርሒ:1 month,3 ኣዋርሕ:3 months,6 ኣዋርሕ:6 months,1 ዓመት:1 year",
 	"group": "ጉጅለ፦",
 	"group-user": "ተጠቀምቲ",
-	"group-named": "ዝተመዝገቡ ተጠቀምቲ",
 	"group-autoconfirmed": "ብኣውቶማቲክ ዝተረጋገጹ ተጠቀምቲ",
 	"group-bot": "ቦትታት",
 	"group-sysop": "ኣመሓደርቲ",

@@ -31,8 +31,6 @@
 		]
 	},
 	"copyright": "Pod licencom / Под лиценцом: $1.",
-	"pt-login": "Prijava",
-	"contribsub2": "{{GENDER:$3|$1}} ($2)",
 	"variantname-sh-latn": "Latinica",
 	"variantname-sh-cyrl": "Ћирилица"
 }

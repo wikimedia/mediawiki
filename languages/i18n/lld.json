@@ -540,7 +540,6 @@
 	"userrights-groupsmember": "Cumëmber de:",
 	"userrights-groupsmember-auto": "Cumëmber implizit de:",
 	"group-user": "Utënc",
-	"group-named": "Utënc registrei",
 	"group-bot": "Bots",
 	"group-sysop": "Aministradus",
 	"group-user-member": "{{GENDER:$1|Utënt|Utënta}}",

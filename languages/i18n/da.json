@@ -1074,7 +1074,6 @@
 	"userrights-conflict": "Konflikt i ændringer af brugerrettigheder!\nVær venlig at gennemse og bekræft dine ændringer.",
 	"group": "Gruppe:",
 	"group-user": "Brugere",
-	"group-named": "Registrerede brugere",
 	"group-autoconfirmed": "Registrerede brugere",
 	"group-bot": "Robotter",
 	"group-sysop": "Administratorer",

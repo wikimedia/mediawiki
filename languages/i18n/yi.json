@@ -969,7 +969,6 @@
 	"group-bureaucrat-member": "{{GENDER:$1|ביוראקראַט}}",
 	"group-suppress-member": "{{GENDER:$1|אונטעדריקער}}",
 	"grouppage-user": "{{ns:project}}:אײַנגעשריבענער באניצער",
-	"grouppage-named": "{{ns:project}}:רעגיסטרירטע באניצערס",
 	"grouppage-temp": "{{ns:project}}: צייטווייליגע באניצער",
 	"grouppage-autoconfirmed": "{{ns:project}}:אויטאבאַשטעטיגטע באַניצער",
 	"grouppage-bot": "{{ns:project}}:באָטס",

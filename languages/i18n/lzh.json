@@ -756,7 +756,6 @@
 	"group-bureaucrat-member": "門下",
 	"group-suppress-member": "監",
 	"grouppage-user": "{{ns:project}}:簿",
-	"grouppage-named": "{{ns:project}}:在籍之簿",
 	"grouppage-temp": "{{ns:project}}:過客",
 	"grouppage-autoconfirmed": "{{ns:project}}:自證其簿",
 	"grouppage-bot": "{{ns:project}}:僕",
