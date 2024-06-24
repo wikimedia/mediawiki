@@ -2161,6 +2161,8 @@
 	"mycontris": "წვლილი",
 	"anoncontribs": "წვლილი",
 	"contribsub2": "მომხმარებელი {{GENDER:$3|$1}} წვლილი ($2)",
+	"contributions-edit-count": "{{GENDER:$1|მომხმარებელი}} $2 {{PLURAL:$2|რედაქტირებით|რედაქტირებით}}.",
+	"contributions-account-creation-date": "ანგარიში შექმნილია $1-ში.",
 	"contributions-userdoesnotexist": "მომხმარებლის ანგარიში „$1“ არ არის რეგისტრირებული.",
 	"nocontribs": "ძებნისას მითითებული პარამეტრების შესაბამისი არც ერთი ცვლილება ნაპოვნი არ არის",
 	"uctop": "მიმდინარე",

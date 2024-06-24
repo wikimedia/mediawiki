@@ -2545,7 +2545,7 @@
 	"sp-contributions-uploads": "Hochgeladene Dateien",
 	"sp-contributions-logs": "Logbücher",
 	"sp-contributions-talk": "Diskussion",
-	"sp-contributions-userrights": "{{GENDER:$1|Benutzerrechte­verwaltung}}",
+	"sp-contributions-userrights": "{{GENDER:$1|Benutzerrechte­verwaltung|Benutzerinnenrechte­verwaltung}}",
 	"sp-contributions-blocked-notice": "{{GENDER:$1|Dieser Benutzer|Diese Benutzerin}} ist derzeit gesperrt.\nEs folgt der aktuelle Eintrag aus dem Benutzersperr-Logbuch:",
 	"sp-contributions-blocked-notice-partial": "Dieser Benutzer ist derzeit teilweise gesperrt.\nEs folgt der aktuelle Eintrag aus dem Benutzersperr-Logbuch:",
 	"sp-contributions-blocked-notice-anon": "Diese IP-Adresse ist derzeit gesperrt.\nEs folgt der aktuelle Eintrag aus dem Benutzersperr-Logbuch:",

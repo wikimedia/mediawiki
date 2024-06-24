@@ -3760,7 +3760,7 @@
 	"expand_templates_xml_output": "XML 輸出",
 	"expand_templates_html_output": "原始 HTML 輸出",
 	"expand_templates_ok": "確定",
-	"expand_templates_remove_comments": "移除評論",
+	"expand_templates_remove_comments": "移除註解",
 	"expand_templates_remove_nowiki": "在結果中禁止顯示 <nowiki> 標籤",
 	"expand_templates_generate_xml": "顯示 XML 解析樹",
 	"expand_templates_generate_rawhtml": "顯示原始 HTML",

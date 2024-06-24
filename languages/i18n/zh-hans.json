@@ -3045,7 +3045,7 @@
 	"tooltip-n-portal": "关于本计划，您可做的事，何处找到您所需",
 	"tooltip-n-currentevents": "寻找当前事件的背景信息",
 	"tooltip-n-recentchanges": "本wiki的最近更改列表",
-	"tooltip-n-randompage": "加载一个随机页面",
+	"tooltip-n-randompage": "随机加载页面",
 	"tooltip-n-help": "查找帮助的地方",
 	"tooltip-t-whatlinkshere": "所有链接至本页面的wiki页面列表",
 	"tooltip-t-recentchangeslinked": "链自本页的页面的最近更改",

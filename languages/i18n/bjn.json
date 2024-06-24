@@ -2147,7 +2147,7 @@
 	"minutes": "{{PLURAL:$1|$1 manit|$1 mamanit}}",
 	"hours": "{{PLURAL:$1|$1 jam|$1 jam}}",
 	"days": "{{PLURAL:$1|$1 hari|$1 hahari}}",
-	"ago": "$1 lalu",
+	"ago": "$1 nang liwat",
 	"just-now": "hanyar haja",
 	"bad_image_list": "Purmatnya nangkaya di bawah ni:\n\nDaptar buting (baris bamula wan *) haja nang dipartimbangkan.\nTautan ta'asa dalam sabuah baris mustinya sabuah tautan ka barakas nang buruk.\nTautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nangkaya tungkaran-tungkaran di mana barakas itu ada.",
 	"metadata": "Metadata",

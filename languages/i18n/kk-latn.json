@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ajiniyaz Nurniyazov",
 			"Amire80",
 			"Atabek",
 			"DannyS712",
@@ -994,8 +995,8 @@
 	"ipb-unblock": "Qatıswşı atın nemese IP mekenjaýın buğattamaw",
 	"ipb-blocklist": "Bar buğattawlardı qaraw",
 	"block-expiry": "Merzimi bitpek:",
-	"unblockip": "Qatıswşını buğattamaw",
-	"unblockiptext": "Tömendegi pişindi aldındağı IP mekenjaýımen ne atımen buğattalğan qatıswşığa jazw qatınawın qalpına keltiriwi üşin qoldanıñız.",
+	"unblockip": "Paydalanıwshını bloktan shıǵarıw",
+	"unblockiptext": "Aldın bloklanǵan IP adres yamasa akkaunt ushın redaktorlaw múmkinshiligin qayta tiklew ushın tómendegi formanı paydalanıńız.",
 	"ipusubmit": "Osı mekenjaýdı buğattamaw",
 	"unblocked": "[[User:$1|$1]] buğattawı öşirildi",
 	"unblocked-id": "$1 buğattaw alastaldı",
