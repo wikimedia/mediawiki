@@ -329,7 +329,7 @@
 				api = this;
 
 			function finishUpload( moreData ) {
-				return api.uploadFromStash( filekey, Object.assign( data, moreData ) );
+				return api.uploadFromStash( filekey, Object.assign( {}, data, moreData ) );
 			}
 
 			return uploadPromise.then(
