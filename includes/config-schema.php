@@ -3413,6 +3413,9 @@ return [
 				'type' => 'integer',
 			],
 		],
+		'APIRequestLog' => [
+			'deprecated' => 'since 1.43; use api or api-request $wgDebugLogGroups channel',
+		],
 		'RestSandboxSpecs' => [
 			'additionalProperties' => [
 				'type' => 'object',

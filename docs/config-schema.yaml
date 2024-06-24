@@ -7647,6 +7647,7 @@ config-schema:
             This should be lower than the 'max lag' value in $wgLBFactoryConf.
     APIRequestLog:
         default: false
+        deprecated: 'since 1.43; use api or api-request $wgDebugLogGroups channel'
         description: |-
             Log file or URL (TCP or UDP) to log API requests to, or false to disable
             API request logging

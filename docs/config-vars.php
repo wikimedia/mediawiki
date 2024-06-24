@@ -4168,6 +4168,7 @@ $wgAPIMaxLagThreshold = null;
 /**
  * Config variable stub for the APIRequestLog setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::APIRequestLog
+ * @deprecated since 1.43; use api or api-request $wgDebugLogGroups channel
  */
 $wgAPIRequestLog = null;
 

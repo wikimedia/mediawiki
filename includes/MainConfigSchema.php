@@ -12232,6 +12232,7 @@ class MainConfigSchema {
 	 */
 	public const APIRequestLog = [
 		'default' => false,
+		'deprecated' => 'since 1.43; use api or api-request $wgDebugLogGroups channel',
 	];
 
 	/**

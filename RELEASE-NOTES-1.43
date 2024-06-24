@@ -301,6 +301,8 @@ because of Phabricator reports.
 * `.background-image()` mixin from mediawiki.mixins.less, deprecated since 1.38,
   has been removed.
 * IDatabase::nextSequenceValue(), deprecated since 1.30, was removed.
+* $wgAPIRequestLog was removed without deprecation. Use "api" and "api-request"
+  wgDebugLogGroups channels or SPI instead.
 * The setStats() method in MediaWiki\Rest\Router now expects a StatsFactory
   rather than a StatsdDataFactoryInterface. The method has been marked @internal
   and should not be called by extensions.
