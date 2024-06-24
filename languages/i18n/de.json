@@ -1371,7 +1371,7 @@
 	"right-block": "Benutzer sperren (Schreibrecht)",
 	"right-blockemail": "Benutzer am Versenden von E-Mails hindern",
 	"right-hideuser": "Benutzernamen sperren und verbergen",
-	"right-ipblock-exempt": "Ausnahme von IP-Sperren, automatischen Sperren und Rangesperren",
+	"right-ipblock-exempt": "Umgehung von IP-Sperren, automatischen Sperren und Bereichssperren",
 	"right-unblockself": "Sich entsperren",
 	"right-protect": "Schutzeinstellungen ändern und kaskadengeschützte Seiten bearbeiten",
 	"right-editprotected": "Seiten bearbeiten, die als „{{int:protect-level-sysop}}“ geschützt sind",

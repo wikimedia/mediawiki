@@ -30,7 +30,8 @@
 			"아라",
 			"Ajiniyaz Nurniyazov",
 			"Nurlan",
-			"Casserium"
+			"Casserium",
+			"Amankel'dy"
 		]
 	},
 	"tog-underline": "Сілтеме астын сызу:",
@@ -3167,6 +3168,8 @@
 	"tag-mw-new-redirect-description": "Жаңа бағыттағыш жасайтын немесе бетті бағыттағышқа өзгертетін өңдемелер",
 	"tag-mw-removed-redirect": "Бағыттағыш өшірілді",
 	"tag-mw-removed-redirect-description": "Бағыттағыш бетті бағыттағышсыз бетке ауыстыратын өңдемелер",
+	"tag-mw-changed-redirect-target": "Нысана бет өзгертілді",
+	"tag-mw-changed-redirect-target-description": "Бағыттайтын беттің нысанасын өзгертетін өңдемелер",
 	"tag-mw-blank": "Тазарту",
 	"tag-mw-blank-description": "Бетті тазартатын өңдемелер",
 	"tag-mw-replace": "Алмастырылды",

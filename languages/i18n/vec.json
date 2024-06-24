@@ -31,7 +31,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"1233qwer1234qwer4",
-			"Amire80"
+			"Amire80",
+			"Iohanen"
 		]
 	},
 	"tog-underline": "Sotołinea i lingambi:",
@@ -210,6 +211,7 @@
 	"talk": "Discusion",
 	"views": "Vixuałixasion",
 	"toolbox": "Instrumenti",
+	"cactions": "Piasè",
 	"tool-link-userrights": "Modifica grupi {{GENDER:$1|utente}}",
 	"tool-link-userrights-readonly": "Vixualixa {{GENDER:$1|}} grupi",
 	"tool-link-emailuser": "Scrivi na e-mail a {{GENDER:$1|sto|sta}} utente",
@@ -2095,7 +2097,7 @@
 	"movenotallowedfile": "No ti gà i parmessi necessari par spostar file.",
 	"cant-move-user-page": "No se dispone dei parmessi necessari par spostar le pàxene utente.",
 	"cant-move-to-user-page": "No se dispone dei parmessi necessari par spostar la pàxena su na pàxena utente (ad ecezion de na sotopàxena utente).",
-	"newtitle": "Al titolo novo:",
+	"newtitle": "Novo tìtoło",
 	"move-watch": "Tien d'ocio",
 	"movepagebtn": "Sposta sta voxe",
 	"pagemovedsub": "Pagina spostà",
@@ -2707,7 +2709,7 @@
 	"feedback-thanks": "Grasie! El to feedback el xe sta publicà a ƚa pàgina \"[$2 $1]\".",
 	"feedback-thanks-title": "Grassie!",
 	"searchsuggest-search": "Serca drento de {{SITENAME}}",
-	"searchsuggest-containing": "che contien...",
+	"searchsuggest-containing": "Serca pàzine che i contien",
 	"api-clientside-error-timeout": "El server nó 'l ga risposto entro el tenpo previsto.",
 	"api-error-badtoken": "Eror interno: token fałà.",
 	"api-error-emptypage": "Ƚa creasion de nove pàgine vode no ƚa xe consentìa.",
