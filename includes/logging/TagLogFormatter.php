@@ -76,13 +76,13 @@ class TagLogFormatter extends LogFormatter {
 
 	protected function getMessageKey() {
 		$key = parent::getMessageKey();
-		$params = $this->getMessageParameters();
+		$rawParams = $this->entry->getParameters();
 
-		$add = ( isset( $params[6] ) && isset( $params[6]['num'] ) && $params[6]['num'] );
-		$remove = ( isset( $params[8] ) && isset( $params[8]['num'] ) && $params[8]['num'] );
+		$add = ( $rawParams['7:number:tagsAddedCount'] > 0 );
+		$remove = ( $rawParams['9:number:tagsRemovedCount'] > 0 );
 		$key .= ( $remove ? ( $add ? '' : '-remove' ) : '-add' );
 
-		if ( isset( $params[3] ) && $params[3] ) {
+		if ( $rawParams['4::revid'] ) {
 			// Messages: logentry-tag-update-add-revision, logentry-tag-update-remove-revision,
 			// logentry-tag-update-revision
 			$key .= '-revision';

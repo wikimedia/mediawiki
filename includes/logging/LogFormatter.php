@@ -692,7 +692,7 @@ class LogFormatter {
 	 *     * number: Format value as number
 	 *     * list: Format value as a comma-separated list
 	 * @param mixed $value The parameter value that should be formatted
-	 * @return string|array Formatted value
+	 * @return mixed Formatted value
 	 * @since 1.21
 	 */
 	protected function formatParameterValue( $type, $value ) {
