@@ -319,11 +319,13 @@ ChangesListWrapperWidget.prototype.applyHighlight = function () {
 		// * mw-rcfilters-highlight-color-c3
 		// * mw-rcfilters-highlight-color-c4
 		// * mw-rcfilters-highlight-color-c5
+		// * notheme - T366920 Makes highlighted list legible in dark-mode.
 		$elements
-			.addClass(
-				'mw-rcfilters-highlighted ' +
-				'mw-rcfilters-highlight-color-' + filterItem.getHighlightColor()
-			);
+			.addClass( [
+				'mw-rcfilters-highlighted',
+				'mw-rcfilters-highlight-color-' + filterItem.getHighlightColor(),
+				'notheme'
+			] );
 
 		// Track the filters for each item in .data( 'highlightedFilters' )
 		$elements.each( function () {
@@ -377,7 +379,7 @@ ChangesListWrapperWidget.prototype.clearHighlight = function () {
 	this.$element.find( '.mw-rcfilters-highlighted' )
 		.removeAttr( 'title' )
 		.removeData( 'highlightedFilters' )
-		.removeClass( 'mw-rcfilters-highlighted' );
+		.removeClass( [ 'mw-rcfilters-highlighted', 'notheme' ] );
 
 	// Remove grey from enhanced rows
 	this.$element.find( '.mw-rcfilters-ui-changesListWrapperWidget-enhanced-grey' )

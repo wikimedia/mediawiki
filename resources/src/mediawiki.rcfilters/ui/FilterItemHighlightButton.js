@@ -73,7 +73,9 @@ FilterItemHighlightButton.prototype.updateUiBasedOnModel = function () {
 		currentColor !== null
 	);
 
+	let hasFilter = false;
 	HighlightColors.forEach( ( c ) => {
+		hasFilter = hasFilter || c === currentColor;
 		// The following classes are used here:
 		// * mw-rcfilters-ui-filterItemHighlightButton-circle-color-c1
 		// * mw-rcfilters-ui-filterItemHighlightButton-circle-color-c2
@@ -86,6 +88,7 @@ FilterItemHighlightButton.prototype.updateUiBasedOnModel = function () {
 				c === currentColor
 			);
 	} );
+	this.$icon.toggleClass( 'mw-no-invert', hasFilter );
 };
 
 module.exports = FilterItemHighlightButton;
