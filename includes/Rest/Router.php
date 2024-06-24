@@ -9,8 +9,9 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
+use MediaWiki\Rest\Module\ExtraRoutesModule;
 use MediaWiki\Rest\Module\Module;
-use MediaWiki\Rest\Module\RouteFileModule;
+use MediaWiki\Rest\Module\SpecBasedModule;
 use MediaWiki\Rest\PathTemplateMatcher\ModuleConfigurationException;
 use MediaWiki\Rest\Reporter\ErrorReporter;
 use MediaWiki\Rest\Validator\Validator;
@@ -254,6 +255,7 @@ class Router {
 	private function buildModuleMap(): array {
 		$modules = [];
 		$noPrefixFiles = [];
+		$id = ''; // should not be used, make Phan happy
 
 		foreach ( $this->routeFiles as $file ) {
 			// NOTE: we end up loading the file here (for the meta-data) as well
@@ -261,33 +263,36 @@ class Router {
 			// caching on both levels, that shouldn't matter.
 			$spec = Module::loadJsonFile( $file );
 
-			if ( isset( $spec['routes'] ) ) {
-				if ( !isset( $spec['module'] ) ) {
+			if ( isset( $spec['mwapi'] ) || isset( $spec['moduleId'] ) || isset( $spec['routes'] ) ) {
+				// OpenAPI 3, with some extras like the "module" field
+				if ( !isset( $spec['moduleId'] ) ) {
 					throw new ModuleConfigurationException(
-						"Missing module name in $file"
+						"Missing 'moduleId' field in $file"
 					);
 				}
 
-				// Intermediate format, containing a "routes" key and a prefix
-				// in the "module" field.
-				$name = $spec['module'];
+				$id = $spec['moduleId'];
 
-				if ( isset( $modules[$name] ) ) {
-					$otherFiles = implode( ' and ', $modules[$name]['routeFiles'] );
-					throw new ModuleConfigurationException(
-						"Duplicate module $name in $file, also used in $otherFiles"
-					);
-				}
-
-				$modules[$name] = [
-					'class' => RouteFileModule::class,
-					'pathPrefix' => $name,
-					'routeFiles' => [ $file ]
+				$moduleInfo = [
+					'class' => SpecBasedModule::class,
+					'pathPrefix' => $id,
+					'specFile' => $file
 				];
-				// TODO: also support OpenAPI spec files
 			} else {
 				// Old-style route file containing a flat list of routes.
 				$noPrefixFiles[] = $file;
+				$moduleInfo = null;
+			}
+
+			if ( $moduleInfo ) {
+				if ( isset( $modules[$id] ) ) {
+					$otherFiles = implode( ' and ', $modules[$id]['routeFiles'] );
+					throw new ModuleConfigurationException(
+						"Duplicate module $id in $file, also used in $otherFiles"
+					);
+				}
+
+				$modules[$id] = $moduleInfo;
 			}
 		}
 
@@ -296,7 +301,7 @@ class Router {
 		// registered by extensions.
 		if ( $noPrefixFiles || $this->extraRoutes ) {
 			$modules[''] = [
-				'class' => RouteFileModule::class,
+				'class' => ExtraRoutesModule::class,
 				'pathPrefix' => '',
 				'routeFiles' => $noPrefixFiles,
 				'extraRoutes' => $this->extraRoutes,
@@ -363,17 +368,7 @@ class Router {
 			return null;
 		}
 
-		$module = new RouteFileModule(
-			$info['routeFiles'] ?? [],
-			$info['extraRoutes'] ?? [],
-			$this,
-			$info['pathPrefix'] ?? $name,
-			$this->responseFactory,
-			$this->basicAuth,
-			$this->objectFactory,
-			$this->restValidator,
-			$this->errorReporter
-		);
+		$module = $this->instantiateModule( $info, $name );
 
 		$cacheData = $this->fetchCachedModuleData( $name );
 
@@ -521,6 +516,38 @@ class Router {
 		$this->stats = $stats;
 
 		return $this;
+	}
+
+	/**
+	 * @param array $info
+	 * @param string $name
+	 */
+	private function instantiateModule( array $info, string $name ): Module {
+		if ( $info['class'] === SpecBasedModule::class ) {
+			$module = new SpecBasedModule(
+				$info['specFile'],
+				$this,
+				$info['pathPrefix'] ?? $name,
+				$this->responseFactory,
+				$this->basicAuth,
+				$this->objectFactory,
+				$this->restValidator,
+				$this->errorReporter
+			);
+		} else {
+			$module = new ExtraRoutesModule(
+				$info['routeFiles'] ?? [],
+				$info['extraRoutes'] ?? [],
+				$this,
+				$this->responseFactory,
+				$this->basicAuth,
+				$this->objectFactory,
+				$this->restValidator,
+				$this->errorReporter
+			);
+		}
+
+		return $module;
 	}
 
 }

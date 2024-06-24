@@ -120,7 +120,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$request = new RequestData( [ 'uri' => new Uri( '/rest/' ) ] );
 		$router = $this->createRouter( $request );
 		$response = $router->execute( $request );
-		$this->assertSame( 200, $response->getStatusCode() );
+		$this->assertSame( 200, $response->getStatusCode(), (string)$response->getBody() );
 	}
 
 	public function testPrefixMismatch() {
@@ -328,6 +328,22 @@ class RouterTest extends MediaWikiUnitTestCase {
 
 		// Routes from flat route files end up on a module that uses the empty prefix.
 		$this->assertSame( [ 'mock/v1', '' ], $router->getModuleNames() );
+
+		$response = $router->execute( $request );
+		$this->assertSame( 200, $response->getStatusCode() );
+	}
+
+	public function testFlatRouteFile() {
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/ModuleTest/hello/you' )
+		] );
+		$router = $this->createRouter(
+			$request,
+			null,
+			[ __DIR__ . '/Module/moduleFlatRoutes.json' ]
+		);
+
+		$this->assertSame( [ '' ], $router->getModuleNames() );
 
 		$response = $router->execute( $request );
 		$this->assertSame( 200, $response->getStatusCode() );

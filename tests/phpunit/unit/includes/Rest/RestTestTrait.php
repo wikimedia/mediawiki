@@ -38,6 +38,9 @@ trait RestTestTrait {
 	 * @return Router
 	 */
 	private function newRouter( array $params = [] ) {
+		$responseFactory = new ResponseFactory( [] );
+		$responseFactory->setShowExceptionDetails( true );
+
 		$objectFactory = new ObjectFactory(
 			$this->getMockForAbstractClass( ContainerInterface::class )
 		);
@@ -61,7 +64,7 @@ trait RestTestTrait {
 			$params['extraRoutes'] ?? [],
 			$params['options'] ?? new ServiceOptions( Router::CONSTRUCTOR_OPTIONS, $config ),
 			$params['cacheBag'] ?? new EmptyBagOStuff(),
-			$params['responseFactory'] ?? new ResponseFactory( [] ),
+			$params['responseFactory'] ?? $responseFactory,
 			$params['basicAuth'] ?? new StaticBasicAuthorizer(),
 			$params['authority'] ?? $authority,
 			$params['objectFactory'] ?? $objectFactory,

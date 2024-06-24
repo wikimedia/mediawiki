@@ -1,25 +1,54 @@
 {
-	"module": "mock.v1",
-	"routes": [
-		{
-			"path": "/ModuleTest/hello",
-			"class": "MediaWiki\\Tests\\Rest\\Handler\\HelloHandler"
+	"$schema": "https://www.mediawiki.org/schema/mwapi-1.0",
+	"mwapi": "1.0.0",
+	"moduleId": "test.v1",
+	"info": {
+		"title": "test",
+		"version": "1.0"
+	},
+	"paths": {
+		"/ModuleTest/HELLO/{name}": {
+			"get": {
+				"redirect": {
+					"path": "/test.v1/ModuleTest/hello/{name}"
+				}
+			}
 		},
-		{
-			"path": "/ModuleTest/throw",
-			"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::throwHandlerFactory"
+		"/ModuleTest/hello/{name}": {
+			"get": {
+				"handler": {
+					"class": "MediaWiki\\Tests\\Rest\\Handler\\HelloHandler",
+					"hello": "hi!"
+				}
+			}
 		},
-		{
-			"path": "/ModuleTest/fatal",
-			"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::fatalHandlerFactory"
+		"/ModuleTest/throw": {
+			"get": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::throwHandlerFactory"
+				}
+			}
 		},
-		{
-			"path": "/ModuleTest/throwRedirect",
-			"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::throwRedirectHandlerFactory"
+		"/ModuleTest/fatal": {
+			"get": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::fatalHandlerFactory"
+				}
+			}
 		},
-		{
-			"path": "/ModuleTest/throwWrapped",
-			"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::throwWrappedHandlerFactory"
+		"/ModuleTest/throwRedirect": {
+			"get": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::throwRedirectHandlerFactory"
+				}
+			}
+		},
+		"/ModuleTest/throwWrapped": {
+			"get": {
+				"handler": {
+					"factory": "MediaWiki\\Tests\\Rest\\MockHandlerFactory::throwWrappedHandlerFactory"
+				}
+			}
 		}
-	]
+	}
 }

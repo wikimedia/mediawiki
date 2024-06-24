@@ -287,7 +287,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			$request->setParsedBody( [] );
 		}
 
-		$handler->initContext( $this->newModule( [ 'router' => $router ] ), $config );
+		$handler->initContext( $this->newModule( [ 'router' => $router ] ), 'test', $config );
 		$handler->initServices( $authority, $responseFactory, $this->createHookContainer() );
 		$handler->initSession( $this->getSession( true ) );
 		$handler->initForExecute( $request );
