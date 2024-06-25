@@ -10,7 +10,6 @@ class ZhConverterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideAutoConvertToAllVariants
-	 * @covers \ZhConverter::autoConvertToAllVariants
 	 */
 	public function testAutoConvertToAllVariants( $result, $value ) {
 		$this->assertEquals( $result,

@@ -9,7 +9,6 @@ class TgConverterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideAutoConvertToAllVariants
-	 * @covers \TgConverter::autoConvertToAllVariants
 	 */
 	public function testAutoConvertToAllVariants( $result, $value ) {
 		$this->assertEquals( $result, $this->getLanguageConverter()->autoConvertToAllVariants( $value ) );

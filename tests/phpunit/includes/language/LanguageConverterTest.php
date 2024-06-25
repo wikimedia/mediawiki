@@ -12,6 +12,7 @@ use MediaWiki\User\User;
 
 /**
  * @group Language
+ * @covers \LanguageConverter
  */
 class LanguageConverterTest extends MediaWikiLangTestCase {
 
@@ -52,17 +53,12 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		parent::tearDown();
 	}
 
-	/**
-	 * @covers \LanguageConverter::getPreferredVariant
-	 */
 	public function testGetPreferredVariantDefaults() {
 		$this->assertEquals( 'tg', $this->lc->getPreferredVariant() );
 	}
 
 	/**
 	 * @dataProvider provideGetPreferredVariant
-	 * @covers \LanguageConverter::getPreferredVariant
-	 * @covers \LanguageConverter::getURLVariant
 	 */
 	public function testGetPreferredVariant( $requestVal, $expected ) {
 		global $wgRequest;
@@ -79,8 +75,6 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideGetPreferredVariantHeaders
-	 * @covers \LanguageConverter::getPreferredVariant
-	 * @covers \LanguageConverter::getHeaderVariant
 	 */
 	public function testGetPreferredVariantHeaders( $headerVal, $expected ) {
 		global $wgRequest;
@@ -99,7 +93,6 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideGetPreferredVariantUserOption
-	 * @covers \LanguageConverter::getPreferredVariant
 	 */
 	public function testGetPreferredVariantUserOption( $optionVal, $expected, $foreignLang ) {
 		$optionName = 'variant';
@@ -133,11 +126,6 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		yield 'for foreign language, BCP47 (en-simple)' => [ 'en-simple', 'simple', true ];
 	}
 
-	/**
-	 * @covers \LanguageConverter::getPreferredVariant
-	 * @covers \LanguageConverter::getUserVariant
-	 * @covers \LanguageConverter::getURLVariant
-	 */
 	public function testGetPreferredVariantHeaderUserVsUrl() {
 		global $wgRequest;
 
@@ -161,7 +149,6 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideGetPreferredVariantDefaultLanguageVariant
-	 * @covers \LanguageConverter::getPreferredVariant
 	 */
 	public function testGetPreferredVariantDefaultLanguageVariant( $globalVal, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::DefaultLanguageVariant, $globalVal );
@@ -174,10 +161,6 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		yield 'BCP47 (en-simple)' => [ 'en-simple', 'simple' ];
 	}
 
-	/**
-	 * @covers \LanguageConverter::getPreferredVariant
-	 * @covers \LanguageConverter::getURLVariant
-	 */
 	public function testGetPreferredVariantDefaultLanguageVsUrlVariant() {
 		global $wgRequest;
 
@@ -189,8 +172,6 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 
 	/**
 	 * Test exhausting pcre.backtrack_limit
-	 *
-	 * @covers \LanguageConverter::autoConvert
 	 */
 	public function testAutoConvertT124404() {
 		$testString = str_repeat( 'xxx xxx xxx', 1000 );
@@ -207,8 +188,6 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideTitlesToConvert
-	 * @covers \LanguageConverter::convertTitle
-	 *
 	 * @param LinkTarget|PageReference|callable $title title to convert
 	 * @param string $expected
 	 */

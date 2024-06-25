@@ -9,15 +9,13 @@
  */
 
 /**
+ * @group Language
+ * @covers \LanguageConverter
  * @covers \TlyConverter
  */
 class TlyConverterTest extends MediaWikiIntegrationTestCase {
-
 	use LanguageConverterTestTrait;
 
-	/**
-	 * @covers \LanguageConverter::convertTo
-	 */
 	public function testConversionToCyrillic() {
 		// A conversion of Latin to Cyrillic
 		$this->assertEquals(
@@ -45,9 +43,6 @@ class TlyConverterTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	/**
-	 * @covers \LanguageConverter::convertTo
-	 */
 	public function testConversionToLatin() {
 		// A conversion of Cyrillic to Latin
 		$this->assertEquals(

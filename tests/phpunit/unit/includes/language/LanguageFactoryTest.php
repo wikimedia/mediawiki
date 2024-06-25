@@ -15,7 +15,8 @@ use MediaWikiUnitTestCase;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 
 /**
- * @coversDefaultClass \MediaWiki\Languages\LanguageFactory
+ * @group Language
+ * @covers \MediaWiki\Languages\LanguageFactory
  */
 class LanguageFactoryTest extends MediaWikiUnitTestCase {
 	private function createFactory() {
@@ -41,7 +42,6 @@ class LanguageFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::getLanguage()
 	 * @dataProvider provideCodes
 	 * @dataProvider provideDeprecatedCodes
 	 */
@@ -52,7 +52,6 @@ class LanguageFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::getLanguage()
 	 * @dataProvider provideCodes
 	 */
 	public function testGetLanguageBcp47Code( $code, $bcp47code ) {
@@ -62,9 +61,6 @@ class LanguageFactoryTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $code, $lang->getCode() );
 	}
 
-	/**
-	 * @covers ::getLanguage()
-	 */
 	public function testGetLanguageAmbig() {
 		// At this moment, `egl` is a valid internal code, and should *not*
 		// be remapped.  Its BCP-47 equivalent is also `egl`.

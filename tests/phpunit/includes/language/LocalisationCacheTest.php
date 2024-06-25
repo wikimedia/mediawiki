@@ -6,8 +6,8 @@ use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;
 
 /**
+ * @group Language
  * @group Database
- * @group Cache
  * @covers \LocalisationCache
  * @author Niklas Laxström
  */

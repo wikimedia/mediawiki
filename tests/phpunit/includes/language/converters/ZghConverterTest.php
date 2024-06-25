@@ -2,7 +2,7 @@
 
 /**
  * @group Language
- * @covers ShiConverter
+ * @covers \ShiConverter
  */
 class ZghConverterTest extends MediaWikiIntegrationTestCase {
 
@@ -10,7 +10,6 @@ class ZghConverterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideAutoConvertToAllVariants
-	 * @covers ShiConverter::autoConvertToAllVariants
 	 */
 	public function testAutoConvertToAllVariants( $result, $value ) {
 		$this->assertEquals( $result,

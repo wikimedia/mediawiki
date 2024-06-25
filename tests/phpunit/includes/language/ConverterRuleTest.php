@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group Language
  * @covers \ConverterRule
  */
 class ConverterRuleTest extends MediaWikiIntegrationTestCase {

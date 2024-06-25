@@ -2,13 +2,16 @@
 
 use MediaWiki\MainConfigNames;
 
+/**
+ * @group Language
+ * @covers \Language::userAdjust
+ */
 class TimeAdjustTest extends MediaWikiLangTestCase {
 	private const LOCAL_TZ_OFFSET = 17;
 
 	/**
 	 * Test offset usage for a given Language::userAdjust
 	 * @dataProvider dataUserAdjust
-	 * @covers \Language::userAdjust
 	 */
 	public function testUserAdjust( string $date, $correction, string $expected ) {
 		$this->overrideConfigValue( MainConfigNames::LocalTZoffset, self::LOCAL_TZ_OFFSET );

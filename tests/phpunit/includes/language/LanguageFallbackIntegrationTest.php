@@ -4,8 +4,8 @@ use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\MainConfigNames;
 
 /**
- * @coversDefaultClass \MediaWiki\Languages\LanguageFallback
- * @covers ::__construct
+ * @group Language
+ * @covers \MediaWiki\Languages\LanguageFallback
  */
 class LanguageFallbackIntegrationTest extends MediaWikiIntegrationTestCase {
 	use LanguageFallbackTestTrait;
