@@ -1984,8 +1984,8 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	public function testTranslateBlockExpiry( $expectedData, $str, $now, $desc ) {
 		$lang = $this->getLang();
 		if ( is_array( $expectedData ) ) {
-			[ $func, $arg ] = $expectedData;
-			$expected = $lang->$func( $arg );
+			$func = array_shift( $expectedData );
+			$expected = $lang->$func( ...$expectedData );
 		} else {
 			$expected = $expectedData;
 		}
@@ -2000,15 +2000,15 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			[ 'indefinite', 'infinite', 0, 'infinite from ipboptions' ],
 			[ 'indefinite', 'infinity', 0, 'alternative infinite from ipboptions' ],
 			[ 'indefinite', 'indefinite', 0, 'another alternative infinite from ipboptions' ],
-			[ [ 'formatDuration', 1023 * 60 * 60 ], '1023 hours', 0, 'relative' ],
-			[ [ 'formatDuration', -1023 ], '-1023 seconds', 0, 'negative relative' ],
+			[ [ 'formatDurationBetweenTimestamps', 0, 1023 * 60 * 60 ], '1023 hours', 0, 'relative' ],
+			[ [ 'formatDurationBetweenTimestamps', 0, -1023 ], '-1023 seconds', 0, 'negative relative' ],
 			[
-				[ 'formatDuration', 1023 * 60 * 60 ],
+				[ 'formatDurationBetweenTimestamps', 665553906, 665553906 + ( 1023 * 60 * 60 ) ],
 				'1023 hours',
-				wfTimestamp( TS_UNIX, '19910203040506' ),
+				wfTimestamp( TS_UNIX, '1991-02-03 04:05:06' ),
 				'relative with initial timestamp'
 			],
-			[ [ 'formatDuration', 0 ], 'now', 0, 'now' ],
+			[ [ 'formatDurationBetweenTimestamps', 0, 0 ], 'now', 0, 'now' ],
 			[
 				[ 'timeanddate', '20120102070000' ],
 				'2012-1-1 7:00 +1 day',
