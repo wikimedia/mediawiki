@@ -2761,6 +2761,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::countAuthorsBetween
 	 */
 	public function testAuthorsBetween() {
+		$this->disableAutoCreateTempUser();
 		$NUM = 5;
 		$page = $this->getTestPage( __METHOD__ );
 		$users = [
