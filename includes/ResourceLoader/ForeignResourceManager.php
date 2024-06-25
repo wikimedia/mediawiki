@@ -24,6 +24,7 @@ use Composer\Spdx\SpdxLicenses;
 use LogicException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use PharData;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -286,10 +287,17 @@ class ForeignResourceManager {
 			}
 		}
 
-		$req = MediaWikiServices::getInstance()->getHttpRequestFactory()
+		$services = MediaWikiServices::getInstance();
+		$req = $services->getHttpRequestFactory()
 			->create( $src, [ 'method' => 'GET', 'followRedirects' => false ], __METHOD__ );
-		if ( !$req->execute()->isOK() ) {
-			throw new LogicException( "Failed to download resource at {$src}" );
+		$reqStatusValue = $req->execute();
+		if ( !$reqStatusValue->isOK() ) {
+			$message = "Failed to download resource at {$src}";
+			$reqError = $reqStatusValue->getMessages( 'error' )[0] ?? null;
+			if ( $reqError !== null ) {
+				$message .= ': ' . Message::newFromSpecifier( $reqError )->inLanguage( 'en' )->plain();
+			}
+			throw new LogicException( $message );
 		}
 		if ( $req->getStatus() !== 200 ) {
 			throw new LogicException( "Unexpected HTTP {$req->getStatus()} response from {$src}" );
