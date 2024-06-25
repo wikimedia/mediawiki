@@ -500,7 +500,6 @@ $wgRestrictionLevels = array(
 	'user',
 	'autoconfirmed',
 	'autoreview',
-	'reviewer',
 	'sysop',
 	'bureaucrat',
 	'steward'
