@@ -2484,23 +2484,11 @@ class WikiPage implements Stringable, Page, PageRecord {
 
 		$services->getLinkCache()->invalidateTitle( $title );
 
-		// Invalidate caches of articles which include this page
-		$jobs = [];
-		$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
-			$title,
-			'templatelinks',
-			[ 'causeAction' => 'create-page' ]
+		DeferredUpdates::addCallableUpdate(
+			static function () use ( $title, $maybeIsRedirect ) {
+				self::queueBacklinksJobs( $title, true, $maybeIsRedirect, 'create-page' );
+			}
 		);
-		// Images
-		if ( $maybeIsRedirect && $title->getNamespace() === NS_FILE ) {
-			// Process imagelinks when the file page was created as a redirect
-			$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
-				$title,
-				'imagelinks',
-				[ 'causeAction' => 'create-page' ]
-			);
-		}
-		$services->getJobQueueGroup()->lazyPush( $jobs );
 
 		if ( $title->getNamespace() === NS_CATEGORY ) {
 			// Load the Category object, which will schedule a job to create
@@ -2538,21 +2526,9 @@ class WikiPage implements Stringable, Page, PageRecord {
 		}
 
 		// Invalidate caches of articles which include this page
-		$jobs = [];
-		$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
-			$title,
-			'templatelinks',
-			[ 'causeAction' => 'delete-page' ]
-		);
-		// Images
-		if ( $title->getNamespace() === NS_FILE ) {
-			$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
-				$title,
-				'imagelinks',
-				[ 'causeAction' => 'delete-page' ]
-			);
-		}
-		$services->getJobQueueGroup()->lazyPush( $jobs );
+		DeferredUpdates::addCallableUpdate( static function () use ( $title ) {
+			self::queueBacklinksJobs( $title, true, true, 'delete-page' );
+		} );
 
 		// User talk pages
 		if ( $title->getNamespace() === NS_USER_TALK ) {
@@ -2589,35 +2565,18 @@ class WikiPage implements Stringable, Page, PageRecord {
 	) {
 		// TODO: move this into a PageEventEmitter service
 
-		$jobs = [];
-		if ( $slotsChanged === null || in_array( SlotRecord::MAIN, $slotsChanged ) ) {
-			// Invalidate caches of articles which include this page.
-			// Only for the main slot, because only the main slot is transcluded.
-			// TODO: MCR: not true for TemplateStyles! [SlotHandler]
-			$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
-				$title,
-				'templatelinks',
-				[ 'causeAction' => 'edit-page' ]
-			);
-		}
-		// Images
-		if ( $maybeRedirectChanged && $title->getNamespace() === NS_FILE ) {
-			// Process imagelinks in case the redirect target has changed
-			$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
-				$title,
-				'imagelinks',
-				[ 'causeAction' => 'edit-page' ]
-			);
-		}
-		// Invalidate the caches of all pages which redirect here
-		$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
-			$title,
-			'redirect',
-			[ 'causeAction' => 'edit-page' ]
+		DeferredUpdates::addCallableUpdate(
+			static function () use ( $title, $slotsChanged, $maybeRedirectChanged ) {
+				self::queueBacklinksJobs(
+					$title,
+					$slotsChanged === null || in_array( SlotRecord::MAIN, $slotsChanged ),
+					$maybeRedirectChanged,
+					'edit-page'
+				);
+			}
 		);
-		$services = MediaWikiServices::getInstance();
-		$services->getJobQueueGroup()->lazyPush( $jobs );
 
+		$services = MediaWikiServices::getInstance();
 		$services->getLinkCache()->invalidateTitle( $title );
 
 		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
@@ -2631,6 +2590,49 @@ class WikiPage implements Stringable, Page, PageRecord {
 
 		// Purge cross-wiki cache entities referencing this page
 		self::purgeInterwikiCheckKey( $title );
+	}
+
+	private static function queueBacklinksJobs(
+		Title $title, $mainSlotChanged, $maybeRedirectChanged, $causeAction
+	) {
+		$services = MediaWikiServices::getInstance();
+		$backlinkCache = $services->getBacklinkCacheFactory()->getBacklinkCache( $title );
+
+		$jobs = [];
+		if ( $mainSlotChanged
+			&& $backlinkCache->hasLinks( 'templatelinks' )
+		) {
+			// Invalidate caches of articles which include this page.
+			// Only for the main slot, because only the main slot is transcluded.
+			// TODO: MCR: not true for TemplateStyles! [SlotHandler]
+			$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
+				$title,
+				'templatelinks',
+				[ 'causeAction' => $causeAction ]
+			);
+		}
+		// Images
+		if ( $maybeRedirectChanged && $title->getNamespace() === NS_FILE
+			&& $backlinkCache->hasLinks( 'imagelinks' )
+		) {
+			// Process imagelinks in case the redirect target has changed
+			$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
+				$title,
+				'imagelinks',
+				[ 'causeAction' => $causeAction ]
+			);
+		}
+		// Invalidate the caches of all pages which redirect here
+		if ( $backlinkCache->hasLinks( 'redirect' ) ) {
+			$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
+				$title,
+				'redirect',
+				[ 'causeAction' => $causeAction ]
+			);
+		}
+		if ( $jobs ) {
+			$services->getJobQueueGroup()->push( $jobs );
+		}
 	}
 
 	/**

@@ -1089,6 +1089,7 @@ abstract class MediaWikiEntryPoint {
 			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 			@flush();
 		}
+		wfDebug( "Output buffer flushed" );
 	}
 
 	/**
@@ -1230,7 +1231,9 @@ abstract class MediaWikiEntryPoint {
 			return false;
 		}
 
-		return $this->environment->fastCgiFinishRequest();
+		$success = $this->environment->fastCgiFinishRequest();
+		wfDebug( $success ? 'FastCGI request finished' : 'FastCGI request finish failed' );
+		return $success;
 	}
 
 	/**

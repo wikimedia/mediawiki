@@ -91,6 +91,13 @@ class BacklinkCache {
 	 */
 	protected $fullResultCache = [];
 
+	/**
+	 * Cache for hasLinks()
+	 *
+	 * @var bool[]
+	 */
+	private $hasLinksCache = [];
+
 	/** @var WANObjectCache */
 	protected $wanCache;
 
@@ -331,61 +338,60 @@ class BacklinkCache {
 	}
 
 	/**
-	 * Check if there are any backlinks
+	 * Check if there are any backlinks. Only use the process cache, since the
+	 * WAN cache is potentially stale (T368006).
+	 *
 	 * @param string $table
 	 * @return bool
 	 */
 	public function hasLinks( $table ) {
-		return ( $this->getNumLinks( $table, 1 ) > 0 );
+		if ( isset( $this->hasLinksCache[$table] ) ) {
+			return $this->hasLinksCache[$table];
+		}
+		if ( isset( $this->partitionCache[$table] ) ) {
+			$entry = reset( $this->partitionCache[$table] );
+			return (bool)$entry['numRows'];
+		}
+		if ( isset( $this->fullResultCache[$table] ) ) {
+			return (bool)$this->fullResultCache[$table]->numRows();
+		}
+		$hasLinks = (bool)$this->queryLinks( $table, false, false, 1 )->numRows();
+		$this->hasLinksCache[$table] = $hasLinks;
+		return $hasLinks;
 	}
 
 	/**
 	 * Get the approximate number of backlinks
 	 * @param string $table
-	 * @param int|float $max Only count up to this many backlinks, or INF for no max
 	 * @return int
 	 */
-	public function getNumLinks( $table, $max = INF ) {
+	public function getNumLinks( $table ) {
 		if ( isset( $this->partitionCache[$table] ) ) {
 			$entry = reset( $this->partitionCache[$table] );
-
-			return min( $max, $entry['numRows'] );
+			return $entry['numRows'];
 		}
 
 		if ( isset( $this->fullResultCache[$table] ) ) {
-			return min( $max, $this->fullResultCache[$table]->numRows() );
+			return $this->fullResultCache[$table]->numRows();
 		}
 
-		$count = $this->wanCache->getWithSetCallback(
+		return $this->wanCache->getWithSetCallback(
 			$this->wanCache->makeKey(
 				'numbacklinks',
 				CacheKeyHelper::getKeyForPage( $this->page ),
 				$table
 			),
 			self::CACHE_EXPIRY,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $table, $max ) {
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $table ) {
 				$setOpts += Database::getCacheSetOptions( $this->getDB() );
 
-				if ( is_infinite( $max ) ) {
-					// Use partition() since it will batch the query and skip the JOIN.
-					// Use $wgUpdateRowsPerJob just to encourage cache reuse for jobs.
-					$batchSize = $this->options->get( MainConfigNames::UpdateRowsPerJob );
-					$this->partition( $table, $batchSize );
-					$value = $this->partitionCache[$table][$batchSize]['numRows'];
-				} else {
-					// Fetch the full title info, since the caller will likely need it.
-					// Cache the row count if the result set limit made no difference.
-					$value = iterator_count( $this->getLinkPages( $table, false, false, $max ) );
-					if ( $value >= $max ) {
-						$ttl = WANObjectCache::TTL_UNCACHEABLE;
-					}
-				}
-
-				return $value;
+				// Use partition() since it will batch the query and skip the JOIN.
+				// Use $wgUpdateRowsPerJob just to encourage cache reuse for jobs.
+				$batchSize = $this->options->get( MainConfigNames::UpdateRowsPerJob );
+				$this->partition( $table, $batchSize );
+				return $this->partitionCache[$table][$batchSize]['numRows'];
 			}
 		);
-
-		return min( $max, $count );
 	}
 
 	/**
@@ -437,7 +443,7 @@ class BacklinkCache {
 					// Merge the link count and range partitions for this chunk
 					$value['numRows'] += $partitions['numRows'];
 					$value['batches'] = array_merge( $value['batches'], $partitions['batches'] );
-					if ( count( $partitions['batches'] ) ) {
+					if ( $partitions['numRows'] ) {
 						[ , $lEnd ] = end( $partitions['batches'] );
 						$start = $lEnd + 1; // pick up after this inclusive range
 					}
@@ -463,10 +469,18 @@ class BacklinkCache {
 	 * @return array
 	 */
 	protected function partitionResult( $res, $batchSize, $isComplete = true ) {
-		$batches = [];
 		$numRows = $res->numRows();
-		$numBatches = ceil( $numRows / $batchSize );
 
+		if ( $numRows === 0 ) {
+			// Return a single batch that covers all IDs (T368006)
+			return [
+				'numRows' => 0,
+				'batches' => [ [ false, false ] ]
+			];
+		}
+
+		$numBatches = ceil( $numRows / $batchSize );
+		$batches = [];
 		for ( $i = 0; $i < $numBatches; $i++ ) {
 			if ( $i == 0 && $isComplete ) {
 				$start = false;
