@@ -503,8 +503,7 @@ $wgRestrictionLevels = array(
 	'reviewer',
 	'sysop',
 	'bureaucrat',
-	'steward',
-	'sysadmin'
+	'steward'
 );
 
 $wgRestrictionTypes = array(
@@ -519,13 +518,13 @@ $wgRestrictionTypes = array(
 $wgCascadingRestrictionLevels = array(
 	'sysop',
 	'bureaucrat',
-	'steward',
-	'sysadmin'
+	'steward'
 );
 
 $wgSemiprotectedRestrictionLevels = array(
 	'user',
 	'autoconfirmed',
+        'autoreview'
 );
 
 // Grants
