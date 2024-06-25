@@ -1008,6 +1008,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		$this->mActorId = $actorId;
 		$this->mRealName = '';
 		$this->mEmail = '';
+		$this->isTemp = null;
 
 		$loggedOut = $this->mRequest && !defined( 'MW_NO_SESSION' )
 			? $this->mRequest->getSession()->getLoggedOutTimestamp() : 0;
