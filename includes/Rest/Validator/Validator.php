@@ -201,7 +201,7 @@ class Validator {
 			throw new LocalizedHttpException(
 				new MessageValue(
 					'rest-extraneous-body-fields',
-					[ new ListParam( ListType::COMMA, array_keys( $unvalidatedKeys ) ) ]
+					[ new ListParam( ListType::COMMA, $unvalidatedKeys ) ]
 				),
 				400,
 				[ // match fields used by validateBodyParams()
