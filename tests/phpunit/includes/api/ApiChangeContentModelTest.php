@@ -8,6 +8,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 
 /**
@@ -22,6 +23,7 @@ use MediaWiki\Title\Title;
  */
 class ApiChangeContentModelTest extends ApiTestCase {
 	use MockAuthorityTrait;
+	use TempUserTestTrait;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -295,6 +297,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 	 * Test that it works
 	 */
 	public function testEverythingWorks() {
+		$this->disableAutoCreateTempUser();
 		$title = Title::makeTitle( NS_MAIN, 'ExistingPage' );
 		$performer = $this->mockAnonAuthorityWithPermissions(
 			[ 'edit', 'editcontentmodel', 'writeapi', 'applychangetags' ]
