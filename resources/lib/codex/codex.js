@@ -29,6 +29,10 @@ var __objRest = (source, exclude) => {
     }
   return target;
 };
+var __publicField = (obj, key, value) => {
+  __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
+  return value;
+};
 var __async = (__this, __arguments, generator) => {
   return new Promise((resolve, reject) => {
     var fulfilled = (value) => {
@@ -50,19 +54,19 @@ var __async = (__this, __arguments, generator) => {
   });
 };
 import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, Comment, warn, watch, withKeys, renderSlot, resolveComponent, createElementVNode, createBlock, resolveDynamicComponent, withCtx, withModifiers, createVNode, Fragment, renderList, createTextVNode, Transition, normalizeStyle, inject, toRef, mergeProps, getCurrentInstance, withDirectives, vModelCheckbox, createSlots, nextTick, vModelDynamic, onUnmounted, vShow, unref, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, Teleport, toRefs, provide, vModelRadio, vModelText } from "vue";
-const M = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', S = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', s1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', n1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', M1 = '<path d="M10 15 2 5h16z"/>', A1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', k1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', c0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', p = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', v0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', g2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', S2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', K2 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', t5 = '<path d="M10 0 3 8h14zm0 18-7-8h14z"/>', m5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', Q5 = '<path d="m10 5 8 10H2z"/>', M3 = M, S3 = S, Y3 = s1, X3 = n1, l4 = M1, i4 = A1, m4 = k1, P4 = c0, Y4 = {
+const g = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', q = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', n1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', d1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', g1 = '<path d="M10 15 2 5h16z"/>', k1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', F1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', t0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', p = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', e0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', V2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', b2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', J2 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', h5 = '<path d="M10 0 3 8h14zm0 18-7-8h14z"/>', M5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', G5 = '<path d="m10 5 8 10H2z"/>', M3 = g, S3 = q, Y3 = n1, X3 = d1, l4 = g1, i4 = k1, m4 = F1, P4 = t0, Y4 = {
   langCodeMap: {
     ar: p
   },
-  default: v0
+  default: e0
 }, j6 = {
-  ltr: g2,
+  ltr: V2,
   shouldFlip: true
-}, v7 = {
-  ltr: S2,
+}, d7 = {
+  ltr: b2,
   shouldFlip: true
-}, I7 = K2, q7 = t5, N7 = m5, g8 = Q5;
-function E8(c, s, h) {
+}, A7 = J2, T7 = h5, O7 = M5, x8 = G5;
+function N8(c, s, h) {
   if (typeof c == "string" || "path" in c)
     return c;
   if ("shouldFlip" in c)
@@ -72,7 +76,7 @@ function E8(c, s, h) {
   const n = s in c.langCodeMap ? c.langCodeMap[s] : c.default;
   return typeof n == "string" || "path" in n ? n : n.ltr;
 }
-function P8(c, s) {
+function O8(c, s) {
   if (typeof c == "string")
     return false;
   if ("langCodeMap" in c) {
@@ -236,14 +240,14 @@ const _sfc_main$w = defineComponent({
     });
     const rootClasses = computed(() => {
       return {
-        "cdx-icon--flipped": overriddenDir.value === "rtl" && overriddenLang.value !== null && P8(props.icon, overriddenLang.value),
+        "cdx-icon--flipped": overriddenDir.value === "rtl" && overriddenLang.value !== null && O8(props.icon, overriddenLang.value),
         ["cdx-icon--".concat(props.size)]: true
       };
     });
     const resolvedIcon = computed(
       () => {
         var _a, _b;
-        return E8(props.icon, (_a = overriddenLang.value) != null ? _a : "", (_b = overriddenDir.value) != null ? _b : "ltr");
+        return N8(props.icon, (_a = overriddenLang.value) != null ? _a : "", (_b = overriddenDir.value) != null ? _b : "ltr");
       }
     );
     const iconSvg = computed(() => typeof resolvedIcon.value === "string" ? resolvedIcon.value : "");
@@ -1303,16 +1307,6 @@ const _sfc_main$o = defineComponent({
   },
   props: {
     /**
-     * `aria-description` for the chip.
-     *
-     * Text must be provided for accessibility purposes. This prop is temporary and will be
-     * removed once T345386 is resolved.
-     */
-    chipAriaDescription: {
-      type: String,
-      required: true
-    },
-    /**
      * Custom icon.
      */
     icon: {
@@ -1325,6 +1319,16 @@ const _sfc_main$o = defineComponent({
     disabled: {
       type: Boolean,
       default: false
+    },
+    /**
+     * `aria-description` for the chip.
+     *
+     * Text must be provided for accessibility purposes. This prop is temporary and will be
+     * removed once T345386 is resolved.
+     */
+    chipAriaDescription: {
+      type: String,
+      default: "Press Enter to edit or Delete to remove"
     }
   },
   expose: [
@@ -1460,16 +1464,6 @@ const _sfc_main$n = defineComponent({
   inheritAttrs: false,
   props: {
     /**
-     * `aria-description` of each input chip.
-     *
-     * Text must be provided for accessibility purposes. This prop is temporary and will be
-     * removed once T345386 is resolved.
-     */
-    chipAriaDescription: {
-      type: String,
-      required: true
-    },
-    /**
      * Current chips present in the input.
      *
      * Provided by `v-model` binding in the parent component.
@@ -1501,6 +1495,16 @@ const _sfc_main$n = defineComponent({
     disabled: {
       type: Boolean,
       default: false
+    },
+    /**
+     * `aria-description` of each input chip.
+     *
+     * Text must be provided for accessibility purposes. This prop is temporary and will be
+     * removed once T345386 is resolved.
+     */
+    chipAriaDescription: {
+      type: String,
+      default: "Press Enter to edit or Delete to remove"
     }
   },
   emits: [
@@ -1989,6 +1993,13 @@ const _sfc_main$l = defineComponent({
     action: {
       type: String,
       default: "default"
+    },
+    /**
+     * Whether this menu is in multiselect mode.
+     */
+    multiselect: {
+      type: Boolean,
+      default: false
     }
   },
   emits: [
@@ -2053,7 +2064,7 @@ const _sfc_main$l = defineComponent({
     };
   }
 });
-const _hoisted_1$k = ["id", "aria-disabled", "aria-selected"];
+const _hoisted_1$k = ["id", "aria-disabled", "aria-selected", "aria-checked"];
 const _hoisted_2$c = { class: "cdx-menu-item__text" };
 const _hoisted_3$7 = ["lang"];
 const _hoisted_4$4 = ["lang"];
@@ -2068,7 +2079,8 @@ function _sfc_render$l(_ctx, _cache, $props, $setup, $data, $options) {
     role: "option",
     class: normalizeClass(["cdx-menu-item", _ctx.rootClasses]),
     "aria-disabled": _ctx.disabled,
-    "aria-selected": _ctx.selected,
+    "aria-selected": _ctx.selected && !_ctx.multiselect ? true : void 0,
+    "aria-checked": _ctx.selected && _ctx.multiselect ? true : void 0,
     onMousemove: _cache[0] || (_cache[0] = (...args) => _ctx.onMouseMove && _ctx.onMouseMove(...args)),
     onMouseleave: _cache[1] || (_cache[1] = (...args) => _ctx.onMouseLeave && _ctx.onMouseLeave(...args)),
     onMousedown: _cache[2] || (_cache[2] = withModifiers((...args) => _ctx.onMouseDown && _ctx.onMouseDown(...args), ["prevent"])),
@@ -2281,6 +2293,9 @@ function useIntersectionObserver(templateRef, observerOptions) {
   });
   return intersectionRef;
 }
+function selectedIsArray(selected) {
+  return selected !== null && Array.isArray(selected);
+}
 const _sfc_main$j = defineComponent({
   name: "CdxMenu",
   components: {
@@ -2312,14 +2327,17 @@ const _sfc_main$j = defineComponent({
       default: null
     },
     /**
-     * Value of the selected menu item, or undefined if no item is selected.
+     * Value(s) of the selected menu item(s). A single value for single-select, or an array of
+     * values for multi-select.
      *
      * Must be bound with `v-model:selected`.
      *
-     * The property should be initialized to `null` rather than using a falsy value.
+     * The property should be initialized to `null` (for single-select) or an empty array (for
+     * multi-select) rather than using a falsy value.
      */
     selected: {
-      type: [String, Number, null],
+      // eslint-disable-next-line max-len
+      type: [String, Number, Array, null],
       required: true
     },
     /**
@@ -2401,11 +2419,14 @@ const _sfc_main$j = defineComponent({
   emits: [
     // Don't remove the spaces in the "string | number | null" type below; removing these
     // spaces causes the documentation to render the type as "union" instead.
+    // Keep property descriptions on a single line or they will get cut off.
     /**
      * When the selected menu item changes.
      *
-     * @property {string | number | null} selectedValue The `.value` property of the
-     * selected menu item, or null if no item is selected.
+     * Property will be a single value or `null` in single-select mode, or an array of values or
+     * an empty array in multiselect mode.
+     *
+     * @property {MenuItemValue | MenuItemValue[] | null} selectedValue selected value or values
      */
     "update:selected",
     /**
@@ -2480,21 +2501,36 @@ const _sfc_main$j = defineComponent({
       }
       keyBufferTimeout = setTimeout(clearKeyBuffer, 1500);
     }
-    function findSelectedMenuItem() {
+    function findFirstSelectedMenuItem() {
       var _a;
       return (_a = computedMenuItems.value.find(
-        (menuItem) => menuItem.value === props.selected
+        (menuItem) => selectedIsArray(props.selected) ? props.selected.indexOf(menuItem.value) !== -1 : menuItem.value === props.selected
       )) != null ? _a : null;
     }
+    const isMultiselect = computed(() => selectedIsArray(props.selected));
+    function isItemSelected(value) {
+      return selectedIsArray(props.selected) ? props.selected.indexOf(value) !== -1 : value === props.selected;
+    }
+    function updateSelected(value) {
+      if (selectedIsArray(props.selected)) {
+        const newSelected = props.selected.indexOf(value) === -1 ? props.selected.concat(value) : props.selected.filter((item) => item !== value);
+        emit("update:selected", newSelected);
+      } else {
+        emit("update:selected", value);
+      }
+    }
     function handleMenuItemChange(menuState, menuItem) {
-      var _a;
       if (menuItem && menuItem.disabled) {
         return;
       }
       switch (menuState) {
         case "selected":
-          emit("update:selected", (_a = menuItem == null ? void 0 : menuItem.value) != null ? _a : null);
-          emit("update:expanded", false);
+          if (menuItem) {
+            updateSelected(menuItem.value);
+          }
+          if (!isMultiselect.value) {
+            emit("update:expanded", false);
+          }
           activeMenuItem.value = null;
           break;
         case "highlighted":
@@ -2608,9 +2644,11 @@ const _sfc_main$j = defineComponent({
           maybePrevent();
           if (props.expanded) {
             if (highlightedMenuItem.value && highlightedViaKeyboard.value) {
-              emit("update:selected", highlightedMenuItem.value.value);
+              updateSelected(highlightedMenuItem.value.value);
             }
-            emit("update:expanded", false);
+            if (!isMultiselect.value) {
+              emit("update:expanded", false);
+            }
           } else {
             emit("update:expanded", true);
           }
@@ -2618,16 +2656,18 @@ const _sfc_main$j = defineComponent({
         case "Tab":
           if (props.expanded) {
             if (highlightedMenuItem.value && highlightedViaKeyboard.value) {
-              emit("update:selected", highlightedMenuItem.value.value);
+              updateSelected(highlightedMenuItem.value.value);
             }
-            emit("update:expanded", false);
+            if (!isMultiselect.value) {
+              emit("update:expanded", false);
+            }
           }
           return true;
         case "ArrowUp":
           maybePrevent();
           if (props.expanded) {
             if (highlightedMenuItem.value === null) {
-              handleMenuItemChange("highlightedViaKeyboard", findSelectedMenuItem());
+              handleMenuItemChange("highlightedViaKeyboard", findFirstSelectedMenuItem());
             }
             highlightPrev(highlightedMenuItemIndex.value);
           } else {
@@ -2639,7 +2679,7 @@ const _sfc_main$j = defineComponent({
           maybePrevent();
           if (props.expanded) {
             if (highlightedMenuItem.value === null) {
-              handleMenuItemChange("highlightedViaKeyboard", findSelectedMenuItem());
+              handleMenuItemChange("highlightedViaKeyboard", findFirstSelectedMenuItem());
             }
             highlightNext(highlightedMenuItemIndex.value);
           } else {
@@ -2651,7 +2691,7 @@ const _sfc_main$j = defineComponent({
           maybePrevent();
           if (props.expanded) {
             if (highlightedMenuItem.value === null) {
-              handleMenuItemChange("highlightedViaKeyboard", findSelectedMenuItem());
+              handleMenuItemChange("highlightedViaKeyboard", findFirstSelectedMenuItem());
             }
             highlightNext();
           } else {
@@ -2663,7 +2703,7 @@ const _sfc_main$j = defineComponent({
           maybePrevent();
           if (props.expanded) {
             if (highlightedMenuItem.value === null) {
-              handleMenuItemChange("highlightedViaKeyboard", findSelectedMenuItem());
+              handleMenuItemChange("highlightedViaKeyboard", findFirstSelectedMenuItem());
             }
             highlightPrev();
           } else {
@@ -2755,7 +2795,7 @@ const _sfc_main$j = defineComponent({
     });
     watch(toRef(props, "expanded"), (newVal) => __async(this, null, function* () {
       if (newVal) {
-        const selectedMenuItem = findSelectedMenuItem();
+        const selectedMenuItem = findFirstSelectedMenuItem();
         if (selectedMenuItem && !highlightedMenuItem.value) {
           handleMenuItemChange("highlighted", selectedMenuItem);
         }
@@ -2801,7 +2841,9 @@ const _sfc_main$j = defineComponent({
       activeMenuItem,
       handleMenuItemChange,
       handleKeyNavigation,
-      ariaRelevant
+      ariaRelevant,
+      isMultiselect,
+      isItemSelected
     };
   },
   // Public methods
@@ -2868,7 +2910,7 @@ const _sfc_main$j = defineComponent({
     }
   }
 });
-const _hoisted_1$i = ["aria-live", "aria-relevant"];
+const _hoisted_1$i = ["aria-live", "aria-relevant", "aria-multiselectable"];
 const _hoisted_2$a = {
   key: 0,
   class: "cdx-menu__pending cdx-menu-item"
@@ -2892,7 +2934,8 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
         role: "listbox",
         style: _ctx.listBoxStyle,
         "aria-live": _ctx.showPending ? "polite" : void 0,
-        "aria-relevant": _ctx.showPending ? _ctx.ariaRelevant : void 0
+        "aria-relevant": _ctx.showPending ? _ctx.ariaRelevant : void 0,
+        "aria-multiselectable": _ctx.isMultiselect ? true : void 0
       }, _ctx.otherAttrs), [
         _ctx.showPending && _ctx.computedMenuItems.length === 0 && _ctx.$slots.pending ? (openBlock(), createElementBlock("li", _hoisted_2$a, [
           renderSlot(_ctx.$slots, "pending")
@@ -2910,13 +2953,14 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
               ref_for: true,
               ref: (ref2) => _ctx.assignTemplateRef(ref2, index)
             }, menuItem, {
-              selected: menuItem.value === _ctx.selected,
+              selected: _ctx.isItemSelected(menuItem.value),
               active: menuItem.value === ((_a = _ctx.activeMenuItem) == null ? void 0 : _a.value),
               highlighted: menuItem.value === ((_b = _ctx.highlightedMenuItem) == null ? void 0 : _b.value),
               "show-thumbnail": _ctx.showThumbnail,
               "bold-label": _ctx.boldLabel,
               "hide-description-overflow": _ctx.hideDescriptionOverflow,
               "search-query": _ctx.searchQuery,
+              multiselect: _ctx.isMultiselect,
               onChange: (menuState, setState) => _ctx.handleMenuItemChange(menuState, setState ? menuItem : null),
               onClick: ($event) => _ctx.$emit("menu-item-click", menuItem)
             }), {
@@ -2931,7 +2975,7 @@ function _sfc_render$j(_ctx, _cache, $props, $setup, $data, $options) {
               }),
               _: 2
               /* DYNAMIC */
-            }, 1040, ["selected", "active", "highlighted", "show-thumbnail", "bold-label", "hide-description-overflow", "search-query", "onChange", "onClick"]);
+            }, 1040, ["selected", "active", "highlighted", "show-thumbnail", "bold-label", "hide-description-overflow", "search-query", "multiselect", "onChange", "onClick"]);
           }),
           128
           /* KEYED_FRAGMENT */
@@ -3245,6 +3289,9 @@ const oppositeAlignmentMap = {
   start: "end",
   end: "start"
 };
+function clamp(start, value, end) {
+  return max(start, min(value, end));
+}
 function evaluate(value, param) {
   return typeof value === "function" ? value(param) : value;
 }
@@ -3761,6 +3808,77 @@ const offset = function(options) {
             placement
           })
         };
+      });
+    }
+  };
+};
+const shift$1 = function(options) {
+  if (options === void 0) {
+    options = {};
+  }
+  return {
+    name: "shift",
+    options,
+    fn(state) {
+      return __async(this, null, function* () {
+        const {
+          x,
+          y,
+          placement
+        } = state;
+        const _a2 = evaluate(options, state), {
+          mainAxis: checkMainAxis = true,
+          crossAxis: checkCrossAxis = false,
+          limiter = {
+            fn: (_ref) => {
+              let {
+                x: x2,
+                y: y2
+              } = _ref;
+              return {
+                x: x2,
+                y: y2
+              };
+            }
+          }
+        } = _a2, detectOverflowOptions = __objRest(_a2, [
+          "mainAxis",
+          "crossAxis",
+          "limiter"
+        ]);
+        const coords = {
+          x,
+          y
+        };
+        const overflow = yield detectOverflow(state, detectOverflowOptions);
+        const crossAxis = getSideAxis(getSide(placement));
+        const mainAxis = getOppositeAxis(crossAxis);
+        let mainAxisCoord = coords[mainAxis];
+        let crossAxisCoord = coords[crossAxis];
+        if (checkMainAxis) {
+          const minSide = mainAxis === "y" ? "top" : "left";
+          const maxSide = mainAxis === "y" ? "bottom" : "right";
+          const min2 = mainAxisCoord + overflow[minSide];
+          const max2 = mainAxisCoord - overflow[maxSide];
+          mainAxisCoord = clamp(min2, mainAxisCoord, max2);
+        }
+        if (checkCrossAxis) {
+          const minSide = crossAxis === "y" ? "top" : "left";
+          const maxSide = crossAxis === "y" ? "bottom" : "right";
+          const min2 = crossAxisCoord + overflow[minSide];
+          const max2 = crossAxisCoord - overflow[maxSide];
+          crossAxisCoord = clamp(min2, crossAxisCoord, max2);
+        }
+        const limitedCoords = limiter.fn(__spreadProps(__spreadValues({}, state), {
+          [mainAxis]: mainAxisCoord,
+          [crossAxis]: crossAxisCoord
+        }));
+        return __spreadProps(__spreadValues({}, limitedCoords), {
+          data: {
+            x: limitedCoords.x - x,
+            y: limitedCoords.y - y
+          }
+        });
       });
     }
   };
@@ -4495,6 +4613,7 @@ function autoUpdate(reference, floating, update, options) {
     }
   };
 }
+const shift = shift$1;
 const flip = flip$1;
 const size = size$1;
 const hide = hide$1;
@@ -5541,7 +5660,7 @@ const iconMap$2 = {
   notice: Y4,
   error: i4,
   warning: M3,
-  success: N7
+  success: O7
 };
 const _sfc_main$f = defineComponent({
   name: "CdxMessage",
@@ -5890,7 +6009,7 @@ const Field = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$e
 const iconMap$1 = {
   error: i4,
   warning: M3,
-  success: N7
+  success: O7
 };
 const _sfc_main$d = defineComponent({
   name: "CdxInfoChip",
@@ -6673,7 +6792,7 @@ const _sfc_main$8 = defineComponent({
       rootStyle,
       otherAttrs,
       handleSubmit,
-      searchIcon: I7
+      searchIcon: A7
     };
   },
   methods: {
@@ -6993,8 +7112,8 @@ function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
 const Select = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$7]]);
 const tableTextAlignmentsValidator = makeStringTypeValidator(TableTextAlignments);
 const iconMap = {
-  none: q7,
-  asc: g8,
+  none: T7,
+  asc: x8,
   desc: l4
 };
 const sortDirectionMap = {
@@ -7033,8 +7152,9 @@ const _sfc_main$6 = defineComponent({
         const hasUniqueIds = new Set(ids).size === ids.length;
         if (!hasUniqueIds) {
           console.warn(
-            "Each column in the `columns` prop of CdxTable must have a unique `id`."
+            'Each column in the "columns" prop of CdxTable must have a unique "id".'
           );
+          return false;
         }
         return true;
       }
@@ -7047,7 +7167,21 @@ const _sfc_main$6 = defineComponent({
      */
     data: {
       type: Array,
-      default: () => []
+      default: () => [],
+      validator: (value, props) => {
+        if (!Array.isArray(props.columns) || props.columns.length === 0 || value.length === 0) {
+          return true;
+        }
+        const hasSort = props.columns.some((column) => "allowSort" in column);
+        const rowsHaveIds = value.every((row) => TableRowIdentifier in row);
+        if (hasSort && props.useRowSelection && !rowsHaveIds) {
+          console.warn(
+            'For CdxTables with sorting and row selection, each row in the "data" prop must have a "TableRowIdentifier".'
+          );
+          return false;
+        }
+        return true;
+      }
     },
     /**
      * Whether to use `<th>` for the first cell in each row.
@@ -7239,22 +7373,6 @@ const _sfc_main$6 = defineComponent({
         return currentSortOrder === "none" ? void 0 : sortDirectionMap[currentSortOrder];
       }
     }
-    function validateData() {
-      if (props.columns.length === 0 || props.data.length === 0) {
-        return;
-      }
-      const hasSort = props.columns.some((column) => "allowSort" in column);
-      const rowsHaveIds = props.data.every((row) => TableRowIdentifier in row);
-      if (hasSort && props.useRowSelection && !rowsHaveIds) {
-        console.warn(
-          "For CdxTables with sorting and row selection, each row in the `data` prop must have a `TableRowIdentifier`."
-        );
-      }
-    }
-    onMounted(() => validateData());
-    watch(toRef(props, "columns"), () => validateData());
-    watch(toRef(props, "data"), () => validateData());
-    watch(toRef(props, "useRowSelection"), () => validateData());
     return {
       // Row selection constants.
       wrappedSelectedRows,
@@ -7302,7 +7420,10 @@ const _hoisted_9 = ["aria-sort"];
 const _hoisted_10 = ["aria-selected", "onClick"];
 const _hoisted_11 = { key: 0 };
 const _hoisted_12 = { key: 0 };
-const _hoisted_13 = {
+const _hoisted_13 = { key: 1 };
+const _hoisted_14 = { class: "cdx-table__table__empty-state" };
+const _hoisted_15 = { class: "cdx-table__table__empty-state-content" };
+const _hoisted_16 = {
   key: 1,
   class: "cdx-table__footer"
 };
@@ -7497,6 +7618,12 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
                 128
                 /* KEYED_FRAGMENT */
               ))
+            ])) : _ctx.$slots["empty-state"] && _ctx.$slots["empty-state"]().length > 0 ? (openBlock(), createElementBlock("tbody", _hoisted_13, [
+              createElementVNode("tr", _hoisted_14, [
+                createElementVNode("td", _hoisted_15, [
+                  renderSlot(_ctx.$slots, "empty-state")
+                ])
+              ])
             ])) : createCommentVNode("v-if", true)
           ]),
           renderSlot(_ctx.$slots, "tfoot")
@@ -7505,7 +7632,7 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
         /* CLASS */
       )
     ]),
-    _ctx.$slots.footer && _ctx.$slots.footer().length > 0 ? (openBlock(), createElementBlock("div", _hoisted_13, [
+    _ctx.$slots.footer && _ctx.$slots.footer().length > 0 ? (openBlock(), createElementBlock("div", _hoisted_16, [
       renderSlot(_ctx.$slots, "footer")
     ])) : createCommentVNode("v-if", true)
   ]);
@@ -7761,7 +7888,7 @@ const _sfc_main$4 = defineComponent({
       assignTemplateRefForTabButton,
       scrollTabs,
       focusActiveTab,
-      cdxIconPrevious: v7,
+      cdxIconPrevious: d7,
       cdxIconNext: j6
     };
   },
@@ -8431,6 +8558,138 @@ function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
   );
 }
 const ToggleSwitch = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render$1]]);
+class Tooltip {
+  constructor(referenceElement, options) {
+    __publicField(this, "referenceElement");
+    __publicField(this, "tooltipElement");
+    __publicField(this, "textContent");
+    __publicField(this, "placement");
+    __publicField(this, "autoUpdateCleanup");
+    __publicField(this, "referenceElementHandlers");
+    __publicField(this, "tooltipElementHandlers");
+    __publicField(this, "escapeHandler");
+    __publicField(this, "timeoutId");
+    var _a, _b;
+    const doc = referenceElement.ownerDocument;
+    const tooltipId = useGeneratedId("tooltip");
+    this.referenceElement = referenceElement;
+    this.textContent = options.textContent;
+    this.placement = (_a = options.placement) != null ? _a : "bottom";
+    this.timeoutId = null;
+    this.tooltipElement = doc.createElement("div");
+    this.tooltipElement.classList.add("cdx-tooltip");
+    this.tooltipElement.role = "tooltip";
+    this.tooltipElement.id = tooltipId;
+    this.referenceElement.setAttribute("aria-describedby", tooltipId);
+    this.tooltipElement.textContent = this.textContent;
+    (_b = this.referenceElement.parentElement) == null ? void 0 : _b.appendChild(this.tooltipElement);
+    this.referenceElementHandlers = {};
+    this.referenceElementHandlers.mouseenter = this.show.bind(this);
+    this.referenceElementHandlers.mouseleave = this.hideAfterDelay.bind(this);
+    this.referenceElementHandlers.focus = this.show.bind(this);
+    this.referenceElementHandlers.blur = this.hide.bind(this);
+    this.tooltipElementHandlers = {};
+    this.tooltipElementHandlers.mouseenter = this.show.bind(this);
+    this.tooltipElementHandlers.mouseleave = this.hideAfterDelay.bind(this);
+    this.escapeHandler = this.onKeyup.bind(this);
+    this.addEventListeners();
+    this.autoUpdateCleanup = autoUpdate(
+      this.referenceElement,
+      this.tooltipElement,
+      () => this.update()
+    );
+  }
+  isVisible() {
+    return this.tooltipElement.style.display === "block";
+  }
+  show() {
+    if (this.timeoutId) {
+      clearTimeout(this.timeoutId);
+    }
+    this.tooltipElement.style.display = "block";
+    this.tooltipElement.ownerDocument.addEventListener("keyup", this.escapeHandler);
+  }
+  hide() {
+    this.tooltipElement.style.display = "none";
+    this.tooltipElement.ownerDocument.removeEventListener("keyup", this.escapeHandler);
+  }
+  hideAfterDelay() {
+    this.timeoutId = setTimeout(this.hide.bind(this), 250);
+  }
+  onKeyup(event) {
+    if (event.key === "Escape" && this.isVisible()) {
+      this.hide();
+    }
+  }
+  addEventListeners() {
+    Object.keys(this.referenceElementHandlers).forEach((k) => {
+      this.referenceElement.addEventListener(k, this.referenceElementHandlers[k]);
+    });
+    Object.keys(this.tooltipElementHandlers).forEach((k) => {
+      this.tooltipElement.addEventListener(k, this.tooltipElementHandlers[k]);
+    });
+  }
+  removeEventListeners() {
+    Object.keys(this.referenceElementHandlers).forEach((k) => {
+      this.referenceElement.removeEventListener(k, this.referenceElementHandlers[k]);
+    });
+    Object.keys(this.tooltipElementHandlers).forEach((k) => {
+      this.tooltipElement.removeEventListener(k, this.tooltipElementHandlers[k]);
+    });
+  }
+  update() {
+    computePosition(this.referenceElement, this.tooltipElement, {
+      placement: this.placement,
+      middleware: [
+        offset(4),
+        flip(),
+        shift(),
+        hide()
+      ]
+    }).then(({ x, y, middlewareData }) => {
+      var _a, _b, _c;
+      const finalPlacement = (_b = (_a = middlewareData.offset) == null ? void 0 : _a.placement) != null ? _b : this.placement;
+      const opposites = {
+        left: "right",
+        "left-start": "right",
+        "left-end": "right",
+        top: "bottom",
+        "top-start": "bottom",
+        "top-end": "bottom",
+        bottom: "top",
+        "bottom-start": "top",
+        "bottom-end": "top",
+        right: "left",
+        "right-start": "left",
+        "right-end": "left"
+      };
+      Object.assign(this.tooltipElement.style, {
+        left: "".concat(x, "px"),
+        top: "".concat(y, "px"),
+        visibility: ((_c = middlewareData.hide) == null ? void 0 : _c.referenceHidden) ? "hidden" : "visible",
+        transformOrigin: opposites[finalPlacement]
+      });
+    });
+  }
+  remove() {
+    this.tooltipElement.remove();
+    this.autoUpdateCleanup();
+    this.removeEventListeners();
+  }
+}
+const CdxTooltip = {
+  mounted(el, { value, arg }) {
+    el.tooltip = new Tooltip(el, {
+      textContent: String(value),
+      placement: arg
+    });
+  },
+  beforeUnmount(el) {
+    if (el.tooltip) {
+      el.tooltip.remove();
+    }
+  }
+};
 const _sfc_main = defineComponent({
   name: "CdxTypeaheadSearch",
   components: {
@@ -8979,6 +9238,7 @@ export {
   CdxToggleButton,
   ToggleButtonGroup as CdxToggleButtonGroup,
   ToggleSwitch as CdxToggleSwitch,
+  CdxTooltip,
   TypeaheadSearch as CdxTypeaheadSearch,
   TableRowIdentifier,
   stringHelpers,

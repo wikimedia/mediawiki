@@ -24,6 +24,10 @@
     "file": "constants.js",
     "name": "constants"
   },
+  "_floating-ui.dom.js": {
+    "file": "floating-ui.dom.js",
+    "name": "floating-ui.dom"
+  },
   "_useIconOnlyButton.js": {
     "file": "useIconOnlyButton.js",
     "name": "useIconOnlyButton",
@@ -542,6 +546,19 @@
       "CdxToggleSwitch-rtl.css"
     ]
   },
+  "src/components/tooltip/Tooltip.ts": {
+    "file": "CdxTooltip.cjs",
+    "name": "CdxTooltip",
+    "src": "src/components/tooltip/Tooltip.ts",
+    "isEntry": true,
+    "imports": [
+      "src/composables/useGeneratedId.ts",
+      "_floating-ui.dom.js"
+    ],
+    "css": [
+      "CdxTooltip-rtl.css"
+    ]
+  },
   "src/components/typeahead-search/TypeaheadSearch.vue": {
     "file": "CdxTypeaheadSearch.cjs",
     "name": "CdxTypeaheadSearch",
@@ -595,7 +612,10 @@
     "file": "useFloatingMenu.cjs",
     "name": "useFloatingMenu",
     "src": "src/composables/useFloatingMenu.ts",
-    "isEntry": true
+    "isEntry": true,
+    "imports": [
+      "_floating-ui.dom.js"
+    ]
   },
   "src/composables/useGeneratedId.ts": {
     "file": "useGeneratedId.cjs",

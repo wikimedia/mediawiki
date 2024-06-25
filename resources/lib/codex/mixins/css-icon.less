@@ -13,6 +13,12 @@
 //
 
 // Get the associated min-size-icon from a size-icon token.
+.get-calculated-min-size-icon( @param-size-icon ) {
+	// Fallback: when an unrecognized value is passed in, don't crash, but use the same value
+	// for size and min-size (T367098). This code runs for all values, but for recognized values
+	// it's overridden by one of the lines below.
+	@calculated-min-size-icon: @param-size-icon;
+}
 .get-calculated-min-size-icon( @param-size-icon ) when ( @param-size-icon = @size-icon-medium ) {
 	@calculated-min-size-icon: @min-size-icon-medium;
 }

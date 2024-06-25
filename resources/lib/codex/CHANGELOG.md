@@ -1,3 +1,40 @@
+# 1.8.0 / 2024-06-25
+
+## Breaking Changes
+- [BREAKING] tokens: Remove remaining deprecated `width-*` breakpoint tokens (Volker E.)
+- [BREAKING] tokens: Remove CSS variables for border- tokens (Roan Kattouw)
+
+## Features
+- Table: add empty state (lwatson)
+- Tooltip: Introduce WIP component (directive) (Eric Gardner)
+- Menu, MenuItem: Add multiselect mode (Anne Tomasevich)
+- Tooltip: Allow tooltip to persist on hover (Eric Gardner)
+- Tooltip: add line-height (lwatson)
+- Tooltip: move out of WIP (lwatson)
+
+## Styles
+- tokens: Update dark mode text tokens (Derek Torsani)
+- styles, Tooltip: add animation and max-width (lwatson)
+- css-icon: Don't crash when `@param-size-icon` is a non-standard value (Roan Kattouw)
+- tokens: Use variable references in Sass, Less and full CSS outputs (Roan Kattouw)
+
+## Code
+- Remove redundant ‘https’ term in card.md (Cyndy)
+- build: Update diff-release.sh for the .mjs -> .js rename (Roan Kattouw)
+- ChipInput: Make chip descriptions optional (Anne Tomasevich)
+- Menu: Refactor tests using given-when-then structure (Anne Tomasevich)
+- Table: minor follow-ups (Anne Tomasevich)
+- tokens: Use transform instead of custom formatter for Less with CSS vars (Roan Kattouw)
+
+## Docs
+- docs, ChipInput: Remove remove-button-label prop from examples (Roan Kattouw)
+- docs: Add recent authors (>1 commit) (Anne Tomasevich)
+- docs: Document Jest pitfall around optional parameters (Roan Kattouw)
+- docs, Tooltip: update demos (lwatson)
+- Tooltip: Add basic guidelines (Eric Gardner)
+- docs: Fix typo in Jest pitfall docs (Roan Kattouw)
+
+
 # 1.7.0 / 2024-06-11
 
 ## Deprecating changes
