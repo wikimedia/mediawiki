@@ -6,9 +6,11 @@
 			"捍粵者"
 		]
 	},
-	"rest-prefix-mismatch": "請求的路徑（$1）不在REST API的根路徑（$2）內",
+	"rest-prefix-mismatch": "請求的路徑（$1）不在REST API的基本路徑（$2）內",
+	"rest-bad-prefix": "端點路徑（$1）不包含有效的模組前綴",
 	"rest-wrong-method": "請求的方法（$1）不是{{PLURAL:$3|此路徑允許的方法|此路徑允許的方法之一}}（$2）",
 	"rest-no-match": "請求的相對路徑（$1）不符合任何已知的處理器",
+	"rest-unknown-module": "未知的請求模組名稱（$1）",
 	"rest-nonexistent-title": "指定的頁面「$1」不存在",
 	"rest-nonexistent-title-revision": "指定的修訂（$1）不存在指定頁面（$2）",
 	"rest-nonexistent-revision": "指定的修訂（$1）不存在",
@@ -67,5 +69,21 @@
 	"rest-html-key-expected": "正文裡預期的 <var>html</var> 鍵",
 	"rest-invalid-transform": "無效轉換：$1成$2",
 	"rest-request-body-expected": "$1請求方法需要一個請求正文",
-	"rest-request-body-unaccepted": "$1請求方法不接受請求正文"
+	"rest-request-body-unaccepted": "$1請求方法不接受請求正文",
+	"rest-unmapped-action-error": "未對應的操作模組錯誤：$1",
+	"rest-unsupported-transform-input": "不支援的輸入：$1",
+	"rest-bad-etag": "錯誤 ETag：$1",
+	"rest-no-stashed-content": "未找到 $1 的存放內容",
+	"rest-unsupported-profile-version": "不支援的個人設定版本：$1",
+	"rest-no-json-decode": "負載不會用 JSON 解碼來轉成陣列",
+	"rest-parsoid-unsupported-media": "不支援的媒體類型",
+	"rest-missing-revision-html": "缺少修訂 html",
+	"rest-missing-revision-html-content-type": "缺少修訂 html 的內容類型。",
+	"rest-unsupported-profile-conversion": "我們無法處理這種轉換。",
+	"rest-edit-conflict": "編輯衝突（$1）",
+	"rest-unknown-parsoid-transformation": "未知的轉變。",
+	"rest-target-variant-required": "需要目標變體。",
+	"rest-unsupported-language-conversion": "不支援的語言轉換：從$1到$2",
+	"rest-unknown-content-model": "未知的內容模型：$1",
+	"rest-page-bundle-validation-error": "PageBundle 與 contentVersion 不相符：$1"
 }

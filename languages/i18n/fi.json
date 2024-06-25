@@ -2076,7 +2076,7 @@
 	"logeventslist-patrol-log": "Muutostentarkastusloki",
 	"logeventslist-tag-log": "Merkkausloki",
 	"logeventslist-newusers-log": "Tunnusten luonnin loki",
-	"all-logs-page": "Kaikki julkiset lokit",
+	"all-logs-page": "Tärkeimmät julkiset lokit",
 	"alllogstext": "Tämä on yhdistetty lokien näyttö.\nVoit rajoittaa listaa valitsemalla lokityypin, käyttäjän tai sivun johon muutos on kohdistunut. Jälkimmäiset ovat kirjainkokoherkkiä.",
 	"logempty": "Ei tapahtumia lokissa.",
 	"log-title-wildcard": "Haun kohteet alkavat tällä tekstillä",

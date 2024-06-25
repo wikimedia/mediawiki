@@ -115,10 +115,10 @@
 			"아라"
 		]
 	},
-	"sunday": "الأحد",
+	"sunday": "الاحد",
 	"monday": "الاثنين",
 	"tuesday": "الثلاثاء",
-	"wednesday": "الأربعاء",
+	"wednesday": "الاربعاء",
 	"thursday": "الخميس",
 	"friday": "الجمعة",
 	"saturday": "السبت",
@@ -330,7 +330,7 @@
 	"page-atom-feed": "تلقيمة أتوم لصفحة \"$1\"",
 	"feed-atom": "أتوم",
 	"feed-rss": "أر إس إس",
-	"red-link-title": "$1 (الصفحة غير موجودة)",
+	"red-link-title": "$1 (الصفحه مو موجودة)",
 	"sort-descending": "تنازليا",
 	"sort-ascending": "تصاعديا",
 	"sort-initial": "الترتيب الأصلي",
