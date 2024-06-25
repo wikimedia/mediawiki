@@ -1642,6 +1642,18 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers \MediaWiki\User\User::isTemp
+	 */
+	public function testSetIsTempInLoadDefaults() {
+		$this->enableAutoCreateTempUser();
+		$user = new User();
+		$user->loadDefaults();
+		$this->assertSame( false, $user->isTemp() );
+		$user->loadDefaults( '~2024-1' );
+		$this->assertSame( true, $user->isTemp() );
+	}
+
+	/**
 	 * @covers \MediaWiki\User\User::isNamed
 	 */
 	public function testIsNamed() {
