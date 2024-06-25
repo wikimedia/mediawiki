@@ -26166,8 +26166,8 @@ language=ar
 [[Likalo]]&nbsp;·
 [[Pusupúsu]]&nbsp;·
 !! html/php
-<p><a href="/index.php?title=Likalo&amp;action=edit&amp;redlink=1" class="new" title="Likalo (الصفحة غير موجودة)">Likalo</a>&#160;·
-<a href="/index.php?title=Pusup%C3%BAsu&amp;action=edit&amp;redlink=1" class="new" title="Pusupúsu (الصفحة غير موجودة)">Pusupúsu</a>&#160;·
+<p><a href="/index.php?title=Likalo&amp;action=edit&amp;redlink=1" class="new" title="Likalo (الصفحه مو موجودة)">Likalo</a>&#160;·
+<a href="/index.php?title=Pusup%C3%BAsu&amp;action=edit&amp;redlink=1" class="new" title="Pusupúsu (الصفحه مو موجودة)">Pusupúsu</a>&#160;·
 </p>
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./Likalo" title="Likalo" data-parsoid='{"stx":"simple","a":{"href":"./Likalo"},"sa":{"href":"Likalo"}}' class="new">Likalo</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span>·
