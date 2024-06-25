@@ -305,7 +305,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		);
 
 		// check site stats - this asserts that derived data updates where run.
-		$stats = $this->db->newSelectQueryBuilder()
+		$stats = $this->getDb()->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'site_stats' )
 			->where( '1=1' )

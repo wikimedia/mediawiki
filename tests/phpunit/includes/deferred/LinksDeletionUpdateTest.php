@@ -59,7 +59,7 @@ class LinksDeletionUpdateTest extends MediaWikiLangTestCase {
 			'templatelinks' => 'tl_from',
 		];
 		foreach ( $tables as $table => $fromField ) {
-			$res = $this->db->newSelectQueryBuilder()
+			$res = $this->getDb()->newSelectQueryBuilder()
 				->select( [ 1 ] )
 				->from( $table )
 				->where( [ $fromField => $id ] )
@@ -74,7 +74,7 @@ class LinksDeletionUpdateTest extends MediaWikiLangTestCase {
 		$linksDeletionUpdate->doUpdate();
 
 		foreach ( $tables as $table => $fromField ) {
-			$res = $this->db->newSelectQueryBuilder()
+			$res = $this->getDb()->newSelectQueryBuilder()
 				->select( [ 1 ] )
 				->from( $table )
 				->where( [ $fromField => $id ] )

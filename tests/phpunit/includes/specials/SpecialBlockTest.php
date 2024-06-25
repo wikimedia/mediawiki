@@ -395,7 +395,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertSame( [], $block->getRestrictions() );
 
 		// Ensure that there are no restrictions where the blockId is 0.
-		$count = $this->db->newSelectQueryBuilder()
+		$count = $this->getDb()->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'ipblocks_restrictions' )
 			->where( [ 'ir_ipb_id' => 0 ] )

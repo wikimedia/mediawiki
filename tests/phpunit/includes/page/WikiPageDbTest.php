@@ -391,7 +391,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			// as long as no garbage is written to the database.
 		}
 
-		$row = $this->db->newSelectQueryBuilder()
+		$row = $this->getDb()->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'page' )
 			->where( [ 'page_namespace' => $title->getNamespace(), 'page_title' => $title->getDBkey() ] )
@@ -1406,7 +1406,7 @@ more stuff
 			] ] );
 
 		// Check the page_random field has been filled
-		$pageRandom = $this->db->newSelectQueryBuilder()
+		$pageRandom = $this->getDb()->newSelectQueryBuilder()
 			->select( 'page_random' )
 			->from( 'page' )
 			->where( $condition )
@@ -1414,7 +1414,7 @@ more stuff
 		$this->assertTrue( (float)$pageRandom < 1 && (float)$pageRandom > 0 );
 
 		// Assert the touched timestamp in the DB is roughly when we inserted the page
-		$pageTouched = $this->db->newSelectQueryBuilder()
+		$pageTouched = $this->getDb()->newSelectQueryBuilder()
 			->select( 'page_touched' )
 			->from( 'page' )
 			->where( $condition )
@@ -1853,7 +1853,7 @@ more stuff
 	public function testGetTouched() {
 		$page = $this->createPage( __METHOD__, 'whatever' );
 
-		$touched = $this->db->newSelectQueryBuilder()
+		$touched = $this->getDb()->newSelectQueryBuilder()
 			->select( 'page_touched' )
 			->from( 'page' )
 			->where( [ 'page_id' => $page->getId() ] )

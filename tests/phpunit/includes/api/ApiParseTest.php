@@ -309,7 +309,7 @@ class ApiParseTest extends ApiTestCase {
 
 		$this->expectApiErrorCode( 'missingcontent-pageid' );
 
-		$this->db->newDeleteQueryBuilder()
+		$this->getDb()->newDeleteQueryBuilder()
 			->deleteFrom( 'revision' )
 			->where( [ 'rev_id' => $status->getNewRevision()->getId() ] )
 			->caller( __METHOD__ )

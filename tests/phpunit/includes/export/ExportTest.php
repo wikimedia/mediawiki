@@ -145,7 +145,7 @@ class ExportTest extends MediaWikiLangTestCase {
 	private function getXmlDumpForPage( PageIdentity $page ): SimpleXMLElement {
 		$exporter = $this->getServiceContainer()
 			->getWikiExporterFactory()
-			->getWikiExporter( $this->db, WikiExporter::FULL );
+			->getWikiExporter( $this->getDb(), WikiExporter::FULL );
 
 		$sink = new DumpStringOutput();
 		$exporter->setOutputSink( $sink );

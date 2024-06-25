@@ -40,8 +40,8 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( MainConfigNames::UseTagFilter, $useTags );
 		if (
 			$avoidReopeningTables &&
-			$this->db->getType() === 'mysql' &&
-			str_contains( $this->db->getSoftwareLink(), 'MySQL' )
+			$this->getDb()->getType() === 'mysql' &&
+			str_contains( $this->getDb()->getSoftwareLink(), 'MySQL' )
 		) {
 			$this->markTestSkipped( 'See T256006' );
 		}
@@ -619,7 +619,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 	public function testGetTags( array $tags, $rcId, $revId, $logId ) {
 		ChangeTags::addTags( $tags, $rcId, $revId, $logId );
 
-		$actualTags = ChangeTags::getTags( $this->db, $rcId, $revId, $logId );
+		$actualTags = ChangeTags::getTags( $this->getDb(), $rcId, $revId, $logId );
 
 		$this->assertSame( $tags, $actualTags );
 	}
@@ -636,9 +636,9 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		$tags3 = [ 'tag 3' ];
 		$tags2 = array_merge( $tags3, [ 'tag 2' ] );
 		$tags1 = array_merge( $tags2, [ 'tag 1' ] );
-		$this->assertArrayEquals( $tags3, ChangeTags::getTags( $this->db, $rcId, $revId, $logId ) );
-		$this->assertArrayEquals( $tags2, ChangeTags::getTags( $this->db, $rcId, $revId ) );
-		$this->assertArrayEquals( $tags1, ChangeTags::getTags( $this->db, $rcId ) );
+		$this->assertArrayEquals( $tags3, ChangeTags::getTags( $this->getDb(), $rcId, $revId, $logId ) );
+		$this->assertArrayEquals( $tags2, ChangeTags::getTags( $this->getDb(), $rcId, $revId ) );
+		$this->assertArrayEquals( $tags1, ChangeTags::getTags( $this->getDb(), $rcId ) );
 	}
 
 	public function testGetTagsWithData() {
@@ -649,13 +649,13 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		ChangeTags::addTags( [ 'tag 3_1' ], $rcId3, null, null );
 		ChangeTags::addTags( [ 'tag 3_2' ], $rcId3, null, null, 'data3_2' );
 
-		$data = ChangeTags::getTagsWithData( $this->db, $rcId1 );
+		$data = ChangeTags::getTagsWithData( $this->getDb(), $rcId1 );
 		$this->assertSame( [ 'tag 1' => 'data1' ], $data );
 
-		$data = ChangeTags::getTagsWithData( $this->db, $rcId2 );
+		$data = ChangeTags::getTagsWithData( $this->getDb(), $rcId2 );
 		$this->assertSame( [], $data );
 
-		$data = ChangeTags::getTagsWithData( $this->db, $rcId3 );
+		$data = ChangeTags::getTagsWithData( $this->getDb(), $rcId3 );
 		$this->assertArrayEquals( [ 'tag 3_1' => null, 'tag 3_2' => 'data3_2' ], $data, false, true );
 	}
 

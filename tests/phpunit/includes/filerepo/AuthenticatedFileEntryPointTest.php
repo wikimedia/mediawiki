@@ -51,7 +51,7 @@ class AuthenticatedFileEntryPointTest extends MediaWikiIntegrationTestCase {
 		$history = $file->getHistory();
 		$oldFile = $history[0];
 
-		$this->db->newUpdateQueryBuilder()
+		$this->getDb()->newUpdateQueryBuilder()
 			->table( 'oldimage' )
 			->set( [ 'oi_deleted' => 1 ] )
 			->where( [ 'oi_archive_name' => $oldFile->getArchiveName() ] )

@@ -187,7 +187,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	public function testNewFromID_missing() {
 		$store = $this->getStore();
 		$missingBlockId = 9998;
-		$dbRow = $this->db->newSelectQueryBuilder()
+		$dbRow = $this->getDb()->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'block' )
 			->where( [ 'bl_id' => $missingBlockId ] )
@@ -361,7 +361,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$store = $this->getStore();
 		$store->insertBlock( $this->getBlock( [ 'target' => $blockTarget ] ) );
 		[ $start, $end ] = IPUtils::parseRange( $searchTarget );
-		$rows = $this->db->newSelectQueryBuilder()
+		$rows = $this->getDb()->newSelectQueryBuilder()
 			->queryInfo( $store->getQueryInfo() )
 			->where( $store->getRangeCond( $start, $end ) )
 			->fetchResultSet();
@@ -621,12 +621,12 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	 * @param bool $expected Whether to expect to find any rows
 	 */
 	private function assertPurgeWorked( int $blockId, bool $expected ): void {
-		$blockRows = (bool)$this->db->newSelectQueryBuilder()
+		$blockRows = (bool)$this->getDb()->newSelectQueryBuilder()
 			->select( 'bl_id' )
 			->from( 'block' )
 			->where( [ 'bl_id' => $blockId ] )
 			->fetchResultSet()->numRows();
-		$blockRestrictionsRows = (bool)$this->db->newSelectQueryBuilder()
+		$blockRestrictionsRows = (bool)$this->getDb()->newSelectQueryBuilder()
 			->select( 'ir_ipb_id' )
 			->from( 'ipblocks_restrictions' )
 			->where( [ 'ir_ipb_id' => $blockId ] )
@@ -687,7 +687,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$this->sysop = $this->getTestSysop()->getUser();
 
 		// Get a comment ID. One was added in addDBDataOnce.
-		$commentId = $this->db->newSelectQueryBuilder()
+		$commentId = $this->getDb()->newSelectQueryBuilder()
 			->select( 'comment_id' )
 			->from( 'comment' )
 			->caller( __METHOD__ )
@@ -696,7 +696,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$commonBlockData = [
 			'bl_by_actor' => $this->sysop->getActorId(),
 			'bl_reason_id' => $commentId,
-			'bl_timestamp' => $this->db->timestamp( '20000101000000' ),
+			'bl_timestamp' => $this->getDb()->timestamp( '20000101000000' ),
 			'bl_anon_only' => 0,
 			'bl_create_account' => 0,
 			'bl_deleted' => 0,
@@ -724,32 +724,32 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		];
 		$targetIds = [];
 		foreach ( $targetRows as $i => $row ) {
-			$this->db->newInsertQueryBuilder()
+			$this->getDb()->newInsertQueryBuilder()
 				->insertInto( 'block_target' )
 				->row( $row + [ 'bt_count' => 1 ] )
 				->execute();
-			$targetIds[$i] = $this->db->insertId();
+			$targetIds[$i] = $this->getDb()->insertId();
 		}
 
 		$blockData = [
 			[
 				'bl_id' => $this->expiredBlockId,
 				'bl_target' => $targetIds['1.1.1.1'],
-				'bl_expiry' => $this->db->timestamp( '20010101000000' ),
+				'bl_expiry' => $this->getDb()->timestamp( '20010101000000' ),
 				'bl_enable_autoblock' => 0,
 				'bl_parent_block_id' => 0,
 			] + $commonBlockData,
 			[
 				'bl_id' => $this->unexpiredBlockId,
 				'bl_target' => $targetIds['sysop'],
-				'bl_expiry' => $this->db->getInfinity(),
+				'bl_expiry' => $this->getDb()->getInfinity(),
 				'bl_enable_autoblock' => 1,
 				'bl_parent_block_id' => 0,
 			] + $commonBlockData,
 			[
 				'bl_id' => $this->autoblockId,
 				'bl_target' => $targetIds['2.2.2.2'],
-				'bl_expiry' => $this->db->getInfinity(),
+				'bl_expiry' => $this->getDb()->getInfinity(),
 				'bl_enable_autoblock' => 0,
 				'bl_parent_block_id' => $this->unexpiredBlockId,
 			] + $commonBlockData,
@@ -773,13 +773,13 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 			],
 		];
 
-		$this->db->newInsertQueryBuilder()
+		$this->getDb()->newInsertQueryBuilder()
 			->insertInto( 'block' )
 			->rows( $blockData )
 			->caller( __METHOD__ )
 			->execute();
 
-		$this->db->newInsertQueryBuilder()
+		$this->getDb()->newInsertQueryBuilder()
 			->insertInto( 'ipblocks_restrictions' )
 			->rows( $restrictionData )
 			->caller( __METHOD__ )

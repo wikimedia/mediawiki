@@ -548,7 +548,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 
 		// do a cross-namespace move
 		$new = Title::makeTitle( NS_PROJECT, __METHOD__ );
-		$obj = $this->newMovePageWithMocks( $old, $new, [ 'db' => $this->db ] );
+		$obj = $this->newMovePageWithMocks( $old, $new, [ 'db' => $this->getDb() ] );
 		$status = $obj->move( $this->getTestUser()->getUser() );
 
 		// sanity checks

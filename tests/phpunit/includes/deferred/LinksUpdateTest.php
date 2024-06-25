@@ -582,8 +582,8 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			[ 'tl_target_id' ],
 			[ 'tl_from' => self::$testingPageId ],
 			[
-				[ $linkTargetLookup->acquireLinkTargetId( $target1, $this->db ) ],
-				[ $linkTargetLookup->acquireLinkTargetId( $target2, $this->db ) ],
+				[ $linkTargetLookup->acquireLinkTargetId( $target1, $this->getDb() ) ],
+				[ $linkTargetLookup->acquireLinkTargetId( $target2, $this->getDb() ) ],
 			]
 		);
 
@@ -600,8 +600,8 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			[ 'tl_target_id' ],
 			[ 'tl_from' => self::$testingPageId ],
 			[
-				[ $linkTargetLookup->acquireLinkTargetId( $target2, $this->db ) ],
-				[ $linkTargetLookup->acquireLinkTargetId( $target3, $this->db ) ],
+				[ $linkTargetLookup->acquireLinkTargetId( $target2, $this->getDb() ) ],
+				[ $linkTargetLookup->acquireLinkTargetId( $target3, $this->getDb() ) ],
 			]
 		);
 	}

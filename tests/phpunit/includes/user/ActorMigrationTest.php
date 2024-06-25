@@ -454,7 +454,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			}
 
 			$id = ++self::$amId;
-			$this->db->newInsertQueryBuilder()
+			$this->getDb()->newInsertQueryBuilder()
 				->insertInto( $table )
 				->row( [ $pk => $id ] + $fields )
 				->caller( __METHOD__ )
@@ -465,7 +465,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 				$r = $this->getMigration( $readStage );
 
 				$queryInfo = $r->getJoin( $key );
-				$row = $this->db->newSelectQueryBuilder()
+				$row = $this->getDb()->newSelectQueryBuilder()
 					->queryInfo( $queryInfo )
 					->from( $table )
 					->where( [ $pk => $id ] )
@@ -506,14 +506,14 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		$m = $this->getMigration( $stage );
 		$fields = $m->getInsertValues( $this->db, 'am1_user', $userIdentity );
 		$id = ++self::$amId;
-		$this->db->newInsertQueryBuilder()
+		$this->getDb()->newInsertQueryBuilder()
 			->insertInto( 'actormigration1' )
 			->row( [ 'am1_id' => $id ] + $fields )
 			->caller( __METHOD__ )
 			->execute();
 
 		$qi = $m->getJoin( 'am1_user' );
-		$row = $this->db->newSelectQueryBuilder()
+		$row = $this->getDb()->newSelectQueryBuilder()
 			->queryInfo( $qi )
 			->from( 'actormigration1' )
 			->where( [ 'am1_id' => $id ] )

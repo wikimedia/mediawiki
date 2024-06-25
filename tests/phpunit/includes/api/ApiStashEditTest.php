@@ -460,11 +460,11 @@ class ApiStashEditTest extends ApiTestCase {
 		$this->markTestSkipped();
 
 		$key = $this->getStashKey();
-		$this->db->lock( $key, __METHOD__, 0 );
+		$this->getDb()->lock( $key, __METHOD__, 0 );
 		try {
 			$this->doStash( [], null, 'busy' );
 		} finally {
-			$this->db->unlock( $key, __METHOD__ );
+			$this->getDb()->unlock( $key, __METHOD__ );
 		}
 	}
 }

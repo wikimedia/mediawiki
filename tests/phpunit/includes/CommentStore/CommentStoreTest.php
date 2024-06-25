@@ -129,7 +129,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 
 		$wstore = $this->makeStore();
 
-		$fields = $wstore->insert( $this->db, $key, $comment, $data );
+		$fields = $wstore->insert( $this->getDb(), $key, $comment, $data );
 
 		$this->assertArrayNotHasKey( $key, $fields, "old field" );
 		$this->assertArrayHasKey( "{$key}_id", $fields, "new field" );
@@ -158,7 +158,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 
 		$this->assertComment(
 			$expect,
-			$rstore->getCommentLegacy( $this->db, $key, $fieldRow ),
+			$rstore->getCommentLegacy( $this->getDb(), $key, $fieldRow ),
 			"from getFields()"
 		);
 		$this->assertComment(
@@ -272,7 +272,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		$truncated = str_repeat( '💣', CommentStore::COMMENT_CHARACTER_LIMIT - 3 ) . '...';
 
 		$store = $this->makeStore();
-		$fields = $store->insert( $this->db, 'ipb_reason', $comment );
+		$fields = $store->insert( $this->getDb(), 'ipb_reason', $comment );
 		$stored = $this->getDb()->newSelectQueryBuilder()
 			->select( 'comment_text' )
 			->from( 'comment' )
@@ -285,7 +285,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		$store = $this->makeStore();
 		$this->expectException( OverflowException::class );
 		$this->expectExceptionMessage( "Comment data is too long (65611 bytes, maximum is 65535)" );
-		$store->insert( $this->db, 'ipb_reason', 'foo', [
+		$store->insert( $this->getDb(), 'ipb_reason', 'foo', [
 			'long' => str_repeat( '💣', 16400 )
 		] );
 	}

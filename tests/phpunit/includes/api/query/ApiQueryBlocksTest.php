@@ -105,7 +105,7 @@ class ApiQueryBlocksTest extends ApiTestCase {
 		$pageData = $this->insertPage( $title );
 		$pageId = $pageData['id'];
 
-		$this->db->newInsertQueryBuilder()
+		$this->getDb()->newInsertQueryBuilder()
 			->insertInto( 'ipblocks_restrictions' )
 			->row( [
 				'ir_ipb_id' => $block->getId(),

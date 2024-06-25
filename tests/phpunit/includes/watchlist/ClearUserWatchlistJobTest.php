@@ -74,7 +74,7 @@ class ClearUserWatchlistJobTest extends MediaWikiIntegrationTestCase {
 		$watchedItemStore->addWatch( $user, new TitleValue( 0, __METHOD__ . 'has expiry' ), '1 week' );
 
 		// Get the IDs of these items.
-		$itemIds = $this->db->newSelectQueryBuilder()
+		$itemIds = $this->getDb()->newSelectQueryBuilder()
 			->select( 'wl_id' )
 			->from( 'watchlist' )
 			->where( [ 'wl_user' => $user->getId() ] )
@@ -89,7 +89,7 @@ class ClearUserWatchlistJobTest extends MediaWikiIntegrationTestCase {
 		$this->runJobs( [ 'complete' => false ], [ 'maxJobs' => 1 ] );
 
 		// Confirm that there are now no expiry records.
-		$watchedCount = $this->db->newSelectQueryBuilder()
+		$watchedCount = $this->getDb()->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'watchlist_expiry' )
 			->where( [ 'we_item' => $itemIds ] )

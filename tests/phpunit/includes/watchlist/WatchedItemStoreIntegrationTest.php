@@ -418,15 +418,15 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		// Manually insert some orphaned non-expired rows.
 		$orphanRows = [
-			[ 'we_item' => '100000', 'we_expiry' => $this->db->timestamp( '30300101000000' ) ],
-			[ 'we_item' => '100001', 'we_expiry' => $this->db->timestamp( '30300101000000' ) ],
+			[ 'we_item' => '100000', 'we_expiry' => $this->getDb()->timestamp( '30300101000000' ) ],
+			[ 'we_item' => '100001', 'we_expiry' => $this->getDb()->timestamp( '30300101000000' ) ],
 		];
-		$this->db->newInsertQueryBuilder()
+		$this->getDb()->newInsertQueryBuilder()
 			->insertInto( 'watchlist_expiry' )
 			->rows( $orphanRows )
 			->caller( __METHOD__ )
 			->execute();
-		$initialRowCount = $this->db->newSelectQueryBuilder()
+		$initialRowCount = $this->getDb()->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'watchlist_expiry' )
 			->caller( __METHOD__ )->fetchRowCount();
@@ -435,7 +435,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		$store->removeExpired( 10, false );
 		$this->assertSame(
 			$initialRowCount,
-			$this->db->newSelectQueryBuilder()
+			$this->getDb()->newSelectQueryBuilder()
 				->select( '*' )
 				->from( 'watchlist_expiry' )
 				->caller( __METHOD__ )->fetchRowCount()
@@ -445,7 +445,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		$store->removeExpired( 10, true );
 		$this->assertSame(
 			$initialRowCount - 2,
-			$this->db->newSelectQueryBuilder()
+			$this->getDb()->newSelectQueryBuilder()
 				->select( '*' )
 				->from( 'watchlist_expiry' )
 				->caller( __METHOD__ )->fetchRowCount()
