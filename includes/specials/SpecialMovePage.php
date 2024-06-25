@@ -35,6 +35,7 @@ use MediaWiki\Page\DeletePageFactory;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Title\NamespaceInfo;
@@ -57,6 +58,7 @@ use OOUI\TextInputWidget;
 use PermissionsError;
 use RepoGroup;
 use SearchEngineFactory;
+use StatusValue;
 use StringUtils;
 use ThrottledError;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -226,35 +228,33 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		// do not show an error but show the form again for easy re-submit.
 		if ( $isSubmit && $user->matchEditToken( $request->getVal( 'wpEditToken' ) ) ) {
 			// Check rights
-			$permErrors = $this->permManager->getPermissionErrors( 'move', $user, $this->oldTitle,
+			$permStatus = $this->permManager->getPermissionStatus( 'move', $user, $this->oldTitle,
 				PermissionManager::RIGOR_SECURE );
 			// If the account is "hard" blocked, auto-block IP
 			DeferredUpdates::addCallableUpdate( [ $user, 'spreadAnyEditBlock' ] );
-			if ( $permErrors ) {
-				throw new PermissionsError( 'move', $permErrors );
+			if ( !$permStatus->isGood() ) {
+				throw new PermissionsError( 'move', $permStatus );
 			}
 			$this->doSubmit();
 		} else {
 			// Avoid primary DB connection on form view (T283265)
-			$permErrors = $this->permManager->getPermissionErrors( 'move', $user, $this->oldTitle,
+			$permStatus = $this->permManager->getPermissionStatus( 'move', $user, $this->oldTitle,
 				PermissionManager::RIGOR_FULL );
-			if ( $permErrors ) {
+			if ( !$permStatus->isGood() ) {
 				DeferredUpdates::addCallableUpdate( [ $user, 'spreadAnyEditBlock' ] );
-				throw new PermissionsError( 'move', $permErrors );
+				throw new PermissionsError( 'move', $permStatus );
 			}
-			$this->showForm( [] );
+			$this->showForm();
 		}
 	}
 
 	/**
 	 * Show the form
 	 *
-	 * @param (string|array)[] $err Error messages. Each item is an error message.
-	 *    It may either be a string message name or array message name and
-	 *    parameters, like the second argument to OutputPage::wrapWikiMsg().
-	 * @param bool $isPermError Whether the error message is about user permissions.
+	 * @param ?StatusValue $status Form submission status.
+	 *   If it is a PermissionStatus, a special message will be shown.
 	 */
-	protected function showForm( $err, $isPermError = false ) {
+	private function showForm( ?StatusValue $status = null ) {
 		$this->getSkin()->setRelevantTitle( $this->oldTitle );
 
 		$out = $this->getOutput();
@@ -304,20 +304,20 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			# Show the current title as a default
 			# when the form is first opened.
 			$newTitle = $this->oldTitle;
-		} elseif ( !count( $err ) ) {
+		} elseif ( !$status ) {
 			# If a title was supplied, probably from the move log revert
 			# link, check for validity. We can then show some diagnostic
 			# information and save a click.
 			$mp = $this->movePageFactory->newMovePage( $this->oldTitle, $newTitle );
 			$status = $mp->isValidMove();
 			$status->merge( $mp->probablyCanMove( $this->getAuthority() ) );
-			if ( $status->getMessages() ) {
-				$err = $status->getErrorsArray();
-			}
+		}
+		if ( !$status ) {
+			$status = StatusValue::newGood();
 		}
 
-		if ( count( $err ) == 1 && isset( $err[0][0] ) ) {
-			if ( $err[0][0] == 'articleexists'
+		if ( count( $status->getMessages() ) == 1 ) {
+			if ( $status->hasMessage( 'articleexists' )
 				&& $this->permManager->quickUserCan( 'delete', $user, $newTitle )
 			) {
 				$out->addHTML(
@@ -326,8 +326,8 @@ class SpecialMovePage extends UnlistedSpecialPage {
 					)
 				);
 				$deleteAndMove = true;
-				$err = [];
-			} elseif ( $err[0][0] == 'redirectexists' && (
+				$status = StatusValue::newGood();
+			} elseif ( $status->hasMessage( 'redirectexists' ) && (
 				// Any user that can delete normally can also delete a redirect here
 				$this->permManager->quickUserCan( 'delete-redirect', $user, $newTitle ) ||
 				$this->permManager->quickUserCan( 'delete', $user, $newTitle ) )
@@ -338,8 +338,8 @@ class SpecialMovePage extends UnlistedSpecialPage {
 					)
 				);
 				$deleteAndMove = true;
-				$err = [];
-			} elseif ( $err[0][0] == 'file-exists-sharedrepo'
+				$status = StatusValue::newGood();
+			} elseif ( $status->hasMessage( 'file-exists-sharedrepo' )
 				&& $this->permManager->userHasRight( $user, 'reupload-shared' )
 			) {
 				$out->addHTML(
@@ -348,7 +348,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 					)
 				);
 				$moveOverShared = true;
-				$err = [];
+				$status = StatusValue::newGood();
 			}
 		}
 
@@ -382,27 +382,23 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			$hasRedirects = false;
 		}
 
-		if ( count( $err ) ) {
-			'@phan-var array[] $err';
-			if ( $isPermError ) {
+		$messages = $status->getMessages();
+		if ( $messages ) {
+			if ( $status instanceof PermissionStatus ) {
 				$action_desc = $this->msg( 'action-move' )->plain();
 				$errMsgHtml = $this->msg( 'permissionserrorstext-withaction',
-					count( $err ), $action_desc )->parseAsBlock();
+					count( $messages ), $action_desc )->parseAsBlock();
 			} else {
-				$errMsgHtml = $this->msg( 'cannotmove', count( $err ) )->parseAsBlock();
+				$errMsgHtml = $this->msg( 'cannotmove', count( $messages ) )->parseAsBlock();
 			}
 
-			if ( count( $err ) == 1 ) {
-				$errMsg = $err[0];
-				$errMsgName = array_shift( $errMsg );
-
-				$errMsgHtml .= $this->msg( $errMsgName, $errMsg )->parseAsBlock();
+			if ( count( $messages ) == 1 ) {
+				$errMsgHtml .= $this->msg( $messages[0] )->parseAsBlock();
 			} else {
 				$errStr = [];
 
-				foreach ( $err as $errMsg ) {
-					$errMsgName = array_shift( $errMsg );
-					$errStr[] = $this->msg( $errMsgName, $errMsg )->parse();
+				foreach ( $messages as $msg ) {
+					$errStr[] = $this->msg( $msg )->parse();
 				}
 
 				$errMsgHtml .= '<ul><li>' . implode( "</li>\n<li>", $errStr ) . "</li></ul>\n";
@@ -687,7 +683,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 
 		# don't allow moving to pages with # in
 		if ( !$nt || $nt->hasFragment() ) {
-			$this->showForm( [ [ 'badtitletext' ] ] );
+			$this->showForm( StatusValue::newFatal( 'badtitletext' ) );
 
 			return;
 		}
@@ -698,7 +694,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			&& !$this->repoGroup->getLocalRepo()->findFile( $nt )
 			&& $this->repoGroup->findFile( $nt )
 		) {
-			$this->showForm( [ [ 'file-exists-sharedrepo' ] ] );
+			$this->showForm( StatusValue::newFatal( 'file-exists-sharedrepo' ) );
 
 			return;
 		}
@@ -707,16 +703,15 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		if ( $this->deleteAndMove ) {
 			$redir2 = $nt->isSingleRevRedirect();
 
-			$permErrors = $this->permManager->getPermissionErrors(
+			$permStatus = $this->permManager->getPermissionStatus(
 				$redir2 ? 'delete-redirect' : 'delete',
 				$user, $nt
 			);
-			if ( count( $permErrors ) ) {
+			if ( !$permStatus->isGood() ) {
 				if ( $redir2 ) {
-					if ( count( $this->permManager->getPermissionErrors( 'delete', $user, $nt ) ) ) {
+					if ( $this->permManager->userCan( 'delete', $user, $nt ) ) {
 						// Cannot delete-redirect, or delete normally
-						// Only show the first error
-						$this->showForm( $permErrors, true );
+						$this->showForm( $permStatus );
 						return;
 					} else {
 						// Cannot delete-redirect, but can delete normally,
@@ -725,8 +720,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 					}
 				} else {
 					// Cannot delete normally
-					// Only show first error
-					$this->showForm( $permErrors, true );
+					$this->showForm( $permStatus );
 					return;
 				}
 			}
@@ -736,7 +730,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 
 			// Small safety margin to guard against concurrent edits
 			if ( $delPage->isBatchedDelete( 5 ) ) {
-				$this->showForm( [ [ 'movepage-delete-first' ] ] );
+				$this->showForm( StatusValue::newFatal( 'movepage-delete-first' ) );
 
 				return;
 			}
@@ -760,7 +754,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 				->deleteUnsafe( $reason );
 
 			if ( !$deleteStatus->isGood() ) {
-				$this->showForm( $deleteStatus->getErrorsArray() );
+				$this->showForm( $deleteStatus );
 
 				return;
 			}
@@ -779,8 +773,6 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		# Do the actual move.
 		$mp = $this->movePageFactory->newMovePage( $ot, $nt );
 
-		# check whether the requested actions are permitted / possible
-		$userPermitted = $mp->authorizeMove( $this->getAuthority(), $this->reason )->isOK();
 		if ( $ot->isTalkPage() || $nt->isTalkPage() ) {
 			$this->moveTalk = false;
 		}
@@ -788,9 +780,15 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			$this->moveSubpages = $this->permManager->userCan( 'move-subpages', $user, $ot );
 		}
 
+		# check whether the requested actions are permitted / possible
+		$permStatus = $mp->authorizeMove( $this->getAuthority(), $this->reason );
+		if ( !$permStatus->isOK() ) {
+			$this->showForm( $permStatus );
+			return;
+		}
 		$status = $mp->moveIfAllowed( $this->getAuthority(), $this->reason, $createRedirect );
 		if ( !$status->isOK() ) {
-			$this->showForm( $status->getErrorsArray(), !$userPermitted );
+			$this->showForm( $status );
 			return;
 		}
 
