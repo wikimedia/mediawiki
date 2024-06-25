@@ -427,7 +427,7 @@ trait MediaWikiTestCaseTrait {
 	 * @param string $message
 	 */
 	protected function assertStatusMessagesExactly( StatusValue $expected, StatusValue $actual, $message = '' ) {
-		$localizer = $this instanceof MediaWikiUnitTestCase ? new FakeQqxMessageLocalizer() : new MockMessageLocalizer();
+		$localizer = new FakeQqxMessageLocalizer();
 
 		foreach ( [ 'error', 'warning' ] as $type ) {
 			foreach (

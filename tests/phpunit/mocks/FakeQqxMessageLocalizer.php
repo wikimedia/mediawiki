@@ -41,6 +41,11 @@ class FakeQqxMessageLocalizer implements MessageLocalizer {
 					public function getCode(): string {
 						return 'qqx';
 					}
+
+					// Support using Message::numParam()
+					public function formatNum( $number ): string {
+						return (string)$number;
+					}
 				};
 			}
 
