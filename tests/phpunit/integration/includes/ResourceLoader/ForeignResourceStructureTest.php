@@ -14,8 +14,6 @@ use PHPUnit\Framework\TestCase;
 class ForeignResourceStructureTest extends TestCase {
 
 	public function testVerifyIntegrity() {
-		$this->markTestSkipped( "T362425" );
-
 		global $IP;
 		$out = '';
 		$frm = new ForeignResourceManager(
