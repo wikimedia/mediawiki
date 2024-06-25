@@ -181,6 +181,7 @@ class Validator {
 		$remainingBodyFields = $parsedBody;
 		foreach ( $paramSettings as $name => $settings ) {
 			$source = $settings[Handler::PARAM_SOURCE] ?? 'unspecified';
+
 			if ( $source !== 'body' ) {
 				continue;
 			}
@@ -191,6 +192,11 @@ class Validator {
 		$unvalidatedKeys = array_keys( $remainingBodyFields );
 
 		// Throw if there are unvalidated keys left and there are body params defined.
+		// If there are no known body params declared, we just ignore any body
+		// data coming from the client. This works around that fact that "post"
+		// params also show up in the parsed body. That means that mixing "body"
+		// and "post" params will trigger an error here. Any "post" params should
+		// be converted to "body".
 		if ( $validatedKeys && $unvalidatedKeys ) {
 			throw new LocalizedHttpException(
 				new MessageValue(
@@ -290,7 +296,7 @@ class Validator {
 
 		// Form data is parsed into $_POST and $_FILES by PHP and from there is accessed as parameters,
 		// don't bother trying to handle these via BodyValidator too.
-		if ( in_array( $ct, self::FORM_DATA_CONTENT_TYPES, true ) ) {
+		if ( in_array( $ct, RequestInterface::FORM_DATA_CONTENT_TYPES, true ) ) {
 			return null;
 		}
 

@@ -36,6 +36,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Rest\Router
+ * @covers \MediaWiki\Rest\Handler
  */
 class RouterTest extends MediaWikiUnitTestCase {
 	use RestTestTrait;
@@ -734,7 +735,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [ 'foo' => 'bar' ], $data );
 	}
 
-	public function testHandlerCanAccessParsedBodyForJsonRequest() {
+	public function testJsonBody() {
 		$request = new RequestData( [
 			'uri' => new Uri( '/rest/mock/v1/RouterTest/echo' ),
 			'method' => 'POST',
@@ -745,42 +746,67 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$response = $router->execute( $request );
 		$this->assertSame( 200, $response->getStatusCode() );
 
-		// Check if the response contains a field called 'parsedBody'
 		$body = $response->getBody();
 		$body->rewind();
 		$data = json_decode( $body->getContents(), true );
-		$this->assertArrayHasKey( 'parsedBody', $data );
 
-		// Check the value of the 'parsedBody' field
-		$parsedBody = $data['parsedBody'];
-		$this->assertEquals( [ 'bodyParam' => 'bar' ], $parsedBody );
+		// Check the value of 'parsedBody' and 'validateBody' fields
+		$this->assertEquals( [ 'bodyParam' => 'bar' ], $data['parsedBody'] );
+		$this->assertEquals( [ 'bodyParam' => 'bar' ], $data['validatedBody'] );
+		$this->assertArrayNotHasKey( 'bodyParam', $data['validatedParams'] );
 	}
 
-	public function testHandlerCanAccessValidatedBodyForJsonRequest() {
+	public function testFormDataBody() {
 		$request = new RequestData( [
 			'uri' => new Uri( '/rest/mock/v1/RouterTest/echo' ),
 			'method' => 'POST',
-			'bodyContents' => '{"bodyParam":"bar"}',
-			'headers' => [ "content-type" => 'application/json' ]
+			'postParams' => [ 'bodyParam' => 'bar' ],
+			'headers' => [
+				"content-type" => 'application/x-www-form-urlencoded',
+				"content-length" => 123,
+			]
 		] );
 		$router = $this->createRouter( $request );
 		$response = $router->execute( $request );
 		$this->assertSame( 200, $response->getStatusCode(), (string)$response->getBody() );
 
-		// Check if the response contains a field called 'validatedBody'
 		$body = $response->getBody();
 		$body->rewind();
 		$data = json_decode( $body->getContents(), true );
-		$this->assertArrayHasKey( 'validatedBody', $data );
 
-		// Check the value of the 'validatedBody' field
-		$validatedBody = $data['validatedBody'];
-		$this->assertEquals( [ 'bodyParam' => 'bar' ], $validatedBody );
+		// The body parameter should be in parsedBody and validatedBody,
+		// but not in validatedParams.
+		$this->assertEquals( [ 'bodyParam' => 'bar' ], $data['parsedBody'] );
+		$this->assertEquals( [ 'bodyParam' => 'bar' ], $data['validatedBody'] );
+		$this->assertArrayNotHasKey( 'bodyParam', $data['validatedParams'] );
+	}
 
-		// Check the value of the 'validatedParams' field.
-		// It should not contain bodyParam.
-		$validatedParams = $data['validatedParams'];
-		$this->assertArrayNotHasKey( 'bodyParam', $validatedParams );
+	public function testFormDataBody_post() {
+		// See T362850
+		$this->expectDeprecationAndContinue( '/The "post" source is deprecated/' );
+
+		$request = new RequestData( [
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/echo_form_data' ),
+			'method' => 'POST',
+			'postParams' => [ 'postParam' => 'bar' ],
+			'headers' => [
+				"content-type" => 'application/x-www-form-urlencoded',
+				"content-length" => 123,
+			]
+		] );
+		$router = $this->createRouter( $request );
+		$response = $router->execute( $request );
+		$this->assertSame( 200, $response->getStatusCode(), (string)$response->getBody() );
+
+		$body = $response->getBody();
+		$body->rewind();
+		$data = json_decode( $body->getContents(), true );
+
+		// The post parameter should be in parsedBody and validatedParams,
+		// but not as in validatedBody.
+		$this->assertEquals( [ 'postParam' => 'bar' ], $data['parsedBody'] );
+		$this->assertArrayHasKey( 'postParam', $data['validatedParams'] );
+		$this->assertArrayNotHasKey( 'postParam', $data['validatedBody'] );
 	}
 
 	public function testHandlerCanAccessValidatedParams() {

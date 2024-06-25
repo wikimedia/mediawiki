@@ -378,7 +378,7 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 	}
 
 	public static function provideValidateParams() {
-		$sources = [ 'path', 'query', 'post' ];
+		$sources = [ 'path', 'query' ];
 		$paramNames = [
 			"path" => "pathParams",
 			"query" => "queryParams",
@@ -533,6 +533,24 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 				$this->fail( 'Unexpected exception: ' . $ex );
 			}
 		}
+	}
+
+	public function testValidateParams_post() {
+		$this->expectDeprecationAndContinue( '/The "post" source is deprecated/' );
+
+		$requestData = new RequestData( [ 'postParams' => [ 'foo' => 'bar' ] ] );
+		$paramSetting = [
+			'foo' => [
+				ParamValidator::PARAM_TYPE => 'string',
+				Validator::PARAM_SOURCE => 'post',
+			]
+		];
+
+		$objectFactory = $this->getDummyObjectFactory();
+		$validator = new Validator( $objectFactory, $requestData, $this->mockAnonNullAuthority() );
+
+		$actual = $validator->validateParams( $paramSetting );
+		$this->assertSame( [ 'foo' => 'bar' ], $actual );
 	}
 
 	public static function provideDetectExtraneousBodyFields() {

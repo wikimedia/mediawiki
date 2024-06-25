@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Rest\Handler;
 
 use LogicException;
 use MediaWiki\Rest\Handler;
+use MediaWiki\Rest\RequestInterface;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -35,20 +36,14 @@ class EchoHandler extends Handler {
 		];
 	}
 
-	public function getParamSettings() {
+	public function getBodyParamSettings(): array {
+		if ( $this->getConfig()['postParam'] ?? false ) {
+			// Don't mix "post" and "body" params, it confuses
+			// Validator::detectExtraneousBodyFields()
+			return [];
+		}
+
 		return [
-			'q' => [
-				self::PARAM_SOURCE => 'query',
-				ParamValidator::PARAM_TYPE => 'string',
-			],
-			'pathParam' => [
-				self::PARAM_SOURCE => 'path',
-				ParamValidator::PARAM_TYPE => 'string',
-			],
-			'postParam' => [
-				self::PARAM_SOURCE => 'post',
-				ParamValidator::PARAM_TYPE => 'integer',
-			],
 			'bodyParam' => [
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
@@ -57,8 +52,39 @@ class EchoHandler extends Handler {
 		];
 	}
 
+	public function getParamSettings() {
+		$paramSettings = [
+			'q' => [
+				self::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_TYPE => 'string',
+			],
+			'pathParam' => [
+				self::PARAM_SOURCE => 'path',
+				ParamValidator::PARAM_TYPE => 'string',
+			],
+		];
+
+		if ( $this->getConfig()['postParam'] ?? false ) {
+			// Deprecated, will trigger a warning!
+			$paramSettings['postParam'] = [
+				self::PARAM_SOURCE => 'post',
+				ParamValidator::PARAM_TYPE => 'string',
+			];
+		}
+
+		return $paramSettings;
+	}
+
 	protected function postValidationSetup() {
 		$this->postValidationSetupCalled = true;
+	}
+
+	public function getSupportedRequestTypes(): array {
+		return [
+			RequestInterface::JSON_CONTENT_TYPE,
+			RequestInterface::FORM_URLENCODED_CONTENT_TYPE,
+			RequestInterface::MULTIPART_FORM_DATA_CONTENT_TYPE,
+		];
 	}
 
 	public function needsWriteAccess() {
