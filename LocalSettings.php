@@ -563,7 +563,6 @@ $wgCookieWarningGeoIPLookup = 'php';
 $wgCookieWarningGeoIp2 = true;
 $wgCookieWarningGeoIp2Path = '/var/www/html/piwik/misc/DBIP-City.mmdb';
 $wgEnablePartialBlocks = true;
-$wgEnablePartialActionBlocks = true;
 $wgParsoidSettings = [
 	'linting' => true
 ];
