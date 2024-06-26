@@ -800,6 +800,13 @@ class HandlerTest extends MediaWikiUnitTestCase {
 				] ),
 				[ 'foo' => 'bar' ]
 			],
+			'json patch body' => [
+				new RequestData( [
+					'bodyContents' => '{"patch":[]}',
+					'headers' => [ 'Content-Type' => 'application/json-patch+json' ]
+				] ),
+				[ 'patch' => [] ]
+			],
 			'form data' => [
 				new RequestData( [
 					'postParams' => [ 'foo' => 'bar' ],
@@ -861,6 +868,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$handler = $this->newHandler( [ 'getSupportedRequestTypes' ] );
 		$handler->method( 'getSupportedRequestTypes' )->willReturn( [
 			'application/json',
+			'application/json-patch+json',
 			'application/x-www-form-urlencoded',
 			'multipart/form-data'
 		] );
