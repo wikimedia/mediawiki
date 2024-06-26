@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Design System Team"
+		]
+	},
+	"cdx-input-chip-aria-description": "Press Enter to edit or Delete to remove.",
+	"cdx-dialog-close-button-label": "Close",
+	"cdx-label-optional-flag": "(optional)",
+	"cdx-message-dismiss-button-label": "Close",
+	"cdx-search-input-search-button-label": "Search",
+	"cdx-table-select-all-label": "Select all rows",
+	"cdx-table-select-row-label": "Select row $1 of $2",
+	"cdx-table-sort-caption": "$1, column headers with buttons are sortable.",
+	"cdx-typeahead-search-search-results-label": "Search results"
+}
