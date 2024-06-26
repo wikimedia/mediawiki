@@ -26,7 +26,7 @@
 	font: inherit;
 
 	.mw-collapsible-text {
-		color: @color-link;
+		.cdx-mixin-link-base();
 
 		.mw-underline-always & {
 			text-decoration: underline;
@@ -35,14 +35,6 @@
 		.mw-underline-never & {
 			text-decoration: none;
 		}
-	}
-
-	&:hover .mw-collapsible-text {
-		text-decoration: underline;
-	}
-
-	&:active .mw-collapsible-text {
-		color: @color-link--active;
 	}
 
 	&::before {
