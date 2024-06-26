@@ -385,6 +385,46 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertSame( 'example &amp;', $msg->escaped() );
 	}
 
+	public static function provideRawMessage() {
+		yield 'No params' => [
+			new RawMessage( 'Foo Bar' ),
+			'Foo Bar',
+		];
+		yield 'Single param' => [
+			new RawMessage( '$1', [ 'Foo Bar' ] ),
+			'Foo Bar',
+		];
+		yield 'Multiple params' => [
+			new RawMessage( '$2 and $1', [ 'One', 'Two' ] ),
+			'Two and One',
+		];
+	}
+
+	/**
+	 * @dataProvider provideRawMessage
+	 * @covers \MediaWiki\Language\RawMessage::getParams
+	 */
+	public function testRawMessageParams( RawMessage $m, string $param ) {
+		$this->assertEquals( [ $param ], $m->getParams() );
+	}
+
+	/**
+	 * @dataProvider provideRawMessage
+	 * @covers \MediaWiki\Language\RawMessage::getKey
+	 * @covers \MediaWiki\Language\RawMessage::getParams
+	 */
+	public function testRawMessageDisassembleSpecifier( RawMessage $m, string $text ) {
+		// Check this just in case, although it's not really covered by this test.
+		$this->assertEquals( $text, $m->text(), 'output from RawMessage itself' );
+		// Verify that RawMessage can be used as a MessageSpecifier, producing the same output.
+		$msg = wfMessage( $m );
+		$this->assertEquals( $text, $msg->text(), 'output from RawMessage used as MessageSpecifier' );
+		// Verify that if you disassemble it using MessageSpecifier's getKey() and getParams() methods,
+		// then assemble a new MessageSpecifier using the return values, you will get the same output.
+		$msg2 = wfMessage( $m->getKey(), ...$m->getParams() );
+		$this->assertEquals( $text, $msg2->text(), 'output from RawMessage disassembled' );
+	}
+
 	/**
 	 * @covers \MediaWiki\Language\RawMessage
 	 * @covers \CoreTagHooks::html

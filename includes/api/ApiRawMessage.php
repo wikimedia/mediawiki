@@ -53,4 +53,13 @@ class ApiRawMessage extends RawMessage implements IApiMessage {
 		}
 		$this->setApiCode( $code, $data );
 	}
+
+	public function getApiCode() {
+		if ( $this->apiCode === null ) {
+			// Copied from ApiMessageTrait to avoid changing the error codes. This causes T350248,
+			// but there's nothing better we can do when a RawMessage is used.
+			$this->apiCode = preg_replace( '/[^a-zA-Z0-9_-]/', '_', $this->getTextOfRawMessage() );
+		}
+		return $this->apiCode;
+	}
 }

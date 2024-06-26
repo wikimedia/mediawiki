@@ -3308,7 +3308,28 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/** @dataProvider providePermissionStatus */
+	public function provideFormatPermissionStatus() {
+		yield 'RawMessage' => [
+			PermissionStatus::newEmpty()->fatal( new RawMessage( 'Foo Bar' ) ),
+			'(permissionserrorstext: 1)
+
+<div class="permissions-errors"><div class="mw-permissionerror-rawmessage">Foo Bar</div></div>',
+		];
+	}
+
+	public function provideFormatPermissionsErrorMessage() {
+		yield 'RawMessage' => [
+			PermissionStatus::newEmpty()->fatal( new RawMessage( 'Foo Bar' ) ),
+			'(permissionserrorstext: 1)
+
+<div class="permissions-errors"><div class="mw-permissionerror-rawmessage">(rawmessage: Foo Bar)</div></div>',
+		];
+	}
+
+	/**
+	 * @dataProvider providePermissionStatus
+	 * @dataProvider provideFormatPermissionStatus
+	 */
 	public function testFormatPermissionStatus( PermissionStatus $status, string $expected ) {
 		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'qqx' );
 
@@ -3316,7 +3337,10 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $actual );
 	}
 
-	/** @dataProvider providePermissionStatus */
+	/**
+	 * @dataProvider providePermissionStatus
+	 * @dataProvider provideFormatPermissionsErrorMessage
+	 */
 	public function testFormatPermissionsErrorMessage( PermissionStatus $status, string $expected ) {
 		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'qqx' );
 

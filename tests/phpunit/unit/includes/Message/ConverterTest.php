@@ -3,6 +3,8 @@
 namespace MediaWiki\Tests\Unit\Message;
 
 use InvalidArgumentException;
+use Language;
+use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Converter;
 use MediaWiki\Message\Message;
 use MediaWikiUnitTestCase;
@@ -109,6 +111,34 @@ class ConverterTest extends MediaWikiUnitTestCase {
 		$converter = new Converter();
 		$this->expectException( InvalidArgumentException::class );
 		$converter->convertMessage( $m );
+	}
+
+	public static function provideConversions_RawMessage() {
+		yield 'No params' => [
+			new RawMessage( 'Foo Bar' ),
+			new MessageValue( 'rawmessage', [ 'Foo Bar' ] ),
+		];
+
+		yield 'Single param' => [
+			new RawMessage( '$1', [ 'Foo Bar' ] ),
+			new MessageValue( 'rawmessage', [ 'Foo Bar' ] ),
+		];
+
+		yield 'Multiple params' => [
+			new RawMessage( '$1 $2', [ 'Foo', 'Bar' ] ),
+			new MessageValue( 'rawmessage', [ 'Foo Bar' ] ),
+		];
+	}
+
+	/** @dataProvider provideConversions_RawMessage */
+	public function testConvertMessage_RawMessage( RawMessage $m, MessageValue $mv ) {
+		// Tests for unidirectional conversion from RawMessage.
+		// The result doesn't roundtrip, but it at least renders the same output.
+		$converter = new Converter();
+		// Avoid service container access in the multiple param case
+		$lang = $this->createMock( Language::class );
+		$m->inLanguage( $lang );
+		$this->assertEquals( $mv, $converter->convertMessage( $m ) );
 	}
 
 }
