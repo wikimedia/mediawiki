@@ -33,7 +33,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 	}
 
 	public function testHidingRevisions() {
-		$performer = $this->mockAnonAuthorityWithPermissions( [ 'writeapi', 'deleterevision' ] );
+		$performer = $this->mockRegisteredAuthorityWithPermissions( [ 'writeapi', 'deleterevision' ] );
 		$revid = array_shift( $this->revs );
 		$out = $this->doApiRequestWithToken( [
 			'action' => 'revisiondelete',
@@ -93,7 +93,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 	}
 
 	public function testUnhidingOutput() {
-		$performer = $this->mockAnonAuthorityWithPermissions( [ 'writeapi', 'deleterevision' ] );
+		$performer = $this->mockRegisteredAuthorityWithPermissions( [ 'writeapi', 'deleterevision' ] );
 		$revid = array_shift( $this->revs );
 		// Hide revisions
 		$this->doApiRequestWithToken( [
