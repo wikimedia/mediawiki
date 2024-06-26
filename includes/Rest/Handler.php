@@ -829,6 +829,11 @@ abstract class Handler {
 			);
 		}
 
+		// if it's supported and ends with "+json", we can probably parse it like a normal application/json request
+		$contentType = str_ends_with( $contentType ?? '', '+json' )
+			? RequestInterface::JSON_CONTENT_TYPE
+			: $contentType;
+
 		switch ( $contentType ) {
 			case RequestInterface::FORM_URLENCODED_CONTENT_TYPE:
 			case RequestInterface::MULTIPART_FORM_DATA_CONTENT_TYPE:
