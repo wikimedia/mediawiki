@@ -182,7 +182,6 @@ wfLoadExtension(
 	'Parsoid',  __DIR__ .'/vendor/wikimedia/parsoid/extension.json'
 );
 
-$wgVisualEditorEnableWikitext = true;
 $wgMWOAuthSecureTokenTransfer = true;
 $wgOAuth2RequireCodeChallengeForPublicClients = false;
 $wgScribuntoDefaultEngine = 'luasandbox';
@@ -491,7 +490,7 @@ $wgRemoveGroups['steward'] = array(
 	'steward',
 	'suppress',
 	'sysop',
-	'translateadmin'
+	'translateadmin',
 );
 
 // Restriction settings
@@ -502,7 +501,7 @@ $wgRestrictionLevels = array(
 	'autoreview',
 	'sysop',
 	'bureaucrat',
-	'steward'
+	'steward',
 );
 
 $wgRestrictionTypes = array(
@@ -511,7 +510,7 @@ $wgRestrictionTypes = array(
 	'move',
 	'upload',
 	'delete',
-	'protect'
+	'protect',
 );
 
 $wgCascadingRestrictionLevels = array(
@@ -523,7 +522,7 @@ $wgCascadingRestrictionLevels = array(
 $wgSemiprotectedRestrictionLevels = array(
 	'user',
 	'autoconfirmed',
-        'autoreview'
+        'autoreview',
 );
 
 // Grants
