@@ -891,6 +891,10 @@ class ApiEditPageTest extends ApiTestCase {
 		// Hide the middle revision
 		$list = RevisionDeleter::createList( 'revision',
 			RequestContext::getMain(), $titleObj, [ $revId1 ] );
+		// Set a user for modifying the visibility, this is needed because
+		// setVisibility generates a log, which cannot be an anonymous user actor
+		// when temporary accounts are enabled.
+		RequestContext::getMain()->setUser( $this->getTestUser()->getUser() );
 		$list->setVisibility( [
 			'value' => [ RevisionRecord::DELETED_TEXT => 1 ],
 			'comment' => 'Bye-bye',
