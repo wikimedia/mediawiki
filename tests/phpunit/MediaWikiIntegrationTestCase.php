@@ -2677,6 +2677,10 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				->getRevisionById( $rev );
 		}
 
+		// Make sure the context user is set to a named user account, otherwise
+		// ::createList will fail when temp accounts are enabled, because
+		// that generates a log entry which requires a named or temp account actor
+		RequestContext::getMain()->setUser( $this->getTestUser()->getUser() );
 		RevisionDeleter::createList(
 			'revision', RequestContext::getMain(), $rev->getPage(), [ $rev->getId() ]
 		)->setVisibility( [
