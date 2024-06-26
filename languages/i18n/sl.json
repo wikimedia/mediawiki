@@ -370,7 +370,7 @@
 	"protectedinterface": "Prikazana stran vsebuje besedilo vmesnika programja na tem vikiju in je zaradi preprečevanja zlorab zaščitena.\n\nZa dodajanje ali spreminjanje prevodov vseh vikijev uporabite [https://translatewiki.net/ translatewiki.net], projekt za lokalizacijo programja MediaWiki.",
 	"editinginterface": "<strong>Opozorilo:</strong> Urejate stran, ki vsebuje besedilo ali drug element uporabniškega vmesnika programja.\nSpremembe te strani bodo vplivale na podobo uporabniškega vmesnika pri drugih uporabnikih tega vikija.",
 	"translateinterface": "Za dodajanje ali spreminjanje prevodov vseh vikijev uporabite [https://translatewiki.net/ translatewiki.net], projekt za lokalizacijo programja MediaWiki.",
-	"cascadeprotected": "Ta stran je bila zaščitena pred urejanjem, ker je vključena na {{PLURAL:$1|naslednjo stran, ki je bila zaščitena|naslednji strani, ki sta bili zaščiteni|naslednje strani, ki so bile zaščitene}} z vklopljeno kaskadno možnostjo:\n$2",
+	"cascadeprotected": "Ta stran je zaščitena pred urejanjem, ker je prevključena na {{PLURAL:$1|naslednjo stran, ki je zaščitena|naslednji strani, ki sta zaščiteni|naslednje strani, ki so zaščitene}} z vklopljeno kaskadno možnostjo:\n$2",
 	"namespaceprotected": "Nimate dovoljenja za urejanje strani v imenskem prostoru '''$1'''.",
 	"customcssprotected": "Za urejanje te strani s CSS nimate dovoljenja, ker vsebuje osebne nastavitve drugega uporabnika.",
 	"customjsonprotected": "Za urejanje te strani z JSON nimate dovoljenja, ker vsebuje osebne nastavitve drugega uporabnika.",
