@@ -184,7 +184,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 *
 	 * @var bool
 	 */
-	protected $interface = true;
+	protected $isInterface = true;
 
 	/**
 	 * In which language to get this message. Overrides the $interface setting.
@@ -299,7 +299,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 */
 	public function __serialize() {
 		return [
-			'interface' => $this->interface,
+			'interface' => $this->isInterface,
 			'language' => $this->language ? $this->language->getCode() : null,
 			'key' => $this->key,
 			'keysToTry' => $this->keysToTry,
@@ -333,7 +333,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 		if ( !is_array( $data ) ) {
 			throw new InvalidArgumentException( __METHOD__ . ': Invalid serialized data' );
 		}
-		$this->interface = $data['interface'];
+		$this->isInterface = $data['interface'];
 		$this->key = $data['key'];
 		$this->keysToTry = $data['keysToTry'];
 		$this->parameters = $data['parameters'];
@@ -900,7 +900,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 			// The language has changed. Clear the message cache.
 			$this->message = null;
 		}
-		$this->interface = false;
+		$this->isInterface = false;
 		return $this;
 	}
 
@@ -918,7 +918,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 			$this->message = null;
 		}
 		$this->language = null;
-		$this->interface = true;
+		$this->isInterface = true;
 		return $this;
 	}
 
@@ -953,7 +953,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 * @return self $this
 	 */
 	public function setInterfaceMessageFlag( $interface ) {
-		$this->interface = (bool)$interface;
+		$this->isInterface = (bool)$interface;
 		return $this;
 	}
 
@@ -1467,7 +1467,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 				// Cache depends on these parameters
 				$msg->message = null;
 			}
-			$msg->interface = $this->interface;
+			$msg->isInterface = $this->isInterface;
 			$msg->language = $this->language;
 			$msg->useDatabase = $this->useDatabase;
 			$msg->contextPage = $this->contextPage;
@@ -1501,7 +1501,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 			$string,
 			$this->contextPage,
 			/*linestart*/true,
-			$this->interface,
+			$this->isInterface,
 			$this->getLanguage()
 		);
 
@@ -1532,7 +1532,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	protected function transformText( $string ) {
 		return MediaWikiServices::getInstance()->getMessageCache()->transform(
 			$string,
-			$this->interface,
+			$this->isInterface,
 			$this->getLanguage(),
 			$this->contextPage
 		);
