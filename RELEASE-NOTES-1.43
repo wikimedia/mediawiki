@@ -288,6 +288,8 @@ because of Phabricator reports.
 * The setStats() method in MediaWiki\Rest\Router now expects a StatsFactory
   rather than a StatsdDataFactoryInterface. The method has been marked @internal
   and should not be called by extensions.
+* All `@width-breakpoint-*` Less variables have been removed. Use
+  `@min-width-breakpoint-*`/`@max-width-breakpoint-*` instead.
 * …
 
 === Deprecations in 1.43 ===
