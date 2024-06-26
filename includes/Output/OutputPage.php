@@ -4818,21 +4818,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Get (and set if not yet set) the CSP nonce.
-	 *
-	 * This value needs to be included in any <script> tags on the
-	 * page.
-	 *
-	 * @return string|false Nonce or false to mean don't output nonce
-	 * @since 1.32
-	 * @deprecated Since 1.35 use getCSP()->getNonce() instead
-	 */
-	public function getCSPNonce() {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->CSP->getNonce();
-	}
-
-	/**
 	 * Get the ContentSecurityPolicy object
 	 *
 	 * @since 1.35
