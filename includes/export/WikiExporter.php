@@ -67,7 +67,7 @@ class WikiExporter {
 	public const TEXT = XmlDumpWriter::WRITE_CONTENT;
 	public const STUB = XmlDumpWriter::WRITE_STUB;
 
-	protected const BATCH_SIZE = 50000;
+	protected const BATCH_SIZE = 10000;
 
 	/** @var int */
 	public $text;
