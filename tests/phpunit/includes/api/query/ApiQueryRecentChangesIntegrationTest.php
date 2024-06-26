@@ -59,6 +59,7 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 	}
 
 	private function doAnonPageEdit( LinkTarget $target, $summary ) {
+		$this->disableAutoCreateTempUser();
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromLinkTarget( $target );
 		$page->doUserEditContent(
 			$page->getContentHandler()->unserializeContent( __CLASS__ ),
@@ -75,7 +76,7 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 			$page->getContentHandler()->unserializeContent( __CLASS__ ),
 			$this->getServiceContainer()
 				->getUserFactory()
-				->newFromUserIdentity( new UserIdentityValue( 123456, '~1' ) ),
+				->newFromUserIdentity( new UserIdentityValue( 123456, '~2024-1' ) ),
 			$summary
 		);
 	}
@@ -310,7 +311,7 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 				[
 					'type' => 'new',
 					'temp' => true,
-					'user' => '~1',
+					'user' => '~2024-1',
 				],
 				[
 					'type' => 'new',
