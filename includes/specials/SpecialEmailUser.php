@@ -157,8 +157,8 @@ class SpecialEmailUser extends SpecialPage {
 			} elseif ( $status->getValue() !== null ) {
 				// BC for deprecated hook errors
 				// (to be removed when UserCanSendEmail and EmailUserPermissionsErrors are removed)
-				$error = $status->getErrors()[0];
-				throw new ErrorPageError( $status->getValue(), $error['message'], $error['params'] );
+				$msg = $status->getMessages()[0];
+				throw new ErrorPageError( $status->getValue(), $msg );
 			} else {
 				// Fallback in case new error types are added in EmailUser
 				throw new ErrorPageError( $this->getDescription(), Status::wrap( $status )->getMessage() );
@@ -190,7 +190,7 @@ class SpecialEmailUser extends SpecialPage {
 			->newEmailUser( $sender )
 			->validateTarget( $targetObject );
 		if ( !$status->isGood() ) {
-			$msg = $status->getErrors()[0]['message'];
+			$msg = $status->getMessages()[0]->getKey();
 			$ret = $msg === 'emailnotarget' ? 'notarget' : preg_replace( '/text$/', '', $msg );
 		} else {
 			$ret = $targetObject;

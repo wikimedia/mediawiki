@@ -319,7 +319,7 @@ class SpecialTags extends SpecialPage {
 			] );
 
 			$headerText = $this->msg( 'tags-create-warnings-above', $tag,
-				count( $status->getWarningsArray() ) )->parseAsBlock() .
+				count( $status->getMessages( 'warning' ) ) )->parseAsBlock() .
 				$out->parseAsInterface( $status->getWikiText() ) .
 				$this->msg( 'tags-create-warnings-below' )->parseAsBlock();
 
@@ -467,7 +467,7 @@ class SpecialTags extends SpecialPage {
 		} elseif ( $status->isOK() && $action === 'delete' ) {
 			// deletion succeeded, but hooks raised a warning
 			$out->addWikiTextAsInterface( $this->msg( 'tags-delete-warnings-after-delete', $tag,
-				count( $status->getWarningsArray() ) )->text() . "\n" .
+				count( $status->getMessages( 'warning' ) ) )->text() . "\n" .
 				$status->getWikitext() );
 			$out->addReturnTo( $this->getPageTitle() );
 			return true;
