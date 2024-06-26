@@ -10,7 +10,7 @@
 			"Vlad5250"
 		]
 	},
-	"rest-prefix-mismatch": "Запрашиваемый путь ($1) не найден внутри корневого пути REST API ($2)",
+	"rest-prefix-mismatch": "Запрашиваемый путь ($1) не найден внутри базового пути REST API ($2)",
 	"rest-wrong-method": "Метод запроса ($1) не был {{{{PLURAL:$3|}}|разрешённым методом для этого пути|одним из разрешённых методов для этого пути}} ($2)",
 	"rest-no-match": "Запрошенный относительный путь ($1) не соответствует ни одному известному обработчику",
 	"rest-nonexistent-title": "Указанной страницы ($1) не существует",
@@ -57,5 +57,9 @@
 	"rest-badtoken": "Предоставленный CSRF-токен недействителен.",
 	"rest-badtoken-missing": "Параметр <var>token</var> является обязательным, если только не используется метод аутентификации, безопасный для CSRF.",
 	"rest-badtoken-nosession": "Ошибка CSRF — нет сеанса.",
-	"rest-html-key-expected": "Ожидаемый <var>HTML-</var> ключ в теле"
+	"rest-parsoid-error": "Ошибка Parsoid.",
+	"rest-html-key-expected": "Ожидаемый <var>HTML-</var> ключ в теле",
+	"rest-unsupported-transform-input": "Неподдерживаемый ввод: $1",
+	"rest-edit-conflict": "Конфликт редактирования ($1)",
+	"rest-unknown-parsoid-transformation": "Неизвестная трансформация."
 }

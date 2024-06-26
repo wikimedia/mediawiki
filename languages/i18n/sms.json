@@ -262,6 +262,7 @@
 	"createacct-benefit-body2": "{{PLURAL:$1|seiddad|0=leʹbe ni õhtt seidd|1=seidd|2=seeid|3=seeid|4=seeid|5=seeid|6=seeid}}",
 	"loginerror": "Sizzǩeeʹrjtõõttâmvââʹǩǩ",
 	"createaccounterror": "Tobdldõõǥǥ raajjmõš ij oʹnnstam: $1",
+	"userlogin-authpopup-cancel": "Jõõsk",
 	"loginsuccesstitle": "Leäk ǩeeʹrjtõõttâm sizz",
 	"loginsuccess": "<strong>Ââʹn leäk ǩeeʹrjtõõttâm sizz {{SITENAME}}-seiddõʹsse nõõmin \"$1\".</strong>",
 	"accountcreated": "Tobdldõõǥǥ raʹjješ",
