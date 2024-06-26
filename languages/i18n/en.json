@@ -831,7 +831,6 @@
 	"undo-summary-import": "Undo imported revision [[Special:Diff/$1|$1]] by user [[:$2|$3]]",
 	"undo-summary-import2": "Undo imported revision [[Special:Diff/$1|$1]] by user $2",
 	"undo-summary-username-hidden": "Undo revision [[Special:Diff/$1|$1]] by a hidden user",
-	"createaccount-hook-aborted": "$1",
 	"viewpagelogs": "View logs for this page",
 	"viewpagelogs-lowercase": "view logs for this page",
 	"nohistory": "There is no edit history for this page.",
