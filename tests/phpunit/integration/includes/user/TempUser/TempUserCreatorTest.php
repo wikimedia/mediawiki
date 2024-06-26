@@ -37,10 +37,32 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 		$tuc = $this->getServiceContainer()->getTempUserCreator();
 		$this->assertTrue( $tuc->isAutoCreateAction( 'edit' ) );
 		$this->assertTrue( $tuc->isTempName( '~1' ) );
+
+		// Create a temporary account
 		$status = $tuc->create( null, new FauxRequest() );
 		$this->assertSame( '~1', $status->getUser()->getName() );
+		$this->assertSame(
+			1,
+			$this->getDb()->newSelectQueryBuilder()
+				->from( 'logging' )
+				->join( 'actor', null, 'log_actor=actor_id' )
+				->where( [ 'actor_name' => '~1', 'log_action' => 'autocreate' ] )
+				->fetchRowCount(),
+			'A logging entry indicating the autocreation of ~1 was expected.'
+		);
+
+		// Repeat the test to verify that the serial number increments
 		$status = $tuc->create( null, new FauxRequest() );
 		$this->assertSame( '~2', $status->getUser()->getName() );
+		$this->assertSame(
+			1,
+			$this->getDb()->newSelectQueryBuilder()
+				->from( 'logging' )
+				->join( 'actor', null, 'log_actor=actor_id' )
+				->where( [ 'actor_name' => '~2', 'log_action' => 'autocreate' ] )
+				->fetchRowCount(),
+			'A logging entry indicating the autocreation of ~2 was expected.'
+		);
 	}
 
 	private function getTempUserCreatorUnit() {
@@ -146,6 +168,35 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( null, $tuc->acquireName( '127.0.0.1' ) );
 	}
 
+	public function testCreateOnDuplicate_db() {
+		$this->enableAutoCreateTempUser();
+		$tuc = $this->getServiceContainer()->getTempUserCreator();
+		// Create a temporary account
+		$this->assertSame( '~2024-1', $tuc->create( null, new FauxRequest() )->value->getName() );
+		// Create a temporary account with an existing temporary account username.
+		$secondCreateStatus = $tuc->create( '~2024-1', new FauxRequest() );
+		$this->assertStatusError( 'temp-user-unable-to-acquire', $secondCreateStatus );
+		// Assert that only one log entry for autocreation exists for ~2024-1, as the second call should have not
+		// created a new log entry.
+		$this->assertSame(
+			1,
+			$this->getDb()->newSelectQueryBuilder()
+				->from( 'logging' )
+				->join( 'actor', null, 'log_actor=actor_id' )
+				->where( [ 'actor_name' => '~2024-1', 'log_action' => 'autocreate' ] )
+				->fetchRowCount(),
+			'Only one logging entry indicating the autocreation of ~2024-1 was expected.'
+		);
+	}
+
+	public function testCreateOnInvalidUsername() {
+		$this->enableAutoCreateTempUser();
+		$tuc = $this->getServiceContainer()->getTempUserCreator();
+		// Attempt to create the temporary account with an invalid username.
+		$secondCreateStatus = $tuc->create( 'Template:InvalidUsername#test', new FauxRequest() );
+		$this->assertStatusError( 'internalerror_info', $secondCreateStatus );
+	}
+
 	public function testAcquireNameThrottled() {
 		$this->enableAutoCreateTempUser();
 		$this->overrideConfigValue(
@@ -215,8 +266,20 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 		$tuc = $this->getServiceContainer()->getTempUserCreator();
 		$status = $tuc->create( null, new FauxRequest() );
 		$this->assertSame( '~1', $status->getUser()->getName() );
+
+		// Repeat creating a temporary account, and verify that this fails due to the rate limit.
 		$status = $tuc->create( null, new FauxRequest() );
 		// TODO: Use new message key (T357777, T357802)
 		$this->assertStatusError( 'acct_creation_throttle_hit', $status );
+		// If the temporary account creation failed due to the rate limit, then no log entry should have been created.
+		$this->assertSame(
+			0,
+			$this->getDb()->newSelectQueryBuilder()
+				->from( 'logging' )
+				->join( 'actor', null, 'log_actor=actor_id' )
+				->where( [ 'actor_name' => '~2', 'log_action' => 'autocreate' ] )
+				->fetchRowCount(),
+			'A logging entry indicating the autocreation of ~2 was not expected.'
+		);
 	}
 }
