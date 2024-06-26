@@ -42,7 +42,8 @@ class ArrayDef extends TypeDef {
 			if ( !isset( $schema[ 'type' ] ) ) {
 				throw new InvalidArgumentException( "Schema type not set " );
 			}
-			$types = $schema['type'];
+
+			$types = (array)$schema['type'];
 			foreach ( $types as $type ) {
 				// @todo:  start using JsonSchemaTrait::normalizeJsonSchema
 				// so we can also support the "list" and "map" types
