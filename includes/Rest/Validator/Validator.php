@@ -15,6 +15,7 @@ use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef;
 use Wikimedia\ParamValidator\TypeDef\BooleanDef;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
@@ -222,10 +223,13 @@ class Validator {
 	 * @see validateParams
 	 * @see validateBody
 	 * @param array[] $paramSettings Parameter settings.
+	 * @param bool $enforceTypes $enforceTypes Whether the types of primitive values should
+	 *         be enforced. If set to false, parameters values are allowed to be
+	 *         strings.
 	 * @return array Validated parameters
 	 * @throws HttpException on validation failure
 	 */
-	public function validateBodyParams( array $paramSettings ) {
+	public function validateBodyParams( array $paramSettings, bool $enforceTypes = true ) {
 		$validatedParams = [];
 		foreach ( $paramSettings as $name => $settings ) {
 			$source = $settings[Handler::PARAM_SOURCE] ?? 'body';
@@ -234,9 +238,17 @@ class Validator {
 			}
 
 			try {
-				$validatedParams[$name] = $this->paramValidator->getValue( $name, $settings, [
-					'source' => $source,
-				] );
+				$validatedParams[ $name ] = $this->paramValidator->getValue(
+					$name,
+					$settings,
+					[
+						'source' => $source,
+						// TODO: Replace this with OPT_ENFORCE_JSON_TYPES and
+						//       remove support for OPT_LOG_BAD_TYPES (grep
+						//       for T305973).
+						TypeDef::OPT_LOG_BAD_TYPES => $enforceTypes
+					]
+				);
 			} catch ( ValidationException $e ) {
 				$msg = $e->getFailureMessage();
 				$wrappedMsg = new MessageValue(

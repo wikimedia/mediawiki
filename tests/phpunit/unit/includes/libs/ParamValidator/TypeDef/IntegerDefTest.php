@@ -5,6 +5,7 @@ namespace Wikimedia\Tests\ParamValidator\TypeDef;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
+use Wikimedia\ParamValidator\TypeDef;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\ParamValidator\ValidationException;
 
@@ -78,6 +79,8 @@ class IntegerDefTest extends TypeDefTestCase {
 		];
 		$usehigh = [ 'useHighLimits' => true ];
 
+		$enforceType = [ TypeDef::OPT_ENFORCE_JSON_TYPES => true ];
+
 		return [
 			[ '123', 123 ],
 			[ '-123', -123 ],
@@ -88,6 +91,28 @@ class IntegerDefTest extends TypeDefTestCase {
 			[ '0000' . PHP_INT_MAX, PHP_INT_MAX ],
 			[ (string)PHP_INT_MIN, PHP_INT_MIN ],
 			[ '-0000' . substr( PHP_INT_MIN, 1 ), PHP_INT_MIN ],
+
+			'Native int' => [ 2, 2 ],
+			'Native float' => [ 1.0, 1 ],
+			'Native negative float' => [ -1.0, -1 ],
+			'Native int with OPT_ENFORCE_JSON_TYPES' =>
+				[ 2, 2, [], $enforceType ],
+			'Native float with OPT_ENFORCE_JSON_TYPES' =>
+				[ 1.0, 1.0, [], $enforceType ],
+
+			'String "2" with OPT_ENFORCE_JSON_TYPES' => [ '2', new ValidationException(
+				DataMessageValue::new( 'paramvalidator-badinteger-type', [], 'badinteger-type' ),
+					'test', '2', []
+				),
+				[], $enforceType
+			],
+
+			'Native float 1.25 with OPT_ENFORCE_JSON_TYPES' => [ 1.25, new ValidationException(
+				DataMessageValue::new( 'paramvalidator-badinteger-fraction', [], 'badinteger-fraction' ),
+					'test', '1.25', []
+				),
+				[], $enforceType
+			],
 
 			'Overflow' => [ self::plusOne( (string)PHP_INT_MAX ), $badinteger ],
 			'Negative overflow' => [ '-' . self::plusOne( substr( PHP_INT_MIN, 1 ) ), $badinteger ],

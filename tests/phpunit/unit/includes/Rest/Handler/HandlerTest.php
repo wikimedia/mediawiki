@@ -233,6 +233,47 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			[],
 			[ 'foo' => 'kittens' ]
 		];
+
+		yield 'body parameter with type coercion' => [
+			[
+				'foo' => [
+					ParamValidator::PARAM_TYPE => 'integer',
+					ParamValidator::PARAM_REQUIRED => true,
+					Handler::PARAM_SOURCE => 'body',
+				]
+			],
+			// Form data automatically enabled type coercion
+			new RequestData( [
+				'headers' => [
+					'Content-Type' => RequestInterface::FORM_URLENCODED_CONTENT_TYPE
+				],
+				'parsedBody' => [ 'foo' => '1234' ]
+			] ),
+			[],
+			[ 'foo' => 1234 ]
+		];
+
+		// This will stop working when Validator starts using OPT_ENFORCE_JSON_TYPES
+		// instead of OPT_LOG_BAD_TYPES (T305973). Enable the corresponding test case
+		// in provideValidate_invalid() when that happens.
+		yield 'body parameter with type coercion (JSON)' => [
+			[
+				'foo' => [
+					ParamValidator::PARAM_TYPE => 'integer',
+					ParamValidator::PARAM_REQUIRED => true,
+					Handler::PARAM_SOURCE => 'body',
+				]
+			],
+			// Form data automatically enabled type coercion
+			new RequestData( [
+				'headers' => [
+					'Content-Type' => RequestInterface::JSON_CONTENT_TYPE
+				],
+				'parsedBody' => [ 'foo' => '1234' ]
+			] ),
+			[],
+			[ 'foo' => 1234 ]
+		];
 	}
 
 	/**
@@ -272,16 +313,51 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [ 'foo' => 'kittens' ], $params );
 	}
 
-	public function testValidate_invalid() {
-		$paramSettings = [
-			'foo' => [
-				ParamValidator::PARAM_TYPE => 'string',
-				ParamValidator::PARAM_REQUIRED => true,
-				Handler::PARAM_SOURCE => 'query',
+	public static function provideValidate_invalid() {
+		yield 'missing required' => [
+			[
+				'foo' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					ParamValidator::PARAM_REQUIRED => true,
+					Handler::PARAM_SOURCE => 'query',
+				]
+			],
+			[ 'queryParams' => [ 'bar' => 'kittens' ] ],
+			[
+				'error' => 'parameter-validation-failed',
+				'failureCode' => 'missingparam'
 			]
 		];
 
-		$request = new RequestData( [ 'queryParams' => [ 'bar' => 'kittens' ] ] );
+		// Enable this test when Validator starts using OPT_ENFORCE_JSON_TYPES
+		// instead of OPT_LOG_BAD_TYPES (T305973).
+		/*
+		yield 'body parameter without type coercion' => [
+			[
+				'foo' => [
+					ParamValidator::PARAM_TYPE => 'integer',
+					ParamValidator::PARAM_REQUIRED => true,
+					Handler::PARAM_SOURCE => 'body',
+				]
+			],
+			[ // JSON doesn't enable type coercion
+				'headers' => [ 'Content-Type' => 'application/json', ],
+				'parsedBody' => [ 'foo' => '1234' ]
+			],
+			[],
+			[
+				'error' => 'parameter-validation-failed',
+				'failureCode' => 'badinteger-type'
+			]
+		];
+		*/
+	}
+
+	/**
+	 * @dataProvider provideValidate_invalid
+	 */
+	public function testValidate_invalid( $paramSettings, $requestData, $expectedError ) {
+		$request = new RequestData( $requestData );
 
 		$handler = $this->newHandler( [ 'getParamSettings' ] );
 		$handler->method( 'getParamSettings' )->willReturn( $paramSettings );
@@ -292,8 +368,10 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			$this->fail( 'Expected LocalizedHttpException' );
 		} catch ( LocalizedHttpException $ex ) {
 			$data = $ex->getErrorData();
-			$this->assertSame( 'parameter-validation-failed', $data['error'] ?? null );
-			$this->assertSame( 'missingparam', $data['failureCode'] ?? null );
+
+			foreach ( $expectedError as $field => $value ) {
+				$this->assertSame( $value, $data[$field] ?? null );
+			}
 		}
 	}
 
@@ -443,7 +521,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 	public function provideValidateBodyParams_invalid() {
 		$paramDefintions = [
 			'foo' => [
-				ParamValidator::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_TYPE => 'timestamp',
 				ParamValidator::PARAM_REQUIRED => true,
 				Handler::PARAM_SOURCE => 'body',
 			]
@@ -477,7 +555,7 @@ class HandlerTest extends MediaWikiUnitTestCase {
 					],
 				]
 			),
-			'badinteger'
+			'badtimestamp'
 		];
 	}
 
