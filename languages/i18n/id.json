@@ -94,7 +94,9 @@
 			"לערי ריינהארט",
 			"아라",
 			"Stevannus rua",
-			"Es Krim 5 Juta Rasa"
+			"Es Krim 5 Juta Rasa",
+			"ID Owly01",
+			"Zulf"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -2903,6 +2905,8 @@
 	"movesubpage": "{{PLURAL:$1|Subhalaman|Subhalaman}}",
 	"movesubpagetext": "Halaman ini memiliki $1 {{PLURAL:$1|subhalaman|subhalaman}} seperti ditampilkan berikut.",
 	"movesubpagetalktext": "Halaman pembicaraan terkait mempunyai $1 {{PLURAL:$1|subhalaman|subhalaman}} yang tampil di bawah ini.",
+	"movesubpagetext-truncated": "$1 {{PLURAL:$1|subhalaman}} pertama untuk halaman ini ditunjukkan di bawah.",
+	"movesubpagetalktext-truncated": "$1 {{PLURAL:$1|subhalaman}} pertama untuk halaman pembicaraan bersangkutan ditunjukkan di bawah.",
 	"movenosubpage": "Halaman ini tak memiliki subhalaman.",
 	"movereason": "Alasan:",
 	"moveotherreason": "Alasan lain/tambahan:",
