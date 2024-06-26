@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Api\Query;
 
 use MediaWiki\Tests\Api\ApiTestCase;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
@@ -15,7 +16,11 @@ use WikitextContent;
  * @covers \ApiQueryUserContribs
  */
 class ApiQueryUserContribsTest extends ApiTestCase {
+
+	use TempUserTestTrait;
+
 	public function addDBDataOnce() {
+		$this->disableAutoCreateTempUser();
 		$userFactory = $this->getServiceContainer()->getUserFactory();
 		$users = [
 			$userFactory->newFromName( '192.168.2.2', UserRigorOptions::RIGOR_NONE ),
