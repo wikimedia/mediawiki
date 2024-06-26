@@ -18,7 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @since 1.21
- * @deprecated since 1.38.
  *
  * @file
  * @ingroup Content
@@ -35,6 +34,7 @@ use MediaWiki\Message\Message;
  * MessageContent is just intended as glue for wrapping a message programmatically.
  *
  * @ingroup Content
+ * @deprecated since 1.38.
  */
 class MessageContent extends AbstractContent {
 
