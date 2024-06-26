@@ -77,6 +77,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	private function doAnonPageEdit( LinkTarget $target, $content, $summary ) {
+		$this->disableAutoCreateTempUser();
 		$this->editPage(
 			$target,
 			$content,
@@ -86,8 +87,8 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		);
 	}
 
-	// Requires call to $this->enableAutoCreateTempUser() first.
 	private function doTempPageEdit( LinkTarget $target, $content, $summary ) {
+		$this->enableAutoCreateTempUser();
 		$this->editPage(
 			$target,
 			$content,
@@ -911,7 +912,6 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	public function testShowAnonParamsTemp() {
-		$this->enableAutoCreateTempUser();
 		$user = $this->getLoggedInTestUser();
 		$target = new TitleValue( NS_MAIN, 'ApiQueryWatchlistIntegrationTestPage' );
 		$this->doTempPageEdit(
