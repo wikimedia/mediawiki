@@ -12,6 +12,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -115,15 +116,16 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 		// Override user rights
 		$permissionManager->overrideUserRightsForTesting( $user, $rights );
 
-		$result = $permissionManager->checkUserConfigPermissions(
+		$result = PermissionStatus::newEmpty();
+		$permissionManager->checkUserConfigPermissions(
 			$action,
 			$user,
-			[], // starting errors
+			$result,
 			PermissionManager::RIGOR_QUICK, // unused
 			true, // $short, unused
 			$title
 		);
-		$this->assertEquals( $expectedErrors, $result );
+		$this->assertEquals( $expectedErrors, $result->toLegacyErrorArray() );
 	}
 
 	public static function provideTestCheckUserConfigPermissions() {
@@ -227,17 +229,18 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 		}
 		$permissionManager->overrideUserRightsForTesting( $user, $rights );
 
-		$result = $permissionManager->checkUserConfigPermissions(
+		$result = PermissionStatus::newEmpty();
+		$permissionManager->checkUserConfigPermissions(
 			'edit',
 			$user,
-			[], // starting errors
+			$result,
 			PermissionManager::RIGOR_QUICK, // unused
 			true, // $short, unused
 			$title
 		);
 		$this->assertEquals(
 			$expectErrors ? [ [ 'mycustomjsredirectprotected', 'edit' ] ] : [],
-			$result
+			$result->toLegacyErrorArray()
 		);
 	}
 
@@ -281,15 +284,16 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 		] );
 		$permissionManager->overrideUserRightsForTesting( $user, $rights );
 
-		$result = $permissionManager->checkPageRestrictions(
+		$result = PermissionStatus::newEmpty();
+		$permissionManager->checkPageRestrictions(
 			$action,
 			$user,
-			[], // starting errors
+			$result,
 			PermissionManager::RIGOR_QUICK, // unused
 			true, // $short, unused
 			$title
 		);
-		$this->assertEquals( $expectedErrors, $result );
+		$this->assertEquals( $expectedErrors, $result->toLegacyErrorArray() );
 	}
 
 	public static function provideTestCheckPageRestrictions() {
@@ -377,15 +381,16 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 		// which uses the global state
 		$short = true;
 
-		$result = $permissionManager->checkQuickPermissions(
+		$result = PermissionStatus::newEmpty();
+		$permissionManager->checkQuickPermissions(
 			$action,
 			$user,
-			[], // Starting errors
+			$result,
 			PermissionManager::RIGOR_QUICK, // unused
 			$short,
 			$title
 		);
-		$this->assertEquals( $expectedErrors, $result );
+		$this->assertEquals( $expectedErrors, $result->toLegacyErrorArray() );
 	}
 
 	public static function provideTestCheckQuickPermissions() {
@@ -479,17 +484,18 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 		$permissionManager = $this->getPermissionManager( [
 			'hookContainer' => $hookContainer,
 		] );
-		$result = $permissionManager->checkQuickPermissions(
+		$result = PermissionStatus::newEmpty();
+		$permissionManager->checkQuickPermissions(
 			$action,
 			$user,
-			[], // Starting errors
+			$result,
 			PermissionManager::RIGOR_QUICK, // unused
 			true, // $short, unused,
 			$title
 		);
 		$this->assertEquals(
 			[ [ 'Hook failure goes here' ] ],
-			$result
+			$result->toLegacyErrorArray()
 		);
 	}
 
