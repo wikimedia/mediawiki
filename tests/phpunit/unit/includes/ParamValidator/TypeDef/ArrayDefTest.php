@@ -32,7 +32,7 @@ class ArrayDefTest extends TypeDefUnitTestCase {
 			[ 'key1' => 'value1' ],
 			[ ArrayDef::PARAM_SCHEMA =>
 				[
-					'type' => [ 'object' ],
+					'type' => 'object',
 					'required' => [ 'key1' ]
 				]
 			]
@@ -43,7 +43,7 @@ class ArrayDefTest extends TypeDefUnitTestCase {
 			[ 'key1' => [ 'nested1' => 'value1' ] ],
 			[ ArrayDef::PARAM_SCHEMA =>
 				[
-					'type' => [ 'object' ],
+					'type' => 'object',
 					'required' => [ 'key1' ]
 				]
 			]
@@ -54,7 +54,7 @@ class ArrayDefTest extends TypeDefUnitTestCase {
 			[ 'key1' => [ 'nested1' => [ 'nested2' => 'value1' ] ] ],
 			[ ArrayDef::PARAM_SCHEMA =>
 				[
-					'type' => [ 'object' ],
+					'type' => [ 'object', 'array' ], // type can be an array
 					'required' => [ 'key1' ]
 				]
 			]
@@ -82,11 +82,19 @@ class ArrayDefTest extends TypeDefUnitTestCase {
 			[ 'notrequired' => 'value' ],
 			$missingSchemaSettings
 		);
+
 		yield 'empty object is not valid' => [
-			[], $schemaValidationFailed, [ ArrayDef::PARAM_SCHEMA => [ 'type' => [ 'object' ], 'required' => [ 'required' ] ] ]
+			[],
+			$schemaValidationFailed,
+			[
+				ArrayDef::PARAM_SCHEMA => [
+					'type' => [ 'object' ],
+					'required' => [ 'required' ],
+				],
+			],
 		];
 		yield 'empty array is valid' => [
-			[], [], [ ArrayDef::PARAM_SCHEMA => [ 'type' => [ 'array' ] ] ]
+			[], [], [ ArrayDef::PARAM_SCHEMA => [ 'type' => 'array' ] ]
 		];
 		yield 'missing required in schema' => [
 			[ 'notrequired' => 'value' ],
