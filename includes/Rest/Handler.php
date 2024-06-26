@@ -388,8 +388,16 @@ abstract class Handler {
 			// TODO: trigger a deprecation warning
 			$this->validatedBody = $legacyValidatedBody;
 		} else {
+			// Allow type coercion if the request body is form data.
+			// For JSON requests, insist on proper types.
+			$enforceTypes = !in_array(
+				$this->request->getBodyType(),
+				RequestInterface::FORM_DATA_CONTENT_TYPES
+			);
+
 			$this->validatedBody = $restValidator->validateBodyParams(
-				$this->getBodyParamSettings()
+				$this->getBodyParamSettings(),
+				$enforceTypes
 			);
 
 			// If there is a body, check if it contains extra fields.

@@ -18,6 +18,19 @@ use Wikimedia\Message\MessageValue;
  */
 abstract class TypeDef {
 
+	/**
+	 * @unstable Temporarily log warnings to detect misbehaving clients (T305973)
+	 */
+	public const OPT_LOG_BAD_TYPES = 'log-bad-types';
+
+	/**
+	 * Option that instructs TypeDefs to enforce the native type of parameter
+	 * values, instead of allowing string values as input. This is intended for
+	 * use with values coming from a JSON request body, and may accommodate for
+	 * differences between the type system of PHP and JSON.
+	 */
+	public const OPT_ENFORCE_JSON_TYPES = 'enforce-json-types';
+
 	/** @var Callbacks */
 	protected $callbacks;
 
@@ -40,6 +53,28 @@ abstract class TypeDef {
 	 */
 	public function supportsArrays() {
 		return false;
+	}
+
+	/**
+	 * Throw a ValidationException.
+	 * This is a wrapper for failure() which explicitly declares that it
+	 * never returns, which is useful to static analysis tools like Phan.
+	 *
+	 * Note that parameters for `$name` and `$value` are always added as `$1`
+	 * and `$2`.
+	 *
+	 * @param DataMessageValue|string $failure Failure code or message.
+	 * @param string $name Parameter name being validated.
+	 * @param mixed $value Value being validated.
+	 * @param array $settings Parameter settings array.
+	 * @param array $options Options array.
+	 * @return never
+	 * @throws ValidationException always
+	 */
+	protected function fatal(
+		$failure, $name, $value, array $settings, array $options
+	) {
+		$this->failure( $failure, $name, $value, $settings, $options );
 	}
 
 	/**
