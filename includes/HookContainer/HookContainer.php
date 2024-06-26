@@ -457,6 +457,7 @@ class HookContainer implements SalvageableService {
 	/**
 	 * Get handler callbacks.
 	 *
+	 * @deprecated since 1.41.
 	 * @internal For use by FauxHookHandlerArray. Delete when no longer needed.
 	 * @param string $hook Name of hook
 	 * @return callable[]
