@@ -24,6 +24,7 @@
 namespace MediaWiki\Tests\Api;
 
 use ApiUsageException;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -61,6 +62,10 @@ class ApiParseTest extends ApiTestCase {
 		$status = $this->editPage( $page, 'Test for latest' );
 		self::$revIds['latest'] = $status->getNewRevision()->getId();
 
+		// Set a user for modifying the visibility, this is needed because
+		// setVisibility generates a log, which cannot be an anonymous user actor
+		// when temporary accounts are enabled.
+		RequestContext::getMain()->setUser( $this->getTestUser()->getUser() );
 		$this->revisionDelete( self::$revIds['revdel'] );
 		$this->revisionDelete(
 			self::$revIds['suppressed'],
