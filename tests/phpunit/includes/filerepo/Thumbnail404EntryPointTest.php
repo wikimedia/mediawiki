@@ -26,6 +26,9 @@ class Thumbnail404EntryPointTest extends MediaWikiIntegrationTestCase {
 	 * will be called only once per test class
 	 */
 	public function addDBDataOnce() {
+		// Set a named user account for the request context as the default,
+		// so that these tests do not fail with temp accounts enabled
+		RequestContext::getMain()->setUser( $this->getTestUser()->getUser() );
 		// Create mock repo with test files
 		$this->initTestRepoGroup();
 
