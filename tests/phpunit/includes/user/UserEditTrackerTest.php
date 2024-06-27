@@ -5,6 +5,7 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\UserEditCountUpdate;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
@@ -15,6 +16,8 @@ use MediaWiki\User\UserRigorOptions;
  * @group Database
  */
 class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
+
+	use TempUserTestTrait;
 
 	/**
 	 * Do an edit
@@ -109,6 +112,7 @@ class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetEditTimestamp_anon() {
+		$this->disableAutoCreateTempUser();
 		$user = $this->getServiceContainer()->getUserFactory()
 			->newFromName( '127.0.0.1', UserRigorOptions::RIGOR_NONE );
 		$tracker = $this->getServiceContainer()->getUserEditTracker();
