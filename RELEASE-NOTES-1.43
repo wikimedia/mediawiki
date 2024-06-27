@@ -290,6 +290,10 @@ because of Phabricator reports.
   and should not be called by extensions.
 * All `@width-breakpoint-*` Less variables have been removed. Use
   `@min-width-breakpoint-*`/`@max-width-breakpoint-*` instead.
+* The following ParserOption methods, deprecated since 1.35, were removed:
+  - ::setAllowExternalImages()
+  - ::setAllowExternalImagesFrom()
+  - ::setEnableImageWhitelist()
 * …
 
 === Deprecations in 1.43 ===
