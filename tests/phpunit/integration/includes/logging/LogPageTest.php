@@ -54,7 +54,7 @@ class LogPageTest extends \MediaWikiIntegrationTestCase {
 	 */
 	public function testAddEntrySetsProperties() {
 		$logPage = new LogPage( 'test_test' );
-		$user = new UserIdentityValue( 0, '127.0.0.1' );
+		$user = new UserIdentityValue( 1, 'Bar' );
 		$logPage->addEntry(
 			'test_action',
 			$this->makeMockTitle( __METHOD__ ),
@@ -72,7 +72,7 @@ class LogPageTest extends \MediaWikiIntegrationTestCase {
 	 */
 	public function testAddEntrySave() {
 		$logPage = new LogPage( 'test_test' );
-		$user = new UserIdentityValue( 0, '127.0.0.1' );
+		$user = new UserIdentityValue( 1, 'Foo' );
 		$title = $this->makeMockTitle( __METHOD__ );
 		$id = $logPage->addEntry(
 			'test_action',
