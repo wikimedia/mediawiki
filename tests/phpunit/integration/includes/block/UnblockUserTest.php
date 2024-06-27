@@ -39,7 +39,7 @@ class UnblockUserTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Block\UnblockUser::unblock
 	 */
 	public function testValidUnblock() {
-		$performer = $this->mockAnonUltimateAuthority();
+		$performer = $this->mockRegisteredUltimateAuthority();
 		$block = new DatabaseBlock( [
 			'address' => $this->user->getName(),
 			'by' => $performer->getUser()
