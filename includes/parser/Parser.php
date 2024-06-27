@@ -5239,9 +5239,9 @@ class Parser {
 				// captions with multiple pipes (|) in it, until a more sensible grammar
 				// is defined for images in galleries
 
-				// FIXME: Doing recursiveTagParse at this stage, and the trim before
-				// splitting on '|' is a bit odd, and different from makeImage.
-				$matches[3] = $this->recursiveTagParse( trim( $matches[3] ) );
+				// FIXME: Doing recursiveTagParse at this stage is a bit odd,
+				// and different from makeImage.
+				$matches[3] = $this->recursiveTagParse( $matches[3] );
 				// Protect LanguageConverter markup
 				$parameterMatches = StringUtils::delimiterExplode(
 					'-{', '}-',
@@ -5251,7 +5251,7 @@ class Parser {
 				);
 
 				foreach ( $parameterMatches as $parameterMatch ) {
-					[ $magicName, $match ] = $mwArray->matchVariableStartToEnd( $parameterMatch );
+					[ $magicName, $match ] = $mwArray->matchVariableStartToEnd( trim( $parameterMatch ) );
 					if ( !$magicName ) {
 						// Last pipe wins.
 						$label = $parameterMatch;
@@ -5437,8 +5437,7 @@ class Parser {
 			'horizAlign' => [], 'vertAlign' => [] ];
 		$seenformat = false;
 		foreach ( $parts as $part ) {
-			$part = trim( $part );
-			[ $magicName, $value ] = $mwArray->matchVariableStartToEnd( $part );
+			[ $magicName, $value ] = $mwArray->matchVariableStartToEnd( trim( $part ) );
 			$validated = false;
 			if ( isset( $paramMap[$magicName] ) ) {
 				[ $type, $paramName ] = $paramMap[$magicName];
