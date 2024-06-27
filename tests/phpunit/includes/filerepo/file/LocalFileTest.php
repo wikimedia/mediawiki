@@ -289,8 +289,8 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function providePermissionChecks() {
-		$capablePerformer = $this->mockAnonAuthorityWithPermissions( [ 'deletedhistory', 'deletedtext' ] );
-		$incapablePerformer = $this->mockAnonAuthorityWithoutPermissions( [ 'deletedhistory', 'deletedtext' ] );
+		$capablePerformer = $this->mockRegisteredAuthorityWithPermissions( [ 'deletedhistory', 'deletedtext' ] );
+		$incapablePerformer = $this->mockRegisteredAuthorityWithoutPermissions( [ 'deletedhistory', 'deletedtext' ] );
 		yield 'Deleted, RAW' => [
 			'performer' => $incapablePerformer,
 			'audience' => File::RAW,
@@ -869,7 +869,10 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			$path,
 			'comment',
 			'page text',
-			0
+			0,
+			false,
+			false,
+			$this->getTestUser()->getUser()
 		);
 		$this->assertStatusGood( $status );
 
@@ -880,7 +883,10 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			$path,
 			'comment',
 			'page text',
-			0
+			0,
+			false,
+			false,
+			$this->getTestUser()->getUser()
 		);
 		$this->assertStatusGood( $status );
 	}
