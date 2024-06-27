@@ -236,7 +236,6 @@ wgParserEnableLegacyMediaDOM=false
 ### Language variants related tests
 ###
 
-## Parsoid isn't adding selflinks on variants yet
 !! test
 Self-link in language variants
 !! options
@@ -247,7 +246,7 @@ Both [[Dunav]] and [[Дунав]] are names for this river.
 <p>Both <a class="mw-selflink selflink">Dunav</a> and <a class="mw-selflink selflink">Дунав</a> are names for this river.
 </p>
 !! html/parsoid
-<p>Both <a rel="mw:WikiLink" href="./Dunav" class="mw-selflink selflink">Dunav</a> and <a rel="mw:WikiLink" href="./Дунав" class="mw-selflink selflink">Дунав</a> are names for this river.</p>
+<p>Both <a rel="mw:WikiLink" href="./Dunav" class="mw-selflink selflink">Dunav</a> and <a rel="mw:WikiLink" href="./Dunav" class="mw-selflink selflink" data-parsoid='{"stx":"simple","a":{"href":"./Dunav","title":"Dunav"},"sa":{"href":"Дунав","title":"Дунав"}}'>Дунав</a> are names for this river.</p>
 !! end
 
 !! article
@@ -256,7 +255,6 @@ Both [[Dunav]] and [[Дунав]] are names for this river.
 content
 !! endarticle
 
-## Parsoid isn't adding selflinks on variants yet
 !! test
 Link to another existing title shouldn't be parsed as self-link even if it's a variant of this title
 !! options
@@ -267,10 +265,9 @@ title=[[Duna]] language=sr
 <p><a href="/wiki/%D0%94%D1%83%D0%BD%D0%B0" title="Дуна">Дуна</a> is not a self-link while <a class="mw-selflink selflink">Duna</a> and <a class="mw-selflink selflink">Dуна</a> are still self-links.
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Дуна" title="Дуна" data-parsoid='{"stx":"simple","a":{"href":"./Дуна"},"sa":{"href":"Дуна"}}'>Дуна</a> is not a self-link while <a rel="mw:WikiLink" href="./Дуна" class="mw-selflink selflink" data-parsoid='{"stx":"simple","a":{"href":"./Дуна","title":"Дуна"},"sa":{"href":"Duna","title":"Duna"}}'>Duna</a> and <a class="mw-selflink selflink" rel="mw:WikiLink" href="./Дуна" title="Дуна" data-parsoid='{"stx":"simple","a":{"href":"./Дуна","title":"Дуна"},"sa":{"href":"Dуна","title":"Dуна"}}'>Dуна</a> are still self-links.</p>
+<p><a rel="mw:WikiLink" href="./Дуна" title="Дуна">Дуна</a> is not a self-link while <a rel="mw:WikiLink" href="./Duna" class="mw-selflink selflink">Duna</a> and <a rel="mw:WikiLink" href="./Duna" class="mw-selflink selflink" data-parsoid='{"stx":"simple","a":{"href":"./Duna","title":"Duna"},"sa":{"href":"Dуна","title":"Dуна"}}'>Dуна</a> are still self-links.</p>
 !! end
 
-## Parsoid isn't adding selflinks on variants yet
 !! test
 Link to a section of a variant of this title should be parsed as mw-selflink-fragment
 !! options
@@ -281,7 +278,7 @@ title=[[Duna]] language=sr
 <p><a class="mw-selflink selflink">Dуна</a> is a self-link while <a class="mw-selflink-fragment" href="#Foo">Duna#Foo</a> and <a class="mw-selflink-fragment" href="#Foo">Dуна#Foo</a> are mw-selflink-fragments.
 </p>
 !! html/parsoid
-<p><a class="mw-selflink selflink" rel="mw:WikiLink" href="./Дуна" title="Дуна" data-parsoid='{"stx":"simple","a":{"href":"./Дуна","title":"Дуна"},"sa":{"href":"Dуна","title":"Dуна"}}'>Dуна</a> is a self-link while <a rel="mw:WikiLink" href="./Дуна#Foo" title="Дуна" data-parsoid='{"stx":"simple","a":{"href":"./Дуна#Foo","title":"Дуна"},"sa":{"href":"Dunа#Foo","title":"Dunа"}}'>Dunа#Foo</a> and <a rel="mw:WikiLink" href="./Дуна#Foo" title="Дуна" data-parsoid='{"stx":"simple","a":{"href":"./Дуна#Foo","title":"Дуна"},"sa":{"href":"Dуна#Foo","title":"Dуна"}}'>Dуна#Foo</a> are not self-links.</p>
+<p><a rel="mw:WikiLink" href="./Duna" class="mw-selflink selflink" data-parsoid='{"stx":"simple","a":{"href":"./Duna","title":"Duna"},"sa":{"href":"Dуна","title":"Dуна"}}'>Dуна</a> is a self-link while <a rel="mw:WikiLink" href="./Duna#Foo" class="mw-selflink-fragment" data-parsoid='{"stx":"simple","a":{"href":"./Duna#Foo","title":"Duna"},"sa":{"href":"Duna#Foo","title":"Duna"}}'>Duna#Foo</a> and <a rel="mw:WikiLink" href="./Duna#Foo" class="mw-selflink-fragment" data-parsoid='{"stx":"simple","a":{"href":"./Duna#Foo","title":"Duna"},"sa":{"href":"Dуна#Foo","title":"Dуна"}}'>Dуна#Foo</a> are mw-selflink-fragments.</p>
 !! end
 
 !! test
