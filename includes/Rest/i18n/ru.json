@@ -6,7 +6,8 @@
 			"Katunchik",
 			"Megakott",
 			"Okras",
-			"Vlad5250"
+			"Vlad5250",
+			"Kareyac"
 		]
 	},
 	"rest-prefix-mismatch": "Запрашиваемый путь ($1) не найден внутри корневого пути REST API ($2)",
@@ -55,5 +56,6 @@
 	"rest-requires-safe-against-csrf": "Для этой конечной точки требуется поставщик сеансов, безопасный для CSRF.",
 	"rest-badtoken": "Предоставленный CSRF-токен недействителен.",
 	"rest-badtoken-missing": "Параметр <var>token</var> является обязательным, если только не используется метод аутентификации, безопасный для CSRF.",
-	"rest-badtoken-nosession": "Ошибка CSRF — нет сеанса."
+	"rest-badtoken-nosession": "Ошибка CSRF — нет сеанса.",
+	"rest-parsoid-error": "Ошибка Parsoid."
 }

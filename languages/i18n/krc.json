@@ -800,7 +800,7 @@
 	"content-model-css": "CSS",
 	"content-model-json": "JSON",
 	"content-json-empty-object": "Бош объект",
-	"content-json-empty-array": "Бош тизим",
+	"content-json-empty-array": "Бош тизме",
 	"unsupported-content-model": "<strong>Эсгертиу:</strong> Контент модель бу викиде $1 дагъан болмайды",
 	"unsupported-content-diff": "$1 контент модель ючюн башхалыкъла дагъан болмайдыла.",
 	"unsupported-content-diff2": "Контент модель $1 эмда $2 башхалыкъла бу викиде дагъан болмайдыла.",
