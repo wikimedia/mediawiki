@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Title\Title;
-use MediaWiki\User\User;
 
 /**
  * @group Database
@@ -20,7 +19,7 @@ class ArticleTablesTest extends MediaWikiLangTestCase {
 		$title = Title::makeTitle( NS_MAIN, 'T16404' );
 		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
 		$page = $wikiPageFactory->newFromTitle( $title );
-		$user = new User();
+		$user = $this->getTestUser()->getUser();
 		$this->overrideUserPermissions( $user, [ 'createpage', 'edit', 'purge' ] );
 		$this->setContentLang( 'es' );
 		$this->setUserLang( 'fr' );
