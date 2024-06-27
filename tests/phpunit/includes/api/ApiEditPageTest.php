@@ -11,6 +11,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Status\Status;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
@@ -31,6 +32,8 @@ use WikitextContent;
  * @covers \ApiEditPage
  */
 class ApiEditPageTest extends ApiTestCase {
+
+	use TempUserTestTrait;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -1661,6 +1664,7 @@ class ApiEditPageTest extends ApiTestCase {
 	}
 
 	public function testCreateImageRedirectAnon() {
+		$this->disableAutoCreateTempUser();
 		$name = 'File:' . ucfirst( __FUNCTION__ );
 
 		$this->expectApiErrorCode( 'noimageredirect-anon' );
