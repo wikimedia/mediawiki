@@ -6,6 +6,7 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialRecentChanges;
 use MediaWiki\Tests\SpecialPage\AbstractChangesListSpecialPageTestCase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use Wikimedia\TestingAccessWrapper;
@@ -20,6 +21,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class SpecialRecentChangesTest extends AbstractChangesListSpecialPageTestCase {
 	use MockAuthorityTrait;
+	use TempUserTestTrait;
 
 	protected function getPage(): SpecialRecentChanges {
 		return new SpecialRecentChanges(
@@ -123,6 +125,8 @@ class SpecialRecentChangesTest extends AbstractChangesListSpecialPageTestCase {
 	}
 
 	public function testExperienceLevelFilter() {
+		$this->disableAutoCreateTempUser();
+
 		// Edit a test page so that it shows up in RC.
 		$testPage = $this->getExistingTestPage( 'Experience page' );
 		$this->editPage( $testPage, 'Registered content',
