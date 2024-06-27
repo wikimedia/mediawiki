@@ -521,7 +521,6 @@ $wgCascadingRestrictionLevels = array(
 $wgSemiprotectedRestrictionLevels = array(
 	'user',
 	'autoconfirmed',
-        'autoreview',
 );
 
 // Grants
