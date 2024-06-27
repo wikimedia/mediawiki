@@ -77,12 +77,14 @@ class ImportLinkCacheIntegrationTest extends MediaWikiIntegrationTestCase {
 			->getWikiImporter( $importStreamSource->value, $this->getTestSysop()->getAuthority() );
 		$importer->setDebug( true );
 
+		$context = RequestContext::getMain();
+		$context->setUser( $this->getTestUser()->getUser() );
 		$reporter = new ImportReporter(
 			$importer,
 			false,
 			'',
 			false,
-			new RequestContext()
+			$context
 		);
 
 		$reporter->open();
