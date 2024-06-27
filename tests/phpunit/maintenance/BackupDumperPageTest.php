@@ -33,7 +33,7 @@ class BackupDumperPageTest extends DumpTestCase {
 	public function addDBData() {
 		parent::addDBData();
 
-		$this->addTestPages();
+		$this->addTestPages( $this->getTestSysop()->getUser() );
 	}
 
 	protected function tearDown(): void {

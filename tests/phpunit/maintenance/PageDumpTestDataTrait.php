@@ -3,11 +3,13 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use Exception;
+use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use RevisionDeleter;
 use RuntimeException;
 use Wikimedia\Rdbms\IDatabase;
@@ -52,7 +54,7 @@ trait PageDumpTestDataTrait {
 	private int $namespace;
 	private int $talk_namespace;
 
-	protected function addTestPages() {
+	protected function addTestPages( User $sysopUser ) {
 		// be sure, titles created here using english namespace names
 		$this->setContentLang( 'en' );
 
@@ -92,7 +94,9 @@ trait PageDumpTestDataTrait {
 				"BackupDumperTestP2Summary4 extra " );
 			$this->pageId2 = $page->getId();
 
-			$context = RequestContext::getMain();
+			$context = new DerivativeContext( RequestContext::getMain() );
+			$context->setUser( $sysopUser );
+
 			$revDel = RevisionDeleter::createList(
 				'revision',
 				$context,
