@@ -460,8 +460,8 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 
 		// Nested atomic sections
 		$db = $this->getDb();
-		$atomic1 = $db->startAtomic( $fname, $this->db::ATOMIC_CANCELABLE );
-		$atomic2 = $db->startAtomic( $fname, $this->db::ATOMIC_CANCELABLE );
+		$atomic1 = $db->startAtomic( $fname, $this->getDb()::ATOMIC_CANCELABLE );
+		$atomic2 = $db->startAtomic( $fname, $this->getDb()::ATOMIC_CANCELABLE );
 
 		// Acquire ID
 		$id = $store->acquireId( 'foo' );

@@ -1347,7 +1347,7 @@ more stuff
 		$revisionRecord->setMinorEdit( true );
 		$revisionRecord->setComment( CommentStoreComment::newUnsavedComment( __METHOD__ ) );
 
-		$result = $page->updateRevisionOn( $this->db, $revisionRecord );
+		$result = $page->updateRevisionOn( $this->getDb(), $revisionRecord );
 		$this->assertTrue( $result );
 		$this->assertSame( 9989, $page->getLatest() );
 		$this->assertEquals( $revisionRecord, $page->getRevisionRecord() );
@@ -1371,7 +1371,7 @@ more stuff
 		$revisionRecord->setMinorEdit( true );
 		$revisionRecord->setComment( CommentStoreComment::newUnsavedComment( __METHOD__ ) );
 
-		$result = $page->updateRevisionOn( $this->db, $revisionRecord );
+		$result = $page->updateRevisionOn( $this->getDb(), $revisionRecord );
 		$this->assertFalse( $result );
 	}
 
@@ -1380,7 +1380,7 @@ more stuff
 		$page = new WikiPage( $title );
 
 		$startTimeStamp = wfTimestampNow();
-		$result = $page->insertOn( $this->db );
+		$result = $page->insertOn( $this->getDb() );
 		$endTimeStamp = wfTimestampNow();
 
 		$this->assertIsInt( $result );
@@ -1433,7 +1433,7 @@ more stuff
 		);
 
 		// Try inserting the same page again and checking the result is false (no change)
-		$result = $page->insertOn( $this->db );
+		$result = $page->insertOn( $this->getDb() );
 		$this->assertFalse( $result );
 	}
 
@@ -1442,7 +1442,7 @@ more stuff
 		$page = new WikiPage( $title );
 		$id = 1478952189;
 
-		$result = $page->insertOn( $this->db, $id );
+		$result = $page->insertOn( $this->getDb(), $id );
 
 		$this->assertSame( $id, $result );
 

@@ -138,7 +138,7 @@ trait PageDumpTestDataTrait {
 				"BackupDumperTestP5 Summary1" );
 			$this->pageId5 = $page->getId();
 
-			$this->rev5_1 = $this->corruptRevisionData( $this->db, $this->rev5_1 );
+			$this->rev5_1 = $this->corruptRevisionData( $this->getDb(), $this->rev5_1 );
 		} catch ( Exception $e ) {
 			// We'd love to pass $e directly. However, ... see
 			// documentation of exceptionFromAddDBData in

@@ -82,7 +82,7 @@ class LogPageTest extends \MediaWikiIntegrationTestCase {
 			$user
 		);
 
-		$savedLogEntry = DatabaseLogEntry::newFromId( $id, $this->db );
+		$savedLogEntry = DatabaseLogEntry::newFromId( $id, $this->getDb() );
 		$this->assertNotNull( $savedLogEntry );
 		$this->assertSame( 'test_test', $savedLogEntry->getType() );
 		$this->assertSame( 'test_action', $savedLogEntry->getSubtype() );

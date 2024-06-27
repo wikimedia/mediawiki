@@ -243,7 +243,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		}
 
 		$m = $this->getMigration( $stage, $this->getMockActorStoreFactory() );
-		$result = $m->getWhere( $this->db, $key, $users, $useId );
+		$result = $m->getWhere( $this->getDb(), $key, $users, $useId );
 		$this->assertEquals( $expect, $result );
 	}
 
@@ -393,7 +393,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		);
 
 		$m = $this->getMigration( $stage );
-		$m->getWhere( $this->db, 'am1_user', 'Foo' );
+		$m->getWhere( $this->getDb(), 'am1_user', 'Foo' );
 	}
 
 	/**
@@ -434,7 +434,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			$writeStage = self::STAGES_BY_NAME[$writeStageName];
 			$w = $this->getMigration( $writeStage );
 
-			$fields = $w->getInsertValues( $this->db, $key, $user );
+			$fields = $w->getInsertValues( $this->getDb(), $key, $user );
 
 			if ( $writeStage & SCHEMA_COMPAT_WRITE_OLD ) {
 				$this->assertSame( $user->getId(), $fields[$key],
@@ -504,7 +504,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		$userIdentity = new UserIdentityValue( $user->getId(), $user->getName() );
 
 		$m = $this->getMigration( $stage );
-		$fields = $m->getInsertValues( $this->db, 'am1_user', $userIdentity );
+		$fields = $m->getInsertValues( $this->getDb(), 'am1_user', $userIdentity );
 		$id = ++self::$amId;
 		$this->getDb()->newInsertQueryBuilder()
 			->insertInto( 'actormigration1' )
@@ -527,7 +527,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		);
 
 		$m = $this->getMigration( $stage );
-		$fields = $m->getInsertValues( $this->db, 'dummy_user', $userIdentity );
+		$fields = $m->getInsertValues( $this->getDb(), 'dummy_user', $userIdentity );
 		if ( $stage & SCHEMA_COMPAT_WRITE_OLD ) {
 			$this->assertSame( $user->getId(), $fields['dummy_user'] );
 			$this->assertSame( $user->getName(), $fields['dummy_user_text'] );

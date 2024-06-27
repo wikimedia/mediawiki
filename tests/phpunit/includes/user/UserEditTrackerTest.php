@@ -29,7 +29,7 @@ class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
 		$title = Title::newFromText( __FUNCTION__ );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 		if ( !$page->exists() ) {
-			$page->insertOn( $this->db );
+			$page->insertOn( $this->getDb() );
 		}
 
 		$rev = new MutableRevisionRecord( $title );
@@ -38,7 +38,7 @@ class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
 		$rev->setTimestamp( $timestamp );
 		$rev->setUser( $user );
 		$rev->setPageId( $page->getId() );
-		$this->getServiceContainer()->getRevisionStore()->insertRevisionOn( $rev, $this->db );
+		$this->getServiceContainer()->getRevisionStore()->insertRevisionOn( $rev, $this->getDb() );
 	}
 
 	/**

@@ -33,7 +33,7 @@ class RevisionListTest extends MediaWikiIntegrationTestCase {
 		$wikiPage = $this->getExistingTestPage( __METHOD__ );
 		$currentRevId = $wikiPage->getRevisionRecord()->getId();
 
-		$queryBuilder = $this->getServiceContainer()->getRevisionStore()->newSelectQueryBuilder( $this->db )
+		$queryBuilder = $this->getServiceContainer()->getRevisionStore()->newSelectQueryBuilder( $this->getDb() )
 			->joinComment()
 			->joinPage()
 			->joinUser()

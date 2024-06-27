@@ -143,7 +143,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		 */
 		$this->assertEquals(
 			3,
-			$revisionStore->countRevisionsByPageId( $this->db, $page->getId() )
+			$revisionStore->countRevisionsByPageId( $this->getDb(), $page->getId() )
 		);
 		$this->assertEquals( $admin->getName(), $rev1->getUser()->getName() );
 		$this->assertEquals( $user1->getName(), $rev2->getUser()->getName() );
@@ -427,7 +427,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 			->setSummary( 'TESTING' )
 			->rollbackIfAllowed();
 		$this->assertStatusGood( $rollbackResult );
-		$logRow = DatabaseLogEntry::newSelectQueryBuilder( $this->db )
+		$logRow = DatabaseLogEntry::newSelectQueryBuilder( $this->getDb() )
 			->where( [ 'log_namespace' => NS_MAIN, 'log_title' => __METHOD__, 'log_type' => 'contentmodel' ] )
 			->caller( __METHOD__ )->fetchRow();
 		$this->assertNotNull( $logRow );
