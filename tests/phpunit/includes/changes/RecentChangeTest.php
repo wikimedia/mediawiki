@@ -8,6 +8,7 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
@@ -18,6 +19,7 @@ use MediaWiki\Utils\MWTimestamp;
 class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
 	use MockTitleTrait;
+	use TempUserTestTrait;
 
 	protected $title;
 	protected $target;
@@ -125,6 +127,10 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideAttribs
 	 */
 	public function testDatabaseRoundTrip( $attribs ) {
+		$rc_user = $attribs['rc_user'] ?? 0;
+		if ( !$rc_user ) {
+			$this->disableAutoCreateTempUser();
+		}
 		$rc = new RecentChange;
 		$rc->mAttribs = $attribs;
 		$rc->mExtra = [
@@ -138,7 +144,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 		$actualAttribs = array_intersect_key( $rc->mAttribs, $attribs );
 		$this->assertArrayEquals( $attribs, $actualAttribs, false, true );
 
-		$user = new UserIdentityValue( $attribs['rc_user'] ?? 0, $attribs['rc_user_text'] );
+		$user = new UserIdentityValue( $rc_user, $attribs['rc_user_text'] );
 		$this->assertTrue( $user->equals( $rc->getPerformerIdentity() ) );
 
 		if ( empty( $attribs['rc_title'] ) ) {
