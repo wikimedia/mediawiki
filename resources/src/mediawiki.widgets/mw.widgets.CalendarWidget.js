@@ -568,7 +568,7 @@
 	 *
 	 * @private
 	 * @param {jQuery.Event} e Mouse click event
-	 * @return {boolean} False to cancel the default event
+	 * @return {boolean|undefined} False to cancel the default event
 	 */
 	mw.widgets.CalendarWidget.prototype.onClick = function ( e ) {
 		if ( !this.isDisabled() && e.which === 1 ) {
@@ -582,7 +582,7 @@
 	 *
 	 * @private
 	 * @param {jQuery.Event} e Key down event
-	 * @return {boolean} False to cancel the default event
+	 * @return {boolean|undefined} False to cancel the default event
 	 */
 	mw.widgets.CalendarWidget.prototype.onKeyDown = function ( e ) {
 		const

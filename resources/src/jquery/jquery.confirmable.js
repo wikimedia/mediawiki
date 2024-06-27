@@ -49,6 +49,7 @@
 	 * @param {string} [options.i18n.no='No'] Text to use for the 'No' button.
 	 * @param {string} [options.i18n.yesTitle] Optional title text to use for the 'Yes' button.
 	 * @param {string} [options.i18n.noTitle] Optional title text to use for the 'No' button.
+	 * @return {jQuery}
 	 */
 	$.fn.confirmable = function ( options ) {
 		options = $.extend( true, {}, $.fn.confirmable.defaultOptions, options || {} );

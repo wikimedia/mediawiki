@@ -159,7 +159,8 @@ function isIos() {
  * methods work from the technical side, and which methods are understandable for users.
  * Some methods or the whole library may be removed in the future.**
  *
- * @unstable
+ * Unstable.
+ *
  * @internal
  * @class
  */

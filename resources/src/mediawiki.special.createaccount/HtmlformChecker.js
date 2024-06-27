@@ -53,7 +53,7 @@ HtmlformChecker.prototype.attach = function ( $extraElements ) {
 /**
  * Validate the form element
  *
- * @return {jQuery.Promise}
+ * @return {jQuery.Promise|undefined}
  */
 HtmlformChecker.prototype.validate = function () {
 	var currentRequestInternal,

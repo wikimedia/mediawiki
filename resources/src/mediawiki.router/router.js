@@ -131,7 +131,7 @@ class Router extends OO.Registry {
 	 * @deprecated Use {@link module:mediawiki.router#addRoute} instead.
 	 */
 	route() {
-		return this.addRoute.apply( this, arguments );
+		this.addRoute.apply( this, arguments );
 	}
 
 	/**

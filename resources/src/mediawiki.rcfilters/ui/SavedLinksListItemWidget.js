@@ -200,7 +200,7 @@ SavedLinksListItemWidget.prototype.onMenuChoose = function ( item ) {
  * Respond to input keyup event, this is the way to intercept 'escape' key
  *
  * @param {jQuery.Event} e Event data
- * @return {boolean} false
+ * @return {boolean|undefined} false
  */
 SavedLinksListItemWidget.prototype.onInputKeyup = function ( e ) {
 	if ( e.which === OO.ui.Keys.ESCAPE ) {
