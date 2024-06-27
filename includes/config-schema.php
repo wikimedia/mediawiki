@@ -1602,6 +1602,7 @@ return [
 					'applychangetags' => true,
 					'changetags' => true,
 					'editcontentmodel' => true,
+					'pagelang' => true,
 				],
 				'editprotected' => [
 					'edit' => true,

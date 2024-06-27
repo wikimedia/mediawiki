@@ -5607,7 +5607,7 @@ config-schema:
             basic: { autocreateaccount: true, autoconfirmed: true, autopatrol: true, editsemiprotected: true, ipblock-exempt: true, nominornewtalk: true, patrolmarks: true, read: true, writeapi: true, unwatchedpages: true }
             highvolume: { bot: true, apihighlimits: true, noratelimit: true, markbotedits: true }
             import: { import: true, importupload: true }
-            editpage: { edit: true, minoredit: true, applychangetags: true, changetags: true, editcontentmodel: true }
+            editpage: { edit: true, minoredit: true, applychangetags: true, changetags: true, editcontentmodel: true, pagelang: true }
             editprotected: { edit: true, minoredit: true, applychangetags: true, changetags: true, editcontentmodel: true, editprotected: true }
             editmycssjs: { edit: true, minoredit: true, applychangetags: true, changetags: true, editcontentmodel: true, editmyusercss: true, editmyuserjson: true, editmyuserjs: true }
             editmyoptions: { editmyoptions: true, editmyuserjson: true }
