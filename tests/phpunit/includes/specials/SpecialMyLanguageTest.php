@@ -31,7 +31,9 @@ class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 		$pageContent = [
 			'Page/Redirect' => '#REDIRECT [[Page/Another#Section]]',
 		];
-		$user = $this->getTestSysop()->getAuthority();
+		$user = $this->getTestSysop()->getUser();
+		$context = RequestContext::getMain();
+		$context->setUser( $user );
 		foreach ( $titles as $title ) {
 			$this->editPage(
 				$title,
@@ -42,7 +44,7 @@ class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 			);
 			if ( isset( $pageLang[$title] ) ) {
 				SpecialPageLanguage::changePageLanguage(
-					RequestContext::getMain(), Title::newFromText( $title ), $pageLang[$title], 'Test' );
+					$context, Title::newFromText( $title ), $pageLang[$title], 'Test' );
 			}
 		}
 	}
