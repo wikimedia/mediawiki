@@ -19,7 +19,8 @@
 			"Игорь Бродский",
 			"아라",
 			"Сантяй",
-			"Бочканова Надежда Владимировна"
+			"Бочканова Надежда Владимировна",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Невтематнень тешкстамо:",
@@ -1515,7 +1516,7 @@
 	"rcfilters-filter-logactions-label": "Сёрмадомань тевдеемат",
 	"rcfilters-filter-logactions-description": "Адмиистративной тевдеемат, учётонь сёрмадовксонь теемат, лопань нардамот, файлань тонгомат...",
 	"rcfilters-hideminor-conflicts-typeofchange-global": "\"Вишка витемат\" ваньскавтомась сёвны вейке эли лия ванькскавтоматнень марто, секс мекс кой-кона витематне а лемдявить вишкинекс. Сёвномань ванькскавтоматне тешкстазь вере, Бойкачинь ванькскавтомань ёнкссо.",
-	"rcfilters-hideminor-conflicts-typeofchange": "Кой-кона витевкстнэ лемдявить \"вишкинекс\", секс мекс те ванькскавтомась сёвны витевксэнь лия ванькскавтоманть марто:  $1",
+	"rcfilters-hideminor-conflicts-typeofchange": "Кой-кона витевкстнэ лемдявить \"вишкинекс\", секс мекс те ванькскавтомась сёвны витевксэнь лия ванькскавтоманть марто: $1",
 	"rcfilters-typeofchange-conflicts-hideminor": "Витевксэнь ванькскавтомань те фильтрась сёвны ванькскавтоманть вишка витевксэнть марто. Кой-конат витевкстнэнь а мереви тешкстамс кода \"вишкинеть\".",
 	"rcfilters-filtergroup-lastrevision": "Меельце лиякстомтомат",
 	"rcfilters-filter-lastrevision-label": "Меельце лиякстомтома",
@@ -2005,9 +2006,9 @@
 	"deadendpagestext": "{{SITENAME}}-сэ те лопатнень эйсэ арасть лия лопатнень лангс невтемат.",
 	"protectedpages": "Ванстозь лопат",
 	"protectedpages-filters": "Ванькскавтомат:",
-	"protectedpages-indef": "Ансяк виев идема",
+	"protectedpages-indef": "Indefinite protections only",
 	"protectedpages-summary": "Те лопасонть невтезь важодиця сеть лопатне, конат неень шкасто идезь. Одов теемань идемадо лемлувонть вант [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]].",
-	"protectedpages-cascade": "Ансяк виев идема",
+	"protectedpages-cascade": "Cascading protections only",
 	"protectedpages-noredirect": "Кекшемс одов кучоматнень",
 	"cachedspecial-viewing-cached-ttl": "Тон ванат кэш-партонь версиянь лопанть, паряк сон одкстомтозель $1 икеле.",
 	"protectedpagesempty": "Неень шкасто невтезь ладямотнень марто идезь лопат арасть",

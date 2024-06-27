@@ -29,10 +29,8 @@ div.apihelp-linktrail {
 
 .apihelp-flags {
 	font-size: smaller;
-	float: right;
 	border: 1px solid #000;
 	padding: 0.25em;
-	width: 20em;
 }
 
 .apihelp-deprecated,
@@ -60,16 +58,7 @@ div.apihelp-linktrail {
 	margin-left: 0;
 }
 
-.apihelp-parameters dl,
-.apihelp-examples dl,
-.apihelp-permissions dl {
-	margin-left: 2em;
-}
-
 .apihelp-parameters dt {
-	float: left;
-	clear: left;
-	min-width: 10em;
 	white-space: nowrap;
 	line-height: 1.5em;
 }
@@ -79,17 +68,11 @@ div.apihelp-linktrail {
 }
 
 .apihelp-parameters dd {
-	margin: 0 0 0.5em 10em;
 	line-height: 1.5em;
 }
 
 .apihelp-parameters dd p:first-child {
 	margin-top: 0;
-}
-
-.apihelp-parameters dd.info {
-	margin-left: 12em;
-	text-indent: -2em;
 }
 
 .apihelp-examples dt {
@@ -107,4 +90,38 @@ div.apihelp-linktrail {
 
 .api-main-links ul:after {
 	content: ']';
+}
+
+@media ( min-width: 720px ) {
+	.apihelp-flags {
+		float: right;
+		width: 20em;
+	}
+
+	.apihelp-parameters dl,
+	.apihelp-examples dl,
+	.apihelp-permissions dl {
+		margin-left: 2em;
+	}
+
+	.apihelp-parameters dt {
+		float: left;
+		clear: left;
+		min-width: 10em;
+	}
+
+	.apihelp-parameters dd {
+		margin: 0 0 0.5em 10em;
+	}
+
+	.apihelp-parameters dd.info {
+		/* Indent subsequent lines when description is wrapped */
+		/* Support: Chrome – In Firefox and Safari, we could just use `text-indent: 2em hanging;` */
+		/* https://developer.mozilla.org/en-US/docs/Web/CSS/text-indent#browser_compatibility */
+		padding-left: 2em;
+		text-indent: -2em;
+		/* Prevent floated param names from overlapping the text (T364270) */
+		/* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_display/Block_formatting_context */
+		overflow: auto;
+	}
 }

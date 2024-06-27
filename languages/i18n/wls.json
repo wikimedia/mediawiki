@@ -3,7 +3,8 @@
 		"authors": [
 			"Lea.Fakauvea",
 			"Lea.fakauvea",
-			"Skimel"
+			"Skimel",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Fakama'uhiga te 'u laini tapiki:",
@@ -619,7 +620,7 @@
 	"searchsuggest-search": "Kumi {{SITENAME}}",
 	"searchsuggest-containing": "Kumi pāsina e tohi ai",
 	"duration-days": "$1 {{PLURAL:$1|'aho}}",
-	"randomrootpage": "Pāsina 'uluaki  ne'e hoko fili",
+	"randomrootpage": "Pāsina 'uluaki ne'e hoko fili",
 	"passwordpolicies-group": "Kautahi",
 	"passwordpolicies-policies": "Lēkula",
 	"paramvalidator-help-type-user-subtype-ip": "IP",

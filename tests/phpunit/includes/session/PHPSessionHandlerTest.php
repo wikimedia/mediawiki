@@ -15,13 +15,12 @@ use Wikimedia\TestingAccessWrapper;
  */
 class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 
-	private function getResetter( &$rProp = null ) {
+	private function getResetter( &$staticAccess = null ) {
 		$reset = [];
 
-		$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
-		$rProp->setAccessible( true );
-		if ( $rProp->getValue() ) {
-			$old = TestingAccessWrapper::newFromObject( $rProp->getValue() );
+		$staticAccess = TestingAccessWrapper::newFromClass( PHPSessionHandler::class );
+		if ( $staticAccess->instance ) {
+			$old = TestingAccessWrapper::newFromObject( $staticAccess->instance );
 			$oldManager = $old->manager;
 			$oldStore = $old->store;
 			$oldLogger = $old->logger;
@@ -39,10 +38,12 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 			$this->createPartialMock( PHPSessionHandler::class, [] )
 		);
 
-		$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
-		$rProp->setAccessible( true );
-		$reset = new \Wikimedia\ScopedCallback( [ $rProp, 'setValue' ], [ $rProp->getValue() ] );
-		$rProp->setValue( $handler );
+		$staticAccess = TestingAccessWrapper::newFromClass( PHPSessionHandler::class );
+		$oldValue = $staticAccess->instance;
+		$reset = new \Wikimedia\ScopedCallback( static function () use ( $staticAccess, $oldValue ) {
+			$staticAccess->instance = $oldValue;
+		} );
+		$staticAccess->instance = $handler;
 
 		$handler->setEnableFlags( 'enable' );
 		$this->assertTrue( $handler->enable );
@@ -58,13 +59,13 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $handler->enable );
 		$this->assertFalse( PHPSessionHandler::isEnabled() );
 
-		$rProp->setValue( null );
+		$staticAccess->instance = null;
 		$this->assertFalse( PHPSessionHandler::isEnabled() );
 	}
 
 	public function testInstall() {
-		$reset = $this->getResetter( $rProp );
-		$rProp->setValue( null );
+		$reset = $this->getResetter( $staticAccess );
+		$staticAccess->instance = null;
 
 		session_write_close();
 		ini_set( 'session.use_cookies', 1 );
@@ -87,8 +88,8 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( wfIniGetBool( 'session.use_cookies' ) );
 		$this->assertFalse( wfIniGetBool( 'session.use_trans_sid' ) );
 
-		$this->assertNotNull( $rProp->getValue() );
-		$priv = TestingAccessWrapper::newFromObject( $rProp->getValue() );
+		$this->assertNotNull( $staticAccess->instance );
+		$priv = TestingAccessWrapper::newFromObject( $staticAccess->instance );
 		$this->assertSame( $manager, $priv->manager );
 		$this->assertSame( $store, $priv->store );
 		$this->assertSame( $logger, $priv->logger );
@@ -99,8 +100,11 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @param string $handler php serialize_handler to use
 	 */
 	public function testSessionHandling( $handler ) {
+		// Tracked under T352913
+		$this->markTestSkippedIfPhp( '>=', '8.3' );
+
 		$this->hideDeprecated( '$_SESSION' );
-		$reset[] = $this->getResetter( $rProp );
+		$reset = $this->getResetter( $staticAccess );
 
 		$this->overrideConfigValues( [
 			MainConfigNames::SessionProviders => [ [ 'class' => \DummySessionProvider::class ] ],
@@ -121,7 +125,7 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 			'logger' => $logger,
 		] );
 		PHPSessionHandler::install( $manager );
-		$wrap = TestingAccessWrapper::newFromObject( $rProp->getValue() );
+		$wrap = TestingAccessWrapper::newFromObject( $staticAccess->instance );
 		$reset[] = new \Wikimedia\ScopedCallback(
 			[ $wrap, 'setEnableFlags' ],
 			[ $wrap->enable ? ( $wrap->warn ? 'warn' : 'enable' ) : 'disable' ]
@@ -313,13 +317,14 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideDisabled
 	 */
 	public function testDisabled( $method, $args ) {
-		$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
-		$rProp->setAccessible( true );
+		$staticAccess = TestingAccessWrapper::newFromClass( PHPSessionHandler::class );
 		$handler = $this->createPartialMock( PHPSessionHandler::class, [] );
 		TestingAccessWrapper::newFromObject( $handler )->setEnableFlags( 'disable' );
-		$oldValue = $rProp->getValue();
-		$rProp->setValue( $handler );
-		$reset = new \Wikimedia\ScopedCallback( [ $rProp, 'setValue' ], [ $oldValue ] );
+		$oldValue = $staticAccess->instance;
+		$staticAccess->instance = $handler;
+		$reset = new \Wikimedia\ScopedCallback( static function () use ( $staticAccess, $oldValue ) {
+			$staticAccess->instance = $oldValue;
+		} );
 
 		$this->expectException( BadMethodCallException::class );
 		$this->expectExceptionMessage( "Attempt to use PHP session management" );

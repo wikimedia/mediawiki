@@ -5,7 +5,8 @@
 			"Amire80",
 			"Awangba Mangang",
 			"Luwangcha",
-			"꯴꯰꯴"
+			"꯴꯰꯴",
+			"Ebraminio"
 		]
 	},
 	"tog-underline": "ꯃꯔꯤꯂꯩꯅꯥꯍꯜꯂꯨ:",
@@ -864,7 +865,7 @@
 	"watchlistfor2": "$1ꯒꯤ",
 	"watch": "ꯌꯦꯡꯕꯥ",
 	"unwatch": "ꯌꯦꯡꯗꯕ",
-	"watchlist-details": "{{PLURAL:$1|$1 ꯂꯃꯥꯏ ꯑꯁꯤ|$1 ꯂꯃꯥꯏꯁꯤꯡ ꯑꯁꯤ}}  ꯅꯪꯅ ꯌꯦꯡꯂꯤꯕ ꯄꯥꯔꯦꯡꯁꯤꯡ(ꯋꯥ ꯍꯥꯏꯐꯝ ꯂꯃꯥꯏ ꯂꯣꯏꯅꯅ) ꯗ ꯌꯥꯎꯔꯦ ꯫",
+	"watchlist-details": "{{PLURAL:$1|$1 ꯂꯃꯥꯏ ꯑꯁꯤ|$1 ꯂꯃꯥꯏꯁꯤꯡ ꯑꯁꯤ}} ꯅꯪꯅ ꯌꯦꯡꯂꯤꯕ ꯄꯥꯔꯦꯡꯁꯤꯡ(ꯋꯥ ꯍꯥꯏꯐꯝ ꯂꯃꯥꯏ ꯂꯣꯏꯅꯅ) ꯗ ꯌꯥꯎꯔꯦ ꯫",
 	"wlheader-showupdated": "ꯅꯪꯅ ꯍꯥꯟꯅ ꯆꯪꯂꯝꯕ ꯂꯃꯥꯏꯗꯨꯒꯤ ꯃꯇꯨꯡꯗ ꯂꯥꯛꯄ ꯑꯍꯣꯡꯕꯁꯤꯡꯗꯨ <strong>ꯃꯌꯦꯛ ꯆꯥꯎꯅ</strong> ꯎꯠꯂꯦ ꯫",
 	"wlnote": "ꯃꯈꯥꯒꯤ {{PLURAL:$1|ꯑꯁꯤ ꯑꯔꯣꯏꯕ ꯑꯍꯣꯡꯕꯅꯤ |<strong>$1</strong> ꯑꯁꯤꯈꯩꯁꯤ ꯑꯔꯣꯏꯕ ꯑꯍꯣꯡꯕꯅꯤ}} ꯑꯔꯣꯏꯕ {{PLURAL:$2|ꯒꯤ ꯃꯅꯨꯡꯗ|ꯄꯨꯡ <strong>$2</strong>ꯒꯤ ꯃꯅꯨꯡꯗ}}, $3 ꯑꯃꯗꯤ $4ꯒꯤ ꯃꯇꯨꯡ ꯏꯟꯅ ꯫",
 	"watchlist-options": "ꯌꯦꯡꯂꯤꯕ ꯄꯔꯦꯡ ꯑꯄꯥꯝꯕ ꯈꯟꯅꯕ",
@@ -993,7 +994,7 @@
 	"pageinfo-header-restrictions": "ꯉꯥꯛꯊꯣꯛꯂꯕꯥ ꯂꯃꯥꯏ",
 	"pageinfo-header-properties": "ꯂꯃꯥꯏꯁꯤ ꯒꯤ ꯑꯣꯏꯒꯗꯕꯁꯤꯡ",
 	"pageinfo-display-title": "ꯂꯃꯥꯏꯒꯤ ꯑꯄꯤꯕ ꯃꯃꯤꯡ ꯎꯠꯊꯣꯛꯄ",
-	"pageinfo-default-sort": "ꯑꯇꯦꯟꯕ-꯱ꯍꯦꯛ-ꯇ ꯌꯥꯕ ‌‌‌‌‌",
+	"pageinfo-default-sort": "ꯑꯇꯦꯟꯕ-꯱ꯍꯦꯛ-ꯇ ꯌꯥꯕ‌",
 	"pageinfo-length": "ꯂꯃꯥꯏꯒꯤ ꯑꯁꯥꯡꯕ(ꯕꯥꯏꯇ ꯇ)",
 	"pageinfo-article-id": "ꯂꯃꯥꯏꯒꯤ ꯁꯛꯇꯥꯛ",
 	"pageinfo-language": "ꯂꯃꯥꯏꯁꯤꯗ ꯏꯔꯤꯕ ꯂꯣꯟ",

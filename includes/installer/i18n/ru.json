@@ -34,7 +34,8 @@
 			"Сrower",
 			"아라",
 			"Max34",
-			"BerryAVGN"
+			"BerryAVGN",
+			"Stjn"
 		]
 	},
 	"config-desc": "Установщик MediaWiki",
@@ -210,7 +211,7 @@
 	"config-pingback-help": "Если вы выберите этот вариант, MediaWiki будет периодически отправлять на https://www.mediawiki.org основные сведения об этом экземпляре MediaWiki. К этим данным относятся, в частности, тип операционной системы, версия PHP и выбранная СУБД. Фонд Викимедиа делится этими данными с разработчиками MediaWiki, чтобы помочь им в дальнейшей разработке. Следующие данные будут отправлены для вашей системы:\n<pre>$1</pre>\n\nПолитика конфиденциальности находится по адресу  https://foundation.wikimedia.org/wiki/MediaWiki_Pingback_Privacy_Statement.\n\nПочитать подробнее об этой функции вы можете здесь: https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgPingback.\n\nАгрегированные pingback данные можно найти тут: https://pingback.wmflabs.org/",
 	"config-almost-done": "Вы почти у цели!\nОстальные настройки можно пропустить и приступить к установке вики.",
 	"config-optional-continue": "Произвести тонкую настройку",
-	"config-optional-skip": "Хватит, установить вики",
+	"config-optional-skip": "Хватит уже, просто установите вики.",
 	"config-profile": "Профиль прав прользователей:",
 	"config-profile-wiki": "Открытая вики",
 	"config-profile-no-anon": "Требуется создание учётной записи",

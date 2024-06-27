@@ -461,7 +461,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				);
 				if ( $rollbackLink ) {
 					$this->setPreventClickjacking( true );
-					$tools[] = $rollbackLink;
+					$tools['mw-rollback'] = $rollbackLink;
 				}
 			}
 
@@ -482,7 +482,7 @@ class HistoryPager extends ReverseChronologicalPager {
 						'undo' => $revRecord->getId()
 					]
 				);
-				$tools[] = "<span class=\"mw-history-undo\">{$undolink}</span>";
+				$tools['mw-undo'] = "<span class=\"mw-history-undo\">{$undolink}</span>";
 			}
 		}
 		// Allow extension to add their own links here

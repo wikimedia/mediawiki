@@ -148,7 +148,10 @@
 			"Trooper57",
 			"Brooke Vibber",
 			"CorraleH",
-			"Juwan"
+			"Juwan",
+			"Lc97",
+			"Mellogabi03",
+			"Vinickw"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -492,7 +495,7 @@
 	"protectedinterface": "Esta página fornece texto de interface ao software deste wiki, se encontrando protegida para prevenir abusos.\n\nPara adicionar ou alterar traduções em todos os wikis, utilize o [https://translatewiki.net/ translatewiki.net], projeto de traduções do MediaWiki.",
 	"editinginterface": "'''Aviso:''' Você se encontra prestes a editar uma página que é utilizada para fornecer texto de interface ao software.\nAlterações nesta página irão afetar a aparência da interface de usuário para outros usuários desta wiki.",
 	"translateinterface": "Para adicionar ou modificar traduções para todas as wikis, por favor use  [https://translatewiki.net/ translatewiki.net], o projeto de localização do MediaWiki.",
-	"cascadeprotected": "Esta página foi protegida contra edições porque é transcluída {{PLURAL:$1| na seguinte página que está protegida|nas seguintes páginas que estão protegidas}} com a opção \"em cascata\" ativada: $2",
+	"cascadeprotected": "Esta página foi protegida contra edições porque é transcluída {{PLURAL:$1| na seguinte página que está protegida|nas seguintes páginas que estão protegidas}} com a opção \"em cascata\" ativada:\n$2",
 	"namespaceprotected": "Você não possui permissão para editar páginas no espaço nominal '''$1'''.",
 	"customcssprotected": "Você não tem permissão para editar esta página CSS, porque ele contém configurações pessoais de outro usuário.",
 	"customjsonprotected": "Você não tem permissão para editar esta página JSON porque ela contém as configurações pessoais de outro usuário.",

@@ -10,10 +10,23 @@ class SamplingStatsdClientTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
+	protected function setUp(): void {
+		parent::setUp();
+		if ( version_compare( PHP_VERSION, '8.2', '>=' ) ) {
+			// Tracked on T326386
+			$this->markTestSkipped( "PHP 8.2 isn't supported for this test" );
+		}
+	}
+
 	/**
 	 * @dataProvider samplingDataProvider
 	 */
 	public function testSampling( $data, $sampleRate, $seed, $expectWrite ) {
+		if ( version_compare( PHP_VERSION, '8.3', '>=' ) ) {
+			// Use of deprecated MT_RAND_PHP - T352908
+			$this->markTestSkipped( "PHP 8.3 isn't supported for this test" );
+		}
+
 		$sender = $this->createMock( SenderInterface::class );
 		$sender->method( 'open' )->willReturn( true );
 		if ( $expectWrite ) {

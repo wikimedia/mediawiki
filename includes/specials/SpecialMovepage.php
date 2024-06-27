@@ -947,15 +947,19 @@ class MovePageForm extends UnlistedSpecialPage {
 		);
 
 		if ( $nsHasSubpages ) {
-			$this->showSubpagesList( $subpages, $count, 'movesubpagetext', true );
+			$this->showSubpagesList(
+				$subpages, $count, 'movesubpagetext', 'movesubpagetext-truncated', true
+			);
 		}
 
 		if ( !$titleIsTalk && $countTalk > 0 ) {
-			$this->showSubpagesList( $subpagesTalk, $countTalk, 'movesubpagetalktext' );
+			$this->showSubpagesList(
+				$subpagesTalk, $countTalk, 'movesubpagetalktext', 'movesubpagetalktext-truncated'
+			);
 		}
 	}
 
-	private function showSubpagesList( $subpages, $pagecount, $wikiMsg, $noSubpageMsg = false ) {
+	private function showSubpagesList( $subpages, $pagecount, $msg, $truncatedMsg, $noSubpageMsg = false ) {
 		$out = $this->getOutput();
 
 		# No subpages.
@@ -968,14 +972,9 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		if ( $pagecount > $maximumMovedPages ) {
 			$subpages = $this->truncateSubpagesList( $subpages );
-			// TODO: Replace with a message key once this is uploaded to Gerrit. This is hardcoded to avoid
-			//  having the i18n rebuilt for all deployments due to this security patch.
-			$out->addWikiTextAsInterface(
-				"The first $maximumMovedPages {{PLURAL:$maximumMovedPages|subpage|subpages}} " .
-				( $noSubpageMsg ? 'for this page' : 'for the corresponding talk page' ) . ' are shown below.'
-			);
+			$out->addWikiMsg( $truncatedMsg, $this->getLanguage()->formatNum( $maximumMovedPages ) );
 		} else {
-			$out->addWikiMsg( $wikiMsg, $this->getLanguage()->formatNum( $pagecount ) );
+			$out->addWikiMsg( $msg, $this->getLanguage()->formatNum( $pagecount ) );
 		}
 		$out->addHTML( "<ul>\n" );
 

@@ -2931,6 +2931,8 @@
 	"movesubpage": "{{PLURAL:$1|Subpage|Subpages}}",
 	"movesubpagetext": "This page has $1 {{PLURAL:$1|subpage|subpages}} shown below.",
 	"movesubpagetalktext": "The corresponding talk page has $1 {{PLURAL:$1|subpage|subpages}} shown below.",
+	"movesubpagetext-truncated": "The first $1 {{PLURAL:$1|subpage|subpages}} for this page are shown below.",
+	"movesubpagetalktext-truncated": "The first $1 {{PLURAL:$1|subpage|subpages}} for the corresponding talk page are shown below.",
 	"movenosubpage": "This page has no subpages.",
 	"movereason": "Reason:",
 	"move-redirect-text": "",

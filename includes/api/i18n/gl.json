@@ -1578,7 +1578,7 @@
 	"api-help-flag-readrights": "Este módulo precisa permisos de lectura.",
 	"api-help-flag-writerights": "Este módulo precisa permisos de escritura.",
 	"api-help-flag-mustbeposted": "Este módulo só acepta peticións POST.",
-	"api-help-flag-generator": "Este módulo pode usarse como xenerador.",
+	"api-help-flag-generator": "Este módulo pode usarse como xerador.",
 	"api-help-source": "Fonte: $1",
 	"api-help-source-unknown": "Fonte: <span class=\"apihelp-unknown\">descoñecida</span>",
 	"api-help-license": "Licenza: [[$1|$2]]",

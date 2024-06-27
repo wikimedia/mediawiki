@@ -1624,7 +1624,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function dieWithErrorOrDebug( $msg, $code = null, $data = null, $httpCode = null ) {
 		if ( $this->getConfig()->get( MainConfigNames::DebugAPI ) !== true ) {
-			$this->dieWithError( $msg, $code, $data, $httpCode );
+			$this->dieWithError( $msg, $code, $data, $httpCode ?? 0 );
 		} else {
 			$this->addWarning( $msg, $code, $data );
 		}

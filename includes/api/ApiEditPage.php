@@ -523,8 +523,8 @@ class ApiEditPage extends ApiBase {
 		switch ( $statusValue ) {
 			case EditPage::AS_HOOK_ERROR:
 			case EditPage::AS_HOOK_ERROR_EXPECTED:
-				if ( isset( $status->apiHookResult ) ) {
-					$r = $status->apiHookResult;
+				if ( $status->statusData !== null ) {
+					$r = $status->statusData;
 					$r['result'] = 'Failure';
 					$apiResult->addValue( null, $this->getModuleName(), $r );
 					return;

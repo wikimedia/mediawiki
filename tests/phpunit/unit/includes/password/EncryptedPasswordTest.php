@@ -69,6 +69,7 @@ class EncryptedPasswordTest extends PasswordTestCase {
 	public function testUpdate() {
 		$hash = ':both:aes-256-cbc:0:izBpxujqC1YbzpCB3qAzgg==:ZqHnitT1pL4YJqKqFES2KEevZYSy2LtlibW5+IMi4XKOGKGy6sE638BXyBbLQQsBtTSrt+JyzwOayKtwIfRbaQsBridx/O1JwBSai1TkGkOsYMBXnlu2Bu/EquCBj5QpjYh7p3Uq4rpiop1KQlin1BJMwnAa1PovhxjpxnYhlhkM4X5ALoGi3XM0bapN48vt';
 		$fromHash = $this->passwordFactory->newFromCiphertext( $hash );
+		$this->assertTrue( $fromHash->needsUpdate() );
 		$this->assertTrue( $fromHash->update() );
 
 		$serialized = $fromHash->toString();
@@ -77,5 +78,6 @@ class EncryptedPasswordTest extends PasswordTestCase {
 		$fromPlaintext = $this->passwordFactory->newFromPlaintext( 'password', $fromNewHash );
 		$this->assertTrue( $fromPlaintext->verify( 'password' ) );
 		$this->assertTrue( $fromHash->verify( 'password' ) );
+		$this->assertFalse( $fromPlaintext->needsUpdate() );
 	}
 }

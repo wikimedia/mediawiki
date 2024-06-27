@@ -298,7 +298,7 @@
 	"apihelp-login-extended-description-nobotpasswords": "此操作已被棄用，且可能在不帶警告的情況下失敗。要安全登入請使用 <kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>。",
 	"apihelp-login-param-name": "使用者名稱。",
 	"apihelp-login-param-password": "密碼。",
-	"apihelp-login-param-domain": "網域名稱（可有可無）。",
+	"apihelp-login-param-domain": "域名（非必填）。",
 	"apihelp-login-param-token": "在首次請求獲得的登入權杖。",
 	"apihelp-login-example-login": "登入",
 	"apihelp-logout-summary": "登出並清除 session 資料。",

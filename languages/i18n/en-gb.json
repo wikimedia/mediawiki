@@ -51,7 +51,9 @@
 			"Boke",
 			"Dreamy Jazz",
 			"Mako001",
-			"Piano1forte2"
+			"Piano1forte2",
+			"Drkirstyross",
+			"Umar Ahmad2345"
 		]
 	},
 	"tog-hidecategorization": "Hide categorisation of pages",
@@ -133,6 +135,7 @@
 	"autoblockedtext": "<strong>Your username or IP address has been blocked.</strong>\n\nThe block was made by $1.\nThe reason given is <em>$2</em>.\n\n* Start of block: $8\n* Expiration of block: $6\n* Intended blockee: $7\n\nYou can contact $1 or another [[{{MediaWiki:Grouppage-sysop}}|administrator]] to discuss the block.\n\nYou can use the \"{{int:emailuser}}\" feature if a valid e-mail address is specified in your [[Special:Preferences|preferences]] and you have not been blocked from using it.\n\nYour current IP address is $3, and the block ID is #$5.\nPlease include all above details in any queries you make.",
 	"missing-revision": "The revision #$1 of the page named '{{FULLPAGENAME}}' does not exist.\n\nThis is usually caused by following an outdated history link to a page that has been deleted.\nDetails can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
 	"missing-revision-content": "The content of revision #$1 of the page named '$2' could not be loaded.",
+	"editundo": "cin gbere le",
 	"search-invalid-sort-order": "Sort order of $1 is unrecognised, default sorting will be applied. Valid sort orders are: $2",
 	"search-unknown-profile": "Search profile of $1 is unrecognised, default search profile will be applied.",
 	"linterror-tidy-font-bug": "Font tag tries to change link colour",
@@ -152,6 +155,9 @@
 	"license": "Licencing:",
 	"license-header": "Licencing",
 	"licenses-edit": "Edit licence options",
+	"filehist-help": "Yi efo/eka'e gwa ebo wo le nyangagi wuncin ye kamina wunga tinya nan",
+	"filehist-datetime": "Gwalagizhi",
+	"filehist-thumb": "Nyangagi",
 	"uncategorizedpages": "Uncategorised pages",
 	"uncategorizedcategories": "Uncategorised categories",
 	"uncategorizedimages": "Uncategorised files",

@@ -1157,7 +1157,7 @@
 	"size-bytes": "$1 Bytes",
 	"watchlistedit-normal-title": "Beobachtungslistn bearbatn",
 	"watchlistedit-normal-legend": "Eiträge vo da Beobachtungslistn wegnehma",
-	"watchlistedit-normal-explain": "Des san de Eiträg vo deiner Beowochtungslisten. Um de Eiträg z' entferna, markir de Kastln neem de Eiträg und druck am End vo da Seiten auf „{{int:Watchlistedit-normal-submit}}“. Du kåst dei Beowochtungslisten aa im  [[Special:EditWatchlist/raw|Listenformat beorweiten]].",
+	"watchlistedit-normal-explain": "Des san de Eiträg vo deiner Beowochtungslisten. Um de Eiträg z' entferna, markir de Kastln neem de Eiträg und druck am End vo da Seiten auf „{{int:Watchlistedit-normal-submit}}“. Du kåst dei Beowochtungslisten aa im [[Special:EditWatchlist/raw|Listenformat beorweiten]].",
 	"watchlistedit-normal-submit": "Eiträge wegnehma",
 	"watchlistedit-raw-title": "Beówochtungslisten im Listenformaat beorweiten",
 	"watchlistedit-raw-legend": "Beówochtungslisten im Listenformaat beorweiten",
