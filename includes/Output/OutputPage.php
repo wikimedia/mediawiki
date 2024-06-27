@@ -1768,7 +1768,7 @@ class OutputPage extends ContextSource {
 				'target' => '_blank',
 				'class' => 'mw-helplink',
 			],
-			$text
+			Html::element( 'span', [ 'class' => 'mw-helplink-icon' ] ) . $text
 		);
 
 		// See note in ::getIndicators() above -- unlike wikitext-generated

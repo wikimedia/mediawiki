@@ -1,11 +1,11 @@
+@import 'mediawiki.skin.variables.less';
+
 #mw-indicator-mw-helplink a {
-	background-image: url( images/helpNotice.svg );
-	background-position: left center;
-	background-repeat: no-repeat;
-	display: inline-block;
-	height: 20px;
-	padding-left: 25px;
-	/* TODO: Re-evaluate whether we should keep this over-ride or switch to ems */
-	/* stylelint-disable-next-line declaration-property-unit-disallowed-list */
-	line-height: 20px;
+	display: flex;
+	align-items: center;
+
+	.mw-helplink-icon {
+		padding-right: 10px;
+		.cdx-mixin-css-icon( @cdx-icon-help-notice );
+	}
 }
