@@ -495,10 +495,9 @@ $wgRemoveGroups['steward'] = array(
 
 // Restriction settings
 $wgRestrictionLevels = array(
-	'*',
+	'',
 	'user',
 	'autoconfirmed',
-	'autoreview',
 	'sysop',
 	'bureaucrat',
 	'steward',
