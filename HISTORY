@@ -6,6 +6,14 @@ PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
 PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 
+== MediaWiki 1.42.1 ==
+
+This is a maintenance release of the MediaWiki 1.42 branch.
+
+=== Changes since MediaWiki 1.42.0 ===
+* Localisation updates.
+* Name the PagerTools array entries to allow hooks to unset them.
+
 == MediaWiki 1.42.0 ==
 
 === Changes since MediaWiki 1.42.0-rc.0 ===
@@ -794,7 +802,45 @@ PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
 PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 
-== MediaWiki 1.41.0 ==
+== MediaWiki 1.41.2 ==
+
+This is a maintenance release of the MediaWiki 1.41 branch.
+
+=== Changes since MediaWiki 1.41.1 ===
+* Localisation updates.
+* maintenance/generateSitemap.php: Partially revert 676fcf4.
+* tests: Skip failing tests on php8.2 (and make pass).
+* (T326480) ApiResult: Make array ordering consistent across PHP versions.
+* (T352789, T287972) build: Raise TestingAccessWrapper from 2.0.0 to 3.0.0.
+* (T326478) tests: Create new classes to hold dynamic properties in auth tests.
+* (T353180) WANObjectCacheTest::testPreemptiveRefresh: Skip flaky test for PHP
+  8.2+.
+* tests: Remove es6 option from StartUpModuleTest.
+* (T326478) tests: Avoid dynamic properties in AuthenticationProvider Test.
+* tests: Skip failing tests on php8.3 (and make pass).
+* (T326466) Introduce and use DynamicPropertyTestHelper.
+* (T326478) tests: Avoid dynamic properties in auth tests.
+* (T352910) tests: Use TestingAccessWrapper::newFromClass in session tests.
+* (T326478) tests: Avoid dynamic properties in SessionManagerTest.
+* ArticleTest: Skip testGetOrSetOnNewProperty() if PHP >= 8.2.
+* tests: Remove dead code from WikiPageDbTest::assertPreparedEditNotEquals.
+* (T326479, T361985) StatusValue: Allow passing arbitrary data to augment
+  result.
+* (T357760) Use i18n strings for truncated subpage message in SpecialMovePage.
+* debug: Update PsySH 0.11.1 -> 0.12.3.
+* (T361991) Fix slash-delimited regex from CLI on maintenence/grep.php.
+* (T352695) tests: Only set $dbSetup if setupTestDB() ends without throwing.
+* (T362272) api: Replace null $httpCode by 0 in ApiBase::dieWithErrorOrDebug.
+* (T362740) api: Pass wikiId to UserIdentity instance for action=userrights.
+* (T343994) SpecialPages: Document which class getDescription is returning a
+  string from.
+* (T150647, T216682) Make EncryptedPassword work with Argon2Password.
+* (T364270) Fix long param names overlapping docs in API help pages.
+* wrapOldPasswords: Improve progress output and decrease batch size.
+* (T361367) ApiFeedWatchlist: Fix handling of array parameters.
+* (T366130) EncryptedPassword: Store default parameters as strings.
+* Name the PagerTools array entries to allow hooks to unset them.
+* Do not mark HttpRequestFactory as @internal.
 
 == MediaWiki 1.41.1 ==
 
@@ -1992,6 +2038,39 @@ PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
 PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 
+== MediaWiki 1.40.4 ==
+
+This is a maintenance release of the MediaWiki 1.41 branch.
+
+=== Changes since MediaWiki 1.40.3 ===
+* Localisation updates.
+* tests: Skip failing tests on php8.2 (and make pass).
+* (T326480) ApiResult: Make array ordering consistent across PHP versions.
+* (T352789, T287972) build: Raise TestingAccessWrapper from 2.0.0 to 3.0.0.
+* (T326478) tests: Create new classes to hold dynamic properties in auth tests.
+* (T326478) tests: Avoid dynamic properties in AuthenticationProvider Test.
+* tests: Skip failing tests on php8.3 (and make pass).
+* (T326466) Introduce and use DynamicPropertyTestHelper.
+* (T352910) tests: Use TestingAccessWrapper::newFromClass in session tests.
+* (T326478) tests: Avoid dynamic properties in SessionManagerTest.
+* ArticleTest: Skip testGetOrSetOnNewProperty() if PHP >= 8.2.
+* (T326478) tests: Avoid dynamic properties in auth tests.
+* tests: Remove dead code from WikiPageDbTest::assertPreparedEditNotEquals.
+* (T326479, T361985) StatusValue: Allow passing arbitrary data to augment
+  result.
+* (T357760) Use i18n strings for truncated subpage message in SpecialMovePage.
+* debug: Update PsySH 0.11.1 -> 0.12.3.
+* (T361991) Fix slash-delimited regex from CLI on maintenence/grep.php.
+* (T352695) tests: Only set $dbSetup if setupTestDB() ends without throwing.
+* (T362272) api: Replace null $httpCode by 0 in ApiBase::dieWithErrorOrDebug.
+* (T150647, T216682) Make EncryptedPassword work with Argon2Password.
+* (T364270) Fix long param names overlapping docs in API help pages.
+* wrapOldPasswords: Improve progress output and decrease batch size.
+* (T361367) ApiFeedWatchlist: Fix handling of array parameters.
+* (T366130) EncryptedPassword: Store default parameters as strings.
+* Name the PagerTools array entries to allow hooks to unset them.
+* (T302186) Add title cache for Title::newMainPage().
+
 == MediaWiki 1.40.3 ==
 
 This is a security and maintenance release of the MediaWiki 1.40 branch.
@@ -2816,6 +2895,47 @@ PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
 PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
 PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
+
+== MediaWiki 1.39.8 ==
+
+This is a maintenance release of the MediaWiki 1.39 branch.
+
+=== Changes since 1.39.7 ===
+* Localisation updates.
+* tests: Skip failing tests on php8.2 (and make pass).
+* (T326480) ApiResult: Make array ordering consistent across PHP versions.
+* (T352789, T287972) build: Raise TestingAccessWrapper from 2.0.0 to 3.0.0.
+* (T326478) tests: Create new classes to hold dynamic properties in auth tests.
+* (T326478) tests: Avoid dynamic properties in AuthenticationProvider Test.
+* (T326466) Introduce and use DynamicPropertyTestHelper.
+* tests: Skip failing tests on php8.3 (and make pass).
+* (T352910) tests: Use TestingAccessWrapper::newFromClass in session tests.
+* (T326478) tests: Avoid dynamic properties in auth tests.
+* (T326479, T361985) StatusValue: Allow passing arbitrary data to augment
+  result.
+* tests: Remove dead code from WikiPageDbTest::assertPreparedEditNotEquals.
+* (T326478) tests: Avoid dynamic properties in SessionManagerTest.
+* (T361990) Upgrading wikimedia/parsoid (v0.16.3 => v0.16.4).
+* (T357760) Use i18n strings for truncated subpage message in SpecialMovePage.
+* ArticleTest: Skip testGetOrSetOnNewProperty() if PHP >= 8.2.
+* (T361982) Update wikimedia/less.php from 3.1.0 to 3.2.1.
+* debug: Update PsySH 0.11.1 -> 0.12.3.
+* (T361991) Fix slash-delimited regex from CLI on maintenence/grep.php.
+* (T362078) Improve RestAPIAdditionalRouteFiles path expansion.
+* (T352695) tests: Only set $dbSetup if setupTestDB() ends without throwing.
+* (T302186) Add title cache for Title::newMainPage().
+* objectcache: Fix flaky WANObjectCacheTest::testLockTSESlow case.
+* (T362272) api: Replace null $httpCode by 0 in ApiBase::dieWithErrorOrDebug.
+* (T150647, T216682) Make EncryptedPassword work with Argon2Password.
+* (T327220) Special:ApiHelp: Move widths and floats in CSS to media query.
+* (T364270) Fix long param names overlapping docs in API help pages.
+* MaintenanceRunner.php: Add trailing newline to error message.
+* wrapOldPasswords: Improve progress output and decrease batch size.
+* (T361367) ApiFeedWatchlist: Fix handling of array parameters.
+* (T132418) ResourceLoader: Add 1min grace via stale-while-revalidate
+  Cache-Control.
+* (T366130) EncryptedPassword: Store default parameters as strings.
+* Name the PagerTools array entries to allow hooks to unset them.
 
 == MediaWiki 1.39.7 ==
 
