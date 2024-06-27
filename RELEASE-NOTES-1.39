@@ -7,10 +7,44 @@ PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 
 == MediaWiki 1.39.8 ==
 
-THIS IS NOT A RELEASE YET
+This is a maintenance release of the MediaWiki 1.39 branch.
 
 === Changes since 1.39.7 ===
 * Localisation updates.
+* tests: Skip failing tests on php8.2 (and make pass).
+* (T326480) ApiResult: Make array ordering consistent across PHP versions.
+* (T352789, T287972) build: Raise TestingAccessWrapper from 2.0.0 to 3.0.0.
+* (T326478) tests: Create new classes to hold dynamic properties in auth tests.
+* (T326478) tests: Avoid dynamic properties in AuthenticationProvider Test.
+* (T326466) Introduce and use DynamicPropertyTestHelper.
+* tests: Skip failing tests on php8.3 (and make pass).
+* (T352910) tests: Use TestingAccessWrapper::newFromClass in session tests.
+* (T326478) tests: Avoid dynamic properties in auth tests.
+* (T326479, T361985) StatusValue: Allow passing arbitrary data to augment
+  result.
+* tests: Remove dead code from WikiPageDbTest::assertPreparedEditNotEquals.
+* (T326478) tests: Avoid dynamic properties in SessionManagerTest.
+* (T361990) Upgrading wikimedia/parsoid (v0.16.3 => v0.16.4).
+* (T357760) Use i18n strings for truncated subpage message in SpecialMovePage.
+* ArticleTest: Skip testGetOrSetOnNewProperty() if PHP >= 8.2.
+* (T361982) Update wikimedia/less.php from 3.1.0 to 3.2.1.
+* debug: Update PsySH 0.11.1 -> 0.12.3.
+* (T361991) Fix slash-delimited regex from CLI on maintenence/grep.php.
+* (T362078) Improve RestAPIAdditionalRouteFiles path expansion.
+* (T352695) tests: Only set $dbSetup if setupTestDB() ends without throwing.
+* (T302186) Add title cache for Title::newMainPage().
+* objectcache: Fix flaky WANObjectCacheTest::testLockTSESlow case.
+* (T362272) api: Replace null $httpCode by 0 in ApiBase::dieWithErrorOrDebug.
+* (T150647, T216682) Make EncryptedPassword work with Argon2Password.
+* (T327220) Special:ApiHelp: Move widths and floats in CSS to media query.
+* (T364270) Fix long param names overlapping docs in API help pages.
+* MaintenanceRunner.php: Add trailing newline to error message.
+* wrapOldPasswords: Improve progress output and decrease batch size.
+* (T361367) ApiFeedWatchlist: Fix handling of array parameters.
+* (T132418) ResourceLoader: Add 1min grace via stale-while-revalidate
+  Cache-Control.
+* (T366130) EncryptedPassword: Store default parameters as strings.
+* Name the PagerTools array entries to allow hooks to unset them.
 
 == MediaWiki 1.39.7 ==
 
