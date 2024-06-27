@@ -263,7 +263,8 @@ class LinkerTest extends MediaWikiLangTestCase {
 	 */
 	public function testGenerateRollback( $rollbackEnabled, $expectedModules, $title ) {
 		$context = RequestContext::getMain();
-		$user = $context->getUser();
+		$user = $this->getTestUser()->getUser();
+		$context->setUser( $user );
 		$this->getServiceContainer()->getUserOptionsManager()->setOption(
 			$user,
 			'showrollbackconfirmation',
