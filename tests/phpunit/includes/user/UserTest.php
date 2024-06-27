@@ -788,6 +788,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\User\User::newFromAnyId
 	 */
 	public function testNewFromAnyId() {
+		$this->disableAutoCreateTempUser();
 		// Registered user
 		$user = $this->user;
 		for ( $i = 1; $i <= 7; $i++ ) {
