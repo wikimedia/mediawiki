@@ -5,6 +5,7 @@ use MediaWiki\Content\TextContent;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\IPUtils;
@@ -15,6 +16,8 @@ use Wikimedia\IPUtils;
  * @covers ::__construct
  */
 class PageArchiveTest extends MediaWikiIntegrationTestCase {
+
+	use TempUserTestTrait;
 
 	/**
 	 * @var int
@@ -46,6 +49,7 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
+		$this->disableAutoCreateTempUser();
 
 		// First create our dummy page
 		$this->archivedPage = Title::makeTitle( NS_MAIN, 'PageArchiveTest_thePage' );
