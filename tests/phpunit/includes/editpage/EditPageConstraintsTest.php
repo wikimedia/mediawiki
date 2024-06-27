@@ -7,6 +7,7 @@ use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use Wikimedia\Rdbms\ReadOnlyMode;
@@ -22,6 +23,8 @@ use Wikimedia\Rdbms\ReadOnlyMode;
  * @group medium
  */
 class EditPageConstraintsTest extends MediaWikiLangTestCase {
+
+	use TempUserTestTrait;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -407,6 +410,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 	 */
 	public function testEditRightConstraint( $anon, $expectedErrorCode ) {
 		if ( $anon ) {
+			$this->disableAutoCreateTempUser();
 			$user = $this->getServiceContainer()->getUserFactory()->newAnonymous( '127.0.0.1' );
 		} else {
 			$user = $this->getTestUser()->getUser();
@@ -441,6 +445,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 	 */
 	public function testImageRedirectConstraint( $anon, $expectedErrorCode ) {
 		if ( $anon ) {
+			$this->disableAutoCreateTempUser();
 			$user = $this->getServiceContainer()->getUserFactory()->newAnonymous( '127.0.0.1' );
 		} else {
 			$user = $this->getTestUser()->getUser();
