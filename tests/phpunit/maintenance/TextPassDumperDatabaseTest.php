@@ -29,7 +29,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 	public function addDBData() {
 		parent::addDBData();
 
-		$this->addTestPages();
+		$this->addTestPages( $this->getTestSysop()->getUser() );
 	}
 
 	public function schemaVersionProvider() {
