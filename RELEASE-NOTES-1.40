@@ -7,10 +7,35 @@ PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 
 == MediaWiki 1.40.4 ==
 
-THIS IS NOT A RELEASE YET
+This is a maintenance release of the MediaWiki 1.41 branch.
 
 === Changes since MediaWiki 1.40.3 ===
 * Localisation updates.
+* tests: Skip failing tests on php8.2 (and make pass).
+* (T326480) ApiResult: Make array ordering consistent across PHP versions.
+* (T352789, T287972) build: Raise TestingAccessWrapper from 2.0.0 to 3.0.0.
+* (T326478) tests: Create new classes to hold dynamic properties in auth tests.
+* (T326478) tests: Avoid dynamic properties in AuthenticationProvider Test.
+* tests: Skip failing tests on php8.3 (and make pass).
+* (T326466) Introduce and use DynamicPropertyTestHelper.
+* (T352910) tests: Use TestingAccessWrapper::newFromClass in session tests.
+* (T326478) tests: Avoid dynamic properties in SessionManagerTest.
+* ArticleTest: Skip testGetOrSetOnNewProperty() if PHP >= 8.2.
+* (T326478) tests: Avoid dynamic properties in auth tests.
+* tests: Remove dead code from WikiPageDbTest::assertPreparedEditNotEquals.
+* (T326479, T361985) StatusValue: Allow passing arbitrary data to augment
+  result.
+* (T357760) Use i18n strings for truncated subpage message in SpecialMovePage.
+* debug: Update PsySH 0.11.1 -> 0.12.3.
+* (T361991) Fix slash-delimited regex from CLI on maintenence/grep.php.
+* (T352695) tests: Only set $dbSetup if setupTestDB() ends without throwing.
+* (T362272) api: Replace null $httpCode by 0 in ApiBase::dieWithErrorOrDebug.
+* (T150647, T216682) Make EncryptedPassword work with Argon2Password.
+* (T364270) Fix long param names overlapping docs in API help pages.
+* wrapOldPasswords: Improve progress output and decrease batch size.
+* (T361367) ApiFeedWatchlist: Fix handling of array parameters.
+* (T366130) EncryptedPassword: Store default parameters as strings.
+* Name the PagerTools array entries to allow hooks to unset them.
 
 == MediaWiki 1.40.3 ==
 
