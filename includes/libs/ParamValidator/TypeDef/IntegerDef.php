@@ -2,7 +2,6 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
-use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -46,14 +45,6 @@ class IntegerDef extends NumericDef {
 				$name, $value, $settings, $options
 			);
 		} else {
-			if ( $options[ self::OPT_LOG_BAD_TYPES ] ?? false ) {
-				// Temporary warning to detect misbehaving clients (T305973)
-				LoggerFactory::getInstance( 'api-warning' )->warning(
-					'ParamValidator: Encountered bad type for integer parameter',
-					[ 'param-name' => $name, 'param-value' => $value, ]
-				);
-			}
-
 			if ( is_array( $value ) || !preg_match( '/^[+-]?\d+$/D', $value ) ) {
 				$this->fatal( 'badinteger', $name, $value, $settings, $options );
 			} else {

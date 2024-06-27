@@ -252,28 +252,6 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			[],
 			[ 'foo' => 1234 ]
 		];
-
-		// This will stop working when Validator starts using OPT_ENFORCE_JSON_TYPES
-		// instead of OPT_LOG_BAD_TYPES (T305973). Enable the corresponding test case
-		// in provideValidate_invalid() when that happens.
-		yield 'body parameter with type coercion (JSON)' => [
-			[
-				'foo' => [
-					ParamValidator::PARAM_TYPE => 'integer',
-					ParamValidator::PARAM_REQUIRED => true,
-					Handler::PARAM_SOURCE => 'body',
-				]
-			],
-			// Form data automatically enabled type coercion
-			new RequestData( [
-				'headers' => [
-					'Content-Type' => RequestInterface::JSON_CONTENT_TYPE
-				],
-				'parsedBody' => [ 'foo' => '1234' ]
-			] ),
-			[],
-			[ 'foo' => 1234 ]
-		];
 	}
 
 	/**
@@ -329,9 +307,6 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			]
 		];
 
-		// Enable this test when Validator starts using OPT_ENFORCE_JSON_TYPES
-		// instead of OPT_LOG_BAD_TYPES (T305973).
-		/*
 		yield 'body parameter without type coercion' => [
 			[
 				'foo' => [
@@ -350,7 +325,6 @@ class HandlerTest extends MediaWikiUnitTestCase {
 				'failureCode' => 'badinteger-type'
 			]
 		];
-		*/
 	}
 
 	/**

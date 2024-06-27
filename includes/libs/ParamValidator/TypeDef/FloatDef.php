@@ -2,7 +2,6 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
-use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -43,14 +42,6 @@ class FloatDef extends NumericDef {
 				$name, $value, $settings, $options
 			);
 		} else {
-			if ( $options[ self::OPT_LOG_BAD_TYPES ] ?? false ) {
-				// Temporary warning to detect misbehaving clients (T305973)
-				LoggerFactory::getInstance( 'api-warning' )->warning(
-					'ParamValidator: Encountered bad type for float parameter',
-					[ 'param-name' => $name, 'param-value' => $value, ]
-				);
-			}
-
 			if ( !preg_match( '/^[+-]?(?:\d*\.)?\d+(?:[eE][+-]?\d+)?$/D', $value ) ) {
 				// Use a regex to avoid any potential oddness PHP's default conversion might allow.
 				$this->fatal( 'badfloat', $name, $value, $settings, $options );

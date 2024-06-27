@@ -492,11 +492,7 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 				]
 			],
 			new RequestData( [ 'parsedBody' => [ 'foo' => '123' ] ] ),
-			[ 'foo' => 123 ],
-			// Should be an HttpException in the future, when Validator
-			// starts using OPT_ENFORCE_JSON_TYPES instead of OPT_LOG_BAD_TYPES
-			// (T305973).
-			/*new LocalizedHttpException(
+			new LocalizedHttpException(
 				new MessageValue( 'paramvalidator-badinteger-type' ),
 				400,
 				[
@@ -506,7 +502,7 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 					'failureCode' => 'badinteger-type',
 					'failureData' => null,
 				]
-			),*/
+			),
 		];
 
 		yield "valid complex value" => [
