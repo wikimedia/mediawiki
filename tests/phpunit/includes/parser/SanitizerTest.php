@@ -15,26 +15,6 @@ use Wikimedia\TestingAccessWrapper;
 class SanitizerTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * @covers \MediaWiki\Parser\Sanitizer::removeHTMLtags
-	 * @dataProvider provideHtml5Tags
-	 *
-	 * @param string $tag Name of an HTML5 element (ie: 'video')
-	 * @param bool $escaped Whether sanitizer let the tag in or escape it (ie: '&lt;video&gt;')
-	 */
-	public function testRemovehtmltagsOnHtml5Tags( $tag, $escaped ) {
-		$this->hideDeprecated( Sanitizer::class . '::removeHTMLtags' );
-		if ( $escaped ) {
-			$this->assertEquals( "&lt;$tag&gt;",
-				Sanitizer::removeHTMLtags( "<$tag>" )
-			);
-		} else {
-			$this->assertEquals( "<$tag></$tag>\n",
-				Sanitizer::removeHTMLtags( "<$tag></$tag>\n" )
-			);
-		}
-	}
-
-	/**
 	 * @covers \MediaWiki\Parser\Sanitizer::internalRemoveHTMLtags
 	 * @dataProvider provideHtml5Tags
 	 *
@@ -114,15 +94,6 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 				'<abbr> inside <dfn>',
 			],
 		];
-	}
-
-	/**
-	 * @dataProvider dataRemoveHTMLtags
-	 * @covers \MediaWiki\Parser\Sanitizer::removeHTMLtags
-	 */
-	public function testRemoveHTMLtags( $input, $output, $msg = null ) {
-		$this->hideDeprecated( Sanitizer::class . '::removeHTMLtags' );
-		$this->assertEquals( $output, Sanitizer::removeHTMLtags( $input ), $msg );
 	}
 
 	/**

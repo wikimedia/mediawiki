@@ -294,6 +294,7 @@ because of Phabricator reports.
   - ::setAllowExternalImages()
   - ::setAllowExternalImagesFrom()
   - ::setEnableImageWhitelist()
+* Sanitizer::removeHTMLtags(), deprecated since 1.38, has been removed.
 * …
 
 === Deprecations in 1.43 ===
