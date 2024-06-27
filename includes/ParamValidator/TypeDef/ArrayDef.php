@@ -53,7 +53,9 @@ class ArrayDef extends TypeDef {
 			}
 
 			$validator = new Validator();
-			$validator->validate( $value, $schema, Constraint::CHECK_MODE_TYPE_CAST );
+			$validator->validate(
+				$value, $schema,
+				Constraint::CHECK_MODE_TYPE_CAST | Constraint::CHECK_MODE_APPLY_DEFAULTS );
 			if ( !$validator->isValid() ) {
 				$errorCode = 'schema-validation-failed';
 				foreach ( $validator->getErrors() as $error ) {
