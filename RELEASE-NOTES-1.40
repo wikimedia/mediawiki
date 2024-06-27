@@ -36,6 +36,7 @@ This is a maintenance release of the MediaWiki 1.41 branch.
 * (T361367) ApiFeedWatchlist: Fix handling of array parameters.
 * (T366130) EncryptedPassword: Store default parameters as strings.
 * Name the PagerTools array entries to allow hooks to unset them.
+* (T302186) Add title cache for Title::newMainPage().
 
 == MediaWiki 1.40.3 ==
 
