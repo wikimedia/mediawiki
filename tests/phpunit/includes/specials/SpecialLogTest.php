@@ -52,8 +52,10 @@ class SpecialLogTest extends SpecialPageTestBase {
 		$title = $this->insertPage( 'Foo', 'Bar', null, $user )['title'];
 		$revId = $title->getLatestRevID();
 
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setUser( $this->getTestUser( [ 'sysop', 'suppress' ] )->getUser() );
 		// Hide our revision's comment
-		$list = RevisionDeleter::createList( 'revision', RequestContext::getMain(), $title, [ $revId ] );
+		$list = RevisionDeleter::createList( 'revision', $context, $title, [ $revId ] );
 		$status = $list->setVisibility( [
 			'value' => [
 				RevisionRecord::DELETED_RESTRICTED => 1,
