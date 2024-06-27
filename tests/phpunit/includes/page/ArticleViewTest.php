@@ -728,8 +728,12 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 
 	private function getRevDelRevisionList( $title, $revisionId ) {
 		$services = $this->getServiceContainer();
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setUser(
+			$this->getTestUser( [ 'sysop' ] )->getUser()
+		);
 		return new RevDelRevisionList(
-			RequestContext::getMain(),
+			$context,
 			$title,
 			[ $revisionId ],
 			$services->getConnectionProvider(),
