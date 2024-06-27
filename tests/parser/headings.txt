@@ -2882,3 +2882,32 @@ wgParserEnableLegacyHeadingDOM=false
 <h2><span class="mw-headline" id=".5C.24text">\$text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: \$text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id=".24.24text">$$text</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: $$text">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 !! end
+
+!! article
+Template:With a section?
+!! text
+=== test ===
+!! endarticle
+
+!! test
+T368334: Headings from template titles that would need uri encoding
+!! options
+showtocdata
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
+!! config
+wgParserEnableLegacyHeadingDOM=false
+!! wikitext
+{{With a section?}}
+!! html/php
+<div class="mw-heading mw-heading3"><h3 id="test">test</h3><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Template:With_a_section%3F&amp;action=edit&amp;section=T-1" title="Edit section: test">edit</a><span class="mw-editsection-bracket">]</span></span></div>
+!! html/parsoid
+<section data-mw-section-id="0"></section><section data-mw-section-id="-1">
+<h3 typeof="mw:Transclusion" id="test" data-mw='{"parts":[{"template":{"target":{"wt":"With a section?","href":"./Template:With_a_section%3F"},"params":{},"i":0}}]}'>test</h3>
+</section>
+!! metadata
+Sections:
+ h3 index:T-1 toclevel:1 number:1 title:Template:With_a_section? off:NULL anchor/linkAnchor:test line:test
+!! end
