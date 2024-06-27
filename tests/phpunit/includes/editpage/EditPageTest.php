@@ -10,6 +10,7 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Storage\EditResult;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
@@ -22,6 +23,9 @@ use Wikimedia\TestingAccessWrapper;
  * @group medium
  */
 class EditPageTest extends MediaWikiLangTestCase {
+
+	use TempUserTestTrait;
+
 	/** @var User[] */
 	private static $editUsers;
 
@@ -460,6 +464,8 @@ class EditPageTest extends MediaWikiLangTestCase {
 			'wpMinoredit' => 'minor'
 		];
 
+		// Next assertion uses an anon editor, so disable temp accounts
+		$this->disableAutoCreateTempUser();
 		$page = $this->assertEdit( 'EditPageTest_testUpdateNoMinor', null, 'anon', $edit,
 			EditPage::AS_SUCCESS_UPDATE, 'testing 2', "expected successful update" );
 
