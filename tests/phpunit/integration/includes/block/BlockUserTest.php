@@ -35,7 +35,7 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 	public function testValidTarget() {
 		$status = $this->blockUserFactory->newBlockUser(
 			$this->user,
-			$this->mockAnonUltimateAuthority(),
+			$this->mockRegisteredUltimateAuthority(),
 			'infinity',
 			'test block'
 		)->placeBlock();
@@ -114,7 +114,7 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 	public function testReblock() {
 		$blockStatus = $this->blockUserFactory->newBlockUser(
 			$this->user,
-			$this->mockAnonUltimateAuthority(),
+			$this->mockRegisteredUltimateAuthority(),
 			'infinity',
 			'test block'
 		)->placeBlockUnsafe();
@@ -140,7 +140,7 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 
 		$reblockStatus = $this->blockUserFactory->newBlockUser(
 			$this->user,
-			$this->mockAnonUltimateAuthority(),
+			$this->mockRegisteredUltimateAuthority(),
 			'infinity',
 			'test reblock'
 		)->placeBlockUnsafe( /*reblock=*/true );
@@ -170,7 +170,7 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 
 		$blockStatus = $this->blockUserFactory->newBlockUser(
 			$this->user,
-			$this->mockAnonUltimateAuthority(),
+			$this->mockRegisteredUltimateAuthority(),
 			'infinity',
 			'test block'
 		)->placeBlockUnsafe();
@@ -184,7 +184,7 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 		$hookPriorBlock = false;
 		$reblockStatus = $this->blockUserFactory->newBlockUser(
 			$this->user,
-			$this->mockAnonUltimateAuthority(),
+			$this->mockRegisteredUltimateAuthority(),
 			'infinity',
 			'test reblock'
 		)->placeBlockUnsafe( /*reblock=*/true );
@@ -203,7 +203,7 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 	public function testIPBlockAllowedAutoblockPreserved() {
 		$blockStatus = $this->blockUserFactory->newBlockUser(
 			$this->user,
-			$this->mockAnonUltimateAuthority(),
+			$this->mockRegisteredUltimateAuthority(),
 			'infinity',
 			'test block with autoblocking',
 			[ 'isAutoblocking' => true ]
@@ -227,7 +227,7 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 
 		$IPBlockStatus = $this->blockUserFactory->newBlockUser(
 			$target,
-			$this->mockAnonUltimateAuthority(),
+			$this->mockRegisteredUltimateAuthority(),
 			'infinity',
 			'test IP block'
 		)->placeBlockUnsafe();
