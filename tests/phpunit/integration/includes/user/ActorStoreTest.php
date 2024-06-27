@@ -141,6 +141,9 @@ class ActorStoreTest extends ActorStoreTestBase {
 	 * @param UserIdentity $expected
 	 */
 	public function testSequentialCacheRetrieval( UserIdentity $expected ) {
+		if ( $expected->getId() === 0 ) {
+			$this->disableAutoCreateTempUser();
+		}
 		// ensure UserIdentity is cached
 		$actorId = $this->getStore()->findActorId( $expected, $this->getDb() );
 
@@ -502,7 +505,11 @@ class ActorStoreTest extends ActorStoreTestBase {
 	 * @dataProvider provideAcquireActorId
 	 */
 	public function testAcquireActorId( callable $userCallback ) {
+		/** @var UserIdentity $user */
 		$user = $userCallback( $this->getServiceContainer() );
+		if ( $user->getId() === 0 ) {
+			$this->disableAutoCreateTempUser();
+		}
 		$actorId = $this->getStore()->acquireActorId( $user, $this->getDb() );
 		$this->assertTrue( $actorId > 0 );
 
@@ -542,7 +549,11 @@ class ActorStoreTest extends ActorStoreTestBase {
 	 * @dataProvider provideAcquireActorId_foreign
 	 */
 	public function testAcquireActorId_foreign( callable $userCallback, string $method ) {
+		/** @var UserIdentity $user */
 		$user = $userCallback( $this->getServiceContainer() );
+		if ( $user->getId( 'acmewiki' ) === 0 ) {
+			$this->disableAutoCreateTempUser();
+		}
 		$this->executeWithForeignStore(
 			'acmewiki',
 			function ( ActorStore $store ) use ( $user, $method ) {
@@ -559,7 +570,11 @@ class ActorStoreTest extends ActorStoreTestBase {
 	 * @dataProvider provideAcquireActorId_foreign
 	 */
 	public function testAcquireActorId_foreign_withDBConnection( callable $userCallback, string $method ) {
+		/** @var UserIdentity $user */
 		$user = $userCallback( $this->getServiceContainer() );
+		if ( $user->getId( 'acmewiki' ) === 0 ) {
+			$this->disableAutoCreateTempUser();
+		}
 		$this->executeWithForeignStore(
 			'acmewiki',
 			function ( ActorStore $store, IDatabase $dbw ) use ( $user, $method ) {
@@ -651,6 +666,9 @@ class ActorStoreTest extends ActorStoreTestBase {
 	 * @dataProvider provideAcquireActorId_existing
 	 */
 	public function testAcquireActorId_existing( UserIdentityValue $actor, int $expected ) {
+		if ( $actor->getId() === 0 ) {
+			$this->disableAutoCreateTempUser();
+		}
 		$this->assertSame( $expected, $this->getStore()->acquireActorId( $actor, $this->getDb() ) );
 	}
 
@@ -688,6 +706,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 	}
 
 	public function testAcquireActorId_clearCacheOnRollback() {
+		$this->disableAutoCreateTempUser();
 		$rolledBackActor = new UserIdentityValue( 0, '127.0.0.10' );
 		$store = $this->getStore();
 		$this->getDb()->startAtomic( __METHOD__ );
@@ -733,6 +752,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 	}
 
 	public function testAcquireSystemActorId() {
+		$this->disableAutoCreateTempUser();
 		$store = $this->getStore();
 		$originalActor = new UserIdentityValue( 0, '129.0.0.1' );
 		$actorId = $store->createNewActor( $originalActor, $this->getDb() );
@@ -765,7 +785,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 	public function testAcquireSystemActorId_assignsNew() {
 		$store = $this->getStore();
 
-		$newActor = new UserIdentityValue( 456789, '129.0.0.2' );
+		$newActor = new UserIdentityValue( 456789, 'Foo' );
 		$newActorId = $store->acquireSystemActorId( $newActor, $this->getDb() );
 		$this->assertTrue( $newActorId > 0 );
 		$this->assertSame( 456789, $store->getActorById( $newActorId, $this->getDb() )->getId() );
