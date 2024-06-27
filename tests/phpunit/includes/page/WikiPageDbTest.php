@@ -15,6 +15,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
@@ -28,6 +29,7 @@ use Wikimedia\TestingAccessWrapper;
 class WikiPageDbTest extends MediaWikiLangTestCase {
 	use DummyServicesTrait;
 	use MockAuthorityTrait;
+	use TempUserTestTrait;
 
 	protected function tearDown(): void {
 		ParserOptions::clearStaticCache();
@@ -1131,6 +1133,8 @@ more stuff
 	 * @dataProvider provideGetAutoDeleteReason
 	 */
 	public function testGetAutoDeleteReason( $edits, $expectedResult, $expectedHistory ) {
+		$this->disableAutoCreateTempUser();
+
 		// NOTE: assume Help namespace to contain wikitext
 		$page = $this->newPage( "Help:WikiPageTest_testGetAutoDeleteReason" );
 
