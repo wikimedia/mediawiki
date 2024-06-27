@@ -84,6 +84,19 @@ td.mw-enhanced-rc {
 	}
 }
 
+// TT366920 Make arrow visible in skins that support dark-mode.
+/* stylelint-disable-next-line selector-class-pattern */
+.skin-theme-clientpref-night .notheme .mw-enhancedchanges-arrow {
+	background-color: @color-inverted-fixed;
+}
+
+@media ( prefers-color-scheme: dark ) {
+	/* stylelint-disable-next-line selector-class-pattern */
+	.skin-theme-clientpref-os .notheme .mw-enhancedchanges-arrow {
+		background-color: @color-inverted-fixed;
+	}
+}
+
 .mw-enhancedchanges-arrow-space {
 	display: inline-block;
 	width: @width-arrow-space;
