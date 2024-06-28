@@ -1,7 +1,6 @@
 {
 	"opts": {
 		"destination": "docs/js",
-		"package": "resources/package.json",
 		"pages": {
 			"modules": {
 				"longname": "Modules",
@@ -19,11 +18,7 @@
 		"template": "node_modules/jsdoc-wmf-theme"
 	},
 	"plugins": [
-		"node_modules/jsdoc-wmf-theme/plugins/allow-dots-in-modules",
-		"plugins/markdown",
-		"node_modules/jsdoc-wmf-theme/plugins/externals",
-		"node_modules/jsdoc-wmf-theme/plugins/summarize",
-		"node_modules/jsdoc-wmf-theme/plugins/betterlinks"
+		"node_modules/jsdoc-wmf-theme/plugins/default"
 	],
 	"source": {
 		"include": [
@@ -38,41 +33,18 @@
 			"useLongnameInNav": true
 		},
 		"wmf": {
+			"maintitle": "MediaWiki Frontend API",
 			"siteMap": {
 				"sections": true
 			},
 			"hideSections": [ "Classes", "Events" ],
 			"repository": "https://gerrit.wikimedia.org/g/mediawiki/core/",
-			"prefixMap": {
-				"OO.ui.": "https://doc.wikimedia.org/oojs-ui/master/js/{type}.html",
-				"OO.": "https://doc.wikimedia.org/oojs/master/{type}.html"
-			},
 			"linkMap": {
-				"Array": "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array",
-				"Blob": "https://developer.mozilla.org/docs/Web/API/Blob",
 				"boolean": "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
-				"CSSStyleSheet": "https://developer.mozilla.org/docs/Web/API/CSSStyleSheet",
-				"Date": "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date",
-				"Event": "https://developer.mozilla.org/docs/Web/API/Event",
-				"File": "https://developer.mozilla.org/docs/Web/API/File",
-				"Function": "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Function",
-				"HTMLElement": "https://developer.mozilla.org/docs/Web/API/HTMLElement",
-				"HTMLInputElement": "https://developer.mozilla.org/docs/Web/API/HTMLInputElement",
-				"HTMLStyleElement": "https://developer.mozilla.org/docs/Web/API/HTMLStyleElement",
-				"jQuery.Deferred": "https://api.jquery.com/Types/#Deferred",
-				"jQuery.Event": "https://api.jquery.com/Types/#Event",
 				"jQuery.fn": "https://api.jquery.com/jQuery/",
-				"jQuery.Promise": "https://api.jquery.com/Types/#Promise",
-				"jQuery": "https://api.jquery.com/jQuery/",
 				"JSON.parse": "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse",
-				"Node": "https://developer.mozilla.org/docs/Web/API/Node",
 				"number": "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number",
-				"Object": "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object",
-				"Promise": "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise",
-				"RegExp": "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
-				"Set": "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set",
-				"string": "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String",
-				"URLSearchParams": "https://developer.mozilla.org/docs/Web/API/URLSearchParams"
+				"string": "https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String"
 			}
 		}
 	}
