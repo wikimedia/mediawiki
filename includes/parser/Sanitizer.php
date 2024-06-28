@@ -697,6 +697,8 @@ class Sanitizer {
 	 * clever input strings. These character references must
 	 * be escaped before the return value is embedded in HTML.
 	 *
+	 * @warning This method is intended to sanitize style attributes on
+	 *  html tags only. It is not safe to use on full CSS files.
 	 * @param string $value
 	 * @return string
 	 */
