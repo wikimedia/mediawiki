@@ -390,7 +390,7 @@ class RestrictionStore {
 				$dbr = $this->loadBalancer->getConnection( DB_PRIMARY );
 				$rows = $loadRestrictionsFromDb( $dbr );
 			} else {
-				$this->linkCache->addLinkObj( $page );
+				$this->pageStore->getPageForLink( TitleValue::newFromPage( $page ) )->getId();
 				$latestRev = $this->linkCache->getGoodLinkFieldObj( $page, 'revision' );
 				if ( !$latestRev ) {
 					// This method can get called in the middle of page creation
