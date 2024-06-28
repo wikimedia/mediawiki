@@ -49,6 +49,26 @@
 	margin-left: ~'calc( ( @{size-circle-result} + @{margin-circle-result} ) * 5 + @{margin-circle} )';
 }
 
+.background-color-with-dark-mode( @bgcolor ) {
+	background-color: @bgcolor;
+
+	html.skin-theme-clientpref-night & {
+		background-color: darken( @bgcolor, 60% );
+	}
+
+	/**
+	 * Auto night mode.
+	 *
+	 * Applies the night mode color palette only in response to system settings.
+	 */
+	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+	@media ( prefers-color-scheme: dark ) {
+		html.skin-theme-clientpref-os & {
+			background-color: darken( @bgcolor, 60% );
+		}
+	}
+}
+
 // A mixin just for changesListWrapperWidget page, to output the scope of the widget
 // so it is before the rest of the rule; we need the li& to be in
 // between the wrapper scope and the color-cX class, which doesn't
@@ -58,7 +78,7 @@
 	.mw-rcfilters-ui-changesListWrapperWidget & tr:first-child,
 	.mw-rcfilters-ui-changesListWrapperWidget tr&.mw-rcfilters-ui-highlights-enhanced-toplevel:not( .mw-rcfilters-ui-changesListWrapperWidget-enhanced-grey ) td:not( :nth-child( -n+2 ) ),
 	.mw-rcfilters-ui-changesListWrapperWidget tr&.mw-rcfilters-ui-highlights-enhanced-nested:not( .mw-rcfilters-ui-changesListWrapperWidget-enhanced-grey ) td:not( :nth-child( -n+4 ) ) {
-		background-color: @bgcolor;
+		.background-color-with-dark-mode( @bgcolor );
 	}
 }
 
