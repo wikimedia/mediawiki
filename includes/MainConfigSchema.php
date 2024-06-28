@@ -11431,7 +11431,7 @@ class MainConfigSchema {
 			'parsoidCachePrewarm' => [
 				'class' => ParsoidCachePrewarmJob::class,
 				'services' => [
-					'ParsoidOutputAccess',
+					'ParserOutputAccess',
 					'PageStore',
 					'RevisionLookup',
 					'ParsoidSiteConfig',

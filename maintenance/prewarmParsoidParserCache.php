@@ -1,12 +1,14 @@
 <?php
-use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageLookup;
+use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig as ParsoidSiteConfig;
-use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Status\Status;
+use Wikimedia\Parsoid\Core\ClientError;
+use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -21,7 +23,7 @@ require_once __DIR__ . '/Maintenance.php';
  */
 class PrewarmParsoidParserCache extends Maintenance {
 	private int $forceParse = 0;
-	private ParsoidOutputAccess $parsoidOutputAccess;
+	private ParserOutputAccess $parserOutputAccess;
 	private PageLookup $pageLookup;
 	private RevisionLookup $revisionLookup;
 	private ParsoidSiteConfig $parsoidSiteConfig;
@@ -54,9 +56,9 @@ class PrewarmParsoidParserCache extends Maintenance {
 		return $this->revisionLookup;
 	}
 
-	private function getParsoidOutputAccess(): ParsoidOutputAccess {
-		$this->parsoidOutputAccess = $this->getServiceContainer()->getParsoidOutputAccess();
-		return $this->parsoidOutputAccess;
+	private function getParserOutputAccess(): ParserOutputAccess {
+		$this->parserOutputAccess = $this->getServiceContainer()->getParserOutputAccess();
+		return $this->parserOutputAccess;
 	}
 
 	private function getParsoidSiteConfig(): ParsoidSiteConfig {
@@ -75,15 +77,23 @@ class PrewarmParsoidParserCache extends Maintenance {
 	}
 
 	private function parse(
-		PageIdentity $page,
+		PageRecord $page,
 		RevisionRecord $revision
-	) {
-		return $this->parsoidOutputAccess->getParserOutput(
-			$page,
-			ParserOptions::newFromAnon(),
-			$revision,
-			$this->forceParse
-		);
+	): Status {
+		$popts = ParserOptions::newFromAnon();
+		$popts->setUseParsoid();
+		try {
+			return $this->getParserOutputAccess()->getParserOutput(
+				$page,
+				$popts,
+				$revision,
+				$this->forceParse
+			);
+		} catch ( ClientError $e ) {
+			return Status::newFatal( 'parsoid-client-error', $e->getMessage() );
+		} catch ( ResourceLimitExceededException $e ) {
+			return Status::newFatal( 'parsoid-resource-limit-exceeded', $e->getMessage() );
+		}
 	}
 
 	/*

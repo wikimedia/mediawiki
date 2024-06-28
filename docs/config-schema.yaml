@@ -7134,7 +7134,7 @@ config-schema:
             revertedTagUpdate: RevertedTagUpdateJob
             'null': NullJob
             userEditCountInit: UserEditCountInitJob
-            parsoidCachePrewarm: { class: ParsoidCachePrewarmJob, services: [ParsoidOutputAccess, PageStore, RevisionLookup, ParsoidSiteConfig], needsPage: false }
+            parsoidCachePrewarm: { class: ParsoidCachePrewarmJob, services: [ParserOutputAccess, PageStore, RevisionLookup, ParsoidSiteConfig], needsPage: false }
             renameUser: { class: MediaWiki\RenameUser\RenameUserJob, services: [MainConfig, DBLoadBalancerFactory] }
         type: object
         description: |-
