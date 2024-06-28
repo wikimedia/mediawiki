@@ -127,8 +127,7 @@ class Names {
 		'ckb' => 'کوردی', # Central Kurdish
 		'co' => 'corsu', # Corsican
 		'cps' => 'Capiceño', # Capiznon
-		# Pu-Xian Min / Putian-Xianyou Min (multiple scripts - defaults to Traditional Han script)
-		'cpx' => '莆仙語 / Pó-sing-gṳ̂',
+		'cpx' => '莆仙語 / Pó-sing-gṳ̂', # Pu-Xian Min (multiple scripts - defaults to Traditional Han)
 		'cpx-hans' => '莆仙语（简体）', # Pu-Xian Min (Simplified Han script)
 		'cpx-hant' => '莆仙語（繁體）', # Pu-Xian Min (Traditional Han script)
 		'cpx-latn' => 'Pó-sing-gṳ̂ (Báⁿ-uā-ci̍)', # Pu-Xian Min (Latin script)
@@ -434,7 +433,6 @@ class Names {
 		'rup' => 'armãneashti', # Aromanian
 		'ruq' => 'Vlăheşte', # Megleno-Romanian (multiple scripts - defaults to Latin)
 		'ruq-cyrl' => 'Влахесте', # Megleno-Romanian (Cyrillic script)
-		# 'ruq-grek' => 'Βλαεστε', # Megleno-Romanian (Greek script)
 		'ruq-latn' => 'Vlăheşte', # Megleno-Romanian (Latin script)
 		'rut' => 'мыхаӀбишды', # Rutul
 		'rw' => 'Ikinyarwanda', # Kinyarwanda
