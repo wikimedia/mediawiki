@@ -748,7 +748,6 @@
 	"content-model-wikitext": "vikitekst",
 	"content-model-text": "običan tekst",
 	"content-model-javascript": "javaskripta",
-	"content-model-css": "CSS",
 	"content-json-empty-object": "Prazan objekat",
 	"content-json-empty-array": "Prazan niz",
 	"unsupported-content-model": "<strong>Upozorenje:</strong> Sadržinski model $1 nije podržan na ovom projektu.",

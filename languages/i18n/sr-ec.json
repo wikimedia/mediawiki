@@ -768,7 +768,6 @@
 	"slot-name-main": "Главни",
 	"content-model-wikitext": "викитекст",
 	"content-model-text": "обичан текст",
-	"content-model-javascript": "JavaScript",
 	"content-json-empty-object": "Празан објекат",
 	"content-json-empty-array": "Празан низ",
 	"unsupported-content-model": "<strong>Упозорење:</strong> Садржински модел $1 није подржан на овом пројекту.",

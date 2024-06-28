@@ -16,9 +16,11 @@
 			"铁桶"
 		]
 	},
-	"rest-prefix-mismatch": "请求的路径($1)不在REST API根路径($2)中",
+	"rest-prefix-mismatch": "请求的路径（$1）不在REST API基本路径（$2）中",
+	"rest-bad-prefix": "端点路径（$1）不包含有效的模块前缀",
 	"rest-wrong-method": "请求方法($1)不是{{PLURAL:$3|此路径允许的方法之一|此路径允许的方法}}($2)",
 	"rest-no-match": "请求的相对路径($1)不匹配任何已知的处理程序",
+	"rest-unknown-module": "请求的模块名称（$1）未知",
 	"rest-nonexistent-title": "指定的页面($1)不存在",
 	"rest-nonexistent-title-revision": "指定的修订($1)对于指定的页面不存在($2)",
 	"rest-nonexistent-revision": "指定的修订($1)不存在",
@@ -77,5 +79,21 @@
 	"rest-html-key-expected": "正文中应包含<var>html</var>键",
 	"rest-invalid-transform": "无效转换：$1到$2",
 	"rest-request-body-expected": "$1请求方法需要请求主体",
-	"rest-request-body-unaccepted": "$1请求方法不接受请求主体"
+	"rest-request-body-unaccepted": "$1请求方法不接受请求主体",
+	"rest-unmapped-action-error": "未映射的操作模块错误：$1",
+	"rest-unsupported-transform-input": "不支持的输入：$1",
+	"rest-bad-etag": "错误的ETag：$1",
+	"rest-no-stashed-content": "未找到$1的存放内容",
+	"rest-unsupported-profile-version": "不支持的配置文件版本：$1",
+	"rest-no-json-decode": "负载无法JSON解码为数组",
+	"rest-parsoid-unsupported-media": "不支持的媒体类型",
+	"rest-missing-revision-html": "缺少修订html",
+	"rest-missing-revision-html-content-type": "缺少修订html的内容类型。",
+	"rest-unsupported-profile-conversion": "我们无法处理这种转换。",
+	"rest-edit-conflict": "编辑冲突（$1）",
+	"rest-unknown-parsoid-transformation": "未知的变换。",
+	"rest-target-variant-required": "需要目标变体。",
+	"rest-unsupported-language-conversion": "不支持的语言转换：$1到$2",
+	"rest-unknown-content-model": "未知的内容模型：$1",
+	"rest-page-bundle-validation-error": "PageBundle与contentVersion不匹配：$1"
 }

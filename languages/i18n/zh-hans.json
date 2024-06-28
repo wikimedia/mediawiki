@@ -3313,7 +3313,7 @@
 	"confirm-purge-top": "刷新此页面的缓存吗？",
 	"confirm-purge-bottom": "刷新页面会清除缓存并强制显示最近的版本。",
 	"confirm-watch-button": "确定",
-	"confirm-watch-top": "将此页添加到您的监视列表吗？",
+	"confirm-watch-top": "把该页面添加到您的监视列表？",
 	"confirm-watch-label": "监视期限：",
 	"watchlist-expiry-options": "不限期:infinite,1周:1 week,1个月:1 month,3个月:3 months,6个月:6 months,1年:1 year",
 	"watchlist-expires-in-aria-label": "监视列表项目即将过期",

@@ -3993,7 +3993,7 @@
 	"specialmute-success": "Deine Stummschaltungseinstellungen wurden aktualisiert. Schau dir alle stummgeschalteten Benutzer in [[Special:Preferences|deinen Einstellungen]] an.",
 	"specialmute-submit": "Bestätigen",
 	"specialmute-label-mute-email": "E-Mails {{GENDER:$1|dieses Benutzers|dieser Benutzerin}} stummschalten",
-	"specialmute-header": "Bitte wähle deine Stummschaltungseinstellungen für Benutzer <b>{{BIDI:[[User:$1|$1]]}}</b>.",
+	"specialmute-header": "Bitte wähle deine Stummschaltungseinstellungen für {{GENDER:$1|Benutzer|Benutzerin}} <b>{{BIDI:[[User:$1|$1]]}}</b>.",
 	"specialmute-error-invalid-user": "Der gesuchte Benutzername konnte nicht gefunden werden.",
 	"specialmute-error-email-disabled": "Die Stummschaltfunktionen sind nicht verfügbar, da der Wiki-Administrator die E-Mail-Funktionen für dieses Wiki deaktiviert hat.",
 	"specialmute-error-mutelist-disabled": "Die Stummschaltungsfunktionen sind nicht verfügbar, da der Wiki-Administrator die E-Mail-Stummschaltungsfunktionen für dieses Wiki deaktiviert hat.",
