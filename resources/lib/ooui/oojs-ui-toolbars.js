@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.50.0
+ * OOUI v0.50.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-06-11T21:26:26Z
+ * Date: 2024-06-28T14:13:48Z
  */
 ( function ( OO ) {
 
@@ -729,7 +729,7 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 	// Mixin constructors
 	OO.ui.mixin.IconElement.call( this, config );
 	OO.ui.mixin.FlaggedElement.call( this, config );
-	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {
+	OO.ui.mixin.TabIndexedElement.call( this, Object.assign( {
 		$tabIndexed: this.$link
 	}, config ) );
 
@@ -2063,7 +2063,7 @@ OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 	}
 
 	// Configuration initialization
-	config = $.extend( {
+	config = Object.assign( {
 		indicator: config.indicator === undefined ?
 			( toolbar.position === 'bottom' ? 'up' : 'down' ) : config.indicator
 	}, config );
@@ -2085,17 +2085,17 @@ OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 	OO.ui.mixin.LabelElement.call( this, config );
 	OO.ui.mixin.TitledElement.call( this, config );
 	OO.ui.mixin.FlaggedElement.call( this, config );
-	OO.ui.mixin.ClippableElement.call( this, $.extend( {
+	OO.ui.mixin.ClippableElement.call( this, Object.assign( {
 		$clippable: this.$group
 	}, config ) );
-	OO.ui.mixin.FloatableElement.call( this, $.extend( {
+	OO.ui.mixin.FloatableElement.call( this, Object.assign( {
 		$floatable: this.$group,
 		$floatableContainer: this.$handle,
 		hideWhenOutOfView: false,
 		verticalPosition: this.toolbar.position === 'bottom' ? 'above' : 'below'
 		// horizontalPosition is set in setActive
 	}, config ) );
-	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {
+	OO.ui.mixin.TabIndexedElement.call( this, Object.assign( {
 		$tabIndexed: this.$handle
 	}, config ) );
 

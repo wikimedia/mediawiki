@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.50.0
+ * OOUI v0.50.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-06-11T21:26:26Z
+ * Date: 2024-06-28T14:13:48Z
  */
 ( function ( OO ) {
 
@@ -37,7 +37,7 @@
  */
 OO.ui.ActionWidget = function OoUiActionWidget( config ) {
 	// Configuration initialization
-	config = $.extend( { framed: false }, config );
+	config = Object.assign( { framed: false }, config );
 
 	// Parent constructor
 	OO.ui.ActionWidget.super.call( this, config );
@@ -364,7 +364,7 @@ OO.ui.ActionSet.prototype.get = function ( filters ) {
  */
 OO.ui.ActionSet.prototype.getSpecial = function () {
 	this.organize();
-	return $.extend( {}, this.special );
+	return Object.assign( {}, this.special );
 };
 
 /**
@@ -1567,36 +1567,35 @@ OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
  *
  * 1. `.addWindows( [ winA, winB, ... ] )` (where `winA`, `winB` are OO.ui.Window objects)
  *
- *    This syntax registers windows under the symbolic names defined in their `.static.name`
- *    properties. For example, if `windowA.constructor.static.name` is `'nameA'`, calling
- *    `.openWindow( 'nameA' )` afterwards will open the window `windowA`. This syntax requires the
- *    static name to be set, otherwise an exception will be thrown.
+ * This syntax registers windows under the symbolic names defined in their `.static.name`
+ * properties. For example, if `windowA.constructor.static.name` is `'nameA'`, calling
+ * `.openWindow( 'nameA' )` afterwards will open the window `windowA`. This syntax requires the
+ * static name to be set, otherwise an exception will be thrown.
  *
- *    This is the recommended way, as it allows for an easier switch to using a window factory.
+ * This is the recommended way, as it allows for an easier switch to using a window factory.
  *
  * 2. `.addWindows( { nameA: winA, nameB: winB, ... } )`
  *
- *    This syntax registers windows under the explicitly given symbolic names. In this example,
- *    calling `.openWindow( 'nameA' )` afterwards will open the window `windowA`, regardless of what
- *    its `.static.name` is set to. The static name is not required to be set.
+ * This syntax registers windows under the explicitly given symbolic names. In this example,
+ * calling `.openWindow( 'nameA' )` afterwards will open the window `windowA`, regardless of what
+ * its `.static.name` is set to. The static name is not required to be set.
  *
- *    This should only be used if you need to override the default symbolic names.
+ * This should only be used if you need to override the default symbolic names.
  *
  * Example:
  *
- *     const windowManager = new OO.ui.WindowManager();
- *     $( document.body ).append( windowManager.$element );
+ * const windowManager = new OO.ui.WindowManager();
+ * $( document.body ).append( windowManager.$element );
  *
- *     // Add a window under the default name: see OO.ui.MessageDialog.static.name
- *     windowManager.addWindows( [ new OO.ui.MessageDialog() ] );
- *     // Add a window under an explicit name
- *     windowManager.addWindows( { myMessageDialog: new OO.ui.MessageDialog() } );
+ * // Add a window under the default name: see OO.ui.MessageDialog.static.name
+ * windowManager.addWindows( [ new OO.ui.MessageDialog() ] );
+ * // Add a window under an explicit name
+ * windowManager.addWindows( { myMessageDialog: new OO.ui.MessageDialog() } );
  *
- *     // Open window by default name
- *     windowManager.openWindow( 'message' );
- *     // Open window by explicitly given name
- *     windowManager.openWindow( 'myMessageDialog' );
- *
+ * // Open window by default name
+ * windowManager.openWindow( 'message' );
+ * // Open window by explicitly given name
+ * windowManager.openWindow( 'myMessageDialog' );
  *
  * @param {Object.<string,OO.ui.Window>|OO.ui.Window[]} windows An array of window objects specified
  *  by reference, symbolic name, or explicitly defined symbolic names.
@@ -2921,6 +2920,11 @@ OO.ui.Dialog.prototype.detachActions = function () {
  * @return {jQuery.Promise} Promise resolved when action completes, rejected if it fails
  */
 OO.ui.Dialog.prototype.executeAction = function ( action ) {
+	const actionWidgets = this.actions.get( { actions: [ action ], visible: true } );
+	// If the action is shown as an ActionWidget, but is disabled, then do nothing.
+	if ( actionWidgets.length && actionWidgets.every( ( widget ) => widget.isDisabled() ) ) {
+		return $.Deferred().reject().promise();
+	}
 	this.pushPending();
 	this.currentAction = action;
 	return this.getActionProcess( action ).execute()
@@ -3070,8 +3074,8 @@ OO.ui.MessageDialog.prototype.getActionProcess = function ( action ) {
  * @param {Object} [data] Dialog opening data
  * @param {jQuery|string|Function|null} [data.title] Description of the action being confirmed
  * @param {jQuery|string|Function|null} [data.message] Description of the action's consequence
- * @param {string} [data.size] Symbolic name of the dialog size, see OO.ui.Window
- * @param {Object[]} [data.actions] List of OO.ui.ActionOptionWidget configuration options for each
+ * @param {string} [data.size] Symbolic name of the dialog size, see {@link OO.ui.Window}
+ * @param {Object[]} [data.actions] List of {@link OO.ui.ActionOptionWidget} configuration options for each
  *  action item
  */
 OO.ui.MessageDialog.prototype.getSetupProcess = function ( data ) {
@@ -3196,7 +3200,7 @@ OO.ui.MessageDialog.prototype.initialize = function () {
  */
 OO.ui.MessageDialog.prototype.getActionWidgetConfig = function ( config ) {
 	// Force unframed
-	return $.extend( {}, config, { framed: false } );
+	return Object.assign( {}, config, { framed: false } );
 };
 
 /**
@@ -3427,16 +3431,16 @@ OO.ui.ProcessDialog.prototype.getActionWidgetConfig = function ( config ) {
 			( Array.isArray( config.flags ) && config.flags.indexOf( flag ) !== -1 );
 	}
 
-	config = $.extend( { framed: true }, config );
+	config = Object.assign( { framed: true }, config );
 	if ( checkFlag( 'close' ) ) {
 		// Change close buttons to icon only.
-		$.extend( config, {
+		Object.assign( config, {
 			icon: 'close',
 			invisibleLabel: true
 		} );
 	} else if ( checkFlag( 'back' ) ) {
 		// Change back buttons to icon only.
-		$.extend( config, {
+		Object.assign( config, {
 			icon: 'previous',
 			invisibleLabel: true
 		} );
@@ -3657,12 +3661,12 @@ OO.ui.getWindowManager = function () {
  *
  *     OO.ui.alert( 'Something larger happened!', { size: 'large' } );
  *
- * @param {jQuery|string} text Message text to display
- * @param {Object} [options] Additional options, see OO.ui.MessageDialog#getSetupProcess
+ * @param {jQuery|string|Function} text Message text to display
+ * @param {Object} [options] Additional options, see {@link OO.ui.MessageDialog#getSetupProcess}
  * @return {jQuery.Promise} Promise resolved when the user closes the dialog
  */
 OO.ui.alert = function ( text, options ) {
-	return OO.ui.getWindowManager().openWindow( 'message', $.extend( {
+	return OO.ui.getWindowManager().openWindow( 'message', Object.assign( {
 		message: text,
 		actions: [ OO.ui.MessageDialog.static.actions[ 0 ] ]
 	}, options ) ).closed.then( () => undefined );
@@ -3685,14 +3689,14 @@ OO.ui.alert = function ( text, options ) {
  *         }
  *     } );
  *
- * @param {jQuery|string} text Message text to display
- * @param {Object} [options] Additional options, see OO.ui.MessageDialog#getSetupProcess
+ * @param {jQuery|string|Function} text Message text to display
+ * @param {Object} [options] Additional options, see {@link OO.ui.MessageDialog#getSetupProcess}
  * @return {jQuery.Promise} Promise resolved when the user closes the dialog. If the user chose to
  *  confirm, the promise will resolve to boolean `true`; otherwise, it will resolve to boolean
  *  `false`.
  */
 OO.ui.confirm = function ( text, options ) {
-	return OO.ui.getWindowManager().openWindow( 'message', $.extend( {
+	return OO.ui.getWindowManager().openWindow( 'message', Object.assign( {
 		message: text
 	}, options ) ).closed.then( ( data ) => !!( data && data.action === 'accept' ) );
 };
@@ -3716,10 +3720,10 @@ OO.ui.confirm = function ( text, options ) {
  *         }
  *     } );
  *
- * @param {jQuery|string} text Message text to display
- * @param {Object} [options] Additional options, see OO.ui.MessageDialog#getSetupProcess
+ * @param {jQuery|string|Function} text Message text to display
+ * @param {Object} [options] Additional options, see {@link OO.ui.MessageDialog#getSetupProcess}
  * @param {Object} [options.textInput] Additional options for text input widget,
- *  see OO.ui.TextInputWidget
+ *  see {@link OO.ui.TextInputWidget}
  * @return {jQuery.Promise} Promise resolved when the user closes the dialog. If the user chose to
  *  confirm, the promise will resolve with the value of the text input widget; otherwise, it will
  *  resolve to `null`.
@@ -3732,7 +3736,7 @@ OO.ui.prompt = function ( text, options ) {
 			label: text
 		} );
 
-	const instance = manager.openWindow( 'message', $.extend( {
+	const instance = manager.openWindow( 'message', Object.assign( {
 		message: textField.$element
 	}, options ) );
 

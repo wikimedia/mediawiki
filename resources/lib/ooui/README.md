@@ -150,7 +150,7 @@ section and sort into five sub-sections, in order, omitting any sub-section that
 ### Code
 ```
 
-Generate the list of Phabricator tasks for this realease. Copy the resulting list and save it for
+Generate the list of Phabricator tasks for this release. Copy the resulting list and save it for
 later. In a later step, you will add it to the commit message of the MediaWiki core commit.
 ```
 $ git log --pretty=format:%b v$(node -e 'console.log(require("./package").version);')...HEAD | grep Bug: | sort | uniq
@@ -165,7 +165,7 @@ $ npm version patch --git-tag-version=false
 Commit the release and submit to Gerrit. Note that if there is a Phabricator task associated with
 the release, you should edit the commit to add the bug number before running `git review`.
 ```
-$ git add -a
+$ git add -u
 $ git commit -m "Tag v$(node -e 'console.log(require("./package").version);')"
 $ git review
 ```
@@ -191,7 +191,7 @@ $ composer update --no-dev
 Then commit the changes with the following commit message, replacing 1.2.34 with the new OOUI
 version number (example: https://gerrit.wikimedia.org/r/c/mediawiki/vendor/+/813629).
 ```
-$ git add -a
+$ git add -u
 $ git commit
 ```
 
@@ -199,7 +199,7 @@ Commit message format:
 ```
 Update OOUI to v1.2.34
 
-  Release notes: https://gerrit.wikimedia.org/g/oojs/ui/+/v1.2.34/History.md"
+  Release notes: https://gerrit.wikimedia.org/g/oojs/ui/+/v1.2.34/History.md
 ```
 
 Push this to gerrit. Take note of the Change-Id in the commit message. Copy it and save it for
@@ -239,7 +239,7 @@ $ docker compose exec mediawiki php maintenance/run.php manageForeignResources u
 Then commit the changes with the following commit message, replacing 1.2.34 with the new OOUI
 version number:
 ```
-$ git add -a
+$ git add -u
 $ git commit
 ```
 
@@ -248,7 +248,7 @@ and Depends-On is set to the Change-Id of the mediawiki/vendor commit:
 ```
 Update OOUI to v1.2.34
 
-  Release notes: https://gerrit.wikimedia.org/g/oojs/ui/+/v1.2.34/History.md"
+  Release notes: https://gerrit.wikimedia.org/g/oojs/ui/+/v1.2.34/History.md
 
 Bug: T123456
 Bug: T234567

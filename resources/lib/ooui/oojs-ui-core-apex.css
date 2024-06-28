@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.50.0
+ * OOUI v0.50.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-06-11T21:26:30Z
+ * Date: 2024-06-28T14:13:51Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -1185,9 +1185,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   max-width: 50em;
 }
 .oo-ui-textInputWidget .oo-ui-inputWidget-input {
-  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   -webkit-appearance: none;
-  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   -moz-appearance: textfield;
   display: block;
   width: 100%;
@@ -1199,7 +1197,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-textInputWidget [type='number']::-webkit-outer-spin-button,
 .oo-ui-textInputWidget [type='number']::-webkit-inner-spin-button {
-  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   -webkit-appearance: none;
   margin: 0;
 }
@@ -1592,9 +1589,11 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   position: relative;
   z-index: 0;
   max-width: 50em;
+  overflow: hidden;
+}
+.oo-ui-progressBarWidget:not( .oo-ui-progressBarWidget-inline) {
   border: 1px solid #ccc;
   border-radius: 3px;
-  overflow: hidden;
 }
 .oo-ui-progressBarWidget:not( .oo-ui-pendingElement-pending ) {
   background-color: #fff;
@@ -1606,6 +1605,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border-right: 1px solid #ccc;
   transition-property: width;
   transition-duration: 250ms;
+}
+.oo-ui-progressBarWidget-inline .oo-ui-progressBarWidget-bar {
+  height: 0.25em;
 }
 .oo-ui-progressBarWidget-indeterminate .oo-ui-progressBarWidget-bar {
   width: 33%;

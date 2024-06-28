@@ -1,5 +1,39 @@
 # OOUI Release History
 
+## v0.50.2 / 2024-06-27
+
+## Styles
+* WikimediaUI theme: Fix dark mode contrast for framed active button element (bwang)
+
+## Code
+* build: Update jsdoc-wmf-theme to 1.1.0 (Ed Sanders)
+
+## v0.50.1 / 2024-06-25
+
+## Features
+* Implement "inline" progress bar from Codex (Ed Sanders)
+
+## Styles
+* ButtonMenuSelectWidget: Add spacing between button and menu to match Codex component (Ed Sanders)
+* WikimediaUI theme: Fix primary button color in dark mode (Volker E.)
+* WikimediaUI theme: Fix radio disc color in dark mode (Volker E.)
+
+## Code
+* Add missing ButtonMenuSelectWidget.less to modules.js (Ed Sanders)
+* Dialog: Check if an action is disabled in the UI before executing (Ed Sanders)
+* Move ButtonMenuSelectWidget spacing to FloatableElement.js (Ed Sanders)
+* windows.js: Fix allowed types for messages (Ed Sanders)
+* README: Small fixes to release instructions (Roan Kattouw)
+* JSDoc: add {@link} to some links (Novem Linguae)
+* JSDoc: rename .jsdoc.json to jsdoc.json (Novem Linguae)
+* Fix grunt-watch of JS files (Ed Sanders)
+* Grunt: Also watch build dir for JS file changes (e.g. modules.js) (Ed Sanders)
+* alphabetize scripts in package.json (Novem Linguae)
+* build: Update eslint-config-wikimedia to 0.28.2 and autofix (Ed Sanders)
+* build: Update stylelint and fix (Ed Sanders)
+* build: Updating braces to 3.0.3 ([BOT] libraryupgrader)
+* build: Updating npm dependencies ([BOT] libraryupgrader)
+
 ## v0.50.0 / 2024-06-11
 
 ## Features

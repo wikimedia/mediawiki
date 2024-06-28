@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.50.0
+ * OOUI v0.50.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-06-11T21:26:26Z
+ * Date: 2024-06-28T14:13:48Z
  */
 ( function ( OO ) {
 
@@ -659,7 +659,7 @@ OO.ui.mixin.RequestManager.prototype.getRequestCacheDataFromResponse = null;
  */
 OO.ui.mixin.LookupElement = function OoUiMixinLookupElement( config ) {
 	// Configuration initialization
-	config = $.extend( { highlightFirst: true }, config );
+	config = Object.assign( { highlightFirst: true }, config );
 
 	// Mixin constructors
 	OO.ui.mixin.RequestManager.call( this, config );
@@ -667,7 +667,7 @@ OO.ui.mixin.LookupElement = function OoUiMixinLookupElement( config ) {
 	// Properties
 	this.$overlay = ( config.$overlay === true ?
 		OO.ui.getDefaultOverlay() : config.$overlay ) || this.$element;
-	this.lookupMenu = new OO.ui.MenuSelectWidget( $.extend( {
+	this.lookupMenu = new OO.ui.MenuSelectWidget( Object.assign( {
 		widget: this,
 		input: this,
 		$floatableContainer: config.$container || this.$element
@@ -1026,7 +1026,7 @@ OO.ui.TabPanelLayout = function OoUiTabPanelLayout( name, config ) {
 	}
 
 	// Configuration initialization
-	config = $.extend( { scrollable: true }, config );
+	config = Object.assign( { scrollable: true }, config );
 
 	// Parent constructor
 	OO.ui.TabPanelLayout.super.call( this, config );
@@ -1190,7 +1190,7 @@ OO.ui.PageLayout = function OoUiPageLayout( name, config ) {
 	}
 
 	// Configuration initialization
-	config = $.extend( { scrollable: true }, config );
+	config = Object.assign( { scrollable: true }, config );
 
 	// Parent constructor
 	OO.ui.PageLayout.super.call( this, config );
@@ -1346,13 +1346,13 @@ OO.ui.StackLayout = function OoUiStackLayout( config ) {
 	// Configuration initialization
 	// Make the layout scrollable in continuous mode, otherwise each
 	// panel is responsible for its own scrolling.
-	config = $.extend( { scrollable: !!( config && config.continuous ) }, config );
+	config = Object.assign( { scrollable: !!( config && config.continuous ) }, config );
 
 	// Parent constructor
 	OO.ui.StackLayout.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.GroupElement.call( this, $.extend( { $group: this.$element }, config ) );
+	OO.ui.mixin.GroupElement.call( this, Object.assign( { $group: this.$element }, config ) );
 
 	// Properties
 	this.currentItem = null;
@@ -1697,7 +1697,7 @@ OO.ui.StackLayout.prototype.updateHiddenState = function ( items, selectedItem )
  */
 OO.ui.MenuLayout = function OoUiMenuLayout( config ) {
 	// Configuration initialization
-	config = $.extend( {
+	config = Object.assign( {
 		expanded: true,
 		showMenu: true,
 		menuPosition: 'before'
@@ -2508,7 +2508,7 @@ OO.ui.BookletLayout.prototype.selectFirstSelectablePage = function () {
  */
 OO.ui.IndexLayout = function OoUiIndexLayout( config ) {
 	// Configuration initialization
-	config = $.extend( {}, config, { menuPosition: 'top' } );
+	config = Object.assign( {}, config, { menuPosition: 'top' } );
 
 	// Parent constructor
 	OO.ui.IndexLayout.super.call( this, config );
@@ -2835,7 +2835,7 @@ OO.ui.IndexLayout.prototype.addTabPanels = function ( tabPanels, index ) {
 		name = tabPanel.getName();
 		this.tabPanels[ name ] = tabPanel;
 		tabItem = new OO.ui.TabOptionWidget(
-			$.extend( { data: name }, tabPanel.getTabItemConfig() )
+			Object.assign( { data: name }, tabPanel.getTabItemConfig() )
 		);
 		tabPanel.setTabItem( tabItem );
 		tabItems.push( tabItem );
@@ -2999,11 +2999,11 @@ OO.ui.CopyTextLayout = function OoUiCopyTextLayout( config ) {
 	// Properties
 	const TextClass = config.multiline ? OO.ui.MultilineTextInputWidget : OO.ui.TextInputWidget;
 
-	this.textInput = new TextClass( $.extend( {
+	this.textInput = new TextClass( Object.assign( {
 		value: config.copyText,
 		readOnly: true
 	}, config.textInput ) );
-	this.button = new OO.ui.ButtonWidget( $.extend( {
+	this.button = new OO.ui.ButtonWidget( Object.assign( {
 		label: OO.ui.msg( 'ooui-copytextlayout-copy' ),
 		icon: 'copy'
 	}, config.button ) );
@@ -3130,14 +3130,14 @@ OO.ui.ToggleButtonWidget = function OoUiToggleButtonWidget( config ) {
 	OO.ui.ToggleButtonWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.ButtonElement.call( this, $.extend( {
+	OO.ui.mixin.ButtonElement.call( this, Object.assign( {
 		active: this.active
 	}, config ) );
 	OO.ui.mixin.IconElement.call( this, config );
 	OO.ui.mixin.IndicatorElement.call( this, config );
 	OO.ui.mixin.LabelElement.call( this, config );
 	OO.ui.mixin.FlaggedElement.call( this, config );
-	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {
+	OO.ui.mixin.TabIndexedElement.call( this, Object.assign( {
 		$tabIndexed: this.$button
 	}, config ) );
 
@@ -3704,7 +3704,7 @@ OO.ui.TabOptionWidget = function OoUiTabOptionWidget( config ) {
 	config = config || {};
 
 	if ( config.href ) {
-		config = $.extend( {
+		config = Object.assign( {
 			$label: $( '<a>' ).attr( 'href', config.href )
 		}, config );
 	}
@@ -3751,7 +3751,7 @@ OO.ui.TabOptionWidget.prototype.scrollElementIntoView = function ( config ) {
 			this.getElementGroup().$element[ 0 ].clientWidth - this.$element[ 0 ].clientWidth
 		) / 2, 0 );
 		// Parent method
-		return OO.ui.TabOptionWidget.super.prototype.scrollElementIntoView.call( this, $.extend(
+		return OO.ui.TabOptionWidget.super.prototype.scrollElementIntoView.call( this, Object.assign(
 			{
 				padding: {
 					left: padding,
@@ -3890,7 +3890,6 @@ OO.ui.TabSelectWidget.prototype.toggleFramed = function ( framed ) {
 OO.ui.ButtonMenuSelectWidget = function OoUiButtonMenuSelectWidget( config ) {
 	// Configuration initialization
 	config = config || {};
-
 	// Parent constructor
 	OO.ui.ButtonMenuSelectWidget.super.call( this, config );
 
@@ -3901,9 +3900,10 @@ OO.ui.ButtonMenuSelectWidget = function OoUiButtonMenuSelectWidget( config ) {
 
 	// Properties
 	this.clearOnSelect = config.clearOnSelect !== false;
-	this.menu = new MenuClass( $.extend( {
+	this.menu = new MenuClass( Object.assign( {
 		widget: this,
-		$floatableContainer: this.$element
+		$floatableContainer: this.$element,
+		spacing: 4 // @spacing-25
 	}, config.menu ) );
 
 	// Events
@@ -4358,7 +4358,7 @@ OO.ui.TagMultiselectWidget = function OoUiTagMultiselectWidget( config ) {
 		if ( config.inputWidget ) {
 			this.input = config.inputWidget;
 		} else {
-			this.input = new OO.ui.TextInputWidget( $.extend( {
+			this.input = new OO.ui.TextInputWidget( Object.assign( {
 				placeholder: config.placeholder,
 				classes: [ 'oo-ui-tagMultiselectWidget-input' ]
 			}, config.input ) );
@@ -5186,7 +5186,7 @@ OO.ui.PopupTagMultiselectWidget = function OoUiPopupTagMultiselectWidget( config
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.PopupTagMultiselectWidget.super.call( this, $.extend( {
+	OO.ui.PopupTagMultiselectWidget.super.call( this, Object.assign( {
 		inputPosition: 'none'
 	}, config ) );
 
@@ -5213,7 +5213,7 @@ OO.ui.PopupTagMultiselectWidget = function OoUiPopupTagMultiselectWidget( config
 		this.input.$element.add( this.$overlay ) : this.$overlay;
 
 	// Allow extending any of the above
-	config = $.extend( defaultConfig, config );
+	config = Object.assign( defaultConfig, config );
 
 	// Mixin constructors
 	OO.ui.mixin.PopupElement.call( this, config );
@@ -5377,7 +5377,7 @@ OO.ui.MenuTagMultiselectWidget = function OoUiMenuTagMultiselectWidget( config )
 		OO.ui.getDefaultOverlay() : config.$overlay ) || this.$element;
 	this.clearInputOnChoose = config.clearInputOnChoose === undefined ||
 		!!config.clearInputOnChoose;
-	this.menu = this.createMenuWidget( $.extend( {
+	this.menu = this.createMenuWidget( Object.assign( {
 		widget: this,
 		hideOnChoose: false,
 		input: this.hasInput ? this.input : null,
