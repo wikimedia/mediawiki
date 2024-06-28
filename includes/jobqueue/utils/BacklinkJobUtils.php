@@ -111,7 +111,8 @@ class BacklinkJobUtils {
 		$jobs = [];
 		// Combine the first range (of size $bSize) backlinks into leaf jobs
 		if ( isset( $ranges[0] ) ) {
-			[ $start, $end ] = $ranges[0];
+			$start = $ranges[0][0];
+			$end = isset( $ranges[1] ) ? $ranges[1][0] - 1 : false;
 
 			$iter = $backlinkCache->getLinkPages( $params['table'], $start, $end );
 			$pageSources = iterator_to_array( $iter );
