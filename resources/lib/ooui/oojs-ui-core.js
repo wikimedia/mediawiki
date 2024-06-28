@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.50.0
+ * OOUI v0.50.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-06-11T21:26:26Z
+ * Date: 2024-06-28T14:13:48Z
  */
 ( function ( OO ) {
 
@@ -784,7 +784,7 @@ OO.ui.Element.static.unsafeInfuse = function ( elem, config, domPromise ) {
 	}
 	if ( data._ === 'Tag' ) {
 		// Special case: this is a raw Tag; wrap existing node, don't rebuild.
-		return new OO.ui.Element( $.extend( {}, config, { $element: $elem } ) );
+		return new OO.ui.Element( Object.assign( {}, config, { $element: $elem } ) );
 	}
 	const parts = data._.split( '.' );
 	const cls = OO.getProp.apply( OO, [ window ].concat( parts ) );
@@ -828,7 +828,7 @@ OO.ui.Element.static.unsafeInfuse = function ( elem, config, domPromise ) {
 	const state = cls.static.gatherPreInfuseState( $elem[ 0 ], data );
 	// rebuild widget
 	// eslint-disable-next-line new-cap
-	const obj = new cls( $.extend( {}, config, data ) );
+	const obj = new cls( Object.assign( {}, config, data ) );
 	// If anyone is holding a reference to the old DOM element,
 	// let's allow them to OO.ui.infuse() it and do what they expect, see T105828.
 	// Do not use jQuery.data(), as using it on detached nodes leaks memory in 1.x line by design.
@@ -1345,7 +1345,7 @@ OO.ui.Element.static.scrollIntoView = function ( elOrPosition, config ) {
 	// Configuration initialization
 	config = config || {};
 
-	const padding = $.extend( {
+	const padding = Object.assign( {
 		top: 0,
 		bottom: 0,
 		left: 0,
@@ -2039,7 +2039,7 @@ OO.ui.Theme.prototype.getDialogTransitionDuration = function () {
  */
 OO.ui.mixin.TabIndexedElement = function OoUiMixinTabIndexedElement( config ) {
 	// Configuration initialization
-	config = $.extend( { tabIndex: 0 }, config );
+	config = Object.assign( { tabIndex: 0 }, config );
 
 	// Properties
 	this.$tabIndexed = null;
@@ -3971,14 +3971,14 @@ OO.ui.ButtonWidget = function OoUiButtonWidget( config ) {
 	OO.ui.mixin.IconElement.call( this, config );
 	OO.ui.mixin.IndicatorElement.call( this, config );
 	OO.ui.mixin.LabelElement.call( this, config );
-	OO.ui.mixin.TitledElement.call( this, $.extend( {
+	OO.ui.mixin.TitledElement.call( this, Object.assign( {
 		$titled: this.$button
 	}, config ) );
 	OO.ui.mixin.FlaggedElement.call( this, config );
-	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {
+	OO.ui.mixin.TabIndexedElement.call( this, Object.assign( {
 		$tabIndexed: this.$button
 	}, config ) );
-	OO.ui.mixin.AccessKeyedElement.call( this, $.extend( {
+	OO.ui.mixin.AccessKeyedElement.call( this, Object.assign( {
 		$accessKeyed: this.$button
 	}, config ) );
 
@@ -4236,7 +4236,7 @@ OO.ui.ButtonGroupWidget = function OoUiButtonGroupWidget( config ) {
 	OO.ui.ButtonGroupWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.GroupElement.call( this, $.extend( {
+	OO.ui.mixin.GroupElement.call( this, Object.assign( {
 		$group: this.$element
 	}, config ) );
 	OO.ui.mixin.TitledElement.call( this, config );
@@ -4322,17 +4322,17 @@ OO.ui.IconWidget = function OoUiIconWidget( config ) {
 	OO.ui.IconWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.IconElement.call( this, $.extend( {
+	OO.ui.mixin.IconElement.call( this, Object.assign( {
 		$icon: this.$element
 	}, config ) );
-	OO.ui.mixin.TitledElement.call( this, $.extend( {
+	OO.ui.mixin.TitledElement.call( this, Object.assign( {
 		$titled: this.$element
 	}, config ) );
-	OO.ui.mixin.LabelElement.call( this, $.extend( {
+	OO.ui.mixin.LabelElement.call( this, Object.assign( {
 		$label: this.$element,
 		invisibleLabel: true
 	}, config ) );
-	OO.ui.mixin.FlaggedElement.call( this, $.extend( {
+	OO.ui.mixin.FlaggedElement.call( this, Object.assign( {
 		$flagged: this.$element
 	}, config ) );
 
@@ -4397,13 +4397,13 @@ OO.ui.IndicatorWidget = function OoUiIndicatorWidget( config ) {
 	OO.ui.IndicatorWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.IndicatorElement.call( this, $.extend( {
+	OO.ui.mixin.IndicatorElement.call( this, Object.assign( {
 		$indicator: this.$element
 	}, config ) );
-	OO.ui.mixin.TitledElement.call( this, $.extend( {
+	OO.ui.mixin.TitledElement.call( this, Object.assign( {
 		$titled: this.$element
 	}, config ) );
-	OO.ui.mixin.LabelElement.call( this, $.extend( {
+	OO.ui.mixin.LabelElement.call( this, Object.assign( {
 		$label: this.$element,
 		invisibleLabel: true
 	}, config ) );
@@ -4478,7 +4478,7 @@ OO.ui.LabelWidget = function OoUiLabelWidget( config ) {
 	OO.ui.LabelWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.LabelElement.call( this, $.extend( {
+	OO.ui.mixin.LabelElement.call( this, Object.assign( {
 		$label: this.$element
 	}, config ) );
 	OO.ui.mixin.TitledElement.call( this, config );
@@ -5031,8 +5031,10 @@ OO.ui.mixin.PendingElement.prototype.popPending = function () {
  *  'start': Align the start (left in LTR, right in RTL) edge with $floatableContainer's start edge
  *  'end': Align the end (right in LTR, left in RTL) edge with $floatableContainer's end edge
  *  'center': Horizontally align the center with $floatableContainer's center
- * @param {boolean} [config.hideWhenOutOfView=true] Whether to hide the floatable element if the container
- *  is out of view
+ * @param {boolean} [config.hideWhenOutOfView=true] Whether to hide the floatable element if the
+ *   container is out of view
+ * @param {number} [config.spacing=0] Spacing from $floatableContainer, when $floatable is
+ *  positioned outside the container (i.e. below/above/before/after).
  */
 OO.ui.mixin.FloatableElement = function OoUiMixinFloatableElement( config ) {
 	// Configuration initialization
@@ -5052,6 +5054,7 @@ OO.ui.mixin.FloatableElement = function OoUiMixinFloatableElement( config ) {
 	this.setFloatableElement( config.$floatable || this.$element );
 	this.setVerticalPosition( config.verticalPosition || 'below' );
 	this.setHorizontalPosition( config.horizontalPosition || 'start' );
+	this.spacing = config.spacing || 0;
 	this.hideWhenOutOfView = config.hideWhenOutOfView === undefined ?
 		true : !!config.hideWhenOutOfView;
 };
@@ -5348,9 +5351,9 @@ OO.ui.mixin.FloatableElement.prototype.computePosition = function () {
 	containerPos.end = direction === 'rtl' ? containerPos.left : containerPos.right;
 
 	if ( this.verticalPosition === 'below' ) {
-		newPos.top = containerPos.bottom;
+		newPos.top = containerPos.bottom + this.spacing;
 	} else if ( this.verticalPosition === 'above' ) {
-		newPos.bottom = $offsetParent.outerHeight() - containerPos.top;
+		newPos.bottom = $offsetParent.outerHeight() - containerPos.top + this.spacing;
 	} else if ( this.verticalPosition === 'top' ) {
 		newPos.top = containerPos.top;
 	} else if ( this.verticalPosition === 'bottom' ) {
@@ -5361,9 +5364,9 @@ OO.ui.mixin.FloatableElement.prototype.computePosition = function () {
 	}
 
 	if ( this.horizontalPosition === 'before' ) {
-		newPos.end = containerPos.start;
+		newPos.end = containerPos.start - this.spacing;
 	} else if ( this.horizontalPosition === 'after' ) {
-		newPos.start = containerPos.end;
+		newPos.start = containerPos.end + this.spacing;
 	} else if ( this.horizontalPosition === 'start' ) {
 		newPos.start = containerPos.start;
 	} else if ( this.horizontalPosition === 'end' ) {
@@ -5708,7 +5711,7 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 		$viewport = this.$clippableScrollableContainer;
 		viewportRect = $viewport[ 0 ].getBoundingClientRect();
 		// Convert into a plain object
-		viewportRect = $.extend( {}, viewportRect );
+		viewportRect = Object.assign( {}, viewportRect );
 	}
 
 	// Account for scrollbar gutter
@@ -5738,7 +5741,7 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 
 	let itemRect = $item[ 0 ].getBoundingClientRect();
 	// Convert into a plain object
-	itemRect = $.extend( {}, itemRect );
+	itemRect = Object.assign( {}, itemRect );
 
 	// Item might already be clipped, so we can't just use its dimensions (in case we might need to
 	// make it larger than before). Extend the rectangle to the maximum size we are allowed to take.
@@ -5922,7 +5925,7 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 	// Mixin constructors
 	OO.ui.mixin.IconElement.call( this, config );
 	OO.ui.mixin.LabelElement.call( this, config );
-	OO.ui.mixin.ClippableElement.call( this, $.extend( {
+	OO.ui.mixin.ClippableElement.call( this, Object.assign( {
 		$clippable: this.$body,
 		$clippableContainer: this.$popup
 	}, config ) );
@@ -6628,7 +6631,7 @@ OO.ui.mixin.PopupElement = function OoUiMixinPopupElement( config ) {
 	config = config || {};
 
 	// Properties
-	this.popup = new OO.ui.PopupWidget( $.extend(
+	this.popup = new OO.ui.PopupWidget( Object.assign(
 		{
 			autoClose: true,
 			$floatableContainer: this.$element
@@ -7113,7 +7116,7 @@ OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 	OO.ui.SelectWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.GroupWidget.call( this, $.extend( {
+	OO.ui.mixin.GroupWidget.call( this, Object.assign( {
 		$group: this.$element
 	}, config ) );
 
@@ -8385,7 +8388,7 @@ OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 	OO.ui.MenuSelectWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.ClippableElement.call( this, $.extend( { $clippable: this.$group }, config ) );
+	OO.ui.mixin.ClippableElement.call( this, Object.assign( { $clippable: this.$group }, config ) );
 	OO.ui.mixin.FloatableElement.call( this, config );
 
 	// Initial vertical positions other than 'center' will result in
@@ -8923,7 +8926,7 @@ OO.ui.MenuSelectWidget.prototype.scrollToTop = function () {
  */
 OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 	// Configuration initialization
-	config = $.extend( { indicator: 'down' }, config );
+	config = Object.assign( { indicator: 'down' }, config );
 
 	// Parent constructor
 	OO.ui.DropdownWidget.super.call( this, config );
@@ -8937,15 +8940,15 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 	OO.ui.mixin.IconElement.call( this, config );
 	OO.ui.mixin.IndicatorElement.call( this, config );
 	OO.ui.mixin.LabelElement.call( this, config );
-	OO.ui.mixin.TitledElement.call( this, $.extend( {
+	OO.ui.mixin.TitledElement.call( this, Object.assign( {
 		$titled: this.$label
 	}, config ) );
-	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {
+	OO.ui.mixin.TabIndexedElement.call( this, Object.assign( {
 		$tabIndexed: this.$handle
 	}, config ) );
 
 	// Properties
-	this.menu = new OO.ui.MenuSelectWidget( $.extend( {
+	this.menu = new OO.ui.MenuSelectWidget( Object.assign( {
 		widget: this,
 		$floatableContainer: this.$element
 	}, config.menu ) );
@@ -9770,6 +9773,7 @@ OO.ui.CheckboxMultiselectWidget.prototype.simulateLabelClick = function () {
  *  To create a determinate progress bar, specify a number that reflects the initial
  *  percent complete.
  *  By default, the progress bar is indeterminate.
+ * @param {boolean} [config.inline=false] Use a smaller inline variant on the progress bar
  */
 OO.ui.ProgressBarWidget = function OoUiProgressBarWidget( config ) {
 	// Configuration initialization
@@ -9796,6 +9800,10 @@ OO.ui.ProgressBarWidget = function OoUiProgressBarWidget( config ) {
 		} )
 		.addClass( 'oo-ui-progressBarWidget' )
 		.append( this.$bar );
+
+	if ( config.inline ) {
+		this.$element.addClass( 'oo-ui-progressBarWidget-inline' );
+	}
 };
 
 /* Setup */
@@ -9880,13 +9888,13 @@ OO.ui.InputWidget = function OoUiInputWidget( config ) {
 	this.inputFilter = config.inputFilter;
 
 	// Mixin constructors
-	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {
+	OO.ui.mixin.TabIndexedElement.call( this, Object.assign( {
 		$tabIndexed: this.$input
 	}, config ) );
-	OO.ui.mixin.TitledElement.call( this, $.extend( {
+	OO.ui.mixin.TitledElement.call( this, Object.assign( {
 		$titled: this.$input
 	}, config ) );
-	OO.ui.mixin.AccessKeyedElement.call( this, $.extend( {
+	OO.ui.mixin.AccessKeyedElement.call( this, Object.assign( {
 		$accessKeyed: this.$input
 	}, config ) );
 
@@ -10114,7 +10122,7 @@ OO.ui.InputWidget.prototype.restorePreInfuseState = function ( state ) {
  */
 OO.ui.HiddenInputWidget = function OoUiHiddenInputWidget( config ) {
 	// Configuration initialization
-	config = $.extend( { value: '', name: '' }, config );
+	config = Object.assign( { value: '', name: '' }, config );
 
 	// Parent constructor
 	OO.ui.HiddenInputWidget.super.call( this, config );
@@ -10179,7 +10187,7 @@ OO.ui.HiddenInputWidget.static.tagName = 'input';
  */
 OO.ui.ButtonInputWidget = function OoUiButtonInputWidget( config ) {
 	// Configuration initialization
-	config = $.extend( { type: 'button', useInputTag: false, formNoValidate: false }, config );
+	config = Object.assign( { type: 'button', useInputTag: false, formNoValidate: false }, config );
 
 	// See InputWidget#reusePreInfuseDOM about config.$input
 	if ( config.$input ) {
@@ -10193,7 +10201,7 @@ OO.ui.ButtonInputWidget = function OoUiButtonInputWidget( config ) {
 	OO.ui.ButtonInputWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.ButtonElement.call( this, $.extend( {
+	OO.ui.mixin.ButtonElement.call( this, Object.assign( {
 		$button: this.$input
 	}, config ) );
 	OO.ui.mixin.IconElement.call( this, config );
@@ -10344,7 +10352,7 @@ OO.ui.CheckboxInputWidget = function OoUiCheckboxInputWidget( config ) {
 	OO.ui.CheckboxInputWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.RequiredElement.call( this, $.extend( {}, {
+	OO.ui.mixin.RequiredElement.call( this, Object.assign( {}, {
 		// TODO: Display the required indicator somewhere
 		indicatorElement: null
 	}, config ) );
@@ -10565,7 +10573,7 @@ OO.ui.DropdownInputWidget = function OoUiDropdownInputWidget( config ) {
 	config = config || {};
 
 	// Properties (must be done before parent constructor which calls #setDisabled)
-	this.dropdownWidget = new OO.ui.DropdownWidget( $.extend(
+	this.dropdownWidget = new OO.ui.DropdownWidget( Object.assign(
 		{
 			$overlay: config.$overlay
 		},
@@ -10579,7 +10587,7 @@ OO.ui.DropdownInputWidget = function OoUiDropdownInputWidget( config ) {
 	OO.ui.DropdownInputWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.RequiredElement.call( this, $.extend( {}, {
+	OO.ui.mixin.RequiredElement.call( this, Object.assign( {}, {
 		// TODO: Display the required indicator somewhere
 		indicatorElement: null
 	}, config ) );
@@ -10865,7 +10873,7 @@ OO.ui.RadioInputWidget = function OoUiRadioInputWidget( config ) {
 	OO.ui.RadioInputWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.RequiredElement.call( this, $.extend( {}, {
+	OO.ui.mixin.RequiredElement.call( this, Object.assign( {}, {
 		// TODO: Display the required indicator somewhere
 		indicatorElement: null
 	}, config ) );
@@ -11454,7 +11462,7 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.focus = function () {
  */
 OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	// Configuration initialization
-	config = $.extend( {
+	config = Object.assign( {
 		labelPosition: 'after'
 	}, config );
 	config.type = this.getValidType( config );
@@ -11470,7 +11478,7 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	// Mixin constructors
 	OO.ui.mixin.IconElement.call( this, config );
 	OO.ui.mixin.IndicatorElement.call( this, config );
-	OO.ui.mixin.PendingElement.call( this, $.extend( { $pending: this.$input }, config ) );
+	OO.ui.mixin.PendingElement.call( this, Object.assign( { $pending: this.$input }, config ) );
 	OO.ui.mixin.LabelElement.call( this, config );
 	OO.ui.mixin.FlaggedElement.call( this, config );
 	OO.ui.mixin.RequiredElement.call( this, config );
@@ -12030,7 +12038,7 @@ OO.ui.TextInputWidget.prototype.positionLabel = function () {
  * @param {Object} [config] Configuration options
  */
 OO.ui.SearchInputWidget = function OoUiSearchInputWidget( config ) {
-	config = $.extend( {
+	config = Object.assign( {
 		icon: 'search'
 	}, config );
 
@@ -12178,7 +12186,7 @@ OO.ui.SearchInputWidget.prototype.setReadOnly = function ( state ) {
  * @param {boolean} [config.allowLinebreaks=true] Whether to allow the user to add line breaks.
  */
 OO.ui.MultilineTextInputWidget = function OoUiMultilineTextInputWidget( config ) {
-	config = $.extend( {
+	config = Object.assign( {
 		type: 'text'
 	}, config );
 
@@ -12489,7 +12497,7 @@ OO.ui.MultilineTextInputWidget.prototype.restorePreInfuseState = function ( stat
  */
 OO.ui.ComboBoxInputWidget = function OoUiComboBoxInputWidget( config ) {
 	// Configuration initialization
-	config = $.extend( {
+	config = Object.assign( {
 		autocomplete: false
 	}, config );
 
@@ -12511,7 +12519,7 @@ OO.ui.ComboBoxInputWidget = function OoUiComboBoxInputWidget( config ) {
 		invisibleLabel: true,
 		disabled: this.disabled
 	} );
-	this.menu = new OO.ui.MenuSelectWidget( $.extend(
+	this.menu = new OO.ui.MenuSelectWidget( Object.assign(
 		{
 			widget: this,
 			input: this,
@@ -12809,7 +12817,7 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	}
 
 	// Configuration initialization
-	config = $.extend( { align: 'left', helpInline: false }, config );
+	config = Object.assign( { align: 'left', helpInline: false }, config );
 
 	if ( config.help && !config.label ) {
 		// Add an empty label. For some combinations of 'helpInline' and 'align'
@@ -12821,10 +12829,10 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	OO.ui.FieldLayout.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.LabelElement.call( this, $.extend( {
+	OO.ui.mixin.LabelElement.call( this, Object.assign( {
 		$label: $( '<label>' )
 	}, config ) );
-	OO.ui.mixin.TitledElement.call( this, $.extend( { $titled: this.$label }, config ) );
+	OO.ui.mixin.TitledElement.call( this, Object.assign( { $titled: this.$label }, config ) );
 
 	// Properties
 	this.fieldWidget = fieldWidget;
@@ -13447,7 +13455,7 @@ OO.ui.FormLayout = function OoUiFormLayout( config ) {
 	OO.ui.FormLayout.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.GroupElement.call( this, $.extend( { $group: this.$element }, config ) );
+	OO.ui.mixin.GroupElement.call( this, Object.assign( { $group: this.$element }, config ) );
 
 	// Events
 	this.$element.on( 'submit', this.onFormSubmit.bind( this ) );
@@ -13534,7 +13542,7 @@ OO.ui.FormLayout.prototype.onFormSubmit = function () {
  */
 OO.ui.PanelLayout = function OoUiPanelLayout( config ) {
 	// Configuration initialization
-	config = $.extend( {
+	config = Object.assign( {
 		scrollable: false,
 		padded: false,
 		expanded: true,
@@ -13621,7 +13629,7 @@ OO.ui.HorizontalLayout = function OoUiHorizontalLayout( config ) {
 	OO.ui.HorizontalLayout.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.GroupElement.call( this, $.extend( { $group: this.$element }, config ) );
+	OO.ui.mixin.GroupElement.call( this, Object.assign( { $group: this.$element }, config ) );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-horizontalLayout' );
@@ -13670,23 +13678,23 @@ OO.ui.NumberInputWidget = function OoUiNumberInputWidget( config ) {
 	const $field = $( '<div>' ).addClass( 'oo-ui-numberInputWidget-field' );
 
 	// Configuration initialization
-	config = $.extend( {
+	config = Object.assign( {
 		min: -Infinity,
 		max: Infinity,
 		showButtons: true
 	}, config );
 
 	// For backward compatibility
-	$.extend( config, config.input );
+	Object.assign( config, config.input );
 	this.input = this;
 
 	// Parent constructor
-	OO.ui.NumberInputWidget.super.call( this, $.extend( config, {
+	OO.ui.NumberInputWidget.super.call( this, Object.assign( config, {
 		type: 'number'
 	} ) );
 
 	if ( config.showButtons ) {
-		this.minusButton = new OO.ui.ButtonWidget( $.extend(
+		this.minusButton = new OO.ui.ButtonWidget( Object.assign(
 			{
 				disabled: this.isDisabled(),
 				tabIndex: -1,
@@ -13696,7 +13704,7 @@ OO.ui.NumberInputWidget = function OoUiNumberInputWidget( config ) {
 			config.minusButton
 		) );
 		this.minusButton.$element.attr( 'aria-hidden', 'true' );
-		this.plusButton = new OO.ui.ButtonWidget( $.extend(
+		this.plusButton = new OO.ui.ButtonWidget( Object.assign(
 			{
 				disabled: this.isDisabled(),
 				tabIndex: -1,
@@ -14073,7 +14081,7 @@ OO.ui.SelectFileInputWidget = function OoUiSelectFileInputWidget( config ) {
 	config = config || {};
 
 	// Construct buttons before parent method is called (calling setDisabled)
-	this.selectButton = new OO.ui.ButtonWidget( $.extend( {
+	this.selectButton = new OO.ui.ButtonWidget( Object.assign( {
 		$element: $( '<label>' ),
 		classes: [ 'oo-ui-selectFileInputWidget-selectButton' ],
 		label: OO.ui.msg(
@@ -14084,7 +14092,7 @@ OO.ui.SelectFileInputWidget = function OoUiSelectFileInputWidget( config ) {
 	}, config.button ) );
 
 	// Configuration initialization
-	config = $.extend( {
+	config = Object.assign( {
 		accept: null,
 		placeholder: OO.ui.msg( 'ooui-selectfile-placeholder' ),
 		$tabIndexed: this.selectButton.$tabIndexed,
@@ -14121,7 +14129,7 @@ OO.ui.SelectFileInputWidget = function OoUiSelectFileInputWidget( config ) {
 	OO.ui.SelectFileInputWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.mixin.RequiredElement.call( this, $.extend( {}, {
+	OO.ui.mixin.RequiredElement.call( this, Object.assign( {}, {
 		// TODO: Display the required indicator somewhere
 		indicatorElement: null
 	}, config ) );
@@ -14286,7 +14294,7 @@ OO.ui.SelectFileInputWidget.prototype.setValue = function ( files ) {
 		// Use extend to convert to plain objects so they can be compared.
 		// File objects contains name, size, timestamp and mime type which
 		// should be unique.
-		return $.extend( {}, file );
+		return Object.assign( {}, file );
 	}
 
 	if ( !OO.compare(

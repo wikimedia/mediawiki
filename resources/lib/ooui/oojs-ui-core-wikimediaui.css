@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.50.0
+ * OOUI v0.50.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-06-11T21:26:30Z
+ * Date: 2024-06-28T14:13:51Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -261,7 +261,7 @@
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-buttonElement-active > .oo-ui-buttonElement-button {
   background-color: var(--background-color-progressive--active, #2a4b8d);
-  color: var(--color-inverted, #fff);
+  color: var(--color-inverted-fixed, #fff);
   border-color: var(--border-color-input-binary--active, #2a4b8d);
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-buttonElement-active > .oo-ui-buttonElement-button:focus {
@@ -318,7 +318,7 @@
   box-shadow: none;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button {
-  color: var(--color-inverted, #fff);
+  color: var(--color-inverted-fixed, #fff);
   background-color: var(--color-progressive, #36c);
   border-color: var(--color-progressive, #36c);
 }
@@ -328,20 +328,20 @@
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:focus {
   border-color: var(--color-progressive--focus, #36c);
-  box-shadow: inset 0 0 0 1px var(--color-progressive--focus, #36c), inset 0 0 0 2px var(--color-inverted, #fff);
+  box-shadow: inset 0 0 0 1px var(--color-progressive--focus, #36c), inset 0 0 0 2px var(--color-inverted-fixed, #fff);
   outline: 1px solid transparent;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:active,
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive.oo-ui-popupToolGroup-active > .oo-ui-buttonElement-button {
-  color: var(--color-inverted, #fff);
+  color: var(--color-inverted-fixed, #fff);
   background-color: var(--color-progressive--active, #2a4b8d);
   border-color: var(--color-progressive--active, #2a4b8d);
   box-shadow: none;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button {
-  color: var(--color-inverted, #fff);
+  color: var(--color-inverted-fixed, #fff);
   background-color: var(--color-destructive, #d73333);
   border-color: var(--color-destructive, #d73333);
 }
@@ -351,14 +351,14 @@
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button:focus {
   border-color: var(--color-destructive--focus, #36c);
-  box-shadow: inset 0 0 0 1px var(--color-destructive--focus, #36c), inset 0 0 0 2px var(--color-inverted, #fff);
+  box-shadow: inset 0 0 0 1px var(--color-destructive--focus, #36c), inset 0 0 0 2px var(--color-inverted-fixed, #fff);
   outline: 1px solid transparent;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button:active,
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive.oo-ui-popupToolGroup-active > .oo-ui-buttonElement-button {
-  color: var(--color-inverted, #fff);
+  color: var(--color-inverted-fixed, #fff);
   background-color: var(--color-destructive--active, #b32424);
   border-color: var(--color-destructive--active, #b32424);
   box-shadow: none;
@@ -1179,7 +1179,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-popupWidget-head > .oo-ui-iconElement-icon {
   left: 0.78571429em;
-  /* stylelint-disable-next-line function-calc-no-unspaced-operator */
   height: calc(1.4285714em  + 2 *  9px);
 }
 .oo-ui-popupWidget-head > .oo-ui-iconElement-noIcon + .oo-ui-labelElement-label {
@@ -1433,7 +1432,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   z-index: 1;
 }
 .oo-ui-radioInputWidget [type='radio'] + span {
-  background-color: var(--background-color-base, #fff);
+  background-color: var(--background-color-base-fixed, #fff);
   position: absolute;
   left: 0;
   box-sizing: border-box;
@@ -1464,7 +1463,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border-color: var(--border-color-disabled, #c8ccd1);
 }
 .oo-ui-radioInputWidget [type='radio']:disabled:checked + span {
-  background-color: var(--background-color-base, #fff);
+  background-color: var(--background-color-base-fixed, #fff);
 }
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio'] {
   cursor: pointer;
@@ -1485,7 +1484,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border-color: var(--border-color-input-binary--checked, #36c);
 }
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:focus + span::before {
-  border-color: var(--background-color-base, #fff);
+  border-color: var(--background-color-base-fixed, #fff);
 }
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:hover + span {
   border-color: var(--border-color-progressive--hover, #447ff5);
@@ -1514,9 +1513,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   max-width: 50em;
 }
 .oo-ui-textInputWidget .oo-ui-inputWidget-input {
-  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   -webkit-appearance: none;
-  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   -moz-appearance: textfield;
   display: block;
   width: 100%;
@@ -1528,7 +1525,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-textInputWidget [type='number']::-webkit-outer-spin-button,
 .oo-ui-textInputWidget [type='number']::-webkit-inner-spin-button {
-  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   -webkit-appearance: none;
   margin: 0;
 }
@@ -1995,10 +1991,12 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   position: relative;
   z-index: 0;
   max-width: 50em;
+  overflow: hidden;
+}
+.oo-ui-progressBarWidget:not( .oo-ui-progressBarWidget-inline) {
   border: var(--border-base, 1px solid #a2a9b1);
   border-radius: 9999px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
-  overflow: hidden;
 }
 .oo-ui-progressBarWidget:not( .oo-ui-pendingElement-pending ) {
   background-color: var(--background-color-base, #fff);
@@ -2007,6 +2005,9 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   height: 1em;
   transition-property: width;
   transition-duration: 100ms;
+}
+.oo-ui-progressBarWidget-inline .oo-ui-progressBarWidget-bar {
+  height: 0.28571429em;
 }
 .oo-ui-progressBarWidget-indeterminate .oo-ui-progressBarWidget-bar {
   animation: oo-ui-progressBarWidget-slide 1.6s infinite linear;
