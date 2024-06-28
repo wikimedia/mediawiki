@@ -345,7 +345,8 @@ return [
 			$services->getLinksMigration(),
 			$services->getMainWANObjectCache(),
 			$services->getHookContainer(),
-			$services->getConnectionProvider()
+			$services->getConnectionProvider(),
+			LoggerFactory::getInstance( 'BacklinkCache' )
 		);
 	},
 

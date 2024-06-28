@@ -3,6 +3,7 @@
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinksMigration;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\PageReferenceValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 
@@ -23,7 +24,8 @@ class BacklinkCacheFactoryTest extends MediaWikiUnitTestCase {
 			$this->createMock( LinksMigration::class ),
 			$wanCache,
 			$this->createHookContainer(),
-			$dbProvider
+			$dbProvider,
+			LoggerFactory::getInstance( 'BacklinkCache' )
 		);
 		$cache = $factory->getBacklinkCache( $page );
 		$this->assertTrue( $cache->getPage()->isSamePageAs( $page ) );
