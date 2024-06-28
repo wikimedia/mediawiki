@@ -2,6 +2,7 @@
 
 namespace Wikimedia\ParamValidator\TypeDef;
 
+use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
@@ -26,6 +27,22 @@ class BooleanDef extends TypeDef {
 	public static $FALSEVALS = [ 'false', 'f', 'no', 'n', 'off', '0' ];
 
 	public function validate( $name, $value, array $settings, array $options ) {
+		if ( is_bool( $value ) ) {
+			return $value;
+		} elseif ( $options[ self::OPT_ENFORCE_JSON_TYPES ] ?? false ) {
+			$this->fatal(
+				$this->failureMessage( 'badbool-type' )
+					->params( gettype( $value ) ),
+				$name, $value, $settings, $options
+			);
+		} elseif ( $options[ self::OPT_LOG_BAD_TYPES ] ?? false ) {
+			// Temporary warning to detect misbehaving clients (T305973)
+			LoggerFactory::getInstance( 'api-warning' )->warning(
+				'ParamValidator: Encountered bad type for boolean parameter',
+				[ 'param-name' => $name, 'param-value' => $value, ]
+			);
+		}
+
 		$value = strtolower( $value );
 		if ( in_array( $value, self::$TRUEVALS, true ) ) {
 			return true;
@@ -34,7 +51,7 @@ class BooleanDef extends TypeDef {
 			return false;
 		}
 
-		$this->failure(
+		$this->fatal(
 			$this->failureMessage( 'badbool' )
 				->textListParams( array_map( [ $this, 'quoteVal' ], self::$TRUEVALS ) )
 				->numParams( count( self::$TRUEVALS ) )
