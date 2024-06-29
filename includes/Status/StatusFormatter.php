@@ -115,7 +115,7 @@ class StatusFormatter {
 			foreach ( $errors as &$error ) {
 				$error = $error->plain();
 			}
-			$s = '* ' . implode( "\n* ", $errors ) . "\n";
+			$s = "<ul>\n<li>\n" . implode( "\n</li>\n<li>\n", $errors ) . "\n</li>\n</ul>\n";
 			if ( $longContext ) {
 				$s = $this->msgInLang( $longContext, $lang, $s )->plain();
 			} elseif ( $shortContext ) {

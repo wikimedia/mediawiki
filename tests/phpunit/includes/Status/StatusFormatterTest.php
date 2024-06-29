@@ -26,7 +26,7 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 		$cache->method( 'parse' )->willReturnCallback(
 			static function ( $text ) {
 				$text = html_entity_decode( $text, ENT_QUOTES | ENT_HTML5 );
-				return "<p>" . htmlspecialchars( trim( $text ) ) . "\n</p>";
+				return "<p>" . trim( $text ) . "\n</p>";
 			}
 		);
 
@@ -154,10 +154,10 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 		$status->warning( 'fooBar2!' );
 		$testCases['2StringWarnings'] = [
 			$status,
-			"* ⧼fooBar!⧽\n* ⧼fooBar2!⧽\n",
-			"(wrap-long: * (fooBar!)\n* (fooBar2!)\n)",
-			"<p>* ⧼fooBar!⧽\n* ⧼fooBar2!⧽\n</p>",
-			"<p>(wrap-long: * (fooBar!)\n* (fooBar2!)\n)\n</p>",
+			"<ul>\n<li>\n⧼fooBar!⧽\n</li>\n<li>\n⧼fooBar2!⧽\n</li>\n</ul>\n",
+			"(wrap-long: <ul>\n<li>\n(fooBar!)\n</li>\n<li>\n(fooBar2!)\n</li>\n</ul>\n)",
+			"<p><ul>\n<li>\n⧼fooBar!⧽\n</li>\n<li>\n⧼fooBar2!⧽\n</li>\n</ul>\n</p>",
+			"<p>(wrap-long: <ul>\n<li>\n(fooBar!)\n</li>\n<li>\n(fooBar2!)\n</li>\n</ul>\n)\n</p>",
 		];
 
 		$status = new StatusValue();
@@ -175,10 +175,10 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 		$status->warning( new Message( 'fooBar2!' ) );
 		$testCases['2MessageWarnings'] = [
 			$status,
-			"* ⧼fooBar!⧽\n* ⧼fooBar2!⧽\n",
-			"(wrap-long: * (fooBar!: foo, bar)\n* (fooBar2!)\n)",
-			"<p>* ⧼fooBar!⧽\n* ⧼fooBar2!⧽\n</p>",
-			"<p>(wrap-long: * (fooBar!: foo, bar)\n* (fooBar2!)\n)\n</p>",
+			"<ul>\n<li>\n⧼fooBar!⧽\n</li>\n<li>\n⧼fooBar2!⧽\n</li>\n</ul>\n",
+			"(wrap-long: <ul>\n<li>\n(fooBar!: foo, bar)\n</li>\n<li>\n(fooBar2!)\n</li>\n</ul>\n)",
+			"<p><ul>\n<li>\n⧼fooBar!⧽\n</li>\n<li>\n⧼fooBar2!⧽\n</li>\n</ul>\n</p>",
+			"<p>(wrap-long: <ul>\n<li>\n(fooBar!: foo, bar)\n</li>\n<li>\n(fooBar2!)\n</li>\n</ul>\n)\n</p>",
 		];
 
 		return $testCases;
@@ -345,7 +345,7 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 			],
 			'two errors' => [
 				[ [ 'rawmessage_2', 'foo' ], [ 'rawmessage_2', 'bar' ] ],
-				"* foo\n* bar\n",
+				"<ul>\n<li>\nfoo\n</li>\n<li>\nbar\n</li>\n</ul>\n",
 				[],
 			],
 			'unknown subclass' => [
