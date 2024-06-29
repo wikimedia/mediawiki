@@ -12,6 +12,7 @@ use Psr\Log\NullLogger;
 use RuntimeException;
 use Throwable;
 use Wikimedia\ObjectCache\HashBagOStuff;
+use Wikimedia\Rdbms\AndExpressionGroup;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\Database\DatabaseFlags;
 use Wikimedia\Rdbms\DatabaseDomain;
@@ -19,9 +20,11 @@ use Wikimedia\Rdbms\DBLanguageError;
 use Wikimedia\Rdbms\DBReadOnlyRoleError;
 use Wikimedia\Rdbms\DBTransactionStateError;
 use Wikimedia\Rdbms\DBUnexpectedError;
+use Wikimedia\Rdbms\Expression;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactorySingle;
+use Wikimedia\Rdbms\OrExpressionGroup;
 use Wikimedia\Rdbms\Platform\SQLPlatform;
 use Wikimedia\Rdbms\QueryStatus;
 use Wikimedia\Rdbms\Replication\ReplicationReporter;
@@ -907,6 +910,12 @@ class DatabaseTest extends TestCase {
 
 		$db->query( "SELECT 1", __METHOD__ );
 		$this->assertTrue( true, "No exception on next query" );
+	}
+
+	public function testExpr() {
+		$this->assertInstanceOf( Expression::class, $this->db->expr( 'key', '=', null ) );
+		$this->assertInstanceOf( AndExpressionGroup::class, $this->db->andExpr( [ 'key' => null, $this->db->expr( 'key', '=', null ) ] ) );
+		$this->assertInstanceOf( OrExpressionGroup::class, $this->db->orExpr( [ 'key' => null, $this->db->expr( 'key', '=', null ) ] ) );
 	}
 
 	private function corruptDbState( $db ) {

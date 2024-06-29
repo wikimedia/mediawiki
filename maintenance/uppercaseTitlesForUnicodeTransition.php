@@ -29,7 +29,6 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\LikeValue;
-use Wikimedia\Rdbms\OrExpressionGroup;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -222,12 +221,12 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 				new LikeValue( $from, $db->anyString() )
 			);
 			if ( count( $likes ) >= $batchSize ) {
-				$ret[] = new OrExpressionGroup( ...$likes );
+				$ret[] = $db->orExpr( $likes );
 				$likes = [];
 			}
 		}
 		if ( $likes ) {
-			$ret[] = new OrExpressionGroup( ...$likes );
+			$ret[] = $db->orExpr( $likes );
 		}
 		return $ret;
 	}

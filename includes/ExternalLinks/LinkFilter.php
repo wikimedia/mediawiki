@@ -29,7 +29,6 @@ use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeMatch;
 use Wikimedia\Rdbms\LikeValue;
-use Wikimedia\Rdbms\OrExpressionGroup;
 
 /**
  * Utilities for formatting and querying the externallinks table.
@@ -384,7 +383,7 @@ class LinkFilter {
 		$index2 = implode( '', $trimmedlikePath );
 
 		return [
-			new OrExpressionGroup( ...$domainConditions ),
+			$db->orExpr( $domainConditions ),
 			$db->expr( 'el_to_path', IExpression::LIKE, new LikeValue( $index2, $db->anyString() ) ),
 		];
 	}

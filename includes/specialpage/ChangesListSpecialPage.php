@@ -41,13 +41,11 @@ use MediaWiki\User\UserIdentityUtils;
 use MWExceptionHandler;
 use OOUI\IconWidget;
 use RecentChange;
-use Wikimedia\Rdbms\AndExpressionGroup;
 use Wikimedia\Rdbms\DBQueryTimeoutError;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
-use Wikimedia\Rdbms\OrExpressionGroup;
 use Wikimedia\Rdbms\RawSQLValue;
 
 /**
@@ -1881,9 +1879,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$columnConds = [
 			'unregistered' => $isUnregistered,
 			'registered' => $isRegistered,
-			'newcomer' => new AndExpressionGroup( $isRegistered, $notAboveNewcomer ),
-			'learner' => new AndExpressionGroup( $isRegistered, $aboveNewcomer, $notAboveLearner ),
-			'experienced' => new AndExpressionGroup( $isRegistered, $aboveLearner ),
+			'newcomer' => $dbr->andExpr( [ $isRegistered, $notAboveNewcomer ] ),
+			'learner' => $dbr->andExpr( [ $isRegistered, $aboveNewcomer, $notAboveLearner ] ),
+			'experienced' => $dbr->andExpr( [ $isRegistered, $aboveLearner ] ),
 		];
 
 		// There are some cases where we can easily optimize away some queries:
@@ -1910,7 +1908,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			return;
 		}
 		$selectedColumnConds = array_values( array_intersect_key( $columnConds, $selected ) );
-		$conds[] = new OrExpressionGroup( ...$selectedColumnConds );
+		$conds[] = $dbr->orExpr( $selectedColumnConds );
 
 		// Add necessary tables to the queries.
 		$join_conds['recentchanges_actor'] = [ 'JOIN', 'actor_id=rc_actor' ];

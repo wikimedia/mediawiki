@@ -486,11 +486,13 @@ class TaintCheckAnnotationsTest {
 		$andExpr->and( $_GET['field'], '=', 'a' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$andExpr->and( 'a', $_GET['op'], 'a' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$andExpr->and( 'a', '=', $_GET['value'] ); // Safe
+		$andExpr2 = $db->andExpr( [ $safeExpr ] );
 
 		$orExpr = $safeExpr->orExpr( $safeExpr );
 		$orExpr->or( $_GET['field'], '=', 'a' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$orExpr->or( 'a', $_GET['op'], 'a' ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		$orExpr->or( 'a', '=', $_GET['value'] ); // Safe
+		$orExpr2 = $db->orExpr( [ $safeExpr ] );
 
 		$unsafeExpr = new Expression( $_GET['a'], $_GET['a'], $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 

@@ -24,7 +24,6 @@ use InvalidArgumentException;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
-use Wikimedia\Rdbms\OrExpressionGroup;
 
 /**
  * Track per-module file dependencies in the core module_deps table
@@ -135,7 +134,7 @@ class SqlModuleDependencyStore extends DependencyStore {
 		if ( $disjunctionConds ) {
 			$dbw->newDeleteQueryBuilder()
 				->deleteFrom( 'module_deps' )
-				->where( new OrExpressionGroup( ...$disjunctionConds ) )
+				->where( $dbw->orExpr( $disjunctionConds ) )
 				->caller( __METHOD__ )->execute();
 		}
 	}
@@ -165,7 +164,7 @@ class SqlModuleDependencyStore extends DependencyStore {
 			$res = $db->newSelectQueryBuilder()
 				->select( [ 'md_module', 'md_skin', 'md_deps' ] )
 				->from( 'module_deps' )
-				->where( new OrExpressionGroup( ...$disjunctionConds ) )
+				->where( $db->orExpr( $disjunctionConds ) )
 				->caller( __METHOD__ )->fetchResultSet();
 
 			foreach ( $res as $row ) {

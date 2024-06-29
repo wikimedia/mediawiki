@@ -7,13 +7,16 @@ use LogicException;
 use MediaWikiCoversValidator;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Wikimedia\Rdbms\AndExpressionGroup;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DBReadOnlyRoleError;
 use Wikimedia\Rdbms\DBUnexpectedError;
+use Wikimedia\Rdbms\Expression;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\OrExpressionGroup;
 
 /**
  * @covers \Wikimedia\Rdbms\DBConnRef
@@ -169,6 +172,13 @@ class DBConnRefTest extends TestCase {
 		// select should get passed through normally
 		$ref = $this->getDBConnRef();
 		$this->assertInstanceOf( IResultWrapper::class, $ref->select( 'whatever', '*' ) );
+	}
+
+	public function testExpr() {
+		$ref = $this->getDBConnRef();
+		$this->assertInstanceOf( Expression::class, $ref->expr( 'key', '=', null ) );
+		$this->assertInstanceOf( AndExpressionGroup::class, $ref->andExpr( [ 'key' => null, $ref->expr( 'key', '=', null ) ] ) );
+		$this->assertInstanceOf( OrExpressionGroup::class, $ref->orExpr( [ 'key' => null, $ref->expr( 'key', '=', null ) ] ) );
 	}
 
 	public function testToString() {

@@ -7,7 +7,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
-use Wikimedia\Rdbms\OrExpressionGroup;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -123,7 +122,7 @@ class GrepPages extends Maintenance {
 		}
 		$res = $dbr->newSelectQueryBuilder()
 			->queryInfo( WikiPage::getQueryInfo() )
-			->where( $orConds ? new OrExpressionGroup( ...$orConds ) : [] )
+			->where( $orConds ? $dbr->orExpr( $orConds ) : [] )
 			->caller( __METHOD__ )
 			->fetchResultSet();
 		foreach ( $res as $row ) {

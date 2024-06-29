@@ -26,7 +26,6 @@ use MediaWiki\Title\MediaWikiTitleCodec;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
-use Wikimedia\Rdbms\OrExpressionGroup;
 
 /**
  * Handles searching prefixes of titles and finding any page
@@ -298,7 +297,7 @@ abstract class PrefixSearch {
 		$queryBuilder = $dbr->newSelectQueryBuilder()
 			->select( [ 'page_id', 'page_namespace', 'page_title' ] )
 			->from( 'page' )
-			->where( new OrExpressionGroup( ...$conds ) )
+			->where( $dbr->orExpr( $conds ) )
 			->orderBy( [ 'page_title', 'page_namespace' ] )
 			->limit( $limit )
 			->offset( $offset );

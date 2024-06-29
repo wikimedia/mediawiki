@@ -6,10 +6,8 @@ use BadMethodCallException;
 use InvalidArgumentException;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Utils\MWTimestamp;
-use Wikimedia\Rdbms\AndExpressionGroup;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
-use Wikimedia\Rdbms\OrExpressionGroup;
 
 /**
  * The real TempUserConfig including internal methods used by TempUserCreator.
@@ -180,9 +178,9 @@ class RealTempUserConfig implements TempUserConfig {
 				return $exprs[0];
 			}
 			if ( $op === IExpression::LIKE ) {
-				return new OrExpressionGroup( ...$exprs );
+				return $db->orExpr( $exprs );
 			} elseif ( $op === IExpression::NOT_LIKE ) {
-				return new AndExpressionGroup( ...$exprs );
+				return $db->andExpr( $exprs );
 			} else {
 				throw new InvalidArgumentException( "Invalid operator $op" );
 			}

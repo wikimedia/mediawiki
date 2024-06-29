@@ -1556,6 +1556,14 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		return new Expression( $field, $op, $value );
 	}
 
+	public function andExpr( array $conds ): AndExpressionGroup {
+		return AndExpressionGroup::newFromArray( $conds );
+	}
+
+	public function orExpr( array $conds ): OrExpressionGroup {
+		return OrExpressionGroup::newFromArray( $conds );
+	}
+
 	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {
 		$uniqueKey = $this->platform->normalizeUpsertParams( $uniqueKeys, $rows );
 		if ( !$rows ) {

@@ -665,6 +665,28 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	public function expr( string $field, string $op, $value ): Expression;
 
 	/**
+	 * See Expression::__construct()
+	 *
+	 * @since 1.43
+	 * @param non-empty-array<string,?scalar|RawSQLValue|Blob|LikeValue|non-empty-list<scalar|Blob>>|non-empty-array<int,IExpression> $conds
+	 * @param-taint $conds exec_sql_numkey
+	 * @return AndExpressionGroup
+	 * @phan-side-effect-free
+	 */
+	public function andExpr( array $conds ): AndExpressionGroup;
+
+	/**
+	 * See Expression::__construct()
+	 *
+	 * @since 1.43
+	 * @param non-empty-array<string,?scalar|RawSQLValue|Blob|LikeValue|non-empty-list<scalar|Blob>>|non-empty-array<int,IExpression> $conds
+	 * @param-taint $conds exec_sql_numkey
+	 * @return OrExpressionGroup
+	 * @phan-side-effect-free
+	 */
+	public function orExpr( array $conds ): OrExpressionGroup;
+
+	/**
 	 * Get a debugging string that mentions the database type, the ID of this instance,
 	 * and the ID of any underlying connection resource or driver object if one is present
 	 *

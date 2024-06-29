@@ -25,7 +25,6 @@ use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
-use Wikimedia\Rdbms\OrExpressionGroup;
 
 require_once __DIR__ . '/../Maintenance.php';
 
@@ -114,7 +113,7 @@ class TrackBlobs extends Maintenance {
 					new LikeValue( "DB://$cluster/", $dbr->anyString() )
 				);
 			}
-			$this->textClause = new OrExpressionGroup( ...$conds );
+			$this->textClause = $dbr->orExpr( $conds );
 		}
 
 		return $this->textClause;

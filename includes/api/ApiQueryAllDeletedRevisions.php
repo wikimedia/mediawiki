@@ -265,7 +265,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 						}
 						$where[] = $expr;
 					}
-					$this->addWhere( $db->makeList( $where, LIST_OR ) );
+					$this->addWhere( $db->orExpr( $where ) );
 				}
 			}
 
@@ -287,7 +287,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 							->and( 'ar_title', IExpression::LIKE,
 								new LikeValue( $prefixTitlePart, $db->anyString() ) );
 					}
-					$this->addWhere( $db->makeList( $where, LIST_OR ) );
+					$this->addWhere( $db->orExpr( $where ) );
 				}
 			}
 		} else {

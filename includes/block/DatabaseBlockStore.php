@@ -45,7 +45,7 @@ use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LikeValue;
-use Wikimedia\Rdbms\OrExpressionGroup;
+use Wikimedia\Rdbms\RawSQLExpression;
 use Wikimedia\Rdbms\RawSQLValue;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -396,7 +396,7 @@ class DatabaseBlockStore {
 			$orConds[] = $db->expr( 'bt_address', '=', array_unique( $addresses ) );
 		}
 		foreach ( $ranges as $range ) {
-			$orConds[] = $this->getRangeCond( $range[0], $range[1] );
+			$orConds[] = new RawSQLExpression( $this->getRangeCond( $range[0], $range[1] ) );
 		}
 		if ( !$orConds ) {
 			return [];
@@ -405,7 +405,7 @@ class DatabaseBlockStore {
 		$blockQuery = $this->getQueryInfo();
 		$res = $db->newSelectQueryBuilder()
 			->queryInfo( $blockQuery )
-			->where( $db->makeList( $orConds, IDatabase::LIST_OR ) )
+			->where( $db->orExpr( $orConds ) )
 			->caller( __METHOD__ )
 			->fetchResultSet();
 
@@ -541,11 +541,11 @@ class DatabaseBlockStore {
 				->and( 'bt_range_end', '>=', $end );
 			if ( $start === $end ) {
 				// Also select single IP blocks for this target
-				$expr = new OrExpressionGroup(
+				$expr = $dbr->orExpr( [
 					$dbr->expr( 'bt_ip_hex', '=', $start )
 						->and( 'bt_range_start', '=', null ),
 					$expr
-				);
+				] );
 			}
 			return $expr->toSql( $dbr );
 		} else {
@@ -1361,10 +1361,10 @@ class DatabaseBlockStore {
 			->select( [ 'bl_id', 'bl_target' ] )
 			->from( 'block' )
 			->where(
-				$dbw->makeList( [
+				$dbw->orExpr( [
 					'bl_parent_block_id' => $blockId,
 					'bl_id' => $blockId,
-				], IDatabase::LIST_OR )
+				] )
 			)
 			->caller( __METHOD__ )->fetchResultSet();
 		$this->deleteBlockRows( $res );

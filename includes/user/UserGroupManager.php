@@ -41,7 +41,6 @@ use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\IReadableDatabase;
-use Wikimedia\Rdbms\OrExpressionGroup;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
@@ -1058,7 +1057,7 @@ class UserGroupManager {
 				// Delete the rows we're about to move
 				$dbw->newDeleteQueryBuilder()
 					->deleteFrom( 'user_groups' )
-					->where( new OrExpressionGroup( ...$deleteCond ) )
+					->where( $dbw->orExpr( $deleteCond ) )
 					->caller( __METHOD__ )->execute();
 				// Push the groups to user_former_groups
 				$dbw->newInsertQueryBuilder()

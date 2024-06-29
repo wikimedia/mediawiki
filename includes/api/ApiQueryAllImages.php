@@ -33,7 +33,6 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\LikeValue;
-use Wikimedia\Rdbms\OrExpressionGroup;
 
 /**
  * Query module to enumerate all images.
@@ -273,7 +272,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 						->and( 'img_minor_mime', '=', $minor );
 			}
 			if ( count( $mimeConds ) > 0 ) {
-				$this->addWhere( new OrExpressionGroup( ...$mimeConds ) );
+				$this->addWhere( $db->orExpr( $mimeConds ) );
 			} else {
 				// no MIME types, no files
 				$this->getResult()->addValue( 'query', $this->getModuleName(), [] );

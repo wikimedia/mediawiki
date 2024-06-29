@@ -523,7 +523,18 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 	}
 
 	public function expr( string $field, string $op, $value ): Expression {
+		// Does not use __call here to delay creating the db connection
 		return new Expression( $field, $op, $value );
+	}
+
+	public function andExpr( array $conds ): AndExpressionGroup {
+		// Does not use __call here to delay creating the db connection
+		return AndExpressionGroup::newFromArray( $conds );
+	}
+
+	public function orExpr( array $conds ): OrExpressionGroup {
+		// Does not use __call here to delay creating the db connection
+		return OrExpressionGroup::newFromArray( $conds );
 	}
 
 	public function addIdentifierQuotes( $s ) {

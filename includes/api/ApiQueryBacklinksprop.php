@@ -28,7 +28,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
-use Wikimedia\Rdbms\OrExpressionGroup;
 
 /**
  * This implements prop=redirects, prop=linkshere, prop=catmembers,
@@ -252,7 +251,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 					$where[] = $db->expr( $bl_title, '=', $t->getDBkey() );
 				}
 			}
-			$this->addWhere( new OrExpressionGroup( ...$where ) );
+			$this->addWhere( $db->orExpr( $where ) );
 		}
 
 		if ( $params['show'] !== null ) {

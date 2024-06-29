@@ -35,7 +35,6 @@ use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LikeValue;
-use Wikimedia\Rdbms\OrExpressionGroup;
 
 /**
  * Local repository that stores files in the local filesystem and registers them
@@ -388,7 +387,7 @@ class LocalRepo extends FileRepo {
 		if ( count( $oiConds ) ) {
 			$queryBuilder = FileSelectQueryBuilder::newForOldFile( $dbr );
 
-			$res = $queryBuilder->where( new OrExpressionGroup( ...$oiConds ) )
+			$res = $queryBuilder->where( $dbr->orExpr( $oiConds ) )
 				->caller( __METHOD__ )->fetchResultSet();
 			$applyMatchingFiles( $res, $searchSet, $finalFiles );
 		}

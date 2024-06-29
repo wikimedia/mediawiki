@@ -24,7 +24,6 @@ use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
-use Wikimedia\Rdbms\OrExpressionGroup;
 
 /**
  * This is a three-in-one module to query:
@@ -280,7 +279,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$allRedirNs[$redirNs] = true;
 			$allRedirDBkey[$redirDBkey] = true;
 		}
-		$this->addWhere( new OrExpressionGroup( ...$titleWhere ) );
+		$this->addWhere( $db->orExpr( $titleWhere ) );
 		$this->addWhereFld( 'page_namespace', $this->params['namespace'] );
 
 		if ( count( $this->cont ) >= 6 ) {
