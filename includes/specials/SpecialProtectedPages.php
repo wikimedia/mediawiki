@@ -21,7 +21,6 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Cache\LinkBatchFactory;
-use MediaWiki\Cache\UserCache;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\HTMLForm\Field\HTMLMultiSelectField;
@@ -46,7 +45,6 @@ class SpecialProtectedPages extends SpecialPage {
 	private LinkBatchFactory $linkBatchFactory;
 	private IConnectionProvider $dbProvider;
 	private CommentStore $commentStore;
-	private UserCache $userCache;
 	private RowCommentFormatter $rowCommentFormatter;
 	private RestrictionStore $restrictionStore;
 
@@ -54,7 +52,6 @@ class SpecialProtectedPages extends SpecialPage {
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param IConnectionProvider $dbProvider
 	 * @param CommentStore $commentStore
-	 * @param UserCache $userCache
 	 * @param RowCommentFormatter $rowCommentFormatter
 	 * @param RestrictionStore $restrictionStore
 	 */
@@ -62,7 +59,6 @@ class SpecialProtectedPages extends SpecialPage {
 		LinkBatchFactory $linkBatchFactory,
 		IConnectionProvider $dbProvider,
 		CommentStore $commentStore,
-		UserCache $userCache,
 		RowCommentFormatter $rowCommentFormatter,
 		RestrictionStore $restrictionStore
 	) {
@@ -70,7 +66,6 @@ class SpecialProtectedPages extends SpecialPage {
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->dbProvider = $dbProvider;
 		$this->commentStore = $commentStore;
-		$this->userCache = $userCache;
 		$this->rowCommentFormatter = $rowCommentFormatter;
 		$this->restrictionStore = $restrictionStore;
 	}
@@ -100,7 +95,6 @@ class SpecialProtectedPages extends SpecialPage {
 			$this->getLinkRenderer(),
 			$this->dbProvider,
 			$this->rowCommentFormatter,
-			$this->userCache,
 			[],
 			$type,
 			$level,

@@ -24,7 +24,6 @@ namespace MediaWiki\Pager;
 use LogEventsList;
 use LogPage;
 use MediaWiki\Cache\LinkBatchFactory;
-use MediaWiki\Cache\UserCache;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Context\IContextSource;
@@ -52,7 +51,6 @@ class ProtectedPagesPager extends TablePager {
 
 	private CommentStore $commentStore;
 	private LinkBatchFactory $linkBatchFactory;
-	private UserCache $userCache;
 	private RowCommentFormatter $rowCommentFormatter;
 
 	/** @var string[] */
@@ -65,7 +63,6 @@ class ProtectedPagesPager extends TablePager {
 	 * @param LinkRenderer $linkRenderer
 	 * @param IConnectionProvider $dbProvider
 	 * @param RowCommentFormatter $rowCommentFormatter
-	 * @param UserCache $userCache
 	 * @param array $conds
 	 * @param string $type
 	 * @param string $level
@@ -83,7 +80,6 @@ class ProtectedPagesPager extends TablePager {
 		LinkRenderer $linkRenderer,
 		IConnectionProvider $dbProvider,
 		RowCommentFormatter $rowCommentFormatter,
-		UserCache $userCache,
 		$conds,
 		$type,
 		$level,
@@ -100,7 +96,6 @@ class ProtectedPagesPager extends TablePager {
 		$this->commentStore = $commentStore;
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->rowCommentFormatter = $rowCommentFormatter;
-		$this->userCache = $userCache;
 		$this->mConds = $conds;
 		$this->type = $type ?: 'edit';
 		$this->level = $level;
@@ -115,28 +110,17 @@ class ProtectedPagesPager extends TablePager {
 	public function preprocessResults( $result ) {
 		# Do a link batch query
 		$lb = $this->linkBatchFactory->newLinkBatch();
-		$userids = [];
 		$rowsWithComments = [];
 
 		foreach ( $result as $row ) {
 			$lb->add( $row->page_namespace, $row->page_title );
-			if ( $row->actor_user !== null ) {
-				$userids[] = $row->actor_user;
+			// for old protection rows, user and comment are missing
+			if ( $row->actor_name !== null ) {
+				$lb->add( NS_USER, $row->actor_name );
+				$lb->add( NS_USER_TALK, $row->actor_name );
 			}
 			if ( $row->log_timestamp !== null ) {
 				$rowsWithComments[] = $row;
-			}
-		}
-
-		// fill LinkBatch with user page and user talk
-		if ( count( $userids ) ) {
-			$this->userCache->doQuery( $userids, [], __METHOD__ );
-			foreach ( $userids as $userid ) {
-				$name = $this->userCache->getProp( $userid, 'name' );
-				if ( $name !== false ) {
-					$lb->add( NS_USER, $name );
-					$lb->add( NS_USER_TALK, $name );
-				}
 			}
 		}
 

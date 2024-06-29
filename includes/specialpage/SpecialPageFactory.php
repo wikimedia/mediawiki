@@ -286,7 +286,6 @@ class SpecialPageFactory {
 				'LinkBatchFactory',
 				'ConnectionProvider',
 				'CommentStore',
-				'UserCache',
 				'RowCommentFormatter',
 				'RestrictionStore',
 			]
