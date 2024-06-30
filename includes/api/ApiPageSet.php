@@ -617,7 +617,7 @@ class ApiPageSet extends ApiBase {
 	 */
 	public function getRedirectTitlesAsResult( $result = null ) {
 		$values = [];
-		foreach ( $this->getRedirectTitles() as $titleStrFrom => $titleTo ) {
+		foreach ( $this->mRedirectTitles as $titleStrFrom => $titleTo ) {
 			$r = [
 				'from' => strval( $titleStrFrom ),
 				'to' => $titleTo->getPrefixedText(),
@@ -753,10 +753,10 @@ class ApiPageSet extends ApiBase {
 	 * @param string[] $invalidChecks List of types of invalid titles to include.
 	 *   Recognized values are:
 	 *   - invalidTitles: Titles and reasons from $this->getInvalidTitlesAndReasons()
-	 *   - special: Titles from $this->getSpecialTitles()
+	 *   - special: Titles from $this->getSpecialPages()
 	 *   - missingIds: ids from $this->getMissingPageIDs()
 	 *   - missingRevIds: ids from $this->getMissingRevisionIDs()
-	 *   - missingTitles: Titles from $this->getMissingTitles()
+	 *   - missingTitles: Titles from $this->getMissingPages()
 	 *   - interwikiTitles: Titles from $this->getInterwikiTitlesAsResult()
 	 * @return array Array suitable for inclusion in the response
 	 * @since 1.23
@@ -771,7 +771,7 @@ class ApiPageSet extends ApiBase {
 		if ( in_array( 'special', $invalidChecks ) ) {
 			$known = [];
 			$unknown = [];
-			foreach ( $this->getSpecialTitles() as $title ) {
+			foreach ( $this->mSpecialTitles as $title ) {
 				if ( $title->isKnown() ) {
 					$known[] = $title;
 				} else {
@@ -790,7 +790,7 @@ class ApiPageSet extends ApiBase {
 		if ( in_array( 'missingTitles', $invalidChecks ) ) {
 			$known = [];
 			$unknown = [];
-			foreach ( $this->getMissingTitles() as $title ) {
+			foreach ( $this->mMissingTitles as $title ) {
 				if ( $title->isKnown() ) {
 					$known[] = $title;
 				} else {
