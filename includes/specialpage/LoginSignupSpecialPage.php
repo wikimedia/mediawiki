@@ -59,12 +59,31 @@ use Wikimedia\ScopedCallback;
  * @ingroup Auth
  */
 abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
-	protected $mReturnTo;
+
+	/**
+	 * The title of the page to return to after authentication finishes, or the empty string
+	 * when there is no return target.
+	 * Typically comes from the 'returnto' URL parameter. Validating and normalizing is the
+	 * caller's responsibility.
+	 * @var string
+	 */
+	protected string $mReturnTo;
+	/**
+	 * The query string part of the URL to return to after authentication finishes.
+	 * Typically comes from the 'returntoquery' URL parameter.
+	 * @var string
+	 */
+	protected string $mReturnToQuery;
+	/**
+	 * The fragment part of the URL to return to after authentication finishes.
+	 * When not empty, should include the '#' character.
+	 * Typically comes from the 'returntoanchor' URL parameter.
+	 * @var string
+	 */
+	protected string $mReturnToAnchor;
+
 	protected $mPosted;
 	protected $mAction;
-	protected $mLanguage;
-	protected $mVariant;
-	protected $mReturnToQuery;
 	protected $mToken;
 	protected $mStickHTTPS;
 	protected $mFromHTTP;
@@ -129,10 +148,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$this->mStickHTTPS = $this->getConfig()->get( MainConfigNames::ForceHTTPS )
 			|| ( !$this->mFromHTTP && $request->getProtocol() === 'https' )
 			|| $request->getBool( 'wpForceHttps', false );
-		$this->mLanguage = $request->getText( 'uselang' );
-		$this->mVariant = $request->getText( 'variant' );
 		$this->mReturnTo = $request->getVal( 'returnto', '' );
 		$this->mReturnToQuery = $request->getVal( 'returntoquery', '' );
+		$this->mReturnToAnchor = $request->getVal( 'returntoanchor', '' );
 		if ( $request->getVal( 'display' ) === 'popup' ) {
 			$this->mDisplay = 'popup';
 		}
@@ -173,15 +191,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			$this->getPageTitle(),
 			$this->msg( 'loginreqlink' )->text(),
 			[],
-			[
-				'returnto' => $this->mReturnTo,
-				'returntoquery' => $this->mReturnToQuery,
-				'display' => $this->mDisplay !== 'page' ? $this->mDisplay : null,
-				'uselang' => $this->mLanguage ?: null,
-				'variant' => $this->mVariant ?: null,
-				'fromhttp' => $this->getConfig()->get( MainConfigNames::SecureLogin ) &&
-					$this->mFromHTTP ? '1' : null,
-			]
+			$this->getPreservedParams( [ 'reset' => true ] )
 		);
 
 		// Only show valid error or warning messages.
@@ -211,19 +221,35 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		}
 	}
 
-	protected function getPreservedParams( $withToken = false ) {
-		$params = parent::getPreservedParams( $withToken );
-		$params += [
-			'returnto' => $this->mReturnTo ?: null,
-			'returntoquery' => $this->mReturnToQuery ?: null,
+	/** @inheritDoc */
+	protected function getPreservedParams( $options = [] ) {
+		$params = parent::getPreservedParams( $options );
+
+		// Override returnto* with their property-based values, to account for the
+		// special-casing in load().
+		$this->loadRequestParameters();
+		$properties = [
+			'returnto' => 'mReturnTo',
+			'returntoquery' => 'mReturnToQuery',
+			'returntoanchor' => 'mReturnToAnchor',
 		];
+		foreach ( $properties as $key => $prop ) {
+			$value = $this->$prop;
+			if ( $value !== '' ) {
+				$params[$key] = $value;
+			} else {
+				unset( $params[$key] );
+			}
+		}
+
 		if ( $this->getConfig()->get( MainConfigNames::SecureLogin ) && !$this->isSignup() ) {
 			$params['fromhttp'] = $this->mFromHTTP ? '1' : null;
 		}
 		if ( $this->mDisplay !== 'page' ) {
 			$params['display'] = $this->mDisplay;
 		}
-		return $params;
+
+		return array_filter( $params, fn ( $val ) => $val !== null );
 	}
 
 	protected function beforeExecute( $subPage ) {
@@ -314,7 +340,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		// If logging in and not on HTTPS, either redirect to it or offer a link.
 		if ( $this->getRequest()->getProtocol() !== 'https' ) {
 			$title = $this->getFullTitle();
-			$query = $this->getPreservedParams( false ) + [
+			$query = $this->getPreservedParams() + [
 					'title' => null,
 					( $this->mEntryErrorType === 'error' ? 'error'
 						: 'warning' ) => $this->mEntryError,
@@ -365,7 +391,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$response = $status->getValue();
 
 		$returnToUrl = $this->getPageTitle( 'return' )
-			->getFullURL( $this->getPreservedParams( true ), false, PROTO_HTTPS );
+			->getFullURL( $this->getPreservedParams( [ 'withToken' => true ] ), false, PROTO_HTTPS );
 		switch ( $response->status ) {
 			case AuthenticationResponse::PASS:
 				$this->logAuthResult( true );
@@ -503,29 +529,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$out->addHTML( $injected_html );
 
 		$helper = new LoginHelper( $this->getContext() );
-		$helper->showReturnToPage( $type, $this->mReturnTo, $this->mReturnToQuery, $this->mStickHTTPS );
-	}
-
-	/**
-	 * Add a "return to" link or redirect to it.
-	 * Extensions can use this to reuse the "return to" logic after
-	 * inject steps (such as redirection) into the login process.
-	 *
-	 * @param string $type One of the following:
-	 *    - error: display a return to link ignoring $wgRedirectOnLogin
-	 *    - signup: display a return to link using $wgRedirectOnLogin if needed
-	 *    - success: display a return to link using $wgRedirectOnLogin if needed
-	 *    - successredirect: send an HTTP redirect using $wgRedirectOnLogin if needed
-	 * @param string $returnTo
-	 * @param array|string $returnToQuery
-	 * @param bool $stickHTTPS Keep redirect link on HTTPS
-	 * @since 1.22
-	 */
-	public function showReturnToPage(
-		$type, $returnTo = '', $returnToQuery = '', $stickHTTPS = false
-	) {
-		$helper = new LoginHelper( $this->getContext() );
-		$helper->showReturnToPage( $type, $returnTo, $returnToQuery, $stickHTTPS );
+		$helper->showReturnToPage( $type, $this->mReturnTo, $this->mReturnToQuery,
+			$this->mStickHTTPS, $this->mReturnToAnchor );
 	}
 
 	/**
@@ -770,12 +775,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$form = HTMLForm::factory( 'codex', $formDescriptor, $context );
 
 		$form->addHiddenField( 'authAction', $this->authAction );
-		if ( $this->mLanguage ) {
-			$form->addHiddenField( 'uselang', $this->mLanguage );
-		}
-		if ( $this->mVariant ) {
-			$form->addHiddenField( 'variant', $this->mVariant );
-		}
 		$form->addHiddenField( 'force', $this->securityLevel );
 		$form->addHiddenField( $this->getTokenName(), $this->getToken()->toString() );
 		$config = $this->getConfig();
@@ -788,8 +787,10 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			}
 		}
 
-		// set properties of the form itself
-		$form->setAction( $this->getPageTitle()->getLocalURL( $this->getReturnToQueryStringFragment() ) );
+		$form->setAction( $this->getPageTitle()->getLocalURL( $this->getPreservedParams(
+			// We have manually set authAction above, so we don't need it in the action URL.
+			[ 'reset' => true ]
+		) ) );
 		$form->setName( 'userlogin' . ( $this->isSignup() ? '2' : '' ) );
 		if ( $this->isSignup() ) {
 			$form->setId( 'userlogin2' );
@@ -1130,14 +1131,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			if ( $this->showCreateAccountLink() ) {
 				// link to the other action
 				$linkTitle = $this->getTitleFor( $this->isSignup() ? 'Userlogin' : 'CreateAccount' );
-				$linkq = $this->getReturnToQueryStringFragment();
-				// Pass any language selection on to the mode switch link
-				if ( $this->mLanguage ) {
-					$linkq .= '&uselang=' . urlencode( $this->mLanguage );
-				}
-				if ( $this->mVariant ) {
-					$linkq .= '&variant=' . urlencode( $this->mVariant );
-				}
+				$linkq = wfArrayToCgi( $this->getPreservedParams( [ 'reset' => true ] ) );
 				$isLoggedIn = $this->getUser()->isRegistered()
 					&& !$this->getUser()->isTemp();
 
@@ -1194,25 +1188,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	}
 
 	/**
-	 * Returns a string that can be appended to the URL (without encoding) to preserve the
-	 * return target. Does not include leading '?'/'&'.
-	 * @return string
-	 */
-	protected function getReturnToQueryStringFragment() {
-		$returnto = '';
-		if ( $this->mReturnTo !== '' ) {
-			$returnto = 'returnto=' . wfUrlencode( $this->mReturnTo );
-			if ( $this->mReturnToQuery !== '' ) {
-				$returnto .= '&returntoquery=' . wfUrlencode( $this->mReturnToQuery );
-			}
-		}
-		if ( $this->mDisplay !== 'page' ) {
-			$returnto .= '&display=' . wfUrlencode( $this->mDisplay );
-		}
-		return $returnto;
-	}
-
-	/**
 	 * Whether the login/create account form should display a link to the
 	 * other form (in addition to whatever the skin provides).
 	 * @return bool
@@ -1264,17 +1239,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			// no link for currently used language
 			return htmlspecialchars( $text );
 		}
-		$query = [ 'uselang' => $lang ];
-		if ( $this->mVariant ) {
-			$query['variant'] = $this->mVariant;
-		}
-		if ( $this->mReturnTo !== '' ) {
-			$query['returnto'] = $this->mReturnTo;
-			$query['returntoquery'] = $this->mReturnToQuery;
-		}
-		if ( $this->mDisplay !== 'page' ) {
-			$query['display'] = $this->mDisplay;
-		}
+		$query = $this->getPreservedParams();
+		$query['uselang'] = $lang;
 
 		$attr = [];
 		$targetLanguage = MediaWikiServices::getInstance()->getLanguageFactory()

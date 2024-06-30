@@ -146,7 +146,7 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 		} else {
 			$helper = new LoginHelper( $this->getContext() );
 			$helper->showReturnToPage( 'successredirect', $this->mReturnTo, $this->mReturnToQuery,
-				$this->mStickHTTPS );
+				$this->mStickHTTPS, $this->mReturnToAnchor );
 		}
 	}
 
