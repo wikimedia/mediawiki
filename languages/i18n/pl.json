@@ -113,7 +113,9 @@
 			"SemanticPioneer",
 			"WarX",
 			"Base",
-			"Amire80"
+			"Amire80",
+			"IJzeren Jan",
+			"Kaper365"
 		]
 	},
 	"tog-underline": "Podkreślenie linków:",
@@ -174,7 +176,7 @@
 	"thursday": "czwartek",
 	"friday": "piątek",
 	"saturday": "sobota",
-	"sun": "N",
+	"sun": "Nd",
 	"mon": "Pn",
 	"tue": "Wt",
 	"wed": "Śr",
@@ -1861,7 +1863,7 @@
 	"backend-fail-hashes": "Nie można uzyskać sum kontrolnych do porównania.",
 	"backend-fail-sizes": "Nie można uzyskać rozmiarów plików do porównania.",
 	"backend-fail-notsame": "Plik o podobnej nazwie już istnieje w $1.",
-	"backend-fail-invalidpath": "$1nie jest poprawną ścieżką zapisu.",
+	"backend-fail-invalidpath": "$1 nie jest poprawną ścieżką zapisu.",
 	"backend-fail-delete": "Nie można usunąć pliku $1.",
 	"backend-fail-describe": "Nie udało się zmienić metadanych pliku \"$1\".",
 	"backend-fail-alreadyexists": "Plik „$1” już istnieje",
