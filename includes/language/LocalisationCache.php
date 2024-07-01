@@ -965,6 +965,7 @@ class LocalisationCache {
 
 		return [
 			'core' => "$IP/languages/i18n",
+			'codex' => "$IP/languages/i18n/codex",
 			'exif' => "$IP/languages/i18n/exif",
 			'preferences' => "$IP/languages/i18n/preferences",
 			'api' => "$IP/includes/api/i18n",

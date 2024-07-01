@@ -31,6 +31,8 @@
 		app.use( errorLogger );
 		app.use( i18n );
 		app.provide( 'CdxTeleportTarget', teleportTarget );
+		// Includes all messages with `cdx-` prefix in languages/i18n/codex.
+		app.provide( 'CdxI18nFunction', mw.msg );
 
 		return app;
 	};
