@@ -1608,7 +1608,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @return bool
 	 */
 	final protected static function needsDB() {
-		return self::isTestInDatabaseGroup();
+		static $needsDB = [];
+		return $needsDB[static::class] ??= self::isTestInDatabaseGroup();
 	}
 
 	/**
