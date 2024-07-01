@@ -1,3 +1,4 @@
+/* stylelint-disable selector-class-pattern */
 /*!
  * Styles shared across various special pages.
  */
@@ -12,31 +13,22 @@
 }
 
 #mw-allmessagestable {
+	tbody td {
+		opacity: 0.9;
+	}
+
 	tbody:hover td {
-		/* Duplicate of `.mw-datatable tr:hover td` from shared.css,
-		 * so that it also applies when hovering a lower cell
-		 * within the same rowspan */
-		background-color: #eaf3ff;
+		opacity: 1;
 	}
 
-	/* stylelint-disable-next-line selector-class-pattern */
-	.am_default {
-		background-color: #fcffc4;
+	.am_default,
+	body:hover .am_default {
+		background-color: @background-color-content-removed;
 	}
 
-	/* stylelint-disable-next-line selector-class-pattern */
-	tbody:hover .am_default {
-		background-color: #faff90;
-	}
-
-	/* stylelint-disable-next-line selector-class-pattern */
-	.am_actual {
-		background-color: #e2ffe2;
-	}
-
-	/* stylelint-disable-next-line selector-class-pattern */
+	.am_actual,
 	tbody:hover .am_actual {
-		background-color: #b1ffb1;
+		background-color: @background-color-content-added;
 	}
 }
 
@@ -61,7 +53,6 @@
 	margin-bottom: 0;
 }
 
-/* stylelint-disable-next-line selector-class-pattern */
 .allpagesredirect {
 	font-style: italic;
 }
@@ -79,7 +70,6 @@
 }
 
 /* Special:EditWatchlist */
-/* stylelint-disable-next-line selector-class-pattern */
 .watchlistredir {
 	font-style: italic;
 }
@@ -106,7 +96,6 @@
 	vertical-align: top;
 }
 
-/* stylelint-disable-next-line selector-class-pattern */
 .listgrouprights-revoked {
 	text-decoration: line-through;
 }
@@ -175,7 +164,6 @@ th.mw-revdel-checkbox {
 	vertical-align: top;
 }
 
-/* stylelint-disable-next-line selector-class-pattern */
 .passwordpolicies-policy-flags {
 	font-size: 90%;
 }
