@@ -12,6 +12,7 @@ use MediaWiki\Rest\Validator\JsonBodyValidator;
 use MediaWiki\Rest\Validator\NullBodyValidator;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\Session;
+use UtfNormal\Validator as UtfNormalValidator;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageValue;
 
@@ -845,10 +846,17 @@ abstract class Handler {
 		switch ( $contentType ) {
 			case RequestInterface::FORM_URLENCODED_CONTENT_TYPE:
 			case RequestInterface::MULTIPART_FORM_DATA_CONTENT_TYPE:
-				return $request->getPostParams();
+				$params = $request->getPostParams();
+				foreach ( $params as $key => $value ) {
+					$params[ $key ] = UtfNormalValidator::cleanUp( $value );
+					// TODO: Warn if normalization was applied
+				}
+				return $params;
 			case RequestInterface::JSON_CONTENT_TYPE:
 				$jsonStream = $request->getBody();
-				$parsedBody = json_decode( "$jsonStream", true );
+				$jsonString = (string)$jsonStream;
+				$normalizedJsonString = UtfNormalValidator::cleanUp( $jsonString );
+				$parsedBody = json_decode( $normalizedJsonString, true );
 				if ( !is_array( $parsedBody ) ) {
 					throw new LocalizedHttpException(
 						new MessageValue(
@@ -858,13 +866,14 @@ abstract class Handler {
 						400
 					);
 				}
+				// TODO: Warn if normalization was applied
 				return $parsedBody;
 			case null:
 				// Specifying no Content-Type is fine if the body is empty
 				if ( $request->getBody()->getSize() === 0 ) {
 					return null;
 				}
-				// no break, else fall through to the error below.
+			// no break, else fall through to the error below.
 			default:
 				throw new LocalizedHttpException(
 					new MessageValue( 'rest-unsupported-content-type', [ $contentType ?? '(null)' ] ),

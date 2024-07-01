@@ -938,6 +938,27 @@ class HandlerTest extends MediaWikiUnitTestCase {
 					400
 				)
 			],
+			'json body with normalization' => [
+				new RequestData( [
+					'bodyContents' => json_encode( [ 'param' => "L\u{0061}\u{0308}rm" ], JSON_UNESCAPED_UNICODE ),
+					'headers' => [ 'Content-Type' => 'application/json' ]
+				] ),
+				[ 'param' => "L\u{00E4}rm" ]
+			],
+			'form data with normalization' => [
+				new RequestData( [
+					'postParams' => [ 'param' => "L\u{0061}\u{0308}rm" ],
+					'headers' => [ 'Content-Type' => 'application/x-www-form-urlencoded' ]
+				] ),
+				[ 'param' => "L\u{00E4}rm" ]
+			],
+			'multipart form data with normalization' => [
+				new RequestData( [
+					'postParams' => [ 'param' => "L\u{0061}\u{0308}rm" ],
+					'headers' => [ 'Content-Type' => 'multipart/form-data' ]
+				] ),
+				[ 'param' => "L\u{00E4}rm" ]
+			]
 		];
 	}
 
