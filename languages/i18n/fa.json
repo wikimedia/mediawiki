@@ -3129,7 +3129,7 @@
 	"yesterday-at": "دیروز در $1",
 	"bad_image_list": "اطلاعات را باید اینگونه وارد کنید:\n\nفقط موارد درون فهرست (سطرهایی که با * شروع می‌شوند) در نظر گرفته می‌شوند.\nنخستین پیوند هر سطر باید پیوندی به یک پروندهٔ معیوب باشد.\nپیوندهایی بعدی در همان سطر استثنا در نظر گرفته می‌شوند.",
 	"metadata": "فراداده",
-	"metadata-help": "این پرونده حاوی اطلاعات اضافه‌ای است که احتمالاً دوربین دیجیتال یا پویشگری که در ایجاد یا دیجیتالی‌کردن آن به کار رفته آن را افزوده است. اگر پرونده از وضعیت ابتدایی‌اش تغییر داده شده باشد آنگاه ممکن است شرح و تفصیلات موجود اطلاعات تصویر را تماماً بازتاب ندهد.",
+	"metadata-help": "این پرونده حاوی اطلاعات اضافه‌ای است که احتمالاً دوربین دیجیتال یا پویشگری که در ایجاد یا دیجیتالی کردن آن به کار رفته آن را افزوده است. اگر پرونده از وضعیت ابتدایی‌اش تغییر داده شده باشد آنگاه ممکن است شرح و تفصیلات موجود اطلاعات تصویر را تماماً بازتاب ندهد.",
 	"metadata-expand": "نمایش جزئیات تفصیلی",
 	"metadata-collapse": "نهفتن جزئیات تفصیلی",
 	"metadata-fields": "فرادادهٔ تصویر نشان داده شده در این پیام وقتی جدول فراداده‌های تصویر جمع شده باشد هم نمایش داده می‌شود.\nباقی موارد به‌طور پیش‌فرض پنهان هستند.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude\n* dc-rights\n* copyrightowner\n* usageterms\n* webstatement\n* licenseurl\n* attributionurl\n* preferredattributionname\n* credit\n* jpegfilecomment\n* pngfilecomment\n* giffilecomment\n* usercomment\n* citydest\n* citycreated\n* headline\n* source\n* locationdest\n* dc-contributor\n* dc-coverage\n* dc-publisher\n* dc-relation\n* label\n* nickname\n* personinimage\n* disclaimer\n* event\n* objectname",

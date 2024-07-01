@@ -940,7 +940,7 @@
 	"diff-inline-tooltip-del": "Izbrisana vsebina",
 	"diff-inline-format-label": "Znotrajvrstično",
 	"diff-inline-switch-desc": "Preklaplja med znotrajvrstično obliko in obliko z dvema stolpcema",
-	"diff-line-deleted": "⟵ izbriši",
+	"diff-line-deleted": "⟵ izbrisano",
 	"diff-newline": "↲ nova vrstica",
 	"difference-missing-revision": "{{PLURAL:$2|Ene redakcije|$2 redakcij}} te razlike ($1) {{PLURAL:$2|ni bilo mogoče}} najti.\n\nTo se ponavadi zgodi, ko sledite zastareli povezavi na razliko redakcij strani, ki jo je nekdo izbrisal.\nPodrobnosti lahko najdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].",
 	"difference-bad-old-revision": "Vsebina stare redakcije manjka ali je okvarjena.",

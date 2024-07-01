@@ -233,6 +233,7 @@
 	"searchlimit-label": "Hər səhifədə göstəriləcək axtarış nəticəsi sayı:",
 	"searchlimit-help": "Maksimum: $1",
 	"search-thumbnail-extra-namespaces-label": "İş masası rejimində Xüsusi:Axtar səhifəsində miniatürləri göstər",
+	"search-thumbnail-extra-namespaces-message": "{{#special:search}} səhifəsində $1 {{PLURAL:$2|ad fəzası|ad fəzaları}} üçün miniatürləri göstər",
 	"prefs-advancedsearchoptions": "Ətraflı variantlar",
 	"prefs-reset-intro": "Bu səhifəni parametrlər ilkin vəziyyətə gətirmək üçün istifadə edə bilərsiniz. Bu əməliyyat geri qaytarıla bilməz.",
 	"prefs-reset-confirm": "Bəli, parametrləri sıfırlamaq istəyirəm.",
