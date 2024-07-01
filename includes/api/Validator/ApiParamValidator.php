@@ -57,7 +57,7 @@ class ApiParamValidator {
 		'NULL' => [
 			'class' => StringDef::class,
 			'args' => [ [
-				'allowEmptyWhenRequired' => true,
+				StringDef::OPT_ALLOW_EMPTY => true,
 			] ],
 		],
 		'password' => [ 'class' => PasswordDef::class ],

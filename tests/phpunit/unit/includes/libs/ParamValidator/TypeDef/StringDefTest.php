@@ -39,7 +39,7 @@ class StringDefTest extends TypeDefTestCase {
 				),
 				$req,
 			],
-			'Empty, required, allowed' => [ '', '', $req, [ 'allowEmptyWhenRequired' => true ] ],
+			'Empty, required, allowed' => [ '', '', $req, [ StringDef::OPT_ALLOW_EMPTY => true ] ],
 			'Max bytes, ok' => [ 'abcd', 'abcd', $maxBytes ],
 			'Max bytes, exceeded' => [
 				'abcde',
