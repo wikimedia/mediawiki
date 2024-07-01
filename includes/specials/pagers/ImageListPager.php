@@ -22,7 +22,7 @@
 namespace MediaWiki\Pager;
 
 use LocalRepo;
-use MediaWiki\Cache\UserCache;
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Context\IContextSource;
@@ -67,8 +67,8 @@ class ImageListPager extends TablePager {
 
 	private CommentStore $commentStore;
 	private LocalRepo $localRepo;
-	private UserCache $userCache;
 	private CommentFormatter $commentFormatter;
+	private LinkBatchFactory $linkBatchFactory;
 
 	/**
 	 * The unique sort fields for the sort options for unique paginate
@@ -85,9 +85,9 @@ class ImageListPager extends TablePager {
 	 * @param LinkRenderer $linkRenderer
 	 * @param IConnectionProvider $dbProvider
 	 * @param RepoGroup $repoGroup
-	 * @param UserCache $userCache
 	 * @param UserNameUtils $userNameUtils
 	 * @param CommentFormatter $commentFormatter
+	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param string $userName
 	 * @param string $search
 	 * @param bool $including
@@ -99,9 +99,9 @@ class ImageListPager extends TablePager {
 		LinkRenderer $linkRenderer,
 		IConnectionProvider $dbProvider,
 		RepoGroup $repoGroup,
-		UserCache $userCache,
 		UserNameUtils $userNameUtils,
 		CommentFormatter $commentFormatter,
+		LinkBatchFactory $linkBatchFactory,
 		$userName,
 		$search,
 		$including,
@@ -141,8 +141,8 @@ class ImageListPager extends TablePager {
 		parent::__construct( $context, $linkRenderer );
 		$this->commentStore = $commentStore;
 		$this->localRepo = $repoGroup->getLocalRepo();
-		$this->userCache = $userCache;
 		$this->commentFormatter = $commentFormatter;
+		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
 	/**
@@ -437,15 +437,13 @@ class ImageListPager extends TablePager {
 	}
 
 	protected function doBatchLookups() {
-		$userIds = [];
 		$this->mResult->seek( 0 );
+		$batch = $this->linkBatchFactory->newLinkBatch();
 		foreach ( $this->mResult as $row ) {
-			if ( $row->actor_user ) {
-				$userIds[] = $row->actor_user;
-			}
+			$batch->add( NS_USER, $row->actor_name );
+			$batch->add( NS_FILE, $row->img_name );
 		}
-		# Do a link batch query for names and userpages
-		$this->userCache->doQuery( $userIds, [ 'userpage' ], __METHOD__ );
+		$batch->execute();
 	}
 
 	/**

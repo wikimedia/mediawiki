@@ -766,8 +766,8 @@ class SpecialPageFactory {
 				'CommentStore',
 				'UserNameUtils',
 				'UserNamePrefixSearch',
-				'UserCache',
 				'CommentFormatter',
+				'LinkBatchFactory',
 			]
 		],
 		'Filepath' => [
