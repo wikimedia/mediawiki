@@ -340,7 +340,7 @@
 	 * state and state details.
 	 *
 	 * @protected
-	 * @return {jQuery.Promise} A Promise that will be resolved with an OO.ui.Error.
+	 * @return {jQuery.Promise|undefined} A Promise that will be resolved with an OO.ui.Error.
 	 */
 	mw.Upload.BookletLayout.prototype.getErrorMessageForStateDetails = function () {
 		var state = this.upload.getState(),

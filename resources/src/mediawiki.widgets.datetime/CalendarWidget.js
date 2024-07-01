@@ -508,7 +508,7 @@
 	 *
 	 * @protected
 	 * @param {jQuery.Event} e Key down event
-	 * @return {boolean} False to cancel the default event
+	 * @return {boolean|undefined} False to cancel the default event
 	 */
 	mw.widgets.datetime.CalendarWidget.prototype.onKeyDown = function ( e ) {
 		const focusedDate = this.getFocusedDate();

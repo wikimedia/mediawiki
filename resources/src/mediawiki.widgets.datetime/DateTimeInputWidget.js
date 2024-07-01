@@ -606,7 +606,7 @@
 	 * @private
 	 * @param {jQuery} $field
 	 * @param {jQuery.Event} e Key down event
-	 * @return {boolean} False to cancel the default event
+	 * @return {boolean|undefined} False to cancel the default event
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.onFieldKeyDown = function ( $field, e ) {
 		const spec = $field.data( 'mw-widgets-datetime-dateTimeInputWidget-fieldSpec' );
@@ -730,7 +730,7 @@
 	 * @private
 	 * @param {jQuery} $field
 	 * @param {jQuery.Event} e Change event
-	 * @return {boolean} False to cancel the default event
+	 * @return {boolean|undefined} False to cancel the default event
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.onFieldWheel = function ( $field, e ) {
 		let delta = 0;

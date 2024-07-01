@@ -98,7 +98,7 @@
 	 * Disables expiry inputs when there is not protection
 	 *
 	 * @ignore
-	 * @return {boolean}
+	 * @return {boolean|undefined}
 	 */
 	function updateCascadeAndExpire() {
 		levelSelectors.forEach( ( val, index ) => {

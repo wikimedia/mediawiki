@@ -531,7 +531,7 @@
 	 *
 	 * @private
 	 * @param {jQuery.Event} e Key press event
-	 * @return {boolean} False to cancel the default event
+	 * @return {boolean|undefined} False to cancel the default event
 	 */
 	mw.widgets.DateInputWidget.prototype.onKeyPress = function ( e ) {
 		if ( !this.isDisabled() && !this.isReadOnly() &&
@@ -558,7 +558,7 @@
 	 *
 	 * @private
 	 * @param {jQuery.Event} e Key press event
-	 * @return {boolean} False to cancel the default event
+	 * @return {boolean|undefined} False to cancel the default event
 	 */
 	mw.widgets.DateInputWidget.prototype.onCalendarKeyPress = function ( e ) {
 		if ( !this.isDisabled() && e.which === OO.ui.Keys.ENTER ) {
@@ -572,7 +572,7 @@
 	 *
 	 * @private
 	 * @param {jQuery.Event} e Mouse click event
-	 * @return {boolean} False to cancel the default event
+	 * @return {boolean|undefined} False to cancel the default event
 	 */
 	mw.widgets.DateInputWidget.prototype.onCalendarClick = function ( e ) {
 		const targetClass = this.calendar.getPrecision() === 'month' ?

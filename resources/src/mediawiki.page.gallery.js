@@ -18,7 +18,7 @@
 	 * Perform the layout justification.
 	 *
 	 * @ignore
-	 * @this {HTMLElement} A `ul.mw-gallery-*` element
+	 * @this HTMLElement A `ul.mw-gallery-*` element
 	 */
 	function justify() {
 		var lastTop,
