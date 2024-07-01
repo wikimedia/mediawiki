@@ -787,12 +787,17 @@ class SkinTemplate extends Skin {
 			$classes[] = 'selected';
 		}
 		$exists = true;
+		$services = MediaWikiServices::getInstance();
+		$linkClass = $services->getLinkRenderer()->getLinkClasses( $title );
 		if ( $checkEdit && !$title->isKnown() ) {
 			// Selected tabs should not show as red link. It doesn't make sense
 			// to show a red link on a page the user has already navigated to.
 			// https://phabricator.wikimedia.org/T294129#7451549
 			if ( !$selected ) {
+				// For historic reasons we add to the LI element
 				$classes[] = 'new';
+				// but adding the class to the A element is more appropriate.
+				$linkClass .= ' new';
 			}
 			$exists = false;
 			if ( $query !== '' ) {
@@ -801,9 +806,6 @@ class SkinTemplate extends Skin {
 				$query = 'action=edit&redlink=1';
 			}
 		}
-
-		$services = MediaWikiServices::getInstance();
-		$linkClass = $services->getLinkRenderer()->getLinkClasses( $title );
 
 		if ( $message instanceof MessageSpecifier ) {
 			$msg = new Message( $message );
@@ -831,7 +833,7 @@ class SkinTemplate extends Skin {
 			'exists' => $exists,
 			'primary' => true ];
 		if ( $linkClass !== '' ) {
-			$result['link-class'] = $linkClass;
+			$result['link-class'] = trim( $linkClass );
 		}
 
 		return $result;
