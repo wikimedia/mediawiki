@@ -28,6 +28,7 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -441,6 +442,7 @@ class ImageListPager extends TablePager {
 		$batch = $this->linkBatchFactory->newLinkBatch();
 		foreach ( $this->mResult as $row ) {
 			$batch->add( NS_USER, $row->actor_name );
+			$batch->add( NS_USER_TALK, $row->actor_name );
 			$batch->add( NS_FILE, $row->img_name );
 		}
 		$batch->execute();
@@ -510,17 +512,10 @@ class ImageListPager extends TablePager {
 					return htmlspecialchars( $value );
 				}
 			case 'img_actor':
-				if ( $this->mCurrentRow->actor_user ) {
-					$name = $this->mCurrentRow->actor_name;
-					$link = $linkRenderer->makeLink(
-						Title::makeTitle( NS_USER, $name ),
-						$name
-					);
-				} else {
-					$link = $value !== null ? htmlspecialchars( $value ) : '';
-				}
-
-				return $link;
+				$userId = (int)$this->mCurrentRow->actor_user;
+				$userName = $this->mCurrentRow->actor_name;
+				return Linker::userLink( $userId, $userName )
+					. Linker::userToolLinks( $userId, $userName );
 			case 'img_size':
 				return htmlspecialchars( $this->getLanguage()->formatSize( (int)$value ) );
 			case 'img_description':
