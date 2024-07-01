@@ -67,7 +67,8 @@
 			"Amire80",
 			"Beze",
 			"Ewithu",
-			"Iketsi"
+			"Iketsi",
+			"Gymate"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -1800,7 +1801,7 @@
 	"upload-form-label-own-work": "Ez a saját munkám",
 	"upload-form-label-infoform-categories": "Kategóriák",
 	"upload-form-label-infoform-date": "Dátum",
-	"upload-form-label-own-work-message-generic-local": "Kijelentem, hogy a fájlt a(z) {{SITENAME}} következő felhasználási feltételei és licencirányelvei alapján töltöm fel.",
+	"upload-form-label-own-work-message-generic-local": "Kijelentem, hogy ezt a fájlt a(z) {{SITENAME}} felhasználási feltételei és licencirányelvei alapján töltöm fel.",
 	"upload-form-label-not-own-work-message-generic-local": "Ha nem tudod feltölteni a fájlt a(z) {{SITENAME}} irányelvei értelmében, zárd be ezt a panelt és próbálkozz egy másik módszerrel.",
 	"upload-form-label-not-own-work-local-generic-local": "Az [[Special:Upload|alapértelmezett feltöltőoldalt]] is kipróbálhatod.",
 	"upload-form-label-own-work-message-generic-foreign": "Megértettem, hogy a megosztott tárhelyre töltöm fel a fájlt. Kijelentem, hogy az ottani felhasználási feltételek és licencirányelvek szerint teszem ezt.",

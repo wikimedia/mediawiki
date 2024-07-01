@@ -3341,7 +3341,7 @@
 	"logentry-move-move_redir": "$1 $3 бетін $4 деген бағыттау үстіне {{GENDER:$2|жылжытты}}",
 	"logentry-move-move_redir-noredirect": "$1 $3 бетін $4 деген бағыттау үстіне {{GENDER:$2|жылжытты}} (бағыттау қалдырылмады)",
 	"logentry-patrol-patrol": "$1 $3 бетіндегі $4 нөмірлі нұсқаны тексерілді деп {{GENDER:$2|белгіледі}}",
-	"logentry-patrol-patrol-auto": "$1 $3 бетіндегі $4 нөмірлі нұсқаны автоматты түрде тексерілді деп {{GENDER:$2|белгіледі}}",
+	"logentry-patrol-patrol-auto": "$1 atlı paydalanıwshı $3 betindegi $4 nomerli versiyanı avtomatlıq túrde tekserildi dep {{GENDER:$2|belgiledi}}",
 	"logentry-newusers-newusers": "$1 жаңадан тіркелді",
 	"logentry-newusers-create": "$1 жаңадан тіркелді",
 	"logentry-newusers-create2": "$1 $3 деген аккаунт {{GENDER:$2|тіркеді}}",

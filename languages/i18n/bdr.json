@@ -6,7 +6,8 @@
 			"Tofeiku",
 			"Jilorisa",
 			"Syafiq.y",
-			"Ultron90"
+			"Ultron90",
+			"Zahirulnukman"
 		]
 	},
 	"sunday": "Aad",
@@ -59,12 +60,15 @@
 	"oct": "Okt",
 	"nov": "Nob",
 	"dec": "Dis",
+	"period-am": "AM",
+	"period-pm": "PM",
 	"pagecategories": "{{PLURAL:$1|Jinis}}",
 	"category_header": "Laman diam jinis “$1”",
 	"subcategories": "Jinis diki'",
 	"category-media-header": "Media diam inda jinis \"$1\"",
 	"category-empty": "<em>Jinis tu betiru nyaun laman atau midia.</em>",
 	"hidden-categories": "{{PLURAL:$1|Jinis tinapuk}}",
+	"hidden-category-category": "Kategori ketapukan",
 	"broken-file-category": "Laman kok sambungan pail terat",
 	"about": "Pasal",
 	"article": "Isi laman",
