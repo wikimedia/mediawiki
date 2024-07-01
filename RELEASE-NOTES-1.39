@@ -11,6 +11,8 @@ THIS IS NOT A RELEASE YET
 
 === Changes since 1.39.8 ===
 * Localisation updates.
+* When using the 'runMaintenance' method in a LoadExtensionSchemaUpdates hook
+  handler, only the script's class name is required, not its path. (T367918)
 
 == MediaWiki 1.39.8 ==
 
