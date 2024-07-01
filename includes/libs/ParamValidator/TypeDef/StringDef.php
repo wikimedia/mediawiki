@@ -24,6 +24,11 @@ use Wikimedia\ParamValidator\TypeDef;
 class StringDef extends TypeDef {
 
 	/**
+	 * When this option is set, the empty string is considered a proper value.
+	 */
+	public const OPT_ALLOW_EMPTY = 'allowEmptyWhenRequired';
+
+	/**
 	 * (integer) Maximum length of a string in bytes.
 	 *
 	 * Failure codes:
@@ -56,11 +61,14 @@ class StringDef extends TypeDef {
 	public function __construct( Callbacks $callbacks, array $options = [] ) {
 		parent::__construct( $callbacks );
 
-		$this->allowEmptyWhenRequired = !empty( $options['allowEmptyWhenRequired'] );
+		$this->allowEmptyWhenRequired = !empty( $options[ self::OPT_ALLOW_EMPTY ] );
 	}
 
 	public function validate( $name, $value, array $settings, array $options ) {
-		if ( !$this->allowEmptyWhenRequired && $value === '' &&
+		$allowEmptyWhenRequired = $options[ self::OPT_ALLOW_EMPTY ]
+			?? $this->allowEmptyWhenRequired;
+
+		if ( !$allowEmptyWhenRequired && $value === '' &&
 			!empty( $settings[ParamValidator::PARAM_REQUIRED] )
 		) {
 			$this->failure( 'missingparam', $name, $value, $settings, $options );

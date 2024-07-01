@@ -69,7 +69,7 @@ class Validator {
 		'NULL' => [
 			'class' => StringDef::class,
 			'args' => [ [
-				'allowEmptyWhenRequired' => true,
+				StringDef::OPT_ALLOW_EMPTY => true,
 			] ],
 		],
 		'password' => [ 'class' => PasswordDef::class ],
@@ -246,7 +246,8 @@ class Validator {
 						// TODO: Replace this with OPT_ENFORCE_JSON_TYPES and
 						//       remove support for OPT_LOG_BAD_TYPES (grep
 						//       for T305973).
-						TypeDef::OPT_LOG_BAD_TYPES => $enforceTypes
+						TypeDef::OPT_LOG_BAD_TYPES => $enforceTypes,
+						StringDef::OPT_ALLOW_EMPTY => $enforceTypes,
 					]
 				);
 			} catch ( ValidationException $e ) {

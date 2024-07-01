@@ -186,7 +186,7 @@ class ParamValidator {
 		'NULL' => [
 			'class' => TypeDef\StringDef::class,
 			'args' => [ [
-				'allowEmptyWhenRequired' => true,
+				TypeDef\StringDef::OPT_ALLOW_EMPTY => true,
 			] ],
 		],
 		'timestamp' => [ 'class' => TypeDef\TimestampDef::class ],

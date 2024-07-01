@@ -449,6 +449,18 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 			[] // The parameter from a non-body source should be ignored.
 		];
 
+		yield 'empty string' => [
+			[
+				'foo' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					ParamValidator::PARAM_REQUIRED => true,
+					Validator::PARAM_SOURCE => 'body',
+				]
+			],
+			new RequestData( [ 'parsedBody' => [ 'foo' => '' ] ] ),
+			[ 'foo' => '' ]
+		];
+
 		yield 'valid integer (strict)' => [
 			[
 				'foo' => [
