@@ -101,5 +101,21 @@ class ArrayDefTest extends TypeDefUnitTestCase {
 			$schemaValidationFailed,
 			$missingSchemaSettings
 		];
+		yield 'default values get applied' => [
+			[],
+			[ 'key2' => 'default-key-2' ],
+			[ ArrayDef::PARAM_SCHEMA =>
+				[
+					'type' => 'object',
+					'properties' => [
+						'key2' => [
+							'type' => 'string',
+							'default' => 'default-key-2'
+						]
+					],
+					'required' => [ 'key2' ],
+				]
+			]
+		];
 	}
 }
