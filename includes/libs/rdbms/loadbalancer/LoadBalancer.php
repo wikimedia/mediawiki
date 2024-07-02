@@ -835,6 +835,9 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		// no-op
 	}
 
+	/**
+	 * @deprecated since 1.39.
+	 */
 	public function getConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): DBConnRef {
 		wfDeprecated( __METHOD__, '1.39' );
 		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType to be removed soon

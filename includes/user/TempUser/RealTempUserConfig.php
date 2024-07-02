@@ -148,6 +148,9 @@ class RealTempUserConfig implements TempUserConfig {
 		}
 	}
 
+	/**
+	 * @deprecated since 1.42.
+	 */
 	public function getMatchPattern(): Pattern {
 		wfDeprecated( __METHOD__, '1.42' );
 		if ( $this->isKnown() ) {

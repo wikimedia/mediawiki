@@ -50,6 +50,7 @@ class StubGlobalUser extends StubObject {
 	}
 
 	/**
+	 * @deprecated since 1.35.
 	 * @return User
 	 */
 	// phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
