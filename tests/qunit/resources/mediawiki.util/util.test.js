@@ -192,16 +192,11 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 			wgScriptPath: '/w'
 		} );
 
-		assert.strictEqual( util.wikiScript(), mw.config.get( 'wgScript' ),
-			'wikiScript() returns wgScript'
-		);
-		assert.strictEqual( util.wikiScript( 'index' ), mw.config.get( 'wgScript' ),
-			'wikiScript( index ) returns wgScript'
-		);
-		assert.strictEqual( util.wikiScript( 'load' ), '/w/l.php',
-			'wikiScript( load ) returns /w/l.php'
-		);
-		assert.strictEqual( util.wikiScript( 'api' ), '/w/api.php', 'API path' );
+		assert.strictEqual( util.wikiScript(), '/w/i.php', 'default' );
+		assert.strictEqual( util.wikiScript( 'index' ), '/w/i.php', 'index' );
+		assert.strictEqual( util.wikiScript( 'load' ), '/w/l.php', 'load' );
+		assert.strictEqual( util.wikiScript( 'api' ), '/w/api.php', 'api' );
+		assert.strictEqual( util.wikiScript( 'rest' ), '/w/rest.php', 'rest' );
 	} );
 
 	QUnit.test( 'addCSS', ( assert ) => {
