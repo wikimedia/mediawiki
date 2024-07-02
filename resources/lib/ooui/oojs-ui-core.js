@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.50.2
+ * OOUI v0.50.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-06-28T14:13:48Z
+ * Date: 2024-07-02T15:32:14Z
  */
 ( function ( OO ) {
 
@@ -5682,6 +5682,19 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 		return this;
 	}
 
+	function rectCopy( rect ) {
+		return {
+			left: rect.left,
+			top: rect.top,
+			right: rect.right,
+			bottom: rect.bottom,
+			x: rect.x,
+			y: rect.y,
+			width: rect.width,
+			height: rect.height
+		};
+	}
+
 	function rectIntersection( a, b ) {
 		const out = {};
 		out.top = Math.max( a.top, b.top );
@@ -5711,7 +5724,7 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 		$viewport = this.$clippableScrollableContainer;
 		viewportRect = $viewport[ 0 ].getBoundingClientRect();
 		// Convert into a plain object
-		viewportRect = Object.assign( {}, viewportRect );
+		viewportRect = rectCopy( viewportRect );
 	}
 
 	// Account for scrollbar gutter
@@ -5741,7 +5754,7 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 
 	let itemRect = $item[ 0 ].getBoundingClientRect();
 	// Convert into a plain object
-	itemRect = Object.assign( {}, itemRect );
+	itemRect = rectCopy( itemRect );
 
 	// Item might already be clipped, so we can't just use its dimensions (in case we might need to
 	// make it larger than before). Extend the rectangle to the maximum size we are allowed to take.
