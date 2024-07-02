@@ -2126,7 +2126,7 @@
 	"pageinfo-authors": "ନିଆରା ଲେଖକଙ୍କ ମୋଟସଂଖ୍ୟା",
 	"pageinfo-recent-edits": "ନଗଦବଦଳ ସଂଖ୍ୟା($1 ମଧ୍ୟରେ)",
 	"pageinfo-recent-authors": "ନିଆରା ଲେଖକଙ୍କ ମୋଟସଂଖ୍ୟା",
-	"pageinfo-magic-words": "ଚମତ୍କାର {{PLURAL:$1|word|words}} ($1)",
+	"pageinfo-magic-words": "ମ୍ୟାଜିକ {{PLURAL:$1|ଶବ୍ଦ|ଶବ୍ଦସବୁ}} ($1)",
 	"pageinfo-hidden-categories": "{{PLURAL:$1|category|categories}} ($1) ଲୁଚାଗଲା",
 	"pageinfo-templates": "{{PLURAL:$1|template|templates}} ($1) ଯୋଡିହେଇଥିବା",
 	"pageinfo-transclusions": "{{PLURAL:$1|ପୃଷ୍ଠା|ପୃଷ୍ଠାସବୁ}} ($1)ରେ ଯୋଡାଗଲା",

@@ -871,7 +871,7 @@
 	"unsupported-content-diff": "Diffs 不支援內容模型$1。",
 	"unsupported-content-diff2": "在此 wiki 上不支援內容模型$1與$2兩者之間的 Diffs。",
 	"duplicate-args-warning": "<strong>警告：</strong> [[:$1]] 呼叫 [[:$2]] 的 「$3」 參數使用了超過一次，僅會使用提供的最後一個參數值。",
-	"duplicate-args-category": "模板呼叫時使用重複的參數的頁面",
+	"duplicate-args-category": "呼叫重複模板參數的頁面",
 	"duplicate-args-category-desc": "該頁面包含重複使用參數的模板呼叫，如 <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> 或 <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>。",
 	"expensive-parserfunction-warning": "<strong>警告：</strong>此頁面使用了太多消耗系統資源的解析函數。\n\n使用次數應小於 $2 次，但目前使用了 $1 次。",
 	"expensive-parserfunction-category": "使用了太多消耗系統資源的解析器函數的頁面",

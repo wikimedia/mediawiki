@@ -932,7 +932,7 @@
 	"unsupported-content-diff": "内容模型$1不支持显示差异。",
 	"unsupported-content-diff2": "本wiki不支持显示$1和$2两个内容模型之间的差异。",
 	"duplicate-args-warning": "<strong>警告：</strong>[[:$1]]中调用的[[:$2]]对“$3”参数提供了多个值。将只使用最后提供的值。",
-	"duplicate-args-category": "在模板调用中使用重复参数的页面",
+	"duplicate-args-category": "调用重复模板参数的页面",
 	"duplicate-args-category-desc": "页面包含调用了重复参数的模板，例如<code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code>或<code><nowiki>{{foo|bar|1=baz}}</nowiki></code>。",
 	"expensive-parserfunction-warning": "<strong>警告：</strong>这个页面有太多高开销解析器函数调用。\n\n它应少于$2次{{PLURAL:$2|调用}}，而目前有{{PLURAL:$1|$1次调用}}。",
 	"expensive-parserfunction-category": "有过多高开销解析器函数调用的页面",
