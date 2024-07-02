@@ -883,6 +883,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 
 	/**
 	 * Get the username corresponding to a given user ID
+	 * @deprecated since 1.43, Use UserIdentityLookup to get name from id
 	 * @param int $id User ID
 	 * @return string|false The corresponding username
 	 */
@@ -893,6 +894,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Get the real name of a user given their user ID
 	 *
+	 * @deprecated since 1.43, Use UserFactory to get user instance and use User::getRealName
 	 * @param int $id User ID
 	 * @return string|false The corresponding user's real name
 	 */
