@@ -40,7 +40,7 @@
 		"liuggio/statsd-php-client": "1.0.18",
 		"mck89/peast": "1.16.2",
 		"monolog/monolog": "2.9.3",
-		"oojs/oojs-ui": "0.50.2",
+		"oojs/oojs-ui": "0.50.3",
 		"pear/mail": "1.6.0",
 		"pear/mail_mime": "1.10.12",
 		"pear/net_smtp": "1.12.1",
