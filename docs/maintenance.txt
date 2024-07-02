@@ -16,7 +16,7 @@ level /maintenance directory.
 
 Example:
   php clearCacheStats.php
-  
+
 The following parameters are available to all maintenance scripts
 --help   : Print a help message
 --quiet  : Quiet non-error output

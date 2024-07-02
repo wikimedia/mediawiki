@@ -20,10 +20,10 @@
  * @file
  */
 
- /**
-  * @todo: create a UploadCommandFactory and UploadComand classes to share logic with Special:Upload
-  * @todo: split the different cases of upload in subclasses or submethods.
-  */
+/**
+ * @todo: create a UploadCommandFactory and UploadComand classes to share logic with Special:Upload
+ * @todo: split the different cases of upload in subclasses or submethods.
+ */
 
 use MediaWiki\Config\Config;
 use MediaWiki\Logger\LoggerFactory;
