@@ -1022,7 +1022,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			->addTag( 'foo' )
 			->setFlags( EDIT_SUPPRESS_RC )
 			->saveRevision( CommentStoreComment::newUnsavedComment( 'Comment' ) );
-		$this->assertArrayEquals( [ 'foo' ], ChangeTags::getTags( $this->db, null, $revision->getId() ) );
+		$this->assertArrayEquals( [ 'foo' ], ChangeTags::getTags( $this->getDb(), null, $revision->getId() ) );
 
 		$revision2 = $this->getServiceContainer()
 			->getPageUpdaterFactory()
@@ -1034,7 +1034,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			->addTag( 'bar' )
 			->setFlags( EDIT_SUPPRESS_RC )
 			->saveRevision( CommentStoreComment::newUnsavedComment( 'Comment' ) );
-		$this->assertArrayEquals( [ 'bar' ], ChangeTags::getTags( $this->db, null, $revision2->getId() ) );
+		$this->assertArrayEquals( [ 'bar' ], ChangeTags::getTags( $this->getDb(), null, $revision2->getId() ) );
 	}
 
 	/**
