@@ -1,5 +1,10 @@
 # OOUI Release History
 
+## v0.50.3 / 2024-07-02
+
+## Code
+* Fix getBoundingClientRect() copying (Lucas Werkmeister)
+
 ## v0.50.2 / 2024-06-27
 
 ## Styles
