@@ -2173,7 +2173,7 @@ return [
 					'templateDirectory' => __DIR__ . '/skins/templates/apioutput',
 				]
 			]
-		] );
+		], true );
 
 		return $factory;
 	},
