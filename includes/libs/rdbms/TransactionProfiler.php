@@ -275,14 +275,15 @@ class TransactionProfiler implements LoggerAwareInterface, StatsdAwareInterface 
 	 * @param string $server DB server
 	 * @param string|null $db DB name
 	 * @param string $id ID string of transaction
+	 * @param float $startTime UNIX timestamp
 	 */
-	public function transactionWritingIn( $server, $db, string $id ) {
+	public function transactionWritingIn( $server, $db, string $id, float $startTime ) {
 		$name = "{$db} {$server} TRX#$id";
 		if ( isset( $this->dbTrxHoldingLocks[$name] ) ) {
 			$this->logger->warning( "Nested transaction for '$name' - out of sync." );
 		}
 		$this->dbTrxHoldingLocks[$name] = [
-			'start' => $this->getCurrentTime(),
+			'start' => $startTime,
 			'conns' => [], // all connections involved
 		];
 		$this->dbTrxMethodTimes[$name] = [];
