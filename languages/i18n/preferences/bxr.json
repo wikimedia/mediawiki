@@ -22,7 +22,7 @@
 	"prefs-personal": "Хубиин мэдээнүүд",
 	"prefs-description-personal": "Профильни ямар байнаб гэжэ, яагаад холболдодогоо ба харилсадагаа хинагты.",
 	"prefs-info": "Гол мэдээнүүд",
-	"username": "{{GENDER:$1|Эрэгтэй хабаадагшын нэрэ|Эмэгтэй хабаадагшын нэрэ}}:",
+	"username": "Хабаадагшын нэрэ:",
 	"prefs-memberingroups": "{{PLURAL:$1|Бүлэгэй|Бүлэгүүдэй}} {{GENDER:$2|гэшүүн|гэшүүн}}:",
 	"group-membership-link-with-expiry": "$1 ($2 болотор)",
 	"prefs-edits": "Заһабаринуудай тоо:",
