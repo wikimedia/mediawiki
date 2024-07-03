@@ -127,6 +127,21 @@ class CodexModule extends FileModule {
 			) );
 		}
 
+		// Add messages used inside Codex Vue components.
+		if ( isset( $options['codexFullLibrary'] ) || ( !$this->isStyleOnly && count( $this->codexComponents ) > 0 ) ) {
+			$options[ 'messages' ] = array_merge( $options[ 'messages' ] ?? [], [
+				'cdx-input-chip-aria-description',
+				'cdx-dialog-close-button-label',
+				'cdx-label-optional-flag',
+				'cdx-message-dismiss-button-label',
+				'cdx-search-input-search-button-label',
+				'cdx-table-select-all-label',
+				'cdx-table-select-row-label',
+				'cdx-table-sort-caption',
+				'cdx-typeahead-search-search-results-label',
+			] );
+		}
+
 		if ( in_array( '@wikimedia/codex', $options[ 'dependencies' ] ) ) {
 			throw new InvalidArgumentException(
 				'ResourceLoader modules using the CodexModule class cannot ' .
