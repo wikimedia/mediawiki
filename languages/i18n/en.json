@@ -801,7 +801,7 @@
 	"template-equals-category": "Pages which use = as a template",
 	"template-equals-category-desc": "The page contains <code><nowiki>{{=}}</nowiki></code> but on this wiki that does not expand to <code>=</code>. This usage is deprecated; a future MediaWiki version will implement <code><nowiki>{{=}}</nowiki></code> as a parser function.",
 	"template-equals-warning": "<strong>Warning:</strong> This page uses <code><nowiki>{{=}}</nowiki></code> but on this wiki that does not expand to <code>=</code>. This usage is deprecated; a future MediaWiki version will implement <code><nowiki>{{=}}</nowiki></code> as a parser function.",
-	"parser-template-loop-warning": "Template loop detected: [[$1]]",
+	"parser-template-loop-warning": "Template loop detected: [[:$1]]",
 	"template-loop-category": "Pages with template loops",
 	"template-loop-category-desc": "The page contains a template loop, ie. a template which calls itself recursively.",
 	"template-loop-warning": "<strong>Warning:</strong> This page calls [[:$1]] which causes a template loop (an infinite recursive call).",
