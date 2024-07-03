@@ -1,6 +1,7 @@
 /**
  * Lower Sorbian (Dolnoserbski) language functions
  */
+
 ( function ( $ ) {
 	'use strict';
 

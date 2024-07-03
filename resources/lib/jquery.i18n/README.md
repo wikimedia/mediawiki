@@ -5,7 +5,7 @@ jQuery.i18n
 
 > NOTE: For jquery independent version of this library, see https://github.com/wikimedia/banana-i18n
 
-jQuery.i18n is a jQuery based Javascript internationalization library. It helps you to internationalize your web applications easily.
+jQuery.i18n is a jQuery based JavaScript internationalization library. It helps you to internationalize your web applications easily.
 
 This is a project by Wikimedia foundation's [Language Engineering team](https://www.mediawiki.org/wiki/Wikimedia_Language_engineering) and used in some of the Wikimedia Foundation projects like Universal Language Selector.
 
@@ -108,8 +108,8 @@ Messages are key-value pairs. It is a good convention to prefix your appname to 
 
 If you are curious to see some real jquery.i18n message file from other projects:
 
-- message files of MediaWiki https://github.com/wikimedia/mediawiki-core/tree/master/languages/i18n
-- message files from jquery.uls project https://github.com/wikimedia/jquery.uls/blob/master/i18n
+- message files of MediaWiki https://github.com/wikimedia/mediawiki/tree/master/languages/i18n
+- message files from jquery.uls project https://github.com/wikimedia/jquery.uls/tree/master/i18n
 
 Single message file for all languages
 -------------------------------------

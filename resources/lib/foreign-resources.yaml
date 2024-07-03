@@ -275,11 +275,11 @@ jquery.i18n:
   license: MIT OR GPL-2.0-or-later
   homepage: https://github.com/wikimedia/jquery.i18n
   authors: Language Engineering team, Wikimedia Foundation
-  version: 1.0.7
-  purl: pkg:github/wikimedia/jquery.i18n@1.0.7
+  version: 1.0.10
+  purl: pkg:github/wikimedia/jquery.i18n@1.0.10
   type: tar
-  src: https://codeload.github.com/wikimedia/jquery.i18n/tar.gz/70b5ee20a638cb8fe36baef8d51ac2eb577ce012
-  integrity: sha384-/Upo+6ih5h5v7/GW4zzuaMNZfAHmV7cYVhORdjwT9qFTHzmIStN9mPQ+VD0niknE
+  src: https://codeload.github.com/wikimedia/jquery.i18n/tar.gz/72c45cd91d8c5cdb4c3ee7e341e54ebb194e71e2
+  integrity: sha384-zP2+HbmfoQ+fSMuj3Auh9dlqk/FEVV76i38CabjTPnl5Rp41G+IfHeaGKRNPTGyn
   dest:
     jquery.i18n-*/CODE_OF_CONDUCT.md:
     jquery.i18n-*/CREDITS:

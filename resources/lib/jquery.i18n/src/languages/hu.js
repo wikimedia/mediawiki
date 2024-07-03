@@ -3,6 +3,7 @@
  *
  * @author Santhosh Thottingal
  */
+
 ( function ( $ ) {
 	'use strict';
 
