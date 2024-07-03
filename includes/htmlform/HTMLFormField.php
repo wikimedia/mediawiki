@@ -27,7 +27,7 @@ abstract class HTMLFormField {
 	/** @var array|array[] */
 	public $mParams;
 
-	/** @var callable(mixed,array,HTMLForm):(Status|string|bool|Message) */
+	/** @var callable(mixed,array,HTMLForm):(StatusValue|string|bool|Message) */
 	protected $mValidationCallback;
 	protected $mFilterCallback;
 	protected $mName;
