@@ -421,7 +421,8 @@ class WANObjectCache implements
 		// Also, if no $info parameter is provided, then it doesn't matter how it changes here.
 		$legacyInfo = ( $info !== self::PASS_BY_REF );
 
-		$res = $this->fetchKeys( [ $key ], $checkKeys )[$key];
+		$now = $this->getCurrentTime();
+		$res = $this->fetchKeys( [ $key ], $checkKeys, $now )[$key];
 
 		$curTTL = $res[self::RES_CUR_TTL];
 		$info = $legacyInfo
@@ -482,7 +483,8 @@ class WANObjectCache implements
 		$info = [];
 		$valuesByKey = [];
 
-		$resByKey = $this->fetchKeys( $keys, $checkKeys );
+		$now = $this->getCurrentTime();
+		$resByKey = $this->fetchKeys( $keys, $checkKeys, $now );
 		foreach ( $resByKey as $key => $res ) {
 			if ( $res[self::RES_VALUE] !== false ) {
 				$valuesByKey[$key] = $res[self::RES_VALUE];
@@ -516,11 +518,12 @@ class WANObjectCache implements
 	 * @param string[] $keys List/map with makeKey()/makeGlobalKey() cache keys as values
 	 * @param string[]|string[][] $checkKeys Map of (integer or cache key => "check" key(s));
 	 *  "check" keys must also be made with makeKey()/makeGlobalKey()
+	 * @param float $now The current UNIX timestamp
 	 * @param callable|null $touchedCb Callback yielding a UNIX timestamp from a value, or null
 	 * @return array<string,array> Map of (key => WANObjectCache::RESULT_* map) in order of $keys
 	 * @note Callable type hints are not used to avoid class-autoloading
 	 */
-	protected function fetchKeys( array $keys, array $checkKeys, $touchedCb = null ) {
+	protected function fetchKeys( array $keys, array $checkKeys, float $now, $touchedCb = null ) {
 		$resByKey = [];
 
 		// List of all sister keys that need to be fetched from cache
@@ -567,9 +570,6 @@ class WANObjectCache implements
 			// Fetch the wrapped values of the sister keys from the backend
 			$wrappedBySisterKey = $this->cache->getMulti( $allSisterKeys );
 		}
-
-		// Pessimistically treat the "current time" as the time when any network I/O finished
-		$now = $this->getCurrentTime();
 
 		// List of "check" sister key purge timestamps to compare all value sister keys against
 		$ckPurgesForAll = $this->processCheckKeys(
@@ -1605,7 +1605,7 @@ class WANObjectCache implements
 		$keygroup = $this->determineKeyGroupForStats( $key );
 
 		// Get the current key value and its metadata
-		$curState = $this->fetchKeys( [ $key ], $checkKeys, $touchedCb )[$key];
+		$curState = $this->fetchKeys( [ $key ], $checkKeys, $startTime, $touchedCb )[$key];
 		$curValue = $curState[self::RES_VALUE];
 		// Use the cached value if it exists and is not due for synchronous regeneration
 		if ( $this->isAcceptablyFreshValue( $curState, $graceTTL, $minAsOf ) ) {
@@ -2139,7 +2139,8 @@ class WANObjectCache implements
 		$idsRegen = [];
 
 		// Find out which keys are missing/deleted/stale
-		$resByKey = $this->fetchKeys( $keysByIdGet, $checkKeys );
+		$now = $this->getCurrentTime();
+		$resByKey = $this->fetchKeys( $keysByIdGet, $checkKeys, $now );
 		foreach ( $keysByIdGet as $id => $key ) {
 			$res = $resByKey[$key];
 			if (
