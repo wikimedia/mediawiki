@@ -1,6 +1,7 @@
 /**
  * Hebrew (עברית) language functions
  */
+
 ( function ( $ ) {
 	'use strict';
 
