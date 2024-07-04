@@ -502,12 +502,12 @@ class WebInstaller extends Installer {
 	 * @return-taint none It can only return a known-good code.
 	 */
 	public function getAcceptLanguage() {
-		global $wgLanguageCode, $wgRequest;
+		global $wgLanguageCode;
 
 		$mwLanguages = MediaWikiServices::getInstance()
 			->getLanguageNameUtils()
 			->getLanguageNames( LanguageNameUtils::AUTONYMS, LanguageNameUtils::SUPPORTED );
-		$headerLanguages = array_keys( $wgRequest->getAcceptLang() );
+		$headerLanguages = array_keys( $this->request->getAcceptLang() );
 
 		foreach ( $headerLanguages as $lang ) {
 			if ( isset( $mwLanguages[$lang] ) ) {
