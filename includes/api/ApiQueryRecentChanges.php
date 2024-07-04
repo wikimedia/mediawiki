@@ -33,6 +33,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserNameUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Rdbms\RawSQLExpression;
 
 /**
  * A query action to enumerate the recent changes that were done to the wiki.
@@ -359,10 +360,11 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				$bitmask = 0;
 			}
 			if ( $bitmask ) {
-				$this->addWhere( $this->getDB()->makeList( [
-					'rc_type != ' . RC_LOG,
-					$this->getDB()->bitAnd( 'rc_deleted', $bitmask ) . " != $bitmask",
-				], LIST_OR ) );
+				$db = $this->getDB();
+				$this->addWhere(
+					$db->expr( 'rc_type', '!=', RC_LOG )
+						->orExpr( new RawSQLExpression( $db->bitAnd( 'rc_deleted', $bitmask ) . " != $bitmask" ) )
+				);
 			}
 		}
 
