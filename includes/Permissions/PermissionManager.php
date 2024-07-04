@@ -621,12 +621,12 @@ class PermissionManager {
 		if ( is_array( $result ) && count( $result ) && !is_array( $result[0] ) ) {
 			// A single array representing an error
 			$status->fatal( ...$result );
-		} elseif ( is_array( $result ) && is_array( $result[0] ) ) {
+		} elseif ( is_array( $result ) && count( $result ) && is_array( $result[0] ) ) {
 			// A nested array representing multiple errors
 			foreach ( $result as $result1 ) {
 				$this->resultToStatus( $status, $result1 );
 			}
-		} elseif ( $result !== '' && is_string( $result ) ) {
+		} elseif ( is_string( $result ) && $result !== '' ) {
 			// A string representing a message-id
 			$status->fatal( $result );
 		} elseif ( $result instanceof MessageSpecifier ) {
@@ -636,6 +636,7 @@ class PermissionManager {
 			// a generic "We don't want them to do that"
 			$status->fatal( 'badaccess-group0' );
 		}
+		// If we got here, $results is the empty array or empty string, which mean no errors.
 	}
 
 	/**
@@ -1019,6 +1020,8 @@ class PermissionManager {
 		if ( !$this->hookRunner->onTitleQuickPermissions( $title, $user, $action,
 			$errors, $rigor !== self::RIGOR_QUICK, $short )
 		) {
+			// $errors is an array of resutls, not a result, but resultToStatus() handles
+			// arrays of arrays with recursion so this will work
 			$this->resultToStatus( $status, $errors );
 			return;
 		}
