@@ -197,12 +197,7 @@ class TempUserCreator implements TempUserConfig {
 				'Unable to create user with automatically generated name' );
 			return $createStatus;
 		}
-		$status = $this->authManager->autoCreateUser(
-			$user,
-			AuthManager::AUTOCREATE_SOURCE_TEMP,
-			$login, // login
-			false // log
-		);
+		$status = $this->authManager->autoCreateUser( $user, AuthManager::AUTOCREATE_SOURCE_TEMP, $login );
 		$createStatus->merge( $status );
 		// If a userexists warning is a part of the status, then
 		// add the fatal error temp-user-unable-to-acquire.
