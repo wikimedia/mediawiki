@@ -26,6 +26,7 @@ namespace MediaWiki\Specials;
 use Exception;
 use ImportReporter;
 use ImportStreamSource;
+use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
@@ -202,9 +203,9 @@ class SpecialImport extends SpecialPage {
 
 		$out = $this->getOutput();
 		if ( !$source->isGood() ) {
-			$out->wrapWikiTextAsInterface( 'error',
-				$this->msg( 'importfailed', $source->getWikiText( false, false, $this->getLanguage() ) )
-					->plain()
+			$out->wrapWikiMsg(
+				Html::errorBox( '$1' ),
+				[ 'importfailed', $source->getWikiText( false, false, $this->getLanguage() ) ]
 			);
 		} else {
 			$importer = $this->wikiImporterFactory->getWikiImporter( $source->value, $this->getAuthority() );
@@ -214,7 +215,7 @@ class SpecialImport extends SpecialPage {
 				$statusRootPage = $importer->setTargetRootPage( $rootpage );
 				if ( !$statusRootPage->isGood() ) {
 					$out->wrapWikiMsg(
-						"<div class=\"error\">\n$1\n</div>",
+						Html::errorBox( '$1' ),
 						[
 							'import-options-wrong',
 							$statusRootPage->getWikiText( false, false, $this->getLanguage() ),
@@ -251,13 +252,13 @@ class SpecialImport extends SpecialPage {
 			if ( $exception ) {
 				# No source or XML parse error
 				$out->wrapWikiMsg(
-					"<div class=\"error\">\n$1\n</div>",
+					Html::errorBox( '$1' ),
 					[ 'importfailed', $exception->getMessage() ]
 				);
 			} elseif ( !$result->isGood() ) {
 				# Zero revisions
 				$out->wrapWikiMsg(
-					"<div class=\"error\">\n$1\n</div>",
+					Html::errorBox( '$1' ),
 					[ 'importfailed', $result->getWikiText( false, false, $this->getLanguage() ) ]
 				);
 			} else {
