@@ -4,6 +4,7 @@
  * @author Legoktm
  */
 
+use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\RevisionRecord;
