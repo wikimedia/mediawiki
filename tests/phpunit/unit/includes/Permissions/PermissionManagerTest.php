@@ -464,18 +464,21 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	public function testCheckQuickPermissionsHook() {
+	/**
+	 * @dataProvider provideTestCheckQuickPermissionsHook
+	 */
+	public function testCheckQuickPermissionsHook( array $hookErrors, array $expectedResult ) {
 		$title = $this->createMock( Title::class );
 		$user = $this->createMock( User::class );
 		$action = 'FakeActionGoesHere';
 
 		$hookCallback = function ( $hookTitle, $hookUser, $hookAction, &$errors, $doExpensiveQueries, $short )
-			use ( $user, $title, $action )
+			use ( $user, $title, $action, $hookErrors )
 		{
 			$this->assertSame( $title, $hookTitle );
 			$this->assertSame( $user, $hookUser );
 			$this->assertSame( $action, $hookAction );
-			$errors[] = [ 'Hook failure goes here' ];
+			$errors = $hookErrors;
 			return false;
 		};
 
@@ -494,9 +497,17 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 			$title
 		);
 		$this->assertEquals(
-			[ [ 'Hook failure goes here' ] ],
+			$expectedResult,
 			$result->toLegacyErrorArray()
 		);
+	}
+
+	public function provideTestCheckQuickPermissionsHook() {
+		// test name => [ $result / $errors, $status->toLegacyErrorArray() ]
+		yield 'Hook returns false but no errors' => [ [], [] ];
+		yield 'One error' => [ [ 'error-key' ], [ [ 'error-key' ] ] ];
+		yield 'One error with params as array' => [ [ 'error-key', 'param' ], [ [ 'error-key', 'param' ] ] ];
+		yield 'Multiple errors' => [ [ [ 'error-key' ], [ 'error-key-2' ] ], [ [ 'error-key' ], [ 'error-key-2' ] ] ];
 	}
 
 }
