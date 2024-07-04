@@ -563,7 +563,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$this->assertConditions(
 			[
 				# expected
-				'((actor_user IS NOT NULL))',
+				'(actor_user IS NOT NULL)',
 			],
 			[
 				'userExpLevel' => 'newcomer;learner;experienced',
@@ -577,7 +577,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$this->assertConditions(
 			[
 				# expected
-				'((actor_user IS NOT NULL))',
+				'(actor_user IS NOT NULL)',
 			],
 			[
 				'userExpLevel' => 'registered',
@@ -594,7 +594,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$this->assertConditions(
 			[
 				# expected
-				"(((actor_user IS NOT NULL AND $tempUserMatchPattern)))",
+				"((actor_user IS NOT NULL AND $tempUserMatchPattern))",
 			],
 			[
 				'userExpLevel' => 'registered',
@@ -608,7 +608,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$this->assertConditions(
 			[
 				# expected
-				'((actor_user IS NULL))'
+				'(actor_user IS NULL)'
 			],
 			[
 				'userExpLevel' => 'unregistered',
@@ -625,7 +625,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$this->assertConditions(
 			[
 				# expected
-				"(((actor_user IS NULL OR $tempUserMatchPattern)))",
+				"((actor_user IS NULL OR $tempUserMatchPattern))",
 			],
 			[
 				'userExpLevel' => 'unregistered',
@@ -639,7 +639,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$this->assertConditions(
 			[
 				# expected
-				'((actor_user IS NOT NULL))',
+				'(actor_user IS NOT NULL)',
 			],
 			[
 				'userExpLevel' => 'registered;learner',
@@ -650,21 +650,21 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 	public function testFilterUserExpLevelUnregisteredOrExperienced() {
 		$this->disableAutoCreateTempUser();
-		$conds = $this->buildQuery( [ 'userExpLevel' => 'unregistered;experienced' ] );
+		[ $cond ] = $this->buildQuery( [ 'userExpLevel' => 'unregistered;experienced' ] );
 		$this->assertMatchesRegularExpression(
-			'/\(\(actor_user IS NULL\)\) OR '
-				. '\(\(actor_user IS NOT NULL\) AND \(\('
+			'/\(actor_user IS NULL OR '
+				. '\(actor_user IS NOT NULL AND \('
 					. 'user_editcount >= 500 AND \(user_registration IS NULL OR '
 					. 'user_registration <= \'[^\']+\'\)'
 				. '\)\)\)/',
-			reset( $conds ),
+			$cond->toSql( $this->getDb() ),
 			"rc conditions: userExpLevel=unregistered;experienced"
 		);
 	}
 
 	public function testFilterUserExpLevelUnregisteredOrExperiencedWhenTemporaryAccountsEnabled() {
 		$this->enableAutoCreateTempUser();
-		$conds = $this->buildQuery( [ 'userExpLevel' => 'unregistered;experienced' ] );
+		[ $cond ] = $this->buildQuery( [ 'userExpLevel' => 'unregistered;experienced' ] );
 		$notLikeTempUserMatchExpression = $this->getServiceContainer()->getTempUserConfig()
 			->getMatchCondition( $this->getDb(), 'actor_name', IExpression::NOT_LIKE )
 			->toSql( $this->getDb() );
@@ -674,12 +674,12 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 			->toSql( $this->getDb() );
 		$likeTempUserMatchExpression = preg_quote( $likeTempUserMatchExpression );
 		$this->assertMatchesRegularExpression(
-			"/\(\(\(actor_user IS NULL OR $likeTempUserMatchExpression\)\)\) OR "
-				. "\(\(\(actor_user IS NOT NULL AND $notLikeTempUserMatchExpression\)\) AND \(\("
+			"/\(\(actor_user IS NULL OR $likeTempUserMatchExpression\) OR "
+				. "\(\(actor_user IS NOT NULL AND $notLikeTempUserMatchExpression\) AND \("
 					. 'user_editcount >= 500 AND \(user_registration IS NULL OR '
 					. 'user_registration <= \'[^\']+\'\)'
 				. '\)\)\)/',
-			reset( $conds ),
+			$cond->toSql( $this->getDb() ),
 			"rc conditions: userExpLevel=unregistered;experienced"
 		);
 	}

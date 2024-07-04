@@ -41,11 +41,14 @@ use MediaWiki\User\UserIdentityUtils;
 use MWExceptionHandler;
 use OOUI\IconWidget;
 use RecentChange;
+use Wikimedia\Rdbms\AndExpressionGroup;
 use Wikimedia\Rdbms\DBQueryTimeoutError;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\OrExpressionGroup;
+use Wikimedia\Rdbms\RawSQLValue;
 
 /**
  * Special page which uses a ChangesList to show query results.
@@ -382,13 +385,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
 							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 						) use ( $nonRevisionTypes ) {
-							$conds[] = $dbr->makeList(
-								[
-									'rc_this_oldid <> page_latest',
-									'rc_type' => $nonRevisionTypes,
-								],
-								LIST_OR
-							);
+							$conds[] = $dbr->expr( 'rc_this_oldid', '!=', new RawSQLValue( 'page_latest' ) )
+								->or( 'rc_type', '=', $nonRevisionTypes );
 						},
 						'cssClassSuffix' => 'last',
 						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
@@ -403,13 +401,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
 							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 						) use ( $nonRevisionTypes ) {
-							$conds[] = $dbr->makeList(
-								[
-									'rc_this_oldid = page_latest',
-									'rc_type' => $nonRevisionTypes,
-								],
-								LIST_OR
-							);
+							$conds[] = $dbr->expr( 'rc_this_oldid', '=', new RawSQLValue( 'page_latest' ) )
+								->or( 'rc_type', '=', $nonRevisionTypes );
 						},
 						'cssClassSuffix' => 'previous',
 						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
@@ -486,13 +479,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
 							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 						) {
-							$conds[] = $dbr->makeList(
-								[
-									$dbr->expr( 'rc_log_type', '!=', 'newusers' ),
-									'rc_log_type' => null
-								],
-								IReadableDatabase::LIST_OR
-							);
+							$conds[] = $dbr->expr( 'rc_log_type', '!=', 'newusers' )
+								->or( 'rc_log_type', '=', null );
 						},
 						'cssClassSuffix' => 'src-mw-newuserlog',
 						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
@@ -1527,15 +1515,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 					$namespaces = array_unique( array_merge( $namespaces, $associatedNamespaces ) );
 				}
 
-				if ( count( $namespaces ) === 1 ) {
-					$operator = $opts[ 'invert' ] ? '!=' : '=';
-					$value = $dbr->addQuotes( reset( $namespaces ) );
-				} else {
-					$operator = $opts[ 'invert' ] ? 'NOT IN' : 'IN';
-					sort( $namespaces );
-					$value = '(' . $dbr->makeList( $namespaces ) . ')';
-				}
-				$conds[] = "rc_namespace $operator $value";
+				$operator = $opts[ 'invert' ] ? '!=' : '=';
+				sort( $namespaces );
+				$conds[] = $dbr->expr( 'rc_namespace', $operator, $namespaces );
 			}
 		}
 
@@ -1831,9 +1813,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @param string $level 'learner' or 'experienced'
 	 * @param int $now Current time as UNIX timestamp (if 0, uses actual time)
 	 * @param IReadableDatabase $dbr
+	 * @param bool $asNotCondition
 	 * @return IExpression
 	 */
-	private function getExperienceExpr( $level, $now, IReadableDatabase $dbr ): IExpression {
+	private function getExperienceExpr( $level, $now, IReadableDatabase $dbr, $asNotCondition = false ): IExpression {
 		$config = $this->getConfig();
 
 		$configSince = [
@@ -1851,6 +1834,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			'experienced' => $config->get( MainConfigNames::ExperiencedUserEdits ),
 		][$level];
 
+		if ( $asNotCondition ) {
+			return $dbr->expr( 'user_editcount', '<', intval( $editCutoff ) )
+				->or( 'user_registration', '>', $dbr->timestamp( $timeCutoff ) );
+		}
 		return $dbr->expr( 'user_editcount', '>=', intval( $editCutoff ) )->andExpr(
 			// Users who don't have user_registration set are very old, so we assume they're above any cutoff
 			$dbr->expr( 'user_registration', '=', null )
@@ -1878,10 +1865,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	) {
 		$selected = array_fill_keys( $selectedExpLevels, true );
 
-		$isUnregistered = $this->getRegisteredExpr( false, $dbr )->toSql( $dbr );
-		$isRegistered = $this->getRegisteredExpr( true, $dbr )->toSql( $dbr );
-		$aboveNewcomer = $this->getExperienceExpr( 'learner', $now, $dbr )->toSql( $dbr );
-		$aboveLearner = $this->getExperienceExpr( 'experienced', $now, $dbr )->toSql( $dbr );
+		$isUnregistered = $this->getRegisteredExpr( false, $dbr );
+		$isRegistered = $this->getRegisteredExpr( true, $dbr );
+		$aboveNewcomer = $this->getExperienceExpr( 'learner', $now, $dbr );
+		$notAboveNewcomer = $this->getExperienceExpr( 'learner', $now, $dbr, true );
+		$aboveLearner = $this->getExperienceExpr( 'experienced', $now, $dbr );
+		$notAboveLearner = $this->getExperienceExpr( 'experienced', $now, $dbr, true );
 
 		// We need to select some range of user experience levels, from the following table:
 		// | Unregistered |     --------- Registered ---------     |
@@ -1890,15 +1879,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		// We just need to define a condition for each of the columns, figure out which are selected,
 		// and then OR them together.
 		$columnConds = [
-			'unregistered' => [ $isUnregistered ],
-			'registered' => [ $isRegistered ],
-			'newcomer' => [ $isRegistered, "NOT ( $aboveNewcomer )" ],
-			'learner' => [ $isRegistered, $aboveNewcomer, "NOT ( $aboveLearner )" ],
-			'experienced' => [ $isRegistered, $aboveLearner ],
+			'unregistered' => $isUnregistered,
+			'registered' => $isRegistered,
+			'newcomer' => new AndExpressionGroup( $isRegistered, $notAboveNewcomer ),
+			'learner' => new AndExpressionGroup( $isRegistered, $aboveNewcomer, $notAboveLearner ),
+			'experienced' => new AndExpressionGroup( $isRegistered, $aboveLearner ),
 		];
-		foreach ( $columnConds as &$nestedConds ) {
-			$nestedConds = $dbr->makeList( $nestedConds, IReadableDatabase::LIST_AND );
-		}
 
 		// There are some cases where we can easily optimize away some queries:
 		// | Unregistered |     --------- Registered ---------     |
@@ -1924,7 +1910,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			return;
 		}
 		$selectedColumnConds = array_values( array_intersect_key( $columnConds, $selected ) );
-		$conds[] = $dbr->makeList( $selectedColumnConds, IReadableDatabase::LIST_OR );
+		$conds[] = new OrExpressionGroup( ...$selectedColumnConds );
 
 		// Add necessary tables to the queries.
 		$join_conds['recentchanges_actor'] = [ 'JOIN', 'actor_id=rc_actor' ];
