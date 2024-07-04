@@ -23,7 +23,7 @@ namespace MediaWiki\Pager;
 
 use LocalRepo;
 use MediaWiki\Cache\LinkBatchFactory;
-use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
@@ -68,8 +68,11 @@ class ImageListPager extends TablePager {
 
 	private CommentStore $commentStore;
 	private LocalRepo $localRepo;
-	private CommentFormatter $commentFormatter;
+	private RowCommentFormatter $rowCommentFormatter;
 	private LinkBatchFactory $linkBatchFactory;
+
+	/** @var string[] */
+	private $formattedComments = [];
 
 	/**
 	 * The unique sort fields for the sort options for unique paginate
@@ -87,7 +90,7 @@ class ImageListPager extends TablePager {
 	 * @param IConnectionProvider $dbProvider
 	 * @param RepoGroup $repoGroup
 	 * @param UserNameUtils $userNameUtils
-	 * @param CommentFormatter $commentFormatter
+	 * @param RowCommentFormatter $rowCommentFormatter
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param string $userName
 	 * @param string $search
@@ -101,7 +104,7 @@ class ImageListPager extends TablePager {
 		IConnectionProvider $dbProvider,
 		RepoGroup $repoGroup,
 		UserNameUtils $userNameUtils,
-		CommentFormatter $commentFormatter,
+		RowCommentFormatter $rowCommentFormatter,
 		LinkBatchFactory $linkBatchFactory,
 		$userName,
 		$search,
@@ -142,7 +145,7 @@ class ImageListPager extends TablePager {
 		parent::__construct( $context, $linkRenderer );
 		$this->commentStore = $commentStore;
 		$this->localRepo = $repoGroup->getLocalRepo();
-		$this->commentFormatter = $commentFormatter;
+		$this->rowCommentFormatter = $rowCommentFormatter;
 		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
@@ -440,12 +443,28 @@ class ImageListPager extends TablePager {
 	protected function doBatchLookups() {
 		$this->mResult->seek( 0 );
 		$batch = $this->linkBatchFactory->newLinkBatch();
-		foreach ( $this->mResult as $row ) {
+		$rowsWithComments = [ 'img_description' => [], 'oi_description' => [] ];
+		foreach ( $this->mResult as $i => $row ) {
 			$batch->add( NS_USER, $row->actor_name );
 			$batch->add( NS_USER_TALK, $row->actor_name );
 			$batch->add( NS_FILE, $row->img_name );
+			$rowsWithComments[$row->description_field][$i] = $row;
 		}
 		$batch->execute();
+
+		// Format the comments
+		if ( $rowsWithComments['img_description'] ) {
+			$this->formattedComments += $this->rowCommentFormatter->formatRows(
+				$rowsWithComments['img_description'],
+				'img_description'
+			);
+		}
+		if ( $rowsWithComments['oi_description'] ) {
+			$this->formattedComments += $this->rowCommentFormatter->formatRows(
+				$rowsWithComments['oi_description'],
+				'oi_description'
+			);
+		}
 	}
 
 	/**
@@ -517,9 +536,7 @@ class ImageListPager extends TablePager {
 			case 'img_size':
 				return htmlspecialchars( $this->getLanguage()->formatSize( (int)$value ) );
 			case 'img_description':
-				$field = $this->mCurrentRow->description_field;
-				$value = $this->commentStore->getComment( $field, $this->mCurrentRow )->text;
-				return $this->commentFormatter->format( $value );
+				return $this->formattedComments[$this->getResultOffset()];
 			case 'count':
 				return htmlspecialchars( $this->getLanguage()->formatNum( intval( $value ) + 1 ) );
 			case 'top':

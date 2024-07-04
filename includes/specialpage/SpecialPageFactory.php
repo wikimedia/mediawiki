@@ -780,7 +780,7 @@ class SpecialPageFactory {
 				'CommentStore',
 				'UserNameUtils',
 				'UserNamePrefixSearch',
-				'CommentFormatter',
+				'RowCommentFormatter',
 				'LinkBatchFactory',
 			]
 		],

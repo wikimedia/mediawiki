@@ -21,7 +21,7 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Cache\LinkBatchFactory;
-use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Pager\ImageListPager;
 use MediaWiki\SpecialPage\IncludableSpecialPage;
@@ -43,7 +43,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 	private CommentStore $commentStore;
 	private UserNameUtils $userNameUtils;
 	private UserNamePrefixSearch $userNamePrefixSearch;
-	private CommentFormatter $commentFormatter;
+	private RowCommentFormatter $rowCommentFormatter;
 	private LinkBatchFactory $linkBatchFactory;
 
 	/**
@@ -52,7 +52,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 	 * @param CommentStore $commentStore
 	 * @param UserNameUtils $userNameUtils
 	 * @param UserNamePrefixSearch $userNamePrefixSearch
-	 * @param CommentFormatter $commentFormatter
+	 * @param RowCommentFormatter $rowCommentFormatter
 	 * @param LinkBatchFactory $linkBatchFactory
 	 */
 	public function __construct(
@@ -61,7 +61,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 		CommentStore $commentStore,
 		UserNameUtils $userNameUtils,
 		UserNamePrefixSearch $userNamePrefixSearch,
-		CommentFormatter $commentFormatter,
+		RowCommentFormatter $rowCommentFormatter,
 		LinkBatchFactory $linkBatchFactory
 	) {
 		parent::__construct( 'Listfiles' );
@@ -70,7 +70,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 		$this->commentStore = $commentStore;
 		$this->userNameUtils = $userNameUtils;
 		$this->userNamePrefixSearch = $userNamePrefixSearch;
-		$this->commentFormatter = $commentFormatter;
+		$this->rowCommentFormatter = $rowCommentFormatter;
 		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
@@ -107,7 +107,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 			$this->dbProvider,
 			$this->repoGroup,
 			$this->userNameUtils,
-			$this->commentFormatter,
+			$this->rowCommentFormatter,
 			$this->linkBatchFactory,
 			$userName,
 			$search,
