@@ -26,5 +26,5 @@ interface OutputPageAfterGetHeadLinksArrayHook {
 	public function onOutputPageAfterGetHeadLinksArray( &$tags, $out );
 }
 
-/** @deprecated class alias since 1.41 */
+/** @deprecated class alias since 1.42 */
 class_alias( OutputPageAfterGetHeadLinksArrayHook::class, 'MediaWiki\Hook\OutputPageAfterGetHeadLinksArrayHook' );

@@ -25,5 +25,5 @@ interface BeforePageDisplayHook {
 	public function onBeforePageDisplay( $out, $skin ): void;
 }
 
-/** @deprecated class alias since 1.41 */
+/** @deprecated class alias since 1.42 */
 class_alias( BeforePageDisplayHook::class, 'MediaWiki\Hook\BeforePageDisplayHook' );

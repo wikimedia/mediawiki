@@ -431,5 +431,5 @@ class SiteList extends ArrayObject {
 	}
 }
 
-/** @deprecated class alias since 1.41 */
+/** @deprecated class alias since 1.42 */
 class_alias( SiteList::class, 'SiteList' );

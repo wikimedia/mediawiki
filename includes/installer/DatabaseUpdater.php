@@ -1374,5 +1374,5 @@ abstract class DatabaseUpdater {
 
 }
 
-/** @deprecated class alias since 1.41 */
+/** @deprecated class alias since 1.42 */
 class_alias( DatabaseUpdater::class, 'DatabaseUpdater' );
