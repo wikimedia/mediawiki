@@ -196,6 +196,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		$linkTarget = MediaWikiServices::getInstance()->getLinkTargetLookup()->getLinkTargetId(
 			Title::makeTitle( NS_TEMPLATE, 'Multiple_issues' )
 		);
+		$this->runJobs();
 		$this->newSelectQueryBuilder()
 			->select( [ 'lt_namespace', 'lt_title' ] )
 			->from( 'pagelinks' )

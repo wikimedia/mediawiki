@@ -37,7 +37,9 @@ class LinksTableGroup {
 				'WikiPageFactory',
 				'DBLoadBalancer',
 				'MainWANObjectCache',
-				'MainConfig'
+				'MainConfig',
+				'JobQueueGroup',
+				'HookContainer',
 			],
 			'needCollation' => true,
 		],

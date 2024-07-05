@@ -3,8 +3,13 @@
 namespace MediaWiki\Deferred\LinksUpdate;
 
 use Collation;
+use MediaWiki\Category\Category;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\JobQueue\JobQueueGroup;
+use MediaWiki\JobQueue\Jobs\CategoryCountUpdateJob;
 use MediaWiki\JobQueue\Utils\PurgeJobUtils;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Languages\LanguageConverterFactory;
@@ -83,6 +88,8 @@ class CategoryLinksTable extends TitleLinksTable {
 	private $migrationStage;
 
 	private NameTableStore $collationNameStore;
+	private JobQueueGroup $jobQueueGroup;
+	private HookRunner $hookRunner;
 
 	/**
 	 * @param LanguageConverterFactory $converterFactory
@@ -91,6 +98,8 @@ class CategoryLinksTable extends TitleLinksTable {
 	 * @param ILoadBalancer $loadBalancer
 	 * @param WANObjectCache $WANObjectCache
 	 * @param Config $config
+	 * @param JobqueueGroup $jobQueueGroup
+	 * @param HookContainer $hookContainer
 	 * @param Collation $collation
 	 * @param string $collationName
 	 * @param string $tableName
@@ -103,6 +112,8 @@ class CategoryLinksTable extends TitleLinksTable {
 		ILoadBalancer $loadBalancer,
 		WANObjectCache $WANObjectCache,
 		Config $config,
+		JobqueueGroup $jobQueueGroup,
+		HookContainer $hookContainer,
 		Collation $collation,
 		$collationName,
 		$tableName,
@@ -112,6 +123,8 @@ class CategoryLinksTable extends TitleLinksTable {
 		$this->namespaceInfo = $namespaceInfo;
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->collation = $collation;
+		$this->jobQueueGroup = $jobQueueGroup;
+		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->collationName = $collationName;
 		$this->tableName = $tableName;
 		$this->isTempTable = $isTempTable;
@@ -364,7 +377,28 @@ class CategoryLinksTable extends TitleLinksTable {
 		$deletedLinks = array_diff( $allDeletedLinks, $allInsertedLinks );
 
 		$this->invalidateCategories( $insertedLinks, $deletedLinks );
-		$this->updateCategoryCounts( $insertedLinks, $deletedLinks );
+		if ( $insertedLinks || $deletedLinks ) {
+			$this->jobQueueGroup->lazyPush(
+				CategoryCountUpdateJob::newSpec(
+					$this->getSourcePage(),
+					$insertedLinks,
+					$deletedLinks,
+					$this->getBatchSize()
+				)
+			);
+		}
+
+		$wp = $this->wikiPageFactory->newFromTitle( $this->getSourcePage() );
+
+		foreach ( $insertedLinks as $catName ) {
+			$cat = Category::newFromName( $catName );
+			$this->hookRunner->onCategoryAfterPageAdded( $cat, $wp );
+		}
+
+		foreach ( $deletedLinks as $catName ) {
+			$cat = Category::newFromName( $catName );
+			$this->hookRunner->onCategoryAfterPageRemoved( $cat, $wp, $this->getSourcePage()->getId() );
+		}
 	}
 
 	private function invalidateCategories( array $insertedLinks, array $deletedLinks ) {
@@ -374,50 +408,6 @@ class CategoryLinksTable extends TitleLinksTable {
 		);
 		PurgeJobUtils::invalidatePages(
 			$this->getDB(), NS_CATEGORY, $changedCategoryNames );
-	}
-
-	/**
-	 * Update all the appropriate counts in the category table.
-	 * @param array $insertedLinks
-	 * @param array $deletedLinks
-	 */
-	private function updateCategoryCounts( array $insertedLinks, array $deletedLinks ) {
-		if ( !$insertedLinks && !$deletedLinks ) {
-			return;
-		}
-
-		$domainId = $this->getDB()->getDomainID();
-		$wp = $this->wikiPageFactory->newFromTitle( $this->getSourcePage() );
-		$lbf = $this->getLBFactory();
-		$size = $this->getBatchSize();
-		// T163801: try to release any row locks to reduce contention
-		$lbf->commitAndWaitForReplication( __METHOD__, $this->getTransactionTicket() );
-
-		if ( count( $insertedLinks ) + count( $deletedLinks ) < $size ) {
-			$wp->updateCategoryCounts(
-				$insertedLinks,
-				$deletedLinks,
-				$this->getSourcePageId()
-			);
-			$lbf->commitAndWaitForReplication( __METHOD__, $this->getTransactionTicket() );
-		} else {
-			$addedChunks = array_chunk( $insertedLinks, $size );
-			foreach ( $addedChunks as $chunk ) {
-				$wp->updateCategoryCounts( $chunk, [], $this->getSourcePageId() );
-				if ( count( $addedChunks ) > 1 ) {
-					$lbf->commitAndWaitForReplication( __METHOD__, $this->getTransactionTicket() );
-				}
-			}
-
-			$deletedChunks = array_chunk( $deletedLinks, $size );
-			foreach ( $deletedChunks as $chunk ) {
-				$wp->updateCategoryCounts( [], $chunk, $this->getSourcePageId() );
-				if ( count( $deletedChunks ) > 1 ) {
-					$lbf->commitAndWaitForReplication( __METHOD__, $this->getTransactionTicket() );
-				}
-			}
-
-		}
 	}
 
 	protected function linksTargetNormalizationStage(): int {

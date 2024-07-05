@@ -61,6 +61,7 @@ class ApiQueryBasicTest extends ApiQueryTestBase {
 			// Refresh due to the bug with listing transclusions as links if they don't exist
 			$this->editPage( 'AQBT-All', '[[Category:AQBT-Cat]] [[AQBT-Links]] {{AQBT-T}}' );
 			$this->editPage( 'AQBT-Templates', '{{AQBT-T}}' );
+			$this->runJobs();
 		} catch ( Exception $e ) {
 			$this->exceptionFromAddDBData = $e;
 		}
