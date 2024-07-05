@@ -1831,6 +1831,11 @@ class AuthManager implements LoggerAwareInterface {
 				'username' => $username,
 			] );
 			$user->setId( $localId );
+
+			// Can't rely on a replica read, even if getUserIdentityByName() used
+			// READ_NORMAL, because that method has an in-process cache not shared
+			// with loadFromId.
+			$flags = IDBAccessObject::READ_LATEST;
 			$user->loadFromId( $flags );
 			if ( $login ) {
 				$remember = $source === self::AUTOCREATE_SOURCE_TEMP;
