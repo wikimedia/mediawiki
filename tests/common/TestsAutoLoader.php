@@ -129,6 +129,7 @@ $wgAutoloadClasses += [
 	'TextContentTest' => "$testDir/phpunit/includes/content/TextContentTest.php",
 	'TextContentHandlerIntegrationTest' => "$testDir/phpunit/includes/content/TextContentHandlerIntegrationTest.php",
 	'WikitextContentTest' => "$testDir/phpunit/includes/content/WikitextContentTest.php",
+	'JavaScriptContentHandlerTest' => "$testDir/phpunit/includes/content/JavaScriptContentHandlerTest.php",
 
 	# tests/phpunit/includes/db
 	'DatabaseTestHelper' => "$testDir/phpunit/includes/db/DatabaseTestHelper.php",
