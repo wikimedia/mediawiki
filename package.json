@@ -2,15 +2,15 @@
 	"name": "core",
 	"private": true,
 	"scripts": {
-		"mocha": "mocha --timeout 0 --recursive",
 		"api-testing": "mocha --timeout 0 --recursive tests/api-testing",
-		"minify:svg": "svgo --config=.svgo.config.js --quiet --recursive --folder resources/src --folder resources/assets",
-		"lint": "grunt lint",
-		"test": "grunt lint && npm run doc",
-		"qunit": "grunt qunit",
 		"doc": "jsdoc -c jsdoc.json",
+		"lint": "grunt lint",
+		"minify:svg": "svgo --config=.svgo.config.js --quiet --recursive --folder resources/src --folder resources/assets",
+		"mocha": "mocha --timeout 0 --recursive",
+		"qunit": "grunt qunit",
 		"selenium-daily": "npm run selenium-test -- --mochaOpts.grep @daily",
-		"selenium-test": "wdio ./tests/selenium/wdio.conf.js"
+		"selenium-test": "wdio ./tests/selenium/wdio.conf.js",
+		"test": "grunt lint && npm run doc"
 	},
 	"devDependencies": {
 		"@apidevtools/swagger-parser": "^10.1.0",
