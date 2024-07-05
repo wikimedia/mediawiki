@@ -567,18 +567,22 @@ abstract class BagOStuff implements
 	}
 
 	/**
+	 * @deprecated since 1.43, not used anywhere.
 	 * @return int|float The chunk size, in bytes, of segmented objects (INF for no limit)
 	 * @since 1.34
 	 */
 	public function getSegmentationSize() {
+		wfDeprecated( __METHOD__, '1.43' );
 		return INF;
 	}
 
 	/**
+	 * @deprecated since 1.43, not used anywhere.
 	 * @return int|float Maximum total segmented object size in bytes (INF for no limit)
 	 * @since 1.34
 	 */
 	public function getSegmentedValueMaxSize() {
+		wfDeprecated( __METHOD__, '1.43' );
 		return INF;
 	}
 

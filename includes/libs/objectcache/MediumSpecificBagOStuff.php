@@ -988,11 +988,19 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		return $this->attrMap[$flag] ?? self::QOS_UNKNOWN;
 	}
 
+	/**
+	 * @deprecated since 1.43, not used anywhere.
+	 */
 	public function getSegmentationSize() {
+		wfDeprecated( __METHOD__, '1.43' );
 		return $this->segmentationSize;
 	}
 
+	/**
+	 * @deprecated since 1.43, not used anywhere.
+	 */
 	public function getSegmentedValueMaxSize() {
+		wfDeprecated( __METHOD__, '1.43' );
 		return $this->segmentedValueMaxSize;
 	}
 

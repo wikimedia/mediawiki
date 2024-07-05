@@ -414,6 +414,9 @@ because of Phabricator reports.
 * SiteConfig::variants() has been deprecated; use ::variantsFor().
 * ObjectCache::$instances and ::getInstance() have been deprecated; instead, use
   ObjectCacheFactory::getInstance().
+* BagOStuff::getSegmentationSize() and ::getSegmentedValueMaxSize() no longer
+  have any usage. The subclass' method in MediumSpecificBagOStuff overrides also
+  have no usage as well.
 * ApiTestCase::setExpectedApiException() has been deprecated; instead, use
   ::expectApiErrorCode() to test error codes instead of messages.
 * User::isBlockedGlobally(), deprecated since 1.40, now emits deprecation
