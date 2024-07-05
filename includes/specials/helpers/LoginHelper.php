@@ -87,9 +87,19 @@ class LoginHelper extends ContextSource {
 		} elseif ( is_string( $returnToQuery ) ) {
 			$returnToQuery = wfCgiToArray( $returnToQuery );
 		}
+		if ( $returnToAnchor !== '' && $returnToAnchor[0] !== '#' ) {
+			$returnToAnchor = '';
+		}
 
 		// Allow modification of redirect behavior
+		$oldReturnTo = $returnTo;
+		$oldReturnToQuery = $returnToQuery;
 		$this->getHookRunner()->onPostLoginRedirect( $returnTo, $returnToQuery, $type );
+		if ( $returnTo !== $oldReturnTo || $returnToQuery !== $oldReturnToQuery ) {
+			// PostLoginRedirect does not handle $returnToAnchor, and changing hooks is hard.
+			// At least don't add the anchor if the hook changed the URL.
+			$returnToAnchor = '';
+		}
 
 		$returnToTitle = Title::newFromText( $returnTo ) ?: Title::newMainPage();
 

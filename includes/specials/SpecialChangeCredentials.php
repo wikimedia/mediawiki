@@ -57,16 +57,6 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 		return AuthManager::ACTION_CHANGE;
 	}
 
-	protected function getPreservedParams( $withToken = false ) {
-		$request = $this->getRequest();
-		$params = parent::getPreservedParams( $withToken );
-		$params += [
-			'returnto' => $request->getVal( 'returnto' ),
-			'returntoquery' => $request->getVal( 'returntoquery' ),
-		];
-		return $params;
-	}
-
 	public function execute( $subPage ) {
 		$this->setHeaders();
 		$this->outputHeader();
