@@ -3224,14 +3224,19 @@ class OutputPage extends ContextSource {
 	 * Format permission $status obtained from Authority for display.
 	 *
 	 * @param PermissionStatus $status
+	 * @param-taint $status none
 	 * @param string|null $action that was denied or null if unknown
 	 * @return string
+	 * @return-taint tainted
 	 */
 	public function formatPermissionStatus( PermissionStatus $status, string $action = null ): string {
 		if ( $status->isGood() ) {
 			return '';
 		}
-		return $this->formatPermissionsErrorMessage( $status->toLegacyErrorArray(), $action );
+		return $this->formatPermissionInternal(
+			array_map( fn ( $msg ) => $this->msg( $msg ), $status->getMessages() ),
+			$action
+		);
 	}
 
 	/**
@@ -3246,24 +3251,44 @@ class OutputPage extends ContextSource {
 	 * @return-taint tainted
 	 */
 	public function formatPermissionsErrorMessage( array $errors, $action = null ) {
+		return $this->formatPermissionInternal(
+			// @phan-suppress-next-line PhanParamTooFewUnpack Elements of $errors already annotated as non-empty
+			array_map( fn ( $err ) => $this->msg( ...$err ), $errors ),
+			$action
+		);
+	}
+
+	/**
+	 * Helper for formatPermissionStatus() and deprecated formatPermissionsErrorMessage(),
+	 * should be inlined when the deprecated method is removed.
+	 *
+	 * @param Message[] $messages
+	 * @param-taint $messages none
+	 * @param string|null $action
+	 * @return string
+	 * @return-taint tainted
+	 *
+	 * @suppress SecurityCheck-DoubleEscaped Working with plain text, not HTML
+	 */
+	private function formatPermissionInternal( array $messages, $action = null ) {
 		if ( $action == null ) {
-			$text = $this->msg( 'permissionserrorstext', count( $errors ) )->plain() . "\n\n";
+			$text = $this->msg( 'permissionserrorstext', count( $messages ) )->plain() . "\n\n";
 		} else {
 			$action_desc = $this->msg( "action-$action" )->plain();
 			$text = $this->msg(
 				'permissionserrorstext-withaction',
-				count( $errors ),
+				count( $messages ),
 				$action_desc
 			)->plain() . "\n\n";
 		}
 
-		if ( count( $errors ) > 1 ) {
+		if ( count( $messages ) > 1 ) {
 			$text .= Html::openElement( 'ul', [ 'class' => 'permissions-errors' ] );
-			foreach ( $errors as $error ) {
+			foreach ( $messages as $message ) {
 				$text .= Html::rawElement(
 					'li',
-					[ 'class' => 'mw-permissionerror-' . $error[ 0 ] ],
-					$this->msg( ...$error )->plain()
+					[ 'class' => 'mw-permissionerror-' . $message->getKey() ],
+					$message->plain()
 				);
 			}
 			$text .= Html::closeElement( 'ul' );
@@ -3271,9 +3296,8 @@ class OutputPage extends ContextSource {
 			$text .= Html::openElement( 'div', [ 'class' => 'permissions-errors' ] );
 			$text .= Html::rawElement(
 				'div',
-				[ 'class' => 'mw-permissionerror-' . $errors[ 0 ][ 0 ] ],
-				// @phan-suppress-next-line PhanParamTooFewUnpack Elements of $errors already annotated as non-empty
-				$this->msg( ...reset( $errors ) )->plain()
+				[ 'class' => 'mw-permissionerror-' . $messages[ 0 ]->getKey() ],
+				$messages[ 0 ]->plain()
 			);
 			$text .= Html::closeElement( 'div' );
 		}
