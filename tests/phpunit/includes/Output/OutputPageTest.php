@@ -15,6 +15,7 @@ use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Request\ContentSecurityPolicy;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebRequest;
@@ -3284,6 +3285,45 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	public function testUserCanPreview( Authority $performer, WebRequest $request, bool $expected ) {
 		$op = $this->newInstance( [], $request, null, $performer );
 		$this->assertSame( $expected, $op->userCanPreview() );
+	}
+
+	public function providePermissionStatus() {
+		yield 'no errors' => [
+			PermissionStatus::newEmpty(),
+			'',
+		];
+
+		yield 'one message' => [
+			PermissionStatus::newEmpty()->fatal( 'badaccess-group0' ),
+			'(permissionserrorstext: 1)
+
+<div class="permissions-errors"><div class="mw-permissionerror-badaccess-group0">(badaccess-group0)</div></div>',
+		];
+
+		yield 'two messages' => [
+			PermissionStatus::newEmpty()->fatal( 'badaccess-group0' )->fatal( 'foobar' ),
+			'(permissionserrorstext: 2)
+
+<ul class="permissions-errors"><li class="mw-permissionerror-badaccess-group0">(badaccess-group0)</li><li class="mw-permissionerror-foobar">(foobar)</li></ul>',
+		];
+	}
+
+	/** @dataProvider providePermissionStatus */
+	public function testFormatPermissionStatus( PermissionStatus $status, string $expected ) {
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'qqx' );
+
+		$actual = self::newInstance()->formatPermissionStatus( $status );
+		$this->assertEquals( $expected, $actual );
+	}
+
+	/** @dataProvider providePermissionStatus */
+	public function testFormatPermissionsErrorMessage( PermissionStatus $status, string $expected ) {
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'qqx' );
+
+		// Unlike formatPermissionStatus, this method doesn't accept good statuses
+		$actual = $status->isGood() ? '' :
+			self::newInstance()->formatPermissionsErrorMessage( $status->toLegacyErrorArray() );
+		$this->assertEquals( $expected, $actual );
 	}
 
 	private function newInstance(
