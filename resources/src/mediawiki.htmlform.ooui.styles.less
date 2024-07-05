@@ -4,9 +4,10 @@
 /* stylelint-disable selector-class-pattern */
 // OOUIHTMLForm styles
 @ooui-font-size-browser: 16; // assumed browser default of `16px`
-@ooui-font-size-base: 0.875 / 1em; // equals `14px` at browser default of `16px`
+@ooui-font-size-base: 0.875em; // equals `14px` at browser default of `16px`
 
-@ooui-spacing-radio-label: 26 / @ooui-font-size-browser / @ooui-font-size-base; // Equals `1.85714286em`≈`26px`.
+// Equals `1.85714286em`≈`26px`.
+@ooui-spacing-radio-label: (26 / @ooui-font-size-browser / @ooui-font-size-base);
 
 .mw-htmlform-ooui {
 	line-height: 1.4; // Override MediaWiki's default of `1.6`
@@ -16,7 +17,7 @@
 	}
 
 	.oo-ui-fieldLayout.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
-		line-height: 16 / @ooui-font-size-browser / @ooui-font-size-base;
+		line-height: (16 / @ooui-font-size-browser / @ooui-font-size-base);
 	}
 
 	// Default OOUI styles produce a larger margin here
