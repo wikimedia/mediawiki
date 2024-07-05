@@ -9,6 +9,7 @@ use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Parsoid\Core\PageBundle;
+use Wikimedia\Parsoid\ParserTests\TestUtils;
 use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\WTUtils;
 
@@ -47,7 +48,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 		$opts = [];
 		$transf = $loc->transform( $po, null, $opts );
 		$res = $transf->getContentHolderText();
-		self::assertEquals( $expected, self::stripParsoidIds( $res ), $message );
+		self::assertEquals( $expected, TestUtils::stripParsoidIds( $res ), $message );
 	}
 
 	/**
@@ -67,7 +68,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 		$opts = [];
 		$transf = $loc->transform( $po, null, $opts );
 		$res = $transf->getContentHolderText();
-		self::assertEquals( $expected, self::stripParsoidIds( $res ), $message );
+		self::assertEquals( $expected, TestUtils::stripParsoidIds( $res ), $message );
 	}
 
 	/**
@@ -86,7 +87,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 		$opts = [];
 		$transf = $loc->transform( $po, null, $opts );
 		$res = $transf->getContentHolderText();
-		self::assertEquals( $expected, self::stripParsoidIds( $res ), $message );
+		self::assertEquals( $expected, TestUtils::stripParsoidIds( $res ), $message );
 	}
 
 	/**
@@ -181,10 +182,5 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 				'Attr with block content'
 			]
 		];
-	}
-
-	// TODO remove this function and replace it with Parsoid/ParserTests/stripParsoidIds when it's merged
-	public static function stripParsoidIds( string $s ): string {
-		return preg_replace( '/ id="mw((t\d+)|([\w-]{2,}))"/u', '', $s );
 	}
 }
