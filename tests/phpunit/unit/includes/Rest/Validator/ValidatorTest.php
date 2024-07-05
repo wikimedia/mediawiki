@@ -654,7 +654,13 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 					'rest-extraneous-body-fields',
 					[ new ListParam( ListType::COMMA, array_keys( [ 'xyzzy' ] ) ) ]
 				),
-				400
+				400,
+				[
+					'error' => 'parameter-validation-failed',
+					'failureCode' => 'extraneous-body-fields',
+					'name' => 'xyzzy',
+					'failureData' => [ 'xyzzy' ]
+				]
 			)
 		];
 	}
@@ -682,6 +688,7 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 			if ( $expected instanceof LocalizedHttpException ) {
 				$this->assertInstanceOf( get_class( $expected ), $ex );
 				$this->assertSame( $expected->getCode(), $ex->getCode() );
+				$this->assertSame( $expected->getErrorData(), $ex->getErrorData() );
 				$this->assertStringContainsString( $expected->getMessage(), $ex->getMessage() );
 				$this->assertStringContainsString(
 					$expected->getMessageValue()->getKey(),
