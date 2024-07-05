@@ -663,7 +663,7 @@ abstract class BagOStuff implements
 		}
 
 		$key = $keyspace;
-		foreach ( $components as $i => $component ) {
+		foreach ( $components as $component ) {
 			// Escape delimiter (":") and escape ("%") characters
 			$key .= ':' . strtr( $component, [ '%' => '%25', ':' => '%3A' ] );
 		}
