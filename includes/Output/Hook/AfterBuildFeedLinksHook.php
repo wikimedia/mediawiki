@@ -23,5 +23,5 @@ interface AfterBuildFeedLinksHook {
 	public function onAfterBuildFeedLinks( &$feedLinks );
 }
 
-/** @deprecated class alias since 1.41 */
+/** @deprecated class alias since 1.42 */
 class_alias( AfterBuildFeedLinksHook::class, 'MediaWiki\Hook\AfterBuildFeedLinksHook' );

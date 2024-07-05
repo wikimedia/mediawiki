@@ -26,5 +26,5 @@ interface AfterFinalPageOutputHook {
 	public function onAfterFinalPageOutput( $output ): void;
 }
 
-/** @deprecated class alias since 1.41 */
+/** @deprecated class alias since 1.42 */
 class_alias( AfterFinalPageOutputHook::class, 'MediaWiki\Hook\AfterFinalPageOutputHook' );
