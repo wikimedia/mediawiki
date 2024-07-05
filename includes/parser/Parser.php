@@ -6521,5 +6521,5 @@ class Parser {
 	}
 }
 
-/** @deprecated class alias since 1.41 */
+/** @deprecated class alias since 1.42 */
 class_alias( Parser::class, 'Parser' );
