@@ -35,10 +35,32 @@ require_once __DIR__ . '/TableCleanup.php';
  * @ingroup Maintenance
  */
 class TitleCleanup extends TableCleanup {
+
+	private string $prefix;
+
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Script to clean up broken, unparseable titles' );
+		$this->addOption( 'prefix', "Broken pages will be renamed to titles with  " .
+			"<prefix> prepended before the article name. Defaults to 'Broken'", false, true );
 		$this->setBatchSize( 1000 );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function execute() {
+		$this->prefix = $this->getOption( 'prefix', 'Broken' ) . "/";
+		// Make sure the prefix itself is a valid title now
+		// rather than spewing errors for every page being cleaned up
+		// if it's not (We assume below that concatenating the prefix to a title leaves it in NS0)
+		// The trailing slash above ensures that concatenating the title to something
+		// can't turn it into a namespace or interwiki
+		$title = Title::newFromText( $this->prefix );
+		if ( !$title || !$title->canExist() || $title->getInterwiki() || $title->getNamespace() !== 0 ) {
+			$this->fatalError( "Invalid prefix {$this->prefix}. Must be a valid mainspace title." );
+		}
+		parent::execute();
 	}
 
 	/**
@@ -96,40 +118,73 @@ class TitleCleanup extends TableCleanup {
 	 * @param stdClass $row
 	 */
 	protected function moveIllegalPage( $row ) {
-		$legal = 'A-Za-z0-9_/\\\\-';
-		$legalized = preg_replace_callback( "!([^$legal])!",
+		$legalChars = Title::legalChars();
+		$legalizedUnprefixed = preg_replace_callback( "/([^$legalChars])/",
 			[ $this, 'hexChar' ],
 			$row->page_title );
-		if ( $legalized == '.' ) {
-			$legalized = '(dot)';
+		if ( $legalizedUnprefixed == '.' ) {
+			$legalizedUnprefixed = '(dot)';
 		}
-		if ( $legalized == '_' ) {
-			$legalized = '(space)';
+		if ( $legalizedUnprefixed == '_' ) {
+			$legalizedUnprefixed = '(space)';
 		}
-		$legalized = 'Broken/' . $legalized;
+		$ns = (int)$row->page_namespace;
+		// Move all broken pages to the main namespace so they can be found together
+		if ( $ns !== 0 ) {
+			$namespaceInfo = $this->getServiceContainer()->getNamespaceInfo();
+			$namespaceName = $namespaceInfo->getCanonicalName( $ns );
+			if ( $namespaceName === false ) {
+				$namespaceName = "NS$ns"; // Fallback for unknown namespaces
+			}
+			$legalizedUnprefixed = "$namespaceName:$legalizedUnprefixed";
+		}
+		$legalized = $this->prefix . $legalizedUnprefixed;
 
 		$title = Title::newFromText( $legalized );
+
 		if ( $title === null ) {
-			$clean = 'Broken/id:' . $row->page_id;
+			// It's still not a valid title, try again with a much smaller
+			// allowed character set. This will mangle any titles with non-ASCII
+			// characters, but if we don't do this the result will be
+			// falling back to the Broken/id:foo failsafe below which is worse
+			$legalizedUnprefixed = preg_replace_callback( '!([^A-Za-z0-9_\\-:])!',
+				[ $this, 'hexChar' ],
+				$legalizedUnprefixed
+			);
+			$legalized = $this->prefix . $legalizedUnprefixed;
+			$title = Title::newFromText( $legalized );
+		}
+
+		if ( $title === null ) {
+			// Oh well, we tried
+			$clean = $this->prefix . 'id:' . $row->page_id;
 			$this->output( "Couldn't legalize; form '$legalized' still invalid; using '$clean'\n" );
 			$title = Title::newFromText( $clean );
 		} elseif ( $title->exists() ) {
-			$clean = 'Broken/id:' . $row->page_id;
+			$clean = $this->prefix . 'id:' . $row->page_id;
 			$this->output( "Legalized for '$legalized' exists; using '$clean'\n" );
 			$title = Title::newFromText( $clean );
+		}
+
+		if ( !$title || $title->exists() ) {
+			// This can happen in corner cases like if numbers are made not valid
+			// title characters using the (deprecated) $wgLegalTitleChars or
+			// a 'Broken/id:foo' title already exists
+			$this->error( "Destination page {$title->getText()} is invalid or already exists, skipping." );
+			return;
 		}
 
 		$dest = $title->getDBkey();
 		if ( $this->dryrun ) {
 			$this->output( "DRY RUN: would rename $row->page_id ($row->page_namespace," .
-				"'$row->page_title') to ($row->page_namespace,'$dest')\n" );
+				"'$row->page_title') to (0,'$dest')\n" );
 		} else {
 			$this->output( "renaming $row->page_id ($row->page_namespace," .
 				"'$row->page_title') to ($row->page_namespace,'$dest')\n" );
 			$this->getPrimaryDB()
 				->newUpdateQueryBuilder()
 				->update( 'page' )
-				->set( [ 'page_title' => $dest ] )
+				->set( [ 'page_title' => $dest, 'page_namespace' => 0 ] )
 				->where( [ 'page_id' => $row->page_id ] )
 				->caller( __METHOD__ )->execute();
 		}
@@ -140,46 +195,66 @@ class TitleCleanup extends TableCleanup {
 	 * @param Title $title
 	 */
 	protected function moveInconsistentPage( $row, Title $title ) {
-		if ( $title->exists( IDBAccessObject::READ_LATEST )
-			|| $title->getInterwiki()
-			|| !$title->canExist()
-		) {
-			$titleImpossible = $title->getInterwiki() || !$title->canExist();
+		$titleImpossible = $title->getInterwiki() || !$title->canExist();
+		if ( $title->exists( IDBAccessObject::READ_LATEST ) || $titleImpossible ) {
 			if ( $titleImpossible ) {
 				$prior = $title->getPrefixedDBkey();
 			} else {
 				$prior = $title->getDBkey();
 			}
 
+			$ns = (int)$row->page_namespace;
+			# If a page is saved in the main namespace with a namespace prefix then try to move it into
+			# that namespace. If there's no conflict then it will succeed. Otherwise it will hit the condition
+			# } else if ($ns !== 0) { and be moved to Broken/Namespace:Title
+			# whereas without this check it would just go to Broken/Title
+			if ( $ns === 0 ) {
+				$ns = $title->getNamespace();
+			}
+
 			# Old cleanupTitles could move articles there. See T25147.
-			$ns = $row->page_namespace;
+			# or a page could be stored as (0, "Special:Foo") in which case the $titleImpossible
+			# condition would be true and we've already added a prefix so pretend we're in mainspace
+			# and don't add another
 			if ( $ns < 0 ) {
 				$ns = 0;
 			}
 
 			# Namespace which no longer exists. Put the page in the main namespace
 			# since we don't have any idea of the old namespace name. See T70501.
-			if ( !$this->getServiceContainer()->getNamespaceInfo()->exists( $ns ) ) {
+			# We build the new title ourself rather than relying on getDBKey() because
+			# that will return Special:BadTitle
+			$namespaceInfo = $this->getServiceContainer()->getNamespaceInfo();
+			if ( !$namespaceInfo->exists( $ns ) ) {
+				$clean = "{$this->prefix}NS$ns:$row->page_title";
 				$ns = 0;
-			}
-
-			if ( !$titleImpossible && !$title->exists() ) {
+			} elseif ( !$titleImpossible && !$title->exists() ) {
 				// Looks like the current title, after cleaning it up, is valid and available
 				$clean = $prior;
+			} elseif ( $ns !== 0 ) {
+				// Put all broken pages in the main namespace so that they can be found via Special:PrefixIndex
+				$nsName = $namespaceInfo->getCanonicalName( $ns );
+				$clean = "{$this->prefix}$nsName:{$prior}";
+				$ns = 0;
 			} else {
-				$clean = 'Broken/' . $prior;
+				$clean = $this->prefix . $prior;
 			}
 			$verified = Title::makeTitleSafe( $ns, $clean );
 			if ( !$verified || $verified->exists() ) {
-				$blah = "Broken/id:" . $row->page_id;
-				$this->output( "Couldn't legalize; form '$clean' exists; using '$blah'\n" );
-				$verified = Title::makeTitleSafe( $ns, $blah );
+				$lastResort = "{$this->prefix}id: {$row->page_id}";
+				$this->output( "Couldn't legalize; form '$clean' exists; using '$lastResort'\n" );
+				$verified = Title::makeTitleSafe( $ns, $lastResort );
+				if ( !$verified || $verified->exists() ) {
+					// This can happen in corner cases like if numbers are made not valid
+					// title characters using the (deprecated) $wgLegalTitleChars or
+					// a 'Broken/id:foo' title already exists
+					$this->error( "Destination page $lastResort invalid or already exists." );
+					return;
+				}
 			}
 			$title = $verified;
 		}
-		if ( $title === null ) {
-			$this->fatalError( "Something awry; empty title." );
-		}
+
 		$ns = $title->getNamespace();
 		$dest = $title->getDBkey();
 
