@@ -28,6 +28,7 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Title\Title;
 
 /**

@@ -25,6 +25,7 @@ use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig as ParsoidSiteConfig;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Status\Status;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
