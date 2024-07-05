@@ -718,7 +718,7 @@
 	"template-equals-category": "Pages sẽn tũnugd ne = sẽn yaa makrã",
 	"template-equals-category-desc": "Sebrã pʋgẽ, b sõsdame tɩ b pa le paasd n ta <code>=</code> wã ye. Woto pa le be ye. La pʋgl sẽn na n wa yɩ MediaWiki wã na n maana <code><nowiki><code><nowiki>{{=}}</nowiki></code></nowiki></code> wa parser function.",
 	"template-equals-warning": "<strong>Warning:</strong> This page uses <code><nowiki>{{=}}</nowiki></code> but on this wiki that does not expand to <code>=</code>. This usage is deprecated; a future MediaWiki version will implement <code><nowiki>{{=}}</nowiki></code> as a parser function.",
-	"parser-template-loop-warning": "Tãnd sẽn yãtã: [[$1]]",
+	"parser-template-loop-warning": "Tãnd sẽn yãtã: [[:$1]]",
 	"template-loop-category": "Pags ne modɛl-gãosgo",
 	"template-loop-category-desc": "Sebrã tara makr sẽn yaa b sẽn dat n wilg tɩ b yaa b sẽn segd n maan bũmb ningã. b sẽn boond b mens tɩ b sẽn boond tɩ b sẽn bool tɩ b sẽn get tɩ b yaa b sẽn get b mens tɩ pa b sẽn get bũmb ninsã.",
 	"template-loop-warning": "Gũusgo: Seb-kãngã boolame tɩ [[:$1]] sẽn wat ne modɛl sẽn yaa tɩlɛ (sẽn pa tõe n paam n bool tɩ b bool-a).",

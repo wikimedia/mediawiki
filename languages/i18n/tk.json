@@ -636,7 +636,7 @@
 	"post-expand-template-inclusion-category": "Girizilýän şablonlarynyň göwrümi çakdanaşa uly bolan sahypalar",
 	"post-expand-template-argument-warning": "'''Duýduryş:''' Bu sahypa çakdanaşa uly giňeme ölçegi bar bolan iň bolmanda bir sany şablon argumentini öz içine alýar.\nOl argumentler hasap edilmedi.",
 	"post-expand-template-argument-category": "Hasap edilmedik argumentleri bar bolan sahypalar",
-	"parser-template-loop-warning": "Şablon halkasy ýüze çykaryldy: [[$1]]",
+	"parser-template-loop-warning": "Şablon halkasy ýüze çykaryldy: [[:$1]]",
 	"template-loop-category": "Şablon aýlawly sahypalar",
 	"template-loop-category-desc": "Sahypada şablon aýlawy bar. özüni yzygiderli çagyrýan şablon.",
 	"parser-template-recursion-depth-warning": "Şablonyň rekursiýasynyň çuňluk çäginden geçildi ($1)",

@@ -754,7 +754,7 @@
 	"template-equals-category": "Pagine che dopren = come on modell",
 	"template-equals-category-desc": "La pagina la gh'hà dent <code><nowiki>{{=}}</nowiki></code> ma in questa wiki chì l'è minga ativada l'espansion a <code>=</code>. Questa utilizazzion l'è scongiurada; una versione de MediaWiki che la vegnarà la realizzarà <code><nowiki>{{=}}</nowiki></code> come una fonzion parser.",
 	"template-equals-warning": "La pagina la dopra <code><nowiki>{{=}}</nowiki></code> ma in questa wiki chì l'è minga ativada l'espansion a <code>=</code>. Questa utilizzazion l'è scongiurada; una versione de MediaWiki che la vegnarà la realizzarà <code><nowiki>{{=}}</nowiki></code> come una fonzion parser.",
-	"parser-template-loop-warning": "Rilevad ciclo a fà e rifà in del modell: [[$1]]",
+	"parser-template-loop-warning": "Rilevad ciclo a fà e rifà in del modell: [[:$1]]",
 	"template-loop-category": "Pagine con di modei che ciamen lor medesim",
 	"template-loop-category-desc": "Quella pagina chì la gh'hà dent on ciclo a ripetizzion in d'un model, idest un model che 'l va adree ciamass con ricorrenza.",
 	"template-loop-warning": "<strong>Atenzion:</strong> questa pagina chì la ciama [[:$1]] che 'l pròvoca un ciclo a ripetizzion (una ciamada con ricorrenza infinida del model).",

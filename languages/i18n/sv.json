@@ -834,7 +834,7 @@
 	"template-equals-category": "Sidor som använder = som en mall",
 	"template-equals-category-desc": "Sidan innehåller <code><nowiki>{{=}}</nowiki></code> men på denna wiki gäller inte det <code>=</code>. Användning av detta är föråldrat; en framtida MediaWiki-version kommer implementera <code><nowiki>{{=}}</nowiki></code> som en tolkningsfunktion.",
 	"template-equals-warning": "<strong>Varning:</strong> Sidan innehåller <code><nowiki>{{=}}</nowiki></code> men på denna wiki gäller inte det <code>=</code>. Användning av detta är föråldrat; en framtida MediaWiki-version kommer implementera <code><nowiki>{{=}}</nowiki></code> som en tolkningsfunktion.",
-	"parser-template-loop-warning": "Mall-loop upptäckt: [[$1]]",
+	"parser-template-loop-warning": "Mall-loop upptäckt: [[:$1]]",
 	"template-loop-category": "Sidor med loopade mallar",
 	"template-loop-category-desc": "Sidan innehåller en loopad mall, d.v.s. en mall som anropar sig själv rekursivt.",
 	"template-loop-warning": "<strong>Varning:</strong> Denna sida anropar [[:$1]] som orsakar en malloop (ett oändlig rekursivt anrop).",

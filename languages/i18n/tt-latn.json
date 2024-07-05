@@ -446,7 +446,7 @@
 	"post-expand-template-inclusion-category": "Röxsät itelgän külämnän artıq bulğan ürnäkle bitlär",
 	"post-expand-template-argument-warning": "'''İğtibar:''' Bu bit açu öçen zur bulğan kimendä ber ürnäk argumentına iä.\nMondıy argumentlar töşerep qaldırıldı.",
 	"post-expand-template-argument-category": "Töşerep qaldırılğan ürnäk argumentlı bitlär",
-	"parser-template-loop-warning": "Ürnäklärdä yomıq sıltama tabıldı: [[$1]]",
+	"parser-template-loop-warning": "Ürnäklärdä yomıq sıltama tabıldı: [[:$1]]",
 	"parser-template-recursion-depth-warning": "($1) ürnägen rekursiä itep qullanu çige röxsät itelgännän artıp kitkän",
 	"language-converter-depth-warning": "Tellärne üzgärtüläre artıq yuğarığa kitkän ($1)",
 	"undo-success": "Üzgärtüdän baş tartıp bula.\nYuramalaranı çağıştırunı qarağız häm, üzgärtülär Sez telägänçä bulsa, bitne saqlağız.",

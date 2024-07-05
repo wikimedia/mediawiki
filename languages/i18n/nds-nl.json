@@ -571,7 +571,7 @@
 	"post-expand-template-inclusion-category": "Ziejen die over de maximumgrootte veur in-evoegden mallen hinne gaon",
 	"post-expand-template-argument-warning": "Waorschuwing: disse zied gebruukt tenminsten een parameter in n mal, die te groot is as t uuteklapt wördt. Disse parameters wörden vorteleuten.",
 	"post-expand-template-argument-category": "Ziejen mit ontbrekende malelementen",
-	"parser-template-loop-warning": "Der is n kringloop in mallen waoreneumen: [[$1]]",
+	"parser-template-loop-warning": "Der is n kringloop in mallen waoreneumen: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Der is over de rekursiediepte veur mallen is hinne gaon ($1)",
 	"language-converter-depth-warning": "Je hebben t dieptelimiet veur de taalumzetter bereikt ($1)",
 	"node-count-exceeded-category": "Ziejen die t knuppenantal overschrejen hebben.",

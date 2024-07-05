@@ -689,7 +689,7 @@
 	"post-expand-template-argument-warning": "'''ווארענונג''': די בלאט אנטהאלט צו ווייניגסטענס איין טאמפלעיט פארעמיטער וואס איז צו גרויס. די דאזיגע פארעמיטערס זענען אויסגעלאזט געווארן.",
 	"post-expand-template-argument-category": "בלעטער וואס זענען פון דעם ארויסגעלאזט געווארן טאמפלעיט פאראמעטערס",
 	"template-equals-category": "בלעטער וואס ניצן = ווי א מוסטער",
-	"parser-template-loop-warning": "מוסטער שלייף געטראפן: [[$1]]",
+	"parser-template-loop-warning": "מוסטער שלייף געטראפן: [[:$1]]",
 	"template-loop-category": "בלעטער מיט מוסטער־שלייפֿן",
 	"parser-template-recursion-depth-warning": "מוסטער רעקורסיע טיף מאקסימום איבערגעשטיגן ($1)",
 	"language-converter-depth-warning": "אַריבער דעם שפּראַך קאַנווערטער טיף לימיט ($1)",

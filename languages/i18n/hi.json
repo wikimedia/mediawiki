@@ -798,7 +798,7 @@
 	"post-expand-template-inclusion-category": "ऐसे पृष्ठ जिनपर साँचे जुड़ने की सीमा पार हो गई है",
 	"post-expand-template-argument-warning": "'''चेतावनी:''' इस पृष्ठ पर कम-से-कम एक साँचा तर्क है जिसके विस्तार का आकार बहुत बड़ा है।\nइन तर्कों को छोड़ दिया गया है।",
 	"post-expand-template-argument-category": "ऐसे पृष्ठ जिनमें प्राचल छोड़े गये हैं",
-	"parser-template-loop-warning": "साँचा चक्र मिला: [[$1]]",
+	"parser-template-loop-warning": "साँचा चक्र मिला: [[:$1]]",
 	"template-loop-category": "टेम्पलेट लूप वाले पेज",
 	"template-loop-category-desc": "पृष्ठ में एक टेम्पलेट लूप है, अर्थात। एक टेम्पलेट जो स्वयं को पुनरावर्ती रूप से कॉल करता है",
 	"template-loop-warning": "<strong> चेतावनी: </strong> यह पृष्ठ [[:$1]] उनको कॉल करता है जिसके कारण टेम्पलेट लूप (एक अनंत रिकर्सिव कॉल) होता है।",

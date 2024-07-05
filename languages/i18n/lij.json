@@ -757,7 +757,7 @@
 	"template-equals-category": "Pàgine ch'adêuvian = cómme template",
 	"template-equals-category-desc": "A pàgina a contêgne <code><nowiki>{{=}}</nowiki></code> ma inte quésta wiki no l'é ativòu l'espansción a <code>=</code>. Sto scistêma chi o l'é deprecòu, in futûo ghe saiâ 'na fonçión MediaWiki p'avéi <code><nowiki>{{=}}</nowiki></code> cómme fonçión parser.",
 	"template-equals-warning": "<strong>Atençión:</strong> sta pàgina chi a dêuvia <code><nowiki>{{=}}</nowiki></code> ma inte quésta wiki no l'é ativòu l'espansción a <code>=</code>. Sto scistêma chi o l'é deprecòu, in futûo ghe saiâ 'na fonçión MediaWiki p'avéi <code><nowiki>{{=}}</nowiki></code> cómme fonçión parser.",
-	"parser-template-loop-warning": "Trovòu loop do template: [[$1]]",
+	"parser-template-loop-warning": "Trovòu loop do template: [[:$1]]",
 	"template-loop-category": "Pàgine con di template che se reciàmman da lô",
 	"template-loop-category-desc": "A pàgina a contêgne 'n template ch'o se reciàmma da lê, sàiva a dî 'n template dónde gh'é inclûzo o template mæximo.",
 	"template-loop-warning": "<strong>Atençión:</strong> sta pàgina chi a reciàmma [[:$1]] ch'o caxónn-a 'n loop ('na ciamâ recorscîva infinîa).",

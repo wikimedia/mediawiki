@@ -638,7 +638,7 @@
 	"post-expand-template-inclusion-category": "Sidjen mä muar üs det maksimaal taal faan iinbünjen föörlaagen.",
 	"post-expand-template-argument-warning": "'''Paase üüb:''' Üüb detdiar sidj stäänt tumanst ään iindrach för en föörlaag, diar tu grat as. Sok iindracher wurd ei ferwerket.",
 	"post-expand-template-argument-category": "Sidjen mä föörlaagen, huar ei arke iindrach brükt wurd koon.",
-	"parser-template-loop-warning": "Diar as en föörlaagensleuf: [[$1]]",
+	"parser-template-loop-warning": "Diar as en föörlaagensleuf: [[:$1]]",
 	"template-loop-category": "Sidjen mä föörlaagensleufen",
 	"template-loop-category-desc": "Üüb detdiar sidj komt en föörlaagensleuf föör, t.b. en föörlaag, diar ham salew aprept.",
 	"parser-template-recursion-depth-warning": "Tuföl föörlaagen uun föörlaagen ($1)",

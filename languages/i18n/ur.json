@@ -721,7 +721,7 @@
 	"post-expand-template-inclusion-category": "حجم سے متجاوز سانچوں والے صفحات",
 	"post-expand-template-argument-warning": "<strong>انتباہ:</strong> اس صفحہ میں موجود سانچہ کے کم از کم کسی ایک پیرامیٹر کا حجم بہت زیادہ ہے۔\nان پیرامیٹروں کو ترک کر دیا گیا ہے۔",
 	"post-expand-template-argument-category": "سانچہ کے ترک کردہ پیرامیٹروں کے حامل صفحات",
-	"parser-template-loop-warning": "سانچہ میں تکرار پایا گیا: [[$1]]",
+	"parser-template-loop-warning": "سانچہ میں تکرار پایا گیا: [[:$1]]",
 	"template-loop-category": "صفحات مع لوپ سانچہ",
 	"template-loop-category-desc": "یہ صفحہ لوپ سانچے پر مشتمل ہے یعنی ایک سانچہ اعادے یا تکرار کی وجہ سے خود کو طلب کرتا ہے۔",
 	"template-loop-warning": "<strong>انتباہ:</strong> یہ صفحہ [[:$1]] کو طلب کرتا ہے جو ایک لوپ سانچے (ایک لامحدود اعادے یا تکرار کی طلب) کی وجہ بنتا ہے۔",

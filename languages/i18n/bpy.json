@@ -415,7 +415,7 @@
 	"post-expand-template-inclusion-category": "যেহাত টেমপ্লেটর ইনক্লুড অংতাহান পাতাহানিত্ত লেমসে",
 	"post-expand-template-argument-warning": "' ' ' সিঙুইস: ' ' ' এরে পাতাহাত তিলসে টেম্পলেট এহার যুক্তি আহান লাম হেলসে। অহানে যুক্তি অহান বেলানি অইল।",
 	"post-expand-template-argument-category": "পতাহাত পুসিসি মডেলর জর থা পরসেগা",
-	"parser-template-loop-warning": "মডেলর তরিগ দেখরাং: [[$1]]",
+	"parser-template-loop-warning": "মডেলর তরিগ দেখরাং: [[:$1]]",
 	"undo-failure": "পতানি এহানর হাদিত আরাকউ পতাসিতা থানিয়ে আগেকার অঙতাত জানা নাইল।",
 	"viewpagelogs": "পাতাহানর লগ চা",
 	"nohistory": "পাতা এহান পতানির কোনো ইতিহাস নেই।",

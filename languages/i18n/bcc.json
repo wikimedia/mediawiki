@@ -629,7 +629,7 @@
 	"post-expand-template-inclusion-category": "تاکے کہ تَھرانءِ اندازہ گݔشتر بیتگ",
 	"post-expand-template-argument-warning": "هوژاری: ای صفحه شامل یک آرگومان تمپلت انت که اندازه ی بازنت.\nای آرگومان آن بایدن حذف بوتنت",
 	"post-expand-template-argument-category": "صفحات شامل حذفی آرگومان آن تمپلت انت",
-	"parser-template-loop-warning": "گردݔن تَھر گندگ بیت: [[$1]]",
+	"parser-template-loop-warning": "گردݔن تَھر گندگ بیت: [[:$1]]",
 	"parser-template-recursion-depth-warning": "محدودیت عمق تررگ رد بوت ($1)",
 	"language-converter-depth-warning": "چه محدودیت عمق زبانانی کارمرز گؤست ات ($1)",
 	"node-count-exceeded-category": "پیج انی که گیش چه مکسیمم تعداد گره بیتگ انت",

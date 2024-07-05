@@ -739,7 +739,7 @@
 	"template-equals-category": "= таныкты ӱлекер этире эдинеген бӱктер",
 	"template-equals-category-desc": "Бӱкте <code><nowiki>{{=}}</nowiki></code> бар, је бу викиде  <code>=</code> этире элбедилбес. Мынайда эдинетени эскирген; MediaWiki-ниҥ келер версиялары <code><nowiki>{{=}}</nowiki></code> кодты парсердиҥ функциязы этире эдинер.",
 	"template-equals-warning": "<strong>Ајару:</strong> Бу бӱк <code><nowiki>{{=}}</nowiki></code> эдинип турган, је бу викиде  <code>=</code> этире элбедилбес. Мынайда эдинетени эскирген; MediaWiki-ниҥ келер версиялары <code><nowiki>{{=}}</nowiki></code> кодты парсердиҥ функциязы этире эдинер..",
-	"parser-template-loop-warning": "Ӱлекерлерде курчу табылды: [[$1]]",
+	"parser-template-loop-warning": "Ӱлекерлерде курчу табылды: [[:$1]]",
 	"template-loop-category": "Ӱлекерлери курчулу бӱктер",
 	"template-loop-category-desc": "Бу бӱкте курчулу ӱлекер бар, ӧскӧ этире айтса бойы бойын ойтоноҥ алдырып турган ӱлекер.",
 	"template-loop-warning": "<strong>Ајару:</strong> Бу бӱк [[:$1]] алдырат, онызы ӱлекерде токтобос курчуда циклдарга кийдирет (божобос катапталган алдырыш).",

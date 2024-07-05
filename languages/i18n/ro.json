@@ -762,7 +762,7 @@
 	"template-equals-category": "Pagini ce folosesc = ca format",
 	"template-equals-category-desc": "Această pagină conține <code><nowiki>{{=}}</nowiki></code> dar pe acest wiki acest cod nu se traduce în <code>=</code>. Această metodă de folosire este învechită. O versiune viitoare de MediaWiki va implementa <code><nowiki>{{=}}</nowiki></code> ca o funcție de parser.",
 	"template-equals-warning": "<strong>Avertisment:</strong> Această pagină conține <code><nowiki>{{=}}</nowiki></code> dar pe acest wiki acest cod nu se traduce în <code>=</code>. Această metodă de folosire este învechită; o versiune ulterioară de MediaWiki va implementa <code><nowiki>{{=}}</nowiki></code> ca o funcție de parser.",
-	"parser-template-loop-warning": "Buclă de formate detectată: [[$1]]",
+	"parser-template-loop-warning": "Buclă de formate detectată: [[:$1]]",
 	"template-loop-category": "Pagini cu bucle de formate",
 	"template-loop-category-desc": "Pagina conține o buclă de șabloane, adică un șablon care se autoapelează recursiv.",
 	"template-loop-warning": "<strong>Atenție:</strong> Această pagină apelează [[:$1]] ceea ce cauzează un ciclu de formate (un apel recursiv infinit).",

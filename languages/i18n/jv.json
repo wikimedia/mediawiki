@@ -633,7 +633,7 @@
 	"post-expand-template-inclusion-category": "Kaca mawa ukuran cithakan kang munjuli wates",
 	"post-expand-template-argument-warning": "Pènget: Kaca iki ngandhut saora-orané siji argumen cithakan kanthi ukuran èkspansi kang kegedhèn. Argumèn-argumèn kasebut wis dilirwakaké.",
 	"post-expand-template-argument-category": "Kaca mawa argumèn cithakan kang kabusek",
-	"parser-template-loop-warning": "Ana ''loop'' cithakan: [[$1]]",
+	"parser-template-loop-warning": "Ana ''loop'' cithakan: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Wates ''recursion depth'' cithakan wis ngliwati ($1)",
 	"language-converter-depth-warning": "Wates jeroné pangganti basa wis kapunjulen ($1)",
 	"node-count-exceeded-category": "Kaca kang itungan-nodéné wis punjul",

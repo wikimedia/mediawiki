@@ -729,7 +729,7 @@
 	"template-equals-category": "Siiddut mat atnet = mállen",
 	"template-equals-category-desc": "Siiddus lea málle <code><nowiki>{{=}}</nowiki></code>, muhto dán wikis dan sisdoallu ii leat <code>=</code>. Dat atnu lea boarásnuvvan; MediaWiki ođđa veršuvnnas <code><nowiki>{{=}}</nowiki></code> lea dulkonfunkšuvdna.",
 	"template-equals-warning": "<strong>Várrehus:</strong> Siiddus lea málle <code><nowiki>{{=}}</nowiki></code>, muhto dán wikis dan sisdoallu ii leat <code>=</code>. Dat atnu lea boarásnuvvan; MediaWiki ođđa veršuvnnas <code><nowiki>{{=}}</nowiki></code> lea dulkonfunkšuvdna.",
-	"parser-template-loop-warning": "Mállefárfu gávdnui: [[$1]]",
+	"parser-template-loop-warning": "Mállefárfu gávdnui: [[:$1]]",
 	"template-loop-category": "Siiddut main leat mállefárffut",
 	"template-loop-category-desc": "Dán siiddus lea mállefárfu nappo málle, mii gohčču iežas rekursiivvalaččat.",
 	"template-loop-warning": "<strong>Várrehus:</strong> Dát siidu gohčču [[:$1]], mii álggaha agálaš mállefárffu nappo nohkameahttun rekursiiva gohččuma.",

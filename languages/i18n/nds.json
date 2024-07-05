@@ -468,7 +468,7 @@
 	"post-expand-template-inclusion-category": "Sieden, de över de Maximumgrött för inbunnene Sieden rövergaht",
 	"post-expand-template-argument-warning": "Wohrschau: Disse Siet bruukt opminnst een Parameter in ene Vörlaag, de to groot is, wenn’t wiest warrt. Disse Parameters warrt weglaten.",
 	"post-expand-template-argument-category": "Sieden mit utlaten Vörlaagargmenten",
-	"parser-template-loop-warning": "Vörlagenslööf funnen: [[$1]]",
+	"parser-template-loop-warning": "Vörlagenslööf funnen: [[:$1]]",
 	"parser-template-recursion-depth-warning": "över de Rekursionsdeepdengrenz för Vörlagen rövergahn ($1)",
 	"undo-success": "De Ännern kann trüchdreiht warrn. Vergliek ünnen de Versionen, dat ok allens richtig is, un spieker de Siet denn af.",
 	"undo-failure": "Kunn de Siet nich op de vörige Version trüchdreihn. De Afsnitt is twüschendör al wedder ännert worrn.",

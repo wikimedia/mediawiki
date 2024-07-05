@@ -727,7 +727,7 @@
 	"template-equals-category": "Stranice koje koriste = kao šablon",
 	"template-equals-category-desc": "Stranica sadrži <code><nowiki>{{=}}</nowiki></code> ali ovaj wiki ne proširuje na <code>=</code>. Ova upotreba je zastarjela; buduća verzija MediaWikija će implementirati <code><nowiki>{{=}}</nowiki></code> kao funkciju parsera.",
 	"template-equals-warning": "<strong>Upozorenje:</strong> Ova stranica sadrži <code><nowiki>{{=}}</nowiki></code> ali ovaj wiki ne proširuje na <code>=</code>. Ova upotreba je zastarjela; buduća verzija MediaWikija će implementirati <code><nowiki>{{=}}</nowiki></code> kao funkciju parsera.",
-	"parser-template-loop-warning": "Otkrivena kružna greška u šablonu: [[$1]]",
+	"parser-template-loop-warning": "Otkrivena kružna greška u šablonu: [[:$1]]",
 	"template-loop-category": "Stranice sa šablonskim petljama",
 	"parser-template-recursion-depth-warning": "Dubina uključivanja šablona prekoračena ($1)",
 	"language-converter-depth-warning": "Prekoračena granica dubine jezičkog pretvarača ($1)",

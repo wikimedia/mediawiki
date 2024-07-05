@@ -755,7 +755,7 @@
 	"template-equals-category": "= белгісін үлгі ретінде қолданатын беттер",
 	"template-equals-category-desc": "Бұл бетте <code><nowiki>{{=}}</nowiki></code> бар, бірақ ол бұл уикиде <code>=</code> болып кеңейтілмейді. Бұл қолданыс ұсынылмаған. Болашақ MediaWiki нұсқасында <code><nowiki>{{=}}</nowiki></code> талдағыш функция ретінде қосылады.",
 	"template-equals-warning": "<strong>Ескерту:</strong> бұл бетте <code><nowiki>{{=}}</nowiki></code> бар, бірақ ол бұл уикиде <code>=</code> болып кеңейтілмейді. Бұл қолданыс ұсынылмаған. Болашақ MediaWiki нұсқасында <code><nowiki>{{=}}</nowiki></code> талдағыш функция ретінде қосылады.",
-	"parser-template-loop-warning": "Тұйық үлгі анықталды: [[$1]]",
+	"parser-template-loop-warning": "Тұйық үлгі анықталды: [[:$1]]",
 	"template-loop-category": "Тұйық үлгісі бар беттер",
 	"template-loop-category-desc": "Бұл бетте тұйық үлгі, яғни өз-өзін рекурсивті түрде шақыратын үлгі, бар.",
 	"template-loop-warning": "<strong>Ескерту:</strong> бұл бетте [[:$1]] тұйық (рекурсивті шақыруды туғызатын) үлгісі бар.",

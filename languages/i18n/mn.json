@@ -590,7 +590,7 @@
 	"post-expand-template-inclusion-category": "Загварын оролцуулах хэмжээ ихэдсэн хуудаснууд",
 	"post-expand-template-argument-warning": "'''Анхаар:''' Энэ хуудсанд хэт том өргөтгөлийн хэмжээтэй ядаж нэг загварын аргумент байна.\nЭдгээр аргументуудыг тооцсонгүй.",
 	"post-expand-template-argument-category": "Орхигдсон загварын аргументуудтай хуудаснууд",
-	"parser-template-loop-warning": "Загвар тойрч буйг тогтоов: [[$1]]",
+	"parser-template-loop-warning": "Загвар тойрч буйг тогтоов: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Загварын рекурсийн хэмжээний хязгаараас хэтрэв ($1)",
 	"language-converter-depth-warning": "Хэл хооронд хөрвүүлэх гүний хязгаараас хэтрэв ($1)",
 	"node-count-exceeded-category": "node -ын тоо хэтэрсэн хуудсууд",

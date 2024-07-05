@@ -634,7 +634,7 @@
 	"post-expand-template-inclusion-category": "Halaman rik ukuran templat sai ngaliyu'i batas",
 	"post-expand-template-argument-category": "Halaman rik argumen templat sai tiilingko",
 	"template-equals-category": "Halaman sai makai = sabagai templat",
-	"parser-template-loop-warning": "Hubungan buulang templat tideteksi: [[$1]]",
+	"parser-template-loop-warning": "Hubungan buulang templat tideteksi: [[:$1]]",
 	"template-loop-category": "Halaman rik templat buulang",
 	"template-loop-category-desc": "Halaman hasa ngandung templat ngalingkor, yona templat sai nudu badanna diwik sacara ulang-uloh.",
 	"parser-template-recursion-depth-warning": "Limit karakloman hubungan buulang templat tiliyu'i ($1)",

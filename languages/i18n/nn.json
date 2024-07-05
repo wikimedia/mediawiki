@@ -701,7 +701,7 @@
 	"post-expand-template-inclusion-category": "Sider som inneheld for store malar",
 	"post-expand-template-argument-warning": "Åtvaring: Sida inneheld ein eller fleire malparameterar som vert for lange når dei utvidast.\nDesse parameterane har vorte utelatne.",
 	"post-expand-template-argument-category": "Sider med utelatne malparameterar",
-	"parser-template-loop-warning": "Mallykkje oppdaga: [[$1]]",
+	"parser-template-loop-warning": "Mallykkje oppdaga: [[:$1]]",
 	"template-loop-category": "Sider med malsløyfer",
 	"parser-template-recursion-depth-warning": "Malen er inkludert for mange gonger ($1)",
 	"language-converter-depth-warning": "Språkomformaren si djubdegrense vart overstege ($1)",

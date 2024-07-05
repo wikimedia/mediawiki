@@ -741,7 +741,7 @@
 	"template-equals-category": "Hetê Şabloni = pelê gureyniyenê",
 	"template-equals-category-desc": "Pela de <code><nowiki>{{=}}</nowiki></code> esto, lakin na wiki de <code>=</code> hera nêbeno. Na karnayış, karyayış ra dariyayo; Zemano amayen de yew versiyonê MediaWiki <code><nowiki>{{=}}</nowiki></code> ya pêra abırnayê zey fonksiyoni do bıkarno.",
 	"template-equals-warning": "<strong>Teme :</strong> Ena pela de <code><nowiki>{{=}}</nowiki></code> esto, lakin na wiki de <code>=</code> hera nêbeno. Na karnayış, karyayış ra dariyayo; Zemano amayen de yew versiyonê MediaWiki <code><nowiki>{{=}}</nowiki></code> ya pêra abırnayê zey fonksiyoni do bıkarno.",
-	"parser-template-loop-warning": "Gıreyê şabloni ca biyo: [[$1]]",
+	"parser-template-loop-warning": "Gıreyê şabloni ca biyo: [[:$1]]",
 	"template-loop-category": "dordorekê şabloniya peri",
 	"template-loop-category-desc": "Pela de çerğa şabloni esta. Mesela şablono tım veyndano ho",
 	"template-loop-warning": "<strong>Tembe:</strong> na pela, yew girdaba şanloni (bêlimit veyndayış) re sebeb biyaye veyndana şablonê [[:$1]].",

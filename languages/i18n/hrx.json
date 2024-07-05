@@ -541,7 +541,7 @@
 	"post-expand-template-inclusion-category": "Seite, in denen die maximale Grösse ingebundner Voarlooche üwerschritt ist",
 	"post-expand-template-argument-warning": "'''Warnung:''' Die Seit enthält mindestens en Parameter in ener Voarlooche, wo expandiert zu gross ist. Die Parameter werre ignoriert.",
 	"post-expand-template-argument-category": "Seite mit ignorierte Voarloocheparameter",
-	"parser-template-loop-warning": "Voarloochschleif entdeckt: [[$1]]",
+	"parser-template-loop-warning": "Voarloochschleif entdeckt: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Voarloocherekursionstiefgrenz üwerschritt ($1)",
 	"language-converter-depth-warning": "Sprochkonvertertieflimit üwerschritt ($1)",
 	"node-count-exceeded-category": "Seite, wo die Knoteoonzoohl üwerschritt honn",

@@ -695,7 +695,7 @@
 	"post-expand-template-argument-warning": "Attenziò: Sta pàgene tène almene 'n'argomende de 'nu template ca jè troppe larie.\nSte argumende onne state luete.",
 	"post-expand-template-argument-category": "Pàggene ca condenene template cu quacche argomende zumbete",
 	"template-equals-category": "Pàggene ca ausane = cumme template",
-	"parser-template-loop-warning": "Amme acchiete 'nu cicle de template: [[$1]]",
+	"parser-template-loop-warning": "Amme acchiete 'nu cicle de template: [[:$1]]",
 	"template-loop-category": "Pàggene cu le template ca se chiamane da sule",
 	"parser-template-recursion-depth-warning": "Ha state supranete 'u limite di ricorsione de le template ($1)",
 	"language-converter-depth-warning": "'U convertitore de lènghe ha subranate 'u limite de profonnetà ($1)",

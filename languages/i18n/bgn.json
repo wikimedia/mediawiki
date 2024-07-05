@@ -547,7 +547,7 @@
 	"post-expand-template-inclusion-category": "آ تاکدیمان که آوانئ تا تراشوانانئ اندزه گ شه حد ئا گیشتیر اینت.",
 	"post-expand-template-argument-warning": "'''هشدار:''' ای تاکدیم یک تراشوانئ پارامیتر اینت که شه اندازه ئا ٹوو.\nای پارامیتران نادیسته گیپته بوتنت.",
 	"post-expand-template-argument-category": "تاکدیمان که حاوی تراشوانان گو پارامیتران نادیده گیپته بوته انت",
-	"parser-template-loop-warning": "حلقه بی تراشوان ئا تا ودی نه بوت: [[$1]]",
+	"parser-template-loop-warning": "حلقه بی تراشوان ئا تا ودی نه بوت: [[:$1]]",
 	"parser-template-recursion-depth-warning": "تراشوانئ بیئرگشتی عمق رد بوت ($1)",
 	"language-converter-depth-warning": "مبدل زبانی ئی محدودیت عمق  رد بوت ($1)",
 	"node-count-exceeded-category": "تاکدیمان که شه حداکثر گروپ ئا تجاوز کورته انت",

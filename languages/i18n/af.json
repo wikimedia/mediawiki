@@ -648,7 +648,7 @@
 	"post-expand-template-inclusion-category": "Bladsye waar die maksimum sjabloon insluit grootte oorskry is",
 	"post-expand-template-argument-warning": "Waarskuwing: hierdie bladsy bevat ten minste een sjabloonparameter met 'n te groot transklusiegrootte.\nHierdie parameters is uitgelaat.",
 	"post-expand-template-argument-category": "Bladsye met weggelate sjabloonargumente",
-	"parser-template-loop-warning": "Sjablone is in 'n oneindige lus: [[$1]]",
+	"parser-template-loop-warning": "Sjablone is in 'n oneindige lus: [[:$1]]",
 	"template-loop-category": "Bladsye met sjabloonlusse",
 	"parser-template-recursion-depth-warning": "Die rekursiediepte vir sjablone is oorskry ($1)",
 	"language-converter-depth-warning": "Die dieptelimiet vir die taalomskakelaar is oorskrei ($1)",

@@ -664,7 +664,7 @@
 	"post-expand-template-inclusion-category": "Pages whaur template include size is exceeded",
 	"post-expand-template-argument-warning": "<strong>Warnishment:</strong> This page hauds at least the ae template argument that haes aen ower muckle expansion size.\nThir arguments hae been left oot.",
 	"post-expand-template-argument-category": "Pages containing omittit template arguments",
-	"parser-template-loop-warning": "Template luip detected: [[$1]]",
+	"parser-template-loop-warning": "Template luip detected: [[:$1]]",
 	"template-loop-category": "Pages wi template loops",
 	"template-loop-category-desc": "The page conteens a template loop, ie. a template which caws itsel recursively.",
 	"parser-template-recursion-depth-warning": "Template recursion depth limit owershote ($1)",

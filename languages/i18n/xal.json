@@ -732,7 +732,7 @@
 	"template-equals-category": "Загвр гиҗ = ашглдг халхс",
 	"template-equals-category-desc": "Эн халх <code><nowiki>{{=}}</nowiki></code>-г аһулҗ бәәсн болвчн эн вики деер <code>=</code> болҗ өргждг уга. Эн керглән хуучрсн; иргчд MediaWiki хүвлврнь <code><nowiki>{{=}}</nowiki></code>-г задлад, шинҗлгч функц болһн кергҗүлх болна.",
 	"template-equals-warning": "Эн халх <code><nowiki>{{=}}</nowiki></code>-г аһулҗ бәәсн болвчн эн вики деер <code>=</code> болҗ өргждг уга. Эн керглән хуучрсн; иргчд MediaWiki хүвлврнь <code><nowiki>{{=}}</nowiki></code>-г задлад, шинҗлгч функц болһн кергҗүлх болна.",
-	"parser-template-loop-warning": "Загвр төөрҗ бәәхиг тогтав: [[$1]]",
+	"parser-template-loop-warning": "Загвр төөрҗ бәәхиг тогтав: [[:$1]]",
 	"template-loop-category": "Загврин һоһцата халхс",
 	"template-loop-category-desc": "Халх загврин һоһца аһулсн, оңданар келхлә, бийән рекурсив гиҗ нерлдг загвр.",
 	"template-loop-warning": "<strong>Анхартн:</strong> Эн халх [[:$1]]-г дууддг болад эннь загврин давтлт үүскдг (кизәр уга рекурсив дуудлһ).",

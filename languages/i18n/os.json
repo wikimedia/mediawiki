@@ -538,7 +538,7 @@
 	"post-expand-template-inclusion-category": "Фæрстæ, кæм хуызæджы бавæрд бæрц æгæр бирæ у",
 	"post-expand-template-argument-warning": "'''Сындæг:''' Ацы фарсы ис уæддæр иу хуызæджы аргумент, кæй райтынг у æгæр стыр.\nУыцы аргументтæ уагъд æрцыдысты.",
 	"post-expand-template-argument-category": "Фæрстæ, кæдоны ис хуызæджы уагъд аргумент",
-	"parser-template-loop-warning": "Хуызæгты цасм ссардæуыд: [[$1]]",
+	"parser-template-loop-warning": "Хуызæгты цасм ссардæуыд: [[:$1]]",
 	"viewpagelogs": "Ацы фарсæн йæ логтæ равдисын",
 	"nohistory": "Ацы фарсæн ивдтыты истори нæй.",
 	"currentrev": "Фæстаг фæлтæр",

@@ -516,7 +516,7 @@
 	"post-expand-template-inclusion-category": "Side wêrfoar't de maksimale trânsklúzjegrutte teboppe gien is",
 	"post-expand-template-argument-warning": "<strong>Warskôging:</strong> Dizze side befettet minstens ien sjabloanparameter mei in te grutte opnamegrutte.\nDy parameters binne weilitten.",
 	"post-expand-template-argument-category": "Siden dy't missende sjabloaneleminten befetsje",
-	"parser-template-loop-warning": "Der is in lus yn sjabloanen fûn: [[$1]]",
+	"parser-template-loop-warning": "Der is in lus yn sjabloanen fûn: [[:$1]]",
 	"parser-template-recursion-depth-warning": "De werhellingsdjipte foar sjabloanen is oer de grins ($1)",
 	"undo-success": "De feroaring kin weromset wurde.\nKontrolearje de ferliking hjirûnder om wis te wêzen dat jo dit feroarje wolle, en druk dan op publisearje om it weromsetten troch te fieren.",
 	"undo-failure": "De bewurking kin net weromset wurde fanwegen oerlaapjende tuskenlizzende wizigings.",

@@ -500,7 +500,7 @@
 	"post-expand-template-inclusion-category": "Paj yo ki genyen twop modèl anndan yo",
 	"post-expand-template-argument-warning": "'''Atansyon:''' Paj sa a gen ladan l omwens youn nan agiman modèl la ki gen yon gwosè ekspansyon ki twòp. \n Agiman sa yo pa t enkli.",
 	"post-expand-template-argument-category": "Paj ki genyen agiman pou modèl ki manke",
-	"parser-template-loop-warning": "Tounen an won te detekte nan modèl la: [[$1]]",
+	"parser-template-loop-warning": "Tounen an won te detekte nan modèl la: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Limit depase pou kantite fwa yon modèl ka rele tèt li ($1)",
 	"language-converter-depth-warning": "Limit sou pwofondè konvètisè lang yo depase ($1)",
 	"undo-failure": "Modifikasyon sa a pa ka defè sa ap lakòz konfli ak modifikasyon entèmedyè yo.",

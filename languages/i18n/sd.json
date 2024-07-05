@@ -601,7 +601,7 @@
 	"expensive-parserfunction-category": "اھي صفحا جن ۾ تمام گهڻيون ايڪسپينسوِ پارسر فنڪشن ڪالون آھن",
 	"post-expand-template-inclusion-category": "صفحا جتي سانچي ۾ شامل ماپ وڌيل آھي",
 	"post-expand-template-argument-category": "اھي صفحا جن جي سانچي جون شيون ڇڏيل آھن",
-	"parser-template-loop-warning": "سانچي جي کوٽ لڌي وئي: [[$1]]",
+	"parser-template-loop-warning": "سانچي جي کوٽ لڌي وئي: [[:$1]]",
 	"template-loop-category": "سانچن ۾ غلطين وارا صفحا",
 	"node-count-exceeded-category": "صفحا جن ۾ نوڊ ڳاڻيٽو وڌيل آھي",
 	"node-count-exceeded-warning": "صفحي ۾ نوڊ ڳاڻيٽو وڌيل آھي",

@@ -547,7 +547,7 @@
 	"post-expand-template-inclusion-category": "Págines, in queles li maximal grandore del includet shablones es excedet",
 	"post-expand-template-argument-warning": "'''Advertiment:''' Ti págine contene in un minim argumente de avise quel ha un anc mensura de expansion grand.\nTis argumentes have esset omisset.",
 	"post-expand-template-argument-category": "Págines contenent argumentes de avise omisset",
-	"parser-template-loop-warning": "Lace de avises detectet: [[$1]]",
+	"parser-template-loop-warning": "Lace de avises detectet: [[:$1]]",
 	"template-loop-category": "Págines che avises in series recursiv",
 	"template-loop-category-desc": "Ti págine contene un avise in serie recursiv, ie. un avise que clama it self recursivmen.",
 	"template-loop-warning": "<strong>Advertiment:</strong> Ti págine clama [[:$1]] quel causa un avise in serie recursiv (un demande recursiv infinit).",

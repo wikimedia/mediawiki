@@ -796,7 +796,7 @@
 	"template-equals-category": "Stránky s voláním šablony =",
 	"template-equals-category-desc": "Stránka obsahuje <code><nowiki>{{=}}</nowiki></code>, jejímž výstupem na této wiki není <code>=</code>. Toto použití je zastaralé; v budoucí verzi MediaWiki bude <code><nowiki>{{=}}</nowiki></code> zabudovanou parserovou funkcí.",
 	"template-equals-warning": "<strong>Varování:</strong> Tato stránka používá <code><nowiki>{{=}}</nowiki></code>, jejímž výstupem na této wiki není <code>=</code>. Toto použití je zastaralé; v budoucí verzi MediaWiki bude <code><nowiki>{{=}}</nowiki></code> zabudovanou parserovou funkcí.",
-	"parser-template-loop-warning": "Nalezena smyčka šablon: [[$1]]",
+	"parser-template-loop-warning": "Nalezena smyčka šablon: [[:$1]]",
 	"template-loop-category": "Stránky se smyčkami šablon",
 	"template-loop-category-desc": "Stránka obsahuje smyčku šablon, tj. šablonu, která je vložená sama do sebe.",
 	"template-loop-warning": "<strong>Upozornění:</strong> Tato stránka volá [[:$1]], což způsobuje smyčku šablon (nekonečné rekurzivní volání).",

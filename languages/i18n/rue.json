@@ -567,7 +567,7 @@
 	"post-expand-template-inclusion-category": "Сторінкы з перевышуючов великостёв включеных шаблон",
 	"post-expand-template-argument-warning": "Увага: Тота сторінка обсягує принайменшім єден арґумент шаблоны, котрый є по роспакованю дуже великый.\nТоты арґументы были іґнорованы.",
 	"post-expand-template-argument-category": "Сторінкы обсягуючі іґнорованы арґументы шаблон",
-	"parser-template-loop-warning": "Найдженый цікл шаблон: [[$1]]",
+	"parser-template-loop-warning": "Найдженый цікл шаблон: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Перевышеный ліміт глубкы рекурзівного вкладаня шаблон ($1)",
 	"language-converter-depth-warning": "Перевышеный ліміт глубкы у языковій конверзії ($1)",
 	"node-count-exceeded-category": "Сторінкы перевышуючі чісло вузлів",

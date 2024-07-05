@@ -772,7 +772,7 @@
 	"template-equals-category": "Leheküljed, kus = esineb mallina",
 	"template-equals-category-desc": "See lehekülg sisaldab koodi <code><nowiki>{{=}}</nowiki></code>, mida siin vikis ei hõrendata kujule <code>=</code>.  Selline kasutus on vananenud. Tulevases MediaWiki versioonis on <code><nowiki>{{=}}</nowiki></code> parserifunktsioon.",
 	"template-equals-warning": "<strong>Hoiatus:</strong> See lehekülg sisaldab koodi <code><nowiki>{{=}}</nowiki></code>, mida siin vikis ei hõrendata kujule <code>=</code>. Selline kasutus on vananenud. Tulevases MediaWiki versioonis on <code><nowiki>{{=}}</nowiki></code> parserifunktsioon.",
-	"parser-template-loop-warning": "Mallid moodustavad tsükli: [[$1]]",
+	"parser-template-loop-warning": "Mallid moodustavad tsükli: [[:$1]]",
 	"template-loop-category": "Mallisilmusega leheküljed",
 	"template-loop-category-desc": "Leheküljel on mallisilmus ehk mall kutsub rekursiivselt iseend.",
 	"template-loop-warning": "<strong>Hoiatus:</strong> See mall kutsub malli [[:$1]], mis põhjustab mallisilmuse (lõputu rekursiivne kutse).",

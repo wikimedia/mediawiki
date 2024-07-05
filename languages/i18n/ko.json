@@ -829,7 +829,7 @@
 	"template-equals-category": "틀에 =를 사용한 문서",
 	"template-equals-category-desc": "문서에 <code><nowiki>{{=}}</nowiki></code>가 포함되어 있으나 이 위키에서는 <code>=</code>로의 확장을 지원하지 않습니다. 이 이용은 구식 처리됩니다. 차기 미디어위키 버전은 <code><nowiki>{{=}}</nowiki></code>를 파서 함수로 구현할 예정입니다.",
 	"template-equals-warning": "<strong>경고:</strong> 문서에 <code><nowiki>{{=}}</nowiki></code>가 포함되어 있으나 이 위키에서는 <code>=</code>로의 확장을 지원하지 않습니다. 이 이용은 구식 처리됩니다. 차기 미디어위키 버전은 <code><nowiki>{{=}}</nowiki></code>를 파서 함수로 구현할 예정입니다.",
-	"parser-template-loop-warning": "재귀적인 틀이 발견되었습니다: [[$1]]",
+	"parser-template-loop-warning": "재귀적인 틀이 발견되었습니다: [[:$1]]",
 	"template-loop-category": "틀 루프가 있는 문서",
 	"template-loop-category-desc": "이 문서에 틀 루프가 있습니다. (예: 자기 자신을 반복하여 호출하는 틀)",
 	"template-loop-warning": "<strong>경고:</strong> 이 문서는 틀 루프를 일으키는 [[:$1]] 틀을 호출합니다. (무한 재귀 호출)",

@@ -623,7 +623,7 @@
 	"post-expand-template-argument-category": "ئېتىبارغا ئېلىنمىغان قېلىپ پارامېتىرىنى ئۆز ئىچىگە ئالغان بەت",
 	"template-equals-category-desc": "بۇ بەت code><nowiki>{{=}}</nowiki></code> نى ئۆز ئىچىگە ئالىدۇ بىراق بۇ ۋىكىدا <code> = </code> غا كېڭەيمەيدۇ.بۇ ئىشلىتىش ۋاقتى ئۆتكەن. كەلگۈسىدىكى MediaWiki نەشرى <code><nowiki>{{=}}</nowiki></code>",
 	"template-equals-warning": "<strong>ئەسكەرتىش:</strong> بۇ بەت<code><nowiki>{{=}}</nowiki></code>ئىشلىتىدۇ بىراق بۇ ۋىكى <code>=</code> گە كىڭەلمەيدۇ. بۇ ئىشلىتىش ۋاقتى ئۆتكەن؛ كەلگۈسىدىكى MediaWiki نەشرى  <code><nowiki>{{=}}</nowiki></code> گىرامماتىكىلىق تەھلىل يۈرگۈزۈش ۋەزىپە سۈپىتىدە ئەمەلگە ئاشۇرىلىدۇ.",
-	"parser-template-loop-warning": "قېلىپ دەۋرىيلىكى بايقالدى: [[$1]]",
+	"parser-template-loop-warning": "قېلىپ دەۋرىيلىكى بايقالدى: [[:$1]]",
 	"template-loop-category": "قېلىپ دەۋرىيلىنىدىغان بەت بار",
 	"parser-template-recursion-depth-warning": "قايتىلانما ئىپادە چوڭقۇر چەكلىمىسىدىن ئېشىپ كەتتى ($1)",
 	"language-converter-depth-warning": "تىل ئالماشتۇرۇش چوڭقۇرلۇقى چەكتىن ئاشتى ($1)",

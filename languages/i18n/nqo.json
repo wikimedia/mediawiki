@@ -630,7 +630,7 @@
 	"post-expand-template-argument-category": "ߞߙߊߞߏ߫ ߞߣߐߘߐ߫ ߡߐ߬ߟߐ߲߬ߦߊ߬ߓߊߟߌ ߟߎ߬ ߦߋ߫ ߞߐߜߍ ߡߍ߲ ߠߎ߬ ߟߊ߫",
 	"template-equals-category": "ߞߐߜߍ ߡߍ߲ ߠߎ߬ ߟߊߓߊ߯ߙߊߣߍ߲߫ = ߞߙߊߞߏ ߘߌ߫",
 	"template-equals-category-desc": "<code><nowiki>{{=}}</nowiki></code> ߦߋ߫ ߞߐߜߍ ߡߍ߲ ߠߎ߬ ߟߊ߫߸ ߞߏ߬ߣߌ߲߫ ߥߞߌ ߣߌ߲߬ ߠߊ߫, ߊ߬ߟߋ ߕߍ߫ ߛߐ߲߬ ߠߊ߫ <code>=</code> ߘߐߦߙߌߥߊ߫ ߞߏ ߡߊ߬. ߟߊ߬ߓߊ߰ߙߊ߬ߟߌ ߏ߬ ߘߏ߲߬ ߦߋ߫ ߡߊ߲߬ߜߏ ߟߋ߬ ߘߌ߫; ߡߋߘߌߦߊߥߞߌ ߛߌߣߌ߲ߡߊ ߦߌߟߡߊ ߘߏ߫ ߘߌߣߊ߬ <code><nowiki>{{=}}</nowiki></code> ߓߌ߬ߟߊ߬ ߟߥߊ߬ߟߌ߬ߟߌ ߘߊߞߘߐ߫ ߛߍ߯ߛߍ߯ߟߌ߫ ߗߋߘߊ ߘߏ߫ ߘߌ߫.",
-	"parser-template-loop-warning": "ߞߙߊ߬ߞߏ ߞߐ߬ߘߙߍ ߓߘߊ߫ ߖߏ߰ߛߌ߬: [[$1]]",
+	"parser-template-loop-warning": "ߞߙߊ߬ߞߏ ߞߐ߬ߘߙߍ ߓߘߊ߫ ߖߏ߰ߛߌ߬: [[:$1]]",
 	"template-loop-category": "ߞߙߊ߬ߞߏ ߞߐ߬ߘߙߍ ߦߋ߫ ߞߐߜߍ ߡߍ߲ ߠߎ߬ ߠߊ߫",
 	"node-count-exceeded-warning": "ߞߐߜߍ ߓߘߊ߫ ߛߋ߫ ߥߎߙߋ߲ߛߋ߲ ߞߐߘߊ߲ ߘߐ߫",
 	"expansion-depth-exceeded-category": "ߞߐߜߍ ߘߐߥߙߊ߬ߟߌ ߓߘߊ߫ ߛߋ߫ ߘߎ߲߰ߧߊ ߞߐߘߊ߲ ߘߐ߫",

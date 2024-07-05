@@ -782,7 +782,7 @@
 	"template-equals-category": "Paĝojm kiu uzas = kiel ŝablonon",
 	"template-equals-category-desc": "La paĝo enhavas <code><nowiki>{{=}}</nowiki></code> sed en tiu ĉi vikio tio ne etendiĝas al <code>=</code>. Tiu ĉ uzado estas evitinda; estonta versio de MediaWiki imp0lementos <code><nowiki>{{=}}</nowiki></code> kiel sintaks-analizan funkcion.",
 	"template-equals-warning": "<strong>Atentigo:</strong> Tiu ĉi paĝo uzas <code><nowiki>{{=}}</nowiki></code> sed en tiu ĉi vikio tio ne etendiĝas al <code>=</code>. Tiu ĉ uzado estas evitinda; estonta versio de MediaWiki imp0lementos <code><nowiki>{{=}}</nowiki></code> kiel sintaks-analizan funkcion.",
-	"parser-template-loop-warning": "Rekursiva ŝablono estis trovita: [[$1]]",
+	"parser-template-loop-warning": "Rekursiva ŝablono estis trovita: [[:$1]]",
 	"template-loop-category": "Paĝoj kun ŝablonaj iteracioj",
 	"template-loop-category-desc": "Ĉi tiu paĝo enhavas ŝablonan iteracion, t. e. ŝablono kiu rikure vokas sin mem.",
 	"template-loop-warning": "<strong>Averto:</strong> Ĉi tiu paĝo vokas [[:$1]], kaŭzante ŝablonan iteracion (senfinan rikuran vokadon).",

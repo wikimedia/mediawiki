@@ -731,7 +731,7 @@
 	"template-equals-category": "Лист бокъяс, кӧні вӧдитчӧны = шаблон пыдди.",
 	"template-equals-category-desc": "Лист бокын эм <code><nowiki>{{=}}</nowiki></code>, но тайӧ викиын сійӧс оз позь паськӧдны <code>=</code>-ӧдз. Сійӧ важмӧма; водзӧ лоана  MediaWiki версияын лоас <code><nowiki>{{=}}</nowiki></code> кыдз синтаксис анализатор.",
 	"template-equals-warning": "<strong>Вниманньӧ:</strong> Тайӧ лист бокын эм <code><nowiki>{{=}}</nowiki></code>, но тайӧ викиын сійӧс оз позь паськӧдны <code>=</code>-ӧдз. Сійӧ важмӧма; водзӧ лоана  MediaWiki версияын лоас <code><nowiki>{{=}}</nowiki></code> кыдз синтаксис анализатор.",
-	"parser-template-loop-warning": "Аддзӧма шаблон гартов: [[$1]]",
+	"parser-template-loop-warning": "Аддзӧма шаблон гартов: [[:$1]]",
 	"template-loop-category": "Шаблонын гартола лист бокъяс",
 	"template-loop-category-desc": "Тайӧ лист бокын эм шаблонын гартов, мӧд ногӧн, шаблоныс асьӧ ачыс рекурсивнӧя корӧ.",
 	"template-loop-warning": "<strong>Вниманньӧ:</strong> Тайӧ лист бокыс корӧ [[:$1]], а сійӧ корӧ шаблон цикл (помтӧм рекурсия корӧм).",

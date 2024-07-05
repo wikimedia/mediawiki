@@ -555,7 +555,7 @@
 	"content-json-empty-object": "खाली वस्तु",
 	"content-json-empty-array": "खाली एरे",
 	"post-expand-template-inclusion-category": "तसा पानाहरू जहाँ ढाँचा (टेम्पलेट) राख्ने सिमा पार भयाको छ ।",
-	"parser-template-loop-warning": "ढाँचागत ग़ाँठो पडयो : [[$1]]",
+	"parser-template-loop-warning": "ढाँचागत ग़ाँठो पडयो : [[:$1]]",
 	"parser-template-recursion-depth-warning": "ढाँचा पुन:चक्र गहिराई सिमा ($1) भन्दा झिक भयो",
 	"language-converter-depth-warning": "भाषा परिवर्तनकर्ता गहिराई  ($1) नाघेको छ",
 	"node-count-exceeded-category": "पानाहरू जहाँ नोड संख्या बढी भएको छ",

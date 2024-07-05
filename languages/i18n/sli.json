@@ -407,7 +407,7 @@
 	"post-expand-template-inclusion-category": "Seyta, ei denen de maximale Griße eingebundener Vurloaga ieberschritta ies",
 	"post-expand-template-argument-warning": "Warnung: Diese Seite enthält mindestens a Argument ei anner Vurlooge, doas expandiert zu gruß ies. Diese Argumente waan ignoriert.",
 	"post-expand-template-argument-category": "Seyta, de ignorierte Vurlagaargumente enthalta",
-	"parser-template-loop-warning": "Vurloagaschleife entdeckt: [[$1]]",
+	"parser-template-loop-warning": "Vurloagaschleife entdeckt: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Vurloogarekursionstiefengrenze ieberschritten ($1)",
 	"undo-success": "Im de Änderung rickgängig zu macha, bitte de Beoarbeetung ei der Vergleichsansicht kontrolliera und dann uff „Seyte speichern“ klicka.",
 	"undo-failure": "De Änderung konnte ne rickgängig gemacht waan, do dar betroffene Obschnitt zwischazeitlich verändert wurde.",

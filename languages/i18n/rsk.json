@@ -691,7 +691,7 @@
 	"template-equals-category": "Боки хтори хасную = як шаблон",
 	"template-equals-category-desc": "Бок ма <code><nowiki>{{=}}</nowiki></code> алє на тей вики хтора ше нє преширує на <code>=</code>. Тото хаснованє застарете; будуца верзия МедияВики имплементує <code><nowiki>{{=}}</nowiki></code> як функцию парсера.",
 	"template-equals-warning": "<strong>Увага:</strong> Тот бок хаснує <code><nowiki>{{=}}</nowiki></code> алє на тей вики хтора ше нє преширує на <code>=</code>. Тото хаснованє застарете; будуца верзия МедияВики имплементує <code><nowiki>{{=}}</nowiki></code> як функцию парсера.",
-	"parser-template-loop-warning": "Пренайдзени софтверски ґузел у шаблону: [[$1]]",
+	"parser-template-loop-warning": "Пренайдзени софтверски ґузел у шаблону: [[:$1]]",
 	"template-loop-category": "Боки зоз софтверскима ґузлами шаблона",
 	"template-loop-category-desc": "Бок ма софтверски ґузел шаблона т.є. ма шаблон хтори рекурзивно поволує самого себе.",
 	"template-loop-warning": "<strong>Спозоренє:</strong> Бок поволує [[:$1]], цо спричинює софтверски ґузел (безконєчну повторююцу поволанку).",

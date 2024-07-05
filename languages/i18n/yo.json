@@ -584,7 +584,7 @@
 	"post-expand-template-inclusion-category": "Àwọn ojúewé tí ìtóbi àdàkọ mímúpọ̀ wọn pọ̀jù.",
 	"post-expand-template-argument-warning": "'''Ìkìlọ̀:''' Ojúewé yìí ní ó kéréjùlọ àjiyàn àdàkọ kan tó ní ìtóbi ìfẹ̀ tótóbi ju bóṣeyẹ lọ.\nÀwọn àjiyàn yìí ti jẹ́ fífò.",
 	"post-expand-template-argument-category": "Àwọn ojúewé tí wọ́n ní ìjiyàn àdàkọ tí kò sí",
-	"parser-template-loop-warning": "Ìlọ́po àdàkọ ti ṣẹlẹ̀: [[$1]]",
+	"parser-template-loop-warning": "Ìlọ́po àdàkọ ti ṣẹlẹ̀: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Iye ìgbà àtúnpè àdákọ ti pọ̀ju bóṣeyẹ lọ ($1)",
 	"language-converter-depth-warning": "Iye ìgbà ìyédèpadà ti pọ̀ju bóṣeyẹ lọ ($1)",
 	"node-count-exceeded-category": "Àwọn ojúwé tí iye ojúìsopọ̀ wọn ju bóṣeyẹ lọ",

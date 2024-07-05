@@ -625,7 +625,7 @@
 	"post-expand-template-inclusion-category": "Duilleagan far a bheil meud nan teamplaidean a' dol thairis air na tha ceadaichte",
 	"post-expand-template-argument-warning": "<strong>Rabhadh:</strong> Tha aon argamaid teamplaid air a' char as lugha air an duilleag seo aig a bheil meud leudachaidh ro mhòr.\nChaidh na h-argamaidean sinn a leigeil seachad.",
 	"post-expand-template-argument-category": "Duilleagan air an deach argamaidean teamplaidean fhàgail às",
-	"parser-template-loop-warning": "Mhothaicheadh do lùb teamplaid: [[$1]]",
+	"parser-template-loop-warning": "Mhothaicheadh do lùb teamplaid: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Chaidh thu thairis air crìoch doimhne nan ath-chùrsaidhean teamplaid ($1)",
 	"language-converter-depth-warning": "Chaidh thu thairis air crìoch doimhne an iompachair chànain ($1)",
 	"node-count-exceeded-category": "Duilleagan far an deachas thairis air cunntas nan nòdan",

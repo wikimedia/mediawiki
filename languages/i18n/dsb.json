@@ -563,7 +563,7 @@
 	"post-expand-template-inclusion-category": "Boki, w kótarychž maksimalna wjelikosć zapśěgnjonych pśedłogow jo pśekšocona.",
 	"post-expand-template-argument-warning": "Warnowanje: Toś ten bok wopśimujo nanejmjenjej jaden argument w pśedłoze, kótaryž jo pśwjeliki pó ekspanděrowanju. Toś te argumenty se wuwóstajiju.",
 	"post-expand-template-argument-category": "Boki, kótarež wuwóstajone pśedłogowe argumenty wopśimuju",
-	"parser-template-loop-warning": "Pśedłogowa šlejfa namakana: [[$1]]",
+	"parser-template-loop-warning": "Pśedłogowa šlejfa namakana: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Limit rekursijneje dłymi pśedłogi pśekšocony ($1)",
 	"language-converter-depth-warning": "Limit dłymokosći rěcnego konwertera pśekšocony ($1)",
 	"node-count-exceeded-category": "Boki, źož licba sukow jo pśekšocona",

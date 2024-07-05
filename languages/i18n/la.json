@@ -442,7 +442,7 @@
 	"postedit-confirmation-saved": "Recensio tua servata est.",
 	"edit-already-exists": "Non potui paginam novam creare\nquia haec pagina iam est.",
 	"content-model-wikitext": "vicitextum",
-	"parser-template-loop-warning": "Ansa formulae detecta: [[$1]]",
+	"parser-template-loop-warning": "Ansa formulae detecta: [[:$1]]",
 	"undo-norev": "Recensio abrogari non potuit quia non est aut deleta est.",
 	"undo-summary": "Abrogans recensionem [[Special:Diff/$1|$1]] ab usore [[Special:Contributions/$2|$2]] ([[User talk:$2|Disputatio]])",
 	"viewpagelogs": "Vide acta huius paginae",

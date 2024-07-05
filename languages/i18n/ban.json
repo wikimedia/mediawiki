@@ -741,7 +741,7 @@
 	"template-equals-category": "Kaca sané nganggén = manados mal",
 	"template-equals-category-desc": "Kaca madaging <code><nowiki>{{=}}</nowiki></code> kéwala ring  wiki puniki nénten kalimbakang manados <code>=</code>. Pawigunaan puniki sampun kausangang; ring vérsi MédiaWiki salanturné pacang ngawigunaang <code><nowiki>{{=}}</nowiki></code> manados fungsi parser.",
 	"template-equals-warning": "<strong>Paingetan:</strong> Kaca puniki nganggén <code><nowiki>{{=}}</nowiki></code> sakéwanten ring wiki puniki sané nénten kalimbakang manados <code>=</code>. Pawigunaan puniki sampun kausangang; satunggil vérsi MédiaWiki sané pacang rauh pacang ngawigunain <code><nowiki>{{=}}</nowiki></code> manados satunggil fungsi parser.",
-	"parser-template-loop-warning": "Kawénten mal pitehan: [[$1]]",
+	"parser-template-loop-warning": "Kawénten mal pitehan: [[:$1]]",
 	"template-loop-category": "Kaca antuk mal kaulang",
 	"template-loop-category-desc": "Kaca puniki medaging mal mapiteh, punika mal sané ngaukin ragané pedidi sacara bulak-balik.",
 	"template-loop-warning": "<strong>Paingetan:</strong> Kaca puniki ngaukin [[:$1]] sané ngawinan <i>template loop</i> (pangaukan rékursif tan hingga).",

@@ -727,7 +727,7 @@
 	"post-expand-template-inclusion-category": "Paginas que contenon tròp d'inclusions de modèls",
 	"post-expand-template-argument-warning": "Atencion : Aquesta pagina conten al mens un paramètre de modèl que l'inclusion es renduda impossibla. Aprèp extension, aqueste auriá produit un resultat tròp long, doncas, es pas estat inclús.",
 	"post-expand-template-argument-category": "Paginas que contenon al mens un paramètre de modèl pas evaluat",
-	"parser-template-loop-warning": "Modèl en bocla detectat : [[$1]]",
+	"parser-template-loop-warning": "Modèl en bocla detectat : [[:$1]]",
 	"template-loop-category": "Paginas amb boclas de patron",
 	"template-loop-category-desc": "La pagina conten una bocla dins lo patron, es a dire, un patron que se sona el meteis recursivament.",
 	"template-loop-warning": "<strong>Atencion:</strong> Aquesta pagina sona [[:$1]. Aquò es la causa d'una bocla de patron (una sonada infinida recursiva).",

@@ -383,7 +383,7 @@
 	"post-expand-template-inclusion-category": "الصفحات حيث تم تجاوز حجم تضمين القالب",
 	"post-expand-template-argument-warning": "<strong>تحذير:</strong> هذه الصفحة تحتوي على عامل قالب واحد على الأقل له حجم تمدد كبير جدا.\nهذه العوامل تم حذفها.",
 	"post-expand-template-argument-category": "صفحات تحتوي مدخلات القالب المحذوفة",
-	"parser-template-loop-warning": "تم كشف حلقة قالب: [[$1]]",
+	"parser-template-loop-warning": "تم كشف حلقة قالب: [[:$1]]",
 	"parser-template-recursion-depth-warning": "تم تجاوز حد عمق فرد القوالب ($1)",
 	"language-converter-depth-warning": "تم تخطي حد عمق محول اللغة ($1)",
 	"node-count-exceeded-category": "الصفحات التي حدث فيها تجاوز تعداد العقد",

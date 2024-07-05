@@ -665,7 +665,7 @@
 	"post-expand-template-inclusion-category": "पन्ना जहाँ टेम्पलेट सामिल करे के सीमा पार हो गइल बा",
 	"post-expand-template-argument-warning": "<strong>चेतावनी:</strong> ए पन्ना पर कम से कम एक ठो अइसन टेम्पलेट आर्गुमेंट बा जेवन बहुत बड़ खर्चीला साइज के बा।\nअइसन आर्गुमेंट के लोप कइ दिहल गइल बा।",
 	"post-expand-template-argument-category": "पन्ना जिनहन में लोप कइल गइल टेम्पलेट आर्गुमेंट बा",
-	"parser-template-loop-warning": "टेम्पलेट लूप पकड़ में आइल बा:[[$1]]",
+	"parser-template-loop-warning": "टेम्पलेट लूप पकड़ में आइल बा:[[:$1]]",
 	"template-loop-category": "टेम्पलेट लूप वाला पन्ना",
 	"template-loop-category-desc": "पन्ना पर टेम्पलेट लूप बा, मने कि अइसन टेम्पलेट जे अपनहीं के दोहरा-दोहरा के काल क रहल बा।",
 	"template-loop-warning": "<strong>चेतावनी:</strong> ई पन्ना [[:$1]] के काल करत बा जे एगो टेम्पलेट लूप (एगो अनंत दोहराव वाली काल) बना रहल बा।",

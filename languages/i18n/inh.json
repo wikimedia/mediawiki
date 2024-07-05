@@ -747,7 +747,7 @@
 	"template-equals-category": "Хьарак = ло санна лелаю оагӀонаш",
 	"template-equals-category-desc": "ОагӀоно чулоац <code><nowiki>{{=}}</nowiki></code>, амма укх вики чу дӀашерлац <code>=</code> кхаччалца. Из лелаяр дика лархӀац; MediaWiki хургдолча эршо кхоачашъергья <code><nowiki>{{=}}</nowiki></code> парсера баьрел мо.",
 	"template-equals-warning": "ОагӀоно чулоац <code><nowiki>{{=}}</nowiki></code>, амма укх вики чу дӀашерлац <code>=</code> кхаччалца. Из лелаяр дика лархӀац; MediaWiki хургдолча эршо кхоачашъергья <code><nowiki>{{=}}</nowiki></code> синтаксически анализатора баьрел мо.",
-	"parser-template-loop-warning": "Шод корабаьб лерашка: [[$1]]",
+	"parser-template-loop-warning": "Шод корабаьб лерашка: [[:$1]]",
 	"template-loop-category": "Лераш чу шодамаш дола оагӀонаш",
 	"template-loop-category-desc": "Шод бола ло чулоац укх оагӀоно. Шод бола ло — рекурсивни ше ший дӀабехаш бола ло ба.",
 	"template-loop-warning": "<strong>ДӀахьалхадаккхар:</strong> Укх оагӀоно дӀабехаш ба [[:$1]] яха ло. Цо лера чу цикл хьаю (чаккхе йоаца рекурсивни дӀадехар).",

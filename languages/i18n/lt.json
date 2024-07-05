@@ -773,7 +773,7 @@
 	"template-equals-category": "Puslapiai, kurie naudoja = kaip šabloną.",
 	"template-equals-category-desc": "Puslapyje yra <code><nowiki>{{=}}</nowiki></code>, bet šiame „vikyje“ jis nėra išplečiamas į <code>=</code>. Šis naudojimo būdas yra pasenęs; būsimoje „MediaWiki“ versijoje <code><nowiki>{{=}}</nowiki></code> bus įdiegtas kaip analizavimo funkcija.",
 	"template-equals-warning": "<strong>Įspėjimas:</strong> Šiame puslapyje naudojamas <code><nowiki>{{=}}</nowiki></code>, bet šiame „vikyje“ jis nėra išplečiamas į <code>=</code>. Šis naudojimo būdas yra pasenęs; būsimoje „MediaWiki“ versijoje <code><nowiki>{{=}}</nowiki></code> bus įdiegtas kaip analizavimo funkcija.",
-	"parser-template-loop-warning": "Aptiktas šablono ciklas: [[$1]]",
+	"parser-template-loop-warning": "Aptiktas šablono ciklas: [[:$1]]",
 	"template-loop-category": "Puslapiai su šablono kilpomis",
 	"template-loop-category-desc": "Puslapyje yra šablono kilpa, t.y. šablonas, kuris pats save iškviečia pakartotinai.",
 	"template-loop-warning": "<strong>Įspėjimas:</strong> Šis puslapis iškviečia [[:$1]], dėl ko atsiranda šablono kilpa (ciklas) (begalinis pasikartojantis iškvietimas).",

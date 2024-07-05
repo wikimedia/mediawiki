@@ -729,7 +729,7 @@
 	"post-expand-template-inclusion-category": "பக்கங்களில் வார்ப்புரு சேர்ப்பதற்கானஅளவு வரம்பை மீறிவிட்டது.",
 	"post-expand-template-argument-warning": "''' எச்சரிக்கை:'' ' இந்த பக்கத்தில் குறைந்தது ஒரு வார்ப்புரு ARUGUMENT ஆவது மிகப்பெரிய விரிவு அளவை கொண்டுள்ளது.\nஇந்த பயனிலைகள் ஒதுக்கப்பட்டன.",
 	"post-expand-template-argument-category": "ஒதுக்கப்பட்ட வார்ப்புரு பயனிலைகள் கொண்ட   பக்கங்கள்",
-	"parser-template-loop-warning": "வார்ப்புருவின் முழுச்சுற்று உணரப்பட்டுள்ளது: [[$1]]",
+	"parser-template-loop-warning": "வார்ப்புருவின் முழுச்சுற்று உணரப்பட்டுள்ளது: [[:$1]]",
 	"template-loop-category": "வார்ப்புரு முழுச்சுற்று கொண்ட பக்கங்கள்",
 	"parser-template-recursion-depth-warning": "வார்ப்புரு மறுநிகழ்வு (recursion) ஆழம் வரம்பை மீறிவிட்டது ( $1 )",
 	"language-converter-depth-warning": "மொழி மாற்றியின் ஆழம் வரம்பை மீறிவிட்டது ( $1 )",

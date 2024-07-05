@@ -803,7 +803,7 @@
 	"template-equals-category": "Egyenlőségjelet sablonként használó lapok",
 	"template-equals-category-desc": "A lap <code><nowiki>{{=}}</nowiki></code> kódot tartalmaz, ami ezen a wikin nem <code>=</code>-re oldódik fel. Ez a használat elavult; egy jövőbeli MediaWiki-verzió a <code><nowiki>{{=}}</nowiki></code> kódot elemzőfüggvényként fogja megvalósítani.",
 	"template-equals-warning": "<strong>Figyelmeztetés:</strong> Ez a lap <code><nowiki>{{=}}</nowiki></code> kódot tartalmaz, ami ezen a wikin nem <code>=</code>-re oldódik fel. Ez a használat elavult; egy jövőbeli MediaWiki-verzió a <code><nowiki>{{=}}</nowiki></code> kódot elemzőfüggvényként fogja megvalósítani.",
-	"parser-template-loop-warning": "Végtelen ciklus a következő sablonban: [[$1]]",
+	"parser-template-loop-warning": "Végtelen ciklus a következő sablonban: [[:$1]]",
 	"template-loop-category": "Lapok végtelen sablonciklusokkal",
 	"template-loop-category-desc": "A lap végtelen sablonciklust tartalmaz, vagyis egy sablon önmagát hívja meg rekurzívan.",
 	"template-loop-warning": "<strong>Figyelem:</strong> Ez a lap hivatkozik ide: [[:$1]] amivel a sablon hivatkozás végtelen hurokba kerül (logikailag nem érvényes).",

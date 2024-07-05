@@ -720,7 +720,7 @@
 	"template-equals-category": "Pagini qui uzas = kom shablono",
 	"template-equals-category-desc": "La pagino kontenas <code><nowiki>{{=}}</nowiki></code> ma en ca wiki to ne expansesas a <code>=</code>. Ca uzo esas obsoleta; futura versiono di MediaWiki adoptos <code><nowiki>{{=}}</nowiki></code> kom funciono ''parser''.",
 	"template-equals-warning": "<strong>Atencez:</strong> Ca pagino uzas <code><nowiki>{{=}}</nowiki></code> ma en ca wiki to ne expansas a <code>=</code>. Ca uzo esas obsoleta; future, nova versiono MediaWiki adoptos <code><nowiki>{{=}}</nowiki></code> kom funciono \"parser\".",
-	"parser-template-loop-warning": "Rekursiva shablono trovesis: [[$1]]",
+	"parser-template-loop-warning": "Rekursiva shablono trovesis: [[:$1]]",
 	"template-loop-category": "Pagini kun nefinita aceso a shabloni",
 	"template-loop-category-desc": "Ca pagino kontenas ''loop'' en shablono, to esas, shablono qua referas su propre iterale.",
 	"template-loop-warning": "<strong>Atencez:</strong> Ca pagino uzas [[:$1]], qua efektigas ''template loop'' (nefinita itero).",

@@ -749,7 +749,7 @@
 	"post-expand-template-inclusion-category": "Stránky, kde je prekročená povolená veľkosť šablón",
 	"post-expand-template-argument-warning": "Upozornenie: Táto stránka obsahuje aspoň jeden argument šalóny, ktorý je príliš veľký.\nTieto argumenty boli vynechané.",
 	"post-expand-template-argument-category": "Stránky obsahujúce vynechané argumenty šablón",
-	"parser-template-loop-warning": "Zistená slučka v šablónach: [[$1]]",
+	"parser-template-loop-warning": "Zistená slučka šablóny: [[: $1 ]]",
 	"template-loop-category": "Stránky so slučkami šablón",
 	"template-loop-category-desc": "Stránka obsahuje slučku šablóny, t. j. šablónu, ktorá je vložená sama do seba.",
 	"template-loop-warning": "<strong>Upozornenie:</strong> Táto stránka volá [[:$1]], čo spôsobuje slučku šablóny (nekonečné rekurzívne volanie).",

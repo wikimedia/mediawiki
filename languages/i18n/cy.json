@@ -757,7 +757,7 @@
 	"template-equals-category": "Tudalennau sy'n defnyddio = fel nodyn",
 	"template-equals-category-desc": "Mae'r dudalen hon yn defnyddio <code><nowiki>{{=}}</nowiki></code>, ond ar y wici hwn nid yw'n ehangu i <code>=</code>. Mae'r defnydd hwn wedi dyddio; bydd fersiwn MediaWiki yn y dyfodol yn defnyddio <code><nowiki>{{=}}</nowiki></code> fel ffwythiant dosrannu.",
 	"template-equals-warning": "<strong>Rhybudd:</strong> Mae'r dudalen hon yn defnyddio <code><nowiki>{{=}}</nowiki></code>, ond ar y wici hwn nid yw'n ehangu i <code>=</code>. Mae'r defnydd hwn wedi dyddio; bydd fersiwn MediaWiki yn y dyfodol yn defnyddio <code><nowiki>{{=}}</nowiki></code> fel ffwythiant dosrannu.",
-	"parser-template-loop-warning": "Daethpwyd o hyd i ddolen yn y nodyn: [[$1]]",
+	"parser-template-loop-warning": "Daethpwyd o hyd i ddolen yn y nodyn: [[:$1]]",
 	"template-loop-category": "Tudalennau gyda templed lŵp",
 	"template-loop-category-desc": "Mae'r dudalen yn cynnwys dolen nodyn, h.y. nodyn sy'n galw ei hun yn ailadroddus.",
 	"template-loop-warning": "<strong>Rhybudd:</strong> Mae'r dudalen hon yn galw ar [[:$1]] sy'n achosi dolen nodyn (galwad ailadroddus).",

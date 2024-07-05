@@ -673,7 +673,7 @@
 	"post-expand-template-inclusion-category": "ਉਹ ਸਫ਼ੇ ਜਿੱਥੇ ਫਰਮੇ ਸ਼ਾਮਲ ਕਰਨ ਦਾ ਅਕਾਰ ਹੱਦੋਂ ਵੱਧ ਗਿਆ ਹੈ",
 	"post-expand-template-argument-warning": "'''ਚੇਤਾਵਨੀ:'''\nਇਸ ਪੰਨੇ ਤੇ ਘੱਟੋ ਘੱਟ ਇੱਕ ਐਸੀ ਸਾਂਚਾ ਬਹਿਸ ਹੈ ਜਿਸ ਦਾ ਅਕਾਰ ਬਹੁਤ ਵੱਡਾ ਹੈ। ਅਜਿਹੀਆਂ ਬਹਿਸਾਂ ਨੂੰ ਛੱਡ ਦਿੱਤਾ ਗਿਆ ਹੈ।",
 	"post-expand-template-argument-category": "ਐਸੇ ਸਫ਼ੇ ਜਿਨ੍ਹਾਂ ਵਿੱਚ ਫਰਮੇ ਦੇ ਆਰਗੂਮੈਂਟ ਛੁੱਟ ਗਏ ਹਨ।",
-	"parser-template-loop-warning": "ਫਰਮੇ ਦਾ ਲੂਪ ਲੱਭਿਆ: [[$1]]",
+	"parser-template-loop-warning": "ਫਰਮੇ ਦਾ ਲੂਪ ਲੱਭਿਆ: [[:$1]]",
 	"node-count-exceeded-category": "ਨੋਡ ਦੀ ਗਿਣਤੀ ਵੱਦ ਗਈ ਹੈ",
 	"expansion-depth-exceeded-category": "ਵਿਸਥਾਰ ਦੀ ਡੂੰਘਾਈ ਵੱਧ ਗਈ ਹੈ",
 	"undo-success": "ਇਹ ਸੋਧ ਨੂੰ ਨਕਾਰਿਆ ਜਾ ਸਕਦਾ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਹੇਠਾਂ ਦਿੱਤੀ ਤੁਲਨਾ ਦੀ ਜਾਂਚ ਕਰੋ ਤਾਂ ਜੋ ਇਹ ਤਸਦੀਕ ਕੀਤਾ ਜਾ ਸਕੇ ਕਿ ਤੁਸੀਂ ਇਹੀ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ, ਅਤੇ ਫਿਰ ਸੋਧ ਨਕਾਰਨ ਲਈ ਹੇਠਾਂ ਦਿੱਤੀਆਂ ਤਬਦੀਲੀਆਂ ਨੂੰ ਸਾਂਭੋ।",

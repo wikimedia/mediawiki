@@ -637,7 +637,7 @@
 	"post-expand-template-inclusion-category": "صفحه‌هایی که اندازه گنجایشی الگوهایشان بیش از حد مجاز است",
 	"post-expand-template-argument-warning": "'''هشدار:''' این صفحه شامل دست کم یک پارامتر الگو است که بیش از اندازه بزرگ است.\nاین پارامترها نادیده گرفته شدند.",
 	"post-expand-template-argument-category": "صفحه‌های حاوی الگوهایی با پارامترهای نادیده‌گرفته‌شده",
-	"parser-template-loop-warning": "حلقه در الگو پیدا شد: [[$1]]",
+	"parser-template-loop-warning": "حلقه در الگو پیدا شد: [[:$1]]",
 	"parser-template-recursion-depth-warning": "محدودیت عمق بازگشت الگو رد شد ($1)",
 	"language-converter-depth-warning": "محدودیت عمق مبدل زبانی رد شد ($1)",
 	"node-count-exceeded-category": "صفحه‌هایی که از حداکثر تعداد گره تجاوز کرده‌اند",

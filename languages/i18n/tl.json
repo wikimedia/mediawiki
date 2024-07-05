@@ -647,7 +647,7 @@
 	"post-expand-template-inclusion-category": "Mga pahina kung saan lumabis ang sukat ng saklaw ng padron",
 	"post-expand-template-argument-warning": "Babala: Naglalamang ang pahinang ito ng kahit isang pagaalitan ng padron na napakalaki ng sukat ng paglawak.  Tinanggal ang mga alitang ito.",
 	"post-expand-template-argument-category": "Mga pahinang naglalaman ng mga tinanggal na mga alitan ng padron",
-	"parser-template-loop-warning": "Nadiskubreng silo ng suleras: [[$1]]",
+	"parser-template-loop-warning": "Nadiskubreng silo ng suleras: [[:$1]]",
 	"template-loop-category-desc": "Ang pahina ay naglalaman ng kodigong-makapanguulit, halimbawa. Isang kodigo na magpapahiwatig sa sarili ng paguulit.",
 	"parser-template-recursion-depth-warning": "Lumabis na sa nakatakdang lalim ng rekursyon (pormula) ng suleras ($1)",
 	"language-converter-depth-warning": "Lumampas sa ($1) ang hangganan ng lalim ng pampalit ng wika",

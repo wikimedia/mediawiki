@@ -439,7 +439,7 @@
 	"expensive-parserfunction-category": "Pāusai turrintei ēn sin per tūlin izwakīsenins stēisan brendun parseras funkciōnin",
 	"post-expand-template-inclusion-warning": "Nōda: Tērpautan šablōnin debban ast per debīkan.\nAinuntas šablōnis ni wīrst pastāwuns tērpautan.",
 	"post-expand-template-inclusion-category": "Pāusai, kwei tērpautas šablōnis debban ast kīrsa pratreptan",
-	"parser-template-loop-warning": "Serrīpē di kalpenin en šablōnei: [[$1]]",
+	"parser-template-loop-warning": "Serrīpē di kalpenin en šablōnei: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Šablōnis rekursiōni arāikinsenis kīrsa pratreptan ($1)",
 	"undo-success": "Redigīsenis mazzi būtwei etwartīntan. Palīginais waidīntans šlaitīntans sirzdau wersiōnins be enpeisāis kitawīdinsnans.",
 	"undo-failure": "Ni mazīngi etwārtai wartīntun redigīsenin, kōnfliktas sen persirzdausnas wersiōnins paggan.",

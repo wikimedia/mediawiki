@@ -644,7 +644,7 @@
 	"post-expand-template-inclusion-category": "Eusi kaca citakan anu ukuranna ngaleuwihan wates",
 	"post-expand-template-argument-warning": "'''Awas''': Ieu kaca sahenteuna ngandung hiji argumén citakan anu ukuran ékspansina badag teuing. Éta argumén geus teu dipaliré.",
 	"post-expand-template-argument-category": "Kaca kalawan argumén citakan anu teu dipaliré",
-	"parser-template-loop-warning": "Katangén ayana citakan anu patumpang tindih: [[$1]]",
+	"parser-template-loop-warning": "Katangén ayana citakan anu patumpang tindih: [[:$1]]",
 	"template-loop-category": "Kaca kawalan citakan bulak-balik",
 	"parser-template-recursion-depth-warning": "Citakan patumpang tindih ngaleuwihan wates($1)",
 	"language-converter-depth-warning": "Parobah basa ngaleuwihan wates jerona ($1)",

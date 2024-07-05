@@ -707,7 +707,7 @@
 	"template-equals-category": "Pàgine ch'a deuvro = coma stamp",
 	"template-equals-category-desc": "La pàgina a conten <code><nowiki>{{=}}</nowiki></code> ma dzora sta wiki sòn a s'espand pa an <code>=</code>. Cost usagi a l'é dësconsejà; na version futura 'd MediaWiki a l'avrà <code><nowiki>{{=}}</nowiki></code> com funsion ëd silabassion.",
 	"template-equals-warning": "<strong>Atension:</strong> Sta pàgina a deuvra <code><nowiki>{{=}}</nowiki></code> ma dzora sta wiki sòn a s'espand pa an <code>=</code>. Cost usagi a l'é dëscnsejà; na version futura 'd MediaWiki a l'avrà <code><nowiki>{{=}}</nowiki></code> com funsion ëd silabassion.",
-	"parser-template-loop-warning": "Trovà na liassa dlë stamp: [[$1]]",
+	"parser-template-loop-warning": "Trovà na liassa dlë stamp: [[:$1]]",
 	"template-loop-category": "Pàgine con liasse dë stamp.",
 	"template-loop-category-desc": "La pàgina a conten na liassa dë stamp, visadì në stamp ch'a ciama chiel-midem an manera arcorenta.",
 	"template-loop-warning": "<strong>Atension:</strong> Costa pàgina a ciama [[:$1]] e a càusa na liassa dë stamp (na ciamà arcorenta sensa fin).",

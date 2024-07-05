@@ -508,7 +508,7 @@
 	"post-expand-template-inclusion-category": "Mga panid kon diin ang na-upod nga kadakoon nagsobra",
 	"post-expand-template-argument-warning": "'''Paandam:''' Ang ini nga panid may yara sang indi magnubo sa isa ka pagbinais sa templeyt nga may tuman kadako nga kadakoon sa pagpadako.\nAng ini nga pagbinaisay wala na gin-upod pa.",
 	"post-expand-template-argument-category": "Mga panid nga may yara sang ginlaktawan nga mga pagbinaisay sa templeyt",
-	"parser-template-loop-warning": "Ang natiktikan nga pagpukot: [[$1]]",
+	"parser-template-loop-warning": "Ang natiktikan nga pagpukot: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Ang ginalimitahan nga rekursyon sang templeyt nalab-ot na ($1)",
 	"language-converter-depth-warning": "Ang ginalimitahan nga kadalumon sa pag-ilis sang hambalanon nalab-ot na ($1)",
 	"node-count-exceeded-category": "Mga panid kon diin ang pag-isip sang node nagsobra",

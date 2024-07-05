@@ -597,7 +597,7 @@
 	"post-expand-template-inclusion-category": "Isebtaren i sɛan aṭas tilɣatin",
 	"post-expand-template-argument-warning": "<strong>Ɣur-wet</strong>: Asebter agi yesɛa tuccḍa deg aɣewwar n yiwet talɣa.",
 	"post-expand-template-argument-category": "Isebtaren i sɛan iɣewwaren n talɣa ur skazelen ara",
-	"parser-template-loop-warning": "N-ufad talɣa s tineddict: [[$1]]",
+	"parser-template-loop-warning": "N-ufad talɣa s tineddict: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Talast n lqay n tiɣriwin n tilɣatin tefel ($1)",
 	"language-converter-depth-warning": "Talast n lqay n uselkat n tutlayt tefel ($1)",
 	"node-count-exceeded-category": "Isebtar anda amḍa n tikerwas yefel",

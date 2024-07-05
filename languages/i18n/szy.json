@@ -623,7 +623,7 @@
 	"post-expand-template-inclusion-category": "nicaliwan taazihan-mitudung mangasiw kelec nu kasabelih",
 	"post-expand-template-argument-warning": "<strong> patalaw:</strong> tina kasabelih izaw cacay pabaway taazihan mitudung aazihen-sulyang tadatanayu’.\ntadatanayu’ay aazihen-sulyang tansul sa masekipo.",
 	"post-expand-template-argument-category": "taazihan-mitudung aazihen-sulyang izaw layad masekipoay a kasabelih",
-	"parser-template-loop-warning": "masedap taazihan-mitudung musaliyut: [[$1]]",
+	"parser-template-loop-warning": "masedap taazihan-mitudung musaliyut: [[:$1]]",
 	"template-loop-category": "sitatutungay masaliyut a kasabelih",
 	"template-loop-category-desc": "kasabelih yamalyilumaazihan masaliyut, mahizatuay niza miawaw nizaay a maazihan.",
 	"parser-template-recursion-depth-warning": "mangsiw taazihan-mitudung musaliyuliyud ilabuay a kelec ($1)",

@@ -802,7 +802,7 @@
 	"template-equals-category": "Σελίδες που χρησιμοποιούν = ως πρότυπο",
 	"template-equals-category-desc": "Η σελίδα περιέχει <code><nowiki>{{=}}</nowiki></code> αλλά σε αυτό το wiki αυτό δεν αναπτύσσετα ως <code>=</code>. Αυτή η χρήση έχει καταργηθεί, μια μελλοντική έκδοση MediaWiki θα εφαρμόσει το <code><nowiki>{{=}}</nowiki> </code> ως parser function.",
 	"template-equals-warning": "<strong>Προειδοποίηση:</strong> Η σελίδα περιέχει <code><nowiki>{{=}}</nowiki></code> αλλά σε αυτό το wiki αυτό δεν αναπτύσσετα ως <code>=</code>. Αυτή η χρήση έχει καταργηθεί, μια μελλοντική έκδοση MediaWiki θα εφαρμόσει το <code><nowiki>{{=}}</nowiki> </code> ως parser function.",
-	"parser-template-loop-warning": "Εντοπίστηκε πρότυπο σε βρόχο: [[$1]]",
+	"parser-template-loop-warning": "Εντοπίστηκε πρότυπο σε βρόχο: [[:$1]]",
 	"template-loop-category": "Σελίδες με βρόχους προτύπων",
 	"template-loop-category-desc": "Η σελίδα περιέχει έναν βρόχο προτύπου, π.χ. ένα πρότυπο που αυτοαποκαλείται αναδρομικά.",
 	"template-loop-warning": "<strong>Προειδοποίηση:</strong> Αυτή η σελίδα καλεί το [[:$1]] που προκαλεί ένα βρόχο προτύπου (ατέλειωτη αναδρομική κλήση).",

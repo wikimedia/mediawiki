@@ -449,7 +449,7 @@
 	"post-expand-template-inclusion-category": "НапэкӀуэцӀхэр, щапхъэ я хэтхэм я бжыгъэр зэфӀэкӀыгъуэм къехъу щытхэр",
 	"post-expand-template-argument-warning": "'''Гу лъытэ!''' мы напэкӀуэцӀым зы щапхъэ, мынэхъмащӀэу хэтщ, и аргумент зэгъэзэнщӀэныр иныщэу щыту.\nАпхуэдэ аргументхэм гулъытэгъуэ ирамтауэ щытщ.",
 	"post-expand-template-argument-category": "Щапхъэхэм я аргументхэр хэзмыубыда напэкӀуэцӀхэр",
-	"parser-template-loop-warning": "Хэукъуэгъуэ къыхэкӀащ щапхъэхэм: [[$1]]",
+	"parser-template-loop-warning": "Хэукъуэгъуэ къыхэкӀащ щапхъэхэм: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Щапхъэ рекурсиэм и кууагъыр къегъэхъуауэ щытщ (1$)",
 	"language-converter-depth-warning": "Бзэ гъэзанщӀэгъуэм и зэфӀэкӀыгъуэр къегъэхъуауэ щытщ (1$)",
 	"node-count-exceeded-category": "ЗэпхырыкӀыгъуэхэм я бжыгъэр къехъу здэщыт напэкӀуэцӀхэр",

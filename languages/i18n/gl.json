@@ -774,7 +774,7 @@
 	"template-equals-category": "Páxinas que utilizan = como modelo",
 	"template-equals-category-desc": "A páxina contén <code><nowiki>{{=}}</nowiki></code>, pero neste wiki non se expande a <code>=</code>. Este uso está obsoleto; unha futura versión de MediaWiki implementará <code><nowiki>{{=}}</nowiki></code> como función de análise.",
 	"template-equals-warning": "<strong>Aviso:</strong> Esta páxina contén <code><nowiki>{{=}}</nowiki></code>, pero neste wiki non se expande a <code>=</code>. Este uso está obsoleto; unha futura versión de MediaWiki implementará <code><nowiki>{{=}}</nowiki></code> como función de análise.",
-	"parser-template-loop-warning": "Detectouse un modelo en bucle: [[$1]]",
+	"parser-template-loop-warning": "Detectouse un modelo en bucle: [[:$1]]",
 	"template-loop-category": "Páxinas con bucles de modelo",
 	"template-loop-category-desc": "A páxina contén un bucle de modelo, por exemplo, un modelo que se chama a si mesmo recursivamente.",
 	"template-loop-warning": "<strong>Aviso:</strong> Esta páxina chama [[:$1]] o que causa un ciclo infinito de modelo (unha chamada recursiva sen fin).",

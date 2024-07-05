@@ -723,7 +723,7 @@
 	"template-equals-category": "Halaman nyang maké = sebagé sablonan",
 	"template-equals-category-desc": "Halaman ada <code><nowiki>{{=}}</nowiki></code>-nya, mar nyang di ini wiki nyang kaga' nglèbar jadi <code>=</code>. Ni pemakéan diangusin; ada pèrsi entaran MediaWiki nyang bakalan nerepin <code><nowiki>{{=}}</nowiki></code> sebagé pungsi penguyur.",
 	"template-equals-warning": "Halaman ada <code><nowiki>{{=}}</nowiki></code>-nya, mar nyang di ini wiki nyang kaga' nglèbar jadi <code>=</code>. Ni pemakéan diangusin; ada pèrsi entaran MediaWiki nyang bakalan nerepin <code><nowiki>{{=}}</nowiki></code> sebagé pungsi penguyur.",
-	"parser-template-loop-warning": "Ulangan sablonan keendus: [[$1]]",
+	"parser-template-loop-warning": "Ulangan sablonan keendus: [[:$1]]",
 	"template-loop-category": "Halaman dengen ulangan sablonan",
 	"template-loop-category-desc": "Ni halaman ada ulangan sablonannya, ya'entu sablonan nyang bolak-balik nggero' dèwèknya.",
 	"template-loop-warning": "<strong>Wanti-wanti:</strong> Ni halaman nggero [[:$1]] nyang ngeja ulangan sablonan (penggeroan bolak-balik kaga' beujung).",

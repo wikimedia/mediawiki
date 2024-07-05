@@ -691,7 +691,7 @@
 	"post-expand-template-inclusion-category": "Páxines con escesu d'inclusiones de plantíes",
 	"post-expand-template-argument-warning": "<strong>Avisu:</strong> Esta páxina contién polo menos un parámetru de plantía que tien un tamañu d'espansión demasiao llargu.\nEstos parámetros s'omitieron.",
 	"post-expand-template-argument-category": "Páxines con parámetros de plantía omitíos",
-	"parser-template-loop-warning": "Deteutóse un bucle de plantíes: [[$1]]",
+	"parser-template-loop-warning": "Deteutóse un bucle de plantíes: [[:$1]]",
 	"template-loop-category": "Páxines con bucles de plantíes",
 	"template-loop-category-desc": "Esta páxina contién un bucle de plantía, esto ye, una plantía que se llama ella mesma de mou recursivu.",
 	"template-loop-warning": "<strong>Avisu:</strong> Esta páxina llama a [[:$1]] lo que causa un ciclu infinitu de plantía (una llamada recurrente infinita).",

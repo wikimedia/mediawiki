@@ -742,7 +742,7 @@
 	"template-equals-category": "Бамъёс, кудъёсыз = пусэз  шаблон интые куто",
 	"template-equals-category-desc": "Бамын вань <code><nowiki>{{=}}</nowiki></code>, но та вотэсбамын со уг паськыта такемозь: <code>=</code> . Таӵе амал вужмемын; вуонозэ версизэ <code><nowiki>{{=}}</nowiki></code> со парсер функция интые кутоз.",
 	"template-equals-warning": "Бамын вань <code><nowiki>{{=}}</nowiki></code>, но та вотэсбамын со уг паськыта такемозь <code>=</code>. Тае кутыны уггес лэзё; вуонозэ версизэ <code><nowiki>{{=}}</nowiki></code> со парсер функция интые кутоз.",
-	"parser-template-loop-warning": "[[$1]] шаблонэн сузьет шедьтэмын",
+	"parser-template-loop-warning": "[[:$1]] шаблонэн сузьет шедьтэмын",
 	"template-loop-category": "шаблон кыӵесъёсын бамъёс",
 	"template-loop-category-desc": "Та бамысь шаблонын кыӵесэз вань, со муген шаблон рекурсивно ассэ ачиз поттэ",
 	"template-loop-warning": "<strong>Алон:</strong> та бам [[:$1]] вуттэ.  Со шаблонын сузьет кылдытэ (бесконечный рекурсивный вызов)",

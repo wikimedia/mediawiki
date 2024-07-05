@@ -553,7 +553,7 @@
 	"post-expand-template-inclusion-category": "الصفحات اللي فيها لحجم د لموديلات كبر من لقياس",
 	"post-expand-template-argument-warning": "<strong>تحدير:</strong> هاد صّفحة فيها علّاقل عامل واحد د موضيل لي عندو تيساع د لمتيداد كبير بزاف.\nهاد لعوامل تحدفو.",
 	"post-expand-template-argument-category": "صفحات فيها معطيات د قوالب تنسات",
-	"parser-template-loop-warning": "طانڭة د موضيل تديديكتات: [[$1]]",
+	"parser-template-loop-warning": "طانڭة د موضيل تديديكتات: [[:$1]]",
 	"template-loop-category": "صفاحي ب طانݣات د لموضيل",
 	"template-loop-category-desc": "هاد صّفحة فيها طانڭة ف لموضيل، يعني بلي لموضيل كيعيّط ل راسو",
 	"template-loop-warning": "<strong>إندار:</strong> هاد صّفحة كاتعيّط ل [[:$1]] لي كيتسبب ف طانڭة د موضيل (تعياط لانهائي ديال فونكسيو).",

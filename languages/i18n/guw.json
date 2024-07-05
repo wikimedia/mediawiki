@@ -692,7 +692,7 @@
 	"template-equals-category": "Weda he nọ zan = taidi ohia lẹ",
 	"template-equals-category-desc": "<strong>Avase:</strong> Weda ehe nọ zán<code><nowiki>{{=}}</nowiki></code> ṣigba to wiki ehe ji he ma nọ gblo jẹ  <code>=</code>. Nuyizán ehe nọ yin nukunpẹvi do pọ́n; adà MediaWiki sọgodo tọn na basi yizán  <code><nowiki>{{=}}</nowiki></code> taidi odinatẹẹ he nọ didẹ onu lẹ.",
 	"template-equals-warning": "<strong>Avase:</strong> Weda ehe nọ zán<code><nowiki>{{=}}</nowiki></code> ṣigba to wiki ehe ji he ma nọ gblo jẹ  <code>=</code>. Nuyizán ehe nọ yin nukunpẹvi do pọ́n; adà MediaWiki sọgodo tọn na basi yizán  <code><nowiki>{{=}}</nowiki></code> taidi odinatẹẹ he nọ didẹ onu lẹ.",
-	"parser-template-loop-warning": "Ohia he nọ zlọn jẹ nudevo ji ko yin mimọ: [[$1]]",
+	"parser-template-loop-warning": "Ohia he nọ zlọn jẹ nudevo ji ko yin mimọ: [[:$1]]",
 	"template-loop-category": "Weda he tindo ohia he nọ zlọn lẹ",
 	"template-loop-category-desc": "Weda ehe tindo ohia dọvọddọ tọn,i.e. ohia he nọ ylọ ede dọ oylọbasitọ-mẹdetiti tọn.",
 	"language-converter-depth-warning": "Nuyizán ogbe didiọ tọn sin nugopipe ko zẹ ($1) go",

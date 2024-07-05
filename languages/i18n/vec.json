@@ -655,7 +655,7 @@
 	"post-expand-template-inclusion-category": "Pagine in do che la dimension de inclusion dei modèi la xe massa granda",
 	"post-expand-template-argument-warning": "<strong>Òcio:</strong> Sta pàgina ƚa contien almanco on argomento de modèl che el ga na dimension de espansion masa granda.\nSti argomenti i xe stà omesi.",
 	"post-expand-template-argument-category": "Pagine che contien dei modèi con argomenti mancanti",
-	"parser-template-loop-warning": "Xe stà catà un ciclo in tel modèl: [[$1]]",
+	"parser-template-loop-warning": "Xe stà catà un ciclo in tel modèl: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Xe stà rajunto el limite màssimo de ricorsion in tel modèl ($1)",
 	"language-converter-depth-warning": "Limite de profondità del convertidor de lengua superà ($1)",
 	"node-count-exceeded-category": "Pàgine ndove che el node count supera el limite",

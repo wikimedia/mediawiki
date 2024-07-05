@@ -650,7 +650,7 @@
 	"post-expand-template-inclusion-category": "Mga pahina kun saen an panguyog igwang sukol na sobrado",
 	"post-expand-template-argument-warning": "'''Patanid tabi:''' Ining pahina naglalaman baya nin sarong panguyog na igwang grabe kadakulang kalakbangan sa sukol.\nIning mga argumento tabi pinagharali na.",
 	"post-expand-template-argument-category": "Mga pahina na naglalaman kan pinagharaleng mga argumento sa panguyog",
-	"parser-template-loop-warning": "An kaluktosan kan panguyog namansayan: [[$1]]",
+	"parser-template-loop-warning": "An kaluktosan kan panguyog namansayan: [[:$1]]",
 	"parser-template-recursion-depth-warning": "An panguyog nin rekursyong panrarom na kasagkodan nagsobra nin ($1)",
 	"language-converter-depth-warning": "Tagapagbago kan Lengguwaheng panrarom na kasagkodan nagsobra ($1)",
 	"node-count-exceeded-category": "Mga pahina kun saen an kabilangan nin tagapagsumpay nagsobra",

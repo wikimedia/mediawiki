@@ -642,7 +642,7 @@
 	"post-expand-template-inclusion-category": "ئەو لاپەڕانەی وا داڕێژە تیێدا قەبارەی تێپەڕیوە",
 	"post-expand-template-argument-warning": "'''ئاگاداری:''' ئەم لاپەڕە لانیکەم یەک بەڵگەی داڕێژە لە خۆ گرتوو کە قەبارەی کردنەوەی زۆر گەورەیە.<br />\nئەم بەڵگە بەکار نەخراوە.",
 	"post-expand-template-argument-category": "ئەو لاپەڕانەی بەڵگەی داڕێژەی بەکار نەخراوی لەخۆ گرتووە",
-	"parser-template-loop-warning": "ئەڵقەی داڕێژە دۆزرایەوە: [[$1]]",
+	"parser-template-loop-warning": "ئەڵقەی داڕێژە دۆزرایەوە: [[:$1]]",
 	"template-loop-category": "ئەو پەڕانەی ئەڵقەی داڕێژەیان ھەیە",
 	"template-loop-category-desc": "پەڕەکە ئەڵقەی داڕێژەی تێدایە، بە مانایەکی تر، داڕێژەیەک بە شێوەیەکی دووبارەوەبوو خۆی بانگی خۆی دەکات.",
 	"parser-template-recursion-depth-warning": "سنووری قووڵی گەڕانەوەی داڕێژە تێپەڕیوە ($1)",

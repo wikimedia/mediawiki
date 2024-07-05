@@ -643,7 +643,7 @@
 	"post-expand-template-inclusion-category": "Panna jon ki template include size se barra hai",
 	"post-expand-template-argument-warning": "Warning: Ii panna me kamti se kamti ek template argument hai jiske expansion size bahut barraa hai.\nIi sab arguments ke omit kar dewa gais hai.",
 	"post-expand-template-argument-category": "Panna jisme omitted template arguments hai",
-	"parser-template-loop-warning": "Template loop ke pawa gais hai: [[$1]]",
+	"parser-template-loop-warning": "Template loop ke pawa gais hai: [[:$1]]",
 	"template-loop-category": "Panna jisme template loop hai",
 	"template-loop-category-desc": "Ii panna me kachchaa loop hai, iske matlab ki, uu panna jon ki apne ke recursively call kare hai.",
 	"parser-template-recursion-depth-warning": "Template recursion depth limit se jaada hoe gais hae ($1)",

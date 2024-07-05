@@ -585,7 +585,7 @@
 	"post-expand-template-inclusion-category": "Moɲey kaŋyaŋ ra leeti ga ng'azzaatoo hoo.",
 	"post-expand-template-argument-warning": "<strong>Yaamar:</strong> Moɲoo woo goo nda, nd'a kacca, leeti hujja foo kaŋ  azzaatoo hayandiroo ga bebbeeri.\nHujjaa woo n' ka naŋandi.",
 	"post-expand-template-argument-category": "Moɲey kaŋyaŋ goo nda leeti hujja naŋanteyaŋ",
-	"parser-template-loop-warning": "Leeti zollo maatante: [[$1]]",
+	"parser-template-loop-warning": "Leeti zollo maatante: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Leeti fillari guusuyan dimaa n' ka hoo ($1)",
 	"language-converter-depth-warning": "Šenni berekaw guusuyan dimmaa n' ka hoo ($1)",
 	"node-count-exceeded-category": "Moɲey kaŋyaŋ ra guli hinnaa n' ka hoo",

@@ -641,7 +641,7 @@
 	"post-expand-template-inclusion-category": "पन्ना सभ जतए नमूना लेबाक आकार बढ़ि गेल",
 	"post-expand-template-argument-warning": "'''चेतौनी''' ऐ पन्नामे नै बेशी तँ एकटा एहेन नमूना निरुपक अछि जकर बड्ड पैघ विस्तार आकार छै।\nई निरूपक सभ हटा देल गेल अछि।",
 	"post-expand-template-argument-category": "छोडल नमूना निरूपक बला पन्नासभ",
-	"parser-template-loop-warning": "नमूना परिक्रम भेटल: [[$1]]",
+	"parser-template-loop-warning": "नमूना परिक्रम भेटल: [[:$1]]",
 	"parser-template-recursion-depth-warning": "नमूना प्रत्यावर्तन गहीर सीमा पार केलक ($1)",
 	"language-converter-depth-warning": "भाषान्तर गहीर सीमा पार केलक ($1)",
 	"node-count-exceeded-category": "पन्ना जे में नोड-संख्या सीमा पार कऽ गेल अछि",

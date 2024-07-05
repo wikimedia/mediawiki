@@ -656,7 +656,7 @@
 	"post-expand-template-inclusion-category": "Pejy be be endrika",
 	"post-expand-template-argument-warning": "Tandremo : Manana mpihazaka endrika tsy afaka ampidirina ity pejy ity.\nAo aorian'ny fivelarana, mety namoaka valy lava loatra angamba izy, ary tsy nampidirina tato noho izany antony izany.",
 	"post-expand-template-argument-category": "Pejy misy parametatra endrika hadino",
-	"parser-template-loop-warning": "endrika vono hita tao : [[$1]]",
+	"parser-template-loop-warning": "endrika vono hita tao : [[:$1]]",
 	"template-loop-category": "Pejy ahitana endrika mitsingerina",
 	"template-loop-category-desc": "Ahitana endrika mifanondro ity pejy ity, izany hoe misy endrika miantso ny tenany amin'ny fomba rekiorsiva",
 	"template-loop-warning": "<strong>Tandremo</strong>: Ity pejy ity dia miandro an'i [[:$1]] izay mahatonga fifanondroan-tena (antso rekiorsiva tsy misy fahataperana).",

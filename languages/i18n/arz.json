@@ -576,7 +576,7 @@
 	"post-expand-template-inclusion-category": "الصفحات اللى تم تجاوز حجم تضمين القالب فيها",
 	"post-expand-template-argument-warning": "<strong>تحذير:</strong> الصفحة دى فيها عامل قالب واحد على الأقل ليه حجم تمدد كبير قوي.\nالعوامل دى اتمسحت.",
 	"post-expand-template-argument-category": "صفحات فيها مناقشات القالب المحذوفة",
-	"parser-template-loop-warning": "لووب القالب المحدد: [[$1]]",
+	"parser-template-loop-warning": "لووب القالب المحدد: [[:$1]]",
 	"parser-template-recursion-depth-warning": "حد عمق الريكيرشيون بتاع القالب اتعدى  ($1)",
 	"language-converter-depth-warning": "حد عمق محول اللغه اتعدى ($1)",
 	"undo-success": "ممكن ترجع فى التعديل.\nلو سمحت تشوف المقارنة اللى تحت علشان تتأكد من إن هو دا اللى إنت عايز تعمله، وبعدين سييف التغييرات اللى تحت علشان ترجع فى التعديل.",

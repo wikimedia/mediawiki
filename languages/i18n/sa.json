@@ -598,7 +598,7 @@
 	"post-expand-template-inclusion-category": "सूचनाफलकस्य अपेक्षया पृष्ठं बृहत् वर्तते ।",
 	"post-expand-template-argument-warning": "'''पूर्वसूचना :''' अस्मिन् पृष्ठे स्थितस्य फलकस्य एकः विकल्पः बहु बृहत् वर्तते । तस्य विकल्पस्य अंशाः अपाकृताः ।",
 	"post-expand-template-argument-category": "येषु पृष्ठेषु फलके स्थिताः विकल्पाः न पूरिताः तेषां पृष्ठानाम् आवलिः",
-	"parser-template-loop-warning": "फलकस्य परिक्रमः (loop) प्राप्तः : [[$1]]",
+	"parser-template-loop-warning": "फलकस्य परिक्रमः (loop) प्राप्तः : [[:$1]]",
 	"parser-template-recursion-depth-warning": "फलक-प्रत्यावर्तनस्य (recursion) सीमा समाप्ता ($1)",
 	"language-converter-depth-warning": "भाषा-परिवर्तकस्य सीमा समाप्ता ($1)",
 	"node-count-exceeded-category": "येषु पृष्ठेषु सन्धेः (node) सीमा समाप्ता, तेषां पृष्ठानाम् आवलिः",

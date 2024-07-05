@@ -977,7 +977,7 @@
 	"template-equals-category": "Páginas que usan = como plantilla",
 	"template-equals-category-desc": "La página contiene <code><nowiki>{{=}}</nowiki></code> pero en esta wiki esto no expande a <code>=</code>. Este uso está obsoleto; en una futura versión de MediaWiki implementará <code><nowiki>{{=}}</nowiki></code> como una función ''parser''.",
 	"template-equals-warning": "<strong>Advertencia:</strong>: Esta página usa <code><nowiki>{{=}}</nowiki></code> pero en esta wiki esto no expande a <code></code>=. Este uso está obsoleto; en una futura versión de MediaWiki implementará <code><nowiki>{{=}}</nowiki></code> como una función ''parser''.",
-	"parser-template-loop-warning": "Se ha detectado un bucle de plantilla: [[$1]]",
+	"parser-template-loop-warning": "Se ha detectado un bucle de plantilla: [[:$1]]",
 	"template-loop-category": "Páginas con bucles de plantillas",
 	"template-loop-category-desc": "Esta página contiene un bucle de plantillas, es decir, una plantilla que se llama a sí misma recursivamente.",
 	"template-loop-warning": "<strong>Atención:</strong> esta página llama a [[:$1]], lo que provoca un bucle en las plantillas (una llamada recurrente infinita).",

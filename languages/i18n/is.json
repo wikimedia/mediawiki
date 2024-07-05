@@ -715,7 +715,7 @@
 	"template-equals-category": "Síður sem nota = sem snið",
 	"template-equals-category-desc": "Síðan inniheldur <code><nowiki>{{=}}</nowiki></code> en á þessum wiki útvíkkar það ekki í <code>=</code>. Þessi notkun er úreld; komandi MediaWiki-útgáfa mun innleiða <code><nowiki>{{=}}</nowiki></code> sem þáttaraaðgerð.",
 	"template-equals-warning": "<strong>Aðvörun:</strong> Þessi síða notar <code><nowiki>{{=}}</nowiki></code> en á þessum wiki útvíkkar það ekki í <code>=</code>. Þessi notkun er úreld; komandi MediaWiki-útgáfa mun innleiða <code><nowiki>{{=}}</nowiki></code> sem þáttaraaðgerð.",
-	"parser-template-loop-warning": "Hringvensl fundust í sniðmátum: [[$1]]",
+	"parser-template-loop-warning": "Hringvensl fundust í sniðmátum: [[:$1]]",
 	"template-loop-category": "Síður með sniðlykkjum",
 	"template-loop-category-desc": "Síðan inniheldur sniðlykkju, m.ö.o. snið sem kallar á sjálft sig endurkvæmt.",
 	"parser-template-recursion-depth-warning": "Farið út fyrir endurkvæmnismörk sniðmáts ($1)",

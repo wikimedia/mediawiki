@@ -626,7 +626,7 @@
 	"post-expand-template-argument-warning": "<strong>Accura:</strong> Sta pàggina cunteni almenu n'argomentu d'un template ca havi na diminsioni troppu rossa pi èssiri espansu. St'argomenti verrannu omessi.",
 	"post-expand-template-argument-category": "Pàggini ca cuntèninu template cu argumenti mancanti",
 	"template-equals-category": "Pàggini ca ùsanu = comu template",
-	"parser-template-loop-warning": "Rilivatu un cìrculu dû template: [[$1]]",
+	"parser-template-loop-warning": "Rilivatu un cìrculu dû template: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Passatu lu lìmiti di funnu pâ ricursioni di template ($1)",
 	"language-converter-depth-warning": "Passatu lu lìmiti di funnu dû cunvirtituri di lingua ($1)",
 	"node-count-exceeded-category": "Pàggini unni fu passatu lu nùmmiru di gruppa màssimu",

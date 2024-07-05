@@ -674,7 +674,7 @@
 	"post-expand-template-argument-warning": "'''Brīdinājums:''' Šī lapa satur vismaz vienu veidnes argumentu, kura lielums pēc paplašināšanas pārsniedz tehnisko limitu.\nVisi šādi argumenti tiks izlaisti.",
 	"post-expand-template-argument-category": "Lapas, kurās ir izlaisti veidņu argumenti",
 	"template-equals-category": "Lapas, kas izmanto = kā veidni",
-	"parser-template-loop-warning": "Veidne ir ievietota tādā pašā veidnē: [[$1]]",
+	"parser-template-loop-warning": "Veidne ir ievietota tādā pašā veidnē: [[:$1]]",
 	"template-loop-category": "Lapas ar veidņu ciklu",
 	"undo-success": "Šo izmaiņu ir iespējams atcelt.\nLūdzu, pārbaudi zemāk redzamajā salīdzinājumā, vai tu to tiešām vēlies darīt, un pēc tam saglabā lapu, lai pabeigtu izmaiņas atcelšanu.",
 	"undo-failure": "Šo labojumu nevar atcelt, jo ir veikti nozīmīgi labojumi vēl pēc šī labojuma izdarīšanas.",

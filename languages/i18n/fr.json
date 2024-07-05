@@ -947,7 +947,7 @@
 	"template-equals-category": "Pages qui utilisent = comme modèle",
 	"template-equals-category-desc": "La page contient <code><nowiki>{{=}}</nowiki></code>, mais cela ne se développe pas en <code>=</code> sur ce wiki. Cette utilisation est obsolète ; une version future de MediaWiki mettra en œuvre <code><nowiki>{{=}}</nowiki></code> comme une fonction de l’analyseur.",
 	"template-equals-warning": "<strong>Avertissement :</strong> Cette page utilise <code><nowiki>{{=}}</nowiki></code>, mais cela ne se développe pas en <code>=</code> sur ce wiki. Cette utilisation est obsolète ; une version future de MediaWiki mettra en œuvre <code><nowiki>{{=}}</nowiki></code> comme une fonction de l’analyseur.",
-	"parser-template-loop-warning": "Modèle en boucle détecté : [[$1]]",
+	"parser-template-loop-warning": "Modèle en boucle détecté : [[:$1]]",
 	"template-loop-category": "Pages avec des boucles de modèle",
 	"template-loop-category-desc": "La page contient une boucle du modèle, c.-à-d. un modèle qui s’appelle lui-même récursivement.",
 	"template-loop-warning": "<strong>Avertissement :</strong> cette page appelle [[:$1]] ce qui provoque une boucle du modèle (un appel récursif potentiellement infini).",

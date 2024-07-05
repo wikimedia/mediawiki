@@ -502,7 +502,7 @@
 	"content-json-empty-array": "خالی اَرّے",
 	"unsupported-content-diff": "مواد ماڈل $1 وچ فرق  دا آسرا کائنی ہوندا۔",
 	"post-expand-template-inclusion-category": "ورقے جتھاں سانچہ سائز ودھ ڳیا ہے",
-	"parser-template-loop-warning": "سانچے وچ چکر لبھا: [[$1]]",
+	"parser-template-loop-warning": "سانچے وچ چکر لبھا: [[:$1]]",
 	"template-loop-category": "لوپ سانچے نال ورقے",
 	"node-count-exceeded-category": "ورقے جنھاں  وچ نوڈاں دی تعداد حد کنوں ودھ ڳئی ہے۔",
 	"node-count-exceeded-category-desc": "ورقہ جیندے وچ نوڈاں دی تعداد ودھ کنوں ودھ تعداد کنوں وی ٹپ ڳئی ہے۔",

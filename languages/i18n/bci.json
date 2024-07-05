@@ -588,7 +588,7 @@
 	"post-expand-template-inclusion-category": "Floua boué nga bé templati mô lé sounzoulè ô tratrali sou",
 	"post-expand-template-argument-category": "Floua boué nga ba klèklèman bé templati paramètres vié moun bé noun",
 	"template-equals-category": "Floua boué nga bé fa = kè templati sa",
-	"parser-template-loop-warning": "Ba woun templati koun mô i noun sinlè ô viéman: [[$1]]",
+	"parser-template-loop-warning": "Ba woun templati koun mô i noun sinlè ô viéman: [[:$1]]",
 	"template-loop-category": "Floua boué nga bé lé templati koun mô ô sin ô vié man",
 	"template-loop-category-desc": "Floua boué nga ô lé templati koun mô i noun sinlè ô viéman ô, yô lé kè templati koun mô ô flè i bôbô i woun lélé ô viéman.",
 	"template-loop-warning": "<strong>Afôtouè:</strong> Floua boué nga ô flè [[:$1]] mô ô yi templati noun sinlè mô ô viéman (liké flèlè koun mô ô léman adjuéliè).",

@@ -783,7 +783,7 @@
 	"template-equals-category": "= şablonunu istifadə edən səhifələr",
 	"template-equals-category-desc": "Bu səhifə <code><nowiki>{{=}}</nowiki></code> ehtiva edir ancaq bu vikidə o <code>=</code> olaraq genişlənmir. Bu istifadə artıq köhnəlib. Gələcək MediaWiki versiyası <code><nowiki>{{=}}</nowiki></code> kodunu təhlil funksiyası kimi görəcək.",
 	"template-equals-warning": "<strong>Xəbərdarlıq:/strong> Bu səhifə <code><nowiki>{{=}}</nowiki></code> ehtiva edir ancaq bu vikidə o <code>=</code> olaraq genişlənmir. Bu istifadə artıq köhnəlib. Gələcək MediaWiki versiyası <code><nowiki>{{=}}</nowiki></code> kodunu təhlil funksiyası kimi görəcək.",
-	"parser-template-loop-warning": "Şablonda düyün tapıldı: [[$1]]",
+	"parser-template-loop-warning": "Şablonda düyün tapıldı: [[:$1]]",
 	"template-loop-category": "Şablon döngüsü olan səhifələr",
 	"template-loop-category-desc": "Səhifədə şablon döngüsü var, yəni özünü rekursiv şəkildə çağıran şablon.",
 	"template-loop-warning": "<strong>Xəbərdarlıq:</strong> Bu səhifə şablon dövrəsinə (sonsuz rekursiv çağırış) səbəb olan [[:$1]] şablonunu çağırır.",

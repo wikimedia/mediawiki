@@ -798,7 +798,7 @@
 	"template-equals-category": "Trang sử dụng = như bản mẫu",
 	"template-equals-category-desc": "Trang này sử dụng <code><nowiki>{{=}}</nowiki></code> nhưng nó không bung ra thành <code>=</code> tại wiki này. Cú pháp này đã lỗi thời; một phiên bản MediaWiki trong tương lai sẽ cập nhật hàm <code><nowiki>{{=}}</nowiki></code>.",
 	"template-equals-warning": "<strong>Chú ý:</strong> Trang này sử dụng <code><nowiki>{{=}}</nowiki></code> nhưng nó không bung ra thành <code>=</code> tại wiki này. Cú pháp này đã lỗi thời; một phiên bản MediaWiki trong tương lai sẽ cập nhật hàm <code><nowiki>{{=}}</nowiki></code>.",
-	"parser-template-loop-warning": "Phát hiện bản mẫu lặp vòng: [[$1]]",
+	"parser-template-loop-warning": "Phát hiện bản mẫu lặp vòng: [[:$1]]",
 	"template-loop-category": "Trang có bản mẫu lặp vòng",
 	"template-loop-category-desc": "Trang chứa một hoặc nhiều bản mẫu lặp vòng, tức là những bản mẫu tự gọi đệ quy chính nó.",
 	"template-loop-warning": "<strong>Cảnh báo:</strong> Trang này gọi [[:$1]] tạo ra vòng lặp bản mẫu (vòng gọi đệ quy vô hạn).",

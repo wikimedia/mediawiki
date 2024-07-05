@@ -763,7 +763,7 @@
 	"post-expand-template-argument-warning": "'''Upozorenje:''' Ova stranica sadrži najmanje jedan argument u šablonu koji ima preveliku veličinu.\nOvakvi argumenti trebaju da se izbegavaju.",
 	"post-expand-template-argument-category": "Stranice koje sadrže izostavljene argumente u šablonu",
 	"template-equals-category": "Stranice koje koriste „=” kao šablon",
-	"parser-template-loop-warning": "Otkrivena je petlja šablona: [[$1]]",
+	"parser-template-loop-warning": "Otkrivena je petlja šablona: [[:$1]]",
 	"template-loop-category": "Stranice s petljama šablona",
 	"template-loop-category-desc": "Stranica sadrži petlju šablona, tj. šablon koji poziva sam rebe rekurzivno.",
 	"template-loop-warning": "<strong>Upozorenje:</strong> Stranica poziva [[:$1]], što izaziva petlju (beskonačni ponavljajući poziv).",

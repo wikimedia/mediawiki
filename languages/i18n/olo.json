@@ -724,7 +724,7 @@
 	"template-equals-category": "Sivut, kudamis käytetäh = šablonannu",
 	"template-equals-category-desc": "Täl sivul on <code><nowiki>{{=}}</nowiki></code>, ga täs wikis ei levene sissäh <code>=</code>. Tämä käyttö on vahnennuh; MediaWikin uvves versies ruvetah käyttämäh <code><nowiki>{{=}}</nowiki></code> parser-funksiennu.",
 	"template-equals-warning": "<strong>Varoitus:</strong> Täl sivul käytetäh <code><nowiki>{{=}}</nowiki></code>, ga täs wikis se ei levene tässäh <code>=</code>. Sidä ei nevvota käyttämäh; MediaWikin uvves versies ruvetah käyttämäh <code><nowiki>{{=}}</nowiki></code> kui paser-funksiedu.",
-	"parser-template-loop-warning": "On löytty petlu šablonois: [[$1]]",
+	"parser-template-loop-warning": "On löytty petlu šablonois: [[:$1]]",
 	"template-loop-category": "Sivut, kudamis on petlua šablonois",
 	"template-loop-category-desc": "Täl sivul on šablonu petlanke, t.s. iččie kuččui šablonu.",
 	"template-loop-warning": "<strong>Varoitus:</strong> Tämä sivu kuččuu šablonua [[:$1]], kudaman periä rodieu petlu šablonas (loppumatoi rekursiivine kučču).",

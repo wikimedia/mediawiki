@@ -826,7 +826,7 @@
 	"template-equals-category": "Сторінки, що використовують = як шаблон",
 	"template-equals-category-desc": "Ця сторінка містить <code><nowiki>{{=}}</nowiki></code>, але в поточній вікі це не перетворюється на <code>=</code>. Таке застосування не рекомендоване; майбутні версії MediaWiki імплементуватимуть <code><nowiki>{{=}}</nowiki></code> як функцію парсера.",
 	"template-equals-warning": "<strong>Попередження:</strong> Ця сторінка містить <code><nowiki>{{=}}</nowiki></code>, але в поточній вікі це не перетворюється на <code>=</code>. Таке застосування не рекомендоване; майбутні версії MediaWiki імплементуватимуть <code><nowiki>{{=}}</nowiki></code> як функцію парсера.",
-	"parser-template-loop-warning": "Виявлена петля у шаблонах: [[$1]]",
+	"parser-template-loop-warning": "Виявлена петля у шаблонах: [[:$1]]",
 	"template-loop-category": "Сторінки з петлями шаблонів",
 	"template-loop-category-desc": "Ця сторінка містить петлю шаблонів, тобто шаблон, який рекурсивно викликає сам себе.",
 	"template-loop-warning": "<strong>Попередження:</strong> Ця сторінка викликає[[:$1]], що спричиняє петлю в шаблоні (нескінченний рекурсивний виклик).",

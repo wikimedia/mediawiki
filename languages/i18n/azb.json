@@ -655,7 +655,7 @@
 	"post-expand-template-inclusion-category": "شابلونون داخیل اولدوغو صحیفه‌‌لرین اؤلچوسو بؤيوکدور.",
 	"post-expand-template-argument-warning": "'''دیقت:''' بو صفحه‌ده، آزی بیر چوخ اوزون بویلو شابلون آرگومانی واردیر.\nبو آرگومانلارین اوستون‌دن کئچیلیب‌دیر.",
 	"post-expand-template-argument-category": "شابلونلاردا بوراخیلمیش آرگومانلارین مؤوجود اولدوغو صفحه‌لر",
-	"parser-template-loop-warning": "[[$1]]: شابلوندا دويون تاپیلدی",
+	"parser-template-loop-warning": "[[:$1]]: شابلوندا دويون تاپیلدی",
 	"parser-template-recursion-depth-warning": "($1) شابلوندا درین‌لیک لیمیتی کئچیلدی",
 	"language-converter-depth-warning": "($1) دیل کونوئرتورونون لیمیتی کئچیلدی",
 	"node-count-exceeded-category": "دویون سایی آشیلان صحیفه‌لر",

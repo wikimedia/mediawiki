@@ -658,7 +658,7 @@
 	"post-expand-template-inclusion-category": "Pagina's woeveur de maximaal transclusiegruutde is euversjreje",
 	"post-expand-template-argument-warning": "Waarsjoewing: dees pagina bevat winnigstes eine sjabloonparameter mit 'n te groete transclusiegruutde.\nDees parameters zeen eweggelaote.",
 	"post-expand-template-argument-category": "Pagina's die missende sjabloonillemènte bevatte",
-	"parser-template-loop-warning": "D'r is 'ne krinkloup in sjablone geconstateerd: [[$1]]",
+	"parser-template-loop-warning": "D'r is 'ne krinkloup in sjablone geconstateerd: [[:$1]]",
 	"template-loop-category": "Pagina's mit sjeblone die zichzelf insloete",
 	"template-loop-category-desc": "De pagina bevat e sjebloon det zichzelf insluut, wie e sjebloon det zichzelf recursief aanreup.",
 	"template-loop-warning": "<strong>Waarsjoewing:</strong> Dees pazjena reup [[:$1]] aan wat 'ne sjabloonloop veroorzaak ('ne oneindege recursieve aanroop).",

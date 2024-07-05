@@ -651,7 +651,7 @@
 	"post-expand-template-inclusion-category": "Strony, hdźež maksimalna wulkosć zapřijatych předłohow je překročena",
 	"post-expand-template-argument-warning": "Warnowanje: Tuta strona wobsahuje znajmjeńša jedyn předłohowy argument, kotryž ma přewulku espansisku wulkosć. Tute argumenty bu wuwostajene.",
 	"post-expand-template-argument-category": "Strony, kotrež wuwostajene předłohowe argumenty wobsahuja",
-	"parser-template-loop-warning": "Předłohowa sekla wotkryta: [[$1]]",
+	"parser-template-loop-warning": "Předłohowa sekla wotkryta: [[:$1]]",
 	"template-loop-category": "Strony ze seklemi předłohow",
 	"template-loop-category-desc": "Tuta strona wobsahuje seklu předłohi, na &nbsp;př. předłohu, kotraž sebi samu woła.",
 	"template-loop-warning": "<strong>Kedźbu:</strong> Tuta strona woła [[:$1]], štož wuskutkuje seklu předłohow (bjezkónčne rekursiwne wołanje).",

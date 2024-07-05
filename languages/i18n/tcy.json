@@ -683,7 +683,7 @@
 	"post-expand-template-inclusion-category": "ಚಿತಪಲಕ ಸೇರುನ ಗಾತ್ರ ಮೀರ್ದಿನ ಪುಟೊಲು",
 	"post-expand-template-argument-warning": "<strong>ಎಚ್ಚರಿಗೆ:</strong> ಈ ಪುಟೊಟು ಕನಿಷ್ಟ ಒಂಜಿ, ಮಲ್ಲ ವಿಸ್ತಾರ ಗಾತ್ರದ, ಚಿತಪಲಕ ವಾದ ಉಂಡು.ಈ ವಾದೊಲೆನ್ ಕೈ ಬುಡುತುಂಡು.",
 	"post-expand-template-argument-category": "ಬುಡುತಿನ ಚಿತಪಲಕ  ವಾದೊಲು ಉಪ್ಪುನ ಪುಟೊಲು.",
-	"parser-template-loop-warning": "ಚಿತಪಲಕ ಆವರ್ತನ ತಿಕ್ದುಂಡ್: [[$1]]",
+	"parser-template-loop-warning": "ಚಿತಪಲಕ ಆವರ್ತನ ತಿಕ್ದುಂಡ್: [[:$1]]",
 	"template-loop-category": "ಚಿತಪಲಕ ಆವರ್ತನೊಲು ಉಪ್ಪುನ ಪುಟೊಲು",
 	"template-loop-category-desc": "ಪುಟೊಟು ಒಂಜಿ ಚಿತಪಲಕ ಆವರ್ತನ ಉಂಡು, ಇನ್ನಗ,  ಅವೆನೆ ಕುಡಕುಡ ಲೆಪ್ಪುನ ಒಂಜಿ ಚಿತಪಲಕ.",
 	"template-loop-warning": "<strong>ಎಚ್ಚರಿಗೆ:</strong> ಈ ಪುಟ [[:$1]]  ಲೆಪ್ಪುಂಡು,ಅವು ಚಿತಪಲಕ ಆವರ್ತನ ಮಲ್ಪುಂಡು (ಒಂಜಿ ಅನಂತವಾದ್ ಕುಡಕುಡಬರ್ಪಿನ ಲೆಪ್ಪು).",

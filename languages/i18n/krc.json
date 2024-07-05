@@ -757,7 +757,7 @@
 	"template-equals-category": "Шаблон кибик = хайырланнган бетле",
 	"template-equals-category-desc": "Бетни <code><nowiki>{{=}}</nowiki></code> ичиндеди, алай а бу викиде <code>=</code> дери кенгералмайды. Бу хайырланыу эскилешгенди; келликдеги  бир MediaWiki версия <code><nowiki>{{=}}</nowiki></code> бла парсер кибик хайырлланыкъды.",
 	"template-equals-warning": "<strong>Эсгертиу:</strong> Бу бет <code><nowiki>{{=}}</nowiki></code> хайырланады, алай а бу викиде <code>=</code> дери кенгералмайды. Бу хайырланыу эскилешгенди; келликдеги  бир MediaWiki версия <code><nowiki>{{=}}</nowiki></code> бла парсер кибик хайырлланыкъды.",
-	"parser-template-loop-warning": "Шаблон тюйюмчек табылгъанды: [[$1]]",
+	"parser-template-loop-warning": "Шаблон тюйюмчек табылгъанды: [[:$1]]",
 	"template-loop-category": "Шаблонларында илгиклери болгъан бетле",
 	"template-loop-category-desc": "Бетде илгикли шаблон барды, ол деген шаблон таймаздан кеси кесин чакъырады.",
 	"template-loop-warning": "<strong>Эсгертиу:</strong> Бу бет шаблон илгикге (таймаздан кеси кесини чакъырыу) чурум болгъан [[:$1]] шаблонну чакъырады.",

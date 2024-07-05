@@ -526,7 +526,7 @@
 	"post-expand-template-inclusion-category": "Zajty, na kerych dokuplowane mustry sům moc wjelge",
 	"post-expand-template-argument-warning": "Dej pozůr: Ta zajta zawjyro przinojmyńi jedyn argument we mustrze, kery powoduje co je ůun za wjelgi. Te argumynty bydům pomińynte.",
 	"post-expand-template-argument-category": "Zajty na kerych sům mustry ze pomińyntymi argumyntůma.",
-	"parser-template-loop-warning": "Wykryto muster zapyntlyńo: [[$1]]",
+	"parser-template-loop-warning": "Wykryto muster zapyntlyńo: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Przekroczůno limit głymbokośći rekurencyji mustru ($1)",
 	"undo-success": "Sprowjyńy zostoło wycofane. Prosza pomjarkować ukozane půniżyj dyferencyje mjyndzy wersyjůma, coby zweryfikować jejich poprawność, potym zaś naszkryflać pomjyńańo coby zakończyć uoperacyjo.",
 	"undo-failure": "Ta edycyjŏ niy może być cŏfniyntŏ skuli kōnfliktu ze wersyjami postrzednimi.",

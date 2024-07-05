@@ -708,7 +708,7 @@
 	"post-expand-template-argument-warning": "'''Warnung: Op dëser Säit ass mindestens een Argument an enger Schabloun dat eng ze grouss Expansiounsgréisst huet. Dës Argumenter goufen ewechgelooss.",
 	"post-expand-template-argument-category": "Säiten, op dene mindestens e Parameter vun enger Schabloun vergiess ginn ass",
 	"template-equals-category": "Säiten, déi = als Schabloun benotzen",
-	"parser-template-loop-warning": "Endlos Schleef an der Schabloun: [[$1]] entdeckt",
+	"parser-template-loop-warning": "Endlos Schleef an der Schabloun: [[:$1]] entdeckt",
 	"template-loop-category": "Säite mat Endlos-Schleefe vu Schablounen",
 	"template-loop-category-desc": "An der Säit ass eng Endlos-Schabloun, z. B. eng Schabloun déi sech selwer rekursiv oprifft.",
 	"template-loop-warning": "<strong>Opgepasst:</strong> Dës Säit benotzt [[:$1]] déi eng Endlooschleef vu Schabloune generéiert (deng onendlech Zuel vum selwechten Opruff)",

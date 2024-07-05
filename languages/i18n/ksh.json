@@ -631,7 +631,7 @@
 	"post-expand-template-inclusion-category": "Sigge met zoh jruuße Schablohne dren enjebonge",
 	"post-expand-template-argument-warning": "Opjepaß: Di Sigg heh hät winnischßdens eine Parrammehter en ennem Schablohne-Oprohf wat ze jruhß weed beim Enfölle. Esu en Parramehtere möße mer övverjonn.",
 	"post-expand-template-argument-category": "Sigge met övverjange Parrammeetere fun Schablohne",
-	"parser-template-loop-warning": "Di Schablohne rohfe sesch em Krengel op: [[$1]]",
+	"parser-template-loop-warning": "Di Schablohne rohfe sesch em Krengel op: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Schablohne rohfe sesch zo öff sellver op ($1)",
 	"language-converter-depth-warning": "Zoh vill Verschachtelonge (övver $1) beim Täx-Ömwandelle vun eine Schprohch udder Schrevv en en anndere.",
 	"node-count-exceeded-category": "Sigge, woh dä <i lang=\"en\" xml:lang=\"en\">node-count</i> övverschredde es",

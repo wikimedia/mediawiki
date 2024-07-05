@@ -473,7 +473,7 @@
 	"edit-no-change": "Ha túfùghị orü gi ónú, màkà ọ díghì ihe gbanwere na edemede.",
 	"edit-already-exists": "Ènwéghịkị ké ihü nke ọhúrù.\nỌ di kwa.",
 	"content-model-wikitext": "wikitext",
-	"parser-template-loop-warning": "Etemete àtụ dị: [[$1]]",
+	"parser-template-loop-warning": "Etemete àtụ dị: [[:$1]]",
 	"undo-failure": "Enweghi ike ịmegharia ihe ndezi ahụ n'ihi ndezi na -emegiderịta onwe ya.",
 	"undo-summary": "Emekwàlà orübà [[Special:Diff/$1|$1]] shí [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]])",
 	"viewpagelogs": "Zi ndetu ncheta màkà ihü a",

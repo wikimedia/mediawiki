@@ -755,7 +755,7 @@
 	"template-equals-category": "Paginas que usa = como patrono",
 	"template-equals-category-desc": "Le pagina contine <code><nowiki>{{=}}</nowiki></code>, ma sur iste wiki, isto non se expande a <code>=</code>. Iste usage es obsolete; un version futur de MediaWiki implementara <code><nowiki>{{=}}</nowiki></code> como function del analysator syntactic.",
 	"template-equals-warning": "<strong>Attention:</strong> Iste pagina usa <code><nowiki>{{=}}</nowiki></code>, ma sur iste wiki, isto non se expande a <code>=</code>. Iste usage es obsolete; un version futur de MediaWiki implementara <code><nowiki>{{=}}</nowiki></code> como function del analysator syntactic.",
-	"parser-template-loop-warning": "Recursion infinite detegite in patrono: [[$1]]",
+	"parser-template-loop-warning": "Recursion infinite detegite in patrono: [[:$1]]",
 	"template-loop-category": "Paginas con buclas de patrono",
 	"template-loop-category-desc": "Le pagina contine un bucla in un patrono, i.e. un patrono que se appella recursivemente.",
 	"template-loop-warning": "<strong>Attention:</strong> Iste pagina appella [[:$1]] que causa un bucla de patronos (un appello recursive infinite).",

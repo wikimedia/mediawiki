@@ -592,7 +592,7 @@
 	"post-expand-template-inclusion-category": "માહિતી ચોકઠું ધરાવતા પાનાનું કદ વધુ છે",
 	"post-expand-template-argument-warning": "'''ચેતવણી:''' આ પાનામાં ઢાંચાની એક વસ્તુ એવી છે કે જેનો વિસ્તાર ખૂબ લાંબો છે.\nતેના વિકલ્પો હટાવી દેવાયા છે.",
 	"post-expand-template-argument-category": "ઢાંચાના વિકલ્પો અધૂરા રહી ગયેલ હોય તેવા પાનાની યાદિ",
-	"parser-template-loop-warning": "આવર્તી ઢાંચો મળ્યો : [[$1]]",
+	"parser-template-loop-warning": "આવર્તી ઢાંચો મળ્યો : [[:$1]]",
 	"parser-template-recursion-depth-warning": "ઢાંચાની આવર્તન સ્તરની સીમા પાર થઈ ($1) ગઈ",
 	"language-converter-depth-warning": "ભાષા રૂપાંતરણ ઊંડાઈ સીમા વટાવાઈ ($1)",
 	"undo-success": "આ ફેરફારોને ઉલટાવી શકાશે.\nનીચે આપેલ સરકામણી સરખાવો અને ચકાસો કે તમે તેને રાખવા માંગો છો અને ફેરફારો પ્રકાશિત કરો.",

@@ -623,7 +623,7 @@
 	"post-expand-template-inclusion-category": "මෙම පිටු තුල, සැකිලි අඩංගු කිරීමේ ප්‍රමාණය, අවසර දී ඇති සීමා ඉක්මවා ගොස් ඇත",
 	"post-expand-template-argument-warning": "අවවාදයයි: ව්‍යාප්ති ප්‍රමාණය ඇවැසි තරමට වඩා විශාල ලෙස දක්වා ඇති සැකිලි විචල්‍යයන් අඩුම වශයෙන් එකක් හෝ  මෙම පිටුව තුල අන්තර්ගතය.\nඑම විචල්‍යයන් නොසලකා හැර ඇත.",
 	"post-expand-template-argument-category": "මෙම පිටුවල, සැකිලි විචල්‍යයන් හරියාකාර දැක්වීම පැහැර හැරීම පිළිබඳ ගැටළු පවතී",
-	"parser-template-loop-warning": "සැකිලි ලූපය අනාවරණය කෙරිණි: [[$1]]",
+	"parser-template-loop-warning": "සැකිලි ලූපය අනාවරණය කෙරිණි: [[:$1]]",
 	"parser-template-recursion-depth-warning": "සැකිලි ආවර්තනික අධිකත්ව සීමාව ඉක්මවිණි ($1)",
 	"language-converter-depth-warning": "භාෂා පරිවර්තක අධිකත්ව සීමාව ඉක්මවා ඇත ($1)",
 	"node-count-exceeded-category": "මංසල ගණන් ඉක්මවා ඇති පිටු",

@@ -828,7 +828,7 @@
 	"template-equals-category": "Páginas que usam = como predefinição",
 	"template-equals-category-desc": "A página contém <code><nowiki>{{=}}</nowiki></code> mas nesta wiki esse código não é expandido para <code>=</code>; esta utilização foi descontinuada. Uma versão futura do MediaWiki irá implementar <code><nowiki>{{=}}</nowiki></code> como função do analisador sintático.",
 	"template-equals-warning": "<strong>Aviso:</strong> Esta página usa <code><nowiki>{{=}}</nowiki></code> mas nesta wiki esse código não é expandido para <code>=</code>; esta utilização foi descontinuada. Uma versão futura do MediaWiki irá implementar <code><nowiki>{{=}}</nowiki></code> como função do analisador sintático.",
-	"parser-template-loop-warning": "Ciclo de predefinições detetado: [[$1]]",
+	"parser-template-loop-warning": "Ciclo de predefinições detetado: [[:$1]]",
 	"template-loop-category": "Páginas com ciclos infinitos de predefinições",
 	"template-loop-category-desc": "Esta página contém um ciclo infinito de predefinições, isto é, uma predefinição que se chama a si própria recursivamente.",
 	"template-loop-warning": "<strong>Aviso:</strong> Esta página chama [[:$1]] o que causa um ciclo infinito de predefinições (uma chamada recursiva sem término).",

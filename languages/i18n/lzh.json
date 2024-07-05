@@ -549,7 +549,7 @@
 	"post-expand-template-inclusion-category": "模含上限已超之頁",
 	"post-expand-template-argument-warning": "警：此頁有至少一模數展大。\n數略之。",
 	"post-expand-template-argument-category": "含略模數之頁",
-	"parser-template-loop-warning": "測迴模：[[$1]]",
+	"parser-template-loop-warning": "測迴模：[[:$1]]",
 	"parser-template-recursion-depth-warning": "已超迴模限深（$1）",
 	"language-converter-depth-warning": "已超字變限深（$1）",
 	"undo-success": "此審可返也。查確然完之。",

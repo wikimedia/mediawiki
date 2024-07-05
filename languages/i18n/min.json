@@ -686,7 +686,7 @@
 	"post-expand-template-inclusion-category": "Laman nan ukurannyo templatnyo malabiahi bateh",
 	"post-expand-template-argument-warning": "Paringatan: Laman ko barisi satidaknyo ciek uraian templat na ukuran ekspansinyo talalu gadang. \nUraian-uraian tu alah diabaikan.",
 	"post-expand-template-argument-category": "Laman nan barisi uraian templat nan diabaikan",
-	"parser-template-loop-warning": "Hubungan barulang templat tadeteksi: [[$1]]",
+	"parser-template-loop-warning": "Hubungan barulang templat tadeteksi: [[:$1]]",
 	"template-loop-category": "Laman jo templat barulang",
 	"template-loop-category-desc": "Laman ko manganduang templat malingka, yaitu templat nan maimbau dirinyo surang sacaro bolak-balik.",
 	"template-loop-warning": "<strong>Paringatan:</strong> Laman ko maimbau [[:$1]] nan manyababkan <i>template loop</i> (panggilan rekursif tak inggo).",

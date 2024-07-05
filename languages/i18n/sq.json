@@ -684,7 +684,7 @@
 	"post-expand-template-inclusion-category": "Faqe ku stampat e përfshira kalojnë kufirin",
 	"post-expand-template-argument-warning": "Vini re: Kjo faqe ka të paktën një parametër stampe që është shumë i madh për t'u shpalosur.\nKëto parametra nuk janë përfshirë.",
 	"post-expand-template-argument-category": "Faqe që kanë parametra stampe të papërfshira",
-	"parser-template-loop-warning": "Shablloni nuk mund të therrasë vetveten: [[$1]]",
+	"parser-template-loop-warning": "Shablloni nuk mund të therrasë vetveten: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Ka kaluar kufiri i herëve që shablloni mund të thërrasë vetveten: ($1)",
 	"language-converter-depth-warning": "Konvertimi i gjuhës ka kaluar limitin e lejuar: ($1)",
 	"undo-success": "Përpunimi s’mund të zhbëhet. \nJu lutemi, kontrolloni krahasimin më poshtë për të verifikuar se kjo është ajo që doni të bëni dhe mandej publikoni ndryshimet më poshtë, që të përfundohet zhbërja e përpunimit.",

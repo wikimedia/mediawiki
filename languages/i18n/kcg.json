@@ -558,7 +558,7 @@
 	"unsupported-content-diff": "Á̱ li̱n a̱ma vi̱vwuon mat sangak kyangmami $1 bah.",
 	"template-equals-category-desc": "Wat hu byia̱ <code><nowiki>{{=}}</nowiki></code> a̱wot mi̱ di̱ wuki huni si̱ a̱hwa si̱ mi̱n ngaat tyia̱ <code>=</code>. Á̱ ghyuai nyian ta̱m ma̱ng si̱ huni; kpa MediaWiki á̱zanson na tyia̱ <code><nowiki>{{=}}</nowiki></code> di̱n ta̱m nang kyangta̱m wa̱i a̱ni.",
 	"template-equals-warning": "<strong>Gba:</strong> Wat huni nyian ta̱m ma̱ng <code><nowiki>{{=}}</nowiki></code> a̱wot mi̱ di̱ wuki huni si̱ a̱hwa si̱ mi̱n ngaat tyia̱ <strong><code>=</code></strong>. Á̱ ghyuai ma̱ng nyian ta̱m ma̱ng si̱ huni; kpa MediaWiki á̱zanson na tyia̱ <code><nowiki>{{=}}</nowiki></code> di̱n ta̱m nang kyangta̱m wa̱i a̱ni.",
-	"parser-template-loop-warning": "Á̱ ta̱taat a̱ghwong ta̱mpi̱let: [[$1]]",
+	"parser-template-loop-warning": "Á̱ ta̱taat a̱ghwong ta̱mpi̱let: [[:$1]]",
 	"template-loop-category": "Ngwat ma̱ng a̱yaakat ta̱mpi̱let",
 	"template-loop-category-desc": "Wat hu byia̱ a̱ghwong ta̱mpi̱let, si̱ a̱hwa si̱ fa, ta̱mpi̱let hu ku bu ngyei a̱pyia̱ nhu.",
 	"template-loop-warning": "<strong>Gba:</strong> Wat huni ngyei [[:$1]] zang ja tyei a̱ghwong ta̱mpi̱let ka ka̱ nyia̱ (yei bu yei ku sang sangba̱p a̱ni).",

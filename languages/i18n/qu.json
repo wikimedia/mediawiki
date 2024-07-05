@@ -542,7 +542,7 @@
 	"post-expand-template-inclusion-category": "Nisyu ch'aqtasqa plantillakunayuq p'anqakuna",
 	"post-expand-template-argument-warning": "Paqtataq: Kay p'anqaqa huk icha aswan nisyu ch'aqtasqa plantilla niyniyuqmi.\nChay niykunaqa manam chaninchasqachu.",
 	"post-expand-template-argument-category": "Mana chaninchasqa plantilla niyniyuq p'anqakuna",
-	"parser-template-loop-warning": "Muyurikuq pusapunam tarisqa: [[$1]]",
+	"parser-template-loop-warning": "Muyurikuq pusapunam tarisqa: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Pusapunap muyurikuy saywanmi yallisqa ($1)",
 	"language-converter-depth-warning": "Rimay t'ikranap ukhu kayninpa saywanqa yallisqam ($1)",
 	"node-count-exceeded-category": "Watasqakunata nisyu yupayniyuq p'anqakuna",

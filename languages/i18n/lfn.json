@@ -642,7 +642,7 @@
 	"post-expand-template-inclusion-category": "Pajes cual esede la grandia de stensiles incluida",
 	"post-expand-template-argument-warning": "<strong>Avisa:</strong> Esta paje conteni a la min un parametre de stensil cual es tro grande cuando estendeda.\nEsta parametres es ometeda.",
 	"post-expand-template-argument-category": "Pajes conteninte parametres ometeda de stensil",
-	"parser-template-loop-warning": "Sicle de stensil es detetada: [[$1]]",
+	"parser-template-loop-warning": "Sicle de stensil es detetada: [[:$1]]",
 	"template-loop-category": "Pajes con sicles de stensil",
 	"template-loop-category-desc": "Esta paje conteni un sicle de stensil, pd un stensil cual clama se en modo recorsante.",
 	"template-loop-warning": "<strong>Avisa:</strong> Esta paje clama [[:$1]] cual causa un sicle de\nstensil (un clama infinita recorsante).",

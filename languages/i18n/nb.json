@@ -802,7 +802,7 @@
 	"template-equals-category": "Sider som bruker = som mal",
 	"template-equals-category-desc": "Siden inneholder <code><nowiki>{{=}}</nowiki></code>, men på denne wikien utvides ikke dette til <code>=</code>. Denne bruken er foreldet; en fremtidig versjon av MediaWiki vil implementere <code><nowiki>{{=}}</nowiki></code> som en parserfunksjon.",
 	"template-equals-warning": "<strong>Advarsel:</strong> denne siden bruker <code><nowiki>{{=}}</nowiki></code>, men på denne wikien utvides ikke det til <code>=</code>. Denne bruken er foreldet; en fremtidig versjon av MediaWiki vil implementere <code><nowiki>{{=}}</nowiki></code> som en parserfunksjon.",
-	"parser-template-loop-warning": "Mal-loop oppdaget: [[$1]]",
+	"parser-template-loop-warning": "Mal-loop oppdaget: [[:$1]]",
 	"template-loop-category": "Sider med malsløyfer",
 	"template-loop-category-desc": "Siden inneholder en malløkke, altså en mal som kaller seg selv rekursivt.",
 	"template-loop-warning": "<strong>Advarsel:</strong> Denne sider henter inn [[:$1]], som forårsaker en malsløyfe (en uendelig rekursiv innhenting).",

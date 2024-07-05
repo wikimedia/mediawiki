@@ -694,7 +694,7 @@
 	"post-expand-template-inclusion-category": "अशी पाने ज्यांच्यावर साचे चढविण्याची आकार मर्यादा संपलेली आहे",
 	"post-expand-template-argument-warning": "<strong>ईशारा:</strong> या पानावर असा एकतरी साचा आहे जो वाढविल्यास खूप मोठा होईल.\nअसे साचे वगळण्यात आलेले आहेत.",
 	"post-expand-template-argument-category": "अशी पाने ज्यांच्यामध्ये साचे वगळलेले आहेत",
-	"parser-template-loop-warning": "साचा चक्र मिळाले: [[$1]]",
+	"parser-template-loop-warning": "साचा चक्र मिळाले: [[:$1]]",
 	"template-loop-category": "साचा वलय असणारी पाने",
 	"template-loop-category-desc": "या पानात एक साचा वलय आहे, म्हणजे, तो साचा जो स्वतःसच वारंवार हाक देतो.",
 	"parser-template-recursion-depth-warning": "साचा पुनरावर्तन खोली मर्यादा ओलांडली ($1)",

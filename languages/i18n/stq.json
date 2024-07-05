@@ -443,7 +443,7 @@
 	"post-expand-template-inclusion-category": "Sieden, in wäkke do bietouföigede Foarloagen buppe ju maximoale Grööte kuume",
 	"post-expand-template-argument-warning": "Woarskauenge: Disse Siede änthaalt ap et minste een Argument in ne Foarloage, dät expandierd tou groot is. Disse Argumente wäide ignorierd.",
 	"post-expand-template-argument-category": "Sieden, do der ignorierde Foarloagenargumente änthoolde",
-	"parser-template-loop-warning": "Foarloagenstrik äntdäkt: [[$1]]",
+	"parser-template-loop-warning": "Foarloagenstrik äntdäkt: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Foarloagenrekursionsdjuptenskeed uurtreeden ($1)",
 	"language-converter-depth-warning": "Sproakkonverter-djüptelimit uurtreeden ($1)",
 	"node-count-exceeded-category": "Sieden, do ju Knättenantaal uurtreeden hääbe",

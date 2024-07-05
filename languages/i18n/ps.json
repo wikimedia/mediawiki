@@ -635,7 +635,7 @@
 	"post-expand-template-inclusion-category": "هغه مخونه چې په کې د کارېدلو کينډيو شمېر له ټاکلې کچې ډېر دی",
 	"post-expand-template-argument-warning": "'''گواښنه:''' دا مخ لږ تر لږه د يوې کينډۍ عاملين لري چې بې حده لوی دی.\nدا عاملين ړنگ شول.",
 	"post-expand-template-argument-category": "هغه مخونه چې د کينډۍ ړنگ شوي عاملين لري.",
-	"parser-template-loop-warning": "د کينډۍ پته ترلاسه شوه: [[$1]]",
+	"parser-template-loop-warning": "د کينډۍ پته ترلاسه شوه: [[:$1]]",
 	"template-loop-category": "مخونه له کينډۍ پته ترلاسه شوو سره",
 	"undo-failure": "د منازعې منځنۍ برخې د بدلونونو له امله دا سمون ندی رد شوی.",
 	"undo-norev": "دا سمون ناکړل کېدای نه شي دا ځکه چې دا سمون نشته او يا هم ړنگ شوی.",

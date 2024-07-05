@@ -651,7 +651,7 @@
 	"post-expand-template-inclusion-category": "সাঁচৰ আকাৰ ডাঙৰ হোৱা পৃষ্ঠাসমূহ",
 	"post-expand-template-argument-warning": "'''সতৰ্কবাণী:''' এই পৃষ্ঠাত কমেও এটা সাঁচ যুক্তি আছে যাৰ আকাৰ অতি বেছি ।\nএই যুক্তিসমূহ বাতিল কৰা হৈছে ।",
 	"post-expand-template-argument-category": "বাতিল কৰা সাঁচ যুক্তি থকা পৃষ্ঠাসমূহ",
-	"parser-template-loop-warning": "সাঁচ লুপ চিহ্নিত কৰা হৈছে: [[$1]]",
+	"parser-template-loop-warning": "সাঁচ লুপ চিহ্নিত কৰা হৈছে: [[:$1]]",
 	"template-loop-category": "সাঁচ লুপ থকা পৃষ্ঠাসমূহ",
 	"parser-template-recursion-depth-warning": "সাঁচৰ পুনৰাবৃত্তি গভীৰতা সীমা ($1) তকৈ অধিক হৈছে",
 	"language-converter-depth-warning": "ভাষা পৰিৱৰ্তকৰ গভীৰতা সীমাই ($1) অতিক্ৰম কৰিছে",

@@ -643,7 +643,7 @@
 	"post-expand-template-argument-warning": "Twissija: Din il-paġna għanda mill-inqas argument wieħed ta' template li għandu daqs ta' espanżjoni wisq kbira.\nDawn l-argumenti tħallew barra.",
 	"post-expand-template-argument-category": "Paġni li jinkludu mudelli b'argumenti nieqsa",
 	"template-equals-category": "Paġni li jużaw = bħala mudell",
-	"parser-template-loop-warning": "Instab ċiklu fil-mudell: [[$1]]",
+	"parser-template-loop-warning": "Instab ċiklu fil-mudell: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Intlaħaq il-limitu ta' rikors fil-mudell ($1)",
 	"language-converter-depth-warning": "Maqbuż il-limitu ta' profondità tal-konvertitur tal-lingwa ($1)",
 	"undo-success": "Din il-modifika tista' tiġi mneħħija. Jekk jogħġbok verifika il-paragun t'hawn taħt u verifika li dan huwa dak li trid int, imbgħad salva l-bidliet t'hawn taħt sabiex tlesti l-proċedura ta' tneħħija.",

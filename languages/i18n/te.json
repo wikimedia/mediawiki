@@ -747,7 +747,7 @@
 	"template-equals-category": "= ను ఒక మూసలాగా వాడే పేజీలు",
 	"template-equals-category-desc": "ఈ పేజీలో <code><nowiki>{{=}}</nowiki></code> ఉంది. కానీ ఈ వికీలో దానికి అర్థం <code>=</code> అని కాదు. ఇక్కడ ఈ వాడుక వాడుకలో లేదు; భవిష్యత్తులో వచ్చే MediaWiki కూర్పు <code><nowiki>{{=}}</nowiki></code> ను పార్సరు ఫంక్షనుగా అమలు చేస్తుంది.",
 	"template-equals-warning": "<strong>హెచ్చరిక:</strong> ఈ పేజీ <code><nowiki>{{=}}</nowiki></code> అనే మూసను వాడుతోంది. కానీ ఈ వికీలో అది <code>=</code> అనే అర్థంలో విస్తరించదు. ఈ వాడుక పతబడింది; భవిష్యత్తు మీడియావికీ కూర్పులో <code><nowiki>{{=}}</nowiki></code> ను ఒక పార్సరు ఫంక్షనుగా అమలు చేస్తుంది.",
-	"parser-template-loop-warning": "మూస లూపు కనబడింది: [[$1]]",
+	"parser-template-loop-warning": "మూస లూపు కనబడింది: [[:$1]]",
 	"template-loop-category": "మూస లూపులు కలిగి ఉన్న పేజీలు",
 	"template-loop-category-desc": "ఈ పేజీలో ఓ మూస లూపులో ఉంది. అంటే మూస తనను తానే పిలుస్తూ ఉంటుంది.",
 	"template-loop-warning": "<strong>హెచ్చరిక:</strong> ఈ పేజీ [[:$1]] ను పిలుస్తోంది. అది మూస లూపుకు కారణమౌతోంది. (అనంతమైన పిలుపులు).",

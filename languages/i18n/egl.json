@@ -550,7 +550,7 @@
 	"post-expand-template-inclusion-category": "Pàgini in dó la grandèsa di mudē més dèinter la và d'ed sōver dal lémit permés.",
 	"post-expand-template-argument-warning": "'''Atensiòun:''' cla pàgina ché la gh'à ûn o pió argumèint ed mudē trôp grôs per èser şlarghê. Chi argomèint ché a gnirân saltê.",
 	"post-expand-template-argument-category": "Pàgini cun mudē sèinsa argumèint.",
-	"parser-template-loop-warning": "Catê sucesiòun dal mudèl: [[$1]]",
+	"parser-template-loop-warning": "Catê sucesiòun dal mudèl: [[:$1]]",
 	"parser-template-recursion-depth-warning": "A s'é rivê al lémit 'd arciâm int al mudèl ($1)",
 	"language-converter-depth-warning": "A s'é pasê 'l lémit ed fònd dal cunvertidōr ed léngua ($1)",
 	"node-count-exceeded-category": "Pàgin in dó vîn pasê 'l nómer ed nōd",

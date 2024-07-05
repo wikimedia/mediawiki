@@ -741,7 +741,7 @@
 	"template-equals-category": "Lehtpoled, miččed kävutadas = kut šablon",
 	"template-equals-category-desc": "Necil lehtpolel om <code><nowiki>{{=}}</nowiki></code> no neciš wikiš sidä ei sa levitoitta <code>=</code>. Nece kävutamine om vanhtunu; MediaWikin uz' versii zavodib kävutada <code><nowiki>{{=}}</nowiki></code> radmahton tarkištelendad.",
 	"template-equals-warning": "<strong>Varutuz:</strong> Necil lehtpolel kävutadas <code><nowiki>{{=}}</nowiki></code> no neciš wikiš sidä ei sa levitoitta <code>=</code>. Nece kävutamine om vanhtunu; MediaWikin uz' versii zavodib kävutada <code><nowiki>{{=}}</nowiki></code> radmahton tarkištelendad.",
-	"parser-template-loop-warning": "Om löutud šablonan toštamine: [[$1]]",
+	"parser-template-loop-warning": "Om löutud šablonan toštamine: [[:$1]]",
 	"template-loop-category": "Lehtpoled aigkeskusiden šablonoidenke",
 	"template-loop-category-desc": "Necil lehtpolel om šablonoiden aigkeskuz, toižil sanoil šablon sündutab ičtaze udes da udes.",
 	"template-loop-warning": "<strong>Varutuz:</strong> Nece lehtpol' kucub [[:$1]] mi kucub šablonan sündundad (lopmatomad kucundan pörutandad).",

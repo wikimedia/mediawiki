@@ -730,7 +730,7 @@
 	"template-equals-category": "= Шаблон чіли тузаланчатхан страницалар",
 	"template-equals-category-desc": "Страницада <code><nowiki>{{=}}</nowiki></code> пар, че пу викиде ол <code>=</code> читiре алғыдылбинча. Анынаң тузаланмасха чӧптепчелер; MediaWiki полар версиязы <code><nowiki>{{=}}</nowiki></code> парсер функциязы чiли тоғындырар.",
 	"template-equals-warning": "<strong>Сизiндiрiг:</strong> Пу страницада <code><nowiki>{{=}}</nowiki></code> пар, че пу викиде ол <code>=</code> читiре алғыдылбинча. Анынаң тузаланмасха чӧптепчелер; MediaWiki полар версиязы <code><nowiki>{{=}}</nowiki></code> синтаксис анализаторының функциязы чiли тоғындырар.",
-	"parser-template-loop-warning": "Шаблоннарда цикл табылды: [[$1]]",
+	"parser-template-loop-warning": "Шаблоннарда цикл табылды: [[:$1]]",
 	"template-loop-category": "Шаблоннарда цикллығ страницалар",
 	"template-loop-category-desc": "Пу страницадағы шаблон цикллығ, ол шаблон  позы позын хығырча.",
 	"template-loop-warning": "<strong>Сизiктiг полыңар:</strong> Пу страница [[:$1]] хығырча, анзы шаблонда циклны сығарча (тоозылбас хығыртығ).",

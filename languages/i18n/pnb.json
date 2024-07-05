@@ -530,7 +530,7 @@
 	"post-expand-template-inclusion-category": "صفحے جتھے ٹمپلیٹ ناپ وڈا ہوگیا اے۔",
 	"post-expand-template-argument-warning": "'''خبردار:''' ایس صفحے تے اک ٹمپلیٹ گل بات دتی گئی اے جیہڑا چوکھا وڈا اے۔\nاے گلاں کڈ دتیاں گیاں نیں۔",
 	"post-expand-template-argument-category": "صفحے جنہاں وچ کڈے گۓ ٹمپلیٹ دیاں گلاں نیں۔",
-	"parser-template-loop-warning": "سانچہ لوپ لبھ لئی گئی: [[$1]]",
+	"parser-template-loop-warning": "سانچہ لوپ لبھ لئی گئی: [[:$1]]",
 	"parser-template-recursion-depth-warning": "ٹمپلیٹ ریکرشن ڈپتھ لمٹ ودی ($1)",
 	"language-converter-depth-warning": "بولی بدلن دی ولگن ودی ($1)",
 	"undo-success": "تبدیلیاں واپس ہوسکدیاں نیں۔\nتھلے فرق ویکھو اے ویکھن لئی جے ایہو ای تسی چاندے او، تے تھلے تبدیلیاں بچاؤ، تبدیلیاں مکاں دی روک نوں۔",

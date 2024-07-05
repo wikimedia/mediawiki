@@ -442,7 +442,7 @@
 	"post-expand-template-inclusion-category": "Siamsa telh theih lenzawng khûmna phêkte",
 	"post-expand-template-argument-warning": "'''Vaukhanna:''' He phekah hian siamsa kawng kaihparh theih lenzawng nei lian leh lutuk pakhat tal a awm a ni.\nHeng kawngte hi hmaih mai tur.",
 	"post-expand-template-argument-category": "Siamsa kawng hmaih awmna phekte",
-	"parser-template-loop-warning": "Siamsa inthawnkual a awm tlat: [[$1]]",
+	"parser-template-loop-warning": "Siamsa inthawnkual a awm tlat: [[:$1]]",
 	"language-converter-depth-warning": "Ṭawng lehna thûkzawng pèl ($1)",
 	"node-count-exceeded-category": "Tihbawk theih chin pèl phêkte",
 	"node-count-exceeded-warning": "Suihbawl theih chin pèl phêkte",

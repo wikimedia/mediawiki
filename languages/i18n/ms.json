@@ -777,7 +777,7 @@
 	"template-equals-category": "Laman yang menggunakan = sebagai templat",
 	"template-equals-category-desc": "Laman mengandungi <code><nowiki>{{=}}</nowiki></code> namun di wiki ini itu tidak berkembang kepada <code>=</code>. Penggunaan ini diisihkan; versi MediaWiki akan datang akan menerapkan <code><nowiki>{{=}}</nowiki></code> sebagai fungsi penghurai.",
 	"template-equals-warning": "<strong>Amaran:</strong> Laman ini menggunakan <code><nowiki>{{=}}</nowiki></code> namun di wiki ini itu tidak berkembang kepada <code>=</code>. Penggunaan ini diisihkan; versi MediaWiki akan datang akan menerapkan <code><nowiki>{{=}}</nowiki></code> sebagai fungsi penghurai.",
-	"parser-template-loop-warning": "Gelung templat dikesan: [[$1]]",
+	"parser-template-loop-warning": "Gelung templat dikesan: [[:$1]]",
 	"template-loop-category": "Laman dengan gelung templat",
 	"template-loop-category-desc": "Laman mengandungi gelung templat, iaitu templat yang memanggil dirinya sendiri secara rekursif.",
 	"template-loop-warning": "<strong>Amaran:</strong> Laman ini memanggil [[:$1]] yang menyebabkan gelung templat (panggilan rekursif yang tidak terbatas).",

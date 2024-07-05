@@ -813,7 +813,7 @@
 	"template-equals-category": "Sivut, joissa = on käytössä mallineena",
 	"template-equals-category-desc": "Sivulla on malline <code><nowiki>{{=}}</nowiki></code>, mutta tässä wikissä sen sisältö ei ole <code>=</code>. Tämä käyttö on vanhentunut; tulevassa MediaWikin versiossa <code><nowiki>{{=}}</nowiki></code> on jäsenninfunktio.",
 	"template-equals-warning": "<strong>Varoitus:</strong> Tällä sivulla on malline <code><nowiki>{{=}}</nowiki></code>, mutta tässä wikissä sen sisältö ei ole <code>=</code>. Tämä käyttö on vanhentunut; tulevassa MediaWikin versiossa <code><nowiki>{{=}}</nowiki></code> on jäsenninfunktio.",
-	"parser-template-loop-warning": "Mallinesilmukka havaittu: [[$1]]",
+	"parser-template-loop-warning": "Mallinesilmukka havaittu: [[:$1]]",
 	"template-loop-category": "Sivut, joissa on mallinesilmukoita",
 	"template-loop-category-desc": "Tämä sivu sisältää mallinesilmukan, eli itseänsä kutsuvan mallineen.",
 	"template-loop-warning": "<strong>Varoitus:</strong> Tämä sivu kutsuu mallinetta [[:$1]] joka aiheuttaa mallinesilmukan (loputon rekursiivinen kutsu).",

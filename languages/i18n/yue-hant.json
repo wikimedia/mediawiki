@@ -732,7 +732,7 @@
 	"post-expand-template-argument-warning": "警告：爾版有最少一個模參數有太大嘅擴展大細。\n會略過爾啲參數。",
 	"post-expand-template-argument-category": "包含住略過模參數嘅版",
 	"template-equals-category": "用=模版嘅版",
-	"parser-template-loop-warning": "已偵測迴模: [[$1]]",
+	"parser-template-loop-warning": "已偵測迴模: [[:$1]]",
 	"template-loop-category": "有循環模嘅頁",
 	"template-loop-category-desc": "呢版包含一個模循環，即係遞歸調用自己嘅模。",
 	"parser-template-recursion-depth-warning": "迴模深度限制超過咗 ($1)",

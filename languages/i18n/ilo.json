@@ -662,7 +662,7 @@
 	"template-equals-category": "Pampanid nga agus-usar iti = kas maysa a plantilia",
 	"template-equals-category-desc": "Aglaon ti panid iti <code><nowiki>{{=}}</nowiki></code> ngem saan a maipadakkel iti daytoy a wiki iti <code>=</code>. Nasukatanen daytoy a panagusar; isayangkatto ti sumaganad a bersion ti MediaWiki ti <code><nowiki>{{=}}</nowiki></code> kas maysa nga annong ti parser.",
 	"template-equals-warning": "<strong>Ballaag:</strong> Agus-usar daytoy a panid iti <code><nowiki>{{=}}</nowiki></code> ngem iti daytoy a wiki saan a maipadakkel iti <code>=</code>. Nasukatanen daytoy a panagusar; ti maysa a sumakbay a bersion ti MediaWiki ket isayangkatnanto ti <code><nowiki>{{=}}</nowiki></code> a kas maysa nga annong ti parser.",
-	"parser-template-loop-warning": "Nakaduktal iti silo ti plantilia: [[$1]]",
+	"parser-template-loop-warning": "Nakaduktal iti silo ti plantilia: [[:$1]]",
 	"template-loop-category": "Pampanid nga agraman kadagiti silo ti plantilia",
 	"template-loop-category-desc": "Ti panid ket aglaon iti silo ti plantilia, kas iti plantilia a rekursibo a mangawag iti bagina.",
 	"template-loop-warning": "<strong>Ballaag:</strong> Tawagan daytoy a panid ti [[:$1]] nga agpataud iti maysa a silo ti plantilia (maysa nga awan inggana a rekursibo a panagtawag).",

@@ -687,7 +687,7 @@
 	"post-expand-template-inclusion-category": "Paggene addò 'a diminsiona d' 'o template è fore 'o lémmeto",
 	"post-expand-template-argument-warning": "'''Attenziò:''' sta paggena cuntene uno o cchiù argumente 'e template troppo gruosse pe' 'a spannere. Sti argumente se lassarranno fore.",
 	"post-expand-template-argument-category": "Paggene ca cunteneno argumente nun cunziderate",
-	"parser-template-loop-warning": "È stato scummigliato n'aniello d' 'o template: [[$1]]",
+	"parser-template-loop-warning": "È stato scummigliato n'aniello d' 'o template: [[:$1]]",
 	"template-loop-category": "Paggene ca chiammassero a esse stisse",
 	"template-loop-category-desc": "Sta paggena tenesse nu template ca chiammasse a essa stissa, cioè nu template addò sta mmescat' 'o template ca 'o chiammasse.",
 	"template-loop-warning": "<strong>Attenziò:</strong> sta paggena chiammass' a [[:$1]] e stu fatto 'a facess addeventà nu loop (na chiammata infinita d' 'o template).",

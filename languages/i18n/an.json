@@ -472,7 +472,7 @@
 	"post-expand-template-inclusion-category": "Pachinas an que se brinca a mida d'inclusión d'as plantillas",
 	"post-expand-template-argument-warning": "Pare cuenta: Ista pachina contiene a lo menos un argumento de plantilla con una mida d'espansión masiau gran. S'han omeso estos argumentos.",
 	"post-expand-template-argument-category": "Pachinas con argumentos de plantilla omesos",
-	"parser-template-loop-warning": "S'ha detectato un bucle de plantillas: [[$1]]",
+	"parser-template-loop-warning": "S'ha detectato un bucle de plantillas: [[:$1]]",
 	"parser-template-recursion-depth-warning": "S'ha brincato o limite de recursión de plantillas ($1)",
 	"language-converter-depth-warning": "S'ha blincau o limite de profundidat d'o conversor d'idiomas ($1)",
 	"undo-success": "A edición se puet desfer.\nAntes de desfer a edición, mire-se a siguient comparanza ta comprebar que ye ixo o que quiere fer, y alce alavez os cambios ta desfer asinas a edición.",

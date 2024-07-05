@@ -755,7 +755,7 @@
 	"post-expand-template-inclusion-category": "Txantiloiaren inklusio tamaina gainditu den orrialdeak",
 	"post-expand-template-argument-warning": "Oharra: Orri honek gutxienez txantiloi eztabaida bat du, zein luzeegia den.\nEztabaidak aipatu gabe utzi dira.",
 	"post-expand-template-argument-category": "Kontuan hartu ez diren txantiloiak dituzten orrialdeak",
-	"parser-template-loop-warning": "Txantiloiaren itzul-biraketa aurkitu da: [[$1]]",
+	"parser-template-loop-warning": "Txantiloiaren itzul-biraketa aurkitu da: [[:$1]]",
 	"template-loop-category": "Begizta txantiloidun orria",
 	"template-loop-category-desc": "Orriak txantiloi begizta bat darama, adibidez txantiloia errekurtsiboki deitu dezakeena.",
 	"template-loop-warning": "<strong>Oharra:</strong> Orri honek [[:$1]] deituz txantiloian begizta sortzen ari da (dei errekurtsibo infinitua).",

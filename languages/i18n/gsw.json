@@ -618,7 +618,7 @@
 	"post-expand-template-inclusion-category": "Syte, wu d maximal Gressi vu dr yybundene Vorlage iberschritte isch",
 	"post-expand-template-argument-warning": "Warnig: In däre Syte het s zmindescht ei Argumänt in ere Vorlag, wu z gross isch, wänn s expandiert isch. Die Argumänt wäre ignoriert.",
 	"post-expand-template-argument-category": "Syte, wu s ignorierti Vorlageargumänt din het",
-	"parser-template-loop-warning": "Vorlagelätsch entdeckt: [[$1]]",
+	"parser-template-loop-warning": "Vorlagelätsch entdeckt: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Vorlagerekursionstiefegränz iberschritte ($1)",
 	"language-converter-depth-warning": "Gränz vu dr Sprochkonvertertiefi iberschritte ($1)",
 	"node-count-exceeded-category": "Syte, wo d Chnotezaal überschritte hen",

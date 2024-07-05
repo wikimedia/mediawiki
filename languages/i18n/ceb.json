@@ -346,7 +346,7 @@
 	"post-expand-template-inclusion-category": "Mga panid nga ang size sa giapil nga plantilya nasobrahan",
 	"post-expand-template-argument-warning": "'''Pahibalo:''' Ang kining panid may usa o daghan pa nga argumento sa plantilya nga dako kaayo ang expansion size.\nAng maong mga argumento natangtang.",
 	"post-expand-template-argument-category": "Mga panid nga may natangtang nga mga argumento sa plantilya",
-	"parser-template-loop-warning": "Nadetek ang loop sa plantilya: [[$1]]",
+	"parser-template-loop-warning": "Nadetek ang loop sa plantilya: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Nasobrahan na ang limit sa template recursion depth ($1)",
 	"undo-success": "Ang pag-usab puyde iway-bili.\nPalihog og tsek sa komparison sa ubos aron ma-tsek nga kini gyud ang imong gustong mahimo, ug unya tipigi ang mga pag-usab sa ubos aron mahuman ang pag-way-bili sa pag-usab.",
 	"undo-failure": "Ang pag-usab dili puyde mapa-way-bili tungod sa mga naka-conflict nga intermediate nga mga pag-usab.",

@@ -621,7 +621,7 @@
 	"post-expand-template-inclusion-category": "Halaman wolo ukuran templat ma yilimbata damangiyo",
 	"post-expand-template-argument-category": "Halaman wolo argumen templat ja pilomake",
 	"template-equals-category": "Halaman hemopomake = odelo templat",
-	"parser-template-loop-warning": "Helili lo templat yilotapu: [[$1]]",
+	"parser-template-loop-warning": "Helili lo templat yilotapu: [[:$1]]",
 	"template-loop-category": "Halaman wolo templat helihelili",
 	"template-loop-category-desc": "Halaman botiya otuwa templat helihelili, de'uwitoyito templat u hemongibode oliyo lohihilawo u'ulangiya.",
 	"parser-template-recursion-depth-warning": "Batasi delomo hubungan templat rekursi ma yilimbata ($1)",

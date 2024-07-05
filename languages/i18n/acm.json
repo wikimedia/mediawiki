@@ -702,7 +702,7 @@
 	"post-expand-template-argument-warning": "<strong>دير بالك:</strong> هاي الصفحه بيها عامل قالب واحد على الأقل اله حجم تمدد كلش جبير.\nهاي العوامل انحذفت.",
 	"post-expand-template-argument-category": "تجاوزات معطيات القوالب",
 	"template-equals-category": "الصفحات التي تستخدم = كقالب",
-	"parser-template-loop-warning": "انكشفت حلقة قالب: [[$1]]",
+	"parser-template-loop-warning": "انكشفت حلقة قالب: [[:$1]]",
 	"template-loop-category": "الصفحات بحلقات قالب",
 	"template-loop-category-desc": "الصفحة بيها حلقة قالب، أي أن القالب يستدعي روحه.",
 	"template-loop-warning": "<strong>دير بالك:</strong> هاي الصفحة تستدعي [[:$1]] واللي يتسبب في حدوث حلقة قالب (استدعاء عودي لا نهائي).",

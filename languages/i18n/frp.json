@@ -747,7 +747,7 @@
 	"template-equals-category": "Pâges qu’emplèyont = coment modèlo",
 	"template-equals-category-desc": "La pâge contint <code><nowiki>{{=}}</nowiki></code>, mas cen s’èpate pas en <code>=</code> sus cél vouiqui. Cél usâjo est dèpassâ ; na vèrsion a vegnir de MediaWiki beterat en ôvra <code><nowiki>{{=}}</nowiki></code> coment na fonccion parsior.",
 	"template-equals-warning": "<strong>Atencion :</strong> cela pâge emplèye <code><nowiki>{{=}}</nowiki></code>, mas cen s’èpate pas en <code>=</code> sus cél vouiqui. Cél usâjo est dèpassâ ; na vèrsion a vegnir de MediaWiki beterat en ôvra <code><nowiki>{{=}}</nowiki></code> coment na fonccion parsior.",
-	"parser-template-loop-warning": "Modèlo bocllo dècelâ : [[$1]]",
+	"parser-template-loop-warning": "Modèlo bocllo dècelâ : [[:$1]]",
 	"template-loop-category": "Pâges avouéc boclles de modèlo",
 	"template-loop-category-desc": "La pâge contint na boclla de modèlo, cen vôt dére un modèlo que s’apèle lui-mémo rècursivament.",
 	"template-loop-warning": "<strong>Atencion :</strong> cela pâge apèle [[:$1]] cen que fât fâre na boclla de modèlo (un apèl rècursif sen fin).",

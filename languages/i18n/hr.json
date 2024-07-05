@@ -725,7 +725,7 @@
 	"post-expand-template-inclusion-category": "Stranice gdje su uključeni predlošci preveliki",
 	"post-expand-template-argument-warning": "Upozorenje: Ova stranica sadrži najmanje jedan argument predložaka koji ima preveliko proširenje. Ovi su argumenti izostavljeni.",
 	"post-expand-template-argument-category": "Stranice koje sadrže izostavljene argumente za predloške",
-	"parser-template-loop-warning": "Otkrivena petlja predloška: [[$1]]",
+	"parser-template-loop-warning": "Otkrivena petlja predloška: [[:$1]]",
 	"template-loop-category": "Stranice s petljama u predlošcima",
 	"parser-template-recursion-depth-warning": "Dubina rekurzije predloška je izvan granice ($1)",
 	"language-converter-depth-warning": "Prekoračena granica dubine jezičnog pretvarača ($1)",

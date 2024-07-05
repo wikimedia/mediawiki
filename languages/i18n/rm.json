@@ -499,7 +499,7 @@
 	"post-expand-template-inclusion-category": "Paginas, en las qualas la grondezza maximala da models è surpassada",
 	"post-expand-template-argument-warning": "'''Attenziun:''' Questa pagina cuntegna almain in argument d'in model che ha ina memia gronda grondezza d'expansiun.\nQuests arguments vegnan ignorads.",
 	"post-expand-template-argument-category": "Paginas che cuntegnan arguments ignorads per models",
-	"parser-template-loop-warning": "Chattà cirquit da models: [[$1]]",
+	"parser-template-loop-warning": "Chattà cirquit da models: [[:$1]]",
 	"parser-template-recursion-depth-warning": "Surpassa la limita da recursiun da models ($1)",
 	"language-converter-depth-warning": "Surpassà la limita ($1) dal convertader da linguas",
 	"node-count-exceeded-category": "Paginas, nua ch'il dumber da nufs è surpassà",

@@ -767,7 +767,7 @@
 	"template-equals-category": " = билдәһен ҡалып кеүек ҡулланған биттәр",
 	"template-equals-category-desc": "Биттә <code><nowiki>{{=}}</nowiki></code> билдәһе бар, әммә был викиҙа <code>=</code> тиклем киңәймәй. Быны ҡулланырға кәңәш ителмәй; MediaWiki-ҙың буласаҡ өлгөһө <code><nowiki>{{=}}</nowiki></code> билдәһен парсер функцияһы итеп ҡулланасаҡ.",
 	"template-equals-warning": "<strong>Иҫкәртеү:</strong> Был биттә <code><nowiki>{{=}}</nowiki></code> билдәһе ҡулланыла, әммә ул был викиҙа <code>=</code> тиклем киңәйтелмәй. Уны файҙаланыу кәңәш ителмәй; MediaWiki-ҙың киңәйтелгән өлгөһө <code><nowiki>{{=}}</nowiki></code> синтаксис анализаторы функцияһы итеп ҡулланасаҡ.",
-	"parser-template-loop-warning": "Төйөн табылған ҡалыптар: [[$1]]",
+	"parser-template-loop-warning": "Төйөн табылған ҡалыптар: [[:$1]]",
 	"template-loop-category": "Ҡалыптар циклы булған биттәр",
 	"template-loop-category-desc": "Был биткә цикллы, йәғни үҙенән-үҙе килеп сыға торған ҡалып бәйләнгән.",
 	"template-loop-warning": "<strong>Иҫкәртеү:</strong> Был бит ҡалыпта  цикл (туҡтауһыҙ рекурсив саҡырыу) тыуҙырған [[:$1]] барлыҡҡа килтерә.",

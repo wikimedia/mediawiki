@@ -549,7 +549,7 @@
 	"post-expand-template-inclusion-category": "Síður sum innihalda ov nógvar skabilónir",
 	"post-expand-template-argument-warning": "'''Ávaring:''' Henda síðan inniheldur í minsta lagi eitt skabilón parametur (template argument), sum fyllir meira enn loyvdu støddina. \nHetta parametur er tí ikki tikið við.",
 	"post-expand-template-argument-category": "Síður har skabilón parametur (template arguments) ikki eru tikin við",
-	"parser-template-loop-warning": "Skapilónssloyfa funnin: [[$1]]",
+	"parser-template-loop-warning": "Skapilónssloyfa funnin: [[:$1]]",
 	"language-converter-depth-warning": "Markið fyri dýpd á málkonverteraranum er farið út um mark ($1)",
 	"node-count-exceeded-category": "Síður har talið av notum (node) er ov høgt",
 	"node-count-exceeded-warning": "Síðan hevur og høgt tal av notum (node-count)",

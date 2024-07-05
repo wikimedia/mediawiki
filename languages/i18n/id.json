@@ -830,7 +830,7 @@
 	"template-equals-category": "Halaman yang menggunakan = sebagai templat",
 	"template-equals-category-desc": "Halaman-halaman yang mengandung <code><nowiki>{{=}}</nowiki></code> tetapi di wiki ini tidak dikembangkan menjadi <code>=</code>. Penggunaan ini telah diusangkan; sebuah versi MediaWiki mendatang akan mengimplementasikan <code><nowiki>{{=}}</nowiki></code> sebagai sebuah fungsi parser.",
 	"template-equals-warning": "<strong>Peringatan:</strong> Halaman ini menggunakan <code><nowiki>{{=}}</nowiki></code> tetapi di wiki ini yang tidak dikembangkan menjadi code>=</code>. Penggunaan ini telah diusangkan; sebuah versi MediaWiki mendatang akan mengimplementasikan <code><nowiki>{{=}}</nowiki></code> sebagai sebuah fungsi parser.",
-	"parser-template-loop-warning": "Hubungan berulang templat terdeteksi: [[$1]]",
+	"parser-template-loop-warning": "Hubungan berulang templat terdeteksi: [[:$1]]",
 	"template-loop-category": "Halaman dengan templat berulang",
 	"template-loop-category-desc": "Halaman ini mengandung templat melingkar, yaitu templat yang memanggil dirinya sendiri secara bolak-balik.",
 	"template-loop-warning": "<strong>Peringatan:</strong> Halaman ini memanggil [[:$1]] yang menyebabkan <i>template loop</i> (panggilan rekursif tak hingga).",

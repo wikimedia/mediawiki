@@ -728,7 +728,7 @@
 	"template-equals-category": "Шаблоннэз пыдди мунісь листбоккез",
 	"template-equals-category-desc": "Листбокын эм <code><nowiki>{{=}}</nowiki></code> ,но эта викиын оз кут паськавны <code>=</code>-ӧдз.Ог вӧзйӧ сійӧн уджавны;MediaWiki-лӧн локтан версияыс пыртны\n<code><nowiki>{{=}}</nowiki></code>  кыдз парсер функция.",
 	"template-equals-warning": "<strong>Тӧдмӧтӧм:</strong> Эта листбокын эм <code><nowiki>{{=}}</nowiki></code> ,но эта викиын сія оз паськав <code>=</code> -ӧдз. Ог сійӧ вӧзйӧ;MediaWik-лӧн локтан версия кутас пыртны <code><nowiki>{{=}}</nowiki></code> кыдз парсер функция.",
-	"parser-template-loop-warning": "Адззӧма шаблон гӧрӧд :[[$1]]",
+	"parser-template-loop-warning": "Адззӧма шаблон гӧрӧд :[[:$1]]",
 	"template-loop-category": "Шаблон гӧрӧда листбоккез",
 	"template-loop-category-desc": "Эта листбокын эм шаблонлӧн гӧрӧд, сэтшӧм шаблон, кӧда корӧ ачыс асьсӧ",
 	"template-loop-warning": "<strong>Тӧдмӧтӧм:</strong> Эта листбокыс корӧ [[:$1]],кӧда вайӧтӧ шаблон гӧрӧддэз артмӧмӧдз ( помтӧм ачыс асьсӧ корӧм).",

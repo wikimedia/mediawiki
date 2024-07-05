@@ -376,7 +376,7 @@
 	"post-expand-template-inclusion-category": "Tisniwin lli bahra ittafn tuggut n tmuḍimin",
 	"post-expand-template-argument-warning": "Balak: Tasna ivɣ gis uggar n iɣwar n tmudimt lli ur tti ttajjan an gis tilli\nTigira n ujbbad ns, ar takka yat tayafut bahra imqqurn,  ɣayan afan ur ttili.",
 	"post-expand-template-argument-category": "Tisna lliɣ llan iɣwarn n tmudimt urta lan atig",
-	"parser-template-loop-warning": "Tamuḍimt ikrknnin ttyufa ɣid : [[$1]]",
+	"parser-template-loop-warning": "Tamuḍimt ikrknnin ttyufa ɣid : [[:$1]]",
 	"undo-failure": "Asnfl ad ur yallfus ad d iwrri s usrag n ummrway d kr n isnifiln imnnumsn.",
 	"viewpagelogs": "Ẓr timhlin lli ttuskarnin ɣ tasna yad",
 	"currentrev-asof": "Azzray amggaru s usakud n $1",

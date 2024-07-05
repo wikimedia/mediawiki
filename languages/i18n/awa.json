@@ -690,7 +690,7 @@
 	"post-expand-template-inclusion-category": "अईसन पन्ना जवने मे साँचा जोड़े कय सीमा पार होई गवा है",
 	"post-expand-template-argument-warning": "'''चेतावनी:''' इ पन्ना पे कवनो साँचा में कम-से-कम एकठु अइसन प्राचल है जवन बढ़ावे पे बहुत बड़ा होइ जाइ।\nअइसन प्राचलन् कय छोड़ दिहा गा है।",
 	"post-expand-template-argument-category": "अईसन पन्ना जवनेमें प्राचल छोड़ी दिहा है",
-	"parser-template-loop-warning": "साँचा चक्र मिला: [[$1]]",
+	"parser-template-loop-warning": "साँचा चक्र मिला: [[:$1]]",
 	"template-loop-category": "टेम्पलेट लूप वाले पृष्ठ",
 	"template-loop-category-desc": "पन्ना मा एक टेम्पलेट लूप होत है, मतलब  एक टेम्पलेट जौन खुद का पुनरावर्ती कहत है।",
 	"template-loop-warning": "<strong> चेतावनी: </strong>ई पन्ना [[:$1]] उनका कॉल करत है जेहके कारण टेम्पलेट लूप (एक अनंत रिकर्सिव कॉल) होत है।",

@@ -744,7 +744,7 @@
 	"template-equals-category": "= калып буларак кулланыла торган битләр",
 	"template-equals-category-desc": "Биттә <code><nowiki>{{=}}</nowiki></code> бар, әмма бу викида <code>=</code> кадәр киңәйтелми. Мондый куллану киңәш ителми; MediaWikiның киләчәк версиясе <code><nowiki>{{=}}</nowiki></code> синтаксик анализ функциясе буларак гамәлгә ашырылачак.",
 	"template-equals-warning": "<strong>Игътибар:</strong> Бу биттә <code><nowiki>{{=}}</nowiki></code> кулланыла, әмма бу викида <code>=</code> кадәр киңәйтелми. Мондый куллану киңәш ителми; MediaWikiның киләчәк версиясе <code><nowiki>{{=}}</nowiki></code> синтаксик анализ функциясе буларак гамәлгә ашырылачак.",
-	"parser-template-loop-warning": "Калып циклы табылды: [[$1]]",
+	"parser-template-loop-warning": "Калып циклы табылды: [[:$1]]",
 	"template-loop-category": "Калып цикллары белән битләр",
 	"template-loop-category-desc": "Биттә калып циклы бар, ягъни үз-үзен рекурсияле чакыра торган калып.",
 	"template-loop-warning": "<strong>Игътибар:</strong> Бу бит калыпта цикл (чиксез рекурсияле чакыру) барлыкка китерүче [[:$1]] чакыра.",

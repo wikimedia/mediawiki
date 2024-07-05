@@ -576,7 +576,7 @@
 	"post-expand-template-inclusion-category": "بٱلگٱیا د ڤٱر گرتٱ چۊئٱ هؽسن کاْ ٱندازٱش د هٱد اومایٱ ڤ دٱر",
 	"post-expand-template-argument-warning": "زٱنڳیار اؽ بٱلگٱ د ڤٱر گرتٱ هٱدٱقٱل یاٛ چۊئٱ سی چٱک چنٱ یٱ کاْ ٱندازٱ فرٱ گٱپٱ.\nگٱپسنؽا پاک بینٱ.",
 	"post-expand-template-argument-category": "بٱلگٱ د ڤٱر گرتٱ چۊئٱ چٱک چنٱ د باٛن رٱتٱ",
-	"parser-template-loop-warning": "هٱلقٱ چۊئٱ دؽاری کردٱ:[[$1]]",
+	"parser-template-loop-warning": "هٱلقٱ چۊئٱ دؽاری کردٱ:[[:$1]]",
 	"parser-template-recursion-depth-warning": "مٱهدۊدیٱت پی یا ڤرگٱشتن چۊئٱ رٱد بی($1)",
 	"language-converter-depth-warning": "مٱهدۊدیٱت پی یا زڤوݩ ڤالٛرن رٱد بی($1)",
 	"node-count-exceeded-category": "بٱلگٱیا کاْ د بؽشرونٱ شمارٱ گرۊ فرٱ پیشکرد کردنٱ",
