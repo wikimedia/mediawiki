@@ -51,7 +51,6 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 	public static function provideCasesForGetNumLinks() {
 		return [
 			[ 4, 'BacklinkCacheTest_1', 'pagelinks' ],
-			[ 1, 'BacklinkCacheTest_1', 'pagelinks', 1 ],
 			[ 0, 'BacklinkCacheTest_2', 'pagelinks' ],
 			[ 1, 'Image:test.png', 'imagelinks' ],
 		];
@@ -61,10 +60,10 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideCasesForGetNumLinks
 	 * @covers \MediaWiki\Cache\BacklinkCache::getNumLinks
 	 */
-	public function testGetNumLinks( int $numLinks, string $title, string $table, $max = INF ) {
+	public function testGetNumLinks( int $numLinks, string $title, string $table ) {
 		$blcFactory = $this->getServiceContainer()->getBacklinkCacheFactory();
 		$backlinkCache = $blcFactory->getBacklinkCache( Title::newFromText( $title ) );
-		$this->assertEquals( $numLinks, $backlinkCache->getNumLinks( $table, $max ) );
+		$this->assertEquals( $numLinks, $backlinkCache->getNumLinks( $table ) );
 	}
 
 	public static function provideCasesForGetLinks() {

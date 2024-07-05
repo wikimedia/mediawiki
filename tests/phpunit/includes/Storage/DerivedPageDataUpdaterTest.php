@@ -1429,4 +1429,37 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertIsObject( $cached );
 	}
 
+	/**
+	 * Helper for testTemplateUpdate
+	 *
+	 * @param WikiPage $page
+	 * @param string $content
+	 */
+	private function editAndUpdate( $page, $content ) {
+		$this->createRevision( $page, $content );
+		$this->getServiceContainer()->resetServiceForTesting( 'BacklinkCacheFactory' );
+		$this->runJobs();
+	}
+
+	/**
+	 * Regression test for T368006
+	 */
+	public function testTemplateUpdate() {
+		$clock = MWTimestamp::convert( TS_UNIX, '20100101000000' );
+		MWTimestamp::setFakeTime( static function () use ( &$clock ) {
+			return $clock++;
+		} );
+
+		$template = $this->getPage( 'Template:TestTemplateUpdate' );
+		$page = $this->getPage( 'TestTemplateUpdate' );
+		$this->editAndUpdate( $template, '1' );
+		$this->editAndUpdate( $page, '{{TestTemplateUpdate}}' );
+		$oldTouched = $page->getTouched();
+		$page->clear();
+
+		$this->editAndUpdate( $template, '2' );
+		$newTouched = $page->getTouched();
+		$this->assertGreaterThan( $oldTouched, $newTouched );
+	}
+
 }
