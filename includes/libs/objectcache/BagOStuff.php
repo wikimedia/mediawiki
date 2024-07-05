@@ -614,33 +614,6 @@ abstract class BagOStuff implements
 	}
 
 	/**
-	 * Stage a set of new key values for storage and estimate the amount of bytes needed
-	 *
-	 * @param array $valueByKey Map of (cache key => PHP variable value to serialize)
-	 * @return int[]|null[] Corresponding list of size estimates (null for invalid values)
-	 * @since 1.35
-	 * @deprecated Since 1.40, Hard deprecated since 1.42.
-	 */
-	public function setNewPreparedValues( array $valueByKey ) {
-		wfDeprecated( __METHOD__, '1.40' );
-		$sizes = [];
-		foreach ( $valueByKey as $value ) {
-			// Roughly estimate the size of the value once serialized. This does not account
-			// for the use of non-PHP serialization (e.g. igbinary/msgpack/json), compression
-			// (e.g. gzip/lzma), nor protocol/storage metadata.
-			if ( is_string( $value ) ) {
-				// E.g. "<type><delim1><quote><value><quote><delim2>"
-				$size = strlen( $value ) + 5;
-			} else {
-				$size = strlen( serialize( $value ) );
-			}
-			$sizes[] = $size;
-		}
-
-		return $sizes;
-	}
-
-	/**
 	 * Make a cache key for the given keyspace and components
 	 *
 	 * Subclasses may override this method in order to apply different escaping,

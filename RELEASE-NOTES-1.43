@@ -224,6 +224,7 @@ because of Phabricator reports.
 * Skin::getAction(), deprecated in 1.39, has been removed.
 * Title::getCdnUrls() and Title::purgeSquid(), deprecated in 1.35, have been
   removed.
+* BagOStuff::setNewPreparedValues(), deprecated in 1.40, has been removed.
 * Constructing MWHttpRequest objects now requires timeout and connectTimeout to
   be set; this was deprecated in 1.35.
 * Hooks that were run from SpecialContributions are now run from the parent,
