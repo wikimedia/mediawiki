@@ -36,6 +36,7 @@ use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\JobQueue\JobQueueDB;
 use MediaWiki\JobQueue\Jobs\AssembleUploadChunksJob;
+use MediaWiki\JobQueue\Jobs\CategoryCountUpdateJob;
 use MediaWiki\JobQueue\Jobs\CategoryMembershipChangeJob;
 use MediaWiki\JobQueue\Jobs\CdnPurgeJob;
 use MediaWiki\JobQueue\Jobs\DoubleRedirectJob;
@@ -11606,6 +11607,13 @@ class MainConfigSchema {
 			'refreshLinksDynamic' => RefreshLinksJob::class,
 			'activityUpdateJob' => ActivityUpdateJob::class,
 			'categoryMembershipChange' => CategoryMembershipChangeJob::class,
+			'CategoryCountUpdateJob' => [
+				'class' => CategoryCountUpdateJob::class,
+				'services' => [
+					'ConnectionProvider',
+					'NamespaceInfo',
+				],
+			],
 			'clearUserWatchlist' => ClearUserWatchlistJob::class,
 			'watchlistExpiry' => WatchlistExpiryJob::class,
 			'cdnPurge' => CdnPurgeJob::class,

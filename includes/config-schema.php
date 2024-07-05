@@ -2166,6 +2166,13 @@ return [
 				'refreshLinksDynamic' => 'MediaWiki\\JobQueue\\Jobs\\RefreshLinksJob',
 				'activityUpdateJob' => 'MediaWiki\\Watchlist\\ActivityUpdateJob',
 				'categoryMembershipChange' => 'MediaWiki\\JobQueue\\Jobs\\CategoryMembershipChangeJob',
+				'CategoryCountUpdateJob' => [
+					'class' => 'MediaWiki\\JobQueue\\Jobs\\CategoryCountUpdateJob',
+					'services' => [
+						'ConnectionProvider',
+						'NamespaceInfo',
+					],
+				],
 				'clearUserWatchlist' => 'MediaWiki\\Watchlist\\ClearUserWatchlistJob',
 				'watchlistExpiry' => 'MediaWiki\\Watchlist\\WatchlistExpiryJob',
 				'cdnPurge' => 'MediaWiki\\JobQueue\\Jobs\\CdnPurgeJob',

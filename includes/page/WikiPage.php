@@ -76,7 +76,6 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
-use Wikimedia\Rdbms\RawSQLValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -2741,97 +2740,6 @@ class WikiPage implements Stringable, Page, PageRecord {
 			return $this->getContentHandler()->getAutoDeleteReason( $this->getTitle(), $hasHistory );
 		}
 		return $this->getContentHandler()->getAutoDeleteReason( $this->getTitle() );
-	}
-
-	/**
-	 * Update all the appropriate counts in the category table, given that
-	 * we've added the categories $added and deleted the categories $deleted.
-	 *
-	 * This should only be called from deferred updates or jobs to avoid contention.
-	 *
-	 * @param string[] $added The names of categories that were added
-	 * @param string[] $deleted The names of categories that were deleted
-	 * @param int $id Page ID (this should be the original deleted page ID)
-	 */
-	public function updateCategoryCounts( array $added, array $deleted, $id = 0 ) {
-		$id = $id ?: $this->getId();
-		// Guard against data corruption T301433
-		$added = array_map( 'strval', $added );
-		$deleted = array_map( 'strval', $deleted );
-		$type = MediaWikiServices::getInstance()->getNamespaceInfo()->
-			getCategoryLinkType( $this->getTitle()->getNamespace() );
-
-		$addFields = [ 'cat_pages' => new RawSQLValue( 'cat_pages + 1' ) ];
-		$removeFields = [ 'cat_pages' => new RawSQLValue( 'cat_pages - 1' ) ];
-		if ( $type !== 'page' ) {
-			$addFields["cat_{$type}s"] = new RawSQLValue( "cat_{$type}s + 1" );
-			$removeFields["cat_{$type}s"] = new RawSQLValue( "cat_{$type}s - 1" );
-		}
-
-		$dbw = $this->getConnectionProvider()->getPrimaryDatabase();
-		$res = $dbw->newSelectQueryBuilder()
-			->select( [ 'cat_id', 'cat_title' ] )
-			->from( 'category' )
-			->where( [ 'cat_title' => array_merge( $added, $deleted ) ] )
-			->caller( __METHOD__ )
-			->fetchResultSet();
-		$existingCategories = [];
-		foreach ( $res as $row ) {
-			$existingCategories[$row->cat_id] = $row->cat_title;
-		}
-		$existingAdded = array_intersect( $existingCategories, $added );
-		$existingDeleted = array_intersect( $existingCategories, $deleted );
-		$missingAdded = array_diff( $added, $existingAdded );
-
-		// For category rows that already exist, do a plain
-		// UPDATE instead of INSERT...ON DUPLICATE KEY UPDATE
-		// to avoid creating gaps in the cat_id sequence.
-		if ( $existingAdded ) {
-			$dbw->newUpdateQueryBuilder()
-				->update( 'category' )
-				->set( $addFields )
-				->where( [ 'cat_id' => array_keys( $existingAdded ) ] )
-				->caller( __METHOD__ )->execute();
-		}
-
-		if ( $missingAdded ) {
-			$queryBuilder = $dbw->newInsertQueryBuilder()
-				->insertInto( 'category' )
-				->onDuplicateKeyUpdate()
-				->uniqueIndexFields( [ 'cat_title' ] )
-				->set( $addFields );
-			foreach ( $missingAdded as $cat ) {
-				$queryBuilder->row( [
-					'cat_title'   => $cat,
-					'cat_pages'   => 1,
-					'cat_subcats' => ( $type === 'subcat' ) ? 1 : 0,
-					'cat_files'   => ( $type === 'file' ) ? 1 : 0,
-				] );
-			}
-			$queryBuilder->caller( __METHOD__ )->execute();
-		}
-
-		if ( $existingDeleted ) {
-			$dbw->newUpdateQueryBuilder()
-				->update( 'category' )
-				->set( $removeFields )
-				->where( [ 'cat_id' => array_keys( $existingDeleted ) ] )
-				->caller( __METHOD__ )->execute();
-		}
-
-		foreach ( $added as $catName ) {
-			$cat = Category::newFromName( $catName );
-			$this->getHookRunner()->onCategoryAfterPageAdded( $cat, $this );
-		}
-
-		foreach ( $deleted as $catName ) {
-			$cat = Category::newFromName( $catName );
-			$this->getHookRunner()->onCategoryAfterPageRemoved( $cat, $this, $id );
-			// Refresh counts on categories that should be empty now (after commit, T166757)
-			DeferredUpdates::addCallableUpdate( static function () use ( $cat ) {
-				$cat->refreshCountsIfEmpty();
-			} );
-		}
 	}
 
 	/**

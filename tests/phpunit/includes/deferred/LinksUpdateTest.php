@@ -317,6 +317,10 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			]
 		);
 
+		// Run category membership change job to update cat_pages
+		// TODO: This should move out of this test.
+		$this->runAllRelatedJobs();
+
 		// Check category count
 		$this->newSelectQueryBuilder()
 			->select( [ 'cat_title', 'cat_pages' ] )
@@ -344,6 +348,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		);
 
 		// Check category count decrement
+		$this->runAllRelatedJobs();
 		$this->newSelectQueryBuilder()
 			->select( [ 'cat_title', 'cat_pages' ] )
 			->from( 'category' )
@@ -459,6 +464,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			]
 		);
 
+		$this->runAllRelatedJobs();
 		// Check category count
 		$this->newSelectQueryBuilder()
 			->select( [ 'cat_title', 'cat_pages' ] )
@@ -489,6 +495,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		);
 
 		// Check category count
+		$this->runAllRelatedJobs();
 		$this->newSelectQueryBuilder()
 			->select( [ 'cat_title', 'cat_pages' ] )
 			->from( 'category' )
@@ -519,6 +526,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		);
 
 		// Check category count
+		$this->runAllRelatedJobs();
 		$this->newSelectQueryBuilder()
 			->select( [ 'cat_title', 'cat_pages' ] )
 			->from( 'category' )
@@ -920,6 +928,11 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$job->run();
 			$queueGroup->ack( $job );
 		}
+		// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
+		while ( $job = $queueGroup->pop( 'CategoryCountUpdateJob' ) ) {
+			$job->run();
+			$queueGroup->ack( $job );
+		}
 	}
 
 	public function testIsRecursive() {
@@ -1037,6 +1050,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$this->setTransactionTicket( $update );
 		$update->setStrictTestMode();
 		$update->doUpdate();
+		$this->runAllRelatedJobs();
 
 		$this->newSelectQueryBuilder()
 			->select( 'cat_pages' )

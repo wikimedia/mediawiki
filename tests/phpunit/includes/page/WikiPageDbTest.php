@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\Category\Category;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\ContentHandler;
@@ -1237,31 +1236,6 @@ more stuff
 		$this->assertTrue( $page->wasLoadedFrom( IDBAccessObject::READ_LATEST ) );
 		$this->assertTrue( $page->wasLoadedFrom( IDBAccessObject::READ_LOCKING ) );
 		$this->assertTrue( $page->wasLoadedFrom( IDBAccessObject::READ_EXCLUSIVE ) );
-	}
-
-	public function testUpdateCategoryCounts() {
-		$page = new WikiPage( Title::newFromText( __METHOD__ ) );
-
-		// Add an initial category
-		$page->updateCategoryCounts( [ 'A' ], [], 0 );
-
-		$this->assertSame( 1, Category::newFromName( 'A' )->getMemberCount() );
-		$this->assertSame( 0, Category::newFromName( 'B' )->getMemberCount() );
-		$this->assertSame( 0, Category::newFromName( 'C' )->getMemberCount() );
-
-		// Add a new category
-		$page->updateCategoryCounts( [ 'B' ], [], 0 );
-
-		$this->assertSame( 1, Category::newFromName( 'A' )->getMemberCount() );
-		$this->assertSame( 1, Category::newFromName( 'B' )->getMemberCount() );
-		$this->assertSame( 0, Category::newFromName( 'C' )->getMemberCount() );
-
-		// Add and remove a category
-		$page->updateCategoryCounts( [ 'C' ], [ 'A' ], 0 );
-
-		$this->assertSame( 0, Category::newFromName( 'A' )->getMemberCount() );
-		$this->assertSame( 1, Category::newFromName( 'B' )->getMemberCount() );
-		$this->assertSame( 1, Category::newFromName( 'C' )->getMemberCount() );
 	}
 
 	public static function provideUpdateRedirectOn() {

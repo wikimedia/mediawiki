@@ -1895,6 +1895,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\JobQueue\\JobRunner' => __DIR__ . '/includes/jobqueue/JobRunner.php',
 	'MediaWiki\\JobQueue\\JobSpecification' => __DIR__ . '/includes/jobqueue/JobSpecification.php',
 	'MediaWiki\\JobQueue\\Jobs\\AssembleUploadChunksJob' => __DIR__ . '/includes/jobqueue/jobs/AssembleUploadChunksJob.php',
+	'MediaWiki\\JobQueue\\Jobs\\CategoryCountUpdateJob' => __DIR__ . '/includes/jobqueue/jobs/CategoryCountUpdateJob.php',
 	'MediaWiki\\JobQueue\\Jobs\\CategoryMembershipChangeJob' => __DIR__ . '/includes/jobqueue/jobs/CategoryMembershipChangeJob.php',
 	'MediaWiki\\JobQueue\\Jobs\\CdnPurgeJob' => __DIR__ . '/includes/jobqueue/jobs/CdnPurgeJob.php',
 	'MediaWiki\\JobQueue\\Jobs\\DeletePageJob' => __DIR__ . '/includes/page/DeletePageJob.php',
