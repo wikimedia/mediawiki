@@ -90,6 +90,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	public const INCLUDE_OLD = 'include_old';
 	public const INCLUDE_NEW = 'include_new';
 	public const INCLUDE_BOTH = 'include_both';
+	public const INCLUDE_DELETED_REVISIONS = 'include_deleted_revisions';
 
 	/**
 	 * @var SqlBlobStore
@@ -3299,6 +3300,11 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 *     RevisionStore::INCLUDE_OLD Include $old in the range; $new is excluded.
 	 *     RevisionStore::INCLUDE_NEW Include $new in the range; $old is excluded.
 	 *     RevisionStore::INCLUDE_BOTH Include both $old and $new in the range.
+	 *     RevisionStore::INCLUDE_DELETED_REVISIONS Include revisions that have been
+	 *     revision deleted.
+	 *
+	 *     If no options are selected, the first revision, last revision, and revision
+	 *     deleted revisions will not be included.
 	 * @throws InvalidArgumentException in case either revision is unsaved or
 	 *  the revisions do not belong to the same page.
 	 * @return int Number of revisions between these revisions.
@@ -3322,11 +3328,16 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		}
 
 		$dbr = $this->getReplicaConnection();
-		$conds = [
-			'rev_page' => $pageId,
-			$dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_TEXT ) . ' = 0',
-			...$this->getRevisionLimitConditions( $dbr, $old, $new, $options ),
-		];
+		$where = [ 'rev_page' => $pageId ];
+		// If $options is a string, convert it to an array
+		$options = (array)$options;
+		if ( !in_array( self::INCLUDE_DELETED_REVISIONS, $options ) ) {
+			$where[] = $dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_TEXT ) . " = 0";
+		}
+		$conds = array_merge(
+			$where,
+			$this->getRevisionLimitConditions( $dbr, $old, $new, $options )
+		);
 		if ( $max !== null ) {
 			return $dbr->newSelectQueryBuilder()
 				->select( '1' )

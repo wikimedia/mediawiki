@@ -2568,6 +2568,105 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			'The $max is incremented to detect truncation' );
 	}
 
+	public function testCountRevisionsBetweenWithRevisionDeletion() {
+		// Set up database exactly once. This makes the test faster.
+		// Make page_id 1 and rev_id 1
+		$page = $this->getExistingTestPage();
+		$this->assertTrue( $page->exists(), 'Page should exist' );
+		$this->assertSame( 1, $page->getId(), 'Page ID should be 1' );
+		// Make rev_id 2, 3, 4, 5
+		for ( $i = 2; $i <= 5; $i++ ) {
+			$revision = $this->editPage( $page, "Revision " . $i, "Summary " . $i )->getNewRevision();
+			$this->assertSame( $i, $revision->getId(), 'Revision ID should be ' . $i );
+		}
+		// Revision delete rev_id 3
+		$deleteRevId = 3;
+		$revisionStore = $this->getServiceContainer()->getRevisionStore();
+		$revision = $revisionStore->getRevisionById( $deleteRevId );
+		$this->revisionDelete( $revision );
+		$revision = $revisionStore->getRevisionById( $deleteRevId );
+		$this->assertTrue( $revision->isDeleted( RevisionRecord::DELETED_TEXT ), 'Revision 3 is rev deleted' );
+
+		// Get test cases
+		$data = $this->provideCountRevisionsBetweenWithRevisionDeletion();
+
+		// Test
+		foreach ( $data as [ $options, $max, $expectedCount ] ) {
+			// countRevisionsBetween rev_id 1 and rev_id 5
+			$actualCount = $revisionStore->countRevisionsBetween(
+				$page->getId(),
+				$revisionStore->getRevisionById( 1 ), // oldest
+				$revisionStore->getRevisionById( 5 ), // newest
+				$max,
+				$options
+			);
+			$this->assertSame( $expectedCount, $actualCount, 'testCountRevisionsBetween count is correct' );
+		}
+	}
+
+	public static function provideCountRevisionsBetweenWithRevisionDeletion() {
+		// Assume there's page_id 1 and rev_ids 1, 2, 3, 4, 5 for that page.
+		// Rev_id 3 is revision deleted.
+		// TestCountRevisionsBetween counts revisions 1 through 5, with various
+		// options and maximums set below.
+		return [
+			// $options is an array
+			'Options array, empty options, no max' => [
+				[], null, 2
+			],
+			'Options array, include oldest, no max' => [
+				[ RevisionStore::INCLUDE_OLD ], null, 3
+			],
+			'Options array, include newest, no max' => [
+				[ RevisionStore::INCLUDE_NEW ], null, 3
+			],
+			'Options array, include oldest and newest, no max' => [
+				[ RevisionStore::INCLUDE_OLD, RevisionStore::INCLUDE_NEW ], null, 4
+			],
+			'Options array, include both, no max' => [
+				[ RevisionStore::INCLUDE_BOTH ], null, 4
+			],
+			'Options array, include both and revision deletions, no max' => [
+				[ RevisionStore::INCLUDE_BOTH, RevisionStore::INCLUDE_DELETED_REVISIONS ], null, 5
+			],
+			'Options array, include both, max 1' => [
+				[ RevisionStore::INCLUDE_BOTH ], 1, 2
+			],
+			'Options array, include both, max 2' => [
+				[ RevisionStore::INCLUDE_BOTH ], 2, 3
+			],
+			'Options array, include both, max 3' => [
+				[ RevisionStore::INCLUDE_BOTH ], 3, 4
+			],
+
+			// $options is a string
+			'Options string, empty options, no max' => [
+				'', null, 2
+			],
+			'Options string, include oldest, no max' => [
+				RevisionStore::INCLUDE_OLD, null, 3
+			],
+			'Options string, include newest, no max' => [
+				RevisionStore::INCLUDE_NEW, null, 3
+			],
+			'Options string, include both, no max' => [
+				RevisionStore::INCLUDE_BOTH, null, 4
+			],
+			'Options string, include both and revision deletions, no max' => [
+				RevisionStore::INCLUDE_DELETED_REVISIONS, null, 3
+			],
+			'Options string, include both, max 1' => [
+				RevisionStore::INCLUDE_BOTH, 1, 2
+			],
+			'Options string, include both, max 2' => [
+				RevisionStore::INCLUDE_BOTH, 2, 3
+			],
+			'Options string, include both, max 3' => [
+				RevisionStore::INCLUDE_BOTH, 3, 4
+			],
+		];
+	}
+
 	public function testAuthorsBetween() {
 		$this->disableAutoCreateTempUser();
 		$NUM = 5;

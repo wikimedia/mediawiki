@@ -1600,8 +1600,9 @@ class EditPage implements IEditObject {
 	private function generateUndoEditSummary( ?RevisionRecord $oldrev, int $undo,
 		?RevisionRecord $undorev, MediaWikiServices $services
 	) {
-		// If we just undid one rev, use an autosummary
+		// Generate an autosummary
 		$firstrev = $this->revisionStore->getNextRevision( $oldrev );
+		// Undid just one revision
 		if ( $firstrev && $firstrev->getId() == $undo ) {
 			$userText = $undorev->getUser() ?
 				$undorev->getUser()->getName() :
@@ -1643,6 +1644,28 @@ class EditPage implements IEditObject {
 					$userText
 				)->inContentLanguage()->text();
 			}
+			if ( $this->summary === '' ) {
+				$this->summary = $undoSummary;
+			} else {
+				$this->summary = $undoSummary . $this->context->msg( 'colon-separator' )
+					->inContentLanguage()->text() . $this->summary;
+			}
+		// Undid multiple revisions
+		} else {
+			$firstRevisionId = $firstrev->getId();
+			$lastRevisionId = $undorev->getId();
+			$revisionCount = $services->getRevisionStore()->countRevisionsBetween(
+				$firstrev->getPageId(),
+				$firstrev,
+				$undorev,
+				null,
+				[ RevisionStore::INCLUDE_BOTH, RevisionStore::INCLUDE_DELETED_REVISIONS ]
+			);
+			$undoSummary = $this->context->msg( 'undo-summary-multiple' )
+				->numParams( $revisionCount )
+				->params( $firstRevisionId, $lastRevisionId )
+				->inContentLanguage()
+				->text();
 			if ( $this->summary === '' ) {
 				$this->summary = $undoSummary;
 			} else {
