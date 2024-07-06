@@ -1418,13 +1418,11 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * @param Content|null $def_content The default value to return
-	 *
-	 * @return Content|false|null Content on success, $def_content for invalid sections
-	 *
+	 * @param Content|null $defaultContent The default value to return
+	 * @return Content|false|null Content on success, $defaultContent for invalid sections
 	 * @since 1.21
 	 */
-	protected function getContentObject( $def_content = null ) {
+	protected function getContentObject( $defaultContent = null ) {
 		$services = MediaWikiServices::getInstance();
 		$disableAnonTalk = $services->getMainConfig()->get( MainConfigNames::DisableAnonTalk );
 		$request = $this->context->getRequest();
@@ -1447,7 +1445,7 @@ class EditPage implements IEditObject {
 			$content = $orig ? $orig->getSection( $this->section ) : null;
 
 			if ( !$content ) {
-				$content = $def_content;
+				$content = $defaultContent;
 			}
 		} else {
 			$undoafter = $request->getInt( 'undoafter' );
@@ -1485,13 +1483,13 @@ class EditPage implements IEditObject {
 
 					if ( $undoMsg === null ) {
 						$oldContent = $this->page->getContent( RevisionRecord::RAW );
-						$popts = ParserOptions::newFromUserAndLang(
+						$parserOptions = ParserOptions::newFromUserAndLang(
 							$this->getUserForPreview(),
 							$services->getContentLanguage()
 						);
 						$contentTransformer = $services->getContentTransformer();
 						$newContent = $contentTransformer->preSaveTransform(
-							$content, $this->mTitle, $this->getUserForPreview(), $popts
+							$content, $this->mTitle, $this->getUserForPreview(), $parserOptions
 						);
 
 						if ( $newContent->getModel() !== $oldContent->getModel() ) {
@@ -3633,11 +3631,11 @@ class EditPage implements IEditObject {
 			$this->getHookRunner()->onEditPageGetDiffContent( $this, $newContent );
 
 			$user = $this->getUserForPreview();
-			$popts = ParserOptions::newFromUserAndLang( $user,
+			$parserOptions = ParserOptions::newFromUserAndLang( $user,
 				MediaWikiServices::getInstance()->getContentLanguage() );
 			$services = MediaWikiServices::getInstance();
 			$contentTransformer = $services->getContentTransformer();
-			$newContent = $contentTransformer->preSaveTransform( $newContent, $this->mTitle, $user, $popts );
+			$newContent = $contentTransformer->preSaveTransform( $newContent, $this->mTitle, $user, $parserOptions );
 		}
 
 		if ( ( $oldContent && !$oldContent->isEmpty() ) || ( $newContent && !$newContent->isEmpty() ) ) {
