@@ -24,6 +24,7 @@ use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -32,6 +33,7 @@ use MediaWiki\Status\Status;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\ActorMigration;
 use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserFactory;
@@ -50,6 +52,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 	private RevisionStore $revisionStore;
 	private NameTableStore $changeTagDefStore;
 	private ActorMigration $actorMigration;
+	private TitleFormatter $titleFormatter;
 
 	/**
 	 * @param ApiQuery $query
@@ -65,6 +68,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 	 * @param CommentFormatter $commentFormatter
 	 * @param TempUserCreator $tempUserCreator
 	 * @param UserFactory $userFactory
+	 * @param TitleFormatter $titleFormatter
 	 */
 	public function __construct(
 		ApiQuery $query,
@@ -79,7 +83,8 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		ContentTransformer $contentTransformer,
 		CommentFormatter $commentFormatter,
 		TempUserCreator $tempUserCreator,
-		UserFactory $userFactory
+		UserFactory $userFactory,
+		TitleFormatter $titleFormatter
 	) {
 		parent::__construct(
 			$query,
@@ -98,6 +103,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		$this->revisionStore = $revisionStore;
 		$this->changeTagDefStore = $changeTagDefStore;
 		$this->actorMigration = $actorMigration;
+		$this->titleFormatter = $titleFormatter;
 	}
 
 	protected function run( ApiPageSet $resultPageSet = null ) {
@@ -200,11 +206,14 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			// For each page we will request, the user must have read rights for that page
 			$status = Status::newGood();
 
-			/** @var Title $title */
-			foreach ( $pageSet->getGoodTitles() as $title ) {
-				if ( !$this->getAuthority()->authorizeRead( 'read', $title ) ) {
+			/** @var PageIdentity $pageIdentity */
+			foreach ( $pageSet->getGoodPages() as $pageIdentity ) {
+				if ( !$this->getAuthority()->authorizeRead( 'read', $pageIdentity ) ) {
 					$status->fatal( ApiMessage::create(
-						[ 'apierror-cannotviewtitle', wfEscapeWikiText( $title->getPrefixedText() ) ],
+						[
+							'apierror-cannotviewtitle',
+							wfEscapeWikiText( $this->titleFormatter->getPrefixedText( $pageIdentity ) ),
+						],
 						'accessdenied'
 					) );
 				}

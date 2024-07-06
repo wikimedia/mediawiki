@@ -185,6 +185,7 @@ class ApiQuery extends ApiBase {
 				'CommentFormatter',
 				'TempUserCreator',
 				'UserFactory',
+				'TitleFormatter',
 			]
 		],
 		'stashimageinfo' => [
