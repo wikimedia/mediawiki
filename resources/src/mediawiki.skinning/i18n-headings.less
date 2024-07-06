@@ -1,34 +1,51 @@
-/* Language specific height correction for titles. Ref T31405 and T32809 */
-/* Languages like hi or ml require slightly more vertical space to show diacritics properly */
+/*
+ * ### Language specific height correction for titles.###
+ * Ref T31405 and T32809.
+ *
+ * NOTE: THIS FILE SHOULD ONLY INCLUDE LANGUAGES WRITTEN IN BRAHMIC SCRIPTS. If adding a language that
+ * uses a different script, it should be discussed and this comment should be expanded.
+ * In these scripts, the writing systems require slightly more vertical space to show diacritics properly
+ * as by default will be truncated by line-height.
+ */
 :lang( anp ),
 :lang( as ),
+:lang( awa ),
 :lang( bh ), /* Macrolanguage, used on bh.wikipedia.org, should be removed one day */
 :lang( bho ),
 :lang( blk ),
 :lang( bn ),
+:lang( bo ),
+:lang( bpy ),
 :lang( ccp ),
+:lang( dty ),
+:lang( dz ),
+:lang( gom ),
 :lang( gu ),
 :lang( hi ),
 :lang( kjp ),
+:lang( km ),
 :lang( kn ),
 :lang( ks ),
 :lang( ksw ),
 :lang( mag ),
+:lang( mai ),
 :lang( ml ),
+:lang( mnw ),
 :lang( mr ),
 :lang( my ),
-:lang( mai ),
-:lang( mnw ),
-:lang( nit ),
 :lang( new ),
+:lang( nit ),
+:lang( nod ),
 :lang( or ),
 :lang( pa ),
 :lang( pi ),
 :lang( rki ),
 :lang( sa ),
 :lang( shn ),
+:lang( si ),
 :lang( syl ),
 :lang( ta ),
+:lang( tcy ),
 :lang( te ) {
 	.mw-heading1&,
 	h1& {
