@@ -34,7 +34,6 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \Mediawiki\OutputTransform\Stages\ParsoidLocalization::transform
 	 * @dataProvider provideDocsToLocalize
 	 */
 	public function testApplyTransformation(
@@ -68,7 +67,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 		$opts = [];
 		$transf = $loc->transform( $po, null, $opts );
 		$res = $transf->getContentHolderText();
-		self::assertEquals( $expected, TestUtils::stripParsoidIds( $res ), $message );
+		$this->assertEquals( $expected, TestUtils::stripParsoidIds( $res ), $message );
 	}
 
 	/**
@@ -87,12 +86,9 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 		$opts = [];
 		$transf = $loc->transform( $po, null, $opts );
 		$res = $transf->getContentHolderText();
-		self::assertEquals( $expected, TestUtils::stripParsoidIds( $res ), $message );
+		$this->assertEquals( $expected, TestUtils::stripParsoidIds( $res ), $message );
 	}
 
-	/**
-	 * @return array[]
-	 */
 	public function provideDocsToLocalize(): array {
 		return [
 			[
@@ -119,9 +115,6 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @return array[]
-	 */
 	public function provideSpans(): array {
 		return [
 			[
@@ -152,9 +145,6 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @return array[]
-	 */
 	public function provideAttrs(): array {
 		return [
 			[
