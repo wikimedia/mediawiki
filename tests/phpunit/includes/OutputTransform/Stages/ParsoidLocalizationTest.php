@@ -89,7 +89,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, TestUtils::stripParsoidIds( $res ), $message );
 	}
 
-	public function provideDocsToLocalize(): array {
+	public static function provideDocsToLocalize(): array {
 		return [
 			[
 				'<p><a rel="mw:WikiLink" href="./Zigzagzogzagzig?action=edit&amp;redlink=1" title="Zigzagzogzagzig" class="new" typeof="mw:LocalizedAttrs" data-mw-i18n=\'{"title":{"lang":"x-page","key":"testparam","params":["Zigzagzogzagzig"]}}\'>Zigzagzogzagzig</a></p>',
@@ -115,7 +115,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public function provideSpans(): array {
+	public static function provideSpans(): array {
 		return [
 			[
 				'testparam',
@@ -145,7 +145,7 @@ class ParsoidLocalizationTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public function provideAttrs(): array {
+	public static function provideAttrs(): array {
 		return [
 			[
 				'testparam',
