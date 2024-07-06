@@ -207,7 +207,9 @@ class Validator {
 				400,
 				[ // match fields used by validateBodyParams()
 					'error' => 'parameter-validation-failed',
-					'failureCode' => 'extraneous-body-fields'
+					'failureCode' => 'extraneous-body-fields',
+					'name' => reset( $unvalidatedKeys ),
+					'failureData' => $unvalidatedKeys,
 				]
 			);
 		}
