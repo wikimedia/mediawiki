@@ -270,7 +270,7 @@ class Names {
 		'kiu' => 'Kırmancki', # Kirmanjki
 		'kj' => 'Kwanyama', # Kwanyama
 		'kjh' => 'хакас', # Khakas
-		'kjp' => 'ဖၠုံလိက်', # Eastern Pwo (multiple scripts - defaults to Burmese script)
+		'kjp' => 'ဖၠုံလိက်', # Eastern Pwo
 		'kk' => 'қазақша', # Kazakh (multiple scripts - defaults to Cyrillic)
 		'kk-arab' => 'قازاقشا (تٴوتە)', # Kazakh Arabic
 		'kk-cn' => 'قازاقشا (جۇنگو)', # Kazakh (China)
