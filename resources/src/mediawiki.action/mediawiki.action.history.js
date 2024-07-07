@@ -2,9 +2,10 @@
  * JavaScript for History action
  */
 $( () => {
-	var
-		$pagehistory = $( '#pagehistory' ),
-		$lis = $pagehistory.find( '.mw-contributions-list > li' );
+	'use strict';
+
+	const $pagehistory = $( '#pagehistory' );
+	const $lis = $pagehistory.find( '.mw-contributions-list > li' );
 
 	/**
 	 * @ignore
@@ -13,21 +14,13 @@ $( () => {
 	 * @return {boolean} False to cancel the default event
 	 */
 	function updateDiffRadios() {
-		var nextState = 'before',
-			$li,
-			$inputs,
-			$oldidRadio,
-			$diffRadio;
-
-		if ( !$lis.length ) {
-			return true;
-		}
+		let nextState = 'before';
 
 		$lis.each( function () {
-			$li = $( this );
-			$inputs = $li.find( 'input[type="radio"]' );
-			$oldidRadio = $inputs.filter( '[name="oldid"]' ).eq( 0 );
-			$diffRadio = $inputs.filter( '[name="diff"]' ).eq( 0 );
+			const $li = $( this );
+			const $inputs = $li.find( 'input[type="radio"]' );
+			const $oldidRadio = $inputs.filter( '[name="oldid"]' ).eq( 0 );
+			const $diffRadio = $inputs.filter( '[name="diff"]' ).eq( 0 );
 
 			$li.removeClass( 'selected between before after' );
 
