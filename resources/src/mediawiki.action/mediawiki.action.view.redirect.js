@@ -25,17 +25,19 @@
  *   let the native scroll happen, don't override scroll to #Foo.
  */
 ( function () {
-	var canonical = mw.config.get( 'wgInternalRedirectTargetUrl' );
+	'use strict';
+
+	let canonical = mw.config.get( 'wgInternalRedirectTargetUrl' );
 	if ( !canonical ) {
 		return;
 	}
 
-	var fragment = null;
+	let fragment = null;
 	if ( location.hash ) {
 		// Ignore redirect's own fragment and preserve fragment override in address
 		canonical = canonical.replace( /#.*$/, '' ) + location.hash;
 	} else {
-		var index = canonical.indexOf( '#' );
+		const index = canonical.indexOf( '#' );
 		fragment = ( index !== -1 ) ? canonical.slice( index ) : null;
 	}
 
@@ -47,7 +49,7 @@
 	if ( fragment ) {
 		// Specification for history.replaceState() doesn't require browser to scroll,
 		// so scroll to be sure (see also T110501).
-		var node = document.getElementById( fragment.slice( 1 ) );
+		const node = document.getElementById( fragment.slice( 1 ) );
 		if ( node ) {
 			node.scrollIntoView();
 		}
