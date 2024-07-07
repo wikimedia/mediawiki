@@ -131,6 +131,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	 * @param ApiPageSet|null $resultPageSet
 	 */
 	public function run( $resultPageSet = null ) {
+		$db = $this->getDB();
 		$user = $this->getUser();
 		/* Get the parameters of the request. */
 		$params = $this->extractRequestParams();
@@ -144,7 +145,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		if ( $params['continue'] !== null ) {
 			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'timestamp', 'int' ] );
-			$db = $this->getDB();
 			$op = $params['dir'] === 'older' ? '<=' : '>=';
 			$this->addWhere( $db->buildComparison( $op, [
 				'rc_timestamp' => $db->timestamp( $cont[0] ),
@@ -268,7 +268,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		}
 
 		if ( $params['excludeuser'] !== null ) {
-			$this->addWhere( 'actor_name<>' . $this->getDB()->addQuotes( $params['excludeuser'] ) );
+			$this->addWhere( $db->expr( 'actor_name', '!=', $params['excludeuser'] ) );
 		}
 
 		/* Add the fields we're concerned with to our query. */
@@ -347,7 +347,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				$bitmask = 0;
 			}
 			if ( $bitmask ) {
-				$this->addWhere( $this->getDB()->bitAnd( 'rc_deleted', $bitmask ) . " != $bitmask" );
+				$this->addWhere( $db->bitAnd( 'rc_deleted', $bitmask ) . " != $bitmask" );
 			}
 		}
 		if ( $this->getRequest()->getCheck( 'namespace' ) ) {
@@ -360,7 +360,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				$bitmask = 0;
 			}
 			if ( $bitmask ) {
-				$db = $this->getDB();
 				$this->addWhere(
 					$db->expr( 'rc_type', '!=', RC_LOG )
 						->orExpr( new RawSQLExpression( $db->bitAnd( 'rc_deleted', $bitmask ) . " != $bitmask" ) )
