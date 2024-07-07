@@ -95,19 +95,37 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	private $params;
 
-	/** @var PageIdentity[] */
+	/** @var array<int,PageIdentity> */
 	private $titles;
-	/** @var PageIdentity[] */
+	/** @var array<int,PageIdentity> */
 	private $missing;
-	/** @var PageIdentity[] */
+	/** @var array<int,PageIdentity> */
 	private $everything;
 
-	// TODO: seems like these all could be typed as ?array with a default null value?
-	// phpcs:ignore MediaWiki.Commenting.PropertyDocumentation.WrongStyle
+	/**
+	 * @var array<int,bool> [page_id] => page_is_redirect database field, guaranteed to be
+	 * initialized via execute()
+	 */
 	private $pageIsRedir;
+	/**
+	 * @var array<int,bool> [page_id] => page_is_new database field, guaranteed to be
+	 * initialized via execute()
+	 */
 	private $pageIsNew;
+	/**
+	 * @var array<int,int> [page_id] => page_touched database field, guaranteed to be
+	 * initialized via execute()
+	 */
 	private $pageTouched;
+	/**
+	 * @var array<int,int> [page_id] => page_latest database field, guaranteed to be
+	 * initialized via execute()
+	 */
 	private $pageLatest;
+	/**
+	 * @var array<int,int> [page_id] => page_len database field, guaranteed to be
+	 * initialized via execute()
+	 */
 	private $pageLength;
 
 	private $protections;
