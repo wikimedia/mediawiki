@@ -154,7 +154,7 @@ class ApiPageSet extends ApiBase {
 	/** @var string */
 	private $mCacheMode = 'public';
 
-	/** @var array */
+	/** @var array<string,array<int,mixed>> [fieldName][pageId] => value */
 	private $mRequestedPageFields = [];
 
 	/** @var int */
@@ -386,17 +386,17 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Request an additional field from the page table.
 	 * Must be called before execute()
-	 * @param string $fieldName
+	 * @param string $fieldName A page table field, e.g. "page_touched"
 	 */
 	public function requestField( $fieldName ) {
-		$this->mRequestedPageFields[$fieldName] = null;
+		$this->mRequestedPageFields[$fieldName] = [];
 	}
 
 	/**
-	 * Get the value of a custom field previously requested through
-	 * requestField()
-	 * @param string $fieldName
-	 * @return mixed Field value
+	 * Get the values of one of the previously requested page table fields. Can only be used
+	 * after execute() and only for fields previously requested through requestField().
+	 * @param string $fieldName A page table field, e.g. "page_touched"
+	 * @return array<int,mixed> Field values per page id, initialized only after execute()
 	 */
 	public function getCustomField( $fieldName ) {
 		return $this->mRequestedPageFields[$fieldName];
