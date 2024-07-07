@@ -37,15 +37,13 @@
 	 * @memberof Hooks
 	 */
 
-	var config = require( './config.json' );
-	var storageKey = 'mw-PostEdit' + mw.config.get( 'wgPageName' );
+	const config = require( './config.json' );
+	const storageKey = 'mw-PostEdit' + mw.config.get( 'wgPageName' );
 
 	function showConfirmation( data ) {
-		var label;
-
 		data = data || {};
 
-		label = data.message || mw.message(
+		const label = data.message || mw.message(
 			config.EditSubmitButtonLabelPublish ?
 				'postedit-confirmation-published' :
 				'postedit-confirmation-saved',
@@ -78,10 +76,10 @@
 		}
 
 		// Check storage and cookie (set server-side)
-		var action = mw.storage.session.get( storageKey ) || mw.config.get( 'wgPostEdit' );
+		let action = mw.storage.session.get( storageKey ) || mw.config.get( 'wgPostEdit' );
 		if ( action ) {
-			var tempUserCreated = false;
-			var plusPos = action.indexOf( '+' );
+			let tempUserCreated = false;
+			const plusPos = action.indexOf( '+' );
 			if ( plusPos > -1 ) {
 				action = action.slice( 0, plusPos );
 				tempUserCreated = true;
@@ -125,7 +123,7 @@
 		 * @param {string} [action] One of 'saved', 'created', 'restored'
 		 * @param {boolean} [tempUserCreated] Whether a temporary account was created during this edit
 		 */
-		fireHook: function ( action, tempUserCreated ) {
+		fireHook: ( action, tempUserCreated ) => {
 			if ( !action ) {
 				action = 'saved';
 			}
@@ -157,7 +155,7 @@
 		 * @param {string} [action] One of 'saved', 'created', 'restored'
 		 * @param {boolean} [tempUserCreated] Whether a temporary account was created during this edit
 		 */
-		fireHookOnPageReload: function ( action, tempUserCreated ) {
+		fireHookOnPageReload: ( action, tempUserCreated ) => {
 			if ( !action ) {
 				action = 'saved';
 			}
