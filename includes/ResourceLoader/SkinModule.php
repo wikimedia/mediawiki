@@ -121,7 +121,7 @@ class SkinModule extends LessVarFileModule {
 	 *     Styles for ordered lists elements that support mixed language content.
 	 *
 	 * "i18n-all-lists-margins":
-	 *     Styles for margins of list elements where LTR and RTL are mixed.
+	 *     Deprecated. It's merged into the `elements` module.
 	 *
 	 * "i18n-headings":
 	 *     Styles for line-heights of headings across different languages.
@@ -198,9 +198,8 @@ class SkinModule extends LessVarFileModule {
 		'i18n-ordered-lists' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/i18n-ordered-lists.less' ],
 		],
-		'i18n-all-lists-margins' => [
-			'screen' => [ 'resources/src/mediawiki.skinning/i18n-all-lists-margins.less' ],
-		],
+		// Deprecated since 1.43, it's merged into the `elements` module.
+		'i18n-all-lists-margins' => [],
 		'i18n-headings' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/i18n-headings.less' ],
 		],
@@ -318,6 +317,11 @@ class SkinModule extends LessVarFileModule {
 	protected static function applyFeaturesCompatibility(
 		array $features, bool $addUnspecifiedFeatures = true, &$messages = ''
 	): array {
+		if ( isset( $features[ 'i18n-all-lists-margins' ] ) ) {
+			unset( $features[ 'i18n-all-lists-margins' ] );
+			$messages .= '[1.43] The use of the `i18n-all-lists-margins` feature with SkinModule'
+				. ' is deprecated. Please remove. ';
+		}
 		// The `content` feature is mapped to `content-media`.
 		if ( isset( $features[ 'content' ] ) ) {
 			$features[ 'content-media' ] = $features[ 'content' ];
