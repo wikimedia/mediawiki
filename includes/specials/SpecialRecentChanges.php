@@ -45,6 +45,7 @@ use OOUI\HtmlSnippet;
 use RecentChange;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\RawSQLExpression;
 
 /**
  * List of the last changes made to the wiki
@@ -136,16 +137,18 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds, $selectedValues
 			) {
 				sort( $selectedValues );
-				$notwatchedCond = 'wl_user IS NULL';
-				$watchedCond = 'wl_user IS NOT NULL';
+				$notwatchedCond = $dbr->expr( 'wl_user', '=', null );
+				$watchedCond = $dbr->expr( 'wl_user', '!=', null );
 				if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) ) {
 					// Expired watchlist items stay in the DB after their expiry time until they're purged,
 					// so it's not enough to only check for wl_user.
-					$quotedNow = $dbr->addQuotes( $dbr->timestamp() );
-					$notwatchedCond = "wl_user IS NULL OR ( we_expiry IS NOT NULL AND we_expiry < $quotedNow )";
-					$watchedCond = "wl_user IS NOT NULL AND ( we_expiry IS NULL OR we_expiry >= $quotedNow )";
+					$dbNow = $dbr->timestamp();
+					$notwatchedCond = $notwatchedCond
+						->orExpr( $dbr->expr( 'we_expiry', '!=', null )->and( 'we_expiry', '<', $dbNow ) );
+					$watchedCond = $watchedCond
+						->andExpr( $dbr->expr( 'we_expiry', '=', null )->or( 'we_expiry', '>=', $dbNow ) );
 				}
-				$newCond = 'rc_timestamp >= wl_notificationtimestamp';
+				$newCond = new RawSQLExpression( 'rc_timestamp >= wl_notificationtimestamp' );
 
 				if ( $selectedValues === [ 'notwatched' ] ) {
 					$conds[] = $notwatchedCond;
@@ -158,10 +161,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				}
 
 				if ( $selectedValues === [ 'watchednew' ] ) {
-					$conds[] = $dbr->makeList( [
-						$watchedCond,
-						$newCond
-					], LIST_AND );
+					$conds[] = $watchedCond
+						->andExpr( $newCond );
 					return;
 				}
 
@@ -171,13 +172,11 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				}
 
 				if ( $selectedValues === [ 'notwatched', 'watchednew' ] ) {
-					$conds[] = $dbr->makeList( [
-						$notwatchedCond,
-						$dbr->makeList( [
-							$watchedCond,
-							$newCond
-						], LIST_AND )
-					], LIST_OR );
+					$conds[] = $notwatchedCond
+						->orExpr(
+							$watchedCond
+								->andExpr( $newCond )
+						);
 					return;
 				}
 

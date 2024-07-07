@@ -48,6 +48,8 @@ use RecentChange;
 use UserNotLoggedIn;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\RawSQLExpression;
+use Wikimedia\Rdbms\RawSQLValue;
 
 /**
  * @defgroup Watchlist Users watchlist handling
@@ -229,13 +231,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 						$nonRevisionTypes = [ RC_LOG ];
 						$this->getHookRunner()->onSpecialWatchlistGetNonRevisionTypes( $nonRevisionTypes );
 						if ( $nonRevisionTypes ) {
-							$conds[] = $dbr->makeList(
-								[
-									'rc_this_oldid=page_latest',
-									'rc_type' => $nonRevisionTypes,
-								],
-								LIST_OR
-							);
+							$conds[] = $dbr->expr( 'rc_this_oldid', '=', new RawSQLValue( 'page_latest' ) )
+								->or( 'rc_type', '=', $nonRevisionTypes );
 						}
 					},
 				]
@@ -288,15 +285,11 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				$selectedValues
 			) {
 				if ( $selectedValues === [ 'seen' ] ) {
-					$conds[] = $dbr->makeList( [
-						'wl_notificationtimestamp' => null,
-						'rc_timestamp < wl_notificationtimestamp'
-					], LIST_OR );
+					$conds[] = $dbr->expr( 'wl_notificationtimestamp', '=', null )
+						->orExpr( new RawSQLExpression( 'rc_timestamp < wl_notificationtimestamp' ) );
 				} elseif ( $selectedValues === [ 'unseen' ] ) {
-					$conds[] = $dbr->makeList( [
-						'wl_notificationtimestamp IS NOT NULL',
-						'rc_timestamp >= wl_notificationtimestamp'
-					], LIST_AND );
+					$conds[] = $dbr->expr( 'wl_notificationtimestamp', '!=', null )
+						->andExpr( new RawSQLExpression( 'rc_timestamp >= wl_notificationtimestamp' ) );
 				}
 			}
 		] ) );
@@ -461,10 +454,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$bitmask = 0;
 		}
 		if ( $bitmask ) {
-			$conds[] = $dbr->makeList( [
-				'rc_type != ' . RC_LOG,
-				$dbr->bitAnd( 'rc_deleted', $bitmask ) . " != $bitmask",
-			], LIST_OR );
+			$conds[] = $dbr->expr( 'rc_type', '!=', RC_LOG )
+				->orExpr( new RawSQLExpression( $dbr->bitAnd( 'rc_deleted', $bitmask ) . " != $bitmask" ) );
 		}
 
 		$tagFilter = $opts['tagfilter'] !== '' ? explode( '|', $opts['tagfilter'] ) : [];
