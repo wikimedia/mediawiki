@@ -1466,7 +1466,7 @@ class LocalFile extends File {
 	 * @param string|int|null $start Optional: Timestamp, start from
 	 * @param string|int|null $end Optional: Timestamp, end at
 	 * @param bool $inc
-	 * @return OldLocalFile[]
+	 * @return OldLocalFile[] Guaranteed to be in descending order
 	 */
 	public function getHistory( $limit = null, $start = null, $end = null, $inc = true ) {
 		if ( !$this->exists() ) {
