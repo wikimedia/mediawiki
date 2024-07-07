@@ -7,25 +7,26 @@
  * See also ImagePage.php#makeMetadataTable (creates the HTML)
  */
 ( function () {
+	'use strict';
+
 	$( () => {
-		var $tables = $( '.mw_metadata' );
+		const $tables = $( '.mw_metadata' );
 		if ( !$tables.find( '.mw-metadata-collapsible' ).length ) {
 			// No collapsible rows present on this page
 			return;
 		}
-		$tables.each( function () {
-			var $link,
-				expandText = mw.msg( 'metadata-expand' ),
-				collapseText = mw.msg( 'metadata-collapse' ),
-				$table = $( this );
+		$tables.each( ( _, table ) => {
+			const expandText = mw.msg( 'metadata-expand' );
+			const collapseText = mw.msg( 'metadata-collapse' );
+			const $table = $( table );
 
-			$link = $( '<a>' )
+			const $link = $( '<a>' )
 				.text( expandText )
 				.attr( {
 					role: 'button',
 					tabindex: 0
 				} )
-				.on( 'click keypress', function ( e ) {
+				.on( 'click keypress', ( e ) => {
 					if (
 						e.type === 'click' ||
 						e.type === 'keypress' && e.which === 13
@@ -33,10 +34,10 @@
 						// eslint-disable-next-line no-jquery/no-class-state
 						if ( $table.hasClass( 'collapsed' ) ) {
 							// From collapsed to expanded. Button will now collapse.
-							$( this ).text( collapseText );
+							$( e.currentTarget ).text( collapseText );
 						} else {
 							// From expanded to collapsed. Button will now expand.
-							$( this ).text( expandText );
+							$( e.currentTarget ).text( expandText );
 						}
 						// eslint-disable-next-line no-jquery/no-class-state
 						$table.toggleClass( 'collapsed' );
