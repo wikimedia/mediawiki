@@ -170,7 +170,8 @@ abstract class FormSpecialPage extends SpecialPage {
 
 		// Give precedence to subpage syntax
 		$field = $this->getSubpageField();
-		if ( $this->par && $field ) {
+		// cast to string so that "0" is not thrown away
+		if ( strval( $this->par ) !== '' && $field ) {
 			$this->getRequest()->setVal( $form->getField( $field )->getName(), $this->par );
 			$form->setTitle( $this->getPageTitle() );
 		}
