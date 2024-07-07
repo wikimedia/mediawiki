@@ -96,13 +96,13 @@ abstract class Maintenance {
 
 	/**
 	 * @var array This is the list of options that were actually passed
-	 * @deprecated since 1.39, use $this->parameters instead.
+	 * @deprecated since 1.39, use {@see addOption} instead.
 	 */
 	protected $mOptions = [];
 
 	/**
 	 * @var array This is the list of arguments that were actually passed
-	 * @deprecated since 1.39, use $this->parameters instead.
+	 * @deprecated since 1.39, use {@see addArg} instead.
 	 */
 	protected $mArgs = [];
 
@@ -116,7 +116,7 @@ abstract class Maintenance {
 
 	/**
 	 * @var string A description of the script, children should change this via addDescription()
-	 * @deprecated since 1.39, use $this->parameters instead.
+	 * @deprecated since 1.39, use {@see addDescription} instead.
 	 */
 	protected $mDescription = '';
 
@@ -177,7 +177,7 @@ abstract class Maintenance {
 	 * This is an array of arrays where
 	 * 0 => the option and 1 => parameter value.
 	 *
-	 * @deprecated since 1.39, use $this->parameters instead.
+	 * @deprecated since 1.39, use $this->getParameters()->getOptionsSequence() instead.
 	 * @var array
 	 */
 	public $orderedOptions = [];
