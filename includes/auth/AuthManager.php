@@ -1801,30 +1801,20 @@ class AuthManager implements LoggerAwareInterface {
 
 		$username = $user->getName();
 
-		// Try the local user from the replica DB
+		// Try the local user from the replica DB, then fall back to the primary.
 		$localUserIdentity = $this->userIdentityLookup->getUserIdentityByName( $username );
-		$localId = ( $localUserIdentity && $localUserIdentity->getId() )
-			? $localUserIdentity->getId()
-			: null;
-		$flags = IDBAccessObject::READ_NORMAL;
-
-		// Fetch the user ID from the primary, so that we don't try to create the user
-		// when they already exist, due to replication lag
 		// @codeCoverageIgnoreStart
-		if (
-			!$localId &&
-			$this->loadBalancer->getReaderIndex() !== 0
+		if ( ( !$localUserIdentity || !$localUserIdentity->isRegistered() )
+			&& $this->loadBalancer->getReaderIndex() !== 0
 		) {
 			$localUserIdentity = $this->userIdentityLookup->getUserIdentityByName(
-				$username,
-				IDBAccessObject::READ_LATEST
+				$username, IDBAccessObject::READ_LATEST
 			);
-			$localId = ( $localUserIdentity && $localUserIdentity->getId() )
-				? $localUserIdentity->getId()
-				: null;
-			$flags = IDBAccessObject::READ_LATEST;
 		}
 		// @codeCoverageIgnoreEnd
+		$localId = ( $localUserIdentity && $localUserIdentity->isRegistered() )
+			? $localUserIdentity->getId()
+			: null;
 
 		if ( $localId ) {
 			$this->logger->debug( __METHOD__ . ': {username} already exists locally', [
@@ -1832,11 +1822,10 @@ class AuthManager implements LoggerAwareInterface {
 			] );
 			$user->setId( $localId );
 
-			// Can't rely on a replica read, even if getUserIdentityByName() used
+			// Can't rely on a replica read, not even when getUserIdentityByName() used
 			// READ_NORMAL, because that method has an in-process cache not shared
 			// with loadFromId.
-			$flags = IDBAccessObject::READ_LATEST;
-			$user->loadFromId( $flags );
+			$user->loadFromId( IDBAccessObject::READ_LATEST );
 			if ( $login ) {
 				$remember = $source === self::AUTOCREATE_SOURCE_TEMP;
 				$this->setSessionDataForUser( $user, $remember );
