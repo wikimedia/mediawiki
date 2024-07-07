@@ -527,7 +527,7 @@ class SpecialUpload extends SpecialPage {
 			!$this->mTokenOk && !$this->mCancelUpload &&
 			( $this->mUpload && $this->mUploadClicked )
 		) {
-			$form->addPreText( $this->msg( 'session_fail_preview' )->parse() );
+			$form->addPreHtml( $this->msg( 'session_fail_preview' )->parse() );
 		}
 
 		# Give a notice if the user is uploading a file that has been deleted or moved
@@ -543,19 +543,19 @@ class SpecialUpload extends SpecialPage {
 					'msgKey' => [ 'upload-recreate-warning' ] ]
 			);
 		}
-		$form->addPreText( $delNotice );
+		$form->addPreHtml( $delNotice );
 
 		# Add text to form
-		$form->addPreText( '<div id="uploadtext">' .
+		$form->addPreHtml( '<div id="uploadtext">' .
 			$this->msg( 'uploadtext', [ $this->mDesiredDestName ] )->parseAsBlock() .
 			'</div>' );
 		# Add upload error message
-		$form->addPreText( $message );
+		$form->addPreHtml( $message );
 
 		# Add footer to form
 		$uploadFooter = $this->msg( 'uploadfooter' );
 		if ( !$uploadFooter->isDisabled() ) {
-			$form->addPostText( '<div id="mw-upload-footer-message">'
+			$form->addPostHtml( '<div id="mw-upload-footer-message">'
 				. $uploadFooter->parseAsBlock() . "</div>\n" );
 		}
 

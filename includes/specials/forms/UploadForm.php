@@ -131,7 +131,7 @@ class UploadForm extends HTMLForm {
 				[ 'action' => 'edit' ]
 			);
 			$editLicenses = '<p class="mw-upload-editlicenses">' . $licensesLink . '</p>';
-			$this->addFooterText( $editLicenses, 'description' );
+			$this->addFooterHtml( $editLicenses, 'description' );
 		}
 
 		# Set some form properties
@@ -309,7 +309,7 @@ class UploadForm extends HTMLForm {
 			if ( $file ) {
 				$mto = $file->transform( [ 'width' => 120 ] );
 				if ( $mto ) {
-					$this->addHeaderText(
+					$this->addHeaderHtml(
 						'<div class="thumb t' .
 						$this->contentLanguage->alignEnd() . '">' .
 						Html::element( 'img', [
