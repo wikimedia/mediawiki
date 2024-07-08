@@ -170,6 +170,11 @@ class ParamValidator {
 	/** @} */
 	// endregion -- end of Constants for parameter settings arrays
 
+	/**
+	 * @see TypeDef::OPT_ENFORCE_JSON_TYPES
+	 */
+	public const OPT_ENFORCE_JSON_TYPES = TypeDef::OPT_ENFORCE_JSON_TYPES;
+
 	/** Magic "all values" value when PARAM_ALL is true. */
 	public const ALL_DEFAULT_STRING = '*';
 
@@ -612,7 +617,21 @@ class ParamValidator {
 		// Split the multi-value and validate each parameter
 		$limit1 = $settings[self::PARAM_ISMULTI_LIMIT1] ?? $this->ismultiLimit1;
 		$limit2 = max( $limit1, $settings[self::PARAM_ISMULTI_LIMIT2] ?? $this->ismultiLimit2 );
-		$valuesList = is_array( $value ) ? $value : self::explodeMultiValue( $value, $limit2 + 1 );
+
+		if ( is_array( $value ) ) {
+			$valuesList = $value;
+		} elseif ( $options[ self::OPT_ENFORCE_JSON_TYPES ] ?? false ) {
+			throw new ValidationException(
+				DataMessageValue::new(
+					'paramvalidator-multivalue-must-be-array',
+					[],
+					'multivalue-must-be-array'
+				)->plaintextParams( $name ),
+				$name, $value, $settings
+			);
+		} else {
+			$valuesList = self::explodeMultiValue( $value, $limit2 + 1 );
+		}
 
 		// Handle PARAM_ALL
 		$enumValues = $typeDef->getEnumValues( $name, $settings, $options );
