@@ -6,6 +6,7 @@ use HtmlArmor;
 use MediaWiki\Config\Config;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MessageLocalizer;
@@ -74,7 +75,7 @@ class SkinComponentCopyright implements SkinComponent {
 			$link = $linkRenderer->makeExternalLink(
 				$config->get( MainConfigNames::RightsUrl ),
 				$config->get( MainConfigNames::RightsText ),
-				$title
+				$title ?? SpecialPage::getTitleFor( 'Badtitle' )
 			);
 		} elseif ( $config->get( MainConfigNames::RightsText ) ) {
 			$link = $config->get( MainConfigNames::RightsText );
