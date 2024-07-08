@@ -245,10 +245,7 @@ class Validator {
 					$settings,
 					[
 						'source' => $source,
-						// TODO: Replace this with OPT_ENFORCE_JSON_TYPES and
-						//       remove support for OPT_LOG_BAD_TYPES (grep
-						//       for T305973).
-						TypeDef::OPT_LOG_BAD_TYPES => $enforceTypes,
+						TypeDef::OPT_ENFORCE_JSON_TYPES => $enforceTypes,
 						StringDef::OPT_ALLOW_EMPTY => $enforceTypes,
 					]
 				);
