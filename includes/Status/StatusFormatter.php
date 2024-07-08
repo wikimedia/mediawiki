@@ -71,6 +71,13 @@ class StatusFormatter {
 	/**
 	 * Get the error list as a wikitext formatted list
 	 *
+	 * All message parameters that were provided as strings will be escaped with wfEscapeWikiText.
+	 * This is mostly a historical accident and often undesirable (T368821).
+	 * - To avoid this behavior when producing the Status, pass MessageSpecifier objects to methods
+	 *   such as `$status->fatal()`, instead of separate key and params parameters.
+	 * - To avoid this behavior when consuming the Status, use the `$status->getMessages()` method
+	 *   instead, and display each message separately (or combine then with `Message::listParams()`).
+	 *
 	 * @param StatusValue $status
 	 * @param array $options An array of options, supporting the following keys:
 	 * - 'shortContext' (string|false|null) A short enclosing context message name, to
@@ -126,6 +133,13 @@ class StatusFormatter {
 
 	/**
 	 * Get a bullet list of the errors as a Message object.
+	 *
+	 * All message parameters that were provided as strings will be escaped with wfEscapeWikiText.
+	 * This is mostly a historical accident and often undesirable (T368821).
+	 * - To avoid this behavior when producing the Status, pass MessageSpecifier objects to methods
+	 *   such as `$status->fatal()`, instead of separate key and params parameters.
+	 * - To avoid this behavior when consuming the Status, use the `$status->getMessages()` method
+	 *   instead, and display each message separately (or combine then with `Message::listParams()`).
 	 *
 	 * $shortContext and $longContext can be used to wrap the error list in some text.
 	 * $shortContext will be preferred when there is a single error; $longContext will be
@@ -302,6 +316,13 @@ class StatusFormatter {
 
 	/**
 	 * Get the error message as HTML. This is done by parsing the wikitext error message
+	 *
+	 * All message parameters that were provided as strings will be escaped with wfEscapeWikiText.
+	 * This is mostly a historical accident and often undesirable (T368821).
+	 * - To avoid this behavior when producing the Status, pass MessageSpecifier objects to methods
+	 *   such as `$status->fatal()`, instead of separate key and params parameters.
+	 * - To avoid this behavior when consuming the Status, use the `$status->getMessages()` method
+	 *   instead, and display each message separately (or combine then with `Message::listParams()`).
 	 *
 	 * @param StatusValue $status
 	 * @param array $options An array of options, supporting the following keys:
