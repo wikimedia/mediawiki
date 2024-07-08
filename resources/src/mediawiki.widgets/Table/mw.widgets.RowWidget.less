@@ -1,0 +1,33 @@
+.mw-widgets-rowWidget {
+	clear: left;
+	float: left;
+	margin-bottom: -1px;
+	width: 100%;
+
+	&-label {
+		display: block;
+		margin-right: 5%;
+		padding-top: 0.5em;
+		width: 35%;
+	}
+
+	& > &-label {
+		float: left;
+	}
+
+	& > &-cells {
+		float: left;
+
+		> .oo-ui-inputWidget {
+			float: left;
+			margin-right: -1px;
+			width: 8em;
+		}
+	}
+
+	& > &-cells > .oo-ui-inputWidget > input,
+	& > &-delete-button > .oo-ui-buttonElement-button {
+		margin: 0;
+		border-radius: 0;
+	}
+}
