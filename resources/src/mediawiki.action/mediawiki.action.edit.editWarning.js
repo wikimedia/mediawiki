@@ -5,10 +5,9 @@
 	'use strict';
 
 	$( () => {
-		var allowCloseWindow,
-			$textBox = $( '#wpTextbox1' ),
-			$summary = $( '#wpSummary' ),
-			$both = $textBox.add( $summary );
+		const $textBox = $( '#wpTextbox1' );
+		const $summary = $( '#wpSummary' );
+		const $both = $textBox.add( $summary );
 
 		// Check if EditWarning is enabled and if we need it
 		if ( !mw.user.options.get( 'useeditwarning' ) ) {
@@ -17,13 +16,13 @@
 
 		// Save the original value of the text fields
 		$both.each( ( index, element ) => {
-			var $element = $( element );
+			const $element = $( element );
 			$element.data( 'origtext', $element.textSelection( 'getContents' ) );
 		} );
 
 		// This registers an event with the name "beforeunload.editwarning", which allows others to
 		// turn the confirmation off with `$( window ).off( 'beforeunload.editwarning' );`.
-		allowCloseWindow = mw.confirmCloseWindow( {
+		const allowCloseWindow = mw.confirmCloseWindow( {
 			test: function () {
 				// When the action is submit we're solving a conflict. Everything is a pending change there.
 				return mw.config.get( 'wgAction' ) === 'submit' ||
