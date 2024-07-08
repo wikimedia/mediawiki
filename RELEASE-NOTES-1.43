@@ -94,6 +94,7 @@ For notes on 1.42.x and older releases, see HISTORY.
   More information: https://www.mediawiki.org/wiki/Heading_HTML_changes
   A future release will emit deprecation warnings for skins with
   'supportsMwHeading' set to false.
+* The AuthPreserveQueryParams hook was added.
 * (T219397) New `Language::formatDurationBetweenTimestamps()` function added
   which takes two timestamps and a precision in order to calculate a more
   accurate text representation of duration.

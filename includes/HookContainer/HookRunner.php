@@ -44,6 +44,7 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
 class HookRunner implements
 	\MediaWiki\Actions\Hook\GetActionNameHook,
 	\MediaWiki\Auth\Hook\AuthManagerLoginAuthenticateAuditHook,
+	\MediaWiki\Auth\Hook\AuthPreserveQueryParamsHook,
 	\MediaWiki\Auth\Hook\ExemptFromAccountCreationThrottleHook,
 	\MediaWiki\Auth\Hook\LocalUserCreatedHook,
 	\MediaWiki\Auth\Hook\ResetPasswordExpirationHook,
@@ -891,6 +892,12 @@ class HookRunner implements
 		return $this->container->run(
 			'AuthManagerLoginAuthenticateAudit',
 			[ $response, $user, $username, $extraData ]
+		);
+	}
+
+	public function onAuthPreserveQueryParams( &$params, $options ) {
+		return $this->container->run(
+			'AuthPreserveQueryParams', [ &$params, $options ]
 		);
 	}
 
