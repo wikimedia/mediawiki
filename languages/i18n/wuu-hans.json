@@ -33,7 +33,9 @@
 			"城市酸儒文人挖坑",
 			"姑苏小恐龙",
 			"飞舞回堂前",
-			"아라"
+			"아라",
+			"Diskdance",
+			"LittlePaw365"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -792,7 +794,7 @@
 	"unstrip-size-warning": "已超出Unstrip大小限制（$1）",
 	"unstrip-size-category": "超出unstrip大小限制个页面",
 	"unstrip-size-category-desc": "箇个页面超出仔unstrip个规模极限。",
-	"converter-manual-rule-error": "来手动语言转换规则当中查着错误",
+	"converter-manual-rule-error": "勒手动字词转换规则当中查着错误",
 	"undo-success": "箇笔编辑可以畀撤销。\n请检查下头个对比来核实侬想要撤销个内容，接着发布下头个更改来完成撤销。",
 	"undo-failure": "由于相互冲突个中途编辑，箇只编辑𪥸撤销。",
 	"undo-main-slot-only": "编辑没办法撤销，因为伊涉及主位置以外个内容。",
@@ -1484,7 +1486,8 @@
 	"protect-level-autoconfirmed": "只准自动确认用户",
 	"protect-level-sysop": "只准管理員",
 	"protect-summary-cascade": "级联",
-	"protect-expiring": "终止于$1（UTC）",
+	"protect-expiring": "期限为$1（UTC）",
+	"protect-expiring-local": "期限为$1",
 	"protect-cascade": "保护本页里向包含个页面（级联保护）",
 	"protect-cantedit": "侬呒此更改迭只页面个保护等级，因为侬呒没权限编辑渠。",
 	"protect-othertime": "各許時間：",
@@ -1674,7 +1677,7 @@
 	"pageinfo-header-restrictions": "页面保护",
 	"pageinfo-header-properties": "页面属性",
 	"pageinfo-display-title": "显示题目头",
-	"pageinfo-default-sort": "默认排序关键字",
+	"pageinfo-default-sort": "默认排序键",
 	"pageinfo-length": "页面长度（字节）",
 	"pageinfo-article-id": "页面ID",
 	"pageinfo-language": "页面内容闲话",

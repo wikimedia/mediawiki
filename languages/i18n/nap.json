@@ -24,7 +24,8 @@
 			"아라",
 			"Finizio",
 			"Amire80",
-			"Reedy"
+			"Reedy",
+			"Dreamy Jazz"
 		]
 	},
 	"tog-underline": "Sottolinia 'e jonte:",
@@ -3354,7 +3355,7 @@
 	"log-action-filter-managetags-delete": "Scancellazione 'etichetta",
 	"log-action-filter-managetags-activate": "Appiccia 'etichetta",
 	"log-action-filter-managetags-deactivate": "Stuta etichetta",
-	"log-action-filter-move-move": "Móve senza sovrascrivere 'e redirect",
+	"log-action-filter-move-move": "Move without overwriting of redirects",
 	"log-action-filter-move-move_redir": "Móve senza sovrascrivere 'e redirect",
 	"log-action-filter-newusers-create": "Criazione 'a n'utente anonimo",
 	"log-action-filter-newusers-create2": "Criazione 'a n'utente riggistrato",

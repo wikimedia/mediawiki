@@ -1245,7 +1245,7 @@
 	"wantedpages-badtitle": "Títol no conforme en o conchunto de resultaus: $1",
 	"wantedfiles": "Fichers requiestos",
 	"wantedfiletext-cat": "Os fichers siguients s'emplegan en as pachinas pero no existen. Ye posible que s'amuestren fichers d'atros repostes externos encara que existan. Qualsiquer falso positivo d'ixa mena se <del>tachará</del>. Antiparte, as pachinas que fan referencia a fichers que no existen se listan en [[:$1]].",
-	"wantedfiletext-nocat": "Os fichers siguients s'emplegan en as pachinas pero no existen.  Ye posible que s'amuestren fichers d'atros repostes externos encara que existan. Qualsiquer falso positivo d'ixa mena se <del>tachará</del>.",
+	"wantedfiletext-nocat": "Os fichers siguients s'emplegan en as pachinas pero no existen. Ye posible que s'amuestren fichers d'atros repostes externos encara que existan. Qualsiquer falso positivo d'ixa mena se <del>tachará</del>.",
 	"wantedtemplates": "Plantillas requiestas",
 	"mostlinked": "Pachinas más enlazadas",
 	"mostlinkedcategories": "Categorías más enlazadas",

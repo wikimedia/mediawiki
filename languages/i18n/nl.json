@@ -115,7 +115,8 @@
 			"아라",
 			"Daniuu",
 			"Amire80",
-			"Victor LP"
+			"Victor LP",
+			"Iamthedutchdude"
 		]
 	},
 	"tog-underline": "Koppelingen onderstrepen:",
@@ -2729,7 +2730,7 @@
 	"ipblocklist": "Geblokkeerde gebruikers",
 	"ipblocklist-legend": "Een geblokkeerde gebruiker zoeken",
 	"blocklist-autoblocks": "Automatische blokkades verbergen",
-	"blocklist-userblocks": "Geblokkeerde accounts verbergen",
+	"blocklist-userblocks": "Accountblokkades verbergen",
 	"blocklist-tempblocks": "Tijdelijke blokkades verbergen",
 	"blocklist-indefblocks": "Verberg blokkades met een oneindige loopduur",
 	"blocklist-addressblocks": "Blokkades van één IP-adres verbergen",
@@ -2864,6 +2865,8 @@
 	"movesubpage": "{{PLURAL:$1|Deelpagina|Deelpagina's}}",
 	"movesubpagetext": "De {{PLURAL:$1|deelpagina|$1 deelpagina's}} van deze pagina {{PLURAL:$1|wordt|worden}} hieronder weergegeven.",
 	"movesubpagetalktext": "De bijbehorende overlegpagina heeft $1 {{PLURAL:$1|deelpagina|deelpagina's}} hierbeneden getoond.",
+	"movesubpagetext-truncated": "De eerste $1 {{PLURAL:$1|deelpagina|deelpagina's}} voor deze pagina worden hieronder weergegeven.",
+	"movesubpagetalktext-truncated": "De eerste $1 {{PLURAL:$1|deelpagina|deelpagina's}} voor de bijbehorende overlegpagina worden hieronder weergegeven.",
 	"movenosubpage": "Deze pagina heeft geen deelpagina's.",
 	"movereason": "Reden:",
 	"revertmove": "terugdraaien",
@@ -3208,7 +3211,7 @@
 	"newimages-hidepatrolled": "Gecontroleerde uploads verbergen",
 	"newimages-mediatype": "Mediatype:",
 	"noimages": "Er is niets te zien.",
-	"gallery-slideshow-toggle": "Miniaturen schakelen",
+	"gallery-slideshow-toggle": "Miniaturen omschakelen",
 	"ilsubmit": "Zoeken",
 	"bydate": "op datum",
 	"sp-newimages-showfrom": "Nieuwe bestanden bekijken vanaf $1 om $2.",

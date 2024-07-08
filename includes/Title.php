@@ -1397,16 +1397,18 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 	/**
 	 * Is this the mainpage?
-	 * @note Title::newFromText seems to be sufficiently optimized by the title
-	 * cache that we don't need to over-optimize by doing direct comparisons and
-	 * accidentally creating new bugs where $title->equals( Title::newFromText() )
-	 * ends up reporting something differently than $title->isMainPage();
+	 * @see T302186
 	 *
 	 * @since 1.18
 	 * @return bool
 	 */
 	public function isMainPage() {
-		return $this->equals( self::newMainPage() );
+		/** @var Title|null */
+		static $cachedMainPage;
+		if ( $cachedMainPage === null ) {
+			$cachedMainPage = self::newMainPage();
+		}
+		return $this->equals( $cachedMainPage );
 	}
 
 	/**

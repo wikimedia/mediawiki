@@ -208,7 +208,7 @@ class MaintenanceRunner {
 
 			if ( !is_readable( $settingsFile ) ) {
 				$this->fatalError( "The file $settingsFile must exist and be readable.\n" .
-					"Use --conf to specify it." );
+					"Use --conf to specify it.\n" );
 			}
 			$wgCommandLineMode = true;
 		}

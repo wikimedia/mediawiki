@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Rest;
 
+use Config;
 use ExtensionRegistry;
 use IContextSource;
 use MediaWiki;
@@ -57,18 +58,8 @@ class EntryPoint {
 			$authority
 		);
 
-		// Always include the "official" routes. Include additional routes if specified.
-		$routeFiles = array_merge(
-			[ 'includes/Rest/coreRoutes.json' ],
-			$conf->get( MainConfigNames::RestAPIAdditionalRouteFiles )
-		);
-		array_walk( $routeFiles, static function ( &$val, $key ) {
-			global $IP;
-			$val = "$IP/$val";
-		} );
-
 		return ( new Router(
-			$routeFiles,
+			self::getRouteFiles( $conf ),
 			ExtensionRegistry::getInstance()->getAttribute( 'RestRoutes' ),
 			new ServiceOptions( Router::CONSTRUCTOR_OPTIONS, $conf ),
 			$services->getLocalServerObjectCache(),
@@ -151,6 +142,31 @@ class EntryPoint {
 			$textFormatters[] = $factory->getTextFormatter( $lang );
 		}
 		return $textFormatters;
+	}
+
+	/**
+	 * @param Config $conf
+	 * @return string[]
+	 */
+	private static function getRouteFiles( $conf ) {
+		global $IP;
+		$extensionsDir = $conf->get( MainConfigNames::ExtensionDirectory );
+		// Always include the "official" routes. Include additional routes if specified.
+		$routeFiles = array_merge(
+			[ 'includes/Rest/coreRoutes.json' ],
+			$conf->get( MainConfigNames::RestAPIAdditionalRouteFiles )
+		);
+		foreach ( $routeFiles as &$file ) {
+			if ( str_starts_with( $file, '/' ) ) {
+				// Allow absolute paths on non-Windows
+			} elseif ( str_starts_with( $file, 'extensions/' ) ) {
+				// Support hacks like Wikibase.ci.php
+				$file = substr_replace( $file, $extensionsDir, 0, strlen( 'extensions' ) );
+			} else {
+				$file = "$IP/$file";
+			}
+		}
+		return $routeFiles;
 	}
 
 	public function __construct( RequestContext $context, RequestInterface $request,

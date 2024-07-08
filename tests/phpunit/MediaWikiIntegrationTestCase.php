@@ -527,10 +527,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		$class = static::class;
 
-		$first = !isset( $this->db->_hasDataForTestClass )
-			|| $this->db->_hasDataForTestClass !== $class;
+		$hasDataForTestClass = DynamicPropertyTestHelper::getDynamicProperty( $this->db, 'hasDataForTestClass' );
 
-		$this->db->_hasDataForTestClass = $class;
+		$first = $hasDataForTestClass !== $class;
+
+		DynamicPropertyTestHelper::setDynamicProperty( $this->db, 'hasDataForTestClass', $class );
 		return $first;
 	}
 
@@ -1663,7 +1664,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$prefix = self::getTestPrefixFor( $db );
 		}
 
-		if ( isset( $db->_originalTablePrefix ) ) {
+		$originalTablePrefix = DynamicPropertyTestHelper::getDynamicProperty( $db, 'originalTablePrefix' );
+
+		if ( $originalTablePrefix !== null ) {
 			return null;
 		}
 
@@ -1680,7 +1683,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$dbClone->cloneTableStructure();
 
 		$db->tablePrefix( $prefix );
-		$db->_originalTablePrefix = $oldPrefix;
+		DynamicPropertyTestHelper::setDynamicProperty( $db, 'originalTablePrefix', $oldPrefix );
 
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		$lb->setTempTablesOnlyMode( self::$useTemporaryTables, $db->getDomainID() );
@@ -1741,14 +1744,14 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		// TODO: the below should be re-written as soon as LBFactory, LoadBalancer,
 		// and Database no longer use global state.
 
-		self::$dbSetup = true;
-
 		$dbClone = self::setupDatabaseWithTestPrefix( $db, $prefix );
 		if ( $dbClone ) {
 			self::$dbClone = $dbClone;
 		}
 
 		Hooks::runner()->onUnitTestsAfterDatabaseSetup( $db, $prefix );
+
+		self::$dbSetup = true;
 	}
 
 	/**
@@ -1898,11 +1901,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	private function setUpSchema( IMaintainableDatabase $db ) {
 		// Undo any active overrides.
-		$oldOverrides = $db->_schemaOverrides ?? self::$schemaOverrideDefaults;
+		$oldOverrides = DynamicPropertyTestHelper::getDynamicProperty( $db, 'activeSchemaOverrides' ) ?? self::$schemaOverrideDefaults;
 
 		if ( $oldOverrides['alter'] || $oldOverrides['create'] || $oldOverrides['drop'] ) {
 			$this->undoSchemaOverrides( $db, $oldOverrides );
-			unset( $db->_schemaOverrides );
+			DynamicPropertyTestHelper::unsetDynamicProperty( $db, 'activeSchemaOverrides' );
 		}
 
 		// Determine new overrides.
@@ -1954,7 +1957,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			);
 		}
 
-		$db->_schemaOverrides = $overrides;
+		DynamicPropertyTestHelper::setDynamicProperty( $db, 'activeSchemaOverrides', $overrides );
 	}
 
 	private function mungeSchemaUpdateQuery( $cmd ) {
@@ -1985,14 +1988,15 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @return array
 	 */
 	private function listOriginalTables( IMaintainableDatabase $db ) {
-		if ( !isset( $db->_originalTablePrefix ) ) {
+		$originalTablePrefix = DynamicPropertyTestHelper::getDynamicProperty( $db, 'originalTablePrefix' );
+		if ( $originalTablePrefix === null ) {
 			throw new LogicException( 'No original table prefix know, cannot list tables!' );
 		}
 
-		$originalTables = $db->listTables( $db->_originalTablePrefix, __METHOD__ );
+		$originalTables = $db->listTables( $originalTablePrefix, __METHOD__ );
 
 		$unittestPrefixRegex = '/^' . preg_quote( $this->dbPrefix(), '/' ) . '/';
-		$originalPrefixRegex = '/^' . preg_quote( $db->_originalTablePrefix, '/' ) . '/';
+		$originalPrefixRegex = '/^' . preg_quote( $originalTablePrefix, '/' ) . '/';
 
 		$originalTables = array_filter(
 			$originalTables,
@@ -2022,14 +2026,16 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	private function recloneMockTables( IMaintainableDatabase $db, array $tables ) {
 		$this->ensureMockDatabaseConnection( $db );
 
-		if ( !isset( $db->_originalTablePrefix ) ) {
+		$originalTablePrefix = DynamicPropertyTestHelper::getDynamicProperty( $db, 'originalTablePrefix' );
+
+		if ( $originalTablePrefix === null ) {
 			throw new LogicException( 'No original table prefix know, cannot restore tables!' );
 		}
 
 		$originalTables = $this->listOriginalTables( $db );
 		$tables = array_intersect( $tables, $originalTables );
 
-		self::$dbClone = new CloneDatabase( $db, $tables, $db->tablePrefix(), $db->_originalTablePrefix );
+		self::$dbClone = new CloneDatabase( $db, $tables, $db->tablePrefix(), $originalTablePrefix );
 		self::$dbClone->useTemporaryTables( self::$useTemporaryTables );
 		self::$dbClone->cloneTableStructure();
 

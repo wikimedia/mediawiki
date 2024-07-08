@@ -64,7 +64,9 @@
 			"לערי ריינהארט",
 			"JAn Dudík",
 			"Felix220",
-			"Decamexd"
+			"Decamexd",
+			"Cookai1205",
+			"Polda18"
 		]
 	},
 	"tog-underline": "Podtrhávat odkazy:",
@@ -363,7 +365,7 @@
 	"readonly_lag": "Databáze byla automaticky dočasně uzamčena kvůli zpoždění replikovaných databázových serverů oproti hlavnímu",
 	"nonwrite-api-promise-error": "Byla odeslána HTTP hlavička „Promise-Non-Write-API-Action“, ale požadavek nebyl požadavkem na API.",
 	"timeouterror": "Časový limit serveru vypršel",
-	"timeouterror-text": "Byl překročen maximální požadovaný čas $1 {{PLURAL:$1|sekundy|sekund}}.",
+	"timeouterror-text": "Byl překročen maximální čas $1 {{PLURAL:$1|sekundy|sekund}} na požadavek.",
 	"internalerror": "Vnitřní chyba",
 	"internalerror_info": "Vnitřní chyba: $1",
 	"internalerror-fatal-exception": "Kritická výjimka typu „$1“",
@@ -2821,6 +2823,8 @@
 	"movesubpage": "{{PLURAL:$1|Podstránka|Podstránky}}",
 	"movesubpagetext": "Tato stránka má $1 {{PLURAL:$1|podstránku uvedenou|podstránky vypsané|podstránek vypsaných}} níže.",
 	"movesubpagetalktext": "Odpovídající diskusní stránka má {{PLURAL:$1|jednu podstránku, zobrazenou|$1 podstránky, zobrazené|$1 podstránek, zobrazených}} níže.",
+	"movesubpagetext-truncated": "{{PLURAL:$1|První podstránka této stránky je zobrazena|První $1 podstránky této stránky jsou zobrazeny|Prvních $1 podstránek této stránky je zobrazeno}} níže.",
+	"movesubpagetalktext-truncated": "{{PLURAL:$1|První podstránka odpovídající diskusní stránky je zobrazena|První $1 podstránky odpovídající diskusní stránky jsou zobrazeny|Prvních $1 podstránek odpovídající diskusní stránky je zobrazeno}} níže.",
 	"movenosubpage": "Tato stránka nemá žádné podstránky.",
 	"movereason": "Důvod:",
 	"revertmove": "vrátit",
@@ -4097,6 +4101,9 @@
 	"skin-action-undelete": "Obnovit",
 	"skin-action-delete": "Smazat",
 	"skin-action-move": "Přesunout",
+	"parsoid-stash-rate-limit-error": "Nepodařilo se uložit do skrýše, protože byl překročen rychlostní limit. Zkuste to prosím znovu později.",
+	"parsoid-resource-limit-exceeded": "Překročen limit zdrojů Parsoidu: $1",
+	"parsoid-client-error": "Neplatný vstup pro Parsoid: $1",
 	"newpages-showhide-bots": "$1 boty",
 	"newpages-showhide-patrolled": "$1 prověřené editace",
 	"newpages-showhide-redirect": "$1 přesměrování",

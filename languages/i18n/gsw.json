@@ -25,7 +25,8 @@
 			"Xð",
 			"לערי ריינהארט",
 			"아라",
-			80686
+			80686,
+			"Amire80"
 		]
 	},
 	"tog-underline": "Links unterstryche:",
@@ -1478,7 +1479,7 @@
 	"unusedtemplatestext": "Die Syte lischtet alli Syten im {{ns:template}}-Namensruum uf, wu nit in andere Syte yybunden sin.\nIberprief anderi Link zue dr Vorlage, voreb Du die leschesch.",
 	"unusedtemplateswlh": "Anderi Link",
 	"randompage": "Zuefalls-Artikel",
-	"randompage-nopages": "S het kei Syte in {{PLURAL:$2|däm Namensruum|däne Namensryym}}:  $1.",
+	"randompage-nopages": "S het kei Syte in {{PLURAL:$2|däm Namensruum|däne Namensryym}}: $1.",
 	"randomincategory": "Zuefälligi Syten us ere Kategorie",
 	"randomincategory-invalidcategory": "«$1» isch ke gültigi Kategoriename.",
 	"randomincategory-nopages": "Ir Kategorie [[:Category:$1|$1]] het’s kener Syte.",

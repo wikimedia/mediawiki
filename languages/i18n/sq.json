@@ -808,7 +808,7 @@
 	"revdelete-confirm": "Të lutem konfirmo që ky është një veprim i qëllimshëm, që i kupton pasojat dhe që po vepron në përputhje me [[{{MediaWiki:Policy-url}}|rregulloren përkatëse]].",
 	"revdelete-suppress-text": "Shuarja duhet të përdoret <strong>vetëm</strong> për rastet e mëposhtme: \n* informacion potencialisht shpifës \n* informacion i papërshtatshëm personal \n*: <em>adresat e shtëpisë dhe numrat e telefonit, numrat e sigurimeve shoqërore, etj.</em>",
 	"revdelete-legend": "Përcakto kufizimet e dukshmërisë për versionin",
-	"revdelete-hide-text": "Teksti i versionit",
+	"revdelete-hide-text": "Fshih tekstin",
 	"revdelete-hide-image": "Fshih përmbajtjen skedës",
 	"revdelete-hide-name": "Fshih titullin dhe parametrat",
 	"revdelete-hide-comment": "Fshih përmbledhjen e redaktimit",

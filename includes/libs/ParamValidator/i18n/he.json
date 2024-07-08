@@ -38,7 +38,7 @@
 	"paramvalidator-unrecognizedvalues": "{{PLURAL:$4|ערך בלתי־ידוע|ערכים בלתי־ידועים}} עבור הפרמטר \"$1\": $3.",
 	"paramvalidator-help-default": "ברירת המחדל: $1",
 	"paramvalidator-help-default-empty": "ברירת המחדל: (ריק)",
-	"paramvalidator-help-deprecated": "פרמטר זה מוכרז בתור מיושן.",
+	"paramvalidator-help-deprecated": "הפרמטר הזה מיושן.",
 	"paramvalidator-help-multi-separate": "יש להפריד ערכים באמצעות \"|\", או להתחיל את הרשימה ב־U+001F ולהפריד ב־U+001F.",
 	"paramvalidator-help-multi-max": "המספר המרבי של ערכים הוא {{PLURAL:$1|$1}} (או {{PLURAL:$2|$2}} עבור לקוחות שמותרות להם מגבלות גבוהות יותר).",
 	"paramvalidator-help-multi-max-simple": "המספר המרבי של הערכים הוא {{PLURAL:$1|$1}}.",

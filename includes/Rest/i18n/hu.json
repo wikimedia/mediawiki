@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dj"
+		]
+	},
+	"rest-prefix-mismatch": "A kért elérési út ($1) nem volt a REST API gyökérútvonalán ($2) belül.",
+	"rest-nonexistent-title-revision": "A megadott változat ($1) nem létezik a megadott lapon ($2)",
+	"rest-nonexistent-revision": "A megadott változat ($1) nem létezik",
+	"rest-nonexistent-user": "A megadott felhasználó ($1) nem létezik",
+	"rest-invalid-user": "A megadott felhasználónév ($1) érvénytelen",
+	"rest-permission-denied-anon": "Névtelen felhasználó nem férhet hozzá",
+	"rest-permission-denied-title": "A felhasználónak nincs joga a cím olvasásához ($1)",
+	"rest-permission-denied-revision": "A felhasználónak nincs hozzáférése a kért változathoz ($1).",
+	"rest-resource-limit-exceeded": "Az erőforrás-korlátok túllépték a kérelem feldolgozását.",
+	"rest-pagehistory-incompatible-params": "Az „older_than” és „newer_than” paraméterek nem adhatók meg egyszerre",
+	"rest-pagehistory-param-range-error": "A változat azonosítójának nagyobbnak kell lennie 0-nál",
+	"rest-pagehistory-timestamp-error": "Nem sikerült lekérni az időbélyeget a megadott változathoz ($1)",
+	"rest-pagehistorycount-type-unrecognized": "A megadott számtípus ($1) érvénytelen",
+	"rest-pagehistorycount-parameters-invalid": "A megadott paraméterkombináció nem támogatott.",
+	"rest-compare-page-mismatch": "A megadott változatok különböző oldalakhoz tartoznak; összehasonlítás megtagadva.",
+	"rest-compare-permission-denied": "A felhasználónak nincs hozzáférése a kért változatokhoz",
+	"rest-compare-nonexistent": "A $1 paraméter által megadott változat nem létezik.",
+	"rest-compare-inaccessible": "A $1 paraméter által megadott változat nem érhető el nyilvánosan.",
+	"rest-compare-wikidiff2": "Ehhez a végponthoz a wikidiff2 1.9.0 vagy újabb verziója szükséges.",
+	"rest-pagehistorycount-too-many-revisions": "A megadott cím túl sok revíziót tartalmaz a szám lekéréséhez.",
+	"rest-search-error": "Hiba a keresési eredmények visszaküldésekor: $1",
+	"rest-page-source-type-error": "A kért lapforrás tartalomtípusa nem támogatott"
+}

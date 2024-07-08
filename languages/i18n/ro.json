@@ -54,7 +54,8 @@
 			"Amire80",
 			"Alesaru",
 			"Heron702",
-			"Iketsi"
+			"Iketsi",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Sublinierea legăturilor:",
@@ -3909,7 +3910,7 @@
 	"log-action-filter-suppress-revision": "Ștergere versiune",
 	"log-action-filter-suppress-delete": "Ștergere pagină",
 	"log-action-filter-suppress-block": "Supresiunea utilizatorului după blocare",
-	"log-action-filter-suppress-reblock": "Supresiunea utilizatorului după blocare",
+	"log-action-filter-suppress-reblock": "User suppression by reblock",
 	"log-action-filter-upload-upload": "Încărcare nouă",
 	"log-action-filter-upload-overwrite": "Reîncărcare",
 	"log-action-filter-upload-revert": "Anulare",

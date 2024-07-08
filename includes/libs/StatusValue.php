@@ -63,6 +63,9 @@ class StatusValue {
 	/** @var int Counter for batch operations */
 	public $failCount = 0;
 
+	/** @var mixed arbitrary extra data about the operation */
+	public $statusData;
+
 	/**
 	 * Factory function for fatal errors
 	 *
@@ -283,6 +286,12 @@ class StatusValue {
 	 * @return $this
 	 */
 	public function merge( $other, $overwriteValue = false ) {
+		if ( $this->statusData !== null && $other->statusData !== null ) {
+			throw new RuntimeException( "Status cannot be merged, because they both have \$statusData" );
+		} else {
+			$this->statusData ??= $other->statusData;
+		}
+
 		foreach ( $other->errors as $error ) {
 			$this->addError( $error );
 		}
@@ -292,6 +301,7 @@ class StatusValue {
 		}
 		$this->successCount += $other->successCount;
 		$this->failCount += $other->failCount;
+
 		return $this;
 	}
 

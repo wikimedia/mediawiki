@@ -17,7 +17,8 @@
 			"Пеопл",
 			"아라",
 			"Astahar",
-			"Makarka"
+			"Makarka",
+			"Albertoleoncio"
 		]
 	},
 	"tog-underline": "Каҫӑсене аялтан туртса палӑртни:",
@@ -360,7 +361,7 @@
 	"protectedinterface": "Ку страницӑра программӑн интерфейс сообщенийӗ пур. Ӑна ватасран тата ҫӗмӗресрен хӳтӗленӗ, ҫавна май тӳрлетме май ҫук. Ку сообщение хушас е тӳрлетес тесен MediaWiki локализаципе ӗҫлеме ятарласа хатӗрленӗ [https://translatewiki.net/ translatewiki.net] сайтпа усӑ курӑр.",
 	"editinginterface": "<strong>Тимлӗ пулӑр:</strong> Эсир программа интерфейсӑн текстлӑ страницине тӳрлететӗр. Ӑна улӑштарни ку викин ытти хутшӑнакансен интерфейсӗсене улӑштарӗ.",
 	"translateinterface": "Ҫӗннине хушас е ку сообщенин куҫарӑвне улӑштарас тесен, тархасшӑн, MediaWiki [https://translatewiki.net/ translatewiki.net] локализаци сайчӗпе усӑ курӑр.",
-	"cascadeprotected": "Ку страницӑна улӑштарассинчен хӳтӗленӗ, мӗншӗн тесен вӑл каскад евӗр хӳтӗленӗ ҫак {{PLURAL:$1|страница|страницӑсен}} шутне кӗрет: $2",
+	"cascadeprotected": "Ку страницӑна улӑштарассинчен хӳтӗленӗ, мӗншӗн тесен вӑл каскад евӗр хӳтӗленӗ ҫак {{PLURAL:$1|страница|страницӑсен}} шутне кӗрет:\n$2",
 	"namespaceprotected": "Сирӗн «$1» ят уҫлӑхӗнчи статьясене тӳрлетме ирӗк ҫук.",
 	"customcssprotected": "Урӑх хутшӑнаканӑн харпӑр ӗнерлевӗ пуртан эсир ҫак CSS страницӑна тӳрлетме пултараймастӑр.",
 	"customjsonprotected": "Урӑх хутшӑнаканӑн харпӑр ӗнерлевӗ пуртан эсир ҫак JSON страницӑна тӳрлетме пултараймастӑр.",
@@ -1480,7 +1481,7 @@
 	"rcfilters-filter-reviewstatus-unpatrolled-label": "Тӗрӗслеменнисем",
 	"rcfilters-filter-reviewstatus-manual-description": "Алӑпа тӗрӗсленӗ пек палӑртнӑ тӳрлетӳсем.",
 	"rcfilters-filter-reviewstatus-manual-label": "Алӑпа тӗрӗсленисем",
-	"rcfilters-filter-reviewstatus-auto-description": "Тӳрех тӗрӗсленӗ пек палӑртӑнакан опытлӑ хутшӑнакансен  тӳрлетӗвӗсем.",
+	"rcfilters-filter-reviewstatus-auto-description": "Тӳрех тӗрӗсленӗ пек палӑртӑнакан опытлӑ хутшӑнакансен тӳрлетӗвӗсем.",
 	"rcfilters-filter-reviewstatus-auto-label": "Хӑй тӗллӗн тӗрӗсленнисем",
 	"rcfilters-filtergroup-significance": "Пӗлтерӗш",
 	"rcfilters-filter-minor-label": "Пӗчӗк тӳрлетӳсем",
@@ -2718,6 +2719,8 @@
 	"movesubpage": "{{PLURAL:$1|1=Ҫумстраница|Ҫумстраницӑсем}}",
 	"movesubpagetext": "Ку страницӑн $1 {{PLURAL:$1|ҫумстраница}} пур.",
 	"movesubpagetalktext": "Унпа ҫыхӑннӑ сӳтсе яву страницин аяларах кӑтартнӑ $1 {{PLURAL:$1|ҫумстраница}} пур.",
+	"movesubpagetext-truncated": "Ку страницӑн {{PLURAL:$1|малтанхи $1 ҫумстраницине}} аяларах {{PLURAL:$1|кӑтартнӑ}}.",
+	"movesubpagetalktext-truncated": "Ку сӳтсе явмалли страницӑн {{PLURAL:$1|малтанхи $1 ҫумстраницине}} аяларах {{PLURAL:$1|кӑтартнӑ}}.",
 	"movenosubpage": "Ку страницӑн пӗр ҫумстраница та ҫук",
 	"movereason": "Сӑлтав:",
 	"revertmove": "каялла тавӑр",

@@ -107,10 +107,10 @@ class ApiFeedWatchlist extends ApiBase {
 				$fauxReqArr['wlexcludeuser'] = $params['wlexcludeuser'];
 			}
 			if ( $params['wlshow'] !== null ) {
-				$fauxReqArr['wlshow'] = $params['wlshow'];
+				$fauxReqArr['wlshow'] = ParamValidator::implodeMultiValue( $params['wlshow'] );
 			}
 			if ( $params['wltype'] !== null ) {
-				$fauxReqArr['wltype'] = $params['wltype'];
+				$fauxReqArr['wltype'] = ParamValidator::implodeMultiValue( $params['wltype'] );
 			}
 
 			// Support linking directly to sections when possible

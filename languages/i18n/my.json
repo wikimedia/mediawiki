@@ -2803,6 +2803,7 @@
 	"log-action-filter-rights-rights": "လူဖြင့် ပြောင်းလဲမှု",
 	"log-action-filter-rights-autopromote": "အလိုအလျောက် ပြောင်းလဲမှု",
 	"log-action-filter-upload-revert": "ပြန်ပြောင်းရန်",
+	"authmanager-authn-autocreate-failed": "ဒေသတွင်းအကောင့်တစ်ခုအား အလိုအလျောက် ဖန်တီးခြင်း မအောင်မြင်ပါ - $1",
 	"authmanager-create-disabled": "အကောင့်ဖန်တီးခြင်းကို ပိတ်ထားသည်။",
 	"authmanager-autocreate-noperm": "အလိုအလျာက် အကောင့်ဖန်တီးခြင်းကို ခွင့်မပြုပါ။",
 	"authmanager-autocreate-exception": "ရှေ့ကအမှားများကြောင့် အလိုအလျာက် အကောင့်ဖန်တီးခြင်းကို ယာယီပိတ်ထားသည်။",

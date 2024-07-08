@@ -2179,22 +2179,15 @@ more stuff
 		PreparedEdit $edit, PreparedEdit $edit2, $message = ''
 	) {
 		// suppress differences caused by a clock tick between generating the two PreparedEdits
-		$editTimestamp = $edit->timestamp;
-		$edit2Timetamp = $edit2->timestamp;
-		if ( abs( $editTimestamp - $edit2Timetamp ) < 3 ) {
-			$edit2Timetamp = $editTimestamp;
-		}
+		$timestamp1 = $edit->getOutput()->getCacheTime();
+		$timestamp2 = $edit2->getOutput()->getCacheTime();
 		$this->assertEquals( $edit, $edit2, $message );
-		$this->assertEquals( $editTimestamp, $edit2Timetamp, $message );
+		$this->assertLessThan( 3, abs( $timestamp1 - $timestamp2 ), $message );
 	}
 
 	protected function assertPreparedEditNotEquals(
 		PreparedEdit $edit, PreparedEdit $edit2, $message = ''
 	) {
-		if ( abs( $edit->timestamp - $edit2->timestamp ) < 3 ) {
-			$edit2 = clone $edit2;
-			$edit2->timestamp = $edit->timestamp;
-		}
 		$this->assertNotEquals( $edit, $edit2, $message );
 	}
 

@@ -71,6 +71,7 @@ class Status extends StatusValue {
 		$result->successCount =& $sv->successCount;
 		$result->failCount =& $sv->failCount;
 		$result->success =& $sv->success;
+		$result->statusData =& $sv->statusData;
 
 		return $result;
 	}

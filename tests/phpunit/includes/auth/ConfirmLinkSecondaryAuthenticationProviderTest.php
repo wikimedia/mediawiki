@@ -119,7 +119,6 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			$uid = "Request$i";
 			$req = $mb->getMockForAbstractClass();
 			$req->method( 'getUniqueId' )->willReturn( $uid );
-			$req->id = $i - 1;
 			$reqs[$uid] = $req;
 		}
 
@@ -204,7 +203,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$obj = new \stdClass;
 		$reqs = $this->getLinkRequests();
 
-		$done = [ false, false, false ];
+		$done = [];
 
 		// First, test the pass-through for not containing the ConfirmLinkAuthenticationRequest
 		$mock = $this->getMockBuilder( ConfirmLinkSecondaryAuthenticationProvider::class )
@@ -233,7 +232,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			} );
 		$provider->method( 'providerChangeAuthenticationData' )
 			->willReturnCallback( static function ( $req ) use ( &$done ) {
-				$done[$req->id] = true;
+				$done[$req->getUniqueId()] = true;
 			} );
 		$config = new \HashConfig( [
 			'AuthManagerConfig' => [
@@ -290,7 +289,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			AuthenticationResponse::newPass(),
 			$res = $provider->continueLinkAttempt( $user, 'state', [ $req ] )
 		);
-		$this->assertSame( [ false, false, false ], $done );
+		$this->assertSame( [], $done );
 
 		$request->getSession()->setSecret( 'state', [
 			'maybeLink' => [ $reqs['Request2'] ],
@@ -298,8 +297,8 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$req->confirmedLinkIDs = [ 'Request1', 'Request2' ];
 		$res = $provider->continueLinkAttempt( $user, 'state', [ $req ] );
 		$this->assertEquals( AuthenticationResponse::newPass(), $res );
-		$this->assertSame( [ false, true, false ], $done );
-		$done = [ false, false, false ];
+		$this->assertSame( [ 'Request2' => true ], $done );
+		$done = [];
 
 		$request->getSession()->setSecret( 'state', [
 			'maybeLink' => $reqs,
@@ -307,8 +306,8 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$req->confirmedLinkIDs = [ 'Request1', 'Request2' ];
 		$res = $provider->continueLinkAttempt( $user, 'state', [ $req ] );
 		$this->assertEquals( AuthenticationResponse::newPass(), $res );
-		$this->assertSame( [ true, true, false ], $done );
-		$done = [ false, false, false ];
+		$this->assertSame( [ 'Request1' => true, 'Request2' => true ], $done );
+		$done = [];
 
 		$request->getSession()->setSecret( 'state', [
 			'maybeLink' => $reqs,
@@ -318,12 +317,12 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$this->assertEquals( AuthenticationResponse::UI, $res->status );
 		$this->assertCount( 1, $res->neededRequests );
 		$this->assertInstanceOf( ButtonAuthenticationRequest::class, $res->neededRequests[0] );
-		$this->assertSame( [ true, false, false ], $done );
-		$done = [ false, false, false ];
+		$this->assertSame( [ 'Request1' => true ], $done );
+		$done = [];
 
 		$res = $provider->continueLinkAttempt( $user, 'state', [ $res->neededRequests[0] ] );
 		$this->assertEquals( AuthenticationResponse::newPass(), $res );
-		$this->assertSame( [ false, false, false ], $done );
+		$this->assertSame( [], $done );
 	}
 
 }

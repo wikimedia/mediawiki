@@ -3,6 +3,7 @@
 namespace MediaWiki\Auth;
 
 use Config;
+use DynamicPropertyTestHelper;
 use Language;
 use MediaWiki\Auth\Hook\AuthManagerLoginAuthenticateAuditHook;
 use MediaWiki\Auth\Hook\LocalUserCreatedHook;
@@ -1008,9 +1009,6 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		// Set up lots of mocks...
 		$req = new RememberMeAuthenticationRequest;
 		$req->rememberMe = (bool)rand( 0, 1 );
-		$req->pre = $preResponse;
-		$req->primary = $primaryResponses;
-		$req->secondary = $secondaryResponses;
 		$mocks = [];
 		foreach ( [ 'pre', 'primary', 'secondary' ] as $key ) {
 			$class = ucfirst( $key ) . 'AuthenticationProvider';
@@ -1032,15 +1030,15 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		}
 
 		$mocks['pre']->expects( $this->once() )->method( 'testForAuthentication' )
-			->willReturnCallback( function ( $reqs ) use ( $req ) {
+			->willReturnCallback( function ( $reqs ) use ( $req, $preResponse ) {
 				$this->assertContains( $req, $reqs );
-				return $req->pre;
+				return $preResponse;
 			} );
 
-		$ct = count( $req->primary );
-		$callback = $this->returnCallback( function ( $reqs ) use ( $req ) {
+		$ct = count( $primaryResponses );
+		$callback = $this->returnCallback( function ( $reqs ) use ( $req, &$primaryResponses ) {
 			$this->assertContains( $req, $reqs );
-			return array_shift( $req->primary );
+			return array_shift( $primaryResponses );
 		} );
 		$mocks['primary']->expects( $this->exactly( min( 1, $ct ) ) )
 			->method( 'beginPrimaryAuthentication' )
@@ -1053,12 +1051,12 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 				->willReturn( PrimaryAuthenticationProvider::TYPE_LINK );
 		}
 
-		$ct = count( $req->secondary );
-		$callback = $this->returnCallback( function ( $user, $reqs ) use ( $id, $name, $req ) {
+		$ct = count( $secondaryResponses );
+		$callback = $this->returnCallback( function ( $user, $reqs ) use ( $id, $name, $req, &$secondaryResponses ) {
 			$this->assertSame( $id, $user->getId() );
 			$this->assertSame( $name, $user->getName() );
 			$this->assertContains( $req, $reqs );
-			return array_shift( $req->secondary );
+			return array_shift( $secondaryResponses );
 		} );
 		$mocks['secondary']->expects( $this->exactly( min( 1, $ct ) ) )
 			->method( 'beginSecondaryAuthentication' )
@@ -1103,7 +1101,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			}
 		);
 		foreach ( $providers as $p ) {
-			$p->postCalled = false;
+			DynamicPropertyTestHelper::setDynamicProperty( $p, 'postCalled', false );
 			$p->expects( $this->atMost( 1 ) )->method( 'postAuthentication' )
 				->willReturnCallback( function ( $user, $response ) use ( $constraint, $p ) {
 					if ( $user !== null ) {
@@ -1112,7 +1110,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 					}
 					$this->assertInstanceOf( AuthenticationResponse::class, $response );
 					$this->assertThat( $response->status, $constraint );
-					$p->postCalled = $response->status;
+					DynamicPropertyTestHelper::setDynamicProperty( $p, 'postCalled', $response->status );
 				} );
 		}
 
@@ -1184,7 +1182,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 				$this->assertNull( $session->getSecret( 'AuthManager::authnState' ),
 					"Response $i, session state" );
 				foreach ( $providers as $p ) {
-					$this->assertSame( $response->status, $p->postCalled,
+					$this->assertSame( $response->status, DynamicPropertyTestHelper::getDynamicProperty( $p, 'postCalled' ),
 						"Response $i, post-auth callback called" );
 				}
 			} else {
@@ -1200,7 +1198,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 					"Response $i, continuation check"
 				);
 				foreach ( $providers as $p ) {
-					$this->assertFalse( $p->postCalled, "Response $i, post-auth callback not called" );
+					$this->assertFalse( DynamicPropertyTestHelper::getDynamicProperty( $p, 'postCalled' ), "Response $i, post-auth callback not called" );
 				}
 			}
 
@@ -1231,7 +1229,6 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$rememberReq->action = AuthManager::ACTION_LOGIN;
 
 		$req = $this->getMockForAbstractClass( AuthenticationRequest::class );
-		$req->foobar = 'baz';
 		$restartResponse = AuthenticationResponse::newRestart(
 			$this->message( 'authmanager-authn-no-local-user' )
 		);
@@ -2092,11 +2089,6 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 
 		// Set up lots of mocks...
 		$req = $this->getMockForAbstractClass( AuthenticationRequest::class );
-		$req->preTest = $preTest;
-		$req->primaryTest = $primaryTest;
-		$req->secondaryTest = $secondaryTest;
-		$req->primary = $primaryResponses;
-		$req->secondary = $secondaryResponses;
 		$mocks = [];
 		foreach ( [ 'pre', 'primary', 'secondary' ] as $key ) {
 			$class = ucfirst( $key ) . 'AuthenticationProvider';
@@ -2110,7 +2102,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$mocks[$key]->method( 'testForAccountCreation' )
 				->willReturnCallback(
 					function ( $user, $creatorIn, $reqs )
-						use ( $username, $creator, $req, $key )
+						use ( $username, $creator, $req, $key, $preTest, $primaryTest, $secondaryTest )
 					{
 						$this->assertSame( $username, $user->getName() );
 						$this->assertSame( $creator->getId(), $creatorIn->getId() );
@@ -2121,8 +2113,13 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 							$foundReq = $foundReq || get_class( $r ) === get_class( $req );
 						}
 						$this->assertTrue( $foundReq, '$reqs contains $req' );
-						$k = $key . 'Test';
-						return $req->$k;
+						if ( $key === 'pre' ) {
+							return $preTest;
+						}
+						if ( $key === 'primary' ) {
+							return $primaryTest;
+						}
+						return $secondaryTest;
 					}
 				);
 
@@ -2141,17 +2138,17 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			->willReturn( PrimaryAuthenticationProvider::TYPE_CREATE );
 		$mocks['primary']->method( 'testUserExists' )
 			->willReturn( false );
-		$ct = count( $req->primary );
-		$callback = $this->returnCallback( function ( $user, $creator, $reqs ) use ( $username, $req ) {
+		$ct = count( $primaryResponses );
+		$callback = $this->returnCallback( function ( $user, $creatorArg, $reqs ) use ( $creator, $username, $req, &$primaryResponses ) {
 			$this->assertSame( $username, $user->getName() );
-			$this->assertSame( 'UTSysop', $creator->getName() );
+			$this->assertSame( 'UTSysop', $creatorArg->getName() );
 			$foundReq = false;
 			foreach ( $reqs as $r ) {
 				$this->assertSame( $username, $r->username );
 				$foundReq = $foundReq || get_class( $r ) === get_class( $req );
 			}
 			$this->assertTrue( $foundReq, '$reqs contains $req' );
-			return array_shift( $req->primary );
+			return array_shift( $primaryResponses );
 		} );
 		$mocks['primary']->expects( $this->exactly( min( 1, $ct ) ) )
 			->method( 'beginPrimaryAccountCreation' )
@@ -2160,17 +2157,17 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			->method( 'continuePrimaryAccountCreation' )
 			->will( $callback );
 
-		$ct = count( $req->secondary );
-		$callback = $this->returnCallback( function ( $user, $creator, $reqs ) use ( $username, $req ) {
+		$ct = count( $secondaryResponses );
+		$callback = $this->returnCallback( function ( $user, $creatorArg, $reqs ) use ( $creator, $username, $req, &$secondaryResponses ) {
 			$this->assertSame( $username, $user->getName() );
-			$this->assertSame( 'UTSysop', $creator->getName() );
+			$this->assertSame( 'UTSysop', $creatorArg->getName() );
 			$foundReq = false;
 			foreach ( $reqs as $r ) {
 				$this->assertSame( $username, $r->username );
 				$foundReq = $foundReq || get_class( $r ) === get_class( $req );
 			}
 			$this->assertTrue( $foundReq, '$reqs contains $req' );
-			return array_shift( $req->secondary );
+			return array_shift( $secondaryResponses );
 		} );
 		$mocks['secondary']->expects( $this->exactly( min( 1, $ct ) ) )
 			->method( 'beginSecondaryAccountCreation' )
@@ -2222,7 +2219,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$this->preauthMocks, $this->primaryauthMocks, $this->secondaryauthMocks
 		);
 		foreach ( $providers as $p ) {
-			$p->postCalled = false;
+			DynamicPropertyTestHelper::setDynamicProperty( $p, 'postCalled', false );
 			$p->expects( $this->atMost( 1 ) )->method( 'postAccountCreation' )
 				->willReturnCallback( function ( $user, $creator, $response )
 					use ( $constraint, $p, $username )
@@ -2232,7 +2229,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 					$this->assertSame( 'UTSysop', $creator->getName() );
 					$this->assertInstanceOf( AuthenticationResponse::class, $response );
 					$this->assertThat( $response->status, $constraint );
-					$p->postCalled = $response->status;
+					DynamicPropertyTestHelper::setDynamicProperty( $p, 'postCalled', $response->status );
 				} );
 		}
 
@@ -2319,7 +2316,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 					"Response $i, session state"
 				);
 				foreach ( $providers as $p ) {
-					$this->assertSame( $response->status, $p->postCalled,
+					$this->assertSame( $response->status, DynamicPropertyTestHelper::getDynamicProperty( $p, 'postCalled' ),
 						"Response $i, post-auth callback called" );
 				}
 			} else {
@@ -2337,7 +2334,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 					"Response $i, continuation check"
 				);
 				foreach ( $providers as $p ) {
-					$this->assertFalse( $p->postCalled, "Response $i, post-auth callback not called" );
+					$this->assertFalse( DynamicPropertyTestHelper::getDynamicProperty( $p, 'postCalled' ), "Response $i, post-auth callback not called" );
 				}
 			}
 
@@ -3065,13 +3062,12 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$req->method( 'getUniqueId' )
 				->willReturn( $key );
 			$req->action = $action === AuthManager::ACTION_UNLINK ? AuthManager::ACTION_REMOVE : $action;
-			$req->key = $key;
 			return $req;
 		};
 		$cmpReqs = static function ( $a, $b ) {
 			$ret = strcmp( get_class( $a ), get_class( $b ) );
 			if ( !$ret ) {
-				$ret = strcmp( $a->key, $b->key );
+				$ret = strcmp( $a->getUniqueId(), $b->getUniqueId() );
 			}
 			return $ret;
 		};
@@ -3129,7 +3125,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			->willReturn( [] );
 		$mocks['primary2']->method( 'providerAllowsAuthenticationDataChange' )
 			->willReturnCallback( static function ( $req ) use ( $good ) {
-				return $req->key === 'generic' ? StatusValue::newFatal( 'no' ) : $good;
+				return $req->getUniqueId() === 'generic' ? StatusValue::newFatal( 'no' ) : $good;
 			} );
 		$this->primaryauthMocks[] = $mocks['primary2'];
 
@@ -3267,14 +3263,13 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$req->method( 'getUniqueId' )
 				->willReturn( $key );
 			$req->action = AuthManager::ACTION_LOGIN;
-			$req->key = $key;
 			$req->required = $required;
 			return $req;
 		};
 		$cmpReqs = static function ( $a, $b ) {
 			$ret = strcmp( get_class( $a ), get_class( $b ) );
 			if ( !$ret ) {
-				$ret = strcmp( $a->key, $b->key );
+				$ret = strcmp( $a->getUniqueId(), $b->getUniqueId() );
 			}
 			return $ret;
 		};
@@ -3618,7 +3613,6 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 
 		// Set up lots of mocks...
 		$req = $this->getMockForAbstractClass( AuthenticationRequest::class );
-		$req->primary = $primaryResponses;
 		$mocks = [];
 
 		foreach ( [ 'pre', 'primary' ] as $key ) {
@@ -3654,8 +3648,8 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 
 		$mocks['primary']->method( 'accountCreationType' )
 			->willReturn( PrimaryAuthenticationProvider::TYPE_LINK );
-		$ct = count( $req->primary );
-		$callback = $this->returnCallback( function ( $u, $reqs ) use ( $user, $req ) {
+		$ct = count( $primaryResponses );
+		$callback = $this->returnCallback( function ( $u, $reqs ) use ( $user, $req, &$primaryResponses ) {
 			$this->assertSame( $user->getId(), $u->getId() );
 			$this->assertSame( $user->getName(), $u->getName() );
 			$foundReq = false;
@@ -3664,7 +3658,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 				$foundReq = $foundReq || get_class( $r ) === get_class( $req );
 			}
 			$this->assertTrue( $foundReq, '$reqs contains $req' );
-			return array_shift( $req->primary );
+			return array_shift( $primaryResponses );
 		} );
 		$mocks['primary']->expects( $this->exactly( min( 1, $ct ) ) )
 			->method( 'beginPrimaryAccountLink' )
@@ -3697,14 +3691,14 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		);
 		$providers = array_merge( $this->preauthMocks, $this->primaryauthMocks );
 		foreach ( $providers as $p ) {
-			$p->postCalled = false;
+			DynamicPropertyTestHelper::setDynamicProperty( $p, 'postCalled', false );
 			$p->expects( $this->atMost( 1 ) )->method( 'postAccountLink' )
 				->willReturnCallback( function ( $user, $response ) use ( $constraint, $p ) {
 					$this->assertInstanceOf( \User::class, $user );
 					$this->assertSame( 'UTSysop', $user->getName() );
 					$this->assertInstanceOf( AuthenticationResponse::class, $response );
 					$this->assertThat( $response->status, $constraint );
-					$p->postCalled = $response->status;
+					DynamicPropertyTestHelper::setDynamicProperty( $p, 'postCalled', $response->status );
 				} );
 		}
 
@@ -3748,7 +3742,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 				$this->assertNull( $this->request->getSession()->getSecret( 'AuthManager::accountLinkState' ),
 					"Response $i, session state" );
 				foreach ( $providers as $p ) {
-					$this->assertSame( $response->status, $p->postCalled,
+					$this->assertSame( $response->status, DynamicPropertyTestHelper::getDynamicProperty( $p, 'postCalled' ),
 						"Response $i, post-auth callback called" );
 				}
 			} else {
@@ -3766,7 +3760,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 					"Response $i, continuation check"
 				);
 				foreach ( $providers as $p ) {
-					$this->assertFalse( $p->postCalled, "Response $i, post-auth callback not called" );
+					$this->assertFalse( DynamicPropertyTestHelper::getDynamicProperty( $p, 'postCalled' ), "Response $i, post-auth callback not called" );
 				}
 			}
 

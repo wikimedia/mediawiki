@@ -29,7 +29,9 @@
 			"बिप्लब आनन्द",
 			"राम प्रसाद जोशी",
 			"सरोज कुमार ढकाल",
-			"아라"
+			"아라",
+			"Dreamy Jazz",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "लिङ्कके रेखाङ्कित करी:",
@@ -1169,7 +1171,7 @@
 	"grant-basic": "सामान्य अधिकार",
 	"grant-viewdeleted": "मेटाएल फाइल व पृष्ठ देखी",
 	"grant-viewmywatchlist": "अपन साकांक्षसूची देखी",
-	"newuserlogpage": "प्रयोक्ता रचना लग",
+	"newuserlogpage": "प्रयोक्ता रचना वृत्तलेख",
 	"newuserlogpagetext": "ई प्रयोक्ता निर्माणक वृत्तलेख अछि।",
 	"rightslog": "प्रयोक्ता अधिकार लौग",
 	"rightslogtext": "ई प्रयोक्ता अधिकार परिवर्तन सभक वृतलेख छी।",
@@ -3120,9 +3122,9 @@
 	"log-action-filter-block-reblock": "अवरोध परिवर्तन",
 	"log-action-filter-block-unblock": "अवरोधरहित",
 	"log-action-filter-contentmodel-change": "सामग्रीक नमूना परिवर्तन",
-	"log-action-filter-delete-delete": "पृष्ठ हटाबी",
+	"log-action-filter-delete-delete": "Page deletion",
 	"log-action-filter-delete-delete_redir": "पुननिर्देशित ओभरराइट",
-	"log-action-filter-delete-event": "पृष्ठ हटाबी",
+	"log-action-filter-delete-event": "Log deletion",
 	"log-action-filter-delete-revision": "खाली मेटाएल",
 	"log-action-filter-import-interwiki": "अंतरविकि आयात",
 	"log-action-filter-managetags-create": "प्रयोक्ता रचना लग",
