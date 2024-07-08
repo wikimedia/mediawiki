@@ -1,8 +1,8 @@
 ( function () {
+	'use strict';
 
-	const byteLength = require( 'mediawiki.String' ).byteLength,
-		codePointLength = require( 'mediawiki.String' ).codePointLength,
-		colonSeparator = require( './contentMessages.json' ).colonSeparator;
+	const { byteLength, codePointLength } = require( 'mediawiki.String' );
+	const { colonSeparator } = require( './contentMessages.json' );
 
 	/**
 	 * @internal
