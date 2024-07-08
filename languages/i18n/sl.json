@@ -4046,6 +4046,8 @@
 	"skin-action-undelete": "Odizbriši",
 	"skin-action-delete": "Izbriši",
 	"skin-action-move": "Preimenuj",
+	"skin-json-warning": "@OPOZORILO",
+	"skin-json-warning-message": "To ni API; uporablja se samo za odpravljanje napak! Ne uporabljajte v pripomočkih ali produkcijski kodi.",
 	"parsoid-stash-rate-limit-error": "Ločeno hranjenje je spodletelo, ker je omejitev hitrosti presežena. Prosimo, poskusite znova pozneje.",
 	"parsoid-resource-limit-exceeded": "Omejitev sredstev Parsoida presežena: $1",
 	"parsoid-revision-access": "Parsoid ne more dostopati do redakcije: $1",

@@ -7,8 +7,8 @@
 			"Ebrahim",
 			"Ebraminio",
 			"Haoreima",
-			"Nokib Sarkar",
 			"Luwangcha",
+			"Nokib Sarkar",
 			"꯴꯰꯴"
 		]
 	},
@@ -92,7 +92,6 @@
 	"actions": "ꯊꯕꯛ ꯄꯥꯡꯊꯣꯛꯄ",
 	"namespaces": "ꯃꯃꯤꯡꯒꯤ ꯃꯐꯝꯁꯤꯡ",
 	"variants": "ꯈꯦꯠꯅꯕꯥꯁꯤꯡ",
-	"variantname-mni-beng": "বাংলা মায়েক (চাংয়েং তৌবা)",
 	"navigation-heading": "ꯆꯠꯅꯕ ꯌꯦꯡꯐꯝ",
 	"errorpagetitle": "ꯑꯔꯥꯟꯕꯥ",
 	"returnto": "$1 ꯗꯥ ꯍꯟꯂꯨ ꯫",
@@ -939,6 +938,7 @@
 	"hours-ago": "{{PLURAL:$1|ꯄꯨꯡ ꯱|ꯄꯨꯡ $1}} ꯍꯧꯈꯔꯦ",
 	"minutes-ago": "{{PLURAL:$1|ꯃꯤꯅꯠ ꯱|ꯃꯤꯅꯠ $1}} ꯍꯧꯈꯔꯦ",
 	"seconds-ago": "{{PLURAL:$1|ꯁꯦꯀꯦꯟ ꯱|ꯁꯦꯀꯦꯟ $1}} ꯍꯧꯈꯔꯦ",
+	"variantname-mni-beng": "বাংলা মায়েক (চাংয়েং তৌবা)",
 	"metadata": "ꯃꯦꯇꯥꯗꯥꯇꯥ",
 	"metadata-help": "ꯃꯁꯤꯒꯤ ꯐꯥꯏꯜ ꯑꯁꯤ ꯑꯍꯦꯟꯕ ꯋꯥꯔꯣꯜ ꯌꯥꯎꯏ, ꯗꯤꯖꯤꯇꯦꯜ ꯀꯦꯃ꯭ꯔꯥꯗꯒꯤ ꯍꯥꯞꯆꯤꯟꯂꯛꯄ ꯑꯣꯏꯔꯝꯕ ꯌꯥꯏ ꯅꯠꯇ꯭ꯔꯒ ꯁ꯭ꯀꯦꯟꯅꯔ ꯁꯤꯖꯤꯟꯅꯔꯒ ꯁꯥꯕ ꯅꯠꯇ꯭ꯔꯒ ꯗꯤꯖꯤꯇꯦꯜ ꯑꯣꯟꯍꯟꯕ ꯫ ꯀꯔꯤꯒꯨꯝꯕ ꯐꯥꯏꯜ ꯑꯗꯨ ꯑꯁꯦꯡꯕ ꯃꯑꯣꯡꯗꯒꯤ ꯍꯣꯡꯗꯣꯛꯂꯕꯗꯤ, ꯑꯇꯩ ꯑꯍꯦꯟꯕ ꯑꯄꯨꯟꯕ ꯋꯥꯔꯣꯜꯗꯨ ꯐꯪꯕ ꯉꯝꯂꯣꯏ ꯍꯣꯡꯗꯣꯛꯂꯕ ꯐꯥꯏꯜꯗꯨꯗꯒꯤ ꯫",
 	"metadata-fields": "ꯃꯥꯇꯥꯗꯥꯇꯥꯒꯤ ꯃꯥꯃꯤꯒꯤ ꯄꯥꯔꯦꯡ ꯑꯗꯨ ꯃꯥꯃꯤꯒꯤ ꯂꯥꯃꯥꯏꯗꯨꯒꯤ ꯄꯥꯎꯖꯦꯜꯗꯥ ꯎꯨꯇꯂꯦ ꯃꯦꯇꯥꯗꯥꯇꯥ ꯒꯤ\nꯎꯨꯇꯊꯣꯛꯐꯝꯗꯨ ꯀꯥꯏꯔꯥꯀꯥꯟꯗꯥ \nꯑꯇꯩꯗꯤ ꯂꯣꯠꯂꯅꯤ ꯎꯨꯇꯄꯥ ꯉꯝꯗꯕꯒꯤ\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",

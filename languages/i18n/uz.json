@@ -338,7 +338,7 @@
 	"createacct-reason-ph": "Nimaga yana boshqa hisob yaratyapsiz",
 	"createacct-submit": "Hisob yaratish",
 	"createacct-another-submit": "Hisob yaratish",
-	"createacct-benefit-heading": "{{SITENAME}} siz kabi insonlar tomonidan yaratilgan.",
+	"createacct-benefit-heading": "{{SITENAME}} siz kabi insonlar tomonidan yuritiladi.",
 	"createacct-benefit-body1": "{{PLURAL:$1|tahrirlar soni}}",
 	"createacct-benefit-body2": "sahifalar soni",
 	"createacct-benefit-body3": "faol {{PLURAL:$1|foydalanuvchilar}} soni",

@@ -3923,6 +3923,8 @@
 	"skin-action-undelete": "Restaurar",
 	"skin-action-delete": "Deler",
 	"skin-action-move": "Renominar",
+	"skin-json-warning": "@ADVERTIMENTO",
+	"skin-json-warning-message": "Isto non es un API, es solo pro le depuration! Non usar in accessorios o in codice de production.",
 	"parsoid-stash-rate-limit-error": "Le immagazinage in reserva ha fallite perque le limite de frequentia ha essite excedite. Per favor tenta lo de novo plus tarde.",
 	"parsoid-resource-limit-exceeded": "Limite de ressources de Parsoid excedite: $1",
 	"parsoid-revision-access": "Parsoid non pote acceder al version: $1",

@@ -1351,7 +1351,6 @@
 	"minoreditletter": "k",
 	"newpageletter": "N",
 	"boteditletter": "B",
-	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|Byte|Byten}} no der Ännerung",
 	"newsectionsummary": "Neien Abschnitt /* $1 */",
 	"rc-old-title": "original als \"$1\" ugeluecht",

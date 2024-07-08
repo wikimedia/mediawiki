@@ -1368,7 +1368,6 @@
 	"minoreditletter": "m",
 	"newpageletter": "N",
 	"boteditletter": "v",
-	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bæt|bæti}} eftir breytingu",
 	"newsectionsummary": "Nýr hluti: /* $1 */",
 	"rc-old-title": "upphaflega búin til að nafni „$1“",

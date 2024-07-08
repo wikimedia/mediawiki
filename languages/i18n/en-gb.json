@@ -59,13 +59,6 @@
 		]
 	},
 	"sunday": "Aad",
-	"monday": "Pazartesi",
-	"tuesday": "Salı",
-	"wednesday": "Çarşamba",
-	"thursday": "Perşembe",
-	"january": "Ocak",
-	"may_long": "Mayıs",
-	"june": "Haziran",
 	"lastmodifiedat": "This page was last modified on $1, at $2.",
 	"retrievedfrom": "Retrieved from ‘$1’",
 	"page-rss-feed": "‘$1’ RSS feed",

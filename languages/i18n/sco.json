@@ -2024,7 +2024,7 @@
 	"ipb-hardblock": "Stap loggit-in uisers fae eeditin fae this IP address",
 	"ipbcreateaccount": "Accoont makin",
 	"ipbemailban": "Stap uiser fae sendin wab-mail",
-	"ipbenableautoblock": "Autæmateeclie block the laist IP address uised bi this uiser, n onie subsequent IP addresses that thay attempt tae eedit fae",
+	"ipbenableautoblock": "Automatically block the last IP address uised bi this uiser, an ony ither IP addresses they try tae edit fae, fur a time o $1",
 	"ipbsubmit": "Block this uiser",
 	"ipbother": "Ither time:",
 	"ipboptions": "2 hoors:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,indefinite:infinite",

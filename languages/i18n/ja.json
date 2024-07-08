@@ -887,7 +887,7 @@
 	"template-equals-category": "=をテンプレートとして使うページ",
 	"template-equals-category-desc": "ページには<code><nowiki>{{=}}</nowiki></code>がありますが、このウィキは<code>=</code>には展開されません。この使い方は非推奨です。将来のMediaWikiバージョンは<code><nowiki>{{=}}</nowiki></code>をパーサー関数として実装する予定です。",
 	"template-equals-warning": "<strong>警告：</strong>このページでは<code><nowiki>{{=}}</nowiki></code>が使用されますが、このウィキは<code>=</code>には展開されません。この使い方は非推奨です。将来のMediaWikiバージョンは<code><nowiki>{{=}}</nowiki></code>をパーサー関数として実装する予定です。",
-	"parser-template-loop-warning": "テンプレートのループを検出しました: [[:$1]]",
+	"parser-template-loop-warning": "テンプレートの循環を検出しました: [[:$1]]",
 	"template-loop-category": "テンプレートがループしているページ",
 	"template-loop-category-desc": "テンプレート自身が再帰的自己参照を行うなど、ループするテンプレートが含まれているページ。",
 	"template-loop-warning": "<strong>警告：</strong>このページで呼び出される [[:$1]] はテンプレートのループ（無限の再帰呼び出し）を引き起こします。",

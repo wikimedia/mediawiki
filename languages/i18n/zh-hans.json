@@ -943,7 +943,7 @@
 	"template-equals-category": "使用 = 作为模板的页面",
 	"template-equals-category-desc": "页面包含<code><nowiki>{{=}}</nowiki></code>，但该wiki不会扩展到<code>=</code>。这一用法已被弃用。未来的MediaWiki版本会将<code><nowiki>{{=}}</nowiki></code>实现为一个解析器函数。",
 	"template-equals-warning": "<strong>警告：</strong>该页面使用到了<code><nowiki>{{=}}</nowiki></code>，但本wiki不会扩展到<code>=</code>。该用法已被弃用，未来的MediaWiki版本会将<code><nowiki>{{=}}</nowiki></code>实现为一个解析器函数。",
-	"parser-template-loop-warning": "检查到模板循环：[[:$1]]",
+	"parser-template-loop-warning": "检测到模板循环：[[:$1]]",
 	"template-loop-category": "有模板循环的页面",
 	"template-loop-category-desc": "页面存在模板循环，就是递归进行自我调用的模板。",
 	"template-loop-warning": "<strong>警告：</strong>此页面调用[[:$1]]，这导致了模板循环（无限递归调用）。",

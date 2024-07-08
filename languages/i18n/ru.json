@@ -4194,6 +4194,8 @@
 	"skin-action-undelete": "Восстановить",
 	"skin-action-delete": "Удалить",
 	"skin-action-move": "Переименовать",
+	"skin-json-warning": "@ПРЕДУПРЕЖДЕНИЕ",
+	"skin-json-warning-message": "Это не API, это только для отладки! Не используйте в гаджетах или продуктивном коде.",
 	"parsoid-stash-rate-limit-error": "Сбой сохранения во временное хранилище, так как превышен предел скорости. Пожалуйста, попробуйте позже.",
 	"parsoid-resource-limit-exceeded": "Лимит ресурсов parsoid’а исчерпан: $1",
 	"parsoid-revision-access": "Parsoid не может получить доступ к версии: $1",

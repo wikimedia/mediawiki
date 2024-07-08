@@ -4258,6 +4258,7 @@
 	"skin-action-undelete": "Restaurer",
 	"skin-action-delete": "Supprimer",
 	"skin-action-move": "Renommer",
+	"skin-json-warning": "@AVERTISSEMENT",
 	"parsoid-stash-rate-limit-error": "La dissimulation a échoué parce que le taux limite d’utilisation a été dépassé. Veuillez essayer à nouveau plus tard.",
 	"parsoid-resource-limit-exceeded": "Limite de ressources de Parsoid dépassée : $1",
 	"parsoid-revision-access": "Parsoid ne peut pas accéder à la révision : $1",
