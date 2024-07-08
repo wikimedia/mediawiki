@@ -2,14 +2,16 @@
  * Live edit preview.
  */
 ( function () {
-	var parsedMessages = require( './mediawiki.action.edit.preview.parsedMessages.json' );
+	'use strict';
+
+	const parsedMessages = require( './mediawiki.action.edit.preview.parsedMessages.json' );
 
 	/**
 	 * @ignore
 	 * @param {jQuery.Event} e
 	 */
 	function doLivePreview( e ) {
-		var promise = require( 'mediawiki.page.preview' ).doPreview( {
+		const promise = require( 'mediawiki.page.preview' ).doPreview( {
 			showDiff: e.target.name === 'wpDiff',
 			isLivePreview: true,
 			previewHeader: mw.msg( 'preview' ),
@@ -26,7 +28,7 @@
 	}
 
 	$( () => {
-		var selector;
+		let selector;
 
 		// Enable only live diff on user .js/.css pages, as there's no sensible way of
 		// "previewing" the scripts or styles without reloading the page.
