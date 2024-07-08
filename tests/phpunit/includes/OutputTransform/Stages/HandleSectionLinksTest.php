@@ -35,7 +35,7 @@ class HandleSectionLinksTest extends OutputTransformStageTestBase {
 	}
 
 	public function provideShouldNotRun(): array {
-		return [];
+		return [ [ new ParserOutput(), null, [ 'isParsoidContent' => true ] ] ];
 	}
 
 	private static function newParserOutput(

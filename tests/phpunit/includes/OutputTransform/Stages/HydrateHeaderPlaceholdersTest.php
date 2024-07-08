@@ -28,7 +28,7 @@ class HydrateHeaderPlaceholdersTest extends OutputTransformStageTestBase {
 	}
 
 	public function provideShouldNotRun(): array {
-		return [];
+		$this->markTestSkipped( 'HydrateHeaderPlaceHolders should always run' );
 	}
 
 	public function provideTransform(): array {
