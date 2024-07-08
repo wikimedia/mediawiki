@@ -2987,7 +2987,7 @@ return [
 		],
 	],
 	'mediawiki.widgets.SizeFilterWidget.styles' => [
-		'styles' => 'resources/src/mediawiki.widgets/mw.widgets.SizeFilterWidget.base.css',
+		'styles' => 'resources/src/mediawiki.widgets/mw.widgets.SizeFilterWidget.base.less',
 	],
 	'mediawiki.widgets.MediaSearch' => [
 		'scripts' => [
