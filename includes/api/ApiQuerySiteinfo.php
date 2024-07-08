@@ -235,7 +235,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	protected function appendGeneralInfo( $property ) {
 		$config = $this->getConfig();
 		$mainPage = Title::newMainPage();
-		$logo = SkinModule::getAvailableLogos( $config );
+		$logo = SkinModule::getAvailableLogos( $config, $this->getLanguage()->getCode() );
 
 		$data = [
 			'mainpage' => $mainPage->getPrefixedText(),

@@ -1026,7 +1026,10 @@ abstract class Skin extends ContextSource {
 		$mp = $this->msg( 'mainpage' )->escaped();
 		$url = htmlspecialchars( Title::newMainPage()->getLocalURL() );
 
-		$logourl = RL\SkinModule::getAvailableLogos( $this->getConfig() )[ '1x' ];
+		$logourl = RL\SkinModule::getAvailableLogos(
+			$this->getConfig(),
+			$this->getLanguage()->getCode()
+		)[ '1x' ];
 		return "<a href='{$url}'><img{$a} src='{$logourl}' alt='[{$mp}]' /></a>";
 	}
 
