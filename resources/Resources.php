@@ -2789,8 +2789,8 @@ return [
 	'mediawiki.widgets.styles' => [
 		'skinStyles' => [
 			'default' => [
-				'resources/src/mediawiki.widgets/mw.widgets.ComplexNamespaceInputWidget.base.css',
-				'resources/src/mediawiki.widgets/mw.widgets.ComplexTitleInputWidget.base.css',
+				'resources/src/mediawiki.widgets/mw.widgets.ComplexNamespaceInputWidget.base.less',
+				'resources/src/mediawiki.widgets/mw.widgets.ComplexTitleInputWidget.base.less',
 			],
 		],
 	],
