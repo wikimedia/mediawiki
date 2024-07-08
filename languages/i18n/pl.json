@@ -115,7 +115,8 @@
 			"Base",
 			"Amire80",
 			"IJzeren Jan",
-			"Kaper365"
+			"Kaper365",
+			"AramilFeraxa"
 		]
 	},
 	"tog-underline": "Podkreślenie linków:",
@@ -2679,7 +2680,7 @@
 	"ipboptions": "2 godziny:2 hours,1 dzień:1 day,3 dni:3 days,1 tydzień:1 week,2 tygodnie:2 weeks,1 miesiąc:1 month,3 miesiące:3 months,6 miesięcy:6 months,1 rok:1 year,na czas nieokreślony:infinite",
 	"ipbhidename": "Ukryj nazwę użytkownika w edycjach i listach",
 	"ipbwatchuser": "Obserwuj stronę osobistą i stronę dyskusji tego użytkownika",
-	"ipb-disableusertalk": "Blokada edytowania własnej strony dyskusji",
+	"ipb-disableusertalk": "Blokada edytowania stron dyskusji",
 	"ipb-change-block": "Zmień ustawienia blokady",
 	"ipb-confirm": "Potwierdzam blokadę",
 	"ipb-sitewide": "Całkowicie",
@@ -2753,7 +2754,7 @@
 	"noautoblockblock": "automatyczne blokowanie wyłączone",
 	"createaccountblock": "blokada tworzenia kont",
 	"emailblock": "zablokowany e‐mail",
-	"blocklist-nousertalk": "nie może edytować swojej strony dyskusji",
+	"blocklist-nousertalk": "nie może edytować stron dyskusji",
 	"blocklist-editing": "edytowanie",
 	"blocklist-editing-sitewide": "edytowanie (wszystkich stron)",
 	"blocklist-editing-page": "strony",
@@ -2776,7 +2777,7 @@
 	"block-log-flags-nocreate": "blokada tworzenia konta",
 	"block-log-flags-noautoblock": "automatyczne blokowanie wyłączone",
 	"block-log-flags-noemail": "e‐mail zablokowany",
-	"block-log-flags-nousertalk": "nie może edytować własnej strony dyskusji",
+	"block-log-flags-nousertalk": "nie może edytować stron dyskusji",
 	"block-log-flags-angry-autoblock": "rozszerzone automatyczne blokowanie włączone",
 	"block-log-flags-hiddenname": "nazwa użytkownika jest ukryta",
 	"range_block_disabled": "Możliwość blokowania zakresu adresów IP została wyłączona.",

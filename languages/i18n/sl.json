@@ -21,7 +21,8 @@
 			"아라",
 			"Pinky sl",
 			"Amire80",
-			"BadDog"
+			"BadDog",
+			"IJzeren Jan"
 		]
 	},
 	"tog-underline": "Podčrtovanje povezav:",
@@ -334,7 +335,7 @@
 	"filedeleteerror": "Datoteke »$1« ni mogoče izbrisati.",
 	"directorycreateerror": "Ni mogoče ustvariti imenika »$1«.",
 	"directoryreadonlyerror": "Imenik »$1« je samo za branje.",
-	"filenotfound": "Datoteke »$1« ni mooče najti.",
+	"filenotfound": "Datoteke »$1« ni mogoče najti.",
 	"unexpected": "Nepričakovana vrednost: »$1« = »$2«.",
 	"formerror": "Napaka: Obrazca ni mogoče predložiti.",
 	"badarticleerror": "Na tej strani dejanja ni mogoče izvesti.",

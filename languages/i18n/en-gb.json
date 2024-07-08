@@ -53,7 +53,9 @@
 			"Mako001",
 			"Piano1forte2",
 			"Drkirstyross",
-			"Umar Ahmad2345"
+			"Umar Ahmad2345",
+			"Dirse18",
+			"Syafiq.y"
 		]
 	},
 	"tog-hidecategorization": "Hide categorisation of pages",
@@ -80,6 +82,14 @@
 	"editfont-monospace": "Monospaced font",
 	"editfont-sansserif": "Sans serif font",
 	"editfont-serif": "Serif font",
+	"sunday": "Aad",
+	"monday": "Pazartesi",
+	"tuesday": "Salı",
+	"wednesday": "Çarşamba",
+	"thursday": "Perşembe",
+	"january": "Ocak",
+	"may_long": "Mayıs",
+	"june": "Haziran",
 	"category_header": "Pages in category '$1'",
 	"category-media-header": "Media in category '$1'",
 	"search-ignored-headings": " #<!-- leave this line exactly as it is --> <pre>\n# Headings that will be ignored by search.\n# Changes to this take effect as soon as the page with the heading is indexed.\n# You can force page reindexing by doing a null edit.\n# Syntax is as follows:\n#   * Everything from a '#' character to the end of the line is a comment.\n#   * Every non-blank line is the exact title to ignore, case and everything.\nReferences\nExternal links\nSee also\n #</pre> <!-- leave this line exactly as it is -->",

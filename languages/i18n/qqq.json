@@ -263,7 +263,8 @@
 			"Cabal",
 			"PerfektesChaos",
 			"Shizhao",
-			"Jack who built the house"
+			"Jack who built the house",
+			"IJzeren Jan"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -2530,7 +2531,7 @@
 	"pubmedurl": "{{notranslate}}\nParameters:\n* $1 - Pubmed number\nSee also:\n* {{msg-mw|Rfcurl}}",
 	"specialloguserlabel": "Used in [[Special:Log]] as a label for an input field with which the log can be filtered for entries describing actions ''performed'' by the specified user.  \"Carried out\" and \"done\" are possible alternatives for \"performed\".",
 	"speciallogtitlelabel": "Used in [[Special:Log]] as a label for an input field with which the log can be filtered.  This filter selects for pages or users on which a log action was performed.",
-	"log": "ਇੰਦਰਾਜ",
+	"log": "{{doc-special|Log}}\n{{Identical|Log}}",
 	"logeventslist-submit": "Submit button on [[Special:Log]]\n{{Identical|Show}}",
 	"logeventslist-more-filters": "Label on [[Special:Log]]. Some log types are hidden by default when viewing \"all\" logs, because they might be very verbose, and these options show them.",
 	"logeventslist-patrol-log": "Patrol log option label on [[Special:Log]]",
