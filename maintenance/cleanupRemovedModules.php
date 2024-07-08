@@ -50,7 +50,7 @@ class CleanupRemovedModules extends Maintenance {
 		$res = $dbw->newSelectQueryBuilder()
 			->select( [ 'md_module', 'md_skin' ] )
 			->from( 'module_deps' )
-			->where( $moduleNames ? 'md_module NOT IN (' . $dbw->makeList( $moduleNames ) . ')' : '1=1' )
+			->where( $moduleNames ? $dbw->expr( 'md_module', '!=', $moduleNames ) : [] )
 			->caller( __METHOD__ )
 			->fetchResultSet();
 		$rows = iterator_to_array( $res, false );
