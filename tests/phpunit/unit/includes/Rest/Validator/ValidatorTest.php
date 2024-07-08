@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Rest;
 
 use Exception;
 use InvalidArgumentException;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -11,6 +12,7 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\Validator\BodyValidator;
 use MediaWiki\Rest\Validator\JsonBodyValidator;
 use MediaWiki\Rest\Validator\NullBodyValidator;
+use MediaWiki\Rest\Validator\ParamValidatorCallbacks;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
@@ -698,5 +700,87 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 				$this->fail( 'Unexpected exception: ' . $ex );
 			}
 		}
+	}
+
+	public function provideGetValue() {
+		return [
+			// Test case 0: Parameter exists in source and no normalization required
+			[
+				'source' => 'query',
+				'requestData' => new RequestData( [ 'queryParams' => [ 'param1' => 'value1' ] ] ),
+				'options' => [],
+				'expected' => 'value1'
+			],
+
+			// Test case 1: Parameter exists in source and normalization required
+			[
+				'source' => 'query',
+				'requestData' => new RequestData( [ 'queryParams' => [ 'param1' => "L\u{0061}\u{0308}rm" ] ] ),
+				'options' => [],
+				'expected' => "L\u{00E4}rm"
+			],
+
+			// Test case 2: Parameter exists in source and normalization required
+			[
+				'source' => 'query',
+				'requestData' => new RequestData( [ 'queryParams' => [ 'param1' => "Foo\0" ] ] ),
+				'options' => [],
+				'expected' => "Foo\u{FFFD}"
+			],
+//
+//			// Test case 3: Parameter does not exist, default used
+			[
+				'source' => 'query',
+				'requestData' => new RequestData( [] ),
+				'options' => [],
+				'expected' => 'default'
+			],
+//
+//			// Test case 4: Parameter source is body (No normalization)
+			[
+				'source' => 'body',
+				'requestData' => new RequestData( [ 'parsedBody' => [ 'param1' => "L\u{0061}\u{0308}rm" ] ] ),
+				'options' => [],
+				'expected' => "L\u{0061}\u{0308}rm"
+			],
+//
+//			// Test case 5: raw option is set (No normalization)
+			[
+				'source' => 'query',
+				'requestData' => new RequestData( [ 'queryParams' => [ 'param1' => "L\u{0061}\u{0308}rm" ] ] ),
+				'options' => [ 'raw' => true ],
+				'expected' => "L\u{0061}\u{0308}rm"
+			],
+
+			// Test case 6: Parameter source is not specified (Expect InvalidArgumentException)
+			[
+				'source' => null,
+				'requestData' => new RequestData( [ 'queryParams' => [ 'param1' => "L\u{0061}\u{0308}rm" ] ] ),
+				'options' => [],
+				'expected' => null,
+				'expectedException' => InvalidArgumentException::class
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetValue
+	 */
+	public function testGetValue( $source, RequestData $requestData, $options, $expected, $expectedException = null ) {
+		$validatorCallbacks = new ParamValidatorCallbacks(
+			$requestData,
+			$this->createMock( Authority::class ),
+		);
+
+		// Set options
+		$options['source'] = $source;
+
+		// Test case
+		if ( $expectedException !== null ) {
+			$this->expectException( $expectedException );
+		}
+
+		$result = $validatorCallbacks->getValue( 'param1', 'default', $options );
+		$this->assertSame( $expected, $result );
 	}
 }

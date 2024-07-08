@@ -6,6 +6,7 @@ use InvalidArgumentException;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\RequestInterface;
 use Psr\Http\Message\UploadedFileInterface;
+use UtfNormal\Validator;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\Callbacks;
 
@@ -55,10 +56,20 @@ class ParamValidatorCallbacks implements Callbacks {
 
 	public function getValue( $name, $default, array $options ) {
 		$params = $this->getParamsFromSource( $options['source'] );
-		return $params[$name] ?? $default;
-		// @todo Should normalization to NFC UTF-8 be done here (much like in the
-		// action API and the rest of MW), or should it be left to handlers to
-		// do whatever normalization they need?
+		$value = $params[$name] ?? $default;
+
+		// Normalisation for body is being handled in Handler::parseBodyData
+		if ( !isset( $options['raw'] ) && $options['source'] !== 'body' ) {
+			if ( is_string( $value ) ) {
+				// Normalize value to NFC UTF-8
+				$normalizedValue = Validator::cleanUp( $value );
+				// TODO: Warn if normalization was applied
+
+				$value = $normalizedValue;
+			}
+		}
+
+		return $value;
 	}
 
 	public function hasUpload( $name, array $options ) {
