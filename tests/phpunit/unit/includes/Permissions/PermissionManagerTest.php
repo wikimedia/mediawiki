@@ -5,7 +5,6 @@ namespace MediaWiki\Tests\Unit\Permissions;
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
-use MediaWiki\Cache\UserCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
@@ -22,6 +21,7 @@ use MediaWiki\User\TempUser\RealTempUserConfig;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
+use MediaWiki\User\UserIdentityLookup;
 use MediaWikiUnitTestCase;
 use Wikimedia\TestingAccessWrapper;
 
@@ -72,7 +72,7 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 			$this->createMock( BlockManager::class ),
 			$this->createMock( BlockErrorFormatter::class ),
 			$hookContainer,
-			$this->createMock( UserCache::class ),
+			$this->createMock( UserIdentityLookup::class ),
 			$redirectLookup,
 			$restrictionStore,
 			$this->createMock( TitleFormatter::class ),
