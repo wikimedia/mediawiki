@@ -91,7 +91,7 @@ module.exports = defineComponent( {
 			} );
 		}
 
-		const additionalDetailsSelected = ref( [] );
+		const additionalDetailsSelected = ref( [ 'wpAutoBlock' ] );
 		const additionalDetailsOptions = [ {
 			label: mw.message( 'ipbenableautoblock' ),
 			value: 'wpAutoBlock',
