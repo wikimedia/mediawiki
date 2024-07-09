@@ -154,6 +154,7 @@ because of Phabricator reports.
 * ISQLPlatform::tableNames(), deprecated since 1.39, has been removed.
 * The Less mixin .column-break-after-avoid(), deprecated in 1.43, has been
   removed. Use just the CSS rule `break-after: avoid-column;` instead now.
+* ApiBase::errorArrayToStatus(), deprecated in 1.43, has been removed.
 * …
 
 === Deprecations in 1.44 ===

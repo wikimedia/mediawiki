@@ -1343,52 +1343,6 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Turn an array of messages into a Status.
-	 *
-	 * @deprecated since 1.43 Use methods that return StatusValue objects directly,
-	 *   such as PermissionManager::getPermissionStatus().
-	 *
-	 * @see ApiMessage::create
-	 *
-	 * @since 1.29
-	 * @param array $errors A list of message keys, MessageSpecifier objects,
-	 *        or arrays containing the message key and parameters.
-	 * @param Authority|null $performer
-	 * @return Status
-	 */
-	public function errorArrayToStatus( array $errors, ?Authority $performer = null ) {
-		wfDeprecated( __METHOD__, '1.43' );
-
-		$performer ??= $this->getAuthority();
-		$block = $performer->getBlock();
-
-		$status = Status::newGood();
-		foreach ( $errors as $error ) {
-			if ( !is_array( $error ) ) {
-				$error = [ $error ];
-			}
-
-			$head = reset( $error );
-			$key = ( $head instanceof MessageSpecifier ) ? $head->getKey() : (string)$head;
-
-			if ( isset( self::BLOCK_CODE_MAP[$key] ) && $block ) {
-				$status->fatal( ApiMessage::create(
-					$error,
-					$this->getBlockCode( $block ),
-					[ 'blockinfo' => $this->getBlockDetails( $block ) ]
-				) );
-			} elseif ( isset( self::MESSAGE_CODE_MAP[$key] ) ) {
-				[ $msg, $code ] = self::MESSAGE_CODE_MAP[$key];
-				$status->fatal( ApiMessage::create( $msg, $code ) );
-			} else {
-				// @phan-suppress-next-line PhanParamTooFewUnpack
-				$status->fatal( ...$error );
-			}
-		}
-		return $status;
-	}
-
-	/**
 	 * Add block info to block messages in a Status
 	 * @since 1.33
 	 * @internal since 1.37, should become protected in the future.
