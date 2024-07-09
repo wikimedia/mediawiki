@@ -1410,6 +1410,8 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	public function testErrorArrayToStatus() {
+		$this->expectDeprecationAndContinue( '/errorArrayToStatus/' );
+
 		$mock = new MockApi();
 
 		$msg = new Message( 'mainpage' );
