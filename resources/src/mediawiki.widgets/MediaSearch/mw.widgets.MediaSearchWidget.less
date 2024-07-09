@@ -24,8 +24,10 @@
 		font-weight: bold;
 	}
 
-	.oo-ui-labelWidget&-noResults,
-	.oo-ui-labelWidget&-recentUploads {
-		display: block;
+	&-noResults,
+	&-recentUploads {
+		&.oo-ui-labelWidget {
+			display: block;
+		}
 	}
 }
