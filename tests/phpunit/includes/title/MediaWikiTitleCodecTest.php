@@ -91,14 +91,14 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function getNamespaceInfo(): NamespaceInfo {
 		return $this->getDummyNamespaceInfo( [
-			'CanonicalNamespaceNames' => [
+			MainConfigNames::CanonicalNamespaceNames => [
 				NS_SPECIAL => 'Special',
 				NS_MAIN => '',
 				NS_TALK => 'Talk',
 				NS_USER => 'User',
 				NS_USER_TALK => 'User_talk',
 			],
-			'CapitalLinks' => true,
+			MainConfigNames::CapitalLinks => true,
 		] );
 	}
 

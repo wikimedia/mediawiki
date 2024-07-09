@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Parser\Parsoid\Config;
 
 use MediaWiki\Content\TextContentHandler;
+use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -23,7 +24,7 @@ class SiteConfigTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testSupportsContentModel( $model, $expected ) {
 		$contentHandlers = $this->getConfVar( 'ContentHandlers' );
-		$this->overrideConfigValue( 'ContentHandlers', [
+		$this->overrideConfigValue( MainConfigNames::ContentHandlers, [
 			'with-text' => [ 'factory' => static function () {
 				return new TextContentHandler( 'with-text', [ CONTENT_FORMAT_WIKITEXT, 'plain/test' ] );
 			} ],

@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Storage;
 use ChangeTags;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -330,7 +331,7 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 	private function getEditResultBuilder( int $manualRevertSearchRadius = 15 ) {
 		$options = new ServiceOptions(
 			EditResultBuilder::CONSTRUCTOR_OPTIONS,
-			[ 'ManualRevertSearchRadius' => $manualRevertSearchRadius ]
+			[ MainConfigNames::ManualRevertSearchRadius => $manualRevertSearchRadius ]
 		);
 
 		return new EditResultBuilder(

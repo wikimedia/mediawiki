@@ -14,7 +14,7 @@ use Psr\Log\LoggerInterface;
 class MWDebugTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
-		$this->setMwGlobals( 'wgDevelopmentWarnings', false );
+		$this->overrideConfigValue( MainConfigNames::DevelopmentWarnings, false );
 
 		parent::setUp();
 		/** Clear log before each test */
@@ -52,7 +52,7 @@ class MWDebugTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testWarningDevelopment() {
-		$this->setMwGlobals( 'wgDevelopmentWarnings', true );
+		$this->overrideConfigValue( MainConfigNames::DevelopmentWarnings, true );
 
 		$this->expectPHPError(
 			E_USER_NOTICE,
@@ -74,7 +74,7 @@ class MWDebugTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testMessagesFromErrorChannel() {
 		// Turn off to keep mw-error.log file empty in CI (and thus avoid build failure)
-		$this->setMwGlobals( 'wgDebugLogGroups', [] );
+		$this->overrideConfigValue( MainConfigNames::DebugLogGroups, [] );
 
 		MWExceptionHandler::handleError( E_USER_DEPRECATED, 'Warning message' );
 		$this->assertEquals(

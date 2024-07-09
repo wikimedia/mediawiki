@@ -405,7 +405,7 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 		return [
 			[
 				[
-					'Logos' => [
+					MainConfigNames::Logos => [
 						'1x' => '/img/default.png',
 						'1.5x' => '/img/one-point-five.png',
 						'2x' => '/img/two-x.png',
@@ -420,16 +420,14 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 			],
 			[
 				[
-					'Logos' => [
-						'1x' => '/img/default.png',
-					],
+					MainConfigNames::Logos => [ '1x' => '/img/default.png' ],
 				],
 				'en',
 				'Link: </img/default.png>;rel=preload;as=image'
 			],
 			[
 				[
-					'Logos' => [
+					MainConfigNames::Logos => [
 						'1x' => '/img/default.png',
 						'2x' => '/img/two-x.png',
 					],
@@ -441,7 +439,7 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 			],
 			[
 				[
-					'Logos' => [
+					MainConfigNames::Logos => [
 						'1x' => '/img/default.png',
 						'svg' => '/img/vector.svg',
 					],
@@ -452,18 +450,16 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 			],
 			[
 				[
-					'BaseDirectory' => dirname( dirname( __DIR__ ) ) . '/data/media',
-					'Logos' => [
-						'1x' => '/w/test.jpg',
-					],
-					'UploadPath' => '/w/images',
+					MainConfigNames::BaseDirectory => dirname( dirname( __DIR__ ) ) . '/data/media',
+					MainConfigNames::Logos => [ '1x' => '/w/test.jpg' ],
+					MainConfigNames::UploadPath => '/w/images',
 				],
 				'en',
 				'Link: </w/test.jpg?edcf2>;rel=preload;as=image',
 			],
 			[
 				[
-					'Logos' => [
+					MainConfigNames::Logos => [
 						'1x' => '/img/default.png',
 						'1.5x' => '/img/one-point-five.png',
 						'2x' => '/img/two-x.png',

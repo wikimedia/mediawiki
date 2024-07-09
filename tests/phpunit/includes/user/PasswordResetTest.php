@@ -6,6 +6,7 @@ use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -511,9 +512,9 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 
 	private function makeConfig( $enableEmail, array $passwordResetRoutes, $emailForResets ) {
 		$hash = [
-			'AllowRequiringEmailForResets' => $emailForResets,
-			'EnableEmail' => $enableEmail,
-			'PasswordResetRoutes' => $passwordResetRoutes,
+			MainConfigNames::AllowRequiringEmailForResets => $emailForResets,
+			MainConfigNames::EnableEmail => $enableEmail,
+			MainConfigNames::PasswordResetRoutes => $passwordResetRoutes,
 		];
 
 		return new ServiceOptions( PasswordReset::CONSTRUCTOR_OPTIONS, $hash );

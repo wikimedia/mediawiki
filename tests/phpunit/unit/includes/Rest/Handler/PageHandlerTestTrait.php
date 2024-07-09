@@ -95,9 +95,9 @@ trait PageHandlerTestTrait {
 	public function newPageHtmlHandler( ?RequestInterface $request = null ) {
 		$services = $this->getServiceContainer();
 		$config = [
-			'RightsUrl' => 'https://example.com/rights',
-			'RightsText' => 'some rights',
-			'ParsoidCacheConfig' =>
+			MainConfigNames::RightsUrl => 'https://example.com/rights',
+			MainConfigNames::RightsText => 'some rights',
+			MainConfigNames::ParsoidCacheConfig =>
 				MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidCacheConfig )
 		];
 

@@ -255,13 +255,15 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 			'serialProvider' => [ 'type' => 'local', 'useYear' => false ],
 			'matchPattern' => '~$1',
 		] );
-		$this->overrideConfigValue( 'AccountCreationThrottle', [
-			'count' => 10,
-			'seconds' => 86400
-		] );
-		$this->overrideConfigValue( 'TempAccountCreationThrottle', [
-			'count' => 1,
-			'seconds' => 86400
+		$this->overrideConfigValues( [
+			MainConfigNames::AccountCreationThrottle => [
+				'count' => 10,
+				'seconds' => 86400
+			],
+			MainConfigNames::TempAccountCreationThrottle => [
+				'count' => 1,
+				'seconds' => 86400
+			],
 		] );
 		$tuc = $this->getServiceContainer()->getTempUserCreator();
 		$status = $tuc->create( null, new FauxRequest() );

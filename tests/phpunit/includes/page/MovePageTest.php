@@ -43,8 +43,8 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 				MovePage::CONSTRUCTOR_OPTIONS,
 				$params['options'] ?? [],
 				[
-					'CategoryCollation' => 'uppercase',
-					'MaximumMovedPages' => 100,
+					MainConfigNames::CategoryCollation => 'uppercase',
+					MainConfigNames::MaximumMovedPages => 100,
 				]
 			),
 			$mockProvider,

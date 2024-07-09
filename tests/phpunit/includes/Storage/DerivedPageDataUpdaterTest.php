@@ -1258,7 +1258,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 			$services->getConnectionProvider(),
 			new ServiceOptions(
 				EditResultCache::CONSTRUCTOR_OPTIONS,
-				[ 'RCMaxAge' => BagOStuff::TTL_MONTH ]
+				[ MainConfigNames::RCMaxAge => BagOStuff::TTL_MONTH ]
 			)
 		);
 

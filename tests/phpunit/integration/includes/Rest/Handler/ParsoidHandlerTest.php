@@ -9,6 +9,7 @@ use Generator;
 use Language;
 use LanguageCode;
 use MediaWiki\Content\JavaScriptContent;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
@@ -89,8 +90,8 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	public function setUp(): void {
 		// enable Pig Latin variant conversion
 		$this->overrideConfigValues( [
-			'UsePigLatinVariant' => true,
-			'ParsoidSettings' => [
+			MainConfigNames::UsePigLatinVariant => true,
+			MainConfigNames::ParsoidSettings => [
 				'useSelser' => true,
 				'linting' => true,
 			]

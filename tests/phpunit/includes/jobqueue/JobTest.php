@@ -102,7 +102,7 @@ class JobTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideTestJobFactory
 	 */
 	public function testJobFactory( $handler, $expectedClass ) {
-		$this->overrideConfigValue( 'JobClasses', [ 'testdummy' => $handler ] );
+		$this->overrideConfigValue( MainConfigNames::JobClasses, [ 'testdummy' => $handler ] );
 
 		$job = Job::factory( 'testdummy', Title::newMainPage(), [] );
 		$this->assertInstanceOf( $expectedClass, $job );
