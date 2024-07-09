@@ -1,7 +1,7 @@
 /*!
  * MediaWiki Widgets - MediaResultWidget styles.
  *
- * @copyright 2011-2016 VisualEditor Team and others; see AUTHORS.txt
+ * @copyright 2011-2024 VisualEditor Team and others; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
 
@@ -15,75 +15,75 @@
 	overflow: hidden;
 	box-sizing: border-box;
 	text-align: center;
-}
 
-.mw-widget-mediaResultWidget-error {
-	background-color: @background-color-disabled-subtle;
-}
+	&-error {
+		background-color: @background-color-disabled-subtle;
+	}
 
-.mw-widget-mediaResultWidget-thumbnail {
-	opacity: 0;
-	display: inline-block;
-	transition: opacity 400ms;
-}
+	&-thumbnail {
+		opacity: 0;
+		display: inline-block;
+		transition: opacity 400ms;
+	}
 
-.mw-widget-mediaResultWidget-done .mw-widget-mediaResultWidget-thumbnail,
-.mw-widget-mediaResultWidget-error .mw-widget-mediaResultWidget-thumbnail {
-	opacity: 1;
-}
+	&-done &-thumbnail,
+	&-error &-thumbnail {
+		opacity: 1;
+	}
 
-.mw-widget-mediaResultWidget-crop {
-	background-size: cover;
-	background-position: center center;
-}
+	&-crop {
+		background-size: cover;
+		background-position: center center;
+	}
 
-.mw-widget-mediaResultWidget-overlay {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	box-shadow: inset 0 0 0 1px #c8ccd1;
-}
+	&-overlay {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		box-shadow: inset 0 0 0 1px #c8ccd1;
+	}
 
-.mw-widget-mediaResultWidget.oo-ui-optionWidget-highlighted,
-.mw-widget-mediaResultWidget.oo-ui-optionWidget-selected {
-	box-shadow: 0 0 2px #36c;
-}
+	&.oo-ui-optionWidget-highlighted,
+	&.oo-ui-optionWidget-selected {
+		box-shadow: 0 0 2px #36c;
+	}
 
-.mw-widget-mediaResultWidget.oo-ui-optionWidget-highlighted .mw-widget-mediaResultWidget-overlay,
-.mw-widget-mediaResultWidget.oo-ui-optionWidget-selected .mw-widget-mediaResultWidget-overlay {
-	box-shadow: inset 0 0 0 1px #36c;
-}
+	&.oo-ui-optionWidget-highlighted &-overlay,
+	&.oo-ui-optionWidget-selected &-overlay {
+		box-shadow: inset 0 0 0 1px #36c;
+	}
 
-.mw-widget-mediaResultWidget-error .mw-widget-mediaResultWidget-thumbnail {
-	background-image: url( broken-image.png );
-	background-size: auto;
-	background-position: center center;
-	background-repeat: no-repeat;
-}
+	&-error &-thumbnail {
+		background-image: url( broken-image.png );
+		background-size: auto;
+		background-position: center center;
+		background-repeat: no-repeat;
+	}
 
-.mw-widget-mediaResultWidget .mw-widget-mediaResultWidget-nameLabel {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	overflow: hidden;
-	padding: 0.5em;
-	color: #fff;
-	text-shadow: 1px 1px #000;
-	line-height: 1.125em;
-	background-color: rgba( 0, 0, 0, 0.5 );
-	text-overflow: ellipsis;
-	text-align: left;
-}
+	.mw-widget-mediaResultWidget-nameLabel {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		overflow: hidden;
+		padding: 0.5em;
+		color: #fff;
+		text-shadow: 1px 1px #000;
+		line-height: 1.125em;
+		background-color: rgba( 0, 0, 0, 0.5 );
+		text-overflow: ellipsis;
+		text-align: left;
+	}
 
-.mw-widget-mediaResultWidget.oo-ui-optionWidget-highlighted .mw-widget-mediaResultWidget-nameLabel {
-	background-color: rgba( 0, 0, 0, 0.75 );
-}
+	&.oo-ui-optionWidget-highlighted &-nameLabel {
+		background-color: rgba( 0, 0, 0, 0.75 );
+	}
 
-.mw-widget-mediaResultWidget.oo-ui-optionWidget-selected .mw-widget-mediaResultWidget-nameLabel {
-	background-color: #000;
+	&.oo-ui-optionWidget-selected &-nameLabel {
+		background-color: #000;
+	}
 }
 
 .mw-widget-mediaSearchWidget-noresults {
