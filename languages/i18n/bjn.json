@@ -2248,7 +2248,7 @@
 	"table_pager_empty": "Kadada kulihan",
 	"autosumm-blank": "←Puangakan laman",
 	"autosumm-replace": "Mangganti isi wan ''$1''",
-	"autoredircomment": "Paugahan tungkaran ka [[$1]]",
+	"autoredircomment": "Paugahan laman ka [[$1]]",
 	"autosumm-removed-redirect": "Mahapus paugahan ka [[$1]]",
 	"autosumm-new": "Maulah laman nang isinya ''$1''",
 	"lag-warn-normal": "Paubahan pahanyarnya pada $1 {{PLURAL:$1|ditik|diditik}} pinanya kada cungul di daptar ngini.",

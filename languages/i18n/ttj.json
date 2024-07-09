@@ -504,6 +504,7 @@
 	"rollback-confirmation-no": "Leka",
 	"rollbacklink": "garra",
 	"rollbacklinkcount": "garra {{PLURAL:$1|oruhindura|empindura}} $1",
+	"rollbackfailed": "Okugarra kugwire",
 	"changecontentmodel-reason-label": "Ensonga:",
 	"protectcomment": "Ensonga:",
 	"protect-default": "Ikiriza abakozesa boona",

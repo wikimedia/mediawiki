@@ -13,7 +13,7 @@
 	"preferences": "Нагодувања",
 	"prefsnologintext2": "Најавете се за да ги измените корисничките нагодувања.",
 	"searchprefs": "Нагодувања на пребарувањето",
-	"searchprefs-noresults": "Нема исход",
+	"searchprefs-noresults": "Не најдов ништо",
 	"searchprefs-results": "$1 {{PLURAL:$1|ставка|ставки}}",
 	"saveprefs": "Зачувај",
 	"tooltip-preferences-save": "Зачувај",
