@@ -1,5 +1,9 @@
 <?php
 
+namespace Wikimedia\ObjectCache;
+
+use InvalidArgumentException;
+use LogicException;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Http\MultiHttpClient;
 
@@ -103,24 +107,28 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 
 	/**
 	 * REST URL to use for storage.
+	 *
 	 * @var string
 	 */
 	private $url;
 
 	/**
 	 * HTTP parameters: readHeaders, writeHeaders, deleteHeaders, writeMethod.
+	 *
 	 * @var array
 	 */
 	private $httpParams;
 
 	/**
 	 * Optional serialization type to use. Allowed values: "PHP", "JSON".
+	 *
 	 * @var string
 	 */
 	private $serializationType;
 
 	/**
 	 * Optional HMAC Key for protecting the serialized blob. If omitted no protection is done
+	 *
 	 * @var string
 	 */
 	private $hmacKey;
@@ -272,6 +280,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 	 * Processes the response body.
 	 *
 	 * @param string $body request body to process
+	 *
 	 * @return mixed|bool the processed body, or false on error
 	 */
 	private function decodeBody( $body ) {
@@ -306,6 +315,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 	 * Prepares the request body (the "value" portion of our key/value store) for transmission.
 	 *
 	 * @param string $body request body to prepare
+	 *
 	 * @return string the prepared body
 	 * @throws LogicException
 	 */
@@ -375,3 +385,6 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 		$this->setLastError( $rcode === 0 ? self::ERR_UNREACHABLE : self::ERR_UNEXPECTED );
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( RESTBagOStuff::class, 'RESTBagOStuff' );

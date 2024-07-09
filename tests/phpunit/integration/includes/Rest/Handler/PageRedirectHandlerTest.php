@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
-use HashBagOStuff;
 use InvalidArgumentException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\ObjectCache\HashBagOStuff;
 
 /**
  * @covers \MediaWiki\Rest\Handler\PageSourceHandler

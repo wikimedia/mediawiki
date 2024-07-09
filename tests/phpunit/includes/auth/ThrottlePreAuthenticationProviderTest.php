@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Auth;
 
-use HashBagOStuff;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\ThrottlePreAuthenticationProvider;
 use MediaWiki\Auth\UsernameAuthenticationRequest;
@@ -15,6 +14,7 @@ use Psr\Log\LogLevel;
 use StatusValue;
 use stdClass;
 use TestLogger;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\TestingAccessWrapper;
 
 /**

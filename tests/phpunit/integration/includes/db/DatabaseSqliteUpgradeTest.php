@@ -2,6 +2,7 @@
 
 use MediaWiki\Installer\DatabaseUpdater;
 use Psr\Log\NullLogger;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseSqlite;
 use Wikimedia\Rdbms\TransactionProfiler;

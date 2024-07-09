@@ -2,7 +2,7 @@
 
 /**
  * @group BagOStuff
- * @covers \MemcachedPhpBagOStuff
+ * @covers \Wikimedia\ObjectCache\MemcachedPhpBagOStuff
  */
 class MemcachedPhpBagOStuffIntegrationTest extends BagOStuffTestBase {
 	protected function newCacheInstance() {

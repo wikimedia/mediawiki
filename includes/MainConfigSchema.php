@@ -11,7 +11,6 @@
 // phpcs:disable Generic.Files.LineLength.TooLong
 namespace MediaWiki;
 
-use APCUBagOStuff;
 use AssembleUploadChunksJob;
 use BlockLogFormatter;
 use CategoryMembershipChangeJob;
@@ -24,10 +23,8 @@ use DeleteLogFormatter;
 use DeletePageJob;
 use DoubleRedirectJob;
 use EmaillingJob;
-use EmptyBagOStuff;
 use EnotifNotifyJob;
 use Generator;
-use HashBagOStuff;
 use HTMLCacheUpdateJob;
 use ImportLogFormatter;
 use InvalidArgumentException;
@@ -71,8 +68,6 @@ use MediaWiki\Watchlist\ActivityUpdateJob;
 use MediaWiki\Watchlist\ClearUserWatchlistJob;
 use MediaWiki\Watchlist\ClearWatchlistNotificationsJob;
 use MediaWiki\Watchlist\WatchlistExpiryJob;
-use MemcachedPeclBagOStuff;
-use MemcachedPhpBagOStuff;
 use MergeLogFormatter;
 use MoveLogFormatter;
 use NullJob;
@@ -95,8 +90,13 @@ use UserEditCountInitJob;
 use UserGroupExpiryJob;
 use UserOptionsUpdateJob;
 use Wikimedia\EventRelayer\EventRelayerNull;
+use Wikimedia\ObjectCache\APCUBagOStuff;
+use Wikimedia\ObjectCache\EmptyBagOStuff;
+use Wikimedia\ObjectCache\HashBagOStuff;
+use Wikimedia\ObjectCache\MemcachedPeclBagOStuff;
+use Wikimedia\ObjectCache\MemcachedPhpBagOStuff;
+use Wikimedia\ObjectCache\WinCacheBagOStuff;
 use WikitextContentHandler;
-use WinCacheBagOStuff;
 
 /**
  * This class contains schema declarations for all configuration variables
@@ -3953,7 +3953,7 @@ class MainConfigSchema {
 	 *
 	 * For MemcachedPeclBagOStuff parameters see {@link MemcachedPeclBagOStuff::__construct}
 	 *
-	 * For RedisBagOStuff parameters see {@link RedisBagOStuff::__construct}
+	 * For RedisBagOStuff parameters see {@link Wikimedia\ObjectCache\RedisBagOStuff::__construct}
 	 */
 	public const ObjectCaches = [
 		'default' => [
@@ -4010,7 +4010,7 @@ class MainConfigSchema {
 	 * 3.) should be accessed by all servers that serve the application,
 	 * 4.) should be able to handle a high volume of writes and reads.
 	 *
-	 * @see \BagOStuff
+	 * @see \Wikimedia\ObjectCache\BagOStuff
 	 * @since 1.42
 	 */
 	public const MicroStashType = [
@@ -4042,7 +4042,7 @@ class MainConfigSchema {
 	 *
 	 * Valid options are the keys of {@link $wgObjectCaches}, e.g. CACHE_* constants.
 	 *
-	 * @see \BagOStuff
+	 * @see \Wikimedia\ObjectCache\BagOStuff
 	 * @since 1.26
 	 */
 	public const MainStash = [

@@ -1,10 +1,12 @@
 <?php
 
 use Wikimedia\LightweightObjectStore\StorageAwareness;
+use Wikimedia\ObjectCache\HashBagOStuff;
+use Wikimedia\ObjectCache\MultiWriteBagOStuff;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \MultiWriteBagOStuff
+ * @covers \Wikimedia\ObjectCache\MultiWriteBagOStuff
  * @group BagOStuff
  * @group Database
  */

@@ -25,6 +25,9 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\LightweightObjectStore\StorageAwareness;
+use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\ObjectCache\EmptyBagOStuff;
+use Wikimedia\ObjectCache\IStoreKeyEncoder;
 
 /**
  * Multi-datacenter aware caching interface

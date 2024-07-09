@@ -2,13 +2,13 @@
 
 namespace MediaWiki\Page\File;
 
-use BagOStuff;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\TitleParser;
 use RepoGroup;
+use Wikimedia\ObjectCache\BagOStuff;
 
 class BadFileLookup {
 	/** @var callable Returns contents of bad file list (see comment for isBadFile()) */

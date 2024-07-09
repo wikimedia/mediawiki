@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Storage;
 
-use BagOStuff;
 use Content;
 use ContentHandler;
 use DummyContentHandlerForTesting;
@@ -38,6 +37,7 @@ use MediaWikiIntegrationTestCase;
 use MockTitleTrait;
 use ParserOptions;
 use PHPUnit\Framework\MockObject\MockObject;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;

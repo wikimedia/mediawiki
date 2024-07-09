@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ObjectCache\BagOStuff;
 
 /**
  * @see ObjectCacheFactory

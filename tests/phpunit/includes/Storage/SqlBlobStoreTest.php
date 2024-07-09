@@ -5,7 +5,6 @@ namespace MediaWiki\Tests\Storage;
 use ConcatenatedGzipHistoryBlob;
 use ExternalStoreAccess;
 use ExternalStoreFactory;
-use HashBagOStuff;
 use InvalidArgumentException;
 use MediaWiki\Storage\BadBlobException;
 use MediaWiki\Storage\BlobAccessException;
@@ -13,6 +12,7 @@ use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiIntegrationTestCase;
 use StatusValue;
 use WANObjectCache;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Rdbms\LoadBalancer;
 
 /**

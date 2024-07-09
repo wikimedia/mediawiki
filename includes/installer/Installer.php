@@ -27,7 +27,6 @@
 namespace MediaWiki\Installer;
 
 use AutoLoader;
-use EmptyBagOStuff;
 use Exception;
 use ExecutableFinder;
 use ExtensionDependencyError;
@@ -63,6 +62,7 @@ use MWCryptRand;
 use ParserOptions;
 use RuntimeException;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\Services\ServiceDisabledException;
 use WikitextContent;
 

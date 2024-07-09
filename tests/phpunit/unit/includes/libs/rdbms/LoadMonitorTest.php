@@ -18,6 +18,7 @@
  * @file
  */
 
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Rdbms\DBUnexpectedError;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;

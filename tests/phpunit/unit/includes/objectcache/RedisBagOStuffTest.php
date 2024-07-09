@@ -1,9 +1,10 @@
 <?php
 
+use Wikimedia\ObjectCache\RedisBagOStuff;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \RedisBagOStuff
+ * @covers \Wikimedia\ObjectCache\RedisBagOStuff
  * @group BagOStuff
  */
 class RedisBagOStuffTest extends MediaWikiUnitTestCase {

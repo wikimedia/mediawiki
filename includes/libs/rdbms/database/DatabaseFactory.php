@@ -19,10 +19,10 @@
  */
 namespace Wikimedia\Rdbms;
 
-use HashBagOStuff;
 use InvalidArgumentException;
 use Psr\Log\NullLogger;
 use Throwable;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 
 /**

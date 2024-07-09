@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Edit;
 
-use BagOStuff;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Parser\Parsoid\PageBundleJsonTrait;
+use Wikimedia\ObjectCache\BagOStuff;
 
 /**
  * @internal

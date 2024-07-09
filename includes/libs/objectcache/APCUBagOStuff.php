@@ -21,6 +21,8 @@
  * @ingroup Cache
  */
 
+namespace Wikimedia\ObjectCache;
+
 /**
  * This is a wrapper for APCu's shared memory functions
  *
@@ -133,3 +135,6 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 		return $result;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( APCUBagOStuff::class, 'APCUBagOStuff' );

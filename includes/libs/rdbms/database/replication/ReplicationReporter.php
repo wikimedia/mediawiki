@@ -19,8 +19,8 @@
  */
 namespace Wikimedia\Rdbms\Replication;
 
-use BagOStuff;
 use Psr\Log\LoggerInterface;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DBPrimaryPos;
 use Wikimedia\Rdbms\IDatabase;

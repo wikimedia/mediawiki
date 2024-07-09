@@ -32,6 +32,8 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Rdbms\ChangedTablesTracker;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;

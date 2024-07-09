@@ -23,6 +23,7 @@
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\ObjectCache\MediumSpecificBagOStuff;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBConnectionError;

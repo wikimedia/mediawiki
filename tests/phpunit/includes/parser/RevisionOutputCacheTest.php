@@ -2,8 +2,6 @@
 
 namespace MediaWiki\Tests\Parser;
 
-use BagOStuff;
-use HashBagOStuff;
 use InvalidArgumentException;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Page\PageIdentity;
@@ -22,6 +20,8 @@ use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
 use TestLogger;
 use WANObjectCache;
+use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\UUID\GlobalIdGenerator;

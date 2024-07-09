@@ -23,13 +23,13 @@
 
 namespace MediaWiki\Cache;
 
-use BagOStuff;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;
+use Wikimedia\ObjectCache\BagOStuff;
 
 /**
  * Base class for data storage in the file system.

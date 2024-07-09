@@ -20,6 +20,15 @@
  * @file
  */
 
+namespace Wikimedia\ObjectCache;
+
+use ArrayUtils;
+use Exception;
+use Redis;
+use RedisConnectionPool;
+use RedisConnRef;
+use RedisException;
+
 /**
  * Redis-based caching module for redis server >= 2.6.12 and phpredis >= 2.2.4
  *
@@ -66,6 +75,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 	 *     consistent hashing algorithm). True by default. This has the
 	 *     potential to create consistency issues if a server is slow enough to
 	 *     flap, for example if it is in swap death.
+	 *
 	 * @param array $params
 	 */
 	public function __construct( $params ) {
@@ -440,6 +450,7 @@ LUA;
 
 	/**
 	 * @param string[] $keys
+	 *
 	 * @return array ((server => redis handle wrapper), (server => key batch), success)
 	 * @phan-return array{0:array<string,string[]>,1:array<string,RedisConnRef|Redis>,2:bool}
 	 */
@@ -504,6 +515,7 @@ LUA;
 
 	/**
 	 * @param string $key
+	 *
 	 * @return RedisConnRef|Redis|null Redis handle wrapper for the key or null on failure
 	 */
 	protected function getConnection( $key ) {
@@ -527,6 +539,7 @@ LUA;
 
 	/**
 	 * Log a fatal error
+	 *
 	 * @param string $msg
 	 */
 	protected function logError( $msg ) {
@@ -538,6 +551,7 @@ LUA;
 	 * and protocol errors. Sometimes it also closes the connection, sometimes
 	 * not. The safest response for us is to explicitly destroy the connection
 	 * object and let it be reopened during the next request.
+	 *
 	 * @param RedisConnRef $conn
 	 * @param RedisException $e
 	 */
@@ -548,6 +562,7 @@ LUA;
 
 	/**
 	 * Send information about a single request to the debug log
+	 *
 	 * @param string $op
 	 * @param string $keys
 	 * @param string $server
@@ -557,3 +572,6 @@ LUA;
 		$this->debug( "$op($keys) on $server: " . ( $e ? "failure" : "success" ) );
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( RedisBagOStuff::class, 'RedisBagOStuff' );

@@ -1,8 +1,10 @@
 <?php
 
+use Wikimedia\ObjectCache\HashBagOStuff;
+
 /**
  * @group BagOStuff
- * @covers \HashBagOStuff
+ * @covers \Wikimedia\ObjectCache\HashBagOStuff
  */
 class HashBagOStuffIntegrationTest extends BagOStuffTestBase {
 	protected function newCacheInstance() {

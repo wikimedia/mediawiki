@@ -24,6 +24,14 @@ use MediaWiki\Http\Telemetry;
 use MediaWiki\Logger\Spi;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ObjectCache\APCUBagOStuff;
+use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\ObjectCache\EmptyBagOStuff;
+use Wikimedia\ObjectCache\HashBagOStuff;
+use Wikimedia\ObjectCache\MemcachedBagOStuff;
+use Wikimedia\ObjectCache\MultiWriteBagOStuff;
+use Wikimedia\ObjectCache\RESTBagOStuff;
+use Wikimedia\ObjectCache\WinCacheBagOStuff;
 use Wikimedia\Stats\StatsFactory;
 
 /**

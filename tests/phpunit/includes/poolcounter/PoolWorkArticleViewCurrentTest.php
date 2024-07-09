@@ -6,6 +6,7 @@ use MediaWiki\PoolCounter\PoolWorkArticleViewCurrent;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Status\Status;
 use Psr\Log\NullLogger;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;

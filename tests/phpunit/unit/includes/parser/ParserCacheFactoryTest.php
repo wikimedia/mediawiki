@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Parser;
 
-use HashBagOStuff;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\MainConfigNames;
@@ -15,6 +14,7 @@ use MediaWikiUnitTestCase;
 use ParserCache;
 use Psr\Log\NullLogger;
 use WANObjectCache;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\UUID\GlobalIdGenerator;
 

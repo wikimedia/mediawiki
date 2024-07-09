@@ -4,6 +4,7 @@ use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Page\PageReferenceValue;
+use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

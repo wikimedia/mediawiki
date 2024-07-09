@@ -18,6 +18,8 @@
  * @file
  * @ingroup Cache
  */
+
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**

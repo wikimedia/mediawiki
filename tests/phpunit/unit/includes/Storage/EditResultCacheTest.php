@@ -2,13 +2,13 @@
 
 namespace MediaWiki\Tests\Storage;
 
-use BagOStuff;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\EditResultCache;
 use MediaWikiUnitTestCase;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;

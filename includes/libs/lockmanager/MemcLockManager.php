@@ -17,6 +17,9 @@
  *
  * @file
  */
+
+use Wikimedia\ObjectCache\MemcachedBagOStuff;
+use Wikimedia\ObjectCache\MemcachedPhpBagOStuff;
 use Wikimedia\WaitConditionLoop;
 
 /**

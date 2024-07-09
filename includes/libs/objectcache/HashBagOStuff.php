@@ -21,6 +21,10 @@
  * @ingroup Cache
  */
 
+namespace Wikimedia\ObjectCache;
+
+use InvalidArgumentException;
+
 /**
  * Simple store for keeping values in an associative array for the current process.
  *
@@ -47,10 +51,12 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 
 	/**
 	 * @stable to call
+	 *
 	 * @param array $params Additional parameters include:
 	 *   - maxKeys : only allow this many keys (using oldest-first eviction)
+	 *
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array{logger?:Psr\Log\LoggerInterface,asyncHandler?:callable,keyspace?:string,reportDupes?:bool,segmentationSize?:int,segmentedValueMaxSize?:int,maxKeys?:int} $params
+	 * @phan-param array{logger?:\Psr\Log\LoggerInterface,asyncHandler?:callable,keyspace?:string,reportDupes?:bool,segmentationSize?:int,segmentedValueMaxSize?:int,maxKeys?:int} $params
 	 */
 	public function __construct( $params = [] ) {
 		$params['segmentationSize'] ??= INF;
@@ -142,6 +148,7 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 
 	/**
 	 * @param string $key
+	 *
 	 * @return bool
 	 */
 	protected function expire( $key ) {
@@ -159,6 +166,7 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 	 * Does this bag have a non-null value for the given key?
 	 *
 	 * @param string $key
+	 *
 	 * @return bool
 	 * @since 1.27
 	 */
@@ -166,3 +174,6 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 		return isset( $this->bag[$key] );
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( HashBagOStuff::class, 'HashBagOStuff' );

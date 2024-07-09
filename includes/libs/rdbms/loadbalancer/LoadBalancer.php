@@ -20,8 +20,6 @@
 namespace Wikimedia\Rdbms;
 
 use ArrayUtils;
-use BagOStuff;
-use EmptyBagOStuff;
 use InvalidArgumentException;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
@@ -32,6 +30,8 @@ use RuntimeException;
 use Throwable;
 use UnexpectedValueException;
 use WANObjectCache;
+use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ScopedCallback;
 
 /**

@@ -11,6 +11,7 @@ use MediaWiki\Status\Status;
 use MediaWiki\Tests\Session\TestUtils;
 use MediaWiki\User\BotPassword;
 use MediaWiki\User\CentralId\CentralIdLookup;
+use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 

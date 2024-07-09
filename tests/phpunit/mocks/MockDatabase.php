@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests;
 
-use HashBagOStuff;
 use MediaWiki\Logger\LoggerFactory;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;

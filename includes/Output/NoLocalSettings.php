@@ -22,6 +22,7 @@
 
 # T32219 : can not use pathinfo() on URLs since slashes do not match
 use MediaWiki\Html\TemplateParser;
+use Wikimedia\ObjectCache\EmptyBagOStuff;
 
 $matches = [];
 $path = '/';

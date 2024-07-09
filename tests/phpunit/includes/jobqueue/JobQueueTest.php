@@ -2,6 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\ObjectCache\HashBagOStuff;
 
 /**
  * @group JobQueue

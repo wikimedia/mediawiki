@@ -20,8 +20,8 @@
 
 namespace Wikimedia\DependencyStore;
 
-use BagOStuff;
 use InvalidArgumentException;
+use Wikimedia\ObjectCache\BagOStuff;
 
 /**
  * Track per-module file dependencies in object cache via BagOStuff.

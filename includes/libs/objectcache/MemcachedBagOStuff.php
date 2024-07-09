@@ -21,6 +21,12 @@
  * @ingroup Cache
  */
 
+namespace Wikimedia\ObjectCache;
+
+use Exception;
+use InvalidArgumentException;
+use RuntimeException;
+
 /**
  * Base class for memcached clients.
  *
@@ -54,8 +60,10 @@ abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 	 *
 	 * @since 1.27
 	 * @see BagOStuff::makeKeyInternal
+	 *
 	 * @param string $keyspace
 	 * @param string[]|int[] $components
+	 *
 	 * @return string
 	 */
 	protected function makeKeyInternal( $keyspace, $components ) {
@@ -101,6 +109,7 @@ abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 	 * characters above the ASCII range.)
 	 *
 	 * @param string $key
+	 *
 	 * @return string
 	 * @throws Exception
 	 */
@@ -114,6 +123,7 @@ abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 
 	/**
 	 * @param string $key
+	 *
 	 * @return string
 	 */
 	protected function validateKeyAndPrependRoute( $key ) {
@@ -132,6 +142,7 @@ abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 
 	/**
 	 * @param string $key
+	 *
 	 * @return string
 	 */
 	protected function stripRouteFromKey( $key ) {
@@ -148,6 +159,7 @@ abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 
 	/**
 	 * @param int|float $exptime
+	 *
 	 * @return int
 	 */
 	protected function fixExpiry( $exptime ) {
@@ -181,6 +193,7 @@ abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 	 * @param int $exptime
 	 * @param int $step
 	 * @param int $init
+	 *
 	 * @return bool True on success, false on failure
 	 */
 	abstract protected function doIncrWithInitAsync( $key, $exptime, $step, $init );
@@ -190,7 +203,11 @@ abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 	 * @param int $exptime
 	 * @param int $step
 	 * @param int $init
+	 *
 	 * @return int|bool New value or false on failure
 	 */
 	abstract protected function doIncrWithInitSync( $key, $exptime, $step, $init );
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( MemcachedBagOStuff::class, 'MemcachedBagOStuff' );

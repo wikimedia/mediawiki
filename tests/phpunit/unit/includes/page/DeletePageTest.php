@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Unit\Page;
 
 use BadMethodCallException;
-use BagOStuff;
 use Generator;
 use JobQueueGroup;
 use MediaWiki\Cache\BacklinkCacheFactory;
@@ -30,6 +29,7 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Message\ITextFormatter;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactory;

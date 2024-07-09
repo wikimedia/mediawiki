@@ -22,6 +22,8 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Utils\MWTimestamp;
 use Psr\Log\NullLogger;
+use Wikimedia\ObjectCache\EmptyBagOStuff;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Stats\StatsFactory;

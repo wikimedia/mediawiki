@@ -20,8 +20,6 @@
 
 namespace MediaWiki\Languages;
 
-use BagOStuff;
-use HashBagOStuff;
 use InvalidArgumentException;
 use LanguageCode;
 use MediaWiki\Config\ServiceOptions;
@@ -29,6 +27,8 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\MediaWikiTitleCodec;
+use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\ObjectCache\HashBagOStuff;
 
 /**
  * A service that provides utilities to do with language names and codes.

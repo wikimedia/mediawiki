@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\Revision;
 
 use Content;
 use Exception;
-use HashBagOStuff;
 use IDBAccessObject;
 use InvalidArgumentException;
 use MediaWiki\CommentStore\CommentStoreComment;
@@ -39,6 +38,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use StatusValue;
 use WANObjectCache;
 use Wikimedia\Assert\PreconditionException;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DatabaseSqlite;

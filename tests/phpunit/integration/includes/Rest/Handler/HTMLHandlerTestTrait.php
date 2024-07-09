@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Rest\Handler;
 
 use Exception;
-use HashBagOStuff;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Edit\ParsoidOutputStash;
@@ -14,6 +13,7 @@ use MediaWiki\Permissions\UserAuthority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\User\User;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use WikiPage;
 
 /**

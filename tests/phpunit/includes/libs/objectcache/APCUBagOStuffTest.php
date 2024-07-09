@@ -1,8 +1,10 @@
 <?php
 
+use Wikimedia\ObjectCache\APCUBagOStuff;
+
 /**
  * @group BagOStuff
- * @covers \APCUBagOStuff
+ * @covers \Wikimedia\ObjectCache\APCUBagOStuff
  * @requires extension apcu
  */
 class APCUBagOStuffTest extends BagOStuffTestBase {

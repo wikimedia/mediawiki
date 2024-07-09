@@ -22,6 +22,7 @@ use MediaWiki\Session\Session;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
+use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;

@@ -21,10 +21,10 @@
 
 namespace MediaWiki\Auth;
 
-use BagOStuff;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\User;
+use Wikimedia\ObjectCache\BagOStuff;
 
 /**
  * A pre-authentication provider to throttle authentication actions.

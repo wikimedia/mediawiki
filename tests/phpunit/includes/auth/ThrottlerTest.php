@@ -2,8 +2,6 @@
 
 namespace MediaWiki\Tests\Auth;
 
-use BagOStuff;
-use HashBagOStuff;
 use InvalidArgumentException;
 use MediaWiki\Auth\Throttler;
 use MediaWiki\MainConfigNames;
@@ -11,6 +9,8 @@ use MediaWikiIntegrationTestCase;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\TestingAccessWrapper;
 
 /**

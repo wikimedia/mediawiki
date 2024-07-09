@@ -38,6 +38,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use Wikimedia\ObjectCache\BagOStuff;
 
 /**
  * Base class for multi-variant language conversion.

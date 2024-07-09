@@ -19,12 +19,12 @@
  */
 namespace Wikimedia\Rdbms;
 
-use BagOStuff;
-use EmptyBagOStuff;
 use LogicException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\ObjectCache\EmptyBagOStuff;
 
 /**
  * Provide a given client with protection against visible database lag.

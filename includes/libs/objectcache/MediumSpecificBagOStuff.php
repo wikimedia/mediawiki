@@ -21,6 +21,12 @@
  * @ingroup Cache
  */
 
+namespace Wikimedia\ObjectCache;
+
+use InvalidArgumentException;
+use JsonSerializable;
+use SerializedValueContainer;
+use stdClass;
 use Wikimedia\WaitConditionLoop;
 
 /**
@@ -81,9 +87,11 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 *   - segmentedValueMaxSize: The maximum total size, in bytes, of segmented values.
 	 *      This should be configured to a reasonable size give the site traffic and the
 	 *      amount of I/O between application and cache servers that the network can handle.
+	 *
 	 * @param array $params
+	 *
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array{logger?:Psr\Log\LoggerInterface,asyncHandler?:callable,reportDupes?:bool,segmentationSize?:int|float,segmentedValueMaxSize?:int} $params
+	 * @phan-param array{logger?:\Psr\Log\LoggerInterface,asyncHandler?:callable,reportDupes?:bool,segmentationSize?:int|float,segmentedValueMaxSize?:int} $params
 	 */
 	public function __construct( array $params = [] ) {
 		parent::__construct( $params );
@@ -109,6 +117,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 *
 	 * @param string $key
 	 * @param int $flags Bitfield of BagOStuff::READ_* constants [optional]
+	 *
 	 * @return mixed Returns false on failure or if the item does not exist
 	 */
 	public function get( $key, $flags = 0 ) {
@@ -119,6 +128,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 
 	/**
 	 * Track the number of times that a given key has been used.
+	 *
 	 * @param string $key
 	 */
 	private function trackDuplicateKeys( $key ) {
@@ -158,6 +168,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @param string $key
 	 * @param int $flags Bitfield of BagOStuff::READ_* constants [optional]
 	 * @param mixed &$casToken CAS token if MediumSpecificBagOStuff::PASS_BY_REF [returned]
+	 *
 	 * @return mixed Returns false on failure or if the item does not exist
 	 */
 	abstract protected function doGet( $key, $flags = 0, &$casToken = null );
@@ -169,10 +180,12 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @param mixed $value
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
+	 *
 	 * @return bool Success
 	 */
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		$entry = $this->makeValueOrSegmentList( $key, $value, $exptime, $flags, $ok );
+
 		// Only when all segments (if any) are stored should the main key be changed
 		return $ok && $this->doSet( $key, $entry, $exptime, $flags );
 	}
@@ -184,6 +197,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @param mixed $value
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
+	 *
 	 * @return bool Success
 	 */
 	abstract protected function doSet( $key, $value, $exptime = 0, $flags = 0 );
@@ -197,6 +211,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 *
 	 * @param string $key
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
+	 *
 	 * @return bool True if the item was deleted or not found, false on failure
 	 */
 	public function delete( $key, $flags = 0 ) {
@@ -229,12 +244,14 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 *
 	 * @param string $key
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
+	 *
 	 * @return bool True if the item was deleted or not found, false on failure
 	 */
 	abstract protected function doDelete( $key, $flags = 0 );
 
 	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
 		$entry = $this->makeValueOrSegmentList( $key, $value, $exptime, $flags, $ok );
+
 		// Only when all segments (if any) are stored should the main key be changed
 		return $ok && $this->doAdd( $key, $entry, $exptime, $flags );
 	}
@@ -246,6 +263,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @param mixed $value
 	 * @param int $exptime
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants (since 1.33)
+	 *
 	 * @return bool Success
 	 */
 	abstract protected function doAdd( $key, $value, $exptime = 0, $flags = 0 );
@@ -264,6 +282,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $attempts The amount of times to attempt a merge in case of failure
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
+	 *
 	 * @return bool Success
 	 */
 	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
@@ -276,6 +295,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $attempts The amount of times to attempt a merge in case of failure
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
+	 *
 	 * @return bool Success
 	 * @see BagOStuff::merge()
 	 */
@@ -292,8 +312,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 			if ( $this->getLastError( $watchPoint ) ) {
 				// Don't spam slow retries due to network problems (retry only on races)
 				$this->logger->warning(
-					__METHOD__ . ' failed due to read I/O error on get() for {key}.',
-					[ 'key' => $key ]
+					__METHOD__ . ' failed due to read I/O error on get() for {key}.', [ 'key' => $key ]
 				);
 				$success = false;
 				break;
@@ -343,6 +362,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @param mixed $value
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
+	 *
 	 * @return bool Success
 	 */
 	protected function cas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
@@ -357,6 +377,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		}
 
 		$entry = $this->makeValueOrSegmentList( $key, $value, $exptime, $flags, $ok );
+
 		// Only when all segments (if any) are stored should the main key be changed
 		return $ok && $this->doCas( $casToken, $key, $entry, $exptime, $flags );
 	}
@@ -369,6 +390,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @param mixed $value
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
+	 *
 	 * @return bool Success
 	 */
 	protected function doCas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
@@ -407,6 +429,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	/**
 	 * @param mixed $value CAS token for an existing key
 	 * @param mixed $otherValue CAS token for an existing key
+	 *
 	 * @return bool Whether the two tokens match
 	 */
 	final protected function tokensMatch( $value, $otherValue ) {
@@ -421,6 +444,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		if ( $type === 'array' || $type === 'object' ) {
 			return ( serialize( $value ) === serialize( $otherValue ) );
 		}
+
 		// For string/integer tokens, use a simple comparison
 		return ( $value === $otherValue );
 	}
@@ -439,6 +463,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @param string $key
 	 * @param int $exptime TTL or UNIX timestamp
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants (since 1.33)
+	 *
 	 * @return bool Success Returns false on failure or if the item does not exist
 	 * @since 1.28
 	 */
@@ -450,6 +475,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @param string $key
 	 * @param int $exptime
 	 * @param int $flags
+	 *
 	 * @return bool
 	 */
 	protected function doChangeTTL( $key, $exptime, $flags ) {
@@ -491,6 +517,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @param int $step
 	 * @param int $init
 	 * @param int $flags
+	 *
 	 * @return int|bool New value or false on failure
 	 */
 	abstract protected function doIncrWithInit( $key, $exptime, $step, $init, $flags );
@@ -500,6 +527,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @param int $timeout
 	 * @param int $exptime
 	 * @param string $rclass
+	 *
 	 * @return bool
 	 */
 	public function lock( $key, $timeout = 6, $exptime = 6, $rclass = '' ) {
@@ -536,6 +564,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @param string $key
 	 * @param int $timeout Lock wait timeout; 0 for non-blocking [optional]
 	 * @param int $exptime Lock time-to-live 1 day maximum [optional]
+	 *
 	 * @return float|null UNIX timestamp of acquisition; null on failure
 	 */
 	protected function doLock( $key, $timeout, $exptime ) {
@@ -578,6 +607,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * Release an advisory lock on a key string
 	 *
 	 * @param string $key
+	 *
 	 * @return bool Success
 	 */
 	public function unlock( $key ) {
@@ -610,6 +640,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @see MediumSpecificBagOStuff::unlock()
 	 *
 	 * @param string $key
+	 *
 	 * @return bool Success
 	 */
 	protected function doUnlock( $key ) {
@@ -642,6 +673,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 
 	/**
 	 * @param string $key
+	 *
 	 * @return string
 	 */
 	protected function makeLockKey( $key ) {
@@ -659,8 +691,10 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 
 	/**
 	 * Get an associative array containing the item for each of the keys that have items.
+	 *
 	 * @param string[] $keys List of keys; can be a map of (unused => key) for convenience
 	 * @param int $flags Bitfield; supports READ_LATEST [optional]
+	 *
 	 * @return mixed[] Map of (key => value) for existing keys; preserves the order of $keys
 	 */
 	public function getMulti( array $keys, $flags = 0 ) {
@@ -683,8 +717,10 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 
 	/**
 	 * Get an associative array containing the item for each of the keys that have items.
+	 *
 	 * @param string[] $keys List of keys
 	 * @param int $flags Bitfield; supports READ_LATEST [optional]
+	 *
 	 * @return array Map of (key => value) for existing keys; preserves the order of $keys
 	 */
 	protected function doGetMulti( array $keys, $flags = 0 ) {
@@ -707,6 +743,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @param mixed[] $valueByKey Map of (key => value)
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants (since 1.33)
+	 *
 	 * @return bool Success
 	 * @since 1.24
 	 */
@@ -722,6 +759,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @param mixed[] $data Map of (key => value)
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
+	 *
 	 * @return bool Success
 	 */
 	protected function doSetMulti( array $data, $exptime = 0, $flags = 0 ) {
@@ -740,6 +778,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 *
 	 * @param string[] $keys List of keys
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
+	 *
 	 * @return bool Success
 	 * @since 1.33
 	 */
@@ -754,6 +793,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	/**
 	 * @param string[] $keys List of keys
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
+	 *
 	 * @return bool Success
 	 */
 	protected function doDeleteMulti( array $keys, $flags = 0 ) {
@@ -761,6 +801,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		foreach ( $keys as $key ) {
 			$res = $this->doDelete( $key, $flags ) && $res;
 		}
+
 		return $res;
 	}
 
@@ -770,6 +811,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @param string[] $keys List of keys
 	 * @param int $exptime TTL or UNIX timestamp
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants (since 1.33)
+	 *
 	 * @return bool Success
 	 *
 	 * @since 1.34
@@ -782,6 +824,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @param string[] $keys List of keys
 	 * @param int $exptime TTL or UNIX timestamp
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
+	 *
 	 * @return bool Success
 	 */
 	protected function doChangeTTLMulti( array $keys, $exptime, $flags = 0 ) {
@@ -798,6 +841,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 *
 	 * @param string $key
 	 * @param mixed $mainValue
+	 *
 	 * @return string|null|bool The combined string, false if missing, null on error
 	 */
 	final protected function resolveSegments( $key, $mainValue ) {
@@ -837,6 +881,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 *
 	 * @param mixed $value
 	 * @param int $flags
+	 *
 	 * @return bool
 	 */
 	private function useSegmentationWrapper( $value, $flags ) {
@@ -872,6 +917,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @param int $exptime
 	 * @param int $flags
 	 * @param mixed|null &$ok Whether the entry is usable (e.g. no missing segments) [returned]
+	 *
 	 * @return mixed The entry (inline value, wrapped inline value, or wrapped segment list)
 	 * @since 1.34
 	 */
@@ -912,6 +958,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 
 	/**
 	 * @param int|float $exptime
+	 *
 	 * @return bool Whether the expiry is non-infinite, and, negative or not a UNIX timestamp
 	 * @since 1.34
 	 */
@@ -929,6 +976,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 *   - positive (>= 10 years): absolute UNIX timestamp; return this value
 	 *
 	 * @param int $exptime
+	 *
 	 * @return int Expiration timestamp or TTL_INDEFINITE for indefinite
 	 * @since 1.34
 	 */
@@ -953,6 +1001,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 *   - positive (>= 10 years): absolute UNIX timestamp; return offset to current time
 	 *
 	 * @param int $exptime
+	 *
 	 * @return int Relative TTL or TTL_INDEFINITE for indefinite
 	 * @since 1.34
 	 */
@@ -970,6 +1019,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * Check if a value is an integer
 	 *
 	 * @param mixed $value
+	 *
 	 * @return bool
 	 */
 	final protected function isInteger( $value ) {
@@ -993,6 +1043,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 */
 	public function getSegmentationSize() {
 		wfDeprecated( __METHOD__, '1.43' );
+
 		return $this->segmentationSize;
 	}
 
@@ -1001,6 +1052,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 */
 	public function getSegmentedValueMaxSize() {
 		wfDeprecated( __METHOD__, '1.43' );
+
 		return $this->segmentedValueMaxSize;
 	}
 
@@ -1009,6 +1061,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 *
 	 * @param mixed $value
 	 * @param string $key
+	 *
 	 * @return string|int String/integer representation of value
 	 * @since 1.35
 	 */
@@ -1063,8 +1116,8 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 			if ( is_object( $entry ) ) {
 				// Note that Closure instances count as objects
 				if (
-					!( $entry instanceof stdClass ) &&
-					!( $entry instanceof JsonSerializable )
+					!( $entry instanceof \stdClass ) &&
+					!( $entry instanceof \JsonSerializable )
 				) {
 					$this->logger->warning(
 						"{class} value for '{cachekey}' at '$index'; serialization is suspect.",
@@ -1079,6 +1132,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 
 	/**
 	 * @param mixed $value
+	 *
 	 * @return string|int|false String/integer representation
 	 * @note Special handling is usually needed for integers so incr()/decr() work
 	 */
@@ -1088,6 +1142,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 
 	/**
 	 * @param string|int|false $value
+	 *
 	 * @return mixed Original value or false on error
 	 * @note Special handling is usually needed for integers so incr()/decr() work
 	 */
@@ -1104,6 +1159,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 
 	/**
 	 * @param string $key Key generated by BagOStuff::makeKeyInternal
+	 *
 	 * @return string A stats prefix to describe this class of key (e.g. "objectcache.file")
 	 */
 	private function determinekeyGroupForStats( $key ): string {
@@ -1192,3 +1248,6 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( MediumSpecificBagOStuff::class, 'MediumSpecificBagOStuff' );

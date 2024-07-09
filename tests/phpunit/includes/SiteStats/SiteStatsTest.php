@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\SiteStats\SiteStats;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**

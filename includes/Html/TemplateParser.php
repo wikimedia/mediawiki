@@ -2,13 +2,13 @@
 
 namespace MediaWiki\Html;
 
-use BagOStuff;
 use FileContentsHasher;
 use LightnCandy\LightnCandy;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use RuntimeException;
 use UnexpectedValueException;
+use Wikimedia\ObjectCache\BagOStuff;
 
 /**
  * Handles compiling Mustache templates into PHP rendering functions

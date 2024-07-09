@@ -21,6 +21,8 @@
  * @ingroup Cache
  */
 
+namespace Wikimedia\ObjectCache;
+
 /**
  * Wrapper for WinCache object caching functions; identical interface
  * to the APC wrapper
@@ -168,3 +170,6 @@ class WinCacheBagOStuff extends MediumSpecificBagOStuff {
 		return $newValue;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( WinCacheBagOStuff::class, 'WinCacheBagOStuff' );

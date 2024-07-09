@@ -2,6 +2,7 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\Spi;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Stats\StatsFactory;
 
 /**

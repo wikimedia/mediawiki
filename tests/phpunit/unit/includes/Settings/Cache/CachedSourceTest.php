@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Tests\Unit\Settings\Cache;
 
-use HashBagOStuff;
 use MediaWiki\Settings\Cache\CacheableSource;
 use MediaWiki\Settings\Cache\CachedSource;
 use MediaWiki\Settings\SettingsBuilderException;
 use PHPUnit\Framework\TestCase;
+use Wikimedia\ObjectCache\HashBagOStuff;
 
 /**
  * @covers \MediaWiki\Settings\Cache\CachedSource

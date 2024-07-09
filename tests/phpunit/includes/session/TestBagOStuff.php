@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Tests\Session;
 
-use CachedBagOStuff;
-use HashBagOStuff;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ObjectCache\CachedBagOStuff;
+use Wikimedia\ObjectCache\HashBagOStuff;
 
 /**
  * BagOStuff with utility functions for MediaWiki\\Session\\* testing

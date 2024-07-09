@@ -18,6 +18,8 @@
  * @file
  */
 
+use Wikimedia\ObjectCache\HashBagOStuff;
+
 /**
  * PHP memory-backed job queue storage, for testing.
  *

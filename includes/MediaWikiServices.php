@@ -20,7 +20,6 @@
 
 namespace MediaWiki;
 
-use BagOStuff;
 use CryptHKDF;
 use DateFormatterFactory;
 use ExtensionRegistry;
@@ -207,6 +206,7 @@ use WikiImporterFactory;
 use Wikimedia\EventRelayer\EventRelayerGroup;
 use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\NonSerializable\NonSerializableTrait;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Parsoid\Config\DataAccess;
 use Wikimedia\Rdbms\ChronologyProtector;

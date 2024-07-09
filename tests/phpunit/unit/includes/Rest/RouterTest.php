@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Rest;
 
 use GuzzleHttp\Psr7\Uri;
-use HashBagOStuff;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
@@ -28,6 +27,7 @@ use Psr\Log\NullLogger;
 use RuntimeException;
 use Throwable;
 use UDPTransport;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Stats\OutputFormats;
 use Wikimedia\Stats\StatsCache;

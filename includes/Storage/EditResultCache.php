@@ -20,10 +20,10 @@
 
 namespace MediaWiki\Storage;
 
-use BagOStuff;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

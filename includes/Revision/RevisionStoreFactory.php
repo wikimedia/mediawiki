@@ -26,7 +26,6 @@
 
 namespace MediaWiki\Revision;
 
-use BagOStuff;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\HookContainer\HookContainer;
@@ -39,6 +38,7 @@ use MediaWiki\User\ActorStoreFactory;
 use Psr\Log\LoggerInterface;
 use WANObjectCache;
 use Wikimedia\Assert\Assert;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\ILBFactory;
 
 /**
