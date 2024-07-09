@@ -586,6 +586,9 @@ class RecentChange implements Taggable {
 	 *
 	 * NOTE: Can also return 'rcpatroldisabled', 'hookaborted' and
 	 * 'markedaspatrollederror-noautopatrol' as errors
+	 *
+	 * @deprecated since 1.43 Use markPatrolled() instead
+	 *
 	 * @param Authority $performer User performing the action
 	 * @param bool|null $auto Unused. Passing true logs a warning.
 	 * @param string|string[]|null $tags Change tags to add to the patrol log entry
@@ -593,10 +596,26 @@ class RecentChange implements Taggable {
 	 * @return array[] Array of permissions errors, see PermissionManager::getPermissionErrors()
 	 */
 	public function doMarkPatrolled( Authority $performer, $auto = null, $tags = null ) {
+		wfDeprecated( __METHOD__, '1.43' );
 		if ( $auto ) {
 			wfWarn( __METHOD__ . ' with $auto = true' );
 			return [];
 		}
+		return $this->markPatrolled( $performer, $tags )->toLegacyErrorArray();
+	}
+
+	/**
+	 * Mark this RecentChange as patrolled
+	 *
+	 * NOTE: Can also return 'rcpatroldisabled', 'hookaborted' and
+	 * 'markedaspatrollederror-noautopatrol' as errors
+	 *
+	 * @param Authority $performer User performing the action
+	 * @param string|string[]|null $tags Change tags to add to the patrol log entry
+	 *   ($user should be able to add the specified tags before this is called)
+	 * @return PermissionStatus
+	 */
+	public function markPatrolled( Authority $performer, $tags = null ): PermissionStatus {
 		$services = MediaWikiServices::getInstance();
 		$mainConfig = $services->getMainConfig();
 		$useRCPatrol = $mainConfig->get( MainConfigNames::UseRCPatrol );
@@ -632,11 +651,11 @@ class RecentChange implements Taggable {
 			$status->fatal( 'markedaspatrollederror-noautopatrol' );
 		}
 		if ( !$status->isGood() ) {
-			return $status->toLegacyErrorArray();
+			return $status;
 		}
 		// If the change was patrolled already, do nothing
 		if ( $this->getAttribute( 'rc_patrolled' ) ) {
-			return [];
+			return $status;
 		}
 		// Attempt to set the 'patrolled' flag in RC database
 		$affectedRowCount = $this->reallyMarkPatrolled();
@@ -645,7 +664,7 @@ class RecentChange implements Taggable {
 			// Query succeeded but no rows change, e.g. another request
 			// patrolled the same change just before us.
 			// Avoid duplicate log entry (T196182).
-			return [];
+			return $status;
 		}
 
 		// Log this patrol event
@@ -654,7 +673,7 @@ class RecentChange implements Taggable {
 		$hookRunner->onMarkPatrolledComplete(
 			$this->getAttribute( 'rc_id' ), $user, false, false );
 
-		return [];
+		return $status;
 	}
 
 	/**

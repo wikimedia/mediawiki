@@ -80,10 +80,10 @@ class ApiPatrol extends ApiBase {
 			}
 		}
 
-		$retval = $rc->doMarkPatrolled( $user, false, $tags );
+		$status = $rc->markPatrolled( $user, $tags );
 
-		if ( $retval ) {
-			$this->dieStatus( $this->errorArrayToStatus( $retval, $user ) );
+		if ( !$status->isGood() ) {
+			$this->dieStatus( $status );
 		}
 
 		$result = [ 'rcid' => (int)$rc->getAttribute( 'rc_id' ) ];

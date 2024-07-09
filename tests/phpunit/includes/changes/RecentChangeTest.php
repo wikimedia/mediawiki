@@ -553,9 +553,9 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \RecentChange::doMarkPatrolled
+	 * @covers \RecentChange::markPatrolled
 	 */
-	public function testDoMarkPatrolledPermissions() {
+	public function testMarkPatrolledPermissions() {
 		$rc = $this->getDummyEditRecentChange();
 		$performer = $this->mockRegisteredAuthority( static function (
 			string $permission,
@@ -568,55 +568,54 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 			}
 			return true;
 		} );
-		$errors = $rc->doMarkPatrolled(
-			$performer,
-			false
+		$status = $rc->markPatrolled(
+			$performer
 		);
-		$this->assertContains( [ 'missing-patrol' ], $errors );
+		$this->assertStatusError( 'missing-patrol', $status );
 	}
 
 	/**
-	 * @covers \RecentChange::doMarkPatrolled
+	 * @covers \RecentChange::markPatrolled
 	 */
-	public function testDoMarkPatrolledPermissions_Hook() {
+	public function testMarkPatrolledPermissions_Hook() {
 		$rc = $this->getDummyEditRecentChange();
 		$this->setTemporaryHook( 'MarkPatrolled', static function () {
 			return false;
 		} );
-		$errors = $rc->doMarkPatrolled( $this->mockRegisteredUltimateAuthority() );
-		$this->assertContains( [ 'hookaborted' ], $errors );
+		$status = $rc->markPatrolled( $this->mockRegisteredUltimateAuthority() );
+		$this->assertStatusError( 'hookaborted', $status );
 	}
 
 	/**
-	 * @covers \RecentChange::doMarkPatrolled
+	 * @covers \RecentChange::markPatrolled
 	 */
-	public function testDoMarkPatrolledPermissions_Self() {
+	public function testMarkPatrolledPermissions_Self() {
 		$rc = $this->getDummyEditRecentChange();
-		$errors = $rc->doMarkPatrolled(
+		$status = $rc->markPatrolled(
 			$this->mockUserAuthorityWithoutPermissions( $this->user, [ 'autopatrol' ] )
 		);
-		$this->assertContains( [ 'markedaspatrollederror-noautopatrol' ], $errors );
+		$this->assertStatusError( 'markedaspatrollederror-noautopatrol', $status );
 	}
 
 	/**
-	 * @covers \RecentChange::doMarkPatrolled
+	 * @covers \RecentChange::markPatrolled
 	 */
-	public function testDoMarkPatrolledPermissions_NoRcPatrol() {
+	public function testMarkPatrolledPermissions_NoRcPatrol() {
 		$rc = $this->getDummyEditRecentChange();
-		$errors = $rc->doMarkPatrolled( $this->mockRegisteredUltimateAuthority() );
-		$this->assertContains( [ 'rcpatroldisabled' ], $errors );
+		$status = $rc->markPatrolled( $this->mockRegisteredUltimateAuthority() );
+		$this->assertStatusError( 'rcpatroldisabled', $status );
 	}
 
 	/**
-	 * @covers \RecentChange::doMarkPatrolled
+	 * @covers \RecentChange::markPatrolled
 	 */
-	public function testDoMarkPatrolled() {
+	public function testMarkPatrolled() {
 		$this->overrideConfigValue( MainConfigNames::UseRCPatrol, true );
 		$rc = $this->getDummyEditRecentChange();
-		$errors = $rc->doMarkPatrolled(
+		$status = $rc->markPatrolled(
 			$this->mockUserAuthorityWithPermissions( $this->user, [ 'patrol', 'autopatrol' ] )
 		);
-		$this->assertSame( [], $errors );
+		$this->assertStatusGood( $status );
 
 		$reloadedRC = RecentChange::newFromId( $rc->getAttribute( 'rc_id' ) );
 		$this->assertSame( '1', $reloadedRC->getAttribute( 'rc_patrolled' ) );
