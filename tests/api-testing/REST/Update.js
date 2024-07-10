@@ -3,16 +3,12 @@
 const { action, assert, REST, utils } = require( 'api-testing' );
 
 describe( 'PUT /page/{title}', () => {
-	const client = new REST();
-	let mindy, anon, anonToken;
+	let client, mindy, mindyToken;
 
 	before( async () => {
 		mindy = await action.mindy();
-
-		// NOTE: this only works because the same token is shared by all anons.
-		// TODO: add support for login and tokens to RESTClient.
-		anon = action.getAnon();
-		anonToken = await anon.token();
+		client = new REST( 'rest.php/v1', mindy );
+		mindyToken = await mindy.token();
 	} );
 
 	const checkEditResponse = function ( title, reqBody, body ) {
@@ -44,7 +40,7 @@ describe( 'PUT /page/{title}', () => {
 			const normalizedTitle = utils.dbkey( title );
 
 			const reqBody = {
-				token: anonToken,
+				token: mindyToken,
 				source: 'Lörem Ipsüm',
 				comment: 'tästing'
 			};
@@ -67,9 +63,8 @@ describe( 'PUT /page/{title}', () => {
 			const normalizedTitle = utils.dbkey( title );
 
 			// TODO: test a content model different from the default.
-			//       But that requires the chnagecontentmodel permission, which anons don't have.
 			const reqBody = {
-				token: anonToken,
+				token: mindyToken,
 				source: 'Lörem Ipsüm',
 				comment: 'tästing',
 				content_model: 'wikitext'
@@ -96,7 +91,7 @@ describe( 'PUT /page/{title}', () => {
 			const firstRev = await mindy.edit( title, {} );
 
 			const reqBody = {
-				token: anonToken,
+				token: mindyToken,
 				source: 'Lörem Ipsüm',
 				comment: 'tästing',
 				latest: { id: firstRev.newrevid }
@@ -123,7 +118,7 @@ describe( 'PUT /page/{title}', () => {
 			const firstRev = await mindy.edit( title, {} );
 
 			const reqBody = {
-				token: anonToken,
+				token: mindyToken,
 				source: firstRev.param_text,
 				comment: 'nothing at all changed',
 				latest: { id: firstRev.newrevid }
@@ -150,7 +145,7 @@ describe( 'PUT /page/{title}', () => {
 			await mindy.edit( title, { text: 'FIRST LINE\nlorem ipsum\nsecond line' } );
 
 			const reqBody = {
-				token: anonToken,
+				token: mindyToken,
 				source: 'first line\nlorem ipsum\nSECOND LINE',
 				comment: 'tästing',
 				content_model: 'wikitext',
@@ -173,7 +168,7 @@ describe( 'PUT /page/{title}', () => {
 		requiredProps.forEach( ( missingPropName ) => {
 			const title = utils.title( 'Edit Test ' );
 			const reqBody = {
-				token: anonToken,
+				token: mindyToken,
 				source: 'Lörem Ipsüm',
 				comment: 'tästing',
 				content_model: 'wikitext'
@@ -228,7 +223,7 @@ describe( 'PUT /page/{title}', () => {
 			const title = utils.title( 'Edit Test ' );
 
 			const reqBody = {
-				token: anonToken,
+				token: mindyToken,
 				source: 'Lörem Ipsüm',
 				comment: 'tästing',
 				content_model: 'THIS DOES NOT EXIST!'
@@ -277,7 +272,7 @@ describe( 'PUT /page/{title}', () => {
 			const title = utils.title( 'Edit Test ' );
 
 			const reqBody = {
-				token: anonToken,
+				token: mindyToken,
 				source: 'Lörem Ipsüm',
 				comment: 'tästing',
 				latest: { id: 1234 }
@@ -297,7 +292,7 @@ describe( 'PUT /page/{title}', () => {
 			await mindy.edit( title, {} );
 
 			const reqBody = {
-				token: anonToken,
+				token: mindyToken,
 				source: 'Lörem Ipsüm',
 				comment: 'tästing'
 				// not 'latest' key, so page should be created
@@ -318,7 +313,7 @@ describe( 'PUT /page/{title}', () => {
 			await mindy.edit( title, { text: 'updated text' } );
 
 			const reqBody = {
-				token: anonToken,
+				token: mindyToken,
 				source: 'Lörem Ipsüm',
 				comment: 'tästing',
 				latest: { id: firstRev.newrevid }
@@ -344,8 +339,9 @@ describe( 'PUT /page/{title}', () => {
 				protections: 'edit=sysop'
 			}, 'POST' );
 
+			const anon = action.getAnon();
 			const reqBody = {
-				token: anonToken,
+				token: await anon.token(),
 				source: 'Lörem Ipsüm',
 				comment: 'tästing',
 				latest: { id: firstRev.newrevid }
