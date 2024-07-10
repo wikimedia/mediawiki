@@ -2408,9 +2408,10 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 * Flush the protection cache in this object and force reload from the database.
 	 * This is used when updating protection from WikiPage::doUpdateRestrictions().
 	 *
-	 * @deprecated since 1.37, now internal
+	 * @deprecated since 1.37, now internal; hard-deprecated since 1.43
 	 */
 	public function flushRestrictions() {
+		wfDeprecated( __METHOD__, '1.37' );
 		MediaWikiServices::getInstance()->getRestrictionStore()->flushRestrictions( $this );
 	}
 
