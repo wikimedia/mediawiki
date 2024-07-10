@@ -758,7 +758,7 @@ class SkinModule extends LessVarFileModule {
 	 */
 	protected function getLessVars( Context $context ) {
 		$lessVars = parent::getLessVars( $context );
-		$logos = self::getAvailableLogos( $this->getConfig() );
+		$logos = self::getAvailableLogos( $this->getConfig(), $context->getLanguage() );
 
 		if ( isset( $logos['wordmark'] ) ) {
 			$logo = $logos['wordmark'];
@@ -775,7 +775,7 @@ class SkinModule extends LessVarFileModule {
 	public function getDefinitionSummary( Context $context ) {
 		$summary = parent::getDefinitionSummary( $context );
 		$summary[] = [
-			'logos' => self::getAvailableLogos( $this->getConfig() ),
+			'logos' => self::getAvailableLogos( $this->getConfig(), $context->getLanguage() ),
 		];
 		return $summary;
 	}

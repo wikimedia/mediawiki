@@ -237,8 +237,6 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'articlepath', $config->get( MainConfigNames::ArticlePath ) );
 		$tpl->set( 'scriptpath', $config->get( MainConfigNames::ScriptPath ) );
 		$tpl->set( 'serverurl', $config->get( MainConfigNames::Server ) );
-		$logos = RL\SkinModule::getAvailableLogos( $config );
-		$tpl->set( 'logopath', $logos['1x'] );
 		$tpl->set( 'sitename', $config->get( MainConfigNames::Sitename ) );
 
 		$userLang = $this->getLanguage();
@@ -248,6 +246,9 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'lang', $userLangCode );
 		$tpl->set( 'dir', $userLangDir );
 		$tpl->set( 'rtl', $userLang->isRTL() );
+
+		$logos = RL\SkinModule::getAvailableLogos( $config, $userLangCode );
+		$tpl->set( 'logopath', $logos['1x'] );
 
 		$tpl->set( 'showjumplinks', true ); // showjumplinks preference has been removed
 		$tpl->set( 'username', $this->loggedin ? $this->username : null );
