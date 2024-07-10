@@ -1179,3 +1179,40 @@ __NOEDITSECTION__
 __NOTITLECONVERT__
 __NOCONTENTCONVERT__
 !! end
+
+!! test
+New section link / no new section link
+!! options
+showflags
+parsoid={
+	"wrapSections": true
+}
+!! wikitext
+__NEWSECTIONLINK__ __NONEWSECTIONLINK__
+!! metadata
+flags=mw-HideNewSection, mw-NewSection
+!! html/parsoid
+<section data-mw-section-id="0"><meta property="mw:PageProp/newsectionlink" data-parsoid='{"src":"__NEWSECTIONLINK__","magicSrc":"__NEWSECTIONLINK__","dsr":[0,18,null,null]}'/> <meta property="mw:PageProp/nonewsectionlink" data-parsoid='{"src":"__NONEWSECTIONLINK__","magicSrc":"__NONEWSECTIONLINK__"}'/></section>
+!! end
+
+!! article
+Template:NewSectionLink
+!! text
+__NEWSECTIONLINK__
+!! end
+
+!! test
+Templated new section link
+!! options
+showflags
+parsoid={
+	"wrapSections": true
+}
+!! wikitext
+{{NewSectionLink}}
+!! metadata
+flags=mw-NewSection
+!! html/parsoid
+<section data-mw-section-id="0"><meta property="mw:PageProp/newsectionlink" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"magicSrc":"__NEWSECTIONLINK__","pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"NewSectionLink","href":"./Template:NewSectionLink"},"params":{},"i":0}}]}'/></section>
+!! end
+
