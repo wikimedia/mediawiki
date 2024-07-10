@@ -3,10 +3,12 @@
 namespace MediaWiki\Tests\Rest\Handler;
 
 use GuzzleHttp\Psr7\Uri;
+use MediaWiki\ParamValidator\TypeDef\ArrayDef;
 use MediaWiki\Rest\ConditionalHeaderUtil;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
+use MediaWiki\Rest\Module\Module;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\Response;
@@ -1207,48 +1209,260 @@ class HandlerTest extends MediaWikiUnitTestCase {
 		$this->assertArrayNotHasKey( 'test', $handler->getValidatedParams() );
 	}
 
+	private static function assertWellFormedOAS( array $spec, array $required ) {
+		foreach ( $required as $key ) {
+			Assert::assertArrayHasKey( $key, $spec );
+		}
+	}
+
+	private static function makeMap( array $list, string $key ): array {
+		$map = [];
+		foreach ( $list as $obj ) {
+			$val = $obj[$key];
+			$map[$val] = $obj;
+		}
+		return $map;
+	}
+
 	public static function provideGetOpenApiSpec() {
-		yield 'basic' => [
-			[
-				'q' => [
+		yield 'defaults' => [
+			'$paramSettings' => [],
+			'$bodySettings' => [],
+			'$requestTypes' => [ 'application/json' ],
+			'$routeConfig' => [ 'path' => '/test' ],
+			'$method' => 'GET',
+			'$assertions' =>
+				static function ( array $spec ) {
+					self::assertWellFormedOAS( $spec, [ 'responses' ] );
+					$resp = $spec['responses'];
+
+					Assert::assertArrayHasKey( 200, $resp );
+					Assert::assertArrayHasKey( 400, $resp );
+					Assert::assertArrayHasKey( 500, $resp );
+				},
+		];
+
+		yield 'path parameters' => [
+			'$paramSettings' => [
+				'a' => [
+					Handler::PARAM_SOURCE => 'path',
+					ParamValidator::PARAM_TYPE => 'integer',
+					ParamValidator::PARAM_REQUIRED => true,
+				],
+				'b' => [
+					Handler::PARAM_SOURCE => 'path',
+					ParamValidator::PARAM_TYPE => [ 'x', 'y', 'z' ],
+					ParamValidator::PARAM_REQUIRED => false,
+				],
+				'c' => [
+					Handler::PARAM_SOURCE => 'path',
+					ParamValidator::PARAM_TYPE => 'string',
+					ParamValidator::PARAM_REQUIRED => false,
+				],
+			],
+			'$bodySettings' => [],
+			'$requestTypes' => [ 'application/json' ],
+			'$routeConfig' => [ 'path' => '/test/{a}/{b}' ],
+			'$method' => 'GET',
+			'$assertions' =>
+				static function ( array $spec ) {
+					self::assertWellFormedOAS( $spec, [ 'parameters' ] );
+					$params = self::makeMap( $spec['parameters'], 'name' );
+
+					// The parameter "c" is optional and not in the declared path.
+					Assert::assertArrayHasKey( 'a', $params, 'required path param' );
+					Assert::assertArrayHasKey( 'b', $params, 'used optional path param' );
+					Assert::assertArrayNotHasKey( 'c', $params, 'unused optional path param' );
+
+					Assert::assertSame( 'path', $params['a']['in'] );
+					Assert::assertSame( 'path', $params['b']['in'] );
+
+					// All path params must be required in OAS, even if they
+					// were declared as optional (T359652) in getParamSettings.
+					Assert::assertTrue( $params['a']['required'] );
+					Assert::assertTrue( $params['b']['required'] );
+
+					Assert::assertSame( 'integer', $params['a']['schema']['type'] );
+					Assert::assertSame( 'string', $params['b']['schema']['type'] );
+					Assert::assertSame( [ 'x', 'y', 'z' ], $params['b']['schema']['enum'] );
+				},
+		];
+
+		yield 'query parameters' => [
+			'$paramSettings' => [
+				'a' => [
 					Handler::PARAM_SOURCE => 'query',
+					ParamValidator::PARAM_TYPE => 'integer',
+					ParamValidator::PARAM_REQUIRED => true,
+				],
+				'b' => [
+					Handler::PARAM_SOURCE => 'query',
+					ParamValidator::PARAM_TYPE => [ 'x', 'y', 'z' ],
+					ParamValidator::PARAM_REQUIRED => false,
+				],
+			],
+			'$bodySettings' => [],
+			'$requestTypes' => [ 'application/json' ],
+			'$routeConfig' => [ 'path' => '/test' ],
+			'$method' => 'GET',
+			'$assertions' =>
+				static function ( array $spec ) {
+					self::assertWellFormedOAS( $spec, [ 'parameters' ] );
+					$params = self::makeMap( $spec['parameters'], 'name' );
+
+					Assert::assertArrayHasKey( 'a', $params );
+					Assert::assertArrayHasKey( 'b', $params );
+
+					Assert::assertSame( 'query', $params['a']['in'] );
+					Assert::assertSame( 'query', $params['b']['in'] );
+
+					Assert::assertTrue( $params['a']['required'] );
+					Assert::assertFalse( $params['b']['required'] );
+
+					Assert::assertSame( 'integer', $params['a']['schema']['type'] );
+					Assert::assertSame( 'string', $params['b']['schema']['type'] );
+					Assert::assertSame( [ 'x', 'y', 'z' ], $params['b']['schema']['enum'] );
+				},
+		];
+
+		yield 'request body' => [
+			'$paramSettings' => [],
+			'$bodySettings' => [
+				'a' => [
+					Handler::PARAM_SOURCE => 'body',
+					ParamValidator::PARAM_TYPE => 'array',
+					ArrayDef::PARAM_SCHEMA => [
+						'type' => 'object',
+						'required' => [ 'x', 'y', 'z' ]
+					],
+					ParamValidator::PARAM_REQUIRED => true,
+				],
+				'b' => [
+					Handler::PARAM_SOURCE => 'body',
 					ParamValidator::PARAM_REQUIRED => false,
 				],
 				'p' => [
-					Handler::PARAM_SOURCE => 'path',
+					Handler::PARAM_SOURCE => 'post',
+				],
+			],
+			'$requestTypes' => [ 'application/foo+json', 'application/bar+json' ],
+			'$routeConfig' => [ 'path' => '/test' ],
+			'$method' => 'PUT',
+			'$assertions' =>
+				static function ( array $spec ) {
+					self::assertWellFormedOAS( $spec, [ 'requestBody' ] );
+					Assert::assertTrue( $spec['requestBody']['required'] );
+
+					Assert::assertArrayHasKey(
+						'application/foo+json',
+						$spec['requestBody']['content']
+					);
+
+					Assert::assertSame(
+						$spec['requestBody']['content']['application/foo+json'],
+						$spec['requestBody']['content']['application/bar+json']
+					);
+
+					$schema = $spec['requestBody']['content']
+						['application/foo+json']['schema'];
+
+					Assert::assertSame( 'object', $schema['type'] );
+
+					// Do not include "post" params if the request type
+					// is not application/x-www-form-urlencoded or multipart/form-data.
+					Assert::assertArrayHasKey( 'a', $schema['properties'] );
+					Assert::assertArrayHasKey( 'b', $schema['properties'] );
+					Assert::assertArrayNotHasKey( 'p', $schema['properties'] );
+
+					Assert::assertContains( 'a', $schema['required'] );
+					Assert::assertNotContains( 'b', $schema['required'] );
+
+					// Nested schema, from ArrayDef
+					$aSchema = $schema['properties']['a'];
+					Assert::assertSame( 'object', $aSchema['type'] );
+					Assert::assertSame( [ 'x', 'y', 'z' ], $aSchema['required'] );
+				},
+		];
+
+		yield 'form data' => [
+			'$paramSettings' => [],
+			'$bodySettings' => [
+				'a' => [
+					Handler::PARAM_SOURCE => 'body',
+				],
+				'p' => [
+					Handler::PARAM_SOURCE => 'post',
+				],
+			],
+			'$requestTypes' => [ 'application/x-www-form-urlencoded' ],
+			'$routeConfig' => [ 'path' => '/test' ],
+			'$method' => 'POST',
+			'$assertions' =>
+				static function ( array $spec ) {
+					self::assertWellFormedOAS( $spec, [ 'requestBody' ] );
+					Assert::assertTrue( $spec['requestBody']['required'] );
+
+					Assert::assertArrayHasKey(
+						'application/x-www-form-urlencoded',
+						$spec['requestBody']['content']
+					);
+					$schema = $spec['requestBody']['content']
+						['application/x-www-form-urlencoded']['schema'];
+
+					Assert::assertSame( 'object', $schema['type'] );
+
+					// Include both "post" and "body" params, because the
+					// request type is application/x-www-form-urlencoded.
+					Assert::assertArrayHasKey( 'a', $schema['properties'] );
+					Assert::assertArrayHasKey( 'p', $schema['properties'] );
+				},
+		];
+
+		yield 'no request body for GET' => [
+			'$paramSettings' => [],
+			'$bodySettings' => [
+				'a' => [
+					Handler::PARAM_SOURCE => 'body',
+					ParamValidator::PARAM_TYPE => 'integer',
 					ParamValidator::PARAM_REQUIRED => true,
 				],
 			],
-			[
-				'path' => 'test/{p}'
-			],
-			[
-				'parameters' => [
-					[
-						'name' => 'q',
-						'description' => 'q parameter',
-						'in' => 'query',
-						'schema' => [ 'type' => 'string', ],
-						'required' => false,
-					],
-					[
-						'name' => 'p',
-						'description' => 'p parameter',
-						'in' => 'path',
-						'schema' => [ 'type' => 'string', ],
-						'required' => true,
-					],
-				],
-				'responses' => [
-					200 => [ 'description' => 'OK', ],
-					400 => [ '$ref' => '#/components/responses/GenericErrorResponse', ],
-					500 => [ '$ref' => '#/components/responses/GenericErrorResponse', ],
+			'$requestTypes' => [ 'application/json' ],
+			'$routeConfig' => [ 'path' => '/test' ],
+			'$method' => 'GET',
+			'$assertions' =>
+				static function ( array $spec ) {
+					self::assertWellFormedOAS( $spec, [] );
+
+					// When generating a spec for GET, don't include the request body.
+					Assert::assertArrayNotHasKey( 'requestBody', $spec );
+				},
+		];
+
+		yield 'optional body for DELETE' => [
+			'$paramSettings' => [],
+			'$bodySettings' => [
+				'a' => [
+					Handler::PARAM_SOURCE => 'body',
+					ParamValidator::PARAM_TYPE => 'integer',
+					ParamValidator::PARAM_REQUIRED => false,
 				],
 			],
+			'$requestTypes' => [ 'application/json' ],
+			'$routeConfig' => [ 'path' => '/test' ],
+			'$method' => 'DELETE',
+			'$assertions' =>
+				static function ( array $spec ) {
+					self::assertWellFormedOAS( $spec, [ 'requestBody' ] );
+
+					// When generating a spec for GET, don't include the request body.
+					// FIXME: check if there are required body params!
+					Assert::assertFalse( $spec['requestBody']['required'] );
+				},
 		];
 
 		yield 'optional path params' => [
-			[
+			'$paramSettings' => [
 				'p' => [
 					Handler::PARAM_SOURCE => 'path',
 					ParamValidator::PARAM_REQUIRED => false,
@@ -1258,126 +1472,92 @@ class HandlerTest extends MediaWikiUnitTestCase {
 					ParamValidator::PARAM_REQUIRED => false,
 				],
 			],
-			[
-				'path' => 'test/{p}'
-			],
-			[
-				'parameters' => [
-					[
-						'name' => 'p',
-						'description' => 'p parameter',
-						'in' => 'path',
-						'schema' => [ 'type' => 'string', ],
-						'required' => true, // required for this path
-					],
-				],
-				'responses' => [
-					200 => [ 'description' => 'OK', ],
-					400 => [ '$ref' => '#/components/responses/GenericErrorResponse', ],
-					500 => [ '$ref' => '#/components/responses/GenericErrorResponse', ],
-				],
-			]
+			'$bodySettings' => [],
+			'$requestTypes' => [ 'application/json' ],
+			'$routeConfig' => [ 'path' => '/test/{p}' ],
+			'$method' => 'GET',
+			'$assertions' =>
+				static function ( array $spec ) {
+					self::assertWellFormedOAS( $spec, [ 'parameters' ] );
+					$params = self::makeMap( $spec['parameters'], 'name' );
+
+					Assert::assertArrayHasKey(
+						'p',
+						$params,
+						'used optional path parameter should be listed'
+					);
+					Assert::assertArrayNotHasKey(
+						'r',
+						$params,
+						'unused optional path parameter should not be listed'
+					);
+
+					Assert::assertSame( 'path', $params['p']['in'] );
+					Assert::assertTrue(
+						$params['p']['required'],
+						'used optional path parameter should be marked as required'
+					);
+				},
 		];
 
 		yield 'OAS info' => [
-			[
+			'$paramSettings' => [
 				'p' => [
 					Handler::PARAM_SOURCE => 'path',
 				],
 			],
-			[
+			'$bodySettings' => [],
+			'$requestTypes' => [ 'application/json' ],
+			'$routeConfig' => [
 				'path' => 'test/{p}',
 				'OAS' => [
 					'title' => 'just a test',
 					'parameters' => 'will be ignored',
 				]
 			],
-			[
-				'parameters' => [
-					[
-						'name' => 'p',
-						'description' => 'p parameter',
-						'in' => 'path',
-						'schema' => [ 'type' => 'string', ],
-						'required' => true,
-					]
-				],
-				'responses' => [
-					200 => [ 'description' => 'OK', ],
-					400 => [ '$ref' => '#/components/responses/GenericErrorResponse', ],
-					500 => [ '$ref' => '#/components/responses/GenericErrorResponse', ],
-				],
-				'title' => 'just a test',
-			]
+			'$method' => 'GET',
+			'$assertions' =>
+				static function ( array $spec ) {
+					self::assertWellFormedOAS( $spec, [ 'title', 'parameters' ] );
+					Assert::assertArrayHasKey( 'title', $spec );
+					Assert::assertSame( 'just a test', $spec['title'] );
+
+					$params = self::makeMap( $spec['parameters'], 'name' );
+					Assert::assertArrayHasKey( 'p', $params );
+				},
 		];
 	}
 
 	/**
 	 * @dataProvider provideGetOpenApiSpec
 	 */
-	public function testGetOpenApiSpec( $paramSettings, $config, $expected ) {
-		$handler = $this->newHandler( [ 'getParamSettings', 'getBodyParamSettings' ] );
-		$handler->method( 'getParamSettings' )->willReturn( $paramSettings );
-
-		$module = $this->newModule( [] );
-		$handler->initContext( $module, $config['path'] ?? 'test', $config );
-
-		$spec = $handler->getOpenApiSpec( 'GET' );
-		$this->assertSame( $expected, $spec );
-	}
-
-	public function testGetOpenApiSpec_post() {
-		$paramSettings = [
-			'p' => [
-				Handler::PARAM_SOURCE => 'path',
-			],
-		];
-		$bodySettings = [
-			'q' => [
-				Handler::PARAM_SOURCE => 'body',
-			]
-		];
-
-		$handler = $this->newHandler(
-			[
+	public function testGetOpenApiSpec(
+		$paramSettings,
+		$bodySettings,
+		$requestTypes,
+		$routeConfig,
+		$method,
+		$assertions
+	) {
+		$handler = $this->newHandler( [
 				'getParamSettings',
 				'getBodyParamSettings',
 				'getSupportedRequestTypes',
-			]
-		);
+		] );
 		$handler->method( 'getParamSettings' )->willReturn( $paramSettings );
 		$handler->method( 'getBodyParamSettings' )->willReturn( $bodySettings );
-		$handler->method( 'getSupportedRequestTypes' )->willReturn( [
-			'text/foo',
-			'application/bar',
-		] );
+		$handler->method( 'getSupportedRequestTypes' )->willReturn( $requestTypes );
 
-		$config = [
-			'path' => 'test/{p}'
-		];
+		// The "body" parameter should be processed as "body", not as "parameter".
+		$module = $this->createNoOpMock( Module::class );
+		$handler->initContext(
+			$module,
+			$routeConfig['path'],
+			$routeConfig
+		);
+		$spec = $handler->getOpenApiSpec( $method );
 
-		$module = $this->newModule( [] );
-		$handler->initContext( $module, $config['path'], $config );
-
-		$spec = $handler->getOpenApiSpec( 'POST' );
-
-		$expected = [
-			'parameters' => [
-				[
-					'name' => 'p',
-					'description' => 'p parameter',
-					'in' => 'path',
-					'schema' => [ 'type' => 'string', ],
-					'required' => true,
-				]
-			],
-			'responses' => [
-				200 => [ 'description' => 'OK', ],
-				400 => [ '$ref' => '#/components/responses/GenericErrorResponse', ],
-				500 => [ '$ref' => '#/components/responses/GenericErrorResponse', ],
-			],
-		];
-		$this->assertSame( $expected, $spec );
+		$assertions( $spec );
 	}
 
 }

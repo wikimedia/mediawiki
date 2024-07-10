@@ -8,13 +8,13 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Module\Module;
 use MediaWiki\Rest\Validator\BodyValidator;
-use MediaWiki\Rest\Validator\JsonBodyValidator;
 use MediaWiki\Rest\Validator\NullBodyValidator;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\Session;
 use UtfNormal\Validator as UtfNormalValidator;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * Base class for REST route handlers.
@@ -610,28 +610,24 @@ abstract class Handler {
 	public function getOpenApiSpec( string $method ): array {
 		$parameters = [];
 
-		// XXX: Maybe we want to be able to define a spec file in the route definition?
-		// NOTE: the route definition may not be loaded if this is called before initContext()!
-
 		$supportedPathParams = array_flip( $this->getSupportedPathParams() );
 
 		foreach ( $this->getParamSettings() as $name => $paramSetting ) {
+			$source = $paramSetting[ Validator::PARAM_SOURCE ] ?? '';
+
+			if ( $source !== 'query' && $source !== 'path' ) {
+				continue;
+			}
+
+			if ( $source === 'path' && !isset( $supportedPathParams[$name] ) ) {
+				// Skip optional path param not used in the current path
+				continue;
+			}
+
 			$param = Validator::getParameterSpec(
 				$name,
 				$paramSetting
 			);
-
-			$location = $param['in'];
-			if ( $location === 'post' || $location === 'body' ) {
-				// 'post' and 'body' are handled in getRequestSpec()
-				// but others are added as normal parameters
-				continue;
-			}
-
-			if ( $location === 'path' && !isset( $supportedPathParams[$name] ) ) {
-				// Skip optional path param not used in the current path
-				continue;
-			}
 
 			$parameters[] = $param;
 		}
@@ -641,9 +637,11 @@ abstract class Handler {
 			'responses' => $this->generateResponseSpec(),
 		];
 
-		$requestBody = $this->getRequestSpec();
-		if ( $requestBody ) {
-			$spec['requestBody'] = $requestBody;
+		if ( !in_array( $method, RequestInterface::NO_BODY_METHODS ) ) {
+			$requestBody = $this->getRequestSpec( $method );
+			if ( $requestBody ) {
+				$spec['requestBody'] = $requestBody;
+			}
 		}
 
 		// TODO: Allow additional information about parameters and responses to
@@ -656,39 +654,101 @@ abstract class Handler {
 
 	/**
 	 * Returns an OpenAPI Request Body Object specification structure as an associative array.
+	 *
 	 * @see https://swagger.io/specification/#request-body-object
 	 *
-	 * By default, this calls getBodyValidator() to get a SchemaValidator,
-	 * and then calls getBodySpec() on it.
-	 * If no SchemaValidator is supported, this returns null;
+	 * This is based on the getBodyParamSettings() and getSupportedRequestTypes().
 	 *
-	 * Subclasses may override this to provide additional information about the structure of responses.
+	 * Subclasses may override this to provide additional information about the
+	 * structure of responses, or to add support for additional mediaTypes.
 	 *
-	 * @stable to override
+	 * @stable to override getBodySchema() to generate a schema for each
+	 * supported media type as returned by getSupportedBodyTypes().
+	 *
+	 * @param string $method
+	 *
 	 * @return ?array
 	 */
-	protected function getRequestSpec(): ?array {
-		$request = [];
+	protected function getRequestSpec( string $method ): ?array {
+		$mediaTypes = [];
 
-		// TODO: Implement spec generation based on getBodyParamSettings(),
-		//       since BodyValidator is going away soon (T358560).
 		foreach ( $this->getSupportedRequestTypes() as $type ) {
-			try {
-				$validator = $this->getBodyValidator( $type );
+			$schema = $this->getRequestBodySchema( $type );
 
-				if ( $validator instanceof JsonBodyValidator ) {
-					$schema = $validator->getOpenAPISpec();
-
-					if ( $schema !== [] ) {
-						$request['content'][$type]['schema'] = $schema;
-					}
-				}
-			} catch ( HttpException $ex ) {
-				// the type is not actually not supported, ignore.
+			if ( $schema ) {
+				$mediaTypes[$type] = [ 'schema' => $schema ];
 			}
 		}
 
-		return $request ?: null;
+		if ( !$mediaTypes ) {
+			return null;
+		}
+
+		return [
+			// TODO: some DELETE handlers may require a body that contains a token
+			// FIXME: check if there are required body params!
+			'required' => in_array( $method, RequestInterface::BODY_METHODS ),
+			'content' => $mediaTypes
+		];
+	}
+
+	/**
+	 * Returns a content schema per the OpenAPI spec.
+	 * @see https://swagger.io/specification/#schema-object
+	 *
+	 * Per default, this provides schemas for JSON requests and form data, based
+	 * on the parameter declarations returned by getParamSettings().
+	 *
+	 * Subclasses may override this to provide additional information about the
+	 * structure of responses, or to add support for additional mediaTypes.
+	 *
+	 * @stable to override
+	 * @return array
+	 */
+	protected function getRequestBodySchema( string $mediaType ): array {
+		if ( $mediaType === RequestInterface::FORM_URLENCODED_CONTENT_TYPE ) {
+			$allowedSources = [ 'body', 'post' ];
+		} elseif ( $mediaType === RequestInterface::MULTIPART_FORM_DATA_CONTENT_TYPE ) {
+			$allowedSources = [ 'body', 'post' ];
+		} else {
+			$allowedSources = [ 'body' ];
+		}
+
+		$paramSettings = $this->getBodyParamSettings();
+
+		$properties = [];
+		$required = [];
+
+		foreach ( $paramSettings as $name => $settings ) {
+			$source = $settings[ Validator::PARAM_SOURCE ] ?? '';
+			$isRequired = $settings[ ParamValidator::PARAM_REQUIRED ] ?? false;
+
+			if ( !in_array( $source, $allowedSources ) ) {
+				// TODO: post parameters also work as body parameters...
+				continue;
+			}
+
+			$properties[$name] = Validator::getParameterSchema( $settings );
+
+			if ( $isRequired ) {
+				$required[] = $name;
+			}
+		}
+
+		if ( !$properties ) {
+			return [];
+		}
+
+		$schema = [
+			'type' => 'object',
+			'properties' => $properties,
+		];
+
+		if ( $required ) {
+			$schema['required'] = $required;
+		}
+
+		return $schema;
 	}
 
 	/**

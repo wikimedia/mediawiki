@@ -5,6 +5,7 @@ namespace MediaWiki\Rest\Handler;
 use IApiMessage;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Json\FormatJson;
+use MediaWiki\ParamValidator\TypeDef\ArrayDef;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -16,6 +17,13 @@ use Wikimedia\ParamValidator\ParamValidator;
  * Core REST API endpoint that handles page updates (main slot only)
  */
 class UpdateHandler extends EditHandler {
+	private const REVISION_SCHEMA = [
+		'type' => 'object',
+		'properties' => [
+			'id' => [ 'type' => 'integer' ]
+		],
+		'required' => [ 'id' ],
+	];
 
 	/**
 	 * @var callable
@@ -75,6 +83,7 @@ class UpdateHandler extends EditHandler {
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'array',
 				ParamValidator::PARAM_REQUIRED => false,
+				ArrayDef::PARAM_SCHEMA => self::REVISION_SCHEMA,
 			],
 		] + $this->getTokenParamDefinition();
 	}

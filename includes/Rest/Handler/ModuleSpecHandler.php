@@ -69,9 +69,17 @@ class ModuleSpecHandler extends SimpleHandler {
 
 	private function getInfoSpec( Module $module ): array {
 		// TODO: Let Modules provide their name, description, version, etc
+		$prefix = $module->getPathPrefix();
+
+		if ( $prefix === '' ) {
+			$title = "Default Module";
+		} else {
+			$title = "$prefix Module";
+		}
+
 		return [
-			'title' => $module->getPathPrefix(),
-			'version' => MW_VERSION,
+			'title' => $title,
+			'version' => 'undefined',
 			'license' => $this->getLicenseSpec(),
 			'contact' => $this->getContactSpec(),
 		];
@@ -91,9 +99,15 @@ class ModuleSpecHandler extends SimpleHandler {
 	}
 
 	private function getServerSpec( Module $module ): array {
+		$prefix = $module->getPathPrefix();
+
+		if ( $prefix !== '' ) {
+			$prefix = "/$prefix";
+		}
+
 		return [
 			[
-				'url' => $this->getRouter()->getRouteUrl( '/' . $module->getPathPrefix() ),
+				'url' => $this->getRouter()->getRouteUrl( $prefix ),
 			]
 		];
 	}
@@ -103,8 +117,9 @@ class ModuleSpecHandler extends SimpleHandler {
 
 		foreach ( $module->getDefinedPaths() as $path => $methods ) {
 			foreach ( $methods as $mth ) {
-				$mth = strtolower( $mth );
-				$specs[ $path ][ $mth ] = $this->getRouteSpec( $module, $path, $mth );
+				$key = strtolower( $mth );
+				$mth = strtoupper( $mth );
+				$specs[ $path ][ $key ] = $this->getRouteSpec( $module, $path, $mth );
 			}
 		}
 
