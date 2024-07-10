@@ -191,35 +191,39 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 		$request = new RequestData( [ 'method' => $method ] );
 		$handler = $module->getHandlerForPath( $path, $request, false );
 
-		$paramSettings = $handler->getParamSettings();
 		$bodySettings = $handler->getBodyParamSettings();
 
-		$bodySettingsFromParams = array_filter(
-			$paramSettings,
-			static function ( array $settings ) {
-				return $settings[ Handler::PARAM_SOURCE ] === 'body';
-			}
-		);
-
-		if ( !$bodySettings && !$bodySettingsFromParams ) {
+		if ( !$bodySettings ) {
 			$this->addToAssertionCount( 1 );
 			return;
-		}
-
-		if ( $bodySettingsFromParams ) {
-			$this->assertSame(
-				$bodySettingsFromParams,
-				$bodySettings,
-				'If getParamSettings and getBodyParamSettings both return body ' .
-				'parameters, they must return the same body parameters.' . "\n" .
-				'When overriding getBodyParamSettings, do not return body ' .
-				'parameters from getParamSettings.'
-			);
 		}
 
 		foreach ( $bodySettings as $settings ) {
 			$this->assertArrayHasKey( Handler::PARAM_SOURCE, $settings );
 			$this->assertSame( 'body', $settings[Handler::PARAM_SOURCE] );
+		}
+	}
+
+	/**
+	 * @dataProvider provideRoutes
+	 */
+	public function testBodyParametersNotInParamSettings( string $moduleName, string $method, string $path ): void {
+		$router = $this->getTestRouter();
+		$module = $router->getModule( $moduleName );
+
+		$request = new RequestData( [ 'method' => $method ] );
+		$handler = $module->getHandlerForPath( $path, $request, false );
+
+		$paramSettings = $handler->getParamSettings();
+
+		if ( !$paramSettings ) {
+			$this->addToAssertionCount( 1 );
+			return;
+		}
+
+		foreach ( $paramSettings as $settings ) {
+			$this->assertArrayHasKey( Handler::PARAM_SOURCE, $settings );
+			$this->assertNotSame( 'body', $settings[Handler::PARAM_SOURCE] );
 		}
 	}
 

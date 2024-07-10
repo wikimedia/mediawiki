@@ -718,8 +718,11 @@ class RouterTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testFormDataSupported() {
+		// See T362850
+		$this->expectDeprecationAndContinue( '/The "post" source is deprecated/' );
+
 		$request = new RequestData( [
-			'uri' => new Uri( '/rest/mock/v1/RouterTest/form-handler' ),
+			'uri' => new Uri( '/rest/mock/v1/RouterTest/echo_form_data' ),
 			'method' => 'POST',
 			'postParams' => [ 'foo' => 'bar' ],
 			'headers' => [ "content-type" => 'application/x-www-form-urlencoded' ]
@@ -732,7 +735,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 		$body = $response->getBody();
 		$body->rewind();
 		$data = json_decode( $body->getContents(), true );
-		$this->assertSame( [ 'foo' => 'bar' ], $data );
+		$this->assertSame( [ 'foo' => 'bar' ], $data[ 'parsedBody' ] );
 	}
 
 	public function testJsonBody() {
