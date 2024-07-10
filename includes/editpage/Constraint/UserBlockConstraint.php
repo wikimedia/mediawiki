@@ -35,17 +35,10 @@ use StatusValue;
  */
 class UserBlockConstraint implements IEditConstraint {
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
-	/** @var LinkTarget */
-	private $title;
-
-	/** @var User */
-	private $user;
-
-	/** @var string|null */
-	private $result;
+	private PermissionManager $permissionManager;
+	private LinkTarget $title;
+	private User $user;
+	private string $result;
 
 	/**
 	 * @param PermissionManager $permissionManager

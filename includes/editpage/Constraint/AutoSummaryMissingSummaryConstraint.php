@@ -40,23 +40,12 @@ use StatusValue;
  */
 class AutoSummaryMissingSummaryConstraint implements IEditConstraint {
 
-	/** @var string */
-	private $userSummary;
-
-	/** @var string */
-	private $autoSummary;
-
-	/** @var bool */
-	private $allowBlankSummary;
-
-	/** @var Content */
-	private $newContent;
-
-	/** @var Content */
-	private $originalContent;
-
-	/** @var string|null */
-	private $result;
+	private string $userSummary;
+	private string $autoSummary;
+	private bool $allowBlankSummary;
+	private Content $newContent;
+	private Content $originalContent;
+	private string $result;
 
 	/**
 	 * @param string $userSummary

@@ -31,11 +31,8 @@ use StatusValue;
  */
 class AccidentalRecreationConstraint implements IEditConstraint {
 
-	/** @var bool */
-	private $deletedSinceLastEdit;
-
-	/** @var bool */
-	private $allowRecreation;
+	private bool $deletedSinceLastEdit;
+	private bool $allowRecreation;
 
 	/**
 	 * @param bool $deletedSinceLastEdit

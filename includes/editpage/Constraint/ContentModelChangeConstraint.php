@@ -35,17 +35,10 @@ use StatusValue;
  */
 class ContentModelChangeConstraint implements IEditConstraint {
 
-	/** @var Authority */
-	private $performer;
-
-	/** @var Title */
-	private $title;
-
-	/** @var string */
-	private $newContentModel;
-
-	/** @var string|null */
-	private $result;
+	private Authority $performer;
+	private Title $title;
+	private string $newContentModel;
+	private string $result;
 
 	/**
 	 * @param Authority $performer

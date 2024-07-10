@@ -33,12 +33,9 @@ use StatusValue;
  */
 class ChangeTagsConstraint implements IEditConstraint {
 
-	/** @var Authority */
-	private $performer;
-
+	private Authority $performer;
 	/** @var array */
 	private $tags;
-
 	/** @var StatusValue|string */
 	private $result;
 

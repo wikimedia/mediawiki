@@ -34,20 +34,11 @@ use StatusValue;
  */
 class SelfRedirectConstraint implements IEditConstraint {
 
-	/** @var bool */
-	private $allowSelfRedirect;
-
-	/** @var Content */
-	private $newContent;
-
-	/** @var Content */
-	private $originalContent;
-
-	/** @var LinkTarget */
-	private $title;
-
-	/** @var string|null */
-	private $result;
+	private bool $allowSelfRedirect;
+	private Content $newContent;
+	private Content $originalContent;
+	private LinkTarget $title;
+	private string $result;
 
 	/**
 	 * @param bool $allowSelfRedirect

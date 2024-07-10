@@ -41,32 +41,15 @@ use StatusValue;
  */
 class EditFilterMergedContentHookConstraint implements IEditConstraint {
 
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var Content */
-	private $content;
-
-	/** @var IContextSource */
-	private $hookContext;
-
-	/** @var string */
-	private $summary;
-
-	/** @var bool */
-	private $minorEdit;
-
-	/** @var Language */
-	private $language;
-
-	/** @var User */
-	private $hookUser;
-
-	/** @var Status */
-	private $status;
-
-	/** @var string */
-	private $hookError = '';
+	private HookRunner $hookRunner;
+	private Content $content;
+	private IContextSource $hookContext;
+	private string $summary;
+	private bool $minorEdit;
+	private Language $language;
+	private User $hookUser;
+	private Status $status;
+	private string $hookError = '';
 
 	/**
 	 * @param HookContainer $hookContainer
