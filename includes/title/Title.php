@@ -2394,12 +2394,13 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	/**
 	 * Load restrictions from the page_restrictions table
 	 *
-	 * @deprecated since 1.37, no public replacement
+	 * @deprecated since 1.37, no public replacement; hard-deprecated since 1.43
 	 *
 	 * @param int $flags A bit field. If IDBAccessObject::READ_LATEST is set, skip replicas and read
 	 *  from the primary DB.
 	 */
 	public function loadRestrictions( $flags = 0 ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		MediaWikiServices::getInstance()->getRestrictionStore()->loadRestrictions( $this, $flags );
 	}
 

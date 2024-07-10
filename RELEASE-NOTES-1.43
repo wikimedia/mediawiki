@@ -405,6 +405,7 @@ because of Phabricator reports.
   MediaWiki 1.39, now emits deprecation warnings.
 * Title::getTitleProtection(), deprecated in 1.37, now emits warnings. You can
   use RestrictionStore::getCreateProtection() instead.
+* Title::loadRestrictions(), deprecated in 1.37, now emits warnings.
 * The following methods, previously deprecated, now emit deprecation warnings:
   - ContentHandler::getDefaultModelFor(), deprecated since 1.33
   - ContentHandler::getAllContentFormats(), deprecated since 1.35
