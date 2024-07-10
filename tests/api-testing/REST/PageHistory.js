@@ -9,6 +9,7 @@ describe( 'Page History', () => {
 	const client = new REST();
 
 	let mindy, bot, anon, alice, root;
+	let autoCreateTempUserEnabled = false;
 
 	const edits = {
 		all: [],
@@ -29,11 +30,11 @@ describe( 'Page History', () => {
 		assert.equal( response.status, status, `Status of GET ${ url }` );
 	}
 
-	const addEditInfo = ( editInfo, editBuckets ) => {
+	const addEditInfo = ( editInfo, editBuckets, anonUsername ) => {
 		const obj = {
 			id: editInfo.newrevid,
 			comment: editInfo.param_summary,
-			'user.name': editInfo.param_user,
+			'user.name': anonUsername || editInfo.param_user,
 			minor: !!editInfo.param_minor
 		};
 
@@ -50,14 +51,33 @@ describe( 'Page History', () => {
 		root = await action.root();
 		await root.addGroups( mindy.username, [ 'suppress' ] );
 
-		// Update anon's username
-		const anonInfo = await anon.meta( 'userinfo' );
-		anon.username = anonInfo.name;
+		const siteInfoQuery = await anon.action(
+			'query',
+			// fetch flag $wgAutoCreateTempUser['enabled'], and format to
+			// true/false for convenience
+			{ meta: 'siteinfo', siprop: 'autocreatetempuser', formatversion: 2 }
+		);
+		autoCreateTempUserEnabled = siteInfoQuery.query.autocreatetempuser.enabled;
 
 		// Create a page and make edits by various users and store edit information
 		addEditInfo( await alice.edit( title, { text: 'Counting 1', summary: 'creating page' } ), [] );
-		addEditInfo( await anon.edit( title, { text: 'Counting 1 2', summary: 'anon edit 1' } ), [ edits.anon ] );
-		addEditInfo( await anon.edit( title, { text: 'Counting 1 2 3', summary: 'anon edit 2' } ), [ edits.anon ] );
+
+		if ( autoCreateTempUserEnabled ) {
+			const resultAnonEdit = await anon.edit( title, { text: 'Counting 1 2', summary: 'anon edit 1' } );
+			const anonInfo = await anon.meta( 'userinfo', {} );
+			addEditInfo( resultAnonEdit, [ edits.temp ], anonInfo.name );
+
+			// Second edit for new anonymous user (new temp account)
+			anon = action.getAnon();
+			const resultAnonEdit2 = await anon.edit( title, { text: 'Counting 1 2 3', summary: 'anon edit 2' } );
+			const anonInfoEdit2 = await anon.meta( 'userinfo', {} );
+			addEditInfo( resultAnonEdit2, [ edits.temp ], anonInfoEdit2.name );
+		} else {
+			const anonInfo = await anon.meta( 'userinfo', {} );
+			anon.username = anonInfo.name;
+			addEditInfo( await anon.edit( title, { text: 'Counting 1 2', summary: 'anon edit 1' } ), [ edits.anon ] );
+			addEditInfo( await anon.edit( title, { text: 'Counting 1 2 3', summary: 'anon edit 2' } ), [ edits.anon ] );
+		}
 		addEditInfo( await bot.edit( title, { text: 'Counting 1 2 3 4', summary: 'bot edit 1' } ), [ edits.bot ] );
 		addEditInfo( await bot.edit( title, { text: 'Counting 1 2 3 4 5', summary: 'bot edit 2' } ), [ edits.bot ] );
 
@@ -227,7 +247,8 @@ describe( 'Page History', () => {
 
 			assert.equal( res.status, 200 );
 			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
-			assert.deepEqual( res.body, { count: 2, limit: false } );
+			const expectedCount = autoCreateTempUserEnabled ? 0 : 2;
+			assert.deepEqual( res.body, { count: expectedCount, limit: false } );
 		} );
 	} );
 
@@ -237,7 +258,8 @@ describe( 'Page History', () => {
 
 			assert.equal( res.status, 200 );
 			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
-			assert.deepEqual( res.body, { count: 0, limit: false } );
+			const expectedCount = autoCreateTempUserEnabled ? 2 : 0;
+			assert.deepEqual( res.body, { count: expectedCount, limit: false } );
 		} );
 	} );
 
@@ -273,7 +295,8 @@ describe( 'Page History', () => {
 
 			assert.equal( res.status, 200 );
 			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
-			assert.deepEqual( res.body, { count: 4, limit: false } );
+			const expectedCount = autoCreateTempUserEnabled ? 5 : 4;
+			assert.deepEqual( res.body, { count: expectedCount, limit: false } );
 		} );
 
 		it( 'Should get total number of unique editors between revisions, normal order', async () => {
