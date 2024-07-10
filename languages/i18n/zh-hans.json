@@ -440,7 +440,7 @@
 	"versionrequiredtext": "使用本页需要$1版本的MediaWiki。请参见[[Special:Version|版本页面]]。",
 	"ok": "确定",
 	"backlinksubtitle": "←$1",
-	"retrievedfrom": "取自“$1”",
+	"retrievedfrom": "检索自“$1”",
 	"youhavenewmessages": "{{PLURAL:$3|您}}有$1（$2）。",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|您}}有来自{{PLURAL:$3|其他用户|$3个用户}}的$1（$2）。",
 	"youhavenewmessagesmanyusers": "您有来自多个用户的$1（$2）。",
