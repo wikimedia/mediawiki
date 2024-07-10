@@ -55,6 +55,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
+use MessageSpecifier;
 use OOUI\FieldLayout;
 use OOUI\HtmlSnippet;
 use OOUI\LabelWidget;
@@ -96,8 +97,7 @@ class SpecialBlock extends FormSpecialPage {
 	protected $alreadyBlocked;
 
 	/**
-	 * @var array[]
-	 * @phan-var non-empty-array[]
+	 * @var MessageSpecifier[]
 	 */
 	protected $preErrors = [];
 
@@ -226,8 +226,7 @@ class SpecialBlock extends FormSpecialPage {
 				[
 					'align' => 'top',
 					'errors' => array_map( function ( $errMsg ) {
-						// @phan-suppress-next-line PhanParamTooFewUnpack Should infer non-emptiness
-						return new HtmlSnippet( $this->msg( ...$errMsg )->parse() );
+						return new HtmlSnippet( $this->msg( $errMsg )->parse() );
 					}, $this->preErrors ),
 				]
 			) );
@@ -490,7 +489,7 @@ class SpecialBlock extends FormSpecialPage {
 		if ( $this->target ) {
 			$status = $this->blockUtils->validateTarget( $this->target );
 			if ( !$status->isOK() ) {
-				$errors = $status->getErrorsArray();
+				$errors = $status->getMessages( 'error' );
 				$this->preErrors = array_merge( $this->preErrors, $errors );
 			}
 		}
@@ -580,7 +579,7 @@ class SpecialBlock extends FormSpecialPage {
 			}
 
 			$this->alreadyBlocked = true;
-			$this->preErrors[] = [ 'ipb-needreblock', wfEscapeWikiText( $block->getTargetName() ) ];
+			$this->preErrors[] = $this->msg( 'ipb-needreblock', wfEscapeWikiText( $block->getTargetName() ) );
 		}
 
 		if ( $this->alreadyBlocked || $this->getRequest()->wasPosted()
@@ -593,14 +592,14 @@ class SpecialBlock extends FormSpecialPage {
 		if ( $this->requestedHideUser ) {
 			$fields['Confirm']['type'] = 'check';
 			unset( $fields['Confirm']['default'] );
-			$this->preErrors[] = [ 'ipb-confirmhideuser', 'ipb-confirmaction' ];
+			$this->preErrors[] = $this->msg( 'ipb-confirmhideuser', 'ipb-confirmaction' );
 		}
 
 		// Or if the user is trying to block themselves
 		if ( (string)$this->target === $this->getUser()->getName() ) {
 			$fields['Confirm']['type'] = 'check';
 			unset( $fields['Confirm']['default'] );
-			$this->preErrors[] = [ 'ipb-blockingself', 'ipb-confirmaction' ];
+			$this->preErrors[] = $this->msg( 'ipb-blockingself', 'ipb-confirmaction' );
 		}
 	}
 

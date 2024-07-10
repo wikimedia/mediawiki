@@ -310,11 +310,10 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 
 		$status = $req->execute();
 		if ( !$status->isOK() ) {
-			$errors = $status->getErrorsArray();
 			throw new UploadStashFileNotFoundException(
 				$this->msg(
 					'uploadstash-file-not-found-no-remote-thumb',
-					print_r( $errors, 1 ),
+					$status->getMessage(),
 					$scalerThumbUrl
 				)
 			);

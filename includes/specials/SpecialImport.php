@@ -218,7 +218,7 @@ class SpecialImport extends SpecialPage {
 						[
 							'import-options-wrong',
 							$statusRootPage->getWikiText( false, false, $this->getLanguage() ),
-							count( $statusRootPage->getErrorsArray() )
+							count( $statusRootPage->getMessages() )
 						]
 					);
 
