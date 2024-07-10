@@ -13,6 +13,7 @@ describe( 'Page History', () => {
 	const edits = {
 		all: [],
 		anon: [],
+		temp: [],
 		bot: [],
 		reverts: []
 	};
@@ -227,6 +228,16 @@ describe( 'Page History', () => {
 			assert.equal( res.status, 200 );
 			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
 			assert.deepEqual( res.body, { count: 2, limit: false } );
+		} );
+	} );
+
+	describe( 'GET /page/{title}/history/counts/temporary', () => {
+		it( 'Should get total number of edits by temporary users', async () => {
+			const res = await client.get( `/page/${ title }/history/counts/temporary` );
+
+			assert.equal( res.status, 200 );
+			assert.match( res.headers[ 'content-type' ], /^application\/json/ );
+			assert.deepEqual( res.body, { count: 0, limit: false } );
 		} );
 	} );
 

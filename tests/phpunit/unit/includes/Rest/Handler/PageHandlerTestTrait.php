@@ -195,7 +195,8 @@ trait PageHandlerTestTrait {
 			$services->getConnectionProvider(),
 			new WANObjectCache( [ 'cache' => $this->parserCacheBagOStuff, ] ),
 			$services->getPageStore(),
-			$services->getPageRestHelperFactory()
+			$services->getPageRestHelperFactory(),
+			$services->getTempUserConfig()
 		);
 	}
 

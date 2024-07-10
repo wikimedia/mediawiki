@@ -16,12 +16,14 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
+use MediaWiki\User\TempUser\TempUserConfig;
 use WANObjectCache;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\RawSQLExpression;
 
 /**
@@ -32,6 +34,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	/** The maximum number of counts to return per type of revision */
 	private const COUNT_LIMITS = [
 		'anonymous' => 10000,
+		'temporary' => 10000,
 		'bot' => 10000,
 		'editors' => 25000,
 		'edits' => 30000,
@@ -54,6 +57,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	private PageLookup $pageLookup;
 	private WANObjectCache $cache;
 	private PageRestHelperFactory $helperFactory;
+	private TempUserConfig $tempUserConfig;
 
 	/** @var RevisionRecord|false|null */
 	private $revision = false;
@@ -72,6 +76,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @param WANObjectCache $cache
 	 * @param PageLookup $pageLookup
 	 * @param PageRestHelperFactory $helperFactory
+	 * @param TempUserConfig $tempUserConfig
 	 */
 	public function __construct(
 		RevisionStore $revisionStore,
@@ -80,7 +85,8 @@ class PageHistoryCountHandler extends SimpleHandler {
 		IConnectionProvider $dbProvider,
 		WANObjectCache $cache,
 		PageLookup $pageLookup,
-		PageRestHelperFactory $helperFactory
+		PageRestHelperFactory $helperFactory,
+		TempUserConfig $tempUserConfig
 	) {
 		$this->revisionStore = $revisionStore;
 		$this->changeTagDefStore = $nameTableStoreFactory->getChangeTagDef();
@@ -89,6 +95,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 		$this->cache = $cache;
 		$this->pageLookup = $pageLookup;
 		$this->helperFactory = $helperFactory;
+		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	private function getRedirectHelper(): PageRedirectHelper {
@@ -204,6 +211,13 @@ class PageHistoryCountHandler extends SimpleHandler {
 				return $this->getCachedCount( $type,
 					function ( RevisionRecord $fromRev = null ) use ( $pageId ) {
 						return $this->getAnonCount( $pageId, $fromRev );
+					}
+				);
+
+			case 'temporary':
+				return $this->getCachedCount( $type,
+					function ( RevisionRecord $fromRev = null ) use ( $pageId ) {
+						return $this->getTempCount( $pageId, $fromRev );
 					}
 				);
 
@@ -445,6 +459,47 @@ class PageHistoryCountHandler extends SimpleHandler {
 					RevisionRecord::DELETED_TEXT | RevisionRecord::DELETED_USER ) => 0,
 			] )
 			->limit( self::COUNT_LIMITS['anonymous'] + 1 ); // extra to detect truncation
+
+		if ( $fromRev ) {
+			$queryBuilder->andWhere( $dbr->buildComparison( '>', [
+				'rev_timestamp' => $dbr->timestamp( $fromRev->getTimestamp() ),
+				'rev_id' => $fromRev->getId(),
+			] ) );
+		}
+
+		return $queryBuilder->caller( __METHOD__ )->fetchRowCount();
+	}
+
+	/**
+	 * @param int $pageId the id of the page to load history for
+	 * @param RevisionRecord|null $fromRev
+	 * @return int the count
+	 */
+	protected function getTempCount( $pageId, RevisionRecord $fromRev = null ) {
+		if ( !$this->tempUserConfig->isKnown() ) {
+			return 0;
+		}
+
+		$dbr = $this->dbProvider->getReplicaDatabase();
+		$queryBuilder = $dbr->newSelectQueryBuilder()
+			->select( '1' )
+			->from( 'revision' )
+			->join( 'actor', null, 'rev_actor = actor_id' )
+			->where( [
+				'rev_page' => $pageId,
+				$this->tempUserConfig->getMatchCondition(
+					$dbr,
+					'actor_name',
+					IExpression::LIKE
+				),
+			] )
+			->andWhere( [
+				$dbr->bitAnd(
+					'rev_deleted',
+					RevisionRecord::DELETED_TEXT | RevisionRecord::DELETED_USER
+				) => 0
+			] )
+			->limit( self::COUNT_LIMITS['temporary'] + 1 ); // extra to detect truncation
 
 		if ( $fromRev ) {
 			$queryBuilder->andWhere( $dbr->buildComparison( '>', [

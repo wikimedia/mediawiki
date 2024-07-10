@@ -22,7 +22,8 @@
 			"DBLoadBalancerFactory",
 			"MainWANObjectCache",
 			"PageStore",
-			"PageRestHelperFactory"
+			"PageRestHelperFactory",
+			"TempUserConfig"
 		]
 	},
 	{
