@@ -14,7 +14,7 @@ describe( 'The edit action', () => {
 	const pageA = utils.title( 'Edit_A_' );
 	const edits = {};
 
-	const testEditAndLog = async ( page, user ) => {
+	const testEditAndLog = async ( page, user, isAnonEdit = false ) => {
 		const edit = await user.edit( page, {
 			text: utils.uniq(),
 			summary: utils.uniq()
@@ -22,7 +22,10 @@ describe( 'The edit action', () => {
 
 		const rev1 = await user.getRevision( page );
 		assert.equal( rev1.revid, edit.newrevid );
-		assert.equal( rev1.user, edit.param_user );
+		// Temporary accounts (anonymous users) have auto-generated usernames
+		if ( !isAnonEdit ) {
+			assert.equal( rev1.user, edit.param_user );
+		}
 		assert.equal( rev1.comment, edit.param_summary );
 		assert.equal( rev1.timestamp, edit.newtimestamp );
 		assert.equal( rev1.slots.main[ '*' ], edit.param_text );
@@ -30,7 +33,9 @@ describe( 'The edit action', () => {
 		const rc1 = await user.getChangeEntry( { rctitle: page } );
 		assert.equal( rc1.type, edit.oldrevid ? 'edit' : 'new' );
 		assert.equal( rc1.revid, edit.newrevid );
-		assert.equal( rc1.user, edit.param_user );
+		if ( !isAnonEdit ) {
+			assert.equal( rc1.user, edit.param_user );
+		}
 		assert.equal( rc1.comment, edit.param_summary );
 		assert.equal( rc1.timestamp, edit.newtimestamp );
 
@@ -51,7 +56,7 @@ describe( 'The edit action', () => {
 		const { name } = await anon.meta( 'userinfo', {} );
 		anon.username = name;
 
-		await testEditAndLog( title, anon );
+		await testEditAndLog( title, anon, true );
 	} );
 
 	it( 'skips redundant edit', async () => {
