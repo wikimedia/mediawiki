@@ -24,9 +24,24 @@ describe( 'Testing default autopatrolling rights', () => {
 		const result = await mindy.list( 'recentchanges', { rctitle: title, rcprop: 'patrolled|user' } );
 
 		assert.lengthOf( result, 2 );
-		assert.sameDeepMembers( result, [
-			{ anon: '', type: 'edit', unpatrolled: '', user: anonUserInfo.name },
-			{ type: 'new', patrolled: '', autopatrolled: '', user: mindy.username }
-		] );
+
+		// Test different properties if Temporary Accounts is enabled or not
+		const siteInfoQuery = await anonymousUser.action(
+			'query',
+			// fetch flag $wgAutoCreateTempUser['enabled'], and format to
+			// true/false for convenience
+			{ meta: 'siteinfo', siprop: 'autocreatetempuser', formatversion: 2 }
+		);
+		if ( siteInfoQuery.query.autocreatetempuser.enabled ) {
+			assert.sameDeepMembers( result, [
+				{ temp: '', type: 'edit', unpatrolled: '', user: anonUserInfo.name },
+				{ type: 'new', patrolled: '', autopatrolled: '', user: mindy.username }
+			] );
+		} else {
+			assert.sameDeepMembers( result, [
+				{ anon: '', type: 'edit', unpatrolled: '', user: anonUserInfo.name },
+				{ type: 'new', patrolled: '', autopatrolled: '', user: mindy.username }
+			] );
+		}
 	} );
 } );
