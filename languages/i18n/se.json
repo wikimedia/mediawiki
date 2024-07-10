@@ -2268,7 +2268,7 @@
 	"movereasonotherlist": "Eará sivva",
 	"movepage-reason-dropdown": "* Dábálaš sirdinsivat\n** Meattáhus namas",
 	"revertmove": "máhcat sirdima",
-	"delete_and_move_confirm": "Sihko siiddu",
+	"delete_and_move_confirm": "Jua, sihko siiddu \"$1\"",
 	"immobile-source-namespace": "Siidduid ii sáhte sirdit nammagomuvuođas \"$1\".",
 	"immobile-target-namespace": "Siidduid ii sáhte sirdit nammagomuvuhtii \"$1\".",
 	"immobile-target-namespace-iw": "Ii sáhte sirdit siiddu dakkár siidonammii, mii lea wikiidgaskasaš liŋka.",

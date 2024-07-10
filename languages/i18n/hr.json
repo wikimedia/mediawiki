@@ -978,6 +978,7 @@
 	"userrights-systemuser": "{{GENDER:$1|Ovaj suradnički}} račun je sustavski račun",
 	"userrights-groups-help": "Možete promijeniti skupine za {{GENDER:$1|ovoga suradnika|ovu suradnicu}}:\n* označena kućica pokazuje skupinu kojoj {{GENDER:$1|suradnik|suradnica}} pripada;\n* neoznačena kućica pokazuje skupinu kojoj {{GENDER:$1|suradnik|suradnica}} ne pripada;\n* zvjezdica (*) označava skupinu koju ne možete ukloniti kad je jednom dodate, ili obratno.\n* povisilica (#) označava da rok valjanosti pripadanja skupini možete samo skratiti, a ne i produljiti.",
 	"userrights-reason": "Razlog za promjenu:",
+	"userrights-watchuser": "Dodaj suradničke stranice na popis praćenja",
 	"userrights-no-interwiki": "Nemate dopuštenje za uređivanje suradničkih prava na drugim wikijima.",
 	"userrights-nodatabase": "Baza podataka $1 ne postoji ili nije lokalno dostupna.",
 	"userrights-changeable-col": "Skupine koje možete promijeniti",
