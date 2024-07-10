@@ -113,7 +113,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		$rev = $updater->saveRevision( $summary );
 
 		$rc = $this->getServiceContainer()->getRevisionStore()->getRecentChange( $rev );
-		$rc->doMarkPatrolled( $patrollingUser, false, [] );
+		$rc->markPatrolled( $patrollingUser, [] );
 	}
 
 	/**

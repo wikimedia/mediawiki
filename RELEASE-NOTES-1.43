@@ -412,6 +412,8 @@ because of Phabricator reports.
 * WikiPage::hasDifferencesOutsideMainSlot(), provided as a stop-gap before
   refactoring to support MCR, is now deprecated.
 * ChangesList::getTimestamp() has been deprecated; use ::revDateLink() instead.
+* RecentChange::doMarkPatrolled() is deprecated, use
+  RecentChange::markPatrolled() instead.
 * SiteConfig::variants() has been deprecated; use ::variantsFor().
 * ObjectCache::$instances and ::getInstance() have been deprecated; instead, use
   ObjectCacheFactory::getInstance().

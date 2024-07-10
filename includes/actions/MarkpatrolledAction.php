@@ -109,13 +109,13 @@ class MarkpatrolledAction extends FormAction {
 
 	/**
 	 * @param array $data
-	 * @return bool|array True for success, false for didn't-try, array of errors on failure
+	 * @return bool|StatusValue True for success, false for didn't-try, StatusValue on failure
 	 */
 	public function onSubmit( $data ) {
 		$rc = $this->getRecentChange( $data );
-		$errors = $rc->doMarkPatrolled( $this->getAuthority() );
+		$status = $rc->markPatrolled( $this->getAuthority() );
 
-		if ( in_array( [ 'rcpatroldisabled' ], $errors ) ) {
+		if ( $status->hasMessage( 'rcpatroldisabled' ) ) {
 			throw new ErrorPageError( 'rcpatroldisabled', 'rcpatroldisabledtext' );
 		}
 
@@ -130,19 +130,19 @@ class MarkpatrolledAction extends FormAction {
 		}
 		$return = SpecialPage::getTitleFor( $returnTo );
 
-		if ( in_array( [ 'markedaspatrollederror-noautopatrol' ], $errors ) ) {
+		if ( $status->hasMessage( 'markedaspatrollederror-noautopatrol' ) ) {
 			$this->getOutput()->setPageTitleMsg( $this->msg( 'markedaspatrollederror' ) );
 			$this->getOutput()->addWikiMsg( 'markedaspatrollederror-noautopatrol' );
 			$this->getOutput()->returnToMain( null, $return );
 			return true;
 		}
 
-		if ( $errors ) {
-			if ( !in_array( [ 'hookaborted' ], $errors ) ) {
-				throw new PermissionsError( 'patrol', $errors );
+		if ( !$status->isGood() ) {
+			if ( !$status->hasMessage( 'hookaborted' ) ) {
+				throw new PermissionsError( 'patrol', $status );
 			}
-			// The hook itself has handled any output
-			return $errors;
+			// The MarkPatrolled hook itself has handled any output
+			return $status;
 		}
 
 		$this->getOutput()->setPageTitleMsg( $this->msg( 'markedaspatrolled' ) );
