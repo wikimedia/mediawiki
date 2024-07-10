@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\MainConfigNames;
+use Wikimedia\ObjectCache\BagOStuff;
 
 require_once __DIR__ . '/Maintenance.php';
 

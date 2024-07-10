@@ -5,13 +5,13 @@
 namespace Wikimedia\Tests\ObjectCache;
 
 use ArrayIterator;
-use BagOStuff;
-use EmptyBagOStuff;
-use HashBagOStuff;
 use MediaWikiUnitTestCase;
 use Psr\Log\NullLogger;
 use UnexpectedValueException;
 use WANObjectCache;
+use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\ObjectCache\EmptyBagOStuff;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\TestingAccessWrapper;
 
 /**

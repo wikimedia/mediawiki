@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\StubObject\DeprecatedGlobal;
+use Wikimedia\ObjectCache\HashBagOStuff;
 
 /**
  * @covers \MediaWiki\StubObject\DeprecatedGlobal

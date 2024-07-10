@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
-use BagOStuff;
 use Exception;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Rest\Handler\RevisionSourceHandler;
@@ -12,6 +11,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\ObjectCache\BagOStuff;
 
 /**
  * @covers \MediaWiki\Rest\Handler\RevisionSourceHandler

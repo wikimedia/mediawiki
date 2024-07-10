@@ -19,8 +19,6 @@
  */
 namespace Wikimedia\Rdbms;
 
-use BagOStuff;
-use EmptyBagOStuff;
 use Exception;
 use Generator;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
@@ -30,6 +28,8 @@ use Psr\Log\NullLogger;
 use RuntimeException;
 use Throwable;
 use WANObjectCache;
+use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\ScopedCallback;
 

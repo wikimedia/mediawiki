@@ -39,6 +39,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\FileBackend\FileBackend;
+use Wikimedia\ObjectCache\BagOStuff;
 
 /**
  * @defgroup Upload Upload related

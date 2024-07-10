@@ -20,6 +20,10 @@
  * @file
  * @ingroup Cache
  */
+
+namespace Wikimedia\ObjectCache;
+
+use InvalidArgumentException;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
@@ -47,6 +51,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 
 	/**
 	 * @stable to call
+	 *
 	 * @param array $params
 	 *   - caches: A numbered array of either ObjectFactory::getObjectFromSpec
 	 *      arrays yielding BagOStuff objects or direct BagOStuff objects.
@@ -63,6 +68,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 *      safe to use for modules when cached values: are immutable,
 	 *      invalidation uses logical TTLs, invalidation uses etag/timestamp
 	 *      validation against the DB, or merge() is used to handle races.
+	 *
 	 * @phan-param array{caches:array<int,array|BagOStuff>,replication:string} $params
 	 * @throws InvalidArgumentException
 	 */
@@ -321,6 +327,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 * @param int $arg0Sig BagOStuff::A0_* constant describing argument 0
 	 * @param int $rvSig BagOStuff::RV_* constant describing the return value
 	 * @param array $args Method arguments
+	 *
 	 * @return mixed The result of calling the given method
 	 */
 	private function callKeyMethodOnTierCache( $index, $method, $arg0Sig, $rvSig, array $args ) {
@@ -335,6 +342,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 * @param int $arg0Sig BagOStuff::ARG0_* constant describing argument 0
 	 * @param int $resSig BagOStuff::RES_* constant describing the return value
 	 * @param array $args Method arguments
+	 *
 	 * @return mixed First synchronous result or false if any failed; null if all asynchronous
 	 */
 	private function callKeyWriteMethodOnTierCaches(
@@ -377,3 +385,6 @@ class MultiWriteBagOStuff extends BagOStuff {
 		return $res;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( MultiWriteBagOStuff::class, 'MultiWriteBagOStuff' );

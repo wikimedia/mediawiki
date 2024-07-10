@@ -6,6 +6,8 @@ use MediaWiki\Installer\Pingback;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Status\Status;
 use Psr\Log\NullLogger;
+use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\InsertQueryBuilder;

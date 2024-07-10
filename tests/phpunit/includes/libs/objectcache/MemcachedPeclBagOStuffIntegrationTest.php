@@ -4,7 +4,7 @@ use MediaWiki\MediaWikiServices;
 
 /**
  * @group BagOStuff
- * @covers \MemcachedPeclBagOStuff
+ * @covers \Wikimedia\ObjectCache\MemcachedPeclBagOStuff
  * @requires extension memcached
  */
 class MemcachedPeclBagOStuffIntegrationTest extends BagOStuffTestBase {

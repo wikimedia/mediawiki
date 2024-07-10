@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Config\HashConfig;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Services\NoSuchServiceException;
 
 /**

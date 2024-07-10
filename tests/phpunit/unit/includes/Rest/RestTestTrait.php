@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Rest;
 
-use EmptyBagOStuff;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
@@ -15,6 +14,7 @@ use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Tests\Rest\Handler\SessionHelperTestTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use Psr\Container\ContainerInterface;
+use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**

@@ -2,14 +2,17 @@
 
 use MediaWiki\Deferred\DeferredUpdates;
 use Wikimedia\LightweightObjectStore\StorageAwareness;
+use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\ObjectCache\HashBagOStuff;
+use Wikimedia\ObjectCache\MultiWriteBagOStuff;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
 /**
  * @author Matthias Mullie <mmullie@wikimedia.org>
  * @group BagOStuff
- * @covers \BagOStuff
- * @covers \MediumSpecificBagOStuff
+ * @covers \Wikimedia\ObjectCache\BagOStuff
+ * @covers \Wikimedia\ObjectCache\MediumSpecificBagOStuff
  */
 abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 	/** @var BagOStuff */

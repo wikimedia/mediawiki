@@ -21,7 +21,6 @@
 
 namespace MediaWiki\Parser;
 
-use BagOStuff;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Json\JsonCodec;
@@ -31,6 +30,7 @@ use MediaWiki\Title\TitleFactory;
 use ParserCache;
 use Psr\Log\LoggerInterface;
 use WANObjectCache;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\UUID\GlobalIdGenerator;
 

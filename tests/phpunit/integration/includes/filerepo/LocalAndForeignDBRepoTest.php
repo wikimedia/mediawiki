@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\ObjectCache\HashBagOStuff;
 
 class LocalAndForeignDBRepoTest extends MediaWikiIntegrationTestCase {
 	/**

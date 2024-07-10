@@ -24,6 +24,8 @@
 use MediaWiki\Json\FormatJson;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\FileBackend\FileBackend;
+use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**

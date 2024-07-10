@@ -23,13 +23,13 @@
 
 namespace MediaWiki\Session;
 
-use BagOStuff;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use SessionHandlerInterface;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\PhpSessionSerializer;
 
 /**

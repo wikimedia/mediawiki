@@ -23,8 +23,6 @@
 
 namespace MediaWiki\Session;
 
-use BagOStuff;
-use CachedBagOStuff;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Config\Config;
@@ -40,6 +38,8 @@ use MediaWiki\User\UserNameUtils;
 use MWException;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
+use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\ObjectCache\CachedBagOStuff;
 
 /**
  * This serves as the entry point to the MediaWiki session handling system.

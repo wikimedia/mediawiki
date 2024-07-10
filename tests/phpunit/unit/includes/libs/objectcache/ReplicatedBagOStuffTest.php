@@ -2,10 +2,10 @@
 
 namespace Wikimedia\Tests\ObjectCache;
 
-use HashBagOStuff;
 use MediaWikiUnitTestCase;
 use ReplicatedBagOStuff;
 use Wikimedia\LightweightObjectStore\StorageAwareness;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\TestingAccessWrapper;
 
 /**

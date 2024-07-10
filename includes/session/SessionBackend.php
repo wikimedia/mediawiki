@@ -23,7 +23,6 @@
 
 namespace MediaWiki\Session;
 
-use CachedBagOStuff;
 use InvalidArgumentException;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
@@ -35,6 +34,7 @@ use MediaWiki\User\User;
 use MWRestrictions;
 use Psr\Log\LoggerInterface;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\ObjectCache\CachedBagOStuff;
 
 /**
  * This is the actual workhorse for Session.

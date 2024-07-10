@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Storage;
 
-use BagOStuff;
 use Content;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -35,6 +34,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
 use stdClass;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Stats\StatsFactory;

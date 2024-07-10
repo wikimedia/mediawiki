@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Rest;
 
-use BagOStuff;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
@@ -18,6 +17,7 @@ use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\Session;
 use Throwable;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Stats\StatsFactory;
 

@@ -2,9 +2,6 @@
 
 namespace MediaWiki\Tests\Storage;
 
-use BagOStuff;
-use EmptyBagOStuff;
-use HashBagOStuff;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWikiIntegrationTestCase;
@@ -12,6 +9,9 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\NullLogger;
 use RuntimeException;
 use WANObjectCache;
+use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\ObjectCache\EmptyBagOStuff;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\InsertQueryBuilder;
 use Wikimedia\Rdbms\LoadBalancer;

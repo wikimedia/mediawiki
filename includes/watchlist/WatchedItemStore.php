@@ -2,9 +2,7 @@
 
 namespace MediaWiki\Watchlist;
 
-use BagOStuff;
 use DateInterval;
-use HashBagOStuff;
 use JobQueueGroup;
 use LogicException;
 use MapCacheLRU;
@@ -21,6 +19,8 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 use stdClass;
 use Wikimedia\Assert\Assert;
+use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILBFactory;

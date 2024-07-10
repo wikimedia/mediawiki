@@ -1,6 +1,10 @@
 <?php
+
+use Wikimedia\ObjectCache\MemcachedBagOStuff;
+use Wikimedia\ObjectCache\MemcachedPhpBagOStuff;
+
 /**
- * @covers \MemcachedBagOStuff
+ * @covers \Wikimedia\ObjectCache\MemcachedBagOStuff
  * @group BagOStuff
  */
 class MemcachedBagOStuffTest extends \MediaWikiUnitTestCase {

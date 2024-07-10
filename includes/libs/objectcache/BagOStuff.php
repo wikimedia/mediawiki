@@ -26,6 +26,9 @@
  * @defgroup Cache Cache
  */
 
+namespace Wikimedia\ObjectCache;
+
+use InvalidArgumentException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -151,13 +154,15 @@ abstract class BagOStuff implements
 
 	/**
 	 * @stable to call
+	 *
 	 * @param array $params Parameters include:
 	 *   - keyspace: Keyspace to use for keys in makeKey(). [Default: "local"]
 	 *   - asyncHandler: Callable to use for scheduling tasks after the web request ends.
 	 *      In CLI mode, it should run the task immediately. [Default: null]
 	 *   - stats: IStatsdDataFactory instance. [optional]
-	 *   - logger: Psr\Log\LoggerInterface instance. [optional]
-	 * @phan-param array{keyspace?:string,logger?:Psr\Log\LoggerInterface,asyncHandler?:callable} $params
+	 *   - logger: \Psr\Log\LoggerInterface instance. [optional]
+	 *
+	 * @phan-param array{keyspace?:string,logger?:\Psr\Log\LoggerInterface,asyncHandler?:callable} $params
 	 */
 	public function __construct( array $params = [] ) {
 		$this->keyspace = $params['keyspace'] ?? 'local';
@@ -172,6 +177,7 @@ abstract class BagOStuff implements
 
 	/**
 	 * @param LoggerInterface $logger
+	 *
 	 * @return void
 	 */
 	public function setLogger( LoggerInterface $logger ) {
@@ -196,6 +202,7 @@ abstract class BagOStuff implements
 	 * @param int $exptime Time-to-live (seconds)
 	 * @param callable $callback Callback that derives the new value
 	 * @param int $flags Bitfield of BagOStuff::READ_* or BagOStuff::WRITE_* constants [optional]
+	 *
 	 * @return mixed The cached value if found or the result of $callback otherwise
 	 * @since 1.27
 	 */
@@ -223,6 +230,7 @@ abstract class BagOStuff implements
 	 *
 	 * @param string $key
 	 * @param int $flags Bitfield of BagOStuff::READ_* constants [optional]
+	 *
 	 * @return mixed Returns false on failure or if the item does not exist
 	 */
 	abstract public function get( $key, $flags = 0 );
@@ -234,6 +242,7 @@ abstract class BagOStuff implements
 	 * @param mixed $value
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
+	 *
 	 * @return bool Success
 	 */
 	abstract public function set( $key, $value, $exptime = 0, $flags = 0 );
@@ -247,6 +256,7 @@ abstract class BagOStuff implements
 	 *
 	 * @param string $key
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
+	 *
 	 * @return bool Success (item deleted or not found)
 	 */
 	abstract public function delete( $key, $flags = 0 );
@@ -258,6 +268,7 @@ abstract class BagOStuff implements
 	 * @param mixed $value
 	 * @param int $exptime
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants (since 1.33)
+	 *
 	 * @return bool Success (item created)
 	 */
 	abstract public function add( $key, $value, $exptime = 0, $flags = 0 );
@@ -276,6 +287,7 @@ abstract class BagOStuff implements
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $attempts The amount of times to attempt a merge in case of failure
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
+	 *
 	 * @return bool Success
 	 * @throws InvalidArgumentException
 	 */
@@ -301,6 +313,7 @@ abstract class BagOStuff implements
 	 * @param string $key
 	 * @param int $exptime TTL or UNIX timestamp
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants (since 1.33)
+	 *
 	 * @return bool Success (item found and updated)
 	 * @since 1.28
 	 */
@@ -316,6 +329,7 @@ abstract class BagOStuff implements
 	 *  using the same value for this parameter, then return true and use reference counting so
 	 *  that only the unlock() call from the outermost lock() caller actually releases the lock
 	 *  (note that only the outermost time-to-live is used) [optional]
+	 *
 	 * @return bool Success
 	 */
 	abstract public function lock( $key, $timeout = 6, $exptime = 6, $rclass = '' );
@@ -324,6 +338,7 @@ abstract class BagOStuff implements
 	 * Release an advisory lock on a key string
 	 *
 	 * @param string $key
+	 *
 	 * @return bool Success
 	 */
 	abstract public function unlock( $key );
@@ -341,6 +356,7 @@ abstract class BagOStuff implements
 	 * @param int $timeout Lock wait timeout; 0 for non-blocking [optional]
 	 * @param int $exptime Lock time-to-live [optional]; 1 day maximum
 	 * @param string $rclass Allow reentry if set and the current lock used this value
+	 *
 	 * @return ScopedCallback|null Returns null on failure
 	 * @since 1.26
 	 */
@@ -366,6 +382,7 @@ abstract class BagOStuff implements
 	 * @param int|float $limit Maximum number of keys to delete [default: INF]
 	 * @param string|null $tag Tag to purge a single shard only.
 	 *  This is only supported when server tags are used in configuration.
+	 *
 	 * @return bool Success; false if unimplemented
 	 */
 	abstract public function deleteObjectsExpiringBefore(
@@ -380,6 +397,7 @@ abstract class BagOStuff implements
 	 *
 	 * @param string[] $keys List of keys
 	 * @param int $flags Bitfield; supports READ_LATEST [optional]
+	 *
 	 * @return mixed[] Map of (key => value) for existing keys
 	 */
 	abstract public function getMulti( array $keys, $flags = 0 );
@@ -394,6 +412,7 @@ abstract class BagOStuff implements
 	 * @param mixed[] $valueByKey Map of (key => value)
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants (since 1.33)
+	 *
 	 * @return bool Success
 	 * @since 1.24
 	 */
@@ -408,6 +427,7 @@ abstract class BagOStuff implements
 	 *
 	 * @param string[] $keys List of keys
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
+	 *
 	 * @return bool Success (items deleted and/or not found)
 	 * @since 1.33
 	 */
@@ -421,6 +441,7 @@ abstract class BagOStuff implements
 	 * @param string[] $keys List of keys
 	 * @param int $exptime TTL or UNIX timestamp
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants (since 1.33)
+	 *
 	 * @return bool Success (all items found and updated)
 	 * @since 1.34
 	 */
@@ -441,6 +462,7 @@ abstract class BagOStuff implements
 	 * @param int $step Amount to increase the key value by [default: 1]
 	 * @param int|null $init Value to initialize the key to if it does not exist [default: $step]
 	 * @param int $flags Bit field of class WRITE_* constants [optional]
+	 *
 	 * @return int|bool New value (or true if asynchronous) on success; false on failure
 	 * @since 1.24
 	 */
@@ -470,6 +492,7 @@ abstract class BagOStuff implements
 	 *   - The caller invokes getLastError()
 	 *
 	 * @param int $watchPoint Only consider errors from after this "watch point" [optional]
+	 *
 	 * @return int BagOStuff:ERR_* constant for the "last error" registry
 	 * @note Parameters added in 1.38: $watchPoint
 	 * @since 1.23
@@ -492,6 +515,7 @@ abstract class BagOStuff implements
 	 * Set the "last error" registry due to a problem encountered during an attempted operation
 	 *
 	 * @param int $error BagOStuff:ERR_* constant
+	 *
 	 * @since 1.23
 	 */
 	protected function setLastError( $error ) {
@@ -509,8 +533,10 @@ abstract class BagOStuff implements
 	 *
 	 * @see BagOStuff::makeKeyInternal
 	 * @since 1.27
+	 *
 	 * @param string $keygroup Key group component, should be under 48 characters.
 	 * @param string|int ...$components Additional, ordered, key components for entity IDs
+	 *
 	 * @return string Colon-separated, keyspace-prepended, ordered list of encoded components
 	 */
 	public function makeGlobalKey( $keygroup, ...$components ) {
@@ -538,8 +564,10 @@ abstract class BagOStuff implements
 	 *
 	 * @see BagOStuff::makeKeyInternal
 	 * @since 1.27
+	 *
 	 * @param string $keygroup Key group component, should be under 48 characters.
 	 * @param string|int ...$components Additional, ordered, key components for entity IDs
+	 *
 	 * @return string Colon-separated, keyspace-prepended, ordered list of encoded components
 	 */
 	public function makeKey( $keygroup, ...$components ) {
@@ -550,6 +578,7 @@ abstract class BagOStuff implements
 	 * Check whether a cache key is in the global keyspace
 	 *
 	 * @param string $key
+	 *
 	 * @return bool
 	 * @since 1.35
 	 */
@@ -559,6 +588,7 @@ abstract class BagOStuff implements
 
 	/**
 	 * @param int $flag BagOStuff::ATTR_* constant
+	 *
 	 * @return int BagOStuff:QOS_* constant
 	 * @since 1.28
 	 */
@@ -573,6 +603,7 @@ abstract class BagOStuff implements
 	 */
 	public function getSegmentationSize() {
 		wfDeprecated( __METHOD__, '1.43' );
+
 		return INF;
 	}
 
@@ -583,12 +614,14 @@ abstract class BagOStuff implements
 	 */
 	public function getSegmentedValueMaxSize() {
 		wfDeprecated( __METHOD__, '1.43' );
+
 		return INF;
 	}
 
 	/**
 	 * @param int $field
 	 * @param int $flags
+	 *
 	 * @return bool
 	 * @since 1.34
 	 */
@@ -600,6 +633,7 @@ abstract class BagOStuff implements
 	 * Merge the flag maps of one or more BagOStuff objects into a "lowest common denominator" map
 	 *
 	 * @param BagOStuff[] $bags
+	 *
 	 * @return int[] Resulting flag map (class ATTR_* constant => class QOS_* constant)
 	 */
 	final protected function mergeFlagMaps( array $bags ) {
@@ -630,8 +664,10 @@ abstract class BagOStuff implements
 	 *
 	 * @see BagOStuff::proxyCall
 	 * @since 1.27
+	 *
 	 * @param string $keyspace
 	 * @param string[]|int[] $components Key group and other components
+	 *
 	 * @return string
 	 */
 	protected function makeKeyInternal( $keyspace, $components ) {
@@ -644,6 +680,7 @@ abstract class BagOStuff implements
 			// Escape delimiter (":") and escape ("%") characters
 			$key .= ':' . strtr( $component, [ '%' => '%25', ':' => '%3A' ] );
 		}
+
 		return $key;
 	}
 
@@ -664,7 +701,9 @@ abstract class BagOStuff implements
 	 * Convert a key from BagOStuff::makeKeyInternal into one for the current subclass
 	 *
 	 * @see BagOStuff::proxyCall
+	 *
 	 * @param string $key Result from BagOStuff::makeKeyInternal
+	 *
 	 * @return string Result from current subclass override of BagOStuff::makeKeyInternal
 	 */
 	private function convertGenericKey( $key ) {
@@ -704,6 +743,7 @@ abstract class BagOStuff implements
 	 * @param int $resSig BagOStuff::RES_* constant describing the return value
 	 * @param array $genericArgs Method arguments passed to the wrapper instance
 	 * @param BagOStuff $wrapper The wrapper BagOStuff instance using this result
+	 *
 	 * @return mixed Method result with any keys remapped to "generic" keys
 	 */
 	protected function proxyCall(
@@ -767,10 +807,15 @@ abstract class BagOStuff implements
 
 	/**
 	 * @internal For testing only
+	 *
 	 * @param float|null &$time Mock UNIX timestamp
+	 *
 	 * @codeCoverageIgnore
 	 */
 	public function setMockTime( &$time ) {
 		$this->wallClockOverride =& $time;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( BagOStuff::class, 'BagOStuff' );

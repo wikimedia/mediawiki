@@ -2387,14 +2387,14 @@ config-schema:
             @since 1.20
     ObjectCaches:
         default:
-            0: { class: EmptyBagOStuff, reportDupes: false }
+            0: { class: Wikimedia\ObjectCache\EmptyBagOStuff, reportDupes: false }
             1: { class: SqlBagOStuff, loggroup: SQLBagOStuff }
-            memcached-php: { class: MemcachedPhpBagOStuff, loggroup: memcached }
-            memcached-pecl: { class: MemcachedPeclBagOStuff, loggroup: memcached }
-            hash: { class: HashBagOStuff, reportDupes: false }
-            apc: { class: APCUBagOStuff, reportDupes: false }
-            apcu: { class: APCUBagOStuff, reportDupes: false }
-            wincache: { class: WinCacheBagOStuff, reportDupes: false }
+            memcached-php: { class: Wikimedia\ObjectCache\MemcachedPhpBagOStuff, loggroup: memcached }
+            memcached-pecl: { class: Wikimedia\ObjectCache\MemcachedPeclBagOStuff, loggroup: memcached }
+            hash: { class: Wikimedia\ObjectCache\HashBagOStuff, reportDupes: false }
+            apc: { class: Wikimedia\ObjectCache\APCUBagOStuff, reportDupes: false }
+            apcu: { class: Wikimedia\ObjectCache\APCUBagOStuff, reportDupes: false }
+            wincache: { class: Wikimedia\ObjectCache\WinCacheBagOStuff, reportDupes: false }
         type: object
         description: |-
             Advanced object cache configuration.
@@ -2446,7 +2446,7 @@ config-schema:
                  operations that can be chunked into a set of smaller writes.
             For MemcachedPhpBagOStuff parameters see {@link MemcachedPhpBagOStuff::__construct}
             For MemcachedPeclBagOStuff parameters see {@link MemcachedPeclBagOStuff::__construct}
-            For RedisBagOStuff parameters see {@link RedisBagOStuff::__construct}
+            For RedisBagOStuff parameters see {@link Wikimedia\ObjectCache\RedisBagOStuff::__construct}
     WANObjectCache:
         default: {  }
         type: object
@@ -2472,7 +2472,7 @@ config-schema:
             2.) it should be evicted ONLY after the TTL elapses (reliably persist),
             3.) should be accessed by all servers that serve the application,
             4.) should be able to handle a high volume of writes and reads.
-            @see \BagOStuff
+            @see \Wikimedia\ObjectCache\BagOStuff
             @since 1.42
     MainStash:
         default: 1
@@ -2495,7 +2495,7 @@ config-schema:
             and violations of linearizability (e.g. during timeouts). Modules that can never handle
             these kinds of anomalies should use other storage mediums.
             Valid options are the keys of {@link $wgObjectCaches}, e.g. CACHE_* constants.
-            @see \BagOStuff
+            @see \Wikimedia\ObjectCache\BagOStuff
             @since 1.26
     ParsoidCacheConfig:
         type: object

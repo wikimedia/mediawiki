@@ -22,10 +22,8 @@
 
 namespace MediaWiki\ResourceLoader;
 
-use BagOStuff;
 use Exception;
 use ExtensionRegistry;
-use HashBagOStuff;
 use HttpStatus;
 use InvalidArgumentException;
 use Less_Environment;
@@ -66,6 +64,8 @@ use Wikimedia\Minify\JavaScriptMapperState;
 use Wikimedia\Minify\JavaScriptMinifier;
 use Wikimedia\Minify\JavaScriptMinifierState;
 use Wikimedia\Minify\MinifierState;
+use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\RequestTimeout\TimeoutException;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Stats\StatsFactory;

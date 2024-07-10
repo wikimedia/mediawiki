@@ -3,7 +3,6 @@
 namespace MediaWiki\Page;
 
 use BadMethodCallException;
-use BagOStuff;
 use ChangeTags;
 use Content;
 use DeletePageJob;
@@ -40,6 +39,7 @@ use StatusValue;
 use Wikimedia\IPUtils;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\RequestTimeout\TimeoutException;
 use WikiPage;

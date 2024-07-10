@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Settings;
 
-use BagOStuff;
 use ExtensionRegistry;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
@@ -23,6 +22,7 @@ use MediaWiki\Settings\Source\SettingsIncludeLocator;
 use MediaWiki\Settings\Source\SettingsSource;
 use RuntimeException;
 use StatusValue;
+use Wikimedia\ObjectCache\BagOStuff;
 use function array_key_exists;
 
 /**

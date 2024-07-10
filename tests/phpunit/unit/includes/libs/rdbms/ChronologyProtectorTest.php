@@ -22,6 +22,7 @@
  */
 
 use PHPUnit\Framework\TestCase;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\MySQLPrimaryPos;

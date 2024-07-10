@@ -5,6 +5,7 @@ use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\Shell;
 use MediaWiki\ShellDisabledError;
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ScopedCallback;
 
 /**

@@ -1,4 +1,7 @@
 <?php
+
+use Wikimedia\ObjectCache\BagOStuff;
+
 /**
  * Extract-and-Expand Key Derivation Function (HKDF). A cryptographically
  * secure key expansion function based on RFC 5869.

@@ -1,5 +1,6 @@
 <?php
 use MediaWiki\Html\TemplateParser;
+use Wikimedia\ObjectCache\EmptyBagOStuff;
 
 /**
  * Thrown when ExtensionRegistry cannot open the extension.json or skin.json file.

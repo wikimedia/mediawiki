@@ -19,6 +19,8 @@
  * @ingroup Benchmark
  */
 
+use Wikimedia\ObjectCache\HashBagOStuff;
+
 require_once __DIR__ . '/../includes/Benchmarker.php';
 
 /**

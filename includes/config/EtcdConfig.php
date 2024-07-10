@@ -20,13 +20,13 @@
 
 namespace MediaWiki\Config;
 
-use BagOStuff;
 use DnsSrvDiscoverer;
-use HashBagOStuff;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Http\MultiHttpClient;
 use Wikimedia\IPUtils;
+use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\WaitConditionLoop;
 

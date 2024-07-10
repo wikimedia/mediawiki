@@ -21,6 +21,11 @@
  * @ingroup Cache
  */
 
+namespace Wikimedia\ObjectCache;
+
+use Memcached;
+use RuntimeException;
+use UnexpectedValueException;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -46,6 +51,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 *                           option igbinary.compact_strings is off.
 	 *   - use_binary_protocol   Whether to enable the binary protocol (default is ASCII)
 	 *   - allow_tcp_nagle_delay Whether to permit Nagle's algorithm for reducing packet count
+	 *
 	 * @param array $params
 	 */
 	public function __construct( $params ) {
@@ -86,6 +92,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 *
 	 * @param Memcached $client
 	 * @param array $params
+	 *
 	 * @throws RuntimeException
 	 */
 	private function initializeClient( Memcached $client, array $params ) {
@@ -160,6 +167,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 * This makes writes much faster.
 	 *
 	 * @param bool|int $flags
+	 *
 	 * @return ScopedCallback|null
 	 */
 	private function noReplyScope( $flags ) {
@@ -168,6 +176,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		}
 		$client = $this->client;
 		$client->setOption( Memcached::OPT_NOREPLY, true );
+
 		return new ScopedCallback( static function () use ( $client ) {
 			$client->setOption( Memcached::OPT_NOREPLY, false );
 		} );
@@ -265,6 +274,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		$this->checkResult( $key, $this->client->increment( $routeKey, $step ) );
 		ScopedCallback::consume( $scope );
 		$lastError = $this->getLastError( $watchPoint );
+
 		return !$lastError;
 	}
 
@@ -297,6 +307,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 *
 	 * @param string|false $key The key used by the caller, or false if there wasn't one.
 	 * @param mixed $result The return value
+	 *
 	 * @return mixed
 	 */
 	protected function checkResult( $key, $result ) {
@@ -343,6 +354,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 				$this->logger->error( $msg, $logCtx );
 				$this->setLastError( $statusByCode[$code] ?? self::ERR_UNEXPECTED );
 		}
+
 		return $result;
 	}
 
@@ -369,6 +381,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		}
 
 		$res = $this->checkResult( false, $res );
+
 		return $res !== false ? $res : [];
 	}
 
@@ -387,6 +400,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 		$result = @$this->client->setMulti( $dataByRouteKey, $exptime );
 		ScopedCallback::consume( $noReplyScope );
+
 		return $this->checkResult( false, $result );
 	}
 
@@ -454,3 +468,6 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		throw new UnexpectedValueException( __METHOD__ . ": got serializer '$serializer'." );
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( MemcachedPeclBagOStuff::class, 'MemcachedPeclBagOStuff' );

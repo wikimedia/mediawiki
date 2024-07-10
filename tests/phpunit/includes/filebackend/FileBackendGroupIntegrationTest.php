@@ -5,6 +5,7 @@ use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\ObjectCache\EmptyBagOStuff;
 
 /**
  * @coversDefaultClass \MediaWiki\FileBackend\FileBackendGroup

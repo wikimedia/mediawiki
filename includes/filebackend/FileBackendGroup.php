@@ -23,7 +23,6 @@
 
 namespace MediaWiki\FileBackend;
 
-use BagOStuff;
 use FileBackendMultiWrite;
 use FSFileBackend;
 use InvalidArgumentException;
@@ -39,6 +38,7 @@ use MimeAnalyzer;
 use Profiler;
 use WANObjectCache;
 use Wikimedia\FileBackend\FileBackend;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\ReadOnlyMode;
 

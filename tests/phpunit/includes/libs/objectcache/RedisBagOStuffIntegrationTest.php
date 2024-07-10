@@ -1,8 +1,10 @@
 <?php
 
+use Wikimedia\ObjectCache\RedisBagOStuff;
+
 /**
  * @group BagOStuff
- * @covers \RedisBagOStuff
+ * @covers \Wikimedia\ObjectCache\RedisBagOStuff
  * @requires extension redis
  */
 class RedisBagOStuffIntegrationTest extends BagOStuffTestBase {

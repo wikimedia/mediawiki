@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Api;
 
-use HashBagOStuff;
 use MediaWiki\Content\CssContent;
 use MediaWiki\Storage\PageEditStash;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
@@ -12,6 +11,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserRigorOptions;
 use Psr\Log\NullLogger;
 use stdClass;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;

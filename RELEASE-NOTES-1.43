@@ -376,6 +376,21 @@ because of Phabricator reports.
     - FileBackend
   - Wikimedia\Http:
     - MultiHttpClient
+  - Wikimedia\ObjectCache:
+    - APCUBagOStuff
+    - BagOStuff
+    - CachedBagOStuff
+    - EmptyBagOStuff
+    - HashBagOStuff
+    - IStoreKeyEncoder
+    - MediumSpecificBagOStuff
+    - MemcachedBagOStuff
+    - MemcachedPeclBagOStuff
+    - MemcachedPhpBagOStuff
+    - MultiWriteBagOStuff
+    - RESTBagOStuff
+    - RedisBagOStuff
+    - WinCacheBagOStuff
 * MessageCache::get() with $language other than Language or null is
   deprecated and emits deprecation warnings. For high-level access,
   use wfMessage() or RequestContext::msg() instead.

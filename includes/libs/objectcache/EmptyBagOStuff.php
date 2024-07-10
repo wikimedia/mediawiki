@@ -21,6 +21,8 @@
  * @ingroup Cache
  */
 
+namespace Wikimedia\ObjectCache;
+
 /**
  * A BagOStuff object with no objects in it. Used to provide a no-op object to calling code.
  *
@@ -61,3 +63,6 @@ class EmptyBagOStuff extends MediumSpecificBagOStuff {
 		return true;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( EmptyBagOStuff::class, 'EmptyBagOStuff' );

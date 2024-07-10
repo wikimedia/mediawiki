@@ -20,7 +20,7 @@
 
 namespace MediaWiki\Site;
 
-use BagOStuff;
+use Wikimedia\ObjectCache\BagOStuff;
 
 /**
  * Hold a configured list of sites (SiteList), with a caching layer.

@@ -21,6 +21,8 @@
  * @ingroup Cache
  */
 
+namespace Wikimedia\ObjectCache;
+
 /**
  * Wrapper around a BagOStuff that caches data in memory
  *
@@ -42,6 +44,7 @@ class CachedBagOStuff extends BagOStuff {
 
 	/**
 	 * @stable to call
+	 *
 	 * @param BagOStuff $backend Permanent backend to use
 	 * @param array $params Parameters for HashBagOStuff
 	 */
@@ -271,3 +274,6 @@ class CachedBagOStuff extends BagOStuff {
 
 	// @codeCoverageIgnoreEnd
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( CachedBagOStuff::class, 'CachedBagOStuff' );

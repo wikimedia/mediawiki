@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Session;
 
 use BadMethodCallException;
-use CachedBagOStuff;
 use DummySessionProvider;
 use InvalidArgumentException;
 use MediaWiki\Config\Config;
@@ -23,6 +22,7 @@ use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
 use UnexpectedValueException;
+use Wikimedia\ObjectCache\CachedBagOStuff;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 

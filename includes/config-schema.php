@@ -464,7 +464,7 @@ return [
 			'LanguageConverterCacheType' => -1,
 			'ObjectCaches' => [
 				0 => [
-					'class' => 'EmptyBagOStuff',
+					'class' => 'Wikimedia\\ObjectCache\\EmptyBagOStuff',
 					'reportDupes' => false,
 				],
 				1 => [
@@ -472,27 +472,27 @@ return [
 					'loggroup' => 'SQLBagOStuff',
 				],
 				'memcached-php' => [
-					'class' => 'MemcachedPhpBagOStuff',
+					'class' => 'Wikimedia\\ObjectCache\\MemcachedPhpBagOStuff',
 					'loggroup' => 'memcached',
 				],
 				'memcached-pecl' => [
-					'class' => 'MemcachedPeclBagOStuff',
+					'class' => 'Wikimedia\\ObjectCache\\MemcachedPeclBagOStuff',
 					'loggroup' => 'memcached',
 				],
 				'hash' => [
-					'class' => 'HashBagOStuff',
+					'class' => 'Wikimedia\\ObjectCache\\HashBagOStuff',
 					'reportDupes' => false,
 				],
 				'apc' => [
-					'class' => 'APCUBagOStuff',
+					'class' => 'Wikimedia\\ObjectCache\\APCUBagOStuff',
 					'reportDupes' => false,
 				],
 				'apcu' => [
-					'class' => 'APCUBagOStuff',
+					'class' => 'Wikimedia\\ObjectCache\\APCUBagOStuff',
 					'reportDupes' => false,
 				],
 				'wincache' => [
-					'class' => 'WinCacheBagOStuff',
+					'class' => 'Wikimedia\\ObjectCache\\WinCacheBagOStuff',
 					'reportDupes' => false,
 				],
 			],

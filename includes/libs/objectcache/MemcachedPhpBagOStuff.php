@@ -21,6 +21,10 @@
  * @ingroup Cache
  */
 
+namespace Wikimedia\ObjectCache;
+
+use MemcachedClient;
+
 /**
  * A wrapper class for the pure-PHP memcached client, exposing a BagOStuff interface.
  *
@@ -62,10 +66,8 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		$routeKey = $this->validateKeyAndPrependRoute( $key );
 
 		// T257003: only require "gets" (instead of "get") when a CAS token is needed
-		$res = $getToken
-			// @phan-suppress-next-line PhanTypeMismatchArgument False positive
-			? $this->client->get( $routeKey, $casToken )
-			: $this->client->get( $routeKey );
+		$res = $getToken // @phan-suppress-next-line PhanTypeMismatchArgument False positive
+			? $this->client->get( $routeKey, $casToken ) : $this->client->get( $routeKey );
 
 		if ( $this->client->_last_cmd_status !== self::ERR_NONE ) {
 			$this->setLastError( $this->client->_last_cmd_status );
@@ -127,6 +129,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		$watchPoint = $this->watchErrors();
 		$this->client->add( $routeKey, $init - $step, $this->fixExpiry( $exptime ) );
 		$this->client->incr( $routeKey, $step );
+
 		return !$this->getLastError( $watchPoint );
 	}
 
@@ -188,3 +191,6 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		return $this->isInteger( $value ) ? (int)$value : $this->client->unserialize( $value );
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( MemcachedPhpBagOStuff::class, 'MemcachedPhpBagOStuff' );

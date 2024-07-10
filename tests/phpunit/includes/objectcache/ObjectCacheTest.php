@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use Wikimedia\ObjectCache\EmptyBagOStuff;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\TestingAccessWrapper;
 

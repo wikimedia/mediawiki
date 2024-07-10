@@ -25,7 +25,6 @@
 
 namespace MediaWiki\Revision;
 
-use BagOStuff;
 use Content;
 use DBAccessObjectUtils;
 use IDBAccessObject;
@@ -69,6 +68,7 @@ use Traversable;
 use WANObjectCache;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;

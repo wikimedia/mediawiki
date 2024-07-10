@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Parser;
 
-use HashBagOStuff;
 use MediaWiki\Parser\Parser;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
@@ -10,6 +9,7 @@ use ParserOptions;
 use Preprocessor;
 use Preprocessor_Hash;
 use WANObjectCache;
+use Wikimedia\ObjectCache\HashBagOStuff;
 
 /**
  * @covers \Preprocessor

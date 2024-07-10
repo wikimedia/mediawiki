@@ -2,15 +2,15 @@
 
 namespace Wikimedia\Tests\ObjectCache;
 
-use CachedBagOStuff;
-use HashBagOStuff;
 use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\LightweightObjectStore\StorageAwareness;
+use Wikimedia\ObjectCache\CachedBagOStuff;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \CachedBagOStuff
+ * @covers \Wikimedia\ObjectCache\CachedBagOStuff
  * @group BagOStuff
  */
 class CachedBagOStuffTest extends TestCase {

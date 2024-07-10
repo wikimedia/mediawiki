@@ -21,7 +21,6 @@
 
 namespace MediaWiki\Page;
 
-use BagOStuff;
 use ContentModelChange;
 use JobQueueGroup;
 use MediaWiki\Cache\BacklinkCacheFactory;
@@ -51,6 +50,7 @@ use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use Psr\Log\LoggerInterface;
 use RepoGroup;
 use Wikimedia\Message\ITextFormatter;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\ReadOnlyMode;
 

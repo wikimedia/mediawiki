@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Settings\Cache;
 
-use BagOStuff;
 use MediaWiki\Settings\SettingsBuilderException;
 use MediaWiki\Settings\Source\SettingsIncludeLocator;
 use MediaWiki\Settings\Source\SettingsSource;
 use Stringable;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\WaitConditionLoop;
 
 /**

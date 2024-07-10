@@ -20,12 +20,12 @@
 
 namespace MediaWiki\Linker;
 
-use BagOStuff;
 use InvalidArgumentException;
 use MediaWiki\Title\TitleValue;
 use RuntimeException;
 use stdClass;
 use WANObjectCache;
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 

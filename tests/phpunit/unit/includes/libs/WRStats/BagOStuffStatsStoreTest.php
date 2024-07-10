@@ -2,8 +2,8 @@
 
 namespace Wikimedia\Tests\WRStats;
 
-use HashBagOStuff;
 use PHPUnit\Framework\TestCase;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\WRStats\BagOStuffStatsStore;
 use Wikimedia\WRStats\EntityKey;
 use Wikimedia\WRStats\GlobalEntityKey;

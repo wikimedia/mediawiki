@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Tests\Unit\Edit;
 
-use HashBagOStuff;
 use MediaWiki\Content\TextContentHandler;
 use MediaWiki\Edit\ParsoidRenderID;
 use MediaWiki\Edit\SelserContext;
 use MediaWiki\Edit\SimpleParsoidOutputStash;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Parsoid\Core\PageBundle;
 use WikitextContent;
 
