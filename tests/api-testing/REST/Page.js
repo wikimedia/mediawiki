@@ -41,17 +41,16 @@ describe( 'Page Source', () => {
 	const redirectedPage = redirectPage.replace( 'Redirect', 'Redirected' );
 
 	const client = new REST();
-	const anon = action.getAnon();
 	let mindy;
 	const baseEditText = "''Edit 1'' and '''Edit 2'''";
 
 	before( async () => {
 		mindy = await action.mindy();
-		await anon.edit( page, { text: baseEditText } );
-		await anon.edit( atinlayAgepay, { text: baseEditText } );
+		await mindy.edit( page, { text: baseEditText } );
+		await mindy.edit( atinlayAgepay, { text: baseEditText } );
 
 		// Setup page with redirects
-		await anon.edit( redirectPage, { text: `Original name is ${ redirectPage }` } );
+		await mindy.edit( redirectPage, { text: `Original name is ${ redirectPage }` } );
 		const token = await mindy.token();
 		await mindy.action( 'move', {
 			from: redirectPage,
@@ -110,7 +109,7 @@ describe( 'Page Source', () => {
 			const preEditDate = new Date( preEditResponse.body.latest.timestamp );
 			const preEditEtag = preEditResponse.headers.etag;
 
-			await anon.edit( page, { text: "'''Edit 3'''" } );
+			await mindy.edit( page, { text: "'''Edit 3'''" } );
 			const postEditResponse = await client.get( `/page/${ page }` );
 			const postEditDate = new Date( postEditResponse.body.latest.timestamp );
 			const postEditHeaders = postEditResponse.headers;
@@ -164,7 +163,7 @@ describe( 'Page Source', () => {
 			const preEditDate = new Date( preEditResponse.body.latest.timestamp );
 			const preEditEtag = preEditResponse.headers.etag;
 
-			await anon.edit( page, { text: "'''Edit 4'''" } );
+			await mindy.edit( page, { text: "'''Edit 4'''" } );
 			const postEditResponse = await client.get( `/page/${ page }/bare` );
 			const postEditDate = new Date( postEditResponse.body.latest.timestamp );
 			const postEditHeaders = postEditResponse.headers;
@@ -253,7 +252,7 @@ describe( 'Page Source', () => {
 			const preEditDate = new Date( preEditResponse.headers[ 'last-modified' ] );
 			const preEditEtag = preEditResponse.headers.etag;
 
-			await anon.edit( page, { text: "'''Edit XYZ'''" } );
+			await mindy.edit( page, { text: "'''Edit XYZ'''" } );
 			const postEditResponse = await client.get( `/page/${ page }/html` );
 			const postEditDate = new Date( postEditResponse.headers[ 'last-modified' ] );
 			const postEditHeaders = postEditResponse.headers;
@@ -268,7 +267,7 @@ describe( 'Page Source', () => {
 			assert.match( postEditHeaders.etag, /^".*"$/, 'ETag must be present and not marked weak' );
 		} );
 		it( 'Should perform variant conversion', async () => {
-			await anon.edit( variantPage, { text: '<p>test language conversion</p>' } );
+			await mindy.edit( variantPage, { text: '<p>test language conversion</p>' } );
 			const { headers, text } = await client.get( `/page/${ variantPage }/html`, null, {
 				'accept-language': 'en-x-piglatin'
 			} );
@@ -356,7 +355,7 @@ describe( 'Page Source', () => {
 			const preEditRevDate = new Date( preEditResponse.body.latest.timestamp );
 			const preEditEtag = preEditResponse.headers.etag;
 
-			await anon.edit( page, { text: "'''Edit ABCD'''" } );
+			await mindy.edit( page, { text: "'''Edit ABCD'''" } );
 			const postEditResponse = await client.get( `/page/${ page }/with_html` );
 			const postEditRevDate = new Date( postEditResponse.body.latest.timestamp );
 			const postEditHeaders = postEditResponse.headers;
@@ -374,7 +373,7 @@ describe( 'Page Source', () => {
 			assert.notEqual( preEditEtag, postEditEtag );
 		} );
 		it( 'Should perform variant conversion', async () => {
-			await anon.edit( variantPage, { text: '<p>test language conversion</p>' } );
+			await mindy.edit( variantPage, { text: '<p>test language conversion</p>' } );
 			const { headers, text } = await client.get( `/page/${ variantPage }/html`, null, {
 				'accept-language': 'en-x-piglatin'
 			} );
