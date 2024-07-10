@@ -4,12 +4,12 @@ const { action, assert, utils } = require( 'api-testing' );
 
 describe( 'Page protection', () => {
 	// users
-	let admin, wikiUser;
-	const anonymousUser = action.getAnon();
+	let anonymousUser, admin, wikiUser;
 
-	before( async () => {
+	beforeEach( async () => {
 		admin = await action.mindy();
 		wikiUser = await action.alice();
+		anonymousUser = action.getAnon();
 	} );
 
 	describe( 'permission checks', () => {
