@@ -59,13 +59,13 @@ class EditRightConstraintTest extends MediaWikiUnitTestCase {
 		$userEdit = $this->createMock( User::class );
 		$permissionManagerEdit = $this->createMock( PermissionManager::class );
 		$permissionManagerEdit->expects( $this->once() )
-			->method( 'getPermissionErrors' )
+			->method( 'userCan' )
 			->with(
 				'edit',
 				$userEdit,
 				$title
 			)
-			->willReturn( [] );
+			->willReturn( true );
 		$userCreateAndEdit = $this->createMock( User::class );
 		$userCreateAndEdit->expects( $this->once() )
 			->method( 'authorizeWrite' )
@@ -76,13 +76,13 @@ class EditRightConstraintTest extends MediaWikiUnitTestCase {
 			->willReturn( true );
 		$permissionManagerCreateAndEdit = $this->createMock( PermissionManager::class );
 		$permissionManagerCreateAndEdit->expects( $this->once() )
-			->method( 'getPermissionErrors' )
+			->method( 'userCan' )
 			->with(
 				'edit',
 				$userCreateAndEdit,
 				$title
 			)
-			->willReturn( [] );
+			->willReturn( true );
 		yield 'Edit existing page' => [
 			'performer' => $userEdit,
 			'new' => false,
@@ -121,24 +121,24 @@ class EditRightConstraintTest extends MediaWikiUnitTestCase {
 		$anon->expects( $this->once() )->method( 'isRegistered' )->willReturn( false );
 		$permissionManagerAnon = $this->createMock( PermissionManager::class );
 		$permissionManagerAnon->expects( $this->once() )
-			->method( 'getPermissionErrors' )
+			->method( 'userCan' )
 			->with(
 				'edit',
 				$anon,
 				$title
 			)
-			->willReturn( [ 'badaccess-group0' ] );
+			->willReturn( false );
 		$reg = $this->createMock( User::class );
 		$reg->expects( $this->once() )->method( 'isRegistered' )->willReturn( true );
 		$permissionManagerReg = $this->createMock( PermissionManager::class );
 		$permissionManagerReg->expects( $this->once() )
-			->method( 'getPermissionErrors' )
+			->method( 'userCan' )
 			->with(
 				'edit',
 				$reg,
 				$title
 			)
-			->willReturn( [ 'badaccess-group0' ] );
+			->willReturn( false );
 		$userWithoutCreatePerm = $this->createMock( User::class );
 		$userWithoutCreatePerm->expects( $this->once() )
 			->method( 'authorizeWrite' )

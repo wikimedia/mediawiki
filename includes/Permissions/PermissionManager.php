@@ -423,10 +423,10 @@ class PermissionManager {
 		$rigor = self::RIGOR_SECURE,
 		$ignoreErrors = []
 	): void {
-		$permissionErrors = $this->getPermissionErrors(
-			$action, $user, $page, $rigor, $ignoreErrors );
-		if ( $permissionErrors !== [] ) {
-			throw new PermissionsError( $action, $permissionErrors );
+		$status = $this->getPermissionStatus(
+			$action, $user, $page, $rigor );
+		if ( $status->hasMessagesExcept( ...$ignoreErrors ) ) {
+			throw new PermissionsError( $action, $status );
 		}
 	}
 
