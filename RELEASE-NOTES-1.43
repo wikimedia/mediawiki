@@ -168,6 +168,7 @@ because of Phabricator reports.
 * (T364291) Added language support for Musi, also known as Palembang (mui).
 * (T365365) Added language support for Chakma (ccp).
 * (T367991) Added language support for Iban (iba).
+* (T367688) Added language support for Interslavic (Latin) (isv-latn).
 * …
 
 === Breaking changes in 1.43 ===

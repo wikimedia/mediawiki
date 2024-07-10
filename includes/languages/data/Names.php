@@ -247,6 +247,7 @@ class Names {
 		'inh' => 'гӀалгӀай', # Ingush
 		'io' => 'Ido', # Ido
 		'is' => 'íslenska', # Icelandic
+		'isv-latn' => 'medžuslovjansky', # Interslavic (Latin)
 		'it' => 'italiano', # Italian
 		'iu' => 'ᐃᓄᒃᑎᑐᑦ / inuktitut', # Inuktitut (macro language, see ike/ikt, falls back to ike-cans)
 		'ja' => '日本語', # Japanese
