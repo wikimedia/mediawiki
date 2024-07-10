@@ -5,15 +5,15 @@ const supertest = require( 'supertest' );
 
 describe( 'POST /page', () => {
 	// NOTE: the /page/{title} endpoint (PageSourceHandler) has to go to v1 first!
-	const client = new REST();
-	let mindy, anon, anonToken;
+	let client, mindy, anon, anonToken;
 
-	before( async () => {
+	beforeEach( async () => {
+		// Reset the client and token before each test
+		// In a temp account context, making an anonymous edit generates an account
+		// so we want to reset state after each edit
 		mindy = await action.mindy();
-
-		// NOTE: this only works because the same token is shared by all anons.
-		// TODO: add support for login and tokens to RESTClient.
-		anon = action.getAnon();
+		client = new REST();
+		anon = await action.getAnon();
 		anonToken = await anon.token();
 	} );
 
