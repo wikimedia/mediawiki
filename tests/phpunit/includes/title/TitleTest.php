@@ -1844,6 +1844,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetTitleProtection() {
 		$title = $this->getNonexistingTestPage( 'UTest1' )->getTitle();
+		$this->hideDeprecated( Title::class . '::getTitleProtection' );
 		$this->assertFalse( $title->getTitleProtection() );
 	}
 
@@ -1852,6 +1853,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testDeleteTitleProtection() {
 		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
+		$this->hideDeprecated( Title::class . '::getTitleProtection' );
 		$this->assertFalse( $title->getTitleProtection() );
 	}
 

@@ -2370,12 +2370,14 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 * Is this title subject to title protection?
 	 * Title protection is the one applied against creation of such title.
 	 *
-	 * @deprecated since 1.37, use RestrictionStore::getCreateProtection() instead
+	 * @deprecated since 1.37, use RestrictionStore::getCreateProtection() instead;
+	 *   hard-deprecated since 1.43
 	 *
 	 * @return array|bool An associative array representing any existent title
 	 *   protection, or false if there's none.
 	 */
 	public function getTitleProtection() {
+		wfDeprecated( __METHOD__, '1.37' );
 		return MediaWikiServices::getInstance()->getRestrictionStore()->getCreateProtection( $this )
 			?: false;
 	}
