@@ -362,10 +362,7 @@ class ThumbnailEntryPointTest extends MediaWikiIntegrationTestCase {
 
 	public function testAccessDenied() {
 		// Make the wiki non-public
-		$groupPermissions = $this->getConfVar( MainConfigNames::GroupPermissions );
-		$groupPermissions['*']['read'] = false;
-
-		$this->overrideConfigValue( MainConfigNames::GroupPermissions, $groupPermissions );
+		$this->setGroupPermissions( '*', 'read', false );
 
 		// Make the user have no rights
 		$authority = new SimpleAuthority(
@@ -400,10 +397,7 @@ class ThumbnailEntryPointTest extends MediaWikiIntegrationTestCase {
 
 	public function testAccessOnPrivateWiki() {
 		// Make the wiki non-public, so we don't use the short-circuit code
-		$groupPermissions = $this->getConfVar( MainConfigNames::GroupPermissions );
-		$groupPermissions['*']['read'] = false;
-
-		$this->overrideConfigValue( MainConfigNames::GroupPermissions, $groupPermissions );
+		$this->setGroupPermissions( '*', 'read', false );
 
 		// Make a user who is allowed to read
 		$authority = new SimpleAuthority(

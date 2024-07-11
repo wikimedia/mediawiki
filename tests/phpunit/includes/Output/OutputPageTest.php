@@ -315,10 +315,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'action' => $action,
 			'variant' => $urlVariant,
 		] );
-		$this->overrideConfigValues( [
-			MainConfigNames::LanguageCode => 'zh',
-			'Request' => $req, # LanguageConverter is using global state...
-		] );
+		$this->setRequest( $req );
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'zh' );
 		$op = $this->newInstance( [ MainConfigNames::EnableCanonicalServerLink => true ], $req );
 		$bcp47 = LanguageCode::bcp47( $altUrlLangCode );
 		$bcp47Lowercase = strtolower( $bcp47 );
