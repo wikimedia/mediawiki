@@ -13,6 +13,8 @@ use ParserOptions;
 class HydrateHeaderPlaceholders extends ContentTextTransformStage {
 
 	public function shouldRun( ParserOutput $po, ?ParserOptions $popts, array $options = [] ): bool {
+		// If this method ever returns something else than unconditional "true",
+		// HydrateHeaderPlaceholderTest::provideShouldNotRun should be updated to not be skipped.
 		return true;
 	}
 
