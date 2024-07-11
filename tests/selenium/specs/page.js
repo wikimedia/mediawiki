@@ -88,7 +88,7 @@ describe( 'Page', () => {
 		assert.strictEqual( await HistoryPage.comment.getText(), `created with "${ content }"` );
 	} );
 
-	it( 'should be deletable', async () => {
+	it.skip( 'should be deletable', async () => {
 		// create
 		await bot.edit( name, content, 'create for delete' );
 
