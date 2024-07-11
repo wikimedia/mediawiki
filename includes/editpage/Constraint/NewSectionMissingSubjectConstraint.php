@@ -31,14 +31,9 @@ use StatusValue;
  */
 class NewSectionMissingSubjectConstraint implements IEditConstraint {
 
-	/** @var string */
-	private $subject;
-
-	/** @var bool */
-	private $allowBlankSubject;
-
-	/** @var string|null */
-	private $result;
+	private string $subject;
+	private bool $allowBlankSubject;
+	private string $result;
 
 	/**
 	 * @param string $subject

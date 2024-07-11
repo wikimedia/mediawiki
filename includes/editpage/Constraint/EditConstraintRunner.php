@@ -35,8 +35,7 @@ use Wikimedia\Assert\Assert;
  */
 class EditConstraintRunner {
 
-	/** @var LoggerInterface */
-	private $logger;
+	private LoggerInterface $logger;
 
 	/**
 	 * @var IEditConstraint[]

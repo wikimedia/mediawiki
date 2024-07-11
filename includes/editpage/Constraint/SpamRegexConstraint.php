@@ -34,29 +34,14 @@ use StatusValue;
  */
 class SpamRegexConstraint implements IEditConstraint {
 
-	/** @var LoggerInterface */
-	private $logger;
-
-	/** @var SpamChecker */
-	private $spamChecker;
-
-	/** @var string */
-	private $summary;
-
-	/** @var ?string */
-	private $sectionHeading;
-
-	/** @var string */
-	private $text;
-
-	/** @var string */
-	private $reqIP;
-
-	/** @var Title */
-	private $title;
-
-	/** @var string */
-	private $match = '';
+	private LoggerInterface $logger;
+	private SpamChecker $spamChecker;
+	private string $summary;
+	private ?string $sectionHeading;
+	private string $text;
+	private string $reqIP;
+	private Title $title;
+	private string $match = '';
 
 	/**
 	 * @param LoggerInterface $logger for logging hits

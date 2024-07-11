@@ -32,11 +32,8 @@ use Wikimedia\Rdbms\ReadOnlyMode;
  */
 class ReadOnlyConstraint implements IEditConstraint {
 
-	/** @var ReadOnlyMode */
-	private $readOnlyMode;
-
-	/** @var string|null */
-	private $result;
+	private ReadOnlyMode $readOnlyMode;
+	private string $result;
 
 	/**
 	 * @param ReadOnlyMode $readOnlyMode

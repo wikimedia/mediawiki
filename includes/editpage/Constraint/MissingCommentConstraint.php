@@ -31,8 +31,7 @@ use StatusValue;
  */
 class MissingCommentConstraint implements IEditConstraint {
 
-	/** @var string */
-	private $userComment;
+	private string $userComment;
 
 	/**
 	 * @param string $userComment

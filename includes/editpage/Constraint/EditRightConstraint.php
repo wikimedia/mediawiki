@@ -35,20 +35,11 @@ use StatusValue;
  */
 class EditRightConstraint implements IEditConstraint {
 
-	/** @var User */
-	private $performer;
-
-	/** @var PermissionManager */
-	private $permManager;
-
-	/** @var Title */
-	private $title;
-
-	/** @var string|null */
-	private $result;
-
-	/** @var bool */
-	private $new;
+	private User $performer;
+	private PermissionManager $permManager;
+	private Title $title;
+	private string $result;
+	private bool $new;
 
 	/**
 	 * @param User $performer
