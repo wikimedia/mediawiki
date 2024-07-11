@@ -8,7 +8,9 @@ use MediaWiki\Rest\RequestInterface;
 /**
  * Interface for validating a request body
  *
- * @stable to implement
+ * @deprecated since 1.43, because Handler::getBodyValidator() is deprecated.
+ * No longer stable to implement.
+ *
  * @see \MediaWiki\Rest\Handler::getBodyValidator()
  */
 interface BodyValidator {

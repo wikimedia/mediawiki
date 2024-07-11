@@ -554,6 +554,8 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			}
 		};
 
+		$this->expectDeprecationAndContinue( '/overrides getBodyValidator/' );
+		$this->expectDeprecationAndContinue( '/Validator::validateBody/' );
 		$handler = $this->newHandler( [ 'getBodyValidator' ] );
 		$handler->method( 'getBodyValidator' )->willReturn( $bodyValidator );
 

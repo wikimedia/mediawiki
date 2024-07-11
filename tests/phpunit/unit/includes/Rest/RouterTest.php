@@ -483,6 +483,10 @@ class RouterTest extends MediaWikiUnitTestCase {
 	 * parseBodyData().
 	 */
 	public function testCustomBodyValidator() {
+		$this->expectDeprecationAndContinue( '/overrides getBodyValidator/' );
+		$this->expectDeprecationAndContinue( '/Validator::validateBody/' );
+		$this->expectDeprecationAndContinue( '/JsonBodyValidator/' );
+
 		// This is valid JSON, but not an object.
 		// Automatic parsing will fail, since it re	requires
 		// an array to be returned.
