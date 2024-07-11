@@ -3978,6 +3978,8 @@
 	"skin-action-undelete": "Restaurar",
 	"skin-action-delete": "Borrar",
 	"skin-action-move": "Mover",
+	"skin-json-warning": "@AVISO",
+	"skin-json-warning-message": "Isto non é unha API, é só para depuración! Non uses trebellos nin código de produción.",
 	"parsoid-stash-rate-limit-error": "Produciuse un erro no almacenamento porque se superou o límite de taxa. Por favor, inténtao de novo máis tarde.",
 	"parsoid-resource-limit-exceeded": "Superouse o límite de recursos de Parsoid: $1",
 	"parsoid-revision-access": "Parsoid non pode acceder á revisión: $1",

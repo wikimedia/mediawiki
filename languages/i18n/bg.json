@@ -598,7 +598,7 @@
 	"editrecovery": "Възстановяване на редакция",
 	"edit-recovery-nojs-placeholder": "Необходим е JavaScript за функцията „възстановяване на редакция“.",
 	"edit-recovery-special-user-not-enabled": "Можете да активирате тази възможност от [[Special:Preferences#mw-prefsection-editing|Вашите настройки]].",
-	"edit-recovery-special-intro": "Налични са несъхранени промени в {{PLURAL:$1|следната страница или секция|следните страници и/или раздели}}:",
+	"edit-recovery-special-intro": "Налични са несъхранени промени в {{PLURAL:$1|следната страница или раздел|следните страници и/или раздели}}:",
 	"edit-recovery-special-intro-empty": "Нямате незапазени промени.",
 	"edit-recovery-special-view": "преглед",
 	"edit-recovery-special-edit": "редактиране",

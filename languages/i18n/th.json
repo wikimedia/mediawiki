@@ -1337,7 +1337,7 @@
 	"recentchanges-label-unpatrolled": "การแก้ไขนี้ยังไม่ได้ตรวจตรา",
 	"recentchanges-label-plusminus": "ขนาดของหน้าเปลี่ยนไปจำนวนไบต์เท่านี้",
 	"recentchanges-legend-heading": "<strong>คำอธิบายสัญลักษณ์:</strong>",
-	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ดูเพิ่มที่ [[Special:NewPages|รายชื่อหน้าใหม่]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ดูเพิ่มที่[[Special:NewPages|รายชื่อหน้าใหม่]])",
 	"recentchanges-legend-watchlistexpiry": "เป็นการเฝ้าดูชั่วคราว",
 	"recentchanges-submit": "แสดง",
 	"rcfilters-tag-remove": "ลบ '$1'",
