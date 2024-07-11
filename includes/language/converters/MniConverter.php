@@ -144,7 +144,6 @@ class MniConverter extends LanguageConverterSpecific {
 	}
 
 	private function isEndOfWord( $char ) {
-		// echo 'Checking end of word: ' . $char . "\n";
 		if ( $char === $this->PERIOD ) {
 			return true;
 		}
