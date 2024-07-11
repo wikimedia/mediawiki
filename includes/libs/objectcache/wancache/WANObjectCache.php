@@ -2410,9 +2410,10 @@ class WANObjectCache implements
 
 	/**
 	 * Clear the "last error" registry
-	 * @deprecated Since 1.38
+	 * @deprecated Since 1.38, hard deprecated in 1.43
 	 */
 	final public function clearLastError() {
+		wfDeprecated( __METHOD__, '1.38' );
 		$this->cache->clearLastError();
 	}
 
