@@ -31,24 +31,31 @@ use StatusValue;
  */
 class NewSectionMissingSubjectConstraint implements IEditConstraint {
 
+	private string $section;
 	private string $subject;
 	private bool $allowBlankSubject;
 	private string $result;
 
 	/**
+	 * @param string $section
 	 * @param string $subject
 	 * @param bool $allowBlankSubject
 	 */
 	public function __construct(
+		string $section,
 		string $subject,
 		bool $allowBlankSubject
 	) {
+		$this->section = $section;
 		$this->subject = $subject;
 		$this->allowBlankSubject = $allowBlankSubject;
 	}
 
 	public function checkConstraint(): string {
-		if ( !$this->allowBlankSubject && trim( $this->subject ) == '' ) {
+		if ( $this->section === 'new' &&
+			!$this->allowBlankSubject &&
+			trim( $this->subject ) == ''
+		) {
 			// TODO this was == in EditPage, can it be === ?
 			$this->result = self::CONSTRAINT_FAILED;
 		} else {
