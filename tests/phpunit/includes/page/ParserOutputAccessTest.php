@@ -1,4 +1,5 @@
 <?php
+
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\Spi as LoggerSpi;
@@ -843,14 +844,12 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 * @param bool $fastStale
 	 */
 	private function setPoolCounterFactory( $status, $fastStale = false ) {
-		$this->overrideConfigValues( [
-			MainConfigNames::PoolCounterConf => [
-				'ArticleView' => [
-					'class' => MockPoolCounterFailing::class,
-					'fastStale' => $fastStale,
-					'mockAcquire' => $status,
-					'mockRelease' => Status::newGood( PoolCounter::RELEASED ),
-				],
+		$this->overrideConfigValue( MainConfigNames::PoolCounterConf, [
+			'ArticleView' => [
+				'class' => MockPoolCounterFailing::class,
+				'fastStale' => $fastStale,
+				'mockAcquire' => $status,
+				'mockRelease' => Status::newGood( PoolCounter::RELEASED ),
 			],
 		] );
 	}

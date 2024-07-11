@@ -1448,9 +1448,10 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @deprecated since 1.35. To change the site language, use overrideConfigValue( 'LanguageCode' ),
-	 *   which will also reset the service. If you want to set the service to a specific object
-	 *   (like a mock), use setService( 'ContentLanguage' ).
+	 * @deprecated since 1.35. To change the site language, use
+	 *   overrideConfigValue( MainConfigNames::LanguageCode ), which will also reset the service.
+	 *   If you want to set the service to a specific object (like a mock), use
+	 *   setService( 'ContentLanguage' ).
 	 *
 	 * @since 1.27
 	 *

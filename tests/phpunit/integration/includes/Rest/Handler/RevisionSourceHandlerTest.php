@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Rest\Handler;
 
 use Exception;
 use MediaWiki\Content\TextContent;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\Handler\RevisionSourceHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -28,8 +29,8 @@ class RevisionSourceHandlerTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 
 		$this->overrideConfigValues( [
-			'RightsUrl' => 'https://example.com/rights',
-			'RightsText' => 'some rights',
+			MainConfigNames::RightsUrl => 'https://example.com/rights',
+			MainConfigNames::RightsText => 'some rights',
 		] );
 	}
 

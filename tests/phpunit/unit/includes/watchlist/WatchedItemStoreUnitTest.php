@@ -8,6 +8,7 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\RevisionLookup;
@@ -180,10 +181,10 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	 */
 	private function newWatchedItemStore( array $mocks = [] ): WatchedItemStore {
 		$options = new ServiceOptions( WatchedItemStore::CONSTRUCTOR_OPTIONS, [
-			'UpdateRowsPerQuery' => 1000,
-			'WatchlistExpiry' => $mocks['expiryEnabled'] ?? true,
-			'WatchlistExpiryMaxDuration' => $mocks['maxExpiryDuration'] ?? null,
-			'WatchlistPurgeRate' => $mocks['watchlistPurgeRate'] ?? 0.1,
+			MainConfigNames::UpdateRowsPerQuery => 1000,
+			MainConfigNames::WatchlistExpiry => $mocks['expiryEnabled'] ?? true,
+			MainConfigNames::WatchlistExpiryMaxDuration => $mocks['maxExpiryDuration'] ?? null,
+			MainConfigNames::WatchlistPurgeRate => $mocks['watchlistPurgeRate'] ?? 0.1,
 		] );
 
 		$db = $mocks['db'] ?? $this->getMockDb();

@@ -100,11 +100,11 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	private function setupFeedLinks( $feed, $types ): OutputPage {
 		$outputPage = $this->newInstance( [
-			'AdvertisedFeedTypes' => $types,
-			'Feed' => $feed,
-			'OverrideSiteFeed' => false,
-			'Script' => '/w',
-			'Sitename' => false,
+			MainConfigNames::AdvertisedFeedTypes => $types,
+			MainConfigNames::Feed => $feed,
+			MainConfigNames::OverrideSiteFeed => false,
+			MainConfigNames::Script => '/w',
+			MainConfigNames::Sitename => false,
 		] );
 		$outputPage->setTitle( Title::makeTitle( NS_MAIN, 'Test' ) );
 		$this->overrideConfigValue( MainConfigNames::Script, '/w/index.php' );
@@ -175,25 +175,19 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	public static function provideGetHeadLinksArray() {
 		return [
 			[
-				[
-					'EnableCanonicalServerLink' => true,
-				],
+				[ MainConfigNames::EnableCanonicalServerLink => true ],
 				'https://www.example.org/xyzzy/Hello',
 				true,
 				'/xyzzy/Hello'
 			],
 			[
-				[
-					'EnableCanonicalServerLink' => true,
-				],
+				[ MainConfigNames::EnableCanonicalServerLink => true ],
 				'https://www.example.org/wikipage/My_test_page',
 				true,
 				null
 			],
 			[
-				[
-					'EnableCanonicalServerLink' => true,
-				],
+				[ MainConfigNames::EnableCanonicalServerLink => true ],
 				'https://www.mediawiki.org/wiki/Manual:FauxRequest.php',
 				false,
 				null
@@ -225,7 +219,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * Test the generation of hreflang Tags when site language has variants
 	 */
 	public function testGetLanguageVariantUrl() {
-		$this->overrideConfigValue( 'LanguageCode', 'zh' );
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'zh' );
 
 		$op = $this->newInstance();
 		$headLinks = $op->getHeadLinksArray();
@@ -248,8 +242,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		# Make sure $wgVariantArticlePath work
 		# We currently use MediaWiki internal language code as the primary variant URL parameter
 		$this->overrideConfigValues( [
-			'LanguageCode' => 'zh',
-			'VariantArticlePath' => '/$2/$1',
+			MainConfigNames::LanguageCode => 'zh',
+			MainConfigNames::VariantArticlePath => '/$2/$1',
 		] );
 
 		$op = $this->newInstance();
@@ -322,7 +316,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'variant' => $urlVariant,
 		] );
 		$this->overrideConfigValues( [
-			'LanguageCode' => 'zh',
+			MainConfigNames::LanguageCode => 'zh',
 			'Request' => $req, # LanguageConverter is using global state...
 		] );
 		$op = $this->newInstance( [ MainConfigNames::EnableCanonicalServerLink => true ], $req );
@@ -654,10 +648,10 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'If-Modified-Since not per spec but we accept it anyway because strtotime does' =>
 				[ $lastModified, "@$lastModified", true ],
 			'$wgCachePages = false' =>
-				[ $lastModified, $lastModified, false, [ 'CachePages' => false ] ],
+				[ $lastModified, $lastModified, false, [ MainConfigNames::CachePages => false ] ],
 			'$wgCacheEpoch' =>
 				[ $lastModified, $lastModified, false,
-					[ 'CacheEpoch' => wfTimestamp( TS_MW, $lastModified + 1 ) ] ],
+					[ MainConfigNames::CacheEpoch => wfTimestamp( TS_MW, $lastModified + 1 ) ] ],
 			'Recently-touched user' =>
 				[ $lastModified, $lastModified, false, [],
 				function ( OutputPage $op ) {
@@ -665,7 +659,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 				} ],
 			'After CDN expiry' =>
 				[ $lastModified, $lastModified, false,
-					[ 'UseCdn' => true, 'CdnMaxAge' => 3599 ] ],
+					[ MainConfigNames::UseCdn => true, MainConfigNames::CdnMaxAge => 3599 ] ],
 			'Hook allows cache use' =>
 				[ $lastModified + 1, $lastModified, true, [],
 				static function ( $op, $that ) {
@@ -1099,7 +1093,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testSetSyndicated() {
-		$op = $this->newInstance( [ 'Feed' => true ] );
+		$op = $this->newInstance( [ MainConfigNames::Feed => true ] );
 		$this->assertFalse( $op->isSyndicated() );
 
 		$op->setSyndicated();
@@ -1116,7 +1110,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testFeedLinks() {
-		$op = $this->newInstance( [ 'Feed' => true ] );
+		$op = $this->newInstance( [ MainConfigNames::Feed => true ] );
 		$this->assertSame( [], $op->getSyndicationLinks() );
 
 		$op->addFeedLink( 'not a supported format', 'abc' );
@@ -2469,8 +2463,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$breakFrames, $preventClickjacking, $editPageFrameOptions, $expected
 	) {
 		$op = $this->newInstance( [
-			'BreakFrames' => $breakFrames,
-			'EditPageFrameOptions' => $editPageFrameOptions,
+			MainConfigNames::BreakFrames => $breakFrames,
+			MainConfigNames::EditPageFrameOptions => $editPageFrameOptions,
 		] );
 		$op->setPreventClickjacking( $preventClickjacking );
 
@@ -3015,7 +3009,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, $options['variant'] ?? false );
 
 		$output = $this->newInstance( [
-			'UseCdn' => $options['useCdn'] ?? false,
+			MainConfigNames::UseCdn => $options['useCdn'] ?? false,
 		] );
 		$output->considerCacheSettingsFinal();
 
@@ -3204,7 +3198,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		] );
 		$this->setContentLang( $contLang );
 		$output = $this->newInstance(
-			[ 'LanguageCode' => $contLang ],
+			[ MainConfigNames::LanguageCode => $contLang ],
 			new FauxRequest( [ 'uselang' => $userLang ] ),
 			'notitle'
 		);

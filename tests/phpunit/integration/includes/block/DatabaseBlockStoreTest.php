@@ -5,6 +5,7 @@ use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\User;
 use Psr\Log\NullLogger;
@@ -45,11 +46,11 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$overrideConstructorArgs = $options['constructorArgs'] ?? [];
 
 		$defaultConfig = [
-			'AutoblockExpiry' => 86400,
-			'BlockCIDRLimit' => [ 'IPv4' => 16, 'IPv6' => 19 ],
-			'BlockDisablesLogin' => false,
-			'PutIPinRC' => true,
-			'UpdateRowsPerQuery' => 10,
+			MainConfigNames::AutoblockExpiry => 86400,
+			MainConfigNames::BlockCIDRLimit => [ 'IPv4' => 16, 'IPv6' => 19 ],
+			MainConfigNames::BlockDisablesLogin => false,
+			MainConfigNames::PutIPinRC => true,
+			MainConfigNames::UpdateRowsPerQuery => 10,
 		];
 		$config = array_merge( $defaultConfig, $overrideConfig );
 
@@ -402,9 +403,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 						'autoblock' => true,
 					],
 					'store' => [
-						'constructorArgs' => [
-							'PutIPinRC' => false,
-						],
+						'constructorArgs' => [ MainConfigNames::PutIPinRC => false ],
 					],
 				],
 			],
@@ -453,17 +452,13 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		return [
 			'Blocked user can log in' => [
 				[
-					'config' => [
-						'BlockDisablesLogin' => false,
-					],
+					'config' => [ MainConfigNames::BlockDisablesLogin => false ],
 				],
 				true,
 			],
 			'Blocked user cannot log in' => [
 				[
-					'config' => [
-						'BlockDisablesLogin' => true,
-					],
+					'config' => [ MainConfigNames::BlockDisablesLogin => true ],
 				],
 				false,
 			],

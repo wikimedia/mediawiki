@@ -365,10 +365,7 @@ class ThumbnailEntryPointTest extends MediaWikiIntegrationTestCase {
 		$groupPermissions = $this->getConfVar( MainConfigNames::GroupPermissions );
 		$groupPermissions['*']['read'] = false;
 
-		$this->overrideConfigValue(
-			'GroupPermissions',
-			$groupPermissions
-		);
+		$this->overrideConfigValue( MainConfigNames::GroupPermissions, $groupPermissions );
 
 		// Make the user have no rights
 		$authority = new SimpleAuthority(
@@ -406,10 +403,7 @@ class ThumbnailEntryPointTest extends MediaWikiIntegrationTestCase {
 		$groupPermissions = $this->getConfVar( MainConfigNames::GroupPermissions );
 		$groupPermissions['*']['read'] = false;
 
-		$this->overrideConfigValue(
-			'GroupPermissions',
-			$groupPermissions
-		);
+		$this->overrideConfigValue( MainConfigNames::GroupPermissions, $groupPermissions );
 
 		// Make a user who is allowed to read
 		$authority = new SimpleAuthority(

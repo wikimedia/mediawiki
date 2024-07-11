@@ -9,6 +9,7 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinksMigration;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Permissions\RestrictionStore;
@@ -80,11 +81,11 @@ class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 	private function newRestrictionStore( array $options = [] ) {
 		return new RestrictionStore(
 			new ServiceOptions( RestrictionStore::CONSTRUCTOR_OPTIONS, $options + [
-					'NamespaceProtection' => [],
-					'RestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ],
-					'RestrictionTypes' => self::DEFAULT_RESTRICTION_TYPES,
-					'SemiprotectedRestrictionLevels' => [ 'autoconfirmed' ],
-				] ),
+				MainConfigNames::NamespaceProtection => [],
+				MainConfigNames::RestrictionLevels => [ '', 'autoconfirmed', 'sysop' ],
+				MainConfigNames::RestrictionTypes => self::DEFAULT_RESTRICTION_TYPES,
+				MainConfigNames::SemiprotectedRestrictionLevels => [ 'autoconfirmed' ],
+			] ),
 			$this->wanCache,
 			$this->loadBalancer,
 			$this->linkCache,
