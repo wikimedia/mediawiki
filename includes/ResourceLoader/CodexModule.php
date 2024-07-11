@@ -533,4 +533,11 @@ class CodexModule extends FileModule {
 			);
 		}
 	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getType(): string {
+		return $this->isStyleOnly ? self::LOAD_STYLES : self::LOAD_GENERAL;
+	}
 }
