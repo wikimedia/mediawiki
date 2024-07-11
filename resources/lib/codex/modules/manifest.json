@@ -131,6 +131,7 @@
     "imports": [
       "src/components/button/Button.vue",
       "_Icon.js",
+      "src/composables/useI18n.ts",
       "__plugin-vue_export-helper.js",
       "_constants.js",
       "src/composables/useSplitAttributes.ts",
@@ -172,6 +173,7 @@
       "src/components/button/Button.vue",
       "_Icon.js",
       "src/composables/useGeneratedId.ts",
+      "src/composables/useI18n.ts",
       "src/composables/useResizeObserver.ts",
       "__plugin-vue_export-helper.js"
     ],
@@ -229,6 +231,7 @@
       "_Icon.js",
       "src/composables/useFieldData.ts",
       "src/composables/useSplitAttributes.ts",
+      "src/composables/useI18n.ts",
       "__plugin-vue_export-helper.js"
     ],
     "css": [
@@ -315,6 +318,7 @@
       "_Icon.js",
       "src/components/button/Button.vue",
       "_constants.js",
+      "src/composables/useI18n.ts",
       "__plugin-vue_export-helper.js"
     ],
     "css": [
@@ -363,6 +367,7 @@
       "src/composables/useModelWrapper.ts",
       "src/composables/useSplitAttributes.ts",
       "src/composables/useFieldData.ts",
+      "src/composables/useI18n.ts",
       "_constants.js",
       "__plugin-vue_export-helper.js"
     ],
@@ -425,6 +430,7 @@
       "src/composables/useModelWrapper.ts",
       "src/components/checkbox/Checkbox.vue",
       "_Icon.js",
+      "src/composables/useI18n.ts",
       "__plugin-vue_export-helper.js"
     ],
     "css": [
@@ -570,6 +576,7 @@
       "src/components/search-input/SearchInput.vue",
       "src/composables/useGeneratedId.ts",
       "src/composables/useSplitAttributes.ts",
+      "src/composables/useI18n.ts",
       "_constants.js",
       "__plugin-vue_export-helper.js"
     ],
@@ -625,6 +632,12 @@
     "imports": [
       "_constants.js"
     ]
+  },
+  "src/composables/useI18n.ts": {
+    "file": "useI18n.cjs",
+    "name": "useI18n",
+    "src": "src/composables/useI18n.ts",
+    "isEntry": true
   },
   "src/composables/useIntersectionObserver.ts": {
     "file": "useIntersectionObserver.cjs",
