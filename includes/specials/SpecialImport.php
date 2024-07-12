@@ -205,7 +205,11 @@ class SpecialImport extends SpecialPage {
 		if ( !$source->isGood() ) {
 			$out->wrapWikiMsg(
 				Html::errorBox( '$1' ),
-				[ 'importfailed', $source->getWikiText( false, false, $this->getLanguage() ) ]
+				[
+					'importfailed',
+					$source->getWikiText( false, false, $this->getLanguage() ),
+					count( $source->getMessages() )
+				]
 			);
 		} else {
 			$importer = $this->wikiImporterFactory->getWikiImporter( $source->value, $this->getAuthority() );
@@ -253,13 +257,17 @@ class SpecialImport extends SpecialPage {
 				# No source or XML parse error
 				$out->wrapWikiMsg(
 					Html::errorBox( '$1' ),
-					[ 'importfailed', $exception->getMessage() ]
+					[ 'importfailed', wfEscapeWikiText( $exception->getMessage() ), 1 ]
 				);
 			} elseif ( !$result->isGood() ) {
 				# Zero revisions
 				$out->wrapWikiMsg(
 					Html::errorBox( '$1' ),
-					[ 'importfailed', $result->getWikiText( false, false, $this->getLanguage() ) ]
+					[
+						'importfailed',
+						$result->getWikiText( false, false, $this->getLanguage() ),
+						count( $result->getMessages() )
+					]
 				);
 			} else {
 				# Success!
