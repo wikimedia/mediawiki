@@ -73,9 +73,8 @@ class AutoSummaryMissingSummaryConstraint implements IEditConstraint {
 			!$this->allowBlankSummary &&
 			!$this->newContent->equals( $this->originalContent ) &&
 			!$this->newContent->isRedirect() &&
-			md5( $this->userSummary ) == $this->autoSummary
+			md5( $this->userSummary ) === $this->autoSummary
 		) {
-			// TODO this was == in EditPage, can it be === ?
 			$this->result = self::CONSTRAINT_FAILED;
 		} else {
 			$this->result = self::CONSTRAINT_PASSED;
