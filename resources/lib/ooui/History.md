@@ -1,5 +1,14 @@
 # OOUI Release History
 
+## v0.50.4 / 2024-07-11
+
+## Styles
+* WikimediaUI theme: Fix shorthand border values. (Volker E.)
+* WikimediaUI theme: Update background color in button mixins (Eric Gardner)
+
+## Icons
+* icons: Re-draw 'appearance' icon for most minimal file size (Volker E.)
+
 ## v0.50.3 / 2024-07-02
 
 ## Code

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.50.3
+ * OOUI v0.50.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-07-02T15:32:17Z
+ * Date: 2024-07-11T22:35:09Z
  */
 .oo-ui-tool {
   box-sizing: border-box;
@@ -357,7 +357,7 @@
   background-color: var(--background-color-base, #fff);
   min-width: 16em;
   margin: 0 -1px;
-  border: var(--border-subtle, 1px solid #c8ccd1);
+  border: 1px solid var(--border-color-subtle, #c8ccd1);
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 .oo-ui-popupToolGroup-tools .oo-ui-tool-link {
@@ -621,11 +621,11 @@
   color: var(--color-base, #202122);
 }
 .oo-ui-toolbar-position-top > .oo-ui-toolbar-bar {
-  border-bottom: var(--border-subtle, 1px solid #c8ccd1);
+  border-bottom: 1px solid var(--border-color-subtle, #c8ccd1);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 .oo-ui-toolbar-position-bottom > .oo-ui-toolbar-bar {
-  border-top: var(--border-subtle, 1px solid #c8ccd1);
+  border-top: 1px solid var(--border-color-subtle, #c8ccd1);
   box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.2);
 }
 .oo-ui-toolbar-bar .oo-ui-toolbar-bar {
@@ -643,8 +643,8 @@
   height: 0;
 }
 .oo-ui-toolbar-narrow.oo-ui-toolbar-position-top .oo-ui-toolbar-bar::after {
-  border-bottom: var(--border-subtle, 1px solid #c8ccd1);
+  border-bottom: 1px solid var(--border-color-subtle, #c8ccd1);
 }
 .oo-ui-toolbar-narrow.oo-ui-toolbar-position-bottom .oo-ui-toolbar-bar::after {
-  border-top: var(--border-subtle, 1px solid #c8ccd1);
+  border-top: 1px solid var(--border-color-subtle, #c8ccd1);
 }

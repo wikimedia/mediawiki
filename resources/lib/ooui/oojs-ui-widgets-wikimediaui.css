@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.50.3
+ * OOUI v0.50.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-07-02T15:32:17Z
+ * Date: 2024-07-11T22:35:09Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ),
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
@@ -61,10 +61,10 @@
   padding: 20px;
 }
 .oo-ui-bookletLayout-outlinePanel > .oo-ui-outlineControlsWidget {
-  border-top: var(--border-subtle, 1px solid #c8ccd1);
+  border-top: 1px solid var(--border-color-subtle, #c8ccd1);
 }
 .oo-ui-bookletLayout > .oo-ui-menuLayout-menu {
-  border-right: var(--border-subtle, 1px solid #c8ccd1);
+  border-right: 1px solid var(--border-color-subtle, #c8ccd1);
 }
 
 .oo-ui-indexLayout {
@@ -517,7 +517,7 @@
   box-sizing: border-box;
   min-height: 32px;
   margin-right: 8px;
-  border: var(--border-base, 1px solid #a2a9b1);
+  border: 1px solid var(--border-color-base, #a2a9b1);
   border-radius: 2px;
   padding: 0 8px;
   line-height: 1;
@@ -637,7 +637,7 @@
   max-width: 100%;
   height: 1.57142857em;
   margin: 0 4px 4px 0;
-  border: var(--border-base, 1px solid #a2a9b1);
+  border: 1px solid var(--border-color-base, #a2a9b1);
   border-radius: 1.57142857em;
   padding: 0 8px;
   line-height: 1.42857143em;
@@ -750,7 +750,7 @@
 .oo-ui-searchWidget-query {
   height: 4em;
   padding: 0 16px;
-  border-bottom: var(--border-subtle, 1px solid #c8ccd1);
+  border-bottom: 1px solid var(--border-color-subtle, #c8ccd1);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 .oo-ui-searchWidget-query .oo-ui-textInputWidget {

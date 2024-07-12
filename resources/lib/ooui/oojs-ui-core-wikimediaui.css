@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.50.3
+ * OOUI v0.50.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-07-02T15:32:17Z
+ * Date: 2024-07-11T22:35:09Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -319,8 +319,8 @@
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button {
   color: var(--color-inverted-fixed, #fff);
-  background-color: var(--color-progressive, #36c);
-  border-color: var(--color-progressive, #36c);
+  background-color: var(--background-color-progressive, #36c);
+  border-color: var(--background-color-progressive, #36c);
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:hover {
   background-color: var(--color-progressive--hover, #447ff5);
@@ -342,8 +342,8 @@
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button {
   color: var(--color-inverted-fixed, #fff);
-  background-color: var(--color-destructive, #d73333);
-  border-color: var(--color-destructive, #d73333);
+  background-color: var(--background-color-error, #d73333);
+  border-color: var(--background-color-error, #d73333);
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button:hover {
   background-color: var(--color-destructive--hover, #ff4242);
@@ -726,7 +726,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   margin-top: -6px;
 }
 .oo-ui-panelLayout-framed {
-  border: var(--border-base, 1px solid #a2a9b1);
+  border: 1px solid var(--border-color-base, #a2a9b1);
   border-radius: 2px;
 }
 .oo-ui-panelLayout-padded.oo-ui-panelLayout-framed {
@@ -1085,7 +1085,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-popupWidget-popup {
   background-color: var(--background-color-base, #fff);
-  border: var(--border-base, 1px solid #a2a9b1);
+  border: 1px solid var(--border-color-base, #a2a9b1);
   border-radius: 2px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
@@ -1362,7 +1362,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   background-position: right 12px center;
   box-sizing: border-box;
   height: 2.2857143em;
-  border: var(--border-base, 1px solid #a2a9b1);
+  border: 1px solid var(--border-color-base, #a2a9b1);
   border-radius: 2px;
   padding-left: 12px;
   padding-right: 2.14285714em;
@@ -1570,7 +1570,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   background-color: var(--background-color-base, #fff);
   color: var(--color-emphasized, #000);
   margin: 0;
-  border: var(--border-base, 1px solid #a2a9b1);
+  border: 1px solid var(--border-color-base, #a2a9b1);
   border-radius: 2px;
   padding: 5px 8px;
   font-size: inherit;
@@ -1691,7 +1691,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   position: absolute;
   z-index: 4;
   background-color: var(--background-color-base, #fff);
-  border: var(--border-base, 1px solid #a2a9b1);
+  border: 1px solid var(--border-color-base, #a2a9b1);
   border-radius: 2px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
@@ -1787,7 +1787,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-dropdownWidget-handle {
   min-height: 32px;
-  border: var(--border-base, 1px solid #a2a9b1);
+  border: 1px solid var(--border-color-base, #a2a9b1);
   border-radius: 2px;
   padding: 5px 2.14285714em 5px 12px;
   line-height: 1;
@@ -1994,7 +1994,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   overflow: hidden;
 }
 .oo-ui-progressBarWidget:not( .oo-ui-progressBarWidget-inline) {
-  border: var(--border-base, 1px solid #a2a9b1);
+  border: 1px solid var(--border-color-base, #a2a9b1);
   border-radius: 9999px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
@@ -2184,7 +2184,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-selectFileInputWidget-dropTarget {
   background-color: var(--background-color-base, #fff);
-  border: var(--border-base, 1px solid #a2a9b1);
+  border: 1px solid var(--border-color-base, #a2a9b1);
   border-radius: 2px;
   vertical-align: middle;
   overflow: hidden;

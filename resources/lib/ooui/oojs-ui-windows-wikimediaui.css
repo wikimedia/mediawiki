@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.50.3
+ * OOUI v0.50.4
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-07-02T15:32:17Z
+ * Date: 2024-07-11T22:35:09Z
  */
 
 .oo-ui-window {
@@ -107,7 +107,7 @@
   text-overflow: ellipsis;
 }
 .oo-ui-messageDialog-content > .oo-ui-window-foot {
-  outline: var(--border-base, 1px solid #a2a9b1);
+  outline: 1px solid var(--border-color-base, #a2a9b1);
 }
 .oo-ui-messageDialog-title,
 .oo-ui-messageDialog-message {
@@ -151,7 +151,7 @@
   background-color: rgba(212, 83, 83, 0.1);
 }
 .oo-ui-messageDialog-actions-horizontal .oo-ui-actionWidget {
-  border-right: var(--border-base, 1px solid #a2a9b1);
+  border-right: 1px solid var(--border-color-base, #a2a9b1);
   margin: 0;
 }
 .oo-ui-messageDialog-actions-horizontal .oo-ui-actionWidget:first-child > .oo-ui-buttonElement-button {
@@ -167,7 +167,7 @@
   border-radius: 0 0 2px 2px;
 }
 .oo-ui-messageDialog-actions-vertical .oo-ui-actionWidget {
-  border-bottom: var(--border-base, 1px solid #a2a9b1);
+  border-bottom: 1px solid var(--border-color-base, #a2a9b1);
   margin: 0;
 }
 .oo-ui-messageDialog-actions-vertical .oo-ui-actionWidget:last-child {
@@ -215,7 +215,7 @@
 }
 .oo-ui-processDialog-content > .oo-ui-window-head,
 .oo-ui-processDialog-content > .oo-ui-window-foot {
-  outline: var(--border-subtle, 1px solid #c8ccd1);
+  outline: 1px solid var(--border-color-subtle, #c8ccd1);
 }
 .oo-ui-processDialog-content > .oo-ui-window-head {
   min-height: 3em;
@@ -420,7 +420,7 @@ html.oo-ui-windowManager-modal-active:not( .oo-ui-windowManager-modal-active-ful
   bottom: 1em;
   max-height: 100%;
   max-height: calc( 100% - 2em );
-  border: var(--border-base, 1px solid #a2a9b1);
+  border: 1px solid var(--border-color-base, #a2a9b1);
   border-radius: 2px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
