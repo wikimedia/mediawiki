@@ -42,11 +42,24 @@ class ExistingSectionEditConstraintTest extends MediaWikiUnitTestCase {
 			->method( 'isRedirect' )
 			->willReturn( false );
 		$constraint = new ExistingSectionEditConstraint(
+			'notnew',
 			'UserSummary',
 			'AutoSummary',
 			false,
 			$newContent,
 			$originalContent
+		);
+		$this->assertConstraintPassed( $constraint );
+	}
+
+	public function testPass_newSection() {
+		$constraint = new ExistingSectionEditConstraint(
+			'new',
+			'UserSummary',
+			md5( 'UserSummary' ),
+			false,
+			$this->createNoOpMock( Content::class ),
+			null
 		);
 		$this->assertConstraintPassed( $constraint );
 	}
@@ -62,6 +75,7 @@ class ExistingSectionEditConstraintTest extends MediaWikiUnitTestCase {
 			->method( 'isRedirect' )
 			->willReturn( false );
 		$constraint = new ExistingSectionEditConstraint(
+			'notnew',
 			'UserSummary',
 			md5( 'UserSummary' ),
 			false,
@@ -73,6 +87,7 @@ class ExistingSectionEditConstraintTest extends MediaWikiUnitTestCase {
 
 	public function testFailure_revisionDeleted() {
 		$constraint = new ExistingSectionEditConstraint(
+			'notnew',
 			'UserSummary',
 			md5( 'UserSummary' ),
 			false,

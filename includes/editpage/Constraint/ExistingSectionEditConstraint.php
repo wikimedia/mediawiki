@@ -24,6 +24,10 @@ use Content;
 use StatusValue;
 
 /**
+ * To simplify the logic in EditPage, this constraint may be created even if the section being
+ * edited does not currently exist, in which case $section will be 'new' and this constraint
+ * will just short-circuit to CONSTRAINT_PASSED since the checks are not applicable.
+ *
  * This constraint will only be used if the editor is trying to edit an existing page; if there
  * is no content, then the user has lost access to the revision after it was loaded. (T301947)
  *
@@ -43,6 +47,7 @@ use StatusValue;
  */
 class ExistingSectionEditConstraint implements IEditConstraint {
 
+	private string $section;
 	private string $userSummary;
 	private string $autoSummary;
 	private bool $allowBlankSummary;
@@ -51,6 +56,7 @@ class ExistingSectionEditConstraint implements IEditConstraint {
 	private string $result;
 
 	/**
+	 * @param string $section
 	 * @param string $userSummary
 	 * @param string $autoSummary
 	 * @param bool $allowBlankSummary
@@ -58,12 +64,14 @@ class ExistingSectionEditConstraint implements IEditConstraint {
 	 * @param ?Content $originalContent
 	 */
 	public function __construct(
+		string $section,
 		string $userSummary,
 		string $autoSummary,
 		bool $allowBlankSummary,
 		Content $newContent,
 		?Content $originalContent
 	) {
+		$this->section = $section;
 		$this->userSummary = $userSummary;
 		$this->autoSummary = $autoSummary;
 		$this->allowBlankSummary = $allowBlankSummary;
@@ -72,6 +80,11 @@ class ExistingSectionEditConstraint implements IEditConstraint {
 	}
 
 	public function checkConstraint(): string {
+		if ( $this->section === 'new' ) {
+			// Constraint is not applicable
+			$this->result = self::CONSTRAINT_PASSED;
+			return self::CONSTRAINT_PASSED;
+		}
 		if ( $this->originalContent === null ) {
 			// T301947: User loses access to revision after loading
 			$this->result = self::CONSTRAINT_FAILED;
