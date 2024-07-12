@@ -1,3 +1,36 @@
+# 1.9.0 / 2024-07-10
+
+## Features
+- useI18n: Add basic i18n system (Roan Kattouw)
+
+## Styles
+- tokens: Update diff colors (Derek Torsani)
+
+## Code
+- Tooltip: add snapshot tests (lwatson)
+- TypeaheadSearch: replace `searchResultsLabel` prop with i18n (lwatson)
+- Table: replace string props with i18n (lwatson)
+- Dialog: Use i18n, add `useCloseButton` prop (Roan Kattouw)
+- ChipInput, InputChip: Remove chipAriaDescription prop, replace with i18n (Roan Kattouw)
+- Message: Add useI18n and update dismissButtonLabel prop (Anne Tomasevich)
+- TypeaheadSearch, Search Input: add `useButton` prop (lwatson)
+- Field, Label: use i18n, add `optional` prop (lwatson)
+- css-icon: Add basic support for custom icons (Roan Kattouw)
+- build: Add SVGO plugin to remove whitespace in icons `title` tag (Volker E)
+
+## Icons
+- icons: Drop `fill-rule` argument from 'appearance' icon (thiemowmde)
+- icons: Re-draw 'appearance' icon for most minimal file size (thiemowmde)
+
+## Docs
+- docs: add i18n function type (lwatson)
+- docs: Update Field guidelines (bmartinezcalvo)
+- docs: Standardize descriptions of props with default strings (Anne Tomasevich)
+- docs: clarify field's placeholder content (bmartinezcalvo)
+- docs: add link to Codex Figma spec in the Table guidelines (bmartinezcalvo)
+- docs: Elaborate on Tooltip guidelines (Derek Torsani)
+- docs: Add ADR for i18n support (Anne Tomasevich)
+
 # 1.8.0 / 2024-06-25
 
 ## Breaking Changes

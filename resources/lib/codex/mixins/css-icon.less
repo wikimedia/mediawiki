@@ -93,6 +93,23 @@
 	vertical-align: @param-vertical-align;
 }
 
+// Set the color of a mask-image-based icon
+//
+// @param {hex} fill-color - The fill color of the icon
+// @param {boolean} is-button-icon - Whether this icon is inside of a <button> element
+.cdx-mixin-css-icon-mask-image-color( @param-fill-color, @param-is-button-icon ) {
+	// For icons outside of buttons, use background-color to set the icon color.
+	& when not ( @param-is-button-icon ) {
+		background-color: @param-fill-color;
+	}
+	// For icons within buttons, set transition rules. The icon color will be changed in the
+	// Button component depending on props and state.
+	& when ( @param-is-button-icon ) {
+		transition-property: @transition-property-icon-css-only;
+		transition-duration: @transition-duration-base;
+	}
+}
+
 //
 // Set the icon image, either via mask-image or background-image.
 //
@@ -138,16 +155,8 @@
 		/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 		mask-image: url( @image-url );
 
-		// For icons outside of buttons, use background-color to set the icon color.
-		& when not ( @param-is-button-icon ) {
-			background-color: @param-fill-color;
-		}
-		// For icons within buttons, set transition rules. The icon color will be changed in the
-		// Button component depending on props and state.
-		& when ( @param-is-button-icon ) {
-			transition-property: @transition-property-icon-css-only;
-			transition-duration: @transition-duration-base;
-		}
+		// Set background-color to color the icon
+		.cdx-mixin-css-icon-mask-image-color( @param-fill-color, @param-is-button-icon );
 	}
 }
 
@@ -238,7 +247,11 @@
 //
 // Create a square, standalone CSS icon.
 //
-// @param {string} icon - The icon to show (follows the pattern @cdx-icon-icon-name, e.g. @cdx-icon-info-filled )
+// This mixin only supports icons provided by Codex, which will be embedded as data URLs. To provide
+// a custom icon (either as a data URL or as a regular URL), set @param-icon to 'none', and set
+// `mask-image` and `-webkit-mask-image` to the URL of the custom icon.
+//
+// @param {string} icon - The icon to show (follows the pattern @cdx-icon-icon-name, e.g. @cdx-icon-info-filled), or 'none'
 // @param {hex} fill-color - The fill color of the icon
 // @param {string} size-icon: The size of the icon
 // @param {boolean} is-button-icon: Whether this icon is inside of a <button> element.
@@ -258,5 +271,13 @@
 	.cdx-mixin-css-icon-background( @param-size-icon, @param-background-position, @param-is-button-icon );
 	.cdx-mixin-css-icon-size( @param-size-icon );
 	.cdx-mixin-css-icon-alignment( @param-vertical-align );
-	.cdx-mixin-css-icon-background-image( @param-icon, @param-fill-color, @param-is-button-icon );
+
+	& when not ( @param-icon = 'none' ) {
+		.cdx-mixin-css-icon-background-image( @param-icon, @param-fill-color, @param-is-button-icon );
+	}
+
+	& when ( @param-icon = 'none' ) {
+		// The caller is going to set mask-image themselves; but we still need to set the color
+		.cdx-mixin-css-icon-mask-image-color( @param-fill-color, @param-is-button-icon );
+	}
 }

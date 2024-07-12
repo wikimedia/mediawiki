@@ -53,7 +53,7 @@ var __async = (__this, __arguments, generator) => {
     step((generator = generator.apply(__this, __arguments)).next());
   });
 };
-import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, Comment, warn, watch, withKeys, renderSlot, resolveComponent, createElementVNode, createBlock, resolveDynamicComponent, withCtx, withModifiers, createVNode, Fragment, renderList, createTextVNode, Transition, normalizeStyle, inject, toRef, mergeProps, getCurrentInstance, withDirectives, vModelCheckbox, createSlots, nextTick, vModelDynamic, onUnmounted, vShow, unref, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, Teleport, toRefs, provide, vModelRadio, vModelText } from "vue";
+import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, Comment, warn, watch, withKeys, renderSlot, resolveComponent, createElementVNode, createBlock, resolveDynamicComponent, withCtx, withModifiers, createVNode, Fragment, renderList, createTextVNode, Transition, normalizeStyle, inject, unref, toRef, mergeProps, getCurrentInstance, withDirectives, vModelCheckbox, createSlots, nextTick, vModelDynamic, onUnmounted, vShow, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, Teleport, toRefs, provide, vModelRadio, vModelText } from "vue";
 const g = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', q = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', n1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', d1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', g1 = '<path d="M10 15 2 5h16z"/>', k1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', F1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', t0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', p = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', e0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', V2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', b2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', J2 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', h5 = '<path d="M10 0 3 8h14zm0 18-7-8h14z"/>', M5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', G5 = '<path d="m10 5 8 10H2z"/>', M3 = g, S3 = q, Y3 = n1, X3 = d1, l4 = g1, i4 = k1, m4 = F1, P4 = t0, Y4 = {
   langCodeMap: {
     ar: p
@@ -917,6 +917,17 @@ function useSplitAttributes(attrs, internalClasses = computed(() => ({}))) {
     otherAttrs
   };
 }
+function useI18n(messageKey, defaultValue, params = []) {
+  const providedI18nFunc = inject("CdxI18nFunction", void 0);
+  return computed(() => {
+    const unwrappedParams = params.map(unref);
+    const fromProvidedFunc = providedI18nFunc == null ? void 0 : providedI18nFunc(messageKey, ...unwrappedParams);
+    if (fromProvidedFunc !== void 0 && fromProvidedFunc !== null) {
+      return fromProvidedFunc;
+    }
+    return typeof defaultValue === "function" ? defaultValue(...unwrappedParams) : defaultValue;
+  });
+}
 const _sfc_main$q = defineComponent({
   name: "CdxLabel",
   components: { CdxIcon },
@@ -935,10 +946,19 @@ const _sfc_main$q = defineComponent({
       default: null
     },
     /**
+     * Whether the field is optional.
+     *
+     * This will add a flag next to the label indicating that the field is optional.
+     */
+    optional: {
+      type: Boolean,
+      default: false
+    },
+    // DEPRECATED: set default to '(optional)' (T368444).
+    /**
      * Text to indicate that the field is optional.
      *
-     * For example, this might be '(optional)' in English. This text will be placed next to
-     * the label text.
+     * Omit this prop to use the default value, "(optional)".
      */
     optionalFlag: {
       type: String,
@@ -1000,10 +1020,15 @@ const _sfc_main$q = defineComponent({
       rootStyle,
       otherAttrs
     } = useSplitAttributes(attrs, internalClasses);
+    const translatedOptionalFlag = useI18n(
+      "cdx-label-optional-flag",
+      () => props.optionalFlag || "(optional)"
+    );
     return {
       rootClasses,
       rootStyle,
-      otherAttrs
+      otherAttrs,
+      translatedOptionalFlag
     };
   }
 });
@@ -1046,10 +1071,10 @@ function _sfc_render$q(_ctx, _cache, $props, $setup, $data, $options) {
         createElementVNode("span", _hoisted_2$h, [
           renderSlot(_ctx.$slots, "default")
         ]),
-        _ctx.optionalFlag ? (openBlock(), createElementBlock(
+        _ctx.optionalFlag || _ctx.optional ? (openBlock(), createElementBlock(
           "span",
           _hoisted_3$9,
-          toDisplayString(" ") + " " + toDisplayString(_ctx.optionalFlag),
+          toDisplayString(" ") + " " + toDisplayString(_ctx.translatedOptionalFlag),
           1
           /* TEXT */
         )) : createCommentVNode("v-if", true)
@@ -1081,10 +1106,10 @@ function _sfc_render$q(_ctx, _cache, $props, $setup, $data, $options) {
         createElementVNode("span", _hoisted_6$5, [
           renderSlot(_ctx.$slots, "default")
         ]),
-        _ctx.optionalFlag ? (openBlock(), createElementBlock(
+        _ctx.optionalFlag || _ctx.optional ? (openBlock(), createElementBlock(
           "span",
           _hoisted_7$2,
-          toDisplayString(" ") + " " + toDisplayString(_ctx.optionalFlag),
+          toDisplayString(" ") + " " + toDisplayString(_ctx.translatedOptionalFlag),
           1
           /* TEXT */
         )) : createCommentVNode("v-if", true)
@@ -1319,16 +1344,6 @@ const _sfc_main$o = defineComponent({
     disabled: {
       type: Boolean,
       default: false
-    },
-    /**
-     * `aria-description` for the chip.
-     *
-     * Text must be provided for accessibility purposes. This prop is temporary and will be
-     * removed once T345386 is resolved.
-     */
-    chipAriaDescription: {
-      type: String,
-      default: "Press Enter to edit or Delete to remove"
     }
   },
   expose: [
@@ -1361,6 +1376,10 @@ const _sfc_main$o = defineComponent({
         "cdx-input-chip--disabled": props.disabled
       };
     });
+    const ariaDescription = useI18n(
+      "cdx-input-chip-aria-description",
+      "Press Enter to edit or Delete to remove"
+    );
     function onKeydown(e) {
       var _a;
       switch (e.key) {
@@ -1395,6 +1414,7 @@ const _sfc_main$o = defineComponent({
     return {
       rootElement,
       rootClasses,
+      ariaDescription,
       onKeydown,
       cdxIconClose: X3
     };
@@ -1420,7 +1440,7 @@ function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
     class: normalizeClass(["cdx-input-chip", _ctx.rootClasses]),
     tabindex: "0",
     role: "option",
-    "aria-description": _ctx.chipAriaDescription,
+    "aria-description": _ctx.ariaDescription,
     onKeydown: _cache[1] || (_cache[1] = (...args) => _ctx.onKeydown && _ctx.onKeydown(...args)),
     onClick: _cache[2] || (_cache[2] = ($event) => _ctx.$emit("click-chip"))
   }, [
@@ -1495,16 +1515,6 @@ const _sfc_main$n = defineComponent({
     disabled: {
       type: Boolean,
       default: false
-    },
-    /**
-     * `aria-description` of each input chip.
-     *
-     * Text must be provided for accessibility purposes. This prop is temporary and will be
-     * removed once T345386 is resolved.
-     */
-    chipAriaDescription: {
-      type: String,
-      default: "Press Enter to edit or Delete to remove"
     }
   },
   emits: [
@@ -1711,7 +1721,6 @@ function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
               ref_for: true,
               ref: (ref2) => _ctx.assignChipTemplateRef(ref2, index),
               class: "cdx-chip-input__item",
-              "chip-aria-description": _ctx.chipAriaDescription,
               icon: chip.icon,
               disabled: _ctx.computedDisabled,
               onClickChip: ($event) => _ctx.handleChipClick(chip),
@@ -1728,7 +1737,7 @@ function _sfc_render$n(_ctx, _cache, $props, $setup, $data, $options) {
               ]),
               _: 2
               /* DYNAMIC */
-            }, 1032, ["chip-aria-description", "icon", "disabled", "onClickChip", "onRemoveChip", "onArrowLeft", "onArrowRight"]);
+            }, 1032, ["icon", "disabled", "onClickChip", "onRemoveChip", "onArrowLeft", "onArrowRight"]);
           }),
           128
           /* KEYED_FRAGMENT */
@@ -5236,9 +5245,17 @@ const _sfc_main$g = defineComponent({
       default: false
     },
     /**
-     * Label for the icon-only close button in the header.
+     * Add an icon-only close button to the dialog header.
+     */
+    useCloseButton: {
+      type: Boolean,
+      default: false
+    },
+    // DEPRECATED: Set default to 'Close' (T368444)
+    /**
+     * Visually-hidden label text for the icon-only close button in the header.
      *
-     * Including this prop adds the close button.
+     * Omit this prop to use the default value, "Close".
      */
     closeButtonLabel: {
       type: String,
@@ -5316,7 +5333,14 @@ const _sfc_main$g = defineComponent({
     const focusHolder = ref();
     const focusTrapStart = ref();
     const focusTrapEnd = ref();
-    const showHeader = computed(() => !props.hideTitle || !!props.closeButtonLabel);
+    const useCloseButtonOrLabel = computed(
+      () => props.useCloseButton || props.closeButtonLabel.length > 0
+    );
+    const translatedCloseButtonLabel = useI18n(
+      "cdx-dialog-close-button-label",
+      () => props.closeButtonLabel || "Close"
+    );
+    const showHeader = computed(() => !props.hideTitle || useCloseButtonOrLabel.value);
     const showFooterActions = computed(() => !!props.primaryAction || !!props.defaultAction);
     const bodyDimensions = useResizeObserver(dialogBody);
     const currentBodyHeight = computed(() => {
@@ -5445,6 +5469,8 @@ const _sfc_main$g = defineComponent({
       focusHolder,
       showHeader,
       showFooterActions,
+      useCloseButtonOrLabel,
+      translatedCloseButtonLabel,
       computedTarget
     };
   }
@@ -5537,19 +5563,16 @@ function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
                         /* TEXT */
                       )) : createCommentVNode("v-if", true)
                     ])) : createCommentVNode("v-if", true),
-                    _ctx.closeButtonLabel ? (openBlock(), createBlock(_component_cdx_button, {
+                    _ctx.useCloseButtonOrLabel ? (openBlock(), createBlock(_component_cdx_button, {
                       key: 1,
                       class: "cdx-dialog__header__close-button",
                       weight: "quiet",
                       type: "button",
-                      "aria-label": _ctx.closeButtonLabel,
+                      "aria-label": _ctx.translatedCloseButtonLabel,
                       onClick: _ctx.close
                     }, {
                       default: withCtx(() => [
-                        createVNode(_component_cdx_icon, {
-                          icon: _ctx.cdxIconClose,
-                          "icon-label": _ctx.closeButtonLabel
-                        }, null, 8, ["icon", "icon-label"])
+                        createVNode(_component_cdx_icon, { icon: _ctx.cdxIconClose }, null, 8, ["icon"])
                       ]),
                       _: 1
                       /* STABLE */
@@ -5699,10 +5722,17 @@ const _sfc_main$f = defineComponent({
       default: false
     },
     /**
-     * Label text for the dismiss button for user-dismissable messages.
+     * Allow the message to be dismissed by the user. Adds an icon-only dismiss button.
+     */
+    allowUserDismiss: {
+      type: Boolean,
+      default: false
+    },
+    // DEPRECATED: set default to 'Close' (T368444).
+    /**
+     * Visually-hidden label text for the dismiss button for user-dismissable messages.
      *
-     * An icon-only button will be displayed that will hide the message on click. This prop is
-     * for the hidden button label required for accessibility purposes and tooltip text.
+     * Omit this prop to use the default value, "Close".
      */
     dismissButtonLabel: {
       type: String,
@@ -5740,7 +5770,12 @@ const _sfc_main$f = defineComponent({
   setup(props, { emit }) {
     const dismissed = ref(false);
     const userDismissable = computed(
-      () => props.inline === false && props.dismissButtonLabel.length > 0
+      () => props.inline === false && // DEPRECATED: require use of new prop allowUserDismiss (T368444).
+      (props.dismissButtonLabel.length > 0 || props.allowUserDismiss)
+    );
+    const translatedDismissButtonLabel = useI18n(
+      "cdx-message-dismiss-button-label",
+      () => props.dismissButtonLabel || "Close"
     );
     const displayTime = computed(() => {
       if (props.autoDismiss === false || props.type === "error") {
@@ -5780,6 +5815,7 @@ const _sfc_main$f = defineComponent({
     return {
       dismissed,
       userDismissable,
+      translatedDismissButtonLabel,
       rootClasses,
       leaveActiveClass,
       computedIcon,
@@ -5817,14 +5853,11 @@ function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
           class: "cdx-message__dismiss-button",
           weight: "quiet",
           type: "button",
-          "aria-label": _ctx.dismissButtonLabel,
+          "aria-label": _ctx.translatedDismissButtonLabel,
           onClick: _cache[0] || (_cache[0] = ($event) => _ctx.onDismiss("user-dismissed"))
         }, {
           default: withCtx(() => [
-            createVNode(_component_cdx_icon, {
-              icon: _ctx.cdxIconClose,
-              "icon-label": _ctx.dismissButtonLabel
-            }, null, 8, ["icon", "icon-label"])
+            createVNode(_component_cdx_icon, { icon: _ctx.cdxIconClose }, null, 8, ["icon"])
           ]),
           _: 1
           /* STABLE */
@@ -5851,10 +5884,19 @@ const _sfc_main$e = defineComponent({
       default: ""
     },
     /**
+     * Whether the field is optional.
+     *
+     * This will add a flag next to the label indicating that the field is optional.
+     */
+    optional: {
+      type: Boolean,
+      default: false
+    },
+    // DEPRECATED: set default to '(optional)' (T368444).
+    /**
      * Text to indicate that the field is optional.
      *
-     * For example, this might be '(optional)' in English. This text will be placed next to
-     * the label text.
+     * Omit this prop to use the default value, "(optional)".
      */
     optionalFlag: {
       type: String,
@@ -5958,6 +6000,7 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
         id: _ctx.labelId,
         icon: _ctx.labelIcon,
         "visually-hidden": _ctx.hideLabel,
+        optional: _ctx.optional,
         "optional-flag": _ctx.optionalFlag,
         "input-id": _ctx.inputId,
         "description-id": _ctx.descriptionId,
@@ -5977,7 +6020,7 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
           ]),
           key: "0"
         } : void 0
-      ]), 1032, ["id", "icon", "visually-hidden", "optional-flag", "input-id", "description-id", "disabled", "is-legend"]),
+      ]), 1032, ["id", "icon", "visually-hidden", "optional", "optional-flag", "input-id", "description-id", "disabled", "is-legend"]),
       createElementVNode("div", _hoisted_1$d, [
         renderSlot(_ctx.$slots, "default")
       ]),
@@ -6707,9 +6750,18 @@ const _sfc_main$8 = defineComponent({
       default: ""
     },
     /**
-     * Submit button text.
      *
-     * If this is provided, a submit button with this label will be added.
+     * Whether to display the search button.
+     */
+    useButton: {
+      type: Boolean,
+      default: false
+    },
+    // DEPRECATED: set default to 'Search' (T368444).
+    /**
+     * Search button text.
+     *
+     * Omit this prop to use the default value, "Search".
      */
     buttonLabel: {
       type: String,
@@ -6774,7 +6826,7 @@ const _sfc_main$8 = defineComponent({
     const { computedDisabled } = useFieldData(toRef(props, "disabled"));
     const internalClasses = computed(() => {
       return {
-        "cdx-search-input--has-end-button": !!props.buttonLabel
+        "cdx-search-input--has-end-button": !!props.buttonLabel || props.useButton
       };
     });
     const {
@@ -6782,6 +6834,14 @@ const _sfc_main$8 = defineComponent({
       rootStyle,
       otherAttrs
     } = useSplitAttributes(attrs, internalClasses);
+    const translatedSearchButtonLabel = useI18n(
+      "cdx-search-input-search-button-label",
+      // Allow custom button label via props or fallback to a default English string.
+      () => props.buttonLabel || "Search"
+    );
+    const useButtonOrLabel = computed(
+      () => props.useButton || props.buttonLabel.length > 0
+    );
     const handleSubmit = () => {
       emit("submit-click", wrappedModel.value);
     };
@@ -6792,7 +6852,9 @@ const _sfc_main$8 = defineComponent({
       rootStyle,
       otherAttrs,
       handleSubmit,
-      searchIcon: A7
+      searchIcon: A7,
+      translatedSearchButtonLabel,
+      useButtonOrLabel
     };
   },
   methods: {
@@ -6837,7 +6899,7 @@ function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
         }), null, 16, ["modelValue", "start-icon", "disabled", "status", "onKeydown"]),
         renderSlot(_ctx.$slots, "default")
       ]),
-      _ctx.buttonLabel ? (openBlock(), createBlock(_component_cdx_button, {
+      _ctx.useButtonOrLabel ? (openBlock(), createBlock(_component_cdx_button, {
         key: 0,
         class: "cdx-search-input__end-button",
         disabled: _ctx.computedDisabled,
@@ -6845,7 +6907,7 @@ function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
       }, {
         default: withCtx(() => [
           createTextVNode(
-            toDisplayString(_ctx.buttonLabel),
+            toDisplayString(_ctx.translatedSearchButtonLabel),
             1
             /* TEXT */
           )
@@ -7214,24 +7276,6 @@ const _sfc_main$6 = defineComponent({
       default: () => []
     },
     /**
-     * Label for the "select all rows" checkbox.
-     *
-     * This label is visually hidden but needed for assistive technology.
-     */
-    selectAllLabel: {
-      type: String,
-      default: "Select all rows"
-    },
-    /**
-     * Label for the "select row" checkboxes.
-     *
-     * These labels are visually hidden but needed for assistive technology.
-     */
-    selectRowLabel: {
-      type: Function,
-      default: (x, y) => "Select row ".concat(x, " of ").concat(y)
-    },
-    /**
      * Definition of sort order. Column(s) can be sorted ascending, descending, or not sorted.
      * To display data unsorted initially, set to an empty object initially.
      * Must be bound with v-model:sort
@@ -7239,16 +7283,6 @@ const _sfc_main$6 = defineComponent({
     sort: {
       type: Object,
       default: () => ({})
-    },
-    /**
-     * Text that provides additional info for the `<caption>` element when the column header
-     * has sorting is enabled.
-     *
-     * This text is visually hidden but needed for assistive technology when sort is enabled.
-     */
-    sortCaption: {
-      type: String,
-      default: ", column headers with buttons are sortable."
     }
   },
   emits: [
@@ -7283,6 +7317,17 @@ const _sfc_main$6 = defineComponent({
         "cdx-table__table--borders-vertical": props.showVerticalBorders
       };
     });
+    const translatedSortCaption = useI18n(
+      "cdx-table-sort-caption",
+      (caption) => "".concat(caption, ", column headers with buttons are sortable."),
+      [toRef(props, "caption")]
+    );
+    const translatedSelectRowLabel = (rowIndex, totalRows) => useI18n(
+      "cdx-table-select-row-label",
+      (row, total) => "Select row ".concat(row, " of ").concat(total),
+      [rowIndex, totalRows]
+    ).value;
+    const translatedSelectAllLabel = useI18n("cdx-table-select-all-label", "Select all rows");
     function getRowKey(row, index) {
       return TableRowIdentifier in row ? row[TableRowIdentifier] : index;
     }
@@ -7395,7 +7440,11 @@ const _sfc_main$6 = defineComponent({
       // Sorting methods.
       handleSort,
       getSortIcon,
-      getSortOrder
+      getSortOrder,
+      // i18n
+      translatedSortCaption,
+      translatedSelectRowLabel,
+      translatedSelectAllLabel
     };
   }
 });
@@ -7411,19 +7460,18 @@ const _hoisted_3$2 = ["aria-hidden"];
 const _hoisted_4$2 = { class: "cdx-table__header__content" };
 const _hoisted_5$2 = { class: "cdx-table__table-wrapper" };
 const _hoisted_6$2 = { key: 0 };
-const _hoisted_7 = { key: 0 };
-const _hoisted_8 = {
+const _hoisted_7 = {
   key: 0,
   class: "cdx-table__table__select-rows"
 };
-const _hoisted_9 = ["aria-sort"];
-const _hoisted_10 = ["aria-selected", "onClick"];
+const _hoisted_8 = ["aria-sort"];
+const _hoisted_9 = ["aria-selected", "onClick"];
+const _hoisted_10 = { key: 0 };
 const _hoisted_11 = { key: 0 };
-const _hoisted_12 = { key: 0 };
-const _hoisted_13 = { key: 1 };
-const _hoisted_14 = { class: "cdx-table__table__empty-state" };
-const _hoisted_15 = { class: "cdx-table__table__empty-state-content" };
-const _hoisted_16 = {
+const _hoisted_12 = { key: 1 };
+const _hoisted_13 = { class: "cdx-table__table__empty-state" };
+const _hoisted_14 = { class: "cdx-table__table__empty-state-content" };
+const _hoisted_15 = {
   key: 1,
   class: "cdx-table__footer"
 };
@@ -7462,23 +7510,36 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
         },
         [
           createElementVNode("caption", null, [
-            createTextVNode(
-              toDisplayString(_ctx.caption) + " ",
-              1
-              /* TEXT */
-            ),
-            _ctx.hasSortableColumns ? (openBlock(), createElementBlock(
-              "span",
-              _hoisted_6$2,
-              toDisplayString(_ctx.sortCaption),
-              1
-              /* TEXT */
-            )) : createCommentVNode("v-if", true)
+            !_ctx.hasSortableColumns ? (openBlock(), createElementBlock(
+              Fragment,
+              { key: 0 },
+              [
+                createTextVNode(
+                  toDisplayString(_ctx.caption),
+                  1
+                  /* TEXT */
+                )
+              ],
+              64
+              /* STABLE_FRAGMENT */
+            )) : (openBlock(), createElementBlock(
+              Fragment,
+              { key: 1 },
+              [
+                createTextVNode(
+                  toDisplayString(_ctx.translatedSortCaption),
+                  1
+                  /* TEXT */
+                )
+              ],
+              64
+              /* STABLE_FRAGMENT */
+            ))
           ]),
           renderSlot(_ctx.$slots, "thead", {}, () => [
-            _ctx.columns.length > 0 ? (openBlock(), createElementBlock("thead", _hoisted_7, [
+            _ctx.columns.length > 0 ? (openBlock(), createElementBlock("thead", _hoisted_6$2, [
               createElementVNode("tr", null, [
-                _ctx.useRowSelection ? (openBlock(), createElementBlock("th", _hoisted_8, [
+                _ctx.useRowSelection ? (openBlock(), createElementBlock("th", _hoisted_7, [
                   createVNode(_component_cdx_checkbox, {
                     modelValue: _ctx.selectAll,
                     "onUpdate:modelValue": [
@@ -7490,7 +7551,7 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
                   }, {
                     default: withCtx(() => [
                       createTextVNode(
-                        toDisplayString(_ctx.selectAllLabel),
+                        toDisplayString(_ctx.translatedSelectAllLabel),
                         1
                         /* TEXT */
                       )
@@ -7527,7 +7588,7 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
                           class: "cdx-table__table__sort-icon",
                           "aria-hidden": "true"
                         }, null, 8, ["icon"])
-                      ], 8, _hoisted_10)) : (openBlock(), createElementBlock(
+                      ], 8, _hoisted_9)) : (openBlock(), createElementBlock(
                         Fragment,
                         { key: 1 },
                         [
@@ -7540,7 +7601,7 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
                         64
                         /* STABLE_FRAGMENT */
                       ))
-                    ], 14, _hoisted_9);
+                    ], 14, _hoisted_8);
                   }),
                   128
                   /* KEYED_FRAGMENT */
@@ -7549,7 +7610,7 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
             ])) : createCommentVNode("v-if", true)
           ]),
           renderSlot(_ctx.$slots, "tbody", {}, () => [
-            _ctx.data.length > 0 ? (openBlock(), createElementBlock("tbody", _hoisted_11, [
+            _ctx.data.length > 0 ? (openBlock(), createElementBlock("tbody", _hoisted_10, [
               (openBlock(true), createElementBlock(
                 Fragment,
                 null,
@@ -7561,7 +7622,7 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
                       class: normalizeClass(_ctx.getRowClass(row, rowIndex))
                     },
                     [
-                      _ctx.useRowSelection ? (openBlock(), createElementBlock("td", _hoisted_12, [
+                      _ctx.useRowSelection ? (openBlock(), createElementBlock("td", _hoisted_11, [
                         createVNode(_component_cdx_checkbox, {
                           modelValue: _ctx.wrappedSelectedRows,
                           "onUpdate:modelValue": [
@@ -7573,7 +7634,7 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
                         }, {
                           default: withCtx(() => [
                             createTextVNode(
-                              toDisplayString(_ctx.selectRowLabel(rowIndex + 1, _ctx.data.length)),
+                              toDisplayString(_ctx.translatedSelectRowLabel(rowIndex + 1, _ctx.data.length)),
                               1
                               /* TEXT */
                             )
@@ -7618,9 +7679,9 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
                 128
                 /* KEYED_FRAGMENT */
               ))
-            ])) : _ctx.$slots["empty-state"] && _ctx.$slots["empty-state"]().length > 0 ? (openBlock(), createElementBlock("tbody", _hoisted_13, [
-              createElementVNode("tr", _hoisted_14, [
-                createElementVNode("td", _hoisted_15, [
+            ])) : _ctx.$slots["empty-state"] && _ctx.$slots["empty-state"]().length > 0 ? (openBlock(), createElementBlock("tbody", _hoisted_12, [
+              createElementVNode("tr", _hoisted_13, [
+                createElementVNode("td", _hoisted_14, [
                   renderSlot(_ctx.$slots, "empty-state")
                 ])
               ])
@@ -7632,7 +7693,7 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
         /* CLASS */
       )
     ]),
-    _ctx.$slots.footer && _ctx.$slots.footer().length > 0 ? (openBlock(), createElementBlock("div", _hoisted_16, [
+    _ctx.$slots.footer && _ctx.$slots.footer().length > 0 ? (openBlock(), createElementBlock("div", _hoisted_15, [
       renderSlot(_ctx.$slots, "footer")
     ])) : createCommentVNode("v-if", true)
   ]);
@@ -8717,13 +8778,6 @@ const _sfc_main = defineComponent({
       required: true
     },
     /**
-     * Label attribute for the list of search results.
-     */
-    searchResultsLabel: {
-      type: String,
-      required: true
-    },
-    /**
      * List of search results. See the SearchResult type.
      */
     searchResults: {
@@ -8731,9 +8785,18 @@ const _sfc_main = defineComponent({
       required: true
     },
     /**
-     * Label for the submit button.
      *
-     * If no label is provided, the submit button will not be displayed.
+     * Whether to display a submit button.
+     */
+    useButton: {
+      type: Boolean,
+      default: false
+    },
+    // DEPRECATED: set default to 'Search' (T368444).
+    /**
+     * Custom label for the submit button.
+     *
+     * Omit this prop to use the default value, "Search".
      */
     buttonLabel: {
       type: String,
@@ -8831,6 +8894,7 @@ const _sfc_main = defineComponent({
     const form = ref();
     const menu = ref();
     const menuId = useGeneratedId("typeahead-search-menu");
+    const translatedSearchResultsLabel = useI18n("cdx-typeahead-search-search-results-label", "Search results");
     const expanded = ref(false);
     const pending = ref(false);
     const showPending = ref(false);
@@ -9057,7 +9121,8 @@ const _sfc_main = defineComponent({
       onSubmit,
       onKeydown,
       MenuFooterValue,
-      articleIcon: S3
+      articleIcon: S3,
+      translatedSearchResultsLabel
     };
   },
   methods: {
@@ -9100,7 +9165,8 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
           ref: "searchInput",
           modelValue: _ctx.inputValue,
           "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => _ctx.inputValue = $event),
-          "button-label": _ctx.buttonLabel
+          "button-label": _ctx.buttonLabel,
+          "use-button": _ctx.useButton
         }, _ctx.otherAttrs, {
           class: "cdx-typeahead-search__input",
           name: "search",
@@ -9129,7 +9195,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
               "search-query": _ctx.highlightQuery ? _ctx.searchQuery : "",
               "show-no-results-slot": _ctx.searchQuery.length > 0 && _ctx.searchResults.length === 0 && _ctx.$slots["search-no-results-text"] && _ctx.$slots["search-no-results-text"]().length > 0
             }, _ctx.menuConfig, {
-              "aria-label": _ctx.searchResultsLabel,
+              "aria-label": _ctx.translatedSearchResultsLabel,
               "onUpdate:selected": _ctx.onUpdateMenuSelection,
               onMenuItemClick: _cache[1] || (_cache[1] = (menuItem) => _ctx.onSearchResultClick(_ctx.asSearchResult(menuItem))),
               onMenuItemKeyboardNavigation: _ctx.onSearchResultKeyboardNavigation,
@@ -9197,7 +9263,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
           ]),
           _: 3
           /* FORWARDED */
-        }, 16, ["modelValue", "button-label", "aria-controls", "aria-expanded", "aria-activedescendant", "onUpdate:modelValue", "onFocus", "onBlur", "onKeydown"]),
+        }, 16, ["modelValue", "button-label", "use-button", "aria-controls", "aria-expanded", "aria-activedescendant", "onUpdate:modelValue", "onFocus", "onBlur", "onKeydown"]),
         renderSlot(_ctx.$slots, "default")
       ], 40, _hoisted_1)
     ],
@@ -9248,6 +9314,7 @@ export {
   useFieldData,
   useFloatingMenu,
   useGeneratedId,
+  useI18n,
   useIntersectionObserver,
   useModelWrapper,
   useResizeObserver,
