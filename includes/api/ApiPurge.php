@@ -88,21 +88,22 @@ class ApiPurge extends ApiBase {
 			];
 			$page = $this->wikiPageFactory->newFromTitle( $pageIdentity );
 
-			$authStatus = PermissionStatus::newEmpty();
-			if ( $authority->authorizeAction( 'purge', $authStatus ) ) {
+			$purgeAuthStatus = PermissionStatus::newEmpty();
+			if ( $authority->authorizeAction( 'purge', $purgeAuthStatus ) ) {
 				// Directly purge and skip the UI part of purge()
 				$page->doPurge();
 				$r['purged'] = true;
 			} else {
-				if ( $authStatus->isRateLimitExceeded() ) {
+				if ( $purgeAuthStatus->isRateLimitExceeded() ) {
 					$this->addWarning( 'apierror-ratelimited' );
 				} else {
-					$this->addWarning( Status::wrap( $authStatus )->getMessage() );
+					$this->addWarning( Status::wrap( $purgeAuthStatus )->getMessage() );
 				}
 			}
 
 			if ( $forceLinkUpdate || $forceRecursiveLinkUpdate ) {
-				if ( $authority->authorizeAction( 'linkpurge', $authStatus ) ) {
+				$linkpurgeAuthStatus = PermissionStatus::newEmpty();
+				if ( $authority->authorizeAction( 'linkpurge', $linkpurgeAuthStatus ) ) {
 					# Logging to better see expensive usage patterns
 					if ( $forceRecursiveLinkUpdate ) {
 						LoggerFactory::getInstance( 'RecursiveLinkPurge' )->info(
@@ -127,12 +128,12 @@ class ApiPurge extends ApiBase {
 					] );
 					$r['linkupdate'] = true;
 				} else {
-					if ( $authStatus->isRateLimitExceeded() ) {
+					if ( $linkpurgeAuthStatus->isRateLimitExceeded() ) {
 						$this->addWarning( 'apierror-ratelimited' );
 						$forceLinkUpdate = false;
 						$forceRecursiveLinkUpdate = false;
 					} else {
-						$this->addWarning( Status::wrap( $authStatus )->getMessage() );
+						$this->addWarning( Status::wrap( $linkpurgeAuthStatus )->getMessage() );
 					}
 				}
 			}
