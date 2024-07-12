@@ -1732,7 +1732,7 @@ return [
 				} )
 			),
 			$services->getHookContainer(),
-			$services->getUserCache(),
+			$services->getUserIdentityLookup(),
 			$services->getRedirectLookup(),
 			$services->getRestrictionStore(),
 			$services->getTitleFormatter(),

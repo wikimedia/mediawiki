@@ -26,7 +26,6 @@ use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
-use MediaWiki\Cache\UserCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
@@ -51,6 +50,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupMembership;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityLookup;
 use MessageSpecifier;
 use PermissionsError;
 use StatusValue;
@@ -125,8 +125,8 @@ class PermissionManager {
 	/** @var HookRunner */
 	private $hookRunner;
 
-	/** @var UserCache */
-	private $userCache;
+	/** @var UserIdentityLookup */
+	private $userIdentityLookup;
 
 	/** @var RestrictionStore */
 	private $restrictionStore;
@@ -272,7 +272,7 @@ class PermissionManager {
 	 * @param BlockManager $blockManager
 	 * @param BlockErrorFormatter $blockErrorFormatter
 	 * @param HookContainer $hookContainer
-	 * @param UserCache $userCache
+	 * @param UserIdentityLookup $userIdentityLookup
 	 * @param RedirectLookup $redirectLookup
 	 * @param RestrictionStore $restrictionStore
 	 * @param TitleFormatter $titleFormatter
@@ -289,7 +289,7 @@ class PermissionManager {
 		BlockManager $blockManager,
 		BlockErrorFormatter $blockErrorFormatter,
 		HookContainer $hookContainer,
-		UserCache $userCache,
+		UserIdentityLookup $userIdentityLookup,
 		RedirectLookup $redirectLookup,
 		RestrictionStore $restrictionStore,
 		TitleFormatter $titleFormatter,
@@ -306,7 +306,7 @@ class PermissionManager {
 		$this->blockManager = $blockManager;
 		$this->blockErrorFormatter = $blockErrorFormatter;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->userCache = $userCache;
+		$this->userIdentityLookup = $userIdentityLookup;
 		$this->redirectLookup = $redirectLookup;
 		$this->restrictionStore = $restrictionStore;
 		$this->titleFormatter = $titleFormatter;
@@ -1249,9 +1249,11 @@ class PermissionManager {
 				if ( $createProtection['permission'] == ''
 					|| !$this->userHasRight( $user, $createProtection['permission'] )
 				) {
+					$protectUserIdentity = $this->userIdentityLookup
+						->getUserIdentityByUserId( $createProtection['user'] );
 					$status->fatal(
 						'titleprotected',
-						$this->userCache->getProp( $createProtection['user'], 'name' ),
+						$protectUserIdentity ? $protectUserIdentity->getName() : '',
 						$createProtection['reason']
 					);
 				}
