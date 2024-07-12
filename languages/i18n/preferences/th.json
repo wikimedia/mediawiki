@@ -20,7 +20,7 @@
 	},
 	"preferences": "การตั้งค่า",
 	"prefsnologintext2": "โปรดเข้าสู่ระบบเพื่อเปลี่ยนแปลงการตั้งค่าของคุณ",
-	"searchprefs": "ค้นหา",
+	"searchprefs": "ค้นหาการตั้งค่า",
 	"searchprefs-noresults": "ไม่มีผลลัพธ์",
 	"searchprefs-results": "$1 {{PLURAL:$1|ผลลัพธ์}}",
 	"saveprefs": "บันทึก",
