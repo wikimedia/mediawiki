@@ -1298,7 +1298,7 @@ class ParserTestRunner {
 		$options->setTimestamp(
 			MWTimestamp::convert( TS_MW, $revProps['timestamp'] )
 		);
-		$options->setUserLang( $context->getLanguage() );
+		$options->setUserLang( $opts['userlanguage'] ?? $context->getLanguage() );
 
 		if ( isset( $opts['lastsavedrevision'] ) ) {
 			$oldCallback = $options->getCurrentRevisionRecordCallback();
@@ -2260,6 +2260,8 @@ class ParserTestRunner {
 			self::getOptionValue( 'wgMaxTocLevel', $opts, 999 );
 		$linkHolderBatchSize =
 			self::getOptionValue( 'wgLinkHolderBatchSize', $opts, 1000 );
+		$timezone =
+			self::getOptionValue( 'wgLocaltimezone', $opts, 'UTC' );
 
 		$setup = [
 			'wgEnableUploads' => self::getOptionValue( 'wgEnableUploads', $opts, true ),
@@ -2282,6 +2284,7 @@ class ParserTestRunner {
 			'wgFragmentMode' => [ 'legacy' ],
 			// Use legacy headings for a while until tests in extensions are updated
 			'wgParserEnableLegacyHeadingDOM' => true,
+			'wgLocaltimezone' => $timezone,
 		];
 
 		if ( isset( $opts['externallinktarget'] ) ) {
