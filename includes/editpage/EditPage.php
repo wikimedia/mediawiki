@@ -2384,19 +2384,15 @@ class EditPage implements IEditObject {
 					$pstUser
 				)
 			);
-			// $this->section should never be null, and so phan complains about
-			// using ??, but in practice sometimes it actually is null :(
 			$constraintRunner->addConstraint(
 				new NewSectionMissingSubjectConstraint(
-					// @phan-suppress-next-line PhanCoalescingNeverNull
-					$this->section ?? '',
+					$this->section,
 					$this->sectiontitle ?? '',
 					$this->allowBlankSummary
 				)
 			);
 			$constraintRunner->addConstraint(
-				// @phan-suppress-next-line PhanCoalescingNeverNull
-				new MissingCommentConstraint( $this->section ?? '', $this->textbox1 )
+				new MissingCommentConstraint( $this->section, $this->textbox1 )
 			);
 
 			if ( $this->section !== 'new' ) {
