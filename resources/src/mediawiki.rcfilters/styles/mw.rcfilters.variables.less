@@ -1,6 +1,6 @@
 // “External” variables
 @font-size-system-ui: 16; // Assumed browser default of `16px`
-@font-size-vector: 0.875 / 1em; // equals `14px` at browser default of `16px`
+@font-size-vector: 0.875em; // equals `14px` at browser default of `16px`
 
 // RCFilters variables
 // Colors not on WikimediaUI color palette
@@ -19,8 +19,8 @@
 
 // Circles
 @min-size-circle: 20px;
-@size-circle: 20 / @font-size-system-ui / @font-size-vector;
-@margin-circle: 5 / @font-size-system-ui / @font-size-vector;
+@size-circle: (20 / @font-size-system-ui / @font-size-vector);
+@margin-circle: (5 / @font-size-system-ui / @font-size-vector);
 
 // Result list circle indicators
 // Defined and used in mw.rcfilters.ui.ChangesListWrapperWidget.less
@@ -32,4 +32,4 @@
 
 // Color picker circles
 @min-size-circle-colorpicker: 30px;
-@size-circle-colorpicker: 30 / @font-size-system-ui / @font-size-vector;
+@size-circle-colorpicker: (30 / @font-size-system-ui / @font-size-vector);
