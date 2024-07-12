@@ -38,7 +38,7 @@ use StatusValue;
  * @internal
  * @author DannyS712
  */
-class AutoSummaryMissingSummaryConstraint implements IEditConstraint {
+class ExistingSectionEditConstraint implements IEditConstraint {
 
 	private string $userSummary;
 	private string $autoSummary;
