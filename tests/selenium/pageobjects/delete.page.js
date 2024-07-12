@@ -4,7 +4,7 @@ const Page = require( 'wdio-mediawiki/Page' );
 
 class DeletePage extends Page {
 	get reason() {
-		return $( '#wpReason' );
+		return $( '#wpReason input' );
 	}
 
 	get watch() {
