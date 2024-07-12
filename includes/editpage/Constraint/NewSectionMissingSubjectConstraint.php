@@ -54,9 +54,8 @@ class NewSectionMissingSubjectConstraint implements IEditConstraint {
 	public function checkConstraint(): string {
 		if ( $this->section === 'new' &&
 			!$this->allowBlankSubject &&
-			trim( $this->subject ) == ''
+			trim( $this->subject ) === ''
 		) {
-			// TODO this was == in EditPage, can it be === ?
 			$this->result = self::CONSTRAINT_FAILED;
 		} else {
 			$this->result = self::CONSTRAINT_PASSED;
@@ -68,7 +67,7 @@ class NewSectionMissingSubjectConstraint implements IEditConstraint {
 		$statusValue = StatusValue::newGood();
 		if ( $this->result === self::CONSTRAINT_FAILED ) {
 			// From EditPage, regarding the fatal:
-			// or 'missingcommentheader' if $section == 'new'. Blegh
+			// or 'missingcommentheader' if $section === 'new'. Blegh
 			// For new sections, the subject is also used for the summary,
 			// so we report missing summaries if the section is missing
 			$statusValue->fatal( 'missingsummary' );
