@@ -23,6 +23,7 @@ namespace MediaWiki\Page;
 
 use ContentModelChange;
 use JobQueueGroup;
+use LogFormatterFactory;
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Collation\CollationFactory;
 use MediaWiki\CommentStore\CommentStore;
@@ -99,6 +100,7 @@ class PageCommandFactory implements
 	private RestrictionStore $restrictionStore;
 	private LinkTargetLookup $linkTargetLookup;
 	private RedirectStore $redirectStore;
+	private LogFormatterFactory $logFormatterFactory;
 
 	public function __construct(
 		Config $config,
@@ -131,7 +133,8 @@ class PageCommandFactory implements
 		ArchivedRevisionLookup $archivedRevisionLookup,
 		RestrictionStore $restrictionStore,
 		LinkTargetLookup $linkTargetLookup,
-		RedirectStore $redirectStore
+		RedirectStore $redirectStore,
+		LogFormatterFactory $logFormatterFactory
 	) {
 		$this->config = $config;
 		$this->lbFactory = $lbFactory;
@@ -164,6 +167,7 @@ class PageCommandFactory implements
 		$this->restrictionStore = $restrictionStore;
 		$this->linkTargetLookup = $linkTargetLookup;
 		$this->redirectStore = $redirectStore;
+		$this->logFormatterFactory = $logFormatterFactory;
 	}
 
 	/**
@@ -183,6 +187,7 @@ class PageCommandFactory implements
 			$this->revisionStoreFactory->getRevisionStore(),
 			$this->userFactory,
 			$this->wikiPageFactory,
+			$this->logFormatterFactory,
 			$performer,
 			$page,
 			$newContentModel
@@ -268,7 +273,8 @@ class PageCommandFactory implements
 			$this->collationFactory,
 			$this->pageUpdaterFactory,
 			$this->restrictionStore,
-			$this
+			$this,
+			$this->logFormatterFactory
 		);
 	}
 

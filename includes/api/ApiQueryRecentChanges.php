@@ -52,6 +52,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	private SlotRoleRegistry $slotRoleRegistry;
 	private UserNameUtils $userNameUtils;
 	private TempUserConfig $tempUserConfig;
+	private LogFormatterFactory $logFormatterFactory;
 
 	private $formattedComments = [];
 
@@ -65,6 +66,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param UserNameUtils $userNameUtils
 	 * @param TempUserConfig $tempUserConfig
+	 * @param LogFormatterFactory $logFormatterFactory
 	 */
 	public function __construct(
 		ApiQuery $query,
@@ -75,7 +77,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		NameTableStore $slotRoleStore,
 		SlotRoleRegistry $slotRoleRegistry,
 		UserNameUtils $userNameUtils,
-		TempUserConfig $tempUserConfig
+		TempUserConfig $tempUserConfig,
+		LogFormatterFactory $logFormatterFactory
 	) {
 		parent::__construct( $query, $moduleName, 'rc' );
 		$this->commentStore = $commentStore;
@@ -85,6 +88,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$this->slotRoleRegistry = $slotRoleRegistry;
 		$this->userNameUtils = $userNameUtils;
 		$this->tempUserConfig = $tempUserConfig;
+		$this->logFormatterFactory = $logFormatterFactory;
 	}
 
 	private bool $fld_comment = false;
@@ -647,7 +651,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				$vals['logid'] = (int)$row->rc_logid;
 				$vals['logtype'] = $row->rc_log_type;
 				$vals['logaction'] = $row->rc_log_action;
-				$vals['logparams'] = LogFormatter::newFromRow( $row )->formatParametersForApi();
+				$vals['logparams'] = $this->logFormatterFactory->newFromRow( $row )->formatParametersForApi();
 			}
 		}
 

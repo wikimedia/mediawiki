@@ -371,7 +371,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	 * @since 1.23
 	 */
 	public function getRecentChange( $newId = 0 ) {
-		$formatter = LogFormatter::newFromEntry( $this );
+		$formatter = MediaWikiServices::getInstance()->getLogFormatterFactory()->newFromEntry( $this );
 		$context = RequestContext::newExtraneousContext( $this->getTarget() );
 		$formatter->setContext( $context );
 

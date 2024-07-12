@@ -34,22 +34,26 @@ class RevDelLogItem extends RevDelItem {
 	/** @var CommentStore */
 	private $commentStore;
 	private IConnectionProvider $dbProvider;
+	private LogFormatterFactory $logFormatterFactory;
 
 	/**
 	 * @param RevisionListBase $list
 	 * @param stdClass $row DB result row
 	 * @param CommentStore $commentStore
 	 * @param IConnectionProvider $dbProvider
+	 * @param LogFormatterFactory $logFormatterFactory
 	 */
 	public function __construct(
 		RevisionListBase $list,
 		$row,
 		CommentStore $commentStore,
-		IConnectionProvider $dbProvider
+		IConnectionProvider $dbProvider,
+		LogFormatterFactory $logFormatterFactory
 	) {
 		parent::__construct( $list, $row );
 		$this->commentStore = $commentStore;
 		$this->dbProvider = $dbProvider;
+		$this->logFormatterFactory = $logFormatterFactory;
 	}
 
 	public function getIdField() {
@@ -122,7 +126,7 @@ class RevDelLogItem extends RevDelItem {
 		$date = htmlspecialchars( $this->list->getLanguage()->userTimeAndDate(
 			$this->row->log_timestamp, $this->list->getUser() ) );
 		$title = Title::makeTitle( $this->row->log_namespace, $this->row->log_title );
-		$formatter = LogFormatter::newFromRow( $this->row );
+		$formatter = $this->logFormatterFactory->newFromRow( $this->row );
 		$formatter->setContext( $this->list->getContext() );
 		$formatter->setAudience( LogFormatter::FOR_THIS_USER );
 
@@ -167,7 +171,7 @@ class RevDelLogItem extends RevDelItem {
 		];
 
 		if ( LogEventsList::userCan( $this->row, LogPage::DELETED_ACTION, $user ) ) {
-			$ret['params'] = LogFormatter::newFromEntry( $logEntry )->formatParametersForApi();
+			$ret['params'] = $this->logFormatterFactory->newFromEntry( $logEntry )->formatParametersForApi();
 		}
 		if ( LogEventsList::userCan( $this->row, LogPage::DELETED_USER, $user ) ) {
 			$ret += [

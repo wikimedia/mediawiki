@@ -372,7 +372,7 @@ class LogPage {
 		// needed to say the LogFormatter the parameters have numeric keys
 		$logEntry->setLegacy( true );
 
-		$formatter = LogFormatter::newFromEntry( $logEntry );
+		$formatter = MediaWikiServices::getInstance()->getLogFormatterFactory()->newFromEntry( $logEntry );
 		$context = RequestContext::newExtraneousContext( $target );
 		$formatter->setContext( $context );
 

@@ -1896,9 +1896,10 @@ class LocalFile extends File {
 
 		if ( $descTitle->exists() ) {
 			if ( $createNullRevision ) {
-				$revStore = MediaWikiServices::getInstance()->getRevisionStore();
+				$services = MediaWikiServices::getInstance();
+				$revStore = $services->getRevisionStore();
 				// Use own context to get the action text in content language
-				$formatter = LogFormatter::newFromEntry( $logEntry );
+				$formatter = $services->getLogFormatterFactory()->newFromEntry( $logEntry );
 				$formatter->setContext( RequestContext::newExtraneousContext( $descTitle ) );
 				$editSummary = $formatter->getPlainActionText();
 				$summary = CommentStoreComment::newUnsavedComment( $editSummary );

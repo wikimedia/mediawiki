@@ -78,6 +78,7 @@ class RevisionDeleter {
 			'services' => [
 				'DBLoadBalancerFactory',
 				'CommentStore',
+				'LogFormatterFactory',
 			],
 		],
 	];

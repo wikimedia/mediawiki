@@ -25,7 +25,6 @@ use ChangesListBooleanFilterGroup;
 use ChangesListFilterGroup;
 use ChangesListStringOptionsFilterGroup;
 use ChangeTags;
-use LogFormatter;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
@@ -682,7 +681,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				return;
 			}
 
-			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+			$services = MediaWikiServices::getInstance();
+			$logFormatterFactory = $services->getLogFormatterFactory();
+			$linkBatchFactory = $services->getLinkBatchFactory();
 			$batch = $linkBatchFactory->newLinkBatch();
 			$userNames = [];
 			foreach ( $rows as $row ) {
@@ -691,7 +692,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				$userNames[] = $row->rc_user_text;
 				$batch->add( $row->rc_namespace, $row->rc_title );
 				if ( $row->rc_source === RecentChange::SRC_LOG ) {
-					$formatter = LogFormatter::newFromRow( $row );
+					$formatter = $logFormatterFactory->newFromRow( $row );
 					foreach ( $formatter->getPreloadTitles() as $title ) {
 						$batch->addObj( $title );
 						if ( $title->inNamespace( NS_USER ) || $title->inNamespace( NS_USER_TALK ) ) {

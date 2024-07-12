@@ -386,6 +386,7 @@ class ApiQuery extends ApiBase {
 				'RowCommentFormatter',
 				'ChangeTagDefStore',
 				'UserNameUtils',
+				'LogFormatterFactory',
 			],
 		],
 		'pageswithprop' => [
@@ -427,6 +428,7 @@ class ApiQuery extends ApiBase {
 				'SlotRoleRegistry',
 				'UserNameUtils',
 				'TempUserConfig',
+				'LogFormatterFactory',
 			],
 		],
 		'search' => [
@@ -474,7 +476,8 @@ class ApiQuery extends ApiBase {
 				'NamespaceInfo',
 				'GenderCache',
 				'CommentFormatter',
-				'TempUserConfig'
+				'TempUserConfig',
+				'LogFormatterFactory',
 			],
 		],
 		'watchlistraw' => [

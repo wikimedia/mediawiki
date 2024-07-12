@@ -77,12 +77,13 @@ class ChangeTagsLogItem extends RevisionItemBase {
 		$date = htmlspecialchars( $this->list->getLanguage()->userTimeAndDate(
 			$this->row->log_timestamp, $this->list->getUser() ) );
 		$title = Title::makeTitle( $this->row->log_namespace, $this->row->log_title );
-		$formatter = LogFormatter::newFromRow( $this->row );
+		$services = MediaWikiServices::getInstance();
+		$formatter = $services->getLogFormatterFactory()->newFromRow( $this->row );
 		$formatter->setContext( $this->list->getContext() );
 		$formatter->setAudience( LogFormatter::FOR_THIS_USER );
 
 		// Log link for this page
-		$loglink = MediaWikiServices::getInstance()->getLinkRenderer()->makeLink(
+		$loglink = $services->getLinkRenderer()->makeLink(
 			SpecialPage::getTitleFor( 'Log' ),
 			$this->list->msg( 'log' )->text(),
 			[],

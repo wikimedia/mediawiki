@@ -2706,7 +2706,8 @@ return [
 			$services->getArchivedRevisionLookup(),
 			$services->getRestrictionStore(),
 			$services->getLinkTargetLookup(),
-			$services->getRedirectStore()
+			$services->getRedirectStore(),
+			$services->getLogFormatterFactory()
 		);
 	},
 

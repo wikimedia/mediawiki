@@ -37,6 +37,7 @@ class RevDelLogList extends RevDelList {
 
 	/** @var CommentStore */
 	private $commentStore;
+	private LogFormatterFactory $logFormatterFactory;
 
 	/**
 	 * @internal Use RevisionDeleter
@@ -45,16 +46,19 @@ class RevDelLogList extends RevDelList {
 	 * @param array $ids
 	 * @param LBFactory $lbFactory
 	 * @param CommentStore $commentStore
+	 * @param LogFormatterFactory $logFormatterFactory
 	 */
 	public function __construct(
 		IContextSource $context,
 		PageIdentity $page,
 		array $ids,
 		LBFactory $lbFactory,
-		CommentStore $commentStore
+		CommentStore $commentStore,
+		LogFormatterFactory $logFormatterFactory
 	) {
 		parent::__construct( $context, $page, $ids, $lbFactory );
 		$this->commentStore = $commentStore;
+		$this->logFormatterFactory = $logFormatterFactory;
 	}
 
 	public function getType() {
@@ -129,7 +133,8 @@ class RevDelLogList extends RevDelList {
 			$this,
 			$row,
 			$this->commentStore,
-			MediaWikiServices::getInstance()->getConnectionProvider()
+			MediaWikiServices::getInstance()->getConnectionProvider(),
+			$this->logFormatterFactory
 		);
 	}
 

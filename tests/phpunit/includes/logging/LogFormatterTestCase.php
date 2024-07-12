@@ -6,7 +6,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
@@ -26,18 +25,18 @@ abstract class LogFormatterTestCase extends MediaWikiLangTestCase {
 		RequestContext::resetMain();
 		$row = $this->expandDatabaseRow( $row, $this->isLegacy( $extra ) );
 
+		$services = $this->getServiceContainer();
 		$userGroups = (array)$userGroups;
-		$userRights = MediaWikiServices::getInstance()->getGroupPermissionsLookup()->getGroupPermissions( $userGroups );
+		$userRights = $services->getGroupPermissionsLookup()->getGroupPermissions( $userGroups );
 		$context = new RequestContext();
 		$authority = $this->mockRegisteredAuthorityWithPermissions( $userRights );
 		$context->setAuthority( $authority );
 		$context->setLanguage( 'en' );
 
-		$formatter = LogFormatter::newFromRow( $row );
+		$formatter = $services->getLogFormatterFactory()->newFromRow( $row );
 		$formatter->setContext( $context );
 
 		// Create a LinkRenderer without LinkCache to avoid DB access
-		$services = $this->getServiceContainer();
 		$realLinkRenderer = new LinkRenderer(
 			$services->getTitleFormatter(),
 			$this->createMock( LinkCache::class ),
