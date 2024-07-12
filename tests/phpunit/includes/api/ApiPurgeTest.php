@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Api;
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 
@@ -78,6 +79,45 @@ class ApiPurgeTest extends ApiTestCase {
 		[ $data ] = $this->doApiRequest( [
 			'action' => 'purge',
 			'titles' => "$page1|$page2"
+		], null, false, $authority );
+
+		$this->assertNotEmpty( $data['warnings']['purge']['warnings'] );
+		$warnings = $data['warnings']['purge']['warnings'];
+
+		$this->assertStringContainsString( 'exceeded your rate limit', $warnings );
+	}
+
+	public function testAuthorizeRateLimit() {
+		$page1 = 'TestPage1';
+		$page2 = 'TestPage2';
+		$this->getExistingTestPage( $page1 );
+		$this->getExistingTestPage( $page2 );
+
+		$authority = $this->getTestUser()->getAuthority();
+
+		// purge is limited, linkpurge is not limited
+		$this->overrideConfigValue( MainConfigNames::RateLimits,
+			[ 'purge' => [ '&can-bypass' => false, 'user' => [ 1, 60 ] ] ]
+		);
+		[ $data ] = $this->doApiRequest( [
+			'action' => 'purge',
+			'titles' => "$page1|$page2",
+			'forcelinkupdate' => '',
+		], null, false, $authority );
+
+		$this->assertNotEmpty( $data['warnings']['purge']['warnings'] );
+		$warnings = $data['warnings']['purge']['warnings'];
+
+		$this->assertStringContainsString( 'exceeded your rate limit', $warnings );
+
+		// purge is not limited, linkpurge is limited
+		$this->overrideConfigValue( MainConfigNames::RateLimits,
+			[ 'linkpurge' => [ '&can-bypass' => false, 'user' => [ 1, 60 ] ] ]
+		);
+		[ $data ] = $this->doApiRequest( [
+			'action' => 'purge',
+			'titles' => "$page1|$page2",
+			'forcelinkupdate' => '',
 		], null, false, $authority );
 
 		$this->assertNotEmpty( $data['warnings']['purge']['warnings'] );
