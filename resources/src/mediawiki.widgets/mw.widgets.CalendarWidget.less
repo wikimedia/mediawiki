@@ -167,66 +167,66 @@
 .mw-widget-calendarWidget-day,
 .mw-widget-calendarWidget-day-heading {
 	// 7x7 grid
-	width: @calendarWidth / 7;
-	line-height: @calendarHeight / 7;
+	width: (@calendarWidth / 7);
+	line-height: (@calendarHeight / 7);
 
 	// Don't overlap the hacked-up fake box-shadow border we get when focussed
 	&:nth-child( 7n ) {
-		width: @calendarWidth / 7 - 0.2em;
+		width: (@calendarWidth / 7 - 0.2em);
 		margin-right: 0.2em;
 	}
 
 	&:nth-child( 7n+1 ) {
-		width: @calendarWidth / 7 - 0.2em;
+		width: (@calendarWidth / 7 - 0.2em);
 		margin-left: 0.2em;
 	}
 
 	&:nth-child( 42 ) ~ & {
-		line-height: @calendarHeight / 7 - 0.2em;
+		line-height: (@calendarHeight / 7 - 0.2em);
 		margin-bottom: 0.2em;
 	}
 }
 
 .mw-widget-calendarWidget-month {
 	// 2x6 grid
-	width: @calendarWidth / 2;
-	line-height: @calendarHeight / 6;
+	width: (@calendarWidth / 2);
+	line-height: (@calendarHeight / 6);
 
 	// Don't overlap the hacked-up fake box-shadow border we get when focussed
 	&:nth-child( 2n ) {
-		width: @calendarWidth / 2 - 0.2em;
+		width: (@calendarWidth / 2 - 0.2em);
 		margin-right: 0.2em;
 	}
 
 	&:nth-child( 2n+1 ) {
-		width: @calendarWidth / 2 - 0.2em;
+		width: (@calendarWidth / 2 - 0.2em);
 		margin-left: 0.2em;
 	}
 
 	&:nth-child( 10 ) ~ & {
-		line-height: @calendarHeight / 6 - 0.2em;
+		line-height: (@calendarHeight / 6 - 0.2em);
 		margin-bottom: 0.2em;
 	}
 }
 
 .mw-widget-calendarWidget-year {
 	// 5x4 grid
-	width: @calendarWidth / 5;
-	line-height: @calendarHeight / 4;
+	width: (@calendarWidth / 5);
+	line-height: (@calendarHeight / 4);
 
 	// Don't overlap the hacked-up fake box-shadow border we get when focussed
 	&:nth-child( 5n ) {
-		width: @calendarWidth / 5 - 0.2em;
+		width: (@calendarWidth / 5 - 0.2em);
 		margin-right: 0.2em;
 	}
 
 	&:nth-child( 5n+1 ) {
-		width: @calendarWidth / 5 - 0.2em;
+		width: (@calendarWidth / 5 - 0.2em);
 		margin-left: 0.2em;
 	}
 
 	&:nth-child( 15 ) ~ & {
-		line-height: @calendarHeight / 4 - 0.2em;
+		line-height: (@calendarHeight / 4 - 0.2em);
 		margin-bottom: 0.2em;
 	}
 }
