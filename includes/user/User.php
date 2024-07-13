@@ -33,7 +33,6 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\SystemBlock;
-use MediaWiki\Cache\UserCache;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
@@ -888,7 +887,8 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 * @return string|false The corresponding username
 	 */
 	public static function whoIs( $id ) {
-		return UserCache::singleton()->getProp( $id, 'name' );
+		return MediaWikiServices::getInstance()->getUserCache()
+			->getProp( $id, 'name' );
 	}
 
 	/**
@@ -899,7 +899,8 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 * @return string|false The corresponding user's real name
 	 */
 	public static function whoIsReal( $id ) {
-		return UserCache::singleton()->getProp( $id, 'real_name' );
+		return MediaWikiServices::getInstance()->getUserCache()
+			->getProp( $id, 'real_name' );
 	}
 
 	/**
