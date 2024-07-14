@@ -45,7 +45,7 @@ abstract class FormAction extends Action {
 	/**
 	 * Add pre- or post-text to the form
 	 * @stable to override
-	 * @return string HTML which will be sent to $form->addPreText()
+	 * @return string HTML which will be sent to $form->addPreHtml()
 	 */
 	protected function preText() {
 		return '';
@@ -109,8 +109,8 @@ abstract class FormAction extends Action {
 			$form->addHiddenField( 'redirectparams', wfArrayToCgi( $params ) );
 		}
 
-		$form->addPreText( $this->preText() );
-		$form->addPostText( $this->postText() );
+		$form->addPreHtml( $this->preText() );
+		$form->addPostHtml( $this->postText() );
 		$this->alterForm( $form );
 
 		// Give hooks a chance to alter the form, adding extra fields or text etc
