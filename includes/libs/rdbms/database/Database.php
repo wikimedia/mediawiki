@@ -779,14 +779,6 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		$this->lastEmulatedAffectedRows = null;
 		$this->lastEmulatedInsertId = null;
 
-		if ( $isPermWrite ) {
-			$this->lastWriteTime = $startTime;
-			$this->transactionManager->transactionWritingIn(
-				$this->getServerName(),
-				$this->getDomainID()
-			);
-		}
-
 		$status = $this->doSingleStatementQuery( $cStatement );
 
 		// End profile section
@@ -803,13 +795,21 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		$this->lastQueryAffectedRows = $affectedRowCount;
 
 		if ( $status->res !== false ) {
-			if ( $isPermWrite && $this->trxLevel() ) {
-				$this->transactionManager->updateTrxWriteQueryReport(
-					$sql->getSQL(),
-					$queryRuntime,
-					$affectedRowCount,
-					$fname
-				);
+			if ( $isPermWrite ) {
+				$this->lastWriteTime = $startTime;
+				if ( $this->trxLevel() ) {
+					$this->transactionManager->transactionWritingIn(
+						$this->getServerName(),
+						$this->getDomainID(),
+						$startTime
+					);
+					$this->transactionManager->updateTrxWriteQueryReport(
+						$sql->getSQL(),
+						$queryRuntime,
+						$affectedRowCount,
+						$fname
+					);
+				}
 			}
 		}
 

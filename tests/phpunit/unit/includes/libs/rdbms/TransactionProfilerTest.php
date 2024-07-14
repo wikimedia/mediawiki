@@ -21,7 +21,7 @@ class TransactionProfilerTest extends TestCase {
 		$tp->setLogger( $logger );
 		$tp->setExpectation( 'maxAffected', 100, __METHOD__ );
 
-		$tp->transactionWritingIn( 'srv1', 'db1', '123' );
+		$tp->transactionWritingIn( 'srv1', 'db1', '123', $now );
 		$tp->recordQueryCompletion( "SQL 1", $now - 3, true, 200, '1' );
 		$tp->recordQueryCompletion( "SQL 2", $now - 3, true, 200, '1' );
 		$tp->transactionWritingOut( 'srv1', 'db1', '123', 1, 400 );
@@ -38,7 +38,7 @@ class TransactionProfilerTest extends TestCase {
 		$tp->setLogger( $logger );
 		$tp->setExpectation( 'readQueryTime', 5, __METHOD__ );
 
-		$tp->transactionWritingIn( 'srv1', 'db1', '123' );
+		$tp->transactionWritingIn( 'srv1', 'db1', '123', $now );
 		$tp->recordQueryCompletion( "SQL 1", $now - 10, false, 1, '1' );
 		$tp->recordQueryCompletion( "SQL 2", $now - 10, false, 1, '1' );
 		$tp->transactionWritingOut( 'srv1', 'db1', '123', 0, 0 );
@@ -55,7 +55,7 @@ class TransactionProfilerTest extends TestCase {
 		$tp->setLogger( $logger );
 		$tp->setExpectation( 'writeQueryTime', 5, __METHOD__ );
 
-		$tp->transactionWritingIn( 'srv1', 'db1', '123' );
+		$tp->transactionWritingIn( 'srv1', 'db1', '123', $now );
 		$tp->recordQueryCompletion( "SQL 1", $now - 10, true, 1, '1' );
 		$tp->recordQueryCompletion( "SQL 2", $now - 10, true, 1, '1' );
 		$tp->transactionWritingOut( 'srv1', 'db1', '123', 20, 1 );
@@ -71,7 +71,7 @@ class TransactionProfilerTest extends TestCase {
 		$tp->setLogger( $logger );
 		$tp->setExpectation( 'maxAffected', 100, __METHOD__ );
 
-		$tp->transactionWritingIn( 'srv1', 'db1', '123' );
+		$tp->transactionWritingIn( 'srv1', 'db1', '123', $now );
 		$tp->transactionWritingOut( 'srv1', 'db1', '123', 1, 200 );
 	}
 
@@ -86,7 +86,7 @@ class TransactionProfilerTest extends TestCase {
 		$tp->setLogger( $logger );
 		$tp->setExpectation( 'writeQueryTime', 5, __METHOD__ );
 
-		$tp->transactionWritingIn( 'srv1', 'db1', '123' );
+		$tp->transactionWritingIn( 'srv1', 'db1', '123', $now );
 		$tp->transactionWritingOut( 'srv1', 'db1', '123', 10, 1 );
 	}
 
@@ -156,7 +156,7 @@ class TransactionProfilerTest extends TestCase {
 		$tp->recordQueryCompletion( "SQL 3", $now - 0.01, false, 0, '1' );
 		$tp->recordQueryCompletion( "SQL 4", $now - 0.01, false, 0, '1' );
 
-		$tp->transactionWritingIn( 'srv1', 'db1', '123' );
+		$tp->transactionWritingIn( 'srv1', 'db1', '123', $now );
 		$tp->recordQueryCompletion( "SQL 1w", $now - 0.01, true, 2, '1' );
 		$tp->recordQueryCompletion( "SQL 2w", $now - 0.01, true, 5, '1' );
 		$tp->recordQueryCompletion( "SQL 3w", $now - 0.01, true, 3, '1' );
@@ -180,7 +180,7 @@ class TransactionProfilerTest extends TestCase {
 		$scope = $tp->silenceForScope();
 
 		$tp->recordConnection( 'srv1', 'enwiki', true );
-		$tp->transactionWritingIn( 'srv1', 'db1', '123' );
+		$tp->transactionWritingIn( 'srv1', 'db1', '123', $now );
 		$tp->recordConnection( 'srv2', 'enwiki', false );
 		$tp->recordConnection( 'srv3', 'enwiki', false );
 		$tp->recordQueryCompletion( "SQL 1", $now - 10, true, 1, '1' );
@@ -206,7 +206,7 @@ class TransactionProfilerTest extends TestCase {
 
 		$scope = $tp->silenceForScope();
 		$tp->recordConnection( 'srv1', 'enwiki', true );
-		$tp->transactionWritingIn( 'srv1', 'db1', '123' );
+		$tp->transactionWritingIn( 'srv1', 'db1', '123', $now );
 		$tp->recordConnection( 'srv2', 'enwiki', false );
 		$tp->recordConnection( 'srv3', 'enwiki', false );
 		$tp->recordQueryCompletion( "SQL 1", $now - 10, true, 1, '1' );

@@ -90,8 +90,6 @@ class TransactionManager {
 
 	/** @var string|null Name of the function that start the last transaction */
 	private $trxFname = null;
-	/** @var bool Whether possible write queries were done in the last transaction started */
-	private $trxDoneWrites = false;
 	/** @var int Counter for atomic savepoint identifiers (reset with each transaction) */
 	private $trxAtomicCounter = 0;
 
@@ -150,7 +148,6 @@ class TransactionManager {
 		$this->trxAutomatic = ( $mode === IDatabase::TRANSACTION_INTERNAL );
 		$this->trxAutomaticAtomic = false;
 		$this->trxFname = $fname;
-		$this->trxDoneWrites = false;
 		$this->trxAtomicCounter = 0;
 		$this->trxTimestamp = microtime( true );
 		$this->trxRoundTripDelay = $rtt;
@@ -333,7 +330,7 @@ class TransactionManager {
 	public function pendingWriteQueryDuration( $type = IDatabase::ESTIMATE_TOTAL ) {
 		if ( !$this->trxLevel() ) {
 			return false;
-		} elseif ( !$this->trxDoneWrites ) {
+		} elseif ( !$this->trxWriteCallers ) {
 			return 0.0;
 		}
 
@@ -578,28 +575,28 @@ class TransactionManager {
 	}
 
 	public function writesPending() {
-		return $this->trxLevel() && $this->trxDoneWrites;
+		return $this->trxLevel() && $this->trxWriteCallers;
 	}
 
 	public function onDestruct() {
-		if ( $this->trxLevel() && $this->trxDoneWrites ) {
+		if ( $this->trxLevel() && $this->trxWriteCallers ) {
 			trigger_error( "Uncommitted DB writes (transaction from {$this->trxFname})" );
 		}
 	}
 
-	public function transactionWritingIn( $serverName, $domainId ) {
-		if ( $this->trxLevel() && !$this->trxDoneWrites ) {
-			$this->trxDoneWrites = true;
+	public function transactionWritingIn( $serverName, $domainId, float $startTime ) {
+		if ( !$this->trxWriteCallers ) {
 			$this->profiler->transactionWritingIn(
 				$serverName,
 				$domainId,
-				(string)$this->trxId
+				(string)$this->trxId,
+				$startTime
 			);
 		}
 	}
 
 	public function transactionWritingOut( IDatabase $db, $oldId ) {
-		if ( $this->trxDoneWrites ) {
+		if ( $this->trxWriteCallers ) {
 			$this->profiler->transactionWritingOut(
 				$db->getServerName(),
 				$db->getDomainID(),
@@ -839,7 +836,7 @@ class TransactionManager {
 
 	public function writesOrCallbacksPending(): bool {
 		return $this->trxLevel() && (
-				$this->trxDoneWrites ||
+				$this->trxWriteCallers ||
 				$this->trxPostCommitOrIdleCallbacks ||
 				$this->trxPreCommitOrIdleCallbacks ||
 				$this->trxEndCallbacks ||
@@ -906,7 +903,7 @@ class TransactionManager {
 		$lastWriteTime = null;
 		$oldTrxId = $this->consumeTrxId();
 		$this->setTrxStatusToNone();
-		if ( $this->trxDoneWrites ) {
+		if ( $this->trxWriteCallers ) {
 			$lastWriteTime = microtime( true );
 			$this->transactionWritingOut( $db, (string)$oldTrxId );
 		}
