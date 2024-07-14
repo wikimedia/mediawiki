@@ -28,7 +28,10 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Title\MalformedTitleException;
+use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleParser;
 use MediaWiki\User\User;
 
 /**
@@ -37,6 +40,19 @@ use MediaWiki\User\User;
  * @since 1.25
  */
 class BlockLogFormatter extends LogFormatter {
+	private TitleParser $titleParser;
+	private NamespaceInfo $namespaceInfo;
+
+	public function __construct(
+		LogEntry $entry,
+		TitleParser $titleParser,
+		NamespaceInfo $namespaceInfo
+	) {
+		parent::__construct( $entry );
+		$this->titleParser = $titleParser;
+		$this->namespaceInfo = $namespaceInfo;
+	}
+
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
 
@@ -165,13 +181,16 @@ class BlockLogFormatter extends LogFormatter {
 		$preload = [];
 		// Preload user page for non-autoblocks
 		if ( substr( $title->getText(), 0, 1 ) !== '#' && $title->canExist() ) {
-			$preload[] = $title->getTalkPage();
+			$preload[] = $this->namespaceInfo->getTalkPage( $title );
 		}
 		// Preload page restriction
 		$params = $this->extractParameters();
 		if ( isset( $params[6]['pages'] ) ) {
 			foreach ( $params[6]['pages'] as $page ) {
-				$preload[] = Title::newFromText( $page );
+				try {
+					$preload[] = $this->titleParser->parseTitle( $page );
+				} catch ( MalformedTitleException $_ ) {
+				}
 			}
 		}
 		return $preload;

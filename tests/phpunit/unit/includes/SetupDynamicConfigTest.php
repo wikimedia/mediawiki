@@ -763,15 +763,15 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 				$testObj->assertSame( 'newuserlogpage', $vars[MainConfigNames::LogNames]['newusers'] );
 				$testObj->assertSame( 'newuserlogpagetext', $vars[MainConfigNames::LogHeaders]['newusers'] );
 				$testObj->assertSame( NewUsersLogFormatter::class,
-					$vars[MainConfigNames::LogActionsHandlers]['newusers/newusers'] );
+					$vars[MainConfigNames::LogActionsHandlers]['newusers/newusers']['class'] );
 				$testObj->assertSame( NewUsersLogFormatter::class,
-					$vars[MainConfigNames::LogActionsHandlers]['newusers/create'] );
+					$vars[MainConfigNames::LogActionsHandlers]['newusers/create']['class'] );
 				$testObj->assertSame( NewUsersLogFormatter::class,
-					$vars[MainConfigNames::LogActionsHandlers]['newusers/create2'] );
+					$vars[MainConfigNames::LogActionsHandlers]['newusers/create2']['class'] );
 				$testObj->assertSame( NewUsersLogFormatter::class,
-					$vars[MainConfigNames::LogActionsHandlers]['newusers/byemail'] );
+					$vars[MainConfigNames::LogActionsHandlers]['newusers/byemail']['class'] );
 				$testObj->assertSame( NewUsersLogFormatter::class,
-					$vars[MainConfigNames::LogActionsHandlers]['newusers/autocreate'] );
+					$vars[MainConfigNames::LogActionsHandlers]['newusers/autocreate']['class'] );
 
 				return $expectedDefault;
 			},

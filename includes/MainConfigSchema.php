@@ -11972,9 +11972,27 @@ class MainConfigSchema {
 	 */
 	public const LogActionsHandlers = [
 		'default' => [
-			'block/block' => BlockLogFormatter::class,
-			'block/reblock' => BlockLogFormatter::class,
-			'block/unblock' => BlockLogFormatter::class,
+			'block/block' => [
+				'class' => BlockLogFormatter::class,
+				'services' => [
+					'TitleParser',
+					'NamespaceInfo',
+				]
+			],
+			'block/reblock' => [
+				'class' => BlockLogFormatter::class,
+				'services' => [
+					'TitleParser',
+					'NamespaceInfo',
+				]
+			],
+			'block/unblock' => [
+				'class' => BlockLogFormatter::class,
+				'services' => [
+					'TitleParser',
+					'NamespaceInfo',
+				]
+			],
 			'contentmodel/change' => ContentModelLogFormatter::class,
 			'contentmodel/new' => ContentModelLogFormatter::class,
 			'delete/delete' => DeleteLogFormatter::class,
@@ -11992,22 +12010,74 @@ class MainConfigSchema {
 			'managetags/create' => LogFormatter::class,
 			'managetags/deactivate' => LogFormatter::class,
 			'managetags/delete' => LogFormatter::class,
-			'merge/merge' => MergeLogFormatter::class,
-			'move/move' => MoveLogFormatter::class,
-			'move/move_redir' => MoveLogFormatter::class,
+			'merge/merge' => [
+				'class' => MergeLogFormatter::class,
+				'services' => [
+					'TitleParser',
+				]
+			],
+			'move/move' => [
+				'class' => MoveLogFormatter::class,
+				'services' => [
+					'TitleParser',
+				]
+			],
+			'move/move_redir' => [
+				'class' => MoveLogFormatter::class,
+				'services' => [
+					'TitleParser',
+				]
+			],
 			'patrol/patrol' => PatrolLogFormatter::class,
 			'patrol/autopatrol' => PatrolLogFormatter::class,
-			'protect/modify' => ProtectLogFormatter::class,
-			'protect/move_prot' => ProtectLogFormatter::class,
-			'protect/protect' => ProtectLogFormatter::class,
-			'protect/unprotect' => ProtectLogFormatter::class,
-			'renameuser/renameuser' => RenameuserLogFormatter::class,
+			'protect/modify' => [
+				'class' => ProtectLogFormatter::class,
+				'services' => [
+					'TitleParser',
+				]
+			],
+			'protect/move_prot' => [
+				'class' => ProtectLogFormatter::class,
+				'services' => [
+					'TitleParser',
+				]
+			],
+			'protect/protect' => [
+				'class' => ProtectLogFormatter::class,
+				'services' => [
+					'TitleParser',
+				]
+			],
+			'protect/unprotect' => [
+				'class' => ProtectLogFormatter::class,
+				'services' => [
+					'TitleParser',
+				]
+			],
+			'renameuser/renameuser' => [
+				'class' => RenameuserLogFormatter::class,
+				'services' => [
+					'TitleParser',
+				]
+			],
 			'rights/autopromote' => RightsLogFormatter::class,
 			'rights/rights' => RightsLogFormatter::class,
-			'suppress/block' => BlockLogFormatter::class,
+			'suppress/block' => [
+				'class' => BlockLogFormatter::class,
+				'services' => [
+					'TitleParser',
+					'NamespaceInfo',
+				]
+			],
 			'suppress/delete' => DeleteLogFormatter::class,
 			'suppress/event' => DeleteLogFormatter::class,
-			'suppress/reblock' => BlockLogFormatter::class,
+			'suppress/reblock' => [
+				'class' => BlockLogFormatter::class,
+				'services' => [
+					'TitleParser',
+					'NamespaceInfo',
+				]
+			],
 			'suppress/revision' => DeleteLogFormatter::class,
 			'tag/update' => TagLogFormatter::class,
 			'upload/overwrite' => UploadLogFormatter::class,

@@ -321,11 +321,36 @@ if ( $wgNewUserLog ) {
 	$wgLogTypes[] = 'newusers';
 	$wgLogNames['newusers'] = 'newuserlogpage';
 	$wgLogHeaders['newusers'] = 'newuserlogpagetext';
-	$wgLogActionsHandlers['newusers/newusers'] = NewUsersLogFormatter::class;
-	$wgLogActionsHandlers['newusers/create'] = NewUsersLogFormatter::class;
-	$wgLogActionsHandlers['newusers/create2'] = NewUsersLogFormatter::class;
-	$wgLogActionsHandlers['newusers/byemail'] = NewUsersLogFormatter::class;
-	$wgLogActionsHandlers['newusers/autocreate'] = NewUsersLogFormatter::class;
+	$wgLogActionsHandlers['newusers/newusers'] = [
+		'class' => NewUsersLogFormatter::class,
+		'services' => [
+			'NamespaceInfo',
+		]
+	];
+	$wgLogActionsHandlers['newusers/create'] = [
+		'class' => NewUsersLogFormatter::class,
+		'services' => [
+			'NamespaceInfo',
+		]
+	];
+	$wgLogActionsHandlers['newusers/create2'] = [
+		'class' => NewUsersLogFormatter::class,
+		'services' => [
+			'NamespaceInfo',
+		]
+	];
+	$wgLogActionsHandlers['newusers/byemail'] = [
+		'class' => NewUsersLogFormatter::class,
+		'services' => [
+			'NamespaceInfo',
+		]
+	];
+	$wgLogActionsHandlers['newusers/autocreate'] = [
+		'class' => NewUsersLogFormatter::class,
+		'services' => [
+			'NamespaceInfo',
+		]
+	];
 }
 
 if ( $wgPageCreationLog ) {

@@ -2,11 +2,21 @@
 
 use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleParser;
 
 /**
  * LogFormatter for renameuser/renameuser logs
  */
 class RenameuserLogFormatter extends LogFormatter {
+	private TitleParser $titleParser;
+
+	public function __construct(
+		LogEntry $entry,
+		TitleParser $titleParser
+	) {
+		parent::__construct( $entry );
+		$this->titleParser = $titleParser;
+	}
 
 	/**
 	 * @inheritDoc
@@ -115,7 +125,7 @@ class RenameuserLogFormatter extends LogFormatter {
 			$newUserName = $params[4];
 		}
 
-		$title = Title::makeTitleSafe( NS_USER, $newUserName );
+		$title = $this->titleParser->makeTitleValueSafe( NS_USER, $newUserName );
 		if ( $title ) {
 			return [ $title ];
 		}

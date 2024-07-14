@@ -7500,9 +7500,9 @@ config-schema:
             Extensions with custom log types may add to this array.
     LogActionsHandlers:
         default:
-            block/block: BlockLogFormatter
-            block/reblock: BlockLogFormatter
-            block/unblock: BlockLogFormatter
+            block/block: { class: BlockLogFormatter, services: [TitleParser, NamespaceInfo] }
+            block/reblock: { class: BlockLogFormatter, services: [TitleParser, NamespaceInfo] }
+            block/unblock: { class: BlockLogFormatter, services: [TitleParser, NamespaceInfo] }
             contentmodel/change: ContentModelLogFormatter
             contentmodel/new: ContentModelLogFormatter
             delete/delete: DeleteLogFormatter
@@ -7520,22 +7520,22 @@ config-schema:
             managetags/create: LogFormatter
             managetags/deactivate: LogFormatter
             managetags/delete: LogFormatter
-            merge/merge: MergeLogFormatter
-            move/move: MoveLogFormatter
-            move/move_redir: MoveLogFormatter
+            merge/merge: { class: MergeLogFormatter, services: [TitleParser] }
+            move/move: { class: MoveLogFormatter, services: [TitleParser] }
+            move/move_redir: { class: MoveLogFormatter, services: [TitleParser] }
             patrol/patrol: PatrolLogFormatter
             patrol/autopatrol: PatrolLogFormatter
-            protect/modify: ProtectLogFormatter
-            protect/move_prot: ProtectLogFormatter
-            protect/protect: ProtectLogFormatter
-            protect/unprotect: ProtectLogFormatter
-            renameuser/renameuser: RenameuserLogFormatter
+            protect/modify: { class: ProtectLogFormatter, services: [TitleParser] }
+            protect/move_prot: { class: ProtectLogFormatter, services: [TitleParser] }
+            protect/protect: { class: ProtectLogFormatter, services: [TitleParser] }
+            protect/unprotect: { class: ProtectLogFormatter, services: [TitleParser] }
+            renameuser/renameuser: { class: RenameuserLogFormatter, services: [TitleParser] }
             rights/autopromote: RightsLogFormatter
             rights/rights: RightsLogFormatter
-            suppress/block: BlockLogFormatter
+            suppress/block: { class: BlockLogFormatter, services: [TitleParser, NamespaceInfo] }
             suppress/delete: DeleteLogFormatter
             suppress/event: DeleteLogFormatter
-            suppress/reblock: BlockLogFormatter
+            suppress/reblock: { class: BlockLogFormatter, services: [TitleParser, NamespaceInfo] }
             suppress/revision: DeleteLogFormatter
             tag/update: TagLogFormatter
             upload/overwrite: UploadLogFormatter

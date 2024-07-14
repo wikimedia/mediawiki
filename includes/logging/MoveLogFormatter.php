@@ -25,7 +25,9 @@
 
 use MediaWiki\Message\Message;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleParser;
 
 /**
  * This class formats move log entries.
@@ -33,13 +35,22 @@ use MediaWiki\Title\Title;
  * @since 1.19
  */
 class MoveLogFormatter extends LogFormatter {
+	private TitleParser $titleParser;
+
+	public function __construct(
+		LogEntry $entry,
+		TitleParser $titleParser
+	) {
+		parent::__construct( $entry );
+		$this->titleParser = $titleParser;
+	}
+
 	public function getPreloadTitles() {
 		$params = $this->extractParameters();
-		$title = Title::newFromText( $params[3] );
 
-		if ( $title !== null ) {
-			return [ $title ];
-		} else {
+		try {
+			return [ $this->titleParser->parseTitle( $params[3] ) ];
+		} catch ( MalformedTitleException $_ ) {
 			// namespace configuration may have changed to make $params[3] invalid (T370396);
 			// nothing to preload in this case
 			return [];

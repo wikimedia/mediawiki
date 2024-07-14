@@ -24,7 +24,7 @@
  */
 
 use MediaWiki\Message\Message;
-use MediaWiki\Title\Title;
+use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\User;
 
 /**
@@ -33,6 +33,16 @@ use MediaWiki\User\User;
  * @since 1.19
  */
 class NewUsersLogFormatter extends LogFormatter {
+	private NamespaceInfo $namespaceInfo;
+
+	public function __construct(
+		LogEntry $entry,
+		NamespaceInfo $namespaceInfo
+	) {
+		parent::__construct( $entry );
+		$this->namespaceInfo = $namespaceInfo;
+	}
+
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
 		$subtype = $this->entry->getSubtype();
@@ -64,7 +74,7 @@ class NewUsersLogFormatter extends LogFormatter {
 		$subtype = $this->entry->getSubtype();
 		if ( $subtype === 'create2' || $subtype === 'byemail' ) {
 			// add the user talk to LinkBatch for the userLink
-			return [ Title::makeTitle( NS_USER_TALK, $this->entry->getTarget()->getText() ) ];
+			return [ $this->namespaceInfo->getTalkPage( $this->entry->getTarget() ) ];
 		}
 
 		return [];

@@ -24,7 +24,9 @@
 
 use MediaWiki\Message\Message;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleParser;
 
 /**
  * This class formats merge log entries.
@@ -32,10 +34,24 @@ use MediaWiki\Title\Title;
  * @since 1.25
  */
 class MergeLogFormatter extends LogFormatter {
+	private TitleParser $titleParser;
+
+	public function __construct(
+		LogEntry $entry,
+		TitleParser $titleParser
+	) {
+		parent::__construct( $entry );
+		$this->titleParser = $titleParser;
+	}
+
 	public function getPreloadTitles() {
 		$params = $this->extractParameters();
 
-		return [ Title::newFromText( $params[3] ) ];
+		try {
+			return [ $this->titleParser->parseTitle( $params[3] ) ];
+		} catch ( MalformedTitleException $_ ) {
+		}
+		return [];
 	}
 
 	protected function getMessageParameters() {
