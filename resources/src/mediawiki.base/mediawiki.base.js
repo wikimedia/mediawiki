@@ -449,6 +449,7 @@ trackCallbacks.fire( mw.trackQueue );
  * Features like navigating to other wiki pages, previewing an edit
  * and editing itself – without a refresh – can then retrigger these
  * hooks accordingly to ensure everything still works as expected.
+ * See {@link Hook}.
  *
  * Example usage:
  * ```
@@ -474,8 +475,6 @@ trackCallbacks.fire( mw.trackQueue );
  *
  * The function signature for hooks can be considered [stable](https://www.mediawiki.org/wiki/Special:MyLanguage/Stable_interface_policy/Frontend).
  * See available global events below.
- *
- * @see {@link Hook}
  */
 
 var hooks = Object.create( null );
