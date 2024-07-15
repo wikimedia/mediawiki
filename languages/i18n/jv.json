@@ -2263,7 +2263,7 @@
 	"import-error-special": "Kaca \"$1\" ora kaimpor amarga kalebu ing mandhala aran mirunggan kang ora ngolèhaké ananing kaca.",
 	"import-error-invalid": "Kaca \"$1\" ora diimpor amarga jenengé ora trep kanggo wiki iki.",
 	"import-error-unserialize": "Révisi $2 saka kaca \"$1\" ora bisa diurutaké. Révisi iku dilapuraké supaya nganggo modhèl kontèn $3 kang diurutaké minangka $4.",
-	"import-options-wrong": "{{PLURAL:$2|Opsi|Opsi}} salah: <nowiki>$1</nowiki>",
+	"import-options-wrong": "{{PLURAL:$2|Opsi|Opsi}} salah:\n$1",
 	"import-rootpage-invalid": "Kaca wod iki sesirahé ora sah.",
 	"import-rootpage-nosubpage": "Mandhala aran \"$1\" ing kaca oyod ora marengaké anak kaca.",
 	"importlogpage": "Log impor",

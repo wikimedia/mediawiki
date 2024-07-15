@@ -1312,7 +1312,7 @@
 	"importstart": "ገጾችን በማስገባት ላይ ነው...",
 	"import-revision-count": "$1 {{PLURAL:$1|ዕትም|ዕትሞች}}",
 	"importnopages": "ለማስገባት ምንም ገጽ የለም።",
-	"importfailed": "ማስገባቱ አልተከናወነም፦ <nowiki>$1</nowiki>",
+	"importfailed": "ማስገባቱ አልተከናወነም፦\n$1",
 	"importunknownsource": "ያልታወቀ የማስገባት መነሻ አይነት",
 	"importcantopen": "የማስገባት ፋይል መክፈት አልተቻለም",
 	"importsuccess": "ማስገባቱ ጨረሰ!",

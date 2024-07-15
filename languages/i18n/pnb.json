@@ -1941,7 +1941,7 @@
 	"import-revision-count": "$1 {{PLURAL:$1|ریویژن}}",
 	"importnopages": "لانے آسطے کوئی صفحہ نئیں۔",
 	"imported-log-entries": "{{PLURAL:$1|لاگ انٹریلاگ انٹریاں}}!!لیاندی گئی $1 {{PLURAL:$1|لاگ انٹری}}.",
-	"importfailed": "لیانا فیل: <nowiki>$1</nowiki>",
+	"importfailed": "لیانا فیل:\n$1",
 	"importunknownsource": "انجان لیان سورس ٹائپ",
 	"importcantopen": "لیاندی گئی فائل نئیں کھولی جاسکی",
 	"importbadinterwiki": "بھیڑا انٹروکی لنک",

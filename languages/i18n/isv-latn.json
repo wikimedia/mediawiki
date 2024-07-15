@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
-			"IJzeren Jan"
+			"IJzeren Jan",
+			"Matma Rex"
 		]
 	},
 	"sunday": "nedělja",
@@ -2755,7 +2756,7 @@
 	"import-revision-count": "$1 {{PLURAL:$1|versija|versij}}",
 	"importnopages": "Nemaje stranic za importovanje.",
 	"imported-log-entries": "{{PLURAL:$1|Importovany jest $1 zapis|Importovane sut $1 zapisov}} v dnevniku.",
-	"importfailed": "Import ne udalo se: <nowiki>$1</nowiki>",
+	"importfailed": "Import ne udalo se:\n$1",
 	"importunknownsource": "Neznajemy tip importovanyh danyh",
 	"importnoprefix": "Nemaje ukazanoj medžuviki-prědstavky",
 	"importcantopen": "Otvorjenje importovanogo fajla ne udalo se.",
@@ -2779,7 +2780,7 @@
 	"import-error-invalid": "Stranica «$1» ne byla importovana, ibo nazva, pod ktoroju byla by importovana, jest nepravilna v tutoj viki.",
 	"import-error-unserialize": "Deserializacija versije $2 stranice «$1» ne udalo se. Soobčeno bylo, že ona upotrěbjaje model sodržanja $3, serializovany kako $4.",
 	"import-error-bad-location": "Versija $2, ktora upotrěbjaje model sodržanja $3, ne može byti zapisana kako «$1» v tutoj viki, ibo ov model ne poddrživaje se na toj stranici.",
-	"import-options-wrong": "{{PLURAL:$2|Nepravilna opcija|Nepravilne opcije}}: <nowiki>$1</nowiki>",
+	"import-options-wrong": "{{PLURAL:$2|Nepravilna opcija|Nepravilne opcije}}:\n$1",
 	"import-rootpage-invalid": "Ukazana korenna stranica imaje nepravilnu nazvu.",
 	"import-rootpage-nosubpage": "Imenny prostor «$1» korennoj stranice ne dopuščaje podstranice.",
 	"importlogpage": "Dnevnik importov",

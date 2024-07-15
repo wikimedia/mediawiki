@@ -2200,7 +2200,7 @@
 	"import-revision-count": "$1 {{PLURAL:$1|versijas|versija|versijas}}",
 	"importnopages": "Nav lapu, ko importēt.",
 	"imported-log-entries": "{{PLURAL:$1|Importētie|Importētais|Importētie}} $1 {{PLURAL:$1|reģistra ieraksti|reģistra ieraksts|reģistra ieraksti}}.",
-	"importfailed": "Importēšana neizdevās: <nowiki>$1</nowiki>",
+	"importfailed": "Importēšana neizdevās:\n$1",
 	"importunknownsource": "Nezināms importēšanas avota veids",
 	"importcantopen": "Nevarēja atvērt importējamo failu",
 	"importbadinterwiki": "Slikta starpviki saite",

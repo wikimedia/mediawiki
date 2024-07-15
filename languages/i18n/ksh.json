@@ -2165,7 +2165,7 @@
 	"import-error-invalid": "Di Sigg „$1“ weed nit empotehrt, weil dä Sigg iehre Name, woh se hen empotehrt wääde sull, nit jöltesch es.",
 	"import-error-unserialize": "De Väsjohn $2 vun dä Sigg „$1“ kunnt nit von serijäll ußjepack wääde. De Väsjohn sull Daate vun dä Zoot „$3“ änthallde un ußjepack „$4“ jävve.",
 	"import-error-bad-location": "De Väsjohn $2 mem Enhalldsmodäll $3 künne mer nit als Sigg „$1“ heh em Wikki faßjehallde wähde, weil dat Modäll vum Enhallt för di Sigg nit ongerschtöz weed.",
-	"import-options-wrong": "{{PLURAL:$2|En verkiehrte Aanjab|Verkiehrte Aanjabe|Kein verkiehrte Aanjabe}}: <nowiki>$1</nowiki>",
+	"import-options-wrong": "{{PLURAL:$2|En verkiehrte Aanjab|Verkiehrte Aanjabe|Kein verkiehrte Aanjabe}}:\n$1",
 	"import-rootpage-invalid": "Di aanjejovve Aanfangs_Sigg hät kein jölteje Övverschreff.",
 	"import-rootpage-nosubpage": "Em Appachtemang „$1“ vun dä Aanfangssig sin kein Ongersigge zohjelohße.",
 	"importlogpage": "Logbohch met emportehrte Sigge",

@@ -1719,7 +1719,7 @@
 	"importstart": "تاکدیمانی بي  تئ ریتینی حالا...",
 	"import-revision-count": "$1 {{PLURAL:$1|نخسه|نخسه}}",
 	"importnopages": "هیچ تاکدیمی په ایمپورت ئا نه اینت.",
-	"importfailed": "ایمپورت شکست وارت: <nowiki>$1</nowiki>",
+	"importfailed": "ایمپورت شکست وارت:\n$1",
 	"importunknownsource": "بُنریچی ئی رقم مئلوم نه اینت",
 	"importcantopen": "تاکدیمانی درون ریچی ئی ورَق پاچ نه بوت",
 	"importbadinterwiki": "بدئین انتیرویکی ئی لینک",

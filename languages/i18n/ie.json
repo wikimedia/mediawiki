@@ -1326,7 +1326,7 @@
 	"importstart": "Important págines...",
 	"importnopages": "Nequant págines por importar.",
 	"imported-log-entries": "Importat $1 {{PLURAL:$1|intrada de diarium|intradas de diarium}}.",
-	"importfailed": "Importation dessuccesset: <nowiki>$1</nowiki>",
+	"importfailed": "Importation dessuccesset:\n$1",
 	"importsuccess": "Importation terminat!",
 	"xml-error-string": "$1 in linea $2, col $3 (byte $4): $5",
 	"importlogpage": "Diarium de importation",

@@ -1874,7 +1874,7 @@
 	"import-error-invalid": "Seit \"$1\" woard net importiert, weil dene sei Noome ungültich ist.",
 	"import-error-unserialize": "Die Version $2 von der Seite \"$1\" konnt net de-serialisiert sin. Die Version woard zur Verwennung von der Inhaltsmodells $3 gemeldet, wo wie $4 serialisiert ist.",
 	"import-error-bad-location": "Die Version $2, wo das Inhaltsmodell $3 verwendt, kann uff dem Wiki net unner \"$1\" gespeichert sin, weil das Modell uff der Seit net unnerstützt weard.",
-	"import-options-wrong": "Falsche {{PLURAL:$2|Option|Optione}}: <nowiki>$1</nowiki>",
+	"import-options-wrong": "Falsche {{PLURAL:$2|Option|Optione}}:\n$1",
 	"import-rootpage-invalid": "Der oongebne Stammseitnoome ist ungültich.",
 	"import-rootpage-nosubpage": "Im Noomeraum \"$1\" von der Stammseit sind ken Unnerseite erlaubt.",
 	"importlogpage": "Import-Logbuch",

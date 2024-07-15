@@ -2576,7 +2576,7 @@
 	"import-error-special": "Síðan \"$1\" var ekki flutt inn því hún tilheyrir ákveðnu nafnrými sem leyfir ekki síður.",
 	"import-error-invalid": "Síðan \"$1\" var ekki flutt inn því nafnið sem hún yrði flutt á er ógilt á þessum wiki.",
 	"import-error-unserialize": "Ekki unnt að afraða útgáfu $2 af síðunni „$1“. Útgáfan var sögð nota innihaldslíkan $3 raðað sem $4.",
-	"import-options-wrong": "{{PLURAL:$2|Rangur möguleiki|Rangir möguleikar}}: <nowiki>$1</nowiki>",
+	"import-options-wrong": "{{PLURAL:$2|Rangur möguleiki|Rangir möguleikar}}:\n$1",
 	"import-rootpage-invalid": "Uppgefin móðursíða hefur ógildan titil.",
 	"import-rootpage-nosubpage": "Nafnrými „$1“ móðursíðunnar leyfir ekki undirsíður.",
 	"importlogpage": "Innflutningsskrá",

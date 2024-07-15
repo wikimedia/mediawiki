@@ -2277,7 +2277,7 @@
 	"import-error-invalid": "Strona \"$1\" njeje so importowała, dokelž mjeno, do kotrehož by so importowała, je njepłaćiwe w tutym wikiju.",
 	"import-error-unserialize": "Wersija $2 strony \"$1\" njeda so wotserializować. Wersija je so zdźěliła za wužiwanje wobsahoweho modela $3, kotryž je jako $4 serializowany.",
 	"import-error-bad-location": "Wersija $2, kotraž wobsahowy model $3 wužiwa, njeda so pod \"$1\" w tutym wikiju składować, dokelž so model na tutej stronje njepodpěruje.",
-	"import-options-wrong": "{{PLURAL:$2|Wopačna opcija|Wopačnej opciji|Wopačne opcije|Wopačne opcije}}: <nowiki>$1</nowiki>",
+	"import-options-wrong": "{{PLURAL:$2|Wopačna opcija|Wopačnej opciji|Wopačne opcije|Wopačne opcije}}:\n$1",
 	"import-rootpage-invalid": "Podata korjenjowa strona je njepłaćiwa.",
 	"import-rootpage-nosubpage": "Mjenowy rum \"$1\" korjenjoweje strony njedowola podstrony.",
 	"importlogpage": "Protokol importow",

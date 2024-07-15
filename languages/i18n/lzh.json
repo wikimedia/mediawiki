@@ -1662,7 +1662,7 @@
 	"import-revision-count": "有審$1",
 	"importnopages": "無可匯。",
 	"imported-log-entries": "已匯誌項有$1。",
-	"importfailed": "入匯有變：<nowiki>$1</nowiki>",
+	"importfailed": "入匯有變：\n$1",
 	"importunknownsource": "入類不明",
 	"importcantopen": "入未可啟",
 	"importbadinterwiki": "維基內鏈壞",

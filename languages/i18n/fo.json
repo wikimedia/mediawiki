@@ -1737,7 +1737,7 @@
 	"import-token-mismatch": "Misti setunardáta (sesjónsdáta).\nVinarliga royn aftur.",
 	"import-invalid-interwiki": "Tað ber ikki til at innflyta frá nevndu wiki.",
 	"import-error-edit": "Síðan \"$1\" varð ikki innflutt, tí at tú ikki hevur loyvi til at rætta hana.",
-	"import-options-wrong": "{{PLURAL:$2|Ikki loyvd innstilling|Ikki loyvdar innstillingar}}: <nowiki>$1</nowiki>",
+	"import-options-wrong": "{{PLURAL:$2|Ikki loyvd innstilling|Ikki loyvdar innstillingar}}:\n$1",
 	"importlogpage": "Innflutningsloggur.",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|versjón|versjónir}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|versjón|versjónir}} frá $2",

@@ -2078,7 +2078,7 @@
 	"import-error-invalid": "Asebtar « $1 » ur d-yekter ara acku isem-is ur yeɣbel ara.",
 	"import-error-unserialize": "Aceggeṛ $2 n usebtar « $1 » ur nezmer ara as n-ekkes amazrar ines. Aceggeṛ yetwamel am aken yetseqdac talɣa n ugbur $3 yesɛan amazrar s $4.",
 	"import-error-bad-location": "Tacaggart $2 yetseqdacen talɣa n ugbur $3 teṣer deg ukalas ɣef « $1 » ɣef wiki agi, acku talɣa agi ur tezmer ara att illi deg usebtar agi.",
-	"import-options-wrong": "Yir {{PLURAL:$2|afran|ifranen}} : <nowiki>$1</nowiki>",
+	"import-options-wrong": "Yir {{PLURAL:$2|afran|ifranen}} :\n$1",
 	"import-rootpage-invalid": "Asebtar aẓar id efkeḍ d-azwel ur ɣblen ara.",
 	"import-rootpage-nosubpage": "Tallunt n isemawen « $1 » n usebtar aẓar ur yeqbel ara adu-isebtar.",
 	"importlogpage": "Aɣmis n usekcam",

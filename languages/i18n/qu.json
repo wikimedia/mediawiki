@@ -1871,7 +1871,7 @@
 	"import-error-special": "\"$1\" sutiyuq p'anqaqa hawamanta manam chaskisqachu, mana p'anqapaq kaq sapaq suti k'itiman kapuspanmi.",
 	"import-error-invalid": "\"$1\" sutiyuq p'anqaqa hawamanta manam chaskisqachu, sutin mana allin kaptinmi.",
 	"import-error-unserialize": "\"$1\" nisqa p'anqapi $2 musuqchasqataqa manam ñiqirayta atinichu. Kay musuqchasqaqa $4 hina ñiqichasqa $3 kikinchatas llamk'achin.",
-	"import-options-wrong": "Pantasqa {{PLURAL:$2|akllasqa|akllasqakuna}}: <nowiki>$1</nowiki>",
+	"import-options-wrong": "Pantasqa {{PLURAL:$2|akllasqa|akllasqakuna}}:\n$1",
 	"import-rootpage-invalid": "Qusqa saphi p'anqaqa manam allin sutichu.",
 	"import-rootpage-nosubpage": "Saphi p'anqap \"$1\" sutisuyunpiqa urin p'anqakuna manam kanqachu.",
 	"importlogpage": "Hawamanta chaskiy hallch'a",

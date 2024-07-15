@@ -2771,7 +2771,7 @@
 	"import-error-invalid": "Pagina „$1” nu a fost importată deoarece numele sub care ar fi fost importată nu este valid pe acest wiki.",
 	"import-error-unserialize": "Versiunea $2 a paginii „$1” nu poate fi deserializată. Versiunea a fost raportată ca utilizând modelul de conținut $3 serializat ca $4.",
 	"import-error-bad-location": "Versiunea $2, care folosește modelul de conținut $3, nu a putut fi stocată în pagina „$1” de pe acest wiki, de vreme ce acel model nu este acceptat pe acea pagină.",
-	"import-options-wrong": "{{PLURAL:$2|Opțiune eronată|Opțiuni eronate}}: <nowiki>$1</nowiki>",
+	"import-options-wrong": "{{PLURAL:$2|Opțiune eronată|Opțiuni eronate}}:\n$1",
 	"import-rootpage-invalid": "Pagina rădăcină furnizată este un titlu nevalid.",
 	"import-rootpage-nosubpage": "Spațiul de nume „$1” al paginii rădăcină nu permite subpagini.",
 	"importlogpage": "Jurnal importuri",

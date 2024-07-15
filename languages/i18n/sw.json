@@ -1892,7 +1892,7 @@
 	"import-revision-count": "{{PLURAL:$1|pitio|mapitio}} $1",
 	"importnopages": "Hakuna kurasa za kuleta.",
 	"imported-log-entries": "Kumbukumbu $1 {{PLURAL:$1|ililetwa|zililetwa}}.",
-	"importfailed": "Kuleta hakufaulu: <nowiki>$1</nowiki>",
+	"importfailed": "Kuleta hakufaulu:\n$1",
 	"importunknownsource": "Aina ya kitu unacholeta haijulikani",
 	"importcantopen": "Faili lililoletwa halikuweza kufunguliwa",
 	"importbadinterwiki": "Kiungo kibovu kati za wiki",

@@ -2163,7 +2163,7 @@
 	"import-error-invalid": "La pàggina \"$1\" nun fu mpurtata pirchì lu nomu unni fussi mpurtata nun è vàlidu supra a sta wiki.",
 	"import-error-unserialize": "La virsioni $2 dâ pàggina \"$1\" nun si potti di-sirializzari. Era signatu chi sta virsioni adupirava lu mudellu di cuntinutu $3 sirializzatu comu $4.",
 	"import-error-bad-location": "La virsioni $2 chi adòpira lu mudellu di cuntinutu $3 nun si pò mimurizzari nta \"$1\" supra a sta wiki, pirchì ddu mudellu nun è suppurtatu nta dda pàggina.",
-	"import-options-wrong": "{{PLURAL:$2|Opzioni sbagghiata|Opzioni sbagghiati}}: <nowiki>$1</nowiki>",
+	"import-options-wrong": "{{PLURAL:$2|Opzioni sbagghiata|Opzioni sbagghiati}}:\n$1",
 	"import-rootpage-invalid": "La pàggina ràdica spicificata nun è vàlida comu tìtulu.",
 	"import-rootpage-nosubpage": "Lu namespace \"$1\" dâ pàggina ràdica nun cunzenti suttapàggini.",
 	"importlogpage": "Riggistru dî mpurtazzioni",

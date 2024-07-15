@@ -2848,7 +2848,7 @@
 	"import-error-invalid": "Trang “$1” không được nhập vì ứng với một tên tập tin không hợp lệ trên wiki này.",
 	"import-error-unserialize": "Không thể giải tuần tự hóa phiên bản $2 của trang “$1”. Tập tin kết xuất cho rằng phiên bản có kiểu nội dung $3 được tuần tự hóa theo định dạng $4.",
 	"import-error-bad-location": "Không thể lưu giữ phiên bản $2 với kiểu nội dung $3 vào “$1” trên wiki này vì trang này không hỗ trợ kiểu đó.",
-	"import-options-wrong": "{{PLURAL:$2|Tùy chọn|Các tùy chọn}} có vấn đề: <nowiki>$1</nowiki>",
+	"import-options-wrong": "{{PLURAL:$2|Tùy chọn|Các tùy chọn}} có vấn đề:\n$1",
 	"import-rootpage-invalid": "Trang đích không hợp lệ.",
 	"import-rootpage-nosubpage": "Không gian tên “$1” của trang gốc không cho phép các trang con.",
 	"importlogpage": "Nhật trình nhập trang",

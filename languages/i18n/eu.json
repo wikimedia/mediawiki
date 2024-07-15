@@ -2649,7 +2649,7 @@
 	"import-error-invalid": "\"$1\" orrialdea ez da inportatu horretarako dagokion izena ez delako baliagarria wiki honetan.",
 	"import-error-unserialize": "«$1» orriaren $2 berrikusketa ezin izan da deserializatu. Berrikusketa $4 gisa serializatutako $3 eduki eredua erabiltzeko izendatu da.",
 	"import-error-bad-location": "$3 eduki eredua erabiltzen duen $2 berrikusketak ezin da wiki honetako $1 lekuan bildu, orri horretan eredu hori ez delako onartzen.",
-	"import-options-wrong": "Aukera {{PLURAL:$2|ez-egokia|ez-egokiak}}:<nowiki>$1</nowiki>",
+	"import-options-wrong": "Aukera {{PLURAL:$2|ez-egokia|ez-egokiak}}:\n$1",
 	"import-rootpage-invalid": "Emandako jatorri orrialdea izenburu ez-baliagarria da.",
 	"import-rootpage-nosubpage": "Jatorri orrialdearen «$1» izen-tarteak ez du baimentzen azpi-orrialderik.",
 	"importlogpage": "Inportazio erregistroa",

@@ -2655,7 +2655,7 @@
 	"import-error-invalid": "Stránka „$1“ nebola importovaná, pretože názov, na ktorý by bola importovaná je na tejto wiki neplatný.",
 	"import-error-unserialize": "Nepodarilo sa deserializovať revíziu $2 stránky „$1“. Revízia mala používať model obsahu $3 serializovaný ako $4.",
 	"import-error-bad-location": "Revíziu $2 s modelom obsahu $3 nie je možné uložiť na \"$1\" na tejto wiki. Takýto model obsahu tu nie je podporovaný.",
-	"import-options-wrong": "{{PLURAL:$2|Nesprávna voľba|Nesprávne voľby}}: <nowiki>$1</nowiki>",
+	"import-options-wrong": "{{PLURAL:$2|Nesprávna voľba|Nesprávne voľby}}:\n$1",
 	"import-rootpage-invalid": "Uvedená koreňová stránka nie je platný názov stránky.",
 	"import-rootpage-nosubpage": "Menný priestor „$1“ koreňovej stránky nepodporuje podstránky.",
 	"importlogpage": "Záznam importov",

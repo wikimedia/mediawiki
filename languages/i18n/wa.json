@@ -1253,7 +1253,7 @@
 	"importstart": "Dj' enonde li ristitchaedje...",
 	"import-revision-count": "{{PLURAL:$1|1 modêye|$1 modêyes}}",
 	"importnopages": "Nole pådje a ristitchî.",
-	"importfailed": "Li ristitchaedje a fwait berwete: <nowiki>$1</nowiki>",
+	"importfailed": "Li ristitchaedje a fwait berwete:\n$1",
 	"importunknownsource": "Sourdant nén cnoxhou pol ristitchaedje",
 	"importcantopen": "Dji n' sai drovi l' fitchî a ristitchî",
 	"importbadinterwiki": "Cron loyén eterwiki",

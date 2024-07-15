@@ -2873,7 +2873,7 @@
 	"import-error-invalid": "A página \"$1\" não foi importada porque o nome para o qual seria importada é inválido nesta wiki.",
 	"import-error-unserialize": "Não foi possível anular a seriação da revisão $2 da página \"$1\". Foi reportado que a revisão usava o modelo de conteúdo $3, seriado como $4.",
 	"import-error-bad-location": "A revisão $2, que usa o modelo de conteúdo $3, não pode ser gravada em \"$1\" nesta wiki, porque o modelo não é suportado nessa página.",
-	"import-options-wrong": "{{PLURAL:$2|Opção errada|Opções erradas}}: <nowiki>$1</nowiki>",
+	"import-options-wrong": "{{PLURAL:$2|Opção errada|Opções erradas}}:\n$1",
 	"import-rootpage-invalid": "A página de raiz fornecida é um título inválido.",
 	"import-rootpage-nosubpage": "O domínio \"$1\" da página de raiz não permite subpáginas.",
 	"importlogpage": "Registo de importações",

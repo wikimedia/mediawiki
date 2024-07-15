@@ -1995,7 +1995,7 @@
 	"import-error-special": "Zied \"$1\" is niet in-evoerd umdat t eplaotst is in n spesiale naamruumte waor gien ziejen in eplaotst kunnen wörden.",
 	"import-error-invalid": "De zied\" \"$1\" is niet in-evoerd umdat de naam ongeldig is.",
 	"import-error-unserialize": "Versie $2 van de zied \"$1\" kon niet verwarkt wörden. De versie heurt inhoudsmodel $3 te gebruken mit n serialisasie as $4.",
-	"import-options-wrong": "Verkeerde {{PLURAL:$2|opsie|opsies}}: <nowiki>$1</nowiki>",
+	"import-options-wrong": "Verkeerde {{PLURAL:$2|opsie|opsies}}:\n$1",
 	"import-rootpage-invalid": "De op-egeven baosiszied is ongeldig.",
 	"import-rootpage-nosubpage": "In de naamruumte \"$1\" van de baosiszied is t anmaken van onderziejen niet meugelik.",
 	"importlogpage": "Importlogbook",

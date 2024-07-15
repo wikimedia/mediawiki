@@ -2247,7 +2247,7 @@
 	"import-error-special": "An pahina \"$1\" bakong importado nin huli ta ini kabali sa espesyal an espasyong-ngaran na dae nagtutugot nin mga pahina.",
 	"import-error-invalid": "An pahina \"$1\" bakong importado nin huli ta an ngaran kaini imbalido.",
 	"import-error-unserialize": "An rebisyon sa $2 kan pahina \"$1\" dae maseryalisado. An rebisyon pinagtala na gumamit nin modelong laman na $3 na seryalisado bilang $4.",
-	"import-options-wrong": "Salang {{PLURAL:$2|pagpipilian|mga pagpipilian}}: <nowiki>$1</nowiki>",
+	"import-options-wrong": "Salang {{PLURAL:$2|pagpipilian|mga pagpipilian}}:\n$1",
 	"import-rootpage-invalid": "An pinagtaong ugat na pahina sarong imbalidong titulo.",
 	"import-rootpage-nosubpage": "Espasyong-ngaran \"$1\" kan ugat na pahina dae minatugot nin pan-irarom na mga pahina.",
 	"importlogpage": "Usip nin pagpalaog",

@@ -2602,7 +2602,7 @@
 	"import-error-invalid": "N'eo ket bet enporzhiet ar bajenn \"$1\" rak direizh e vefe hec'h anv er wiki-mañ.",
 	"import-error-unserialize": "N'eus ket bet gallet distiradekaat stumm $2 ar bajenn \"$1\". Merket eo ar stumm evel unan a ra gant ar patrom danvez $3 stiradekaat evel $4.",
 	"import-error-bad-location": "N'eus ket bet gallet stokañ war \"$1\" ar wiki-mañ ar stumm $2 a ra gant ar patrom danvez $3. N'eo ket skoret ar patrom-se er bajenn-se.",
-	"import-options-wrong": "{{PLURAL:$2|Dibab fall|Dibaboù fall}}: <nowiki>$1</nowiki>",
+	"import-options-wrong": "{{PLURAL:$2|Dibab fall|Dibaboù fall}}:\n$1",
 	"import-rootpage-invalid": "Pourchas a ra ar bennbajenn un titl n'eo ket reizh.",
 	"import-rootpage-nosubpage": "Esaouenn anvioù \"$1\" eus ar bennpajenn ne aotre ket an ispajennoù.",
 	"importlogpage": "Marilh an enporzhiadennoù",

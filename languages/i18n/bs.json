@@ -2529,7 +2529,7 @@
 	"import-error-invalid": "Stranica \"$1\" nije uvezena jer je naziv pod kojim treba biti uvezena nije valjan na ovoj wiki.",
 	"import-error-unserialize": "Verzija $2 stranice $1 ne može biti pročitana, odnosno uvezena. Zapisano je da verzija koristi $3 tip sadržaja u $4 formatu.",
 	"import-error-bad-location": "Verzija $2 koja koristi model sadržaja $3 ne može se postaviti na stranicu \"$1\" ovog wikija, jer taj model sadržaja nije podržan na toj stranici.",
-	"import-options-wrong": "{{PLURAL:$2|Pogrešna opcija|Pogrešne opcije}}: <nowiki>$1</nowiki>",
+	"import-options-wrong": "{{PLURAL:$2|Pogrešna opcija|Pogrešne opcije}}:\n$1",
 	"import-rootpage-invalid": "Navedena osnovna stranica ima neispravan naslov.",
 	"import-rootpage-nosubpage": "Imenski prostor \"$1\" osnovne stranice ne dozvoljava podstranice.",
 	"importlogpage": "Zapisnik uvoza",

@@ -2151,7 +2151,7 @@
 	"import-revision-count": "$1 {{PLURAL:$1|پێداچوونەوە}}",
 	"importnopages": "ھیچ پەڕەیەک بۆ ھاوردن نییە.",
 	"imported-log-entries": "$1 {{PLURAL:$1|بابەتی لۆگ}} ھاوردە کرا.",
-	"importfailed": "ھاوردن سەرکەوتوو نەبوو: <nowiki>$1</nowiki>",
+	"importfailed": "ھاوردن سەرکەوتوو نەبوو:\n$1",
 	"importunknownsource": "جۆری سەرچاوەی هاوردن نەناسراوە",
 	"importcantopen": "پەڕگەی ھاوردن ناکرێتەوە",
 	"importbadinterwiki": "بەستەری نێوانویکیی خراپ",

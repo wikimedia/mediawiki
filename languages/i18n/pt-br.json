@@ -2904,7 +2904,7 @@
 	"import-error-invalid": "A página \"$1\" não pôde ser importada por seu nome ser inválido.",
 	"import-error-unserialize": "Revisão  $2  da página \" $1 \" não pôde ser desserializada. A revisão foi relatada para usar o modelo de conteúdo  $3  serializado como  $4",
 	"import-error-bad-location": "A revisão $2, que usa o modelo de conteúdo $3, não pode ser gravada em \"$1\" nesta wiki, pois o modelo não é suportado nessa página.",
-	"import-options-wrong": "{{PLURAL:$2|Opção com erro|Opções com erros}}: <nowiki>$1</nowiki>",
+	"import-options-wrong": "{{PLURAL:$2|Opção com erro|Opções com erros}}:\n$1",
 	"import-rootpage-invalid": "A página raiz dada é um título inválido.",
 	"import-rootpage-nosubpage": "O espaço nominal $1 da página principal não permite subpáginas.",
 	"importlogpage": "Registro de importações",

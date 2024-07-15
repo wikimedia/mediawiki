@@ -2167,7 +2167,7 @@
 	"import-error-special": "Die bladsy \"$1\" is nie geïmporteer nie omdat dit aan 'n spesiale naamruimte behoort waarin geen bladsye geplaas kan word nie.",
 	"import-error-invalid": "Die bladsy \"$1\" is nie geïmporteer nie omdat die naam ongeldig is.",
 	"import-error-unserialize": "Weergawe $2 van die bladsy \"$1\" kon nie verwerk word nie. Die weergawe hoort inhoudsmodel $3 te gebruik met 'n serialisasie van $4.",
-	"import-options-wrong": "Verkeerde {{PLURAL:$2|opsie|opsies}}: <nowiki>$1</nowiki>",
+	"import-options-wrong": "Verkeerde {{PLURAL:$2|opsie|opsies}}:\n$1",
 	"import-rootpage-invalid": "Die gespesifiseerde basisblad is ongeldig.",
 	"import-rootpage-nosubpage": "Die naamruimte \"$1\" van die basisblad laat nie subblaaie toe nie.",
 	"importlogpage": "Invoer logboek",

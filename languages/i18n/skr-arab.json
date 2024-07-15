@@ -4,6 +4,7 @@
 			"Amire80",
 			"BaRaN6161 TURK",
 			"BukhariSaeed",
+			"Matma Rex",
 			"Saraiki"
 		]
 	},
@@ -1884,7 +1885,7 @@
 	"importstart": "ورقے درآمد تھیندے پئے ہن۔۔۔",
 	"import-revision-count": "$1 {{PLURAL:$1|دہرائی|دہرائیاں}}",
 	"importnopages": "درآمد کرݨ کیتے کوئی ورقہ کائنی۔",
-	"importfailed": "درآمد ناکام: <nowiki>$1</nowiki>",
+	"importfailed": "درآمد ناکام:\n$1",
 	"importunknownsource": "نامعلوم برآمد ماخذ قسم",
 	"importnoprefix": "کوئی بین الوکی سابقہ فراہم کائنی کیتا ڳیا",
 	"importcantopen": "درآمد فائل کائنی کھُل سڳی۔",

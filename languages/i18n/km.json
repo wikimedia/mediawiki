@@ -2067,7 +2067,7 @@
 	"import-revision-count": "$1 {{PLURAL:$1|កំណែ}}",
 	"importnopages": "គ្មានទំព័រត្រូវនាំចូលទេ។",
 	"imported-log-entries": "បាននាំចូល{{PLURAL:$1|កំណត់ហេតុ|កំណត់ហេតុ}}ចំនួន$1។",
-	"importfailed": "ការនាំចូលមិនបានសម្រេច ៖ <nowiki>$1</nowiki>",
+	"importfailed": "ការនាំចូលមិនបានសម្រេច ៖\n$1",
 	"importunknownsource": "មិនស្គាល់ប្រភេទនៃប្រភពនាំចូល",
 	"importcantopen": "បើកឯកសារនាំចូលមិនបាន",
 	"importbadinterwiki": "តំណភ្ជាប់អន្តរវិគីមិនត្រឹមត្រូវ",

@@ -2041,7 +2041,7 @@
 	"import-error-special": "Ƚa pàgina \"$1\" no ƚa vien inportà parché ƚa apartien a un namespace speciaƚe che no 'l parmete pàgine.",
 	"import-error-invalid": "Ƚa pàgina \"$1\" no ƚa vien inportà parché el so nome no 'l xe vaƚido.",
 	"import-error-unserialize": "Ƚa version $2 de ƚa pàgina \"$1\" no ƚa pol esar de-seriaƚixà. Ƚa version ƚa xe sta segnaƚà par doparare el modèl de contegnùo $3 seriaƚixà cofà $4.",
-	"import-options-wrong": "{{PLURAL:$2|Opsion sbałià|Opsion sbałiae}}: <nowiki>$1</nowiki>",
+	"import-options-wrong": "{{PLURAL:$2|Opsion sbałià|Opsion sbałiae}}:\n$1",
 	"import-rootpage-invalid": "Ƚa pàgina prinsipaƚe fornìa no ƚa xe on tìtoƚo vaƚido.",
 	"import-rootpage-nosubpage": "El namespace \"$1\" de ƚa pàgina prinsipaƚe no 'l parmete de 'ver sotopagine.",
 	"importlogpage": "Inportasion",

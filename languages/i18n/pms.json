@@ -2638,7 +2638,7 @@
 	"import-error-invalid": "La pàgina «$1» a l'é pa stàita amportà përchè ël nòm sota 'l qual a sarìa stàita amportà a va nen bin su costa wiki.",
 	"import-error-unserialize": "La revision $2 dla pagina «$1» a peul pa esse desserialisà. La revision a l'era arportà përchè a deuvra ël model ëd contnù $3 serialisà com $4.",
 	"import-error-bad-location": "La revision $2, ch'a deuvra ël model ëd contnù $3 a peul nen esse guernà su «$1» su costa wiki, dagià che col model a l'é nen mantnù su cola pàgina.",
-	"import-options-wrong": "{{PLURAL:$2|Opsion|Opsion}} sbalià: <nowiki>$1</nowiki>",
+	"import-options-wrong": "{{PLURAL:$2|Opsion|Opsion}} sbalià:\n$1",
 	"import-rootpage-invalid": "La pàgina prinsipal dàita a l'é un tìtol pa bon.",
 	"import-rootpage-nosubpage": "Lë spassi nominal «$1» ëd la pàgina prinsipal a përmët pa dle sot-pagine.",
 	"importlogpage": "Registr dj'amportassion",

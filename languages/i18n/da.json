@@ -2606,7 +2606,7 @@
 	"import-error-invalid": "Siden \"$1\" blev ikke importeret, fordi det navn, som den ville være importeret til er ugyldigt på denne wiki.",
 	"import-error-unserialize": "Ændring $2 af siden \"$1\" kunne ikke afserialiseres. Ændringen brugte indholdsmodel $3 serialiseret som $4.",
 	"import-error-bad-location": "Version $2 der bruger indholdsmodellen $3 kan ikke gemmes på \"$1\" på denne wiki, da denne model ikke understøttes på denne side.",
-	"import-options-wrong": "{{PLURAL:$2|Ugyldig indstilling|Ugyldige indstillinger}}: <nowiki>$1</nowiki>",
+	"import-options-wrong": "{{PLURAL:$2|Ugyldig indstilling|Ugyldige indstillinger}}:\n$1",
 	"import-rootpage-invalid": "Den rodside der er angivet har en ugyldig titel.",
 	"import-rootpage-nosubpage": "Navnerummet \"$1\" tillader ikke undersider af rodsiderne.",
 	"importlogpage": "Importlog",

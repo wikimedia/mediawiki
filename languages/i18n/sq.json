@@ -2297,7 +2297,7 @@
 	"import-error-interwiki": "Faqja \"$1\" nuk është importuar sepse emri i saj është rezervuar për lidhje të jashtme (interwiki)",
 	"import-error-special": "Faqja \"$1\" nuk është importuar sepse ajo i përket një hapësire të veçantë që nuk lejon faqe.",
 	"import-error-invalid": "Faqja \"$1\" nuk është importuar sepse emri me të cilin do të importohej është i palejueshëm në këtë wiki.",
-	"import-options-wrong": "{{PLURAL:$2|Opsion i gabuar|Opsione të gabuara}}: <nowiki>$1</nowiki>",
+	"import-options-wrong": "{{PLURAL:$2|Opsion i gabuar|Opsione të gabuara}}:\n$1",
 	"import-rootpage-invalid": "Faqja rrënjë ka titull të pavlefshëm.",
 	"importlogpage": "Regjistër importimesh",
 	"importlogpagetext": "Importimet administrative të faqeve me historik redaktimi nga wiki-t e tjera.",

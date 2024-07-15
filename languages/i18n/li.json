@@ -2430,7 +2430,7 @@
 	"import-error-invalid": "De pagina\" \"$1\" is neet geïmporteerd omdet de naam wohaer die mót waere geïmporteerd óngeljig is op deze wiki.",
 	"import-error-unserialize": "Versie $2 van de pagina \"$1\" kós neet waere verwirk. De versie mót 't inhawdsmodel gebroeke $3 mit 'n serialisatie es $4.",
 	"import-error-bad-location": "Versie $2 mit behölp van model $3 kan neet waere opgeslage es \"$1\" op deze wiki, aangezeen det model neet weurt óngerstäönd op die pagina.",
-	"import-options-wrong": "Verkieërde {{PLURAL:$2|optie|opties}}: <nowiki>$1</nowiki>",
+	"import-options-wrong": "Verkieërde {{PLURAL:$2|optie|opties}}:\n$1",
 	"import-rootpage-invalid": "De opgegaove basispagina is óngeljig.",
 	"import-rootpage-nosubpage": "Naamruumde \"$1\" steit neet toe subpagina's van de doelpagina aan te make.",
 	"importlogpage": "Importlogbook",

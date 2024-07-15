@@ -1624,7 +1624,7 @@
 	"import-error-interwiki": "An pakli nga \"$1\" in waray napaangbit tungod nga an ngaran in nakareserba para han external linking (interwiki).",
 	"import-error-special": "An pakli nga \"$1\" in waray napaangbit tungod nga nahihilakip ini ha usa ka special namespace nga diri natugot hin mga pakli.",
 	"import-error-invalid": "An pakli nga \"$1\" in waray napaangbit tungod nga an ngaran kun diin inin ig-aangbit in diri balido para hinin nga wiki.",
-	"import-options-wrong": "Sayop {{PLURAL:$2|nga pirilion|nga mga pirilion}}: <nowiki>$1</nowiki>",
+	"import-options-wrong": "Sayop {{PLURAL:$2|nga pirilion|nga mga pirilion}}:\n$1",
 	"import-rootpage-invalid": "An ginhatag nga gamot-pakli in uska diri balido nga titulo.",
 	"import-rootpage-nosubpage": "Ngaran-lat'ang nga \"$1\" han gamot-pakli in diri natugot hin mga bahin-pakli.",
 	"importlogpage": "Talaan hin pan-aangbit",

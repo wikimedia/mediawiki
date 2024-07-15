@@ -1915,7 +1915,7 @@
 	"import-error-invalid": "Bok \"$1\" se njeimportěrujo, dokulaž jogo mě jo njepłaśiwe.",
 	"import-error-unserialize": "Wersija $2 boka \"$1\" njedajo se wótserializěrowaś. Wersija jo se za wužywanje wopśimjeśowego $3 k wěsći dała, kótaryž jo ako $4 serializěrowany.",
 	"import-error-bad-location": "Wersija $2, kótaraž wužywa wopśimjeśowy model $3, njedajo se pód \"$1\" w toś tom wikiju składowaś, dokulaž model njepódpěra se na toś tom boku.",
-	"import-options-wrong": "{{PLURAL:$2|Wopacna opcija|Wopacnej opciji|Wopacne opcije|Wopacne opcije}}: <nowiki>$1</nowiki>",
+	"import-options-wrong": "{{PLURAL:$2|Wopacna opcija|Wopacnej opciji|Wopacne opcije|Wopacne opcije}}:\n$1",
 	"import-rootpage-invalid": "Pódany kórjenjowy bok jo njepłaśiwy.",
 	"import-rootpage-nosubpage": "Mjenjowy rum \"$1\" kórjenjowego boka njedowólujo pódboki.",
 	"importlogpage": "Log-lisćinu importěrowaś",

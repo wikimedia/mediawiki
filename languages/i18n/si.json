@@ -1993,7 +1993,7 @@
 	"import-revision-count": " {{PLURAL:$1|සංශෝධනය|සංශෝධන $1 ක්}}",
 	"importnopages": "ආයාත කිරීමට කිසිදු පිටුවක් නොමැත.",
 	"imported-log-entries": "{{PLURAL:$1|එක් ලඝු සටහනක්|ලඝු සටහන් $1 ක්}} ආනයනය කෙරිණි.",
-	"importfailed": "ආයාත කිරීම  අසාර්ථකයි: <nowiki>$1</nowiki>",
+	"importfailed": "ආයාත කිරීම  අසාර්ථකයි:\n$1",
 	"importunknownsource": "අඥාත ආයාත මූලාශ්‍ර වර්ගය",
 	"importcantopen": "ආයාත ගොනුව විවෘත කිරීමට නොහැකි විය",
 	"importbadinterwiki": "අයෝග්‍ය අන්තර්විකි සබැඳියක්",

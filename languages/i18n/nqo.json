@@ -2205,7 +2205,7 @@
 	"import-revision-count": "$1 {{PLURAL:$1|ߟߢߊ߬ߟߌ|ߟߢߊ߬ߟߌ ߟߎ߬}}",
 	"importnopages": "ߞߐߜߍ߫ ߟߊߛߛߣߍߕߊ߫ ߕߴߦߋ߲߬.",
 	"imported-log-entries": "{{PLURAL:$1|ߘߊ߲ߖߐ ߘߏ߲߬ߠߌ߲|ߘߊ߲ߖߐ ߟߎ߬ ߘߏ߲߬ߠߌ߲}} $1 ߓߘߊ߫ ߟߊߛߣߍ߫.",
-	"importfailed": "ߟߊ߬ߛߣߍ߬ߟߌ ߓߘߊ߫ ߗߌߙߏ߲߫: <nowiki>$1</nowiki>",
+	"importfailed": "ߟߊ߬ߛߣߍ߬ߟߌ ߓߘߊ߫ ߗߌߙߏ߲߫:\n$1",
 	"importunknownsource": "ߟߊ߬ߛߣߍ߬ߟߌ ߛߎ߲ ߛߎ߯ߦߊ߫ ߡߊߟߐ߲ߓߊߟߌ",
 	"importnoprefix": "ߥߞߌߣߌߢߐ߲߯ߕߍ ߢߍߣߙߊ߫ ߛߌ߫ ߡߊ߫ ߡߊߛߐ߫",
 	"importcantopen": "ߞߐߕߐ߯ ߟߊߛߣߍߣߍ߲ ߕߍ߫ ߛߐ߲߬ ߟߊߞߊ߬ ߟߊ߫",

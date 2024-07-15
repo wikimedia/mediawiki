@@ -1669,7 +1669,7 @@
 	"importstart": "Siden oan it ymportearjen ...",
 	"import-revision-count": "$1 {{PLURAL:$1|ferzje|ferzjes}}",
 	"importnopages": "Gjin siden te ymportearjen.",
-	"importfailed": "Ymport fout: <nowiki>$1</nowiki>",
+	"importfailed": "Ymport fout:\n$1",
 	"importunknownsource": "Unbekende ymportboarnetype",
 	"importcantopen": "It ymportbestân koe net iepene wurde.",
 	"importbadinterwiki": "Ferkearde ynterwikiferwizing",

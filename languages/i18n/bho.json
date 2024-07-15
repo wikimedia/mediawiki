@@ -6,6 +6,7 @@
 			"Fitoschido",
 			"Ganesh",
 			"Macofe",
+			"Matma Rex",
 			"Nepaboy",
 			"Rajivkurjee",
 			"SatyamMishra"
@@ -1494,7 +1495,7 @@
 	"import-revision-count": "$1 {{PLURAL:$1|रिवीजन|रिवीजन कुल}}",
 	"importnopages": "आयत करे खातिर कौनों पन्ना नइखे।",
 	"imported-log-entries": "$1 {{PLURAL:$1|लॉग एंट्री|लॉग एंट्रीसभ}} इंपोर्ट कइल गइल।",
-	"importfailed": "आयात फेल हो गइल: <nowiki>$1</nowiki>",
+	"importfailed": "आयात फेल हो गइल:\n$1",
 	"importunknownsource": "नामालूम आयात स्रोत प्रकार",
 	"importcantopen": "आयात फाइल के खोले में असमर्थ",
 	"importbadinterwiki": "खराब इंटरविकि कड़ी",

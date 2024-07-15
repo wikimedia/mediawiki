@@ -2790,7 +2790,7 @@
 	"import-error-invalid": "No s'importa la pàgina «$1» perquè el seu nom no és vàlid.",
 	"import-error-unserialize": "La revisió $2 de la pàgina \"$1\" no pot ser desserialitzada. La revisió indica que utilitza el model de contingut $3 serialitzat com a $4.",
 	"import-error-bad-location": "La revisió $2 que utilitza el model de contingut $3 no es pot emmagatzemar a «$1» en aquest wiki, perquè el model no és permès en la pàgina.",
-	"import-options-wrong": "{{PLURAL:$2|Opció equivocada|Opcions equivocades}}: <nowiki>$1</nowiki>",
+	"import-options-wrong": "{{PLURAL:$2|Opció equivocada|Opcions equivocades}}:\n$1",
 	"import-rootpage-invalid": "La pàgina arrel donada és un títol no vàlid.",
 	"import-rootpage-nosubpage": "L'espai de noms \"$1\" de la pàgina arrel no permet subpàgines.",
 	"importlogpage": "Registre d'importació",
