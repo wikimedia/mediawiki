@@ -268,6 +268,8 @@ because of Phabricator reports.
 * Linker::formatComment(), Linker::formatLinksInComment(),
   Linker::commentBlock(), and Linker::revComment(), deprecated in 1.38,
   have been removed.
+* UserCache::singleton(), deprecated in 1.43, now emits deprecation warnings.
+  Use MediaWikiServices::getInstance()->getUserCache() instead.
 * DummyLinker has been removed. The former DummyLinker parameter
   to the 'ImageBeforeProduceHTML' hook is now null.
 * The following methods of IDatabase have been moved to internal interface
