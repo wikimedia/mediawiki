@@ -51,7 +51,7 @@ class ExistingSectionEditConstraintTest extends MediaWikiUnitTestCase {
 		$this->assertConstraintPassed( $constraint );
 	}
 
-	public function testFailure() {
+	public function testFailure_autoSummary() {
 		$originalContent = $this->createMock( Content::class );
 		$newContent = $this->createMock( Content::class );
 		$newContent->expects( $this->once() )
@@ -69,6 +69,17 @@ class ExistingSectionEditConstraintTest extends MediaWikiUnitTestCase {
 			$originalContent
 		);
 		$this->assertConstraintFailed( $constraint, IEditConstraint::AS_SUMMARY_NEEDED );
+	}
+
+	public function testFailure_revisionDeleted() {
+		$constraint = new ExistingSectionEditConstraint(
+			'UserSummary',
+			md5( 'UserSummary' ),
+			false,
+			$this->createNoOpMock( Content::class ),
+			null
+		);
+		$this->assertConstraintFailed( $constraint, IEditConstraint::AS_REVISION_WAS_DELETED );
 	}
 
 }
