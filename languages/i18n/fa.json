@@ -2907,7 +2907,7 @@
 	"allmessages-filter-unmodified": "تغییر نیافته",
 	"allmessages-filter-all": "همه",
 	"allmessages-filter-modified": "تغییر یافته",
-	"allmessages-prefix": "پالودن بر اساس پسوند:",
+	"allmessages-prefix": "پالودن بر اساس پیشوند:",
 	"allmessages-language": "زبان:",
 	"allmessages-filter-submit": "برو",
 	"allmessages-filter-translate": "ترجمه",

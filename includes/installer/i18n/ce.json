@@ -3,12 +3,14 @@
 		"authors": [
 			"Sasan700",
 			"Seb35",
-			"Умар"
+			"Умар",
+			"Робин"
 		]
 	},
 	"config-desc": "MediaWiki инсталлятор",
 	"config-title": "ХӀоттор MediaWiki $1",
 	"config-information": "Хаам",
+	"config-localsettings-upgrade": "Файл карийна <code>LocalSettings.php</code> И чудаккхар карладаккха, дехар ду хIар дIайаздар.\n <code>$wgUpgradeKey</code> Лахах файл чохь шуна карор ду и <code>LocalSettings.php</code>.",
 	"config-localsettings-key": "Карлаяккхаран догӀа:",
 	"config-localsettings-badkey": "Ахьа йаздина нийса доцу догӀа",
 	"config-session-error": "ГӀалат ду сесси йолош: $1",

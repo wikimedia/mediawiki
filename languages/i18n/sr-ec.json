@@ -1681,7 +1681,7 @@
 	"uploadlogpage": "Дневник отпремања",
 	"uploadlogpagetext": "Испод се налази списак најновијих отпремања.\nПогледајте [[Special:NewFiles|галерију нових датотека]] за визуелнији преглед.",
 	"filename": "Назив датотеке",
-	"filedesc": "Опис измене",
+	"filedesc": "Опис",
 	"fileuploadsummary": "Опис измене:",
 	"filereuploadsummary": "Промене датотеке:",
 	"filestatus": "Статус ауторског права:",

@@ -467,6 +467,7 @@
 	"passwordreset-success": "Ou mandé on réyinisyalizasyon a modpas.",
 	"changeemail": "Chanjé oben éfasé adrès email-la",
 	"changeemail-newemail": "Nouvo adrès email:",
+	"changeemail-none": "(ponyonn)",
 	"changeemail-password": "Modpas a-w si {{SITENAME}} :",
 	"changeemail-submit": "Chanjé email",
 	"changeemail-throttled": "Ou fè twòp tantativ pou konnékté-w.\nSyouplé atann $1 avan ou éséyé ankò.",
