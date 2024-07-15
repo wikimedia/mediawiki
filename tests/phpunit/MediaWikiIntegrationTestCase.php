@@ -92,6 +92,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 *
 	 * @var Database|null
 	 * @since 1.18
+	 * @deprecated since 1.43. Use MediaWikiIntegrationTestCase->getDb() instead. This will
+	 * eventually be made private.
 	 */
 	protected $db;
 
