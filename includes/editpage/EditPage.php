@@ -2394,18 +2394,16 @@ class EditPage implements IEditObject {
 			$constraintRunner->addConstraint(
 				new MissingCommentConstraint( $this->section, $this->textbox1 )
 			);
-
-			if ( $this->section !== 'new' ) {
-				$constraintRunner->addConstraint(
-					new ExistingSectionEditConstraint(
-						$this->summary,
-						$this->autoSumm,
-						$this->allowBlankSummary,
-						$content,
-						$this->getOriginalContent( $authority )
-					)
-				);
-			}
+			$constraintRunner->addConstraint(
+				new ExistingSectionEditConstraint(
+					$this->section,
+					$this->summary,
+					$this->autoSumm,
+					$this->allowBlankSummary,
+					$content,
+					$this->getOriginalContent( $authority )
+				)
+			);
 			// Check the constraints
 			if ( !$constraintRunner->checkConstraints() ) {
 				$failed = $constraintRunner->getFailedConstraint();
