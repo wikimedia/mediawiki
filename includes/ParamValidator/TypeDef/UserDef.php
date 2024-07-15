@@ -84,6 +84,8 @@ class UserDef extends TypeDef {
 	}
 
 	public function validate( $name, $value, array $settings, array $options ) {
+		$this->failIfNotString( $name, $value, $settings, $options );
+
 		[ $type, $user ] = $this->processUser( $value );
 
 		if ( !$user || !in_array( $type, $settings[self::PARAM_ALLOWED_USER_TYPES], true ) ) {

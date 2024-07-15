@@ -60,6 +60,8 @@ class TitleDef extends TypeDef {
 		$mustExist = !empty( $settings[self::PARAM_MUST_EXIST] );
 		$returnObject = !empty( $settings[self::PARAM_RETURN_OBJECT] );
 
+		$this->failIfNotString( $name, $value, $settings, $options );
+
 		$title = $this->titleFactory->newFromText( $value );
 
 		if ( !$title ) {

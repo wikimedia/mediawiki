@@ -6,8 +6,10 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\TitleDef;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
+use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
+use Wikimedia\ParamValidator\ValidationException;
 
 /**
  * @covers \MediaWiki\ParamValidator\TypeDef\TitleDef
@@ -78,6 +80,13 @@ class TitleDefTest extends TypeDefIntegrationTestCase {
 				'expect' => $this->getValidationException( 'missingtitle', 'does not exist',
 					[ TitleDef::PARAM_MUST_EXIST => true ] ),
 				'settings' => [ TitleDef::PARAM_MUST_EXIST => true ],
+			],
+			'Not a string' => [
+				[ 1, 2, 3 ],
+				new ValidationException(
+					DataMessageValue::new( 'paramvalidator-needstring', [], 'needstring' ),
+					'test', '', []
+				)
 			],
 		];
 	}

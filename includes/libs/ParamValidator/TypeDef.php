@@ -56,6 +56,31 @@ abstract class TypeDef {
 	}
 
 	/**
+	 * Fails if $value is not a string.
+	 *
+	 * @param string $name Parameter name being validated.
+	 * @param mixed $value Value being validated.
+	 * @param array $settings Parameter settings array.
+	 * @param array $options Options array.
+	 *
+	 * @return void
+	 */
+	protected function failIfNotString(
+		string $name,
+		$value,
+		array $settings,
+		array $options
+	): void {
+		if ( !is_string( $value ) ) {
+			$this->fatal(
+				$this->failureMessage( 'needstring' )
+					->params( gettype( $value ) ),
+				$name, $value, $settings, $options
+			);
+		}
+	}
+
+	/**
 	 * Throw a ValidationException.
 	 * This is a wrapper for failure() which explicitly declares that it
 	 * never returns, which is useful to static analysis tools like Phan.
@@ -249,6 +274,10 @@ abstract class TypeDef {
 	 *  reasonably satisfying the description given.
 	 */
 	public function stringifyValue( $name, $value, array $settings, array $options ) {
+		if ( is_array( $value ) ) {
+			return '(array)';
+		}
+
 		return (string)$value;
 	}
 

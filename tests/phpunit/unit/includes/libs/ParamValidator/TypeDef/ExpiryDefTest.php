@@ -110,6 +110,13 @@ class ExpiryDefTest extends TypeDefTestCase {
 					ExpiryDef::PARAM_MAX => '6 months',
 				]
 			),
+			'Not a string' => [
+				[ 1, 2, 3 ],
+				new ValidationException(
+					DataMessageValue::new( 'paramvalidator-needstring', [], 'needstring' ),
+					'test', '', []
+				)
+			],
 		];
 	}
 

@@ -35,6 +35,8 @@ class TagsDef extends EnumDef {
 	}
 
 	public function validate( $name, $value, array $settings, array $options ) {
+		$this->failIfNotString( $name, $value, $settings, $options );
+
 		// Validate the full list of tags at once, because the caller will
 		// *probably* stop at the first exception thrown.
 		if ( isset( $options['values-list'] ) ) {
