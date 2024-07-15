@@ -18,17 +18,17 @@
  * @file
  */
 
-use MediaWiki\EditPage\Constraint\AutoSummaryMissingSummaryConstraint;
+use MediaWiki\EditPage\Constraint\ExistingSectionEditConstraint;
 use MediaWiki\EditPage\Constraint\IEditConstraint;
 
 /**
- * Tests the AutoSummaryMissingSummaryConstraint
+ * Tests the ExistingSectionEditConstraint
  *
  * @author DannyS712
  *
- * @covers \MediaWiki\EditPage\Constraint\AutoSummaryMissingSummaryConstraint
+ * @covers \MediaWiki\EditPage\Constraint\ExistingSectionEditConstraint
  */
-class AutoSummaryMissingSummaryConstraintTest extends MediaWikiUnitTestCase {
+class ExistingSectionEditConstraintTest extends MediaWikiUnitTestCase {
 	use EditConstraintTestTrait;
 
 	public function testPass() {
@@ -41,7 +41,7 @@ class AutoSummaryMissingSummaryConstraintTest extends MediaWikiUnitTestCase {
 		$newContent->expects( $this->once() )
 			->method( 'isRedirect' )
 			->willReturn( false );
-		$constraint = new AutoSummaryMissingSummaryConstraint(
+		$constraint = new ExistingSectionEditConstraint(
 			'UserSummary',
 			'AutoSummary',
 			false,
@@ -61,7 +61,7 @@ class AutoSummaryMissingSummaryConstraintTest extends MediaWikiUnitTestCase {
 		$newContent->expects( $this->once() )
 			->method( 'isRedirect' )
 			->willReturn( false );
-		$constraint = new AutoSummaryMissingSummaryConstraint(
+		$constraint = new ExistingSectionEditConstraint(
 			'UserSummary',
 			md5( 'UserSummary' ),
 			false,

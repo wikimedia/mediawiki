@@ -42,13 +42,13 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\EditPage\Constraint\AccidentalRecreationConstraint;
-use MediaWiki\EditPage\Constraint\AutoSummaryMissingSummaryConstraint;
 use MediaWiki\EditPage\Constraint\ChangeTagsConstraint;
 use MediaWiki\EditPage\Constraint\ContentModelChangeConstraint;
 use MediaWiki\EditPage\Constraint\DefaultTextConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraintFactory;
 use MediaWiki\EditPage\Constraint\EditConstraintRunner;
 use MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint;
+use MediaWiki\EditPage\Constraint\ExistingSectionEditConstraint;
 use MediaWiki\EditPage\Constraint\IEditConstraint;
 use MediaWiki\EditPage\Constraint\ImageRedirectConstraint;
 use MediaWiki\EditPage\Constraint\MissingCommentConstraint;
@@ -2408,7 +2408,7 @@ class EditPage implements IEditObject {
 				}
 
 				$constraintRunner->addConstraint(
-					new AutoSummaryMissingSummaryConstraint(
+					new ExistingSectionEditConstraint(
 						$this->summary,
 						$this->autoSumm,
 						$this->allowBlankSummary,
@@ -2574,7 +2574,7 @@ class EditPage implements IEditObject {
 		} elseif ( $failed instanceof EditFilterMergedContentHookConstraint ) {
 			$this->hookError = $failed->getHookError();
 		} elseif (
-			$failed instanceof AutoSummaryMissingSummaryConstraint ||
+			$failed instanceof ExistingSectionEditConstraint ||
 			$failed instanceof NewSectionMissingSubjectConstraint
 		) {
 			$this->missingSummary = true;

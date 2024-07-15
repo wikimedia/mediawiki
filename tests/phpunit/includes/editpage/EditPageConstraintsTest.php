@@ -205,15 +205,15 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	/** AutoSummaryMissingSummaryConstraint integration */
-	public function testAutoSummaryMissingSummaryConstraint() {
+	/** ExistingSectionEditConstraint integration */
+	public function testExistingSectionEditConstraint() {
 		// Require the summary
 		$this->mergeMwGlobalArrayValue(
 			'wgDefaultUserOptions',
 			[ 'forceeditsummary' => 1 ]
 		);
 
-		$page = $this->getExistingTestPage( 'AutoSummaryMissingSummaryConstraint page does exist' );
+		$page = $this->getExistingTestPage( 'ExistingSectionEditConstraint page does exist' );
 		$title = $page->getTitle();
 
 		$user = $this->getTestUser()->getUser();
