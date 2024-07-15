@@ -29,6 +29,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * @since 1.20
+ * @deprecated since 1.43, use ActorStore
  */
 class UserCache {
 	protected $cache = []; // (uid => property => value)

@@ -2007,6 +2007,7 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.36
+	 * @deprecated since 1.43, use ActorStore
 	 */
 	public function getUserCache(): UserCache {
 		return $this->getService( 'UserCache' );
