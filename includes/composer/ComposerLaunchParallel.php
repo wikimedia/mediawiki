@@ -15,6 +15,16 @@ require_once $basePath . '/includes/BootstrapHelperFunctions.php';
 require_once $basePath . '/includes/Maintenance/ForkController.php';
 
 /**
+ * Launch PHPUnit test suites in parallel.
+ *
+ * This class is run directly from composer.json,
+ * outside of any MediaWiki context;
+ * consequently, most MediaWiki code cannot be used here.
+ * We extend ForkController because it's convenient to do so and ForkController still works here,
+ * but we cannot use e.g. Shell::command() to run the composer sub-commands,
+ * nor anything else that requires MediaWiki services or config.
+ * (But we can use the underlying Shellbox library directly.)
+ *
  * @license GPL-2.0-or-later
  */
 class ComposerLaunchParallel extends ForkController {
@@ -69,30 +79,28 @@ class ComposerLaunchParallel extends ForkController {
 	}
 
 	private function runTestSuite( int $groupId ) {
-		$command = "composer run --timeout=0 phpunit:entrypoint -- --testsuite split_group_"
-			. $groupId . " --exclude-group " . Shellbox::escape(
-				implode( ",", array_diff( $this->excludeGroups, $this->groups ) )
+		$executor = Shellbox::createUnboxedExecutor();
+		$command = $executor->createCommand()
+			->params(
+				'composer', 'run',
+				'--timeout=0',
+				'phpunit:entrypoint',
+				'--',
+				'--testsuite', "split_group_$groupId",
+				'--exclude-group', implode( ",", array_diff( $this->excludeGroups, $this->groups ) )
 			);
 		if ( count( $this->groups ) ) {
-			$command .= " --group " . Shellbox::escape( implode( ",", $this->groups ) );
+			$command->params( '--group', implode( ',', $this->groups ) );
 		}
 		$groupName = $this->isDatabaseRun() ? "database" : "databaseless";
-		$command .= " --cache-result-file=.phpunit_group_" . $groupId . "_" . $groupName . ".result.cache";
-		$command .= " 2>&1";
-		print( "Running command '" . $command . "' ..." . PHP_EOL );
-		// Not sure about the best way to actually launch the tests here. The 'exec' here just
-		// re-launches composer at the same binary location with a different set of arguments.
-		// I wonder if there is a smarter way to launch a composer task from inside a composer
-		// task and also supply arbitrary arguments to the subtask.
-		$output = [];
-		$resultCode = 0;
-		// TODO: Consider using Shell::command() here instead of exec
-		// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.exec
-		exec( $command, $output, $resultCode );
-		foreach ( $output as $line ) {
-			print( $line . PHP_EOL );
-		}
-		exit( $resultCode );
+		$command->params(
+			"--cache-result-file=.phpunit_group_{$groupId}_{$groupName}.result.cache"
+		);
+		$command->includeStderr( true );
+		print( "Running command '" . $command->getCommandString() . "' ..." . PHP_EOL );
+		$result = $command->execute();
+		print( $result->getStdout() );
+		exit( $result->getExitCode() );
 	}
 
 	private static function extractArgs(): array {
