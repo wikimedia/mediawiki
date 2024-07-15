@@ -70,7 +70,7 @@ class LanguageArTest extends LanguageClassesTestCase {
 			[
 				'xg "vs" g',
 				'20120102030410',
-				'يناير vs ٣'
+				'يناير/كانون الثاني vs ٣'
 			],
 			[
 				'xmY',
