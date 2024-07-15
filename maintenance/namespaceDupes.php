@@ -564,9 +564,11 @@ class NamespaceDupes extends Maintenance {
 	 */
 	private function getDestination( $ns, $name, $sourceNs, $sourceDbk ) {
 		$dbk = substr( $sourceDbk, strlen( "$name:" ) );
-		if ( $ns == 0 ) {
-			// An interwiki; try an alternate encoding with '-' for ':'
+		if ( $ns <= 0 ) {
+			// An interwiki or an illegal namespace like "Special" or "Media"
+			// try an alternate encoding with '-' for ':'
 			$dbk = "$name-" . $dbk;
+			$ns = 0;
 		}
 		$destNS = $ns;
 		$nsInfo = $this->getServiceContainer()->getNamespaceInfo();
