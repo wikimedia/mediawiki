@@ -1453,7 +1453,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 					'Invalid parameter for message "{msgkey}": {param}',
 					[
 						'exception' => new RuntimeException,
-						'msgkey' => $this->getKey(),
+						'msgkey' => $this->key,
 						'param' => htmlspecialchars( serialize( $param ) ),
 					]
 				);
@@ -1607,7 +1607,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 */
 	protected function formatListParam( array $params, $listType, $format ) {
 		if ( !isset( self::$listTypeMap[$listType] ) ) {
-			$warning = 'Invalid list type for message "' . $this->getKey() . '": '
+			$warning = 'Invalid list type for message "' . $this->key . '": '
 				. htmlspecialchars( $listType )
 				. ' (params are ' . htmlspecialchars( serialize( $params ) ) . ')';
 			trigger_error( $warning, E_USER_WARNING );

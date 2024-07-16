@@ -563,7 +563,6 @@ class StatusValue implements Stringable {
 	 * Returns a list of status messages of the given type (or all if false)
 	 *
 	 * @internal Only for use by Status.
-	 * @note this handles RawMessage poorly
 	 *
 	 * @param string|bool $type
 	 * @return array[]

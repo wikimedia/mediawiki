@@ -21,7 +21,6 @@
 namespace MediaWiki\Status;
 
 use ApiMessage;
-use ApiRawMessage;
 use Language;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;
@@ -214,7 +213,6 @@ class StatusFormatter {
 			// identical to getMessage( false, false, 'en' ) when there's just one error
 			$message = $this->getErrorMessage( $errors[0], [ 'lang' => 'en' ] );
 
-			$text = null;
 			if ( in_array( get_class( $message ), [ Message::class, ApiMessage::class ], true ) ) {
 				// Fall back to getWikiText for rawmessage, which is just a placeholder for non-translated text.
 				// Turning the entire message into a context parameter wouldn't be useful.
@@ -223,8 +221,10 @@ class StatusFormatter {
 				}
 				// $1,$2... will be left as-is when no parameters are provided.
 				$text = $this->msgInLang( $message->getKey(), 'en' )->plain();
-			} elseif ( in_array( get_class( $message ), [ RawMessage::class, ApiRawMessage::class ], true ) ) {
-				$text = $message->getKey();
+				$params = $message->getParams();
+			} elseif ( $message instanceof RawMessage ) {
+				$text = $message->getTextOfRawMessage();
+				$params = $message->getParamsOfRawMessage();
 			} else {
 				// Unknown Message subclass, we can't be sure how it marks parameters. Fall back to getWikiText.
 				return [ $this->getWikiText( $status, $options ), [] ];
@@ -232,7 +232,7 @@ class StatusFormatter {
 
 			$context = [];
 			$i = 1;
-			foreach ( $message->getParams() as $param ) {
+			foreach ( $params as $param ) {
 				if ( is_array( $param ) && count( $param ) === 1 ) {
 					// probably Message::numParam() or similar
 					$param = reset( $param );

@@ -193,7 +193,11 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 					'lang' => $p->getLanguage()->getCode(),
 				]
 				: $p;
-		}, $message->getParams() );
+		}, $message instanceof RawMessage ? $message->getParamsOfRawMessage() : $message->getParams() );
+	}
+
+	private static function sanitizedMessageKey( Message $message ) {
+		return $message instanceof RawMessage ? $message->getTextOfRawMessage() : $message->getKey();
 	}
 
 	/**
@@ -207,7 +211,7 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 		$this->assertInstanceOf( Message::class, $message );
 		$this->assertEquals( $expectedParams, self::sanitizedMessageParams( $message ),
 			'Message::getParams' );
-		$this->assertEquals( $expectedKey, $message->getKey(), 'Message::getKey' );
+		$this->assertEquals( $expectedKey, self::sanitizedMessageKey( $message ), 'Message::getKey' );
 
 		$message = $formatter->getMessage(
 			$status,

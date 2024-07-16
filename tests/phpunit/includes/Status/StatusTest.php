@@ -195,6 +195,15 @@ class StatusTest extends MediaWikiLangTestCase {
 		$this->assertStatusNotOK( $status );
 	}
 
+	public function testRawMessage() {
+		$status = new Status();
+		$msg = new RawMessage( 'Foo Bar' );
+		$status->fatal( $msg );
+
+		$this->assertEquals( 'rawmessage', $status->getErrorsArray()[0][0] );
+		$this->assertEquals( $msg, $status->getMessages()[0] );
+	}
+
 	/**
 	 * @param array $messageDetails E.g. [ 'KEY' => [ /PARAMS/ ] ]
 	 * @return Message[]
@@ -409,7 +418,11 @@ class StatusTest extends MediaWikiLangTestCase {
 					'lang' => $p->getLanguage()->getCode(),
 				]
 				: $p;
-		}, $message->getParams() );
+		}, $message instanceof RawMessage ? $message->getParamsOfRawMessage() : $message->getParams() );
+	}
+
+	private static function sanitizedMessageKey( Message $message ) {
+		return $message instanceof RawMessage ? $message->getTextOfRawMessage() : $message->getKey();
 	}
 
 	/**
@@ -422,7 +435,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		$this->assertInstanceOf( Message::class, $message );
 		$this->assertEquals( $expectedParams, self::sanitizedMessageParams( $message ),
 			'Message::getParams' );
-		$this->assertEquals( $expectedKey, $message->getKey(), 'Message::getKey' );
+		$this->assertEquals( $expectedKey, self::sanitizedMessageKey( $message ), 'Message::getKey' );
 
 		$message = $status->getMessage( 'wrapper-short', 'wrapper-long' );
 		$this->assertInstanceOf( Message::class, $message );

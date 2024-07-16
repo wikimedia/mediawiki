@@ -74,6 +74,42 @@ class RawMessage extends Message {
 		return $this->message;
 	}
 
+	public function getTextOfRawMessage() {
+		return $this->key;
+	}
+
+	public function getParamsOfRawMessage() {
+		return $this->parameters;
+	}
+
+	/**
+	 * To conform to the MessageSpecifier interface, always return 'rawmessage',
+	 * which is a real message key that can be used with MessageValue and other classes.
+	 * @return string
+	 */
+	public function getKey() {
+		return 'rawmessage';
+	}
+
+	/**
+	 * To conform to the MessageSpecifier interface, return parameters that are valid with the
+	 * 'rawmessage' message, and can be used with MessageValue and other classes.
+	 * @return string[]
+	 */
+	public function getParams() {
+		// If the provided text is equivalent to 'rawmessage', return the provided params.
+		if ( $this->key === '$1' ) {
+			return $this->parameters;
+		}
+		// If there are no provided params, return the provided text as the single param.
+		if ( !$this->parameters ) {
+			return [ $this->key ];
+		}
+		// As a last resort, substitute the provided params into the single param accepted by
+		// 'rawmessage'. This may access global state.
+		return [ $this->plain() ];
+	}
+
 }
 
 /** @deprecated class alias since 1.40 */
