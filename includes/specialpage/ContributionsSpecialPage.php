@@ -217,7 +217,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 			return;
 		}
 		$out->addSubtitle( $this->contributionsSub( $userObj, $target ) );
-		$out->setPageTitleMsg( $this->msg( 'contributions-title', $target ) );
+		$out->setPageTitleMsg( $this->msg( $this->getResultsPageTitleMessageKey(), $target ) );
 
 		# For IP ranges, we want the contributionsSub, but not the skin-dependent
 		# links under 'Tools', which may include irrelevant links like 'Logs'.
@@ -886,7 +886,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 			)
 			->setAction( wfScript() )
 			->setSubmitTextMsg( 'sp-contributions-submit' )
-			->setWrapperLegendMsg( 'sp-contributions-search' );
+			->setWrapperLegendMsg( $this->getFormWrapperLegendMessageKey() );
 
 		$htmlForm->prepareForm();
 
@@ -945,5 +945,19 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 	 */
 	protected function getGroupName() {
 		return 'users';
+	}
+
+	/**
+	 * @return string Message key for the fieldset wrapping the form
+	 */
+	protected function getFormWrapperLegendMessageKey() {
+		return 'sp-contributions-search';
+	}
+
+	/**
+	 * @return string Message key for the results page title
+	 */
+	protected function getResultsPageTitleMessageKey() {
+		return 'contributions-title';
 	}
 }
