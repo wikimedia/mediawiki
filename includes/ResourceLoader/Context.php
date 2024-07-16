@@ -102,8 +102,13 @@ class Context implements MessageLocalizer {
 	/**
 	 * @param ResourceLoader $resourceLoader
 	 * @param WebRequest $request
+	 * @param array|null $installedSkins If a list of skins are supplied, perform
+	 *   validation with them. But if we don't have a list of skins to validate on
+	 *   and a skin is not supplied, also fallback to the default skin.
 	 */
-	public function __construct( ResourceLoader $resourceLoader, WebRequest $request ) {
+	public function __construct(
+		ResourceLoader $resourceLoader, WebRequest $request, $installedSkins = null
+	) {
 		$this->resourceLoader = $resourceLoader;
 		$this->request = $request;
 		$this->logger = $resourceLoader->getLogger();
@@ -129,13 +134,15 @@ class Context implements MessageLocalizer {
 		$this->format = $request->getRawVal( 'format' );
 
 		$this->skin = $request->getRawVal( 'skin' );
-		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
-		$skinnames = $skinFactory->getInstalledSkins();
 
-		if ( !$this->skin || !isset( $skinnames[$this->skin] ) ) {
-			// The 'skin' parameter is required. (Not yet enforced.)
-			// For requests without a known skin specified,
-			// use MediaWiki's 'fallback' skin for skin-specific decisions.
+		if ( is_array( $installedSkins ) ) {
+			if ( !$this->skin || !isset( $installedSkins[$this->skin] ) ) {
+				// The 'skin' parameter is required. (Not yet enforced.)
+				// For requests without a known skin specified,
+				// use MediaWiki's 'fallback' skin for skin-specific decisions.
+				$this->skin = self::DEFAULT_SKIN;
+			}
+		} elseif ( !$this->skin ) {
 			$this->skin = self::DEFAULT_SKIN;
 		}
 	}
