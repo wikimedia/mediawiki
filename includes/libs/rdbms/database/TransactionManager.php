@@ -704,34 +704,32 @@ class TransactionManager {
 	 * which we assume will itself have to be cancelled or rolled back to
 	 * resolve the error.
 	 *
-	 * @param IDatabase $db
-	 * @param AtomicSectionIdentifier[] $sectionIds ID of an actual savepoint
-	 * @param AtomicSectionIdentifier|null $newSectionId New top section ID.
+	 * @param AtomicSectionIdentifier[] $excisedSectionsId Cancelled section IDs
+	 * @param AtomicSectionIdentifier|null $newSectionId New top section ID
 	 * @throws UnexpectedValueException
 	 */
 	public function modifyCallbacksForCancel(
-		IDatabase $db,
-		array $sectionIds,
+		array $excisedSectionsId,
 		AtomicSectionIdentifier $newSectionId = null
 	) {
 		// Cancel the "on commit" callbacks owned by this savepoint
 		$this->trxPostCommitOrIdleCallbacks = array_filter(
 			$this->trxPostCommitOrIdleCallbacks,
-			static function ( $entry ) use ( $sectionIds ) {
-				return !in_array( $entry[2], $sectionIds, true );
+			static function ( $entry ) use ( $excisedSectionsId ) {
+				return !in_array( $entry[2], $excisedSectionsId, true );
 			}
 		);
 		$this->trxPreCommitOrIdleCallbacks = array_filter(
 			$this->trxPreCommitOrIdleCallbacks,
-			static function ( $entry ) use ( $sectionIds ) {
-				return !in_array( $entry[2], $sectionIds, true );
+			static function ( $entry ) use ( $excisedSectionsId ) {
+				return !in_array( $entry[2], $excisedSectionsId, true );
 			}
 		);
 		// Make "on resolution" callbacks owned by this savepoint to perceive a rollback
 		foreach ( $this->trxEndCallbacks as $key => $entry ) {
-			if ( in_array( $entry[2], $sectionIds, true ) ) {
+			if ( in_array( $entry[2], $excisedSectionsId, true ) ) {
 				$callback = $entry[0];
-				$this->trxEndCallbacks[$key][0] = static function () use ( $callback, $db ) {
+				$this->trxEndCallbacks[$key][0] = static function ( $t, $db ) use ( $callback ) {
 					return $callback( IDatabase::TRIGGER_ROLLBACK, $db );
 				};
 				// This "on resolution" callback no longer belongs to a section.
@@ -740,7 +738,7 @@ class TransactionManager {
 		}
 		// Hoist callback ownership for section cancel callbacks to the new top section
 		foreach ( $this->trxSectionCancelCallbacks as $key => $entry ) {
-			if ( in_array( $entry[2], $sectionIds, true ) ) {
+			if ( in_array( $entry[2], $excisedSectionsId, true ) ) {
 				$this->trxSectionCancelCallbacks[$key][2] = $newSectionId;
 			}
 		}

@@ -2202,7 +2202,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 
 		$cs = $this->commenceCriticalSection( __METHOD__ );
 		$runPostRollbackCallbacks = false;
-		[ $savedFname, $excisedIds, $newTopSection, $savedSectionId, $savepointId ] =
+		[ $savedFname, $excisedSectionIds, $newTopSectionId, $savedSectionId, $savepointId ] =
 			$this->transactionManager->cancelAtomic( $pos );
 
 		try {
@@ -2217,8 +2217,8 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 
 			// Remove the last section (no need to re-index the array)
 			$this->transactionManager->popAtomicLevel();
-			$excisedIds[] = $savedSectionId;
-			$newTopSection = $this->transactionManager->currentAtomicSectionId();
+			$excisedSectionIds[] = $savedSectionId;
+			$newTopSectionId = $this->transactionManager->currentAtomicSectionId();
 
 			if ( $savepointId !== null ) {
 				// Rollback the transaction changes proposed within this atomic section
@@ -2237,7 +2237,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 					$this->transactionManager->runOnAtomicSectionCancelCallbacks(
 						$this,
 						self::TRIGGER_CANCEL,
-						$excisedIds
+						$excisedSectionIds
 					);
 				}
 			} else {
@@ -2251,7 +2251,10 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		} finally {
 			// Fix up callbacks owned by the sections that were just cancelled.
 			// All callbacks should have an owner that is present in trxAtomicLevels.
-			$this->transactionManager->modifyCallbacksForCancel( $this, $excisedIds, $newTopSection );
+			$this->transactionManager->modifyCallbacksForCancel(
+				$excisedSectionIds,
+				$newTopSectionId
+			);
 		}
 
 		$this->lastEmulatedAffectedRows = 0; // for the sake of consistency
