@@ -940,6 +940,9 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 		throw new \LogicException( __METHOD__ . " must be overridden" );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	protected function getGroupName() {
 		return 'users';
 	}
