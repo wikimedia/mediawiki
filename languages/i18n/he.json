@@ -2819,7 +2819,7 @@
 	"import-revision-count": "{{PLURAL:$1|גרסה אחת|$1 גרסאות}}",
 	"importnopages": "אין דפים ליבוא.",
 	"imported-log-entries": "{{PLURAL:$1|יובאה פעולת יומן אחת|יובאו $1 פעולות יומן}}.",
-	"importfailed": "היבוא נכשל:\n$1",
+	"importfailed": "{{PLURAL:$2|היבוא נכשל}}:\n$1",
 	"importunknownsource": "סוג יבוא בלתי־ידוע",
 	"importnoprefix": "לא נכתבה תחילית בינוויקי",
 	"importcantopen": "פתיחת קובץ היבוא נכשלה",

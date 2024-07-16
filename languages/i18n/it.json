@@ -2861,7 +2861,7 @@
 	"import-revision-count": "{{PLURAL:$1|una versione importata|$1 versioni importate}}",
 	"importnopages": "Nessuna pagina da importare.",
 	"imported-log-entries": "Importat{{PLURAL:$1|o|i}} $1 {{PLURAL:$1|evento|eventi}} di log.",
-	"importfailed": "Importazione non riuscita:\n$1",
+	"importfailed": "{{PLURAL:$2|Importazione non riuscita}}:\n$1",
 	"importunknownsource": "Tipo di origine sconosciuto per l'importazione",
 	"importnoprefix": "Non è stato fornito alcun prefisso interwiki",
 	"importcantopen": "Impossibile aprire il file di importazione",
