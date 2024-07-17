@@ -169,6 +169,7 @@ because of Phabricator reports.
 * (T365365) Added language support for Chakma (ccp).
 * (T367991) Added language support for Iban (iba).
 * (T367688) Added language support for Interslavic (Latin) (isv-latn).
+* (T370123) Added language support for Nupe (nup).
 * …
 
 === Breaking changes in 1.43 ===

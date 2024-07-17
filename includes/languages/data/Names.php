@@ -387,6 +387,7 @@ class Names {
 		'nqo' => 'ߒߞߏ', # N'Ko
 		'nrm' => 'Nouormand', # Norman (invalid code; 'nrf' in ISO 639 since 2014)
 		'nso' => 'Sesotho sa Leboa', # Northern Sotho
+		'nup' => 'Nupe', # Nupe
 		'nv' => 'Diné bizaad', # Navajo
 		'ny' => 'Chi-Chewa', # Chichewa
 		'nyn' => 'runyankore', # Nkore
