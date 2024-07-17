@@ -13,6 +13,7 @@ exports.config = { ...config,
 	maxInstances: 4,
 
 	specs: [
+		'tests/selenium/docs/specs/*.js',
 		'tests/selenium/specs/**/*.js',
 		'tests/selenium/wdio-mediawiki/specs/*.js'
 	]
