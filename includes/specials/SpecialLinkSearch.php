@@ -188,9 +188,16 @@ class SpecialLinkSearch extends QueryPage {
 			'urlpath' => 'el_to_path'
 		];
 		if ( $this->mQuery === '*' && $this->mProt !== '' ) {
-			$this->mungedQuery = [
-				$dbr->expr( $field, IExpression::LIKE, new LikeValue( $this->mProt, $dbr->anyString() ) ),
-			];
+			if ( $this->mProt !== null ) {
+				$this->mungedQuery = [
+					$dbr->expr( $field, IExpression::LIKE, new LikeValue( $this->mProt, $dbr->anyString() ) ),
+				];
+			} else {
+				$this->mungedQuery = [
+					$dbr->expr( $field, IExpression::LIKE, new LikeValue( 'http://', $dbr->anyString() ) )
+						->or( $field, IExpression::LIKE, new LikeValue( 'https://', $dbr->anyString() ) ),
+				];
+			}
 		} else {
 			$this->mungedQuery = LinkFilter::getQueryConditions( $this->mQuery, [
 				'protocol' => $this->mProt,
