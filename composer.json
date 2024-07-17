@@ -179,6 +179,12 @@
 		"phpunit:coverage": "@phpunit --testsuite=core:unit --exclude-group Dump,Broken",
 		"phpunit:coverage-edit": "MediaWiki\\Composer\\ComposerPhpunitXmlCoverageEdit::onEvent",
 		"phpunit:entrypoint": "@phpunit",
+		"phpunit:prepare-parallel:extensions": [
+			"MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitXmlManager::listTestsNotice",
+			"@phpunit --list-tests-xml=tests-list.xml --testsuite=extensions",
+			"MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitXmlManager::splitTestsList"
+		],
+		"phpunit:prepare-parallel:split-file": "MediaWiki\\Composer\\PhpUnitSplitter\\PhpUnitXmlManager::splitTestsCustom",
 		"maintenance": "@php maintenance/run.php"
 	},
 	"config": {

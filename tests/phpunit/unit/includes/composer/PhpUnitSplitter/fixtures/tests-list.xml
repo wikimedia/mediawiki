@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tests>
+	<testCaseClass name="MediaWiki\Tests\Unit\composer\PhpUnitSplitter\PhpUnitTestFileScannerTest">
+		<testCaseMethod name="testSchemaChangesPassValidation" groups="default" dataSet="&quot;patch-change_tag-rename-indexes.json&quot;"/>
+	</testCaseClass>
+	<testCaseClass name="MediaWiki\Tests\Unit\composer\PhpUnitSplitter\PhpUnitTestListProcessorTest">
+		<testCaseMethod name="testPrefixes" groups="API,Database"/>
+		<testCaseMethod name="testValidCovers" groups="API,Database"/>
+	</testCaseClass>
+	<testCaseClass name="MediaWiki\Tests\Unit\composer\PhpUnitSplitter\PhpUnitXmlManagerTest">
+		<testCaseMethod name="testConfigSchemaIsLoadable" groups="default"/>
+		<testCaseMethod name="testConfigSchemaDefaultsValidate" groups="default"/>
+		<testCaseMethod name="testCurrentSettingsValidate" groups="default"/>
+		<testCaseMethod name="testCurrentSettingsNotDeprecated" groups="default"/>
+	</testCaseClass>
+	<testCaseClass name="MediaWiki\Tests\Unit\composer\PhpUnitSplitter\PhpUnitXmlTest">
+		<testCaseMethod name="testOnBeforePageDisplay" groups="Marius Hoch &lt; hoo@online.de &gt;,WikimediaBadges,__phpunit_covers_wikimediabadges\beforepagedisplayhookhandler"/>
+	</testCaseClass>
+	<testCaseClass name="MediaWiki\Tests\Unit\composer\PhpUnitSplitter\TestSuiteBuilderTest">
+		<testCaseMethod name="testOnBeforePageDisplay" groups="Marius Hoch &lt; hoo@online.de &gt;,WikimediaBadges,__phpunit_covers_wikimediabadges\beforepagedisplayhookhandler"/>
+	</testCaseClass>
+</tests>
