@@ -11,4 +11,4 @@
  */
 
 $fallback = 'nl';
-$formalityIndex = 1;
+$formalityIndex = 0;
