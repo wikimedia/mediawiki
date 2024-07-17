@@ -422,21 +422,12 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	protected function getNamespaceCond() {
 		if ( $this->namespace !== '' ) {
 			$dbr = $this->getDatabase();
-			$selectedNS = $dbr->addQuotes( $this->namespace );
+			$namespaces = [ $this->namespace ];
 			$eq_op = $this->nsInvert ? '!=' : '=';
-			$bool_op = $this->nsInvert ? 'AND' : 'OR';
-
-			if ( !$this->associated ) {
-				return [ $this->pageNamespaceField . " $eq_op $selectedNS" ];
+			if ( $this->associated ) {
+				$namespaces[] = $this->namespaceInfo->getAssociated( $this->namespace );
 			}
-
-			$associatedNS = $dbr->addQuotes( $this->namespaceInfo->getAssociated( $this->namespace ) );
-
-			return [
-				$this->pageNamespaceField . " $eq_op $selectedNS " .
-				$bool_op .
-				" " . $this->pageNamespaceField . " $eq_op $associatedNS"
-			];
+			return [ $dbr->expr( $this->pageNamespaceField, $eq_op, $namespaces ) ];
 		}
 
 		return [];
