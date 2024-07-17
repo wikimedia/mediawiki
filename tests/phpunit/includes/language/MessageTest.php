@@ -402,7 +402,7 @@ class MessageTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideRawMessage
-	 * @covers \MediaWiki\Language\RawMessage::getParams
+	 * @covers \MediaWiki\Language\RawMessage
 	 */
 	public function testRawMessageParams( RawMessage $m, string $param ) {
 		$this->assertEquals( [ $param ], $m->getParams() );
@@ -410,8 +410,7 @@ class MessageTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideRawMessage
-	 * @covers \MediaWiki\Language\RawMessage::getKey
-	 * @covers \MediaWiki\Language\RawMessage::getParams
+	 * @covers \MediaWiki\Language\RawMessage
 	 */
 	public function testRawMessageDisassembleSpecifier( RawMessage $m, string $text ) {
 		// Check this just in case, although it's not really covered by this test.
@@ -780,7 +779,6 @@ class MessageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Message\Message
 	 * @covers \LanguageQqx
 	 */
 	public function testQqxPlaceholders() {
