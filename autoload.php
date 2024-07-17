@@ -970,6 +970,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\CommentFormatter\\StringCommentIterator' => __DIR__ . '/includes/CommentFormatter/StringCommentIterator.php',
 	'MediaWiki\\CommentStore\\CommentStore' => __DIR__ . '/includes/CommentStore/CommentStore.php',
 	'MediaWiki\\CommentStore\\CommentStoreComment' => __DIR__ . '/includes/CommentStore/CommentStoreComment.php',
+	'MediaWiki\\Composer\\ComposerLaunchParallel' => __DIR__ . '/includes/composer/ComposerLaunchParallel.php',
 	'MediaWiki\\Composer\\ComposerPhpunitXmlCoverageEdit' => __DIR__ . '/includes/composer/ComposerPhpunitXmlCoverageEdit.php',
 	'MediaWiki\\Composer\\ComposerVendorHtaccessCreator' => __DIR__ . '/includes/composer/ComposerVendorHtaccessCreator.php',
 	'MediaWiki\\Composer\\LockFileChecker' => __DIR__ . '/includes/composer/LockFileChecker.php',

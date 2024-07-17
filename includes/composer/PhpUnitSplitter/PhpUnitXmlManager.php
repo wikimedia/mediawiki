@@ -11,6 +11,8 @@ class PhpUnitXmlManager {
 
 	private string $rootDir;
 
+	private string $testsListFile;
+
 	/**
 	 * The `SkippedTestCase` is generated dynamically by PHPUnit for tests
 	 * that are marked as skipped. We don't need to find a matching filesystem
@@ -26,8 +28,9 @@ class PhpUnitXmlManager {
 		"\\ParserIntegrationTest",
 	];
 
-	public function __construct( string $rootDir ) {
+	public function __construct( string $rootDir, string $testsListFile ) {
 		$this->rootDir = $rootDir;
+		$this->testsListFile = $testsListFile;
 	}
 
 	private function getPhpUnitXmlTarget(): string {
@@ -39,15 +42,7 @@ class PhpUnitXmlManager {
 	}
 
 	private function getTestsList(): string {
-		return $this->rootDir . DIRECTORY_SEPARATOR . "tests-list.xml";
-	}
-
-	public function isPhpUnitXmlPrepared(): bool {
-		if ( !file_exists( $this->getPhpUnitXmlTarget() ) ) {
-			return false;
-		}
-		$unitFile = $this->loadPhpUnitXml( $this->getPhpUnitXmlTarget() );
-		return $unitFile->containsSplitGroups();
+		return $this->rootDir . DIRECTORY_SEPARATOR . $this->testsListFile;
 	}
 
 	private function loadPhpUnitXmlDist(): PhpUnitXml {
@@ -112,6 +107,10 @@ class PhpUnitXmlManager {
 		return ( new TestSuiteBuilder() )->buildSuites( $testClasses, $groups );
 	}
 
+	public function isPhpUnitXmlPrepared(): bool {
+		return PhpUnitXml::isPhpUnitXmlPrepared( $this->rootDir . DIRECTORY_SEPARATOR . "phpunit.xml" );
+	}
+
 	/**
 	 * @return void
 	 * @throws MissingNamespaceMatchForTestException
@@ -149,14 +148,34 @@ class PhpUnitXmlManager {
 	 * @throws MissingNamespaceMatchForTestException
 	 * @throws SuiteGenerationException
 	 */
-	public static function splitTestsList() {
+	public static function splitTestsList( string $testListFile ) {
 		/**
 		 * We split into 8 groups here, because experimentally that generates 100% CPU load
 		 * on developer machines and results in groups that are similar in size to the
 		 * Parser tests (which we have to run in a group on their own - see T345481)
 		 */
-		( new PhpUnitXmlManager( getcwd() ) )->createPhpUnitXml( 8 );
+		( new PhpUnitXmlManager( getcwd(), $testListFile ) )->createPhpUnitXml( 8 );
 		print( PHP_EOL . 'Created modified `phpunit.xml` with test suite groups' . PHP_EOL );
+	}
+
+	/**
+	 * @throws TestListMissingException
+	 * @throws UnlocatedTestException
+	 * @throws MissingNamespaceMatchForTestException
+	 * @throws SuiteGenerationException
+	 */
+	public static function splitTestsListExtensions() {
+		self::splitTestsList( 'tests-list-extensions.xml' );
+	}
+
+	/**
+	 * @throws TestListMissingException
+	 * @throws UnlocatedTestException
+	 * @throws MissingNamespaceMatchForTestException
+	 * @throws SuiteGenerationException
+	 */
+	public static function splitTestsListDefault() {
+		self::splitTestsList( 'tests-list-default.xml' );
 	}
 
 	/**
