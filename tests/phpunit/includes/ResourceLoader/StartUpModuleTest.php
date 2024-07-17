@@ -657,6 +657,8 @@ mw.loader.register([
 	 * @dataProvider provideGetModuleRegistrations
 	 */
 	public function testGetModuleRegistrations( $case ) {
+		$this->clearHook( 'ResourceLoaderModifyStartupSourceUrls' );
+
 		$extraQuery = $case['extraQuery'] ?? [];
 		$context = $this->getResourceLoaderContext( $extraQuery );
 		$rl = $context->getResourceLoader();
@@ -666,6 +668,7 @@ mw.loader.register([
 		$rl->register( $case['modules'] );
 		$module = new StartUpModule();
 		$module->setConfig( $rl->getConfig() );
+		$module->setHookContainer( $this->getServiceContainer()->getHookContainer() );
 		$out = ltrim( $case['out'], "\n" );
 
 		// Disable log from getModuleRegistrations via MWExceptionHandler
@@ -726,11 +729,14 @@ mw.loader.register([
 	 * @dataProvider provideGetModuleRegistrationsProduction
 	 */
 	public function testGetModuleRegistrationsProduction( array $case ) {
+		$this->clearHook( 'ResourceLoaderModifyStartupSourceUrls' );
+
 		$context = $this->getResourceLoaderContext( [ 'debug' => 'false' ] );
 		$rl = $context->getResourceLoader();
 		$rl->register( $case['modules'] );
 		$module = new StartUpModule();
 		$module->setConfig( $rl->getConfig() );
+		$module->setHookContainer( $this->getServiceContainer()->getHookContainer() );
 		$out = ltrim( $case['out'], "\n" );
 
 		// Tolerate exception logs for cases that expect getVersionHash() to throw.
@@ -738,6 +744,28 @@ mw.loader.register([
 
 		$this->assertEquals(
 			self::expandPlaceholders( $out ),
+			$module->getModuleRegistrations( $context )
+		);
+	}
+
+	public function testGetModuleRegistrations_hook() {
+		$this->clearHook( 'ResourceLoaderModifyStartupSourceUrls' );
+		$this->setTemporaryHook( 'ResourceLoaderModifyStartupSourceUrls', function ( &$urls, $context ) {
+			$urlUtils = $this->getServiceContainer()->getUrlUtils();
+			$urls['local'] = $urlUtils->expand( $urls['local'] );
+		} );
+
+		$context = $this->getResourceLoaderContext();
+		$rl = $context->getResourceLoader();
+		$module = new StartUpModule();
+		$module->setHookContainer( $this->getServiceContainer()->getHookContainer() );
+		$module->setConfig( $rl->getConfig() );
+		$out = 'mw.loader.addSource({
+    "local": "https://example.org/w/load.php"
+});
+mw.loader.register([]);';
+		$this->assertEquals(
+			$out,
 			$module->getModuleRegistrations( $context )
 		);
 	}
@@ -766,6 +794,8 @@ mw.loader.register([
 	 * @dataProvider provideRegistrations
 	 */
 	public function testRegistrationsMinified( $modules ) {
+		$this->clearHook( 'ResourceLoaderModifyStartupSourceUrls' );
+
 		$context = $this->getResourceLoaderContext( [
 			'debug' => 'false',
 		] );
@@ -773,6 +803,7 @@ mw.loader.register([
 		$rl->register( $modules );
 		$module = new StartUpModule();
 		$module->setConfig( $rl->getConfig() );
+		$module->setHookContainer( $this->getServiceContainer()->getHookContainer() );
 		$out = 'mw.loader.addSource({"local":"/w/load.php"});' . "\n"
 		. 'mw.loader.register(['
 		. '["test.blank","{blankVer}"],'
@@ -791,6 +822,8 @@ mw.loader.register([
 	 * @dataProvider provideRegistrations
 	 */
 	public function testRegistrationsUnminified( $modules ) {
+		$this->clearHook( 'ResourceLoaderModifyStartupSourceUrls' );
+
 		$context = $this->getResourceLoaderContext( [
 			'debug' => 'true',
 		] );
@@ -798,6 +831,7 @@ mw.loader.register([
 		$rl->register( $modules );
 		$module = new StartUpModule();
 		$module->setConfig( $rl->getConfig() );
+		$module->setHookContainer( $this->getServiceContainer()->getHookContainer() );
 		$out =
 'mw.loader.addSource({
     "local": "/w/load.php"
@@ -827,6 +861,7 @@ mw.loader.register([
 	}
 
 	public function testGetVersionHash_varyConfig() {
+		$this->clearHook( 'ResourceLoaderModifyStartupSourceUrls' );
 		$context = $this->getResourceLoaderContext();
 
 		$module = new StartUpModule();
@@ -835,6 +870,7 @@ mw.loader.register([
 
 		$module = new StartUpModule();
 		$module->setConfig( $context->getResourceLoader()->getConfig() );
+		$module->setHookContainer( $this->getServiceContainer()->getHookContainer() );
 		$version2 = $module->getVersionHash( $context );
 
 		$this->assertEquals(
@@ -845,6 +881,8 @@ mw.loader.register([
 	}
 
 	public function testGetVersionHash_varyModule() {
+		$this->clearHook( 'ResourceLoaderModifyStartupSourceUrls' );
+
 		$context1 = $this->getResourceLoaderContext( [
 			'debug' => 'false',
 		] );
@@ -855,6 +893,7 @@ mw.loader.register([
 		] );
 		$module = new StartUpModule();
 		$module->setConfig( $rl1->getConfig() );
+		$module->setHookContainer( $this->getServiceContainer()->getHookContainer() );
 		$module->setName( 'test' );
 		$version1 = $module->getVersionHash( $context1 );
 
@@ -866,6 +905,7 @@ mw.loader.register([
 		] );
 		$module = new StartUpModule();
 		$module->setConfig( $rl2->getConfig() );
+		$module->setHookContainer( $this->getServiceContainer()->getHookContainer() );
 		$module->setName( 'test' );
 		$version2 = $module->getVersionHash( $context2 );
 
@@ -880,6 +920,7 @@ mw.loader.register([
 		] );
 		$module = new StartUpModule();
 		$module->setConfig( $rl3->getConfig() );
+		$module->setHookContainer( $this->getServiceContainer()->getHookContainer() );
 		$module->setName( 'test' );
 		$version3 = $module->getVersionHash( $context3 );
 
@@ -898,6 +939,8 @@ mw.loader.register([
 	}
 
 	public function testGetVersionHash_varyDeps() {
+		$this->clearHook( 'ResourceLoaderModifyStartupSourceUrls' );
+
 		$context = $this->getResourceLoaderContext( [ 'debug' => 'false' ] );
 		$rl = $context->getResourceLoader();
 		$rl->register( [
@@ -908,6 +951,7 @@ mw.loader.register([
 		] );
 		$module = new StartUpModule();
 		$module->setConfig( $rl->getConfig() );
+		$module->setHookContainer( $this->getServiceContainer()->getHookContainer() );
 		$module->setName( 'test' );
 		$version1 = $module->getVersionHash( $context );
 
@@ -921,6 +965,7 @@ mw.loader.register([
 		] );
 		$module = new StartUpModule();
 		$module->setConfig( $rl->getConfig() );
+		$module->setHookContainer( $this->getServiceContainer()->getHookContainer() );
 		$module->setName( 'test' );
 		$version2 = $module->getVersionHash( $context );
 
