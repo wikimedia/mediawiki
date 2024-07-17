@@ -26,6 +26,8 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\RateLimiter;
+use MediaWiki\Status\StatusFormatter;
+use MediaWiki\Tests\Unit\FakeQqxMessageLocalizer;
 use MediaWiki\User\User;
 use MediaWikiUnitTestCase;
 
@@ -381,12 +383,21 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		$this->assertStatusError( 'blockedtext-partial', $permissionStatus );
 		$this->assertNotNull( $permissionStatus->getBlock() );
 
-		// The actual index is not relevant and depends on the implementation
-		$message = $permissionStatus->getMessages()[2];
-		$this->assertEquals( 'blockedtext-partial', $message->getKey() );
-		$this->assertArrayEquals(
-			$this->getFakeBlockMessageParams(),
-			$message->getParams()
-		);
+		$formatter = new StatusFormatter( new FakeQqxMessageLocalizer(), $this->createNoOpMock( \MessageCache::class ) );
+		// Despite all the futzing around with services, StatusFormatter depends on this global through wfEscapeWikiText
+		global $wgEnableMagicLinks;
+		$old = $wgEnableMagicLinks;
+		$wgEnableMagicLinks = [];
+
+		try {
+			$wikitext = $formatter->getWikiText( $permissionStatus );
+			// Assert that the formatted wikitext contains the original values of the message parameters,
+			// rather than escaped ones
+			foreach ( $this->getFakeBlockMessageParams() as $param ) {
+				$this->assertStringContainsString( $param, $wikitext );
+			}
+		} finally {
+			$wgEnableMagicLinks = $old;
+		}
 	}
 }
