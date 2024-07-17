@@ -124,6 +124,14 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 			$params['ipRangeLimits'] = $this->mParams['iprangelimits'];
 		}
 
+		if ( isset( $this->mParams['excludenamed'] ) ) {
+			$params['excludeNamed'] = $this->mParams['excludenamed'];
+		}
+
+		if ( isset( $this->mParams['excludetemp'] ) ) {
+			$params['excludeTemp'] = $this->mParams['excludetemp'];
+		}
+
 		if ( isset( $this->mParams['input'] ) ) {
 			$params['input'] = $this->mParams['input'];
 		}

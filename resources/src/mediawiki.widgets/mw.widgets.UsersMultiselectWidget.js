@@ -30,6 +30,8 @@
 	 * @param {Object} [config.ipRangeLimits] Maximum allowed IP ranges (defaults match HTMLUserTextField.php)
 	 * @param {number} [config.ipRangeLimits.IPv4 = 16] Maximum allowed IPv4 range
 	 * @param {number} [config.ipRangeLimits.IPv6 = 32] Maximum allowed IPv6 range
+	 * @param {boolean} [config.excludenamed] Whether to exclude named users or not
+	 * @param {boolean} [config.excludetemp] Whether to exclude temporary users or not
 	 */
 	mw.widgets.UsersMultiselectWidget = function MwWidgetsUsersMultiselectWidget( config ) {
 		// Config initialization
@@ -40,7 +42,9 @@
 			ipRangeLimits: {
 				IPv4: 16,
 				IPv6: 32
-			}
+			},
+			excludeNamed: false,
+			excludeTemp: false
 		}, config );
 
 		// Parent constructor
@@ -54,6 +58,8 @@
 		this.ipAllowed = config.ipAllowed;
 		this.ipRangeAllowed = config.ipRangeAllowed;
 		this.ipRangeLimits = config.ipRangeLimits;
+		this.excludeNamed = config.excludeNamed;
+		this.excludeTemp = config.excludeTemp;
 
 		if ( 'name' in config ) {
 			// Use this instead of <input type="hidden">, because hidden inputs do not have separate
@@ -138,7 +144,9 @@
 					action: 'query',
 					list: 'allusers',
 					auprefix: inputValue,
-					aulimit: this.limit
+					aulimit: this.limit,
+					auexcludenamed: this.excludeNamed,
+					auexcludetemp: this.excludeTemp
 				} ).done( ( response ) => {
 					let suggestions = response.query.allusers;
 

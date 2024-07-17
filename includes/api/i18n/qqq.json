@@ -639,6 +639,8 @@
 	"apihelp-query+allusers-summary": "{{doc-apihelp-summary|query+allusers}}",
 	"apihelp-query+allusers-param-from": "{{doc-apihelp-param|query+allusers|from}}",
 	"apihelp-query+allusers-param-to": "{{doc-apihelp-param|query+allusers|to}}",
+	"apihelp-query+allusers-param-excludenamed": "{{doc-apihelp-param|query+allusers|excludenamed}}",
+	"apihelp-query+allusers-param-excludetemp": "{{doc-apihelp-param|query+allusers|excludetemp}}",
 	"apihelp-query+allusers-param-prefix": "{{doc-apihelp-param|query+allusers|prefix}}",
 	"apihelp-query+allusers-param-dir": "{{doc-apihelp-param|query+allusers|dir}}",
 	"apihelp-query+allusers-param-group": "{{doc-apihelp-param|query+allusers|group}}",

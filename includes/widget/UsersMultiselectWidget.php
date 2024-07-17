@@ -18,11 +18,19 @@ class UsersMultiselectWidget extends TagMultiselectWidget {
 	/** @var array */
 	protected $ipRangeLimits;
 
+	/** @var bool */
+	protected $excludeNamed;
+
+	/** @var bool */
+	protected $excludeTemp;
+
 	/**
 	 * @param array $config Configuration options
 	 * - bool $config['ipAllowed'] Accept valid IP addresses
 	 * - bool $config['ipRangeAllowed'] Accept valid IP ranges
 	 * - array $config['ipRangeLimits'] Maximum allowed IP range sizes
+	 * - bool $config['excludeNamed'] Exclude named accounts
+	 * - bool $config['excludeTemp'] Exclude temporary accounts
 	 */
 	public function __construct( array $config = [] ) {
 		parent::__construct( $config );
@@ -37,6 +45,14 @@ class UsersMultiselectWidget extends TagMultiselectWidget {
 
 		if ( isset( $config['ipRangeLimits'] ) ) {
 			$this->ipRangeLimits = $config['ipRangeLimits'];
+		}
+
+		if ( isset( $config['excludeNamed'] ) ) {
+			$this->excludeNamed = $config['excludeNamed'];
+		}
+
+		if ( isset( $config['excludeTemp'] ) ) {
+			$this->excludeTemp = $config['excludeTemp'];
 		}
 	}
 
@@ -55,6 +71,14 @@ class UsersMultiselectWidget extends TagMultiselectWidget {
 
 		if ( $this->ipRangeLimits !== null ) {
 			$config['ipRangeLimits'] = $this->ipRangeLimits;
+		}
+
+		if ( $this->excludeNamed !== null ) {
+			$config['excludeNamed'] = $this->excludeNamed;
+		}
+
+		if ( $this->excludeTemp !== null ) {
+			$config['excludeTemp'] = $this->excludeTemp;
 		}
 
 		return parent::getConfig( $config );
