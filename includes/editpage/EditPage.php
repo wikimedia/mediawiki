@@ -1424,7 +1424,6 @@ class EditPage implements IEditObject {
 	 */
 	protected function getContentObject( $defaultContent = null ) {
 		$services = MediaWikiServices::getInstance();
-		$disableAnonTalk = $services->getMainConfig()->get( MainConfigNames::DisableAnonTalk );
 		$request = $this->context->getRequest();
 
 		$content = false;
@@ -1518,56 +1517,7 @@ class EditPage implements IEditObject {
 						} else {
 							# Inform the user of our success and set an automatic edit summary
 							$undoMsg = 'success';
-
-							# If we just undid one rev, use an autosummary
-							$firstrev = $this->revisionStore->getNextRevision( $oldrev );
-							if ( $firstrev && $firstrev->getId() == $undo ) {
-								$userText = $undorev->getUser() ?
-									$undorev->getUser()->getName() :
-									'';
-								if ( $userText === '' ) {
-									$undoSummary = $this->context->msg(
-										'undo-summary-username-hidden',
-										$undo
-									)->inContentLanguage()->text();
-								// Handle external users (imported revisions)
-								} elseif ( ExternalUserNames::isExternal( $userText ) ) {
-									$userLinkTitle = ExternalUserNames::getUserLinkTitle( $userText );
-									if ( $userLinkTitle ) {
-										$userLink = $userLinkTitle->getPrefixedText();
-										$undoSummary = $this->context->msg(
-											'undo-summary-import',
-											$undo,
-											$userLink,
-											$userText
-										)->inContentLanguage()->text();
-									} else {
-										$undoSummary = $this->context->msg(
-											'undo-summary-import2',
-											$undo,
-											$userText
-										)->inContentLanguage()->text();
-									}
-								} else {
-									$undoIsAnon =
-										!$undorev->getUser() ||
-										!$undorev->getUser()->isRegistered();
-									$undoMessage = ( $undoIsAnon && $disableAnonTalk ) ?
-										'undo-summary-anon' :
-										'undo-summary';
-									$undoSummary = $this->context->msg(
-										$undoMessage,
-										$undo,
-										$userText
-									)->inContentLanguage()->text();
-								}
-								if ( $this->summary === '' ) {
-									$this->summary = $undoSummary;
-								} else {
-									$this->summary = $undoSummary . $this->context->msg( 'colon-separator' )
-										->inContentLanguage()->text() . $this->summary;
-								}
-							}
+							$this->generateUndoEditSummary( $oldrev, $undo, $undorev, $services );
 							$this->undidRev = $undo;
 							$this->undoAfter = $undoafter;
 							$this->formtype = 'diff';
@@ -1599,6 +1549,71 @@ class EditPage implements IEditObject {
 		}
 
 		return $content;
+	}
+
+	/**
+	 * When using the "undo" action, generate a default edit summary and save it
+	 * to $this->summary
+	 *
+	 * @param RevisionRecord|null $oldrev The revision in the URI "undoafter" field
+	 * @param int $undo The integer in the URI "undo" field
+	 * @param RevisionRecord|null $undorev The revision in the URI "undo" field
+	 * @param MediaWikiServices $services Service container
+	 * @return void
+	 */
+	private function generateUndoEditSummary( ?RevisionRecord $oldrev, int $undo,
+		?RevisionRecord $undorev, MediaWikiServices $services
+	) {
+		// If we just undid one rev, use an autosummary
+		$firstrev = $this->revisionStore->getNextRevision( $oldrev );
+		if ( $firstrev && $firstrev->getId() == $undo ) {
+			$userText = $undorev->getUser() ?
+				$undorev->getUser()->getName() :
+				'';
+			if ( $userText === '' ) {
+				$undoSummary = $this->context->msg(
+					'undo-summary-username-hidden',
+					$undo
+				)->inContentLanguage()->text();
+			// Handle external users (imported revisions)
+			} elseif ( ExternalUserNames::isExternal( $userText ) ) {
+				$userLinkTitle = ExternalUserNames::getUserLinkTitle( $userText );
+				if ( $userLinkTitle ) {
+					$userLink = $userLinkTitle->getPrefixedText();
+					$undoSummary = $this->context->msg(
+						'undo-summary-import',
+						$undo,
+						$userLink,
+						$userText
+					)->inContentLanguage()->text();
+				} else {
+					$undoSummary = $this->context->msg(
+						'undo-summary-import2',
+						$undo,
+						$userText
+					)->inContentLanguage()->text();
+				}
+			} else {
+				$undoIsAnon =
+					!$undorev->getUser() ||
+					!$undorev->getUser()->isRegistered();
+				$disableAnonTalk = $services->getMainConfig()->get( MainConfigNames::DisableAnonTalk );
+				$undoMessage = ( $undoIsAnon && $disableAnonTalk ) ?
+					'undo-summary-anon' :
+					'undo-summary';
+				$undoSummary = $this->context->msg(
+					$undoMessage,
+					$undo,
+					$userText
+				)->inContentLanguage()->text();
+			}
+			if ( $this->summary === '' ) {
+				$this->summary = $undoSummary;
+			} else {
+				$this->summary = $undoSummary . $this->context->msg( 'colon-separator' )
+					->inContentLanguage()->text() . $this->summary;
+			}
+		}
 	}
 
 	/**
