@@ -23,6 +23,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
 use StatusValue;
+use Wikimedia\Message\MessageValue;
 
 /**
  * Various useful Authority mocks.
@@ -371,7 +372,8 @@ trait MockAuthorityTrait {
 					$status->fatal( 'permissionserrors' );
 				}
 				if ( $user->getBlock() && $permission !== 'read' ) {
-					$status->fatal( 'blockedtext-partial', ...$fakeBlockMessageParams );
+					$status->setBlock( $user->getBlock() );
+					$status->fatal( MessageValue::new( 'blockedtext-partial', $fakeBlockMessageParams ) );
 				}
 				return $status;
 			}

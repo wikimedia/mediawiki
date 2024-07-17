@@ -324,17 +324,6 @@ class UserAuthority implements Authority {
 		return !$status || $status->isOK();
 	}
 
-	// See ApiBase::BLOCK_CODE_MAP
-	private const BLOCK_CODES = [
-		'blockedtext',
-		'blockedtext-partial',
-		'autoblockedtext',
-		'systemblockedtext',
-		'blockedtext-composite',
-		'blockedtext-tempuser',
-		'autoblockedtext-tempuser',
-	];
-
 	/**
 	 * @param string $rigor
 	 * @param string $action
@@ -376,32 +365,13 @@ class UserAuthority implements Authority {
 				$rigor
 			);
 
-			if ( $tempStatus->isGood() ) {
-				// Nothing to merge, return early
-				return $status->isOK();
+			if ( !$tempStatus->isGood() ) {
+				$status->merge( $tempStatus );
 			}
 
-			// Instead of `$status->merge( $tempStatus )`, process the messages like this to ensure that
-			// the resulting status contains Message objects instead of strings+arrays, and thus does not
-			// trigger wikitext escaping in a legacy code path. See T368821 for more information about
-			// that behavior, and see T306494 for the specific bug this fixes.
-			foreach ( $tempStatus->getMessages() as $msg ) {
-				$status->fatal( $msg );
-			}
-
-			foreach ( self::BLOCK_CODES as $code ) {
-				// HACK: Detect whether the permission was denied because the user is blocked.
-				//       A similar hack exists in ApiBase::BLOCK_CODE_MAP.
-				//       When permission checking logic is moved out of PermissionManager,
-				//       we can record the block info directly when first checking the block,
-				//       rather than doing that here.
-				if ( $tempStatus->hasMessage( $code ) ) {
-					$block = $this->getBlock();
-					if ( $block ) {
-						$status->setBlock( $block );
-					}
-					break;
-				}
+			$block = $tempStatus->getBlock();
+			if ( $block ) {
+				$status->setBlock( $block );
 			}
 
 			return $status->isOK();

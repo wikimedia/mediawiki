@@ -20,14 +20,9 @@
 
 namespace MediaWiki\Api;
 
-use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\Block;
-use MediaWiki\Block\CompositeBlock;
-use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\Block\SystemBlock;
 use MediaWiki\Language\Language;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\Utils\MWTimestamp;
 
 /**
  * @ingroup API
@@ -57,54 +52,8 @@ trait ApiBlockInfoTrait {
 		Block $block,
 		$language = null
 	) {
-		$language ??= $this->getLanguage();
-
-		$blocker = $block->getBlocker();
-
-		$vals = [];
-		$vals['blockid'] = $block->getId();
-		$vals['blockedby'] = $blocker ? $blocker->getName() : '';
-		$vals['blockedbyid'] = $blocker ? $blocker->getId() : 0;
-		$vals['blockreason'] = $block->getReasonComment()
-			->message->inLanguage( $language )->plain();
-		$vals['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $block->getTimestamp() );
-		$expiry = ApiResult::formatExpiry( $block->getExpiry(), 'infinite' );
-		$vals['blockexpiry'] = $expiry;
-		$vals['blockpartial'] = !$block->isSitewide();
-		$vals['blocknocreate'] = $block->isCreateAccountBlocked();
-		$vals['blockanononly'] = !$block->isHardblock();
-		if ( $block instanceof AbstractBlock ) {
-			$vals['blockemail'] = $block->isEmailBlocked();
-			$vals['blockowntalk'] = !$block->isUsertalkEditAllowed();
-		}
-
-		$user = $this->getUser();
-		// Formatted timestamps
-		$vals['blockedtimestampformatted'] = $language->formatExpiry(
-			$block->getTimestamp(), true, 'infinity', $user
-		);
-		if ( $expiry !== 'infinite' ) {
-			$vals['blockexpiryformatted'] = $language->formatExpiry(
-				$expiry, true, 'infinity', $user
-			);
-			$vals['blockexpiryrelative'] = $language->getHumanTimestamp(
-				new MWTimestamp( $expiry ), new MWTimestamp(), $user
-			);
-		}
-
-		if ( $block instanceof SystemBlock ) {
-			$vals['systemblocktype'] = $block->getSystemBlockType();
-		}
-
-		if ( $block instanceof CompositeBlock ) {
-			$components = [];
-			foreach ( $block->getOriginalBlocks() as $singleBlock ) {
-				$components[] = $this->getBlockDetails( $singleBlock, $language );
-			}
-			$vals['blockcomponents'] = $components;
-		}
-
-		return $vals;
+		return ( new ApiBlockInfoHelper )->getBlockDetails(
+			$block, $language ?? $this->getLanguage(), $this->getUser() );
 	}
 
 	/**
@@ -113,10 +62,7 @@ trait ApiBlockInfoTrait {
 	 * @return string
 	 */
 	private function getBlockCode( Block $block ): string {
-		if ( $block instanceof DatabaseBlock && $block->getType() === Block::TYPE_AUTO ) {
-			return 'autoblocked';
-		}
-		return 'blocked';
+		return ( new ApiBlockInfoHelper )->getBlockCode( $block );
 	}
 
 	// region   Methods required from ApiBase

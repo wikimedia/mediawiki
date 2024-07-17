@@ -7,11 +7,13 @@ use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Api\ApiBlockInfoTrait
+ * @covers \MediaWiki\Api\ApiBlockInfoHelper
  */
 class ApiBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;
@@ -29,6 +31,7 @@ class ApiBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 		$language = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$mock = $this->getMockForTrait( ApiBlockInfoTrait::class );
 		$mock->method( 'getLanguage' )->willReturn( $language );
+		$mock->method( 'getUser' )->willReturn( new UserIdentityValue( 0, 'Test' ) );
 		$info = TestingAccessWrapper::newFromObject( $mock )->getBlockDetails( $block );
 		$subset = array_merge( [
 			'blockid' => null,
