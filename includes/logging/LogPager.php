@@ -145,10 +145,14 @@ class LogPager extends ReverseChronologicalPager {
 			return;
 		}
 		$filterTypes = $this->getFilterParams();
+		$excludeTypes = [];
 		foreach ( $filterTypes as $type => $hide ) {
 			if ( $hide ) {
-				$this->mConds[] = 'log_type != ' . $this->mDb->addQuotes( $type );
+				$excludeTypes[] = $type;
 			}
+		}
+		if ( $excludeTypes ) {
+			$this->mConds[] = $this->mDb->expr( 'log_type', '!=', $excludeTypes );
 		}
 	}
 
