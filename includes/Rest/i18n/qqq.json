@@ -19,6 +19,7 @@
 	"rest-nonexistent-revision": "Error message for REST API debugging, shown when the specified revision does not exist. Parameters:\n* $1 The revision id.",
 	"rest-nonexistent-user": "Error message for REST API debugging, shown when the specified user does not exist. Parameters:\n* $1 The username.",
 	"rest-invalid-user": "Error message for REST API debugging, shown when the specified username is invalid. Parameters:\n* $1 The username.",
+	"rest-invalid-ip": "Error message for REST API debugging, shown when the specified IP is invalid. Parameters:\n* $1 The IP.",
 	"rest-invalid-title": "Error message indicating that the given title is invalid or does not refer to a wiki page (e.g. it's a special page). Parameters:\n* $1 The page title",
 	"rest-unsupported-content-type": "Error message for REST API debugging, shown when the specified content type is invalid. Parameters:\n* $1 The content type.",
 	"rest-permission-error": "Error message for REST API debugging, shown when the user is denied permission to perform an action. Parameters:\n* $1 The name of the action.",

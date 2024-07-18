@@ -15,6 +15,7 @@
 	"rest-nonexistent-revision": "The specified revision ($1) does not exist",
 	"rest-nonexistent-user": "The specified user ($1) does not exist",
 	"rest-invalid-user": "The specified username ($1) is invalid",
+	"rest-invalid-ip": "The specified IP ($1) is invalid",
 	"rest-invalid-title": "The specified title ($1) does not refer to a wiki page.",
 	"rest-unsupported-content-type": "Unsupported Content-Type: $1",
 	"rest-permission-error": "Permission denied: $1",
