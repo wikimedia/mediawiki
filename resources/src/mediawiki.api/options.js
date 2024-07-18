@@ -10,7 +10,7 @@
 		 *
 		 * @param {string} name
 		 * @param {string|null} value
-		 * @param {Object} params additional parameters for API.
+		 * @param {Object} [params] additional parameters for API.
 		 * @return {jQuery.Promise}
 		 */
 		saveOption: function ( name, value, params ) {
@@ -35,7 +35,7 @@
 		 * would fail anyway. See T214963.
 		 *
 		 * @param {Object} options Options as a `{ name: value, … }` object
-		 * @param {Object} params additional parameters for API.
+		 * @param {Object} [params] additional parameters for API.
 		 * @return {jQuery.Promise}
 		 */
 		saveOptions: function ( options, params ) {
