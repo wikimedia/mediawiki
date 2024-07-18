@@ -165,10 +165,12 @@ function wfArrayDiff2( $arr1, $arr2 ) {
  *       [ 'y' ]
  *     ]
  *
+ * @deprecated since 1.43 Use StatusValue::merge() instead
  * @param array[] ...$args
  * @return array
  */
 function wfMergeErrorArrays( ...$args ) {
+	wfDeprecated( __FUNCTION__, '1.43' );
 	$out = [];
 	foreach ( $args as $errors ) {
 		foreach ( $errors as $params ) {

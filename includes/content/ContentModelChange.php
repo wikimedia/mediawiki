@@ -158,7 +158,7 @@ class ContentModelChange {
 	 * Check user can edit and editcontentmodel before and after
 	 *
 	 * @deprecated since 1.36. Use ::probablyCanChange or ::authorizeChange instead.
-	 * @return array from wfMergeErrorArrays
+	 * @return array Errors in legacy error array format
 	 */
 	public function checkPermissions() {
 		wfDeprecated( __METHOD__, '1.36' );

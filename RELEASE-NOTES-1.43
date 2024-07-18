@@ -450,6 +450,7 @@ because of Phabricator reports.
   warnings.
 * User::isBlockedFromEmailuser() and User::canSendEmail(), deprecated since
   1.41, now emit deprecation warnings.
+* wfMergeErrorArrays() has been deprecated.
 * User::whoIs() and User::whoIsReal(), have been deprecated.
 * UserCache class and MediaWikiServices::getUserCache(), have been deprecated.
 * JsonUnserializable and related classes have been renamed to JsonDeserializable
