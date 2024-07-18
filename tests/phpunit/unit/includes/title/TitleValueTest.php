@@ -190,11 +190,6 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 		$this->assertFalse( $title->hasFragment() );
 	}
 
-	public static function provideCastPageToLinkTarget() {
-		yield [ new PageReferenceValue( NS_USER, 'Test', PageIdentity::LOCAL ) ];
-		yield [ new PageReferenceValue( NS_USER, 'Test', 'acme' ) ];
-	}
-
 	/**
 	 * @dataProvider provideNewFromPage
 	 *
