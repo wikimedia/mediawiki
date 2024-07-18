@@ -88,13 +88,16 @@ describe( 'PUT /page/{title}', () => {
 			const normalizedTitle = utils.dbkey( title );
 
 			// create
-			const firstRev = await mindy.edit( title, {} );
+			await mindy.edit( normalizedTitle, {} );
+			const { body: newPage } = await client.get( `/page/${ normalizedTitle }/bare` );
+
+			const firstRev = newPage.latest;
 
 			const reqBody = {
 				token: mindyToken,
 				source: 'Lörem Ipsüm',
 				comment: 'tästing',
-				latest: { id: firstRev.newrevid }
+				latest: firstRev // provide the base revision
 			};
 			const { status: editStatus, body: editBody, header: editHeader } =
 				await client.put( `/page/${ title }`, reqBody );
@@ -102,7 +105,7 @@ describe( 'PUT /page/{title}', () => {
 			assert.equal( editStatus, 200 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			checkEditResponse( title, reqBody, editBody );
-			assert.isAbove( editBody.latest.id, firstRev.newrevid );
+			assert.isAbove( editBody.latest.id, firstRev.id );
 
 			const { status: sourceStatus, body: sourceBody, header: sourceHeader } =
 				await client.get( `/page/${ normalizedTitle }` );

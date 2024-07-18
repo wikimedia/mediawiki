@@ -17,13 +17,6 @@ use Wikimedia\ParamValidator\ParamValidator;
  * Core REST API endpoint that handles page updates (main slot only)
  */
 class UpdateHandler extends EditHandler {
-	private const REVISION_SCHEMA = [
-		'type' => 'object',
-		'properties' => [
-			'id' => [ 'type' => 'integer' ]
-		],
-		'required' => [ 'id' ],
-	];
 
 	/**
 	 * @var callable
@@ -83,7 +76,10 @@ class UpdateHandler extends EditHandler {
 				self::PARAM_SOURCE => 'body',
 				ParamValidator::PARAM_TYPE => 'array',
 				ParamValidator::PARAM_REQUIRED => false,
-				ArrayDef::PARAM_SCHEMA => self::REVISION_SCHEMA,
+				ArrayDef::PARAM_SCHEMA => ArrayDef::makeObjectSchema(
+					[ 'id' => 'integer' ],
+					[ 'timestamp' => 'string' ], // from GET response, will be ignored
+				),
 			],
 		] + $this->getTokenParamDefinition();
 	}
