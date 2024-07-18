@@ -22,6 +22,7 @@
  * @author Niklas Laxström
  */
 
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\User\UserIdentity;
 
 /**
@@ -55,7 +56,11 @@ class PatrolLog {
 		}
 
 		$entry = new ManualLogEntry( 'patrol', 'patrol' );
-		$entry->setTarget( $rc->getTitle() );
+
+		// B/C: ->getPage() on RC will return a page reference or null, reconcile this in
+		//      $entry->setTarget() call so we don't throw.
+		$page = $rc->getPage() ?? PageReferenceValue::localReference( NS_SPECIAL, 'Badtitle' );
+		$entry->setTarget( $page );
 		$entry->setParameters( self::buildParams( $rc ) );
 		$entry->setPerformer( $user );
 		$entry->addTags( $tags );
