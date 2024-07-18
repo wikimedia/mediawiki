@@ -1259,7 +1259,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-restrictions": "Renvoie l’information sur les types de restriction disponibles (protection).",
 	"apihelp-query+siteinfo-paramvalue-prop-languages": "Renvoie une liste des langues que MediaWiki prend en charge (éventuellement localisée en utilisant <var>$1inlanguagecode</var>).",
 	"apihelp-query+siteinfo-paramvalue-prop-languagevariants": "Renvoie une liste de codes de langue pour lesquels [[mw:Special:MyLanguage/LanguageConverter|LanguageConverter]] est activé, et les variantes prises en charge pour chacun.",
-	"apihelp-query+siteinfo-paramvalue-prop-skins": "Renvoie une liste de tous les habillages activés (éventuellement localisé en utilisant <var>$1inlanguagecode</var>, sinon dans la langue du contenu).",
+	"apihelp-query+siteinfo-paramvalue-prop-skins": "Renvoie une liste de tous les habillages activés (éventuellement localisée en utilisant <var>$1inlanguagecode</var>, sinon dans la langue du contenu).",
 	"apihelp-query+siteinfo-paramvalue-prop-extensiontags": "Renvoie une liste des balises d’extension de l’analyseur.",
 	"apihelp-query+siteinfo-paramvalue-prop-functionhooks": "Renvoie une liste des accroches de fonction de l’analyseur.",
 	"apihelp-query+siteinfo-paramvalue-prop-showhooks": "Renvoie une liste de toutes les accroches souscrites (contenu de <var>[[mw:Special:MyLanguage/Manual:$wgHooks|$wgHooks]]</var>).",

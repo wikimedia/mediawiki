@@ -1901,7 +1901,7 @@
 	"deletecomment": "कारण :",
 	"deleteotherreason": "अरू/थप कारणहरू :",
 	"deletereasonotherlist": "अरु कारण",
-	"deletereason-dropdown": "*मेट्नका सामान्य कारणहरू\n** स्प्याम\n** हुल्याहापन(Vandalism) \n** प्रतिलिपी अधिकार उल्लङ्घन\n** लेखकको अनुरोध\n** टुटेको अनुप्रेषण",
+	"deletereason-dropdown": "*मेट्नका सामान्य कारणहरू\n** स्प्याम\n** बर्बरता\n** प्रतिलिपी अधिकार उल्लङ्घन\n** लेखकको अनुरोध\n** टुटेको अनुप्रेषण",
 	"delete-edit-reasonlist": "मेट्नुको कारण सम्पादन गर्नुहोस्",
 	"delete-toobig": "यो पृष्ठको सम्पादन इतिहास धेरै र  $1 {{PLURAL:$1|पुनरावलोक|पुनरावलोकहरू}}भन्दा बढी रहेको छ।\n {{SITENAME}}मा दुर्घटनाको कारणले गडबडी आउनसक्ने कुरालाई रोक्न यस्ता पृष्ठहरूलाई मेट्नबाट निषेध गरिएको छ ।",
 	"delete-warning-toobig": "This page has a large edit history, over $1 {{PLURAL:$1|revision|revisions}}.\nDeleting it may disrupt database operations of {{SITENAME}};\nproceed with caution.",

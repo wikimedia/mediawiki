@@ -2226,7 +2226,7 @@
 	"watchlist-options": "Pilihan senarai pantau",
 	"watching": "Memantau...",
 	"unwatching": "Menyahpantau...",
-	"enotif_reset": "Tandakan semua laman sebagai telah dikunjungi",
+	"enotif_reset": "Tandakan semua laman dikunjungi",
 	"enotif_impersonal_salutation": "Pengguna {{SITENAME}}",
 	"enotif_subject_deleted": "Halaman $1 di {{SITENAME}} telah dihapuskan oleh {{gender:$2|$2}}",
 	"enotif_subject_created": "Halaman $1 di {{SITENAME}} telah diwujudkan oleh {{gender:$2|$2}}",
