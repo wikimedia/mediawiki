@@ -1031,7 +1031,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::getRevisionByTimestamp
-	 * @dataProvider provideRevisionByTimestamp
+	 * @dataProvider provideRevisionByTitle
 	 *
 	 * @param callable $getTitle
 	 */
@@ -1059,17 +1059,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $revRecord->getId(), $storeRecord->getId() );
 		$this->assertTrue( $storeRecord->getSlot( SlotRecord::MAIN )->getContent()->equals( $content ) );
 		$this->assertSame( __METHOD__, $storeRecord->getComment()->text );
-	}
-
-	public function provideRevisionByTimestamp() {
-		return [
-			[ function () {
-				return $this->getTestPageTitle();
-			} ],
-			[ function () {
-				return $this->getTestPageTitle()->toPageIdentity();
-			} ]
-		];
 	}
 
 	protected function revisionRecordToRow( RevisionRecord $revRecord, $options = [ 'page', 'user', 'comment' ] ) {
@@ -1951,7 +1940,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::getKnownCurrentRevision
-	 * @dataProvider provideGetKnownCurrentRevision
+	 * @dataProvider provideRevisionByTitle
 	 */
 	public function testGetKnownCurrentRevision( $getPageIdentity ) {
 		$page = $this->getTestPage();
@@ -1966,17 +1955,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			$revRecord->getId()
 		);
 		$this->assertRevisionRecordsEqual( $revRecord, $storeRecord );
-	}
-
-	public function provideGetKnownCurrentRevision() {
-		return [
-			[ function () {
-				return $this->getTestPageTitle();
-			} ],
-			[ function () {
-				return $this->getTestPageTitle()->toPageIdentity();
-			} ]
-		];
 	}
 
 	/**

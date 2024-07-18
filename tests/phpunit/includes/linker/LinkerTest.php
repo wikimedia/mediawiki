@@ -180,7 +180,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider provideUserTalkLink
+	 * @dataProvider provideUserLink
 	 * @covers \MediaWiki\Linker\Linker::userTalkLink
 	 * @param string $expected
 	 * @param int $userId
@@ -197,16 +197,8 @@ class LinkerTest extends MediaWikiLangTestCase {
 		$this->assertSame( $expected, $actual );
 	}
 
-	public static function provideUserTalkLink() {
-		return [
-			// Empty name (T222529)
-			'Empty username, userid 0' => [ '(no username available)', 0, '' ],
-			'Empty username, userid > 0' => [ '(no username available)', 73, '' ],
-		];
-	}
-
 	/**
-	 * @dataProvider provideBlockLink
+	 * @dataProvider provideUserLink
 	 * @covers \MediaWiki\Linker\Linker::blockLink
 	 * @param string $expected
 	 * @param int $userId
@@ -223,16 +215,8 @@ class LinkerTest extends MediaWikiLangTestCase {
 		$this->assertSame( $expected, $actual );
 	}
 
-	public static function provideBlockLink() {
-		return [
-			// Empty name (T222529)
-			'Empty username, userid 0' => [ '(no username available)', 0, '' ],
-			'Empty username, userid > 0' => [ '(no username available)', 73, '' ],
-		];
-	}
-
 	/**
-	 * @dataProvider provideEmailLink
+	 * @dataProvider provideUserLink
 	 * @covers \MediaWiki\Linker\Linker::emailLink
 	 * @param string $expected
 	 * @param int $userId
@@ -249,7 +233,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 		$this->assertSame( $expected, $actual );
 	}
 
-	public static function provideEmailLink() {
+	public static function provideUserLink() {
 		return [
 			// Empty name (T222529)
 			'Empty username, userid 0' => [ '(no username available)', 0, '' ],

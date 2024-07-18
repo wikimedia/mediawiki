@@ -118,17 +118,6 @@ class NewUsersLogFormatterTest extends LogFormatterTestCase {
 	}
 
 	/**
-	 * @dataProvider provideCreate2LogDatabaseRows
-	 */
-	public function testCreate2LogDatabaseRows( $row, $extra ) {
-		// Make UTSysop user and use its user_id (sequence does not reset to 1 for postgres)
-		$user = static::getTestSysop()->getUser();
-		$row['params']['4::userid'] = $user->getId();
-		$extra['api']['userid'] = $user->getId();
-		$this->doTestLogFormatter( $row, $extra );
-	}
-
-	/**
 	 * Provide different rows from the logging table to test
 	 * for backward compatibility.
 	 * Do not change the existing data, just add a new database row
@@ -154,9 +143,10 @@ class NewUsersLogFormatterTest extends LogFormatterTestCase {
 	}
 
 	/**
+	 * @dataProvider provideCreate2LogDatabaseRows
 	 * @dataProvider provideByemailLogDatabaseRows
 	 */
-	public function testByemailLogDatabaseRows( $row, $extra ) {
+	public function testCreate2LogDatabaseRows( $row, $extra ) {
 		// Make UTSysop user and use its user_id (sequence does not reset to 1 for postgres)
 		$user = static::getTestSysop()->getUser();
 		$row['params']['4::userid'] = $user->getId();
