@@ -29,11 +29,10 @@ use ImportStreamSource;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use PermissionsError;
-use ReadOnlyError;
 use UnexpectedValueException;
 use WikiImporterFactory;
 
@@ -46,20 +45,16 @@ class SpecialImport extends SpecialPage {
 	/** @var array */
 	private $importSources;
 
-	private PermissionManager $permManager;
 	private WikiImporterFactory $wikiImporterFactory;
 
 	/**
-	 * @param PermissionManager $permManager
 	 * @param WikiImporterFactory $wikiImporterFactory
 	 */
 	public function __construct(
-		PermissionManager $permManager,
 		WikiImporterFactory $wikiImporterFactory
 	) {
 		parent::__construct( 'Import', 'import' );
 
-		$this->permManager = $permManager;
 		$this->wikiImporterFactory = $wikiImporterFactory;
 	}
 
@@ -70,8 +65,6 @@ class SpecialImport extends SpecialPage {
 	/**
 	 * Execute
 	 * @param string|null $par
-	 * @throws PermissionsError
-	 * @throws ReadOnlyError
 	 */
 	public function execute( $par ) {
 		$this->useTransactionalTimeLimit();
@@ -86,27 +79,27 @@ class SpecialImport extends SpecialPage {
 		}
 		$this->getHookRunner()->onImportSources( $this->importSources );
 
-		$user = $this->getUser();
-		if ( !$this->permManager->userHasAnyRight( $user, 'import', 'importupload' ) ) {
-			throw new PermissionsError( 'import' );
-		}
+		$authority = $this->getAuthority();
+		$statusImport = PermissionStatus::newEmpty();
+		$authority->isDefinitelyAllowed( 'import', $statusImport );
+		$statusImportUpload = PermissionStatus::newEmpty();
+		$authority->isDefinitelyAllowed( 'importupload', $statusImportUpload );
+		// Only show an error here if the user can't import using either method.
+		// If they can use at least one of the methods, allow access, and checks elsewhere
+		// will ensure that we only show the form(s) they can use.
+		if ( !$statusImport->isGood() && !$statusImportUpload->isGood() ) {
+			// Show separate messages for each check. There isn't a good way to merge them into a single
+			// message if the checks failed for different reasons.
 
-		# @todo Allow PermissionManager::getPermissionErrors() to take an array
-		$errors = wfMergeErrorArrays(
-			$this->permManager->getPermissionErrors(
-				'import', $user, $this->getPageTitle(),
-				PermissionManager::RIGOR_FULL,
-				[ 'ns-specialprotected', 'badaccess-group0', 'badaccess-groups' ]
-			),
-			$this->permManager->getPermissionErrors(
-				'importupload', $user, $this->getPageTitle(),
-				PermissionManager::RIGOR_FULL,
-				[ 'ns-specialprotected', 'badaccess-group0', 'badaccess-groups' ]
-			)
-		);
-
-		if ( $errors ) {
-			throw new PermissionsError( 'import', $errors );
+			$this->getOutput()->prepareErrorPage();
+			$this->getOutput()->setPageTitleMsg( $this->msg( 'permissionserrors' ) );
+			$this->getOutput()->addWikiTextAsInterface( Html::errorBox(
+				$this->getOutput()->formatPermissionStatus( $statusImport, 'import' )
+			) );
+			$this->getOutput()->addWikiTextAsInterface( Html::errorBox(
+				$this->getOutput()->formatPermissionStatus( $statusImportUpload, 'importupload' )
+			) );
+			return;
 		}
 
 		$this->getOutput()->addModules( 'mediawiki.misc-authed-ooui' );
@@ -145,6 +138,8 @@ class SpecialImport extends SpecialPage {
 		}
 
 		$user = $this->getUser();
+		$authority = $this->getAuthority();
+		$status = PermissionStatus::newEmpty();
 
 		$fullInterwikiPrefix = null;
 		if ( !$user->matchEditToken( $request->getVal( 'wpEditToken' ) ) ) {
@@ -152,14 +147,14 @@ class SpecialImport extends SpecialPage {
 		} elseif ( $sourceName === 'upload' ) {
 			$isUpload = true;
 			$fullInterwikiPrefix = $request->getVal( 'usernamePrefix' );
-			if ( $this->permManager->userHasRight( $user, 'importupload' ) ) {
+			if ( $authority->authorizeAction( 'importupload', $status ) ) {
 				$source = ImportStreamSource::newFromUpload( "xmlimport" );
 			} else {
-				throw new PermissionsError( 'importupload' );
+				throw new PermissionsError( 'importupload', $status );
 			}
 		} elseif ( $sourceName === 'interwiki' ) {
-			if ( !$this->permManager->userHasRight( $user, 'import' ) ) {
-				throw new PermissionsError( 'import' );
+			if ( !$authority->authorizeAction( 'import', $status ) ) {
+				throw new PermissionsError( 'import', $status );
 			}
 			$interwiki = $fullInterwikiPrefix = $request->getVal( 'interwiki' );
 			// does this interwiki have subprojects?
@@ -314,14 +309,14 @@ class SpecialImport extends SpecialPage {
 
 	private function showForm() {
 		$action = $this->getPageTitle()->getLocalURL( [ 'action' => 'submit' ] );
-		$user = $this->getUser();
+		$authority = $this->getAuthority();
 		$out = $this->getOutput();
 		$this->addHelpLink( 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Help:Import', true );
 
 		$interwikiFormDescriptor = [];
 		$uploadFormDescriptor = [];
 
-		if ( $this->permManager->userHasRight( $user, 'importupload' ) ) {
+		if ( $authority->isDefinitelyAllowed( 'importupload' ) ) {
 			$mappingSelection = $this->getMappingFormPart( 'upload' );
 			$uploadFormDescriptor += [
 				'intro' => [
@@ -373,7 +368,7 @@ class SpecialImport extends SpecialPage {
 			$out->addWikiMsg( 'importnosources' );
 		}
 
-		if ( $this->permManager->userHasRight( $user, 'import' ) && $this->importSources ) {
+		if ( $authority->isDefinitelyAllowed( 'import' ) && $this->importSources ) {
 
 			$projects = [];
 			$needSubprojectField = false;
