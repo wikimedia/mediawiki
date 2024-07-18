@@ -517,6 +517,48 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 			),
 		];
 
+		yield 'integer instead of string' => [
+			[
+				'foo' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					Validator::PARAM_SOURCE => 'body',
+				]
+			],
+			new RequestData( [ 'parsedBody' => [ 'foo' => 1234 ] ] ),
+			new LocalizedHttpException(
+				new MessageValue( 'paramvalidator-needstring' ),
+				400,
+				[
+					'error' => 'parameter-validation-failed',
+					'name' => 'foo',
+					'value' => '1234',
+					'failureCode' => 'needstring',
+					'failureData' => null,
+				]
+			),
+		];
+
+		yield 'array instead of string' => [
+			[
+				'foo' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					Validator::PARAM_SOURCE => 'body',
+				]
+			],
+			new RequestData( [ 'parsedBody' => [ 'foo' => [ 1, 2, 3 ] ] ] ),
+			new LocalizedHttpException(
+				new MessageValue( 'paramvalidator-notmulti' ),
+				400,
+				[
+					'error' => 'parameter-validation-failed',
+					'name' => 'foo',
+					'value' => [ 1, 2, 3 ],
+					'failureCode' => 'badvalue',
+					'failureData' => null,
+				]
+			),
+		];
+
 		yield "valid complex value" => [
 			[
 				'foo' => [

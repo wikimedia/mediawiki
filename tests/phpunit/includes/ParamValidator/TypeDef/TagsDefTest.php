@@ -114,6 +114,13 @@ class TagsDefTest extends MediaWikiIntegrationTestCase {
 				),
 				$settings, $valuesList
 			],
+			'Not a string' => [
+				[ 1, 2, 3 ],
+				new ValidationException(
+					DataMessageValue::new( 'paramvalidator-needstring', [], 'needstring' ),
+					'test', '', []
+				)
+			],
 		];
 	}
 

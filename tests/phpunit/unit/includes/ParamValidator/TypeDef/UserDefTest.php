@@ -184,6 +184,14 @@ class UserDefTest extends TypeDefUnitTestCase {
 				yield "T232672: U+200E at position $i for $key" => [ $input, $expect ?? $input ];
 			}
 		}
+
+		yield 'Not a string' => [
+			[ 1, 2, 3 ],
+			new ValidationException(
+				DataMessageValue::new( 'paramvalidator-needstring', [], 'needstring' ),
+				'test', '', []
+			)
+		];
 	}
 
 	public function provideNormalizeSettings() {

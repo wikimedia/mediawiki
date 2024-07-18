@@ -74,6 +74,8 @@ class StringDef extends TypeDef {
 			$this->failure( 'missingparam', $name, $value, $settings, $options );
 		}
 
+		$this->failIfNotString( $name, $value, $settings, $options );
+
 		$len = strlen( $value );
 		if ( isset( $settings[self::PARAM_MAX_BYTES] ) && $len > $settings[self::PARAM_MAX_BYTES] ) {
 			$this->failure(
