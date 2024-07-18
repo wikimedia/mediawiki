@@ -278,13 +278,8 @@ class Site {
 			throw new UnexpectedValueException( "failed to parse URL '$path'" );
 		}
 
-		// No schema
-		if ( $protocol === null ) {
-			// Used for protocol relative URLs
-			$protocol = '';
-		}
-
-		return $protocol;
+		// Used for protocol relative URLs
+		return $protocol ?? '';
 	}
 
 	/**
@@ -489,9 +484,7 @@ class Site {
 			$this->localIds = [];
 		}
 
-		if ( !array_key_exists( $type, $this->localIds ) ) {
-			$this->localIds[$type] = [];
-		}
+		$this->localIds[$type] ??= [];
 
 		if ( !in_array( $identifier, $this->localIds[$type] ) ) {
 			$this->localIds[$type][] = $identifier;
@@ -528,9 +521,7 @@ class Site {
 	 * @return string[]
 	 */
 	public function getInterwikiIds() {
-		return array_key_exists( self::ID_INTERWIKI, $this->localIds )
-			? $this->localIds[self::ID_INTERWIKI]
-			: [];
+		return $this->localIds[self::ID_INTERWIKI] ?? [];
 	}
 
 	/**
@@ -542,9 +533,7 @@ class Site {
 	 * @return string[]
 	 */
 	public function getNavigationIds() {
-		return array_key_exists( self::ID_EQUIVALENT, $this->localIds )
-			? $this->localIds[self::ID_EQUIVALENT] :
-			[];
+		return $this->localIds[self::ID_EQUIVALENT] ?? [];
 	}
 
 	/**
@@ -618,6 +607,7 @@ class Site {
 	 * @return Site
 	 */
 	public static function newForType( $siteType ) {
+		/** @var class-string<Site>[] $siteTypes */
 		$siteTypes = MediaWikiServices::getInstance()->getMainConfig()->get(
 			MainConfigNames::SiteTypes
 		);
