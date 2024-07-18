@@ -217,7 +217,7 @@ function fieldChangeHandler() {
  *
  * @ignore
  * @param {Object} pageData The page data to compare to the original.
- * @param {boolean} ignoreRevIds Do not use parent revision info when determining similarity.
+ * @param {boolean} [ignoreRevIds=false] Do not use parent revision info when determining similarity.
  * @return {boolean}
  */
 function isSameAsOriginal( pageData, ignoreRevIds = false ) {
