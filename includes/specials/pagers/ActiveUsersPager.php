@@ -212,7 +212,7 @@ class ActiveUsersPager extends UsersPager {
 			'limit' => intval( $limit ),
 			'order' => $dir,
 			'conds' =>
-				$offset != '' ? [ $this->mIndexField . $operator . $this->getDatabase()->addQuotes( $offset ) ] : [],
+				$offset != '' ? [ $this->getDatabase()->expr( $this->mIndexField, $operator, $offset ) ] : [],
 		] );
 
 		$tables = $info['tables'];
