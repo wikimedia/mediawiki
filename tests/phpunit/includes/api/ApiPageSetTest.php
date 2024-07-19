@@ -104,6 +104,8 @@ class ApiPageSetTest extends ApiTestCase {
 	}
 
 	public function testRedirectMergePolicyRedirectLoop() {
+		$this->hideDeprecated( 'ApiPageSet::getTitles' );
+
 		$redirectOneTitle = 'ApiPageSetTestRedirectOne';
 		$redirectTwoTitle = 'ApiPageSetTestRedirectTwo';
 		$this->editPage( $redirectOneTitle, "#REDIRECT [[$redirectTwoTitle]]" );
@@ -332,6 +334,13 @@ class ApiPageSetTest extends ApiTestCase {
 	}
 
 	public function testPopulateFromTitles() {
+		$this->hideDeprecated( 'ApiPageSet::getTitles' );
+		$this->hideDeprecated( 'ApiPageSet::getGoodTitles' );
+		$this->hideDeprecated( 'ApiPageSet::getMissingTitles' );
+		$this->hideDeprecated( 'ApiPageSet::getGoodAndMissingTitles' );
+		$this->hideDeprecated( 'ApiPageSet::getRedirectTitles' );
+		$this->hideDeprecated( 'ApiPageSet::getSpecialTitles' );
+
 		$interwikiLookup = $this->getDummyInterwikiLookup( [ 'acme' ] );
 		$this->setService( 'InterwikiLookup', $interwikiLookup );
 
