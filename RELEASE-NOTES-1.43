@@ -485,6 +485,14 @@ because of Phabricator reports.
   ScalarParam are likewise deprecated.
 * The Less mixin .column-break-after-avoid() is deprecated. Use just the
   CSS rule `break-after: avoid-column;` instead now.
+* The following method are deprecated; instead call the appropriate
+  constructor method in PageRestHelperFactory with the appropriate
+  initialization arguments:
+  * HtmlOutputRendererHelper::init()
+  * HtmlMessageOutputHelper::init()
+  * HtmlInputTransformHelper::init()
+  Similarly, calling the constructor method in PageRestHelperFactory
+  without the appropriate initialization arguments is now deprecated.
 * …
 
 === Other changes in 1.43 ===

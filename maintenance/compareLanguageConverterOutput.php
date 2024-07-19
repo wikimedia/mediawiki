@@ -19,9 +19,10 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
+use MediaWiki\Rest\Handler\Helper\PageRestHelperFactory;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -85,22 +86,26 @@ class CompareLanguageConverterOutput extends Maintenance {
 		return true;
 	}
 
-	private function newHtmlOutputRendererHelper(): HtmlOutputRendererHelper {
+	private function newPageRestHelperFactory(): PageRestHelperFactory {
 		$services = $this->getServiceContainer();
 
-		$helper = new HtmlOutputRendererHelper(
+		$factory = new PageRestHelperFactory(
+			new ServiceOptions( PageRestHelperFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			$services->getRevisionLookup(),
+			$services->getTitleFormatter(),
+			$services->getPageStore(),
 			$services->getParsoidOutputStash(),
 			new NullStatsdDataFactory(),
 			$services->getParserOutputAccess(),
-			$services->getPageStore(),
-			$services->getRevisionLookup(),
 			$services->getParsoidSiteConfig(),
 			$services->getParsoidParserFactory(),
 			$services->getHtmlTransformFactory(),
 			$services->getContentHandlerFactory(),
-			$services->getLanguageFactory()
+			$services->getLanguageFactory(),
+			$services->getRedirectStore(),
+			$services->getLanguageConverterFactory()
 		);
-		return $helper;
+		return $factory;
 	}
 
 	private function getParserOptions( Language $language ): ParserOptions {
@@ -143,8 +148,7 @@ class CompareLanguageConverterOutput extends Maintenance {
 		Bcp47Code $targetVariant,
 		User $user
 	): ParserOutput {
-		$htmlOutputRendererHelper = $this->newHtmlOutputRendererHelper();
-		$htmlOutputRendererHelper->init( $pageTitle, [
+		$htmlOutputRendererHelper = $this->newPageRestHelperFactory()->newHtmlOutputRendererHelper( $pageTitle, [
 			'stash' => false,
 			'flavor' => 'view',
 		], $user );

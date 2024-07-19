@@ -225,14 +225,21 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		return $authority;
 	}
 
-	private function newHelper( array $options = [] ): HtmlOutputRendererHelper {
+	private function newHelper(
+		array $options,
+		PageIdentity $page,
+		array $parameters = [],
+		?Authority $authority = null,
+		$revision = null,
+		bool $lenientRevHandling = false
+	): HtmlOutputRendererHelper {
 		$chFactory = $this->getServiceContainer()->getContentHandlerFactory();
 		$cache = $options['cache'] ?? new EmptyBagOStuff();
 		$stash = new SimpleParsoidOutputStash( $chFactory, $cache, 1 );
 
 		$services = $this->getServiceContainer();
 
-		$helper = new HtmlOutputRendererHelper(
+		return new HtmlOutputRendererHelper(
 			$stash,
 			new NullStatsdDataFactory(),
 			$options['ParserOutputAccess'] ?? $this->newMockParserOutputAccess(
@@ -244,10 +251,9 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			$options['ParsoidParserFactory'] ?? $services->getParsoidParserFactory(),
 			$options['HtmlTransformFactory'] ?? $services->getHtmlTransformFactory(),
 			$services->getContentHandlerFactory(),
-			$services->getLanguageFactory()
+			$services->getLanguageFactory(),
+			$page, $parameters, $authority, $revision, $lenientRevHandling
 		);
-
-		return $helper;
 	}
 
 	private function getExistingPageWithRevisions( $name ) {
@@ -293,8 +299,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		// Test with just the revision ID, not the object! We do that elsewhere.
 		$revId = $revRef ? $revisions[ $revRef ]->getId() : null;
 
-		$helper = $this->newHelper( [ 'expectedHtml' => $this->getMockHtml( $revId ) ] );
-		$helper->init( $page, self::PARAM_DEFAULTS, $this->newAuthority() );
+		$helper = $this->newHelper( [ 'expectedHtml' => $this->getMockHtml( $revId ) ], $page, self::PARAM_DEFAULTS, $this->newAuthority() );
 
 		if ( $revId ) {
 			$helper->setRevision( $revId );
@@ -313,8 +318,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, true );
 		$page = $this->getExistingTestPage( __METHOD__ );
 
-		$helper = $this->newHelper( [ 'expectedHtml' => self::MOCK_HTML ] );
-		$helper->init( $page, self::PARAM_DEFAULTS, $this->newAuthority() );
+		$helper = $this->newHelper( [ 'expectedHtml' => self::MOCK_HTML ], $page, self::PARAM_DEFAULTS, $this->newAuthority() );
 		$helper->setVariantConversionLanguage( new Bcp47CodeValue( 'en-x-piglatin' ) );
 
 		$htmlResult = $helper->getHtml()->getRawText();
@@ -345,8 +349,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		// Use the real ParserOutputAccess, so we use the real hook container.
 		$access = $this->getServiceContainer()->getParserOutputAccess();
 
-		$helper = $this->newHelper( [ 'ParserOutputAccess' => $access ] );
-		$helper->init( $page, self::PARAM_DEFAULTS, $this->newAuthority() );
+		$helper = $this->newHelper( [ 'ParserOutputAccess' => $access ], $page, self::PARAM_DEFAULTS, $this->newAuthority() );
 
 		// Do it.
 		$helper->getHtml();
@@ -356,8 +359,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$this->markTestSkipped( 'T347426: Support for non-default output content major version has been disabled.' );
 		$page = $this->getExistingTestPage( __METHOD__ );
 
-		$helper = $this->newHelper();
-		$helper->init( $page, self::PARAM_DEFAULTS, $this->newAuthority() );
+		$helper = $this->newHelper( [], $page, self::PARAM_DEFAULTS, $this->newAuthority() );
 
 		// Calling setParsoidOptions must disable caching and force the ETag to null
 		$helper->setOutputProfileVersion( '999.0.0' );
@@ -377,8 +379,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	public function testGetPreviewHtml_setContent() {
 		$page = $this->getNonexistingTestPage();
 
-		$helper = $this->newHelper();
-		$helper->init( $page, self::PARAM_DEFAULTS, $this->newAuthority() );
+		$helper = $this->newHelper( [], $page, self::PARAM_DEFAULTS, $this->newAuthority() );
 		$helper->setContent( new WikitextContent( 'text to preview' ) );
 
 		// getRevisionId() should return null for fake revisions.
@@ -392,8 +393,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	public function testGetPreviewHtml_setContentSource() {
 		$page = $this->getNonexistingTestPage();
 
-		$helper = $this->newHelper();
-		$helper->init( $page, self::PARAM_DEFAULTS, $this->newAuthority() );
+		$helper = $this->newHelper( [], $page, self::PARAM_DEFAULTS, $this->newAuthority() );
 		$helper->setContentSource( 'text to preview', CONTENT_MODEL_WIKITEXT );
 
 		$htmlresult = $helper->getHtml()->getRawText();
@@ -406,9 +406,9 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 		$cache = new HashBagOStuff();
 
-		$helper = $this->newHelper( [ 'cache' => $cache, 'expectedHtml' => self::MOCK_HTML ] );
-
-		$helper->init( $page, self::PARAM_DEFAULTS, $this->newAuthority() );
+		$helper = $this->newHelper(
+			[ 'cache' => $cache, 'expectedHtml' => self::MOCK_HTML ], $page, self::PARAM_DEFAULTS, $this->newAuthority()
+		);
 		$helper->setStashingEnabled( true );
 
 		$htmlresult = $helper->getHtml()->getRawText();
@@ -426,11 +426,9 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getNonexistingTestPage();
 
 		$cache = new HashBagOStuff();
-		$helper = $this->newHelper( [ 'cache' => $cache ] );
-
 		$text = 'just some wikitext';
 
-		$helper->init( $page, self::PARAM_DEFAULTS, $this->newAuthority() );
+		$helper = $this->newHelper( [ 'cache' => $cache ], $page, self::PARAM_DEFAULTS, $this->newAuthority() );
 		$helper->setContent( new WikitextContent( $text ) );
 		$helper->setStashingEnabled( true );
 
@@ -456,10 +454,8 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	public function testStashRateLimit() {
 		$page = $this->getExistingTestPage( __METHOD__ );
 
-		$helper = $this->newHelper();
-
 		$authority = $this->newAuthorityWhoCantStash();
-		$helper->init( $page, self::PARAM_DEFAULTS, $authority );
+		$helper = $this->newHelper( [], $page, self::PARAM_DEFAULTS, $authority );
 		$helper->setStashingEnabled( true );
 
 		$this->expectException( LocalizedHttpException::class );
@@ -470,10 +466,8 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	public function testInteractionOfStashAndFlavor() {
 		$page = $this->getExistingTestPage( __METHOD__ );
 
-		$helper = $this->newHelper();
-
 		$authority = $this->newAuthorityWhoCantStash();
-		$helper->init( $page, self::PARAM_DEFAULTS, $authority );
+		$helper = $this->newHelper( [], $page, self::PARAM_DEFAULTS, $authority );
 
 		// Assert that the initial flavor is "view"
 		$this->assertSame( 'view', $helper->getFlavor() );
@@ -506,8 +500,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			] ),
 			'expectedHtml' => $expectedHtml,
 
-		] );
-		$helper->init( $page, self::PARAM_DEFAULTS, $this->newAuthority() );
+		], $page, self::PARAM_DEFAULTS, $this->newAuthority() );
 		$helper->setFlavor( 'fragment' );
 		$helper->setContentSource( 'Contents', CONTENT_MODEL_WIKITEXT );
 
@@ -522,8 +515,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	public function testGetHtmlForEdit() {
 		$page = $this->getExistingTestPage();
 
-		$helper = $this->newHelper();
-		$helper->init( $page, self::PARAM_DEFAULTS, $this->newAuthority() );
+		$helper = $this->newHelper( [], $page, self::PARAM_DEFAULTS, $this->newAuthority() );
 		$helper->setContentSource( 'hello {{world}}', CONTENT_MODEL_WIKITEXT );
 		$helper->setFlavor( 'edit' );
 
@@ -546,8 +538,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$cache = new HashBagOStuff();
 
 		// First, test it works if nothing was cached yet.
-		$helper = $this->newHelper( [ 'cache' => $cache ] );
-		$helper->init( $page, self::PARAM_DEFAULTS, $this->newAuthority(), $rev );
+		$helper = $this->newHelper( [ 'cache' => $cache ], $page, self::PARAM_DEFAULTS, $this->newAuthority(), $rev );
 
 		// put HTML into the cache
 		$pout = $helper->getHtml();
@@ -579,8 +570,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		DeferredUpdates::doUpdates();
 		$page->clear();
 
-		$helper = $this->newHelper( [ 'cache' => $cache ] );
-		$helper->init( $page, self::PARAM_DEFAULTS, $this->newAuthority(), $rev );
+		$helper = $this->newHelper( [ 'cache' => $cache ], $page, self::PARAM_DEFAULTS, $this->newAuthority(), $rev );
 
 		$this->assertStringNotContainsString( $renderId->getKey(), $helper->getETag() );
 		$this->assertSame(
@@ -615,8 +605,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			$options
 		);
 
-		$helper = $this->newHelper( $options );
-		$helper->init( $fakePage, self::PARAM_DEFAULTS, $this->newAuthority() );
+		$helper = $this->newHelper( $options, $fakePage, self::PARAM_DEFAULTS, $this->newAuthority() );
 		$helper->setRevision( $fakeRevision );
 
 		$this->assertNull( $helper->getRevisionId() );
@@ -669,8 +658,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		// First, test it works if nothing was cached yet.
 		$helper = $this->newHelper( [
 			'cache' => $cache,
-		] );
-		$helper->init( $page, $params + self::PARAM_DEFAULTS, $this->newAuthority() );
+		], $page, $params + self::PARAM_DEFAULTS, $this->newAuthority() );
 		if ( ( $params['flavor'] ?? null ) === 'fragment' ) {
 			$helper->setContentSource( "fragment test", CONTENT_MODEL_WIKITEXT );
 		}
@@ -734,8 +722,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, true );
 		$page = $this->getExistingTestPage( __METHOD__ );
 
-		$helper = $this->newHelper( [ 'HtmlTransformFactory' => $transformFactory ] );
-		$helper->init( $page, self::PARAM_DEFAULTS, $this->newAuthority() );
+		$helper = $this->newHelper( [ 'HtmlTransformFactory' => $transformFactory ], $page, self::PARAM_DEFAULTS, $this->newAuthority() );
 
 		// call method under test
 		$helper->setVariantConversionLanguage( $target, $source );
@@ -887,8 +874,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$this->resetServicesWithMockedParsoid( $parsoid );
 		$access = $this->newRealParserOutputAccess( [ 'parserCache' => $parserCache ] );
 
-		$helper = $this->newHelper( $access );
-		$helper->init( $page, self::PARAM_DEFAULTS, $this->newAuthority() );
+		$helper = $this->newHelper( $access, $page, self::PARAM_DEFAULTS, $this->newAuthority() );
 
 		$this->expectExceptionObject( $expectedException );
 		$helper->getHtml();
@@ -952,8 +938,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 		$helper = $this->newHelper( [
 			'ParserOutputAccess' => $parserAccess,
-		] );
-		$helper->init( $page, self::PARAM_DEFAULTS, $this->newAuthority() );
+		], $page, self::PARAM_DEFAULTS, $this->newAuthority() );
 
 		$this->expectExceptionObject( $expectedException );
 		$helper->getHtml();
@@ -978,8 +963,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			'revisionCache' => $this->createNoOpMock( RevisionOutputCache::class )
 		] );
 
-		$helper = $this->newHelper( $access );
-		$helper->init( $page, self::PARAM_DEFAULTS, $this->newAuthority() );
+		$helper = $this->newHelper( $access, $page, self::PARAM_DEFAULTS, $this->newAuthority() );
 
 		$helper->getHtml();
 	}
@@ -999,8 +983,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			'revisionCache' => $this->createNoOpMock( RevisionOutputCache::class ),
 		] );
 
-		$helper = $this->newHelper( $access );
-		$helper->init( $page, self::PARAM_DEFAULTS, $this->newAuthority() );
+		$helper = $this->newHelper( $access, $page, self::PARAM_DEFAULTS, $this->newAuthority() );
 
 		// Set read = true, write = false
 		$helper->setUseParserCache( true, false );
@@ -1023,8 +1006,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			'revisionCache' => $this->createNoOpMock( RevisionOutputCache::class ),
 		] );
 
-		$helper = $this->newHelper( $access );
-		$helper->init( $page, self::PARAM_DEFAULTS, $this->newAuthority() );
+		$helper = $this->newHelper( $access, $page, self::PARAM_DEFAULTS, $this->newAuthority() );
 
 		// Set read = false, write = true
 		$helper->setUseParserCache( false, true );
@@ -1032,11 +1014,9 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetParserOutputWithLanguageOverride() {
-		$helper = $this->newHelper();
-
 		[ $page, $revision ] = $this->getNonExistingPageWithFakeRevision( __METHOD__ );
 
-		$helper->init( $page, [], $this->newAuthority(), $revision );
+		$helper = $this->newHelper( [], $page, [], $this->newAuthority(), $revision );
 		$helper->setPageLanguage( 'ar' );
 
 		// check nominal content language
@@ -1067,11 +1047,9 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 				return Status::newGood( $pout );
 			} );
 
-		$helper = $this->newHelper( [ 'ParserOutputAccess' => $poa ] );
-
 		$page = $this->getExistingTestPage();
 
-		$helper->init( $page, [], $this->newAuthority() );
+		$helper = $this->newHelper( [ 'ParserOutputAccess' => $poa ], $page, [], $this->newAuthority() );
 
 		// Explicitly set the page language to the default.
 		$pageLanguage = $page->getTitle()->getPageLanguage();
@@ -1164,9 +1142,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$revision,
 		array $expected
 	) {
-		$helper = $this->newHelper();
-
-		$helper->init( $page, $parameters, $authority, $revision );
+		$helper = $this->newHelper( [], $page, $parameters, $authority, $revision );
 
 		$wrapper = TestingAccessWrapper::newFromObject( $helper );
 		foreach ( $expected as $name => $value ) {
@@ -1182,8 +1158,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getExistingTestPage( __METHOD__ );
 		$expectedCalls = [];
 
-		$helper = $this->newHelper();
-		$helper->init( $page, self::PARAM_DEFAULTS, $this->newAuthority() );
+		$helper = $this->newHelper( [], $page, self::PARAM_DEFAULTS, $this->newAuthority() );
 
 		if ( $targetLanguage ) {
 			$helper->setVariantConversionLanguage( new Bcp47CodeValue( $targetLanguage ) );
@@ -1245,14 +1220,13 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNonParsoidOutput( string $flavor ) {
 		$this->resetServicesWithMockedParsoid();
-		$helper = $this->newHelper( [
-			'cache' => new HashBagOStuff(),
-		] + $this->newRealParserOutputAccess() );
 
 		$page = $this->getNonexistingTestPage( __METHOD__ );
 		$this->editPage( $page, new CssContent( '"not wikitext"' ) );
 
-		$helper->init( $page, self::PARAM_DEFAULTS, $this->newAuthority() );
+		$helper = $this->newHelper( [
+				'cache' => new HashBagOStuff(),
+			] + $this->newRealParserOutputAccess(), $page, self::PARAM_DEFAULTS, $this->newAuthority() );
 		$helper->setFlavor( $flavor );
 
 		$output = $helper->getHtml();

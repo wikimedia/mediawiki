@@ -4,6 +4,7 @@ namespace MediaWiki\Rest\Handler;
 
 use LogicException;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputHelper;
+use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
 use MediaWiki\Rest\Handler\Helper\PageContentHelper;
 use MediaWiki\Rest\Handler\Helper\PageRedirectHelper;
 use MediaWiki\Rest\Handler\Helper\PageRestHelperFactory;
@@ -31,7 +32,6 @@ class PageHTMLHandler extends SimpleHandler {
 	) {
 		$this->contentHelper = $helperFactory->newPageContentHelper();
 		$this->helperFactory = $helperFactory;
-		$this->htmlHelper = $helperFactory->newHtmlOutputRendererHelper();
 	}
 
 	private function getRedirectHelper(): PageRedirectHelper {
@@ -52,13 +52,12 @@ class PageHTMLHandler extends SimpleHandler {
 
 		if ( $page ) {
 			if ( $isSystemMessage ) {
-				$this->htmlHelper = $this->helperFactory->newHtmlMessageOutputHelper();
-				$this->htmlHelper->init( $page );
+				$this->htmlHelper = $this->helperFactory->newHtmlMessageOutputHelper( $page );
 			} else {
 				$revision = $this->contentHelper->getTargetRevision();
-				// NOTE: We know that $this->htmlHelper is an instance of HtmlOutputRendererHelper
-				//       because we set it in the constructor.
-				$this->htmlHelper->init( $page, $this->getValidatedParams(), $authority, $revision );
+				$this->htmlHelper = $this->helperFactory->newHtmlOutputRendererHelper(
+					$page, $this->getValidatedParams(), $authority, $revision
+				);
 
 				$request = $this->getRequest();
 				$acceptLanguage = $request->getHeaderLine( 'Accept-Language' ) ?: null;
@@ -176,7 +175,10 @@ class PageHTMLHandler extends SimpleHandler {
 	public function getParamSettings(): array {
 		return array_merge(
 			$this->contentHelper->getParamSettings(),
-			$this->htmlHelper->getParamSettings()
+			// Note that postValidation we might end up using
+			// a HtmlMessageOutputHelper, but the param settings
+			// for that are a subset of those for HtmlOutputRendererHelper
+			HtmlOutputRendererHelper::getParamSettings()
 		);
 	}
 }

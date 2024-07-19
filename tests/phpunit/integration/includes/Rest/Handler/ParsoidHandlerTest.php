@@ -1394,10 +1394,12 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 					$this->getServiceContainer()->getParsoidOutputStash(),
 					$this->getServiceContainer()->getParserOutputAccess(),
 					$this->getServiceContainer()->getPageStore(),
-					$this->getServiceContainer()->getRevisionLookup()
+					$this->getServiceContainer()->getRevisionLookup(),
+					[],
+					$page,
+					[ 'html' => $html ],
+					[]
 				);
-
-				$helper->init( $page, [ 'html' => $html ], [] );
 				return $helper;
 			}
 		] );

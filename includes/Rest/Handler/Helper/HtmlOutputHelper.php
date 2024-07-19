@@ -74,7 +74,7 @@ interface HtmlOutputHelper {
 	 *
 	 * @return array
 	 */
-	public function getParamSettings(): array;
+	public static function getParamSettings(): array;
 
 	/**
 	 * Set the language to be used for variant conversion.
