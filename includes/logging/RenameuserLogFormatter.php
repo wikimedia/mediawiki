@@ -86,11 +86,14 @@ class RenameuserLogFormatter extends LogFormatter {
 
 		// Very old log format, everything in comment
 		if ( !isset( $params[3] ) ) {
+			// Message: logentry-renameuser-renameuser-legaciest
 			return "$key-legaciest";
 		} elseif ( !isset( $params[5] ) ) {
+			// Message: logentry-renameuser-renameuser-legacier
 			return "$key-legacier";
 		}
 
+		// Message: logentry-renameuser-renameuser
 		return $key;
 	}
 
