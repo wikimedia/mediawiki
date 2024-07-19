@@ -116,9 +116,7 @@ class ClientHtml {
 
 	private function getData(): array {
 		if ( $this->data ) {
-			// @codeCoverageIgnoreStart
 			return $this->data;
-			// @codeCoverageIgnoreEnd
 		}
 
 		$rl = $this->resourceLoader;
@@ -226,7 +224,9 @@ class ClientHtml {
 			}
 		}
 
-		return $data;
+		$this->data = $data;
+
+		return $this->data;
 	}
 
 	/**
