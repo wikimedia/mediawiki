@@ -19,7 +19,7 @@ interface BacklinkCacheGetConditionsHook {
 	 *
 	 * @param string $table Table name
 	 * @param Title $title Title of the page to which backlinks are sought
-	 * @param array &$conds Query conditions
+	 * @param array|null &$conds Query conditions
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onBacklinkCacheGetConditions( $table, $title, &$conds );

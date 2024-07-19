@@ -16,7 +16,7 @@ interface BacklinkCacheGetPrefixHook {
 	 * @since 1.35
 	 *
 	 * @param string $table Table name
-	 * @param string &$prefix
+	 * @param string|null &$prefix
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onBacklinkCacheGetPrefix( $table, &$prefix );

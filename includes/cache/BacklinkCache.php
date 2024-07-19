@@ -39,6 +39,7 @@ use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
+use Psr\Log\LoggerInterface;
 use RuntimeException;
 use stdClass;
 use WANObjectCache;
@@ -58,8 +59,6 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  * Ideally you should only get your backlinks from here when you think
  * there is some advantage in caching them. Otherwise, it's just a waste
  * of memory.
- *
- * Introduced by r47317
  */
 class BacklinkCache {
 	/**
@@ -70,16 +69,16 @@ class BacklinkCache {
 	];
 
 	/**
-	 * Multi dimensions array representing batches. Keys are:
+	 * Multi-dimensional array representing batches. Keys are:
 	 *  > (string) links table name
 	 *   > (int) batch size
 	 *    > 'numRows' : Number of rows for this link table
-	 *    > 'batches' : [ $start, $end ]
+	 *    > 'batches' : [ [ $start, $end ] ]
 	 *
 	 * @see BacklinkCache::partitionResult()
 	 * @var array[]
 	 */
-	protected $partitionCache = [];
+	private $partitionCache = [];
 
 	/**
 	 * Contains the whole links from a database result.
@@ -89,7 +88,7 @@ class BacklinkCache {
 	 *
 	 * @var IResultWrapper[]
 	 */
-	protected $fullResultCache = [];
+	private $fullResultCache = [];
 
 	/**
 	 * Cache for hasLinks()
@@ -99,7 +98,7 @@ class BacklinkCache {
 	private $hasLinksCache = [];
 
 	/** @var WANObjectCache */
-	protected $wanCache;
+	private $wanCache;
 
 	/** @var HookRunner */
 	private $hookRunner;
@@ -108,12 +107,13 @@ class BacklinkCache {
 	 * Local copy of a PageReference object
 	 * @var PageReference
 	 */
-	protected $page;
+	private $page;
 
 	private const CACHE_EXPIRY = 3600;
 	private IConnectionProvider $dbProvider;
 	private ServiceOptions $options;
 	private LinksMigration $linksMigration;
+	private LoggerInterface $logger;
 
 	/**
 	 * Create a new BacklinkCache
@@ -123,6 +123,7 @@ class BacklinkCache {
 	 * @param WANObjectCache $wanCache
 	 * @param HookContainer $hookContainer
 	 * @param IConnectionProvider $dbProvider
+	 * @param LoggerInterface $logger
 	 * @param PageReference $page Page to create a backlink cache for
 	 */
 	public function __construct(
@@ -131,15 +132,17 @@ class BacklinkCache {
 		WANObjectCache $wanCache,
 		HookContainer $hookContainer,
 		IConnectionProvider $dbProvider,
+		LoggerInterface $logger,
 		PageReference $page
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->linksMigration = $linksMigration;
-		$this->page = $page;
 		$this->wanCache = $wanCache;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->dbProvider = $dbProvider;
+		$this->logger = $logger;
+		$this->page = $page;
 	}
 
 	/**
@@ -155,7 +158,7 @@ class BacklinkCache {
 	 *
 	 * @return IReadableDatabase
 	 */
-	protected function getDB() {
+	private function getDB() {
 		return $this->dbProvider->getReplicaDatabase();
 	}
 
@@ -171,56 +174,62 @@ class BacklinkCache {
 	public function getLinkPages(
 		string $table, $startId = false, $endId = false, $max = INF
 	): Iterator {
+		$i = 0;
 		foreach ( $this->queryLinks( $table, $startId, $endId, $max ) as $row ) {
 			yield PageIdentityValue::localIdentity(
 				$row->page_id, $row->page_namespace, $row->page_title );
+
+			// queryLinks() may return too many rows
+			if ( is_finite( $max ) && ++$i >= $max ) {
+				break;
+			}
 		}
 	}
 
 	/**
 	 * Get the backlinks for a given table. Cached in process memory only.
+	 *
 	 * @param string $table
 	 * @param int|bool $startId
 	 * @param int|bool $endId
-	 * @param int $max
+	 * @param int|float $max A hint for the maximum number of rows to return.
+	 *   May return more rows if there is a previously cached result set.
 	 * @param string $select 'all' or 'ids'
 	 * @return IResultWrapper
 	 */
-	protected function queryLinks( $table, $startId, $endId, $max, $select = 'all' ) {
-		if ( !$startId && !$endId && is_infinite( $max )
-			&& isset( $this->fullResultCache[$table] )
-		) {
-			wfDebug( __METHOD__ . ": got results from cache" );
-			$res = $this->fullResultCache[$table];
+	private function queryLinks( $table, $startId, $endId, $max, $select = 'all' ) {
+		if ( !$startId && !$endId && isset( $this->fullResultCache[$table] ) ) {
+			$this->logger->debug( __METHOD__ . ': got results from cache' );
+			return $this->fullResultCache[$table];
+		}
+
+		$this->logger->debug( __METHOD__ . ': got results from DB' );
+		$queryBuilder = $this->initQueryBuilderForTable( $table, $select );
+		$fromField = $this->getPrefix( $table ) . '_from';
+		// Use the from field in the condition rather than the joined page_id,
+		// because databases are stupid and don't necessarily propagate indexes.
+		if ( $startId ) {
+			$queryBuilder->where(
+				$this->getDB()->expr( $fromField, '>=', $startId )
+			);
+		}
+		if ( $endId ) {
+			$queryBuilder->where(
+				$this->getDB()->expr( $fromField, '<=', $endId )
+			);
+		}
+		$queryBuilder->orderBy( $fromField );
+		if ( is_finite( $max ) && $max > 0 ) {
+			$queryBuilder->limit( $max );
+		}
+
+		$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
+
+		if ( $select === 'all' && !$startId && !$endId && $res->numRows() < $max ) {
+			// The full results fit within the limit, so cache them
+			$this->fullResultCache[$table] = $res;
 		} else {
-			wfDebug( __METHOD__ . ": got results from DB" );
-			$queryBuilder = $this->initQueryBuilderForTable( $table, $select );
-			$fromField = $this->getPrefix( $table ) . '_from';
-			// Use the from field in the condition rather than the joined page_id,
-			// because databases are stupid and don't necessarily propagate indexes.
-			if ( $startId ) {
-				$queryBuilder->where(
-					$this->getDB()->expr( $fromField, '>=', $startId )
-				);
-			}
-			if ( $endId ) {
-				$queryBuilder->where(
-					$this->getDB()->expr( $fromField, '<=', $endId )
-				);
-			}
-			$queryBuilder->orderBy( $fromField );
-			if ( is_finite( $max ) && $max > 0 ) {
-				$queryBuilder->limit( $max );
-			}
-
-			$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
-
-			if ( $select === 'all' && !$startId && !$endId && $res->numRows() < $max ) {
-				// The full results fit within the limit, so cache them
-				$this->fullResultCache[$table] = $res;
-			} else {
-				wfDebug( __METHOD__ . ": results from DB were uncacheable" );
-			}
+			$this->logger->debug( __METHOD__ . ": results from DB were uncacheable" );
 		}
 
 		return $res;
@@ -231,7 +240,7 @@ class BacklinkCache {
 	 * @param string $table
 	 * @return null|string
 	 */
-	protected function getPrefix( $table ) {
+	private function getPrefix( $table ) {
 		static $prefixes = [
 			'pagelinks' => 'pl',
 			'imagelinks' => 'il',
@@ -244,7 +253,6 @@ class BacklinkCache {
 			return $prefixes[$table];
 		} else {
 			$prefix = null;
-			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 			$this->hookRunner->onBacklinkCacheGetPrefix( $table, $prefix );
 			if ( $prefix ) {
 				return $prefix;
@@ -274,7 +282,7 @@ class BacklinkCache {
 		}
 		$queryBuilder->from( $table );
 
-		/**
+		/*
 		 * If the table is one of the tables known to this method,
 		 * we can use a nice join() method later, always joining on page_id={$prefix}_from.
 		 * If the table is unknown here, and only supported via a hook,
@@ -309,7 +317,6 @@ class BacklinkCache {
 				$conds = null;
 				$this->hookRunner->onBacklinkCacheGetConditions( $table,
 					Title::newFromPageReference( $this->page ),
-					// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 					$conds
 				);
 				if ( !$conds ) {
@@ -405,7 +412,7 @@ class BacklinkCache {
 	 */
 	public function partition( $table, $batchSize ) {
 		if ( isset( $this->partitionCache[$table][$batchSize] ) ) {
-			wfDebug( __METHOD__ . ": got from partition cache" );
+			$this->logger->debug( __METHOD__ . ": got from partition cache" );
 
 			return $this->partitionCache[$table][$batchSize]['batches'];
 		}
@@ -414,8 +421,12 @@ class BacklinkCache {
 		$cacheEntry =& $this->partitionCache[$table][$batchSize];
 
 		if ( isset( $this->fullResultCache[$table] ) ) {
-			$cacheEntry = $this->partitionResult( $this->fullResultCache[$table], $batchSize );
-			wfDebug( __METHOD__ . ": got from full result cache" );
+			$res = $this->fullResultCache[$table];
+			$numRows = $res->numRows();
+			$batches = $this->partitionResult( $res, $numRows, $batchSize );
+			$this->openBatchEnds( $batches );
+			$cacheEntry = [ 'numRows' => $numRows, 'batches' => $batches ];
+			$this->logger->debug( __METHOD__ . ": got from full result cache" );
 
 			return $cacheEntry['batches'];
 		}
@@ -439,20 +450,18 @@ class BacklinkCache {
 				$start = false;
 				do {
 					$res = $this->queryLinks( $table, $start, false, $selectSize, 'ids' );
-					$partitions = $this->partitionResult( $res, $batchSize, false );
+					$numRows = $res->numRows();
+					$batches = $this->partitionResult( $res, $numRows, $batchSize );
 					// Merge the link count and range partitions for this chunk
-					$value['numRows'] += $partitions['numRows'];
-					$value['batches'] = array_merge( $value['batches'], $partitions['batches'] );
-					if ( $partitions['numRows'] ) {
-						[ , $lEnd ] = end( $partitions['batches'] );
-						$start = $lEnd + 1; // pick up after this inclusive range
+					$value['numRows'] += $numRows;
+					$value['batches'] = array_merge( $value['batches'], $batches );
+					if ( count( $batches ) ) {
+						// pick up after this inclusive range
+						$start = end( $batches )[1] + 1;
 					}
-				} while ( $partitions['numRows'] >= $selectSize );
+				} while ( $numRows >= $selectSize );
 				// Make sure the first range has start=false and the last one has end=false
-				if ( count( $value['batches'] ) ) {
-					$value['batches'][0][0] = false;
-					$value['batches'][count( $value['batches'] ) - 1][1] = false;
-				}
+				$this->openBatchEnds( $value['batches'] );
 
 				return $value;
 			}
@@ -462,45 +471,43 @@ class BacklinkCache {
 	}
 
 	/**
+	 * Modify an array of batches, setting the start of the first batch to
+	 * false, and the end of the last batch to false, so that the complete
+	 * set of batches covers the entire ID range from 0 to infinity.
+	 *
+	 * @param array &$batches
+	 */
+	private function openBatchEnds( array &$batches ) {
+		if ( !count( $batches ) ) {
+			$batches = [ [ false, false ] ];
+		} else {
+			$batches[0][0] = false;
+			$batches[ array_key_last( $batches ) ][1] = false;
+		}
+	}
+
+	/**
 	 * Partition a DB result with backlinks in it into batches
 	 * @param IResultWrapper $res Database result
+	 * @param int $numRows The number of rows to use from the result set
 	 * @param int $batchSize
-	 * @param bool $isComplete Whether $res includes all the backlinks
-	 * @return array
+	 * @return int[][]
 	 */
-	protected function partitionResult( $res, $batchSize, $isComplete = true ) {
-		$numRows = $res->numRows();
-
-		if ( $numRows === 0 ) {
-			// Return a single batch that covers all IDs (T368006)
-			return [
-				'numRows' => 0,
-				'batches' => [ [ false, false ] ]
-			];
-		}
-
+	private function partitionResult( $res, $numRows, $batchSize ) {
 		$numBatches = ceil( $numRows / $batchSize );
 		$batches = [];
 		for ( $i = 0; $i < $numBatches; $i++ ) {
-			if ( $i == 0 && $isComplete ) {
-				$start = false;
-			} else {
-				$rowNum = $i * $batchSize;
-				$res->seek( $rowNum );
-				$row = $res->fetchObject();
-				$start = (int)$row->page_id;
-			}
+			$rowNum = $i * $batchSize;
+			$res->seek( $rowNum );
+			$row = $res->fetchObject();
+			$start = (int)$row->page_id;
 
-			if ( $i == ( $numBatches - 1 ) && $isComplete ) {
-				$end = false;
-			} else {
-				$rowNum = min( $numRows - 1, ( $i + 1 ) * $batchSize - 1 );
-				$res->seek( $rowNum );
-				$row = $res->fetchObject();
-				$end = (int)$row->page_id;
-			}
+			$rowNum = min( $numRows - 1, ( $i + 1 ) * $batchSize - 1 );
+			$res->seek( $rowNum );
+			$row = $res->fetchObject();
+			$end = (int)$row->page_id;
 
-			# Check order
+			// Check order
 			if ( $start && $end && $start > $end ) {
 				throw new RuntimeException( __METHOD__ . ': Internal error: query result out of order' );
 			}
@@ -508,7 +515,7 @@ class BacklinkCache {
 			$batches[] = [ $start, $end ];
 		}
 
-		return [ 'numRows' => $numRows, 'batches' => $batches ];
+		return $batches;
 	}
 
 	/**
