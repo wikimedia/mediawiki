@@ -84,10 +84,9 @@ class RealTempUserConfigTest extends MediaWikiUnitTestCase {
 			'enabled' => false,
 			'known' => true,
 			'actions' => [ 'edit' ],
-			'genPattern' => '',
+			'genPattern' => '~$1',
 			'serialProvider' => '',
 			'serialMapping' => '',
-			'matchPattern' => [ '~$1' ],
 		] );
 		$this->assertTrue( $realTempUserConfig->isTempName( '~2024-foo' ) );
 	}

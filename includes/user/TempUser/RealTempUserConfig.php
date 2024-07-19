@@ -65,7 +65,6 @@ class RealTempUserConfig implements TempUserConfig {
 		// Configuration related to creating new temporary accounts for some actions
 		if ( $this->enabled ) {
 			$this->autoCreateActions = $config['actions'];
-			$this->genPattern = new Pattern( 'genPattern', $config['genPattern'] );
 			$this->serialProviderConfig = $config['serialProvider'];
 			$this->serialMappingConfig = $config['serialMapping'];
 		}
@@ -74,6 +73,7 @@ class RealTempUserConfig implements TempUserConfig {
 		// regardless of whether new temp accounts are being actively created via the
 		// 'enabled' config flag.
 		if ( $this->known || $this->enabled ) {
+			$this->genPattern = new Pattern( 'genPattern', $config['genPattern'] );
 			$this->expireAfterDays = $config['expireAfterDays'] ?? null;
 			$this->notifyBeforeExpirationDays = $config['notifyBeforeExpirationDays'] ?? null;
 			if ( isset( $config['matchPattern'] ) ) {
