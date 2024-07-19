@@ -19,7 +19,7 @@ class InterwikiTest extends MediaWikiIntegrationTestCase {
 			0
 		);
 
-		$this->setContentLang( 'qqx' );
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'qqx' );
 
 		$this->assertSame( '(interwiki-name-xyz)', $interwiki->getName() );
 		$this->assertSame( '(interwiki-desc-xyz)', $interwiki->getDescription() );
@@ -55,10 +55,6 @@ class InterwikiTest extends MediaWikiIntegrationTestCase {
 			->execute();
 	}
 
-	private function setWgInterwikiCache( $interwikiCache ) {
-		$this->overrideConfigValue( MainConfigNames::InterwikiCache, $interwikiCache );
-	}
-
 	public function testDatabaseStorage() {
 		// NOTE: database setup is expensive, so we only do
 		//  it once and run all the tests in one go.
@@ -82,7 +78,7 @@ class InterwikiTest extends MediaWikiIntegrationTestCase {
 
 		$this->populateDB( [ $dewiki, $zzwiki ] );
 
-		$this->setWgInterwikiCache( false );
+		$this->overrideConfigValue( MainConfigNames::InterwikiCache, false );
 
 		$interwikiLookup = $this->getServiceContainer()->getInterwikiLookup();
 		$this->assertEquals(
