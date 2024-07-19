@@ -55,6 +55,7 @@ use Wikimedia\Parsoid\Config\SiteConfig as ISiteConfig;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Parsoid\DOM\Document;
 use Wikimedia\Parsoid\Utils\Utils;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * Site-level configuration for Parsoid
@@ -104,6 +105,7 @@ class SiteConfig extends ISiteConfig {
 	private array $parsoidSettings;
 	private Language $contLang;
 	private StatsdDataFactoryInterface $stats;
+	private StatsFactory $statsFactory;
 	private MagicWordFactory $magicWordFactory;
 	private NamespaceInfo $namespaceInfo;
 	private SpecialPageFactory $specialPageFactory;
@@ -129,6 +131,7 @@ class SiteConfig extends ISiteConfig {
 	 * @param ObjectFactory $objectFactory
 	 * @param Language $contentLanguage Content language.
 	 * @param StatsdDataFactoryInterface $stats
+	 * @param StatsFactory $statsFactory
 	 * @param MagicWordFactory $magicWordFactory
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param SpecialPageFactory $specialPageFactory
@@ -150,6 +153,7 @@ class SiteConfig extends ISiteConfig {
 		ObjectFactory $objectFactory,
 		Language $contentLanguage,
 		StatsdDataFactoryInterface $stats,
+		StatsFactory $statsFactory,
 		MagicWordFactory $magicWordFactory,
 		NamespaceInfo $namespaceInfo,
 		SpecialPageFactory $specialPageFactory,
@@ -176,6 +180,7 @@ class SiteConfig extends ISiteConfig {
 		$this->objectFactory = $objectFactory;
 		$this->contLang = $contentLanguage;
 		$this->stats = $stats;
+		$this->statsFactory = $statsFactory;
 		$this->magicWordFactory = $magicWordFactory;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->specialPageFactory = $specialPageFactory;
@@ -223,6 +228,19 @@ class SiteConfig extends ISiteConfig {
 		return $this->logger;
 	}
 
+	/**
+	 * Get stats prefix
+	 * @param bool $trimmed Trim trailing dot on prefix name
+	 * @return string
+	 */
+	private function getStatsPrefix( bool $trimmed = false ): string {
+		$component = $this->parsoidSettings['metricsPrefix'] ?? 'Parsoid.';
+		if ( $trimmed ) {
+			$component = rtrim( $component, '.' );
+		}
+		return $component;
+	}
+
 	public function metrics(): ?StatsdDataFactoryInterface {
 		// TODO: inject
 		static $prefixedMetrics = null;
@@ -230,10 +248,41 @@ class SiteConfig extends ISiteConfig {
 			$prefixedMetrics = new PrefixingStatsdDataFactoryProxy(
 				// Our stats will also get prefixed with 'MediaWiki.'
 				$this->stats,
-				$this->parsoidSettings['metricsPrefix'] ?? 'Parsoid.'
+				$this->getStatsPrefix()
 			);
 		}
 		return $prefixedMetrics;
+	}
+
+	/**
+	 * Record a timing metric
+	 * @param string $name
+	 * @param float $value
+	 * @param array $labels
+	 * @return void
+	 */
+	public function observeTiming( string $name, float $value, array $labels ) {
+		$component = $this->getStatsPrefix( true );
+		$metric = $this->statsFactory->withComponent( $component )->getTiming( $name );
+		foreach ( $labels as $labelKey => $labelValue ) {
+			$metric->setLabel( $labelKey, $labelValue );
+		}
+		$metric->observe( $value );
+	}
+
+	/**
+	 * Increment a counter metric
+	 * @param string $name
+	 * @param array $labels
+	 * @return void
+	 */
+	public function incrementCounter( string $name, array $labels ) {
+		$component = $this->getStatsPrefix( true );
+		$metric = $this->statsFactory->withComponent( $component )->getCounter( $name );
+		foreach ( $labels as $labelKey => $labelValue ) {
+			$metric->setLabel( $labelKey, $labelValue );
+		}
+		$metric->increment();
 	}
 
 	public function galleryOptions(): array {

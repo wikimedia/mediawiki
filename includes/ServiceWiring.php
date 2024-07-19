@@ -1667,6 +1667,7 @@ return [
 			$services->getObjectFactory(),
 			$services->getContentLanguage(),
 			$services->getStatsdDataFactory(),
+			$services->getStatsFactory(),
 			$services->getMagicWordFactory(),
 			$services->getNamespaceInfo(),
 			$services->getSpecialPageFactory(),
