@@ -6,7 +6,6 @@ use MediaWiki\MainConfigSchema;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -154,10 +153,7 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 		$parserOutputAccess->method( 'getCachedParserOutput' )
 			->willReturn( new ParserOutput( 'Kittens' ) );
 
-		$parsoidOutputAccess = $this->createNoOpMock( ParsoidOutputAccess::class );
-
 		$this->setService( 'ParserOutputAccess', $parserOutputAccess );
-		$this->setService( 'ParsoidOutputAccess', $parsoidOutputAccess );
 
 		$article = $this->newArticle( $title );
 		$article->view();

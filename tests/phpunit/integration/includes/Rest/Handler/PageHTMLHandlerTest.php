@@ -59,7 +59,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		} else {
 			// ParserOutputAccess has a localCache which can return stale content.
 			// Resetting ensures that ParsoidCachePrewarmJob gets a fresh copy
-			// of ParserOutputAccess and ParsoidOutputAccess without these problems!
+			// of ParserOutputAccess without these problems!
 			$this->resetServices();
 		}
 

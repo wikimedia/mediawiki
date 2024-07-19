@@ -40,7 +40,7 @@ use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig as ParsoidSiteConfig;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
-use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
+use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
@@ -129,12 +129,12 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	private bool $lenientRevHandling = false;
 
 	/**
-	 * Flags to be passed as $options to ParsoidOutputAccess::getParserOutput,
+	 * Flags to be passed as $options to ParserOutputAccess::getParserOutput,
 	 * to control parser cache access.
 	 *
-	 * @var int Use ParsoidOutputAccess::OPT_*
+	 * @var int Use ParserOutputAccess::OPT_*
 	 */
-	private $parsoidOutputAccessOptions = 0;
+	private $parserOutputAccessOptions = 0;
 
 	/**
 	 * @see the $options parameter on Parsoid::wikitext2html
@@ -152,7 +152,6 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 
 	private ParsoidOutputStash $parsoidOutputStash;
 	private IBufferingStatsdDataFactory $stats;
-	private ParsoidOutputAccess $parsoidOutputAccess;
 	private ParserOutputAccess $parserOutputAccess;
 	private PageLookup $pageLookup;
 	private RevisionLookup $revisionLookup;
@@ -160,15 +159,16 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	private HtmlTransformFactory $htmlTransformFactory;
 	private IContentHandlerFactory $contentHandlerFactory;
 	private LanguageFactory $languageFactory;
+	private ParsoidParserFactory $parsoidParserFactory;
 
 	public function __construct(
 		ParsoidOutputStash $parsoidOutputStash,
 		StatsdDataFactoryInterface $statsDataFactory,
-		ParsoidOutputAccess $parsoidOutputAccess,
 		ParserOutputAccess $parserOutputAccess,
 		PageLookup $pageLookup,
 		RevisionLookup $revisionLookup,
 		ParsoidSiteConfig $parsoidSiteConfig,
+		ParsoidParserFactory $parsoidParserFactory,
 		HtmlTransformFactory $htmlTransformFactory,
 		IContentHandlerFactory $contentHandlerFactory,
 		LanguageFactory $languageFactory,
@@ -176,11 +176,11 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	) {
 		$this->parsoidOutputStash = $parsoidOutputStash;
 		$this->stats = $statsDataFactory;
-		$this->parsoidOutputAccess = $parsoidOutputAccess;
 		$this->parserOutputAccess = $parserOutputAccess;
 		$this->pageLookup = $pageLookup;
 		$this->revisionLookup = $revisionLookup;
 		$this->parsoidSiteConfig = $parsoidSiteConfig;
+		$this->parsoidParserFactory = $parsoidParserFactory;
 		$this->htmlTransformFactory = $htmlTransformFactory;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->languageFactory = $languageFactory;
@@ -266,7 +266,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 * @param bool $write Whether we should cache output after parsing
 	 */
 	public function setUseParserCache( bool $read, bool $write ) {
-		$this->parsoidOutputAccessOptions =
+		$this->parserOutputAccessOptions =
 			( $read ? 0 : ParserOutputAccess::OPT_FORCE_PARSE ) |
 			( $write ? 0 : ParserOutputAccess::OPT_NO_UPDATE_CACHE );
 	}
@@ -759,7 +759,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 * @return Status
 	 */
 	private function getParserOutputInternal( ParserOptions $parserOptions ): Status {
-		// NOTE: ParsoidOutputAccess::getParserOutput() should be used for revisions
+		// NOTE: ParserOutputAccess::getParserOutput() should be used for revisions
 		//       that comes from the database. Either this revision is null to indicate
 		//       the current revision or the revision must have an ID.
 		// If we have a revision and the ID is 0 or null, then it's a fake revision
@@ -775,14 +775,19 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		// 'view' flavor. In that case, we would want to use PoolCounterWork,
 		// either directly or through ParserOutputAccess.
 
-		if ( $this->isCacheable ) {
-			$flags = $this->parsoidOutputAccessOptions;
-			// Resolve revision
-			$page = $this->page;
-			$revision = $this->revisionOrId;
-			if ( $page === null ) {
-				throw new RevisionAccessException( "No page" );
-			} elseif ( !$page instanceof PageRecord ) {
+		$flags = $this->parserOutputAccessOptions;
+		// Resolve revision
+		$page = $this->page;
+		$revision = $this->revisionOrId;
+		if ( $page === null ) {
+			throw new RevisionAccessException( "No page" );
+		}
+		// NOTE: If we have a RevisionRecord already and this is
+		//       not cacheable, just use it, there is no need to
+		//       resolve $page to a PageRecord (and it may not be
+		//       possible if the page doesn't exist).
+		if ( $this->isCacheable || !$revision instanceof RevisionRecord ) {
+			if ( !$page instanceof PageRecord ) {
 				$name = "$page";
 				$page = $this->pageLookup->getPageByReference( $page );
 				if ( !$page ) {
@@ -828,6 +833,12 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 					);
 				}
 			}
+		}
+
+		if ( $this->isCacheable ) {
+			// phan can't tell that we must have used the block above to
+			// resolve $page to a PageRecord if we've made it to this block.
+			'@phan-var PageRecord $page';
 			$mainSlot = $revision->getSlot( SlotRecord::MAIN );
 			$contentModel = $mainSlot->getModel();
 			if ( $this->parsoidSiteConfig->supportsContentModel( $contentModel ) ) {
@@ -843,10 +854,10 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 				$status = Status::newFatal( 'parsoid-resource-limit-exceeded', $e->getMessage() );
 			}
 		} else {
-			$status = $this->parsoidOutputAccess->parseUncacheable(
-				$this->page,
+			$status = $this->parseUncacheable(
+				$page,
 				$parserOptions,
-				$this->revisionOrId,
+				$revision,
 				$this->lenientRevHandling
 			);
 
@@ -867,4 +878,33 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		return $status;
 	}
 
+	private function parseUncacheable(
+		PageIdentity $page,
+		ParserOptions $parserOpts,
+		RevisionRecord $revision,
+		bool $lenientRevHandling = false
+	): Status {
+		// Enforce caller expectation
+		$revId = $revision->getId();
+		if ( $revId !== 0 && $revId !== null ) {
+			return Status::newFatal( 'parsoid-revision-access',
+				"parseUncacheable should not be called for a real revision" );
+		}
+
+		try {
+			$parser = $this->parsoidParserFactory->create();
+			$parserOpts->setUseParsoid();
+			$parserOutput = $this->parsoidParserFactory->create()->parseFakeRevision(
+				$revision, $page, $parserOpts );
+			$parserOutput->updateCacheExpiry( 0 ); // Ensure this isn't accidentally cached
+			$status = Status::newGood( $parserOutput );
+		} catch ( RevisionAccessException $e ) {
+			return Status::newFatal( 'parsoid-revision-access', $e->getMessage() );
+		} catch ( ClientError $e ) {
+			$status = Status::newFatal( 'parsoid-client-error', $e->getMessage() );
+		} catch ( ResourceLimitExceededException $e ) {
+			$status = Status::newFatal( 'parsoid-resource-limit-exceeded', $e->getMessage() );
+		}
+		return $status;
+	}
 }
