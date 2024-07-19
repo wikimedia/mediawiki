@@ -1112,7 +1112,7 @@ class PermissionManager {
 	 * all of those rights to perform the action in question.
 	 *
 	 * @param string $action The action to check
-	 * @param User $user User to check
+	 * @param UserIdentity $user User to check
 	 * @param PermissionStatus $status Current errors
 	 * @param string $rigor One of PermissionManager::RIGOR_ constants
 	 *   - RIGOR_QUICK  : does cheap permission checks from replica DBs (usable for GUI creation)
@@ -1123,7 +1123,7 @@ class PermissionManager {
 	 */
 	private function checkPageRestrictions(
 		$action,
-		User $user,
+		UserIdentity $user,
 		PermissionStatus $status,
 		$rigor,
 		$short,
@@ -1388,7 +1388,7 @@ class PermissionManager {
 	 * Check sitewide CSS/JSON/JS permissions
 	 *
 	 * @param string $action The action to check
-	 * @param User $user User to check
+	 * @param UserIdentity $user User to check
 	 * @param PermissionStatus $status Current errors
 	 * @param string $rigor One of PermissionManager::RIGOR_ constants
 	 *   - RIGOR_QUICK  : does cheap permission checks from replica DBs (usable for GUI creation)
@@ -1399,7 +1399,7 @@ class PermissionManager {
 	 */
 	private function checkSiteConfigPermissions(
 		$action,
-		User $user,
+		UserIdentity $user,
 		PermissionStatus $status,
 		$rigor,
 		$short,
@@ -1897,7 +1897,7 @@ class PermissionManager {
 	 *
 	 * @internal For testing only
 	 * @since 1.34
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string[]|string $rights
 	 */
 	public function overrideUserRightsForTesting( $user, $rights = [] ) {
