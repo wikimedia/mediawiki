@@ -77,6 +77,8 @@ class UserOptionsManager extends UserOptionsLookup {
 	 */
 	public const GLOBAL_UPDATE = 'update';
 
+	private const LOCAL_STORE_KEY = 'local';
+
 	private ServiceOptions $serviceOptions;
 	private DefaultOptionsLookup $defaultOptionsLookup;
 	private LanguageConverterFactory $languageConverterFactory;
@@ -207,8 +209,8 @@ class UserOptionsManager extends UserOptionsLookup {
 
 	public function isOptionGlobal( UserIdentity $user, string $key ) {
 		$this->getOptions( $user );
-		$source = $this->cache[ $this->getCacheKey( $user ) ]->sources[$key] ?? 'local';
-		return $source !== 'local';
+		$source = $this->cache[ $this->getCacheKey( $user ) ]->sources[$key] ?? self::LOCAL_STORE_KEY;
+		return $source !== self::LOCAL_STORE_KEY;
 	}
 
 	/**
@@ -406,16 +408,16 @@ class UserOptionsManager extends UserOptionsLookup {
 			} else {
 				$valOrNull = (string)$value;
 			}
-			$source = $cache->sources[$key] ?? 'local';
-			if ( $source === 'local' ) {
-				$updatesByStore['local'][$key] = $valOrNull;
+			$source = $cache->sources[$key] ?? self::LOCAL_STORE_KEY;
+			if ( $source === self::LOCAL_STORE_KEY ) {
+				$updatesByStore[self::LOCAL_STORE_KEY][$key] = $valOrNull;
 			} else {
 				$updateAction = $cache->globalUpdateActions[$key] ?? self::GLOBAL_IGNORE;
 				if ( $updateAction === self::GLOBAL_UPDATE ) {
 					$updatesByStore[$source][$key] = $valOrNull;
 				} elseif ( $updateAction === self::GLOBAL_OVERRIDE ) {
-					$updatesByStore['local'][$key] = $valOrNull;
-					$updatesByStore['local'][$key . self::LOCAL_EXCEPTION_SUFFIX] = '1';
+					$updatesByStore[self::LOCAL_STORE_KEY][$key] = $valOrNull;
+					$updatesByStore[self::LOCAL_STORE_KEY][$key . self::LOCAL_EXCEPTION_SUFFIX] = '1';
 				}
 			}
 		}
@@ -492,6 +494,8 @@ class UserOptionsManager extends UserOptionsLookup {
 				if ( str_ends_with( $name, self::LOCAL_EXCEPTION_SUFFIX ) && $value ) {
 					$baseName = substr( $name, 0, -strlen( self::LOCAL_EXCEPTION_SUFFIX ) );
 					if ( !isset( $options[$baseName] ) ) {
+						// T368595: The source should always be set to local for local exceptions
+						$cache->sources[$baseName] = self::LOCAL_STORE_KEY;
 						unset( $mergedOptions[$baseName] );
 					}
 				}
@@ -637,7 +641,9 @@ class UserOptionsManager extends UserOptionsLookup {
 	 */
 	private function getStores() {
 		if ( !$this->stores ) {
-			$stores = [ 'local' => new LocalUserOptionsStore( $this->dbProvider ) ];
+			$stores = [
+				self::LOCAL_STORE_KEY => new LocalUserOptionsStore( $this->dbProvider )
+			];
 			$specs = ExtensionRegistry::getInstance()
 				->getAttribute( 'UserOptionsStoreProviders' );
 			foreach ( $specs as $name => $spec ) {
