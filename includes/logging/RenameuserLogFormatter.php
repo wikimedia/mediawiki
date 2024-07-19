@@ -35,6 +35,11 @@ class RenameuserLogFormatter extends LogFormatter {
 			$params[3] = $this->entry->getTarget()->getText();
 		}
 
+		if ( isset( $params[5] ) ) {
+			// Make sure number of edits is formatted
+			$params[5] = Message::numParam( $params[5] );
+		}
+
 		// Nice link to old user page
 		$title = Title::makeTitleSafe( NS_USER, $params[3] );
 		// @phan-suppress-next-line SecurityCheck-DoubleEscaped
