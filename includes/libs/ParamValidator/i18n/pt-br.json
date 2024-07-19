@@ -3,6 +3,7 @@
 		"authors": [
 			"Eduardo Addad de Oliveira",
 			"Eduardoaddad",
+			"Flaviane da Silva",
 			"Iohanen",
 			"Re demz"
 		]
@@ -32,6 +33,7 @@
 	"paramvalidator-maxchars": "O valor para o parâmetro \"$1\" não pode ter mais de $3 {{PLURAL:$3|carácter|caracteres}} (tinha $4).",
 	"paramvalidator-missingparam": "O parâmetro \"$1\" deve ser definido.",
 	"paramvalidator-notmulti": "O parâmetro \"$1\" só aceita um único valor. A separação multivalor U+001F só pode ser usada em parâmetros multivalor.",
+	"paramvalidator-needstring": "Parametro \"$1\" aceita apenas um valor em texto, mas recebeu \"$2\"",
 	"paramvalidator-outofrange-max": "O valor \"$2\" para o parâmetro \"$1\" não deve ser maior que $4.",
 	"paramvalidator-outofrange-minmax": "O valor \"$2\" para o parâmetro \"$1\" deve estar entre $3 e $4.",
 	"paramvalidator-outofrange-min": "O valor \"$2\" para o parâmetro \"$1\" não deve ser inferior a $3.",

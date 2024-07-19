@@ -17,6 +17,7 @@
 	"rest-nonexistent-revision": "Die angegebene Version ($1) existiert nicht",
 	"rest-nonexistent-user": "Der angegebene Benutzer ($1) ist nicht vorhanden.",
 	"rest-invalid-user": "Der angegebene Benutzername ($1) ist ungültig",
+	"rest-invalid-ip": "Die angegebene IP-Adresse ($1) ist ungültig",
 	"rest-invalid-title": "Der angegebene Titel ($1) verweist nicht auf eine Wiki-Seite.",
 	"rest-unsupported-content-type": "Nicht unterstützter Inhaltstyp: $1",
 	"rest-permission-error": "Erlaubnis verweigert: $1",
