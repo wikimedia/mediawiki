@@ -69,6 +69,10 @@ class HTMLFormTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetPreText() {
+		$this->hideDeprecated( HTMLForm::class . '::setPreText' );
+		$this->hideDeprecated( HTMLForm::class . '::getPreText' );
+		$this->hideDeprecated( HTMLForm::class . '::addPreText' );
+
 		$preText = 'TEST';
 		$form = $this->newInstance();
 		$form->setPreText( $preText );
@@ -78,6 +82,8 @@ class HTMLFormTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetPreHtml() {
+		$this->hideDeprecated( HTMLForm::class . '::setIntro' );
+
 		$preHtml = 'TEST';
 		$form = $this->newInstance();
 		$form->setPreHtml( $preHtml );
@@ -91,6 +97,9 @@ class HTMLFormTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetPostHtml() {
+		$this->hideDeprecated( HTMLForm::class . '::setPostText' );
+		$this->hideDeprecated( HTMLForm::class . '::addPostText' );
+
 		$postHtml = 'TESTED';
 		$form = $this->newInstance();
 		$form->setPostHtml( $postHtml );

@@ -504,6 +504,12 @@ because of Phabricator reports.
   * HtmlInputTransformHelper::init()
   Similarly, calling the constructor method in PageRestHelperFactory
   without the appropriate initialization arguments is now deprecated.
+* HTMLForm methods getPreText, setPreText, addPreText, getPostText,
+  setPostText, addPostText, getHeaderText, setHeaderText, addHeaderText,
+  getFooterText, setFooterText and addFooterText, deprecated since 1.38, now
+  emit deprecation warnings.
+* FormSpecialPage methods preText and postText, deprecated since 1.38, now
+  emit deprecation warnings.
 * EditPage::internalAttemptSave() is deprecated as part of cleaning up how
   edits are saved, see T157658 for details.
 * …
