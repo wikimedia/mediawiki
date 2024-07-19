@@ -199,6 +199,11 @@ class JobQueueGroup {
 		// Throw errors now instead of on push(), when other jobs may be buffered
 		$this->assertValidJobs( $jobs );
 
+		/** Fandom change - start (@author wbodzek) - hook for logging */
+		MediaWikiServices::getInstance()->getHookContainer()
+			->run( 'JobQueueGroupLazyPush', [ $jobs ] );
+		/** Fandom change - end */
+
 		DeferredUpdates::addUpdate( new JobQueueEnqueueUpdate( $this->domain, $jobs ) );
 	}
 
