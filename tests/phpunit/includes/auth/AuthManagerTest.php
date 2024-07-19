@@ -3647,7 +3647,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 	public function testCanLinkAccounts() {
 		$types = [
-			PrimaryAuthenticationProvider::TYPE_CREATE => true,
+			PrimaryAuthenticationProvider::TYPE_CREATE => false,
 			PrimaryAuthenticationProvider::TYPE_LINK => true,
 			PrimaryAuthenticationProvider::TYPE_NONE => false,
 		];
@@ -3659,7 +3659,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 				->willReturn( $type );
 			$this->primaryauthMocks = [ $mock ];
 			$this->initializeManager( true );
-			$this->assertSame( $can, $this->manager->canCreateAccounts(), $type );
+			$this->assertSame( $can, $this->manager->canLinkAccounts(), $type );
 		}
 	}
 
