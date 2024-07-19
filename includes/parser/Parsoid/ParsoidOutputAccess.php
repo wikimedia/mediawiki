@@ -47,6 +47,7 @@ use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
  *
  * @since 1.39
  * @unstable
+ * @deprecated since 1.43
  */
 class ParsoidOutputAccess {
 	private ParsoidParserFactory $parsoidParserFactory;
@@ -88,6 +89,7 @@ class ParsoidOutputAccess {
 	 * @param bool $lenientRevHandling
 	 *
 	 * @return Status<ParserOutput>
+	 * @deprecated since 1.43
 	 */
 	public function getParserOutput(
 		PageIdentity $page,
@@ -96,6 +98,7 @@ class ParsoidOutputAccess {
 		int $options = 0,
 		bool $lenientRevHandling = false
 	): Status {
+		wfDeprecated( __METHOD__, '1.43' );
 		[ $page, $revision, $uncacheable ] = $this->resolveRevision( $page, $revision, $lenientRevHandling );
 
 		try {
@@ -122,6 +125,7 @@ class ParsoidOutputAccess {
 	 * @param bool $lenientRevHandling
 	 *
 	 * @return ?ParserOutput
+	 * @deprecated since 1.43
 	 */
 	public function getCachedParserOutput(
 		PageIdentity $page,
@@ -129,6 +133,7 @@ class ParsoidOutputAccess {
 		$revision = null,
 		bool $lenientRevHandling = false
 	): ?ParserOutput {
+		wfDeprecated( __METHOD__, '1.43' );
 		[ $page, $revision, $ignored ] = $this->resolveRevision( $page, $revision, $lenientRevHandling );
 
 		$this->adjustParserOptions( $revision, $parserOpts );
@@ -145,6 +150,7 @@ class ParsoidOutputAccess {
 	 * @param bool $lenientRevHandling
 	 *
 	 * @return Status
+	 * @deprecated since 1.43
 	 */
 	public function parseUncacheable(
 		PageIdentity $page,
@@ -152,6 +158,7 @@ class ParsoidOutputAccess {
 		$revision,
 		bool $lenientRevHandling = false
 	): Status {
+		wfDeprecated( __METHOD__, '1.43' );
 		// NOTE: If we have a RevisionRecord already, just use it, there is no need to resolve $page to
 		//       a PageRecord (and it may not be possible if the page doesn't exist).
 		if ( !$revision instanceof RevisionRecord ) {
