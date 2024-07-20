@@ -180,7 +180,7 @@ class DbTestPreviewer extends TestRecorder {
 			'ti_success' => ( $after == 'f' ? "1" : "0" ) ];
 
 		if ( $this->curRun ) {
-			$conds[] = "ti_run != " . $this->db->addQuotes( $this->curRun );
+			$conds[] = $this->db->expr( 'ti_run', '!=', $this->curRun );
 		}
 
 		$changedRun = $this->db->newSelectQueryBuilder()
@@ -209,7 +209,7 @@ class DbTestPreviewer extends TestRecorder {
 		$post = $this->db->newSelectQueryBuilder()
 			->select( [ 'tr_date', 'tr_mw_version' ] )
 			->from( 'testrun' )
-			->where( [ "tr_id > " . $this->db->addQuotes( $changedRun ) ] )
+			->where( $this->db->expr( 'tr_id', '>', $changedRun ) )
 			->orderBy( 'tr_id' )
 			->limit( 1 )
 			->caller( __METHOD__ )->fetchRow();

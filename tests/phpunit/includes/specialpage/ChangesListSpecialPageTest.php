@@ -293,10 +293,9 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 	public function testRcHidemyselfFilter() {
 		$user = $this->getTestUser()->getUser();
-		$encName = $this->getDb()->addQuotes( $user->getName() );
 		$this->assertConditions(
 			[ # expected
-				"actor_name != $encName",
+				$this->getDb()->expr( 'actor_name', '!=', $user->getName() ),
 			],
 			[
 				'hidemyself' => 1,
