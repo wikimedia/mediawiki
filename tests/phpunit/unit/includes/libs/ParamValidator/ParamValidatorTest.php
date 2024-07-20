@@ -571,6 +571,9 @@ class ParamValidatorTest extends TestCase {
 		$sen = [ ParamValidator::PARAM_SENSITIVE => true ];
 		$dep = [ ParamValidator::PARAM_DEPRECATED => true ];
 		$dflt = [ ParamValidator::PARAM_DEFAULT => 'DeFaUlT' ];
+		$arr = [ ParamValidator::PARAM_ISMULTI => true, ParamValidator::PARAM_TYPE => 'integer' ];
+
+		// [ $settings, $parseLimit, $get, $value, $isSensitive, $isDeprecated ]
 		return [
 			'Simple case' => [ [], false, [ 'foobar' => '!!!' ], '!!!', false, false ],
 			'Not provided' => [ $sen + $dep, false, [], null, false, false ],
@@ -579,6 +582,7 @@ class ParamValidatorTest extends TestCase {
 			'Provided, sensitive' => [ $sen, false, [ 'foobar' => 'XYZ' ], 'XYZ', true, false ],
 			'Provided, deprecated' => [ $dep, false, [ 'foobar' => 'XYZ' ], 'XYZ', false, true ],
 			'Provided array' => [ $dflt, false, [ 'foobar' => [ 'XYZ' ] ], [ 'XYZ' ], false, false ],
+			'Multivalue as array' => [ $dflt, false, [ 'foobar' => [ 1, 2, 3 ] ], [ 1, 2, 3 ], false, false ],
 		];
 	}
 
@@ -591,6 +595,29 @@ class ParamValidatorTest extends TestCase {
 		$this->expectException( DomainException::class );
 		$this->expectExceptionMessage( "Param foo's type is unknown - string" );
 		$validator->validateValue( 'foo', null, 'default', [] );
+	}
+
+	public function testValidateValue_multiValueMustBeArray() {
+		$validator = new ParamValidator(
+			new SimpleCallbacks( [
+				'foo' => 'x|y|z'
+			] ),
+			new ObjectFactory( $this->getMockForAbstractClass( ContainerInterface::class ) ),
+			[ 'typeDefs' => ParamValidator::$STANDARD_TYPES ]
+		);
+
+		$options = [
+			ParamValidator::OPT_ENFORCE_JSON_TYPES => true
+		];
+
+		$settings = [
+			ParamValidator::PARAM_TYPE => 'integer',
+			ParamValidator::PARAM_ISMULTI => true,
+		];
+
+		$this->expectException( ValidationException::class );
+		$this->expectExceptionMessage( 'multivalue-must-be-array' );
+		$validator->validateValue( 'foo', 'x|y|z', $settings, $options );
 	}
 
 	public static function provideMismatchValueToType() {
@@ -708,6 +735,8 @@ class ParamValidatorTest extends TestCase {
 	}
 
 	public static function provideValidateValue() {
+		// [ $value, $settings, $highLimits, $valuesList, $calls, $expect,
+		//   $expectConditions = [], $constructorOptions = [] ]
 		return [
 			'No value' => [ null, [], false, null, [], null ],
 			'No value, required' => [

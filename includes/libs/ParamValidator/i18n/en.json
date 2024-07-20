@@ -37,6 +37,7 @@
 	"paramvalidator-maxchars": "The value for parameter \"$1\" cannot be longer than $3 {{PLURAL:$3|character|characters}} (was $4).",
 	"paramvalidator-missingparam": "The \"$1\" parameter must be set.",
 	"paramvalidator-notmulti": "Parameter \"$1\" accepts only a single value. U+001F multi-value separation may only be used for multi-valued parameters.",
+	"paramvalidator-multivalue-must-be-array": "Multi-value parameter \"$1\" must be given as an array.",
 	"paramvalidator-needstring": "Parameter \"$1\" accepts only a string value, but got $2",
 	"paramvalidator-outofrange-max": "The value \"$2\" for parameter \"$1\" must be no greater than $4.",
 	"paramvalidator-outofrange-minmax": "The value \"$2\" for parameter \"$1\" must be between $3 and $4.",

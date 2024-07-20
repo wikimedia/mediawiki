@@ -47,6 +47,7 @@
 	"paramvalidator-maxchars": "Error in API parameter validation. \"Characters\" here refers to Unicode codepoints. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.\n* $3 - Maximum allowed size in Unicode codepoints.\n* $4 - Size of the supplied string in Unicode codepoints.",
 	"paramvalidator-missingparam": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.",
 	"paramvalidator-notmulti": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.",
+	"paramvalidator-multivalue-must-be-array": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.",
 	"paramvalidator-needstring": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Actual parameter type.",
 	"paramvalidator-outofrange-max": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.\n* $3 - Unused.\n* $4 - Maximum allowed value.",
 	"paramvalidator-outofrange-minmax": "Error in API parameter validation. Parameters:\n* $1 - Parameter name.\n* $2 - Parameter value.\n* $3 - Minimum allowed value\n* $4 - Maximum allowed value.",
