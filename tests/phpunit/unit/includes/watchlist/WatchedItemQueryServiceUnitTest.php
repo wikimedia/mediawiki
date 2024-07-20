@@ -102,11 +102,6 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				return $sql;
 			} );
 
-		$mock->method( 'addQuotes' )
-			->willReturnCallback( static function ( $value ) {
-				return "'$value'";
-			} );
-
 		$mock->method( 'timestamp' )
 			->willReturnArgument( 0 );
 
@@ -1064,10 +1059,6 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		$expectedConds = array_merge( [ 'wl_user' => 1 ], $expectedConds );
 
 		$mockDb = $this->getMockDb();
-		$mockDb->method( 'addQuotes' )
-			->willReturnCallback( static function ( $value ) {
-				return "'$value'";
-			} );
 		$mockDb->method( 'makeList' )
 			->with(
 				$this->isType( 'array' ),

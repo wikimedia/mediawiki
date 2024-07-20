@@ -305,7 +305,7 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 		IReadableDatabase $db
 	) {
 		if ( $this->expiryEnabled ) {
-			$queryBuilder->where( 'we_expiry IS NULL OR we_expiry > ' . $db->addQuotes( $db->timestamp() ) );
+			$queryBuilder->where( $db->expr( 'we_expiry', '=', null )->or( 'we_expiry', '>', $db->timestamp() ) );
 			$queryBuilder->leftJoin( 'watchlist_expiry', null, 'wl_id = we_item' );
 		}
 	}
@@ -489,9 +489,8 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 			->where( [
 				'wl_namespace' => $target->getNamespace(),
 				'wl_title' => $target->getDBkey(),
-				'wl_notificationtimestamp >= ' .
-				$dbr->addQuotes( $dbr->timestamp( $threshold ) ) .
-				' OR wl_notificationtimestamp IS NULL'
+				$dbr->expr( 'wl_notificationtimestamp', '>=', $dbr->timestamp( $threshold ) )
+					->or( 'wl_notificationtimestamp', '=', null )
 			] )
 			->caller( __METHOD__ );
 
@@ -673,13 +672,11 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 				continue;
 			}
 			/** @var LinkTarget|PageIdentity $target */
-			$namespaceConds[$target->getNamespace()][] = $db->makeList( [
-				'wl_title = ' . $db->addQuotes( $target->getDBkey() ),
-				$db->makeList( [
-					'wl_notificationtimestamp >= ' . $db->addQuotes( $db->timestamp( $threshold ) ),
-					'wl_notificationtimestamp IS NULL'
-				], LIST_OR )
-			], LIST_AND );
+			$namespaceConds[$target->getNamespace()][] = $db->expr( 'wl_title', '=', $target->getDBkey() )
+				->andExpr(
+					$db->expr( 'wl_notificationtimestamp', '>=', $db->timestamp( $threshold ) )
+						->or( 'wl_notificationtimestamp', '=', null )
+				);
 		}
 
 		$conds = [];
@@ -1807,7 +1804,7 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 		return $dbr->newSelectQueryBuilder()
 			->select( '*' )
 			->from( 'watchlist_expiry' )
-			->where( [ 'we_expiry <= ' . $dbr->addQuotes( $dbr->timestamp() ) ] )
+			->where( $dbr->expr( 'we_expiry', '<=', $dbr->timestamp() ) )
 			->caller( __METHOD__ )
 			->fetchRowCount();
 	}
@@ -1824,7 +1821,7 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 		$toDelete = $dbr->newSelectQueryBuilder()
 			->select( 'we_item' )
 			->from( 'watchlist_expiry' )
-			->where( [ 'we_expiry <= ' . $dbr->addQuotes( $dbr->timestamp() ) ] )
+			->where( $dbr->expr( 'we_expiry', '<=', $dbr->timestamp() ) )
 			->limit( $limit )
 			->caller( __METHOD__ )
 			->fetchFieldValues();
