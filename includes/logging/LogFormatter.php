@@ -62,9 +62,10 @@ class LogFormatter {
 	 * Constructs a new formatter suitable for given entry.
 	 * @param LogEntry $entry
 	 * @return LogFormatter
-	 * @deprecated since 1.42, use LogFormatterFactory instead
+	 * @deprecated since 1.42, use LogFormatterFactory instead, hard-deprecated since 1.43
 	 */
 	public static function newFromEntry( LogEntry $entry ) {
+		wfDeprecated( __METHOD__, '1.42' );
 		return MediaWikiServices::getInstance()->getLogFormatterFactory()->newFromEntry( $entry );
 	}
 
@@ -74,9 +75,10 @@ class LogFormatter {
 	 * @param stdClass|array $row
 	 * @see DatabaseLogEntry::getSelectQueryData
 	 * @return LogFormatter
-	 * @deprecated since 1.42, use LogFormatterFactory instead
+	 * @deprecated since 1.42, use LogFormatterFactory instead, hard-deprecated since 1.43
 	 */
 	public static function newFromRow( $row ) {
+		wfDeprecated( __METHOD__, '1.42' );
 		return self::newFromEntry( DatabaseLogEntry::newFromRow( $row ) );
 	}
 
