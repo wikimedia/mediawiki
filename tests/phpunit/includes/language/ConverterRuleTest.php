@@ -7,7 +7,8 @@
 class ConverterRuleTest extends MediaWikiIntegrationTestCase {
 
 	public function testParseEmpty() {
-		$converter = new EnConverter( new Language() );
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
+		$converter = new EnConverter( $lang );
 		$rule = new ConverterRule( '', $converter );
 		$rule->parse();
 
