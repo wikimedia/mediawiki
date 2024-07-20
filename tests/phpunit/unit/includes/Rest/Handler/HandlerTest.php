@@ -358,6 +358,42 @@ class HandlerTest extends MediaWikiUnitTestCase {
 			] ),
 			[ 'foo' => 1234 ]
 		];
+
+		yield 'multivalue string in form data' => [
+			[
+				'foo' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					ParamValidator::PARAM_REQUIRED => true,
+					ParamValidator::PARAM_ISMULTI => true,
+					Handler::PARAM_SOURCE => 'body',
+				]
+			],
+			new RequestData( [
+				'headers' => [
+					'Content-Type' => RequestInterface::FORM_URLENCODED_CONTENT_TYPE
+				],
+				'parsedBody' => [ 'foo' => 'x|y|z' ]
+			] ),
+			[ 'foo' => [ 'x', 'y', 'z' ] ]
+		];
+
+		yield 'multivalue string in JSON' => [
+			[
+				'foo' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					ParamValidator::PARAM_REQUIRED => true,
+					ParamValidator::PARAM_ISMULTI => true,
+					Handler::PARAM_SOURCE => 'body',
+				]
+			],
+			new RequestData( [
+				'headers' => [
+					'Content-Type' => RequestInterface::JSON_CONTENT_TYPE
+				],
+				'parsedBody' => [ 'foo' => [ 'x', 'y', 'z' ] ]
+			] ),
+			[ 'foo' => [ 'x', 'y', 'z' ] ]
+		];
 	}
 
 	/**
@@ -515,6 +551,38 @@ class HandlerTest extends MediaWikiUnitTestCase {
 				// JSON doesn't enable type coercion
 				'headers' => [ 'Content-Type' => 'application/json', ],
 				'parsedBody' => [ 'foo' => '1234' ]
+			] ),
+			'badinteger-type'
+		];
+
+		yield 'multivalue body parameter as string in JSON' => [
+			[
+				'foo' => [
+					ParamValidator::PARAM_TYPE => 'string',
+					ParamValidator::PARAM_REQUIRED => true,
+					ParamValidator::PARAM_ISMULTI => true,
+					Handler::PARAM_SOURCE => 'body',
+				]
+			],
+			new RequestData( [
+				'headers' => [ 'Content-Type' => 'application/json', ],
+				'parsedBody' => [ 'foo' => 'x|y|z' ]
+			] ),
+			'multivalue-must-be-array'
+		];
+
+		yield 'multivalue integer as array of strings in JSON' => [
+			[
+				'foo' => [
+					ParamValidator::PARAM_TYPE => 'integer',
+					ParamValidator::PARAM_REQUIRED => true,
+					ParamValidator::PARAM_ISMULTI => true,
+					Handler::PARAM_SOURCE => 'body',
+				]
+			],
+			new RequestData( [
+				'headers' => [ 'Content-Type' => 'application/json' ],
+				'parsedBody' => [ 'foo' => [ '1', '2', '3' ] ]
 			] ),
 			'badinteger-type'
 		];
