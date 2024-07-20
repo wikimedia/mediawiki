@@ -147,16 +147,16 @@ class FormatMetadataTest extends MediaWikiMediaTestCase {
 	/**
 	 * @covers \FormatMetadata::getPriorityLanguages
 	 * @dataProvider provideGetPriorityLanguagesData
-	 * @param string $languageClass
+	 * @param string $language
 	 * @param string[] $expected
 	 */
 	public function testGetPriorityLanguagesInternal_language_expect(
-		string $languageClass,
+		string $language,
 		array $expected
 	): void {
 		$formatMetadata = TestingAccessWrapper::newFromObject( new FormatMetadata() );
 		$context = $formatMetadata->getContext();
-		$context->setLanguage( new $languageClass() );
+		$context->setLanguage( $this->getServiceContainer()->getLanguageFactory()->getLanguage( $language ) );
 
 		$x = $formatMetadata->getPriorityLanguages();
 		$this->assertSame( $expected, $x );
@@ -165,15 +165,15 @@ class FormatMetadataTest extends MediaWikiMediaTestCase {
 	public static function provideGetPriorityLanguagesData() {
 		return [
 			'LanguageMl' => [
-				LanguageMl::class,
+				'ml',
 				[ 'ml', 'en' ],
 			],
 			'LanguageEn' => [
-				LanguageEn::class,
+				'en',
 				[ 'en', 'en' ],
 			],
 			'LanguageQqx' => [
-				LanguageQqx::class,
+				'qqx',
 				[ 'qqx', 'en' ],
 			],
 		];
