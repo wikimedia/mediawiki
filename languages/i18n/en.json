@@ -2979,7 +2979,6 @@
 	"import-logentry-interwiki": "transwikied $1",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|revision|revisions}} imported from $2",
 	"javascripttest": "JavaScript testing",
-	"javascripttest-qunit-intro": "See [$1 testing documentation] on mediawiki.org.",
 	"accesskey-pt-userpage": ".",
 	"accesskey-pt-anonuserpage": ".",
 	"accesskey-pt-mytalk": "n",

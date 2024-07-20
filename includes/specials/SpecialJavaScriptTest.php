@@ -156,10 +156,6 @@ JAVASCRIPT
 			Html::linkedStyle( "$basePath/resources/src/qunitjs/qunit-local.css" ),
 		] );
 
-		$introHtml = $this->msg( 'javascripttest-qunit-intro' )
-			->params( 'https://www.mediawiki.org/wiki/Manual:JavaScript_unit_testing' )
-			->parseAsBlock();
-
 		$scriptUrl = $this->getPageTitle( 'qunit/export' )->getFullURL( [
 			'debug' => (string)ResourceLoader::inDebugMode(),
 		] );
@@ -174,7 +170,6 @@ JAVASCRIPT
 <!DOCTYPE html>
 <title>QUnit</title>
 $headHtml
-$introHtml
 <div id="qunit"></div>
 <div id="qunit-fixture"></div>
 $script
