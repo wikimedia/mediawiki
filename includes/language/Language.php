@@ -306,7 +306,7 @@ class Language implements Bcp47Code {
 	/**
 	 * @internal Calling this directly is deprecated. Use LanguageFactory instead.
 	 *
-	 * @param string|null $code Which code to use. Passing null is deprecated in 1.35.
+	 * @param string|null $code Which code to use. Passing null is deprecated in 1.35, hard-deprecated since 1.43.
 	 * @param NamespaceInfo|null $namespaceInfo
 	 * @param LocalisationCache|null $localisationCache
 	 * @param LanguageNameUtils|null $langNameUtils
@@ -327,6 +327,10 @@ class Language implements Bcp47Code {
 	) {
 		if ( !func_num_args() ) {
 			// Old calling convention, deprecated
+			wfDeprecatedMsg(
+				__METHOD__ . ' without providing all services is deprecated',
+				'1.35'
+			);
 			if ( static::class === 'Language' ) {
 				$this->mCode = 'en';
 			} else {
