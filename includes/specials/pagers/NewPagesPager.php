@@ -204,22 +204,13 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$associated = $this->opts->getValue( 'associated' );
 
 		$eq_op = $invert ? '!=' : '=';
-		$bool_op = $invert ? 'AND' : 'OR';
-
 		$dbr = $this->getDatabase();
-		$selectedNS = $dbr->addQuotes( $namespace );
-		if ( !$associated ) {
-			return [ "rc_namespace $eq_op $selectedNS" ];
+		$namespaces = [ $namespace ];
+		if ( $associated ) {
+			$namespaces[] = $this->namespaceInfo->getAssociated( $namespace );
 		}
 
-		$associatedNS = $dbr->addQuotes(
-			$this->namespaceInfo->getAssociated( $namespace )
-		);
-		return [
-			"rc_namespace $eq_op $selectedNS " .
-			$bool_op .
-			" rc_namespace $eq_op $associatedNS"
-		];
+		return [ $dbr->expr( 'rc_namespace', $eq_op, $namespaces ) ];
 	}
 
 	public function getIndexField() {
