@@ -17,6 +17,7 @@ use Wikimedia\Rdbms\ReadOnlyMode;
  * that they result in failures as expected
  *
  * @covers \MediaWiki\EditPage\EditPage::internalAttemptSave
+ * @covers \MediaWiki\EditPage\EditPage::internalAttemptSavePrivate
  *
  * @group Editing
  * @group Database
@@ -143,12 +144,8 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		$ep->setContextTitle( $title );
 		$ep->importFormData( $req );
 
-		$bot = !empty( $edit['bot'] );
-
 		// this is where the edit happens!
-		// Note: don't want to use EditPage::attemptSave, because it messes with $wgOut
-		// and throws exceptions like PermissionsError
-		$status = $ep->internalAttemptSave( $result, $bot );
+		$status = $ep->attemptSave( $result );
 
 		// check edit code
 		$this->assertSame(

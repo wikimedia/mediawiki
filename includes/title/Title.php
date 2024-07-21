@@ -3271,7 +3271,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 *    - Disallowing a save. When attempting to create a MediaWiki-namespace
 	 *      page with the proposed content matching the interface message default,
 	 *      the save is rejected, the same way we disallow blank pages from being
-	 *      created. (EditPage::internalAttemptSave)
+	 *      created. (EditPage using DefaultTextConstraint)
 	 *
 	 * - ApiEditPage:
 	 *    - Default content, when using the 'prepend' or 'append' feature.
