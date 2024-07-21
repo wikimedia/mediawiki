@@ -11,6 +11,8 @@ use MediaWiki\Title\Title;
  * See also unit tests at \MediaWiki\Tests\Unit\FallbackContentHandlerTest
  *
  * @group ContentHandler
+ * @covers \MediaWiki\Content\FallbackContentHandler
+ * @covers \ContentHandler
  */
 class FallbackContentHandlerTest extends MediaWikiLangTestCase {
 
@@ -25,19 +27,10 @@ class FallbackContentHandlerTest extends MediaWikiLangTestCase {
 		$this->setService( '_ParserObserver', $this->createMock( ParserObserver::class ) );
 	}
 
-	/**
-	 * @param string $data
-	 * @param string $type
-	 *
-	 * @return FallbackContent
-	 */
-	public function newContent( $data, $type = self::CONTENT_MODEL ) {
+	private function newContent( string $data, string $type = self::CONTENT_MODEL ) {
 		return new FallbackContent( $data, $type );
 	}
 
-	/**
-	 * @covers \ContentHandler::getSlotDiffRenderer
-	 */
 	public function testGetSlotDiffRenderer() {
 		$context = new RequestContext();
 		$context->setRequest( new FauxRequest() );
@@ -53,9 +46,6 @@ class FallbackContentHandlerTest extends MediaWikiLangTestCase {
 		$this->assertNotEmpty( $diff );
 	}
 
-	/**
-	 * @covers \MediaWiki\Content\FallbackContentHandler::fillParserOutput
-	 */
 	public function testGetParserOutput() {
 		$this->setUserLang( 'en' );
 		$this->setContentLang( 'qqx' );

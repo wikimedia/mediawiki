@@ -30,7 +30,7 @@ use WikitextContentHandler;
  * Split from \WikitextContentHandlerTest integration tests
  *
  * @group ContentHandler
- * @coversDefaultClass \WikitextContentHandler
+ * @covers \WikitextContentHandler
  */
 class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 	use MockTitleTrait;
@@ -48,9 +48,6 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::serializeContent
-	 */
 	public function testSerializeContent() {
 		$content = new WikitextContent( 'hello world' );
 		$handler = $this->newWikitextContentHandler();
@@ -65,9 +62,6 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 		$handler->serializeContent( $content, 'dummy/foo' );
 	}
 
-	/**
-	 * @covers ::unserializeContent
-	 */
 	public function testUnserializeContent() {
 		$handler = $this->newWikitextContentHandler();
 
@@ -81,9 +75,6 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 		$handler->unserializeContent( 'hello world', 'dummy/foo' );
 	}
 
-	/**
-	 * @covers \WikitextContentHandler::makeEmptyContent
-	 */
 	public function testMakeEmptyContent() {
 		$handler = $this->newWikitextContentHandler();
 		$content = $handler->makeEmptyContent();
@@ -102,24 +93,17 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider dataIsSupportedFormat
-	 * @covers ::isSupportedFormat
 	 */
 	public function testIsSupportedFormat( $format, $supported ) {
 		$handler = $this->newWikitextContentHandler();
 		$this->assertEquals( $supported, $handler->isSupportedFormat( $format ) );
 	}
 
-	/**
-	 * @covers ::supportsDirectEditing
-	 */
 	public function testSupportsDirectEditing() {
 		$handler = $this->newWikiTextContentHandler();
 		$this->assertTrue( $handler->supportsDirectEditing(), 'direct editing is supported' );
 	}
 
-	/**
-	 * @covers ::getSecondaryDataUpdates
-	 */
 	public function testGetSecondaryDataUpdates() {
 		$title = $this->createMock( Title::class );
 		$content = new WikitextContent( '' );
@@ -131,9 +115,6 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( [], $updates );
 	}
 
-	/**
-	 * @covers ::getDeletionUpdates
-	 */
 	public function testGetDeletionUpdates() {
 		$title = $this->createMock( Title::class );
 		$handler = $this->newWikitextContentHandler();
@@ -143,7 +124,6 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers ::fillParserOutput
 	 * @dataProvider provideFillParserOutput
 	 */
 	public function testFillParserOutput( $useParsoid = true, $testRedirect = false ) {
