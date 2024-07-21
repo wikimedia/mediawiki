@@ -134,7 +134,7 @@ class EditFilterMergedContentHookConstraint implements IEditConstraint {
 
 	/**
 	 * TODO this is really ugly. The constraint shouldn't know that the status
-	 * will be used as wikitext, with is what the hookError represents, rather
+	 * will be used as wikitext, which is what the hookError represents, rather
 	 * than just the error code. This needs a big refactor to remove the hook
 	 * error string and just rely on the status object entirely.
 	 *
