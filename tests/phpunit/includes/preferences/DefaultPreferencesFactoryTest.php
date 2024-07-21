@@ -130,7 +130,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 	/**
 	 * Get a basic PreferencesFactory for testing with.
 	 * @param array $options Supported options are:
-	 *    'language' - A Language object, falls back to `new Language()`
+	 *    'language' - A Language object, falls back to content language
 	 *    'userOptionsManager' - A UserOptionsManager service, falls back to using MediaWikiServices
 	 *    'userGroupManager' - A UserGroupManager service, falls back to a mock where no users
 	 *                         have any extra groups, just `*` and `user`
@@ -146,7 +146,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		// extension (GlobalPreferencesFactory extends DefaultPreferencesFactory)
 		$permissionManager = $this->createNoOpMock( PermissionManager::class );
 
-		$language = $options['language'] ?? new Language();
+		$language = $options['language'] ?? $services->getContentLanguage();
 		$userOptionsManager = $options['userOptionsManager'] ?? $services->getUserOptionsManager();
 
 		$userGroupManager = $options['userGroupManager'] ?? false;
