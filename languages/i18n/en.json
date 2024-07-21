@@ -300,7 +300,7 @@
 	"badtitle": "Bad title",
 	"badtitletext": "The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title.\nIt may contain one or more characters that cannot be used in titles.",
 	"title-invalid": "The requested page title is invalid",
-	"title-invalid-empty": "The requested page title is empty or contains only the name of a namespace.",
+	"title-invalid-empty": "The requested page title is empty or contains only a namespace prefix.",
 	"title-invalid-utf8": "The requested page title contains an invalid UTF-8 sequence.",
 	"title-invalid-interwiki": "The requested page title contains an interwiki link which cannot be used in titles.",
 	"title-invalid-talk-namespace": "The requested page title refers to a talk page that cannot exist.",
