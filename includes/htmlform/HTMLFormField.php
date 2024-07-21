@@ -1056,7 +1056,10 @@ abstract class HTMLFormField {
 			return [ $this->mParams['help-message'] ];
 		} elseif ( isset( $this->mParams['help-messages'] ) ) {
 			return $this->mParams['help-messages'];
+		} elseif ( isset( $this->mParams['help-raw'] ) ) {
+			return [ new HtmlArmor( $this->mParams['help-raw'] ) ];
 		} elseif ( isset( $this->mParams['help'] ) ) {
+			// @deprecated since 1.43, use 'help-raw' key instead
 			return [ new HtmlArmor( $this->mParams['help'] ) ];
 		}
 
