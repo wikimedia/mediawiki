@@ -195,20 +195,6 @@ class MagicVariableTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @param string $word
-	 * @param string $ts
-	 * @param string $expOutput
-	 * @param int $expTTL
-	 * @dataProvider provideCurrentUnitTimestampWords
-	 */
-	public function testCurrentUnitTimestampExpiry( $word, $ts, $expOutput, $expTTL ) {
-		$this->setParserTimestamp( $ts );
-
-		$this->assertMagic( $expOutput, $word );
-		$this->assertSame( $expTTL, $this->testParser->getOutput()->getCacheExpiry() );
-	}
-
 	public static function provideLocalUnitTimestampWords() {
 		// NOTE: Europe/Stockholm DST applies Sun, Mar 26, 2023 2:00 - Sun, Oct 29, 2023 3:00AM
 		return [
@@ -262,9 +248,10 @@ class MagicVariableTest extends MediaWikiIntegrationTestCase {
 	 * @param string $ts
 	 * @param string $expOutput
 	 * @param int $expTTL
+	 * @dataProvider provideCurrentUnitTimestampWords
 	 * @dataProvider provideLocalUnitTimestampWords
 	 */
-	public function testLocalUnitTimestampExpiry( $word, $ts, $expOutput, $expTTL ) {
+	public function testCurrentUnitTimestampExpiry( $word, $ts, $expOutput, $expTTL ) {
 		$this->setParserTimestamp( $ts );
 
 		$this->assertMagic( $expOutput, $word );

@@ -356,21 +356,6 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 	}
 
 	/**
-	 * @dataProvider provideSuppressBlockLogDatabaseRows
-	 */
-	public function testSuppressBlockLogDatabaseRows( $row, $extra ) {
-		$this->setGroupPermissions(
-			[
-				'oversight' => [
-					'viewsuppressed' => true,
-					'suppressionlog' => true,
-				],
-			]
-		);
-		$this->doTestLogFormatter( $row, $extra, [ 'oversight' ] );
-	}
-
-	/**
 	 * Provide different rows from the logging table to test
 	 * for backward compatibility.
 	 * Do not change the existing data, just add a new database row
@@ -496,9 +481,10 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 	}
 
 	/**
+	 * @dataProvider provideSuppressBlockLogDatabaseRows
 	 * @dataProvider provideSuppressReblockLogDatabaseRows
 	 */
-	public function testSuppressReblockLogDatabaseRows( $row, $extra ) {
+	public function testSuppressBlockLogDatabaseRows( $row, $extra ) {
 		$this->setGroupPermissions(
 			[
 				'oversight' => [

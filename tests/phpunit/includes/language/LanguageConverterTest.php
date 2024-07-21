@@ -148,17 +148,11 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider provideGetPreferredVariantDefaultLanguageVariant
+	 * @dataProvider provideGetPreferredVariant
 	 */
 	public function testGetPreferredVariantDefaultLanguageVariant( $globalVal, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::DefaultLanguageVariant, $globalVal );
 		$this->assertEquals( $expected, $this->lc->getPreferredVariant() );
-	}
-
-	public static function provideGetPreferredVariantDefaultLanguageVariant() {
-		yield 'normal (tg-latn)' => [ 'tg-latn', 'tg-latn' ];
-		yield 'deprecated (bat-smg)' => [ 'bat-smg', 'sgs' ];
-		yield 'BCP47 (en-simple)' => [ 'en-simple', 'simple' ];
 	}
 
 	public function testGetPreferredVariantDefaultLanguageVsUrlVariant() {

@@ -181,6 +181,7 @@ class PreprocessorTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideCases
+	 * @dataProvider provideHeadings
 	 */
 	public function testPreprocessorOutput( $wikiText, $expectedXml ) {
 		$this->assertEquals(
@@ -267,13 +268,4 @@ class PreprocessorTest extends MediaWikiIntegrationTestCase {
 		// phpcs:enable
 	}
 
-	/**
-	 * @dataProvider provideHeadings
-	 */
-	public function testHeadings( $wikiText, $expectedXml ) {
-		$this->assertEquals(
-			$this->normalizeXml( $expectedXml ),
-			$this->preprocessToXml( $wikiText )
-		);
-	}
 }

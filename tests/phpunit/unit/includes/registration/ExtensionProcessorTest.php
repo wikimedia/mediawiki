@@ -724,18 +724,6 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	/**
-	 * @dataProvider provideExtractExtensionMessagesFiles
-	 */
-	public function testExtractExtensionMessagesFiles( $input, $expected ) {
-		$processor = new ExtensionProcessor();
-		$processor->extractInfo( $this->extensionPath, $input + self::$default, 1 );
-		$out = $processor->getExtractedInfo();
-		foreach ( $expected as $key => $value ) {
-			$this->assertEquals( $value, $out['globals'][$key] );
-		}
-	}
-
 	public static function provideExtractRestModuleFiles() {
 		$dir = dirname( self::getExtensionPath() );
 		return [
@@ -760,18 +748,6 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	/**
-	 * @dataProvider provideExtractRestModuleFiles
-	 */
-	public function testExtractRestModuleFiles( $input, $expected ) {
-		$processor = new ExtensionProcessor();
-		$processor->extractInfo( $this->extensionPath, $input + self::$default, 1 );
-		$out = $processor->getExtractedInfo();
-		foreach ( $expected as $key => $value ) {
-			$this->assertEquals( $value, $out['globals'][$key] );
-		}
-	}
-
 	public static function provideExtractMessagesDirs() {
 		$dir = dirname( self::getExtensionPath() );
 		return [
@@ -787,9 +763,11 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
+	 * @dataProvider provideExtractExtensionMessagesFiles
+	 * @dataProvider provideExtractRestModuleFiles
 	 * @dataProvider provideExtractMessagesDirs
 	 */
-	public function testExtractMessagesDirs( $input, $expected ) {
+	public function testExtractFilesAndDirs( $input, $expected ) {
 		$processor = new ExtensionProcessor();
 		$processor->extractInfo( $this->extensionPath, $input + self::$default, 1 );
 		$out = $processor->getExtractedInfo();

@@ -688,7 +688,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider getMultiWithSetCallback_provider
+	 * @dataProvider getWithSetCallback_provider
 	 * @param array $extOpts
 	 */
 	public function testGetMultiWithSetCallback( array $extOpts ) {
@@ -847,13 +847,6 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 			[ 'k1' => 'val-id1', 'k2' => 'val-id2' ],
 			$wanCache->getMultiWithSetCallback( $keyedIds, 10, $genFunc, [ 'pcTTL' => 5 ] )
 		);
-	}
-
-	public static function getMultiWithSetCallback_provider() {
-		return [
-			[ [], false ],
-			[ [ 'version' => 1 ], true ]
-		];
 	}
 
 	/**
@@ -1142,7 +1135,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider getMultiWithUnionSetCallbackRefresh_provider
+	 * @dataProvider getMultiWithSetCallbackRefresh_provider
 	 * @param bool $expiring
 	 * @param bool $popular
 	 * @param array $idsByKey
@@ -1220,15 +1213,6 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		foreach ( $idsByKey as $key => $id ) {
 			$this->assertSame( "@$id$", $v[$key], "Cached value OK after deferred refresh run" );
 		}
-	}
-
-	public static function getMultiWithUnionSetCallbackRefresh_provider() {
-		return [
-			[ true, true, [ 'a' => 1, 'b' => 2, 'c' => 3, 'd' => 4 ] ],
-			[ true, false, [ 'a' => 'x', 'b' => 'y', 'c' => 'z', 'd' => 'w' ] ],
-			[ false, true, [ 'a' => 'p', 'b' => 'q', 'c' => 'r', 'd' => 's' ] ],
-			[ false, false, [ 'a' => '%', 'b' => '^', 'c' => '&', 'd' => 'ç' ] ]
-		];
 	}
 
 	/**
@@ -1693,7 +1677,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @dataProvider getWithSetCallback_versions_provider
+	 * @dataProvider getWithSetCallback_provider
 	 * @param array $extOpts
 	 * @param bool $versioned
 	 */
@@ -1764,13 +1748,6 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		$v = $cache->getWithSetCallback( $key, 30, $funcV2, $verOpts + $extOpts );
 		$this->assertSame( $valueV2, $v, "Value not regenerated (main key)" );
 		$this->assertSame( 1, $wasSet, "Value not regenerated (main key)" );
-	}
-
-	public static function getWithSetCallback_versions_provider() {
-		return [
-			[ [], false ],
-			[ [ 'version' => 1 ], true ]
-		];
 	}
 
 	/**

@@ -474,21 +474,6 @@ class DeleteLogFormatterTest extends LogFormatterTestCase {
 	}
 
 	/**
-	 * @dataProvider provideSuppressRevisionLogDatabaseRows
-	 */
-	public function testSuppressRevisionLogDatabaseRows( $row, $extra ) {
-		$this->setGroupPermissions(
-			[
-				'oversight' => [
-					'viewsuppressed' => true,
-					'suppressionlog' => true,
-				],
-			]
-		);
-		$this->doTestLogFormatter( $row, $extra, [ 'oversight' ] );
-	}
-
-	/**
 	 * Provide different rows from the logging table to test
 	 * for backward compatibility.
 	 * Do not change the existing data, just add a new database row
@@ -714,21 +699,6 @@ class DeleteLogFormatterTest extends LogFormatterTestCase {
 	}
 
 	/**
-	 * @dataProvider provideSuppressEventLogDatabaseRows
-	 */
-	public function testSuppressEventLogDatabaseRows( $row, $extra ) {
-		$this->setGroupPermissions(
-			[
-				'oversight' => [
-					'viewsuppressed' => true,
-					'suppressionlog' => true,
-				],
-			]
-		);
-		$this->doTestLogFormatter( $row, $extra, [ 'oversight' ] );
-	}
-
-	/**
 	 * Provide different rows from the logging table to test
 	 * for backward compatibility.
 	 * Do not change the existing data, just add a new database row
@@ -884,9 +854,11 @@ class DeleteLogFormatterTest extends LogFormatterTestCase {
 	}
 
 	/**
+	 * @dataProvider provideSuppressRevisionLogDatabaseRows
+	 * @dataProvider provideSuppressEventLogDatabaseRows
 	 * @dataProvider provideSuppressDeleteLogDatabaseRows
 	 */
-	public function testSuppressDeleteLogDatabaseRows( $row, $extra ) {
+	public function testSuppressLogDatabaseRows( $row, $extra ) {
 		$this->setGroupPermissions(
 			[
 				'oversight' => [
