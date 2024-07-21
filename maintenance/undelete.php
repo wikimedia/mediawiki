@@ -21,7 +21,6 @@
  * @ingroup Maintenance
  */
 
-use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 
@@ -53,11 +52,16 @@ class Undelete extends Maintenance {
 		if ( !$user ) {
 			$this->fatalError( "Invalid username" );
 		}
-		StubGlobalUser::setUser( $user );
 
-		$archive = new PageArchive( $title );
-		$this->output( "Undeleting " . $title->getPrefixedDBkey() . '...' );
-		$archive->undeleteAsUser( [], $user, $reason );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+		$this->output( "Undeleting " . $title->getPrefixedDBkey() . "...\n" );
+
+		$status = $this->getServiceContainer()->getUndeletePageFactory()
+			->newUndeletePage( $page, $user )
+			->undeleteUnsafe( $reason );
+		if ( !$status->isGood() ) {
+			$this->fatalError( $status );
+		}
 		$this->output( "done\n" );
 	}
 }
