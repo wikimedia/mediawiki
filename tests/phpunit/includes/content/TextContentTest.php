@@ -143,15 +143,6 @@ class TextContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Content\TextContent::getTextForSearchIndex
-	 */
-	public function testGetTextForSearchIndex() {
-		$content = $this->newContent( 'hello world.' );
-
-		$this->assertEquals( 'hello world.', $content->getTextForSearchIndex() );
-	}
-
-	/**
 	 * @covers \MediaWiki\Content\TextContent::copy
 	 */
 	public function testCopy() {
@@ -164,37 +155,18 @@ class TextContentTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers \MediaWiki\Content\TextContent::getSize
+	 * @covers \MediaWiki\Content\TextContent::getText
+	 * @covers \MediaWiki\Content\TextContent::getTextForSearchIndex
+	 * @covers \MediaWiki\Content\TextContent::getNativeData
+	 * @covers \MediaWiki\Content\TextContent::getWikitextForTransclusion
 	 */
-	public function testGetSize() {
+	public function testGetTextMethods() {
 		$content = $this->newContent( 'hello world.' );
 
 		$this->assertEquals( 12, $content->getSize() );
-	}
-
-	/**
-	 * @covers \MediaWiki\Content\TextContent::getText
-	 */
-	public function testGetText() {
-		$content = $this->newContent( 'hello world.' );
-
 		$this->assertEquals( 'hello world.', $content->getText() );
-	}
-
-	/**
-	 * @covers \MediaWiki\Content\TextContent::getNativeData
-	 */
-	public function testGetNativeData() {
-		$content = $this->newContent( 'hello world.' );
-
-		$this->assertEquals( 'hello world.', $content->getText() );
-	}
-
-	/**
-	 * @covers \MediaWiki\Content\TextContent::getWikitextForTransclusion
-	 */
-	public function testGetWikitextForTransclusion() {
-		$content = $this->newContent( 'hello world.' );
-
+		$this->assertEquals( 'hello world.', $content->getTextForSearchIndex() );
+		$this->assertEquals( 'hello world.', $content->getNativeData() );
 		$this->assertEquals( 'hello world.', $content->getWikitextForTransclusion() );
 	}
 
