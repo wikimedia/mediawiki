@@ -3242,7 +3242,6 @@
 	"import-logentry-interwiki": "{{MW legacy IRC logentry}}\n\nParameters:\n* $1 - page title",
 	"import-logentry-interwiki-detail": "Used as success message and log entry. Parameters:\n* $1 - number of succeeded revisions\n* $2 - interwiki name\nSee also:\n* {{msg-mw|Import-logentry-upload-detail}}",
 	"javascripttest": "Title of the special page [[Special:JavaScriptTest]].\n\nSee also:\n* {{msg-mw|Javascripttest|title}}\n* {{msg-mw|Javascripttest-pagetext-noframework|summary}}\n* {{msg-mw|Javascripttest-pagetext-unknownframework|error message}}",
-	"javascripttest-qunit-intro": "Used as summary. Parameters:\n* $1 - the configured URL to the documentation\nSee also:\n* {{msg-mw|Javascripttest-qunit-heading}}",
 	"accesskey-pt-userpage": "{{doc-accesskey}}\nSee also:\n<!--* username-->\n* {{msg-mw|Accesskey-pt-userpage}}\n* {{msg-mw|Tooltip-pt-userpage}}",
 	"accesskey-pt-anonuserpage": "{{doc-accesskey}}",
 	"accesskey-pt-mytalk": "{{doc-accesskey}}\nSee also:\n* {{msg-mw|Mytalk}}\n* {{msg-mw|Accesskey-pt-mytalk}}\n* {{msg-mw|Tooltip-pt-mytalk}}",
