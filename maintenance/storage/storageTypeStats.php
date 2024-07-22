@@ -67,8 +67,8 @@ SQL;
 			$res = $dbr->newSelectQueryBuilder()
 				->select( [ 'old_flags', 'class' => $classSql, 'count' => 'COUNT(*)' ] )
 				->from( 'text' )
-				->where( [ 'old_id >= ' . intval( $rangeStart ) ] )
-				->andWhere( [ 'old_id < ' . intval( $rangeStart + $binSize ) ] )
+				->where( $dbr->expr( 'old_id', '>=', intval( $rangeStart ) ) )
+				->andWhere( $dbr->expr( 'old_id', '<', intval( $rangeStart + $binSize ) ) )
 				->groupBy( [ 'old_flags', 'class' ] )
 				->caller( __METHOD__ )->fetchResultSet();
 

@@ -160,7 +160,7 @@ class TrackBlobs extends Maintenance {
 		$slotRoleStore = $this->getServiceContainer()->getSlotRoleStore();
 
 		$conds = array_merge( [
-			'slot_role_id=' . $slotRoleStore->getId( SlotRecord::MAIN ),
+			'slot_role_id' => $slotRoleStore->getId( SlotRecord::MAIN ),
 			'SUBSTRING(content_address, 1, 3)=' . $dbr->addQuotes( 'tt:' ),
 		], $conds );
 

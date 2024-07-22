@@ -605,7 +605,7 @@ class RecompressTracked {
 		$startId = 0;
 		$conds = array_merge( $conds, [
 			'bt_moved' => 0,
-			'bt_new_url IS NOT NULL'
+			$dbr->expr( 'bt_new_url', '!=', null ),
 		] );
 		while ( true ) {
 			$res = $dbr->newSelectQueryBuilder()

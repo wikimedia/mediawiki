@@ -48,7 +48,7 @@ class CheckUsernames extends Maintenance {
 			$res = $dbr->newSelectQueryBuilder()
 				->select( [ 'user_id', 'user_name' ] )
 				->from( 'user' )
-				->where( 'user_id > ' . $maxUserId )
+				->where( $dbr->expr( 'user_id', '>', $maxUserId ) )
 				->orderBy( 'user_id' )
 				->limit( $this->getBatchSize() )
 				->caller( __METHOD__ )

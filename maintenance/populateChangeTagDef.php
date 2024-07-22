@@ -194,7 +194,7 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 			$ids = $dbr->newSelectQueryBuilder()
 				->select( 'ct_id' )
 				->from( 'change_tag' )
-				->where( [ 'ct_tag' => $tagName, 'ct_tag_id' => null, 'ct_id > ' . $lastId ] )
+				->where( [ 'ct_tag' => $tagName, 'ct_tag_id' => null, $dbr->expr( 'ct_id', '>', $lastId ) ] )
 				->orderBy( 'ct_id' )
 				->limit( $this->getBatchSize() )
 				->caller( __METHOD__ )->fetchFieldValues();

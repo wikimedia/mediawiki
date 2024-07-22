@@ -67,7 +67,7 @@ class PopulateFilearchiveSha1 extends LoggedUpdateMaintenance {
 			$res = $dbw->newSelectQueryBuilder()
 				->select( [ 'fa_id', 'fa_storage_key' ] )
 				->from( $table )
-				->where( [ 'fa_sha1' => '', 'fa_storage_key IS NOT NULL' ] )
+				->where( [ 'fa_sha1' => '', $dbw->expr( 'fa_storage_key', '!=', null ) ] )
 				->limit( $batchSize )
 				->caller( __METHOD__ )->fetchResultSet();
 

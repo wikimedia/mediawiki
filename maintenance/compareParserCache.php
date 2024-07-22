@@ -64,7 +64,7 @@ class CompareParserCache extends Maintenance {
 				->where( [
 					'page_namespace' => $this->getOption( 'namespace' ),
 					'page_is_redirect' => 0,
-					'page_random >= ' . wfRandom()
+					$dbr->expr( 'page_random', '>=', wfRandom() ),
 				] )
 				->orderBy( 'page_random' )
 				->caller( __METHOD__ )->fetchRow();

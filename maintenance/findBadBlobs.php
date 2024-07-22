@@ -259,7 +259,7 @@ class FindBadBlobs extends Maintenance {
 		$db = $this->getReplicaDB();
 		$rows = $this->revisionStore->newArchiveSelectQueryBuilder( $db )
 			->joinComment()
-			->where( [ "ar_rev_id > $afterId", "ar_rev_id <= $uptoId" ] )
+			->where( [ $db->expr( 'ar_rev_id', '>', $afterId ), $db->expr( 'ar_rev_id', '<=', $uptoId ) ] )
 			->orderBy( 'ar_rev_id' )
 			->limit( $batchSize )
 			->caller( __METHOD__ )->fetchResultSet();

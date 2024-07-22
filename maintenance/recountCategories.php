@@ -150,7 +150,7 @@ TEXT
 		$idsToUpdate = $dbr->newSelectQueryBuilder()
 			->select( 'cat_id' )
 			->from( 'category' )
-			->where( [ 'cat_id > ' . (int)$this->minimumId, "cat_{$mode} != ($countingSubquery)" ] )
+			->where( [ $dbr->expr( 'cat_id', '>', (int)$this->minimumId ), "cat_{$mode} != ($countingSubquery)" ] )
 			->limit( $this->getBatchSize() )
 			->caller( __METHOD__ )->fetchFieldValues();
 		if ( !$idsToUpdate ) {

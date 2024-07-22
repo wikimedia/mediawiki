@@ -109,7 +109,8 @@ class RefreshLinks extends Maintenance {
 			} else {
 				if ( $touched ) {
 					$builder->andWhere( [
-						'page_touched > page_links_updated OR page_links_updated IS NULL',
+						$dbr->expr( 'page_touched', '>', 'page_links_updated' )
+							->or( 'page_links_updated', '=', null ),
 					] );
 				}
 				$this->output( "Refreshing $what from pages...\n" );

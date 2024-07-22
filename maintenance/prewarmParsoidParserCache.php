@@ -139,7 +139,7 @@ class PrewarmParsoidParserCache extends Maintenance {
 			if ( $namespaceIndex !== null ) {
 				$query = $query->where( [ 'page_namespace' => $namespaceIndex ] );
 			}
-			$query = $query->where( 'page_id >= ' . $startFrom )
+			$query = $query->where( $this->getReplicaDB()->expr( 'page_id', '>=', $startFrom ) )
 				->limit( $this->getBatchSize() );
 
 			$result = $query->fetchResultSet();
