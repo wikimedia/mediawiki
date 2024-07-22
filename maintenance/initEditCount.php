@@ -72,7 +72,7 @@ class InitEditCount extends Maintenance {
 					->from( 'user' )
 					->leftJoin( 'revision', 'rev', "user_id = actor_rev_user.actor_user" )
 					->join( 'actor', 'actor_rev_user', 'actor_rev_user.actor_id = rev_actor' )
-					->where( "user_id > $min AND user_id <= $max" )
+					->where( $dbr->expr( 'user_id', '>', $min )->and( 'user_id', '<=', $max ) )
 					->groupBy( 'user_id' )
 					->caller( __METHOD__ )->fetchResultSet();
 

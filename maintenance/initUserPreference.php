@@ -51,8 +51,8 @@ class InitUserPreference extends Maintenance {
 		$iterator->setFetchColumns( [ 'up_user', 'up_value' ] );
 		$iterator->addConditions( [
 			'up_property' => $source,
-			'up_value IS NOT NULL',
-			'up_value != 0',
+			$dbr->expr( 'up_value', '!=', null ),
+			$dbr->expr( 'up_value', '!=', 0 ),
 		] );
 		$iterator->setCaller( __METHOD__ );
 

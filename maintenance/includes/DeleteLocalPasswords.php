@@ -137,7 +137,7 @@ ERROR
 				->where( [
 					$dbw->expr( 'user_password', IExpression::NOT_LIKE, new LikeValue( ':null:', $dbw->anyString() ) ),
 					$dbw->expr( 'user_password', '!=', PasswordFactory::newInvalidPassword()->toString() ),
-					'user_password IS NOT NULL',
+					$dbw->expr( 'user_password', '!=', null ),
 					'user_name' => $userBatch,
 				] )
 				->caller( __METHOD__ )->execute();

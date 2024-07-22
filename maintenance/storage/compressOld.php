@@ -302,7 +302,7 @@ class CompressOld extends Maintenance {
 
 				return false;
 			}
-			$queryBuilderTemplate->andWhere( "rev_timestamp>'" . $beginDate . "'" );
+			$queryBuilderTemplate->andWhere( $dbr->expr( 'rev_timestamp', '>', $beginDate ) );
 		}
 		if ( $endDate ) {
 			if ( !preg_match( '/^\d{14}$/', $endDate ) ) {
@@ -310,7 +310,7 @@ class CompressOld extends Maintenance {
 
 				return false;
 			}
-			$queryBuilderTemplate->andWhere( "rev_timestamp<'" . $endDate . "'" );
+			$queryBuilderTemplate->andWhere( $dbr->expr( 'rev_timestamp', '<', $endDate ) );
 		}
 
 		for ( $pageId = $startId; $pageId <= $maxPageId; $pageId++ ) {
@@ -343,7 +343,7 @@ class CompressOld extends Maintenance {
 					// Don't operate on the current revision
 					// Use < instead of <> in case the current revision has changed
 					// since the page select, which wasn't locking
-					'rev_timestamp < ' . (int)$pageRow->rev_timestamp
+					$dbr->expr( 'rev_timestamp', '<', (int)$pageRow->rev_timestamp ),
 				] )
 				->caller( __METHOD__ )->fetchResultSet();
 
