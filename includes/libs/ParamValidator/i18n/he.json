@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Amire80"
+			"Amire80",
+			"ערן"
 		]
 	},
 	"paramvalidator-badbool": "ערך בלתי־תקין \"$2\" עבור פרמטר הבוליאני \"$1\". יש להעביר $3 בשביל אמת, או $5 בשביל שקר.",
@@ -33,6 +34,8 @@
 	"paramvalidator-maxchars": "הערך עבור הפרמטר \"$1\" לא יכול להיות ארוך {{PLURAL:$3|מתו אחד|מ־$3 תווים}} (היה $4).",
 	"paramvalidator-missingparam": "הפרמטר \"$1\" צריך להיות מוגדר.",
 	"paramvalidator-notmulti": "הפרמטר \"$1\" מקבל רק ערך בודד. הפרדת ערכים מרובים עם U+001F יכולה לשמש רק בפרמטרים מרובי־ערכים.",
+	"paramvalidator-multivalue-must-be-array": "פרמטר רב ערכי \"$1\" נדרש לציין בצורה של מערך.",
+	"paramvalidator-needstring": "הפרמטר \"$1\" מקבל רק ערך מחרוזת, אבל הוא קיבל $2",
 	"paramvalidator-outofrange-max": "הערך \"$2\" עבור הפרמטר \"$1\" לא יכול להיות גדול מ־$4.",
 	"paramvalidator-outofrange-minmax": "הערך \"$2\" עבור הפרמטר \"$1\" צריך להיות בין $3 לבין $4.",
 	"paramvalidator-outofrange-min": "הערך \"$2\" עבור הפרמטר \"$1\" לא יכול להיות קטן מ־$3.",

@@ -4074,7 +4074,7 @@
 	"renameuserreserve": "نام کاربری قبلی را در مقابل استفادهٔ مجدد حفظ کن",
 	"renameuserwarnings": "هشدار:",
 	"renameuserconfirm": "بله، نام کاربر را تغییر بده",
-	"renameusersubmit": "ارسال",
+	"renameusersubmit": "ثبت",
 	"renameusererrordoesnotexist": "نام کاربری «<nowiki>$1</nowiki>» وجود ندارد",
 	"renameusererrorexists": "{{GENDER:$1|نام کاربری}} «<nowiki>$1</nowiki>» استفاده شده است.",
 	"renameusererrorinvalid": "نام کاربری «<nowiki>$1</nowiki>» غیر مجاز است.",

@@ -35,6 +35,7 @@
 	"prefsnologintext2": "Будь ласка, увійдіть, щоб змінити Ваші налаштування.",
 	"searchprefs": "Пошук налаштувань",
 	"searchprefs-noresults": "Немає результатів",
+	"searchprefs-results": "$1 {{PLURAL:$1|результат|результати|результатів}}",
 	"saveprefs": "Зберегти",
 	"tooltip-preferences-save": "Зберегти налаштування",
 	"savedprefs": "Ваші налаштування збережено.",

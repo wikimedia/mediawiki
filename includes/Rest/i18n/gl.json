@@ -15,6 +15,7 @@
 	"rest-nonexistent-revision": "A revisión especificada ($1) non existe",
 	"rest-nonexistent-user": "O usuario especificado ($1) non existe",
 	"rest-invalid-user": "O nome de usuario especificado ($1) non é válido",
+	"rest-invalid-ip": "O enderezo IP especificado ($1) non é válido",
 	"rest-invalid-title": "O título especificado ($1) non fai referencia a ningunha páxina wiki.",
 	"rest-unsupported-content-type": "Content-Type non soportado: $1",
 	"rest-permission-error": "Permisos rexeitados: $1",

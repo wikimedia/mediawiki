@@ -33,6 +33,8 @@
 	"paramvalidator-maxchars": "Verdien for parameteren «$1» kan ikke være lengre enn $3 {{PLURAL:$3|tegn}} (var $4).",
 	"paramvalidator-missingparam": "Parameteren «$1» må være satt.",
 	"paramvalidator-notmulti": "Parameteren «$1» godtar bare én enkel verdi. Flere verdier atskilt med U+001F kan bare brukes for parametere som kan ta flere verdier.",
+	"paramvalidator-multivalue-must-be-array": "Flerverdiparameteren «$1» må gis som en array.",
+	"paramvalidator-needstring": "Parameteren «$1» godtar kun strengverdier, men fikk $2",
 	"paramvalidator-outofrange-max": "Verdien «$2» for parameteren «$1» kan ikke være større enn $4.",
 	"paramvalidator-outofrange-minmax": "Verdien «$2» for parameteren «$1» må være mellom $3 og $4.",
 	"paramvalidator-outofrange-min": "Verdien «$2» for parameteren «$1» kan ikke være mindre enn $3.",

@@ -17,6 +17,7 @@
 	"rest-nonexistent-revision": "הגרסה שצוינה ($1) אינה קיימת",
 	"rest-nonexistent-user": "המשתמש שצוין ($1) אינו קיים.",
 	"rest-invalid-user": "שם המשתמש שצוין ($1) אינו תקין",
+	"rest-invalid-ip": "ה־IP שניתן ($1) אינן תקין",
 	"rest-invalid-title": "הכותרת שצוינה ($1) אינה מתייחסת לדף ויקי.",
 	"rest-unsupported-content-type": "סוג תוכן (Content-Type) שלא נתמך: $1",
 	"rest-permission-error": "ההרשאה נדחתה: $1",

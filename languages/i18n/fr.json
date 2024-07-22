@@ -2978,7 +2978,7 @@
 	"import-revision-count": "$1 version{{PLURAL:$1||s}}",
 	"importnopages": "Aucune page à importer.",
 	"imported-log-entries": "$1 entrée{{PLURAL:$1||s}} du journal importée{{PLURAL:$1||s}}.",
-	"importfailed": "Échec de l’importation :\n$1",
+	"importfailed": "{{PLURAL:$2|Échec de l’importation}} :\n$1",
 	"importunknownsource": "Type inconnu de la source à importer",
 	"importnoprefix": "Aucun préfixe interwiki n’a été fourni",
 	"importcantopen": "Impossible d’ouvrir le fichier à importer",
