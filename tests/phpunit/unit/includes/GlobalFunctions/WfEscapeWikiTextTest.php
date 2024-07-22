@@ -14,16 +14,18 @@ class WfEscapeWikiTextTest extends MediaWikiUnitTestCase {
 		$old = $wgEnableMagicLinks;
 		$wgEnableMagicLinks = [];
 
-		$actual = wfEscapeWikiText( $input );
-		// Sanity check that the output can be decoded back to the input
-		// input as well.
-		$decoded = html_entity_decode( $actual, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5 );
-		$this->assertEquals( $decoded, (string)$input );
-		// And that the output was what we expected
-		$this->assertEquals( $expected, $actual );
-
-		// restore global
-		$wgEnableMagicLinks = $old;
+		try {
+			$actual = wfEscapeWikiText( $input );
+			// Sanity check that the output can be decoded back to the input
+			// input as well.
+			$decoded = html_entity_decode( $actual, ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5 );
+			$this->assertEquals( $decoded, (string)$input );
+			// And that the output was what we expected
+			$this->assertEquals( $expected, $actual );
+		} finally {
+			// restore global
+			$wgEnableMagicLinks = $old;
+		}
 	}
 
 	public function provideEscape() {

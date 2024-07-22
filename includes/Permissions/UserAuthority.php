@@ -381,7 +381,13 @@ class UserAuthority implements Authority {
 				return $status->isOK();
 			}
 
-			$status->merge( $tempStatus );
+			// Instead of `$status->merge( $tempStatus )`, process the messages like this to ensure that
+			// the resulting status contains Message objects instead of strings+arrays, and thus does not
+			// trigger wikitext escaping in a legacy code path. See T368821 for more information about
+			// that behavior, and see T306494 for the specific bug this fixes.
+			foreach ( $tempStatus->getMessages() as $msg ) {
+				$status->fatal( $msg );
+			}
 
 			foreach ( self::BLOCK_CODES as $code ) {
 				// HACK: Detect whether the permission was denied because the user is blocked.
