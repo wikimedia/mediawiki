@@ -65,7 +65,7 @@ class GaugeMetric implements MetricInterface {
 	 */
 	public function set( float $value ): void {
 		foreach ( $this->baseMetric->getStatsdNamespaces() as $namespace ) {
-			$this->baseMetric->getStatsdDataFactory()->updateCount( $namespace, $value );
+			$this->baseMetric->getStatsdDataFactory()->gauge( $namespace, $value );
 		}
 
 		try {

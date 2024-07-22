@@ -280,6 +280,24 @@ class MetricTest extends TestCase {
 		$this->assertEquals( [], $baseMetric->getStatsdNamespaces() );
 	}
 
+	public function testStatsdDataFactoryCopyToStatsdAtWithGauge() {
+		$statsFactory = StatsFactory::newNull();
+
+		$gaugeArgs = [ 'test.gauge.1', 'test.gauge.2' ];
+		$statsdMock = $this->createMock( IBufferingStatsdDataFactory::class );
+		$statsdMock->expects( $this->exactly( 2 ) )
+			->method( 'gauge' )
+			->with( $this->callback( static function ( $key ) use ( &$gaugeArgs ) {
+				$nextKey = array_shift( $gaugeArgs );
+				return $nextKey === $key;
+			} ) );
+
+		$statsFactory = $statsFactory->withStatsdDataFactory( $statsdMock );
+		$statsFactory->getGauge( 'testMetricGauge' )
+			->copyToStatsdAt( [ 'test.gauge.1', 'test.gauge.2' ] )
+			->set( 1 );
+	}
+
 	public function testHandleInvalidStatsdNamespace() {
 		$m = StatsFactory::newNull();
 		$m = $m->withStatsdDataFactory( $this->createMock( IBufferingStatsdDataFactory::class ) );

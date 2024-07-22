@@ -18,7 +18,7 @@ use Wikimedia\Stats\StatsFactory;
  */
 class StatsEmitterTest extends TestCase {
 
-	public function testSend() {
+	public function testSendMetrics() {
 		// set up a mock statsd data factory
 		$statsd = $this->createMock( IBufferingStatsdDataFactory::class );
 		$statsd->expects( $this->atLeastOnce() )->method( "updateCount" );
@@ -59,6 +59,46 @@ class StatsEmitterTest extends TestCase {
 		// name collision: gauge should not appear in output nor throw exception
 		$metric = @$m->getGauge( 'bar' );
 		$metric->set( 42 );
+
+		// send metrics
+		$m->flush();
+	}
+
+	public function testSendGaugeMetric() {
+		// set up a mock statsd data factory
+		$statsd = $this->createMock( IBufferingStatsdDataFactory::class );
+		$statsd->expects( $this->atLeastOnce() )->method( "gauge" );
+
+		// initialize cache
+		$cache = new StatsCache();
+
+		// emitter
+		$emitter = OutputFormats::getNewEmitter(
+			'mediawiki',
+			$cache,
+			OutputFormats::getNewFormatter( OutputFormats::DOGSTATSD )
+		);
+
+		// transport
+		$transport = $this->createMock( UDPTransport::class );
+		$transport->expects( $this->once() )->method( "emit" )
+			->with(
+				"mediawiki.test.bar:1|g\nmediawiki.test.bar:2|g\nmediawiki.test.stats_buffered_total:2|c\n"
+			);
+		$emitter = $emitter->withTransport( $transport );
+
+		// initialize metrics factory
+		$m = new StatsFactory( $cache, $emitter, new NullLogger, 'test' );
+
+		// inject statsd factory
+		$m->withStatsdDataFactory( $statsd );
+
+		// populate metric with statsd copy
+		$m->getGauge( 'bar' )->copyToStatsdAt( 'test.metric' )->set( 1 );
+
+		// fetch same metric from cache and use it
+		$metric = $m->getGauge( 'bar' );
+		$metric->set( 2 );
 
 		// send metrics
 		$m->flush();
