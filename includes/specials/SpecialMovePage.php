@@ -709,7 +709,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 			);
 			if ( !$permStatus->isGood() ) {
 				if ( $redir2 ) {
-					if ( $this->permManager->userCan( 'delete', $user, $nt ) ) {
+					if ( !$this->permManager->userCan( 'delete', $user, $nt ) ) {
 						// Cannot delete-redirect, or delete normally
 						$this->showForm( $permStatus );
 						return;
