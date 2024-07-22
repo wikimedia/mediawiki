@@ -541,7 +541,7 @@ trait DummyServicesTrait {
 			$titleParser,
 			$textFormatter,
 			$options['hookContainer'] ?? $this->createHookContainer(),
-			new RealTempUserConfig( [
+			$options['tempUserConfig'] ?? new RealTempUserConfig( [
 				'enabled' => true,
 				'expireAfterDays' => null,
 				'actions' => [ 'edit' ],

@@ -2,6 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\User\TempUser\RealTempUserConfig;
 use MediaWiki\User\UserRigorOptions;
 use Psr\Log\LogLevel;
 
@@ -75,6 +76,27 @@ class UserNameUtilsTest extends MediaWikiUnitTestCase {
 			'Reserved temp users' => [ '!Unregistered 1234', false ],
 			'Real temp users' => [ '*Unregistered 1234', true ],
 		];
+	}
+
+	public function testIsUsableForTemporaryAccountWhenFeatureIsKnownButDisabled() {
+		$utils = $this->getDummyUserNameUtils( [
+			'tempUserConfig' => new RealTempUserConfig( [
+				'enabled' => false,
+				'known' => true,
+				'expireAfterDays' => null,
+				'actions' => [ 'edit' ],
+				'serialProvider' => [ 'type' => 'local' ],
+				'serialMapping' => [ 'type' => 'plain-numeric' ],
+				'reservedPattern' => '!$1',
+				'matchPattern' => '*$1',
+				'genPattern' => '*Unregistered $1'
+			] ),
+		] );
+		$this->assertFalse(
+			$utils->isUsable( '*Unregistered 1234' ),
+			'::isUsable should return false for a valid temporary account ' .
+			'when TempUserConfig::isEnabled is false and TempUserConfig::isKnown is true'
+		);
 	}
 
 	/**
