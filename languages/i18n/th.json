@@ -3833,7 +3833,7 @@
 	"special-characters-title-endash": "เส้นประสั้น",
 	"special-characters-title-emdash": "เส้นประยาว",
 	"special-characters-title-minus": "เครื่องหมายลบ",
-	"mw-widgets-abandonedit": "คุณแน่ใจว่าต้องการออกจากภาวะแก้ไขโดยไม่เผยแพร่ก่อนหรือไม่",
+	"mw-widgets-abandonedit": "คุณแน่ใจหรือไม่ว่าต้องการออกจากโหมดแก้ไขโดยไม่เผยแพร่ก่อน?",
 	"mw-widgets-abandonedit-discard": "ยกเลิกการแก้ไข",
 	"mw-widgets-abandonedit-keep": "แก้ไขต่อไป",
 	"mw-widgets-abandonedit-title": "คุณแน่ใจหรือไม่?",

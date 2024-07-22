@@ -2765,7 +2765,7 @@
 	"blocklist-indefblocks": "隱藏無限期封鎖",
 	"blocklist-addressblocks": "隱藏單一 IP 封鎖",
 	"blocklist-type": "類型：",
-	"blocklist-type-opt-all": "所有",
+	"blocklist-type-opt-all": "全部",
 	"blocklist-type-opt-sitewide": "全站範圍",
 	"blocklist-type-opt-partial": "部分",
 	"blocklist-rangeblocks": "隱藏 IP 範圍封鎖",

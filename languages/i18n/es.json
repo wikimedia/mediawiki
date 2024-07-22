@@ -245,7 +245,12 @@
 			"Shyla summers",
 			"Hmonroy",
 			"Iketsi",
-			"Eulalio"
+			"Eulalio",
+			"EmicraftNoob",
+			"Jorgito",
+			"Luke Davidson",
+			"Qwrop",
+			"Rafael.minuesa"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -609,7 +614,7 @@
 	"invalidtitle": "Título inválido",
 	"invalidtitle-knownnamespace": "El título con el espacio de nombres «$2» y el texto «$3» no es válido",
 	"invalidtitle-unknownnamespace": "El título con el espacio de nombres desconocido (n.º $1) y el texto «$2» no es válido",
-	"exception-nologin": "No has accedido",
+	"exception-nologin": "No estás accedido",
 	"exception-nologin-text": "Necesitas acceder para ver esta página o llevar a cabo esta acción.",
 	"exception-nologin-text-manual": "Necesitas $1 para poder ver esta página o llevar a cabo esta acción.",
 	"virus-badscanner": "Configuración incorrecta: antivirus desconocido: <em>$1</em>",
@@ -1401,7 +1406,7 @@
 	"userrights-lookup-user": "Selecciona una cuenta de usuario",
 	"userrights-user-editname": "Escribe un nombre de usuario:",
 	"editusergroup": "Cargar grupos de usuarios",
-	"editinguser": "Cambiar los grupos de{{GENDER:$1|l usuario|&nbsp;la usuaria}} <strong>[[User:$1|$1]]</strong> $2",
+	"editinguser": "Cambiar los grupos de{{GENDER:$1|l usuario|&#32;la usuaria}} <strong>[[User:$1|$1]]</strong> $2",
 	"viewinguserrights": "Visualizar los grupos {{GENDER:$1|del usuario|de la usuaria}} <strong>[[User:$1|$1]]</strong> $2",
 	"userrights-editusergroup": "Modificar grupos {{GENDER:$1|del usuario|de la usuaria}}",
 	"userrights-viewusergroup": "Ver grupos {{GENDER:$1|del usuario|de la usuaria}}",

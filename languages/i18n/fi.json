@@ -1390,7 +1390,7 @@
 	"grant-editmycssjs": "Muokata käyttäjän omia CSS/JSON/JavaScript-sivuja",
 	"grant-editmyoptions": "Muokkaa käyttäjäasetuksiasi ja JSON-asetuksiasi",
 	"grant-editmywatchlist": "Muokata tarkkailulistaasi",
-	"grant-editsiteconfig": "muokata CSS-/JS-sivuja sivustonlaajuisesti ja käyttäjäkohtaisesti",
+	"grant-editsiteconfig": "Muokata CSS-/JS-sivuja sivustonlaajuisesti ja käyttäjäkohtaisesti",
 	"grant-editpage": "Muokata olemassa olevia sivuja",
 	"grant-editprotected": "Muokata suojattuja sivuja",
 	"grant-highvolume": "Suorittaa paljon muokkauksia",

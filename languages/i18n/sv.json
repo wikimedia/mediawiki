@@ -3208,7 +3208,7 @@
 	"months": "{{PLURAL:$1|$1 månad|$1 månader}}",
 	"years": "{{PLURAL:$1|$1 år}}",
 	"ago": "$1 sedan",
-	"just-now": "precis nu",
+	"just-now": "alldeles nyss",
 	"hours-ago": "$1 {{PLURAL:$1|timme|timmar}} sedan",
 	"minutes-ago": "$1 {{PLURAL:$1|minut|minuter}} sedan",
 	"seconds-ago": "$1 {{PLURAL:$1|sekund|sekunder}} sedan",
