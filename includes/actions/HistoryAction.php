@@ -209,6 +209,7 @@ class HistoryAction extends FormlessAction {
 			true
 		);
 
+		$dbr = $services->getConnectionProvider()->getReplicaDatabase();
 		// Fail nicely if article doesn't exist.
 		if ( !$this->getWikiPage()->exists() ) {
 			$send404Code = $config->get( MainConfigNames::Send404Code );
@@ -216,8 +217,6 @@ class HistoryAction extends FormlessAction {
 				$out->setStatusCode( 404 );
 			}
 			$out->addWikiMsg( 'nohistory' );
-
-			$dbr = $services->getConnectionProvider()->getReplicaDatabase();
 
 			# show deletion/move log if there is an entry
 			LogEventsList::showLogExtract(
@@ -242,7 +241,7 @@ class HistoryAction extends FormlessAction {
 		 * Option to show only revisions that have been (partially) hidden via RevisionDelete
 		 */
 		if ( $request->getBool( 'deleted' ) ) {
-			$conds = [ 'rev_deleted != 0' ];
+			$conds = [ $dbr->expr( 'rev_deleted', '!=', 0 ) ];
 		} else {
 			$conds = [];
 		}

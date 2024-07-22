@@ -134,7 +134,7 @@ class RevisionDeleteUser {
 		$dbw->newUpdateQueryBuilder()
 			->update( 'recentchanges' )
 			->set( self::buildSetBitDeletedField( 'rc_deleted', $op, $delAction, $dbw ) )
-			->where( [ 'rc_namespace' => NS_USER, 'rc_title' => $userDbKey, 'rc_logid > 0' ] )
+			->where( [ 'rc_namespace' => NS_USER, 'rc_title' => $userDbKey, $dbw->expr( 'rc_logid', '>', 0 ) ] )
 			->caller( __METHOD__ )->execute();
 
 		return true;

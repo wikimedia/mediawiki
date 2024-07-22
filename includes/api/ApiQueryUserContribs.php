@@ -473,17 +473,17 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			}
 
 			$this->addWhereIf( [ 'rev_minor_edit' => 0 ], isset( $show['!minor'] ) );
-			$this->addWhereIf( 'rev_minor_edit != 0', isset( $show['minor'] ) );
+			$this->addWhereIf( $db->expr( 'rev_minor_edit', '!=', 0 ), isset( $show['minor'] ) );
 			$this->addWhereIf(
 				[ 'rc_patrolled' => RecentChange::PRC_UNPATROLLED ],
 				isset( $show['!patrolled'] )
 			);
 			$this->addWhereIf(
-				'rc_patrolled != ' . RecentChange::PRC_UNPATROLLED,
+				$db->expr( 'rc_patrolled', '!=', RecentChange::PRC_UNPATROLLED ),
 				isset( $show['patrolled'] )
 			);
 			$this->addWhereIf(
-				'rc_patrolled != ' . RecentChange::PRC_AUTOPATROLLED,
+				$db->expr( 'rc_patrolled', '!=', RecentChange::PRC_AUTOPATROLLED ),
 				isset( $show['!autopatrolled'] )
 			);
 			$this->addWhereIf(
@@ -492,7 +492,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			);
 			$this->addWhereIf( $idField . ' != page_latest', isset( $show['!top'] ) );
 			$this->addWhereIf( $idField . ' = page_latest', isset( $show['top'] ) );
-			$this->addWhereIf( 'rev_parent_id != 0', isset( $show['!new'] ) );
+			$this->addWhereIf( $db->expr( 'rev_parent_id', '!=', 0 ), isset( $show['!new'] ) );
 			$this->addWhereIf( [ 'rev_parent_id' => 0 ], isset( $show['new'] ) );
 		}
 		$this->addOption( 'LIMIT', $limit + 1 );

@@ -344,7 +344,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
 							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 						) {
-							$conds[] = 'rc_minor = 0';
+							$conds[] = $dbr->expr( 'rc_minor', '=', 0 );
 						},
 						'cssClassSuffix' => 'minor',
 						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
@@ -359,7 +359,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
 							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 						) {
-							$conds[] = 'rc_minor = 1';
+							$conds[] = $dbr->expr( 'rc_minor', '=', 1 );
 						},
 						'cssClassSuffix' => 'major',
 						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
@@ -515,7 +515,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
 							IReadableDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
 						) {
-							$conds[] = 'rc_patrolled != ' . RecentChange::PRC_UNPATROLLED;
+							$conds[] = $dbr->expr( 'rc_patrolled', '!=', RecentChange::PRC_UNPATROLLED );
 						},
 						'isReplacedInStructuredUi' => true,
 					],

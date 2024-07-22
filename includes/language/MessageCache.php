@@ -620,7 +620,7 @@ class MessageCache implements LoggerAwareInterface {
 			->select( [ 'page_title', 'page_latest' ] )
 			->from( 'page' )
 			->where( $conds )
-			->andWhere( [ 'page_len > ' . intval( $this->maxEntrySize ) ] )
+			->andWhere( $dbr->expr( 'page_len', '>', intval( $this->maxEntrySize ) ) )
 			->caller( __METHOD__ . "($code)-big" )->fetchResultSet();
 		foreach ( $res as $row ) {
 			// Include entries/stubs for all keys in $mostused in adaptive mode

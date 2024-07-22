@@ -92,7 +92,7 @@ class SpecialBrokenRedirects extends QueryPage {
 			'conds' => [
 				// Exclude pages that don't exist locally as wiki pages, but aren't "broken" either: special
 				// pages and interwiki links.
-				'rd_namespace >= 0',
+				$dbr->expr( 'rd_namespace', '>=', 0 ),
 				'rd_interwiki' => '',
 				'p2.page_namespace' => null,
 			],

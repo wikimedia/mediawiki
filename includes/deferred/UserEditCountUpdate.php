@@ -86,7 +86,7 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 							'user_editcount+' . (int)$info->getIncrement()
 						)
 					] )
-					->where( [ 'user_id' => $userId, 'user_editcount IS NOT NULL' ] )
+					->where( [ 'user_id' => $userId, $dbw->expr( 'user_editcount', '!=', null ) ] )
 					->caller( $fname )->execute();
 				// Lazy initialization check...
 				if ( $dbw->affectedRows() == 0 ) {

@@ -216,7 +216,7 @@ class UsersPager extends AlphabeticPager {
 			if ( $this->creationSort ) {
 				$userIdentity = $this->userIdentityLookup->getUserIdentityByName( $this->requestedUser );
 				if ( $userIdentity && $userIdentity->isRegistered() ) {
-					$conds[] = 'user_id >= ' . $userIdentity->getId();
+					$conds[] = $dbr->expr( 'user_id', '>=', $userIdentity->getId() );
 				}
 			} else {
 				$conds[] = $dbr->expr( 'user_name', '>=', $this->requestedUser );
@@ -224,7 +224,7 @@ class UsersPager extends AlphabeticPager {
 		}
 
 		if ( $this->editsOnly ) {
-			$conds[] = 'user_editcount > 0';
+			$conds[] = $dbr->expr( 'user_editcount', '>', 0 );
 		}
 
 		$options['GROUP BY'] = $this->creationSort ? 'user_id' : 'user_name';

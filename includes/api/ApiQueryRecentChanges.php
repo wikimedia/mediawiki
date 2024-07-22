@@ -201,9 +201,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 			/* Add additional conditions to query depending upon parameters. */
 			$this->addWhereIf( [ 'rc_minor' => 0 ], isset( $show['!minor'] ) );
-			$this->addWhereIf( 'rc_minor != 0', isset( $show['minor'] ) );
+			$this->addWhereIf( $db->expr( 'rc_minor', '!=', 0 ), isset( $show['minor'] ) );
 			$this->addWhereIf( [ 'rc_bot' => 0 ], isset( $show['!bot'] ) );
-			$this->addWhereIf( 'rc_bot != 0', isset( $show['bot'] ) );
+			$this->addWhereIf( $db->expr( 'rc_bot', '!=', 0 ), isset( $show['bot'] ) );
 			if ( isset( $show['anon'] ) || isset( $show['!anon'] ) ) {
 				$this->addTables( 'actor', 'actor' );
 				$this->addJoinConds( [ 'actor' => [ 'JOIN', 'actor_id=rc_actor' ] ] );
@@ -211,11 +211,11 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					[ 'actor_user' => null ], isset( $show['anon'] )
 				);
 				$this->addWhereIf(
-					'actor_user IS NOT NULL', isset( $show['!anon'] )
+					$db->expr( 'actor_user', '!=', null ), isset( $show['!anon'] )
 				);
 			}
 			$this->addWhereIf( [ 'rc_patrolled' => 0 ], isset( $show['!patrolled'] ) );
-			$this->addWhereIf( 'rc_patrolled != 0', isset( $show['patrolled'] ) );
+			$this->addWhereIf( $db->expr( 'rc_patrolled', '!=', 0 ), isset( $show['patrolled'] ) );
 			$this->addWhereIf( [ 'page_is_redirect' => 1 ], isset( $show['redirect'] ) );
 
 			if ( isset( $show['unpatrolled'] ) ) {
@@ -229,7 +229,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 
 			$this->addWhereIf(
-				'rc_patrolled != ' . RecentChange::PRC_AUTOPATROLLED,
+				$db->expr( 'rc_patrolled', '!=', RecentChange::PRC_AUTOPATROLLED ),
 				isset( $show['!autopatrolled'] )
 			);
 			$this->addWhereIf(
@@ -400,12 +400,12 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			// 2. otherwise if the content of a slot is different to the content of its parent slot,
 			// then the content of the slot has been changed in this revision
 			// (probably by a revert)
-			$this->addWhere(
-				'slot.slot_origin = slot.slot_revision_id OR ' .
-				'slot.slot_content_id != parent_slot.slot_content_id OR ' .
-				'(slot.slot_content_id IS NULL AND parent_slot.slot_content_id IS NOT NULL) OR ' .
-				'(slot.slot_content_id IS NOT NULL AND parent_slot.slot_content_id IS NULL)'
-			);
+			$this->addWhere( $db->orExpr( [
+				new RawSQLExpression( 'slot.slot_origin = slot.slot_revision_id' ),
+				new RawSQLExpression( 'slot.slot_content_id != parent_slot.slot_content_id' ),
+				$db->expr( 'slot.slot_content_id', '=', null )->and( 'parent_slot.slot_content_id', '!=', null ),
+				$db->expr( 'slot.slot_content_id', '!=', null )->and( 'parent_slot.slot_content_id', '=', null ),
+			] ) );
 			// Only include changes that touch page content (i.e. RC_NEW, RC_EDIT)
 			$changeTypes = RecentChange::parseToRCType(
 				array_intersect( $params['type'], [ 'new', 'edit' ] )

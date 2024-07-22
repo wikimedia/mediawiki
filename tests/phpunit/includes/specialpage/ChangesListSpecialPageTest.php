@@ -475,7 +475,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcHideminorFilter() {
 		$this->assertConditions(
 			[ # expected
-				"rc_minor = 0",
+				'rc_minor = 0',
 			],
 			[
 				'hideminor' => 1,
@@ -487,7 +487,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcHidemajorFilter() {
 		$this->assertConditions(
 			[ # expected
-				"rc_minor = 1",
+				'rc_minor = 1',
 			],
 			[
 				'hidemajor' => 1,

@@ -310,10 +310,10 @@ class ProtectedPagesPager extends TablePager {
 			$conds['pr_expiry'] = [ $dbr->getInfinity(), null ];
 		}
 		if ( $this->cascadeonly ) {
-			$conds[] = 'pr_cascade = 1';
+			$conds['pr_cascade'] = 1;
 		}
 		if ( $this->noredirect ) {
-			$conds[] = 'page_is_redirect = 0';
+			$conds['page_is_redirect'] = 0;
 		}
 
 		if ( $this->level ) {

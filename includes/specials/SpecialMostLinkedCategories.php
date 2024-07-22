@@ -67,12 +67,13 @@ class SpecialMostLinkedCategories extends QueryPage {
 	}
 
 	public function getQueryInfo() {
+		$dbr = $this->getDatabaseProvider()->getReplicaDatabase();
 		return [
 			'tables' => [ 'category' ],
 			'fields' => [ 'title' => 'cat_title',
 				'namespace' => NS_CATEGORY,
 				'value' => 'cat_pages' ],
-			'conds' => [ 'cat_pages > 0' ],
+			'conds' => [ $dbr->expr( 'cat_pages', '>', 0 ) ],
 		];
 	}
 
