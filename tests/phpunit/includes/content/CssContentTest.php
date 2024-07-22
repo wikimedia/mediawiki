@@ -7,6 +7,7 @@ use MediaWiki\MainConfigNames;
  * @group ContentHandler
  * @group Database
  *        ^--- needed, because we do need the database to test link updates
+ * @covers \MediaWiki\Content\CssContent
  */
 class CssContentTest extends TextContentTest {
 
@@ -40,18 +41,12 @@ class CssContentTest extends TextContentTest {
 		];
 	}
 
-	/**
-	 * @covers \MediaWiki\Content\CssContent::getModel
-	 */
 	public function testGetModel() {
 		$content = $this->newContent( 'hello world.' );
 
 		$this->assertEquals( CONTENT_MODEL_CSS, $content->getModel() );
 	}
 
-	/**
-	 * @covers \MediaWiki\Content\CssContent::getContentHandler
-	 */
 	public function testGetContentHandler() {
 		$content = $this->newContent( 'hello world.' );
 
@@ -71,7 +66,6 @@ class CssContentTest extends TextContentTest {
 	}
 
 	/**
-	 * @covers \MediaWiki\Content\CssContent::getRedirectTarget
 	 * @dataProvider provideGetRedirectTarget
 	 */
 	public function testGetRedirectTarget( $title, $text ) {
@@ -115,7 +109,6 @@ class CssContentTest extends TextContentTest {
 
 	/**
 	 * @dataProvider dataEquals
-	 * @covers \MediaWiki\Content\CssContent::equals
 	 */
 	public function testEquals( Content $a, Content $b = null, $equal = false ) {
 		$this->assertEquals( $equal, $a->equals( $b ) );

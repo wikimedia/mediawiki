@@ -13,10 +13,12 @@ use Wikimedia\TestingAccessWrapper;
  * See also unit tests at \MediaWiki\Tests\Unit\WikitextContentHandlerTest
  *
  * @group ContentHandler
+ * @covers \WikitextContentHandler
+ * @covers \TextContentHandler
+ * @covers \ContentHandler
  */
 class WikitextContentHandlerTest extends MediaWikiLangTestCase {
-	/** @var WikitextContentHandler */
-	private $handler;
+	private WikitextContentHandler $handler;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -59,7 +61,6 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider dataMerge3
-	 * @covers \WikitextContentHandler::merge3
 	 */
 	public function testMerge3( $old, $mine, $yours, $expected ) {
 		$this->markTestSkippedIfNoDiff3();
@@ -125,7 +126,6 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider dataGetAutosummary
-	 * @covers \WikitextContentHandler::getAutosummary
 	 */
 	public function testGetAutosummary( $old, $new, $flags, $expected ) {
 		$oldContent = $old === null ? null : new WikitextContent( $old );
@@ -217,7 +217,6 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider dataGetChangeTag
-	 * @covers \WikitextContentHandler::getChangeTag
 	 */
 	public function testGetChangeTag( $old, $new, $flags, $expected ) {
 		$this->overrideConfigValue( MainConfigNames::SoftwareTags, [
@@ -237,10 +236,6 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$this->assertSame( $expected, $tag );
 	}
 
-	/**
-	 * @covers \WikitextContentHandler::getDataForSearchIndex
-	 * @covers \ContentHandler::getFieldsForSearchIndex
-	 */
 	public function testGetFieldsForSearchIndex() {
 		$searchEngine = $this->createMock( SearchEngine::class );
 
@@ -260,9 +255,6 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$this->assertArrayHasKey( 'content_model', $fields );
 	}
 
-	/**
-	 * @covers WikitextContentHandler::getDataForSearchIndex
-	 */
 	public function testDataIndexFieldsFile() {
 		$mockEngine = $this->createMock( SearchEngine::class );
 		$title = Title::makeTitle( NS_FILE, 'Somefile.jpg' );
@@ -293,9 +285,6 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$this->assertEquals( 'This is file content', $data['file_text'] );
 	}
 
-	/**
-	 * @covers \WikitextContentHandler::fillParserOutput
-	 */
 	public function testHadSignature() {
 		$services = $this->getServiceContainer();
 

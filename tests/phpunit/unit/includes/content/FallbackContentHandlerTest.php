@@ -13,20 +13,14 @@ use MediaWikiUnitTestCase;
  * Split from \FallbackContentHandlerTest integration tests
  *
  * @group ContentHandler
- * @coversDefaultClass \MediaWiki\Content\FallbackContentHandler
+ * @covers \MediaWiki\Content\FallbackContentHandler
  */
 class FallbackContentHandlerTest extends MediaWikiUnitTestCase {
-	/**
-	 * @covers ::supportsDirectEditing
-	 */
 	public function testSupportsDirectEditing() {
 		$handler = new FallbackContentHandler( 'horkyporky' );
 		$this->assertFalse( $handler->supportsDirectEditing(), 'direct editing supported' );
 	}
 
-	/**
-	 * @covers ::serializeContent
-	 */
 	public function testSerializeContent() {
 		$handler = new FallbackContentHandler( 'horkyporky' );
 		$content = new FallbackContent( 'hello world', 'horkyporky' );
@@ -38,9 +32,6 @@ class FallbackContentHandlerTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers ::unserializeContent
-	 */
 	public function testUnserializeContent() {
 		$handler = new FallbackContentHandler( 'horkyporky' );
 		$content = $handler->unserializeContent( 'hello world' );
@@ -50,9 +41,6 @@ class FallbackContentHandlerTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( 'hello world', $content->getData() );
 	}
 
-	/**
-	 * @covers ::makeEmptyContent
-	 */
 	public function testMakeEmptyContent() {
 		$handler = new FallbackContentHandler( 'horkyporky' );
 		$content = $handler->makeEmptyContent();
@@ -73,16 +61,12 @@ class FallbackContentHandlerTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider dataIsSupportedFormat
-	 * @covers ::isSupportedFormat
 	 */
 	public function testIsSupportedFormat( $format, $supported ) {
 		$handler = new FallbackContentHandler( 'horkyporky' );
 		$this->assertEquals( $supported, $handler->isSupportedFormat( $format ) );
 	}
 
-	/**
-	 * @covers ::getSecondaryDataUpdates
-	 */
 	public function testGetSecondaryDataUpdates() {
 		$title = $this->createMock( Title::class );
 		$content = new FallbackContent( '', 'horkyporky' );
@@ -93,9 +77,6 @@ class FallbackContentHandlerTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( [], $updates );
 	}
 
-	/**
-	 * @covers ::getDeletionUpdates
-	 */
 	public function testGetDeletionUpdates() {
 		$title = $this->createMock( Title::class );
 		$handler = new FallbackContentHandler( 'horkyporky' );

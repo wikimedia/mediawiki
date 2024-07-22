@@ -9,6 +9,9 @@ use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\Title;
 
+/**
+ * @covers \MediaWiki\Content\JsonContentHandler
+ */
 class JsonContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 
 	public static function provideDataAndParserText() {
@@ -62,7 +65,6 @@ class JsonContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideDataAndParserText
-	 * @covers \MediaWiki\Content\JsonContentHandler::fillParserOutput
 	 */
 	public function testFillParserOutput( $data, $expected ) {
 		if ( !is_string( $data ) ) {
@@ -86,9 +88,6 @@ class JsonContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $parserOutput->getText() );
 	}
 
-	/**
-	 * @covers \MediaWiki\Content\JsonContentHandler::validateSave
-	 */
 	public function testValidateSave() {
 		$handler = new JsonContentHandler();
 		$validationParams = new ValidationParams(

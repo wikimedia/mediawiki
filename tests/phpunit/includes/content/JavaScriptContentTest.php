@@ -6,69 +6,16 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 
 /**
- * @covers \JavaScriptContent
+ * Needs database to do link updates.
+ *
  * @group ContentHandler
  * @group Database
- *        ^--- needed, because we do need the database to test link updates
+ * @covers \JavaScriptContent
  */
 class JavaScriptContentTest extends TextContentTest {
 
 	public function newContent( $text ) {
 		return new JavaScriptContent( $text );
-	}
-
-	// XXX: Unused function
-	public static function dataGetSection() {
-		return [
-			[ WikitextContentTest::$sections,
-				'0',
-				null
-			],
-			[ WikitextContentTest::$sections,
-				'2',
-				null
-			],
-			[ WikitextContentTest::$sections,
-				'8',
-				null
-			],
-		];
-	}
-
-	// XXX: Unused function
-	public static function dataReplaceSection() {
-		return [
-			[ WikitextContentTest::$sections,
-				'0',
-				'No more',
-				null,
-				null
-			],
-			[ WikitextContentTest::$sections,
-				'',
-				'No more',
-				null,
-				null
-			],
-			[ WikitextContentTest::$sections,
-				'2',
-				"== TEST ==\nmore fun",
-				null,
-				null
-			],
-			[ WikitextContentTest::$sections,
-				'8',
-				'No more',
-				null,
-				null
-			],
-			[ WikitextContentTest::$sections,
-				'new',
-				'No more',
-				'New',
-				null
-			],
-		];
 	}
 
 	public function testAddSectionHeader() {
@@ -222,6 +169,7 @@ class JavaScriptContentTest extends TextContentTest {
 		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $content->getContentHandler()->getModelID() );
 	}
 
+	// NOTE: Overridden by subclass!
 	public static function dataEquals() {
 		return [
 			[ new JavaScriptContent( "hallo" ), null, false ],

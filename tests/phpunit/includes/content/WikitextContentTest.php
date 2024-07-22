@@ -11,6 +11,7 @@ use MediaWiki\Title\Title;
  *
  * @group Database
  *        ^--- needed, because we do need the database to test link updates
+ * @covers \WikitextContent
  */
 class WikitextContentTest extends TextContentTest {
 	public static $sections = "Intro
@@ -49,7 +50,6 @@ just a test"
 
 	/**
 	 * @dataProvider dataGetSection
-	 * @covers \WikitextContent::getSection
 	 */
 	public function testGetSection( $text, $sectionId, $expectedText ) {
 		$content = $this->newContent( $text );
@@ -104,7 +104,6 @@ just a test"
 
 	/**
 	 * @dataProvider dataReplaceSection
-	 * @covers \WikitextContent::replaceSection
 	 */
 	public function testReplaceSection( $text, $section, $with, $sectionTitle, $expected ) {
 		$content = $this->newContent( $text );
@@ -114,9 +113,6 @@ just a test"
 		$this->assertEquals( $expected, $c ? $c->getText() : null );
 	}
 
-	/**
-	 * @covers \WikitextContent::addSectionHeader
-	 */
 	public function testAddSectionHeader() {
 		$content = $this->newContent( 'hello world' );
 		$content = $content->addSectionHeader( 'test' );
@@ -218,9 +214,6 @@ just a test"
 		];
 	}
 
-	/**
-	 * @covers \WikitextContent::matchMagicWord
-	 */
 	public function testMatchMagicWord() {
 		$mw = $this->getServiceContainer()->getMagicWordFactory()->get( "staticredirect" );
 
@@ -234,9 +227,6 @@ just a test"
 		);
 	}
 
-	/**
-	 * @covers \WikitextContent::updateRedirect
-	 */
 	public function testUpdateRedirect() {
 		$target = Title::makeTitle( NS_MAIN, 'TestUpdateRedirect_target' );
 
@@ -259,18 +249,12 @@ just a test"
 		);
 	}
 
-	/**
-	 * @covers \WikitextContent::getModel
-	 */
 	public function testGetModel() {
 		$content = $this->newContent( "hello world." );
 
 		$this->assertEquals( CONTENT_MODEL_WIKITEXT, $content->getModel() );
 	}
 
-	/**
-	 * @covers \WikitextContent::getContentHandler
-	 */
 	public function testGetContentHandler() {
 		$content = $this->newContent( "hello world." );
 
@@ -278,8 +262,7 @@ just a test"
 	}
 
 	/**
-	 * @covers \ParserOptions::getRedirectTarget
-	 * @covers \ParserOptions::setRedirectTarget
+	 * @covers \ParserOptions
 	 */
 	public function testRedirectParserOption() {
 		$title = Title::makeTitle( NS_MAIN, 'TestRedirectParserOption' );

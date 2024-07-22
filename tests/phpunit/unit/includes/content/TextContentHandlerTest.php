@@ -4,19 +4,18 @@ use MediaWiki\Content\TextContentHandler;
 
 /**
  * @group ContentHandler
+ * @covers \MediaWiki\Content\TextContentHandler
+ * @covers \ContentHandler
  */
 class TextContentHandlerTest extends MediaWikiUnitTestCase {
-	/**
-	 * @covers \MediaWiki\Content\TextContentHandler::supportsDirectEditing
-	 */
+
 	public function testSupportsDirectEditing() {
 		$handler = new TextContentHandler();
 		$this->assertTrue( $handler->supportsDirectEditing(), 'direct editing is supported' );
 	}
 
 	/**
-	 * @covers \SearchEngine::makeSearchFieldMapping
-	 * @covers \ContentHandler::getFieldsForSearchIndex
+	 * @covers \SearchEngine
 	 */
 	public function testFieldsForIndex() {
 		$handler = new TextContentHandler();
@@ -38,16 +37,12 @@ class TextContentHandlerTest extends MediaWikiUnitTestCase {
 				return $mockField;
 			} );
 
-		/**
-		 * @var SearchEngine $mockEngine
-		 */
+		/** @var SearchEngine $mockEngine */
 		$fields = $handler->getFieldsForSearchIndex( $mockEngine );
 		$mappedFields = [];
 		foreach ( $fields as $name => $field ) {
 			$this->assertInstanceOf( SearchIndexField::class, $field );
-			/**
-			 * @var SearchIndexField $field
-			 */
+			/** @var SearchIndexField $field */
 			$mappedFields[$name] = $field->getMapping( $mockEngine );
 		}
 		$this->assertArrayHasKey( 'language', $mappedFields );

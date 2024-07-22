@@ -7,11 +7,11 @@ use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * @group ContentHandlerFactory
+ * @covers \MediaWiki\Content\ContentHandlerFactory
  */
 class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 
-	/** @var TestLogger */
-	private $logger;
+	private TestLogger $logger;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -36,12 +36,6 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::getContentHandler
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::createForModelID
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::createContentHandlerFromHandlerSpec
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::validateContentHandler
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::__construct
-	 *
 	 * @dataProvider provideHandlerSpecs $handlerSpecs
 	 */
 	public function testGetContentHandler_callWithProvider_same(
@@ -81,11 +75,6 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::getContentHandler
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::createForModelID
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::createContentHandlerFromHook
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::validateContentHandler
-	 *
 	 * @dataProvider provideHandlerSpecs $handlerSpecs
 	 */
 	public function testGetContentHandler_hookWithProvider_same(
@@ -187,11 +176,6 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::getContentHandler
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::createForModelID
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::createContentHandlerFromHandlerSpec
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::validateContentHandler
-	 *
 	 * @dataProvider provideHandlerSpecsWithException
 	 */
 	public function testCreateContentHandlerForModelID_callWithProvider_throwsException(
@@ -214,11 +198,6 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		$factory->getContentHandler( $modelID );
 	}
 
-	/**
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::createForModelID
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::createContentHandlerFromHandlerSpec
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::validateContentHandler
-	 */
 	public function testCreateContentHandlerForModelID_callNotExist_throwMWUCMException() {
 		$this->expectException( MWUnknownContentModelException::class );
 		$factory = new ContentHandlerFactory(
@@ -230,14 +209,6 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		$factory->getContentHandler( 'ModelNameNotExist' );
 	}
 
-	/**
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::defineContentHandler
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::getContentHandler
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::createForModelID
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::createContentHandlerFromHandlerSpec
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::validateContentHandler
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::isDefinedModel
-	 */
 	public function testDefineContentHandler_flow_throwsException() {
 		$objectFactory = $this->createMock( ObjectFactory::class );
 		$objectFactory
@@ -260,8 +231,6 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::getContentModels
-	 *
 	 * @dataProvider provideValidDummySpecList
 	 */
 	public function testGetContentModels_flow_same(
@@ -303,8 +272,6 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::isDefinedModel
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::createContentHandlerFromHook
 	 * @dataProvider provideValidDummySpecList
 	 */
 	public function testIsDefinedModel_flow_same(
@@ -363,9 +330,6 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	/**
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::getContentModels
-	 */
 	public function testGetContentModels_empty_empty() {
 		$factory = new ContentHandlerFactory(
 			[],
@@ -377,10 +341,6 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		$this->assertArrayEquals( [], $factory->getContentModels() );
 	}
 
-	/**
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::getAllContentFormats
-	 * @covers \MediaWiki\Content\ContentHandlerFactory::defineContentHandler
-	 */
 	public function testGetAllContentFormats_flow_same() {
 		$contentHandler1 = $this->createMock( DummyContentHandlerForTesting::class );
 		$contentHandler1->method( 'getSupportedFormats' )->willReturn( [ 'format 1' ] );

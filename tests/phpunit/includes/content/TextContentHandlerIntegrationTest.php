@@ -7,6 +7,7 @@ use Wikimedia\Parsoid\ParserTests\TestUtils;
  * @group ContentHandler
  * @group Database
  *        ^--- needed, because we do need the database to test link updates
+ * @covers \MediaWiki\Content\TextContentHandler
  */
 class TextContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 
@@ -29,7 +30,6 @@ class TextContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideGetParserOutput
-	 * @covers \MediaWiki\Content\TextContentHandler::fillParserOutput
 	 */
 	public function testGetParserOutput( $title, $model, $text, $expectedHtml,
 		$expectedFields = null, $parserOptions = null
