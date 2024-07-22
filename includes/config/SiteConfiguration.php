@@ -364,54 +364,6 @@ class SiteConfiguration {
 	}
 
 	/**
-	 * Retrieves the value of a given setting, and places it in a variable passed by reference.
-	 *
-	 * @deprecated since 1.41 Use SiteConfiguration::get() instead.
-	 * @param string $setting ID of the setting name to retrieve
-	 * @param string $wiki Wiki ID of the wiki in question.
-	 * @param string|null $site The site from ::siteFromDB(), or db suffix.
-	 * @param array &$var Reference The variable to insert the value into.
-	 * @param array $params List of parameters. $.'key' is replaced by $value in all returned data.
-	 * @param array $wikiTags The tags assigned to the wiki.
-	 */
-	public function extractVar(
-		$setting,
-		$wiki,
-		$site,
-		&$var,
-		$params = [],
-		$wikiTags = []
-	) {
-		wfDeprecated( __METHOD__, '1.41' );
-		$value = $this->get( $setting, $wiki, $site, $params, $wikiTags );
-		if ( $value !== null ) {
-			$var = $value;
-		}
-	}
-
-	/**
-	 * Retrieves the value of a given setting, and places it in its corresponding global variable.
-	 *
-	 * @deprecated since 1.41 Use SiteConfiguration::get() instead.
-	 * @param string $setting ID of the setting name to retrieve
-	 * @param string $wiki Wiki ID of the wiki in question.
-	 * @param string|null $site The site from ::siteFromDB(), or db suffix.
-	 * @param array $params List of parameters. $.'key' is replaced by $value in all returned data.
-	 * @param array $wikiTags The tags assigned to the wiki.
-	 */
-	public function extractGlobal(
-		$setting,
-		$wiki,
-		$site = null,
-		$params = [],
-		$wikiTags = []
-	) {
-		wfDeprecated( __METHOD__, '1.41' );
-		$params = $this->mergeParams( $wiki, $site, $params, $wikiTags );
-		$this->extractGlobalSetting( $setting, $wiki, $params );
-	}
-
-	/**
 	 * @param string $setting
 	 * @param string $wiki
 	 * @param array $params
