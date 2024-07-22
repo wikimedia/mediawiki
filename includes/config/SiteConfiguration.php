@@ -169,12 +169,6 @@ class SiteConfiguration {
 	public $siteParamsCallback = null;
 
 	/**
-	 * Configuration cache for getConfig()
-	 * @var array
-	 */
-	protected $cfgCache = [];
-
-	/**
 	 * Retrieves a configuration setting for a given wiki.
 	 * @param string $settingName ID of the setting name to retrieve
 	 * @param string $wiki Wiki ID of the wiki in question.
