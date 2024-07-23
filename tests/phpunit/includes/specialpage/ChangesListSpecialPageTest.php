@@ -521,6 +521,38 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		$this->changesListSpecialPage->setTempUserConfig( $this->getServiceContainer()->getTempUserConfig() );
 	}
 
+	public function testRegistrationHideliu() {
+		$this->enableAutoCreateTempUser();
+		$tempUserMatchPattern = $this->getServiceContainer()->getTempUserConfig()
+			->getMatchCondition( $this->getDb(), 'actor_name', IExpression::LIKE )
+			->toSql( $this->getDb() );
+		$this->assertConditions(
+			[
+				"((actor_user IS NULL OR $tempUserMatchPattern))",
+			],
+			[
+				'hideliu' => 1,
+			],
+			"rc conditions: hideliu=1"
+		);
+	}
+
+	public function testRegistrationHideanons() {
+		$this->enableAutoCreateTempUser();
+		$tempUserMatchPattern = $this->getServiceContainer()->getTempUserConfig()
+			->getMatchCondition( $this->getDb(), 'actor_name', IExpression::NOT_LIKE )
+			->toSql( $this->getDb() );
+		$this->assertConditions(
+			[
+				"((actor_user IS NOT NULL AND $tempUserMatchPattern))",
+			],
+			[
+				'hideanons' => 1,
+			],
+			"rc conditions: hideanons=1"
+		);
+	}
+
 	public function testFilterUserExpLevelAll() {
 		$this->assertConditions(
 			[
