@@ -512,6 +512,10 @@ because of Phabricator reports.
   Maintenance::rollbackTransaction(), and Maintenance::waitForReplication()
   are now deprecated. Use Maintenance::*TransactionRound() instead.
 * The ReverseArrayIterator class, unused since 1.32, has been deprecated.
+* OutputPage::parserOptions() has been deprecated; use
+  ParserOptions::newFromContext( $outputPage->getContext() ) instead.
+* OutputPage::wrapWikiTextAsInterface() with an empty string as $wrapperClass
+  has been deprecated; this didn't work correctly in the first place.
 * LinksUpdate::getImages() has been deprecated, like ParserOutput::getImages().
   Instead, use ParserOutput::getLinkList( ParserOutputLinkTypes::MEDIA ).
 * ResourceLoader::makeConfigSetScript() is now deprecated. Consider using

@@ -31,6 +31,7 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\UploadStashPager;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Utils\UrlUtils;
@@ -433,7 +434,10 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		);
 		if ( $pager->getNumRows() ) {
 			$pager->getForm();
-			$this->getOutput()->addParserOutputContent( $pager->getFullOutput() );
+			$this->getOutput()->addParserOutputContent(
+				$pager->getFullOutput(),
+				ParserOptions::newFromContext( $this->getContext() )
+			);
 			$form->displayForm( $formResult );
 			$this->getOutput()->addHTML( Html::rawElement( 'p', [], $refreshHtml ) );
 		} else {

@@ -32,10 +32,7 @@ use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
-use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserFactory;
-use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -233,11 +230,7 @@ class SpecialVersion extends SpecialPage {
 				];
 
 				// Insert TOC first
-				$pout = new ParserOutput;
-				$pout->setTOCData( $this->tocData );
-				$pout->setOutputFlag( ParserOutputFlags::SHOW_TOC );
-				$pout->setRawText( Parser::TOC_PLACEHOLDER );
-				$out->addParserOutput( $pout );
+				$out->addTOCPlaceholder( $this->tocData );
 
 				// Insert contents
 				foreach ( $sections as $content ) {

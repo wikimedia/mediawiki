@@ -34,9 +34,6 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\WikiPageFactory;
-use MediaWiki\Parser\Parser;
-use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
@@ -235,11 +232,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			return;
 		}
 
-		$pout = new ParserOutput;
-		$pout->setTOCData( $this->tocData );
-		$pout->setOutputFlag( ParserOutputFlags::SHOW_TOC );
-		$pout->setRawText( Parser::TOC_PLACEHOLDER );
-		$out->addParserOutput( $pout );
+		$out->addTOCPlaceholder( $this->tocData );
 
 		$form->displayForm( $result );
 	}

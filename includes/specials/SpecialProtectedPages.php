@@ -29,6 +29,7 @@ use MediaWiki\HTMLForm\Field\HTMLSizeFilterField;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\ProtectedPagesPager;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\SpecialPage\SpecialPage;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -103,7 +104,10 @@ class SpecialProtectedPages extends SpecialPage {
 
 		if ( $pager->getNumRows() ) {
 			$this->getOutput()->addModuleStyles( 'mediawiki.interface.helpers.styles' );
-			$this->getOutput()->addParserOutputContent( $pager->getFullOutput() );
+			$this->getOutput()->addParserOutputContent(
+				$pager->getFullOutput(),
+				ParserOptions::newFromContext( $this->getContext() )
+			);
 		} else {
 			$this->getOutput()->addWikiMsg( 'protectedpagesempty' );
 		}

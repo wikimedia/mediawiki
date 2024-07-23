@@ -15,6 +15,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Page\PageStoreRecord;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\ParserOutputLinkTypes;
@@ -533,7 +534,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			[ 'c' => '<d>&amp;', 'e' => 'f', 'a' => 'q' ] );
 		$op->addParserOutputMetadata( $stubPO2 );
 		$stubPO3 = $this->createParserOutputStub( 'getHeadItems', [ 'e' => 'g' ] );
-		$op->addParserOutput( $stubPO3 );
+		$op->addParserOutput( $stubPO3, ParserOptions::newFromAnon() );
 		$stubPO4 = $this->createParserOutputStub( 'getHeadItems', [ 'x' ] );
 		$op->addParserOutputMetadata( $stubPO4 );
 
@@ -1067,7 +1068,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NEW_SECTION ) );
 
 		$pOut2 = $this->createParserOutputStub( 'getNewSection', false );
-		$op->addParserOutput( $pOut2 );
+		$op->addParserOutput( $pOut2, ParserOptions::newFromAnon() );
 		$this->assertFalse( $op->showNewSectionLink() );
 		// Note that flags are OR'ed together, and not reset.
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NEW_SECTION ) );
@@ -1087,7 +1088,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::HIDE_NEW_SECTION ) );
 
 		$pOut2 = $this->createParserOutputStub( 'getHideNewSection', false );
-		$op->addParserOutput( $pOut2 );
+		$op->addParserOutput( $pOut2, ParserOptions::newFromAnon() );
 		$this->assertFalse( $op->forceHideNewSectionLink() );
 		// Note that flags are OR'ed together, and not reset.
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::HIDE_NEW_SECTION ) );
@@ -1211,7 +1212,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 				];
 			},
 		] );
-		$op->addParserOutput( $pOut2 );
+		$op->addParserOutput( $pOut2, ParserOptions::newFromAnon() );
 		$this->assertSame( [ 'pt:E', 'he:F', 'ar:G#y' ], $op->getLanguageLinks() );
 	}
 
@@ -1325,9 +1326,11 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		// addParserOutput and addParserOutputMetadata should behave identically for us, so
 		// alternate to get coverage for both without adding extra tests
 		static $idx = 0;
-		$idx++;
-		$method = [ 'addParserOutputMetadata', 'addParserOutput' ][$idx % 2];
-		$op->$method( $stubPO );
+		if ( ( ( ++$idx ) % 2 ) === 0 ) {
+			$op->addParserOutputMetadata( $stubPO );
+		} else {
+			$op->addParserOutput( $stubPO, ParserOptions::newFromAnon() );
+		}
 
 		$this->doCategoryAsserts( $op, $expectedNormal, $expectedHidden );
 		$this->doCategoryLinkAsserts( $op, $expectedNormal, $expectedHidden );
@@ -1539,7 +1542,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'getIndicators' => [ 'a' => '!!!' ],
 			'getWrapperDivClass' => 'wrapper2',
 		] );
-		$op->addParserOutput( $pOut2 );
+		$op->addParserOutput( $pOut2, ParserOptions::newFromAnon() );
 		$this->assertSame( [
 			'a' => '<div class="wrapper2">!!!</div>',
 			'b' => 'x',
@@ -1754,7 +1757,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			NS_PROJECT => [ 'F' => 5678 ],
 		];
 
-		$op->addParserOutput( $stubPO2 );
+		$op->addParserOutput( $stubPO2, ParserOptions::newFromAnon() );
 		$this->assertSame( $finalIds, $op->getTemplateIds() );
 
 		// Test merging with an empty set of id's
@@ -1783,7 +1786,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		$stubPO1 = $this->createParserOutputStub( 'getFileSearchOptions', $files1 );
 
-		$op->addParserOutput( $stubPO1 );
+		$op->addParserOutput( $stubPO1, ParserOptions::newFromAnon() );
 		$this->assertSame( $files1, $op->getFileSearchOptions() );
 
 		// Test merging with a second set of files
@@ -1798,7 +1801,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( array_merge( $files1, $files2 ), $op->getFileSearchOptions() );
 
 		// Test merging with an empty set of files
-		$op->addParserOutput( $stubPOEmpty );
+		$op->addParserOutput( $stubPOEmpty, ParserOptions::newFromAnon() );
 		$this->assertSame( array_merge( $files1, $files2 ), $op->getFileSearchOptions() );
 	}
 
@@ -1953,7 +1956,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NO_GALLERY ) );
 
 		$stubPO2 = $this->createParserOutputStub( 'getNoGallery', false );
-		$op->addParserOutput( $stubPO2 );
+		$op->addParserOutput( $stubPO2, ParserOptions::newFromAnon() );
 		$this->assertFalse( $op->getNoGallery() );
 		// Note that flags are OR'ed together, and not reset.
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NO_GALLERY ) );
@@ -1995,7 +1998,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			ParserOutputFlags::NEW_SECTION,
 		] );
 
-		$op->addParserOutput( $pOut );
+		$op->addParserOutput( $pOut, ParserOptions::newFromAnon() );
 		$this->assertSame( '<some text>', $op->getHTML() );
 		$this->assertTrue( $op->showNewSectionLink() );
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NEW_SECTION ) );
@@ -2230,7 +2233,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		// Test that an uncacheable ParserOutput does set to false
 		$pOutUncacheable = $this->createParserOutputStub( 'isCacheable', false );
-		$op->addParserOutput( $pOutUncacheable );
+		$op->addParserOutput( $pOutUncacheable, ParserOptions::newFromAnon() );
 		$this->assertSame( false, $op->couldBePublicCached() );
 	}
 
@@ -2537,10 +2540,10 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op->setPreventClickjacking( false );
 		$this->assertFalse( $op->getPreventClickjacking() );
 
-		$op->addParserOutput( $pOut1 );
+		$op->addParserOutput( $pOut1, ParserOptions::newFromAnon() );
 		$this->assertTrue( $op->getPreventClickjacking() );
 
-		$op->addParserOutput( $pOut2 );
+		$op->addParserOutput( $pOut2, ParserOptions::newFromAnon() );
 		$this->assertTrue( $op->getPreventClickjacking() );
 	}
 
@@ -2960,7 +2963,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$pOut2 = $this->createParserOutputStubWithFlags(
 			[], [ ParserOutputFlags::SHOW_TOC ]
 		);
-		$op->addParserOutput( $pOut2 );
+		$op->addParserOutput( $pOut2, ParserOptions::newFromAnon() );
 		$this->assertTrue( $op->isTOCEnabled() );
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::SHOW_TOC ) );
 
@@ -2982,7 +2985,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		$stubPO2 = $this->createParserOutputStub();
 		$this->assertFalse( $stubPO2->getOutputFlag( ParserOutputFlags::NO_TOC ) );
-		$op->addParserOutput( $stubPO2 );
+		$op->addParserOutput( $stubPO2, ParserOptions::newFromAnon() );
 		// Note that flags are OR'ed together, and not reset.
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NO_TOC ) );
 	}

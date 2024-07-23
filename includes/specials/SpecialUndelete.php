@@ -711,7 +711,7 @@ class SpecialUndelete extends SpecialPage {
 				// at the beginning of this method.
 				$pout = $rendered->getRevisionParserOutput();
 
-				$out->addParserOutput( $pout, [
+				$out->addParserOutput( $pout, $popts, [
 					'enableSectionEditLinks' => false,
 				] );
 			} catch ( RevisionAccessException $e ) {

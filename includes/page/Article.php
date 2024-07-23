@@ -737,7 +737,7 @@ class Article implements Page {
 			);
 
 			if ( $pOutput ) {
-				$this->doOutputFromParserCache( $pOutput, $outputPage, $textOptions );
+				$this->doOutputFromParserCache( $pOutput, $parserOptions, $outputPage, $textOptions );
 				$this->doOutputMetaData( $pOutput, $outputPage );
 				return true;
 			}
@@ -772,7 +772,7 @@ class Article implements Page {
 				);
 
 				if ( $pOutput ) {
-					$this->doOutputFromParserCache( $pOutput, $outputPage, $textOptions );
+					$this->doOutputFromParserCache( $pOutput, $parserOptions, $outputPage, $textOptions );
 					$this->doOutputMetaData( $pOutput, $outputPage );
 					return true;
 				}
@@ -872,6 +872,7 @@ class Article implements Page {
 			$rev,
 			$renderStatus,
 			$outputPage,
+			$parserOptions,
 			$textOptions
 		);
 
@@ -909,11 +910,13 @@ class Article implements Page {
 
 	/**
 	 * @param ParserOutput $pOutput
+	 * @param ParserOptions $pOptions
 	 * @param OutputPage $outputPage
 	 * @param array $textOptions
 	 */
 	private function doOutputFromParserCache(
 		ParserOutput $pOutput,
+		ParserOptions $pOptions,
 		OutputPage $outputPage,
 		array $textOptions
 	) {
@@ -922,7 +925,7 @@ class Article implements Page {
 		$oldid = $pOutput->getCacheRevisionId() ?? $this->getRevIdFetched();
 		$outputPage->setRevisionId( $oldid );
 		$outputPage->setRevisionIsCurrent( $oldid === $this->mPage->getLatest() );
-		$outputPage->addParserOutput( $pOutput, $textOptions );
+		$outputPage->addParserOutput( $pOutput, $pOptions, $textOptions );
 		# Preload timestamp to avoid a DB hit
 		$cachedTimestamp = $pOutput->getRevisionTimestamp();
 		if ( $cachedTimestamp !== null ) {
@@ -935,12 +938,14 @@ class Article implements Page {
 	 * @param RevisionRecord $rev
 	 * @param Status $renderStatus
 	 * @param OutputPage $outputPage
+	 * @param ParserOptions $parserOptions
 	 * @param array $textOptions
 	 */
 	private function doOutputFromRenderStatus(
 		RevisionRecord $rev,
 		Status $renderStatus,
 		OutputPage $outputPage,
+		ParserOptions $parserOptions,
 		array $textOptions
 	) {
 		$context = $this->getContext();
@@ -971,7 +976,7 @@ class Article implements Page {
 			}
 		}
 
-		$outputPage->addParserOutput( $pOutput, $textOptions );
+		$outputPage->addParserOutput( $pOutput, $parserOptions, $textOptions );
 
 		if ( $this->getRevisionRedirectTarget( $rev ) ) {
 			$outputPage->addSubtitle( "<span id=\"redirectsub\">" .
