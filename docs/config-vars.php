@@ -4452,3 +4452,9 @@ $wgShowLogoutConfirmation = null;
  * @see MediaWiki\MainConfigSchema::EnableProtectionIndicators
  */
 $wgEnableProtectionIndicators = null;
+
+/**
+ * Config variable stub for the OutputPipelineStages setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::OutputPipelineStages
+ */
+$wgOutputPipelineStages = null;

@@ -8068,3 +8068,10 @@ config-schema:
         description: |-
             Whether to show indicators on a page when it is protected.
             @since 1.43
+    OutputPipelineStages:
+        default: {  }
+        type: object
+        description: |-
+            OutputPipelineStages to add to the DefaultOutputPipeline.
+            @unstable EXPERIMENTAL
+            @since 1.43

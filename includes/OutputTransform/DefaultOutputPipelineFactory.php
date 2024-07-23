@@ -4,6 +4,7 @@ namespace MediaWiki\OutputTransform;
 
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\OutputTransform\Stages\AddRedirectHeader;
 use MediaWiki\OutputTransform\Stages\AddWrapperDivClass;
 use MediaWiki\OutputTransform\Stages\DeduplicateStyles;
@@ -26,9 +27,14 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  */
 class DefaultOutputPipelineFactory {
 
+	private ServiceOptions $options;
 	private Config $config;
 	private LoggerInterface $logger;
 	private ObjectFactory $objectFactory;
+
+	public const CONSTRUCTOR_OPTIONS = [
+		MainConfigNames::OutputPipelineStages,
+	];
 
 	private const CORE_LIST = [
 		'ExtractBody' => [
@@ -92,10 +98,13 @@ class DefaultOutputPipelineFactory {
 	];
 
 	public function __construct(
+		ServiceOptions $options,
 		Config $config,
 		LoggerInterface $logger,
 		ObjectFactory $objectFactory
 	) {
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		$this->options = $options;
 		$this->config = $config;
 		$this->logger = $logger;
 		$this->objectFactory = $objectFactory;
@@ -108,13 +117,18 @@ class DefaultOutputPipelineFactory {
 	 * @return OutputTransformPipeline
 	 */
 	public function buildPipeline(): OutputTransformPipeline {
+		// Add extension stages
+		$list = array_merge(
+			self::CORE_LIST,
+			$this->options->get( MainConfigNames::OutputPipelineStages )
+		);
+
 		$otp = new OutputTransformPipeline();
-		foreach ( self::CORE_LIST as $spec ) {
+		foreach ( $list as $spec ) {
 			$class = $spec['class'];
 			$svcOptions = new ServiceOptions(
 				$class::CONSTRUCTOR_OPTIONS, $this->config
 			);
-			// @phan-suppress-next-line PhanTypeInvalidCallableArraySize
 			$transform = $this->objectFactory->createObject(
 				$spec,
 				[
