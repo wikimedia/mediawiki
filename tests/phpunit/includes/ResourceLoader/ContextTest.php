@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\ResourceLoader;
 
+use Generator;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
@@ -35,7 +36,7 @@ class ContextTest extends TestCase {
 	}
 
 	public function testEmpty() {
-		$ctx = new Context( $this->getResourceLoader(), new FauxRequest( [] ) );
+		$ctx = new Context( self::getResourceLoader(), new FauxRequest( [] ) );
 
 		// Request parameters
 		$this->assertEquals( [], $ctx->getModules() );
@@ -62,14 +63,14 @@ class ContextTest extends TestCase {
 	}
 
 	public function testAccessors() {
-		$ctx = new Context( $this->getResourceLoader(), new FauxRequest( [] ) );
+		$ctx = new Context( self::getResourceLoader(), new FauxRequest( [] ) );
 		$this->assertInstanceOf( ResourceLoader::class, $ctx->getResourceLoader() );
 		$this->assertInstanceOf( WebRequest::class, $ctx->getRequest() );
 		$this->assertInstanceOf( LoggerInterface::class, $ctx->getLogger() );
 	}
 
 	public function testTypicalRequest() {
-		$ctx = new Context( $this->getResourceLoader(), new FauxRequest( [
+		$ctx = new Context( self::getResourceLoader(), new FauxRequest( [
 			'debug' => 'false',
 			'lang' => 'zh',
 			'modules' => 'foo|foo.quux,baz,bar|baz.quux',
@@ -122,24 +123,24 @@ class ContextTest extends TestCase {
 	 * @dataProvider provideDirection
 	 */
 	public function testDirection( array $params, $expected ) {
-		$ctx = new Context( $this->getResourceLoader(), new FauxRequest( $params ) );
+		$ctx = new Context( self::getResourceLoader(), new FauxRequest( $params ) );
 		$this->assertEquals( $expected, $ctx->getDirection() );
 	}
 
 	public function testShouldInclude() {
-		$ctx = new Context( $this->getResourceLoader(), new FauxRequest( [] ) );
+		$ctx = new Context( self::getResourceLoader(), new FauxRequest( [] ) );
 		$this->assertTrue( $ctx->shouldIncludeScripts(), 'Scripts in combined' );
 		$this->assertTrue( $ctx->shouldIncludeStyles(), 'Styles in combined' );
 		$this->assertTrue( $ctx->shouldIncludeMessages(), 'Messages in combined' );
 
-		$ctx = new Context( $this->getResourceLoader(), new FauxRequest( [
+		$ctx = new Context( self::getResourceLoader(), new FauxRequest( [
 			'only' => 'styles'
 		] ) );
 		$this->assertFalse( $ctx->shouldIncludeScripts(), 'Scripts not in styles-only' );
 		$this->assertTrue( $ctx->shouldIncludeStyles(), 'Styles in styles-only' );
 		$this->assertFalse( $ctx->shouldIncludeMessages(), 'Messages not in styles-only' );
 
-		$ctx = new Context( $this->getResourceLoader(), new FauxRequest( [
+		$ctx = new Context( self::getResourceLoader(), new FauxRequest( [
 			'only' => 'scripts'
 		] ) );
 		$this->assertTrue( $ctx->shouldIncludeScripts(), 'Scripts in scripts-only' );
@@ -148,12 +149,12 @@ class ContextTest extends TestCase {
 	}
 
 	public function testGetUser() {
-		$ctx = new Context( $this->getResourceLoader(), new FauxRequest( [] ) );
+		$ctx = new Context( self::getResourceLoader(), new FauxRequest( [] ) );
 		$this->assertSame( null, $ctx->getUser() );
 		$this->assertFalse( $ctx->getUserObj()->isRegistered() );
 		$this->assertNull( $ctx->getUserIdentity() );
 
-		$ctx = new Context( $this->getResourceLoader(), new FauxRequest( [
+		$ctx = new Context( self::getResourceLoader(), new FauxRequest( [
 			'user' => 'Example'
 		] ) );
 		$this->assertSame( 'Example', $ctx->getUser() );
@@ -162,7 +163,7 @@ class ContextTest extends TestCase {
 	}
 
 	public function testMsg() {
-		$ctx = new Context( $this->getResourceLoader(), new FauxRequest( [
+		$ctx = new Context( self::getResourceLoader(), new FauxRequest( [
 			'lang' => 'en'
 		] ) );
 		$msg = $ctx->msg( 'mainpage' );
@@ -171,7 +172,7 @@ class ContextTest extends TestCase {
 	}
 
 	public function testEncodeJson() {
-		$ctx = new Context( $this->getResourceLoader(), new FauxRequest( [] ) );
+		$ctx = new Context( self::getResourceLoader(), new FauxRequest( [] ) );
 
 		$json = $ctx->encodeJson( [ 'x' => 'A' ] );
 		$this->assertSame( '{"x":"A"}', $json );
@@ -186,7 +187,7 @@ class ContextTest extends TestCase {
 	}
 
 	public function testEncodeJsonWarning() {
-		$ctx = new Context( $this->getResourceLoader(), new FauxRequest( [] ) );
+		$ctx = new Context( self::getResourceLoader(), new FauxRequest( [] ) );
 
 		$this->expectPHPError(
 			E_USER_WARNING,
@@ -199,5 +200,36 @@ class ContextTest extends TestCase {
 			},
 			'encodeJson partially failed: Malformed UTF-8'
 		);
+	}
+
+	public static function skinsProvider(): Generator {
+		// expected skin, supplied skin, installed skins
+		yield 'keep validated' => [
+			'example', [ 'skin' => 'example' ],
+			[ 'example' => 'ExampleSkin', 'foo' => 'FooSkin', 'bar' => 'BarSkin' ]
+		];
+
+		yield 'fallback invalid' => [
+			'fallback', [ 'skin' => 'not-example' ],
+			[ 'example' => 'ExampleSkin', 'foo' => 'FooSkin', 'bar' => 'BarSkin' ]
+		];
+
+		yield 'keep anything without validation' => [
+			'not-example', [ 'skin' => 'not-example' ],
+			null
+		];
+	}
+
+	/**
+	 * @dataProvider skinsProvider
+	 */
+	public function testContextWithSkinsValidation(
+		string $expectedSkin, array $suppliedSkin, ?array $installedSkins
+	) {
+		$context = new Context(
+			self::getResourceLoader(), new FauxRequest( $suppliedSkin ), $installedSkins
+		);
+
+		$this->assertSame( $expectedSkin, $context->getSkin() );
 	}
 }
