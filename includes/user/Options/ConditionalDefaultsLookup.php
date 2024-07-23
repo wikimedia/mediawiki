@@ -6,6 +6,7 @@ use InvalidArgumentException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\Registration\UserRegistrationLookup;
+use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityUtils;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
@@ -22,17 +23,24 @@ class ConditionalDefaultsLookup {
 	private ServiceOptions $options;
 	private UserRegistrationLookup $userRegistrationLookup;
 	private UserIdentityUtils $userIdentityUtils;
+	/**
+	 * UserGroupManager must be provided as a callback function to avoid circular dependency
+	 * @var callable
+	 */
+	private $userGroupManagerCallback;
 
 	public function __construct(
 		ServiceOptions $options,
 		UserRegistrationLookup $userRegistrationLookup,
-		UserIdentityUtils $userIdentityUtils
+		UserIdentityUtils $userIdentityUtils,
+		callable $userGroupManagerCallback
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
 		$this->options = $options;
 		$this->userRegistrationLookup = $userRegistrationLookup;
 		$this->userIdentityUtils = $userIdentityUtils;
+		$this->userGroupManagerCallback = $userGroupManagerCallback;
 	}
 
 	/**
@@ -135,6 +143,11 @@ class ConditionalDefaultsLookup {
 				return !$userIdentity->isRegistered();
 			case CUDCOND_NAMED:
 				return $this->userIdentityUtils->isNamed( $userIdentity );
+			case CUDCOND_USERGROUP:
+				$userGroupManagerCallback = $this->userGroupManagerCallback;
+				/** @var UserGroupManager */
+				$userGroupManager = $userGroupManagerCallback();
+				return in_array( $cond[0], $userGroupManager->getUserEffectiveGroups( $userIdentity ) );
 			default:
 				throw new InvalidArgumentException( 'Unsupported condition ' . $condName );
 		}

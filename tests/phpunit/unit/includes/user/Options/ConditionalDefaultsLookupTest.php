@@ -7,6 +7,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\Options\ConditionalDefaultsLookup;
 use MediaWiki\User\Registration\UserRegistrationLookup;
+use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
@@ -29,6 +30,10 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 			'named users',
 			[ CUDCOND_NAMED ],
 		],
+		[
+			'sysop users',
+			[ CUDCOND_USERGROUP, 'sysop' ],
+		],
 	];
 	private const CONDITIONAL_USER_DEFAULTS_AFTER = [
 		[
@@ -46,6 +51,12 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 		[
 			'named users',
 			[ CUDCOND_NAMED ],
+		]
+	];
+	private const CONDITIONAL_USER_DEFAULTS_USERGROUP = [
+		[
+			'sysop users',
+			[ CUDCOND_USERGROUP, 'sysop' ],
 		]
 	];
 
@@ -82,7 +93,9 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 				]
 			] ),
 			$this->createNoOpMock( UserRegistrationLookup::class ),
-			$this->createNoOpMock( UserIdentityUtils::class )
+			$this->createNoOpMock( UserIdentityUtils::class ),
+			static function () {
+			}
 		);
 
 		$this->assertSame(
@@ -106,7 +119,9 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 		$lookup = new ConditionalDefaultsLookup(
 			$this->getServiceOptions(),
 			$this->createNoOpMock( UserRegistrationLookup::class ),
-			$this->createNoOpMock( UserIdentityUtils::class )
+			$this->createNoOpMock( UserIdentityUtils::class ),
+			static function () {
+			}
 		);
 
 		$this->assertNull( $lookup->getOptionDefaultForUser(
@@ -144,7 +159,9 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 				]
 			] ),
 			$registrationLookup,
-			$this->createNoOpMock( UserIdentityUtils::class )
+			$this->createNoOpMock( UserIdentityUtils::class ),
+			static function () {
+			}
 		);
 
 		$this->assertSame(
@@ -180,7 +197,9 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 		$registrationLookup = $this->createNoOpMock( UserRegistrationLookup::class );
 		$userIdentityUtils = $this->createNoOpMock( UserIdentityUtils::class );
 
-		$lookup = new ConditionalDefaultsLookup( $options, $registrationLookup, $userIdentityUtils );
+		$lookup = new ConditionalDefaultsLookup( $options, $registrationLookup, $userIdentityUtils,
+			static function () {
+			} );
 
 		$this->assertSame( $expected, $lookup->getOptionDefaultForUser( 'test-option', $userIdentity ) );
 	}
@@ -215,7 +234,9 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 			->with( $userIdentity )
 			->willReturn( $isNamed );
 
-		$lookup = new ConditionalDefaultsLookup( $options, $registrationLookup, $userIdentityUtils );
+		$lookup = new ConditionalDefaultsLookup( $options, $registrationLookup, $userIdentityUtils,
+			static function () {
+			} );
 
 		$this->assertSame( $expected, $lookup->getOptionDefaultForUser( 'test-option', $userIdentity ) );
 	}
@@ -224,6 +245,45 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 		return [
 			[ true, 'named users' ],
 			[ false, null ],
+		];
+	}
+
+	/**
+	 * @covers ::getOptionDefaultForUser
+	 * @covers ::checkConditionsForUser
+	 * @covers ::checkConditionForUser
+	 * @dataProvider provideGetOptionDefaultForUser__usergroup
+	 * @param array[string] $usergroups the user groups the user has
+	 * @param string|null $expected the default option or null if none apply
+	 */
+	public function testGetOptionDefaultForUser__usergroup( array $usergroups, ?string $expected ) {
+		$userIdentity = new UserIdentityValue( 1, 'test user' );
+
+		$options = $this->getServiceOptions( [
+			MainConfigNames::ConditionalUserOptions => [
+				'test-option' => self::CONDITIONAL_USER_DEFAULTS_USERGROUP,
+			]
+		] );
+		$registrationLookup = $this->createNoOpMock( UserRegistrationLookup::class );
+		$userIdentityUtils = $this->createMock( UserIdentityUtils::class );
+		$userGroupManager = $this->createMock( UserGroupManager::class );
+		$userGroupManager->expects( $this->once() )
+			->method( 'getUserEffectiveGroups' )
+			->with( $userIdentity )
+			->willReturn( $usergroups );
+
+		$lookup = new ConditionalDefaultsLookup( $options, $registrationLookup, $userIdentityUtils,
+			static function () use ( $userGroupManager ) {
+				return $userGroupManager;
+			} );
+
+		$this->assertSame( $expected, $lookup->getOptionDefaultForUser( 'test-option', $userIdentity ) );
+	}
+
+	public static function provideGetOptionDefaultForUser__usergroup(): array {
+		return [
+			[ [ '*', 'user', 'sysop' ], 'sysop users' ],
+			[ [ 'user' ], null ],
 		];
 	}
 }
