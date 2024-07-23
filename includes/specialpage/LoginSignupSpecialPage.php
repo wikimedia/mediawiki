@@ -182,9 +182,10 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 		$this->mToken = $request->getVal( $this->getTokenName() );
 
-		// Show an error or warning passed on from a previous page
+		// Show an error or warning or a notice passed on from a previous page
 		$entryError = $this->msg( $request->getVal( 'error', '' ) );
 		$entryWarning = $this->msg( $request->getVal( 'warning', '' ) );
+		$entryNotice = $this->msg( $request->getVal( 'notice', '' ) );
 		// bc: provide login link as a parameter for messages where the translation
 		// was not updated
 		$loginreqlink = $this->getLinkRenderer()->makeKnownLink(
@@ -195,17 +196,23 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		);
 
 		// Only show valid error or warning messages.
+		$validErrorMessages = LoginHelper::getValidErrorMessages();
 		if ( $entryError->exists()
-			&& in_array( $entryError->getKey(), LoginHelper::getValidErrorMessages(), true )
+			&& in_array( $entryError->getKey(), $validErrorMessages, true )
 		) {
 			$this->mEntryErrorType = 'error';
 			$this->mEntryError = $entryError->rawParams( $loginreqlink )->parse();
 
 		} elseif ( $entryWarning->exists()
-			&& in_array( $entryWarning->getKey(), LoginHelper::getValidErrorMessages(), true )
+			&& in_array( $entryWarning->getKey(), $validErrorMessages, true )
 		) {
 			$this->mEntryErrorType = 'warning';
 			$this->mEntryError = $entryWarning->rawParams( $loginreqlink )->parse();
+		} elseif ( $entryNotice->exists()
+			&& in_array( $entryNotice->getKey(), $validErrorMessages, true )
+		) {
+			$this->mEntryErrorType = 'notice';
+			$this->mEntryError = $entryNotice->parse();
 		}
 
 		# 1. When switching accounts, it sucks to get automatically logged out
@@ -1083,6 +1090,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				$defaultHtml = Html::errorBox( $this->mEntryError );
 			} elseif ( $this->mEntryErrorType === 'warning' ) {
 				$defaultHtml = Html::warningBox( $this->mEntryError );
+			} elseif ( $this->mEntryErrorType === 'notice' ) {
+				$defaultHtml = Html::noticeBox( $this->mEntryError, '' );
 			}
 			$fieldDefinitions['entryError'] = [
 				'type' => 'info',
