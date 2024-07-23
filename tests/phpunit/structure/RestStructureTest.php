@@ -1,5 +1,7 @@
 <?php
 
+use JsonSchema\Constraints\Constraint;
+use JsonSchema\Validator as JsonValidator;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
@@ -8,6 +10,7 @@ use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
+use MediaWiki\ParamValidator\TypeDef\ArrayDef;
 use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Rest\CorsUtils;
@@ -201,6 +204,15 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 		foreach ( $bodySettings as $settings ) {
 			$this->assertArrayHasKey( Handler::PARAM_SOURCE, $settings );
 			$this->assertSame( 'body', $settings[Handler::PARAM_SOURCE] );
+
+			if ( isset( $settings[ ArrayDef::PARAM_SCHEMA ] ) ) {
+				try {
+					self::validateSchema( $settings[ ArrayDef::PARAM_SCHEMA ] );
+					$this->addToAssertionCount( 1 );
+				} catch ( LogicException $e ) {
+					$this->fail( "Invalid JSON schema for parameter {$settings['name']}: " . $e->getMessage() );
+				}
+			}
 		}
 	}
 
@@ -338,6 +350,30 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 					$routes[$key] = true;
 				}
 			}
+		}
+	}
+
+	/**
+	 * Validate a JSON schema.
+	 *
+	 * @param array $schema The schema to validate.
+	 * @throws LogicException if the schema is invalid
+	 */
+	public static function validateSchema( array $schema ): void {
+		$validator = new JsonValidator();
+		// Load the draft-04 schema from the local file
+		$draft04Schema = json_decode( file_get_contents( __DIR__ . '/../../../vendor/justinrainbow/json-schema/dist/schema/json-schema-draft-04.json' ) );
+
+		// Validate the schema itself against the meta-schema
+		$validator->validate( $schema, $draft04Schema, Constraint::CHECK_MODE_TYPE_CAST );
+
+		if ( !$validator->isValid() ) {
+			$errors = $validator->getErrors();
+			$messages = array_map( static function ( $error ) {
+				return sprintf( "[%s] %s", $error['property'], $error['message'] );
+			}, $errors );
+
+			throw new LogicException( "Invalid JSON schema: " . implode( "; ", $messages ) );
 		}
 	}
 
