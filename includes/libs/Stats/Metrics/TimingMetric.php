@@ -80,30 +80,62 @@ class TimingMetric implements MetricInterface {
 			trigger_error( "Stats: stop() called before start() for metric '{$this->getName()}'", E_USER_WARNING );
 			return;
 		}
-		$value = ( hrtime( true ) - $this->startTime ) * 1e-6; // convert nanoseconds to milliseconds
-		$this->observe( $value );
+		$this->observeNanoseconds( hrtime( true ) - $this->startTime );
 		$this->startTime = null;
 	}
 
 	/**
-	 * Records a previously calculated observation.
+	 * Records a previously calculated observation in milliseconds.
 	 *
-	 * Expects values in milliseconds.
-	 *
-	 * @param float $value milliseconds
+	 * @param float $milliseconds
 	 * @return void
 	 */
-	public function observe( float $value ): void {
+	public function observe( float $milliseconds ): void {
 		foreach ( $this->baseMetric->getStatsdNamespaces() as $namespace ) {
-			$this->baseMetric->getStatsdDataFactory()->timing( $namespace, $value );
+			$this->baseMetric->getStatsdDataFactory()->timing( $namespace, $milliseconds );
 		}
 
 		try {
-			$this->baseMetric->addSample( new Sample( $this->baseMetric->getLabelValues(), $value ) );
+			$this->baseMetric->addSample( new Sample( $this->baseMetric->getLabelValues(), $milliseconds ) );
 		} catch ( IllegalOperationException $ex ) {
 			// Log the condition and give the caller something that will absorb calls.
 			trigger_error( $ex->getMessage(), E_USER_WARNING );
 		}
+	}
+
+	/**
+	 * Record a previously calculated observation in seconds.
+	 *
+	 * Common usage:
+	 *  ```php
+	 *  $startTime = microtime( true )
+	 *  # work to be measured...
+	 *  $metric->observeSeconds( microtime( true ) - $startTime )
+	 *  ```
+	 *
+	 * @param float $seconds
+	 * @return void
+	 * @since 1.43
+	 */
+	public function observeSeconds( float $seconds ): void {
+		$this->observe( $seconds * 1000 );
+	}
+
+	/**
+	 * Record a previously calculated observation in nanoseconds.
+	 *
+	 *  Common usage:
+	 *  ```php
+	 *  $startTime = hrtime( true )
+	 *  # work to be measured...
+	 *  $metric->observeNanoseconds( hrtime( true ) - $startTime )
+	 *  ```
+	 * @param float $nanoseconds
+	 * @return void
+	 * @since 1.43
+	 */
+	public function observeNanoseconds( float $nanoseconds ): void {
+		$this->observe( $nanoseconds * 1e-6 );
 	}
 
 	/** @inheritDoc */
