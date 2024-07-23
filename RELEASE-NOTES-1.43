@@ -450,6 +450,10 @@ because of Phabricator reports.
   have no usage as well.
 * ApiTestCase::setExpectedApiException() has been deprecated; instead, use
   ::expectApiErrorCode() to test error codes instead of messages.
+* ApiPageSet::getTitles(), ApiPageSet::getGoodTitles(),
+  ApiPageSet::getMissingTitles(), ApiPageSet::getGoodAndMissingTitles(),
+  ApiPageSet::getRedirectTitles() and ApiPageSet::getSpecialTitles, deprecated
+  since 1.37, now emit deprecation warnings.
 * User::isBlockedGlobally(), deprecated since 1.40, now emits deprecation
   warnings.
 * User::isBlockedFromEmailuser() and User::canSendEmail(), deprecated since
