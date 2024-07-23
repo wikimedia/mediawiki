@@ -40,6 +40,9 @@ class HtmlMessageOutputHelper implements HtmlOutputHelper {
 	 * @note Since 1.43 setting $page to null has been deprecated.
 	 */
 	public function __construct( ?PageIdentity $page = null ) {
+		if ( $page === null ) {
+			wfDeprecated( __METHOD__ . ' without $page', '1.43' );
+		}
 		$this->page = $page;
 	}
 
@@ -51,6 +54,7 @@ class HtmlMessageOutputHelper implements HtmlOutputHelper {
 	 * @deprecated since 1.43, use constructor argument instead
 	 */
 	public function init( PageIdentity $page ): void {
+		wfDeprecated( __METHOD__, '1.43' );
 		$this->page = $page;
 	}
 

@@ -127,8 +127,10 @@ class HtmlInputTransformHelper {
 		$this->parserOutputAccess = $parserOutputAccess;
 		$this->pageLookup = $pageLookup;
 		$this->revisionLookup = $revisionLookup;
-		if ( $page !== null ) {
-			$this->init( $page, $body, $parameters, $originalRevision, $pageLanguage );
+		if ( $page === null ) {
+			wfDeprecated( __METHOD__ . ' without $page', '1.43' );
+		} else {
+			$this->initInternal( $page, $body, $parameters, $originalRevision, $pageLanguage );
 		}
 	}
 
@@ -296,8 +298,29 @@ class HtmlInputTransformHelper {
 	 * @param Bcp47Code|null $pageLanguage
 	 *
 	 * @throws HttpException
+	 * @deprecated since 1.43; pass arguments to constructor instead
 	 */
 	public function init(
+		PageIdentity $page,
+		$body,
+		array $parameters,
+		?RevisionRecord $originalRevision = null,
+		?Bcp47Code $pageLanguage = null
+	) {
+		wfDeprecated( __METHOD__, '1.43' );
+		$this->initInternal( $page, $body, $parameters, $originalRevision, $pageLanguage );
+	}
+
+	/**
+	 * @param PageIdentity $page
+	 * @param array|string $body Body structure, or an HTML string
+	 * @param array $parameters
+	 * @param RevisionRecord|null $originalRevision
+	 * @param Bcp47Code|null $pageLanguage
+	 *
+	 * @throws HttpException
+	 */
+	private function initInternal(
 		PageIdentity $page,
 		$body,
 		array $parameters,

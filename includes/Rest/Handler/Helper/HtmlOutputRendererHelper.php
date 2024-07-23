@@ -211,11 +211,12 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->languageFactory = $languageFactory;
 		$this->lenientRevHandling = $lenientRevHandling;
-		if ( $page !== null && $authority !== null ) {
-			$this->init( $page, $parameters, $authority, $revision );
-		} else {
+		if ( $page === null || $authority === null ) {
 			// Constructing without $page and $authority parameters
 			// is deprecated since 1.43.
+			wfDeprecated( __METHOD__ . ' without $page or $authority', '1.43' );
+		} else {
+			$this->initInternal( $page, $parameters, $authority, $revision );
 		}
 	}
 
@@ -417,6 +418,16 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 * @deprecated since 1.43, use parameters in constructor instead
 	 */
 	public function init(
+		PageIdentity $page,
+		array $parameters,
+		Authority $authority,
+		$revision = null
+	) {
+		wfDeprecated( __METHOD__, '1.43' );
+		$this->initInternal( $page, $parameters, $authority, $revision );
+	}
+
+	private function initInternal(
 		PageIdentity $page,
 		array $parameters,
 		Authority $authority,
