@@ -46,6 +46,7 @@ version=2
 #               test using a BCP-47 code (eg zh-Hant-TW)
 # htmlVariantLanguage=XXX   set the html (output) variant of language for this
 #               test using a BCP-47 code (eg zh-Hant-TW)
+# userLangage=XXX  set user language to XXX for this test
 # notoc         disable table of contents
 # thumbsize=NNN set the default thumb size to NNNpx for this test
 # wrap          include the normal wrapper <div class="mw-parser-output"> (since 1.30)
@@ -55,7 +56,7 @@ version=2
 #
 #  wgEnableUploads, wgAllowExternalImages, wgMaxTocLevel,
 #  wgLinkHolderBatchSize, wgRawHtml, wgInterwikiMagic,
-#  wgEnableMagicLinks
+#  wgEnableMagicLinks, wgLocaltimezone
 #
 # Test execution options:
 #
