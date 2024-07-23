@@ -21,7 +21,7 @@
 /**
  * An interwiki record value object.
  *
- * By default these represent a row in the `interwiki` database table.
+ * By default, these represent a row in the `interwiki` database table.
  * See @ref \MediaWiki\Interwiki\ClassicInterwikiLookup for where this is used.
  */
 class Interwiki {
@@ -63,7 +63,7 @@ class Interwiki {
 	 * @param string|null $title What text to put for the article name
 	 * @return string The URL
 	 * @note Prior to 1.19 The getURL with an argument was broken.
-	 *       If you if you use this arg in an extension that supports MW earlier
+	 *       If you use this arg in an extension that supports MW earlier
 	 *       than 1.19 please wfUrlencode and substitute $1 on your own.
 	 */
 	public function getURL( $title = null ) {
