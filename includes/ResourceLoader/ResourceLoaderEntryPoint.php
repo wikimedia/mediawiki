@@ -47,7 +47,7 @@ class ResourceLoaderEntryPoint extends MediaWikiEntryPoint {
 		$context = new Context(
 			$resourceLoader,
 			$this->getRequest(),
-			$services->getSkinFactory()->getInstalledSkins()
+			array_keys( $services->getSkinFactory()->getInstalledSkins() )
 		);
 
 		// Respond to ResourceLoader request
