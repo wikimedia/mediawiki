@@ -2718,7 +2718,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|вэрсія імпартаваная|вэрсіі імпартаваныя|вэрсіяў імпартаваныя}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|вэрсія імпартаваная|вэрсіі імпартаваныя|вэрсіяў імпартаваныя}} з $2",
 	"javascripttest": "Тэставаньне JavaScript",
-	"javascripttest-qunit-intro": "Глядзіце [$1 дакумэнтацыю па тэставаньні] на mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Вашая ўласная}} старонка",
 	"tooltip-pt-anonuserpage": "Старонка ўдзельніка для IP-адрасу, зь якога Вы рэдагуеце",
 	"tooltip-pt-tmpuserpage": "Вашае аўтаматам створанае часовае ймя карыстача(-кі)",

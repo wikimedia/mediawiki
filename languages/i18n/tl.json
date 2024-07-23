@@ -2022,7 +2022,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|pagbabago|mga pagbabago}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|pagbabago|mga pagbabago}} mula sa $2",
 	"javascripttest": "Pagsubok sa JavaScript",
-	"javascripttest-qunit-intro": "Tingnan ang [$1 dokumentasyon ng pagsubok] sa mediawiki.org.",
 	"tooltip-pt-userpage": "Pahina mo",
 	"tooltip-pt-anonuserpage": "Ang pahina ng tagagamit para sa IP na iyong binabago bilang",
 	"tooltip-pt-mytalk": "Pahina ng usapan mo",

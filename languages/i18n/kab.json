@@ -2086,7 +2086,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|n uceggir yettwakter|n iceggiren ttwaketren}} imported",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|n uceggir yettwakter|n iceggiren ttwaketren}} si $2",
 	"javascripttest": "Tarmit n JavaScript",
-	"javascripttest-qunit-intro": "Zeṛ [$1 tumlin n tarmit] ɣef mediawiki.org.",
 	"tooltip-pt-userpage": "Asebter n {{GENDER:|useqdac-ik|tseqdact-im}}",
 	"tooltip-pt-anonuserpage": "Asebter n wemseqdac n IP wukud tekkiḍ",
 	"tooltip-pt-mytalk": "Asebter-{{GENDER:|ik|im}} n usqerdec",

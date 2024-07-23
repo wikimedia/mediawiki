@@ -1879,7 +1879,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|hukchasqa|hukchasqakuna}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|hukchasqa|hukchasqakuna}} $2-manta",
 	"javascripttest": "JavaScript llanchiy",
-	"javascripttest-qunit-intro": "Qhaway [$1 llanchina yachachinapi], mediawiki.org nisqapi kaq.",
 	"tooltip-pt-userpage": "Qampa ruraqpa p'anqayki",
 	"tooltip-pt-anonuserpage": "IP huchhaykipaq ruraqpa p'anqan",
 	"tooltip-pt-mytalk": "Rimanakuy p'anqayki",

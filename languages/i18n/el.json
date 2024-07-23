@@ -2841,7 +2841,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|Εισήχθη $1 αναθεώρηση|Εισήχθησαν $1 αναθεωρήσεις}}",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|Εισήχθη $1 αναθεώρηση|Εισήχθησαν $1 αναθεωρήσεις}} από $2",
 	"javascripttest": "Δοκιμή JavaScript",
-	"javascripttest-qunit-intro": "Ανατρέξτε στην ενότητα [ $1 τεκμηρίωση δοκιμών] στο mediawiki.org.",
 	"tooltip-pt-userpage": "Η σελίδα {{GENDER:|χρήστη σας|χρήστριας σας}}",
 	"tooltip-pt-anonuserpage": "Η σελίδα χρήστη στον οποίο αντιστοιχεί η διεύθυνση IP που έχετε",
 	"tooltip-pt-tmpuserpage": "Το αυτόματα δημιουργημένο προσωρινό όνομα χρήστη σας",

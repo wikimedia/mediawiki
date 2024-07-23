@@ -2807,7 +2807,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|version|versiones}} importate",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|version|versiones}} importate desde $2",
 	"javascripttest": "Test de JavaScript",
-	"javascripttest-qunit-intro": "Vide [$1 documentation de tests] sur mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Tu}} pagina de usator",
 	"tooltip-pt-anonuserpage": "Le pagina de usator pro le adresse IP desde le qual tu face modificationes",
 	"tooltip-pt-tmpuserpage": "Tu nomine de usator temporari generate automaticamente",

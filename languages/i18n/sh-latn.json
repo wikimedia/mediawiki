@@ -2711,7 +2711,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|Uvezena je jedna revizija|Uvezene su $1 revizije|Uvezeno su $1 revizija}}",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|Uvezena je jedna revizija|Uvezene su $1 revizije|Uvezeno su $1 revizija}} sa $2",
 	"javascripttest": "Javaskript test",
-	"javascripttest-qunit-intro": "Pogledajte [$1 dokumentaciju za testiranje] na mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Vaša korisnička}} stranica",
 	"tooltip-pt-anonuserpage": "Korisnička stranica za ip koju Vi uređujete kao",
 	"tooltip-pt-tmpuserpage": "Automatski generisano privremeno korisničko ime",

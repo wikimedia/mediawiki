@@ -1734,7 +1734,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|Ina versiun|$1 versiuns}}",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|Ina versiun|$1 versiuns}} da $2",
 	"javascripttest": "Test da JavaScript",
-	"javascripttest-qunit-intro": "Legia la [$1 documentaziun da tests] sin mediawiki.org.",
 	"tooltip-pt-userpage": "Mussar {{GENDER:|tia pagina d'utilisader}}",
 	"tooltip-pt-anonuserpage": "La pagina d'utilisader per l'adressa IP cun la quala che ti fas modificaziuns",
 	"tooltip-pt-mytalk": "Mussar {{GENDER:|tia}} pagina da discussiun",

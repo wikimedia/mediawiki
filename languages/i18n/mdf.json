@@ -2758,7 +2758,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|версиясь сявф|версиятне сявфт| dthcbzn czdan}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|версиясь cявф|версиятне сявфт|версият сявфт}} $2-ста",
 	"javascripttest": "JavaScript-нь ванома",
-	"javascripttest-qunit-intro": "Ванк [$1 тестириованиять коряс документациять] mediawiki.org сайтса.",
 	"tooltip-pt-userpage": "{{GENDER:|Участниконь лопаце}}",
 	"tooltip-pt-anonuserpage": "Монь IP-нди сувайть лопац",
 	"tooltip-pt-tmpuserpage": "Тонь автоматикать вельде нюрьхкяня пингс ладяф участниконь лемце",

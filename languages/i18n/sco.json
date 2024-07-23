@@ -2287,7 +2287,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|reveesion|reveesions}} importit",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|reveesion|reveesions}} importit fae $2",
 	"javascripttest": "JavaScript testin",
-	"javascripttest-qunit-intro": "See [$1 testin documentation] oan mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Yer uiser}} page",
 	"tooltip-pt-anonuserpage": "The uiser page fer the IP address that ye'r eeditin aes",
 	"tooltip-pt-mytalk": "{{GENDER:|Yer}} tauk page",

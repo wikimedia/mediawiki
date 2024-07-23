@@ -2250,7 +2250,6 @@
 	"import-logentry-upload-detail": "pacumud tuway $1 {{PLURAL:$1|masumad nu ayaway}}",
 	"import-logentry-interwiki-detail": "nay $2 pacumud tu $1 {{PLURAL:$1|masumad nu ayaway}}",
 	"javascripttest": "JavaScript mitanam",
-	"javascripttest-qunit-intro": "piazih tu tatenga’ay mediawiki.org a [$1 mitanam buhci tu kamu cudad].",
 	"tooltip-pt-userpage": "{{GENDER:|misaungayay nu misu}} kasabelih",
 	"tooltip-pt-anonuserpage": "imahini kisu ku isasa’ay a kika mikawaway-kalumyiti tina IP puenengan a misaungayay kasabelih.",
 	"tooltip-pt-mytalk": "{{GENDER:|misuay }}sasukamu a kasabelih",

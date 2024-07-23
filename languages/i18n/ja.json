@@ -2949,7 +2949,6 @@
 	"import-logentry-upload-detail": "$1{{PLURAL:$1|版}} をインポートしました",
 	"import-logentry-interwiki-detail": "$2からインポート済みの$1{{PLURAL:$1|版}}",
 	"javascripttest": "JavaScript をテスト中",
-	"javascripttest-qunit-intro": "mediawiki.org上の[$1 テストのドキュメント]を参照してください。",
 	"tooltip-pt-userpage": "{{GENDER:|自分の利用者}}ページ",
 	"tooltip-pt-anonuserpage": "自分が編集しているIPアドレスの利用者ページ",
 	"tooltip-pt-tmpuserpage": "あなたの自動生成した利用者名",

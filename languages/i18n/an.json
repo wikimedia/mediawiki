@@ -1675,7 +1675,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|versión|versions}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|versión|versions}} dende $2",
 	"javascripttest": "Prebatinas de JavaScript",
-	"javascripttest-qunit-intro": "Mire-se [$1 a documentación de prebatinas] en mediawiki.org",
 	"tooltip-pt-userpage": "A suya pachina d'usuario",
 	"tooltip-pt-anonuserpage": "A pachina d'usuario de l'adreza IP dende a que ye editando",
 	"tooltip-pt-mytalk": "A suya pachina de descusión",

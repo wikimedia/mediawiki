@@ -1882,7 +1882,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|Version|Versione}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|Version|Versione}} von $2",
 	"javascripttest": "JavaScript-Test",
-	"javascripttest-qunit-intro": "Sieh die [$1 Dokumentation zu Tests] uff mediawiki.org",
 	"tooltip-pt-userpage": "{{GENDER:|Dein}} Benutzerseit",
 	"tooltip-pt-anonuserpage": "Benutzerseit von der IP-Adress von der aus du Ännrunge doorrichführst",
 	"tooltip-pt-mytalk": "{{GENDER:|Dein}} Diskussionsseit",

@@ -2013,7 +2013,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|ଗୋଟି ସଂସ୍କରଣ|ଗୋଟି ସଂସ୍କରଣ}} ଅଣାଗଲା",
 	"import-logentry-interwiki-detail": "$2ରୁ $1 {{PLURAL:$1|ଗୋଟି ସଂସ୍କରଣ|ଗୋଟି ସଂସ୍କରଣ}} ଅଣାଗଲା",
 	"javascripttest": "ଜାଭାସ୍କ୍ରିପ୍ଟ ପରଖ",
-	"javascripttest-qunit-intro": "mediawiki.orgରେ [$1 testing documentation]କୁ ଦେଖନ୍ତୁ ।",
 	"tooltip-pt-userpage": "{{GENDER:|ଆପଣଙ୍କ}} ବ୍ୟବହାରକାରୀ ପୃଷ୍ଠା",
 	"tooltip-pt-anonuserpage": "ଆପଣ ଯେଉଁ IP ଠିକଣାର ବ୍ୟବହାରକାରୀ ପୃଷ୍ଠାଟି ବଦଳାଇବା ପାଇଁ ଚେଷ୍ଟା କରୁଛନ୍ତି",
 	"tooltip-pt-mytalk": "{{GENDER:|ଆପଣଙ୍କ}} ଆଲୋଚନା ପୃଷ୍ଠା",

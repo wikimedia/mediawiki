@@ -2860,7 +2860,6 @@
 	"import-logentry-upload-detail": "$1টি {{PLURAL:$1|সংস্করণ}} আমদানি করা হয়েছে",
 	"import-logentry-interwiki-detail": "$2 থেকে $1টি {{PLURAL:$1|সংস্করণ}} আমদানি করা হয়েছে",
 	"javascripttest": "জাভাস্ক্রিপ্ট পরীক্ষা",
-	"javascripttest-qunit-intro": "mediawiki.org থেকে [$1 পরীক্ষার ডলুমেন্টেশন] দেখুন।",
 	"tooltip-pt-userpage": "{{GENDER:|আপনার ব্যবহারকারী}} পাতা",
 	"tooltip-pt-anonuserpage": "যে আইপি ঠিকানা থেকে আপনি সম্পাদনা করছেন, তার ব্যবহারকারী পাতা",
 	"tooltip-pt-tmpuserpage": "স্বয়ংক্রিয়ভাবে উৎপন্ন আপনার অস্থায়ী ব্যবহারকারী নাম",

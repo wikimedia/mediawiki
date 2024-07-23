@@ -2243,7 +2243,6 @@
 	"import-logentry-upload-detail": "$1 अवतरण आयात {{PLURAL:$1|केलक|कएल गेल}}",
 	"import-logentry-interwiki-detail": "$2 सँ $1 अवतरण आयात {{PLURAL:$1|कएल गेल|केल गेल}}",
 	"javascripttest": "जावास्क्रिप्ट परिक्षण",
-	"javascripttest-qunit-intro": "mediawiki.org पर [$1 परीक्षण के प्रलेखन] देखु।",
 	"tooltip-pt-userpage": "{{GENDER:|अहाँक प्रयोगकर्ता}} पृष्ठ",
 	"tooltip-pt-anonuserpage": "सम्पाद्न कएल जा रहल स्थानक  अनिकेतक प्रयोक्ता पन्ना",
 	"tooltip-pt-mytalk": "{{GENDER:|अहाँक}} वार्ता पृष्ठ",

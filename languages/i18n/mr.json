@@ -2347,7 +2347,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|आवर्तन|आवर्तने}}आयात केलीत",
 	"import-logentry-interwiki-detail": "$2 पासून $1 {{PLURAL:$1|आवर्तन|आवर्तने}} आयात केलीत",
 	"javascripttest": "जावा स्क्रिप्ट तपासणी",
-	"javascripttest-qunit-intro": "mediawiki.org वर [$1 testing documentation] पहा",
 	"tooltip-pt-userpage": "{{GENDER:|आपले सदस्य}} पान",
 	"tooltip-pt-anonuserpage": "तुम्ही ज्या अंकपत्त्यान्वये संपादित करत आहात त्याकरिता हे सदस्य पान",
 	"tooltip-pt-mytalk": "{{GENDER:|आपले}} चर्चा पान",

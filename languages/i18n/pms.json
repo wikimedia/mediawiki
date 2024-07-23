@@ -2646,7 +2646,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|revision}} amportà",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|revision}} amportà da $2",
 	"javascripttest": "Preuva ëd JavaScript",
-	"javascripttest-qunit-intro": "Vëdde [$1 la documentassion dle preuve] dzora a mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Soa}} pàgina utent",
 	"tooltip-pt-anonuserpage": "La pàgina utent për l'IP con ël qual chiel a contribuiss",
 	"tooltip-pt-mytalk": "{{GENDER:|Soa}} pàgina ëd discussion",

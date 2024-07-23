@@ -2726,7 +2726,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|dəyişiklik}} idxal edildi.",
 	"import-logentry-interwiki-detail": "$2 vikidən $1 {{PLURAL:$1|dəyişiklik}} idxal edildi",
 	"javascripttest": "JavaScript testi",
-	"javascripttest-qunit-intro": "mediawiki.org saytındakı [$1 test sənədlərinə] baxın.",
 	"tooltip-pt-userpage": "{{GENDER:|İstifadəçi}} səhifəniz",
 	"tooltip-pt-anonuserpage": "Redaktə edərkən istifadə etdiyiniz IP ünvanı üçün istifadəçi səhifəsi",
 	"tooltip-pt-tmpuserpage": "Avtomatik olaraq yaradılan müvəqqəti istifadəçi adınız",

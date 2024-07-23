@@ -2413,7 +2413,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|revisa|revisas}} emportada",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|revisa|revisas}} emportada de $2",
 	"javascripttest": "Proba de JavaScript",
-	"javascripttest-qunit-intro": "Vide [$1 documentos sur probas] en mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Tua}} paje de usor",
 	"tooltip-pt-anonuserpage": "La paje de usor per la adirije IP como cual tu edita",
 	"tooltip-pt-mytalk": "{{GENDER:|Tua}} paje de discute",

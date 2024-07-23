@@ -2455,7 +2455,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|revision importada|revisions importadas}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|revision importada|revisions importadas}} dempuèi $2",
 	"javascripttest": "Tèst de JavaScript",
-	"javascripttest-qunit-intro": "Veire [$1 la documentacion de tèst] sus mediawiki.org.",
 	"tooltip-pt-userpage": "Vòstra pagina d'{{GENDER:|utilizaire|utilizaira}}",
 	"tooltip-pt-anonuserpage": "La pagina d'utilizare de l’IP amb la quala contribuissètz",
 	"tooltip-pt-mytalk": "{{GENDER:|Vòstra}} pagina de discussion",

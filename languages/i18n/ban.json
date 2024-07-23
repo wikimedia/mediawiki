@@ -2772,7 +2772,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|révisi}} kaimpor",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|révisi}} kaimpor saking $2",
 	"javascripttest": "Pangetésan JavaScript",
-	"javascripttest-qunit-intro": "Cingak [$1 dokuméntasi pangujian] ring mediawiki.org.",
 	"tooltip-pt-userpage": "Kaca {{GENDER:|sang anganggé ragané}}",
 	"tooltip-pt-anonuserpage": "Kaca sang anganggé antuk alamat IP ragané uahin dados",
 	"tooltip-pt-tmpuserpage": "Wastan anganggé sauntara ragané karipta sacara otomatis",

@@ -2003,7 +2003,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|versie|versies}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|versie|versies}} van $2",
 	"javascripttest": "JavaScript testen",
-	"javascripttest-qunit-intro": "Zie de [$1 testdokumentasie] op mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Juw}} gebrukerssyde",
 	"tooltip-pt-anonuserpage": "Gebroekersbladziede vuur t IP-adres da'j broekt",
 	"tooltip-pt-mytalk": "{{GENDER:|Juw}} oaverlegsyde",

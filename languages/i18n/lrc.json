@@ -1992,7 +1992,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|وانئری|وانئریا}} وامین اومانه",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|وانئری|وانئریا}} د $2 وامین اومائنه",
 	"javascripttest": "ازمایشت کردن جاوا اسکریپت",
-	"javascripttest-qunit-intro": "[$1 مستندیا ازمایشت] نه د mediawiki.org سیل بکیت.",
 	"tooltip-pt-userpage": "بٱلگٱ کاریاریتو",
 	"tooltip-pt-anonuserpage": "بلگه کاریاری تیرنشون آی پی ای که دش ویرایشت می کید",
 	"tooltip-pt-mytalk": "بٱلگٱ قسٱ کردن شما",

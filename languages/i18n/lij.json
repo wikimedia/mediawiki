@@ -2811,7 +2811,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|'na versción inportâ|$1 verscioìn inportæ}}",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|'na versción inportâ|$1 verscioìn inportæ}} da $2",
 	"javascripttest": "Sperimentaçión JavaScript",
-	"javascripttest-qunit-intro": "Amîa in sce mediawiki.org a [$1 documentaçión in scê sperimentaçioìn].",
 	"tooltip-pt-userpage": "A {{GENDER:|tò}} pàgina uténte",
 	"tooltip-pt-anonuserpage": "A pàgina uténte de quésto indirìsso IP che t'ê aprêuvo a modificâ cómme",
 	"tooltip-pt-tmpuserpage": "O tò nómme uténte tenporànio outogeneròu",

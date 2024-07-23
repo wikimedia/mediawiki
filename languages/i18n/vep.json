@@ -2774,7 +2774,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|vajehtuz|vajehtused}} om todud",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|vajehtuz|vajehtused}} om todud $2",
 	"javascripttest": "JavaScriptan kacumine",
-	"javascripttest-qunit-intro": "Kacu [$1 testan azjbumagad] mediawiki.org - saital.",
 	"tooltip-pt-userpage": "{{GENDER:|Sinun kävutajan}} lehtpol'",
 	"tooltip-pt-anonuserpage": "Kähutajan lehtpol' IP-adresan täht, mittušt sinä vajehtad kut",
 	"tooltip-pt-tmpuserpage": "Sinun avtomatižesti tehtud kävutajan nimi",

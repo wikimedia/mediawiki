@@ -2067,7 +2067,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|ревізія|ревізії|ревізій}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|ревізія|ревізії|ревізій}} з $2",
 	"javascripttest": "Тестованя JavaScript",
-	"javascripttest-qunit-intro": "Смотьте [$1 документацію тестованя] на mediawiki.org",
 	"tooltip-pt-userpage": "Ваша сторінка хоснователя",
 	"tooltip-pt-anonuserpage": "Сторінка хоснователя про IP-адресу, з котрой едітуєте",
 	"tooltip-pt-mytalk": "Ваша діскузна сторінка",

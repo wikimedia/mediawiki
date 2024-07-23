@@ -2173,7 +2173,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|ein Väsjohn|$1 Väsjohne|kein Väsjohn}} woodt emportehrt.",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|ein Väsjohn|$1 Väsjohne|kein VVäsjohnersion}} woodt empottehrt vun „$2“",
 	"javascripttest": " JavaSkrepte ußprobeere.",
-	"javascripttest-qunit-intro": "Loor noh dä [$1 Dokemäntation övver et Prööfe] op mediawiki.org.",
 	"tooltip-pt-userpage": "Don Ding eije Metmaachersigg aanzeije{{GENDER:|}}",
 	"tooltip-pt-anonuserpage": "Metmaachersigg för di <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Internet Protocol\">IP</i>-Adräß, vun wo uß De jraad Ding Ännderonge un Äjännzonge aam Wiki am maache bes",
 	"tooltip-pt-mytalk": "Dun Ding eije Klaafsigg aanzeije{{GENDER:|}}",

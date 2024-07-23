@@ -2801,7 +2801,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|версий|версий-влакым}} пуртымо",
 	"import-logentry-interwiki-detail": "$2 гыч $1 {{PLURAL:$1|версий|версий-влакым}} пуртымо",
 	"javascripttest": "JavaScript-ым тергымаш",
-	"javascripttest-qunit-intro": "[$1 Тергымаш нерген документацийым] mediawiki.org сайтыште ончо.",
 	"tooltip-pt-userpage": "{{GENDER:|Тыйын}} лаштыкет",
 	"tooltip-pt-anonuserpage": "Мыйын IP адреслан ушнышын велыжше",
 	"tooltip-pt-tmpuserpage": "Тыйын жаплан лийше вигак ыштыме ушнышо лӱм",

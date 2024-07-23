@@ -2889,7 +2889,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|version|versioner}} importerades",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|version|versioner}} importerades från $2",
 	"javascripttest": "JavaScript-testning",
-	"javascripttest-qunit-intro": "Se [$1 testningsdokumentationen] på mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Din användarsida}}",
 	"tooltip-pt-anonuserpage": "Användarsida för IP-numret du redigerar från",
 	"tooltip-pt-tmpuserpage": "Ditt automatiskt genererade temporära användarnamn",

@@ -2825,7 +2825,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|версия}} импорт этилгенди",
 	"import-logentry-interwiki-detail": "$2 бетден  $1 {{PLURAL:$1|версия}} импорт этилгенди",
 	"javascripttest": "JavaScript тинтилиую",
-	"javascripttest-qunit-intro": "mediawiki.org юсюнден [$1 сынау документациягъа] къарагъыз.",
 	"tooltip-pt-userpage": "{{GENDER:|Сизни хайырланыучу}} бетигиз",
 	"tooltip-pt-anonuserpage": "Сизни IP-адресигиз ючюн къошулуучу бет",
 	"tooltip-pt-tmpuserpage": "Автомат халда къуралгъан болджаллы хайырланыучу атыгъыз",

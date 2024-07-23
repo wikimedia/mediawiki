@@ -2641,7 +2641,6 @@
 	"import-logentry-upload-detail": "$1 अवतरण आयात {{PLURAL:$1|किया गया|किये गए}}",
 	"import-logentry-interwiki-detail": "$2 से $1 अवतरण आयात {{PLURAL:$1|किया गया|किये गए}}",
 	"javascripttest": "जावास्क्रिप्ट परीक्षण",
-	"javascripttest-qunit-intro": "mediawiki.org पर [$1 परीक्षण के प्रलेखन] देखें।",
 	"tooltip-pt-userpage": "{{GENDER:|आपका प्रयोक्ता}} पृष्ठ",
 	"tooltip-pt-anonuserpage": "आप जिस आईपी से बदलाव कर रहें हैं उसका सदस्य पान",
 	"tooltip-pt-mytalk": "{{GENDER:|आपका}} वार्ता पृष्ठ",

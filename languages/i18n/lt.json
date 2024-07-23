@@ -2779,7 +2779,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|keitimas|keitimai}} importuoti",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|keitimas|keitimai}} importuoti iš $2",
 	"javascripttest": "JavaScript testavimas",
-	"javascripttest-qunit-intro": "Peržiūrėkite [$1 testavimo dokumentaciją]",
 	"tooltip-pt-userpage": "{{GENDER:|Jūsų naudotojo}} puslapis",
 	"tooltip-pt-anonuserpage": "Naudotojo puslapis jūsų IP adresui",
 	"tooltip-pt-tmpuserpage": "Jūsų automatiškai sugeneruotas laikinas vartotojo vardas",

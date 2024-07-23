@@ -2204,7 +2204,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|badlao|badlao}} import karaa gais hae",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|badlao|badlao}} $2 se import karaa gais hae",
 	"javascripttest": "JavaScript ke testing",
-	"javascripttest-qunit-intro": "mediawiki.org me [$1 testing documentation] ke dekho.",
 	"tooltip-pt-userpage": "{{GENDER:|Aap ke user}} panna",
 	"tooltip-pt-anonuserpage": "IP jisme se aap edit karta hai ke sadasya panna",
 	"tooltip-pt-mytalk": "{{GENDER:|Aap ke}} baat waala panna",

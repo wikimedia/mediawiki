@@ -2583,7 +2583,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|ഒരു പതിപ്പ്|$1 പതിപ്പുകൾ}} ഇറക്കുമതി ചെയ്തു",
 	"import-logentry-interwiki-detail": "$2 എന്നതിൽ നിന്ന് {{PLURAL:$1|ഒരു പതിപ്പ്|$1 പതിപ്പുകൾ}} ഇറക്കുമതി ചെയ്തു",
 	"javascripttest": "ജാവാസ്ക്രിപ്റ്റ് പരീക്ഷണം",
-	"javascripttest-qunit-intro": "mediawiki.org-ലെ [$1 പരീക്ഷണ സഹായി] കാണുക.",
 	"tooltip-pt-userpage": "{{GENDER:|താങ്കളുടെ}} ഉപയോക്തൃതാൾ",
 	"tooltip-pt-anonuserpage": "താങ്കളുടെ ഐ.പി. വിലാസത്തിന്റെ ഉപയോക്തൃതാൾ",
 	"tooltip-pt-mytalk": "{{GENDER:|താങ്കളുടെ}} സംവാദം താൾ",

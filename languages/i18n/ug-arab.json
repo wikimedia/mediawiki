@@ -1956,7 +1956,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|تۈزىتىش|تۈزىتىش}}",
 	"import-logentry-interwiki-detail": "$2 دىن كەلگەن $1 {{PLURAL:$1|تۈزىتىش|تۈزىتىش}}",
 	"javascripttest": "JavaScript سىناش",
-	"javascripttest-qunit-intro": "mediawiki.org دىكى [$1 سىناش قوللانمىسى]نى كۆرۈڭ.",
 	"tooltip-pt-userpage": "{{GENDER:|سىزنىڭ ئىشلەتكۈچى}} بېتىڭىز",
 	"tooltip-pt-anonuserpage": "بۇ بېكەتنى تەھرىرلىگەندە ئىشلەتكەن IP ماس كەلگەن ئىشلەتكۈچى بېتى",
 	"tooltip-pt-mytalk": "{{GENDER:|سىزنىڭ}} مۇنازىرە بېتىڭىز",

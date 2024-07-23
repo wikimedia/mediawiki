@@ -1944,7 +1944,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|Filla}} $1 ka huru",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|Filla}} $1 huru ka hun $2 ga",
 	"javascripttest": "JavaScript šiiyan",
-	"javascripttest-qunit-intro": "Guna [$1 šiiyan fahamandi tiira] mediawiki.org ga.",
 	"tooltip-pt-userpage": "{{GENDER:|War goykaw}} moɲoo",
 	"tooltip-pt-anonuserpage": "Goykaw moo IP aderesoo kaŋ war goo m'a fasal sanda",
 	"tooltip-pt-mytalk": "{{GENDER:|War}} deede moɲoo",

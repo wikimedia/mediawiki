@@ -1923,7 +1923,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|$1 wersija|$1 wersiji|$1 wersije}}",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|$1 wersija|$1 wersiji|$1 wersije}} wót $2",
 	"javascripttest": "JavaScriptowy test",
-	"javascripttest-qunit-intro": "Glědaj [$1 testowańsku dokumentaciju] na mediawiki.org.",
 	"tooltip-pt-userpage": "Twój wužywarski bok",
 	"tooltip-pt-anonuserpage": "Wužywarski bok za IP-adresu, z kótarejuž bok wobźěłajoš",
 	"tooltip-pt-mytalk": "Twój diskusijny bok",

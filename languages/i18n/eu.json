@@ -2657,7 +2657,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|berrikuspen|berrikuspenak}} inportatuak",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|berrikuspen|berrikuspenak}} $2-(e)tik inportatuak",
 	"javascripttest": "JavaScript frogatzen",
-	"javascripttest-qunit-intro": "Ikusi [$1 frogen dokumentazioa] mediawiki.org orrialdean.",
 	"tooltip-pt-userpage": "{{GENDER:|Zure lankide}} orria",
 	"tooltip-pt-anonuserpage": "Zure IParen lankide orrialdea",
 	"tooltip-pt-mytalk": "{{GENDER:|Zure}} eztabaida orria",

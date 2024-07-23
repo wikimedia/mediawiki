@@ -2271,7 +2271,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|révisi}} diimpor",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|révisi}} diimpor saka $2",
 	"javascripttest": "Panjajalan JavaScript",
-	"javascripttest-qunit-intro": "Deleng [$1 dhokumèntasi uji-coba] ing mediawiki.org.",
 	"tooltip-pt-userpage": "Kaca {{GENDER:|naragunané panjenengan}}",
 	"tooltip-pt-anonuserpage": "Kaca naraguna IP panjenengan",
 	"tooltip-pt-mytalk": "Kaca parembugané {{GENDER:|panjenengan}}",

@@ -2046,7 +2046,6 @@
 	"import-logentry-upload-detail": "Chaidh $1 {{PLURAL:$1|mhùthadh|mùthadh|mùthaidhean|mùthadh}} ion-phortachadh",
 	"import-logentry-interwiki-detail": "Chaidh $1 {{PLURAL:$1|mhùthadh|mhùthadh|mùthaidhean|mùthadh}} ion-phortachadh o $2",
 	"javascripttest": "Deuchainn air JavaScript",
-	"javascripttest-qunit-intro": "Faic [$1 docamaideadh nan deuchainnean] air mediawiki.org.",
 	"tooltip-pt-userpage": "An duilleag phearsanta {{GENDER:|agad}}",
 	"tooltip-pt-anonuserpage": "Duilleag a' chleachdaiche airson an t-seòlaidh IP leis a bheil thu a' deasachadh",
 	"tooltip-pt-mytalk": "An duilleag deasbaireachd {{GENDER:|agad}}",

@@ -2156,7 +2156,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|টা সংশোধন|টা সংশোধন}}",
 	"import-logentry-interwiki-detail": "$2ৱে কৰা $1 {{PLURAL:$1|টা সংশোধন|টা সংশোধন}}",
 	"javascripttest": "জাভাস্ক্ৰিপ্ট পৰীক্ষা।",
-	"javascripttest-qunit-intro": "mediawiki.org-ত [$1 পৰীক্ষা নথিকৰণ] চাওক।",
 	"tooltip-pt-userpage": "{{GENDER:|আপোনাৰ সদস্য}} পৃষ্ঠা",
 	"tooltip-pt-anonuserpage": "যি আই.পি. ঠিকনাৰ পৰা আপুনি সম্পাদনা কৰিছে তাৰ সদস্য পৃষ্ঠা",
 	"tooltip-pt-mytalk": "{{GENDER:|আপোনাৰ}} আলোচনা পৃষ্ঠা",

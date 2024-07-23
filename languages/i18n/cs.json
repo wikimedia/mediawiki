@@ -2860,7 +2860,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|naimportována $1 revize|naimportovány $1 revize|naimportováno $1 revizí}}",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|naimportována $1 revize|naimportovány $1 revize|naimportováno $1 revizí}} z $2",
 	"javascripttest": "Testování JavaScriptu",
-	"javascripttest-qunit-intro": "Viz [$1 dokumentaci testování] na mediawiki.org",
 	"tooltip-pt-userpage": "{{GENDER:|Vaše uživatelská}} stránka",
 	"tooltip-pt-anonuserpage": "Uživatelská stránka pro IP adresu, ze které editujete",
 	"tooltip-pt-tmpuserpage": "Vaše automaticky vygenerované dočasné uživatelské jméno",

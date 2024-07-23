@@ -2798,7 +2798,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|revizio importita|revizioj importitaj}}",
 	"import-logentry-interwiki-detail": "Importis $1 {{PLURAL:$1|revizion|reviziojn}} de $2",
 	"javascripttest": "Ĝavoskripta testado",
-	"javascripttest-qunit-intro": "Vidu [$1 testa dokumentaro] en mediawiki.org.",
 	"tooltip-pt-userpage": "Via uzantpaĝo",
 	"tooltip-pt-anonuserpage": "La uzantopaĝo por la IP adreso sub kiu vi estas redaktanta",
 	"tooltip-pt-tmpuserpage": "Via aŭtomate generita provizora uzantnomo",

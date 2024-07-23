@@ -2471,7 +2471,6 @@
 	"import-logentry-upload-detail": "$1個修訂都已經倒入咗",
 	"import-logentry-interwiki-detail": "由$2倒入嘅$1個修訂",
 	"javascripttest": "JavaScript測試",
-	"javascripttest-qunit-intro": "睇 mediawiki.org 嘅 [$1 測試文檔]。",
 	"tooltip-pt-userpage": "你嘅用戶頁",
 	"tooltip-pt-anonuserpage": "你編輯呢個IP嘅對應用戶頁",
 	"tooltip-pt-mytalk": "你嘅對話頁",

@@ -2890,7 +2890,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|revisi|revisi}} diimpor",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|revisi}} diimpor dari $2",
 	"javascripttest": "Pengujian JavaScript",
-	"javascripttest-qunit-intro": "Lihat [$1 dokumentasi pengujian] di mediawiki.org.",
 	"tooltip-pt-userpage": "Halaman {{GENDER:|pengguna Anda}}",
 	"tooltip-pt-anonuserpage": "Halaman pengguna IP Anda",
 	"tooltip-pt-tmpuserpage": "Nama pengguna sementara Anda yang diciptakan secara otomatis",

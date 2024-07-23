@@ -2922,7 +2922,6 @@
 	"import-logentry-upload-detail": "$1 revizyon içe aktarıldı",
 	"import-logentry-interwiki-detail": "$2 sayfasından $1 revizyon içe aktarıldı",
 	"javascripttest": "JavaScript denemesi",
-	"javascripttest-qunit-intro": "mediawiki.org üzerinden [$1 deneme belgelerine] bakınız.",
 	"tooltip-pt-userpage": "Kullanıcı sayfanız",
 	"tooltip-pt-anonuserpage": "IP adresine ait bir kullanıcı sayfasını düzenliyorsunuz",
 	"tooltip-pt-tmpuserpage": "Otomatik olarak oluşturulan geçici kullanıcı adınız",

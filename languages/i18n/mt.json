@@ -2335,7 +2335,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|Reviżjoni waħda importata|$1 reviżjonijiet importati}}",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|reviżjoni|$1 reviżjonijiet}} minn $2",
 	"javascripttest": "Testjar tal-JavaScript",
-	"javascripttest-qunit-intro": "Ara d-[$1 dokumentazzjoni dwar it-test] fuq mediawiki.org.",
 	"tooltip-pt-userpage": "Il-paġna tiegħek ta' utent",
 	"tooltip-pt-anonuserpage": "Il-Paġna tal-utent ta' dan l-indirizz tal-IP",
 	"tooltip-pt-mytalk": "Il-paġna ta' diskussjoni tiegħek",

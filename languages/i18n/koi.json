@@ -2746,7 +2746,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|версия}} бокись вайӧм",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|версия}} $2-ись вайӧм",
 	"javascripttest": "JavaScript тестируйтӧм",
-	"javascripttest-qunit-intro": "Видзӧт [$1 тестируйтан документация]  mediawiki.org вылын.",
 	"tooltip-pt-userpage": "{{GENDER:|аслат}} листбок",
 	"tooltip-pt-anonuserpage": " Уджкерисьлӧн IP адреса  листбок, кӧдӧс вежатӧ кыдз",
 	"tooltip-pt-tmpuserpage": "Тіян недыр кад кежлӧ  автоматическӧя артмӧтӧм вӧдитчисьлӧн ним",

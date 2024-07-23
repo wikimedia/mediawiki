@@ -2754,7 +2754,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|төзәтмә}} импортланган",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|юрама}} $2 дән импортлана",
 	"javascripttest": "JavaScript тикшерү",
-	"javascripttest-qunit-intro": "[$1 тест документын]  mediawiki.org-та карагыз.",
 	"tooltip-pt-userpage": "{{GENDER:|Кулланучы}} битегез",
 	"tooltip-pt-anonuserpage": "Мин редакцияләгән IP-адрес өчен кулланучы бите",
 	"tooltip-pt-tmpuserpage": "Сезнең автомат рәвештә вакытлыча ясалган катнашучы исемегез",

@@ -2706,7 +2706,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|revizyon kewto|revizyoni kewtê}} zerre",
 	"import-logentry-interwiki-detail": "$2 pela $1 ra {{PLURAL:$1|revizyon kewto|revizyoni kewtê}} zerre",
 	"javascripttest": "Cerebnayışê JavaScripti",
-	"javascripttest-qunit-intro": "mediawiki.org de [dokumanê $1] bıvêne.",
 	"tooltip-pt-userpage": "Pela {{GENDER:|şımaya karberi}}",
 	"tooltip-pt-anonuserpage": "pelê karberê IPyi",
 	"tooltip-pt-mytalk": "Pela {{GENDER:|toya}} werênayışi",

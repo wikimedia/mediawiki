@@ -2103,7 +2103,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|wersion|wersioonen}} importiaret",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|wersion|wersioonen}} faan $2 importiaret",
 	"javascripttest": "JavaScript-test",
-	"javascripttest-qunit-intro": "Luke efter bi [$1 test dokumentatjuun] üüb mediawiki.org",
 	"tooltip-pt-userpage": "{{GENDER:|Din}} brükersidj",
 	"tooltip-pt-anonuserpage": "Brükersidj faan det IP-adres, faan huar ütj dü werkest",
 	"tooltip-pt-mytalk": "{{GENDER:|Din}} diskusionsidj",

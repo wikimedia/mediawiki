@@ -1731,7 +1731,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|نسخه|نسخه}} وارد بوته",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|نسخه|نسخه}} داخل بوته شه $2",
 	"javascripttest": "جاوا اسکریپتی آزمایش",
-	"javascripttest-qunit-intro": "[$1 آزمایشی مشتندانا] بئ mediawiki.org تا بگیندیت.",
 	"tooltip-pt-userpage": "{{GENDER:|شمئ کار زُورۆکین}} تاکدیم",
 	"tooltip-pt-mytalk": "{{GENDER:|شمئ}} حبر و گپئ تاکدیم",
 	"tooltip-pt-anontalk": "ای آی‌پی ادرس‌ئی دستکاریاني موریدا حبر/گپ",

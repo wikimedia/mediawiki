@@ -2757,7 +2757,6 @@
 	"import-logentry-upload-detail": "Совавтозь $1 {{PLURAL:$1|лиякстомтома|лиякстомтомат}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|версиясь путозь|версият путозь|версиятне путозь}} $2-сто",
 	"javascripttest": "JavaScript-нь ванома",
-	"javascripttest-qunit-intro": "Вант [$1 ваномань важодемань ютавтомань тевконёвт] mediawiki.org сайтсэ.",
 	"tooltip-pt-userpage": "{{GENDER:|Совицянь лопат}}",
 	"tooltip-pt-anonuserpage": "Монь IP-нь туртов совицянть лемезэ",
 	"tooltip-pt-tmpuserpage": "Автоматикань ёндо тонь нурька шкань совицянь леметь",

@@ -2171,7 +2171,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|na virsioni mpurtata|$1 virsioni mpurtati}}",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|na virsioni mpurtata|$1 virsioni mpurtati}} di $2",
 	"javascripttest": "Virìfichi JavaScript",
-	"javascripttest-qunit-intro": "Talìa [$1 la ducumintazzioni a prupositu dî virìfichi] supra a mediawiki.org.",
 	"tooltip-pt-userpage": "La {{GENDER:|tò}} pàggina utenti",
 	"tooltip-pt-anonuserpage": "La pàggina utenti di stu ndirizzu IP",
 	"tooltip-pt-mytalk": "La {{GENDER:|tò}} pàggina di discussioni",

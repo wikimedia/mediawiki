@@ -2900,7 +2900,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|لا مراجعات|مراجعة واحدة|مراجعتان|$1 مراجعات|$1 مراجعة}}",
 	"import-logentry-interwiki-detail": "تم استيراد {{PLURAL:$1||مراجعة واحدة|مراجعتين|$1 مراجعات|$1 مراجعة}} من $2",
 	"javascripttest": "اختبار جافاسكربت",
-	"javascripttest-qunit-intro": "راجع [$1 وثيقة الاختبار] على mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|صفحة المستخدم}} الخاصة بك",
 	"tooltip-pt-anonuserpage": "صفحة المستخدم للأيبي الذي تقوم بالتحرير من خلاله",
 	"tooltip-pt-tmpuserpage": "اسم المستخدم المؤقت المُنشأ تلقائيًا",

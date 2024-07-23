@@ -2844,7 +2844,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|versio|versiota}} tuotiin",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|versio|versiota}} tuotiin wikistä $2",
 	"javascripttest": "JavaScriptin testaus",
-	"javascripttest-qunit-intro": "Katso [$1 testausohjeet] mediawiki.orgissa.",
 	"tooltip-pt-userpage": "{{GENDER:|Oma käyttäjäsivusi}}",
 	"tooltip-pt-anonuserpage": "IP-osoitteesi käyttäjäsivu",
 	"tooltip-pt-tmpuserpage": "Automaattisesti luotu väliaikainen käyttäjänimesi",

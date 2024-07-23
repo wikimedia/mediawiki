@@ -2813,7 +2813,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|Uvožena je $1 redakcija|Uvoženi sta $1 redakciji|Uvožene so $1 redakcije|Uvoženih je $1 redakcij}}",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|Uvožena je $1 redakcija|Uvoženi sta $1 redakciji|Uvožene so $1 redakcije|Uvoženih jih $1 redakcij}} iz $2",
 	"javascripttest": "Preizkušanje JavaScripta",
-	"javascripttest-qunit-intro": "Glejte [$1 dokumentacijo o preizkušanju] na mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Vaša}} uporabniška stran",
 	"tooltip-pt-anonuserpage": "Uporabniška stran IP-naslova, s katerim urejate",
 	"tooltip-pt-tmpuserpage": "Vaše samodejno ustvarjeno začasno uporabniško ime",

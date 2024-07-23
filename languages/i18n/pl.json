@@ -2907,7 +2907,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|wersja|wersje|wersji}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|wersja|wersje|wersji}} z $2",
 	"javascripttest": "Testowanie JavaScript",
-	"javascripttest-qunit-intro": "Zobacz [$1 dokumentację testów] na mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Moja}} strona osobista",
 	"tooltip-pt-anonuserpage": "Strona użytkownika dla adresu IP, spod którego edytujesz",
 	"tooltip-pt-tmpuserpage": "Twoja automatycznie wygenerowana, tymczasowa nazwa użytkownika",

@@ -2182,7 +2182,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|weergawe|weergawes}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|weergawe|weergawes}} vanaf $2",
 	"javascripttest": "JavaScript toetsing",
-	"javascripttest-qunit-intro": "Sien die [$1 toetsdokumentasie] op mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|My}} gebruikerbladsy",
 	"tooltip-pt-anonuserpage": "Die gebruikersbladsy vir die IP-adres waaronder u wysigings aanbring",
 	"tooltip-pt-mytalk": "{{GENDER:|My}} besprekingsbladsy",

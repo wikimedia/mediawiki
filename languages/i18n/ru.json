@@ -2987,7 +2987,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|версия импортирована|версии импортировано|версий импортировано}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|версия импортирована|версии импортировано|версий  импортировано}} из $2",
 	"javascripttest": "Проверка JavaScript",
-	"javascripttest-qunit-intro": "См. [$1 документацию по тестированию] на mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Ваша}} страница участника",
 	"tooltip-pt-anonuserpage": "Страница участника для моего IP",
 	"tooltip-pt-tmpuserpage": "Ваше автоматически созданное временное имя участника",

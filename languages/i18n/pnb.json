@@ -1967,7 +1967,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|ریویژن|ریویژناں}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|ریویژن|ریویژناں }} $2 توں",
 	"javascripttest": "JavaScript ٹیسٹنگ",
-	"javascripttest-qunit-intro": "mediawiki.org تے [$1 ٹسٹنگ ڈوکومنٹیشن] ویکھو۔",
 	"tooltip-pt-userpage": "{{GENDER:|میرا صفحہ}}صفحہ",
 	"tooltip-pt-anonuserpage": "ورتݨ صفحہ آئی پی  پتے لئی تسی تبدیل کر رۓ او۔۔۔",
 	"tooltip-pt-mytalk": "{{GENDER:|تہاڈے}} گل بات صفحہ",

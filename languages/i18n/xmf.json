@@ -2811,7 +2811,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|ვერსია}} იმპორტირაფილი რე",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|ვერსია}} იმპორტირაფილი რე $2-შე",
 	"javascripttest": "JavaScript-იშ ტესტირაფა",
-	"javascripttest-qunit-intro": "ქოძირით [$1 ტესტირაფაშ დოკუმენტეფი] mediawiki.org-ის.",
 	"tooltip-pt-userpage": "{{GENDER:|თქვანი მახვარებუშ}} ხასჷლა",
 	"tooltip-pt-anonuserpage": "ჩქიმი IP-იშ მოღვენი მახვარებუშ ხასჷლა",
 	"tooltip-pt-tmpuserpage": "თქვანი ავტომატურო გენერირაფილი ობორჯე მახვარებუშ ჯოხო",

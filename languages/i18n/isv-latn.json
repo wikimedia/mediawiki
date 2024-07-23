@@ -2788,7 +2788,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|versija jest importovana|versij jest importovanyh}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|versija jest importovana|versij jest importovanyh}} iz $2",
 	"javascripttest": "Testovanje JavaScript’a",
-	"javascripttest-qunit-intro": "Gledite [$1 dokumentaciju o testovanju] na mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Vaša}} koristničska stranica",
 	"tooltip-pt-anonuserpage": "Koristničska stranica za IP-adres, s ktorogo rabotajete",
 	"tooltip-pt-tmpuserpage": "Vaše avtomatično iztvorjeno vrěmenno koristničsko ime",

@@ -2612,7 +2612,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|revisión importada|revisiones importaes}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|revisión importada|revisiones importaes}} dende $2",
 	"javascripttest": "Prueba de JavaScript",
-	"javascripttest-qunit-intro": "Ver la [$1 documentación de les pruebes] en mediawiki.org.",
 	"tooltip-pt-userpage": "La to páxina d'{{GENDER:|usuariu|usuaria}}",
 	"tooltip-pt-anonuserpage": "La páxina d'usuariu de la direición IP cola que tas editando",
 	"tooltip-pt-mytalk": "La {{GENDER:|to}} páxina d'alderique",

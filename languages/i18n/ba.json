@@ -2809,7 +2809,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|өлгө}} индерелгән",
 	"import-logentry-interwiki-detail": "$2 проектынан $1 {{PLURAL:$1|өлгө}} индерелгән",
 	"javascripttest": "JavaScript-ты тикшереү",
-	"javascripttest-qunit-intro": "[$1 һынау документацияһын] mediawiki.org адресы буйынса ҡарағыҙ.",
 	"tooltip-pt-userpage": "{{GENDER:|Ҡатнашыусы}} битегеҙ",
 	"tooltip-pt-anonuserpage": "IP-адресығыҙ өсөн ҡатнашыусы бите",
 	"tooltip-pt-tmpuserpage": "Автоматик рәүештә бирелгән ваҡытлысы ҡатнашыусы исемегеҙ",

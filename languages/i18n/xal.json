@@ -2750,7 +2750,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|хүвлвр|хүвлврмүд}} импортлгдла",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|хүвлвр|хүвлврмүд}} $2-ас импортлгдла",
 	"javascripttest": "JavaScript туршлт",
-	"javascripttest-qunit-intro": "mediawiki.org деерәс [$1 тестин бәрмт бичг] үзтн.",
 	"tooltip-pt-userpage": "Тана кергләчин халх",
 	"tooltip-pt-anonuserpage": "Тана керглҗәх IP хайгин кергләчин халх",
 	"tooltip-pt-tmpuserpage": "Тана автоматар үүсксн түр-зуурин кергләчин нерн",

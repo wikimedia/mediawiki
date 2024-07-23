@@ -2765,7 +2765,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|эрша}} импорт яьй",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|эрша}} импорт яьй $2 яхачара",
 	"javascripttest": "JavaScript тахкар",
-	"javascripttest-qunit-intro": "Хьажа [$1 тестированегӀа йолча документацега] mediawiki.org тӀа.",
 	"tooltip-pt-userpage": "{{GENDER:|Хьа}} доакъашхочун оагIув",
 	"tooltip-pt-anonuserpage": "Са IP доакъашхочун оагӀув",
 	"tooltip-pt-tmpuserpage": "Хьа ши-шегӀа хьахинна хаьдда ха йола доакъашхочун цӀи",

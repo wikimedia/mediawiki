@@ -2793,7 +2793,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|измена увезена|измене увезене|измена увезено}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|измена увезена|измене увезене|измена увезено}} из $2",
 	"javascripttest": "Тестирање JavaScript-а",
-	"javascripttest-qunit-intro": "Погледајте [$1 документацију за тестирање] на mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Ваша}} корисничка страница",
 	"tooltip-pt-anonuserpage": "Корисничка страница за IP адресу с које уређујете",
 	"tooltip-pt-tmpuserpage": "Ваше привремено аутоматски генерисано корисничко име",

@@ -2311,7 +2311,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|திருத்தம்|திருத்தங்கள்}} இறக்குமதி செய்யப்பட்டன",
 	"import-logentry-interwiki-detail": "$2 இலிருந்து {{PLURAL:$1|திருத்தம்|திருத்தங்கள்}} இறக்குமதி செய்யப்பட்டன",
 	"javascripttest": "சாவாநிரல் சோதனை நடக்கின்றது",
-	"javascripttest-qunit-intro": "mediawiki.org இல் [$1 சோதனை கோப்புகளைப்] பார்க்க.",
 	"tooltip-pt-userpage": "{{GENDER:|உங்கள் பயனர்}} பக்கம்",
 	"tooltip-pt-anonuserpage": "நீங்கள் தொகுத்துக் கொண்டிருக்கும் ஐ.பி. முகவரிக்கான பயனர் பக்கம்",
 	"tooltip-pt-mytalk": "{{GENDER:|உங்கள்}} பேச்சுப் பக்கம்",

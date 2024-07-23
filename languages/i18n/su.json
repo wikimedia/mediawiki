@@ -2240,7 +2240,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|sarévisi|révisi}} diimpor",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|sarévisi|révisi}} diimpor ti $2",
 	"javascripttest": "Nguji JavaScript",
-	"javascripttest-qunit-intro": "Tempo [$1 dokuméntasi pangujian] di mediawiki.org.",
 	"tooltip-pt-userpage": "Kaca {{GENDER:|pamaké anjeun}}",
 	"tooltip-pt-anonuserpage": "Kaca pamaké pikeun IP nu ku anjeun keur diédit",
 	"tooltip-pt-mytalk": "Kaca obrolan {{GENDER:|anjeun}}",

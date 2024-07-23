@@ -2856,7 +2856,6 @@
 	"import-logentry-upload-detail": "Đã nhập $1 phiên bản",
 	"import-logentry-interwiki-detail": "Đã nhập $1 phiên bản từ $2",
 	"javascripttest": "Kiểm thử JavaScript",
-	"javascripttest-qunit-intro": "Xem [$1 tài liệu kiểm thử] tại mediawiki.org.",
 	"tooltip-pt-userpage": "Trang cá nhân của tôi",
 	"tooltip-pt-anonuserpage": "Trang của IP bạn đang dùng",
 	"tooltip-pt-tmpuserpage": "Tên người dùng tạm thời được tạo tự động của bạn",

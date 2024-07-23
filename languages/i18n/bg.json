@@ -2749,7 +2749,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|версия беше внесена|версии бяха внесени}}",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|една версия беше внесена|$1 версии бяха внесени}} от $2",
 	"javascripttest": "Тестване на JavaScript",
-	"javascripttest-qunit-intro": "Вижте [$1 тестовата документация] на mediawiki.org.",
 	"tooltip-pt-userpage": "Вашата потребителска страница",
 	"tooltip-pt-anonuserpage": "Потребителската страница за адреса, от който редактирате",
 	"tooltip-pt-mytalk": "Вашата дискусионна страница",

@@ -2833,7 +2833,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|Importouse $1 revisión|Importáronse $1 revisións}}",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|Importouse $1 revisión|Importáronse $1 revisións}} desde $2",
 	"javascripttest": "Proba de JavaScript",
-	"javascripttest-qunit-intro": "Bótelle unha ollada á [$1 documentación das probas] en mediawiki.org.",
 	"tooltip-pt-userpage": "A súa páxina de {{GENDER:|usuario|usuaria}}",
 	"tooltip-pt-anonuserpage": "A páxina de usuario do enderezo IP desde o que está a editar",
 	"tooltip-pt-tmpuserpage": "O seu nome de usuario temporal xerado automaticamente",

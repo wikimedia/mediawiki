@@ -2285,7 +2285,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|wersija importowana|wersiji importowanej|wersije importowane|wersijow importowane}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|wersija|wersiji|wersije|wersijow}} z $2 {{PLURAL:$1|importowana|importowanej|importowane|importowanych}}",
 	"javascripttest": "JavaScriptowy test",
-	"javascripttest-qunit-intro": "Hlej [$1 testowansku dokumentaciju] na mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Twoja wužiwarska}} strona",
 	"tooltip-pt-anonuserpage": "Wužiwarska strona IP-adresy, z kotrejž tuchwilu dźěłaš",
 	"tooltip-pt-mytalk": "{{GENDER:|Twoja}} diskusijna strona",

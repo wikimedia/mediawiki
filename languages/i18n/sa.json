@@ -1983,7 +1983,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|संस्करणस्य|संस्करणानाम्}} आयातः अभवत्",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|संस्करणस्य|संस्करणानाम्}} आयातः अभवत् $2",
 	"javascripttest": "जावालिपिपरीक्षणम् ।",
-	"javascripttest-qunit-intro": "mediawiki.org. [$1 अभिलेखपरीक्षा] इत्यत्र पश्यतु ।",
 	"tooltip-pt-userpage": "{{GENDER:|भवतः/भवत्याः सदस्यपृष्ठम्}}",
 	"tooltip-pt-anonuserpage": "ऐपिसङ्केतार्थं योजकपुटं भवान् सम्पादयति एवम्..",
 	"tooltip-pt-mytalk": "{{GENDER:|भवतः/भवत्याः}} सम्भाषणपृष्ठम्",

@@ -1981,7 +1981,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|Àtúnyẹ̀wò|Àwọn àtúnyẹ̀wò}} $1 jẹ́ kíkówọlé",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|Àtúnyẹ̀wò|Àwọn àtúnyẹ̀wò}} $1 jẹ́ kíkówọlé láti $2",
 	"javascripttest": "Ìdánwò JavaScript",
-	"javascripttest-qunit-intro": "Ẹ wo [$1 ìwé aṣàlàyé ìdánwò] ní mediawiki.org.",
 	"tooltip-pt-userpage": "Ojúewé oníṣe rẹ",
 	"tooltip-pt-anonuserpage": "Ojúewé oníṣe fún àdírẹ́ẹ̀sì IP tí ẹ únlò láti ṣàtúnṣe",
 	"tooltip-pt-mytalk": "Ojúewé ọ̀rọ̀ {{GENDER:|rẹ}}",

@@ -2738,7 +2738,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|янзызы импорттаттынган|янзылары импорттаттынган}}",
 	"import-logentry-interwiki-detail": "$2-ден $1 {{PLURAL:$1|янзызы импорттаттынган|янзылары импорттаттынган}}",
 	"javascripttest": "JavaScript хыналдазы",
-	"javascripttest-qunit-intro": "mediawiki.org сайтта [$1 тест документилелин] көр.",
 	"tooltip-pt-userpage": "Силерниң {{GENDER:|ажыглакчы}} арыныңар",
 	"tooltip-pt-anonuserpage": "Мээң IP-адрезимге киржикчи арыны",
 	"tooltip-pt-tmpuserpage": "Силерниң чайгаар чаяаттынган түр киржикчи адыңар",

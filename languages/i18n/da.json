@@ -2618,7 +2618,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|version|versioner}} importeret",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|version|versioner}} importeret fra $2",
 	"javascripttest": "Test af JavaScript",
-	"javascripttest-qunit-intro": "Se [$1 testdokumentationen] på mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Din}} brugerside",
 	"tooltip-pt-anonuserpage": "Brugersiden for den ip-adresse du redigerer som",
 	"tooltip-pt-mytalk": "{{GENDER:|Din}} diskussionsside",

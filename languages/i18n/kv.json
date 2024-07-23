@@ -2754,7 +2754,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|версия}} вӧлі импорталӧма",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|версия}} вӧлі вайӧдӧма $2-ысь",
 	"javascripttest": "JavaScript тестируйтӧм",
-	"javascripttest-qunit-intro": "Видзӧд [$1 тестируйтан документация]  mediawiki.org вылын.",
 	"tooltip-pt-userpage": "{{GENDER:|Тэнад}} пырӧдчысьлӧн лист бок",
 	"tooltip-pt-anonuserpage": "IP инпаса пырӧдчысьлӧн лист бок, мый ті вежанныд кыдз",
 	"tooltip-pt-tmpuserpage": "Тіян автоматическӧя лӧсьӧдӧм недырся пырӧдчысьлӧн ним",

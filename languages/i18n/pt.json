@@ -2881,7 +2881,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|edição importada|edições importadas}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|edição importada|edições importadas}} de $2",
 	"javascripttest": "Teste de JavaScript",
-	"javascripttest-qunit-intro": "Consulte a [ $1 documentação de testes] no mediawiki.org.",
 	"tooltip-pt-userpage": "A sua página de {{GENDER:|utilizador|utilizadora}}",
 	"tooltip-pt-anonuserpage": "A página de utilizador para o endereço IP que está a usar",
 	"tooltip-pt-tmpuserpage": "O seu nome de utilizador gerado automaticamente",

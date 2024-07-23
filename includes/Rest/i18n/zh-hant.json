@@ -16,6 +16,7 @@
 	"rest-nonexistent-revision": "指定的修訂（$1）不存在",
 	"rest-nonexistent-user": "指定的使用者（$1）不存在。",
 	"rest-invalid-user": "指定的使用者名稱（$1）無效。",
+	"rest-invalid-ip": "指定的 IP（$1）無效。",
 	"rest-invalid-title": "指定的標題「$1」沒有引用到 wiki 頁面。",
 	"rest-unsupported-content-type": "不支援的 Content-Type：$1",
 	"rest-permission-error": "拒絕權限：$1",

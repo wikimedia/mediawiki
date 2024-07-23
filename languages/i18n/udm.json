@@ -2762,7 +2762,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|тупатон|тупатонъёс}} вайыса пыртэмын",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|кабес|кабесъёс}} $2-ысь вайыса пыртэмын",
 	"javascripttest": "JavaScript-эз эскерон",
-	"javascripttest-qunit-intro": "Учке [тестирования каттӥрлыкез $1] mediawiki.org. платформаысь",
 	"tooltip-pt-userpage": "{{GENDER:|Асьтэлэн юзчи}} бамды",
 	"tooltip-pt-anonuserpage": " IP-интыпусэн юзчилэн бамыз, кудзэ тӥ тупатӥськоды....кадь",
 	"tooltip-pt-tmpuserpage": "Тӥляд асэрказ огдырлы кылдытэм юзчи нимды.",

@@ -2131,7 +2131,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|بیر|$1}} نوسخه ایچری گتیریلدی",
 	"import-logentry-interwiki-detail": "$2-دن {{PLURAL:$1|بیر|$1}} نوسخه ایچری گتیریلدی",
 	"javascripttest": "جاوااسکریپت تِستی",
-	"javascripttest-qunit-intro": "mediawiki.org-دا [$1 تِست ائتمه سندلندیرمه‌لری]نه باخین.",
 	"tooltip-pt-userpage": "ایشلدن صفحه‌{{GENDER:|نیز}}",
 	"tooltip-pt-anonuserpage": "سیز او آی‌پی آدرسیله دَییشیکلیک ائتدیگینیز ایستیفاده‌چی صحیفه‌سی",
 	"tooltip-pt-mytalk": "{{GENDER:|سیزین}} دانیشیق صفحه‌نیز",

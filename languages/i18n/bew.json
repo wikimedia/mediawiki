@@ -2726,7 +2726,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|perbaèkan}} diimpor",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|perbaèkan}} diimpor deri $2",
 	"javascripttest": "Penjajalan JavaScript",
-	"javascripttest-qunit-intro": "Liat [$1 pengwarkatan penjajalan] di mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Lu punya halaman pemaké}}",
 	"tooltip-pt-anonuserpage": "Halaman pemaké bakal lu punya aderès IP",
 	"tooltip-pt-tmpuserpage": "Lu punya nama pemaké sementara nyang dibuat otomatis",

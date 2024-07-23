@@ -2255,7 +2255,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|rebisyon|mga rebisyon}} na importado",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|rebisyon|mga rebisyon}} gikan sa $2",
 	"javascripttest": "Testing sa JavaScript",
-	"javascripttest-qunit-intro": "Hilngon [$1 dokumentasyon sa pagtesting] sa mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|An saimong paragamit }} na pahina",
 	"tooltip-pt-anonuserpage": "An páhina nin páragamit para sa ip na pighihira mo bilang",
 	"tooltip-pt-mytalk": "{{GENDER:|An saimong}} pahina nin urulayan",

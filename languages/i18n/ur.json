@@ -2541,7 +2541,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|نسخہ|نسخے}} درآمد {{PLURAL:$1|کیا گیا|کیے گئے}}",
 	"import-logentry-interwiki-detail": "$2 سے $1 {{PLURAL:$1|نسخہ|نسخے}} درآمد {{PLURAL:$1|کیا گیا|کیے گئے}}",
 	"javascripttest": "جاوا اسکرپٹ کی آزمائش",
-	"javascripttest-qunit-intro": "mediawiki.org پر [$1 آزمائشی دستاویز] ملاحظہ فرمائیں",
 	"tooltip-pt-userpage": "آپ کا صارف صفحہ",
 	"tooltip-pt-anonuserpage": "آپ جس آئی پی سے ترمیم کاری کر رہے ہیں اس کا صارف صفحہ",
 	"tooltip-pt-mytalk": "آپ کا تبادلہ خیال صفحہ",

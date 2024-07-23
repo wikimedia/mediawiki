@@ -35,6 +35,8 @@
 	"paramvalidator-maxchars": "用於參數「$1」的值不可大於 $3 個{{PLURAL:$3|字元}}（提供的為 $4 個）。",
 	"paramvalidator-missingparam": "「$1」參數必須被設定。",
 	"paramvalidator-notmulti": "參數「$1」僅接受單一值。U+001F 區分的多個值僅能用在多項值參數。",
+	"paramvalidator-multivalue-must-be-array": "多值參數「$1」必須是陣列。",
+	"paramvalidator-needstring": "參數「$1」僅接受字串值，但取到的是$2。",
 	"paramvalidator-outofrange-max": "用於參數「$1」的值「$2」不能大於 $4。",
 	"paramvalidator-outofrange-minmax": "用於參數「$1」的值「$2」必須介於 $3 與 $4 之間。",
 	"paramvalidator-outofrange-min": "用於參數「$1」的值「$2」不能小於 $3。",

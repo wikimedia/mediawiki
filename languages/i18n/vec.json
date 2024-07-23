@@ -2049,7 +2049,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|una revixion importà|$1 revixion importae}}",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|una revixion importà|$1 revixion importae}} da $2",
 	"javascripttest": "Sperimentasion JavaScript",
-	"javascripttest-qunit-intro": "Varda so mediawiki.org ła [$1 documentasion rivardante i test].",
 	"tooltip-pt-userpage": "Ła {{GENDER:|to}} pajina utente",
 	"tooltip-pt-anonuserpage": "La pàjina utente de sto indiriso IP",
 	"tooltip-pt-mytalk": "Ła {{GENDER:|to}} pajina de discusion",

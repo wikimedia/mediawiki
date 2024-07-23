@@ -1924,7 +1924,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|પુનરાવર્તન|પુનરાવર્તનો}} આયાત કરેલ છે",
 	"import-logentry-interwiki-detail": "$2 માંથી આયાત કરેલ $1 {{PLURAL:$1|પુનરાવર્તન|પુનરાવર્તનો}}",
 	"javascripttest": "જાવા સ્ક્રીપ્ટ પરીક્ષણ",
-	"javascripttest-qunit-intro": "mediawiki.org પર  [$1 testing documentation] તપાસ માહિતી જુઓ",
 	"tooltip-pt-userpage": "{{GENDER:|તમારું સભ્ય}} પાનું",
 	"tooltip-pt-anonuserpage": "IP સરનામું માટેના સભ્ય પાનામાં તમે ફેરફાર કરી રહ્યાં છો.",
 	"tooltip-pt-mytalk": "{{GENDER:|તમારૂં}} ચર્ચા પાનું",

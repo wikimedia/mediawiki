@@ -2731,7 +2731,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|una version importada|$1 version importade}}",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|una version importada|$1 version importade}} de $2",
 	"javascripttest": "Proeuva del Javascript",
-	"javascripttest-qunit-intro": "Varda in su mediawiki.org la [$1 documentazzion sora i proeuve].",
 	"tooltip-pt-userpage": "La {{GENDER:|toa pagina utent}}",
 	"tooltip-pt-anonuserpage": "La pagina-utent de quell adress IP chì che te see 'dree a modifegà come",
 	"tooltip-pt-tmpuserpage": "El to nom-utent temporani autoinsgenerad",

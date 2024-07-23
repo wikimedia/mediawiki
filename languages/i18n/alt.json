@@ -2770,7 +2770,6 @@
 	"import-logentry-upload-detail": "$1 импорт эдилген {{PLURAL:$1|версия}}",
 	"import-logentry-interwiki-detail": "$2-ҥ $1 импорт эдилегн {{PLURAL:$1|версия}}",
 	"javascripttest": "JavaScript ширтези",
-	"javascripttest-qunit-intro": "[$1 тест эдетен документацияны] mediawiki.org-то кӧрӧр.",
 	"tooltip-pt-userpage": "Слердиҥ {{GENDER:|туружаачыныҥ}} бӱгер",
 	"tooltip-pt-anonuserpage": "Мениҥ IP-адрезимныҥ туружаачыныҥ бӱги",
 	"tooltip-pt-tmpuserpage": "Бир канча ӧйгӧ берилген автоматикалык берилген адар",

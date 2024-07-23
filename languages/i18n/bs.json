@@ -2537,7 +2537,6 @@
 	"import-logentry-upload-detail": "{{PLURAL:$1|Uvezena jedna izmjena|Uvezene $1 izmjene|Uvezeno $1 izmjena}}",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|Uvezena $1 izmjena|Uvezene $1 izmjene|Uvezeno $1 izmjena}} sa $2",
 	"javascripttest": "Testiranje JavaScript-e",
-	"javascripttest-qunit-intro": "Pogledajte [$1 dokumentaciju za testiranje] na mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|Vaša}} korisnička stranica",
 	"tooltip-pt-anonuserpage": "Korisnička stranica za ip koju Vi uređujete kao",
 	"tooltip-pt-mytalk": "{{GENDER:|Vaša}} stranica za razgovor",

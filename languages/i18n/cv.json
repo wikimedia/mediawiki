@@ -2805,7 +2805,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|верси}} импортланӑ",
 	"import-logentry-interwiki-detail": "$2 илнӗ $1 {{PLURAL:$1|верси}} импортланӑ",
 	"javascripttest": "JavaScript тӗрӗслевӗ",
-	"javascripttest-qunit-intro": "mediawiki.org сайтри [$1 тӗрӗслеве мӗнле тумаллине ӑнлантарнине] пӑх.",
 	"tooltip-pt-userpage": "{{GENDER:|Сирӗн}} хутшӑнакан страници",
 	"tooltip-pt-anonuserpage": "Манӑн IP адресӑн хутшӑнакан страници",
 	"tooltip-pt-tmpuserpage": "Хӑй тӗллӗн ӑсталаннӑ сирӗн хутшӑнакан ячӗ",

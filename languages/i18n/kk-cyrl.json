@@ -2556,7 +2556,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|нұсқа|нұсқа}} импортталды",
 	"import-logentry-interwiki-detail": "$2 дегеннен $1 {{PLURAL:$1|нұсқа|нұсқа}} импортталды",
 	"javascripttest": "JavaScript сынақталуда",
-	"javascripttest-qunit-intro": "[$1 сынақтау құжаттамасын]  mediawiki.org-тен қара.",
 	"tooltip-pt-userpage": "Жеке бетіңіз",
 	"tooltip-pt-anonuserpage": "Бұл IP мекенжайдың жеке беті",
 	"tooltip-pt-mytalk": "Талқылау бетіңіз",

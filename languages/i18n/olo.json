@@ -2741,7 +2741,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|versii|versiedy}} on tuodu",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|versii|versiedy}} on tuodu wikispäi $2",
 	"javascripttest": "JavaScriptan tarkastus",
-	"javascripttest-qunit-intro": "Kačo [$1 tarkastusohjiet] mediawiki.org-verkosivustol.",
 	"tooltip-pt-userpage": "{{GENDER:|Oma käyttäjänsivu}}",
 	"tooltip-pt-anonuserpage": "IP-adresin käyttäjänsivu",
 	"tooltip-pt-tmpuserpage": "Sinun avtomuattizesti luajittu väliaigaine käyttäjännimi",

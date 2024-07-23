@@ -2748,7 +2748,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|версия}} импорт идiлген",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|версия}} $2 интервикидең импорт идiлген",
 	"javascripttest": "JavaScript сыныхтиры",
-	"javascripttest-qunit-intro": "mediawiki.org. сайтта [$1 тесттер пiчiктерiн] кӧр.",
 	"tooltip-pt-userpage": "{{GENDER:|Сірернің араласчы}} страницазы",
 	"tooltip-pt-anonuserpage": "IP-адрезiмнiң араласчы страницазы",
 	"tooltip-pt-tmpuserpage": "Пос алынҷа ӱр нимеске иділген араласчы адыңар",

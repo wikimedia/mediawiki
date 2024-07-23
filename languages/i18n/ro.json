@@ -2779,7 +2779,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|versiune importată|versiuni importate|de versiuni importate}}",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|versiune|versiuni|de versiuni}} importate de la $2",
 	"javascripttest": "Testare JavaScript",
-	"javascripttest-qunit-intro": "A se vedea [$1 documentația de testare] pe mediawiki.org.",
 	"tooltip-pt-userpage": "Pagina {{GENDER:|dumneavoastră}} de utilizator",
 	"tooltip-pt-anonuserpage": "Pagina de utilizator pentru adresa IP curentă",
 	"tooltip-pt-tmpuserpage": "Numele dvs. de utilizator temporar generat automat",

@@ -2584,7 +2584,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|breyting flutt|breytingar fluttar}} inn",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|breyting flutt|breytingar fluttar}} inn frá $2",
 	"javascripttest": "JavaScript prófun",
-	"javascripttest-qunit-intro": "Sjá [$1 tilraunaskjölun] á mediawiki.org.",
 	"tooltip-pt-userpage": "Notandasíðan þín",
 	"tooltip-pt-anonuserpage": "Notandasíðan fyrir IP-staðfangið sem þú ert að breyta sem út frá",
 	"tooltip-pt-tmpuserpage": "Sjálfvirkt útbúið tímabundið notandanafn þitt",

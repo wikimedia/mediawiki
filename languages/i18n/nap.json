@@ -2413,7 +2413,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|verzione|verziune}} mpurtate",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|verzione|verziune}} mpurtate 'a $2",
 	"javascripttest": "Test JavaScript",
-	"javascripttest-qunit-intro": "Vedite 'a [$1 documentaziona d' 'o test] ncopp'a mediawiki.org.",
 	"tooltip-pt-userpage": "'A paggena {{GENDER:|utente}} vòsta",
 	"tooltip-pt-anonuserpage": "'A paggena utente pe l'IP ca vuje state cagnanno cumme",
 	"tooltip-pt-mytalk": "'A paggena 'e chiacchiera {{GENDER:|vòsta}}",

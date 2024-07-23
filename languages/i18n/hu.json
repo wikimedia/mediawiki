@@ -2853,7 +2853,6 @@
 	"import-logentry-upload-detail": "$1 változat importálva",
 	"import-logentry-interwiki-detail": "$1 változat innen: $2",
 	"javascripttest": "JavaScript tesztelés",
-	"javascripttest-qunit-intro": "Lásd a [$1 tesztelési dokumentációt]  a mediawiki.org helyen.",
 	"tooltip-pt-userpage": "A szerkesztőlapod",
 	"tooltip-pt-anonuserpage": "Az általad használt IP-címhez tartozó felhasználói lap",
 	"tooltip-pt-tmpuserpage": "Az automatikusan generált ideiglenes felhasználóneved",

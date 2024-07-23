@@ -2798,7 +2798,6 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|revisió|revisions}} importades",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|revisió|revisions}} importades de $2",
 	"javascripttest": "Proves de JavaScript",
-	"javascripttest-qunit-intro": "Consulteu la [documentació de tests de $1] a mediawiki.org.",
 	"tooltip-pt-userpage": "{{GENDER:|La vostra}} pàgina d'usuari",
 	"tooltip-pt-anonuserpage": "La pàgina d'usuari per la ip que utilitzeu",
 	"tooltip-pt-tmpuserpage": "El vostre nom d'usuari temporal generat automàticament",
