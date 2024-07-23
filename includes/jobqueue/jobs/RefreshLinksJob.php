@@ -384,9 +384,19 @@ class RefreshLinksJob extends Job {
 		}
 
 		$cachedOutput = $this->getParserOutputFromCache( $parserCache, $page, $revision, $stats );
-		if ( $cachedOutput ) {
+
+		if ( $cachedOutput && $this->canUseParserOutputFromCache( $cachedOutput, $revision ) ) {
+			$stats->getCounter( 'refreshlinks_parsercache_operations_total' )
+				->setLabel( 'status', 'cache_hit' )
+				->copyToStatsdAt( 'refreshlinks.parser_cached' )
+				->increment();
+
 			return $cachedOutput;
 		}
+
+		$statsCounter = $stats->getCounter( 'refreshlinks_parsercache_operations_total' )
+			->setLabel( 'status', 'cache_miss' )
+			->copyToStatsdAt( 'refreshlinks.parser_uncached' );
 
 		$causeAction = $this->params['causeAction'] ?? 'RefreshLinksJob';
 		$renderedRevision = $renderer->getRenderedRevision(
@@ -402,6 +412,24 @@ class RefreshLinksJob extends Job {
 			'generate-html' => $this->shouldGenerateHTMLOnEdit( $revision )
 		] );
 		$output->setCacheTime( $parseTimestamp ); // notify LinksUpdate::doUpdate()
+
+		// Collect stats on parses that don't actually change the page content.
+		// In that case, we could abort here, and perhaps we could also avoid
+		// triggering CDN purges (T369898).
+		if ( !$cachedOutput ) {
+			// There was no cached output
+			$statsCounter->setLabel( 'html_changed', 'unknown' );
+		} elseif ( $cachedOutput->getRawText() === $output->getRawText() ) {
+			// We have cached output, but we couldn't be sure that it was still good.
+			// So we parsed again, but the result turned out to be the same HTML as
+			// before.
+			$statsCounter->setLabel( 'html_changed', 'no' );
+		} else {
+			// Re-parsing yielded HTML different from the cached output.
+			$statsCounter->setLabel( 'html_changed', 'yes' );
+		}
+
+		$statsCounter->increment();
 
 		return $output;
 	}
@@ -469,7 +497,6 @@ class RefreshLinksJob extends Job {
 		RevisionRecord $currentRevision,
 		StatsFactory $stats
 	) {
-		$cachedOutput = null;
 		// If page_touched changed after this root job, then it is likely that
 		// any views of the pages already resulted in re-parses which are now in
 		// cache. The cache can be reused to avoid expensive parsing in some cases.
@@ -478,33 +505,29 @@ class RefreshLinksJob extends Job {
 			$opportunistic = !empty( $this->params['isOpportunistic'] );
 			if ( $page->getTouched() >= $rootTimestamp || $opportunistic ) {
 				// Cache is suspected to be up-to-date so it's worth the I/O of checking.
-				// As long as the cache rev ID matches the current rev ID and it reflects
-				// the job's triggering change, then it is usable.
+				// We call canUseParserOutputFromCache() later to check if it's usable.
 				$parserOptions = $page->makeParserOptions( 'canonical' );
 				$output = $parserCache->getDirty( $page, $parserOptions );
 				if (
 					$output &&
-					$output->getCacheRevisionId() == $currentRevision->getId() &&
-					$output->getCacheTime() >= $this->getLagAwareRootTimestamp()
+					$output->getCacheRevisionId() == $currentRevision->getId()
 				) {
-					$cachedOutput = $output;
+					return $output;
 				}
 			}
 		}
 
-		if ( $cachedOutput ) {
-			$stats->getCounter( 'refreshlinks_parsercache_operations_total' )
-				->setLabel( 'status', 'cache_hit' )
-				->copyToStatsdAt( 'refreshlinks.parser_cached' )
-				->increment();
-		} else {
-			$stats->getCounter( 'refreshlinks_parsercache_operations_total' )
-				->setLabel( 'status', 'cache_miss' )
-				->copyToStatsdAt( 'refreshlinks.parser_uncached' )
-				->increment();
-		}
+		return null;
+	}
 
-		return $cachedOutput;
+	private function canUseParserOutputFromCache(
+		ParserOutput $cachedOutput,
+		RevisionRecord $currentRevision
+	) {
+		// As long as the cache rev ID matches the current rev ID and it reflects
+		// the job's triggering change, then it is usable.
+		return $cachedOutput->getCacheRevisionId() == $currentRevision->getId()
+			&& $cachedOutput->getCacheTime() >= $this->getLagAwareRootTimestamp();
 	}
 
 	/**
