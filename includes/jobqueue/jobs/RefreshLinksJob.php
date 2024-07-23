@@ -387,16 +387,14 @@ class RefreshLinksJob extends Job {
 		$statsCounter = $stats->getCounter( 'refreshlinks_parsercache_operations_total' );
 
 		if ( $cachedOutput && $this->canUseParserOutputFromCache( $cachedOutput, $revision ) ) {
-			$statsCounter->setLabel( 'status', 'cache_hit' )
+			$statsCounter
+				->setLabel( 'status', 'cache_hit' )
 				->setLabel( 'html_changed', 'n/a' )
 				->copyToStatsdAt( 'refreshlinks.parser_cached' )
 				->increment();
 
 			return $cachedOutput;
 		}
-
-		$statsCounter->setLabel( 'status', 'cache_miss' )
-			->copyToStatsdAt( 'refreshlinks.parser_uncached' );
 
 		$causeAction = $this->params['causeAction'] ?? 'RefreshLinksJob';
 		$parserOptions = $page->makeParserOptions( 'canonical' );
@@ -425,18 +423,22 @@ class RefreshLinksJob extends Job {
 		// triggering CDN purges (T369898).
 		if ( !$cachedOutput ) {
 			// There was no cached output
-			$statsCounter->setLabel( 'html_changed', 'unknown' );
+			$htmlChanged = 'unknown';
 		} elseif ( $cachedOutput->getRawText() === $output->getRawText() ) {
 			// We have cached output, but we couldn't be sure that it was still good.
 			// So we parsed again, but the result turned out to be the same HTML as
 			// before.
-			$statsCounter->setLabel( 'html_changed', 'no' );
+			$htmlChanged = 'no';
 		} else {
 			// Re-parsing yielded HTML different from the cached output.
-			$statsCounter->setLabel( 'html_changed', 'yes' );
+			$htmlChanged = 'yes';
 		}
 
-		$statsCounter->increment();
+		$statsCounter
+			->setLabel( 'status', 'cache_miss' )
+			->setLabel( 'html_changed', $htmlChanged )
+			->copyToStatsdAt( 'refreshlinks.parser_uncached' )
+			->increment();
 
 		return $output;
 	}
