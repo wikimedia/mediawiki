@@ -189,4 +189,22 @@ class StatsFactory {
 	public static function newNull(): self {
 		return new self( new StatsCache(), new NullEmitter(), new NullLogger() );
 	}
+
+	/**
+	 * Returns an instance of UnitTestingHelper.
+	 *
+	 * Example:
+	 * ```php
+	 * $unitTestingHelper = StatsFactory::newUnitTestingHelper();
+	 * $statsFactory = $unitTestingHelper->getStatsFactory()
+	 * MyClass( $statsFactory )->execute();
+	 * $this->assertEquals( 1, $unitTestingHelper->count( 'example_executions_total{fooLabel="bar"}' ) );
+	 * ```
+	 *
+	 * @since 1.44
+	 * @return UnitTestingHelper
+	 */
+	public static function newUnitTestingHelper() {
+		return new UnitTestingHelper();
+	}
 }
