@@ -25,10 +25,7 @@ use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig as ParsoidSiteConfig;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Status\Status;
 use Psr\Log\LoggerInterface;
-use Wikimedia\Parsoid\Core\ClientError;
-use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 
 /**
  * @ingroup JobQueue
@@ -144,25 +141,12 @@ class ParsoidCachePrewarmJob extends Job {
 		$options = $this->params['options'] ?? 0;
 
 		// getParserOutput() will write to ParserCache.
-		try {
-			$status = $this->parserOutputAccess->getParserOutput(
-				$page,
-				$parserOpts,
-				$rev,
-				$options
-			);
-		} catch ( ClientError $e ) {
-			// This exception is only thrown by Parsoid when (a)
-			// variant language is invalid or (b) when DOMUtils
-			// encounters "a name invalid in XML", neither of which
-			// *should* occur here.  But just in case...
-			$status = Status::newFatal( 'parsoid-client-error', $e->getMessage() );
-		} catch ( ResourceLimitExceededException $e ) {
-			// This exception is only thrown by Parsoid when the
-			// wikitext size limit is exceeded, which shouldn't happen
-			// in any articles retrieved from the DB.
-			$status = Status::newFatal( 'parsoid-resource-limit-exceeded', $e->getMessage() );
-		}
+		$status = $this->parserOutputAccess->getParserOutput(
+			$page,
+			$parserOpts,
+			$rev,
+			$options
+		);
 
 		if ( !$status->isOK() ) {
 			$this->logger->error( __METHOD__ . ': Parsoid error', [
