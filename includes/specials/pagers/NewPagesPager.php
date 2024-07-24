@@ -225,7 +225,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$revRecord = $this->revisionFromRcResult( $row, $title );
 
 		$classes = [];
-		$attribs = [ 'data-mw-revid' => $row->rev_id ];
+		$attribs = [ 'data-mw-revid' => $row->rc_this_oldid ];
 
 		$lang = $this->getLanguage();
 		$dm = $lang->getDirMark();
