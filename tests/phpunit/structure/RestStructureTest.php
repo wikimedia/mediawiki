@@ -300,6 +300,11 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 			$ret['issues'][Handler::PARAM_SOURCE] = "PARAM_SOURCE must be one of " . implode( ', ', Validator::KNOWN_PARAM_SOURCES );
 		}
 
+		// Check that "array" type is not used in getParamSettings
+		if ( isset( $settings[ParamValidator::PARAM_TYPE] ) && $settings[ParamValidator::PARAM_TYPE] === 'array' ) {
+			$this->fail( "$msg: $dataName: 'array' type is not allowed in getParamSettings" );
+		}
+
 		// Warn about unknown keys. Don't fail, they might be for forward- or back-compat.
 		if ( is_array( $settings ) ) {
 			$keys = array_diff(
