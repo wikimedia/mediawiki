@@ -205,17 +205,20 @@ class ContextTest extends TestCase {
 	public static function skinsProvider(): Generator {
 		// expected skin, supplied skin, installed skins
 		yield 'keep validated' => [
-			'example', [ 'skin' => 'example' ],
-			[ 'example' => 'ExampleSkin', 'foo' => 'FooSkin', 'bar' => 'BarSkin' ]
+			'example',
+			[ 'skin' => 'example' ],
+			[ 'example', 'foo', 'bar' ]
 		];
 
 		yield 'fallback invalid' => [
-			'fallback', [ 'skin' => 'not-example' ],
-			[ 'example' => 'ExampleSkin', 'foo' => 'FooSkin', 'bar' => 'BarSkin' ]
+			'fallback',
+			[ 'skin' => 'not-example' ],
+			[ 'example', 'foo', 'bar' ]
 		];
 
 		yield 'keep anything without validation' => [
-			'not-example', [ 'skin' => 'not-example' ],
+			'not-example',
+			[ 'skin' => 'not-example' ],
 			null
 		];
 	}
