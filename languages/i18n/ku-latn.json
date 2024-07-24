@@ -562,7 +562,7 @@
 	"content-model-text": "nivîsa sade",
 	"content-json-empty-object": "Objeya vala",
 	"content-json-empty-array": "Rêza vala",
-	"undo-success": "Ev guhartin dikare were şûndekirin.\nJi kerema xwe ferqa piştî tomarkirinê bibîne, bê ka tu dixwazî vê guhwrtoyê biweşînî an na. Ger te xeletiyem kir, ji kerema xwe derkeve.",
+	"undo-success": "Ev guhartin kare were şûndekirin.\nJi kerema xwe ferqa piştî qeydkirinê bibîne, bê ka tu dixwazî vê guhartoyê biweşînî an na. Ger te xeletiyek kir, ji kerema xwe derkeve.",
 	"undo-failure": "Ji ber guhartinên piştî wê ev guhartin nikare were şûndekirin.",
 	"undo-summary": "Guhartoya [[Special:Diff/$1|$1]] yê [[Special:Contributions/$2|$2]] ([[User talk:$2|gotûbêj]]) şûnde kir",
 	"viewpagelogs": "Guhartinên vê rûpelê bibîne",

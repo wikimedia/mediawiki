@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ignatgg"
+		]
+	},
+	"cdx-input-chip-aria-description": "Натисніть Enter для редагування або Знімайте для видалення.",
+	"cdx-table-select-all-label": "Виберіть всі рядки",
+	"cdx-table-select-row-label": "Виберіть рядок $1 з $2",
+	"cdx-table-sort-caption": "$1, заголовки колони з кнопками можна сортувати."
+}

@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"আফতাবুজ্জামান"
+		]
+	},
+	"cdx-input-chip-aria-description": "সম্পাদনা করতে বা অপসারণ করতে এন্টার টিপুন।",
+	"cdx-dialog-close-button-label": "বন্ধ করুন",
+	"cdx-label-optional-flag": "(ঐচ্ছিক)",
+	"cdx-message-dismiss-button-label": "বন্ধ করুন",
+	"cdx-search-input-search-button-label": "অনুসন্ধান",
+	"cdx-table-select-all-label": "সব সারি নির্বাচন করুন",
+	"cdx-table-select-row-label": "$2 এর মধ্যে $1 নং সারি নির্বাচন করুন",
+	"cdx-typeahead-search-search-results-label": "অনুসন্ধানের ফলাফল"
+}

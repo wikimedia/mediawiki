@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nemoralis"
+		]
+	},
+	"cdx-input-chip-aria-description": "Redaktə etmək üçün Enter, silmək üçün Delete düyməsinə basın",
+	"cdx-dialog-close-button-label": "Bağla",
+	"cdx-label-optional-flag": "(məcburi deyil)",
+	"cdx-message-dismiss-button-label": "Bağla",
+	"cdx-search-input-search-button-label": "Axtar",
+	"cdx-table-select-all-label": "Bütün sıraları seç",
+	"cdx-table-select-row-label": "$2 sıradan $1 ədədini seç",
+	"cdx-table-sort-caption": "$1, düymələri olan sütun başlıqları çeşidlənir.",
+	"cdx-typeahead-search-search-results-label": "Axtarış nəticələri"
+}

@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Woytecr"
+		]
+	},
+	"cdx-dialog-close-button-label": "Zamknij",
+	"cdx-label-optional-flag": "(opcjonalne)",
+	"cdx-message-dismiss-button-label": "Zamknij",
+	"cdx-search-input-search-button-label": "Szukaj",
+	"cdx-table-select-all-label": "Zaznacz wszystkie wiersze",
+	"cdx-table-sort-caption": "$1, nagłówki z przyciskami umożliwiają sortowanie.",
+	"cdx-typeahead-search-search-results-label": "Wyniki wyszukiwania"
+}

@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Rebeccayoga"
+		]
+	},
+	"cdx-dialog-close-button-label": "Tutup",
+	"cdx-message-dismiss-button-label": "Tutup",
+	"cdx-search-input-search-button-label": "Cari",
+	"cdx-typeahead-search-search-results-label": "Hasil pencarian"
+}

@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bjankuloski06"
+		]
+	},
+	"cdx-input-chip-aria-description": "Стиснете на Enter за да уредите или Delete за да отстраните.",
+	"cdx-dialog-close-button-label": "Затвори",
+	"cdx-label-optional-flag": "(незадолжително)",
+	"cdx-message-dismiss-button-label": "Затвори",
+	"cdx-search-input-search-button-label": "Пребарај",
+	"cdx-table-select-all-label": "Избери ги сите редови",
+	"cdx-table-select-row-label": "Избери ред $1 од $2",
+	"cdx-table-sort-caption": "$1, заглавијата на столбовите со копчиња се подредливи.",
+	"cdx-typeahead-search-search-results-label": "Исход од пребарувањето"
+}

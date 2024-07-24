@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kizule",
+			"Milicevic01"
+		]
+	},
+	"cdx-input-chip-aria-description": "Притисните Enter да уредите или Delete да уклоните.",
+	"cdx-dialog-close-button-label": "Затвори",
+	"cdx-label-optional-flag": "(необавезно)",
+	"cdx-message-dismiss-button-label": "Затвори",
+	"cdx-search-input-search-button-label": "Претрага",
+	"cdx-table-select-all-label": "Изабери све редове",
+	"cdx-typeahead-search-search-results-label": "Резултати претраге"
+}

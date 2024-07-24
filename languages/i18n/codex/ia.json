@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"cdx-input-chip-aria-description": "Preme ‘Enter’ pro modificar o ‘Delete’ pro eliminar.",
+	"cdx-dialog-close-button-label": "Clauder",
+	"cdx-label-optional-flag": "(optional)",
+	"cdx-message-dismiss-button-label": "Clauder",
+	"cdx-search-input-search-button-label": "Cercar",
+	"cdx-table-select-all-label": "Seliger tote le lineas",
+	"cdx-table-select-row-label": "Seliger le linea $1 de $2",
+	"cdx-table-sort-caption": "$1; le capites de columna con buttones es ordinabile.",
+	"cdx-typeahead-search-search-results-label": "Resultatos del recerca"
+}

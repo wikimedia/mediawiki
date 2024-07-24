@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Toliño"
+		]
+	},
+	"cdx-input-chip-aria-description": "Preme Intro para editar ou Supr para eliminar.",
+	"cdx-dialog-close-button-label": "Pechar",
+	"cdx-label-optional-flag": "(opcional)",
+	"cdx-message-dismiss-button-label": "Pechar",
+	"cdx-search-input-search-button-label": "Procurar",
+	"cdx-table-select-all-label": "Seleccionar todas as ringleiras",
+	"cdx-table-select-row-label": "Seleccionar a ringleira $1 de $2",
+	"cdx-table-sort-caption": "$1, as cabeceiras de columna con botóns pódense ordenar.",
+	"cdx-typeahead-search-search-results-label": "Resultados da procura"
+}

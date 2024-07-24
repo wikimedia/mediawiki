@@ -401,7 +401,7 @@
 	"badtitle": "Geçersiz başlık",
 	"badtitletext": "Girilen sayfa adı ya hatalı ya boş ya da diller arası bağlantı veya vikiler arası bağlantı içerdiğinden geçerli değil. Başlıklarda kullanılması yasak olan bir ya da daha çok karakter içeriyor olabilir.",
 	"title-invalid": "İstenen sayfa başlığı geçersiz",
-	"title-invalid-empty": "İstenilen sayfanın başlığı boş veya sadece bir ad alanının adını taşıyor.",
+	"title-invalid-empty": "İstenilen sayfanın başlığı boş ya da yalnızca bir ad alanı ön ekini içeriyor.",
 	"title-invalid-utf8": "İstenen sayfanın başlığı geçersiz bir UTF-8 dizisi içeriyor.",
 	"title-invalid-interwiki": "İstenen sayfa başlığı, başlıklarda kullanılamayan bir vikiarası bağlantısı içeriyor.",
 	"title-invalid-talk-namespace": "İstenen sayfa başlığı, var olmayan bir tartışma sayfasına atıfta bulunur.",

@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Huñvreüs"
+		]
+	},
+	"cdx-input-chip-aria-description": "Pouezit war Ensoc’hañ da aozañ pe Lemel da ziverkañ.",
+	"cdx-dialog-close-button-label": "Serriñ",
+	"cdx-label-optional-flag": "(diret)",
+	"cdx-message-dismiss-button-label": "Serriñ",
+	"cdx-search-input-search-button-label": "Klask",
+	"cdx-table-select-all-label": "Diuzañ an holl vannoù",
+	"cdx-table-select-row-label": "Diuzañ bann $1 diwar $2",
+	"cdx-table-sort-caption": "$1, gallout a reer renkañ pennoù ar bannoù gant bountonioù.",
+	"cdx-typeahead-search-search-results-label": "Disoc'hoù enklask"
+}

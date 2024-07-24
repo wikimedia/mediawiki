@@ -2710,7 +2710,7 @@
 	"importstart": "Çıxarılacaq səhifələr...",
 	"import-revision-count": "$1 {{PLURAL:$1|revision|dəyişiklik}}",
 	"importnopages": "Çıxarılacaq səhifə yoxdur.",
-	"importfailed": "Uğursuz çıxarış:\n$1",
+	"importfailed": "{{PLURAL:$2|İdxal uğursuz oldu}}:\n$1",
 	"importcantopen": "Çıxarılacaq fayl açılmadı",
 	"importbadinterwiki": "Yanlış interviki keçidi",
 	"importsuccess": "Çıxarma başa çatdı!",

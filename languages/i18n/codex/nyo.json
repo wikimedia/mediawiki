@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ahiise2"
+		]
+	},
+	"cdx-input-chip-aria-description": "Funza \"Taahamu\" kufoora rundi \"Ita\" kwihaho.",
+	"cdx-dialog-close-button-label": "Kinga",
+	"cdx-label-optional-flag": "(noosobora kwegombooza)",
+	"cdx-message-dismiss-button-label": "Kinga",
+	"cdx-search-input-search-button-label": "Serra",
+	"cdx-table-select-all-label": "Cooka emisiitale yoona",
+	"cdx-table-select-row-label": "Cooka omusitale $1 omuli $2",
+	"cdx-typeahead-search-search-results-label": "Ebigarukamu by'okuserra"
+}

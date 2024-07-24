@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ahiise2"
+		]
+	},
+	"cdx-input-chip-aria-description": "Miga \"Taaha\" kuhingisa rundi \"Ragaza\" kwihaho.",
+	"cdx-dialog-close-button-label": "Kinga",
+	"cdx-label-optional-flag": "(waakwekomera)",
+	"cdx-message-dismiss-button-label": "Kinga",
+	"cdx-search-input-search-button-label": "Serra",
+	"cdx-typeahead-search-search-results-label": "Engarukamu z'okuserra"
+}

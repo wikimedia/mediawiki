@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"LittlePaw365"
+		]
+	},
+	"cdx-input-chip-aria-description": "按Enter键可编辑，按Delete键可删除。",
+	"cdx-dialog-close-button-label": "关闭",
+	"cdx-label-optional-flag": "（可选）",
+	"cdx-message-dismiss-button-label": "关闭",
+	"cdx-search-input-search-button-label": "搜索",
+	"cdx-table-select-all-label": "选择所有行",
+	"cdx-table-select-row-label": "选择第$1行（共$2行）",
+	"cdx-table-sort-caption": "$1，有按钮的列表头可以排序。",
+	"cdx-typeahead-search-search-results-label": "搜索结果"
+}

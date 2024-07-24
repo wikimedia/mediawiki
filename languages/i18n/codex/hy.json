@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kareyac"
+		]
+	},
+	"cdx-dialog-close-button-label": "Փակել",
+	"cdx-message-dismiss-button-label": "Փակել",
+	"cdx-typeahead-search-search-results-label": "Որոնման արդյունքներ"
+}

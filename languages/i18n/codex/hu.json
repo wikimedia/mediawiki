@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tacsipacsi"
+		]
+	},
+	"cdx-input-chip-aria-description": "Nyomd le az Enter billentyűt a szerkesztéshez vagy a Delete billentyűt az eltávolításhoz.",
+	"cdx-dialog-close-button-label": "Bezárás",
+	"cdx-label-optional-flag": "(nem kötelező)",
+	"cdx-message-dismiss-button-label": "Bezárás",
+	"cdx-search-input-search-button-label": "Keresés",
+	"cdx-table-select-all-label": "Az összes sor kijelölése",
+	"cdx-table-select-row-label": "A(z) $1. sor kijelölése $2 sorból",
+	"cdx-table-sort-caption": "$1, a gombbal rendelkező oszlopfejlécek rendezhetők.",
+	"cdx-typeahead-search-search-results-label": "Keresési eredmények"
+}

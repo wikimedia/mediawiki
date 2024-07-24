@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kareyac"
+		]
+	},
+	"cdx-dialog-close-button-label": "Գոցել",
+	"cdx-message-dismiss-button-label": "Գոցել",
+	"cdx-search-input-search-button-label": "Որոնել",
+	"cdx-typeahead-search-search-results-label": "Որոնման արդիւնքներ"
+}

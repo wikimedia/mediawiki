@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80"
+		]
+	},
+	"cdx-input-chip-aria-description": "יש ללחוץ Enter כדי לערוך או על Delete כדי להסיר.",
+	"cdx-dialog-close-button-label": "סגירה",
+	"cdx-label-optional-flag": "(לא חובה)",
+	"cdx-message-dismiss-button-label": "סגירה",
+	"cdx-search-input-search-button-label": "חיפוש",
+	"cdx-table-select-all-label": "בחירת כל השורות",
+	"cdx-table-select-row-label": "בחירת שורה $1 מתוך $2",
+	"cdx-table-sort-caption": "$1, ניתן למיין עמודות שבכותרות שלהן יש כפתורים.",
+	"cdx-typeahead-search-search-results-label": "תוצאות חיפוש"
+}

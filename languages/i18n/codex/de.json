@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": []
+	},
+	"cdx-input-chip-aria-description": "Drücke die Eingabetaste zum Bearbeiten oder die Löschtaste zum Entfernen.",
+	"cdx-dialog-close-button-label": "Schließen",
+	"cdx-label-optional-flag": "(optional)",
+	"cdx-message-dismiss-button-label": "Schließen",
+	"cdx-search-input-search-button-label": "Suchen",
+	"cdx-table-select-all-label": "Alle Zeilen auswählen",
+	"cdx-table-select-row-label": "Zeile $1 von $2 auswählen",
+	"cdx-table-sort-caption": "$1, Spaltenüberschriften mit Schaltflächen sind sortierbar.",
+	"cdx-typeahead-search-search-results-label": "Suchergebnisse"
+}

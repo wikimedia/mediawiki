@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jon Harald Søby"
+		]
+	},
+	"cdx-input-chip-aria-description": "Trykk Enter for å redigere eller Delete for å fjerne.",
+	"cdx-dialog-close-button-label": "Lukk",
+	"cdx-label-optional-flag": "(valgfritt)",
+	"cdx-message-dismiss-button-label": "Lukk",
+	"cdx-search-input-search-button-label": "Søk",
+	"cdx-table-select-all-label": "Søk i alle rader",
+	"cdx-table-select-row-label": "Velg rad $1 av $2",
+	"cdx-table-sort-caption": "$1, kolonneoverskrifter med knapper er sorterbare.",
+	"cdx-typeahead-search-search-results-label": "Søkeresultater"
+}
