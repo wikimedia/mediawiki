@@ -2,6 +2,23 @@
 @import 'mw.rcfilters.variables.less';
 @import 'mw.rcfilters.mixins.less';
 
+/* forced night mode */
+// stylelint-disable-next-line selector-class-pattern
+html.skin-theme-clientpref-night.client-js {
+	.mw-rcfilters-ui-highlightColorPickerWidget {
+		&-buttonSelect {
+			&-color {
+				&-none {
+					&.oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon.oo-ui-icon-check {
+						// Force check to be black for white background in night mode
+						filter: invert( 0 ) hue-rotate( 180deg );
+					}
+				}
+			}
+		}
+	}
+}
+
 .mw-rcfilters-ui-highlightColorPickerWidget {
 	&-label {
 		display: block;
