@@ -365,6 +365,18 @@ abstract class Maintenance {
 	}
 
 	/**
+	 * Get the name of an argument.
+	 * @since 1.43
+	 *
+	 * @param int $argId The index (from zero) of the argument.
+	 *
+	 * @return string|null The name of the argument, or null if the argument does not exist.
+	 */
+	protected function getArgName( int $argId ): ?string {
+		return $this->parameters->getArgName( $argId );
+	}
+
+	/**
 	 * Programmatically set the value of the given option.
 	 * Useful for setting up child scripts, see runChild().
 	 *
@@ -1424,5 +1436,27 @@ abstract class Maintenance {
 		}
 
 		return $user;
+	}
+
+	/**
+	 * @param string $prompt The prompt to display to the user
+	 * @param string|null $default The default value to return if the user just presses enter
+	 *
+	 * @return string|null
+	 *
+	 * @since 1.43
+	 */
+	protected function prompt( string $prompt, string $default = null ): ?string {
+		$defaultText = $default === null ? ' > ' : " [{$default}] > ";
+		$promptWithDefault = $prompt . $defaultText;
+		$line = self::readconsole( $promptWithDefault );
+		if ( $line === false ) {
+			return $default;
+		}
+		if ( $line === '' ) {
+			return $default;
+		}
+
+		return $line;
 	}
 }

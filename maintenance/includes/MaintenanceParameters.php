@@ -300,7 +300,7 @@ class MaintenanceParameters {
 	 *
 	 * @param int $argIndex The integer value (from zero) for the arg
 	 *
-	 * @return ?string the name of the argument, or null if no name is defined for that argument
+	 * @return string|null The name of the argument, or null if the argument does not exist.
 	 */
 	public function getArgName( int $argIndex ): ?string {
 		return $this->mArgDefs[ $argIndex ]['name'] ?? null;
