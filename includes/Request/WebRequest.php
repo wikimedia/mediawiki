@@ -82,7 +82,7 @@ class WebRequest {
 
 	/**
 	 * Lazy-init response object
-	 * @var WebResponse
+	 * @var WebResponse|null
 	 */
 	protected ?WebResponse $response = null;
 
