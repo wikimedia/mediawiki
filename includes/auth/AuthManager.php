@@ -181,6 +181,12 @@ class AuthManager implements LoggerAwareInterface {
 	/** Auto-creation is due to temporary account creation on page save */
 	public const AUTOCREATE_SOURCE_TEMP = TempUserCreator::class;
 
+	/**
+	 * @internal To be used by primary authentication providers only.
+	 * @var string "Remember me" status flag shared between auth providers
+	 */
+	public const REMEMBER_ME = 'rememberMe';
+
 	/** @var WebRequest */
 	private $request;
 
@@ -889,7 +895,16 @@ class AuthManager implements LoggerAwareInterface {
 				$req = AuthenticationRequest::getRequestByClass(
 					$beginReqs, RememberMeAuthenticationRequest::class
 				);
-				$rememberMe = $req && $req->rememberMe;
+
+				// T369668: Before we conclude, let's make sure the user hasn't specified
+				// that they want their login remembered elsewhere like in the central domain.
+				// If the user clicked "remember me" in the central domain, then we should
+				// prioritise that when we call continuePrimaryAuthentication() in the provider
+				// that makes calls continuePrimaryAuthentication(). NOTE: It is the responsibility
+				// of the provider to refresh the "remember me" state that will be applied to
+				// the local wiki.
+				$rememberMe = ( $req && $req->rememberMe ) ||
+					$this->getAuthenticationSessionData( self::REMEMBER_ME );
 			}
 			$this->setSessionDataForUser( $user, $rememberMe );
 			$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $response ] );
