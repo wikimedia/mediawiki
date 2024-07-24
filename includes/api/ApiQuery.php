@@ -426,6 +426,7 @@ class ApiQuery extends ApiBase {
 				'SlotRoleStore',
 				'SlotRoleRegistry',
 				'UserNameUtils',
+				'TempUserConfig',
 			],
 		],
 		'search' => [

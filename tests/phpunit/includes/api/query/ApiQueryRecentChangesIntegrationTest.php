@@ -5,10 +5,10 @@ namespace MediaWiki\Tests\Api\Query;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Api\ApiTestCase;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
-use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\WatchedItemQueryService;
 use RecentChange;
 
@@ -20,6 +20,7 @@ use RecentChange;
  * @covers \ApiQueryRecentChanges
  */
 class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
+	use MockAuthorityTrait;
 	use TempUserTestTrait;
 
 	private function getLoggedInTestUser() {
@@ -74,9 +75,7 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromLinkTarget( $target );
 		$page->doUserEditContent(
 			$page->getContentHandler()->unserializeContent( __CLASS__ ),
-			$this->getServiceContainer()
-				->getUserFactory()
-				->newFromUserIdentity( new UserIdentityValue( 123456, '~2024-1' ) ),
+			$this->mockTempUltimateAuthority(),
 			$summary
 		);
 	}
@@ -302,10 +301,26 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 		$tempEditTarget = new TitleValue( NS_MAIN, 'Baz' );
 		$this->doPageEdit( $this->getLoggedInTestUser(), $userEditTarget, 'Create the page' );
 		$this->doAnonPageEdit( $anonEditTarget, 'Create the page' );
+
+		// Test that querying for anonymous edits works even if temporary accounts are disabled
+		$this->disableAutoCreateTempUser();
+		$result = $this->doListRecentChangesRequest( [
+			'rcprop' => 'user',
+			'rcshow' => WatchedItemQueryService::FILTER_NOT_ANON,
+		] );
+		$this->assertEquals(
+			[
+				[
+					'type' => 'new',
+					'user' => $this->getLoggedInTestUser()->getName(),
+				],
+			],
+			$this->getItemsFromRecentChangesResult( $result )
+		);
+
+		// Test that temporary accounts are treated as anonymous
 		$this->doTempPageEdit( $tempEditTarget, 'Create the page' );
-
 		$result = $this->doListRecentChangesRequest( [ 'rcprop' => 'user' ] );
-
 		$this->assertEquals(
 			[
 				[
@@ -503,6 +518,9 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 		$target = new TitleValue( NS_MAIN, 'Thing' );
 		$this->doAnonPageEdit( $target, 'Create the page' );
 
+		$tempEditTarget = new TitleValue( NS_MAIN, 'Baz' );
+		$this->doTempPageEdit( $tempEditTarget, 'Create the page' );
+
 		$resultAnon = $this->doListRecentChangesRequest( [
 			'rcprop' => 'user',
 			'rcshow' => WatchedItemQueryService::FILTER_ANON
@@ -513,8 +531,22 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 		] );
 
 		$items = $this->getItemsFromRecentChangesResult( $resultAnon );
-		$this->assertCount( 1, $items );
-		$this->assertSame( true, $items[0]['anon'], 'anon' );
+		$this->assertCount( 2, $items );
+		$this->assertEquals(
+			[
+				[
+					'type' => 'new',
+					'temp' => true,
+					'user' => '~2024-1',
+				],
+				[
+					'type' => 'new',
+					'anon' => true,
+					'user' => '127.0.0.1',
+				],
+			],
+			$items
+		);
 		$this->assertSame( [], $this->getItemsFromRecentChangesResult( $resultNotAnon ) );
 	}
 

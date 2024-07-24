@@ -30,9 +30,11 @@ use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Title\Title;
+use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserNameUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\RawSQLExpression;
 
 /**
@@ -49,6 +51,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	private NameTableStore $slotRoleStore;
 	private SlotRoleRegistry $slotRoleRegistry;
 	private UserNameUtils $userNameUtils;
+	private TempUserConfig $tempUserConfig;
 
 	private $formattedComments = [];
 
@@ -61,6 +64,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	 * @param NameTableStore $slotRoleStore
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param UserNameUtils $userNameUtils
+	 * @param TempUserConfig $tempUserConfig
 	 */
 	public function __construct(
 		ApiQuery $query,
@@ -70,7 +74,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		NameTableStore $changeTagDefStore,
 		NameTableStore $slotRoleStore,
 		SlotRoleRegistry $slotRoleRegistry,
-		UserNameUtils $userNameUtils
+		UserNameUtils $userNameUtils,
+		TempUserConfig $tempUserConfig
 	) {
 		parent::__construct( $query, $moduleName, 'rc' );
 		$this->commentStore = $commentStore;
@@ -79,6 +84,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$this->slotRoleStore = $slotRoleStore;
 		$this->slotRoleRegistry = $slotRoleRegistry;
 		$this->userNameUtils = $userNameUtils;
+		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	private bool $fld_comment = false;
@@ -207,12 +213,32 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			if ( isset( $show['anon'] ) || isset( $show['!anon'] ) ) {
 				$this->addTables( 'actor', 'actor' );
 				$this->addJoinConds( [ 'actor' => [ 'JOIN', 'actor_id=rc_actor' ] ] );
-				$this->addWhereIf(
-					[ 'actor_user' => null ], isset( $show['anon'] )
-				);
-				$this->addWhereIf(
-					$db->expr( 'actor_user', '!=', null ), isset( $show['!anon'] )
-				);
+
+				if ( $this->tempUserConfig->isKnown() ) {
+					$isAnon = isset( $show['anon'] );
+					$anonExpr = $db->expr( 'actor_user', $isAnon ? '=' : '!=', null );
+					if ( $isAnon ) {
+						$anonExpr = $anonExpr->orExpr( $this->tempUserConfig->getMatchCondition(
+							$db,
+							'actor_name',
+							IExpression::LIKE
+						) );
+					} else {
+						$anonExpr = $anonExpr->andExpr( $this->tempUserConfig->getMatchCondition(
+							$db,
+							'actor_name',
+							IExpression::NOT_LIKE
+						) );
+					}
+					$this->addWhere( $anonExpr );
+				} else {
+					$this->addWhereIf(
+						[ 'actor_user' => null ], isset( $show['anon'] )
+					);
+					$this->addWhereIf(
+						$db->expr( 'actor_user', '!=', null ), isset( $show['!anon'] )
+					);
+				}
 			}
 			$this->addWhereIf( [ 'rc_patrolled' => 0 ], isset( $show['!patrolled'] ) );
 			$this->addWhereIf( $db->expr( 'rc_patrolled', '!=', 0 ), isset( $show['patrolled'] ) );
