@@ -4,15 +4,12 @@ use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 
 /**
- * @coversDefaultClass \MediaWiki\Config\ServiceOptions
+ * @covers \MediaWiki\Config\ServiceOptions
  */
 class ServiceOptionsTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideConstructor
-	 * @covers ::__construct
-	 * @covers ::assertRequiredOptions
-	 * @covers ::get
 	 */
 	public function testConstructor( $expected, $keys, ...$sources ) {
 		$options = new ServiceOptions( $keys, ...$sources );
@@ -79,9 +76,6 @@ class ServiceOptionsTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	/**
-	 * @covers ::__construct
-	 */
 	public function testKeyNotFound() {
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'Key "a" not found in input sources' );
@@ -89,20 +83,12 @@ class ServiceOptionsTest extends MediaWikiUnitTestCase {
 		new ServiceOptions( [ 'a' ], [ 'b' => 'bval' ], [ 'c' => 'cval' ] );
 	}
 
-	/**
-	 * @covers ::__construct
-	 * @covers ::assertRequiredOptions
-	 */
 	public function testOutOfOrderAssertRequiredOptions() {
 		$options = new ServiceOptions( [ 'a', 'b' ], [ 'a' => '', 'b' => '' ] );
 		$options->assertRequiredOptions( [ 'b', 'a' ] );
 		$this->assertTrue( true, 'No exception thrown' );
 	}
 
-	/**
-	 * @covers ::__construct
-	 * @covers ::get
-	 */
 	public function testGetUnrecognized() {
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'Unrecognized option "b"' );
@@ -111,10 +97,6 @@ class ServiceOptionsTest extends MediaWikiUnitTestCase {
 		$options->get( 'b' );
 	}
 
-	/**
-	 * @covers ::__construct
-	 * @covers ::assertRequiredOptions
-	 */
 	public function testExtraKeys() {
 		$this->expectException( Wikimedia\Assert\PreconditionException::class );
 		$this->expectExceptionMessage( 'Precondition failed: Unsupported options passed: b, c!' );
@@ -123,10 +105,6 @@ class ServiceOptionsTest extends MediaWikiUnitTestCase {
 		$options->assertRequiredOptions( [ 'a' ] );
 	}
 
-	/**
-	 * @covers ::__construct
-	 * @covers ::assertRequiredOptions
-	 */
 	public function testMissingKeys() {
 		$this->expectException( Wikimedia\Assert\PreconditionException::class );
 		$this->expectExceptionMessage( 'Precondition failed: Required options missing: a, b!' );
@@ -135,10 +113,6 @@ class ServiceOptionsTest extends MediaWikiUnitTestCase {
 		$options->assertRequiredOptions( [ 'a', 'b', 'c' ] );
 	}
 
-	/**
-	 * @covers ::__construct
-	 * @covers ::assertRequiredOptions
-	 */
 	public function testExtraAndMissingKeys() {
 		$this->expectException( Wikimedia\Assert\PreconditionException::class );
 		$this->expectExceptionMessage(
