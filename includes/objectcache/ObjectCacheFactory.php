@@ -99,7 +99,7 @@ class ObjectCacheFactory {
 	/** @var callable */
 	private $dbLoadBalancerFactory;
 	/**
-	 * @internal ObjectCacheTest only
+	 * @internal ObjectCacheFactoryTest only
 	 * @var string
 	 */
 	public static $localServerCacheClass;

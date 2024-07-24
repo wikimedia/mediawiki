@@ -7,16 +7,13 @@ use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \ObjectCache
+ * @covers \ObjectCacheFactory
  * @group BagOStuff
  * @group Database
  */
-class ObjectCacheTest extends MediaWikiIntegrationTestCase {
+class ObjectCacheFactoryIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
-		// Parent calls ObjectCache::clear() among other things
-		parent::setUp();
-
 		$this->setCacheConfig();
 		$this->setMainCache( CACHE_NONE );
 		$this->overrideConfigValues( [
@@ -129,9 +126,6 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideLocalServerKeyspace
-	 * @covers \ObjectCache
-	 * @covers \ObjectCacheFactory
-	 * @covers \MediaWiki\WikiMap\WikiMap
 	 */
 	public function testLocalServerKeyspace( $cachePrefix, $dbName, $dbPrefix, $expect ) {
 		$this->overrideConfigValues( [
