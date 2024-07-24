@@ -501,6 +501,8 @@ because of Phabricator reports.
   * HtmlInputTransformHelper::init()
   Similarly, calling the constructor method in PageRestHelperFactory
   without the appropriate initialization arguments is now deprecated.
+* EditPage::internalAttemptSave() is deprecated as part of cleaning up how
+  edits are saved, see T157658 for details.
 * …
 
 === Other changes in 1.43 ===

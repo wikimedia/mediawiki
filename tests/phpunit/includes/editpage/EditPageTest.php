@@ -951,7 +951,7 @@ hello
 		$req = new FauxRequest( $edit, true );
 		$ep->importFormData( $req );
 
-		return $ep->internalAttemptSave( $result, false );
+		return $ep->attemptSave( $result );
 	}
 
 	/**
