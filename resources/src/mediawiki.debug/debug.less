@@ -1,7 +1,9 @@
+@import 'mediawiki.skin.variables.less';
+
 .mw-debug {
 	width: 100%;
-	background-color: #eee;
-	border-top: 1px solid #aaa;
+	background-color: @background-color-notice-subtle;
+	border-top: 1px solid @border-color-base;
 
 	pre {
 		/* TODO: Re-evaluate whether we should keep this over-ride or switch to ems */
@@ -19,10 +21,10 @@
 		table-layout: fixed;
 
 		tr {
-			background-color: #fff;
+			background-color: @background-color-base;
 
 			&:nth-child( even ) {
-				background-color: #f9f9f9;
+				background-color: @background-color-interactive-subtle;
 			}
 		}
 
@@ -32,7 +34,7 @@
 		}
 
 		td {
-			border-bottom: 1px solid #eee;
+			border-bottom: 1px solid @border-color-muted;
 			word-wrap: break-word;
 
 			/* stylelint-disable-next-line selector-class-pattern */
@@ -42,7 +44,7 @@
 
 			/* stylelint-disable-next-line selector-class-pattern */
 			span.stats {
-				color: #727272;
+				color: @color-placeholder;
 			}
 		}
 	}
@@ -60,7 +62,7 @@
 
 .mw-debug-bits {
 	text-align: center;
-	border-bottom: 1px solid #aaa;
+	border-bottom: 1px solid @border-color-base;
 }
 
 .mw-debug-bit {
@@ -72,27 +74,27 @@
 }
 
 .mw-debug-panelink {
-	background-color: #eee;
-	border-right: 1px solid #ccc;
+	background-color: @background-color-notice-subtle;
+	border-right: 1px solid @border-color-subtle;
 
 	&:first-child {
-		border-left: 1px solid #ccc;
+		border-left: 1px solid @border-color-subtle;
 	}
 
 	&:hover {
-		background-color: #fefefe;
+		background-color: @background-color-button-quiet--hover;
 		cursor: pointer;
 	}
 
 	/* stylelint-disable-next-line selector-class-pattern */
 	&.current {
-		background-color: #dedede;
+		background-color: @background-color-button-quiet--active;
 	}
 }
 
 a.mw-debug-panelabel,
 a.mw-debug-panelabel:visited {
-	color: #000;
+	color: @color-emphasized;
 }
 
 .mw-debug-pane {
@@ -103,7 +105,7 @@ a.mw-debug-panelabel:visited {
 	/* TODO: Re-evaluate whether we should keep this over-ride or switch to ems */
 	/* stylelint-disable-next-line declaration-property-unit-disallowed-list */
 	font-size: 11px;
-	background-color: #e1eff2;
+	background-color: @background-color-progressive-subtle;
 	box-sizing: border-box;
 }
 
@@ -122,7 +124,7 @@ a.mw-debug-panelabel:visited {
 	th,
 	td,
 	table {
-		border: 1px solid #d0dbb3;
+		border: 1px solid @border-color-subtle;
 		border-collapse: collapse;
 		margin: 0;
 	}
@@ -136,12 +138,12 @@ a.mw-debug-panelabel:visited {
 	}
 
 	th {
-		background-color: #f1f7e2;
+		background-color: @background-color-warning-subtle;
 		font-weight: bold;
 	}
 
 	td {
-		background-color: #fff;
+		background-color: @background-color-transparent;
 	}
 }
 
@@ -157,9 +159,9 @@ a.mw-debug-panelabel:visited {
 }
 
 .mw-debug-console-log {
-	background-color: #add8e6;
+	background-color: @background-color-content-added;
 }
 
 .mw-debug-console-warn {
-	background-color: #ffa07a;
+	background-color: @background-color-warning-subtle;
 }
