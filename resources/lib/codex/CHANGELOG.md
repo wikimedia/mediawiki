@@ -1,3 +1,26 @@
+# 1.10.0 / 2024-07-25
+
+## Features
+- useI18n: Add useI18nWithOverride and use in SearchInput (Roan Kattouw)
+
+## Styles
+- Link: Use `:focus-visible` when links are focused by keyboard (Volker E.)
+
+## Code
+- Button, ToggleButton: improve keypress event handling (Eric Gardner)
+- Dialog: restore focus to previously-focused element on close (Eric Gardner)
+- Dialog, Label, Message: use useI18nWithOverride composable (lwatson)
+- useI18n: Simplify unit tests (Roan Kattouw)
+
+## Docs
+- Message: fix demo's usage of `allowUserDismiss` prop (lwatson)
+- docs: clarify usage of ToggleButtonGroup and Tabs (bmartinezcalvo)
+- demo: Remove wrong disabled Accordion example (Volker E.)
+- docs: Fix links to TextInput props docs (Anne Tomasevich)
+- docs: include guidelines for combobox types (bmartinezcalvo)
+- docs: Add developer docs on i18n system (Anne Tomasevich)
+- demo: Add Table demo with row actions (Anne Tomasevich)
+
 # 1.9.0 / 2024-07-10
 
 ## Features

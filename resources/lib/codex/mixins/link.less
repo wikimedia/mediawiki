@@ -53,8 +53,14 @@
 		text-decoration: @text-decoration-underline;
 	}
 
-	&:focus {
+	&:focus-visible {
 		outline: @border-style-base @border-width-thick @outline-color-progressive--focus;
+	}
+
+	@supports not selector( :focus-visible ) {
+		&:focus {
+			outline: @border-style-base @border-width-thick @outline-color-progressive--focus;
+		}
 	}
 
 	.cdx-icon:last-child {
