@@ -391,7 +391,7 @@ class CommentStore {
 	 * @param string|null $data Comment data
 	 * @return int 32-bit signed integer
 	 */
-	public static function hash( $text, $data ) {
+	private static function hash( $text, $data ) {
 		$hash = crc32( $text ) ^ crc32( (string)$data );
 
 		// 64-bit PHP returns an unsigned CRC, change it to signed for
