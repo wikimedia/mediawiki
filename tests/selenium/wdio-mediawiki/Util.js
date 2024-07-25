@@ -1,6 +1,12 @@
 'use strict';
 
 module.exports = {
+	/**
+	 * Generate a random number string with some additional extended ASCII.
+	 *
+	 * @param {string} prefix A prefix to apply to the generated output.
+	 * @return {string}
+	 */
 	getTestString( prefix = '' ) {
 		return prefix + Math.random().toString() + '-Iñtërnâtiônàlizætiøn';
 	},
