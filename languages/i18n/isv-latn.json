@@ -278,7 +278,7 @@
 	"badtitle": "Nedopustima nazva",
 	"badtitletext": "Nazva ukazanoj stranice jest pogrěšna, prazdna ili ju sodrživaje nepravilny medžujezyčny ili medžuprojektny link.\nMože byti, že ona sodrživaje jedin ili veče znakov nedozvoljenyh v nazvah stranic.",
 	"title-invalid": "Zaprošena nazva stranice jest nepravilna.",
-	"title-invalid-empty": "Zaprošena nazva stranice jest prazdna ili sodrživaje samo nazvu imennogo prostora.",
+	"title-invalid-empty": "Zaprošena nazva stranice jest prazdna ili sodrživaje samo prědstavku imennogo prostora.",
 	"title-invalid-utf8": "Zaprošena nazva stranice sodrživaje nepravilny pored znakov UTF-8.",
 	"title-invalid-interwiki": "Zaprošena nazva stranice sodrživaje medžujezyčny vikilink, ktory ne može byti upotrěbjeny v nazvah stranic.",
 	"title-invalid-talk-namespace": "Zaprošena nazva stranice odnosi se k besědě, ktora ne može jestvovati.",

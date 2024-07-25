@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"No Sleep till Krupki"
+		]
+	},
+	"cdx-input-chip-aria-description": "Націсніце Enter для праўкі або Delete для выдалення.",
+	"cdx-dialog-close-button-label": "Закрыць",
+	"cdx-label-optional-flag": "(неабавязкова)",
+	"cdx-message-dismiss-button-label": "Закрыць",
+	"cdx-search-input-search-button-label": "Пошук",
+	"cdx-table-select-all-label": "Выбраць усе радкі",
+	"cdx-table-select-row-label": "Выбраць радок $1 з $2",
+	"cdx-table-sort-caption": "$1, загалоўкі слупкоў з кнопкамі можна сартаваць.",
+	"cdx-typeahead-search-search-results-label": "Вынікі пошуку"
+}

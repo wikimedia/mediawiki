@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"ऐक्टिवेटेड्"
+		]
+	},
+	"cdx-input-chip-aria-description": "सम्पादनला इण्टर अथवा हटावेला डिलीट दबावी ।",
+	"cdx-dialog-close-button-label": "बन्द करी",
+	"cdx-label-optional-flag": "(बैकल्पिक)",
+	"cdx-message-dismiss-button-label": "बन्द करी",
+	"cdx-search-input-search-button-label": "खोजी",
+	"cdx-table-select-all-label": "सब पङ्क्ति चुनी",
+	"cdx-table-select-row-label": "$2 मे से $1 पङ्क्तिके चुनी",
+	"cdx-table-sort-caption": "$1, बटन वाला स्तन्भ शीर्षक क्रमबद्ध हे ।",
+	"cdx-typeahead-search-search-results-label": "खोज परिणाम"
+}

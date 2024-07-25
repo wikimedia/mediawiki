@@ -60,6 +60,7 @@
 	"tog-hideminor": "Пе̄ҋҋтэ удць воа̄йхэзэтҍ о̄дт воа̄йхэзэ нэ̄ммлыстэсьт",
 	"prefs-watchlist": "Кӣчнэм лысст",
 	"prefs-displaywatchlist": "Вуэзхэллэм оа̄ссмуж",
+	"prefs-watchlist-days-max": "Эйй е̄намп $1 {{PLURAL:$1|пе̄ййвэ}}",
 	"prefs-searchoptions": "Озант",
 	"prefs-reset-confirm": "Ныдтҍ, мунн та̄та мӯн оа̄ссмужэтҍ вуэлльктэ."
 }

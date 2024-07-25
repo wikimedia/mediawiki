@@ -10,8 +10,8 @@
 	"cdx-label-optional-flag": "（選擇性）",
 	"cdx-message-dismiss-button-label": "關閉",
 	"cdx-search-input-search-button-label": "搜尋",
-	"cdx-table-select-all-label": "選擇所有列",
-	"cdx-table-select-row-label": "選擇 $2 個列裡的第 $1 列",
+	"cdx-table-select-all-label": "選取所有列",
+	"cdx-table-select-row-label": "選取 $2 個列裡的第 $1 列",
 	"cdx-table-sort-caption": "$1，帶有按鈕的欄位標題可排序。",
 	"cdx-typeahead-search-search-results-label": "搜尋結果"
 }
