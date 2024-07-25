@@ -171,6 +171,7 @@ because of Phabricator reports.
 * (T367991) Added language support for Iban (iba).
 * (T367688) Added language support for Interslavic (Latin) (isv-latn).
 * (T370123) Added language support for Nupe (nup).
+* (T371051) Added language support for Saint Lucian Creole (acf).
 * …
 
 === Breaking changes in 1.43 ===

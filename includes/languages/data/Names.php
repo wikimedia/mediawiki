@@ -46,6 +46,7 @@ class Names {
 		'ab' => 'аԥсшәа', # Abkhaz
 		'abs' => 'bahasa ambon', # Ambonese Malay, T193566
 		'ace' => 'Acèh', # Aceh
+		'acf' => 'Kwéyòl Sent Lisi', # Saint Lucian Creole
 		'acm' => 'عراقي', # Iraqi (Mesopotamian) Arabic
 		'ady' => 'адыгабзэ', # Adyghe
 		'ady-cyrl' => 'адыгабзэ', # Adyghe
