@@ -52,7 +52,7 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 	public function testQueryTimeout() {
 		try {
 			$this->conn->query(
-				'SET STATEMENT max_statement_time=0.001 FOR SELECT sleep(1) FROM dual',
+				'SET STATEMENT max_statement_time=0.001 FOR SELECT sleep(10) FROM dual',
 				__METHOD__
 			);
 			$this->fail( "No DBQueryTimeoutError caught" );
