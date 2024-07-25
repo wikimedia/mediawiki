@@ -53,7 +53,7 @@ var __async = (__this, __arguments, generator) => {
     step((generator = generator.apply(__this, __arguments)).next());
   });
 };
-import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, Comment, warn, watch, withKeys, renderSlot, resolveComponent, createElementVNode, createBlock, resolveDynamicComponent, withCtx, withModifiers, createVNode, Fragment, renderList, createTextVNode, Transition, normalizeStyle, inject, unref, toRef, mergeProps, getCurrentInstance, withDirectives, vModelCheckbox, createSlots, nextTick, vModelDynamic, onUnmounted, vShow, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, Teleport, toRefs, provide, vModelRadio, vModelText } from "vue";
+import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, Comment, warn, watch, withKeys, withModifiers, renderSlot, resolveComponent, createElementVNode, createBlock, resolveDynamicComponent, withCtx, createVNode, Fragment, renderList, createTextVNode, Transition, normalizeStyle, inject, unref, toRef, mergeProps, getCurrentInstance, withDirectives, vModelCheckbox, createSlots, nextTick, vModelDynamic, onUnmounted, vShow, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, Teleport, toRefs, provide, vModelRadio, vModelText } from "vue";
 const g = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', q = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', n1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', d1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', g1 = '<path d="M10 15 2 5h16z"/>', k1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', F1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', t0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', p = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', e0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', V2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', b2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', J2 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', h5 = '<path d="M10 0 3 8h14zm0 18-7-8h14z"/>', M5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', G5 = '<path d="m10 5 8 10H2z"/>', M3 = g, S3 = q, Y3 = n1, X3 = d1, l4 = g1, i4 = k1, m4 = F1, P4 = t0, Y4 = {
   langCodeMap: {
     ar: p
@@ -436,10 +436,18 @@ const _sfc_main$v = defineComponent({
     const setActive = (active) => {
       isActive.value = active;
     };
+    function onKeyDown() {
+      setActive(true);
+    }
+    function onKeyUp(event) {
+      setActive(false);
+      emit("click", event);
+    }
     return {
       rootClasses,
       onClick,
-      setActive
+      onKeyDown,
+      onKeyUp
     };
   }
 });
@@ -448,9 +456,9 @@ function _sfc_render$v(_ctx, _cache, $props, $setup, $data, $options) {
     "button",
     {
       class: normalizeClass(["cdx-button", _ctx.rootClasses]),
-      onClick: _cache[0] || (_cache[0] = (...args) => _ctx.onClick && _ctx.onClick(...args)),
-      onKeydown: _cache[1] || (_cache[1] = withKeys(($event) => _ctx.setActive(true), ["space", "enter"])),
-      onKeyup: _cache[2] || (_cache[2] = withKeys(($event) => _ctx.setActive(false), ["space", "enter"]))
+      onKeydown: _cache[0] || (_cache[0] = withKeys(withModifiers((...args) => _ctx.onKeyDown && _ctx.onKeyDown(...args), ["prevent"]), ["space", "enter"])),
+      onKeyup: _cache[1] || (_cache[1] = withKeys((...args) => _ctx.onKeyUp && _ctx.onKeyUp(...args), ["space", "enter"])),
+      onClick: _cache[2] || (_cache[2] = (...args) => _ctx.onClick && _ctx.onClick(...args))
     },
     [
       renderSlot(_ctx.$slots, "default")
@@ -928,6 +936,10 @@ function useI18n(messageKey, defaultValue, params = []) {
     return typeof defaultValue === "function" ? defaultValue(...unwrappedParams) : defaultValue;
   });
 }
+function useI18nWithOverride(override, messageKey, defaultValue, params = []) {
+  const translatedMessage = useI18n(messageKey, defaultValue, params);
+  return computed(() => override.value || translatedMessage.value);
+}
 const _sfc_main$q = defineComponent({
   name: "CdxLabel",
   components: { CdxIcon },
@@ -1020,9 +1032,10 @@ const _sfc_main$q = defineComponent({
       rootStyle,
       otherAttrs
     } = useSplitAttributes(attrs, internalClasses);
-    const translatedOptionalFlag = useI18n(
+    const translatedOptionalFlag = useI18nWithOverride(
+      toRef(props, "optionalFlag"),
       "cdx-label-optional-flag",
-      () => props.optionalFlag || "(optional)"
+      "(optional)"
     );
     return {
       rootClasses,
@@ -5333,12 +5346,14 @@ const _sfc_main$g = defineComponent({
     const focusHolder = ref();
     const focusTrapStart = ref();
     const focusTrapEnd = ref();
+    let previouslyFocused = null;
     const useCloseButtonOrLabel = computed(
       () => props.useCloseButton || props.closeButtonLabel.length > 0
     );
-    const translatedCloseButtonLabel = useI18n(
+    const translatedCloseButtonLabel = useI18nWithOverride(
+      toRef(props, "closeButtonLabel"),
       "cdx-dialog-close-button-label",
-      () => props.closeButtonLabel || "Close"
+      "Close"
     );
     const showHeader = computed(() => !props.hideTitle || useCloseButtonOrLabel.value);
     const showFooterActions = computed(() => !!props.primaryAction || !!props.defaultAction);
@@ -5422,6 +5437,7 @@ const _sfc_main$g = defineComponent({
         document.documentElement.style.setProperty("margin-right", "".concat(scrollWidth.value, "px"));
         document.body.classList.add("cdx-dialog-open");
         setAriaHiddenAndInert();
+        previouslyFocused = document.activeElement;
         if (!focusFirstFocusableElement(dialogBody.value)) {
           (_a = focusHolder.value) == null ? void 0 : _a.focus();
         }
@@ -5431,6 +5447,10 @@ const _sfc_main$g = defineComponent({
       document.body.classList.remove("cdx-dialog-open");
       document.documentElement.style.removeProperty("margin-right");
       unsetAriaHiddenAndInert();
+      if (previouslyFocused instanceof HTMLElement && document.contains(previouslyFocused)) {
+        previouslyFocused.focus();
+        previouslyFocused = null;
+      }
     }
     onMounted(() => {
       if (props.open) {
@@ -5773,9 +5793,10 @@ const _sfc_main$f = defineComponent({
       () => props.inline === false && // DEPRECATED: require use of new prop allowUserDismiss (T368444).
       (props.dismissButtonLabel.length > 0 || props.allowUserDismiss)
     );
-    const translatedDismissButtonLabel = useI18n(
+    const translatedDismissButtonLabel = useI18nWithOverride(
+      toRef(props, "dismissButtonLabel"),
       "cdx-message-dismiss-button-label",
-      () => props.dismissButtonLabel || "Close"
+      "Close"
     );
     const displayTime = computed(() => {
       if (props.autoDismiss === false || props.type === "error") {
@@ -6431,10 +6452,18 @@ const _sfc_main$b = defineComponent({
     const setActive = (active) => {
       isActive.value = active;
     };
+    function onKeyDown() {
+      setActive(true);
+    }
+    function onKeyUp() {
+      setActive(false);
+      onClick();
+    }
     return {
       rootClasses,
       onClick,
-      setActive
+      onKeyDown,
+      onKeyUp
     };
   }
 });
@@ -6445,8 +6474,8 @@ function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
     "aria-pressed": _ctx.modelValue,
     disabled: _ctx.disabled,
     onClick: _cache[0] || (_cache[0] = (...args) => _ctx.onClick && _ctx.onClick(...args)),
-    onKeydown: _cache[1] || (_cache[1] = withKeys(($event) => _ctx.setActive(true), ["space", "enter"])),
-    onKeyup: _cache[2] || (_cache[2] = withKeys(($event) => _ctx.setActive(false), ["space", "enter"]))
+    onKeydown: _cache[1] || (_cache[1] = withKeys(withModifiers((...args) => _ctx.onKeyDown && _ctx.onKeyDown(...args), ["prevent"]), ["space", "enter"])),
+    onKeyup: _cache[2] || (_cache[2] = withKeys((...args) => _ctx.onKeyUp && _ctx.onKeyUp(...args), ["space", "enter"]))
   }, [
     renderSlot(_ctx.$slots, "default")
   ], 42, _hoisted_1$b);
@@ -6834,10 +6863,11 @@ const _sfc_main$8 = defineComponent({
       rootStyle,
       otherAttrs
     } = useSplitAttributes(attrs, internalClasses);
-    const translatedSearchButtonLabel = useI18n(
+    const translatedSearchButtonLabel = useI18nWithOverride(
+      toRef(props, "buttonLabel"),
       "cdx-search-input-search-button-label",
       // Allow custom button label via props or fallback to a default English string.
-      () => props.buttonLabel || "Search"
+      "Search"
     );
     const useButtonOrLabel = computed(
       () => props.useButton || props.buttonLabel.length > 0

@@ -125,11 +125,11 @@ codex:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
   authors: Design System team, Wikimedia Foundation
-  version: 1.9.0
+  version: 1.10.0
   purl: pkg:npm/@wikimedia/codex@1.9.0
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-1.9.0.tgz
-  integrity: sha384-LYUFzvKtSNUjEXfPL8FAaCSdcEqYqmwvM9yzlwTwLmtFQQxk7OfhTCej7PqoAXnf
+  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-1.10.0.tgz
+  integrity: sha384-b9cNQA3hmqqJS4Y7XF0MEyn9NrfOFofDnvnnbQ+czocjzLLxfmqRacOoIBsv6K8y
   dest:
     package/dist/codex.cjs:
     package/dist/codex.js:
@@ -145,11 +145,11 @@ codex-design-tokens:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
   authors: Design System team, Wikimedia Foundation
-  version: 1.9.0
+  version: 1.10.0
   purl: pkg:npm/@wikimedia/codex-design-tokens@1.9.0
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-1.9.0.tgz
-  integrity: sha384-2VG+y6xRfJX8sdIDBHh1aLu3BovjU4uR1Y7wXLQzh5f/iPBEy97xpmcSvDSbkmdd
+  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-1.10.0.tgz
+  integrity: sha384-31356DwU10SJIRMj6ahx1g3jKHdyKGbUdNVYDMbfBTyXBKSSHfbV0SP+BhFKRTaH
   dest:
     package/dist/theme-*.less:
     package/dist/theme-wikimedia-ui-root.css:
@@ -161,11 +161,11 @@ codex-icons:
   license: MIT
   homepage: https://doc.wikimedia.org/codex/
   authors: Design System team, Wikimedia Foundation
-  version: 1.9.0
+  version: 1.10.0
   purl: pkg:npm/@wikimedia/codex-icons@1.9.0
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-1.9.0.tgz
-  integrity: sha384-UVPBMIS6PMClGtTSRLZMMvZUO6ygh9hfSPuX0MADna3T4OsnnAOkyfK0t3jEopFW
+  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-1.10.0.tgz
+  integrity: sha384-IGfFGGozck6Y9M4lSpL5lXjKIRJL+ei6+mkNAbAIWZd7kbUjKa5EHA5tguJc9j8X
   dest:
     package/dist/codex-icons.json:
     package/dist/codex-icon-paths.less:

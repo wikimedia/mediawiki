@@ -28,6 +28,13 @@
     "file": "floating-ui.dom.js",
     "name": "floating-ui.dom"
   },
+  "_useI18nWithOverride.js": {
+    "file": "useI18nWithOverride.js",
+    "name": "useI18nWithOverride",
+    "imports": [
+      "src/composables/useI18n.ts"
+    ]
+  },
   "_useIconOnlyButton.js": {
     "file": "useIconOnlyButton.js",
     "name": "useIconOnlyButton",
@@ -173,7 +180,7 @@
       "src/components/button/Button.vue",
       "_Icon.js",
       "src/composables/useGeneratedId.ts",
-      "src/composables/useI18n.ts",
+      "_useI18nWithOverride.js",
       "src/composables/useResizeObserver.ts",
       "__plugin-vue_export-helper.js"
     ],
@@ -231,7 +238,7 @@
       "_Icon.js",
       "src/composables/useFieldData.ts",
       "src/composables/useSplitAttributes.ts",
-      "src/composables/useI18n.ts",
+      "_useI18nWithOverride.js",
       "__plugin-vue_export-helper.js"
     ],
     "css": [
@@ -318,7 +325,7 @@
       "_Icon.js",
       "src/components/button/Button.vue",
       "_constants.js",
-      "src/composables/useI18n.ts",
+      "_useI18nWithOverride.js",
       "__plugin-vue_export-helper.js"
     ],
     "css": [
@@ -367,7 +374,7 @@
       "src/composables/useModelWrapper.ts",
       "src/composables/useSplitAttributes.ts",
       "src/composables/useFieldData.ts",
-      "src/composables/useI18n.ts",
+      "_useI18nWithOverride.js",
       "_constants.js",
       "__plugin-vue_export-helper.js"
     ],
