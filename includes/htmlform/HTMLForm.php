@@ -28,6 +28,7 @@ use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Debug\MWDebug;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\Field\HTMLApiField;
@@ -853,9 +854,10 @@ class HTMLForm extends ContextSource {
 	 * @param string $msg Complete text of message to display
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
-	 * @deprecated since 1.38, use setPreHtml() instead
+	 * @deprecated since 1.38, use setPreHtml() instead, hard-deprecated since 1.43
 	 */
 	public function setIntro( $msg ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return $this->setPreHtml( $msg );
 	}
 
@@ -903,9 +905,10 @@ class HTMLForm extends ContextSource {
 	 * @param string $msg Complete HTML of message to display
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
-	 * @deprecated since 1.38, use setPreHtml() instead
+	 * @deprecated since 1.38, use setPreHtml() instead, hard-deprecated since 1.43
 	 */
 	public function setPreText( $msg ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return $this->setPreHtml( $msg );
 	}
 
@@ -915,9 +918,10 @@ class HTMLForm extends ContextSource {
 	 * @param string $msg Complete HTML of message to display
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
-	 * @deprecated since 1.38, use addPreHtml() instead
+	 * @deprecated since 1.38, use addPreHtml() instead, hard-deprecated since 1.43
 	 */
 	public function addPreText( $msg ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return $this->addPreHtml( $msg );
 	}
 
@@ -926,9 +930,10 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @since 1.32
 	 * @return string
-	 * @deprecated since 1.38, use getPreHtml() instead
+	 * @deprecated since 1.38, use getPreHtml() instead, hard-deprecated since 1.43
 	 */
 	public function getPreText() {
+		wfDeprecated( __METHOD__, '1.38' );
 		return $this->getPreHtml();
 	}
 
@@ -990,9 +995,10 @@ class HTMLForm extends ContextSource {
 	 * @param string|null $section The section to add the header to
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
-	 * @deprecated since 1.38, use addHeaderHtml() instead
+	 * @deprecated since 1.38, use addHeaderHtml() instead, hard-deprecated since 1.43
 	 */
 	public function addHeaderText( $msg, $section = null ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return $this->addHeaderHtml( $msg, $section );
 	}
 
@@ -1004,9 +1010,10 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @since 1.19
 	 * @return HTMLForm $this for chaining calls (since 1.20)
-	 * @deprecated since 1.38, use setHeaderHtml() instead
+	 * @deprecated since 1.38, use setHeaderHtml() instead, hard-deprecated since 1.43
 	 */
 	public function setHeaderText( $msg, $section = null ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return $this->setHeaderHtml( $msg, $section );
 	}
 
@@ -1017,9 +1024,10 @@ class HTMLForm extends ContextSource {
 	 * @param string|null $section The section to get the header text for
 	 * @since 1.26
 	 * @return string HTML
-	 * @deprecated since 1.38, use getHeaderHtml() instead
+	 * @deprecated since 1.38, use getHeaderHtml() instead, hard-deprecated since 1.43
 	 */
 	public function getHeaderText( $section = null ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return $this->getHeaderHtml( $section );
 	}
 
@@ -1080,9 +1088,10 @@ class HTMLForm extends ContextSource {
 	 * @param string|null $section The section to add the footer text to
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
-	 * @deprecated since 1.38, use addFooterHtml() instead
+	 * @deprecated since 1.38, use addFooterHtml() instead, hard-deprecated since 1.43
 	 */
 	public function addFooterText( $msg, $section = null ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return $this->addFooterHtml( $msg, $section );
 	}
 
@@ -1094,9 +1103,10 @@ class HTMLForm extends ContextSource {
 	 * @param string|null $section The section to add the footer text to
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
-	 * @deprecated since 1.38, use setFooterHtml() instead
+	 * @deprecated since 1.38, use setFooterHtml() instead, hard-deprecated since 1.43
 	 */
 	public function setFooterText( $msg, $section = null ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return $this->setFooterHtml( $msg, $section );
 	}
 
@@ -1106,9 +1116,10 @@ class HTMLForm extends ContextSource {
 	 * @param string|null $section The section to get the footer text for
 	 * @since 1.26
 	 * @return string
-	 * @deprecated since 1.38, use getFooterHtml() instead
+	 * @deprecated since 1.38, use getFooterHtml() instead, hard-deprecated since 1.43
 	 */
 	public function getFooterText( $section = null ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return $this->getFooterHtml( $section );
 	}
 
@@ -1156,9 +1167,10 @@ class HTMLForm extends ContextSource {
 	 * @param string $msg Complete text of message to display
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
-	 * @deprecated since 1.38, use addPostHtml() instead
+	 * @deprecated since 1.38, use addPostHtml() instead, hard-deprecated since 1.43
 	 */
 	public function addPostText( $msg ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return $this->addPostHtml( $msg );
 	}
 
@@ -1168,9 +1180,10 @@ class HTMLForm extends ContextSource {
 	 * @param string $msg Complete text of message to display
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
-	 * @deprecated since 1.38, use setPostHtml() instead
+	 * @deprecated since 1.38, use setPostHtml() instead, hard-deprecated since 1.43
 	 */
 	public function setPostText( $msg ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return $this->setPostHtml( $msg );
 	}
 
@@ -1366,14 +1379,20 @@ class HTMLForm extends ContextSource {
 			$this->getOutput()->addModules( 'jquery.makeCollapsible' );
 		}
 
+		$headerHtml = MWDebug::detectDeprecatedOverride( $this, __CLASS__, 'getHeaderText', '1.38' )
+			? $this->getHeaderText()
+			: $this->getHeaderHtml();
+		$footerHtml = MWDebug::detectDeprecatedOverride( $this, __CLASS__, 'getFooterText', '1.38' )
+			? $this->getFooterText()
+			: $this->getFooterHtml();
 		$html = $this->getErrorsOrWarnings( $submitResult, 'error' )
 			. $this->getErrorsOrWarnings( $submitResult, 'warning' )
-			. $this->getHeaderText()
+			. $headerHtml
 			. $this->getHiddenTitle()
 			. $this->getBody()
 			. $this->getHiddenFields()
 			. $this->getButtons()
-			. $this->getFooterText();
+			. $footerHtml;
 
 		return $this->mPre . $this->wrapForm( $html ) . $this->mPost;
 	}
@@ -2012,9 +2031,15 @@ class HTMLForm extends ContextSource {
 
 					$legend = $this->getLegend( $key );
 
-					$section = $this->getHeaderText( $key ) .
+					$headerHtml = MWDebug::detectDeprecatedOverride( $this, __CLASS__, 'getHeaderText', '1.38' )
+						? $this->getHeaderText( $key )
+						: $this->getHeaderHtml( $key );
+					$footerHtml = MWDebug::detectDeprecatedOverride( $this, __CLASS__, 'getFooterText', '1.38' )
+						? $this->getFooterText( $key )
+						: $this->getFooterHtml( $key );
+					$section = $headerHtml .
 						$section .
-						$this->getFooterText( $key );
+						$footerHtml;
 
 					$attributes = [];
 					if ( $fieldsetIDPrefix ) {
