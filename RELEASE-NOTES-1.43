@@ -456,6 +456,8 @@ because of Phabricator reports.
   ApiPageSet::getMissingTitles(), ApiPageSet::getGoodAndMissingTitles(),
   ApiPageSet::getRedirectTitles() and ApiPageSet::getSpecialTitles, deprecated
   since 1.37, now emit deprecation warnings.
+* QueryPage::setDBLoadBalancer() and ::getDBLoadBalancer() have been deprecated,
+  use QueryPage::setDatabaseProvider() or ::getDatabaseProvider() instead.
 * User::isBlockedGlobally(), deprecated since 1.40, now emits deprecation
   warnings.
 * User::isBlockedFromEmailuser() and User::canSendEmail(), deprecated since

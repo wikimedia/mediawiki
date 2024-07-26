@@ -957,6 +957,7 @@ abstract class QueryPage extends SpecialPage {
 
 	/**
 	 * @since 1.36
+	 * @deprecated since 1.43, use self::setDatabaseProvider
 	 * @param ILoadBalancer $loadBalancer
 	 */
 	final protected function setDBLoadBalancer( ILoadBalancer $loadBalancer ) {
@@ -965,6 +966,7 @@ abstract class QueryPage extends SpecialPage {
 
 	/**
 	 * @since 1.36
+	 * @deprecated since 1.43, use self::getDatabaseProvider
 	 * @return ILoadBalancer
 	 */
 	final protected function getDBLoadBalancer(): ILoadBalancer {
