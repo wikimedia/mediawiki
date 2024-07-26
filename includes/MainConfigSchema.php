@@ -12902,6 +12902,17 @@ class MainConfigSchema {
 		'default' => false,
 		'type' => 'boolean',
 	];
+
+	/**
+	 * OutputPipelineStages to add to the DefaultOutputPipeline.
+	 *
+	 * @unstable EXPERIMENTAL
+	 * @since 1.43
+	 */
+	public const OutputPipelineStages = [
+		'default' => [],
+		'type' => 'map',
+	];
 	// endregion -- End Miscellaneous
 
 }

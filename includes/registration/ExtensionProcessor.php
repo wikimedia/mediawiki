@@ -54,6 +54,7 @@ class ExtensionProcessor implements Processor {
 		MainConfigNames::LogRestrictions,
 		MainConfigNames::LogTypes,
 		MainConfigNames::MediaHandlers,
+		MainConfigNames::OutputPipelineStages,
 		MainConfigNames::PasswordPolicy,
 		MainConfigNames::PrivilegedGroups,
 		MainConfigNames::RateLimits,

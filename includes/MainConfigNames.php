@@ -4468,4 +4468,10 @@ class MainConfigNames {
 	 */
 	public const EnableProtectionIndicators = 'EnableProtectionIndicators';
 
+	/**
+	 * Name constant for the OutputPipelineStages setting, for use with Config::get()
+	 * @see MainConfigSchema::OutputPipelineStages
+	 */
+	public const OutputPipelineStages = 'OutputPipelineStages';
+
 }

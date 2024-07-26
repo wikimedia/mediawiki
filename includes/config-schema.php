@@ -2536,6 +2536,8 @@ return [
 			'UseCodexSpecialBlock' => false,
 			'ShowLogoutConfirmation' => false,
 			'EnableProtectionIndicators' => false,
+			'OutputPipelineStages' => [
+			],
 		],
 		'type' => [
 			'ConfigRegistry' => 'object',
@@ -3015,6 +3017,7 @@ return [
 			'UseCodexSpecialBlock' => 'boolean',
 			'ShowLogoutConfirmation' => 'boolean',
 			'EnableProtectionIndicators' => 'boolean',
+			'OutputPipelineStages' => 'object',
 		],
 		'mergeStrategy' => [
 			'TiffThumbnailType' => 'replace',

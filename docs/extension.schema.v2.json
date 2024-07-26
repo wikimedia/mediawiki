@@ -1052,6 +1052,10 @@
 			"type": "object",
 			"description": "SpecialPages implemented in this extension (mapping of page name to class name or to ObjectFactory spec, or factory callback)"
 		},
+		"OutputPipelineStages": {
+			"type": "object",
+			"description": "@unstable EXPERIMENTAL: OutputPipelineStages implemented in this extension."
+		},
 		"AutoloadNamespaces": {
 			"type": "object",
 			"description": "Mapping of PSR-4 compliant namespace to directory for autoloading",
