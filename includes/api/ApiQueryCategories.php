@@ -117,7 +117,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 					'pp_propname' => 'hiddencat' ] ]
 			] );
 			if ( isset( $show['hidden'] ) ) {
-				$this->addWhere( [ 'pp_propname IS NOT NULL' ] );
+				$this->addWhere( $this->getDB()->expr( 'pp_propname', '!=', null ) );
 			} elseif ( isset( $show['!hidden'] ) ) {
 				$this->addWhere( [ 'pp_propname' => null ] );
 			}

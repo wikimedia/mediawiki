@@ -620,7 +620,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 			->from( 'revision' )
 			->where( [
 				'rev_page' => $pageId,
-				'rev_minor_edit != 0',
+				$dbr->expr( 'rev_minor_edit', '!=', 0 ),
 				$dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_TEXT ) . " = 0"
 			] )
 			->limit( self::COUNT_LIMITS['minor'] + 1 ); // extra to detect truncation

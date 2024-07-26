@@ -125,7 +125,7 @@ class SpecialAutoblockList extends SpecialPage {
 	 */
 	protected function getBlockListPager() {
 		$conds = [
-			'bl_parent_block_id IS NOT NULL',
+			$this->dbProvider->getReplicaDatabase()->expr( 'bl_parent_block_id', '!=', null ),
 		];
 		# Is the user allowed to see hidden blocks?
 		if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {

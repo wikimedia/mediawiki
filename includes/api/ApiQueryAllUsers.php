@@ -194,7 +194,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		}
 
 		if ( $params['witheditsonly'] ) {
-			$this->addWhere( 'user_editcount > 0' );
+			$this->addWhere( $db->expr( 'user_editcount', '>', 0 ) );
 		}
 
 		$this->addDeletedUserFilter();

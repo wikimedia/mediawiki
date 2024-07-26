@@ -32,6 +32,7 @@ use Wikimedia\IPUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\RawSQLExpression;
 
 /**
  * Query module to enumerate all user blocks
@@ -227,9 +228,12 @@ class ApiQueryBlocks extends ApiQueryBase {
 			}
 
 			$this->addWhereIf( [ 'bt_user' => 0 ], isset( $show['!account'] ) );
-			$this->addWhereIf( 'bt_user != 0', isset( $show['account'] ) );
-			$this->addWhereIf( 'bt_user != 0 OR bt_range_end > bt_range_start', isset( $show['!ip'] ) );
-			$this->addWhereIf( 'bt_user = 0 AND bt_range_end = bt_range_start', isset( $show['ip'] ) );
+			$this->addWhereIf( $db->expr( 'bt_user', '!=', 0 ), isset( $show['account'] ) );
+			$this->addWhereIf(
+				$db->expr( 'bt_user', '!=', 0 )->orExpr( new RawSQLExpression( 'bt_range_end > bt_range_start' ) ),
+				isset( $show['!ip'] )
+			);
+			$this->addWhereIf( [ 'bt_user' => 0, 'bt_range_end = bt_range_start' ], isset( $show['ip'] ) );
 			$this->addWhereIf( [ 'bl_expiry' => $db->getInfinity() ], isset( $show['!temp'] ) );
 			$this->addWhereIf( $db->expr( 'bl_expiry', '!=', $db->getInfinity() ), isset( $show['temp'] ) );
 			$this->addWhereIf( 'bt_range_end = bt_range_start', isset( $show['!range'] ) );

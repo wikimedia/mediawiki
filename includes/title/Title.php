@@ -2938,7 +2938,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 				->select( '1' )
 				->forUpdate()
 				->from( 'revision' )
-				->where( [ 'rev_page' => $this->mArticleID, 'rev_id != ' . (int)$this->mLatestID ] )
+				->where( [ 'rev_page' => $this->mArticleID, $dbw->expr( 'rev_id', '!=', (int)$this->mLatestID ) ] )
 				->caller( __METHOD__ )->fetchField();
 		} else {
 			$isSingleRevRedirect = false;

@@ -927,7 +927,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 			->limit( min( 5000, $limit ) );
 
 		if ( $after !== null ) {
-			$queryBuilder->andWhere( 'ug_user > ' . (int)$after );
+			$queryBuilder->andWhere( $dbr->expr( 'ug_user', '>', (int)$after ) );
 		}
 
 		$ids = $queryBuilder->caller( __METHOD__ )->fetchFieldValues() ?: [];

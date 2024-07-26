@@ -84,7 +84,7 @@ class SpecialFewestRevisions extends QueryPage {
 			'conds' => [
 				'page_namespace' => $this->namespaceInfo->getContentNamespaces(),
 				'page_id = rev_page',
-				'page_is_redirect = 0',
+				'page_is_redirect' => 0,
 			],
 			'options' => [
 				'GROUP BY' => [ 'page_namespace', 'page_title' ]

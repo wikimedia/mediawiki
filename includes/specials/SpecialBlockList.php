@@ -220,9 +220,9 @@ class SpecialBlockList extends SpecialPage {
 			&& in_array( 'rangeblocks', $this->options )
 		) {
 			// Simpler conditions for only user blocks (T360864)
-			$conds[] = "bt_user IS NOT NULL";
+			$conds[] = $db->expr( 'bt_user', '!=', null );
 		} elseif ( in_array( 'addressblocks', $this->options ) ) {
-			$conds[] = "bt_user IS NOT NULL OR bt_range_start IS NOT NULL";
+			$conds[] = $db->expr( 'bt_user', '!=', null )->or( 'bt_range_start', '!=', null );
 		} elseif ( in_array( 'rangeblocks', $this->options ) ) {
 			$conds['bt_range_start'] = null;
 		}

@@ -64,7 +64,7 @@ class RevisionSelectQueryBuilder extends SelectQueryBuilder {
 			->leftJoin(
 				'user',
 				null,
-				[ "actor_rev_user.actor_user != 0", "user_id = actor_rev_user.actor_user" ]
+				[ $this->db->expr( 'actor_rev_user.actor_user', '!=', 0 ), "user_id = actor_rev_user.actor_user" ]
 			);
 
 		return $this;

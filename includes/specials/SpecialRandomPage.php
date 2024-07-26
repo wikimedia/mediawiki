@@ -173,7 +173,7 @@ class SpecialRandomPage extends SpecialPage {
 		 * causes anyway.  Trust me, I'm a mathematician. :)
 		 */
 		if ( !$row ) {
-			$row = $this->selectRandomPageFromDB( "0", __METHOD__ );
+			$row = $this->selectRandomPageFromDB( 0, __METHOD__ );
 		}
 
 		if ( $row ) {
@@ -184,12 +184,13 @@ class SpecialRandomPage extends SpecialPage {
 	}
 
 	protected function getQueryInfo( $randstr ) {
+		$dbr = $this->dbProvider->getReplicaDatabase();
 		$redirect = $this->isRedirect() ? 1 : 0;
 		$tables = [ 'page' ];
 		$conds = array_merge( [
 			'page_namespace' => $this->namespaces,
 			'page_is_redirect' => $redirect,
-			'page_random >= ' . $randstr
+			$dbr->expr( 'page_random', '>=', $randstr ),
 		], $this->extra );
 		$joinConds = [];
 

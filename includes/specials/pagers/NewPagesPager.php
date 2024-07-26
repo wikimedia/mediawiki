@@ -120,10 +120,11 @@ class NewPagesPager extends ReverseChronologicalPager {
 
 		$size = abs( intval( $this->opts->getValue( 'size' ) ) );
 		if ( $size > 0 ) {
+			$db = $this->getDatabase();
 			if ( $this->opts->getValue( 'size-mode' ) === 'max' ) {
-				$conds[] = 'page_len <= ' . $size;
+				$conds[] = $db->expr( 'page_len', '<=', $size );
 			} else {
-				$conds[] = 'page_len >= ' . $size;
+				$conds[] = $db->expr( 'page_len', '>=', $size );
 			}
 		}
 

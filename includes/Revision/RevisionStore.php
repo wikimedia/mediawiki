@@ -2809,7 +2809,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 				->select( 'rev_id' )
 				->from( 'revision' )
 				->where( [ 'rev_page' => $rev->getPageId( $this->wikiId ) ] )
-				->andWhere( 'rev_id < ' . $rev->getId( $this->wikiId ) )
+				->andWhere( $db->expr( 'rev_id', '<', $rev->getId( $this->wikiId ) ) )
 				->orderBy( 'rev_id DESC' )
 				->caller( __METHOD__ )->fetchField();
 		}
