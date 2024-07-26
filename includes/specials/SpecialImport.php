@@ -311,7 +311,7 @@ class SpecialImport extends SpecialPage {
 		$action = $this->getPageTitle()->getLocalURL( [ 'action' => 'submit' ] );
 		$authority = $this->getAuthority();
 		$out = $this->getOutput();
-		$this->addHelpLink( 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Help:Import', true );
+		$this->addHelpLink( 'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Import', true );
 
 		$interwikiFormDescriptor = [];
 		$uploadFormDescriptor = [];
