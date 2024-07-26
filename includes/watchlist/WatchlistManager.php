@@ -489,10 +489,12 @@ class WatchlistManager {
 		PageIdentity $target,
 		string $expiry = null
 	): StatusValue {
-		// User must be registered, and either changing the watch state or at least the expiry.
-		if ( !$performer->getUser()->isRegistered() ) {
+		// User must be registered, and (T371091) not a temp user
+		if ( !$performer->getUser()->isRegistered() || $performer->isTemp() ) {
 			return StatusValue::newGood();
 		}
+
+		// User must be either changing the watch state or at least the expiry.
 
 		// Only call addWatchIgnoringRights() or removeWatch() if there's been a change in the watched status.
 		$oldWatchedItem = $this->watchedItemStore->getWatchedItem( $performer->getUser(), $target );
