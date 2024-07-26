@@ -392,8 +392,7 @@ class RollbackPage {
 			return;
 		}
 
-		$actorId = $this->actorNormalization
-			->acquireActorId( $current->getUser( RevisionRecord::RAW ), $dbw );
+		$actorId = $this->actorNormalization->findActorId( $current->getUser( RevisionRecord::RAW ), $dbw );
 		$timestamp = $dbw->timestamp( $target->getTimestamp() );
 		$rows = $dbw->newSelectQueryBuilder()
 			->select( [ 'rc_id', 'rc_patrolled' ] )

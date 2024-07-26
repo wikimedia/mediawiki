@@ -13,6 +13,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Unit\MockServiceDependenciesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
@@ -32,6 +33,7 @@ use WikitextContent;
 class RollbackPageTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
 	use MockServiceDependenciesTrait;
+	use TempUserTestTrait;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -433,5 +435,25 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $logRow );
 		$this->assertSame( $admin->getUser()->getName(), $logRow->user_name );
 		$this->assertSame( 'TESTING', $logRow->log_comment_text );
+	}
+
+	public function testRollbackOfIPRevisionWhenTemporaryAccountsAreEnabledT371094() {
+		// Set up the test page to have one revision by a user and then the second revision performed by an IP address.
+		$this->disableAutoCreateTempUser();
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) );
+		$admin = $this->getTestSysop()->getUser();
+		$anonUser = $this->mockAnonUltimateAuthority();
+
+		$this->prepareForRollback( $admin, $anonUser, $page );
+
+		// Enable temporary accounts and then perform the rollback
+		$this->enableAutoCreateTempUser();
+		$rollbackResult = $this->getServiceContainer()
+			->getRollbackPageFactory()
+			->newRollbackPage( $page, $admin, $anonUser->getUser() )
+			->rollbackIfAllowed();
+		// Ensure that the rollback worked as expected, as previously this failed with an exception if
+		// rolling back a IP revision.
+		$this->assertStatusGood( $rollbackResult );
 	}
 }
