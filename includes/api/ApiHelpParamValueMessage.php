@@ -96,7 +96,7 @@ class ApiHelpParamValueMessage extends Message {
 	 */
 	public function fetchMessage() {
 		if ( $this->message === null ) {
-			$prefix = '';
+			$prefix = ";<span dir=\"ltr\" lang=\"en\">{$this->paramValue}</span>:";
 			if ( $this->isDeprecated() ) {
 				$prefix .= '<span class="apihelp-deprecated">' .
 					$this->subMessage( 'api-help-param-deprecated' ) .
@@ -109,8 +109,17 @@ class ApiHelpParamValueMessage extends Message {
 					'</span>' .
 					$this->subMessage( 'word-separator' );
 			}
-			$this->message = ";<span dir=\"ltr\" lang=\"en\">{$this->paramValue}</span>:"
-				. $prefix . parent::fetchMessage();
+
+			if ( $this->getLanguage()->getCode() === 'qqx' ) {
+				# Insert a list of alternative message keys for &uselang=qqx.
+				$keylist = implode( ' / ', $this->keysToTry );
+				if ( $this->overriddenKey !== null ) {
+					$keylist .= ' = ' . $this->overriddenKey;
+				}
+				$this->message = $prefix . "($keylist$*)";
+			} else {
+				$this->message = $prefix . parent::fetchMessage();
+			}
 		}
 		return $this->message;
 	}
@@ -121,7 +130,7 @@ class ApiHelpParamValueMessage extends Message {
 		$msg->language = $this->language;
 		$msg->useDatabase = $this->useDatabase;
 		$msg->contextPage = $this->contextPage;
-		return $msg->fetchMessage();
+		return $msg->plain();
 	}
 
 }
