@@ -508,9 +508,10 @@ abstract class Skin extends ContextSource {
 		}
 
 		$authority = $this->getAuthority();
+		$relevantTitle = $this->getRelevantTitle();
 		if ( $authority->getUser()->isRegistered()
 			&& $authority->isAllowedAll( 'writeapi', 'viewmywatchlist', 'editmywatchlist' )
-			&& $this->getRelevantTitle()->canExist()
+			&& $relevantTitle && $relevantTitle->canExist()
 		) {
 			$modules['watch'][] = 'mediawiki.page.watch.ajax';
 		}
@@ -553,7 +554,7 @@ abstract class Skin extends ContextSource {
 
 		// Check, if the page can hold some kind of content, otherwise do nothing
 		$title = $this->getRelevantTitle();
-		if ( $title->canExist() && $title->canHaveTalkPage() ) {
+		if ( $title && $title->canExist() && $title->canHaveTalkPage() ) {
 			$namespaceInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 			if ( $title->isTalkPage() ) {
 				$titles[] = $namespaceInfo->getSubjectPage( $title );
