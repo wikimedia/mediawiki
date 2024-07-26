@@ -480,6 +480,8 @@ because of Phabricator reports.
   a mistake, as the parameters have always been ignored.
 * In StatusValue::replaceMessage(), ::hasMessage() and ::hasMessagesExcept()
   passing MessageSpecifier or MessageValue as $source has been deprecated.
+* PageArchive::undeleteAsUser, deprecated since 1.35, now emits deprecation
+  warnings.
 * DatabaseBlock::getQueryInfo() and DatabaseBlock::getRangeCond() are
   deprecated and emit deprecation warnings. Use the equivalent methods in
   DatabaseBlockStore.

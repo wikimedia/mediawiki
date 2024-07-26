@@ -91,6 +91,8 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 	 * @covers \PageArchive::undeleteAsUser
 	 */
 	public function testUndeleteRevisions() {
+		$this->hideDeprecated( 'PageArchive::undeleteAsUser' );
+
 		// TODO: MCR: Test undeletion with multiple slots. Check that slots remain untouched.
 		$revisionStore = $this->getServiceContainer()->getRevisionStore();
 
