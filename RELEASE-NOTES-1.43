@@ -402,6 +402,8 @@ because of Phabricator reports.
 * MessageCache::get() with $language other than Language or null is
   deprecated and emits deprecation warnings. For high-level access,
   use wfMessage() or RequestContext::msg() instead.
+* Manually constructing a Language object, deprecated in 1.35, now emits
+  deprecation warnings. Use LanguageFactory instead.
 * SearchEngineConfig::getConfig() has been deprecated, use DI with
   ServiceOptions to inject the required options.
 * ObjectCache::isDatabaseId() and ::getLocalClusterInstance() have been
