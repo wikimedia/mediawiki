@@ -953,7 +953,7 @@
 	"searchall": "sve",
 	"showingresultsinrange": "Ispod {{PLURAL:$1|je prikazana <strong>1</strong> stavka|su prikazane <strong>$1</strong> stavke|je prikazano <strong>$1</strong> stavki}} u rasponu od <strong>$2</strong> do <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Rezultat <strong>$1</strong> od <strong>$3</strong>|Rezultati <strong>$1–$2</strong> od <strong>$3</strong>}}",
-	"search-nonefound": "Nisu pronađeni rezultati koji odgovaraju upitu.",
+	"search-nonefound": "Nema rezultata koji odgovaraju upitu.",
 	"search-nonefound-thiswiki": "Nema rezultata koji se podudaraju s upitom u ovom projektu.",
 	"powersearch-legend": "Napredna pretraga",
 	"powersearch-ns": "Pretraga u imenskim prostorima:",

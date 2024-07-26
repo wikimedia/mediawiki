@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Samoasambia"
+		]
+	},
+	"cdx-input-chip-aria-description": "Paina Enter muokataksesi tai Delete poistaaksesi.",
+	"cdx-dialog-close-button-label": "Sulje",
+	"cdx-label-optional-flag": "(valinnainen)",
+	"cdx-message-dismiss-button-label": "Sulje",
+	"cdx-search-input-search-button-label": "Hae",
+	"cdx-table-select-all-label": "Valitse kaikki rivit",
+	"cdx-typeahead-search-search-results-label": "Hakutulokset"
+}
