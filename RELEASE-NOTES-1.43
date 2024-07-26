@@ -485,6 +485,8 @@ because of Phabricator reports.
 * UserOptionsManager::resetOptions(), ::listOptionKinds and ::getOptionKinds are
   deprecated and will emit deprecation warnings. Use the corresponding methods
   in PreferencesFactory and UserOptionsManager::resetOptionsByName().
+* The `i18n-all-lists-margins` module of SkinModule is deprecated as it's
+  merged into the `elements` module.
 * ParsoidOutputAccess and all of its methods have been deprecated.  Use
   ParserOutputAccess with ParserOptions::setUseParsoid() instead.
 * To support a future change allowing serializing of MessageValue objects
