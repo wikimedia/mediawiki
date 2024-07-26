@@ -27,6 +27,7 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\Shell\Result;
 use MediaWiki\Shell\Shell;
 use MediaWiki\Status\Status;
+use MediaWiki\Status\StatusFormatter;
 use MediaWiki\Title\TitleValue;
 use Shellbox\Command\UnboxedResult;
 use Shellbox\Shellbox;
@@ -867,6 +868,20 @@ class TaintCheckAnnotationsTest {
 		echo Status::newGood( $_GET['a'] );// Safe
 		echo Status::newGood( $_GET['a'] )->getValue();// Safe
 		echo Status::newGood( $_GET['a'] )->setResult( true, $_GET['a'] );// Safe
+	}
+
+	function testStatusFormatter( StatusFormatter $f, StatusValue $sv ) {
+		echo $f->getWikiText( $sv ); // @phan-suppress-current-line SecurityCheck-XSS
+		echo $f->getHTML( $sv ); // Safe
+		echo $f->getMessage( $sv )->plain(); // @phan-suppress-current-line SecurityCheck-XSS
+		echo $f->getMessage( $sv )->parse(); // Safe
+
+		// Legacy deprecated methods
+		$status = Status::wrap( $sv );
+		echo $status->getWikiText(); // @phan-suppress-current-line SecurityCheck-XSS
+		echo $status->getHTML(); // Safe
+		echo $status->getMessage()->plain(); // @phan-suppress-current-line SecurityCheck-XSS
+		echo $status->getMessage()->parse(); // Safe
 	}
 
 	/**
