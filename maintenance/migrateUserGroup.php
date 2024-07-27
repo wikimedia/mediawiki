@@ -45,6 +45,7 @@ class MigrateUserGroup extends Maintenance {
 		$newGroup = $this->getArg( 1 );
 		$dbw = $this->getPrimaryDB();
 		$batchSize = $this->getBatchSize();
+		$userGroupManager = $this->getServiceContainer()->getUserGroupManager();
 		$start = $dbw->newSelectQueryBuilder()
 			->select( 'MIN(ug_user)' )
 			->from( 'user_groups' )
@@ -68,30 +69,47 @@ class MigrateUserGroup extends Maintenance {
 			$this->output( "Doing users $blockStart to $blockEnd\n" );
 
 			$this->beginTransaction( $dbw, __METHOD__ );
-			$dbw->newUpdateQueryBuilder()
+			// Find the users already in the new group, so that we can exclude them from the UPDATE query
+			// and instead delete the rows.
+			$usersAlreadyInNewGroup = $dbw->newSelectQueryBuilder()
+				->select( 'ug_user' )
+				->from( 'user_groups' )
+				->where( [
+					'ug_group' => $newGroup,
+					$dbw->expr( 'ug_user', '>=', (int)$blockStart ),
+					$dbw->expr( 'ug_user', '<=', (int)$blockEnd ),
+				] )
+				->caller( __METHOD__ )
+				->fetchFieldValues();
+
+			// Update the user group for the users which do not already have the new group.
+			$updateQueryBuilder = $dbw->newUpdateQueryBuilder()
 				->update( 'user_groups' )
-				->ignore()
 				->set( [ 'ug_group' => $newGroup ] )
 				->where( [
 					'ug_group' => $oldGroup,
 					$dbw->expr( 'ug_user', '>=', (int)$blockStart ),
 					$dbw->expr( 'ug_user', '<=', (int)$blockEnd ),
 				] )
-				->caller( __METHOD__ )->execute();
+				->caller( __METHOD__ );
+			if ( count( $usersAlreadyInNewGroup ) ) {
+				$updateQueryBuilder->where( $dbw->expr( 'ug_user', '!=', $usersAlreadyInNewGroup ) );
+			}
+			$updateQueryBuilder->execute();
 			$affected += $dbw->affectedRows();
+
 			// Delete rows that the UPDATE operation above had to ignore.
-			// This happens when a user is in both the old and new group.
-			// Updating the row for the old group membership failed since
-			// user/group is UNIQUE.
-			$dbw->newDeleteQueryBuilder()
-				->deleteFrom( 'user_groups' )
-				->where( [
-					'ug_group' => $oldGroup,
-					$dbw->expr( 'ug_user', '>=', (int)$blockStart ),
-					$dbw->expr( 'ug_user', '<=', (int)$blockEnd ),
-				] )
-				->caller( __METHOD__ )->execute();
-			$affected += $dbw->affectedRows();
+			// This happens when a user is in both the old and new group, and as such the UPDATE would have failed.
+			if ( count( $usersAlreadyInNewGroup ) ) {
+				$dbw->newDeleteQueryBuilder()
+					->deleteFrom( 'user_groups' )
+					->where( [
+						'ug_group' => $oldGroup,
+						$dbw->expr( 'ug_user', '=', $usersAlreadyInNewGroup ),
+					] )
+					->caller( __METHOD__ )->execute();
+				$affected += $dbw->affectedRows();
+			}
 			$this->commitTransaction( $dbw, __METHOD__ );
 
 			// Clear cache for the affected users (T42340)
@@ -111,6 +129,7 @@ class MigrateUserGroup extends Maintenance {
 					foreach ( $res as $row ) {
 						$user = User::newFromId( $row->ug_user );
 						$user->invalidateCache();
+						$userGroupManager->clearCache( $user );
 					}
 				}
 			}
