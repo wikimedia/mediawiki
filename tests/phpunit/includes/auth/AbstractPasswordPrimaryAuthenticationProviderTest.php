@@ -120,6 +120,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegra
 				],
 			]
 		);
+		$this->clearHook( 'PasswordPoliciesForUser' );
 
 		$provider = $this->getMockForAbstractClass(
 			AbstractPasswordPrimaryAuthenticationProvider::class
