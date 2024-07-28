@@ -43,6 +43,7 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  */
 class HookRunner implements
 	\MediaWiki\Actions\Hook\GetActionNameHook,
+	\MediaWiki\Auth\Hook\AuthManagerFilterProvidersHook,
 	\MediaWiki\Auth\Hook\AuthManagerLoginAuthenticateAuditHook,
 	\MediaWiki\Auth\Hook\AuthPreserveQueryParamsHook,
 	\MediaWiki\Auth\Hook\ExemptFromAccountCreationThrottleHook,
@@ -883,6 +884,14 @@ class HookRunner implements
 		return $this->container->run(
 			'AuthChangeFormFields',
 			[ $requests, $fieldInfo, &$formDescriptor, $action ]
+		);
+	}
+
+	public function onAuthManagerFilterProviders( array &$providers ): void {
+		$this->container->run(
+			'AuthManagerFilterProviders',
+			[ &$providers ],
+			[ 'abortable' => false ]
 		);
 	}
 

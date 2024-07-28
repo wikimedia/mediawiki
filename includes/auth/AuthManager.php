@@ -25,6 +25,7 @@ namespace MediaWiki\Auth;
 
 use IDBAccessObject;
 use InvalidArgumentException;
+use LogicException;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\RequestContext;
@@ -53,10 +54,12 @@ use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserRigorOptions;
 use MediaWiki\Watchlist\WatchlistManager;
+use MWExceptionHandler;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use StatusValue;
+use Wikimedia\NormalizedException\NormalizedException;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\ReadOnlyMode;
@@ -400,7 +403,7 @@ class AuthManager implements LoggerAwareInterface {
 		if ( !$session->canSetUser() ) {
 			// Caller should have called canAuthenticateNow()
 			$session->remove( self::AUTHN_STATE );
-			throw new \LogicException( 'Authentication is not possible now' );
+			throw new LogicException( 'Authentication is not possible now' );
 		}
 
 		$guessUserName = null;
@@ -424,7 +427,7 @@ class AuthManager implements LoggerAwareInterface {
 		);
 		if ( $req ) {
 			if ( !in_array( $req, $this->createdAccountAuthenticationRequests, true ) ) {
-				throw new \LogicException(
+				throw new LogicException(
 					'CreatedAccountAuthenticationRequests are only valid on ' .
 						'the same AuthManager that created the account'
 				);
@@ -481,6 +484,7 @@ class AuthManager implements LoggerAwareInterface {
 			'reqs' => $reqs,
 			'returnToUrl' => $returnToUrl,
 			'guessUserName' => $guessUserName,
+			'providerIds' => $this->getProviderIds(),
 			'primary' => null,
 			'primaryResponse' => null,
 			'secondary' => [],
@@ -531,7 +535,7 @@ class AuthManager implements LoggerAwareInterface {
 			if ( !$session->canSetUser() ) {
 				// Caller should have called canAuthenticateNow()
 				// @codeCoverageIgnoreStart
-				throw new \LogicException( 'Authentication is not possible now' );
+				throw new LogicException( 'Authentication is not possible now' );
 				// @codeCoverageIgnoreEnd
 			}
 
@@ -540,6 +544,26 @@ class AuthManager implements LoggerAwareInterface {
 				return AuthenticationResponse::newFail(
 					wfMessage( 'authmanager-authn-not-in-progress' )
 				);
+			}
+			if ( $state['providerIds'] !== $this->getProviderIds() ) {
+				// An inconsistent AuthManagerFilterProviders hook, or site configuration changed
+				// while the user was in the middle of authentication. The first is a bug, the
+				// second is rare but expected when deploying a config change. Try handle in a way
+				// that's useful for both cases.
+				// @codeCoverageIgnoreStart
+				MWExceptionHandler::logException( new NormalizedException(
+					'Authentication failed because of inconsistent provider array',
+					[ 'old' => json_encode( $state['providerIds'] ), 'new' => json_encode( $this->getProviderIds() ) ]
+				) );
+				$ret = AuthenticationResponse::newFail(
+					wfMessage( 'authmanager-authn-not-in-progress' )
+				);
+				$this->callMethodOnProviders( 7, 'postAuthentication',
+					[ $this->userFactory->newFromName( (string)$state['guessUserName'] ), $ret ]
+				);
+				$session->remove( self::AUTHN_STATE );
+				return $ret;
+				// @codeCoverageIgnoreEnd
 			}
 			$state['continueRequests'] = [];
 
@@ -1272,7 +1296,7 @@ class AuthManager implements LoggerAwareInterface {
 		if ( !$this->canCreateAccounts() ) {
 			// Caller should have called canCreateAccounts()
 			$session->remove( self::ACCOUNT_CREATION_STATE );
-			throw new \LogicException( 'Account creation is not possible' );
+			throw new LogicException( 'Account creation is not possible' );
 		}
 
 		try {
@@ -1337,6 +1361,7 @@ class AuthManager implements LoggerAwareInterface {
 			'creatorname' => $creator->getUser()->getName(),
 			'reqs' => $reqs,
 			'returnToUrl' => $returnToUrl,
+			'providerIds' => $this->getProviderIds(),
 			'primary' => null,
 			'primaryResponse' => null,
 			'secondary' => [],
@@ -1375,7 +1400,7 @@ class AuthManager implements LoggerAwareInterface {
 			if ( !$this->canCreateAccounts() ) {
 				// Caller should have called canCreateAccounts()
 				$session->remove( self::ACCOUNT_CREATION_STATE );
-				throw new \LogicException( 'Account creation is not possible' );
+				throw new LogicException( 'Account creation is not possible' );
 			}
 
 			$state = $session->getSecret( self::ACCOUNT_CREATION_STATE );
@@ -1405,6 +1430,25 @@ class AuthManager implements LoggerAwareInterface {
 			} else {
 				$creator = $this->userFactory->newAnonymous();
 				$creator->setName( $state['creatorname'] );
+			}
+
+			if ( $state['providerIds'] !== $this->getProviderIds() ) {
+				// An inconsistent AuthManagerFilterProviders hook, or site configuration changed
+				// while the user was in the middle of authentication. The first is a bug, the
+				// second is rare but expected when deploying a config change. Try handle in a way
+				// that's useful for both cases.
+				// @codeCoverageIgnoreStart
+				MWExceptionHandler::logException( new NormalizedException(
+					'Authentication failed because of inconsistent provider array',
+					[ 'old' => json_encode( $state['providerIds'] ), 'new' => json_encode( $this->getProviderIds() ) ]
+				) );
+				$ret = AuthenticationResponse::newFail(
+					wfMessage( 'authmanager-create-not-in-progress' )
+				);
+				$this->callMethodOnProviders( 7, 'postAccountCreation', [ $user, $creator, $ret ] );
+				$session->remove( self::ACCOUNT_CREATION_STATE );
+				return $ret;
+				// @codeCoverageIgnoreEnd
 			}
 
 			// Avoid account creation races on double submissions
@@ -2087,7 +2131,7 @@ class AuthManager implements LoggerAwareInterface {
 
 		if ( !$this->canLinkAccounts() ) {
 			// Caller should have called canLinkAccounts()
-			throw new \LogicException( 'Account linking is not possible' );
+			throw new LogicException( 'Account linking is not possible' );
 		}
 
 		if ( !$user->isRegistered() ) {
@@ -2124,6 +2168,7 @@ class AuthManager implements LoggerAwareInterface {
 			'username' => $user->getName(),
 			'userid' => $user->getId(),
 			'returnToUrl' => $returnToUrl,
+			'providerIds' => $this->getProviderIds(),
 			'primary' => null,
 			'continueRequests' => [],
 		];
@@ -2196,7 +2241,7 @@ class AuthManager implements LoggerAwareInterface {
 			if ( !$this->canLinkAccounts() ) {
 				// Caller should have called canLinkAccounts()
 				$session->remove( self::ACCOUNT_LINK_STATE );
-				throw new \LogicException( 'Account linking is not possible' );
+				throw new LogicException( 'Account linking is not possible' );
 			}
 
 			$state = $session->getSecret( self::ACCOUNT_LINK_STATE );
@@ -2222,6 +2267,25 @@ class AuthManager implements LoggerAwareInterface {
 					"User \"{$state['username']}\" is valid, but " .
 						"ID {$user->getId()} !== {$state['userid']}!"
 				);
+			}
+
+			if ( $state['providerIds'] !== $this->getProviderIds() ) {
+				// An inconsistent AuthManagerFilterProviders hook, or site configuration changed
+				// while the user was in the middle of authentication. The first is a bug, the
+				// second is rare but expected when deploying a config change. Try handle in a way
+				// that's useful for both cases.
+				// @codeCoverageIgnoreStart
+				MWExceptionHandler::logException( new NormalizedException(
+					'Authentication failed because of inconsistent provider array',
+					[ 'old' => json_encode( $state['providerIds'] ), 'new' => json_encode( $this->getProviderIds() ) ]
+				) );
+				$ret = AuthenticationResponse::newFail(
+					wfMessage( 'authmanager-link-not-in-progress' )
+				);
+				$this->callMethodOnProviders( 7, 'postAccountCreation', [ $user, $ret ] );
+				$session->remove( self::ACCOUNT_LINK_STATE );
+				return $ret;
+				// @codeCoverageIgnoreEnd
 			}
 
 			foreach ( $reqs as $req ) {
@@ -2612,23 +2676,12 @@ class AuthManager implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @return array
-	 */
-	private function getConfiguration() {
-		return $this->config->get( MainConfigNames::AuthManagerConfig )
-			?: $this->config->get( MainConfigNames::AuthManagerAutoConfig );
-	}
-
-	/**
 	 * Get the list of PreAuthenticationProviders
 	 * @return PreAuthenticationProvider[]
 	 */
 	protected function getPreAuthenticationProviders() {
 		if ( $this->preAuthenticationProviders === null ) {
-			$conf = $this->getConfiguration();
-			$this->preAuthenticationProviders = $this->providerArrayFromSpecs(
-				PreAuthenticationProvider::class, $conf['preauth']
-			);
+			$this->initializeAuthenticationProviders();
 		}
 		return $this->preAuthenticationProviders;
 	}
@@ -2639,10 +2692,7 @@ class AuthManager implements LoggerAwareInterface {
 	 */
 	protected function getPrimaryAuthenticationProviders() {
 		if ( $this->primaryAuthenticationProviders === null ) {
-			$conf = $this->getConfiguration();
-			$this->primaryAuthenticationProviders = $this->providerArrayFromSpecs(
-				PrimaryAuthenticationProvider::class, $conf['primaryauth']
-			);
+			$this->initializeAuthenticationProviders();
 		}
 		return $this->primaryAuthenticationProviders;
 	}
@@ -2653,12 +2703,38 @@ class AuthManager implements LoggerAwareInterface {
 	 */
 	protected function getSecondaryAuthenticationProviders() {
 		if ( $this->secondaryAuthenticationProviders === null ) {
-			$conf = $this->getConfiguration();
-			$this->secondaryAuthenticationProviders = $this->providerArrayFromSpecs(
-				SecondaryAuthenticationProvider::class, $conf['secondaryauth']
-			);
+			$this->initializeAuthenticationProviders();
 		}
 		return $this->secondaryAuthenticationProviders;
+	}
+
+	private function getProviderIds(): array {
+		return [
+			'preauth' => array_keys( $this->getPreAuthenticationProviders() ),
+			'primaryauth' => array_keys( $this->getPrimaryAuthenticationProviders() ),
+			'secondaryauth' => array_keys( $this->getSecondaryAuthenticationProviders() ),
+		];
+	}
+
+	private function initializeAuthenticationProviders() {
+		$conf = $this->config->get( MainConfigNames::AuthManagerConfig )
+			?: $this->config->get( MainConfigNames::AuthManagerAutoConfig );
+
+		$providers = array_map( fn ( $stepConf ) => array_fill_keys( array_keys( $stepConf ), true ), $conf );
+		$this->getHookRunner()->onAuthManagerFilterProviders( $providers );
+		foreach ( $conf as $step => $stepConf ) {
+			$conf[$step] = array_intersect_key( $stepConf, array_filter( $providers[$step] ) );
+		}
+
+		$this->preAuthenticationProviders = $this->providerArrayFromSpecs(
+			PreAuthenticationProvider::class, $conf['preauth']
+		);
+		$this->primaryAuthenticationProviders = $this->providerArrayFromSpecs(
+			PrimaryAuthenticationProvider::class, $conf['primaryauth']
+		);
+		$this->secondaryAuthenticationProviders = $this->providerArrayFromSpecs(
+			SecondaryAuthenticationProvider::class, $conf['secondaryauth']
+		);
 	}
 
 	/**
