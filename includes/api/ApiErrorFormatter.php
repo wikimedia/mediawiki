@@ -26,6 +26,7 @@ use MediaWiki\Message\Message;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\Sanitizer;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * Formats errors and warnings for the API, and add them to the associated

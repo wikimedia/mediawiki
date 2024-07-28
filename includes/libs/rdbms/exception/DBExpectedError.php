@@ -19,7 +19,7 @@
  */
 namespace Wikimedia\Rdbms;
 
-use MessageSpecifier;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * Base class for the more common types of database errors. These are known to occur

@@ -29,10 +29,10 @@ use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use MessageSpecifier;
 use Skin;
 use Timing;
 use Wikimedia\Bcp47Code\Bcp47Code;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 use WikiPage;
 

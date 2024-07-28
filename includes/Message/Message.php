@@ -37,12 +37,12 @@ use MediaWiki\Parser\ParserOutput;
 use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\Title;
 use MessageContent;
-use MessageSpecifier;
 use RuntimeException;
 use Serializable;
 use Stringable;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Bcp47Code\Bcp47Code;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * The Message class deals with fetching and processing of interface message

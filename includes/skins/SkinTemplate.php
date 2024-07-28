@@ -32,6 +32,7 @@ use MediaWiki\Skin\SkinComponentUtils;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\Contribute\ContributeFactory;
 use MediaWiki\Title\Title;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * Base class for QuickTemplate-based skins.

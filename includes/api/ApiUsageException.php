@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Status\Status;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * Exception used to abort API execution with an error

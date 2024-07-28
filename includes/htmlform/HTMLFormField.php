@@ -14,8 +14,8 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Message\Message;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
-use MessageSpecifier;
 use StatusValue;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * The parent class to generate form fields.  Any field type should

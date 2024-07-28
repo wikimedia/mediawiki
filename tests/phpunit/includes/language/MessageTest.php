@@ -10,6 +10,7 @@ use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Assert\ParameterTypeException;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\TestingAccessWrapper;
 
 /**

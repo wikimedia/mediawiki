@@ -28,7 +28,7 @@ use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Password\UserPasswordPolicy;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;
-use MessageSpecifier;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * Class for the core installer command line interface.

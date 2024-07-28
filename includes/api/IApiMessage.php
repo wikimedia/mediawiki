@@ -18,6 +18,8 @@
  * @file
  */
 
+use Wikimedia\Message\MessageSpecifier;
+
 /**
  * Interface for messages with machine-readable data for use by the API
  *

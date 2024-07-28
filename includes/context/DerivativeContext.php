@@ -30,10 +30,10 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
-use MessageSpecifier;
 use Skin;
 use Timing;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Message\MessageSpecifier;
 use WikiPage;
 
 /**

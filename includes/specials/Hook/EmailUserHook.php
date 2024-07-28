@@ -4,7 +4,7 @@ namespace MediaWiki\Hook;
 
 use MailAddress;
 use MediaWiki\Status\Status;
-use MessageSpecifier;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

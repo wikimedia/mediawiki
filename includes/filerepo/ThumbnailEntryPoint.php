@@ -47,10 +47,10 @@ use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Request\HeaderCallback;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use MessageSpecifier;
 use RepoGroup;
 use UnregisteredLocalFile;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Message\MessageSpecifier;
 
 class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 

@@ -51,9 +51,9 @@ use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupMembership;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
-use MessageSpecifier;
 use PermissionsError;
 use StatusValue;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ScopedCallback;
 
 /**

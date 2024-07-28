@@ -30,6 +30,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * @defgroup Actions Actions

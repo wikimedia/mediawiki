@@ -32,8 +32,8 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserRigorOptions;
 use MessageLocalizer;
-use MessageSpecifier;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * Context object that contains information about the state of a specific

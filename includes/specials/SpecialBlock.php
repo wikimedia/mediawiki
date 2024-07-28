@@ -55,12 +55,12 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
-use MessageSpecifier;
 use OOUI\FieldLayout;
 use OOUI\HtmlSnippet;
 use OOUI\LabelWidget;
 use OOUI\Widget;
 use Wikimedia\IPUtils;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * Allow users with 'block' user right to block IPs and user accounts from

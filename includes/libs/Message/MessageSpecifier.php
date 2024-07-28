@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace Wikimedia\Message;
+
 /**
  * @stable for implementing
  */
@@ -40,3 +42,8 @@ interface MessageSpecifier {
 	 */
 	public function getParams();
 }
+
+/**
+ * @deprecated since 1.43
+ */
+class_alias( MessageSpecifier::class, 'MessageSpecifier' );

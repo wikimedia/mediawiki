@@ -20,6 +20,7 @@
 
 use MediaWiki\Message\Message;
 use MediaWiki\Parser\Sanitizer;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * @newable

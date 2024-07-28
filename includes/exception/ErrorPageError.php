@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Message\Message;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * An error page which can definitely be safely rendered using the OutputPage.

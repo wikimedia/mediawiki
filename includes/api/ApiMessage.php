@@ -20,6 +20,7 @@
 
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * Extension of Message implementing IApiMessage

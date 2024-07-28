@@ -21,6 +21,7 @@
 use MediaWiki\Message\Converter;
 use MediaWiki\Message\Message;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
 
 /**

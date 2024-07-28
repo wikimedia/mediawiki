@@ -28,9 +28,9 @@ use MediaWiki\Parser\ParserOutput;
 use MediaWiki\StubObject\StubUserLang;
 use MessageCache;
 use MessageLocalizer;
-use MessageSpecifier;
 use StatusValue;
 use UnexpectedValueException;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * Formatter for StatusValue objects.

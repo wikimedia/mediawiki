@@ -26,6 +26,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Request\WebRequest;
 use Wikimedia\AtEase;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\DBExpectedError;
 use Wikimedia\Rdbms\DBReadOnlyError;

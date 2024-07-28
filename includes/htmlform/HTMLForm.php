@@ -77,9 +77,9 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\Xml\Xml;
-use MessageSpecifier;
 use StatusValue;
 use Stringable;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * Object handling generic submission, CSRF protection, layout and

@@ -45,13 +45,13 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
 use MessageLocalizer;
-use MessageSpecifier;
 use MWCryptRand;
 use PermissionsError;
 use ReadOnlyError;
 use SearchEngineFactory;
 use Skin;
 use UserNotLoggedIn;
+use Wikimedia\Message\MessageSpecifier;
 
 /**
  * Parent class for all special pages.

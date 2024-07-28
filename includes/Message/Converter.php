@@ -3,10 +3,10 @@
 namespace MediaWiki\Message;
 
 use InvalidArgumentException;
-use MessageSpecifier;
 use ReflectionClass;
 use Wikimedia\Message\ListParam;
 use Wikimedia\Message\MessageParam;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
