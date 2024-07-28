@@ -20,26 +20,19 @@
 
 namespace MediaWiki\Preferences;
 
-use ExtensionRegistry;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutputFlags;
-use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
-use MediaWiki\Revision\MutableRevisionRecord;
-use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Parser\Parsoid\LintErrorChecker;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\SpecialPageFactory;
-use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
 use OOUI\ButtonWidget;
 use ParserFactory;
 use ParserOptions;
-use Wikimedia\Parsoid\Parsoid;
-use WikitextContent;
 
 /**
  * @since 1.35
@@ -60,15 +53,13 @@ class SignatureValidator {
 	private $popts;
 	/** @var ParserFactory */
 	private $parserFactory;
-	private Parsoid $parsoid;
-	private PageConfigFactory $pageConfigFactory;
+	private LintErrorChecker $lintErrorChecker;
 	/** @var ServiceOptions */
 	private $serviceOptions;
 	/** @var SpecialPageFactory */
 	private $specialPageFactory;
 	/** @var TitleFactory */
 	private $titleFactory;
-	private ExtensionRegistry $extensionRegistry;
 
 	/**
 	 * @param ServiceOptions $options
@@ -76,11 +67,9 @@ class SignatureValidator {
 	 * @param ?MessageLocalizer $localizer
 	 * @param ParserOptions $popts
 	 * @param ParserFactory $parserFactory
-	 * @param Parsoid $parsoid
-	 * @param PageConfigFactory $pageConfigFactory
+	 * @param LintErrorChecker $lintErrorChecker
 	 * @param SpecialPageFactory $specialPageFactory
 	 * @param TitleFactory $titleFactory
-	 * @param ExtensionRegistry $extensionRegistry
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -88,25 +77,21 @@ class SignatureValidator {
 		?MessageLocalizer $localizer,
 		ParserOptions $popts,
 		ParserFactory $parserFactory,
-		Parsoid $parsoid,
-		PageConfigFactory $pageConfigFactory,
+		LintErrorChecker $lintErrorChecker,
 		SpecialPageFactory $specialPageFactory,
-		TitleFactory $titleFactory,
-		ExtensionRegistry $extensionRegistry
+		TitleFactory $titleFactory
 	) {
 		$this->user = $user;
 		$this->localizer = $localizer;
 		$this->popts = $popts;
 		$this->parserFactory = $parserFactory;
-		$this->parsoid = $parsoid;
-		$this->pageConfigFactory = $pageConfigFactory;
+		$this->lintErrorChecker = $lintErrorChecker;
 		// Configuration
 		$this->serviceOptions = $options;
 		$this->serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		// TODO SpecialPage::getTitleFor should also be available via SpecialPageFactory
 		$this->specialPageFactory = $specialPageFactory;
 		$this->titleFactory = $titleFactory;
-		$this->extensionRegistry = $extensionRegistry;
 	}
 
 	/**
@@ -278,30 +263,7 @@ class SignatureValidator {
 				MainConfigNames::SignatureAllowedLintErrors
 			)
 		);
-		if ( $this->extensionRegistry->isLoaded( 'Linter' ) ) { // T360809
-			$services = MediaWikiServices::getInstance();
-			$linterCategories = $services->getMainConfig()->get( 'LinterCategories' );
-			foreach ( $linterCategories as $name => $cat ) {
-				if ( $cat['priority'] === 'none' ) {
-					$disabled[] = $name;
-				}
-			}
-		}
-		$disabled = array_unique( $disabled );
-
-		$page = Title::newMainPage();
-		$fakeRevision = new MutableRevisionRecord( $page );
-		$fakeRevision->setSlot(
-			SlotRecord::newUnsaved(
-				SlotRecord::MAIN,
-				new WikitextContent( $signature )
-			)
-		);
-
-		return $this->parsoid->wikitext2lint(
-			$this->pageConfigFactory->create( $page, null, $fakeRevision ),
-			[ 'linterOverrides' => [ 'disabled' => $disabled ] ]
-		);
+		return $this->lintErrorChecker->checkSome( $signature, $disabled );
 	}
 
 	/**

@@ -154,6 +154,7 @@ use MediaWiki\Parser\Parsoid\Config\DataAccess as MWDataAccess;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory as MWPageConfigFactory;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig as MWSiteConfig;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
+use MediaWiki\Parser\Parsoid\LintErrorChecker;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Password\PasswordFactory;
@@ -1142,6 +1143,16 @@ return [
 		);
 	},
 
+	'LintErrorChecker' => static function ( MediaWikiServices $services ): LintErrorChecker {
+		return new LintErrorChecker(
+			$services->get( '_Parsoid' ),
+			$services->getParsoidPageConfigFactory(),
+			$services->getTitleFactory(),
+			ExtensionRegistry::getInstance(),
+			$services->getMainConfig(),
+		 );
+	},
+
 	'LocalisationCache' => static function ( MediaWikiServices $services ): LocalisationCache {
 		$conf = $services->getMainConfig()->get( MainConfigNames::LocalisationCacheConf );
 
@@ -2073,12 +2084,10 @@ return [
 				return $services->getParserFactory();
 			},
 			static function () use ( $services ) {
-				return $services->get( '_Parsoid' );
+				return $services->getLintErrorChecker();
 			},
-			$services->getParsoidPageConfigFactory(),
 			$services->getSpecialPageFactory(),
 			$services->getTitleFactory(),
-			$services->getExtensionRegistry()
 		);
 	},
 
