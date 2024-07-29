@@ -40,7 +40,7 @@ trait MockHttpTrait {
 	 * @phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
 	 * @param object|callable $service
 	 */
-	abstract protected function setService( $name, $service );
+	abstract protected function setService( string $name, $service );
 
 	/**
 	 * Install a mock HttpRequestFactory in MediaWikiServices, for the duration
