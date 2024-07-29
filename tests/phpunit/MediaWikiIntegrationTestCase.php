@@ -838,7 +838,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @since 1.27
 	 *
 	 */
-	protected function setService( $name, $service ) {
+	protected function setService( string $name, $service ) {
 		if ( !$this->localServices ) {
 			throw new LogicException( __METHOD__ . ' must be called after MediaWikiIntegrationTestCase::run()' );
 		}
