@@ -91,17 +91,17 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \LogFormatter::newFromEntry
+	 * @covers \LogFormatter::setShowUserToolLinks
 	 */
 	public function testNormalLogParams() {
 		$entry = $this->newLogEntry( 'test', [] );
-		$formatter = LogFormatter::newFromEntry( $entry );
+		$formatter = $this->getServiceContainer()->getLogFormatterFactory()->newFromEntry( $entry );
 		$formatter->setContext( $this->context );
 
 		$formatter->setShowUserToolLinks( false );
 		$paramsWithoutTools = $formatter->getMessageParametersForTesting();
 
-		$formatter2 = LogFormatter::newFromEntry( $entry );
+		$formatter2 = $this->getServiceContainer()->getLogFormatterFactory()->newFromEntry( $entry );
 		$formatter2->setContext( $this->context );
 		$formatter2->setShowUserToolLinks( true );
 		$paramsWithTools = $formatter2->getMessageParametersForTesting();
@@ -134,7 +134,6 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \LogFormatter::newFromEntry
 	 * @covers \LogFormatter::getActionText
 	 */
 	public function testLogParamsTypeRaw() {
@@ -142,7 +141,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$expected = Linker::link( $this->title, null, [], [] );
 
 		$entry = $this->newLogEntry( 'param', $params );
-		$formatter = LogFormatter::newFromEntry( $entry );
+		$formatter = $this->getServiceContainer()->getLogFormatterFactory()->newFromEntry( $entry );
 		$formatter->setContext( $this->context );
 
 		$logParam = $formatter->getActionText();
@@ -151,7 +150,6 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \LogFormatter::newFromEntry
 	 * @covers \LogFormatter::getActionText
 	 */
 	public function testLogParamsTypeMsg() {
@@ -159,7 +157,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$expected = wfMessage( 'log-description-phpunit' )->text();
 
 		$entry = $this->newLogEntry( 'param', $params );
-		$formatter = LogFormatter::newFromEntry( $entry );
+		$formatter = $this->getServiceContainer()->getLogFormatterFactory()->newFromEntry( $entry );
 		$formatter->setContext( $this->context );
 
 		$logParam = $formatter->getActionText();
@@ -168,7 +166,6 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \LogFormatter::newFromEntry
 	 * @covers \LogFormatter::getActionText
 	 */
 	public function testLogParamsTypeMsgContent() {
@@ -176,7 +173,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$expected = wfMessage( 'log-description-phpunit' )->inContentLanguage()->text();
 
 		$entry = $this->newLogEntry( 'param', $params );
-		$formatter = LogFormatter::newFromEntry( $entry );
+		$formatter = $this->getServiceContainer()->getLogFormatterFactory()->newFromEntry( $entry );
 		$formatter->setContext( $this->context );
 
 		$logParam = $formatter->getActionText();
@@ -185,7 +182,6 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \LogFormatter::newFromEntry
 	 * @covers \LogFormatter::getActionText
 	 */
 	public function testLogParamsTypeNumber() {
@@ -195,7 +191,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$expected = $wgLang->formatNum( 123456789 );
 
 		$entry = $this->newLogEntry( 'param', $params );
-		$formatter = LogFormatter::newFromEntry( $entry );
+		$formatter = $this->getServiceContainer()->getLogFormatterFactory()->newFromEntry( $entry );
 		$formatter->setContext( $this->context );
 
 		$logParam = $formatter->getActionText();
@@ -204,7 +200,6 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \LogFormatter::newFromEntry
 	 * @covers \LogFormatter::getActionText
 	 */
 	public function testLogParamsTypeUserLink() {
@@ -215,7 +210,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		);
 
 		$entry = $this->newLogEntry( 'param', $params );
-		$formatter = LogFormatter::newFromEntry( $entry );
+		$formatter = $this->getServiceContainer()->getLogFormatterFactory()->newFromEntry( $entry );
 		$formatter->setContext( $this->context );
 
 		$logParam = $formatter->getActionText();
@@ -224,14 +219,13 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \LogFormatter::newFromEntry
 	 * @covers \LogFormatter::getActionText
 	 */
 	public function testLogParamsTypeUserLink_empty() {
 		$params = [ '4:user-link:userLink' => ':' ];
 
 		$entry = $this->newLogEntry( 'param', $params );
-		$formatter = LogFormatter::newFromEntry( $entry );
+		$formatter = $this->getServiceContainer()->getLogFormatterFactory()->newFromEntry( $entry );
 
 		$this->context->setLanguage( 'qqx' );
 		$formatter->setContext( $this->context );
@@ -241,7 +235,6 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \LogFormatter::newFromEntry
 	 * @covers \LogFormatter::getActionText
 	 */
 	public function testLogParamsTypeTitleLink() {
@@ -249,7 +242,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$expected = Linker::link( $this->title, null, [], [] );
 
 		$entry = $this->newLogEntry( 'param', $params );
-		$formatter = LogFormatter::newFromEntry( $entry );
+		$formatter = $this->getServiceContainer()->getLogFormatterFactory()->newFromEntry( $entry );
 		$formatter->setContext( $this->context );
 
 		$logParam = $formatter->getActionText();
@@ -258,7 +251,6 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \LogFormatter::newFromEntry
 	 * @covers \LogFormatter::getActionText
 	 */
 	public function testLogParamsTypePlain() {
@@ -266,7 +258,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$expected = 'Some plain text';
 
 		$entry = $this->newLogEntry( 'param', $params );
-		$formatter = LogFormatter::newFromEntry( $entry );
+		$formatter = $this->getServiceContainer()->getLogFormatterFactory()->newFromEntry( $entry );
 		$formatter->setContext( $this->context );
 
 		$logParam = $formatter->getActionText();
@@ -296,7 +288,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 			) );
 		}
 
-		$formatter = LogFormatter::newFromEntry( $entry );
+		$formatter = $this->getServiceContainer()->getLogFormatterFactory()->newFromEntry( $entry );
 		$formatter->setContext( $context );
 		if ( $allowedAction === 'view-for-user' ) {
 			$formatter->setAudience( LogFormatter::FOR_THIS_USER );
@@ -324,7 +316,6 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \LogFormatter::newFromEntry
 	 * @covers \LogFormatter::getComment
 	 * @dataProvider provideLogElement
 	 */
@@ -345,7 +336,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 			) );
 		}
 
-		$formatter = LogFormatter::newFromEntry( $entry );
+		$formatter = $this->getServiceContainer()->getLogFormatterFactory()->newFromEntry( $entry );
 		$formatter->setContext( $context );
 		if ( $allowedAction === 'view-for-user' ) {
 			$formatter->setAudience( LogFormatter::FOR_THIS_USER );
@@ -392,7 +383,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 	 */
 	public function testApiParamFormatting( $key, $value, $expected ) {
 		$entry = $this->newLogEntry( 'param', [ $key => $value ] );
-		$formatter = LogFormatter::newFromEntry( $entry );
+		$formatter = $this->getServiceContainer()->getLogFormatterFactory()->newFromEntry( $entry );
 		$formatter->setContext( $this->context );
 
 		ApiResult::setIndexedTagName( $expected, 'param' );
@@ -774,7 +765,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$logEntry->setParameters( $params );
 		$logEntry->setLegacy( $legacy );
 
-		$formatter = LogFormatter::newFromEntry( $logEntry );
+		$formatter = $this->getServiceContainer()->getLogFormatterFactory()->newFromEntry( $logEntry );
 		$formatter->setContext( $this->context );
 
 		// Apply the same transformation as done in IRCColourfulRCFeedFormatter::getLine for rc_comment
