@@ -34,6 +34,7 @@ class ContentModelChange {
 	private $revLookup;
 	/** @var UserFactory */
 	private $userFactory;
+	private LogFormatterFactory $logFormatterFactory;
 	/** @var Authority making the change */
 	private $performer;
 	/** @var WikiPage */
@@ -60,6 +61,7 @@ class ContentModelChange {
 	 * @param RevisionLookup $revLookup
 	 * @param UserFactory $userFactory
 	 * @param WikiPageFactory $wikiPageFactory
+	 * @param LogFormatterFactory $logFormatterFactory
 	 * @param Authority $performer
 	 * @param PageIdentity $page
 	 * @param string $newModel
@@ -70,6 +72,7 @@ class ContentModelChange {
 		RevisionLookup $revLookup,
 		UserFactory $userFactory,
 		WikiPageFactory $wikiPageFactory,
+		LogFormatterFactory $logFormatterFactory,
 		Authority $performer,
 		PageIdentity $page,
 		string $newModel
@@ -78,6 +81,7 @@ class ContentModelChange {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->revLookup = $revLookup;
 		$this->userFactory = $userFactory;
+		$this->logFormatterFactory = $logFormatterFactory;
 
 		$this->performer = $performer;
 		$this->page = $wikiPageFactory->newFromTitle( $page );
@@ -283,7 +287,7 @@ class ContentModelChange {
 		] );
 		$log->addTags( $this->tags );
 
-		$formatter = LogFormatter::newFromEntry( $log );
+		$formatter = $this->logFormatterFactory->newFromEntry( $log );
 		$formatter->setContext( RequestContext::newExtraneousContext( $title ) );
 		$reason = $formatter->getPlainActionText();
 

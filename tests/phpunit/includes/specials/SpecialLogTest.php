@@ -29,7 +29,8 @@ class SpecialLogTest extends SpecialPageTestBase {
 			$services->getConnectionProvider(),
 			$services->getActorNormalization(),
 			$services->getUserIdentityLookup(),
-			$services->getUserNameUtils()
+			$services->getUserNameUtils(),
+			$services->getLogFormatterFactory()
 		);
 	}
 

@@ -46,6 +46,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	private CommentFormatter $commentFormatter;
 	private NameTableStore $changeTagDefStore;
 	private UserNameUtils $userNameUtils;
+	private LogFormatterFactory $logFormatterFactory;
 
 	/** @var string[]|null */
 	private $formattedComments;
@@ -57,6 +58,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	 * @param RowCommentFormatter $commentFormatter
 	 * @param NameTableStore $changeTagDefStore
 	 * @param UserNameUtils $userNameUtils
+	 * @param LogFormatterFactory $logFormatterFactory
 	 */
 	public function __construct(
 		ApiQuery $query,
@@ -64,13 +66,15 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		CommentStore $commentStore,
 		RowCommentFormatter $commentFormatter,
 		NameTableStore $changeTagDefStore,
-		UserNameUtils $userNameUtils
+		UserNameUtils $userNameUtils,
+		LogFormatterFactory $logFormatterFactory
 	) {
 		parent::__construct( $query, $moduleName, 'le' );
 		$this->commentStore = $commentStore;
 		$this->commentFormatter = $commentFormatter;
 		$this->changeTagDefStore = $changeTagDefStore;
 		$this->userNameUtils = $userNameUtils;
+		$this->logFormatterFactory = $logFormatterFactory;
 	}
 
 	private bool $fld_ids = false;
@@ -357,7 +361,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 					}
 				}
 				if ( $this->fld_details ) {
-					$vals['params'] = LogFormatter::newFromEntry( $logEntry )->formatParametersForApi();
+					$vals['params'] = $this->logFormatterFactory->newFromEntry( $logEntry )->formatParametersForApi();
 				}
 			}
 		}

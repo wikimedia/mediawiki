@@ -23,7 +23,6 @@
 
 namespace MediaWiki\Feed;
 
-use LogFormatter;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
@@ -89,7 +88,8 @@ class FeedUtils {
 		$actiontext = '';
 		if ( $row->rc_type == RC_LOG ) {
 			$rcRow = (array)$row; // newFromRow() only accepts arrays for RC rows
-			$actiontext = LogFormatter::newFromRow( $rcRow )->getActionText();
+			$actiontext = MediaWikiServices::getInstance()->getLogFormatterFactory()
+				->newFromRow( $rcRow )->getActionText();
 		}
 		if ( $row->rc_deleted & RevisionRecord::DELETED_COMMENT ) {
 			$formattedComment = wfMessage( 'rev-deleted-comment' )->escaped();

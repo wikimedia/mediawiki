@@ -49,6 +49,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	private GenderCache $genderCache;
 	private CommentFormatter $commentFormatter;
 	private TempUserConfig $tempUserConfig;
+	private LogFormatterFactory $logFormatterFactory;
 
 	/**
 	 * @param ApiQuery $query
@@ -60,6 +61,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	 * @param GenderCache $genderCache
 	 * @param CommentFormatter $commentFormatter
 	 * @param TempUserConfig $tempUserConfig
+	 * @param LogFormatterFactory $logFormatterFactory
 	 */
 	public function __construct(
 		ApiQuery $query,
@@ -70,7 +72,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		NamespaceInfo $namespaceInfo,
 		GenderCache $genderCache,
 		CommentFormatter $commentFormatter,
-		TempUserConfig $tempUserConfig
+		TempUserConfig $tempUserConfig,
+		LogFormatterFactory $logFormatterFactory
 	) {
 		parent::__construct( $query, $moduleName, 'wl' );
 		$this->commentStore = $commentStore;
@@ -80,6 +83,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$this->genderCache = $genderCache;
 		$this->commentFormatter = $commentFormatter;
 		$this->tempUserConfig = $tempUserConfig;
+		$this->logFormatterFactory = $logFormatterFactory;
 	}
 
 	public function execute() {
@@ -455,7 +459,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				$vals['logtype'] = $recentChangeInfo['rc_log_type'];
 				$vals['logaction'] = $recentChangeInfo['rc_log_action'];
 
-				$logFormatter = LogFormatter::newFromRow( $recentChangeInfo );
+				$logFormatter = $this->logFormatterFactory->newFromRow( $recentChangeInfo );
 				$vals['logparams'] = $logFormatter->formatParametersForApi();
 				$vals['logdisplay'] = $logFormatter->getActionText();
 			}

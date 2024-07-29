@@ -24,7 +24,7 @@ use ChangeTags;
 use ContentHandler;
 use File;
 use IDBAccessObject;
-use LogFormatter;
+use LogFormatterFactory;
 use ManualLogEntry;
 use MediaWiki\Collation\CollationFactory;
 use MediaWiki\CommentStore\CommentStoreComment;
@@ -85,6 +85,7 @@ class MovePage {
 	private PageUpdaterFactory $pageUpdaterFactory;
 	private RestrictionStore $restrictionStore;
 	private DeletePageFactory $deletePageFactory;
+	private LogFormatterFactory $logFormatterFactory;
 
 	/** @var int */
 	private $maximumMovedPages;
@@ -119,7 +120,8 @@ class MovePage {
 		CollationFactory $collationFactory,
 		PageUpdaterFactory $pageUpdaterFactory,
 		RestrictionStore $restrictionStore,
-		DeletePageFactory $deletePageFactory
+		DeletePageFactory $deletePageFactory,
+		LogFormatterFactory $logFormatterFactory
 	) {
 		$this->oldTitle = $oldTitle;
 		$this->newTitle = $newTitle;
@@ -141,6 +143,7 @@ class MovePage {
 		$this->pageUpdaterFactory = $pageUpdaterFactory;
 		$this->restrictionStore = $restrictionStore;
 		$this->deletePageFactory = $deletePageFactory;
+		$this->logFormatterFactory = $logFormatterFactory;
 
 		$this->maximumMovedPages = $this->options->get( MainConfigNames::MaximumMovedPages );
 	}
@@ -873,7 +876,7 @@ class MovePage {
 			'5::noredir' => $redirectContent ? '0' : '1',
 		] );
 
-		$formatter = LogFormatter::newFromEntry( $logEntry );
+		$formatter = $this->logFormatterFactory->newFromEntry( $logEntry );
 		$formatter->setContext( RequestContext::newExtraneousContext( $this->oldTitle ) );
 		$comment = $formatter->getPlainActionText();
 		if ( $reason ) {

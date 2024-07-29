@@ -700,6 +700,7 @@ class SpecialPageFactory {
 				'ActorNormalization',
 				'UserIdentityLookup',
 				'UserNameUtils',
+				'LogFormatterFactory',
 			]
 		],
 		'Watchlist' => [

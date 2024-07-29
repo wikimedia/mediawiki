@@ -67,6 +67,8 @@ class LogEventsList extends ContextSource {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	private LogFormatterFactory $logFormatterFactory;
+
 	/** @var MapCacheLRU */
 	private $tagsCache;
 
@@ -83,7 +85,9 @@ class LogEventsList extends ContextSource {
 		if ( $linkRenderer instanceof LinkRenderer ) {
 			$this->linkRenderer = $linkRenderer;
 		}
-		$this->hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
+		$services = MediaWikiServices::getInstance();
+		$this->hookRunner = new HookRunner( $services->getHookContainer() );
+		$this->logFormatterFactory = $services->getLogFormatterFactory();
 		$this->tagsCache = new MapCacheLRU( 50 );
 	}
 
@@ -318,9 +322,8 @@ class LogEventsList extends ContextSource {
 	 */
 	public function logLine( $row ) {
 		$entry = DatabaseLogEntry::newFromRow( $row );
-		$formatter = LogFormatter::newFromEntry( $entry );
+		$formatter = $this->logFormatterFactory->newFromEntry( $entry );
 		$formatter->setContext( $this->getContext() );
-		$formatter->setLinkRenderer( $this->getLinkRenderer() );
 		$formatter->setShowUserToolLinks( !( $this->flags & self::NO_EXTRA_USER_LINKS ) );
 
 		$time = $this->getLanguage()->userTimeAndDate(
@@ -615,7 +618,8 @@ class LogEventsList extends ContextSource {
 			'',
 			0,
 			$services->getLinkBatchFactory(),
-			$services->getActorNormalization()
+			$services->getActorNormalization(),
+			$services->getLogFormatterFactory()
 		);
 		// @phan-suppress-next-line PhanImpossibleCondition
 		if ( !$useRequestParams ) {

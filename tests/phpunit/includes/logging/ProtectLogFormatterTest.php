@@ -482,7 +482,7 @@ class ProtectLogFormatterTest extends LogFormatterTestCase {
 		$context = new RequestContext();
 		$context->setAuthority( $user );
 		$context->setLanguage( 'en' );
-		$formatter = LogFormatter::newFromRow( $row );
+		$formatter = $this->getServiceContainer()->getLogFormatterFactory()->newFromRow( $row );
 		$formatter->setContext( $context );
 		$titleFactory = $this->createMock( TitleFactory::class );
 		$titleFactory->method( 'makeTitle' )->willReturnCallback( static function () {

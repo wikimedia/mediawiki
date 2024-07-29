@@ -94,6 +94,8 @@ class ChangesList extends ContextSource {
 	 */
 	protected $userLinkCache;
 
+	private LogFormatterFactory $logFormatterFactory;
+
 	/**
 	 * @param IContextSource $context
 	 * @param ChangesListFilterGroup[] $filterGroups Array of ChangesListFilterGroup objects (currently optional)
@@ -107,6 +109,7 @@ class ChangesList extends ContextSource {
 		$services = MediaWikiServices::getInstance();
 		$this->linkRenderer = $services->getLinkRenderer();
 		$this->commentFormatter = $services->getRowCommentFormatter();
+		$this->logFormatterFactory = $services->getLogFormatterFactory();
 		$this->tagsCache = new MapCacheLRU( 50 );
 		$this->userLinkCache = new MapCacheLRU( 50 );
 	}
@@ -751,7 +754,7 @@ class ChangesList extends ContextSource {
 	 * @return string
 	 */
 	public function insertLogEntry( $rc ) {
-		$formatter = LogFormatter::newFromRow( $rc->mAttribs );
+		$formatter = $this->logFormatterFactory->newFromRow( $rc->mAttribs );
 		$formatter->setContext( $this->getContext() );
 		$formatter->setShowUserToolLinks( true );
 		$mark = $this->getLanguage()->getDirMark();

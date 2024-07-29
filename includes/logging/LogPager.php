@@ -27,7 +27,7 @@ namespace MediaWiki\Pager;
 
 use DatabaseLogEntry;
 use LogEventsList;
-use LogFormatter;
+use LogFormatterFactory;
 use LogPage;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MainConfigNames;
@@ -83,6 +83,7 @@ class LogPager extends ReverseChronologicalPager {
 
 	/** @var ActorNormalization */
 	private $actorNormalization;
+	private LogFormatterFactory $logFormatterFactory;
 
 	/**
 	 * @param LogEventsList $list
@@ -99,6 +100,7 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param int $logId Log entry ID, to limit to a single log entry.
 	 * @param LinkBatchFactory|null $linkBatchFactory
 	 * @param ActorNormalization|null $actorNormalization
+	 * @param LogFormatterFactory|null $logFormatterFactory
 	 * @param bool $tagInvert whether tags are filtered for (false) or out (true)
 	 */
 	public function __construct( $list, $types = [], $performer = '', $page = '',
@@ -106,6 +108,7 @@ class LogPager extends ReverseChronologicalPager {
 		$tagFilter = '', $action = '', $logId = 0,
 		LinkBatchFactory $linkBatchFactory = null,
 		ActorNormalization $actorNormalization = null,
+		LogFormatterFactory $logFormatterFactory = null,
 		$tagInvert = false
 	) {
 		parent::__construct( $list->getContext() );
@@ -117,6 +120,7 @@ class LogPager extends ReverseChronologicalPager {
 		// Class is used directly in extensions - T266480
 		$this->linkBatchFactory = $linkBatchFactory ?? $services->getLinkBatchFactory();
 		$this->actorNormalization = $actorNormalization ?? $services->getActorNormalization();
+		$this->logFormatterFactory = $logFormatterFactory ?? $services->getLogFormatterFactory();
 
 		$this->limitLogId( $logId ); // set before types per T269761
 		$this->limitType( $types ); // also excludes hidden types
@@ -444,7 +448,7 @@ class LogPager extends ReverseChronologicalPager {
 			$lb->add( $row->log_namespace, $row->log_title );
 			$lb->add( NS_USER, $row->log_user_text );
 			$lb->add( NS_USER_TALK, $row->log_user_text );
-			$formatter = LogFormatter::newFromRow( $row );
+			$formatter = $this->logFormatterFactory->newFromRow( $row );
 			foreach ( $formatter->getPreloadTitles() as $title ) {
 				$lb->addObj( $title );
 			}
