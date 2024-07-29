@@ -864,10 +864,14 @@ class OutputPage extends ContextSource {
 			'epoch' => $config->get( MainConfigNames::CacheEpoch )
 		];
 		if ( $config->get( MainConfigNames::UseCdn ) ) {
-			$modifiedTimes['sepoch'] = wfTimestamp( TS_MW, $this->getCdnCacheEpoch(
-				time(),
-				$config->get( MainConfigNames::CdnMaxAge )
-			) );
+			// Ensure Last-Modified is never more than "$wgCdnMaxAge" seconds in the past,
+			// because even if the wiki page hasn't been edited, other static resources may
+			// change (site configuration, default preferences, skin HTML, interface messages,
+			// URLs to other files and services) and must roll-over in a timely manner (T46570)
+			$modifiedTimes['sepoch'] = wfTimestamp(
+				TS_MW,
+				time() - $config->get( MainConfigNames::CdnMaxAge )
+			);
 		}
 		$this->getHookRunner()->onOutputPageCheckLastModified( $modifiedTimes, $this );
 
@@ -928,19 +932,6 @@ class OutputPage extends ContextSource {
 		wfResetOutputBuffers( false );
 
 		return true;
-	}
-
-	/**
-	 * @param int $reqTime Time of request (eg. now)
-	 * @param int $maxAge Cache TTL in seconds
-	 * @return int Timestamp
-	 */
-	private function getCdnCacheEpoch( $reqTime, $maxAge ) {
-		// Ensure Last-Modified is never more than $wgCdnMaxAge in the past,
-		// because even if the wiki page content hasn't changed since, static
-		// resources may have changed (skin HTML, interface messages, urls, etc.)
-		// and must roll-over in a timely manner (T46570)
-		return $reqTime - $maxAge;
 	}
 
 	/**

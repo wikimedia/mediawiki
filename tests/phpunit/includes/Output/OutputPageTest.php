@@ -679,47 +679,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * @dataProvider provideCdnCacheEpoch
-	 */
-	public function testCdnCacheEpoch( $params ) {
-		$out = TestingAccessWrapper::newFromObject( $this->newInstance() );
-		$reqTime = strtotime( $params['reqTime'] );
-		$pageTime = strtotime( $params['pageTime'] );
-		$actual = max( $pageTime, $out->getCdnCacheEpoch( $reqTime, $params['maxAge'] ) );
-
-		$this->assertEquals(
-			$params['expect'],
-			gmdate( DateTime::ATOM, $actual ),
-			'cdn epoch'
-		);
-	}
-
-	public static function provideCdnCacheEpoch() {
-		$base = [
-			'pageTime' => '2011-04-01T12:00:00+00:00',
-			'maxAge' => 24 * 3600,
-		];
-		return [
-			'after 1s' => [ $base + [
-				'reqTime' => '2011-04-01T12:00:01+00:00',
-				'expect' => '2011-04-01T12:00:00+00:00',
-			] ],
-			'after 23h' => [ $base + [
-				'reqTime' => '2011-04-02T11:00:00+00:00',
-				'expect' => '2011-04-01T12:00:00+00:00',
-			] ],
-			'after 24h and a bit' => [ $base + [
-				'reqTime' => '2011-04-02T12:34:56+00:00',
-				'expect' => '2011-04-01T12:34:56+00:00',
-			] ],
-			'after a year' => [ $base + [
-				'reqTime' => '2012-05-06T00:12:07+00:00',
-				'expect' => '2012-05-05T00:12:07+00:00',
-			] ],
-		];
-	}
-
 	// @todo How to test setLastModified?
 
 	public function testSetRobotPolicy() {
