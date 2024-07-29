@@ -233,8 +233,8 @@ class Pingback {
 
 	/**
 	 * Collect basic data about this MediaWiki installation and return it
-	 * as an associative array conforming to the Pingback schema on Meta-Wiki
-	 * (<https://meta.wikimedia.org/wiki/Schema:MediaWikiPingback>).
+	 * as an associative array conforming to the MediaWikiPingback event schema at
+	 * <https://gerrit.wikimedia.org/r/plugins/gitiles/schemas/event/secondary/+/refs/heads/master/jsonschema/analytics/legacy/mediawikipingback/>.
 	 *
 	 * Developers: If you're adding a new piece of data to this, please document
 	 * this data at <https://www.mediawiki.org/wiki/Manual:$wgPingback>.
