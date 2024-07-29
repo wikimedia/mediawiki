@@ -1,5 +1,5 @@
 <?php
-/** Minnan (Bân-lâm-gú)
+/** Minnan (閩南語 / Bân-lâm-gú)
  *
  * @file
  * @ingroup Languages
@@ -31,33 +31,6 @@ $namespaceNames = [
 	NS_CATEGORY_TALK    => 'Lūi-pia̍t_thó-lūn',
 ];
 
-$namespaceAliases = [
-	'媒體' => NS_MEDIA,
-	'特殊' => NS_SPECIAL,
-	'討論' => NS_TALK,
-	'用戶' => NS_USER,
-	'用戶討論' => NS_USER_TALK,
-	'$1討論' => NS_PROJECT_TALK,
-	'文件' => NS_FILE,
-	'文件討論' => NS_FILE_TALK,
-	'媒體維基' => NS_MEDIAWIKI,
-	'媒體維基討論' => NS_MEDIAWIKI_TALK,
-	'模板' => NS_TEMPLATE,
-	'模板討論' => NS_TEMPLATE_TALK,
-	'幫助' => NS_HELP,
-	'幫助討論' => NS_HELP_TALK,
-	'分類' => NS_CATEGORY,
-	'分類討論' => NS_CATEGORY_TALK,
-];
-
-/** @phpcs-require-sorted-array */
-$specialPageAliases = [
-	'Recentchangeslinked'       => [ 'Siong-koan_ê_kái-piàn' ],
-	'Specialpages'              => [ 'Te̍k-sû_ia̍h' ],
-	'Upload'                    => [ 'Kā_tóng-àn_chiūⁿ-bāng' ],
-	'Whatlinkshere'             => [ 'Tó-ūi_liân_kàu_chia' ],
-];
-
 $datePreferences = [
 	'default',
 	'ISO 8601',
@@ -68,5 +41,5 @@ $defaultDateFormat = 'nan';
 $dateFormats = [
 	'nan time' => 'H:i',
 	'nan date' => 'Y-"nî" n-"goe̍h" j-"ji̍t" (l)',
-	'nan both' => 'Y-"nî" n-"goe̍h" j-"ji̍t" (D) H:i',
+	'nan both' => 'Y-"nî" n-"goe̍h" j-"ji̍t" (l) H:i',
 ];
