@@ -21,9 +21,7 @@
 
 namespace MediaWiki\Preferences;
 
-use ExtensionRegistry;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserIdentity;
@@ -41,9 +39,7 @@ class SignatureValidatorFactory {
 	private $parserFactoryClosure;
 
 	/** @var callable */
-	private $parsoidClosure;
-
-	private PageConfigFactory $pageConfigFactory;
+	private $lintErrorCheckerClosure;
 
 	/** @var SpecialPageFactory */
 	private $specialPageFactory;
@@ -51,37 +47,29 @@ class SignatureValidatorFactory {
 	/** @var TitleFactory */
 	private $titleFactory;
 
-	private ExtensionRegistry $extensionRegistry;
-
 	/**
 	 * @param ServiceOptions $options
 	 * @param callable $parserFactoryClosure A function which returns a ParserFactory.
 	 *   We use this instead of an actual ParserFactory to avoid a circular dependency,
 	 *   since Parser also needs a SignatureValidatorFactory for signature formatting.
-	 * @param callable $parsoidClosure A function which returns a Parsoid, same as above.
-	 * @param PageConfigFactory $pageConfigFactory
+	 * @param callable $lintErrorCheckerClosure A function which returns a LintErrorChecker, same as above.
 	 * @param SpecialPageFactory $specialPageFactory
 	 * @param TitleFactory $titleFactory
-	 * @param ExtensionRegistry $extensionRegistry
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		callable $parserFactoryClosure,
-		callable $parsoidClosure,
-		PageConfigFactory $pageConfigFactory,
+		callable $lintErrorCheckerClosure,
 		SpecialPageFactory $specialPageFactory,
-		TitleFactory $titleFactory,
-		ExtensionRegistry $extensionRegistry
+		TitleFactory $titleFactory
 	) {
 		// Configuration
 		$this->serviceOptions = $options;
 		$this->serviceOptions->assertRequiredOptions( SignatureValidator::CONSTRUCTOR_OPTIONS );
 		$this->parserFactoryClosure = $parserFactoryClosure;
-		$this->parsoidClosure = $parsoidClosure;
-		$this->pageConfigFactory = $pageConfigFactory;
+		$this->lintErrorCheckerClosure = $lintErrorCheckerClosure;
 		$this->specialPageFactory = $specialPageFactory;
 		$this->titleFactory = $titleFactory;
-		$this->extensionRegistry = $extensionRegistry;
 	}
 
 	/**
@@ -101,11 +89,9 @@ class SignatureValidatorFactory {
 			$localizer,
 			$popts,
 			( $this->parserFactoryClosure )(),
-			( $this->parsoidClosure )(),
-			$this->pageConfigFactory,
+			( $this->lintErrorCheckerClosure )(),
 			$this->specialPageFactory,
 			$this->titleFactory,
-			$this->extensionRegistry
 		);
 	}
 }

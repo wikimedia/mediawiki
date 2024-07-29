@@ -119,6 +119,7 @@ use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
+use MediaWiki\Parser\Parsoid\LintErrorChecker;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Password\PasswordFactory;
@@ -1326,6 +1327,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getLinkTargetLookup(): LinkTargetLookup {
 		return $this->getService( 'LinkTargetLookup' );
+	}
+
+	/**
+	 * @since 1.43
+	 */
+	public function getLintErrorChecker(): LintErrorChecker {
+		return $this->getService( 'LintErrorChecker' );
 	}
 
 	/**
