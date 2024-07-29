@@ -41,9 +41,11 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
+use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserIdentityValue;
 use RecentChange;
 use stdClass;
+use Wikimedia\Rdbms\IExpression;
 
 /**
  * @internal For use by SpecialNewPages
@@ -72,6 +74,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 	private ChangeTagsStore $changeTagsStore;
 	private RowCommentFormatter $rowCommentFormatter;
 	private IContentHandlerFactory $contentHandlerFactory;
+	private TempUserConfig $tempUserConfig;
 
 	/**
 	 * @param IContextSource $context
@@ -83,6 +86,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 	 * @param ChangeTagsStore $changeTagsStore
 	 * @param RowCommentFormatter $rowCommentFormatter
 	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param TempUserConfig $tempUserConfig
 	 * @param FormOptions $opts
 	 */
 	public function __construct(
@@ -95,6 +99,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		ChangeTagsStore $changeTagsStore,
 		RowCommentFormatter $rowCommentFormatter,
 		IContentHandlerFactory $contentHandlerFactory,
+		TempUserConfig $tempUserConfig,
 		FormOptions $opts
 	) {
 		parent::__construct( $context, $linkRenderer );
@@ -105,6 +110,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$this->changeTagsStore = $changeTagsStore;
 		$this->rowCommentFormatter = $rowCommentFormatter;
 		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->tempUserConfig = $tempUserConfig;
 		$this->opts = $opts;
 		$this->tagsCache = new MapCacheLRU( 50 );
 	}
@@ -130,9 +136,15 @@ class NewPagesPager extends ReverseChronologicalPager {
 
 		if ( $user ) {
 			$conds['actor_name'] = $user->getText();
-		} elseif ( $this->canAnonymousUsersCreatePages() && $this->opts->getValue( 'hideliu' ) ) {
-			# If anons cannot make new pages, don't "exclude logged in users"!
-			$conds['actor_user'] = null;
+		} elseif ( $this->opts->getValue( 'hideliu' ) ) {
+			// Only include anonymous users if the 'hideliu' option has been provided.
+			$anonOnlyExpr = $this->getDatabase()->expr( 'actor_user', '=', null );
+			if ( $this->tempUserConfig->isKnown() ) {
+				$anonOnlyExpr = $anonOnlyExpr->orExpr( $this->tempUserConfig->getMatchCondition(
+					$this->getDatabase(), 'actor_name', IExpression::LIKE
+				) );
+			}
+			$conds[] = $anonOnlyExpr;
 		}
 
 		$conds = array_merge( $conds, $this->getNamespaceCond() );
@@ -181,11 +193,6 @@ class NewPagesPager extends ReverseChronologicalPager {
 		);
 
 		return $info;
-	}
-
-	private function canAnonymousUsersCreatePages() {
-		return $this->groupPermissionsLookup->groupHasPermission( '*', 'createpage' ) ||
-			$this->groupPermissionsLookup->groupHasPermission( '*', 'createtalk' );
 	}
 
 	// Based on ContribsPager.php

@@ -76,18 +76,19 @@ class SpecialNewPagesTest extends SpecialPageTestBase {
 	}
 
 	/**
-	 * @param bool $state Whether to allow or disallow anonymous users creating pages.
+	 * @param string $group The group to allow or disallow creating pages
+	 * @param bool $state Whether to allow or disallow the given $group from creating pages
 	 */
-	private function setAnonsHaveRightsToCreatePages( bool $state ) {
+	private function setGroupHasRightsToCreatePages( string $group, bool $state ) {
 		// Remove the 'createtalk' and 'createpage' rights from the '*' group if they are present for the test.
 		$groupPermissionsValue = $this->getServiceContainer()->getMainConfig()
 			->get( MainConfigNames::GroupPermissions );
 		if ( $state ) {
-			$groupPermissionsValue['*']['createtalk'] = true;
-			$groupPermissionsValue['*']['createpage'] = true;
+			$groupPermissionsValue[$group]['createtalk'] = true;
+			$groupPermissionsValue[$group]['createpage'] = true;
 		} else {
-			unset( $groupPermissionsValue['*']['createtalk'] );
-			unset( $groupPermissionsValue['*']['createpage'] );
+			unset( $groupPermissionsValue[$group]['createtalk'] );
+			unset( $groupPermissionsValue[$group]['createpage'] );
 		}
 		$this->overrideConfigValue( MainConfigNames::GroupPermissions, $groupPermissionsValue );
 	}
@@ -151,17 +152,25 @@ class SpecialNewPagesTest extends SpecialPageTestBase {
 	/**
 	 * Perform testing steps that are common to all of the tests in this file.
 	 *
-	 * @param Title[] $expectedPages
-	 * @param Title[] $expectedPagesNotShown
-	 * @param ?FauxRequest $fauxRequest
-	 * @param bool $canAnonUsersCreatePages
+	 * @param Title[] $expectedPages A list of Title objects for pages that should appear in the results
+	 * @param Title[] $expectedPagesNotShown A list of Title objects for pages that should not appear in the results
+	 * @param ?FauxRequest $fauxRequest A fake request to use for the test, null just uses the main request
+	 * @param bool $canAnonUsersCreatePages Whether IP addresses can create pages
+	 * @param ?bool $canTempUsersCreatePages Null if temporary accounts are disabled and not known about.
+	 *   A boolean if temporary accounts are enabled, and the boolean is whether temporary accounts can create pages.
 	 * @return string
 	 */
 	private function testLoadPage(
 		array $expectedPages, array $expectedPagesNotShown, ?FauxRequest $fauxRequest = null,
-		bool $canAnonUsersCreatePages = false
+		bool $canAnonUsersCreatePages = false, ?bool $canTempUsersCreatePages = false
 	): string {
-		$this->setAnonsHaveRightsToCreatePages( $canAnonUsersCreatePages );
+		$this->setGroupHasRightsToCreatePages( '*', $canAnonUsersCreatePages );
+		if ( $canTempUsersCreatePages !== null ) {
+			// If the $canTempUsersCreatePages is set to a boolean, then enable temp users as temporary users are
+			// being used in the test.
+			$this->enableAutoCreateTempUser();
+			$this->setGroupHasRightsToCreatePages( 'temp', $canTempUsersCreatePages );
+		}
 		$this->overrideConfigValues( [
 			MainConfigNames::UseNPPatrol => true,
 			MainConfigNames::UseRCPatrol => true,
@@ -232,7 +241,22 @@ class SpecialNewPagesTest extends SpecialPageTestBase {
 		$fauxRequest = new FauxRequest( [ 'hideliu' => true, 'namespace' => '' ] );
 		$this->testLoadPage(
 			array_diff( self::$allPages, self::$testUser1Pages ), self::$testUser1Pages, $fauxRequest,
-			true
+			true, true
+		);
+	}
+
+	public function testWhenFilteredToJustAnonCreationsWhenTemporaryAccountsAreDisabled() {
+		// Filter for all page creations by anon users in any namespace.
+		$fauxRequest = new FauxRequest( [ 'hideliu' => true, 'namespace' => '' ] );
+		// The expected pages should only be creations where the author is not an IP address.
+		$expectedPages = array_filter( self::$allPages, function ( $page ) {
+			$firstRev = $this->getServiceContainer()->getRevisionStore()->getFirstRevision( $page );
+			return !$firstRev->getUser()->isRegistered();
+		} );
+		$this->disableAutoCreateTempUser();
+		$this->testLoadPage(
+			$expectedPages, array_diff( self::$allPages, $expectedPages ), $fauxRequest,
+			true, null
 		);
 	}
 
@@ -250,12 +274,20 @@ class SpecialNewPagesTest extends SpecialPageTestBase {
 			'SpecialNewPagesTest2', 'test', NS_TEMPLATE,
 			$this->getServiceContainer()->getUserFactory()->newFromName( '127.0.0.1', UserFactory::RIGOR_NONE )
 		);
+		// Get a temporary account to create a page in the project namespace.
+		$this->enableAutoCreateTempUser();
+		$testTempUser = $this->getServiceContainer()->getTempUserCreator()
+			->create( null, RequestContext::getMain()->getRequest() );
+		$this->assertStatusGood( $testTempUser );
+		$fifthPage = $this->insertPage(
+			'SpecialNewPagesTest3', 'test', NS_PROJECT, $testTempUser->getUser()
+		);
 		// Get the sysop test user to make an edit, to test it won't appear in Special:NewPages.
 		$editStatus = $this->editPage( $firstPage['title'], 'testing1234', 'test edit' );
 		$this->assertStatusGood( $editStatus );
 		self::$testUser1 = $testUser1;
 		self::$testUser1Pages = [ $firstPage['title'], $secondPage['title'], $thirdPage['title'], ];
-		self::$allPages = array_merge( self::$testUser1Pages, [ $fourthPage['title'] ] );
+		self::$allPages = array_merge( self::$testUser1Pages, [ $fourthPage['title'], $fifthPage['title'] ] );
 		self::$editRevId = $editStatus->getNewRevision()->getId();
 	}
 }

@@ -724,6 +724,7 @@ class SpecialPageFactory {
 				'UserOptionsLookup',
 				'RowCommentFormatter',
 				'ChangeTagsStore',
+				'TempUserConfig',
 			]
 		],
 		'Recentchanges' => [
