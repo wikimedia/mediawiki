@@ -3350,10 +3350,7 @@
 				"type": "mwtimestamp",
 				"options": {
 					"notnull": false,
-					"default": null,
-					"CustomSchemaOptions": {
-						"allowInfinite": true
-					}
+					"default": null
 				}
 			},
 			{

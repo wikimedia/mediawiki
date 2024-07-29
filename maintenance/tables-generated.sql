@@ -786,7 +786,7 @@ CREATE TABLE /*_*/page (
   page_is_new TINYINT UNSIGNED DEFAULT 0 NOT NULL,
   page_random DOUBLE PRECISION UNSIGNED NOT NULL,
   page_touched BINARY(14) NOT NULL,
-  page_links_updated VARBINARY(14) DEFAULT NULL,
+  page_links_updated BINARY(14) DEFAULT NULL,
   page_latest INT UNSIGNED NOT NULL,
   page_len INT UNSIGNED NOT NULL,
   page_content_model VARBINARY(32) DEFAULT NULL,
