@@ -13,7 +13,7 @@
 	"config-desc": "The installer fer MediaWiki",
 	"config-title": "MediaWiki $1 installation.",
 	"config-information": "Information",
-	"config-localsettings-upgrade": "Ae <code>LocalSettings.php</code> file haes been detectit.\nTae upgrade this installation, please enter the vailyie o <code>$wgUpgradeKey</code> in the kist ablo.\nYe'll fynd it in <code>LocalSettings.php</code>.",
+	"config-localsettings-upgrade": "Ae <code>LocalSettings.php</code> file haes been detectit.\nTae upgrade this installation, please enter the vailyie o <code>$wgUpgradeKey</code> in the field ablo.\nYe'll find it in <code>LocalSettings.php</code>.",
 	"config-localsettings-cli-upgrade": "Ae <code>LocalSettings.php</code> file haes been detectit.\nTae upgrade this installation, please rin <code>update.php</code> insteid",
 	"config-localsettings-key": "The Upgrade key:",
 	"config-localsettings-badkey": "The upgrade key ye providit is incorrect.",
@@ -65,7 +65,7 @@
 	"config-git-bad": "Git version control saffware no foond.",
 	"config-imagemagick": "Foond ImageMagick: <code>$1</code>.\nEemage thummnailin will be enabled gif ye enable uplaids.",
 	"config-gd": "Foond GD graphics librie biggit-in.\nEemage thummnailin will be enabled gif ye enable uplaids.",
-	"config-no-scaling": "Coudna fynd GD librie or ImageMagick.\nEemage thummnailin will be disabled.",
+	"config-no-scaling": "Coudnae find GD library or ImageMagick.\nImage thummnailin will be disablt.",
 	"config-no-uri": "<strong>Mistak:</strong> Coudna determine the current URI.\nInstallâtion aborted.",
 	"config-no-cli-uri": "<strong>Warnishment:</strong> Naw <code>--scriptpath</code> speceefied, uisin defaut: <code>$1</code>.",
 	"config-using-server": "Uisin server name \"<nowiki>$1</nowiki>\".",
@@ -264,5 +264,5 @@
 	"config-nofile": "File \"$1\" coudna be fand. Haes it been deletit?",
 	"config-extension-link": "Did ye ken that yer wiki supports [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensions]?\n\nYe can brouse [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensions bi categorie] or the [https://www.mediawiki.org/wiki/Extension_Matrix Extension Matrix] tae see the full leet o extensions.",
 	"mainpagetext": "<strong>MediaWiki haes been installed.</strong>",
-	"mainpagedocfooter": "Consult the [https://meta.wikimedia.org/wiki/Help:Contents/sco Uiser's Guide] fer information oan uisin the wiki saffware.\n\n== Gettin stairtit ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Confeeguration settins leet]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki release mailin leet]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise MediaWiki fer yer leid]"
+	"mainpagedocfooter": "Consult the [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents/sco Uiser's Guide] fer information oan uisin the wiki saffware.\n\n== Gettin stairtit ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Confeeguration settins leet]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki release mailin leet]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise MediaWiki fer yer leid]"
 }

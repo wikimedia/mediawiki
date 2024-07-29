@@ -3189,6 +3189,7 @@
 	"mcrundo-parse-failed": "قادر به تجزیه نسخه جدید نیست: $1",
 	"semicolon-separator": "؛&#32;",
 	"comma-separator": "،&#32;",
+	"pipe-separator": "&#32;|&#32;",
 	"percent": "$1٪",
 	"quotation-marks": "«$1»",
 	"formatnum-nan": "یک عدد نیست",

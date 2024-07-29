@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"SleaY"
+		]
+	},
+	"cdx-dialog-close-button-label": "Fermer",
+	"cdx-label-optional-flag": "(optionnel)",
+	"cdx-message-dismiss-button-label": "Fermer",
+	"cdx-search-input-search-button-label": "Rechercher",
+	"cdx-table-select-all-label": "Sélectionner toutes les lignes"
+}

@@ -4,8 +4,11 @@
 			"Merrahtar"
 		]
 	},
+	"preferences": "Оа̄ссмуж",
 	"searchprefs": "О̄дзэ оа̄ссмужэнҍ",
 	"saveprefs": "Пынне",
+	"tooltip-preferences-save": "Пынне оа̄ссмужэтҍ",
+	"savedprefs": "Оа̄ссмуж пынньюввенҍ.",
 	"prefs-personal": "Оаннӭй про̄фэль",
 	"prefs-info": "Шурьмусс те̄д",
 	"username": "{{GENDER:$1|Оаннӭй нэ̄мм}}:",

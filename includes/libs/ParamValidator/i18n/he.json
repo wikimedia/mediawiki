@@ -41,7 +41,7 @@
 	"paramvalidator-outofrange-min": "הערך \"$2\" עבור הפרמטר \"$1\" לא יכול להיות קטן מ־$3.",
 	"paramvalidator-param-deprecated": "הפרמטר \"$1\" הוכרז בתור מיושן.",
 	"paramvalidator-toomanyvalues": "יותר מדי ערכים סופקו לפרמטר \"$1\". המגבלה היא $2.",
-	"paramvalidator-unclearnowtimestamp": "העברת \"$2\" עבור פרמטר חותם־הזמן \"$1\" הוכרזה בתור מיושנת. אם מסיבה כלשהי אתם צריכים להגדיר במפורש את הזמן הנוכחי ללא חישובו בצד הלקוח, יש להשתמש ב־\"now\".",
+	"paramvalidator-unclearnowtimestamp": "העברת \"$2\" עבור פרמטר חותם־הזמן \"$1\" הוכרזה בתור מיושנת. אם מסיבה כלשהי נחוץ לך להגדיר במפורש את הזמן הנוכחי ללא חישובו בצד הלקוח, יש להשתמש ב־\"now\".",
 	"paramvalidator-unrecognizedvalues": "{{PLURAL:$4|ערך בלתי־ידוע|ערכים בלתי־ידועים}} עבור הפרמטר \"$1\": $3.",
 	"paramvalidator-help-default": "ברירת המחדל: $1",
 	"paramvalidator-help-default-empty": "ברירת המחדל: (ריק)",

@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ykhwong"
+		]
+	},
+	"cdx-input-chip-aria-description": "편집하려면 Enter를, 제거하려면 Delete를 선택하십시오.",
+	"cdx-dialog-close-button-label": "닫기",
+	"cdx-label-optional-flag": "(선택 사항)",
+	"cdx-message-dismiss-button-label": "닫기",
+	"cdx-search-input-search-button-label": "검색",
+	"cdx-table-select-all-label": "모든 줄 선택",
+	"cdx-table-select-row-label": "$2 중 $1 줄 선택",
+	"cdx-table-sort-caption": "$1, 버튼이 있는 컬럼 헤더는 정렬 가능합니다.",
+	"cdx-typeahead-search-search-results-label": "검색 결과"
+}
