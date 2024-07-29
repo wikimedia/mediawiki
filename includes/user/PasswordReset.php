@@ -338,7 +338,7 @@ class PasswordReset implements LoggerAwareInterface {
 
 		if ( !$result->isGood() ) {
 			$this->logger->info(
-				"{requestingUser} attempted password reset of {actualUser} but failed",
+				"{requestingUser} attempted password reset of {targetUsername} but failed",
 				$logContext + [ 'errors' => $result->getErrors() ]
 			);
 			return $result;
