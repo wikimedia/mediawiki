@@ -619,7 +619,7 @@ class ApiEditPage extends ApiBase {
 				// the top-level redirect if this a first edit on
 				// a wiki that is not the user's home wiki.
 				$shouldRedirectForTempUser = isset( $result['savedTempUser'] ) ||
-					$user->isTemp() && $user->getEditCount() === 0;
+					( $user->isTemp() && ( $user->getEditCount() === 0 ) );
 				if ( $shouldRedirectForTempUser ) {
 					$r['tempusercreated'] = true;
 					$params['returnto'] ??= $titleObj->getPrefixedDBkey();

@@ -1968,7 +1968,7 @@ class EditPage implements IEditObject {
 		// the top-level redirect if this a first edit on
 		// a wiki that is not the user's home wiki.
 		$shouldRedirectForTempUser = $this->tempUserCreateDone ||
-			$user->isTemp() && $user->getEditCount() === 0;
+			( $user->isTemp() && ( $user->getEditCount() === 0 ) );
 		if ( $shouldRedirectForTempUser ) {
 			$this->getHookRunner()->onTempUserCreatedRedirect(
 				$this->context->getRequest()->getSession(),
