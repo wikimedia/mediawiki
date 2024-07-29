@@ -751,6 +751,12 @@ class BlockManager {
 	 * @throws LogicException If not called pre-send.
 	 */
 	public function trackBlockWithCookie( User $user, WebResponse $response ) {
+		if ( !$this->options->get( MainConfigNames::CookieSetOnIpBlock ) &&
+			!$this->options->get( MainConfigNames::CookieSetOnAutoblock ) ) {
+			// Cookie blocks are disabled, return early to prevent executing unnecessary logic.
+			return;
+		}
+
 		$request = $user->getRequest();
 
 		if ( $request->getCookie( 'BlockID' ) !== null ) {
