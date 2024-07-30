@@ -10,15 +10,17 @@ use PHPUnit\Framework\TestCase;
  */
 class MaintenanceRunnerTest extends TestCase {
 
+	public const FIXTURE_DIRECTORY = MW_INSTALL_PATH . '/tests/phpunit/data/MaintenanceRunner';
+
 	private $oldWorkDir;
 
 	/**
 	 * @before
 	 */
 	public function workDirSetUp() {
-		// Needed for testing the resolution of pathes relative to CWD
+		// Needed for testing the resolution of paths relative to CWD
 		$this->oldWorkDir = getcwd();
-		chdir( MW_INSTALL_PATH );
+		chdir( self::FIXTURE_DIRECTORY );
 	}
 
 	/**
@@ -33,26 +35,26 @@ class MaintenanceRunnerTest extends TestCase {
 		//       otherwise we may trigger a "cannot re-declare class" error.
 
 		yield 'plain name'
-			=> [ 'Version', Version::class ];
+			=> [ 'fakeScript', EditCLI::class ];
 
 		yield 'name with suffix'
-			=> [ 'edit.php', EditCLI::class ];
+			=> [ 'fakeScript.php', EditCLI::class ];
 
 		yield 'name with path but no suffix'
-			=> [ 'storage/dumpRev', DumpRev::class ];
+			=> [ 'storage/fakeScript', DumpRev::class ];
 
 		yield 'name with path and suffix'
-			=> [ 'storage/moveToExternal.php', MoveToExternal::class ];
+			=> [ 'storage/fakeScript.php', DumpRev::class ];
 
 		yield 'relative path with "./"'
-			=> [ './maintenance/storage/orphanStats.php', OrphanStats::class ];
+			=> [ './maintenance/storage/fakeScript.php', DumpRev::class ];
 
-		$dir = basename( MW_INSTALL_PATH );
+		$dir = basename( self::FIXTURE_DIRECTORY );
 		yield 'relative path with "../"'
-			=> [ "../$dir/maintenance/cleanupImages.php", CleanupImages::class ];
+			=> [ "../$dir/maintenance/fakeScriptThatReturnsName.php", CleanupImages::class ];
 
 		yield 'absolute path'
-			=> [ MW_INSTALL_PATH . '/maintenance/blockUsers.php', BlockUsers::class ];
+			=> [ self::FIXTURE_DIRECTORY . '/maintenance/fakeScript.php', EditCLI::class ];
 
 		yield 'class name'
 			=> [ 'MediaWiki\Maintenance\Version', Version::class ];
@@ -94,10 +96,16 @@ class MaintenanceRunnerTest extends TestCase {
 				echo $msg;
 			}
 
+			protected function getMwInstallPath(): string {
+				// Fake the install path as the current directory, so that the fake maintenance scripts are found
+				// when providing a php file name in the tests.
+				return MaintenanceRunnerTest::FIXTURE_DIRECTORY;
+			}
+
 			protected function getExtensionInfo( string $extName ): ?array {
 				return [
 					'namespace' => "MediaWiki\\Extension\\$extName",
-					'path' => __DIR__ . '/FakeExtension/extension.json',
+					'path' => MaintenanceRunnerTest::FIXTURE_DIRECTORY . '/FakeExtension/extension.json',
 				];
 			}
 		};
@@ -122,10 +130,10 @@ class MaintenanceRunnerTest extends TestCase {
 		//       otherwise we may trigger a "cannot re-declare class" error.
 
 		yield 'plain name'
-			=> [ 'findOrphanedFiles', FindOrphanedFiles::class ];
+			=> [ 'fakeScript', EditCLI::class ];
 
 		yield 'name with suffix'
-			=> [ 'getText.php', GetTextMaint::class ];
+			=> [ 'fakeScriptThatReturnsName.php', CleanupImages::class ];
 
 		yield 'class name'
 			=> [ 'FindOrphanedFiles', FindOrphanedFiles::class ];

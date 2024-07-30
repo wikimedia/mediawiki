@@ -299,6 +299,13 @@ class MaintenanceRunner {
 		return [ null, $script ];
 	}
 
+	/**
+	 * @return string The value of the constant MW_INSTALL_PATH. This method mocked in unit tests.
+	 */
+	protected function getMwInstallPath(): string {
+		return MW_INSTALL_PATH;
+	}
+
 	private function expandScriptFile( string $scriptName, ?array $extension ): string {
 		// Append ".php" if not present
 		$scriptFile = $scriptName;
@@ -314,7 +321,7 @@ class MaintenanceRunner {
 				$scriptFile = dirname( $extension['path'] ) . "/maintenance/{$scriptFile}";
 			} else {
 				// It's a core script.
-				$scriptFile = MW_INSTALL_PATH . "/maintenance/{$scriptFile}";
+				$scriptFile = $this->getMwInstallPath() . "/maintenance/{$scriptFile}";
 			}
 		}
 
