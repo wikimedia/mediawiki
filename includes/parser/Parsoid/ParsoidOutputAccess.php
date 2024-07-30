@@ -20,6 +20,7 @@
 namespace MediaWiki\Parser\Parsoid;
 
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Page\PageRecord;
@@ -179,6 +180,13 @@ class ParsoidOutputAccess {
 			$parserOutput = $this->parsoidParserFactory->create()->parseFakeRevision(
 				$revision, $page, $parserOpts );
 			$parserOutput->updateCacheExpiry( 0 ); // Ensure this isn't accidentally cached
+			// set up (fake) render id and other properties
+			$globalIdGenerator = MediaWikiServices::getInstance()->getGlobalIdGenerator();
+			$parserOutput->setRenderId( $globalIdGenerator->newUUIDv1() );
+			$parserOutput->setCacheRevisionId( $revision->getId() );
+			$parserOutput->setRevisionTimestamp( $revision->getTimestamp() );
+			$parserOutput->setCacheTime( wfTimestampNow() );
+
 			$status = Status::newGood( $parserOutput );
 		} catch ( RevisionAccessException $e ) {
 			return Status::newFatal( 'parsoid-revision-access', $e->getMessage() );

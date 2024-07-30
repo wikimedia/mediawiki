@@ -8,7 +8,6 @@ use ParserFactory;
 use Wikimedia\Parsoid\Config\DataAccess;
 use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Parsoid;
-use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
  * ParserFactory which uses a ParsoidParser.
@@ -29,7 +28,6 @@ class ParsoidParserFactory /* eventually this may extend \ParserFactory */ {
 	private PageConfigFactory $pageConfigFactory;
 	private LanguageConverterFactory $languageConverterFactory;
 	private ParserFactory $legacyParserFactory;
-	private GlobalIdGenerator $globalIdGenerator;
 
 	/**
 	 * @param SiteConfig $siteConfig
@@ -43,15 +41,13 @@ class ParsoidParserFactory /* eventually this may extend \ParserFactory */ {
 		DataAccess $dataAccess,
 		PageConfigFactory $pageConfigFactory,
 		LanguageConverterFactory $languageConverterFactory,
-		ParserFactory $legacyParserFactory,
-		GlobalIdGenerator $globalIdGenerator
+		ParserFactory $legacyParserFactory
 	) {
 		$this->siteConfig = $siteConfig;
 		$this->dataAccess = $dataAccess;
 		$this->pageConfigFactory = $pageConfigFactory;
 		$this->languageConverterFactory = $languageConverterFactory;
 		$this->legacyParserFactory = $legacyParserFactory;
-		$this->globalIdGenerator = $globalIdGenerator;
 	}
 
 	/**
@@ -65,8 +61,7 @@ class ParsoidParserFactory /* eventually this may extend \ParserFactory */ {
 			new Parsoid( $this->siteConfig, $this->dataAccess ),
 			$this->pageConfigFactory,
 			$this->languageConverterFactory,
-			$this->legacyParserFactory,
-			$this->globalIdGenerator
+			$this->legacyParserFactory
 		);
 	}
 }

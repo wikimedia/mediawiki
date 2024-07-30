@@ -40,7 +40,6 @@ use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig as ParsoidSiteConfig;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
-use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
@@ -50,6 +49,7 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
@@ -155,11 +155,11 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	private ParserOutputAccess $parserOutputAccess;
 	private PageLookup $pageLookup;
 	private RevisionLookup $revisionLookup;
+	private RevisionRenderer $revisionRenderer;
 	private ParsoidSiteConfig $parsoidSiteConfig;
 	private HtmlTransformFactory $htmlTransformFactory;
 	private IContentHandlerFactory $contentHandlerFactory;
 	private LanguageFactory $languageFactory;
-	private ParsoidParserFactory $parsoidParserFactory;
 
 	/**
 	 * @param ParsoidOutputStash $parsoidOutputStash
@@ -167,8 +167,8 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 * @param ParserOutputAccess $parserOutputAccess
 	 * @param PageLookup $pageLookup
 	 * @param RevisionLookup $revisionLookup
+	 * @param RevisionRenderer $revisionRenderer
 	 * @param ParsoidSiteConfig $parsoidSiteConfig
-	 * @param ParsoidParserFactory $parsoidParserFactory
 	 * @param HtmlTransformFactory $htmlTransformFactory
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param LanguageFactory $languageFactory
@@ -189,8 +189,8 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		ParserOutputAccess $parserOutputAccess,
 		PageLookup $pageLookup,
 		RevisionLookup $revisionLookup,
+		RevisionRenderer $revisionRenderer,
 		ParsoidSiteConfig $parsoidSiteConfig,
-		ParsoidParserFactory $parsoidParserFactory,
 		HtmlTransformFactory $htmlTransformFactory,
 		IContentHandlerFactory $contentHandlerFactory,
 		LanguageFactory $languageFactory,
@@ -205,8 +205,8 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		$this->parserOutputAccess = $parserOutputAccess;
 		$this->pageLookup = $pageLookup;
 		$this->revisionLookup = $revisionLookup;
+		$this->revisionRenderer = $revisionRenderer;
 		$this->parsoidSiteConfig = $parsoidSiteConfig;
-		$this->parsoidParserFactory = $parsoidParserFactory;
 		$this->htmlTransformFactory = $htmlTransformFactory;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->languageFactory = $languageFactory;
@@ -657,6 +657,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			$this->parserOutput = $status->getValue();
 		}
 
+		Assert::invariant( $this->parserOutput->getRenderId() !== null, "no render id" );
 		return $this->parserOutput;
 	}
 
@@ -879,15 +880,15 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			}
 		}
 
+		$mainSlot = $revision->getSlot( SlotRecord::MAIN );
+		$contentModel = $mainSlot->getModel();
+		if ( $this->parsoidSiteConfig->supportsContentModel( $contentModel ) ) {
+			$parserOptions->setUseParsoid();
+		}
 		if ( $this->isCacheable ) {
 			// phan can't tell that we must have used the block above to
 			// resolve $page to a PageRecord if we've made it to this block.
 			'@phan-var PageRecord $page';
-			$mainSlot = $revision->getSlot( SlotRecord::MAIN );
-			$contentModel = $mainSlot->getModel();
-			if ( $this->parsoidSiteConfig->supportsContentModel( $contentModel ) ) {
-				$parserOptions->setUseParsoid();
-			}
 			try {
 				$status = $this->parserOutputAccess->getParserOutput(
 					$page, $parserOptions, $revision, $flags
@@ -897,6 +898,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			} catch ( ResourceLimitExceededException $e ) {
 				$status = Status::newFatal( 'parsoid-resource-limit-exceeded', $e->getMessage() );
 			}
+			Assert::invariant( $status->isOK() ? $status->getValue()->getRenderId() !== null : true, "no render id" );
 		} else {
 			$status = $this->parseUncacheable(
 				$page,
@@ -917,14 +919,17 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 					$parserOutput->setText( DOMCompat::getInnerHTML( $body ) );
 				}
 			}
+			Assert::invariant( $status->isOK() ? $status->getValue()->getRenderId() !== null : true, "no render id" );
 		}
 
 		return $status;
 	}
 
+	// See ParserOutputAccess::renderRevision() -- but of course this method
+	// bypasses any caching.
 	private function parseUncacheable(
 		PageIdentity $page,
-		ParserOptions $parserOpts,
+		ParserOptions $parserOptions,
 		RevisionRecord $revision,
 		bool $lenientRevHandling = false
 	): Status {
@@ -934,21 +939,28 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			return Status::newFatal( 'parsoid-revision-access',
 				"parseUncacheable should not be called for a real revision" );
 		}
-
 		try {
-			$parser = $this->parsoidParserFactory->create();
-			$parserOpts->setUseParsoid();
-			$parserOutput = $this->parsoidParserFactory->create()->parseFakeRevision(
-				$revision, $page, $parserOpts );
-			$parserOutput->updateCacheExpiry( 0 ); // Ensure this isn't accidentally cached
-			$status = Status::newGood( $parserOutput );
-		} catch ( RevisionAccessException $e ) {
-			return Status::newFatal( 'parsoid-revision-access', $e->getMessage() );
+			$renderedRev = $this->revisionRenderer->getRenderedRevision(
+				$revision,
+				$parserOptions,
+				// ParserOutputAccess uses 'null' for the authority and
+				// 'audience' => RevisionRecord::RAW, presumably because
+				// the access checks are already handled by the
+				// RestAuthorizeTrait
+				$this->authority,
+				[ 'audience' => RevisionRecord::RAW ]
+			);
+			if ( $renderedRev === null ) {
+				return Status::newFatal( 'parsoid-revision-access' );
+			}
+			$parserOutput = $renderedRev->getRevisionParserOutput();
+			// Ensure this isn't accidentally cached
+			$parserOutput->updateCacheExpiry( 0 );
+			return Status::newGood( $parserOutput );
 		} catch ( ClientError $e ) {
-			$status = Status::newFatal( 'parsoid-client-error', $e->getMessage() );
+			return Status::newFatal( 'parsoid-client-error', $e->getMessage() );
 		} catch ( ResourceLimitExceededException $e ) {
-			$status = Status::newFatal( 'parsoid-resource-limit-exceeded', $e->getMessage() );
+			return Status::newFatal( 'parsoid-resource-limit-exceeded', $e->getMessage() );
 		}
-		return $status;
 	}
 }

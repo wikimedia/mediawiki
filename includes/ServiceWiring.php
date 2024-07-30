@@ -1458,13 +1458,13 @@ return [
 		return new PageRestHelperFactory(
 			new ServiceOptions( PageRestHelperFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getRevisionLookup(),
+			$services->getRevisionRenderer(),
 			$services->getTitleFormatter(),
 			$services->getPageStore(),
 			$services->getParsoidOutputStash(),
 			$services->getStatsdDataFactory(),
 			$services->getParserOutputAccess(),
 			$services->getParsoidSiteConfig(),
-			$services->getParsoidParserFactory(),
 			$services->getHtmlTransformFactory(),
 			$services->getContentHandlerFactory(),
 			$services->getLanguageFactory(),
@@ -1667,8 +1667,7 @@ return [
 			$services->getParsoidDataAccess(),
 			$services->getParsoidPageConfigFactory(),
 			$services->getLanguageConverterFactory(),
-			$services->getParserFactory(),
-			$services->getGlobalIdGenerator()
+			$services->getParserFactory()
 		);
 	},
 
