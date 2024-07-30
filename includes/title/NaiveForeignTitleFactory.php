@@ -28,12 +28,8 @@ use Language;
  */
 class NaiveForeignTitleFactory implements ForeignTitleFactory {
 
-	/** @var Language */
-	private $contentLanguage;
+	private Language $contentLanguage;
 
-	/**
-	 * @param Language $contentLanguage
-	 */
 	public function __construct( Language $contentLanguage ) {
 		$this->contentLanguage = $contentLanguage;
 	}

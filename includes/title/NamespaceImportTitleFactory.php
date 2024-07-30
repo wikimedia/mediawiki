@@ -28,11 +28,9 @@ use InvalidArgumentException;
  * local namespace.
  */
 class NamespaceImportTitleFactory implements ImportTitleFactory {
-	/** @var TitleFactory */
-	private $titleFactory;
+	private TitleFactory $titleFactory;
 
-	/** @var int */
-	private $ns;
+	private int $ns;
 
 	/**
 	 * @param NamespaceInfo $namespaceInfo

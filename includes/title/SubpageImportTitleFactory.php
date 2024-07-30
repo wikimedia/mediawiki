@@ -28,11 +28,8 @@ use InvalidArgumentException;
  * of a given root page.
  */
 class SubpageImportTitleFactory implements ImportTitleFactory {
-	/** @var TitleFactory */
-	private $titleFactory;
-
-	/** @var Title */
-	private $rootPage;
+	private TitleFactory $titleFactory;
+	private Title $rootPage;
 
 	/**
 	 * @param NamespaceInfo $namespaceInfo
