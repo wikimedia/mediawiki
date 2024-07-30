@@ -241,7 +241,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		$savedOutput = $cache->get( $this->page, $options1 );
 		$this->assertInstanceOf( ParserOutput::class, $savedOutput );
 		// ParserCache adds a comment to the HTML, so check if the result starts with page content.
-		$this->assertStringStartsWith( 'TEST_TEXT', $savedOutput->getText() );
+		$this->assertStringStartsWith( 'TEST_TEXT', $savedOutput->getRawText() );
 		$this->assertSame( $this->cacheTime, $savedOutput->getCacheTime() );
 		$this->assertSame( $this->page->getLatest(), $savedOutput->getCacheRevisionId() );
 	}
@@ -265,7 +265,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		$savedOutput = $cache->get( $this->page, $options2 );
 		$this->assertInstanceOf( ParserOutput::class, $savedOutput );
 		// ParserCache adds a comment to the HTML, so check if the result starts with page content.
-		$this->assertStringStartsWith( 'TEST_TEXT', $savedOutput->getText() );
+		$this->assertStringStartsWith( 'TEST_TEXT', $savedOutput->getRawText() );
 		$this->assertSame( $this->cacheTime, $savedOutput->getCacheTime() );
 		$this->assertSame( $this->page->getLatest(), $savedOutput->getCacheRevisionId() );
 	}
@@ -363,7 +363,8 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		$options->setOption( 'wrapclass', 'wrapwrap' );
 
 		$cache->save( $parserOutput, $this->page, $options, $this->cacheTime );
-		$this->assertStringContainsString( 'TEST_TEXT', $cache->get( $this->page, $options )->getText() );
+		$this->assertStringContainsString( 'TEST_TEXT', $cache->get( $this->page, $options )
+			->getRawText() );
 	}
 
 	/**

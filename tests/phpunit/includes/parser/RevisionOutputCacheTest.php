@@ -157,7 +157,8 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 		$savedOutput = $cache->get( $this->revision, $options1 );
 		$this->assertInstanceOf( ParserOutput::class, $savedOutput );
 		// RevisionOutputCache adds a comment to the HTML, so check if the result starts with page content.
-		$this->assertStringStartsWith( 'TEST_TEXT', $savedOutput->getText() );
+		$this->assertStringStartsWith( 'TEST_TEXT',
+			$savedOutput->getRawText() );
 		$this->assertSame( $this->cacheTime, $savedOutput->getCacheTime() );
 		$this->assertSame( $this->revision->getId(), $savedOutput->getCacheRevisionId() );
 	}

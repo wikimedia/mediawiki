@@ -78,7 +78,6 @@ class CompareParserCache extends Maintenance {
 			$page = $wikiPageFactory->newFromTitle( $title );
 			$revision = $page->getRevisionRecord();
 			$parserOptions = $page->makeParserOptions( 'canonical' );
-
 			$parserOutputOld = $parserCache->get( $page, $parserOptions );
 
 			if ( $parserOutputOld ) {
@@ -93,8 +92,10 @@ class CompareParserCache extends Maintenance {
 
 				$this->output( "Found cache entry found for '{$title->getPrefixedText()}'..." );
 
-				$oldHtml = trim( preg_replace( '#<!-- .+-->#Us', '', $parserOutputOld->getText() ) );
-				$newHtml = trim( preg_replace( '#<!-- .+-->#Us', '', $parserOutputNew->getText() ) );
+				$oldHtml = trim( preg_replace( '#<!-- .+-->#Us', '',
+					$parserOutputOld->getRawText() ) );
+				$newHtml = trim( preg_replace( '#<!-- .+-->#Us', '',
+					$parserOutputNew->getRawText() ) );
 				$diffs = new Diff( explode( "\n", $oldHtml ), explode( "\n", $newHtml ) );
 				$formatter = new UnifiedDiffFormatter();
 				$unifiedDiff = $formatter->format( $diffs );

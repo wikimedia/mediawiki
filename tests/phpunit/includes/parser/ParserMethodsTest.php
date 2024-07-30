@@ -265,18 +265,6 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		];
 	}
 
-	public function testWrapOutput() {
-		$title = Title::makeTitle( NS_MAIN, 'Foo' );
-		$po = ParserOptions::newFromAnon();
-		$parser = $this->getServiceContainer()->getParser();
-		$parser->parse( 'Hello World', $title, $po );
-		$text = $parser->getOutput()->getText();
-
-		$this->assertStringContainsString( 'Hello World', $text );
-		$this->assertStringContainsString( '<div', $text );
-		$this->assertStringContainsString( 'class="mw-content-ltr mw-parser-output"', $text );
-	}
-
 	public function provideRevisionAccess() {
 		$title = $this->makeMockTitle( 'ParserRevisionAccessTest', [
 			'language' => MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' )
@@ -421,7 +409,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 
 		$parser = $this->getServiceContainer()->getParser();
 		$parser->parse( $text, $title, $po, true, true, $revId );
-		$html = $parser->getOutput()->getText();
+		$html = $parser->getOutput()->getRawText();
 
 		$this->assertStringContainsString( $expectedInHtml, $html, 'In HTML' );
 

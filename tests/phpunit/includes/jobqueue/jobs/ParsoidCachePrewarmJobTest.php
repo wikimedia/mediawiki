@@ -1,8 +1,13 @@
 <?php
 
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\OutputTransform\Stages\RenderDebugInfo;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageRecord;
+use Psr\Log\NullLogger;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group JobQueue
@@ -101,10 +106,17 @@ class ParsoidCachePrewarmJobTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( '<html', $parsoidOutput->getRawText() );
 		$this->assertStringContainsString( self::JOB_QUEUE_EDIT, $parsoidOutput->getRawText() );
 
+		$services = MediaWikiServices::getInstance();
+		$servicesOptions = new ServiceOptions(
+			RenderDebugInfo::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
+		);
+		$rdi = TestingAccessWrapper::newFromObject(
+			new RenderDebugInfo( $servicesOptions, new NullLogger(), $services->getHookContainer() )
+		);
 		// Check that the causeAction was looped through as the render reason
 		$this->assertStringContainsString(
 			'triggered because: just for testing',
-			$parsoidOutput->getText( [ 'includeDebugInfo' => true ] )
+			$rdi->debugInfo( $parsoidOutput )
 		);
 	}
 

@@ -290,7 +290,7 @@ abstract class ParserCacheSerializationTestCases {
 					// Empty string text is counted as having text.
 					$testCase->assertTrue( $object->hasText() );
 
-					$testCase->assertSame( '', $object->getText() );
+					$testCase->assertSame( '', $object->getRawText() );
 					$testCase->assertSame( '', $object->getWrapperDivClass() );
 					$testCase->assertNull( $object->getSpeculativeRevIdUsed() );
 					$testCase->assertNull( $object->getSpeculativePageIdUsed() );
@@ -349,7 +349,6 @@ abstract class ParserCacheSerializationTestCases {
 				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
 					$testCase->assertTrue( $object->hasText() );
 					$testCase->assertSame( 'Lorem Ipsum', $object->getRawText() );
-					$testCase->assertSame( 'Lorem Ipsum', $object->getText() );
 				}
 			],
 			'usedOptions' => [

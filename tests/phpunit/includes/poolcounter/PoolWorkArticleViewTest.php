@@ -98,7 +98,7 @@ class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertNotNull( $out );
 		$this->assertNotFalse( $out );
-		$this->assertStringContainsString( 'First', $out->getText() );
+		$this->assertStringContainsString( 'First', $out->getRawText() );
 	}
 
 	public function testDoWorkWithFakeRevision() {
