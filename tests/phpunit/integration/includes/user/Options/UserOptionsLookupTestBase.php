@@ -57,7 +57,7 @@ abstract class UserOptionsLookupTestBase extends MediaWikiIntegrationTestCase {
 	}
 
 	protected function getAnon(
-		string $name = 'anon'
+		string $name = '127.0.0.1'
 	): UserIdentity {
 		return new UserIdentityValue( 0, $name );
 	}

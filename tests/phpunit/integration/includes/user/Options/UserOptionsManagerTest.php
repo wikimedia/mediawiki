@@ -5,6 +5,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\Options\UserOptionsManager;
+use MediaWiki\User\Options\UserOptionsStore;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use Psr\Log\NullLogger;
@@ -50,7 +51,8 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 			$overrides['hookContainer'] ?? $services->getHookContainer(),
 			$services->getUserFactory(),
 			$services->getUserNameUtils(),
-			$services->getObjectFactory()
+			$services->getObjectFactory(),
+			[]
 		);
 	}
 
@@ -77,7 +79,8 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 			'true_vs_int' => true,
 			'true_vs_string' => true,
 		] ] );
-		$user = $this->getAnon( __METHOD__ );
+		// TODO: Why is this testing an anon user when they can't have preferences?
+		$user = $this->getAnon();
 		$manager->setOption( $user, 'null_vs_false', false );
 		$manager->setOption( $user, 'null_vs_string', '' );
 		$manager->setOption( $user, 'false_vs_int', 0 );
@@ -117,7 +120,8 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 	 * @covers \MediaWiki\User\Options\UserOptionsManager::getOption
 	 */
 	public function testGetOptionHiddenPref() {
-		$user = $this->getAnon( __METHOD__ );
+		// TODO: Why is this testing an anon user when they can't have preferences?
+		$user = $this->getAnon();
 		$manager = $this->getManager();
 		$manager->setOption( $user, 'hidden_user_option', 'hidden_value' );
 		$this->assertNull( $manager->getOption( $user, 'hidden_user_option' ) );
@@ -129,7 +133,8 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 	 * @covers \MediaWiki\User\Options\UserOptionsManager::setOption
 	 */
 	public function testSetOptionNullIsDefault() {
-		$user = $this->getAnon( __METHOD__ );
+		// TODO: Why is this testing an anon user when they can't have preferences?
+		$user = $this->getAnon();
 		$manager = $this->getManager();
 		$manager->setOption( $user, 'default_string_option', 'override_value' );
 		$this->assertSame( 'override_value', $manager->getOption( $user, 'default_string_option' ) );
@@ -276,7 +281,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 
 	public function testSaveOptionsForAnonUser() {
 		$this->expectException( InvalidArgumentException::class );
-		$this->getManager()->saveOptions( $this->getAnon( __METHOD__ ) );
+		$this->getManager()->saveOptions( $this->getAnon() );
 	}
 
 	/**
@@ -489,5 +494,41 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 		$this->assertSame( $newTouched, $user->getDBTouched() );
 		$user->clearInstanceCache();
 		$this->assertSame( $newTouched, $user->getDBTouched() );
+	}
+
+	/**
+	 * @covers \MediaWiki\User\Options\UserOptionsManager
+	 */
+	public function testNoLocalAccountOptionsStore() {
+		$user = new UserIdentityValue( 0, 'NoLocalAccountUsername' );
+		$store = $this->getMockBuilder( UserOptionsStore::class )->getMock();
+		$store->expects( $this->once() )
+			->method( 'fetch' )
+			->with( $user )
+			->willReturn( [ 'NoLocalAccountPreference' => '1' ] );
+		$store->expects( $this->once() )
+			->method( 'store' )
+			->with( $user, [ 'NoLocalAccountPreference' => '2' ] )
+			->willReturn( true );
+		$services = $this->getServiceContainer();
+		$manager = new UserOptionsManager(
+			new ServiceOptions( UserOptionsManager::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			$services->get( '_DefaultOptionsLookup' ),
+			$services->getLanguageConverterFactory(),
+			$services->getConnectionProvider(),
+			new NullLogger(),
+			$services->getHookContainer(),
+			$services->getUserFactory(),
+			$services->getUserNameUtils(),
+			$services->getObjectFactory(),
+			[
+				'NoLocalAccountStore' => [
+					'factory' => fn () => $store,
+				],
+			]
+		);
+		$this->assertSame( '1', $manager->getOption( $user, 'NoLocalAccountPreference' ) );
+		$manager->setOption( $user, 'NoLocalAccountPreference', '2', UserOptionsManager::GLOBAL_UPDATE );
+		$this->assertTrue( $manager->saveOptionsInternal( $user ) );
 	}
 }
