@@ -809,10 +809,12 @@ abstract class Installer {
 
 		try {
 			$out = $parser->parse( $text, $this->parserTitle, $this->parserOptions, $lineStart );
-			$html = $out->getText( [
+			$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
+			// TODO T371008 consider if using the Content framework makes sense instead of creating the pipeline
+			$html = $pipeline->run( $out, $this->parserOptions, [
 				'enableSectionEditLinks' => false,
 				'unwrap' => true,
-			] );
+			] )->getContentHolderText();
 			$html = Parser::stripOuterParagraph( $html );
 		} catch ( ServiceDisabledException $e ) {
 			$html = '<!--DB access attempted during parse-->  ' . htmlspecialchars( $text );

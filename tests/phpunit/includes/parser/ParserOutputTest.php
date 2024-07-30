@@ -6,6 +6,7 @@ use LogicException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\ParserOutputStringSets;
@@ -265,6 +266,8 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	 */
 	public function testWrapperDivClass() {
 		$po = new ParserOutput();
+		$opts = ParserOptions::newFromAnon();
+		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
 
 		$po->setRawText( 'Kittens' );
 		$this->assertStringContainsString( 'Kittens', $po->getText() );
@@ -272,29 +275,29 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$this->assertSame( 'Kittens', $po->getRawText() );
 
 		$po->addWrapperDivClass( 'foo' );
-		$text = $po->getText();
+		$text = $pipeline->run( $po, $opts, [] )->getContentHolderText();
 		$this->assertStringContainsString( 'Kittens', $text );
 		$this->assertStringContainsString( '<div', $text );
 		$this->assertStringContainsString( 'class="mw-content-ltr foo"', $text );
 
 		$po->addWrapperDivClass( 'bar' );
-		$text = $po->getText();
+		$text = $pipeline->run( $po, $opts, [] )->getContentHolderText();
 		$this->assertStringContainsString( 'Kittens', $text );
 		$this->assertStringContainsString( '<div', $text );
 		$this->assertStringContainsString( 'class="mw-content-ltr foo bar"', $text );
 
 		$po->addWrapperDivClass( 'bar' ); // second time does nothing, no "foo bar bar".
-		$text = $po->getText( [ 'unwrap' => true ] );
+		$text = $pipeline->run( $po, $opts, [ 'unwrap' => true ] )->getContentHolderText();
 		$this->assertStringContainsString( 'Kittens', $text );
 		$this->assertStringNotContainsString( '<div', $text );
 		$this->assertStringNotContainsString( 'class="', $text );
 
-		$text = $po->getText( [ 'wrapperDivClass' => '' ] );
+		$text = $pipeline->run( $po, $opts, [ 'wrapperDivClass' => '' ] )->getContentHolderText();
 		$this->assertStringContainsString( 'Kittens', $text );
 		$this->assertStringNotContainsString( '<div', $text );
 		$this->assertStringNotContainsString( 'class="', $text );
 
-		$text = $po->getText( [ 'wrapperDivClass' => 'xyzzy' ] );
+		$text = $pipeline->run( $po, $opts, [ 'wrapperDivClass' => 'xyzzy' ] )->getContentHolderText();
 		$this->assertStringContainsString( 'Kittens', $text );
 		$this->assertStringContainsString( '<div', $text );
 		$this->assertStringContainsString( 'class="mw-content-ltr xyzzy"', $text );
@@ -304,7 +307,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$this->assertSame( 'Kittens', $text );
 
 		$po->clearWrapperDivClass();
-		$text = $po->getText();
+		$text = $pipeline->run( $po, $opts, [] )->getContentHolderText();
 		$this->assertStringContainsString( 'Kittens', $text );
 		$this->assertStringNotContainsString( '<div', $text );
 		$this->assertStringNotContainsString( 'class="', $text );

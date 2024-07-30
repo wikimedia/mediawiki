@@ -21,6 +21,7 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\TextContent;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Rest\Handler\Helper\PageRestHelperFactory;
 use MediaWiki\Revision\SlotRecord;
@@ -81,8 +82,8 @@ class CompareLanguageConverterOutput extends Maintenance {
 		$parsoidOutput = $this->getParsoidOutput( $pageTitle, $targetVariant, $user );
 		$converterUsed = $this->getConverterUsed( $parsoidOutput );
 
-		$this->compareOutput( $parserOutput, $parsoidOutput, $converterUsed );
-
+		$this->compareOutput( $parserOutput->getContentHolderText(),
+			$parsoidOutput->getText( [ 'deduplicateStyles' => false ] ), $converterUsed );
 		return true;
 	}
 
@@ -140,7 +141,11 @@ class CompareLanguageConverterOutput extends Maintenance {
 			->getContent( SlotRecord::MAIN );
 		$wikiContent = ( $content instanceof TextContent ) ? $content->getText() : '';
 
-		return $parser->parse( $wikiContent, $pageTitle, $parserOptions );
+		$po = $parser->parse( $wikiContent, $pageTitle, $parserOptions );
+		// TODO T371008 consider if using the Content framework makes sense instead of creating the pipeline
+		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
+		$options = [ 'deduplicateStyles' => false ];
+		return $pipeline->run( $po, $parserOptions, $options );
 	}
 
 	private function getParsoidOutput(
@@ -177,13 +182,10 @@ class CompareLanguageConverterOutput extends Maintenance {
 	}
 
 	private function compareOutput(
-		ParserOutput $parserOutput,
-		ParserOutput $parsoidOutput,
+		string $parserText,
+		string $parsoidText,
 		string $converterUsed
 	): void {
-		$parsoidText = $parsoidOutput->getText( [ 'deduplicateStyles' => false ] );
-		$parserText = $parserOutput->getText( [ 'deduplicateStyles' => false ] );
-
 		$parsoidWords = $this->getWords( $this->getBody( $parsoidText ) );
 		$parserWords = $this->getWords( $parserText );
 

@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Parser\Parsoid;
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
@@ -26,21 +27,26 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 			$args[2] = ParserOptions::newFromAnon();
 		}
 		$output = $parsoidParser->parse( ...$args );
-		$html = $output->getText( $getTextOpts );
+		$html = $output->getRawText();
 		$this->assertStringContainsString( $expected, $html );
 		$this->assertSame(
 			$args[1]->getPrefixedDBkey(),
 			$output->getExtensionData( ParsoidParser::PARSOID_TITLE_KEY )
 		);
-		$this->assertArrayEquals( [
+		$usedOptions = [
+			'collapsibleSections',
 			'disableContentConversion',
 			'interfaceMessage',
-			'wrapclass',
-			'suppressSectionEditLinks',
 			'isPreview',
 			'maxIncludeSize',
-			'collapsibleSections',
-		], $output->getUsedOptions() );
+			'suppressSectionEditLinks',
+			'wrapclass',
+		];
+		$this->assertEqualsCanonicalizing( $usedOptions, $output->getUsedOptions() );
+
+		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
+		$pipeline->run( $output, $args[2], [] );
+		$this->assertArrayEquals( $usedOptions, $output->getUsedOptions() );
 	}
 
 	public static function provideParsoidParserHtml() {
@@ -61,21 +67,22 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 
 		$parsoidParser = $this->getServiceContainer()
 			->getParsoidParserFactory()->create();
+		$opts = ParserOptions::newFromAnon();
 		$output = $parsoidParser->parse(
 			$helloWorld,
 			$pageTitle,
-			ParserOptions::newFromAnon(),
+			$opts,
 			true,
 			true,
 			$page->getRevisionRecord()->getId()
 		);
-		$html = $output->getText();
+		$html = $output->getRawText();
 		$this->assertStringContainsString( $helloWorld, $html );
 		$this->assertSame(
 			$pageTitle->getPrefixedDBkey(),
 			$output->getExtensionData( ParsoidParser::PARSOID_TITLE_KEY )
 		);
-		$this->assertArrayEquals( [
+		$usedOptions = [
 			'collapsibleSections',
 			'disableContentConversion',
 			'interfaceMessage',
@@ -83,6 +90,11 @@ class ParsoidParserTest extends MediaWikiIntegrationTestCase {
 			'maxIncludeSize',
 			'suppressSectionEditLinks',
 			'wrapclass',
-		], $output->getUsedOptions() );
+		];
+		$this->assertArrayEquals( $usedOptions, $output->getUsedOptions() );
+
+		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
+		$pipeline->run( $output, $opts, [] );
+		$this->assertArrayEquals( $usedOptions, $output->getUsedOptions() );
 	}
 }

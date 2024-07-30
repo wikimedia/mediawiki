@@ -9,6 +9,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOutput;
@@ -395,18 +396,20 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$rev->setContent( SlotRecord::MAIN, new WikitextContent( '[[Kittens]]' ) );
 		$rev->setContent( 'aux', new WikitextContent( '[[Goats]]' ) );
 
-		$rr = $renderer->getRenderedRevision( $rev );
+		$options = ParserOptions::newFromAnon();
+		$rr = $renderer->getRenderedRevision( $rev, $options );
 
 		$combinedOutput = $rr->getRevisionParserOutput();
 		$mainOutput = $rr->getSlotParserOutput( SlotRecord::MAIN );
 		$auxOutput = $rr->getSlotParserOutput( 'aux' );
 
-		$combinedHtml = $combinedOutput->getText();
-		$mainHtml = $mainOutput->getText();
+		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
+		$combinedHtml = $pipeline->run( $combinedOutput, $options, [] )->getContentHolderText();
+		$mainHtml = $pipeline->run( $mainOutput, $options, [] )->getContentHolderText();
 
 		$this->assertNotSame( $combinedHtml, $mainHtml );
 
-		$auxHtml = $auxOutput->getText();
+		$auxHtml = $pipeline->run( $auxOutput, $options, [] )->getContentHolderText();
 
 		$this->assertStringContainsString( 'Kittens', $mainHtml );
 		$this->assertStringContainsString( 'Goats', $auxHtml );
@@ -447,10 +450,12 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 
 		$combinedOutput = $rr->getRevisionParserOutput();
 		$mainOutput = $rr->getSlotParserOutput( SlotRecord::MAIN );
-		$combinedHtml = $combinedOutput->getText();
-		$this->assertSame( $combinedHtml, $mainOutput->getText() );
+
+		$combinedHtml = $pipeline->run( $combinedOutput, $options, [] )->getContentHolderText();
+		$mainHtml = $pipeline->run( $mainOutput, $options, [] )->getContentHolderText();
+		$this->assertSame( $combinedHtml, $mainHtml );
 		$this->assertSame( $combinedOutput->getLinks(), $mainOutput->getLinks() );
-		$this->assertStringContainsString( 'class="mw-content-ltr mw-parser-output"', $combinedHtml );
+		$this->assertStringContainsString( 'class="mw-content-ltr mw-parser-output"', $mainHtml );
 		$this->assertStringContainsString( 'Kittens', $combinedHtml );
 		$this->assertStringNotContainsString( 'Goats', $combinedHtml );
 	}

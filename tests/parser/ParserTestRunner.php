@@ -1466,11 +1466,14 @@ class ParserTestRunner {
 			if ( isset( $opts['nohtml'] ) ) {
 				$out = '';
 			} else {
-				$out = $output->getText( [
+				// TODO T371008 consider if using the Content framework makes sense instead of creating the pipeline
+				// This may be a case where it may be reasonable to keep accessing the pipeline directly.
+				$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
+				$out = $pipeline->run( $output, $options, [
 					'allowTOC' => !isset( $opts['notoc'] ),
 					'unwrap' => !isset( $opts['wrap'] ),
 					'skin' => $this->getSkin( $opts['skin'] ?? 'fallback' ),
-				] );
+				] )->getContentHolderText();
 				$out = rtrim( $out );
 			}
 		}

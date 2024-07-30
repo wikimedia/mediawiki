@@ -2380,12 +2380,19 @@ class OutputPage extends ContextSource {
 		// Add default options from the skin
 		$skin = $this->getSkin();
 		$skinOptions = $skin->getOptions();
+		$oldText = $parserOutput->getRawText();
 		$poOptions += [
+			'suppressClone' => true, // T371022
 			'skin' => $skin,
 			'injectTOC' => $skinOptions['toc'],
 		];
-		// Note: this path absolutely expects $parserOutput to be mutated by getText, see T353257
-		return $parserOutput->getText( $poOptions );
+		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
+		// Note: this path absolutely expects the metadata of $parserOutput to be mutated by the pipeline,
+		// but the raw text should not be, see T353257
+		// TODO T371008 consider if using the Content framework makes sense instead of creating the pipeline
+		$text = $pipeline->run( $parserOutput, $this->parserOptions(), $poOptions )->getContentHolderText();
+		$parserOutput->setRawText( $oldText );
+		return $text;
 	}
 
 	/**
@@ -2394,7 +2401,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * @since 1.24
 	 * @param ParserOutput $parserOutput
-	 * @param array $poOptions Options to ParserOutput::getText()
+	 * @param array $poOptions Options to OutputTransformPipeline::run() (to be deprecated)
 	 */
 	public function addParserOutputContent( ParserOutput $parserOutput, $poOptions = [] ) {
 		$text = $this->getParserOutputText( $parserOutput, $poOptions );
@@ -2411,7 +2418,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * @internal For local use only
 	 * @param string|ParserOutput $text
-	 * @param array $poOptions Options to ParserOutput::getText()
+	 * @param array $poOptions Options to OutputTransformPipeline::run() (to be deprecated)
 	 */
 	public function addParserOutputText( $text, $poOptions = [] ) {
 		if ( $text instanceof ParserOutput ) {
@@ -2426,7 +2433,7 @@ class OutputPage extends ContextSource {
 	 * Add everything from a ParserOutput object.
 	 *
 	 * @param ParserOutput $parserOutput
-	 * @param array $poOptions Options to ParserOutput::getText()
+	 * @param array $poOptions Options to OutputTransformPipeline::run() (to be deprecated)
 	 */
 	public function addParserOutput( ParserOutput $parserOutput, $poOptions = [] ) {
 		$text = $this->getParserOutputText( $parserOutput, $poOptions );
@@ -2458,14 +2465,17 @@ class OutputPage extends ContextSource {
 		if ( $title === null ) {
 			throw new RuntimeException( 'No title in ' . __METHOD__ );
 		}
-		return $this->parseInternal(
+		$po = $this->parseInternal(
 			$text, $title, $linestart, /*interface*/false
-		)->getText( [
+		);
+		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
+		// TODO T371008 consider if using the Content framework makes sense instead of creating the pipeline
+		return $pipeline->run( $po, $this->parserOptions(), [
 			'allowTOC' => false,
 			'enableSectionEditLinks' => false,
 			'wrapperDivClass' => '',
 			'userLang' => $this->getContext()->getLanguage(),
-		] );
+		] )->getContentHolderText();
 	}
 
 	/**
@@ -2484,14 +2494,17 @@ class OutputPage extends ContextSource {
 		if ( $title === null ) {
 			throw new RuntimeException( 'No title in ' . __METHOD__ );
 		}
-		return $this->parseInternal(
+		$po = $this->parseInternal(
 			$text, $title, $linestart, /*interface*/true
-		)->getText( [
+		);
+		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
+		// TODO T371008 consider if using the Content framework makes sense instead of creating the pipeline
+		return $pipeline->run( $po, $this->parserOptions(), [
 			'allowTOC' => false,
 			'enableSectionEditLinks' => false,
 			'wrapperDivClass' => '',
 			'userLang' => $this->getContext()->getLanguage(),
-		] );
+		] )->getContentHolderText();
 	}
 
 	/**
