@@ -24,10 +24,8 @@
 namespace MediaWiki\SpecialPage;
 
 use Exception;
-use LogicException;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\Config;
-use MediaWiki\Debug\MWDebug;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
@@ -253,29 +251,10 @@ abstract class QueryPage extends SpecialPage {
 	 *
 	 * Don't include an ORDER or LIMIT clause, they will be added.
 	 *
-	 * If this function is not overridden or returns something other than
-	 * an array, getSQL() will be used instead. This is for backwards
-	 * compatibility only and is strongly deprecated.
-	 * @stable to override
 	 * @return array
-	 * @since 1.18
+	 * @since 1.18, abstract since 1.43
 	 */
-	public function getQueryInfo() {
-		// @phan-suppress-next-line PhanTypeMismatchReturnProbablyReal null needed for b/c checks
-		return null;
-	}
-
-	/**
-	 * For back-compat, subclasses may return a raw SQL query here, as a string.
-	 * @deprecated since 1.39; getQueryInfo() should be overridden instead.
-	 * @return string
-	 * @suppress PhanPluginNeverReturnMethod
-	 */
-	protected function getSQL() {
-		wfDeprecated( __METHOD__, '1.39' );
-		throw new LogicException( "Bug in a QueryPage: doesn't implement getQueryInfo() nor "
-			. "getQuery() properly" );
-	}
+	abstract public function getQueryInfo();
 
 	/**
 	 * Subclasses return an array of fields to order by here. Don't append
@@ -563,49 +542,32 @@ abstract class QueryPage extends SpecialPage {
 			}
 		}
 
-		if ( is_array( $query ) ) {
-			$tables = isset( $query['tables'] ) ? (array)$query['tables'] : [];
-			$fields = isset( $query['fields'] ) ? (array)$query['fields'] : [];
-			$conds = isset( $query['conds'] ) ? (array)$query['conds'] : [];
-			$options = isset( $query['options'] ) ? (array)$query['options'] : [];
-			$join_conds = isset( $query['join_conds'] ) ? (array)$query['join_conds'] : [];
+		$tables = isset( $query['tables'] ) ? (array)$query['tables'] : [];
+		$fields = isset( $query['fields'] ) ? (array)$query['fields'] : [];
+		$conds = isset( $query['conds'] ) ? (array)$query['conds'] : [];
+		$options = isset( $query['options'] ) ? (array)$query['options'] : [];
+		$join_conds = isset( $query['join_conds'] ) ? (array)$query['join_conds'] : [];
 
-			$queryBuilder = $dbr->newSelectQueryBuilder()
-				->tables( $tables )
-				->fields( $fields )
-				->conds( $conds )
-				->caller( $fname )
-				->options( $options )
-				->joinConds( $join_conds );
-			if ( $order ) {
-				$queryBuilder->orderBy( $order );
-			}
-
-			if ( $limit !== false ) {
-				$queryBuilder->limit( intval( $limit ) );
-			}
-
-			if ( $offset !== false ) {
-				$queryBuilder->offset( intval( $offset ) );
-			}
-
-			$res = $queryBuilder->fetchResultSet();
-		} else {
-			// Old-fashioned raw SQL style, deprecated
-			MWDebug::detectDeprecatedOverride(
-				$this,
-				__CLASS__,
-				'getSQL',
-				'1.39'
-			);
-			$sql = $this->getSQL();
-			$sql .= ' ORDER BY ' . implode( ', ', $order );
-			$sql = $dbr->limitResult( $sql, $limit, $offset );
-			// phpcs:ignore MediaWiki.Usage.DbrQueryUsage.DbrQueryFound
-			$res = $dbr->query( $sql, $fname );
+		$queryBuilder = $dbr->newSelectQueryBuilder()
+			->tables( $tables )
+			->fields( $fields )
+			->conds( $conds )
+			->caller( $fname )
+			->options( $options )
+			->joinConds( $join_conds );
+		if ( $order ) {
+			$queryBuilder->orderBy( $order );
 		}
 
-		return $res;
+		if ( $limit !== false ) {
+			$queryBuilder->limit( intval( $limit ) );
+		}
+
+		if ( $offset !== false ) {
+			$queryBuilder->offset( intval( $offset ) );
+		}
+
+		return $queryBuilder->fetchResultSet();
 	}
 
 	/**
