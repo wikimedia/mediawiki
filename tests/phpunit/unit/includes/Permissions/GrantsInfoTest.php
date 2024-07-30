@@ -12,8 +12,7 @@ use MediaWikiUnitTestCase;
  */
 class GrantsInfoTest extends MediaWikiUnitTestCase {
 
-	/** @var GrantsInfo */
-	private $grantsInfo;
+	private GrantsInfo $grantsInfo;
 
 	protected function setUp(): void {
 		parent::setUp();

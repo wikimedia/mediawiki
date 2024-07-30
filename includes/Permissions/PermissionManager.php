@@ -92,56 +92,27 @@ class PermissionManager {
 		MainConfigNames::ImplicitRights,
 	];
 
-	/** @var ServiceOptions */
-	private $options;
-
-	/** @var SpecialPageFactory */
-	private $specialPageFactory;
-
-	/** @var RedirectLookup */
-	private $redirectLookup;
-
-	/** @var NamespaceInfo */
-	private $nsInfo;
-
-	/** @var GroupPermissionsLookup */
-	private $groupPermissionsLookup;
-
-	/** @var UserGroupManager */
-	private $userGroupManager;
+	private ServiceOptions $options;
+	private SpecialPageFactory $specialPageFactory;
+	private NamespaceInfo $nsInfo;
+	private GroupPermissionsLookup $groupPermissionsLookup;
+	private UserGroupManager $userGroupManager;
+	private BlockManager $blockManager;
+	private BlockErrorFormatter $blockErrorFormatter;
+	private HookRunner $hookRunner;
+	private UserIdentityLookup $userIdentityLookup;
+	private RedirectLookup $redirectLookup;
+	private RestrictionStore $restrictionStore;
+	private TitleFormatter $titleFormatter;
+	private TempUserConfig $tempUserConfig;
+	private UserFactory $userFactory;
+	private ActionFactory $actionFactory;
 
 	/** @var string[]|null Cached results of getAllPermissions() */
 	private $allRights;
 
 	/** @var string[]|null Cached results of getImplicitRights() */
 	private $implicitRights;
-
-	/** @var BlockManager */
-	private $blockManager;
-
-	/** @var BlockErrorFormatter */
-	private $blockErrorFormatter;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var UserIdentityLookup */
-	private $userIdentityLookup;
-
-	/** @var RestrictionStore */
-	private $restrictionStore;
-
-	/** @var TitleFormatter */
-	private $titleFormatter;
-
-	/** @var TempUserConfig */
-	private $tempUserConfig;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var ActionFactory */
-	private $actionFactory;
 
 	/** @var string[][] Cached user rights */
 	private $usersRights = [];
@@ -263,23 +234,6 @@ class PermissionManager {
 		'purge',
 	];
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param SpecialPageFactory $specialPageFactory
-	 * @param NamespaceInfo $nsInfo
-	 * @param GroupPermissionsLookup $groupPermissionsLookup
-	 * @param UserGroupManager $userGroupManager
-	 * @param BlockManager $blockManager
-	 * @param BlockErrorFormatter $blockErrorFormatter
-	 * @param HookContainer $hookContainer
-	 * @param UserIdentityLookup $userIdentityLookup
-	 * @param RedirectLookup $redirectLookup
-	 * @param RestrictionStore $restrictionStore
-	 * @param TitleFormatter $titleFormatter
-	 * @param TempUserConfig $tempUserConfig
-	 * @param UserFactory $userFactory
-	 * @param ActionFactory $actionFactory
-	 */
 	public function __construct(
 		ServiceOptions $options,
 		SpecialPageFactory $specialPageFactory,
