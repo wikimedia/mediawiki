@@ -214,16 +214,19 @@ class PasswordReset implements LoggerAwareInterface {
 		$username ??= '';
 		$email ??= '';
 
+		if ( $username !== '' && !$this->userNameUtils->getCanonical( $username ) ) {
+			return StatusValue::newFatal( 'noname' );
+		}
+		if ( $email !== '' && !Sanitizer::validateEmail( $email ) ) {
+			return StatusValue::newFatal( 'passwordreset-invalidemail' );
+		}
+
 		$resetRoutes = $this->config->get( MainConfigNames::PasswordResetRoutes )
 			+ [ 'username' => false, 'email' => false ];
 		if ( $resetRoutes['username'] && $username ) {
 			$method = 'username';
 			$users = [ $this->userFactory->newFromName( $username ) ];
 		} elseif ( $resetRoutes['email'] && $email ) {
-			if ( !Sanitizer::validateEmail( $email ) ) {
-				// Only email was supplied but not valid: pretend everything's fine.
-				return StatusValue::newGood();
-			}
 			// Only email was provided
 			$method = 'email';
 			$users = $this->getUsersByEmail( $email );
@@ -240,11 +243,6 @@ class PasswordReset implements LoggerAwareInterface {
 		} else {
 			// The user didn't supply any data
 			return StatusValue::newFatal( 'passwordreset-nodata' );
-		}
-
-		// If the username is not valid, tell the user.
-		if ( $username && !$this->userNameUtils->getCanonical( $username ) ) {
-			return StatusValue::newFatal( 'noname' );
 		}
 
 		// Check for hooks (captcha etc), and allow them to modify the users list
@@ -272,8 +270,8 @@ class PasswordReset implements LoggerAwareInterface {
 			&& $method === 'username'
 			&& $firstUser
 			&& $this->userOptionsLookup->getBoolOption( $firstUser, 'requireemail' );
-		if ( $requireEmail && ( $email === '' || !Sanitizer::validateEmail( $email ) ) ) {
-			// Email is required, and not supplied or not valid: pretend everything's fine.
+		if ( $requireEmail && $email === '' ) {
+			// Email is required but not supplied: pretend everything's fine.
 			return StatusValue::newGood();
 		}
 

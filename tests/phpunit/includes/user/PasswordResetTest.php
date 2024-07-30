@@ -299,8 +299,8 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 				'email' => '[invalid email]',
 				'usersWithEmail' => [],
 			],
-			'Invalid email, pretend everything is OK' => [
-				'expectedError' => false,
+			'Invalid email' => [
+				'expectedError' => 'passwordreset-invalidemail',
 				'config' => $defaultConfig,
 				'performingUser' => $performingUser,
 				'authManager' => $this->makeAuthManager(),
@@ -353,8 +353,8 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 				'email' => '',
 				'usersWithEmail' => [],
 			],
-			'Email required for resets but is invalid, pretend everything is OK' => [
-				'expectedError' => false,
+			'Email required for resets but is invalid' => [
+				'expectedError' => 'passwordreset-invalidemail',
 				'config' => $emailRequiredConfig,
 				'performingUser' => $performingUser,
 				'authManager' => $this->makeAuthManager(),

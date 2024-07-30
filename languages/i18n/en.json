@@ -574,6 +574,7 @@
 	"passwordreset-nocaller": "A caller must be provided",
 	"passwordreset-nosuchcaller": "Caller does not exist: $1",
 	"passwordreset-ignored": "The password reset was not handled. Maybe no provider was configured?",
+	"passwordreset-invalidemail": "Invalid email address",
 	"passwordreset-nodata": "Neither a username nor an email address was supplied",
 	"changeemail": "Change or remove email address",
 	"changeemail-summary": "",
