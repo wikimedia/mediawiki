@@ -129,40 +129,57 @@ class TitleCleanup extends TableCleanup {
 			$legalizedUnprefixed = '(space)';
 		}
 		$ns = (int)$row->page_namespace;
-		// Move all broken pages to the main namespace so they can be found together
-		if ( $ns !== 0 ) {
-			$namespaceInfo = $this->getServiceContainer()->getNamespaceInfo();
-			$namespaceName = $namespaceInfo->getCanonicalName( $ns );
-			if ( $namespaceName === false ) {
-				$namespaceName = "NS$ns"; // Fallback for unknown namespaces
-			}
-			$legalizedUnprefixed = "$namespaceName:$legalizedUnprefixed";
-		}
-		$legalized = $this->prefix . $legalizedUnprefixed;
 
-		$title = Title::newFromText( $legalized );
+		$title = null;
+		// Try to move "Talk:Project:Foo" -> "Project talk:Foo"
+		if ( $ns === 1 ) {
+			$subjectTitle = Title::newFromText( $legalizedUnprefixed );
+			if ( $subjectTitle && !$subjectTitle->isTalkPage() ) {
+				$talkTitle = $subjectTitle->getTalkPageIfDefined();
+				if ( $talkTitle !== null && !$talkTitle->exists() ) {
+					$ns = $talkTitle->getNamespace();
+					$title = $talkTitle;
+				}
+			}
+		}
+
+		if ( $title === null ) {
+			// Not a talk page or that didn't work
+			// move any other broken pages to the main namespace so they can be found together
+			if ( $ns !== 0 ) {
+				$namespaceInfo = $this->getServiceContainer()->getNamespaceInfo();
+				$namespaceName = $namespaceInfo->getCanonicalName( $ns );
+				if ( $namespaceName === false ) {
+					$namespaceName = "NS$ns"; // Fallback for unknown namespaces
+				}
+				$ns = 0;
+				$legalizedUnprefixed = "$namespaceName:$legalizedUnprefixed";
+			}
+			$title = Title::newFromText( $this->prefix . $legalizedUnprefixed );
+		}
 
 		if ( $title === null ) {
 			// It's still not a valid title, try again with a much smaller
 			// allowed character set. This will mangle any titles with non-ASCII
 			// characters, but if we don't do this the result will be
 			// falling back to the Broken/id:foo failsafe below which is worse
-			$legalizedUnprefixed = preg_replace_callback( '!([^A-Za-z0-9_\\-:])!',
+			$legalizedUnprefixed = preg_replace_callback( '!([^A-Za-z0-9_:\\-])!',
 				[ $this, 'hexChar' ],
 				$legalizedUnprefixed
 			);
-			$legalized = $this->prefix . $legalizedUnprefixed;
-			$title = Title::newFromText( $legalized );
+			$title = Title::newFromText( $this->prefix . $legalizedUnprefixed );
 		}
 
 		if ( $title === null ) {
 			// Oh well, we tried
 			$clean = $this->prefix . 'id:' . $row->page_id;
+			$legalized = $this->prefix . $legalizedUnprefixed;
 			$this->output( "Couldn't legalize; form '$legalized' still invalid; using '$clean'\n" );
 			$title = Title::newFromText( $clean );
 		} elseif ( $title->exists() ) {
 			$clean = $this->prefix . 'id:' . $row->page_id;
-			$this->output( "Legalized for '$legalized' exists; using '$clean'\n" );
+			$conflict = $title->getDBKey();
+			$this->output( "Legalized for '$conflict' exists; using '$clean'\n" );
 			$title = Title::newFromText( $clean );
 		}
 
@@ -177,14 +194,14 @@ class TitleCleanup extends TableCleanup {
 		$dest = $title->getDBkey();
 		if ( $this->dryrun ) {
 			$this->output( "DRY RUN: would rename $row->page_id ($row->page_namespace," .
-				"'$row->page_title') to (0,'$dest')\n" );
+				"'$row->page_title') to ($ns,'$dest')\n" );
 		} else {
 			$this->output( "renaming $row->page_id ($row->page_namespace," .
 				"'$row->page_title') to ($row->page_namespace,'$dest')\n" );
 			$this->getPrimaryDB()
 				->newUpdateQueryBuilder()
 				->update( 'page' )
-				->set( [ 'page_title' => $dest, 'page_namespace' => 0 ] )
+				->set( [ 'page_title' => $dest, 'page_namespace' => $ns ] )
 				->where( [ 'page_id' => $row->page_id ] )
 				->caller( __METHOD__ )->execute();
 		}

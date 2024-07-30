@@ -11,6 +11,7 @@ class CleanupTitlesTest extends MaintenanceBaseTestCase {
 		// Add some existing pages to test normalization clashes
 		$this->insertPage( 'User talk:195.175.37.8' );
 		$this->insertPage( 'User talk:195.175.37.10' );
+		$this->insertPage( 'Project talk:Existing' );
 
 		// Create an interwiki link to test titles with interwiki prefixes
 		$this->getDb()->newInsertQueryBuilder()
@@ -40,8 +41,6 @@ class CleanupTitlesTest extends MaintenanceBaseTestCase {
 		yield [ 0, 'Project:Foo', 4, 'Foo', null ];
 		# Interwiki title encoded as mainspace
 		yield [ 0, 'custom:Foo', 0, 'Broken/custom:Foo', null ];
-		# Talk page of illegal title
-		yield [ 1, 'custom:Foo', 0, 'Broken/Talk:custom:Foo', null ];
 		# Unknown namespace
 		yield [ 9999, 'Foo', 0, 'Broken/NS9999:Foo', null ];
 		# Illegal characters
@@ -56,7 +55,9 @@ class CleanupTitlesTest extends MaintenanceBaseTestCase {
 		# the namespace prefix, and then clashes with another title when fully normalized
 		yield [ 0, 'User talk:195.175.037.10', 0, 'Broken/User_talk:195.175.37.10', null ];
 		# Non-ascii characters (and otherwise invalid)
-		yield [ 1, 'Project:Википедия', 0, 'Broken/Talk:Project:Википедия', null ];
+		# The point of this is to make sure it escapes the invalid < character without also
+		# escaping the non-ASCII characters in the other parts of the title
+		yield [ 0, '<Википедия', 0, 'Broken/\x3cВикипедия', null ];
 		# Non-ascii charaters (and otherwise invalid in a way that removing characters not in Title::legalChars()
 		# doesn't cure)
 		# This output is unideal, and just a failsafe to avoid "Broken/id:" titles
@@ -67,6 +68,14 @@ class CleanupTitlesTest extends MaintenanceBaseTestCase {
 		yield [ 0, "Media:Foo", 0, "Broken/Media:Foo", null ];
 		# With prefix
 		yield [ 0, '<', 0, 'Prefix/\x3c', 'Prefix' ];
+		# Incorrectly encoded talk page of namespace
+		yield [ 1, 'Project:Foo', 5, 'Foo', null ];
+		# Of special page
+		yield [ 1, 'Special:Foo', 0, 'Broken/Talk:Special:Foo', null ];
+		# Of interwiki
+		yield [ 1, 'custom:Foo', 0, 'Broken/Talk:custom:Foo', null ];
+		# Of page that already exists
+		yield [ 1, 'Project:Existing', 0, 'Broken/Talk:Project:Existing', null ];
 	}
 
 	/**
