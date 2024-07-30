@@ -2244,7 +2244,7 @@
 	"feedback-submit": "Wasilisha",
 	"feedback-thanks": "Ahsante! Maoni yako yamewekwa kwenye ukurasa wa \"[$2 $1]\".",
 	"feedback-thanks-title": "Asante!",
-	"searchsuggest-search": "Kutafuta",
+	"searchsuggest-search": "Tafuta {{SITENAME}}",
 	"searchsuggest-containing": "Tafuta kurasa zilizo na",
 	"api-error-emptypage": "Kutengeneza mpya, kurasa tupu hazikubaliwi",
 	"api-error-unknown-warning": "Ilani isiojulikana: \"$1\".",

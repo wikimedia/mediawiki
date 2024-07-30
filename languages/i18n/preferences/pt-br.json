@@ -53,7 +53,6 @@
 	"prefs-info": "Informações básicas",
 	"username": "Nome de {{GENDER:$1|usuário|usuária|usuário(a)}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Membro}} {{PLURAL:$1|do grupo|dos grupos}}:",
-	"prefs-memberingroups-type": "$1",
 	"group-membership-link-with-expiry": "$1 (até $2)",
 	"prefs-edits": "Número de edições:",
 	"prefs-registration": "Hora de registro:",

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bachounda",
 			"Hubaishan",
 			"MRidhaAJ"
 		]
@@ -10,9 +11,11 @@
 	"searchprefs": "ابحث في التفضيلات",
 	"searchprefs-noresults": "ماكو نتايج",
 	"saveprefs": "إحفظ",
+	"tooltip-preferences-save": "حفظ التفضيلات",
 	"savedprefs": "انحفظن تفضيلاتك.",
 	"prefs-back-title": "ارجع للتفضيلات",
 	"prefs-tabs-navigation-hint": "تلميح: تكدر تستخدم مفتاحين السهمين الأيمن والأيسر للتنقل بين الألسنة في قائمة الألسنة.",
+	"prefs-sections-navigation-hint": "تلميح: يمكنك استخدام مفتاحي Tab و Shift + Tab للتنقل بين أقسام التفضيلات.",
 	"prefs-personal": "ملف النفر",
 	"prefs-description-personal": "تحكم بكيفية الظهور والاتصال والتواصل.",
 	"prefs-info": "المعلومات الأساسيه",
@@ -91,7 +94,7 @@
 	"prefs-description-rendering": "كون خيارات السطح والحجم والقراءه.",
 	"prefs-skin": "واجهة",
 	"skin-preview": "معاينة",
-	"prefs-common-config": "جافاسكربت/جسون/سي أس أس مشترك لكل الواجهات:",
+	"prefs-common-config": "سي أس أس/ جافاسكربت مشترك لكل الواجهات:",
 	"prefs-custom-css": "سي أس أس مخصص",
 	"prefs-custom-js": "جافاسكربت مخصص",
 	"prefs-skin-prefs": "تفضيلات الواجهة",

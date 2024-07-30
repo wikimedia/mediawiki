@@ -1729,7 +1729,7 @@
 	"confirmrecreate-noreason": "{{GENDER:$1|لخدايمي|لخدايمية}} [[User:$1|$1]] ([[User talk:$1|talk]]) {{GENDER:$1|حدف|حدفات}} هاد صّفحة بعدما بديتي كاتعدّل فيها. عافاك أكد بلي بغيتي تعاود تصاوب هاد صّفحة.",
 	"recreate": "عود لإنشاء",
 	"confirm_purge_button": "واخا",
-	"confirm-purge-top": "bghiti tmsh lcache dyal had sfha ?",
+	"confirm-purge-top": "بغيتي تمسح لكاش ديال هاد الصفحه؟",
 	"confirm-watch-button": "واخا",
 	"confirm-watch-top": "تزيد هاد الصفحة للقائمة د لمتابعة؟",
 	"confirm-unwatch-button": "واخا",

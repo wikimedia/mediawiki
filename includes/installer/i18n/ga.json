@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Pppery",
 			"පසිඳු කාවින්ද"
 		]
 	},
@@ -9,5 +10,5 @@
 	"config-admin-password": "D'fhocal faire:",
 	"config-help": "Cuidiú",
 	"mainpagetext": "'''D'éirigh le suiteáil MediaWiki.'''",
-	"mainpagedocfooter": "Féach ar [https://meta.wikimedia.org/wiki/MediaWiki_localisation doiciméid um conas an chomhéadán a athrú]\nagus an [https://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar úsáideora] chun cabhair úsáide agus fíoraíochta a fháil."
+	"mainpagedocfooter": "Féach ar [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources doiciméid um conas an chomhéadán a athrú]\nagus an [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Lámhleabhar úsáideora] chun cabhair úsáide agus fíoraíochta a fháil."
 }

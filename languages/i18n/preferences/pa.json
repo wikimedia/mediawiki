@@ -27,7 +27,6 @@
 	"prefs-info": "ਮੁਢਲੀ ਜਾਣਕਾਰੀ",
 	"username": "{{GENDER:$1|ਵਰਤੋਂਕਾਰ ਦਾ ਨਾਂ}}:",
 	"prefs-memberingroups": "{{PLURAL:$1|ਢਾਣੀ|ਢਾਣੀਆਂ}} ਦਾ {{GENDER:$2|ਮੈਂਬਰ}}:",
-	"prefs-memberingroups-type": "$1",
 	"group-membership-link-with-expiry": "$1 ($2 ਤੱਕ)",
 	"prefs-edits": "ਸੋਧਾਂ ਦੀ ਗਿਣਤੀ:",
 	"prefs-registration": "ਰਜਿਸਟਰੇਸ਼ਨ ਸਮਾਂ:",
