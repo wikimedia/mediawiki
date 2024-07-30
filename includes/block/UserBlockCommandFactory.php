@@ -31,59 +31,23 @@ use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
 
 class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
-	/**
-	 * @var BlockPermissionCheckerFactory
-	 */
-	private $blockPermissionCheckerFactory;
-
-	/** @var BlockUtils */
-	private $blockUtils;
-
-	/** @var HookContainer */
-	private $hookContainer;
-
-	/** @var BlockRestrictionStore */
-	private $blockRestrictionStore;
-
-	/** @var ServiceOptions */
-	private $options;
-
-	/** @var DatabaseBlockStore */
-	private $blockStore;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var UserEditTracker */
-	private $userEditTracker;
-
-	/** @var LoggerInterface */
-	private $logger;
-
-	/** @var TitleFactory */
-	private $titleFactory;
-
-	/** @var BlockActionInfo */
-	private $blockActionInfo;
+	private BlockPermissionCheckerFactory $blockPermissionCheckerFactory;
+	private BlockUtils $blockUtils;
+	private HookContainer $hookContainer;
+	private BlockRestrictionStore $blockRestrictionStore;
+	private ServiceOptions $options;
+	private DatabaseBlockStore $blockStore;
+	private UserFactory $userFactory;
+	private UserEditTracker $userEditTracker;
+	private LoggerInterface $logger;
+	private TitleFactory $titleFactory;
+	private BlockActionInfo $blockActionInfo;
 
 	/**
 	 * @internal Use only in ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = BlockUser::CONSTRUCTOR_OPTIONS;
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param HookContainer $hookContainer
-	 * @param BlockPermissionCheckerFactory $blockPermissionCheckerFactory
-	 * @param BlockUtils $blockUtils
-	 * @param DatabaseBlockStore $blockStore
-	 * @param BlockRestrictionStore $blockRestrictionStore
-	 * @param UserFactory $userFactory
-	 * @param UserEditTracker $userEditTracker
-	 * @param LoggerInterface $logger
-	 * @param TitleFactory $titleFactory
-	 * @param BlockActionInfo $blockActionInfo
-	 */
 	public function __construct(
 		ServiceOptions $options,
 		HookContainer $hookContainer,

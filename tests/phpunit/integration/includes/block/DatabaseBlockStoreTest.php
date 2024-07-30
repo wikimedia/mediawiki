@@ -23,17 +23,10 @@ use Wikimedia\IPUtils;
 class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;
 
-	/** @var User */
-	private $sysop;
-
-	/** @var int */
-	private $expiredBlockId = 11111;
-
-	/** @var int */
-	private $unexpiredBlockId = 22222;
-
-	/** @var int */
-	private $autoblockId = 33333;
+	private User $sysop;
+	private int $expiredBlockId = 11111;
+	private int $unexpiredBlockId = 22222;
+	private int $autoblockId = 33333;
 
 	/**
 	 * @param array $options

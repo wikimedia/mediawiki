@@ -19,14 +19,9 @@ use Wikimedia\TestingAccessWrapper;
 class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	use TestAllServiceOptionsUsed;
 
-	/** @var User */
-	protected $user;
-
-	/** @var User */
-	protected $sysopUser;
-
-	/** @var array */
-	private $blockManagerConfig;
+	protected User $user;
+	protected User $sysopUser;
+	private array $blockManagerConfig;
 
 	protected function setUp(): void {
 		parent::setUp();

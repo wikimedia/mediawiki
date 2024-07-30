@@ -74,38 +74,17 @@ class BlockUser {
 	/** @var Authority Performer of the block */
 	private $performer;
 
-	/** @var ServiceOptions */
-	private $options;
-
-	/** @var BlockRestrictionStore */
-	private $blockRestrictionStore;
-
-	/** @var BlockPermissionChecker */
-	private $blockPermissionChecker;
-
-	/** @var BlockUtils */
-	private $blockUtils;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var DatabaseBlockStore */
-	private $blockStore;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var UserEditTracker */
-	private $userEditTracker;
-
-	/** @var LoggerInterface */
-	private $logger;
-
-	/** @var TitleFactory */
-	private $titleFactory;
-
-	/** @var BlockActionInfo */
-	private $blockActionInfo;
+	private ServiceOptions $options;
+	private BlockRestrictionStore $blockRestrictionStore;
+	private BlockPermissionChecker $blockPermissionChecker;
+	private BlockUtils $blockUtils;
+	private BlockActionInfo $blockActionInfo;
+	private HookRunner $hookRunner;
+	private DatabaseBlockStore $blockStore;
+	private UserFactory $userFactory;
+	private UserEditTracker $userEditTracker;
+	private LoggerInterface $logger;
+	private TitleFactory $titleFactory;
 
 	/**
 	 * @internal For use by UserBlockCommandFactory

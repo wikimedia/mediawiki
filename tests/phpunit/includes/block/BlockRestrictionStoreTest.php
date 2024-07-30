@@ -16,8 +16,7 @@ use MediaWiki\MainConfigNames;
  */
 class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 
-	/** @var BlockRestrictionStore */
-	protected $blockRestrictionStore;
+	protected BlockRestrictionStore $blockRestrictionStore;
 
 	protected function setUp(): void {
 		parent::setUp();

@@ -46,15 +46,6 @@ use Wikimedia\IPUtils;
  * @since 1.34 Refactored from User and Block.
  */
 class BlockManager {
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var UserIdentityUtils */
-	private $userIdentityUtils;
-
-	/** @var ServiceOptions */
-	private $options;
-
 	/**
 	 * @internal For use by ServiceWiring
 	 */
@@ -70,32 +61,17 @@ class BlockManager {
 		MainConfigNames::SoftBlockRanges,
 	];
 
-	/** @var LoggerInterface */
-	private $logger;
+	private ServiceOptions $options;
+	private UserFactory $userFactory;
+	private UserIdentityUtils $userIdentityUtils;
+	private LoggerInterface $logger;
+	private HookRunner $hookRunner;
+	private DatabaseBlockStore $blockStore;
+	private ProxyLookup $proxyLookup;
 
-	/** @var HookRunner */
-	private $hookRunner;
+	private BlockCache $userBlockCache;
+	private BlockCache $createAccountBlockCache;
 
-	/** @var DatabaseBlockStore */
-	private $blockStore;
-
-	/** @var ProxyLookup */
-	private $proxyLookup;
-
-	/** @var BlockCache */
-	private $userBlockCache;
-
-	/** @var BlockCache */
-	private $createAccountBlockCache;
-
-	/**
-	 * @param ServiceOptions $options
-	 * @param UserFactory $userFactory
-	 * @param UserIdentityUtils $userIdentityUtils
-	 * @param LoggerInterface $logger
-	 * @param HookContainer $hookContainer
-	 * @param DatabaseBlockStore $blockStore
-	 */
 	public function __construct(
 		ServiceOptions $options,
 		UserFactory $userFactory,

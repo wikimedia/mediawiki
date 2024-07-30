@@ -53,8 +53,7 @@ class BlockPermissionChecker {
 		MainConfigNames::EnableUserEmail,
 	];
 
-	/** @var ServiceOptions */
-	private $options;
+	private ServiceOptions $options;
 
 	/**
 	 * @param ServiceOptions $options
