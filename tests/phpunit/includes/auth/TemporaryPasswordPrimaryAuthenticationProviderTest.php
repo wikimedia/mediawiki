@@ -29,6 +29,7 @@ use Wikimedia\TestingAccessWrapper;
  *
  * @group AuthManager
  * @group Database
+ * @covers \MediaWiki\Auth\AbstractTemporaryPasswordPrimaryAuthenticationProvider
  * @covers \MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider
  */
 class TemporaryPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegrationTestCase {
@@ -835,11 +836,6 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegr
 		$provider->providerChangeAuthenticationData( $req );
 		ScopedCallback::consume( $resetMailer );
 		$this->assertTrue( $mailed );
-
-		$priv = TestingAccessWrapper::newFromObject( $provider );
-		$req->username = '<invalid>';
-		$status = $priv->sendPasswordResetEmail( $req );
-		$this->assertEquals( Status::newFatal( 'noname' ), $status );
 	}
 
 	public static function provideChangeAuthenticationDataEmailSuccessCases(): iterable {
