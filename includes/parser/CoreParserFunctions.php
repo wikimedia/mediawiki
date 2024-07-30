@@ -36,6 +36,7 @@ use MediaWiki\SiteStats\SiteStats;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\RemexHtml\Tokenizer\Attributes;
 use Wikimedia\RemexHtml\Tokenizer\PlainAttributes;
 
@@ -116,6 +117,10 @@ class CoreParserFunctions {
 			'numberofpages',
 			'numberofadmins',
 			'numberofedits',
+
+			# These magic words already contain the hash, and the no-args form
+			# is the same as passing an empty first argument
+			'dir',
 		];
 		foreach ( $noHashFunctions as $func ) {
 			$parser->setFunctionHook( $func, [ __CLASS__, $func ], Parser::SFH_NO_HASH );
@@ -1004,6 +1009,43 @@ class CoreParserFunctions {
 			->getLanguageNameUtils()
 			->getLanguageName( $code, $inLanguage );
 		return $lang !== '' ? $lang : LanguageCode::bcp47( $code );
+	}
+
+	/**
+	 * Gives direction of script of a language given a language code.
+	 * @param Parser $parser
+	 * @param string $code a language code. If missing, the parser target
+	 *  language will be used.
+	 * @param string $arg If this optional argument matches the
+	 *  `language_option_bcp47` magic word, the language code will be treated
+	 *  as a BCP-47 code.
+	 * @return string 'rtl' if the language code is recognized as
+	 *  right-to-left, otherwise returns 'ltr'
+	 */
+	public static function dir( Parser $parser, string $code = '', string $arg = '' ): string {
+		static $magicWords = null;
+		$languageFactory = MediaWikiServices::getInstance()->getLanguageFactory();
+
+		if ( $code === '' ) {
+			$lang = $parser->getTargetLanguage();
+		} else {
+			if ( $arg !== '' ) {
+				if ( $magicWords === null ) {
+					$magicWords = $parser->getMagicWordFactory()->newArray( [ 'language_option_bcp47' ] );
+				}
+				if ( $magicWords->matchStartToEnd( $arg ) === 'language_option_bcp47' ) {
+					// Prefer the BCP-47 interpretation of this code.
+					$code = new Bcp47CodeValue( $code );
+				}
+			}
+			try {
+				$lang = $languageFactory->getLanguage( $code );
+			} catch ( InvalidArgumentException $ex ) {
+				$parser->addTrackingCategory( 'bad-language-code-category' );
+				return 'ltr';
+			}
+		}
+		return $lang->getDir();
 	}
 
 	/**

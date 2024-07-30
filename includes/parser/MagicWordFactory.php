@@ -121,6 +121,7 @@ class MagicWordFactory {
 		'pagelanguage',
 		'numberofadmins',
 		'cascadingsources',
+		'dir',
 	];
 
 	/** @var string[] */

@@ -820,6 +820,8 @@
 	"unstrip-size-warning": "Unstrip size limit exceeded ($1)",
 	"unstrip-size-category": "Pages where the unstrip size limit is exceeded",
 	"unstrip-size-category-desc": "The page exceeds the unstrip size limit.",
+	"bad-language-code-category": "Pages with invalid language codes",
+	"bad-language-code-category-desc": "The page contains a <code><nowiki>{{#dir}}</nowiki></code> with an invalid language code.",
 	"converter-manual-rule-error": "Error detected in manual language conversion rule",
 	"undo-success": "The edit can be undone.\nPlease check the comparison below to verify that this is what you want to do, and then publish the changes below to finish undoing the edit.",
 	"undo-failure": "The edit could not be undone due to conflicting intermediate edits.",

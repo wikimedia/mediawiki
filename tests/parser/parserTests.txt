@@ -12939,6 +12939,89 @@ Language parser function
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#language:ar","function":"language"},"params":{},"i":0}}]}'>العربية</span></p>
 !! end
 
+!! test
+Dir parser function (valid codes)
+!! wikitext
+Persian: {{#dir:fa}}
+
+English: {{#dir:en}}
+
+Persian (with space): {{#dir: fa}}
+
+Tajik: {{#dir:tg}}
+
+The string 'egl' is a valid internal code; however when used as a
+BCP-47 code it refers to the internal code 'eml'.  Unfortunately,
+both of these have ltr directionality which makes this test case
+less useful than it could be.
+
+Ambiguous BCP-47 code:
+;Directionality of internal code 'egl':{{#dir:egl}}
+;Directionality of internal code 'eml':{{#dir:egl|bcp47}} == {{#dir:eml}}
+!! html/php
+<p>Persian: rtl
+</p><p>English: ltr
+</p><p>Persian (with space): rtl
+</p><p>Tajik: ltr
+</p><p>The string 'egl' is a valid internal code; however when used as a
+BCP-47 code it refers to the internal code 'eml'.  Unfortunately,
+both of these have ltr directionality which makes this test case
+less useful than it could be.
+</p><p>Ambiguous BCP-47 code:
+</p>
+<dl><dt>Directionality of internal code 'egl'</dt>
+<dd>ltr</dd>
+<dt>Directionality of internal code 'eml'</dt>
+<dd>ltr == ltr</dd></dl>
+!! html/parsoid+integrated
+<p>Persian: <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#dir:fa","function":"dir"},"params":{},"i":0}}]}'>rtl</span></p>
+<p>English: <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#dir:en","function":"dir"},"params":{},"i":0}}]}'>ltr</span></p>
+<p>Persian (with space): <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#dir: fa","function":"dir"},"params":{},"i":0}}]}'>rtl</span></p>
+<p>Tajik: <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#dir:tg","function":"dir"},"params":{},"i":0}}]}'>ltr</span></p>
+<p>The string 'egl' is a valid internal code; however when used as a BCP-47 code it refers to the internal code 'eml'. Unfortunately, both of these have ltr directionality which makes this test case less useful than it could be.</p>
+<p>Ambiguous BCP-47 code:</p>
+<dl>
+<dt>Directionality of internal code 'egl'</dt>
+<dd><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#dir:egl","function":"dir"},"params":{},"i":0}}]}'>ltr</span></dd>
+<dt>Directionality of internal code 'eml'</dt>
+<dd><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#dir:egl","function":"dir"},"params":{"1":{"wt":"bcp47"}},"i":0}}]}'>ltr</span> == <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#dir:eml","function":"dir"},"params":{},"i":0}}]}'>ltr</span></dd>
+</dl>
+!! end
+
+!! test
+Dir parser function (target language)
+!! options
+language=fa
+cat
+!! metadata
+!! wikitext
+These are all equivalent:
+
+{{#dir}} / {{#dir:}} / {{#dir:{{PAGELANGUAGE}}}}
+!! html/php
+<p>These are all equivalent:
+</p><p>rtl / rtl / rtl
+</p>
+!! html/parsoid+integrated
+<p>These are all equivalent:</p>
+<p><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#dir","function":"dir"},"params":{},"i":0}}]}'>rtl</span> / <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#dir:","function":"dir"},"params":{},"i":0}}]}'>rtl</span> / <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#dir:{{PAGELANGUAGE}}","function":"dir"},"params":{},"i":0}}]}'>rtl</span></p>
+!! end
+
+!! test
+Dir parser function (invalid code)
+!! options
+cat
+!! wikitext
+{{#dir:blah<blah}}
+!! metadata
+cat=Pages_with_invalid_language_codes sort=
+!! html/php
+<p>ltr
+</p>
+!! html/parsoid+integrated
+<p><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#dir:blah&lt;blah","function":"dir"},"params":{},"i":0}}]}'>ltr</span></p>
+!! end
+
 !!test
 Padleft and padright (default 0-padding)
 !! wikitext

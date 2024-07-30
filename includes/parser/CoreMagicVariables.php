@@ -300,6 +300,9 @@ class CoreMagicVariables {
 				return $parser->getContentLanguage()->getCode();
 			case 'pagelanguage':
 				return $pageLang->getCode();
+			case 'dir':
+				# magic variables are the same as empty/default first argument
+				return CoreParserFunctions::$id( $parser );
 			default:
 				// This is not one of the core magic variables
 				return null;
