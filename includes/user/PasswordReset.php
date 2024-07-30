@@ -39,7 +39,6 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use StatusValue;
-use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Helper class for the password reset functionality shared by the web UI and the API.
@@ -54,7 +53,7 @@ class PasswordReset implements LoggerAwareInterface {
 	private ServiceOptions $config;
 	private AuthManager $authManager;
 	private HookRunner $hookRunner;
-	private IConnectionProvider $dbProvider;
+	private UserIdentityLookup $userIdentityLookup;
 	private UserFactory $userFactory;
 	private UserNameUtils $userNameUtils;
 	private UserOptionsLookup $userOptionsLookup;
@@ -82,7 +81,7 @@ class PasswordReset implements LoggerAwareInterface {
 	 * @param LoggerInterface $logger
 	 * @param AuthManager $authManager
 	 * @param HookContainer $hookContainer
-	 * @param IConnectionProvider $dbProvider
+	 * @param UserIdentityLookup $userIdentityLookup
 	 * @param UserFactory $userFactory
 	 * @param UserNameUtils $userNameUtils
 	 * @param UserOptionsLookup $userOptionsLookup
@@ -92,7 +91,7 @@ class PasswordReset implements LoggerAwareInterface {
 		LoggerInterface $logger,
 		AuthManager $authManager,
 		HookContainer $hookContainer,
-		IConnectionProvider $dbProvider,
+		UserIdentityLookup $userIdentityLookup,
 		UserFactory $userFactory,
 		UserNameUtils $userNameUtils,
 		UserOptionsLookup $userOptionsLookup
@@ -104,7 +103,7 @@ class PasswordReset implements LoggerAwareInterface {
 
 		$this->authManager = $authManager;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->dbProvider = $dbProvider;
+		$this->userIdentityLookup = $userIdentityLookup;
 		$this->userFactory = $userFactory;
 		$this->userNameUtils = $userNameUtils;
 		$this->userOptionsLookup = $userOptionsLookup;
@@ -211,72 +210,74 @@ class PasswordReset implements LoggerAwareInterface {
 			return StatusValue::newFatal( 'badipaddress' );
 		}
 
-		$username ??= '';
-		$email ??= '';
-
-		if ( $username !== '' && !$this->userNameUtils->getCanonical( $username ) ) {
-			return StatusValue::newFatal( 'noname' );
-		}
-		if ( $email !== '' && !Sanitizer::validateEmail( $email ) ) {
-			return StatusValue::newFatal( 'passwordreset-invalidemail' );
-		}
-
 		$resetRoutes = $this->config->get( MainConfigNames::PasswordResetRoutes )
 			+ [ 'username' => false, 'email' => false ];
-		if ( $resetRoutes['username'] && $username ) {
-			$method = 'username';
-			$users = [ $this->userFactory->newFromName( $username ) ];
-		} elseif ( $resetRoutes['email'] && $email ) {
-			// Only email was provided
-			$method = 'email';
-			$users = $this->getUsersByEmail( $email );
+		if ( !$resetRoutes['username'] || $username === '' ) {
 			$username = null;
-			// Remove users whose preference 'requireemail' is on since username was not submitted
-			if ( $this->config->get( MainConfigNames::AllowRequiringEmailForResets ) ) {
-				$optionsLookup = $this->userOptionsLookup;
-				foreach ( $users as $index => $user ) {
-					if ( $optionsLookup->getBoolOption( $user, 'requireemail' ) ) {
-						unset( $users[$index] );
+		}
+		if ( !$resetRoutes['email'] || $email === '' ) {
+			$email = null;
+		}
+
+		if ( $username !== null && !$this->userNameUtils->getCanonical( $username ) ) {
+			return StatusValue::newFatal( 'noname' );
+		}
+		if ( $email !== null && !Sanitizer::validateEmail( $email ) ) {
+			return StatusValue::newFatal( 'passwordreset-invalidemail' );
+		}
+		// At this point, $username and $email are either valid or not provided
+
+		/** @var User[] $users */
+		$users = [];
+
+		if ( $username !== null ) {
+			$users[] = $this->userFactory->newFromName( $username );
+
+		} elseif ( $email !== null ) {
+			foreach ( $this->getUsersByEmail( $email ) as $userIdent ) {
+				// Skip users whose preference 'requireemail' is on since username was not submitted
+				if ( $this->config->get( MainConfigNames::AllowRequiringEmailForResets ) ) {
+					if ( $this->userOptionsLookup->getBoolOption( $userIdent, 'requireemail' ) ) {
+						continue;
 					}
 				}
+				$users[] = $this->userFactory->newFromUserIdentity( $userIdent );
 			}
+
 		} else {
 			// The user didn't supply any data
 			return StatusValue::newFatal( 'passwordreset-nodata' );
 		}
 
 		// Check for hooks (captcha etc), and allow them to modify the users list
-		$error = [];
 		$data = [
 			'Username' => $username,
-			// Email gets set to null for backward compatibility
-			'Email' => $method === 'email' ? $email : null,
+			// Email is not provided to the hooks when we're resetting by username.
+			// We check for 'requireemail' below rather than relying on the hooks to do it.
+			// (However, we rely on the hooks doing it when resetting by email? That's a bit weird.)
+			'Email' => $username === null ? $email : null,
 		];
 
-		// Recreate the $users array with its values so that we reset the numeric keys since
-		// the key '0' might have been unset from $users array. 'SpecialPasswordResetOnSubmit'
-		// hook assumes that index '0' is defined if $users is not empty.
-		$users = array_values( $users );
-
+		$error = [];
 		if ( !$this->hookRunner->onSpecialPasswordResetOnSubmit( $users, $data, $error ) ) {
 			return StatusValue::newFatal( Message::newFromSpecifier( $error ) );
 		}
 
-		// Get the first element in $users by using `reset` function just in case $users is changed
-		// in 'SpecialPasswordResetOnSubmit' hook.
+		// Get the first element in $users by using `reset` function since
+		// the key '0' might have been unset from $users array by a hook handler.
 		$firstUser = reset( $users );
 
 		$requireEmail = $this->config->get( MainConfigNames::AllowRequiringEmailForResets )
-			&& $method === 'username'
+			&& $username !== null
 			&& $firstUser
 			&& $this->userOptionsLookup->getBoolOption( $firstUser, 'requireemail' );
-		if ( $requireEmail && $email === '' ) {
+		if ( $requireEmail && $email === null ) {
 			// Email is required but not supplied: pretend everything's fine.
 			return StatusValue::newGood();
 		}
 
 		if ( !$users ) {
-			if ( $method === 'email' ) {
+			if ( $username === null ) {
 				// Don't reveal whether or not an email address is in use
 				return StatusValue::newGood();
 			} else {
@@ -288,7 +289,7 @@ class PasswordReset implements LoggerAwareInterface {
 		// don't disclose the information. We want to pretend everything is ok per T238961.
 		// Note that all the users will have the same email address (or none),
 		// so there's no need to check more than the first.
-		if ( !$firstUser instanceof User || !$firstUser->getId() || !$firstUser->getEmail() ) {
+		if ( !$firstUser || !$firstUser->getId() || !$firstUser->getEmail() ) {
 			return StatusValue::newGood();
 		}
 
@@ -366,19 +367,14 @@ class PasswordReset implements LoggerAwareInterface {
 	 * @note This is protected to allow configuring in tests. This class is not stable to extend.
 	 *
 	 * @param string $email
-	 * @return User[]
+	 * @return iterable<UserIdentity>
 	 */
 	protected function getUsersByEmail( $email ) {
-		$res = User::newQueryBuilder( $this->dbProvider->getReplicaDatabase() )
+		return $this->userIdentityLookup->newSelectQueryBuilder()
+			->join( 'user', null, [ "actor_user=user_id" ] )
 			->where( [ 'user_email' => $email ] )
 			->caller( __METHOD__ )
-			->fetchResultSet();
-
-		$users = [];
-		foreach ( $res as $row ) {
-			$users[] = $this->userFactory->newFromRow( $row );
-		}
-		return $users;
+			->fetchUserIdentities();
 	}
 
 }

@@ -20,6 +20,7 @@ interface SpecialPasswordResetOnSubmitHook {
 	 *
 	 * @param User[] &$users
 	 * @param array $data Array of data submitted by the user
+	 * @phan-param array{Username:?string, Email:?string} $data
 	 * @param string|array|MessageSpecifier &$error String, error code (message key)
 	 *   used to describe to error (out parameter). The hook needs to return false
 	 *   when setting this, otherwise it will have no effect.
