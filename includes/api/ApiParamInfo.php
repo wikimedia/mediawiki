@@ -313,11 +313,11 @@ class ApiParamInfo extends ApiBase {
 				$item = [
 					'query' => $qs
 				];
-				$msg = ApiBase::makeMessage( $msg, $this->context, [
+				$msg = $this->msg( $msg,
 					$module->getModulePrefix(),
 					$module->getModuleName(),
 					$module->getModulePath()
-				] );
+				);
 				$this->formatHelpMessages( $item, 'description', [ $msg ] );
 				if ( isset( $item['description'] ) ) {
 					if ( is_array( $item['description'] ) ) {
@@ -403,11 +403,11 @@ class ApiParamInfo extends ApiBase {
 			if ( $this->helpFormat === 'none' ) {
 				$ret['dynamicparameters'] = true;
 			} else {
-				$dynamicParams = ApiBase::makeMessage( $dynamicParams, $this->context, [
+				$dynamicParams = $this->msg( $dynamicParams,
 					$module->getModulePrefix(),
 					$module->getModuleName(),
 					$module->getModulePath()
-				] );
+				);
 				$this->formatHelpMessages( $ret, 'dynamicparameters', [ $dynamicParams ] );
 			}
 		}

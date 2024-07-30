@@ -58,7 +58,7 @@ class ApiStructureTest extends MediaWikiIntegrationTestCase {
 	 * @param string $what Which message is being checked
 	 */
 	private function checkMessage( $msg, $what ) {
-		$msg = ApiBase::makeMessage( $msg, self::getMain()->getContext() );
+		$msg = self::getMain()->msg( $msg );
 		$this->assertInstanceOf( Message::class, $msg, "API $what message should be a Message" );
 		$this->assertTrue( $msg->exists(), "API $what message \"{$msg->getKey()}\" must exist. Did you forgot to add it to your i18n/en.json?" );
 	}

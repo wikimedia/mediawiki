@@ -49,13 +49,13 @@ class ApiLinkAccount extends ApiBase {
 	public function getFinalDescription() {
 		// A bit of a hack to append 'api-help-authmanager-general-usage'
 		$msgs = parent::getFinalDescription();
-		$msgs[] = ApiBase::makeMessage( 'api-help-authmanager-general-usage', $this->getContext(), [
+		$msgs[] = $this->msg( 'api-help-authmanager-general-usage',
 			$this->getModulePrefix(),
 			$this->getModuleName(),
 			$this->getModulePath(),
 			AuthManager::ACTION_LINK,
 			$this->needsToken(),
-		] );
+		);
 		return $msgs;
 	}
 

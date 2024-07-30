@@ -601,11 +601,11 @@ class ApiHelp extends ApiBase {
 				}
 
 				if ( $dynamicParams !== null ) {
-					$dynamicParams = ApiBase::makeMessage( $dynamicParams, $context, [
+					$dynamicParams = $context->msg( $dynamicParams,
 						$module->getModulePrefix(),
 						$module->getModuleName(),
 						$module->getModulePath()
-					] );
+					);
 					$help['parameters'] .= Html::element( 'dt', [], '*' );
 					$help['parameters'] .= Html::rawElement( 'dd',
 						[ 'class' => 'description' ], $dynamicParams->parse() );
@@ -628,11 +628,11 @@ class ApiHelp extends ApiBase {
 
 				$help['examples'] .= Html::openElement( 'dl' );
 				foreach ( $examples as $qs => $msg ) {
-					$msg = ApiBase::makeMessage( $msg, $context, [
+					$msg = $context->msg( $msg,
 						$module->getModulePrefix(),
 						$module->getModuleName(),
 						$module->getModulePath()
-					] );
+					);
 
 					$link = wfAppendQuery( wfScript( 'api' ), $qs );
 					$sandbox = SpecialPage::getTitleFor( 'ApiSandbox' )->getLocalURL() . '#' . $qs;

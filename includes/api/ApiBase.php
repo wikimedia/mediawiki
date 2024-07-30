@@ -1287,6 +1287,7 @@ abstract class ApiBase extends ContextSource {
 	 * first value and message parameters as subsequent values.
 	 *
 	 * @since 1.25
+	 * @deprecated since 1.43, use ApiBase::msg()
 	 * @param string|array|Message $msg
 	 * @phan-param string|non-empty-array|Message $msg
 	 * @param IContextSource $context
@@ -1294,6 +1295,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return Message|null
 	 */
 	public static function makeMessage( $msg, IContextSource $context, array $params = null ) {
+		wfDeprecated( __METHOD__, '1.43' );
 		if ( is_string( $msg ) ) {
 			$msg = wfMessage( $msg );
 		} elseif ( is_array( $msg ) ) {
@@ -1876,11 +1878,11 @@ abstract class ApiBase extends ContextSource {
 	 * @return Message
 	 */
 	public function getFinalSummary() {
-		return self::makeMessage( $this->getSummaryMessage(), $this->getContext(), [
+		return $this->msg( $this->getSummaryMessage(),
 			$this->getModulePrefix(),
 			$this->getModuleName(),
 			$this->getModulePath(),
-		] );
+		);
 	}
 
 	/**
@@ -1891,17 +1893,16 @@ abstract class ApiBase extends ContextSource {
 	 * @return Message[]
 	 */
 	public function getFinalDescription() {
-		$summary = self::makeMessage( $this->getSummaryMessage(), $this->getContext(), [
+		$summary = $this->msg( $this->getSummaryMessage(),
 			$this->getModulePrefix(),
 			$this->getModuleName(),
 			$this->getModulePath(),
-		] );
-		$extendedDescription = self::makeMessage(
-			$this->getExtendedDescription(), $this->getContext(), [
-				$this->getModulePrefix(),
-				$this->getModuleName(),
-				$this->getModulePath(),
-			]
+		);
+		$extendedDescription = $this->msg(
+			$this->getExtendedDescription(),
+			$this->getModulePrefix(),
+			$this->getModuleName(),
+			$this->getModulePath(),
 		);
 
 		$msgs = [ $summary, $extendedDescription ];
@@ -1964,8 +1965,7 @@ abstract class ApiBase extends ContextSource {
 
 			$msg = $settings[self::PARAM_HELP_MSG]
 				?? $this->msg( [ "apihelp-$path-param-$param", 'api-help-param-no-description' ] );
-			$msg = self::makeMessage( $msg, $this->getContext(),
-				[ $prefix, $param, $name, $path ] );
+			$msg = $this->msg( $msg, $prefix, $param, $name, $path );
 			if ( !$msg ) {
 				self::dieDebug( __METHOD__,
 					'Value in ApiBase::PARAM_HELP_MSG is not valid' );
@@ -2048,8 +2048,7 @@ abstract class ApiBase extends ContextSource {
 
 				foreach ( $values as $value ) {
 					$msg = $valueMsgs[$value] ?? "apihelp-$path-paramvalue-$param-$value";
-					$m = self::makeMessage( $msg, $this->getContext(),
-						[ $prefix, $param, $name, $path, $value ] );
+					$m = $this->msg( $msg, [ $prefix, $param, $name, $path, $value ] );
 					if ( $m ) {
 						$m = new ApiHelpParamValueMessage(
 							$value,
@@ -2072,8 +2071,7 @@ abstract class ApiBase extends ContextSource {
 						'Value for ApiBase::PARAM_HELP_MSG_APPEND is not an array' );
 				}
 				foreach ( $settings[self::PARAM_HELP_MSG_APPEND] as $m ) {
-					$m = self::makeMessage( $m, $this->getContext(),
-						[ $prefix, $param, $name, $path ] );
+					$m = $this->msg( $m, [ $prefix, $param, $name, $path ] );
 					if ( $m ) {
 						$msgs[$param][] = $m;
 					} else {
