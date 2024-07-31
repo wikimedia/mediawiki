@@ -2918,7 +2918,7 @@
 	"import-revision-count": "$1{{PLURAL:$1|版}}",
 	"importnopages": "インポートするページがありません。",
 	"imported-log-entries": "$1 件の{{PLURAL:$1|記録項目}}をインポートしました。",
-	"importfailed": "取り込みに失敗しました:\n$1",
+	"importfailed": "{{PLURAL:$2|インポートに失敗しました}}:\n$1",
 	"importunknownsource": "取り込み元のタイプが不明です",
 	"importnoprefix": "インターウィキ接頭辞が記入されていません",
 	"importcantopen": "取り込みファイルが開けませんでした",

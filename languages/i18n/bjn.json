@@ -1837,7 +1837,7 @@
 	"blocklog-showlog": "Pamakai ngini diblukir sabalumnya.\nLog blukir disadiaakan di bawah gasan rujukan:",
 	"blocklog-showsuppresslog": "Pamakai ngini diblukir wan disungkupakan sabalumnya.\nLog panikinan disadiaakan di bawah gasan rujukan:",
 	"blocklogtext": "Ngini itu log aksi pamblukiran wan pambukaan blukir ka pamakai.\nAlamat IP nang diblukir sacara utumatis kada tahaga di dalam daptar ngini.\nLihat [[Special:BlockList|daptar pamblukiran]] gasan samunyaan pamakai nang wayahini diblukir.",
-	"block-log-flags-anononly": "papamuruk kada bangaran haja",
+	"block-log-flags-anononly": "pamakai kada bangaran haja",
 	"block-log-flags-nocreate": "Paulahan akun dipajahakan",
 	"block-log-flags-noautoblock": "pamblukiran utumatis dipajahakan",
 	"block-log-flags-noemail": "suril diblukir",

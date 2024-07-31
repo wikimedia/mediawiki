@@ -3426,6 +3426,7 @@
 	"logentry-block-reblock": "$1 {{GENDER:$2|промени }} настройките на блокиране на {{GENDER:$4|$3}} със срок на изтичане $5 $6",
 	"logentry-partialblock-block-page": "{{PLURAL:$1|страницата|страниците}} $2",
 	"logentry-partialblock-block-ns": "{{PLURAL:$1|именното пространство|именните пространства}} $2",
+	"logentry-partialblock-block-action": "{{PLURAL:$1|действието|действията}} $2",
 	"logentry-partialblock-block": "$1 {{GENDER:$2|блокира}} {{GENDER:$4|$3}} от $7 със срок на изтичане $5 $6",
 	"logentry-partialblock-reblock": "$1 {{GENDER:$2|промени}} настройките на блокиране на {{GENDER:$4|$3}}, блокиране на $7 със срок на изтичане $5 $6",
 	"logentry-non-editing-block-block": "$1 {{GENDER:$2|блокира}} {{GENDER:$4|$3}} от конкретни действия, несвързани с редактиране, със срок на изтичане $5 $6",

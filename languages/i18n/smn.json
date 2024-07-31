@@ -567,7 +567,7 @@
 	"search-interwiki-more-results": "lase uuccâmpuátuseh",
 	"searchrelated": "siämmáámuđusâš",
 	"searchall": "puoh",
-	"search-showingresults": "{{PLURAL:$4|Puáđus <strong>$1</strong> enâmusmeereest <strong>$3</strong>|Puátuseh <strong>$1–$2</strong> enâmusmeereest <strong>$3</strong>}}",
+	"search-showingresults": "{{PLURAL:$4|Puáđus <strong>$1</strong> (ohtsis <strong>$3</strong> puáđus)|Puátuseh <strong>$1–$2</strong> (puátuseh láá ohtsis <strong>$3</strong>)}}",
 	"search-nonefound": "Tain ucâmáin ij kavnuu mihheen.",
 	"powersearch-legend": "Vijđedum uuccâm",
 	"powersearch-ns": "Uusâ nommâkomovuođâin:",

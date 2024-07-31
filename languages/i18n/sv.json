@@ -374,7 +374,7 @@
 	"badtitle": "Felaktig titel",
 	"badtitletext": "Den begärda sidtiteln är antingen ogiltig eller tom, eller så är titeln felaktigt länkad från en annan wiki.\nDen kan innehålla ett eller flera tecken som inte får användas i sidtitlar.",
 	"title-invalid": "Den begärda sidtiteln är ogiltig",
-	"title-invalid-empty": "Den begärda sidtiteln är tom eller innehåller bara namnet på en namnrymd.",
+	"title-invalid-empty": "Den begärda sidtiteln är tom eller innehåller bara ett namnrymdsprefix.",
 	"title-invalid-utf8": "Den begärda sidtiteln innehåller en ogiltig UTF-8-sekvens.",
 	"title-invalid-interwiki": "Den begärda sidtiteln innehåller en interwiki-länk, vilka inte kan användas i titlar.",
 	"title-invalid-talk-namespace": "Den begärda sidtiteln hänvisar till en diskussionssida som inte kan existera.",
