@@ -32,8 +32,6 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 
 	public function provideShouldNotRun(): iterable {
 		yield [ new ParserOutput(), null, [ 'isParsoidContent' => false ] ];
-		yield [ new ParserOutput(), null, [ 'enableSectionEditLinks' => false ] ];
-		yield [ new ParserOutput(), null, [ 'isParsoidContent' => true, 'enableSectionEditLinks' => false ] ];
 	}
 
 	private static function newParserOutput(
@@ -81,8 +79,15 @@ class HandleParsoidSectionLinksTest extends OutputTransformStageTestBase {
 			'anchor' => 'foo',
 		] ] );
 		$input = '<section id="a"><h2 id="foo">Foo</h2>Bar</section>';
-		$expected = '<section id="a"><div class="mw-heading mw-heading-1" id="mwAQ"><h2 id="foo">Foo</h2>!<a id="c">edit</a>!</div>Bar</section>';
 
+		$expected = '<section id="a"><div class="mw-heading mw-heading-1" id="mwAQ"><h2 id="foo">Foo</h2></div>Bar</section>';
+		yield 'Standard Parsoid output: no links' => [
+			self::newParserOutput( $input, null, $toc ),
+			null, [ 'enableSectionEditLinks' => false ] + $options,
+			self::newParserOutput( $expected, null, $toc )
+		];
+
+		$expected = '<section id="a"><div class="mw-heading mw-heading-1" id="mwAQ"><h2 id="foo">Foo</h2>!<a id="c">edit</a>!</div>Bar</section>';
 		yield 'Standard Parsoid output: with links' => [
 			self::newParserOutput( $input, null, $toc ),
 			null, $options,
