@@ -36,32 +36,15 @@ class RestrictionStore {
 		MainConfigNames::SemiprotectedRestrictionLevels,
 	];
 
-	/** @var ServiceOptions */
-	private $options;
-
-	/** @var WANObjectCache */
-	private $wanCache;
-
-	/** @var ILoadBalancer */
-	private $loadBalancer;
-
-	/** @var LinkCache */
-	private $linkCache;
-
-	/** @var LinksMigration */
-	private $linksMigration;
-
-	/** @var CommentStore */
-	private $commentStore;
-
-	/** @var HookContainer */
-	private $hookContainer;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var PageStore */
-	private $pageStore;
+	private ServiceOptions $options;
+	private WANObjectCache $wanCache;
+	private ILoadBalancer $loadBalancer;
+	private LinkCache $linkCache;
+	private LinksMigration $linksMigration;
+	private CommentStore $commentStore;
+	private HookContainer $hookContainer;
+	private HookRunner $hookRunner;
+	private PageStore $pageStore;
 
 	/**
 	 * @var array[] Caching various restrictions data in the following format:
@@ -76,16 +59,6 @@ class RestrictionStore {
 	 */
 	private $cache = [];
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param WANObjectCache $wanCache
-	 * @param ILoadBalancer $loadBalancer
-	 * @param LinkCache $linkCache
-	 * @param LinksMigration $linksMigration
-	 * @param CommentStore $commentStore
-	 * @param HookContainer $hookContainer
-	 * @param PageStore $pageStore
-	 */
 	public function __construct(
 		ServiceOptions $options,
 		WANObjectCache $wanCache,

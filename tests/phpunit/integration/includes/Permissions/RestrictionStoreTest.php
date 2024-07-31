@@ -30,26 +30,13 @@ use Wikimedia\TestingAccessWrapper;
 class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 	private const DEFAULT_RESTRICTION_TYPES = [ 'create', 'edit', 'move', 'upload' ];
 
-	/** @var WANObjectCache */
-	private $wanCache;
-
-	/** @var ILoadBalancer */
-	private $loadBalancer;
-
-	/** @var LinkCache */
-	private $linkCache;
-
-	/** @var LinksMigration */
-	private $linksMigration;
-
-	/** @var HookContainer */
-	private $hookContainer;
-
-	/** @var CommentStore */
-	private $commentStore;
-
-	/** @var PageStore */
-	private $pageStore;
+	private WANObjectCache $wanCache;
+	private ILoadBalancer $loadBalancer;
+	private LinkCache $linkCache;
+	private LinksMigration $linksMigration;
+	private HookContainer $hookContainer;
+	private CommentStore $commentStore;
+	private PageStore $pageStore;
 
 	private static $testPageRestrictionSource;
 	private static $testPageRestrictionCascade;
@@ -62,8 +49,8 @@ class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 		$this->loadBalancer = $services->getDBLoadBalancer();
 		$this->linkCache = $services->getLinkCache();
 		$this->linksMigration = $services->getLinksMigration();
-		$this->commentStore = $services->getCommentStore();
 		$this->hookContainer = $services->getHookContainer();
+		$this->commentStore = $services->getCommentStore();
 		$this->pageStore = $services->getPageStore();
 	}
 

@@ -43,34 +43,19 @@ use Wikimedia\WRStats\WRStatsFactory;
  */
 class RateLimiter {
 
-	/** @var LoggerInterface */
-	private $logger;
+	private LoggerInterface $logger;
+	private StatsdDataFactoryInterface $stats;
 
-	/** @var WRStatsFactory */
-	private $wrstatsFactory;
-
-	/** @var ServiceOptions */
-	private $options;
+	private ServiceOptions $options;
+	private WRStatsFactory $wrstatsFactory;
+	private ?CentralIdLookup $centralIdLookup;
+	private UserFactory $userFactory;
+	private UserGroupManager $userGroupManager;
+	private HookContainer $hookContainer;
+	private HookRunner $hookRunner;
 
 	/** @var array */
 	private $rateLimits;
-
-	/** @var HookContainer */
-	private $hookContainer;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var CentralIdLookup|null */
-	private $centralIdLookup;
-
-	/** @var UserGroupManager */
-	private $userGroupManager;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	private StatsdDataFactoryInterface $stats;
 
 	/**
 	 * Actions that are exempt from all rate limiting.
@@ -98,14 +83,6 @@ class RateLimiter {
 		MainConfigNames::RateLimitsExcludedIPs,
 	];
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param WRStatsFactory $wrstatsFactory
-	 * @param CentralIdLookup|null $centralIdLookup
-	 * @param UserFactory $userFactory
-	 * @param UserGroupManager $userGroupManager
-	 * @param HookContainer $hookContainer
-	 */
 	public function __construct(
 		ServiceOptions $options,
 		WRStatsFactory $wrstatsFactory,

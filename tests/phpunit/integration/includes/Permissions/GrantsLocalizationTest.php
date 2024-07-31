@@ -15,8 +15,7 @@ use MediaWikiIntegrationTestCase;
  * @covers \MediaWiki\Permissions\GrantsLocalization
  */
 class GrantsLocalizationTest extends MediaWikiIntegrationTestCase {
-	/** @var GrantsLocalization */
-	private $grantsLocalization;
+	private GrantsLocalization $grantsLocalization;
 
 	protected function setUp(): void {
 		parent::setUp();

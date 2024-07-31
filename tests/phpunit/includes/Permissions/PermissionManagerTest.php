@@ -41,18 +41,12 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	use MockBlockTrait;
 	use TempUserTestTrait;
 
-	/** @var string */
-	protected $userName;
-	/** @var Title */
-	protected $title;
-	/** @var User */
-	protected $user;
-	/** @var User */
-	protected $anonUser;
-	/** @var User */
-	protected $userUser;
-	/** @var User */
-	protected $altUser;
+	protected string $userName;
+	protected Title $title;
+	protected User $user;
+	protected User $anonUser;
+	protected User $userUser;
+	protected User $altUser;
 
 	private const USER_TALK_PAGE = '<user talk page>';
 

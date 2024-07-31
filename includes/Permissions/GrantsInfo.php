@@ -71,12 +71,8 @@ class GrantsInfo {
 		MainConfigNames::GrantRiskGroups,
 	];
 
-	/** @var ServiceOptions */
-	private $options;
+	private ServiceOptions $options;
 
-	/**
-	 * @param ServiceOptions $options
-	 */
 	public function __construct(
 		ServiceOptions $options
 	) {
