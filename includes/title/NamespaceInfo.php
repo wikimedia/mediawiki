@@ -54,14 +54,9 @@ class NamespaceInfo {
 	/** @var int[]|null Valid namespaces cache */
 	private $validNamespaces = null;
 
-	/** @var ServiceOptions */
-	private $options;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
+	private ServiceOptions $options;
+	private HookRunner $hookRunner;
 	private array $extensionNamespaces;
-
 	private array $extensionImmovableNamespaces;
 
 	/**
@@ -105,12 +100,6 @@ class NamespaceInfo {
 		MainConfigNames::NonincludableNamespaces,
 	];
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param HookContainer $hookContainer
-	 * @param array $extensionNamespaces
-	 * @param array $extensionImmovableNamespaces
-	 */
 	public function __construct(
 		ServiceOptions $options,
 		HookContainer $hookContainer,

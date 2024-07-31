@@ -46,20 +46,12 @@ use Wikimedia\IPUtils;
  * @since 1.23
  */
 class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
-	/** @var Language */
-	protected $language;
-
-	/** @var GenderCache */
-	protected $genderCache;
-
+	protected Language $language;
+	protected GenderCache $genderCache;
 	/** @var string[] */
-	protected $localInterwikis;
-
-	/** @var InterwikiLookup */
-	protected $interwikiLookup;
-
-	/** @var NamespaceInfo */
-	protected $nsInfo;
+	protected array $localInterwikis;
+	protected InterwikiLookup $interwikiLookup;
+	protected NamespaceInfo $nsInfo;
 
 	/**
 	 * The code here can throw MalformedTitleException, which cannot be created in
