@@ -2442,16 +2442,18 @@ class ApiMain extends ApiBase {
 	/**
 	 * Fetches the user agent used for this request
 	 *
-	 * The value will be the combination of the 'Api-User-Agent' header (if
-	 * any) and the standard User-Agent header (if any).
+	 * This returns the value of the 'Api-User-Agent' header, if any,
+	 * or the standard User-Agent header, otherwise.
 	 *
 	 * @return string
 	 */
 	public function getUserAgent() {
-		return trim(
-			$this->getRequest()->getHeader( 'Api-user-agent' ) . ' ' .
-			$this->getRequest()->getHeader( 'User-agent' )
-		);
+		$agent = (string)$this->getRequest()->getHeader( 'Api-user-agent' );
+		if ( $agent == '' ) {
+			$agent = $this->getRequest()->getHeader( 'User-agent' );
+		}
+
+		return $agent;
 	}
 }
 
