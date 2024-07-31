@@ -496,7 +496,7 @@ class Article implements Page {
 
 		$outputPage->setArticleFlag( true );
 		# Allow frames by default
-		$outputPage->setPreventClickjacking( false );
+		$outputPage->getMetadata()->setPreventClickjacking( false );
 
 		$parserOptions = $this->getParserOptions();
 
@@ -1452,7 +1452,7 @@ class Article implements Page {
 			return false;
 		}
 
-		$outputPage->setPreventClickjacking( true );
+		$outputPage->getMetadata()->setPreventClickjacking( true );
 		$outputPage->addModules( 'mediawiki.misc-authed-curate' );
 
 		$link = $this->linkRenderer->makeKnownLink(

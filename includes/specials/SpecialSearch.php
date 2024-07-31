@@ -662,7 +662,7 @@ class SpecialSearch extends SpecialPage {
 		$this->outputHeader();
 		// TODO: Is this true? The namespace remember uses a user token
 		// on save.
-		$out->setPreventClickjacking( false );
+		$out->getMetadata()->setPreventClickjacking( false );
 		$this->addHelpLink( 'Help:Searching' );
 
 		if ( strval( $term ) !== '' ) {

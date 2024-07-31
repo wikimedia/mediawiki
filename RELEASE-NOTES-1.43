@@ -989,6 +989,8 @@ because of Phabricator reports.
   $output->setIndexPolicy() use $output->getMetadata()->setIndexPolicy().)
    - ::getIndexPolicy()
    - ::setIndexPolicy()  (setting 'index' after 'noindex' is deprecated)
+   - ::getPreventClickjacking()
+   - ::setPreventClickjacking()
 * mw.cookie.getCrossSite() has been deprecated due to the removal of
   $wgUseSameSiteLegacyCookies in MW 1.42. Use mw.cookie.get().
 * The 'help' key in HTMLForm descriptors is deprecated. Use the 'help-raw'

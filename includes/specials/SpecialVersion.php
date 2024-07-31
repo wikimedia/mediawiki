@@ -123,7 +123,7 @@ class SpecialVersion extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$out = $this->getOutput();
-		$out->setPreventClickjacking( false );
+		$out->getMetadata()->setPreventClickjacking( false );
 
 		// Explode the subpage information into useful bits
 		$parts = explode( '/', (string)$par );

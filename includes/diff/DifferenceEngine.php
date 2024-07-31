@@ -738,7 +738,7 @@ class DifferenceEngine extends ContextSource {
 	public function showDiffPage( $diffOnly = false ) {
 		# Allow frames except in certain special cases
 		$out = $this->getOutput();
-		$out->setPreventClickjacking( false );
+		$out->getMetadata()->setPreventClickjacking( false );
 		$out->setRobotPolicy( 'noindex,nofollow' );
 
 		// Allow extensions to add any extra output here
@@ -822,7 +822,7 @@ class DifferenceEngine extends ContextSource {
 						[ 'noBrackets' ]
 					);
 					if ( $rollbackLink ) {
-						$out->setPreventClickjacking( true );
+						$out->getMetadata()->setPreventClickjacking( true );
 						$rollback = "\u{00A0}\u{00A0}\u{00A0}" . $rollbackLink;
 					}
 				}
@@ -1069,7 +1069,8 @@ class DifferenceEngine extends ContextSource {
 	 * Returns empty string if there's either no revision to patrol or the user is not allowed to.
 	 *
 	 * Side effect: When the patrol link is build, this method will call
-	 * OutputPage::setPreventClickjacking(true) and load a JS module.
+	 * OutputPage::getMetadata()->setPreventClickjacking(true) and load a
+	 * JS module.
 	 *
 	 * @return string HTML or empty string
 	 */
@@ -1145,7 +1146,7 @@ class DifferenceEngine extends ContextSource {
 
 			// Build the link
 			if ( $rcid ) {
-				$this->getOutput()->setPreventClickjacking( true );
+				$this->getOutput()->getMetadata()->setPreventClickjacking( true );
 				$this->getOutput()->addModules( 'mediawiki.misc-authed-curate' );
 
 				return [ 'rcid' => $rcid ];

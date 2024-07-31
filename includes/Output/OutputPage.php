@@ -2911,6 +2911,7 @@ class OutputPage extends ContextSource {
 	 *  appropriate for edit pages to be sent.
 	 *
 	 * @since 1.38
+	 * @deprecated since 1.43; use ->getMetadata()->setPreventClickjacking()
 	 */
 	public function setPreventClickjacking( bool $enable ) {
 		$this->metadata->setPreventClickjacking( $enable );
@@ -2921,6 +2922,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * @since 1.24
 	 * @return bool
+	 * @deprecated since 1.43; use ->getMetadata()->getPreventClickjacking()
 	 */
 	public function getPreventClickjacking() {
 		return $this->metadata->getPreventClickjacking();
@@ -2937,7 +2939,10 @@ class OutputPage extends ContextSource {
 		$config = $this->getConfig();
 		if ( $config->get( MainConfigNames::BreakFrames ) ) {
 			return 'DENY';
-		} elseif ( $this->getPreventClickjacking() && $config->get( MainConfigNames::EditPageFrameOptions ) ) {
+		} elseif (
+			$this->metadata->getPreventClickjacking() &&
+			$config->get( MainConfigNames::EditPageFrameOptions )
+		) {
 			return $config->get( MainConfigNames::EditPageFrameOptions );
 		}
 		return false;
