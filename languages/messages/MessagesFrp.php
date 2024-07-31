@@ -198,7 +198,7 @@ $magicWords = [
 	'img_upright'               => [ '1', 'drêt', 'drêt=$1', 'drêt $1', 'redresse', 'redresse=$1', 'redresse $1', 'redresse_$1', 'upright', 'upright=$1', 'upright $1' ],
 	'index'                     => [ '1', '__ENDÈXE__', '__INDEX__' ],
 	'int'                       => [ '0', 'ENT:', 'INT:' ],
-	'language'                  => [ '0', '#LENGOUA:', '#LANGUE:', '#LANGUAGE:' ],
+	'language'                  => [ '0', '#LENGOUA', '#LANGUE', '#LANGUAGE' ],
 	'lc'                        => [ '0', 'PETIÔTA_LÈTRA:', 'MINUS:', 'LC:' ],
 	'lcfirst'                   => [ '0', 'PREMIÉRE_PETIÔTA_LÈTRA:', 'INITMINUS:', 'LCFIRST:' ],
 	'localday'                  => [ '1', 'JORN_LOCAL', 'JOURLOCAL', 'JOUR1LOCAL', 'LOCALDAY' ],

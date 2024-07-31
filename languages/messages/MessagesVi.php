@@ -232,7 +232,7 @@ $magicWords = [
 	'img_upright'               => [ '1', 'đứng', 'đứng=$1', 'đứng_$1', 'upright', 'upright=$1', 'upright $1' ],
 	'index'                     => [ '1', '__CHỈ_MỤC__', '__CHỈMỤC__', '__INDEX__' ],
 	'int'                       => [ '0', 'NỘI:', 'INT:' ],
-	'language'                  => [ '0', '#NGÔN_NGỮ:', '#NGÔNNGỮ:', '#LANGUAGE:' ],
+	'language'                  => [ '0', '#NGÔN_NGỮ', '#NGÔNNGỮ', '#LANGUAGE' ],
 	'lc'                        => [ '0', 'CHỮ_HOA:', 'CHỮHOA:', 'LC:' ],
 	'lcfirst'                   => [ '0', 'CHỮ_ĐẦU_HOA:', 'CHỮĐẦUHOA:', 'LCFIRST:' ],
 	'localday'                  => [ '1', 'NGÀY_ĐỊA_PHƯƠNG', 'NGÀYĐỊAPHƯƠNG', 'LOCALDAY' ],

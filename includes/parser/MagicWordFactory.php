@@ -123,6 +123,7 @@ class MagicWordFactory {
 		'cascadingsources',
 		'bcp47',
 		'dir',
+		'language',
 	];
 
 	/** @var string[] */

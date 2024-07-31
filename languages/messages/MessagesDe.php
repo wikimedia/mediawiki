@@ -218,7 +218,7 @@ $magicWords = [
 	'img_upright'               => [ '1', 'hochkant', 'hochkant=$1', 'hochkant $1', 'hochkant_$1', 'upright', 'upright=$1', 'upright $1' ],
 	'index'                     => [ '1', '__INDEXIEREN__', '__INDIZIEREN__', '__INDEX__' ],
 	'int'                       => [ '0', 'NACHRICHT:', 'INT:' ],
-	'language'                  => [ '0', '#SPRACHE:', '#LANGUAGE:' ],
+	'language'                  => [ '0', '#SPRACHE', '#LANGUAGE' ],
 	'lc'                        => [ '0', 'KLEIN:', 'LC:' ],
 	'lcfirst'                   => [ '0', 'INITIAL_KLEIN:', 'LCFIRST:' ],
 	'localday'                  => [ '1', 'LOKALER_KALENDERTAG', 'LOKALER_TAG', 'LOCALDAY' ],

@@ -136,7 +136,7 @@ $magicWords = [
 	'img_upright'               => [ '1', 'zgorajdesno', 'zgorajdesno=$1', 'zgorajdesno $1', 'upright', 'upright=$1', 'upright $1' ],
 	'img_width'                 => [ '1', '$1_pik', '$1px' ],
 	'index'                     => [ '1', '__KAZALO__', '__INDEX__' ],
-	'language'                  => [ '0', '#JEZIK:', '#LANGUAGE:' ],
+	'language'                  => [ '0', '#JEZIK', '#LANGUAGE' ],
 	'noeditsection'             => [ '0', '__BREZUREJANJARAZDELKOV__', '__NOEDITSECTION__' ],
 	'nogallery'                 => [ '0', '__BREZGALERIJE__', '__NOGALLERY__' ],
 	'noindex'                   => [ '1', '__BREZKAZALA__', '__NOINDEX__' ],

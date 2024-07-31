@@ -461,7 +461,7 @@ class ParserTestRunner {
 		$setup['wgSVGConverters'] = [ 'null' => 'echo "1">$output' ];
 
 		// Fake constant timestamp
-		MediaWikiServices::getInstance()->getHookContainer()->register(
+		$teardown[] = $this->registerHook(
 			'ParserGetVariableValueTs',
 			function ( $parser, &$ts ) {
 				$ts = $this->getFakeTimestamp();
@@ -469,9 +469,16 @@ class ParserTestRunner {
 			}
 		);
 
-		$teardown[] = static function () {
-			MediaWikiServices::getInstance()->getHookContainer()->clear( 'ParserGetVariableValueTs' );
-		};
+		// Fake specific translated language names, for testing {{#language}}
+		$teardown[] = $this->registerHook(
+			'LanguageGetTranslatedLanguageNames',
+			static function ( &$names, $code ) {
+				if ( $code === 'en' || $code === 'simple' ) {
+					$names['ar'] = 'Arabic';
+					$names['de-formal'] = 'German (formal address)';
+				}
+			}
+		);
 
 		$this->appendNamespaceSetup( $setup, $teardown );
 
@@ -633,6 +640,14 @@ class ParserTestRunner {
 				ScopedCallback::consume( $nextTeardown );
 			}
 		} );
+	}
+
+	protected function registerHook( string $name, callable $handler ) {
+		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		$reset = $hookContainer->scopedRegister( $name, $handler );
+		return static function () use ( &$reset ) {
+			ScopedCallback::consume( $reset );
+		};
 	}
 
 	/**

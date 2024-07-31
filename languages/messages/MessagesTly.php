@@ -97,7 +97,7 @@ $magicWords = [
 	'img_page'                  => [ '1', 'səhifə=$1', 'səhifə_$1', 'page=$1', 'page $1' ],
 	'img_right'                 => [ '1', 'rosto', 'right' ],
 	'img_thumbnail'             => [ '1', 'miniatyur', 'thumbnail', 'thumb' ],
-	'language'                  => [ '0', '#ZIVON:', '#LANGUAGE:' ],
+	'language'                  => [ '0', '#ZIVON', '#LANGUAGE' ],
 	'localday'                  => [ '1', 'BUMİNƏ_RUJ', 'LOCALDAY' ],
 	'localday2'                 => [ '1', 'BUMİNƏ_RUJ_2', 'LOCALDAY2' ],
 	'localdayname'              => [ '1', 'BUMİNƏ_RUJİ_NOM', 'LOCALDAYNAME' ],

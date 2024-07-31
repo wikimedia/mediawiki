@@ -205,7 +205,7 @@ $magicWords = [
 	'img_thumbnail'             => [ '1', 'bélyegkép', 'bélyeg', 'miniatűr', 'thumb', 'thumbnail' ],
 	'img_top'                   => [ '1', 'fenn', 'fent', 'top' ],
 	'img_upright'               => [ '1', 'fennjobbra', 'fennjobbra=$1', 'fennjobbra $1', 'upright', 'upright=$1', 'upright $1' ],
-	'language'                  => [ '0', '#NYELV:', '#LANGUAGE:' ],
+	'language'                  => [ '0', '#NYELV', '#LANGUAGE' ],
 	'lc'                        => [ '0', 'KISBETŰ:', 'KISBETŰK:', 'KB:', 'KISBETŰS:', 'LC:' ],
 	'lcfirst'                   => [ '0', 'KISKEZDŐ:', 'KISKEZDŐBETŰ:', 'LCFIRST:' ],
 	'localday'                  => [ '1', 'HELYINAP', 'LOCALDAY' ],

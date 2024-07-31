@@ -199,7 +199,7 @@ $magicWords = [
 	'img_thumbnail'             => [ '1', 'vinheta', 'thumb', 'thumbnail' ],
 	'img_top'                   => [ '1', 'naut', 'top' ],
 	'img_upright'               => [ '1', 'redreça', 'redreça$1', 'redreça $1', 'upright', 'upright=$1', 'upright $1' ],
-	'language'                  => [ '0', '#LENGA:', '#LANGUAGE:' ],
+	'language'                  => [ '0', '#LENGA', '#LANGUAGE' ],
 	'lc'                        => [ '0', 'MINUS:', 'LC:' ],
 	'lcfirst'                   => [ '0', 'INITMINUS:', 'LCFIRST:' ],
 	'localday'                  => [ '1', 'JORNLOCAL', 'LOCALDAY' ],

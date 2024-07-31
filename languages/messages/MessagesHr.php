@@ -180,7 +180,7 @@ $magicWords = [
 	'img_top'                   => [ '1', 'vrh', 'top' ],
 	'img_upright'               => [ '1', 'uspravno=$1', 'uspravno $1', 'upright', 'upright=$1', 'upright $1' ],
 	'index'                     => [ '1', '__KAZALO__', '__INDEX__' ],
-	'language'                  => [ '0', '#JEZIK:', '#LANGUAGE:' ],
+	'language'                  => [ '0', '#JEZIK', '#LANGUAGE' ],
 	'lc'                        => [ '0', 'MS:', 'LC:' ],
 	'lcfirst'                   => [ '0', 'MSPRVO:', 'LCFIRST:' ],
 	'localday'                  => [ '1', 'MJESNIDAN', 'LOCALDAY' ],

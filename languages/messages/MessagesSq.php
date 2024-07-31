@@ -166,7 +166,7 @@ $magicWords = [
 	'img_text_top'              => [ '1', 'tekst-majë', 'tekst-top', 'text-top' ],
 	'img_thumbnail'             => [ '1', 'parapamje', 'pamje', 'thumb', 'thumbnail' ],
 	'img_upright'               => [ '1', 'vertikale', 'vertikale=$1', 'vertikale $1', 'lartdjathtas', 'lartdjathtas=$1', 'lartdjathtas $1', 'upright', 'upright=$1', 'upright $1' ],
-	'language'                  => [ '0', '#GJUHA:', '#LANGUAGE:' ],
+	'language'                  => [ '0', '#GJUHA', '#LANGUAGE' ],
 	'localday'                  => [ '1', 'DITALOKALE', 'LOCALDAY' ],
 	'localday2'                 => [ '1', 'DITALOKALE2', 'LOCALDAY2' ],
 	'localdayname'              => [ '1', 'EMRIIDITËSLOKALE', 'LOCALDAYNAME' ],

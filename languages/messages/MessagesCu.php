@@ -58,7 +58,7 @@ $namespaceAliases = [
 
 /** @phpcs-require-sorted-array */
 $magicWords = [
-	'language'                  => [ '0', '#ѨꙀꙐКЪ:', '#LANGUAGE:' ],
+	'language'                  => [ '0', '#ѨꙀꙐКЪ', '#LANGUAGE' ],
 	'redirect'                  => [ '0', '#ПРѢНАПРАВЛЄНИѤ', '#REDIRECT' ],
 ];
 

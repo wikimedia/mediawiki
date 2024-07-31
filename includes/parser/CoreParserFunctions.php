@@ -23,6 +23,7 @@
 
 use MediaWiki\Category\Category;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -1000,12 +1001,17 @@ class CoreParserFunctions {
 	 * Gives language names.
 	 * @param Parser $parser
 	 * @param string $code Language code (of which to get name)
-	 * @param string $inLanguage Language code (in which to get name)
+	 * @param string $inLanguage Language code (in which to get name);
+	 *   if missing or empty, the language's autonym will be returned.
 	 * @return string
 	 */
 	public static function language( $parser, $code = '', $inLanguage = '' ) {
-		$code = strtolower( $code );
-		$inLanguage = strtolower( $inLanguage );
+		if ( $code === '' ) {
+			$code = $parser->getTargetLanguage()->getCode();
+		}
+		if ( $inLanguage === '' ) {
+			$inLanguage = LanguageNameUtils::AUTONYMS;
+		}
 		$lang = MediaWikiServices::getInstance()
 			->getLanguageNameUtils()
 			->getLanguageName( $code, $inLanguage );
