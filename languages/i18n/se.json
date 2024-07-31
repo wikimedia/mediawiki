@@ -949,6 +949,7 @@
 	"search-thumbnail-alt": "Govaš siidui $1",
 	"searchrelated": "sullásaš",
 	"searchall": "buot",
+	"search-showingresults": "{{PLURAL:$4|Boađus <strong>$1</strong>/<strong>$3</strong>|Bohtosat <strong>$1–$2</strong>/<strong>$3</strong>}}",
 	"search-nonefound": "Ii oktage boađus dan ohcamii.",
 	"search-nonefound-thiswiki": "Ii oktage boađus dan ohcamii dan siiddus.",
 	"powersearch-legend": "Aiddostahttojuvvon ohcan",

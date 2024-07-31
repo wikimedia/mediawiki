@@ -100,7 +100,8 @@
 			"Suleiman the Magnificent Television",
 			"LR0725",
 			"기나ㅏㄴ",
-			"이강철"
+			"이강철",
+			"Herness17"
 		]
 	},
 	"tog-underline": "링크에 밑줄 긋기:",
@@ -2908,6 +2909,8 @@
 	"movesubpage": "{{PLURAL:$1|하위 문서}}",
 	"movesubpagetext": "이 문서에는 다음 {{PLURAL:$1|하위 문서}} $1개가 있습니다.",
 	"movesubpagetalktext": "관련 토론 문서에 속한 $1개의 {{PLURAL:$1|하위 문서}}는 아래와 같습니다.",
+	"movesubpagetext-truncated": "이 문서의 첫 $1개 {{PLURAL:$1|하위 문서}}가 아래에 표시됩니다.",
+	"movesubpagetalktext-truncated": "해당 토론 문서의 첫 $1개 {{PLURAL:$1|하위 문서}}가 아래에 표시됩니다.",
 	"movenosubpage": "이 문서에는 하위 문서가 존재하지 않습니다.",
 	"movereason": "이유:",
 	"moveotherreason": "다른 이유/추가적인 이유:",
@@ -4150,6 +4153,7 @@
 	"skin-action-undelete": "삭제 취소",
 	"skin-action-delete": "삭제",
 	"skin-action-move": "이동",
+	"parsoid-stash-rate-limit-error": "비율 제한을 초과하여 스태싱에 실패했습니다. 나중에 다시 시도하세요.",
 	"parsoid-resource-limit-exceeded": "Parsoid의 리소스 제한을 초과했습니다: $1",
 	"parsoid-revision-access": "파소이드는 이 판에 접근할 수 없습니다: $1",
 	"parsoid-client-error": "유효하지 않은 입력 파소이드: $1",

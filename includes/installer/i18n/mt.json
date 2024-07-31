@@ -79,5 +79,5 @@
 	"config-help": "għajnuna",
 	"config-nofile": "Il-fajl \"$1\" ma setax jinstab. Dan ġie mħassar?",
 	"mainpagetext": "'''MediaWiki ġie installat b'suċċess.'''",
-	"mainpagedocfooter": "Ikkonsulta l-[https://meta.wikimedia.org/wiki/Help:Contents Gwida għall-utenti] sabiex tikseb iktar informazzjoni dwar kif tuża' s-softwer tal-wiki.\n\n== Biex tibda ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista ta' preferenzi għall-konfigurazzjoni]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Mistoqsijiet rikorrenti fuq il-MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Il-lista tal-posta tħabbar 'l MediaWiki]"
+	"mainpagedocfooter": "Ikkonsulta l-[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Gwida għall-utenti] sabiex tikseb iktar informazzjoni dwar kif tuża' s-softwer tal-wiki.\n\n== Biex tibda ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista ta' preferenzi għall-konfigurazzjoni]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Mistoqsijiet rikorrenti fuq il-MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Il-lista tal-posta tħabbar 'l MediaWiki]"
 }

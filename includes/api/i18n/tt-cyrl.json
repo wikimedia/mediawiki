@@ -7,7 +7,7 @@
 		]
 	},
 	"apihelp-feedcontributions-param-newonly": "Битләр ясау үзгәртмәләре генә күрсәтелсен.",
-	"apihelp-feedcontributions-param-hideminor": "Кече төзәтмәләрне яшерергә.",
-	"apihelp-feedrecentchanges-param-hideminor": "Кече үзгәрешләрне яшерергә.",
+	"apihelp-feedcontributions-param-hideminor": "Кече үзгәрешләрне яшерү.",
+	"apihelp-feedrecentchanges-param-hideminor": "Кече үзгәрешләрне яшерү.",
 	"api-help-param-internal": "Эчке."
 }

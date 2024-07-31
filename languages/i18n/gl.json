@@ -37,7 +37,8 @@
 			"Xosé",
 			"לערי ריינהארט",
 			"No se",
-			"O Breixo"
+			"O Breixo",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Subliñar as ligazóns:",
@@ -659,7 +660,7 @@
 	"temp-user-banner-tooltip-description-learn-more": "Esta conta temporal creouse despois de realizar unha edición sen unha conta neste navegador e dispositivo. [[mw:Help:Temporary_accounts|Máis información]].",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Inicia sesión]] ou [[Special:CreateAccount|crea unha conta]] para obter recoñecemento para as túas futuras edicións e acceder a outras funcións.",
 	"blankarticle": "<strong>Advertencia:</strong> A páxina que estás a piques de crear está baleira.\nSe premes no botón \"$1\" outra vez máis, a páxina quedará creada pero sen contido.",
-	"anoneditwarning": "<strong>Aviso:</strong> Non accediches ao sistema. O teu enderezo IP será visible se fas algunha corrección. Se <strong>[$1 accedes ao sistema]</strong> ou <strong>[$2 creas unha conta]</strong>, as edicións que fagas quedarán atribuídas ao teu nome de usuario e ademais obterás outros beneficios.",
+	"anoneditwarning": "<strong>Aviso:</strong> Non accediches ao sistema. O teu enderezo IP será visible se fas algunha edición. Se <strong>[$1 accedes ao sistema]</strong> ou <strong>[$2 creas unha conta]</strong>, as edicións que fagas quedarán atribuídas ao teu nome de usuario e ademais obterás outros beneficios.",
 	"autocreate-edit-warning": "<strong>Aviso:</strong> Non accediches ao sistema. A túa edición quedará atribuída a un <strong>[[{{MediaWiki:tempuser-helppage}}|nome xerado automaticamente]]</strong> e engadiráselle unha cookie ao teu navegador. O teu enderezo IP será visible para os usuarios de confianza. Se <strong>[$1 accedes ao sistema]</strong> ou <strong>[$2 creas unha conta]</strong>, as túas edicións quedarán atribuídas ao nome que escollas, e ademais obterás outros beneficios.",
 	"anonpreviewwarning": "''Non iniciaches a sesión. Se gardas a páxina, o teu enderezo IP quedará rexistrado no historial de edicións.''",
 	"autocreate-preview-warning": "<em>Non accediches ao sistema. A túa edición quedará atribuída a un [[{{MediaWiki:tempuser-helppage}}|nome xerado automaticamente]] e o teu enderezo IP será visible para os administradores.</em>",
