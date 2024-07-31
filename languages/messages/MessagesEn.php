@@ -224,6 +224,7 @@ $magicWords = [
 	'articlepath'             => [ 0, 'ARTICLEPATH' ],
 	'basepagename'            => [ 1, 'BASEPAGENAME' ],
 	'basepagenamee'           => [ 1, 'BASEPAGENAMEE' ],
+	'bcp47'                   => [ 1, '#bcp47' ],
 	'bidi'                    => [ 0, 'BIDI:' ],
 	'canonicalurl'            => [ 0, 'CANONICALURL:' ],
 	'canonicalurle'           => [ 0, 'CANONICALURLE:' ],

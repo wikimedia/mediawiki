@@ -13022,6 +13022,127 @@ cat=Pages_with_invalid_language_codes sort=
 <p><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#dir:blah&lt;blah","function":"dir"},"params":{},"i":0}}]}'>ltr</span></p>
 !! end
 
+!! test
+Bcp47 parser function (valid codes)
+!! wikitext
+Serbian: {{#bcp47:sr-ec}}
+
+Cantonese: {{#bcp47:zh-yue}}
+
+Formal German (with space): {{#bcp47: de-formal}}
+
+Simple English: {{#bcp47:simple}}
+
+The string 'egl' is a valid internal code, distinct from the
+internal code 'eml'; however both map to the BCP-47 code 'egl'.
+
+Ambiguous BCP-47 code:
+;Internal code 'eml':{{#bcp47:eml}} == egl
+;Internal code 'egl':{{#bcp47:egl}} == egl
+!! html/php
+<p>Serbian: sr-Cyrl
+</p><p>Cantonese: yue
+</p><p>Formal German (with space): de-x-formal
+</p><p>Simple English: en-simple
+</p><p>The string 'egl' is a valid internal code, distinct from the
+internal code 'eml'; however both map to the BCP-47 code 'egl'.
+</p><p>Ambiguous BCP-47 code:
+</p>
+<dl><dt>Internal code 'eml'</dt>
+<dd>egl == egl</dd>
+<dt>Internal code 'egl'</dt>
+<dd>egl == egl</dd></dl>
+!! html/parsoid+integrated
+<p>Serbian: <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#bcp47:sr-ec","function":"bcp47"},"params":{},"i":0}}]}'>sr-Cyrl</span></p>
+<p>Cantonese: <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#bcp47:zh-yue","function":"bcp47"},"params":{},"i":0}}]}'>yue</span></p>
+<p>Formal German (with space): <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#bcp47: de-formal","function":"bcp47"},"params":{},"i":0}}]}'>de-x-formal</span></p>
+<p>Simple English: <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#bcp47:simple","function":"bcp47"},"params":{},"i":0}}]}'>en-simple</span></p>
+<p>The string 'egl' is a valid internal code, distinct from the internal code 'eml'; however both map to the BCP-47 code 'egl'.</p>
+<p>Ambiguous BCP-47 code:</p>
+<dl>
+<dt>Internal code 'eml'</dt>
+<dd><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#bcp47:eml","function":"bcp47"},"params":{},"i":0}}]}'>egl</span> == egl</dd>
+<dt>Internal code 'egl'</dt>
+<dd><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#bcp47:egl","function":"bcp47"},"params":{},"i":0}}]}'>egl</span> == egl</dd>
+</dl>
+!! end
+
+!! test
+Bcp47 parser function (target language)
+!! options
+language=sr-ec
+!! wikitext
+These are all equivalent:
+
+{{#bcp47}} / {{#bcp47:}} / {{#bcp47:{{PAGELANGUAGE}}}}
+!! html/php
+<p>These are all equivalent:
+</p><p>sr-Cyrl / sr-Cyrl / sr-Cyrl
+</p>
+!! html/parsoid+integrated
+<p>These are all equivalent:</p>
+<p><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#bcp47","function":"bcp47"},"params":{},"i":0}}]}'>sr-Cyrl</span> / <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#bcp47:","function":"bcp47"},"params":{},"i":0}}]}'>sr-Cyrl</span> / <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#bcp47:{{PAGELANGUAGE}}","function":"bcp47"},"params":{},"i":0}}]}'>sr-Cyrl</span></p>
+!! end
+
+# from https://commons.wikimedia.org/w/index.php?title=Template:BCP47&oldid=597081406
+!! test
+Bcp47 parser function (examples from Template:BCP47)
+!! wikitext
+Unaffected codes, for example:
+*{{#bcp47:en}} returns: "en"
+Changes required by BCP47, using standard codes:
+*{{#bcp47:als}} returns: "gsw"
+*{{#bcp47:fiu-vro}} returns: "vro"
+*{{#bcp47:simple}} returns: "en"
+*{{#bcp47:zh-classical}} returns: "lzh"
+*{{#bcp47:roa-rup}} returns: "rup"
+Changes required by BCP47, currently using private-use extensions:
+*{{#bcp47:nrm}} returns: "nrf"
+*{{#bcp47:roa-tara}} returns: "it-x-tara"
+Changes preferable with BCP47 for improved interoperability (not really violations):
+*{{#bcp47:be-x-old}} returns: "be-tarask"
+!! html/php
+<p>Unaffected codes, for example:
+</p>
+<ul><li>en returns: "en"</li></ul>
+<p>Changes required by BCP47, using standard codes:
+</p>
+<ul><li>gsw returns: "gsw"</li>
+<li>vro returns: "vro"</li>
+<li>en-simple returns: "en"</li>
+<li>lzh returns: "lzh"</li>
+<li>rup returns: "rup"</li></ul>
+<p>Changes required by BCP47, currently using private-use extensions:
+</p>
+<ul><li>nrf returns: "nrf"</li>
+<li>nap-x-tara returns: "it-x-tara"</li></ul>
+<p>Changes preferable with BCP47 for improved interoperability (not really violations):
+</p>
+<ul><li>be-tarask returns: "be-tarask"</li></ul>
+!! html/parsoid+integrated
+<p>Unaffected codes, for example:</p>
+<ul>
+<li><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#bcp47:en","function":"bcp47"},"params":{},"i":0}}]}'>en</span> returns: "en"</li>
+</ul>
+<p>Changes required by BCP47, using standard codes:</p>
+<ul>
+<li><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#bcp47:als","function":"bcp47"},"params":{},"i":0}}]}'>gsw</span> returns: "gsw"</li>
+<li><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#bcp47:fiu-vro","function":"bcp47"},"params":{},"i":0}}]}'>vro</span> returns: "vro"</li>
+<li><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#bcp47:simple","function":"bcp47"},"params":{},"i":0}}]}'>en-simple</span> returns: "en"</li>
+<li><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#bcp47:zh-classical","function":"bcp47"},"params":{},"i":0}}]}'>lzh</span> returns: "lzh"</li>
+<li><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#bcp47:roa-rup","function":"bcp47"},"params":{},"i":0}}]}'>rup</span> returns: "rup"</li>
+</ul>
+<p>Changes required by BCP47, currently using private-use extensions:</p>
+<ul>
+<li><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#bcp47:nrm","function":"bcp47"},"params":{},"i":0}}]}'>nrf</span> returns: "nrf"</li>
+<li><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#bcp47:roa-tara","function":"bcp47"},"params":{},"i":0}}]}'>nap-x-tara</span> returns: "it-x-tara"</li>
+</ul>
+<p>Changes preferable with BCP47 for improved interoperability (not really violations):</p>
+<ul>
+<li><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#bcp47:be-x-old","function":"bcp47"},"params":{},"i":0}}]}'>be-tarask</span> returns: "be-tarask"</li>
+</ul>
+!! end
+
 !!test
 Padleft and padright (default 0-padding)
 !! wikitext
