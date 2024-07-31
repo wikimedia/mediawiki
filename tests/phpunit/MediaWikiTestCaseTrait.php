@@ -348,6 +348,22 @@ trait MediaWikiTestCaseTrait {
 	}
 
 	/**
+	 * Check that no fake timestamp is set before the tests (e.g. in a test provider).
+	 * They should be only set in the tests and cleared by fakeTimestampTearDown().
+	 *
+	 * @since 1.43
+	 * @before
+	 */
+	protected function fakeTimestampSetUp() {
+		$realTime = time();
+		$maybeFakeTime = ConvertibleTimestamp::time();
+		if ( abs( $maybeFakeTime - $realTime ) > 1 ) {
+			$this->assertTrue( false, "Someone set a fake timestamp ($maybeFakeTime) " .
+				"and did not clean it up. This will cause confusing test failures." );
+		}
+	}
+
+	/**
 	 * @param string $text
 	 * @param array $params
 	 * @return Message|MockObject
