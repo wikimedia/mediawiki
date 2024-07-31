@@ -21,6 +21,8 @@ use MediaWiki\User\UserIdentity;
  */
 class ContributionsPagerTest extends MediaWikiIntegrationTestCase {
 
+	private static User $user;
+
 	private function getPagerForTryCreatingRevisionRecord( $isArchive = false ) {
 		$revisionStore = $this->createMock( RevisionStore::class );
 		$revisionStore->method( 'isRevisionRow' )
@@ -70,27 +72,8 @@ class ContributionsPagerTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * Test the pager in 'archive' mode. This involves making a new class, since no
-	 * concrete subclass in MediaWiki core currently uses this mode.
-	 *
-	 * In the future, SpecialDeletedContributions could use a subclass of ContributionsPager
-	 * instead of DeletedContribsPager. In that case, this test can be moved to the tests
-	 * for that class.
-	 */
-	public function testFormatRow() {
-		// Set up data
-		$user = $this->getTestUser()->getUser();
-		$this->editPage(
-			'Test page for deletion', 'Test Content', 'test', NS_MAIN, $user
-		);
-		$title = Title::newFromText( 'Test page for deletion' );
-		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
-		$this->deletePage( $page );
-
+	private function getPager( $context, $target ) {
 		$services = $this->getServiceContainer();
-		$context = new RequestContext();
-		$context->setLanguage( 'qqx' );
 
 		// Define a pager in 'archive' mode.
 		$pager = new class(
@@ -104,7 +87,7 @@ class ContributionsPagerTest extends MediaWikiIntegrationTestCase {
 			$context,
 			[
 				'isArchive' => true,
-				'target' => $user->getName(),
+				'target' => $target,
 				// The topOnly filter should be ignored and not throw an error: T371495
 				'topOnly' => true,
 			],
@@ -140,12 +123,53 @@ class ContributionsPagerTest extends MediaWikiIntegrationTestCase {
 			}
 		};
 
+		return $pager;
+	}
+
+	/**
+	 * Test the pager in 'archive' mode. This involves making a new class, since no
+	 * concrete subclass in MediaWiki core currently uses this mode.
+	 *
+	 * In the future, SpecialDeletedContributions could use a subclass of ContributionsPager
+	 * instead of DeletedContribsPager. In that case, this test can be moved to the tests
+	 * for that class.
+	 */
+	public function testFormatRow() {
+		$context = new RequestContext();
+		$context->setLanguage( 'qqx' );
+
+		$pager = $this->getPager( $context, self::$user->getName() );
+
 		// Perform assertions
 		$this->assertSame( 1, $pager->getNumRows() );
 
 		$html = $pager->getBody();
 		$this->assertStringContainsString( 'deletionlog', $html );
 		$this->assertStringContainsString( 'undeleteviewlink', $html );
+
+		// The performing user does not have the right to undelete
+		$this->assertStringNotContainsString( 'mw-changeslist-date', $html );
+	}
+
+	public function testFormatRowDateLinks() {
+		$context = new RequestContext();
+		$context->setUser( $this->getTestSysop()->getUser() );
+
+		$pager = $this->getPager( $context, self::$user->getName() );
+
+		$html = $pager->getBody();
+		$this->assertStringContainsString( 'mw-changeslist-date', $html );
+	}
+
+	public function addDbDataOnce() {
+		// Set up data
+		self::$user = $this->getTestUser()->getUser();
+		$this->editPage(
+			'Test page for deletion', 'Test Content', 'test', NS_MAIN, self::$user
+		);
+		$title = Title::newFromText( 'Test page for deletion' );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+		$this->deletePage( $page );
 	}
 
 }
