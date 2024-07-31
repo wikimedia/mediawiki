@@ -36,12 +36,12 @@ class StatusValueTest extends MediaWikiUnitTestCase {
 
 		yield [
 			true, 42, null,
-			'<OK, no errors detected, integer value set>',
+			'<OK, no errors detected, int value set>',
 			'Simple int, good state'
 		];
 		yield [
 			false, 42, null,
-			'<Error, no errors detected, integer value set>',
+			'<Error, no errors detected, int value set>',
 			'Simple int, error state'
 		];
 
@@ -80,7 +80,7 @@ class StatusValueTest extends MediaWikiUnitTestCase {
 
 		yield [
 			false, 42, [ 'This is the error' ],
-			'<Error, collected 1 message(s) on the way, integer value set>' . $basicErrorReport,
+			'<Error, collected 1 message(s) on the way, int value set>' . $basicErrorReport,
 			'Simple int, string error, error state'
 		];
 

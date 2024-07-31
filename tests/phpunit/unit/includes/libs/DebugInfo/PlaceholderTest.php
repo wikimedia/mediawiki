@@ -18,7 +18,7 @@ class PlaceholderTest extends TestCase {
 			],
 			[
 				1,
-				'/^integer$/'
+				'/^int$/'
 			],
 			[
 				'test',

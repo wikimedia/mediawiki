@@ -440,7 +440,7 @@ class MergeHistory {
 				. 'to return Content object from ContentHandler::makeRedirectContent().'
 				. ' {value} returned instead.',
 				[
-					'value' => gettype( $newContent ),
+					'value' => get_debug_type( $newContent ),
 					'model' => $sourceModel
 				]
 			);

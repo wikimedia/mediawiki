@@ -18,7 +18,7 @@ class Placeholder {
 		if ( is_object( $value ) ) {
 			$this->desc = get_class( $value ) . '#' . spl_object_id( $value );
 		} else {
-			$this->desc = gettype( $value );
+			$this->desc = get_debug_type( $value );
 		}
 	}
 }

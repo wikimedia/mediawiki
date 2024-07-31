@@ -871,7 +871,7 @@ class LocalFile extends File {
 			} else {
 				$logger = LoggerFactory::getInstance( 'LocalFile' );
 				$logger->warning( __METHOD__ . ' given invalid metadata of type ' .
-					gettype( $info['metadata'] ) );
+					get_debug_type( $info['metadata'] ) );
 				$this->metadataArray = [];
 			}
 			$this->extraDataLoaded = true;

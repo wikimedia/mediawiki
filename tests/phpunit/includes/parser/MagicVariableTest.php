@@ -324,7 +324,7 @@ class MagicVariableTest extends MediaWikiIntegrationTestCase {
 		$msg = sprintf( "Magic %s should be <%s:%s>",
 			$magic,
 			$expected,
-			gettype( $expected )
+			get_debug_type( $expected )
 		);
 
 		$this->assertSame(

@@ -482,9 +482,7 @@ TXT;
 	public static function redactTrace( array $trace ) {
 		return array_map( static function ( $frame ) {
 			if ( isset( $frame['args'] ) ) {
-				$frame['args'] = array_map( static function ( $arg ) {
-					return is_object( $arg ) ? get_class( $arg ) : gettype( $arg );
-				}, $frame['args'] );
+				$frame['args'] = array_map( 'get_debug_type', $frame['args'] );
 			}
 			return $frame;
 		}, $trace );
