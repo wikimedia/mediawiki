@@ -1816,19 +1816,19 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	public function testNoGallery() {
 		$op = $this->newInstance();
-		$this->assertFalse( $op->mNoGallery );
+		$this->assertFalse( $op->getNoGallery() );
 		$this->assertFalse( $op->getOutputFlag( ParserOutputFlags::NO_GALLERY ) );
 
 		$stubPO1 = $this->createParserOutputStubWithFlags(
 			[ 'getNoGallery' => true ], [ ParserOutputFlags::NO_GALLERY ]
 		);
 		$op->addParserOutputMetadata( $stubPO1 );
-		$this->assertTrue( $op->mNoGallery );
+		$this->assertTrue( $op->getNoGallery() );
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NO_GALLERY ) );
 
 		$stubPO2 = $this->createParserOutputStub( 'getNoGallery', false );
 		$op->addParserOutput( $stubPO2 );
-		$this->assertFalse( $op->mNoGallery );
+		$this->assertFalse( $op->getNoGallery() );
 		// Note that flags are OR'ed together, and not reset.
 		$this->assertTrue( $op->getOutputFlag( ParserOutputFlags::NO_GALLERY ) );
 	}
