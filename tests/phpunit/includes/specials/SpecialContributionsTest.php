@@ -59,6 +59,8 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 
 	public function testExecuteEmptyTarget() {
 		[ $html ] = $this->executeSpecialPage();
+		// This 'topOnly' filter should always be added to Special:Contributions
+		$this->assertStringContainsString( 'topOnly', $html );
 		$this->assertStringNotContainsString( 'mw-pager-body', $html );
 	}
 

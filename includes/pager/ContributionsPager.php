@@ -370,7 +370,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			$queryInfo['conds'][] = $this->revisionDeletedField . ' != 0';
 		}
 
-		if ( $this->topOnly ) {
+		if ( !$this->isArchive && $this->topOnly ) {
 			$queryInfo['conds'][] = $this->revisionIdField . ' = page_latest';
 		}
 

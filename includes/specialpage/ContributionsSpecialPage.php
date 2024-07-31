@@ -808,13 +808,16 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 			];
 		}
 
-		$fields['topOnly'] = [
-			'type' => 'check',
-			'id' => 'mw-show-top-only',
-			'label' => $this->msg( 'sp-contributions-toponly' )->text(),
-			'name' => 'topOnly',
-			'section' => 'contribs-top',
-		];
+		if ( !$this->isArchive() ) {
+			$fields['topOnly'] = [
+				'type' => 'check',
+				'id' => 'mw-show-top-only',
+				'label' => $this->msg( 'sp-contributions-toponly' )->text(),
+				'name' => 'topOnly',
+				'section' => 'contribs-top',
+			];
+		}
+
 		$fields['newOnly'] = [
 			'type' => 'check',
 			'id' => 'mw-show-new-only',
@@ -928,6 +931,16 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 	 */
 	protected function providesFeeds() {
 		return true;
+	}
+
+	/**
+	 * Define whether this page shows existing revisions (from the revision table) or
+	 * revisions of deleted pages (from the archive table).
+	 *
+	 * @return bool This page shows existing revisions
+	 */
+	protected function isArchive() {
+		return false;
 	}
 
 	/**

@@ -104,7 +104,9 @@ class ContributionsPagerTest extends MediaWikiIntegrationTestCase {
 			$context,
 			[
 				'isArchive' => true,
-				'target' => $user->getName()
+				'target' => $user->getName(),
+				// The topOnly filter should be ignored and not throw an error: T371495
+				'topOnly' => true,
 			],
 			$this->createMock( UserIdentity::class ),
 		) extends ContributionsPager {
