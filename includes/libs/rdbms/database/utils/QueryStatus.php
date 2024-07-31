@@ -49,7 +49,7 @@ class QueryStatus {
 		if ( !( $res instanceof IResultWrapper ) && !is_bool( $res ) && $res !== null ) {
 			throw new DBUnexpectedError(
 				null,
-				'Got ' . gettype( $res ) . ' instead of IResultWrapper|bool'
+				'Got ' . get_debug_type( $res ) . ' instead of IResultWrapper|bool'
 			);
 		}
 

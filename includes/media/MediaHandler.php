@@ -232,7 +232,7 @@ abstract class MediaHandler {
 				$info += [ 'width' => 0, 'height' => 0, 'metadata' => [] ];
 				if ( !is_array( $info['metadata'] ) ) {
 					throw new InvalidArgumentException( 'Media handler ' .
-						static::class . ' returned ' . gettype( $info['metadata'] ) .
+						static::class . ' returned ' . get_debug_type( $info['metadata'] ) .
 						' for metadata, should be array' );
 				}
 				return $info;

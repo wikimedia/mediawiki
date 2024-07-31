@@ -97,7 +97,7 @@ class MWCryptHash {
 	public static function hmac( $data, $key, $raw = true ) {
 		if ( !is_string( $key ) ) {
 			// hash_hmac tolerates non-string (would return null with warning)
-			throw new InvalidArgumentException( 'Invalid key type: ' . gettype( $key ) );
+			throw new InvalidArgumentException( 'Invalid key type: ' . get_debug_type( $key ) );
 		}
 		return hash_hmac( self::hashAlgo(), $data, $key, $raw );
 	}

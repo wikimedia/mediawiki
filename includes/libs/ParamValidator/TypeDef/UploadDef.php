@@ -83,7 +83,7 @@ class UploadDef extends TypeDef {
 
 		if ( !$value instanceof UploadedFileInterface ) {
 			// Err?
-			$type = is_object( $value ) ? get_class( $value ) : gettype( $value );
+			$type = get_debug_type( $value );
 			throw new InvalidArgumentException( "\$value must be UploadedFileInterface, got $type" );
 		}
 

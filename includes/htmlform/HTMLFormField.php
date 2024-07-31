@@ -258,7 +258,7 @@ abstract class HTMLFormField {
 			case 'NOR':
 				foreach ( $params as $i => $p ) {
 					if ( !is_array( $p ) ) {
-						$type = gettype( $p );
+						$type = get_debug_type( $p );
 						throw $makeException( "Expected array, found $type at index $i" );
 					}
 					$this->validateCondState( $p );

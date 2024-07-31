@@ -40,9 +40,7 @@ trait SearchResultTrait {
 				return $extensionData;
 			};
 		} else {
-			$type = is_object( $extensionData )
-				? get_class( $extensionData )
-				: gettype( $extensionData );
+			$type = get_debug_type( $extensionData );
 			throw new InvalidArgumentException(
 				__METHOD__ . " must be called with Closure|array, but received $type" );
 		}

@@ -294,7 +294,7 @@ class EmailUser {
 			} else {
 				// Setting $error to something else was deprecated in 1.29 and
 				// removed in 1.36, and so an exception is now thrown
-				$type = is_object( $error ) ? get_class( $error ) : gettype( $error );
+				$type = get_debug_type( $error );
 				throw new UnexpectedValueException(
 					'EmailUser hook set $error to unsupported type ' . $type
 				);
