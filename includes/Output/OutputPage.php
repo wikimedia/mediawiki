@@ -232,11 +232,6 @@ class OutputPage extends ContextSource {
 	private $mIndicators = [];
 
 	/**
-	 * @var array<string,string> Array mapping interwiki prefix to (non DB key) Titles (e.g. 'fr' => 'Test page')
-	 */
-	private $mLanguageLinks = [];
-
-	/**
 	 * Used for JavaScript (predates ResourceLoader)
 	 * @todo We should split JS / CSS.
 	 * mScripts content is inserted as is in "<head>" by Skin. This might
@@ -1604,19 +1599,9 @@ class OutputPage extends ContextSource {
 	public function addLanguageLinks( array $newLinkArray ) {
 		# $newLinkArray is in order of appearance on the page;
 		# deduplicate so only the first for a given prefix is used
-		# (T26502)
-		foreach ( $newLinkArray as $item ) {
-			if ( is_string( $item ) ) {
-				[ $prefix, $title ] = explode( ':', $item, 2 );
-				# note that $title may have a fragment
-			} else {
-				$prefix = $item->getInterwiki();
-				$title = $item->getText();
-				if ( $item->getFragment() !== '' ) {
-					$title .= '#' . $item->getFragment();
-				}
-			}
-			$this->mLanguageLinks[$prefix] ??= $title;
+		# using code in ParserOutput (T26502)
+		foreach ( $newLinkArray as $t ) {
+			$this->metadata->addLanguageLink( $t );
 		}
 	}
 
@@ -1630,8 +1615,7 @@ class OutputPage extends ContextSource {
 	 * or replace language links from the output page.
 	 */
 	public function setLanguageLinks( array $newLinkArray ) {
-		$this->mLanguageLinks = [];
-		$this->addLanguageLinks( $newLinkArray );
+		$this->metadata->setLanguageLinks( $newLinkArray );
 	}
 
 	/**
@@ -1640,11 +1624,7 @@ class OutputPage extends ContextSource {
 	 * @return string[] Array of interwiki-prefixed (non DB key) titles (e.g. 'fr:Test page')
 	 */
 	public function getLanguageLinks() {
-		$result = [];
-		foreach ( $this->mLanguageLinks as $prefix => $title ) {
-			$result[] = "$prefix:$title";
-		}
-		return $result;
+		return $this->metadata->getLanguageLinks();
 	}
 
 	/**
@@ -2498,11 +2478,10 @@ class OutputPage extends ContextSource {
 		// Link flags are ignored for now, but may in the future be
 		// used to mark individual language links.
 		$linkFlags = [];
-		$languageLinks = $this->getLanguageLinks();
+		$languageLinks = $this->metadata->getLanguageLinks();
 		// This hook can be used to remove/replace language links
 		$this->getHookRunner()->onLanguageLinks( $this->getTitle(), $languageLinks, $linkFlags );
-		$this->mLanguageLinks = [];
-		$this->addLanguageLinks( $languageLinks );
+		$this->metadata->setLanguageLinks( $languageLinks );
 
 		$this->getHookRunner()->onOutputPageParserOutput( $this, $parserOutput );
 
