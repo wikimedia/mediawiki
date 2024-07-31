@@ -45,14 +45,9 @@ use Wikimedia\IPUtils;
  * @since 1.36
  */
 class BlockUtils {
-	/** @var ServiceOptions */
-	private $options;
-
-	/** @var UserIdentityLookup */
-	private $userIdentityLookup;
-
-	/** @var UserNameUtils */
-	private $userNameUtils;
+	private ServiceOptions $options;
+	private UserIdentityLookup $userIdentityLookup;
+	private UserNameUtils $userNameUtils;
 
 	/** @var string|false */
 	private $wikiId;
@@ -64,17 +59,11 @@ class BlockUtils {
 		MainConfigNames::BlockCIDRLimit,
 	];
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param UserIdentityLookup $userIdentityLookup
-	 * @param UserNameUtils $userNameUtils
-	 * @param string|false $wikiId
-	 */
 	public function __construct(
 		ServiceOptions $options,
 		UserIdentityLookup $userIdentityLookup,
 		UserNameUtils $userNameUtils,
-		$wikiId = Block::LOCAL
+		/* string|false */ $wikiId = Block::LOCAL
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;

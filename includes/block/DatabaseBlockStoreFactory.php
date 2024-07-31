@@ -41,59 +41,22 @@ class DatabaseBlockStoreFactory {
 	 */
 	public const CONSTRUCTOR_OPTIONS = DatabaseBlockStore::CONSTRUCTOR_OPTIONS;
 
-	/** @var ServiceOptions */
-	private $options;
-
-	/** @var LoggerInterface */
-	private $logger;
-
-	/** @var ActorStoreFactory */
-	private $actorStoreFactory;
-
-	/** @var BlockRestrictionStoreFactory */
-	private $blockRestrictionStoreFactory;
-
-	/** @var CommentStore */
-	private $commentStore;
-
-	/** @var HookContainer */
-	private $hookContainer;
-
-	/** @var LBFactory */
-	private $loadBalancerFactory;
-
-	/** @var ReadOnlyMode */
-	private $readOnlyMode;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var TempUserConfig */
-	private $tempUserConfig;
-
-	/** @var BlockUtilsFactory */
-	private $blockUtilsFactory;
-
-	/** @var AutoblockExemptionList */
-	private $autoblockExemptionList;
+	private ServiceOptions $options;
+	private LoggerInterface $logger;
+	private ActorStoreFactory $actorStoreFactory;
+	private BlockRestrictionStoreFactory $blockRestrictionStoreFactory;
+	private CommentStore $commentStore;
+	private HookContainer $hookContainer;
+	private LBFactory $loadBalancerFactory;
+	private ReadOnlyMode $readOnlyMode;
+	private UserFactory $userFactory;
+	private TempUserConfig $tempUserConfig;
+	private BlockUtilsFactory $blockUtilsFactory;
+	private AutoblockExemptionList $autoblockExemptionList;
 
 	/** @var DatabaseBlockStore[] */
-	private $storeCache = [];
+	private array $storeCache = [];
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param LoggerInterface $logger
-	 * @param ActorStoreFactory $actorStoreFactory
-	 * @param BlockRestrictionStoreFactory $blockRestrictionStoreFactory
-	 * @param CommentStore $commentStore
-	 * @param HookContainer $hookContainer
-	 * @param LBFactory $loadBalancerFactory
-	 * @param ReadOnlyMode $readOnlyMode
-	 * @param UserFactory $userFactory
-	 * @param TempUserConfig $tempUserConfig
-	 * @param BlockUtilsFactory $blockUtilsFactory
-	 * @param AutoblockExemptionList $autoblockExemptionList
-	 */
 	public function __construct(
 		ServiceOptions $options,
 		LoggerInterface $logger,

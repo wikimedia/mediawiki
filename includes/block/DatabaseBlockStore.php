@@ -78,57 +78,19 @@ class DatabaseBlockStore {
 	/** @var string|false */
 	private $wikiId;
 
-	/** @var ServiceOptions */
-	private $options;
+	private ServiceOptions $options;
+	private LoggerInterface $logger;
+	private ActorStoreFactory $actorStoreFactory;
+	private BlockRestrictionStore $blockRestrictionStore;
+	private CommentStore $commentStore;
+	private HookRunner $hookRunner;
+	private IConnectionProvider $dbProvider;
+	private ReadOnlyMode $readOnlyMode;
+	private UserFactory $userFactory;
+	private TempUserConfig $tempUserConfig;
+	private BlockUtils $blockUtils;
+	private AutoblockExemptionList $autoblockExemptionList;
 
-	/** @var LoggerInterface */
-	private $logger;
-
-	/** @var ActorStoreFactory */
-	private $actorStoreFactory;
-
-	/** @var BlockRestrictionStore */
-	private $blockRestrictionStore;
-
-	/** @var CommentStore */
-	private $commentStore;
-
-	/** @var HookRunner */
-	private $hookRunner;
-
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
-	/** @var ReadOnlyMode */
-	private $readOnlyMode;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var TempUserConfig */
-	private $tempUserConfig;
-
-	/** @var BlockUtils */
-	private $blockUtils;
-
-	/** @var AutoblockExemptionList */
-	private $autoblockExemptionList;
-
-	/**
-	 * @param ServiceOptions $options
-	 * @param LoggerInterface $logger
-	 * @param ActorStoreFactory $actorStoreFactory
-	 * @param BlockRestrictionStore $blockRestrictionStore
-	 * @param CommentStore $commentStore
-	 * @param HookContainer $hookContainer
-	 * @param IConnectionProvider $dbProvider
-	 * @param ReadOnlyMode $readOnlyMode
-	 * @param UserFactory $userFactory
-	 * @param TempUserConfig $tempUserConfig
-	 * @param BlockUtils $blockUtils
-	 * @param AutoblockExemptionList $autoblockExemptionList
-	 * @param string|false $wikiId
-	 */
 	public function __construct(
 		ServiceOptions $options,
 		LoggerInterface $logger,
@@ -142,7 +104,7 @@ class DatabaseBlockStore {
 		TempUserConfig $tempUserConfig,
 		BlockUtils $blockUtils,
 		AutoblockExemptionList $autoblockExemptionList,
-		$wikiId = DatabaseBlock::LOCAL
+		/* string|false */ $wikiId = DatabaseBlock::LOCAL
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 

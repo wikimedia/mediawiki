@@ -35,27 +35,14 @@ class BlockUtilsFactory {
 	 */
 	public const CONSTRUCTOR_OPTIONS = BlockUtils::CONSTRUCTOR_OPTIONS;
 
-	/** @var ServiceOptions */
-	private $options;
-
-	/** @var ActorStoreFactory */
-	private $actorStoreFactory;
-
-	/** @var UserNameUtils */
-	private $userNameUtils;
+	private ServiceOptions $options;
+	private ActorStoreFactory $actorStoreFactory;
+	private UserNameUtils $userNameUtils;
+	private LBFactory $loadBalancerFactory;
 
 	/** @var BlockUtils[] */
-	private $storeCache;
+	private array $storeCache = [];
 
-	/** @var LBFactory */
-	private $loadBalancerFactory;
-
-	/**
-	 * @param ServiceOptions $options
-	 * @param ActorStoreFactory $actorStoreFactory
-	 * @param UserNameUtils $userNameUtils
-	 * @param LBFactory $loadBalancerFactory
-	 */
 	public function __construct(
 		ServiceOptions $options,
 		ActorStoreFactory $actorStoreFactory,

@@ -31,22 +31,14 @@ use MediaWiki\User\UserIdentity;
  * @since 1.35
  */
 class BlockPermissionCheckerFactory {
-
-	/** @var ServiceOptions */
-	private $options;
-
 	/**
 	 * @internal only to be used by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = BlockPermissionChecker::CONSTRUCTOR_OPTIONS;
 
-	/** @var BlockUtils */
-	private $blockUtils;
+	private ServiceOptions $options;
+	private BlockUtils $blockUtils;
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param BlockUtils $blockUtils
-	 */
 	public function __construct(
 		ServiceOptions $options,
 		BlockUtils $blockUtils

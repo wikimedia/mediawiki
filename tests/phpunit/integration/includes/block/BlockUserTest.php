@@ -13,11 +13,8 @@ use MediaWiki\User\User;
 class BlockUserTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
 
-	/** @var User */
-	private $user;
-
-	/** @var BlockUserFactory */
-	private $blockUserFactory;
+	private User $user;
+	private BlockUserFactory $blockUserFactory;
 
 	protected function setUp(): void {
 		parent::setUp();

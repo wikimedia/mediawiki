@@ -33,23 +33,16 @@ use Wikimedia\Rdbms\IResultWrapper;
 
 class BlockRestrictionStore {
 
-	/**
-	 * @var IConnectionProvider
-	 */
-	private $dbProvider;
+	private IConnectionProvider $dbProvider;
 
 	/**
 	 * @var string|false
 	 */
 	private $wikiId;
 
-	/**
-	 * @param IConnectionProvider $dbProvider
-	 * @param string|false $wikiId
-	 */
 	public function __construct(
 		IConnectionProvider $dbProvider,
-		$wikiId = WikiAwareEntity::LOCAL
+		/* string|false */ $wikiId = WikiAwareEntity::LOCAL
 	) {
 		$this->dbProvider = $dbProvider;
 		$this->wikiId = $wikiId;

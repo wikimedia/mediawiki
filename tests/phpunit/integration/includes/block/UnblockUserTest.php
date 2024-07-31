@@ -15,15 +15,8 @@ use MediaWikiIntegrationTestCase;
 class UnblockUserTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
 
-	/**
-	 * @var User
-	 */
-	private $user;
-
-	/**
-	 * @var UnblockUserFactory
-	 */
-	private $unblockUserFactory;
+	private User $user;
+	private UnblockUserFactory $unblockUserFactory;
 
 	protected function setUp(): void {
 		parent::setUp();

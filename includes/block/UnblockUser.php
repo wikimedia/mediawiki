@@ -38,20 +38,11 @@ use RevisionDeleteUser;
  * @since 1.36
  */
 class UnblockUser {
-	/** @var BlockPermissionChecker */
-	private $blockPermissionChecker;
-
-	/** @var DatabaseBlockStore */
-	private $blockStore;
-
-	/** @var BlockUtils */
-	private $blockUtils;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var HookRunner */
-	private $hookRunner;
+	private BlockPermissionChecker $blockPermissionChecker;
+	private DatabaseBlockStore $blockStore;
+	private BlockUtils $blockUtils;
+	private UserFactory $userFactory;
+	private HookRunner $hookRunner;
 
 	/** @var UserIdentity|string */
 	private $target;
