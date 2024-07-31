@@ -739,6 +739,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * This test is safe to remove once ::setIndexPolicy() is removed.
 	 * @covers \MediaWiki\Output\OutputPage::setIndexPolicy
 	 */
 	public function testSetIndexPoliciesBackCompat() {
