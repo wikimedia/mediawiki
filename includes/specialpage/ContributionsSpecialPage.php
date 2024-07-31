@@ -125,6 +125,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
+		$this->checkPermissions();
 		$out = $this->getOutput();
 		// Modules required for viewing the list of contributions (also when included on other pages)
 		$out->addModuleStyles( [
