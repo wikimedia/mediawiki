@@ -3,8 +3,9 @@
 const { action, assert, REST, utils } = require( 'api-testing' );
 const supertest = require( 'supertest' );
 
+let pathPrefix = 'rest.php/content.v1';
+
 describe( 'POST /page', () => {
-	// NOTE: the /page/{title} endpoint (PageSourceHandler) has to go to v1 first!
 	let client, mindy, anon, anonToken;
 
 	beforeEach( async () => {
@@ -12,7 +13,7 @@ describe( 'POST /page', () => {
 		// In a temp account context, making an anonymous edit generates an account
 		// so we want to reset state after each edit
 		mindy = await action.mindy();
-		client = new REST();
+		client = new REST( pathPrefix );
 		anon = await action.getAnon();
 		anonToken = await anon.token();
 	} );
@@ -257,3 +258,9 @@ describe( 'POST /page', () => {
 
 	} );
 } );
+
+// eslint-disable-next-line mocha/no-exports
+exports.init = function ( pp ) {
+	// Allow testing both legacy and module paths using the same tests
+	pathPrefix = pp;
+};
