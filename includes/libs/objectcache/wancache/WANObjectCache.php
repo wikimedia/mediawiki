@@ -294,7 +294,7 @@ class WANObjectCache implements
 	private const TYPE_TIMESTAMP = 't';
 	/** Single character component for mutex lock keys */
 	private const TYPE_MUTEX = 'm';
-	/** Single character component for interium value keys */
+	/** Single character component for interim value keys */
 	private const TYPE_INTERIM = 'i';
 
 	/** Value prefix of purge values */
