@@ -1371,7 +1371,7 @@ class PermissionManager {
 			// cannot restore it. See T202989
 			// Not using the same handling in `getPermissionStatus` as the checks
 			// for skipping `checkUserConfigPermissions` since normal admins can delete
-			// user scripts, but not sitedwide scripts
+			// user scripts, but not sitewide scripts
 			return;
 		}
 
