@@ -169,6 +169,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'runMaintenance', \MigrateBlocks::class ],
 			[ 'dropTable', 'ipblocks' ],
 			[ 'dropField', 'pagelinks', 'pl_title', 'patch-pagelinks-drop-pl_title.sql' ],
+			[ 'modifyField', 'page', 'page_links_updated', 'patch-page-page_links_updated-noinfinite.sql' ],
 		];
 	}
 
