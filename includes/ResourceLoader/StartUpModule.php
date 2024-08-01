@@ -21,6 +21,7 @@
  */
 namespace MediaWiki\ResourceLoader;
 
+use DomainException;
 use Exception;
 use MediaWiki\MainConfigNames;
 use Wikimedia\RequestTimeout\TimeoutException;
@@ -251,7 +252,12 @@ class StartUpModule extends Module {
 		self::compileUnresolvedDependencies( $registryData );
 
 		// Register sources
-		$out = ResourceLoader::makeLoaderSourcesScript( $context, $resourceLoader->getSources() );
+		$sources = $oldSources = $resourceLoader->getSources();
+		$this->getHookRunner()->onResourceLoaderModifyStartupSourceUrls( $sources, $context );
+		if ( array_keys( $sources ) !== array_keys( $oldSources ) ) {
+			throw new DomainException( 'ResourceLoaderModifyStartupSourceUrls hook must not add or remove sources' );
+		}
+		$out = ResourceLoader::makeLoaderSourcesScript( $context, $sources );
 
 		// Figure out the different call signatures for mw.loader.register
 		$registrations = [];

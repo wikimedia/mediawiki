@@ -1963,6 +1963,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\ResourceLoader\\Hook\\ResourceLoaderForeignApiModulesHook' => __DIR__ . '/includes/ResourceLoader/Hook/ResourceLoaderForeignApiModulesHook.php',
 	'MediaWiki\\ResourceLoader\\Hook\\ResourceLoaderGetConfigVarsHook' => __DIR__ . '/includes/ResourceLoader/Hook/ResourceLoaderGetConfigVarsHook.php',
 	'MediaWiki\\ResourceLoader\\Hook\\ResourceLoaderJqueryMsgModuleMagicWordsHook' => __DIR__ . '/includes/ResourceLoader/Hook/ResourceLoaderJqueryMsgModuleMagicWordsHook.php',
+	'MediaWiki\\ResourceLoader\\Hook\\ResourceLoaderModifyStartupSourceUrlsHook' => __DIR__ . '/includes/ResourceLoader/Hook/ResourceLoaderModifyStartupSourceUrlsHook.php',
 	'MediaWiki\\ResourceLoader\\Hook\\ResourceLoaderRegisterModulesHook' => __DIR__ . '/includes/ResourceLoader/Hook/ResourceLoaderRegisterModulesHook.php',
 	'MediaWiki\\ResourceLoader\\Hook\\ResourceLoaderSiteModulePagesHook' => __DIR__ . '/includes/ResourceLoader/Hook/ResourceLoaderSiteModulePagesHook.php',
 	'MediaWiki\\ResourceLoader\\Hook\\ResourceLoaderSiteStylesModulePagesHook' => __DIR__ . '/includes/ResourceLoader/Hook/ResourceLoaderSiteStylesModulePagesHook.php',
