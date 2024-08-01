@@ -527,6 +527,8 @@ because of Phabricator reports.
   emit deprecation warnings.
 * EditPage::internalAttemptSave() is deprecated as part of cleaning up how
   edits are saved, see T157658 for details.
+* The MessageCache::get hook, deprecated since 1.41, now emits deprecation
+  warnings.
 * …
 
 === Other changes in 1.43 ===
