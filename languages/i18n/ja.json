@@ -148,7 +148,8 @@
 			"고솜",
 			"아라",
 			"Khsmty",
-			"Yushu-kasai"
+			"Yushu-kasai",
+			"Cookai1205"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -3515,6 +3516,7 @@
 	"semicolon-separator": "；",
 	"comma-separator": "、",
 	"colon-separator": ":&#32;",
+	"word-separator": "",
 	"ellipsis": "…",
 	"percent": "$1%",
 	"brackets": "[$1]",

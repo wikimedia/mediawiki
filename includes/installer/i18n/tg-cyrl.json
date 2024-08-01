@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Ibrahim",
-			"ToJack"
+			"ToJack",
+			"Pppery"
 		]
 	},
 	"config-information": "Иттилоот",
@@ -13,5 +14,5 @@
 	"config-sidebar": "* [https://www.mediawiki.org Саҳифаи асосии MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Раҳбалади корбар]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Раҳбалади мудир]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Саволҳои тез-тез пайдошавандп]",
 	"config-sidebar-license": "Нусхабардорӣ",
 	"mainpagetext": "'''Нармафзори МедиаВики бо муваффақият насб шуд.'''",
-	"mainpagedocfooter": "Барои иттилоот дар бораи истифода нармафзори вики аз //meta.wikimedia.org/wiki/Help:Contents User's Guide] истифода баред.\n\n== Оғоз ба кор ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Феҳристи танзимоти пайгирбандӣ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Пурсишҳои МедиаВики]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Феҳристи роҳнамои МедиаВики]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Маҳалликунонии МедиаВики ба забони шумо]"
+	"mainpagedocfooter": "Барои иттилоот дар бораи истифода нармафзори вики аз https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents User's Guide] истифода баред.\n\n== Оғоз ба кор ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Феҳристи танзимоти пайгирбандӣ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Пурсишҳои МедиаВики]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Феҳристи роҳнамои МедиаВики]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Маҳалликунонии МедиаВики ба забони шумо]"
 }
