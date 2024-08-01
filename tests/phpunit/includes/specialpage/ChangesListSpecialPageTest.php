@@ -14,6 +14,7 @@ use MediaWiki\User\User;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Test class for ChangesListSpecialPage class
@@ -681,36 +682,46 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 	public function testFilterUserExpLevelUnregisteredOrExperienced() {
 		$this->disableAutoCreateTempUser();
-		[ $cond ] = $this->buildQuery( [ 'userExpLevel' => 'unregistered;experienced' ] );
-		$this->assertMatchesRegularExpression(
-			'/\(actor_user IS NULL OR '
-				. '\(actor_user IS NOT NULL AND \('
-					. 'user_editcount >= 500 AND \(user_registration IS NULL OR '
-					. 'user_registration <= \'[^\']+\'\)'
-				. '\)\)\)/',
-			$cond->toSql( $this->getDb() ),
+		ConvertibleTimestamp::setFakeTime( '20201231000000' );
+		$this->assertConditions(
+			[
+				# expected
+				"(actor_user IS NULL OR "
+				. "(actor_user IS NOT NULL AND ("
+					. "user_editcount >= 500 AND (user_registration IS NULL OR "
+					. "user_registration <= '{$this->getDb()->timestamp( '20201201000000' )}')"
+				. ")))"
+			],
+			[
+				'userExpLevel' => 'unregistered;experienced'
+			],
 			"rc conditions: userExpLevel=unregistered;experienced"
 		);
 	}
 
 	public function testFilterUserExpLevelUnregisteredOrExperiencedWhenTemporaryAccountsEnabled() {
 		$this->enableAutoCreateTempUser();
-		[ $cond ] = $this->buildQuery( [ 'userExpLevel' => 'unregistered;experienced' ] );
+		ConvertibleTimestamp::setFakeTime( '20201231000000' );
+
 		$notLikeTempUserMatchExpression = $this->getServiceContainer()->getTempUserConfig()
 			->getMatchCondition( $this->getDb(), 'actor_name', IExpression::NOT_LIKE )
 			->toSql( $this->getDb() );
-		$notLikeTempUserMatchExpression = preg_quote( $notLikeTempUserMatchExpression );
 		$likeTempUserMatchExpression = $this->getServiceContainer()->getTempUserConfig()
 			->getMatchCondition( $this->getDb(), 'actor_name', IExpression::LIKE )
 			->toSql( $this->getDb() );
-		$likeTempUserMatchExpression = preg_quote( $likeTempUserMatchExpression );
-		$this->assertMatchesRegularExpression(
-			"/\(\(actor_user IS NULL OR $likeTempUserMatchExpression\) OR "
-				. "\(\(actor_user IS NOT NULL AND $notLikeTempUserMatchExpression\) AND \("
-					. 'user_editcount >= 500 AND \(user_registration IS NULL OR '
-					. 'user_registration <= \'[^\']+\'\)'
-				. '\)\)\)/',
-			$cond->toSql( $this->getDb() ),
+
+		$this->assertConditions(
+			[
+				# expected
+				"((actor_user IS NULL OR $likeTempUserMatchExpression) OR "
+				. "((actor_user IS NOT NULL AND $notLikeTempUserMatchExpression) AND ("
+					. "user_editcount >= 500 AND (user_registration IS NULL OR "
+					. "user_registration <= '{$this->getDb()->timestamp( '20201201000000' )}')"
+				. ")))"
+			],
+			[
+				'userExpLevel' => 'unregistered;experienced'
+			],
 			"rc conditions: userExpLevel=unregistered;experienced"
 		);
 	}

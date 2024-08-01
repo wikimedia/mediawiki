@@ -46,6 +46,7 @@ use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\RawSQLValue;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Special page which uses a ChangesList to show query results.
@@ -1521,7 +1522,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		}
 
 		// Calculate cutoff
-		$cutoff_unixtime = time() - $opts['days'] * 3600 * 24;
+		$cutoff_unixtime = ConvertibleTimestamp::time() - $opts['days'] * 3600 * 24;
 		$cutoff = $dbr->timestamp( $cutoff_unixtime );
 
 		$fromValid = preg_match( '/^[0-9]{14}$/', $opts['from'] );
@@ -1823,7 +1824,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			'experienced' => $config->get( MainConfigNames::ExperiencedUserMemberSince ),
 		][$level];
 		if ( $now === 0 ) {
-			$now = time();
+			$now = ConvertibleTimestamp::time();
 		}
 		$secondsPerDay = 86400;
 		$timeCutoff = $now - $configSince * $secondsPerDay;
