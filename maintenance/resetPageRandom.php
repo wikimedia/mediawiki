@@ -33,9 +33,9 @@ class ResetPageRandom extends Maintenance {
 		parent::__construct();
 		$this->addDescription( 'Reset the page_random for articles within given date range' );
 		$this->addOption( 'from',
-			'From date range selector to select articles to update, ex: 20041011000000', false, true );
+			'From date range selector to select articles to update, ex: 20041011000000', true, true );
 		$this->addOption( 'to',
-			'To date range selector to select articles to update, ex: 20050708000000', false, true );
+			'To date range selector to select articles to update, ex: 20050708000000', true, true );
 		$this->addOption( 'dry', 'Do not update column' );
 		$this->addOption( 'batch-start',
 			'Optional: Use when you need to restart the reset process from a given page ID offset'
