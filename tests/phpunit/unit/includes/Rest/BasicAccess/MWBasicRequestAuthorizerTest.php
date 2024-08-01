@@ -61,25 +61,11 @@ class MWBasicRequestAuthorizerTest extends MediaWikiUnitTestCase {
 		};
 	}
 
-	public function testWriteDenied() {
-		$request = new RequestData( [
-			'uri' => new Uri( '/rest/mock/v1/MWBasicRequestAuthorizerTest/write' )
-		] );
-		$router = $this->createRouter( [ 'read' ], $request );
-		$response = $router->execute( $request );
-		$this->assertSame( 403, $response->getStatusCode() );
-
-		$body = $response->getBody();
-		$body->rewind();
-		$data = json_decode( $body->getContents(), true );
-		$this->assertSame( 'rest-write-denied', $data['error'] );
-	}
-
 	public function testWriteAllowed() {
 		$request = new RequestData( [
 			'uri' => new Uri( '/rest/mock/v1/MWBasicRequestAuthorizerTest/write' )
 		] );
-		$router = $this->createRouter( [ 'read', 'writeapi' ], $request );
+		$router = $this->createRouter( [ 'read' ], $request );
 		$response = $router->execute( $request );
 
 		$this->assertSame( 200, $response->getStatusCode() );

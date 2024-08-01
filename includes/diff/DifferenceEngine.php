@@ -1145,9 +1145,7 @@ class DifferenceEngine extends ContextSource {
 			// Build the link
 			if ( $rcid ) {
 				$this->getOutput()->setPreventClickjacking( true );
-				if ( $this->getAuthority()->isAllowed( 'writeapi' ) ) {
-					$this->getOutput()->addModules( 'mediawiki.misc-authed-curate' );
-				}
+				$this->getOutput()->addModules( 'mediawiki.misc-authed-curate' );
 
 				return [ 'rcid' => $rcid ];
 			}

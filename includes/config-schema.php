@@ -1180,7 +1180,6 @@ return [
 					'edit' => true,
 					'createpage' => true,
 					'createtalk' => true,
-					'writeapi' => true,
 					'viewmyprivateinfo' => true,
 					'editmyprivateinfo' => true,
 					'editmyoptions' => true,
@@ -1195,7 +1194,6 @@ return [
 					'edit' => true,
 					'createpage' => true,
 					'createtalk' => true,
-					'writeapi' => true,
 					'upload' => true,
 					'reupload' => true,
 					'reupload-shared' => true,
@@ -1223,7 +1221,6 @@ return [
 					'autopatrol' => true,
 					'suppressredirect' => true,
 					'apihighlimits' => true,
-					'writeapi' => true,
 				],
 				'sysop' => [
 					'block' => true,
@@ -1583,7 +1580,6 @@ return [
 					'nominornewtalk' => true,
 					'patrolmarks' => true,
 					'read' => true,
-					'writeapi' => true,
 					'unwatchedpages' => true,
 				],
 				'highvolume' => [

@@ -7903,7 +7903,6 @@ class MainConfigSchema {
 				'edit' => true,
 				'createpage' => true,
 				'createtalk' => true,
-				'writeapi' => true,
 				'viewmyprivateinfo' => true,
 				'editmyprivateinfo' => true,
 				'editmyoptions' => true,
@@ -7918,7 +7917,6 @@ class MainConfigSchema {
 				'edit' => true,
 				'createpage' => true,
 				'createtalk' => true,
-				'writeapi' => true,
 				'upload' => true,
 				'reupload' => true,
 				'reupload-shared' => true,
@@ -7946,7 +7944,6 @@ class MainConfigSchema {
 				'autopatrol' => true,
 				'suppressredirect' => true,
 				'apihighlimits' => true,
-				'writeapi' => true,
 			],
 			'sysop' => [
 				'block' => true,
@@ -8869,7 +8866,6 @@ class MainConfigSchema {
 				'nominornewtalk' => true,
 				'patrolmarks' => true,
 				'read' => true,
-				'writeapi' => true,
 				'unwatchedpages' => true,
 			],
 			'highvolume' => [

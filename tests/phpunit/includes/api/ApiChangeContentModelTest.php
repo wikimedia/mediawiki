@@ -157,7 +157,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 				'model' => 'json'
 			],
 			null,
-			$this->mockAnonAuthorityWithPermissions( [ 'edit', 'editcontentmodel', 'writeapi' ] )
+			$this->mockAnonAuthorityWithPermissions( [ 'edit', 'editcontentmodel' ] )
 		);
 	}
 
@@ -200,7 +200,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 				'model' => 'text'
 			],
 			null,
-			$this->mockAnonAuthorityWithPermissions( [ 'edit', 'editcontentmodel', 'writeapi' ] )
+			$this->mockAnonAuthorityWithPermissions( [ 'edit', 'editcontentmodel' ] )
 		);
 	}
 
@@ -239,7 +239,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 				'model' => 'text'
 			],
 			null,
-			$this->mockAnonAuthorityWithPermissions( [ 'edit', 'editcontentmodel', 'writeapi' ] )
+			$this->mockAnonAuthorityWithPermissions( [ 'edit', 'editcontentmodel' ] )
 		);
 	}
 
@@ -274,7 +274,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 				'model' => 'wikitext'
 			],
 			null,
-			$this->mockAnonAuthorityWithPermissions( [ 'edit', 'editcontentmodel', 'writeapi' ] )
+			$this->mockAnonAuthorityWithPermissions( [ 'edit', 'editcontentmodel' ] )
 		);
 	}
 
@@ -300,7 +300,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 		$this->disableAutoCreateTempUser();
 		$title = Title::makeTitle( NS_MAIN, 'ExistingPage' );
 		$performer = $this->mockAnonAuthorityWithPermissions(
-			[ 'edit', 'editcontentmodel', 'writeapi', 'applychangetags' ]
+			[ 'edit', 'editcontentmodel', 'applychangetags' ]
 		);
 		$this->assertSame(
 			'wikitext',

@@ -28,6 +28,6 @@ class MWBasicRequestAuthorizer extends BasicRequestAuthorizer {
 	}
 
 	protected function isWriteAllowed() {
-		return $this->authority->isAllowed( 'writeapi' );
+		return true;
 	}
 }
