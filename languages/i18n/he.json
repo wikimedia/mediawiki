@@ -814,6 +814,8 @@
 	"unstrip-size-warning": "גודל unstrip עבר את המגבלה ($1)",
 	"unstrip-size-category": "דפים שגודל ה־unstrip בהם עבר את המגבלה",
 	"unstrip-size-category-desc": "הדף הזה עובר את מגבלת הגודל של unstrip.",
+	"bad-language-code-category": "דפים עם קודי שפה בלתי־תקינים",
+	"bad-language-code-category-desc": "הדף מכיל <code><nowiki>{{#dir}}</nowiki></code> עם קוד שפה בלתי־תקין",
 	"converter-manual-rule-error": "התגלתה שגיאה בכלל המרת שפה ידני",
 	"undo-success": "ניתן לבטל את העריכה.\nנא לבדוק את השוואת הגרסאות שלהלן כדי לוודא שזה אכן מה {{GENDER:|שאתה רוצה|שאת רוצה|שאתם רוצים}} לעשות, ולאחר מכן לפרסם את השינויים למטה כדי לסיים את ביטול העריכה.",
 	"undo-failure": "לא ניתן היה לבטל את העריכה עקב התנגשות עם עריכות מאוחרות יותר.",

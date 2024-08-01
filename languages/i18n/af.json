@@ -879,7 +879,7 @@
 	"userrights-conflict": "Konflik met gebruikersregte! Pas asseblief weer u wysigings toe.",
 	"group": "Groep:",
 	"group-user": "Gebruikers",
-	"group-autoconfirmed": "Bevestigde gebruikers",
+	"group-autoconfirmed": "Outobevestigde gebruikers",
 	"group-bot": "Robotte",
 	"group-sysop": "Administrateurs",
 	"group-interface-admin": "Koppelvlakadministrateurs",

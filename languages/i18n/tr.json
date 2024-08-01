@@ -882,6 +882,8 @@
 	"unstrip-size-warning": "Unstrip boyut sınırı aşıldı ($1)",
 	"unstrip-size-category": "Sızıntı derinliği sınırının aşıldığı sayfalar",
 	"unstrip-size-category-desc": "Sayfa unstrip boyut sınırını aşıyor.",
+	"bad-language-code-category": "Geçersiz dil kodları olan sayfalar",
+	"bad-language-code-category-desc": "Bu sayfa geçersiz bir dil kodu olan bir <code><nowiki>{{#dir}}</nowiki></code> içeriyor.",
 	"converter-manual-rule-error": "Elle yapılandırma dil dönüşüm kuralı hatası tespit edildi",
 	"undo-success": "Bu düzenleme geri alınabilir.\nLütfen yapmak istediğiniz bu olduğunu doğrulamak için aşağıdaki karşılaştırmayı kontrol edin ve ardından düzenlemeyi geri almayı bitirmek için değişiklikleri aşağıda yayımlayın.",
 	"undo-failure": "Değişikliklerin çakışması nedeniyle geri alma işlemi başarısız oldu.",
