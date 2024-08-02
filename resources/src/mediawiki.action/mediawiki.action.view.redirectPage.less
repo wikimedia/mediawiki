@@ -23,60 +23,64 @@
 	margin: 0 !important;
 	padding: 0 !important;
 	/* stylelint-enable declaration-no-important */
-}
 
-.redirectText li {
-	display: inline;
-	margin: 0;
-	padding: 0;
-}
+	li {
+		display: inline;
+		margin: 0;
+		padding: 0;
 
-.redirectText li:first-child {
-	html.skin-theme-clientpref-night & {
-		filter: invert( 1 );
-
-		> a {
-			filter: invert( 1 );
+		.mw-content-ltr & {
+			/* @noflip */
+			padding-left: 42px;
+			/* @noflip */
+			background: transparent url( images/nextredirect-ltr.svg ) bottom left no-repeat;
 		}
-	}
 
-	/**
-	* Auto night mode.
-	*
-	* Applies the night mode color palette only in response to system settings.
-	*/
-	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-	@media ( prefers-color-scheme: dark ) {
-		html.skin-theme-clientpref-os & {
-			filter: invert( 1 );
+		.mw-content-rtl & {
+			/* @noflip */
+			padding-right: 42px;
+			/* @noflip */
+			background: transparent url( images/nextredirect-rtl.svg ) bottom right no-repeat;
+		}
 
-			> a {
+		&:first-child {
+			.mw-content-ltr & {
+				/* @noflip */
+				padding-left: 47px;
+				/* @noflip */
+				background: transparent url( images/redirect-ltr.svg ) bottom left no-repeat;
+			}
+
+			.mw-content-rtl & {
+				/* @noflip */
+				padding-right: 47px;
+				/* @noflip */
+				background: transparent url( images/redirect-rtl.svg ) bottom right no-repeat;
+			}
+
+			html.skin-theme-clientpref-night & {
 				filter: invert( 1 );
+
+				> a {
+					filter: invert( 1 );
+				}
+			}
+
+			/**
+			* Auto night mode.
+			*
+			* Applies the night mode color palette only in response to system settings.
+			*/
+			/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+			@media ( prefers-color-scheme: dark ) {
+				html.skin-theme-clientpref-os & {
+					filter: invert( 1 );
+
+					> a {
+						filter: invert( 1 );
+					}
+				}
 			}
 		}
 	}
-}
-
-/* @noflip */
-.mw-content-ltr .redirectText li {
-	padding-left: 42px;
-	background: transparent url( images/nextredirect-ltr.svg ) bottom left no-repeat;
-}
-
-/* @noflip */
-.mw-content-rtl .redirectText li {
-	padding-right: 42px;
-	background: transparent url( images/nextredirect-rtl.svg ) bottom right no-repeat;
-}
-
-/* @noflip */
-.mw-content-ltr .redirectText li:first-child {
-	padding-left: 47px;
-	background: transparent url( images/redirect-ltr.svg ) bottom left no-repeat;
-}
-
-/* @noflip */
-.mw-content-rtl .redirectText li:first-child {
-	padding-right: 47px;
-	background: transparent url( images/redirect-rtl.svg ) bottom right no-repeat;
 }
