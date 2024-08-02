@@ -680,6 +680,47 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 	}
 
+	public function testFilterUserExpLevelLearner() {
+		$this->disableAutoCreateTempUser();
+		ConvertibleTimestamp::setFakeTime( '20201231000000' );
+		$this->assertConditions(
+			[
+				# expected
+				"((actor_user IS NOT NULL AND "
+				. "(user_editcount >= 10 AND (user_registration IS NULL OR user_registration <= '{$this->getDb()->timestamp( '20201227000000' )}')) AND "
+				. "(user_editcount < 500 OR user_registration > '{$this->getDb()->timestamp( '20201201000000' )}')"
+				. "))"
+			],
+			[
+				'userExpLevel' => 'learner'
+			],
+			"rc conditions: userExpLevel=learner"
+		);
+	}
+
+	public function testFilterUserExpLevelLearnerWhenTemporaryAccountsEnabled() {
+		$this->enableAutoCreateTempUser();
+		ConvertibleTimestamp::setFakeTime( '20201231000000' );
+
+		$notLikeTempUserMatchExpression = $this->getServiceContainer()->getTempUserConfig()
+			->getMatchCondition( $this->getDb(), 'actor_name', IExpression::NOT_LIKE )
+			->toSql( $this->getDb() );
+
+		$this->assertConditions(
+			[
+				# expected
+				"(((actor_user IS NOT NULL AND $notLikeTempUserMatchExpression) AND "
+				. "(user_editcount >= 10 AND (user_registration IS NULL OR user_registration <= '{$this->getDb()->timestamp( '20201227000000' )}')) AND "
+				. "(user_editcount < 500 OR user_registration > '{$this->getDb()->timestamp( '20201201000000' )}')"
+				. "))"
+			],
+			[
+				'userExpLevel' => 'learner'
+			],
+			"rc conditions: userExpLevel=learner"
+		);
+	}
+
 	public function testFilterUserExpLevelUnregisteredOrExperienced() {
 		$this->disableAutoCreateTempUser();
 		ConvertibleTimestamp::setFakeTime( '20201231000000' );
@@ -687,10 +728,9 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 			[
 				# expected
 				"(actor_user IS NULL OR "
-				. "(actor_user IS NOT NULL AND ("
-					. "user_editcount >= 500 AND (user_registration IS NULL OR "
-					. "user_registration <= '{$this->getDb()->timestamp( '20201201000000' )}')"
-				. ")))"
+				. "(actor_user IS NOT NULL AND "
+					. "(user_editcount >= 500 AND (user_registration IS NULL OR user_registration <= '{$this->getDb()->timestamp( '20201201000000' )}'))"
+				. "))"
 			],
 			[
 				'userExpLevel' => 'unregistered;experienced'
@@ -714,10 +754,9 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 			[
 				# expected
 				"((actor_user IS NULL OR $likeTempUserMatchExpression) OR "
-				. "((actor_user IS NOT NULL AND $notLikeTempUserMatchExpression) AND ("
-					. "user_editcount >= 500 AND (user_registration IS NULL OR "
-					. "user_registration <= '{$this->getDb()->timestamp( '20201201000000' )}')"
-				. ")))"
+				. "((actor_user IS NOT NULL AND $notLikeTempUserMatchExpression) AND "
+					. "(user_editcount >= 500 AND (user_registration IS NULL OR user_registration <= '{$this->getDb()->timestamp( '20201201000000' )}'))"
+				. "))"
 			],
 			[
 				'userExpLevel' => 'unregistered;experienced'
