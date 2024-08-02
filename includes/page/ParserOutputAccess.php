@@ -357,7 +357,9 @@ class ParserOutputAccess {
 			/** @var Status $status */
 			$status = $work->execute();
 		} else {
-			$status = $this->renderRevision( $page, $parserOptions, $revision, $options );
+			// XXX: we could try harder to reuse a cache lookup above to
+			// provide the $previous argument here
+			$status = $this->renderRevision( $page, $parserOptions, $revision, $options, null );
 		}
 
 		$output = $status->getValue();
@@ -398,31 +400,49 @@ class ParserOutputAccess {
 	 * This method does not perform access checks, and will not load content
 	 * from caches. The caller is assumed to have taken care of that.
 	 *
+	 * Where possible, pass in a $previousOutput, which will prevent an
+	 * unnecessary double-lookup in the cache.
+	 *
 	 * @see PoolWorkArticleView::renderRevision
 	 */
 	private function renderRevision(
 		PageRecord $page,
 		ParserOptions $parserOptions,
 		RevisionRecord $revision,
-		int $options
+		int $options,
+		?ParserOutput $previousOutput = null
 	): Status {
 		$this->statsFactory->getCounter( 'parseroutputaccess_poolwork' )
 			->copyToStatsdAt( 'ParserOutputAccess.PoolWork.None' )
 			->setLabel( 'cache', self::CACHE_NONE )
 			->increment();
 
+		$useCache = $this->shouldUseCache( $page, $revision );
+
+		if ( $previousOutput === null && $parserOptions->getUseParsoid() ) {
+			// If $useCache === self::CACHE_SECONDARY we could potentially
+			// try to reuse the parse of $revision-1 from the secondary cache,
+			// but it is likely those template transclusions are out of date.
+			// Try to reuse the template transclusions from the most recent
+			// parse, which are more likely to reflect the current template.
+			if ( !( $options & self::OPT_NO_CHECK_CACHE ) ) {
+				$previousOutput = $this->getPrimaryCache( $parserOptions )->getDirty( $page, $parserOptions ) ?: null;
+			}
+		}
+
 		$renderedRev = $this->revisionRenderer->getRenderedRevision(
 			$revision,
 			$parserOptions,
 			null,
-			[ 'audience' => RevisionRecord::RAW ]
+			[
+				'audience' => RevisionRecord::RAW,
+				'previous-output' => $previousOutput,
+			]
 		);
 
 		$output = $renderedRev->getRevisionParserOutput();
 
 		if ( !( $options & self::OPT_NO_UPDATE_CACHE ) && $output->isCacheable() ) {
-			$useCache = $this->shouldUseCache( $page, $revision );
-
 			if ( $useCache === self::CACHE_PRIMARY ) {
 				$primaryCache = $this->getPrimaryCache( $parserOptions );
 				$primaryCache->save( $output, $page, $parserOptions );

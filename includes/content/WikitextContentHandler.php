@@ -367,18 +367,21 @@ class WikitextContentHandler extends TextContentHandler {
 			// T349087: ...and in fact, RESTBase relies on getting
 			// redirect information from this <link> tag, so it needs
 			// to be present.
-			$text = $content->getText();
+			// Further, Parsoid can accept a Content in place of a string.
+			$text = $content;
+			$extraArgs = [ $cpoParams->getPreviousOutput() ];
 		} else {
 			// The legacy parser requires the #REDIRECT magic word to
 			// be stripped from the content before parsing.
 			$parser = $this->parserFactory->getInstance();
 			$text = $contentWithoutRedirect->getText();
+			$extraArgs = [];
 		}
 
 		$time = -microtime( true );
 
 		$parserOutput = $parser
-			->parse( $text, $title, $parserOptions, true, true, $revId );
+			->parse( $text, $title, $parserOptions, true, true, $revId, ...$extraArgs );
 		$time += microtime( true );
 
 		// Timing hack
