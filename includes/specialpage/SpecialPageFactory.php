@@ -584,7 +584,7 @@ class SpecialPageFactory {
 			'services' => [
 				'PermissionManager',
 				'ConnectionProvider',
-				'RevisionFactory',
+				'RevisionStore',
 				'NamespaceInfo',
 				'UserFactory',
 				'UserNameUtils',

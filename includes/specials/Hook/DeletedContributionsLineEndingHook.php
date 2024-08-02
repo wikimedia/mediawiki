@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use MediaWiki\Pager\DeletedContribsPager;
+use MediaWiki\Pager\ContributionsPager;
 use stdClass;
 
 /**
@@ -21,7 +21,7 @@ interface DeletedContributionsLineEndingHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param DeletedContribsPager $page Pager object for DeletedContribsPager
+	 * @param ContributionsPager $page Pager object for ContributionsPager
 	 * @param string &$ret The HTML line
 	 * @param stdClass $row The DB row for this line
 	 * @param string[] &$classes The classes to add to the surrounding <li>

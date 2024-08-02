@@ -30,7 +30,7 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Pager\DeletedContribsPager;
 use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\Revision\RevisionFactory;
+use MediaWiki\Revision\RevisionStore;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\User;
@@ -52,7 +52,7 @@ class SpecialDeletedContributions extends SpecialPage {
 
 	private PermissionManager $permissionManager;
 	private IConnectionProvider $dbProvider;
-	private RevisionFactory $revisionFactory;
+	private RevisionStore $revisionStore;
 	private NamespaceInfo $namespaceInfo;
 	private UserFactory $userFactory;
 	private UserNameUtils $userNameUtils;
@@ -64,7 +64,7 @@ class SpecialDeletedContributions extends SpecialPage {
 	/**
 	 * @param PermissionManager $permissionManager
 	 * @param IConnectionProvider $dbProvider
-	 * @param RevisionFactory $revisionFactory
+	 * @param RevisionStore $revisionStore
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param UserFactory $userFactory
 	 * @param UserNameUtils $userNameUtils
@@ -76,7 +76,7 @@ class SpecialDeletedContributions extends SpecialPage {
 	public function __construct(
 		PermissionManager $permissionManager,
 		IConnectionProvider $dbProvider,
-		RevisionFactory $revisionFactory,
+		RevisionStore $revisionStore,
 		NamespaceInfo $namespaceInfo,
 		UserFactory $userFactory,
 		UserNameUtils $userNameUtils,
@@ -88,7 +88,7 @@ class SpecialDeletedContributions extends SpecialPage {
 		parent::__construct( 'DeletedContributions', 'deletedhistory' );
 		$this->permissionManager = $permissionManager;
 		$this->dbProvider = $dbProvider;
-		$this->revisionFactory = $revisionFactory;
+		$this->revisionStore = $revisionStore;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->userFactory = $userFactory;
 		$this->userNameUtils = $userNameUtils;
@@ -167,15 +167,17 @@ class SpecialDeletedContributions extends SpecialPage {
 		$this->getForm();
 
 		$pager = new DeletedContribsPager(
-			$this->getContext(),
 			$this->getHookContainer(),
 			$this->getLinkRenderer(),
 			$this->dbProvider,
-			$this->revisionFactory,
+			$this->revisionStore,
+			$this->namespaceInfo,
 			$this->commentFormatter,
 			$this->linkBatchFactory,
-			$target,
-			$opts->getValue( 'namespace' )
+			$this->userFactory,
+			$this->getContext(),
+			[ 'namespace' => $opts->getValue( 'namespace' ) ],
+			$userObj
 		);
 		if ( !$pager->getNumRows() ) {
 			$out->addWikiMsg( 'nocontribs' );
