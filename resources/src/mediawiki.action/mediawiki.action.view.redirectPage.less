@@ -3,6 +3,7 @@
  */
 
 /* stylelint-disable selector-class-pattern */
+@import 'mediawiki.mixins.less';
 
 /**
  * Hide, but keep accessible for screen-readers.
@@ -28,32 +29,27 @@
 		display: inline;
 		margin: 0;
 		padding: 0;
+		.padding-inline( 42px, 0 );
 
 		.mw-content-ltr & {
-			/* @noflip */
-			padding-left: 42px;
 			/* @noflip */
 			background: transparent url( images/nextredirect-ltr.svg ) bottom left no-repeat;
 		}
 
 		.mw-content-rtl & {
 			/* @noflip */
-			padding-right: 42px;
-			/* @noflip */
 			background: transparent url( images/nextredirect-rtl.svg ) bottom right no-repeat;
 		}
 
 		&:first-child {
+			.padding-inline( 47px, 0 );
+
 			.mw-content-ltr & {
-				/* @noflip */
-				padding-left: 47px;
 				/* @noflip */
 				background: transparent url( images/redirect-ltr.svg ) bottom left no-repeat;
 			}
 
 			.mw-content-rtl & {
-				/* @noflip */
-				padding-right: 47px;
 				/* @noflip */
 				background: transparent url( images/redirect-rtl.svg ) bottom right no-repeat;
 			}
