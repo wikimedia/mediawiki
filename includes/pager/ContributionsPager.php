@@ -588,6 +588,8 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		$ret = '';
 		$classes = [];
 		$attribs = [];
+		$authority = $this->getAuthority();
+		$language = $this->getLanguage();
 
 		$linkRenderer = $this->getLinkRenderer();
 
@@ -621,7 +623,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			if ( $this->isArchive ) {
 				// Add the same links as DeletedContribsPager::formatRevisionRow
 				$undelete = SpecialPage::getTitleFor( 'Undelete' );
-				if ( $this->getAuthority()->isAllowed( 'deletedtext' ) ) {
+				if ( $authority->isAllowed( 'deletedtext' ) ) {
 					$last = $linkRenderer->makeKnownLink(
 						$undelete,
 						new HtmlArmor( $this->messages['diff'] ),
@@ -655,9 +657,38 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 				$diffHistLinks = Html::rawElement(
 					'span',
 					[ 'class' => 'mw-deletedcontribs-tools' ],
-					$this->msg( 'parentheses' )->rawParams( $this->getLanguage()->pipeList(
+					$this->msg( 'parentheses' )->rawParams( $language->pipeList(
 						[ $last, $dellog, $reviewlink ] ) )->escaped()
 				);
+
+				$date = $language->userTimeAndDate(
+					$revRecord->getTimestamp(),
+					$this->getUser()
+				);
+
+				if ( $authority->isAllowed( 'undelete' ) &&
+					$revRecord->userCan( RevisionRecord::DELETED_TEXT, $authority )
+				) {
+					$dateLink = $linkRenderer->makeKnownLink(
+						SpecialPage::getTitleFor( 'Undelete' ),
+						$date,
+						[ 'class' => 'mw-changeslist-date' ],
+						[
+							'target' => $page->getPrefixedText(),
+							'timestamp' => $revRecord->getTimestamp()
+						]
+					);
+				} else {
+					$dateLink = htmlspecialchars( $date );
+				}
+				if ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
+					$class = Linker::getRevisionDeletedClass( $revRecord );
+					$dateLink = Html::rawElement(
+						'span',
+						[ 'class' => $class ],
+						$dateLink
+					);
+				}
 
 			} else {
 				$pagerTools = new PagerTools(
@@ -679,7 +710,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 				$topmarktext .= $pagerTools->toHTML();
 				# Is there a visible previous revision?
 				if ( $revRecord->getParentId() !== 0 &&
-					$revRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() )
+					$revRecord->userCan( RevisionRecord::DELETED_TEXT, $authority )
 				) {
 					$difftext = $linkRenderer->makeKnownLink(
 						$page,
@@ -712,6 +743,8 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 					' ' . // Space needed for separating two words.
 					Html::rawElement( 'span', [], $histlink )
 				);
+
+				$dateLink = ChangesList::revDateLink( $revRecord, $authority, $language, $page );
 			}
 
 			if ( $row->{$this->revisionParentIdField} === null ) {
@@ -736,8 +769,6 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 				$chardiff .= ' <span class="mw-changeslist-separator"></span> ';
 			}
 
-			$lang = $this->getLanguage();
-
 			$comment = $this->formattedComments[$row->{$this->revisionIdField}];
 
 			if ( $comment === '' ) {
@@ -745,10 +776,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 				$comment = "<span class=\"comment mw-comment-none\">$defaultComment</span>";
 			}
 
-			$comment = $lang->getDirMark() . $comment;
-
-			$authority = $this->getAuthority();
-			$d = ChangesList::revDateLink( $revRecord, $authority, $lang, $page );
+			$comment = $language->getDirMark() . $comment;
 
 			// When the author is different from the target, always show user and user talk links
 			$userlink = '';
@@ -757,7 +785,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			$revUserText = $revUser ? $revUser->getName() : '';
 			if ( $this->target !== $revUserText ) {
 				$userlink = ' <span class="mw-changeslist-separator"></span> '
-					. $lang->getDirMark()
+					. $language->getDirMark()
 					. Linker::userLink( $revUserId, $revUserText );
 				$userlink .= ' ' . $this->msg( 'parentheses' )->rawParams(
 					Linker::userTalkLink( $revUserId, $revUserText ) )->escaped() . ' ';
@@ -782,7 +810,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 				$this->tagsCache->makeKey(
 					$row->ts_tags ?? '',
 					$this->getUser()->getName(),
-					$lang->getCode()
+					$language->getCode()
 				),
 				fn () => ChangeTags::formatSummaryRow(
 					$row->ts_tags,
@@ -799,7 +827,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 
 			$templateParams = [
 				'del' => $del,
-				'timestamp' => $d,
+				'timestamp' => $dateLink,
 				'diffHistLinks' => $diffHistLinks,
 				'charDifference' => $chardiff,
 				'flags' => $flags,
