@@ -771,7 +771,6 @@
 	"group-sysop": "관리자",
 	"grouppage-bot": "{{ns:project}}:로보트",
 	"grouppage-sysop": "{{ns:project}}:관리자",
-	"right-writeapi": "쓰기 API 사용",
 	"right-edituserjs": "다른 사용자의 쟈바각본 문서를 편집",
 	"right-editmyuserjs": "자신의 사용자 쟈바각본 서류 편집하기",
 	"right-viewmywatchlist": "자신의 감시문서목록 보기",

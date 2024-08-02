@@ -549,7 +549,6 @@
 	"group-user-member": "{{GENDER:$1|Utent}}",
 	"grouppage-bot": "{{ns:project}}:Bots",
 	"grouppage-sysop": "{{ns:project}}:Aministradôrs",
-	"right-writeapi": "Dopre la API di scriture",
 	"newuserlogpage": "Regjistri dai gnûfs utents",
 	"newuserlogpagetext": "Ca sot tu cjatis un regjistri dai gnûfs utents creâts.",
 	"rightslog": "Regjistri dai dirits dai utents",

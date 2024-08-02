@@ -963,7 +963,6 @@
 	"right-upload": "上傳檔案",
 	"right-reupload": "檔案以舊換新",
 	"right-upload_by_url": "從URL上傳檔案",
-	"right-writeapi": "使用寫入API",
 	"right-delete": "刪脫頁面",
 	"right-bigdelete": "刪脫有大量歷史个頁面",
 	"right-deletelogentry": "刪脫搭恢復特定日誌項",

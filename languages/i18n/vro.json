@@ -644,7 +644,6 @@
 	"right-bot": "Ollaq peet automaatsõs protsessis",
 	"right-nominornewtalk": "Tetäq arotuslehe pääl väikeisi muutmiisi, ilma, et pruukjalõ näüdätäsi taad ku vahtsõt sõnomit",
 	"right-apihighlimits": "Pruukiq API-perräküsümiisi man veidemb piirangit",
-	"right-writeapi": "Pruukiq kirotus-APIt",
 	"right-delete": "Lehti ärq kistutaq",
 	"right-bigdelete": "Pikä aoluuga lehti ärq kistutaq",
 	"right-deleterevision": "Kistutaq ärq ja tagasi tetäq lehti kujjõ",

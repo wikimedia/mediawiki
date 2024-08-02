@@ -320,7 +320,6 @@
 	"grouppage-user": "{{ns:project}}:pamake",
 	"grouppage-bot": "{{ns:project}}:Bot",
 	"grouppage-sysop": "{{ns:project}}:Administrator",
-	"right-writeapi": "Pamakean ni API tulis",
 	"newuserlogpage": "Log pambaenan pamake",
 	"rightslog": "Log hak pamake",
 	"skin-action-addsection": "Baen tema",

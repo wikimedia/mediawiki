@@ -548,7 +548,6 @@
 	"group-sysop-member": "{{GENDER:$1|aministradëur|aministradëura|aministradëur/a}}",
 	"grouppage-bot": "{{ns:project}}:Bots",
 	"grouppage-sysop": "{{ns:project}}:Aministradus",
-	"right-writeapi": "Utilisëia l'API da scrí",
 	"right-browsearchive": "Chir te la plates scanceledes",
 	"right-editcontentmodel": "Müda le model de contignü de na plata",
 	"newuserlogpage": "Registrazion de nuef utënc",

@@ -332,7 +332,6 @@
 	"group-sysop": "管理员",
 	"grouppage-bot": "{{ns:project}}:机器人",
 	"grouppage-sysop": "{{ns:project}}:管理员",
-	"right-writeapi": "使用写入API",
 	"rightslog": "用户权限日志",
 	"skin-action-addsection": "搞杂话题",
 	"action-edit": "修改啯杂页面",
