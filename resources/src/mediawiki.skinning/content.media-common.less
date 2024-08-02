@@ -178,22 +178,7 @@ figure[ typeof~='mw:File/Frame' ] {
 		 * From https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-wrap
 		 */
 		word-break: break-word;
-
-		// Default where page content language is not set
-		// Allow to flip
-		text-align: left;
-
-		// Defaults for page content language
-
-		.mw-content-ltr & {
-			/* @noflip */
-			text-align: left;
-		}
-
-		.mw-content-rtl & {
-			/* @noflip */
-			text-align: right;
-		}
+		text-align: start;
 
 		/* taken from .thumbcaption, plus .thumbinner */
 		padding: 0 6px 6px 6px;
