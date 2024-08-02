@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use GetTextMaint;
-use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * @covers \GetTextMaint
@@ -22,7 +22,7 @@ class GetTextMaintTest extends MaintenanceBaseTestCase {
 		$this->maintenance->setArg( 'title', $testPage );
 		$this->maintenance->execute();
 		// Verify that the content of the last revision of the page was outputted.
-		$expectedOutput = $testPage->getContent( SlotRecord::MAIN )->serialize();
+		$expectedOutput = $testPage->getContent( RevisionRecord::RAW )->serialize();
 		if ( stream_isatty( STDOUT ) ) {
 			$expectedOutput .= "\n";
 		}
@@ -32,7 +32,7 @@ class GetTextMaintTest extends MaintenanceBaseTestCase {
 	public function testExecuteForOldRevision() {
 		// Get a test page with two revisions
 		$testPage = $this->getExistingTestPage();
-		$firstRevContent = $testPage->getContent( SlotRecord::MAIN )->serialize();
+		$firstRevContent = $testPage->getContent( RevisionRecord::RAW )->serialize();
 		$this->editPage( $testPage, 'testing1234' );
 		// Call ::execute
 		$this->maintenance->setArg( 'title', $testPage );
