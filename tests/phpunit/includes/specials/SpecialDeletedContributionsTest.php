@@ -17,11 +17,13 @@ class SpecialDeletedContributionsTest extends SpecialPageTestBase {
 			$services->getConnectionProvider(),
 			$services->getRevisionStore(),
 			$services->getNamespaceInfo(),
-			$services->getUserFactory(),
 			$services->getUserNameUtils(),
 			$services->getUserNamePrefixSearch(),
+			$services->getUserOptionsLookup(),
 			$services->getCommentFormatter(),
 			$services->getLinkBatchFactory(),
+			$services->getUserFactory(),
+			$services->getUserIdentityLookup(),
 			$services->getDatabaseBlockStore()
 		);
 	}

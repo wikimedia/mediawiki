@@ -26,12 +26,10 @@ namespace MediaWiki\SpecialPage;
 use LogEventsList;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\DatabaseBlockStore;
-use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\Field\HTMLMultiSelectField;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Pager\ContribsPager;
 use MediaWiki\Pager\ContributionsPager;
 use MediaWiki\Permissions\PermissionManager;
@@ -394,8 +392,6 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 	 * @param string $targetName This mostly the same as $userObj->getName() but
 	 * normalization may make it differ. // T272225
 	 * @return string Appropriately-escaped HTML to be output literally
-	 * @todo FIXME: Almost the same as getSubTitle in SpecialDeletedContributions.php.
-	 * Could be combined.
 	 */
 	protected function contributionsSub( $userObj, $targetName ) {
 		$isAnon = $userObj->isAnon();
@@ -442,11 +438,9 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 
 		$shouldShowLinks = $talk && ( $registeredAndVisible || $showForIp );
 		if ( $shouldShowLinks ) {
-			$tools = self::getUserLinks(
+			$tools = $this->getUserLinks(
 				$this,
-				$userObj,
-				$this->permissionManager,
-				$this->getHookRunner()
+				$userObj
 			);
 			$links = Html::openElement( 'span', [ 'class' => 'mw-changeslist-links' ] );
 			foreach ( $tools as $tool ) {
@@ -553,20 +547,12 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 	 * @note This function is also called in DeletedContributionsPage
 	 * @param SpecialPage $sp SpecialPage instance, for context
 	 * @param User $target Target user object
-	 * @param PermissionManager|null $permissionManager (Since 1.36)
-	 * @param HookRunner|null $hookRunner (Since 1.36)
 	 * @return array
 	 */
-	public static function getUserLinks(
+	protected function getUserLinks(
 		SpecialPage $sp,
-		User $target,
-		PermissionManager $permissionManager = null,
-		HookRunner $hookRunner = null
+		User $target
 	) {
-		// Fallback to global state, if not provided
-		$permissionManager ??= MediaWikiServices::getInstance()->getPermissionManager();
-		$hookRunner ??= new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
-
 		$id = $target->getId();
 		$username = $target->getName();
 		$userpage = $target->getUserPage();
@@ -587,7 +573,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 		}
 
 		# Block / Change block / Unblock links
-		if ( $permissionManager->userHasRight( $sp->getUser(), 'block' ) ) {
+		if ( $this->permissionManager->userHasRight( $sp->getUser(), 'block' ) ) {
 			if ( $target->getBlock() && $target->getBlock()->getType() != Block::TYPE_AUTO ) {
 				$tools['block'] = $linkRenderer->makeKnownLink( # Change block link
 					SpecialPage::getTitleFor( 'Block', $username ),
@@ -617,7 +603,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 		);
 
 		# Suppression log link (T61120)
-		if ( $permissionManager->userHasRight( $sp->getUser(), 'suppressionlog' ) ) {
+		if ( $this->permissionManager->userHasRight( $sp->getUser(), 'suppressionlog' ) ) {
 			$tools['log-suppression'] = $linkRenderer->makeKnownLink(
 				SpecialPage::getTitleFor( 'Log', 'suppress' ),
 				$sp->msg( 'sp-contributions-suppresslog', $username )->text(),
@@ -629,7 +615,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 		# Don't show some links for IP ranges
 		if ( !$isRange ) {
 			# Uploads: hide if IPs cannot upload (T220674)
-			if ( !$isIP || $permissionManager->userHasRight( $target, 'upload' ) ) {
+			if ( !$isIP || $this->permissionManager->userHasRight( $target, 'upload' ) ) {
 				$tools['uploads'] = $linkRenderer->makeKnownLink(
 					SpecialPage::getTitleFor( 'Listfiles', $username ),
 					$sp->msg( 'sp-contributions-uploads' )->text(),
@@ -647,7 +633,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 
 			# Add link to deleted user contributions for privileged users
 			# Todo: T183457
-			if ( $permissionManager->userHasRight( $sp->getUser(), 'deletedhistory' ) ) {
+			if ( $this->permissionManager->userHasRight( $sp->getUser(), 'deletedhistory' ) ) {
 				$tools['deletedcontribs'] = $linkRenderer->makeKnownLink(
 					SpecialPage::getTitleFor( 'DeletedContributions', $username ),
 					$sp->msg( 'sp-contributions-deleted', $username )->text(),
@@ -668,7 +654,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 		}
 
 		# Add a link to rename the user
-		if ( $id && $permissionManager->userHasRight( $sp->getUser(), 'renameuser' ) && !$target->isTemp() ) {
+		if ( $id && $this->permissionManager->userHasRight( $sp->getUser(), 'renameuser' ) && !$target->isTemp() ) {
 			$tools['renameuser'] = $sp->getLinkRenderer()->makeKnownLink(
 				SpecialPage::getTitleFor( 'Renameuser' ),
 				$sp->msg( 'renameuser-linkoncontribs', $userpage->getText() )->text(),
@@ -677,7 +663,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 			);
 		}
 
-		$hookRunner->onContributionsToolLinks( $id, $userpage, $tools, $sp );
+		$this->getHookRunner()->onContributionsToolLinks( $id, $userpage, $tools, $sp );
 
 		return $tools;
 	}
