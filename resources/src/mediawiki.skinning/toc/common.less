@@ -1,6 +1,8 @@
 /* This style is loaded on all media. */
 /* stylelint-disable selector-class-pattern */
 
+@import 'mediawiki.mixins.less';
+
 /* Hide the content of the TOC when the checkbox is checked. */
 .toctogglecheckbox:checked ~ ul {
 	display: none;
@@ -8,20 +10,5 @@
 
 /* Space between the columns for tocnumber and toctext */
 .tocnumber {
-	padding-left: 0;
-	padding-right: 0.5em;
-
-	.mw-content-ltr & {
-		/* @noflip */
-		padding-left: 0;
-		/* @noflip */
-		padding-right: 0.5em;
-	}
-
-	.mw-content-rtl & {
-		/* @noflip */
-		padding-left: 0.5em;
-		/* @noflip */
-		padding-right: 0;
-	}
+	.padding-inline( 0, 0.5em );
 }
