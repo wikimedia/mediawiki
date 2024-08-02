@@ -157,6 +157,8 @@ For notes on 1.42.x and older releases, see HISTORY.
 
 * APIQueryUserInfo now returns null in the field registrationdate for users
   created before December 2005 (their registration date was not recorded).
+* ApiQuerySiteInfo doesn't return a 'writeapi' field anymore. The field had
+  no purpose since MW 1.32.
 * …
 
 === Action API internal changes in 1.43 ===
