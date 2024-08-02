@@ -29,6 +29,13 @@ class UserDataAuthenticationRequestTest extends AuthenticationRequestTestCase {
 	 * @param StatusValue $expect Expected return
 	 */
 	public function testPopulateUser( $email, $realname, $expect ) {
+		$this->clearHooks( [
+			'UserGetEmail',
+			'UserSetEmailAuthenticationTimestamp',
+			'InvalidateEmailComplete',
+			'UserSetEmail',
+		] );
+
 		$user = new User();
 		$user->setEmail( 'default@example.com' );
 		$user->setRealName( 'Fake Name' );
