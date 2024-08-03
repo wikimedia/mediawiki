@@ -1457,8 +1457,9 @@ class Article implements Page {
 
 		$link = $this->linkRenderer->makeKnownLink(
 			$title,
-			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $markPatrolledMsg is always set when $rc is set
-			$markPatrolledMsg->text(),
+			new HtmlArmor( '<button class="cdx-button cdx-button--action-progressive">'
+				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $markPatrolledMsg is always set
+				. $markPatrolledMsg->escaped() . '</button>' ),
 			[],
 			[
 				'action' => 'markpatrolled',
@@ -1467,11 +1468,7 @@ class Article implements Page {
 		);
 
 		$outputPage->addModuleStyles( 'mediawiki.action.styles' );
-		$outputPage->addHTML(
-			"<div class='patrollink' data-mw='interface'>" .
-				$context->msg( 'markaspatrolledlink' )->rawParams( $link )->escaped() .
-			'</div>'
-		);
+		$outputPage->addHTML( "<div class='patrollink' data-mw='interface'>$link</div>" );
 
 		return true;
 	}
