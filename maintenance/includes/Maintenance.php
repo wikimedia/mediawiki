@@ -22,6 +22,7 @@ use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Maintenance\MaintenanceFatalError;
 use MediaWiki\Maintenance\MaintenanceParameters;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
@@ -545,7 +546,14 @@ abstract class Maintenance {
 	 */
 	protected function fatalError( $msg, $exitCode = 1 ) {
 		$this->error( $msg );
-		exit( $exitCode );
+		// If running PHPUnit tests we don't want to call exit, as it will end the test suite early.
+		// Instead, throw an exception that will still cause the relevant test to fail if the ::fatalError
+		// call was not expected.
+		if ( defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new MaintenanceFatalError( $exitCode );
+		} else {
+			exit( $exitCode );
+		}
 	}
 
 	private $atLineStart = true;
