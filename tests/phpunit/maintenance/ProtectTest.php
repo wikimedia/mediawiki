@@ -52,4 +52,19 @@ class ProtectTest extends MaintenanceBaseTestCase {
 		// Verify that the updating the protection status failed.
 		$this->expectOutputString( "Updating protection status..." . "failed\n" );
 	}
+
+	public function testExecuteOnInvalidUserOption() {
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( '/Invalid username/' );
+		$this->maintenance->setOption( 'user', 'Template:Testing#test' );
+		$this->maintenance->setArg( 'title', 'unused-for-this-test' );
+		$this->maintenance->execute();
+	}
+
+	public function testExecuteOnInvalidTitleArgument() {
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( '/Invalid title/' );
+		$this->maintenance->setArg( 'title', ':::' );
+		$this->maintenance->execute();
+	}
 }
