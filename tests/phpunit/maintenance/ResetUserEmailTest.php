@@ -48,7 +48,7 @@ class ResetUserEmailTest extends MaintenanceBaseTestCase {
 		);
 	}
 
-	public function testEmailDeletionWithNoPasswordResetWhenProvidingId() {
+	public function testEmailResetWithNoPasswordResetWhenProvidingId() {
 		// Target an existing user with an email attached
 		$testUserBeforeExecution = $this->getTestSysop()->getUser();
 		$oldEmail = $testUserBeforeExecution->getEmail();
@@ -58,5 +58,23 @@ class ResetUserEmailTest extends MaintenanceBaseTestCase {
 			"#" . $testUserBeforeExecution->getId(), [ 'no-reset-password' => 1 ],
 			$testUserBeforeExecution->getName(), $oldEmail
 		);
+	}
+
+	public function testEmailResetOnInvalidNewEmail() {
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( "/testemail.*is not valid/" );
+		// Execute the maintenance script
+		$this->maintenance->setArg( 0, $this->getTestUser()->getUserIdentity()->getName() );
+		$this->maintenance->setArg( 1, 'testemail' );
+		$this->maintenance->execute();
+	}
+
+	public function testEmailResetOnInvalidUsername() {
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( "/Non-existent-test-user.*does not exist/" );
+		// Execute the maintenance script
+		$this->maintenance->setArg( 0, 'Non-existent-test-user' );
+		$this->maintenance->setArg( 1, 'new@mediawiki.test' );
+		$this->maintenance->execute();
 	}
 }
