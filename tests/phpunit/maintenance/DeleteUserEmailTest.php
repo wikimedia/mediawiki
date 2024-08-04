@@ -47,4 +47,20 @@ class DeleteUserEmailTest extends MaintenanceBaseTestCase {
 			"#" . $testUserBeforeExecution->getId(), $testUserBeforeExecution->getName(), $oldEmail
 		);
 	}
+
+	/** @dataProvider provideInvalidUsernameArgumentValues */
+	public function testEmailDeletionForInvalidUsername( $invalidUsernameArgument ) {
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( "/$invalidUsernameArgument.*could not be loaded/" );
+		// Execute the maintenance script
+		$this->maintenance->setArg( 'user', $invalidUsernameArgument );
+		$this->maintenance->execute();
+	}
+
+	public static function provideInvalidUsernameArgumentValues() {
+		return [
+			'Invalid username' => [ 'Template:test#test' ],
+			'Non-existent user' => [ 'Non-existent-test-user-1234' ],
+		];
+	}
 }
