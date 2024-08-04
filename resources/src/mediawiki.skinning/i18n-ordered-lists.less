@@ -1,53 +1,69 @@
 @import (inline) 'i18n-counter-styles.css';
 
 /* Localised ordered list numbering for some languages */
-ol:lang( azb ) li,
-ol:lang( bcc ) li,
-ol:lang( bgn ) li,
-ol:lang( bqi ) li,
-ol:lang( fa ) li,
-ol:lang( glk ) li,
-ol:lang( kk-arab ) li,
-ol:lang( lrc ) li,
-ol:lang( luz ) li,
-ol:lang( mzn ) li {
-	list-style-type: persian;
+:lang( azb ),
+:lang( bcc ),
+:lang( bgn ),
+:lang( bqi ),
+:lang( fa ),
+:lang( glk ),
+:lang( kk-arab ),
+:lang( lrc ),
+:lang( luz ),
+:lang( mzn ) {
+	ol& li {
+		list-style-type: persian;
+	}
 }
 
-ol:lang( ckb ) li,
-ol:lang( sdh ) li {
-	list-style-type: arabic-indic;
+:lang( ckb ),
+:lang( sdh ) {
+	ol& li {
+		list-style-type: arabic-indic;
+	}
 }
 
-ol:lang( hi ) li,
-ol:lang( mai ) li,
-ol:lang( mr ) li,
-ol:lang( ne ) li {
-	list-style-type: devanagari;
+:lang( hi ),
+:lang( mai ),
+:lang( mr ),
+:lang( ne ) {
+	ol& li {
+		list-style-type: devanagari;
+	}
 }
 
-ol:lang( as ) li,
-ol:lang( bn ) li {
-	list-style-type: bengali;
+:lang( as ),
+:lang( bn ) {
+	ol& li {
+		list-style-type: bengali;
+	}
 }
 
-ol:lang( mni ) li {
-	list-style-type: meetei;
+:lang( mni ) {
+	ol& li {
+		list-style-type: meetei;
+	}
 }
 
-ol:lang( or ) li {
-	list-style-type: oriya;
+:lang( or ) {
+	ol& li {
+		list-style-type: oriya;
+	}
 }
 
-ol:lang( sat ) li {
-	list-style-type: santali;
+:lang( sat ) {
+	ol& li {
+		list-style-type: santali;
+	}
 }
 
-ol:lang( blk ) li,
-ol:lang( kjp ) li,
-ol:lang( ksw ) li,
-ol:lang( mnw ) li,
-ol:lang( my ) li,
-ol:lang( shn ) li {
-	list-style-type: myanmar_with_period;
+:lang( blk ),
+:lang( kjp ),
+:lang( ksw ),
+:lang( mnw ),
+:lang( my ),
+:lang( shn ) {
+	ol& li {
+		list-style-type: myanmar_with_period;
+	}
 }

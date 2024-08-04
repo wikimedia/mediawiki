@@ -52,30 +52,33 @@ div.thumbinner {
 		/* Don't annoy people who copy-paste everything too much */
 		.user-select( none );
 	}
-}
 
-/* Directionality-specific styles for thumbnails - their positioning depends on content language */
+	/* Directionality-specific styles for thumbnails - their positioning depends on content language */
+	.mw-content-ltr & {
+		/* @noflip */
+		margin-left: 3px;
+		/* @noflip */
+		margin-right: 0;
+		/* @noflip */
+		float: right;
 
-/* @noflip */
-.mw-content-ltr .magnify {
-	margin-left: 3px;
-	margin-right: 0;
-	float: right;
-}
+		a {
+			/* @noflip */
+			background-image: @background-image-magnify-ltr;
+		}
+	}
 
-/* @noflip */
-.mw-content-ltr .magnify a {
-	background-image: @background-image-magnify-ltr;
-}
+	.mw-content-rtl & {
+		/* @noflip */
+		margin-left: 0;
+		/* @noflip */
+		margin-right: 3px;
+		/* @noflip */
+		float: left;
 
-/* @noflip */
-.mw-content-rtl .magnify {
-	margin-left: 0;
-	margin-right: 3px;
-	float: left;
-}
-
-/* @noflip */
-.mw-content-rtl .magnify a {
-	background-image: @background-image-magnify-rtl;
+		a {
+			/* @noflip */
+			background-image: @background-image-magnify-rtl;
+		}
+	}
 }

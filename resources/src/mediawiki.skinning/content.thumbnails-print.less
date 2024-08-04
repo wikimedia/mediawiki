@@ -2,16 +2,12 @@
 @import 'content.variables.less';
 
 /* stylelint-disable selector-class-pattern */
-/* @noflip */
-table.floatright,
-div.floatright {
-	border: 0;
-}
-
-/* @noflip */
-table.floatleft,
-div.floatleft {
-	border: 0;
+table,
+div {
+	&.floatright,
+	&.floatleft {
+		border: 0;
+	}
 }
 
 div.thumb {

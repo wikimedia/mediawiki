@@ -85,13 +85,15 @@ textarea {
 	margin: 0;
 }
 
-button::-moz-focus-inner,
-[ type='button' ]::-moz-focus-inner,
-[ type='reset' ]::-moz-focus-inner,
-[ type='submit' ]::-moz-focus-inner {
-	// Support Firefox: Remove the inner border and padding.
-	border-style: none; // stylelint-disable-line declaration-property-value-disallowed-list
-	padding: 0;
+button,
+[ type='button' ],
+[ type='reset' ],
+[ type='submit' ] {
+	&::-moz-focus-inner {
+		// Support Firefox: Remove the inner border and padding.
+		border-style: none; // stylelint-disable-line declaration-property-value-disallowed-list
+		padding: 0;
+	}
 }
 
 legend {
