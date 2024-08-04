@@ -48,7 +48,7 @@ class JobTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				$this->getMockJob( [ (object)[] ] ),
-				'someCommand Special: 0=object(stdClass) ' . $requestId
+				'someCommand Special: 0=stdClass ' . $requestId
 			],
 			[
 				$this->getMockJob( [ $mockToStringObj ] ),

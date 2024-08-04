@@ -181,7 +181,7 @@ trait SerializationTestTrait {
 		if ( is_array( $expected ) ) {
 			$this->validateArrayEquality( $expected, $actual, $propName );
 		} elseif ( is_object( $expected ) ) {
-			$this->assertIsObject( $actual, "Expected an object, but found: " . gettype( $actual ) );
+			$this->assertIsObject( $actual, "Expected an object, but found: " . get_debug_type( $actual ) );
 			$this->validateObjectEquality( $expected, $actual );
 		} else {
 			$this->assertSame( $expected, $actual, $propName );

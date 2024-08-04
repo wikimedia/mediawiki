@@ -950,7 +950,7 @@ class Exif {
 		if ( !$this->log ) {
 			return;
 		}
-		$type = gettype( $in );
+		$type = get_debug_type( $in );
 		$class = ucfirst( __CLASS__ );
 		if ( is_array( $in ) ) {
 			$in = print_r( $in, true );

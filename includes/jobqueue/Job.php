@@ -384,7 +384,7 @@ abstract class Job implements RunnableJob {
 					foreach ( $value as $k => $v ) {
 						$json = FormatJson::encode( $v );
 						if ( $json === false || mb_strlen( $json ) > 512 ) {
-							$filteredValue[$k] = gettype( $v ) . '(...)';
+							$filteredValue[$k] = get_debug_type( $v ) . '(...)';
 						} else {
 							$filteredValue[$k] = $v;
 						}
@@ -395,7 +395,7 @@ abstract class Job implements RunnableJob {
 						$value = "array(" . count( $value ) . ")";
 					}
 				} elseif ( is_object( $value ) && !method_exists( $value, '__toString' ) ) {
-					$value = "object(" . get_class( $value ) . ")";
+					$value = get_debug_type( $value );
 				}
 
 				$flatValue = (string)$value;

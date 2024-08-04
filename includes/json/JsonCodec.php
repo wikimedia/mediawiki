@@ -287,7 +287,7 @@ class JsonCodec implements JsonDeserializer, JsonSerializer {
 				}
 			}
 		} elseif ( !is_scalar( $value ) && $value !== null ) {
-			return $accumulatedPath . ': nonscalar ' . gettype( $value );
+			return $accumulatedPath . ': nonscalar ' . get_debug_type( $value );
 		}
 		return null;
 	}

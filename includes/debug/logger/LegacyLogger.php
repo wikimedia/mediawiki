@@ -455,7 +455,7 @@ class LegacyLogger extends AbstractLogger {
 			return '[Resource ' . get_resource_type( $item ) . ']';
 		}
 
-		return '[Unknown ' . gettype( $item ) . ']';
+		return '[Unknown ' . get_debug_type( $item ) . ']';
 	}
 
 	/**
