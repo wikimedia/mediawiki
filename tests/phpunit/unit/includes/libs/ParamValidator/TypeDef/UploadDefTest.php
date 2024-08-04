@@ -146,7 +146,7 @@ class UploadDefTest extends TypeDefTestCase {
 		$typeDef = $this->getInstance( $callbacks, [] );
 
 		$this->expectException( InvalidArgumentException::class );
-		$this->expectExceptionMessage( '$value must be UploadedFileInterface, got NULL' );
+		$this->expectExceptionMessage( '$value must be UploadedFileInterface, got null' );
 		$typeDef->validate( 'test', null, [], [] );
 	}
 

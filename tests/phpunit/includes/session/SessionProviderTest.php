@@ -199,7 +199,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( InvalidArgumentException $ex ) {
 			$this->assertSame(
-				'$key must be a string or null, boolean was passed',
+				'$key must be a string or null, bool was passed',
 				$ex->getMessage()
 			);
 		}

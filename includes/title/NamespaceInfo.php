@@ -150,7 +150,7 @@ class NamespaceInfo {
 			|| ( $index[0] === '-' && ctype_digit( substr( $index, 1 ) ) )
 		) ) {
 			throw new InvalidArgumentException(
-				"$method called with non-integer (" . gettype( $index ) . ") namespace '$index'"
+				"$method called with non-integer (" . get_debug_type( $index ) . ") namespace '$index'"
 			);
 		}
 

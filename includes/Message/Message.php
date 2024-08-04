@@ -472,7 +472,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 			$message = new Message( $value, $params );
 		} else {
 			throw new InvalidArgumentException( __METHOD__ . ': invalid argument type '
-				. gettype( $value ) );
+				. get_debug_type( $value ) );
 		}
 
 		return $message;

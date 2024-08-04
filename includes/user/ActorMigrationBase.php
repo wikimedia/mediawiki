@@ -316,7 +316,7 @@ class ActorMigrationBase {
 			// DWIM
 			$users = [];
 		} elseif ( !is_array( $users ) ) {
-			$what = is_object( $users ) ? get_class( $users ) : gettype( $users );
+			$what = get_debug_type( $users );
 			throw new InvalidArgumentException(
 				__METHOD__ . ": Value for \$users must be a UserIdentity or array, got $what"
 			);

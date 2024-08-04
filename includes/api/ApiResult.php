@@ -366,11 +366,7 @@ class ApiResult implements ApiSerializable {
 				$value[$k] = self::validateValue( $v );
 			}
 		} elseif ( $value !== null && !is_scalar( $value ) ) {
-			$type = gettype( $value );
-			// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.is_resource
-			if ( is_resource( $value ) ) {
-				$type .= '(' . get_resource_type( $value ) . ')';
-			}
+			$type = get_debug_type( $value );
 			throw new InvalidArgumentException( "Cannot add $type to ApiResult" );
 		} elseif ( is_float( $value ) && !is_finite( $value ) ) {
 			throw new InvalidArgumentException( 'Cannot add non-finite floats to ApiResult' );

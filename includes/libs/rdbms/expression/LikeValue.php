@@ -21,14 +21,14 @@ class LikeValue {
 	 */
 	public function __construct( $value, ...$values ) {
 		if ( !is_string( $value ) && !( $value instanceof LikeMatch ) ) {
-			$type = is_object( $value ) ? get_class( $value ) : gettype( $value );
+			$type = get_debug_type( $value );
 			throw new InvalidArgumentException( "\$value must be string or LikeMatch, got $type" );
 		}
 		$this->values = [ $value ];
 
 		foreach ( $values as $value ) {
 			if ( !is_string( $value ) && !( $value instanceof LikeMatch ) ) {
-				$type = is_object( $value ) ? get_class( $value ) : gettype( $value );
+				$type = get_debug_type( $value );
 				throw new InvalidArgumentException( "\$value must be string or LikeMatch, got $type" );
 			}
 			$this->values[] = $value;

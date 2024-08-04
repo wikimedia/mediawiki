@@ -70,7 +70,7 @@ class StubGlobalUserTest extends MediaWikiIntegrationTestCase {
 	public function testRealUser_exception() {
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage(
-			'$globalUser must be a User (or MediaWiki\StubObject\StubGlobalUser), got integer'
+			'$globalUser must be a User (or MediaWiki\StubObject\StubGlobalUser), got int'
 		);
 		StubGlobalUser::getRealUser( 12345 );
 	}

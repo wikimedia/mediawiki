@@ -115,7 +115,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( InvalidArgumentException $ex ) {
 			$this->assertSame(
-				'Cannot add resource(stream) to ApiResult',
+				'Cannot add resource (stream) to ApiResult',
 				$ex->getMessage(),
 				'Expected exception'
 			);
@@ -125,7 +125,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( InvalidArgumentException $ex ) {
 			$this->assertSame(
-				'Cannot add resource(stream) to ApiResult',
+				'Cannot add resource (stream) to ApiResult',
 				$ex->getMessage(),
 				'Expected exception'
 			);
@@ -136,7 +136,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( InvalidArgumentException $ex ) {
 			$this->assertSame(
-				'Cannot add resource(stream) to ApiResult',
+				'Cannot add resource (stream) to ApiResult',
 				$ex->getMessage(),
 				'Expected exception'
 			);
@@ -147,7 +147,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( InvalidArgumentException $ex ) {
 			$this->assertSame(
-				'Cannot add resource(stream) to ApiResult',
+				'Cannot add resource (stream) to ApiResult',
 				$ex->getMessage(),
 				'Expected exception'
 			);
@@ -363,7 +363,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( InvalidArgumentException $ex ) {
 			$this->assertSame(
-				'Cannot add resource(stream) to ApiResult',
+				'Cannot add resource (stream) to ApiResult',
 				$ex->getMessage(),
 				'Expected exception'
 			);
@@ -373,7 +373,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( InvalidArgumentException $ex ) {
 			$this->assertSame(
-				'Cannot add resource(stream) to ApiResult',
+				'Cannot add resource (stream) to ApiResult',
 				$ex->getMessage(),
 				'Expected exception'
 			);
@@ -384,7 +384,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( InvalidArgumentException $ex ) {
 			$this->assertSame(
-				'Cannot add resource(stream) to ApiResult',
+				'Cannot add resource (stream) to ApiResult',
 				$ex->getMessage(),
 				'Expected exception'
 			);
@@ -395,7 +395,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( InvalidArgumentException $ex ) {
 			$this->assertSame(
-				'Cannot add resource(stream) to ApiResult',
+				'Cannot add resource (stream) to ApiResult',
 				$ex->getMessage(),
 				'Expected exception'
 			);

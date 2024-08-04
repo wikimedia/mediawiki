@@ -483,13 +483,13 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 					$status = $ret;
 				} else {
 					throw new UnexpectedValueException( 'invalid HTMLForm::trySubmit() return value: '
-						. 'first element of array is ' . gettype( reset( $status ) ) );
+						. 'first element of array is ' . get_debug_type( reset( $status ) ) );
 				}
 			} else {
 				// not supposed to happen, but HTMLForm does not verify the return type
 				// from the submit callback; better safe then sorry!
 				throw new UnexpectedValueException( 'invalid HTMLForm::trySubmit() return type: '
-					. gettype( $status ) );
+					. get_debug_type( $status ) );
 			}
 
 			if ( ( !$status || !$status->isOK() ) && $this->isReturn ) {

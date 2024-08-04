@@ -187,7 +187,7 @@ class MapCacheLRU implements ExpirationAwareness {
 			$this->ping( $key );
 
 			if ( !is_array( $this->cache[$key] ) ) {
-				$type = gettype( $this->cache[$key] );
+				$type = get_debug_type( $this->cache[$key] );
 				throw new UnexpectedValueException( "Cannot add field to non-array value ('$key' is $type)" );
 			}
 		} else {

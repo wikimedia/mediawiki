@@ -288,7 +288,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			}
 			if ( !is_array( $info ) ) {
 				throw new InvalidArgumentException(
-					'Invalid module info for "' . $name . '": expected array, got ' . gettype( $info )
+					'Invalid module info for "' . $name . '": expected array, got ' . get_debug_type( $info )
 				);
 			}
 

@@ -41,7 +41,7 @@ class ScalarParam extends MessageParam {
 			$value = (string)$value;
 		} elseif ( !is_string( $value ) && !is_numeric( $value ) &&
 			!$value instanceof MessageValue ) {
-			$type = is_object( $value ) ? get_class( $value ) : gettype( $value );
+			$type = get_debug_type( $value );
 			throw new InvalidArgumentException(
 				"Scalar parameter must be a string, number, or MessageValue; got $type"
 			);

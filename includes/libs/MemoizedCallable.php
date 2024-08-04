@@ -59,7 +59,7 @@ class MemoizedCallable {
 		if ( !is_callable( $callable, false, $this->callableName ) ) {
 			throw new InvalidArgumentException(
 				'Argument 1 passed to MemoizedCallable::__construct() must ' .
-				'be an instance of callable; ' . gettype( $callable ) . ' given'
+				'be an instance of callable; ' . get_debug_type( $callable ) . ' given'
 			);
 		}
 

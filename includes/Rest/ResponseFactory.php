@@ -287,7 +287,7 @@ class ResponseFactory {
 		} elseif ( is_array( $value ) || $value instanceof stdClass ) {
 			$data = $value;
 		} else {
-			$type = is_object( $originalValue ) ? get_class( $originalValue ) : gettype( $originalValue );
+			$type = get_debug_type( $originalValue );
 			throw new InvalidArgumentException( __METHOD__ . ": Invalid return value type $type" );
 		}
 		$response = $this->createJson( $data );

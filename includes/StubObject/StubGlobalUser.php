@@ -112,7 +112,7 @@ class StubGlobalUser extends StubObject {
 		} else {
 			throw new InvalidArgumentException(
 				'$globalUser must be a User (or MediaWiki\StubObject\StubGlobalUser), got ' .
-				( is_object( $globalUser ) ? get_class( $globalUser ) : gettype( $globalUser ) )
+				get_debug_type( $globalUser )
 			);
 		}
 	}

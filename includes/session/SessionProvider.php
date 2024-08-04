@@ -696,12 +696,12 @@ abstract class SessionProvider implements Stringable, SessionProviderInterface {
 	final protected function hashToSessionId( $data, $key = null ) {
 		if ( !is_string( $data ) ) {
 			throw new InvalidArgumentException(
-				'$data must be a string, ' . gettype( $data ) . ' was passed'
+				'$data must be a string, ' . get_debug_type( $data ) . ' was passed'
 			);
 		}
 		if ( $key !== null && !is_string( $key ) ) {
 			throw new InvalidArgumentException(
-				'$key must be a string or null, ' . gettype( $key ) . ' was passed'
+				'$key must be a string or null, ' . get_debug_type( $key ) . ' was passed'
 			);
 		}
 

@@ -150,7 +150,7 @@ class JsonCodec implements JsonDeserializer, JsonSerializer {
 				$value[JsonConstants::COMPLEX_ANNOTATION] = true;
 			}
 		} elseif ( !is_scalar( $value ) && $value !== null ) {
-			$details = is_object( $value ) ? get_class( $value ) : gettype( $value );
+			$details = get_debug_type( $value );
 			throw new JsonException(
 				'Unable to serialize JSON: ' . $details
 			);
