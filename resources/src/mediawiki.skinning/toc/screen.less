@@ -3,7 +3,6 @@
  *
  * Default styles for the display of table of contents in @media screen.
  *
- * Styles relating to i18n are inside the i18n.less file in the same subfolder.
  * Styles for @media print are inside print.css.
  */
 
@@ -41,6 +40,7 @@
 
 	.toctitle {
 		text-align: center;
+		direction: ltr;
 	}
 
 	ul {
@@ -51,6 +51,18 @@
 
 		ul {
 			margin: 0 0 0 2em;
+
+			.mw-content-ltr &,
+			.mw-content-rtl .mw-content-ltr & {
+				/* @noflip */
+				margin: 0 0 0 2em;
+			}
+
+			.mw-content-rtl &,
+			.mw-content-ltr .mw-content-rtl & {
+				/* @noflip */
+				margin: 0 2em 0 0;
+			}
 		}
 	}
 }
@@ -148,5 +160,3 @@ table.toc {
 .toctogglecheckbox:not( :checked ) + .toctitle .toctogglelabel::after {
 	content: '@{msg-hidetoc}';
 }
-
-@import 'i18n.less';
