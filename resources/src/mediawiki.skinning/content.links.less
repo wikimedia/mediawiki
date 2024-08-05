@@ -4,6 +4,10 @@
 
 a.new {
 	color: @color-link-new;
+
+	&:visited {
+		color: @color-link-new--visited;
+	}
 }
 
 /* self links */
@@ -11,36 +15,32 @@ a.mw-selflink {
 	color: inherit;
 	font-weight: bold;
 	text-decoration: inherit;
-}
 
-a.mw-selflink:hover {
-	cursor: inherit;
-	text-decoration: inherit;
-}
+	&:hover {
+		cursor: inherit;
+		text-decoration: inherit;
+	}
 
-a.mw-selflink:active,
-a.mw-selflink:visited {
-	color: inherit;
-}
-
-a.new:visited {
-	color: @color-link-new--visited;
+	&:active,
+	&:visited {
+		color: inherit;
+	}
 }
 
 /* Interwiki & External links */
-.mw-parser-output a.extiw,
-.mw-parser-output a.external {
-	color: @color-link-external;
-}
+.mw-parser-output {
+	a.extiw,
+	a.external {
+		color: @color-link-external;
 
-.mw-parser-output a.extiw:visited,
-.mw-parser-output a.external:visited {
-	color: @color-link-external--visited;
-}
+		&:visited {
+			color: @color-link-external--visited;
+		}
 
-.mw-parser-output a.extiw:active,
-.mw-parser-output a.external:active {
-	color: @color-link-external--active;
+		&:active {
+			color: @color-link-external--active;
+		}
+	}
 }
 
 /* Underline preference */

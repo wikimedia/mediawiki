@@ -39,16 +39,17 @@ table.floatleft {
 	}
 }
 
-/* @noflip */
-div.floatright,
-table.floatright {
-	margin: @margin-floatright;
-}
+div,
+table {
+	&.floatright {
+		/* @noflip */
+		margin: @margin-floatright;
+	}
 
-/* @noflip */
-div.floatleft,
-table.floatleft {
-	margin: @margin-floatleft;
+	&.floatleft {
+		/* @noflip */
+		margin: @margin-floatleft;
+	}
 }
 
 div.thumb {

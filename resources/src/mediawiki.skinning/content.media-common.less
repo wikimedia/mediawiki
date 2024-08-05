@@ -200,47 +200,51 @@ figure {
 	}
 }
 
-// Remove bogus padding from framed images without captions
-figure[ typeof~='mw:File/Frame' ] > figcaption:empty {
-	padding-bottom: 0;
-}
+figcaption:empty {
+	// Remove bogus padding from framed images without captions
+	figure[ typeof~='mw:File/Frame' ] > & {
+		padding-bottom: 0;
+	}
 
-// However, it's still necessary for thumbs because the magnifying icon is present
-figure[ typeof~='mw:File/Thumb' ] > figcaption:empty {
-	padding-bottom: 3px;
+	// However, it's still necessary for thumbs because the magnifying icon is present
+	figure[ typeof~='mw:File/Thumb' ] > & {
+		padding-bottom: 3px;
+	}
 }
 
 /**
  * Inline media items
  */
-.mw-valign-middle .mw-file-element {
-	vertical-align: middle;
-}
+.mw-file-element {
+	.mw-valign-middle & {
+		vertical-align: middle;
+	}
 
-.mw-valign-baseline .mw-file-element {
-	vertical-align: baseline;
-}
+	.mw-valign-baseline & {
+		vertical-align: baseline;
+	}
 
-.mw-valign-sub .mw-file-element {
-	vertical-align: sub;
-}
+	.mw-valign-sub & {
+		vertical-align: sub;
+	}
 
-.mw-valign-super .mw-file-element {
-	vertical-align: super;
-}
+	.mw-valign-super & {
+		vertical-align: super;
+	}
 
-.mw-valign-top .mw-file-element {
-	vertical-align: top;
-}
+	.mw-valign-top & {
+		vertical-align: top;
+	}
 
-.mw-valign-text-top .mw-file-element {
-	vertical-align: text-top;
-}
+	.mw-valign-text-top & {
+		vertical-align: text-top;
+	}
 
-.mw-valign-bottom .mw-file-element {
-	vertical-align: bottom;
-}
+	.mw-valign-bottom & {
+		vertical-align: bottom;
+	}
 
-.mw-valign-text-bottom .mw-file-element {
-	vertical-align: text-bottom;
+	.mw-valign-text-bottom & {
+		vertical-align: text-bottom;
+	}
 }

@@ -63,17 +63,20 @@
 }
 
 // Increase for Nepalese on `h1`, See T333938.
-.mw-heading1:lang( ne ),
-h1:lang( ne ) {
-	line-height: 1.9;
+:lang( ne ) {
+	.mw-heading1&,
+	h1& {
+		line-height: 1.9;
+	}
 }
 
 // Increase `line-height` for Thai top vowel + top tone combination on `h2`,
 // for example on `ตั้`. See T285972.
 // Increase for Nepalese on `h2`, for example on `ि`. See T333938.
-.mw-heading2:lang( th ),
-.mw-heading2:lang( ne ),
-h2:lang( th ),
-h2:lang( ne ) {
-	line-height: 1.6;
+:lang( th ),
+:lang( ne ) {
+	.mw-heading2&,
+	h2& {
+		line-height: 1.6;
+	}
 }

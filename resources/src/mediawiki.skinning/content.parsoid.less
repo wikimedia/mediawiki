@@ -10,9 +10,9 @@
  */
 .mw-parser-output {
 	counter-reset: mw-numbered-ext-link;
-}
 
-.mw-parser-output a[ rel~='mw:ExtLink' ]:empty::after {
-	content: '[' counter( mw-numbered-ext-link ) ']';
-	counter-increment: mw-numbered-ext-link;
+	a[ rel~='mw:ExtLink' ]:empty::after {
+		content: '[' counter( mw-numbered-ext-link ) ']';
+		counter-increment: mw-numbered-ext-link;
+	}
 }

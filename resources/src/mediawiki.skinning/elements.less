@@ -19,31 +19,31 @@ a {
 	text-decoration: none;
 	color: @color-link;
 	background: none;
-}
 
-a:not( [ href ] ) {
-	cursor: pointer; /* Always cursor:pointer even without href */
-}
+	&:not( [ href ] ) {
+		cursor: pointer; /* Always cursor:pointer even without href */
+	}
 
-a:visited {
-	color: @color-link--visited;
-}
+	&:visited {
+		color: @color-link--visited;
+	}
 
-a:active {
-	color: @color-link--active;
-}
+	&:active {
+		color: @color-link--active;
+	}
 
-a:hover,
-a:focus {
-	text-decoration: underline;
-}
+	&:hover,
+	&:focus {
+		text-decoration: underline;
+	}
 
-a:lang( ar ),
-a:lang( kk-arab ),
-a:lang( mzn ),
-a:lang( ps ),
-a:lang( ur ) {
-	text-decoration: none;
+	&:lang( ar ),
+	&:lang( kk-arab ),
+	&:lang( mzn ),
+	&:lang( ps ),
+	&:lang( ur ) {
+		text-decoration: none;
+	}
 }
 
 /* Inline Elements */
@@ -147,10 +147,10 @@ h6 {
 
 p {
 	margin: 0.4em 0 0.5em 0;
-}
 
-p img {
-	margin: 0;
+	img {
+		margin: 0;
+	}
 }
 
 /* stylelint-disable declaration-block-no-redundant-longhand-properties */
@@ -273,8 +273,8 @@ textarea {
 /* Small for tables and similar */
 .small {
 	font-size: 94%;
-}
 
-table.small {
-	font-size: 100%;
+	table& {
+		font-size: 100%;
+	}
 }
