@@ -672,6 +672,7 @@
 	"passwordreset-nocaller": "Un chiamante deve essere fornito",
 	"passwordreset-nosuchcaller": "Chiamante non esiste: $1",
 	"passwordreset-ignored": "La reimpostazione della password non è stata gestita. Forse nessun provider è configurato?",
+	"passwordreset-invalidemail": "Indirizzo di posta elettronica non valido",
 	"passwordreset-nodata": "Non è stato fornito né un nome utente né un indirizzo di posta elettronica",
 	"changeemail": "Modifica o rimuovi indirizzo di posta elettronica",
 	"changeemail-header": "Completa questo modulo per cambiare il tuo indirizzo email. Se vuoi rimuovere l'associazione di qualsiasi indirizzo email dalla tua utenza, lascia il nuovo indirizzo email vuoto quando invii il modulo.",

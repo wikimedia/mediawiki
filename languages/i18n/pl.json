@@ -645,6 +645,7 @@
 	"passwordreset-nocaller": "Musi być podany wywołujący",
 	"passwordreset-nosuchcaller": "Wywołujący nie istnieje: $1",
 	"passwordreset-ignored": "Zresetowanie hasła nie powiodło się. Może żaden dostawca nie został skonfigurowany?",
+	"passwordreset-invalidemail": "Nieprawidłowy adres e-mail",
 	"passwordreset-nodata": "Nie podano ani nazwy użytkownika, ani adresu e-mail",
 	"changeemail": "Zmiana lub usunięcie adresu e‐mail",
 	"changeemail-header": "Wypełnij ten formularz, aby zmienić swój adres e-mail. Jeśli chcesz usunąć swój adres e-mail, to przy wypełnianiu formularza pozostaw puste pole nowego adresu e-mail.",

@@ -565,6 +565,7 @@
 	"passwordreset-nocaller": "Izen bat eman behar da",
 	"passwordreset-nosuchcaller": "Izenik ez da ageri: $1",
 	"passwordreset-ignored": "Pasahitza berrezartzea ez da kudeatu. Beharbada ez da hornitzailerik konfiguratu?",
+	"passwordreset-invalidemail": "Baliogabeko helbide elektronikoa",
 	"passwordreset-nodata": "Ez da erabiltzaile-izenik ezta helbide elektroniko bat eman",
 	"changeemail": "Aldatu edo kendu e-mail helbidea",
 	"changeemail-header": "Bete ezazu inprimaki hau, zure helbide elektronikoa aldatzeko. Zure kontuari helbide elektronikorik elkartuta ez izatea nahi baduzu, utz ezazu hutsik helbide elektroniko berria, inprimakia bidaltzen duzunean.",

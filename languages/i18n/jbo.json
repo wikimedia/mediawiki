@@ -300,6 +300,7 @@
 	"resetpass-validity": ".i le lerpoijaspu be do na drani\n$1\n\n.i sarcu fa le nu basti fi le ka lerpoijaspu kei le nu co'a se jaspu",
 	"passwordreset-username": "plicme",
 	"passwordreset-email": "samymri judri",
+	"passwordreset-invalidemail": ".i le samymri judri na drani",
 	"changeemail-oldemail": "samymri judri je cu slabu",
 	"changeemail-newemail": "samymri judri je cu cnino",
 	"summary": "ve skicu",

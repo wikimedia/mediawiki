@@ -504,6 +504,7 @@
 	"passwordreset-nocaller": "'nen Aanroper mót waeren opgegaove",
 	"passwordreset-nosuchcaller": "Aanroper besteit neet: $1",
 	"passwordreset-ignored": "'t Oppernuuj instèlle van 't wachwaord is neet aafgehanjeldj gewaore.\nMesjiens steit geine provider geconfigureerdj?",
+	"passwordreset-invalidemail": "Óngeljig e-mailadres",
 	"passwordreset-nodata": "Zowaal geine gebroekersnaam es 'n e-mailadres is opgegaove gewaore",
 	"changeemail": "Veranger of haol dien e-mailadres eweg",
 	"changeemail-header": "Völ dit formeleer in veur dien e-mailadres te verangere. Wens se 't e-mailadres wils óntkoppele van diene gebroeker, laot 't e-mailadres den laeg wens se 't formeleer opsleis.",

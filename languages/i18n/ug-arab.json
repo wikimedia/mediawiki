@@ -482,6 +482,7 @@
 	"passwordreset-emailelement": "ئىشلەتكۈچى نامى: \n$1\n\nۋاقىتلىق پارول: \n$2",
 	"passwordreset-nocaller": "چوقۇم بىر يۆتكەپ ئىشلەتكۈچى تەمىنلەڭ",
 	"passwordreset-nosuchcaller": "يۆتكەپ ئىشلەتكۈچى تەرەپ مەۋجۇت ئەمەس: $1",
+	"passwordreset-invalidemail": "ئىناۋەتسىز ئېلخەت ئادرېسى",
 	"changeemail": "ئېلخەت ئادرېس ئۆزگەرت",
 	"changeemail-header": "ھېساباتنىڭ ئېلخەت ئادرېسىنى ئۆزگەرت",
 	"changeemail-no-info": "سىز تىزىمغا كىرگەندىن كېيىن بىۋاسىتە بۇ بەتكە كىرىشىڭىز لازىم.",

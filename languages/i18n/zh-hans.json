@@ -735,6 +735,7 @@
 	"passwordreset-nocaller": "必须提供一个调用方",
 	"passwordreset-nosuchcaller": "调用方不存在：$1",
 	"passwordreset-ignored": "密码重置没有处理。也许没有配置提供者？",
+	"passwordreset-invalidemail": "无效的电子邮件地址",
 	"passwordreset-nodata": "用户名和电子邮件地址均未提供",
 	"changeemail": "更改或移除电子邮件地址",
 	"changeemail-header": "完成此表单以更改您的电子邮件地址。如果您希望从您的账户中移除任何关联的电子邮件地址，请在提交表单时将新电子邮件地址留空。",

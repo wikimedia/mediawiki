@@ -550,6 +550,7 @@
 	"passwordreset-emailelement": "प्रयोगकर्ताको नाम: \n$1\n\nअस्थाई प्रवेश शब्द: \n$2",
 	"passwordreset-success": "तपाईंले प्रवेश शब्द परिवर्तनका लागि अनुरोध गर्नु भएकाे छ।",
 	"passwordreset-success-info": "तपाईंले पेश गर्नुभएको विवरणहरू: $1",
+	"passwordreset-invalidemail": "अमान्य इमेल ठेगाना",
 	"passwordreset-nodata": "न त एक प्रयोगकर्ता नाम न त इमेल ठेगाना प्रदान गरिएको थियो",
 	"changeemail": "इमेल ठेगाना हटाउनुहोस् वा परिवर्तन गर्नुहोस्",
 	"changeemail-header": "खाताको इमेल ठेगाना परिवर्तन गर्नुहोस",

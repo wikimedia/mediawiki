@@ -257,6 +257,7 @@
 	"passwordreset-domain": "Nuwɔƒe:",
 	"passwordreset-email": "Email adrɛs:",
 	"passwordreset-emailtitle": "Ŋkɔŋlɔɖi ŋuti nyatakaka le {{ƉƆTEƑEŊKƆ}}",
+	"passwordreset-invalidemail": "Email adrɛs la mede o",
 	"passwordreset-nodata": "Mèŋlɔ ezazãŋkɔ alo email adrɛs aɖeke o",
 	"changeemail": "Trɔ email adrɛs alo ɖee ɖa",
 	"changeemail-header": "Kpe nyatakaka sia ɖo ne èdi be yeatrɔ wò email adrɛs la. Ke ne èdi be yeaɖe email ɖe sia ɖe si le wò ŋkɔŋlɔɖia me ɖa la, ke gblẽ afi si woɖo be woaŋlɔ email yeye ɖo la ɖi ƒuƒlu ne èle nyatakaka sia ɖom ɖa.",

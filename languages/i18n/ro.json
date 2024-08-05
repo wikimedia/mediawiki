@@ -572,6 +572,7 @@
 	"passwordreset-nocaller": "Un apelator trebuie furnizat",
 	"passwordreset-nosuchcaller": "Apelatorul nu există: $1",
 	"passwordreset-ignored": "Nu s-a putut efectua resetarea parolei. Probabil nu a fost configurat un furnizor?",
+	"passwordreset-invalidemail": "Adresă de e-mail nevalidă",
 	"passwordreset-nodata": "Nu au fost furnizate un nume de utilizator sau o adresă de e-mail",
 	"changeemail": "Modificare sau înlăturare adresă de e-mail",
 	"changeemail-header": "Completați acest formular pentru a vă schimba adresa de e-mail. Dacă doriți să înlăturați orice asociere a unei adrese de e-mail cu contul dumneavoastră, lăsați necompletat câmpul pentru introducerea unei noi adrese de e-mail atunci când trimiteți formularul.",

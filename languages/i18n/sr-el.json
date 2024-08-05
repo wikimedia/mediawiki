@@ -562,6 +562,7 @@
 	"passwordreset-nocaller": "Pozivalac se mora navesti",
 	"passwordreset-nosuchcaller": "Pozivalac ne postoji: $1",
 	"passwordreset-ignored": "Resetovanje lozinke nije uspelo. Možda poslužilac nije konfigurisan?",
+	"passwordreset-invalidemail": "Nevažeća e-adresa",
 	"passwordreset-nodata": "Nije navedeno ni korisničko ime ni imejl-adresa",
 	"changeemail": "Promena ili uklanjanje imejl-adrese",
 	"changeemail-header": "Popunite sledeći obrazac da biste promenili imejl-adresu. Ako želite samo da uklonite postojeću imejl-adresu, ostavite prazno polje za novu adresu.",

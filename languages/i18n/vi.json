@@ -590,6 +590,7 @@
 	"passwordreset-nocaller": "Yêu cầu hàm gọi",
 	"passwordreset-nosuchcaller": "Hàm gọi không tồn tại: $1",
 	"passwordreset-ignored": "Tác vụ đặt lại mật khẩu không được xử lý. Có lẽ trình cung cấp chưa được cấu hình?",
+	"passwordreset-invalidemail": "Địa chỉ thư điện tử không hợp lệ",
 	"passwordreset-nodata": "Cả tên người dùng và địa chỉ thư điện tử bị thiếu",
 	"changeemail": "Đổi hoặc gỡ địa chỉ thư điện tử",
 	"changeemail-header": "Điền biểu mẫu này để đổi địa chỉ thư điện tử của bạn. Nếu bạn muốn gỡ địa chỉ thư điện tử nào khỏi tài khoản của bạn, để trống hộp địa chỉ thư điện tử mới và lưu biểu mẫu.",

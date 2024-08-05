@@ -5,6 +5,7 @@
 			"Hecatonchire",
 			"Lofhi",
 			"McDutchie",
+			"Méthodes Bulebe Hangi",
 			"Thibaut120094",
 			"Verdy p",
 			"Wladek92"
@@ -18,6 +19,7 @@
 	"rest-nonexistent-revision": "La version spécifiée ($1) n’existe pas",
 	"rest-nonexistent-user": "L’utilisateur ou l’utilisatrice « $1 » spécifié(e) n’existe pas.",
 	"rest-invalid-user": "Le nom d’utilisateur spécifié ($1) n’est pas valide",
+	"rest-invalid-ip": "Le nom d’utilisateur spécifié ($1) n’est pas valide",
 	"rest-unsupported-content-type": "Content-Type non pris en charge : $1",
 	"rest-permission-denied-anon": "Non accessible par un utilisateur anonyme",
 	"rest-permission-denied-title": "L’utilisateur n’a pas le droit de lire le titre ($1)",

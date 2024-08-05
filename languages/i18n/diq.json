@@ -555,6 +555,7 @@
 	"passwordreset-nocaller": "Yew meyman tedarık kerê",
 	"passwordreset-nosuchcaller": "Meyman çıniyo: $1",
 	"passwordreset-ignored": "Parola pê destana reset nêkerda. Belka Western nêvırazeno?",
+	"passwordreset-invalidemail": "Adresê eposta raşt niya",
 	"passwordreset-nodata": "Ne yew namey karberi ne zi adresê eposta deyayo",
 	"changeemail": "E-posta adresa xo wedarne",
 	"changeemail-header": "E-posta adresa xo vuriyayışi rë ena former pır kerë. Eger kı şıma qayılë kı e postay adresi ra wedarnë se formi rıştış dı heruna e posta veng verdë",

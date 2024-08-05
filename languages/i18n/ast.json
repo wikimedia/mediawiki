@@ -522,6 +522,7 @@
 	"passwordreset-nocaller": "Tien d'apurrise un llamador",
 	"passwordreset-nosuchcaller": "El llamador nun esiste: $1",
 	"passwordreset-ignored": "Nun se llogró'l reaniciu de la contraseña. ¿Seique nun se configuró un proveedor?",
+	"passwordreset-invalidemail": "Direición de corréu inválida",
 	"passwordreset-nodata": "Nun s'apurrió nin un nome d'usuariu nin una dirección de corréu electrónicu",
 	"changeemail": "Camudar o desaniciar la dirección de corréu electrónicu",
 	"changeemail-header": "Completa esti formulariu pa camudar la dirección de corréu electrónicu. Si quies desaniciar l'asociación de cualquier dirección de corréu electrónicu de la to cuenta, dexa en blancu la nueva dirección de corréu electrónicu cuando unvies el formulariu.",

@@ -543,6 +543,7 @@
 	"passwordreset-nocaller": "Cal provesir un apelaire",
 	"passwordreset-nosuchcaller": "L’apelant existís pas : $1",
 	"passwordreset-ignored": "Lo restabliment del mot de passa s'es pas plan realizat. Benlèu i aviá pas cap de fornidor configurat?",
+	"passwordreset-invalidemail": "Adreça de corrièr electronic invalida",
 	"passwordreset-nodata": "Pas cap de nom d'usatgièr o d'adreça electronica foguèron provesits",
 	"changeemail": "Cambiar o suprimir l'adreça electronica",
 	"changeemail-header": "Completatz aqueste formulari per modificar vòstra adreça de corrièl. Se volètz suprimir l’associacion d’una adreça de corrièl amb vòstre compte, daissatz la novèla adreça de corrièl voida al moment de la somission del formulari.",

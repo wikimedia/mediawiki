@@ -619,6 +619,7 @@
 	"passwordreset-nocaller": "Tem de ser fornecida uma origem (um chamador) do pedido de reinício da palavra-passe",
 	"passwordreset-nosuchcaller": "O utilizador que chama este pedido não existe: $1",
 	"passwordreset-ignored": "O reinício da palavra-passe não foi realizado. Poderá não ter sido configurado um fornecedor?",
+	"passwordreset-invalidemail": "Correio eletrónico inválido",
 	"passwordreset-nodata": "Não foi fornecido um nome de utilizador nem um endereço de correio eletrónico",
 	"changeemail": "Alterar ou remover o endereço de correio eletrónico",
 	"changeemail-header": "Preencha este formulário para alterar o seu endereço de correio eletrónico. Se quer eliminar a associação de qualquer endereço de correio eletrónico à sua conta, deixe em branco o novo endereço de correio eletrónico ao enviar o formulário.",

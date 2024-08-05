@@ -612,6 +612,7 @@
 	"passwordreset-nocaller": "Kutsuja on määriteltävä",
 	"passwordreset-nosuchcaller": "Kutsuvaa funktiota ei ole olemassa: $1",
 	"passwordreset-ignored": "Salasanan palauttamista ei käsitelty. Ehkä tarjoajaa ei ollut määritetty?",
+	"passwordreset-invalidemail": "Virheellinen sähköpostiosoite",
 	"passwordreset-nodata": "Käyttäjänimeä ja salasanaa ei annettu",
 	"changeemail": "Muuta tai poista sähköpostiosoite",
 	"changeemail-header": "Täydennä tämä lomake, jolla voit muuttaa sähköpostiosoitettasi. Jos haluat poistaa sähköpostiosoitteesi kokonaan tunnuksesi yhteydestä, älä kirjoita uudeksi osoitteeksi mitään vaan jätä se tyhjäksi.",

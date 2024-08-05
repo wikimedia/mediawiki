@@ -356,6 +356,7 @@
 	"passwordreset-email": "Ելեկտրոնային հասցէ․",
 	"passwordreset-emailtitle": "{{SITENAME}} հաշիւի մանրամասները",
 	"passwordreset-emailelement": "Մասնակցային անուն՝ \n$1\n\nԺամանակաւոր անցաբառ՝ \n$2",
+	"passwordreset-invalidemail": "Անվաւեր ելեկտրոնային հասցէ",
 	"changeemail": "Փոխել կամ հանել ելեկտրոնային հասցէն",
 	"changeemail-oldemail": "Այժմու ելեկտրոնային հասցէ․",
 	"changeemail-newemail": "Նոր ելեկտրոնային հասցէ․",

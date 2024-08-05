@@ -555,6 +555,7 @@
 	"passwordreset-success-info": "Podatci koje ste podnijeli: $1",
 	"passwordreset-emailtext-require-email": "Međutim, ako niste postavili ovaj zahtjev za ponovnim postavljanjem zaporke, a želite spriječiti neželjene e-poruke, možete ažurirati vaše postavke e-pošte na\n$1.\nTakođer, možete u postavkama predvidjeti potrebu zahtijevanja navođenja i suradničkoga imena i adrese e-pošte za generiranje e-poruka o zahtjevima za ponovnim postavljanjem zaporke. Prethodno navedeno može pomoći u smanjenju sličnih slučajeva.",
 	"passwordreset-nosuchcaller": "Pozivatelj ne postoji: $1",
+	"passwordreset-invalidemail": "Nevaljala adresa e-pošte",
 	"passwordreset-nodata": "Niste naveli ni suradničko ime, a niti adresu e-pošte",
 	"changeemail": "Promjena ili uklanjanje adrese e-pošte",
 	"changeemail-header": "Ispunite ovaj obrazac da biste promijenili svoju adresu e-pošte. Ukoliko želite ukloniti povezanost svoje adrese e-pošte i suradničkoga računa, prilikom popunjavanja obrasca ostavite prazno polje umjesto upisivanja nove adrese e-pošte.",

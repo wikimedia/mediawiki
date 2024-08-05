@@ -574,6 +574,7 @@
 	"passwordreset-nocaller": "Çağırıcı təmin edilməlidir",
 	"passwordreset-nosuchcaller": "Çağırıcı yoxdur: $1",
 	"passwordreset-ignored": "Parolun sıfırlanması işlənməmişdir. Bəlkə heç bir provayder qurulmayıb?",
+	"passwordreset-invalidemail": "Səhv e-poçt",
 	"passwordreset-nodata": "Nə bir istifadəçi adı, nə də bir e-poçt ünvanı verilmədi.",
 	"changeemail": "E-poçt ünvanını dəyiş və ya sil",
 	"changeemail-header": "E-poçt ünvanınızı dəyişdirmək üçün bu formanı tamamlayın. Hesabınızdakı hər hansı bir e-poçt ünvanının birləşməsini aradan qaldırmaq istəyirsinizsə, formu təqdim edərkən yeni e-poçt ünvanını boş buraxın.",

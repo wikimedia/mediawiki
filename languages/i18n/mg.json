@@ -526,6 +526,7 @@
 	"passwordreset-success-info": "Ny antsipirahan-torohay nalefanao dia: $1",
 	"passwordreset-nocaller": "Mila manitsy mpiantso",
 	"passwordreset-nosuchcaller": "Tsy misy ilay mpiantso: $1",
+	"passwordreset-invalidemail": "Adiresy mailaka tsy azo raisina",
 	"passwordreset-nodata": "Tsy nanome anaram-pikambana na adiresy mailaka",
 	"changeemail": "Hanova na hanala adiresy mailaka",
 	"changeemail-header": "Fenoy ity fôrmiolera ity ahafahanao manova ny adiresy mailakao. Raha tianao ho esorina ny fifandraisan'ity mailaka ity amin'ny kaontinao dia avelao ho fotsy ny saha rehefa mandefa fôrmiolera.",

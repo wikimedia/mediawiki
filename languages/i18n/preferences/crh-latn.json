@@ -166,7 +166,7 @@
 	"recentchangescount": "Soñki deñiştirmelerde, saife keçmişlerinde ve jurnallarda kösterilecek deñiştirmeler ögünden tayinlengen sayısı:",
 	"prefs-help-recentchangescount": "Azamiy (maksimal) sayı: 1000",
 	"prefs-advancedrc": "İlâve sazlamalar",
-	"tog-usenewrc": "Soñki deñiştirmeler saifesindeki ve közetüv cedvelindeki deñiştirmelerni gruppalandıruv",
+	"tog-usenewrc": "Soñki deñiştirmeler saifesindeki ve közetüv cedvelindeki deñiştirmelerni gruppalandır",
 	"rcfilters-preference-label": "JavaScript olmağan bir interfeys qullan",
 	"rcfilters-preference-help": "Süzgüç qıdıruv ve ya urğulama funktsiyası olmadan [[{{#special:RecentChanges}}|soñki deñiştirmeler]] ve [[{{#special:RecentChangesLinked}}|alâqalı deñiştirmeler]] yükley.",
 	"prefs-changesrc": "Kösterilgen deñiştirmeler",

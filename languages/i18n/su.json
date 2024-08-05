@@ -500,6 +500,7 @@
 	"passwordreset-nocaller": "Panggero kudu dibikeun",
 	"passwordreset-nosuchcaller": "Panggero can aya: $1",
 	"passwordreset-ignored": "Pamulangan kecap sandi teu kasiwer. Sugan panyadia can diatur?",
+	"passwordreset-invalidemail": "Alamat surélék teu sah",
 	"passwordreset-nodata": "Boh ngaran pamaké, boh alamat surélék teu dibéré",
 	"changeemail": "Ganti atawa pupus alamat surélék",
 	"changeemail-header": "Lengkepan ieu formulir pikeun ngarobah alamat surélék anjeun. Mun anjeun hayang mupus sakumna alamat surélék nu patalian jeung akun anjeun, kosongkeun alamat surélék nalika ngirim formulir.",

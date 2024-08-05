@@ -492,6 +492,7 @@
 	"passwordreset-emailelement": "Jeneng naraguna: \n$1\n\nTembung sandi sauntara: \n$2",
 	"passwordreset-nocaller": "Panyeluk kudu kaisi",
 	"passwordreset-nosuchcaller": "Panyeluk ora ana: $1",
+	"passwordreset-invalidemail": "Alamat layang èlèktronik ora trep",
 	"changeemail": "Owah utawa busak alamat layang-èl",
 	"changeemail-header": "Isi formulir iki saperlu salin alamat layang-èlmu. Manawa kowé péngin ngilangi gegayutané alamat layang-èl saka akunmu, kosongaké waé babagan layang-èl anyar nalika ngirim formuliré.",
 	"changeemail-no-info": "Kowé kudu mlebu log saperlu ngaksès langsung kaca iki.",

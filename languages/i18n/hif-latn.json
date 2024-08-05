@@ -498,6 +498,7 @@
 	"passwordreset-emailelement": "Sadasya ke naam: \n$1\n\nKuchh din ke khatir password: \n$2",
 	"passwordreset-nosuchcaller": "Caller exist nai hoe hai: $1",
 	"passwordreset-ignored": "Password reset ke hadle nai karaa gais hai. Saait koi provider ke nai configure karaa gais hoi?",
+	"passwordreset-invalidemail": "Email address invalid hai",
 	"passwordreset-nodata": "Na username, na email address ke dewa gais rahaa",
 	"changeemail": "E-mail address ke badlo, nai to, hatao",
 	"changeemail-header": "Aapan email ke badle ke khatir ii form ke bharo. Agar aap koi email ke aapan account se nai associate kare mangtaa hai tab form ke submit kare ke time email address ke blank chhorr do.",

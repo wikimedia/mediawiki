@@ -630,6 +630,7 @@
 	"passwordreset-nocaller": "호출자를 지정해야 합니다",
 	"passwordreset-nosuchcaller": "호출자가 존재하지 않습니다: $1",
 	"passwordreset-ignored": "비밀번호 재설정을 처리하지 못했습니다. 제공자가 구성되지 않았기 때문일 수 있습니다.",
+	"passwordreset-invalidemail": "잘못된 이메일 주소",
 	"passwordreset-nodata": "사용자 이름이나 이메일 주소가 지정되지 않았습니다",
 	"changeemail": "이메일 주소를 바꾸거나 제거하기",
 	"changeemail-header": "이메일 주소를 바꾸려면 이 양식을 채우세요. 계정에서 이메일 연동을 취소하고 싶다면 양식을 제출할 때 새 이메일 주소를 공란으로 두세요.",

@@ -536,6 +536,7 @@
 	"passwordreset-nocaller": "Ret eo merkañ anv ur galver",
 	"passwordreset-nosuchcaller": "N'eus ket eus ar galver : $1",
 	"passwordreset-ignored": "N'eus ket bet gallet adderaouekaat ar ger-termen. Marteze a-walc'h peogwir n'eus ket bet kefluniet pourvezer ebet ?",
+	"passwordreset-invalidemail": "Chomlec'h postel direizh",
 	"passwordreset-nodata": "N'eus bet lakaet anv implijer na chomlec'h postel ebet",
 	"changeemail": "Kemmañ pe dilemel ar chomlec'h postel",
 	"changeemail-header": "Leuniit ar furmskrid-mañ evit cheñch ho chomlec'h postel. Mar fell deoc'h distagañ ur chomlec'h postel bennak diouzh ho kont, lezit goullo lec'h ar chomlec'h postel nevez a-raok kadarnaat ar furmskrid.",

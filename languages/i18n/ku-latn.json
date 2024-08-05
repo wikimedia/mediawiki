@@ -459,6 +459,7 @@
 	"passwordreset-email": "Navnîşana e-nameyê:",
 	"passwordreset-emailtitle": "Detayên hesabî li ser {{GRAMMAR:oblique|{{SITENAME}}}}",
 	"passwordreset-emailelement": "Navê bikarhêner:\n$1\n\nŞîfreya niha:\n$2",
+	"passwordreset-invalidemail": "Navnîşana enameyê ya nederbasdar",
 	"changeemail": "Navnîşana e-nameya xwe biguhêre an rake",
 	"changeemail-oldemail": "Navnîşana e-nameya niha:",
 	"changeemail-newemail": "Navnîşana e-nameya nû:",

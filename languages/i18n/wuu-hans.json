@@ -536,6 +536,7 @@
 	"passwordreset-nocaller": "必须提供一个调用方",
 	"passwordreset-nosuchcaller": "调用方弗存在：$1",
 	"passwordreset-ignored": "密码重置没处理。可能没配置提供者？",
+	"passwordreset-invalidemail": "无效个电子邮件地址",
 	"passwordreset-nodata": "用户名搭电子邮件地址侪没提供",
 	"changeemail": "更改或删脱电子邮箱地址",
 	"changeemail-header": "完成此表格以更改侬个电子邮件地址。如果侬希望从侬个账户中移除任何关联个电子邮件地址，请拉提交表格时拿新电子邮件地址留空。",

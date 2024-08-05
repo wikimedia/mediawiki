@@ -401,6 +401,7 @@
 	"passwordreset-email": "Elektron pochta manzilingiz:",
 	"passwordreset-emailtitle": "{{SITENAME}}da hisob tafsilotlari",
 	"passwordreset-emailelement": "Foydalanuvchi ismi: \n$1\n\nVaqtinchalik maxfiy so'z: \n$2",
+	"passwordreset-invalidemail": "Noto‘g‘ri elektron pochta manzili",
 	"changeemail": "Elektron pochta manzilini oʻzgartirish yoki olib tashlash",
 	"changeemail-header": "Elektron pochta manzilingizni oʻzgartirish uchun ushbu formani toʻldiring. Agar siz biron bir elektron pochta manziliga havolani hisob qaydnomangizdan olib tashlamoqchi boʻlsangiz, formani joʻnatishda yangi elektron pochta manzili qismini boʻsh qoldiring.",
 	"changeemail-oldemail": "Joriy elektron pochta manzili",

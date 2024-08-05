@@ -609,6 +609,7 @@
 	"passwordreset-nocaller": "En bruger skal angives",
 	"passwordreset-nosuchcaller": "Brugeren findes ikke: $1",
 	"passwordreset-ignored": "Nulstilling af adgangskode blev ikke udført. Konfiguration af udbyder mangler måske?",
+	"passwordreset-invalidemail": "Ugyldig e-mailadresse",
 	"passwordreset-nodata": "Hverken et brugernavn eller en e-mailadresse blev angivet",
 	"changeemail": "Ændr eller fjern e-mailadresse",
 	"changeemail-header": "Udfyld denne formular for at ændre din e-mailadresse. Hvis du gerne vil fjerne tilknytningen af en e-mailadresse fra din konto, så lad den nye e-mailadresse være blank, når du sender formularen.",

@@ -679,6 +679,7 @@
 	"passwordreset-nocaller": "送信者の情報を提供する必要があります",
 	"passwordreset-nosuchcaller": "送信者が存在しません: $1",
 	"passwordreset-ignored": "パスワードのリセットが処理されませんでした。プロバイダーが設定されていない可能性があります。",
+	"passwordreset-invalidemail": "無効なメールアドレスです",
 	"passwordreset-nodata": "利用者名とメールアドレスが入力されていません",
 	"changeemail": "メールアドレスの変更または除去",
 	"changeemail-header": "あなたのメールアドレスを変更するには、このフォームを完成させます。もし、あなたのアカウントから任意のメールアドレスの関連付けを削除したい場合は、フォームの送信時に、新しいメールアドレスを空白のままにします。",

@@ -566,6 +566,7 @@
 	"passwordreset-nocaller": "Kutse saatja peab olema ära toodud",
 	"passwordreset-nosuchcaller": "Kutse saatjat pole olemas: $1",
 	"passwordreset-ignored": "Parooli lähtestamine jäi rahuldamata. Võimalik, et ühtegi pakkujat polnud häälestatud.",
+	"passwordreset-invalidemail": "Vigane e-posti aadress",
 	"passwordreset-nodata": "Ära toomata jäid nii kasutajanimi kui ka e-posti aadress",
 	"changeemail": "E-posti aadressi muutmine või eemaldamine",
 	"changeemail-header": "Täida see vorm, et muuta oma e-posti aadress. Kui soovid, et konto poleks enam seotud ühegi e-posti aadressiga, siis jäta vormi esitamisel e-posti aadressi väli tühjaks.",

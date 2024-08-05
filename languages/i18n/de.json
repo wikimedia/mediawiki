@@ -658,6 +658,7 @@
 	"passwordreset-nocaller": "Es muss ein Rufer angegeben werden",
 	"passwordreset-nosuchcaller": "Rufer ist nicht vorhanden: $1",
 	"passwordreset-ignored": "Die Passwortzurücksetzung konnte nicht verarbeitet werden. Vielleicht wurde kein Dienstanbieter konfiguriert?",
+	"passwordreset-invalidemail": "Ungültige E-Mail-Adresse",
 	"passwordreset-nodata": "Weder ein Benutzername noch eine E-Mail-Adresse wurde angegeben",
 	"changeemail": "E-Mail-Adresse ändern oder entfernen",
 	"changeemail-header": "Fülle dieses Formular vollständig aus, um deine E-Mail-Adresse zu ändern. Falls du die Zuweisung einer E-Mail-Adresse zu deinem Benutzerkonto entfernen möchtest, lasse beim Übermitteln des Formulars das Feld für die neue E-Mail-Adresse leer.",

@@ -547,6 +547,7 @@
 	"passwordreset-nocaller": "Ula demandero mustas furnisesar",
 	"passwordreset-nosuchcaller": "La demandero ne existas: $1",
 	"passwordreset-ignored": "The password reset was not handled. Maybe no provider was configured?",
+	"passwordreset-invalidemail": "Ne-valida e-posto-adreso",
 	"passwordreset-nodata": "Nek uzeronomo nek e-posto-adreso esis provizita",
 	"changeemail": "Chanjar od efacar e-postal adreso",
 	"changeemail-header": "Plenigez ita formulario por chanjar vua e-posto-adreso. Se vu volas forigar irga e-posto-adreso de vua konto, lasez la nova e-posto-adreso vakua en la formulario.",

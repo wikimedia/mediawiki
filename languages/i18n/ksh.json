@@ -486,6 +486,7 @@
 	"passwordreset-success": "Dat Paßwoot för de Metmaacher-Nommer $1 wood zeröck jesatz.",
 	"passwordreset-nocaller": "Entärne Fähler: Ene Oprohfer moß aanjejovve sin.",
 	"passwordreset-nosuchcaller": "Entärne Fähler: Dä Oprohfer „$1“ känne mer nit.",
+	"passwordreset-invalidemail": "Dat es en onjöltejje Addräß fö de <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„de eläktrohnesche Poß“\">e-mail</i>",
 	"passwordreset-nodata": "Keine Metmaacher_Nahme un kein Adräß för de <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„de eläktrohnesche Poß“\">e-mail</i> es aanjejovve woode.",
 	"changeemail": "Donn en Adräß för de <i lang=\"en\">e-mail</i> ändere udder fott schmiiße",
 	"changeemail-header": "Donn heh dat Fommulaa ußfölle, öm Ding Adräß för de <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"„de eläktrohnesche Poß“\">e-mail</i> ze ändere. Wann De en Adräß loß wähde wells, maach dat Fäld läddesch, ih dat De dat Fommolaa loß scheks.",

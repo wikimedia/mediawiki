@@ -511,6 +511,7 @@
 	"passwordreset-emailtext-user": "Paragamit $1 sa {{SITENAME}} naghahagad nin sarong pagiromdom kan detalye nin saimong panindog para sa {{SITENAME}}\n($4). An minasunod na paragamit {{PLURAL:$3|panindog iyo an|mga panindog iyo an}} na asosyado kaining e-koreong address:\n\n$2\n\n\n{{PLURAL:$3|Ining temporaryong sekretong panlaog|Ining mga temporaryong panlaog}} mapapaso sa {{PLURAL:$5|sarong aldaw|$5 mga aldaw}}.\nIka dapat na maglaog asin magpili nin sarong bagong sekretong panlaog ngunyan. Kun ibang tawo an naghimo kaining kahagadan, o kun saimo nang nagiromdoman an saimong orihinal na sekretong panlaog, asin habo mo nang ribayan ini, ipasapara mo na sana an mensaheng ini asin ipadagos mo nang gamiton an saimong lumang sekretong panlaog.",
 	"passwordreset-emailelement": "Paragamit-ngaran: \n$1\n\nTemporaryong sekretong panlaog: \n$2",
 	"passwordreset-nosuchcaller": "Mayo nin taga-apod:$1",
+	"passwordreset-invalidemail": "Dae pwede an e-surat",
 	"changeemail": "Ribayan an e-koreong address",
 	"changeemail-header": "Ribayan an panindog na e-koreong address",
 	"changeemail-no-info": "Ika dapat nakalaog na tanganing direktang makagamit kaining pahina.",

@@ -598,6 +598,7 @@
 	"passwordreset-nocaller": "Cal proveir un sol·licitant",
 	"passwordreset-nosuchcaller": "El sol·licitant no existeix: $1",
 	"passwordreset-ignored": "El restabliment de la contrasenya no s'ha realitzat. Potser no s'ha configurat cap proveïdor?",
+	"passwordreset-invalidemail": "Adreça de correu electrònic no vàlida",
 	"passwordreset-nodata": "No s'ha proporcionat cap nom d'usuari ni adreça electrònica",
 	"changeemail": "Canvia o elimina l'adreça electrònica",
 	"changeemail-header": "Empleneu aquest formulari per canviar la vostra adreça electrònica. Si voleu eliminar qualssevol associacions d’adreces electròniques del vostre compte, deixeu en blanc el camp i envieu el formulari.",

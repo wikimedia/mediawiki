@@ -518,6 +518,7 @@
 	"passwordreset-nocaller": "Paimbau musti disadiokan",
 	"passwordreset-nosuchcaller": "Paimbau indak ado: $1",
 	"passwordreset-ignored": "Pamuliahan kato sandi indak tatangani. Mungkin panyadio indak diatua?",
+	"passwordreset-invalidemail": "Alamaik surel indak sah",
 	"passwordreset-nodata": "Namo pangguno ataupun alamai surel indak diaagiahan",
 	"changeemail": "Tuka atau hapuih alamaik surel.",
 	"changeemail-header": "Langkoki formulir ko untuak maubah alamaik surel Sanak. Jiko nio mangapuih sado alah alamaik surel nan bahubuangan jo akun Sanak, kosongan alamaik surek samaso maisi formulir.",

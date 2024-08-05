@@ -595,6 +595,7 @@
 	"passwordreset-nocaller": "Musí být uveden volající",
 	"passwordreset-nosuchcaller": "Volající neexistuje: $1",
 	"passwordreset-ignored": "Žádost o nové heslo nebyla zpracována. Možná není nakonfigurován žádný poskytovatel?",
+	"passwordreset-invalidemail": "Neplatná e-mailová adresa",
 	"passwordreset-nodata": "Nebylo zadáno uživatelské jméno ani e-mailová adresa",
 	"changeemail": "Změna nebo odstranění e-mailové adresy",
 	"changeemail-header": "Vyplněním tohoto formuláře můžete změnit svou e-mailovou adresu. Pokud chcete ze svého účtu odstranit vazbu na všechny e-mailové adresy, ponechte při odeslání formuláře novou e-mailovou adresu prázdnou.",

@@ -365,6 +365,7 @@
 	"retypenew": "ພິມລະຫັດຜ່ານໃໝ່ອີກ:",
 	"resetpass_submit": "ຕັ້ງລະຫັດຜ່ານ ແລະ ເຊັນເຂົ້າ",
 	"changepassword-success": "ລະຫັດຜ່ານຂອງທ່ານຖືກປ່ຽນແລ້ວ!",
+	"passwordreset-invalidemail": "ທີ່ຢູ່ອີເມລບໍ່ຖືກຕ້ອງ",
 	"summary": "ຄຳອະທິບາຍໂດຍຫຍໍ້:",
 	"subject": "ຫົວຂໍ້:",
 	"minoredit": "ນີ້ແມ່ນການດັດແກ້ເລັກນ້ອຍ",

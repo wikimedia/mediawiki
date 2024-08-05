@@ -673,6 +673,7 @@
 	"passwordreset-nocaller": "必須提供 caller",
 	"passwordreset-nosuchcaller": "Caller 不存在：$1",
 	"passwordreset-ignored": "未處理密碼重設動作，可能尚未設定提供者？",
+	"passwordreset-invalidemail": "無效的電子郵件地址",
 	"passwordreset-nodata": "未提供使用者名稱或是電子郵件地址",
 	"changeemail": "變更或移除電子郵件地址",
 	"changeemail-header": "請填寫此表單來變更您的電子郵件地址，若您想要移除您帳號所連結的所有電子郵件地址，請於新電子郵件地址欄位留空。",

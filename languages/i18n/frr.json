@@ -495,6 +495,7 @@
 	"passwordreset-nocaller": "Diar skal en reper uunden wurd.",
 	"passwordreset-nosuchcaller": "Son reper jaft at ei: $1",
 	"passwordreset-ignored": "Det turagsaaten faan't paaswurd küd ei ferwerket wurd. Ferlicht as diar nään provider iinracht wurden?",
+	"passwordreset-invalidemail": "Detdiar E-Mail-adres docht niks",
 	"passwordreset-nodata": "Diar wiar nään brükernööm an uk nian e-mail-adres.",
 	"changeemail": "Feranre of strik det E-Mail-adres",
 	"changeemail-header": "Fal det formulaar ütj, wan dü din E-Mail-adres feranre wel. Wan dü nian adres uundu wel, läät det fial man leesag.",

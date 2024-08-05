@@ -546,6 +546,7 @@
 	"passwordreset-nocaller": "Un appellator debe esser fornite",
 	"passwordreset-nosuchcaller": "Appellator non existe: $1",
 	"passwordreset-ignored": "Le reinitialisation del contrasigno non ha essite realisate. Es possibile que nulle fornitor ha essite configurate?",
+	"passwordreset-invalidemail": "Adresse de e-mail invalide",
 	"passwordreset-nodata": "Ni un nomine de usator ni un adresse de e-mail ha essite fornite",
 	"changeemail": "Cambiar o remover adresse de e-mail",
 	"changeemail-header": "Completa iste formulario pro cambiar tu adresse de e-mail. Si tu vole remover le association de omne adresse de e-mail ab tu conto, lassa le campo pro le nove adresse de e-mail vacue quando tu submitte le formulario.",

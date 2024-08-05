@@ -504,6 +504,7 @@
 	"passwordreset-emailelement": "সদস্যনাম: \n$1\n\nঅস্থায়ী গুপ্তশব্দ: \n$2",
 	"passwordreset-success": "আপুনি পাছৱৰ্ড ৰিছেটৰ অনুৰোধ জনাইছে।",
 	"passwordreset-success-info": "আপুনি দাখিল কৰা সবিশেষ: $1",
+	"passwordreset-invalidemail": "অগ্ৰহণযোগ্য ইমেইল ঠিকনা",
 	"changeemail": "ই-মেইল ঠিকনা সলনি নাইবা বিলোপ কৰক",
 	"changeemail-header": "একাউণ্টৰ ই-মেইল ঠিকনা সলনি কৰক",
 	"changeemail-no-info": "এই পৃষ্ঠাটোত প্ৰৱেশাধিকাৰ পাবলৈ আপুনি লগ্‌ ইন কৰিব লাগিব।",

@@ -466,6 +466,7 @@
 	"passwordreset-success": "توھان ڳجهولفظ ٻيھر مرتب ڪرڻ جي درخواست ڪئي آھي.",
 	"passwordreset-success-info": "توھان جيڪي تفصيل اماڻيا اھي ھي آھن: $1",
 	"passwordreset-nosuchcaller": "ڪالر موجود ناهي: $1",
+	"passwordreset-invalidemail": "ناقابلِڪار ايميل پتو",
 	"changeemail": "ايميل پتو ھٽايو يا بدلايو",
 	"changeemail-oldemail": "هاڻوڪو ايميل پتو:",
 	"changeemail-newemail": "نئون ايميل پتو:",

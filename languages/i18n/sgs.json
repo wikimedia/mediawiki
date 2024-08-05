@@ -384,6 +384,7 @@
 	"passwordreset-emailtext-ip": "Kažėkas (mosietās Tamsta, ėš IP adresa $1) ožprašė pamainītė slaptažuodi tinklapie {{SITENAME}} ($4). Tou nauduotuojė {{PLURAL:$3|poslapis|poslapio|poslapē|poslapiu}}\nsorištė so tou al. pašta adreso ī:\n\n$2\n\n{{PLURAL:$3|Tas čiesėškos slaptažuodis|čiesėški slaptažuodē}} bengs vēktė pu {{PLURAL:$5|dėinuos|$5 dėinū}}.\nTamsta prisijonkėt ė pamainīkėt sava slaptažuodi. Jēb kas tā kėts padirba tou prašīma, aba jēb atminiet sava sena slaptažuodi, ta galėt nakrēptė atėdies i tou gromata ė jongtėis so sava seno slaptažuodio.",
 	"passwordreset-emailtext-user": "Nauduotuos $1 ėš {{SITENAME}} ožprašė, ka būtom atgrōžints Tamstas {{SITENAME}} slaptažuodis ($4). Ton nauduotuoja {{PLURAL:$3|paskīra|paskīras}} prigol prī ton al. pašta adresa:\n\n$2\n\n{{PLURAL:$3|Tas laikėns slaptažuodis|Tėi laikėni slaptažuodē}} bengs vēktė ož {{PLURAL:$5|vėinuos dėinuos|$5 dėinū}}.\n\nTamsta galat prisijongtė ė pasirinktė nauja slaptažuodi. Jēb kon tās kėts ožprašė šėton, aba jēb atmėniet sava slaptažuodi ė nabnuorat anou mainītė, ta galat nakrēptė diemesė i šėton gruomata ė pu senuobie nauduotė sava slaptažuodi.",
 	"passwordreset-emailelement": "Nauduotuos:\n$1\n\nČiesėšks slaptažuodis:\n$2",
+	"passwordreset-invalidemail": "Bluogs alektruonėnė pašta adresos",
 	"changeemail": "Keistė aba trintė el. pašta adresa",
 	"changeemail-no-info": "Ka ētomiet tėisē ont tou poslapė, Tamstā rēk prisijongtė.",
 	"changeemail-oldemail": "Vielībs el. pašta adresosː",

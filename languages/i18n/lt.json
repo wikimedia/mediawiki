@@ -567,6 +567,7 @@
 	"passwordreset-nocaller": "Skambinantysis turi būti nurodytas",
 	"passwordreset-nosuchcaller": "Skambinantysis neegzistuoja: $1",
 	"passwordreset-ignored": "Slaptažodžio atkūrimas nebuvo atliktas. Gal nebuvo sukonfigūruotas joks paslaugų tiekėjas?",
+	"passwordreset-invalidemail": "Neteisingas el. pašto adresas",
 	"passwordreset-nodata": "Vartotojo vardas ir el. paštas buvo nepateikti",
 	"changeemail": "Pakeisti ar pašalinti el. pašto adresą",
 	"changeemail-header": "Užpildykite šią formą, kad pakeistumėte savo el. pašto adresą. Jeigu norite pašalinti bet kurio el. pašto adreso susiejimą su savo paskyra, palikite naujojo el. pašto adreso lauką tuščią, kai pateiksite formą.",

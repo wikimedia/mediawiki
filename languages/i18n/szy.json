@@ -476,6 +476,7 @@
 	"passwordreset-nocaller": "manakanca nipabeli caller",
 	"passwordreset-nosuchcaller": "Caller inayi’: $1",
 	"passwordreset-ignored": "caay pilisimet miliyaw patizeng mima. hakay caay henay misetin nipabeliay?",
+	"passwordreset-invalidemail": "la’cusay a imyiyo(email) puenengan",
 	"passwordreset-nodata": "caay nipabeli misaungayay a kalungangan saca ku imyiyo(email) puenengan",
 	"changeemail": "misumad saca misipu imyiyo(email) puenengan",
 	"changeemail-header": "pisuliten tina aazihan cudad amisumad imyiyo(email) puenengan nu misu, amahica misipu kisu mumisuay a canghaw sa masasiketay a sacahamin imyiyo(email) puenengan, akapisulit i imyiyo(email) puenengan langat-pisinga’an.",

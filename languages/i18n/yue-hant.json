@@ -561,6 +561,7 @@
 	"passwordreset-success": "您畀要求重新設過一個密碼。",
 	"passwordreset-success-details-generic": "如果你交嘅資料仲有效，你會收到一封重設密碼嘅電郵。如果你冇收到呢封電郵，你可以睇下[[mw:Special:MyLanguage/Help:Reset_password|重設密碼嘅說明頁]]或者一陣再試過。<strong>為咗防止濫用，喺短時間內只可以作出一定次數嘅重設密碼請求。每個有效戶口每{{PLURAL:$1|個鐘|$1個鐘}}只會寄送一封重設密碼嘅郵件。</strong>",
 	"passwordreset-success-info": "你提交嘅詳情係：$1",
+	"passwordreset-invalidemail": "無效嘅電郵地址",
 	"passwordreset-nodata": "漏咗畀用戶名同電郵地址",
 	"changeemail": "更改或者剷走電郵地址",
 	"changeemail-header": "填好呢份表去改戶口電郵地址。若果你想剷走你戶口個電郵地址，填表時請將電郵地址欄留空。",

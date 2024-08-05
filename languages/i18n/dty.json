@@ -451,6 +451,7 @@
 	"passwordreset-email": "इमेल ठेगाना:",
 	"passwordreset-emailtitle": "{{SITENAME}}मा खाता विवरण",
 	"passwordreset-emailelement": "प्रयोगकर्ताको नाम: \n$1\n\nअस्थाई पासवर्ड: \n$2",
+	"passwordreset-invalidemail": "अबैध ई-मेल ठेगाना",
 	"changeemail": "इमेल ठेगाना बदेल वा हटा",
 	"changeemail-header": "तमरो इमेल ठेगाना बदेल्लाइ एइ फाराम पुराइ भरऽ। यदि तम तमरा खाता बठेइ कसै लै इमेल ठेगाना सितोऽ सम्बन्ध हटौन चाहन्छऽ भण्या, फाराम बुजौन्ज्याँ नौलो इमेल ठेगाना भण्ण्या ठौर खालि छाण्याऽ।",
 	"changeemail-oldemail": "अईलको इमेल-ठेगाना:",

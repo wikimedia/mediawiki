@@ -488,6 +488,7 @@
 	"passwordreset-email": "تیرنشوݩ ٱنجومانامٱ",
 	"passwordreset-emailtitle": "جوزيات هساو میٛن {{SITENAME}}",
 	"passwordreset-emailelement": "نوم کاریاری: \n$1\n\nرازیناْ گوڌٱشتن موڤٱقٱتی: \n$2",
+	"passwordreset-invalidemail": "تیرنشوݩ ٱنجوماناماْ نادوروسد",
 	"changeemail": "آلشد کردن یا ڤورداشتن تیرنشوݩ ٱنجوماناماْ",
 	"changeemail-oldemail": "تیرنشوݩ ٱنجوماناماْ ایسنی:",
 	"changeemail-newemail": "تیرنشوݩ ٱنجوماناماْ تازاْ:",

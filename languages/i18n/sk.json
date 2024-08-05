@@ -573,6 +573,7 @@
 	"passwordreset-nocaller": "Musí byť uvedený volajúci",
 	"passwordreset-nosuchcaller": "Volajúci neexistuje: $1",
 	"passwordreset-ignored": "Žiadosť o nové heslo nebola spracovaná. Možno nie je nakonfigurovaný žiaden poskytovateľ?",
+	"passwordreset-invalidemail": "Neplatná e-mailová adresa",
 	"passwordreset-nodata": "Nebolo zadané používateľské meno ani e-mailová adresa",
 	"changeemail": "Zmeniť alebo odstrániť e-mailovú adresu",
 	"changeemail-header": "Vyplňte tento formulár, ak chcete zmeniť svoju e-mailovú adresu. Ak chcete odstrániť priradenie akejkoľvek e-mailovej adresy k vášmu účtu, nechajte pri odosielaní formulára e-mailovú adresu nevyplnenú",

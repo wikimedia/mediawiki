@@ -514,6 +514,7 @@
 	"passwordreset-emailelement": "Gebruikersnaam: \n$1\n\nTydelike wagwoord: \n$2",
 	"passwordreset-success": "Jy het 'n wagwoordterugstelling versoek.",
 	"passwordreset-success-info": "Die besonderhede wat jy ingedien het, is: $1",
+	"passwordreset-invalidemail": "Ongeldige e-posadres",
 	"passwordreset-nodata": "Daar is geen gebruikernaam of e-posadres gegee nie",
 	"changeemail": "Verander of verwyder e-posadres",
 	"changeemail-header": "Voltooi hierdie vorm om jou e-posadres te verander. As jy die assosiasie van enige e-posadres van jou rekening wil verwyder, los die nuwe e-posadres leeg wanneer jy die vorm indien.",

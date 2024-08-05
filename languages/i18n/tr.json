@@ -654,6 +654,7 @@
 	"passwordreset-nocaller": "Bir ziyaretçi sağlanmalıdır",
 	"passwordreset-nosuchcaller": "Ziyaretçi mevcut değil: $1",
 	"passwordreset-ignored": "Parola sıfırlama işlenmedi. Belki herhangi bir sağlayıcı yapılandırılmamıştır?",
+	"passwordreset-invalidemail": "Geçersiz e-posta adresi",
 	"passwordreset-nodata": "Ne bir kullanıcı adı ne de bir e-posta adresi verildi",
 	"changeemail": "E-posta adresini değiştir veya çıkar",
 	"changeemail-header": "E-posta adresinizi değiştirmek için bu formu doldurun. Eğer e-posta adresini hesabınızdan kaldırmak istiyorsanız, formu gönderirken e-posta adresi bölümünü boş bırakın.",

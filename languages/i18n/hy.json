@@ -493,6 +493,7 @@
 	"passwordreset-email": "Էլ-փոստի հասցեն՝",
 	"passwordreset-emailtitle": "{{SITENAME}} հաշվի մանրամասները",
 	"passwordreset-emailelement": "Մասնակցային անունը՝ \n$1\n\nԺամանակավոր գաղտնաբառը՝ \n$2",
+	"passwordreset-invalidemail": "Անվավեր էլ․ հասցե",
 	"passwordreset-nodata": "Մասնակցային անուն կամ էլ․ հասցե նշված չէ",
 	"changeemail": "Փոխել կամ հեռացնել էլ. հասցեն",
 	"changeemail-header": "Լրացրեք այս ձևը ձեր էլ․ հասցեն փոփոխելու համար։ Եթե ցանկանում եք որևէ էլ․ հասցե կցված չլինի ձեր հաշվին, նոր էլ․ հասցեի դաշտը թողեք դատարկ։",

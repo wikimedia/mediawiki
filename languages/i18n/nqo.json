@@ -492,6 +492,7 @@
 	"passwordreset-success-info": "ߌ ߣߊ߬ ߝߊߙߊ߲ߝߊ߯ߛߟߌ ߡߍ߲ ߞߘߊߡߊ߫ ߟߊ߫ ߏ߬ ߟߋ ߦߋ߫: $1 ߘߌ߫",
 	"passwordreset-nocaller": "ߞߟߌߟߌߟߊ ߦߋ߫ ߡߊߛߐ߫ ߟߋ߬",
 	"passwordreset-nosuchcaller": "ߞߟߌߟߌߟߊ ߕߴߦߋ߲߬ $1",
+	"passwordreset-invalidemail": "ߢߎߡߍߙߋ߲߫ ߛߊ߲߬ߓߊ߬ߕߐ߮ ߓߍ߲߬ߓߊߟߌ",
 	"changeemail": "ߢߎߡߍߙߋ߲߫ ߞߏ߲ߘߏ ߡߊߝߊ߬ߟߋ߲߬ ߥߟߊ߫ ߞߵߊ߬ ߛߋ߲߬ߓߐ߫",
 	"changeemail-no-info": "ߌ ߦߴߌ ߜߊ߲߬ߞߎ߲߫ ߡߎߣߎ߲߬߸ ߞߊ߬ ߛߋ߫ ߞߐߜߍ ߣߌ߲߬ ߡߊߛߐ߬ߘߐ߲߬ ߠߊ߫ ߞߋߟߋ߲ߘߌ߫.",
 	"changeemail-oldemail": "ߕߋ߲߭ߕߋ߲߭ ߢߎߡߍߙߋ߲߫ ߞߏ߲ߘߏ",

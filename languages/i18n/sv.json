@@ -627,6 +627,7 @@
 	"passwordreset-nocaller": "En användare måste anges",
 	"passwordreset-nosuchcaller": "Användare finns inte: $1",
 	"passwordreset-ignored": "Lösenordsåterställningen hanterades inte. Kanske ingen leverantör har konfigurerats?",
+	"passwordreset-invalidemail": "Ogiltig e-postadress",
 	"passwordreset-nodata": "Varken ett användarnamn eller en e-postadress angavs",
 	"changeemail": "Ändra eller ta bort e-postadress",
 	"changeemail-header": "Fyll i detta formulär för att ändra din e-postadress. Om du vill ta bort en associerad e-postadress från ditt konto lämnar du fältet för ny e-postadress tomt när formuläret skickas in.",

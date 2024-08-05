@@ -483,6 +483,7 @@
 	"passwordreset-nocaller": "Feumaidh tu gairmear a chur ann",
 	"passwordreset-nosuchcaller": "Chan eil an gairmear seo ann: $1",
 	"passwordreset-ignored": "Cha b’ urrainn dhuinn ath-shuidheachadh an fhacail-fhaire a làimhseachadh. Dh’fhaoidte nach deach solaraiche a rèiteachadh.",
+	"passwordreset-invalidemail": "Seòladh puist-d mì-dhligheach",
 	"passwordreset-nodata": "Cha deach ainm-cleachdaiche no seòladh puist-d a thoirt seachad",
 	"changeemail": "Atharraich no thoir air falbh an seòladh puist-d",
 	"changeemail-header": "Lìon am foirm seo a dh’atharrachadh an t-seòlaidh phuist-d agad. Ma tha thu airson an co-cheangal eadar post-d sam bith is an cunntas agad a thoirt air falbh, fàg an seòladh ùr bàn nuair a chuireas tu am foirm.",

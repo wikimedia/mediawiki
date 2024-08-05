@@ -434,6 +434,7 @@
 	"passwordreset-email": "Нишонаи почтаи электронӣ:",
 	"passwordreset-emailtitle": "Мушаххасоти ҳисоб дар {{SITENAME}}",
 	"passwordreset-emailelement": "Номи корбарӣ: \n$1\n\nГузарвожаи муваққатӣ: \n$2",
+	"passwordreset-invalidemail": "Нишонаи нодурусти почтаи электронӣ",
 	"changeemail": "Тағийр ё ҳазфи нишонаи email",
 	"changeemail-oldemail": "Нишонаи почтаи кунунӣ:",
 	"changeemail-newemail": "Нишонаи почтаи нав:",

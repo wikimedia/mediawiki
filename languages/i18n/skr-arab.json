@@ -395,6 +395,7 @@
 	"passwordreset-success-info": "تساں جہڑیاں تفصیلاں جمع کرائیاں: $1",
 	"passwordreset-nocaller": "کالر دا فراہم کیتا ون٘ڄݨ ضروری ہے",
 	"passwordreset-nosuchcaller": "کالر موجود کائنی: $1",
+	"passwordreset-invalidemail": "ای۔میل پتہ درست کائنی",
 	"passwordreset-nodata": "نہ تاں ورتݨ ناں تے نہ ہی ای میل پتہ فراہم کیتا ڳیا ہائی۔",
 	"changeemail": "ای میل پتہ وٹاؤ یا ہٹاؤ",
 	"changeemail-no-info": "ایں ورقے تے براہ راست رسائی سانگے تہاکوں لاگ ان تھیوݨاں ضروری ہے۔",

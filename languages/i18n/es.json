@@ -778,6 +778,7 @@
 	"passwordreset-nocaller": "Debes proporcionar un interlocutor",
 	"passwordreset-nosuchcaller": "El interlocutor no existe: $1",
 	"passwordreset-ignored": "No se logró el reestablecimiento de la contraseña. ¿Tal vez no se configuró un proveedor?",
+	"passwordreset-invalidemail": "Dirección de correo electrónico no válida.",
 	"passwordreset-nodata": "No se ha proporcionado ni un nombre de usuario ni una dirección de correo electrónico",
 	"changeemail": "Cambiar o eliminar la dirección de correo electrónico",
 	"changeemail-header": "Completa este formulario para cambiar tu dirección de correo electrónico. Si quieres eliminar la asociación de cualquier dirección de correo electrónico con tu cuenta, deja en blanco la nueva dirección de correo electrónico cuando envíes el formulario.",

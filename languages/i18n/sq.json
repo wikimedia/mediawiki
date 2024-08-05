@@ -544,6 +544,7 @@
 	"passwordreset-emailtext-require-email": "Por, nëse nuk e bëre ti këtë kërkesë e do të ndalosh mesazhet elektronike e pa kërkuara, mund të duash të ndryshosh parapëlqimet e mesazheve elektronike te $1.\n\nMund të kërkosh që për një ndryshim fjalëkalimi të duhen dhe emri i përdoruesit dhe adresa elektronike. Kjo mund të ulë numrin e rasteve të tilla.",
 	"passwordreset-nocaller": "Duhet të sigurohet një telefonues",
 	"passwordreset-nosuchcaller": "Telefonuesi nuk ekziston: $1",
+	"passwordreset-invalidemail": "Adresë e-mail-i e pavlefshme",
 	"passwordreset-nodata": "Nuk është dhënë as emri i përdoruesit e as adresa elektronike",
 	"changeemail": "Ndrysho ose hiq postën elektronike",
 	"changeemail-header": "Plotësoni këtë formular për të ndryshuar adresën tuaj të postës elektronike. Nëse do të donit për të hequr ndërlidhjen e ndonjë adrese email nga llogaria juaj, lëreni bosh adresën e re të email-it kur të dorëzoni formularin.",

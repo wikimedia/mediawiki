@@ -256,6 +256,7 @@
 	"resetpass-submit-cancel": "Lopeta",
 	"passwordreset-username": "Käyttäjänimi:",
 	"passwordreset-email": "E-postiatressi:",
+	"passwordreset-invalidemail": "Virheellinen e-postiatressi",
 	"changeemail": "Muuta eli ota poies e-postiatressi",
 	"changeemail-newemail": "Uusi e-postiatressi:",
 	"changeemail-password": "Sinun {{SITENAME}}-salasana:",

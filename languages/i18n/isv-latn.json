@@ -3883,7 +3883,7 @@
 	"skin-action-delete": "Odstraniti",
 	"skin-action-move": "Prěimenovati",
 	"skin-json-warning": "@PRĚDUPRĚDŽENJE",
-	"skin-json-warning-message": "Tuto ne jest API, služi samo za izjavjenje i odstranjenje pogrěšek v softveru! Ne upotrěbite go v gadžetah ili v produktivym kodu.",
+	"skin-json-warning-message": "Tuto ne jest API, služi samo za izjavjenje i odstranjenje pogrěšek v softveru! Ne upotrěbite go v gadžetah ili v produktivnom kodu.",
 	"parsoid-stash-rate-limit-error": "Skladovanje neuspěšno iz pričiny prěvyšenja limit brziny. Prosimo, poprobujte pozdněje.",
 	"parsoid-resource-limit-exceeded": "Prěvyšeny limit srědstv Parsoid’a: $1",
 	"parsoid-revision-access": "Parsoid ne imaje dostup k tutoj versiji: $1",

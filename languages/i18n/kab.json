@@ -485,6 +485,7 @@
 	"passwordreset-emailtext-ip": "Yiwen (Ahat kečč/kem, seg tansa IP $1) yessutered awennez n awal n uɛaddi i {{SITENAME}} ($4). {{PLURAL:$3|Amiḍan n useqdac agi yeqqen|imiḍanen n iseqdacen agi qqenen}} s tansa e-mail agi :\n\n$2\n\n{{PLURAL:$3|Awal n uɛaddi uɛḍil agi ad i aff tasewti-s|Awalen n uɛaddi uɛḍilen agi ad affen taseweti nsen}} deg {{PLURAL:$5|yiwen ass|$5 ussan}}. Ilaq tura ad qqeneḍ dɣa ad freneḍ awal n uɛaddi amaynut. Lukan mačči d kečč/kem i xedmen asuter agi, naɣ tecfiḍ tura i awal n uɛaddi inek/inem, tzemreḍ ad eǧǧeḍ izen agi.",
 	"passwordreset-emailtext-user": "Aseqdac $1 ɣef {{SITENAME}} yessutered awennez n awal n uɛaddi i {{SITENAME}} ($4). {{PLURAL:$3|Amiḍan n useqdac agi yeqqen|imiḍanen n iseqdacen agi qqenen}} s tansa e-mail agi :\n\n$2\n\n{{PLURAL:$3|Awal n uɛaddi uɛḍil agi ad i aff tasewti-s|Awalen n uɛaddi uɛḍilen agi ad affen taseweti nsen}} deg {{PLURAL:$5|yiwen ass|$5 ussan}}. Ilaq tura ad qqeneḍ dɣa ad freneḍ awal n uɛaddi amaynut. Lukan mačči d kečč/kem i xedmen asuter agi, naɣ tecfiḍ tura i awal n uɛaddi inek/inem, tzemreḍ ad eǧǧeḍ izen agi.",
 	"passwordreset-emailelement": "Isem n useqdac : \n$1\n\nAwal n uɛddi akudan : \n$2",
+	"passwordreset-invalidemail": "Tansa imayl d tarameɣtut",
 	"changeemail": "Beddel neɣ kkes tansa n imayl",
 	"changeemail-header": "Beddel tansa n e-mail n umiḍan",
 	"changeemail-no-info": "Ilaq ad qqeneḍ iwakken ad ẓṛeḍ asebter agi.",

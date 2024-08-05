@@ -529,6 +529,7 @@
 	"passwordreset-success-info": "Jūsu iesniegtā informācija ir: $1",
 	"passwordreset-nocaller": "Jānorāda izsaucējs",
 	"passwordreset-nosuchcaller": "Izsaucējs nepastāv: $1",
+	"passwordreset-invalidemail": "Nederīga e-pasta adrese",
 	"passwordreset-nodata": "Netika norādīts ne lietotājvārds, ne e-pasta adrese",
 	"changeemail": "Mainīt vai noņemt e-pasta adresi",
 	"changeemail-header": "Mainīt konta e-pasta adresi",

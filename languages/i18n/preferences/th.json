@@ -203,7 +203,7 @@
 	"prefs-advancedwatchlist": "ตัวเลือกขั้นสูง",
 	"tog-extendwatchlist": "ขยายรายการเฝ้าดูให้แสดงการเปลี่ยนแปลงทั้งหมด ไม่เพียงการเปลี่ยนแปลงล่าสุด",
 	"tog-watchlistunwatchlinks": "เพิ่มเครื่องหมายเลิกเฝ้าดู/เฝ้าดูโดยตรง ({{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}}) ลงในหน้าที่เฝ้าดูที่มีการเปลี่ยนแปลง (ต้องการจาวาสคริปต์เพื่อเปิดปิดการใช้งาน)",
-	"rcfilters-watchlist-preference-label": "ใช้อินเตอร์เฟซที่ไม่ใช้ JavaScript",
+	"rcfilters-watchlist-preference-label": "ใช้อินเทอร์เฟซที่ไม่ใช้ JavaScript",
 	"rcfilters-watchlist-preference-help": "โหลด[[{{#special:Watchlist}}|รายการเฝ้าดู]]โดยไม่มีการค้นหาตัวกรองหรือฟังก์ชันการเน้น",
 	"prefs-changeswatchlist": "การเปลี่ยนแปลงที่แสดง",
 	"tog-watchlisthideminor": "ซ่อนการแก้ไขเล็กน้อยจากรายการเฝ้าดู",

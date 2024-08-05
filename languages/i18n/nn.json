@@ -528,6 +528,7 @@
 	"passwordreset-nocaller": "Du må oppgje ein brukar",
 	"passwordreset-nosuchcaller": "Brukaren finst ikkje: $1",
 	"passwordreset-ignored": "Passordtilbakestillinga vart ikkje handsama. Kanskje ingen leverandør er vorten konfigurert?",
+	"passwordreset-invalidemail": "Ugyldig e-postadresse",
 	"passwordreset-nodata": "Verken eit brukarnamn eller ei e-postadresse vart oppgjeve",
 	"changeemail": "Endre eller fjern e-postadresse",
 	"changeemail-header": "Fyll ut dette skjemaet for å endre e-postadressa di. Ynskjer du å fjerne tilknytinga ei e-postadresse har til kontoen din, lat feltet for ny e-postadresse stå tomt når du sender inn skjemaet.",

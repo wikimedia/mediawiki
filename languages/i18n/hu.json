@@ -597,6 +597,7 @@
 	"passwordreset-nocaller": "A hívó megadása kötelező",
 	"passwordreset-nosuchcaller": "A hívó nem létezik: $1",
 	"passwordreset-ignored": "A jelszó-visszaállítás nem lett kezelve. Talán nincs konfigurálva szolgáltató?",
+	"passwordreset-invalidemail": "Érvénytelen e-mail-cím",
 	"passwordreset-nodata": "Se felhasználónevet, sem e-mail-címet nem adtál meg",
 	"changeemail": "E-mail-cím megváltoztatása vagy eltávolítása",
 	"changeemail-header": "Töltsd ki ezt az űrlapot az e-mail-címed megváltoztatásához. Ha nem szeretnél semmilyen e-mail-címet kapcsolni a fiókodhoz, hagyd üresen az új e-mail-cím mezőjét az űrlap elküldésekor.",

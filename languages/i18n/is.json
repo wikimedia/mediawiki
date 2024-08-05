@@ -535,6 +535,7 @@
 	"passwordreset-success": "Þú hefur beðið um endurstillingu aðgangsorðs.",
 	"passwordreset-success-info": "Upplýsingarnar sem þú sendir eru: $1",
 	"passwordreset-emailtext-require-email": "Hins vegar, ef þú bjóst ekki til þessa beiðni og vilt koma í veg fyrir óumbeðna tölvupósta gætir þú viljað uppfæra tölvupóstvalkostina þína á $1.\nÞú getur krafist bæði notandanafns og tölvupóstfangs til að framleiða tölvupósta fyrir endurstillingu aðgangsorðs. Þetta gæti dregið úr fjölda slíkra atvika.",
+	"passwordreset-invalidemail": "Ógilt tölvupóstfang",
 	"passwordreset-nodata": "Hvorki notandanafn né tölvupóstfang var veitt",
 	"changeemail": "Breyta eða fjarlægja tölvupóstfang",
 	"changeemail-header": "Fylltu út þetta eyðublað til að breyta tölvupóstfanginu þínu. Ef þú vilt fjarlægja tengingu einhvers tölvupóstfangs frá aðganginum þínum skalt þú skilja nýja tölvupóstfangið eftir autt þegar þú sendir eyðublaðið.",

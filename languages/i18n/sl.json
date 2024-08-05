@@ -544,6 +544,7 @@
 	"passwordreset-nocaller": "Podati morate klicatelja",
 	"passwordreset-nosuchcaller": "Klicatelj ne obstaja: $1",
 	"passwordreset-ignored": "Ponastavitev gesla ni bila izvedena. Morda ni nastavljen noben ponudnik?",
+	"passwordreset-invalidemail": "Neveljavni e-poštni naslov",
 	"passwordreset-nodata": "Navedli niste ne uporabniškega imena ne e-poštnega naslova",
 	"changeemail": "Sprememba ali odstranitev e-poštnega naslova",
 	"changeemail-header": "Izpolnite obrazec za spremembo vašega e-poštnega naslova. Če želite s svojega računa odstraniti povezave z vsemi e-poštnimi naslovi, pustite polje za nov e-poštni naslov med potrjevanje obrazca prazno.",

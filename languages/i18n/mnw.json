@@ -416,6 +416,7 @@
 	"passwordreset-email": "ဌာန်အဳမေလ်တအ်",
 	"passwordreset-emailtitle": "ခၞံကၠောန်အကံက်သွက်{{SITENAME}}",
 	"passwordreset-emailelement": "ယၟုညးလွပ်:\n$1\n\nမက္ခရ်ပၞုက် ယာယဳ:\n$2",
+	"passwordreset-invalidemail": "အဳမေလ် ဟွံလုပ်အဝေါင်",
 	"changeemail": "လှာဲ ဟွံသေၚ် ပတိတ် ဌာန်ဒတန် အဳမေလ်",
 	"changeemail-oldemail": "ဌာန်ဒတန် အဳမေလ် သုၚ်စောဲလၟုဟ်:",
 	"changeemail-newemail": "ဌာန်ဒတန်အဳမေလ်တၟိ:",

@@ -583,6 +583,7 @@
 	"passwordreset-nocaller": "Vokanto devas esti provizita",
 	"passwordreset-nosuchcaller": "Vokanto ne ekzistas: $1",
 	"passwordreset-ignored": "La pasvorta reensignado ne estis pritraktita. Eble neniu provizanto estis formita?",
+	"passwordreset-invalidemail": "Nevalida retpoŝta adreso",
 	"passwordreset-nodata": "Nek uzantnomo nek retpoŝta adreso estis provizita",
 	"changeemail": "Ŝanĝi aŭ forigi retpoŝtadreson",
 	"changeemail-header": "Plenigu ĉi tiun formularon por ŝanĝi vian retpoŝtadreson. Se vi volas forigi la difinon de retpoŝtadreso por via uzantokonto, lasu la kampon por la nova retpoŝtadreso malplena ĉe la transigo.",

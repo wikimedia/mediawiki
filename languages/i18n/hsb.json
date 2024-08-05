@@ -491,6 +491,7 @@
 	"passwordreset-success": "Sy sej wróćostajenje hesła žadał(a).",
 	"passwordreset-success-info": "Wot tebje sposrědkowane podrobnosće su: $1",
 	"passwordreset-emailtext-require-email": "Jeli njejsy tutu próstwu wotpósłał(a) a chceš nježadanym mejlkam zadźěwać, móžeš swoje mejlowe opcije přez\n$1\naktualizować.\nMóžeš postajić, zo stej wužiwarske mjeno kaž tež mejlowa adresa trěbnej, zo by so mejlka za wróćostajenje hesła wupósłała. Tole móže ličbu tajkich podawkow znižeć.",
+	"passwordreset-invalidemail": "Njepłaćiwa mejlkowa adresa",
 	"passwordreset-nodata": "Ani wužiwarske mjeno ani mejlkowa adresa stej so zapodałoj",
 	"changeemail": "E-mejlowu adresu změnić abo wotstronić",
 	"changeemail-header": "Wupjelń tutón formular, zo by swoju e-mejlowu adresu změnił. Jeli chceš zwisk e-mejloweje adresy ze swijim kontom wotstronić,  wostaj polo e-mejloweje adresy prózdne, hdyž formular preč sćeleš.",

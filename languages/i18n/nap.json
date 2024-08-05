@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"AbsolutelyBee",
 			"Amire80",
 			"C.R.",
 			"Candalua",
@@ -523,6 +524,7 @@
 	"passwordreset-nocaller": "Nu chiammate s'avess'a dà",
 	"passwordreset-nosuchcaller": "'O chiammante nun esiste: $1",
 	"passwordreset-ignored": "'A reimpustazione d' 'a password nun s'è gistita. Fosse ca nisciunu fornitore è stato mpustato?",
+	"passwordreset-invalidemail": "Indirizzo 'e posta email nun valido",
 	"passwordreset-nodata": "Nun è stato fornito né nomme utente né indirizzo 'e posta email",
 	"changeemail": "Cagna o lèva l'indirizzo e-mail",
 	"changeemail-header": "Ghienchete stu modulo pe' puté cagnà 'o indirizzo e-mail d' 'o vuosto. Si vuje vulite luvà e 'o scucchià l'associazione 'e cocche cunto mail d' 'o cunto vuosto, lassate 'o cunto e-mail nuovo abbacante quanno mannarrate stu modulo.",
@@ -3014,7 +3016,7 @@
 	"feedback-thanks": "Grazie! 'O feedback vuosto s'è mpizzato dint' 'a paggena \"[$2 $1]\".",
 	"feedback-thanks-title": "Ve ringraziammo!",
 	"feedback-useragent": "Aggente utente:",
-	"searchsuggest-search": "Truova dinto {{SITENAME}}",
+	"searchsuggest-search": "Truove dinto {{SITENAME}}",
 	"searchsuggest-containing": "Truova 'na paggena ca tène",
 	"api-clientside-error-timeout": "'O server nun rispunnette dint'a 'o tiempo stabbelito.",
 	"api-error-badtoken": "Errore interno: 'O token nun è buono.",

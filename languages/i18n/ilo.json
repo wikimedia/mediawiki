@@ -502,6 +502,7 @@
 	"passwordreset-nocaller": "Nasken a maited ti maysa nga agtawtawag",
 	"passwordreset-nosuchcaller": "Awan ti agtawtawag: $1",
 	"passwordreset-ignored": "Saan a natengngel ti panangisaad manen ti kontrasenias. Mabalin a saan a nakompigura ti mangited?",
+	"passwordreset-invalidemail": "Imbalido nga adres ti esurat",
 	"passwordreset-nodata": "Saan a naited ti nagan ti agar-aramat wenno maysa nga adres ti esurat",
 	"changeemail": "Sukatan wenno ikkaten ti adres ti esurat",
 	"changeemail-header": "Kompletuen daytoy a porma tapno masukatan ti adres ti esuratmo. No kayatmo a maikkat ti pannakainaig iti ania man nga adres ti esurat manipud iti pakabilangam, ibati a blanko ti baro nga adres ti esurat no ited ti porma.",

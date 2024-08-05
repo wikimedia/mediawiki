@@ -552,6 +552,7 @@
 	"passwordreset-nocaller": "Un chi ciàmma ti gh'æ da dâlo",
 	"passwordreset-nosuchcaller": "O ciamànte o no l'exìste: $1",
 	"passwordreset-ignored": "A reinpostaçión da pòula segrétta a no l'é stæta gestîa. Fòscia n'é stæto configuòu nisciùn provider?",
+	"passwordreset-invalidemail": "Addresso e-mail non vallido",
 	"passwordreset-nodata": "No l'é stæto fornîo ni in nómme uténte ni in indirìsso de pòsta eletrònica",
 	"changeemail": "Càngia ò lêva l'indirìsso e-mail",
 	"changeemail-header": "Finìsci sto formolâio pe cangiâ o tò indirìsso e-mail. Se ti veu levâ l'asociaçión de quaseségge indirìsso e-mail da-a tò uténsa, làscia o nêuvo indirìsso e-mail vêuo quànde ti màndi o formolâio.",

@@ -526,6 +526,7 @@
 	"passwordreset-nocaller": "'Nu chiamande adda essere mise",
 	"passwordreset-nosuchcaller": "'U chiamande nnon g'esiste: $1",
 	"passwordreset-ignored": "'A 'mbostazione nove d'a passuord non g'è gestite. Pò essere ca no ste nisciune provider configurate?",
+	"passwordreset-invalidemail": "Indirizze email invalide",
 	"passwordreset-nodata": "Non g'ha state date nè 'nu nome utende nè 'nu 'ndirizze de poste elettroneche",
 	"changeemail": "Cange o live 'u 'ndirizze e-mail",
 	"changeemail-header": "Comblete stu module pe cangià 'u 'ndirizze email. Ce tu vuè ccu live l'associazione cu ogne indirizze email da 'u cunde tune, lasse 'u 'ndirizze email vacande quanne conferme 'u module.",

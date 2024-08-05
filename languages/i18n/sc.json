@@ -415,6 +415,7 @@
 	"passwordreset-email": "Indiritzu email:",
 	"passwordreset-emailtitle": "Particulares de s'impitadore in {{SITENAME}}",
 	"passwordreset-emailelement": "Nùmene utente: \n$1\n\nPassword temporànea: \n$2",
+	"passwordreset-invalidemail": "Indiritzu de posta eletrònica non vàlidu",
 	"changeemail": "Càmbia indiritzu email",
 	"changeemail-header": "Càmbia s'indirìtzu email de su contu",
 	"changeemail-oldemail": "Indiritzu email atuale:",
