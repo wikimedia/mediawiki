@@ -384,18 +384,18 @@ class RefreshLinksJob extends Job {
 		}
 
 		$cachedOutput = $this->getParserOutputFromCache( $parserCache, $page, $revision, $stats );
+		$statsCounter = $stats->getCounter( 'refreshlinks_parsercache_operations_total' );
 
 		if ( $cachedOutput && $this->canUseParserOutputFromCache( $cachedOutput, $revision ) ) {
-			$stats->getCounter( 'refreshlinks_parsercache_operations_total' )
-				->setLabel( 'status', 'cache_hit' )
+			$statsCounter->setLabel( 'status', 'cache_hit' )
+				->setLabel( 'html_changed', 'n/a' )
 				->copyToStatsdAt( 'refreshlinks.parser_cached' )
 				->increment();
 
 			return $cachedOutput;
 		}
 
-		$statsCounter = $stats->getCounter( 'refreshlinks_parsercache_operations_total' )
-			->setLabel( 'status', 'cache_miss' )
+		$statsCounter->setLabel( 'status', 'cache_miss' )
 			->copyToStatsdAt( 'refreshlinks.parser_uncached' );
 
 		$causeAction = $this->params['causeAction'] ?? 'RefreshLinksJob';
