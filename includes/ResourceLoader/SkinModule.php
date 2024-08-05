@@ -204,9 +204,9 @@ class SkinModule extends LessVarFileModule {
 			'screen' => [ 'resources/src/mediawiki.skinning/i18n-headings.less' ],
 		],
 		'toc' => [
-			'all' => [ 'resources/src/mediawiki.skinning/toc/common.css' ],
+			'all' => [ 'resources/src/mediawiki.skinning/toc/common.less' ],
 			'screen' => [ 'resources/src/mediawiki.skinning/toc/screen.less' ],
-			'print' => [ 'resources/src/mediawiki.skinning/toc/print.css' ],
+			'print' => [ 'resources/src/mediawiki.skinning/toc/print.less' ],
 		],
 	];
 
