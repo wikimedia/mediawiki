@@ -5,7 +5,8 @@
 			"Khan27",
 			"NMW03",
 			"Vago",
-			"Wertuose"
+			"Wertuose",
+			"Nemoralis"
 		]
 	},
 	"config-desc": "MediaWiki yükləyicisi",
@@ -27,5 +28,5 @@
 	"config-license-pd": "İctimai istifadə",
 	"config-help": "kömək",
 	"mainpagetext": "<strong>MediaWiki quraşdırıldı.</strong>",
-	"mainpagedocfooter": "Bu vikinin istifadəsi ilə bağlı məlumat almaq üçün [https://meta.wikimedia.org/wiki/Help:Contents İstifadəçi məlumat səhifəsinə] baxın.\n\n== Faydalı keçidlər ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Tənzimləmələrin siyahısı]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki haqqında tez-tez soruşulan suallar]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki e-poçt siyahısı]"
+	"mainpagedocfooter": "Bu vikinin istifadəsi ilə bağlı məlumat almaq üçün [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents İstifadəçi məlumat səhifəsinə] baxın.\n\n== Faydalı keçidlər ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Tənzimləmələrin siyahısı]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki haqqında tez-tez soruşulan suallar]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki e-poçt siyahısı]"
 }

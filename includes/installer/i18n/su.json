@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Kandar",
-			"Uchup19"
+			"Uchup19",
+			"Pppery"
 		]
 	},
 	"config-desc": "Panginstal MediaWiki",
@@ -15,5 +16,5 @@
 	"config-restart": "Nya, hirupkeun ulang",
 	"config-profile-fishbowl": "Husus éditor kadaptar",
 	"mainpagetext": "<strong>MediaWiki geus réngsé diinstal.</strong>",
-	"mainpagedocfooter": "Mangga tingal ''[https://meta.wikimedia.org/wiki/MediaWiki_localisation documentation on customizing the interface]'' jeung [https://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Tungtunan Pamaké] pikeun pitulung maké jeung konfigurasi."
+	"mainpagedocfooter": "Mangga tingal ''[https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources documentation on customizing the interface]'' jeung [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Tungtunan Pamaké] pikeun pitulung maké jeung konfigurasi."
 }

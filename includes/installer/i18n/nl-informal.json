@@ -5,7 +5,8 @@
 			"Mar(c)",
 			"McDutchie",
 			"Seb35",
-			"Siebrand"
+			"Siebrand",
+			"Pppery"
 		]
 	},
 	"config-localsettings-badkey": "De upgradesleutel die je hebt opgegeven is onjuist.",
@@ -64,5 +65,5 @@
 	"config-pg-not-in-role": "Het account dat je voor de webgebruiker hebt opgegeven, bestaat al.\nHet account dat je voor installatie hebt opgegeven, is geen superuser en geen lid van de rol van de webgebruiker, en kan het dus geen objecten aanmaken die van de webgebruiker zijn.\n\nMediaWiki vereist momenteel dat de tabellen van de webgebruiker zijn. Geef een andere webaccountnaam op, of klik op \"terug\" en geef een gebruiker op die voldoende installatierechten heeft.",
 	"config-install-user-missing-create": "Het opgegeven account \"$1\" bestaat niet.\nKlik op \"registreren\" onderaan als je het account wilt aanmaken.",
 	"config-install-done": "<strong>Gefeliciteerd!</strong>\nJe hebt MediaWiki geïnstalleerd.\n\nHet installatieprogramma heeft het bestand <code>LocalSettings.php</code> aangemaakt.\nDit bevat al je instellingen.\n\nJe moet het bestand downloaden en in de hoofdmap van je wiki-installatie plaatsen, in dezelfde map als index.php.\nDe download zou automatisch moeten zijn gestart.\n\nAls de download niet is gestart of als je de download hebt geannuleerd, dan kun je de download opnieuw starten door op de onderstaande koppeling te klikken:\n\n$3\n\n<strong>Let op:</strong> Als je dit nu niet doet, en je sluit de installatieprocedure af zonder dit gegenereerde instellingenbestand te downloaden, dan is het later niet meer beschikbaar.\n\nNa het plaatsen van het bestand met instellingen kun je <strong>[$2 jouw wiki gebruiken]</strong>.",
-	"mainpagedocfooter": "Raadpleeg de [https://meta.wikimedia.org/wiki/Special:MyLanguage/Help:Contents handleiding] voor informatie over het gebruik van de wikisoftware.\n\n== Meer hulp over MediaWiki ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lijst met instellingen]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Veelgestelde vragen (FAQ)]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Mailinglijst voor aankondigingen van nieuwe versies]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Maak MediaWiki beschikbaar in jouw taal]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Leer hoe je spam kunt voorkomen op jouw wiki]"
+	"mainpagedocfooter": "Raadpleeg de [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents handleiding] voor informatie over het gebruik van de wikisoftware.\n\n== Meer hulp over MediaWiki ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lijst met instellingen]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Veelgestelde vragen (FAQ)]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Mailinglijst voor aankondigingen van nieuwe versies]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Maak MediaWiki beschikbaar in jouw taal]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Leer hoe je spam kunt voorkomen op jouw wiki]"
 }

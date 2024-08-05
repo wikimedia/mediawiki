@@ -9,7 +9,8 @@
 			"Robin van der Vliet",
 			"Tlustulimu",
 			"Yekrats",
-			"YvesNevelsteen"
+			"YvesNevelsteen",
+			"Pppery"
 		]
 	},
 	"config-desc": "La instalilo de MediaWiki",
@@ -118,5 +119,5 @@
 	"config-extensions-requires": "$1 (postulas $2)",
 	"config-screenshot": "ekrankopio",
 	"mainpagetext": "'''MediaWiki estis sukcese instalita.'''",
-	"mainpagedocfooter": "Konsultu la [https://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Gvidilon por uzantoj de MediaWiki] por informoj pri uzado de vikia programaro.\n\n==Kiel komenci==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Listo de konfiguraĵoj] (angle)\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki Oftaj Demandoj] (angle)\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Anonco-dissendolisto pri MediaWiki] (angle)\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Preklad MediaWiki do tvojho jazyka]"
+	"mainpagedocfooter": "Konsultu la [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Gvidilon por uzantoj de MediaWiki] por informoj pri uzado de vikia programaro.\n\n==Kiel komenci==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Listo de konfiguraĵoj] (angle)\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki Oftaj Demandoj] (angle)\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Anonco-dissendolisto pri MediaWiki] (angle)\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Preklad MediaWiki do tvojho jazyka]"
 }

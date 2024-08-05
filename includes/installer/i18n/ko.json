@@ -17,7 +17,9 @@
 			"Ykhwong",
 			"Yunbj",
 			"렌즈",
-			"아라"
+			"아라",
+			"Dr1t jg",
+			"Suleiman the Magnificent Television"
 		]
 	},
 	"config-desc": "미디어위키를 위한 설치 관리자",
@@ -231,9 +233,9 @@
 	"config-logo-icon": "로고 (아이콘)",
 	"config-logo-icon-help": "로고 아이콘은 정사각형이면서 이상적으로는 50px을 초과하거나 SVG인 것이 좋습니다.",
 	"config-logo-wordmark": "워드마크 (선택사항)",
-	"config-logo-wordmark-help": "사이트 이름입니다. 정의하지 않으면 일반적으로 텍스트로 대체됩니다. 높이가 30픽셀 이하인 SVG가 이상적입니다.",
+	"config-logo-wordmark-help": "사이트 이름입니다. 정의하지 않으면 일반적으로 텍스트로 대체됩니다. 높이가 30px 이하인 SVG가 이상적입니다.",
 	"config-logo-tagline": "태그라인 (선택사항)",
-	"config-logo-tagline-help": "사이트의 태그라인입니다. 위에서 워드마크를 정의한 경우에만 사용하십시오. 정의하지 않으면 일반적으로 텍스트로 대체됩니다. 일반적으로 태그라인과 워드마크를 합친 높이는 50픽셀을 넘지 않아야 합니다.",
+	"config-logo-tagline-help": "사이트의 태그라인입니다. 위에서 워드마크를 정의한 경우에만 사용하십시오. 정의하지 않으면 일반적으로 텍스트로 대체됩니다. 일반적으로 태그라인과 워드마크를 합친 높이는 50px을 넘지 않아야 합니다.",
 	"config-logo-sidebar": "사이드바 로고 (선택사항):",
 	"config-logo-filedrop": "여기에 이미지 파일을 끌어놓으세요",
 	"config-logo-sidebar-help": "일부 미디어위키 스킨에는 사이드바 메뉴의 일부로 160픽셀 높이의 로고가 포함되어 있습니다. 정의되지 않은 경우 위에서 정의한 아이콘과 동일합니다. 워드마크와 아이콘이 결합된 전용 그래픽을 사용할 수 있습니다.",

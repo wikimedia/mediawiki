@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"ChrisPtDe"
+			"ChrisPtDe",
+			"Pppery"
 		]
 	},
 	"config-desc": "La programeria d’enstalacion de MediaWiki",
@@ -131,5 +132,5 @@
 	"config-download-localsettings": "Tèlèchargiér <code>LocalSettings.php</code>",
 	"config-help": "éde",
 	"mainpagetext": "'''MediaWiki at étâ enstalâ avouéc reusséta.'''",
-	"mainpagedocfooter": "Vêde lo [https://meta.wikimedia.org/wiki/Aide:Contenu guido d’usanciér] por més d’enformacions sur l’usâjo de la programeria vouiqui.\n\n== Emmodar avouéc MediaWiki ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista des paramètres de configuracion]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/fr FDQ sur MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Lista de discussion sur les distribucions de MediaWiki]"
+	"mainpagedocfooter": "Vêde lo [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents guido d’usanciér] por més d’enformacions sur l’usâjo de la programeria vouiqui.\n\n== Emmodar avouéc MediaWiki ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista des paramètres de configuracion]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/fr FDQ sur MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Lista de discussion sur les distribucions de MediaWiki]"
 }

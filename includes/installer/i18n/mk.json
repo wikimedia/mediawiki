@@ -7,7 +7,8 @@
 			"Srđan",
 			"Violetova",
 			"Vlad5250",
-			"아라"
+			"아라",
+			"Pppery"
 		]
 	},
 	"config-desc": "Воспоставувачот на МедијаВики",
@@ -315,5 +316,5 @@
 	"config-extension-not-found": "Не можев да ја најдам пријавната податотека за додатокот „$1“",
 	"config-extension-dependency": "Наидов на грешка со зависноста при воспоставката на додатокот „$1“: $2",
 	"mainpagetext": "<strong>МедијаВики е успешно воспоставен.</strong>",
-	"mainpagedocfooter": "Погледнете го [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Упатството за корисници] за подетални информации како се користи вики-програмот.\n\n==Од каде да почнете==\n* [https://meta.wikimedia.org/wiki/Manual:Configuration_settings Список на нагодувања]\n* [https://meta.wikimedia.org/wiki/Manual:FAQ ЧПП (често поставувани прашања) за МедијаВики].\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Поштенски список на МедијаВики за нови верзии]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Прилагодете го МедијаВики на вашиот јазик]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Дознајте како да се борите против спам на вашето вики]"
+	"mainpagedocfooter": "Погледнете го [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Упатството за корисници] за подетални информации како се користи вики-програмот.\n\n==Од каде да почнете==\n* [https://www.mediawiki.org/wiki/Manual:Configuration_settings Список на нагодувања]\n* [https://www.mediawiki.org/wiki/Manual:FAQ ЧПП (често поставувани прашања) за МедијаВики].\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Поштенски список на МедијаВики за нови верзии]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Прилагодете го МедијаВики на вашиот јазик]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Дознајте како да се борите против спам на вашето вики]"
 }

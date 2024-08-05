@@ -1584,7 +1584,7 @@
 	"illegalfilename": "Skráarheitið „$1“ inniheldur stafi sem eru ekki leyfðir í síðutitlum.\nEndurnefndu skrána og reyndu að hlaða henni inn aftur.",
 	"filename-toolong": "Skráaheiti mega ekki vera lengri en 240 bæti.",
 	"badfilename": "Skáarnafninu hefur verið breytt í „$1“.",
-	"filetype-mime-mismatch": "Það er aldrei talað um skráarframlengingu í þessu samhengi (skráarheiti.ending -> skjal.doc, mynd.jpg, myndskeið.mov), alltaf skráarendingu eða viðskeyti.",
+	"filetype-mime-mismatch": "Skráarendingin \".$1\" passar ekki við greinda MIME-tegund skrárinnar ($2).",
 	"filetype-badmime": "Skrárir af MIME-gerðinni „$1“ er ekki leyfilegt að hlaða inn.",
 	"filetype-bad-ie-mime": "Mistókst að upphlaða skrá því Internet Explorer myndi greina hana sem „$1“ sem er óheimil og mögulega hættuleg skráagerð.",
 	"filetype-unwanted-type": "'''„.$1“''' er óæskileg skráargerð.\n{{PLURAL:$3|Ákjósanleg skráargerð er|Ákjósanlegar skráargerðir eru}} $2.",

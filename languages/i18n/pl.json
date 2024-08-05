@@ -2777,7 +2777,7 @@
 	"block-log-flags-nocreate": "blokada tworzenia konta",
 	"block-log-flags-noautoblock": "automatyczne blokowanie wyłączone",
 	"block-log-flags-noemail": "e‐mail zablokowany",
-	"block-log-flags-nousertalk": "nie może edytować stron dyskusji",
+	"block-log-flags-nousertalk": "nie może edytować własnej strony dyskusji",
 	"block-log-flags-angry-autoblock": "rozszerzone automatyczne blokowanie włączone",
 	"block-log-flags-hiddenname": "nazwa użytkownika jest ukryta",
 	"range_block_disabled": "Możliwość blokowania zakresu adresów IP została wyłączona.",

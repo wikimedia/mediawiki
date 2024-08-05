@@ -10,7 +10,8 @@
 			"Shyamal",
 			"Smtchahal",
 			"Vivek Rai",
-			"संजीव कुमार"
+			"संजीव कुमार",
+			"Abijeet Patro"
 		]
 	},
 	"config-desc": "मीडियाविकि के लिए इंस्टॉलर",
@@ -315,5 +316,5 @@
 	"config-extension-not-found": "एक्सटेंशन \"$1\" के लिए पंजीकरण फ़ाइल नहीं मिला",
 	"config-extension-dependency": "एक्सटेंशन \"$1\" को स्थापित करते समय निर्भरता में त्रुटि आई: $2",
 	"mainpagetext": "<strong>मीडियाविकि स्थापित हो चुका है।</strong>",
-	"mainpagedocfooter": "इस विकि सॉफ़्टवेयर का किस प्रकार आप इस्तेमाल कर सकते हैं, इसकी जानकारी के लिए [https://meta.wikimedia.org/wiki/Help:Contents सदस्य गाइड] देखें।\n\n== शुरुआत करें ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings कॉन्फ़िगरेशन सेटिंग्स की सूची]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ मीडियाविकि के बारे में अक्सर पूछे जाने वाले सवाल]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ मीडियाविकि प्रकाशन की मेल सूची]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources आपकी भाषा में मीडियाविकि का अनुवाद]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam अपने विकि को स्पैम और बर्बरता से कैसे बचाएँ]"
+	"mainpagedocfooter": "इस विकि सॉफ़्टवेयर का किस प्रकार आप इस्तेमाल कर सकते हैं, इसकी जानकारी के लिए [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents सदस्य गाइड] देखें।\n\n== शुरुआत करें ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings कॉन्फ़िगरेशन सेटिंग्स की सूची]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ मीडियाविकि के बारे में अक्सर पूछे जाने वाले सवाल]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ मीडियाविकि प्रकाशन की मेल सूची]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources आपकी भाषा में मीडियाविकि का अनुवाद]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam अपने विकि को स्पैम और बर्बरता से कैसे बचाएँ]"
 }

@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Bugoslav",
-			"Vrhnje"
+			"Vrhnje",
+			"Pppery"
 		]
 	},
 	"config-information": "Informacije",
@@ -24,5 +25,5 @@
 	"config-db-install-account": "Suradnički račun za instalaciju",
 	"config-admin-error-password-invalid": "Administratorska zaporka na wikiju nije valjana: $1",
 	"mainpagetext": "'''Softver MediaWiki je uspješno instaliran.'''",
-	"mainpagedocfooter": "Pogledajte [https://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentaciju o prilagodbi sučelja]\ni [https://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] za pomoć pri uporabi i podešavanju."
+	"mainpagedocfooter": "Pogledajte [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources dokumentaciju o prilagodbi sučelja]\ni [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Vodič za suradnike] za pomoć pri uporabi i podešavanju."
 }

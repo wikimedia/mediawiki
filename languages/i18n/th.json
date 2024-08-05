@@ -2577,7 +2577,7 @@
 	"sp-contributions-blocked-notice-partial": "ผู้ใช้นี้กำลังถูกบล็อกบางส่วน\nรายการปูมการบล็อกล่าสุดจัดไว้ด้านล่างเพื่ออ้างอิง:",
 	"sp-contributions-blocked-notice-anon": "ปัจจุบันเลขที่อยู่ไอพีนี้ถูกบล็อก\nปูมการบล็อกล่าสุดแสดงด้านล่างนี้เพื่อการอ้างอิง:",
 	"sp-contributions-blocked-notice-anon-partial": "เลขที่อยู่ไอพีนี้กำลังถูกบล็อกบางส่วน\nรายการปูมการบล็อกล่าสุดจัดไว้ด้านล่างเพื่ออ้างอิง:",
-	"sp-contributions-search": "ค้นหาการเข้ามีส่วนร่วม",
+	"sp-contributions-search": "ค้นหาการมีส่วนร่วม",
 	"sp-contributions-username": "เลขที่อยู่ไอพีหรือชื่อผู้ใช้:",
 	"sp-contributions-toponly": "แสดงเฉพาะการแก้ไขรุ่นล่าสุด",
 	"sp-contributions-newonly": "แสดงเฉพาะการแก้ไขที่เป็นการสร้างหน้า",

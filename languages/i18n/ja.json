@@ -148,7 +148,8 @@
 			"翻訳者a",
 			"Salvare",
 			"Khsmty",
-			"Yushu-kasai"
+			"Yushu-kasai",
+			"Cookai1205"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -3402,7 +3403,7 @@
 	"comma-separator": "、",
 	"colon-separator": ":&#32;",
 	"pipe-separator": "&#32;|&#32;",
-	"word-separator": "&#32;",
+	"word-separator": "",
 	"ellipsis": "…",
 	"percent": "$1%",
 	"brackets": "[$1]",
