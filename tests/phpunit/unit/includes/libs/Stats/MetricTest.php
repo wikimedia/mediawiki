@@ -414,4 +414,20 @@ class MetricTest extends TestCase {
 			restore_error_handler();
 		}
 	}
+
+	public function testMsConversion() {
+		$statsFactory = StatsFactory::newNull();
+		$statsFactory->getTiming( 'test_seconds' )->observeSeconds( 1 );
+		$statsFactory->getTiming( 'test_seconds' )->observeNanoseconds( 1000000 );
+		$samples = $statsFactory->getTiming( 'test_seconds' )->getSamples();
+		$this->assertEquals(
+			[ 1000, 1 ],
+			array_map(
+				static function ( $sample ) {
+					return $sample->getValue();
+				},
+				$samples
+			)
+		);
+	}
 }
