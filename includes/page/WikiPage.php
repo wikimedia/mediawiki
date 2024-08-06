@@ -2865,7 +2865,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 			// queue a high-priority LinksUpdate job, to ensure that we really protect all
 			// content that is currently transcluded onto the page. This is important, because
 			// wikitext supports conditional statements based on the current time, which enables
-			// transcluding of a different sub page based on which day it is, and then show that
+			// transcluding of a different subpage based on which day it is, and then show that
 			// information on the Main Page, without the Main Page itself being edited.
 			MediaWikiServices::getInstance()->getJobQueueGroup()->lazyPush(
 				RefreshLinksJob::newPrioritized( $this->mTitle, $params )
