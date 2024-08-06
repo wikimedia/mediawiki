@@ -76,7 +76,7 @@ class AvailableRightsTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$missingRights = array_diff(
-			array_keys( $this->getServiceContainer()->getMainConfig()->get( MainConfigNames::RateLimits ) ),
+			array_keys( $this->getConfVar( MainConfigNames::RateLimits ) ),
 			$knownRights
 		);
 

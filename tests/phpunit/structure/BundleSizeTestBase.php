@@ -96,7 +96,7 @@ abstract class BundleSizeTestBase extends MediaWikiIntegrationTestCase {
 	 * @return string Skin name
 	 */
 	public function getSkinName(): string {
-		return MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::DefaultSkin );
+		return $this->getConfVar( MainConfigNames::DefaultSkin );
 	}
 
 }
