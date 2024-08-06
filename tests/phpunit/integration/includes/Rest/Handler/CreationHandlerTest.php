@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Rest\Handler;
 
 use ApiUsageException;
 use MediaWiki\Config\HashConfig;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Rest\Handler\CreationHandler;
@@ -21,7 +22,6 @@ use Wikimedia\Message\DataMessageValue;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
-use WikitextContent;
 
 /**
  * @covers \MediaWiki\Rest\Handler\CreationHandler

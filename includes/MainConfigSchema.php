@@ -45,6 +45,7 @@ use MediaWiki\Content\FallbackContentHandler;
 use MediaWiki\Content\JavaScriptContentHandler;
 use MediaWiki\Content\JsonContentHandler;
 use MediaWiki\Content\TextContentHandler;
+use MediaWiki\Content\WikitextContentHandler;
 use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\Password\Argon2Password;
 use MediaWiki\Password\BcryptPassword;
@@ -96,7 +97,6 @@ use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ObjectCache\MemcachedPeclBagOStuff;
 use Wikimedia\ObjectCache\MemcachedPhpBagOStuff;
 use Wikimedia\ObjectCache\WinCacheBagOStuff;
-use WikitextContentHandler;
 
 /**
  * This class contains schema declarations for all configuration variables

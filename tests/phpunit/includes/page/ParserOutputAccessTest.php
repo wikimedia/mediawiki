@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\Spi as LoggerSpi;

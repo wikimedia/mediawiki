@@ -35,7 +35,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MWUnknownContentModelException;
 use Wikimedia\Diff\Diff;
-use WikitextContent;
 
 /**
  * Content object implementation for representing flat text.

@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Page\PageAssertionException;
 use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;

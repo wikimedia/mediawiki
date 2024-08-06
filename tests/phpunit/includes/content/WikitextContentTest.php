@@ -2,6 +2,7 @@
 
 use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\TextContent;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Title\Title;
@@ -11,7 +12,7 @@ use MediaWiki\Title\Title;
  *
  * @group Database
  *        ^--- needed, because we do need the database to test link updates
- * @covers \WikitextContent
+ * @covers \MediaWiki\Content\WikitextContent
  */
 class WikitextContentTest extends TextContentTest {
 	public static $sections = "Intro

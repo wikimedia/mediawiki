@@ -10,6 +10,8 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Content\TextContentHandler;
+use MediaWiki\Content\WikitextContent;
+use MediaWiki\Content\WikitextContentHandler;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Deferred\MWCallableUpdate;
@@ -42,8 +44,6 @@ use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use WikiPage;
-use WikitextContent;
-use WikitextContentHandler;
 
 /**
  * @group Database

@@ -3,6 +3,8 @@
 namespace MediaWiki\Tests\Revision;
 
 use IDBAccessObject;
+use MediaWiki\Content\WikitextContent;
+use MediaWiki\Content\WikitextContentHandler;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\IncompleteRevisionException;
 use MediaWiki\Revision\RevisionAccessException;
@@ -17,8 +19,6 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
-use WikitextContent;
-use WikitextContentHandler;
 
 /**
  * Tests RevisionStore

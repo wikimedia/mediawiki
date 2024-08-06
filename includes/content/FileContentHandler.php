@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Content\WikitextContentHandler;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;

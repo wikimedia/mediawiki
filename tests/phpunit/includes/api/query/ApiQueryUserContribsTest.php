@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Tests\Api\Query;
 
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
-use WikitextContent;
 
 /**
  * @group API

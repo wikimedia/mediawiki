@@ -7,6 +7,7 @@ use Content;
 use LogicException;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\TextContent;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Message\Message;
@@ -23,7 +24,6 @@ use MediaWikiIntegrationTestCase;
 use ParserOptions;
 use RecentChange;
 use WikiPage;
-use WikitextContent;
 
 /**
  * @covers \MediaWiki\Storage\PageUpdater
@@ -987,7 +987,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 		$updater = $page->newPageUpdater( $user )
-			->setContent( SlotRecord::MAIN, new \WikitextContent( $wikitext ) );
+			->setContent( SlotRecord::MAIN, new \MediaWiki\Content\WikitextContent( $wikitext ) );
 
 		$summary = CommentStoreComment::newUnsavedComment( 'Just a test' );
 		$rev = $updater->saveRevision( $summary, EDIT_UPDATE );

@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Page;
 use ChangeTags;
 use DatabaseLogEntry;
 use MediaWiki\Content\JsonContent;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
@@ -22,7 +23,6 @@ use MediaWikiIntegrationTestCase;
 use RecentChange;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use WikiPage;
-use WikitextContent;
 
 /**
  * @group Database

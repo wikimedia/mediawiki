@@ -23,8 +23,11 @@
  * @ingroup Content
  */
 
+namespace MediaWiki\Content;
+
+use Content;
+use FileContentHandler;
 use MediaWiki\Content\Renderer\ContentParseParams;
-use MediaWiki\Content\TextContentHandler;
 use MediaWiki\Content\Transform\PreloadTransformParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Languages\LanguageNameUtils;
@@ -37,7 +40,12 @@ use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
+use MessageContent;
+use ParserFactory;
+use SearchEngine;
+use SearchIndexField;
 use Wikimedia\UUID\GlobalIdGenerator;
+use WikiPage;
 
 /**
  * Content handler for wiki text pages.
@@ -116,6 +124,7 @@ class WikitextContentHandler extends TextContentHandler {
 		}
 
 		$class = $this->getContentClass();
+
 		return new $class( $redirectText );
 	}
 
@@ -191,6 +200,7 @@ class WikitextContentHandler extends TextContentHandler {
 		$fields['opening_text']->setFlag(
 			SearchIndexField::FLAG_SCORING | SearchIndexField::FLAG_NO_HIGHLIGHT
 		);
+
 		// Until we have the full first-class content handler for files, we invoke it explicitly here
 		return array_merge( $fields, $this->getFileHandler()->getFieldsForSearchIndex( $engine ) );
 	}
@@ -219,6 +229,7 @@ class WikitextContentHandler extends TextContentHandler {
 				$this->getFileHandler()->getDataForSearchIndex( $page, $parserOutput, $engine, $revision )
 			);
 		}
+
 		return $fields;
 	}
 
@@ -264,6 +275,7 @@ class WikitextContentHandler extends TextContentHandler {
 		$contentClass = $this->getContentClass();
 		$ret = new $contentClass( $pst );
 		$ret->setPreSaveTransformFlags( $parser->getOutput()->getAllFlags() );
+
 		return $ret;
 	}
 
@@ -291,6 +303,7 @@ class WikitextContentHandler extends TextContentHandler {
 		);
 
 		$contentClass = $this->getContentClass();
+
 		return new $contentClass( $plt );
 	}
 
@@ -341,6 +354,7 @@ class WikitextContentHandler extends TextContentHandler {
 	 * using the global Parser service.
 	 *
 	 * @since 1.38
+	 *
 	 * @param Content $content
 	 * @param ContentParseParams $cpoParams
 	 * @param ParserOutput &$parserOutput The output object to fill (reference).
@@ -418,3 +432,6 @@ class WikitextContentHandler extends TextContentHandler {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( WikitextContentHandler::class, 'WikitextContentHandler' );

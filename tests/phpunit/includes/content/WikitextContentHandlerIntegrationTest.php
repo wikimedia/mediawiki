@@ -12,7 +12,7 @@ use Wikimedia\Parsoid\Parsoid;
  * @group ContentHandler
  * @group Database
  *        ^--- needed, because we do need the database to test link updates
- * @covers \WikitextContentHandler
+ * @covers \MediaWiki\Content\WikitextContentHandler
  */
 class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegrationTest {
 	protected function setUp(): void {

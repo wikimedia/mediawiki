@@ -1,10 +1,12 @@
 <?php
 
+use MediaWiki\Content\WikitextContent;
+use MediaWiki\Content\WikiTextStructure;
 use MediaWiki\Title\Title;
 
 /**
  * @group Database
- * @covers \WikiTextStructure
+ * @covers \MediaWiki\Content\WikiTextStructure
  */
 class WikitextStructureTest extends MediaWikiLangTestCase {
 

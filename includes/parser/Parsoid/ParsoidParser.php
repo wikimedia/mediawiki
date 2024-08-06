@@ -3,6 +3,7 @@
 namespace MediaWiki\Parser\Parsoid;
 
 use MediaWiki\Content\TextContent;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
@@ -17,7 +18,6 @@ use ParserOptions;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Parsoid;
-use WikitextContent;
 
 /**
  * Parser implementation which uses Parsoid.

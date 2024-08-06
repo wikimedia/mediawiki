@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Api;
 
 use MediaWiki\Content\CssContent;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Storage\PageEditStash;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
@@ -15,7 +16,6 @@ use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
-use WikitextContent;
 
 /**
  * @covers \ApiStashEdit

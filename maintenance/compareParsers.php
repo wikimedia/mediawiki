@@ -28,6 +28,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\User\User;
 use Wikimedia\Diff\Diff;
 use Wikimedia\Diff\UnifiedDiffFormatter;

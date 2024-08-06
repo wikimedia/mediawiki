@@ -4,6 +4,7 @@ use MediaWiki\Content\CssContentHandler;
 use MediaWiki\Content\JavaScriptContentHandler;
 use MediaWiki\Content\JsonContentHandler;
 use MediaWiki\Content\TextContentHandler;
+use MediaWiki\Content\WikitextContentHandler;
 use MediaWiki\MainConfigNames;
 
 /**

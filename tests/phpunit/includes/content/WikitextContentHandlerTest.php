@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Content\WikitextContent;
+use MediaWiki\Content\WikitextContentHandler;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\ParserOutput;
@@ -13,7 +15,7 @@ use Wikimedia\TestingAccessWrapper;
  * See also unit tests at \MediaWiki\Tests\Unit\WikitextContentHandlerTest
  *
  * @group ContentHandler
- * @covers \WikitextContentHandler
+ * @covers \MediaWiki\Content\WikitextContentHandler
  * @covers \TextContentHandler
  * @covers \ContentHandler
  */

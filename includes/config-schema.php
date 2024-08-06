@@ -396,7 +396,7 @@ return [
 			],
 			'ContentHandlers' => [
 				'wikitext' => [
-					'class' => 'WikitextContentHandler',
+					'class' => 'MediaWiki\\Content\\WikitextContentHandler',
 					'services' => [
 						'TitleFactory',
 						'ParserFactory',
