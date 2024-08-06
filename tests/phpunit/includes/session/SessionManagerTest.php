@@ -222,7 +222,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 				$requestUnpersist2 = true;
 			} );
 
-		$this->config->set( 'SessionProviders', [
+		$this->config->set( MainConfigNames::SessionProviders, [
 			$this->objectCacheDef( $provider1 ),
 			$this->objectCacheDef( $provider2 ),
 		] );
@@ -445,7 +445,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			->willReturn( null );
 		$provider->method( '__toString' )
 			->willReturn( 'MockProvider' );
-		$this->config->set( 'SessionProviders', [
+		$this->config->set( MainConfigNames::SessionProviders, [
 			$this->objectCacheDef( $provider ),
 		] );
 		$this->logger->setCollect( true );
@@ -493,7 +493,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$provider1->method( '__toString' )
 			->willReturn( 'MockProvider2' );
 
-		$this->config->set( 'SessionProviders', [
+		$this->config->set( MainConfigNames::SessionProviders, [
 			$this->objectCacheDef( $provider1 ),
 			$this->objectCacheDef( $provider2 ),
 		] );
@@ -699,7 +699,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$provider2->method( '__toString' )
 			->willReturn( 'MockProvider2' );
 
-		$this->config->set( 'SessionProviders', [
+		$this->config->set( MainConfigNames::SessionProviders, [
 			$this->objectCacheDef( $provider1 ),
 			$this->objectCacheDef( $provider2 ),
 		] );
@@ -735,7 +735,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$provider2->method( '__toString' )
 			->willReturn( 'MockProvider2' );
 
-		$this->config->set( 'SessionProviders', [
+		$this->config->set( MainConfigNames::SessionProviders, [
 			$this->objectCacheDef( $provider1 ),
 			$this->objectCacheDef( $provider2 ),
 		] );
@@ -771,7 +771,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$provider2->method( '__toString' )
 			->willReturn( 'MockProvider2' );
 
-		$this->config->set( 'SessionProviders', [
+		$this->config->set( MainConfigNames::SessionProviders, [
 			$this->objectCacheDef( $provider1 ),
 			$this->objectCacheDef( $provider2 ),
 		] );
@@ -788,7 +788,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$realManager = $this->getManager();
 		$manager = TestingAccessWrapper::newFromObject( $realManager );
 
-		$this->config->set( 'SessionProviders', [
+		$this->config->set( MainConfigNames::SessionProviders, [
 			[ 'class' => DummySessionProvider::class ],
 		] );
 		$providers = $manager->getProviders();
@@ -798,7 +798,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $manager->config, $provider->getConfig() );
 		$this->assertSame( $realManager, $provider->getManager() );
 
-		$this->config->set( 'SessionProviders', [
+		$this->config->set( MainConfigNames::SessionProviders, [
 			[ 'class' => DummySessionProvider::class ],
 			[ 'class' => DummySessionProvider::class ],
 		] );
@@ -919,7 +919,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$provider1->method( '__toString' )
 			->willReturn( 'MockProvider1' );
 
-		$this->config->set( 'SessionProviders', [
+		$this->config->set( MainConfigNames::SessionProviders, [
 			$this->objectCacheDef( $provider1 ),
 		] );
 

@@ -23,7 +23,7 @@ class SiteConfigTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideSupportsContentModels
 	 */
 	public function testSupportsContentModel( $model, $expected ) {
-		$contentHandlers = $this->getConfVar( 'ContentHandlers' );
+		$contentHandlers = $this->getConfVar( MainConfigNames::ContentHandlers );
 		$this->overrideConfigValue( MainConfigNames::ContentHandlers, [
 			'with-text' => [ 'factory' => static function () {
 				return new TextContentHandler( 'with-text', [ CONTENT_FORMAT_WIKITEXT, 'plain/test' ] );

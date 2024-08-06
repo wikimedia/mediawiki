@@ -240,8 +240,8 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 		$this->editPage( 'MediaWiki:TestEmpty.css', '', 'Empty' );
 		$this->editPage( 'MediaWiki:TestB.css', '.mw-second {}', 'Second' );
 		$rl = new EmptyResourceLoader();
-		$rl->getConfig()->set( 'UseSiteJs', true );
-		$rl->getConfig()->set( 'UseSiteCss', true );
+		$rl->getConfig()->set( MainConfigNames::UseSiteJs, true );
+		$rl->getConfig()->set( MainConfigNames::UseSiteCss, true );
 		$rl->register( 'testmodule1', [
 			'class' => TestResourceLoaderWikiModule::class,
 			'styles' => [
@@ -283,8 +283,8 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 		// Set up
 		TestResourceLoaderWikiModule::$returnFetchTitleInfo = [];
 		$rl = new EmptyResourceLoader();
-		$rl->getConfig()->set( 'UseSiteJs', true );
-		$rl->getConfig()->set( 'UseSiteCss', true );
+		$rl->getConfig()->set( MainConfigNames::UseSiteJs, true );
+		$rl->getConfig()->set( MainConfigNames::UseSiteCss, true );
 		$rl->register( 'testmodule', [
 			'class' => TestResourceLoaderWikiModule::class,
 			// Covers preloadTitleInfo branch for invalid page name

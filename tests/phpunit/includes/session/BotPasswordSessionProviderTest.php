@@ -206,9 +206,9 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf( SessionInfo::class, $info );
 		$this->assertSame( 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', $info->getId() );
 
-		$this->config->set( 'EnableBotPasswords', false );
+		$this->config->set( MainConfigNames::EnableBotPasswords, false );
 		$this->assertNull( $provider->provideSessionInfo( $request ) );
-		$this->config->set( 'EnableBotPasswords', true );
+		$this->config->set( MainConfigNames::EnableBotPasswords, true );
 
 		$this->assertNull( $provider->provideSessionInfo( new FauxRequest ) );
 	}

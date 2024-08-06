@@ -120,7 +120,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 			'sameSite' => '',
 		], $providerPriv->cookieOptions );
 
-		$config->set( 'SessionName', 'SessionName' );
+		$config->set( MainConfigNames::SessionName, 'SessionName' );
 		$provider = new CookieSessionProvider( [ 'priority' => 3 ] );
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 		$this->initProvider( $provider, new TestLogger(), $config );
@@ -415,7 +415,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 			'cookieOptions' => [ 'prefix' => 'x' ],
 		] );
 		$config = $this->getConfig();
-		$config->set( 'ForceHTTPS', $forceHTTPS );
+		$config->set( MainConfigNames::ForceHTTPS, $forceHTTPS );
 		$hookContainer = $this->createHookContainer();
 		$this->initProvider( $provider, new TestLogger(), $config, SessionManager::singleton(), $hookContainer );
 
@@ -513,8 +513,8 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 			'cookieOptions' => [ 'prefix' => 'x' ],
 		] );
 		$config = $this->getConfig();
-		$config->set( 'CookieSecure', $secure );
-		$config->set( 'ForceHTTPS', $forceHTTPS );
+		$config->set( MainConfigNames::CookieSecure, $secure );
+		$config->set( MainConfigNames::ForceHTTPS, $forceHTTPS );
 		$hookContainer = $this->createHookContainer();
 		$this->initProvider( $provider, new TestLogger(), $config, SessionManager::singleton(), $hookContainer );
 
@@ -695,11 +695,11 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame( 200, $provider->getRememberUserDuration() );
 
-		$config->set( 'ExtendedLoginCookieExpiration', null );
+		$config->set( MainConfigNames::ExtendedLoginCookieExpiration, null );
 
 		$this->assertSame( 100, $provider->getRememberUserDuration() );
 
-		$config->set( 'ExtendedLoginCookieExpiration', 0 );
+		$config->set( MainConfigNames::ExtendedLoginCookieExpiration, 0 );
 
 		$this->assertSame( null, $provider->getRememberUserDuration() );
 	}
@@ -720,7 +720,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 100, $providerPriv->getLoginCookieExpiration( 'UserID', false ) );
 		$this->assertSame( 100, $providerPriv->getLoginCookieExpiration( 'User', false ) );
 
-		$config->set( 'ExtendedLoginCookieExpiration', null );
+		$config->set( MainConfigNames::ExtendedLoginCookieExpiration, null );
 
 		$this->assertSame( 100, $providerPriv->getLoginCookieExpiration( 'Token', true ) );
 		$this->assertSame( 100, $providerPriv->getLoginCookieExpiration( 'User', true ) );

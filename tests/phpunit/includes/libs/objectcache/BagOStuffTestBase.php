@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\MainConfigNames;
 use Wikimedia\LightweightObjectStore\StorageAwareness;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
@@ -45,7 +46,7 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 	abstract protected function newCacheInstance();
 
 	protected function getCacheByClass( $className ) {
-		$caches = $this->getConfVar( 'ObjectCaches' );
+		$caches = $this->getConfVar( MainConfigNames::ObjectCaches );
 		foreach ( $caches as $id => $cache ) {
 			if ( ( $cache['class'] ?? '' ) === $className ) {
 				return $this->getServiceContainer()->getObjectCacheFactory()->getInstance( $id );

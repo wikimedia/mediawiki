@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\ObjectCache\RedisBagOStuff;
 
 /**
@@ -9,7 +10,7 @@ use Wikimedia\ObjectCache\RedisBagOStuff;
  */
 class RedisBagOStuffIntegrationTest extends BagOStuffTestBase {
 	protected function newCacheInstance() {
-		if ( !$this->getConfVar( 'EnableRemoteBagOStuffTests' ) ) {
+		if ( !$this->getConfVar( MainConfigNames::EnableRemoteBagOStuffTests ) ) {
 			$this->markTestSkipped( '$wgEnableRemoteBagOStuffTests is false' );
 		}
 		return $this->getCacheByClass( RedisBagOStuff::class );

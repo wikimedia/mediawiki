@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -9,7 +10,7 @@ use MediaWiki\MediaWikiServices;
  */
 class MemcachedPeclBagOStuffIntegrationTest extends BagOStuffTestBase {
 	protected function newCacheInstance() {
-		if ( !$this->getConfVar( 'EnableRemoteBagOStuffTests' ) ) {
+		if ( !$this->getConfVar( MainConfigNames::EnableRemoteBagOStuffTests ) ) {
 			$this->markTestSkipped( '$wgEnableRemoteBagOStuffTests is false' );
 		}
 		return MediaWikiServices::getInstance()->getObjectCacheFactory()->getInstance( 'memcached-pecl' );
