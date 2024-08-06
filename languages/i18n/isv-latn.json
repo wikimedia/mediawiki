@@ -530,6 +530,7 @@
 	"passwordreset-nocaller": "Trěba, že podate izvor zova",
 	"passwordreset-nosuchcaller": "Izvor zova ne jestvuje: $1",
 	"passwordreset-ignored": "Resetovanje paroly ne udalo se. Može li byti, že nijedin provajder ne byl konfigurovany?",
+	"passwordreset-invalidemail": "Nepravilny adres e-pošty",
 	"passwordreset-nodata": "Ne bylo podano ni koristničsko ime ni adres e-pošty",
 	"changeemail": "Izměniti ili udaliti adres e-pošty",
 	"changeemail-header": "Izpolnite tutoj formular, da byste izměnili svoj adres e-pošty. Ako hočete odstraniti povezanje kakogo-nebud adresa e-pošty s vašim kontom, ostavite polje za novy adres e-pošty prazdnym.",

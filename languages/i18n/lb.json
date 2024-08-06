@@ -1774,7 +1774,7 @@
 	"unusedimagestext": "Dës Fichieren gëtt et, si sinn awer a kenger Säit agebonn.\nDenkt wgl. drunn datt aner Internetsäiten dëse Fichier mat enger direkter URL verlinke kënnen. An dem Fall gëtt de Fichier hei opgelëscht obwuel en aktiv gebraucht gëtt.",
 	"unusedcategoriestext": "Dës Kategoriesäiten existéieren, mä weder en Artikel nach eng Kategorie maachen dovu Gebrauch.",
 	"notargettitle": "Dir hutt keng Säit uginn.",
-	"notargettext": "Dir hutt keng Zilsäit oder keen Zilbenotzer uginn fir déi dës Funktioun ausgeféiert soll ginn.",
+	"notargettext": "Dir hutt keng Zilsäit oder keen Zilbenotzer uginn, fir déi dës Funktioun ausgeféiert soll ginn.",
 	"nopagetitle": "Zilsäit gëtt et net",
 	"nopagetext": "Déi Zilsäit, déi Dir uginn hutt, gëtt et net.",
 	"pager-newer-n": "{{PLURAL:$1|nächsten|nächst $1}}",

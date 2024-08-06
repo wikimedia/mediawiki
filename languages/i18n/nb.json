@@ -822,6 +822,8 @@
 	"unstrip-size-warning": "Størrelsesgrensen for unstrip er nådd ($1)",
 	"unstrip-size-category": "Sider hvor størrelsesgrensen for unstrip er nådd",
 	"unstrip-size-category-desc": "Siden overskrider størrelsesgrensen for unstrip.",
+	"bad-language-code-category": "Sider med ugyldige språkkoder",
+	"bad-language-code-category-desc": "Sidene inneholder en <code><nowiki>{{#dir}}</nowiki></code> med en ugyldig språkkode.",
 	"converter-manual-rule-error": "En feil ble oppdaget i en manuell språkkonverteringsregel",
 	"undo-success": "Redigeringen kan omgjøres. Sjekk sammenligningen under for å bekrefte at du vil gjøre dette, og publisere endringene for å fullføre omgjøringen.",
 	"undo-failure": "Redigeringen kunne ikke omgjøres på grunn av konflikt med etterfølgende redigeringer.",

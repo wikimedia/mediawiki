@@ -777,6 +777,7 @@
 	"unstrip-size-warning": "Unstrip rhagorwyd ar y terfyn maint ($1)",
 	"unstrip-size-category": "Tudalennau lle mae'r terfyn maint unstrip yn ormodol",
 	"unstrip-size-category-desc": "Mae'r dudalen yn fwy na'r terfyn maint unstrip.",
+	"bad-language-code-category": "Tudalennau â chodau iaith annilys",
 	"converter-manual-rule-error": "Cafwyd hyd i wall yn y rheol trosi iaith â llaw",
 	"undo-success": "Gellir dadwneud y golygiad.\nGwiriwch y gymhariaeth isod i sicrhau eich bod wir eisiau gwneud hyn, ac wedyn cyhoeddwch y newidiadau isod i gwblhau dadwneud y golygiad.",
 	"undo-failure": "Methwyd a dadwneud y golygiad oherwydd gwrthdaro â golygiadau cyfamserol.",
