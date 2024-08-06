@@ -251,6 +251,11 @@ because of Phabricator reports.
   and documentation and type comparisons may need to be updated. Affected
   hooks are: ContribsPager__reallyDoQueryHook, ContribsPager__getQueryInfoHook,
   ContributionsLineEndingHook, SpecialContributions__formatRow__flagsHook.
+* Hooks that were run from DeletedContribsPager are now run from the parent,
+  ContributionsPager. If a pager is passed in, it is a ContributionsPager type,
+  and documentation and type comparisons may need to be updated. Affected
+  hooks are: DeletedContribsPager__reallyDoQueryHook and
+  DeletedContributionsLineEndingHook.
 * The public method ContributionsSpecialPage::getUserLinks has been made
   protected. Although not marked @internal, the method was public to be called
   from SpecialDeletedContributions (call now removed), and was not called from
