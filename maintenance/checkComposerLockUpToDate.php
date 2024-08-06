@@ -54,9 +54,13 @@ class CheckComposerLockUpToDate extends Maintenance {
 			foreach ( $errors as $error ) {
 				$this->error( $error . "\n" );
 			}
+			$suggestedCommand = 'composer update';
+			if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+				$suggestedCommand .= ' --no-dev';
+			}
 			$this->fatalError(
 				'Error: your composer.lock file is not up to date. ' .
-				'Run "composer update --no-dev" to install newer dependencies'
+				'Run "' . $suggestedCommand . '" to install newer dependencies'
 			);
 		} else {
 			// We couldn't find any out-of-date dependencies, so assume everything is ok!
