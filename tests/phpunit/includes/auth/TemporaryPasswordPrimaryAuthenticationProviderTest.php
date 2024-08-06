@@ -180,9 +180,8 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegr
 		$user = self::getMutableTestUser()->getUser();
 
 		$dbw = $this->getDb();
-		$config = $this->getServiceContainer()->getMainConfig();
 		// A is unsalted MD5 (thus fast) ... we don't care about security here, this is test only
-		$passwordFactory = new PasswordFactory( $config->get( MainConfigNames::PasswordConfig ), 'A' );
+		$passwordFactory = new PasswordFactory( $this->getConfVar( MainConfigNames::PasswordConfig ), 'A' );
 
 		$pwhash = $passwordFactory->newFromPlaintext( 'password' )->toString();
 

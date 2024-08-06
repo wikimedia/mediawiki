@@ -85,7 +85,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testObjectCache() {
-		$this->assertSame( 'hash', $this->getServiceContainer()->getMainConfig()->get( MainConfigNames::MainCacheType ) );
+		$this->assertSame( 'hash', $this->getConfVar( MainConfigNames::MainCacheType ) );
 
 		$this->assertInstanceOf( HashBagOStuff::class, $this->getServiceContainer()->getObjectCacheFactory()->getLocalClusterInstance() );
 		$this->assertInstanceOf( HashBagOStuff::class, $this->getServiceContainer()->getObjectCacheFactory()->getLocalServerInstance() );
@@ -131,7 +131,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 	public function testOverrideConfigValues__before() {
 		$nsInfo1 = $this->getServiceContainer()->getNamespaceInfo();
 
-		$oldSitename = $this->getServiceContainer()->getMainConfig()->get( MainConfigNames::Sitename );
+		$oldSitename = $this->getConfVar( MainConfigNames::Sitename );
 
 		$this->overrideConfigValue( MainConfigNames::Sitename, 'TestingSitenameOverride' );
 		$nsInfo2 = $this->getServiceContainer()->getNamespaceInfo();

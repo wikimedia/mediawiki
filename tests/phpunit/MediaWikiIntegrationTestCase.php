@@ -972,8 +972,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	protected function setMainCache( $cache ) {
 		if ( $cache instanceof BagOStuff ) {
 			$cacheId = 'UTCache';
-			$objectCaches = $this->getServiceContainer()->getMainConfig()
-				->get( MainConfigNames::ObjectCaches );
+			$objectCaches = $this->getConfVar( MainConfigNames::ObjectCaches );
 			$objectCaches[$cacheId] = [
 				'factory' => static function () use ( $cache ) {
 					return $cache;
@@ -1491,8 +1490,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$newPerms = [ $newPerms => [ $newKey => $newValue ] ];
 		}
 
-		$newPermissions = $this->getServiceContainer()->getMainConfig()
-			->get( MainConfigNames::GroupPermissions );
+		$newPermissions = $this->getConfVar( MainConfigNames::GroupPermissions );
 
 		foreach ( $newPerms as $group => $permissions ) {
 			foreach ( $permissions as $key => $value ) {
