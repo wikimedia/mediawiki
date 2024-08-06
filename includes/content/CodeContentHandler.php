@@ -21,7 +21,11 @@
  * @ingroup Content
  */
 
-use MediaWiki\Content\TextContentHandler;
+namespace MediaWiki\Content;
+
+use Content;
+use Language;
+use LogicException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
@@ -72,3 +76,5 @@ abstract class CodeContentHandler extends TextContentHandler {
 	}
 
 }
+/** @deprecated class alias since 1.43 */
+class_alias( CodeContentHandler::class, 'CodeContentHandler' );
