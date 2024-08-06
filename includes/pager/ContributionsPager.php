@@ -317,12 +317,17 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			->joinConds( $join_conds )
 			->setMaxExecutionTime( $this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries ) )
 			->fetchResultSet() ];
-		if ( !$this->revisionsOnly && !$this->isArchive ) {
+		if ( !$this->revisionsOnly ) {
+			// These hooks were moved from ContribsPager and DeletedContribsPager. For backwards
+			// compatability, they keep the same names. But they should be run for any contributions
+			// pager, otherwise the entries from extensions would be missing.
+			$reallyDoQueryHook = $this->isArchive ?
+				'onDeletedContribsPager__reallyDoQuery' :
+				'onContribsPager__reallyDoQuery';
 			// TODO: Range offsets are fairly important and all handlers should take care of it.
 			// If this hook will be replaced (e.g. unified with the DeletedContribsPager one),
 			// please consider passing [ $this->endOffset, $this->startOffset ] to it (T167577).
-			$this->hookRunner->onContribsPager__reallyDoQuery(
-				$data, $this, $offset, $limit, $order );
+			$this->hookRunner->$reallyDoQueryHook( $data, $this, $offset, $limit, $order );
 		}
 
 		$result = [];
@@ -496,11 +501,16 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		);
 		$linkBatch->execute();
 
-		$this->formattedComments = $this->commentFormatter->createRevisionBatch()
+		$revisionBatch = $this->commentFormatter->createRevisionBatch()
 			->authority( $this->getAuthority() )
-			->revisions( $revisions )
-			->hideIfDeleted()
-			->execute();
+			->revisions( $revisions );
+
+		if ( !$this->isArchive ) {
+			// Only show public comments, because this page might be public
+			$revisionBatch = $revisionBatch->hideIfDeleted();
+		}
+
+		$this->formattedComments = $revisionBatch->execute();
 
 		# For performance, save the revision objects for later.
 		# The array is indexed by rev_id. doBatchLookups() may be called
@@ -850,14 +860,15 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			);
 		}
 
-		if ( !$this->isArchive ) {
-			// Let extensions add data
-			$this->hookRunner->onContributionsLineEnding( $this, $ret, $row, $classes, $attribs );
-			$attribs = array_filter( $attribs,
-				[ Sanitizer::class, 'isReservedDataAttribute' ],
-				ARRAY_FILTER_USE_KEY
-			);
-		}
+		// Let extensions add data
+		$lineEndingsHook = $this->isArchive ?
+			'onDeletedContributionsLineEnding' :
+			'onContributionsLineEnding';
+		$this->hookRunner->$lineEndingsHook( $this, $ret, $row, $classes, $attribs );
+		$attribs = array_filter( $attribs,
+			[ Sanitizer::class, 'isReservedDataAttribute' ],
+			ARRAY_FILTER_USE_KEY
+		);
 
 		// TODO: Handle exceptions in the catch block above.  Do any extensions rely on
 		// receiving empty rows?

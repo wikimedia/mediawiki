@@ -8,6 +8,9 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Pager\DeletedContribsPager;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Title\NamespaceInfo;
+use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -32,11 +35,17 @@ class DeletedContribsPagerTest extends MediaWikiIntegrationTestCase {
 	/** @var RevisionStore */
 	private $revisionStore;
 
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
 	/** @var CommentFormatter */
 	private $commentFormatter;
 
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
+
+	/** @var UserFactory */
+	private $userFactory;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -46,22 +55,28 @@ class DeletedContribsPagerTest extends MediaWikiIntegrationTestCase {
 		$this->linkRenderer = $services->getLinkRenderer();
 		$this->dbProvider = $services->getConnectionProvider();
 		$this->revisionStore = $services->getRevisionStore();
+		$this->namespaceInfo = $services->getNamespaceInfo();
 		$this->commentFormatter = $services->getCommentFormatter();
 		$this->linkBatchFactory = $services->getLinkBatchFactory();
+		$this->userFactory = $services->getUserFactory();
 		$this->pager = $this->getDeletedContribsPager();
 	}
 
 	private function getDeletedContribsPager( $target = 'Some test user', $namespace = 0 ) {
+		$target = UserIdentityValue::newAnonymous( $target );
+
 		return new DeletedContribsPager(
-			RequestContext::getMain(),
 			$this->hookContainer,
 			$this->linkRenderer,
 			$this->dbProvider,
 			$this->revisionStore,
+			$this->namespaceInfo,
 			$this->commentFormatter,
 			$this->linkBatchFactory,
-			$target,
-			$namespace
+			$this->userFactory,
+			RequestContext::getMain(),
+			[ 'namespace' => $namespace ],
+			$target
 		);
 	}
 

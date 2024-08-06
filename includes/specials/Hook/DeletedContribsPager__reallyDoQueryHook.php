@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use MediaWiki\Pager\DeletedContribsPager;
+use MediaWiki\Pager\ContributionsPager;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 /**
@@ -21,7 +21,7 @@ interface DeletedContribsPager__reallyDoQueryHook {
 	 * @since 1.35
 	 *
 	 * @param array &$data an array of results of all contribs queries
-	 * @param DeletedContribsPager $pager The DeletedContribsPager object hooked into
+	 * @param ContributionsPager $pager The ContributionsPager object hooked into
 	 * @param string $offset Index offset, inclusive
 	 * @param int $limit Exact query limit
 	 * @param bool $descending Query direction, false for ascending, true for descending
