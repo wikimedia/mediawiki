@@ -74,7 +74,7 @@ class DeleteEqualMessages extends Maintenance {
 			$nonContentLanguage,
 			$this->getReplicaDB()
 		);
-		// getCustomisedStatuses is stripping the sub page from the page titles, add it back
+		// getCustomisedStatuses is stripping the subpage from the page titles, add it back
 		$titleSuffix = $nonContentLanguage ? "/$langCode" : '';
 
 		foreach ( $messageNames as $key ) {

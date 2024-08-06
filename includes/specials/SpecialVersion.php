@@ -125,7 +125,7 @@ class SpecialVersion extends SpecialPage {
 		$out = $this->getOutput();
 		$out->setPreventClickjacking( false );
 
-		// Explode the sub page information into useful bits
+		// Explode the subpage information into useful bits
 		$parts = explode( '/', (string)$par );
 		$extNode = null;
 		if ( isset( $parts[1] ) ) {

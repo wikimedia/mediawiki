@@ -1389,7 +1389,7 @@ class PermissionManager {
 	}
 
 	/**
-	 * Check CSS/JSON/JS sub-page permissions
+	 * Check CSS/JSON/JS subpage permissions
 	 *
 	 * @param string $action The action to check
 	 * @param UserIdentity $user User to check

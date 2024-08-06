@@ -92,7 +92,8 @@ class MediaWikiSiteTest extends SiteTest {
 			[ 'http://acme.test/wiki/', 'Berlin', '/wiki/' ],
 			[ 'http://acme.test/w/index.php?title=$1', 'Berlin', '/w/index.php?title=Berlin' ],
 			[ 'http://acme.test/wiki/$1', '', '/wiki/' ],
-			[ 'http://acme.test/wiki/$1', 'Berlin/sub page', '/wiki/Berlin/sub_page' ],
+			[ 'http://acme.test/wiki/$1', 'Berlin/subpage', '/wiki/Berlin/subpage' ],
+			[ 'http://acme.test/wiki/$1', 'Berlin/subpage with spaces', '/wiki/Berlin/subpage_with_spaces' ],
 			[ 'http://acme.test/wiki/$1', 'Cork (city)   ', '/Cork_(city)' ],
 			[ 'http://acme.test/wiki/$1', 'M&M', '/wiki/M%26M' ],
 		];

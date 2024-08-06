@@ -259,7 +259,7 @@ ChangesListWrapperWidget.prototype.updateEnhancedParentHighlight = function () {
 
 	activeHighlightClasses = this.filtersViewModel.getCurrentlyUsedHighlightColors().map( ( color ) => 'mw-rcfilters-highlight-color-' + color );
 
-	// Go over top pages and their children, and figure out if all sub-pages have the
+	// Go over top pages and their children, and figure out if all subpages have the
 	// same highlights between themselves. If they do, the parent should be highlighted
 	// with all colors. If classes are different, the parent should receive a grey
 	// background

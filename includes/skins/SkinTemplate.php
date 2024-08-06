@@ -449,7 +449,7 @@ class SkinTemplate extends Skin {
 			# We need to do an explicit check for Special:Contributions, as we
 			# have to match both the title, and the target, which could come
 			# from request values (Special:Contributions?target=Jimbo_Wales)
-			# or be specified in "sub page" form
+			# or be specified in "subpage" form
 			# (Special:Contributions/Jimbo_Wales). The plot
 			# thickens, because the Title object is altered for special pages,
 			# so it doesn't contain the original alias-with-subpage.
@@ -1425,7 +1425,7 @@ class SkinTemplate extends Skin {
 		}
 		$special->setContext( $this );
 		$associatedNavigationLinks = $special->getAssociatedNavigationLinks();
-		// If no sub pages we should not render.
+		// If there are no subpages, we should not render
 		if ( count( $associatedNavigationLinks ) === 0 ) {
 			return [];
 		}

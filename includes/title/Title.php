@@ -1450,7 +1450,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	}
 
 	/**
-	 * Is this a "config" (.css, .json, or .js) sub-page of a user page?
+	 * Is this a "config" (.css, .json, or .js) subpage of a user page?
 	 *
 	 * @return bool
 	 * @since 1.31
@@ -1485,7 +1485,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	}
 
 	/**
-	 * Is this a CSS "config" sub-page of a user page?
+	 * Is this a CSS "config" subpage of a user page?
 	 *
 	 * @return bool
 	 * @since 1.31
@@ -1499,7 +1499,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	}
 
 	/**
-	 * Is this a JSON "config" sub-page of a user page?
+	 * Is this a JSON "config" subpage of a user page?
 	 *
 	 * @return bool
 	 * @since 1.31
@@ -1513,7 +1513,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	}
 
 	/**
-	 * Is this a JS "config" sub-page of a user page?
+	 * Is this a JS "config" subpage of a user page?
 	 *
 	 * @return bool
 	 * @since 1.31

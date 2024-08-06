@@ -808,7 +808,7 @@ class SpecialPage implements MessageLocalizer {
 	}
 
 	/**
-	 * Similar to getDescription but takes into account sub pages and designed for display
+	 * Similar to getDescription, but takes into account subpages and designed for display
 	 * in tabs.
 	 *
 	 * @since 1.39

@@ -40,7 +40,7 @@ use UserBlockedError;
  */
 abstract class FormSpecialPage extends SpecialPage {
 	/**
-	 * The sub-page of the special page.
+	 * The subpage of the special page.
 	 * @var string|null
 	 */
 	protected $par = null;
