@@ -12,5 +12,17 @@
 	"cdx-table-select-all-label": "Select all rows",
 	"cdx-table-select-row-label": "Select row $1 of $2",
 	"cdx-table-sort-caption": "$1, column headers with buttons are sortable.",
-	"cdx-typeahead-search-search-results-label": "Search results"
+	"cdx-typeahead-search-search-results-label": "Search results",
+	"cdx-table-pager-button-first-page": "First page",
+	"cdx-table-pager-button-last-page": "Last page",
+	"cdx-table-pager-button-next-page": "Next page",
+	"cdx-table-pager-button-prev-page": "Previous page",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 row|$1 rows}}",
+	"cdx-table-pager-items-per-page-default": "Results per page",
+	"cdx-table-pagination-status-message-determinate-long": "Showing results $1–$2 of $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 of $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Showing results $1–$2 of many",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 of many",
+	"cdx-table-pagination-status-message-indeterminate-final": "Showing the last {{PLURAL:$1|$1 result|$1 results}}",
+	"cdx-table-pagination-status-message-pending": "Loading results..."
 }
