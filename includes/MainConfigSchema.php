@@ -9902,19 +9902,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Sampling rate for statsd metrics as an associative array of patterns and rates.
-	 *
-	 * Patterns are Unix shell patterns (e.g. 'MediaWiki.api.*').
-	 * Rates are sampling probabilities (e.g. 0.1 means 1 in 10 events are sampled).
-	 *
-	 * @since 1.28
-	 */
-	public const StatsdSamplingRates = [
-		'default' => [],
-		'type' => 'map',
-	];
-
-	/**
 	 * Stats output target URI e.g. udp://127.0.0.1:8125
 	 *
 	 * If null, metrics will not be sent.

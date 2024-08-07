@@ -3333,12 +3333,6 @@ class MainConfigNames {
 	public const StatsdMetricPrefix = 'StatsdMetricPrefix';
 
 	/**
-	 * Name constant for the StatsdSamplingRates setting, for use with Config::get()
-	 * @see MainConfigSchema::StatsdSamplingRates
-	 */
-	public const StatsdSamplingRates = 'StatsdSamplingRates';
-
-	/**
 	 * Name constant for the StatsTarget setting, for use with Config::get()
 	 * @see MainConfigSchema::StatsTarget
 	 */

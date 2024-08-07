@@ -26,6 +26,7 @@ use IBufferingStatsdDataFactory;
 use JobQueueGroup;
 use JobRunner;
 use Liuggio\StatsdClient\Sender\SocketSender;
+use Liuggio\StatsdClient\StatsdClient;
 use LogicException;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Config\Config;
@@ -47,7 +48,6 @@ use MWExceptionHandler;
 use Profiler;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
-use SamplingStatsdClient;
 use Throwable;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\ChronologyProtector;
@@ -728,8 +728,7 @@ abstract class MediaWikiEntryPoint {
 				$statsdHost = $statsdServer[0];
 				$statsdPort = $statsdServer[1] ?? 8125;
 				$statsdSender = new SocketSender( $statsdHost, $statsdPort );
-				$statsdClient = new SamplingStatsdClient( $statsdSender, true, false );
-				$statsdClient->setSamplingRates( $config->get( MainConfigNames::StatsdSamplingRates ) );
+				$statsdClient = new StatsdClient( $statsdSender, true, false );
 				$statsdClient->send( $stats->getData() );
 			} catch ( Exception $e ) {
 				MWExceptionHandler::logException( $e, MWExceptionHandler::CAUGHT_BY_ENTRYPOINT );

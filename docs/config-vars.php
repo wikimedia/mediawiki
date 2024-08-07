@@ -3318,12 +3318,6 @@ $wgStatsdServer = null;
 $wgStatsdMetricPrefix = null;
 
 /**
- * Config variable stub for the StatsdSamplingRates setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::StatsdSamplingRates
- */
-$wgStatsdSamplingRates = null;
-
-/**
  * Config variable stub for the StatsTarget setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::StatsTarget
  */

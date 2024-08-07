@@ -28,6 +28,7 @@ use Wikimedia\RequestTimeout\TimeoutException;
 /**
  * A statsd client that applies the sampling rate to the data items before sending them.
  *
+ * @deprecated since 1.43 No longer used after $wgSamplingStatsdClient was removed.
  * @since 1.26
  */
 class SamplingStatsdClient extends StatsdClient {
