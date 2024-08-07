@@ -541,7 +541,7 @@ class PageEditStash {
 		$keyList = $this->cache->get( $key ) ?: [];
 		if ( count( $keyList ) >= self::MAX_CACHE_RECENT ) {
 			$oldestKey = array_shift( $keyList );
-			$this->cache->delete( $oldestKey, BagOStuff::WRITE_PRUNE_SEGMENTS );
+			$this->cache->delete( $oldestKey, BagOStuff::WRITE_ALLOW_SEGMENTS );
 		}
 
 		$keyList[] = $newKey;
