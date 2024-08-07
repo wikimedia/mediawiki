@@ -48,7 +48,8 @@
 			"Чаховіч Уладзіслаў",
 			"לערי ריינהארט",
 			"아라",
-			"Andoti"
+			"Andoti",
+			"Dirruw'o"
 		]
 	},
 	"tog-underline": "Падкрэсленне спасылак:",
@@ -923,6 +924,7 @@
 	"revdelete-radio-set": "Схаваны",
 	"revdelete-radio-unset": "Бачны",
 	"revdelete-radio-set-suppress": "Падавіць",
+	"revdelete-radio-unset-suppress": "Не сакрываць",
 	"revdelete-suppress": "Прыпыняць* звесткі ад адміністратараў таксама",
 	"revdelete-unsuppress": "Зняць абмежаванні на адноўленыя версіі",
 	"revdelete-log": "Прычына:",
@@ -3297,6 +3299,7 @@
 	"watchlistedit-normal-legend": "Выдаленне складнікаў са спісу назірання",
 	"watchlistedit-normal-explain": "Назвы старонак з ліку назіраных паказаныя ніжэй. Каб нешта выдаліць, адзначце клетку побач з адпаведным радком, пасля чаго націсніце \"Выняць складнікі\". Таксама можна правіць гэты спіс непасрэдна, [[Special:EditWatchlist/raw|без афармлення]].",
 	"watchlistedit-normal-submit": "Выняць складнікі",
+	"watchlistedit-normal-check-all": "Праверыць усё",
 	"watchlistedit-normal-done": "З Вашага спісу назірання {{PLURAL:$1|быў выдалены|былі выдалены|было выдалена}} $1 {{PLURAL:$1|складнік|складнікі|складнікаў}}:",
 	"watchlistedit-raw-title": "Нефарматаваны спіс назірання",
 	"watchlistedit-raw-legend": "Правіць нефарматаваны спіс назірання",
@@ -4072,6 +4075,7 @@
 	"blockedtext-include-details-queries": "Калі ласка, уключайце ўсе пададзеныя вышэй звесткі ва ўсе вашы запыты.",
 	"renameuser": "Перайменаваць удзельніка",
 	"renameuser-linkoncontribs": "перайменаваць {{GENDER:$1|удзельніка|удзельніцу}}",
+	"renameuserreason": "Прычына:",
 	"renameuserconfirm": "Так, перайменаваць удзельніка",
 	"renameuser-error-temp-user": "Вы не можаце перайменаваць часовы ўліковы запіс «$1».",
 	"renameuser-error-temp-user-reserved": "Вы не можаце выкарыстоўваць «$1». Ён зарэзерваваны для часовых уліковых запісаў.",
