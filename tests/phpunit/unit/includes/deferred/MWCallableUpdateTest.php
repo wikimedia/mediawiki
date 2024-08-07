@@ -6,15 +6,33 @@ use MediaWiki\Deferred\MWCallableUpdate;
  * @covers \MediaWiki\Deferred\MWCallableUpdate
  */
 class MWCallableUpdateTest extends MediaWikiUnitTestCase {
+	private $callbackMethodRan = 0;
 
 	public function testDoUpdate() {
 		$ran = 0;
-		$update = new MWCallableUpdate( static function () use ( &$ran ) {
-			$ran++;
-		} );
+		$ranBy = '';
+		$caller = 'caller_name';
+		$update = new MWCallableUpdate(
+			static function ( $fname ) use ( &$ran, &$ranBy ) {
+				$ran++;
+				$ranBy = $fname;
+			},
+			$caller
+		);
 		$this->assertSame( 0, $ran );
+		$this->assertSame( '', $ranBy );
 		$update->doUpdate();
 		$this->assertSame( 1, $ran );
+		$this->assertSame( $caller, $ranBy );
+
+		$this->callbackMethodRan = 0;
+		$update = new MWCallableUpdate(
+			[ $this, 'callbackMethodWithNoArgs' ],
+			$caller
+		);
+		$this->assertSame( 0, $this->callbackMethodRan );
+		$update->doUpdate();
+		$this->assertSame( 1, $this->callbackMethodRan );
 	}
 
 	public function testCancel() {
@@ -79,4 +97,8 @@ class MWCallableUpdateTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 0, $ran );
 	}
 
+	public function callbackMethodWithNoArgs() {
+		$this->callbackMethodRan++;
+		$this->assertSame( 0, func_num_args() );
+	}
 }

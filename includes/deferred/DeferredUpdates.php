@@ -165,15 +165,24 @@ class DeferredUpdates {
 	/**
 	 * Add an update to the pending update queue that invokes the specified callback when run
 	 *
-	 * @param callable $callable
+	 * @param callable $callable One of the following:
+	 *  - A Closure callback that takes the caller name as its argument
+	 *  - A non-Closure callback that takes no arguments
 	 * @param int $stage One of (DeferredUpdates::PRESEND, DeferredUpdates::POSTSEND)
-	 * @param IDatabase|IDatabase[]|null $dbw Cancel the update if a DB transaction
-	 *  is rolled back [optional]
+	 * @param IDatabase|IDatabase[]|null $dependeeDbws DB handles which might have pending writes
+	 *  upon which this update depends. If any of the handles already has an open transaction,
+	 *  a rollback thereof will cause this update to be cancelled (if it has not already run).
+	 *  [optional] (since 1.28)
 	 * @since 1.27 Added $stage parameter
 	 * @since 1.28 Added the $dbw parameter
+	 * @since 1.43 Closures are now given the caller name parameter
 	 */
-	public static function addCallableUpdate( $callable, $stage = self::POSTSEND, $dbw = null ) {
-		self::addUpdate( new MWCallableUpdate( $callable, wfGetCaller(), $dbw ), $stage );
+	public static function addCallableUpdate(
+		$callable,
+		$stage = self::POSTSEND,
+		$dependeeDbws = []
+	) {
+		self::addUpdate( new MWCallableUpdate( $callable, wfGetCaller(), $dependeeDbws ), $stage );
 	}
 
 	/**

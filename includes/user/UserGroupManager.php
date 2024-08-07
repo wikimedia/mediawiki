@@ -879,14 +879,14 @@ class UserGroupManager {
 		$dbw->endAtomic( __METHOD__ );
 
 		// Purge old, expired memberships from the DB
-		$fname = __METHOD__;
-		DeferredUpdates::addCallableUpdate( function () use ( $fname ) {
+		DeferredUpdates::addCallableUpdate( function ( $fname ) {
 			$dbr = $this->dbProvider->getReplicaDatabase( $this->wikiId );
 			$hasExpiredRow = (bool)$dbr->newSelectQueryBuilder()
 				->select( '1' )
 				->from( 'user_groups' )
 				->where( [ $dbr->expr( 'ug_expiry', '<', $dbr->timestamp() ) ] )
-				->caller( $fname )->fetchField();
+				->caller( $fname )
+				->fetchField();
 			if ( $hasExpiredRow ) {
 				$this->jobQueueGroup->push( new UserGroupExpiryJob( [] ) );
 			}
