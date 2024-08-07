@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\PoolCounter\PoolWorkArticleView;
 use MediaWiki\Revision\MutableRevisionRecord;

@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Content;
+
 use HtmlFormatter\HtmlFormatter;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Sanitizer;
@@ -64,6 +66,7 @@ class WikiTextStructure {
 
 	/**
 	 * Gets headings from the page.
+	 *
 	 * @return string[]
 	 * First strip out things that look like references.  We can't use HTML filtering because
 	 * the references come back as <sup> tags without a class.  To keep from breaking stuff like
@@ -104,6 +107,7 @@ class WikiTextStructure {
 				$headings[] = $heading;
 			}
 		}
+
 		return $headings;
 	}
 
@@ -112,6 +116,7 @@ class WikiTextStructure {
 	 * parse settings stored as i18n messages (see search-ignored-headings).
 	 *
 	 * @param string $message
+	 *
 	 * @return string[]
 	 */
 	public static function parseSettingsInMessage( $message ) {
@@ -120,12 +125,14 @@ class WikiTextStructure {
 		$lines = preg_replace( '/#.*$/', '', $lines );
 		// Remove extra spaces
 		$lines = array_map( 'trim', $lines );
+
 		// Remove empty lines
 		return array_filter( $lines );
 	}
 
 	/**
 	 * Gets a list of heading to ignore.
+	 *
 	 * @return string[]
 	 */
 	private function getIgnoredHeadings() {
@@ -139,6 +146,7 @@ class WikiTextStructure {
 				$ignoredHeadings = $lines;
 			}
 		}
+
 		return $ignoredHeadings;
 	}
 
@@ -152,6 +160,7 @@ class WikiTextStructure {
 		$text = $this->parserOutput->getRawText();
 		if ( $text === '' ) {
 			$this->allText = "";
+
 			// empty text - nothing to seek here
 			return;
 		}
@@ -178,7 +187,9 @@ class WikiTextStructure {
 
 	/**
 	 * Get text before first heading.
+	 *
 	 * @param string $text
+	 *
 	 * @return string|null
 	 */
 	private function extractTextBeforeFirstHeading( $text ) {
@@ -215,6 +226,7 @@ class WikiTextStructure {
 	 */
 	public function getOpeningText() {
 		$this->extractWikitextParts();
+
 		return $this->openingText;
 	}
 
@@ -223,6 +235,7 @@ class WikiTextStructure {
 	 */
 	public function getMainText() {
 		$this->extractWikitextParts();
+
 		return $this->allText;
 	}
 
@@ -231,11 +244,13 @@ class WikiTextStructure {
 	 */
 	public function getAuxiliaryText() {
 		$this->extractWikitextParts();
+
 		return $this->auxText;
 	}
 
 	/**
 	 * Get the "defaultsort" property
+	 *
 	 * @return string|null
 	 */
 	public function getDefaultSort() {
@@ -243,6 +258,10 @@ class WikiTextStructure {
 		if ( $sort === false ) {
 			return null;
 		}
+
 		return $sort;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( WikiTextStructure::class, 'WikiTextStructure' );

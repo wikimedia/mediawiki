@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;
 

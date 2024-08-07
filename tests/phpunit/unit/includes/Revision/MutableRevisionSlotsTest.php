@@ -4,11 +4,11 @@ namespace MediaWiki\Tests\Unit\Revision;
 
 use Content;
 use InvalidArgumentException;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionSlots;
 use MediaWiki\Revision\SlotRecord;
-use WikitextContent;
 
 /**
  * @covers \MediaWiki\Revision\MutableRevisionSlots

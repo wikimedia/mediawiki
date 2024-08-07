@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use Exception;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
@@ -13,7 +14,6 @@ use MediaWiki\User\User;
 use RevisionDeleter;
 use RuntimeException;
 use Wikimedia\Rdbms\IDatabase;
-use WikitextContent;
 
 /**
  * Trait for creating a know set of test pages in the database,

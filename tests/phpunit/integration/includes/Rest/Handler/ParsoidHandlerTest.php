@@ -9,6 +9,7 @@ use Generator;
 use Language;
 use LanguageCode;
 use MediaWiki\Content\JavaScriptContent;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\ParserCacheFactory;
@@ -46,7 +47,6 @@ use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\DOM\Document;
 use Wikimedia\Parsoid\Parsoid;
-use WikitextContent;
 
 /**
  * @group Database

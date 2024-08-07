@@ -9,6 +9,7 @@ use MediaWiki\Config\HashConfig;
 use MediaWiki\Content\CssContent;
 use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\JavaScriptContentHandler;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
@@ -25,7 +26,6 @@ use RuntimeException;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
-use WikitextContent;
 
 /**
  * @group ResourceLoader

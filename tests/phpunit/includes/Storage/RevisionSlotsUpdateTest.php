@@ -3,13 +3,13 @@
 namespace MediaWiki\Tests\Storage;
 
 use Content;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionSlots;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWikiIntegrationTestCase;
-use WikitextContent;
 
 /**
  * @covers \MediaWiki\Storage\RevisionSlotsUpdate

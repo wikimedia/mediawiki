@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Parser;
 
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -10,7 +11,6 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWikiLangTestCase;
 use MockTitleTrait;
 use ParserOptions;
-use WikitextContent;
 
 /**
  * @group Database

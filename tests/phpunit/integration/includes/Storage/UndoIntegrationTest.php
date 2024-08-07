@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Storage;
 
 use Article;
 use McrUndoAction;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
@@ -17,7 +18,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 use WikiPage;
-use WikitextContent;
 
 /**
  * Integration tests for undos.

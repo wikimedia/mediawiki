@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Rest\Handler\Helper;
 use Exception;
 use MediaWiki\Content\CssContent;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Edit\ParsoidRenderID;
 use MediaWiki\Edit\SimpleParsoidOutputStash;
@@ -54,7 +55,6 @@ use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\TestingAccessWrapper;
-use WikitextContent;
 
 /**
  * @covers \MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper

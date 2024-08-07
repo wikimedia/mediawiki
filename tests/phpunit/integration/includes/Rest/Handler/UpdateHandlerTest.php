@@ -4,6 +4,8 @@ namespace MediaWiki\Tests\Rest\Handler;
 
 use ApiUsageException;
 use MediaWiki\Config\HashConfig;
+use MediaWiki\Content\WikitextContent;
+use MediaWiki\Content\WikitextContentHandler;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
@@ -30,8 +32,6 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
 use Wikimedia\UUID\GlobalIdGenerator;
-use WikitextContent;
-use WikitextContentHandler;
 
 /**
  * @group Database

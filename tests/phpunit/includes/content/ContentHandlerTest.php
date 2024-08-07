@@ -6,6 +6,8 @@ use MediaWiki\Content\JsonContent;
 use MediaWiki\Content\JsonContentHandler;
 use MediaWiki\Content\TextContentHandler;
 use MediaWiki\Content\ValidationParams;
+use MediaWiki\Content\WikitextContent;
+use MediaWiki\Content\WikitextContentHandler;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;

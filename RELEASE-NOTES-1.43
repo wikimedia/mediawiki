@@ -359,6 +359,9 @@ because of Phabricator reports.
     - JsonContentHandler
     - TextContent
     - TextContentHandler
+    - WikitextContent
+    - WikitextContentHandler
+    - WikiTextStructure
   - MediaWiki\Debug:
     - DeprecationHelper
     - MWDebug

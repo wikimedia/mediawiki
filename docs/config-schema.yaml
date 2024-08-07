@@ -2013,7 +2013,7 @@ config-schema:
               - 1.41: Added
     ContentHandlers:
         default:
-            wikitext: { class: WikitextContentHandler, services: [TitleFactory, ParserFactory, GlobalIdGenerator, LanguageNameUtils, LinkRenderer, MagicWordFactory, ParsoidParserFactory] }
+            wikitext: { class: MediaWiki\Content\WikitextContentHandler, services: [TitleFactory, ParserFactory, GlobalIdGenerator, LanguageNameUtils, LinkRenderer, MagicWordFactory, ParsoidParserFactory] }
             javascript: MediaWiki\Content\JavaScriptContentHandler
             json: MediaWiki\Content\JsonContentHandler
             css: MediaWiki\Content\CssContentHandler

@@ -30,6 +30,7 @@ use MediaWiki\Collation\CollationFactory;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\AtomicSectionUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
@@ -56,7 +57,6 @@ use StringUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use WikiPage;
-use WikitextContent;
 
 /**
  * Handles the backend logic of moving a page from one title

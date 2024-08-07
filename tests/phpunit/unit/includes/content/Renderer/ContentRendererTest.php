@@ -23,6 +23,8 @@ namespace MediaWiki\Tests\Unit\Content\Renderer;
 
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
+use MediaWiki\Content\WikitextContent;
+use MediaWiki\Content\WikitextContentHandler;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\ParserOutput;
@@ -30,8 +32,6 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWikiUnitTestCase;
 use ParserOptions;
 use Wikimedia\UUID\GlobalIdGenerator;
-use WikitextContent;
-use WikitextContentHandler;
 
 /**
  * @group Renderer

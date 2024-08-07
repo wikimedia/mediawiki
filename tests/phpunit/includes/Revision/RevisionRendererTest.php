@@ -7,6 +7,7 @@ use LogicException;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
@@ -27,7 +28,6 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\SelectQueryBuilder;
-use WikitextContent;
 
 /**
  * @covers \MediaWiki\Revision\RevisionRenderer

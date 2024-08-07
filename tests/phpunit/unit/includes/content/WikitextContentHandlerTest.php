@@ -4,6 +4,8 @@ namespace MediaWiki\Tests\Unit;
 
 use Language;
 use MediaWiki\Content\Renderer\ContentParseParams;
+use MediaWiki\Content\WikitextContent;
+use MediaWiki\Content\WikitextContentHandler;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Parser\MagicWord;
@@ -23,14 +25,12 @@ use ParserFactory;
 use ParserOptions;
 use ReflectionClass;
 use Wikimedia\UUID\GlobalIdGenerator;
-use WikitextContent;
-use WikitextContentHandler;
 
 /**
  * Split from \WikitextContentHandlerTest integration tests
  *
  * @group ContentHandler
- * @covers \WikitextContentHandler
+ * @covers \MediaWiki\Content\WikitextContentHandler
  */
 class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 	use MockTitleTrait;

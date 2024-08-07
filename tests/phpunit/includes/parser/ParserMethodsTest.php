@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Parser;
 
 use HtmlArmor;
 use LogicException;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -17,7 +18,6 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWikiLangTestCase;
 use MockTitleTrait;
 use ParserOptions;
-use WikitextContent;
 
 /**
  * @group Database

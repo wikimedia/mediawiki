@@ -7,6 +7,7 @@ use IDBAccessObject;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\JavaScriptContent;
+use MediaWiki\Content\WikitextContent;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
@@ -18,7 +19,6 @@ use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
 use RevisionDeleter;
 use WikiPage;
-use WikitextContent;
 
 /**
  * Tests for MediaWiki api.php?action=edit.
