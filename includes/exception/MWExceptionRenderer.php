@@ -214,12 +214,12 @@ class MWExceptionRenderer {
 	 */
 	public static function getHTML( Throwable $e ) {
 		if ( self::shouldShowExceptionDetails() ) {
-			$html = Html::errorBox( "<div dir=ltr><p>" .
+			$html = '<div dir=ltr>' . Html::errorBox( "<p>" .
 				nl2br( htmlspecialchars( MWExceptionHandler::getLogMessage( $e ) ) ) .
 				'</p><p>Backtrace:</p><p>' .
 				nl2br( htmlspecialchars( MWExceptionHandler::getRedactedTraceAsString( $e ) ) ) .
-				"</p></div>\n"
-			);
+				"</p>\n"
+			) . '</div>';
 		} else {
 			$logId = WebRequest::getRequestId();
 			$html = Html::errorBox(
