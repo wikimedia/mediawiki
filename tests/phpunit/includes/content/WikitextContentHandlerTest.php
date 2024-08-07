@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Content\FileContentHandler;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Content\WikitextContentHandler;
 use MediaWiki\MainConfigNames;

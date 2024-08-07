@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Unit;
 
-use FileContentHandler;
+use MediaWiki\Content\FileContentHandler;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Parser\MagicWordFactory;
@@ -18,7 +18,7 @@ use Wikimedia\UUID\GlobalIdGenerator;
 /**
  * @group ContentHandler
  *
- * @covers \FileContentHandler
+ * @covers \MediaWiki\Content\FileContentHandler
  */
 class FileContentHandlerTest extends MediaWikiUnitTestCase {
 	/**

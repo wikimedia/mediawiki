@@ -1,9 +1,13 @@
 <?php
 
-use MediaWiki\Content\WikitextContentHandler;
+namespace MediaWiki\Content;
+
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
+use SearchEngine;
+use SearchIndexField;
+use WikiPage;
 
 /**
  * Content handler for File: files
@@ -74,3 +78,6 @@ class FileContentHandler extends WikitextContentHandler {
 	}
 
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( FileContentHandler::class, 'FileContentHandler' );
