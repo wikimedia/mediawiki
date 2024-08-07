@@ -26,7 +26,7 @@ class MWCallableUpdate
 	 *    - A Closure callback that takes the caller name as its argument
 	 *    - A non-Closure callback that takes no arguments
 	 * @param string $fname Calling method
-	 * @param IDatabase|IDatabase[]|null $dependeeDbws DB handles which might have pending writes
+	 * @param IDatabase|IDatabase[] $dependeeDbws DB handles which might have pending writes
 	 *  upon which this update depends. If any of the handles already has an open transaction,
 	 *  a rollback thereof will cause this update to be cancelled (if it has not already run).
 	 *  [optional]
@@ -41,7 +41,7 @@ class MWCallableUpdate
 
 		$dependeeDbws = is_array( $dependeeDbws ) ? $dependeeDbws : [ $dependeeDbws ];
 		foreach ( $dependeeDbws as $dbw ) {
-			if ( $dbw && $dbw->trxLevel() ) {
+			if ( $dbw->trxLevel() ) {
 				$dbw->onTransactionResolution( [ $this, 'cancelOnRollback' ], $fname );
 			}
 		}

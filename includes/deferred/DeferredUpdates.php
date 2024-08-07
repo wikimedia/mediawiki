@@ -169,7 +169,7 @@ class DeferredUpdates {
 	 *  - A Closure callback that takes the caller name as its argument
 	 *  - A non-Closure callback that takes no arguments
 	 * @param int $stage One of (DeferredUpdates::PRESEND, DeferredUpdates::POSTSEND)
-	 * @param IDatabase|IDatabase[]|null $dependeeDbws DB handles which might have pending writes
+	 * @param IDatabase|IDatabase[] $dependeeDbws DB handles which might have pending writes
 	 *  upon which this update depends. If any of the handles already has an open transaction,
 	 *  a rollback thereof will cause this update to be cancelled (if it has not already run).
 	 *  [optional] (since 1.28)
