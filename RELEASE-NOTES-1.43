@@ -347,6 +347,7 @@ because of Phabricator reports.
   been moved:
   - MediaWiki\Content:
     - CodeContentHandler
+    - ContentModelChange
     - CssContent
     - CssContentHandler
     - FallbackContent
