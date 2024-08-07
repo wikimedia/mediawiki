@@ -1005,6 +1005,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Content\\CssContentHandler' => __DIR__ . '/includes/content/CssContentHandler.php',
 	'MediaWiki\\Content\\FallbackContent' => __DIR__ . '/includes/content/FallbackContent.php',
 	'MediaWiki\\Content\\FallbackContentHandler' => __DIR__ . '/includes/content/FallbackContentHandler.php',
+	'MediaWiki\\Content\\FileContentHandler' => __DIR__ . '/includes/content/FileContentHandler.php',
 	'MediaWiki\\Content\\Hook\\ContentAlterParserOutputHook' => __DIR__ . '/includes/content/Hook/ContentAlterParserOutputHook.php',
 	'MediaWiki\\Content\\Hook\\ContentGetParserOutputHook' => __DIR__ . '/includes/content/Hook/ContentGetParserOutputHook.php',
 	'MediaWiki\\Content\\Hook\\ContentHandlerForModelIDHook' => __DIR__ . '/includes/content/Hook/ContentHandlerForModelIDHook.php',

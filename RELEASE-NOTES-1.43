@@ -353,6 +353,7 @@ because of Phabricator reports.
     - CssContentHandler
     - FallbackContent
     - FallbackContentHandler
+    - FileContentHandler
     - JavaScriptContent
     - JavaScriptContentHandler
     - JsonContent
