@@ -328,6 +328,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		if ( $data['readonly'] ) {
 			$data['readonlyreason'] = $this->readOnlyMode->getReason();
 		}
+		$data['writeapi'] = true; // Deprecated since MW 1.32
 
 		$data['maxarticlesize'] = $config->get( MainConfigNames::MaxArticleSize ) * 1024;
 
