@@ -1766,7 +1766,7 @@
 	"months": "{{PLURAL:$1|mehekê|$1 mehan}}",
 	"years": "{{PLURAL:$1|salekê|$1 salan}}",
 	"ago": "berî $1",
-	"just-now": "hema niha",
+	"just-now": "hê nûka",
 	"hours-ago": "berî {{PLURAL:$1|saetekê|$1 saetan}}",
 	"minutes-ago": "Berî {{PLURAL: $1|deqeyekê|$1 deqeyan}}",
 	"monday-at": "Duşem di $1 de",

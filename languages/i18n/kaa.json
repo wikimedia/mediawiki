@@ -1741,6 +1741,7 @@
 	"movesubpagetalktext": "Tiyisli talqılaw betiniń tómende kórsetilgen $1 {{PLURAL:$1|astbeti|astbetleri}} bar.",
 	"movenosubpage": "Bul bettiń astbeti joq.",
 	"movereason": "Sebep:",
+	"moveotherreason": "Basqa/qosımsha sebep:",
 	"movepage-edit-reasonlist": "Kóshiriw sebeplerin ózgertiw",
 	"revertmove": "qaytarıw",
 	"delete_and_move_text": "«[[:$1]]» degen bet usı wikide bar.\nKóshiriwdi orınlaw ushın sol betti óshiresiz be?",

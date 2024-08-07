@@ -653,6 +653,7 @@
 	"editrecovery": "بازیابی ویرایش",
 	"edit-recovery-nojs-placeholder": "جاوااسکریپت پیش‌نیاز ویژگی بازیابی ویرایش است.",
 	"edit-recovery-special-user-unnamed": "ویژه\n :UserLogin|ورود به سیستم]] یا [[Special:CreateAccount|ایجاد حساب کاربری]] برای استفاده از این ویژگی.",
+	"edit-recovery-special-user-not-enabled": "می‌تونید این ویژگی را در [[Special:Preferences#mw-prefsection-editing|ترجیحات خود]] فعال کنید.",
 	"edit-recovery-special-intro": "در {{PLURAL:$1|صفحه یا بخش|صفحه‌ها یا بخش‌های}} زیر تغییرات ذخیره‌نشده‌ای دارید:",
 	"edit-recovery-special-intro-empty": "هیچ تغییر ذخیره‌نشده‌ای ندارید.",
 	"edit-recovery-special-view": "مشاهده",
