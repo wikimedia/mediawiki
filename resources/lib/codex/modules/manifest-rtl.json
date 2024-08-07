@@ -433,12 +433,15 @@
     "src": "src/components/table/Table.vue",
     "isEntry": true,
     "imports": [
-      "_constants.js",
-      "src/composables/useModelWrapper.ts",
       "src/components/checkbox/Checkbox.vue",
       "_Icon.js",
+      "src/components/button/Button.vue",
+      "src/components/select/Select.vue",
+      "src/composables/useModelWrapper.ts",
       "src/composables/useI18n.ts",
-      "__plugin-vue_export-helper.js"
+      "__plugin-vue_export-helper.js",
+      "src/components/progress-bar/ProgressBar.vue",
+      "_constants.js"
     ],
     "css": [
       "CdxTable-rtl.css"

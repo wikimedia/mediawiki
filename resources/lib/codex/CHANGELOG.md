@@ -1,3 +1,44 @@
+# 1.11.0 / 2024-08-07
+
+## Features
+- Basic Table pagination and TablePager component (Eric Gardner)
+- Table: Server-side pagination (Eric Gardner)
+- Radio, Checkbox: enable nested custom inputs (lwatson)
+
+## Styles
+- Table: Fix sort icon spacing (Anne Tomasevich)
+- Table: Fix alignment of sort button contents (Anne Tomasevich)
+- Button: Remove min-width for non-icon-only buttons (Anne Tomasevich)
+
+## Code
+- useI18nWithOverride: Add documentation comment (Roan Kattouw)
+- useI18n: Use WatchSource instead of MaybeRef for parameters (Roan Kattouw)
+- i18n: Make the system more type-safe (Eric Gardner)
+- FloatingUI: Use default fallbackStrategy (Anne Tomasevich)
+
+## Docs
+- docs: include interaction states guidelines for Table's pagination (bmartinezcalvo)
+- Reapply "docs: include guidelines for custom input within Radio and Checkbox" (LWatson)
+- Reapply "docs: include table pagination guidelines" (LWatson)
+- demo, Checkbox, Radio: add validation to demos (lwatson)
+- docs: Add test cases for button flex behavior (Anne Tomasevich)
+- demo: Fix Combobox section markup to be valid (Volker E.)
+
+## New i18n Messages
+- cdx-table-pager-button-first-page
+- cdx-table-pager-button-last-page
+- cdx-table-pager-button-next-page
+- cdx-table-pager-button-prev-page
+- cdx-table-pager-items-per-page-current
+- cdx-table-pager-items-per-page-default
+- cdx-table-pagination-status-message-determinate-long
+- cdx-table-pagination-status-message-determinate-short
+- cdx-table-pagination-status-message-indeterminate-short
+- cdx-table-pagination-status-message-indeterminate-long
+- cdx-table-pagination-status-message-indeterminate-final
+- cdx-table-pagination-status-message-pending
+
+
 # 1.10.0 / 2024-07-25
 
 ## Features
