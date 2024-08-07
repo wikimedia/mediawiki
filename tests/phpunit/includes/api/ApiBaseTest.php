@@ -41,16 +41,13 @@ class ApiBaseTest extends ApiTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->mergeMwGlobalArrayValue(
-			'wgGroupPermissions',
-			[
-				'*' => [
-					'read' => true,
-					'edit' => true,
-					'apihighlimits' => false,
-				],
-			]
-		);
+		$this->setGroupPermissions( [
+			'*' => [
+				'read' => true,
+				'edit' => true,
+				'apihighlimits' => false,
+			],
+		] );
 	}
 
 	/**
