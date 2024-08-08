@@ -19,11 +19,13 @@
 		background-color: #eaeeff;
 
 		html.skin-theme-clientpref-night & {
-			background-color: @background-color-transparent;
+			@media screen {
+				background-color: @background-color-transparent;
+			}
 		}
 
 		/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-		@media ( prefers-color-scheme: dark ) {
+		@media screen and ( prefers-color-scheme: dark ) {
 			html.skin-theme-clientpref-os & {
 				background-color: @background-color-transparent;
 			}

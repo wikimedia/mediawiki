@@ -31,24 +31,26 @@
 
 /* forced night mode */
 html.skin-theme-clientpref-night.client-js {
-	.sortable:not( .jquery-tablesorter ) > * > tr:first-child > th.headerSort,
-	.jquery-tablesorter th.headerSort {
-		background-image: url( images/sort_both_inverted.svg );
-	}
-
-	.jquery-tablesorter {
-		th.headerSortUp {
-			background-image: url( images/sort_up_inverted.svg );
+	@media screen {
+		.sortable:not( .jquery-tablesorter ) > * > tr:first-child > th.headerSort,
+		.jquery-tablesorter th.headerSort {
+			background-image: url( images/sort_both_inverted.svg );
 		}
 
-		th.headerSortDown {
-			background-image: url( images/sort_down_inverted.svg );
+		.jquery-tablesorter {
+			th.headerSortUp {
+				background-image: url( images/sort_up_inverted.svg );
+			}
+
+			th.headerSortDown {
+				background-image: url( images/sort_down_inverted.svg );
+			}
 		}
 	}
 }
 
 /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-@media ( prefers-color-scheme: dark ) {
+@media screen and ( prefers-color-scheme: dark ) {
 	/* automatic mode */
 	html.skin-theme-clientpref-os.client-js {
 		.sortable:not( .jquery-tablesorter ) > * > tr:first-child > th.headerSort,

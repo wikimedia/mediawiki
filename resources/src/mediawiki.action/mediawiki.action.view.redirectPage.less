@@ -58,21 +58,22 @@
 				background: transparent url( images/redirect-rtl.svg ) bottom right no-repeat;
 			}
 
-			html.skin-theme-clientpref-night & {
-				filter: invert( 1 );
-
-				> a {
+			@media screen {
+				html.skin-theme-clientpref-night & {
 					filter: invert( 1 );
+
+					> a {
+						filter: invert( 1 );
+					}
 				}
 			}
-
 			/**
 			* Auto night mode.
 			*
 			* Applies the night mode color palette only in response to system settings.
 			*/
 			/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-			@media ( prefers-color-scheme: dark ) {
+			@media screen and ( prefers-color-scheme: dark ) {
 				html.skin-theme-clientpref-os & {
 					filter: invert( 1 );
 
