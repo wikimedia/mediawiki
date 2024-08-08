@@ -60,6 +60,7 @@ describe( 'Search', () => {
 			assert.nestedPropertyVal( returnPage, 'thumbnail', null );
 			assert.nestedPropertyVal( returnPage, 'description', null );
 			assert.nestedPropertyVal( returnPage, 'matched_title', null );
+			assert.nestedPropertyVal( returnPage, 'anchor', null );
 			assert.include( returnPage.excerpt, `<span class="searchmatch">${ searchTerm }</span>` );
 
 			// full-text search should not have cache-control
@@ -85,6 +86,7 @@ describe( 'Search', () => {
 			assert.nestedPropertyVal( returnPage, 'thumbnail', null );
 			assert.nestedPropertyVal( returnPage, 'description', null );
 			assert.nestedPropertyVal( returnPage, 'matched_title', null );
+			assert.nestedPropertyVal( returnPage, 'anchor', null );
 			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
@@ -101,6 +103,7 @@ describe( 'Search', () => {
 			assert.nestedPropertyVal( returnPage, 'thumbnail', null );
 			assert.nestedPropertyVal( returnPage, 'description', null );
 			assert.nestedPropertyVal( returnPage, 'matched_title', null );
+			assert.nestedPropertyVal( returnPage, 'anchor', null );
 			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
@@ -193,6 +196,7 @@ describe( 'Search', () => {
 			assert.nestedPropertyVal( returnPage, 'thumbnail', null );
 			assert.nestedPropertyVal( returnPage, 'description', null );
 			assert.nestedPropertyVal( returnPage, 'matched_title', null );
+			assert.nestedPropertyVal( returnPage, 'anchor', null );
 
 			// completion search should encourage caching
 			assert.nestedProperty( headers, 'cache-control' );
@@ -255,6 +259,29 @@ describe( 'Search', () => {
 			assert.lengthOf( body.pages, 1 );
 			assert.nestedPropertyVal( body.pages[ 0 ], 'title', redirectTargetTitle );
 			assert.nestedPropertyVal( body.pages[ 0 ], 'matched_title', redirectSourceTitle );
+			assert.nestedPropertyVal( body.pages[ 0 ], 'anchor', null );
+			// eslint-disable-next-line no-unused-expressions
+			expect( res ).to.satisfyApiSpec;
+		} );
+		it( 'should include redirect for page if one exists, with an anchor', async () => {
+			const redirectSource = utils.title( 'redirect_source_' );
+			const redirectTarget = utils.title( 'redirect_target_' );
+			const anchor = 'Test anchor';
+
+			const { title: redirectSourceTitle } = await alice.edit( redirectSource,
+				{ text: `#REDIRECT [[ ${ redirectTarget }#${ anchor } ]]` }
+			);
+
+			const { title: redirectTargetTitle } = await alice.edit( redirectTarget, { text: 'foo' } );
+			await wiki.runAllJobs();
+
+			const res = await client.get( `/v1/search/title?q=${ redirectSourceTitle }` );
+			const { body, headers } = res;
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
+			assert.lengthOf( body.pages, 1 );
+			assert.nestedPropertyVal( body.pages[ 0 ], 'title', redirectTargetTitle );
+			assert.nestedPropertyVal( body.pages[ 0 ], 'matched_title', redirectSourceTitle );
+			assert.nestedPropertyVal( body.pages[ 0 ], 'anchor', anchor );
 			// eslint-disable-next-line no-unused-expressions
 			expect( res ).to.satisfyApiSpec;
 		} );
