@@ -479,6 +479,7 @@ because of Phabricator reports.
 * BagOStuff::getSegmentationSize() and ::getSegmentedValueMaxSize() no longer
   have any usage. The subclass' method in MediumSpecificBagOStuff overrides also
   have no usage as well.
+* ApiBase::errorArrayToStatus() is deprecated with no replacement.
 * ApiTestCase::setExpectedApiException() has been deprecated; instead, use
   ::expectApiErrorCode() to test error codes instead of messages.
 * ApiPageSet::getTitles(), ApiPageSet::getGoodTitles(),

@@ -1314,6 +1314,9 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Turn an array of messages into a Status.
 	 *
+	 * @deprecated since 1.43 Use methods that return StatusValue objects directly,
+	 *   such as PermissionManager::getPermissionStatus().
+	 *
 	 * @see ApiMessage::create
 	 *
 	 * @since 1.29
@@ -1323,6 +1326,8 @@ abstract class ApiBase extends ContextSource {
 	 * @return Status
 	 */
 	public function errorArrayToStatus( array $errors, Authority $performer = null ) {
+		wfDeprecated( __METHOD__, '1.43' );
+
 		$performer ??= $this->getAuthority();
 		$block = $performer->getBlock();
 
