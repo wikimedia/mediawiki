@@ -1,0 +1,647 @@
+{
+    "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
+    "bomFormat": "CycloneDX",
+    "specVersion": "1.6",
+    "serialNumber": "urn:uuid:3a3f9f99-398b-402b-a8a9-45027f6bb46c",
+    "version": 1,
+    "components": [
+        {
+            "type": "library",
+            "name": "CLDRPluralRuleParser",
+            "version": "1.3.1-0dda851",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "MIT"
+                    }
+                }
+            ],
+            "purl": "pkg:github/santhoshtr/CLDRPluralRuleParser@0dda851#src/CLDRPluralRuleParser.js",
+            "authors": [
+                {
+                    "name": "Santhosh Thottingal"
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://github.com/santhoshtr/CLDRPluralRuleParser",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "codex",
+            "version": "1.10.0",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "GPL-2.0+"
+                    }
+                }
+            ],
+            "purl": "pkg:npm/@wikimedia/codex@1.9.0",
+            "authors": [
+                {
+                    "name": "Design System team"
+                },
+                {
+                    "name": "Wikimedia Foundation"
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://doc.wikimedia.org/codex/",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "codex-design-tokens",
+            "version": "1.10.0",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "GPL-2.0+"
+                    }
+                }
+            ],
+            "purl": "pkg:npm/@wikimedia/codex-design-tokens@1.9.0",
+            "authors": [
+                {
+                    "name": "Design System team"
+                },
+                {
+                    "name": "Wikimedia Foundation"
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://doc.wikimedia.org/codex/",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "codex-icons",
+            "version": "1.10.0",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "MIT"
+                    }
+                }
+            ],
+            "purl": "pkg:npm/@wikimedia/codex-icons@1.9.0",
+            "authors": [
+                {
+                    "name": "Design System team"
+                },
+                {
+                    "name": "Wikimedia Foundation"
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://doc.wikimedia.org/codex/",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "url",
+            "version": "3.111.0-0ece79ce32",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "MIT"
+                    }
+                }
+            ],
+            "purl": "pkg:github/financial-times/polyfill-library@0ece79ce32",
+            "authors": [
+                {
+                    "name": "Financial Times"
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://github.com/financial-times/polyfill-library",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "fetch-polyfill",
+            "version": "3.6.2",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "MIT"
+                    }
+                }
+            ],
+            "authors": [
+                {
+                    "name": "GitHub"
+                },
+                {
+                    "name": "Inc."
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://github.com/github/fetch#readme",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "intersection-observer",
+            "version": "0.12.0",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "Apache-2.0"
+                    }
+                }
+            ],
+            "purl": "pkg:npm/intersection-observer@0.12.0",
+            "authors": [
+                {
+                    "name": "Philip Walton"
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://github.com/GoogleChromeLabs/intersection-observer",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "jquery",
+            "version": "3.7.1",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "MIT"
+                    }
+                }
+            ],
+            "authors": [
+                {
+                    "name": "OpenJS Foundation and other contributors"
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://jquery.com",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "jquery.chosen",
+            "version": "1.8.2",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "MIT"
+                    }
+                }
+            ],
+            "purl": "pkg:github/harvesthq/chosen@1.8.2",
+            "authors": [
+                {
+                    "name": "Patrick Filler for Harvest"
+                },
+                {
+                    "name": "Matthew Lettini"
+                },
+                {
+                    "name": "Patrick Filler"
+                },
+                {
+                    "name": "Ken Earley"
+                },
+                {
+                    "name": "Christophe Coevoet"
+                },
+                {
+                    "name": "Koen Punt"
+                },
+                {
+                    "name": "T.J. Schuck."
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://harvesthq.github.io/chosen/",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "jquery.client",
+            "version": "3.0.0",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "MIT"
+                    }
+                }
+            ],
+            "purl": "pkg:npm/jquery-client@3.0.0",
+            "authors": [
+                {
+                    "name": "Trevor Parscal"
+                },
+                {
+                    "name": "Timo Tijhof"
+                },
+                {
+                    "name": "Roan Kattouw"
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://www.npmjs.com/package/jquery-client",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "jquery.i18n",
+            "version": "1.0.10",
+            "licenses": [
+                {
+                    "expression": "MIT OR GPL-2.0-or-later"
+                }
+            ],
+            "purl": "pkg:github/wikimedia/jquery.i18n@1.0.10",
+            "authors": [
+                {
+                    "name": "Language Engineering team"
+                },
+                {
+                    "name": "Wikimedia Foundation"
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://github.com/wikimedia/jquery.i18n",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "jquery.ui",
+            "version": "1.9.2",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "MIT"
+                    }
+                }
+            ],
+            "authors": [
+                {
+                    "name": "OpenJS Foundation and other contributors"
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://jqueryui.com",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "moment",
+            "version": "2.25.2",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "MIT"
+                    }
+                }
+            ],
+            "purl": "pkg:github/moment/moment@2.25.2",
+            "authors": [
+                {
+                    "name": "JS Foundation and other contributors"
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://momentjs.com",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "mustache",
+            "version": "4.2.0",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "MIT"
+                    }
+                }
+            ],
+            "purl": "pkg:npm/mustache@4.2.0",
+            "authors": [
+                {
+                    "name": "Michael Jackson"
+                },
+                {
+                    "name": "Jan Lehnardt"
+                },
+                {
+                    "name": "Phillip Johnsen"
+                },
+                {
+                    "name": "other contributors"
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://github.com/janl/mustache.js",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "oojs",
+            "version": "7.0.1",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "MIT"
+                    }
+                }
+            ],
+            "purl": "pkg:npm/oojs@7.0.1",
+            "authors": [
+                {
+                    "name": "OOjs Team and other contributors"
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://www.mediawiki.org/wiki/OOjs",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "ooui",
+            "version": "0.50.4",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "MIT"
+                    }
+                }
+            ],
+            "purl": "pkg:npm/oojs-ui@0.50.4",
+            "authors": [
+                {
+                    "name": "OOUI Team and other contributors"
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://www.mediawiki.org/wiki/OOUI",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "pako",
+            "version": "2.1.0",
+            "licenses": [
+                {
+                    "expression": "MIT AND Zlib"
+                }
+            ],
+            "purl": "pkg:github/nodeca/pako@2.1.0",
+            "authors": [
+                {
+                    "name": "Andrei Tuputcyn"
+                },
+                {
+                    "name": "Vitaly Puzrin"
+                },
+                {
+                    "name": "Friedel Ziegelmayer"
+                },
+                {
+                    "name": "Kirill Efimov"
+                },
+                {
+                    "name": "Jean-loup Gailly"
+                },
+                {
+                    "name": "Mark Adler"
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://github.com/nodeca/pako",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "pinia",
+            "version": "2.0.16",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "MIT"
+                    }
+                }
+            ],
+            "purl": "pkg:npm/pinia@2.0.16",
+            "authors": [
+                {
+                    "name": "Eduardo San Martin Morote"
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://pinia.vuejs.org/",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "qunitjs",
+            "version": "2.20.0",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "MIT"
+                    }
+                }
+            ],
+            "authors": [
+                {
+                    "name": "OpenJS Foundation and other contributors"
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://qunitjs.com",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "sinonjs",
+            "version": "1.17.7",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "BSD-3-Clause"
+                    }
+                }
+            ],
+            "authors": [
+                {
+                    "name": "Christian Johansen and other contributors"
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://sinonjs.org/",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "swagger-ui",
+            "version": "4.15.5",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "Apache-2.0"
+                    }
+                }
+            ],
+            "authors": [
+                {
+                    "name": "Kyle Shockey"
+                },
+                {
+                    "name": "Tony Tam"
+                },
+                {
+                    "name": "Vladimír Gorej"
+                },
+                {
+                    "name": "others"
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://swagger.io/tools/swagger-ui/",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "vue-demi",
+            "version": "0.14.7",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "MIT"
+                    }
+                }
+            ],
+            "purl": "pkg:npm/vue-demi@0.14.7",
+            "authors": [
+                {
+                    "name": "Anthony Fu"
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://github.com/vueuse/vue-demi/",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "vue",
+            "version": "3.4.27",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "MIT"
+                    }
+                }
+            ],
+            "purl": "pkg:npm/vue@3.4.27",
+            "authors": [
+                {
+                    "name": "Yuxi (Evan) You"
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://vuejs.org/",
+                    "type": "website"
+                }
+            ]
+        },
+        {
+            "type": "library",
+            "name": "vuex",
+            "version": "4.0.2",
+            "licenses": [
+                {
+                    "license": {
+                        "id": "MIT"
+                    }
+                }
+            ],
+            "purl": "pkg:npm/vuex@4.0.2",
+            "authors": [
+                {
+                    "name": "Yuxi (Evan) You"
+                }
+            ],
+            "externalReferences": [
+                {
+                    "url": "https://vuex.vuejs.org/",
+                    "type": "website"
+                }
+            ]
+        }
+    ]
+}

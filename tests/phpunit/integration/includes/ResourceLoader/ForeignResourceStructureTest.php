@@ -44,5 +44,17 @@ class ForeignResourceStructureTest extends TestCase {
 		} catch ( ForeignResourceNetworkException $e ) {
 			$this->markTestSkipped( 'Network error: ' . $e->getMessage() );
 		}
+
+		// Verify that the CycloneDX SBOM file is up to date. CDX serials are random, so we need
+		// to hack in the correct serial.
+		$cdxFile = $frm->getCdxFileLocation();
+		$this->assertFileExists( $cdxFile );
+		$cdxJsonString = file_get_contents( $cdxFile );
+		$serial = preg_match( '/"urn:uuid:[\\da-f\\-]+"/', $cdxJsonString, $matches );
+		$this->assertSame( 1, $serial );
+		$expectedCdx = preg_replace( '/"urn:uuid:[\\da-f\\-]+"/', $matches[0], $frm->generateCdx() );
+		$this->assertJsonStringEqualsJsonFile( $cdxFile, $expectedCdx,
+			"foreign-resources.cdx.json does not match foreign-resources.yaml, "
+			. "run `manageForeignResources.php make-cdx`" );
 	}
 }

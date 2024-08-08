@@ -147,10 +147,13 @@ class ForeignResourceManager {
 		}
 
 		if ( $this->action === 'make-cdx' ) {
-			$this->output( json_encode(
-				$this->generateCdx( $modules ),
-			JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR
-			) );
+			$cdxFile = $this->getCdxFileLocation();
+			$cdxJson = json_encode(
+				$this->generateCdxForModules( $modules ),
+				JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR
+			);
+			file_put_contents( $cdxFile, $cdxJson );
+			$this->output( "Created CycloneDX file at $cdxFile\n" );
 			return true;
 		}
 
@@ -219,6 +222,24 @@ class ForeignResourceManager {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Returns a JSON string describing the foreign resources in a CycloneDX format.
+	 */
+	public function generateCdx(): string {
+		$this->registry = Yaml::parseFile( $this->registryFile );
+		return json_encode(
+			$this->generateCdxForModules( $this->registry ),
+			JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR
+		);
+	}
+
+	/**
+	 * Get the path to the CycloneDX file that describes the foreign resources.
+	 */
+	public function getCdxFileLocation(): string {
+		return "$this->libDir/foreign-resources.cdx.json";
 	}
 
 	/**
@@ -497,7 +518,7 @@ class ForeignResourceManager {
 		}
 	}
 
-	private function generateCdx( array $modules ): array {
+	private function generateCdxForModules( array $modules ): array {
 		$cdx = [
 			'$schema' => 'http://cyclonedx.org/schema/bom-1.6.schema.json',
 			'bomFormat' => 'CycloneDX',
