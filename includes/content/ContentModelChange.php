@@ -1,6 +1,12 @@
 <?php
 
-use MediaWiki\Content\IContentHandlerFactory;
+namespace MediaWiki\Content;
+
+use ChangeTags;
+use Content;
+use ContentHandler;
+use LogFormatterFactory;
+use ManualLogEntry;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
@@ -15,6 +21,8 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\User\UserFactory;
+use MWException;
+use WikiPage;
 
 /**
  * Backend logic for changing the content model of a page.
@@ -56,6 +64,7 @@ class ContentModelChange {
 
 	/**
 	 * @internal Create via the ContentModelChangeFactory service.
+	 *
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param HookContainer $hookContainer
 	 * @param RevisionLookup $revLookup
@@ -109,6 +118,7 @@ class ContentModelChange {
 
 	/**
 	 * @param callable $authorizer ( string $action, PageIdentity $target, PermissionStatus $status )
+	 *
 	 * @return PermissionStatus
 	 */
 	private function authorizeInternal( callable $authorizer ): PermissionStatus {
@@ -121,6 +131,7 @@ class ContentModelChange {
 		$authorizer( 'edit', $this->pageIdentity, $status );
 		$authorizer( 'editcontentmodel', $titleWithNewContentModel, $status );
 		$authorizer( 'edit', $titleWithNewContentModel, $status );
+
 		return $status;
 	}
 
@@ -177,12 +188,14 @@ class ContentModelChange {
 	 * Specify the tags the user wants to add, and check permissions
 	 *
 	 * @param string[] $tags
+	 *
 	 * @return Status
 	 */
 	public function setTags( $tags ) {
 		$tagStatus = ChangeTags::canAddTagsAccompanyingChange( $tags, $this->performer );
 		if ( $tagStatus->isOK() ) {
 			$this->tags = $tags;
+
 			return Status::newGood();
 		} else {
 			return $tagStatus;
@@ -249,6 +262,7 @@ class ContentModelChange {
 			$this->logAction = 'new';
 		}
 		$this->newContent = $newContent;
+
 		return Status::newGood();
 	}
 
@@ -260,6 +274,7 @@ class ContentModelChange {
 	 * @param IContextSource $context
 	 * @param string $comment
 	 * @param bool $bot Mark as a bot edit if the user can
+	 *
 	 * @return Status
 	 */
 	public function doContentModelChange(
@@ -310,12 +325,14 @@ class ContentModelChange {
 				// TODO: extensions should really specify an error message
 				$status->fatal( 'hookaborted' );
 			}
+
 			return $status;
 		}
 		if ( !$status->isOK() ) {
 			if ( !$status->getMessages() ) {
 				$status->fatal( 'hookaborted' );
 			}
+
 			return $status;
 		}
 
@@ -350,3 +367,6 @@ class ContentModelChange {
 	}
 
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ContentModelChange::class, 'ContentModelChange' );

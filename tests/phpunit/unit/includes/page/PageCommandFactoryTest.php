@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Unit\Page;
 
-use ContentModelChange;
 use MediaWiki\Config\HashConfig;
+use MediaWiki\Content\ContentModelChange;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\MergeHistory;

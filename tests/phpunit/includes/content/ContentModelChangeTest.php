@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Content\ContentModelChange;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
@@ -15,7 +16,7 @@ use MediaWiki\Title\Title;
  * TODO convert to a pure unit test
  *
  * @group Database
- * @covers \ContentModelChange
+ * @covers \MediaWiki\Content\ContentModelChange
  *
  * @author DannyS712
  * @method ContentModelChange newServiceInstance(string $serviceClass, array $parameterOverrides)

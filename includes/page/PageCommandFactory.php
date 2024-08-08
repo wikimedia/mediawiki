@@ -21,7 +21,6 @@
 
 namespace MediaWiki\Page;
 
-use ContentModelChange;
 use JobQueueGroup;
 use LogFormatterFactory;
 use MediaWiki\Cache\BacklinkCacheFactory;
@@ -29,6 +28,7 @@ use MediaWiki\Collation\CollationFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Content\ContentModelChange;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;

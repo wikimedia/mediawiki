@@ -21,7 +21,7 @@
 
 namespace MediaWiki\Page;
 
-use ContentModelChange;
+use MediaWiki\Content\ContentModelChange;
 use MediaWiki\Permissions\Authority;
 
 /**
