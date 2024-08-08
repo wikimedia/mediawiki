@@ -3511,7 +3511,6 @@
 	"pageinfo-file-hash": "Base-16 SHA-1 value of the file",
 	"pageinfo-view-protect-log": "Contain link to protection link for the current page.",
 	"markaspatrolleddiff": "{{doc-actionlink}}\nSee also:\n* {{msg-mw|Markaspatrolledtext}}\n{{Identical|Mark as patrolled}}",
-	"markaspatrolledlink": "{{notranslate}}\nParameters:\n* $1 - link which has text {{msg-mw|Markaspatrolledtext}}",
 	"markaspatrolledtext": "{{doc-actionlink}}\nSee also:\n* {{msg-mw|Markaspatrolleddiff}}",
 	"markaspatrolledtext-file": "Same as markaspatrolledtext, but for files (new versions included) instead of pages.\n\nSee: {{msg-mw|markaspatrolledtext}}",
 	"markedaspatrolled": "Used as title of the message {{msg-mw|Markedaspatrolledtext}}, when marking a change as patrolled.\n{{Related|Markedaspatrolled}}",
