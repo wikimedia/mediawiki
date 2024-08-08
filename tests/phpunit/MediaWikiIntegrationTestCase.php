@@ -848,13 +848,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				. 'instance has been replaced by test code.' );
 		}
 
-		if ( is_callable( $service ) ) {
-			$instantiator = $service;
-		} else {
-			$instantiator = static function () use ( $service ) {
-				return $service;
-			};
-		}
+		$instantiator = is_callable( $service ) ? $service : static fn () => $service;
 
 		$this->overriddenServices[] = $name;
 
@@ -1621,14 +1615,14 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * Should be called from addDBData().
 	 *
 	 * @since 1.25 ($namespace in 1.28)
-	 * @param string|Title $pageName Page name or title
+	 * @param string|Title $title Page name or title
 	 * @param string $text Page's content
 	 * @param int|null $namespace Namespace id (name cannot already contain namespace)
 	 * @param User|null $user If null, static::getTestSysop()->getUser() is used.
 	 * @return array Title object and page id
 	 */
 	protected function insertPage(
-		$pageName,
+		$title,
 		$text = 'Sample page for unit test.',
 		$namespace = null,
 		User $user = null
@@ -1637,10 +1631,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			throw new RuntimeException( 'When testing with pages, the test must use @group Database.' );
 		}
 
-		if ( is_string( $pageName ) ) {
-			$title = Title::newFromText( $pageName, $namespace );
-		} else {
-			$title = $pageName;
+		if ( is_string( $title ) ) {
+			$title = Title::newFromText( $title, $namespace );
 		}
 
 		if ( !$user ) {
