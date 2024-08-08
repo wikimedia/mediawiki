@@ -21,11 +21,11 @@ namespace MediaWiki\Rest\Handler;
 
 use Composer\Semver\Semver;
 use InvalidArgumentException;
-use LanguageCode;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Language\LanguageCode;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

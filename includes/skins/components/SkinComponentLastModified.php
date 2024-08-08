@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Skin;
 
-use Language;
+use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\User;
 use MessageLocalizer;

@@ -1,12 +1,12 @@
 <?php
 namespace MediaWiki\Search;
 
-use ILanguageConverter;
 use ISearchResultSet;
-use Language;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Language\ILanguageConverter;
+use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\WikiPageFactory;

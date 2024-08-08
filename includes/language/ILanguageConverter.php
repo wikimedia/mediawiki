@@ -17,6 +17,9 @@
  *
  * @file
  */
+
+namespace MediaWiki\Language;
+
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\Title;
@@ -273,3 +276,6 @@ interface ILanguageConverter {
 	 */
 	public function convertHtml( $text );
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ILanguageConverter::class, 'ILanguageConverter' );

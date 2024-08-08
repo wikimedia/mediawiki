@@ -24,8 +24,8 @@
 namespace MediaWiki\SpecialPage;
 
 use HtmlArmor;
-use ILanguageConverter;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;

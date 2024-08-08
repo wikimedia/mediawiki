@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Tests\Unit\Permissions;
 
-use Language;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Language\Language;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;

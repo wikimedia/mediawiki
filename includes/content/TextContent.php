@@ -28,7 +28,7 @@
 namespace MediaWiki\Content;
 
 use InvalidArgumentException;
-use Language;
+use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MWUnknownContentModelException;

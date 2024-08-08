@@ -3,11 +3,11 @@
 namespace MediaWiki\Tests\Rest\Handler;
 
 use InvalidArgumentException;
-use Language;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\FormatterFactory;
+use MediaWiki\Language\Language;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;

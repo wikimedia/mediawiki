@@ -23,7 +23,7 @@
 
 namespace MediaWiki\Feed;
 
-use LanguageCode;
+use MediaWiki\Language\LanguageCode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;

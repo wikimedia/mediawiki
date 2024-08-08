@@ -21,10 +21,10 @@
 namespace MediaWiki\Languages;
 
 use InvalidArgumentException;
-use LanguageCode;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Language\LanguageCode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\MediaWikiTitleCodec;
 use Wikimedia\ObjectCache\BagOStuff;

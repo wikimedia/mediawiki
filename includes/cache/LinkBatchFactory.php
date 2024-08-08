@@ -23,7 +23,7 @@
 
 namespace MediaWiki\Cache;
 
-use Language;
+use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;

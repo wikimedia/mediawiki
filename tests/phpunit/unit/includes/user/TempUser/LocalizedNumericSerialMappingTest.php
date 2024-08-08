@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\User\TempUser;
 
-use Language;
+use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\User\TempUser\LocalizedNumericSerialMapping;
 use MediaWikiUnitTestCase;

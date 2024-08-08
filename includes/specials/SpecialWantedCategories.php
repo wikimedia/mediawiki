@@ -23,8 +23,8 @@
 namespace MediaWiki\Specials;
 
 use HtmlArmor;
-use ILanguageConverter;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\SpecialPage\WantedQueryPage;
 use MediaWiki\Title\Title;

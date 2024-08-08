@@ -20,8 +20,8 @@
 
 namespace MediaWiki\Context;
 
-use Language;
 use MediaWiki\Config\Config;
+use MediaWiki\Language\Language;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;

@@ -3,11 +3,11 @@
 namespace MediaWiki\Tests\Integration\HTMLForm\Field;
 
 use EmptyIterator;
-use Language;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HTMLForm\Field\HTMLRestrictionsField;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\Language\Language;
 use MediaWiki\Page\PageSelectQueryBuilder;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Request\FauxRequest;

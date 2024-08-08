@@ -23,10 +23,10 @@
 namespace MediaWiki\User;
 
 use InvalidArgumentException;
-use Language;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\TitleParser;

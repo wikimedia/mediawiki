@@ -2,7 +2,7 @@
 
 namespace MediaWiki\User\TempUser;
 
-use Language;
+use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageFactory;
 
 /**

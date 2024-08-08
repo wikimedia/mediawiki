@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Tests\Integration\Context;
 
-use Language;
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Language\Language;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;

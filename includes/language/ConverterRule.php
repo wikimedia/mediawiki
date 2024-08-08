@@ -19,7 +19,10 @@
  * @author fdcn <fdcn64@gmail.com>, PhiLiP <philip.npc@gmail.com>
  */
 
+namespace MediaWiki\Language;
+
 use MediaWiki\Logger\LoggerFactory;
+use StringUtils;
 
 /**
  * The rules used for language conversion, this processes the rules
@@ -524,3 +527,6 @@ class ConverterRule {
 		return $this->mFlags;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ConverterRule::class, 'ConverterRule' );

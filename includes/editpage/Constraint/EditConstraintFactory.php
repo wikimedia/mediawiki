@@ -20,12 +20,12 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use Language;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Content;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\Spi;
 use MediaWiki\MainConfigNames;

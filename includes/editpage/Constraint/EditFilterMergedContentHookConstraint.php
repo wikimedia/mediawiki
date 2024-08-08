@@ -21,12 +21,12 @@
 namespace MediaWiki\EditPage\Constraint;
 
 use ApiMessage;
-use Language;
 use MediaWiki\Content\Content;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\Language;
 use MediaWiki\Message\Message;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;

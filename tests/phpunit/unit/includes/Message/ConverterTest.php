@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\Unit\Message;
 
 use InvalidArgumentException;
-use Language;
+use MediaWiki\Language\Language;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Converter;
 use MediaWiki\Message\Message;

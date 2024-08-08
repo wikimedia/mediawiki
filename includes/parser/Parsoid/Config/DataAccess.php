@@ -20,7 +20,6 @@
 namespace MediaWiki\Parser\Parsoid\Config;
 
 use File;
-use LanguageCode;
 use MediaTransformError;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ServiceOptions;
@@ -28,6 +27,7 @@ use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Language\LanguageCode;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\File\BadFileLookup;

@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Search\SearchWidgets;
 
-use ILanguageConverter;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Specials\SpecialSearch;
 use MediaWiki\Title\NamespaceInfo;

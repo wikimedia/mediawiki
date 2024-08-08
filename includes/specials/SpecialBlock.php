@@ -22,7 +22,6 @@ namespace MediaWiki\Specials;
 
 use ErrorPageError;
 use HtmlArmor;
-use Language;
 use LogEventsList;
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
@@ -38,6 +37,7 @@ use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;

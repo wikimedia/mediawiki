@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Language;
+
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 
@@ -354,3 +356,6 @@ class LanguageCode {
 		return preg_match( "/$root/i", $code );
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( LanguageCode::class, 'LanguageCode' );

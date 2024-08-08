@@ -24,13 +24,13 @@
 namespace MediaWiki\SpecialPage;
 
 use ErrorPageError;
-use Language;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Language\Language;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;

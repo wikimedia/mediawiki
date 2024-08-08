@@ -20,8 +20,8 @@
 
 namespace MediaWiki\Tests\EditPage;
 
-use Language;
 use MediaWiki\EditPage\TextboxBuilder;
+use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Permissions\RestrictionStore;

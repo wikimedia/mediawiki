@@ -21,8 +21,8 @@
 namespace MediaWiki\Permissions;
 
 use HtmlArmor;
-use Language;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\SpecialPage\SpecialPage;

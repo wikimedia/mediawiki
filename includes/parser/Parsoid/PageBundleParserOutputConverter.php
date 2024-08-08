@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Parser\Parsoid;
 
-use LanguageCode;
+use MediaWiki\Language\LanguageCode;
 use MediaWiki\Parser\ParserOutput;
 use Wikimedia\Parsoid\Core\PageBundle;
 

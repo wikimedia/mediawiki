@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Tests\Unit;
 
-use Language;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Content\WikitextContentHandler;
+use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Parser\MagicWord;

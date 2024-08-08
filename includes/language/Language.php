@@ -29,7 +29,14 @@
  * @ingroup Language
  */
 
+namespace MediaWiki\Language;
+
 use CLDRPluralRuleParser\Evaluator;
+use DateTime;
+use DateTimeImmutable;
+use DateTimeZone;
+use InvalidArgumentException;
+use LocalisationCache;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
@@ -51,6 +58,11 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserTimeCorrection;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\Xml\XmlSelect;
+use NumberFormatter;
+use ReplacementArray;
+use RuntimeException;
+use StringUtils;
+use UtfNormal\Validator as UtfNormalValidator;
 use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Bcp47Code\Bcp47Code;
@@ -2894,7 +2906,7 @@ class Language implements Bcp47Code {
 	public function normalize( $s ) {
 		$allUnicodeFixes = $this->config->get( MainConfigNames::AllUnicodeFixes );
 
-		$s = UtfNormal\Validator::cleanUp( $s );
+		$s = UtfNormalValidator::cleanUp( $s );
 		// Optimization: This is disabled by default to avoid negative performance impact.
 		if ( $allUnicodeFixes ) {
 			$s = $this->transformUsingPairFile( NormalizeAr::class, $s );
@@ -4566,3 +4578,6 @@ class Language implements Bcp47Code {
 		];
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( Language::class, 'Language' );

@@ -21,10 +21,6 @@
 namespace MediaWiki\Preferences;
 
 use IDBAccessObject;
-use ILanguageConverter;
-use Language;
-use LanguageCode;
-use LanguageConverter;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Config\ServiceOptions;
@@ -38,6 +34,10 @@ use MediaWiki\HTMLForm\Field\HTMLMultiSelectField;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWiki\HTMLForm\HTMLNestedFilterable;
+use MediaWiki\Language\ILanguageConverter;
+use MediaWiki\Language\Language;
+use MediaWiki\Language\LanguageCode;
+use MediaWiki\Language\LanguageConverter;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;

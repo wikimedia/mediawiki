@@ -22,9 +22,9 @@
 
 namespace MediaWiki\Installer;
 
-use Language;
 use LogicException;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\ResourceLoader as RL;

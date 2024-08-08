@@ -25,7 +25,6 @@ namespace MediaWiki\Auth;
 
 use IDBAccessObject;
 use InvalidArgumentException;
-use Language;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\RequestContext;
@@ -33,6 +32,7 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Parser\Parsoid;
 
-use Language;
+use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\ParserOutput;

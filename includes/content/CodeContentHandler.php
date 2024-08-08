@@ -23,8 +23,8 @@
 
 namespace MediaWiki\Content;
 
-use Language;
 use LogicException;
+use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 

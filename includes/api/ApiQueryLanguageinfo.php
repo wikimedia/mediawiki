@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Language\LanguageCode;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;

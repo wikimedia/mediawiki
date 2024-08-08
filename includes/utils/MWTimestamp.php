@@ -25,9 +25,9 @@
 namespace MediaWiki\Utils;
 
 use DateInterval;
-use Language;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Language\Language;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

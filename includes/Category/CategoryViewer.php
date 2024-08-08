@@ -24,7 +24,6 @@ namespace MediaWiki\Category;
 
 use Collation;
 use HtmlArmor;
-use ILanguageConverter;
 use ImageGalleryBase;
 use ImageGalleryClassNotFoundException;
 use InvalidArgumentException;
@@ -34,6 +33,7 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

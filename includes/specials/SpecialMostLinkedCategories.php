@@ -23,9 +23,9 @@
 namespace MediaWiki\Specials;
 
 use HtmlArmor;
-use ILanguageConverter;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\Linker;
 use MediaWiki\SpecialPage\QueryPage;

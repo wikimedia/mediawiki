@@ -20,7 +20,7 @@
 
 namespace MediaWiki\Title;
 
-use Language;
+use MediaWiki\Language\Language;
 
 /**
  * A class to convert page titles on a foreign wiki (ForeignTitle objects) into
