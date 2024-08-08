@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\ResourceLoader\ForeignResourceManager;
+use MediaWiki\ResourceLoader\ForeignResourceNetworkException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -38,6 +39,10 @@ class ForeignResourceStructureTest extends TestCase {
 	$ php maintenance/manageForeignResources.php update <moduleName>
 		';
 
-		$this->assertTrue( $frm->run( 'verify', 'all' ), "$out\n$helpUpdate" );
+		try {
+			$this->assertTrue( $frm->run( 'verify', 'all' ), "$out\n$helpUpdate" );
+		} catch ( ForeignResourceNetworkException $e ) {
+			$this->markTestSkipped( 'Network error: ' . $e->getMessage() );
+		}
 	}
 }

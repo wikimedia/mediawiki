@@ -1964,6 +1964,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\ResourceLoader\\FilePath' => __DIR__ . '/includes/ResourceLoader/FilePath.php',
 	'MediaWiki\\ResourceLoader\\ForeignApiModule' => __DIR__ . '/includes/ResourceLoader/ForeignApiModule.php',
 	'MediaWiki\\ResourceLoader\\ForeignResourceManager' => __DIR__ . '/includes/ResourceLoader/ForeignResourceManager.php',
+	'MediaWiki\\ResourceLoader\\ForeignResourceNetworkException' => __DIR__ . '/includes/ResourceLoader/ForeignResourceNetworkException.php',
 	'MediaWiki\\ResourceLoader\\HookRunner' => __DIR__ . '/includes/ResourceLoader/HookRunner.php',
 	'MediaWiki\\ResourceLoader\\Hook\\ResourceLoaderExcludeUserOptionsHook' => __DIR__ . '/includes/ResourceLoader/Hook/ResourceLoaderExcludeUserOptionsHook.php',
 	'MediaWiki\\ResourceLoader\\Hook\\ResourceLoaderForeignApiModulesHook' => __DIR__ . '/includes/ResourceLoader/Hook/ResourceLoaderForeignApiModulesHook.php',
