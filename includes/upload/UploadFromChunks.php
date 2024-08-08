@@ -402,11 +402,7 @@ class UploadFromChunks extends UploadFromFile {
 	 * @return int Index of the current chunk
 	 */
 	private function getChunkIndex() {
-		if ( $this->mChunkIndex !== null ) {
-			return $this->mChunkIndex;
-		}
-
-		return 0;
+		return $this->mChunkIndex ?? 0;
 	}
 
 	/**
@@ -414,11 +410,7 @@ class UploadFromChunks extends UploadFromFile {
 	 * @return int Current byte offset of the chunk file set
 	 */
 	public function getOffset() {
-		if ( $this->mOffset !== null ) {
-			return $this->mOffset;
-		}
-
-		return 0;
+		return $this->mOffset ?? 0;
 	}
 
 	/**
