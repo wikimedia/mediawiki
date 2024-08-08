@@ -154,9 +154,6 @@ abstract class DatabaseInstaller {
 		$status = $this->openConnection();
 		if ( $status->isOK() ) {
 			$this->db = $status->value;
-			// Enable autocommit
-			$this->db->clearFlag( DBO_TRX );
-			$this->db->commit( __METHOD__ );
 		}
 
 		return $status;

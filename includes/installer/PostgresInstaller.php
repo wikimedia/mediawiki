@@ -133,8 +133,6 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		if ( $status->isOK() ) {
 			$conn = $status->getDB();
-			$conn->clearFlag( DBO_TRX );
-			$conn->commit( __METHOD__ );
 			$this->pgConns[$type] = $conn;
 		}
 
