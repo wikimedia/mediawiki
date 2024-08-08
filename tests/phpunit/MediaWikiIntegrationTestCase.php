@@ -2426,11 +2426,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	protected function isWikitextNS( $ns ) {
 		global $wgNamespaceContentModels;
 
-		if ( isset( $wgNamespaceContentModels[$ns] ) ) {
-			return $wgNamespaceContentModels[$ns] === CONTENT_MODEL_WIKITEXT;
-		}
-
-		return true;
+		return !isset( $wgNamespaceContentModels[$ns] ) ||
+			$wgNamespaceContentModels[$ns] === CONTENT_MODEL_WIKITEXT;
 	}
 
 	/**
@@ -2475,11 +2472,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		// check the default content model of each namespace
 		foreach ( $namespaces as $ns ) {
-			if ( !isset( $wgNamespaceContentModels[$ns] ) ||
-				$wgNamespaceContentModels[$ns] === CONTENT_MODEL_WIKITEXT
-			) {
+			if ( $this->isWikitextNS( $ns ) ) {
 				$wikitextNS = $ns;
-
 				return $wikitextNS;
 			}
 		}

@@ -733,11 +733,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertLessThanOrEqual( 1, count( $matches[1] ), 'More than one <title>!' );
 
-		if ( !count( $matches[1] ) ) {
-			return null;
-		}
-
-		return $matches[1][0];
+		return $matches[1][0] ?? null;
 	}
 
 	/**
