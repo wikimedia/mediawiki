@@ -1889,11 +1889,7 @@ abstract class UploadBase {
 			}
 		}
 
-		if ( preg_match( '/[\000-\010\013\016-\037\177]/', $value ) ) {
-			return true;
-		}
-
-		return false;
+		return (bool)preg_match( '/[\000-\010\013\016-\037\177]/', $value );
 	}
 
 	/**
@@ -2247,10 +2243,7 @@ abstract class UploadBase {
 		$maxUploadSize = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::MaxUploadSize );
 
 		if ( is_array( $maxUploadSize ) ) {
-			if ( $forType !== null && isset( $maxUploadSize[$forType] ) ) {
-				return $maxUploadSize[$forType];
-			}
-			return $maxUploadSize['*'];
+			return $maxUploadSize[$forType] ?? $maxUploadSize['*'];
 		}
 		return intval( $maxUploadSize );
 	}
