@@ -9,7 +9,6 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\Specials\SpecialPreferences;
 use MediaWiki\User\Options\UserOptionsManager;
-use MediaWiki\User\User;
 
 /**
  * @group Preferences
@@ -45,11 +44,7 @@ class SpecialPreferencesTest extends SpecialPageTestBase {
 		$maxSigChars = 2;
 		$this->overrideConfigValue( MainConfigNames::MaxSigChars, $maxSigChars );
 		$nickname = str_repeat( 'x', $maxSigChars + 1 );
-		$user = $this->createMock( User::class );
-		$user->method( 'isAnon' )
-			->willReturn( false );
-		$user->method( 'isNamed' )
-			->willReturn( true );
+		$user = $this->getMutableTestUser()->getUser();
 
 		$this->userOptionsManager = $this->createMock( UserOptionsManager::class );
 		$this->userOptionsManager->method( 'getOption' )
