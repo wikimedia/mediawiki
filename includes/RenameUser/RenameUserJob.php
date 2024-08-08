@@ -54,6 +54,7 @@ class RenameUserJob extends Job {
 
 	public function run() {
 		$dbw = $this->lbFactory->getPrimaryDatabase();
+		$ticket = $this->lbFactory->getEmptyTransactionTicket( __METHOD__ );
 		$table = $this->params['table'];
 		$column = $this->params['column'];
 
@@ -105,8 +106,7 @@ class RenameUserJob extends Job {
 				->caller( __METHOD__ )->fetchFieldValues();
 			# Update these rows by PRIMARY KEY to avoid replica lag
 			foreach ( array_chunk( $ids, $this->updateRowsPerQuery ) as $batch ) {
-				$dbw->commit( __METHOD__, 'flush' );
-				$this->lbFactory->waitForReplication();
+				$this->lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );
 
 				$dbw->newUpdateQueryBuilder()
 					->update( $table )
