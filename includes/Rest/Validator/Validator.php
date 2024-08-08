@@ -276,12 +276,16 @@ class Validator {
 	 * in the context of Handler::validateParams(), the returned value will be
 	 * available to the handler via Handler::getValidatedBody().
 	 *
+	 * @deprecated since 1.43, use validateBodyParams instead.
+	 *
 	 * @param RequestInterface $request
 	 * @param Handler $handler Used to call {@see Handler::getBodyValidator}
 	 * @return mixed|null Return value from {@see BodyValidator::validateBody}
 	 * @throws HttpException on validation failure
 	 */
 	public function validateBody( RequestInterface $request, Handler $handler ) {
+		wfDeprecated( __METHOD__, '1.43' );
+
 		$method = strtoupper( trim( $request->getMethod() ) );
 
 		// If the method should never have a body, don't bother validating.

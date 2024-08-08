@@ -17,6 +17,11 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class JsonBodyValidatorTest extends MediaWikiUnitTestCase {
 
+	protected function setUp(): void {
+		parent::setUp();
+		$this->filterDeprecated( '/JsonBodyValidator/' );
+	}
+
 	public static function provideValidateBody() {
 		yield 'empty object' => [
 			[],

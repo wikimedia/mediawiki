@@ -506,6 +506,15 @@ because of Phabricator reports.
   Additionally, JsonCodec's unserialize() and unserializeArray() methods have
   also been renamed to deserialize() and deserializeArray(), with the old names
   deprecated.
+* In the REST framework, the the BodyValidator interface and all functionality
+  related to it are deprecated. They have been replaced by
+  Handler::getBodyParamSettings() and Handler::parseBodyData(). The following
+  interfaces, classes, and methods are affected:
+  - interface BodyValidator
+  - class JsonBodyValidator
+  - class NullValidator
+  - function Handler::getBodyValidator
+  - function Validator::validateBody
 * StatusValue will emit deprecation warnings when an error is given as
   a MessageSpecifier combined with a parameters array, which is usually
   a mistake, as the parameters have always been ignored.

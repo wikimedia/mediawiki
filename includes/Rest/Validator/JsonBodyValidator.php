@@ -11,7 +11,7 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
- * Do-nothing body validator
+ * @deprecated since 1.43, return body properties from Handler::getParamSettings().
  */
 class JsonBodyValidator implements BodyValidator {
 
@@ -21,9 +21,14 @@ class JsonBodyValidator implements BodyValidator {
 	private $bodyParamSettings;
 
 	/**
+	 * @deprecated since 1.43, Return body parameters from getBodyParamSettings() instead.
 	 * @param array[] $bodyParamSettings
 	 */
 	public function __construct( array $bodyParamSettings ) {
+		wfDeprecatedMsg(
+			__CLASS__ . ' is deprecated.',
+			'1.43'
+		);
 		$this->bodyParamSettings = $bodyParamSettings;
 	}
 

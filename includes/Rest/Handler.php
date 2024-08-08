@@ -11,6 +11,7 @@ use MediaWiki\Rest\Validator\BodyValidator;
 use MediaWiki\Rest\Validator\NullBodyValidator;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\Session;
+use MWDebug;
 use UtfNormal\Validator as UtfNormalValidator;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageValue;
@@ -113,6 +114,14 @@ abstract class Handler {
 	final public function initServices(
 		Authority $authority, ResponseFactory $responseFactory, HookContainer $hookContainer
 	) {
+		// Warn if a subclass overrides getBodyValidator()
+		MWDebug::detectDeprecatedOverride(
+			$this,
+			__CLASS__,
+			'getBodyValidator',
+			'1.43'
+		);
+
 		Assert::precondition(
 			$this->module !== null,
 			'initServices() must not be called before initContext()'
@@ -378,16 +387,16 @@ abstract class Handler {
 	 * @throws HttpException On validation failure.
 	 */
 	public function validate( Validator $restValidator ) {
-		$legacyValidatedBody = $restValidator->validateBody( $this->request, $this );
-
 		$this->validatedParams = $restValidator->validateParams(
 			$this->getParamSettings()
 		);
 
-		if ( $legacyValidatedBody !== null ) {
-			// TODO: warn if $bodyParamSettings is not empty
-			// TODO: trigger a deprecation warning
-			$this->validatedBody = $legacyValidatedBody;
+		$bodyType = $this->request->getBodyType();
+		$legacyBodyValidator = $bodyType === null ? null
+			: $this->getBodyValidator( $bodyType );
+
+		if ( $legacyBodyValidator && !$legacyBodyValidator instanceof NullBodyValidator ) {
+			$this->validatedBody = $restValidator->validateBody( $this->request, $this );
 		} else {
 			// Allow type coercion if the request body is form data.
 			// For JSON requests, insist on proper types.
@@ -797,7 +806,10 @@ abstract class Handler {
 	/**
 	 * Fetch the BodyValidator
 	 *
-	 * @stable to override
+	 * @deprecated since 1.43, return body properties from getBodyParamSettings().
+	 * Subclasses that need full control over body data parsing should override
+	 * parseBodyData() or implement validation in the execute() method based on
+	 * the unparsed body data returned by getRequest()->getBody().
 	 *
 	 * @param string $contentType Content type of the request.
 	 * @return BodyValidator A {@see NullBodyValidator} in this default implementation
@@ -805,8 +817,8 @@ abstract class Handler {
 	 *  or later when {@see BodyValidator::validateBody} is called
 	 */
 	public function getBodyValidator( $contentType ) {
-		// TODO: Create a JsonBodyValidator if getParamSettings() returns body params.
-		// XXX: also support multipart/form-data and application/x-www-form-urlencoded?
+		// NOTE: When removing this method, also remove the BodyValidator interface and
+		//       all classes implementing it!
 		return new NullBodyValidator();
 	}
 
@@ -874,6 +886,7 @@ abstract class Handler {
 		// getBodyValidator() is also responsible for checking whether
 		// the content type is valid, and for parsing the body.
 		// See T359149.
+		// TODO: remove once no subclasses override getBodyValidator() anymore
 		$bodyValidator = $this->getBodyValidator( $contentType ?? 'unknown/unknown' );
 		if ( !$bodyValidator instanceof NullBodyValidator ) {
 			// TODO: Trigger a deprecation warning.

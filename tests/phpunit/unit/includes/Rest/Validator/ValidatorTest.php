@@ -145,6 +145,8 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideValidateBody
 	 */
 	public function testValidateBody( BodyValidator $bodyValidator, RequestData $requestData, $expected ) {
+		$this->hideDeprecated( 'MediaWiki\Rest\Validator\Validator::validateBody' );
+
 		$objectFactory = $this->getDummyObjectFactory();
 
 		/** @var Handler|MockObject $handler */
