@@ -161,7 +161,7 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 	/**
 	 * Order results by name in $direction
 	 *
-	 * @param string $dir one of self::SORT_ACS or self::SORT_DESC
+	 * @param string $dir one of self::SORT_ASC or self::SORT_DESC
 	 * @return UserSelectQueryBuilder
 	 */
 	public function orderByName( string $dir = self::SORT_ASC ): self {
@@ -172,7 +172,7 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 	/**
 	 * Order results by user id.
 	 *
-	 * @param string $dir one of self::SORT_ACS or self::SORT_DESC
+	 * @param string $dir one of self::SORT_ASC or self::SORT_DESC
 	 * @return UserSelectQueryBuilder
 	 */
 	public function orderByUserId( string $dir = self::SORT_ASC ): self {

@@ -100,7 +100,7 @@ class PageSelectQueryBuilder extends SelectQueryBuilder {
 	/**
 	 * Order results by namespace and title in $direction
 	 *
-	 * @param string $dir one of self::SORT_ACS or self::SORT_DESC
+	 * @param string $dir one of self::SORT_ASC or self::SORT_DESC
 	 *
 	 * @return PageSelectQueryBuilder
 	 */
@@ -112,7 +112,7 @@ class PageSelectQueryBuilder extends SelectQueryBuilder {
 	/**
 	 * Order results by page id.
 	 *
-	 * @param string $dir one of self::SORT_ACS or self::SORT_DESC
+	 * @param string $dir one of self::SORT_ASC or self::SORT_DESC
 	 *
 	 * @return PageSelectQueryBuilder
 	 */
