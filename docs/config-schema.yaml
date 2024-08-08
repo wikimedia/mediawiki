@@ -6186,14 +6186,6 @@ config-schema:
             @see \MediaWiki\MediaWikiServices::getInstance()->getStatsdDataFactory
             @see \BufferingStatsdDataFactory
             @since 1.25
-    StatsdSamplingRates:
-        default: {  }
-        type: object
-        description: |-
-            Sampling rate for statsd metrics as an associative array of patterns and rates.
-            Patterns are Unix shell patterns (e.g. 'MediaWiki.api.*').
-            Rates are sampling probabilities (e.g. 0.1 means 1 in 10 events are sampled).
-            @since 1.28
     StatsTarget:
         default: null
         type:

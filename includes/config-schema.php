@@ -1911,8 +1911,6 @@ return [
 			],
 			'StatsdServer' => false,
 			'StatsdMetricPrefix' => 'MediaWiki',
-			'StatsdSamplingRates' => [
-			],
 			'StatsTarget' => null,
 			'StatsFormat' => null,
 			'StatsPrefix' => 'mediawiki',
@@ -2890,7 +2888,6 @@ return [
 			'DebugLogGroups' => 'object',
 			'MWLoggerDefaultSpi' => 'object',
 			'Profiler' => 'object',
-			'StatsdSamplingRates' => 'object',
 			'StatsTarget' => [
 				'string',
 				'null',
