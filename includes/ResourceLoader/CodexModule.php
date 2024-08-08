@@ -127,31 +127,12 @@ class CodexModule extends FileModule {
 			) );
 		}
 
-		// Add messages used inside Codex Vue components.
+		// Add messages used inside Codex Vue components. The message keys are defined in the
+		// "messageKeys.json" file from the Codex package
 		if ( isset( $options['codexFullLibrary'] ) || ( !$this->isStyleOnly && count( $this->codexComponents ) > 0 ) ) {
-			$options[ 'messages' ] = array_merge( $options[ 'messages' ] ?? [], [
-				'cdx-input-chip-aria-description',
-				'cdx-dialog-close-button-label',
-				'cdx-label-optional-flag',
-				'cdx-message-dismiss-button-label',
-				'cdx-search-input-search-button-label',
-				'cdx-table-select-all-label',
-				'cdx-table-select-row-label',
-				'cdx-table-sort-caption',
-				'cdx-typeahead-search-search-results-label',
-				'cdx-table-pager-button-first-page',
-				'cdx-table-pager-button-last-page',
-				'cdx-table-pager-button-next-page',
-				'cdx-table-pager-button-prev-page',
-				'cdx-table-pager-items-per-page-current',
-				'cdx-table-pager-items-per-page-default',
-				'cdx-table-pagination-status-message-determinate-long',
-				'cdx-table-pagination-status-message-determinate-short',
-				'cdx-table-pagination-status-message-indeterminate-long',
-				'cdx-table-pagination-status-message-indeterminate-short',
-				'cdx-table-pagination-status-message-indeterminate-final',
-				'cdx-table-pagination-status-message-pending'
-			] );
+			$messageKeyFilePath = MW_INSTALL_PATH . '/' . static::CODEX_LIBRARY_DIR . 'messageKeys.json';
+			$messageKeys = json_decode( file_get_contents( $messageKeyFilePath ), true );
+			$options[ 'messages' ] = array_merge( $options[ 'messages' ] ?? [], $messageKeys );
 		}
 
 		if ( in_array( '@wikimedia/codex', $options[ 'dependencies' ] ) ) {
