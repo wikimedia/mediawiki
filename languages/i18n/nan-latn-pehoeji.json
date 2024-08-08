@@ -247,7 +247,7 @@
 	"enterlockreason": "Phah beh hong-só ê lí-iû, pau-koah ko͘-kè siáⁿ-mi̍h sî-chūn ē kái-tû hong-só.",
 	"readonlytext": "Chu-liāu-khò͘ hiān-chú-sî só tiâu leh, bô khai-hòng hō͘ lâng siu-kái. Che tāi-khài sī in-ūi teh pān chéng-pī khang-khòe, goân-sêng liáu-āu èng-tong tō ē hôe-ho̍k chèng-siông. \n\nHū-chek ê hêng-chèng jîn-oân lâu chit-ê soat-bêng: $1",
 	"missing-article": "Chu-liāu-khò͘ chhoē bô ia̍h ê luē-iông, ia̍h ê miâ \"$1\" $2 .\n\nChe it-poaⁿ sī in-ūi koè-sî ê cheng-chha ia̍h sī le̍k-sú liân-kiat ê ia̍h í-keng hông thâi tiàu.\n\nNā m̄-sī hit chióng chêng-hêng, lí khó-lêng tú tio̍h nńg-thé ê chhò-ngō͘. Chhiáⁿ pò hō͘ chi̍t ūi [[Special:ListUsers/sysop|koán-lí-goân]], ūi liân-kiat hiâ khì lâu thong-ti .",
-	"nonwrite-api-promise-error": "Tī leh HTTP header ê 'Promise-Non-Write-API-Action' í-keng sàng--chhut-khì m̄-koh chit-ê iau-kiû sī sàng kòe 1-ê API siá-ji̍p module.",
+	"nonwrite-api-promise-error": "Tī leh HTTP header ê 'Promise-Non-Write-API-Action' í-keng sàng--chhut-khì m̄-koh chit-ê iau-kiû m̄-sī sàng kòe 1-ê API chhéng-kiú.",
 	"internalerror": "Loē-pō͘ ê chhò-ngō͘",
 	"internalerror_info": "Loē-pō͘ ê chhò-ngō͘: $1",
 	"internalerror-fatal-exception": "\"$1\" lūi ê tì-miā lē-gōa",
