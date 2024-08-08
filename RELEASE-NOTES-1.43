@@ -451,6 +451,8 @@ because of Phabricator reports.
 * Passing a Message argument to OutputPage::setPageTitle(), which was
   deprecated in 1.41, now emits warnings.
 * OutputPage::showFatalError() is deprecated, use showErrorPage() instead.
+* OutputPage::showPermissionsErrorPage() is deprecated,
+  use showPermissionStatus() instead.
 * LoadBalancer::getConnectionRef(), deprecated since 1.39, now emits deprecation
   warnings. Use ::getConnection() instead.
 * DBAccessObjectUtils::getDBOptions() is deprecated, use

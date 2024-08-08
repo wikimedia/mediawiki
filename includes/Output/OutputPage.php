@@ -68,6 +68,7 @@ use OOUI\Theme;
 use ParserOptions;
 use RuntimeException;
 use Skin;
+use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
@@ -3113,15 +3114,47 @@ class OutputPage extends ContextSource {
 	/**
 	 * Output a standard permission error page
 	 *
+	 * @param PermissionStatus $status
+	 * @param string|null $action Action that was denied or null if unknown
+	 */
+	public function showPermissionStatus( PermissionStatus $status, $action = null ) {
+		Assert::precondition( !$status->isGood(), 'Status must have errors' );
+
+		$this->showPermissionInternal(
+			array_map( fn ( $msg ) => $this->msg( $msg ), $status->getMessages() ),
+			$action
+		);
+	}
+
+	/**
+	 * Output a standard permission error page
+	 *
+	 * @deprecated since 1.43. Use ::showPermissionStatus instead
 	 * @param array $errors Error message keys or [key, param...] arrays
 	 * @param string|null $action Action that was denied or null if unknown
 	 */
 	public function showPermissionsErrorPage( array $errors, $action = null ) {
-		$services = MediaWikiServices::getInstance();
-		$groupPermissionsLookup = $services->getGroupPermissionsLookup();
 		foreach ( $errors as $key => $error ) {
 			$errors[$key] = (array)$error;
 		}
+
+		$this->showPermissionInternal(
+			// @phan-suppress-next-line PhanParamTooFewUnpack Elements of $errors already annotated as non-empty
+			array_map( fn ( $err ) => $this->msg( ...$err ), $errors ),
+			$action
+		);
+	}
+
+	/**
+	 * Helper for showPermissionStatus() and deprecated showPermissionsErrorMessage(),
+	 * should be inlined when the deprecated method is removed.
+	 *
+	 * @param Message[] $messages
+	 * @param string|null $action
+	 */
+	public function showPermissionInternal( array $messages, $action = null ) {
+		$services = MediaWikiServices::getInstance();
+		$groupPermissionsLookup = $services->getGroupPermissionsLookup();
 
 		// For some actions (read, edit, create and upload), display a "login to do this action"
 		// error if all of the following conditions are met:
@@ -3130,8 +3163,8 @@ class OutputPage extends ContextSource {
 		// 3. the error can be avoided simply by logging in
 
 		if ( in_array( $action, [ 'read', 'edit', 'createpage', 'createtalk', 'upload' ] )
-			&& !$this->getUser()->isNamed() && count( $errors ) == 1 && isset( $errors[0][0] )
-			&& ( $errors[0][0] == 'badaccess-groups' || $errors[0][0] == 'badaccess-group0' )
+			&& !$this->getUser()->isNamed() && count( $messages ) == 1
+			&& ( $messages[0]->getKey() == 'badaccess-groups' || $messages[0]->getKey() == 'badaccess-group0' )
 			&& ( $groupPermissionsLookup->groupHasPermission( 'user', $action )
 				|| $groupPermissionsLookup->groupHasPermission( 'autoconfirmed', $action ) )
 		) {
@@ -3191,7 +3224,7 @@ class OutputPage extends ContextSource {
 		} else {
 			$this->prepareErrorPage();
 			$this->setPageTitleMsg( $this->msg( 'permissionserrors' ) );
-			$this->addWikiTextAsInterface( $this->formatPermissionsErrorMessage( $errors, $action ) );
+			$this->addWikiTextAsInterface( $this->formatPermissionInternal( $messages, $action ) );
 		}
 	}
 
