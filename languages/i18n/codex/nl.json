@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Catrope"
+		]
+	},
+	"cdx-input-chip-aria-description": "Druk op Enter om te bewerken of op Delete om te verwijderen.",
+	"cdx-dialog-close-button-label": "Sluiten",
+	"cdx-label-optional-flag": "(optioneel)",
+	"cdx-message-dismiss-button-label": "Sluiten",
+	"cdx-search-input-search-button-label": "Zoeken",
+	"cdx-table-select-all-label": "Alle rijen selecteren",
+	"cdx-table-select-row-label": "Rij $1 van $2 selecteren",
+	"cdx-table-sort-caption": "$1, kolomkoppen met knoppen kunnen gesorteerd worden",
+	"cdx-typeahead-search-search-results-label": "Zoekresultaten"
+}

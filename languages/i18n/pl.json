@@ -874,7 +874,7 @@
 	"unstrip-size-warning": "Przekroczono maksymalną głębokość zagnieżdżania ($1)",
 	"unstrip-size-category": "Strony, które przekraczają dopuszczalny rozmiar dla funkcji unstrip",
 	"unstrip-size-category-desc": "Ta strona przekracza limit rozmiaru funkcji „unstrip”.",
-	"bad-language-code-category": "Strony z nieprawidłowymi kodami języka",
+	"bad-language-code-category": "Strony z nieprawidłowymi kodami języków",
 	"bad-language-code-category-desc": "Strona zawiera <code><nowiki>{{#dir}}</nowiki></code> z nieprawidłowym kodem języka.",
 	"converter-manual-rule-error": "Błąd w językowych regułach konwersji",
 	"undo-success": "Edycja może zostać wycofana.\nPorównaj ukazane poniżej różnice między wersjami, a następnie opublikuj zmiany, jeśli na pewno chcesz wycofać edycję.",

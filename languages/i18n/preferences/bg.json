@@ -32,7 +32,7 @@
 	"prefs-description-personal": "Контролирайте начина, по който изглежда вашия профил, как се свързвате и комуникирате.",
 	"prefs-info": "Основна информация",
 	"username": "{{GENDER:$1|Потребителско име}}:",
-	"prefs-memberingroups": "{{GENDER:$2|Член}} на {{PLURAL:$1|група|групи}}:",
+	"prefs-memberingroups": "{{GENDER:$2|Член}} на {{PLURAL:$1|групата|групите}}:",
 	"group-membership-link-with-expiry": "$1 (до $2)",
 	"prefs-edits": "Брой редакции:",
 	"prefs-registration": "Регистрация:",

@@ -3,6 +3,7 @@
 		"authors": [
 			"Assorted-Interests",
 			"Gomoko",
+			"Méthodes Bulebe Hangi",
 			"Orlodrim",
 			"Pamputt",
 			"Thibaut120094",
@@ -36,6 +37,7 @@
 	"paramvalidator-missingparam": "Le paramètre « $1 » doit être défini.",
 	"paramvalidator-notmulti": "Le paramètre « $1 » n’accepte qu’une seule valeur. La séparation multi-valeurs U+001F ne peut être utilisée que pour les paramètres multi-valués.",
 	"paramvalidator-multivalue-must-be-array": "Le paramètre à valeurs multiples \"$1\" doit être donné en tant qu'un tableau.",
+	"paramvalidator-needstring": "Le paramètre \"$1\" accepte seulement une valeur de chaîne, mais a obtenu $2",
 	"paramvalidator-outofrange-max": "La valeur « $2 » pour le paramètre « $1 » ne doit pas dépasser $4.",
 	"paramvalidator-outofrange-minmax": "La valeur « $2 » pour le paramètre « $1 » doit être entre $3 et $4.",
 	"paramvalidator-outofrange-min": "La valeur « $2 » pour le paramètre « $1 » ne doit pas être inférieure à $3.",

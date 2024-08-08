@@ -4120,7 +4120,7 @@
 	"nstab-mainpage": "الصفحة الرئيسية",
 	"skin-view-edit-local": "عدل الوصف المحلي",
 	"skin-action-protect": "احمِ",
-	"skin-action-undelete": "ألغ الحذف",
+	"skin-action-undelete": "استرجع",
 	"skin-action-delete": "احذف",
 	"skin-action-move": "انقل",
 	"parsoid-stash-rate-limit-error": "فشل التخزين لأنه تم تجاوز حد المعدل. الرجاء معاودة المحاولة في وقت قليل.",

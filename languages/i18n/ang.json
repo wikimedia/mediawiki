@@ -310,6 +310,8 @@
 	"querypage-no-updates": "Edniwunga þisses trametes ne sindon nu gelyfda. \nGefræge her ne wyrþ hraðe edniwod.",
 	"querypage-updates-periodical": "On þissum tramete sind þragedniwung geurnen.",
 	"viewsource": "Seoh frumtraht",
+	"protection-indicator-title-infinity": "Þes tramet is gebeorged þe nan butan brucendas mid þære \"$1\" alyfednesse mot adihtan hine.",
+	"protection-indicator-title": "Þes tramet is gebeorged þe nan butan brucendas mid þære \"$1\" alyfednesse mot adihtan hine oþ $2.",
 	"skin-action-viewsource": "Beseon on innoðas trametes",
 	"viewsource-title": "Seoh $1 frumtraht",
 	"actionthrottled": "Dæd is geleted",
