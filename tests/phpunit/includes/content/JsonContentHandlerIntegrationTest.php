@@ -18,43 +18,43 @@ class JsonContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 		return [
 			[
 				[],
-				'<table class="mw-json"><tbody><tr><td>' .
+				'<div class="noresize"><table class="mw-json"><tbody><tr><td>' .
 				'<table class="mw-json"><tbody><tr><td class="mw-json-empty">Empty array</td></tr>'
-				. '</tbody></table></td></tr></tbody></table>'
+				. '</tbody></table></td></tr></tbody></table></div>'
 			],
 			[
 				(object)[],
-				'<table class="mw-json"><tbody><tr><td class="mw-json-empty">Empty object</td></tr>' .
-				'</tbody></table>'
+				'<div class="noresize"><table class="mw-json"><tbody><tr><td class="mw-json-empty">Empty object</td></tr>' .
+				'</tbody></table></div>'
 			],
 			[
 				(object)[ 'foo' ],
-				'<table class="mw-json"><tbody><tr><th><span>0</span></th>' .
-				'<td class="mw-json-value">"foo"</td></tr></tbody></table>'
+				'<div class="noresize"><table class="mw-json"><tbody><tr><th><span>0</span></th>' .
+				'<td class="mw-json-value">"foo"</td></tr></tbody></table></div>'
 			],
 			[
 				(object)[ 'foo', 'bar' ],
-				'<table class="mw-json"><tbody><tr><th><span>0</span></th>' .
+				'<div class="noresize"><table class="mw-json"><tbody><tr><th><span>0</span></th>' .
 				'<td class="mw-json-value">"foo"</td></tr><tr><th><span>1</span></th>' .
-				'<td class="mw-json-value">"bar"</td></tr></tbody></table>'
+				'<td class="mw-json-value">"bar"</td></tr></tbody></table></div>'
 			],
 			[
 				(object)[ 'baz' => 'foo', 'bar' ],
-				'<table class="mw-json"><tbody><tr><th><span>baz</span></th>' .
+				'<div class="noresize"><table class="mw-json"><tbody><tr><th><span>baz</span></th>' .
 				'<td class="mw-json-value">"foo"</td></tr><tr><th><span>0</span></th>' .
-				'<td class="mw-json-value">"bar"</td></tr></tbody></table>'
+				'<td class="mw-json-value">"bar"</td></tr></tbody></table></div>'
 			],
 			[
 				(object)[ 'baz' => 1000, 'bar' ],
-				'<table class="mw-json"><tbody><tr><th><span>baz</span></th>' .
+				'<div class="noresize"><table class="mw-json"><tbody><tr><th><span>baz</span></th>' .
 				'<td class="mw-json-value">1000</td></tr><tr><th><span>0</span></th>' .
-				'<td class="mw-json-value">"bar"</td></tr></tbody></table>'
+				'<td class="mw-json-value">"bar"</td></tr></tbody></table></div>'
 			],
 			[
 				(object)[ '<script>alert("evil!")</script>' ],
-				'<table class="mw-json"><tbody><tr><th><span>0</span></th><td class="mw-json-value">"' .
+				'<div class="noresize"><table class="mw-json"><tbody><tr><th><span>0</span></th><td class="mw-json-value">"' .
 				'&lt;script>alert("evil!")&lt;/script>"' .
-				'</td></tr></tbody></table>',
+				'</td></tr></tbody></table></div>',
 			],
 			[
 				'{ broken JSON ]',

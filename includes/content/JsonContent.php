@@ -80,22 +80,24 @@ class JsonContent extends TextContent {
 	 */
 	public function rootValueTable( $val ) {
 		if ( is_object( $val ) ) {
-			return $this->objectTable( $val );
-		}
+			$table = $this->objectTable( $val );
 
-		if ( is_array( $val ) ) {
+		} elseif ( is_array( $val ) ) {
 			// Wrap arrays in another array so that they're visually boxed in a container.
 			// Otherwise they are visually indistinguishable from a single value.
-			return $this->arrayTable( [ $val ] );
+			$table = $this->arrayTable( [ $val ] );
+
+		} else {
+			$table = Html::rawElement( 'table', [ 'class' => 'mw-json mw-json-single-value' ],
+				Html::rawElement( 'tbody', [],
+					Html::rawElement( 'tr', [],
+						Html::element( 'td', [], $this->primitiveValue( $val ) )
+					)
+				)
+			);
 		}
 
-		return Html::rawElement( 'table', [ 'class' => 'mw-json mw-json-single-value' ],
-			Html::rawElement( 'tbody', [],
-				Html::rawElement( 'tr', [],
-					Html::element( 'td', [], $this->primitiveValue( $val ) )
-				)
-			)
-		);
+		return Html::rawElement( 'div', [ 'class' => 'noresize' ], $table );
 	}
 
 	/**
