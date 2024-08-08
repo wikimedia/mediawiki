@@ -297,10 +297,10 @@ class ForeignResourceManager {
 			if ( $reqError !== null ) {
 				$message .= ': ' . Message::newFromSpecifier( $reqError )->inLanguage( 'en' )->plain();
 			}
-			throw new LogicException( $message );
+			throw new ForeignResourceNetworkException( $message );
 		}
 		if ( $req->getStatus() !== 200 ) {
-			throw new LogicException( "Unexpected HTTP {$req->getStatus()} response from {$src}" );
+			throw new ForeignResourceNetworkException( "Unexpected HTTP {$req->getStatus()} response from {$src}" );
 		}
 		$data = $req->getContent();
 		$algo = $integrity === null ? $this->defaultAlgo : explode( '-', $integrity )[0];
@@ -313,7 +313,7 @@ class ForeignResourceManager {
 			$this->output( "Integrity for {$src}\n\tintegrity: {$actualIntegrity}\n" );
 		} else {
 			$expectedIntegrity = $integrity ?? 'null';
-			throw new LogicException( "Integrity check failed for {$src}\n" .
+			throw new ForeignResourceNetworkException( "Integrity check failed for {$src}\n" .
 				"\tExpected: {$expectedIntegrity}\n" .
 				"\tActual: {$actualIntegrity}"
 			);
