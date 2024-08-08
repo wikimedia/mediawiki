@@ -1700,9 +1700,9 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	private function getConnectionFromServerInfo( $shardIndex, array $server ) {
 		if ( !isset( $this->conns[$shardIndex] ) ) {
 			$server['logger'] = $this->logger;
-			// Make sure this handle always uses autocommit mode, even if DBO_TRX is
-			// configured.
-			$server['flags'] &= ~DBO_TRX;
+			// Always use autocommit mode, even if DBO_TRX is configured
+			$server['flags'] ??= 0;
+			$server['flags'] &= ~( IDatabase::DBO_TRX | IDatabase::DBO_DEFAULT );
 
 			/** @var IMaintainableDatabase $conn Auto-commit connection to the server */
 			$conn = MediaWikiServices::getInstance()->getDatabaseFactory()
