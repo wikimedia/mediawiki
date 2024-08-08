@@ -287,12 +287,7 @@ class MagicVariableTest extends MediaWikiIntegrationTestCase {
 	private function assertMagicPadding( $magic, $value, $format ) {
 		# Initialize parser timestamp as year 2010 at 12h34 56s.
 		# month and day are given by the caller ($value). Month < 12!
-		if ( $value > 12 ) {
-			$month = $value % 12;
-		} else {
-			$month = $value;
-		}
-
+		$month = ( $value + 11 ) % 12 + 1;
 		$this->setParserTimestamp(
 			sprintf( '2010%02d%02d123456', $month, $value )
 		);
