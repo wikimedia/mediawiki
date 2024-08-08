@@ -18,6 +18,7 @@ class DeletePageJob extends Job implements GenericParameterJob {
 
 	public function run() {
 		$services = MediaWikiServices::getInstance();
+		$ticket = $services->getDBLoadBalancerFactory()->getEmptyTransactionTicket( __METHOD__ );
 		// Failure to load the page is not job failure.
 		// A parallel deletion operation may have already completed the page deletion.
 		$wikiPage = $services->getWikiPageFactory()->newFromID( $this->params['wikiPageId'] );
@@ -36,7 +37,8 @@ class DeletePageJob extends Job implements GenericParameterJob {
 					// Use a fallback for BC with queued jobs.
 					$this->params['pageRole'] ?? DeletePage::PAGE_BASE,
 					$this->params['reason'],
-					$this->getRequestId()
+					$this->getRequestId(),
+					$ticket
 				);
 		}
 		return true;
