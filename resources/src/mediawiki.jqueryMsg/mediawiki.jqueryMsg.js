@@ -918,8 +918,8 @@ Parser.prototype = {
  *
  * @private
  * @class
- * @param {Object} language
- * @param {Object} [magic]
+ * @param {mw.language} language
+ * @param {Object.<string,string>} [magic]
  */
 function HtmlEmitter( language, magic ) {
 	var jmsg = this;
