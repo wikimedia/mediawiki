@@ -139,6 +139,18 @@ class CodexModule extends FileModule {
 				'cdx-table-select-row-label',
 				'cdx-table-sort-caption',
 				'cdx-typeahead-search-search-results-label',
+				'cdx-table-pager-button-first-page',
+				'cdx-table-pager-button-last-page',
+				'cdx-table-pager-button-next-page',
+				'cdx-table-pager-button-prev-page',
+				'cdx-table-pager-items-per-page-current',
+				'cdx-table-pager-items-per-page-default',
+				'cdx-table-pagination-status-message-determinate-long',
+				'cdx-table-pagination-status-message-determinate-short',
+				'cdx-table-pagination-status-message-indeterminate-long',
+				'cdx-table-pagination-status-message-indeterminate-short',
+				'cdx-table-pagination-status-message-indeterminate-final',
+				'cdx-table-pagination-status-message-pending'
 			] );
 		}
 
