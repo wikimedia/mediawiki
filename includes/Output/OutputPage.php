@@ -39,6 +39,7 @@ use MediaWiki\Content\TextContent;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
@@ -96,6 +97,7 @@ use Wikimedia\WrappedStringList;
  */
 class OutputPage extends ContextSource {
 	use ProtectedHookAccessorTrait;
+	use DeprecationHelper;
 
 	/** Output CSP policies as headers */
 	public const CSP_HEADERS = 'headers';
@@ -194,13 +196,13 @@ class OutputPage extends ContextSource {
 	 * @var string[][]
 	 * @deprecated since 1.38; will be made private (T301020)
 	 */
-	protected $mCategoryLinks = [];
+	private $mCategoryLinks = [];
 
 	/**
 	 * @var string[][]
 	 * @deprecated since 1.38, will be made private (T301020)
 	 */
-	protected $mCategories = [
+	private $mCategories = [
 		'hidden' => [],
 		'normal' => [],
 	];
@@ -209,7 +211,7 @@ class OutputPage extends ContextSource {
 	 * @var string[]
 	 * @deprecated since 1.38; will be made private (T301020)
 	 */
-	protected $mIndicators = [];
+	private $mIndicators = [];
 
 	/**
 	 * @var string[] Array of Interwiki Prefixed (non DB key) Titles (e.g. 'fr:Test page')
@@ -237,7 +239,7 @@ class OutputPage extends ContextSource {
 	 * @var string[] Array of elements in "<head>". Parser might add its own headers!
 	 * @deprecated since 1.38; will be made private (T301020)
 	 */
-	protected $mHeadItems = [];
+	private $mHeadItems = [];
 
 	/** @var array Additional <body> classes; there are also <body> classes from other sources */
 	protected $mAdditionalBodyClasses = [];
@@ -246,13 +248,13 @@ class OutputPage extends ContextSource {
 	 * @var array
 	 * @deprecated since 1.38; will be made private (T301020)
 	 */
-	protected $mModules = [];
+	private $mModules = [];
 
 	/**
 	 * @var array
 	 * @deprecated since 1.38; will be made private (T301020)
 	 */
-	protected $mModuleStyles = [];
+	private $mModuleStyles = [];
 
 	/** @var ResourceLoader */
 	protected $mResourceLoader;
@@ -270,13 +272,13 @@ class OutputPage extends ContextSource {
 	 * @var array
 	 * @deprecated since 1.38; will be made private (T301020)
 	 */
-	protected $mJsConfigVars = [];
+	private $mJsConfigVars = [];
 
 	/**
 	 * @var array<int,array<string,int>>
 	 * @deprecated since 1.38; will be made private (T301020)
 	 */
-	protected $mTemplateIds = [];
+	private $mTemplateIds = [];
 
 	/** @var array */
 	protected $mImageTimeKeys = [];
@@ -319,7 +321,7 @@ class OutputPage extends ContextSource {
 	 * in the opposite sense; see ::disableClientCache().)
 	 * @deprecated since 1.38; will be made private (T301020)
 	 */
-	protected $mEnableClientCache = true;
+	private $mEnableClientCache = true;
 
 	/** @var bool Flag if output should only contain the body of the article. */
 	private $mArticleBodyOnly = false;
@@ -328,21 +330,21 @@ class OutputPage extends ContextSource {
 	 * @var bool
 	 * @deprecated since 1.38; will be made private (T301020)
 	 */
-	protected $mNewSectionLink = false;
+	private $mNewSectionLink = false;
 
 	/**
 	 * @var bool
 	 * @deprecated since 1.38; will be made private (T301020)
 	 */
-	protected $mHideNewSectionLink = false;
+	private $mHideNewSectionLink = false;
 
 	/**
 	 * @var bool Comes from the parser. This was probably made to load CSS/JS
-	 * only if we had "<gallery>". Used directly in CategoryPage.php.
+	 * only if we had "<gallery>". Used directly in CategoryViewer.php.
 	 * Looks like ResourceLoader can replace this.
 	 * @deprecated since 1.38; will be made private (T301020)
 	 */
-	public $mNoGallery = false;
+	private $mNoGallery = false;
 
 	/** @var int Cache stuff. Looks like mEnableClientCache */
 	protected $mCdnMaxage = 0;
@@ -464,6 +466,18 @@ class OutputPage extends ContextSource {
 	 * @param IContextSource $context
 	 */
 	public function __construct( IContextSource $context ) {
+		$this->deprecatePublicProperty( 'mCategoryLinks', '1.38', __CLASS__ );
+		$this->deprecatePublicProperty( 'mCategories', '1.38', __CLASS__ );
+		$this->deprecatePublicProperty( 'mIndicators', '1.38', __CLASS__ );
+		$this->deprecatePublicProperty( 'mHeadItems', '1.38', __CLASS__ );
+		$this->deprecatePublicProperty( 'mModules', '1.38', __CLASS__ );
+		$this->deprecatePublicProperty( 'mModuleStyles', '1.38', __CLASS__ );
+		$this->deprecatePublicProperty( 'mJsConfigVars', '1.38', __CLASS__ );
+		$this->deprecatePublicProperty( 'mTemplateIds', '1.38', __CLASS__ );
+		$this->deprecatePublicProperty( 'mEnableClientCache', '1.38', __CLASS__ );
+		$this->deprecatePublicProperty( 'mNewSectionLink', '1.38', __CLASS__ );
+		$this->deprecatePublicProperty( 'mHideNewSectionLink', '1.38', __CLASS__ );
+		$this->deprecatePublicProperty( 'mNoGallery', '1.38', __CLASS__ );
 		$this->setContext( $context );
 		$this->CSP = new ContentSecurityPolicy(
 			$context->getRequest()->response(),
@@ -1550,6 +1564,16 @@ class OutputPage extends ContextSource {
 	 */
 	public function getLanguageLinks() {
 		return $this->mLanguageLinks;
+	}
+
+	/**
+	 * Get the "no gallery" flag
+	 *
+	 * Used directly only in CategoryViewer.php
+	 * @internal
+	 */
+	public function getNoGallery(): bool {
+		return $this->mNoGallery;
 	}
 
 	/**

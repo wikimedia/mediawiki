@@ -549,6 +549,21 @@ because of Phabricator reports.
   edits are saved, see T157658 for details.
 * The MessageCache::get hook, deprecated since 1.41, now emits deprecation
   warnings.
+* Twelve deprecated properties of OutputPage now will emit warnings; their
+  relevant getters or setters should be used instead:
+  * mCategoryLinks       - getCategoryLinks() and setCategoryLinks()
+  * mCategories          - getCategories()
+  * mIndicators          - getIndicators() and setIndicators()
+  * mHeadItems           - getHeadItemsArray(), hasHeadItem(), addHeadItem(),
+                           and addHeadItems()
+  * mModules             - getModules() and addModules()
+  * mModuleStyles        - getModuleStyles() and addModuleStyles()
+  * mJsConfigVars        - getJsConfigVars() and addJsConfigVars()
+  * mTemplateIds         - getTemplateIds()
+  - mEnableClientCache   - Set with enableClientCache() and disableClientCache()
+  - mNewSectionLink      - Get with showNewSectionLink()
+  - mHideNewSectionLink  - Set with forceHideNewSectionLink()
+  - mNoGallery           - getNoGallery()
 * …
 
 === Other changes in 1.43 ===
