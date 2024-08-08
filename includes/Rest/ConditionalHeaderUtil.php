@@ -71,12 +71,9 @@ class ConditionalHeaderUtil {
 			$im = $request->getHeader( 'If-Match' );
 			$match = false;
 			foreach ( $parser->parseHeaderList( $im ) as $tag ) {
-				if ( $tag['whole'] === '*' && $this->hasRepresentation ) {
-					$match = true;
-					break;
-				}
-
-				if ( $this->strongCompare( $resourceTag, $tag ) ) {
+				if ( ( $tag['whole'] === '*' && $this->hasRepresentation ) ||
+					$this->strongCompare( $resourceTag, $tag )
+				) {
 					$match = true;
 					break;
 				}
@@ -95,15 +92,10 @@ class ConditionalHeaderUtil {
 		if ( $request->hasHeader( 'If-None-Match' ) ) {
 			$inm = $request->getHeader( 'If-None-Match' );
 			foreach ( $parser->parseHeaderList( $inm ) as $tag ) {
-				if ( $tag['whole'] === '*' && $this->hasRepresentation ) {
+				if ( ( $tag['whole'] === '*' && $this->hasRepresentation ) ||
+					$this->weakCompare( $resourceTag, $tag )
+				) {
 					return $getOrHead ? 304 : 412;
-				}
-				if ( $this->weakCompare( $resourceTag, $tag ) ) {
-					if ( $getOrHead ) {
-						return 304;
-					} else {
-						return 412;
-					}
 				}
 			}
 		} elseif ( $getOrHead && $request->hasHeader( 'If-Modified-Since' ) ) {
