@@ -95,12 +95,8 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function getLatestTestRevision(): RevisionRecord {
-		if ( $this->latestTestRevision !== null ) {
-			return $this->latestTestRevision;
-		}
-		return $this->revisionStore->getRevisionByPageId(
-			$this->wikiPage->getId()
-		);
+		return $this->latestTestRevision ??
+			$this->revisionStore->getRevisionByPageId( $this->wikiPage->getId() );
 	}
 
 	/**

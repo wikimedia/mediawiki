@@ -76,10 +76,7 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 	}
 
 	private function createMockOrOverride( string $class, array $overrides ) {
-		if ( array_key_exists( $class, $overrides ) ) {
-			return $overrides[$class];
-		}
-		return $this->createNoOpMock( $class );
+		return $overrides[$class] ?? $this->createNoOpMock( $class );
 	}
 
 	/**

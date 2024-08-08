@@ -898,11 +898,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$title = Title::newFromText( $text );
 		$fixed = $title->fixSpecialName();
 		$stuff = explode( '/', $fixed->getDBkey(), 2 );
-		if ( count( $stuff ) == 2 ) {
-			$par = $stuff[1];
-		} else {
-			$par = null;
-		}
+		$par = $stuff[1] ?? null;
 		$this->assertEquals(
 			$expectedParam,
 			$par,
