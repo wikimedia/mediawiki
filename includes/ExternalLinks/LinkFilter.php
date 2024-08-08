@@ -20,7 +20,7 @@
 
 namespace MediaWiki\ExternalLinks;
 
-use Content;
+use MediaWiki\Content\Content;
 use MediaWiki\Content\TextContent;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

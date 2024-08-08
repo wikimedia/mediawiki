@@ -2,7 +2,7 @@
 
 namespace MediaWiki\EditPage;
 
-use Content;
+use MediaWiki\Content\Content;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\HookContainer\HookContainer;

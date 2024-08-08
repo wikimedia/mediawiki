@@ -21,7 +21,6 @@
 namespace MediaWiki\Page;
 
 use ChangeTags;
-use ContentHandler;
 use File;
 use IDBAccessObject;
 use LogFormatterFactory;
@@ -29,6 +28,7 @@ use ManualLogEntry;
 use MediaWiki\Collation\CollationFactory;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Context\RequestContext;

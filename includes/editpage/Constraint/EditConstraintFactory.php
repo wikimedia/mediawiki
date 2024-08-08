@@ -20,9 +20,9 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use Content;
 use Language;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Content\Content;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;

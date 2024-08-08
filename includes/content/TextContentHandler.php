@@ -25,8 +25,6 @@
 
 namespace MediaWiki\Content;
 
-use Content;
-use ContentHandler;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\MainConfigNames;

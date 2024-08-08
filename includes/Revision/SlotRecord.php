@@ -22,9 +22,9 @@
 
 namespace MediaWiki\Revision;
 
-use Content;
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\Content\Content;
 use OutOfBoundsException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\NonSerializable\NonSerializableTrait;

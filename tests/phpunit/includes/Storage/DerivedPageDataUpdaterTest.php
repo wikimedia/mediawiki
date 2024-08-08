@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Tests\Storage;
 
-use Content;
-use ContentHandler;
 use DummyContentHandlerForTesting;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Content\Content;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Content\TextContentHandler;

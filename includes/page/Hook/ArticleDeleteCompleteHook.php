@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Page\Hook;
 
-use Content;
 use ManualLogEntry;
+use MediaWiki\Content\Content;
 use MediaWiki\User\User;
 use WikiPage;
 

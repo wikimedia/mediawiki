@@ -22,8 +22,8 @@
 
 namespace MediaWiki\ResourceLoader;
 
-use Content;
 use CSSJanus;
+use MediaWiki\Content\Content;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;

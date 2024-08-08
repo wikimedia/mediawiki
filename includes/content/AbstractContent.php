@@ -26,11 +26,14 @@
  * @author Daniel Kinzler
  */
 
-use MediaWiki\Content\IContentHandlerFactory;
+namespace MediaWiki\Content;
+
+use LogicException;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\MagicWord;
 use MediaWiki\Title\Title;
+use MWException;
 
 /**
  * Base implementation for content objects.
@@ -417,3 +420,6 @@ abstract class AbstractContent implements Content {
 	}
 
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( AbstractContent::class, 'AbstractContent' );

@@ -27,8 +27,6 @@
 
 namespace MediaWiki\Content;
 
-use AbstractContent;
-use Content;
 use InvalidArgumentException;
 use Language;
 use MediaWiki\MainConfigNames;

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Content\Hook;
 
-use Content;
+use MediaWiki\Content\Content;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\Title;
 use ParserOptions;

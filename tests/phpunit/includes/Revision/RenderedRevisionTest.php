@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Revision;
 
-use Content;
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\Content\Content;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Page\PageIdentity;

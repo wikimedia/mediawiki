@@ -21,14 +21,14 @@
 namespace MediaWiki\Storage;
 
 use ChangeTags;
-use Content;
-use ContentHandler;
 use IDBAccessObject;
 use InvalidArgumentException;
 use LogicException;
 use ManualLogEntry;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Content\Content;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\ValidationParams;
 use MediaWiki\Deferred\AtomicSectionUpdate;

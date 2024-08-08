@@ -3,9 +3,9 @@
 namespace MediaWiki\Tests\Storage;
 
 use ChangeTags;
-use Content;
 use LogicException;
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Content\Content;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Deferred\DeferredUpdates;

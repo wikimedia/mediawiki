@@ -1,7 +1,7 @@
 <?php
 namespace MediaWiki\Content\Transform;
 
-use Content;
+use MediaWiki\Content\Content;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Page\PageReference;
 use MediaWiki\User\UserIdentity;

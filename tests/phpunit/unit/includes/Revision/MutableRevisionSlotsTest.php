@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Unit\Revision;
 
-use Content;
 use InvalidArgumentException;
+use MediaWiki\Content\Content;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\RevisionAccessException;

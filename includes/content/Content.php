@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Content;
+
 use MediaWiki\Parser\MagicWord;
 use MediaWiki\Title\Title;
 
@@ -372,3 +374,6 @@ interface Content {
 	//   [12:00] <vvv> And default it to a DummyHighlighter
 
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( Content::class, 'Content' );

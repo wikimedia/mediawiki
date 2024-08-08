@@ -20,7 +20,7 @@
 
 namespace MediaWiki\Storage;
 
-use Content;
+use MediaWiki\Content\Content;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Page\PageIdentity;

@@ -19,12 +19,12 @@
 
 namespace MediaWiki\Parser\Parsoid\Config;
 
-use ContentHandler;
 use File;
 use LanguageCode;
 use MediaTransformError;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;

@@ -27,9 +27,6 @@
 
 namespace MediaWiki\Content;
 
-use AbstractContent;
-use Content;
-
 /**
  * Content object implementation representing unknown content.
  *

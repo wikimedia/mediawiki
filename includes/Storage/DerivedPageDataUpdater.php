@@ -21,14 +21,14 @@
 namespace MediaWiki\Storage;
 
 use CategoryMembershipChangeJob;
-use Content;
-use ContentHandler;
 use IDBAccessObject;
 use InvalidArgumentException;
 use JobQueueGroup;
 use Language;
 use LogicException;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Content\Content;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Deferred\DeferrableUpdate;

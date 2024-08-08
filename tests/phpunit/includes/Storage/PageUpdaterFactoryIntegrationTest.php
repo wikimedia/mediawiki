@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Storage;
 
-use ContentHandler;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Revision\SlotRecord;
 use MediaWikiIntegrationTestCase;

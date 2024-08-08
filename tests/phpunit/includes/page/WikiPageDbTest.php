@@ -2,6 +2,7 @@
 
 use MediaWiki\Category\Category;
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Content\WikitextContent;
@@ -1158,7 +1159,7 @@ more stuff
 		}
 
 		$this->hideDeprecated( 'WikiPage::getAutoDeleteReason:' );
-		$this->hideDeprecated( 'ContentHandler::getAutoDeleteReason:' );
+		$this->hideDeprecated( 'MediaWiki\\Content\\ContentHandler::getAutoDeleteReason:' );
 		$reason = $page->getAutoDeleteReason( $hasHistory );
 
 		if ( is_bool( $expectedResult ) || $expectedResult === null ) {

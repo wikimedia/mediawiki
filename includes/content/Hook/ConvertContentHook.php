@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Content\Hook;
 
-use Content;
+use MediaWiki\Content\Content;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

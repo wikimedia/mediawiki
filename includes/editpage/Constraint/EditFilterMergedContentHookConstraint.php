@@ -21,8 +21,8 @@
 namespace MediaWiki\EditPage\Constraint;
 
 use ApiMessage;
-use Content;
 use Language;
+use MediaWiki\Content\Content;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;

@@ -22,9 +22,9 @@
 
 namespace MediaWiki\Revision;
 
-use Content;
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\Content\Content;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOutput;

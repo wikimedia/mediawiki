@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Tests\Revision;
 
-use Content;
 use Exception;
 use IDBAccessObject;
 use InvalidArgumentException;
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Content\Content;
 use MediaWiki\Content\FallbackContent;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Content\WikitextContent;
