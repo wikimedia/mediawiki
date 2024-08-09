@@ -156,7 +156,10 @@ class EntryPoint extends MediaWikiEntryPoint {
 		$extensionsDir = $conf->get( MainConfigNames::ExtensionDirectory );
 		// Always include the "official" routes. Include additional routes if specified.
 		$routeFiles = array_merge(
-			[ 'includes/Rest/coreRoutes.json' ],
+			[
+				'includes/Rest/coreRoutes.json',
+				'includes/Rest/content.v1.json'
+			],
 			$conf->get( MainConfigNames::RestAPIAdditionalRouteFiles )
 		);
 		foreach ( $routeFiles as &$file ) {

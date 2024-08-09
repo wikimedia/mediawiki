@@ -48,7 +48,7 @@ class PageSourceHandlerTest extends MediaWikiIntegrationTestCase {
 			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
 		);
 
-		$htmlUrl = 'https://wiki.example.com/rest/v1/page/Talk%3ASourceEndpointTestPage%2Fwith%2Fslashes/html';
+		$htmlUrl = 'https://wiki.example.com/rest/mock/page/Talk%3ASourceEndpointTestPage%2Fwith%2Fslashes/html';
 
 		$handler = $this->newHandler();
 		$config = [ 'format' => 'bare' ];

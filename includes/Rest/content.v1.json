@@ -1,0 +1,123 @@
+{
+	"mwapi": "1.0.0",
+	"moduleId": "content.v1",
+	"paths": {
+		"/page": {
+			"post": {
+				"handler": {
+					"class": "MediaWiki\\Rest\\Handler\\CreationHandler",
+					"services": [
+						"MainConfig",
+						"ContentHandlerFactory",
+						"TitleParser",
+						"TitleFormatter",
+						"RevisionStore"
+					],
+					"format": "source"
+				}
+			}
+		},
+		"/page/{title}": {
+			"get": {
+				"handler": {
+					"class": "MediaWiki\\Rest\\Handler\\PageSourceHandler",
+					"services": [
+						"TitleFormatter",
+						"PageRestHelperFactory"
+					],
+					"format": "source"
+				}
+			},
+			"put": {
+				"handler": {
+					"class": "MediaWiki\\Rest\\Handler\\UpdateHandler",
+					"services": [
+						"MainConfig",
+						"ContentHandlerFactory",
+						"TitleParser",
+						"TitleFormatter",
+						"RevisionStore"
+					]
+				}
+			}
+		},
+		"/page/{title}/html": {
+			"get": {
+				"handler": {
+					"class": "MediaWiki\\Rest\\Handler\\PageHTMLHandler",
+					"services": [
+						"PageRestHelperFactory"
+					],
+					"format": "html"
+				}
+			}
+		},
+		"/page/{title}/with_html": {
+			"get": {
+				"handler": {
+					"class": "MediaWiki\\Rest\\Handler\\PageHTMLHandler",
+					"services": [
+						"PageRestHelperFactory"
+					],
+					"format": "with_html"
+				}
+			}
+		},
+		"/page/{title}/bare": {
+			"get": {
+				"handler": {
+					"class": "MediaWiki\\Rest\\Handler\\PageSourceHandler",
+					"services": [
+						"TitleFormatter",
+						"PageRestHelperFactory"
+					],
+					"format": "bare"
+				}
+			}
+		},
+		"/revision/{id}": {
+			"get": {
+				"handler": {
+					"class": "MediaWiki\\Rest\\Handler\\RevisionSourceHandler",
+					"services": [
+						"PageRestHelperFactory"
+					],
+					"format": "source"
+				}
+			}
+		},
+		"/revision/{id}/html": {
+			"get": {
+				"handler": {
+					"class": "MediaWiki\\Rest\\Handler\\RevisionHTMLHandler",
+					"services": [
+						"PageRestHelperFactory"
+					],
+					"format": "html"
+				}
+			}
+		},
+		"/revision/{id}/with_html": {
+			"get": {
+				"handler": {
+					"class": "MediaWiki\\Rest\\Handler\\RevisionHTMLHandler",
+					"services": [
+						"PageRestHelperFactory"
+					],
+					"format": "with_html"
+				}
+			}
+		},
+		"/revision/{id}/bare": {
+			"get": {
+				"handler": {
+					"class": "MediaWiki\\Rest\\Handler\\RevisionSourceHandler",
+					"services": [
+						"PageRestHelperFactory"
+					],
+					"format": "bare"
+				}
+			}
+		}
+	}
+}

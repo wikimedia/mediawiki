@@ -2,12 +2,14 @@
 
 const { action, assert, REST, utils } = require( 'api-testing' );
 
+let pathPrefix = 'rest.php/content.v1';
+
 describe( 'PUT /page/{title}', () => {
 	let client, mindy, mindyToken;
 
 	before( async () => {
 		mindy = await action.mindy();
-		client = new REST( 'rest.php/v1', mindy );
+		client = new REST( pathPrefix, mindy );
 		mindyToken = await mindy.token();
 	} );
 
@@ -356,6 +358,11 @@ describe( 'PUT /page/{title}', () => {
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 		} );
-
 	} );
 } );
+
+// eslint-disable-next-line mocha/no-exports
+exports.init = function ( pp ) {
+	// Allow testing both legacy and module paths using the same tests
+	pathPrefix = pp;
+};

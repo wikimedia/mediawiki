@@ -3,6 +3,8 @@
 const { action, assert, REST, utils } = require( 'api-testing' );
 const url = require( 'url' );
 
+let pathPrefix = 'rest.php/content.v1';
+
 // Parse a URL-ref, which may or may not contain a protocol and host.
 // WHATWG URL currently doesn't support partial URLs, see https://github.com/whatwg/url/issues/531
 function parseURL( ref ) {
@@ -40,11 +42,13 @@ describe( 'Page Source', () => {
 	const redirectPage = utils.title( 'Redirect ' );
 	const redirectedPage = redirectPage.replace( 'Redirect', 'Redirected' );
 
-	const client = new REST();
+	let client;
 	let mindy;
 	const baseEditText = "''Edit 1'' and '''Edit 2'''";
 
 	before( async () => {
+		client = new REST( pathPrefix );
+
 		mindy = await action.mindy();
 		await mindy.edit( page, { text: baseEditText } );
 		await mindy.edit( atinlayAgepay, { text: baseEditText } );
@@ -410,3 +414,9 @@ describe( 'Page Source', () => {
 		} );
 	} );
 } );
+
+// eslint-disable-next-line mocha/no-exports
+exports.init = function ( pp ) {
+	// Allow testing both legacy and module paths using the same tests
+	pathPrefix = pp;
+};
