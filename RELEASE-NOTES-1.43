@@ -174,8 +174,10 @@ MediaWiki supports over 350 languages. Many localisations are updated regularly.
 Below only new and removed languages are listed, as well as changes to languages
 because of Phabricator reports.
 
-* (T357853) Added unidirectional script conversion for Meitei to Bengali Script.
+* (T357853) Added unidirectional script conversion for Meitei to Bengali script.
 * (T367377) Updated the autonym for Tai Nuea (tdd)
+* (T354937, T362041) Added language support for Minnan (Traditional Han script)
+  (nan-hant).
 * (T290657) Added language support for Levantine Arabic (apc).
 * (T364291) Added language support for Musi, also known as Palembang (mui).
 * (T365365) Added language support for Chakma (ccp).
@@ -183,6 +185,8 @@ because of Phabricator reports.
 * (T367688) Added language support for Interslavic (Latin) (isv-latn).
 * (T370123) Added language support for Nupe (nup).
 * (T371051) Added language support for Saint Lucian Creole (acf).
+* (T354937, T370987) Added language support for Minnan (Pe̍h-ōe-jī)
+  (nan-latn-pehoeji).
 * …
 
 === Breaking changes in 1.43 ===
