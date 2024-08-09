@@ -80,6 +80,19 @@
 	/* stylelint-enable declaration-block-no-redundant-longhand-properties */
 }
 
+// In the future this can be simply migrated to `padding-inline: @start @end;`
+// Since MW 1.43
+.padding-inline( @start, @end ) {
+	padding-left: @start;
+	padding-right: @end;
+	-webkit-padding-start: @start; // Archaic WebKit/Chrome versions
+	-webkit-padding-end: @end;
+	/* stylelint-disable declaration-block-no-redundant-longhand-properties */
+	padding-inline-start: @start; // Firefox 41, Safari 12.1, Chrome 69, Opera 56
+	padding-inline-end: @end;
+	/* stylelint-enable declaration-block-no-redundant-longhand-properties */
+}
+
 // Not supported in Chrome <= 55, Firefox <= 31, Opera <= 41
 .position-sticky() {
 	-webkit-position: sticky; // Support: Safari < 13
