@@ -3158,6 +3158,7 @@ class OutputPage extends ContextSource {
 	 * @param string|null $action Action that was denied or null if unknown
 	 */
 	public function showPermissionsErrorPage( array $errors, $action = null ) {
+		wfDeprecated( __METHOD__, '1.43' );
 		foreach ( $errors as $key => $error ) {
 			$errors[$key] = (array)$error;
 		}
@@ -3299,6 +3300,7 @@ class OutputPage extends ContextSource {
 	 * @return-taint tainted
 	 */
 	public function formatPermissionsErrorMessage( array $errors, $action = null ) {
+		wfDeprecated( __METHOD__, '1.36' );
 		return $this->formatPermissionInternal(
 			// @phan-suppress-next-line PhanParamTooFewUnpack Elements of $errors already annotated as non-empty
 			array_map( fn ( $err ) => $this->msg( ...$err ), $errors ),

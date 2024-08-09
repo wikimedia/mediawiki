@@ -347,6 +347,7 @@ because of Phabricator reports.
   been deprecated in favor of new method StatusValue::getMessages().
 * PermissionManager::getPermissionErrors() has been deprecated in favor
   of getPermissionStatus().
+* PermissionStatus::toLegacyErrorArray() is deprecated with no replacement.
 * (T166010) All PHP code in MediaWiki is slowly being moved to be in a class
   namespace as appropriate, so that we can use PSR-4 auto-loading, which will
   speed up general code loading of MediaWiki. The old global namespace class
@@ -464,6 +465,8 @@ because of Phabricator reports.
 * OutputPage::showFatalError() is deprecated, use showErrorPage() instead.
 * OutputPage::showPermissionsErrorPage() is deprecated,
   use showPermissionStatus() instead.
+* OutputPage::formatPermissionsErrorMessage(), deprecated since 1.36,
+  now emits deprecation warnings. Use formatPermissionStatus() instead.
 * LoadBalancer::getConnectionRef(), deprecated since 1.39, now emits deprecation
   warnings. Use ::getConnection() instead.
 * DBAccessObjectUtils::getDBOptions() is deprecated, use

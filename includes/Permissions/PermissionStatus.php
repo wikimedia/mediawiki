@@ -93,6 +93,7 @@ class PermissionStatus extends StatusValue {
 	/**
 	 * Returns this permission status in legacy error array format.
 	 *
+	 * @deprecated since 1.43
 	 * @see PermissionManager::getPermissionErrors()
 	 *
 	 * @return array[]
