@@ -1491,13 +1491,16 @@ abstract class Skin extends ContextSource {
 	 * The format of the returned array is [ heading => content, ... ], where:
 	 * - heading is the heading of a navigation portlet. It is either:
 	 *   - magic string to be handled by the skins ('SEARCH' / 'LANGUAGES' / 'TOOLBOX' / ...)
-	 *     - Note that 'SEARCH' unlike others is not supported out-of-the-box by the skins.
-	 *     - For it to work, a skin must add custom support for it.
+	 *     (Note that 'SEARCH' unlike others is not supported out-of-the-box by the skins.
+	 *     For it to work, a skin must add custom support for it.)
 	 *   - a message name (e.g. 'navigation'), the message should be HTML-escaped by the skin
 	 *   - plain text, which should be HTML-escaped by the skin
-	 * - content is the contents of the portlet. This must be array of link data in a format
-	 * 		accepted by self::makeListItem().
-	 *   - (for a magic string as a key, any value)
+	 * - content is the contents of the portlet.
+	 *   - For keys that aren't magic strings, this is an array of link data, where the
+	 *     array items are arrays in the format expected by the $item parameter of
+	 *     {@link self::makeListItem()}.
+	 *   - For magic strings, the format varies. For LANGUAGES and TOOLBOX it is the same as above;
+	 *     for SEARCH the value will be ignored.
 	 *
 	 * Note that extensions can control the sidebar contents using the SkinBuildSidebar hook
 	 * and can technically insert anything in here; skin creators are expected to handle
@@ -2215,10 +2218,11 @@ abstract class Skin extends ContextSource {
 	 * @since 1.35
 	 * @param string $key Usually a key from the list you are generating this link from.
 	 * @param array $item Array of list item data containing some of a specific set of keys.
-	 * The "id", "class" and "itemtitle" keys will be used as attributes for the list item,
-	 * if "active" contains a value of true a "active" class will also be appended to class.
-	 * The "class" key currently accepts both a string and an array of classes, but this will be
-	 * changed to only accept an array in the future.
+	 *   The "id", "class" and "itemtitle" keys will be used as attributes for the list item,
+	 *   if "active" contains a value of true an "active" class will also be appended to class.
+	 *   The "class" key currently accepts both a string and an array of classes, but this will be
+	 *   changed to only accept an array in the future.
+	 *   For further options see the $item parameter of {@link SkinComponentLink::makeLink()}.
 	 * @phan-param array{id?:string,html?:string,class?:string|string[],itemtitle?:string,active?:bool} $item
 	 *
 	 * @param array $options
