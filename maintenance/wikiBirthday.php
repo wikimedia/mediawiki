@@ -44,7 +44,7 @@ class WikiBirthday extends Maintenance {
 	 */
 	private function computeAge( string $wikiCreatedAt ) {
 		return date_diff(
-			date_create(),
+			date_create( MWTimestamp::now() ),
 			date_create( $wikiCreatedAt )
 		);
 	}
@@ -64,7 +64,7 @@ class WikiBirthday extends Maintenance {
 			->caller( __METHOD__ )
 			->fetchField();
 
-		if ( $archiveRevId && $archiveRevId < $revId ) {
+		if ( $archiveRevId && ( $archiveRevId < $revId || !$revId ) ) {
 			$timestamp = $dbr->newSelectQueryBuilder()
 				->table( 'archive' )
 				->field( 'ar_timestamp' )
