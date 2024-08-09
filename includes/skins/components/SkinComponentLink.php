@@ -69,7 +69,7 @@ class SkinComponentLink implements SkinComponent {
 	 * The text of the link will be generated either from the contents of the
 	 * "text" key in the $item array, if a "msg" key is present a message by
 	 * that name will be used, and if neither of those are set the $key will be
-	 * used as a message name.
+	 * used as a message name. Escaping is handled by this method.
 	 *
 	 * If a "href" key is not present makeLink will just output htmlescaped text.
 	 * The "href", "id", "class", "rel", and "type" keys are used as attributes
