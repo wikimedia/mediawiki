@@ -36,7 +36,7 @@ div.thumbinner {
 .magnify {
 	/* Default styles when there's no .mw-content-ltr or .mw-content-rtl, overridden below */
 	float: right;
-	margin-left: 3px;
+	.margin-inline( 3px, 0 );
 
 	a {
 		display: block;
@@ -56,10 +56,6 @@ div.thumbinner {
 	/* Directionality-specific styles for thumbnails - their positioning depends on content language */
 	.mw-content-ltr & {
 		/* @noflip */
-		margin-left: 3px;
-		/* @noflip */
-		margin-right: 0;
-		/* @noflip */
 		float: right;
 
 		a {
@@ -69,10 +65,6 @@ div.thumbinner {
 	}
 
 	.mw-content-rtl & {
-		/* @noflip */
-		margin-left: 0;
-		/* @noflip */
-		margin-right: 3px;
 		/* @noflip */
 		float: left;
 
