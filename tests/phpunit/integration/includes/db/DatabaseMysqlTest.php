@@ -58,7 +58,7 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 			// if the query did not time out, there should be a single row where sleep() returned 1
 			$this->assertSame( 1, $res->numRows() );
 			$row = $res->fetchRow();
-			$this->assertSame( 1, reset( $row ) );
+			$this->assertSame( '1', (string)reset( $row ) );
 		} catch ( DBQueryTimeoutError $e ) {
 			$this->assertInstanceOf( DBQueryTimeoutError::class, $e );
 		}
