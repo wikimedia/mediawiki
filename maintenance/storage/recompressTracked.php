@@ -803,7 +803,6 @@ class CgzCopyTransaction {
 		$targetCluster = $this->parent->getTargetCluster();
 		$store = $this->parent->store;
 		$targetDB = $store->getPrimary( $targetCluster );
-		$targetDB->clearFlag( DBO_TRX ); // we manage the transactions
 		$targetDB->begin( __METHOD__ );
 		$baseUrl = $this->parent->store->store( $targetCluster, serialize( $this->cgz ) );
 
