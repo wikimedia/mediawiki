@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use CreateAndPromote;
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\User;
 
 /**
@@ -67,5 +68,21 @@ class CreateAndPromoteTest extends MaintenanceBaseTestCase {
 				[ 'custom-groups' => 'abctesting' ], [], "/Account exists and nothing to do.\n/", false,
 			],
 		];
+	}
+
+	public function testExecuteForInvalidUsername() {
+		// Call the maintenance script with a username that is more than wgMaxNameChars, and so shouldn't be valid.
+		$this->overrideConfigValue( MainConfigNames::MaxNameChars, 2 );
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( '/invalid username/' );
+		$this->maintenance->setArg( 'username', 'testing-username-1234' );
+		$this->maintenance->execute();
+	}
+
+	public function testExecuteWhenUserExistsButForceOptionNotProvided() {
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( '/Account exists.*--force/' );
+		$this->maintenance->setArg( 'username', $this->getTestUser()->getUserIdentity()->getName() );
+		$this->maintenance->execute();
 	}
 }
