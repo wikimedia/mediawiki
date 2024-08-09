@@ -129,14 +129,14 @@ use Wikimedia\Message\MessageSpecifier;
  *                             the message.
  *    'label'               -- alternatively, a raw text message. Overridden by
  *                             label-message
- *    'help'                -- message text for a message to use as a help text.
+ *    'help-raw'            -- message text for a message to use as a help text.
  *    'help-message'        -- message key or object for a message to use as a help text.
  *                             can be an array of msg key and then parameters to
  *                             the message.
- *                             Overwrites 'help-messages' and 'help'.
+ *                             Overwrites 'help-messages' and 'help-raw'.
  *    'help-messages'       -- array of message keys/objects. As above, each item can
  *                             be an array of msg key and then parameters.
- *                             Overwrites 'help'.
+ *                             Overwrites 'help-raw'.
  *    'help-inline'         -- Whether help text (defined using options above) will be shown
  *                             inline after the input field, rather than in a popup.
  *                             Defaults to true. Only used by OOUI form fields.
