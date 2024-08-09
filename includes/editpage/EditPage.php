@@ -913,17 +913,11 @@ class EditPage implements IEditObject {
 	 */
 	private function getEditPermissionErrors( string $rigor = PermissionManager::RIGOR_SECURE ): array {
 		$user = $this->getUserForPermissions();
-
-		$ignoredErrors = [];
-		if ( $this->preview || $this->diff ) {
-			$ignoredErrors = [ 'blockedtext', 'autoblockedtext', 'systemblockedtext' ];
-		}
 		return $this->permManager->getPermissionErrors(
 			'edit',
 			$user,
 			$this->mTitle,
-			$rigor,
-			$ignoredErrors
+			$rigor
 		);
 	}
 
