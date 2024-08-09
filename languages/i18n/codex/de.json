@@ -10,5 +10,17 @@
 	"cdx-table-select-all-label": "Alle Zeilen auswählen",
 	"cdx-table-select-row-label": "Zeile $1 von $2 auswählen",
 	"cdx-table-sort-caption": "$1, Spaltenüberschriften mit Schaltflächen sind sortierbar.",
-	"cdx-typeahead-search-search-results-label": "Suchergebnisse"
+	"cdx-typeahead-search-search-results-label": "Suchergebnisse",
+	"cdx-table-pager-button-first-page": "Erste Seite",
+	"cdx-table-pager-button-last-page": "Letzte Seite",
+	"cdx-table-pager-button-next-page": "Nächste Seite",
+	"cdx-table-pager-button-prev-page": "Vorherige Seite",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 Zeile|$1 Zeilen}}",
+	"cdx-table-pager-items-per-page-default": "Ergebnisse pro Seite",
+	"cdx-table-pagination-status-message-determinate-long": "Ergebnisse anzeigen $1–$2 von $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 von $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Ergebnisse $1–$2 von vielen werden angezeigt",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 von vielen",
+	"cdx-table-pagination-status-message-indeterminate-final": "Es {{PLURAL:$1|wird das letzte Ergebniss|werden die letzten $1 Ergebnisse}} angezeigt.",
+	"cdx-table-pagination-status-message-pending": "Ergebnisse werden geladen …"
 }
