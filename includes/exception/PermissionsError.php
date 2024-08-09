@@ -20,7 +20,6 @@
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Message\Message;
 use MediaWiki\Permissions\PermissionStatus;
 
 /**
@@ -33,46 +32,58 @@ use MediaWiki\Permissions\PermissionStatus;
  */
 class PermissionsError extends ErrorPageError {
 	public ?string $permission;
-	public array $errors;
+	public PermissionStatus $status;
 
 	/**
 	 * @stable to call
 	 *
 	 * @param string|null $permission A permission name or null if unknown
-	 * @param array|PermissionStatus $errors Error message keys or [key, param...] arrays or
-	 * PermissionStatus containing an array of errors; must not be empty if $permission is null
+	 * @param PermissionStatus|array $status PermissionStatus containing an array of errors,
+	 *   or an error array like in PermissionManager::getPermissionErrors();
+	 *   must not be empty if $permission is null
 	 * @throws \InvalidArgumentException
 	 */
-	public function __construct( ?string $permission, $errors = [] ) {
-		if ( $errors instanceof PermissionStatus ) {
-			$errors = $errors->toLegacyErrorArray();
+	public function __construct( ?string $permission, $status = [] ) {
+		if ( is_array( $status ) ) {
+			$errors = $status;
+			$status = PermissionStatus::newEmpty();
+			foreach ( $errors as $error ) {
+				if ( is_array( $error ) ) {
+					// @phan-suppress-next-line PhanParamTooFewUnpack
+					$status->fatal( ...$error );
+				} else {
+					$status->fatal( $error );
+				}
+			}
+		} elseif ( !( $status instanceof PermissionStatus ) ) {
+			throw new \InvalidArgumentException( __METHOD__ .
+				': $status must be PermissionStatus or array, got ' . get_debug_type( $status ) );
 		}
 
-		if ( $permission === null && !$errors ) {
+		if ( $permission === null && $status->isGood() ) {
 			throw new \InvalidArgumentException( __METHOD__ .
-				': $permission and $errors cannot both be empty' );
+				': $permission and $status cannot both be empty' );
 		}
 
 		$this->permission = $permission;
 
-		if ( !count( $errors ) ) {
-			$errors = MediaWikiServices::getInstance()
+		if ( $status->isGood() ) {
+			$status = MediaWikiServices::getInstance()
 				->getPermissionManager()
 				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Null on permission is check when used here
-				->newFatalPermissionDeniedStatus( $this->permission, RequestContext::getMain() )
-				->toLegacyErrorArray();
+				->newFatalPermissionDeniedStatus( $this->permission, RequestContext::getMain() );
 		}
 
-		$this->errors = $errors;
+		$this->status = $status;
 
 		// Give the parent class something to work with
-		parent::__construct( 'permissionserrors', Message::newFromSpecifier( $errors[0] ) );
+		parent::__construct( 'permissionserrors', $status->getMessages()[0] );
 	}
 
 	public function report( $action = self::SEND_OUTPUT ) {
 		global $wgOut;
 
-		$wgOut->showPermissionsErrorPage( $this->errors, $this->permission );
+		$wgOut->showPermissionStatus( $this->status, $this->permission );
 		if ( $action === self::SEND_OUTPUT ) {
 			$wgOut->output();
 		}
