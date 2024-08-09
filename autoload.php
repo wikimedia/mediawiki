@@ -1682,6 +1682,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\MainConfigNames' => __DIR__ . '/includes/MainConfigNames.php',
 	'MediaWiki\\MainConfigSchema' => __DIR__ . '/includes/MainConfigSchema.php',
 	'MediaWiki\\Maintenance\\ForkController' => __DIR__ . '/includes/Maintenance/ForkController.php',
+	'MediaWiki\\Maintenance\\MaintenanceFatalError' => __DIR__ . '/maintenance/includes/MaintenanceFatalError.php',
 	'MediaWiki\\Maintenance\\MaintenanceParameters' => __DIR__ . '/maintenance/includes/MaintenanceParameters.php',
 	'MediaWiki\\Maintenance\\MaintenanceRunner' => __DIR__ . '/maintenance/includes/MaintenanceRunner.php',
 	'MediaWiki\\Maintenance\\OrderedStreamingForkController' => __DIR__ . '/includes/Maintenance/OrderedStreamingForkController.php',
