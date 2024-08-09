@@ -1,4 +1,5 @@
 /* stylelint-disable selector-class-pattern */
+@import 'mediawiki.mixins.less';
 @import 'mediawiki.skin.variables.less';
 @import 'content.variables.less';
 
@@ -36,24 +37,21 @@ figure[ typeof~='mw:File/Thumb' ] {
 		content: '';
 		width: 15px;
 		height: 11px;
+		margin: 0;
+		.margin-inline( @margin-horizontal-image, 0 );
 
 		// Default where page content language is not set
 		// Allow to flip
-		margin: 0 0 0 @margin-horizontal-image;
 		float: right;
 
 		// Defaults for page content language
 
 		.mw-content-ltr & {
 			/* @noflip */
-			margin: 0 0 0 @margin-horizontal-image;
-			/* @noflip */
 			float: right;
 		}
 
 		.mw-content-rtl & {
-			/* @noflip */
-			margin: 0 @margin-horizontal-image 0 0;
 			/* @noflip */
 			float: left;
 		}
