@@ -11,6 +11,17 @@ THIS IS NOT A RELEASE YET
 === Changes since MediaWiki 1.42.1 ===
 * Localisation updates.
 
+Additionally, some language support improvements which went out in 1.42.0 were
+not noted; they are included here for completeness:
+
+* (T343865) Added language support for Pu–Xian Min (Simplified Han script)
+  (cpx-hans).
+* (T343865) Added language support for Pu–Xian Min (Traditional Han script)
+  (cpx-hant).
+* (T284043) Added language support for Manchu (mnc).
+* (T284043) Added language support for Manchu (Mongolian script) (mnc-mong).
+* Added language converter for Central Moroccan Tamazigh (zgh).
+
 == MediaWiki 1.42.1 ==
 
 This is a maintenance release of the MediaWiki 1.42 branch.
