@@ -1733,9 +1733,8 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 		int $namespace,
 		string $dbKey
 	): void {
-		$method = __METHOD__;
 		DeferredUpdates::addCallableUpdate(
-			function () use ( $dbw, $expiries, $namespace, $dbKey, $method ) {
+			function ( $fname ) use ( $dbw, $expiries, $namespace, $dbKey ) {
 				// First fetch new wl_ids.
 				$res = $dbw->newSelectQueryBuilder()
 					->select( [ 'wl_user', 'wl_id' ] )
@@ -1744,7 +1743,7 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 						'wl_namespace' => $namespace,
 						'wl_title' => $dbKey,
 					] )
-					->caller( $method )
+					->caller( $fname )
 					->fetchResultSet();
 
 				// Build new array to INSERT into multiple rows at once.
@@ -1765,7 +1764,8 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 						->replaceInto( 'watchlist_expiry' )
 						->uniqueIndexFields( [ 'we_item' ] )
 						->rows( $toInsert )
-						->caller( $method )->execute();
+						->caller( $fname )
+						->execute();
 				}
 			},
 			DeferredUpdates::POSTSEND,

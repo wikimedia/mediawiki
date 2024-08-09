@@ -139,8 +139,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 		// @codeCoverageIgnoreStart
 		if ( $this->getPasswordFactory()->needsUpdate( $pwhash ) ) {
 			$newHash = $this->getPasswordFactory()->newFromPlaintext( $req->password );
-			$fname = __METHOD__;
-			DeferredUpdates::addCallableUpdate( function () use ( $newHash, $oldRow, $fname ) {
+			DeferredUpdates::addCallableUpdate( function ( $fname ) use ( $newHash, $oldRow ) {
 				$dbw = $this->dbProvider->getPrimaryDatabase();
 				$dbw->newUpdateQueryBuilder()
 					->update( 'user' )
@@ -149,7 +148,8 @@ class LocalPasswordPrimaryAuthenticationProvider
 						'user_id' => $oldRow->user_id,
 						'user_password' => $oldRow->user_password,
 					] )
-					->caller( $fname )->execute();
+					->caller( $fname )
+					->execute();
 			} );
 		}
 		// @codeCoverageIgnoreEnd
