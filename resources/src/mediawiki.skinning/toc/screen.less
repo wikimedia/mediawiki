@@ -6,6 +6,7 @@
  * Styles for @media print are inside print.css.
  */
 
+@import 'mediawiki.mixins.less';
 @import 'mediawiki.skin.variables.less';
 
 /* stylelint-disable selector-class-pattern */
@@ -50,19 +51,8 @@
 		text-align: start;
 
 		ul {
-			margin: 0 0 0 2em;
-
-			.mw-content-ltr &,
-			.mw-content-rtl .mw-content-ltr & {
-				/* @noflip */
-				margin: 0 0 0 2em;
-			}
-
-			.mw-content-rtl &,
-			.mw-content-ltr .mw-content-rtl & {
-				/* @noflip */
-				margin: 0 2em 0 0;
-			}
+			margin: 0;
+			.margin-inline( 2em, 0 );
 		}
 	}
 }
