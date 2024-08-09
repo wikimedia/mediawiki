@@ -95,26 +95,27 @@ class DeferredUpdatesScopeMediaWikiStack extends DeferredUpdatesScopeStack {
 			$update->setTransactionTicket( $ticket );
 		}
 
-		// Designate $update::doUpdate() as the write round owner
+		// Designate $update::doUpdate() as the transaction round owner
 		$fnameTrxOwner = ( $update instanceof DeferrableCallback )
 			? $update->getOrigin()
 			: get_class( $update ) . '::doUpdate';
 
-		// Determine whether the write round will be explicit or implicit
+		// Determine whether the transaction round will be explicit or implicit
 		$useExplicitTrxRound = !(
 			$update instanceof TransactionRoundAwareUpdate &&
 			$update->getTransactionRoundRequirement() == $update::TRX_ROUND_ABSENT
 		);
+		if ( $useExplicitTrxRound ) {
+			// Start a new explicit round
+			$lbFactory->beginPrimaryChanges( $fnameTrxOwner );
+		} else {
+			// Start a new implicit round
+			$lbFactory->commitPrimaryChanges( $fnameTrxOwner );
+		}
 
 		// Ensure any stale repeatable-read snapshot on the primary DB have been flushed
 		// before running the update. E.g. left-over from an implicit transaction round
-		if ( $useExplicitTrxRound ) {
-			// new explicit round
-			$lbFactory->beginPrimaryChanges( $fnameTrxOwner );
-		} else {
-			// new implicit round
-			$lbFactory->commitPrimaryChanges( $fnameTrxOwner );
-		}
+		$lbFactory->flushReplicaSnapshots( $fnameTrxOwner );
 	}
 
 	public function onRunUpdateEnd( DeferrableUpdate $update ): void {
