@@ -75,6 +75,7 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Revision\RevisionRecord;
@@ -649,10 +650,10 @@ class EditPage implements IEditObject {
 		// accounts on edit.
 		$this->unableToAcquireTempName = !$this->maybeActivateTempUserCreate( !$this->firsttime )->isOK();
 
-		$permErrors = $this->getEditPermissionErrors(
+		$status = $this->getEditPermissionStatus(
 			$this->save ? PermissionManager::RIGOR_SECURE : PermissionManager::RIGOR_FULL
 		);
-		if ( $permErrors ) {
+		if ( !$status->isGood() ) {
 			wfDebug( __METHOD__ . ": User can't edit" );
 
 			$user = $this->context->getUser();
@@ -662,7 +663,7 @@ class EditPage implements IEditObject {
 					$user->spreadAnyEditBlock();
 				} );
 			}
-			$this->displayPermissionsError( $permErrors );
+			$this->displayPermissionStatus( $status );
 
 			return;
 		}
@@ -909,11 +910,11 @@ class EditPage implements IEditObject {
 
 	/**
 	 * @param string $rigor PermissionManager::RIGOR_ constant
-	 * @return array
+	 * @return PermissionStatus
 	 */
-	private function getEditPermissionErrors( string $rigor = PermissionManager::RIGOR_SECURE ): array {
+	private function getEditPermissionStatus( string $rigor = PermissionManager::RIGOR_SECURE ): PermissionStatus {
 		$user = $this->getUserForPermissions();
-		return $this->permManager->getPermissionErrors(
+		return $this->permManager->getPermissionStatus(
 			'edit',
 			$user,
 			$this->mTitle,
@@ -922,17 +923,17 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * Display a permissions error page, like OutputPage::showPermissionsErrorPage(),
+	 * Display a permissions error page, like OutputPage::showPermissionStatus(),
 	 * but with the following differences:
 	 * - If redlink=1, the user will be redirected to the page
 	 * - If there is content to display or the error occurs while either saving,
 	 *   previewing or showing the difference, it will be a
 	 *   "View source for ..." page displaying the source code after the error message.
 	 *
-	 * @param array $permErrors Array of permissions errors
+	 * @param PermissionStatus $status Permissions errors
 	 * @throws PermissionsError
 	 */
-	private function displayPermissionsError( array $permErrors ): void {
+	private function displayPermissionStatus( PermissionStatus $status ): void {
 		$out = $this->context->getOutput();
 		if ( $this->context->getRequest()->getBool( 'redlink' ) ) {
 			// The edit page was reached via a red link.
@@ -951,12 +952,12 @@ class EditPage implements IEditObject {
 		if ( !$content || ( $this->firsttime && $content->isEmpty() ) ) {
 			$action = $this->mTitle->exists() ? 'edit' :
 				( $this->mTitle->isTalkPage() ? 'createtalk' : 'createpage' );
-			throw new PermissionsError( $action, $permErrors );
+			throw new PermissionsError( $action, $status );
 		}
 
 		$this->displayViewSourcePage(
 			$content,
-			$out->formatPermissionsErrorMessage( $permErrors, 'edit' )
+			$out->formatPermissionStatus( $status, 'edit' )
 		);
 	}
 
