@@ -10,6 +10,7 @@
  * This style sheet is used by the Monobook and Vector skins.
  */
 
+@import 'mediawiki.mixins.less';
 @import 'mediawiki.skin.variables.less';
 
 /* stylelint-disable selector-class-pattern */
@@ -153,30 +154,25 @@ p {
 	}
 }
 
-/* stylelint-disable declaration-block-no-redundant-longhand-properties */
 ul {
-	margin: 0.3em 0 0 1.6em;
-	margin-inline-start: 1.6em;
-	margin-inline-end: 0;
+	margin-top: 0.3em;
+	margin-bottom: 0;
+	.margin-inline( 1.6em, 0 );
 	padding: 0;
 }
 
 ol {
-	margin: 0.3em 0 0 3.2em;
-	margin-inline-start: 3.2em;
-	margin-inline-end: 0;
+	margin-top: 0.3em;
+	margin-bottom: 0;
+	.margin-inline( 3.2em, 0 );
 	padding: 0;
 	list-style-image: none;
 }
 
 dd {
-	margin-left: 1.6em;
-	margin-right: 0;
-	margin-inline-start: 1.6em;
-	margin-inline-end: 0;
 	margin-bottom: 0.1em;
+	.margin-inline( 1.6em, 0 );
 }
-/* stylelint-enable declaration-block-no-redundant-longhand-properties */
 
 li {
 	margin-bottom: 0.1em;

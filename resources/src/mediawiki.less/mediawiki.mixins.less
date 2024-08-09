@@ -67,6 +67,19 @@
 	user-select: @value;
 }
 
+// In the future this can be simply migrated to `margin-inline: @start @end;`
+// Since MW 1.43
+.margin-inline( @start, @end ) {
+	margin-left: @start;
+	margin-right: @end;
+	-webkit-margin-start: @start; // Archaic WebKit/Chrome versions
+	-webkit-margin-end: @end;
+	/* stylelint-disable declaration-block-no-redundant-longhand-properties */
+	margin-inline-start: @start; // Firefox 41, Safari 12.1, Chrome 69, Opera 56
+	margin-inline-end: @end;
+	/* stylelint-enable declaration-block-no-redundant-longhand-properties */
+}
+
 // Not supported in Chrome <= 55, Firefox <= 31, Opera <= 41
 .position-sticky() {
 	-webkit-position: sticky; // Support: Safari < 13
