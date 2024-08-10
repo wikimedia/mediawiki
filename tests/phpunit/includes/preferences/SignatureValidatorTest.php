@@ -2,6 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Preferences\SignatureValidator;
+use MediaWiki\Registration\ExtensionRegistry;
 use Wikimedia\TestingAccessWrapper;
 
 /**

@@ -22,7 +22,6 @@ namespace MediaWiki;
 
 use CryptHKDF;
 use DateFormatterFactory;
-use ExtensionRegistry;
 use ExternalStoreAccess;
 use ExternalStoreFactory;
 use IBufferingStatsdDataFactory;
@@ -132,6 +131,7 @@ use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\PoolCounter\PoolCounterFactory;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\SignatureValidatorFactory;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Request\ProxyLookup;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Rest\Handler\Helper\PageRestHelperFactory;

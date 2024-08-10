@@ -24,7 +24,6 @@ namespace MediaWiki\ResourceLoader;
 
 use CSSJanus;
 use Exception;
-use ExtensionRegistry;
 use FileContentsHasher;
 use InvalidArgumentException;
 use LogicException;
@@ -32,6 +31,7 @@ use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Registration\ExtensionRegistry;
 use RuntimeException;
 use Wikimedia\Minify\CSSMin;
 use Wikimedia\RequestTimeout\TimeoutException;

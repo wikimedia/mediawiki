@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Tests\Integration\User\TempUser;
 
-use ExtensionRegistry;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\Throttler;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\Session;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;

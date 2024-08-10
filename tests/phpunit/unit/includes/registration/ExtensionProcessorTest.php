@@ -3,17 +3,17 @@
 namespace MediaWiki\Tests\Registration;
 
 use Exception;
-use ExtensionProcessor;
-use ExtensionRegistry;
 use InvalidArgumentException;
 use MediaWiki\Json\FormatJson;
+use MediaWiki\Registration\ExtensionProcessor;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWikiUnitTestCase;
 use RuntimeException;
 use UnexpectedValueException;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \ExtensionProcessor
+ * @covers \MediaWiki\Registration\ExtensionProcessor
  */
 class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 

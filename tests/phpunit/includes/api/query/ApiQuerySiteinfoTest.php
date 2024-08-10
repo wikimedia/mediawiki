@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Tests\Api\Query;
 
-use ExtensionRegistry;
 use LanguageCode;
 use LanguageConverter;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Message\Message;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\SiteStats\SiteStats;
 use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;

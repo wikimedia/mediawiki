@@ -1,7 +1,13 @@
 <?php
 
+namespace MediaWiki\Registration;
+
+use Exception;
+use InvalidArgumentException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\ResourceLoader\FilePath;
+use RuntimeException;
+use UnexpectedValueException;
 
 /**
  * Load extension manifests and then aggregate their contents.
@@ -376,6 +382,7 @@ class ExtensionProcessor implements Processor {
 		}
 
 		$autoload = $this->getExtractedAutoloadInfo( $includeDev );
+
 		return [
 			'globals' => $this->globals,
 			'defines' => $this->defines,
@@ -456,6 +463,7 @@ class ExtensionProcessor implements Processor {
 				);
 			}
 		}
+
 		return $merged;
 	}
 
@@ -468,6 +476,7 @@ class ExtensionProcessor implements Processor {
 	 * @param array $hookHandlersAttr handler definitions from 'HookHandler' attribute
 	 * @param string $name
 	 * @param string $path extension.json file path
+	 *
 	 * @throws UnexpectedValueException
 	 */
 	private function setArrayHookHandler(
@@ -779,6 +788,7 @@ class ExtensionProcessor implements Processor {
 	/**
 	 * @param string $path
 	 * @param array $info
+	 *
 	 * @return string Name of thing
 	 * @throws Exception
 	 */
@@ -821,6 +831,7 @@ class ExtensionProcessor implements Processor {
 
 	/**
 	 * Set configuration settings for manifest_version == 1
+	 *
 	 * @todo In the future, this should be done via Config interfaces
 	 *
 	 * @param array $info
@@ -855,11 +866,13 @@ class ExtensionProcessor implements Processor {
 		foreach ( $value as $k => $v ) {
 			$result[$k] = $dir . '/' . $v;
 		}
+
 		return $result;
 	}
 
 	/**
 	 * Set configuration settings for manifest_version == 2
+	 *
 	 * @todo In the future, this should be done via Config interfaces
 	 *
 	 * @param array $info
@@ -930,6 +943,7 @@ class ExtensionProcessor implements Processor {
 	 * @param string $name
 	 * @param array $value
 	 * @param array &$array
+	 *
 	 * @throws InvalidArgumentException
 	 */
 	protected function storeToArrayRecursive( $path, $name, $value, &$array ) {
@@ -950,6 +964,7 @@ class ExtensionProcessor implements Processor {
 	 * @param string $name
 	 * @param array $value
 	 * @param array &$array
+	 *
 	 * @throws InvalidArgumentException
 	 */
 	protected function storeToArray( $path, $name, $value, &$array ) {
@@ -1033,3 +1048,6 @@ class ExtensionProcessor implements Processor {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ExtensionProcessor::class, 'ExtensionProcessor' );

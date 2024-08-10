@@ -20,7 +20,6 @@
 namespace MediaWiki\Rest\Handler;
 
 use Composer\Semver\Semver;
-use ExtensionRegistry;
 use InvalidArgumentException;
 use LanguageCode;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
@@ -32,6 +31,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ProperPageIdentity;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Handler\Helper\HtmlInputTransformHelper;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;

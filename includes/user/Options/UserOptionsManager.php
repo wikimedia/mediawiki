@@ -20,7 +20,6 @@
 
 namespace MediaWiki\User\Options;
 
-use ExtensionRegistry;
 use IDBAccessObject;
 use InvalidArgumentException;
 use LanguageCode;
@@ -32,6 +31,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;

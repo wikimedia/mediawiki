@@ -27,6 +27,7 @@ use MediaWiki\Deferred\DeferredUpdatesScopeStack;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\NullSpi;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Settings\SettingsBuilder;
 use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\TestCase;

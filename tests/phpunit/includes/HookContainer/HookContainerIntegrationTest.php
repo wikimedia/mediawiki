@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\HookContainer {
 
-	use ExtensionRegistry;
+	use MediaWiki\Registration\ExtensionRegistry;
 	use Wikimedia\ScopedCallback;
 
 	class HookContainerIntegrationTest extends \MediaWikiIntegrationTestCase {

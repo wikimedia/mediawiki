@@ -2,6 +2,7 @@
 
 use Composer\Semver\VersionParser;
 use MediaWiki\Json\FormatJson;
+use MediaWiki\Registration\ExtensionRegistry;
 
 require_once __DIR__ . '/Maintenance.php';
 

@@ -3,16 +3,16 @@
 namespace MediaWiki\Tests\Registration;
 
 use Exception;
-use ExtensionRegistry;
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWikiUnitTestCase;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \ExtensionRegistry
+ * @covers \MediaWiki\Registration\ExtensionRegistry
  */
 class ExtensionRegistryTest extends MediaWikiUnitTestCase {
 

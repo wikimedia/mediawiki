@@ -18,8 +18,11 @@
  * @file
  */
 
+namespace MediaWiki\Registration;
+
 use Composer\Semver\Constraint\Constraint;
 use Composer\Semver\VersionParser;
+use UnexpectedValueException;
 
 /**
  * Check whether extensions and their dependencies meet certain version requirements.
@@ -88,6 +91,7 @@ class VersionChecker {
 	 * Set an array with credits of all loaded extensions and skins.
 	 *
 	 * @param array $credits An array of installed extensions with credits of them
+	 *
 	 * @return VersionChecker $this
 	 */
 	public function setLoadedExtensionsAndSkins( array $credits ) {
@@ -115,6 +119,7 @@ class VersionChecker {
 
 	/**
 	 * @param string $phpVersion Current PHP version. Must be well-formed.
+	 *
 	 * @throws UnexpectedValueException
 	 */
 	private function setPhpVersion( $phpVersion ) {
@@ -149,6 +154,7 @@ class VersionChecker {
 	 *     }
 	 *
 	 * @param array $extDependencies All extensions that depend on other ones
+	 *
 	 * @return array[] List of errors
 	 */
 	public function checkArray( array $extDependencies ) {
@@ -268,6 +274,7 @@ class VersionChecker {
 	 *
 	 * @param Constraint|false $version The version installed
 	 * @param string $constraint The required version constraint for this dependency
+	 *
 	 * @return bool false if no error, true else
 	 */
 	private function handleDependency( $version, $constraint ) {
@@ -292,6 +299,7 @@ class VersionChecker {
 	 * @param string $constraint The required version constraint for this dependency
 	 * @param string $checkedExt The Extension, which depends on this dependency
 	 * @param string $type Either 'extensions' or 'skins'
+	 *
 	 * @return bool|array false for no errors, or an array of info
 	 */
 	private function handleExtensionDependency( $dependencyName, $constraint, $checkedExt,
@@ -352,3 +360,6 @@ class VersionChecker {
 		return false;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( VersionChecker::class, 'VersionChecker' );

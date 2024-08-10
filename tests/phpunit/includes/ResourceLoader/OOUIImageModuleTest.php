@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\ResourceLoader;
 
-use ExtensionRegistry;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\ResourceLoader\OOUIImageModule;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use SkinFactory;

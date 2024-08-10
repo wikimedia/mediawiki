@@ -20,6 +20,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Parsoid\LintErrorChecker;
+use MediaWiki\Registration\ExtensionRegistry;
 
 /**
  * @group Parser

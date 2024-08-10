@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\Rest\Handler;
 
 use Composer\Semver\Semver;
 use Exception;
-use ExtensionRegistry;
 use Generator;
 use Language;
 use LanguageCode;
@@ -18,6 +17,7 @@ use MediaWiki\Parser\Parsoid\HtmlToContentTransform;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Permissions\UltimateAuthority;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Rest\Handler\Helper\HtmlInputTransformHelper;
 use MediaWiki\Rest\Handler\Helper\ParsoidFormatHelper;
 use MediaWiki\Rest\Handler\ParsoidHandler;

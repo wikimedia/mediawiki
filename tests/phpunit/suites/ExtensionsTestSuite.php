@@ -2,6 +2,7 @@
 
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Registration\ExtensionRegistry;
 use PHPUnit\Framework\TestSuite;
 use SebastianBergmann\FileIterator\Facade;
 

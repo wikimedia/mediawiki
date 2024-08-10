@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\ResourceLoader\ForeignResourceManager;
 
 require_once __DIR__ . '/Maintenance.php';

@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Registration;
+
 /**
  * Generic processor that reads associated arrays and registers whatever is required.
  *
@@ -34,8 +36,10 @@ interface Processor {
 	 * Get the requirements for the provided info
 	 *
 	 * @since 1.26
+	 *
 	 * @param array $info
 	 * @param bool $includeDev
+	 *
 	 * @return array Where keys are the name to have a constraint on,
 	 * 		like 'MediaWiki'. Values are a constraint string like "1.26.1".
 	 */
@@ -57,3 +61,6 @@ interface Processor {
 	 */
 	public function getExtractedAutoloadInfo( bool $includeDev = false ): array;
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( Processor::class, 'Processor' );
