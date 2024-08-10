@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
+use DummyNonTextContent;
+use DummyNonTextContentHandler;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Revision\RevisionRecord;
 use ViewCLI;
@@ -45,4 +47,16 @@ class ViewCLITest extends MaintenanceBaseTestCase {
 			'Non-existent title' => [ 'Non-existing-test-page-1234', '/Page does not exist/' ],
 		];
 	}
+
+	public function testExecuteForNonWikitextPage() {
+		$this->mergeMwGlobalArrayValue( 'wgContentHandlers', [
+			'testing-nontext' => DummyNonTextContentHandler::class,
+		] );
+		$this->editPage( 'ThisPageIsNotInWikitext', new DummyNonTextContent( 'Hello' ), 'Test', NS_MAIN, $this->getTestSysop()->getAuthority() );
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( '/Non-text content models not supported/' );
+		$this->maintenance->setArg( 'title', 'ThisPageIsNotInWikitext' );
+		$this->maintenance->execute();
+	}
+
 }
