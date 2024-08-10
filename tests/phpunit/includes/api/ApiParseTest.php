@@ -738,10 +738,11 @@ class ApiParseTest extends ApiTestCase {
 	public function testModules() {
 		$this->setTemporaryHook( 'ParserAfterParse',
 			static function ( $parser ) {
-				$output = $parser->getOutput();
-				$output->addModules( [ 'foo', 'bar' ] );
-				$output->addModuleStyles( [ 'aaa', 'zzz' ] );
-				$output->addJsConfigVars( [ 'x' => 'y', 'z' => -3 ] );
+				$parserOutput = $parser->getOutput();
+				$parserOutput->addModules( [ 'foo', 'bar' ] );
+				$parserOutput->addModuleStyles( [ 'aaa', 'zzz' ] );
+				$parserOutput->setJsConfigVar( 'x', 'y' );
+				$parserOutput->setJsConfigVar( 'z', -3 );
 			}
 		);
 		$res = $this->doApiRequest( [

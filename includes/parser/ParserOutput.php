@@ -1202,9 +1202,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @param mixed|null $value [optional] Value of the configuration variable.
 	 * @since 1.23
 	 * @deprecated since 1.38, use ::setJsConfigVar() or ::appendJsConfigVar()
-	 *  which ensures compatibility with asynchronous parsing.
+	 *  which ensures compatibility with asynchronous parsing; emitting warnings
+	 *  since 1.43.
 	 */
 	public function addJsConfigVars( $keys, $value = null ): void {
+		wfDeprecated( __METHOD__, '1.38' );
 		if ( is_array( $keys ) ) {
 			foreach ( $keys as $key => $value ) {
 				$this->mJsConfigVars[$key] = $value;
