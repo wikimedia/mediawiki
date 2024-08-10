@@ -256,7 +256,7 @@ abstract class AbstractContent implements Content {
 			return false;
 		}
 
-		// For type safety. Needed for odd cases like MessageContent using CONTENT_MODEL_WIKITEXT
+		// For type safety. Needed for odd cases like non-TextContents using CONTENT_MODEL_WIKITEXT
 		if ( get_class( $that ) !== get_class( $this ) ) {
 			return false;
 		}
