@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use BlockUsers;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
@@ -163,5 +164,13 @@ class BlockUsersTest extends MaintenanceBaseTestCase {
 
 	public function testExecuteForBlockWithSpecifiedPerformer() {
 		$this->testExecuteForBlock( [ 'performer' => $this->getTestSysop()->getUserIdentity()->getName() ], 1, 0 );
+	}
+
+	public function testExecuteWhenPerformerNameInvalid() {
+		// Set wgMaxNameChars to 3, so that the performer username will be invalid
+		$this->overrideConfigValue( MainConfigNames::MaxNameChars, 3 );
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( '/Unable to parse.*username/' );
+		$this->commonTestExecute( [ 'performer' => 'Username-which-is-too-long' ], '' );
 	}
 }
