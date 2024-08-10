@@ -3,10 +3,10 @@
 
 namespace MediaWiki\Parser\Parsoid;
 
-use ExtensionRegistry;
 use MediaWiki\Config\Config;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\TitleFactory;

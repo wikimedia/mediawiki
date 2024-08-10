@@ -397,6 +397,15 @@ because of Phabricator reports.
     - XMLRCFeedFormatter
   - MediaWiki\RenameUser:
     - RenameUserJob
+  - MediaWiki\Registration:
+    - ExtensionDependencyError
+    - ExtensionJsonValidationError
+    - ExtensionJsonValidator
+    - ExtensionProcessor
+    - ExtensionRegistry
+    - MissingExtensionException
+    - Processor
+    - VersionChecker
   - MediaWiki\RevisionList:
     - RevisionItem
     - RevisionItemBase

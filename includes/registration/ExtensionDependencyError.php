@@ -17,6 +17,10 @@
  * @file
  */
 
+namespace MediaWiki\Registration;
+
+use Exception;
+
 /**
  * @newable
  * @since 1.31
@@ -105,3 +109,6 @@ class ExtensionDependencyError extends Exception {
 	}
 
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ExtensionDependencyError::class, 'ExtensionDependencyError' );

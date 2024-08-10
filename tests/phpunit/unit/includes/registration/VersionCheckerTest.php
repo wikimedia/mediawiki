@@ -1,7 +1,9 @@
 <?php
 
+use MediaWiki\Registration\VersionChecker;
+
 /**
- * @covers \VersionChecker
+ * @covers \MediaWiki\Registration\VersionChecker
  */
 class VersionCheckerTest extends MediaWikiUnitTestCase {
 

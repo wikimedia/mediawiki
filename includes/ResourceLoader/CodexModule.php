@@ -20,12 +20,12 @@
 
 namespace MediaWiki\ResourceLoader;
 
-use ExtensionRegistry;
 use InvalidArgumentException;
 use MediaWiki\Config\Config;
 use MediaWiki\Html\Html;
 use MediaWiki\Html\HtmlJsCode;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Registration\ExtensionRegistry;
 
 /**
  * Module for codex that has direction-specific style files and a static helper

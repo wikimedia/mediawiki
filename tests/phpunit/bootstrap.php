@@ -28,6 +28,8 @@
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Registration\ExtensionProcessor;
+use MediaWiki\Registration\ExtensionRegistry;
 use PHPUnit\TextUI\CliArguments\Builder;
 
 require_once __DIR__ . '/bootstrap.common.php';

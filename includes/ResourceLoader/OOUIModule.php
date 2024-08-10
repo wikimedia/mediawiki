@@ -20,8 +20,8 @@
 
 namespace MediaWiki\ResourceLoader;
 
-use ExtensionRegistry;
 use InvalidArgumentException;
+use MediaWiki\Registration\ExtensionRegistry;
 
 /**
  * Convenience methods for dealing with OOUI themes and their relations to MW skins.

@@ -18,6 +18,7 @@
 
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Registration\ExtensionRegistry;
 
 require_once __DIR__ . '/bootstrap.common.php';
 

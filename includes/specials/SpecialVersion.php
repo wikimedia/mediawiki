@@ -23,7 +23,6 @@
 namespace MediaWiki\Specials;
 
 use Closure;
-use ExtensionRegistry;
 use HtmlArmor;
 use Language;
 use MediaWiki\Config\Config;
@@ -37,6 +36,7 @@ use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\Sanitizer;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Utils\ExtensionInfo;
 use MediaWiki\Utils\GitInfo;

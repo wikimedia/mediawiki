@@ -16,6 +16,10 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use MediaWiki\Registration\ExtensionJsonValidationError;
+use MediaWiki\Registration\ExtensionJsonValidator;
+use MediaWiki\Registration\ExtensionRegistry;
+
 /**
  * Validates all loaded extensions and skins using the ExtensionRegistry
  * against the extension.json schema in the docs/ folder.

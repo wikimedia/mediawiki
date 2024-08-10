@@ -7,6 +7,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Registration\ExtensionRegistry;
 use PHPUnit\TextUI\Command;
 
 class PHPUnitMaintClass {

@@ -23,7 +23,6 @@
 namespace MediaWiki\ResourceLoader;
 
 use Exception;
-use ExtensionRegistry;
 use HttpStatus;
 use InvalidArgumentException;
 use Less_Environment;
@@ -39,6 +38,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Profiler\ProfilingContext;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Request\HeaderCallback;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Title\Title;

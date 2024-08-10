@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Registration\ExtensionJsonValidationError;
+use MediaWiki\Registration\ExtensionJsonValidator;
+
 require_once __DIR__ . '/Maintenance.php';
 
 class ValidateRegistrationFile extends Maintenance {

@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Registration;
+
 use Composer\Spdx\SpdxLicenses;
 use JsonSchema\Validator;
 use Seld\JsonLint\DuplicateKeyException;
@@ -59,6 +61,7 @@ class ExtensionJsonValidator {
 			call_user_func( $this->missingDepCallback,
 				'The JsonSchema library cannot be found, please install it through composer.'
 			);
+
 			return false;
 		}
 
@@ -66,6 +69,7 @@ class ExtensionJsonValidator {
 			call_user_func( $this->missingDepCallback,
 				'The spdx-licenses library cannot be found, please install it through composer.'
 			);
+
 			return false;
 		}
 
@@ -80,6 +84,7 @@ class ExtensionJsonValidator {
 
 	/**
 	 * @param string $path file to validate
+	 *
 	 * @return bool true if passes validation
 	 * @throws ExtensionJsonValidationError on any failure
 	 */
@@ -157,3 +162,6 @@ class ExtensionJsonValidator {
 		throw new ExtensionJsonValidationError( $out );
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ExtensionJsonValidator::class, 'ExtensionJsonValidator' );

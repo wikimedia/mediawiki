@@ -1,10 +1,18 @@
 <?php
 
+namespace MediaWiki\Registration;
+
+use AutoLoader;
 use Composer\Semver\Semver;
+use InvalidArgumentException;
+use LogicException;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\Shell;
 use MediaWiki\ShellDisabledError;
 use MediaWiki\WikiMap\WikiMap;
+use ObjectCacheFactory;
+use RuntimeException;
+use UnexpectedValueException;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ScopedCallback;
 
@@ -205,6 +213,7 @@ class ExtensionRegistry {
 
 	/**
 	 * @since 1.34
+	 *
 	 * @param bool $check
 	 */
 	public function setCheckDevRequires( $check ) {
@@ -217,6 +226,7 @@ class ExtensionRegistry {
 	 * TestAutoloadNamespaces should be added to the autoloader.
 	 *
 	 * @since 1.35
+	 *
 	 * @param bool $load
 	 */
 	public function setLoadTestClassesAndNamespaces( $load ) {
@@ -254,6 +264,7 @@ class ExtensionRegistry {
 			$keyspace = ( is_string( $wgCachePrefix ) && $wgCachePrefix !== '' )
 				? $wgCachePrefix
 				: WikiMap::getCurrentWikiDbDomain()->getId();
+
 			return ObjectCacheFactory::makeLocalServerCache( $keyspace );
 		}
 
@@ -287,6 +298,7 @@ class ExtensionRegistry {
 			];
 			$this->varyHash = md5( json_encode( $vary ) );
 		}
+
 		return $this->varyHash;
 	}
 
@@ -382,6 +394,7 @@ class ExtensionRegistry {
 
 	/**
 	 * Get the list of abilities and their values
+	 *
 	 * @return bool[]
 	 */
 	private function getAbilities() {
@@ -417,6 +430,7 @@ class ExtensionRegistry {
 	 * @internal since 1.39. Extensions should use ExtensionProcessor instead.
 	 *
 	 * @param int[] $queue keys are filenames, values are ignored
+	 *
 	 * @return array extracted info
 	 * @throws InvalidArgumentException
 	 * @throws ExtensionDependencyError
@@ -576,8 +590,10 @@ class ExtensionRegistry {
 
 	/**
 	 * Whether a thing has been loaded
+	 *
 	 * @param string $name
 	 * @param string $constraint The required version constraint for this dependency
+	 *
 	 * @throws LogicException if a specific constraint is asked for,
 	 *                        but the extension isn't versioned
 	 * @return bool
@@ -599,6 +615,7 @@ class ExtensionRegistry {
 
 	/**
 	 * @param string $name
+	 *
 	 * @return array
 	 */
 	public function getAttribute( $name ) {
@@ -616,7 +633,9 @@ class ExtensionRegistry {
 	/**
 	 * Get an attribute value that isn't cached by reading each
 	 * extension.json file again
+	 *
 	 * @param string $name
+	 *
 	 * @return array
 	 */
 	protected function getLazyLoadedAttribute( $name ) {
@@ -633,6 +652,7 @@ class ExtensionRegistry {
 		$data = $cache->get( $key );
 		if ( $data !== false ) {
 			$this->lazyAttributes[$name] = $data;
+
 			return $data;
 		}
 
@@ -656,6 +676,7 @@ class ExtensionRegistry {
 	 *
 	 * @param string $name Name of attribute to override
 	 * @param array $value Value to set
+	 *
 	 * @return ScopedCallback to reset
 	 * @since 1.33
 	 */
@@ -669,6 +690,7 @@ class ExtensionRegistry {
 			throw new InvalidArgumentException( "The attribute '$name' has already been overridden" );
 		}
 		$this->testAttributes[$name] = $value;
+
 		return new ScopedCallback( function () use ( $name ) {
 			unset( $this->testAttributes[$name] );
 		} );
@@ -688,6 +710,7 @@ class ExtensionRegistry {
 	 *
 	 * @param string $dir
 	 * @param string[] $files
+	 *
 	 * @return array
 	 */
 	protected static function processAutoLoader( $dir, array $files ) {
@@ -695,11 +718,13 @@ class ExtensionRegistry {
 		foreach ( $files as &$file ) {
 			$file = "$dir/$file";
 		}
+
 		return $files;
 	}
 
 	/**
 	 * @internal for use by Setup. Hopefully in the future, we find a better way.
+	 *
 	 * @param SettingsBuilder $settingsBuilder
 	 */
 	public function setSettingsBuilder( SettingsBuilder $settingsBuilder ) {
@@ -710,6 +735,10 @@ class ExtensionRegistry {
 		if ( $this->settingsBuilder === null ) {
 			$this->settingsBuilder = SettingsBuilder::getInstance();
 		}
+
 		return $this->settingsBuilder;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ExtensionRegistry::class, 'ExtensionRegistry' );

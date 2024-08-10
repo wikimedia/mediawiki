@@ -18,8 +18,11 @@
  *
  */
 
+use MediaWiki\Registration\ExtensionJsonValidationError;
+use MediaWiki\Registration\ExtensionJsonValidator;
+
 /**
- * @covers \ExtensionJsonValidator
+ * @covers \MediaWiki\Registration\ExtensionJsonValidator
  */
 class ExtensionJsonValidatorTest extends MediaWikiUnitTestCase {
 

@@ -25,6 +25,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\MaintenanceFatalError;
 use MediaWiki\Maintenance\MaintenanceParameters;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\Shell;
 use MediaWiki\User\User;

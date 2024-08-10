@@ -27,6 +27,7 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\MagicWordFactory;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\ResourceLoader\SkinModule;
 use MediaWiki\SiteStats\SiteStats;
 use MediaWiki\SpecialPage\SpecialPage;

@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\Json\FormatJson;
+use MediaWiki\Registration\ExtensionProcessor;
+use MediaWiki\Registration\ExtensionRegistry;
 use Wikimedia\Composer\ComposerJson;
 
 require_once __DIR__ . '/Maintenance.php';

@@ -24,6 +24,7 @@
 
 # Start from scratch
 use MediaWiki\MainConfigNames;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Settings\SettingsBuilder;
 
 define( 'MW_NO_EXTENSION_MESSAGES', 1 );

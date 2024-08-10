@@ -21,6 +21,8 @@
  */
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Registration\ExtensionDependencyError;
+use MediaWiki\Registration\ExtensionRegistry;
 
 require_once __DIR__ . '/Maintenance.php';
 

@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Tests\Unit\Settings;
 
-use ExtensionRegistry;
 use InvalidArgumentException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Settings\Cache\CacheableSource;
 use MediaWiki\Settings\Cache\CachedSource;
 use MediaWiki\Settings\Config\ArrayConfigBuilder;
