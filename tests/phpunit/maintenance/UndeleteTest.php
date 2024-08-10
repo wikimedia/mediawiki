@@ -37,4 +37,29 @@ class UndeleteTest extends MaintenanceBaseTestCase {
 			"done\n"
 		);
 	}
+
+	public function testEmailResetOnInvalidTitle() {
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( "/Invalid title/" );
+		$this->maintenance->setArg( 0, ':::' );
+		$this->maintenance->execute();
+	}
+
+	public function testEmailResetOnInvalidUsername() {
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( "/Invalid username/" );
+		$this->maintenance->setArg( 0, $this->getNonexistingTestPage() );
+		$this->maintenance->setOption( 'user', 'Template:Testing#test' );
+		$this->maintenance->execute();
+	}
+
+	public function testExecuteForPageWithNoDeletedRevisions() {
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( '/No matching pages found in the deletion archive/' );
+		// Create a page and then delete it
+		$testPage = $this->getExistingTestPage();
+		// Call ::execute
+		$this->maintenance->setArg( 'pagename', $testPage );
+		$this->maintenance->execute();
+	}
 }
