@@ -47,4 +47,21 @@ class GetTextMaintTest extends MaintenanceBaseTestCase {
 		}
 		$this->expectOutputString( $expectedOutput );
 	}
+
+	/** @dataProvider provideInvalidTitleArgumentValues */
+	public function testExecuteForInvalidTitleArgument( $title, $expectedOutputRegex ) {
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( $expectedOutputRegex );
+		$this->maintenance->setArg( 'title', $title );
+		$this->maintenance->execute();
+	}
+
+	public static function provideInvalidTitleArgumentValues() {
+		return [
+			'Invalid title' => [ ':::', '/::: is not a valid title/' ],
+			'Title for a non-existent page' => [
+				'Non-existing-test-page-1234', '/Non-existing-test-page-1234 does not exist/',
+			],
+		];
+	}
 }
