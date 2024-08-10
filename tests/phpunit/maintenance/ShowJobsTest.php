@@ -55,6 +55,16 @@ class ShowJobsTest extends MaintenanceBaseTestCase {
 		$this->commonTestExecute( [ 'list' => 1, 'limit' => 4 ], $expectedRegexOutput . '/' );
 	}
 
+	public function testExecuteWithTypeSpecified() {
+		$jobQueueGroup = $this->getServiceContainer()->getJobQueueGroup();
+
+		for ( $i = 0; $i < 3; $i++ ) {
+			$jobQueueGroup->push( new NullJob( [] ) );
+		}
+
+		$this->commonTestExecute( [ 'list' => 1, 'type' => 'fish' ], '//' );
+	}
+
 	/** @dataProvider provideJobCount */
 	public function testExecuteWithForGroupSpecified( int $jobCount ) {
 		$jobQueueGroup = $this->getServiceContainer()->getJobQueueGroup();
