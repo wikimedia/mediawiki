@@ -20,6 +20,18 @@ class ResetPageRandomTest extends MaintenanceBaseTestCase {
 		$this->expectOutputRegex( '/--from has to be smaller than --to/' );
 	}
 
+	public function testExecuteWhenNoFrom() {
+		$this->maintenance->setOption( 'to', '20240605040303' );
+		$this->maintenance->execute();
+		$this->expectOutputRegex( '/--from and --to have to be provided/' );
+	}
+
+	public function testExecuteWhenNoTo() {
+		$this->maintenance->setOption( 'from', '20240605040302' );
+		$this->maintenance->execute();
+		$this->expectOutputRegex( '/--from and --to have to be provided/' );
+	}
+
 	public function testExecuteWhenNoPages() {
 		$this->maintenance->setOption( 'to', '20240605040302' );
 		$this->maintenance->setOption( 'from', '20240405060708' );
