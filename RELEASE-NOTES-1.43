@@ -585,6 +585,8 @@ because of Phabricator reports.
   - mNoGallery           - getNoGallery()
 * The 'help' key in HTMLForm descriptors is deprecated. Use the 'help-raw'
   key instead.
+* The MessageContent class, deprecated since 1.38, is now removed. This also
+  means that the Message::content() method is also removed.
 * …
 
 === Other changes in 1.43 ===

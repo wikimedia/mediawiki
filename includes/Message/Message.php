@@ -36,7 +36,6 @@ use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\Title;
-use MessageContent;
 use RuntimeException;
 use Serializable;
 use Stringable;
@@ -997,20 +996,6 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	public function page( ?PageReference $page ) {
 		$this->contextPage = $page;
 		return $this;
-	}
-
-	/**
-	 * Returns the message as a Content object.
-	 * @deprecated since 1.38, MessageContent class is hard-deprecated.
-	 * @return Content
-	 */
-	public function content() {
-		wfDeprecated( __METHOD__, '1.38' );
-		if ( !$this->content ) {
-			$this->content = new MessageContent( $this );
-		}
-
-		return $this->content;
 	}
 
 	/**

@@ -39,7 +39,6 @@ use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
-use MessageContent;
 use ParserFactory;
 use SearchEngine;
 use SearchIndexField;
@@ -242,13 +241,6 @@ class WikitextContentHandler extends TextContentHandler {
 	 */
 	public function serializeContent( Content $content, $format = null ) {
 		$this->checkFormat( $format );
-
-		// NOTE: MessageContent also uses CONTENT_MODEL_WIKITEXT, but it's not a TextContent!
-		// Perhaps MessageContent should use a separate ContentHandler instead.
-		if ( $content instanceof MessageContent ) {
-			return $content->getMessage()->plain();
-		}
-
 		return parent::serializeContent( $content, $format );
 	}
 
