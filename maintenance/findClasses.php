@@ -35,15 +35,19 @@ class FindClasses extends Maintenance {
 	}
 
 	public function execute() {
-		$input = file( 'php://stdin' );
+		$stdin = $this->getStdin();
 
-		foreach ( $input as $line ) {
+		while ( !feof( $stdin ) ) {
+			$line = fgets( $stdin );
+			if ( $line === false ) {
+				break;
+			}
 			$class = trim( $line );
 			$filename = AutoLoader::find( $class );
 			if ( $filename ) {
-				print "$filename\n";
+				$this->output( "$filename\n" );
 			} elseif ( $class ) {
-				print "#$class\n";
+				$this->output( "#$class\n" );
 			}
 		}
 	}
