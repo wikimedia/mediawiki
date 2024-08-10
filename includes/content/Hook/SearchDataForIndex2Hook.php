@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Content\Hook;
 
-use ContentHandler;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
 use SearchEngine;

@@ -20,7 +20,7 @@
 
 namespace MediaWiki\Storage;
 
-use Content;
+use MediaWiki\Content\Content;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionSlots;

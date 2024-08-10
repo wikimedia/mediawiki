@@ -1,7 +1,7 @@
 <?php
 namespace MediaWiki\Storage;
 
-use Content;
+use MediaWiki\Content\Content;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RenderedRevision;

@@ -23,7 +23,6 @@
 namespace MediaWiki\Output;
 
 use Article;
-use Content;
 use CSSJanus;
 use Exception;
 use ExtensionRegistry;
@@ -34,6 +33,7 @@ use Language;
 use LanguageCode;
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\Config\Config;
+use MediaWiki\Content\Content;
 use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Context\ContextSource;

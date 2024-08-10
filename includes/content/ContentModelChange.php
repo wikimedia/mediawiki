@@ -3,8 +3,6 @@
 namespace MediaWiki\Content;
 
 use ChangeTags;
-use Content;
-use ContentHandler;
 use LogFormatterFactory;
 use ManualLogEntry;
 use MediaWiki\Context\DerivativeContext;

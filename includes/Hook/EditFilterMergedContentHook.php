@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use Content;
+use MediaWiki\Content\Content;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Status\Status;
 use MediaWiki\User\User;

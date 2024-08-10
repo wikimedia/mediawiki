@@ -19,10 +19,10 @@
  */
 namespace MediaWiki\Rest\Handler\Helper;
 
-use Content;
 use InvalidArgumentException;
 use LanguageCode;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MediaWiki\Content\Content;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Edit\ParsoidRenderID;
 use MediaWiki\Edit\SelserContext;

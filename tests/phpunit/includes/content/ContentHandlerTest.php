@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\CssContentHandler;
 use MediaWiki\Content\JavaScriptContentHandler;
 use MediaWiki\Content\JsonContent;
@@ -106,7 +107,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetDefaultModelFor( $title, $expectedModelId ) {
 		$title = Title::newFromText( $title );
-		$this->hideDeprecated( 'ContentHandler::getDefaultModelFor' );
+		$this->hideDeprecated( 'MediaWiki\\Content\\ContentHandler::getDefaultModelFor' );
 		$this->assertEquals( $expectedModelId, ContentHandler::getDefaultModelFor( $title ) );
 	}
 
@@ -169,21 +170,21 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetContentText_Null() {
-		$this->hideDeprecated( 'ContentHandler::getContentText' );
+		$this->hideDeprecated( 'MediaWiki\\Content\\ContentHandler::getContentText' );
 		$content = null;
 		$text = ContentHandler::getContentText( $content );
 		$this->assertSame( '', $text );
 	}
 
 	public function testGetContentText_TextContent() {
-		$this->hideDeprecated( 'ContentHandler::getContentText' );
+		$this->hideDeprecated( 'MediaWiki\\Content\\ContentHandler::getContentText' );
 		$content = new WikitextContent( "hello world" );
 		$text = ContentHandler::getContentText( $content );
 		$this->assertEquals( $content->getText(), $text );
 	}
 
 	public function testGetContentText_NonTextContent() {
-		$this->hideDeprecated( 'ContentHandler::getContentText' );
+		$this->hideDeprecated( 'MediaWiki\\Content\\ContentHandler::getContentText' );
 		$content = new DummyContentForTesting( "hello world" );
 		$text = ContentHandler::getContentText( $content );
 		$this->assertNull( $text );
@@ -422,7 +423,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->setTemporaryHook( 'GetContentModels', static function ( &$models ) {
 			$models[] = 'Ferrari';
 		} );
-		$this->hideDeprecated( 'ContentHandler::getContentModels' );
+		$this->hideDeprecated( 'MediaWiki\\Content\\ContentHandler::getContentModels' );
 		$this->assertContains( 'Ferrari', ContentHandler::getContentModels() );
 	}
 

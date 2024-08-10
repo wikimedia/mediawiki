@@ -20,9 +20,9 @@
 
 namespace MediaWiki\EditPage;
 
-use Content;
-use ContentHandler;
 use IBufferingStatsdDataFactory;
+use MediaWiki\Content\Content;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Html\Html;
 use MediaWiki\Output\OutputPage;

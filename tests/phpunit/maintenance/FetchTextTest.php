@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
-use ContentHandler;
 use Exception;
 use FetchText;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;

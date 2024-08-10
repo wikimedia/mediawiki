@@ -24,7 +24,6 @@
 
 namespace MediaWiki\Content;
 
-use ContentHandler;
 use InvalidArgumentException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Page\Hook;
 
-use Content;
+use MediaWiki\Content\Content;
 use MediaWiki\Deferred\DeferrableUpdate;
 use WikiPage;
 

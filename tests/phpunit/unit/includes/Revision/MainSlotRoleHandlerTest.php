@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Unit\Revision;
 
-use ContentHandler;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Unit\DummyServicesTrait;

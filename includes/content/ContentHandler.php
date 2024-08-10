@@ -26,12 +26,21 @@
  * @author Daniel Kinzler
  */
 
+namespace MediaWiki\Content;
+
+use Action;
+use ChangeTags;
+use DifferenceEngine;
+use DifferenceEngineSlotDiffRenderer;
+use IDBAccessObject;
+use ILanguageConverter;
+use InvalidArgumentException;
+use Language;
+use LogicException;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\Renderer\ContentParseParams;
-use MediaWiki\Content\TextContent;
 use MediaWiki\Content\Transform\PreloadTransformParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
-use MediaWiki\Content\ValidationParams;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\DeferrableUpdate;
@@ -48,8 +57,19 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRenderingProvider;
 use MediaWiki\Search\ParserOutputSearchDataExtractor;
 use MediaWiki\Title\Title;
+use MWContentSerializationException;
+use MWException;
+use MWUnknownContentModelException;
+use ParserCache;
+use SearchEngine;
+use SearchIndexField;
+use SlotDiffRenderer;
+use StatusValue;
+use TextSlotDiffRenderer;
+use UnexpectedValueException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\ScopedCallback;
+use WikiPage;
 
 /**
  * A content handler knows how do deal with a specific type of content on a wiki
@@ -1744,3 +1764,6 @@ abstract class ContentHandler {
 	}
 
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ContentHandler::class, 'ContentHandler' );

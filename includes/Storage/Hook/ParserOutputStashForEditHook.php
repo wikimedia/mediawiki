@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Storage\Hook;
 
-use Content;
+use MediaWiki\Content\Content;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\User\User;
 use WikiPage;

@@ -25,13 +25,13 @@
 
 namespace MediaWiki\Revision;
 
-use Content;
 use DBAccessObjectUtils;
 use IDBAccessObject;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Content\Content;
 use MediaWiki\Content\FallbackContent;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\DAO\WikiAwareEntity;

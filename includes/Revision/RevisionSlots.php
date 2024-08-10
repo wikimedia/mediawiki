@@ -22,7 +22,7 @@
 
 namespace MediaWiki\Revision;
 
-use Content;
+use MediaWiki\Content\Content;
 use Wikimedia\Assert\Assert;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 

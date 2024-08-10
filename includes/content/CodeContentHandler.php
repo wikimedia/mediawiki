@@ -23,7 +23,6 @@
 
 namespace MediaWiki\Content;
 
-use Content;
 use Language;
 use LogicException;
 use MediaWiki\MediaWikiServices;

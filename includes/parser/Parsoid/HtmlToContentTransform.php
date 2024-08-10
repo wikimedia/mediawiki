@@ -3,10 +3,10 @@
 namespace MediaWiki\Parser\Parsoid;
 
 use Composer\Semver\Semver;
-use Content;
-use ContentHandler;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
+use MediaWiki\Content\Content;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;

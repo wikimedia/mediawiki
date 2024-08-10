@@ -1,8 +1,18 @@
 <?php
 
+namespace MediaWiki\Tests\Unit\Content;
+
+use DummyContentHandlerForTesting;
+use Error;
+use InvalidArgumentException;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\ContentHandlerFactory;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWikiUnitTestCase;
+use MWUnknownContentModelException;
 use Psr\Log\LogLevel;
+use TestLogger;
+use UnexpectedValueException;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**

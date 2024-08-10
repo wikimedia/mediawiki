@@ -4,7 +4,6 @@ namespace MediaWiki\Page;
 
 use BadMethodCallException;
 use ChangeTags;
-use Content;
 use DeletePageJob;
 use Exception;
 use IDBAccessObject;
@@ -14,6 +13,7 @@ use ManualLogEntry;
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Content\Content;
 use MediaWiki\Deferred\DeferrableUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;

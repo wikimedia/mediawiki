@@ -357,7 +357,10 @@ because of Phabricator reports.
   not yet (XYZ% done, up from 69% in MediaWiki 1.42.0). The following have newly
   been moved:
   - MediaWiki\Content:
+    - AbstractContent
     - CodeContentHandler
+    - Content
+    - ContentHandler
     - ContentModelChange
     - CssContent
     - CssContentHandler

@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Content;
 
-use ContentHandler;
 use MWUnknownContentModelException;
 
 interface IContentHandlerFactory {

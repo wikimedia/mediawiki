@@ -19,12 +19,12 @@
  */
 namespace MediaWiki\Rest\Handler\Helper;
 
-use Content;
 use HttpError;
 use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
 use LanguageCode;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MediaWiki\Content\Content;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Edit\ParsoidRenderID;

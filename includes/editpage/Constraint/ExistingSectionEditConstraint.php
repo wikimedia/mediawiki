@@ -20,7 +20,7 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use Content;
+use MediaWiki\Content\Content;
 use StatusValue;
 
 /**

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Edit;
 
-use Content;
+use MediaWiki\Content\Content;
 use UnexpectedValueException;
 use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\SelserData;

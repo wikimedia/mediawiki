@@ -23,7 +23,6 @@
 
 namespace MediaWiki\Content;
 
-use Content;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Html\Html;

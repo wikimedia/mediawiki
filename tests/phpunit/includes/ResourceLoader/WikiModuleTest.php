@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Tests\ResourceLoader;
 
-use Content;
 use LinkCacheTestTrait;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
+use MediaWiki\Content\Content;
 use MediaWiki\Content\CssContent;
 use MediaWiki\Content\JavaScriptContent;
 use MediaWiki\Content\JavaScriptContentHandler;

@@ -25,8 +25,8 @@
 
 namespace MediaWiki\Deferred;
 
-use Content;
 use IDBAccessObject;
+use MediaWiki\Content\Content;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

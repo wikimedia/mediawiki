@@ -6,10 +6,10 @@ namespace MediaWiki\Tests;
 
 use ApiMain;
 use ApiQuery;
-use ContentHandler;
 use MediaWiki\Auth\PreAuthenticationProvider;
 use MediaWiki\Auth\PrimaryAuthenticationProvider;
 use MediaWiki\Auth\SecondaryAuthenticationProvider;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;

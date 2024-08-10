@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Revision;
 
-use Content;
 use LogicException;
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Content\Content;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\WikitextContent;
