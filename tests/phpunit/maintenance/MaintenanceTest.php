@@ -11,6 +11,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \Maintenance
+ * @group Database
  */
 class MaintenanceTest extends MaintenanceBaseTestCase {
 
@@ -577,5 +578,75 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		};
 
 		$maintenance->execute();
+	}
+
+	/** @dataProvider provideFatalError */
+	public function testFatalError( $msg, $errorCode ) {
+		$this->expectCallToFatalError( $errorCode );
+		$this->expectOutputString( $msg . "\n" );
+		$this->maintenance->fatalError( $msg, $errorCode );
+	}
+
+	public static function provideFatalError() {
+		return [
+			'No error message, code as 1' => [ '', 1 ],
+			'Defined error message, code as 3' => [ 'Testing error message', 3 ],
+		];
+	}
+
+	/** @dataProvider provideRequiredButMissingExtensions */
+	public function testCheckRequiredExtensionForMissingExtension( $requiredExtensions, $expectedOutputRegex ) {
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( $expectedOutputRegex );
+		foreach ( $requiredExtensions as $extension ) {
+			$this->maintenance->requireExtension( $extension );
+		}
+		$this->maintenance->checkRequiredExtensions();
+	}
+
+	public static function provideRequiredButMissingExtensions() {
+		return [
+			'One missing extension' => [
+				[ 'FakeExtensionForMaintenanceTest' ],
+				'/The "FakeExtensionForMaintenanceTest" extension must be installed.*' .
+				'Please enable it and then try again/'
+			],
+			'Two missing extensions' => [
+				[ 'FakeExtensionForMaintenanceTest', 'MissingExtensionTest2' ],
+				'/The following extensions must be installed.*FakeExtensionForMaintenanceTest.*MissingExtensionTest2' .
+				'.*Please enable them and then try again/'
+			],
+		];
+	}
+
+	public function testValidateUserOptionForMissingArguments() {
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( '/Test error message/' );
+		$this->maintenance->validateUserOption( 'Test error message' );
+	}
+
+	/** @dataProvider provideInvalidUserOptions */
+	public function testValidateUserOptionForInvalidUserOption( $options, $expectedOutputRegex ) {
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( $expectedOutputRegex );
+		foreach ( $options as $name => $value ) {
+			$this->maintenance->setOption( $name, $value );
+		}
+		$this->maintenance->validateUserOption( 'unused' );
+	}
+
+	public static function provideInvalidUserOptions() {
+		return [
+			'Invalid --user option' => [
+				[ 'user' => 'Non-existent-test-user' ], '/No such user.*Non-existent-test-user/',
+			],
+			'Invalid --userid option' => [ [ 'userid' => 0 ], '/No such user id.*0/' ],
+		];
+	}
+
+	public function testRunChildForNonExistentClass() {
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( '/Cannot spawn child.*NonExistingTestClassForMaintenanceTest/' );
+		$this->maintenance->runChild( 'NonExistingTestClassForMaintenanceTest' );
 	}
 }

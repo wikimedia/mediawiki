@@ -1420,8 +1420,7 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * @param string $errorMsg Error message to be displayed if the passed --user or --userid
-	 *  does not result in a valid existing user object.
+	 * @param string $errorMsg Error message to be displayed if neither --user or --userid are passed.
 	 *
 	 * @since 1.37
 	 *
