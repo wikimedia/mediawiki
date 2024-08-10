@@ -649,4 +649,28 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		$this->expectOutputRegex( '/Cannot spawn child.*NonExistingTestClassForMaintenanceTest/' );
 		$this->maintenance->runChild( 'NonExistingTestClassForMaintenanceTest' );
 	}
+
+	public function testSetAllowUnregisteredOptions() {
+		$this->maintenance->setOption( 'abcdef', 'abc' );
+		$this->maintenance->setAllowUnregisteredOptions( true );
+		$this->assertTrue( $this->maintenance->getParameters()->validate() );
+		$this->maintenance->setAllowUnregisteredOptions( false );
+		$this->assertFalse( $this->maintenance->getParameters()->validate() );
+	}
+
+	/** @dataProvider provideSetBatchSize */
+	public function testSetBatchSize( $batchSize, $shouldHaveBatchSizeOption ) {
+		$this->maintenance->setBatchSize( $batchSize );
+		$this->assertSame(
+			$shouldHaveBatchSizeOption,
+			$this->maintenance->supportsOption( 'batch-size' )
+		);
+	}
+
+	public static function provideSetBatchSize() {
+		return [
+			'Batch size as 0' => [ 0, false ],
+			'Batch size as 150' => [ 150, true ],
+		];
+	}
 }
