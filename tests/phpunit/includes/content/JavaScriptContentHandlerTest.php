@@ -6,7 +6,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 
 /**
- * @covers \JavaScriptContentHandler
+ * @covers \MediaWiki\Content\JavaScriptContentHandler
  */
 class JavaScriptContentHandlerTest extends MediaWikiLangTestCase {
 

@@ -141,10 +141,11 @@ For notes on 1.42.x and older releases, see HISTORY.
 
 ===== Changed development-only external libraries =====
 
-* Upgraded eslint-config-wikimedia from 0.26.0 to 0.27.0.
-* Updated seld/jsonlint from 1.10.1 to 1.10.2.
 * Updated doctrine/dbal from 3.7.2 to 3.8.4.
+* Updated eslint-config-wikimedia from 0.26.0 to 0.27.0.
+* Updated mediawiki/mediawiki-codesniffer from 43.0.0 to 44.0.0.
 * Updated phpunit/phpunit from 9.6.16 to 9.6.19.
+* Updated seld/jsonlint from 1.10.1 to 1.10.2.
 * …
 
 ==== Removed external libraries ====

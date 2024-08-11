@@ -274,8 +274,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 				$this->getServiceContainer()->getHookContainer(),
 				$this->getServiceContainer()->getDatabaseBlockStore(),
 				$this->getServiceContainer()->getProxyLookup()
-			) extends BlockManager
-			{
+			) extends BlockManager {
 				protected function checkHost( $hostname ) {
 					return '127.0.0.1';
 				}

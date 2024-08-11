@@ -10,7 +10,7 @@ use MediaWiki\Title\Title;
  *
  * @group ContentHandler
  * @group Database
- * @covers \JavaScriptContent
+ * @covers \MediaWiki\Content\JavaScriptContent
  */
 class JavaScriptContentTest extends TextContentTest {
 
