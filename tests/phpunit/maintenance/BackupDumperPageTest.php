@@ -16,7 +16,8 @@ use XmlDumpWriter;
  *
  * @group Database
  * @group Dump
- * @covers \BackupDumper
+ * @covers \MediaWiki\Maintenance\BackupDumper
+ *
  */
 class BackupDumperPageTest extends DumpTestCase {
 

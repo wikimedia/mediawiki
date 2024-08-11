@@ -24,6 +24,8 @@
  * @ingroup Maintenance
  */
 
+namespace MediaWiki\Maintenance;
+
 use MediaWiki\Shell\Shell;
 
 /**
@@ -105,3 +107,6 @@ class SevenZipStream {
 		return fseek( $this->stream, $offset, $whence );
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( SevenZipStream::class, 'SevenZipStream' );

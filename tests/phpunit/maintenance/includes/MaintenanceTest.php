@@ -2,17 +2,17 @@
 
 namespace MediaWiki\Tests\Maintenance\Includes;
 
-use Maintenance;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Maintenance\MaintenanceBaseTestCase;
 use PHPUnit\Framework\Assert;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \Maintenance
  * @covers \MediaWiki\Maintenance\MaintenanceFatalError
+ * @covers \MediaWiki\Maintenance\Maintenance
  * @group Database
  */
 class MaintenanceTest extends MaintenanceBaseTestCase {
@@ -487,7 +487,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 	}
 
 	/**
-	 * @covers \Maintenance::getConfig
+	 * @covers \MediaWiki\Maintenance\Maintenance::getConfig
 	 */
 	public function testGetConfig() {
 		$this->assertInstanceOf( Config::class, $this->maintenance->getConfig() );
@@ -498,7 +498,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 	}
 
 	/**
-	 * @covers \Maintenance::setConfig
+	 * @covers \MediaWiki\Maintenance\Maintenance::setConfig
 	 */
 	public function testSetConfig() {
 		$conf = new HashConfig();

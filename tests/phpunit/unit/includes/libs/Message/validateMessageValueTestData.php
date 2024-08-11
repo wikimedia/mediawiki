@@ -2,8 +2,8 @@
 
 namespace Wikimedia\Tests\Message;
 
-use Maintenance;
 use MediaWiki\Logger\ConsoleLogger;
+use MediaWiki\Maintenance\Maintenance;
 use Wikimedia\Tests\SerializationTestUtils;
 
 define( 'MW_AUTOLOAD_TEST_CLASSES', true );

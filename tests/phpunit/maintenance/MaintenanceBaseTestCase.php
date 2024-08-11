@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
-use Maintenance;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Maintenance\MaintenanceFatalError;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;

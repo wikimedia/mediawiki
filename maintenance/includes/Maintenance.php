@@ -18,17 +18,20 @@
  * @file
  */
 
+namespace MediaWiki\Maintenance;
+
+use ExecutableFinder;
+use MediaWiki;
 use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Maintenance\MaintenanceFatalError;
-use MediaWiki\Maintenance\MaintenanceParameters;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\Shell;
 use MediaWiki\User\User;
+use StatusValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -1492,3 +1495,6 @@ abstract class Maintenance {
 		return $line;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( Maintenance::class, 'Maintenance' );

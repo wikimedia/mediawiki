@@ -25,11 +25,16 @@
  * @ingroup Maintenance
  */
 
+namespace MediaWiki\Maintenance;
+
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/BackupDumper.php';
 require_once __DIR__ . '/../../includes/export/WikiExporter.php';
 // @codeCoverageIgnoreEnd
 
+use BaseDump;
+use Exception;
+use ExportProgressFilter;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\Shell;
@@ -38,8 +43,13 @@ use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\WikiMap\WikiMap;
 use MediaWiki\Xml\Xml;
+use MWException;
+use MWUnknownContentModelException;
+use RuntimeException;
+use WikiExporter;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
+use XmlDumpWriter;
 
 /**
  * @ingroup Maintenance
@@ -1081,3 +1091,6 @@ TEXT
 	}
 
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( TextPassDumper::class, 'TextPassDumper' );

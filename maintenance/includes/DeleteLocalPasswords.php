@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+namespace MediaWiki\Maintenance;
+
 use MediaWiki\Password\InvalidPassword;
 use MediaWiki\Password\PasswordFactory;
 use Wikimedia\Rdbms\IDatabase;
@@ -168,7 +170,7 @@ ERROR
 	 * Subclasses should reimplement this and locate users who use the specific authentication
 	 * method. The default implementation just iterates through all users. Extensions that work
 	 * with wikifarm should also update self::getUserDB() as necessary.
-	 * @return Generator
+	 * @return \Generator
 	 */
 	protected function getUserBatches() {
 		if ( $this->user !== null ) {
@@ -195,3 +197,6 @@ ERROR
 		} while ( count( $users ) === $this->getBatchSize() );
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( DeleteLocalPasswords::class, 'DeleteLocalPasswords' );

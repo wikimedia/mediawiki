@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Api;
 
-use Maintenance;
+use MediaWiki\Maintenance\Maintenance;
 
 /**
  * Bootstrapping for test image file generation

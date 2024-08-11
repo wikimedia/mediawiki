@@ -26,6 +26,7 @@
 
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Specials\SpecialVersion;

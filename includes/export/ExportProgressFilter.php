@@ -21,6 +21,8 @@
  * @file
  */
 
+use MediaWiki\Maintenance\BackupDumper;
+
 /**
  * @ingroup Dump
  */

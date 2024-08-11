@@ -24,6 +24,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Content\Content;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\SlotRecord;

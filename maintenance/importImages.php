@@ -37,6 +37,7 @@ require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Specials\SpecialUpload;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
@@ -432,7 +433,7 @@ class ImportImages extends Maintenance {
 	 * @param string $dir Path to directory to search
 	 * @param array $exts Array of lowercase extensions to search for
 	 * @param bool $recurse Search subdirectories recursively
-	 * @return Generator<string> Generator that iterating filenames
+	 * @return \Generator<string> Generator that iterating filenames
 	 */
 	private function findFiles( $dir, $exts, $recurse = false ) {
 		$dhl = is_dir( $dir ) ? opendir( $dir ) : false;

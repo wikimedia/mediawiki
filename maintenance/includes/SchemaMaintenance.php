@@ -22,6 +22,8 @@
  * @ingroup Maintenance
  */
 
+namespace MediaWiki\Maintenance;
+
 use Doctrine\SqlFormatter\NullHighlighter;
 use Doctrine\SqlFormatter\SqlFormatter;
 use MediaWiki\DB\AbstractSchemaValidationError;
@@ -302,3 +304,6 @@ abstract class SchemaMaintenance extends Maintenance {
 		return $abstractSchema;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( SchemaMaintenance::class, 'SchemaMaintenance' );

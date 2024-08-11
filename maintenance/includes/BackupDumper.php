@@ -25,16 +25,23 @@
  * @ingroup Maintenance
  */
 
+namespace MediaWiki\Maintenance;
+
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/../Maintenance.php';
 require_once __DIR__ . '/../../includes/export/WikiExporter.php';
 // @codeCoverageIgnoreEnd
 
+use DumpMultiWriter;
+use DumpOutput;
+use ExportProgressFilter;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\WikiMap\WikiMap;
+use WikiExporter;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
+use XmlDumpWriter;
 
 /**
  * @ingroup Dump
@@ -140,16 +147,16 @@ abstract class BackupDumper extends Maintenance {
 		$this->stderr = fopen( "php://stderr", "wt" );
 
 		// Built-in output and filter plugins
-		$this->registerOutput( 'file', DumpFileOutput::class );
-		$this->registerOutput( 'gzip', DumpGZipOutput::class );
-		$this->registerOutput( 'bzip2', DumpBZip2Output::class );
-		$this->registerOutput( 'dbzip2', DumpDBZip2Output::class );
-		$this->registerOutput( 'lbzip2', DumpLBZip2Output::class );
-		$this->registerOutput( '7zip', Dump7ZipOutput::class );
+		$this->registerOutput( 'file', \DumpFileOutput::class );
+		$this->registerOutput( 'gzip', \DumpGZipOutput::class );
+		$this->registerOutput( 'bzip2', \DumpBZip2Output::class );
+		$this->registerOutput( 'dbzip2', \DumpDBZip2Output::class );
+		$this->registerOutput( 'lbzip2', \DumpLBZip2Output::class );
+		$this->registerOutput( '7zip', \Dump7ZipOutput::class );
 
-		$this->registerFilter( 'latest', DumpLatestFilter::class );
-		$this->registerFilter( 'notalk', DumpNotalkFilter::class );
-		$this->registerFilter( 'namespace', DumpNamespaceFilter::class );
+		$this->registerFilter( 'latest', \DumpLatestFilter::class );
+		$this->registerFilter( 'notalk', \DumpNotalkFilter::class );
+		$this->registerFilter( 'namespace', \DumpNamespaceFilter::class );
 
 		// These three can be specified multiple times
 		$this->addOption( 'plugin', 'Load a dump plugin class. Specify as <class>[:<file>].',
@@ -482,3 +489,6 @@ abstract class BackupDumper extends Maintenance {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( BackupDumper::class, 'BackupDumper' );

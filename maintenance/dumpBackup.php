@@ -26,6 +26,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Maintenance\BackupDumper;
+
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/includes/BackupDumper.php';
 // @codeCoverageIgnoreEnd
