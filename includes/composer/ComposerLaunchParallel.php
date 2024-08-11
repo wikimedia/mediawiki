@@ -12,7 +12,7 @@ use Shellbox\Shellbox;
 $basePath = getenv( 'MW_INSTALL_PATH' ) !== false ? getenv( 'MW_INSTALL_PATH' ) : __DIR__ . '/../..';
 
 require_once $basePath . '/includes/BootstrapHelperFunctions.php';
-require_once $basePath . '/includes/Maintenance/ForkController.php';
+require_once $basePath . '/maintenance/includes/ForkController.php';
 
 /**
  * Launch PHPUnit test suites in parallel.
