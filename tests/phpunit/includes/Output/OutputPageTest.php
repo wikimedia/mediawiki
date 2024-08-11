@@ -4,6 +4,7 @@ use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;

@@ -22,6 +22,9 @@
  * @author PhiLiP <philip.npc@gmail.com>
  */
 
+namespace MediaWiki\Language;
+
+use InvalidArgumentException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\HookContainer\HookRunner;
@@ -38,6 +41,9 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use RuntimeException;
+use StringUtils;
+use UnexpectedValueException;
 use Wikimedia\ObjectCache\BagOStuff;
 
 /**
@@ -1270,3 +1276,6 @@ abstract class LanguageConverter implements ILanguageConverter {
 		return htmlspecialchars( $this->convert( $text ) );
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( LanguageConverter::class, 'LanguageConverter' );

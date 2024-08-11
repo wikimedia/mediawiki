@@ -2,6 +2,7 @@
 
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
 

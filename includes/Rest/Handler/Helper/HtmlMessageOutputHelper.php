@@ -19,7 +19,7 @@
  */
 namespace MediaWiki\Rest\Handler\Helper;
 
-use LanguageCode;
+use MediaWiki\Language\LanguageCode;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\ParserOutput;

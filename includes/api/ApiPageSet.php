@@ -26,6 +26,8 @@ use MediaWiki\Cache\LinkBatch;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Language\ILanguageConverter;
+use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

@@ -20,8 +20,8 @@
 
 namespace MediaWiki\Specials;
 
-use ILanguageConverter;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Sanitizer;

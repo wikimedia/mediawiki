@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Parser;
 
-use Language;
+use MediaWiki\Language\Language;
 use MediaWiki\Parser\MagicWord;
 use MediaWikiUnitTestCase;
 

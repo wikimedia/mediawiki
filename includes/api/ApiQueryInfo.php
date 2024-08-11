@@ -22,6 +22,8 @@
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\EditPage\IntroMessageBuilder;
 use MediaWiki\EditPage\PreloadedContentBuilder;
+use MediaWiki\Language\ILanguageConverter;
+use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;

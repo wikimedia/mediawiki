@@ -20,7 +20,7 @@
 
 namespace MediaWiki\Parser;
 
-use Language;
+use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
 use StringUtils;
 use UnexpectedValueException;

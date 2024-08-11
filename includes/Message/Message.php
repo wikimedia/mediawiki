@@ -22,10 +22,10 @@
 namespace MediaWiki\Message;
 
 use InvalidArgumentException;
-use Language;
 use MediaWiki\Content\Content;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Language\Language;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;

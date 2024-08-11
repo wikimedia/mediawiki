@@ -385,6 +385,13 @@ because of Phabricator reports.
     - FileBackendGroup – FIXME: Should this be in Wikimedia\FileBackend instead?
   - MediaWiki\Json:
     - FormatJson
+  - MediaWiki\Language:
+    - Language
+    - LanguageCode
+    - ILanguageConverter
+    - LanguageConverter
+    - ConverterRule
+    - ReplacementArray
   - MediaWiki\RCFeed:
     - FormattedRCFeed
     - IRCColourfulRCFeedFormatter

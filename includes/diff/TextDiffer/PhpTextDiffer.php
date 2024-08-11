@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Diff\TextDiffer;
 
-use Language;
+use MediaWiki\Language\Language;
 use Wikimedia\Diff\Diff;
 use Wikimedia\Diff\TableDiffFormatter;
 use Wikimedia\Diff\UnifiedDiffFormatter;

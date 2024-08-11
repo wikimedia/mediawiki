@@ -20,7 +20,7 @@
 
 namespace MediaWiki\Title;
 
-use Language;
+use MediaWiki\Language\Language;
 
 /**
  * A parser that translates page titles on a foreign wiki into ForeignTitle

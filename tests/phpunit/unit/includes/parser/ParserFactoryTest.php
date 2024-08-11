@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Tests\Parser;
 
-use Language;
 use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRendererFactory;

@@ -21,8 +21,8 @@
 namespace MediaWiki\CommentStore;
 
 use InvalidArgumentException;
-use Language;
 use MediaWiki\Json\FormatJson;
+use MediaWiki\Language\Language;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;
 use OverflowException;

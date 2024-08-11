@@ -21,11 +21,11 @@
 
 namespace MediaWiki\Pager;
 
-use Language;
 use LocalisationCache;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;

@@ -18,10 +18,10 @@
 
 namespace MediaWiki\Skin;
 
-use Language;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\Language\Language;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;

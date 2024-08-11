@@ -21,12 +21,12 @@
 namespace MediaWiki\Linker;
 
 use HtmlArmor;
-use Language;
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\Language;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\Parser;

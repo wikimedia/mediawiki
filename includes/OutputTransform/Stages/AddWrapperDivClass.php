@@ -2,9 +2,9 @@
 
 namespace MediaWiki\OutputTransform\Stages;
 
-use Language;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\OutputTransform\ContentTextTransformStage;
 use MediaWiki\Parser\ParserOutput;

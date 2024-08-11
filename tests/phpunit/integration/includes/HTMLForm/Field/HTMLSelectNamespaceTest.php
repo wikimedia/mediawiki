@@ -1,7 +1,7 @@
 <?php
 namespace MediaWiki\Tests\Integration\HTMLForm\Field;
 
-use Language;
+use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Integration\HTMLForm\HTMLFormFieldTestCase;
 

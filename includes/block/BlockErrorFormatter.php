@@ -20,10 +20,10 @@
 
 namespace MediaWiki\Block;
 
-use Language;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Language\Language;
 use MediaWiki\Language\LocalizationContext;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Message\Message;

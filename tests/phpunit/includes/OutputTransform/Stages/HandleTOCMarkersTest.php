@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\OutputTransform\Stages;
 
-use Language;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Language\Language;
 use MediaWiki\OutputTransform\OutputTransformStage;
 use MediaWiki\OutputTransform\Stages\HandleTOCMarkers;
 use MediaWiki\Parser\ParserOutput;

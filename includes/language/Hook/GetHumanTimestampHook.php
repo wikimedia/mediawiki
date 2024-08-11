@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use Language;
+use MediaWiki\Language\Language;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
 

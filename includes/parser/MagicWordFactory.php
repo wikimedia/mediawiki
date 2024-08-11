@@ -20,9 +20,9 @@
 
 namespace MediaWiki\Parser;
 
-use Language;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Language\Language;
 
 /**
  * Store information about magic words, and create/cache MagicWord objects.

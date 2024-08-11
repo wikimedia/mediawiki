@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Api\Query;
 
-use LanguageCode;
-use LanguageConverter;
+use MediaWiki\Language\LanguageCode;
+use MediaWiki\Language\LanguageConverter;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Message\Message;

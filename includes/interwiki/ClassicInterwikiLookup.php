@@ -21,11 +21,11 @@
 namespace MediaWiki\Interwiki;
 
 use Interwiki;
-use Language;
 use MapCacheLRU;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\WikiMap\WikiMap;
 use WANObjectCache;

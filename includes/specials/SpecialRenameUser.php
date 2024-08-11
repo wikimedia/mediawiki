@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Specials;
 
-use Language;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;

@@ -21,11 +21,11 @@
 namespace MediaWiki\User\Options;
 
 use IDBAccessObject;
-use Language;
-use LanguageConverter;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Language\Language;
+use MediaWiki\Language\LanguageConverter;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\UserIdentity;

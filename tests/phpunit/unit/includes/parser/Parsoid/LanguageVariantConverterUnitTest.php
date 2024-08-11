@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Parser\Parsoid;
 
-use Language;
-use LanguageCode;
-use LanguageConverter;
+use MediaWiki\Language\Language;
+use MediaWiki\Language\LanguageCode;
+use MediaWiki\Language\LanguageConverter;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Page\PageIdentity;

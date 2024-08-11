@@ -4,12 +4,12 @@ namespace MediaWiki\CommentFormatter;
 
 use File;
 use HtmlArmor;
-use Language;
 use MediaWiki\Cache\LinkBatch;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Language\Language;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;

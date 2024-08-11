@@ -24,10 +24,10 @@
 namespace MediaWiki\Title;
 
 use InvalidArgumentException;
-use Language;
 use LogicException;
 use MediaWiki\Cache\GenderCache;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageReference;

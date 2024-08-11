@@ -27,7 +27,6 @@ namespace MediaWiki\Page;
 
 use Article;
 use ErrorPageError;
-use Language;
 use LogEventsList;
 use LogPage;
 use MediaWiki\CommentStore\CommentStore;
@@ -35,6 +34,7 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
+use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Permissions\Authority;

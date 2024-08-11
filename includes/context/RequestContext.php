@@ -26,10 +26,10 @@ namespace MediaWiki\Context;
 
 use BadMethodCallException;
 use InvalidArgumentException;
-use Language;
 use LogicException;
 use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Language\Language;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

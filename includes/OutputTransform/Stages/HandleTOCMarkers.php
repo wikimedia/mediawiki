@@ -2,10 +2,10 @@
 
 namespace MediaWiki\OutputTransform\Stages;
 
-use Language;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\OutputTransform\ContentTextTransformStage;

@@ -2,10 +2,10 @@
 
 namespace MediaWiki\CommentFormatter;
 
-use Language;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\TitleParser;

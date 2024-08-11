@@ -23,7 +23,7 @@
 
 namespace MediaWiki\Session;
 
-use Language;
+use MediaWiki\Language\Language;
 use MediaWiki\Message\Message;
 
 /**

@@ -22,9 +22,9 @@
 
 namespace MediaWiki\Status;
 
-use Language;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\StubObject\StubUserLang;

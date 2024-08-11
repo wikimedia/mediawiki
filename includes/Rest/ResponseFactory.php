@@ -4,7 +4,7 @@ namespace MediaWiki\Rest;
 
 use HttpStatus;
 use InvalidArgumentException;
-use LanguageCode;
+use MediaWiki\Language\LanguageCode;
 use MWExceptionHandler;
 use stdClass;
 use Throwable;

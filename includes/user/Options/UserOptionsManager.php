@@ -22,12 +22,12 @@ namespace MediaWiki\User\Options;
 
 use IDBAccessObject;
 use InvalidArgumentException;
-use LanguageCode;
-use LanguageConverter;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Language\LanguageCode;
+use MediaWiki\Language\LanguageConverter;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

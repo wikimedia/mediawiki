@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Content\Hook;
 
-use Language;
+use MediaWiki\Language\Language;
 use MediaWiki\Title\Title;
 
 /**

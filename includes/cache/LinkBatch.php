@@ -24,7 +24,7 @@
 namespace MediaWiki\Cache;
 
 use InvalidArgumentException;
-use Language;
+use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentityValue;

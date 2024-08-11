@@ -21,7 +21,7 @@
 namespace MediaWiki\Status;
 
 use ApiMessage;
-use Language;
+use MediaWiki\Language\Language;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;
 use MediaWiki\Parser\ParserOutput;
