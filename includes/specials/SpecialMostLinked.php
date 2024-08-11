@@ -71,27 +71,20 @@ class SpecialMostLinked extends QueryPage {
 	}
 
 	public function getQueryInfo() {
-		$tableFields = $this->linksMigration->getTitleFields( 'pagelinks' );
-		$fields = [
-			'namespace' => $tableFields[0],
-			'title' => $tableFields[1],
-		];
+		[ $ns, $title ] = $this->linksMigration->getTitleFields( 'pagelinks' );
 		$queryInfo = $this->linksMigration->getQueryInfo( 'pagelinks' );
 		return [
-			'tables' => array_merge( $queryInfo['tables'], [ 'page' ] ),
-			'fields' => array_merge( [ 'value' => 'COUNT(*)', 'page_namespace' ], $fields ),
+			'tables' => $queryInfo['tables'],
+			'fields' => [
+				'namespace' => $ns,
+				'title' => $title,
+				'value' => 'COUNT(*)'
+			],
 			'options' => [
 				'HAVING' => 'COUNT(*) > 1',
-				'GROUP BY' => array_merge( $tableFields, [ 'page_namespace' ] )
+				'GROUP BY' => [ $ns, $title ],
 			],
-			'join_conds' => array_merge( $queryInfo['joins'], [
-				'page' => [
-					'LEFT JOIN',
-					[
-						'page_namespace = ' . $fields['namespace'],
-						'page_title = ' . $fields['title']
-					]
-				] ] )
+			'join_conds' => $queryInfo['joins'],
 		];
 	}
 
