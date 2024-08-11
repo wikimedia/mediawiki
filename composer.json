@@ -21,7 +21,7 @@
 	},
 	"prefer-stable": true,
 	"require": {
-		"composer/semver": "3.4.0",
+		"composer/semver": "3.4.2",
 		"cssjanus/cssjanus": "2.3.0",
 		"ext-calendar": "*",
 		"ext-ctype": "*",
