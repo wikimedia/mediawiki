@@ -27,7 +27,7 @@ use Wikimedia\UUID\GlobalIdGenerator;
 /**
  * @group ContentHandler
  * @group Database
- * @covers \ContentHandler
+ * @covers \MediaWiki\Content\ContentHandler
  */
 class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 
