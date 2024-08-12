@@ -25,7 +25,8 @@
 			"Finizio",
 			"Amire80",
 			"Reedy",
-			"Dreamy Jazz"
+			"Dreamy Jazz",
+			"AbsolutelyBee"
 		]
 	},
 	"tog-underline": "Sottolinia 'e jonte:",
@@ -3200,7 +3201,7 @@
 	"feedback-thanks": "Grazie! 'O feedback vuosto s'è mpizzato dint' 'a paggena \"[$2 $1]\".",
 	"feedback-thanks-title": "Ve ringraziammo!",
 	"feedback-useragent": "Aggente utente:",
-	"searchsuggest-search": "Truova dinto {{SITENAME}}",
+	"searchsuggest-search": "Truove dinto {{SITENAME}}",
 	"searchsuggest-containing": "Truova 'na paggena ca tène",
 	"api-clientside-error-timeout": "'O server nun rispunnette dint'a 'o tiempo stabbelito.",
 	"api-error-badtoken": "Errore interno: 'O token nun è buono.",

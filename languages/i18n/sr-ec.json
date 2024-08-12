@@ -3413,7 +3413,7 @@
 	"version-license-not-found": "За овај додатак није пронађена информација о лиценци.",
 	"version-credits-title": "Заслуге за $1",
 	"version-credits-not-found": "За овај додатак није пронађена информација о заслугама.",
-	"version-poweredby-credits": "Овај вики покреће <strong>[https://www.mediawiki.org/ MediaWiki]</strong>, ауторска права © 2001-$1 $2.",
+	"version-poweredby-credits": "Овај вики покреће <strong>[https://www.mediawiki.org/ MediaWiki]</strong>, copyright © 2001-$1 $2.",
 	"version-poweredby-others": "остали",
 	"version-poweredby-translators": "translatewiki.net преводиоци",
 	"version-poweredby-various": "Различити аутори",

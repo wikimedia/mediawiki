@@ -151,7 +151,10 @@
 			"Juwan",
 			"Lc97",
 			"Mellogabi03",
-			"Vinickw"
+			"Vinickw",
+			"CamiloCBranco",
+			"Flaviane da Silva",
+			"Qwrop"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -1780,7 +1783,7 @@
 	"upload_directory_read_only": "O diretório de carregamento ($1) não tem permissões de escrita para o servidor.",
 	"uploaderror": "Erro ao enviar arquivo",
 	"upload-recreate-warning": "'''Aviso: Um arquivo com este nome foi eliminado ou movido.'''\n\nPara sua conveniência, segue o registro de eliminação e de movimentação:",
-	"uploadtext": "Use o formulário abaixo para enviar arquivos.\nPara ver ou pesquisar arquivos já enviados, consulte a [[Special:FileList|lista de arquivos enviados]]. Carregamentos e re-envios também são registrados no [[Special:Log/upload|registro de uploads]]. As eliminações são registradas no [[Special:Log/delete|registro de eliminações]].\n\nPara incluir o arquivo em uma página, use um link em um dos seguintes formatos:\n* <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Arquivo.jpg]]</nowiki></code></strong> para utilizar a versão completa do arquivo;\n* <strong><code>[[</nowiki>{{ns:file}}<nowiki>:Arquivo.png|200px|thumb|left|texto]]</nowiki></code></strong> para utilizar uma renderização de 200 pixels dentro de uma caixa posicionada à margem esquerda, contendo 'texto' como descrição;\n* <strong><code>[[</nowiki>{{ns:media}}<nowiki>:Arquivo.ogg]]</nowiki></code></strong> para um link direto ao arquivo sem que ele seja exibido.",
+	"uploadtext": "Use o formulário abaixo para enviar arquivos.\nPara ver ou pesquisar arquivos já enviados, consulte a [[Special:FileList|lista de arquivos enviados]]. Carregamentos e re-envios também são registrados no [[Special:Log/upload|registro de uploads]]. As eliminações são registradas no [[Special:Log/delete|registro de eliminações]].\n\nPara incluir o arquivo em uma página, use um link em um dos seguintes formatos:\n* <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Arquivo.jpg]]</nowiki></code></strong> para utilizar a versão completa do arquivo;\n* <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Arquivo.png|200px|thumb|left|texto]]</nowiki></code></strong> para utilizar uma renderização de 200 pixels dentro de uma caixa posicionada à margem esquerda, contendo 'texto' como descrição;\n* <strong><code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Arquivo.ogg]]</nowiki></code></strong> para um link direto ao arquivo sem que ele seja exibido.",
 	"upload-permitted": "{{PLURAL:$2|Tipo|Tipos}} de {{PLURAL:$2|arquivo|arquivos}} {{PLURAL:$2|permitido|permitidos}}: $1.",
 	"upload-preferred": "{{PLURAL:$2|Tipo|Tipos}} de {{PLURAL:$2|arquivo|arquivos}} {{PLURAL:$2|preferido|preferidos}}: $1.",
 	"upload-prohibited": "{{PLURAL:$2|Tipo|Tipos}} de {{PLURAL:$2|arquivo|arquivos}} {{PLURAL:$2|proibido|proibidos}}: $1.",

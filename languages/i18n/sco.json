@@ -2102,7 +2102,7 @@
 	"undeletehistorynoadmin": "This airticle haes been deletit. The raison fur deletion is\nshawn in the owerview ablo, alang wi pairticulairs o the uisers that haed editit this page afore it wis deletit. The actual tex o the deletit revisions is anely available tae administrators.",
 	"undelete-revision": "Deleted reveesion o $1 (aes o $4, at $5) bi $3:",
 	"undeleterevision-missing": "Onvalid or missin reveesion.\nYe micht hae ae bad link, or the reveesion micht hae been restored or remuived fae the archive.",
-	"undelete-nodiff": "Nae previous revision fand.",
+	"undelete-nodiff": "Nae aulder revisions fand.",
 	"undeletebtn": "Restore",
 	"undeletelink": "see/restore",
 	"undeleteviewlink": "see",

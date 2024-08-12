@@ -3977,7 +3977,7 @@
 	"version-poweredby-others": "Used at the end of {{msg-mw|version-poweredby-credits}} on [[Special:Version]]. First, there's a long list of selected MediaWiki authors, then a comma and then this translation, which is supposed to credit the many other people than developer helping with MediaWiki.\n{{Identical|Other}}",
 	"version-poweredby-translators": "Used as label for a link to [[Translating:MediaWiki/Credits]].\n\nPreceded by {{msg-mw|version-poweredby-others}} and {{msg-mw|and}}.\n\nUsed at the end of {{msg-mw|version-poweredby-credits}} on [[Special:Version]].",
 	"version-poweredby-various": "Shown on [[Special:Version]] as an author name if the extension or skin (etc.) credits contain only <code>...</code> which is used to indicate various (unknown or unspecified) authors. See also {{msg-mw|version-poweredby-others}}, which is used when an extension or a skin contains code by various named and unnamed contributors.",
-	"version-credits-summary": "Summary of the [[Special:Version/Credits]] sub page, which lists all developers etc. who contributed to MediaWiki. Shown at the top.",
+	"version-credits-summary": "Summary of the [[Special:Version/Credits]] subpage, which lists all developers etc. who contributed to MediaWiki. Shown at the top.",
 	"version-license-info": "[[wikipedia:GNU GPL|GNU GPL]] notice shown at [[Special:Version]]. See //www.gnu.org/licenses/old-licenses/gpl-2.0-translations.html for available translations.",
 	"version-software": "Message shown on [[Special:Version]].\nThis message is followed by the list of installed software (MediaWiki, PHP and MySQL).",
 	"version-software-product": "Shown in [[Special:Version]].\n{{Identical|Product}}",
