@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Debug\DeprecationHelper;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;
 
@@ -31,8 +32,11 @@ use MediaWiki\Permissions\PermissionStatus;
  * @ingroup Exception
  */
 class PermissionsError extends ErrorPageError {
-	public ?string $permission;
-	public PermissionStatus $status;
+
+	use DeprecationHelper;
+
+	private ?string $permission;
+	private PermissionStatus $status;
 
 	/**
 	 * @stable to call
@@ -44,6 +48,24 @@ class PermissionsError extends ErrorPageError {
 	 * @throws \InvalidArgumentException
 	 */
 	public function __construct( ?string $permission, $status = [] ) {
+		$this->deprecatePublicProperty( 'permission', '1.43' );
+		$this->deprecatePublicPropertyFallback( 'errors', '1.43',
+			function () {
+				return $this->status->toLegacyErrorArray();
+			},
+			function ( $errors ) {
+				$this->status = PermissionStatus::newEmpty();
+				foreach ( $errors as $error ) {
+					if ( is_array( $error ) ) {
+						// @phan-suppress-next-line PhanParamTooFewUnpack
+						$this->status->fatal( ...$error );
+					} else {
+						$this->status->fatal( $error );
+					}
+				}
+			}
+		);
+
 		if ( is_array( $status ) ) {
 			$errors = $status;
 			$status = PermissionStatus::newEmpty();
