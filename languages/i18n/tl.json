@@ -2601,7 +2601,7 @@
 	"skin-action-delete": "Burahin",
 	"skin-action-move": "Ilipat",
 	"blockedtext-made-by": "Ginawa ni $1 ang pagharang.",
-	"blockedtext-reason-comment": "Ang dahilan na binigay ay <em>$1</em>",
+	"blockedtext-reason-comment": "Ang dahilan na binigay ay <em>$1</em>.",
 	"blockedtext-start-time": "Simula ng pagharang: $1",
 	"blockedtext-expiration-time": "Pagtatapos ng pagharang: $1",
 	"blockedtext-intended-blockee": "Tinatarget na harangin: $1",

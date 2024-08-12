@@ -1247,7 +1247,7 @@
 	"skin-action-delete": "Sampôh",
 	"skin-action-move": "Pupinah",
 	"blockedtext-made-by": "Geutham lé $1",
-	"blockedtext-reason-comment": "Alasan nyang geubri <em>$1</em>",
+	"blockedtext-reason-comment": "Alasan nyang geubri <em>$1</em>.",
 	"blockedtext-start-time": "Mulai geutham: $1",
 	"blockedtext-expiration-time": "Akhé geutham: $1",
 	"blockedtext-intended-blockee": "Nyang keumeung geutham: $1",

@@ -529,7 +529,7 @@
 	"paramvalidator-help-type-user-subtype-name": "nditik enyịñ",
 	"skin-action-delete": "Sọhi",
 	"blockedtext-made-by": "Se ikenemde ekpan ikpehe emi ekedi $1.",
-	"blockedtext-reason-comment": "Ntak ekedi <em>$1</em>",
+	"blockedtext-reason-comment": "Ntak ekedi <em>$1</em>.",
 	"blockedtext-start-time": "Eketọnọ ndikpan : $1",
 	"blockedtext-expiration-time": "Edimende ukpan ifeb: $1",
 	"blockedtext-intended-blockee": "Se ẹkedaukde ndida mberi: $1",

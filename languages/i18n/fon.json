@@ -646,7 +646,7 @@
 	"nstab-mainpage": "Nuwlanwlan tájí ɔ",
 	"skin-action-move": "Ɖyɔ nyikɔ tɔn",
 	"blockedtext-made-by": "$1 wɛ ɖo mɛ té",
-	"blockedtext-reason-comment": "Nu é wu wɛ ɔ ɖié <em>$1</em>",
+	"blockedtext-reason-comment": "Nu é wu wɛ ɔ ɖié <em>$1</em>.",
 	"blockedtext-start-time": "Bibɛmɛ mɛɖoté ɔ tɔn : $1",
 	"blockedtext-expiration-time": "Fifo mɛɖoté ɔ tɔn: $1",
 	"blockedtext-intended-blockee": "Mɛ ě na ɖo alɔ té na: $1",

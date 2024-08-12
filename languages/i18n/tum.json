@@ -636,7 +636,7 @@
 	"skin-action-delete": "Fufuta",
 	"skin-action-move": "Ithya",
 	"blockedtext-made-by": "Walikukanizga ni $1.",
-	"blockedtext-reason-comment": "Chifukwa ntchakuti <em>$1</em>",
+	"blockedtext-reason-comment": "Chifukwa ntchakuti <em>$1</em>.",
 	"blockedtext-start-time": "Kwamba kwakukanizga: $1",
 	"blockedtext-expiration-time": "Kumala kwa kukanizga: $1",
 	"blockedtext-contact-blocker-admin": "Mungafumba $1 panji [[{{MediaWiki:Grouppage-sysop}}|administrator]] zakuti mulongosolelane.",

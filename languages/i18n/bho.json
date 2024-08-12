@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Anshumangupta21",
 			"DannyS712",
 			"Fitoschido",
@@ -552,7 +553,7 @@
 	"summary-preview": "संपादन सारांश क झलक:",
 	"previewerrortext": "राउर बदलाव के झलक देखावे के कोसिस के समय कुछ गड़बड़ी हो गइल।",
 	"blockedtitle": "प्रयोगकर्ता रोक दिहल गइल बा",
-	"blockedtext": "<strong>राउर खाता चाहे आइपी पता पर रोक (ब्लॉक) लगावल गइल बा।</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nआप \"{{int:emailuser}}\" सुबिधा के इस्तेमाल क सकत बानी अगर राउर [[Special:Preferences|पसंदसेटिंग]] में बैध ईमेल पता दिहल गइल होखे आ आपके एकरा के इस्तेमाल करे से ना रोकल गइल बा।\n\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
+	"blockedtext": "<strong>राउर खाता चाहे आइपी पता पर रोक (ब्लॉक) लगावल गइल बा।</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|}}\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nआप \"{{int:emailuser}}\" सुबिधा के इस्तेमाल क सकत बानी अगर राउर [[Special:Preferences|पसंदसेटिंग]] में बैध ईमेल पता दिहल गइल होखे आ आपके एकरा के इस्तेमाल करे से ना रोकल गइल बा।\n\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"autoblockedtext": "राउर आइ॰पी पता अपने आप अवरुद्ध हो गईल बा काहे कि एकर प्रयोग केहु अन्य सदस्य द्वारा होत रहल,\nजे $1 द्वारा अवरोधित करल गईल रहलन। \nअवरोध करे के कारण बा:\n\n:''$2''\n\n* अवरोध प्रारंभ: $8\n* अवरोध समाप्ति: $6\n* अवरोधित सदस्य: $7\n\nअवरोध के चर्चा करे खातिर रउआ $1 या केहु अन्य [[{{MediaWiki:Grouppage-sysop}}|प्रबंधक]] से संपर्क कर सकत बानी।\n\nकृपया ध्यान रहे कि यदि रउआ \"इ सदस्य के ई-मेल भेजीं\" वाला सुविधा के प्रयोग करे के चाहत बानी त राउर [[Special:Preferences|वरीयता]] में वैद्य ई-मेल पता होखे के चाहीं अउर एकर प्रयोग रउआ खातिर अवरोधित ना भईल होखे।\n\nराउर हाल के आइ॰पी पता $3 ह अउर अवरोध क्रमांक #$5 ह।\nआपन कउनो भी प्रश्न में कृपया इ सब जानकारी शामिल करब।",
 	"systemblockedtext": "राउर खाता या आइपी पता के मीडियाविकि द्वारा ऑटोमेटिक रूप से रोक दिहल गइल बा।\nएकरा खातिर कारण दिहल गइल बा:\n\n\n:<em>$2</em>\n\n* रोक के सुरुआत: $8\n* रोक समाप्त होखी: $6\n* रोक लगावे वाला: $7\n\nराउर वर्तमान आइपी पता $3 बा।\nअगर कौनों सवाल करीं तब ऊपर बतावल सगरी जानकारी देईं।",
 	"blockednoreason": "कवनो कारण नइखे बतावल गइल",
@@ -1694,7 +1695,7 @@
 	"skin-action-delete": "मिटाईं",
 	"skin-action-move": "स्थानांतरण",
 	"blockedtext-made-by": "रोक (ब्लॉक) $1 द्वारा लगावल गइल।",
-	"blockedtext-reason-comment": "दिहल गइल कारन रहल <em>$1</em>",
+	"blockedtext-reason-comment": "दिहल गइल कारन रहल <em>$1</em>।",
 	"blockedtext-start-time": "रोक के शुरुआत: $1",
 	"blockedtext-expiration-time": "रोक के समाप्ती: $1",
 	"blockedtext-intended-blockee": "जेकरा खातिर रोक लगावल गइल: $1",

@@ -526,7 +526,7 @@
 	"skin-action-delete": "Kpii",
 	"skin-action-move": "Tɔtg",
 	"blockedtext-made-by": "$1 ɦɛra kewmii",
-	"blockedtext-reason-comment": "<em>$1</em> dan blaɦbka",
+	"blockedtext-reason-comment": "<em>$1</em> dan blaɦbka.",
 	"blockedtext-start-time": "kewn baɦdgm:$1",
 	"blockedtext-expiration-time": "Kewm diɦn ni:$1",
 	"blockedtext-intended-blockee": "ɦa kewa reem ni :$1",

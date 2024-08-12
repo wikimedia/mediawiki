@@ -907,7 +907,7 @@
 	"skin-action-delete": "Mole",
 	"skin-action-move": "Nomi ovaxte",
 	"blockedtext-made-by": "$1 mudir dəbastəše.",
-	"blockedtext-reason-comment": "Dəbaste səbəb: <em>$1</em>",
+	"blockedtext-reason-comment": "Dəbaste səbəb: <em>$1</em>.",
 	"blockedtext-start-time": "Dəbaste bino byə<em>$1</em>",
 	"blockedtext-expiration-time": "Dəbaste obərəxe: $1",
 	"blockedtext-intended-blockee": "Dəbaste məǧsəd: $1",

@@ -2706,7 +2706,7 @@
 	"skin-action-delete": "မွတ်ႇပႅတ်ႈ",
 	"skin-action-move": "ၶၢႆႉ",
 	"blockedtext-made-by": "လွင်ႈႁႄႉတတ်းၼႆႉ $1 ၵေႃႉႁဵတ်းဝႆႉ။",
-	"blockedtext-reason-comment": "လွင်ႈတၢင်းမၼ်း ဢၼ်ပၼ်ဝႆႉတႄႉ ပဵၼ် <em>$1</em>",
+	"blockedtext-reason-comment": "လွင်ႈတၢင်းမၼ်း ဢၼ်ပၼ်ဝႆႉတႄႉ ပဵၼ် <em>$1</em>။",
 	"blockedtext-start-time": "တႄႇ လွင်ႈႁႄႉတတ်း:$1",
 	"blockedtext-expiration-time": "ဝၼ်းသုတ်းသဵင်ႈ ၶွင် လွင်ႈႁႄႉတတ်း : $1",
 	"blockedtext-intended-blockee": "လွင်ႈႁႄႉတတ်း ဢၼ်ယိူင်းဢၢၼ်းဝႆႉ : $1",

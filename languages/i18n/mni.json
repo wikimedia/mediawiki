@@ -991,5 +991,5 @@
 	"skin-action-delete": "ꯀꯛꯊꯠꯄꯥ",
 	"skin-action-move": "ꯂꯦꯡꯍꯟꯕꯥ",
 	"blockedtext-made-by": "ꯑꯊꯤꯡꯕ ꯑꯁꯤ $1ꯅꯥ ꯄꯤꯔꯛꯄꯅꯤ ꯫",
-	"blockedtext-reason-comment": "ꯃꯔꯝ ꯑꯁꯤ $1ꯗ ꯂꯩꯔꯦ"
+	"blockedtext-reason-comment": "ꯃꯔꯝ ꯑꯁꯤ <em>$1</em>ꯗ ꯂꯩꯔꯦ꯫"
 }

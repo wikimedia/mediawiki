@@ -1138,7 +1138,7 @@
 	"skin-action-delete": "Straihëia",
 	"skin-action-move": "Spostëia",
 	"blockedtext-made-by": "L bloch ie stata fat da $1.",
-	"blockedtext-reason-comment": "La motivazion data ie <em>$1</em>",
+	"blockedtext-reason-comment": "La motivazion data ie <em>$1</em>.",
 	"blockedtext-start-time": "Scumenciamënt dl bloch: $1",
 	"blockedtext-expiration-time": "Fin dl bloch: $1",
 	"blockedtext-intended-blockee": "Utënt che dëssa unì blocà: $1",

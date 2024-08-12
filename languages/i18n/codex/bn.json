@@ -11,5 +11,17 @@
 	"cdx-search-input-search-button-label": "অনুসন্ধান",
 	"cdx-table-select-all-label": "সব সারি নির্বাচন করুন",
 	"cdx-table-select-row-label": "$2 এর মধ্যে $1 নং সারি নির্বাচন করুন",
-	"cdx-typeahead-search-search-results-label": "অনুসন্ধানের ফলাফল"
+	"cdx-typeahead-search-search-results-label": "অনুসন্ধানের ফলাফল",
+	"cdx-table-pager-button-first-page": "প্রথম পাতা",
+	"cdx-table-pager-button-last-page": "শেষ পাতা",
+	"cdx-table-pager-button-next-page": "পরবর্তী পাতা",
+	"cdx-table-pager-button-prev-page": "পূর্ববর্তী পাতা",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1টি সারি}}",
+	"cdx-table-pager-items-per-page-default": "পৃষ্ঠা প্রতি ফলাফল",
+	"cdx-table-pagination-status-message-determinate-long": "$3-এর $1–$2টি ফলাফল দেখানো হচ্ছে",
+	"cdx-table-pagination-status-message-determinate-short": "$3-এর $1–$2",
+	"cdx-table-pagination-status-message-indeterminate-long": "অনেকগুলির মধ্যে $1–$2টি ফলাফল দেখানো হচ্ছে",
+	"cdx-table-pagination-status-message-indeterminate-short": "অনেকগুলির মধ্যে $1–$2",
+	"cdx-table-pagination-status-message-indeterminate-final": "শেষ {{PLURAL:$1|$1টি ফলাফল}} দেখানো হচ্ছে",
+	"cdx-table-pagination-status-message-pending": "ফলাফল লোড হচ্ছে..."
 }

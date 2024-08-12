@@ -540,7 +540,7 @@
 	"pagelang-submit": "Dọñ",
 	"skin-action-delete": "Sịññe",
 	"blockedtext-made-by": "Enamel block am i ke $1.",
-	"blockedtext-reason-comment": "Mfana enoho <em>$1</em>",
+	"blockedtext-reason-comment": "Mfana enoho <em>$1</em>.",
 	"blockedtext-start-time": "Tongho block: $1",
 	"blockedtext-expiration-time": "Utide ikama nwed: $1",
 	"blockedtext-intended-blockee": "Awo se ayemi block: $1",

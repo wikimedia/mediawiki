@@ -12,5 +12,17 @@
 	"cdx-table-select-all-label": "Seleccionar todas as ringleiras",
 	"cdx-table-select-row-label": "Seleccionar a ringleira $1 de $2",
 	"cdx-table-sort-caption": "$1, as cabeceiras de columna con botóns pódense ordenar.",
-	"cdx-typeahead-search-search-results-label": "Resultados da procura"
+	"cdx-typeahead-search-search-results-label": "Resultados da procura",
+	"cdx-table-pager-button-first-page": "Primeira páxina",
+	"cdx-table-pager-button-last-page": "Última páxina",
+	"cdx-table-pager-button-next-page": "Páxina seguinte",
+	"cdx-table-pager-button-prev-page": "Páxina anterior",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 ringleira|$1 ringleiras}}",
+	"cdx-table-pager-items-per-page-default": "Resultados por páxina",
+	"cdx-table-pagination-status-message-determinate-long": "Amosando os resultados do $1 ao $2 dun total de $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 de $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Amosando os resultados do $1 ao $2 de moitos",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 de moitos",
+	"cdx-table-pagination-status-message-indeterminate-final": "Amosando {{PLURAL:$1|o último resultado|os últimos $1 resultados}}",
+	"cdx-table-pagination-status-message-pending": "Cargando os resultados..."
 }

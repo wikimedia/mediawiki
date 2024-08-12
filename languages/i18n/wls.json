@@ -608,7 +608,7 @@
 	"skin-action-delete": "Molehi",
 	"skin-action-move": "Fetogi higoa",
 	"blockedtext-made-by": "Ne'e ta'ofi e $1.",
-	"blockedtext-reason-comment": "Tupu ko te <em>$1</em>",
+	"blockedtext-reason-comment": "Tupu ko te <em>$1</em>.",
 	"blockedtext-start-time": "Kamata ta'ofi: $1",
 	"blockedtext-expiration-time": "'Osi ta'ofi:$1",
 	"blockedtext-intended-blockee": "E amanaki ta'ofi ia:$1",

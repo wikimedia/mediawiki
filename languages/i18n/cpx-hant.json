@@ -284,7 +284,7 @@
 	"showpreview": "顯示預覽",
 	"showdiff": "看變更兮部分",
 	"anoneditwarning": "<strong>警告：</strong>汝複未躒入。那卜汝做出編輯，汝兮IP地址就兮佇編輯歷史中央公開。那卜汝<strong>[$1 躒入]</strong>或者<strong>[$2 建立]</strong>蜀個帳戶，汝兮編輯記錄就兮顯示汝兮用戶名，複兮享受其他兮好處。",
-	"blockedtext": "<strong>汝兮用戶名或者IP地址兮封鎖咯。</strong>\n\n{{int:blockedtext-made-by|$1}}{{int:blockedtext-reason-comment|$2}}。\n\n* {{int:blockedtext-start-time|$8}}\n* {{int:blockedtext-expiration-time|$6}}\n* {{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}那卜汝已經佇[[Special:Preferences|系統設置]]中央確認了咯電批地址亦復未乞禁止使用「{{int:emailuser}}」功能，汝可以發送電批聯繫管理員。{{int:blockedtext-block-ip|$3}}{{int:blockedtext-block-id|$5}}{{int:blockedtext-include-details-queries}}",
+	"blockedtext": "<strong>汝兮用戶名或者IP地址兮封鎖咯。</strong>\n\n{{int:blockedtext-made-by|$1}}{{int:blockedtext-reason-comment|}}\n* {{int:blockedtext-start-time|$8}}\n* {{int:blockedtext-expiration-time|$6}}\n* {{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}那卜汝已經佇[[Special:Preferences|系統設置]]中央確認了咯電批地址亦復未乞禁止使用「{{int:emailuser}}」功能，汝可以發送電批聯繫管理員。{{int:blockedtext-block-ip|$3}}{{int:blockedtext-block-id|$5}}{{int:blockedtext-include-details-queries}}",
 	"newarticletext": "汝點咯蜀個無存在兮頁面連結。\n那卜建立頁面，請佇下底兮編輯框中央拍入內容（佇[$1 幫助頁]看更価兮幫助）。\n那卜汝是無小心點入伍來兮，請點汝兮瀏覽器兮<strong>返回</strong>按鍵。",
 	"anontalkpagetext": "----\n<em>者是蜀個復未建立帳戶或者毋拚建立帳戶兮匿名用戶兮討論頁</em>\n因此我輩那會用IP地址來合伊聯繫。\n者個IP地址可能有幾個用戶齊使用。\n那卜汝是蜀個匿名用戶，復認為者頁內兮留言合汝無關係，請[[Special:CreateAccount|建立帳戶]]或者[[Special:UserLogin|躒入]]，避免以後合其他匿名用戶混淆。",
 	"noarticletext": "者个頁面中央今無內容。汝可以佇其他頁面中央[[Special:Search/{{PAGENAME}}|𢶀𢶀者蜀个標題]]、<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 𢶀𢶀相關兮日誌]或者[{{fullurl:{{FULLPAGENAME}}|action=edit}} 建立這蜀个頁面]</span>。",

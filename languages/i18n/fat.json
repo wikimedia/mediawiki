@@ -646,7 +646,7 @@
 	"skin-action-delete": "Pepa fi hɔ",
 	"skin-action-move": "Twe kɔ",
 	"blockedtext-made-by": "$1 na ɔyɛɛ w'akwansiw no.",
-	"blockedtext-reason-comment": "Siantsir a ɔmae nye <em>$1</em>",
+	"blockedtext-reason-comment": "Siantsir a ɔmae nye <em>$1</em>.",
 	"blockedtext-start-time": "Akwansiw no ahyɛse: $1",
 	"blockedtext-expiration-time": "Akwansiw no ntwamu: $1",
 	"blockedtext-intended-blockee": "Dwumadzinyi a akwansiwdze yi kɔ ma no: $1",

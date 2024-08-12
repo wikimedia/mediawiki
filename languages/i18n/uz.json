@@ -2076,7 +2076,7 @@
 	"skin-action-delete": "Oʻchirish",
 	"skin-action-move": "Koʻchirish",
 	"blockedtext-made-by": "Sizni $1 chetlashtirdi.",
-	"blockedtext-reason-comment": "Bunga sabab: <em>$1</em>",
+	"blockedtext-reason-comment": "Bunga sabab: <em>$1</em>.",
 	"blockedtext-start-time": "Chetlashtirish muddati boshi: $1",
 	"blockedtext-expiration-time": "Chetlashtirish muddati yakuni: $1",
 	"blockedtext-intended-blockee": "Chetlashtirish maqsadi: $1",

@@ -2052,7 +2052,7 @@
 	"paramvalidator-help-type-user-subtype-name": "golar pangguna",
 	"nstab-mainpage": "Halaman Utamo",
 	"blockedtext-made-by": "Pamblokiran diguwai bak $1.",
-	"blockedtext-reason-comment": "Alasan sai tiunjukko joda da <em>$1</em>",
+	"blockedtext-reason-comment": "Alasan sai tiunjukko joda da <em>$1</em>.",
 	"blockedtext-start-time": "Awal pamblokiran: $1",
 	"blockedtext-expiration-time": "Kadaluwarsa pamblokiran: $1",
 	"blockedtext-intended-blockee": "Target pamblokiran: $1",

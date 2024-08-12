@@ -941,7 +941,7 @@
 	"authmanager-email-label": "Email",
 	"nstab-mainpage": "Paj prensipal",
 	"blockedtext-made-by": "$1 té fè blokaj-la.",
-	"blockedtext-reason-comment": "Rézon yo ba sé <em>$1</em>",
+	"blockedtext-reason-comment": "Rézon yo ba sé <em>$1</em>.",
 	"blockedtext-expiration-time": "Ekspirasyon blòk : $1",
 	"blockedtext-contact-blocker-admin": "Ou pé kontakté $1 oben odòt [[{{MediaWiki:Grouppage-sysop}}|administratè]] pou bokanté asi blokaj-la.",
 	"blockedtext-block-ip": "Konyéla adrès IP a-w sé $1.",

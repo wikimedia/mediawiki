@@ -1164,7 +1164,7 @@
 	"skin-action-delete": "Pugaso",
 	"skin-action-move": "Poundoliho",
 	"blockedtext-made-by": "Pinangantob winonsoi do $1.",
-	"blockedtext-reason-comment": "Sabap di tinahak nopo nga' <em>$1</em>",
+	"blockedtext-reason-comment": "Sabap di tinahak nopo nga' <em>$1</em>.",
 	"blockedtext-start-time": "Timpuunan do mangantob: $1",
 	"blockedtext-expiration-time": "Timpu aayi pagantaban: $1",
 	"blockedtext-intended-blockee": "Tulun di naantaban :$1",

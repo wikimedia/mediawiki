@@ -871,7 +871,7 @@
 	"nstab-mainpage": "ꠝꠥꠟ ꠚꠣꠔꠣ",
 	"skin-action-delete": "ꠙꠣꠟꠣꠃꠇ꠆ꠇꠣ",
 	"blockedtext-made-by": "$1 ꠄ ꠁ ꠛꠟꠇ ꠖꠤꠍꠂꠘ ⁕",
-	"blockedtext-reason-comment": "ꠇꠣꠞꠘ ꠎꠣꠘꠣꠁꠍꠂꠘ ꠎꠦ <em>$1</em>",
+	"blockedtext-reason-comment": "ꠇꠣꠞꠘ ꠎꠣꠘꠣꠁꠍꠂꠘ ꠎꠦ <em>$1</em>⁕",
 	"blockedtext-start-time": "ꠛꠟꠇ ꠀꠞꠝ꠆ꠛ ꠅꠁꠉꠦꠍꠦ ꠪ $1",
 	"blockedtext-expiration-time": "ꠛꠟꠇ ꠡꠦꠡ ꠅꠁꠉꠦꠍꠦ ꠪ $1",
 	"blockedtext-intended-blockee": "ꠛꠟꠇ ꠇꠞꠣꠞ ꠟꠣꠉꠤ ꠪ $1",

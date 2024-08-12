@@ -29,7 +29,7 @@
 	"prefs-back-title": "กลับไปที่การตั้งค่า",
 	"prefs-tabs-navigation-hint": "แนะนำ: คุณสามารถใช้แป้นลูกศรซ้ายและขวาเพื่อนำทางระหว่างแถบในรายการแถบได้",
 	"prefs-sections-navigation-hint": "เคล็ดลับ: คุณสามารถใช้ปุ่ม Tab และ Shift + Tab เพื่อนำทางระหว่างส่วนการตั้งค่าต่าง ๆ",
-	"prefs-personal": "โปรไฟล์ผู้ใช้",
+	"prefs-personal": "โพรไฟล์ผู้ใช้",
 	"prefs-description-personal": "ควบคุมวิธีการแสดง เชื่อมต่อ และสื่อสารของคุณ",
 	"prefs-info": "ข้อมูลเบื้องต้น",
 	"username": "{{GENDER:$1|ชื่อผู้ใช้}}:",

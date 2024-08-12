@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Song GK"
 		]
 	},
@@ -705,7 +706,7 @@
 	"searchsuggest-containing": "Giga lambar ke ngembuan",
 	"duration-days": "$1 {{PLURAL:$1|hari}}",
 	"blockedtext-made-by": "Alit tu digaga $1",
-	"blockedtext-reason-comment": "Kebuah diberi <em>$1</em>",
+	"blockedtext-reason-comment": "Kebuah diberi <em>$1</em>.",
 	"blockedtext-start-time": "Pun alit: $1",
 	"blockedtext-expiration-time": "Pengujung alit: $1",
 	"blockedtext-intended-blockee": "Orang tagat alit: $1",

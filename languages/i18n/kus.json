@@ -571,7 +571,7 @@
 	"pagelang-submit": "Tisim",
 	"log-action-filter-all": "Li wʋsa",
 	"blockedtext-made-by": "Onɛ maal gu'ud la anɛ $1.",
-	"blockedtext-reason-comment": "Linɛ sʋ'oe ka li aan ala la anɛ <em>$1</em>",
+	"blockedtext-reason-comment": "Linɛ sʋ'oe ka li aan ala la anɛ <em>$1</em>.",
 	"blockedtext-start-time": "Gu'ud pin'ilʋg: $1",
 	"blockedtext-expiration-time": "Fʋ gu'ud la naad nɛ: $1",
 	"blockedtext-intended-blockee": "Onɛ ka fʋ gu'ud la anɛ: $1",

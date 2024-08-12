@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Musaddam Idriss"
 		]
 	},
@@ -592,7 +593,7 @@
 	"searchsuggest-containing": "Bakaa ta shafi ma",
 	"duration-days": "$1 {{PLURAL:$1|fàti}}",
 	"blockedtext-made-by": "Minɗu ka 'yu ka $1.",
-	"blockedtext-reason-comment": "Dàlīlì bàru na <em>$1</em>",
+	"blockedtext-reason-comment": "Dàlīlì bàru na <em>$1</em>.",
 	"blockedtext-start-time": "Cinàa ma minɗu: $1",
 	"blockedtext-expiration-time": "Minɗu gaɗatakauː $1",
 	"blockedtext-intended-blockee": "Intended blockee: $1",

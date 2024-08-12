@@ -12,5 +12,17 @@
 	"cdx-table-select-all-label": "Выбрать все строки",
 	"cdx-table-select-row-label": "Выбрать строку $1 из $2",
 	"cdx-table-sort-caption": "$1, заголовки столбцов с кнопками можно сортировать.",
-	"cdx-typeahead-search-search-results-label": "Результаты поиска"
+	"cdx-typeahead-search-search-results-label": "Результаты поиска",
+	"cdx-table-pager-button-first-page": "Первая страница",
+	"cdx-table-pager-button-last-page": "Последняя страница",
+	"cdx-table-pager-button-next-page": "Следующая страница",
+	"cdx-table-pager-button-prev-page": "Предыдущая страница",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 строка|$1 строки|$1 строк}}",
+	"cdx-table-pager-items-per-page-default": "Результатов на страницу",
+	"cdx-table-pagination-status-message-determinate-long": "Показ результатов $1—$2 из $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1—$2 из $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Показ результатов $1—$2 из многих",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1—$2 из многих",
+	"cdx-table-pagination-status-message-indeterminate-final": "Показ {{PLURAL:$1|последнего $1 результата|последних $1 результатов}}",
+	"cdx-table-pagination-status-message-pending": "Загрузка результатов…"
 }

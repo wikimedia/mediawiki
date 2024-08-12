@@ -1,17 +1,22 @@
 {
 	"@metadata": {
 		"authors": [
-			"Brettchenweber"
+			"Brettchenweber",
+			"Justman10000"
 		]
 	},
 	"paramvalidator-badbool": "Ungültiger Wert „$2“ für den booleschen Parameter „$1“. Übergib $3 für true oder $5 für false.",
+	"paramvalidator-badbool-type": "Ungültiger Wert \"$2\" für booleschen Parameter \"$1\". Erhalte stattdessen den Wert \"$3\".",
 	"paramvalidator-badexpiry": "Ungültiger Wert „$2“ für den Ablauf-Parameter „$1“.",
 	"paramvalidator-badexpiry-duration": "Der gegebene Wert „$2“ für den Parameter <var>$1<var> überschreitet das Maximum von „$3“.",
 	"paramvalidator-badexpiry-duration-max": "Der gegebene Wert „$2“ für den Parameter <var>$1<var> überschreitet das Maximum von „$3“. Verwende wird stattdessen das Maximum.",
 	"paramvalidator-badexpiry-past": "Der Wert „$2“ für den Ablauf-Parameter „$1“ liegt in der Vergangenheit.",
 	"paramvalidator-badfloat": "Ungültiger Wert „$2“ für den Float-Parameter „$1“.",
+	"paramvalidator-badfloat-type": "Ungültiger Wert \"$2\" für Float-Parameter \"$1\". Erhalte stattdessen den Wert \"$3\".",
 	"paramvalidator-badfloat-notfinite": "Der Wert „$2“ für den Float-Parameter „$1“ ist zu groß oder ist keine Zahl.",
 	"paramvalidator-badinteger": "Ungültiger Wert „$2“ für den ganzzahligen Parameter „$1“.",
+	"paramvalidator-badinteger-type": "Ungültiger Wert \"$2\" für Integer-Parameter \"$1\". Erhalte stattdessen den Wert \"$3\".",
+	"paramvalidator-badinteger-fraction": "Ungültiger Wert \"$2\" für Integer-Parameter \"$1\". Erhalte stattdessen eine Fließkommazahl mit Nachkommastellen.",
 	"paramvalidator-badtimestamp": "Ungültiger Wert „$2“ für den Zeitstempel-Parameter „$1“.",
 	"paramvalidator-badupload-cantwrite": "Die Datei für „$1“ konnte aufgrund einer Server-Fehlkonfiguration (Schreibfehler) nicht zur Verarbeitung gespeichert werden.",
 	"paramvalidator-badupload-formsize": "Die hochgeladene Datei für „$1“ überschreitet das clientseitige Maximum.",
@@ -29,6 +34,8 @@
 	"paramvalidator-maxchars": "The value for parameter \"$1\" cannot be longer than $3 {{PLURAL:$3|Zeichen}} (war $4).",
 	"paramvalidator-missingparam": "Der Parameter „$1“ muss gesetzt werden.",
 	"paramvalidator-notmulti": "Der Parameter „$1“ akzeptiert nur einen einzigen Wert. U+001F-Mehrwerttrennung darf nur für mehrwertige Parameter verwendet werden.",
+	"paramvalidator-multivalue-must-be-array": "Der mehrwertige Parameter \"$1\" muss als Array angegeben werden.",
+	"paramvalidator-needstring": "Der Parameter \"$1\" akzeptiert nur einen String-Wert, erhält jedoch $2",
 	"paramvalidator-outofrange-max": "Der Wert „$2“ für den Parameter „$1“ darf nicht größer als $4 sein.",
 	"paramvalidator-outofrange-minmax": "Der Wert „$2“ für den Parameter „$1“ muss zwischen $3 und $4 liegen.",
 	"paramvalidator-outofrange-min": "Der Wert „$2“ für den Parameter „$1“ darf nicht weniger als $3 betragen.",

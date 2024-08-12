@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Ghiutun",
 			"Khanmarat",
 			"Sorbat",
@@ -627,7 +628,7 @@
 	"skin-action-delete": "Йуҡ иткәле",
 	"skin-action-move": "Исемне алмаштырғалы",
 	"blockedtext-made-by": "Администратор $1 тыйған.",
-	"blockedtext-reason-comment": "Тыйыуның сәбәбе: <em>$1</em>",
+	"blockedtext-reason-comment": "Тыйыуның сәбәбе: <em>$1</em>.",
 	"blockedtext-start-time": "Тыйыуның пашланыуы: $1",
 	"blockedtext-expiration-time": "Тыйыуның пөтөүө: $1",
 	"blockedtext-intended-blockee": "Ней өцөн тыйғалы: $1",

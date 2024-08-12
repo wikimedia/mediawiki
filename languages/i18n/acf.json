@@ -512,7 +512,7 @@
 	"duration-days": "$1 {{PLURAL:$1|jou}}",
 	"pagelang-reason": "Wézon:",
 	"blockedtext-made-by": "Blòk-la té fèt pa $1.",
-	"blockedtext-reason-comment": "Wézon yo bay sé <em>$1</em>",
+	"blockedtext-reason-comment": "Wézon yo bay sé <em>$1</em>.",
 	"blockedtext-start-time": "Koumansman blòk: $1",
 	"blockedtext-expiration-time": "Èkspiwasyon blòk: $1",
 	"blockedtext-intended-blockee": "Moun pitèt bloké: $1",

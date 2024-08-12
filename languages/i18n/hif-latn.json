@@ -2847,7 +2847,7 @@
 	"skin-action-delete": "Mitao",
 	"skin-action-move": "Naam badlo",
 	"blockedtext-made-by": "$1 block karis rahaa.",
-	"blockedtext-reason-comment": "Dewa gais kaaran<em>$1</em> hai",
+	"blockedtext-reason-comment": "Dewa gais kaaran<em>$1</em> hai.",
 	"blockedtext-start-time": "Block ke suruwaat: $1",
 	"blockedtext-expiration-time": "Expiration of block: $1",
 	"blockedtext-intended-blockee": "Intended blockee: $1",

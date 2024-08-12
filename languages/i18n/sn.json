@@ -1049,7 +1049,7 @@
 	"skin-view-create-local": "Wedzera mutsananguro wemunharaunda",
 	"skin-view-edit-local": "Chinjirudza mutsananguro wecherunharaunda",
 	"blockedtext-made-by": "Kupinga kwakaitwa na $1.",
-	"blockedtext-reason-comment": "Chikonzero chakapuhwa ndechokuti <em>$1</em>",
+	"blockedtext-reason-comment": "Chikonzero chakapuhwa ndechokuti <em>$1</em>.",
 	"blockedtext-start-time": "Kutanga kwe chipingo: $1",
 	"blockedtext-expiration-time": "Kupera kwe chipingo: $1",
 	"blockedtext-intended-blockee": "Mudziviswa anga achitarisirwa: $1",

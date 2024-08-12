@@ -3667,7 +3667,7 @@
 	"skin-action-delete": "हटाएँ",
 	"skin-action-move": "स्थानांतरित करें",
 	"blockedtext-made-by": "खंड $1 द्वारा बनाया गया था।",
-	"blockedtext-reason-comment": "दिया गया कारण <em>$1</em> है",
+	"blockedtext-reason-comment": "दिया गया कारण <em>$1</em> है।",
 	"blockedtext-start-time": "खंड की शुरुआत: $1",
 	"blockedtext-expiration-time": "खंड का निःश्वसन: $1",
 	"blockedtext-intended-blockee": "अभिप्रेत खंड",

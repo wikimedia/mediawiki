@@ -589,7 +589,7 @@
 	"skin-action-delete": "Gaasiibii'an",
 	"skin-action-move": "Mamaajii",
 	"blockedtext-made-by": "Giba' ozhitoon biindig $1.",
-	"blockedtext-reason-comment": "Onji' idan biindig <em>$1</em>",
+	"blockedtext-reason-comment": "Onji' idan biindig <em>$1</em>.",
 	"blockedtext-start-time": "Giba' maaji': $1",
 	"blockedtext-expiration-time": "Giba' ishkwaase: $1",
 	"blockedtext-intended-blockee": "Mizhodam giba': $1",

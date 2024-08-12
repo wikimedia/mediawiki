@@ -3092,7 +3092,7 @@
 	"skin-action-delete": "Fshije",
 	"skin-action-move": "Zhvendose",
 	"blockedtext-made-by": "Bllokimi qe bërë nga $1,",
-	"blockedtext-reason-comment": "Arsyeja e dhënë është <em>$1</em>",
+	"blockedtext-reason-comment": "Arsyeja e dhënë është <em>$1</em>.",
 	"blockedtext-start-time": "Fillimi i bllokimit: $1",
 	"blockedtext-expiration-time": "Skadimi i bllokimit: $1",
 	"blockedtext-intended-blockee": "I bllokuari i synuar: $1",

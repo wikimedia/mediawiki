@@ -1301,7 +1301,7 @@
 	"skin-action-delete": "Paihna",
 	"skin-action-move": "Sawnna",
 	"blockedtext-made-by": "Dânna hi $1-in siam a ni.",
-	"blockedtext-reason-comment": "A chhan pek chu <em>$1</em>",
+	"blockedtext-reason-comment": "A chhan pek chu <em>$1</em>.",
 	"blockedtext-start-time": "Dânna ṭanna hun: $1",
 	"blockedtext-expiration-time": "Dânna tawpna hun: $1",
 	"blockedtext-intended-blockee": "Dânna nei tu tum: $1",

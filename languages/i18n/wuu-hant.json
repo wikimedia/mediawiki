@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Benojan",
 			"Subarupan",
 			"Winston Sung"
@@ -562,7 +563,7 @@
 	"previewerrortext": "嘗試預覽儂个更改个辰光發生哉錯誤。",
 	"blockedtitle": "用戶畀查封",
 	"blockedtext": "<strong>儂个用戶名或IP位址已經畀查封。</strong>\n\n{{int:blockedtext-made-by|$1}}{{int:blockedtext-reason-comment|$2}}。\n\n* {{int:blockedtext-start-time|$8}}\n* {{int:blockedtext-expiration-time|$6}}\n* {{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}儂好使用「{{int:emailuser}}」功能，只要儂已經垃儂个[[Special:Preferences|偏好設定]]裡向指定仔一隻有效个電郵地址並且朆畀禁止使用箇只功能。{{int:blockedtext-block-ip|$3}}{{int:blockedtext-block-id|$5}}{{int:blockedtext-include-details-queries}}",
-	"blockedtext-partial": "<strong>儂个用戶名或IP位址畀禁止做箇事體哉。儂作興仍舊好勒本站做別樣事體，譬方說編輯特定頁面。</strong>\n\n儂好勒[[Special:MyContributions|帳號貢獻]]望完整个查封細節。\n\n\n{{int:blockedtext-made-by|$1}}\n\n{{int:blockedtext-reason-comment|$2}}。\n\n* {{int:blockedtext-start-time|$8}}\n* {{int:blockedtext-expiration-time|$6}}\n* {{int:blockedtext-intended-blockee|$7}}\n\n* {{int:blockedtext-block-id|$5}}",
+	"blockedtext-partial": "<strong>儂个用戶名或IP位址畀禁止做箇事體哉。儂作興仍舊好勒本站做別樣事體，譬方說編輯特定頁面。</strong>\n\n儂好勒[[Special:MyContributions|帳號貢獻]]望完整个查封細節。\n\n\n{{int:blockedtext-made-by|$1}}\n\n{{int:blockedtext-reason-comment|}}\n* {{int:blockedtext-start-time|$8}}\n* {{int:blockedtext-expiration-time|$6}}\n* {{int:blockedtext-intended-blockee|$7}}\n\n* {{int:blockedtext-block-id|$5}}",
 	"autoblockedtext": "儂个IP位址已經畀自動查封，因為之前另一位畀$1查封个用戶搭儂用一樣个IP位址。畀出个原因是：\n\n: <em>$2</em>\n\n* {{int:blockedtext-start-time|$8}}\n* {{int:blockedtext-expiration-time|$6}}\n* {{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\n\n儂好使用「{{int:emailuser}}」功能，只要儂已經垃儂个[[Special:Preferences|偏好設定]]裡向指定仔一隻有效个電郵地址並且朆畀禁止使用箇只功能。\n\n{{int:blockedtext-block-ip|$3}}{{int:blockedtext-block-id|$5}}{{int:blockedtext-include-details-queries}}",
 	"systemblockedtext": "儂个用戶名或IP位址畀MediaWiki自動查封哉。畀出个原因是：\n\n: <em>$2</em>\n\n* {{int:blockedtext-start-time|$8}}\n* {{int:blockedtext-expiration-time|$6}}\n* {{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-block-ip|$3}}\n{{int:blockedtext-include-details-queries}}",
 	"blockednoreason": "朆畀出原因",

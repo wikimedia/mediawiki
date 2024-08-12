@@ -1626,7 +1626,7 @@
 	"skin-action-delete": "Ti̱n",
 	"skin-action-move": "Shyei",
 	"blockedtext-made-by": "A̱tyufwun wu wa yet $1.",
-	"blockedtext-reason-comment": "Jat ji a̱ ku nwuak a̱ni jija yet <em>$1</em>",
+	"blockedtext-reason-comment": "Jat ji a̱ ku nwuak a̱ni jija yet <em>$1</em>.",
 	"blockedtext-start-time": "Tsa fwun hu: $1",
 	"blockedtext-expiration-time": "Tyiai fwun hu: $1",
 	"blockedtext-intended-blockee": "A̱tyu a̱ fa fwun wu: $1",

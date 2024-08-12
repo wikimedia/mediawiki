@@ -551,7 +551,7 @@
 	"skin-action-delete": "ᩃᩫ᩠ᨷ",
 	"skin-action-move": "ᨿ᩶ᩣ᩠ᨿ",
 	"blockedtext-made-by": "$1ᨯᩱ᩶ᨠᩮ᩠ᨯᩥᩢᨠ᩠ᨶᩢ᩶",
-	"blockedtext-reason-comment": "ᨿᩬ᩶ᩁᩉᩮ᩠ᨲᩩᩅ᩵ᩤ<em>$1</em>",
+	"blockedtext-reason-comment": "ᨿᩬ᩶ᩁᩉᩮ᩠ᨲᩩᩅ᩵ᩤ<em>$1</em>.",
 	"blockedtext-start-time": "ᩅᩮᩃᩣ​ᨲᩢᩢ᩠ᨦ​​ᨣᩮᩢ᩶ᩣ​​ᨠᩣ᩠ᩁ​ᨠᩮ᩠ᨯᩥᩢ​ᨠ᩠ᨶᩢ᩶$1",
 	"blockedtext-expiration-time": "ᩅᩮᩃᩣ​ᩓ᩠ᩅ​​ᨧᩫ᩠ᨷ​ᨠᩣ᩠ᩁ​ᨠᩮ᩠ᨯᩥᩢ​ᨠ᩠ᨶᩢ᩶$1",
 	"blockedtext-intended-blockee": "ᨹᩪ᩶​ᨩᩲ᩶​ᨸᩮᩢ᩶ᩣ​ᩉ᩠ᨾᩣ᩠ᨿ​: $1",

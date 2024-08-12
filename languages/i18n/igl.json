@@ -642,7 +642,7 @@
 	"skin-action-protect": "Dída",
 	"skin-action-delete": "Dukwó",
 	"blockedtext-made-by": "Éne kí gbóna nyé chí $1.",
-	"blockedtext-reason-comment": "Oji ewn ku ma gbona chí <em>$1</em>",
+	"blockedtext-reason-comment": "Oji ewn ku ma gbona chí <em>$1</em>.",
 	"blockedtext-start-time": "Ekó kí é gbóna achabé chí: $1",
 	"blockedtext-expiration-time": "Ekó kí é gbóna a gbojì: $1",
 	"blockedtext-intended-blockee": "Éné kú ma téné gbóna ñwu chí:$1",

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Leonfd1992",
 			"Maor X"
 		]
@@ -635,7 +636,7 @@
 	"skin-action-delete": "Ojuichajaa",
 	"skin-action-move": "Ansülaa",
 	"blockedtext-made-by": "A'alijitnüsü pünülia nutuma $1.",
-	"blockedtext-reason-comment": "Süka jamüin <em>$1</em>",
+	"blockedtext-reason-comment": "Süka jamüin <em>$1</em>.",
 	"blockedtext-start-time": "A'alijitneerü pünüliayaasüka sünainjee: $1",
 	"blockedtext-expiration-time": "Jutateerü suchukuwa'a pünüliayaasüka sünainjee: $1",
 	"blockedtext-intended-blockee": "A'alijitnüsü nünülia: $1",

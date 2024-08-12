@@ -999,7 +999,7 @@
 	"skin-action-delete": "پاک هاکردن",
 	"skin-action-move": "دکش هاکردن",
 	"blockedtext-made-by": "وه ره $1 دَوِسته.",
-	"blockedtext-reason-comment": "ونه دلیل این بی‌یه که <em>$1</em>",
+	"blockedtext-reason-comment": "ونه دلیل این بی‌یه که <em>$1</em>.",
 	"blockedtext-start-time": "دَوِستن شروع: $1",
 	"blockedtext-expiration-time": "دَوِستنِ سَر وونه: $1",
 	"blockedtext-intended-blockee": "کسی که دَوست بیّه: $1",

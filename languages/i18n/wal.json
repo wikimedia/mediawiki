@@ -809,7 +809,7 @@
 	"nstab-mainpage": "Kiike Sinttaa",
 	"skin-action-protect": "Naaga",
 	"blockedtext-made-by": "Teqettaa oottidaagee $1",
-	"blockedtext-reason-comment": "Imettida gaasoy <em>$1</em>",
+	"blockedtext-reason-comment": "Imettida gaasoy <em>$1</em>.",
 	"blockedtext-start-time": "Teqettay doommidoy: $1",
 	"blockedtext-expiration-time": "Teqettay gidiyoy: $1",
 	"blockedtext-intended-blockee": "Qofettida teqettiyaagaa: $1",

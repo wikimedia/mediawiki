@@ -12,5 +12,17 @@
 	"cdx-table-select-all-label": "בחירת כל השורות",
 	"cdx-table-select-row-label": "בחירת שורה $1 מתוך $2",
 	"cdx-table-sort-caption": "$1, ניתן למיין עמודות שבכותרות שלהן יש כפתורים.",
-	"cdx-typeahead-search-search-results-label": "תוצאות חיפוש"
+	"cdx-typeahead-search-search-results-label": "תוצאות חיפוש",
+	"cdx-table-pager-button-first-page": "הדף הראשון",
+	"cdx-table-pager-button-last-page": "הדף האחרון",
+	"cdx-table-pager-button-next-page": "הדף הבא",
+	"cdx-table-pager-button-prev-page": "הדף הקודם",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|שורה אחת|$1 שורות}}",
+	"cdx-table-pager-items-per-page-default": "תוצאות לדף",
+	"cdx-table-pagination-status-message-determinate-long": "הצגת תוצאות $1 עד $2 מתוך $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1 עד $2 מתוך $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "הצגת תוצאות $1 עד $2 מתוך הרבה",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1 עד $2 מתוך הרבה",
+	"cdx-table-pagination-status-message-indeterminate-final": "הצגת {{PLURAL:$1|התוצאה האחרונה|$1 התוצאות האחרונות}}",
+	"cdx-table-pagination-status-message-pending": "טעינת תוצאות..."
 }

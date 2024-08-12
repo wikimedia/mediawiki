@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Catrope"
+			"Catrope",
+			"Siebrand"
 		]
 	},
 	"cdx-input-chip-aria-description": "Druk op Enter om te bewerken of op Delete om te verwijderen.",
@@ -12,5 +13,17 @@
 	"cdx-table-select-all-label": "Alle rijen selecteren",
 	"cdx-table-select-row-label": "Rij $1 van $2 selecteren",
 	"cdx-table-sort-caption": "$1, kolomkoppen met knoppen kunnen gesorteerd worden",
-	"cdx-typeahead-search-search-results-label": "Zoekresultaten"
+	"cdx-typeahead-search-search-results-label": "Zoekresultaten",
+	"cdx-table-pager-button-first-page": "Eerste pagina",
+	"cdx-table-pager-button-last-page": "Laatste pagina",
+	"cdx-table-pager-button-next-page": "Volgende pagina",
+	"cdx-table-pager-button-prev-page": "Vorige pagina",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 rij|$1 rijen}}",
+	"cdx-table-pager-items-per-page-default": "Resultaten per pagina",
+	"cdx-table-pagination-status-message-determinate-long": "Resultaten $1-$2 van $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1-$2 van $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Resultaten $1-$2 van vele",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1-$2 van vele",
+	"cdx-table-pagination-status-message-indeterminate-final": "{{PLURAL:$1|Het laatste resultaat|De laatste $1 resultaten}}",
+	"cdx-table-pagination-status-message-pending": "Bezig met het laden van resultaten..."
 }

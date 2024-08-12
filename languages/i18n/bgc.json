@@ -512,7 +512,7 @@
 	"pagelang-reason": "वजह",
 	"pagelang-submit": "प्रस्तुत करैं",
 	"blockedtext-made-by": "खंड $1 द्वारा बनायो गयो थो।",
-	"blockedtext-reason-comment": "दियो गयो वजह <em>$1</em> सै",
+	"blockedtext-reason-comment": "दियो गयो वजह <em>$1</em> सै।",
 	"blockedtext-start-time": "खंड की शुरुआत: $1",
 	"blockedtext-expiration-time": "खंड को निःश्वसन: $1",
 	"blockedtext-intended-blockee": "अभिप्रेत खंडें: $1",

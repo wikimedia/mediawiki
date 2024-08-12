@@ -501,7 +501,7 @@
 	"pagelang-submit": "Сигын",
 	"log-action-filter-all": "Сиене",
 	"blockedtext-made-by": "Блок ыIыр $1.",
-	"blockedtext-reason-comment": "Блокад себеб: <em>$1</em>",
+	"blockedtext-reason-comment": "Блокад себеб: <em>$1</em>.",
 	"blockedtext-start-time": "Блокад сифте: $1",
 	"blockedtext-expiration-time": "Блокад ахир: $1",
 	"blockedtext-intended-blockee": "Блокад мырад: $1",

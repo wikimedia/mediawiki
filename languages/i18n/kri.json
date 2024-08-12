@@ -666,7 +666,7 @@
 	"skin-action-delete": "Delet",
 	"skin-action-move": "Muf",
 	"blockedtext-made-by": "Dɛn bin mek di blɔk wit $1.",
-	"blockedtext-reason-comment": "Di rizin we dɛn gi na <em>$1</em>",
+	"blockedtext-reason-comment": "Di rizin we dɛn gi na <em>$1</em>.",
 	"blockedtext-start-time": "Start fɔ blɔk: $1",
 	"blockedtext-expiration-time": "Di tɛm we di blɔk go dɔn: $1",
 	"blockedtext-intended-blockee": "Di wan we dɛn bin want fɔ blok: $1",

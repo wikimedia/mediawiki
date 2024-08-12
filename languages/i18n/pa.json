@@ -2266,7 +2266,7 @@
 	"skin-action-delete": "ਹਟਾਓ",
 	"skin-action-move": "ਭੇਜੋ",
 	"blockedtext-made-by": "$1 ਦੁਆਰਾ ਬਲਾਕ ਕੀਤਾ ਗਿਆ ਸੀ।",
-	"blockedtext-reason-comment": "ਦਿੱਤਾ ਗਿਆ ਕਾਰਨ <em>$1</em> ਹੈ",
+	"blockedtext-reason-comment": "ਦਿੱਤਾ ਗਿਆ ਕਾਰਨ <em>$1</em> ਹੈ।",
 	"blockedtext-start-time": "ਬਲਾਕ ਦੀ ਸ਼ੁਰੂਆਤ: $1",
 	"blockedtext-expiration-time": "ਬਲਾਕ ਦੀ ਮਿਆਦ ਸਮਾਪਤੀ: $1",
 	"blockedtext-intended-blockee": "ਜਿਸਨੂੰ ਬਲਾਕ ਕਰਨਾ ਹੈ: $1",

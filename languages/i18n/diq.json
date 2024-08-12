@@ -3858,7 +3858,7 @@
 	"skin-action-delete": "Bestere",
 	"skin-action-move": "Bıkırışe",
 	"blockedtext-made-by": "Bloke terefê $1 ra biyo.",
-	"blockedtext-reason-comment": "Sebebo ke mocniyayo <em>$1</em>",
+	"blockedtext-reason-comment": "Sebebo ke mocniyayo <em>$1</em>.",
 	"blockedtext-start-time": "Destpêkerdışê kılitkerdışi: $1",
 	"blockedtext-expiration-time": "Qediyayışê blokeyi: $1",
 	"blockedtext-intended-blockee": "Kılitkerdışo meqsedkerde: $1",

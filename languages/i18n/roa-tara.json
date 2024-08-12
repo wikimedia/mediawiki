@@ -3432,7 +3432,7 @@
 	"skin-action-delete": "Scangille",
 	"skin-action-move": "Spuèste",
 	"blockedtext-made-by": "'U blocche ha state fatte da $1.",
-	"blockedtext-reason-comment": "'U mutive date jè <em>$1</em>",
+	"blockedtext-reason-comment": "'U mutive date jè <em>$1</em>.",
 	"blockedtext-start-time": "Inizie d'u blocche: $1",
 	"blockedtext-expiration-time": "Fine d'u blocche: $1",
 	"blockedtext-intended-blockee": "Destinatarie d'u blocche: $1",

@@ -12,5 +12,17 @@
 	"cdx-table-select-all-label": "Избери ги сите редови",
 	"cdx-table-select-row-label": "Избери ред $1 од $2",
 	"cdx-table-sort-caption": "$1, заглавијата на столбовите со копчиња се подредливи.",
-	"cdx-typeahead-search-search-results-label": "Исход од пребарувањето"
+	"cdx-typeahead-search-search-results-label": "Исход од пребарувањето",
+	"cdx-table-pager-button-first-page": "Прва страница",
+	"cdx-table-pager-button-last-page": "Последна страница",
+	"cdx-table-pager-button-next-page": "Следна страница",
+	"cdx-table-pager-button-prev-page": "Претходна страница",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 ред|$1 реда}}",
+	"cdx-table-pager-items-per-page-default": "Исходни ставки по страница",
+	"cdx-table-pagination-status-message-determinate-long": "Прикажани $1–$2 од вкупно $3 ставки",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 од $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Прикажани ставки $1–$2 од многу",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 од многу",
+	"cdx-table-pagination-status-message-indeterminate-final": "{{PLURAL:$1|Прикажана е последната $1 ставка|Прикажани се последните $1 ставки}}",
+	"cdx-table-pagination-status-message-pending": "Го вчитувам исходот..."
 }

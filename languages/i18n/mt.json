@@ -2989,7 +2989,7 @@
 	"skin-action-undelete": "Irkupra",
 	"skin-action-delete": "Ħassar",
 	"skin-action-move": "Mexxi",
-	"blockedtext-reason-comment": "Ir-raġuni mogħtija hija <em>$1</em>",
+	"blockedtext-reason-comment": "Ir-raġuni mogħtija hija <em>$1</em>.",
 	"renameuser": "Semmi utent mill-ġdid",
 	"renameuser-linkoncontribs": "semmi l-utent mill-ġdid",
 	"renameuser-linkoncontribs-text": "Erġa' semmi lil dan l-utent",

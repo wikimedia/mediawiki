@@ -3669,7 +3669,7 @@
 	"skin-action-delete": "Ezabatu",
 	"skin-action-move": "Mugitu",
 	"blockedtext-made-by": "Blokea $1 -ek egin zuen.",
-	"blockedtext-reason-comment": "Emandako arrazoia <em>$1</em> da",
+	"blockedtext-reason-comment": "Emandako arrazoia <em>$1</em> da.",
 	"blockedtext-start-time": "Blokearen hasiera: $1",
 	"blockedtext-expiration-time": "Blokearen iraupena: $1",
 	"blockedtext-intended-blockee": "Blokeatu nahi den: $1",

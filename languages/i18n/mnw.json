@@ -1538,7 +1538,7 @@
 	"skin-action-delete": "ပလီု",
 	"skin-action-move": "ပြံင်ပဆုဲ",
 	"blockedtext-made-by": "နူ $1 ညးမသ္ပပလံက်ထောံ။",
-	"blockedtext-reason-comment": "ပရောဟိုတ်မကဵုလဝ်ဂှ်မဒှ် <em>$1</em>",
+	"blockedtext-reason-comment": "ပရောဟိုတ်မကဵုလဝ်ဂှ်မဒှ် <em>$1</em>။",
 	"blockedtext-start-time": "စကၟာတ်လဒဵု: $1",
 	"blockedtext-expiration-time": "အခိၚ်အယုက်ကၟာတ်လဒဵု: $1",
 	"blockedtext-intended-blockee": "ရန်တၟအ်ပွမကၟာတ်လဒဵု: $1",

@@ -627,7 +627,7 @@
 	"searchsuggest-containing": "Search for pages wey dey contain",
 	"duration-days": "$1 {{PLURAL:$1|day|days}}",
 	"blockedtext-made-by": "$1 wey make de block.",
-	"blockedtext-reason-comment": "De reason dem give be <em>$1</em>",
+	"blockedtext-reason-comment": "De reason dem give be <em>$1</em>.",
 	"blockedtext-start-time": "Block start: $1",
 	"blockedtext-expiration-time": "Block expire: $1",
 	"blockedtext-intended-blockee": "Blockee dem intend: $1",

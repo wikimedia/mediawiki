@@ -1158,7 +1158,7 @@
 	"skin-action-delete": "Ջնջել",
 	"skin-action-move": "Տեղափոխել այս էջը",
 	"blockedtext-made-by": "Այս պլոքը ստեղուած է $1ի կողմէ։",
-	"blockedtext-reason-comment": "Պատճառը՝ <em>$1</em>",
+	"blockedtext-reason-comment": "Պատճառը՝ <em>$1</em>.",
 	"blockedtext-start-time": "Պլոքի սկիզբ՝ $1",
 	"blockedtext-expiration-time": "Պլոքի աւարտ՝ $1",
 	"blockedtext-intended-blockee": "Նախատեսուած պլոքաւոր՝ $1",

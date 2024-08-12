@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Zolgoyo"
 		]
 	},
@@ -682,7 +683,7 @@
 	"duration-days": "$1 {{PLURAL:$1|kün}}",
 	"restrictionsfields-pages-label": "Deñĭştĭrüwĭ mümkün betler:",
 	"blockedtext-made-by": "Blok $1 tarapından etĭldĭ.",
-	"blockedtext-reason-comment": "Berĭlgen sebep <em>$1</em>",
+	"blockedtext-reason-comment": "Berĭlgen sebep <em>$1</em>.",
 	"blockedtext-start-time": "Bloknıñ başlawı: $1",
 	"blockedtext-expiration-time": "Bloknıñ pĭtüwĭ: $1",
 	"blockedtext-block-ip": "Şĭmdĭkĭ IP adresĭñĭz $1."

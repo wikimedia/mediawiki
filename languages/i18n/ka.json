@@ -3506,7 +3506,7 @@
 	"newpages-showhide-redirect": "$1 გადამისამართება",
 	"newpages-showhide-registered": "$1 რეგისტრირებული მომხმარებელი",
 	"blockedtext-made-by": "დაბლოკილია $1-ის მიერ",
-	"blockedtext-reason-comment": "მიზეზი არის <em>$1</em>",
+	"blockedtext-reason-comment": "მიზეზი არის <em>$1</em>.",
 	"blockedtext-start-time": "ბლოკის დასაწყისი: $1",
 	"blockedtext-expiration-time": "ბლოკის ხანგრძლივობა: $1",
 	"blockedtext-intended-blockee": "ბლოკირების სამიზნე: $1",

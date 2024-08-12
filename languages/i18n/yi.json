@@ -2976,7 +2976,7 @@
 	"skin-action-delete": "אויסמעקן",
 	"skin-action-move": "באַוועגן",
 	"blockedtext-made-by": "דער בלאק איז דורכגעפירט געווארן דורך $1.",
-	"blockedtext-reason-comment": "די אנגעגעבענע אורזאך איז <em>$1</em>",
+	"blockedtext-reason-comment": "די אנגעגעבענע אורזאך איז <em>$1</em>.",
 	"blockedtext-start-time": "אָנהייב פון בלאק: $1",
 	"blockedtext-expiration-time": "אפּלויף פון בלאק: $1",
 	"blockedtext-intended-blockee": "געצילטער אויסשגעפּאַרטער: $1",

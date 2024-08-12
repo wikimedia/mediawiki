@@ -2948,7 +2948,7 @@
 	"newpages-showhide-redirect": "$1 pāradresācijas",
 	"newpages-showhide-registered": "$1 reģistrētos dalībniekus",
 	"blockedtext-made-by": "Bloķēšanu veica $1.",
-	"blockedtext-reason-comment": "Norādītais iemesls bija <em>$1</em>",
+	"blockedtext-reason-comment": "Norādītais iemesls bija <em>$1</em>.",
 	"blockedtext-start-time": "Bloka sākums: $1",
 	"blockedtext-expiration-time": "Bloka beigas: $1",
 	"blockedtext-intended-blockee": "Bija domāts nobloķēt: $1",

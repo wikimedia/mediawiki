@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Song GK"
+		]
+	},
+	"cdx-input-chip-aria-description": "Tekan Tama enti deka edit tauka Buai enti deka muai.",
+	"cdx-dialog-close-button-label": "Tutup",
+	"cdx-label-optional-flag": "(pemilih)",
+	"cdx-message-dismiss-button-label": "Tutup",
+	"cdx-search-input-search-button-label": "Giga",
+	"cdx-table-select-all-label": "Pilih semua baris",
+	"cdx-table-select-row-label": "Pilih baris $1 ari $2",
+	"cdx-table-sort-caption": "$1, ulu tiang enggau butang ulih ditusun.",
+	"cdx-typeahead-search-search-results-label": "Asil pengiga",
+	"cdx-table-pager-button-first-page": "Lambar keterubah",
+	"cdx-table-pager-button-last-page": "Lambar kepenudi",
+	"cdx-table-pager-button-next-page": "Lambar pengudah iya",
+	"cdx-table-pager-button-prev-page": "Lambar sebedau iya",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 baris}}",
+	"cdx-table-pager-items-per-page-default": "Asil per lambar",
+	"cdx-table-pagination-status-message-determinate-long": "Mandangka asil $1-$2 ari $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 ari $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Mandangka asil $1–$2 ari pemayuh iya",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 ari pemayuh iya",
+	"cdx-table-pagination-status-message-indeterminate-final": "Mandangka {{PLURAL:$1|$1 asil}} kepenudi",
+	"cdx-table-pagination-status-message-pending": "Muatka asil..."
+}

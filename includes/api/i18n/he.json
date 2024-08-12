@@ -19,6 +19,7 @@
 			"Strayblues",
 			"Umherirrender",
 			"YaronSh",
+			"מיכי י-ם",
 			"ערן",
 			"שמזן"
 		]
@@ -1476,7 +1477,7 @@
 	"apihelp-stashedit-param-stashedtexthash": "גיבוב של תוכן דף מסליק קודם שישמש במקום זה.",
 	"apihelp-stashedit-param-contentmodel": "מודל התוכן של התוכן החדש.",
 	"apihelp-stashedit-param-contentformat": "תסדיר הסדרת תוכן עבור טקסט הקלט.",
-	"apihelp-stashedit-param-baserevid": "מזהה גסה של גרסת הבסיס.",
+	"apihelp-stashedit-param-baserevid": "מזהה גרסה של גרסת הבסיס.",
 	"apihelp-stashedit-param-summary": "לשנות תקציר.",
 	"apihelp-tag-summary": "הוספה או הסרה של תגים מגרסאות בודדות או רשומות יומן בודדות.",
 	"apihelp-tag-param-rcid": "מזהה שינוי אחרון אחד או יותר שתג יתווסף אליו או יוסר ממנו.",

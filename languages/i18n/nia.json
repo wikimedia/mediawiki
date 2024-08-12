@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Anugrahgori",
 			"Bennylin",
 			"NoiX180",
@@ -566,10 +567,10 @@
 	"previewerrortext": "So zi fasala me edöna te'oroma'ö hadia nibulö'ö.",
 	"blockedtitle": "No teba'agö zangoguna andre",
 	"blockedtext": "<strong>Töi zangoguna ma alamat IP-mö no toba'agö.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\n\nTola ö'oguna'ö \"{{int:emailuser}}\" na no öbe'e email bakha ba [[Special:Preferences|preferensi]] ba lö göi teba'agö ndra'ugö ba wangoguna'ö ya'ia.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
-	"blockedtext-partial": "<strong>No teba'agö döi zangogunamö ma zui nomoro IP-mö ba wamalua da'a. Te tola sa öfalua hadia ia bö'ö, simane famulö'ö fasambua nga'örö.</strong>\n\nTola öfaigi detail womba'agö ba [[Special:MyContributions|kontribusi akun]].\n\n{{int:blockedtext-made-by|$1}}\n\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n*{{int:blockedtext-block-id|$5}}",
+	"blockedtext-partial": "<strong>No teba'agö döi zangogunamö ma zui nomoro IP-mö ba wamalua da'a. Te tola sa öfalua hadia ia bö'ö, simane famulö'ö fasambua nga'örö.</strong>\n\nTola öfaigi detail womba'agö ba [[Special:MyContributions|kontribusi akun]].\n\n{{int:blockedtext-made-by|$1}}\n\n{{int:blockedtext-reason-comment|}}\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n*{{int:blockedtext-block-id|$5}}",
 	"autoblockedtext": "No otomatis teba'agö nomoro IP-mö, börö no i'oguna'ö ia sangoguna bö'ö si no teba'agö $1.\nBörö nibe'e:\n\n:<em>$2</em>.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}} \n\nTola öfa'ohe'ö fitur \"{{int:emailuser}}\" na no öbe'e alamat emailmö ba [[Special:Preferences|preferences]] ba lö niba'agö ndra'ugö ba wangoguna'ö ya'ia.\n\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"systemblockedtext": "No otomatis iba'agö nomoro IP-mö MediaWiki.\nBörö nibe'e:\n\n:<em>$2</em>.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-block-ip|$3}}\n{{int:blockedtext-include-details-queries}}",
-	"blockedtext-tempuser": "<strong>No teba'agö döi zangoguna andrö ma zui nomoro IP-mö.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\n\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
+	"blockedtext-tempuser": "<strong>No teba'agö döi zangoguna andrö ma zui nomoro IP-mö.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\n\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"autoblockedtext-tempuser": "No otomatis teba'agö nomoro IP-mö, börö no i'oguna'ö ia sangoguna bö'ö si no iba'agö $1.\nBörö nibe'e:\n\n:<em>$2</em>.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\n\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"blockednoreason": "lö nibe'e mbörö",
 	"blockedtext-composite": "<strong>No teba'agö döi zangoguna ma zui nomoro IP-mö.</strong>\n\nBörö nibe'e:\n\n:<em>$2</em>.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-longest-block|$6}}\n\n* $5\n\n{{int:blockedtext-block-ip|$3}}\n{{int:blockedtext-include-details-queries}}",
@@ -1031,7 +1032,7 @@
 	"skin-action-delete": "Tibo'ö",
 	"skin-action-move": "Fawu'a",
 	"blockedtext-made-by": "No ibe womba'agö $1.",
-	"blockedtext-reason-comment": "Börönia ya'ia <em>$1</em>",
+	"blockedtext-reason-comment": "Börönia ya'ia <em>$1</em>.",
 	"blockedtext-start-time": "Fomba'agö tebörötaigö: $1",
 	"blockedtext-expiration-time": "Ahori womba'agö: $1",
 	"blockedtext-intended-blockee": "Niba'agö: $1",

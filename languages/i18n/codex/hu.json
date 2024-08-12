@@ -12,5 +12,17 @@
 	"cdx-table-select-all-label": "Az összes sor kijelölése",
 	"cdx-table-select-row-label": "A(z) $1. sor kijelölése $2 sorból",
 	"cdx-table-sort-caption": "$1, a gombbal rendelkező oszlopfejlécek rendezhetők.",
-	"cdx-typeahead-search-search-results-label": "Keresési eredmények"
+	"cdx-typeahead-search-search-results-label": "Keresési eredmények",
+	"cdx-table-pager-button-first-page": "Első oldal",
+	"cdx-table-pager-button-last-page": "Utolsó oldal",
+	"cdx-table-pager-button-next-page": "Következő oldal",
+	"cdx-table-pager-button-prev-page": "Előző oldal",
+	"cdx-table-pager-items-per-page-current": "$1 {{PLURAL:$1|sor}}",
+	"cdx-table-pager-items-per-page-default": "Találatok oldalanként",
+	"cdx-table-pagination-status-message-determinate-long": "$1–$2. találat megjelenítve a(z) $3 találatból",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2/$3",
+	"cdx-table-pagination-status-message-indeterminate-long": "$1–$2. találat megjelenítve a sok találatból",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2/sok",
+	"cdx-table-pagination-status-message-indeterminate-final": "Az utolsó $1 {{PLURAL:$1|találat}} megjelenítve",
+	"cdx-table-pagination-status-message-pending": "Találatok betöltése…"
 }

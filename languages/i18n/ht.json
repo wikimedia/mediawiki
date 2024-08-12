@@ -1146,7 +1146,7 @@
 	"skin-action-delete": "Efase",
 	"skin-action-move": "Chanje non",
 	"blockedtext-made-by": "Blòk la fèt pa $1.",
-	"blockedtext-reason-comment": "Rezon yo bay la se <em>$1</em>",
+	"blockedtext-reason-comment": "Rezon yo bay la se <em>$1</em>.",
 	"blockedtext-start-time": "Kòmansman blòk : $1",
 	"blockedtext-expiration-time": "Ekspirasyon blòk : $1",
 	"blockedtext-intended-blockee": "Kont la ki te sipoze bloke : $1",

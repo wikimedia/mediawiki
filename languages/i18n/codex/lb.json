@@ -1,10 +1,24 @@
 {
 	"@metadata": {
 		"authors": [
+			"Robby",
 			"Volvox"
 		]
 	},
 	"cdx-dialog-close-button-label": "Zoumaachen",
+	"cdx-label-optional-flag": "(fakultativ)",
 	"cdx-message-dismiss-button-label": "Zoumaachen",
-	"cdx-search-input-search-button-label": "Sichen"
+	"cdx-search-input-search-button-label": "Sichen",
+	"cdx-table-select-all-label": "All Reien auswielen",
+	"cdx-table-select-row-label": "Wielt d'Rei $1 vun $2",
+	"cdx-typeahead-search-search-results-label": "Resultater vum Sichen",
+	"cdx-table-pager-button-first-page": "Éischt Säit",
+	"cdx-table-pager-button-last-page": "Lescht Säit",
+	"cdx-table-pager-button-next-page": "Nächst Säit",
+	"cdx-table-pager-button-prev-page": "Vireg Säit",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 Zeil|$1 Zeilen}}",
+	"cdx-table-pager-items-per-page-default": "Resultater pro Säit",
+	"cdx-table-pagination-status-message-determinate-short": "$1-$2 vu(n) $3",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1-$2 vu villen",
+	"cdx-table-pagination-status-message-pending": "Resultater gi gelueden ..."
 }

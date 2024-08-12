@@ -1830,7 +1830,7 @@
 	"skin-action-delete": "Wegdoon",
 	"skin-action-move": "Schuven",
 	"blockedtext-made-by": "De Sparr worr makt bi $1",
-	"blockedtext-reason-comment": "De geeven Grund is <em>$1</em>",
+	"blockedtext-reason-comment": "De geeven Grund is <em>$1</em>.",
 	"blockedtext-start-time": "Sparr beginnt: $1",
 	"blockedtext-expiration-time": "Sparr end: $1",
 	"blockedtext-intended-blockee": "Sparr bedrifft: $1",

@@ -2455,7 +2455,7 @@
 	"newpages-showhide-redirect": "$1 દિશાનિર્દેશો",
 	"newpages-showhide-registered": "$1 નોંધાયેલા સભ્યો",
 	"blockedtext-made-by": "આ પ્રતિબંધ $1 વડે મૂકવામાં આવ્યો હતો.",
-	"blockedtext-reason-comment": "કારણ <em>$1</em> અપાયું હતું",
+	"blockedtext-reason-comment": "કારણ <em>$1</em> અપાયું હતું.",
 	"blockedtext-start-time": "પ્રતિબંધની શરૂઆત: $1",
 	"blockedtext-expiration-time": "પ્રતિબંધની સમાપ્તિ: $1",
 	"blockedtext-intended-blockee": "ઇચ્છિત પ્રતિબંધિત: $1",

@@ -3040,7 +3040,7 @@
 	"newpages-showhide-redirect": "Gönükdirmeleri $1",
 	"newpages-showhide-registered": "Hasaba alnan ulanyjylary $1",
 	"blockedtext-made-by": "Blok $1 tarapyndan edildi.",
-	"blockedtext-reason-comment": "Berilen sebäp <em>$1</em>",
+	"blockedtext-reason-comment": "Berilen sebäp <em>$1</em>.",
 	"blockedtext-start-time": "Blokyň başlangyjy: $1",
 	"blockedtext-expiration-time": "Blokyň möhleti: $1",
 	"blockedtext-intended-blockee": "Göz öňünde tutulan bloklaýjy: $1",

@@ -871,7 +871,7 @@
 	"skin-view-edit-local": "ແກ້ໄຂຄຳອະທິບາຍທ້ອງຖິ່ນ",
 	"skin-action-protect": "ປົກປ້ອງ",
 	"blockedtext-made-by": "ຖືກບລັອກໂດຍ $1",
-	"blockedtext-reason-comment": "ເຫດຜົນທີ່ລະບຸແມ່ນ <em>$1</em>",
+	"blockedtext-reason-comment": "ເຫດຜົນທີ່ລະບຸແມ່ນ <em>$1</em>.",
 	"blockedtext-start-time": "ເວລາເລີ່ມຕົ້ນຂອງການບລັອກ: $1",
 	"blockedtext-expiration-time": "ເວລາໝົດອາຍຸຂອງການບລັອກ: $1",
 	"blockedtext-expiration-longest-block": "ການໝົດອາຍຸຂອງບລັອກທີ່ຍາວທີ່ສຸດ: $1",

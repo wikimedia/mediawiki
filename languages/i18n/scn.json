@@ -2921,7 +2921,7 @@
 	"skin-action-delete": "Cancella",
 	"skin-action-move": "Sposta",
 	"blockedtext-made-by": "Lu bloccu fu effettuatu di $1.",
-	"blockedtext-reason-comment": "La mutivazzioni furnuta è <em>$1</em>",
+	"blockedtext-reason-comment": "La mutivazzioni furnuta è <em>$1</em>.",
 	"blockedtext-start-time": "Nizziu dû bloccu: $1",
 	"blockedtext-expiration-time": "Scadenza dû bloccu: $1",
 	"blockedtext-contact-blocker-admin": "Poi cuntattari $1 o n'àutra/u [[{{MediaWiki:Grouppage-sysop}}|amministraturi/trici]] pi discùtiri dû bloccu.",

@@ -2799,7 +2799,7 @@
 	"skin-action-delete": "Strik",
 	"skin-action-move": "Fersküüw",
 	"blockedtext-made-by": "Det sper as faan $1 maaget wurden.",
-	"blockedtext-reason-comment": "Di grünj as <em>$1</em>",
+	"blockedtext-reason-comment": "Di grünj as <em>$1</em>.",
 	"blockedtext-start-time": "At sper begant: $1",
 	"blockedtext-expiration-time": "At sper lääpt uf: $1",
 	"blockedtext-intended-blockee": "At sper bedraapt: $1",

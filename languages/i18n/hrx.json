@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"DannyS712",
 			"Fitoschido",
 			"Ghiutun",
@@ -327,7 +328,7 @@
 	"createacct-reason": "Begrindung (effentlich protokolleerd)",
 	"createacct-reason-ph": "Waroom erstellst du en annres Benutzerkonto?",
 	"createacct-submit": "Dein Benutzerkonto erstelle",
-	"createacct-another-submit": "En anner Benutzerkonto erstelle",
+	"createacct-another-submit": "Benutzerkonto erstelle",
 	"createacct-benefit-heading": "{{SITENAME}} weard von Mensche wie dir geschaff.",
 	"createacct-benefit-body1": "{{PLURAL:$1|Bearbeitung|Bearbeitunge}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|Seit|Seite}}",
@@ -2388,7 +2389,7 @@
 	"skin-action-delete": "Lösche",
 	"skin-action-move": "Verschiebe",
 	"blockedtext-made-by": "Die Sperr waar fun $1 dorrichgefeerd.",
-	"blockedtext-reason-comment": "De aangebbe Grund is <em>$1</em>",
+	"blockedtext-reason-comment": "De aangebbe Grund is <em>$1</em>.",
 	"blockedtext-start-time": "Aanfang fum Abhallung: $1",
 	"blockedtext-expiration-time": "Ablaaf fum Abhallung: $1",
 	"blockedtext-intended-blockee": "Abhallung bedreffd: $1",

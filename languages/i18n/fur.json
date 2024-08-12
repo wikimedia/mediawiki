@@ -1218,7 +1218,7 @@
 	"skin-action-delete": "Elimine",
 	"skin-action-move": "Môf",
 	"blockedtext-made-by": "Il bloc al è stât fat di $1.",
-	"blockedtext-reason-comment": "Il motîf al è <em>$1</em>",
+	"blockedtext-reason-comment": "Il motîf al è <em>$1</em>.",
 	"blockedtext-start-time": "Il bloc al tache: $1",
 	"blockedtext-expiration-time": "Il bloc al finis: $1",
 	"blockedtext-intended-blockee": "Destinatari dal bloc: $1",

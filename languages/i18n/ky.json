@@ -1647,7 +1647,7 @@
 	"skin-action-delete": "Өчүрүү",
 	"skin-action-move": "Аталышын өзгөртүү",
 	"blockedtext-made-by": "Бөгөттөө $1 тарабынан кылынган.",
-	"blockedtext-reason-comment": "Бөгөттөөнүн негиздемеси: <em>$1</em>",
+	"blockedtext-reason-comment": "Бөгөттөөнүн негиздемеси: <em>$1</em>.",
 	"blockedtext-start-time": "Бөгөттөөнүн башталышы: $1",
 	"blockedtext-expiration-time": "Бөгөттөөнүн аякташы: $1",
 	"blockedtext-intended-blockee": "Бөгөттөөнүн максаты: $1",

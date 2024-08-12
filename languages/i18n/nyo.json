@@ -578,7 +578,7 @@
 	"paramvalidator-help-type-user-subtype-name": "ibara ly'omukozesa",
 	"skin-action-delete": "Ita",
 	"blockedtext-made-by": "Okutanga kuhangwa $1.",
-	"blockedtext-reason-comment": "Obulyo obuhairwe nubwo <em>$1</em>",
+	"blockedtext-reason-comment": "Obulyo obuhairwe nubwo <em>$1</em>.",
 	"blockedtext-start-time": "Okubanza kw'okutanga: $1",
 	"blockedtext-expiration-time": "Okuhwa kw'okutanga: $1",
 	"blockedtext-intended-blockee": "Omutangwa: $1",

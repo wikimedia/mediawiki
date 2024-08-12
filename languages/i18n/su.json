@@ -3038,7 +3038,7 @@
 	"skin-action-delete": "Hapus",
 	"skin-action-move": "Pindahkeun",
 	"blockedtext-made-by": "Blok ieu dilakukeun ku $1 .",
-	"blockedtext-reason-comment": "Alesan anu dibikeun nyaéta <em>$1</em>",
+	"blockedtext-reason-comment": "Alesan anu dibikeun nyaéta <em>$1</em>.",
 	"blockedtext-start-time": "Mimiti blok: $1",
 	"blockedtext-expiration-time": "Kadaluwarsa blok: $1",
 	"blockedtext-intended-blockee": "Dimaksudkeun blockee: $1",

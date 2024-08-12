@@ -202,6 +202,7 @@
 	"prefs-help-tokenmanagement": "Dir kënnt de geheime Schlëssel fir Äre Benotzerkont gesinn an zrécksetzen, mat deem een op de Webfeed vun Ärer Iwwerwaachungslëscht zougräife kann. Jiddereen deen de Schlëssel kennt kann Är Iwwerwaachungslëscht liesen, dofir deelt en net mat Aneren.",
 	"prefs-searchoptions": "Sichen",
 	"prefs-searchmisc": "Allgemeng",
+	"searchlimit-label": "Zuel vun de Sichresultater fir op all Säit ze weisen:",
 	"searchlimit-help": "Maximal Zuel: $1",
 	"prefs-advancedsearchoptions": "Méi Optiounen",
 	"prefs-reset-intro": "Dir kënnt dës Säit benotze fir Är Astellungen zréck op d'Standard-Astllungen ze setzen.\nDëst kann net réckgängeg gemaach ginn.",

@@ -2236,7 +2236,7 @@
 	"newpages-showhide-redirect": "Baǵdarlawlardı $1",
 	"newpages-showhide-registered": "Registraciyadan ótken paydalanıwshılardı $1",
 	"blockedtext-made-by": "Blok $1 paydalanıwshı tárepinen ornatıldı.",
-	"blockedtext-reason-comment": "Kórsetilgen sebep <em>$1</em>",
+	"blockedtext-reason-comment": "Kórsetilgen sebep <em>$1</em>.",
 	"blockedtext-start-time": "Bloktıń baslanıw waqtı: $1",
 	"blockedtext-expiration-time": "Bloktıń tamamlanıw waqtı: $1",
 	"blockedtext-intended-blockee": "Nıshandaǵı bloklanıwshı: $1",

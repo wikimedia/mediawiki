@@ -1227,7 +1227,7 @@
 	"skin-action-delete": "مِٹٲیو",
 	"skin-action-move": "پکناوُن",
 	"blockedtext-made-by": "بٕنٛدِش چھےٚ $1 بنٲومٕژ.",
-	"blockedtext-reason-comment": "دِنہٕ آمُت وَجہ چھُ <em>$1</em>",
+	"blockedtext-reason-comment": "دِنہٕ آمُت وَجہ چھُ <em>$1</em>.",
 	"blockedtext-start-time": "بٕنٛدِش ہِیوٚنٛد آغاز: $1",
 	"blockedtext-expiration-time": "بٕنٛدِش ہِیوٚنٛد اختتام: $1",
 	"blockedtext-intended-blockee": "بٕنٛدِش ہِیوٚنٛد اِرادٕ: $1",

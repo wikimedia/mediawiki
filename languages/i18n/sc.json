@@ -1474,7 +1474,7 @@
 	"skin-action-delete": "Burra",
 	"skin-action-move": "Move",
 	"blockedtext-made-by": "Su blocu est istadu fatu dae $1.",
-	"blockedtext-reason-comment": "Sa motivatzione frunida est <em>$1</em>",
+	"blockedtext-reason-comment": "Sa motivatzione frunida est <em>$1</em>.",
 	"blockedtext-start-time": "Incumintzu de su blocu: $1",
 	"blockedtext-expiration-time": "Iscadèntzia de su blocu: $1",
 	"blockedtext-intended-blockee": "Destinatàriu de su blocu: $1",
