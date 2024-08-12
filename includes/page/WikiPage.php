@@ -2677,7 +2677,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 			return $services->getTitleFactory()->newTitleArrayFromResult( new FakeResultWrapper( [] ) );
 		}
 
-		$dbr = $services->getDBLoadBalancer()->getMaintenanceConnectionRef( DB_REPLICA );
+		$dbr = $services->getConnectionProvider()->getReplicaDatabase();
 		$res = $dbr->newSelectQueryBuilder()
 			->select( [ 'page_title' => 'cl_to', 'page_namespace' => (string)NS_CATEGORY ] )
 			->from( 'categorylinks' )
