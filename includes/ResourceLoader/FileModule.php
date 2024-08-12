@@ -1025,6 +1025,7 @@ class FileModule extends Module {
 				/* $swapLtrRtlInURL = */ true,
 				/* $swapLeftRightInURL = */ false
 			);
+			$this->hasGeneratedStyles = true;
 		}
 
 		$localDir = dirname( $localPath );
