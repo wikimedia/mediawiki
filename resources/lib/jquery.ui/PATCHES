@@ -48,3 +48,8 @@ themes/smoothness/jquery.ui.core.css:
              Backport of upstream change released in jQuery UI v1.10.1
              - http://bugs.jqueryui.com/ticket/8442
              - https://github.com/jquery/jquery-ui/commit/cb42ee7ccd
+
+
+themes/smooothness/jquery.ui.dialog.css:
+* I6c9544d7e Fix jQuery dialog placement in RTL
+             https://phabricator.wikimedia.org/T344467
