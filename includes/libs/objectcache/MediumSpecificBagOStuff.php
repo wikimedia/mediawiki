@@ -173,16 +173,6 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 */
 	abstract protected function doGet( $key, $flags = 0, &$casToken = null );
 
-	/**
-	 * Set an item
-	 *
-	 * @param string $key
-	 * @param mixed $value
-	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
-	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
-	 *
-	 * @return bool Success
-	 */
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		$entry = $this->makeValueOrSegmentList( $key, $value, $exptime, $flags, $ok );
 
@@ -202,20 +192,8 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 */
 	abstract protected function doSet( $key, $value, $exptime = 0, $flags = 0 );
 
-	/**
-	 * Delete an item
-	 *
-	 * For large values written using WRITE_ALLOW_SEGMENTS, this only deletes the main
-	 * segment list key unless WRITE_PRUNE_SEGMENTS is in the flags. While deleting the segment
-	 * list key has the effect of functionally deleting the key, it leaves unused blobs in cache.
-	 *
-	 * @param string $key
-	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
-	 *
-	 * @return bool True if the item was deleted or not found, false on failure
-	 */
 	public function delete( $key, $flags = 0 ) {
-		if ( !$this->fieldHasFlags( $flags, self::WRITE_PRUNE_SEGMENTS ) ) {
+		if ( !$this->fieldHasFlags( $flags, self::WRITE_ALLOW_SEGMENTS ) ) {
 			return $this->doDelete( $key, $flags );
 		}
 
@@ -236,7 +214,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 			$mainValue->{SerializedValueContainer::SEGMENTED_HASHES}
 		);
 
-		return $this->deleteMulti( $orderedKeys, $flags & ~self::WRITE_PRUNE_SEGMENTS );
+		return $this->deleteMulti( $orderedKeys, $flags & ~self::WRITE_ALLOW_SEGMENTS );
 	}
 
 	/**
@@ -771,20 +749,9 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		return $res;
 	}
 
-	/**
-	 * Batch deletion
-	 *
-	 * This does not support WRITE_ALLOW_SEGMENTS to avoid excessive read I/O
-	 *
-	 * @param string[] $keys List of keys
-	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
-	 *
-	 * @return bool Success
-	 * @since 1.33
-	 */
 	public function deleteMulti( array $keys, $flags = 0 ) {
-		if ( $this->fieldHasFlags( $flags, self::WRITE_PRUNE_SEGMENTS ) ) {
-			throw new InvalidArgumentException( __METHOD__ . ' got WRITE_PRUNE_SEGMENTS' );
+		if ( $this->fieldHasFlags( $flags, self::WRITE_ALLOW_SEGMENTS ) ) {
+			throw new InvalidArgumentException( __METHOD__ . ' got WRITE_ALLOW_SEGMENTS' );
 		}
 
 		return $this->doDeleteMulti( $keys, $flags );

@@ -430,7 +430,7 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 			$this->cache->set( $key, "@$value", 10, BagOStuff::WRITE_ALLOW_SEGMENTS );
 			$this->assertEquals( "@$value", $this->cache->get( $key ), "get $case" );
 			$this->assertTrue(
-				$this->cache->delete( $key, BagOStuff::WRITE_PRUNE_SEGMENTS ),
+				$this->cache->delete( $key, BagOStuff::WRITE_ALLOW_SEGMENTS ),
 				"prune $case"
 			);
 			$this->assertFalse( $this->cache->get( $key ), "pruned $case" );

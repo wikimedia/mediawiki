@@ -120,8 +120,11 @@ abstract class BagOStuff implements
 	public const WRITE_CACHE_ONLY = 8;
 	/** Allow partitioning of the value if it is a large string */
 	public const WRITE_ALLOW_SEGMENTS = 16;
-	/** Delete all the segments if the value is partitioned */
-	public const WRITE_PRUNE_SEGMENTS = 32;
+	/**
+	 * Delete all the segments if the value is partitioned
+	 * @deprecated since 1.43 Use WRITE_ALLOW_SEGMENTS instead.
+	 */
+	public const WRITE_PRUNE_SEGMENTS = self::WRITE_ALLOW_SEGMENTS;
 	/**
 	 * If supported, do not block on write operation completion; instead, treat writes as
 	 * succesful based on whether they could be buffered. When using this flag with methods
@@ -242,7 +245,7 @@ abstract class BagOStuff implements
 	 * @param mixed $value
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
-	 *
+	 *  If setting WRITE_ALLOW_SEGMENTS, remember to also set it in any delete() calls.
 	 * @return bool Success
 	 */
 	abstract public function set( $key, $value, $exptime = 0, $flags = 0 );
@@ -250,13 +253,17 @@ abstract class BagOStuff implements
 	/**
 	 * Delete an item if it exists
 	 *
-	 * For large values written using WRITE_ALLOW_SEGMENTS, this only deletes the main
-	 * segment list key unless WRITE_PRUNE_SEGMENTS is in the flags. While deleting the segment
-	 * list key has the effect of functionally deleting the key, it leaves unused blobs in cache.
+	 * For large values set with WRITE_ALLOW_SEGMENTS, this only deletes the placeholder
+	 * key with the segment list. To delete the underlying blobs, include WRITE_ALLOW_SEGMENTS
+	 * in the flags for delete() as well. While deleting the segment list key has the effect of
+	 * functionally deleting the key, it leaves unused blobs in storage.
+	 *
+	 * The reason that this is not done automatically, is that to delete underlying blobs,
+	 * requires first fetching the current segment list. Given that 99% of keys don't use
+	 * WRITE_ALLOW_SEGMENTS, this would be wasteful.
 	 *
 	 * @param string $key
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
-	 *
 	 * @return bool Success (item deleted or not found)
 	 */
 	abstract public function delete( $key, $flags = 0 );
@@ -427,7 +434,6 @@ abstract class BagOStuff implements
 	 *
 	 * @param string[] $keys List of keys
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
-	 *
 	 * @return bool Success (items deleted and/or not found)
 	 * @since 1.33
 	 */
