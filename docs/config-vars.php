@@ -3360,6 +3360,12 @@ $wgStatsFormat = null;
 $wgStatsPrefix = null;
 
 /**
+ * Config variable stub for the OpenTelemetryConfig setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::OpenTelemetryConfig
+ */
+$wgOpenTelemetryConfig = null;
+
+/**
  * Config variable stub for the PageInfoTransclusionLimit setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::PageInfoTransclusionLimit
  */

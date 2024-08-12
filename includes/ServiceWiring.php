@@ -41,6 +41,8 @@
  * @file
  */
 
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\HttpFactory;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Auth\AuthManager;
@@ -244,6 +246,7 @@ use MediaWiki\Watchlist\WatchedItemQueryService;
 use MediaWiki\Watchlist\WatchedItemStore;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\WikiMap\WikiMap;
+use Psr\Http\Client\ClientInterface;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\DependencyStore\SqlModuleDependencyStore;
 use Wikimedia\EventRelayer\EventRelayerGroup;
@@ -268,6 +271,13 @@ use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\PrefixingStatsdDataFactoryProxy;
 use Wikimedia\Stats\StatsCache;
 use Wikimedia\Stats\StatsFactory;
+use Wikimedia\Telemetry\Clock;
+use Wikimedia\Telemetry\NoopTracer;
+use Wikimedia\Telemetry\OtlpHttpExporter;
+use Wikimedia\Telemetry\ProbabilisticSampler;
+use Wikimedia\Telemetry\Tracer;
+use Wikimedia\Telemetry\TracerInterface;
+use Wikimedia\Telemetry\TracerState;
 use Wikimedia\UUID\GlobalIdGenerator;
 use Wikimedia\WRStats\BagOStuffStatsStore;
 use Wikimedia\WRStats\WRStatsFactory;
@@ -2362,6 +2372,30 @@ return [
 		return $services->getService( '_MediaWikiTitleCodec' );
 	},
 
+	'Tracer' => static function ( MediaWikiServices $services ): TracerInterface {
+		$otelConfig = $services->getMainConfig()->get( MainConfigNames::OpenTelemetryConfig );
+		if ( $otelConfig === null ) {
+			return new NoopTracer();
+		}
+
+		$tracerState = TracerState::getInstance();
+		$exporter = new OtlpHttpExporter(
+			$services->getService( '_TracerHTTPClient' ),
+			new HttpFactory(),
+			LoggerFactory::getInstance( 'tracing' ),
+			$otelConfig['endpoint'],
+			$otelConfig['serviceName'],
+			wfHostname()
+		);
+
+		return new Tracer(
+			new Clock(),
+			new ProbabilisticSampler( $otelConfig['samplingProbability'] ),
+			$exporter,
+			$tracerState
+		);
+	},
+
 	'TrackingCategories' => static function ( MediaWikiServices $services ): TrackingCategories {
 		return new TrackingCategories(
 			new ServiceOptions(
@@ -2742,6 +2776,10 @@ return [
 
 	'_SqlBlobStore' => static function ( MediaWikiServices $services ): SqlBlobStore {
 		return $services->getBlobStoreFactory()->newSqlBlobStore();
+	},
+
+	'_TracerHTTPClient' => static function (): ClientInterface {
+		return new Client( [ 'http_errors' => false ] );
 	},
 
 	'_UserBlockCommandFactory' => static function ( MediaWikiServices $services ): UserBlockCommandFactory {

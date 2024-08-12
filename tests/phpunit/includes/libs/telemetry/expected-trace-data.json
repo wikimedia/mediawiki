@@ -1,0 +1,57 @@
+{
+	"resourceSpans": [
+		{
+			"resource": {
+				"attributes": [
+					{
+						"key": "service.name",
+						"value": {
+							"stringValue": "test-service"
+						}
+					},
+					{
+						"key": "host.name",
+						"value": {
+							"stringValue": "<HOST-NAME>"
+						}
+					}
+				]
+			},
+			"scopeSpans": [
+				{
+					"scope": {
+						"name": "org.wikimedia.telemetry"
+					},
+					"spans": [
+						{
+							"traceId": "<TRACE-ID>",
+							"parentSpanId": "<SPAN-1-ID>",
+							"spanId": "<SPAN-2-ID>",
+							"name": "child",
+							"startTimeUnixNano": 5481675965596,
+							"endTimeUnixNano": 5481675965846,
+							"kind": 1,
+							"attributes": [
+								{
+									"key": "some-key",
+									"value": {
+										"stringValue": "test"
+									}
+								}
+							]
+						},
+						{
+							"traceId": "<TRACE-ID>",
+							"parentSpanId": null,
+							"spanId": "<SPAN-1-ID>",
+							"name": "test",
+							"startTimeUnixNano": 5481675965496,
+							"endTimeUnixNano": 5481675965920,
+							"kind": 2
+						}
+					]
+				}
+			]
+		}
+	]
+}
