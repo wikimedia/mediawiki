@@ -96,8 +96,9 @@ class MWEval extends Maintenance {
 			&& Maintenance::posix_isatty( 0 /*STDIN*/ );
 
 		if ( $__useReadline ) {
-			$__historyFile = isset( $_ENV['HOME'] ) ?
-				"{$_ENV['HOME']}/.mweval_history" : ( MW_INSTALL_PATH . "/maintenance/.mweval_history" );
+			$home = getenv( 'HOME' );
+			$__historyFile = $home ?
+				"$home/.mweval_history" : ( MW_INSTALL_PATH . "/maintenance/.mweval_history" );
 			readline_read_history( $__historyFile );
 		} else {
 			$__historyFile = null;
