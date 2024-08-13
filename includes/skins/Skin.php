@@ -1294,6 +1294,7 @@ abstract class Skin extends ContextSource {
 					'hreflang' => $ilInterwikiCodeBCP47,
 					'data-title' => $languageLinkTitleText,
 					'data-language-autonym' => $ilLangName,
+					'data-language-local-name' => $ilLangLocalName,
 				];
 				$hookRunner->onSkinTemplateGetLanguageLink(
 					$languageLink, $languageLinkTitle, $this->getTitle(), $this->getOutput()
