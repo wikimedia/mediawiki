@@ -1665,7 +1665,18 @@ class SkinTemplate extends Skin {
 	): array {
 		$isSpecialContributeShowable = $this->isSpecialContributeShowable();
 		$subpage = $userName ?? false;
-		if ( $isSpecialContributeShowable ) {
+		$user = $this->getUser();
+		// If the "Contribute" page is showable and the user is anon. or has no edit count,
+		// direct them to the "Contribute" page instead of the "Contributions" or "Mycontributions" pages.
+		// Explanation:
+		// a. For logged-in users: In wikis where the "Contribute" page is enabled, we only want
+		// to navigate logged-in users to the "Contribute", when they have done no edits. Otherwise, we
+		// want to navigate them to the "Mycontributions" page to easily access their edits/contributions.
+		// Currently, the "Contribute" page is used as target for all logged-in users.
+		// b. For anon. users: In wikis where the "Contribute" page is enabled, we still navigate the
+		// anonymous users to the "Contribute" page.
+		// Task: T369041
+		if ( $isSpecialContributeShowable && (int)$user->getEditCount() === 0 ) {
 			$href = SkinComponentUtils::makeSpecialUrlSubpage(
 				'Contribute',
 				false
