@@ -843,10 +843,11 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$expirationDays = ceil( $expiration / ( 3600 * 24 ) );
 		$secureLoginLink = '';
 		if ( $this->mSecureLoginUrl ) {
-			$secureLoginLink = Html::element( 'a', [
+			$secureLoginLink = Html::rawElement( 'a', [
 				'href' => $this->mSecureLoginUrl,
 				'class' => 'mw-login-flush-right mw-secure',
-			], $this->msg( 'userlogin-signwithsecure' )->text() );
+			], Html::element( 'span', [ 'class' => 'mw-secure--icon' ] ) .
+				$this->msg( 'userlogin-signwithsecure' )->parse() );
 		}
 		$usernameHelpLink = '';
 		if ( !$this->msg( 'createacct-helpusername' )->isDisabled() ) {

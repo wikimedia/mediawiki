@@ -19,9 +19,14 @@
 }
 
 .mw-htmlform .mw-secure {
-	background: url( images/icon-lock.png ) no-repeat left center;
-	margin: 0 0 0 1px;
 	padding: 0 0 0 11px;
+	display: flex;
+	align-items: center;
+
+	&--icon {
+		padding-left: 4px;
+		.cdx-mixin-css-icon( @cdx-icon-lock, @color-subtle, @size-icon-x-small );
+	}
 }
 
 #languagelinks {
