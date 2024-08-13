@@ -117,4 +117,11 @@ interface MetricInterface {
 	 * @return self|NullMetric
 	 */
 	public function fresh();
+
+	/**
+	 * Indicates the metric instance is used in a Histogram
+	 *
+	 * @return bool
+	 */
+	public function isHistogram(): bool;
 }

@@ -39,6 +39,11 @@ class StatsdFormatter implements FormatterInterface {
 			$prefix .= ".{$metric->getComponent()}";
 		}
 
+		// Metrics used in HistogramMetrics are not compatible with StatsD
+		if ( $metric->isHistogram() ) {
+			return [];
+		}
+
 		foreach ( $metric->getSamples() as $sample ) {
 			// dot-separate prefix, component, name, and label values `prefix.component.name.value1.value2`
 			$stat = implode( '.', array_merge( [ $prefix, $metric->getName() ], $sample->getLabelValues() ) );
