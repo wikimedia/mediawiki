@@ -899,7 +899,7 @@ abstract class Maintenance {
 		}
 
 		$this->showHelp();
-		die( 1 );
+		$this->fatalError( '' );
 	}
 
 	/**
