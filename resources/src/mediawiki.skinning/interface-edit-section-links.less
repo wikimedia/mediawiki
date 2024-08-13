@@ -1,4 +1,5 @@
 @import 'mediawiki.mixins.less';
+@import 'mediawiki.skin.variables.less';
 
 .mw-editsection {
 	.user-select( none );
@@ -14,4 +15,9 @@
 	/* Avoid affecting the height of the heading */
 	line-height: 0;
 	unicode-bidi: isolate;
+}
+
+.mw-editsection-bracket,
+.mw-editsection-divider {
+	color: @color-subtle;
 }
