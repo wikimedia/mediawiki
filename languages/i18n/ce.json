@@ -996,7 +996,7 @@
 	"searchall": "массо",
 	"showingresultsinrange": "Лахахь гайтина {{PLURAL:$1|<strong>1</strong> хилам}} диапазонехь <strong>$2</strong> тӀера <strong>$3</strong> кхаччалц.",
 	"search-showingresults": "{{PLURAL:$4|Карийна <strong>$1</strong> — цхьаъ агӀо|И дош карийна <strong>$3</strong> агӀонашкахь, царех гойту $2 агӀо}}",
-	"search-nonefound": "Хаттарах терра цхьа а хӀума ца карийна.",
+	"search-nonefound": "Цу лехаман цхьа а жамӀ дац.",
 	"search-nonefound-thiswiki": "Хаттамца догӀуш долу жамӀаш ца карийна.",
 	"powersearch-legend": "Шуьйра лахар",
 	"powersearch-ns": "ЦӀерийн меттигашкахь лахар:",
