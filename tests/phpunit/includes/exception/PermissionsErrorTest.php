@@ -2,6 +2,7 @@
 
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\PermissionStatus;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \PermissionsError
@@ -32,8 +33,19 @@ class PermissionsErrorTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testConstruction( $permission, $errors, $expected ) {
 		$e = new PermissionsError( $permission, $errors );
+		$et = TestingAccessWrapper::newFromObject( $e );
+
+		$this->expectDeprecationAndContinue( '/Use of PermissionsError::\\$permission/' );
 		$this->assertEquals( $permission, $e->permission );
-		$this->assertStatusMessagesExactly( $expected, $e->status );
+
+		$this->assertStatusMessagesExactly( $expected, $et->status );
+
+		$this->expectDeprecationAndContinue( '/Use of PermissionsError::\\$errors/' );
+		$this->assertArrayEquals( $expected->toLegacyErrorArray(), $e->errors );
+
+		// Test the deprecated public property setter
+		$e->errors = $e->errors;
+		$this->assertStatusMessagesExactly( $expected, $et->status );
 	}
 
 	public static function provideInvalidConstruction() {
