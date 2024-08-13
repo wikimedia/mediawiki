@@ -1,0 +1,39 @@
+/* Styles for collapsible lists of templates used and hidden categories */
+@import 'mediawiki.skin.variables.less';
+
+.mw-editfooter-toggler {
+	cursor: pointer;
+
+	p:first-child {
+		display: flex;
+		align-items: center;
+
+		.mw-editfooter-toggler--icon {
+			margin-right: 4px;
+			.cdx-mixin-css-icon( @cdx-icon-down-triangle, @color-disabled, @size-icon-x-small );
+			transition: transform 250ms ease;
+
+			.mw-editfooter-toggler-collapsed& {
+				[ dir='ltr' ] & {
+					transform: rotate( -90deg );
+				}
+
+				[ dir='rtl' ] & {
+					transform: rotate( 90deg );
+				}
+			}
+		}
+	}
+}
+
+.mw-editfooter-list {
+	margin-bottom: 1em;
+	margin-left: 2.5em;
+}
+
+/* Show/hide animation is incorrect if the table has a margin set. Extra
+ * ".wikitable" is needed in the selector for CSS specificity. */
+/* stylelint-disable-next-line selector-class-pattern */
+.wikitable.preview-limit-report {
+	margin: 0;
+}
