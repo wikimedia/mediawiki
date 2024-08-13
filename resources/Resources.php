@@ -1942,6 +1942,7 @@ return [
 			'rcfilters-state-message-subset',
 			'rcfilters-state-message-fullcoverage',
 			'rcfilters-filter-excluded',
+			'rcfilters-tag-help',
 			'rcfilters-tag-prefix-namespace',
 			'rcfilters-tag-prefix-namespace-inverted',
 			'rcfilters-tag-prefix-tags',

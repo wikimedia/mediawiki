@@ -58,6 +58,19 @@ ItemMenuOptionWidget = function MwRcfiltersUiItemMenuOptionWidget(
 		);
 	}
 
+	this.helpLink = null;
+	if ( this.itemModel.getHelpLink() ) {
+		this.helpLink = new OO.ui.ButtonWidget( {
+			icon: 'helpNotice',
+			framed: false,
+			title: mw.msg( 'rcfilters-tag-help', this.itemModel.getLabel() ),
+			href: this.itemModel.getHelpLink(),
+			target: '_blank'
+		} );
+		// Prevent clicks on the help link from toggling the option
+		this.helpLink.$button.on( 'mousedown', ( e ) => e.stopPropagation() );
+	}
+
 	this.highlightButton = new FilterItemHighlightButton(
 		this.controller,
 		this.itemModel,
@@ -108,6 +121,13 @@ ItemMenuOptionWidget = function MwRcfiltersUiItemMenuOptionWidget(
 				)
 		);
 
+	if ( this.helpLink ) {
+		$widgetRow.find( '.mw-rcfilters-ui-row' ).append(
+			$( '<div>' )
+				.addClass( 'mw-rcfilters-ui-cell mw-rcfilters-ui-itemMenuOptionWidget-helpLink' )
+				.append( this.helpLink.$element )
+		);
+	}
 	if ( !OO.ui.isMobile() ) {
 		$widgetRow.find( '.mw-rcfilters-ui-row' ).append(
 			$( '<div>' )
