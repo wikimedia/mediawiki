@@ -123,8 +123,9 @@ class MwSql extends Maintenance {
 			function_exists( 'readline_add_history' ) &&
 			Maintenance::posix_isatty( 0 /*STDIN*/ )
 		) {
-			$historyFile = isset( $_ENV['HOME'] ) ?
-				"{$_ENV['HOME']}/.mwsql_history" : "$IP/maintenance/.mwsql_history";
+			$home = getenv( 'HOME' );
+			$historyFile = $home ?
+				"$home/.mwsql_history" : "$IP/maintenance/.mwsql_history";
 			readline_read_history( $historyFile );
 		} else {
 			$historyFile = null;
