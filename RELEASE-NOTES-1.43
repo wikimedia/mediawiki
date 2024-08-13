@@ -340,6 +340,8 @@ because of Phabricator reports.
 * Sanitizer::removeHTMLtags(), deprecated since 1.38, has been removed.
 * OutputPage::getCSPNonce(), deprecated since 1.35, has been removed.
 * UserMailer::rfc822Phrase(), deprecated since 1.38, has been removed.
+* QueryPage::getSQL(), deprecated since 1.39, has been removed. The replacement
+  QueryPage::getQueryInfo() is now abstract.
 * …
 
 === Deprecations in 1.43 ===
