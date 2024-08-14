@@ -390,7 +390,7 @@
 	"missingcommenttext": "Աւելցնել մէկնաբանութիւն մը:",
 	"summary-preview": "Խմբագրման ամփոփումի նախադիտում՝",
 	"blockedtitle": "Մասնակիցը արգելափակուած է",
-	"blockedtext": "<strong>Ձեր հաշիւը կամ IP հասցէն արգելափակուած է։</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nԿրնաս գործածել \"{{int:emailuser}}\" ձեւը եթէ ունիս իմակի հասցէ մը [[Special:Preferences|նախընտրութիւններուդ մէջ]] եւ չես արգելափակուած այդ մէկը գործածելէ։\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
+	"blockedtext": "<strong>Ձեր հաշիւը կամ IP հասցէն արգելափակուած է։</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nԿրնաս գործածել \"{{int:emailuser}}\" ձեւը եթէ ունիս իմակի հասցէ մը [[Special:Preferences|նախընտրութիւններուդ մէջ]] եւ չես արգելափակուած այդ մէկը գործածելէ։\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"blockednoreason": "պատճառ չէ տրուած",
 	"whitelistedittext": "Անհրաժեշտ է $1 էջերը խմբագրելու համար։",
 	"nosuchsectiontitle": "Այսպիսի բաժին գոյութիւն չունի",

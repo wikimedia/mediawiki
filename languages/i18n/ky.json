@@ -461,7 +461,7 @@
 	"missingcommenttext": "Комментарийиңизди териңиз.",
 	"summary-preview": "Түзөтүүнүн түшүндүрмөсүн алдын ала көрүү:",
 	"blockedtitle": "Колдонуучу бөгөттөлгөн",
-	"blockedtext": "Сиздин колдонуучу атыңыз же IP дарегиңиз тосмолонгон",
+	"blockedtext": "<strong>Сиздин колдонуучу атыңыз же IP дарегиңиз тосмолонгон</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nЭгер [[Special:Preferences|жөндөөлөмөрүңүздө]] жарактуу электрондук почта дареги көрсөтүлгөн жана аны колдонууга бөгөт коюлбаган болсо, \"{{int:emailuser}}\" функциясын колдоно аласыз.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"blockednoreason": "себеби көрсөтүлгөн жок",
 	"whitelistedittext": "Баракты түзөтүү үчүн $1 керек.",
 	"nosuchsectiontitle": "Бөлүктү табуу мүмкүн эмес",

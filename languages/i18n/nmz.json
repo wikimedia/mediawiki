@@ -208,7 +208,7 @@
 	"showpreview": "Werii noogrb",
 	"showdiff": "Werii lagiib",
 	"anoneditwarning": "<strong>Mug-byen:</strong> ba' jib l'nin. Kaʋ lagi ɦii, baweena ba'ɦa nyan b'IP. Ka-b<strong>[$1 jihb nin]</strong> la <strong>[$2 goor b'hidr]</strong>, ' lagiib ba l'san b'hidr noɦn faam.",
-	"blockedtext": "<strong>Votre compte d’utilisateur ou votre adresse IP a été bloqué.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n* {{int:blockedtext-start-time|$8}}\n* {{int:blockedtext-expiration-time|$6}}\n* {{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nVous ne pouvez utiliser la fonction « {{int:emailuser}} » que si une adresse de courriel valide est spécifiée dans vos [[Special:Preferences|préférences]] et que si cette fonctionnalité ne vous a pas été bloquée.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
+	"blockedtext": "<strong>B'hidr la b' IP adrɛsŋu ba' kewmn.<strong> \n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nBa'-b bee b'zaŋ takŋa ke na « {{int:emailuser}} » ka l' ba na b' tolgm gwɛɛt ba' bebeer[[Special:Preferences|préférences]] la' welee bebeer tolgm gwɛɛtii ba' kan.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"loginreqlink": "jib l'nin",
 	"newarticletext": "Wadga b'tahgd kee kpah kan saa.\nKa-b bona b'hɛkaa,hoor ʋadgun(nyan[$1 wadga tɔrgm] tɔrgm boolm).\nKalbana bah loh na b'dan nah, lee kilkn ŋmɛɛtgm<strong>kaan</strong> Takŋa jugun.",
 	"anontalkpagetext": "----\n<em>N'ba zaŋt ɦii sͻgiiga wadgan ka Kpaɦ hida hoorb wadgan la ka kpaɦ zaŋa</em> kee.\nWeree ka,l' ba na t'zaŋ ɦa'IP adrɛsŋu saa na t'nyaan ɦuu.\nNibda kͻd baɦ ba' bee zaŋ Welee IP adrɛsŋu.\nKa' l' ba na{{GENDER:|}} {{GENDER:|zaŋta}} yen wii n ka-n nyaan na gwɛɛt tiit daa-n l'ba na n ba' gbam tii, nii-n bee [[Special:CreateAccount|hoor n'hidr]] la [[Special:UserLogin|n'koɦoo-t]]na n'kpɛɛ titmb n zaŋt jenba su ka goor.",
@@ -531,5 +531,6 @@
 	"blockedtext-expiration-time": "Kewm diɦn ni:$1",
 	"blockedtext-intended-blockee": "ɦa kewa reem ni :$1",
 	"blockedtext-contact-blocker-admin": "Nyaan $1 laa jen ɦii[[{{MediaWiki:Grouppage-sysop}}|bermbee]] na baɦ tcrgn.",
-	"blockedtext-block-ip": "B'IP nii:$1"
+	"blockedtext-block-ip": "B'IP nii:$1",
+	"blockedtext-block-id": "Kewm hidr nni nº $1."
 }

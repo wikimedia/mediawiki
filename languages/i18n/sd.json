@@ -514,7 +514,7 @@
 	"missingcommenttext": "مھرباني فرمائي ڪا راءِ ڏيو.",
 	"summary-preview": "سنوار جي تَتَ جي پيش-نگاھ:",
 	"blockedtitle": "واپرائيندڙ بندشيل آهي",
-	"blockedtext": "<strong>توھان جي واپرائيندڙنانءُ يا آئپي تي بندش وڌي وئي آھي.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nجيڪڏھن توھان جي [[Special:Preferences|ترجيحن]] ۾ ڪو ھلندڙ ايميل پتو ڏنل آھي تہ توھان \"{{int:emailuser}}\" خصوصيت کي استعمال ڪري سگهو ٿا، ۽ توھان کي ان کي استعمال ڪرڻ تي پابندي نہ ھنيل ھجي.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
+	"blockedtext": "<strong>توھان جي واپرائيندڙنانءُ يا آئپي تي بندش وڌي وئي آھي.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nجيڪڏھن توھان جي [[Special:Preferences|ترجيحن]] ۾ ڪو ھلندڙ ايميل پتو ڏنل آھي تہ توھان \"{{int:emailuser}}\" خصوصيت کي استعمال ڪري سگهو ٿا، ۽ توھان کي ان کي استعمال ڪرڻ تي پابندي نہ ھنيل ھجي.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"blockednoreason": "سبب اڻڄاڻايل",
 	"whitelistedittext": "صفحا سنوارڻ لاءِ مھرباني ڪري $1.",
 	"confirmedittext": "صفحا سنوارڻ کان اڳ توھان کي پنھنجي ايميل پتي جي پڪ ڪرڻي پوندي.\nمھرباني ڪري [[Special:Preferences|واپرائيندڙ جي ترجيحن]] ذريعي پنھنجو ايميل پتو ڄاڻايو ۽ ان جي تصديق ڪريو.",

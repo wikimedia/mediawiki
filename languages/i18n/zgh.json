@@ -446,7 +446,7 @@
 	"showpreview": "ⵙⵙⵓⵎⴰⵏ ⵜⵓⵙⴽⵉⵏⵜ",
 	"showdiff": "ⵙⵎⴰⵍ ⵉⵙⵏⴼⴰⵍ",
 	"anoneditwarning": "<strong> ⴰⵡⵢ ⵉⵜⵏⴰⵏ:</strong> ⵓⵔ ⵜⵍⵍⵉⴷ ⴳ ⵓⵣⴷⴰⵢ. ⵜⴰⵏⵙⴰ ⵏⵏⴽ IP ⵔⴰⴷ ⵜⵓⵎⴰⵏ ⵉ ⵎⴷⴷⵏ ⴰⴽⴽ ⵎⴽ ⵜⵙⴽⵔⴷ ⴽⵔⴰ ⵏ ⵢⵉⵙⵏⵉⴼⵉⵍⵏ. ⵎⴽ <strong>[$1 ⵜⵍⵍⵉⴷ ⴳ ⵓⵣⴷⴰⵢ]</strong> ⵏⵖ <strong>[$2 ⵙⴽⵔⴰ ⵢⴰⵏ ⵓⵎⵉⴹⴰⵏ]</strong>, ⵔⴰⴷ ⵜⵜⵢⵉⵖⵉⵏⴻⵏ ⵉⵙⵏⵉⴼⵉⵍⵏ ⵏⵏⴽ ⴷ ⵢⵉⵙⵎ ⵏⵏⴽ(ⵎ) ⵏ ⵓⵏⵙⵙⵎⵔⵙ, ⵙ ⵎⴽⴰ ⵔⴰⴷ ⵖⵓⵔⴽ ⵉⵍⵉⵏ ⵉⴱⵖⵓⵔⵏ ⵢⴰⴹⵏ.",
-	"blockedtext": "<strong>ⵉⵜⵜⵓⴳⴷⴰⵍ ⵢⵉⵙⵎ ⵏ ⵓⵏⵙⵙⵎⵔⵙ ⵏⵖ ⴷ ⴰⵏⵙⴰ ⵏ IP ⵏⵏⵓⵏ.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nⵜⵣⵎⵔⵎ ⴰⴷ ⵜⵙⵙⵎⵔⵙⵎ ⵜⵉⵎⵥⵍⵉⵜ ⵏ \"{{int:emailuser}}\" ⵎⴽ ⵉⵜⵜⵓⵥⵍⴰⵢ ⴽⵔⴰ ⵏ ⵡⴰⵏⵙⴰ ⵏ ⵉⵎⴰⵢⵍ ⵉⵣⵔⵢⵏ ⴳ [[Special:Preferences|ⵉⵙⵎⵏⵢⵉⴼⵏ]] ⵏⵏⵓⵏ ⴷ ⵓⵔ ⵜⴻⵜⵜⴳⴷⴰⵍⵎ ⵅⴼ ⵓⵙⵙⵎⵔⵙ ⵏⵏⵙ.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
+	"blockedtext": "<strong>ⵉⵜⵜⵓⴳⴷⴰⵍ ⵢⵉⵙⵎ ⵏ ⵓⵏⵙⵙⵎⵔⵙ ⵏⵖ ⴷ ⴰⵏⵙⴰ ⵏ IP ⵏⵏⵓⵏ.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nⵜⵣⵎⵔⵎ ⴰⴷ ⵜⵙⵙⵎⵔⵙⵎ ⵜⵉⵎⵥⵍⵉⵜ ⵏ \"{{int:emailuser}}\" ⵎⴽ ⵉⵜⵜⵓⵥⵍⴰⵢ ⴽⵔⴰ ⵏ ⵡⴰⵏⵙⴰ ⵏ ⵉⵎⴰⵢⵍ ⵉⵣⵔⵢⵏ ⴳ [[Special:Preferences|ⵉⵙⵎⵏⵢⵉⴼⵏ]] ⵏⵏⵓⵏ ⴷ ⵓⵔ ⵜⴻⵜⵜⴳⴷⴰⵍⵎ ⵅⴼ ⵓⵙⵙⵎⵔⵙ ⵏⵏⵙ.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"loginreqlink": "ⴽⵛⵎ",
 	"accmailtitle": "ⵜⴻⵜⵜⵡⴰⵣⵏ ⵜⴰⴳⵓⵔⵉ ⵓⵣⵔⴰⵢ",
 	"newarticle": "(ⴰⵎⴰⵢⵏⵓ)",

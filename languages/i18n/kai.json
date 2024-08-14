@@ -265,7 +265,6 @@
 	"showdiff": "Yawantu tìmaa",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Rā]] or [[Special:CreateAccount|dàgòorīmà akawun]] to get credit for future edits and access other features.",
 	"anoneditwarning": "<strong>Warning:</strong> You are not logged in. Your IP address will be publicly visible if you make any edits. If you <strong>[$1 log in]</strong> or <strong>[$2 create an account]</strong>, your edits will be attributed to your username, along with other benefits.",
-	"blockedtext": "<strong>Your username or IP address has been blocked.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nYou can use the \"{{int:emailuser}}\" feature if a valid email address is specified in your [[Special:Preferences|preferences]] and you have not been blocked from using it.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"loginreqlink": "Raa",
 	"accmailtitle": "Lammba tà asir walikàu",
 	"newarticletext": "You have followed a link to a page that does not exist yet.\nTo create the page, start typing in the box below (see the [$1 help page] for more info).\nIf you are here by mistake, click your browser's <strong>back</strong> button.",

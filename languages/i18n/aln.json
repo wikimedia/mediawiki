@@ -324,7 +324,7 @@
 	"missingcommentheader": "'''Vini re:''' Nuk keni dhânë temë/kryetitull për këtë koment.\nNëse klikoni në regjistro prap, redaktimi juej do të ruhet pa tê.",
 	"summary-preview": "Parapamja e përmbledhjes:",
 	"blockedtitle": "Përdoruesi âsht i bllokuem",
-	"blockedtext": "<strong>Llogaria e juaj apo adresa IP është bllokuar.</strong>\n\nBllokimi është bërë prej $1.\nArsyeja e dhënë është <em>$2</em>.\n\n\n* Fillimi i bllokimit: $8\n* Përfundimi i bllokimit: $6\n* I bllokuaru i synuar: $7\n\nJu mund të kontaktoni $1 ose ndonjë [[{{MediaWiki:Grouppage-sysop}}|administrator]] për ta diskutuar bllokimin.\nNuk mund ta shfrytëzoni funksionin 'dërgo email këtij përdoruesi' përveç nëse keni specifikuar adresë emaili në [[Special:Preferences|parapëlqimet e llogarisë]] dhe nuk jeni bllokuar.\nAdresa e juaj aktuale e IP është $3, dhe ID e bllokimit është #$5.\nJu lutemi përfshini këto shënime në të gjitha shkresat që i bëni.",
+	"blockedtext": "<strong>Llogaria e juaj apo adresa IP është bllokuar.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\n\nJu mund të kontaktoni $1 ose ndonjë [[{{MediaWiki:Grouppage-sysop}}|administrator]] për ta diskutuar bllokimin.\nNuk mund ta shfrytëzoni funksionin 'dërgo email këtij përdoruesi' përveç nëse keni specifikuar adresë emaili në [[Special:Preferences|parapëlqimet e llogarisë]] dhe nuk jeni bllokuar.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"autoblockedtext": "Adresa juej e IPs âsht bllokue automatikisht meqenëse âsht përdorë prej nji përdoruesi tjetër, i cili âsht bllokue prej $1.\nArsyeja e dhânë âsht kjo:\n\n:''$2''\n\n* Fillimi i bllokimit: $8\n* Përfundimi i bllokimit: $6\n* I bllokuemi i synuem: $7\n\nMundeni me kontaktue $1 ose ndonji [[{{MediaWiki:Grouppage-sysop}}|administrator]] për me diskutue bllokimin.\n\nNuk mundeni me shfrytëzue funksionin 'dërgo email këtij përdoruesi' përveç nëse keni specifikue adresë emaili në [[Special:Preferences|parapëlqimet e llogarisë]] dhe nuk jeni bllokue.\n\nAdresa juej aktuale e IP âsht $3, dhe ID e bllokimit âsht #$5.\nJu lutemi përfshini këto shenime në të gjitha shkresat që i bâni.",
 	"blockednoreason": "nuk âsht dhânë arsye",
 	"whitelistedittext": "Duheni me u $1 për me redaktue artikuj.",
@@ -899,5 +899,6 @@
 	"skin-action-protect": "Mbroj",
 	"skin-action-undelete": "Kthe fshimjen mbrapsht",
 	"skin-action-delete": "Fshij",
-	"skin-action-move": "Zhvendos"
+	"skin-action-move": "Zhvendos",
+	"blockedtext-block-id": "ID e bllokimit është #$5."
 }

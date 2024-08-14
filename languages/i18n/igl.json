@@ -263,7 +263,7 @@
 	"showpreview": "Dú nwa ta",
 	"showdiff": "Deuwn makpailo nwa",
 	"anoneditwarning": "<strong>Fí óla wé dé :</strong> é tefuñ ta nò. Amoné chakadu alí IP Ujuwé wé chéwn ké kakí É nwé ewn du ché . Chéwn kí <strong>[$1 Téfuñ]</strong> barkí <strong>[$2 Fí accounto bí]</strong>, ewñ ké nwóché kpaí amenwu enyo mádu manyu ódu wé.",
-	"blockedtext": "<strong>Ma ché kpona yí IP Ujuwé wé.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nÉ néké dí ewn yí cheku \"{{int:emailuser}}\" chéwn ké kí email Ujuwé we tí [[Special:Preferences|éwnmatána tule]] bakí ma má kpona nwu ké wé du chékuñ. {{int:blockedtext-block-ip|$3}}, kpaí é ma kpona nwu chí ID #$5.\n{{int:blockedtext-include-details-queries}}",
+	"blockedtext": "<strong>Ma ché kpona yí IP Ujuwé wé.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nÉ néké dí ewn yí cheku \"{{int:emailuser}}\" chéwn ké kí email Ujuwé we tí [[Special:Preferences|éwnmatána tule]] bakí ma má kpona nwu ké wé du chékuñ.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"loginreqlink": "tafunn",
 	"newarticle": "(Atító)",
 	"newarticletext": "É tí Ujuwé Ogbá bí tí Ogbá kí ma dúmó tañ. Chéwn ké téné nyí Ogbá yí, chané ké nwu té fú akpatí kí dé yí (Gí [$1 amí abuné ogbá] to dú amí ola ómuné). Chénwu kí má dí ólà. Ké wà emiñ, dí owo tí browser we <strong>loti ubí</strong>Éwn má dí owo tò",
@@ -648,5 +648,6 @@
 	"blockedtext-intended-blockee": "Éné kú ma téné gbóna ñwu chí:$1",
 	"blockedtext-contact-blocker-admin": "É neké ka nwí $1 bakí ene ómuné [[{{MediaWiki:Grouppage-sysop}}|administrator]] tódú mé kóla tódù óna kù ma kpa yé í.",
 	"blockedtext-block-ip": "IP address wé abajoí chí $1.",
+	"blockedtext-block-id": "É ma kpona nwu chí ID #$5.",
 	"blockedtext-include-details-queries": "Kí yó jó amenwu ku ma kó ta té yí fu kó té amenwu ké téné kó í"
 }

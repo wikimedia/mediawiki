@@ -370,7 +370,7 @@
 	"missingcommentheader": "'''Nōda:''' Kumentāras tītels ast pāustan.\nKaddan tū wīrst gnettuns(si) \"Enpeisāis\" etkūmps, twājs kumentārs wīrst būwuns enpeisātan šlāit tītelin.",
 	"summary-preview": "Ebpeisāsenes pirmādira:",
 	"blockedtitle": "Tērpautajs ast blōkitan",
-	"blockedtext": "<strong>Twajā tērpautajas pabilisnā anga IP adressi pastāi blōkitan.</strong>\n\nBlōkisenis pastāi segītan pra $1.\nBrewīnsli ast <em>$2</em>.\n\n*Blōkisenes pagaūsenis: $8\n*Blōkisenes wangā: $6\n*Pastāi blōkitan: $7\n\nTū mazzi kōntaktitwei si sen $1 anga kittan [[{{MediaWiki:Grouppage-sysop}}|perwaldītajan]] kāi diskutītwei blōkisenin.\nTū mazzi tērpautun \"{{int:emailuser}}\" mazīngiskwan, ik tikrōmiska e-mail adressi ast padātan en twajāmans [[Special:Preferences|rekkenas pirminiskwans]] be ik šī mazīngisku ni ast blōkitan.\nTwajā bigantī IP adressi ast $3 be blōkisenes ID nummeri ast #$5.\nMadli ebimmais wissans šins malkans en wisēimans prasīsenins ezze blōkisenin.",
+	"blockedtext": "<strong>Twajā tērpautajas pabilisnā anga IP adressi pastāi blōkitan.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nTū mazzi tērpautun \"{{int:emailuser}}\" mazīngiskwan, ik tikrōmiska e-mail adressi ast padātan en twajāmans [[Special:Preferences|rekkenas pirminiskwans]] be ik šī mazīngisku ni ast blōkitan.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"autoblockedtext": "<big>''Twajā tērpautajas pabilisnā anga IP adressi pastāi blōkitan.'''</big>\n\nBlōkisenis pastāi segītan pra $1.\nBrewīnsli ast ''$2''.\n\n*Blōkisenes pagaūsenis: $8\n*Blōkisenes wangā: $6\n*Pastāi blōkitan: $7\n\nTū mazzi kōntaktitwei si sen $1 anga kittan [[{{MediaWiki:Grouppage-sysop}}|perwaldītajan]] kāi diskutītwei blōkisenin.\nTū ni mazzi tērpautun \"tenginnais e-mailin tērpautaju\" mazīngiskwan, ik tikrōmiska e-mail adressi ni ast padātan en twajāmans [[Special:Preferences|rekkenas pirminiskwans]] anga ik šī mazīngisku ast blōkitan.\nTwajā bigantī IP adressi ast $3 be blōkisenes ID nummeri ast #$5.\nMadli ebimmais wissans šins malkans en wisēimans prasīsenins ezze blōkisenin.",
 	"blockednoreason": "ni padāi di tikslin",
 	"whitelistedittext": "Tu turri $1, kāi redigīlai pāusans.",
@@ -1696,5 +1696,14 @@
 	"skin-action-protect": "Pakūnteis",
 	"skin-action-undelete": "etgaūtun šin pāusan",
 	"skin-action-delete": "Āupausinais",
-	"skin-action-move": "Prapīdais"
+	"skin-action-move": "Prapīdais",
+	"blockedtext-made-by": "Blōkisenis pastāi segītan pra $1.",
+	"blockedtext-reason-comment": "Brewīnsli ast <em>$1</em>.",
+	"blockedtext-start-time": "Blōkisenes pagaūsenis: $1",
+	"blockedtext-expiration-time": "Blōkisenes wangā: $1",
+	"blockedtext-intended-blockee": "Pastāi blōkitan: $1",
+	"blockedtext-contact-blocker-admin": "Tū mazzi kōntaktitwei si sen $1 anga kittan [[{{MediaWiki:Grouppage-sysop}}|perwaldītajan]] kāi diskutītwei blōkisenin.",
+	"blockedtext-block-ip": "Twajā bigantī IP adressi ast $3.",
+	"blockedtext-block-id": "Blōkisenes ID nummeri ast #$1.",
+	"blockedtext-include-details-queries": "Madli ebimmais wissans šins malkans en wisēimans prasīsenins ezze blōkisenin."
 }

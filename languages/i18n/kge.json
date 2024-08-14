@@ -553,7 +553,7 @@
 	"summary-preview": "Pratayang ringkasan editan:",
 	"previewerrortext": "Kasalahan timbul harak nyuba nyajakko pratayang parubahan mu.",
 	"blockedtitle": "Pangguna tiblokir",
-	"blockedtext": "<strong>Golar pangguna atawa alamat IP mu kok tiblokir.</strong> \n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin| $1 }}\nNiku pandai makai fitur \"{{int:emailuser}}\" aman uwat alamat email sah sai titamtuko di [[Special:Preferences|preferensi]] mu, rik mak tiblokir pamakaianna.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
+	"blockedtext": "<strong>Golar pangguna atawa alamat IP mu kok tiblokir.</strong> \n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin| $1 }}\nNiku pandai makai fitur \"{{int:emailuser}}\" aman uwat alamat email sah sai titamtuko di [[Special:Preferences|preferensi]] mu, rik mak tiblokir pamakaianna.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"blockednoreason": "makka alasan sai tiunjukko",
 	"blockedtext-composite-no-ids": "Alamat IP mu timbul dilom pira daftar pamblokiran",
 	"blockedtext-composite-reason": "Uwat pamblokiran ganda di akun mu rik/atau alamat IP mu.",

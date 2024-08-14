@@ -474,7 +474,7 @@
 	"summary-preview": "सारांश पूर्वावलोकन",
 	"previewerrortext": "अपनेक परिवर्तनके पूर्वावलोकन करैत खन्नि एगो त्रुटि भेल ।",
 	"blockedtitle": "सदस्य प्रतिबन्धित हे",
-	"blockedtext": "<strong>अपनेके सदस्यनाम वा आईपी पता प्रतिबन्धित कैल गेलीहे ।</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nयदि अपनेके [[Special:Preferences|प्राथमिकता]]मे वैध ईमेल पता देल गेलीहे त अपने \"{{int:emailuser}}\" प्रयोग कर सकही आउ अपनेके ई सुबिधाके प्रयोग करेसे न रोकल गेलीहे ।\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
+	"blockedtext": "<strong>अपनेके सदस्यनाम वा आईपी पता प्रतिबन्धित कैल गेलीहे।</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nयदि अपनेके [[Special:Preferences|प्राथमिकता]]मे वैध ईमेल पता देल गेलीहे त अपने \"{{int:emailuser}}\" प्रयोग कर सकही आउ अपनेके ई सुबिधाके प्रयोग करेसे न रोकल गेलीहे।\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"blockednoreason": "कौनो कारण न देल गेल",
 	"whitelistedittext": "अपनेके $1 पन्ना सम्पादित करेलागि ।",
 	"nosuchsectiontitle": "खण्ड न भेटल",

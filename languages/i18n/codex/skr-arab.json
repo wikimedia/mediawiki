@@ -12,5 +12,7 @@
 	"cdx-table-pager-button-last-page": "چھیکڑی ورقہ",
 	"cdx-table-pager-button-next-page": "اڳلا ورقہ",
 	"cdx-table-pager-button-prev-page": "پچھلا ورقہ",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 قطار|$1 قطاراں}}",
+	"cdx-table-pager-items-per-page-default": "فی ورقہ نتیجے",
 	"cdx-table-pagination-status-message-pending": "نتیجے لوڈ تھیندے پئے ہن۔۔۔"
 }

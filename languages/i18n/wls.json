@@ -249,7 +249,7 @@
 	"showpreview": "Fakahā fakatomu'a",
 	"showdiff": "Fakahā te 'u fetogi",
 	"anoneditwarning": "<strong>Fakatokaga:</strong> Mole he'eki ke hū mai ki loto. E 'asi mai ānai tau tu'asila IP mo ka fai hau 'u fetogi ki te pāsina. \n\nKa e ke <strong>[$1 hū mai ki loto]</strong> pe <strong>[$2 fa'u hau numelo gaue fo'ou]</strong>, pea hoki fakamo'oni leva tau 'u gaue fetogi ki te higoa e ke faka'aoga'i pea toe ma'u ai mo ni'i atu faigamālie.",
-	"blockedtext": "<strong>Kua ta'ofi tou higoa pe tu'asila IP.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\n\nE feala hau faka'aoga'i te \"{{int:emailuser}}\" mo ka ko he tu'asila neti e tohi i tau 'u [[Special:Preferences|fa'ahiga filifili]] pea mole he'eki tapu tona faka'aoga'i e koe.\nKo tau tu'asila IP e faka'aoga'i nei ko $3, pea ko te faka'iloga ta'ofi #$5.\nFakamanatu mai te 'u koga fuli aeni mo ka e ke fia kumi logo mai o 'uhiga mo te ta'ofi 'aeni.",
+	"blockedtext": "<strong>Kua ta'ofi tou higoa pe tu'asila IP.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\n\nE feala hau faka'aoga'i te \"{{int:emailuser}}\" mo ka ko he tu'asila neti e tohi i tau 'u [[Special:Preferences|fa'ahiga filifili]] pea mole he'eki tapu tona faka'aoga'i e koe.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"loginreqlink": "ki loto",
 	"newarticletext": "Ne'e ke kaku mai ki te pāsina aeni e kei lāvaki. \nKa e ke fia fa'u te pāsina aeni, tohi he kupu i te ki'i tini aeni i lalo (lau te [pāsina tokoni $1]).\nKa ne'e ke fai hala pe koe, lomi te faka'iloga <strong>liliu</strong> i 'oluga.",
 	"anontalkpagetext": "----\n<em>Ko te pāsina 'aeni o he kaiga e mole he'eki ina fa'u pe mole ina faka'aoga'i tana nūmelo gaue.</em>\nKo ia aena e faka'iloga'i pe ia aki tana tu'asila IP.\nKo te tu'asila IP e feala ke faka'aoga'i e he tokolahi.\nKa e ke 'ui ko he fakatokaga e mole tuha mo koe, fakalelei mai o [[Special:CreateAccount|fa'u hau nūmelo gaue]] pe [[Special:UserLogin|hū ki loto]] mo'o fakakehe mai mo 'ihi atu kaiga e mole he'eki faka'iloga.",
@@ -614,5 +614,6 @@
 	"blockedtext-intended-blockee": "E amanaki ta'ofi ia:$1",
 	"blockedtext-contact-blocker-admin": "Felogo'i mo $1 pe ko he tahi [[{{MediaWiki:Grouppage-sysop}}|lagiaki]] o 'uhiga mo te ta'ofi aeni.",
 	"blockedtext-block-ip": "Ko ta'u tu'asila IP e ke faka'aoga'i nei ko $1.",
-	"blockedtext-include-details-queries": "Tohi fuli te 'u koga aeni i oluga i ni fakafehu'i e ke fai."
+	"blockedtext-block-id": "Ko te faka'iloga ta'ofi #$1.",
+	"blockedtext-include-details-queries": "Fakamanatu mai te 'u koga fuli aeni mo ka e ke fia kumi logo mai o 'uhiga mo te ta'ofi 'aeni."
 }

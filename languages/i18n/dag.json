@@ -553,7 +553,7 @@
 	"missingcommenttext": "Kpɛhimi pahagu",
 	"summary-preview": "Yulimi a maliniŋ kɔlivaai",
 	"blockedtitle": "Ŋun su li maa lahi ka soli",
-	"blockedtext": "<strong>Your username or IP address has been blocked.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|}}\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nA ni tooi zaŋ \"{{int:emailuser}}\" nahingbana diyiniŋ ka email address din nyɛ zaɣ'maŋli wuhi n-ti a [[Special:Preferences|preferences]] konko ka a nyɛ ninvuɣ'so bɛni na ʒin kpari m-bahi ni dina ka che di zaŋtum tuma.\n{{int:blockedtext-block-ip|$3}}, ka ID dinmi kpari maa nyɛ #$5.\n{{int:blockedtext-include-details-queries}}",
+	"blockedtext": "<strong>Your username or IP address has been blocked.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nA ni tooi zaŋ \"{{int:emailuser}}\" nahingbana diyiniŋ ka email address din nyɛ zaɣ'maŋli wuhi n-ti a [[Special:Preferences|preferences]] konko ka a nyɛ ninvuɣ'so bɛni na ʒin kpari m-bahi ni dina ka che di zaŋtum tuma.\n{{int:blockedtext-block-ip|$3}}, ka ID dinmi kpari maa nyɛ #$5.\n{{int:blockedtext-include-details-queries}}",
 	"blockednoreason": "Daliri shɛli bi ti",
 	"blockedtext-composite-no-ids": "A IP addrɛɛsi maa zoo la yu' shɛŋa ŋan blooki puuni",
 	"blockedtext-composite-reason": "A daa akaunti bee IP addrɛɛsi maa nyɛla nya blookibu pam",

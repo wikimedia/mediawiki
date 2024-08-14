@@ -376,7 +376,7 @@
 	"missingcommentheader": "'''ማስታወሻ፦''' ለዚሁ አስተያየት ምንም አርእስት አላቀረቡም። 'ለማቅረብ' እንደገና ቢጫኑ ለውጥዎ ያለ አርዕስት ይሆናል።",
 	"summary-preview": "የማጠቃለያ ቅድመ እይታ:",
 	"blockedtitle": "አባል ተከለክሏል",
-	"blockedtext": "'''የርስዎ ብዕር ስም ወይም ቁጥር አድራሻ ከማዘጋጀት ተከለክሏል።'''\n\nበእርስዎ ላይ ማገጃ የጣለው መጋቢ $1 ነበረ። ምክንያቱም፦ ''$2''\n\n* ማገጃ የጀመረበት ግዜ፦ $8\n* ማገጃ የሚያልቅበት ግዜ፦ $6\n* የታገደው ተጠቃሚ፦ $7\n\n$1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስለ ማገጃ ለመጠይቅ ይችላሉ። ነገር ግን በ[[Special:Preferences|ምርጫዎችዎ]] ትክክለኛ ኢሜል ካልኖረ ከጥቅሙም ካልተከለከሉ በቀር ለሰው ኢሜል ለመላክ አይችሉም። የአሁኑኑ ቁጥር አድራሻዎ $3 ህኖ የማገጃው ቁጥር #$5 ነው። ምንም ጥያቄ ካለዎ ይህን ቁጥር ይጨምሩ።",
+	"blockedtext": "<strong>የርስዎ ብዕር ስም ወይም ቁጥር አድራሻ ከማዘጋጀት ተከለክሏል።</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nነገር ግን በ[[Special:Preferences|ምርጫዎችዎ]] ትክክለኛ ኢሜል ካልኖረ ከጥቅሙም ካልተከለከሉ በቀር ለሰው ኢሜል ለመላክ አይችሉም።\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"autoblockedtext": "የእርስዎ ቁጥር አድራሻ በቀጥታ ታግዷል። በ$1 የተገደ ተጠቃሚ ስለ ተጠቀመ ነው። የተሰጠው ምክንያት እንዲህ ነው፦\n\n:''$2''\n\n* ማገጃ የጀመረበት፦ $8\n* ማገጃ ያለቀበት፦ $6\n\nስለ ማገጃው ለመወያየት፣ $1 ወይም ማንምን ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] መጠይቅ ይችላሉ።\n\nበ[[Special:Preferences|ምርጫዎችዎ]] ትክክለኛ ኢ-ሜል አድራሻ ካልሰጡ፣ ወይም ከጥቅሙ ከታገዱ፣ ወደ ሌላ ሰው ኢ-ሜል መላክ እንዳልተቻለዎ ያስታውሱ።\n\nየማገጃዎ ቁጥር # $5 ነው። እባክዎ በማንኛውም ጥያቄ ይህን ቁጥር ይሰጡ።",
 	"blockednoreason": "ምንም ምክንያት አልተሰጠም",
 	"whitelistedittext": "ገጾችን ለማዘጋጀት $1 አስቀድሞ ያስፈልግዎታል።",
@@ -1552,5 +1552,14 @@
 	"skin-action-protect": "ጠብቅ",
 	"skin-action-undelete": "አታጥፋ",
 	"skin-action-delete": "አጥፋ",
-	"skin-action-move": "ለማዛወር"
+	"skin-action-move": "ለማዛወር",
+	"blockedtext-made-by": "በእርስዎ ላይ ማገጃ የጣለው መጋቢ $1",
+	"blockedtext-reason-comment": "ነበረ። ምክንያቱም፦ <em>$1</em>።",
+	"blockedtext-start-time": "ማገጃ የጀመረበት ግዜ፦ $1",
+	"blockedtext-expiration-time": "ማገጃ የሚያልቅበት ግዜ፦ $1",
+	"blockedtext-intended-blockee": "የታገደው ተጠቃሚ፦ $1",
+	"blockedtext-contact-blocker-admin": "$1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስለ ማገጃ ለመጠይቅ ይችላሉ።",
+	"blockedtext-block-ip": "የአሁኑኑ ቁጥር አድራሻዎ $1።",
+	"blockedtext-block-id": "የማገጃው ቁጥር #$1 ነው።",
+	"blockedtext-include-details-queries": "ምንም ጥያቄ ካለዎ ይህን ቁጥር ይጨምሩ።"
 }

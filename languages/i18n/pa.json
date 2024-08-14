@@ -587,7 +587,7 @@
 	"summary-preview": "ਸੋਧ ਸਾਰ ਦੀ ਝਲਕ:",
 	"previewerrortext": "ਤੁਹਾਡੀਆਂ ਤਬਦੀਲੀਆਂ ਦੀ ਝਲਕ ਵਿਖਾਉਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਵਿੱਚ ਗ਼ਲਤੀ ਆ ਗਈ।",
 	"blockedtitle": "ਵਰਤੋਂਕਾਰ ਉੱਤੇ ਪਾਬੰਦੀ ਲੱਗੀ ਹੋਈ ਹੈ",
-	"blockedtext": "<strong>ਤੁਹਾਡਾ ਯੂਜ਼ਰਨੇਮ ਜਾਂ IP ਪਤਾ ਬਲੌਕ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ।</strong> \n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nਤੁਸੀਂ \"{{int:emailuser}}\" ਵਿਸ਼ੇਸ਼ਤਾ ਦੀ ਵਰਤੋਂ ਕਰ ਸਕਦੇ ਹੋ ਜੇਕਰ ਤੁਹਾਡੀ [[Special:Preferences|ਤਰਜੀਹਾਂ]] ਵਿੱਚ ਇੱਕ ਵੈਧ ਈਮੇਲ ਪਤਾ ਦਿੱਤਾ ਗਿਆ ਹੈ ਅਤੇ ਤੁਹਾਨੂੰ ਇਸਨੂੰ ਵਰਤਣ ਤੋਂ ਰੋਕਿਆ ਨਹੀਂ ਗਿਆ ਹੈ।{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
+	"blockedtext": "<strong>ਤੁਹਾਡਾ ਯੂਜ਼ਰਨੇਮ ਜਾਂ IP ਪਤਾ ਬਲੌਕ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ।</strong> \n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nਤੁਸੀਂ \"{{int:emailuser}}\" ਵਿਸ਼ੇਸ਼ਤਾ ਦੀ ਵਰਤੋਂ ਕਰ ਸਕਦੇ ਹੋ ਜੇਕਰ ਤੁਹਾਡੀ [[Special:Preferences|ਤਰਜੀਹਾਂ]] ਵਿੱਚ ਇੱਕ ਵੈਧ ਈਮੇਲ ਪਤਾ ਦਿੱਤਾ ਗਿਆ ਹੈ ਅਤੇ ਤੁਹਾਨੂੰ ਇਸਨੂੰ ਵਰਤਣ ਤੋਂ ਰੋਕਿਆ ਨਹੀਂ ਗਿਆ ਹੈ।{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"blockednoreason": "ਕੋਈ ਕਾਰਨ ਨਹੀਂ ਦੱਸਿਆ ਗਿਆ",
 	"whitelistedittext": "ਸਫ਼ੇ ਸੋਧਣ ਲਈ ਤੁਹਾਨੂੰ $1 ਕਰਨਾ ਪਵੇਗਾ।",
 	"confirmedittext": "ਸਫ਼ਿਆਂ ਨੂੰ ਸੋਧਣ ਤੋਂ ਪਹਿਲਾਂ ਤੁਹਾਨੂੰ ਆਪਣਾ ਈ-ਮੇਲ ਪਤਾ ਤਸਦੀਕ ਕਰਨਾ ਪਵੇਗਾ।\nਮਿਹਰਬਾਨੀ ਕਰਕੇ ਆਪਣੀਆਂ [[Special:Preferences|ਖਾਤਾ ਪਸੰਦ]] ਜ਼ਰੀਏ ਸਹੀ ਈਮੇਲ ਪਤਾ ਦਿਓ ਅਤੇ ਤਸਦੀਕ ਕਰੋ।",

@@ -256,7 +256,7 @@
 	"showpreview": "فرجى العرض المسبق",
 	"showdiff": "فرجى التغييرات",
 	"anoneditwarning": "<strong>تتبه:</strong> أنت مش فايت ع أكونتك. حتقدر كل العالم تشوف عنوان الـIP تبعك إذا عدلت أو علقت بصفحة. إذا <strong>[$1 بتفوت ع أكونتك]</strong> أو <strong>[$2 بتعمل أكونت]</strong>، تعديلاتك رح تنتسب لإسم أكونتك، بالإضافة لغير فوائد.",
-	"blockedtext": "<strong>نعمل بلوك لإسم أكونتك أو عنوان الـIP تبعك.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|}}\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nفيك تعوز \"{{int:emailuser}}\" إذا إذا حاطت بريد إلكتروني صالح [[Special:Preferences|بتفضيلاتك]] وما نمنع إستعمالو.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
+	"blockedtext": "<strong>نعمل بلوك لإسم أكونتك أو عنوان الـIP تبعك.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nفيك تعوز \"{{int:emailuser}}\" إذا إذا حاطت بريد إلكتروني صالح [[Special:Preferences|بتفضيلاتك]] وما نمنع إستعمالو.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"loginreqlink": "فوت عَ حسابك",
 	"newarticle": "(جديد)",
 	"newarticletext": "الوَصِل جابك ع صفحة مش معمولة بعد.\nإذا بدك تعمل هيدي الصفحة، بلش الكتابة بالعلبة التحت ([$1 بصفحة المساعدة] في بعد معلومات).\nإذا جيت لى هون بالغلط، كبوس ع زر <strong>رجوع</strong> في متصفح الإنترنت تبعك.",

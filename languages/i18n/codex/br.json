@@ -12,5 +12,17 @@
 	"cdx-table-select-all-label": "Diuzañ an holl vannoù",
 	"cdx-table-select-row-label": "Diuzañ bann $1 diwar $2",
 	"cdx-table-sort-caption": "$1, gallout a reer renkañ pennoù ar bannoù gant bountonioù.",
-	"cdx-typeahead-search-search-results-label": "Disoc'hoù enklask"
+	"cdx-typeahead-search-search-results-label": "Disoc'hoù enklask",
+	"cdx-table-pager-button-first-page": "Pajenn gentañ",
+	"cdx-table-pager-button-last-page": "Pajenn ziwezhañ",
+	"cdx-table-pager-button-next-page": "Pajenn war-lerc'h",
+	"cdx-table-pager-button-prev-page": "Pajenn gent",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 linenn}}",
+	"cdx-table-pager-items-per-page-default": "Disoc'hoù dre bajenn",
+	"cdx-table-pagination-status-message-determinate-long": "O tiskouez disoc’hoù $1-$2 diwar $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 diwar $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "O tiskouez disoc’hoù $1–$2 diwar kalz",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 diwar kalz",
+	"cdx-table-pagination-status-message-indeterminate-final": "O tiskouez ar {{PLURAL:$1|$1 disoc’h}} diwezhañ",
+	"cdx-table-pagination-status-message-pending": "O kargañ an disoc’hoù…"
 }

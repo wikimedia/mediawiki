@@ -379,7 +379,7 @@
 	"missingcommentheader": "'''Hriat reng tur:''' I tuihnihna thupui i pe lo.\n\"$1\"-ah i hmeh leh chuan i siamţhatna hi a thupui tel lovin dahţhat a ni ang.",
 	"summary-preview": "Kaihtawina endikna:",
 	"blockedtitle": "He hmangtu hi danbeh a ni",
-	"blockedtext": "<strong>I hmangtu hming emaw IP chenna hmun emaw chu dang a ni tawh.</strong> \n\n{{int:blockedtext-a siam-a siam| $1 }}\n{{int:blockedtext-a chhan-comment| $2 }}.\n\n*{{int:blockedtext-a ṭan hun| $8 }}\n*{{int:blockedtext-a tawp hun| $6 }}\n*{{int:blockedtext-a dânna nei tu tum| $7 }}\n\n{{int:blockedtext-inbiakpawhna-blocker-admin| $1 }}\nI [[Special:Preferences|preferences]] ah email chena hmun dik tak a awm a, chu chu i hman loh chuan \"{{int:emailuser}}\" feature hi i hmang thei ang.!N !{{int:blockedtext-block-ip| $3 }}, leh block ID chu # $5 .\n{{int:blockedtext-include-details-queries}} a ni.",
+	"blockedtext": "<strong>I hmangtu hming emaw IP chenna hmun emaw chu dang a ni tawh.</strong> \n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nI [[Special:Preferences|preferences]] ah email chena hmun dik tak a awm a, chu chu i hman loh chuan \"{{int:emailuser}}\" feature hi i hmang thei ang.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"blockednoreason": "a chhak pêk a ni lo",
 	"whitelistedittext": "Siamţha thei turin $1 i mamawh.",
 	"confirmedittext": "Phêk i siamţhat hmain i e-chenhmun i finfiah a ngai. [[Special:Preferences|hmangtu duhthlanna]] kaltlangin i e-chenhmun siamfel rawh.",

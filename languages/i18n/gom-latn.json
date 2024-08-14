@@ -350,7 +350,7 @@
 	"anoneditwarning": "<strong>Chotrai:</strong> Tuven sotrorombh korunk nai. Tu bodol korit zalear tuzo IP pot'to soglleank polleunk zatelem. Tu <strong>[$1 sotrorombh korit]</strong> vo <strong>[$2 kont rochit]</strong> zalear, tuje bodol tuzo vaporpeachem nanvak zoddteleo ani anik-ui faide asat.",
 	"missingcommenttext": "Upkar korun tuzo xero boroi.",
 	"blockedtitle": "Vapurpeak addaila",
-	"blockedtext": "<strong>Tujem vaporpeachem nanv vo IP pot'to addavpant aila.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}4\nTujean \"{{int:emailuser}}\" sobhavgunn vaprunk zata ek void email pot'to tujea [[Special:Preferences|posontint]] nischit kelea ani tuka tem vaporpak addavnk na zalear.\n\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
+	"blockedtext": "<strong>Tujem vaporpeachem nanv vo IP pot'to addavpant aila.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}4\nTujean \"{{int:emailuser}}\" sobhavgunn vaprunk zata ek void email pot'to tujea [[Special:Preferences|posontint]] nischit kelea ani tuka tem vaporpak addavnk na zalear.\n\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"blockednoreason": "Kainch karonn diunk na",
 	"loginreqtitle": "Sotrorombh gorjechem",
 	"loginreqlink": "sotrorombh kor",

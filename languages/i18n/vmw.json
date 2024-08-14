@@ -230,7 +230,7 @@
 	"showpreview": "Waanyihererya soophwanya",
 	"showdiff": "Wooniha ivirikaniho",
 	"anoneditwarning": "<strong>Warning:</strong> Nyuwo khampacerin\"he muteko mmosa. Ephiro-anyu IP yookhala oowehiwaka no anamunceene mwapaka mureerihelo khamosa-khamosa. Wakhala wira nyuwo <strong>[opaceriha muteko ni $1]</strong> nnakhala <strong>[otthokihana ekontha emosa ni $2]</strong>, ereerihelo-anyu enrowa operekhiwa ni nsina nanyu na enamarumeela, wakelaka tho ophwanyaka mireerelo ikina.",
-	"blockedtext": "<strong>Nsina nanyu wala IP anyu otthukiwa.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nMokhala orumeela \"{{int:emailuser}}\" moonihero a makhalelo a e-mail anyu yootapuleni ni [[Special:Preferences|preferences]] nyuwo kamutthukeliwe mwaha wooweethela eyo.\n{{int:blockedtext-block-ip|$3}}, ni I a mulipa otthukela ti #$5.\n{{int:blockedtext-include-details-queries}}",
+	"blockedtext": "<strong>Nsina nanyu wala IP anyu otthukiwa.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nMokhala orumeela \"{{int:emailuser}}\" moonihero a makhalelo a e-mail anyu yootapuleni ni [[Special:Preferences|soophavela]] nyuwo kamutthukeliwe mwaha wooweethela eyo.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"loginreqlink": "Otthuniha ovolowa",
 	"newarticle": "(Esya)",
 	"newarticletext": "Mutthanre muluttelelo mmosa woorowa opuro nanleelo ohikhanle.\nWoowi mpake, mulepe mwahaanyu munlakani na vathi (mukohererye mwa [$1 opuro wa mukhaliheryo] woowi musuwele ihaali ikina).\nMwaaphin\"yeene va mwaha woowattattanya, muttapunye eputawu <strong>otthika</strong> wa evolowelwaanyu.",
@@ -589,5 +589,6 @@
 	"blockedtext-intended-blockee": "Namatthukeliwa: $1",
 	"blockedtext-contact-blocker-admin": "Mokhala olavula ni $1 wala mukina [[{{MediaWiki:Grouppage-sysop}}|amuheleli]] wiira mulanule mwaha anyu.",
 	"blockedtext-block-ip": "IP anyu vano ti $1.",
+	"blockedtext-block-id": "I a mulipa otthukela ti #$1.",
 	"blockedtext-include-details-queries": "Xontte mulepe sowooniherya sotheene nveliwaanyu olepa."
 }
