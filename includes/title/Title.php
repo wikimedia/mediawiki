@@ -32,7 +32,6 @@ use MapCacheLRU;
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\DAO\WikiAwareEntityTrait;
-use MediaWiki\Deferred\AtomicSectionUpdate;
 use MediaWiki\Deferred\AutoCommitUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookRunner;
@@ -2425,7 +2424,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 			return;
 		}
 
-		DeferredUpdates::addUpdate( new AtomicSectionUpdate(
+		DeferredUpdates::addUpdate( new AutoCommitUpdate(
 			MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase(),
 			__METHOD__,
 			static function ( IDatabase $dbw, $fname ) {
@@ -2442,13 +2441,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 						->where( [ 'pr_id' => $ids ] )
 						->caller( $fname )->execute();
 				}
-			}
-		) );
 
-		DeferredUpdates::addUpdate( new AtomicSectionUpdate(
-			MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase(),
-			__METHOD__,
-			static function ( IDatabase $dbw, $fname ) {
 				$dbw->newDeleteQueryBuilder()
 					->deleteFrom( 'protected_titles' )
 					->where( $dbw->expr( 'pt_expiry', '<', $dbw->timestamp() ) )
