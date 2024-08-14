@@ -177,7 +177,7 @@ class HTMLRadioField extends HTMLFormField {
 
 			// HTML markup for CSS-only Codex Radio.
 			$radio = Html::rawElement(
-				'span',
+				'div',
 				[ 'class' => 'cdx-radio' ],
 				$radioInput . $radioIcon . $radioLabelWrapper
 			);
