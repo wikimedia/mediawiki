@@ -122,7 +122,7 @@ For notes on 1.42.x and older releases, see HISTORY.
 * The AuthManagerFilterProviders hook was added.
 * The AuthManagerVerifyAuthentication hook was added.
 * The OutputPageRenderCategoryLink hook was added, as a replacement for the
-  older OutputPageMakeCategoryLinks hook.
+  deprecated OutputPageMakeCategoryLinks hook.
 * …
 
 === External library changes in 1.43 ===
@@ -659,6 +659,8 @@ because of Phabricator reports.
 * ImageGalleryBase::setWidths() and ::setHeights() will now emit a deprecation
   warning if they are called without ImageGalleryBase::setParser() having been
   called.  Please set the parser appropriately when using the image gallery.
+* The hook OutputPageMakeCategoryLinks is deprecated. Use the new hook
+  OutputPageRenderCategoryLink instead.
 * …
 
 === Other changes in 1.43 ===
