@@ -8,6 +8,7 @@ use MediaWiki\Specials\SpecialDeletedContributions;
  */
 class SpecialDeletedContributionsTest extends SpecialPageTestBase {
 	private static User $sysop;
+	private static User $userNameWithSpaces;
 
 	protected function newSpecialPage(): SpecialDeletedContributions {
 		$services = $this->getServiceContainer();
@@ -38,6 +39,16 @@ class SpecialDeletedContributionsTest extends SpecialPageTestBase {
 		$this->assertStringNotContainsString( 'mw-pager-body', $html );
 	}
 
+	public function testExecuteInvalidTarget() {
+		[ $html ] = $this->executeSpecialPage(
+			'#InvalidUserName',
+			null,
+			null,
+			self::$sysop,
+		);
+		$this->assertStringNotContainsString( 'mw-pager-body', $html );
+	}
+
 	public function testExecuteNoResults() {
 		[ $html ] = $this->executeSpecialPage(
 			'127.0.0.1',
@@ -46,6 +57,17 @@ class SpecialDeletedContributionsTest extends SpecialPageTestBase {
 			self::$sysop,
 		);
 		$this->assertStringNotContainsString( 'mw-pager-body', $html );
+	}
+
+	public function testExecuteUserNameWithEscapedSpaces() {
+		$par = strtr( self::$userNameWithSpaces->getName(), ' ', '_' );
+		[ $html ] = $this->executeSpecialPage(
+			$par,
+			null,
+			null,
+			self::$sysop,
+		);
+		$this->assertStringContainsString( 'mw-pager-body', $html );
 	}
 
 	public function testExecuteNamespaceFilter() {
@@ -62,12 +84,13 @@ class SpecialDeletedContributionsTest extends SpecialPageTestBase {
 
 	public function addDBDataOnce() {
 		self::$sysop = $this->getTestSysop()->getUser();
+		self::$userNameWithSpaces = $this->getMutableTestUser( [], 'Test User' )->getUser();
 
-		$title = Title::makeTitle( NS_MAIN, 'DeletedContribsPagerTest' );
 		$title = Title::makeTitle( NS_TALK, 'DeletedContribsPagerTest' );
 
-		// Make two edits (one will be suppressed)
+		// Make some edits (one will be suppressed)
 		$this->editPage( $title, '', '', NS_MAIN, self::$sysop );
+		$this->editPage( $title, 'test', '', NS_MAIN, self::$userNameWithSpaces );
 		$status = $this->editPage( $title, 'Test content.', '', NS_MAIN, self::$sysop );
 
 		// Delete the page where the edits were made

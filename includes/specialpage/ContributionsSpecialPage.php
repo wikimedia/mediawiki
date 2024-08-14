@@ -144,6 +144,11 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 		$target = $par ?? $request->getVal( 'target', '' );
 		'@phan-var string $target'; // getVal does not return null here
 
+		// Normalize underscores that may be present in the target parameter
+		// if it was passed in as a path param, rather than a query param
+		// where HTMLForm may have already performed preprocessing (T372444).
+		$target = $this->userNameUtils->getCanonical( $target, UserNameUtils::RIGOR_NONE ) ?: '';
+
 		$this->opts['deletedOnly'] = $request->getBool( 'deletedOnly' );
 
 		if ( !strlen( $target ) ) {
