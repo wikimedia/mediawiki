@@ -44,7 +44,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Atakhanli",
-			"Nemoralis"
+			"Nemoralis",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Keçidlərin altını xətlə:",
@@ -2685,7 +2686,7 @@
 	"unblocklog-showlog": "Bu {{GENDER:$1|istifadəçi}} üçün blok jurnalı istinad üçün aşağıda verilmişdir:",
 	"unblocklog-showsuppresslog": "Bu {{GENDER:$1|istifadəçi}} üçün gizlətmə jurnalı istinad üçün aşağıda verilmişdir:",
 	"blocklogtext": "İstifadəçilərin bloklanması və blokun götürülməsi siyahısı.\nAvtomatik bloklanmış IP-ünvanlar burada göstərilmir.\nHazırkı [[Special:BlockList|qadağaların və bloklamaların siyahısına bax]].",
-	"block-log-flags-anononly": "yalnız qeydiyyatsız istifadəçilər",
+	"block-log-flags-anononly": "yalnız anonim istifadəçilər",
 	"block-log-flags-nocreate": "hesab yaratma bloklanıb",
 	"block-log-flags-noautoblock": "avtoblok söndürülüb",
 	"block-log-flags-noemail": "e-mail bloklanıb",
@@ -3661,7 +3662,7 @@
 	"mw-widgets-abandonedit": "Dəyişiklikləri yayımlamadan redaktə rejimindən çıxmaq istədiyinizdən əminsiniz?",
 	"mw-widgets-abandonedit-discard": "Düzəlişləri ləğv et",
 	"mw-widgets-abandonedit-keep": "Redaktəyə davam et",
-	"mw-widgets-abandonedit-title": "Əminsinizmi?",
+	"mw-widgets-abandonedit-title": "Əminsiniz?",
 	"mw-widgets-copytextlayout-copy-fail": "Kopyalamaq alınmadı.",
 	"mw-widgets-copytextlayout-copy-success": "Mübadilə buferinə kopyalandı.",
 	"mw-widgets-dateinput-no-date": "Tarix seçilməyib",

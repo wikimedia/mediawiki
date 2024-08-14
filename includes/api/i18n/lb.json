@@ -8,7 +8,7 @@
 			"Volvox"
 		]
 	},
-	"apihelp-main-param-assertuser": "Iwwerpréifen ob den aktuelle Benotzer de Benotzer mat deem Numm ass.",
+	"apihelp-main-param-assertuser": "Iwwerpréifen ob den aktuelle Benotzer, de Benotzer mat deem Numm ass.",
 	"apihelp-main-param-curtimestamp": "Den aktuellen Zäitstempel an d'Resultat integréieren.",
 	"apihelp-block-summary": "E Benotzer spären.",
 	"apihelp-block-param-user": "Benotzer fir ze spären",

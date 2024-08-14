@@ -34,7 +34,8 @@
 			"아라",
 			"Kisare",
 			"Sheilawangari",
-			"Raychep"
+			"Raychep",
+			"Jadnapac"
 		]
 	},
 	"tog-underline": "Wekea mstari viungo:",
@@ -2482,7 +2483,7 @@
 	"blockedtext-intended-blockee": "Mzuiaji anayetarajiwa: $1",
 	"blockedtext-contact-blocker-admin": "Unaweza kuwasiliana na $1 au mwingine [[{{MediaWiki:Grouppage-sysop}}|msimamizi]] ili kujadili kizuizi.",
 	"blockedtext-block-ip": "Anwani yako ya sasa ya IP ni $1.",
-	"blockedtext-include-details-queries": "Tafadhali jumuisha maelezo yote hapo juu katika maswali yoyote unayouliza.",
+	"blockedtext-include-details-queries": "Tafadhali jumuisha taarifa zote hapo juu katika maswali yoyote unayouliza.",
 	"renameuser": "Badili jina la mtumiaji",
 	"renameuser-linkoncontribs": "badili jina la mtumiaji",
 	"renameuser-linkoncontribs-text": "Badili jina la mtumiaji huyu",
