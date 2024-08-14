@@ -133,39 +133,9 @@ class TransactionManager {
 	}
 
 	/**
-	 * TODO: This should be removed once all usages have been migrated here
-	 * @param string $mode One of IDatabase::TRANSACTION_* values
-	 * @param string $fname method name
-	 * @param float $rtt Trivial query round-trip-delay
-	 */
-	public function newTrxId( $mode, $fname, $rtt ) {
-		$this->trxId = new TransactionIdentifier();
-		$this->trxStatus = self::STATUS_TRX_OK;
-		$this->trxStatusCause = null;
-		$this->trxStatusIgnoredCause = null;
-		$this->trxWriteDuration = 0.0;
-		$this->trxWriteQueryCount = 0;
-		$this->trxWriteAffectedRows = 0;
-		$this->trxWriteAdjDuration = 0.0;
-		$this->trxWriteAdjQueryCount = 0;
-		$this->trxWriteCallers = [];
-		$this->trxAtomicLevels = [];
-		// T147697: make explicitTrxActive() return true until begin() finishes. This way,
-		// no caller triggered by getApproximateLagStatus() will think its OK to muck around
-		// with the transaction just because startAtomic() has not yet finished updating the
-		// tracking fields (e.g. trxAtomicLevels).
-		$this->trxAutomatic = ( $mode === IDatabase::TRANSACTION_INTERNAL );
-		$this->trxAutomaticAtomic = false;
-		$this->trxFname = $fname;
-		$this->trxAtomicCounter = 0;
-		$this->trxTimestamp = microtime( true );
-		$this->trxRoundTripDelay = $rtt;
-	}
-
-	/**
 	 * Get the application-side transaction identifier instance
 	 *
-	 * @return TransactionIdentifier Token for the active transaction; null if there isn't one
+	 * @return ?TransactionIdentifier Token for the active transaction; null if there isn't one
 	 */
 	public function getTrxId() {
 		return $this->trxId;
@@ -174,13 +144,11 @@ class TransactionManager {
 	/**
 	 * Reset the application-side transaction identifier instance and return the old one
 	 *
-	 * This will become private soon.
-	 * @return TransactionIdentifier|null The old transaction token; null if there wasn't one
+	 * @return ?TransactionIdentifier The old transaction token; null if there wasn't one
 	 */
-	public function consumeTrxId() {
+	private function consumeTrxId() {
 		$old = $this->trxId;
 		$this->trxId = null;
-		$this->trxAtomicCounter = 0;
 
 		return $old;
 	}
@@ -288,7 +256,7 @@ class TransactionManager {
 	 */
 	private function calculateLastTrxApplyTime( float $rtt ) {
 		$rttAdjTotal = $this->trxWriteAdjQueryCount * $rtt;
-		$applyTime = max( $this->trxWriteAdjDuration - $rttAdjTotal, 0 );
+		$applyTime = max( $this->trxWriteAdjDuration - $rttAdjTotal, 0.0 );
 		// For omitted queries, make them count as something at least
 		$omitted = $this->trxWriteQueryCount - $this->trxWriteAdjQueryCount;
 		$applyTime += self::TINY_WRITE_SEC * $omitted;
@@ -361,6 +329,7 @@ class TransactionManager {
 
 	public function resetTrxAtomicLevels() {
 		$this->trxAtomicLevels = [];
+		$this->trxAtomicCounter = 0;
 	}
 
 	public function explicitTrxActive() {
@@ -425,18 +394,20 @@ class TransactionManager {
 			( count( $this->trxAtomicLevels ) - 1 ) . " ($fname)", [ 'db_log_category' => 'trx' ] );
 	}
 
-	public function onBeginTransaction( IDatabase $db, $fname ): void {
-		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
-		if ( $this->trxAtomicLevels ) {
-			$levels = $this->flatAtomicSectionList();
-			$msg = "$fname: got explicit BEGIN while atomic section(s) $levels are open";
-			throw new DBUnexpectedError( $db, $msg );
-		} elseif ( !$this->trxAutomatic ) {
-			$msg = "$fname: explicit transaction already active (from {$this->trxFname})";
-			throw new DBUnexpectedError( $db, $msg );
-		} else {
-			$msg = "$fname: implicit transaction already active (from {$this->trxFname})";
-			throw new DBUnexpectedError( $db, $msg );
+	public function onBegin( IDatabase $db, $fname ): void {
+		// Protect against mismatched atomic section, transaction nesting, and snapshot loss
+		if ( $this->trxLevel() ) {
+			if ( $this->trxAtomicLevels ) {
+				$levels = $this->flatAtomicSectionList();
+				$msg = "$fname: got explicit BEGIN while atomic section(s) $levels are open";
+				throw new DBUnexpectedError( $db, $msg );
+			} elseif ( !$this->trxAutomatic ) {
+				$msg = "$fname: explicit transaction already active (from {$this->trxFname})";
+				throw new DBUnexpectedError( $db, $msg );
+			} else {
+				$msg = "$fname: implicit transaction already active (from {$this->trxFname})";
+				throw new DBUnexpectedError( $db, $msg );
+			}
 		}
 	}
 
@@ -896,7 +867,33 @@ class TransactionManager {
 		return count( $this->trxPostCommitOrIdleCallbacks );
 	}
 
-	public function onRollback( IDatabase $db ) {
+	/**
+	 * @param string $mode One of IDatabase::TRANSACTION_* values
+	 * @param string $fname method name
+	 * @param float $rtt Trivial query round-trip-delay
+	 */
+	public function onBeginInCriticalSection( $mode, $fname, $rtt ) {
+		$this->trxId = new TransactionIdentifier();
+		$this->setTrxStatusToOk();
+		$this->resetTrxAtomicLevels();
+		$this->trxWriteCallers = [];
+		$this->trxWriteDuration = 0.0;
+		$this->trxWriteQueryCount = 0;
+		$this->trxWriteAffectedRows = 0;
+		$this->trxWriteAdjDuration = 0.0;
+		$this->trxWriteAdjQueryCount = 0;
+		// T147697: make explicitTrxActive() return true until begin() finishes. This way,
+		// no caller triggered by getApproximateLagStatus() will think its OK to muck around
+		// with the transaction just because startAtomic() has not yet finished updating the
+		// tracking fields (e.g. trxAtomicLevels).
+		$this->trxAutomatic = ( $mode === IDatabase::TRANSACTION_INTERNAL );
+		$this->trxAutomaticAtomic = false;
+		$this->trxFname = $fname;
+		$this->trxTimestamp = microtime( true );
+		$this->trxRoundTripDelay = $rtt;
+	}
+
+	public function onRollbackInCriticalSection( IDatabase $db ) {
 		$oldTrxId = $this->consumeTrxId();
 		$this->setTrxStatusToNone();
 		$this->resetTrxAtomicLevels();
@@ -906,13 +903,21 @@ class TransactionManager {
 
 	public function onCommitInCriticalSection( IDatabase $db ) {
 		$lastWriteTime = null;
+
 		$oldTrxId = $this->consumeTrxId();
 		$this->setTrxStatusToNone();
 		if ( $this->trxWriteCallers ) {
 			$lastWriteTime = microtime( true );
 			$this->transactionWritingOut( $db, (string)$oldTrxId );
 		}
+
 		return $lastWriteTime;
+	}
+
+	public function onSessionLoss( IDatabase $db ) {
+		$oldTrxId = $this->consumeTrxId();
+		$this->clearPreEndCallbacks();
+		$this->transactionWritingOut( $db, (string)$oldTrxId );
 	}
 
 	public function onEndAtomicInCriticalSection( $sectionId ) {
