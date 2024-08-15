@@ -13,7 +13,8 @@
 			"Reedy",
 			"Tīgelika",
 			"Vlad5250",
-			"아라"
+			"아라",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Autengīnsenin paglaubasnā:",
@@ -1814,5 +1815,13 @@
 	"skin-action-protect": "Pakūnteis",
 	"skin-action-undelete": "etgaūtun šin pāusan",
 	"skin-action-delete": "Āupausinais",
-	"skin-action-move": "Prapīdais"
+	"skin-action-move": "Prapīdais",
+	"blockedtext-made-by": "Blōkisenis pastāi segītan pra $1.",
+	"blockedtext-start-time": "Blōkisenes pagaūsenis: $1",
+	"blockedtext-expiration-time": "Blōkisenes wangā: $1",
+	"blockedtext-intended-blockee": "Pastāi blōkitan: $1",
+	"blockedtext-contact-blocker-admin": "Tū mazzi kōntaktitwei si sen $1 anga kittan [[{{MediaWiki:Grouppage-sysop}}|perwaldītajan]] kāi diskutītwei blōkisenin.",
+	"blockedtext-block-ip": "Twajā bigantī IP adressi ast $3.",
+	"blockedtext-block-id": "Blōkisenes ID nummeri ast #$1.",
+	"blockedtext-include-details-queries": "Madli ebimmais wissans šins malkans en wisēimans prasīsenins ezze blōkisenin."
 }

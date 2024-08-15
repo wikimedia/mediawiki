@@ -3164,6 +3164,7 @@
 	"blockedtext-intended-blockee": "געצילטער אויסשגעפּאַרטער: $1",
 	"blockedtext-contact-blocker-admin": "איר קענט קאָנטאַקטן $1 אָדער אן אנדער [[{{MediaWiki:Grouppage-sysop}}|אַדמיניסטראַטאָר]] צו דיסקוטירן דעם בלאק.",
 	"blockedtext-block-ip": "דיין איצטיגע IP אַדרעס איז $1.",
+	"blockedtext-block-id": "דער בלאק האט נומער #$1.",
 	"blockedtext-include-details-queries": "ביטע אַריינשטעלן אַלע די דעטאַלן אין יעדער אָנפראַגע וואס איר מאַכט.",
 	"renameuser": "בײַטן באַניצער נאָמען",
 	"renameuser-linkoncontribs": "בײַטן {{GENDER:$1|באַניצער}} נאָמען",

@@ -4078,7 +4078,7 @@
 	"blockedtext-intended-blockee": "Блок тохара дагалоацам: $1",
 	"blockedtext-contact-blocker-admin": "Бувзаме вала йиш я хьа $1 яхачунца е кхыволча [[{{MediaWiki:Grouppage-sysop}}|администратораца]], блок тохарах дувцаргдолаш.",
 	"blockedtext-block-ip": "Хьа хӀанзара IP-цӀай — $1.",
-	"blockedtext-block-id": "блокировкай идентификатор — #$1.",
+	"blockedtext-block-id": "Блокировкай идентификатор — #$1.",
 	"blockedtext-include-details-queries": "Дехар да, белгалдаха уж деррига хоамаш моллагӀча шоай кхайкаралашка.",
 	"renameuser": "Доакъашхочун цӀи хувца",
 	"renameuser-linkoncontribs": "{{GENDER:$1|доакъашхочун}} цӀи хувца",

@@ -1013,5 +1013,6 @@
 	"skin-action-protect": "Mbroj",
 	"skin-action-undelete": "Kthe fshimjen mbrapsht",
 	"skin-action-delete": "Fshij",
-	"skin-action-move": "Zhvendos"
+	"skin-action-move": "Zhvendos",
+	"blockedtext-block-id": "ID e bllokimit është #$5."
 }

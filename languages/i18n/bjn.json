@@ -545,6 +545,7 @@
 	"changeemail-none": "(kadada)",
 	"changeemail-password": "Sandi {{SITENAME}} Pian:",
 	"changeemail-submit": "Ganti suril",
+	"editrecovery": "Pambulikan Babakan",
 	"edit-recovery-special-view": "janaki",
 	"edit-recovery-special-edit": "babak",
 	"edit-recovery-special-recovered-on": "matan $1",

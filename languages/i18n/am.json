@@ -1673,5 +1673,13 @@
 	"skin-action-protect": "ጠብቅ",
 	"skin-action-undelete": "አታጥፋ",
 	"skin-action-delete": "አጥፋ",
-	"skin-action-move": "ለማዛወር"
+	"skin-action-move": "ለማዛወር",
+	"blockedtext-made-by": "በእርስዎ ላይ ማገጃ የጣለው መጋቢ $1",
+	"blockedtext-start-time": "ማገጃ የጀመረበት ግዜ፦ $1",
+	"blockedtext-expiration-time": "ማገጃ የሚያልቅበት ግዜ፦ $1",
+	"blockedtext-intended-blockee": "የታገደው ተጠቃሚ፦ $1",
+	"blockedtext-contact-blocker-admin": "$1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስለ ማገጃ ለመጠይቅ ይችላሉ።",
+	"blockedtext-block-ip": "የአሁኑኑ ቁጥር አድራሻዎ $1።",
+	"blockedtext-block-id": "የማገጃው ቁጥር #$1 ነው።",
+	"blockedtext-include-details-queries": "ምንም ጥያቄ ካለዎ ይህን ቁጥር ይጨምሩ።"
 }

@@ -31,7 +31,8 @@
 			"Shahadusadik",
 			"Sir Amugi",
 			"Yakubu Fadilatu",
-			"Zak Raha"
+			"Zak Raha",
+			"Alhassan Abdul-Manan"
 		]
 	},
 	"tog-underline": "Zaŋ gɔhi din gbunni booi",
@@ -393,7 +394,7 @@
 	"cannotlogoutnow-title": "Ŋku tooi yi dini sahaŋɔ",
 	"cannotlogoutnow-text": "Yibu pala din yɛn niŋ kamaata din deei yi niŋ ka mali $1 ŋa tumda.",
 	"welcomeuser": "Amaraaba, $1!",
-	"welcomecreation-msg": "A daa akaunti maa nyɛla din nam.a ni tooi taɣi a {{SITENAME}}[[Special:Preference|preference]] a yi bɔra.",
+	"welcomecreation-msg": "A daa akaunti maa nyɛla din nam. a ni tooi taɣi a {{SITENAME}}[[Special:a ni bɔrisham |preference]] a yi bɔra.",
 	"yourname": "ŋun su yuli:",
 	"userlogin-yourname": "Ayuli",
 	"userlogin-yourname-ph": "Kpɛhimi ayuli",
@@ -575,8 +576,8 @@
 	"edit-recovery-special-recovered-on": "Bin din gbaai $1",
 	"edit-recovery-special-recovered-on-tooltip": "Dabisili mini saha shɛli a lahabali labisiri daa zaŋ niŋ",
 	"edit-recovery-loaded-title": "A taɣibu maa nyɛla di labi yina",
-	"edit-recovery-loaded-message": "A taɣibu shɛŋa a ni bɛ tooi malizali maa nyɛla din labi bɔ n-gbaai",
-	"edit-recovery-loaded-message-different-rev": "Baŋma ni din tooi niŋ ka yaɣili ŋɔ taɣi tum a ni daa piligi maliniŋ Pahimi suɣulo labi lihi pɔi ka naayi zaŋ niŋ",
+	"edit-recovery-loaded-message": "A taɣibu shɛŋa a ni bɛ tooi malizali maa nyɛla din labi bɔ n-gbaai ditoli",
+	"edit-recovery-loaded-message-different-rev": "Baŋma ni din tooi niŋ ka yaɣili ŋɔ taɣi tum a ni daa piligi maliniŋ",
 	"edit-recovery-loaded-show": "Wuhimi taɣibu",
 	"edit-recovery-loaded-discard": "Wurimi taɣibu",
 	"summary": "Lahabali jia:",
@@ -598,7 +599,7 @@
 	"temp-user-banner-tooltip-label": "Lahabaya pam zaŋ jɛndi akɔntinima din  ku yuui",
 	"temp-user-banner-tooltip-title": "Akɔnti din ku yuui",
 	"temp-user-banner-tooltip-description-expiration-soon": "<strong>Your temporary account expires in {{PLURAL:$1|1 day|$1 days}}</strong>. Di yi niŋ ka ŋa saha yi gari, zaɣ' pala n-yɛn nam di yi ti niŋ ka a niŋ maliniŋ ka bɛ kpɛna.",
-	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>Your temporary account expires in {{PLURAL:$1|1 day|$1 days}}</strong>. Di yi niŋ ka ŋa saha yi gari, zaɣ' pala n-yɛn nam di yi ti niŋ ka a niŋ maliniŋ ka bɛ kpɛna",
+	"temp-user-banner-tooltip-description-expiration-soon-day": "<strong>adaacounti din kayaa maa ynɛla dini yanzo poi kadabsili maa nanyiyi.</strong> Di yi niŋ ka ŋa saha yi gari, zaɣ' pala n-yɛn nam di yi ti niŋ ka a niŋ maliniŋ ka bɛ kpɛna",
 	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Log in]] or [[Special:CreateAccount|create an account]] ka a tooi nya kpaŋmaŋ zaŋ chaŋ saha ŋan kanna maliniŋ nahingbana.",
 	"blankarticle": "<strong>Kamira:</strong> Yaɣi shɛli a ni namdi ŋɔ nyɛla zaɣi kuŋ.\nA yi lan dihi \"$1\" yaha, di yan namla yaɣi shɛli din ka sabiri shɛli.",
 	"anoneditwarning": "<strong>Niŋmi zaɣa:</strong> Anabi kpe. A IP namber maa kuyan dola poloni diyi niŋ ka a niŋ taɣibu shɛli. Di yi niŋ ka a <strong>[$1 log in]</strong> bee <strong>[$2 create an account]</strong>, taɣabu kam ani niŋ yan bela a yuli ni ni aliheri shɛŋa din kam pahi.",
