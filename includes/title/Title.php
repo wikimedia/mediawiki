@@ -1386,9 +1386,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	public function isMainPage() {
 		/** @var Title|null */
 		static $cachedMainPage;
-		if ( $cachedMainPage === null ) {
-			$cachedMainPage = self::newMainPage();
-		}
+		$cachedMainPage ??= self::newMainPage();
 		return $this->equals( $cachedMainPage );
 	}
 
@@ -2733,9 +2731,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 * @throws MalformedTitleException On malformed titles
 	 */
 	private function secureAndSplit( $text, $defaultNamespace = null ) {
-		if ( $defaultNamespace === null ) {
-			$defaultNamespace = self::DEFAULT_NAMESPACE;
-		}
+		$defaultNamespace ??= self::DEFAULT_NAMESPACE;
 
 		// @note: splitTitleString() is a temporary hack to allow MediaWikiTitleCodec to share
 		//        the parsing code with Title, while avoiding massive refactoring.

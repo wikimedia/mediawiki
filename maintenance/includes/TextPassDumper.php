@@ -631,11 +631,7 @@ TEXT
 						(int)$this->thisPage,
 						(int)$this->thisRev,
 						trim( $this->thisRole )
-					);
-
-					if ( $text === null ) {
-						$text = false;
-					}
+					) ?? false;
 
 					if ( is_string( $text ) && $model !== null ) {
 						// Apply export transformation to text coming from an old dump.

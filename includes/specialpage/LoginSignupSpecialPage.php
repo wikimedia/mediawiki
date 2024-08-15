@@ -648,9 +648,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			$this->getHookRunner()->onSpecialCreateAccountBenefits(
 				$benefitsContainerHtml, $info, $options
 			);
-			if ( $benefitsContainerHtml === null ) {
-				$benefitsContainerHtml = $this->getBenefitsContainerHtml();
-			}
+			$benefitsContainerHtml ??= $this->getBenefitsContainerHtml();
 			$formAndBenefits = $options['beforeForm']
 				? ( $benefitsContainerHtml . $formBlock )
 				: ( $formBlock . $benefitsContainerHtml );

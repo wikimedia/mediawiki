@@ -222,9 +222,7 @@ class BotPasswordStore {
 			return $res;
 		}
 
-		if ( $password === null ) {
-			$password = PasswordFactory::newInvalidPassword();
-		}
+		$password ??= PasswordFactory::newInvalidPassword();
 
 		$dbw = $this->getPrimaryDatabase();
 		$dbw->newInsertQueryBuilder()

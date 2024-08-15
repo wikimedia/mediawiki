@@ -258,9 +258,7 @@ class Xml {
 		$attrs = [ 'id' => 'wpUserLanguage', 'name' => 'wpUserLanguage' ];
 		$attrs = array_merge( $attrs, $overrideAttrs );
 
-		if ( $msg === null ) {
-			$msg = wfMessage( 'yourlanguage' );
-		}
+		$msg ??= wfMessage( 'yourlanguage' );
 		return [
 			self::label( $msg->text(), $attrs['id'] ),
 			self::tags( 'select', $attrs, $options )

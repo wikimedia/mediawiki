@@ -352,8 +352,7 @@ class WikiModule extends Module {
 
 	/**
 	 * @param Context $context
-	 * @return array
-	 * @phan-return array{main:string,files:string[][]}
+	 * @return array{main:?string,files:array<string,array>}
 	 */
 	private function getPackageFiles( Context $context ): array {
 		$main = null;
@@ -373,9 +372,7 @@ class WikiModule extends Module {
 						'content' => $script,
 					];
 					// First script becomes the "main" script
-					if ( $main === null ) {
-						$main = $fileKey;
-					}
+					$main ??= $fileKey;
 				} elseif ( $options['type'] === 'data' ) {
 					$data = FormatJson::decode( $content );
 					if ( $data == null ) {

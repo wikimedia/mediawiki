@@ -585,9 +585,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 
 	protected function wlhLink( Title $target, $text, $editText ) {
 		static $title = null;
-		if ( $title === null ) {
-			$title = $this->getPageTitle();
-		}
+		$title ??= $this->getPageTitle();
 
 		$linkRenderer = $this->getLinkRenderer();
 

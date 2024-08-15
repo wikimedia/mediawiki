@@ -93,10 +93,7 @@ class MediaWikiSite extends Site {
 			return $t->getPrefixedText();
 		} else {
 			static $mediaWikiPageNameNormalizer = null;
-
-			if ( $mediaWikiPageNameNormalizer === null ) {
-				$mediaWikiPageNameNormalizer = new MediaWikiPageNameNormalizer();
-			}
+			$mediaWikiPageNameNormalizer ??= new MediaWikiPageNameNormalizer();
 
 			return $mediaWikiPageNameNormalizer->normalizePageName(
 				$pageName,

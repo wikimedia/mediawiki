@@ -843,9 +843,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 				}
 			}
 
-			if ( $revision === null ) {
-				$revision = $page->getLatest();
-			}
+			$revision ??= $page->getLatest();
 
 			if ( is_int( $revision ) ) {
 				$revId = $revision;

@@ -51,9 +51,7 @@ class HTMLTitleTextField extends HTMLTextField {
 			throw new InvalidArgumentException( 'relative and interwiki may not be used together' );
 		}
 		// Default value (from getDefault()) is null, which breaks Title::newFromTextThrow() below
-		if ( $value === null ) {
-			$value = '';
-		}
+		$value ??= '';
 
 		if ( !$this->mParams['required'] && $value === '' ) {
 			// If this field is not required and the value is empty, that's okay, skip validation

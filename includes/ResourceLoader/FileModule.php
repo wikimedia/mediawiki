@@ -281,10 +281,8 @@ class FileModule extends Module {
 		// The different ways these checks are done, and their ordering, look very silly,
 		// but were preserved for backwards-compatibility just in case. Tread lightly.
 
-		if ( $remoteBasePath === null ) {
-			$remoteBasePath = MediaWikiServices::getInstance()->getMainConfig()
-				->get( MainConfigNames::ResourceBasePath );
-		}
+		$remoteBasePath ??= MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::ResourceBasePath );
 
 		if ( isset( $options['remoteExtPath'] ) ) {
 			$extensionAssetsPath = MediaWikiServices::getInstance()->getMainConfig()
