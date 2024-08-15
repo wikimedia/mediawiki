@@ -19,7 +19,7 @@ use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
 use MediaWikiUnitTestCase;
-use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\ReadOnlyMode;
 
 /**
@@ -57,7 +57,7 @@ class DatabaseBlockStoreFactoryTest extends MediaWikiUnitTestCase {
 					array_fill_keys( DatabaseBlockStore::CONSTRUCTOR_OPTIONS, null )
 				)
 			),
-			$this->createMock( LoggerInterface::class ),
+			new NullLogger(),
 			$this->createMock( ActorStoreFactory::class ),
 			$blockRestrictionStoreFactory,
 			$this->createMock( CommentStore::class ),

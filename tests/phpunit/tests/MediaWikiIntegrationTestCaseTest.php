@@ -9,6 +9,7 @@ use MediaWiki\Title\Title;
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -266,10 +267,10 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testLoggersAreRestoredOnTearDown_replacingExistingLogger__before() {
 		$oldLogger = LoggerFactory::getInstance( 'foo' );
-		$mockLogger = $this->createMock( LoggerInterface::class );
-		$this->setLogger( 'foo', $mockLogger );
+		$logger = new NullLogger();
+		$this->setLogger( 'foo', $logger );
 		$overriddenLogger = LoggerFactory::getInstance( 'foo' );
-		$this->assertSame( $mockLogger, $overriddenLogger );
+		$this->assertSame( $logger, $overriddenLogger );
 		$this->assertNotSame( $oldLogger, $overriddenLogger );
 		return $oldLogger;
 	}
@@ -289,10 +290,10 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWikiIntegrationTestCase::restoreLoggers
 	 */
 	public function testLoggersAreRestoredOnTearDown_replacingNonExistingLogger__before() {
-		$loggerMock = $this->createMock( LoggerInterface::class );
-		$this->setLogger( 'foo', $loggerMock );
+		$logger = new NullLogger();
+		$this->setLogger( 'foo', $logger );
 		$overriddenLogger = LoggerFactory::getInstance( 'foo' );
-		$this->assertSame( $loggerMock, $overriddenLogger );
+		$this->assertSame( $logger, $overriddenLogger );
 		return $overriddenLogger;
 	}
 
@@ -317,8 +318,8 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testLoggersAreRestoredOnTearDown_replacingSameLoggerTwice__before() {
 		LoggerFactory::getInstance( 'baz' );
-		$this->setLogger( 'foo', $this->createMock( LoggerInterface::class ) );
-		$this->setLogger( 'foo', $this->createMock( LoggerInterface::class ) );
+		$this->setLogger( 'foo', new NullLogger() );
+		$this->setLogger( 'foo', new NullLogger() );
 	}
 
 	/**
