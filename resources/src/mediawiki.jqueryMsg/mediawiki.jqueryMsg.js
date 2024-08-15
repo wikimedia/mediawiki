@@ -32,7 +32,8 @@ var slice = Array.prototype.slice,
 		magic: {
 			PAGENAME: mw.config.get( 'wgPageName' ),
 			PAGENAMEE: util.wikiUrlencode( mw.config.get( 'wgPageName' ) ),
-			SERVERNAME: mw.config.get( 'wgServerName' )
+			SERVERNAME: mw.config.get( 'wgServerName' ),
+			CONTENTLANGUAGE: mw.config.get( 'wgContentLanguage' )
 		},
 		// Whitelist for allowed HTML elements in wikitext.
 		// Self-closing tags are not currently supported.
