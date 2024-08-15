@@ -3894,6 +3894,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Stats\\Metrics\\BaseMetricInterface' => __DIR__ . '/includes/libs/Stats/Metrics/BaseMetricInterface.php',
 	'Wikimedia\\Stats\\Metrics\\CounterMetric' => __DIR__ . '/includes/libs/Stats/Metrics/CounterMetric.php',
 	'Wikimedia\\Stats\\Metrics\\GaugeMetric' => __DIR__ . '/includes/libs/Stats/Metrics/GaugeMetric.php',
+	'Wikimedia\\Stats\\Metrics\\HistogramMetric' => __DIR__ . '/includes/libs/Stats/Metrics/HistogramMetric.php',
 	'Wikimedia\\Stats\\Metrics\\MetricInterface' => __DIR__ . '/includes/libs/Stats/Metrics/MetricInterface.php',
 	'Wikimedia\\Stats\\Metrics\\MetricTrait' => __DIR__ . '/includes/libs/Stats/Metrics/MetricTrait.php',
 	'Wikimedia\\Stats\\Metrics\\NullMetric' => __DIR__ . '/includes/libs/Stats/Metrics/NullMetric.php',

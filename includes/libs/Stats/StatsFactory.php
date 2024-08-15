@@ -31,6 +31,7 @@ use Wikimedia\Stats\Exceptions\InvalidConfigurationException;
 use Wikimedia\Stats\Metrics\BaseMetric;
 use Wikimedia\Stats\Metrics\CounterMetric;
 use Wikimedia\Stats\Metrics\GaugeMetric;
+use Wikimedia\Stats\Metrics\HistogramMetric;
 use Wikimedia\Stats\Metrics\NullMetric;
 use Wikimedia\Stats\Metrics\TimingMetric;
 
@@ -118,6 +119,19 @@ class StatsFactory {
 	 */
 	public function getTiming( string $name ) {
 		return $this->getMetric( $name, TimingMetric::class );
+	}
+
+	/**
+	 * Makes a new HistogramMetric.
+	 *
+	 * @param string $name
+	 * @param array $buckets
+	 * @return HistogramMetric
+	 */
+	public function getHistogram( string $name, array $buckets ) {
+		$name = StatsUtils::normalizeString( $name );
+		StatsUtils::validateMetricName( $name );
+		return new HistogramMetric( $this, $name, $buckets );
 	}
 
 	/**
