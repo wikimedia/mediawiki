@@ -373,6 +373,7 @@
 	"cannotloginnow-title": "Ðu ne mægst nu inlogian",
 	"cannotloginnow-text": "Inlogung nis meahtelic ðan ðu brycst $1.",
 	"cannotcreateaccount-title": "We nagon sceappan wisbec",
+	"cannotcreateaccount-text": "Geriht racu gesceap ne mæg man don on þissum wici.",
 	"yourdomainname": "Þin geweald:",
 	"password-change-forbidden": "Þu ne meaht awendan leafnessword on þissum wiki.",
 	"login": "Inga",

@@ -65,6 +65,8 @@
 	"oct": "okt",
 	"nov": "noy",
 	"dec": "dek",
+	"period-am": "ÜE",
+	"period-pm": "ÜS",
 	"pagecategories": "{{PLURAL:$1|Saifeniñ kategoriyası|Saifeniñ kategoriyaları}}",
 	"category_header": "“$1” kategoriyasındaki saifeler",
 	"subcategories": "Alt kategoriyalar",
