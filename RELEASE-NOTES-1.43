@@ -193,6 +193,8 @@ because of Phabricator reports.
 * (T371051) Added language support for Saint Lucian Creole (acf).
 * (T354937, T370987) Added language support for Minnan (Pe̍h-ōe-jī)
   (nan-latn-pehoeji).
+* (T354937, T369899) Added language support for Minnan (Tâi-lô)
+  (nan-latn-tailo).
 * …
 
 === Breaking changes in 1.43 ===
