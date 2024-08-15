@@ -30,8 +30,8 @@
 					// runs before the mock config is set up.
 					PAGENAME: mw.config.get( 'wgPageName' ),
 					PAGENAMEE: mw.util.wikiUrlencode( mw.config.get( 'wgPageName' ) ),
-					SERVERNAME: mw.config.get( 'wgServerName' )
-
+					SERVERNAME: mw.config.get( 'wgServerName' ),
+					CONTENTLANGUAGE: mw.config.get( 'wgContentLanguage' )
 				}
 			} );
 
@@ -59,6 +59,7 @@
 		config: {
 			wgPageName: '2 + 2',
 			wgServerName: 'wiki.xyz',
+			wgContentLanguage: 'sjn',
 			wgArticlePath: '/wiki/$1',
 			wgNamespaceIds: {
 				template: 10,
@@ -358,6 +359,8 @@
 		assert.strictEqual( formatParse( 'variables-sitename' ), 'Wiki', 'SITENAME' );
 		mw.messages.set( 'variables-servername', '{{SERVERNAME}}' );
 		assert.strictEqual( formatParse( 'variables-servername' ), 'wiki.xyz', 'SERVERNAME' );
+		mw.messages.set( 'variables-contentlanguage', '{{CONTENTLANGUAGE}}' );
+		assert.strictEqual( formatParse( 'variables-contentlanguage' ), 'sjn', 'CONTENTLANGUAGE' );
 	} );
 
 	QUnit.test( 'Bi-di', ( assert ) => {
