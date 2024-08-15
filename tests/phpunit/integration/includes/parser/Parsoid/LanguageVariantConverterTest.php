@@ -154,9 +154,7 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 		$expected,
 		$expectedLanguage = null
 	) {
-		if ( $expectedLanguage === null ) {
-			$expectedLanguage = $target;
-		}
+		$expectedLanguage ??= $target;
 
 		$page = $this->getExistingTestPage();
 		$languageVariantConverter = $this->getLanguageVariantConverter( $page );
@@ -200,9 +198,7 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 		$expected,
 		$expectedLanguage = null
 	) {
-		if ( $expectedLanguage === null ) {
-			$expectedLanguage = $target;
-		}
+		$expectedLanguage ??= $target;
 
 		$page = $this->getExistingTestPage();
 		$languageVariantConverter = $this->getLanguageVariantConverter( $page );

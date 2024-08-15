@@ -69,12 +69,10 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 	private function createHtmlToContentTransformWithOriginalData( $html = '', array $options = null ) {
 		$transform = $this->createHtmlToContentTransform( $html );
 
-		if ( $options === null ) {
-			$options = [
-				'contentmodel' => 'wikitext',
-				'offsetType' => 'byte',
-			];
-		}
+		$options ??= [
+			'contentmodel' => 'wikitext',
+			'offsetType' => 'byte',
+		];
 
 		// Set some options to assert on $transform object.
 		$transform->setOptions( $options );
