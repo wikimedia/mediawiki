@@ -24,6 +24,8 @@
 use MediaWiki\PoolCounter\PoolCounter;
 use MediaWiki\PoolCounter\PoolCounterWork;
 use MediaWiki\Status\Status;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub\Stub;
 use Psr\Log\LoggerInterface;
 use Wikimedia\TestingAccessWrapper;
 
@@ -33,6 +35,11 @@ use Wikimedia\TestingAccessWrapper;
  */
 class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 
+	/**
+	 * @param MockObject $obj
+	 * @param array<string,Stub> $configMethods Method names mapped to return values
+	 * @return MockObject
+	 */
 	private function configureMock( $obj, $configMethods ) {
 		$obj->expects( $this->never() )
 			->method( $this->anythingBut( ...array_keys( $configMethods ) ) );
