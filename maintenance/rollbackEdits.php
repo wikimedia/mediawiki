@@ -53,8 +53,8 @@ class RollbackEdits extends Maintenance {
 		$user = $this->getOption( 'user' );
 		$services = $this->getServiceContainer();
 		$userNameUtils = $services->getUserNameUtils();
-		$username = $userNameUtils->isIP( $user ) ? $user : $userNameUtils->getCanonical( $user );
-		if ( !$username ) {
+		$user = $userNameUtils->isIP( $user ) ? $user : $userNameUtils->getCanonical( $user );
+		if ( !$user ) {
 			$this->fatalError( 'Invalid username' );
 		}
 
@@ -81,7 +81,7 @@ class RollbackEdits extends Maintenance {
 		}
 
 		$doer = User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] );
-		$byUser = $services->getUserIdentityLookup()->getUserIdentityByName( $username );
+		$byUser = $services->getUserIdentityLookup()->getUserIdentityByName( $user );
 
 		if ( !$byUser ) {
 			$this->fatalError( 'Unknown user.' );
