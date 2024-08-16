@@ -2567,7 +2567,7 @@
 	"cannotmove": "Stranica ne može biti premještena iz {{PLURAL:$1|sljedećeg razloga|sljedećih razloga}}:",
 	"movepage-moved": "Stranica „<strong>$1</strong>” premještena je na naslov „<strong>$2</strong>”.",
 	"movepage-moved-redirect": "Izrađeno je preusmjerenje.",
-	"movepage-moved-noredirect": "Pravljenje preusmjerenja je onemogućeno.",
+	"movepage-moved-noredirect": "Izostavljena je izrada preusmjerenja.",
 	"movepage-delete-first": "Ciljna stranica ima previše izmjena za brisanje kao dio premještanja stranice. Prvo ručno izbrišite stranicu, pa pokušajte ponovo.",
 	"articleexists": "Već postoji stranica [[:$1]] ili je ime koje ste izabrali neispravno.\nIzaberite drugo.",
 	"redirectexists": "Preusmjeravanje već postoji na [[:$1]], te ne može biti automatski izbrisano.\nMolimo Vas, odaberite drugi naziv.",

@@ -1114,7 +1114,7 @@
 	"grouppage-sysop": "{{ns:project}}:ผู้ดูแลระบบ",
 	"grouppage-interface-admin": "{{ns:project}}:ผู้ดูแลระบบอินเตอร์เฟซ",
 	"grouppage-bureaucrat": "{{ns:project}}:ผู้ดูแลระบบสิทธิแต่งตั้ง",
-	"grouppage-suppress": "{{ns:project}}:ผู้ควบคุมประวัติ",
+	"grouppage-suppress": "{{ns:project}}:การควบคุมประวัติ",
 	"right-read": "อ่านหน้า",
 	"right-edit": "แก้ไขหน้า",
 	"right-createpage": "สร้างหน้า (ที่ไม่ใช่หน้าอภิปราย)",
