@@ -84,7 +84,7 @@ class DBConnRefTest extends TestCase {
 	 * @return IDatabase
 	 */
 	private function getDBConnRef( ILoadBalancer $lb = null ) {
-		$lb = $lb ?: $this->getLoadBalancerMock();
+		$lb ??= $this->getLoadBalancerMock();
 		return new DBConnRef( $lb, [ DB_PRIMARY, [], 'mywiki', 0 ], DB_PRIMARY );
 	}
 

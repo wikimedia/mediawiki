@@ -102,7 +102,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @return RevisionRecord|null
 	 */
 	private function createRevision( WikiPage $page, $summary, $content = null, $user = null ) {
-		$user = $user ?: $this->getTestUser()->getUser();
+		$user ??= $this->getTestUser()->getUser();
 		$comment = CommentStoreComment::newUnsavedComment( $summary );
 
 		if ( $content === null || is_string( $content ) ) {

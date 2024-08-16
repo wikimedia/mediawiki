@@ -91,9 +91,8 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	 * @return LoggerSpi
 	 */
 	private function getLoggerSpi( $logger = null ) {
-		$logger = $logger ?: new NullLogger();
 		$spi = $this->createNoOpMock( LoggerSpi::class, [ 'getLogger' ] );
-		$spi->method( 'getLogger' )->willReturn( $logger );
+		$spi->method( 'getLogger' )->willReturn( $logger ?? new NullLogger() );
 		return $spi;
 	}
 
@@ -1205,9 +1204,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 				->method( $method )
 				->willReturnCallback( function ( ...$actualArgs ) use ( $arguments ) {
 					static $expectedArgs;
-					if ( $expectedArgs === null ) {
-						$expectedArgs = $arguments;
-					}
+					$expectedArgs ??= $arguments;
 					$this->assertContains( $actualArgs, $expectedArgs );
 					$argIdx = array_search( $actualArgs, $expectedArgs, true );
 					unset( $expectedArgs[$argIdx] );

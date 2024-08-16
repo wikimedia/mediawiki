@@ -41,9 +41,7 @@ class BeforeParserFetchTemplateRevisionRecordTest extends MediaWikiLangTestCase 
 	}
 
 	private function commonSetup( $suffix = null ) {
-		if ( $suffix === null ) {
-			$suffix = $this->getCallerName();
-		}
+		$suffix ??= $this->getCallerName();
 		$parser = $this->getServiceContainer()->getParserFactory()->create();
 		$parser->setOptions( ParserOptions::newFromAnon() );
 

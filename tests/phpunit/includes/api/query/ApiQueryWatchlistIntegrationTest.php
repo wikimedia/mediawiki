@@ -169,9 +169,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	private function doListWatchlistRequest( array $params = [], $user = null ) {
-		if ( $user === null ) {
-			$user = $this->getLoggedInTestUser();
-		}
+		$user ??= $this->getLoggedInTestUser();
 		return $this->doApiRequest(
 			array_merge(
 				[ 'action' => 'query', 'list' => 'watchlist' ],

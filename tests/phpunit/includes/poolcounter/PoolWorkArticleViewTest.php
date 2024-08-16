@@ -23,9 +23,8 @@ class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 	 * @return LoggerSpi
 	 */
 	protected function getLoggerSpi( $logger = null ) {
-		$logger = $logger ?: new NullLogger();
 		$spi = $this->createNoOpMock( LoggerSpi::class, [ 'getLogger' ] );
-		$spi->method( 'getLogger' )->willReturn( $logger );
+		$spi->method( 'getLogger' )->willReturn( $logger ?? new NullLogger() );
 		return $spi;
 	}
 

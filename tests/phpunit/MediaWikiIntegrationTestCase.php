@@ -377,11 +377,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		$caller = $this->getCallerName();
-		if ( !$title instanceof Title ) {
-			if ( $title === null ) {
-				$title = 'Test page ' . $caller . ' ' . wfRandomString();
-			}
-			$title = Title::newFromText( $title );
+		if ( !( $title instanceof Title ) ) {
+			$title = Title::newFromText( $title ?? "Test page $caller " . wfRandomString() );
 		}
 		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
 		$page = $wikiPageFactory->newFromTitle( $title );

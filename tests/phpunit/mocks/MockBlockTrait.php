@@ -71,9 +71,7 @@ trait MockBlockTrait {
 			$block = $this->makeMockBlock( [ 'target' => $target ] );
 		}
 
-		if ( $match === null ) {
-			$match = $block->getTargetUserIdentity();
-		}
+		$match ??= $block->getTargetUserIdentity();
 
 		$blockManager = $this->getMockBuilder( BlockManager::class )
 			->disableOriginalConstructor()

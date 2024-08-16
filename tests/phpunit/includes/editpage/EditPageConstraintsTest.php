@@ -86,9 +86,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
 		$page = $wikiPageFactory->newFromTitle( $title );
 
-		if ( $user == null ) {
-			$user = $this->getTestUser()->getUser();
-		}
+		$user ??= $this->getTestUser()->getUser();
 
 		if ( $baseText !== null ) {
 			$content = ContentHandler::makeContent( $baseText, $title );

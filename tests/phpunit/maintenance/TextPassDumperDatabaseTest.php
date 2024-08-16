@@ -432,9 +432,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 	 * @return string Absolute filename of the stub
 	 */
 	private function setUpStub( $templateName, $schemaVersion, $outFile = null, $iterations = 1 ) {
-		if ( $outFile === null ) {
-			$outFile = $this->getNewTempFile();
-		}
+		$outFile ??= $this->getNewTempFile();
 
 		$templatePath = $this->getDumpTemplatePath( $templateName, $schemaVersion );
 

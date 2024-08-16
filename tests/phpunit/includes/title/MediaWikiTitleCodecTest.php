@@ -419,11 +419,8 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideParseTitle
 	 */
 	public function testParseTitle( $text, $ns, $lang, $title = null ) {
-		if ( $title === null ) {
-			$title = str_replace( ' ', '_', trim( $text ) );
-		}
-
-		if ( is_string( $title ) ) {
+		if ( !( $title instanceof TitleValue ) ) {
+			$title ??= str_replace( ' ', '_', trim( $text ) );
 			$title = new TitleValue( NS_MAIN, $title, '' );
 		}
 
