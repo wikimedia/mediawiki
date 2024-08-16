@@ -354,11 +354,16 @@ trait MediaWikiTestCaseTrait {
 	 * @since 1.35
 	 */
 	protected function getMockMessage( string $text = '', array $params = [] ) {
+		// Warning, don't use PHPUnit's logicalOr with strings as that's extremely slow!
+		$oneOf = fn ( string ...$methods ) => $this->logicalOr(
+			...array_map( [ $this, 'identicalTo' ], $methods )
+		);
+
 		$msg = $this->createMock( Message::class );
-		$msg->method( $this->logicalOr( '__toString', 'escaped', 'getKey', 'parse', 'parseAsBlock',
+		$msg->method( $oneOf( '__toString', 'escaped', 'getKey', 'parse', 'parseAsBlock',
 			'plain', 'text', 'toString' ) )->willReturn( $text );
 		$msg->method( 'getParams' )->willReturn( $params );
-		$msg->method( $this->logicalOr( 'inContentLanguage', 'inLanguage', 'numParams', 'params',
+		$msg->method( $oneOf( 'inContentLanguage', 'inLanguage', 'numParams', 'params',
 			'rawParams', 'setContext', 'title', 'useDatabase' ) )->willReturnSelf();
 		$msg->method( 'exists' )->willReturn( true );
 		return $msg;
