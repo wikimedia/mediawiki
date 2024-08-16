@@ -2220,8 +2220,7 @@ class WANObjectCache implements
 	 * @return string Colon-separated, keyspace-prepended, ordered list of encoded components
 	 */
 	public function makeGlobalKey( $keygroup, ...$components ) {
-		// @phan-suppress-next-line PhanParamTooFewUnpack Should infer non-emptiness
-		return $this->cache->makeGlobalKey( ...func_get_args() );
+		return $this->cache->makeGlobalKey( $keygroup, ...$components );
 	}
 
 	/**
@@ -2232,8 +2231,7 @@ class WANObjectCache implements
 	 * @return string Colon-separated, keyspace-prepended, ordered list of encoded components
 	 */
 	public function makeKey( $keygroup, ...$components ) {
-		// @phan-suppress-next-line PhanParamTooFewUnpack Should infer non-emptiness
-		return $this->cache->makeKey( ...func_get_args() );
+		return $this->cache->makeKey( $keygroup, ...$components );
 	}
 
 	/**
