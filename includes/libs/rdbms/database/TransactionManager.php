@@ -52,59 +52,68 @@ class TransactionManager {
 	/** @var string Prefix to the atomic section counter used to make savepoint IDs */
 	private const SAVEPOINT_PREFIX = 'wikimedia_rdbms_atomic';
 
-	/** @var TransactionIdentifier|null Application-side ID of the active transaction; null if none */
+	/** @var ?TransactionIdentifier Application-side ID of the active (server-side) transaction */
 	private $trxId;
-	/** @var float|null UNIX timestamp at the time of BEGIN for the last transaction */
+	/** @var ?float UNIX timestamp of BEGIN for the last transaction */
 	private $trxTimestamp = null;
-	/** @var float|null Round trip time estimate for queries during this transaction */
+	/** @var ?float Round trip time estimate for queries during the last transaction */
 	private $trxRoundTripDelay = null;
-	/** @var int Transaction status */
+	/** @var int STATUS_TRX_* constant indicating the transaction lifecycle state */
 	private $trxStatus = self::STATUS_TRX_NONE;
-	/** @var Throwable|null The cause of any unresolved transaction state error, or, null */
+	/** @var ?Throwable The cause of any unresolved transaction lifecycle state error */
 	private $trxStatusCause;
-	/** @var array|null Details of the last statement-rollback error for the last transaction */
+	/** @var ?array Details of any unresolved statement-rollback error within a transaction */
 	private $trxStatusIgnoredCause;
 
-	/** @var Throwable|null The cause of any unresolved session state loss error, or, null */
+	/** @var ?Throwable The cause of any unresolved session state loss error */
 	private $sessionError;
 
-	/** @var string[] Write query callers of the current transaction */
+	/** @var string[] Write query callers of the last transaction */
 	private $trxWriteCallers = [];
-	/** @var float Seconds spent in write queries for the current transaction */
+	/** @var float Seconds spent in write queries for the last transaction */
 	private $trxWriteDuration = 0.0;
-	/** @var int Number of write queries for the current transaction */
+	/** @var int Number of write queries for the last transaction */
 	private $trxWriteQueryCount = 0;
-	/** @var int Number of rows affected by write queries for the current transaction */
+	/** @var int Number of rows affected by write queries for the last transaction */
 	private $trxWriteAffectedRows = 0;
 	/** @var float Like trxWriteQueryCount but excludes lock-bound, easy to replicate, queries */
 	private $trxWriteAdjDuration = 0.0;
 	/** @var int Number of write queries counted in trxWriteAdjDuration */
 	private $trxWriteAdjQueryCount = 0;
 
-	/** @var array List of (name, unique ID, savepoint ID) for each active atomic section level */
+	/** @var array Pending atomic sections; list of (name, unique ID, savepoint ID) */
 	private $trxAtomicLevels = [];
-	/** @var bool Whether the current transaction was started implicitly due to DBO_TRX */
+	/** @var bool Whether the last transaction was started implicitly due to DBO_TRX */
 	private $trxAutomatic = false;
-	/** @var bool Whether the current transaction was started implicitly by startAtomic() */
+	/** @var bool Whether the last transaction was started implicitly by startAtomic() */
 	private $trxAutomaticAtomic = false;
 
-	/** @var string|null Name of the function that start the last transaction */
+	/** @var ?string Name of the function that started the last transaction */
 	private $trxFname = null;
-	/** @var int Counter for atomic savepoint identifiers (reset with each transaction) */
+	/** @var int Counter for atomic savepoint identifiers for the last transaction */
 	private $trxAtomicCounter = 0;
 
-	/** @var array[] List of (callable, method name, atomic section id) */
+	/**
+	 * @var array[] Pending postcommit callbacks; list of (callable, method name, atomic section id)
+	 * @phan-var array<array{0:callable,1:string,2:AtomicSectionIdentifier|null}>
+	 */
 	private $trxPostCommitOrIdleCallbacks = [];
-	/** @var array[] List of (callable, method name, atomic section id) */
+	/**
+	 * @var array[] Pending precommit callbacks; list of (callable, method name, atomic section id)
+	 * @phan-var array<array{0:callable,1:string,2:AtomicSectionIdentifier|null}>
+	 */
 	private $trxPreCommitOrIdleCallbacks = [];
 	/**
-	 * @var array[] List of (callable, method name, atomic section id)
+	 * @var array[] Pending post-trx callbacks; list of (callable, method name, atomic section id)
 	 * @phan-var array<array{0:callable,1:string,2:AtomicSectionIdentifier|null}>
 	 */
 	private $trxEndCallbacks = [];
-	/** @var array[] List of (callable, method name, atomic section id) */
+	/**
+	 * @var array[] Pending cancel callbacks; list of (callable, method name, atomic section id)
+	 * @phan-var array<array{0:callable,1:string,2:AtomicSectionIdentifier|null}>
+	 */
 	private $trxSectionCancelCallbacks = [];
-	/** @var callable[] Map of (name => callable) */
+	/** @var callable[] Listener callbacks; map of (name => callable) */
 	private $trxRecurringCallbacks = [];
 	/** @var bool Whether to suppress triggering of transaction end callbacks */
 	private $trxEndCallbacksSuppressed = false;
@@ -776,7 +785,6 @@ class TransactionManager {
 			foreach ( $callbackEntries as $entry ) {
 				if ( in_array( $entry[2], $sectionIds, true ) ) {
 					try {
-						// @phan-suppress-next-line PhanUndeclaredInvokeInCallable
 						$entry[0]( $trigger, $db );
 					} catch ( Throwable $trxError ) {
 						$this->setTransactionError( $trxError );
@@ -809,7 +817,6 @@ class TransactionManager {
 			$count += count( $callbackEntries );
 			foreach ( $callbackEntries as $entry ) {
 				try {
-					// @phan-suppress-next-line PhanUndeclaredInvokeInCallable
 					$entry[0]( $db );
 				} catch ( Throwable $trxError ) {
 					$this->setTransactionError( $trxError );
