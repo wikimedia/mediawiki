@@ -2585,7 +2585,7 @@
 	"sp-contributions-talk": "talk",
 	"sp-contributions-userrights": "{{GENDER:$1|user}} rights management",
 	"sp-contributions-blocked-notice": "This {{GENDER:$1|user}} is currently blocked.\nThe latest block log entry is provided below for reference:",
-	"sp-contributions-blocked-notice-partial": "This user is currently partially blocked.\nThe latest block log entry is provided below for reference:",
+	"sp-contributions-blocked-notice-partial": "This {{GENDER:$1|user}} is currently partially blocked.\nThe latest block log entry is provided below for reference:",
 	"sp-contributions-blocked-notice-anon": "This IP address is currently blocked.\nThe latest block log entry is provided below for reference:",
 	"sp-contributions-blocked-notice-anon-partial": "This IP address is currently partially blocked.\nThe latest block log entry is provided below for reference:",
 	"sp-contributions-search": "Search for contributions",
