@@ -39,7 +39,7 @@ class ValidatorTest extends MediaWikiUnitTestCase {
 		];
 
 		$emptyBodyValidator = new NullBodyValidator();
-		$nonEmptyBodyValidator = new JsonBodyValidator( [
+		$nonEmptyBodyValidator = @new JsonBodyValidator( [
 			'kittens' => [
 				'rest-param-source' => 'body',
 				ParamValidator::PARAM_TYPE => 'string',
