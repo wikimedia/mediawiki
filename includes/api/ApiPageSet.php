@@ -1653,7 +1653,7 @@ class ApiPageSet extends ApiBase {
 				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_HELP_MSG => [
 					'api-pageset-param-converttitles',
-					[ Message::listParam( LanguageConverter::$languagesWithVariants, 'text' ) ],
+					Message::listParam( LanguageConverter::$languagesWithVariants, 'text' ),
 				],
 			],
 		];

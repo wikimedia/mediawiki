@@ -54,12 +54,12 @@ class ApiStructureTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Test a message
-	 * @param Message $msg
+	 * @param string|array|Message $msg Message definition, see Message::newFromSpecifier()
 	 * @param string $what Which message is being checked
 	 */
 	private function checkMessage( $msg, $what ) {
-		$msg = self::getMain()->msg( $msg );
-		$this->assertInstanceOf( Message::class, $msg, "API $what message should be a Message" );
+		// Message::newFromSpecifier() will throw and fail the test if the specifier isn't valid
+		$msg = Message::newFromSpecifier( $msg );
 		$this->assertTrue( $msg->exists(), "API $what message \"{$msg->getKey()}\" must exist. Did you forgot to add it to your i18n/en.json?" );
 	}
 
@@ -84,7 +84,14 @@ class ApiStructureTest extends MediaWikiIntegrationTestCase {
 
 		// Module description messages.
 		$this->checkMessage( $module->getSummaryMessage(), 'Module summary' );
-		$this->checkMessage( $module->getExtendedDescription(), 'Module help top text' );
+		$extendedDesc = $module->getExtendedDescription();
+		if ( is_array( $extendedDesc ) && is_array( $extendedDesc[0] ) ) {
+			// The definition in getExtendedDescription() may also specify fallback keys. This is weird,
+			// and it was never needed for other API doc messages, so it's only supported here.
+			$extendedDesc = Message::newFallbackSequence( $extendedDesc[0] )
+				->params( array_slice( $extendedDesc, 1 ) );
+		}
+		$this->checkMessage( $extendedDesc, 'Module help top text' );
 
 		// Messages for examples.
 		foreach ( $module->getExamplesMessages() as $qs => $msg ) {
