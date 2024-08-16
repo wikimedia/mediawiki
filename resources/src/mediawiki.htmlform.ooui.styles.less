@@ -26,29 +26,21 @@
 	}
 
 	.mw-htmlform-matrix {
-		border-spacing: 0 2px;
+		border-spacing: 0;
 
 		th {
 			font-weight: normal;
 		}
 
-		td {
-			padding: @spacing-50 @spacing-75;
+		td,
+		th {
+			padding: @spacing-75;
 			text-align: center;
 			transition: background-color 250ms;
 
 			&:first-child {
 				text-align: left;
 			}
-
-			&.first {
-				margin-right: 5%;
-				width: 39%;
-			}
-		}
-
-		thead tr td {
-			padding-bottom: 0;
 		}
 
 		tbody tr:nth-child( even ) td {
