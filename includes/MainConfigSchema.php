@@ -5892,7 +5892,7 @@ class MainConfigSchema {
 	 * @since 1.35
 	 */
 	public const ResourceLoaderUseObjectCacheForDeps = [
-		'default' => false,
+		'default' => true,
 	];
 
 	/**

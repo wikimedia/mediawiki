@@ -52,6 +52,10 @@ For notes on 1.42.x and older releases, see HISTORY.
   Since MediaWiki 1.25, structured logging is supported via Monolog for all
   channels, including the "error" channel. For silenced errors, you use the
   "silenced-error" channel added in MediaWiki 1.42. (T193472)
+* wgResourceLoaderUseObjectCacheForDeps - (T343492) This is now enabled by
+  default. This means ResourceLoader writes information to the MainStash
+  instead of a core database table, which can be set to a separate database
+  via wgMainStash. If you find issues, please drop a comment on T343492.
 * …
 
 ==== Removed configuration ====
