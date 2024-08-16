@@ -19,7 +19,6 @@
  */
 namespace MediaWiki\Page;
 
-use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
 use MapCacheLRU;
 use MediaWiki\Logger\Spi as LoggerSpi;
@@ -42,6 +41,7 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\ILBFactory;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * Service for getting rendered output of a given page.
@@ -131,7 +131,7 @@ class ParserOutputAccess {
 	private ParserCacheFactory $parserCacheFactory;
 	private RevisionLookup $revisionLookup;
 	private RevisionRenderer $revisionRenderer;
-	private IBufferingStatsdDataFactory $statsDataFactory;
+	private StatsFactory $statsFactory;
 	private ILBFactory $lbFactory;
 	private ChronologyProtector $chronologyProtector;
 	private LoggerSpi $loggerSpi;
@@ -142,7 +142,7 @@ class ParserOutputAccess {
 		ParserCacheFactory $parserCacheFactory,
 		RevisionLookup $revisionLookup,
 		RevisionRenderer $revisionRenderer,
-		IBufferingStatsdDataFactory $statsDataFactory,
+		StatsFactory $statsFactory,
 		ILBFactory $lbFactory,
 		ChronologyProtector $chronologyProtector,
 		LoggerSpi $loggerSpi,
@@ -152,7 +152,7 @@ class ParserOutputAccess {
 		$this->parserCacheFactory = $parserCacheFactory;
 		$this->revisionLookup = $revisionLookup;
 		$this->revisionRenderer = $revisionRenderer;
-		$this->statsDataFactory = $statsDataFactory;
+		$this->statsFactory = $statsFactory;
 		$this->lbFactory = $lbFactory;
 		$this->chronologyProtector = $chronologyProtector;
 		$this->loggerSpi = $loggerSpi;
@@ -258,9 +258,21 @@ class ParserOutputAccess {
 		}
 
 		if ( $output ) {
-			$this->statsDataFactory->increment( "ParserOutputAccess.Cache.$useCache.hit" );
+			$this->statsFactory
+				->getCounter( 'parseroutputaccess_cache' )
+				->setLabel( 'cache', $useCache )
+				->setLabel( 'reason', 'hit' )
+				->setLabel( 'type', 'hit' )
+				->copyToStatsdAt( "ParserOutputAccess.Cache.$useCache.hit" )
+				->increment();
 		} else {
-			$this->statsDataFactory->increment( "ParserOutputAccess.Cache.$useCache.$notHitReason" );
+			$this->statsFactory
+				->getCounter( 'parseroutputaccess_cache' )
+				->setLabel( 'reason', $notHitReason )
+				->setLabel( 'cache', $useCache )
+				->setLabel( 'type', 'miss' )
+				->copyToStatsdAt( "ParserOutputAccess.Cache.$useCache.$notHitReason" )
+				->increment();
 		}
 
 		return $output ?: null; // convert false to null
@@ -296,15 +308,27 @@ class ParserOutputAccess {
 	): Status {
 		$error = $this->checkPreconditions( $page, $revision, $options );
 		if ( $error ) {
-			$this->statsDataFactory->increment( "ParserOutputAccess.Case.error" );
+			$this->statsFactory
+				->getCounter( 'parseroutputaccess_case' )
+				->setLabel( 'case', 'error' )
+				->copyToStatsdAt( 'ParserOutputAccess.Case.error' )
+				->increment();
 			return $error;
 		}
 
 		$isOld = $revision && $revision->getId() !== $page->getLatest();
 		if ( $isOld ) {
-			$this->statsDataFactory->increment( 'ParserOutputAccess.Case.old' );
+			$this->statsFactory
+				->getCounter( 'parseroutputaccess_case' )
+				->setLabel( 'case', 'old' )
+				->copyToStatsdAt( 'ParserOutputAccess.Case.old' )
+				->increment();
 		} else {
-			$this->statsDataFactory->increment( 'ParserOutputAccess.Case.current' );
+			$this->statsFactory
+				->getCounter( 'parseroutputaccess_case' )
+				->setLabel( 'case', 'current' )
+				->copyToStatsdAt( 'ParserOutputAccess.Case.current' )
+				->increment();
 		}
 
 		if ( !( $options & self::OPT_NO_CHECK_CACHE ) ) {
@@ -319,7 +343,11 @@ class ParserOutputAccess {
 			$revision = $revId ? $this->revisionLookup->getRevisionById( $revId ) : null;
 
 			if ( !$revision ) {
-				$this->statsDataFactory->increment( "ParserOutputAccess.Status.norev" );
+				$this->statsFactory
+					->getCounter( 'parseroutputaccess_status' )
+					->setLabel( 'status', 'norev' )
+					->copyToStatsdAt( "ParserOutputAccess.Status.norev" )
+					->increment();
 				return Status::newFatal( 'missing-revision', $revId );
 			}
 		}
@@ -342,11 +370,20 @@ class ParserOutputAccess {
 		}
 
 		if ( $status->isGood() ) {
-			$this->statsDataFactory->increment( 'ParserOutputAccess.Status.good' );
+			$this->statsFactory->getCounter( 'parseroutputaccess_status' )
+				->setLabel( 'status', 'good' )
+				->copyToStatsdAt( 'ParserOutputAccess.Status.good' )
+				->increment();
 		} elseif ( $status->isOK() ) {
-			$this->statsDataFactory->increment( 'ParserOutputAccess.Status.ok' );
+			$this->statsFactory->getCounter( 'parseroutputaccess_status' )
+				->setLabel( 'status', 'ok' )
+				->copyToStatsdAt( 'ParserOutputAccess.Status.ok' )
+				->increment();
 		} else {
-			$this->statsDataFactory->increment( 'ParserOutputAccess.Status.error' );
+			$this->statsFactory->getCounter( 'parseroutputaccess_status' )
+				->setLabel( 'status', 'error' )
+				->copyToStatsdAt( 'ParserOutputAccess.Status.error' )
+				->increment();
 		}
 
 		return $status;
@@ -369,7 +406,10 @@ class ParserOutputAccess {
 		RevisionRecord $revision,
 		int $options
 	): Status {
-		$this->statsDataFactory->increment( 'ParserOutputAccess.PoolWork.None' );
+		$this->statsFactory->getCounter( 'parseroutputaccess_poolwork' )
+			->copyToStatsdAt( 'ParserOutputAccess.PoolWork.None' )
+			->setLabel( 'cache', self::CACHE_NONE )
+			->increment();
 
 		$renderedRev = $this->revisionRenderer->getRenderedRevision(
 			$revision,
@@ -462,7 +502,10 @@ class ParserOutputAccess {
 
 		switch ( $useCache ) {
 			case self::CACHE_PRIMARY:
-				$this->statsDataFactory->increment( 'ParserOutputAccess.PoolWork.Current' );
+				$this->statsFactory->getCounter( 'parseroutputaccess_poolwork' )
+					->setLabel( 'cache', self::CACHE_PRIMARY )
+					->copyToStatsdAt( 'ParserOutputAccess.PoolWork.Current' )
+					->increment();
 				$primaryCache = $this->getPrimaryCache( $parserOptions );
 				$parserCacheMetadata = $primaryCache->getMetadata( $page );
 				$cacheKey = $primaryCache->makeParserOutputKey( $page, $parserOptions,
@@ -487,7 +530,10 @@ class ParserOutputAccess {
 				);
 
 			case self::CACHE_SECONDARY:
-				$this->statsDataFactory->increment( 'ParserOutputAccess.PoolWork.Old' );
+				$this->statsFactory->getCounter( 'parseroutputaccess_poolwork' )
+					->setLabel( 'cache', self::CACHE_SECONDARY )
+					->copyToStatsdAt( 'ParserOutputAccess.PoolWork.Old' )
+					->increment();
 				$secondaryCache = $this->getSecondaryCache( $parserOptions );
 				$workKey = $secondaryCache->makeParserOutputKey( $revision, $parserOptions );
 				return new PoolWorkArticleViewOld(
@@ -500,7 +546,10 @@ class ParserOutputAccess {
 				);
 
 			default:
-				$this->statsDataFactory->increment( 'ParserOutputAccess.PoolWork.Uncached' );
+				$this->statsFactory->getCounter( 'parseroutputaccess_poolwork' )
+					->setLabel( 'cache', self::CACHE_NONE )
+					->copyToStatsdAt( 'ParserOutputAccess.PoolWork.Uncached' )
+					->increment();
 				$secondaryCache = $this->getSecondaryCache( $parserOptions );
 				$workKey = $secondaryCache->makeParserOutputKeyOptionalRevId( $revision, $parserOptions );
 				return new PoolWorkArticleView(
