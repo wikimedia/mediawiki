@@ -169,9 +169,18 @@ class ApiParamValidator {
 	 * @param string $key
 	 * @param mixed $value
 	 * @param array &$ret
+	 * @suppress PhanParamTooFewUnpack
 	 */
 	private function checkSettingsMessage( ApiBase $module, string $key, $value, array &$ret ): void {
-		$msg = ApiBase::makeMessage( $value, $module );
+		$msg = null;
+		if ( is_string( $value ) ) {
+			$msg = $module->msg( $value );
+		} elseif ( is_array( $value ) ) {
+			// throws a warning as explained in https://github.com/phan/phan/issues/4734
+			$msg = $module->msg( ...$value );
+		} else {
+			$msg = $value;
+		}
 		if ( $msg instanceof Message ) {
 			$ret['messages'][] = $this->messageConverter->convertMessage( $msg );
 		} else {
