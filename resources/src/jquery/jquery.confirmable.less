@@ -1,0 +1,32 @@
+/* stylelint-disable selector-class-pattern */
+
+.jquery-confirmable {
+	&-button {
+		/* Automatically flipped */
+		margin-left: 1ex;
+	}
+
+	&-wrapper {
+		/* Line breaks within the interface text are unpleasant */
+		white-space: nowrap;
+		/* Hiding the original text when it slides to the left */
+		overflow: hidden;
+	}
+
+	&-wrapper,
+	&-element,
+	&-interface {
+		/* We need inline-flex to be able to size the elements and calculate their dimensions */
+		display: inline-flex;
+		/* inline-flex elements in this context align to baseline by default */
+		vertical-align: bottom;
+	}
+
+	&-element {
+		transition: margin 250ms cubic-bezier( 0.2, 0.8, 0.2, 0.8 );
+	}
+
+	&-interface {
+		transition: width 250ms cubic-bezier( 0.2, 0.8, 0.2, 0.8 );
+	}
+}
