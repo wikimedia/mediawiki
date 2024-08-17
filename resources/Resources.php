@@ -1283,11 +1283,10 @@ return [
 	],
 	'mediawiki.action.edit.collapsibleFooter' => [
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.edit.collapsibleFooter.js',
-		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.collapsibleFooter.css',
+		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.collapsibleFooter.less',
 		'dependencies' => [
 			'jquery.makeCollapsible',
 			'mediawiki.storage',
-			'mediawiki.icon',
 		],
 	],
 	'mediawiki.action.edit.preview' => [

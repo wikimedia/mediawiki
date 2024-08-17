@@ -30,6 +30,9 @@
 
 		// Style the toggler with an arrow icon and add a tabIndex and a role for accessibility
 		$toggler.addClass( 'mw-editfooter-toggler' ).prop( 'tabIndex', 0 ).attr( 'role', 'button' );
+		$( 'p:first-child', $toggler ).prepend(
+			$( '<span>' ).addClass( 'mw-editfooter-toggler--icon' )
+		);
 		$list.addClass( 'mw-editfooter-list' );
 
 		$list.makeCollapsible( {
@@ -39,15 +42,17 @@
 			collapsed: isCollapsed
 		} );
 
-		$toggler.addClass( isCollapsed ? 'mw-icon-arrow-collapsed' : 'mw-icon-arrow-expanded' );
+		if ( isCollapsed ) {
+			$toggler.addClass( 'mw-editfooter-toggler-collapsed' );
+		}
 
 		$list.on( 'beforeExpand.mw-collapsible', () => {
-			$toggler.removeClass( 'mw-icon-arrow-collapsed' ).addClass( 'mw-icon-arrow-expanded' );
+			$toggler.removeClass( 'mw-editfooter-toggler-collapsed' );
 			mw.storage.set( storeKey, expandedVal );
 		} );
 
 		$list.on( 'beforeCollapse.mw-collapsible', () => {
-			$toggler.removeClass( 'mw-icon-arrow-expanded' ).addClass( 'mw-icon-arrow-collapsed' );
+			$toggler.addClass( 'mw-editfooter-toggler-collapsed' );
 			mw.storage.set( storeKey, collapsedVal );
 		} );
 	};
