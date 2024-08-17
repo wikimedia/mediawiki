@@ -239,7 +239,7 @@ return [
 	],
 	'jquery.suggestions' => [
 		'scripts' => 'resources/src/jquery/jquery.suggestions.js',
-		'styles' => 'resources/src/jquery/jquery.suggestions.css',
+		'styles' => 'resources/src/jquery/jquery.suggestions.less',
 		'dependencies' => 'jquery.highlightText',
 	],
 	'jquery.tablesorter' => [
