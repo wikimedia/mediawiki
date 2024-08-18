@@ -75,7 +75,7 @@ class SpecialPageTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider requireLoginAnonProvider
 	 */
-	public function testRequireLoginAnon( $expected, $reason, $title ) {
+	public function testRequireLoginAnon( $expected, ...$params ) {
 		$specialPage = new SpecialPage( 'Watchlist', 'viewmywatchlist' );
 
 		$user = User::newFromId( 0 );
@@ -86,8 +86,7 @@ class SpecialPageTest extends MediaWikiIntegrationTestCase {
 		$this->expectException( UserNotLoggedIn::class );
 		$this->expectExceptionMessage( $expected );
 
-		// $specialPage->requireLogin( [ $reason [, $title ] ] )
-		$specialPage->requireLogin( ...array_filter( [ $reason, $title ] ) );
+		$specialPage->requireLogin( ...$params );
 	}
 
 	public static function requireLoginAnonProvider() {
@@ -97,8 +96,8 @@ class SpecialPageTest extends MediaWikiIntegrationTestCase {
 		$expected2 = wfMessage( 'about' )->inLanguage( $lang )->text();
 
 		return [
-			[ $expected1, null, null ],
-			[ $expected2, 'about', null ],
+			[ $expected1 ],
+			[ $expected2, 'about' ],
 			[ $expected2, 'about', 'about' ],
 		];
 	}

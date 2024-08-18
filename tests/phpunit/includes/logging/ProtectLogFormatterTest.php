@@ -485,8 +485,8 @@ class ProtectLogFormatterTest extends LogFormatterTestCase {
 		$formatter = $this->getServiceContainer()->getLogFormatterFactory()->newFromRow( $row );
 		$formatter->setContext( $context );
 		$titleFactory = $this->createMock( TitleFactory::class );
-		$titleFactory->method( 'makeTitle' )->willReturnCallback( static function () {
-			$ret = Title::makeTitle( ...func_get_args() );
+		$titleFactory->method( 'makeTitle' )->willReturnCallback( static function ( ...$params ) {
+			$ret = Title::makeTitle( ...$params );
 			$ret->resetArticleID( 0 );
 			return $ret;
 		} );

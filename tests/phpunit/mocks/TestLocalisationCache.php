@@ -21,8 +21,8 @@ class TestLocalisationCache extends LocalisationCache {
 	/** @var self */
 	private $selfAccess;
 
-	public function __construct() {
-		parent::__construct( ...func_get_args() );
+	public function __construct( ...$params ) {
+		parent::__construct( ...$params );
 
 		// Limit the cache size (entries are approx. 1 MB each) but not too much. Critical for tests
 		// that use e.g. 5 different languages, and then the same 5 languages again, and again, …
