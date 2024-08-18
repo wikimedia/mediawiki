@@ -88,7 +88,7 @@ class SpecialDeletedContributionsTest extends SpecialPageTestBase {
 
 		$title = Title::makeTitle( NS_TALK, 'DeletedContribsPagerTest' );
 
-		// Make some edits (one will be suppressed)
+		// Make some edits
 		$this->editPage( $title, '', '', NS_MAIN, self::$sysop );
 		$this->editPage( $title, 'test', '', NS_MAIN, self::$userNameWithSpaces );
 		$status = $this->editPage( $title, 'Test content.', '', NS_MAIN, self::$sysop );
