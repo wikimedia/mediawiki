@@ -828,7 +828,7 @@
 		"columns": [
 			{
 				"name": "qc_type",
-				"comment": "A key name, generally the base name of of the special page",
+				"comment": "A key name, generally the base name of the special page",
 				"type": "binary",
 				"options": { "length": 32, "notnull": true }
 			},
@@ -860,7 +860,7 @@
 		"columns": [
 			{
 				"name": "qcc_type",
-				"comment": "A key name, generally the base name of of the special page.",
+				"comment": "A key name, generally the base name of the special page.",
 				"type": "binary",
 				"options": { "length": 32, "notnull": true }
 			},
