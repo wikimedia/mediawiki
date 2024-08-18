@@ -26,6 +26,7 @@ namespace MediaWiki\Auth;
 use IDBAccessObject;
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\Auth\Hook\AuthManagerVerifyAuthenticationHook;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\RequestContext;
@@ -555,14 +556,14 @@ class AuthManager implements LoggerAwareInterface {
 					'Authentication failed because of inconsistent provider array',
 					[ 'old' => json_encode( $state['providerIds'] ), 'new' => json_encode( $this->getProviderIds() ) ]
 				) );
-				$ret = AuthenticationResponse::newFail(
+				$response = AuthenticationResponse::newFail(
 					wfMessage( 'authmanager-authn-not-in-progress' )
 				);
 				$this->callMethodOnProviders( 7, 'postAuthentication',
-					[ $this->userFactory->newFromName( (string)$state['guessUserName'] ), $ret ]
+					[ $this->userFactory->newFromName( (string)$state['guessUserName'] ), $response ]
 				);
 				$session->remove( self::AUTHN_STATE );
-				return $ret;
+				return $response;
 				// @codeCoverageIgnoreEnd
 			}
 			$state['continueRequests'] = [];
@@ -645,28 +646,28 @@ class AuthManager implements LoggerAwareInterface {
 				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Always set in loop before, if passed
 				if ( $state['primary'] === null ) {
 					$this->logger->debug( 'Login failed in primary authentication because no provider accepted' );
-					$ret = AuthenticationResponse::newFail(
+					$response = AuthenticationResponse::newFail(
 						wfMessage( 'authmanager-authn-no-primary' )
 					);
 					$this->callMethodOnProviders( 7, 'postAuthentication',
-						[ $this->userFactory->newFromName( (string)$guessUserName ), $ret ]
+						[ $this->userFactory->newFromName( (string)$guessUserName ), $response ]
 					);
 					$session->remove( self::AUTHN_STATE );
-					return $ret;
+					return $response;
 				}
 			} elseif ( $state['primaryResponse'] === null ) {
 				$provider = $this->getAuthenticationProvider( $state['primary'] );
 				if ( !$provider instanceof PrimaryAuthenticationProvider ) {
 					// Configuration changed? Force them to start over.
 					// @codeCoverageIgnoreStart
-					$ret = AuthenticationResponse::newFail(
+					$response = AuthenticationResponse::newFail(
 						wfMessage( 'authmanager-authn-not-in-progress' )
 					);
 					$this->callMethodOnProviders( 7, 'postAuthentication',
-						[ $this->userFactory->newFromName( (string)$guessUserName ), $ret ]
+						[ $this->userFactory->newFromName( (string)$guessUserName ), $response ]
 					);
 					$session->remove( self::AUTHN_STATE );
-					return $ret;
+					return $response;
 					// @codeCoverageIgnoreEnd
 				}
 				$id = $provider->getUniqueId();
@@ -713,14 +714,14 @@ class AuthManager implements LoggerAwareInterface {
 				if ( !$provider instanceof PrimaryAuthenticationProvider ) {
 					// Configuration changed? Force them to start over.
 					// @codeCoverageIgnoreStart
-					$ret = AuthenticationResponse::newFail(
+					$response = AuthenticationResponse::newFail(
 						wfMessage( 'authmanager-authn-not-in-progress' )
 					);
 					$this->callMethodOnProviders( 7, 'postAuthentication',
-						[ $this->userFactory->newFromName( (string)$guessUserName ), $ret ]
+						[ $this->userFactory->newFromName( (string)$guessUserName ), $response ]
 					);
 					$session->remove( self::AUTHN_STATE );
-					return $ret;
+					return $response;
 					// @codeCoverageIgnoreEnd
 				}
 
@@ -737,27 +738,41 @@ class AuthManager implements LoggerAwareInterface {
 				$this->logger->debug(
 					"Primary login with {$provider->getUniqueId()} succeeded, but returned no user"
 				);
-				$ret = AuthenticationResponse::newRestart( wfMessage( $msg ) );
-				$ret->neededRequests = $this->getAuthenticationRequestsInternal(
+				$response = AuthenticationResponse::newRestart( wfMessage( $msg ) );
+				$response->neededRequests = $this->getAuthenticationRequestsInternal(
 					self::ACTION_LOGIN,
 					[],
 					$this->getPrimaryAuthenticationProviders() + $this->getSecondaryAuthenticationProviders()
 				);
 				if ( $res->createRequest || $state['maybeLink'] ) {
-					$ret->createRequest = new CreateFromLoginAuthenticationRequest(
+					$response->createRequest = new CreateFromLoginAuthenticationRequest(
 						$res->createRequest, $state['maybeLink']
 					);
-					$ret->neededRequests[] = $ret->createRequest;
+					$response->neededRequests[] = $response->createRequest;
 				}
-				$this->fillRequests( $ret->neededRequests, self::ACTION_LOGIN, null, true );
+				$this->fillRequests( $response->neededRequests, self::ACTION_LOGIN, null, true );
 				$session->setSecret( self::AUTHN_STATE, [
 					'reqs' => [], // Will be filled in later
 					'primary' => null,
 					'primaryResponse' => null,
 					'secondary' => [],
-					'continueRequests' => $ret->neededRequests,
+					'continueRequests' => $response->neededRequests,
 				] + $state );
-				return $ret;
+
+				// Give the AuthManagerVerifyAuthentication hook a chance to interrupt - even though
+				// RESTART does not immediately result in a successful login, the response and session
+				// state can hold information identifying a (remote) user, and that could be turned
+				// into access to that user's account in a follow-up request.
+				if ( !$this->runVerifyHook( self::ACTION_LOGIN, null, $response, $state['primary'] ) ) {
+					$this->callMethodOnProviders( 7, 'postAuthentication', [ null, $response ] );
+					$session->remove( self::AUTHN_STATE );
+					$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
+						$response, null, null, [ 'performer' => $session->getUser() ]
+					);
+					return $response;
+				}
+
+				return $response;
 			}
 
 			// Step 2: Primary authentication succeeded, create the User object
@@ -783,16 +798,16 @@ class AuthManager implements LoggerAwareInterface {
 				// even if the user doesn't exist at this point.
 				$status = $this->autoCreateUser( $user, $state['primary'], false, true, $user );
 				if ( !$status->isGood() ) {
-					$ret = AuthenticationResponse::newFail(
+					$response = AuthenticationResponse::newFail(
 						Status::wrap( $status )->getMessage( 'authmanager-authn-autocreate-failed' )
 					);
-					$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $ret ] );
+					$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $response ] );
 					$session->remove( self::AUTHN_STATE );
 					$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
-						$ret, $user, $user->getName(), [
+						$response, $user, $user->getName(), [
 							'performer' => $session->getUser()
 						] );
-					return $ret;
+					return $response;
 				}
 			}
 
@@ -847,9 +862,19 @@ class AuthManager implements LoggerAwareInterface {
 				}
 			}
 
-			// Step 4: Authentication complete! Set the user in the session and
-			// clean up.
+			// Step 4: Authentication complete! Give hook handlers a chance to interrupt, then
+			// set the user in the session and clean up.
 
+			$response = AuthenticationResponse::newPass( $user->getName() );
+			if ( !$this->runVerifyHook( self::ACTION_LOGIN, $user, $response, $state['primary'] ) ) {
+				$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $response ] );
+				$session->remove( self::AUTHN_STATE );
+				$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
+					$response, $user, $user->getName(), [
+						'performer' => $session->getUser(),
+					] );
+				return $response;
+			}
 			$this->logger->info( 'Login for {user} succeeded from {clientip}', [
 				'user' => $user->getName(),
 				'clientip' => $this->request->getIP(),
@@ -867,16 +892,15 @@ class AuthManager implements LoggerAwareInterface {
 				$rememberMe = $req && $req->rememberMe;
 			}
 			$this->setSessionDataForUser( $user, $rememberMe );
-			$ret = AuthenticationResponse::newPass( $user->getName() );
-			$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $ret ] );
+			$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $response ] );
 			$performer = $session->getUser();
 			$session->remove( self::AUTHN_STATE );
 			$this->removeAuthenticationSessionData( null );
 			$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
-				$ret, $user, $user->getName(), [
+				$response, $user, $user->getName(), [
 					'performer' => $performer
 				] );
-			return $ret;
+			return $response;
 		} catch ( \Exception $ex ) {
 			$session->remove( self::AUTHN_STATE );
 			throw $ex;
@@ -1674,10 +1698,17 @@ class AuthManager implements LoggerAwareInterface {
 				}
 			}
 
-			// Step 2: Primary authentication succeeded, create the User object
-			// and add the user locally.
+			// Step 2: Primary authentication succeeded. Give hook handlers a chance to interrupt,
+			// then create the User object and add the user locally.
 
 			if ( $state['userid'] === 0 ) {
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Always set if we passed step 1
+				$response = $state['primaryResponse'];
+				if ( !$this->runVerifyHook( self::ACTION_CREATE, $user, $response, $state['primary'] ) ) {
+					$this->callMethodOnProviders( 7, 'postAccountCreation', [ $user, $creator, $response ] );
+					$session->remove( self::ACCOUNT_CREATION_STATE );
+					return $response;
+				}
 				$this->logger->info( 'Creating user {user} during account creation', [
 					'user' => $user->getName(),
 					'creator' => $creator->getName(),
@@ -2785,6 +2816,45 @@ class AuthManager implements LoggerAwareInterface {
 				$contLangConverter->getPreferredVariant()
 			);
 		}
+	}
+
+	/**
+	 * @see AuthManagerVerifyAuthenticationHook::onAuthManagerVerifyAuthentication()
+	 */
+	private function runVerifyHook(
+		string $action,
+		?UserIdentity $user,
+		AuthenticationResponse &$response,
+		string $primaryId
+	): bool {
+		$oldResponse = $response;
+		$info = [
+			'action' => $action,
+			'primaryId' => $primaryId,
+		];
+		$proceed = $this->getHookRunner()->onAuthManagerVerifyAuthentication( $user, $response, $this, $info );
+		if ( !( $response instanceof AuthenticationResponse ) ) {
+			throw new LogicException( '$response must be an AuthenticationResponse' );
+		} elseif ( $proceed && $response !== $oldResponse ) {
+			throw new LogicException(
+				'AuthManagerVerifyAuthenticationHook must not modify the response unless it returns false' );
+		} elseif ( !$proceed && $response->status !== AuthenticationResponse::FAIL ) {
+			throw new LogicException(
+				'AuthManagerVerifyAuthenticationHook must set the response to FAIL if it returns false' );
+		}
+		if ( !$proceed ) {
+			$this->logger->info(
+				$action . ' action for {user} from {clientip} prevented by '
+					. 'AuthManagerVerifyAuthentication hook: {reason}',
+				[
+					'user' => $user ? $user->getName() : '<null>',
+					'clientip' => $this->request->getIP(),
+					'reason' => $response->message->getKey(),
+					'primaryId' => $primaryId,
+				]
+			);
+		}
+		return $proceed;
 	}
 
 	/**

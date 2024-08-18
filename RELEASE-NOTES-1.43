@@ -114,6 +114,7 @@ For notes on 1.42.x and older releases, see HISTORY.
 * Added an interactive mode to the install.php maintenance script.
 * The ResourceLoaderModifyStartupSourceUrls hook was added.
 * The AuthManagerFilterProviders hook was added.
+* The AuthManagerVerifyAuthentication hook was added.
 * …
 
 === External library changes in 1.43 ===
