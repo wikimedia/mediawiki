@@ -180,7 +180,7 @@ return [
 			'confirmable-no',
 			'word-separator',
 		],
-		'styles' => 'resources/src/jquery/jquery.confirmable.css',
+		'styles' => 'resources/src/jquery/jquery.confirmable.less',
 		'dependencies' => 'mediawiki.jqueryMsg',
 	],
 	'jquery.highlightText' => [
