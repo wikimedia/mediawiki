@@ -9317,7 +9317,7 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Allow anonymous cross origin requests.
+	 * Allow anonymous cross origin requests to the REST API.
 	 *
 	 * This should be disabled for intranet sites (sites behind a firewall).
 	 *
