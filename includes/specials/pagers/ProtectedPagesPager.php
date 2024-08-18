@@ -139,7 +139,7 @@ class ProtectedPagesPager extends TablePager {
 	protected function getFieldNames() {
 		static $headers = null;
 
-		if ( $headers == [] ) {
+		if ( $headers === null ) {
 			$headers = [
 				'log_timestamp' => 'protectedpages-timestamp',
 				'pr_page' => 'protectedpages-page',
