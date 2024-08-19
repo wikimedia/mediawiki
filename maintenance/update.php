@@ -144,7 +144,7 @@ class UpdateMediaWiki extends Maintenance {
 		}
 
 		// Check external dependencies are up to date
-		if ( !$this->hasOption( 'skip-external-dependencies' ) ) {
+		if ( !$this->hasOption( 'skip-external-dependencies' ) && !getenv( 'MW_SKIP_EXTERNAL_DEPENDENCIES' ) ) {
 			$composerLockUpToDate = $this->runChild( CheckComposerLockUpToDate::class );
 			$composerLockUpToDate->execute();
 		} else {
