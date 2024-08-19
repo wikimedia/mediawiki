@@ -119,12 +119,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	/** The "connection category" LB info key; see {@link IDatabase::getLBInfo()} */
 	private const INFO_CONN_CATEGORY = 'connCategory';
 
-	/**
-	 * Default 'maxLag' when unspecified
-	 * @internal Only for use within LoadBalancer/LoadMonitor
-	 */
-	public const MAX_LAG_DEFAULT = ServerInfo::MAX_LAG_DEFAULT;
-
 	/** Warn when this many connection are held */
 	private const CONN_HELD_WARN_THRESHOLD = 10;
 
