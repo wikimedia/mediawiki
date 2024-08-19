@@ -662,7 +662,7 @@
 	"changepassword-success": "Sua senha foi alterada com sucesso!",
 	"changepassword-throttled": "Você realizou muitas tentativas de se registrar.\nPor favor, aguarde $1 antes de tentar novamente.",
 	"botpasswords": "Senhas de robôs",
-	"botpasswords-summary": "<em>Senhas de robôs</em> permitem acesso a uma conta de usuário via a API sem usar as credenciais da conta para autenticação. Os direitos disponíveis do usuário ao se autenticar com uma senha bot podem ser restritos.\n\nSe você não sabe porque você poderia precisar fazer isso, provavelmente você não deveria fazer. Ninguém jamais deve perguntar a você para criar uma dessas e fornecê-la.",
+	"botpasswords-summary": "<em>Senhas de robôs</em> permitem acesso a uma conta de usuário por meio da API sem usar as credenciais da conta para autenticação. Os direitos disponíveis do usuário ao se autenticar com uma senha bot podem ser restritos.\n\nSe você não sabe porque você poderia precisar fazer isso, provavelmente você não deveria fazer. Ninguém jamais deve perguntar a você para criar uma dessas e fornecê-la.",
 	"botpasswords-disabled": "Senhas de robôs estão desabilitadas.",
 	"botpasswords-no-central-id": "Para usar senhas de robôs, você deve estar autenticada para uma conta centralizada.",
 	"botpasswords-existing": "Senhas de robôs existentes",

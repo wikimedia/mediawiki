@@ -20,7 +20,8 @@
 			"YaronSh",
 			"ערן",
 			"שמזן",
-			"Dee"
+			"Dee",
+			"מיכי י-ם"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|תיעוד]]\n* [[mw:Special:MyLanguage/API:Etiquette|כללי נימוסין והנחיות שימוש]]\n* [[mw:Special:MyLanguage/API:FAQ|שו\"ת]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ רשימת תפוצה]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ הודעות על API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R באגים ובקשות]\n</div>\n<strong>מצב:</strong> ה־API של מדיה־ויקי הוא ממשק ותיק ויציב שנתמך ומשתפר באופן סדיר. אף שאנחנו משתדלים להימנע מכך, לעיתים עלינו לבצע שינויים שעלולים לשבש דברים בפונקציונליות הזאת; באפשרותך לעשות מינוי ל[https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ רשימת התפוצה mediawiki-api-announce] כדי לקבל הודעות על עדכונים.\n\n<strong>בקשות שגויות:</strong> כשבקשות שגויות נשלחות ל־API, יישלח כותר HTTP עם המפתח \"MediaWiki-API-Error\", ואז גם הערך של הכותר וגם קוד השגיאה יוגדרו לאותו ערך. למידע נוסף, אפשר לעיין בדף [[mw:Special:MyLanguage/API:Errors_and_warnings|API:שגיאות ואזהרות]].\n\n<p class=\"mw-apisandbox-link\"><strong>בדיקה:</strong> לבדיקה קלה יותר של בקשות, אפשר להשתמש ב[[Special:ApiSandbox|ארגז החול של API]].</p>",
@@ -1448,7 +1449,7 @@
 	"apihelp-stashedit-param-stashedtexthash": "גיבוב של תוכן דף מסליק קודם שישמש במקום זה.",
 	"apihelp-stashedit-param-contentmodel": "מודל התוכן של התוכן החדש.",
 	"apihelp-stashedit-param-contentformat": "תסדיר הסדרת תוכן עבור טקסט הקלט.",
-	"apihelp-stashedit-param-baserevid": "מזהה גסה של גרסת הבסיס.",
+	"apihelp-stashedit-param-baserevid": "מזהה גרסה של גרסת הבסיס.",
 	"apihelp-stashedit-param-summary": "לשנות תקציר.",
 	"apihelp-tag-summary": "הוספה או הסרה של תגים מגרסאות בודדות או רשומות יומן בודדות.",
 	"apihelp-tag-param-rcid": "מזהה שינוי אחרון אחד או יותר שתג יתווסף אליו או יוסר ממנו.",

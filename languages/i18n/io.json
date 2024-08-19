@@ -1660,6 +1660,7 @@
 	"upload-options": "Opcioni por sendo di arkivi",
 	"watchthisupload": "Surveyar ica arkivo",
 	"filewasdeleted": "Altr arkivo kun ca sama nomo sendesis antee, e pose efacesis.\nAnte probar risendar ol, vu mustas ante verifikar $1.",
+	"filename-thumb-name": "To semblas esar titulo di miniaturo. Voluntez ne sendar miniaturi di imaji a la sama wiki. Se ne esas miniaturo, modifikez la nomo dil arkivo, uzanta altra nomo plu komprenebla, ne semblanta esar prefixo di miniaturo.",
 	"upload-proto-error": "Nekorekta pasovorto",
 	"upload-file-error": "Interna eroro",
 	"upload-file-error-text": "Eventis interna eroro kande on probis kreir tempala arkivo che la reto-servero.\nVoluntes kontaktar ula [[Special:ListUsers/sysop|administrero]].",

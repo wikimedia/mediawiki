@@ -8,7 +8,8 @@
 			"Nemo bis",
 			"Raphael Merx",
 			"Reedy",
-			"아라"
+			"아라",
+			"Diamantino Soares"
 		]
 	},
 	"tog-underline": "Subliña ligasaun sira:",
@@ -181,10 +182,12 @@
 	"red-link-title": "$1 (pájina la iha)",
 	"nstab-main": "Pájina",
 	"nstab-user": "Pájina uza-na'in",
+	"nstab-media": "Pajina Media",
 	"nstab-special": "Pájina espesiál",
 	"nstab-project": "Pájina projetu nian",
 	"nstab-image": "Fail",
 	"nstab-mediawiki": "Mensajen",
+	"nstab-template": "Modelu dokumentu",
 	"nstab-help": "Pájina ajuda",
 	"nstab-category": "Kategoria",
 	"mainpage-nstab": "Pájina Mahuluk",
@@ -657,6 +660,7 @@
 	"compare-rev2": "Versaun 2",
 	"compare-submit": "Halo komparasaun",
 	"deletepage": "Halakon pájina",
+	"htmlform-submit": "Submete",
 	"rightsnone": "(mamuk)",
 	"searchsuggest-search": "Buka iha {{SITENAME}}",
 	"expand_templates_ok": "OK",

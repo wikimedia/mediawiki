@@ -8,7 +8,8 @@
 			"Macofe",
 			"Matma Rex",
 			"Midnight Gambler",
-			"Paul Beppler"
+			"Paul Beppler",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Link unnerstreiche:",
@@ -377,7 +378,7 @@
 	"createacct-reason": "Begrindung (effentlich protokolleerd)",
 	"createacct-reason-ph": "Waroom erstellst du en annres Benutzerkonto?",
 	"createacct-submit": "Dein Benutzerkonto erstelle",
-	"createacct-another-submit": "En anner Benutzerkonto erstelle",
+	"createacct-another-submit": "Benutzerkonto erstelle",
 	"createacct-benefit-heading": "{{SITENAME}} weard von Mensche wie dir geschaff.",
 	"createacct-benefit-body1": "{{PLURAL:$1|Bearbeitung|Bearbeitunge}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|Seit|Seite}}",

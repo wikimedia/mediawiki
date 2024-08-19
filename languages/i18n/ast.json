@@ -1843,7 +1843,7 @@
 	"duplicatesoffile": "{{PLURAL:$1|El siguiente ficheru ye un duplicáu|Los $1 ficheros siguientes son duplicaos}} d'esti ([[Special:FileDuplicateSearch/$2|más detalles]]):",
 	"sharedupload": "Esti ficheru ye de $1 y puen usalu otros proyeutos.",
 	"sharedupload-desc-there": "Esti ficheru ye de $1 y puen usalu otros proyeutos.\nLlea la [páxina de descripción del ficheru $2] pa más información.",
-	"sharedupload-desc-here": "Esti ficheru ye de $1 y puen usalu otros proyeutos.\nLa descripción de la [$2 páxina de descripción del ficheru] s'amuesa darréu.",
+	"sharedupload-desc-here": "Esti ficheru ye de $1 y puen usalu otros proyeutos.\nLa descripción de la [$2 páxina de descripción del ficheru] amuésase darréu.",
 	"sharedupload-desc-edit": "Esti ficheru ye de $1 y puen usalu otros proyeutos.\nSeique quieras camudar la descripción de la so [páxina de descripción de ficheru $2] allí.",
 	"sharedupload-desc-create": "Esti ficheru ye de $1 y puen usalu otros proyeutos.\nSeique quieras camudar la descripción de la so [páxina de descripción de ficheru $2] allí.",
 	"filepage-nofile": "Nun esiste dengún ficheru con esti nome.",

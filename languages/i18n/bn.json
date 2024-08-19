@@ -3772,7 +3772,7 @@
 	"searchlimit-label": "প্রতিটি পাতায় দেখানোর জন্য অনুসন্ধানের ফলাফলের সংখ্যা:",
 	"searchlimit-help": "সর্বাধিক সংখ্যা: $1",
 	"api-clientside-error-noconnect": "সার্ভারের সাথে যুক্ত হওয়া যায়নি। দয়া করে নিশ্চিত করুন যে আপনার ইন্টারনেট সংযোগ কাজ করছে এবং আবার চেষ্টা করুন।",
-	"api-clientside-error-http": "সার্ভার ত্রুটি দেখাচ্ছে: HTTP $1।",
+	"api-clientside-error-http": "সার্ভারে ত্রুটি হয়েছে: HTTP $1।",
 	"api-clientside-error-timeout": "কাঙ্খিত সময়ের মধ্যে সার্ভারটি কোনো সাড়া প্রদান করেনি।",
 	"api-clientside-error-aborted": "অনুরোধটি বাতিল করা হয়েছে।",
 	"api-clientside-error-invalidresponse": "সার্ভার থেকে অবৈধ প্রতিক্রিয়া এসেছে।",
