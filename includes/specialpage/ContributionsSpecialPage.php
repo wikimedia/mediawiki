@@ -690,6 +690,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 			'autofocus' => $target === '',
 			'section' => 'contribs-top',
 			'ipallowed' => true,
+			'usemodwiki-ipallowed' => true,
 			'iprange' => true,
 			'external' => true,
 			'required' => true,
