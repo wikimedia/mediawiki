@@ -26,13 +26,20 @@ class CheckComposerLockUpToDate extends Maintenance {
 		return true;
 	}
 
+	/**
+	 * @return string The value of the constant MW_INSTALL_PATH. This method mocked in phpunit tests.
+	 */
+	protected function getMwInstallPath(): string {
+		return MW_INSTALL_PATH;
+	}
+
 	public function execute() {
-		global $IP;
-		$lockLocation = "$IP/composer.lock";
-		$jsonLocation = "$IP/composer.json";
+		$installPath = $this->getMwInstallPath();
+		$lockLocation = "$installPath/composer.lock";
+		$jsonLocation = "$installPath/composer.json";
 		if ( !file_exists( $lockLocation ) ) {
 			// Maybe they're using mediawiki/vendor?
-			$lockLocation = "$IP/vendor/composer.lock";
+			$lockLocation = "$installPath/vendor/composer.lock";
 			if ( !file_exists( $lockLocation ) ) {
 				$this->fatalError(
 					'Could not find composer.lock file. Have you run "composer install --no-dev"?'

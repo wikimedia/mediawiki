@@ -26,17 +26,20 @@ use Wikimedia\Composer\ComposerLock;
  * @covers \MediaWiki\Composer\LockFileChecker
  */
 class LockFileCheckerTest extends MediaWikiIntegrationTestCase {
+
+	private const FIXTURE_DIRECTORY = MW_INSTALL_PATH . '/tests/phpunit/data/LockFileChecker';
+
 	public function testOk() {
-		$json = new ComposerJson( __DIR__ . '/composer-testcase1.json' );
-		$lock = new ComposerLock( __DIR__ . '/composer-testcase1.lock' );
+		$json = new ComposerJson( self::FIXTURE_DIRECTORY . '/composer-testcase1.json' );
+		$lock = new ComposerLock( self::FIXTURE_DIRECTORY . '/composer-testcase1.lock' );
 		$checker = new LockFileChecker( $json, $lock );
 		$errors = $checker->check();
 		$this->assertNull( $errors );
 	}
 
 	public function testOutdated() {
-		$json = new ComposerJson( __DIR__ . '/composer-testcase2.json' );
-		$lock = new ComposerLock( __DIR__ . '/composer-testcase2.lock' );
+		$json = new ComposerJson( self::FIXTURE_DIRECTORY . '/composer-testcase2.json' );
+		$lock = new ComposerLock( self::FIXTURE_DIRECTORY . '/composer-testcase2.lock' );
 		$checker = new LockFileChecker( $json, $lock );
 		$errors = $checker->check();
 		$this->assertArrayEquals( [
@@ -45,8 +48,8 @@ class LockFileCheckerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNotInstalled() {
-		$json = new ComposerJson( __DIR__ . '/composer-testcase3.json' );
-		$lock = new ComposerLock( __DIR__ . '/composer-testcase3.lock' );
+		$json = new ComposerJson( self::FIXTURE_DIRECTORY . '/composer-testcase3.json' );
+		$lock = new ComposerLock( self::FIXTURE_DIRECTORY . '/composer-testcase3.lock' );
 		$checker = new LockFileChecker( $json, $lock );
 		$errors = $checker->check();
 		$this->assertArrayEquals( [
