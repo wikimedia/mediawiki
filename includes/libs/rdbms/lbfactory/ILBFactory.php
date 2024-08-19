@@ -139,8 +139,9 @@ interface ILBFactory extends IConnectionProvider {
 	/**
 	 * Create a new load balancer instance for the main cluster that handles the given domain
 	 *
-	 * The resulting object will be untracked and the caller is responsible for cleaning it up.
-	 * Database replication positions will not be saved by ChronologyProtector.
+	 * The resulting object is considered to be owned by the caller. Namely, it will be
+	 * untracked, the caller is responsible for cleaning it up, and replication positions
+	 * from it will not be saved by ChronologyProtector.
 	 *
 	 * This method is for only advanced usage and callers should almost always use
 	 * getMainLB() instead. This method can be useful when a table is used as a key/value

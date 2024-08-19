@@ -261,8 +261,6 @@ abstract class LBFactory implements ILBFactory {
 
 	/**
 	 * Get all tracked load balancers with the internal "for owner" interface.
-	 * Most subclasses override this, we just provide an implementation here
-	 * for the benefit of Wikibase's FakeLBFactory.
 	 *
 	 * @return Generator|ILoadBalancerForOwner[]
 	 */

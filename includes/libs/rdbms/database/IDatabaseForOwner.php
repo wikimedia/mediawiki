@@ -20,10 +20,13 @@
 namespace Wikimedia\Rdbms;
 
 /**
- * Internal interface between a database object and load balancer.
+ * Internal interface for relational database handles exposed to their owner
+ *
+ * Instances are either owned by a LoadBalancer object or owned by the caller that created
+ * the instance using a constructor/factory function such as DatabaseFactory::create().
  *
  * @ingroup Database
- * @internal
+ * @internal Only for use within the rdbms library
  */
 interface IDatabaseForOwner extends IDatabase {
 
