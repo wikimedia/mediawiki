@@ -60,7 +60,7 @@
 	"prefs-signature-invalid-new": "توقيعك الحالي مو صالح. على الرغم من أنه تكدر تستخدمه، ما تكدر تغيره لحد ما تصححه.",
 	"prefs-signature-invalid-disallow": "توقيعك الحالي مو صالح. لحد ما تصححه، راح يتم استخدام التوقيع الافتراضي من توقع تعليقاتك.",
 	"prefs-signature-highlight-error": "طلع موقع الخطأ",
-	"prefs-signature-error-details": "تعلم زياده",
+	"prefs-signature-error-details": "افتهم زياده",
 	"badsig": "توقيع خام مو صحيح؛ تحقق من وسوم HTML.",
 	"badsiglength": "توقيعك كلش طويل.\nلازم يكون أقل من $1 {{PLURAL:$1|حرف|حروف}}.",
 	"badsigsubst": "توقيعك بيه حالات إحلال متداخلة (مثال <code>subst:</code> لو <code><nowiki>~~~~</nowiki></code>).",

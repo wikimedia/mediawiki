@@ -2532,7 +2532,7 @@
 	"sp-contributions-talk": "overleg",
 	"sp-contributions-userrights": "{{GENDER:$1|gebruikersrechtenbeheer}}",
 	"sp-contributions-blocked-notice": "Deze {{GENDER:$1|gebruiker}} is momenteel geblokkeerd.\nDe laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergegeven:",
-	"sp-contributions-blocked-notice-partial": "Deze gebruiker is momenteel gedeeltelijk geblokkeerd.\nDe laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergegeven:",
+	"sp-contributions-blocked-notice-partial": "Deze gebruik{{GENDER:$1||st}}er is momenteel gedeeltelijk geblokkeerd.\nDe laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergegeven:",
 	"sp-contributions-blocked-notice-anon": "Dit IP-adres is geblokkeerd.\nDe laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergegeven:",
 	"sp-contributions-blocked-notice-anon-partial": "Dit IP-adres is momenteel gedeeltelijk geblokkeerd.\nDe laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergegeven:",
 	"sp-contributions-search": "Zoeken naar bijdragen",

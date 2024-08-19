@@ -2484,7 +2484,7 @@
 	"sp-contributions-talk": "diskuse",
 	"sp-contributions-userrights": "správa {{GENDER:$1|uživatelských}} práv",
 	"sp-contributions-blocked-notice": "{{GENDER:$1|Tento uživatel|Tato uživatelka}} je momentálně {{GENDER:$1|zablokován|zablokována}}.\nZde je pro přehled zobrazen nejnovější záznam z knihy zablokování:",
-	"sp-contributions-blocked-notice-partial": "Tento uživatel je momentálně částečně zablokován.\nZde je pro přehled zobrazen nejnovější záznam z knihy zablokování:",
+	"sp-contributions-blocked-notice-partial": "{{GENDER:$1|Tento uživatel|Tato uživatelka}} je momentálně částečně {{GENDER:$1|zablokován|zablokována}}.\nZde je pro přehled zobrazen nejnovější záznam z knihy zablokování:",
 	"sp-contributions-blocked-notice-anon": "Tato IP adresa je momentálně zablokována.\nZde je pro přehled zobrazen nejnovější záznam z knihy zablokování:",
 	"sp-contributions-blocked-notice-anon-partial": "Tato IP adresa je momentálně částečně zablokována.\nZde je pro přehled zobrazen nejnovější záznam z knihy zablokování:",
 	"sp-contributions-search": "Zobrazení příspěvků",
