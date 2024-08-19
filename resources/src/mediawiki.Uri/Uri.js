@@ -492,7 +492,12 @@
 			 * @return {Object} This URI object
 			 */
 			extend: function ( parameters ) {
-				this.query = Object.assign( {}, this.query, parameters );
+				for ( const name in parameters ) {
+					const parameter = parameters[ name ];
+					if ( parameter !== undefined ) {
+						this.query[ name ] = parameter;
+					}
+				}
 				return this;
 			}
 		};

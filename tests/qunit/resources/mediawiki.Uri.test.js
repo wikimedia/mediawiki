@@ -202,11 +202,13 @@ QUnit.module( 'mediawiki.Uri', ( hooks ) => {
 		assert.strictEqual( uri.toString(), 'http://en.wiki.local/w/api.php?foo=bar', 'extend query arguments' );
 		uri.extend( {
 			foo: 'quux',
-			pif: 'paf'
+			pif: 'paf',
+			absent: undefined // T372742
 		} );
 		assert.true( uri.toString().includes( 'foo=quux' ), 'extend query arguments' );
 		assert.false( uri.toString().includes( 'foo=bar' ), 'extend query arguments' );
 		assert.true( uri.toString().includes( 'pif=paf' ), 'extend query arguments' );
+		assert.false( uri.toString().includes( 'absent' ), 'extend query arguments' );
 	} );
 
 	QUnit.test( '.getQueryString()', ( assert ) => {
