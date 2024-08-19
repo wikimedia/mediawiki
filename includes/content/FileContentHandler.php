@@ -11,7 +11,7 @@ use WikiPage;
 
 /**
  * Content handler for File: files
- * TODO: this handler s not used directly now,
+ * TODO: this handler is not used directly now,
  * but instead manually called by WikitextHandler.
  * This should be fixed in the future.
  */

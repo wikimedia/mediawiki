@@ -973,7 +973,7 @@ class PermissionManager {
 		if ( !$this->hookRunner->onTitleQuickPermissions( $title, $user, $action,
 			$errors, $rigor !== self::RIGOR_QUICK, $short )
 		) {
-			// $errors is an array of resutls, not a result, but resultToStatus() handles
+			// $errors is an array of results, not a result, but resultToStatus() handles
 			// arrays of arrays with recursion so this will work
 			$this->resultToStatus( $status, $errors );
 			return;

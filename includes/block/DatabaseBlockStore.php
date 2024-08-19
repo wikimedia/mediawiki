@@ -1190,7 +1190,7 @@ class DatabaseBlockStore {
 		$blockId = $block->getId( $this->wikiId );
 		if ( !$blockId ) {
 			throw new InvalidArgumentException(
-				__METHOD__ . " requires that a block id be set\n"
+				__METHOD__ . ' requires that a block id be set'
 			);
 		}
 
@@ -1314,7 +1314,7 @@ class DatabaseBlockStore {
 
 		if ( !$blockId ) {
 			throw new InvalidArgumentException(
-				__METHOD__ . " requires that a block id be set\n"
+				__METHOD__ . ' requires that a block id be set'
 			);
 		}
 		$dbw = $this->getPrimaryDB();
