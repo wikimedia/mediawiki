@@ -2250,7 +2250,7 @@ class OutputPage extends ContextSource {
 	 * Which language getJSVars should use
 	 *
 	 * Use of this is strongly discouraged in favour of ParserOutput::getLanguage(),
-	 * and should not be needed in most cases given that ParserOutput::getText()
+	 * and should not be needed in most cases given that the OutputTransform
 	 * already takes care of 'lang' and 'dir' attributes.
 	 *
 	 * Consider whether RequestContext::getLanguage (e.g. OutputPage::getLanguage

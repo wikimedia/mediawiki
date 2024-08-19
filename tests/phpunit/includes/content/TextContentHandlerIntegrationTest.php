@@ -37,9 +37,14 @@ class TextContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 		$title = Title::newFromText( $title );
 		$content = ContentHandler::makeContent( $text, $title, $model );
 		$contentRenderer = $this->getServiceContainer()->getContentRenderer();
+		if ( $parserOptions === null ) {
+			$parserOptions = ParserOptions::newFromAnon();
+		}
 		$po = $contentRenderer->getParserOutput( $content, $title, null, $parserOptions );
 
-		$html = $po->getText();
+		// TODO T371004
+		$processedPo = $po->runOutputPipeline( $parserOptions, [] );
+		$html = $processedPo->getContentHolderText();
 		$html = preg_replace( '#<!--.*?-->#sm', '', $html ); // strip comments
 		$html = TestUtils::stripParsoidIds( $html );
 
@@ -50,7 +55,7 @@ class TextContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 		if ( $expectedFields ) {
 			foreach ( $expectedFields as $field => $exp ) {
 				$getter = 'get' . ucfirst( $field );
-				$v = $po->$getter();
+				$v = $processedPo->$getter();
 
 				if ( is_array( $exp ) ) {
 					$this->assertArrayEquals( $exp, $v );

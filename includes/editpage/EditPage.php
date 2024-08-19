@@ -4193,14 +4193,20 @@ class EditPage implements IEditObject {
 		$out = $this->context->getOutput();
 		$skin = $out->getSkin();
 		$skinOptions = $skin->getOptions();
+		// TODO T371004 move runOutputPipeline out of $parserOutput
+		// TODO T371022 ideally we clone here, but for now let's reproduce getText behaviour
+		$oldHtml = $parserOutput->getRawText();
+		$html = $parserOutput->runOutputPipeline( $parserOptions, [
+			'allowClone' => 'false',
+			'userLang' => $skin->getLanguage(),
+			'injectTOC' => $skinOptions['toc'],
+			'enableSectionEditLinks' => false,
+			'includeDebugInfo' => true,
+		] )->getContentHolderText();
+		$parserOutput->setRawText( $oldHtml );
 		return [
 			'parserOutput' => $parserOutput,
-			'html' => $parserOutput->getText( [
-				'userLang' => $skin->getLanguage(),
-				'injectTOC' => $skinOptions['toc'],
-				'enableSectionEditLinks' => false,
-				'includeDebugInfo' => true,
-			] )
+			'html' => $html
 		];
 	}
 

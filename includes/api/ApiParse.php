@@ -539,7 +539,13 @@ class ApiParse extends ApiBase {
 			$skinOptions = $skin ? $skin->getOptions() : [
 				'toc' => true,
 			];
-			$result_array['text'] = $p_result->getText( [
+			// TODO T371004 move runOutputPipeline out of $parserOutput
+			// TODO T371022 it should be reasonably straightforward to move this to a clone, but it requires
+			// careful checking of the clone and of what happens on the boundary of OutputPage. Leaving this as
+			// "getText-equivalent" for now; will fix in a later, independent patch.
+			$oldText = $p_result->getRawText();
+			$result_array['text'] = $p_result->runOutputPipeline( $popts, [
+				'allowClone' => false,
 				'allowTOC' => !$params['disabletoc'],
 				'injectTOC' => $skinOptions['toc'],
 				'enableSectionEditLinks' => !$params['disableeditsection'],
@@ -548,7 +554,8 @@ class ApiParse extends ApiBase {
 				'userLang' => $context ? $context->getLanguage() : null,
 				'skin' => $skin,
 				'includeDebugInfo' => !$params['disablepp'] && !$params['disablelimitreport']
-			] );
+			] )->getContentHolderText();
+			$p_result->setRawText( $oldText );
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'text';
 			if ( $context ) {
 				$this->getHookRunner()->onOutputPageBeforeHTML( $context->getOutput(), $result_array['text'] );
