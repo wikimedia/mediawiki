@@ -2547,7 +2547,7 @@
 	"sp-contributions-talk": "mesaj",
 	"sp-contributions-userrights": "{{GENDER:$1|kullanıcı}} hakları yönetimi",
 	"sp-contributions-blocked-notice": "Bu kullanıcı şu anda {{GENDER:$1|engellendi}}.\nKaynak için en son engellenme günlüğü aşağıda belirtilmiştir:",
-	"sp-contributions-blocked-notice-partial": "Bu kullanıcı şu anda kısmen engellendi.\nEn son engel günlüğü girişi referans olarak aşağıda verilmiştir:",
+	"sp-contributions-blocked-notice-partial": "Bu {{GENDER:$1|kullanıcı}} şu anda kısmen engellendi.\nEn son engel günlüğü girdisi kaynak olarak aşağıda verilmiştir:",
 	"sp-contributions-blocked-notice-anon": "Bu IP adresi şu anda engellenmiş.\nSon engelleme günlüğü girdisi kaynak amacıyla aşağıda verilmiştir:",
 	"sp-contributions-blocked-notice-anon-partial": "Bu IP adresi şu anda kısmen engellendi.\nEn son engel günlüğü girişi referans olarak aşağıda verilmiştir:",
 	"sp-contributions-search": "Katkıları ara",

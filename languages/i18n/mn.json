@@ -76,7 +76,7 @@
 	"dec": "12-р сар",
 	"period-am": "AM",
 	"period-pm": "PM",
-	"pagecategories": "{{PLURAL:$1|Ангилал|Ангилал}}",
+	"pagecategories": "{{PLURAL:$1|Ангилал}}",
 	"category_header": "\"$1\" ангийн дан хуудас",
 	"subcategories": "Ангийн бүлэг",
 	"category-media-header": "\"$1\" ангийн файл",

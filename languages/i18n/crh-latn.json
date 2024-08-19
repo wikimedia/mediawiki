@@ -500,7 +500,7 @@
 	"currentrev": "Şimdiki versiya",
 	"currentrev-asof": "$1 tarihından başlap saifeniñ şimdiki alı",
 	"revisionasof": "Saifeniñ $1 tarihındaki alı",
-	"revision-info": "Saifeniñ {{GENDER:$6|$2}}$7 tarafından yazılğan $1 tarihındaki alı",
+	"revision-info": "Saifeniñ {{GENDER:$6|$2}}$7 tarafından yazılğan $4, $5 tarihındaki alı",
 	"previousrevision": "← Evelki alı",
 	"nextrevision": "Soñraki alı →",
 	"currentrevisionlink": "eñ yañı alını köster",

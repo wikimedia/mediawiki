@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Goombiis",
 			"SleaY"
 		]
 	},
@@ -8,5 +9,17 @@
 	"cdx-label-optional-flag": "(optionnel)",
 	"cdx-message-dismiss-button-label": "Fermer",
 	"cdx-search-input-search-button-label": "Rechercher",
-	"cdx-table-select-all-label": "Sélectionner toutes les lignes"
+	"cdx-table-select-all-label": "Sélectionner toutes les lignes",
+	"cdx-table-pager-button-first-page": "Première page",
+	"cdx-table-pager-button-last-page": "Dernière page",
+	"cdx-table-pager-button-next-page": "Page suivante",
+	"cdx-table-pager-button-prev-page": "Page précédente",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1| $1 ligne| $1 lignes}}",
+	"cdx-table-pager-items-per-page-default": "Résultats par page",
+	"cdx-table-pagination-status-message-determinate-long": "Affichage des résultats $1 à $2 sur $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 sur $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Affichage des résultats $1 à $2 parmi plusieurs",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 de beaucoup",
+	"cdx-table-pagination-status-message-indeterminate-final": "Affichage {{PLURAL:$1|du dernier résultat|des $1 derniers résultats}}",
+	"cdx-table-pagination-status-message-pending": "Chargement des résultats..."
 }

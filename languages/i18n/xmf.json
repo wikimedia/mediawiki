@@ -788,7 +788,7 @@
 	"undo-main-slot-only": "რედაქტირაფაშ გოუქვაფა ვეშილებე, თარი სლოტიშ გალენური დინორეშ კათაფაშ გეშა.",
 	"undo-norev": "რედაქტირაფაქ ვეგიუქვინჷ, თიშ გეშა, ნამჷ-და თინა ვა რე ვარ-და ლასირი რე.",
 	"undo-nochange": "მუჭოთ ჩქჷ, რედაქტირაფაქ უკვე გეუქვჷ.",
-	"undo-summary": "მახბარებუშ [[Special:Contributions/$2|$2]]([[User talk:$2|სხუნუა]]) თირუეფიშ გოუქვაფა ([[Special:Diff/$1|$1]])",
+	"undo-summary": "მახვარებუშ [[Special:Contributions/$2|$2]]([[User talk:$2|სხუნუა]]) თირუეფიშ გოუქვაფა ([[Special:Diff/$1|$1]])",
 	"undo-summary-anon": "მახვარებუ [[Special:Contributions/$2|$2]]-შ რედაქტირაფილი [[Special:Diff/$1|$1]] ვერსიაშ გოუქვაფა",
 	"undo-summary-import": "მახვარებუ [[:$2|$3]]-შ იმპორტირაფილი ხასჷლაშ [[Special:Diff/$1|$1]] გოუქვაფა",
 	"undo-summary-import2": "მახვარებუ $2-შით იმპორტირაფილი ხასჷლაშ [[Special:Diff/$1|$1]] გოუქვაფა",
