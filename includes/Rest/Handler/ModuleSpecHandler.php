@@ -67,6 +67,9 @@ class ModuleSpecHandler extends SimpleHandler {
 		];
 	}
 
+	/**
+	 * @see https://spec.openapis.org/oas/v3.0.0#info-object
+	 */
 	private function getInfoSpec( Module $module ): array {
 		// TODO: Let Modules provide their name, description, version, etc
 		$prefix = $module->getPathPrefix();
@@ -77,7 +80,7 @@ class ModuleSpecHandler extends SimpleHandler {
 			$title = "$prefix Module";
 		}
 
-		return [
+		return $module->getOpenApiInfo() + [
 			'title' => $title,
 			'version' => 'undefined',
 			'license' => $this->getLicenseSpec(),

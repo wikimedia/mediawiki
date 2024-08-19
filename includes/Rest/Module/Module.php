@@ -445,4 +445,15 @@ abstract class Module {
 
 		return $spec;
 	}
+
+	/**
+	 * Return an array with data to be included in an OpenAPI "info" object
+	 * describing this module.
+	 *
+	 * @see https://spec.openapis.org/oas/v3.0.0#info-object
+	 * @return array
+	 */
+	public function getOpenApiInfo() {
+		return [];
+	}
 }

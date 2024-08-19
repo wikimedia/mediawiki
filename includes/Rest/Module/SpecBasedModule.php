@@ -92,7 +92,7 @@ class SpecBasedModule extends MatcherBasedModule {
 	 *
 	 * @return array
 	 */
-	private function loadDefinition(): array {
+	private function getModuleDefinition(): array {
 		if ( $this->moduleDef !== null ) {
 			return $this->moduleDef;
 		}
@@ -143,7 +143,7 @@ class SpecBasedModule extends MatcherBasedModule {
 	 */
 	public function getDefinedPaths(): array {
 		$paths = [];
-		$moduleDef = $this->loadDefinition();
+		$moduleDef = $this->getModuleDefinition();
 
 		foreach ( $moduleDef['paths'] as $path => $pSpec ) {
 			$paths[$path] = [];
@@ -156,7 +156,7 @@ class SpecBasedModule extends MatcherBasedModule {
 	}
 
 	protected function initRoutes(): void {
-		$moduleDef = $this->loadDefinition();
+		$moduleDef = $this->getModuleDefinition();
 
 		// The structure is similar to OpenAPI, see docs/rest/mwapi.1.0.json
 		foreach ( $moduleDef['paths'] as $path => $pathSpec ) {
@@ -212,5 +212,10 @@ class SpecBasedModule extends MatcherBasedModule {
 		];
 
 		return $info;
+	}
+
+	public function getOpenApiInfo() {
+		$def = $this->getModuleDefinition();
+		return $def['info'] ?? [];
 	}
 }
