@@ -15,6 +15,8 @@ use Wikimedia\IPUtils;
  * 'exists' - Whether to validate that the user already exists
  * 'external' - Whether an external user (imported actor) is interpreted as "valid"
  * 'ipallowed' - Whether an IP address is interpreted as "valid"
+ * 'usemodwiki-ipallowed' - Whether an IP address in the usemod wiki format (e.g. 300.300.300.xxx) is accepted. The
+ *    'ipallowed' parameter must be set to true if this parameter is set to true.
  * 'iprange' - Whether an IP address range is interpreted as "valid"
  * 'iprangelimits' - Specifies the valid IP ranges for IPv4 and IPv6 in an array.
  *
@@ -31,6 +33,7 @@ class HTMLUserTextField extends HTMLTextField {
 				'exists' => false,
 				'external' => false,
 				'ipallowed' => false,
+				'usemodwiki-ipallowed' => false,
 				'iprange' => false,
 				'iprangelimits' => [
 					'IPv4' => 0,
@@ -71,9 +74,14 @@ class HTMLUserTextField extends HTMLTextField {
 			if ( $this->mParams['external'] && ExternalUserNames::isExternal( $value ) ) {
 				$valid = true;
 			}
-			// check if the input is a valid IP address
-			if ( $this->mParams['ipallowed'] && IPUtils::isValid( $value ) ) {
-				$valid = true;
+			// check if the input is a valid IP address, optionally also checking for usemod wiki IPs
+			if ( $this->mParams['ipallowed'] ) {
+				$b = IPUtils::RE_IP_BYTE;
+				if ( IPUtils::isValid( $value ) ) {
+					$valid = true;
+				} elseif ( $this->mParams['usemodwiki-ipallowed'] && preg_match( "/^$b\.$b\.$b\.xxx$/", $value ) ) {
+					$valid = true;
+				}
 			}
 			// check if the input is a valid IP range
 			if ( $this->mParams['iprange'] ) {
