@@ -137,7 +137,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 			[
 				'info' => [
 					'title' => 'mock/v1 Module',
-					// TODO: 'version' => '1.0.0',
+					'version' => '1.3-test',
 					'contact' => [
 						'email' => 'test@example.com'
 					],

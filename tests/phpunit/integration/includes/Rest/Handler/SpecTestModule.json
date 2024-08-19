@@ -1,6 +1,9 @@
 {
 	"mwapi": "1.0.0",
 	"moduleId": "mock/v1",
+	"info": {
+		"version": "1.3-test"
+	},
 	"paths": {
 		"/foo/bar": {
 			"get": {
