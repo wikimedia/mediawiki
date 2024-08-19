@@ -12328,7 +12328,9 @@ class MainConfigSchema {
 	 * - msg: a message key for the name of the API, to be shown on
 	 *   Special:RestSandbox.
 	 *
-	 * @since 1.43
+	 * @unstable Introduced in 1.43. We may want to rename or change this to
+	 * accommodate the need to list external APIs in a central discovery
+	 * document.
 	 */
 	public const RestSandboxSpecs = [
 		'default' => [],
