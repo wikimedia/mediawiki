@@ -134,8 +134,7 @@ class CommandLineInstaller extends Maintenance {
 
 		// Manually check for required arguments, as 0 arguments allows interactive mode to be used
 		if ( $this->getArg( 0 ) && !$this->getArg( 1 ) ) {
-			$this->error( 'Argument <' . $this->getArgName( 1 ) . '> is required!' );
-			return false;
+			$this->fatalError( 'Argument <' . $this->getArgName( 1 ) . '> is required!' );
 		}
 
 		// No arguments, means interactive mode
