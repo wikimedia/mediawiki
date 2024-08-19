@@ -276,13 +276,13 @@ class SiteConfig extends ISiteConfig {
 	 * @param array $labels
 	 * @return void
 	 */
-	public function incrementCounter( string $name, array $labels ) {
+	public function incrementCounter( string $name, array $labels, float $amount = 1 ) {
 		$component = $this->getStatsPrefix( true );
 		$metric = $this->statsFactory->withComponent( $component )->getCounter( $name );
 		foreach ( $labels as $labelKey => $labelValue ) {
 			$metric->setLabel( $labelKey, $labelValue );
 		}
-		$metric->increment();
+		$metric->incrementBy( $amount );
 	}
 
 	public function galleryOptions(): array {

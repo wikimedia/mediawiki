@@ -932,6 +932,14 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 1.0, $counter->getSamples()[0]->getValue() );
 		$this->assertSame( $expectedValues[1], $counter->getSamples()[1]->getLabelValues() );
 		$this->assertSame( 1.0, $counter->getSamples()[1]->getValue() );
+		// Check zero $amount
+		$config->incrementCounter( $name, $labels[0], 0 );
+		$this->assertSame( 3, $counter->getSampleCount() );
+		$this->assertSame( 0.0, $counter->getSamples()[2]->getValue() );
+		// Check non-unit $amount
+		$config->incrementCounter( $name, $labels[1], 12 );
+		$this->assertSame( 4, $counter->getSampleCount() );
+		$this->assertSame( 12.0, $counter->getSamples()[3]->getValue() );
 	}
 
 	/**
