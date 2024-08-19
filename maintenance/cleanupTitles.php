@@ -197,7 +197,7 @@ class TitleCleanup extends TableCleanup {
 				"'$row->page_title') to ($ns,'$dest')\n" );
 		} else {
 			$this->output( "renaming $row->page_id ($row->page_namespace," .
-				"'$row->page_title') to ($row->page_namespace,'$dest')\n" );
+				"'$row->page_title') to ($ns,'$dest')\n" );
 			$this->getPrimaryDB()
 				->newUpdateQueryBuilder()
 				->update( 'page' )
