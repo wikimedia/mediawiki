@@ -1096,14 +1096,23 @@ abstract class Handler {
 	}
 
 	/**
-	 * Indicates whether this route requires write access.
+	 * Indicates whether this route requires write access to the wiki.
 	 *
-	 * The handler should override this if the route does not need to write to
-	 * the database.
+	 * Handlers may override this method to return false if and only if the operation they
+	 * implement is "safe" per RFC 7231 section 4.2.1. A handler's operation is "safe" if
+	 * it is essentially read-only, i.e. the client does not request nor expect any state
+	 * change that would be observable in the responses to future requests.
 	 *
-	 * This should return true for routes that may require synchronous database writes.
-	 * Modules that do not need such writes should also not rely on primary database access,
-	 * since only read queries are needed and each primary DB is a single point of failure.
+	 * Implementations of this method must always return the same value, regardless of the
+	 * parameters passed to the constructor or system state.
+	 *
+	 * Handlers for GET, HEAD, OPTIONS, and TRACE requests should each implement a "safe"
+	 * operation. Handlers of PUT and DELETE requests should each implement a non-"safe"
+	 * operation. Note that handlers of POST requests can implement a "safe" operation,
+	 * particularly in the case where large input parameters are required.
+	 *
+	 * The information provided by this method is used to perform basic authorization checks
+	 * and to determine whether cross-origin requests are safe.
 	 *
 	 * @stable to override
 	 *
