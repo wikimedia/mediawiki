@@ -2934,7 +2934,10 @@ class ParserTestRunner {
 		// But initialise the MessageCache clone first, don't let MessageCache
 		// get a reference to the mock object.
 		if ( $this->disableSaveParse ) {
-			$services->getMessageCache()->getParser();
+			$services->getMessageCache()->parse( '', PageReferenceValue::localReference(
+				NS_SPECIAL,
+				'Badtitle/title not set in ' . __METHOD__
+			) );
 			$services->disableService( 'Parser' );
 			$services->disableService( 'ParserFactory' );
 			$services->redefineService(

@@ -3,7 +3,9 @@
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
@@ -323,6 +325,21 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 			// Not preloaded
 			[ 'nstab-help' ],
 		];
+	}
+
+	public function testNestedMessageParse() {
+		$msgOuter = ( new RawMessage( '[[Link|{{#language:}}]]' ) )
+			->inLanguage( 'outer' )
+			->page( new PageIdentityValue( 1, NS_MAIN, 'Link', PageIdentityValue::LOCAL ) );
+
+		// T372891: Allow nested message parsing
+		// Any hook from Linker or LinkRenderer will do for this test, but this one is the simplest
+		$this->setTemporaryHook( 'SelfLinkBegin', static function ( $nt, &$html, &$trail, &$prefix, &$ret ) {
+			$msgInner = ( new RawMessage( '{{#language:}}' ) )->inLanguage( 'inner' );
+			$html .= $msgInner->escaped();
+		} );
+
+		$this->assertEquals( '<a class="mw-selflink selflink">outerinner</a>', $msgOuter->parse() );
 	}
 
 	/** @dataProvider provideXssLanguage */
