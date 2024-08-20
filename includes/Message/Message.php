@@ -140,14 +140,7 @@ use Wikimedia\Message\MessageSpecifier;
  *
  * @note You can parse the text only in the content or interface languages
  *
- * @section message_appendix Appendix:
- *
- * @todo
- * - test, can we have tests?
- * - this documentation needs to be extended
- *
- * @see https://www.mediawiki.org/wiki/WfMessage()
- * @see https://www.mediawiki.org/wiki/New_messages_API
+ * @see https://www.mediawiki.org/wiki/Manual:Messages_API
  * @see https://www.mediawiki.org/wiki/Localisation
  *
  * @since 1.17
@@ -245,18 +238,16 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	/**
 	 * @stable to call
 	 * @since 1.17
-	 * @param string|string[]|MessageSpecifier $key Message key, or array of
-	 * message keys to try and use the first non-empty message for, or a
-	 * MessageSpecifier to copy from.
-	 * @param array $params Message parameters.
+	 * @param string|MessageSpecifier|string[] $key Message key, MessageSpecifier object to copy,
+	 * or array of fallback message keys where we use the first message that exists and is non-empty.
+	 * @param array $params Message parameters
 	 * @param Language|null $language [optional] Language to use (defaults to current user language).
-	 * @throws InvalidArgumentException
 	 */
 	public function __construct( $key, $params = [], Language $language = null ) {
 		if ( $key instanceof MessageSpecifier ) {
 			if ( $params ) {
 				throw new InvalidArgumentException(
-					'$params must be empty if $key is a MessageSpecifier'
+					'Cannot set $params when $key is a MessageSpecifier'
 				);
 			}
 			$params = $key->getParams();
@@ -266,20 +257,17 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 		if ( is_string( $key ) ) {
 			$this->keysToTry = [ $key ];
 			$this->key = $key;
-		} elseif ( is_array( $key ) ) {
-			if ( !$key ) {
-				throw new InvalidArgumentException( '$key must not be an empty list' );
-			}
+		} elseif ( is_array( $key ) && $key ) {
 			$this->keysToTry = $key;
 			foreach ( $this->keysToTry as $key ) {
 				if ( !is_string( $key ) ) {
-					throw new InvalidArgumentException( 'Fallback message keys must be strings. ' .
-						'Did you accidentally pass a [ key, ...params ] array as the list of message keys?' );
+					throw new InvalidArgumentException( 'Message keys must be strings. ' .
+						'Did you accidentally pass message key and parameters in one array?' );
 				}
 			}
 			$this->key = reset( $this->keysToTry );
 		} else {
-			throw new InvalidArgumentException( '$key must be a string or an array' );
+			throw new InvalidArgumentException( '$key must be a string or non-empty array' );
 		}
 
 		$this->parameters = array_values( $params );
@@ -459,7 +447,6 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 * @param string|array|MessageSpecifier $value
 	 * @param-taint $value tainted
 	 * @return self
-	 * @throws InvalidArgumentException
 	 * @since 1.27
 	 */
 	public static function newFromSpecifier( $value ) {
