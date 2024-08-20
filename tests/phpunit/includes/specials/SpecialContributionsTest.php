@@ -4,6 +4,10 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialContributions;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
+use MediaWiki\User\UserFactory;
+use Wikimedia\Parsoid\Utils\DOMCompat;
+use Wikimedia\Parsoid\Utils\DOMUtils;
 
 /**
  * @author Ammarpad
@@ -12,9 +16,12 @@ use MediaWiki\Specials\SpecialContributions;
  * @covers \MediaWiki\SpecialPage\ContributionsSpecialPage
  */
 class SpecialContributionsTest extends SpecialPageTestBase {
+	use TempUserTestTrait;
+
 	private $pageName = __CLASS__ . 'BlaBlaTest';
 	private static $admin;
 	private static $user;
+	private static int $useModWikiIPRevId;
 
 	public function addDBDataOnce() {
 		$this->overrideConfigValue(
@@ -44,6 +51,13 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 			)->isOK(),
 			'Edit failed for user'
 		);
+
+		$this->disableAutoCreateTempUser();
+		$useModWikiIP = $this->getServiceContainer()->getUserFactory()
+			->newFromName( '1.2.3.xxx', UserFactory::RIGOR_NONE );
+		$useModWikiIPEditStatus = $this->editPage( 'Test1234', 'Test Content', 'test', NS_MAIN, $useModWikiIP );
+		$this->assertStatusGood( $useModWikiIPEditStatus, 'Edit failed for IP in usemod format' );
+		static::$useModWikiIPRevId = $useModWikiIPEditStatus->getNewRevision()->getId();
 
 		$blockStatus = $this->getServiceContainer()->getBlockUserFactory()
 			->newBlockUser(
@@ -97,6 +111,19 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 			] )
 		);
 		$this->assertStringNotContainsString( 'mw-pager-body', $html );
+	}
+
+	public function testExecuteForUseModWikiIP() {
+		// Regression test for T370413
+		[ $html ] = $this->executeSpecialPage( '1.2.3.xxx' );
+		$contributionsList = DOMCompat::querySelectorAll( DOMUtils::parseHTML( $html ), '.mw-contributions-list' );
+		$this->assertCount(
+			1, $contributionsList, 'Should have the contributions list as 1.2.3.xxx has made one edit'
+		);
+		$matchingLines = DOMCompat::querySelectorAll(
+			$contributionsList[0], '[data-mw-revid="' . static::$useModWikiIPRevId . '"]'
+		);
+		$this->assertCount( 1, $matchingLines, "The edit made by the usemod IP is missing" );
 	}
 
 	/**
