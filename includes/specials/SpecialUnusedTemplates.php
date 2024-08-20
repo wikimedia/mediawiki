@@ -86,8 +86,9 @@ class SpecialUnusedTemplates extends QueryPage {
 		} else {
 			$joinConds['templatelinks'] = $templatelinksJoin;
 		}
+		$joinConds['page_props'] = [ 'LEFT JOIN', [ 'page_id = pp_page', 'pp_propname' => 'expectunusedtemplate' ] ];
 		return [
-			'tables' => array_merge( $queryInfo['tables'], [ 'page' ] ),
+			'tables' => array_merge( $queryInfo['tables'], [ 'page' ], [ 'page_props' ] ),
 			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
@@ -95,7 +96,8 @@ class SpecialUnusedTemplates extends QueryPage {
 			'conds' => [
 				'page_namespace' => NS_TEMPLATE,
 				'tl_from' => null,
-				'page_is_redirect' => 0
+				'page_is_redirect' => 0,
+				'pp_page' => null
 			],
 			'join_conds' => array_merge( $joinConds, $queryInfo['joins'] )
 		];

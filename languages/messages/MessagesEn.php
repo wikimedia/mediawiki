@@ -254,6 +254,7 @@ $magicWords = [
 	'displaytitle_noerror'    => [ 0, 'noerror' ],
 	'displaytitle_noreplace'  => [ 0, 'noreplace' ],
 	'expectunusedcategory'    => [ 1, '__EXPECTUNUSEDCATEGORY__', ],
+	'expectunusedtemplate'    => [ 1, '__EXPECTUNUSEDTEMPLATE__', ],
 	'filepath'                => [ 0, 'FILEPATH:' ],
 	'forcetoc'                => [ 0, '__FORCETOC__' ],
 	'formal'                  => [ 1, '#FORMAL:' ],
