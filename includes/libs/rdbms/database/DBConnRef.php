@@ -97,7 +97,7 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 			// This is triggered by LoadBalancer::reconfigure(), to allow changed settings
 			// to take effect. The primary use case are replica servers being taken out of
 			// rotation, or the primary database changing.
-			if ( !$this->conn->trxLevel() ) {
+			if ( $this->conn && !$this->conn->trxLevel() ) {
 				$this->conn->close();
 				$this->conn = null;
 			}
