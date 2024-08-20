@@ -2531,7 +2531,7 @@
 	"sp-contributions-talk": "نقاش",
 	"sp-contributions-userrights": "إدارة صلاحيات {{GENDER:$1|المستخدم|المستخدمة}}",
 	"sp-contributions-blocked-notice": "{{GENDER:$1|هذا المستخدم}} ممنوع حاليا.\nآخر مدخلة في سجل المنع موجودة أدناه كمرجع:",
-	"sp-contributions-blocked-notice-partial": "هذا المستخدم ممنوع جزئيا حاليا.\nأحدث مدخلة في سجل المنع معروضة بالأسفل كمرجع:",
+	"sp-contributions-blocked-notice-partial": "{{GENDER:$1|هذا المستخدم ممنوع|هذه المستخدمة ممنوعة}} جزئيا حاليا.\nأحدث مدخلة في سجل المنع معروضة بالأسفل كمرجع:",
 	"sp-contributions-blocked-notice-anon": "عنوان الأيبي هذا ممنوع حاليا.\nآخر مدخلة لسجل المنع معروضة هنا كمرجع:",
 	"sp-contributions-blocked-notice-anon-partial": "عنوان الأيبي هذا ممنوع جزئيا حاليا.\nأحدث مدخلة في سجل المنع معروضة بالأسفل كمرجع:",
 	"sp-contributions-search": "بحث عن مساهمات",

@@ -3384,7 +3384,7 @@
 	"revdelete-uname-unhid": "notandanafn birt",
 	"revdelete-restricted": "hömlur settar á stjórnendur",
 	"revdelete-unrestricted": "fjarlægja hömlur á stjórnendur",
-	"logentry-block-block": "$1 {{GENDER:$2|hindraður|hindruð|hindrað}} {{GENDER:$4|$3}} með fyrningartímann $5 $6",
+	"logentry-block-block": "$1 {{GENDER:$2|hindraði|hindraði|hindraði}} {{GENDER:$4|$3}} með fyrningartímann $5 $6",
 	"logentry-block-unblock": "$1 {{GENDER:$2|afbannaði}} {{GENDER:$4|$3}}",
 	"logentry-block-reblock": "$1 {{GENDER:$2|breytti}} hindrunarstillingum fyrir {{GENDER:$4|$3}} með fyrningartímann $5 $6",
 	"logentry-partialblock-block-page": "{{PLURAL:$1|síðunni|síðunum}} $2",
