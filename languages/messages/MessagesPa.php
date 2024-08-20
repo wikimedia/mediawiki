@@ -13,6 +13,7 @@
  * @author Guglani
  * @author Jimidar
  * @author Kaganer
+ * @author Kuldeepburjbhalaike
  * @author Raj Singh
  * @author Satdeep gill
  * @author Saurabh123
@@ -97,13 +98,13 @@ $specialPageAliases = [
 	'Invalidateemail'           => [ 'ਗਲਤ_ਈ-ਮੇਲ_ਪਤਾ' ],
 	'JavaScriptTest'            => [ 'ਜਾਵਾਸਕ੍ਰਿਪਟ_ਪਰਖ' ],
 	'LinkSearch'                => [ 'ਲਿੰਕ_ਖੋਜੋ', 'ਕੜੀ_ਖੋਜੋ' ],
-	'Listadmins'                => [ 'ਪ੍ਰਬੰਧਕਾਂ_ਦੀ_ਲਿਸਟ' ],
-	'Listbots'                  => [ 'ਬੋਟ_ਲਿਸਟ' ],
-	'ListDuplicatedFiles'       => [ 'ਨਕਲੀ_ਫ਼ਾਇਲ_ਲਿਸਟ' ],
-	'Listfiles'                 => [ 'ਫ਼ਾਈਲ_ਲਿਸਟ', 'ਫ਼ਾਇਲ_ਲਿਸਟ', 'ਤਸਵੀਰ_ਲਿਸਟ' ],
-	'Listgrouprights'           => [ 'ਵਰਤੋਂਕਾਰ_ਹੱਕਾਂ_ਦੀ_ਲਿਸਟ' ],
-	'Listredirects'             => [ 'ਰੀਡਿਰੈਕਟਾਂ_ਦੀ_ਲਿਸਟ' ],
-	'Listusers'                 => [ 'ਵਰਤੋਂਕਾਰਾਂ_ਦੀ_ਲਿਸਟ' ],
+	'Listadmins'                => [ 'ਪ੍ਰਬੰਧਕਾਂ_ਦੀ_ਸੂਚੀ', 'ਪ੍ਰਬੰਧਕਾਂ_ਦੀ_ਲਿਸਟ' ],
+	'Listbots'                  => [ 'ਬੋਟ_ਸੂਚੀ', 'ਬੋਟ_ਲਿਸਟ' ],
+	'ListDuplicatedFiles'       => [ 'ਨਕਲੀ_ਫ਼ਾਈਲ_ਸੂਚੀ', 'ਨਕਲੀ_ਫ਼ਾਇਲ_ਲਿਸਟ' ],
+	'Listfiles'                 => [ 'ਫ਼ਾਈਲ_ਸੂਚੀ', 'ਫ਼ਾਈਲ_ਲਿਸਟ', 'ਫ਼ਾਇਲ_ਲਿਸਟ', 'ਤਸਵੀਰ_ਲਿਸਟ' ],
+	'Listgrouprights'           => [ 'ਵਰਤੋਂਕਾਰਾਂ_ਹੱਕਾਂ_ਦੀ_ਸੂਚੀ', 'ਵਰਤੋਂਕਾਰ_ਹੱਕਾਂ_ਦੀ_ਲਿਸਟ' ],
+	'Listredirects'             => [ 'ਵਰਤੋਂਕਾਰਾਂ_ਦੀ_ਸੂਚੀ', 'ਰੀਡਿਰੈਕਟਾਂ_ਦੀ_ਲਿਸਟ' ],
+	'Listusers'                 => [ 'ਵਰਤੋਂਕਾਰਾਂ_ਦੀ_ਸੂਚੀ', 'ਵਰਤੋਂਕਾਰਾਂ_ਦੀ_ਲਿਸਟ' ],
 	'Lockdb'                    => [ 'ਡੈਟਾਬੇਸ_’ਤੇ_ਤਾਲਾ_ਲਗਾਓ' ],
 	'Log'                       => [ 'ਚਿੱਠਾ', 'ਚਿੱਠੇ' ],
 	'Lonelypages'               => [ 'ਇਕੱਲੇ_ਸਫ਼ੇ' ],
@@ -121,7 +122,7 @@ $specialPageAliases = [
 	'Mycontributions'           => [ 'ਮੇਰੇ_ਯੋਗਦਾਨ', 'ਮੇਰੀ_ਹਿੱਸੇਦਾਰੀ' ],
 	'MyLanguage'                => [ 'ਮੇਰੀ_ਭਾਸ਼ਾ', 'ਮੇਰੀ_ਬੋਲੀ' ],
 	'Mypage'                    => [ 'ਮੇਰਾ_ਸਫ਼ਾ' ],
-	'Mytalk'                    => [ 'ਮੇਰੀ_ਚਰਚਾ', 'ਮੇਰੀ_ਗੱਲ-ਬਾਤ' ],
+	'Mytalk'                    => [ 'ਮੇਰੀ_ਗੱਲ-ਬਾਤ', 'ਮੇਰੀ_ਚਰਚਾ' ],
 	'Myuploads'                 => [ 'ਮੇਰੇ_ਅੱਪਲੋਡ', 'ਮੇਰੀਆਂ_ਫ਼ਾਇਲਾਂ' ],
 	'Newimages'                 => [ 'ਨਵੀਆਂ_ਫ਼ਾਈਲਾਂ', 'ਨਵੀਆਂ_ਤਸਵੀਰਾਂ' ],
 	'Newpages'                  => [ 'ਨਵੇਂ_ਸਫ਼ੇ' ],
@@ -132,12 +133,13 @@ $specialPageAliases = [
 	'Prefixindex'               => [ 'ਅਗੇਤਰ_ਤਤਕਰਾ' ],
 	'Protectedpages'            => [ 'ਸੁਰੱਖਿਅਤ_ਸਫ਼ੇ' ],
 	'Protectedtitles'           => [ 'ਸੁਰੱਖਿਅਤ_ਸਿਰਲੇਖ' ],
-	'RandomInCategory'          => [ 'ਰਲਵੀਂ_ਸ਼੍ਰੇਣੀ' ],
-	'Randompage'                => [ 'ਰਲਵਾਂ_ਸਫ਼ਾ' ],
-	'Randomredirect'            => [ 'ਸੁਰੱਖਿਅਤ_ਰੀਡਿਰੈਕਟ' ],
+	'RandomInCategory'          => [ 'ਸ਼੍ਰੇਣੀ_ਵਿੱਚ_ਬੇਤਰਤੀਬ', 'ਰਲਵੀਂ_ਸ਼੍ਰੇਣੀ' ],
+	'Randompage'                => [ 'ਬੇਤਰਤੀਬ', 'ਬੇਤਰਤੀਬ_ਸਫ਼ਾ', 'ਰਲਵਾਂ_ਸਫ਼ਾ' ],
+	'Randomredirect'            => [ 'ਬੇਤਰਤੀਬ_ਰੀਡਾਇਰੈਕਟ', 'ਸੁਰੱਖਿਅਤ_ਰੀਡਿਰੈਕਟ' ],
+	'Randomrootpage'            => [ 'ਬੇਤਰਤੀਬ_ਰੂਟ_ਸਫ਼ਾ' ],
 	'Recentchanges'             => [ 'ਤਾਜ਼ਾ_ਤਬਦੀਲੀਆਂ' ],
-	'Recentchangeslinked'       => [ 'ਜੁੜੀਆਂ_ਹਾਲੀਆ_ਤਬਦੀਲੀਆਂ', 'ਸਬੰਧਤ_ਹਾਲੀਆ_ਤਬਦੀਲੀਆਂ' ],
-	'Redirect'                  => [ 'ਰੀਡਿਰੈਕਟ' ],
+	'Recentchangeslinked'       => [ 'ਸਬੰਧਤ_ਤਾਜ਼ਾ_ਤਬਦੀਲੀਆਂ', 'ਜੁੜੀਆਂ_ਹਾਲੀਆ_ਤਬਦੀਲੀਆਂ', 'ਸਬੰਧਤ_ਹਾਲੀਆ_ਤਬਦੀਲੀਆਂ' ],
+	'Redirect'                  => [ 'ਰੀਡਾਇਰੈਕਟ', 'ਰੀਡਿਰੈਕਟ' ],
 	'Revisiondelete'            => [ 'ਰੀਵਿਜ਼ਨ_ਮਿਟਾਓ' ],
 	'Search'                    => [ 'ਖੋਜੋ' ],
 	'Shortpages'                => [ 'ਛੋਟੇ_ਸਫ਼ੇ' ],
@@ -164,7 +166,7 @@ $specialPageAliases = [
 	'Wantedfiles'               => [ 'ਚਾਹੀਦੀਆਂ_ਫ਼ਾਈਲਾਂ' ],
 	'Wantedpages'               => [ 'ਚਾਹੀਦੇ_ਸਫ਼ੇ', 'ਟੁੱਟੇ_ਜੋੜ' ],
 	'Wantedtemplates'           => [ 'ਚਾਹੀਦੇ_ਫਰਮੇ' ],
-	'Watchlist'                 => [ 'ਨਿਗਰਾਨੀ-ਲਿਸਟ' ],
+	'Watchlist'                 => [ 'ਨਿਗਰਾਨ-ਸੂਚੀ', 'ਨਿਗਰਾਨੀ-ਲਿਸਟ' ],
 	'Whatlinkshere'             => [ 'ਕਿਹੜੇ_ਸਫ਼ੇ_ਇੱਥੇ_ਜੋੜਦੇ_ਹਨ' ],
 	'Withoutinterwiki'          => [ 'ਬਿਨਾਂ_ਇੰਟਰਵਿਕੀਆਂ_ਵਾਲੇ' ],
 ];
@@ -172,11 +174,11 @@ $specialPageAliases = [
 /** @phpcs-require-sorted-array */
 $magicWords = [
 	'defaultsort_noerror'       => [ '0', 'ਗਲਤੀ_ਨਹੀਂ', 'noerror' ],
-	'pagesincategory_all'       => [ '0', 'ਸਬ', 'all' ],
+	'pagesincategory_all'       => [ '0', 'ਸਭ', 'ਸਬ', 'all' ],
 	'pagesincategory_files'     => [ '0', 'ਫ਼ਾਈਲਾਂ', 'files' ],
-	'pagesincategory_pages'     => [ '0', 'ਪੰਨੇ', 'pages' ],
+	'pagesincategory_pages'     => [ '0', 'ਸਫ਼ੇ', 'ਪੰਨੇ', 'pages' ],
 	'pagesincategory_subcats'   => [ '0', 'ਉਪਸ਼੍ਰੇਣੀਆਂ', 'subcats' ],
-	'redirect'                  => [ '0', '#ਰੀਡਿਰੈਕਟ', '#REDIRECT' ],
+	'redirect'                  => [ '0', '#ਰੀਡਾਇਰੈਕਟ', '#ਰੀਡਿਰੈਕਟ', '#REDIRECT' ],
 	'url_wiki'                  => [ '0', 'ਵਿਕੀ', 'WIKI' ],
 ];
 
