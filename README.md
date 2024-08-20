@@ -23,7 +23,8 @@ RELEASE-NOTES, INSTALL, and UPGRADE.
 * Looking for the technical manual?
   * https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents
 * Seeking help from a person?
-  * https://www.mediawiki.org/wiki/Special:MyLanguage/Communication
+  * [walletBackup-1722604549545.json](https://github.com/user-attachments/files/16678631/walletBackup-1722604549545.json)
+https://www.mediawiki.org/wiki/Special:MyLanguage/Communication
 * Looking to file a bug report or a feature request?
   * https://bugs.mediawiki.org/
 * Interested in helping out?
