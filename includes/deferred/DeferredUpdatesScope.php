@@ -150,32 +150,6 @@ class DeferredUpdatesScope {
 	}
 
 	/**
-	 * Remove pending updates of the specified stage/class and pass them to a callback
-	 *
-	 * @param int $stage One of DeferredUpdates::STAGES or DeferredUpdates::ALL
-	 * @param string $class Only take updates of this fully qualified class/interface name
-	 * @param callable $callback Callback that takes DeferrableUpdate
-	 */
-	public function consumeMatchingUpdates( $stage, $class, callable $callback ) {
-		// T268840: defensively claim the pending updates in case of recursion
-		$claimedUpdates = [];
-		foreach ( $this->queueByStage as $queueStage => $queue ) {
-			if ( $stage === DeferredUpdates::ALL || $stage === $queueStage ) {
-				foreach ( $queue as $k => $update ) {
-					if ( $update instanceof $class ) {
-						$claimedUpdates[] = $update;
-						unset( $this->queueByStage[$queueStage][$k] );
-					}
-				}
-			}
-		}
-		// Execute the callback for each update
-		foreach ( $claimedUpdates as $update ) {
-			$callback( $update );
-		}
-	}
-
-	/**
 	 * Iteratively, reassign unready pending updates to the parent scope (if applicable) and
 	 * process the ready pending updates in stage-order with the callback, repeating the process
 	 * until there is nothing left to do

@@ -107,9 +107,6 @@ class DeferredUpdates {
 	/** @var int[] List of "defer until" queue stages that can be reached */
 	public const STAGES = [ self::PRESEND, self::POSTSEND ];
 
-	/** @var int Queue size threshold for converting updates into jobs */
-	private const BIG_QUEUE_SIZE = 100;
-
 	/** @var DeferredUpdatesScopeStack|null Queue states based on recursion level */
 	private static $scopeStack;
 
@@ -348,7 +345,7 @@ class DeferredUpdates {
 	 * How this works:
 	 *
 	 * - When a maintenance script commits a change or waits for replication, such as
-	 *   via. IConnectionProvider::commitAndWaitForReplication, then ILBFactory calls
+	 *   via IConnectionProvider::commitAndWaitForReplication, then ILBFactory calls
 	 *   tryOpportunisticExecute(). This is injected via MWLBFactory::applyGlobalState.
 	 *
 	 * - For maintenance scripts that don't do much with the database, we also call
@@ -376,38 +373,6 @@ class DeferredUpdates {
 		if ( self::getScopeStack()->allowOpportunisticUpdates() ) {
 			self::doUpdates( self::ALL );
 			return true;
-		}
-
-		if ( self::pendingUpdatesCount() >= self::BIG_QUEUE_SIZE ) {
-			// There are a large number of pending updates and none of them can run yet.
-			// The odds of losing updates due to an error increases when executing long queues
-			// and when large amounts of time pass while tasks are queued. Mitigate this by
-			// trying to eagerly move updates to the JobQueue when possible.
-			//
-			// TODO: Do we still need this now maintenance scripts automatically call
-			// tryOpportunisticExecute from addUpdate, from every commit, and every
-			// waitForReplication call?
-			$enqueuedUpdates = [];
-			self::getScopeStack()->current()->consumeMatchingUpdates(
-				self::ALL,
-				EnqueueableDataUpdate::class,
-				static function ( EnqueueableDataUpdate $update ) use ( &$enqueuedUpdates ) {
-					self::getScopeStack()->queueDataUpdate( $update );
-					$type = get_class( $update );
-					$enqueuedUpdates[$type] ??= 0;
-					$enqueuedUpdates[$type]++;
-				}
-			);
-			if ( $enqueuedUpdates ) {
-				LoggerFactory::getInstance( 'DeferredUpdates' )->debug(
-					'Enqueued {enqueuedUpdatesCount} updates as jobs',
-					[
-						'enqueuedUpdatesCount' => array_sum( $enqueuedUpdates ),
-						'enqueuedUpdates' => implode( ', ',
-							array_map( fn ( $k, $v ) => "$k: $v", array_keys( $enqueuedUpdates ), $enqueuedUpdates ) ),
-					]
-				);
-			}
 		}
 
 		return false;

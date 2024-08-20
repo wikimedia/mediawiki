@@ -427,13 +427,26 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Indicates whether this module requires write mode.
+	 * Indicates whether this module requires write access to the wiki.
 	 *
-	 * This should return true for modules that may require synchronous database writes.
-	 * Modules that do not need such writes should also not rely on primary database access,
-	 * since only read queries are needed and each primary DB is a single point of failure.
-	 * Additionally, requests that only need replica DBs can be efficiently routed to any
-	 * datacenter via the Promise-Non-Write-API-Action header.
+	 * API modules must override this method to return true if the operation they will
+	 * perform is not "safe" per RFC 7231 section 4.2.1. A module's operation is "safe"
+	 * if it is essentially read-only, i.e. the client does not request nor expect any
+	 * state change that would be observable in the responses to future requests.
+	 *
+	 * Normally, implementations of this method always return the same value, regardless
+	 * of the parameters passed to the constructor or system state.
+	 *
+	 * Modules that do not require POST requests should only perform "safe" operations.
+	 * Note that some modules might require POST requests because they need to support
+	 * large input parameters and not because they perform non-"safe" operations.
+	 *
+	 * The information provided by this method is used to perform authorization checks.
+	 * It can also be used to enforce proper routing of supposedly "safe" POST requests to
+	 * the closest datacenter via the Promise-Non-Write-API-Action header.
+	 *
+	 * @see mustBePosted()
+	 * @see needsToken()
 	 *
 	 * @stable to override
 	 * @return bool
@@ -444,6 +457,9 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Indicates whether this module must be called with a POST request.
+	 *
+	 * Implementations of this method must always return the same value,
+	 * regardless of the parameters passed to the constructor or system state.
 	 *
 	 * @stable to override
 	 * @return bool
