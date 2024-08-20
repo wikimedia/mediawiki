@@ -271,6 +271,12 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 				throw new InvalidArgumentException( '$key must not be an empty list' );
 			}
 			$this->keysToTry = $key;
+			foreach ( $this->keysToTry as $key ) {
+				if ( !is_string( $key ) ) {
+					throw new InvalidArgumentException( 'Fallback message keys must be strings. ' .
+						'Did you accidentally pass a [ key, ...params ] array as the list of message keys?' );
+				}
+			}
 			$this->key = reset( $this->keysToTry );
 		} else {
 			throw new InvalidArgumentException( '$key must be a string or an array' );
