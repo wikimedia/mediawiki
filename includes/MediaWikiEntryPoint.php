@@ -718,6 +718,15 @@ abstract class MediaWikiEntryPoint {
 	 * @return bool Success
 	 */
 	protected function triggerAsyncJobs( $n, LoggerInterface $runJobsLogger ) {
+		if ( $this->postSendStrategy === self::DEFER_SET_LENGTH_AND_FLUSH ) {
+			// Do not trigger jobs for common HTTP responses without a body.
+			// Since Content-Length cannot be sent, then DEFER_SET_LENGTH_AND_FLUSH
+			// will cause the client to wait while PHP runs deferred updates.
+			if ( !in_array( http_response_code(), [ 200, 404 ], true ) ) {
+				return true;
+			}
+		}
+
 		// Do not send request if there are probably no jobs
 		$group = $this->getJobQueueGroupFactory()->makeJobQueueGroup();
 		if ( !$group->queuesHaveJobs( JobQueueGroup::TYPE_DEFAULT ) ) {
