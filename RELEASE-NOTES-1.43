@@ -323,6 +323,7 @@ because of Phabricator reports.
 * IMaintainableDatabase::listViews(), deprecated since 1.42, has been removed.
 * IMaintainableDatabase::truncate(), deprecated since 1.42, has been removed.
 * IMaintainableDatabase::textFieldSize() was removed without deprecation.
+* LockManager::sha1Base16Absolute(), has been removed without deprecation.
 * The "options" parameter to User::createNew() and the $data parameter to
   UserOptionsManager::loadUserOptions() were removed.
 * `.list-style-image()` mixin from mediawiki.mixins.less, deprecated since 1.38,
