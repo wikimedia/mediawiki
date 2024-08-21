@@ -5446,7 +5446,7 @@ class Parser {
 
 				# Special case; width and height come in one variable together
 				if ( $type === 'handler' && $paramName === 'width' ) {
-					$parsedWidthParam = self::parseWidthParam( $value );
+					$parsedWidthParam = $this->parseWidthParam( $value );
 					// Parsoid applies data-(width|height) attributes to broken
 					// media spans, for client use.  See T273013
 					$validateFunc = static function ( $name, $value ) use ( $handler ) {
@@ -6389,7 +6389,7 @@ class Parser {
 	 * @since 1.20
 	 * @internal
 	 */
-	public static function parseWidthParam( $value, $parseHeight = true ) {
+	public function parseWidthParam( $value, $parseHeight = true ) {
 		$parsedWidthParam = [];
 		if ( $value === '' ) {
 			return $parsedWidthParam;
@@ -6397,14 +6397,20 @@ class Parser {
 		$m = [];
 		# (T15500) In both cases (width/height and width only),
 		# permit trailing "px" for backward compatibility.
-		if ( $parseHeight && preg_match( '/^([0-9]*)x([0-9]*)\s*(?:px)?\s*$/', $value, $m ) ) {
+		if ( $parseHeight && preg_match( '/^([0-9]*)x([0-9]*)\s*(px)?\s*$/', $value, $m ) ) {
 			$width = intval( $m[1] );
 			$height = intval( $m[2] );
 			$parsedWidthParam['width'] = $width;
 			$parsedWidthParam['height'] = $height;
-		} elseif ( preg_match( '/^[0-9]*\s*(?:px)?\s*$/', $value ) ) {
-			$width = intval( $value );
+			if ( $m[3] ?? false ) {
+				$this->addTrackingCategory( 'double-px-category' );
+			}
+		} elseif ( preg_match( '/^([0-9]*)\s*(px)?\s*$/', $value, $m ) ) {
+			$width = intval( $m[1] );
 			$parsedWidthParam['width'] = $width;
+			if ( $m[2] ?? false ) {
+				$this->addTrackingCategory( 'double-px-category' );
+			}
 		}
 		return $parsedWidthParam;
 	}

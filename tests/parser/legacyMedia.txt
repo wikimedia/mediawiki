@@ -472,8 +472,11 @@ wgParserEnableLegacyMediaDOM=true
 Image with size specified with pxpx (T15500, T53628)
 !! options
 parsoid=wt2html,wt2wt,html2html
+cat
 !! config
 wgParserEnableLegacyMediaDOM=true
+!! metadata
+cat=Pages_with_image_sizes_containing_extra_px sort=
 !! wikitext
 [[File:Foobar.jpg|20pxpx]]
 [[File:Foobar.jpg|200x20pxpx]]

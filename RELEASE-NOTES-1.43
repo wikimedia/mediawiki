@@ -647,6 +647,9 @@ because of Phabricator reports.
   - mNoGallery           - getNoGallery()
 * The 'help' key in HTMLForm descriptors is deprecated. Use the 'help-raw'
   key instead.
+* ImageGalleryBase::setWidths() and ::setHeights() will now emit a deprecation
+  warning if they are called without ImageGalleryBase::setParser() having been
+  called.  Please set the parser appropriately when using the image gallery.
 * …
 
 === Other changes in 1.43 ===

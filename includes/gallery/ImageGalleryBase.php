@@ -246,7 +246,12 @@ abstract class ImageGalleryBase extends ContextSource {
 	 *   and those below 0 are ignored.
 	 */
 	public function setWidths( $num ) {
-		$parsed = Parser::parseWidthParam( $num, false );
+		$parser = $this->mParser;
+		if ( !$parser ) {
+			wfDeprecated( __METHOD__ . ' without parser', '1.43' );
+			$parser = MediaWikiServices::getInstance()->getParser();
+		}
+		$parsed = $parser->parseWidthParam( $num, false );
 		if ( isset( $parsed['width'] ) && $parsed['width'] > 0 ) {
 			$this->mWidths = $parsed['width'];
 		}
@@ -259,7 +264,12 @@ abstract class ImageGalleryBase extends ContextSource {
 	 *   and those below 0 are ignored.
 	 */
 	public function setHeights( $num ) {
-		$parsed = Parser::parseWidthParam( $num, false );
+		$parser = $this->mParser;
+		if ( !$parser ) {
+			wfDeprecated( __METHOD__ . ' without parser', '1.43' );
+			$parser = MediaWikiServices::getInstance()->getParser();
+		}
+		$parsed = $parser->parseWidthParam( $num, false );
 		if ( isset( $parsed['width'] ) && $parsed['width'] > 0 ) {
 			$this->mHeights = $parsed['width'];
 		}
