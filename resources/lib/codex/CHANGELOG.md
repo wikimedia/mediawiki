@@ -1,3 +1,33 @@
+# 1.11.1 / 2024-08-20
+
+## Features
+- tokens: Add color-base-fixed application token (Derek Torsani)
+- Table: CSS-only Pagination (NunyaKlah)
+- ButtonGroup, ToggleButtonGroup: handle arrow key navigation (Anne Tomasevich)
+
+## Styles
+- Table: sortable columns inherit font styles (Lauralyn Watson)
+
+## Code
+- i18n: Build a JSON file for use in MW from Codex message keys (Eric Gardner)
+- Radio, Checkbox: clean up HTML (Lauralyn Watson)
+- ChipInput.vue: rootElement.value can be undefined, use nullcheck (Daphne Smit)
+
+## Docs
+- docs: Use Codex colors for links within content (Anne Tomasevich)
+- docs: Add test for getFormattedDate (Anne Tomasevich)
+- docs: Update ValidationMessages type to include new properties (Anne Tomasevich)
+- docs: Add support for @default tag for props, and use in Table (Roan Kattouw)
+- docs: Don't attempt to link to NaN as if it's a type (Roan Kattouw)
+- docs: Limit width of some tables (Anne Tomasevich)
+- docs: Use new `@default` tag for object props (Anne Tomasevich)
+- docs: update the Config Demo to support Select/Dropdown (Lauralyn Watson)
+- docs: Use select control in Tooltip demo (Anne Tomasevich)
+- docs: Use "placement" in Tooltip docs (Anne Tomasevich)
+- docs: Enable dark mode and mode switching (Anne Tomasevich)
+- docs: Show dark mode colors in the color tokens demo (Anne Tomasevich)
+- docs: Remove unneeded colors in Rules usage (Anne Tomasevich)
+
 # 1.11.0 / 2024-08-07
 
 ## Features

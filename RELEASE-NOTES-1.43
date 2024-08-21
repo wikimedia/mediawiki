@@ -131,7 +131,7 @@ For notes on 1.42.x and older releases, see HISTORY.
 ==== Changed external libraries ====
 
 * Updated codex, codex-design-tokens and codex-icons
-  from v1.3.6 to v1.11.0.
+  from v1.3.6 to v1.11.1.
 * Updated composer/semver from 3.4.0 to 3.4.2.
 * Updated guzzlehttp/guzzle from 7.7.1 to 7.8.1.
 * Updated jquery.i18n from 1.0.7 to 1.0.10.

@@ -53,7 +53,7 @@ var __async = (__this, __arguments, generator) => {
     step((generator = generator.apply(__this, __arguments)).next());
   });
 };
-import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, Comment, warn, watch, withKeys, withModifiers, renderSlot, resolveComponent, createElementVNode, createBlock, resolveDynamicComponent, withCtx, createVNode, Fragment, renderList, createTextVNode, Transition, normalizeStyle, inject, toRef, mergeProps, getCurrentInstance, withDirectives, vModelCheckbox, createSlots, nextTick, vModelDynamic, onUnmounted, vShow, unref, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, Teleport, toRefs, provide, vModelRadio, vModelText } from "vue";
+import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, Comment, warn, watch, withKeys, withModifiers, renderSlot, resolveComponent, createElementVNode, createBlock, resolveDynamicComponent, withCtx, createVNode, toRef, Fragment, renderList, createTextVNode, Transition, normalizeStyle, inject, mergeProps, getCurrentInstance, withDirectives, vModelCheckbox, createSlots, nextTick, vModelDynamic, onUnmounted, vShow, unref, shallowRef, getCurrentScope, onScopeDispose, shallowReadonly, Teleport, toRefs, provide, vModelRadio, vModelText } from "vue";
 const g = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>', q = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>', n1 = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0m5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>', d1 = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>', g1 = '<path d="M10 15 2 5h16z"/>', k1 = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>', F1 = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>', t0 = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>', p = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7"/>', e0 = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0M9 5h2v2H9zm0 4h2v6H9z"/>', z2 = '<path d="M3 1h2v18H3zm13.5 1.5L15 1l-9 9 9 9 1.5-1.5L9 10z"/>', i2 = '<path d="M15 1h2v18h-2zM3.5 2.5 11 10l-7.5 7.5L5 19l9-9-9-9z"/>', V2 = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>', b2 = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>', J2 = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4zM3 8a5 5 0 1010 0A5 5 0 003 8"/>', h5 = '<path d="M10 0 3 8h14zm0 18-7-8h14z"/>', M5 = '<path d="M10 20a10 10 0 010-20 10 10 0 110 20m-2-5 9-8.5L15.5 5 8 12 4.5 8.5 3 10z"/>', G5 = '<path d="m10 5 8 10H2z"/>', M3 = g, S3 = q, Y3 = n1, X3 = d1, l4 = g1, i4 = k1, m4 = F1, P4 = t0, Y4 = {
   langCodeMap: {
     ar: p
@@ -613,6 +613,86 @@ function getButtonLabel(button) {
   }
   return button.label;
 }
+function useButtonGroupKeyboardNav(buttonsProp) {
+  const rootElement = ref();
+  const focusedButtonIndex = ref();
+  const buttonRefs = ref(/* @__PURE__ */ new Map());
+  const currentDirection = useComputedDirection(rootElement);
+  function assignTemplateRef(templateRef, index) {
+    const button = templateRef;
+    if (button) {
+      buttonRefs.value.set(index, button);
+    }
+  }
+  function onFocus(index) {
+    focusedButtonIndex.value = index;
+  }
+  function onBlur() {
+    focusedButtonIndex.value = void 0;
+  }
+  function focusNonDisabled(index, increment) {
+    var _a;
+    const newIndex = index + increment;
+    const targetButton = buttonsProp.value[newIndex];
+    if (targetButton) {
+      if (targetButton.disabled) {
+        focusNonDisabled(newIndex, increment);
+      } else {
+        const buttonElement = (_a = buttonRefs.value.get(newIndex)) == null ? void 0 : _a.$el;
+        buttonElement == null ? void 0 : buttonElement.focus();
+      }
+    }
+  }
+  function next() {
+    var _a;
+    focusNonDisabled((_a = focusedButtonIndex.value) != null ? _a : -1, 1);
+  }
+  function prev() {
+    var _a;
+    focusNonDisabled((_a = focusedButtonIndex.value) != null ? _a : buttonsProp.value.length, -1);
+  }
+  function moveRight() {
+    if (currentDirection.value === "rtl") {
+      prev();
+    } else {
+      next();
+    }
+  }
+  function moveLeft() {
+    if (currentDirection.value === "rtl") {
+      next();
+    } else {
+      prev();
+    }
+  }
+  function onKeydown(e) {
+    switch (e.key) {
+      case "ArrowRight":
+        e.preventDefault();
+        moveRight();
+        break;
+      case "ArrowLeft":
+        e.preventDefault();
+        moveLeft();
+        break;
+      case "ArrowDown":
+        e.preventDefault();
+        next();
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        prev();
+        break;
+    }
+  }
+  return {
+    rootElement,
+    assignTemplateRef,
+    onFocus,
+    onBlur,
+    onKeydown
+  };
+}
 const _sfc_main$u = defineComponent({
   name: "CdxButtonGroup",
   components: {
@@ -647,48 +727,74 @@ const _sfc_main$u = defineComponent({
      */
     "click"
   ],
-  setup() {
+  setup(props) {
+    const {
+      rootElement,
+      assignTemplateRef,
+      onFocus,
+      onBlur,
+      onKeydown
+    } = useButtonGroupKeyboardNav(toRef(props, "buttons"));
     return {
+      rootElement,
+      assignTemplateRef,
+      onFocus,
+      onBlur,
+      onKeydown,
       getButtonLabel
     };
   }
 });
-const _hoisted_1$t = { class: "cdx-button-group" };
+const _hoisted_1$t = {
+  ref: "rootElement",
+  class: "cdx-button-group"
+};
 function _sfc_render$u(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_button = resolveComponent("cdx-button");
-  return openBlock(), createElementBlock("div", _hoisted_1$t, [
-    (openBlock(true), createElementBlock(
-      Fragment,
-      null,
-      renderList(_ctx.buttons, (button) => {
-        return openBlock(), createBlock(_component_cdx_button, {
-          key: button.value,
-          disabled: button.disabled || _ctx.disabled,
-          "aria-label": button.ariaLabel,
-          onClick: ($event) => _ctx.$emit("click", button.value)
-        }, {
-          default: withCtx(() => [
-            renderSlot(_ctx.$slots, "default", { button }, () => [
-              button.icon ? (openBlock(), createBlock(_component_cdx_icon, {
-                key: 0,
-                icon: button.icon
-              }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
-              createTextVNode(
-                " " + toDisplayString(_ctx.getButtonLabel(button)),
-                1
-                /* TEXT */
-              )
-            ])
-          ]),
-          _: 2
-          /* DYNAMIC */
-        }, 1032, ["disabled", "aria-label", "onClick"]);
-      }),
-      128
-      /* KEYED_FRAGMENT */
-    ))
-  ]);
+  return openBlock(), createElementBlock(
+    "div",
+    _hoisted_1$t,
+    [
+      (openBlock(true), createElementBlock(
+        Fragment,
+        null,
+        renderList(_ctx.buttons, (button, index) => {
+          return openBlock(), createBlock(_component_cdx_button, {
+            key: button.value,
+            ref_for: true,
+            ref: (ref2) => _ctx.assignTemplateRef(ref2, index),
+            disabled: button.disabled || _ctx.disabled,
+            "aria-label": button.ariaLabel,
+            onClick: ($event) => _ctx.$emit("click", button.value),
+            onFocus: ($event) => _ctx.onFocus(index),
+            onBlur: _ctx.onBlur,
+            onKeydown: _ctx.onKeydown
+          }, {
+            default: withCtx(() => [
+              renderSlot(_ctx.$slots, "default", { button }, () => [
+                button.icon ? (openBlock(), createBlock(_component_cdx_icon, {
+                  key: 0,
+                  icon: button.icon
+                }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
+                createTextVNode(
+                  " " + toDisplayString(_ctx.getButtonLabel(button)),
+                  1
+                  /* TEXT */
+                )
+              ])
+            ]),
+            _: 2
+            /* DYNAMIC */
+          }, 1032, ["disabled", "aria-label", "onClick", "onFocus", "onBlur", "onKeydown"]);
+        }),
+        128
+        /* KEYED_FRAGMENT */
+      ))
+    ],
+    512
+    /* NEED_PATCH */
+  );
 }
 const ButtonGroup = /* @__PURE__ */ _export_sfc(_sfc_main$u, [["render", _sfc_render$u]]);
 const _sfc_main$t = defineComponent({
@@ -1307,7 +1413,7 @@ const _hoisted_3$b = /* @__PURE__ */ createElementVNode(
 function _sfc_render$q(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_label = resolveComponent("cdx-label");
   return openBlock(), createElementBlock(
-    "span",
+    "div",
     {
       class: normalizeClass(["cdx-checkbox", _ctx.rootClasses])
     },
@@ -1700,7 +1806,8 @@ const _sfc_main$o = defineComponent({
       isFocused.value = false;
     }
     function onFocusOut(e) {
-      if (!rootElement.value.contains(e.relatedTarget)) {
+      var _a;
+      if (!((_a = rootElement.value) == null ? void 0 : _a.contains(e.relatedTarget))) {
         addChip();
       }
     }
@@ -2034,6 +2141,7 @@ const _sfc_main$m = defineComponent({
      *
      * If included, that language code will be added as a `lang` attribute to the element
      * wrapping that text node.
+     * @default {}
      */
     language: {
       type: Object,
@@ -4982,6 +5090,7 @@ const _sfc_main$i = defineComponent({
      * Configuration for various menu features. All properties default to false.
      *
      * See the MenuConfig type.
+     * @default {}
      */
     menuConfig: {
       type: Object,
@@ -5990,6 +6099,7 @@ const _sfc_main$f = defineComponent({
     },
     /**
      * Message text keyed on validation status type.
+     * @default {}
      */
     messages: {
       type: Object,
@@ -6208,6 +6318,7 @@ const _sfc_main$d = defineComponent({
      * Configuration for various menu features. All properties default to false.
      *
      * See the MenuConfig type.
+     * @default {}
      */
     menuConfig: {
       type: Object,
@@ -6540,6 +6651,7 @@ const _sfc_main$b = defineComponent({
      * Configuration for various menu features. All properties default to false.
      *
      * See the MenuConfig type.
+     * @default {}
      */
     menuConfig: {
       type: Object,
@@ -6750,7 +6862,7 @@ const _hoisted_3$4 = /* @__PURE__ */ createElementVNode(
 function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_label = resolveComponent("cdx-label");
   return openBlock(), createElementBlock(
-    "span",
+    "div",
     {
       class: normalizeClass(["cdx-radio", _ctx.rootClasses])
     },
@@ -7051,6 +7163,7 @@ const _sfc_main$8 = defineComponent({
      * Configuration for various menu features. All properties default to false.
      *
      * See the MenuConfig type.
+     * @default {}
      */
     menuConfig: {
       type: Object,
@@ -7487,6 +7600,8 @@ const _sfc_main$6 = defineComponent({
     },
     /**
      * Column definitions.
+     *
+     * @default []
      */
     columns: {
       type: Array,
@@ -7508,6 +7623,8 @@ const _sfc_main$6 = defineComponent({
      *
      * An array of objects, with each object representing the data for a table row. Item keys
      * should align with column IDs, as defined in the `columns` prop.
+     *
+     * @default []
      */
     data: {
       type: Array,
@@ -7552,6 +7669,8 @@ const _sfc_main$6 = defineComponent({
      * An array of selected row indices. Must be bound with `v-model:selected-rows`.
      *
      * If sorting is also enabled, this will be an array of TableRowIdentifiers.
+     *
+     * @default []
      */
     selectedRows: {
       type: Array,
@@ -7561,6 +7680,8 @@ const _sfc_main$6 = defineComponent({
      * Definition of sort order. Column(s) can be sorted ascending, descending, or not sorted.
      * To display data unsorted initially, set to an empty object initially.
      * Must be bound with v-model:sort
+     *
+     * @default {}
      */
     sort: {
       type: Object,
@@ -7610,6 +7731,8 @@ const _sfc_main$6 = defineComponent({
     /**
      * Pre-defined options for how may rows should be displayed per page.
      * The value of these menu items must be a number.
+     *
+     * @default [ { value: 10 }, { value: 20 }, { value: 50 } ]
      */
     paginationSizeOptions: {
       type: Array,
@@ -7633,6 +7756,8 @@ const _sfc_main$6 = defineComponent({
      * this will default to the value of the first of the pagination options
      * if not provided. For server-side pagination, this will default to
      * the initial number of rows if no default is provided.
+     *
+     * @default paginationSizeOptions[ 0 ].value
      */
     paginationSizeDefault: {
       type: Number,
@@ -8975,6 +9100,13 @@ const _sfc_main$2 = defineComponent({
     "update:modelValue"
   ],
   setup(props, { emit }) {
+    const {
+      rootElement,
+      assignTemplateRef,
+      onFocus,
+      onBlur,
+      onKeydown
+    } = useButtonGroupKeyboardNav(toRef(props, "buttons"));
     function isSelected(button) {
       if (Array.isArray(props.modelValue)) {
         return props.modelValue.indexOf(button.value) !== -1;
@@ -8998,52 +9130,71 @@ const _sfc_main$2 = defineComponent({
       }
     }
     return {
+      rootElement,
+      assignTemplateRef,
+      onFocus,
+      onBlur,
+      onKeydown,
       getButtonLabel,
       isSelected,
       onUpdate
     };
   }
 });
-const _hoisted_1$2 = { class: "cdx-toggle-button-group" };
+const _hoisted_1$2 = {
+  ref: "rootElement",
+  class: "cdx-toggle-button-group"
+};
 function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_toggle_button = resolveComponent("cdx-toggle-button");
-  return openBlock(), createElementBlock("div", _hoisted_1$2, [
-    (openBlock(true), createElementBlock(
-      Fragment,
-      null,
-      renderList(_ctx.buttons, (button) => {
-        return openBlock(), createBlock(_component_cdx_toggle_button, {
-          key: button.value,
-          "model-value": _ctx.isSelected(button),
-          disabled: button.disabled || _ctx.disabled,
-          "aria-label": button.ariaLabel,
-          "onUpdate:modelValue": ($event) => _ctx.onUpdate(button, $event)
-        }, {
-          default: withCtx(() => [
-            renderSlot(_ctx.$slots, "default", {
-              button,
-              selected: _ctx.isSelected(button)
-            }, () => [
-              button.icon ? (openBlock(), createBlock(_component_cdx_icon, {
-                key: 0,
-                icon: button.icon
-              }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
-              createTextVNode(
-                " " + toDisplayString(_ctx.getButtonLabel(button)),
-                1
-                /* TEXT */
-              )
-            ])
-          ]),
-          _: 2
-          /* DYNAMIC */
-        }, 1032, ["model-value", "disabled", "aria-label", "onUpdate:modelValue"]);
-      }),
-      128
-      /* KEYED_FRAGMENT */
-    ))
-  ]);
+  return openBlock(), createElementBlock(
+    "div",
+    _hoisted_1$2,
+    [
+      (openBlock(true), createElementBlock(
+        Fragment,
+        null,
+        renderList(_ctx.buttons, (button, index) => {
+          return openBlock(), createBlock(_component_cdx_toggle_button, {
+            key: button.value,
+            ref_for: true,
+            ref: (ref2) => _ctx.assignTemplateRef(ref2, index),
+            "model-value": _ctx.isSelected(button),
+            disabled: button.disabled || _ctx.disabled,
+            "aria-label": button.ariaLabel,
+            "onUpdate:modelValue": ($event) => _ctx.onUpdate(button, $event),
+            onFocus: ($event) => _ctx.onFocus(index),
+            onBlur: _ctx.onBlur,
+            onKeydown: _ctx.onKeydown
+          }, {
+            default: withCtx(() => [
+              renderSlot(_ctx.$slots, "default", {
+                button,
+                selected: _ctx.isSelected(button)
+              }, () => [
+                button.icon ? (openBlock(), createBlock(_component_cdx_icon, {
+                  key: 0,
+                  icon: button.icon
+                }, null, 8, ["icon"])) : createCommentVNode("v-if", true),
+                createTextVNode(
+                  " " + toDisplayString(_ctx.getButtonLabel(button)),
+                  1
+                  /* TEXT */
+                )
+              ])
+            ]),
+            _: 2
+            /* DYNAMIC */
+          }, 1032, ["model-value", "disabled", "aria-label", "onUpdate:modelValue", "onFocus", "onBlur", "onKeydown"]);
+        }),
+        128
+        /* KEYED_FRAGMENT */
+      ))
+    ],
+    512
+    /* NEED_PATCH */
+  );
 }
 const ToggleButtonGroup = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$2]]);
 const _sfc_main$1 = defineComponent({

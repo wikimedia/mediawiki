@@ -16,10 +16,6 @@
     "file": "_plugin-vue_export-helper.js",
     "name": "_plugin-vue_export-helper"
   },
-  "_buttonHelpers.js": {
-    "file": "buttonHelpers.js",
-    "name": "buttonHelpers"
-  },
   "_constants.js": {
     "file": "constants.js",
     "name": "constants"
@@ -27,6 +23,13 @@
   "_floating-ui.dom.js": {
     "file": "floating-ui.dom.js",
     "name": "floating-ui.dom"
+  },
+  "_useButtonGroupKeyboardNav.js": {
+    "file": "useButtonGroupKeyboardNav.js",
+    "name": "useButtonGroupKeyboardNav",
+    "imports": [
+      "src/composables/useComputedDirection.ts"
+    ]
   },
   "_useI18nWithOverride.js": {
     "file": "useI18nWithOverride.js",
@@ -75,7 +78,7 @@
     "src": "src/components/button-group/ButtonGroup.vue",
     "isEntry": true,
     "imports": [
-      "_buttonHelpers.js",
+      "_useButtonGroupKeyboardNav.js",
       "src/components/button/Button.vue",
       "_Icon.js",
       "__plugin-vue_export-helper.js"
@@ -522,7 +525,7 @@
     "src": "src/components/toggle-button-group/ToggleButtonGroup.vue",
     "isEntry": true,
     "imports": [
-      "_buttonHelpers.js",
+      "_useButtonGroupKeyboardNav.js",
       "_Icon.js",
       "src/components/toggle-button/ToggleButton.vue",
       "__plugin-vue_export-helper.js"
