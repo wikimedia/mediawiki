@@ -552,11 +552,12 @@ class TransactionManager {
 		return [ $savedFname, $excisedIds, $newTopSection, $savedSectionId, $savepointId ];
 	}
 
+	/**
+	 * @return bool Whether no levels remain and transaction was started by a popped level
+	 */
 	public function popAtomicLevel() {
 		array_pop( $this->trxAtomicLevels );
-	}
 
-	public function isClean() {
 		return !$this->trxAtomicLevels && $this->trxAutomaticAtomic;
 	}
 
