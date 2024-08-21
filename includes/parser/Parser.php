@@ -4542,7 +4542,7 @@ class Parser {
 		}
 
 		# split up and insert constructed headlines
-		$blocks = preg_split( '/<H[1-6].*?>[\s\S]*?<\/H[1-6]>/i', $text );
+		$blocks = preg_split( '/<h[1-6]\b[^>]*>.*?<\/h[1-6]>/is', $text );
 		$i = 0;
 
 		// build an array of document sections
