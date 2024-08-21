@@ -24,6 +24,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Puurge expired rows from the recentchanges table.
@@ -90,7 +91,7 @@ class RecentChangesUpdateJob extends Job {
 		}
 		$ticket = $dbProvider->getEmptyTransactionTicket( __METHOD__ );
 		$hookRunner = new HookRunner( $services->getHookContainer() );
-		$cutoff = $dbw->timestamp( time() - $rcMaxAge );
+		$cutoff = $dbw->timestamp( ConvertibleTimestamp::time() - $rcMaxAge );
 		$rcQuery = RecentChange::getQueryInfo();
 		do {
 			$rcIds = [];
