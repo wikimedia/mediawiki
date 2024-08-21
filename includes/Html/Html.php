@@ -688,6 +688,7 @@ class Html {
 	 * Return the HTML for a message box.
 	 * @since 1.31
 	 * @param string $html of contents of box
+	 * @param-taint $html tainted
 	 * @param string|array $className corresponding to box
 	 * @param string $heading (optional)
 	 * @param string $iconClassName (optional) corresponding to box icon
@@ -725,6 +726,7 @@ class Html {
 	 * Return the HTML for a notice message box.
 	 * @since 1.38
 	 * @param string $html of contents of notice
+	 * @param-taint $html tainted
 	 * @param string|array $className corresponding to notice
 	 * @param string $heading (optional)
 	 * @param string|array $iconClassName (optional) corresponding to notice icon
@@ -743,6 +745,7 @@ class Html {
 	 * @since 1.31
 	 * @since 1.34 $className optional parameter added
 	 * @param string $html of contents of box
+	 * @param-taint $html tainted
 	 * @param string $className (optional) corresponding to box
 	 * @return string of HTML representing a warning box.
 	 */
@@ -757,6 +760,7 @@ class Html {
 	 * @since 1.31
 	 * @since 1.34 $className optional parameter added
 	 * @param string $html of contents of error box
+	 * @param-taint $html tainted
 	 * @param string $heading (optional)
 	 * @param string $className (optional) corresponding to box
 	 * @return string of HTML representing an error box.
@@ -772,6 +776,7 @@ class Html {
 	 * @since 1.31
 	 * @since 1.34 $className optional parameter added
 	 * @param string $html of contents of box
+	 * @param-taint $html tainted
 	 * @param string $className (optional) corresponding to box
 	 * @return string of HTML representing a success box.
 	 */
