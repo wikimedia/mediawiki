@@ -50,6 +50,25 @@
 		this.sandbox.verifyAndRestore();
 	} );
 
+	const deepClone = typeof structuredClone === 'function' ? structuredClone : function ( obj ) {
+		return $.extend( /* deep */ true, {}, obj );
+	};
+
+	const liveConfig = mw.config.values;
+	const liveMessages = mw.messages.values;
+	const liveWarnFn = mw.log.warn;
+	const liveErrorFn = mw.log.error;
+	const noopFn = function () {};
+
+	function suppressWarnings() {
+		mw.log.warn = mw.log.error = noopFn;
+	}
+
+	function restoreWarnings() {
+		mw.log.warn = liveWarnFn;
+		mw.log.error = liveErrorFn;
+	}
+
 	/**
 	 * Ensure mw.config and other `mw` singleton state is prestine for each test.
 	 *
@@ -70,70 +89,51 @@
 	 * @param {Object} [localEnv.config]
 	 * @param {Object} [localEnv.messages]
 	 */
-	QUnit.newMwEnvironment = ( function () {
-		var deepClone = typeof structuredClone === 'function' ? structuredClone : function ( obj ) {
-			return $.extend( /* deep */ true, {}, obj );
+	QUnit.newMwEnvironment = function newMwEnvironment( localEnv ) {
+		localEnv = localEnv || {};
+
+		var orgBeforeEach = localEnv.beforeEach;
+		var orgAfterEach = localEnv.afterEach;
+
+		localEnv.beforeEach = function () {
+			mw.config.values = deepClone( liveConfig );
+			if ( localEnv.config ) {
+				mw.config.set( localEnv.config );
+			}
+
+			mw.messages.values = deepClone( liveMessages );
+			if ( localEnv.messages ) {
+				mw.messages.set( localEnv.messages );
+			}
+
+			this.suppressWarnings = suppressWarnings;
+			this.restoreWarnings = restoreWarnings;
+
+			if ( orgBeforeEach ) {
+				return orgBeforeEach.apply( this, arguments );
+			}
 		};
-		var liveConfig = mw.config.values;
-		var liveMessages = mw.messages.values;
-		var liveWarnFn = mw.log.warn;
-		var liveErrorFn = mw.log.error;
+		localEnv.afterEach = function () {
+			var ret;
+			if ( orgAfterEach ) {
+				ret = orgAfterEach.apply( this, arguments );
+			}
 
-		function suppressWarnings() {
-			mw.log.warn = mw.log.error = function () {};
-		}
+			// For convenience and to avoid leakage, always restore after each test.
+			// Restoring earlier is allowed.
+			restoreWarnings();
 
-		function restoreWarnings() {
-			mw.log.warn = liveWarnFn;
-			mw.log.error = liveErrorFn;
-		}
+			mw.config.values = liveConfig;
+			mw.messages.values = liveMessages;
 
-		return function newMwEnvironment( localEnv ) {
-			localEnv = localEnv || {};
+			// Stop animations to ensure a clean start for the next test
+			$.timers = [];
+			$.fx.stop();
 
-			var orgBeforeEach = localEnv.beforeEach;
-			var orgAfterEach = localEnv.afterEach;
-
-			localEnv.beforeEach = function () {
-				mw.config.values = deepClone( liveConfig );
-				if ( localEnv.config ) {
-					mw.config.set( localEnv.config );
-				}
-
-				mw.messages.values = deepClone( liveMessages );
-				if ( localEnv.messages ) {
-					mw.messages.set( localEnv.messages );
-				}
-
-				this.suppressWarnings = suppressWarnings;
-				this.restoreWarnings = restoreWarnings;
-
-				if ( orgBeforeEach ) {
-					return orgBeforeEach.apply( this, arguments );
-				}
-			};
-			localEnv.afterEach = function () {
-				var ret;
-				if ( orgAfterEach ) {
-					ret = orgAfterEach.apply( this, arguments );
-				}
-
-				// For convenience and to avoid leakage, always restore after each test.
-				// Restoring earlier is allowed.
-				restoreWarnings();
-
-				mw.config.values = liveConfig;
-				mw.messages.values = liveMessages;
-
-				// Stop animations to ensure a clean start for the next test
-				$.timers = [];
-				$.fx.stop();
-
-				return ret;
-			};
-			return localEnv;
+			return ret;
 		};
-	}() );
+		return localEnv;
+	};
 
 	/**
 	 * Wait for multiple promises to have finished.
