@@ -887,7 +887,7 @@
 	"unstrip-size-warning": "Unstrip-Größengrenze überschritten ($1)",
 	"unstrip-size-category": "Seiten, auf denen die Unstrip-Größengrenze überschritten ist",
 	"unstrip-size-category-desc": "Diese Seite überschreitet das Unstrip-Größen-Limit.",
-	"bad-language-code-category": "Seiten mit ungültigem Sprachecode",
+	"bad-language-code-category": "Seiten mit ungültigem Sprachcode",
 	"bad-language-code-category-desc": "Die Seite enthält <code><nowiki>{{#dir}}</nowiki></code> mit einem ungültigen Sprachcode.",
 	"converter-manual-rule-error": "Bei der manuellen Sprachkonvertierungsregel wurde ein Fehler entdeckt.",
 	"undo-success": "Die Bearbeitung kann rückgängig gemacht werden.\nBitte prüfe den Vergleich unten, um sicherzustellen, dass du dies tun möchtest, und veröffentliche dann unten deine Änderungen, um die Bearbeitung rückgängig zu machen.",

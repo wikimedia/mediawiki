@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Strainu"
+		]
+	},
+	"cdx-input-chip-aria-description": "Apăsați Enter pentru a edita sau Delete pentru a elimina.",
+	"cdx-dialog-close-button-label": "Închide",
+	"cdx-label-optional-flag": "(opțional)",
+	"cdx-message-dismiss-button-label": "Închide",
+	"cdx-search-input-search-button-label": "Caută",
+	"cdx-table-select-all-label": "Selectează toate rândurile",
+	"cdx-table-select-row-label": "Selecează rândul $1 din $2",
+	"cdx-table-sort-caption": "$1 , anteturile de coloană cu butoane pot fi sortate.",
+	"cdx-typeahead-search-search-results-label": "Rezultatele căutării",
+	"cdx-table-pager-button-first-page": "Prima pagină",
+	"cdx-table-pager-button-last-page": "Ultima pagină",
+	"cdx-table-pager-button-next-page": "Pagina următoare",
+	"cdx-table-pager-button-prev-page": "Pagina anterioară",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 rând|$1 rânduri|$1 de rânduri}}",
+	"cdx-table-pager-items-per-page-default": "Rezultate pe pagină",
+	"cdx-table-pagination-status-message-determinate-long": "Se afișează rezultatele $1 – $2 din $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 din $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Se afișează rezultate $1 – $2 din multe",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1 – $2 din multe",
+	"cdx-table-pagination-status-message-indeterminate-final": "Se afișează {{PLURAL:$1|ultimul $1 rezultat|ultimele $1 rezultate|ultimele $1 de rezultate}}",
+	"cdx-table-pagination-status-message-pending": "Se încarcă rezultatele..."
+}

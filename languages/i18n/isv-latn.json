@@ -2413,7 +2413,7 @@
 	"sp-contributions-talk": "besěda",
 	"sp-contributions-userrights": "upravjenje pravami {{GENDER:$1|koristnika|koristnice}}",
 	"sp-contributions-blocked-notice": "{{GENDER:$1|Tutoj koristnik|Tuta koristnica}} jest nyně {{GENDER:$1|zablokovany|zablokovana}}.\nPoslědnji zapis v dnevniku blokad jest pokazany niže:",
-	"sp-contributions-blocked-notice-partial": "Tutoj koristnik nyně jest čestično zablokovany.\nPoslědnji zapis v dnevniku blokad jest pokazany niže:",
+	"sp-contributions-blocked-notice-partial": "{{GENDER:$1|Tutoj koristnik nyně jest čestično zablokovany|Tuta koristnica nyně jest čestično zablokovana}}.\nPoslědnji zapis v dnevniku blokad jest pokazany niže:",
 	"sp-contributions-blocked-notice-anon": "Tutoj IP-adres nyně jest zablokovany.\nPoslědnji zapis v dnevniku blokad jest pokazany niže:",
 	"sp-contributions-blocked-notice-anon-partial": "Tutoj IP-adres jest nyně čestično zablokovany.\nPoslědnji zapis v dnevniku blokad jest pokazany niže:",
 	"sp-contributions-search": "Iskati vklad",

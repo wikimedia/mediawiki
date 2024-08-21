@@ -1321,7 +1321,7 @@
 	"recentchanges-label-newpage": "Оцу нисдарца кхоьллина керла агӀо.",
 	"recentchanges-label-minor": "ХӀара ладам боцу хийцам бу",
 	"recentchanges-label-bot": "ХӀара нисдар бото дина",
-	"recentchanges-label-unpatrolled": "ХӀара нисдар хӀинца цхьано теллина дац",
+	"recentchanges-label-unpatrolled": "ХӀара нисдар цкъачунна цхьаммо а теллина дац",
 	"recentchanges-label-plusminus": "байташкахь барам хийцар",
 	"recentchanges-legend-heading": "<strong>Легенда:&nbsp;</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (хьажа кхин [[Special:NewPages|керла агӀонийн могӀа]])",
