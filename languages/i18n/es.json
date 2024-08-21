@@ -981,7 +981,7 @@
 	"duplicate-args-category-desc": "La página contiene invocaciones de plantillas que utilizan argumentos duplicados, como <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> o <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "<strong>Advertencia:</strong> esta página contiene demasiadas llamadas a funciones sintácticas costosas.\n\nTiene {{PLURAL:$1|una llamada|$1 llamadas}}, pero debería tener menos de {{PLURAL:$2|una|$2}}.",
 	"expensive-parserfunction-category": "Páginas con demasiadas llamadas a funciones sintácticas costosas",
-	"post-expand-template-inclusion-warning": "<strong>Aviso:</strong> El tamaño de las plantillas incluidas es muy grande.\nAlgunas de ellas no se incluirán.",
+	"post-expand-template-inclusion-warning": "<strong>Aviso:</strong> El tamaño de las plantillas incluidas es muy grande, y algunas no se incluirán. Considera reducir el número de llamadas a plantillas o su código, o dividir la página.",
 	"post-expand-template-inclusion-category": "Páginas con sobrecarga de plantillas",
 	"post-expand-template-argument-warning": "Aviso: Esta página contiene al menos un parámetro de plantilla con un tamaño de expansión demasiado grande.\nSe han descartado esos parámetros.",
 	"post-expand-template-argument-category": "Páginas que contienen plantillas con parámetros descartados",
