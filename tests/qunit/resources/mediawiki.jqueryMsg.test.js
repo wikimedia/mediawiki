@@ -718,12 +718,14 @@
 			expectedNewarticletext,
 			helpPageTitle = 'Help:Foobar';
 
-		mw.messages.set( 'foobar', helpPageTitle );
-
 		expectedNewarticletext = 'You have followed a link to a page that does not exist yet. To create the page, start typing in the box below (see the ' +
 			'<a title="Help:Foobar" href="/wiki/Help:Foobar">foobar</a> for more info). If you are here by mistake, click your browser\'s back button.';
 
-		mw.messages.set( 'newarticletext', newarticletextSource );
+		mw.config.set( 'wgUserLanguage', 'en' );
+		mw.messages.set( {
+			foobar: helpPageTitle,
+			newarticletext: newarticletextSource
+		} );
 
 		assert.htmlEqual(
 			formatParse( 'newarticletext' ),
@@ -1391,8 +1393,8 @@
 		mw.messages.set( 'qqx-message', '(qqx-message)' );
 		mw.messages.set( 'non-qqx-message', '<b>hello world</b>' );
 
-		assert.strictEqual( mw.message( 'missing-message' ).parse(), '⧼missing-message⧽', 'qqx message (missing)' );
-		assert.strictEqual( mw.message( 'missing-message', $bar, 'baz' ).parse(), '⧼missing-message⧽', 'qqx message (missing) with parameters' );
+		assert.strictEqual( mw.message( 'missing-message' ).parse(), '(missing-message)', 'qqx message (missing)' );
+		assert.strictEqual( mw.message( 'missing-message', $bar, 'baz' ).parse(), '(missing-message: <b>bar</b>, baz)', 'qqx message (missing) with parameters' );
 		assert.strictEqual( mw.message( 'qqx-message' ).parse(), '(qqx-message)', 'qqx message (defined)' );
 		assert.strictEqual( mw.message( 'qqx-message', $bar, 'baz' ).parse(), '(qqx-message: <b>bar</b>, baz)', 'qqx message (defined) with parameters' );
 		assert.strictEqual( mw.message( 'non-qqx-message' ).parse(), '<b>hello world</b>', 'non-qqx message in qqx mode' );

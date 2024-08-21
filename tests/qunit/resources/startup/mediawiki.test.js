@@ -91,6 +91,7 @@
 		} );
 
 		QUnit.test( 'toString() non-existing', ( assert ) => {
+			mw.config.set( 'wgUserLanguage', 'en' );
 			var obj = mw.message( 'good<>bye' );
 			var expected = '⧼good&lt;&gt;bye⧽';
 			assert.strictEqual( obj.plain(), expected, 'plain' );
@@ -102,8 +103,8 @@
 			mw.messages.set( 'test-qqx', '(test-qqx)' );
 			mw.messages.set( 'test-nonqqx', 'hello world' );
 
-			assert.strictEqual( mw.message( 'missing-message' ).plain(), '⧼missing-message⧽', 'qqx message (missing)' );
-			assert.strictEqual( mw.message( 'missing-message', 'bar', 'baz' ).plain(), '⧼missing-message⧽', 'qqx message (missing) with parameters' );
+			assert.strictEqual( mw.message( 'missing-message' ).plain(), '(missing-message)', 'qqx message (missing)' );
+			assert.strictEqual( mw.message( 'missing-message', 'bar', 'baz' ).plain(), '(missing-message: bar, baz)', 'qqx message (missing) with parameters' );
 			assert.strictEqual( mw.message( 'test-qqx' ).plain(), '(test-qqx)', 'qqx message (defined)' );
 			assert.strictEqual( mw.message( 'test-qqx', 'bar', 'baz' ).plain(), '(test-qqx: bar, baz)', 'qqx message (defined) with parameters' );
 			assert.strictEqual( mw.message( 'test-nonqqx' ).plain(), 'hello world', 'non-qqx message in qqx mode' );
