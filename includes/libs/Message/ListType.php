@@ -18,4 +18,13 @@ class ListType {
 
 	/** A natural-language list separated by "and" */
 	public const AND = 'text';
+
+	public static function cases(): array {
+		return [
+			self::COMMA,
+			self::SEMICOLON,
+			self::PIPE,
+			self::AND,
+		];
+	}
 }

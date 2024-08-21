@@ -28,6 +28,9 @@ class ScalarParam extends MessageParam {
 	 * @param string|int|float|MessageValue|Stringable $value
 	 */
 	public function __construct( $type, $value ) {
+		if ( !in_array( $type, ParamType::cases() ) ) {
+			throw new InvalidArgumentException( '$type must be one of the ParamType constants' );
+		}
 		if ( $type === ParamType::LIST ) {
 			throw new InvalidArgumentException(
 				'ParamType::LIST cannot be used with ScalarParam; use ListParam instead'
