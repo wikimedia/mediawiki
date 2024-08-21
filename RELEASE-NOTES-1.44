@@ -33,6 +33,8 @@ For notes on 1.43.x and older releases, see HISTORY.
 
 ==== Removed configuration ====
 
+* wgResourceLoaderUseObjectCacheForDeps, deprecated in 1.43, has been removed.
+  It is now always enabled (T343492).
 * …
 
 === New user-facing features in 1.44 ===

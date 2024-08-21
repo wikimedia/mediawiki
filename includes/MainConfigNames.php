@@ -2100,12 +2100,6 @@ class MainConfigNames {
 	public const ResourceLoaderMaxage = 'ResourceLoaderMaxage';
 
 	/**
-	 * Name constant for the ResourceLoaderUseObjectCacheForDeps setting, for use with Config::get()
-	 * @see MainConfigSchema::ResourceLoaderUseObjectCacheForDeps
-	 */
-	public const ResourceLoaderUseObjectCacheForDeps = 'ResourceLoaderUseObjectCacheForDeps';
-
-	/**
 	 * Name constant for the ResourceLoaderDebug setting, for use with Config::get()
 	 * @see MainConfigSchema::ResourceLoaderDebug
 	 */
