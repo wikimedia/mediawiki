@@ -5888,7 +5888,7 @@ class MainConfigSchema {
 	/**
 	 * Use the main stash instead of the module_deps table for indirect dependency tracking
 	 *
-	 * @unstable EXPERIMENTAL
+	 * @deprecated since 1.43; This will be removed in 1.44
 	 * @since 1.35
 	 */
 	public const ResourceLoaderUseObjectCacheForDeps = [
