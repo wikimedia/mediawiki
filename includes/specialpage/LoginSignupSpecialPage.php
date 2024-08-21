@@ -1189,8 +1189,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @return bool
 	 */
 	protected function hasSessionCookie() {
-		// This is not a config setting (T313840)
-		// phpcs:ignore MediaWiki.Usage.ExtendClassUsage.FunctionConfigUsage
 		global $wgInitialSessionId;
 
 		return $wgInitialSessionId &&
