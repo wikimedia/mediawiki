@@ -6,6 +6,7 @@ use ApiBase;
 use ApiMain;
 use ApiMessage;
 use ApiUsageException;
+use Exception;
 use MediaWiki\Message\Converter as MessageConverter;
 use MediaWiki\Message\Message;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
@@ -26,6 +27,7 @@ use Wikimedia\ParamValidator\TypeDef\StringDef;
 use Wikimedia\ParamValidator\TypeDef\TimestampDef;
 use Wikimedia\ParamValidator\TypeDef\UploadDef;
 use Wikimedia\ParamValidator\ValidationException;
+use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * This wraps a bunch of the API-specific parameter validation logic.
@@ -167,23 +169,16 @@ class ApiParamValidator {
 	 * Check an API settings message
 	 * @param ApiBase $module
 	 * @param string $key
-	 * @param mixed $value
+	 * @param string|array|Message $value Message definition, see Message::newFromSpecifier()
 	 * @param array &$ret
-	 * @suppress PhanParamTooFewUnpack
 	 */
 	private function checkSettingsMessage( ApiBase $module, string $key, $value, array &$ret ): void {
-		$msg = null;
-		if ( is_string( $value ) ) {
-			$msg = $module->msg( $value );
-		} elseif ( is_array( $value ) ) {
-			// throws a warning as explained in https://github.com/phan/phan/issues/4734
-			$msg = $module->msg( ...$value );
-		} else {
-			$msg = $value;
-		}
-		if ( $msg instanceof Message ) {
+		try {
+			$msg = Message::newFromSpecifier( $value );
 			$ret['messages'][] = $this->messageConverter->convertMessage( $msg );
-		} else {
+		} catch ( TimeoutException $e ) {
+			throw $e;
+		} catch ( Exception $e ) {
 			$ret['issues'][] = "Message specification for $key is not valid";
 		}
 	}

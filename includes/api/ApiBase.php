@@ -169,6 +169,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * (string|array|Message) Specify an alternative i18n documentation message
 	 * for this parameter. Default is apihelp-{$path}-param-{$param}.
+	 * See Message::newFromSpecifier() for a description of allowed values.
 	 * @since 1.25
 	 */
 	public const PARAM_HELP_MSG = 'api-param-help-msg';
@@ -176,6 +177,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * ((string|array|Message)[]) Specify additional i18n messages to append to
 	 * the normal message for this parameter.
+	 * See Message::newFromSpecifier() for a description of allowed values.
 	 * @since 1.25
 	 */
 	public const PARAM_HELP_MSG_APPEND = 'api-param-help-msg-append';
@@ -199,9 +201,8 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * ((string|array|Message)[]) When PARAM_TYPE is an array, or 'string'
-	 * with PARAM_ISMULTI, this is an array mapping parameter values to help
-	 * message specifiers (to be passed to ApiBase::makeMessage()) about
-	 * those values.
+	 * with PARAM_ISMULTI, this is an array mapping parameter values to help messages.
+	 * See Message::newFromSpecifier() for a description of allowed values.
 	 *
 	 * When PARAM_TYPE is an array, any value not having a mapping will use
 	 * the apihelp-{$path}-paramvalue-{$param}-{$value} message. (This means
@@ -801,6 +802,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return string|array|Message|null Return null if the module does not
 	 *  support additional dynamic parameters, otherwise return a message
 	 *  describing them.
+	 *  See Message::newFromSpecifier() for a description of allowed values.
 	 */
 	public function dynamicParameterDocumentation() {
 		return null;
@@ -1729,7 +1731,7 @@ abstract class ApiBase extends ContextSource {
 	 * Otherwise, it behaves exactly as self::dieWithError().
 	 *
 	 * @since 1.29
-	 * @param string|array|Message $msg
+	 * @param string|array|Message $msg Message definition, see Message::newFromSpecifier()
 	 * @param string|null $code
 	 * @param array|null $data
 	 * @param int|null $httpCode
@@ -1869,7 +1871,7 @@ abstract class ApiBase extends ContextSource {
 	 *
 	 * @since 1.30
 	 * @stable to override
-	 * @return string|array|Message
+	 * @return string|array|Message Message definition, see Message::newFromSpecifier()
 	 */
 	protected function getSummaryMessage() {
 		return "apihelp-{$this->getModulePath()}-summary";
@@ -1883,7 +1885,8 @@ abstract class ApiBase extends ContextSource {
 	 *
 	 * @since 1.30
 	 * @stable to override
-	 * @return string|array|Message
+	 * @return string|array|Message Message definition, see Message::newFromSpecifier().
+	 *   When returning an array, the definition may also specify fallback keys.
 	 */
 	protected function getExtendedDescription() {
 		return [ [
@@ -1900,7 +1903,8 @@ abstract class ApiBase extends ContextSource {
 	 * @return Message
 	 */
 	public function getFinalSummary() {
-		return $this->msg( $this->getSummaryMessage(),
+		return $this->msg(
+			Message::newFromSpecifier( $this->getSummaryMessage() ),
 			$this->getModulePrefix(),
 			$this->getModuleName(),
 			$this->getModulePath(),
@@ -1915,19 +1919,27 @@ abstract class ApiBase extends ContextSource {
 	 * @return Message[]
 	 */
 	public function getFinalDescription() {
-		$summary = $this->msg( $this->getSummaryMessage(),
+		$summary = $this->msg(
+			Message::newFromSpecifier( $this->getSummaryMessage() ),
 			$this->getModulePrefix(),
 			$this->getModuleName(),
 			$this->getModulePath(),
 		);
-		$extendedDescription = $this->msg(
-			$this->getExtendedDescription(),
+		$extendedDesc = $this->getExtendedDescription();
+		if ( is_array( $extendedDesc ) && is_array( $extendedDesc[0] ) ) {
+			// The definition in getExtendedDescription() may also specify fallback keys. This is weird,
+			// and it was never needed for other API doc messages, so it's only supported here.
+			$extendedDesc = Message::newFallbackSequence( $extendedDesc[0] )
+				->params( array_slice( $extendedDesc, 1 ) );
+		}
+		$extendedDesc = $this->msg(
+			Message::newFromSpecifier( $extendedDesc ),
 			$this->getModulePrefix(),
 			$this->getModuleName(),
 			$this->getModulePath(),
 		);
 
-		$msgs = [ $summary, $extendedDescription ];
+		$msgs = [ $summary, $extendedDesc ];
 
 		$this->getHookRunner()->onAPIGetDescriptionMessages( $this, $msgs );
 
@@ -1985,13 +1997,10 @@ abstract class ApiBase extends ContextSource {
 				$settings = [];
 			}
 
-			$msg = $settings[self::PARAM_HELP_MSG]
-				?? $this->msg( [ "apihelp-$path-param-$param", 'api-help-param-no-description' ] );
+			$msg = isset( $settings[self::PARAM_HELP_MSG] )
+				? Message::newFromSpecifier( $settings[self::PARAM_HELP_MSG] )
+				: Message::newFallbackSequence( [ "apihelp-$path-param-$param", 'api-help-param-no-description' ] );
 			$msg = $this->msg( $msg, $prefix, $param, $name, $path );
-			if ( !$msg ) {
-				self::dieDebug( __METHOD__,
-					'Value in ApiBase::PARAM_HELP_MSG is not valid' );
-			}
 			$msgs[$param] = [ $msg ];
 
 			if ( isset( $settings[ParamValidator::PARAM_TYPE] ) &&
@@ -2069,21 +2078,16 @@ abstract class ApiBase extends ContextSource {
 				$deprecatedValues = $settings[EnumDef::PARAM_DEPRECATED_VALUES] ?? [];
 
 				foreach ( $values as $value ) {
-					$msg = $valueMsgs[$value] ?? "apihelp-$path-paramvalue-$param-$value";
+					$msg = Message::newFromSpecifier( $valueMsgs[$value] ?? "apihelp-$path-paramvalue-$param-$value" );
 					$m = $this->msg( $msg, [ $prefix, $param, $name, $path, $value ] );
-					if ( $m ) {
-						$m = new ApiHelpParamValueMessage(
-							$value,
-							// @phan-suppress-next-line PhanTypeMismatchArgumentProbablyReal
-							[ $m->getKey(), 'api-help-param-no-description' ],
-							$m->getParams(),
-							isset( $deprecatedValues[$value] )
-						);
-						$msgs[$param][] = $m->setContext( $this->getContext() );
-					} else {
-						self::dieDebug( __METHOD__,
-							"Value in ApiBase::PARAM_HELP_MSG_PER_VALUE for $value is not valid" );
-					}
+					$m = new ApiHelpParamValueMessage(
+						$value,
+						// @phan-suppress-next-line PhanTypeMismatchArgumentProbablyReal
+						[ $m->getKey(), 'api-help-param-no-description' ],
+						$m->getParams(),
+						isset( $deprecatedValues[$value] )
+					);
+					$msgs[$param][] = $m->setContext( $this->getContext() );
 				}
 			}
 
@@ -2093,13 +2097,8 @@ abstract class ApiBase extends ContextSource {
 						'Value for ApiBase::PARAM_HELP_MSG_APPEND is not an array' );
 				}
 				foreach ( $settings[self::PARAM_HELP_MSG_APPEND] as $m ) {
-					$m = $this->msg( $m, [ $prefix, $param, $name, $path ] );
-					if ( $m ) {
-						$msgs[$param][] = $m;
-					} else {
-						self::dieDebug( __METHOD__,
-							'Value in ApiBase::PARAM_HELP_MSG_APPEND is not valid' );
-					}
+					$m = $this->msg( Message::newFromSpecifier( $m ), [ $prefix, $param, $name, $path ] );
+					$msgs[$param][] = $m;
 				}
 			}
 		}

@@ -601,7 +601,8 @@ class ApiHelp extends ApiBase {
 				}
 
 				if ( $dynamicParams !== null ) {
-					$dynamicParams = $context->msg( $dynamicParams,
+					$dynamicParams = $context->msg(
+						Message::newFromSpecifier( $dynamicParams ),
 						$module->getModulePrefix(),
 						$module->getModuleName(),
 						$module->getModulePath()
@@ -628,7 +629,8 @@ class ApiHelp extends ApiBase {
 
 				$help['examples'] .= Html::openElement( 'dl' );
 				foreach ( $examples as $qs => $msg ) {
-					$msg = $context->msg( $msg,
+					$msg = $context->msg(
+						Message::newFromSpecifier( $msg ),
 						$module->getModulePrefix(),
 						$module->getModuleName(),
 						$module->getModulePath()

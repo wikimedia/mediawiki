@@ -313,7 +313,8 @@ class ApiParamInfo extends ApiBase {
 				$item = [
 					'query' => $qs
 				];
-				$msg = $this->msg( $msg,
+				$msg = $this->msg(
+					Message::newFromSpecifier( $msg ),
 					$module->getModulePrefix(),
 					$module->getModuleName(),
 					$module->getModulePath()
@@ -403,7 +404,8 @@ class ApiParamInfo extends ApiBase {
 			if ( $this->helpFormat === 'none' ) {
 				$ret['dynamicparameters'] = true;
 			} else {
-				$dynamicParams = $this->msg( $dynamicParams,
+				$dynamicParams = $this->msg(
+					Message::newFromSpecifier( $dynamicParams ),
 					$module->getModulePrefix(),
 					$module->getModuleName(),
 					$module->getModulePath()
