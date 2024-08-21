@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Tests\Message;
 
+use InvalidArgumentException;
 use MediaWiki\Json\JsonCodec;
 use MediaWikiUnitTestCase;
 use Wikimedia\Message\ListParam;
@@ -65,6 +66,12 @@ class ListParamTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $type, $mp->getListType() );
 		$this->assertEquals( $expectValues, $mp->getValue() );
 		$this->assertSame( $expected, $mp->dump() );
+	}
+
+	public function testConstruct_badTypeConst() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( '$listType must be one of the ListType constants' );
+		new ListParam( 'invalid', [] );
 	}
 
 }

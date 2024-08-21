@@ -23,6 +23,9 @@ class ListParam extends MessageParam {
 	 *  Values that are not instances of MessageParam are wrapped using ParamType::TEXT.
 	 */
 	public function __construct( $listType, array $elements ) {
+		if ( !in_array( $listType, ListType::cases() ) ) {
+			throw new InvalidArgumentException( '$listType must be one of the ListType constants' );
+		}
 		$this->type = ParamType::LIST;
 		$this->listType = $listType;
 		$this->value = [];

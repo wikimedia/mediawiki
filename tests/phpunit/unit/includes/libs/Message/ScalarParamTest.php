@@ -71,6 +71,12 @@ class ScalarParamTest extends MediaWikiUnitTestCase {
 		new ScalarParam( ParamType::LIST, [] );
 	}
 
+	public function testConstruct_badTypeConst() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( '$type must be one of the ParamType constants' );
+		new ScalarParam( 'invalid', '' );
+	}
+
 	public function testConstruct_badValueNULL() {
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage(
