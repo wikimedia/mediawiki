@@ -87,7 +87,7 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 
 		$cachedOutput = $parserCache->get( $page, $options );
 		$this->assertNotEmpty( $cachedOutput );
-		$this->assertSame( $status->getValue()->getText(), $cachedOutput->getText() );
+		$this->assertSame( $status->getValue()->getRawText(), $cachedOutput->getRawText() );
 	}
 
 	/**

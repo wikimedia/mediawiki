@@ -91,7 +91,8 @@ class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {
 
 		$cachedOutput = $cache->get( $page->getRevisionRecord(), $options );
 		$this->assertNotEmpty( $cachedOutput );
-		$this->assertSame( $status->getValue()->getText(), $cachedOutput->getText() );
+		$this->assertSame( $status->getValue()->getRawText(),
+			$cachedOutput->getRawText() );
 	}
 
 	public function testDoesNotCacheNotSafe() {

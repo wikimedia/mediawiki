@@ -40,7 +40,7 @@ class PageUpdaterFactoryIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $content->getText(), $pstContent->getText() );
 
 		$pout = $update->getCanonicalParserOutput();
-		$this->assertStringContainsString( 'dolor sit amet', $pout->getText() );
+		$this->assertStringContainsString( 'dolor sit amet', $pout->getRawText() );
 	}
 
 }

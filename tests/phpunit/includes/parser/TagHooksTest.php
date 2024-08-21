@@ -61,7 +61,7 @@ class TagHooksTest extends MediaWikiIntegrationTestCase {
 			Title::makeTitle( NS_MAIN, 'Test' ),
 			$this->getParserOptions()
 		);
-		$this->assertEquals( "<p>FooOneBaz\n</p>", $parserOutput->getText( [ 'unwrap' => true ] ) );
+		$this->assertEquals( "<p>FooOneBaz\n</p>", $parserOutput->getRawText() );
 	}
 
 	/**

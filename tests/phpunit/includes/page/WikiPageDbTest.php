@@ -139,11 +139,10 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			$edit->popts,
 			"pops"
 		);
-		$this->assertStringContainsString( '</a>', $edit->output->getText(), "output" );
+		$this->assertStringContainsString( '</a>', $edit->output->getRawText(), "output" );
 		$this->assertStringContainsString(
 			'consetetur sadipscing elitr',
-			$edit->output->getText(),
-			"output"
+			$edit->output->getRawText(), "output"
 		);
 
 		$this->assertTrue( $content->equals( $edit->newContent ), "newContent field" );

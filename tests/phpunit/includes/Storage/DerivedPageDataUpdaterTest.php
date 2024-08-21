@@ -275,15 +275,17 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 			'No PST should apply.'
 		);
 
-		$mainOutput = $updater->getCanonicalParserOutput();
-		$this->assertStringContainsString( 'first', $mainOutput->getText() );
-		$this->assertStringContainsString( '<a ', $mainOutput->getText() );
+		$mainOutput = $updater->getSlotParserOutput( SlotRecord::MAIN );
+		$text = $mainOutput->getRawText();
+		$this->assertStringContainsString( 'first', $text );
+		$this->assertStringContainsString( '<a ', $text );
 		$this->assertNotEmpty( $mainOutput->getLinks() );
 
 		$canonicalOutput = $updater->getCanonicalParserOutput();
-		$this->assertStringContainsString( 'first', $canonicalOutput->getText() );
-		$this->assertStringContainsString( '<a ', $canonicalOutput->getText() );
-		$this->assertStringContainsString( 'inherited ', $canonicalOutput->getText() );
+		$text = $canonicalOutput->getRawText();
+		$this->assertStringContainsString( 'first', $text );
+		$this->assertStringContainsString( '<a ', $text );
+		$this->assertStringContainsString( 'inherited ', $text );
 		$this->assertNotEmpty( $canonicalOutput->getLinks() );
 	}
 
@@ -320,7 +322,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $updater1->getRenderedRevision() );
 
 		// parser-output for null-edit uses the original author's name
-		$html = $updater1->getRenderedRevision()->getRevisionParserOutput()->getText();
+		$html = $updater1->getRenderedRevision()->getRevisionParserOutput()->getRawText();
 		$this->assertStringNotContainsString( $sysopName, $html, '{{REVISIONUSER}}' );
 		$this->assertStringNotContainsString( '{{REVISIONUSER}}', $html, '{{REVISIONUSER}}' );
 		$this->assertStringNotContainsString( '~~~', $html, 'signature ~~~' );
@@ -412,14 +414,16 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 			$updater1->getRawContent( SlotRecord::MAIN )->serialize()
 		);
 
-		$mainOutput = $updater1->getCanonicalParserOutput();
-		$this->assertStringContainsString( 'first', $mainOutput->getText() );
-		$this->assertStringContainsString( '<a ', $mainOutput->getText() );
+		$mainOutput = $updater1->getSlotParserOutput( SlotRecord::MAIN );
+		$mainText = $mainOutput->getRawText();
+		$this->assertStringContainsString( 'first', $mainText );
+		$this->assertStringContainsString( '<a ', $mainText );
 		$this->assertNotEmpty( $mainOutput->getLinks() );
 
 		$canonicalOutput = $updater1->getCanonicalParserOutput();
-		$this->assertStringContainsString( 'first', $canonicalOutput->getText() );
-		$this->assertStringContainsString( '<a ', $canonicalOutput->getText() );
+		$canonicalText = $canonicalOutput->getRawText();
+		$this->assertStringContainsString( 'first', $canonicalText );
+		$this->assertStringContainsString( '<a ', $canonicalText );
 		$this->assertNotEmpty( $canonicalOutput->getLinks() );
 
 		$mainContent2 = new WikitextContent( 'second' );
@@ -433,7 +437,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $updater2->isChange() );
 
 		$canonicalOutput = $updater2->getCanonicalParserOutput();
-		$this->assertStringContainsString( 'second', $canonicalOutput->getText() );
+		$this->assertStringContainsString( 'second', $canonicalOutput->getRawText() );
 	}
 
 	/**
@@ -499,7 +503,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotSame( $mainOutput, $updater->getSlotParserOutput( SlotRecord::MAIN ) );
 		$this->assertNotSame( $canonicalOutput, $updater->getCanonicalParserOutput() );
 
-		$html = $updater->getCanonicalParserOutput()->getText();
+		$html = $updater->getCanonicalParserOutput()->getRawText();
 		$this->assertStringContainsString( '--' . $rev->getId() . '--', $html );
 
 		// TODO: MCR: ensure that when the main slot uses {{REVISIONID}} but another slot is

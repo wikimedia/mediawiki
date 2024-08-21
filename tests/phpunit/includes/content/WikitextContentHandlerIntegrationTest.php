@@ -273,9 +273,9 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 			$content,
 			new ContentParseParams( Title::newMainPage() )
 		);
-		$actual = $parserOutput->getText();
-		$this->assertStringContainsString( '<div class="redirectMsg">', $actual );
-		$this->assertMatchesRegularExpression( '!<a[^<>]+>' . $expectedTarget . '</a>!', $actual );
+		$redirectHeader = $parserOutput->getRedirectHeader();
+		$this->assertStringContainsString( '<div class="redirectMsg">', $redirectHeader );
+		$this->assertMatchesRegularExpression( '!<a[^<>]+>' . $expectedTarget . '</a>!', $redirectHeader );
 	}
 
 	public static function provideMakeRedirectContent() {
