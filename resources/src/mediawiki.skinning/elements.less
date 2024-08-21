@@ -67,7 +67,10 @@ h6 {
 	margin: 0;
 	padding-top: 0.5em;
 	padding-bottom: 0.17em;
-	overflow: hidden;
+	// Create a "block formatting context" so that the bottom border on headings
+	// don't overlap floated content like infoboxes or thumbnails.
+	// https://developer.mozilla.org/en-US/docs/Web/CSS/display#flow-root
+	display: flow-root;
 }
 
 .mw-heading1,
