@@ -1146,12 +1146,15 @@ var util = {
 	 *
 	 * This functionality has been adapted from MediaWiki\User\TempUser\Pattern::isMatch()
 	 *
-	 * @param {string} username
+	 * @param {string|null} username
 	 * @return {boolean}
 	 */
 	isTemporaryUser: function ( username ) {
 		// Just return early if temporary accounts are not known about.
 		if ( !config.AutoCreateTempUser.enabled && !config.AutoCreateTempUser.known ) {
+			return false;
+		}
+		if ( username === null ) {
 			return false;
 		}
 		/** @type {string|string[]} */
