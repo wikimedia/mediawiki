@@ -5334,8 +5334,10 @@ class Parser {
 				'horizAlign' => [ 'left', 'right', 'center', 'none' ],
 				'vertAlign' => [ 'baseline', 'sub', 'super', 'top', 'text-top', 'middle',
 					'bottom', 'text-bottom' ],
-				'frame' => [ 'thumbnail', 'manualthumb', 'framed', 'frameless',
-					'upright', 'border', 'link', 'alt', 'class' ],
+				'frame' => [ 'thumbnail', 'framed', 'frameless', 'border',
+					// These parameters take arguments, so to ensure literals
+					// have precedence, keep them listed last (T372935):
+					'manualthumb', 'upright', 'link', 'alt', 'class' ],
 			];
 			static $internalParamMap;
 			if ( !$internalParamMap ) {
@@ -5354,6 +5356,8 @@ class Parser {
 			}
 
 			# Add handler params
+			# Since img_width is one of these, it is important it is listed
+			# *after* the literal parameter names above (T372935).
 			$paramMap = $internalParamMap;
 			if ( $handler ) {
 				$handlerParamMap = $handler->getParamMap();
