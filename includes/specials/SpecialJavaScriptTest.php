@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Specials;
 
+use HttpError;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
 use MediaWiki\Html\Html;
@@ -55,6 +56,32 @@ class SpecialJavaScriptTest extends SpecialPage {
 	}
 
 	/**
+	 * Used on both GUI (Special:JavaScriptTest) and the exportJS route
+	 */
+	private function getModulesForComponentOrThrow( ?string $component ): array {
+		$out = $this->getOutput();
+		$rl = $out->getResourceLoader();
+		$req = $this->getContext()->getRequest();
+
+		$modules = $rl->getTestSuiteModuleNames();
+		if ( $component !== null ) {
+			$module = 'test.' . $component;
+			if ( !in_array( 'test.' . $component, $modules ) ) {
+				throw new HttpError(
+					404,
+					"No test module found for the '$component' component.\n"
+						. "Make sure the extension is enabled via wfLoadExtension(),\n"
+						. "and register a test module via the QUnitTestModules attribute in extension.json.",
+					'Unknown test module',
+				);
+			}
+			$modules = [ 'test.' . $component ];
+		}
+
+		return $modules;
+	}
+
+	/**
 	 * Send the standalone JavaScript payload.
 	 *
 	 * Loaded by the GUI (on Special:JavaScriptTest), and by the CLI (via grunt-karma).
@@ -78,21 +105,8 @@ class SpecialJavaScriptTest extends SpecialPage {
 		$query['only'] = 'scripts';
 		$startupContext = new RL\Context( $rl, new FauxRequest( $query ) );
 
-		$modules = $rl->getTestSuiteModuleNames();
 		$component = $req->getRawVal( 'component' );
-		if ( $component ) {
-			$module = 'test.' . $component;
-			if ( !in_array( 'test.' . $component, $modules ) ) {
-				wfHttpError(
-					404,
-					'Unknown test module',
-					"'$module' is not a defined test module. "
-						. 'Register one via the QUnitTestModules attribute in extension.json.'
-				);
-				return;
-			}
-			$modules = [ 'test.' . $component ];
-		}
+		$modules = $this->getModulesForComponentOrThrow( $component );
 
 		// Disable module storage.
 		// The unit test for mw.loader.store will enable it (with a mock timers).
@@ -150,6 +164,11 @@ JAVASCRIPT
 	}
 
 	private function renderPage() {
+		$req = $this->getContext()->getRequest();
+		$component = $req->getRawVal( 'component' );
+		// If set, validate
+		$this->getModulesForComponentOrThrow( $component );
+
 		$basePath = $this->getConfig()->get( MainConfigNames::ResourceBasePath );
 		$headHtml = implode( "\n", [
 			Html::linkedStyle( "$basePath/resources/lib/qunitjs/qunit.css" ),
@@ -158,6 +177,7 @@ JAVASCRIPT
 
 		$scriptUrl = $this->getPageTitle( 'qunit/export' )->getFullURL( [
 			'debug' => (string)ResourceLoader::inDebugMode(),
+			'component' => $component,
 		] );
 		$script = implode( "\n", [
 			Html::linkedScript( "$basePath/resources/lib/qunitjs/qunit.js" ),
