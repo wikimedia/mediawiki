@@ -14,7 +14,6 @@
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
 		<exclude name="Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition" />
 		<exclude name="Generic.CodeAnalysis.AssignmentInCondition.Found" />
-		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeClassBrace.BraceNotOnOwnLine" />
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.ValidGlobalName">
 		<properties>
