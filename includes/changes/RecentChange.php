@@ -1,7 +1,5 @@
 <?php
 /**
- * Utility class for creating and accessing recent change entries.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -44,7 +42,27 @@ use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;
 
 /**
- * Utility class for creating new RC entries
+ * @defgroup RecentChanges Recent changes
+ * Discovery and review of recent edits and log events on the wiki.
+ *
+ * The Recent changes feature stores a temporary copy of the long-term
+ * `revision` and `logging` table rows which represent page edits and
+ * log actions respectively.
+ *
+ * Recent changes augments revision and logging rows with additional metadata
+ * that empower reviewers to efficiently find edits related to their
+ * interest, or edits that warrant a closer look. This includes page
+ * namespace, "minor" edit status, and user type. As well as metadata we
+ * don't store elsewhere, such the bot flag (rc_bot), edit type (page creation,
+ * edit, or something else), and patrolling state (rc_patrolled).
+ *
+ * The patrolled status facilitates edit review via the "mark as patrolled"
+ * button, in combination with filtering by patrol status via SpecialRecentChanges,
+ * SpecialWatchlist, and ApiQueryRecentChanges.
+ */
+
+/**
+ * Utility class for creating and reading rows in the recentchanges table.
  *
  * mAttribs:
  *  rc_id           id of the row in the recentchanges table
@@ -87,6 +105,8 @@ use Wikimedia\IPUtils;
  * @todo Deprecate access to mAttribs (direct or via getAttributes). Right now
  *  we're having to include both rc_comment and rc_comment_text/rc_comment_data
  *  so random crap works right.
+ *
+ * @ingroup RecentChanges
  */
 class RecentChange implements Taggable {
 	use DeprecationHelper;

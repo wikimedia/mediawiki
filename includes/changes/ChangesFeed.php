@@ -1,7 +1,5 @@
 <?php
 /**
- * Feed for list of changes.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -30,8 +28,9 @@ use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
- * Feed to Special:RecentChanges and Special:RecentChangesLinked.
+ * XML feed for Special:RecentChanges and Special:RecentChangesLinked.
  *
+ * @ingroup RecentChanges
  * @ingroup Feed
  */
 class ChangesFeed {

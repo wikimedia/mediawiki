@@ -30,6 +30,7 @@ use RecentChange;
  * Abstract class so there can be multiple formatters outputting the same data
  *
  * @since 1.23
+ * @ingroup RecentChanges
  */
 abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 

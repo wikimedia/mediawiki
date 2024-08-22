@@ -1,9 +1,5 @@
 <?php
 /**
- * Purges rows from recentchanges which are older than wgRCMaxAge. Useful to run
- * on wikis which are infrequently edited and therefore the PurgeRecentChanges
- * job may not be run frequently enough.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -20,12 +16,17 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Maintenance
  */
 
 require_once __DIR__ . '/Maintenance.php';
 
 /**
+ * Purge rows from the recentchanges table older than wgRCMaxAge.
+ *
+ * Useful to run on wikis which are infrequently edited and therefore RecentChangesUpdateJob
+ * may not be run frequently enough.
+ *
+ * @ingroup RecentChanges
  * @ingroup Maintenance
  * @since 1.43
  */

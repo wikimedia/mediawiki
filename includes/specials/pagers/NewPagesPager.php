@@ -49,6 +49,7 @@ use Wikimedia\Rdbms\IExpression;
 
 /**
  * @internal For use by SpecialNewPages
+ * @ingroup RecentChanges
  * @ingroup Pager
  */
 class NewPagesPager extends ReverseChronologicalPager {

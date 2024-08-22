@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Change tagging
  */
 
 use MediaWiki\MediaWikiServices;
@@ -26,8 +25,10 @@ use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
- * Stores a list of taggable log entries.
+ * Store a list of taggable log entries.
+ *
  * @since 1.25
+ * @ingroup ChangeTags
  */
 class ChangeTagsLogList extends ChangeTagsList {
 	public function getType() {

@@ -41,6 +41,7 @@ use Wikimedia\Rdbms\RawSQLExpression;
  * A query action to enumerate the recent changes that were done to the wiki.
  * Various filters are supported.
  *
+ * @ingroup RecentChanges
  * @ingroup API
  */
 class ApiQueryRecentChanges extends ApiQueryGeneratorBase {

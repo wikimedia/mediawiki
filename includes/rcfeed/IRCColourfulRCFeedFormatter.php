@@ -38,8 +38,8 @@ use RecentChange;
  *
  * @see $wgRCFeeds
  * @since 1.22
+ * @ingroup RecentChanges
  */
-
 class IRCColourfulRCFeedFormatter implements RCFeedFormatter {
 	/**
 	 * @see RCFeedFormatter::getLine

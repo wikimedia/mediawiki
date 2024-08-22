@@ -1,7 +1,5 @@
 <?php
 /**
- * Recent changes tagging.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Change tagging
  */
 
 use MediaWiki\Context\IContextSource;
@@ -39,6 +36,23 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\Xml\XmlSelect;
 use Wikimedia\Rdbms\IReadableDatabase;
 
+/**
+ * @defgroup ChangeTags Change tagging
+ * Tagging for revisions, log entries, or recent changes.
+ *
+ * These can be built-in tags from MediaWiki core, or applied by extensions
+ * via edit filters (e.g. AbuseFilter), or applied by extensions via hooks
+ * (e.g. onRecentChange_save), or manually by authorized users via the
+ * SpecialEditTags interface.
+ *
+ * @see RecentChanges
+ */
+
+/**
+ * Recent changes tagging.
+ *
+ * @ingroup ChangeTags
+ */
 class ChangeTags {
 	/**
 	 * The tagged edit changes the content model of the page.

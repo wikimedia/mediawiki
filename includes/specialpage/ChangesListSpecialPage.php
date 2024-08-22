@@ -53,6 +53,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  *
  * @todo Most of the functions here should be protected instead of public.
  *
+ * @ingroup RecentChanges
  * @ingroup SpecialPage
  */
 abstract class ChangesListSpecialPage extends SpecialPage {

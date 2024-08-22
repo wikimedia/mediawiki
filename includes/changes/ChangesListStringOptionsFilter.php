@@ -8,6 +8,7 @@ use MediaWiki\Html\FormOptions;
  * This filter type will only be displayed on the structured UI currently.
  *
  * @since 1.29
+ * @ingroup RecentChanges
  */
 class ChangesListStringOptionsFilter extends ChangesListFilter {
 	/**

@@ -27,10 +27,11 @@ use MediaWiki\Title\Title;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
- * Puurge expired rows from the recentchanges table.
+ * Purge expired rows from the recentchanges table.
  *
- * @ingroup JobQueue
  * @since 1.25
+ * @ingroup RecentChanges
+ * @ingroup JobQueue
  */
 class RecentChangesUpdateJob extends Job {
 	public function __construct( Title $title, array $params ) {
