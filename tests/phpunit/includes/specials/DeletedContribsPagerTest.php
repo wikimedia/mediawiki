@@ -12,6 +12,7 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Database
@@ -145,14 +146,31 @@ class DeletedContribsPagerTest extends MediaWikiIntegrationTestCase {
 		$pager = $this->getDeletedContribsPager( self::$user->getName() );
 		$this->assertIsString( $pager->getBody() );
 		$this->assertSame( 2, $pager->getNumRows() );
+		$this->assertStringContainsString( '>+9<', $pager->getBody() );
+	}
+
+	public function testParentRevisionSizePreloading() {
+		$this->setGroupPermissions( [ '*' => [
+			'deletedhistory' => true,
+			'deletedtext' => true,
+			'undelete' => true,
+		] ] );
+
+		$pager = $this->getDeletedContribsPager( self::$user->getName() );
+		// Make sure the query leaves (at least) one row unselected
+		// so that we can test loading from parent revision ids
+		TestingAccessWrapper::newFromObject( $pager )->deletedOnly = true;
+		$this->assertIsString( $pager->getBody() );
+		$this->assertSame( 1, $pager->getNumRows() );
+		$this->assertStringContainsString( '>+9<', $pager->getBody() );
 	}
 
 	public function addDBDataOnce() {
 		self::$user = $this->getTestUser()->getUser();
 		$title = Title::makeTitle( NS_MAIN, 'DeletedContribsPagerTest' );
 
-		// Make two edits (one will be suppressed)
-		$this->editPage( $title, '', '', NS_MAIN, self::$user );
+		// Make two edits (one will be revdel'd)
+		$this->editPage( $title, 'Test', '', NS_MAIN, self::$user );
 		$status = $this->editPage( $title, 'Test content.', '', NS_MAIN, self::$user );
 
 		// Delete the page where the edits were made

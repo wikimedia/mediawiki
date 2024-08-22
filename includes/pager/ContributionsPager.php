@@ -495,7 +495,23 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 				$revisions[$row->{$this->revisionIdField}] = $this->createRevisionRecord( $row );
 			}
 		}
-		# Fetch rev_len for revisions not already scanned above
+		// Fetch rev_len/ar_len for revisions not already scanned above
+		// TODO: is it possible to make this fully abstract?
+		if ( $this->isArchive ) {
+			$parentRevIds = array_diff( $parentRevIds, array_keys( $this->mParentLens ) );
+			if ( $parentRevIds ) {
+				$result = $this->revisionStore
+					->newArchiveSelectQueryBuilder( $this->getDatabase() )
+					->clearFields()
+					->fields( [ $this->revisionIdField, $this->revisionLengthField ] )
+					->where( [ $this->revisionIdField => $parentRevIds ] )
+					->caller( __METHOD__ )
+					->fetchResultSet();
+				foreach ( $result as $row ) {
+					$this->mParentLens[(int)$row->{$this->revisionIdField}] = $row->{$this->revisionLengthField};
+				}
+			}
+		}
 		$this->mParentLens += $this->revisionStore->getRevisionSizes(
 			array_diff( $parentRevIds, array_keys( $this->mParentLens ) )
 		);
