@@ -56,6 +56,7 @@ For notes on 1.42.x and older releases, see HISTORY.
   default. This means ResourceLoader writes information to the MainStash
   instead of a core database table, which can be set to a separate database
   via wgMainStash. If you find issues, please drop a comment on T343492.
+  It is now deprecated and will be removed in MediaWiki 1.44.
 * …
 
 ==== Removed configuration ====
