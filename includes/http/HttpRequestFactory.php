@@ -183,7 +183,7 @@ class HttpRequestFactory {
 		if ( $status->isOK() ) {
 			return $req->getContent();
 		} else {
-			$errors = $status->getErrorsByType( 'error' );
+			$errors = array_map( fn ( $msg ) => $msg->getKey(), $status->getMessages( 'error' ) );
 			$logger->warning( Status::wrap( $status )->getWikiText( false, false, 'en' ),
 				[ 'error' => $errors, 'caller' => $caller, 'content' => $req->getContent() ] );
 			return null;

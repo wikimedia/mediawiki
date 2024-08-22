@@ -590,12 +590,14 @@ if ( !defined( 'MW_NO_SESSION' ) && MW_ENTRY_POINT !== 'cli' ) {
 			true,
 			$sessionUser
 		);
+		$firstMessage = $res->getMessages( 'error' )[0] ?? $res->getMessages( 'warning' )[0] ?? null;
 		\MediaWiki\Logger\LoggerFactory::getInstance( 'authevents' )->info( 'Autocreation attempt', [
 			'event' => 'autocreate',
 			'successful' => $res->isGood(),
-			'status' => ( $res->getErrorsArray() ?: $res->getWarningsArray() )[0][0] ?? '-',
+			'status' => $firstMessage ? $firstMessage->getKey() : '-',
 		] );
 		unset( $res );
+		unset( $firstMessage );
 	}
 	unset( $sessionUser );
 }
