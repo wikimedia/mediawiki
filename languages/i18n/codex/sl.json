@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar"
+		]
+	},
+	"cdx-input-chip-aria-description": "Pritisnite Enter za urejanje ali Delete za odstranitev.",
+	"cdx-dialog-close-button-label": "Zapri",
+	"cdx-label-optional-flag": "(neobvezno)",
+	"cdx-message-dismiss-button-label": "Zapri",
+	"cdx-search-input-search-button-label": "Išči",
+	"cdx-table-select-all-label": "Izbira vseh vrstic",
+	"cdx-table-select-row-label": "Izbira vrstice $1 od $2",
+	"cdx-table-sort-caption": "$1; glave stolpcev z gumbi so razvrstljive.",
+	"cdx-typeahead-search-search-results-label": "Iskalni zadetki",
+	"cdx-table-pager-button-first-page": "Prva stran",
+	"cdx-table-pager-button-last-page": "Zadnja stran",
+	"cdx-table-pager-button-next-page": "Naslednja stran",
+	"cdx-table-pager-button-prev-page": "Prejšnja stran",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 vrstica|$1 vrstici|$1 vrstice|$1 vrstic}}",
+	"cdx-table-pager-items-per-page-default": "Zadetkov na stran",
+	"cdx-table-pagination-status-message-determinate-long": "Prikaz zadetkov $1–$2 od $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 od $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Prikaz zadetkov $1–$2 od številnih",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 od mnogo",
+	"cdx-table-pagination-status-message-indeterminate-final": "Prikaz {{PLURAL:$1|zadnjega zadetka|zadnjih $1 zadetkov}}",
+	"cdx-table-pagination-status-message-pending": "Nalaganje zadetkov&nbsp;..."
+}

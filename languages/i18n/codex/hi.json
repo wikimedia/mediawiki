@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Abijeet Patro"
+		]
+	},
+	"cdx-table-pager-button-first-page": "पहला पृष्ठ",
+	"cdx-table-pager-button-last-page": "अंतिम पृष्ठ",
+	"cdx-table-pager-button-next-page": "अगला पृष्ठ"
+}
