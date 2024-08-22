@@ -824,7 +824,8 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		'multiple patterns suffix match': [ [ '*$1', '$1~' ], 'Some user~', true, true ],
 		'multiple patterns suffix mismatch': [ [ '*$1', '$1~' ], 'Some user', false, true ],
 		'multiple patterns prefix and suffix match': [ [ '*$1*', '$1~' ], '*Unregistered 123*', true, true ],
-		'Auto create temporary user disabled': [ '*$1*', '*', false, false ]
+		'Auto create temporary user disabled': [ '*$1*', '*', false, false ],
+		'null username': [ '*$1', null, false, true ]
 	}, ( assert, username ) => {
 		mw.util.setOptionsForTest( {
 			AutoCreateTempUser: { enabled: username[ 3 ], matchPattern: username[ 0 ] }
