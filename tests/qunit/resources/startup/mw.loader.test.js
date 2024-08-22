@@ -477,7 +477,7 @@
 		} );
 	} );
 
-	QUnit.test( '.implement( package files )', ( assert ) => {
+	QUnit.test( '.implement() [packageFiles long paths]', ( assert ) => {
 		var done = assert.async(),
 			initJsRan = false,
 			counter = 41;
@@ -514,6 +514,49 @@
 			{}
 		);
 		mw.loader.using( 'test.implement.packageFiles' ).done( () => {
+			assert.true( initJsRan, 'main JS file is executed' );
+			done();
+		} );
+	} );
+
+	QUnit.test( '.implement() [packageFiles with parent files]', ( assert ) => {
+		var done = assert.async();
+		var initJsRan = false;
+		var counter = 41;
+		mw.loader.implement(
+			'test.implement.packageWithParentFiles',
+			{
+				main: 'init.js',
+				files: {
+					'data/hello.json': { hello: 'world' },
+					'foo.js': function ( require, module ) {
+						counter++;
+						module.exports = { answer: counter };
+					},
+					'../bar/bar.js': function ( require, module ) {
+						var core = require( './core.js' );
+						module.exports = { data: core.sayHello( 'Alice' ) };
+					},
+					'../bar/core.js': function ( require, module ) {
+						module.exports = { sayHello: function ( name ) {
+							return 'Hello ' + name;
+						} };
+					},
+					'init.js': function ( require ) {
+						initJsRan = true;
+						assert.deepEqual( require( './data/hello.json' ), { hello: 'world' }, 'require() .json' );
+						assert.deepEqual( require( './foo.js' ), { answer: 42 }, 'require() .js in same dir' );
+						assert.deepEqual( require( '../bar/bar.js' ), { data: 'Hello Alice' }, 'require() with ../ ' );
+						assert.deepEqual( require( './foo.js' ), { answer: 42 }, 'require() same script twice' );
+					}
+				}
+			},
+			{},
+			{},
+			{}
+		);
+
+		return mw.loader.using( 'test.implement.packageWithParentFiles' ).done( () => {
 			assert.true( initJsRan, 'main JS file is executed' );
 			done();
 		} );
