@@ -437,7 +437,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 *
 	 * Also accepts a MessageSpecifier inside an array: that's not considered a valid format
 	 * but is an easy error to make due to how StatusValue stores messages internally.
-	 * Further array elements are ignored in that case.
+	 * Providing further array elements in that case causes an exception to be thrown.
 	 *
 	 * When the MessageSpecifier object is an instance of Message, a clone of the object is returned.
 	 * This is unlike the `new Message( … )` constructor, which returns a new object constructed from
@@ -457,14 +457,23 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 		}
 
 		if ( $value instanceof Message ) { // Message, RawMessage, ApiMessage, etc
+			if ( $params ) {
+				throw new InvalidArgumentException(
+					'Cannot have parameters when the key is already a Message instance'
+				);
+			}
 			$message = clone $value;
 		} elseif ( $value instanceof MessageSpecifier ) {
+			if ( $params ) {
+				throw new InvalidArgumentException(
+					'Cannot have parameters when the key is already a MessageSpecifier instance'
+				);
+			}
 			$message = new Message( $value );
 		} elseif ( is_string( $value ) ) {
 			$message = new Message( $value, $params );
 		} else {
-			throw new InvalidArgumentException( __METHOD__ . ': invalid argument type '
-				. get_debug_type( $value ) );
+			throw new InvalidArgumentException( 'Invalid argument type ' . get_debug_type( $value ) );
 		}
 
 		return $message;
