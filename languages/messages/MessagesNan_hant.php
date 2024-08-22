@@ -56,5 +56,7 @@ $defaultDateFormat = 'nan-hant';
 $dateFormats = [
 	'nan-hant time' => 'H:i',
 	'nan-hant date' => 'Y年n月j日（l）',
+	'nan-hant monthonly' => 'Y年n月',
 	'nan-hant both' => 'Y年n月j日（l）H:i',
+	'nan-hant pretty' => 'n月j日',
 ];
