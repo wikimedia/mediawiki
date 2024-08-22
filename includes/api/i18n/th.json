@@ -10,7 +10,7 @@
 	"apihelp-main-param-format": "รูปแบบของผลลัพธ์",
 	"apihelp-main-param-smaxage": "ตั้งส่วนหัวควบคุมแคช HTTP <code>s-maxage</code> เป็นจำนวนวินาทีต่อไปนี้ ข้อผิดพลาดจะไม่ถูกแคช",
 	"apihelp-main-param-maxage": "ตั้งส่วนหัวควบคุมแคช HTTP <code>max-age</code> เป็นจำนวนวินาทีต่อไปนี้ ข้อผิดพลาดจะไม่ถูกแคช",
-	"apihelp-main-param-assert": "ยืนยันว่าผู้ใช้ล็อกอินแล้วถ้าตั้งเป็น <kbd>user</kbd> หรือให้มีสิทธิ์ผู้ใช้บอตถ้าตั้งเป็น <kbd>bot</kbd>",
+	"apihelp-main-param-assert": "ยืนยันว่าผู้ใช้เข้าสู่ระบบแล้ว (รวมถึงอาจเป็นผู้ใช้ชั่วคราว) ถ้าตั้งเป็น <kbd>user</kbd>, <em>not</em> เข้าสู่ระบบหากตั้งเป็น <kbd>anon</kbd>, หรือมีสิทธิผู้ใช้บอตถ้าเป็น <kbd>bot</kbd>",
 	"apihelp-main-param-assertuser": "ยืนยันว่าผู้ใช้ปัจจุบันเป็นผู้ใช้มีชื่อ",
 	"apihelp-main-param-requestid": "ค่าใด ๆ ก็ตามที่กำหนดไว้ที่นี่จะถูกรวมไว้ในการตอบกลับด้วย อาจใช้เพื่อแยกแยะคำขอได้",
 	"apihelp-main-param-servedby": "รวมชื่อโฮสต์ที่ทำหน้าที่ร้องขอไว้ในผลลัพธ์",
