@@ -330,60 +330,74 @@
 
 	Object.assign( QUnit.assert, addons );
 
-	// Small test suite to confirm proper functionality of the utilities and
-	// initializations defined above in this file.
-	QUnit.module( 'testrunner', QUnit.newMwEnvironment( {
-		beforeEach: function () {
-			this.mwHtmlLive = mw.html;
-			mw.html = {
-				escape: function () {
-					return 'mocked';
-				}
-			};
-		},
-		afterEach: function () {
-			mw.html = this.mwHtmlLive;
-		},
-		config: {
-			testVar: 'foo'
-		},
-		messages: {
-			testMsg: 'Foo.'
-		}
-	} ), () => {
-
-		QUnit.test( 'beforeEach', ( assert ) => {
-			assert.strictEqual( mw.html.escape( 'foo' ), 'mocked', 'callback ran' );
-			assert.strictEqual( mw.config.get( 'testVar' ), 'foo', 'config applied' );
-			assert.strictEqual( mw.messages.get( 'testMsg' ), 'Foo.', 'messages applied' );
-
-			mw.config.set( 'testVar', 'bar' );
-			mw.messages.set( 'testMsg', 'Bar.' );
-		} );
-
-		QUnit.test( 'afterEach', ( assert ) => {
-			assert.strictEqual( mw.config.get( 'testVar' ), 'foo', 'config restored' );
-			assert.strictEqual( mw.messages.get( 'testMsg' ), 'Foo.', 'messages restored' );
-		} );
-
-		QUnit.test( 'Loader status', ( assert ) => {
-			var modules = mw.loader.getModuleNames();
-			var error = [];
-			var missing = [];
-
-			for ( var i = 0; i < modules.length; i++ ) {
-				var state = mw.loader.getState( modules[ i ] );
-				if ( state === 'error' ) {
-					error.push( modules[ i ] );
-				} else if ( state === 'missing' ) {
-					missing.push( modules[ i ] );
-				}
+	QUnit.begin( () => {
+		// Run a few quick environment checks to make sure the above is all working correctly.
+		// We run this as a plugin callback with QUnit.onUncaughtException() instead of as
+		// a normal QUnit.module() or QUnit.test() because:
+		//
+		// 1. This way it always runs first, instead of out of order when using `seed`,
+		//    or when reloading which runs previously failed tests first.
+		// 2. Reduce noise in the output.
+		// 3. Makes it actually run instead of skipped when selecting a single module,
+		//    or re-running a single test.
+		var issues = [];
+		function ensure( ok, issue ) {
+			if ( !ok ) {
+				issues.push( issue );
 			}
-
-			assert.deepEqual( error, [], 'Modules in error state' );
-			assert.deepEqual( missing, [], 'Modules in missing state' );
+		}
+		var env = QUnit.newMwEnvironment( {
+			beforeEach: function () {
+				this.mwHtmlLive = mw.html;
+				mw.html = {
+					escape: function () {
+						return 'mocked';
+					}
+				};
+			},
+			afterEach: function () {
+				mw.html = this.mwHtmlLive;
+			},
+			config: {
+				testVar: 'foo'
+			},
+			messages: {
+				testMsg: 'Foo.'
+			}
 		} );
 
+		env.beforeEach();
+		ensure( mw.html.escape( 'foo' ) === 'mocked', 'newMwEnvironment did not call beforeEach()' );
+		ensure( mw.config.get( 'testVar' ) === 'foo', 'newMwEnvironment did not apply config' );
+		ensure( mw.messages.get( 'testMsg' ) === 'Foo.', 'newMwEnvironment did not apply messages' );
+
+		mw.config.set( 'testVar', 'bar' );
+		mw.messages.set( 'testMsg', 'Bar.' );
+		env.afterEach();
+		env.beforeEach();
+		ensure( mw.config.get( 'testVar' ) === 'foo', 'newMwEnvironment failed to restore config' );
+		ensure( mw.messages.get( 'testMsg' ) === 'Foo.', 'newMwEnvironment failed to restore messages' );
+
+		env.afterEach();
+		ensure( mw.html.escape( '<' ) === '&lt;', 'newMwEnvironment did not call afterEach()' );
+		ensure( mw.config.get( 'testVar' ) === null, 'newMwEnvironment leaks config' );
+		ensure( mw.messages.get( 'testMsg' ) === null, 'newMwEnvironment leaks messages' );
+
+		mw.loader.getModuleNames().forEach( ( name ) => {
+			var state = mw.loader.getState( name );
+			if ( state === 'error' ) {
+				issues.push( `Module "${ name }" in error state` );
+			} else if ( state === 'missing' ) {
+				issues.push( `Missing "${ name }" module dependency` );
+			}
+		} );
+
+		if ( issues.length ) {
+			QUnit.onUncaughtException( 'testrunner.js found the following issues:\n * ' + issues.join( '\n * ' ) );
+		}
+	} );
+
+	QUnit.module( 'testrunner', () => {
 		QUnit.test( 'assert.htmlEqual', ( assert ) => {
 			assert.htmlEqual(
 				'<div><p class="some classes" data-length="10">Child paragraph with <a href="http://example.com">A link</a></p>Regular text<span>A span</span></div>',
@@ -432,25 +446,5 @@
 				'Outer text nodes are compared (last text node different)'
 			);
 		} );
-
-		var beforeEachRan = false;
-		QUnit.module( 'testrunner-nested-hooks', {
-			beforeEach: function () {
-				beforeEachRan = true;
-			}
-		} );
-
-		QUnit.test( 'beforeEach', ( assert ) => {
-			assert.true( beforeEachRan );
-		} );
 	} );
-
-	QUnit.module( 'testrunner-next' );
-
-	QUnit.test( 'afterEach', ( assert ) => {
-		assert.strictEqual( mw.html.escape( '<' ), '&lt;', 'mock not leaked to next module' );
-		assert.strictEqual( mw.config.get( 'testVar' ), null, 'config not leaked to next module' );
-		assert.strictEqual( mw.messages.get( 'testMsg' ), null, 'messages not lekaed to next module' );
-	} );
-
 }() );
