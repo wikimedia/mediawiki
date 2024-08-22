@@ -2357,6 +2357,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Specials\\SpecialMovePage' => __DIR__ . '/includes/specials/SpecialMovePage.php',
 	'MediaWiki\\Specials\\SpecialMute' => __DIR__ . '/includes/specials/SpecialMute.php',
 	'MediaWiki\\Specials\\SpecialMyLanguage' => __DIR__ . '/includes/specials/SpecialMyLanguage.php',
+	'MediaWiki\\Specials\\SpecialNamespaceInfo' => __DIR__ . '/includes/specials/SpecialNamespaceInfo.php',
 	'MediaWiki\\Specials\\SpecialNewFiles' => __DIR__ . '/includes/specials/SpecialNewFiles.php',
 	'MediaWiki\\Specials\\SpecialNewPages' => __DIR__ . '/includes/specials/SpecialNewPages.php',
 	'MediaWiki\\Specials\\SpecialNewSection' => __DIR__ . '/includes/specials/SpecialNewSection.php',
