@@ -587,7 +587,11 @@
 		var prefix;
 		while ( ( prefix = prefixes.pop() ) !== undefined ) {
 			if ( prefix === '..' ) {
-				baseDirParts.pop();
+				if ( baseDirParts.length ) {
+					baseDirParts.pop();
+				} else {
+					baseDirParts.push( prefix );
+				}
 			}
 		}
 
