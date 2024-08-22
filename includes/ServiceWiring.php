@@ -251,7 +251,7 @@ use MediaWiki\Watchlist\WatchedItemStore;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\WikiMap\WikiMap;
 use Psr\Http\Client\ClientInterface;
-use Wikimedia\DependencyStore\KeyValueDependencyStore;
+use Wikimedia\DependencyStore\DependencyStore;
 use Wikimedia\EventRelayer\EventRelayerGroup;
 use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\Mime\MimeAnalyzer;
@@ -1903,7 +1903,7 @@ return [
 		$rl = new ResourceLoader(
 			$config,
 			LoggerFactory::getInstance( 'resourceloader' ),
-			new KeyValueDependencyStore( $services->getMainObjectStash() ),
+			new DependencyStore( $services->getMainObjectStash() ),
 			[
 				'loadScript' => $config->get( MainConfigNames::LoadScript ),
 				'maxageVersioned' => $maxage['versioned'] ?? null,

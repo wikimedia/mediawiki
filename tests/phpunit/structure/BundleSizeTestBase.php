@@ -9,7 +9,7 @@ use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\DerivativeContext;
 use MediaWiki\ResourceLoader\Module;
 use MediaWikiIntegrationTestCase;
-use Wikimedia\DependencyStore\KeyValueDependencyStore;
+use Wikimedia\DependencyStore\DependencyStore;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LBFactory;
@@ -61,7 +61,7 @@ abstract class BundleSizeTestBase extends MediaWikiIntegrationTestCase {
 			}
 		}
 		$resourceLoader = MediaWikiServices::getInstance()->getResourceLoader();
-		$resourceLoader->setDependencyStore( new KeyValueDependencyStore( new HashBagOStuff() ) );
+		$resourceLoader->setDependencyStore( new DependencyStore( new HashBagOStuff() ) );
 		$request = new FauxRequest(
 			[
 				'lang' => 'en',
