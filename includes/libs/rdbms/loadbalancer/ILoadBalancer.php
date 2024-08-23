@@ -272,12 +272,6 @@ interface ILoadBalancer {
 	public function getServerConnection( $i, $domain, $flags = 0 );
 
 	/**
-	 * @deprecated since 1.39 noop
-	 * @param IDatabase $conn
-	 */
-	public function reuseConnection( IDatabase $conn );
-
-	/**
 	 * @deprecated since 1.39, use ILoadBalancer::getConnection() instead.
 	 * @param int $i Specific or virtual (DB_PRIMARY/DB_REPLICA) server index
 	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group

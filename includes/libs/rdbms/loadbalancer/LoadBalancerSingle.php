@@ -96,10 +96,6 @@ class LoadBalancerSingle extends LoadBalancer {
 		return $this->conn;
 	}
 
-	public function reuseConnection( IDatabase $conn ) {
-		// do nothing since the connection was injected
-	}
-
 	public function __destruct() {
 		// do nothing since the connection was injected
 	}

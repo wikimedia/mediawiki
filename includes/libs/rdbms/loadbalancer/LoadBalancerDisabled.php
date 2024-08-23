@@ -108,8 +108,4 @@ class LoadBalancerDisabled extends LoadBalancer {
 		throw new RuntimeException( 'Database backend disabled' );
 	}
 
-	public function reuseConnection( IDatabase $conn ) {
-		// noop
-	}
-
 }
