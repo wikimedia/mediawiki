@@ -521,9 +521,9 @@ var util = {
 	 *
 	 * @example
 	 * // Create a portlet with 2 menu items that is styled as a dropdown in certain skins.
-	 * const p = mw.util.addPortlet('myportlet', 'My label', '#p-cactions' );
-	 * mw.util.addPortletLink('myportlet', '#', 'Link 1' )
-	 * mw.util.addPortletLink('myportlet', '#', 'Link 2' )
+	 * const p = mw.util.addPortlet( 'p-myportlet', 'My label', '#p-cactions' );
+	 * mw.util.addPortletLink( 'p-myportlet', '#', 'Link 1' );
+	 * mw.util.addPortletLink( 'p-myportlet', '#', 'Link 2' );
 	 * @param {string} id of the new portlet.
 	 * @param {string} [label] of the new portlet.
 	 * @param {string} [selectorHint] selector of the element the new portlet would like to
