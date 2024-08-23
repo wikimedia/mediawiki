@@ -1292,7 +1292,7 @@
 	"filehist-comment": "Ulasan",
 	"filehist-missing": "Barakas hilang",
 	"imagelinks": "Tautan barakas",
-	"linkstoimage": "{{PLURAL:$1|Tungkaran|$1 tungkaran}} nangini mamakai barakas ngini:",
+	"linkstoimage": "{{PLURAL:$1|laman|$1 laman}} nangini mamakai barakas ngini:",
 	"linkstoimage-more": "Labih matan $1 {{PLURAL:$1|pamakaian laman}} ka barakas ngini.\nDaptar itu manampaiakan {{PLURAL:$1|laman panambaian|$1 laman panambaian}} nang mamakai barakas ngini haja.\nSabuting [[Special:WhatLinksHere/$2|daptar hibak]] tasadia.",
 	"nolinkstoimage": "Kadada laman nang mamakai barakas ngini.",
 	"morelinkstoimage": "Janaki [[Special:WhatLinksHere/$1|tautan nang lain]] ka barakas ngini.",

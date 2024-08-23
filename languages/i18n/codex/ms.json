@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hakimi97"
+		]
+	},
+	"cdx-input-chip-aria-description": "Tekan Enter untuk menyunting atau Padam untuk mengalih keluar.",
+	"cdx-dialog-close-button-label": "Tutup",
+	"cdx-label-optional-flag": "(pilihan)",
+	"cdx-message-dismiss-button-label": "Tutup",
+	"cdx-search-input-search-button-label": "Cari",
+	"cdx-table-select-all-label": "Pilih semua baris",
+	"cdx-table-select-row-label": "Pilih baris $1 daripada $2",
+	"cdx-table-sort-caption": "$1, pengepala lajur dengan butang boleh diisih.",
+	"cdx-typeahead-search-search-results-label": "Hasil pencarian",
+	"cdx-table-pager-button-first-page": "Laman pertama",
+	"cdx-table-pager-button-last-page": "Laman terakhir",
+	"cdx-table-pager-button-next-page": "Laman berikutnya",
+	"cdx-table-pager-button-prev-page": "Laman sebelumnya",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 baris}}",
+	"cdx-table-pager-items-per-page-default": "Hasil setiap laman",
+	"cdx-table-pagination-status-message-determinate-long": "Menunjukkan hasil $1–$2 daripada $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 daripada $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Menunjukkan $1–$2 daripada lebih banyak hasil",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 daripada lebih banyak",
+	"cdx-table-pagination-status-message-indeterminate-final": "Menunjukkan {{PLURAL:$1|$1 hasil}} yang terakhir",
+	"cdx-table-pagination-status-message-pending": "Memuatkan hasil..."
+}
