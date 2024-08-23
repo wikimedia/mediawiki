@@ -322,6 +322,15 @@ class CodexModule extends FileModule {
 		return $this->getConfig()->get( MainConfigNames::CodexDevelopmentDir ) !== null;
 	}
 
+	private function getDevelopmentWarning() {
+		return $this->isDevelopmentMode() ?
+			Html::encodeJsCall( 'mw.log.warn', [
+				"You are using a local development version of Codex, which may not match the latest version. " .
+				"To disable this, set \$wgCodexDevelopmentDir = null;"
+			] ) :
+			'';
+	}
+
 	/**
 	 * Decide which manifest file to use, based on the theme and the direction (LTR or RTL).
 	 *
@@ -531,13 +540,7 @@ class CodexModule extends FileModule {
 			$syntheticExports = Html::encodeJsVar( HtmlJsCode::encodeObject( $exports ) );
 
 			// Add a console warning in development mode
-			$devWarning = '';
-			if ( $this->isDevelopmentMode() ) {
-				$devWarning = Html::encodeJsCall( 'mw.log.warn', [
-					"You are using a local development version of Codex, which may not match the latest version. " .
-					"To disable this, set \$wgCodexDevelopmentDir = null;"
-				] );
-			}
+			$devWarning = $this->getDevelopmentWarning();
 
 			// Proxy the synthetic exports object so that we can throw a useful error if a component
 			// is not defined in the module definition
@@ -580,10 +583,26 @@ class CodexModule extends FileModule {
 	private function loadFullCodexLibrary( Context $context ) {
 		// Add all Codex JS files to the module's package
 		if ( !$this->isStyleOnly ) {
-			$this->packageFiles[] = [
-				'name' => 'codex.js',
-				'file' => $this->makeFilePath( 'codex.umd.cjs' )
-			];
+			$jsFilePath = $this->makeFilePath( 'codex.umd.cjs' );
+
+			// Add a console warning in development mode
+			$devWarning = $this->getDevelopmentWarning();
+			if ( $devWarning ) {
+				$this->packageFiles[] = [
+					'name' => 'codex.js',
+					'callback' => static function () use ( $jsFilePath, $devWarning ) {
+						return $devWarning . ';' . file_get_contents( $jsFilePath->getLocalPath() );
+					},
+					'versionCallback' => static function () use ( $jsFilePath ) {
+						return $jsFilePath;
+					}
+				];
+			} else {
+				$this->packageFiles[] = [
+					'name' => 'codex.js',
+					'file' => $jsFilePath
+				];
+			}
 		}
 
 		// Add all Codex CSS files to the module's package
