@@ -313,7 +313,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 * @param string $domain Database domain
 	 * @return int Sanitized bitfield
 	 */
-	private function sanitizeConnectionFlags( $flags, $domain ) {
+	protected function sanitizeConnectionFlags( $flags, $domain ) {
 		if ( self::fieldHasBit( $flags, self::CONN_TRX_AUTOCOMMIT ) ) {
 			// Callers use CONN_TRX_AUTOCOMMIT to bypass REPEATABLE-READ staleness without
 			// resorting to row locks (e.g. FOR UPDATE) or to make small out-of-band commits
