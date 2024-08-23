@@ -1605,7 +1605,7 @@ return [
 			$services->getParserCacheFactory(),
 			$services->getRevisionLookup(),
 			$services->getRevisionRenderer(),
-			$services->getStatsdDataFactory(),
+			$services->getStatsFactory(),
 			$services->getDBLoadBalancerFactory(),
 			$services->getChronologyProtector(),
 			LoggerFactory::getProvider(),

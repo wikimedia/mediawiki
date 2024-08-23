@@ -852,7 +852,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			$parserCacheFactory,
 			$services->getRevisionLookup(),
 			$services->getRevisionRenderer(),
-			new NullStatsdDataFactory(),
+			$services->getStatsFactory(),
 			$services->getDBLoadBalancerFactory(),
 			$services->getChronologyProtector(),
 			$this->getLoggerSpi(),
