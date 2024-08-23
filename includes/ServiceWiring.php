@@ -1716,7 +1716,7 @@ return [
 			LoggerFactory::getInstance( 'authentication' ),
 			$services->getAuthManager(),
 			$services->getHookContainer(),
-			$services->getConnectionProvider(),
+			$services->getUserIdentityLookup(),
 			$services->getUserFactory(),
 			$services->getUserNameUtils(),
 			$services->getUserOptionsLookup()

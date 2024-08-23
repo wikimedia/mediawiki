@@ -15,9 +15,9 @@ use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\PasswordReset;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNameUtils;
 use Psr\Log\NullLogger;
-use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * TODO make this a unit test, all dependencies are injected, but DatabaseBlock::__construct()
@@ -54,7 +54,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 			new NullLogger(),
 			$authManager,
 			$this->createHookContainer(),
-			$this->createNoOpMock( IConnectionProvider::class ),
+			$this->createNoOpMock( UserIdentityLookup::class ),
 			$this->createNoOpMock( UserFactory::class ),
 			$this->createNoOpMock( UserNameUtils::class ),
 			$this->createNoOpMock( UserOptionsLookup::class )
@@ -240,6 +240,10 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 				}
 			);
 
+		$userIdentityLookup = $this->createMock( UserIdentityLookup::class );
+		$userFactory->method( 'newFromUserIdentity' )
+			->willReturnArgument( 0 );
+
 		$lookupUser = static function ( $username ) use ( $users ) {
 			return $users[ $username ] ?? false;
 		};
@@ -251,7 +255,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 				new NullLogger(),
 				$authManager,
 				$this->createHookContainer(),
-				$this->createNoOpMock( IConnectionProvider::class ),
+				$userIdentityLookup,
 				$userFactory,
 				$this->getDummyUserNameUtils(),
 				$userOptionsLookup
