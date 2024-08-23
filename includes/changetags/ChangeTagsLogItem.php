@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Change tagging
  */
 
 use MediaWiki\Html\Html;
@@ -27,9 +26,12 @@ use MediaWiki\Title\Title;
 
 /**
  * Item class for a logging table row with its associated change tags.
+ *
  * @todo Abstract out a base class for this and RevDelLogItem, similar to the
  * RevisionItem class but specifically for log items.
+ *
  * @since 1.25
+ * @ingroup ChangeTags
  */
 class ChangeTagsLogItem extends RevisionItemBase {
 	public function getIdField() {

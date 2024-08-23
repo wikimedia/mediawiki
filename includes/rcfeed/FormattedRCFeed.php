@@ -30,6 +30,7 @@ use RecentChange;
  *
  * @see $wgRCFeeds
  * @since 1.29
+ * @ingroup RecentChanges
  */
 abstract class FormattedRCFeed extends RCFeed {
 	private $params;

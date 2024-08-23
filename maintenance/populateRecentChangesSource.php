@@ -1,6 +1,5 @@
 <?php
 /**
- * Upgrade script to populate the rc_source field
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,8 +26,10 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\RawSQLValue;
 
 /**
+ * Upgrade script to populate the rc_source field
  * Maintenance script to populate the rc_source field.
  *
+ * @ingroup RecentChanges
  * @ingroup Maintenance
  * @since 1.22
  */

@@ -1,7 +1,5 @@
 <?php
 /**
- * Interface that defines how to tag objects
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,9 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Change tagging
- * @author Piotr Miazga
- * @license GPL-2.0-or-later
  */
 namespace MediaWiki\ChangeTags;
 
@@ -28,6 +23,8 @@ namespace MediaWiki\ChangeTags;
  * Interface that defines how to tag objects
  *
  * @since 1.33
+ * @ingroup ChangeTags
+ * @author Piotr Miazga
  */
 interface Taggable {
 

@@ -1,17 +1,5 @@
 <?php
-
-use MediaWiki\Context\IContextSource;
-use MediaWiki\Html\Html;
-use MediaWiki\Html\TemplateParser;
-use MediaWiki\MainConfigNames;
-use MediaWiki\Parser\Sanitizer;
-use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\SpecialPage\SpecialPage;
-use MediaWiki\Title\Title;
-
 /**
- * Generates a list of changes using an Enhanced system (uses javascript).
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -30,6 +18,20 @@ use MediaWiki\Title\Title;
  * @file
  */
 
+use MediaWiki\Context\IContextSource;
+use MediaWiki\Html\Html;
+use MediaWiki\Html\TemplateParser;
+use MediaWiki\MainConfigNames;
+use MediaWiki\Parser\Sanitizer;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\Title\Title;
+
+/**
+ * Generate a list of changes using an Enhanced system (uses javascript).
+ *
+ * @ingroup RecentChanges
+ */
 class EnhancedChangesList extends ChangesList {
 
 	/**

@@ -46,6 +46,7 @@ use RedisConnectionPool;
  *
  * @see $wgRCFeeds
  * @since 1.22
+ * @ingroup RecentChanges
  */
 class RedisPubSubFeedEngine extends FormattedRCFeed {
 

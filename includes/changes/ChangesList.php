@@ -1,9 +1,5 @@
 <?php
 /**
- * Base class for all changes lists.
- *
- * The class is used for formatting recent changes, related changes and watchlist.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -45,6 +41,14 @@ use MediaWiki\Watchlist\WatchedItem;
 use OOUI\IconWidget;
 use Wikimedia\Rdbms\IResultWrapper;
 
+/**
+ * Base class for lists of recent changes shown on special pages.
+ *
+ * This is used via ChangesListSpecialPage by recent changes (SpecialRecentChanges),
+ * related changes (SpecialRecentChangesLinked), and watchlist (SpecialWatchlist).
+ *
+ * @ingroup RecentChanges
+ */
 class ChangesList extends ContextSource {
 	use ProtectedHookAccessorTrait;
 

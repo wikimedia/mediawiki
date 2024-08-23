@@ -28,6 +28,7 @@ use RecentChange;
  *
  * @stable to implement
  * @since 1.22
+ * @ingroup RecentChanges
  */
 interface RCFeedFormatter {
 	/**

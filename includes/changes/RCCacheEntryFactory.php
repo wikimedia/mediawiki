@@ -1,7 +1,5 @@
 <?php
 /**
- * Creates a RCCacheEntry from a RecentChange to use in EnhancedChangesList
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -28,6 +26,11 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ExternalUserNames;
 
+/**
+ * Create a RCCacheEntry from a RecentChange to use in EnhancedChangesList
+ *
+ * @ingroup RecentChanges
+ */
 class RCCacheEntryFactory {
 
 	/** @var IContextSource */

@@ -1,7 +1,5 @@
 <?php
 /**
- * Represents a filter (used on ChangesListSpecialPage and descendants)
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @author Matthew Flaschen
  */
 
 use MediaWiki\Context\IContextSource;
@@ -28,6 +25,8 @@ use MediaWiki\Html\FormOptions;
  * Represents a filter (used on ChangesListSpecialPage and descendants)
  *
  * @since 1.29
+ * @ingroup RecentChanges
+ * @author Matthew Flaschen
  */
 abstract class ChangesListFilter {
 	/**

@@ -50,6 +50,7 @@ use Wikimedia\Rdbms\RawSQLExpression;
 /**
  * List of the last changes made to the wiki
  *
+ * @ingroup RecentChanges
  * @ingroup SpecialPage
  */
 class SpecialRecentChanges extends ChangesListSpecialPage {

@@ -26,6 +26,7 @@ use RecentChange;
 /**
  * @see $wgRCFeeds
  * @since 1.29
+ * @ingroup RecentChanges
  */
 abstract class RCFeed {
 	/**

@@ -1,7 +1,5 @@
 <?php
 /**
- * Represents a filter group (used on ChangesListSpecialPage and descendants)
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,13 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @author Matthew Flaschen
  */
-
-// TODO: Might want to make a super-class or trait to share behavior (especially re
-// conflicts) between ChangesListFilter and ChangesListFilterGroup.
-// What to call it.  FilterStructure?  That would also let me make
-// setUnidirectionalConflict protected.
 
 use MediaWiki\Html\FormOptions;
 use MediaWiki\SpecialPage\ChangesListSpecialPage;
@@ -33,7 +25,14 @@ use Wikimedia\Rdbms\IReadableDatabase;
 /**
  * Represents a filter group (used on ChangesListSpecialPage and descendants)
  *
+ * @todo Might want to make a super-class or trait to share behavior (especially re
+ * conflicts) between ChangesListFilter and ChangesListFilterGroup.
+ * What to call it.  FilterStructure?  That would also let me make
+ * setUnidirectionalConflict protected.
+ *
  * @since 1.29
+ * @ingroup RecentChanges
+ * @author Matthew Flaschen
  * @method registerFilter($filter)
  */
 abstract class ChangesListFilterGroup {

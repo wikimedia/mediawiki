@@ -24,6 +24,7 @@ use ApiFormatXml;
 
 /**
  * @since 1.23
+ * @ingroup RecentChanges
  */
 class XMLRCFeedFormatter extends MachineReadableRCFeedFormatter {
 

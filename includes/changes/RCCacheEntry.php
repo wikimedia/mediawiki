@@ -18,6 +18,9 @@
  * @file
  */
 
+/**
+ * @ingroup RecentChanges
+ */
 class RCCacheEntry extends RecentChange {
 	/** @var string|null */
 	public $curlink;

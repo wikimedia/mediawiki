@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Change tagging
  */
 
 namespace MediaWiki\ChangeTags;
@@ -43,9 +42,10 @@ use Wikimedia\Rdbms\RawSQLValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
- * Gateway class for change_tags table
+ * Read-write access to the change_tags table.
  *
  * @since 1.41
+ * @ingroup ChangeTags
  */
 class ChangeTagsStore {
 

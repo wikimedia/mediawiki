@@ -32,6 +32,7 @@ use MediaWiki\Json\FormatJson;
  *
  * @see $wgRCFeeds
  * @since 1.22
+ * @ingroup RecentChanges
  */
 class JSONRCFeedFormatter extends MachineReadableRCFeedFormatter {
 

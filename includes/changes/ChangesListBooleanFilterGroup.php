@@ -10,6 +10,7 @@ use Wikimedia\Rdbms\IReadableDatabase;
  * but 'Bot' is unchecked, hidebots=1 will be sent.
  *
  * @since 1.29
+ * @ingroup RecentChanges
  * @method ChangesListBooleanFilter[] getFilters()
  */
 class ChangesListBooleanFilterGroup extends ChangesListFilterGroup {

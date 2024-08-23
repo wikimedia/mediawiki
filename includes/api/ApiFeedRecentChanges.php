@@ -33,6 +33,7 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 /**
  * Recent changes feed.
  *
+ * @ingroup RecentChanges
  * @ingroup API
  */
 class ApiFeedRecentChanges extends ApiBase {

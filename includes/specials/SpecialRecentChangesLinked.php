@@ -39,6 +39,7 @@ use Wikimedia\Rdbms\Subquery;
 /**
  * This is to display changes made to all articles linked in an article.
  *
+ * @ingroup RecentChanges
  * @ingroup SpecialPage
  */
 class SpecialRecentChangesLinked extends SpecialRecentChanges {

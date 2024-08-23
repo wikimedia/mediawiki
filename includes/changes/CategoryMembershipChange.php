@@ -1,16 +1,5 @@
 <?php
-
-use MediaWiki\Cache\BacklinkCache;
-use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\PageIdentity;
-use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Title\Title;
-use MediaWiki\User\User;
-use MediaWiki\User\UserIdentity;
-
 /**
- * Helper class for category membership changes
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -27,11 +16,24 @@ use MediaWiki\User\UserIdentity;
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @author Kai Nissen
- * @author Addshore
- * @since 1.27
  */
 
+use MediaWiki\Cache\BacklinkCache;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Title\Title;
+use MediaWiki\User\User;
+use MediaWiki\User\UserIdentity;
+
+/**
+ * Helper class for category membership changes
+ *
+ * @since 1.27
+ * @ingroup RecentChanges
+ * @author Kai Nissen
+ * @author Addshore
+ */
 class CategoryMembershipChange {
 
 	private const CATEGORY_ADDITION = 1;

@@ -40,6 +40,7 @@ use UDPTransport;
  *
  * @see $wgRCFeeds
  * @since 1.22
+ * @ingroup RecentChanges
  */
 class UDPRCFeedEngine extends FormattedRCFeed {
 
