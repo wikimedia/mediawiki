@@ -135,14 +135,18 @@ interface ILoadBalancer {
 	/** The generic query group */
 	public const GROUP_GENERIC = '';
 
-	/** Yield an untracked, low-timeout, autocommit-mode handle (to gauge server health) */
-	public const CONN_UNTRACKED_GAUGE = 1;
 	/** Yield a tracked autocommit-mode handle (reuse existing ones) */
-	public const CONN_TRX_AUTOCOMMIT = 2;
-	/** Yield null on connection failure instead of throwing an exception */
+	public const CONN_TRX_AUTOCOMMIT = 1;
+	/**
+	 * Yield an untracked, low-timeout, autocommit-mode handle (to gauge server health)
+	 * @internal
+	 */
+	public const CONN_UNTRACKED_GAUGE = 2;
+	/**
+	 * Yield null on connection failure instead of throwing an exception
+	 * @internal
+	 */
 	public const CONN_SILENCE_ERRORS = 4;
-	/** Caller is requesting the primary DB server for possibly writes */
-	public const CONN_INTENT_WRITABLE = 8;
 
 	/**
 	 * Get the name of the overall cluster of database servers managing the dataset
