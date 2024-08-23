@@ -426,10 +426,11 @@ class LinksUpdate extends DataUpdate {
 	 * Fetch page links added by this LinksUpdate.  Only available after the update is complete.
 	 *
 	 * @since 1.22
-	 * @deprecated since 1.38 use getPageReferenceIterator() or getPageReferenceArray()
+	 * @deprecated since 1.38 use getPageReferenceIterator() or getPageReferenceArray(), hard-deprecated since 1.43
 	 * @return Title[] Array of Titles
 	 */
 	public function getAddedLinks() {
+		wfDeprecated( __METHOD__, '1.43' );
 		return $this->getPageLinksTable()->getTitleArray( LinksTable::INSERTED );
 	}
 
@@ -437,10 +438,11 @@ class LinksUpdate extends DataUpdate {
 	 * Fetch page links removed by this LinksUpdate.  Only available after the update is complete.
 	 *
 	 * @since 1.22
-	 * @deprecated since 1.38 use getPageReferenceIterator() or getPageReferenceArray()
+	 * @deprecated since 1.38 use getPageReferenceIterator() or getPageReferenceArray(), hard-deprecated since 1.43
 	 * @return Title[] Array of Titles
 	 */
 	public function getRemovedLinks() {
+		wfDeprecated( __METHOD__, '1.43' );
 		return $this->getPageLinksTable()->getTitleArray( LinksTable::DELETED );
 	}
 

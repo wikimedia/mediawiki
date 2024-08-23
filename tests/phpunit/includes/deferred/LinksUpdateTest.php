@@ -8,6 +8,7 @@ use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
@@ -116,9 +117,14 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			]
 		);
 		$this->assertArrayEquals( [
-			Title::makeTitle( NS_MAIN, 'Foo' ), // newFromText doesn't yield the same internal state....
-			Title::makeTitle( NS_MAIN, 'Bar' ),
-		], $update->getAddedLinks() );
+			[ NS_MAIN, 'Foo' ],
+			[ NS_MAIN, 'Bar' ],
+		], array_map(
+			static function ( PageReference $pageReference ) {
+				return [ $pageReference->getNamespace(), $pageReference->getDbKey() ];
+			},
+			$update->getPageReferenceArray( 'pagelinks', LinksTable::INSERTED )
+		) );
 
 		$po = new ParserOutput();
 		$po->setTitleText( $t->getPrefixedText() );
@@ -140,12 +146,22 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			]
 		);
 		$this->assertArrayEquals( [
-			Title::makeTitle( NS_MAIN, 'Baz' ),
-			Title::makeTitle( NS_TALK, 'Baz' ),
-		], $update->getAddedLinks() );
+			[ NS_MAIN, 'Baz' ],
+			[ NS_TALK, 'Baz' ],
+		], array_map(
+			static function ( PageReference $pageReference ) {
+				return [ $pageReference->getNamespace(), $pageReference->getDbKey() ];
+			},
+			$update->getPageReferenceArray( 'pagelinks', LinksTable::INSERTED )
+		) );
 		$this->assertArrayEquals( [
-			Title::makeTitle( NS_MAIN, 'Foo' ),
-		], $update->getRemovedLinks() );
+			[ NS_MAIN, 'Foo' ],
+		], array_map(
+			static function ( PageReference $pageReference ) {
+				return [ $pageReference->getNamespace(), $pageReference->getDbKey() ];
+			},
+			$update->getPageReferenceArray( 'pagelinks', LinksTable::DELETED )
+		) );
 	}
 
 	public function testUpdate_pagelinks_move() {
