@@ -55,6 +55,7 @@ class LessVarFileModuleTest extends ResourceLoaderTestCase {
 			'styles' => [ 'less-messages.less' ],
 			'lessMessages' => [ 'pieday' ],
 		] );
+		$module->setConfig( $context->getResourceLoader()->getConfig() );
 		$module->setMessageBlob( '{"pieday":"March 14"}', 'qqx' );
 
 		$styles = $module->getStyles( $context );
@@ -69,6 +70,7 @@ class LessVarFileModuleTest extends ResourceLoaderTestCase {
 			'styles' => [ 'less-messages.less' ],
 			'lessMessages' => [ 'pieday' ],
 		] );
+		$module->setConfig( $context->getResourceLoader()->getConfig() );
 		$module->setMessageBlob( '{"something":"Else"}', 'qqx' );
 
 		$styles = $module->getStyles( $context );

@@ -2063,12 +2063,22 @@ MESSAGE;
 
 		// SetImportDirs expects an array like [ 'path1' => '', 'path2' => '' ]
 		$formattedImportDirs = array_fill_keys( $importDirs, '' );
+
 		// Add a callback to the import dirs array for path remapping
-		$formattedImportDirs[] = static function ( $path ) {
+		$codexDevDir = $this->getConfig()->get( MainConfigNames::CodexDevelopmentDir );
+		$formattedImportDirs[] = static function ( $path ) use ( $codexDevDir ) {
 			global $IP;
+			// For each of the Codex import paths, use CodexDevelopmentDir if it's set
 			$importMap = [
-				'@wikimedia/codex-icons/' => "$IP/resources/lib/codex-icons/",
-				'mediawiki.skin.codex-design-tokens/' => "$IP/resources/lib/codex-design-tokens/",
+				'@wikimedia/codex-icons/' => $codexDevDir !== null ?
+					"$codexDevDir/packages/codex-icons/dist/" :
+					"$IP/resources/lib/codex-icons/",
+				'mediawiki.skin.codex/' => $codexDevDir !== null ?
+					"$codexDevDir/packages/codex/dist/" :
+					"$IP/resources/lib/codex/",
+				'mediawiki.skin.codex-design-tokens/' => $codexDevDir !== null ?
+					"$codexDevDir/packages/codex-design-tokens/dist/" :
+					"$IP/resources/lib/codex-design-tokens/",
 				'@wikimedia/codex-design-tokens/' => /** @return never */ static function ( $unused_path ) {
 					throw new RuntimeException(
 						'Importing from @wikimedia/codex-design-tokens is not supported. ' .

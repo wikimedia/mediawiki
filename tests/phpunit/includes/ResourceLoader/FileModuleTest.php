@@ -467,6 +467,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 			'lessVars' => [ 'foo' => '2px', 'Foo' => '#eeeeee' ]
 		] );
 		$module->setName( 'test.less' );
+		$module->setConfig( $context->getResourceLoader()->getConfig() );
 		$styles = $module->getStyles( $context );
 		$this->assertStringEqualsFile( $basePath . '/styles.css', $styles['all'] );
 	}

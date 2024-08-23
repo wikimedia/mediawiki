@@ -3782,6 +3782,17 @@ config-schema:
             Even when this is disabled, using ResourceLoader's debug mode (?debug=true)
             will cause the development version to be loaded.
             @since 1.35
+    CodexDevelopmentDir:
+        default: null
+        description: |-
+            If this is set, MediaWiki will look for Codex files in this directory
+            instead of in resources/lib/codex/ and friends.
+            To use a local development version of Codex, set this to the full file
+            path of the root directory of a local clone of the Codex repository, and
+            run `npm run build-all` in the Codex root directory. Rerun this command
+            after making any changes.
+            This should be disabled for production installations.
+            @since 1.43
     MetaNamespace:
         default: false
         dynamicDefault:
