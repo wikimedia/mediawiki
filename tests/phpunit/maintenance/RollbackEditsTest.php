@@ -63,10 +63,10 @@ class RollbackEditsTest extends MaintenanceBaseTestCase {
 			$this->editPage( $title, 'testing-12345', '', NS_MAIN, $authority );
 			$expectedOutputRegex .= 'Processing ' . preg_quote( $title->getPrefixedText() ) . "\.\.\.Done!\n";
 		}
+		$this->maintenance->setOption( 'user', $authority->getUser()->getName() );
 		foreach ( $options as $name => $value ) {
 			$this->maintenance->setOption( $name, $value );
 		}
-		$this->maintenance->setOption( 'user', $authority->getUser()->getName() );
 		$this->maintenance->execute();
 		$this->expectOutputRegex( $expectedOutputRegex . '/' );
 		foreach ( $titlesToBeRolledBack as $title ) {
@@ -108,5 +108,13 @@ class RollbackEditsTest extends MaintenanceBaseTestCase {
 			$firstRevision->getContent( SlotRecord::MAIN )->getWikitextForTransclusion(),
 			$latestRevision->getContent( SlotRecord::MAIN )->getWikitextForTransclusion()
 		);
+	}
+
+	public function testExecuteForUserWithUncanonicalisedName() {
+		$contLang = $this->getServiceContainer()->getContentLanguage();
+		$testUser = $this->getTestUser()->getAuthority();
+		$titles = $this->getExistingTestPages( 2 );
+		$name = strtr( $contLang->lcfirst( $testUser->getUser()->getName() ), ' ', '_' );
+		$this->commonExecuteForSuccess( $titles, $testUser, [ 'user' => $name ] );
 	}
 }
