@@ -113,6 +113,7 @@ FilterGroup.prototype.initializeFilters = function ( filterDefinition, groupDefa
 				description: filter.description || '',
 				labelPrefixKey: model.labelPrefixKey,
 				cssClass: filter.cssClass,
+				helpLink: filter.helpLink,
 				identifiers: filter.identifiers,
 				defaultHighlightColor: filter.defaultHighlightColor
 			} );

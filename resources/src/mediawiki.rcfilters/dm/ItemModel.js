@@ -18,6 +18,7 @@
  * @param {string} [config.namePrefix='item_'] A prefix to add to the param name to act as a unique
  *  identifier
  * @param {string} [config.cssClass] The class identifying the results that match this filter
+ * @param {string|null} [config.helpLink] Link to a help page for this filter
  * @param {string[]} [config.identifiers] An array of identifiers for this item. They will be
  *  added and considered in the view.
  * @param {string} [config.defaultHighlightColor=null] If set, highlight this filter by default with this color
@@ -41,6 +42,7 @@ var ItemModel = function MwRcfiltersDmItemModel( param, config ) {
 
 	// Highlight
 	this.cssClass = config.cssClass;
+	this.helpLink = config.helpLink;
 	this.highlightColor = config.defaultHighlightColor || null;
 };
 
@@ -243,6 +245,16 @@ ItemModel.prototype.getHighlightColor = function () {
  */
 ItemModel.prototype.getCssClass = function () {
 	return this.cssClass;
+};
+
+/**
+ * Get a link to a help page for this filter
+ * or null if none is configured
+ *
+ * @return {string|null}
+ */
+ItemModel.prototype.getHelpLink = function () {
+	return this.helpLink;
 };
 
 /**

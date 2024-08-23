@@ -204,12 +204,20 @@ class SpecialTags extends SpecialPage {
 		if ( $showEditLinks ) {
 			$disp .= ' ';
 			$editLink = $linkRenderer->makeLink(
-				$this->msg( "tag-$tag" )->inContentLanguage()->getTitle(),
+				$this->msg( "tag-$tag" )->getTitle(),
 				$this->msg( 'tags-edit' )->text(),
 				[],
 				[ 'action' => 'edit' ]
 			);
-			$disp .= $this->msg( 'parentheses' )->rawParams( $editLink )->escaped();
+			$helpEditLink = $linkRenderer->makeLink(
+				$this->msg( "tag-$tag-helppage" )->inContentLanguage()->getTitle(),
+				$this->msg( 'tags-helppage-edit' )->text(),
+				[],
+				[ 'action' => 'edit' ]
+			);
+			$disp .= $this->msg( 'parentheses' )->rawParams(
+				$this->getLanguage()->pipeList( [ $editLink, $helpEditLink ] )
+			)->escaped();
 		}
 		$newRow .= Xml::tags( 'td', null, $disp );
 
