@@ -68,14 +68,22 @@ function wfInstallerMain() {
 		$session = array();
 	}
 
-	if ( $request->getCheck( 'uselang' ) ) {
-		$langCode = $request->getVal( 'uselang' );
-	} elseif ( isset( $session['settings']['_UserLang'] ) ) {
+	$services = MediaWikiServices::getInstance();
+	$languageFactory = $services->getLanguageFactory();
+	$languageNameUtils = $services->getLanguageNameUtils();
+
+	$langCode = 'en';
+	if ( isset( $session['settings']['_UserLang'] ) &&
+		$languageNameUtils->isKnownLanguageTag( $session['settings']['_UserLang'] )
+	) {
 		$langCode = $session['settings']['_UserLang'];
-	} else {
-		$langCode = 'en';
 	}
-	$wgLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $langCode );
+	$uselang = $request->getRawVal( 'uselang' );
+	if ( $uselang !== null && $languageNameUtils->isKnownLanguageTag( $uselang ) ) {
+		$langCode = $uselang;
+	}
+	$wgLang = $languageFactory->getRawLanguage( $langCode );
+
 	RequestContext::getMain()->setLanguage( $wgLang );
 
 	$installer->setParserLanguage( $wgLang );
