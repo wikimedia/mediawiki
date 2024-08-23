@@ -50,7 +50,7 @@ class DatabaseMySQL extends Database {
 	private $sslCAPath;
 	/**
 	 * Open SSL cipher list string
-	 * @see https://www.openssl.org/docs/man1.0.2/man1/ciphers.html
+	 * @see https://docs.openssl.org/3.3/man1/openssl-ciphers/
 	 * @var string|null
 	 */
 	private $sslCiphers;
