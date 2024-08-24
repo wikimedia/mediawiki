@@ -2151,11 +2151,12 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'Page 1 revision content', $data );
 
 		// Test 3 repeated with ParserCache to ensure nothing is written to cache!
-		$parserCache = $this->createNoOpMock( ParserCache::class, [ 'save', 'get', 'makeParserOutputKey' ] );
+		$parserCache = $this->createNoOpMock( ParserCache::class, [ 'save', 'get', 'getDirty', 'makeParserOutputKey' ] );
 		// This is the critical assertion -- no cache svaes for mismatched rev & page params
 		$parserCache->expects( $this->never() )->method( 'save' );
 		// Ensures there is a cache miss
 		$parserCache->method( 'get' )->willReturn( false );
+		$parserCache->method( 'getDirty' )->willReturn( false );
 		// Verify that the cache is queried
 		$parserCache->expects( $this->atLeastOnce() )->method( 'makeParserOutputKey' );
 		$parserCacheFactory = $this->createNoOpMock(
@@ -2175,12 +2176,13 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getExistingTestPage();
 		$pageConfig = $this->getPageConfig( $page );
 
-		$parserCache = $this->createNoOpMock( ParserCache::class, [ 'save', 'get', 'makeParserOutputKey' ] );
+		$parserCache = $this->createNoOpMock( ParserCache::class, [ 'save', 'get', 'getDirty', 'makeParserOutputKey' ] );
 
 		// This is the critical assertion in this test case: the save() method should
 		// be called exactly once!
 		$parserCache->expects( $this->once() )->method( 'save' );
 		$parserCache->method( 'get' )->willReturn( false );
+		$parserCache->method( 'getDirty' )->willReturn( false );
 		// These methods will be called by ParserOutputAccess:qa
 		$parserCache->expects( $this->atLeastOnce() )->method( 'makeParserOutputKey' );
 

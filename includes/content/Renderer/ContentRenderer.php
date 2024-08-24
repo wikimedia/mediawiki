@@ -39,7 +39,9 @@ class ContentRenderer {
 	 * @param PageReference $page
 	 * @param RevisionRecord|null $revision
 	 * @param ParserOptions|null $parserOptions
-	 * @param bool $generateHtml
+	 * @param bool|array{generate-html?:bool,previous-output?:?ParserOutput} $hints
+	 *   For back-compatibility, passing a bool is equivalent to setting
+	 *   the 'generate-html' hint.
 	 *
 	 * @return ParserOutput
 	 * @note Passing an integer as $rev was deprecated in MW 1.42
@@ -49,7 +51,7 @@ class ContentRenderer {
 		PageReference $page,
 		$revision = null,
 		?ParserOptions $parserOptions = null,
-		bool $generateHtml = true
+		$hints = []
 	): ParserOutput {
 		$revId = null;
 		$revTimestamp = null;
@@ -60,9 +62,19 @@ class ContentRenderer {
 			$revId = $revision->getId();
 			$revTimestamp = $revision->getTimestamp();
 		}
+		if ( is_bool( $hints ) ) {
+			// For backward compatibility.
+			$hints = [ 'generate-html' => $hints ];
+		}
 		$cacheTime = wfTimestampNow();
 		$contentHandler = $this->contentHandlerFactory->getContentHandler( $content->getModel() );
-		$cpoParams = new ContentParseParams( $page, $revId, $parserOptions, $generateHtml );
+		$cpoParams = new ContentParseParams(
+			$page,
+			$revId,
+			$parserOptions,
+			$hints['generate-html'] ?? true,
+			$hints['previous-output'] ?? null
+		);
 
 		$parserOutput = $contentHandler->getParserOutput( $content, $cpoParams );
 		// Set the cache parameters, if not previously set.

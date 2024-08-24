@@ -22,6 +22,7 @@ namespace MediaWiki\PoolCounter;
 
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Page\ParserOutputAccess;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Status\Status;
@@ -78,14 +79,19 @@ class PoolWorkArticleView extends PoolCounterWork {
 	 *
 	 * @see ParserOutputAccess::renderRevision
 	 *
+	 * @param ?ParserOutput $previousOutput previously-cached output for this
+	 *   page (used by Parsoid for selective updates)
 	 * @return Status with the value being a ParserOutput or null
 	 */
-	public function renderRevision(): Status {
+	public function renderRevision( ?ParserOutput $previousOutput = null ): Status {
 		$renderedRevision = $this->renderer->getRenderedRevision(
 			$this->revision,
 			$this->parserOptions,
 			null,
-			[ 'audience' => RevisionRecord::RAW ]
+			[
+				'audience' => RevisionRecord::RAW,
+				'previous-output' => $previousOutput,
+			]
 		);
 
 		$parserOutput = $renderedRevision->getRevisionParserOutput();

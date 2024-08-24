@@ -66,7 +66,7 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 	 * @return ParserOutput
 	 */
 	private function genParserOutput(
-		PageConfig $pageConfig, ParserOptions $options
+		PageConfig $pageConfig, ParserOptions $options, ?ParserOutput $previousOutput
 	): ParserOutput {
 		$parserOutput = new ParserOutput();
 
@@ -122,7 +122,8 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			'body_only' => false,
 			'htmlVariantLanguage' => $htmlVariantLanguage,
 			'offsetType' => 'byte',
-			'outputContentVersion' => Parsoid::defaultHTMLVersion()
+			'outputContentVersion' => Parsoid::defaultHTMLVersion(),
+			'previousOutput' => $previousOutput,
 		];
 
 		$parserOutput->resetParseStartTime();
@@ -152,6 +153,13 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 
 		$parserOutput->recordTimeProfile();
 		$this->makeLimitReport( $options, $parserOutput );
+
+		// Collect statistics on parsing time -vs- presence of $previousOutput
+		MediaWikiServices::getInstance()->getStatsFactory()
+			->getCounter( 'Parsoid_parse_time_total' )
+			->setLabel( 'type', $previousOutput === null ? 'full' : 'selective' )
+			->setLabel( 'reason', $options->getRenderReason() ?: 'unknown' )
+			->incrementBy( $parserOutput->getTimeProfile( 'cpu' ) );
 
 		// Add Parsoid skinning module
 		$parserOutput->addModuleStyles( [ 'mediawiki.skinning.content.parsoid' ] );
@@ -183,13 +191,16 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 	 *  REVISION* magic words. 0 means that any current revision will be used. Null means
 	 *  that {{REVISIONID}}/{{REVISIONUSER}} will be empty and {{REVISIONTIMESTAMP}} will
 	 *  use the current timestamp.
+	 * @param ?ParserOutput $previousOutput The (optional) result of a
+	 *  previous parse of this page, which can be used for selective update.
 	 * @return ParserOutput
 	 * @return-taint escaped
 	 * @unstable since 1.41
 	 */
 	public function parse(
 		$text, PageReference $page, ParserOptions $options,
-		bool $linestart = true, bool $clearState = true, ?int $revId = null
+		bool $linestart = true, bool $clearState = true, ?int $revId = null,
+		?ParserOutput $previousOutput = null
 	): ParserOutput {
 		Assert::invariant( $linestart, '$linestart=false is not yet supported' );
 		Assert::invariant( $clearState, '$clearState=false is not yet supported' );
@@ -234,7 +245,7 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			);
 		}
 
-		return $this->genParserOutput( $pageConfig, $options );
+		return $this->genParserOutput( $pageConfig, $options, $previousOutput );
 	}
 
 	/**
@@ -266,7 +277,7 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			$lang // defaults to title page language if null
 		);
 
-		return $this->genParserOutput( $pageConfig, $options );
+		return $this->genParserOutput( $pageConfig, $options, null );
 	}
 
 	/**

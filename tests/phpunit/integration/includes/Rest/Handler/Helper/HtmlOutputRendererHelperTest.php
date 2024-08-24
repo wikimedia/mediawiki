@@ -592,7 +592,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$pp->expects( $this->once() )
 			->method( 'parse' )
 			->willReturnCallback( function (
-				string $text,
+				$text,
 				PageReference $page,
 				ParserOptions $parserOpts,
 				bool $linestart = true,
@@ -877,8 +877,9 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$parsoid->method( 'wikitext2html' )
 			->willThrowException( $parsoidException );
 
-		$parserCache = $this->createNoOpMock( ParserCache::class, [ 'get', 'makeParserOutputKey' ] );
+		$parserCache = $this->createNoOpMock( ParserCache::class, [ 'get', 'getDirty', 'makeParserOutputKey' ] );
 		$parserCache->method( 'get' )->willReturn( false );
+		$parserCache->method( 'getDirty' )->willReturn( false );
 		$parserCache->expects( $this->atLeastOnce() )->method( 'makeParserOutputKey' );
 
 		$this->resetServicesWithMockedParsoid( $parsoid );
@@ -962,8 +963,9 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$page = PageIdentityValue::localIdentity( $page->getId(), $page->getNamespace(), $page->getDBkey() );
 
 		// This is the key assertion in this test case: get() and save() are both called.
-		$parserCache = $this->createNoOpMock( ParserCache::class, [ 'get', 'save', 'makeParserOutputKey' ] );
+		$parserCache = $this->createNoOpMock( ParserCache::class, [ 'get', 'getDirty', 'save', 'makeParserOutputKey' ] );
 		$parserCache->expects( $this->once() )->method( 'get' )->willReturn( false );
+		$parserCache->method( 'getDirty' )->willReturn( false );
 		$parserCache->expects( $this->once() )->method( 'save' );
 		$parserCache->expects( $this->atLeastOnce() )->method( 'makeParserOutputKey' );
 
@@ -983,8 +985,9 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 		// NOTE: The save() method is not supported and will throw!
 		//       The point of this test case is asserting that save() isn't called.
-		$parserCache = $this->createNoOpMock( ParserCache::class, [ 'get', 'makeParserOutputKey' ] );
+		$parserCache = $this->createNoOpMock( ParserCache::class, [ 'get', 'getDirty', 'makeParserOutputKey' ] );
 		$parserCache->method( 'get' )->willReturn( false );
+		$parserCache->method( 'getDirty' )->willReturn( false );
 		$parserCache->expects( $this->atLeastOnce() )->method( 'makeParserOutputKey' );
 
 		$this->resetServicesWithMockedParsoid();
@@ -1006,6 +1009,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		// NOTE: The get() method is not supported and will throw!
 		//       The point of this test case is asserting that get() isn't called.
 		//       We also check that save() is still called.
+		// (Also ::getDirty() shouldn't be used on this path and will throw!)
 		$parserCache = $this->createNoOpMock( ParserCache::class, [ 'save', 'makeParserOutputKey' ] );
 		$parserCache->expects( $this->once() )->method( 'save' );
 		$parserCache->expects( $this->atLeastOnce() )->method( 'makeParserOutputKey' );

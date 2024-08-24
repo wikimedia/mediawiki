@@ -67,7 +67,9 @@ class PoolWorkArticleViewOld extends PoolWorkArticleView {
 		// Reduce effects of race conditions for slow parses (T48014)
 		$cacheTime = wfTimestampNow();
 
-		$status = $this->renderRevision();
+		$status = $this->renderRevision(
+			null /* don't attempt Parsoid selective updates on this path */
+		);
 		/** @var ParserOutput|null $output */
 		$output = $status->getValue();
 

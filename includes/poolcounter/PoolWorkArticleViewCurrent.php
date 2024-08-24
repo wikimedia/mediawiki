@@ -104,7 +104,14 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 	 * @return Status
 	 */
 	public function doWork() {
-		$status = $this->renderRevision();
+		$previousOutput = null;
+		if ( $this->parserOptions->getUseParsoid() ) {
+			// Parsoid can do selective updates, so it is worth checking the
+			// cache for an existing entry.  Not worth it for the legacy
+			// parser, though.
+			$previousOutput = $this->parserCache->getDirty( $this->page, $this->parserOptions ) ?: null;
+		}
+		$status = $this->renderRevision( $previousOutput );
 		/** @var ParserOutput|null $output */
 		$output = $status->getValue();
 

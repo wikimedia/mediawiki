@@ -85,12 +85,14 @@ class RevisionRenderer {
 		$this->saveParseLogger = $saveParseLogger;
 	}
 
+	// phpcs:disable Generic.Files.LineLength.TooLong
 	/**
 	 * @param RevisionRecord $rev
 	 * @param ParserOptions|null $options
 	 * @param Authority|null $forPerformer User for privileged access. Default is unprivileged
 	 *        (public) access, unless the 'audience' hint is set to something else RevisionRecord::RAW.
-	 * @param array $hints Hints given as an associative array. Known keys:
+	 * @param array{use-master?:bool,audience?:int,known-revision-output?:ParserOutput,causeAction?:?string,previous-output?:?ParserOutput} $hints
+	 *   Hints given as an associative array. Known keys:
 	 *      - 'use-master' Use primary DB when rendering for the parser cache during save.
 	 *        Default is to use a replica.
 	 *      - 'audience' the audience to use for content access. Default is
@@ -101,12 +103,14 @@ class RevisionRenderer {
 	 *        matched the $rev and $options. This mechanism is intended as a temporary stop-gap,
 	 *        for the time until caches have been changed to store RenderedRevision states instead
 	 *        of ParserOutput objects.
+	 *      - 'previous-output' A previously-rendered ParserOutput for this page. This
+	 *        can be used by Parsoid for selective updates.
 	 *      - 'causeAction' the reason for rendering. This should be informative, for used for
 	 *        logging and debugging.
-	 * @phan-param array{use-master?:bool,audience?:int,known-revision-output?:ParserOutput} $hints
 	 *
 	 * @return RenderedRevision|null The rendered revision, or null if the audience checks fails.
 	 */
+	// phpcs:enable Generic.Files.LineLength.TooLong
 	public function getRenderedRevision(
 		RevisionRecord $rev,
 		ParserOptions $options = null,
@@ -156,12 +160,14 @@ class RevisionRenderer {
 			$options->setTimestamp( $rev->getTimestamp() );
 		}
 
+		$previousOutput = $hints['previous-output'] ?? null;
 		$renderedRevision = new RenderedRevision(
 			$rev,
 			$options,
 			$this->contentRenderer,
-			function ( RenderedRevision $rrev, array $hints ) use ( $options ) {
-				return $this->combineSlotOutput( $rrev, $options, $hints );
+			function ( RenderedRevision $rrev, array $hints ) use ( $options, $previousOutput ) {
+				$h = [ 'previous-output' => $previousOutput ] + $hints;
+				return $this->combineSlotOutput( $rrev, $options, $h );
 			},
 			$audience,
 			$forPerformer
@@ -218,12 +224,14 @@ class RevisionRenderer {
 		$slots = $revision->getSlots()->getSlots();
 
 		$withHtml = $hints['generate-html'] ?? true;
+		$previousOutputs = $this->splitSlotOutput( $rrev, $options, $hints['previous-output'] ?? null );
 
 		// short circuit if there is only the main slot
 		// T351026 hack: if use-parsoid is set, only return main slot output for now
 		// T351113 will remove this hack.
 		if ( array_keys( $slots ) === [ SlotRecord::MAIN ] || $options->getUseParsoid() ) {
-			return $rrev->getSlotParserOutput( SlotRecord::MAIN, $hints );
+			$h = [ 'previous-output' => $previousOutputs[SlotRecord::MAIN] ] + $hints;
+			return $rrev->getSlotParserOutput( SlotRecord::MAIN, $h );
 		}
 
 		// move main slot to front
@@ -238,7 +246,8 @@ class RevisionRenderer {
 		$options->registerWatcher( [ $combinedOutput, 'recordOption' ] );
 
 		foreach ( $slots as $role => $slot ) {
-			$out = $rrev->getSlotParserOutput( $role, $hints );
+			$h = [ 'previous-output' => $previousOutputs[$role] ] + $hints;
+			$out = $rrev->getSlotParserOutput( $role, $h );
 			$slotOutput[$role] = $out;
 
 			// XXX: should the SlotRoleHandler be able to intervene here?
@@ -283,4 +292,39 @@ class RevisionRenderer {
 		return $combinedOutput;
 	}
 
+	/**
+	 * This reverses ::combineSlotOutput() in order to enable selective
+	 * update of individual slots.
+	 *
+	 * @todo Currently this doesn't do much other than disable selective
+	 * update if there is more than one slot.  But in the case where
+	 * slot combination is reversible, this should reverse it and attempt
+	 * to reconstruct the original split ParserOutputs from the merged
+	 * ParserOutput.
+	 *
+	 * @param RenderedRevision $rrev
+	 * @param ParserOptions $options
+	 * @param ?ParserOutput $previousOutput A combined ParserOutput for a
+	 *   previous parse, or null if none available.
+	 * @return array<string,?ParserOutput> A mapping from role name to a
+	 *   previous ParserOutput for that slot in the previous parse
+	 */
+	private function splitSlotOutput( RenderedRevision $rrev, ParserOptions $options, ?ParserOutput $previousOutput ) {
+		// If there is no previous parse, then there is nothing to split.
+		$revision = $rrev->getRevision();
+		$revslots = $revision->getSlots();
+		if ( $previousOutput === null ) {
+			return array_fill_keys( $revslots->getSlotRoles(), null );
+		}
+
+		// short circuit if there is only the main slot
+		// T351026 hack: if use-parsoid is set, only return main slot output for now
+		// T351113 will remove this hack.
+		if ( $revslots->getSlotRoles() === [ SlotRecord::MAIN ] || $options->getUseParsoid() ) {
+			return [ SlotRecord::MAIN => $previousOutput ];
+		}
+
+		// @todo Currently slot combination is not reversible
+		return array_fill_keys( $revslots->getSlotRoles(), null );
+	}
 }

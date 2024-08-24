@@ -399,11 +399,18 @@ class RefreshLinksJob extends Job {
 			->copyToStatsdAt( 'refreshlinks.parser_uncached' );
 
 		$causeAction = $this->params['causeAction'] ?? 'RefreshLinksJob';
+		$parserOptions = $page->makeParserOptions( 'canonical' );
 		$renderedRevision = $renderer->getRenderedRevision(
 			$revision,
-			$page->makeParserOptions( 'canonical' ),
+			$parserOptions,
 			null,
-			[ 'audience' => $revision::RAW, 'causeAction' => $causeAction ]
+			[
+				'audience' => $revision::RAW,
+				'causeAction' => $causeAction,
+				// Providing a previous parse potentially allows for
+				// selective updates
+				'previous-output' => $cachedOutput,
+			]
 		);
 
 		$parseTimestamp = wfTimestampNow(); // timestamp that parsing started
@@ -497,6 +504,12 @@ class RefreshLinksJob extends Job {
 		RevisionRecord $currentRevision,
 		StatsFactory $stats
 	) {
+		// Parsoid can do selective updates, so it is always worth the I/O
+		// to check for a previous parse.
+		$parserOptions = $page->makeParserOptions( 'canonical' );
+		if ( $parserOptions->getUseParsoid() ) {
+			return $parserCache->getDirty( $page, $parserOptions );
+		}
 		// If page_touched changed after this root job, then it is likely that
 		// any views of the pages already resulted in re-parses which are now in
 		// cache. The cache can be reused to avoid expensive parsing in some cases.
@@ -506,14 +519,7 @@ class RefreshLinksJob extends Job {
 			if ( $page->getTouched() >= $rootTimestamp || $opportunistic ) {
 				// Cache is suspected to be up-to-date so it's worth the I/O of checking.
 				// We call canUseParserOutputFromCache() later to check if it's usable.
-				$parserOptions = $page->makeParserOptions( 'canonical' );
-				$output = $parserCache->getDirty( $page, $parserOptions );
-				if (
-					$output &&
-					$output->getCacheRevisionId() == $currentRevision->getId()
-				) {
-					return $output;
-				}
+				return $parserCache->getDirty( $page, $parserOptions );
 			}
 		}
 
