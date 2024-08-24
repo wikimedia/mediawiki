@@ -140,6 +140,8 @@ QUnit.module( 'mediawiki.api', ( hooks ) => {
 	} );
 
 	QUnit.test( 'getToken() - cached', async function ( assert ) {
+		mw.Api.resetTokenCacheForTest();
+
 		var api = new mw.Api();
 
 		// Get csrfToken for local wiki, this should not make
