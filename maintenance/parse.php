@@ -1,6 +1,6 @@
 <?php
 
-use MediaWiki\Parser\ParserOutput;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
 /**
@@ -86,7 +86,16 @@ class CLIParser extends Maintenance {
 	 * @return string HTML Rendering
 	 */
 	public function render( $wikitext ) {
-		return $this->parse( $wikitext )->getText( [ 'wrapperDivClass' => '' ] );
+		$options = ParserOptions::newFromAnon();
+		$options->setOption( 'enableLimitReport', false );
+		$po = $this->parser->parse(
+			$wikitext,
+			$this->getTitle(),
+			$options
+		);
+		// TODO T371008 consider if using the Content framework makes sense instead of creating the pipeline
+		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
+		return $pipeline->run( $po, $options, [ 'wrapperDivClass' => '' ] )->getContentHolderText();
 	}
 
 	/**
@@ -126,20 +135,6 @@ class CLIParser extends Maintenance {
 		$title = $this->getOption( 'title' ) ?: 'CLIParser';
 
 		return Title::newFromText( $title );
-	}
-
-	/**
-	 * @param string $wikitext Wikitext to parse
-	 * @return ParserOutput
-	 */
-	protected function parse( $wikitext ) {
-		$options = ParserOptions::newFromAnon();
-		$options->setOption( 'enableLimitReport', false );
-		return $this->parser->parse(
-			$wikitext,
-			$this->getTitle(),
-			$options
-		);
 	}
 }
 

@@ -1860,7 +1860,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $op->getOutputFlag( ParserOutputFlags::NEW_SECTION ) );
 
 		$pOut = $this->createParserOutputStubWithFlags( [
-			'getText' => '<some text>',
+			'getContentHolderText' => '<some text>',
 			'getNewSection' => true,
 		], [
 			ParserOutputFlags::NEW_SECTION,

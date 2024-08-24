@@ -5,6 +5,7 @@ use MediaWiki\Json\JsonCodec;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\Hook\OpportunisticLinksUpdateHook;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\ParserOutputAccess;
@@ -56,7 +57,8 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		}
 
 		if ( $value instanceof ParserOutput ) {
-			$value = $value->getText();
+			$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
+			$value = $pipeline->run( $value, $this->getParserOptions(), [] )->getContentHolderText();
 		}
 
 		$html = preg_replace( '/<!--.*?-->/s', '', $value );

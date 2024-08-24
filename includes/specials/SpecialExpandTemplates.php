@@ -23,6 +23,7 @@ namespace MediaWiki\Specials;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOutput;
@@ -133,9 +134,10 @@ class SpecialExpandTemplates extends SpecialPage {
 			$out->addHTML( $tmp );
 
 			$pout = $parser->parse( $output, $title, $options );
-			$rawhtml = $pout->getText( [ 'enableSectionEditLinks' => false ] );
+			// TODO T371008 consider if using the Content framework makes sense instead of creating the pipeline
+			$rawhtml = MediaWikiServices::getInstance()->getDefaultOutputPipeline()
+				->run( $pout, $options, [ 'enableSectionEditLinks' => false ] )->getContentHolderText();
 			if ( $generateRawHtml && strlen( $rawhtml ) > 0 ) {
-				// @phan-suppress-next-line SecurityCheck-DoubleEscaped Wanted here to display the html
 				$out->addHTML( $this->makeOutput( $rawhtml, 'expand_templates_html_output' ) );
 			}
 
