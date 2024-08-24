@@ -100,7 +100,7 @@ class SpecialRestSandbox extends SpecialPage {
 
 		if ( !$apiSpecs ) {
 			$out->addHTML( Html::errorBox(
-				$out->msg( 'restsandbox-no-specs-configured' )
+				$out->msg( 'restsandbox-no-specs-configured' )->parse()
 			) );
 			return;
 		}
@@ -109,7 +109,7 @@ class SpecialRestSandbox extends SpecialPage {
 
 		if ( !$specUrl ) {
 			$out->addHTML( Html::errorBox(
-				$out->msg( 'restsandbox-no-such-api' )->params( $apiId )
+				$out->msg( 'restsandbox-no-such-api' )->params( $apiId )->parse()
 			) );
 			return;
 		}
