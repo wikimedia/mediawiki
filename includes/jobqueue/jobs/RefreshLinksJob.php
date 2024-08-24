@@ -503,12 +503,12 @@ class RefreshLinksJob extends Job {
 		WikiPage $page,
 		RevisionRecord $currentRevision,
 		StatsFactory $stats
-	) {
+	): ?ParserOutput {
 		// Parsoid can do selective updates, so it is always worth the I/O
 		// to check for a previous parse.
 		$parserOptions = $page->makeParserOptions( 'canonical' );
 		if ( $parserOptions->getUseParsoid() ) {
-			return $parserCache->getDirty( $page, $parserOptions );
+			return $parserCache->getDirty( $page, $parserOptions ) ?: null;
 		}
 		// If page_touched changed after this root job, then it is likely that
 		// any views of the pages already resulted in re-parses which are now in
@@ -519,7 +519,7 @@ class RefreshLinksJob extends Job {
 			if ( $page->getTouched() >= $rootTimestamp || $opportunistic ) {
 				// Cache is suspected to be up-to-date so it's worth the I/O of checking.
 				// We call canUseParserOutputFromCache() later to check if it's usable.
-				return $parserCache->getDirty( $page, $parserOptions );
+				return $parserCache->getDirty( $page, $parserOptions ) ?: null;
 			}
 		}
 
