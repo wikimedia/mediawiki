@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ebrahim"
+			"Ebrahim",
+			"Jeeputer"
 		]
 	},
 	"cdx-input-chip-aria-description": "Enter را برای ویرایش یا Delete را برای حذف بفشارید.",
@@ -12,5 +13,17 @@
 	"cdx-table-select-all-label": "انتخاب همهٔ سطرها",
 	"cdx-table-select-row-label": "انتخاب سطر $1 از $2",
 	"cdx-table-sort-caption": "$1، سرصفحهٔ ستون‌ها با دکمه‌های قابل مرتب‌سازی هستند.",
-	"cdx-typeahead-search-search-results-label": "جستجوی نتایج"
+	"cdx-typeahead-search-search-results-label": "جستجوی نتایج",
+	"cdx-table-pager-button-first-page": "صفحهٔ نخست",
+	"cdx-table-pager-button-last-page": "صفحهٔ آخر",
+	"cdx-table-pager-button-next-page": "صفحهٔ بعدی",
+	"cdx-table-pager-button-prev-page": "صفحهٔ قبلی",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 ردیف}}",
+	"cdx-table-pager-items-per-page-default": "نتایج به ازای صفحه",
+	"cdx-table-pagination-status-message-determinate-long": "نمایش نتایج $1–$2 از $3 نتیجه",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 از $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "نمایش نتایج $1–$2 از نتایج بسیار",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 از بسیار",
+	"cdx-table-pagination-status-message-indeterminate-final": "نمایش {{PLURAL:$1|$1 نتیجهٔ}} اخیر",
+	"cdx-table-pagination-status-message-pending": "در حال بارگیری نتایج..."
 }
