@@ -48,7 +48,7 @@ class ResetAuthenticationThrottle extends Maintenance {
 		$this->addOption( 'signup', 'Reset account creation throttle' );
 		$this->addOption( 'tempaccount', 'Reset temp account creation throttle' );
 		$this->addOption( 'tempaccountnameacquisition', 'Reset temp account name acquisition throttle' );
-		$this->addOption( 'user', 'Username to reset', false, true );
+		$this->addOption( 'user', 'Username to reset (when using --login)', false, true );
 		$this->addOption( 'ip', 'IP to reset', false, true );
 	}
 
@@ -64,15 +64,9 @@ class ResetAuthenticationThrottle extends Maintenance {
 			$this->fatalError(
 				'At least one of --login, --signup, --tempaccount, or --tempaccountnameacquisition is required!'
 			);
-		} elseif ( $forLogin && ( $ip === null || $username === null ) ) {
-			$this->fatalError( '--user and --ip are both required when using --login!' );
-		} elseif ( $forSignup && $ip === null ) {
-			$this->fatalError( '--ip is required when using --signup!' );
-		} elseif ( $forTempAccount && $ip === null ) {
-			$this->fatalError( '--ip is required when using --tempaccount!' );
-		} elseif ( $forTempAccountNameAcquisition && $ip === null ) {
-			$this->fatalError( '--ip is required when using --tempaccountnameacquisition!' );
-		} elseif ( $ip !== null && !IPUtils::isValid( $ip ) ) {
+		} elseif ( $ip === null ) {
+			$this->fatalError( '--ip is required!' );
+		} elseif ( !IPUtils::isValid( $ip ) ) {
 			$this->fatalError( "Not a valid IP: $ip" );
 		}
 
