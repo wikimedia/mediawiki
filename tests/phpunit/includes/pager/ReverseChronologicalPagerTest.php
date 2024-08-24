@@ -57,8 +57,8 @@ class ReverseChronologicalPagerTest extends MediaWikiIntegrationTestCase {
 		yield '3-digit year, T287621' => [
 			[ 720, 1, 5 ], '07200106000000'
 		];
-		yield 'Y2K38 bug' => [
-			[ 2042, 1, 5 ], '20320101000000'
+		yield 'Y2K38' => [
+			[ 2042, 1, 5 ], '20420106000000'
 		];
 	}
 
