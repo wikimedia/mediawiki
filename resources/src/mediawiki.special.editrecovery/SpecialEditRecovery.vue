@@ -26,7 +26,6 @@ const { ref } = require( 'vue' );
 module.exports = {
 	setup() {
 		const pages = ref( [] );
-		const moment = require( 'moment' );
 		const storage = require( '../mediawiki.editRecovery/storage.js' );
 		const config = require( '../mediawiki.editRecovery/config.json' );
 		const expiryTTL = config.EditRecoveryExpiry;
@@ -39,7 +38,11 @@ module.exports = {
 						editParams.section = d.section;
 					}
 					// Subtract expiry duration to get the time it was stored.
-					const recoveryTime = moment( ( d.expiry - expiryTTL ) * 1000 ).format( 'LLLL' );
+					const recoveryTime = new Date( ( d.expiry - expiryTTL ) * 1000 )
+						.toLocaleString(
+							document.documentElement.lang,
+							{ dateStyle: 'full', timeStyle: 'short' }
+						);
 					pages.value.push( {
 						title: title.getPrefixedText(),
 						url: title.getUrl(),
