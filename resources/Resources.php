@@ -967,13 +967,6 @@ return [
 			]
 		],
 	],
-	'mediawiki.pager.tablePager' => [
-		'deprecated' => 'Deprecated in 1.38. Use `mediawiki.pager.styles`',
-		'styles' => [
-			'resources/src/mediawiki.pager.styles/TablePager.less',
-			'resources/src/mediawiki.pager.styles/DataTable.less',
-		],
-	],
 	'mediawiki.pulsatingdot' => [
 		'styles' => [
 			'resources/src/mediawiki.pulsatingdot/mediawiki.pulsatingdot.less',
