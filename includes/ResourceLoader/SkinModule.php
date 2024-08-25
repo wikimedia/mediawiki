@@ -317,11 +317,13 @@ class SkinModule extends LessVarFileModule {
 	protected static function applyFeaturesCompatibility(
 		array $features, bool $addUnspecifiedFeatures = true, &$messages = ''
 	): array {
+		// The `i18n-all-lists-margins` feature is ignored.
 		if ( isset( $features[ 'i18n-all-lists-margins' ] ) ) {
 			unset( $features[ 'i18n-all-lists-margins' ] );
 			$messages .= '[1.43] The use of the `i18n-all-lists-margins` feature with SkinModule'
-				. ' is deprecated. Please remove. ';
+				. ' is deprecated as it is now provided by `elements`. Please remove. ';
 		}
+
 		// The `content` feature is mapped to `content-media`.
 		if ( isset( $features[ 'content' ] ) ) {
 			$features[ 'content-media' ] = $features[ 'content' ];
@@ -378,6 +380,7 @@ class SkinModule extends LessVarFileModule {
 			$features[ 'interface-site-notice' ] = true;
 			$features[ 'interface-edit-section-links' ] = true;
 		}
+
 		return $features;
 	}
 
