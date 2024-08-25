@@ -5,7 +5,6 @@ use MediaWiki\Config\ConfigFactory;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
 use MediaWiki\Context\RequestContext;
-use MediaWiki\Debug\MWDebug;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\FauxGlobalHookArray;
 use MediaWiki\HookContainer\HookRunner;
@@ -212,7 +211,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		$this->backupGlobals = false;
 		$this->backupStaticAttributes = false;
-		MWDebug::detectDeprecatedOverride( $this, __CLASS__, 'addCoreDBData', '1.41' );
 	}
 
 	/**
@@ -1679,13 +1677,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @stable to override
 	 */
 	public function addDBData() {
-	}
-
-	/**
-	 * @deprecated since 1.41, this method is no longer called. Tests should create fixtures only if they need them.
-	 */
-	protected function addCoreDBData() {
-		throw new RuntimeException( __METHOD__ . ' should never be called.' );
 	}
 
 	/**
