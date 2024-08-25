@@ -249,6 +249,7 @@ because of Phabricator reports.
 * Title::getBrokenLinksFrom(), deprecated in 1.42, has been removed.
 * The $type parameter to Skin::getCopyright(), deprecated in 1.40, has been
   removed.
+* The module `mediawiki.icon`, deprecated in 1.42, has been removed.
 * SiteConfiguration::extractVar() and ::extractGlobal(), deprecated in 1.41,
   have been removed.
 * Skin::footerLink(), deprecated in 1.40, has been removed.
