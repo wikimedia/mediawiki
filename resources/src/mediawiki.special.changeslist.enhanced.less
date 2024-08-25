@@ -52,22 +52,22 @@ td.mw-enhanced-rc {
 
 .mw-enhancedchanges-arrow {
 	padding-top: 2px;
-	background-position: left bottom;
-	background-repeat: no-repeat;
 	cursor: pointer;
 
-	.mw-enhancedchanges-checkbox:not( :checked ) + * & {
+	.mw-enhancedchanges-checkbox + * & {
 		.cdx-mixin-css-icon( @cdx-icon-down-triangle, @color-base, @size-icon-x-small );
-		transform: rotate( -90deg );
+		transition: transform 250ms ease;
+	}
 
+	.mw-enhancedchanges-checkbox:not( :checked ) + * & {
 		// Rotate is not flipped by CSS Janus. [T353099]
+		[ dir='ltr' ] & {
+			transform: rotate( -90deg );
+		}
+
 		[ dir='rtl' ] & {
 			transform: rotate( 90deg );
 		}
-	}
-
-	.mw-enhancedchanges-checkbox:checked + * & {
-		.cdx-mixin-css-icon( @cdx-icon-down-triangle, @color-base, @size-icon-x-small );
 	}
 
 	.mw-enhancedchanges-checkbox[ type ] + * & {
