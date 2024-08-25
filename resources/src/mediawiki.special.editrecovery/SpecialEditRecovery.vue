@@ -9,17 +9,13 @@
 		<li v-for="page in pages" :key="page">
 			{{ page.title }}
 			<span v-if="page.section"> &ndash; {{ page.section }}</span>
-			{{ $i18n( 'parentheses-start' ) }}
-			<a :href="page.url">{{ $i18n( 'edit-recovery-special-view' ) }}</a>
+			{{ $i18n( 'parentheses-start' ) }}<a :href="page.url">{{ $i18n( 'edit-recovery-special-view' ) }}</a>
 			{{ $i18n( 'pipe-separator' ) }}
-			<a :href="page.editUrl">{{ $i18n( 'edit-recovery-special-edit' ) }}</a>
-			{{ $i18n( 'parentheses-end' ) }}
+			<a :href="page.editUrl">{{ $i18n( 'edit-recovery-special-edit' ) }}</a>{{ $i18n( 'parentheses-end' ) }}
 			<span :title="$i18n( 'edit-recovery-special-recovered-on-tooltip' )">
 				{{ $i18n( 'edit-recovery-special-recovered-on', page.timeStored ) }}
 			</span>
-			{{ $i18n( 'parentheses-start' ) }}
-			<a :onclick="() => onDelete( page )">{{ $i18n( 'edit-recovery-special-delete' ) }}</a>
-			{{ $i18n( 'parentheses-end' ) }}
+			{{ $i18n( 'parentheses-start' ) }}<a :onclick="() => onDelete( page )">{{ $i18n( 'edit-recovery-special-delete' ) }}</a>{{ $i18n( 'parentheses-end' ) }}
 		</li>
 	</ol>
 </template>
