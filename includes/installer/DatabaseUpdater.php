@@ -43,7 +43,6 @@ use MigrateLinksTable;
 use PopulateBacklinkNamespace;
 use PopulateFilearchiveSha1;
 use PopulateImageSha1;
-use PopulateIpChanges;
 use PopulatePPSortKey;
 use PopulateRevisionLength;
 use RebuildLocalisationCache;
@@ -123,7 +122,6 @@ abstract class DatabaseUpdater {
 		CleanupEmptyCategories::class,
 		AddRFCandPMIDInterwiki::class,
 		PopulatePPSortKey::class,
-		PopulateIpChanges::class,
 	];
 
 	/**
