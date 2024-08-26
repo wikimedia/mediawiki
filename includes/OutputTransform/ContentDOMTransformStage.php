@@ -30,7 +30,35 @@ abstract class ContentDOMTransformStage extends OutputTransformStage {
 	/**
 	 * @inheritDoc
 	 */
-	public function transform( ParserOutput $po, ?ParserOptions $popts, array &$options ): ParserOutput {
+	public function transform(
+		ParserOutput $po, ?ParserOptions $popts, array &$options
+	): ParserOutput {
+		if ( $options['isParsoidContent'] ?? false ) {
+			return $this->parsoidTransform( $po, $popts, $options );
+		} else {
+			return $this->legacyTransform( $po, $popts, $options );
+		}
+	}
+
+	private function legacyTransform(
+		ParserOutput $po, ?ParserOptions $popts, array &$options
+	): ParserOutput {
+		$text = $po->getContentHolderText();
+		$doc = DOMUtils::parseHTML( $text );
+
+		$doc = $this->transformDOM( $doc, $po, $popts, $options );
+
+		$body = DOMCompat::getBody( $doc );
+		$text = ContentUtils::toXML( $body, [
+			'innerXML' => true,
+		] );
+		$po->setContentHolderText( $text );
+		return $po;
+	}
+
+	private function parsoidTransform(
+		ParserOutput $po, ?ParserOptions $popts, array &$options
+	): ParserOutput {
 		// TODO will use HTMLHolder in the future
 		$doc = null;
 		$hasPageBundle = PageBundleParserOutputConverter::hasPageBundle( $po );
