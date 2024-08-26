@@ -39,7 +39,6 @@ use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\ResourceLoader\MessageBlobStore;
 use MediaWiki\SiteStats\SiteStatsInit;
 use MigrateLinksTable;
-use PopulateBacklinkNamespace;
 use PopulatePPSortKey;
 use RebuildLocalisationCache;
 use RefreshImageMetadata;
@@ -110,7 +109,6 @@ abstract class DatabaseUpdater {
 	 */
 	protected $postDatabaseUpdateMaintenance = [
 		DeleteDefaultMessages::class,
-		PopulateBacklinkNamespace::class,
 		FixDefaultJsonContentPages::class,
 		CleanupEmptyCategories::class,
 		PopulatePPSortKey::class,
