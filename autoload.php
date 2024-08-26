@@ -2741,7 +2741,6 @@ $wgAutoloadLocalClasses = [
 	'PoolWorkArticleViewOld' => __DIR__ . '/includes/poolcounter/PoolWorkArticleViewOld.php',
 	'PopulateBacklinkNamespace' => __DIR__ . '/maintenance/populateBacklinkNamespace.php',
 	'PopulateChangeTagDef' => __DIR__ . '/maintenance/populateChangeTagDef.php',
-	'PopulateFilearchiveSha1' => __DIR__ . '/maintenance/populateFilearchiveSha1.php',
 	'PopulateInterwiki' => __DIR__ . '/maintenance/populateInterwiki.php',
 	'PopulatePPSortKey' => __DIR__ . '/maintenance/populatePPSortKey.php',
 	'PopulateRevisionLength' => __DIR__ . '/maintenance/populateRevisionLength.php',
