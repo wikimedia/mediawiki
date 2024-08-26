@@ -3,6 +3,8 @@
 namespace MediaWiki\OutputTransform;
 
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\ParserOutputFlags;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use ParserOptions;
 
 /**
@@ -59,6 +61,12 @@ class OutputTransformPipeline {
 	 *  - includeDebugInfo: (bool) render PP limit report in HTML. Default: false
 	 */
 	public function run( ParserOutput $in, ?ParserOptions $popts, array $options ): ParserOutput {
+		// Initialize some $options from the ParserOutput
+		$options += [
+			'enableSectionEditLinks' => !$in->getOutputFlag( ParserOutputFlags::NO_SECTION_EDIT_LINKS ),
+			'wrapperDivClass' => $in->getWrapperDivClass(),
+			'isParsoidContent' => PageBundleParserOutputConverter::hasPageBundle( $in ),
+		];
 		if ( $options['suppressClone'] ?? false ) {
 			// T353257: This should be a clone, but we've need to suppress it
 			// for some legacy codepaths.
