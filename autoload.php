@@ -2745,7 +2745,6 @@ $wgAutoloadLocalClasses = [
 	'PopulateImageSha1' => __DIR__ . '/maintenance/populateImageSha1.php',
 	'PopulateInterwiki' => __DIR__ . '/maintenance/populateInterwiki.php',
 	'PopulatePPSortKey' => __DIR__ . '/maintenance/populatePPSortKey.php',
-	'PopulateRecentChangesSource' => __DIR__ . '/maintenance/populateRecentChangesSource.php',
 	'PopulateRevisionLength' => __DIR__ . '/maintenance/populateRevisionLength.php',
 	'PopulateUserIsTemp' => __DIR__ . '/maintenance/populateUserIsTemp.php',
 	'PreferencesFormOOUI' => __DIR__ . '/includes/specials/forms/PreferencesFormOOUI.php',
