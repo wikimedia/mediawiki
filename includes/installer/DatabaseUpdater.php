@@ -27,7 +27,6 @@ use AutoLoader;
 use CleanupEmptyCategories;
 use DeleteDefaultMessages;
 use FakeMaintenance;
-use FixDefaultJsonContentPages;
 use LogicException;
 use Maintenance;
 use MediaWiki\HookContainer\HookContainer;
@@ -108,7 +107,6 @@ abstract class DatabaseUpdater {
 	 */
 	protected $postDatabaseUpdateMaintenance = [
 		DeleteDefaultMessages::class,
-		FixDefaultJsonContentPages::class,
 		CleanupEmptyCategories::class,
 	];
 

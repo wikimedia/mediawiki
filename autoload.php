@@ -483,7 +483,6 @@ $wgAutoloadLocalClasses = [
 	'FindMissingActors' => __DIR__ . '/maintenance/findMissingActors.php',
 	'FindMissingFiles' => __DIR__ . '/maintenance/findMissingFiles.php',
 	'FindOrphanedFiles' => __DIR__ . '/maintenance/findOrphanedFiles.php',
-	'FixDefaultJsonContentPages' => __DIR__ . '/maintenance/fixDefaultJsonContentPages.php',
 	'FixDoubleRedirects' => __DIR__ . '/maintenance/fixDoubleRedirects.php',
 	'FixInconsistentRedirects' => __DIR__ . '/maintenance/fixInconsistentRedirects.php',
 	'FixLegacyEncoding' => __DIR__ . '/maintenance/storage/fixLegacyEncoding.php',
