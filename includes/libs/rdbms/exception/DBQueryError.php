@@ -43,11 +43,9 @@ class DBQueryError extends DBExpectedError {
 	 * @param string|null $message Optional message, intended for subclasses (optional)
 	 */
 	public function __construct( IDatabase $db, $error, $errno, $sql, $fname, $message = null ) {
-		if ( $message === null ) {
-			$message = "Error $errno: $error\n" .
-				"Function: $fname\n" .
-				"Query: $sql\n";
-		}
+		$message ??= "Error $errno: $error\n" .
+			"Function: $fname\n" .
+			"Query: $sql\n";
 
 		parent::__construct( $db, $message );
 

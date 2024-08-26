@@ -169,9 +169,7 @@ trait UploadJobTrait {
 		if ( $this->user === null ) {
 			return;
 		}
-		if ( $status === null ) {
-			$status = Status::newGood();
-		}
+		$status ??= Status::newGood();
 		$info = [ 'result' => $result, 'stage' => $stage, 'status' => $status ];
 		$info += $additionalInfo;
 		UploadBase::setSessionStatus(

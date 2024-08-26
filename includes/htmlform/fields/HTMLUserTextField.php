@@ -47,9 +47,7 @@ class HTMLUserTextField extends HTMLTextField {
 
 	public function validate( $value, $alldata ) {
 		// If the value is null, reset it to an empty string which is what is expected by the parent.
-		if ( $value === null ) {
-			$value = '';
-		}
+		$value ??= '';
 
 		// If the value is empty, there are no additional checks that can be performed.
 		if ( $value === '' ) {

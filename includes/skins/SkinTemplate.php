@@ -365,18 +365,14 @@ class SkinTemplate extends Skin {
 	 * @return string
 	 */
 	public function makePersonalToolsList( $personalTools = null, $options = [] ) {
+		$personalTools ??= $this->getPersonalToolsForMakeListItem(
+			$this->buildPersonalUrls()
+		);
+
 		$html = '';
-
-		if ( $personalTools === null ) {
-			$personalTools = $this->getPersonalToolsForMakeListItem(
-				$this->buildPersonalUrls()
-			);
-		}
-
 		foreach ( $personalTools as $key => $item ) {
 			$html .= $this->makeListItem( $key, $item, $options );
 		}
-
 		return $html;
 	}
 

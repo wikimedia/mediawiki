@@ -2173,9 +2173,7 @@ class Language implements Bcp47Code {
 		int $timestamp2,
 		?int $precision = null
 	): string {
-		if ( $precision === null ) {
-			$precision = count( self::DURATION_INTERVALS );
-		}
+		$precision ??= count( self::DURATION_INTERVALS );
 
 		$sortedTimestamps = [ $timestamp1, $timestamp2 ];
 		sort( $sortedTimestamps );

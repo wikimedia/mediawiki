@@ -259,9 +259,7 @@ abstract class BackupDumper extends Maintenance {
 
 					break;
 				case 'filter':
-					if ( $sink === null ) {
-						$sink = new DumpOutput();
-					}
+					$sink ??= new DumpOutput();
 
 					$split = explode( ':', $param, 2 );
 					$key = $split[0];
@@ -303,9 +301,7 @@ abstract class BackupDumper extends Maintenance {
 			$this->server = $this->getOption( 'server' );
 		}
 
-		if ( $sink === null ) {
-			$sink = new DumpOutput();
-		}
+		$sink ??= new DumpOutput();
 		$sinks[] = $sink;
 
 		if ( count( $sinks ) > 1 ) {

@@ -244,13 +244,11 @@ class SiteConfig extends ISiteConfig {
 	public function metrics(): ?StatsdDataFactoryInterface {
 		// TODO: inject
 		static $prefixedMetrics = null;
-		if ( $prefixedMetrics === null ) {
-			$prefixedMetrics = new PrefixingStatsdDataFactoryProxy(
-				// Our stats will also get prefixed with 'MediaWiki.'
-				$this->stats,
-				$this->getStatsPrefix()
-			);
-		}
+		$prefixedMetrics ??= new PrefixingStatsdDataFactoryProxy(
+			// Our stats will also get prefixed with 'MediaWiki.'
+			$this->stats,
+			$this->getStatsPrefix()
+		);
 		return $prefixedMetrics;
 	}
 

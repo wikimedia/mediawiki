@@ -260,10 +260,8 @@ class DiffHistoryBlob implements HistoryBlob {
 	 * @return string
 	 */
 	public function xdiffAdler32( $s ) {
-		static $init;
-		if ( $init === null ) {
-			$init = str_repeat( "\xf0", 205 ) . "\xee" . str_repeat( "\xf0", 67 ) . "\x02";
-		}
+		static $init = null;
+		$init ??= str_repeat( "\xf0", 205 ) . "\xee" . str_repeat( "\xf0", 67 ) . "\x02";
 
 		// The real Adler-32 checksum of $init is zero, so it initialises the
 		// state to zero, as it is at the start of LibXDiff's checksum

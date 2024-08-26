@@ -474,9 +474,7 @@ class ImageListPager extends TablePager {
 				return htmlspecialchars( $this->getLanguage()->userTimeAndDate( $value, $this->getUser() ) );
 			case 'img_name':
 				static $imgfile = null;
-				if ( $imgfile === null ) {
-					$imgfile = $this->msg( 'imgfile' )->text();
-				}
+				$imgfile ??= $this->msg( 'imgfile' )->text();
 
 				// Weird files can maybe exist? T24227
 				$filePage = Title::makeTitleSafe( NS_FILE, $value );

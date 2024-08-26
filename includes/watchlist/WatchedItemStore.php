@@ -1565,10 +1565,7 @@ class WatchedItemStore implements WatchedItemStoreInterface {
 			return null;
 		}
 
-		if ( $item === null ) {
-			$item = $this->loadWatchedItem( $user, $title );
-		}
-
+		$item ??= $this->loadWatchedItem( $user, $title );
 		if ( !$item ) {
 			// This can only happen if $force is enabled.
 			return null;

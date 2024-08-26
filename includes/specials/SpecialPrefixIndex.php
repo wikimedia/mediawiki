@@ -166,9 +166,7 @@ class SpecialPrefixIndex extends SpecialAllPages {
 	 * @param string|null $from List all pages from this name (default false)
 	 */
 	protected function showPrefixChunk( $namespace, $prefix, $from = null ) {
-		if ( $from === null ) {
-			$from = $prefix;
-		}
+		$from ??= $prefix;
 
 		$fromList = $this->getNamespaceKeyAndText( $namespace, $from );
 		$prefixList = $this->getNamespaceKeyAndText( $namespace, $prefix );

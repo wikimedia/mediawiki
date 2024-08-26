@@ -32,9 +32,7 @@ function wfDetectLocalSettingsFile( ?string $installationPath = null ): string {
 		return MW_CONFIG_FILE;
 	}
 
-	if ( $installationPath === null ) {
-		$installationPath = wfDetectInstallPath();
-	}
+	$installationPath ??= wfDetectInstallPath();
 
 	// We could look for LocalSettings.yaml and LocalSettings.json,
 	// and use them if they exist. But having them in a web accessible

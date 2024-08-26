@@ -4749,9 +4749,7 @@ class Parser {
 			$nickname = $this->userOptionsLookup->getOption( $user, 'nickname' );
 		}
 
-		if ( $fancySig === null ) {
-			$fancySig = $this->userOptionsLookup->getBoolOption( $user, 'fancysig' );
-		}
+		$fancySig ??= $this->userOptionsLookup->getBoolOption( $user, 'fancysig' );
 
 		if ( $nickname === null || $nickname === '' ) {
 			// Empty value results in the default signature (even when fancysig is enabled)

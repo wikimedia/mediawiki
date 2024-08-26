@@ -254,9 +254,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		$global = self::GLOBAL_IGNORE
 	) {
 		// Explicitly NULL values should refer to defaults
-		if ( $val === null ) {
-			$val = $this->defaultOptionsLookup->getDefaultOption( $oname, $user );
-		}
+		$val ??= $this->defaultOptionsLookup->getDefaultOption( $oname, $user );
 		$userKey = $this->getCacheKey( $user );
 		$info = $this->cache[$userKey] ??= new UserOptionsCacheEntry;
 		$info->modifiedValues[$oname] = $val;

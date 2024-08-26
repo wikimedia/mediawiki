@@ -540,9 +540,7 @@ class ZipDirectoryReader {
 			$this->error( 'zip-bad', "getBlock() requested position $start, " .
 				"file length is $fileLength" );
 		}
-		if ( $length === null ) {
-			$length = $fileLength - $start;
-		}
+		$length ??= $fileLength - $start;
 		$end = $start + $length;
 		if ( $end > $fileLength ) {
 			$this->error( 'zip-bad', "getBlock() requested end position $end, " .

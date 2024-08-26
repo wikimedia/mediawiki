@@ -248,15 +248,12 @@ class ApiDelete extends ApiBase {
 			}
 		}
 
-		if ( $reason === null ) { // Log and RC don't like null reasons
-			$reason = '';
-		}
-
 		return FileDeleteForm::doDelete(
 			$title,
 			$file,
 			$oldimage,
-			$reason,
+			// Log and RC don't like null reasons
+			$reason ?? '',
 			$suppress,
 			$this->getUser(),
 			$tags,

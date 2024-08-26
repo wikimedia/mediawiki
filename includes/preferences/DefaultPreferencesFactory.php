@@ -2102,9 +2102,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	public function getResetKinds(
 		User $user, IContextSource $context, $options = null
 	): array {
-		if ( $options === null ) {
-			$options = $this->userOptionsManager->loadUserOptions( $user );
-		}
+		$options ??= $this->userOptionsManager->loadUserOptions( $user );
 
 		$prefs = $this->getFormDescriptor( $user, $context );
 		$mapping = [];

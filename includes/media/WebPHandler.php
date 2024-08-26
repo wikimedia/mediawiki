@@ -166,15 +166,11 @@ class WebPHandler extends BitmapHandler {
 					break;
 				case 'EXIF':
 					// Spec says ignore all but first one
-					if ( $exifData === null ) {
-						$exifData = self::extractChunk( $chunk, $filename );
-					}
+					$exifData ??= self::extractChunk( $chunk, $filename );
 					break;
 				case 'XMP ':
 				case "XMP\0":
-					if ( $xmpData === null ) {
-						$xmpData = self::extractChunk( $chunk, $filename );
-					}
+					$xmpData ??= self::extractChunk( $chunk, $filename );
 					break;
 			}
 		}

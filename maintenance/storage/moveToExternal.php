@@ -84,13 +84,10 @@ class MoveToExternal extends Maintenance {
 		$this->esLocation = $this->getArg( 1 ); // e.g. "cluster12" or "global-swift"
 		$dbw = $this->getPrimaryDB();
 
-		$maxID = $this->getOption( 'end' );
-		if ( $maxID === null ) {
-			$maxID = $dbw->newSelectQueryBuilder()
-				->select( 'MAX(old_id)' )
-				->from( 'text' )
-				->caller( __METHOD__ )->fetchField();
-		}
+		$maxID = $this->getOption( 'end' ) ?? $dbw->newSelectQueryBuilder()
+			->select( 'MAX(old_id)' )
+			->from( 'text' )
+			->caller( __METHOD__ )->fetchField();
 		$this->maxID = (int)$maxID;
 		$this->minID = (int)$this->getOption( 'start', 1 );
 
