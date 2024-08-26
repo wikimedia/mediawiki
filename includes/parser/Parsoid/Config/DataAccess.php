@@ -22,6 +22,7 @@ namespace MediaWiki\Parser\Parsoid\Config;
 use File;
 use MediaTransformError;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\Transform\ContentTransformer;
@@ -60,6 +61,7 @@ class DataAccess extends IDataAccess {
 	private HookContainer $hookContainer;
 	private HookRunner $hookRunner;
 	private ContentTransformer $contentTransformer;
+	private TrackingCategories $trackingCategories;
 	private ParserFactory $parserFactory;
 	/** Lazy-created via self::prepareParser() */
 	private ?Parser $parser = null;
@@ -75,6 +77,7 @@ class DataAccess extends IDataAccess {
 	 * @param BadFileLookup $badFileLookup
 	 * @param HookContainer $hookContainer
 	 * @param ContentTransformer $contentTransformer
+	 * @param TrackingCategories $trackingCategories
 	 * @param ReadOnlyMode $readOnlyMode used to disable linting when the
 	 *   database is read-only.
 	 * @param ParserFactory $parserFactory A legacy parser factory,
@@ -87,6 +90,7 @@ class DataAccess extends IDataAccess {
 		BadFileLookup $badFileLookup,
 		HookContainer $hookContainer,
 		ContentTransformer $contentTransformer,
+		TrackingCategories $trackingCategories,
 		ReadOnlyMode $readOnlyMode,
 		ParserFactory $parserFactory,
 		LinkBatchFactory $linkBatchFactory
@@ -97,6 +101,7 @@ class DataAccess extends IDataAccess {
 		$this->badFileLookup = $badFileLookup;
 		$this->hookContainer = $hookContainer;
 		$this->contentTransformer = $contentTransformer;
+		$this->trackingCategories = $trackingCategories;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->linkBatchFactory = $linkBatchFactory;
 
@@ -439,6 +444,23 @@ class DataAccess extends IDataAccess {
 			$tplData = json_decode( json_encode( $tplData ), true );
 		}
 		return $tplData;
+	}
+
+	/**
+	 * Add a tracking category with the given key to the metadata for the page.
+	 * @param string $key Message key (not localized)
+	 * @param IPageConfig $contextPage the page on which the tracking category
+	 *   is to be added
+	 * @param ContentMetadataCollector $metadata The metadata for the page
+	 */
+	public function addTrackingCategory(
+		string $key,
+		IPageConfig $contextPage,
+		ContentMetadataCollector $metadata ) {
+		$page = Title::newFromLinkTarget( $contextPage->getLinkTarget() );
+		$this->trackingCategories->addTrackingCategory(
+			$metadata, $key, $page
+		);
 	}
 
 	/** @inheritDoc */

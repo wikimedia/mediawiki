@@ -1622,6 +1622,7 @@ return [
 			$services->getBadFileLookup(),
 			$services->getHookContainer(),
 			$services->getContentTransformer(),
+			$services->getTrackingCategories(),
 			$services->getReadOnlyMode(),
 			$services->getParserFactory(), // *legacy* parser factory
 			$services->getLinkBatchFactory()

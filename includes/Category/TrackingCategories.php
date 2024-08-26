@@ -26,12 +26,12 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\Parser;
-use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleParser;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 
 /**
  * This class performs some operations related to tracking categories, such as
@@ -247,7 +247,7 @@ class TrackingCategories {
 	 * added to TrackingCategories::CORE_TRACKING_CATEGORIES, and extensions
 	 * should add to "TrackingCategories" in their extension.json.
 	 *
-	 * @param ParserOutput $parserOutput The target ParserOutput which will
+	 * @param ContentMetadataCollector $parserOutput The target ParserOutput which will
 	 *  store the new category
 	 * @param string $msg Message key
 	 * @param ?PageReference $contextPage Context page title
@@ -255,12 +255,16 @@ class TrackingCategories {
 	 * @since 1.38
 	 * @see Parser::addTrackingCategory
 	 */
-	public function addTrackingCategory( ParserOutput $parserOutput, string $msg, ?PageReference $contextPage ): bool {
+	public function addTrackingCategory(
+		ContentMetadataCollector $parserOutput,
+		string $msg,
+		?PageReference $contextPage
+	): bool {
 		$categoryPage = $this->resolveTrackingCategory( $msg, $contextPage );
 		if ( $categoryPage === null ) {
 			return false;
 		}
-		$parserOutput->addCategory( $categoryPage->getDBkey() );
+		$parserOutput->addCategory( $categoryPage );
 		return true;
 	}
 }
