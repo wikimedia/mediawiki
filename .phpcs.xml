@@ -103,7 +103,6 @@
 		<exclude-pattern>*/includes/GlobalFunctions\.php</exclude-pattern>
 		<exclude-pattern>*/includes/libs/filebackend/FSFileBackend\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/includes/SevenZipStream\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/populateImageSha1\.php</exclude-pattern>
 	</rule>
 	<rule ref="MediaWiki.Usage.ForbiddenFunctions.proc_open">
 		<!--
