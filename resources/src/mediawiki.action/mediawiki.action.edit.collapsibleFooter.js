@@ -30,9 +30,6 @@
 
 		// Style the toggler with an arrow icon and add a tabIndex and a role for accessibility
 		$toggler.addClass( 'mw-editfooter-toggler' ).prop( 'tabIndex', 0 ).attr( 'role', 'button' );
-		$( 'p:first-child', $toggler ).prepend(
-			$( '<span>' ).addClass( 'mw-editfooter-toggler--icon' )
-		);
 		$list.addClass( 'mw-editfooter-list' );
 
 		$list.makeCollapsible( {

@@ -3,24 +3,22 @@
 
 .mw-editfooter-toggler {
 	cursor: pointer;
+	display: flex;
+	align-items: center;
 
-	p:first-child {
-		display: flex;
-		align-items: center;
+	&::before {
+		content: '';
+		margin: 0.5em 4px 1em 0;
+		.cdx-mixin-css-icon( @cdx-icon-down-triangle, @color-disabled, @size-icon-x-small );
+		transition: transform 250ms ease;
 
-		.mw-editfooter-toggler--icon {
-			margin-right: 4px;
-			.cdx-mixin-css-icon( @cdx-icon-down-triangle, @color-disabled, @size-icon-x-small );
-			transition: transform 250ms ease;
+		.mw-editfooter-toggler-collapsed& {
+			[ dir='ltr' ] & {
+				transform: rotate( -90deg );
+			}
 
-			.mw-editfooter-toggler-collapsed& {
-				[ dir='ltr' ] & {
-					transform: rotate( -90deg );
-				}
-
-				[ dir='rtl' ] & {
-					transform: rotate( 90deg );
-				}
+			[ dir='rtl' ] & {
+				transform: rotate( 90deg );
 			}
 		}
 	}
