@@ -39,7 +39,6 @@ use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\ResourceLoader\MessageBlobStore;
 use MediaWiki\SiteStats\SiteStatsInit;
 use MigrateLinksTable;
-use PopulatePPSortKey;
 use RebuildLocalisationCache;
 use RefreshImageMetadata;
 use RuntimeException;
@@ -111,7 +110,6 @@ abstract class DatabaseUpdater {
 		DeleteDefaultMessages::class,
 		FixDefaultJsonContentPages::class,
 		CleanupEmptyCategories::class,
-		PopulatePPSortKey::class,
 	];
 
 	/**

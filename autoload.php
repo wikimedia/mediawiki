@@ -2740,7 +2740,6 @@ $wgAutoloadLocalClasses = [
 	'PoolWorkArticleViewOld' => __DIR__ . '/includes/poolcounter/PoolWorkArticleViewOld.php',
 	'PopulateChangeTagDef' => __DIR__ . '/maintenance/populateChangeTagDef.php',
 	'PopulateInterwiki' => __DIR__ . '/maintenance/populateInterwiki.php',
-	'PopulatePPSortKey' => __DIR__ . '/maintenance/populatePPSortKey.php',
 	'PopulateUserIsTemp' => __DIR__ . '/maintenance/populateUserIsTemp.php',
 	'PreferencesFormOOUI' => __DIR__ . '/includes/specials/forms/PreferencesFormOOUI.php',
 	'PrefixSearch' => __DIR__ . '/includes/search/PrefixSearch.php',
