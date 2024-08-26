@@ -295,6 +295,8 @@
 	"databaseerror-query": "သၟာန်: $1",
 	"databaseerror-function": "ကမၠောန်: $1",
 	"databaseerror-error": "ဗၠေတ်: $1",
+	"laggedreplicamode": "<strong>တၚ်ကဵုသတိ။</strong> အပ္ဍဲမုက်လိက်ကၠာနူဟွံဂွံလုပ်အဝေါၚ်ပ္တိုန်လဝ်တၟိ။",
+	"readonly": "တၟာတ်လဝ်ဒေတာစက်ဗောတ်",
 	"missingarticle-rev": "(ကလၚ်ဖျေံ#:$1)",
 	"missingarticle-diff": "(တၞဟ်ခြာ: $1, $2)",
 	"internalerror": "ဗၠေတ်အပ္ဍဲ",
@@ -902,7 +904,7 @@
 	"rcshowhideminor": "$1 ပလေဝ်ဒါန်လဝ် ညိည",
 	"rcshowhideminor-show": "ထ္ၜး",
 	"rcshowhideminor-hide": "ဗဒန်",
-	"rcshowhidebots": "$1 bots",
+	"rcshowhidebots": "အရန်ဂွံ$1စက်ဗောတ်ဂမၠိုၚ်",
 	"rcshowhidebots-show": "ထ္ၜး",
 	"rcshowhidebots-hide": "ဗဒန်",
 	"rcshowhideliu": "$1 ညးလွပ် မစၟတ်သမ္တီလဝ်တုဲဂမၠိုင်",
@@ -1214,6 +1216,8 @@
 	"protect-othertime-op": "အခိၚ် တၞဟ်",
 	"protect-otherreason-op": "ဟိုတ် တၞဟ်",
 	"restriction-type": "တင်မကဵုအခေါင်:",
+	"minimum-size": "အဝဲဍောတ်အိုတ်",
+	"maximum-size": "အဝဲဖၞော်အိုတ်:",
 	"restriction-edit": "ပလေဝ်ဒါန်",
 	"restriction-move": "ပြံင်ပဆုဲ",
 	"restriction-create": "ခၞံကၠောန်",
@@ -1672,5 +1676,8 @@
 	"skin-action-protect": "စဵုဒၞာ",
 	"skin-action-undelete": "ဟွံပလီု မုက်လိက်ဂမၠိုၚ်",
 	"skin-action-delete": "ပလီု",
-	"skin-action-move": "ပြံင်ပဆုဲ"
+	"skin-action-move": "ပြံင်ပဆုဲ",
+	"newpages-showhide-bots": "အရန်ဂွံ$1စက်ဗောတ်ဂမၠိုၚ်",
+	"newpages-showhide-redirect": "အရန်ဂွံပ္ညုၚ်$1ဂမၠိုၚ်",
+	"newpages-showhide-registered": "အရန်ဂွံ$1ညးလွပ်မစၟတ်သမ္တီလဝ်ဂမၠိုၚ်"
 }
