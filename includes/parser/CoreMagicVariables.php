@@ -351,7 +351,7 @@ class CoreMagicVariables {
 
 		$ttl = max( $deadlineUnix - $tsUnix, self::MIN_DEADLINE_TTL );
 		$ttl += self::DEADLINE_TTL_CLOCK_FUDGE;
-		$ttl += ( $deadlineUnix % self::DEADLINE_TTL_STAGGER_MAX );
+		$ttl += ( $tsUnix % self::DEADLINE_TTL_STAGGER_MAX );
 
 		$parser->getOutput()->updateCacheExpiry( $ttl );
 	}
