@@ -90,9 +90,6 @@
 		}
 	};
 
-	// Keyed by ajax url and symbolic name for the individual request
-	var promises = {};
-
 	function mapLegacyToken( action ) {
 		// Legacy types for backward-compatibility with API action=tokens.
 		var csrfActions = [
@@ -114,18 +111,27 @@
 		return action;
 	}
 
-	// Pre-populate with fake ajax promises to avoid HTTP requests for tokens that
-	// we already have on the page from the embedded user.options module (T36733).
-	promises[ defaultOptions.ajax.url ] = {};
-	var tokens = mw.user.tokens.get();
-	for ( var tokenKey in tokens ) {
-		var value = tokens[ tokenKey ];
-		// This requires #getToken to use the same key as mw.user.tokens.
-		// Format: token-type + "Token" (eg. csrfToken, patrolToken, watchToken).
-		promises[ defaultOptions.ajax.url ][ tokenKey ] = $.Deferred()
-			.resolve( value )
-			.promise( { abort: function () {} } );
+	function createTokenCache() {
+		var tokenPromises = {};
+
+		// Pre-populate with fake ajax promises to avoid HTTP requests for tokens that
+		// we already have on the page from the embedded user.options module (T36733).
+		tokenPromises[ defaultOptions.ajax.url ] = {};
+		var tokens = mw.user.tokens.get();
+		for ( var tokenKey in tokens ) {
+			var value = tokens[ tokenKey ];
+			// This requires #getToken to use the same key as mw.user.tokens.
+			// Format: token-type + "Token" (eg. csrfToken, patrolToken, watchToken).
+			tokenPromises[ defaultOptions.ajax.url ][ tokenKey ] = $.Deferred()
+				.resolve( value )
+				.promise( { abort: function () {} } );
+		}
+
+		return tokenPromises;
 	}
+
+	// Keyed by ajax url and symbolic name for the individual request
+	var promises = createTokenCache();
 
 	mw.Api.prototype = {
 		/**
@@ -404,33 +410,33 @@
 		 * @return {jQuery.Promise<string>} Received token.
 		 */
 		getToken: function ( type, additionalParams ) {
-			var apiPromise, promiseGroup, d, reject;
 			type = mapLegacyToken( type );
-			promiseGroup = promises[ this.defaults.ajax.url ];
-			d = promiseGroup && promiseGroup[ type + 'Token' ];
-
 			if ( typeof additionalParams === 'string' ) {
 				additionalParams = { assert: additionalParams };
 			}
 
+			var cacheKey = type + 'Token';
+			var promiseGroup = promises[ this.defaults.ajax.url ];
 			if ( !promiseGroup ) {
 				promiseGroup = promises[ this.defaults.ajax.url ] = {};
 			}
+			var promise = promiseGroup && promiseGroup[ cacheKey ];
 
-			if ( !d ) {
-				apiPromise = this.get( Object.assign( {
+			function reject() {
+				// Clear cache. Do not cache errors.
+				delete promiseGroup[ cacheKey ];
+
+				// Let caller handle the error code
+				return $.Deferred().rejectWith( this, arguments );
+			}
+
+			if ( !promise ) {
+				var apiPromise = this.get( Object.assign( {
 					action: 'query',
 					meta: 'tokens',
 					type: type
 				}, additionalParams ) );
-				reject = function () {
-					// Clear promise. Do not cache errors.
-					delete promiseGroup[ type + 'Token' ];
-
-					// Let caller handle the error code
-					return $.Deferred().rejectWith( this, arguments );
-				};
-				d = apiPromise
+				promise = apiPromise
 					.then( ( res ) => {
 						if ( !res.query ) {
 							return reject( 'query-missing', res );
@@ -441,14 +447,15 @@
 						}
 						return res.query.tokens[ type + 'token' ];
 					}, reject )
-					// Attach abort handler
+					// Preserve abort handler
 					.promise( { abort: apiPromise.abort } );
 
-				// Store deferred now so that we can use it again even if it isn't ready yet
-				promiseGroup[ type + 'Token' ] = d;
+				// Optimization: Store the promise so we can reuse it immediately, even when
+				// other async code requests before this one finishes.
+				promiseGroup[ cacheKey ] = promise;
 			}
 
-			return d;
+			return promise;
 		},
 
 		/**
@@ -554,4 +561,9 @@
 		}
 	};
 
+	if ( window.QUnit ) {
+		mw.Api.resetTokenCacheForTest = function () {
+			promises = createTokenCache();
+		};
+	}
 }() );
