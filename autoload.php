@@ -14,7 +14,6 @@ $wgAutoloadLocalClasses = [
 	'ActorMigration' => __DIR__ . '/includes/user/ActorMigration.php',
 	'ActorMigrationBase' => __DIR__ . '/includes/user/ActorMigrationBase.php',
 	'AddChangeTag' => __DIR__ . '/maintenance/addChangeTag.php',
-	'AddRFCandPMIDInterwiki' => __DIR__ . '/maintenance/addRFCandPMIDInterwiki.php',
 	'AddSite' => __DIR__ . '/maintenance/addSite.php',
 	'AllMessagesTablePager' => __DIR__ . '/includes/specials/pagers/AllMessagesTablePager.php',
 	'AllTrans' => __DIR__ . '/maintenance/language/alltrans.php',
