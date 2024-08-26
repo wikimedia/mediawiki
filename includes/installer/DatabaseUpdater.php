@@ -42,7 +42,6 @@ use MediaWiki\SiteStats\SiteStatsInit;
 use MigrateLinksTable;
 use PopulateBacklinkNamespace;
 use PopulatePPSortKey;
-use PopulateRevisionLength;
 use RebuildLocalisationCache;
 use RefreshImageMetadata;
 use RuntimeException;
@@ -112,7 +111,6 @@ abstract class DatabaseUpdater {
 	 */
 	protected $postDatabaseUpdateMaintenance = [
 		DeleteDefaultMessages::class,
-		PopulateRevisionLength::class,
 		PopulateBacklinkNamespace::class,
 		FixDefaultJsonContentPages::class,
 		CleanupEmptyCategories::class,
