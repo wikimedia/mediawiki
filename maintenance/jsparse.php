@@ -37,7 +37,7 @@ class JSParseHelper extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Validate syntax of JavaScript files' );
-		$this->addArg( 'file(s)', 'JavaScript files or "-" to read stdin', true );
+		$this->addArg( 'file(s)', 'JavaScript files or "-" to read stdin', true, true );
 	}
 
 	public function execute() {
