@@ -2743,7 +2743,6 @@ $wgAutoloadLocalClasses = [
 	'PopulateChangeTagDef' => __DIR__ . '/maintenance/populateChangeTagDef.php',
 	'PopulateInterwiki' => __DIR__ . '/maintenance/populateInterwiki.php',
 	'PopulatePPSortKey' => __DIR__ . '/maintenance/populatePPSortKey.php',
-	'PopulateRevisionLength' => __DIR__ . '/maintenance/populateRevisionLength.php',
 	'PopulateUserIsTemp' => __DIR__ . '/maintenance/populateUserIsTemp.php',
 	'PreferencesFormOOUI' => __DIR__ . '/includes/specials/forms/PreferencesFormOOUI.php',
 	'PrefixSearch' => __DIR__ . '/includes/search/PrefixSearch.php',
