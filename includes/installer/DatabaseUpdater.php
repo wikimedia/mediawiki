@@ -46,7 +46,6 @@ use PopulateImageSha1;
 use PopulateIpChanges;
 use PopulatePPSortKey;
 use PopulateRevisionLength;
-use PopulateRevisionSha1;
 use RebuildLocalisationCache;
 use RefreshImageMetadata;
 use RuntimeException;
@@ -117,7 +116,6 @@ abstract class DatabaseUpdater {
 	protected $postDatabaseUpdateMaintenance = [
 		DeleteDefaultMessages::class,
 		PopulateRevisionLength::class,
-		PopulateRevisionSha1::class,
 		PopulateImageSha1::class,
 		PopulateFilearchiveSha1::class,
 		PopulateBacklinkNamespace::class,

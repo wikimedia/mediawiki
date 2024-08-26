@@ -2748,7 +2748,6 @@ $wgAutoloadLocalClasses = [
 	'PopulatePPSortKey' => __DIR__ . '/maintenance/populatePPSortKey.php',
 	'PopulateRecentChangesSource' => __DIR__ . '/maintenance/populateRecentChangesSource.php',
 	'PopulateRevisionLength' => __DIR__ . '/maintenance/populateRevisionLength.php',
-	'PopulateRevisionSha1' => __DIR__ . '/maintenance/populateRevisionSha1.php',
 	'PopulateUserIsTemp' => __DIR__ . '/maintenance/populateUserIsTemp.php',
 	'PreferencesFormOOUI' => __DIR__ . '/includes/specials/forms/PreferencesFormOOUI.php',
 	'PrefixSearch' => __DIR__ . '/includes/search/PrefixSearch.php',
