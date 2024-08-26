@@ -435,16 +435,16 @@ abstract class ApiBase extends ContextSource {
 	 * if it is essentially read-only, i.e. the client does not request nor expect any
 	 * state change that would be observable in the responses to future requests.
 	 *
-	 * Normally, implementations of this method always return the same value, regardless
-	 * of the parameters passed to the constructor or system state.
+	 * Implementations of this method must always return the same value, regardless of
+	 * the parameters passed to the constructor or system state.
 	 *
 	 * Modules that do not require POST requests should only perform "safe" operations.
 	 * Note that some modules might require POST requests because they need to support
 	 * large input parameters and not because they perform non-"safe" operations.
 	 *
 	 * The information provided by this method is used to perform authorization checks.
-	 * It can also be used to enforce proper routing of supposedly "safe" POST requests to
-	 * the closest datacenter via the Promise-Non-Write-API-Action header.
+	 * It can also be used to enforce proper routing of supposedly "safe" POST requests
+	 * to the closest datacenter via the Promise-Non-Write-API-Action header.
 	 *
 	 * @see mustBePosted()
 	 * @see needsToken()

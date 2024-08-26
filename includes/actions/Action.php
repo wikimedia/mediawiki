@@ -357,10 +357,19 @@ abstract class Action implements MessageLocalizer {
 	}
 
 	/**
-	 * Whether this action requires the wiki not to be locked
+	 * Indicates whether this action page write access to the wiki.
 	 *
-	 * Implementations of this methods must always return the same value, regardless
-	 * of parameters passed to the constructor or system state.
+	 * Subclasses must override this method to return true if the operation they will
+	 * perform is not "safe" per RFC 7231 section 4.2.1. A subclass's operation is "safe"
+	 * if it is essentially read-only, i.e. the client does not request nor expect any
+	 * state change that would be observable in the responses to future requests.
+	 *
+	 * Implementations of this method must always return the same value, regardless of the
+	 * parameters passed to the constructor or system state.
+	 *
+	 * When handling GET/HEAD requests, subclasses should only perform "safe" operations.
+	 * Note that subclasses handling POST requests might still implement "safe" operations,
+	 * particularly in the case where large input parameters are required.
 	 *
 	 * @since 1.17
 	 * @stable to override
