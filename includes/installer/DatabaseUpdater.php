@@ -23,7 +23,6 @@
 
 namespace MediaWiki\Installer;
 
-use AddRFCandPMIDInterwiki;
 use AutoLoader;
 use CleanupEmptyCategories;
 use DeleteDefaultMessages;
@@ -114,7 +113,6 @@ abstract class DatabaseUpdater {
 		PopulateBacklinkNamespace::class,
 		FixDefaultJsonContentPages::class,
 		CleanupEmptyCategories::class,
-		AddRFCandPMIDInterwiki::class,
 		PopulatePPSortKey::class,
 	];
 
