@@ -1,6 +1,4 @@
-'use strict';
-
-const Page = require( 'wdio-mediawiki/Page' );
+import Page from 'wdio-mediawiki/Page.js';
 
 class WatchlistPage extends Page {
 	get titles() {
@@ -14,4 +12,4 @@ class WatchlistPage extends Page {
 
 }
 
-module.exports = new WatchlistPage();
+export default new WatchlistPage();

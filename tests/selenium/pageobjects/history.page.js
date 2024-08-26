@@ -1,6 +1,4 @@
-'use strict';
-
-const Page = require( 'wdio-mediawiki/Page' );
+import Page from 'wdio-mediawiki/Page.js';
 
 class HistoryPage extends Page {
 	get heading() {
@@ -16,4 +14,4 @@ class HistoryPage extends Page {
 	}
 }
 
-module.exports = new HistoryPage();
+export default new HistoryPage();

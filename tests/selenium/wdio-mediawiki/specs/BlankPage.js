@@ -1,6 +1,4 @@
-'use strict';
-
-const BlankPage = require( './../BlankPage' );
+import BlankPage from './../BlankPage.js';
 
 describe( 'BlankPage', () => {
 	it( 'should have its title @daily', async () => {

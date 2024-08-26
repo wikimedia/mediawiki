@@ -1,15 +1,15 @@
-'use strict';
+// TODO T373125 disabling eslint indent rule temporarily to minimize the diff
+/* eslint-disable indent */
 
-module.exports = {
 	/**
 	 * Generate a random number string with some additional extended ASCII.
 	 *
 	 * @param {string} prefix A prefix to apply to the generated output.
 	 * @return {string}
 	 */
-	getTestString( prefix = '' ) {
+	export function getTestString( prefix = '' ) {
 		return prefix + Math.random().toString() + '-Iñtërnâtiônàlizætiøn';
-	},
+	}
 
 	/**
 	 * Check if a page is (or, if it doesn't yet exist, would be by default) a wikitext content
@@ -20,9 +20,9 @@ module.exports = {
 	 * @param {string} target The name of the page in question.
 	 * @return {Promise<boolean>} True if the target is not wikitext.
 	 */
-	async isTargetNotWikitext( target ) {
+	export async function isTargetNotWikitext( target ) {
 		// First, make sure that the 'mw' object should exist
-		await this.waitForModuleState( 'mediawiki.base' );
+		await waitForModuleState( 'mediawiki.base' );
 
 		// Then, ask the API for the basic 'info' data about the given page
 		return browser.executeAsync( ( target_, done ) => {
@@ -37,7 +37,7 @@ module.exports = {
 				} );
 			} );
 		}, target );
-	},
+	}
 
 	/**
 	 * Wait for a given module to reach a specific state
@@ -46,7 +46,7 @@ module.exports = {
 	 * @param {string} moduleStatus 'registered', 'loaded', 'loading', 'ready', 'error', 'missing'
 	 * @param {number} timeout The wait time in milliseconds before the wait fails
 	 */
-	async waitForModuleState( moduleName, moduleStatus = 'ready', timeout = 5000 ) {
+	export async function waitForModuleState( moduleName, moduleStatus = 'ready', timeout = 5000 ) {
 
 		// Wait for the mediaWiki object to be availible
 		await browser.waitUntil(
@@ -69,4 +69,3 @@ module.exports = {
 			);
 		}
 	}
-};

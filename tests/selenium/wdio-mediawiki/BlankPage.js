@@ -1,6 +1,4 @@
-'use strict';
-
-const Page = require( './Page' );
+import Page from './Page.js';
 
 class BlankPage extends Page {
 	get heading() {
@@ -12,4 +10,4 @@ class BlankPage extends Page {
 	}
 }
 
-module.exports = new BlankPage();
+export default new BlankPage();

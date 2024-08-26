@@ -1,8 +1,6 @@
-'use strict';
-
-const { readdirSync, readFileSync, writeFileSync, rmSync } = require( 'fs' );
-const path = require( 'path' );
-const WDIOReporter = require( '@wdio/reporter' ).default;
+import { readdirSync, readFileSync, writeFileSync, rmSync } from 'fs';
+import path from 'path';
+import WDIOReporter from '@wdio/reporter';
 
 /**
  * Clean a string into a valid Prometheus tag name.
@@ -256,7 +254,7 @@ function writeAllProjectMetrics( metricsDir, fileName ) {
 	writeFileSync( path.join( metricsDir, `${ projectName }-${ fileName }.prom` ), `${ lines.join( '\n' ) }\n`, 'utf-8' );
 }
 
-module.exports = {
+export {
 	PrometheusFileReporter,
 	writeAllProjectMetrics
 };

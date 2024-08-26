@@ -1,6 +1,4 @@
-'use strict';
-
-const Page = require( 'wdio-mediawiki/Page' );
+import Page from 'wdio-mediawiki/Page.js';
 
 class UndoPage extends Page {
 
@@ -21,4 +19,4 @@ class UndoPage extends Page {
 
 }
 
-module.exports = new UndoPage();
+export default new UndoPage();

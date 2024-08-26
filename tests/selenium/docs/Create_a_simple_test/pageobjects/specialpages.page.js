@@ -1,9 +1,7 @@
 // Example code for Selenium/Getting Started/Create a simple test
 // https://www.mediawiki.org/wiki/Selenium/Getting_Started/Create_a_simple_test
 
-'use strict';
-
-const Page = require( 'wdio-mediawiki/Page' );
+import Page from 'wdio-mediawiki/Page.js';
 
 class SpecialPages extends Page {
 
@@ -16,4 +14,4 @@ class SpecialPages extends Page {
 	}
 
 }
-module.exports = new SpecialPages();
+export default new SpecialPages();

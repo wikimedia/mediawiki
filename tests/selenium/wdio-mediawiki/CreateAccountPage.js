@@ -1,7 +1,5 @@
-'use strict';
-
-const Page = require( './Page' );
-const Util = require( 'wdio-mediawiki/Util' );
+import Page from './Page.js';
+import { waitForModuleState } from 'wdio-mediawiki/Util.js';
 
 class CreateAccountPage extends Page {
 	get username() {
@@ -57,7 +55,7 @@ class CreateAccountPage extends Page {
 	 * @return {Promise<void>}
 	 */
 	async submitForm( username, password ) {
-		await Util.waitForModuleState( 'mediawiki.special.createaccount', 'ready', 10000 );
+		await waitForModuleState( 'mediawiki.special.createaccount', 'ready', 10000 );
 
 		await this.username.setValue( username );
 		await this.password.setValue( password );
@@ -66,4 +64,4 @@ class CreateAccountPage extends Page {
 	}
 }
 
-module.exports = new CreateAccountPage();
+export default new CreateAccountPage();

@@ -1,8 +1,8 @@
-'use strict';
+import MWBot from 'mwbot';
 
-const MWBot = require( 'mwbot' );
+// TODO T373125 disabling eslint indent rule temporarily to minimize the diff
+/* eslint-disable indent */
 
-module.exports = {
 	/**
 	 * Get a logged-in instance of `MWBot` with edit token already set up.
 	 * Default username, password and base URL is used unless specified.
@@ -13,7 +13,7 @@ module.exports = {
 	 * @param {string} baseUrl - Optional
 	 * @return {Promise<MWBot>}
 	 */
-	async bot(
+	export async function mwbot(
 		username = browser.options.capabilities[ 'mw:user' ],
 		password = browser.options.capabilities[ 'mw:pwd' ],
 		baseUrl = browser.options.baseUrl
@@ -26,7 +26,7 @@ module.exports = {
 			password: password
 		} );
 		return bot;
-	},
+	}
 
 	/**
 	 * Shortcut for `MWBot#request( { acount: 'createaccount', .. } )`.
@@ -38,7 +38,7 @@ module.exports = {
 	 * @param {string} password New user password
 	 * @return {Object} Promise for API action=createaccount response data.
 	 */
-	async createAccount( adminBot, username, password ) {
+	export async function createAccount( adminBot, username, password ) {
 		await adminBot.getCreateaccountToken();
 
 		// Create the new account
@@ -50,7 +50,7 @@ module.exports = {
 			password: password,
 			retype: password
 		} );
-	},
+	}
 
 	/**
 	 * Shortcut for `MWBot#request( { action: 'block', .. } )`.
@@ -62,7 +62,7 @@ module.exports = {
 	 * @param {string} [expiry] default is not set. For format see API docs
 	 * @return {Object} Promise for API action=block response data.
 	 */
-	async blockUser( adminBot, username, expiry ) {
+	export async function blockUser( adminBot, username, expiry ) {
 		return await adminBot.request( {
 			action: 'block',
 			user: username || browser.options.capabilities[ 'mw:user' ],
@@ -70,7 +70,7 @@ module.exports = {
 			token: adminBot.editToken,
 			expiry
 		} );
-	},
+	}
 
 	/**
 	 * Shortcut for `MWBot#request( { action: 'unblock', .. } )`.
@@ -81,14 +81,14 @@ module.exports = {
 	 * @param {string} [username] defaults to unblocking the admin user
 	 * @return {Object} Promise for API action=unblock response data.
 	 */
-	async unblockUser( adminBot, username ) {
+	export async function unblockUser( adminBot, username ) {
 		return await adminBot.request( {
 			action: 'unblock',
 			user: username || browser.options.capabilities[ 'mw:user' ],
 			reason: 'browser test done',
 			token: adminBot.editToken
 		} );
-	},
+	}
 
 	/**
 	 * Assign a new user group to the given username.
@@ -98,7 +98,7 @@ module.exports = {
 	 * @param {string} username
 	 * @param {string} groupName
 	 */
-	async addUserToGroup( adminBot, username, groupName ) {
+	export async function addUserToGroup( adminBot, username, groupName ) {
 		const userGroupsResponse = await adminBot.request( {
 			action: 'query',
 			list: 'users',
@@ -127,4 +127,3 @@ module.exports = {
 		} );
 		// If there is an error, the above already throws.
 	}
-};

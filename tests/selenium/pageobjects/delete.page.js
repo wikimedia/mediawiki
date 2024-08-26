@@ -1,6 +1,4 @@
-'use strict';
-
-const Page = require( 'wdio-mediawiki/Page' );
+import Page from 'wdio-mediawiki/Page.js';
 
 class DeletePage extends Page {
 	get reason() {
@@ -30,4 +28,4 @@ class DeletePage extends Page {
 	}
 }
 
-module.exports = new DeletePage();
+export default new DeletePage();
