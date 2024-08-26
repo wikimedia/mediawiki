@@ -2474,6 +2474,35 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			$metadata->addCategory( $lt, $key );
 		}
 
+		foreach ( $this->mLinks as $ns => $arr ) {
+			foreach ( $arr as $dbk => $id ) {
+				// Numeric titles are going to come out of the
+				// `mLinks` array as ints; cast back to string.
+				$lt = TitleValue::tryNew( $ns, (string)$dbk );
+				$metadata->addLink( $lt, $id );
+			}
+		}
+
+		foreach ( $this->mLinksSpecial as $dbk => $ignore ) {
+			// Numeric titles are going to come out of the
+			// `mLinks` array as ints; cast back to string.
+			$lt = TitleValue::tryNew( NS_SPECIAL, (string)$dbk );
+			$metadata->addLink( $lt );
+		}
+
+		foreach ( $this->mImages as $name => $ignore ) {
+			// Numeric titles come out of mImages as ints.
+			$lt = TitleValue::tryNew( NS_FILE, (string)$name );
+			$props = $this->mFileSearchOptions[$name] ?? [];
+			$metadata->addImage( $lt, $props['time'] ?? null, $props['sha1'] ?? null );
+		}
+
+		foreach ( $this->mLanguageLinks as $title ) {
+			// Convert $title (in "full text" format) back to LinkTarget
+			$lt = Title::newFromText( $title );
+			$metadata->addLanguageLink( $lt );
+		}
+
 		foreach ( $this->mJsConfigVars as $key => $value ) {
 			if ( is_array( $value ) && isset( $value[self::MW_MERGE_STRATEGY_KEY] ) ) {
 				$strategy = $value[self::MW_MERGE_STRATEGY_KEY];
@@ -2520,13 +2549,20 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			$metadata->addExternalLink( $url );
 		}
 		foreach ( $this->mProperties as $prop => $value ) {
-			$metadata->setPageProperty( $prop, $value );
+			if ( is_string( $value ) ) {
+				$metadata->setUnsortedPageProperty( $prop, $value );
+			} else {
+				$metadata->setNumericPageProperty( $prop, $value );
+			}
 		}
 		foreach ( $this->mWarningMsgs as $msg => $args ) {
 			$metadata->addWarningMsg( $msg, ...$args );
 		}
 		foreach ( $this->mLimitReportData as $key => $value ) {
 			$metadata->setLimitReportData( $key, $value );
+		}
+		foreach ( $this->mIndicators as $id => $content ) {
+			$metadata->setIndicator( $id, $content );
 		}
 
 		// ParserOutput-only fields; maintained "behind the curtain"
