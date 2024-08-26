@@ -2629,7 +2629,7 @@
 	"sp-contributions-talk": "讨论",
 	"sp-contributions-userrights": "{{GENDER:$1|用户}}权限管理",
 	"sp-contributions-blocked-notice": "这位{{GENDER:$1|用户}}目前被封禁。\n最近的封禁日志见下，以供参考：",
-	"sp-contributions-blocked-notice-partial": "这位用户目前被部分封禁。\n最近的封禁日志见下，以供参考：",
+	"sp-contributions-blocked-notice-partial": "这位{{GENDER:$1|用户}}目前被部分封禁。\n最近的封禁日志见下，以供参考：",
 	"sp-contributions-blocked-notice-anon": "这个IP地址目前被封禁。\n最近的封禁日志见下，以供参考：",
 	"sp-contributions-blocked-notice-anon-partial": "这个IP地址目前被部分封禁。\n最近的封禁日志见下，以供参考：",
 	"sp-contributions-search": "搜索贡献",

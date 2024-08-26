@@ -1905,7 +1905,7 @@
 	"logeventslist-patrol-log": "Rexistru de revisiones",
 	"logeventslist-tag-log": "Rexistru d'etiquetes",
 	"logeventslist-newusers-log": "Rexistru de creación d'usuarios",
-	"all-logs-page": "Tolos rexistros públicos",
+	"all-logs-page": "Principales rexistros públicos",
 	"alllogstext": "Vista combinada de tolos rexistros disponibles de {{SITENAME}}.\nPues filtrar la vista seleicionando una triba de rexistru, el nome d'usuariu (sensible a mayúscules y minúscules), o la páxina afeutada (tamién sensible a mayúscules y minúscules).",
 	"logempty": "Nun hai coincidencies nel rexistru.",
 	"log-title-wildcard": "Buscar títulos que principien por esti testu",

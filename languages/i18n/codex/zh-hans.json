@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"LittlePaw365"
+			"LittlePaw365",
+			"沈澄心"
 		]
 	},
 	"cdx-input-chip-aria-description": "按Enter键可编辑，按Delete键可删除。",
@@ -12,5 +13,17 @@
 	"cdx-table-select-all-label": "选择所有行",
 	"cdx-table-select-row-label": "选择第$1行（共$2行）",
 	"cdx-table-sort-caption": "$1，有按钮的列表头可以排序。",
-	"cdx-typeahead-search-search-results-label": "搜索结果"
+	"cdx-typeahead-search-search-results-label": "搜索结果",
+	"cdx-table-pager-button-first-page": "第一页",
+	"cdx-table-pager-button-last-page": "最后一页",
+	"cdx-table-pager-button-next-page": "下一页",
+	"cdx-table-pager-button-prev-page": "上一页",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1}}行",
+	"cdx-table-pager-items-per-page-default": "各页面结果",
+	"cdx-table-pagination-status-message-determinate-long": "显示$1至$2的结果（共$3个）",
+	"cdx-table-pagination-status-message-determinate-short": "$1至$2（共$3个）",
+	"cdx-table-pagination-status-message-indeterminate-long": "显示$1至$2的多个结果",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1至$2的多个结果",
+	"cdx-table-pagination-status-message-indeterminate-final": "显示最后{{PLURAL:$1|$1}}个结果",
+	"cdx-table-pagination-status-message-pending": "正在加载结果……"
 }

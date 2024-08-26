@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"ToprakM"
+		]
+	},
+	"cdx-input-chip-aria-description": "Düzenlemek için Enter, kaldırmak için Delete tuşuna basın",
+	"cdx-dialog-close-button-label": "Kapat",
+	"cdx-label-optional-flag": "(isteğe bağlı)",
+	"cdx-message-dismiss-button-label": "Kapat",
+	"cdx-search-input-search-button-label": "Ara",
+	"cdx-table-select-all-label": "Tüm satırları seç",
+	"cdx-table-select-row-label": "Satır $1/$2 seçin",
+	"cdx-table-sort-caption": "$1, butonlu sütun başlıkları sıralanabilir.",
+	"cdx-typeahead-search-search-results-label": "Arama sonuçları",
+	"cdx-table-pager-button-first-page": "İlk sayfa",
+	"cdx-table-pager-button-last-page": "Son sayfa",
+	"cdx-table-pager-button-next-page": "Sonraki sayfa",
+	"cdx-table-pager-button-prev-page": "Önceki sayfa",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 satır}}",
+	"cdx-table-pager-items-per-page-default": "Sayfa başına sonuç",
+	"cdx-table-pagination-status-message-determinate-long": "$3 sonuçtan $1-$2 gösteriliyor",
+	"cdx-table-pagination-status-message-determinate-short": "$3 sonuçtan $1-$2",
+	"cdx-table-pagination-status-message-indeterminate-long": "Birçok sonuçtan $1-$2 gösteriliyor",
+	"cdx-table-pagination-status-message-indeterminate-short": "Birçok sonuçtan $1-$2",
+	"cdx-table-pagination-status-message-indeterminate-final": "Son {{PLURAL:$1|$1 sonuç}} gösteriliyor",
+	"cdx-table-pagination-status-message-pending": "Sonuçlar yükleniyor..."
+}

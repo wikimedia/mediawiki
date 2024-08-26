@@ -698,6 +698,7 @@
 	"search-category": "(التصنيف $1)",
 	"search-file-match": "(كيطابق محتوى لفيشي)",
 	"search-suggest": "واش كتقصد: $1",
+	"search-rewritten": "تبيان النتائج ديال $1،  ماتلقاوش نتائج ل ''$2''.",
 	"search-interwiki-more": "(كتر)",
 	"search-interwiki-more-results": "نتائج كتر",
 	"search-relatedarticle": "مرتابطة",
