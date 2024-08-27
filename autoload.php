@@ -869,6 +869,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Auth\\EmailNotificationSecondaryAuthenticationProvider' => __DIR__ . '/includes/auth/EmailNotificationSecondaryAuthenticationProvider.php',
 	'MediaWiki\\Auth\\Hook\\AuthManagerFilterProvidersHook' => __DIR__ . '/includes/auth/Hook/AuthManagerFilterProvidersHook.php',
 	'MediaWiki\\Auth\\Hook\\AuthManagerLoginAuthenticateAuditHook' => __DIR__ . '/includes/auth/Hook/AuthManagerLoginAuthenticateAuditHook.php',
+	'MediaWiki\\Auth\\Hook\\AuthManagerVerifyAuthenticationHook' => __DIR__ . '/includes/auth/Hook/AuthManagerVerifyAuthenticationHook.php',
 	'MediaWiki\\Auth\\Hook\\AuthPreserveQueryParamsHook' => __DIR__ . '/includes/auth/Hook/AuthPreserveQueryParamsHook.php',
 	'MediaWiki\\Auth\\Hook\\ExemptFromAccountCreationThrottleHook' => __DIR__ . '/includes/auth/Hook/ExemptFromAccountCreationThrottleHook.php',
 	'MediaWiki\\Auth\\Hook\\LocalUserCreatedHook' => __DIR__ . '/includes/auth/Hook/LocalUserCreatedHook.php',
