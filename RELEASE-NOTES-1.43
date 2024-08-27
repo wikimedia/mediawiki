@@ -508,6 +508,8 @@ because of Phabricator reports.
   use showPermissionStatus() instead.
 * OutputPage::formatPermissionsErrorMessage(), deprecated since 1.36,
   now emits deprecation warnings. Use formatPermissionStatus() instead.
+* OutputPage::setCategoryLinks() has been deprecated and emits deprecation
+  warnings.  Use ::addCategoryLinks() instead.
 * LoadBalancer::getConnectionRef(), deprecated since 1.39, now emits deprecation
   warnings. Use ::getConnection() instead.
 * DBAccessObjectUtils::getDBOptions() is deprecated, use

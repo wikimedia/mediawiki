@@ -1675,8 +1675,10 @@ class OutputPage extends ContextSource {
 	 * Reset the category links (but not the category list) and add $categories
 	 *
 	 * @param array $categories Mapping category name => sort key
+	 * @deprecated since 1.43, use ::addCategoryLinks()
 	 */
 	public function setCategoryLinks( array $categories ) {
+		wfDeprecated( __METHOD__, '1.43' );
 		$this->mCategoryLinks = [];
 		$this->addCategoryLinks( $categories );
 	}
