@@ -110,8 +110,8 @@ $linkPrefixCharset = 'a-zA-Z\\x80-\\xffʻʼ«„';
  * Formats need to be overwritten. Others are inherited automatically
  */
 $dateFormats = [
-	'dmy date' => 'j-F Y',
-	'dmy both' => 'H:i, j-F Y',
+	'dmy date' => 'Y-"yil" j-F',
+	'dmy both' => 'H:i, Y-"yil" j-F',
 	'dmy pretty' => 'j-F'
 ];
 
