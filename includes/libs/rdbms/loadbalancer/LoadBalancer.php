@@ -310,16 +310,10 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 * Sanitize connection flags provided by a call to getConnection()
 	 *
 	 * @param int $flags Bitfield of class CONN_* constants
-	 * @param int $i Specific server index or DB_PRIMARY/DB_REPLICA
 	 * @param string $domain Database domain
 	 * @return int Sanitized bitfield
 	 */
-	private function sanitizeConnectionFlags( $flags, $i, $domain ) {
-		// Whether an outside caller is explicitly requesting the primary database server
-		if ( $i === self::DB_PRIMARY || $i === ServerInfo::WRITER_INDEX ) {
-			$flags |= self::CONN_INTENT_WRITABLE;
-		}
-
+	private function sanitizeConnectionFlags( $flags, $domain ) {
 		if ( self::fieldHasBit( $flags, self::CONN_TRX_AUTOCOMMIT ) ) {
 			// Callers use CONN_TRX_AUTOCOMMIT to bypass REPEATABLE-READ staleness without
 			// resorting to row locks (e.g. FOR UPDATE) or to make small out-of-band commits
@@ -763,7 +757,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	public function getConnectionInternal( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase {
 		$domain = $this->resolveDomainID( $domain );
 		$group = $this->resolveGroups( $groups, $i );
-		$flags = $this->sanitizeConnectionFlags( $flags, $i, $domain );
+		$flags = $this->sanitizeConnectionFlags( $flags, $domain );
 		// If given DB_PRIMARY/DB_REPLICA, resolve it to a specific server index. Resolving
 		// DB_REPLICA might trigger getServerConnection() calls due to the getReaderIndex()
 		// connectivity checks or LoadMonitor::scaleLoads() server state cache regeneration.
@@ -807,7 +801,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			$this->trxProfiler->recordConnection(
 				$conn->getServerName(),
 				$conn->getDBname(),
-				self::fieldHasBit( $flags, self::CONN_INTENT_WRITABLE )
+				( $i === ServerInfo::WRITER_INDEX && $this->hasReplicaServers() )
 			);
 		}
 
