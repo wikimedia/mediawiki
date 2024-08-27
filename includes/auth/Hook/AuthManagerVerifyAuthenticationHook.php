@@ -39,7 +39,7 @@ interface AuthManagerVerifyAuthenticationHook {
 	 *   in the identified remote account being linked to a local one.
 	 * @param AuthenticationResponse &$response For login, the final response returned by
 	 *   AuthManager. For account creation, the response returned by the primary provider.
-	 *   Always a PASS.
+	 *   Always a PASS or (when $user is null) a RESTART.
 	 *   When the hook handler returns false, it must replace this with a FAIL response  that
 	 *   describes the reason for the failure.
 	 * @param AuthManager $authManager The AuthManager instance that is handling the request.
