@@ -1274,6 +1274,9 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			$mockLanguageConverter
 				->method( 'findVariantLink' )
 				->willReturnCallback( $variantLinkCallback );
+			$mockLanguageConverter
+				->method( 'convertHtml' )
+				->willReturnCallback( 'strrev' );
 
 			$languageConverterFactory = $this
 				->createMock( LanguageConverterFactory::class );

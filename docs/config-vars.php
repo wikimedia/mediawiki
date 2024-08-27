@@ -3978,6 +3978,12 @@ $wgCategoryCollation = null;
 $wgTempCategoryCollations = null;
 
 /**
+ * Config variable stub for the SortedCategories setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::SortedCategories
+ */
+$wgSortedCategories = null;
+
+/**
  * Config variable stub for the TrackingCategories setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::TrackingCategories
  * @deprecated since 1.25 Extensions should now register tracking categories using the new

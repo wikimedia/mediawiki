@@ -11617,6 +11617,19 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Whether to sort categories in OutputPage for display.
+	 *
+	 * The value of CategoryCollation is used for sorting.
+	 *
+	 * @unstable EXPERIMENTAL This feature is used for Parsoid development,
+	 * but its future as a core feature will depend on community uptake.
+	 */
+	public const SortedCategories = [
+		'default' => false,
+		'type' => 'boolean',
+	];
+
+	/**
 	 * Array holding default tracking category names.
 	 *
 	 * Array contains the system messages for each tracking category.
