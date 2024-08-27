@@ -253,6 +253,8 @@ because of Phabricator reports.
 * The $type parameter to Skin::getCopyright(), deprecated in 1.40, has been
   removed.
 * The module `mediawiki.icon`, deprecated in 1.42, has been removed.
+* The `@vue/composition-api` module, a deprecated alias for `vue` since 1.41,
+  has been removed. Use `vue` directly.
 * SiteConfiguration::extractVar() and ::extractGlobal(), deprecated in 1.41,
   have been removed.
 * Skin::footerLink(), deprecated in 1.40, has been removed.
