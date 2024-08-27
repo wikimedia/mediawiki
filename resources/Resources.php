@@ -548,17 +548,6 @@ return [
 		]
 	],
 
-	// Alias for 'vue', for backwards compatibility
-	'@vue/composition-api' => [
-		'packageFiles' => [
-			'resources/src/vue/composition-api.js'
-		],
-		'dependencies' => [
-			'vue'
-		],
-		'deprecated' => 'No longer needed, use the "vue" module directly'
-	],
-
 	'vuex' => [
 		'packageFiles' => [
 			[
