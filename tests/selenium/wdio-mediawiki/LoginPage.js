@@ -1,3 +1,6 @@
+// This file is used at Selenium/Explanation/Page object pattern
+// https://www.mediawiki.org/wiki/Selenium/Explanation/Page_object_pattern
+
 'use strict';
 
 const Page = require( './Page' );
