@@ -72,5 +72,7 @@ class CommandLineInc extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = CommandLineInc::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

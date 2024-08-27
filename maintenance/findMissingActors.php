@@ -24,7 +24,9 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserRigorOptions;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script for finding and replacing invalid actor IDs, see T261325 and T307738.
@@ -269,5 +271,7 @@ class FindMissingActors extends Maintenance {
 
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = FindMissingActors::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

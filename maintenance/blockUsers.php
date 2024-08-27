@@ -20,7 +20,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\User\User;
 
@@ -181,5 +183,7 @@ class BlockUsers extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = BlockUsers::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

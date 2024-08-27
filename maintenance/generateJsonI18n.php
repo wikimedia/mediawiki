@@ -27,7 +27,9 @@
 
 use MediaWiki\Json\FormatJson;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to generate JSON i18n files from a PHP i18n file.
@@ -193,5 +195,7 @@ class GenerateJsonI18n extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = GenerateJsonI18n::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

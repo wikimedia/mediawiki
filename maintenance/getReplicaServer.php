@@ -21,7 +21,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that reports the hostname of a replica DB server.
@@ -62,5 +64,7 @@ class GetReplicaServer extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = GetReplicaServer::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

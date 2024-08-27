@@ -45,7 +45,9 @@ use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/../Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that compress the text of a wiki.
@@ -485,5 +487,7 @@ class CompressOld extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = CompressOld::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

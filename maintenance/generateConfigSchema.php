@@ -6,11 +6,13 @@ use MediaWiki\Settings\Source\ReflectionSchemaSource;
 use Symfony\Component\Yaml\Yaml;
 use Wikimedia\StaticArrayWriter;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
 
 // Tell Setup.php to load the config schema from MainConfigSchema rather than
 // any generated file, so we can use this script to re-generate a broken schema file.
 define( 'MW_USE_CONFIG_SCHEMA_CLASS', 1 );
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that generates configuration schema files:
@@ -359,5 +361,7 @@ class GenerateConfigSchema extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = GenerateConfigSchema::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

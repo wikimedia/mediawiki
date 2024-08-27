@@ -34,7 +34,9 @@
 
 use Wikimedia\StaticArrayWriter;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/../Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 class GenerateUcfirstOverrides extends Maintenance {
 
@@ -88,5 +90,7 @@ class GenerateUcfirstOverrides extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = GenerateUcfirstOverrides::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

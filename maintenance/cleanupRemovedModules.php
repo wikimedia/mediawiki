@@ -24,7 +24,9 @@
 
 use Wikimedia\Rdbms\IDatabase;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to remove cache entries for removed ResourceLoader modules
@@ -77,5 +79,7 @@ class CleanupRemovedModules extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = CleanupRemovedModules::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

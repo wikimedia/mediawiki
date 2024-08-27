@@ -24,7 +24,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
@@ -776,5 +778,7 @@ class NamespaceDupes extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = NamespaceDupes::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

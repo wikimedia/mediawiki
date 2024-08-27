@@ -6,7 +6,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that initializes a user preference
@@ -80,5 +82,7 @@ class InitUserPreference extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = InitUserPreference::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

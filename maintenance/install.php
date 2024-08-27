@@ -27,10 +27,12 @@ use MediaWiki\Installer\InstallException;
 use MediaWiki\Settings\SettingsBuilder;
 use Wikimedia\AtEase\AtEase;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
 
 define( 'MW_CONFIG_CALLBACK', [ Installer::class, 'overrideConfig' ] );
 define( 'MEDIAWIKI_INSTALL', true );
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to install and configure MediaWiki
@@ -278,6 +280,8 @@ class CommandLineInstaller extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = CommandLineInstaller::class;
 
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

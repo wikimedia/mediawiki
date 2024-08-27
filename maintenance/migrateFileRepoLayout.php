@@ -23,7 +23,9 @@
 
 use Wikimedia\FileBackend\FileBackend;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Copy all files in FileRepo to an originals container using SHA1 paths.
@@ -247,5 +249,7 @@ class MigrateFileRepoLayout extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = MigrateFileRepoLayout::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

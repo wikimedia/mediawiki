@@ -20,7 +20,9 @@
 
 use MediaWiki\Json\JsonCodec;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/../includes/Benchmarker.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * @ingroup Benchmark
@@ -92,5 +94,7 @@ class BenchmarkJsonCodec extends Benchmarker {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = BenchmarkJsonCodec::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

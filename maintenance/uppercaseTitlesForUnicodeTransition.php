@@ -30,7 +30,9 @@ use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\LikeValue;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to rename titles affected by changes to Unicode (or
@@ -706,5 +708,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = UppercaseTitlesForUnicodeTransition::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

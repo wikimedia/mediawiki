@@ -1,6 +1,8 @@
 <?php
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that cleans unused rows in linktarget table
@@ -111,5 +113,7 @@ class PruneUnusedLinkTargetRows extends Maintenance {
 
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = PruneUnusedLinkTargetRows::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

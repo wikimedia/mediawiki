@@ -27,7 +27,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use Wikimedia\Rdbms\IExpression;
@@ -276,5 +278,7 @@ class RefreshImageMetadata extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = RefreshImageMetadata::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

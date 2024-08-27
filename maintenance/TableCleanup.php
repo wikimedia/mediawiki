@@ -23,7 +23,9 @@
 
 use MediaWiki\WikiMap\WikiMap;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Generic class to cleanup a database table. Already subclasses Maintenance.

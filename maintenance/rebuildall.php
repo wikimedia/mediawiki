@@ -22,7 +22,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that rebuilds link tracking tables from scratch.
@@ -63,5 +65,7 @@ class RebuildAll extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = RebuildAll::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

@@ -24,7 +24,9 @@
 
 use MediaWiki\User\User;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that fixes the user_registration field.
@@ -91,5 +93,7 @@ class FixUserRegistration extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = FixUserRegistration::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

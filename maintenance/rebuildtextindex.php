@@ -25,7 +25,9 @@
  * @todo document
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\Deferred\SearchUpdate;
 use MediaWiki\Revision\SlotRecord;
@@ -169,5 +171,7 @@ class RebuildTextIndex extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = RebuildTextIndex::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

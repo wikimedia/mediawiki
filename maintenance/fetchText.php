@@ -22,7 +22,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Settings\SettingsBuilder;
@@ -105,5 +107,7 @@ class FetchText extends Maintenance {
 
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = FetchText::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

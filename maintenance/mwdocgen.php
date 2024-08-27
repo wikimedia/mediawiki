@@ -35,7 +35,9 @@
 
 use MediaWiki\Shell\Shell;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that builds doxygen documentation.
@@ -181,5 +183,7 @@ TEXT
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = MWDocGen::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

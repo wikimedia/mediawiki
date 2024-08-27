@@ -23,7 +23,9 @@
 
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to delete archived (non-current) files from storage.
@@ -118,5 +120,7 @@ class EraseArchivedFile extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = EraseArchivedFile::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

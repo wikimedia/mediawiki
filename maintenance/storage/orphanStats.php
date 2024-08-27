@@ -21,7 +21,9 @@
  * @ingroup Maintenance ExternalStorage
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/../Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that shows some statistics on the blob_orphans table,
@@ -83,5 +85,7 @@ class OrphanStats extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = OrphanStats::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

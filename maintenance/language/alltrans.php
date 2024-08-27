@@ -21,7 +21,9 @@
  * @ingroup MaintenanceLanguage
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/../Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that gets all messages as defined by the
@@ -45,5 +47,7 @@ class AllTrans extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = AllTrans::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

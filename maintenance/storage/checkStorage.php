@@ -25,7 +25,9 @@ use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Shell\Shell;
 use MediaWiki\User\User;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/../Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 // ----------------------------------------------------------------------------------
 
@@ -594,5 +596,7 @@ class CheckStorage extends Maintenance {
 
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = CheckStorage::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

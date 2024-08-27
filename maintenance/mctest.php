@@ -25,7 +25,9 @@
 use MediaWiki\MainConfigNames;
 use Wikimedia\ObjectCache\BagOStuff;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that  makes several 'set', 'incr' and 'get' requests
@@ -249,5 +251,7 @@ class McTest extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = McTest::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

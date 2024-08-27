@@ -28,7 +28,9 @@ namespace MediaWiki\Maintenance;
 use Maintenance;
 use MediaWiki\Utils\GitInfo;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * @ingroup Maintenance
@@ -78,5 +80,7 @@ class Version extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = Version::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

@@ -27,7 +27,9 @@ use Doctrine\SqlFormatter\SqlFormatter;
 use MediaWiki\DB\AbstractSchemaValidationError;
 use MediaWiki\DB\AbstractSchemaValidator;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/../Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 abstract class SchemaMaintenance extends Maintenance {
 	public const SUPPORTED_PLATFORMS = [

@@ -29,7 +29,9 @@
  * @license GPL-2.0-or-later
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to show the cached statistics.
@@ -77,5 +79,7 @@ class ShowSiteStats extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = ShowSiteStats::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

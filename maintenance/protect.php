@@ -24,7 +24,9 @@
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that protects or unprotects a page.
@@ -90,5 +92,7 @@ class Protect extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = Protect::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

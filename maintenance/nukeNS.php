@@ -33,7 +33,9 @@
  * based on nukePage by Rob Church
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\Title\Title;
 
@@ -130,5 +132,7 @@ class NukeNS extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = NukeNS::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

@@ -26,7 +26,9 @@
 use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\SiteStats\SiteStatsInit;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to re-initialise or update the site statistics table
@@ -81,5 +83,7 @@ class InitSiteStats extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = InitSiteStats::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

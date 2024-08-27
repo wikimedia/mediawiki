@@ -2,7 +2,9 @@
 
 use MediaWiki\ExternalLinks\LinkFilter;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that migrates externallinks data
@@ -117,5 +119,7 @@ class MigrateExternallinks extends LoggedUpdateMaintenance {
 
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = MigrateExternallinks::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

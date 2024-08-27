@@ -3,7 +3,9 @@
 use MediaWiki\Registration\ExtensionJsonValidationError;
 use MediaWiki\Registration\ExtensionJsonValidator;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 class ValidateRegistrationFile extends Maintenance {
 	public function __construct() {
@@ -32,5 +34,7 @@ class ValidateRegistrationFile extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = ValidateRegistrationFile::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

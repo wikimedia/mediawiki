@@ -26,7 +26,9 @@
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to refresh file headers from metadata
@@ -152,5 +154,7 @@ class RefreshFileHeaders extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = RefreshFileHeaders::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

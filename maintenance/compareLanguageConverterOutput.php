@@ -32,7 +32,9 @@ use Wikimedia\Diff\ArrayDiffFormatter;
 use Wikimedia\Diff\ComplexityException;
 use Wikimedia\Diff\Diff;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that compares variant conversion output between Parser and
@@ -281,5 +283,7 @@ class CompareLanguageConverterOutput extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = CompareLanguageConverterOutput::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

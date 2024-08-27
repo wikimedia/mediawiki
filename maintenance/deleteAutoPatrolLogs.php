@@ -16,7 +16,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Remove autopatrol logs in the logging table.
@@ -198,5 +200,7 @@ class DeleteAutoPatrolLogs extends Maintenance {
 
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = DeleteAutoPatrolLogs::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

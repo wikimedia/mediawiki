@@ -21,7 +21,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that updates page_restrictions and
@@ -59,5 +61,7 @@ class RenameRestrictions extends Maintenance {
 
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = RenameRestrictions::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

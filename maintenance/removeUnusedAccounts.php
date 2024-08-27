@@ -25,7 +25,9 @@
 
 use MediaWiki\User\UserIdentity;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that removes unused user accounts from the database.
@@ -203,5 +205,7 @@ class RemoveUnusedAccounts extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = RemoveUnusedAccounts::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

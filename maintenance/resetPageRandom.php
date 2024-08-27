@@ -21,7 +21,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that resets page_random over a time range.
@@ -127,5 +129,7 @@ class ResetPageRandom extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = ResetPageRandom::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

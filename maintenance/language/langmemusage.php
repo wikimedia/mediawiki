@@ -23,7 +23,9 @@
 
 use MediaWiki\Languages\LanguageNameUtils;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/../Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that tries to get the memory usage for each language file.
@@ -67,5 +69,7 @@ class LangMemUsage extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = LangMemUsage::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

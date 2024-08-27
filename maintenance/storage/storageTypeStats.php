@@ -19,7 +19,9 @@
  * @ingroup Maintenance ExternalStorage
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/../Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 class StorageTypeStats extends Maintenance {
 	public function execute() {
@@ -107,5 +109,7 @@ SQL;
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = StorageTypeStats::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

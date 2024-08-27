@@ -53,7 +53,9 @@ use MediaWiki\Title\Title;
  * @license GPL-2.0-or-later
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to parse some wikitext.
@@ -138,5 +140,7 @@ class CLIParser extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = CLIParser::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

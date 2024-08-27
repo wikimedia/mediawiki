@@ -23,7 +23,9 @@
 
 use Wikimedia\FileBackend\FileBackend;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to test fileop performance.
@@ -143,5 +145,7 @@ class FileOpPerfTest extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = FileOpPerfTest::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

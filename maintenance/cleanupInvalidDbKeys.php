@@ -21,7 +21,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
@@ -335,5 +337,7 @@ TEXT
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = CleanupInvalidDbKeys::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

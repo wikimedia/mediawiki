@@ -36,7 +36,9 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\ResourceLoader\MessageBlobStore;
 use MediaWiki\Settings\SettingsBuilder;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to rebuild the localisation cache.
@@ -281,5 +283,7 @@ class RebuildLocalisationCache extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = RebuildLocalisationCache::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

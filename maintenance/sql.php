@@ -22,7 +22,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\Installer\DatabaseUpdater;
 use Wikimedia\Rdbms\DBQueryError;
@@ -235,5 +237,7 @@ class MwSql extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = MwSql::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

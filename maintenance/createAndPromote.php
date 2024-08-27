@@ -23,7 +23,9 @@
  * @author Pablo Castellano <pablo@anche.no>
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Deferred\SiteStatsUpdate;
@@ -210,5 +212,7 @@ class CreateAndPromote extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = CreateAndPromote::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

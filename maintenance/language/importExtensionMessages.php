@@ -3,7 +3,9 @@
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/../Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 class ImportExtensionMessages extends Maintenance {
 	private $extensionDir;
@@ -152,5 +154,7 @@ class ImportExtensionMessages extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = ImportExtensionMessages::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

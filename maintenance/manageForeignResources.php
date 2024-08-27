@@ -21,7 +21,9 @@
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\ResourceLoader\ForeignResourceManager;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Manage foreign resources registered with ResourceLoader.
@@ -111,5 +113,7 @@ TEXT
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = ManageForeignResources::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

@@ -26,7 +26,9 @@ use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\BlobStore;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script for finding and marking bad content blobs.
@@ -466,5 +468,7 @@ class FindBadBlobs extends Maintenance {
 
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = FindBadBlobs::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

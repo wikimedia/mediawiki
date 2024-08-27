@@ -35,7 +35,9 @@ use MediaWiki\Logger\ConsoleSpi;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script providing an interactive console for evaluating php commands
@@ -151,5 +153,7 @@ class MWEval extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = MWEval::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd
