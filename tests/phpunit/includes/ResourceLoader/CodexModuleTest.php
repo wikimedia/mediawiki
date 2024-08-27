@@ -375,7 +375,7 @@ class CodexModuleTest extends ResourceLoaderTestCase {
 		$packageFiles = $fullLibraryModule->getPackageFiles( $context );
 		$this->assertEquals(
 			$devDir . '/packages/codex/dist/codex.umd.cjs',
-			$packageFiles[ 'files' ][ 'codex.js' ][ 'filePath' ]->getLocalPath(),
+			$packageFiles[ 'files' ][ 'codex.js' ][ 'versionFilePath' ]->getLocalPath(),
 			'Full library module script path is based on dev mode path'
 		);
 
