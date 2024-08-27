@@ -25,7 +25,9 @@
 use MediaWiki\User\BotPassword;
 use MediaWiki\User\User;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 class CreateBotPassword extends Maintenance {
 	/**
@@ -147,5 +149,7 @@ class CreateBotPassword extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = CreateBotPassword::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

@@ -3,7 +3,9 @@
 use MediaWiki\CommentFormatter\CommentItem;
 use MediaWiki\Title\Title;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/../includes/Benchmarker.php';
+// @codeCoverageIgnoreEnd
 
 class BenchmarkCommentFormatter extends Benchmarker {
 	public function __construct() {
@@ -75,5 +77,7 @@ class BenchmarkCommentFormatter extends Benchmarker {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = BenchmarkCommentFormatter::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

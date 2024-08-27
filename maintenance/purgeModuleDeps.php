@@ -21,7 +21,9 @@
 
 use Wikimedia\Rdbms\IDatabase;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to purge the module_deps database cache table for ResourceLoader.
@@ -68,5 +70,7 @@ class PurgeModuleDeps extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = PurgeModuleDeps::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

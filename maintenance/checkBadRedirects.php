@@ -24,7 +24,9 @@
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to check that pages marked as being redirects really are.
@@ -66,5 +68,7 @@ class CheckBadRedirects extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = CheckBadRedirects::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

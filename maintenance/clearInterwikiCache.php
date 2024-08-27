@@ -19,7 +19,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Clear the cache of interwiki prefixes.
@@ -51,5 +53,7 @@ class ClearInterwikiCache extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = ClearInterwikiCache::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

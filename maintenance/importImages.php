@@ -32,7 +32,9 @@
  * @author Mij <mij@bitchx.it>
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Specials\SpecialUpload;
@@ -523,5 +525,7 @@ class ImportImages extends Maintenance {
 
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = ImportImages::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

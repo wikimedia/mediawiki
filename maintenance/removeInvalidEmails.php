@@ -3,7 +3,9 @@
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\User\User;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * A script to remove emails that are invalid from
@@ -77,5 +79,7 @@ class RemoveInvalidEmails extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = RemoveInvalidEmails::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

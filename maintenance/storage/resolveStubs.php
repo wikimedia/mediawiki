@@ -25,7 +25,9 @@
 use MediaWiki\Maintenance\UndoLog;
 use MediaWiki\Storage\SqlBlobStore;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/../Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 class ResolveStubs extends Maintenance {
 	/** @var UndoLog|null */
@@ -180,5 +182,7 @@ class ResolveStubs extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = ResolveStubs::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

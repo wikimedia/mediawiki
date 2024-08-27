@@ -24,7 +24,9 @@
  * @todo More efficient cleanup of text records
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use Wikimedia\Rdbms\IDatabase;
 
@@ -104,5 +106,7 @@ class DeleteOrphanedRevisions extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = DeleteOrphanedRevisions::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

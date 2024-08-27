@@ -5,7 +5,9 @@
 
 use MediaWiki\MainConfigNames;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 class PurgeExpiredWatchlistItems extends Maintenance {
 
@@ -43,5 +45,7 @@ class PurgeExpiredWatchlistItems extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = PurgeExpiredWatchlistItems::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

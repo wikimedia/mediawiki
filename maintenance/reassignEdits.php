@@ -26,7 +26,9 @@
 use MediaWiki\User\User;
 use Wikimedia\IPUtils;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that reassigns edits from a user or IP address
@@ -200,5 +202,7 @@ class ReassignEdits extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = ReassignEdits::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

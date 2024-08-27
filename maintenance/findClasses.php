@@ -19,7 +19,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script for finding the files that contain classes
@@ -53,5 +55,7 @@ class FindClasses extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = FindClasses::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

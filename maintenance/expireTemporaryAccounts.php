@@ -11,7 +11,9 @@ use MediaWiki\User\UserSelectQueryBuilder;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Expire temporary accounts that are registered for longer than `expiryAfterDays` days
@@ -189,5 +191,7 @@ class ExpireTemporaryAccounts extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = ExpireTemporaryAccounts::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

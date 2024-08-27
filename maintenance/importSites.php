@@ -1,6 +1,8 @@
 <?php
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\Site\SiteImporter;
 
@@ -50,5 +52,7 @@ class ImportSites extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = ImportSites::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

@@ -25,8 +25,10 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/BackupDumper.php';
 require_once __DIR__ . '/../../includes/export/WikiExporter.php';
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Settings\SettingsBuilder;

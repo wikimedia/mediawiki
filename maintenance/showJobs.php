@@ -18,7 +18,9 @@
  * @file
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Report number of jobs currently waiting in primary database.
@@ -104,5 +106,7 @@ class ShowJobs extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = ShowJobs::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

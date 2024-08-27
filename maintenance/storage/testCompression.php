@@ -25,7 +25,9 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/../Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 class TestCompression extends Maintenance {
 	public function __construct() {
@@ -116,5 +118,7 @@ class TestCompression extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = TestCompression::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

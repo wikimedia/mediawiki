@@ -23,7 +23,9 @@
 
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to check images to see if they exist, are readable, etc.
@@ -86,5 +88,7 @@ class CheckImages extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = CheckImages::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

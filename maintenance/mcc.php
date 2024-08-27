@@ -18,7 +18,9 @@
  * @file
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\MainConfigNames;
 
@@ -214,5 +216,7 @@ class Mcc extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = Mcc::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

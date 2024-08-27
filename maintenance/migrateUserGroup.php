@@ -23,7 +23,9 @@
 
 use MediaWiki\User\User;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that re-assigns users from an old group to a new one.
@@ -142,5 +144,7 @@ class MigrateUserGroup extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = MigrateUserGroup::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

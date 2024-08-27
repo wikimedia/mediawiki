@@ -29,7 +29,9 @@ use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * @ingroup Maintenance
@@ -379,5 +381,7 @@ WARN
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = UserOptionsMaintenance::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

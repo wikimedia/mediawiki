@@ -32,7 +32,9 @@
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/TableCleanup.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to clean up broken page links when somebody turns
@@ -181,5 +183,7 @@ class CleanupCaps extends TableCleanup {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = CleanupCaps::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

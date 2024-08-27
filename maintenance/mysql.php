@@ -27,7 +27,9 @@ use MediaWiki\Shell\Shell;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\ServerInfo;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * @ingroup Maintenance
@@ -201,5 +203,7 @@ class MysqlMaintenance extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = MysqlMaintenance::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

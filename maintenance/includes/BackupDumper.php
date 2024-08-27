@@ -25,8 +25,10 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/../Maintenance.php';
 require_once __DIR__ . '/../../includes/export/WikiExporter.php';
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Settings\SettingsBuilder;

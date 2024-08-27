@@ -83,7 +83,9 @@ achieved as follows:
 
 At the top of the script file, place the statement:
 <pre>
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 </pre>.
 
 For maintenance scripts defined in extensions, this is slightly more complex:
@@ -96,8 +98,10 @@ require_once getenv( 'MW_INSTALL_PATH' ) !== false
 Then, at the bottom of the file, replace the return statement with the
 following lines:
 <pre>
+// @codeCoverageIgnoreStart
 $maintClass = Frobnify::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd
 </pre>
 
 This will allow your script to be executed directly on the PHP command line.

@@ -9,7 +9,9 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use Wikimedia\Rdbms\IExpression;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 class RenameUsersMatchingPattern extends Maintenance {
 	/** @var UserFactory */
@@ -221,5 +223,7 @@ class RenameUsersMatchingPattern extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = RenameUsersMatchingPattern::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

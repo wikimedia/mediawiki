@@ -23,7 +23,9 @@ use MediaWiki\Storage\SqlBlobStore;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/moveToExternal.php';
+// @codeCoverageIgnoreEnd
 
 class FixLegacyEncoding extends MoveToExternal {
 	public function __construct() {
@@ -69,5 +71,7 @@ class FixLegacyEncoding extends MoveToExternal {
 
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = FixLegacyEncoding::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

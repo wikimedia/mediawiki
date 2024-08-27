@@ -21,7 +21,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to dump a the list of files uploaded,
@@ -127,5 +129,7 @@ By default, outputs relative paths against the parent directory of $wgUploadDire
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = DumpUploads::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

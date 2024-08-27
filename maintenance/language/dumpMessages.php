@@ -23,7 +23,9 @@
  * @todo Make this more useful, right now just dumps content language
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/../Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that dumps an entire language, using the keys from English.
@@ -49,5 +51,7 @@ class DumpMessages extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = DumpMessages::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

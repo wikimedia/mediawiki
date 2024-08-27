@@ -28,7 +28,9 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\User\User;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that imports XML dump files into the current wiki.
@@ -368,5 +370,7 @@ TEXT
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = BackupReader::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

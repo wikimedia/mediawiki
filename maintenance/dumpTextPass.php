@@ -23,7 +23,9 @@
  * @file
  * @ingroup Maintenance
  */
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/includes/TextPassDumper.php';
 
 $maintClass = TextPassDumper::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

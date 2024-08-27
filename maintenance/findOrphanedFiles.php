@@ -20,7 +20,9 @@
 
 use MediaWiki\Title\Title;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 class FindOrphanedFiles extends Maintenance {
 	public function __construct() {
@@ -146,5 +148,7 @@ class FindOrphanedFiles extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = FindOrphanedFiles::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

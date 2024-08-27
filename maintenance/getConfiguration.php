@@ -25,7 +25,9 @@
 
 use MediaWiki\Json\FormatJson;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Print serialized output of MediaWiki config vars
@@ -199,5 +201,7 @@ class GetConfiguration extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = GetConfiguration::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

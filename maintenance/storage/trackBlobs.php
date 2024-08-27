@@ -26,7 +26,9 @@ use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/../Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 class TrackBlobs extends Maintenance {
 	public $clusters;
@@ -415,5 +417,7 @@ class TrackBlobs extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = TrackBlobs::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

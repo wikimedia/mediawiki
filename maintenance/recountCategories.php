@@ -21,7 +21,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that refreshes category membership counts in the category
@@ -198,5 +200,7 @@ TEXT
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = RecountCategories::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

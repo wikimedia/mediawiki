@@ -21,7 +21,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that prunes file cache for pages, objects, resources, etc.
@@ -108,5 +110,7 @@ class PruneFileCache extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = PruneFileCache::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

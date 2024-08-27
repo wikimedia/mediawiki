@@ -23,8 +23,10 @@
  * @phan-file-suppress PhanUndeclaredProperty Lots of custom properties
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
 require_once __DIR__ . '/../vendor/autoload.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * A PHPParser node visitor that associates each node with its file name.
@@ -203,5 +205,7 @@ class FindDeprecated extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = FindDeprecated::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

@@ -23,7 +23,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
@@ -117,5 +119,7 @@ class RunBatchedQuery extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = RunBatchedQuery::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

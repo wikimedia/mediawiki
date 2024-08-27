@@ -48,7 +48,9 @@ if ( in_array( '--no-session', $_SERVER['argv'], true ) ) {
 	define( 'MW_NO_SESSION', 1 );
 }
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Interactive shell with completion and global scope.
@@ -159,5 +161,7 @@ class MediaWikiShell extends Maintenance {
 
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = MediaWikiShell::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

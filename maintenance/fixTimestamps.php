@@ -25,7 +25,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that fixes timestamp corruption caused by one or
@@ -124,5 +126,7 @@ class FixTimestamps extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = FixTimestamps::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

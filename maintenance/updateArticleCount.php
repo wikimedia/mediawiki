@@ -25,7 +25,9 @@
 
 use MediaWiki\SiteStats\SiteStatsInit;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to provide a better count of the number of articles
@@ -71,5 +73,7 @@ class UpdateArticleCount extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = UpdateArticleCount::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

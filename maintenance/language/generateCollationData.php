@@ -21,7 +21,9 @@
  * @ingroup MaintenanceLanguage
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/../Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use Wikimedia\StaticArrayWriter;
 
@@ -416,5 +418,7 @@ class UcdXmlReader {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = GenerateCollationData::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

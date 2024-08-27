@@ -21,7 +21,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use Wikimedia\IPUtils;
 
@@ -92,5 +94,7 @@ class GetLagTimes extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = GetLagTimes::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

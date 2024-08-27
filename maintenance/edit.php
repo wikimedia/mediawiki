@@ -28,7 +28,9 @@ use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to make a page edit.
@@ -141,5 +143,7 @@ class EditCLI extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = EditCLI::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

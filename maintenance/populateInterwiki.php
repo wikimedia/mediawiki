@@ -24,7 +24,9 @@
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 class PopulateInterwiki extends Maintenance {
 
@@ -152,5 +154,7 @@ TEXT
 
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = PopulateInterwiki::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

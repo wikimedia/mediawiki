@@ -24,7 +24,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\Options\UserOptionsLookup;
@@ -149,5 +151,7 @@ class CleanupPreferences extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = CleanupPreferences::class; // Tells it to run the class
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

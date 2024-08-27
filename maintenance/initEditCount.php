@@ -22,7 +22,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IDatabase;
@@ -118,5 +120,7 @@ class InitEditCount extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = InitEditCount::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

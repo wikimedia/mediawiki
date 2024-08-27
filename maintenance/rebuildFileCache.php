@@ -29,7 +29,9 @@ use MediaWiki\Title\Title;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that builds the file cache.
@@ -209,5 +211,7 @@ class RebuildFileCache extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = RebuildFileCache::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

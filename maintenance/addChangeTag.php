@@ -25,7 +25,9 @@
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\User\User;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Adds a change tag to the wiki
@@ -62,5 +64,7 @@ class AddChangeTag extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = AddChangeTag::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

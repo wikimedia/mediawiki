@@ -25,7 +25,9 @@ use MediaWiki\Content\TextContent;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to show page contents.
@@ -63,5 +65,7 @@ class ViewCLI extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = ViewCLI::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

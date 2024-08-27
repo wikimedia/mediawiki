@@ -24,7 +24,9 @@
 
 use MediaWiki\User\User;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 class EmptyUserGroup extends Maintenance {
 	public function __construct() {
@@ -59,5 +61,7 @@ class EmptyUserGroup extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = EmptyUserGroup::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

@@ -27,7 +27,9 @@
 
 use MediaWiki\Title\Title;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that fixes double redirects.
@@ -148,5 +150,7 @@ class FixDoubleRedirects extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = FixDoubleRedirects::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

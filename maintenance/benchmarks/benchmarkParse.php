@@ -22,7 +22,9 @@
  * @ingroup Benchmark
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/../Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\Linker\LinkTarget;
@@ -198,5 +200,7 @@ class BenchmarkParse extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = BenchmarkParse::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

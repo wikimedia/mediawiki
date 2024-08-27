@@ -26,7 +26,9 @@
 
 use MediaWiki\Utils\MWTimestamp;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * @ingroup Maintenance
@@ -92,5 +94,7 @@ class WikiBirthday extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = WikiBirthday::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

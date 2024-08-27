@@ -30,7 +30,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\Title\Title;
 
@@ -85,5 +87,7 @@ class DumpLinks extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = DumpLinks::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

@@ -19,7 +19,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Ad-hoc run ResourceLoader validation for user-supplied JavaScript.
@@ -69,5 +71,7 @@ class JSParseHelper extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = JSParseHelper::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

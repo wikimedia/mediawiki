@@ -30,7 +30,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
 use MediaWiki\Specials\SpecialUpload;
@@ -266,5 +268,7 @@ class ImageBuilder extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = ImageBuilder::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

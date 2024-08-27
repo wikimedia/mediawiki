@@ -79,4 +79,6 @@ class CheckSignatures extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = CheckSignatures::class;
+// @codeCoverageIgnoreEnd

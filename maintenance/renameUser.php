@@ -19,7 +19,9 @@
  * @author Martin Urbanec <martin.urbanec@wikimedia.cz>
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\RenameUser\RenameuserSQL;
@@ -169,5 +171,7 @@ class RenameUser extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = RenameUser::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

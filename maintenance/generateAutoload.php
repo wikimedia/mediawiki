@@ -1,5 +1,7 @@
 <?php
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 class GenerateAutoload extends Maintenance {
 
@@ -25,5 +27,7 @@ class GenerateAutoload extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = GenerateAutoload::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

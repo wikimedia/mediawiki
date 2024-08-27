@@ -19,7 +19,9 @@
  * @ingroup Benchmark
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/../includes/Benchmarker.php';
+// @codeCoverageIgnoreEnd
 
 class BenchmarkTidy extends Benchmarker {
 	public function __construct() {
@@ -78,5 +80,7 @@ class BenchmarkTidy extends Benchmarker {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = BenchmarkTidy::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

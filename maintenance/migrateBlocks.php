@@ -3,7 +3,9 @@
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . "/Maintenance.php";
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that migrates rows from ipblocks to block and block_target.
@@ -175,5 +177,7 @@ class MigrateBlocks extends LoggedUpdateMaintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = MigrateBlocks::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

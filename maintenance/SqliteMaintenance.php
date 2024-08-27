@@ -25,7 +25,9 @@ use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\DatabaseSqlite;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that performs some operations specific to SQLite database backend.
@@ -137,5 +139,7 @@ class SqliteMaintenance extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = SqliteMaintenance::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

@@ -26,7 +26,9 @@
 
 use MediaWiki\Title\Title;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to correct wrong values in the `page_latest` field
@@ -102,5 +104,7 @@ class AttachLatest extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = AttachLatest::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

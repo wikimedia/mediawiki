@@ -22,7 +22,9 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that deletes old (non-current) revisions from the database.
@@ -114,5 +116,7 @@ class DeleteOldRevisions extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = DeleteOldRevisions::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

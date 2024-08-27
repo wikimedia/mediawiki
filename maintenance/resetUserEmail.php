@@ -21,7 +21,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Password\PasswordFactory;
@@ -94,5 +96,7 @@ class ResetUserEmail extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = ResetUserEmail::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

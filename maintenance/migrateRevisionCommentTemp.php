@@ -18,7 +18,9 @@
  * @file
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that merges the revision_comment_temp table into the
@@ -110,5 +112,7 @@ class MigrateRevisionCommentTemp extends LoggedUpdateMaintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = MigrateRevisionCommentTemp::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

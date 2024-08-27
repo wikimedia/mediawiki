@@ -27,7 +27,9 @@ use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Refresh link tables.
@@ -432,5 +434,7 @@ class RefreshLinks extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = RefreshLinks::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

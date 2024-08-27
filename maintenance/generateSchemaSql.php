@@ -24,7 +24,9 @@
 
 use Wikimedia\Rdbms\DoctrineSchemaBuilderFactory;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/includes/SchemaMaintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to generate schema from abstract json files.
@@ -53,5 +55,7 @@ class GenerateSchemaSql extends SchemaMaintenance {
 
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = GenerateSchemaSql::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

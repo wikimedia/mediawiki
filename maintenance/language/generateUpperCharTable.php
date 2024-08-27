@@ -23,7 +23,9 @@
  * @ingroup MaintenanceLanguage
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/../Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 class GenerateUpperCharTable extends Maintenance {
 
@@ -55,5 +57,7 @@ class GenerateUpperCharTable extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = GenerateUpperCharTable::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

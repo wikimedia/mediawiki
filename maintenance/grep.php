@@ -8,7 +8,9 @@ use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Search pages for a given regex
@@ -132,5 +134,7 @@ class GrepPages extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = GrepPages::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

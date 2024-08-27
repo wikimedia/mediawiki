@@ -26,7 +26,9 @@
 
 use MediaWiki\Json\FormatJson;
 
+// @codeCoverageIgnoreStart
 require_once dirname( __DIR__ ) . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * @since 1.24
@@ -76,5 +78,7 @@ class ListVariants extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = ListVariants::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

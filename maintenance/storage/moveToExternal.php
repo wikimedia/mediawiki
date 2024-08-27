@@ -28,7 +28,9 @@ use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/../Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 class MoveToExternal extends Maintenance {
 	/** @var ResolveStubs */
@@ -331,5 +333,7 @@ class MoveToExternal extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = MoveToExternal::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

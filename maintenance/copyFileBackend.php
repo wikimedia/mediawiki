@@ -23,7 +23,9 @@
 
 use Wikimedia\FileBackend\FileBackend;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Copy all files in one container of one backend to another.
@@ -374,5 +376,7 @@ class CopyFileBackend extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = CopyFileBackend::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

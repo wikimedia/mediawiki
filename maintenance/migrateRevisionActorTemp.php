@@ -1,6 +1,8 @@
 <?php
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that merges the revision_actor_temp table into the
@@ -106,5 +108,7 @@ class MigrateRevisionActorTemp extends LoggedUpdateMaintenance {
 
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = MigrateRevisionActorTemp::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

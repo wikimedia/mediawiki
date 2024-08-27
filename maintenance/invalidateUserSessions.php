@@ -25,7 +25,9 @@
 use MediaWiki\Session\SessionManager;
 use MediaWiki\User\User;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Invalidate the sessions of certain users on the wiki.
@@ -89,5 +91,7 @@ class InvalidateUserSessions extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = InvalidateUserSessions::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

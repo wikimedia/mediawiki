@@ -5,7 +5,9 @@ use MediaWiki\Registration\ExtensionProcessor;
 use MediaWiki\Registration\ExtensionRegistry;
 use Wikimedia\Composer\ComposerJson;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 class ConvertExtensionToRegistration extends Maintenance {
 
@@ -358,5 +360,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = ConvertExtensionToRegistration::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

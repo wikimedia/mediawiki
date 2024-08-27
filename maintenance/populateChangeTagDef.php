@@ -16,7 +16,9 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Populate and improve accuracy of change_tag_def statistics.
@@ -234,5 +236,7 @@ class PopulateChangeTagDef extends LoggedUpdateMaintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = PopulateChangeTagDef::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

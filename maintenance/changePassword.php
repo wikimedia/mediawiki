@@ -24,7 +24,9 @@
  * @ingroup Maintenance
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to change the password of a given user.
@@ -56,5 +58,7 @@ class ChangePassword extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = ChangePassword::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

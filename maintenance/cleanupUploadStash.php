@@ -27,7 +27,9 @@
 
 use MediaWiki\MainConfigNames;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to remove old or broken uploads from temporary uploaded
@@ -159,5 +161,7 @@ class CleanupUploadStash extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = CleanupUploadStash::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

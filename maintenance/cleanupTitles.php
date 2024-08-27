@@ -27,7 +27,9 @@
 
 use MediaWiki\Title\Title;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/TableCleanup.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to clean up broken, unparseable titles.
@@ -295,5 +297,7 @@ class TitleCleanup extends TableCleanup {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = TitleCleanup::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

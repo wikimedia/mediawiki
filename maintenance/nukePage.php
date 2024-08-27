@@ -23,7 +23,9 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\Title\Title;
@@ -126,5 +128,7 @@ class NukePage extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = NukePage::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

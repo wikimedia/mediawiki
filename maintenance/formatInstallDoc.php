@@ -24,7 +24,9 @@
 use MediaWiki\Installer\InstallDocFormatter;
 use MediaWiki\Title\Title;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that formats RELEASE-NOTE file to wiki text or HTML markup.
@@ -80,5 +82,7 @@ class FormatInstallDoc extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = FormatInstallDoc::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

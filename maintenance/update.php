@@ -27,7 +27,9 @@
 
 // NO_AUTOLOAD -- due to hashbang above
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Installer\DatabaseInstaller;
@@ -296,5 +298,7 @@ class UpdateMediaWiki extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = UpdateMediaWiki::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

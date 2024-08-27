@@ -27,7 +27,9 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\IPUtils;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Reset login/signup throttling for a specified user and/or IP.
@@ -207,5 +209,7 @@ class ResetAuthenticationThrottle extends Maintenance {
 
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = ResetAuthenticationThrottle::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

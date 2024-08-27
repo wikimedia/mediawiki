@@ -23,7 +23,9 @@
 
 use MediaWiki\User\BotPassword;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to invalidate the bot passwords of a given user.
@@ -51,5 +53,7 @@ class InvalidateBotPasswords extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = InvalidateBotPasswords::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

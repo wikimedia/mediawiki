@@ -25,7 +25,9 @@
 
 use MediaWiki\MainConfigNames;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that changes the prefix of database tables.
@@ -94,5 +96,7 @@ class RenameDbPrefix extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = RenameDbPrefix::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

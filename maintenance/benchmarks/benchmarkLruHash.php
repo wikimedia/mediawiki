@@ -21,7 +21,9 @@
 
 use Wikimedia\ObjectCache\HashBagOStuff;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/../includes/Benchmarker.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script that benchmarks HashBagOStuff and MapCacheLRU.
@@ -127,5 +129,7 @@ class BenchmarkLruHash extends Benchmarker {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = BenchmarkLruHash::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd

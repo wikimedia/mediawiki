@@ -27,7 +27,9 @@ use MediaWiki\User\User;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 
+// @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
+// @codeCoverageIgnoreEnd
 
 /**
  * Maintenance script to wrap all passwords of a certain type in a specified layered
@@ -165,5 +167,7 @@ class WrapOldPasswords extends Maintenance {
 	}
 }
 
+// @codeCoverageIgnoreStart
 $maintClass = WrapOldPasswords::class;
 require_once RUN_MAINTENANCE_IF_MAIN;
+// @codeCoverageIgnoreEnd
