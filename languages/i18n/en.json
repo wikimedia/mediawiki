@@ -1387,7 +1387,7 @@
 	"recentchanges-legend-minor": "{{int:recentchanges-label-minor}}",
 	"recentchanges-legend-bot": "{{int:recentchanges-label-bot}}",
 	"recentchanges-legend-unpatrolled": "{{int:recentchanges-label-unpatrolled}}",
-	"recentchanges-legend-plusminus": "(<em>±123</em>)",
+	"recentchanges-legend-plusminus": "(±123)",
 	"recentchanges-legend-watchlistexpiry": "Temporarily watched page",
 	"recentchanges-submit": "Show",
 	"rcfilters-tag-remove": "Remove '$1'",
