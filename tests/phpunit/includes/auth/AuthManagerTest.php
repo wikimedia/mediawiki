@@ -111,7 +111,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 
 	/** @var AuthManager */
 	protected $manager;
-	/** @var TestingAccessWrapper */
+	/** @var TestingAccessWrapper|AuthManager */
 	protected $managerPriv;
 
 	/** @var BlockManager */
@@ -339,8 +339,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			$this->botPasswordStore,
 			$this->userFactory,
 			$this->userIdentityLookup,
-			$this->userOptionsManager,
-			$this->objectCacheFactory
+			$this->userOptionsManager
 		);
 		$this->manager->setLogger( $this->logger );
 		$this->managerPriv = TestingAccessWrapper::newFromObject( $this->manager );
@@ -713,7 +712,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			$class1 = get_class( $mock1 );
 			$class2 = get_class( $mock2 );
 			$this->assertSame(
-				"Duplicate specifications for id X (classes $class1 and $class2)", $ex->getMessage()
+				"Duplicate specifications for id X (classes $class2 and $class1)", $ex->getMessage()
 			);
 		}
 
@@ -722,8 +721,8 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$mock->method( 'getUniqueId' )->willReturn( 'X' );
 		$class = get_class( $mock );
 		$this->preauthMocks = [ $mock ];
-		$this->primaryauthMocks = [ $mock ];
-		$this->secondaryauthMocks = [ $mock ];
+		$this->primaryauthMocks = [];
+		$this->secondaryauthMocks = [];
 		$this->initializeManager( true );
 		try {
 			$this->managerPriv->getPreAuthenticationProviders();
@@ -734,6 +733,10 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 				$ex->getMessage()
 			);
 		}
+		$this->preauthMocks = [];
+		$this->primaryauthMocks = [ $mock ];
+		$this->secondaryauthMocks = [];
+		$this->initializeManager( true );
 		try {
 			$this->managerPriv->getPrimaryAuthenticationProviders();
 			$this->fail( 'Expected exception not thrown' );
@@ -743,6 +746,10 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 				$ex->getMessage()
 			);
 		}
+		$this->preauthMocks = [];
+		$this->primaryauthMocks = [];
+		$this->secondaryauthMocks = [ $mock ];
+		$this->initializeManager( true );
 		try {
 			$this->managerPriv->getSecondaryAuthenticationProviders();
 			$this->fail( 'Expected exception not thrown' );
@@ -780,6 +787,33 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			[ 'C' => $mock3, 'B' => $mock2, 'A' => $mock1 ],
 			$this->managerPriv->getPrimaryAuthenticationProviders()
 		);
+
+		// filtering
+		$mockPreAuth1 = $this->createMock( AbstractPreAuthenticationProvider::class );
+		$mockPreAuth2 = $this->createMock( AbstractPreAuthenticationProvider::class );
+		$mockPrimary1 = $this->createMock( AbstractPrimaryAuthenticationProvider::class );
+		$mockPrimary2 = $this->createMock( AbstractPrimaryAuthenticationProvider::class );
+		$mockSecondary1 = $this->createMock( AbstractSecondaryAuthenticationProvider::class );
+		$mockSecondary2 = $this->createMock( AbstractSecondaryAuthenticationProvider::class );
+		$mockPreAuth1->method( 'getUniqueId' )->willReturn( 'pre1' );
+		$mockPreAuth2->method( 'getUniqueId' )->willReturn( 'pre2' );
+		$mockPrimary1->method( 'getUniqueId' )->willReturn( 'primary1' );
+		$mockPrimary2->method( 'getUniqueId' )->willReturn( 'primary2' );
+		$mockSecondary1->method( 'getUniqueId' )->willReturn( 'secondary1' );
+		$mockSecondary2->method( 'getUniqueId' )->willReturn( 'secondary2' );
+		$this->preauthMocks = [ $mockPreAuth1, $mockPreAuth2 ];
+		$this->primaryauthMocks = [ $mockPrimary1, $mockPrimary2 ];
+		$this->secondaryauthMocks = [ $mockSecondary1, $mockSecondary2 ];
+		$this->initializeConfig();
+		$this->initializeManager( true );
+		$this->hookContainer->register( 'AuthManagerFilterProviders', static function ( &$providers ) {
+			unset( $providers['preauth']['pre1'] );
+			$providers['primaryauth']['primary2'] = false;
+			$providers['secondaryauth'] = [ 'secondary2' => true ];
+		} );
+		$this->assertSame( [ 'pre2' => $mockPreAuth2 ], $this->managerPriv->getPreAuthenticationProviders() );
+		$this->assertSame( [ 'primary1' => $mockPrimary1 ], $this->managerPriv->getPrimaryAuthenticationProviders() );
+		$this->assertSame( [ 'secondary2' => $mockSecondary2 ], $this->managerPriv->getSecondaryAuthenticationProviders() );
 	}
 
 	/**
@@ -2013,6 +2047,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 			'creatorid' => 0,
 			'creatorname' => $username,
 			'reqs' => [],
+			'providerIds' => [ 'preauth' => [], 'primaryauth' => [], 'secondaryauth' => [] ],
 			'primary' => null,
 			'primaryResponse' => null,
 			'secondary' => [],
@@ -2036,6 +2071,7 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$mock->method( 'beginPrimaryAccountCreation' )
 			->willReturn( AuthenticationResponse::newFail( $this->message( 'fail' ) ) );
 		$this->primaryauthMocks = [ $mock ];
+		$session['providerIds']['primaryauth'][] = 'X';
 		$this->initializeManager( true );
 
 		$this->request->getSession()->setSecret( AuthManager::ACCOUNT_CREATION_STATE, null );
