@@ -5,6 +5,8 @@
 			"Design System Team"
 		]
 	},
+	"cdx-chip-input-chip-added": "Visually-hidden status message that is announced to users of assistive technology when a new chip is added.",
+	"cdx-chip-input-chip-removed": "Visually-hidden status message that is announced to users of assistive technology when a chip is removed.",
 	"cdx-input-chip-aria-description": "Visually-hidden description of a CdxInputChip, describing the available keyboard commands.",
 	"cdx-dialog-close-button-label": "Visually-hidden label for the CdxDialog's close button.",
 	"cdx-label-optional-flag": "Flag that appears next to a label to indicate that a field is optional.",
