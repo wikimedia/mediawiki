@@ -585,9 +585,12 @@
 
 		// For every ../ in the path prefix, remove one directory level from baseDirParts
 		var prefix;
+		var reachedRoot = false;
 		while ( ( prefix = prefixes.pop() ) !== undefined ) {
 			if ( prefix === '..' ) {
-				if ( baseDirParts.length ) {
+				// Once we reach the package's base dir, preserve all remaining "..".
+				reachedRoot = !baseDirParts.length || reachedRoot;
+				if ( !reachedRoot ) {
 					baseDirParts.pop();
 				} else {
 					baseDirParts.push( prefix );

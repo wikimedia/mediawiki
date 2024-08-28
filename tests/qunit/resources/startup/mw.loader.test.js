@@ -533,6 +533,9 @@
 						counter++;
 						module.exports = { answer: counter };
 					},
+					'../../lib/quux.js': function ( require, module ) {
+						module.exports = 'Quux';
+					},
 					'../bar/bar.js': function ( require, module ) {
 						var core = require( './core.js' );
 						module.exports = { data: core.sayHello( 'Alice' ) };
@@ -547,6 +550,7 @@
 						assert.deepEqual( require( './data/hello.json' ), { hello: 'world' }, 'require() .json' );
 						assert.deepEqual( require( './foo.js' ), { answer: 42 }, 'require() .js in same dir' );
 						assert.deepEqual( require( '../bar/bar.js' ), { data: 'Hello Alice' }, 'require() with ../ ' );
+						assert.deepEqual( require( '../../lib/quux.js' ), 'Quux', 'require() with ../../ ' );
 						assert.deepEqual( require( './foo.js' ), { answer: 42 }, 'require() same script twice' );
 					}
 				}
