@@ -1423,7 +1423,7 @@
 	"rcfilters-filtergroup-significance": "Importancia",
 	"rcfilters-filter-minor-label": "Edicións menores",
 	"rcfilters-filter-minor-description": "Edicións que o autor etiquetou como menores.",
-	"rcfilters-filter-major-label": "Edicións non menores",
+	"rcfilters-filter-major-label": "Edicións non pequenas",
 	"rcfilters-filter-major-description": "Edicións non marcadas como menores.",
 	"rcfilters-filtergroup-watchlist": "Páxinas vixiadas",
 	"rcfilters-filter-watchlist-watched-label": "Na lista de vixilancia",

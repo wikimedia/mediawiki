@@ -628,7 +628,7 @@
 	"recentchanges-label-plusminus": "ꯕꯥꯏꯠꯀꯤ ꯑꯍꯣꯡꯕꯒꯤ ꯃꯇꯪ ꯏꯟꯅꯥ ꯂꯥꯃꯥꯏꯁꯤꯒꯤ ꯑꯆꯧꯕꯥ ꯂꯦꯞꯄꯤ",
 	"recentchanges-legend-heading": "<strong>ꯊꯥꯏꯅꯗꯒꯤ</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ꯃꯁꯤꯁꯨ ꯌꯦꯡꯉꯨ [[Special:NewPages|ꯑꯅꯧꯕ ꯂꯃꯥꯏꯁꯤꯡ ꯄꯔꯤꯡ]])",
-	"recentchanges-legend-plusminus": "(<em>±꯱꯲꯳</em>)",
+	"recentchanges-legend-plusminus": "(±꯱꯲꯳)",
 	"recentchanges-legend-watchlistexpiry": "ꯃꯇꯝ ꯈꯔꯥꯒꯤ ꯌꯦꯡꯂꯝꯕ ꯂꯃꯥꯏ",
 	"recentchanges-submit": "ꯎꯠꯄ",
 	"rcfilters-tag-remove": "ꯂꯧꯊꯣꯛꯄ '$1'",

@@ -969,7 +969,7 @@
 	"recentchanges-label-plusminus": "စာမျက်နှာ အရွယ်အစားမှာ အောက်ပါ ဘိုက်ပမာဏ ပြောင်းလဲသွားခဲ့သည်",
 	"recentchanges-legend-heading": "<strong>အညွှန်း:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|စာမျက်နှာသစ်များ စာရင်း]]ကိုလည်း ကြည့်ရန်)",
-	"recentchanges-legend-plusminus": "(<em>±၁၂၃</em>)",
+	"recentchanges-legend-plusminus": "(±၁၂၃)",
 	"recentchanges-legend-watchlistexpiry": "ယာယီကြည့်ခဲ့သော စာမျက်နှာ",
 	"recentchanges-submit": "ပြသရန်",
 	"rcfilters-tag-remove": "'$1' ကို ဖယ်ရှားရန်",

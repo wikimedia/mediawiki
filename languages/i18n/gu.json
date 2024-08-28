@@ -941,7 +941,7 @@
 	"recentchanges-label-plusminus": "પાનાનું કદ આપેલા અંકો જેટલાં બાઈટ્સ જેટલું બદલ્યુ છે.",
 	"recentchanges-legend-heading": "<strong>કળ:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|નવા પાનાઓની યાદી]] પણ જુઓ)",
-	"recentchanges-legend-plusminus": "(<em>±૧૨૩</em>)",
+	"recentchanges-legend-plusminus": "(±૧૨૩)",
 	"recentchanges-legend-watchlistexpiry": "ધ્યાનસૂચિમાં કામચલાઉ ઉમેરેલું પાનું",
 	"recentchanges-submit": "બતાવો",
 	"rcfilters-legend-heading": "<strong>સંક્ષેપોની યાદી:</strong>",

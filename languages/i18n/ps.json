@@ -999,7 +999,7 @@
 	"recentchanges-label-plusminus": "د بايټونو د شمېر له مخې د مخ د بدلون کچه",
 	"recentchanges-legend-heading": "<strong>لنډونونه:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|د نويو مخونو لړليک]] هم وگورئ)",
-	"recentchanges-legend-plusminus": "(<em>±۱۲۳</em>)",
+	"recentchanges-legend-plusminus": "(±۱۲۳)",
 	"recentchanges-submit": "ښکاره کول",
 	"rcfilters-tag-remove": "لرې کړئ'$1'",
 	"rcfilters-legend-heading": "<strong>د لنډیزونو لړليک:</strong>",

@@ -994,7 +994,7 @@
 	"recentchanges-label-plusminus": "ଏହି ବାଇଟ ତଥ୍ୟରୁ ଏଇ ପୃଷ୍ଠାର ଆକାର ବଦଳ",
 	"recentchanges-legend-heading": "<strong>ଆକଳନ:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}}  (ଆହୁରି ଦେଖନ୍ତୁ: [[Special:NewPages|ନୂଆ ପୃଷ୍ଠାମାନଙ୍କ ତାଲିକା]])",
-	"recentchanges-legend-plusminus": "(<em>±୧୨୩</em>)",
+	"recentchanges-legend-plusminus": "(±୧୨୩)",
 	"recentchanges-legend-watchlistexpiry": "ଅସ୍ଥାୟୀ ଭାବେ ଦେଖାଯାଇଥିବା ପୃଷ୍ଠା",
 	"rcfilters-legend-heading": "'''ସଂକ୍ଷେପ ନାମ ତାଲିକା'''",
 	"rcfilters-other-review-tools": "ଅନ୍ୟାନ୍ୟ ସମୀକ୍ଷା ଟୁଲ",

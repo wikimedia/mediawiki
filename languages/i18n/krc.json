@@ -1323,7 +1323,7 @@
 	"recentchanges-label-plusminus": "Бетни ёлчеми быллай бир байтха тюрленнгенди",
 	"recentchanges-legend-heading": "<strong>Легенда:&nbsp;</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (къарагъыз: [[Special:NewPages|джангы бетлени тизмеси]])",
-	"recentchanges-legend-plusminus": "(<em>±123</em>)",
+	"recentchanges-legend-plusminus": "(±123)",
 	"recentchanges-legend-watchlistexpiry": "Заманлы ызланнган бет",
 	"recentchanges-submit": "Кёргюз",
 	"rcfilters-tag-remove": "\"$1\" кетер",

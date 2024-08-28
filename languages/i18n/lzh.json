@@ -876,7 +876,7 @@
 	"recentchanges-label-plusminus": "所改字節量",
 	"recentchanges-legend-heading": "<strong>圖例：</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}}([[Special:NewPages|新灶]])",
-	"recentchanges-legend-plusminus": "(<em>±一二三</em>)",
+	"recentchanges-legend-plusminus": "(±一二三)",
 	"recentchanges-submit": "示",
 	"rcfilters-savedqueries-defaultlabel": "所貯條件",
 	"rcfilters-show-new-changes": "知新",
