@@ -262,13 +262,13 @@ LUA;
 	 * Make sure remaining locks get cleared
 	 */
 	public function __destruct() {
-		while ( count( $this->locksHeld ) ) {
-			$pathsByType = [];
-			foreach ( $this->locksHeld as $path => $locks ) {
-				foreach ( $locks as $type => $count ) {
-					$pathsByType[$type][] = $path;
-				}
+		$pathsByType = [];
+		foreach ( $this->locksHeld as $path => $locks ) {
+			foreach ( $locks as $type => $count ) {
+				$pathsByType[$type][] = $path;
 			}
+		}
+		if ( $pathsByType ) {
 			$this->unlockByType( $pathsByType );
 		}
 	}
