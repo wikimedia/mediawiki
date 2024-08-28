@@ -57,7 +57,7 @@ QUnit.module( 'mediawiki.base/track', () => {
 	QUnit.test( 'trackError', function ( assert ) {
 		var fn = mw.track;
 		function logError( topic, data ) {
-			assert.step( data );
+			assert.step( typeof data === 'string' ? data : JSON.stringify( data ) );
 		}
 		this.sandbox.stub( console, 'log' );
 
