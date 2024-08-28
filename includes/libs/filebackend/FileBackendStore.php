@@ -27,6 +27,7 @@ use InvalidArgumentException;
 use LockManager;
 use MapCacheLRU;
 use MediaWiki\Json\FormatJson;
+use Shellbox\Command\BoxedCommand;
 use StatusValue;
 use Traversable;
 use Wikimedia\AtEase\AtEase;
@@ -1049,6 +1050,22 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	public function getFileHttpUrl( array $params ) {
 		return self::TEMPURL_ERROR; // not supported
+	}
+
+	public function addShellboxInputFile( BoxedCommand $command, string $boxedName,
+		array $params
+	) {
+		$ref = $this->getLocalReference( [ 'src' => $params['src'] ] );
+		if ( $ref === false ) {
+			return $this->newStatus( 'backend-fail-notexists', $params['src'] );
+		} elseif ( $ref === null ) {
+			return $this->newStatus( 'backend-fail-read', $params['src'] );
+		} else {
+			$file = $command->newInputFileFromFile( $ref->getPath() )
+				->userData( __CLASS__, $ref );
+			$command->inputFile( $boxedName, $file );
+			return $this->newStatus();
+		}
 	}
 
 	final public function streamFile( array $params ) {

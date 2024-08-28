@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Output\StreamFile;
+use Shellbox\Command\BoxedCommand;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -228,6 +229,13 @@ class FileBackendDBRepoWrapper extends FileBackend {
 
 	public function getFileHttpUrl( array $params ) {
 		return $this->translateSrcParams( __FUNCTION__, $params );
+	}
+
+	public function addShellboxInputFile( BoxedCommand $command, string $boxedName,
+		array $params
+	) {
+		$params['src'] = $this->getBackendPath( $params['src'], !empty( $params['latest'] ) );
+		return $this->backend->addShellboxInputFile( $command, $boxedName, $params );
 	}
 
 	public function directoryExists( array $params ) {

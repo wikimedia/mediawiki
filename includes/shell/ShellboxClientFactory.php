@@ -73,7 +73,8 @@ class ShellboxClientFactory {
 				RequestOptions::HTTP_ERRORS => false,
 			] ),
 			new Uri( $url ),
-			$this->key
+			$this->key,
+			[ 'allowUrlFiles' => true ]
 		);
 	}
 
