@@ -1909,7 +1909,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
-	 * @internal
+	 * @since 1.41
 	 */
 	public function getStatsFactory(): StatsFactory {
 		return $this->getService( 'StatsFactory' );
