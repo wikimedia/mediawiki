@@ -96,6 +96,7 @@ class Names {
 		'be-x-old' => 'беларуская (тарашкевіца)', # (be-tarask compat)
 		'bew' => 'Betawi', # Betawi
 		'bg' => 'български', # Bulgarian
+		'bgc' => 'हरियाणवी', # Haryanvi
 		'bgn' => 'روچ کپتین بلوچی', # Western Balochi
 		'bh' => 'भोजपुरी', # Bihari macro language. Falls back to Bhojpuri (bho)
 		'bho' => 'भोजपुरी', # Bhojpuri
