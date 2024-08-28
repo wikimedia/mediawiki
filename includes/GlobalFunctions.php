@@ -517,7 +517,7 @@ function wfGetUrlUtils(): UrlUtils {
  *
  * Parent references (/../) in the path are resolved (as in UrlUtils::removeDotSegments()).
  *
- * @deprecated since 1.39, use UrlUtils::expand()
+ * @deprecated since 1.39, use UrlUtils::expand(); hard-deprecated since 1.45
  * @param string $url An URL; can be absolute (e.g. http://example.com/foo/bar),
  *    protocol-relative (//example.com/foo/bar) or domain-relative (/foo/bar).
  * @param string|int|null $defaultProto One of the PROTO_* constants, as described above.
@@ -525,6 +525,8 @@ function wfGetUrlUtils(): UrlUtils {
  *    no valid URL can be constructed
  */
 function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
+	wfDeprecated( __FUNCTION__, '1.39' );
+
 	return wfGetUrlUtils()->expand( (string)$url, $defaultProto ) ?? false;
 }
 
@@ -550,7 +552,7 @@ function wfGetServerUrl( $proto ) {
  * This is the basic structure used (brackets contain keys for $urlParts):
  * [scheme][delimiter][user]:[pass]@[host]:[port][path]?[query]#[fragment]
  *
- * @deprecated since 1.39, use UrlUtils::assemble(); hard-deprecated since 1.44
+ * @deprecated since 1.39, use UrlUtils::assemble(); hard-deprecated since 1.45
  * @since 1.19
  * @param array $urlParts URL parts, as output from wfParseUrl
  * @return string URL assembled from its component parts
@@ -599,7 +601,7 @@ function wfUrlProtocolsWithoutProtRel() {
  * 4) Rejects some invalid URLs that parse_url doesn't, e.g. the empty string or URLs starting with
  *    a line feed character.
  *
- * @deprecated since 1.39, use UrlUtils::parse()
+ * @deprecated since 1.39, use UrlUtils::parse(); hard-deprecated since 1.45
  * @param string $url A URL to parse
  * @return string[]|false Bits of the URL in an associative array, or false on failure.
  *   Possible fields:
@@ -616,6 +618,8 @@ function wfUrlProtocolsWithoutProtRel() {
  *   - fragment: the part after #, can be missing.
  */
 function wfParseUrl( $url ) {
+	wfDeprecated( __FUNCTION__, '1.39' );
+
 	return wfGetUrlUtils()->parse( (string)$url ) ?? false;
 }
 

@@ -84,6 +84,21 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 			wfUrlencode( "\xE7\x89\xB9\xE5\x88\xA5:Contributions/Foobar" ) );
 	}
 
+	/**
+	 * @covers ::wfExpandIRI
+	 */
+	public function testExpandIRI() {
+		$this->hideDeprecated( 'wfExpandIRI' );
+
+		$this->assertEquals(
+			"https://te.wikibooks.org/wiki/ఉబుంటు_వాడుకరి_మార్గదర్శని",
+			wfExpandIRI( "https://te.wikibooks.org/wiki/"
+				. "%E0%B0%89%E0%B0%AC%E0%B1%81%E0%B0%82%E0%B0%9F%E0%B1%81_"
+				. "%E0%B0%B5%E0%B0%BE%E0%B0%A1%E0%B1%81%E0%B0%95%E0%B0%B0%E0%B0%BF_"
+				. "%E0%B0%AE%E0%B0%BE%E0%B0%B0%E0%B1%8D%E0%B0%97%E0%B0%A6%E0%B0%B0"
+				. "%E0%B1%8D%E0%B0%B6%E0%B0%A8%E0%B0%BF" ) );
+	}
+
 	public static function provideArrayToCGI() {
 		return [
 			[ [], '' ], // empty

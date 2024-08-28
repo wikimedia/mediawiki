@@ -26,6 +26,7 @@ class WfExpandUrlTest extends MediaWikiIntegrationTestCase {
 
 		$this->overrideConfigValues( $conf );
 		$this->setRequest( new FauxRequest( [], false, null, $currentProto ) );
+		$this->hideDeprecated( 'wfExpandUrl' );
 		$this->assertEquals( $expected, wfExpandUrl( $input, $defaultProto ) );
 	}
 }

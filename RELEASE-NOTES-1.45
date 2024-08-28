@@ -296,6 +296,7 @@ because of Phabricator reports.
   warnings.
 * OutputPage::setLanguageLinks(), deprecated in 1.43, now emits deprecation
   warnings.
+* wfExpandUrl() and wfParseUrl(), both deprecated in 1.39, now emit warnings.
 * Calling RevisionStore methods with a LinkTarget emits deprecation warnings
   now. It was already documented as deprecated since 1.36.
   - RevisionStore::getFirstRevision
