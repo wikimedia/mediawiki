@@ -546,7 +546,10 @@ class AuthManager implements LoggerAwareInterface {
 					wfMessage( 'authmanager-authn-not-in-progress' )
 				);
 			}
-			if ( $state['providerIds'] !== $this->getProviderIds() ) {
+			if ( !isset( $state['providerIds'] ) ) {
+				// T373504: ignore missing providerIds while the code block below is recent,
+				// to avoid breaking existing sessions during code update
+			} elseif ( $state['providerIds'] !== $this->getProviderIds() ) {
 				// An inconsistent AuthManagerFilterProviders hook, or site configuration changed
 				// while the user was in the middle of authentication. The first is a bug, the
 				// second is rare but expected when deploying a config change. Try handle in a way
@@ -1456,7 +1459,10 @@ class AuthManager implements LoggerAwareInterface {
 				$creator->setName( $state['creatorname'] );
 			}
 
-			if ( $state['providerIds'] !== $this->getProviderIds() ) {
+			if ( !isset( $state['providerIds'] ) ) {
+				// T373504: ignore missing providerIds while the code block below is recent,
+				// to avoid breaking existing sessions during code update
+			} elseif ( $state['providerIds'] !== $this->getProviderIds() ) {
 				// An inconsistent AuthManagerFilterProviders hook, or site configuration changed
 				// while the user was in the middle of authentication. The first is a bug, the
 				// second is rare but expected when deploying a config change. Try handle in a way
@@ -2300,7 +2306,10 @@ class AuthManager implements LoggerAwareInterface {
 				);
 			}
 
-			if ( $state['providerIds'] !== $this->getProviderIds() ) {
+			if ( !isset( $state['providerIds'] ) ) {
+				// T373504: ignore missing providerIds while the code block below is recent,
+				// to avoid breaking existing sessions during code update
+			} elseif ( $state['providerIds'] !== $this->getProviderIds() ) {
 				// An inconsistent AuthManagerFilterProviders hook, or site configuration changed
 				// while the user was in the middle of authentication. The first is a bug, the
 				// second is rare but expected when deploying a config change. Try handle in a way
