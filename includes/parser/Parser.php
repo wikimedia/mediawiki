@@ -2271,8 +2271,9 @@ class Parser {
 		$noFollowNsExceptions = $mainConfig->get( MainConfigNames::NoFollowNsExceptions );
 		$noFollowDomainExceptions = $mainConfig->get( MainConfigNames::NoFollowDomainExceptions );
 		$ns = $title ? $title->getNamespace() : false;
-		if ( $noFollowLinks && !in_array( $ns, $noFollowNsExceptions )
-			&& !wfMatchesDomainList( $url, $noFollowDomainExceptions )
+		if (
+			$noFollowLinks && !in_array( $ns, $noFollowNsExceptions )
+			&& !wfGetUrlUtils()->matchesDomainList( (string)$url, $noFollowDomainExceptions )
 		) {
 			return 'nofollow';
 		}

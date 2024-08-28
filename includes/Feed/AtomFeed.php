@@ -75,6 +75,7 @@ class AtomFeed extends ChannelFeed {
 
 	/**
 	 * Atom 1.0 requests a self-reference to the feed.
+	 *
 	 * @return string
 	 */
 	private function getSelfUrl() {
@@ -84,6 +85,7 @@ class AtomFeed extends ChannelFeed {
 
 	/**
 	 * Output a given item.
+	 *
 	 * @param FeedItem $item
 	 */
 	public function outItem( $item ) {

@@ -413,9 +413,12 @@ class IntroMessageBuilder {
 		}
 
 		if ( !$page->exists() ) {
-			$helpLink = $this->urlUtils->expand( Skin::makeInternalOrExternalUrl(
-				$localizer->msg( 'helppage' )->inContentLanguage()->text()
-			), PROTO_CURRENT );
+			$helpLink = $this->urlUtils->expand(
+				Skin::makeInternalOrExternalUrl(
+					$localizer->msg( 'helppage' )->inContentLanguage()->text()
+				),
+				PROTO_CURRENT
+			);
 			if ( $performer->getUser()->isRegistered() ) {
 				$messages->add(
 					$localizer->msg( 'newarticletext', $helpLink ),

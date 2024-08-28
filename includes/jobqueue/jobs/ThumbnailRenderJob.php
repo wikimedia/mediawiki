@@ -101,7 +101,7 @@ class ThumbnailRenderJob extends Job {
 		}
 
 		if ( $uploadThumbnailRenderHttpCustomDomain ) {
-			$parsedUrl = wfParseUrl( $thumbUrl );
+			$parsedUrl = wfGetUrlUtils()->parse( $thumbUrl );
 
 			if ( !isset( $parsedUrl['path'] ) || $parsedUrl['path'] === '' ) {
 				$this->setLastError( __METHOD__ . ": invalid thumb URL: $thumbUrl" );

@@ -225,7 +225,8 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 	 * @return OOUI\IconWidget
 	 */
 	protected function generateIconFromFavicon( $logoUrl ) {
-		$parsed = wfParseUrl( wfExpandUrl( $logoUrl ) );
+		$parsed = wfGetUrlUtils()->parse( (string)wfGetUrlUtils()->expand( $logoUrl, PROTO_CURRENT ) );
+		'@phan-var array $parsed'; // Valid URL
 		$iwIconUrl = $parsed['scheme'] .
 			$parsed['delimiter'] .
 			$parsed['host'] .

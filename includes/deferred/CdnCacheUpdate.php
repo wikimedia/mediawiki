@@ -292,7 +292,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 		$reqs = [];
 		foreach ( $urls as $url ) {
 			$url = self::expand( $url );
-			$urlInfo = wfParseUrl( $url );
+			$urlInfo = wfGetUrlUtils()->parse( $url ) ?? false;
 			$urlHost = strlen( $urlInfo['port'] ?? '' )
 				? IPUtils::combineHostAndPort( $urlInfo['host'], (int)$urlInfo['port'] )
 				: $urlInfo['host'];

@@ -95,8 +95,8 @@ class WikiMap {
 			return null;
 		}
 
-		$urlParts = wfParseUrl( $site->getPageUrl() );
-		if ( $urlParts === false || !isset( $urlParts['path'] ) || !isset( $urlParts['host'] ) ) {
+		$urlParts = wfGetUrlUtils()->parse( $site->getPageUrl() );
+		if ( $urlParts === null || !isset( $urlParts['path'] ) || !isset( $urlParts['host'] ) ) {
 			// We can't create a meaningful WikiReference without URLs
 			return null;
 		}
@@ -208,14 +208,14 @@ class WikiMap {
 				$wikiId = self::getCurrentWikiId();
 				$infoMap[$wikiId] = [
 					'url' => $wgCanonicalServer,
-					'parts' => wfParseUrl( $wgCanonicalServer )
+					'parts' => wfGetUrlUtils()->parse( $wgCanonicalServer )
 				];
 
 				foreach ( $wgLocalDatabases as $wikiId ) {
 					$wikiReference = self::getWiki( $wikiId );
 					if ( $wikiReference ) {
 						$url = $wikiReference->getCanonicalServer();
-						$infoMap[$wikiId] = [ 'url' => $url, 'parts' => wfParseUrl( $url ) ];
+						$infoMap[$wikiId] = [ 'url' => $url, 'parts' => wfGetUrlUtils()->parse( $url ) ];
 					}
 				}
 
@@ -238,8 +238,8 @@ class WikiMap {
 			return self::getCurrentWikiId();
 		}
 
-		$urlPartsCheck = wfParseUrl( $url );
-		if ( $urlPartsCheck === false ) {
+		$urlPartsCheck = wfGetUrlUtils()->parse( $url );
+		if ( $urlPartsCheck === null ) {
 			return false;
 		}
 

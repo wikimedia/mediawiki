@@ -637,7 +637,7 @@ Image with link parameter, wgNoFollowDomainExceptions
 !! wikitext
 [[File:Foobar.jpg|link=http://example.com/]]
 !! config
-wgNoFollowDomainExceptions="example.com"
+wgNoFollowDomainExceptions=["example.com"]
 wgParserEnableLegacyMediaDOM=false
 !! html/php
 <p><span class="mw-default-size" typeof="mw:File"><a href="http://example.com/"><img src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="mw-file-element" /></a></span>
