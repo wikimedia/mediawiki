@@ -1210,6 +1210,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		$op = $this->setupCategoryTests( $fakeResults, $variantLinkCallback );
 
+		$this->filterDeprecated( '/OutputPage::setCategoryLinks was deprecated/' );
 		$op->setCategoryLinks( [ 'Initial page' => 'Initial page' ] );
 		$op->setCategoryLinks( $args );
 
