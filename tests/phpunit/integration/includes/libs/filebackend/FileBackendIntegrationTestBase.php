@@ -1,6 +1,10 @@
 <?php
 
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Status\Status;
+use Shellbox\Shellbox;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FSFile\FSFile;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
@@ -1224,6 +1228,20 @@ abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCa
 	}
 
 	/**
+	 * Get a real HTTP request factory, overriding the restrictions on tests that do HTTP requests
+	 * @return HttpRequestFactory
+	 */
+	private function getRealHttpRequestFactory() {
+		return new HttpRequestFactory(
+			new ServiceOptions(
+				HttpRequestFactory::CONSTRUCTOR_OPTIONS,
+				$this->getServiceContainer()->getMainConfig()
+			),
+			LoggerFactory::getInstance( 'http' )
+		);
+	}
+
+	/**
 	 * @dataProvider provider_testGetFileHttpUrl
 	 */
 	public function testGetFileHttpUrl( $source, $content ) {
@@ -1238,8 +1256,7 @@ abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCa
 		$url = $this->backend->getFileHttpUrl( [ 'src' => $source ] );
 
 		if ( $url !== null ) { // supported
-			$data = $this->getServiceContainer()->getHttpRequestFactory()->
-				get( $url, [], __METHOD__ );
+			$data = $this->getRealHttpRequestFactory()->get( $url, [], __METHOD__ );
 			$this->assertEquals( $content, $data,
 				"HTTP GET of URL has right contents ($backendName)." );
 		}
@@ -1254,6 +1271,29 @@ abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCa
 		$cases[] = [ "$base/unittest-cont1/e/a/\$odd&.txt", "test file contents" ];
 
 		return $cases;
+	}
+
+	public function testAddShellboxInputFile() {
+		if ( wfIsWindows() ) {
+			$this->markTestSkipped( 'This test requires a POSIX environment.' );
+		}
+		$backendName = $this->backendClass();
+		$base = self::baseStorePath();
+		$src = "$base/unittest-cont1/e/a/b/fileA.txt";
+		$contents = 'test';
+		$this->prepare( [ 'dir' => dirname( $src ) ] );
+		$status = $this->backend->create( [ 'content' => $contents, 'dst' => $src ] );
+		$this->assertStatusGood( $status,
+			"Creation of file at $src succeeded ($backendName)." );
+		$executor = Shellbox::createBoxedExecutor();
+		$executor->setUrlFileClient( $this->getRealHttpRequestFactory()->createGuzzleClient() );
+		$command = $executor->createCommand();
+		$this->backend->addShellboxInputFile( $command, 'fileA.txt', [ 'src' => $src ] );
+		$result = $command
+			->params( 'cat', 'fileA.txt' )
+			->routeName( 'test' )
+			->execute();
+		$this->assertSame( 'test', $result->getStdout() );
 	}
 
 	public static function provider_testPrepareAndClean() {

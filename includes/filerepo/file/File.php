@@ -20,6 +20,7 @@ use MediaWiki\PoolCounter\PoolCounterWorkViaCallback;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
+use Shellbox\Command\BoxedCommand;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FSFile\FSFile;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
@@ -507,6 +508,18 @@ abstract class File implements MediaHandlerState {
 		return ( $this->fsFile )
 			? $this->fsFile->getPath()
 			: false;
+	}
+
+	/**
+	 * Add the file to a Shellbox command as an input file
+	 *
+	 * @since 1.43
+	 * @param BoxedCommand $command
+	 * @param string $boxedName
+	 * @return StatusValue
+	 */
+	public function addToShellboxCommand( BoxedCommand $command, string $boxedName ) {
+		return $this->repo->addShellboxInputFile( $command, $boxedName, $this->getVirtualUrl() );
 	}
 
 	/**

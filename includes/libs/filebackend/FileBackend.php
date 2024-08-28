@@ -39,6 +39,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use ScopedLock;
+use Shellbox\Command\BoxedCommand;
 use StatusValue;
 use Wikimedia\FileBackend\FSFile\FSFile;
 use Wikimedia\FileBackend\FSFile\TempFSFile;
@@ -1249,12 +1250,29 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @see FileBackend::TEMPURL_ERROR
 	 *
 	 * @param array $params Parameters include:
-	 *   - src : source storage path
-	 *   - ttl : lifetime (seconds) if pre-authenticated; default is 1 day
+	 *   - src     : source storage path
+	 *   - ttl     : lifetime (seconds) if pre-authenticated; default is 1 day
+	 *   - latest  : use the latest available data
+	 *   - method  : the allowed method; default GET
+	 *   - ipRange : the allowed IP range; default unlimited
 	 * @return string|null URL or null (not supported or I/O error)
 	 * @since 1.21
 	 */
 	abstract public function getFileHttpUrl( array $params );
+
+	/**
+	 * Add a file to a Shellbox command as an input file.
+	 *
+	 * @param BoxedCommand $command
+	 * @param string $boxedName
+	 * @param array $params Parameters include:
+	 *   - src    : source storage path
+	 *   - latest : use the latest available data
+	 * @return StatusValue
+	 * @since 1.43
+	 */
+	abstract public function addShellboxInputFile( BoxedCommand $command, string $boxedName,
+		array $params );
 
 	/**
 	 * Check if a directory exists at a given storage path

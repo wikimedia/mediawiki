@@ -28,6 +28,7 @@ use LockManager;
 use LogicException;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Json\FormatJson;
+use Shellbox\Command\BoxedCommand;
 use StatusValue;
 use StringUtils;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
@@ -748,6 +749,14 @@ class FileBackendMultiWrite extends FileBackend {
 		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
 
 		return $this->backends[$index]->getFileHttpUrl( $realParams );
+	}
+
+	public function addShellboxInputFile( BoxedCommand $command, string $boxedName,
+		array $params
+	) {
+		$index = $this->getReadIndexFromParams( $params );
+		$realParams = $this->substOpPaths( $params, $this->backends[$index] );
+		return $this->backends[$index]->addShellboxInputFile( $command, $boxedName, $realParams );
 	}
 
 	public function directoryExists( array $params ) {

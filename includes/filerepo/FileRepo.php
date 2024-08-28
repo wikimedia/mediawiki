@@ -17,6 +17,7 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
+use Shellbox\Command\BoxedCommand;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\FileBackend\FSFile\FSFile;
@@ -1606,6 +1607,23 @@ class FileRepo {
 		$path = $this->resolveToStoragePathIfVirtual( $virtualUrl );
 
 		return $this->backend->getLocalReference( [ 'src' => $path ] );
+	}
+
+	/**
+	 * Add a file to a Shellbox command as an input file
+	 *
+	 * @param BoxedCommand $command
+	 * @param string $boxedName
+	 * @param string $virtualUrl
+	 * @return StatusValue
+	 * @since 1.43
+	 */
+	public function addShellboxInputFile( BoxedCommand $command, string $boxedName,
+		string $virtualUrl
+	) {
+		$path = $this->resolveToStoragePathIfVirtual( $virtualUrl );
+
+		return $this->backend->addShellboxInputFile( $command, $boxedName, [ 'src' => $path ] );
 	}
 
 	/**

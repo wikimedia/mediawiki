@@ -44,6 +44,7 @@
 namespace Wikimedia\FileBackend;
 
 use MapCacheLRU;
+use Shellbox\Command\BoxedCommand;
 use Shellbox\Shellbox;
 use StatusValue;
 use Wikimedia\AtEase\AtEase;
@@ -769,6 +770,17 @@ class FSFileBackend extends FileBackendStore {
 		}
 
 		return $tmpFiles;
+	}
+
+	public function addShellboxInputFile( BoxedCommand $command, string $boxedName,
+		array $params
+	) {
+		$path = $this->resolveToFSPath( $params['src'] );
+		if ( $path === null ) {
+			return $this->newStatus( 'backend-fail-invalidpath', $params['src'] );
+		}
+		$command->inputFileFromFile( $boxedName, $path );
+		return $this->newStatus();
 	}
 
 	protected function directoriesAreVirtual() {
