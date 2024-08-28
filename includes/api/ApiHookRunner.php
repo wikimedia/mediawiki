@@ -2,9 +2,11 @@
 
 namespace MediaWiki\Api;
 
+use Article;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Session\Session;
 use MediaWiki\User\UserIdentity;
+use ParserOptions;
 
 /**
  * This class provides an implementation of the hook interfaces used
@@ -52,6 +54,7 @@ class ApiHookRunner implements
 	\MediaWiki\Output\Hook\LanguageLinksHook,
 	\MediaWiki\Output\Hook\OutputPageBeforeHTMLHook,
 	\MediaWiki\Output\Hook\OutputPageCheckLastModifiedHook,
+	\MediaWiki\Page\Hook\ArticleParserOptionsHook,
 	\MediaWiki\Hook\TempUserCreatedRedirectHook,
 	\MediaWiki\Hook\UserLoginCompleteHook,
 	\MediaWiki\Hook\UserLogoutCompleteHook,
@@ -280,6 +283,13 @@ class ApiHookRunner implements
 		return $this->container->run(
 			'ApiValidatePassword',
 			[ $module, &$r ]
+		);
+	}
+
+	public function onArticleParserOptions( Article $article, ParserOptions $popts ) {
+		return $this->container->run(
+			'ArticleParserOptions',
+			[ $article, $popts ]
 		);
 	}
 
