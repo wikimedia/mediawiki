@@ -2177,6 +2177,7 @@ return [
 			'CategoryCollation' => 'uppercase',
 			'TempCategoryCollations' => [
 			],
+			'SortedCategories' => false,
 			'TrackingCategories' => [
 			],
 			'LogTypes' => [
@@ -2946,6 +2947,7 @@ return [
 			'SpecialPageCacheUpdates' => 'object',
 			'PagePropLinkInvalidations' => 'object',
 			'TempCategoryCollations' => 'array',
+			'SortedCategories' => 'boolean',
 			'TrackingCategories' => 'array',
 			'LogTypes' => 'array',
 			'LogRestrictions' => 'object',

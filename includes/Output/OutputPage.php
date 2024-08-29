@@ -208,6 +208,24 @@ class OutputPage extends ContextSource {
 	];
 
 	/**
+	 * Internal storage for categories on the OutputPage, stored as an array:
+	 * * sortKey: category title text as a sort key,
+	 * * type: category type (hidden,normal)
+	 * * title: category title,
+	 * * link: link string, nullable to support ::setCategoryLinks()
+	 *
+	 * @var list<array{sortKey:string,type:'normal'|'hidden',title:string,link:?string}>
+	 */
+	private array $mCategoryData = [];
+
+	/**
+	 * Keep track of whether mCategoryData has been
+	 * sorted.  We do this on-demand to avoid redundant sorts
+	 * of incremental additions to the category list.
+	 */
+	private bool $mCategoriesSorted = true;
+
+	/**
 	 * @var string[]
 	 * @deprecated since 1.38; will be made private (T301020)
 	 */
@@ -1611,6 +1629,7 @@ class OutputPage extends ContextSource {
 			$linkRenderer = $services->getLinkRenderer();
 			$languageConverter = $services->getLanguageConverterFactory()
 				->getLanguageConverter( $services->getContentLanguage() );
+			$collation = $services->getCollationFactory()->getCategoryCollation();
 			foreach ( $categories as $category => $type ) {
 				// array keys will cast numeric category names to ints, so cast back to string
 				$category = (string)$category;
@@ -1629,9 +1648,23 @@ class OutputPage extends ContextSource {
 					continue;
 				}
 				$text = $languageConverter->convertHtml( $title->getText() );
+				$link = $linkRenderer->makeLink( $title, new HtmlArmor( $text ) );
+				$this->mCategoryData[] = [
+					'sortKey' => $collation->getSortKey( $text ),
+					'type' => $type,
+					'title' => $title->getText(),
+					'link' => $link,
+				];
+				$this->mCategoriesSorted = false;
+				// Setting mCategories and mCategoryLinks is redundant here,
+				// but it is needed for compatibility until mCategories and
+				// mCategoryLinks are made private (T301020)
 				$this->mCategories[$type][] = $title->getText();
-				$this->mCategoryLinks[$type][] = $linkRenderer->makeLink( $title, new HtmlArmor( $text ) );
+				$this->mCategoryLinks[$type][] = $link;
 			}
+		} else {
+			// Conservatively assume the hook left the categories unsorted.
+			$this->mCategoriesSorted = false;
 		}
 	}
 
@@ -1680,6 +1713,10 @@ class OutputPage extends ContextSource {
 	public function setCategoryLinks( array $categories ) {
 		wfDeprecated( __METHOD__, '1.43' );
 		$this->mCategoryLinks = [];
+		foreach ( $this->mCategoryData as &$arr ) {
+			// null out the 'link' entry for existing category data
+			$arr['link'] = null;
+		}
 		$this->addCategoryLinks( $categories );
 	}
 
@@ -1693,6 +1730,7 @@ class OutputPage extends ContextSource {
 	 * @return-taint none
 	 */
 	public function getCategoryLinks() {
+		$this->maybeSortCategories();
 		return $this->mCategoryLinks;
 	}
 
@@ -1706,6 +1744,7 @@ class OutputPage extends ContextSource {
 	 * @return string[]
 	 */
 	public function getCategories( $type = 'all' ) {
+		$this->maybeSortCategories();
 		if ( $type === 'all' ) {
 			$allCategories = [];
 			foreach ( $this->mCategories as $categories ) {
@@ -1717,6 +1756,45 @@ class OutputPage extends ContextSource {
 			throw new InvalidArgumentException( 'Invalid category type given: ' . $type );
 		}
 		return $this->mCategories[$type];
+	}
+
+	/**
+	 * Ensure that the category lists are sorted, so that we don't
+	 * inadvertently depend on the exact evaluation order of various
+	 * ParserOutput fragments.
+	 */
+	private function maybeSortCategories(): void {
+		if ( $this->mCategoriesSorted ) {
+			return;
+		}
+		// Check wiki configuration...
+		$sortCategories = $this->getConfig()->get( MainConfigNames::SortedCategories );
+		// ...but allow override with query parameter.
+		$sortCategories = $this->getRequest()->getFuzzyBool( 'sortcat', $sortCategories );
+		if ( $sortCategories ) {
+			// Primary sort key is the first element of category data, but
+			// break ties by looking at the other elements.
+			usort( $this->mCategoryData, static function ( $a, $b ): int {
+				return $a['type'] <=> $b['type'] ?:
+					$a['sortKey'] <=> $b['sortKey'] ?:
+					$a['title'] <=> $b['sortKey'] ?:
+					$a['link'] <=> $b['link'];
+			} );
+		}
+		// Rebuild mCategories and mCategoryLinks
+		$this->mCategories = [
+			'hidden' => [],
+			'normal' => [],
+		];
+		$this->mCategoryLinks = [];
+		foreach ( $this->mCategoryData as $c ) {
+			$this->mCategories[$c['type']][] = $c['title'];
+			if ( $c['link'] !== null ) {
+				// This test only needed because of ::setCategoryLinks()
+				$this->mCategoryLinks[$c['type']][] = $c['link'];
+			}
+		}
+		$this->mCategoriesSorted = true;
 	}
 
 	/**

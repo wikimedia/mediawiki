@@ -3987,6 +3987,12 @@ class MainConfigNames {
 	public const TempCategoryCollations = 'TempCategoryCollations';
 
 	/**
+	 * Name constant for the SortedCategories setting, for use with Config::get()
+	 * @see MainConfigSchema::SortedCategories
+	 */
+	public const SortedCategories = 'SortedCategories';
+
+	/**
 	 * Name constant for the TrackingCategories setting, for use with Config::get()
 	 * @see MainConfigSchema::TrackingCategories
 	 * @deprecated since 1.25 Extensions should now register tracking categories using the new

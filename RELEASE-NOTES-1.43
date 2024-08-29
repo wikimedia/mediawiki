@@ -36,6 +36,10 @@ For notes on 1.42.x and older releases, see HISTORY.
   and later this option will be removed.
 * (T12347) $wgEnableProtectionIndicators - Defaults to false, setting it to true
   shows a lock icon indicator on protected pages.
+* (T373480) $wgSortedCategories - Defaults to false, setting it to true will
+  sort the categories shown on article pages.  This is an experimental setting;
+  its future will depend on community adoption and feedback on the phab task
+  is welcome.
 * …
 
 ==== Changed configuration ====

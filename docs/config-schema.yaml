@@ -7255,6 +7255,14 @@ config-schema:
             - collation: (string) The collation to use for cl_sortkey
             - fakeCollation: (string) The collation name to insert into cl_collation
             @since 1.38
+    SortedCategories:
+        default: false
+        type: boolean
+        description: |-
+            Whether to sort categories in OutputPage for display.
+            The value of CategoryCollation is used for sorting.
+            @unstable EXPERIMENTAL This feature is used for Parsoid development,
+            but its future as a core feature will depend on community uptake.
     TrackingCategories:
         default: []
         type: array
