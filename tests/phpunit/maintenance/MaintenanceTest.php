@@ -11,6 +11,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \Maintenance
+ * @covers \MediaWiki\Maintenance\MaintenanceFatalError
  * @group Database
  */
 class MaintenanceTest extends MaintenanceBaseTestCase {
@@ -672,5 +673,11 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 			'Batch size as 0' => [ 0, false ],
 			'Batch size as 150' => [ 150, true ],
 		];
+	}
+
+	public function testPurgeRedundantTextWhenNoPagesExist() {
+		// Regression test for the method breaking if no rows exist in the content_address table.
+		$this->maintenance->purgeRedundantText();
+		$this->expectOutputRegex( '/0 inactive items found[\s\S]*(?!Deleting)/' );
 	}
 }

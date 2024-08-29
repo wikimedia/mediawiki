@@ -1034,12 +1034,16 @@ abstract class Maintenance {
 
 		# Get the IDs of all text records not in these sets
 		$this->output( 'Searching for inactive text records...' );
-		$res = $dbw->newSelectQueryBuilder()
+		$textTableQueryBuilder = $dbw->newSelectQueryBuilder()
 			->select( 'old_id' )
 			->distinct()
-			->from( 'text' )
-			->where( $dbw->expr( 'old_id', '!=', $cur ) )
-			->caller( __METHOD__ )->fetchResultSet();
+			->from( 'text' );
+		if ( count( $cur ) ) {
+			$textTableQueryBuilder->where( $dbw->expr( 'old_id', '!=', $cur ) );
+		}
+		$res = $textTableQueryBuilder
+			->caller( __METHOD__ )
+			->fetchResultSet();
 		$old = [];
 		foreach ( $res as $row ) {
 			$old[] = $row->old_id;
