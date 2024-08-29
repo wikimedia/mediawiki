@@ -636,6 +636,21 @@
 			}
 		],
 
+		mn: [
+			{
+				word: 'Википедиа',
+				grammarForm: 'genitive',
+				expected: 'Википедиагийн',
+				description: 'Grammar test for genitive case'
+			},
+			{
+				word: 'Викитолийн',
+				grammarForm: 'genitive',
+				expected: 'Викитоль',
+				description: 'Grammar test for genitive case'
+			}
+		],
+
 		uk: [
 			{
 				word: 'Вікіпедія',
