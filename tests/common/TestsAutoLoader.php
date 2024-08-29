@@ -208,6 +208,7 @@ $wgAutoloadClasses += [
 	'DummyConverter' => "$testDir/phpunit/mocks/languages/DummyConverter.php",
 	'LanguageClassesTestCase' => "$testDir/phpunit/includes/language/LanguageClassesTestCase.php",
 	'LanguageConverterTestTrait' => "$testDir/phpunit/includes/language/LanguageConverterTestTrait.php",
+	'MessageTest' => "$testDir/phpunit/includes/language/MessageTest.php",
 
 	# tests/phpunit/includes/libs
 	'BagOStuffTestBase' => "$testDir/phpunit/includes/libs/objectcache/BagOStuffTestBase.php",
