@@ -2168,7 +2168,7 @@ abstract class ApiBase extends ContextSource {
 		// Build a map of extension directories to extension info
 		if ( self::$extensionInfo === null ) {
 			$extDir = $this->getConfig()->get( MainConfigNames::ExtensionDirectory );
-			$baseDir = $this->getConfig()->get( MainConfigNames::BaseDirectory );
+			$baseDir = MW_INSTALL_PATH;
 			self::$extensionInfo = [
 				realpath( __DIR__ ) ?: __DIR__ => [
 					'path' => $baseDir,
