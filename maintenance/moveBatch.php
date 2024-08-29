@@ -71,7 +71,7 @@ class MoveBatch extends Maintenance {
 		} else {
 			$user = User::newFromName( $username );
 		}
-		if ( !$user ) {
+		if ( !$user || !$user->isRegistered() ) {
 			$this->fatalError( "Invalid username" );
 		}
 		StubGlobalUser::setUser( $user );
