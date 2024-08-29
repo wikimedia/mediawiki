@@ -2449,7 +2449,7 @@
 	"date": "Sejak tahun (dan sebelumnya):",
 	"sp-contributions-blocklog": "log sekatan",
 	"sp-contributions-suppresslog": "sumbangan {{GENDER:$1|pengguna}} yang ditahan",
-	"sp-contributions-deleted": "sumbangan {{GENDER:$1|user}} yang dihapus",
+	"sp-contributions-deleted": "sumbangan {{GENDER:$1|pengguna}} yang dihapus",
 	"sp-contributions-uploads": "muat naik",
 	"sp-contributions-logs": "log",
 	"sp-contributions-talk": "perbincangan",

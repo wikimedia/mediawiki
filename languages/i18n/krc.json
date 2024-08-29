@@ -3332,7 +3332,7 @@
 	"tag-hidden": "$1 (таша тег)",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Эн|Энле}}]]: $2",
 	"tag-mw-contentmodelchange": "Ичиндеги модель тюрлениую",
-	"tag-mw-contentmodelchange-description": "Бетни[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentМодель ичиндегисини тюрлендирген моделни] тюзетеди",
+	"tag-mw-contentmodelchange-description": "Бетни ичиндегисини тюрлендирген моделни тюзетеди",
 	"tag-mw-new-redirect": "Джангы джангыдан джибериу",
 	"tag-mw-new-redirect-description": "Джангы джангыдан джибериу этген неда бетни джангыдан джибериуге айландыргъан тюзитеуле",
 	"tag-mw-removed-redirect": "Джангыдан джибериу къоратылгъанды",
