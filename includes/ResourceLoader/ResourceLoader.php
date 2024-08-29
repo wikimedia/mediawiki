@@ -2046,7 +2046,6 @@ MESSAGE;
 	 * @return Less_Parser
 	 */
 	public function getLessCompiler( array $vars = [], array $importDirs = [] ) {
-		global $IP;
 		// When called from the installer, it is possible that a required PHP extension
 		// is missing (at least for now; see T49564). If this is the case, throw an
 		// exception (caught by the installer) to prevent a fatal error later on.
@@ -2054,7 +2053,7 @@ MESSAGE;
 			throw new RuntimeException( 'MediaWiki requires the less.php parser' );
 		}
 
-		$importDirs[] = "$IP/resources/src/mediawiki.less";
+		$importDirs[] = MW_INSTALL_PATH . '/resources/src/mediawiki.less';
 
 		$parser = new Less_Parser;
 		$parser->ModifyVars( $vars );
@@ -2067,18 +2066,17 @@ MESSAGE;
 		// Add a callback to the import dirs array for path remapping
 		$codexDevDir = $this->getConfig()->get( MainConfigNames::CodexDevelopmentDir );
 		$formattedImportDirs[] = static function ( $path ) use ( $codexDevDir ) {
-			global $IP;
 			// For each of the Codex import paths, use CodexDevelopmentDir if it's set
 			$importMap = [
 				'@wikimedia/codex-icons/' => $codexDevDir !== null ?
 					"$codexDevDir/packages/codex-icons/dist/" :
-					"$IP/resources/lib/codex-icons/",
+					MW_INSTALL_PATH . '/resources/lib/codex-icons/',
 				'mediawiki.skin.codex/' => $codexDevDir !== null ?
 					"$codexDevDir/packages/codex/dist/" :
-					"$IP/resources/lib/codex/",
+					MW_INSTALL_PATH . '/resources/lib/codex/',
 				'mediawiki.skin.codex-design-tokens/' => $codexDevDir !== null ?
 					"$codexDevDir/packages/codex-design-tokens/dist/" :
-					"$IP/resources/lib/codex-design-tokens/",
+					MW_INSTALL_PATH . '/resources/lib/codex-design-tokens/',
 				'@wikimedia/codex-design-tokens/' => /** @return never */ static function ( $unused_path ) {
 					throw new RuntimeException(
 						'Importing from @wikimedia/codex-design-tokens is not supported. ' .
