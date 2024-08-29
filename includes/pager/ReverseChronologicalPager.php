@@ -294,16 +294,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 			$year++;
 		}
 
-		// Y2K38 bug
-		if ( $year > 2032 ) {
-			$year = 2032;
-		}
-
 		$ymd = sprintf( "%04d%02d%02d", $year, $month, $day );
-
-		if ( $ymd > '20320101' ) {
-			$ymd = '20320101';
-		}
 
 		return MWTimestamp::getInstance( "{$ymd}000000" );
 	}
