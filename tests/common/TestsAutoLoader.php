@@ -111,8 +111,8 @@ $wgAutoloadClasses += [
 	# tests/phpunit/includes/cache
 	'LinkCacheTestTrait' => "$testDir/phpunit/includes/cache/LinkCacheTestTrait.php",
 
-	# tests/phpunit/includes/changes
-	'TestRecentChangesHelper' => "$testDir/phpunit/includes/changes/TestRecentChangesHelper.php",
+	# tests/phpunit/includes/recentchanges
+	'TestRecentChangesHelper' => "$testDir/phpunit/includes/recentchanges/TestRecentChangesHelper.php",
 
 	# tests/phpunit/includes/config
 	'TestAllServiceOptionsUsed' => "$testDir/phpunit/includes/config/TestAllServiceOptionsUsed.php",
