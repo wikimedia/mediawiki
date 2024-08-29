@@ -1,0 +1,14 @@
+{
+	"$schema": "https://www.mediawiki.org/test-schema/test1",
+	"context": "test",
+	"user": {
+		"name": [ "NOT A STRING" ],
+		"contact": {
+			"email": "jsmith@example.test",
+			"phone": {
+				"country-code": "++49",
+				"number": "12345678"
+			}
+		}
+	}
+}

@@ -1,0 +1,21 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "https://www.mediawiki.org/test-schema/test2",
+	"definitions": {
+		"User": {
+			"required": [ "name" ],
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string"
+				},
+				"contact": {
+					"$ref": "#/definitions/Contact"
+				}
+			}
+		},
+		"Contact": {
+			"$ref": "https://www.mediawiki.org/test-schema/test3#/definitions/Contact"
+		}
+	}
+}

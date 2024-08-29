@@ -53,6 +53,7 @@ $wgAutoloadClasses += [
 	# tests/phpunit
 	'DynamicPropertyTestHelper' => "$testDir/phpunit/DynamicPropertyTestHelper.php",
 	'EmptyResourceLoader' => "$testDir/phpunit/ResourceLoaderTestCase.php",
+	'JsonSchemaAssertionTrait' => "$testDir/phpunit/JsonSchemaAssertionTrait.php",
 	'MediaWiki\\Tests\\ResourceLoader\\EmptyResourceLoader' => "$testDir/phpunit/ResourceLoaderTestCase.php",
 	'HamcrestPHPUnitIntegration' => "$testDir/phpunit/HamcrestPHPUnitIntegration.php",
 	'MediaWikiCoversValidator' => "$testDir/phpunit/MediaWikiCoversValidator.php",

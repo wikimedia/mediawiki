@@ -1,0 +1,21 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "https://www.mediawiki.org/test-schema/test3",
+	"definitions": {
+		"Contact": {
+			"properties": {
+				"email": { "type": "string" },
+				"phone": { "$ref": "#/definitions/Phone" }
+			},
+			"additionalProperties": false
+		},
+		"Phone": {
+			"required": [ "country-code", "number" ],
+			"properties": {
+				"country-code": { "type": "string" },
+				"number": { "type": "string" }
+			}
+		}
+	}
+
+}

@@ -1,7 +1,5 @@
 <?php
 
-use JsonSchema\Constraints\Constraint;
-use JsonSchema\Validator as JsonValidator;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
@@ -41,6 +39,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class RestStructureTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;
+	use JsonSchemaAssertionTrait;
 
 	/** @var ?Router */
 	private $router = null;
@@ -207,8 +206,7 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 
 			if ( isset( $settings[ ArrayDef::PARAM_SCHEMA ] ) ) {
 				try {
-					self::validateSchema( $settings[ ArrayDef::PARAM_SCHEMA ] );
-					$this->addToAssertionCount( 1 );
+					$this->assertValidJsonSchema( $settings[ ArrayDef::PARAM_SCHEMA ] );
 				} catch ( LogicException $e ) {
 					$this->fail( "Invalid JSON schema for parameter {$settings['name']}: " . $e->getMessage() );
 				}
@@ -358,28 +356,33 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	/**
-	 * Validate a JSON schema.
-	 *
-	 * @param array $schema The schema to validate.
-	 * @throws LogicException if the schema is invalid
-	 */
-	public static function validateSchema( array $schema ): void {
-		$validator = new JsonValidator();
-		// Load the draft-04 schema from the local file
-		$draft04Schema = json_decode( file_get_contents( __DIR__ . '/../../../vendor/justinrainbow/json-schema/dist/schema/json-schema-draft-04.json' ) );
+	public function provideModuleDefinitionFiles() {
+		$conf = MediaWikiServices::getInstance()->getMainConfig();
+		$entryPoint = TestingAccessWrapper::newFromClass( EntryPoint::class );
+		$routeFiles = $entryPoint->getRouteFiles( $conf );
 
-		// Validate the schema itself against the meta-schema
-		$validator->validate( $schema, $draft04Schema, Constraint::CHECK_MODE_TYPE_CAST );
-
-		if ( !$validator->isValid() ) {
-			$errors = $validator->getErrors();
-			$messages = array_map( static function ( $error ) {
-				return sprintf( "[%s] %s", $error['property'], $error['message'] );
-			}, $errors );
-
-			throw new LogicException( "Invalid JSON schema: " . implode( "; ", $messages ) );
+		foreach ( $routeFiles as $file ) {
+			$moduleSpec = self::loadJsonData( $file );
+			if ( !isset( $moduleSpec->mwapi ) ) {
+				// old-school flat route file, skip
+				continue;
+			}
+			yield $file => [ $moduleSpec ];
 		}
+	}
+
+	/**
+	 * @dataProvider provideModuleDefinitionFiles
+	 */
+	public function testModuleDefinitionFiles( stdClass $moduleSpec ) {
+		$schemaFile = MW_INSTALL_PATH . '/docs/rest/mwapi-1.0.json';
+
+		$resolve = [
+			'https://spec.openapis.org/oas/3.0/schema/2021-09-28#' =>
+				__DIR__ . '/../integration/includes/Rest/Handler/data/OpenApi-3.0.json',
+		];
+
+		$this->assertMatchesJsonSchema( $schemaFile, $moduleSpec, $resolve );
 	}
 
 }
