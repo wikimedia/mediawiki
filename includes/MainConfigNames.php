@@ -3136,6 +3136,12 @@ class MainConfigNames {
 	public const ApiFrameOptions = 'ApiFrameOptions';
 
 	/**
+	 * Name constant for the AllowAuthenticatedCrossOrigin setting, for use with Config::get()
+	 * @see MainConfigSchema::AllowAuthenticatedCrossOrigin
+	 */
+	public const AllowAuthenticatedCrossOrigin = 'AllowAuthenticatedCrossOrigin';
+
+	/**
 	 * Name constant for the CSPHeader setting, for use with Config::get()
 	 * @see MainConfigSchema::CSPHeader
 	 */

@@ -735,7 +735,12 @@ class ApiMain extends ApiBase {
 			$request->getRawVal( 'origin' ) === '*' ||
 			// Header to be used from XMLHTTPRequest when the request might
 			// otherwise be used for XSS.
-			$request->getHeader( 'Treat-as-Untrusted' ) !== false
+			$request->getHeader( 'Treat-as-Untrusted' ) !== false ||
+			(
+				// Authenticated CORS with unsupported session provider (including preflight request)
+				$request->getCheck( 'crossorigin' ) &&
+				!$request->getSession()->getProvider()->safeAgainstCsrf()
+			)
 		) {
 			$this->lacksSameOriginSecurity = true;
 			return true;
@@ -1079,9 +1084,11 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * Check the &origin= query parameter against the Origin: HTTP header and respond appropriately.
+	 * Check the &origin= and/or &crossorigin= query parameters and respond appropriately.
 	 *
-	 * If no origin parameter is present, nothing happens.
+	 * If no origin or crossorigin parameter is present, nothing happens.
+	 * If both are present, a 403 status code is set and false is returned.
+	 *
 	 * If an origin parameter is present but doesn't match the Origin header, a 403 status code
 	 * is set and false is returned.
 	 * If the parameter and the header do match, the header is checked against $wgCrossSiteAJAXdomains
@@ -1090,23 +1097,56 @@ class ApiMain extends ApiBase {
 	 * https://www.w3.org/TR/cors/#resource-requests
 	 * https://www.w3.org/TR/cors/#resource-preflight-requests
 	 *
+	 * If the crossorigin parameter is set, but the current session provider is not safe against CSRF,
+	 * a 403 status code is set and false is returned.
+	 * If it is set and the session is safe, then the appropriate CORS headers are set.
+	 *
 	 * @return bool False if the caller should abort (403 case), true otherwise (all other cases)
 	 */
 	protected function handleCORS() {
 		$originParam = $this->getParameter( 'origin' ); // defaults to null
-		if ( $originParam === null ) {
-			// No origin parameter, nothing to do
+		$crossOriginParam = $this->getParameter( 'crossorigin' ); // defaults to false
+		if ( $originParam === null && !$crossOriginParam ) {
+			// No origin/crossorigin parameter, nothing to do
 			return true;
 		}
 
 		$request = $this->getRequest();
 		$response = $request->response();
+		$requestedMethod = $request->getHeader( 'Access-Control-Request-Method' );
+		$preflight = $request->getMethod() === 'OPTIONS' && $requestedMethod !== false;
 
 		$allowTiming = false;
 		$varyOrigin = true;
 
-		if ( $originParam === '*' ) {
-			// Request for anonymous CORS
+		if ( $originParam !== null && $crossOriginParam ) {
+			$response->statusHeader( 403 );
+			$response->header( 'Cache-control: no-cache' );
+			echo "'origin' and 'crossorigin' parameters cannot be used together\n";
+
+			return false;
+		}
+		if ( $crossOriginParam && !$request->getSession()->getProvider()->safeAgainstCsrf() && !$preflight ) {
+			$response->statusHeader( 403 );
+			$response->header( 'Cache-control: no-cache' );
+			$language = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
+			$described = $request->getSession()->getProvider()->describe( $language );
+			echo "'crossorigin' cannot be used with $described\n";
+
+			return false;
+		}
+		if ( $crossOriginParam && !$this->getConfig()->get( MainConfigNames::AllowAuthenticatedCrossOrigin ) ) {
+			$response->statusHeader( 403 );
+			$response->header( 'Cache-control: no-cache' );
+			echo "'crossorigin' support is not enabled on this wiki\n";
+
+			return false;
+		}
+
+		if ( $originParam === '*' || $crossOriginParam ) {
+			// Request for CORS without browser-supplied credentials (e.g. cookies):
+			// may be anonymous (origin=*) or authenticated with request-supplied
+			// credentials (crossorigin=1 + Authorization header).
 			// Technically we should check for the presence of an Origin header
 			// and not process it as CORS if it's not set, but that would
 			// require us to vary on Origin for all 'origin=*' requests which
@@ -1150,8 +1190,6 @@ class ApiMain extends ApiBase {
 		}
 
 		if ( $matchedOrigin ) {
-			$requestedMethod = $request->getHeader( 'Access-Control-Request-Method' );
-			$preflight = $request->getMethod() === 'OPTIONS' && $requestedMethod !== false;
 			if ( $preflight ) {
 				// We allow the actual request to send the following headers
 				$requestedHeaders = $request->getHeader( 'Access-Control-Request-Headers' );
@@ -2283,6 +2321,7 @@ class ApiMain extends ApiBase {
 			'curtimestamp' => false,
 			'responselanginfo' => false,
 			'origin' => null,
+			'crossorigin' => false,
 			'uselang' => [
 				ParamValidator::PARAM_DEFAULT => self::API_DEFAULT_USELANG,
 			],

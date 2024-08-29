@@ -3121,6 +3121,12 @@ $wgEditPageFrameOptions = null;
 $wgApiFrameOptions = null;
 
 /**
+ * Config variable stub for the AllowAuthenticatedCrossOrigin setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::AllowAuthenticatedCrossOrigin
+ */
+$wgAllowAuthenticatedCrossOrigin = null;
+
+/**
  * Config variable stub for the CSPHeader setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::CSPHeader
  */

@@ -1813,6 +1813,7 @@ return [
 			'BreakFrames' => false,
 			'EditPageFrameOptions' => 'DENY',
 			'ApiFrameOptions' => 'DENY',
+			'AllowAuthenticatedCrossOrigin' => false,
 			'CSPHeader' => false,
 			'CSPReportOnlyHeader' => false,
 			'CSPFalsePositiveUrls' => [
@@ -2900,6 +2901,7 @@ return [
 				'string',
 				'boolean',
 			],
+			'AllowAuthenticatedCrossOrigin' => 'boolean',
 			'CSPHeader' => [
 				'boolean',
 				'object',

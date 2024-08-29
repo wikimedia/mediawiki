@@ -40,6 +40,7 @@
 	"apihelp-main-param-curtimestamp": "{{doc-apihelp-param|main|curtimestamp}}",
 	"apihelp-main-param-responselanginfo": "{{doc-apihelp-param|main|responselanginfo}}",
 	"apihelp-main-param-origin": "{{doc-apihelp-param|main|origin}}",
+	"apihelp-main-param-crossorigin": "{{doc-apihelp-param|main|crossorigin}}",
 	"apihelp-main-param-uselang": "{{doc-apihelp-param|main|uselang}}",
 	"apihelp-main-param-variant": "{{doc-apihelp-param|main|variant}}",
 	"apihelp-main-param-errorformat": "{{doc-apihelp-param|main|errorformat}}",
