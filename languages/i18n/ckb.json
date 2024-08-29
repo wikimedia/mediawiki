@@ -144,7 +144,7 @@
 	"subcategories": "ژێرپۆلەکان",
 	"category-media-header": "میدیای پۆلی «$1»",
 	"category-empty": "<em>ئەم پۆلە ھەنووکە ھیچ پەڕە یان پەڕگەیەک لە خۆ ناگرێت.‌</em>",
-	"hidden-categories": "{{PLURAL:$1|پۆلی شارداوە|پۆلە شارداوەکان}}",
+	"hidden-categories": "{{PLURAL:$1|پۆلی شاردراوە|پۆلە شاردراوەکان}}",
 	"hidden-category-category": "پۆلە شاردراوەکان",
 	"category-subcat-count": "{{PLURAL:$2|ئەم پۆلە تەنیا ژێرپۆلی ژێرەوەی تێدایە.|ئەم پۆلە {{PLURAL:$1|ژێرپۆل|$1 ژێرپۆل}}ی ژێرەوەی تێدایە، لە سەرجەم $2 ژێرپۆل.}}",
 	"category-subcat-count-limited": "ئەم هاوپۆلە {{PLURAL:$1|ژێرهاوپۆلی}} لەخۆ گرتووە.",
