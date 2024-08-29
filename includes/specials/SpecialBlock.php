@@ -152,6 +152,10 @@ class SpecialBlock extends FormSpecialPage {
 
 		if ( $this->useCodex ) {
 			$this->getOutput()->addModules( 'mediawiki.special.block.codex' );
+			$this->codexFormData[ 'blockAlreadyBlocked' ] = $this->alreadyBlocked;
+			$this->codexFormData[ 'blockTargetUser' ] = $this->target instanceof UserIdentity ?
+				$this->target->getName() :
+				$this->target ?? null;
 			$this->getOutput()->addJsConfigVars( $this->codexFormData );
 		}
 	}

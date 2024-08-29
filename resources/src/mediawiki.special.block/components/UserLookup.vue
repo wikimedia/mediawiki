@@ -2,6 +2,7 @@
 	<cdx-field :is-fieldset="true">
 		<cdx-lookup
 			v-model:selected="wrappedModel"
+			v-model:input-value="wrappedModel"
 			name="wpTarget"
 			:menu-items="menuItems"
 			:start-icon="cdxIconSearch"
@@ -36,7 +37,7 @@ module.exports = exports = defineComponent( {
 	],
 	setup( props, { emit } ) {
 		const menuItems = ref( [] );
-		const currentSearchTerm = ref( '' );
+		const currentSearchTerm = ref( props.modelValue || '' );
 		const wrappedModel = useModelWrapper(
 			toRef( props, 'modelValue' ),
 			emit
@@ -54,7 +55,6 @@ module.exports = exports = defineComponent( {
 			const api = new mw.Api();
 
 			const params = {
-				origin: '*',
 				action: 'query',
 				format: 'json',
 				formatversion: 2,
@@ -96,13 +96,10 @@ module.exports = exports = defineComponent( {
 					}
 
 					// Build an array of menu items.
-					const results = data.allusers.map( ( result ) => ( {
+					menuItems.value = data.allusers.map( ( result ) => ( {
 						label: result.name,
 						value: result.name
 					} ) );
-
-					// Update menuItems.
-					menuItems.value = results;
 				} )
 				.catch( () => {
 					// On error, set results to empty.

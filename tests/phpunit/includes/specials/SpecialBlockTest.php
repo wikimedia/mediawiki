@@ -57,6 +57,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->overrideConfigValues( [
 			MainConfigNames::BlockAllowsUTEdit => true,
 			MainConfigNames::EnablePartialActionBlocks => true,
+			MainConfigNames::UseCodexSpecialBlock => false,
 		] );
 		$page = $this->newSpecialPage();
 		$wrappedPage = TestingAccessWrapper::newFromObject( $page );
@@ -72,9 +73,28 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertArrayHasKey( 'PreviousTarget', $fields );
 		$this->assertArrayHasKey( 'Confirm', $fields );
 		$this->assertArrayHasKey( 'EditingRestriction', $fields );
+		$this->assertArrayNotHasKey( 'options-messages', $fields['EditingRestriction'] );
+		$this->assertArrayNotHasKey( 'option-descriptions-messages', $fields['EditingRestriction'] );
 		$this->assertArrayHasKey( 'PageRestrictions', $fields );
 		$this->assertArrayHasKey( 'NamespaceRestrictions', $fields );
 		$this->assertArrayHasKey( 'ActionRestrictions', $fields );
+	}
+
+	/**
+	 * @covers ::getFormFields
+	 */
+	public function testGetFormFieldsCodex(): void {
+		$this->overrideConfigValues( [
+			MainConfigNames::BlockAllowsUTEdit => true,
+			MainConfigNames::EnablePartialActionBlocks => true,
+			MainConfigNames::UseCodexSpecialBlock => true,
+		] );
+		$page = $this->newSpecialPage();
+		$wrappedPage = TestingAccessWrapper::newFromObject( $page );
+		$fields = $wrappedPage->getFormFields();
+		$this->assertIsArray( $fields );
+		$this->assertArrayHasKey( 'options-messages', $fields[ 'EditingRestriction' ] );
+		$this->assertArrayHasKey( 'option-descriptions-messages', $fields[ 'EditingRestriction' ] );
 	}
 
 	/**

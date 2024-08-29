@@ -1,5 +1,15 @@
 <template>
-	<user-lookup v-model="targetUser"></user-lookup>
+	<cdx-message
+		v-if="targetUser && alreadyBlocked"
+		type="error"
+		inline
+	>
+		{{ $i18n( 'ipb-needreblock', targetUser ).text() }}
+	</cdx-message>
+	<user-lookup
+		v-model="targetUser"
+		@input="alreadyBlocked = false"
+	></user-lookup>
 	<target-active-blocks></target-active-blocks>
 	<target-block-log></target-block-log>
 	<block-type-field
@@ -25,18 +35,18 @@
 	></block-details-field>
 	<hr class="mw-block-hr">
 	<cdx-button
-		action="progressive"
+		action="destructive"
 		weight="primary"
 		@click="handleSubmit"
 		class="mw-block-submit"
 	>
-		{{ $i18n( 'block-save' ).text() }}
+		{{ submitBtnMsg }}
 	</cdx-button>
 </template>
 
 <script>
 const { defineComponent, ref } = require( 'vue' );
-const { CdxButton } = require( '@wikimedia/codex' );
+const { CdxButton, CdxMessage } = require( '@wikimedia/codex' );
 const UserLookup = require( './components/UserLookup.vue' );
 const TargetActiveBlocks = require( './components/TargetActiveBlocks.vue' );
 const TargetBlockLog = require( './components/TargetBlockLog.vue' );
@@ -56,10 +66,11 @@ module.exports = exports = defineComponent( {
 		ExpiryField,
 		ReasonField,
 		BlockDetailsField,
-		CdxButton
+		CdxButton,
+		CdxMessage
 	},
 	setup() {
-		const targetUser = ref( '' );
+		const targetUser = ref( mw.config.get( 'blockTargetUser' ) );
 		const expiry = ref( {} );
 
 		const blockPartialOptions = mw.config.get( 'partialBlockActionOptions' ) ?
@@ -206,9 +217,13 @@ module.exports = exports = defineComponent( {
 				} );
 		}
 
+		const alreadyBlocked = mw.config.get( 'blockAlreadyBlocked' );
+
 		return {
 			targetUser,
 			expiry,
+			alreadyBlocked,
+			submitBtnMsg: mw.message( alreadyBlocked ? 'ipb-change-block' : 'ipbsubmit' ).text(),
 			handleSubmit,
 			blockDetailsOptions,
 			blockDetailsSelected,

@@ -31,6 +31,12 @@ config.global.directives = {
 	}
 };
 
+function ApiMock() {}
+ApiMock.prototype.get = jest.fn();
+ApiMock.prototype.post = jest.fn();
+ApiMock.prototype.postWithEditToken = jest.fn();
+ApiMock.prototype.postWithToken = jest.fn();
+
 function RestMock() {}
 RestMock.prototype.get = jest.fn();
 
@@ -41,6 +47,7 @@ TitleMock.prototype.getUrl = jest.fn();
 
 // Mock the mw global object.
 const mw = {
+	Api: ApiMock,
 	log: {
 		error: jest.fn(),
 		warn: jest.fn()
