@@ -149,7 +149,10 @@
 			"아라",
 			"Khsmty",
 			"Yushu-kasai",
-			"Cookai1205"
+			"Cookai1205",
+			"Amire80",
+			"FlatLanguage",
+			"TAKAHASHI Shuuji"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -2598,9 +2601,9 @@
 	"deletereason-dropdown": "*よくある削除理由\n** スパム\n** 荒らし\n** 著作権侵害\n** 投稿者依頼\n** 破損リダイレクト",
 	"delete-edit-reasonlist": "削除理由を編集",
 	"delete-edit-reasonlist-suppress": "秘匿理由を編集",
-	"delete-toobig": "このページには、$1版を超える編集履歴があります。\nこのようなページの削除は、{{SITENAME}}の偶発的な問題を避けるため、制限されています。",
-	"delete-toomanyrevisions": "$1件以上の{{PLURAL:$1|版}}を一括削除しようとしています。このような操作は、{{SITENAME}}に意外な混乱を招かないよう、制限されています。",
-	"delete-warning-toobig": "このページには、 $1版を超える編集履歴があります。\n削除すると、{{SITENAME}}のデータベース処理に大きな負荷がかかります。\n十分に注意してください。",
+	"delete-toobig": "このページには、$1版を超える巨大な編集履歴があります。\nこのようなページの削除は、{{SITENAME}}の運用に支障をもたらしかねないため、制限されています。",
+	"delete-toomanyrevisions": "あなたは$1を超える数の{{PLURAL:$1|版}}を一括削除しようとしています。\nこのような操作は、{{SITENAME}}の運用に支障をもたらしかねないため、制限されています。",
+	"delete-warning-toobig": "このページには、 $1版を超える巨大な編集履歴があります。\n削除するときは、{{SITENAME}}のデータベース運用に支障が出ることがありますので、\n十分注意してください。",
 	"delete-error-associated-alreadytalk": "議論ページの付随する議論ページを削除できません。",
 	"delete-error-associated-doesnotexist": "存在しない付随する議論ページを削除できません。",
 	"deleteprotected": "このページは保護されているため削除できません。",
@@ -3516,7 +3519,7 @@
 	"semicolon-separator": "；",
 	"comma-separator": "、",
 	"colon-separator": ":&#32;",
-	"word-separator": "",
+	"word-separator": "&#32;",
 	"ellipsis": "…",
 	"percent": "$1%",
 	"brackets": "[$1]",

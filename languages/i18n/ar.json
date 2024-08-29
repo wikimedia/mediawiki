@@ -113,7 +113,8 @@
 			"نصوح",
 			"وهراني",
 			"아라",
-			"Gerges"
+			"Gerges",
+			"Mohammed Qays"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -777,7 +778,7 @@
 	"autoblockedtext": "تم منع عنوان الآيبي الخاص بك تلقائيا لأنه تم استخدامه من قبل مستخدم آخر تم منعه بواسطة $1.\nالسبب المعطى هو <em>$2</em>.\n\n:<em>$2</em>\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}} \n\nيمكنك استخدام ميزة \"{{int:emailuser}}\" إذا تم تحديد عنوان بريد إلكتروني صالح من خلال [[Special:Preferences|تفضيلاتك]] ولم تٌمنَع من استخدامه.\n\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"systemblockedtext": "تم منع اسم المستخدم أو عنوان IP الخاص بك تلقائيًا بواسطة MediaWiki. والسبب الموضح هو::<em>$2</em>.*{{int:blockedtext-start-time|$8}}*{{int:blockedtext-expiration-time|$6}}*{{int:blockedtext-intended-blockee|$7}}{{int:blockedtext-block-ip|$3}}{{int:blockedtext-include-details\n-queries}}",
 	"blockedtext-tempuser": "\n<strong>تم حظر اسم المستخدم أو عنوان IP الخاص بك.</strong> ! N !! N! {{int: blocktext-made-by | $1 }}! N! {{int: blocktext-reason-comment | $2 }}.! N !! N! * {{int: blocktext-start-time | $8 }}! N! * {{int: blocktext-expiration-time | $6 }}! N! * {{int: blocktext-mean-blockee | $7 }}! N !! N! {{int: blocktext-contact-blocker-admin | $1 }}! N !! N! {{int: blocktext-block-ip | $3 }} {{int: blocktext-block-id | $5 }}! N! {{int: blocktext-include-details-queries}}",
-	"autoblockedtext-tempuser": "تم حظر عنوان IP الخاص بك تلقائيًا لأنه تم استخدامه من قبل مستخدم آخر ، تم حظره بواسطة $1 ! N! السبب المعطى هو:! N !! N !: <em>$2</em> ! N !! N! * {{int: blocktext -وقت البدء | $8 }}! N! * {{int: blocktext-expiration-time | $6 }}! N! * {{int: blocktext-mean-blockee | $7 }}! N !! N! {{int: blocktext-contact-blocker-admin | $1 }}! N !! N! {{int: blocktext-block-ip | $3 }} {{int: blocktext-block-id | $5 }}! N! {{int: blocktext-include-details-queries}}",
+	"autoblockedtext-tempuser": "مُنع عنوان الآيبي الخاص بك آلياً لأنه أستخدم من مستخدم آخر، والذي منعه $1 .\n والسبب المذكور هو:\n\n: <em>$2</em> .\n\n*{{int:blockedtext-start-time| $8 }}\n*{{int:blockedtext-expiration-time| $6 }}\n*{{int:blockedtext-intended-blockee| $7 }}\n\n{{int:blockedtext-contact-blocker-admin| $1 }}\n\n{{int:blockedtext-block-ip| $3 }} {{int:blockedtext-block-id| $5 }}\n{{int:blockedtext-include-details-queries}}",
 	"blockednoreason": "لا سبب معطى",
 	"blockedtext-composite": "<strong>تم منع اسم المستخدم أو عنوان IP الخاص بك.</strong>السبب الموضح هو::<em>$2</em>.*{{int:blockedtext-start-time|$8}}*{{int:blockedtext-expiration-longest-block|$6}}* $5{{int:blockedtext-block-ip|$3}}{{int:blockedtext-include-details-queries\n}}",
 	"blockedtext-composite-ids": "معرفات المنع ذات الصلة: $1 (قد يتم أيضا إدراج عنوان الآيبي الخاص بك في قائمة منع)",
@@ -2548,7 +2549,7 @@
 	"deletecomment": "السبب:",
 	"deleteotherreason": "سبب آخر/إضافي:",
 	"deletereasonotherlist": "سبب آخر",
-	"deletereason-dropdown": "*أسباب الحذف الشائعة\n** سخام\n** تخريب\n** خرق لحقوق التأليف والنشر\n** طلب المؤلف\n** تحويلة مكسورة",
+	"deletereason-dropdown": "* الأسباب الشائعة للحذف\n** ترجمة آلية، ومحتوى ركيك\n** رسالة عبثية\n** تم تحديث الرسالة خارجيًا\n** ترجمة رسالة قديمة (محذوفة)\n** توثيق رسالة قديمة (محذوفة)\n** موضوع مكرر\n** تحوية مكسورة\n** عنوان صفحة غير صحيح \n** رسائل غير مرغوب فيها (سبام)\n** تخريب\n** طلب المنشئ\n** انتهاك حقوق المؤلف والنشر\n** صفحة نقاش بدون محتوى",
 	"delete-edit-reasonlist": "عدل أسباب الحذف",
 	"delete-edit-reasonlist-suppress": "عدل أسباب الإخفاء",
 	"delete-toobig": "لهذه الصفحة تاريخ تعديل طويل، أكثر من {{PLURAL:$1||مراجعة واحدة|مراجعتين|$1 مراجعات|$1 مراجعة}}.\nقُيّد محذف مثل هذه الصفحات لمنع الاضطراب المفاجئة في {{SITENAME}}.",
@@ -3819,7 +3820,7 @@
 	"protectpage": "حماية صفحة",
 	"specialprotectpage-page": "الصفحة المستهدفة",
 	"specialprotectpage-submit": "انتقل إلى الصفحة",
-	"purge": "إفراغ الكاش",
+	"purge": "إفراغ الإختزان",
 	"specialpurge-page": "الصفحة المستهدفة",
 	"specialpurge-submit": "انتقل إلى صفحة",
 	"dberr-problems": "عذرا! هذا الموقع يعاني من صعوبات تقنية.",

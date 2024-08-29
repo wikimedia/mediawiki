@@ -8,7 +8,8 @@
 			"Rkupsala",
 			"לערי ריינהארט",
 			"Cgmbo",
-			"Bergerdias"
+			"Bergerdias",
+			"CapitainAfrika"
 		]
 	},
 	"tog-showhiddencats": "Monisa bakalasi ya kubûmba",
@@ -95,6 +96,7 @@
 	"permalink": "Lien ya ntangu yonso",
 	"view": "Tala",
 	"skin-view-view": "Tânga",
+	"skin-view-foreign": "Tala na $1",
 	"edit": "Soba",
 	"skin-view-edit": "Soba",
 	"create": "Tunga",
@@ -310,11 +312,13 @@
 	"action-move": "Nata",
 	"action-delete": "Kufwa",
 	"action-protect": "Keba",
+	"enhancedrc-history": "Bansoba",
 	"recentchanges": "Bansoba ya yimpa",
 	"recentchanges-label-newpage": "Nsoba yayi me sala mukânda ya yimpa.",
 	"recentchanges-label-minor": "Nsoba yayi kele ya fyoti",
 	"recentchanges-label-bot": "Nsoba yayi me salama na robo",
 	"rcshowhideminor": "$1 bansoba ya fyoti",
+	"rcshowhidebots-show": "talisa",
 	"rcshowhidemine": "$1 bansoba ya munu",
 	"diff": "nsoba (diff)",
 	"hist": "nsoba (hist)",
