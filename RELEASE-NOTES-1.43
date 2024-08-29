@@ -84,6 +84,8 @@ For notes on 1.42.x and older releases, see HISTORY.
   [[Talk:Foo]]; [[Special:TalkPage/Project:Foo]] goes to [[Project talk:Foo]].
   This allows for links by templates and tools without having to parse what
   namespaces are valid and have associated talk pages.
+* New preference: "Send password reset emails only when both email address
+  and username are provided."
 * …
 
 === New features for sysadmins in 1.43 ===

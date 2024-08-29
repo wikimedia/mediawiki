@@ -2679,12 +2679,6 @@ class MainConfigNames {
 	public const SessionProviders = 'SessionProviders';
 
 	/**
-	 * Name constant for the AllowRequiringEmailForResets setting, for use with Config::get()
-	 * @see MainConfigSchema::AllowRequiringEmailForResets
-	 */
-	public const AllowRequiringEmailForResets = 'AllowRequiringEmailForResets';
-
-	/**
 	 * Name constant for the AutoCreateTempUser setting, for use with Config::get()
 	 * @see MainConfigSchema::AutoCreateTempUser
 	 */
