@@ -760,6 +760,15 @@ class ApiParse extends ApiBase {
 	private function makeParserOptions( WikiPage $pageObj, array $params ) {
 		$popts = $pageObj->makeParserOptions( $this->getContext() );
 		$popts->setRenderReason( 'api-parse' );
+		if ( $params['usearticle'] ) {
+			# T349037: The ArticleParserOptions hook should be broadened to take
+			# a WikiPage (aka $pageObj) instead of an Article.  But for now
+			# fake the Article.
+			$article = Article::newFromWikiPage( $pageObj, $this->getContext() );
+			# Allow extensions to vary parser options used for article rendering,
+			# in the same way Article does
+			$this->getHookRunner()->onArticleParserOptions( $article, $popts );
+		}
 		return $this->tweakParserOptions( $popts, $pageObj->getTitle(), $params );
 	}
 
@@ -1107,6 +1116,7 @@ class ApiParse extends ApiBase {
 				],
 			],
 			'wrapoutputclass' => 'mw-parser-output',
+			'usearticle' => false, // since 1.43
 			'parsoid' => false, // since 1.41
 			'pst' => false,
 			'onlypst' => false,

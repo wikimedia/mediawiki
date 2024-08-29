@@ -426,6 +426,7 @@
 	"apihelp-parse-paramvalue-prop-parsewarnings": "Gives the warnings that occurred while parsing content (as wikitext).",
 	"apihelp-parse-paramvalue-prop-parsewarningshtml": "Gives the warnings that occurred while parsing content (as HTML).",
 	"apihelp-parse-param-wrapoutputclass": "CSS class to use to wrap the parser output.",
+	"apihelp-parse-param-usearticle": "Use the ArticleParserOptions hook to ensure the options used match those used for article page views",
 	"apihelp-parse-param-parsoid": "Generate HTML conforming to the [[mw:Specs/HTML|MediaWiki DOM spec]] using [[mw:Parsoid|Parsoid]].",
 	"apihelp-parse-param-pst": "Do a pre-save transform on the input before parsing it. Only valid when used with text.",
 	"apihelp-parse-param-onlypst": "Do a pre-save transform (PST) on the input, but don't parse it. Returns the same wikitext, after a PST has been applied. Only valid when used with <var>$1text</var>.",

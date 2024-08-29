@@ -618,6 +618,34 @@ class ApiParseTest extends ApiTestCase {
 		yield [ true, true, $expected ];
 	}
 
+	/** @dataProvider providerTestParsoid */
+	public function testUseArticle( $parsoid, $existing, $expected ) {
+		# For simplicity, ensure that [[Foo]] isn't a redlink.
+		$this->editPage( "Foo", __FUNCTION__ );
+		# Use an ArticleParserOptions hook to set the useParsoid option
+		$this->setTemporaryHook( 'ArticleParserOptions',
+			static function ( $unused, $po ) use ( $parsoid ) {
+				if ( $parsoid ) {
+					$po->setUseParsoid();
+				}
+			}
+		);
+
+		$res = $this->doApiRequest( [
+			# check that we're using the contents of 'text' not the contents of
+			# [[<title>]] by using pre-existing title __CLASS__ sometimes
+			'title' => $existing ? __CLASS__ : 'Bar',
+			'action' => 'parse',
+			'text' => "[[Foo]]",
+			'contentmodel' => 'wikitext',
+			'usearticle' => true,
+			# Note that we're not passing the 'parsoid' parameter here.
+			'disablelimitreport' => true,
+		] );
+
+		$this->assertParsedToRegexp( $expected, $res );
+	}
+
 	public function testHeadHtml() {
 		$res = $this->doApiRequest( [
 			'action' => 'parse',
