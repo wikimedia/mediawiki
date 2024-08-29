@@ -201,7 +201,7 @@ class GuzzleHttpRequestTest extends MediaWikiIntegrationTestCase {
 	 * Test that cookies from CookieJar were sent in the outgoing request.
 	 */
 	public function testCookieSent() {
-		$domain = wfParseUrl( $this->exampleUrl )['host'];
+		$domain = parse_url( $this->exampleUrl, PHP_URL_HOST );
 		$expectedCookies = [ 'cookie1' => 'value1', 'anothercookie' => 'secondvalue' ];
 		$jar = new CookieJar;
 		foreach ( $expectedCookies as $key => $val ) {
@@ -237,7 +237,7 @@ class GuzzleHttpRequestTest extends MediaWikiIntegrationTestCase {
 			[ 'handler' => $handler ] + $this->timeoutOptions );
 		$r->execute();
 
-		$domain = wfParseUrl( $this->exampleUrl )['host'];
+		$domain = parse_url( $this->exampleUrl, PHP_URL_HOST );
 		$this->assertEquals( 'cookie1=value1; anothercookie=secondvalue',
 			$r->getCookieJar()->serializeToHttpRequest( '/', $domain ) );
 	}
