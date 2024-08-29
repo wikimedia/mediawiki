@@ -1205,10 +1205,10 @@ class CoreParserFunctions {
 		if ( $argA == 'nowiki' ) {
 			// {{filepath: | option [| size] }}
 			$isNowiki = true;
-			$parsedWidthParam = Parser::parseWidthParam( $argB );
+			$parsedWidthParam = $parser->parseWidthParam( $argB );
 		} else {
 			// {{filepath: [| size [|option]] }}
-			$parsedWidthParam = Parser::parseWidthParam( $argA );
+			$parsedWidthParam = $parser->parseWidthParam( $argA );
 			$isNowiki = ( $argB == 'nowiki' );
 		}
 
