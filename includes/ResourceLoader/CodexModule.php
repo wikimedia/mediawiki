@@ -174,11 +174,10 @@ class CodexModule extends FileModule {
 	}
 
 	private static function getIconFilePath( Config $config ) {
-		$baseDir = $config->get( MainConfigNames::BaseDirectory );
 		$devDir = $config->get( MainConfigNames::CodexDevelopmentDir );
 		$iconsDir = $devDir !== null ?
 			"$devDir/packages/codex-icons/dist" :
-			"$baseDir/resources/lib/codex-icons";
+			MW_INSTALL_PATH . '/resources/lib/codex-icons';
 		return "$iconsDir/codex-icons.json";
 	}
 
@@ -264,12 +263,11 @@ class CodexModule extends FileModule {
 	 */
 	private function makeFilePath( string $file ): FilePath {
 		$remoteBasePath = $this->getConfig()->get( MainConfigNames::ResourceBasePath );
-		$baseDir = $this->getConfig()->get( MainConfigNames::BaseDirectory );
 		$devDir = $this->getConfig()->get( MainConfigNames::CodexDevelopmentDir );
 		if ( $devDir === null ) {
 			$filePath = new FilePath(
 				static::CODEX_DEFAULT_LIBRARY_DIR . '/' . $file,
-				$baseDir,
+				MW_INSTALL_PATH,
 				$remoteBasePath
 			);
 			if ( !file_exists( $filePath->getLocalPath() ) ) {
