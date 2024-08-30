@@ -10,16 +10,16 @@ use MediaWiki\Auth\PrimaryAuthenticationProvider;
 use MediaWiki\Auth\TemporaryPasswordAuthenticationRequest;
 use MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider;
 use MediaWiki\Config\HashConfig;
-use MediaWiki\Config\MultiConfig;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Password\PasswordFactory;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
-use MediaWiki\User\User;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWikiIntegrationTestCase;
+use MessageSpecifier;
 use StatusValue;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
@@ -35,12 +35,44 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegr
 	use AuthenticationProviderTestTrait;
 	use DummyServicesTrait;
 
-	/** @var AuthManager|null */
-	private $manager = null;
-	/** @var HashConfig|null */
-	private $config = null;
-	/** @var Status|null */
-	private $validity = null;
+	private AuthManager $manager;
+	private Status $validity;
+
+	private PasswordFactory $testPasswordFactory;
+
+	protected function setUp(): void {
+		parent::setUp();
+
+		$mwServices = $this->getServiceContainer();
+
+		$hookContainer = $this->createHookContainer();
+
+		$this->manager = new AuthManager(
+			new FauxRequest(),
+			$mwServices->getMainConfig(),
+			$this->getDummyObjectFactory(),
+			$hookContainer,
+			$mwServices->getReadOnlyMode(),
+			$this->createNoOpMock( UserNameUtils::class ),
+			$mwServices->getBlockManager(),
+			$mwServices->getWatchlistManager(),
+			$mwServices->getDBLoadBalancer(),
+			$mwServices->getContentLanguage(),
+			$mwServices->getLanguageConverterFactory(),
+			$mwServices->getBotPasswordStore(),
+			$mwServices->getUserFactory(),
+			$mwServices->getUserIdentityLookup(),
+			$mwServices->getUserOptionsManager()
+		);
+
+		$this->validity = Status::newGood();
+
+		// A is unsalted MD5 (thus fast) ... we don't care about security here, this is test only
+		$this->testPasswordFactory = new PasswordFactory(
+			$this->getConfVar( MainConfigNames::PasswordConfig ),
+			'A'
+		);
+	}
 
 	/**
 	 * Get an instance of the provider
@@ -49,43 +81,12 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegr
 	 * because we don't need to test that here.
 	 *
 	 * @param array $params
+	 * @param UserNameUtils|null $userNameUtils
 	 * @return TemporaryPasswordPrimaryAuthenticationProvider
 	 */
-	protected function getProvider( $params = [] ) {
+	protected function getProvider( array $params = [], ?UserNameUtils $userNameUtils = null ) {
+		$userNameUtils ??= $this->getServiceContainer()->getUserNameUtils();
 		$mwServices = $this->getServiceContainer();
-		if ( !$this->config ) {
-			$this->config = new HashConfig( [
-				MainConfigNames::EnableEmail
-			] );
-		}
-		$config = new MultiConfig( [
-			$this->config,
-			$mwServices->getMainConfig()
-		] );
-		$hookContainer = $this->createHookContainer();
-
-		if ( !$this->manager ) {
-			$userNameUtils = $this->createNoOpMock( UserNameUtils::class );
-
-			$this->manager = new AuthManager(
-				new FauxRequest(),
-				$config,
-				$this->getDummyObjectFactory(),
-				$hookContainer,
-				$mwServices->getReadOnlyMode(),
-				$userNameUtils,
-				$mwServices->getBlockManager(),
-				$mwServices->getWatchlistManager(),
-				$mwServices->getDBLoadBalancer(),
-				$mwServices->getContentLanguage(),
-				$mwServices->getLanguageConverterFactory(),
-				$mwServices->getBotPasswordStore(),
-				$mwServices->getUserFactory(),
-				$mwServices->getUserIdentityLookup(),
-				$mwServices->getUserOptionsManager()
-			);
-		}
-		$this->validity = Status::newGood();
 
 		$mockedMethods[] = 'checkPasswordValidity';
 		$provider = $this->getMockBuilder( TemporaryPasswordPrimaryAuthenticationProvider::class )
@@ -93,7 +94,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegr
 			->setConstructorArgs( [
 				$mwServices->getConnectionProvider(),
 				$mwServices->getUserOptionsLookup(),
-				$params
+				$params,
 			] )
 			->getMock();
 		$provider->method( 'checkPasswordValidity' )
@@ -101,7 +102,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegr
 				return $this->validity;
 			} );
 		$this->initProvider(
-			$provider, $config, null, $this->manager, null, $this->getServiceContainer()->getUserNameUtils()
+			$provider, $mwServices->getMainConfig(), null, $this->manager, null, $userNameUtils
 		);
 
 		return $provider;
@@ -121,6 +122,30 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegr
 			} );
 		}
 		return $reset;
+	}
+
+	/**
+	 * Set the new password (i.e. single use temporary password)
+	 * hash for the given user, with an optional expiry time.
+	 *
+	 * @param UserIdentity $user The user to update the new password for.
+	 * @param string $hash Password hash to store.
+	 * @param int|null $expiry UNIX timestamp at which the new password expires, or `null` for no expiry.
+	 */
+	private function setNewPassword(
+		UserIdentity $user,
+		string $hash,
+		?int $expiry = null
+	): void {
+		$dbw = $this->getDb();
+		$dbw->newUpdateQueryBuilder()
+			->update( 'user' )
+			->set( [
+				'user_newpassword' => $hash,
+				'user_newpass_time' => $expiry ? $dbw->timestamp( $expiry ) : null
+			] )
+			->where( [ 'user_id' => $user->getId() ] )
+			->execute();
 	}
 
 	public function testBasics() {
@@ -176,68 +201,114 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegr
 		$this->assertSame( 43, $providerPriv->passwordReminderResendTime );
 	}
 
-	public function testTestUserCanAuthenticate() {
+	/**
+	 * @dataProvider provideTestUserCanAuthenticateErrorCases
+	 *
+	 * @param string|null $userName The user name to check, or `null` to use the user name of the test user
+	 * @param callable|null $passwordProvider Optional callable that takes a `PasswordFactory` and produces
+	 * a password hash override to set for the test user
+	 * @param int|null $passwordExpiry Expiry to set for the password returned by `$passwordProvider`, or
+	 * `null` to set no expiry.
+	 * @return void
+	 */
+	public function testTestUserCanAuthenticateErrorCases(
+		?string $userName = null,
+		?callable $passwordProvider = null,
+		?int $passwordExpiry = null
+	): void {
 		$user = self::getMutableTestUser()->getUser();
 
-		$dbw = $this->getDb();
-		// A is unsalted MD5 (thus fast) ... we don't care about security here, this is test only
-		$passwordFactory = new PasswordFactory( $this->getConfVar( MainConfigNames::PasswordConfig ), 'A' );
+		if ( $passwordProvider !== null ) {
+			$this->setNewPassword(
+				$user,
+				$passwordProvider( $this->testPasswordFactory ),
+				$passwordExpiry
+			);
+		}
 
-		$pwhash = $passwordFactory->newFromPlaintext( 'password' )->toString();
+		$userName ??= $user->getName();
 
-		$provider = $this->getProvider();
-		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
+		$result = $this->getProvider( [ 'newPasswordExpiry' => 100 ] )->testUserCanAuthenticate( $userName );
 
-		$this->assertFalse( $provider->testUserCanAuthenticate( '<invalid>' ) );
-		$this->assertFalse( $provider->testUserCanAuthenticate( 'DoesNotExist' ) );
+		$this->assertFalse( $result );
+	}
 
-		$dbw->newUpdateQueryBuilder()
-			->update( 'user' )
-			->set( [
-				'user_newpassword' => PasswordFactory::newInvalidPassword()->toString(),
-				'user_newpass_time' => null,
-			] )
-			->where( [ 'user_id' => $user->getId() ] )
-			->execute();
-		$this->assertFalse( $provider->testUserCanAuthenticate( $user->getName() ) );
+	public function provideTestUserCanAuthenticateErrorCases(): iterable {
+		yield 'invalid user name' => [ '<invalid>' ];
+		yield 'nonexistent user' => [ 'DoesNotExist' ];
+		yield 'user with invalid password' => [
+			null,
+			fn () => PasswordFactory::newInvalidPassword()->toString()
+		];
+		yield 'user with expired password' => [
+			null,
+			fn ( PasswordFactory $passwordFactory ) => $passwordFactory->newFromPlaintext( 'password' )->toString(),
+			time() - 3_600
+		];
+	}
 
-		$dbw->newUpdateQueryBuilder()
-			->update( 'user' )
-			->set( [ 'user_newpassword' => $pwhash, 'user_newpass_time' => null, ] )
-			->where( [ 'user_id' => $user->getId() ] )
-			->execute();
-		$this->assertTrue( $provider->testUserCanAuthenticate( $user->getName() ) );
-		$this->assertTrue( $provider->testUserCanAuthenticate( lcfirst( $user->getName() ) ) );
+	public function testTestUserCanAuthenticateSimple(): void {
+		$user = self::getMutableTestUser()->getUser();
 
-		$dbw->newUpdateQueryBuilder()
-			->update( 'user' )
-			->set( [ 'user_newpassword' => $pwhash, 'user_newpass_time' => $dbw->timestamp( time() - 10 ) ] )
-			->where( [ 'user_id' => $user->getId() ] )
-			->execute();
-		$providerPriv->newPasswordExpiry = 100;
-		$this->assertTrue( $provider->testUserCanAuthenticate( $user->getName() ) );
-		$providerPriv->newPasswordExpiry = 1;
-		$this->assertFalse( $provider->testUserCanAuthenticate( $user->getName() ) );
+		$this->setNewPassword(
+			$user,
+			$this->testPasswordFactory->newFromPlaintext( 'password' )->toString()
+		);
 
-		$dbw->newUpdateQueryBuilder()
-			->update( 'user' )
-			->set( [
-				'user_newpassword' => PasswordFactory::newInvalidPassword()->toString(),
-				'user_newpass_time' => null,
-			] )
-			->where( [ 'user_id' => $user->getId() ] )
-			->execute();
+		$result = $this->getProvider()->testUserCanAuthenticate( $user->getName() );
+
+		$this->assertTrue( $result );
+	}
+
+	public function testTestUserCanAuthenticateCaseInsensitive(): void {
+		$user = self::getMutableTestUser()->getUser();
+
+		$this->setNewPassword(
+			$user,
+			$this->testPasswordFactory->newFromPlaintext( 'password' )->toString()
+		);
+
+		$result = $this->getProvider()->testUserCanAuthenticate( lcfirst( $user->getName() ) );
+
+		$this->assertTrue( $result );
+	}
+
+	public function testTestUserCanAuthenticateWithNonExpiredTemporaryPassword(): void {
+		$user = self::getMutableTestUser()->getUser();
+
+		$this->setNewPassword(
+			$user,
+			$this->testPasswordFactory->newFromPlaintext( 'password' )->toString(),
+			time() - 100
+		);
+
+		$result = $this->getProvider( [ 'newPasswordExpiry' => 3600 ] )->testUserCanAuthenticate( $user->getName() );
+
+		$this->assertTrue( $result );
 	}
 
 	/**
 	 * @dataProvider provideGetAuthenticationRequests
 	 * @param string $action
 	 * @param bool $registered
-	 * @param array $expected
+	 * @param bool $temporary
+	 * @param AuthenticationRequest[] $expected
 	 */
-	public function testGetAuthenticationRequests( $action, bool $registered, $expected ) {
-		$options = [ 'username' => $registered ? 'TestGetAuthenticationRequests' : null ];
-		$actual = $this->getProvider( [ 'emailEnabled' => true ] )
+	public function testGetAuthenticationRequests(
+		string $action,
+		bool $registered,
+		bool $temporary,
+		array $expected
+	) {
+		$username = $registered ? 'TestGetAuthenticationRequests' : null;
+		$options = [ 'username' => $username ];
+
+		$userNameUtils = $this->createMock( UserNameUtils::class );
+		$userNameUtils->method( 'isTemp' )
+			->with( $username )
+			->willReturn( $temporary );
+
+		$actual = $this->getProvider( [ 'emailEnabled' => true ], $userNameUtils )
 			->getAuthenticationRequests( $action, $options );
 		foreach ( $actual as $req ) {
 			if ( $req instanceof TemporaryPasswordAuthenticationRequest && $req->password !== null ) {
@@ -247,157 +318,207 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegr
 		$this->assertEquals( $expected, $actual );
 	}
 
-	public static function provideGetAuthenticationRequests() {
-		$anon = false;
-		$registered = true;
+	public static function provideGetAuthenticationRequests(): iterable {
+		yield 'login attempt as anonymous user' => [
+			AuthManager::ACTION_LOGIN, false, false, [ new PasswordAuthenticationRequest ]
+		];
 
-		return [
-			[ AuthManager::ACTION_LOGIN, $anon, [
-				new PasswordAuthenticationRequest
-			] ],
-			[ AuthManager::ACTION_LOGIN, $registered, [
-				new PasswordAuthenticationRequest
-			] ],
-			[ AuthManager::ACTION_CREATE, $anon, [] ],
-			[ AuthManager::ACTION_CREATE, $registered, [
-				new TemporaryPasswordAuthenticationRequest( 'random' )
-			] ],
-			[ AuthManager::ACTION_LINK, $anon, [] ],
-			[ AuthManager::ACTION_LINK, $registered, [] ],
-			[ AuthManager::ACTION_CHANGE, $anon, [
-				new TemporaryPasswordAuthenticationRequest( 'random' )
-			] ],
-			[ AuthManager::ACTION_CHANGE, $registered, [
-				new TemporaryPasswordAuthenticationRequest( 'random' )
-			] ],
-			[ AuthManager::ACTION_REMOVE, $anon, [
-				new TemporaryPasswordAuthenticationRequest
-			] ],
-			[ AuthManager::ACTION_REMOVE, $registered, [
-				new TemporaryPasswordAuthenticationRequest
-			] ],
+		yield 'login attempt as named user' => [
+			AuthManager::ACTION_LOGIN, true, false, [ new PasswordAuthenticationRequest ]
+		];
+
+		yield 'login attempt as temporary user' => [
+			AuthManager::ACTION_LOGIN, true, true, [ new PasswordAuthenticationRequest ]
+		];
+
+		yield 'signup attempt as anonymous user' => [
+			AuthManager::ACTION_CREATE, false, false, []
+		];
+
+		yield 'signup attempt as named user' => [
+			AuthManager::ACTION_CREATE, true, false, [ new TemporaryPasswordAuthenticationRequest( 'random' ) ]
+		];
+
+		yield 'signup attempt as temporary user' => [
+			AuthManager::ACTION_CREATE, true, true, [ new TemporaryPasswordAuthenticationRequest( 'random' ) ]
+		];
+
+		yield 'account linking attempt as anonymous user' => [
+			AuthManager::ACTION_LINK, false, false, []
+		];
+
+		yield 'account linking attempt as named user' => [
+			AuthManager::ACTION_LINK, true, false, []
+		];
+
+		yield 'account linking attempt as temporary user' => [
+			AuthManager::ACTION_LINK, true, true, []
+		];
+
+		yield 'credential change attempt as anonymous user' => [
+			AuthManager::ACTION_CHANGE, false, false, [ new TemporaryPasswordAuthenticationRequest( 'random' ) ]
+		];
+
+		yield 'credential change attempt as named user' => [
+			AuthManager::ACTION_CHANGE, true, false, [ new TemporaryPasswordAuthenticationRequest( 'random' ) ]
+		];
+
+		yield 'credential change attempt as temporary user' => [
+			AuthManager::ACTION_CHANGE, true, true, [ new TemporaryPasswordAuthenticationRequest( 'random' ) ]
+		];
+
+		yield 'credential remove attempt as anonymous user' => [
+			AuthManager::ACTION_REMOVE, false, false, [ new TemporaryPasswordAuthenticationRequest() ]
+		];
+
+		yield 'credential remove attempt as named user' => [
+			AuthManager::ACTION_REMOVE, true, false, [ new TemporaryPasswordAuthenticationRequest() ]
+		];
+
+		yield 'credential remove attempt as temporary user' => [
+			AuthManager::ACTION_REMOVE, true, true, [ new TemporaryPasswordAuthenticationRequest() ]
 		];
 	}
 
-	public function testAuthentication() {
+	/**
+	 * @dataProvider provideAuthenticationErrorCases
+	 * @param string $password
+	 * @param string $expectedErrorMessage
+	 * @param int $newPasswordExpiry
+	 * @param StatusValue|null $validationError
+	 * @return void
+	 */
+	public function testAuthenticationErrorCases(
+		string $password,
+		string $expectedErrorMessage,
+		int $newPasswordExpiry = 100,
+		?StatusValue $validationError = null
+	) {
+		$user = self::getMutableTestUser()->getUser();
+
+		$validPassword = 'TemporaryPassword';
+		$hash = ':A:' . md5( $validPassword );
+
+		$this->setNewPassword( $user, $hash, time() - 10 );
+
+		$req = self::makePasswordAuthenticationRequest( $user->getName(), $password );
+
+		$reqs = [ PasswordAuthenticationRequest::class => $req ];
+
+		$provider = $this->getProvider( [ 'newPasswordExpiry' => $newPasswordExpiry ] );
+
+		$this->validity = $validationError ?? Status::newGood();
+
+		$response = $provider->beginPrimaryAuthentication( $reqs );
+
+		$this->assertSame( AuthenticationResponse::FAIL, $response->status );
+		if ( $validationError !== null ) {
+			$this->assertSame(
+				$validationError->getMessages()[0]->getKey(),
+				$response->message->getParams()[0]->getKey()
+			);
+		}
+	}
+
+	public static function provideAuthenticationErrorCases(): iterable {
+		yield 'validation failure' => [
+			'TemporaryPassword',
+			'fatalpassworderror',
+			100,
+			Status::newFatal( 'arbitrary-failure' )
+		];
+
+		yield 'expired password' => [
+			'TemporaryPassword',
+			'wrongpassword',
+			1
+		];
+
+		yield 'wrong password' => [
+			'Wrong',
+			'wrongpassword'
+		];
+	}
+
+	/**
+	 * @dataProvider provideAuthenticationAbstainCases
+	 * @param PasswordAuthenticationRequest|null $req The authentication request to send,
+	 * or `null` to send no requests
+	 * @return void
+	 */
+	public function testAuthenticationAbstainCases( ?PasswordAuthenticationRequest $req ): void {
+		$reqs = $req ? [ PasswordAuthenticationRequest::class => $req ] : [];
+
+		$response = $this->getProvider()->beginPrimaryAuthentication( $reqs );
+
+		$this->assertEquals( AuthenticationResponse::newAbstain(), $response );
+	}
+
+	public static function provideAuthenticationAbstainCases(): iterable {
+		yield 'no requests' => [ null ];
+		yield 'no user name' => [ self::makePasswordAuthenticationRequest( null, 'bar' ) ];
+		yield 'no password' => [ self::makePasswordAuthenticationRequest( 'foo' ) ];
+		yield 'invalid user name' => [ self::makePasswordAuthenticationRequest( '<invalid>', 'bar' ) ];
+		yield 'nonexistent user' => [ self::makePasswordAuthenticationRequest( 'DoesNotExist', 'bar' ) ];
+	}
+
+	private static function makePasswordAuthenticationRequest(
+		?string $userName = null,
+		?string $password = null
+	): PasswordAuthenticationRequest {
+		$req = new PasswordAuthenticationRequest();
+		$req->action = AuthManager::ACTION_LOGIN;
+		$req->username = $userName;
+		$req->password = $password;
+		return $req;
+	}
+
+	public function testAuthenticationSuccess(): void {
 		$user = self::getMutableTestUser()->getUser();
 
 		$password = 'TemporaryPassword';
 		$hash = ':A:' . md5( $password );
-		$dbw = $this->getDb();
-		$dbw->newUpdateQueryBuilder()
-			->update( 'user' )
-			->set( [ 'user_newpassword' => $hash, 'user_newpass_time' => $dbw->timestamp( time() - 10 ) ] )
-			->where( [ 'user_id' => $user->getId() ] )
-			->execute();
 
-		$req = new PasswordAuthenticationRequest();
-		$req->action = AuthManager::ACTION_LOGIN;
+		$this->setNewPassword( $user, $hash, time() - 10 );
+
+		$req = self::makePasswordAuthenticationRequest( $user->getName(), $password );
 		$reqs = [ PasswordAuthenticationRequest::class => $req ];
 
 		$provider = $this->getProvider();
-		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 
-		$providerPriv->newPasswordExpiry = 100;
-
-		// General failures
-		$this->assertEquals(
-			AuthenticationResponse::newAbstain(),
-			$provider->beginPrimaryAuthentication( [] )
-		);
-
-		$req->username = 'foo';
-		$req->password = null;
-		$this->assertEquals(
-			AuthenticationResponse::newAbstain(),
-			$provider->beginPrimaryAuthentication( $reqs )
-		);
-
-		$req->username = null;
-		$req->password = 'bar';
-		$this->assertEquals(
-			AuthenticationResponse::newAbstain(),
-			$provider->beginPrimaryAuthentication( $reqs )
-		);
-
-		$req->username = '<invalid>';
-		$req->password = 'WhoCares';
-		$ret = $provider->beginPrimaryAuthentication( $reqs );
-		$this->assertEquals(
-			AuthenticationResponse::newAbstain(),
-			$provider->beginPrimaryAuthentication( $reqs )
-		);
-
-		$req->username = 'DoesNotExist';
-		$req->password = 'DoesNotExist';
-		$ret = $provider->beginPrimaryAuthentication( $reqs );
-		$this->assertEquals(
-			AuthenticationResponse::newAbstain(),
-			$provider->beginPrimaryAuthentication( $reqs )
-		);
-
-		// Validation failure
-		$req->username = $user->getName();
-		$req->password = $password;
-		$this->validity = Status::newFatal( 'arbitrary-failure' );
-		$ret = $provider->beginPrimaryAuthentication( $reqs );
-		$this->assertEquals(
-			AuthenticationResponse::FAIL,
-			$ret->status
-		);
-		$this->assertEquals(
-			'fatalpassworderror',
-			$ret->message->getKey()
-		);
-		$this->assertEquals(
-			'arbitrary-failure',
-			$ret->message->getParams()[0]->getKey()
-		);
-
-		// Successful auth
 		$this->manager->removeAuthenticationSessionData( null );
 		$this->validity = Status::newGood();
+
 		$this->assertEquals(
 			AuthenticationResponse::newPass( $user->getName() ),
 			$provider->beginPrimaryAuthentication( $reqs )
 		);
+
 		$this->assertNotNull( $this->manager->getAuthenticationSessionData( 'reset-pass' ) );
+	}
+
+	public function testAuthenticationSuccessCaseInsensitive(): void {
+		$user = self::getMutableTestUser()->getUser();
+
+		$password = 'TemporaryPassword';
+		$hash = ':A:' . md5( $password );
+
+		$this->setNewPassword( $user, $hash, time() - 10 );
+
+		$req = self::makePasswordAuthenticationRequest( lcfirst( $user->getName() ), $password );
+		$reqs = [ PasswordAuthenticationRequest::class => $req ];
+
+		$provider = $this->getProvider();
 
 		$this->manager->removeAuthenticationSessionData( null );
 		$this->validity = Status::newGood();
-		$req->username = lcfirst( $user->getName() );
+
 		$this->assertEquals(
 			AuthenticationResponse::newPass( $user->getName() ),
 			$provider->beginPrimaryAuthentication( $reqs )
 		);
+
 		$this->assertNotNull( $this->manager->getAuthenticationSessionData( 'reset-pass' ) );
-		$req->username = $user->getName();
-
-		// Expired password
-		$providerPriv->newPasswordExpiry = 1;
-		$ret = $provider->beginPrimaryAuthentication( $reqs );
-		$this->assertEquals(
-			AuthenticationResponse::FAIL,
-			$ret->status
-		);
-		$this->assertEquals(
-			'wrongpassword',
-			$ret->message->getKey()
-		);
-
-		// Bad password
-		$providerPriv->newPasswordExpiry = 100;
-		$this->validity = Status::newGood();
-		$req->password = 'Wrong';
-		$ret = $provider->beginPrimaryAuthentication( $reqs );
-		$this->assertEquals(
-			AuthenticationResponse::FAIL,
-			$ret->status
-		);
-		$this->assertEquals(
-			'wrongpassword',
-			$ret->message->getKey()
-		);
 	}
 
 	/**
@@ -442,56 +563,56 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegr
 				static fn ( $sysopUsername ) => $sysopUsername,
 				Status::newGood(),
 				StatusValue::newGood( 'ignored' ),
-				StatusValue::newGood( 'ignored' )
+				StatusValue::newGood( 'ignored' ),
 			],
 			[
 				PasswordAuthenticationRequest::class,
 				static fn ( $sysopUsername ) => $sysopUsername,
 				Status::newGood(),
 				StatusValue::newGood( 'ignored' ),
-				StatusValue::newGood( 'ignored' )
+				StatusValue::newGood( 'ignored' ),
 			],
 			[
 				TemporaryPasswordAuthenticationRequest::class,
 				static fn ( $sysopUsername ) => $sysopUsername,
 				Status::newGood(),
 				StatusValue::newGood(),
-				StatusValue::newGood()
+				StatusValue::newGood(),
 			],
 			[
 				TemporaryPasswordAuthenticationRequest::class,
 				'lcfirst',
 				Status::newGood(),
 				StatusValue::newGood(),
-				StatusValue::newGood()
+				StatusValue::newGood(),
 			],
 			[
 				TemporaryPasswordAuthenticationRequest::class,
 				static fn ( $sysopUsername ) => $sysopUsername,
 				Status::wrap( $err ),
 				StatusValue::newGood(),
-				$err
+				$err,
 			],
 			[
 				TemporaryPasswordAuthenticationRequest::class,
 				static fn ( $sysopUsername ) => $sysopUsername,
 				Status::newFatal( 'arbitrary-error' ),
 				StatusValue::newGood(),
-				StatusValue::newFatal( 'arbitrary-error' )
+				StatusValue::newFatal( 'arbitrary-error' ),
 			],
 			[
 				TemporaryPasswordAuthenticationRequest::class,
 				static fn () => 'DoesNotExist',
 				Status::newGood(),
 				StatusValue::newGood(),
-				StatusValue::newGood( 'ignored' )
+				StatusValue::newGood( 'ignored' ),
 			],
 			[
 				TemporaryPasswordAuthenticationRequest::class,
 				static fn () => '<invalid>',
 				Status::newGood(),
 				StatusValue::newGood(),
-				StatusValue::newGood( 'ignored' )
+				StatusValue::newGood( 'ignored' ),
 			],
 		];
 	}
@@ -523,7 +644,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegr
 		$hash = ':A:' . md5( $oldpass );
 		$dbw->newUpdateQueryBuilder()
 			->update( 'user' )
-			->set( [ 'user_newpassword' => $hash, 'user_newpass_time' => $dbw->timestamp( time() + 10 ) ] )
+			->set( [ 'user_newpassword' => $hash, 'user_newpass_time' => $dbw->timestamp( time() + 1000 ) ] )
 			->where( [ 'user_name' => $user ] )
 			->execute();
 
@@ -610,7 +731,18 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegr
 		];
 	}
 
-	public function testProviderChangeAuthenticationDataEmail() {
+	/**
+	 * @dataProvider provideChangeAuthenticationDataEmailErrorCases
+	 *
+	 * @param array $providerConfig Configuration to pass on to the auth provider
+	 * @param string|null $caller Caller on behalf of which the request is sent
+	 * @param string $expectedError Expected error message key
+	 */
+	public function testProviderChangeAuthenticationDataEmailError(
+		array $providerConfig,
+		?string $caller,
+		string $expectedError
+	): void {
 		$user = self::getMutableTestUser()->getUser();
 
 		$dbw = $this->getDb();
@@ -623,53 +755,71 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegr
 		$req = TemporaryPasswordAuthenticationRequest::newRandom();
 		$req->username = $user->getName();
 		$req->mailpassword = true;
+		$req->caller = $caller;
 
-		$provider = $this->getProvider( [ 'emailEnabled' => false ] );
-		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
-		$this->assertEquals( StatusValue::newFatal( 'passwordreset-emaildisabled' ), $status );
+		$provider = $this->getProvider( $providerConfig );
+		$status = $provider->providerAllowsAuthenticationDataChange( $req );
 
-		$provider = $this->getProvider( [
-			'emailEnabled' => true, 'passwordReminderResendTime' => 10
-		] );
-		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
-		$this->assertEquals( StatusValue::newFatal( 'throttled-mailpassword', 10 ), $status );
+		$this->assertFalse( $status->isGood() );
+		$this->assertSame(
+			[ $expectedError ],
+			array_map( fn ( MessageSpecifier $spec ) => $spec->getKey(), $status->getMessages() )
+		);
+	}
 
-		$provider = $this->getProvider( [
-			'emailEnabled' => true, 'passwordReminderResendTime' => 3
-		] );
-		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
-		$this->assertFalse( $status->hasMessage( 'throttled-mailpassword' ) );
+	public static function provideChangeAuthenticationDataEmailErrorCases(): iterable {
+		yield 'email disabled' => [
+			[ 'emailEnabled' => false ],
+			'127.0.0.1',
+			'passwordreset-emaildisabled'
+		];
 
+		yield 'password reset rate limited' => [
+			[ 'emailEnabled' => true, 'passwordReminderResendTime' => 10 ],
+			'127.0.0.1',
+			'throttled-mailpassword'
+		];
+
+		yield 'missing caller' => [
+			[ 'emailEnabled' => true, 'passwordReminderResendTime' => 0 ],
+			null,
+			'passwordreset-nocaller'
+		];
+
+		yield 'invalid IP caller' => [
+			[ 'emailEnabled' => true, 'passwordReminderResendTime' => 0 ],
+			'127.0.0.256',
+			'passwordreset-nosuchcaller'
+		];
+
+		yield 'invalid registered caller' => [
+			[ 'emailEnabled' => true, 'passwordReminderResendTime' => 0 ],
+			'<Invalid>',
+			'passwordreset-nosuchcaller'
+		];
+	}
+
+	/**
+	 * @dataProvider provideChangeAuthenticationDataEmailSuccessCases
+	 * @param string $caller Caller on behalf of which the request is sent
+	 */
+	public function testProviderChangeAuthenticationDataEmailSuccess( string $caller ) {
+		$user = self::getMutableTestUser()->getUser();
+
+		$dbw = $this->getDb();
 		$dbw->newUpdateQueryBuilder()
 			->update( 'user' )
 			->set( [ 'user_newpass_time' => $dbw->timestamp( time() + 5 * 3600 ) ] )
 			->where( [ 'user_id' => $user->getId() ] )
 			->execute();
-		$provider = $this->getProvider( [
-			'emailEnabled' => true, 'passwordReminderResendTime' => 0
-		] );
-		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
-		$this->assertFalse( $status->hasMessage( 'throttled-mailpassword' ) );
 
-		$req->caller = null;
-		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
-		$this->assertEquals( StatusValue::newFatal( 'passwordreset-nocaller' ), $status );
+		$req = TemporaryPasswordAuthenticationRequest::newRandom();
+		$req->username = $user->getName();
+		$req->mailpassword = true;
+		$req->caller = $caller;
 
-		$req->caller = '127.0.0.256';
-		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
-		$this->assertEquals( StatusValue::newFatal( 'passwordreset-nosuchcaller', '127.0.0.256' ),
-			$status );
+		$provider = $this->getProvider( [ 'emailEnabled' => true, 'passwordReminderResendTime' => 0 ] );
 
-		$req->caller = '<Invalid>';
-		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
-		$this->assertEquals( StatusValue::newFatal( 'passwordreset-nosuchcaller', '<Invalid>' ),
-			$status );
-
-		$req->caller = '127.0.0.1';
-		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
-		$this->assertEquals( StatusValue::newGood(), $status );
-
-		$req->caller = $user->getName();
 		$status = $provider->providerAllowsAuthenticationDataChange( $req, true );
 		$this->assertEquals( StatusValue::newGood(), $status );
 
@@ -692,115 +842,201 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegr
 		$this->assertEquals( Status::newFatal( 'noname' ), $status );
 	}
 
-	public function testTestForAccountCreation() {
-		$user = User::newFromName( 'foo' );
+	public static function provideChangeAuthenticationDataEmailSuccessCases(): iterable {
+		yield 'anonymous caller' => [ '127.0.0.1' ];
+		yield 'registered caller' => [ 'TestUser' ];
+	}
+
+	/**
+	 * @dataProvider provideAccountCreationSuccessCases
+	 * @param AuthenticationRequest[] $reqs
+	 */
+	public function testTestForAccountCreationSuccess( array $reqs ) {
+		$user = $this->getServiceContainer()->getUserFactory()->newFromName( 'foo' );
+
+		$status = $this->getProvider()->testForAccountCreation( $user, $user, $reqs );
+
+		$this->assertTrue( $status->isGood() );
+	}
+
+	public static function provideAccountCreationSuccessCases(): iterable {
 		$req = new TemporaryPasswordAuthenticationRequest();
 		$req->username = 'Foo';
 		$req->password = 'Bar';
+
+		yield 'no password request' => [
+			[],
+		];
+
+		yield 'validated password request' => [
+			[ TemporaryPasswordAuthenticationRequest::class => $req ],
+		];
+	}
+
+	public function testTestForAccountCreationError(): void {
+		$req = new TemporaryPasswordAuthenticationRequest();
+		$req->username = 'Foo';
+		$req->password = 'Bar';
+
+		$user = $this->getServiceContainer()->getUserFactory()->newFromName( 'foo' );
+		$provider = $this->getProvider();
+		$this->validity->error( 'arbitrary warning' );
+
+		$status = $provider->testForAccountCreation(
+			$user, $user, [ TemporaryPasswordAuthenticationRequest::class => $req ]
+		);
+
+		$this->assertFalse( $status->isGood() );
+		$this->assertTrue( $status->hasMessage( 'arbitrary warning' ) );
+	}
+
+	/**
+	 * @dataProvider provideAccountCreationAbstainCases
+	 * @param TemporaryPasswordAuthenticationRequest|null $req
+	 * @return void
+	 */
+	public function testAccountCreationAbstain( ?TemporaryPasswordAuthenticationRequest $req ) {
+		$resetMailer = $this->hookMailer();
+
+		$user = $this->getServiceContainer()->getUserFactory()->newFromName( 'Foo' );
+
+		$reqs = $req ? [ TemporaryPasswordAuthenticationRequest::class => $req ] : [];
+
+		$provider = $this->getProvider();
+		$response = $provider->beginPrimaryAccountCreation( $user, $user, $reqs );
+
+		$this->assertSame( AuthenticationResponse::ABSTAIN, $response->status );
+	}
+
+	public static function provideAccountCreationAbstainCases(): iterable {
+		yield 'no authentication requests' => [
+			null,
+		];
+
+		yield 'request without password' => [
+			self::makeTemporaryPasswordAuthenticationRequest( 'foo' ),
+		];
+
+		yield 'request without username' => [
+			self::makeTemporaryPasswordAuthenticationRequest( null, 'bar' ),
+		];
+	}
+
+	public function testAccountCreationPassForUserNameWithDifferentCase(): void {
+		$user = $this->getServiceContainer()->getUserFactory()->newFromName( 'Foo' );
+		$pass = 'NewPassword';
+
+		$req = self::makeTemporaryPasswordAuthenticationRequest( 'foo', $pass );
 		$reqs = [ TemporaryPasswordAuthenticationRequest::class => $req ];
 
 		$provider = $this->getProvider();
-		$this->assertEquals(
-			StatusValue::newGood(),
-			$provider->testForAccountCreation( $user, $user, [] ),
-			'No password request'
-		);
+		$response = $provider->beginPrimaryAccountCreation( $user, $user, $reqs );
 
-		$this->assertEquals(
-			StatusValue::newGood(),
-			$provider->testForAccountCreation( $user, $user, $reqs ),
-			'Password request, validated'
-		);
-
-		$this->validity->error( 'arbitrary warning' );
-		$expect = StatusValue::newGood();
-		$expect->error( 'arbitrary warning' );
-		$this->assertEquals(
-			$expect,
-			$provider->testForAccountCreation( $user, $user, $reqs ),
-			'Password request, not validated'
+		$this->assertSame( AuthenticationResponse::PASS, $response->status );
+		$this->assertSame( $response->username, $user->getName() );
+		$this->assertSame(
+			$response->createRequest->username,
+			$user->getName()
 		);
 	}
 
-	public function testAccountCreation() {
+	public function testAccountCreationPass(): void {
 		$resetMailer = $this->hookMailer();
 
-		$user = User::newFromName( 'Foo' );
+		$user = self::getMutableTestUser()->getUser();
+		$pass = 'NewPassword';
 
-		$req = new TemporaryPasswordAuthenticationRequest();
+		$req = self::makeTemporaryPasswordAuthenticationRequest( $user->getName(), $pass );
 		$reqs = [ TemporaryPasswordAuthenticationRequest::class => $req ];
+
+		$provider = $this->getProvider();
+		$response = $provider->beginPrimaryAccountCreation( $user, $user, $reqs );
+
+		$this->assertSame( AuthenticationResponse::PASS, $response->status );
+		$this->assertSame( $response->username, $user->getName() );
+		$this->assertSame(
+			$response->createRequest->username,
+			$user->getName()
+		);
+		$this->assertNull( $this->manager->getAuthenticationSessionData( 'no-email' ) );
 
 		$authreq = new PasswordAuthenticationRequest();
 		$authreq->action = AuthManager::ACTION_CREATE;
+		$authreq->username = $user->getName();
+		$authreq->password = $pass;
+
 		$authreqs = [ PasswordAuthenticationRequest::class => $authreq ];
 
-		$provider = $this->getProvider();
+		$failedAttemptResponse = $provider->beginPrimaryAuthentication( $authreqs );
+		$this->assertSame( AuthenticationResponse::FAIL, $failedAttemptResponse->status, 'account creation not finished yet' );
 
-		$this->assertEquals(
-			AuthenticationResponse::newAbstain(),
-			$provider->beginPrimaryAccountCreation( $user, $user, [] )
-		);
+		$this->assertSame( null, $provider->finishAccountCreation( $user, $user, $response ) );
 
-		$req->username = 'foo';
-		$req->password = null;
-		$this->assertEquals(
-			AuthenticationResponse::newAbstain(),
-			$provider->beginPrimaryAccountCreation( $user, $user, $reqs )
-		);
-
-		$req->username = null;
-		$req->password = 'bar';
-		$this->assertEquals(
-			AuthenticationResponse::newAbstain(),
-			$provider->beginPrimaryAccountCreation( $user, $user, $reqs )
-		);
-
-		$req->username = 'foo';
-		$req->password = 'bar';
-
-		$expect = AuthenticationResponse::newPass( 'Foo' );
-		$expect->createRequest = clone $req;
-		$expect->createRequest->username = 'Foo';
-		$this->assertEquals( $expect, $provider->beginPrimaryAccountCreation( $user, $user, $reqs ) );
-		$this->assertNull( $this->manager->getAuthenticationSessionData( 'no-email' ) );
-
-		$user = self::getMutableTestUser()->getUser();
-		$req->username = $authreq->username = $user->getName();
-		$req->password = $authreq->password = 'NewPassword';
-		$expect = AuthenticationResponse::newPass( $user->getName() );
-		$expect->createRequest = $req;
-
-		$res2 = $provider->beginPrimaryAccountCreation( $user, $user, $reqs );
-		$this->assertEquals( $expect, $res2 );
-
-		$ret = $provider->beginPrimaryAuthentication( $authreqs );
-		$this->assertEquals( AuthenticationResponse::FAIL, $ret->status );
-
-		$this->assertSame( null, $provider->finishAccountCreation( $user, $user, $res2 ) );
-
-		$ret = $provider->beginPrimaryAuthentication( $authreqs );
-		$this->assertEquals( AuthenticationResponse::PASS, $ret->status, 'new password is set' );
+		$response = $provider->beginPrimaryAuthentication( $authreqs );
+		$this->assertSame( AuthenticationResponse::PASS, $response->status, 'new password is set' );
 	}
 
-	public function testAccountCreationEmail() {
-		$creator = User::newFromName( 'Foo' );
+	private static function makeTemporaryPasswordAuthenticationRequest(
+		?string $userName = null,
+		?string $password = null
+	): TemporaryPasswordAuthenticationRequest {
+		$req = new TemporaryPasswordAuthenticationRequest();
+		$req->username = $userName;
+		$req->password = $password;
+		return $req;
+	}
+
+	/**
+	 * @dataProvider provideAccountCreationEmailErrorCases
+	 *
+	 * @param array $providerConfig Configuration to pass on to the auth provider
+	 * @param string $userEmail Email to set for the user being tested
+	 * @param string $expectedError Expected error message key
+	 */
+	public function testAccountCreationEmailErrorCases(
+		array $providerConfig,
+		string $userEmail,
+		string $expectedError
+	): void {
+		$creator = $this->getServiceContainer()->getUserFactory()->newFromName( 'Foo' );
 
 		$user = self::getMutableTestUser()->getUser();
-		$user->setEmail( '' );
+		$user->setEmail( $userEmail );
 
 		$req = TemporaryPasswordAuthenticationRequest::newRandom();
 		$req->username = $user->getName();
 		$req->mailpassword = true;
 
-		$provider = $this->getProvider( [ 'emailEnabled' => false ] );
+		$provider = $this->getProvider( $providerConfig );
 		$status = $provider->testForAccountCreation( $user, $creator, [ $req ] );
-		$this->assertEquals( StatusValue::newFatal( 'emaildisabled' ), $status );
+		$this->assertEquals( StatusValue::newFatal( $expectedError ), $status );
+	}
+
+	public static function provideAccountCreationEmailErrorCases(): iterable {
+		yield 'email disabled' => [
+			[ 'emailEnabled' => false ],
+			'test@localhost.localdomain',
+			'emaildisabled'
+		];
+
+		yield 'missing user email' => [
+			[ 'emailEnabled' => true ],
+			'',
+			'noemailcreate'
+		];
+	}
+
+	public function testAccountCreationEmailSuccess(): void {
+		$creator = $this->getServiceContainer()->getUserFactory()->newFromName( 'Foo' );
+
+		$user = self::getMutableTestUser()->getUser();
+		$user->setEmail( 'test@localhost.localdomain' );
+
+		$req = TemporaryPasswordAuthenticationRequest::newRandom();
+		$req->username = $user->getName();
+		$req->mailpassword = true;
 
 		$provider = $this->getProvider( [ 'emailEnabled' => true ] );
-		$status = $provider->testForAccountCreation( $user, $creator, [ $req ] );
-		$this->assertEquals( StatusValue::newFatal( 'noemailcreate' ), $status );
-
-		$user->setEmail( 'test@localhost.localdomain' );
 		$status = $provider->testForAccountCreation( $user, $creator, [ $req ] );
 		$this->assertEquals( StatusValue::newGood(), $status );
 
