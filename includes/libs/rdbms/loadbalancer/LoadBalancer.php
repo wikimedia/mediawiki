@@ -1520,7 +1520,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			foreach ( $this->getOpenPrimaryConnections() as $conn ) {
 				if ( $conn->writesPending() ) {
 					// A callback from another handle wrote to this one and DBO_TRX is set
-					$fnames = implode( ', ', $conn->pendingWriteAndCallbackCallers() );
+					$fnames = implode( ', ', $conn->pendingWriteCallers() );
 					$this->logger->info(
 						"$fname: found writes pending ($fnames).",
 						$this->getConnLogContext(
