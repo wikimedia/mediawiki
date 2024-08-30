@@ -30,11 +30,14 @@ use MediaWiki\SpecialPage\ContributionsSpecialPage;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
+use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -48,6 +51,7 @@ class SpecialDeletedContributions extends ContributionsSpecialPage {
 	private RevisionStore $revisionStore;
 	private CommentFormatter $commentFormatter;
 	private LinkBatchFactory $linkBatchFactory;
+	private TempUserConfig $tempUserConfig;
 
 	/**
 	 * @param PermissionManager $permissionManager
@@ -62,6 +66,7 @@ class SpecialDeletedContributions extends ContributionsSpecialPage {
 	 * @param UserFactory $userFactory
 	 * @param UserIdentityLookup $userIdentityLookup
 	 * @param DatabaseBlockStore $blockStore
+	 * @param TempUserConfig $tempUserConfig
 	 */
 	public function __construct(
 		PermissionManager $permissionManager,
@@ -75,7 +80,8 @@ class SpecialDeletedContributions extends ContributionsSpecialPage {
 		LinkBatchFactory $linkBatchFactory,
 		UserFactory $userFactory,
 		UserIdentityLookup $userIdentityLookup,
-		DatabaseBlockStore $blockStore
+		DatabaseBlockStore $blockStore,
+		TempUserConfig $tempUserConfig
 	) {
 		parent::__construct(
 			$permissionManager,
@@ -93,6 +99,7 @@ class SpecialDeletedContributions extends ContributionsSpecialPage {
 		$this->revisionStore = $revisionStore;
 		$this->commentFormatter = $commentFormatter;
 		$this->linkBatchFactory = $linkBatchFactory;
+		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	/**
@@ -144,11 +151,16 @@ class SpecialDeletedContributions extends ContributionsSpecialPage {
 		return $tools;
 	}
 
-	/**
-	 * @inheritDoc
-	 */
-	protected function getResultsPageTitleMessageKey() {
-		return 'deletedcontributions-title';
+	/** @inheritDoc */
+	protected function getResultsPageTitleMessageKey( UserIdentity $target ) {
+		// The following messages are generated here:
+		// * deletedcontributions-title
+		// * deletedcontributions-title-for-ip-when-temporary-accounts-enabled
+		$messageKey = 'deletedcontributions-title';
+		if ( $this->tempUserConfig->isEnabled() && IPUtils::isIPAddress( $target->getName() ) ) {
+			$messageKey .= '-for-ip-when-temporary-accounts-enabled';
+		}
+		return $messageKey;
 	}
 }
 

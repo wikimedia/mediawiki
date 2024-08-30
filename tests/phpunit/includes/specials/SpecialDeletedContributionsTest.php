@@ -1,12 +1,18 @@
 <?php
 
 use MediaWiki\Specials\SpecialDeletedContributions;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
+use Wikimedia\Parsoid\Utils\DOMCompat;
+use Wikimedia\Parsoid\Utils\DOMUtils;
 
 /**
  * @group Database
  * @covers \MediaWiki\Specials\SpecialDeletedContributions
  */
 class SpecialDeletedContributionsTest extends SpecialPageTestBase {
+
+	use TempUserTestTrait;
+
 	private static User $sysop;
 	private static User $userNameWithSpaces;
 
@@ -25,7 +31,8 @@ class SpecialDeletedContributionsTest extends SpecialPageTestBase {
 			$services->getLinkBatchFactory(),
 			$services->getUserFactory(),
 			$services->getUserIdentityLookup(),
-			$services->getDatabaseBlockStore()
+			$services->getDatabaseBlockStore(),
+			$services->getTempUserConfig()
 		);
 	}
 
@@ -49,14 +56,33 @@ class SpecialDeletedContributionsTest extends SpecialPageTestBase {
 		$this->assertStringNotContainsString( 'mw-pager-body', $html );
 	}
 
-	public function testExecuteNoResults() {
+	/** @dataProvider provideExecuteNoResultsForIPTarget */
+	public function testExecuteNoResultsForIPTarget( $temporaryAccountsEnabled, $expectedPageTitleMessageKey ) {
+		if ( $temporaryAccountsEnabled ) {
+			$this->enableAutoCreateTempUser();
+		} else {
+			$this->disableAutoCreateTempUser();
+		}
 		[ $html ] = $this->executeSpecialPage(
 			'127.0.0.1',
 			null,
 			null,
 			self::$sysop,
+			true
 		);
-		$this->assertStringNotContainsString( 'mw-pager-body', $html );
+		$specialPageDocument = DOMUtils::parseHTML( $html );
+		$contentHtml = DOMCompat::querySelector( $specialPageDocument, '.mw-content-container' )->nodeValue;
+		$this->assertStringNotContainsString( 'mw-pager-body', $contentHtml );
+		$this->assertStringContainsString( "($expectedPageTitleMessageKey: 127.0.0.1", $contentHtml );
+	}
+
+	public static function provideExecuteNoResultsForIPTarget() {
+		return [
+			'Temporary accounts not enabled' => [ false, 'deletedcontributions-title' ],
+			'Temporary accounts enabled' => [
+				true, 'deletedcontributions-title-for-ip-when-temporary-accounts-enabled',
+			],
+		];
 	}
 
 	public function testExecuteUserNameWithEscapedSpaces() {

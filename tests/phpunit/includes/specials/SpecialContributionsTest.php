@@ -113,6 +113,29 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 		$this->assertStringNotContainsString( 'mw-pager-body', $html );
 	}
 
+	/** @dataProvider provideExecuteNoResultsForIPTarget */
+	public function testExecuteNoResultsForIPTarget( $temporaryAccountsEnabled, $expectedPageTitleMessageKey ) {
+		if ( $temporaryAccountsEnabled ) {
+			$this->enableAutoCreateTempUser();
+		} else {
+			$this->disableAutoCreateTempUser();
+		}
+		[ $html ] = $this->executeSpecialPage( '4.3.2.1', null, null, null, true );
+		$specialPageDocument = DOMUtils::parseHTML( $html );
+		$contentHtml = DOMCompat::querySelector( $specialPageDocument, '.mw-content-container' )->nodeValue;
+		$this->assertStringNotContainsString( 'mw-pager-body', $contentHtml );
+		$this->assertStringContainsString( "($expectedPageTitleMessageKey: 4.3.2.1", $contentHtml );
+	}
+
+	public static function provideExecuteNoResultsForIPTarget() {
+		return [
+			'Temporary accounts not enabled' => [ false, 'contributions-title' ],
+			'Temporary accounts enabled' => [
+				true, 'contributions-title-for-ip-when-temporary-accounts-enabled',
+			],
+		];
+	}
+
 	public function testExecuteForUseModWikiIP() {
 		// Regression test for T370413
 		[ $html ] = $this->executeSpecialPage( '1.2.3.xxx' );
@@ -281,7 +304,8 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 			$services->getCommentFormatter(),
 			$services->getUserFactory(),
 			$services->getUserIdentityLookup(),
-			$services->getDatabaseBlockStore()
+			$services->getDatabaseBlockStore(),
+			$services->getTempUserConfig()
 		);
 	}
 

@@ -24,7 +24,6 @@ use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Pager\ContribsPager;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionStore;
@@ -32,10 +31,13 @@ use MediaWiki\SpecialPage\ContributionsSpecialPage;
 use MediaWiki\Specials\Contribute\ContributeFactory;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\Options\UserOptionsLookup;
+use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
+use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
@@ -47,54 +49,56 @@ class SpecialContributions extends ContributionsSpecialPage {
 	private LinkBatchFactory $linkBatchFactory;
 	private RevisionStore $revisionStore;
 	private CommentFormatter $commentFormatter;
+	private TempUserConfig $tempUserConfig;
 	private ?ContribsPager $pager = null;
 
 	/**
-	 * @param LinkBatchFactory|null $linkBatchFactory
-	 * @param PermissionManager|null $permissionManager
-	 * @param IConnectionProvider|null $dbProvider
-	 * @param RevisionStore|null $revisionStore
-	 * @param NamespaceInfo|null $namespaceInfo
-	 * @param UserNameUtils|null $userNameUtils
-	 * @param UserNamePrefixSearch|null $userNamePrefixSearch
-	 * @param UserOptionsLookup|null $userOptionsLookup
-	 * @param CommentFormatter|null $commentFormatter
-	 * @param UserFactory|null $userFactory
-	 * @param UserIdentityLookup|null $userIdentityLookup
-	 * @param DatabaseBlockStore|null $blockStore
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param PermissionManager $permissionManager
+	 * @param IConnectionProvider $dbProvider
+	 * @param RevisionStore $revisionStore
+	 * @param NamespaceInfo $namespaceInfo
+	 * @param UserNameUtils $userNameUtils
+	 * @param UserNamePrefixSearch $userNamePrefixSearch
+	 * @param UserOptionsLookup $userOptionsLookup
+	 * @param CommentFormatter $commentFormatter
+	 * @param UserFactory $userFactory
+	 * @param UserIdentityLookup $userIdentityLookup
+	 * @param DatabaseBlockStore $blockStore
+	 * @param TempUserConfig $tempUserConfig
 	 */
 	public function __construct(
-		LinkBatchFactory $linkBatchFactory = null,
-		PermissionManager $permissionManager = null,
-		IConnectionProvider $dbProvider = null,
-		RevisionStore $revisionStore = null,
-		NamespaceInfo $namespaceInfo = null,
-		UserNameUtils $userNameUtils = null,
-		UserNamePrefixSearch $userNamePrefixSearch = null,
-		UserOptionsLookup $userOptionsLookup = null,
-		CommentFormatter $commentFormatter = null,
-		UserFactory $userFactory = null,
-		UserIdentityLookup $userIdentityLookup = null,
-		DatabaseBlockStore $blockStore = null
+		LinkBatchFactory $linkBatchFactory,
+		PermissionManager $permissionManager,
+		IConnectionProvider $dbProvider,
+		RevisionStore $revisionStore,
+		NamespaceInfo $namespaceInfo,
+		UserNameUtils $userNameUtils,
+		UserNamePrefixSearch $userNamePrefixSearch,
+		UserOptionsLookup $userOptionsLookup,
+		CommentFormatter $commentFormatter,
+		UserFactory $userFactory,
+		UserIdentityLookup $userIdentityLookup,
+		DatabaseBlockStore $blockStore,
+		TempUserConfig $tempUserConfig
 	) {
-		// This class is extended and therefore falls back to global state - T269521
-		$services = MediaWikiServices::getInstance();
 		parent::__construct(
-			$permissionManager ?? $services->getPermissionManager(),
-			$dbProvider ?? $services->getConnectionProvider(),
-			$namespaceInfo ?? $services->getNamespaceInfo(),
-			$userNameUtils ?? $services->getUserNameUtils(),
-			$userNamePrefixSearch ?? $services->getUserNamePrefixSearch(),
-			$userOptionsLookup ?? $services->getUserOptionsLookup(),
-			$userFactory ?? $services->getUserFactory(),
-			$userIdentityLookup ?? $services->getUserIdentityLookup(),
-			$blockStore ?? $services->getDatabaseBlockStore(),
+			$permissionManager,
+			$dbProvider,
+			$namespaceInfo,
+			$userNameUtils,
+			$userNamePrefixSearch,
+			$userOptionsLookup,
+			$userFactory,
+			$userIdentityLookup,
+			$blockStore,
 			'Contributions',
 			''
 		);
-		$this->linkBatchFactory = $linkBatchFactory ?? $services->getLinkBatchFactory();
-		$this->revisionStore = $revisionStore ?? $services->getRevisionStore();
-		$this->commentFormatter = $commentFormatter ?? $services->getCommentFormatter();
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->revisionStore = $revisionStore;
+		$this->commentFormatter = $commentFormatter;
+		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	/**
@@ -156,6 +160,18 @@ class SpecialContributions extends ContributionsSpecialPage {
 			);
 		}
 		return [];
+	}
+
+	/** @inheritDoc */
+	protected function getResultsPageTitleMessageKey( UserIdentity $target ) {
+		// The following messages are generated here:
+		// * contributions-title
+		// * contributions-title-for-ip-when-temporary-accounts-enabled
+		$messageKey = 'contributions-title';
+		if ( $this->tempUserConfig->isEnabled() && IPUtils::isIPAddress( $target->getName() ) ) {
+			$messageKey .= '-for-ip-when-temporary-accounts-enabled';
+		}
+		return $messageKey;
 	}
 }
 

@@ -221,7 +221,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 			return;
 		}
 		$out->addSubtitle( $this->contributionsSub( $userObj, $target ) );
-		$out->setPageTitleMsg( $this->msg( $this->getResultsPageTitleMessageKey(), $target ) );
+		$out->setPageTitleMsg( $this->msg( $this->getResultsPageTitleMessageKey( $userObj ), $target ) );
 
 		# For IP ranges, we want the contributionsSub, but not the skin-dependent
 		# links under 'Tools', which may include irrelevant links like 'Logs'.
@@ -961,9 +961,10 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 	}
 
 	/**
+	 * @param UserIdentity $target The target of the search that produced the results page
 	 * @return string Message key for the results page title
 	 */
-	protected function getResultsPageTitleMessageKey() {
+	protected function getResultsPageTitleMessageKey( UserIdentity $target ) {
 		return 'contributions-title';
 	}
 }
