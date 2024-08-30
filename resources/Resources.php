@@ -3300,6 +3300,10 @@ return [
 		'class' => OOUIImageModule::class,
 		'themeImages' => 'icons-editing-core',
 	],
+	'oojs-ui.styles.icons-editing-functions' => [
+		'class' => OOUIImageModule::class,
+		'themeImages' => 'icons-editing-functions',
+	],
 	'oojs-ui.styles.icons-editing-list' => [
 		'class' => OOUIImageModule::class,
 		'themeImages' => 'icons-editing-list',

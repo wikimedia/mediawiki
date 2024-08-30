@@ -40,6 +40,7 @@ trait OOUIModule {
 		'icons-content',
 		'icons-editing-advanced',
 		'icons-editing-citation',
+		'icons-editing-functions',
 		'icons-editing-core',
 		'icons-editing-list',
 		'icons-editing-styling',
