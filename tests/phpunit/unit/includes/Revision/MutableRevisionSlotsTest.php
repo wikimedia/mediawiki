@@ -12,6 +12,7 @@ use MediaWiki\Revision\SlotRecord;
 
 /**
  * @covers \MediaWiki\Revision\MutableRevisionSlots
+ * @covers \MediaWiki\Revision\RevisionSlots
  */
 class MutableRevisionSlotsTest extends RevisionSlotsTest {
 
@@ -32,9 +33,6 @@ class MutableRevisionSlotsTest extends RevisionSlotsTest {
 	/**
 	 * @dataProvider provideConstructorFailue
 	 * @param array $slots
-	 *
-	 * @covers \MediaWiki\Revision\RevisionSlots::__construct
-	 * @covers \MediaWiki\Revision\RevisionSlots::setSlotsInternal
 	 */
 	public function testConstructorFailue( $slots ) {
 		$this->expectException( InvalidArgumentException::class );

@@ -29,7 +29,6 @@ trait RevisionRecordTests {
 
 	/**
 	 * @param array $rowOverrides
-	 *
 	 * @return RevisionRecord
 	 */
 	abstract protected function newRevision( array $rowOverrides = [] );
@@ -426,7 +425,6 @@ trait RevisionRecordTests {
 
 	/**
 	 * @dataProvider provideUserCanBitfield
-	 * @covers \MediaWiki\Revision\RevisionRecord::userCanBitfield
 	 */
 	public function testUserCanBitfield( $bitField, $field, $permissions, ?PageIdentity $title, $expected ) {
 		$performer = $this->mockRegisteredAuthorityWithPermissions( $permissions );
@@ -502,7 +500,6 @@ trait RevisionRecordTests {
 
 	/**
 	 * @dataProvider provideHasSameContent
-	 * @covers \MediaWiki\Revision\RevisionRecord::hasSameContent
 	 */
 	public function testHasSameContent(
 		$expected,
@@ -559,7 +556,6 @@ trait RevisionRecordTests {
 
 	/**
 	 * @dataProvider provideIsDeleted
-	 * @covers \MediaWiki\Revision\RevisionRecord::isDeleted
 	 */
 	public function testIsDeleted( $revDeleted, $assertionMap ) {
 		$rev = $this->newRevision( [ 'rev_deleted' => $revDeleted ] );

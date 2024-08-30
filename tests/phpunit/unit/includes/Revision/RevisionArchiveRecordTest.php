@@ -29,7 +29,6 @@ class RevisionArchiveRecordTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @param array $rowOverrides
-	 *
 	 * @return RevisionArchiveRecord
 	 */
 	protected function newRevision( array $rowOverrides = [] ) {
@@ -68,9 +67,6 @@ class RevisionArchiveRecordTest extends MediaWikiUnitTestCase {
 		return new RevisionArchiveRecord( $title, $user, $comment, (object)$row, $slots, $wikiId );
 	}
 
-	/**
-	 * @covers \MediaWiki\Revision\RevisionRecord::isCurrent
-	 */
 	public function testIsCurrent() {
 		$rev = $this->newRevision();
 		$this->assertFalse( $rev->isCurrent(),

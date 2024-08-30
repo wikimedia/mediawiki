@@ -15,9 +15,6 @@ use MediaWikiUnitTestCase;
  */
 class RevertedTagUpdateManagerTest extends MediaWikiUnitTestCase {
 
-	/**
-	 * @covers \MediaWiki\Storage\RevertedTagUpdateManager::approveRevertedTagForRevision
-	 */
 	public function testApproveRevertedTagForRevision() {
 		$revisionId = 123;
 
@@ -42,9 +39,6 @@ class RevertedTagUpdateManagerTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\Storage\RevertedTagUpdateManager::approveRevertedTagForRevision
-	 */
 	public function testApproveRevertedTagForRevision_missingEditResult() {
 		$revisionId = 123;
 

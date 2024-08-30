@@ -58,12 +58,6 @@ class MainSlotRoleHandlerTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\Revision\MainSlotRoleHandler::__construct
-	 * @covers \MediaWiki\Revision\MainSlotRoleHandler::getRole()
-	 * @covers \MediaWiki\Revision\MainSlotRoleHandler::getNameMessageKey()
-	 * @covers \MediaWiki\Revision\MainSlotRoleHandler::getOutputLayoutHints()
-	 */
 	public function testConstruction() {
 		$handler = $this->getRoleHandler( [] );
 		$this->assertSame( SlotRecord::MAIN, $handler->getRole() );
@@ -75,9 +69,6 @@ class MainSlotRoleHandlerTest extends MediaWikiUnitTestCase {
 		$this->assertArrayHasKey( 'placement', $hints );
 	}
 
-	/**
-	 * @covers \MediaWiki\Revision\MainSlotRoleHandler::getDefaultModel()
-	 */
 	public function testGetDefaultModel() {
 		$handler = $this->getRoleHandler(
 			[ 100 => CONTENT_MODEL_TEXT ]
@@ -97,9 +88,6 @@ class MainSlotRoleHandlerTest extends MediaWikiUnitTestCase {
 		$this->assertSame( CONTENT_MODEL_TEXT, $handler->getDefaultModel( $title100 ) );
 	}
 
-	/**
-	 * @covers \MediaWiki\Revision\MainSlotRoleHandler::isAllowedModel()
-	 */
 	public function testIsAllowedModel() {
 		$handler = $this->getRoleHandler( [] );
 
@@ -112,9 +100,6 @@ class MainSlotRoleHandlerTest extends MediaWikiUnitTestCase {
 		$this->assertTrue( $handler->isAllowedModel( CONTENT_MODEL_TEXT, $title ) );
 	}
 
-	/**
-	 * @covers \MediaWiki\Revision\MainSlotRoleHandler::supportsArticleCount()
-	 */
 	public function testSupportsArticleCount() {
 		$handler = $this->getRoleHandler( [] );
 
