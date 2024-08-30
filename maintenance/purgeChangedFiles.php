@@ -120,7 +120,7 @@ class PurgeChangedFiles extends Maintenance {
 
 		// Turn on verbose when dry-run is enabled
 		if ( $this->hasOption( 'dry-run' ) ) {
-			$this->mOptions['verbose'] = 1;
+			$this->setOption( 'verbose', 1 );
 		}
 
 		$this->verbose( 'Purging files that were: ' . implode( ', ', $typeList ) . "\n" );

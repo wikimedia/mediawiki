@@ -189,7 +189,7 @@ class CommandLineInstaller extends Maintenance {
 
 		$scriptpath = $this->getOption( 'scriptpath', false );
 		if ( $scriptpath === false ) {
-			$this->mOptions['scriptpath'] = '/' . basename( dirname( __DIR__ ) );
+			$this->setOption( 'scriptpath', '/' . basename( dirname( __DIR__ ) ) );
 		}
 
 		$this->setDbPassOption();

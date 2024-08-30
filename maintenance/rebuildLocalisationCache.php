@@ -279,7 +279,7 @@ class RebuildLocalisationCache extends Maintenance {
 	 * @param bool $forced
 	 */
 	public function setForce( $forced = true ) {
-		$this->mOptions['force'] = $forced;
+		$this->setOption( 'force', $forced );
 	}
 }
 
