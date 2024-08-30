@@ -5,6 +5,7 @@
  * on serializing classes.
  *
  * @since 1.34
+ * @ingroup Cache
  */
 class SerializedValueContainer {
 	private const SCHEMA = '__svc_schema__';

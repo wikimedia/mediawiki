@@ -8,7 +8,7 @@ use Psr\Log\LoggerInterface;
 use Wikimedia\Http\MultiHttpClient;
 
 /**
- * Interface to key-value storage behind an HTTP server.
+ * Store key-value data via an HTTP service.
  *
  * ### Important caveats
  *

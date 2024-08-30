@@ -1,7 +1,5 @@
 <?php
 /**
- * Wrapper for object caching in different caches.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,21 +16,86 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Cache
  */
-
 namespace Wikimedia\ObjectCache;
 
 use InvalidArgumentException;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
- * A cache class that replicates all writes to multiple child caches. Reads
- * are implemented by reading from the caches in the order they are given in
- * the configuration until a cache gives a positive result.
+ * Wrap multiple BagOStuff objects, to implement different caching tiers.
  *
- * Note that cache key construction will use the first cache backend in the list,
- * so make sure that the other backends can handle such keys (e.g. via encoding).
+ * The order of the caches is important. The first tier is considered the primary
+ * and highest tier which must handle the majority of the load for reads,
+ * and is generally less persistent, smaller, and faster (e.g. evicts data
+ * regularly based on demand, keeping fewer keys at a given time).
+ * The other caches are consider secondary and lower tiers, which should
+ * hold more data and retain it for longer than the primary tier.
+ *
+ * Data writes ("set") go to all given BagOStuff caches.
+ * If the `replication => async` option is set, then only the primary write
+ * is blocking during the web request, with other writes deferred until
+ * after the web response is sent.
+ *
+ * Data reads try each cache in the order they are given, until a value is found.
+ * When a value is found at a secondary tier, it is automatically copied (back)
+ * to the primary tier.
+ *
+ * **Example**: Keep popular data in memcached, with a fallback to a MySQL database.
+ * This is how ParserCache is used at Wikimedia Foundation (as of 2024).
+ *
+ * ```
+ * $wgObjectCaches['parsercache-multiwrite'] = [
+ *    'class' => 'MultiWriteBagOStuff',
+ *    'caches' => [
+ *      0 => [
+ *        'class' => 'MemcachedPeclBagOStuff',
+ *        'servers' => [ '127.0.0.1:11212' ],
+ *      ],
+ *      1 => [
+ *        'class' => 'SqlBagOStuff',
+ *        'servers' => $parserCacheDbServers,
+ *        'purgePeriod' => 0,
+ *        'tableName' => 'pc',
+ *        'shards' => 256,
+ *        'reportDupes' => false
+ *      ],
+ *    ]
+ * ];
+ * ```
+ *
+ * If you configure a memcached server for MultiWriteBagOStuff that is the same
+ * as the one used for MediaWiki more generally, it is recommended to specify
+ * the tier via ObjectCache::getInstance() so that the same object and Memcached
+ * connection can be re-used.
+ *
+ * ```
+ * $wgObjectCaches['my-memcached'] = [ .. ];
+ * $wgMainCacheType = 'my-memcached';
+ *
+ * $wgObjectCaches['parsercache-multiwrite'] = [
+ *    'class' => 'MultiWriteBagOStuff',
+ *    'caches' => [
+ *      0 => [
+ *        'factory' => [ 'ObjectCache', 'getInstance' ],
+ *        'args' => [ 'my-memcached' ],
+ *      ],
+ *      1 => [
+ *        'class' => 'SqlBagOStuff',
+ *        'servers' => $parserCacheDbServers,
+ *        'purgePeriod' => 0,
+ *        'tableName' => 'pc',
+ *        'shards' => 256,
+ *        'reportDupes' => false
+ *      ],
+ *    ]
+ * ];
+ * ```
+ *
+ * The makeKey() method of this class uses an implementation-agnostic encoding.
+ * When it forward gets and sets to the other BagOStuff objects, keys are
+ * automatically re-encoded. For example, to satisfy the character and length
+ * constraints of MemcachedBagOStuff.
  *
  * @newable
  * @ingroup Cache

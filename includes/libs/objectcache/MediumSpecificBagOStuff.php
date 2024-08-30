@@ -1,7 +1,5 @@
 <?php
 /**
- * Storage medium specific cache for storing items.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,9 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Cache
  */
-
 namespace Wikimedia\ObjectCache;
 
 use InvalidArgumentException;
@@ -30,9 +26,10 @@ use stdClass;
 use Wikimedia\WaitConditionLoop;
 
 /**
- * Storage medium specific cache for storing items (e.g. redis, memcached, ...)
+ * Helper classs that implements most of BagOStuff for a backend.
  *
- * This should not be used for proxy classes that simply wrap other cache instances
+ * This should be used by concrete implementations only. Wrapper classes that
+ * proxy another BagOStuff should extend and implement BagOStuff directly.
  *
  * @ingroup Cache
  * @since 1.34

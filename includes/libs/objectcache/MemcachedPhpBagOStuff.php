@@ -1,7 +1,5 @@
 <?php
 /**
- * Object caching using memcached.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,15 +16,18 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Cache
  */
-
 namespace Wikimedia\ObjectCache;
 
 use MemcachedClient;
 
 /**
- * A wrapper class for the pure-PHP memcached client, exposing a BagOStuff interface.
+ * Store data on memcached servers(s) via a pure-PHP memcached client.
+ *
+ * In configuration, the CACHE_MEMCACHED will activate the MemcachedPhpBagOStuff
+ * class. This works out of the box without any PHP extension or other PECL
+ * dependencies.  If you can install the php-memcached PECL extension,
+ * it is recommended to use MemcachedPeclBagOStuff instead.
  *
  * @ingroup Cache
  */

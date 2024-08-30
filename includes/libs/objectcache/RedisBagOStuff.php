@@ -1,7 +1,5 @@
 <?php
 /**
- * Object caching using Redis (http://redis.io/).
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,7 +17,6 @@
  *
  * @file
  */
-
 namespace Wikimedia\ObjectCache;
 
 use ArrayUtils;
@@ -30,9 +27,14 @@ use RedisConnRef;
 use RedisException;
 
 /**
- * Redis-based caching module for redis server >= 2.6.12 and phpredis >= 2.2.4
+ * Store data in Redis.
  *
+ * This requires the php-redis PECL extension (2.2.4 or later) and
+ * a Redis server (2.6.12 or later).
+ *
+ * @see http://redis.io/
  * @see https://github.com/phpredis/phpredis/blob/d310ed7c8/Changelog.md
+ *
  * @note Avoid use of Redis::MULTI transactions for twemproxy support
  *
  * @ingroup Cache

@@ -1,7 +1,5 @@
 <?php
 /**
- * Dummy object caching.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,13 +16,15 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Cache
  */
-
 namespace Wikimedia\ObjectCache;
 
 /**
- * A BagOStuff object with no objects in it. Used to provide a no-op object to calling code.
+ * No-op implementation that stores nothing.
+ *
+ * Used as placeholder or fallback when disabling caching.
+ *
+ * This can be used in configuration via the CACHE_NONE constant.
  *
  * @ingroup Cache
  */

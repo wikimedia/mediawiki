@@ -1,7 +1,5 @@
 <?php
 /**
- * Base class for memcached clients.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,9 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Cache
  */
-
 namespace Wikimedia\ObjectCache;
 
 use Exception;
@@ -28,7 +24,9 @@ use InvalidArgumentException;
 use RuntimeException;
 
 /**
- * Base class for memcached clients.
+ * Store data in a memcached server or memcached cluster.
+ *
+ * This is a base class for MemcachedPhpBagOStuff and MemcachedPeclBagOStuff.
  *
  * @ingroup Cache
  */

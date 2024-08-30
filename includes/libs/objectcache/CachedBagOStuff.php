@@ -1,7 +1,5 @@
 <?php
 /**
- * Wrapper around a BagOStuff that caches data in memory
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,19 +16,17 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Cache
  */
-
 namespace Wikimedia\ObjectCache;
 
 /**
- * Wrapper around a BagOStuff that caches data in memory
+ * Wrap any BagOStuff and add an in-process memory cache to it.
  *
  * The differences between CachedBagOStuff and MultiWriteBagOStuff are:
- * * CachedBagOStuff supports only one "backend".
- * * There's a flag for writes to only go to the in-memory cache.
- * * The in-memory cache is always updated.
- * * Locks go to the backend cache (with MultiWriteBagOStuff, it would wind
+ * - CachedBagOStuff supports only one "backend".
+ * - There's a flag for writes to only go to the in-memory cache.
+ * - The in-memory cache is always updated.
+ * - Locks go to the backend cache (with MultiWriteBagOStuff, it would wind
  *   up going to the HashBagOStuff used for the in-memory cache).
  *
  * @newable

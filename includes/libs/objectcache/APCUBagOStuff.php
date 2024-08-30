@@ -1,7 +1,5 @@
 <?php
 /**
- * Object caching using PHP's APCU accelerator.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,21 +16,21 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Cache
  */
-
 namespace Wikimedia\ObjectCache;
 
 /**
- * This is a wrapper for APCu's shared memory functions
+ * Store data in the local server memory via APCu (php-apcu)
  *
- * Use PHP serialization to avoid bugs and easily create CAS tokens.
- * APCu has a memory corruption bug when the serializer is set to 'default'.
- * See T120267, and upstream bug reports:
- *  - https://github.com/krakjoe/apcu/issues/38
- *  - https://github.com/krakjoe/apcu/issues/35
- *  - https://github.com/krakjoe/apcu/issues/111
+ * Past issues of note:
+ * - Memory corruption when `apc.serializer=default` in INI:
+ *   https://phabricator.wikimedia.org/T120267
+ * - We used to recommend `apc.serializer=php` as non-default setting, and if not set,
+ *   applied serialize() manually to workaround bugs and to create values we can use
+ *   as CAS tokens. Upstream defaults to serializer=php since php-apcu 5.1.15 (2018).
+ *   https://gerrit.wikimedia.org/r/671634
  *
+ * @see https://www.php.net/apcu
  * @ingroup Cache
  */
 class APCUBagOStuff extends MediumSpecificBagOStuff {

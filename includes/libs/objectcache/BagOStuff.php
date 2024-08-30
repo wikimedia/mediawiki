@@ -1,8 +1,5 @@
 <?php
 /**
- * Copyright © 2003-2004 Brooke Vibber <bvibber@wikimedia.org>
- * https://www.mediawiki.org/
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,11 +16,16 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Cache
  */
 
 /**
- * @defgroup Cache Cache
+ * @defgroup Cache BagOStuff
+ *
+ * Most important classes are:
+ *
+ * @see ObjectCacheFactory
+ * @see WANObjectCache
+ * @see BagOStuff
  */
 
 namespace Wikimedia\ObjectCache;
@@ -38,13 +40,11 @@ use Wikimedia\ScopedCallback;
 use Wikimedia\Stats\StatsFactory;
 
 /**
- * Class representing a cache/ephemeral data store
- *
- * This interface is intended to be more or less compatible with the PHP memcached client.
+ * Abstract class for any ephemeral data store
  *
  * Class instances should be created with an intended access scope for the dataset, such as:
  *   - a) A single PHP thread on a server (e.g. stored in a PHP variable)
- *   - b) A single application server (e.g. stored in APC or sqlite)
+ *   - b) A single application server (e.g. stored in php-apcu or sqlite)
  *   - c) All application servers in datacenter (e.g. stored in memcached or mysql)
  *   - d) All application servers in all datacenters (e.g. stored via mcrouter or dynomite)
  *
@@ -79,6 +79,7 @@ use Wikimedia\Stats\StatsFactory;
  * @stable to extend
  * @newable
  * @ingroup Cache
+ * @copyright 2003-2004 Brooke Vibber <bvibber@wikimedia.org>
  */
 abstract class BagOStuff implements
 	ExpirationAwareness,
