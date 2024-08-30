@@ -4,6 +4,8 @@
 			"Toliño"
 		]
 	},
+	"cdx-chip-input-chip-added": "Engadiuse a tarxeta $1.",
+	"cdx-chip-input-chip-removed": "Eliminouse a tarxeta $1.",
 	"cdx-input-chip-aria-description": "Preme Intro para editar ou Supr para eliminar.",
 	"cdx-dialog-close-button-label": "Pechar",
 	"cdx-label-optional-flag": "(opcional)",

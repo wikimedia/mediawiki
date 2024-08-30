@@ -4,6 +4,8 @@
 			"Nemoralis"
 		]
 	},
+	"cdx-chip-input-chip-added": "$1 çipi əlavə edildi.",
+	"cdx-chip-input-chip-removed": "$1 çipi silindi.",
 	"cdx-input-chip-aria-description": "Redaktə etmək üçün Enter, silmək üçün Delete düyməsinə basın",
 	"cdx-dialog-close-button-label": "Bağla",
 	"cdx-label-optional-flag": "(məcburi deyil)",

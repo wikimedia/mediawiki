@@ -4,6 +4,8 @@
 			"Saraiki"
 		]
 	},
+	"cdx-chip-input-chip-added": "چِپ $1 شامل کیتی ڳئی ہائی۔",
+	"cdx-chip-input-chip-removed": "چِپ $1 ہٹا ݙتی ڳئی۔",
 	"cdx-dialog-close-button-label": "بند کرو",
 	"cdx-message-dismiss-button-label": "بند کرو",
 	"cdx-search-input-search-button-label": "ڳولو",
