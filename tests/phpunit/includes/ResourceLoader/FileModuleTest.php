@@ -12,6 +12,7 @@ use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use RuntimeException;
 use SkinFactory;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group ResourceLoader
@@ -931,5 +932,79 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		$this->assertTrue( $module->requiresES6(), 'requiresES6 is true even when set to false' );
 		$module = new FileModule( [ 'es6' => true ] );
 		$this->assertTrue( $module->requiresES6(), 'requiresES6 is true when set to true' );
+	}
+
+	/**
+	 * @covers \Wikimedia\DependencyStore\DependencyStore
+	 * @covers \Wikimedia\DependencyStore\KeyValueDependencyStore
+	 */
+	public function testIndirectDependencies() {
+		$context = $this->getResourceLoaderContext();
+		$moduleInfo = [ 'dir' => __DIR__ . '/../../data/less/module',
+		'lessVars' => [ 'foo' => '2px', 'Foo' => '#eeeeee' ], 'name' => 'styles-dependencies' ];
+
+		$module = $this->newModuleRequest( $moduleInfo, $context );
+		$module->getStyles( $context );
+
+		$module = $this->newModuleRequest( $moduleInfo, $context );
+		$dependencies = $module->getFileDependencies( $context );
+
+		$expectedDependencies = [ realpath( __DIR__ . '/../../data/less/common/test.common.mixins.less' ),
+		realpath( __DIR__ . '/../../data/less/module/dependency.less' ) ];
+
+		$this->assertEquals( $expectedDependencies, $dependencies );
+	}
+
+	/**
+	 * @covers \Wikimedia\DependencyStore\DependencyStore
+	 * @covers \Wikimedia\DependencyStore\KeyValueDependencyStore
+	 */
+	public function testIndirectDependenciesUpdate() {
+		$context = $this->getResourceLoaderContext();
+		$tempDir = $this->getNewTempDirectory();
+		$moduleInfo = [ 'dir' => $tempDir, 'name' => 'new-dependencies' ];
+
+		file_put_contents( "$tempDir/styles.less", "@import './test.less';" );
+		file_put_contents( "$tempDir/test.less", "div { color: red; } " );
+
+		$module = $this->newModuleRequest( $moduleInfo, $context );
+		$module->getStyles( $context );
+
+		$module = $this->newModuleRequest( $moduleInfo, $context );
+		$dependencies = $module->getFileDependencies( $context );
+
+		$expectedDependencies = [ realpath( $tempDir . '/test.less' ) ];
+
+		$this->assertEquals( $expectedDependencies, $dependencies );
+
+		file_put_contents( "$tempDir/styles.less", "@import './pink.less';" );
+		file_put_contents( "$tempDir/pink.less", "div { color: pink; } " );
+
+		$module = $this->newModuleRequest( $moduleInfo, $context );
+		$module->getStyles( $context );
+
+		$module = $this->newModuleRequest( $moduleInfo, $context );
+		$dependencies = $module->getFileDependencies( $context );
+
+		$expectedDependencies = [ realpath( $tempDir . '/pink.less' ) ];
+
+		$this->assertEquals( $expectedDependencies, $dependencies );
+	}
+
+	public function newModuleRequest( $moduleInfo, $context ) {
+		$module = new ResourceLoaderFileTestModule( [
+			'localBasePath' => $moduleInfo['dir'],
+			'styles' => [ 'styles.less' ],
+			'lessVars' => $moduleInfo['lessVars'] ?? null
+		] );
+
+		$module->setName( $moduleInfo['name'] );
+		$module->setConfig( $context->getResourceLoader()->getConfig() );
+		$module->setDependencyAccessCallbacks(
+			[ $context->getResourceLoader(), 'loadModuleDependenciesInternal' ],
+			[ $context->getResourceLoader(), 'saveModuleDependenciesInternal' ]
+		);
+		$wrapper = TestingAccessWrapper::newFromObject( $module );
+		return $wrapper;
 	}
 }
