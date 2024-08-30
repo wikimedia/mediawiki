@@ -69,7 +69,7 @@ class CreateBotPassword extends Maintenance {
 		$username = $this->getArg( 0 );
 		$password = $this->getArg( 1 );
 		$appId = $this->getOption( 'appid' );
-		$grants = explode( ',', $this->getOption( 'grants' ) );
+		$grants = explode( ',', $this->getOption( 'grants', '' ) );
 
 		$errors = [];
 		if ( $username === null ) {
