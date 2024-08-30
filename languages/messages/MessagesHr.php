@@ -259,8 +259,6 @@ $magicWords = [
 $datePreferences = [
 	'default',
 	'dmy hr',
-	'mdy',
-	'ymd',
 	'ISO 8601',
 ];
 
@@ -268,16 +266,8 @@ $defaultDateFormat = 'dmy hr';
 
 $dateFormats = [
 	'dmy hr time' => 'H:i',
-	'dmy hr date' => 'j. F Y.',
-	'dmy hr both' => 'H:i, j. F Y.',
-
-	'mdy time' => 'H:i',
-	'mdy date' => 'F j, Y',
-	'mdy both' => 'H:i, F j, Y',
-
-	'ymd time' => 'H:i',
-	'ymd date' => 'Y F j',
-	'ymd both' => 'H:i, Y F j',
+	'dmy hr date' => 'j. xg Y.',
+	'dmy hr both' => 'H:i, j. xg Y.',
 
 	'ISO 8601 time' => 'xnH:xni:xns',
 	'ISO 8601 date' => 'xnY-xnm-xnd',
