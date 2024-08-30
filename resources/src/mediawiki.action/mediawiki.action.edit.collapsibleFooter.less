@@ -6,9 +6,19 @@
 	display: flex;
 	align-items: center;
 
+	// Different skins have different values for <p>'s spacing making toggle
+	// arrow hard to vertically align correctly with heading paragraph, this
+	// resets it to the symmetric spacing of Vector-2010.
+	p {
+		margin: 0.5em 0;
+		padding: 0;
+	}
+
+	// This doesn't follow the best practice of Codex icons, use a separate
+	// element rather than pseudo-element where possible.
 	&::before {
 		content: '';
-		margin: 0.5em 4px 1em 0;
+		margin-right: 4px;
 		.cdx-mixin-css-icon( @cdx-icon-down-triangle, @color-disabled, @size-icon-x-small );
 		transition: transform 250ms ease;
 
