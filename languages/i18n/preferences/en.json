@@ -129,7 +129,7 @@
 	"imagemaxsize": "Image size limit on file description pages:",
 	"thumbsize": "Thumbnail size:",
 	"prefs-diffs": "Diffs",
-	"tog-diffonly": "Do not show page content below diffs",
+	"tog-diffonly": "Don't show page content below diffs",
 	"tog-norollbackdiff": "Don't show diff after performing a rollback",
 	"prefs-advancedrendering": "Advanced options",
 	"tog-underline": "Link underlining:",
