@@ -7,16 +7,10 @@ use MediaWiki\Title\Title;
 
 /**
  * @covers \MediaWiki\Revision\FallbackSlotRoleHandler
+ * @covers \MediaWiki\Revision\SlotRoleHandler
  */
 class FallbackSlotRoleHandlerTest extends \MediaWikiUnitTestCase {
 
-	/**
-	 * @covers \MediaWiki\Revision\FallbackSlotRoleHandler::__construct
-	 * @covers \MediaWiki\Revision\FallbackSlotRoleHandler::getRole()
-	 * @covers \MediaWiki\Revision\FallbackSlotRoleHandler::getNameMessageKey()
-	 * @covers \MediaWiki\Revision\FallbackSlotRoleHandler::getDefaultModel()
-	 * @covers \MediaWiki\Revision\FallbackSlotRoleHandler::getOutputLayoutHints()
-	 */
 	public function testConstruction() {
 		$handler = new FallbackSlotRoleHandler( 'foo' );
 		$this->assertSame( 'foo', $handler->getRole() );
@@ -31,9 +25,6 @@ class FallbackSlotRoleHandlerTest extends \MediaWikiUnitTestCase {
 		$this->assertArrayHasKey( 'placement', $hints );
 	}
 
-	/**
-	 * @covers \MediaWiki\Revision\FallbackSlotRoleHandler::isAllowedModel()
-	 */
 	public function testIsAllowedModel() {
 		$handler = new FallbackSlotRoleHandler( 'foo' );
 
@@ -43,9 +34,6 @@ class FallbackSlotRoleHandlerTest extends \MediaWikiUnitTestCase {
 		$this->assertFalse( $handler->isAllowedModel( 'QuaxModel', $title ) );
 	}
 
-	/**
-	 * @covers \MediaWiki\Revision\SlotRoleHandler::isAllowedModel()
-	 */
 	public function testIsAllowedOn() {
 		$handler = new FallbackSlotRoleHandler( 'foo' );
 
@@ -53,9 +41,6 @@ class FallbackSlotRoleHandlerTest extends \MediaWikiUnitTestCase {
 		$this->assertFalse( $handler->isAllowedOn( $title ) );
 	}
 
-	/**
-	 * @covers \MediaWiki\Revision\FallbackSlotRoleHandler::supportsArticleCount()
-	 */
 	public function testSupportsArticleCount() {
 		$handler = new FallbackSlotRoleHandler( 'foo' );
 

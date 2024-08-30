@@ -31,7 +31,6 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @param array $rowOverrides
-	 *
 	 * @return MutableRevisionRecord
 	 */
 	protected function newRevision( array $rowOverrides = [] ) {
@@ -398,9 +397,6 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 		$this->assertFalse( $rev->isReadyForInsertion() );
 	}
 
-	/**
-	 * @covers \MediaWiki\Revision\RevisionRecord::isCurrent
-	 */
 	public function testIsCurrent() {
 		$record = new MutableRevisionRecord(
 			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
@@ -409,9 +405,6 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 			MutableRevisionRecord::class . ' cannot be stored current revision' );
 	}
 
-	/**
-	 * @covers \MediaWiki\Revision\RevisionRecord::hasSameContent
-	 */
 	public function testHasSameContent() {
 		$rev1 = new MutableRevisionRecord(
 			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
@@ -426,9 +419,6 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 		$this->assertFalse( $rev1->hasSameContent( $rev2 ) );
 	}
 
-	/**
-	 * @covers \MediaWiki\Revision\RevisionRecord::audienceCan
-	 */
 	public function testAudienceCan() {
 		$record = new MutableRevisionRecord(
 			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
