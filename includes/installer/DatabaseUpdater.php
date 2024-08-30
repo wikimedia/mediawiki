@@ -1,7 +1,5 @@
 <?php
 /**
- * DBMS-specific updater helper.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Installer
  */
 
 namespace MediaWiki\Installer;
@@ -30,7 +27,6 @@ use LogicException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\HookContainer\StaticHookRegistry;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\FakeMaintenance;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\MediaWikiServices;
@@ -50,7 +46,7 @@ use Wikimedia\Rdbms\Platform\ISQLPlatform;
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
 
 /**
- * Class for handling database updates.
+ * Apply database changes after updating MediaWiki.
  *
  * @ingroup Installer
  * @since 1.17
@@ -802,15 +798,15 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * Get the full path of a patch file. Keep in mind this always returns a patch, as
-	 * it fails back to MySQL if no DB-specific patch can be found
+	 * Get the full path to a patch file.
 	 *
 	 * @param IDatabase $db
-	 * @param string $patch The name of the patch, like patch-something.sql
-	 * @return string Full path to patch file
+	 * @param string $patch The basename of the patch, like patch-something.sql
+	 * @return string Full path to patch file. It fails back to MySQL
+	 *  if no DB-specific patch exists.
 	 */
 	public function patchPath( IDatabase $db, $patch ) {
-		$baseDir = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::BaseDirectory );
+		$baseDir = MW_INSTALL_PATH;
 
 		$dbType = $db->getType();
 		if ( file_exists( "$baseDir/maintenance/$dbType/archives/$patch" ) ) {
