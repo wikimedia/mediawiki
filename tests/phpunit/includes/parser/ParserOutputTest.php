@@ -10,6 +10,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
+use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\Parser\ParserOutputStringSets;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
@@ -781,6 +782,11 @@ EOF
 			if ( $method[0] === '$' ) {
 				$field = substr( $method, 1 );
 				$actual = $po->__get( $field );
+			} elseif ( str_contains( $method, '!' ) ) {
+				[ $trimmedMethod, $ignore ] = explode( '!', $method, 2 );
+				$args = $value['_args_'] ?? [];
+				unset( $value['_args_'] );
+				$actual = $po->__call( $trimmedMethod, $args );
 			} else {
 				$actual = $po->__call( $method, [] );
 			}
@@ -800,6 +806,7 @@ EOF
 	/**
 	 * @covers \MediaWiki\Parser\ParserOutput::addLink
 	 * @covers \MediaWiki\Parser\ParserOutput::getLinks
+	 * @covers \MediaWiki\Parser\ParserOutput::getLinkList
 	 */
 	public function testAddLink() {
 		$a = new ParserOutput();
@@ -814,6 +821,25 @@ EOF
 			NS_TALK => [ 'Kittens' => 16, 'Puppies' => 17 ]
 		];
 		$this->assertSame( $expected, $a->getLinks() );
+		$expected = [
+			[
+				'link' => new TitleValue( NS_MAIN, 'Kittens' ),
+				'pageid' => 6,
+			],
+			[
+				'link' => new TitleValue( NS_MAIN, 'Goats_786827346' ),
+				'pageid' => 0,
+			],
+			[
+				'link' => new TitleValue( NS_TALK, 'Kittens' ),
+				'pageid' => 16,
+			],
+			[
+				'link' => new TitleValue( NS_TALK, 'Puppies' ),
+				'pageid' => 17,
+			],
+		];
+		$this->assertEquals( $expected, $a->getLinkList( ParserOutputLinkTypes::LOCAL ) );
 	}
 
 	public static function provideMergeTrackingMetaDataFrom() {
@@ -878,6 +904,33 @@ EOF
 					'Dragons.jpg' => 28,
 				],
 			],
+			'getLinkList!LOCAL' => [
+				'_args_' => [ ParserOutputLinkTypes::LOCAL ],
+				[
+					'link' => new TitleValue( NS_MAIN, 'Kittens' ),
+					'pageid' => 6,
+				],
+				[
+					'link' => new TitleValue( NS_MAIN, 'Goats' ),
+					'pageid' => 7,
+				],
+				[
+					'link' => new TitleValue( NS_MAIN, 'Dragons' ),
+					'pageid' => 8,
+				],
+				[
+					'link' => new TitleValue( NS_TALK, 'Kittens' ),
+					'pageid' => 16,
+				],
+				[
+					'link' => new TitleValue( NS_TALK, 'Goats' ),
+					'pageid' => 17,
+				],
+				[
+					'link' => new TitleValue( NS_FILE, 'Dragons.jpg' ),
+					'pageid' => 28,
+				],
+			],
 			'getTemplates' => [
 				NS_MAIN => [
 					'Dragons' => 118,
@@ -896,23 +949,98 @@ EOF
 					'Goats' => 1107,
 				],
 			],
+			'getLinkList!TEMPLATE' => [
+				'_args_' => [ ParserOutputLinkTypes::TEMPLATE ],
+				[
+					'link' => new TitleValue( NS_TEMPLATE, 'Goats' ),
+					'pageid' => 107,
+					'revid' => 1107,
+				],
+				[
+					'link' => new TitleValue( NS_TEMPLATE, 'Dragons' ),
+					'pageid' => 108,
+					'revid' => 1108,
+				],
+				[
+					'link' => new TitleValue( NS_MAIN, 'Dragons' ),
+					'pageid' => 118,
+					'revid' => 1118,
+				],
+			],
 			'getLanguageLinks' => [ 'de:de', 'ru:ru#ru', 'fr:fr' ],
+			'getLinkList!LANGUAGE' => [
+				'_args_' => [ ParserOutputLinkTypes::LANGUAGE ],
+				[
+					'link' => new TitleValue( NS_MAIN, 'de', '', 'de' ),
+				],
+				[
+					'link' => new TitleValue( NS_MAIN, 'ru', 'ru', 'ru' ),
+				],
+				[
+					'link' => new TitleValue( NS_MAIN, 'fr', '', 'fr' ),
+				],
+			],
 			'getInterwikiLinks' => [
 				'de' => [ 'Kittens_DE' => 1 ],
 				'ru' => [ 'Kittens_RU' => 1, 'Dragons_RU' => 1, ],
 				'fr' => [ 'Kittens_FR' => 1 ],
 			],
+			'getLinkList!INTERWIKI' => [
+				'_args_' => [ ParserOutputLinkTypes::INTERWIKI ],
+				[
+					'link' => new TitleValue( NS_MAIN, 'Kittens_DE', '', 'de' ),
+				],
+				[
+					'link' => new TitleValue( NS_MAIN, 'Kittens_RU', '', 'ru' ),
+				],
+				[
+					'link' => new TitleValue( NS_MAIN, 'Dragons_RU', '', 'ru' ),
+				],
+				[
+					'link' => new TitleValue( NS_MAIN, 'Kittens_FR', '', 'fr' ),
+				],
+			],
 			'getCategoryMap' => [ 'Foo' => 'X', 'Bar' => 'Y' ],
+			'getLinkList!CATEGORY' => [
+				'_args_' => [ ParserOutputLinkTypes::CATEGORY ],
+				[
+					'link' => new TitleValue( NS_CATEGORY, 'Foo' ),
+					'sort' => 'X',
+				],
+				[
+					'link' => new TitleValue( NS_CATEGORY, 'Bar' ),
+					'sort' => 'Y',
+				],
+			],
 			'getImages' => [ 'Billy.jpg' => 1, 'Puff.jpg' => 1 ],
 			'getFileSearchOptions' => [
 				'Billy.jpg' => [ 'time' => '20180101000013', 'sha1' => 'DEAD' ],
 				'Puff.jpg' => [ 'time' => '20180101000017', 'sha1' => 'BEEF' ],
 			],
+			'getLinkList!MEDIA' => [
+				'_args_' => [ ParserOutputLinkTypes::MEDIA ],
+				[
+					'link' => new TitleValue( NS_FILE, 'Billy.jpg' ),
+					'time' => '20180101000013',
+					'sha1' => 'DEAD',
+				],
+				[
+					'link' => new TitleValue( NS_FILE, 'Puff.jpg' ),
+					'time' => '20180101000017',
+					'sha1' => 'BEEF',
+				],
+			],
 			'getExternalLinks' => [
 				'https://dragons.wikimedia.test' => 1,
 				'https://kittens.wikimedia.test' => 1,
 				'https://goats.wikimedia.test#kids' => 1,
-			]
+			],
+			'getLinkList!SPECIAL' => [
+				'_args_' => [ ParserOutputLinkTypes::SPECIAL ],
+				[
+					'link' => new TitleValue( NS_SPECIAL, 'Version' ),
+				],
+			],
 		] ];
 
 		// properties ------------
@@ -1380,11 +1508,11 @@ EOF
 		$this->assertEquals( [ 'a' ], $po->getOutputStrings( ParserOutputStringSets::MODULE ) );
 		$this->assertEquals( [ 'b' ], $po->getOutputStrings( ParserOutputStringSets::MODULE_STYLE ) );
 		$this->assertEquals( [ 'foo.com', 'bar.com' ],
-			$po->getOutputStrings( ParserOutputStringSets::EXTRA_CSP_SCRIPT_SRC ) );
+							 $po->getOutputStrings( ParserOutputStringSets::EXTRA_CSP_SCRIPT_SRC ) );
 		$this->assertEquals( [ 'baz.com' ],
-			$po->getOutputStrings( ParserOutputStringSets::EXTRA_CSP_DEFAULT_SRC ) );
+							 $po->getOutputStrings( ParserOutputStringSets::EXTRA_CSP_DEFAULT_SRC ) );
 		$this->assertEquals( [ 'fred.com', 'xyzzy.com' ],
-			$po->getOutputStrings( ParserOutputStringSets::EXTRA_CSP_STYLE_SRC ) );
+							 $po->getOutputStrings( ParserOutputStringSets::EXTRA_CSP_STYLE_SRC ) );
 
 		$this->assertEquals( [ 'a' ], $po->getModules() );
 		$this->assertEquals( [ 'b' ], $po->getModuleStyles() );
