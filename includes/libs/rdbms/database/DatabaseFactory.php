@@ -143,8 +143,7 @@ class DatabaseFactory {
 			}
 
 			$overrides = [
-				// Participate in transaction rounds if $server does not specify otherwise
-				'flags' => $this->initConnFlags( $params['flags'] ),
+				'flags' => $this->initConnectionFlags( $params['flags'] ),
 				'cliMode' => $this->cliMode,
 				'agent' => $this->agent,
 				'profiler' => $this->profiler,
@@ -244,8 +243,9 @@ class DatabaseFactory {
 	 * @param int $flags Bit field of IDatabase::DBO_* constants from configuration
 	 * @return int Bit field of IDatabase::DBO_* constants to use with Database::factory()
 	 */
-	private function initConnFlags( $flags ) {
+	private function initConnectionFlags( int $flags ) {
 		if ( self::fieldHasBit( $flags, IDatabase::DBO_DEFAULT ) ) {
+			// Server is configured to participate in transaction rounds in non-CLI mode
 			if ( $this->cliMode ) {
 				$flags &= ~IDatabase::DBO_TRX;
 			} else {
