@@ -126,6 +126,7 @@ exports.config = {
 	 */
 	// T355556: remove when T324766 is resolved
 	beforeSession: function () {
+		// eslint-disable-next-line n/no-unsupported-features/node-builtins
 		dns.setDefaultResultOrder( 'ipv4first' );
 	},
 

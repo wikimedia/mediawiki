@@ -12,10 +12,6 @@
 		"*.js",
 		"specs/"
 	],
-	"engines": {
-		"node": ">=18.17.0",
-		"npm": ">=9.6.7"
-	},
 	"dependencies": {
 		"mwbot": "2.1.3"
 	}
