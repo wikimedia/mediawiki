@@ -474,7 +474,6 @@ class ApiParse extends ApiBase {
 			// - Hook: LanguageLinks
 			// - Hook: SkinSubPageSubtitle
 			// - Hook: OutputPageParserOutput
-			// - Hook: OutputPageMakeCategoryLinks
 			// - Hook: OutputPageRenderCategoryLink
 			// - Hook: OutputPageBeforeHTML
 			// HACK Adding the 'mobileformat' parameter *also* enables the skin, for compatibility with legacy
