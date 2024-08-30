@@ -1101,11 +1101,9 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		// https://www.postgresql.org/docs/9.4/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$this->sessionNamedLocks = [];
 		// Session loss implies transaction loss (T67263)
-		$this->transactionManager->clearPreEndCallbacks();
+		$this->transactionManager->onSessionLoss( $this );
 		// Clear additional subclass fields
-		$oldTrxId = $this->transactionManager->consumeTrxId();
 		$this->doHandleSessionLossPreconnect();
-		$this->transactionManager->transactionWritingOut( $this, (string)$oldTrxId );
 	}
 
 	/**
@@ -2293,10 +2291,9 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 			throw new DBUnexpectedError( $this, "$fname: invalid mode parameter '$mode'" );
 		}
 
-		// Protect against mismatched atomic section, transaction nesting, and snapshot loss
-		if ( $this->trxLevel() ) {
-			$this->transactionManager->onBeginTransaction( $this, $fname );
-		} elseif ( $this->flagsHolder->hasImplicitTrxFlag() && $mode !== self::TRANSACTION_INTERNAL ) {
+		$this->transactionManager->onBegin( $this, $fname );
+
+		if ( $this->flagsHolder->hasImplicitTrxFlag() && $mode !== self::TRANSACTION_INTERNAL ) {
 			$msg = "$fname: implicit transaction expected (DBO_TRX set)";
 			throw new DBUnexpectedError( $this, $msg );
 		}
@@ -2314,7 +2311,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		$timeEnd = microtime( true );
 		// Treat "BEGIN" as a trivial query to gauge the RTT delay
 		$rtt = max( $timeEnd - $timeStart, 0.0 );
-		$this->transactionManager->newTrxId( $mode, $fname, $rtt );
+		$this->transactionManager->onBeginInCriticalSection( $mode, $fname, $rtt );
 		$this->replicationReporter->resetReplicationLagStatus( $this );
 		$this->completeCriticalSection( __METHOD__, $cs );
 	}
@@ -2418,7 +2415,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 			);
 			$this->query( $query, $fname );
 		}
-		$this->transactionManager->onRollback( $this );
+		$this->transactionManager->onRollbackInCriticalSection( $this );
 		// With FLUSHING_ALL_PEERS, callbacks will run when requested by a dedicated phase
 		// within LoadBalancer. With FLUSHING_INTERNAL, callbacks will run when requested by
 		// the Database caller during a safe point. This avoids isolation and recursion issues.
