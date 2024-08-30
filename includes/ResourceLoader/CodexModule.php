@@ -209,7 +209,7 @@ class CodexModule extends FileModule {
 	}
 
 	protected function processStyle( $style, $styleLang, $path, Context $context ) {
-		$pathAsString = $path instanceof FilePath ? $path->getPath() : $path;
+		$pathAsString = $path instanceof FilePath ? $path->getLocalPath() : $path;
 		if ( str_starts_with( $pathAsString, $this->getCodexDirectory() ) ) {
 			// This is a Codex style file, don't do any processing.
 			// We need to avoid CSSJanus flipping in particular, because we're using RTL-specific
