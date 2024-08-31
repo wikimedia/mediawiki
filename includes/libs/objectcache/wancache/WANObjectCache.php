@@ -3014,6 +3014,7 @@ class WANObjectCache implements
 	 * @return float|null Seconds since the last logged get() miss for this key, or, null
 	 */
 	private function timeSinceLoggedMiss( $key, $now ) {
+		// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.Found
 		for ( end( $this->missLog ); $miss = current( $this->missLog ); prev( $this->missLog ) ) {
 			if ( $miss[0] === $key ) {
 				return ( $now - $miss[1] );

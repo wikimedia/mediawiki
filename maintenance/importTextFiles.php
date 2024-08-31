@@ -65,6 +65,7 @@ class ImportTextFiles extends Maintenance {
 		// support an arbitrary number of arguments.
 		$files = [];
 		$i = 0;
+		// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 		while ( $arg = $this->getArg( $i++ ) ) {
 			if ( file_exists( $arg ) ) {
 				$files[$arg] = file_get_contents( $arg );

@@ -574,6 +574,8 @@ class WikiExporter {
 			$carry = null;
 		}
 
+		// Reading further rows from the result set for the same rev id
+		// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 		while ( $row = $results->fetchObject() ) {
 			if ( $prev && $prev->rev_id !== $row->rev_id ) {
 				$carry = $row;

@@ -463,6 +463,7 @@ LUA;
 
 			$conn = null;
 			// Find a suitable server for this key...
+			// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 			while ( ( $tag = array_shift( $candidateTags ) ) !== null ) {
 				$server = $this->serverTagMap[$tag];
 				// Reuse connection handles for keys mapping to the same server

@@ -92,6 +92,7 @@ class GenerateNormalizerDataAr extends Maintenance {
 		$pairs = [];
 
 		$lineNum = 0;
+		// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 		while ( ( $line = fgets( $file ) ) !== false ) {
 			++$lineNum;
 

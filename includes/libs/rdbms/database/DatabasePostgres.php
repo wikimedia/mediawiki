@@ -195,6 +195,7 @@ class DatabasePostgres extends Database {
 
 		$sql = mb_convert_encoding( $sql, 'UTF-8' );
 		// Clear any previously left over result
+		// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 		while ( $priorRes = pg_get_result( $conn ) ) {
 			pg_free_result( $priorRes );
 		}

@@ -4248,6 +4248,7 @@ class Parser {
 				} else {
 					// Strip tag
 					$next = $node->firstChild;
+					// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 					while ( $childNode = $node->firstChild ) {
 						$node->parentNode->insertBefore( $childNode, $node );
 					}

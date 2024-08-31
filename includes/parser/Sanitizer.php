@@ -387,6 +387,7 @@ class Sanitizer {
 	 * trailing spaces and one of the newlines.
 	 */
 	public static function removeHTMLcomments( string $text ): string {
+		// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 		while ( ( $start = strpos( $text, '<!--' ) ) !== false ) {
 			$end = strpos( $text, '-->', $start + 4 );
 			if ( $end === false ) {
