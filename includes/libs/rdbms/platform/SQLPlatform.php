@@ -1043,7 +1043,7 @@ class SQLPlatform implements ISQLPlatform {
 
 		// Warn about table names that look qualified
 		if (
-			str_contains( $name, '.' ) ||
+			( str_contains( $name, '.' ) && $name !== 'information_schema.tables' ) ||
 			( $prefix !== '' && str_starts_with( $name, $prefix ) ) ) {
 			$this->logger->warning(
 				__METHOD__ . ' called with qualified table ' . $name,
