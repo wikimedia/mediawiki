@@ -7,6 +7,7 @@ use MediaWiki\Status\Status;
 
 class MWRestrictionsTest extends MediaWikiUnitTestCase {
 
+	/** @var MWRestrictions */
 	protected static $restrictionsForChecks;
 
 	public static function setUpBeforeClass(): void {

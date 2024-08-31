@@ -46,19 +46,19 @@ use RuntimeException;
  */
 class GitInfo {
 
-	/** Singleton for the repo at $IP */
+	/** @var self|null Singleton for the repo at $IP */
 	protected static $repo = null;
 
-	/** Location of the .git directory */
+	/** @var string|null Location of the .git directory */
 	protected $basedir;
 
-	/** Location of the repository */
+	/** @var string Location of the repository */
 	protected $repoDir;
 
-	/** Path to JSON cache file for pre-computed git information */
+	/** @var string|null Path to JSON cache file for pre-computed git information */
 	protected $cacheFile;
 
-	/** Cached git information */
+	/** @var array Cached git information */
 	protected $cache = [];
 
 	/**

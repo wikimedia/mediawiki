@@ -31,8 +31,10 @@ use Wikimedia\IPUtils;
  */
 class MWRestrictions implements Stringable {
 
+	/** @var string[] */
 	private $ipAddresses = [ '0.0.0.0/0', '::/0' ];
 
+	/** @var string[] */
 	private $pages = [];
 
 	public StatusValue $validity;

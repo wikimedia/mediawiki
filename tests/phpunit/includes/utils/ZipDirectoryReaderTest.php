@@ -5,7 +5,9 @@
  */
 class ZipDirectoryReaderTest extends MediaWikiIntegrationTestCase {
 
+	/** @var string */
 	protected $zipDir;
+	/** @var array[] */
 	protected $entries;
 
 	protected function setUp(): void {

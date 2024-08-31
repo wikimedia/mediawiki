@@ -8,6 +8,7 @@ use MediaWiki\Utils\GitInfo;
  */
 class GitInfoTest extends MediaWikiIntegrationTestCase {
 
+	/** @var string */
 	private static $tempDir;
 
 	public static function setUpBeforeClass(): void {
