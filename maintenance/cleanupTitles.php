@@ -178,14 +178,14 @@ class TitleCleanup extends TableCleanup {
 			$legalized = $this->prefix . $legalizedUnprefixed;
 			$this->output( "Couldn't legalize; form '$legalized' still invalid; using '$clean'\n" );
 			$title = Title::newFromText( $clean );
-		} elseif ( $title->exists() ) {
+		} elseif ( $title->exists( IDBAccessObject::READ_LATEST ) ) {
 			$clean = $this->prefix . 'id:' . $row->page_id;
 			$conflict = $title->getDBKey();
 			$this->output( "Legalized for '$conflict' exists; using '$clean'\n" );
 			$title = Title::newFromText( $clean );
 		}
 
-		if ( !$title || $title->exists() ) {
+		if ( !$title || $title->exists( IDBAccessObject::READ_LATEST ) ) {
 			// This can happen in corner cases like if numbers are made not valid
 			// title characters using the (deprecated) $wgLegalTitleChars or
 			// a 'Broken/id:foo' title already exists
@@ -247,7 +247,7 @@ class TitleCleanup extends TableCleanup {
 			if ( !$namespaceInfo->exists( $ns ) ) {
 				$clean = "{$this->prefix}NS$ns:$row->page_title";
 				$ns = 0;
-			} elseif ( !$titleImpossible && !$title->exists() ) {
+			} elseif ( !$titleImpossible && !$title->exists( IDBAccessObject::READ_LATEST ) ) {
 				// Looks like the current title, after cleaning it up, is valid and available
 				$clean = $prior;
 			} elseif ( $ns !== 0 ) {
@@ -259,11 +259,11 @@ class TitleCleanup extends TableCleanup {
 				$clean = $this->prefix . $prior;
 			}
 			$verified = Title::makeTitleSafe( $ns, $clean );
-			if ( !$verified || $verified->exists() ) {
+			if ( !$verified || $verified->exists( IDBAccessObject::READ_LATEST ) ) {
 				$lastResort = "{$this->prefix}id: {$row->page_id}";
 				$this->output( "Couldn't legalize; form '$clean' exists; using '$lastResort'\n" );
 				$verified = Title::makeTitleSafe( $ns, $lastResort );
-				if ( !$verified || $verified->exists() ) {
+				if ( !$verified || $verified->exists( IDBAccessObject::READ_LATEST ) ) {
 					// This can happen in corner cases like if numbers are made not valid
 					// title characters using the (deprecated) $wgLegalTitleChars or
 					// a 'Broken/id:foo' title already exists
