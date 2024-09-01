@@ -22,7 +22,6 @@ namespace MediaWiki\Storage;
 
 use InvalidArgumentException;
 use LogicException;
-use ManualLogEntry;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Content;
@@ -31,10 +30,10 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\ValidationParams;
 use MediaWiki\Deferred\AtomicSectionUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\DomainEvent\DomainEventSink;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -46,7 +45,6 @@ use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\User;
-use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
@@ -128,6 +126,11 @@ class PageUpdater {
 	private $contentHandlerFactory;
 
 	/**
+	 * @var DomainEventSink
+	 */
+	private $eventEmitter;
+
+	/**
 	 * @var HookRunner
 	 */
 	private $hookRunner;
@@ -136,9 +139,6 @@ class PageUpdater {
 	 * @var HookContainer
 	 */
 	private $hookContainer;
-
-	/** @var UserEditTracker */
-	private $userEditTracker;
 
 	/** @var UserGroupManager */
 	private $userGroupManager;
@@ -156,11 +156,6 @@ class PageUpdater {
 	 * @var int the RC patrol status the new revision should be marked with.
 	 */
 	private $rcPatrolStatus = RecentChange::PRC_UNPATROLLED;
-
-	/**
-	 * @var bool whether to create a log entry for new page creations.
-	 */
-	private $usePageCreationLog = true;
 
 	/**
 	 * @var bool Whether null-edits create a revision.
@@ -222,8 +217,8 @@ class PageUpdater {
 	 * @param RevisionStore $revisionStore
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param DomainEventSink $eventEmitter
 	 * @param HookContainer $hookContainer
-	 * @param UserEditTracker $userEditTracker
 	 * @param UserGroupManager $userGroupManager
 	 * @param TitleFormatter $titleFormatter
 	 * @param ServiceOptions $serviceOptions
@@ -240,8 +235,8 @@ class PageUpdater {
 		RevisionStore $revisionStore,
 		SlotRoleRegistry $slotRoleRegistry,
 		IContentHandlerFactory $contentHandlerFactory,
+		DomainEventSink $eventEmitter,
 		HookContainer $hookContainer,
-		UserEditTracker $userEditTracker,
 		UserGroupManager $userGroupManager,
 		TitleFormatter $titleFormatter,
 		ServiceOptions $serviceOptions,
@@ -261,9 +256,9 @@ class PageUpdater {
 		$this->revisionStore = $revisionStore;
 		$this->slotRoleRegistry = $slotRoleRegistry;
 		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->eventEmitter = $eventEmitter;
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->userEditTracker = $userEditTracker;
 		$this->userGroupManager = $userGroupManager;
 		$this->titleFormatter = $titleFormatter;
 
@@ -398,15 +393,19 @@ class PageUpdater {
 	}
 
 	/**
-	 * Whether to create a log entry for new page creations.
-	 *
-	 * @see $wgPageCreationLog
+	 * @deprecated since 1.43 use setFlags( EDIT_SUPPRESS_RC )
 	 *
 	 * @param bool $use
-	 * @return $this
+	 *
+	 * @return PageUpdater
 	 */
 	public function setUsePageCreationLog( $use ) {
-		$this->usePageCreationLog = $use;
+		wfDeprecated( __METHOD__, '1.43' );
+
+		if ( !$use ) {
+			$this->setFlags( EDIT_SUPPRESS_RC );
+		}
+
 		return $this;
 	}
 
@@ -1391,40 +1390,15 @@ class PageUpdater {
 
 			$editResult = $this->getEditResult();
 			$tags = $this->computeEffectiveTags();
-			$this->hookRunner->onRevisionFromEditComplete(
-				$wikiPage,
+
+			$this->eventEmitter->send( new PageUpdatedEvent(
 				$newRevisionRecord,
-				$editResult->getOriginalRevisionId(),
-				$this->author,
-				$tags
-			);
-
-			// Update recentchanges
-			if ( !( $this->flags & EDIT_SUPPRESS_RC ) ) {
-				// Add RC row to the DB
-				RecentChange::notifyEdit(
-					$now,
-					$this->getPage(),
-					$newRevisionRecord->isMinor(),
-					$this->author,
-					$summary->text, // TODO: pass object when that becomes possible
-					$oldid,
-					$newRevisionRecord->getTimestamp(),
-					( $this->flags & EDIT_FORCE_BOT ) > 0,
-					'',
-					$oldRev->getSize(),
-					$newRevisionRecord->getSize(),
-					$newRevisionRecord->getId(),
-					$this->rcPatrolStatus,
-					$tags,
-					$editResult
-				);
-			} else {
-				MediaWikiServices::getInstance()->getChangeTagsStore()
-					->addTags( $tags, null, $newRevisionRecord->getId(), null );
-			}
-
-			$this->userEditTracker->incrementUserEditCount( $this->author );
+				$oldRev,
+				$editResult,
+				$tags,
+				$this->flags,
+				$this->rcPatrolStatus
+			), $this->dbProvider );
 
 			$dbw->endAtomic( __METHOD__ );
 
@@ -1521,47 +1495,15 @@ class PageUpdater {
 		}
 
 		$tags = $this->computeEffectiveTags();
-		$this->hookRunner->onRevisionFromEditComplete(
-			$wikiPage, $newRevisionRecord, false, $this->author, $tags
-		);
 
-		// Update recentchanges
-		if ( !( $this->flags & EDIT_SUPPRESS_RC ) ) {
-			// Add RC row to the DB
-			RecentChange::notifyNew(
-				$now,
-				$this->getPage(),
-				$newRevisionRecord->isMinor(),
-				$this->author,
-				$summary->text, // TODO: pass object when that becomes possible
-				( $this->flags & EDIT_FORCE_BOT ) > 0,
-				'',
-				$newRevisionRecord->getSize(),
-				$newRevisionRecord->getId(),
-				$this->rcPatrolStatus,
-				$tags
-			);
-		} else {
-			MediaWikiServices::getInstance()->getChangeTagsStore()
-				->addTags( $tags, null, $newRevisionRecord->getId(), null );
-		}
-
-		$this->userEditTracker->incrementUserEditCount( $this->author );
-
-		if ( $this->usePageCreationLog ) {
-			// Log the page creation
-			// @TODO: Do we want a 'recreate' action?
-			$logEntry = new ManualLogEntry( 'create', 'create' );
-			$logEntry->setPerformer( $this->author );
-			$logEntry->setTarget( $this->getPage() );
-			$logEntry->setComment( $summary->text );
-			$logEntry->setTimestamp( $now );
-			$logEntry->setAssociatedRevId( $newRevisionRecord->getId() );
-			$logEntry->insert();
-			// Note that we don't publish page creation events to recentchanges
-			// (i.e. $logEntry->publish()) since this would create duplicate entries,
-			// one for the edit and one for the page creation.
-		}
+		$this->eventEmitter->send( new PageUpdatedEvent(
+			$newRevisionRecord,
+			null,
+			null,
+			$tags,
+			$this->flags,
+			$this->rcPatrolStatus
+		), $this->dbProvider );
 
 		$dbw->endAtomic( __METHOD__ );
 

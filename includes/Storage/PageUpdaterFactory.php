@@ -24,6 +24,7 @@ use JobQueueGroup;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
+use MediaWiki\DomainEvent\DomainEventSink;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
@@ -36,7 +37,6 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\TalkPageNotificationManager;
-use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
@@ -61,7 +61,6 @@ class PageUpdaterFactory {
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::ArticleCountMethod,
 		MainConfigNames::RCWatchCategoryMembership,
-		MainConfigNames::PageCreationLog,
 		MainConfigNames::UseAutomaticEditSummaries,
 		MainConfigNames::ManualRevertSearchRadius,
 		MainConfigNames::UseRCPatrol,
@@ -95,6 +94,9 @@ class PageUpdaterFactory {
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
+	/** @var DomainEventSink */
+	private $eventEmitter;
+
 	/** @var HookContainer */
 	private $hookContainer;
 
@@ -109,9 +111,6 @@ class PageUpdaterFactory {
 
 	/** @var ServiceOptions */
 	private $options;
-
-	/** @var UserEditTracker */
-	private $userEditTracker;
 
 	/** @var UserGroupManager */
 	private $userGroupManager;
@@ -150,12 +149,12 @@ class PageUpdaterFactory {
 	 * @param Language $contLang
 	 * @param ILBFactory $loadbalancerFactory
 	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param DomainEventSink $eventEmitter
 	 * @param HookContainer $hookContainer
 	 * @param EditResultCache $editResultCache
 	 * @param UserNameUtils $userNameUtils
 	 * @param LoggerInterface $logger
 	 * @param ServiceOptions $options
-	 * @param UserEditTracker $userEditTracker
 	 * @param UserGroupManager $userGroupManager
 	 * @param TitleFormatter $titleFormatter
 	 * @param ContentTransformer $contentTransformer
@@ -176,12 +175,12 @@ class PageUpdaterFactory {
 		Language $contLang,
 		ILBFactory $loadbalancerFactory,
 		IContentHandlerFactory $contentHandlerFactory,
+		DomainEventSink $eventEmitter,
 		HookContainer $hookContainer,
 		EditResultCache $editResultCache,
 		UserNameUtils $userNameUtils,
 		LoggerInterface $logger,
 		ServiceOptions $options,
-		UserEditTracker $userEditTracker,
 		UserGroupManager $userGroupManager,
 		TitleFormatter $titleFormatter,
 		ContentTransformer $contentTransformer,
@@ -203,12 +202,12 @@ class PageUpdaterFactory {
 		$this->contLang = $contLang;
 		$this->loadbalancerFactory = $loadbalancerFactory;
 		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->eventEmitter = $eventEmitter;
 		$this->hookContainer = $hookContainer;
 		$this->editResultCache = $editResultCache;
 		$this->userNameUtils = $userNameUtils;
 		$this->logger = $logger;
 		$this->options = $options;
-		$this->userEditTracker = $userEditTracker;
 		$this->userGroupManager = $userGroupManager;
 		$this->titleFormatter = $titleFormatter;
 		$this->contentTransformer = $contentTransformer;
@@ -271,8 +270,8 @@ class PageUpdaterFactory {
 			$this->revisionStore,
 			$this->slotRoleRegistry,
 			$this->contentHandlerFactory,
+			$this->eventEmitter,
 			$this->hookContainer,
-			$this->userEditTracker,
 			$this->userGroupManager,
 			$this->titleFormatter,
 			new ServiceOptions(
@@ -284,8 +283,6 @@ class PageUpdaterFactory {
 			$this->wikiPageFactory
 		);
 
-		$pageUpdater->setUsePageCreationLog(
-			$this->options->get( MainConfigNames::PageCreationLog ) );
 		$pageUpdater->setUseAutomaticEditSummaries(
 			$this->options->get( MainConfigNames::UseAutomaticEditSummaries )
 		);
