@@ -35,6 +35,7 @@ class ForeignAPIFile extends File {
 	/** @var array */
 	private $mInfo;
 
+	/** @inheritDoc */
 	protected $repoClass = ForeignAPIRepo::class;
 
 	/**

@@ -57,6 +57,7 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 		'timestamp',
 	];
 
+	/** @var callable */
 	protected $fileFactory = [ ForeignAPIFile::class, 'newFromTitle' ];
 	/** @var int Check back with Commons after this expiry */
 	protected $apiThumbCacheExpiry = 24 * 3600; // 1 day

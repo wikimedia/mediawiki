@@ -39,10 +39,13 @@ class LocalFileMoveBatch {
 	/** @var Title */
 	protected $target;
 
+	/** @var string[] */
 	protected $cur;
 
+	/** @var string[][] */
 	protected $olds;
 
+	/** @var int */
 	protected $oldCount;
 
 	protected $archive;

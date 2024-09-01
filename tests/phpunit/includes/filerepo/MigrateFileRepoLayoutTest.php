@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\WikiMap\WikiMap;
+use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -9,8 +10,11 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  * @covers \MigrateFileRepoLayout
  */
 class MigrateFileRepoLayoutTest extends MediaWikiIntegrationTestCase {
+	/** @var string */
 	protected $tmpPrefix;
+	/** @var MigrateFileRepoLayout&MockObject */
 	protected $migratorMock;
+	/** @var string */
 	protected $tmpFilepath;
 	protected $text = 'testing';
 
