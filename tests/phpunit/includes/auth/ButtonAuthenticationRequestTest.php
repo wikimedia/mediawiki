@@ -69,5 +69,6 @@ class ButtonAuthenticationRequestTest extends AuthenticationRequestTestCase {
 
 // Dynamic properties from the testLoadFromSubmission not working in php8.2
 class ButtonAuthenticationRequestForLoadFromSubmission extends ButtonAuthenticationRequest {
+	/** @var string */
 	public $foo;
 }
