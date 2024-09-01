@@ -34,11 +34,11 @@ use Wikimedia\Rdbms\DBQueryError;
  * @ingroup Exception
  */
 class MWExceptionHandler {
-	/** @var string Error caught and reported by this exception handler */
+	/** Error caught and reported by this exception handler */
 	public const CAUGHT_BY_HANDLER = 'mwe_handler';
-	/** @var string Error caught and reported by a script entry point */
+	/** Error caught and reported by a script entry point */
 	public const CAUGHT_BY_ENTRYPOINT = 'entrypoint';
-	/** @var string Error reported by direct logException() call */
+	/** Error reported by direct logException() call */
 	public const CAUGHT_BY_OTHER = 'other';
 
 	/** @var string|null */
@@ -51,10 +51,8 @@ class MWExceptionHandler {
 	 * The user will be shown an HTTP 500 Internal Server Error.
 	 * As such, these should be sent to MediaWiki's "exception" channel.
 	 * Normally, the error handler logs them to the "error" channel.
-	 *
-	 * @var array
 	 */
-	protected static $fatalErrorTypes = [
+	private const FATAL_ERROR_TYPES = [
 		E_ERROR,
 		E_PARSE,
 		E_CORE_ERROR,
@@ -361,7 +359,7 @@ class MWExceptionHandler {
 		$file = $lastError['file'];
 		$line = $lastError['line'];
 
-		if ( !in_array( $level, self::$fatalErrorTypes ) ) {
+		if ( !in_array( $level, self::FATAL_ERROR_TYPES ) ) {
 			// Only interested in fatal errors, others should have been
 			// handled by MWExceptionHandler::handleError
 			return false;
