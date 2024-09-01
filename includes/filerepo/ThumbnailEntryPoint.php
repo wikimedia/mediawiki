@@ -54,6 +54,7 @@ use Wikimedia\Message\MessageSpecifier;
 
 class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 
+	/** @var string[] */
 	private $varyHeader = [];
 
 	/**

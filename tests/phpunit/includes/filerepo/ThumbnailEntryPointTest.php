@@ -24,7 +24,7 @@ class ThumbnailEntryPointTest extends MediaWikiIntegrationTestCase {
 
 	private const IMAGES_DIR = __DIR__ . '/../../data/media';
 
-	/** Counter for getting unique width values */
+	/** @var int Counter for getting unique width values */
 	private static $uniqueWidth = 20;
 
 	private ?MockEnvironment $environment = null;

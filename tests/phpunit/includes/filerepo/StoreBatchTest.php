@@ -9,7 +9,9 @@ use MediaWiki\WikiMap\WikiMap;
  */
 class StoreBatchTest extends MediaWikiIntegrationTestCase {
 
+	/** @var string[] */
 	protected $createdFiles;
+	/** @var string */
 	protected $date;
 	/** @var FileRepo */
 	protected $repo;
