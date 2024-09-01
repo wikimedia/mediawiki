@@ -95,7 +95,7 @@ abstract class UploadBase {
 	/** @var string|false */
 	protected $mSVGNSError;
 
-	protected static $safeXmlEncodings = [
+	private const SAFE_XML_ENCONDINGS = [
 		'UTF-8',
 		'US-ASCII',
 		'ISO-8859-1',
@@ -1479,7 +1479,7 @@ abstract class UploadBase {
 
 		if ( preg_match( "!<\?xml\b(.*?)\?>!si", $contents, $matches ) ) {
 			if ( preg_match( $encodingRegex, $matches[1], $encMatch )
-				&& !in_array( strtoupper( $encMatch[1] ), self::$safeXmlEncodings )
+				&& !in_array( strtoupper( $encMatch[1] ), self::SAFE_XML_ENCONDINGS )
 			) {
 				wfDebug( __METHOD__ . ": Found unsafe XML encoding '{$encMatch[1]}'" );
 
@@ -1499,7 +1499,7 @@ abstract class UploadBase {
 		}
 
 		// It's possible the file is encoded with multibyte encoding, so re-encode attempt to
-		// detect the encoding in case it specifies an encoding not allowed in self::$safeXmlEncodings
+		// detect the encoding in case it specifies an encoding not allowed in self::SAFE_XML_ENCONDINGS
 		$attemptEncodings = [ 'UTF-16', 'UTF-16BE', 'UTF-32', 'UTF-32BE' ];
 		foreach ( $attemptEncodings as $encoding ) {
 			AtEase::suppressWarnings();
@@ -1507,7 +1507,7 @@ abstract class UploadBase {
 			AtEase::restoreWarnings();
 			if ( $str != '' && preg_match( "!<\?xml\b(.*?)\?>!si", $str, $matches ) ) {
 				if ( preg_match( $encodingRegex, $matches[1], $encMatch )
-					&& !in_array( strtoupper( $encMatch[1] ), self::$safeXmlEncodings )
+					&& !in_array( strtoupper( $encMatch[1] ), self::SAFE_XML_ENCONDINGS )
 				) {
 					wfDebug( __METHOD__ . ": Found unsafe XML encoding '{$encMatch[1]}'" );
 
