@@ -39,18 +39,21 @@ $namespaceAliases = [
 # Some dummy translations to prevent language fallback for now
 # @TODO: Check whether localising them is appropriate.
 $namespaceGenderAliases = [];
-$defaultDateFormat = 'dmy';
+
 $datePreferences = [
 	'default',
-	'dmy',
-	'ymd',
+	'dmy sh-latn',
 	'ISO 8601',
 ];
-$datePreferenceMigrationMap = [
-	'default',
-	'mdy',
-	'dmy',
-	'ymd',
+
+$defaultDateFormat = 'dmy sh-latn';
+
+$dateFormats = [
+	'dmy sh-latn time' => 'H:i',
+	'dmy sh-latn date' => 'j. xg Y.',
+	'dmy sh-latn monthonly' => 'xg Y.',
+	'dmy sh-latn both' => 'j. xg Y. u H:i',
+	'dmy sh-latn pretty' => 'j. xg',
 ];
 
 /** @phpcs-require-sorted-array */
