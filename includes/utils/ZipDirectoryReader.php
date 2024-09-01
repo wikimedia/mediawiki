@@ -109,24 +109,26 @@ class ZipDirectoryReader {
 		return $zdr->execute();
 	}
 
-	/** The opened file resource */
+	/** @var resource The opened file resource */
 	protected $file;
 
-	/** The cached length of the file, or null if it has not been loaded yet. */
+	/** @var int|null The cached length of the file, or null if it has not been loaded yet. */
 	protected $fileLength;
 
-	/** A segmented cache of the file contents */
+	/** @var string[] A segmented cache of the file contents */
 	protected $buffer;
 
-	/** The file data callback */
+	/** @var callable The file data callback */
 	protected $callback;
 
-	/** The ZIP64 mode */
+	/** @var bool The ZIP64 mode */
 	protected $zip64 = false;
 
-	/** Stored headers */
+	/** @var array Stored headers */
 	protected $eocdr;
+	/** @var array Stored headers */
 	protected $eocdr64;
+	/** @var array Stored headers */
 	protected $eocdr64Locator;
 
 	/** The "extra field" ID for ZIP64 central directory entries */
@@ -195,7 +197,7 @@ class ZipDirectoryReader {
 
 	/**
 	 * Throw an error, and log a debug message
-	 * @param mixed $code
+	 * @param string $code
 	 * @param string $debugMessage
 	 * @throws ZipDirectoryReaderError
 	 * @return never
