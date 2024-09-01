@@ -48,8 +48,6 @@ class LocalFileMoveBatch {
 	/** @var int */
 	protected $oldCount;
 
-	protected $archive;
-
 	/** @var IDatabase */
 	protected $db;
 
