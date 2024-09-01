@@ -33,8 +33,11 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegratio
 	use AuthenticationProviderTestTrait;
 	use DummyServicesTrait;
 
+	/** @var AuthManager|null */
 	private $manager = null;
+	/** @var HashConfig|null */
 	private $config = null;
+	/** @var Status|null */
 	private $validity = null;
 
 	/**

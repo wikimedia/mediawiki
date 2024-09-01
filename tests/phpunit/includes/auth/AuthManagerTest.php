@@ -63,6 +63,7 @@ use MediaWikiIntegrationTestCase;
 use ObjectCacheFactory;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\Builder\InvocationMocker;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Rule\InvocationOrder;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
@@ -106,8 +107,11 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 	/** @var LoggerInterface */
 	protected $logger;
 
+	/** @var AbstractPreAuthenticationProvider&MockObject[] */
 	protected $preauthMocks = [];
+	/** @var AbstractPrimaryAuthenticationProvider&MockObject[] */
 	protected $primaryauthMocks = [];
+	/** @var AbstractSecondaryAuthenticationProvider&MockObject[] */
 	protected $secondaryauthMocks = [];
 
 	/** @var AuthManager */

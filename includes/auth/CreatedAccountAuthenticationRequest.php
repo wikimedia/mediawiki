@@ -29,6 +29,7 @@ namespace MediaWiki\Auth;
  */
 class CreatedAccountAuthenticationRequest extends AuthenticationRequest {
 
+	/** @inheritDoc */
 	public $required = self::OPTIONAL;
 
 	/** @var int User id */

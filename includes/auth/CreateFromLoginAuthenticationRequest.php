@@ -33,6 +33,7 @@ namespace MediaWiki\Auth;
  * @since 1.27
  */
 class CreateFromLoginAuthenticationRequest extends AuthenticationRequest {
+	/** @inheritDoc */
 	public $required = self::OPTIONAL;
 
 	/** @var AuthenticationRequest|null */
