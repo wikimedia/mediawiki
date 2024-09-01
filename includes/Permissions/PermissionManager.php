@@ -470,6 +470,9 @@ class PermissionManager {
 				// Allow patrolling per T21818
 				'patrol',
 
+				// Allow (un)watch (T373758)
+				'editmywatchlist',
+
 				// Allow admins and oversighters to delete. For user pages we want to avoid the
 				// situation where an unprivileged user can post abusive content on
 				// their subpages and only very highly privileged users could remove it.
@@ -1326,8 +1329,8 @@ class PermissionManager {
 		// Check $wgNamespaceProtection for restricted namespaces
 		if ( $this->isNamespaceProtected( $title->getNamespace(), $user )
 			// Allow admins and oversighters to view deleted content, even if they
-			// cannot restore it. See T362536.
-			&& !in_array( $action, [ 'deletedhistory', 'deletedtext', 'viewsuppressed' ], true )
+			// cannot restore it. See T362536. Allow (un)watch too (T373758)
+			&& !in_array( $action, [ 'deletedhistory', 'deletedtext', 'viewsuppressed', 'editmywatchlist' ], true )
 		) {
 			$ns = $title->getNamespace() === NS_MAIN ?
 				wfMessage( 'nstab-main' )->text() : $title->getNsText();
@@ -1363,7 +1366,7 @@ class PermissionManager {
 		// TODO: remove & rework upon further use of LinkTarget
 		$title = Title::newFromLinkTarget( $page );
 
-		if ( $action === 'patrol' ) {
+		if ( $action === 'patrol' || $action === 'editmywatchlist' ) {
 			return;
 		}
 

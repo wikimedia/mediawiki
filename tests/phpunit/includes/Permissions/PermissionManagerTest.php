@@ -1378,6 +1378,23 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * Ensure normal users can watch interface-protected pages
+	 * See T373758
+	 */
+	public function testWatchlistingInterface() {
+		$permManager = $this->getServiceContainer()->getPermissionManager();
+		$user = $this->user;
+
+		$userJs = Title::makeTitle( NS_USER, 'Example/common.js' );
+		$siteJs = Title::makeTitle( NS_MEDIAWIKI, 'Common.js' );
+		$interfacePage = Title::makeTitle( NS_MEDIAWIKI, 'Sidebar' );
+
+		$this->assertTrue( $permManager->userCan( 'editmywatchlist', $user, $userJs ) );
+		$this->assertTrue( $permManager->userCan( 'editmywatchlist', $user, $siteJs ) );
+		$this->assertTrue( $permManager->userCan( 'editmywatchlist', $user, $interfacePage ) );
+	}
+
+	/**
 	 * Ensure specific users can view deleted contents regardless of Namespace
 	 * Protection, but not restore it
 	 * See T362536
