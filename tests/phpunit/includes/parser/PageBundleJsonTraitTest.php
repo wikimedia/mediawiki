@@ -11,7 +11,7 @@ use Wikimedia\Parsoid\Core\PageBundle;
  */
 class PageBundleJsonTraitTest extends MediaWikiIntegrationTestCase {
 
-	private $bundleData = [
+	private const BUNDLE_DATA = [
 		'html' => '<h1>woohoo</h1>',
 		'parsoid' => [ 'metadata' => 'foo' ],
 		'mw' => null,
@@ -26,7 +26,7 @@ class PageBundleJsonTraitTest extends MediaWikiIntegrationTestCase {
 				newPageBundleFromJson as public;
 			}
 		};
-		$bundle = $trait->newPageBundleFromJson( $this->bundleData );
+		$bundle = $trait->newPageBundleFromJson( self::BUNDLE_DATA );
 		$this->assertInstanceOf( PageBundle::class, $bundle );
 		$this->assertEquals( '<h1>woohoo</h1>', $bundle->html );
 		$this->assertEquals( 'default', $bundle->contentmodel );
@@ -39,7 +39,7 @@ class PageBundleJsonTraitTest extends MediaWikiIntegrationTestCase {
 				jsonSerializePageBundle as public;
 			}
 		};
-		$bundle = new PageBundle( ...array_values( $this->bundleData ) );
+		$bundle = new PageBundle( ...array_values( self::BUNDLE_DATA ) );
 		$json = $trait->jsonSerializePageBundle( $bundle );
 		$this->assertEquals( PageBundle::class, $json['_type_'] );
 		$this->assertEquals( '<h1>woohoo</h1>', $json['html'] );

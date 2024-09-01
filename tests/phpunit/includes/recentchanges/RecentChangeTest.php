@@ -24,7 +24,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	protected $title;
 	protected $target;
 	protected $user;
-	protected $user_comment;
+	private const USER_COMMENT = '<User comment about action>';
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -34,8 +34,6 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 
 		$user = $this->getTestUser()->getUser();
 		$this->user = new UserIdentityValue( $user->getId(), $user->getName() );
-
-		$this->user_comment = '<User comment about action>';
 
 		$this->overrideConfigValues( [
 			MainConfigNames::CanonicalServer => 'https://example.org',
@@ -226,14 +224,14 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 			$this->title,
 			false,
 			$this->user,
-			$this->user_comment,
+			self::USER_COMMENT,
 			false
 		);
 
 		$expected = [
 			'rc_timestamp' => $now,
 			'rc_deleted' => 0,
-			'rc_comment_text' => $this->user_comment,
+			'rc_comment_text' => self::USER_COMMENT,
 			'rc_user' => $this->user->getId(),
 			'rc_user_text' => $this->user->getName()
 		];
@@ -264,7 +262,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 			$this->title,
 			false,
 			$this->user,
-			$this->user_comment,
+			self::USER_COMMENT,
 			0,
 			$now,
 			false
@@ -273,7 +271,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 		$expected = [
 			'rc_timestamp' => $now,
 			'rc_deleted' => 0,
-			'rc_comment_text' => $this->user_comment,
+			'rc_comment_text' => self::USER_COMMENT,
 			'rc_user' => $this->user->getId(),
 			'rc_user_text' => $this->user->getName()
 		];
@@ -310,7 +308,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 			'test',
 			'testing',
 			$this->title,
-			$this->user_comment,
+			self::USER_COMMENT,
 			'a|b|c',
 			7,
 			'',
@@ -321,7 +319,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 
 		$expected = [
 			'rc_timestamp' => $now,
-			'rc_comment_text' => $this->user_comment,
+			'rc_comment_text' => self::USER_COMMENT,
 			'rc_user' => $this->user->getId(),
 			'rc_user_text' => $this->user->getName(),
 			'rc_title' => $this->title->getDBkey(),
@@ -528,7 +526,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 			'0',
 			$categoryTitle,
 			$this->user,
-			$this->user_comment,
+			self::USER_COMMENT,
 			$this->title,
 			$categoryTitle->getLatestRevID(),
 			$categoryTitle->getLatestRevID(),
@@ -545,7 +543,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 			$this->title,
 			false,
 			$this->user,
-			$this->user_comment,
+			self::USER_COMMENT,
 			0,
 			MWTimestamp::now(),
 			false

@@ -9,16 +9,10 @@ use Wikimedia\Composer\ComposerJson;
  * @covers \Wikimedia\Composer\ComposerJson
  */
 class ComposerJsonTest extends TestCase {
-
-	private $json;
-
-	protected function setUp(): void {
-		parent::setUp();
-		$this->json = __DIR__ . "/../../../../data/composer/composer.json";
-	}
+	private const JSON_FILE = __DIR__ . '/../../../../data/composer/composer.json';
 
 	public function testGetRequiredDependencies() {
-		$json = new ComposerJson( $this->json );
+		$json = new ComposerJson( self::JSON_FILE );
 		$this->assertEquals( [
 			'cdb/cdb' => '1.0.0',
 			'cssjanus/cssjanus' => '1.1.1',

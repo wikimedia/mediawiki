@@ -971,7 +971,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertFalse( $po, "getParserOutput() shall return false for non-existing revisions." );
 	}
 
-	public static $sections =
+	public const SECTIONS =
 
 		"Intro
 
@@ -990,15 +990,15 @@ more stuff
 		return [
 			[ 'Help:WikiPageTest_testReplaceSection',
 				CONTENT_MODEL_WIKITEXT,
-				self::$sections,
+				self::SECTIONS,
 				"0",
 				"No more",
 				null,
-				trim( preg_replace( '/^Intro/m', 'No more', self::$sections ) )
+				trim( preg_replace( '/^Intro/m', 'No more', self::SECTIONS ) )
 			],
 			[ 'Help:WikiPageTest_testReplaceSection',
 				CONTENT_MODEL_WIKITEXT,
-				self::$sections,
+				self::SECTIONS,
 				"",
 				"No more",
 				null,
@@ -1006,29 +1006,29 @@ more stuff
 			],
 			[ 'Help:WikiPageTest_testReplaceSection',
 				CONTENT_MODEL_WIKITEXT,
-				self::$sections,
+				self::SECTIONS,
 				"2",
 				"== TEST ==\nmore fun",
 				null,
 				trim( preg_replace( '/^== test ==.*== foo ==/sm',
 					"== TEST ==\nmore fun\n\n== foo ==",
-					self::$sections ) )
+					self::SECTIONS ) )
 			],
 			[ 'Help:WikiPageTest_testReplaceSection',
 				CONTENT_MODEL_WIKITEXT,
-				self::$sections,
+				self::SECTIONS,
 				"8",
 				"No more",
 				null,
-				trim( self::$sections )
+				trim( self::SECTIONS )
 			],
 			[ 'Help:WikiPageTest_testReplaceSection',
 				CONTENT_MODEL_WIKITEXT,
-				self::$sections,
+				self::SECTIONS,
 				"new",
 				"No more",
 				"New",
-				trim( self::$sections ) . "\n\n== New ==\n\nNo more"
+				trim( self::SECTIONS ) . "\n\n== New ==\n\nNo more"
 			],
 		];
 	}

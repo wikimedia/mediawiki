@@ -1896,7 +1896,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 	}
 
-	private static $schemaOverrideDefaults = [
+	private const SCHEMA_OVERRIDE_DEFAULTS = [
 		'scripts' => [],
 		'create' => [],
 		'drop' => [],
@@ -1936,7 +1936,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	private function undoSchemaOverrides( IMaintainableDatabase $db, $oldOverrides ) {
 		self::ensureMockDatabaseConnection( $db );
 
-		$oldOverrides = $oldOverrides + self::$schemaOverrideDefaults;
+		$oldOverrides = $oldOverrides + self::SCHEMA_OVERRIDE_DEFAULTS;
 		$originalTables = self::listOriginalTables( $db );
 
 		// Drop tables that need to be restored or removed.
@@ -1964,7 +1964,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	private function setUpSchema( IMaintainableDatabase $db ) {
 		// Undo any active overrides.
-		$oldOverrides = DynamicPropertyTestHelper::getDynamicProperty( $db, 'activeSchemaOverrides' ) ?? self::$schemaOverrideDefaults;
+		$oldOverrides = DynamicPropertyTestHelper::getDynamicProperty( $db, 'activeSchemaOverrides' ) ?? self::SCHEMA_OVERRIDE_DEFAULTS;
 
 		if ( $oldOverrides['alter'] || $oldOverrides['create'] || $oldOverrides['drop'] ) {
 			$this->undoSchemaOverrides( $db, $oldOverrides );
@@ -1972,11 +1972,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		// Determine new overrides.
-		$overrides = $this->getSchemaOverrides( $db ) + self::$schemaOverrideDefaults;
+		$overrides = $this->getSchemaOverrides( $db ) + self::SCHEMA_OVERRIDE_DEFAULTS;
 
 		$extraKeys = array_diff(
 			array_keys( $overrides ),
-			array_keys( self::$schemaOverrideDefaults )
+			array_keys( self::SCHEMA_OVERRIDE_DEFAULTS )
 		);
 
 		if ( $extraKeys ) {

@@ -15,7 +15,7 @@ use MediaWiki\Title\Title;
  * @covers \MediaWiki\Content\WikitextContent
  */
 class WikitextContentTest extends TextContentTest {
-	public static $sections = "Intro
+	public const SECTIONS = "Intro
 
 == stuff ==
 hello world
@@ -33,16 +33,16 @@ more stuff
 
 	public static function dataGetSection() {
 		return [
-			[ self::$sections,
+			[ self::SECTIONS,
 				"0",
 				"Intro"
 			],
-			[ self::$sections,
+			[ self::SECTIONS,
 				"2",
 				"== test ==
 just a test"
 			],
-			[ self::$sections,
+			[ self::SECTIONS,
 				"8",
 				false
 			],
@@ -67,38 +67,38 @@ just a test"
 
 	public static function dataReplaceSection() {
 		return [
-			[ self::$sections,
+			[ self::SECTIONS,
 				"0",
 				"No more",
 				null,
-				trim( preg_replace( '/^Intro/m', 'No more', self::$sections ) )
+				trim( preg_replace( '/^Intro/m', 'No more', self::SECTIONS ) )
 			],
-			[ self::$sections,
+			[ self::SECTIONS,
 				"",
 				"No more",
 				null,
 				"No more"
 			],
-			[ self::$sections,
+			[ self::SECTIONS,
 				"2",
 				"== TEST ==\nmore fun",
 				null,
 				trim( preg_replace(
 					'/^== test ==.*== foo ==/sm', "== TEST ==\nmore fun\n\n== foo ==",
-					self::$sections
+					self::SECTIONS
 				) )
 			],
-			[ self::$sections,
+			[ self::SECTIONS,
 				"8",
 				"No more",
 				null,
-				self::$sections
+				self::SECTIONS
 			],
-			[ self::$sections,
+			[ self::SECTIONS,
 				"new",
 				"No more",
 				"New",
-				trim( self::$sections ) . "\n\n\n== New ==\n\nNo more"
+				trim( self::SECTIONS ) . "\n\n\n== New ==\n\nNo more"
 			],
 		];
 	}

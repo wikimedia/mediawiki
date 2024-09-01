@@ -5,8 +5,8 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class FileBackendDBRepoWrapperTest extends MediaWikiIntegrationTestCase {
-	protected $backendName = 'foo-backend';
-	protected $repoName = 'pureTestRepo';
+	private const BACKEND_NAME = 'foo-backend';
+	private const REPO_NAME = 'pureTestRepo';
 
 	/**
 	 * @dataProvider getBackendPathsProvider
@@ -36,7 +36,7 @@ class FileBackendDBRepoWrapperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function getBackendPathsProvider() {
-		$prefix = 'mwstore://' . $this->backendName . '/' . $this->repoName;
+		$prefix = 'mwstore://' . self::BACKEND_NAME . '/' . self::REPO_NAME;
 		$mocksForCaching = $this->getMocks();
 
 		return [
@@ -94,9 +94,9 @@ class FileBackendDBRepoWrapperTest extends MediaWikiIntegrationTestCase {
 	public function testGetFileContentsMulti() {
 		[ $dbMock, $backendMock, $wrapperMock ] = $this->getMocks();
 
-		$sha1Path = 'mwstore://' . $this->backendName . '/' . $this->repoName
+		$sha1Path = 'mwstore://' . self::BACKEND_NAME . '/' . self::REPO_NAME
 			. '-original/9/6/2/96246614d75ba1703bdfd5d7660bb57407aaf5d9';
-		$filenamePath = 'mwstore://' . $this->backendName . '/' . $this->repoName
+		$filenamePath = 'mwstore://' . self::BACKEND_NAME . '/' . self::REPO_NAME
 			. '-public/f/o/foobar.jpg';
 
 		$dbMock->expects( $this->once() )
@@ -126,7 +126,7 @@ class FileBackendDBRepoWrapperTest extends MediaWikiIntegrationTestCase {
 
 		$backendMock = $this->getMockBuilder( FSFileBackend::class )
 			->setConstructorArgs( [ [
-					'name' => $this->backendName,
+					'name' => self::BACKEND_NAME,
 					'wikiId' => WikiMap::getCurrentWikiId()
 				] ] )
 			->getMock();
@@ -135,7 +135,7 @@ class FileBackendDBRepoWrapperTest extends MediaWikiIntegrationTestCase {
 			->onlyMethods( [ 'getDB' ] )
 			->setConstructorArgs( [ [
 					'backend' => $backendMock,
-					'repoName' => $this->repoName,
+					'repoName' => self::REPO_NAME,
 					'dbHandleFactory' => null
 				] ] )
 			->getMock();

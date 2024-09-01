@@ -6,7 +6,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Sanitizer;
 
 class RemexDriverTest extends MediaWikiUnitTestCase {
-	private static $remexTidyTestData = [
+	private const REMEX_TIDY_TEST_DATA = [
 		[
 			'Empty string',
 			"",
@@ -331,7 +331,7 @@ class RemexDriverTest extends MediaWikiUnitTestCase {
   </math>
 MathML;
 		$testMathML = Sanitizer::normalizeCharReferences( $testMathML );
-		return array_merge( self::$remexTidyTestData, [ [
+		return array_merge( self::REMEX_TIDY_TEST_DATA, [ [
 			'<math> should survive tidy',
 			$testMathML,
 			$testMathML,

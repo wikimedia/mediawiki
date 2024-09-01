@@ -30,7 +30,7 @@ use MediaWiki\User\User;
  */
 class UserPasswordPolicyTest extends MediaWikiIntegrationTestCase {
 
-	protected $policies = [
+	private const POLICIES = [
 		'checkuser' => [
 			'MinimalPasswordLength' => [ 'value' => 10, 'forceChange' => true ],
 			'MinimumPasswordLengthToLogin' => 6,
@@ -55,7 +55,7 @@ class UserPasswordPolicyTest extends MediaWikiIntegrationTestCase {
 		],
 	];
 
-	protected $checks = [
+	private const CHECKS = [
 		'MinimalPasswordLength' => 'MediaWiki\Password\PasswordPolicyChecks::checkMinimalPasswordLength',
 		'MinimumPasswordLengthToLogin' => 'MediaWiki\Password\PasswordPolicyChecks::checkMinimumPasswordLengthToLogin',
 		'PasswordCannotBeSubstringInUsername' =>
@@ -65,7 +65,7 @@ class UserPasswordPolicyTest extends MediaWikiIntegrationTestCase {
 	];
 
 	private function getUserPasswordPolicy() {
-		return new UserPasswordPolicy( $this->policies, $this->checks );
+		return new UserPasswordPolicy( self::POLICIES, self::CHECKS );
 	}
 
 	public function testGetPoliciesForUser() {
@@ -102,9 +102,9 @@ class UserPasswordPolicyTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetPoliciesForGroups() {
 		$effective = UserPasswordPolicy::getPoliciesForGroups(
-			$this->policies,
+			self::POLICIES,
 			[ 'user', 'checkuser', 'sysop' ],
-			$this->policies['default']
+			self::POLICIES['default']
 		);
 
 		$this->assertArrayEquals(

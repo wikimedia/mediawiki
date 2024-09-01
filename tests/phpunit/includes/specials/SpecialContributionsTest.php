@@ -18,7 +18,7 @@ use Wikimedia\Parsoid\Utils\DOMUtils;
 class SpecialContributionsTest extends SpecialPageTestBase {
 	use TempUserTestTrait;
 
-	private $pageName = __CLASS__ . 'BlaBlaTest';
+	private const PAGE_NAME = __CLASS__ . 'BlaBlaTest';
 	private static $admin;
 	private static $user;
 	private static int $useModWikiIPRevId;
@@ -39,7 +39,7 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 		self::$admin = new UltimateAuthority( $this->getTestSysop()->getUser() );
 		$this->assertTrue(
 			$this->editPage(
-				$this->pageName, 'Test Content', 'test', NS_MAIN, self::$admin
+				self::PAGE_NAME, 'Test Content', 'test', NS_MAIN, self::$admin
 			)->isOK(),
 			'Edit failed for admin'
 		);
@@ -202,9 +202,9 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 				'month' => $month,
 			] ) );
 		if ( $expect ) {
-			$this->assertStringContainsString( $this->pageName, $html );
+			$this->assertStringContainsString( self::PAGE_NAME, $html );
 		} else {
-			$this->assertStringNotContainsString( $this->pageName, $html );
+			$this->assertStringNotContainsString( self::PAGE_NAME, $html );
 		}
 	}
 

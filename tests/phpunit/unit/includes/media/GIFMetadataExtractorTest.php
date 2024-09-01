@@ -4,15 +4,7 @@
  * @group Media
  */
 class GIFMetadataExtractorTest extends \MediaWikiUnitTestCase {
-
-	/** @var string */
-	private $mediaPath;
-
-	protected function setUp(): void {
-		parent::setUp();
-
-		$this->mediaPath = __DIR__ . '/../../../data/media/';
-	}
+	private const FILE_PATH = __DIR__ . '/../../../data/media/';
 
 	/**
 	 * Put in a file, and see if the metadata coming out is as expected.
@@ -22,7 +14,7 @@ class GIFMetadataExtractorTest extends \MediaWikiUnitTestCase {
 	 * @covers \GIFMetadataExtractor::getMetadata
 	 */
 	public function testGetMetadata( $filename, $expected ) {
-		$actual = GIFMetadataExtractor::getMetadata( $this->mediaPath . $filename );
+		$actual = GIFMetadataExtractor::getMetadata( self::FILE_PATH . $filename );
 		$this->assertEquals( $expected, $actual );
 	}
 

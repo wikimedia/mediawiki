@@ -12,7 +12,7 @@ use MediaWikiIntegrationTestCase;
  */
 class HTMLAutoCompleteSelectFieldTest extends MediaWikiIntegrationTestCase {
 
-	public $options = [
+	private const OPTIONS = [
 		'Bulgaria'     => 'BGR',
 		'Burkina Faso' => 'BFA',
 		'Burundi'      => 'BDI',
@@ -41,8 +41,8 @@ class HTMLAutoCompleteSelectFieldTest extends MediaWikiIntegrationTestCase {
 
 		$params = [
 			'fieldname'         => 'Test',
-			'autocomplete-data' => $this->options,
-			'options'           => $this->options,
+			'autocomplete-data' => self::OPTIONS,
+			'options'           => self::OPTIONS,
 			'parent'            => $htmlForm
 		];
 
