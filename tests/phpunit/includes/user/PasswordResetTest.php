@@ -619,12 +619,19 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 		$badUser->method( 'isRegistered' )->willReturn( true );
 		$badUser->method( 'getEmail' )->willReturn( '' );
 
+		$nonexistUser = $this->createMock( User::class );
+		$nonexistUser->method( 'getName' )->willReturn( 'Nonexistent user' );
+		$nonexistUser->method( 'getId' )->willReturn( 0 );
+		$nonexistUser->method( 'isRegistered' )->willReturn( false );
+		$nonexistUser->method( 'getEmail' )->willReturn( '' );
+
 		return [
 			'User1' => $user1,
 			'User2' => $user2,
 			'User3' => $user3,
 			'User4' => $user4,
 			'BadUser' => $badUser,
+			'Nonexistent user' => $nonexistUser,
 		];
 	}
 }
