@@ -34,6 +34,7 @@ class PageUpdatedEvent extends DomainEvent {
 
 	public const TYPE = 'PageUpdated';
 
+	private RevisionSlotsUpdate $slotsUpdate;
 	private RevisionRecord $newRevision;
 	private ?RevisionRecord $oldRevision;
 	private ?EditResult $editResult;
@@ -42,6 +43,7 @@ class PageUpdatedEvent extends DomainEvent {
 	private int $patrolStatus;
 
 	public function __construct(
+		RevisionSlotsUpdate $slotsUpdate,
 		RevisionRecord $newRevision,
 		?RevisionRecord $oldrevision,
 		?EditResult $editResult,
@@ -51,6 +53,7 @@ class PageUpdatedEvent extends DomainEvent {
 	) {
 		parent::__construct( self::TYPE, $newRevision->getTimestamp() );
 
+		$this->slotsUpdate = $slotsUpdate;
 		$this->newRevision = $newRevision;
 		$this->oldRevision = $oldrevision;
 		$this->editResult = $editResult;
@@ -69,6 +72,14 @@ class PageUpdatedEvent extends DomainEvent {
 
 	public function getAuthor(): UserIdentity {
 		return $this->newRevision->getUser( RevisionRecord::RAW );
+	}
+
+	public function getSlotsUpdate(): RevisionSlotsUpdate {
+		return $this->slotsUpdate;
+	}
+
+	public function isModifiedSlot( string $slotRole ): bool {
+		return $this->getSlotsUpdate()->isModifiedSlot( $slotRole );
 	}
 
 	/**

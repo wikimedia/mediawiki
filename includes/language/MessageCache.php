@@ -31,10 +31,10 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\Parser;
@@ -1680,18 +1680,19 @@ class MessageCache implements LoggerAwareInterface {
 	/**
 	 * Purge message caches when a MediaWiki: page is created, updated, or deleted
 	 *
-	 * @param LinkTarget $linkTarget Message page title
+	 * @param PageIdentity $page Message page
 	 * @param Content|null $content New content for edit/create, null on deletion
+	 *
 	 * @since 1.29
 	 */
-	public function updateMessageOverride( LinkTarget $linkTarget, ?Content $content = null ) {
+	public function updateMessageOverride( $page, ?Content $content = null ) {
 		// treat null as not existing
 		$msgText = $this->getMessageTextFromContent( $content ) ?? false;
 
-		$this->replace( $linkTarget->getDBkey(), $msgText );
+		$this->replace( $page->getDBkey(), $msgText );
 
 		if ( $this->contLangConverter->hasVariants() ) {
-			$this->contLangConverter->updateConversionTable( $linkTarget );
+			$this->contLangConverter->updateConversionTable( $page );
 		}
 	}
 

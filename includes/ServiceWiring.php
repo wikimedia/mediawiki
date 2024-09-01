@@ -119,6 +119,7 @@ use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\Language\LazyLocalizationContext;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Languages\LanguageEventIngress;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
@@ -194,6 +195,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreFactory;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
+use MediaWiki\Search\SearchEventIngress;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Search\TitleMatcher;
 use MediaWiki\Settings\Config\ConfigSchema;
@@ -2673,11 +2675,12 @@ return [
 		// Core event wiring.
 		// TODO: move this to a more prominent location? A separate file?
 
-		// Register subscriber for propagating PageUpdatedEvents to the
-		// change tracking component.
-		$dispatcher->registerSubscriber(
-			ChangeTrackingEventIngress::OBJECT_SPEC
-		);
+		// Establish the propagation of PageUpdatedEvents to the change tracking component.
+		$dispatcher->registerSubscriber( ChangeTrackingEventIngress::OBJECT_SPEC );
+		// Establish the propagation of PageUpdatedEvents to the search component.
+		$dispatcher->registerSubscriber( SearchEventIngress::OBJECT_SPEC );
+		// Establish the propagation of PageUpdatedEvents to the language component.
+		$dispatcher->registerSubscriber( LanguageEventIngress::OBJECT_SPEC );
 
 		$extensionRegistry = $services->getExtensionRegistry();
 		$dispatcher->registerSubscriber( $extensionRegistry );

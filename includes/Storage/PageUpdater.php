@@ -1401,6 +1401,7 @@ class PageUpdater {
 			);
 
 			$this->eventDispatcher->dispatch( new PageUpdatedEvent(
+				$this->slotsUpdate,
 				$newRevisionRecord,
 				$oldRev,
 				$editResult,
@@ -1524,6 +1525,7 @@ class PageUpdater {
 		}
 
 		$this->eventDispatcher->dispatch( new PageUpdatedEvent(
+			$this->slotsUpdate,
 			$newRevisionRecord,
 			null,
 			null,

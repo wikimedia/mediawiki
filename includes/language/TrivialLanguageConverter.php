@@ -19,8 +19,8 @@
  */
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Language\Language;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\TitleFormatter;
 
@@ -161,7 +161,7 @@ class TrivialLanguageConverter implements ILanguageConverter {
 		return $text;
 	}
 
-	public function updateConversionTable( LinkTarget $linkTarget ) {
+	public function updateConversionTable( PageIdentity $page ) {
 	}
 
 	/**
