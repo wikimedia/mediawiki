@@ -6181,7 +6181,7 @@ class MainConfigSchema {
 
 	/**
 	 * @since 1.16 - This can now be set per-namespace. Some special namespaces (such as Special,
-	 *     see NamespaceInfo::$alwaysCapitalizedNamespaces for the full list) must be true by
+	 *     see NamespaceInfo::ALWAYS_CAPITALIZED_NAMESPACES for the full list) must be true by
 	 *     default (and setting them has no effect), due to various things that require them to be
 	 *     so. Also, since Talk namespaces need to directly mirror their associated content
 	 *     namespaces, the values for those are ignored in favor of the subject namespace's
