@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Shell\ShellboxClientFactory;
+use Shellbox\RPC\RpcClient;
 
 /**
  * An ICU collation that uses a remote server to compute sort keys. This can be
@@ -8,14 +9,10 @@ use MediaWiki\Shell\ShellboxClientFactory;
  * version of ICU.
  */
 class RemoteIcuCollation extends Collation {
-	private $rpcClient;
-	private $locale;
+	private RpcClient $rpcClient;
+	private string $locale;
 
-	/**
-	 * @param ShellboxClientFactory $shellboxClientFactory
-	 * @param string $locale
-	 */
-	public function __construct( ShellboxClientFactory $shellboxClientFactory, $locale ) {
+	public function __construct( ShellboxClientFactory $shellboxClientFactory, string $locale ) {
 		$this->rpcClient = $shellboxClientFactory->getRpcClient(
 			[ 'service' => 'icu-collation' ] );
 		$this->locale = $locale;
