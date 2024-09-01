@@ -19,10 +19,13 @@
  * @ingroup Upload
  */
 
+use MediaWiki\Message\Message;
+
 /**
  * @newable
  */
 class UploadChunkVerificationException extends RuntimeException {
+	/** @var Message */
 	public $msg;
 
 	/**

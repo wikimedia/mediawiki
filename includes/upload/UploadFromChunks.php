@@ -46,9 +46,13 @@ class UploadFromChunks extends UploadFromFile {
 	/** @var User */
 	public $user;
 
+	/** @var int|null */
 	protected $mOffset;
+	/** @var int|null */
 	protected $mChunkIndex;
+	/** @var string */
 	protected $mFileKey;
+	/** @var string|null */
 	protected $mVirtualTempPath;
 
 	private LoggerInterface $logger;
