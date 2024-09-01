@@ -153,6 +153,23 @@ abstract class CentralIdLookup {
 	abstract public function isAttached( UserIdentity $user, $wikiId = UserIdentity::LOCAL ): bool;
 
 	/**
+	 * Check that a username is owned by the central user on the specified wiki.
+	 *
+	 * This should return true if the local account exists and is attached (see isAttached()),
+	 * or if it does not exist but is reserved for the central user (it's guaranteed that
+	 * if it's ever created, then it will be attached to the central user).
+	 *
+	 * @since 1.43
+	 * @stable to override
+	 * @param UserIdentity $user
+	 * @param string|false $wikiId Wiki to check attachment status. If false, check the current wiki.
+	 * @return bool
+	 */
+	public function isOwned( UserIdentity $user, $wikiId = UserIdentity::LOCAL ): bool {
+		return $this->isAttached( $user, $wikiId );
+	}
+
+	/**
 	 * Given central user IDs, return the (local) user names
 	 * @note There's no requirement that the user names actually exist locally,
 	 *  or if they do that they're actually attached to the central account.
