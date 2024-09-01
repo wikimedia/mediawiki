@@ -129,8 +129,6 @@ class ZipDirectoryReader {
 	protected $eocdr64;
 	protected $eocdr64Locator;
 
-	protected $data;
-
 	/** The "extra field" ID for ZIP64 central directory entries */
 	private const ZIP64_EXTRA_HEADER = 0x0001;
 
@@ -163,7 +161,6 @@ class ZipDirectoryReader {
 	 * @return Status
 	 */
 	private function execute() {
-		$this->data = [];
 		if ( !$this->file ) {
 			return Status::newFatal( 'zip-file-open-error' );
 		}
