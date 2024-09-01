@@ -45,8 +45,6 @@ class LocalFileMoveBatch {
 
 	protected $oldCount;
 
-	protected $archive;
-
 	/** @var IDatabase */
 	protected $db;
 
