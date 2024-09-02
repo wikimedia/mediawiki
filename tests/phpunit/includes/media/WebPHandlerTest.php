@@ -5,28 +5,16 @@
  */
 class WebPHandlerTest extends MediaWikiIntegrationTestCase {
 
-	/** @var string */
-	private $tempFileName;
-
-	protected function setUp(): void {
-		parent::setUp();
-		// Allocated file for testing
-		$this->tempFileName = tempnam( wfTempDir(), 'WEBP' );
-	}
-
-	protected function tearDown(): void {
-		unlink( $this->tempFileName );
-		parent::tearDown();
-	}
-
 	/**
 	 * @dataProvider provideTestExtractMetaData
 	 */
 	public function testExtractMetaData( $header, $expectedResult ) {
-		// Put header into file
-		file_put_contents( $this->tempFileName, $header );
+		$tempFileName = $this->getNewTempFile();
 
-		$this->assertEquals( $expectedResult, WebPHandler::extractMetadata( $this->tempFileName ) );
+		// Put header into file
+		file_put_contents( $tempFileName, $header );
+
+		$this->assertEquals( $expectedResult, WebPHandler::extractMetadata( $tempFileName ) );
 	}
 
 	public static function provideTestExtractMetaData() {
