@@ -272,6 +272,7 @@ class SiteConfig extends ISiteConfig {
 	 * Increment a counter metric
 	 * @param string $name
 	 * @param array $labels
+	 * @param float $amount
 	 * @return void
 	 */
 	public function incrementCounter( string $name, array $labels, float $amount = 1 ) {
