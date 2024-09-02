@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Auth;
 
+use Closure;
 use DatabaseLogEntry;
 use DomainException;
 use DummySessionProvider;
@@ -25,8 +26,10 @@ use MediaWiki\Auth\Hook\AuthManagerVerifyAuthenticationHook;
 use MediaWiki\Auth\Hook\LocalUserCreatedHook;
 use MediaWiki\Auth\Hook\SecuritySensitiveOperationStatusHook;
 use MediaWiki\Auth\Hook\UserLoggedInHook;
+use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Auth\PrimaryAuthenticationProvider;
 use MediaWiki\Auth\RememberMeAuthenticationRequest;
+use MediaWiki\Auth\TemporaryPasswordAuthenticationRequest;
 use MediaWiki\Auth\UserDataAuthenticationRequest;
 use MediaWiki\Auth\UsernameAuthenticationRequest;
 use MediaWiki\Block\BlockManager;
@@ -4235,5 +4238,94 @@ class AuthManagerTest extends MediaWikiIntegrationTestCase {
 		$authManager->setRequestContextUserFromSessionUser();
 		$this->assertSame( $context->getRequest()->getSession()->getUser()->getName(), $newSessionUser->getName() );
 		$this->assertSame( $context->getRequest()->getSession()->getUser()->getName(), $context->getUser()->getName() );
+	}
+
+	/**
+	 * @dataProvider provideAccountCreationAuthenticationRequestTestCases
+	 *
+	 * @param Closure $userProvider Closure returning the user performing the account creation
+	 * @param string[] $expectedReqsByLevel Map of expected auth request classes keyed by requirement level
+	 */
+	public function testDefaultAccountCreationAuthenticationRequests(
+		Closure $userProvider,
+		array $expectedReqsByLevel
+	): void {
+		// Test the default primary and secondary authentication providers
+		// irrespective of any potentially conflicting local configuration.
+		$authConfig = $this->getServiceContainer()
+			->getConfigSchema()
+			->getDefaultFor( MainConfigNames::AuthManagerAutoConfig );
+
+		$this->overrideConfigValues( [
+			MainConfigNames::AuthManagerConfig => null,
+			MainConfigNames::AuthManagerAutoConfig => $authConfig
+		] );
+
+		$authManager = $this->getServiceContainer()->getAuthManager();
+		$userProvider = $userProvider->bindTo( $this );
+
+		$reqs = $authManager->getAuthenticationRequests( AuthManager::ACTION_CREATE, $userProvider() );
+
+		$reqsByLevel = [];
+		foreach ( $reqs as $req ) {
+			$reqsByLevel[$req->required][] = get_class( $req );
+		}
+
+		foreach ( $expectedReqsByLevel as $level => $expectedReqs ) {
+			$reqs = $reqsByLevel[$level] ?? [];
+			sort( $reqs );
+			sort( $expectedReqs );
+
+			$this->assertSame( $expectedReqs, $reqs );
+		}
+	}
+
+	public static function provideAccountCreationAuthenticationRequestTestCases(): iterable {
+		// phpcs:disable Squiz.Scope.StaticThisUsage.Found
+		yield 'account creation on behalf of anonymous user' => [
+			fn (): User => $this->getServiceContainer()->getUserFactory()->newAnonymous( '127.0.0.1' ),
+			[
+				AuthenticationRequest::OPTIONAL => [],
+				AuthenticationRequest::REQUIRED => [
+					UserDataAuthenticationRequest::class,
+					UsernameAuthenticationRequest::class
+				],
+				AuthenticationRequest::PRIMARY_REQUIRED => [ PasswordAuthenticationRequest::class ]
+			]
+		];
+
+		yield 'account creation on behalf of temporary user' => [
+			function (): User {
+				$req = new FauxRequest();
+				return $this->getServiceContainer()
+					->getTempUserCreator()
+					->create( null, $req )
+					->getUser();
+			},
+			[
+				AuthenticationRequest::OPTIONAL => [],
+				AuthenticationRequest::REQUIRED => [
+					UserDataAuthenticationRequest::class,
+					UsernameAuthenticationRequest::class
+				],
+				AuthenticationRequest::PRIMARY_REQUIRED => [ PasswordAuthenticationRequest::class ]
+			]
+		];
+
+		yield 'account creation on behalf of registered user' => [
+			fn (): User => $this->getTestUser()->getUser(),
+			[
+				AuthenticationRequest::OPTIONAL => [ CreationReasonAuthenticationRequest::class ],
+				AuthenticationRequest::REQUIRED => [
+					UserDataAuthenticationRequest::class,
+					UsernameAuthenticationRequest::class
+				],
+				AuthenticationRequest::PRIMARY_REQUIRED => [
+					PasswordAuthenticationRequest::class,
+					TemporaryPasswordAuthenticationRequest::class
+				]
+			]
+		];
+		// phpcs:enable
 	}
 }

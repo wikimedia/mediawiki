@@ -66,7 +66,10 @@ exports.config = {
 				'--enable-automation',
 				...( process.env.DISPLAY ? [] : [ '--headless' ] ),
 				// Chrome sandbox does not work in Docker
-				...( fs.existsSync( '/.dockerenv' ) ? [ '--no-sandbox' ] : [] )
+				...( fs.existsSync( '/.dockerenv' ) ? [ '--no-sandbox' ] : [] ),
+				// Workaround inputs not working consistently post-navigation on Chrome 90
+				// https://issuetracker.google.com/issues/42322798
+				'--allow-pre-commit-input'
 			]
 		}
 	} ],

@@ -114,12 +114,17 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 				return [ TemporaryPasswordAuthenticationRequest::newRandom() ];
 
 			case AuthManager::ACTION_CREATE:
-				if ( isset( $options['username'] ) && $this->emailEnabled ) {
-					// Creating an account for someone else
+				// Allow named users creating a new account to email a temporary password to a given address
+				// in case they are creating an account for somebody else.
+				// This isn't a likely scenario for account creations by anonymous or temporary users
+				// and is therefore disabled for them (T328718).
+				if (
+					isset( $options['username'] ) &&
+					!$this->userNameUtils->isTemp( $options['username'] ) &&
+					$this->emailEnabled
+				) {
 					return [ TemporaryPasswordAuthenticationRequest::newRandom() ];
 				} else {
-					// It's not terribly likely that an anonymous user will
-					// be creating an account for someone else.
 					return [];
 				}
 

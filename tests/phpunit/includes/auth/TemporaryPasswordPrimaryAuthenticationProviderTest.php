@@ -340,7 +340,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends MediaWikiIntegr
 		];
 
 		yield 'signup attempt as temporary user' => [
-			AuthManager::ACTION_CREATE, true, true, [ new TemporaryPasswordAuthenticationRequest( 'random' ) ]
+			AuthManager::ACTION_CREATE, true, true, []
 		];
 
 		yield 'account linking attempt as anonymous user' => [
