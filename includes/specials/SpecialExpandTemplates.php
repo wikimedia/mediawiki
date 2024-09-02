@@ -168,19 +168,20 @@ class SpecialExpandTemplates extends SpecialPage {
 	 */
 	private function makeForm() {
 		$fields = [
-			'ContextTitle' => [
-				'type' => 'text',
-				'label' => $this->msg( 'expand_templates_title' )->plain(),
-				'id' => 'contexttitle',
-				'size' => 60,
-				'autofocus' => true,
-			],
 			'Input' => [
 				'type' => 'textarea',
 				'label' => $this->msg( 'expand_templates_input' )->text(),
 				'rows' => 10,
 				'id' => 'input',
 				'useeditfont' => true,
+				'required' => true,
+				'autofocus' => true,
+			],
+			'ContextTitle' => [
+				'type' => 'text',
+				'label' => $this->msg( 'expand_templates_title' )->plain(),
+				'id' => 'contexttitle',
+				'size' => 60,
 			],
 			'RemoveComments' => [
 				'type' => 'check',
