@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Tests\Maintenance;
+namespace MediaWiki\Tests\Maintenance\Includes;
 
 use Benchmarker;
 use MediaWikiCoversValidator;
