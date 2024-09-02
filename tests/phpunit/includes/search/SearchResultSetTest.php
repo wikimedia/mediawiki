@@ -30,7 +30,7 @@ class SearchResultSetTest extends MediaWikiIntegrationTestCase {
 		$this->hideDeprecated( 'BaseSearchResultSet::next' );
 		$resultSet->rewind();
 		$count = 0;
-		while ( ( $iterResult = $resultSet->next() ) !== false ) {
+		foreach ( $resultSet as $iterResult ) {
 			$this->assertEquals( $result, $iterResult );
 			$count++;
 		}
