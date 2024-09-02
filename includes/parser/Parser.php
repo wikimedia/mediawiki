@@ -585,20 +585,6 @@ class Parser {
 	public function __clone() {
 		$this->mInParse = false;
 
-		// T58226: When you create a reference "to" an object field, that
-		// makes the object field itself be a reference too (until the other
-		// reference goes out of scope). When cloning, any field that's a
-		// reference is copied as a reference in the new object. Both of these
-		// are defined PHP5 behaviors, as inconvenient as it is for us when old
-		// hooks from PHP4 days are passing fields by reference.
-		foreach ( [ 'mStripState', 'mVarCache' ] as $k ) {
-			// Make a non-reference copy of the field, then rebind the field to
-			// reference the new copy.
-			$tmp = $this->$k;
-			$this->$k =& $tmp;
-			unset( $tmp );
-		}
-
 		$this->mPreprocessor = clone $this->mPreprocessor;
 		$this->mPreprocessor->resetParser( $this );
 
