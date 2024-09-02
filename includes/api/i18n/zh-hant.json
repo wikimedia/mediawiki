@@ -418,6 +418,7 @@
 	"apihelp-parse-paramvalue-prop-parsewarnings": "提供發生在解析內容時的警告（以 wikitext）。",
 	"apihelp-parse-paramvalue-prop-parsewarningshtml": "提供發生在解析內容時的警告（以 HTML）。",
 	"apihelp-parse-param-wrapoutputclass": "要包在解析器輸出內容的 CSS 類別。",
+	"apihelp-parse-param-usearticle": "使用 ArticleParserOptions 掛鉤來確保所使用選項與條目頁面檢視所使用選項相符",
 	"apihelp-parse-param-parsoid": "使用[[mw:Parsoid|Parsoid]]生成符合[[mw:Specs/HTML|MediaWiki的DOM規範]]的 HTML。",
 	"apihelp-parse-param-pst": "在解析之前執行在輸入裡的預先儲存轉換。僅當與文字使用時有效。",
 	"apihelp-parse-param-onlypst": "在輸入裡進行預先儲存轉換（pre-save transform、PST）但不解析。在 PST 已套用後回傳相同的 wikitext。僅與 <var>$1text</var> 使用時有效。",

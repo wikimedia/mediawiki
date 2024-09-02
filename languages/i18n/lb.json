@@ -1783,7 +1783,7 @@
 	"suppress": "Ënnerdrécken",
 	"querypage-disabled": "Dës Spezialsäit ass aus Performance-Grënn ausgeschalt.",
 	"apihelp": "API-Hëllef",
-	"apihelp-no-such-module": "Modul \"$1\" net fonnt.",
+	"apihelp-no-such-module": "Modul „$1“ net fonnt.",
 	"apisandbox": "API-Sandkëscht",
 	"apisandbox-jsonly": "Fir d'API-Sandkëscht ze benotze braucht Dir JavaScript.",
 	"apisandbox-submit": "Ufro maachen",

@@ -3432,7 +3432,7 @@
 	"tag-hidden": "$1 (thẻ ẩn)",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1}}Thẻ]]: $2",
 	"tag-mw-contentmodelchange": "thay đổi kiểu nội dung",
-	"tag-mw-contentmodelchange-description": "Sửa đổi [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel thay đổi kiểu nội dung] của trang",
+	"tag-mw-contentmodelchange-description": "Sửa đổi thay đổi kiểu nội dung của trang",
 	"tag-mw-new-redirect": "Trang đổi hướng mới",
 	"tag-mw-new-redirect-description": "Các sửa đổi tạo ra trang đổi hướng mới hoặc biến một trang thành trang đổi hướng.",
 	"tag-mw-removed-redirect": "Xóa đổi hướng",

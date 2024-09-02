@@ -411,6 +411,7 @@
 	"apihelp-parse-paramvalue-prop-parsewarnings": "נותן את אזהרות שאירעו בזמן פענוח התוכן (בתור קוד ויקי).",
 	"apihelp-parse-paramvalue-prop-parsewarningshtml": "נותן את האזהרות שאירעו בזמן פענוח התוכן (בתור HTML).",
 	"apihelp-parse-param-wrapoutputclass": "מחלקה של CSS שתשמש לעטיפת פלט המפענח.",
+	"apihelp-parse-param-usearticle": "יש להשתמש ב־hook בשם ArticleParserOptions כדי להבטיח שהאפשרויות שמשמשות כאן תואמות לאלו שמשמשות לצפיות בדף הערך",
 	"apihelp-parse-param-parsoid": "יצירת HTML שמתאים ל[[mw:Specs/HTML|הגדרות MediaWiki DOM]] באמצעות [[mw:Parsoid|פרסואיד]].",
 	"apihelp-parse-param-pst": "לעשות התמרה לפני שמירה על הקלט לפני פענוחו. תקין רק בשימוש עם טקסט.",
 	"apihelp-parse-param-onlypst": "לעשות התמרה לפני שמירה (pre-save transform‏, PST) על הקלט, אבל לא לפענח אותו. מחזיר את אותו קוד הוויקי אחרי החלת PST. תקף רק בשימוש עם <var>$1text</var>.",

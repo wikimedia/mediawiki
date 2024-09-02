@@ -885,6 +885,8 @@
 	"unstrip-size-category-desc": "Sayfa unstrip boyut sınırını aşıyor.",
 	"bad-language-code-category": "Geçersiz dil kodları olan sayfalar",
 	"bad-language-code-category-desc": "Bu sayfa geçersiz bir dil kodu olan bir <code><nowiki>{{#dir}}</nowiki></code> içeriyor.",
+	"double-px-category": "Görsel boyutları fazla pik içeren sayfalar",
+	"double-px-category-desc": "Sayfa, boyutu <code>100pikpik/100pxpx</code> gibi fazla <code>px/pik</code> eki olan bir görsel içeriyor.",
 	"converter-manual-rule-error": "Elle yapılandırma dil dönüşüm kuralı hatası tespit edildi",
 	"undo-success": "Bu düzenleme geri alınabilir.\nLütfen yapmak istediğiniz bu olduğunu doğrulamak için aşağıdaki karşılaştırmayı kontrol edin ve ardından düzenlemeyi geri almayı bitirmek için değişiklikleri aşağıda yayımlayın.",
 	"undo-failure": "Değişikliklerin çakışması nedeniyle geri alma işlemi başarısız oldu.",

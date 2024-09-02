@@ -3702,7 +3702,7 @@
 	"namespaceinfo-namespace-iscontent": "Las páginas de este espacio de nombres se consideran páginas de «contenido».",
 	"namespaceinfo-namespace-subpages": "Las páginas de este espacio de nombres pueden tener subpáginas.",
 	"namespaceinfo-namespace-nonincludable": "Las páginas de este espacio de nombres no se pueden transcluir.",
-	"namespaceinfo-namespace-default-contentmodel": "Las páginas de este espacio de nombres tienen de forma predeterminada el modelo de contenido <code>$1</code>.",
+	"namespaceinfo-namespace-default-contentmodel": "Las páginas de este espacio de nombres tienen el modelo de contenido <code>$1</code> de forma predeterminada.",
 	"dberr-problems": "Lo sentimos. Este sitio está experimentando dificultades técnicas.",
 	"dberr-again": "Prueba a recargar dentro de unos minutos.",
 	"dberr-info": "(No se puede acceder a la base de datos: $1)",

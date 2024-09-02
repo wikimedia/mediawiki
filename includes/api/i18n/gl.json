@@ -408,6 +408,7 @@
 	"apihelp-parse-paramvalue-prop-parsewarnings": "Devolve os avisos que ocorreron ó analizar o contido (como texto wiki).",
 	"apihelp-parse-paramvalue-prop-parsewarningshtml": "Devolve os avisos que ocorreron ó analizar o contido (como HTML).",
 	"apihelp-parse-param-wrapoutputclass": "Clase CSS a usar para formatar a saída do analizador sintáctico.",
+	"apihelp-parse-param-usearticle": "Usa o gancho ArticleParserOptions para asegurarse de que as opcións empregadas coincidan coas utilizadas para as visitas da páxina do artigo",
 	"apihelp-parse-param-parsoid": "Xerar HTML conforme á [[mw:Specs/HTML|especificación DOM de MediaWiki]] usando [[mw:Parsoid|Parsoid]].",
 	"apihelp-parse-param-pst": "Fai unha transformación antes de gardar a entrada antes de analizala. Válida unicamente para usar con texto.",
 	"apihelp-parse-param-onlypst": "Facer unha transformación antes de gardar (PST) a entrada, pero sen analizala. Devolve o mesmo wikitexto, despois de que a PST foi aplicada. Só válida cando se usa con <var>$1text</var>.",

@@ -760,6 +760,8 @@
 	"unstrip-size-category-desc": "Stranica prěvyšaje ograničenje razměra «unstrip».",
 	"bad-language-code-category": "Stranice s nepravilnymi jezyčnymi kodami",
 	"bad-language-code-category-desc": "Stranica sodrživaje <code><nowiki>{{#dir}}</nowiki></code> s nepravilnym jezyčnym kodom.",
+	"double-px-category": "Stranice s razměrami obrazkov sodrživajučih nadměrny px",
+	"double-px-category-desc": "Stranica sodrživaje obrazok, ktorogo razměr imaje nadměrny sufiks <code>px</code>, napr. <code>100pxpx</code>.",
 	"converter-manual-rule-error": "Odkryta pogrěška v pravilah ručnoj jezyčnoj konversije",
 	"undo-success": "Pravka može byti odčinjena.\nProsimo, že prověrite sravnjenje niže i ubědite se, že hočete sdělati točno to, a potom, že sovršite odčinjenje pravky publikujuči svoju pravku.",
 	"undo-failure": "Odčinjenje pravky jest nemožno zaradi konflikta s medžuvrěmennymi pravkami.",

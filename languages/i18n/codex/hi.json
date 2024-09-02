@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Abijeet Patro"
+			"Abijeet Patro",
+			"AnupamM"
 		]
 	},
+	"cdx-chip-input-chip-added": "चिप $1 जोड़ा गया।",
+	"cdx-chip-input-chip-removed": "चिप $1 को हटा दिया गया।",
 	"cdx-table-pager-button-first-page": "पहला पृष्ठ",
 	"cdx-table-pager-button-last-page": "अंतिम पृष्ठ",
 	"cdx-table-pager-button-next-page": "अगला पृष्ठ"

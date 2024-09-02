@@ -4,6 +4,8 @@
 			"Amire80"
 		]
 	},
+	"cdx-chip-input-chip-added": "נוסף השבב $1.",
+	"cdx-chip-input-chip-removed": "הוסר השבב $1.",
 	"cdx-input-chip-aria-description": "יש ללחוץ Enter כדי לערוך או על Delete כדי להסיר.",
 	"cdx-dialog-close-button-label": "סגירה",
 	"cdx-label-optional-flag": "(לא חובה)",

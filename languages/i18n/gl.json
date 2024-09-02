@@ -797,6 +797,8 @@
 	"unstrip-size-category-desc": "A páxina excede o límite de tamaño de eliminación de etiquetas.",
 	"bad-language-code-category": "Páxinas con códigos de lingua non válidos",
 	"bad-language-code-category-desc": "A páxina contén un <code><nowiki>{{#dir}}</nowiki></code> cun código de lingua non válido.",
+	"double-px-category": "Páxinas con tamaños de imaxe que conteñen un px de máis",
+	"double-px-category-desc": "A páxina contén unha imaxe cuxo tamaño contén un sufixo <code>px</code> de máis, como <code>100pxpx</code>.",
 	"converter-manual-rule-error": "Detectouse un erro na regra manual de conversión da lingua",
 	"undo-success": "A edición pódese desfacer.\nComprobe a comparación que aparece a continuación para confirmar que isto é o que desexa facer; despois, publique os cambios para desfacer a edición.",
 	"undo-failure": "Non se pode desfacer a edición debido a un conflito con algunha das edicións intermedias.",

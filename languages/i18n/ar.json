@@ -3477,7 +3477,7 @@
 	"tag-hidden": "$1 (علامة مخفية)",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1||وسم|وسمان|وسوم}}]]: $2",
 	"tag-mw-contentmodelchange": "تغيير موديل المحتوى",
-	"tag-mw-contentmodelchange-description": "التعديلات التي [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel تغير موديل المحتوى] لصفحة",
+	"tag-mw-contentmodelchange-description": "التعديلات التي تغير موديل المحتوى لصفحة",
 	"tag-mw-new-redirect": "تحويلة جديدة",
 	"tag-mw-new-redirect-description": "التعديلات التي تنشيء تحويلة جديدة أو تغير صفحة لتحويلة",
 	"tag-mw-removed-redirect": "أزال التحويلة",
