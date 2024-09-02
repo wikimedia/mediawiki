@@ -19,6 +19,13 @@ class RollbackEditsTest extends MaintenanceBaseTestCase {
 		return RollbackEdits::class;
 	}
 
+	public function testExecuteForInvalidUserOption() {
+		$this->maintenance->setOption( 'user', 'Template:Testing#test' );
+		$this->expectOutputRegex( '/Invalid username/' );
+		$this->expectCallToFatalError();
+		$this->maintenance->execute();
+	}
+
 	public function testExecuteWhenUserHasNoPagesToRollback() {
 		$this->maintenance->setOption( 'user', $this->getTestUser()->getUserIdentity()->getName() );
 		$this->maintenance->execute();
@@ -37,6 +44,14 @@ class RollbackEditsTest extends MaintenanceBaseTestCase {
 		$this->maintenance->setOption( 'user', $this->getTestUser()->getUserIdentity()->getName() );
 		$this->maintenance->execute();
 		$this->expectOutputRegex( "/Processing Non-existing-test-page...Failed!/" );
+	}
+
+	public function testExecuteForUnregisteredUsername() {
+		$this->maintenance->setOption( 'titles', 'Non-existing-test-page' );
+		$this->maintenance->setOption( 'user', 'NonExistingTestUser' );
+		$this->expectOutputRegex( '/Unknown user/' );
+		$this->expectCallToFatalError();
+		$this->maintenance->execute();
 	}
 
 	/**
