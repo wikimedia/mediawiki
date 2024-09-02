@@ -2464,7 +2464,7 @@
 	"protect-title-notallowed": "„$1” védelmi beállításainak megtekintése",
 	"prot_1movedto2": "[[$1]] lapot átneveztem [[$2]] névre",
 	"protect-badnamespace-title": "Nem védhető névtér",
-	"protect-badnamespace-text": "Ebben a névtérben az oldalak nem védhetők.",
+	"protect-badnamespace-text": "Ennek a névtérnek a lapjait nem lehet levédeni.",
 	"protect-norestrictiontypes-text": "Ezt a lapot nem lehet védeni, mert nincs ilyen korlátozási típus.",
 	"protect-norestrictiontypes-title": "Nem védhető lap",
 	"protect-legend": "Levédés megerősítése",

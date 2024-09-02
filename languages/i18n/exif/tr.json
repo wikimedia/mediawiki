@@ -27,7 +27,8 @@
 			"Uğur Başak",
 			"Vito Genovese",
 			"Vugar 1981",
-			"Sadrettin"
+			"Sadrettin",
+			"ToprakM"
 		]
 	},
 	"exif-imagewidth": "Genişlik",
@@ -224,6 +225,8 @@
 	"exif-photometricinterpretation-6": "YCbCr",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (ICC kodlama)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (ITU kodlama)",
+	"exif-photometricinterpretation-32803": "Renk Süzgeci Dizisi",
+	"exif-photometricinterpretation-34892": "Linear raw",
 	"exif-unknowndate": "Bilinmeyen tarih",
 	"exif-orientation-1": "Normal",
 	"exif-orientation-2": "Yatay döndürülmüş",
