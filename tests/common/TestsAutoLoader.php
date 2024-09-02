@@ -233,6 +233,7 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Unit\\FakeQqxMessageLocalizer' => "$testDir/phpunit/mocks/FakeQqxMessageLocalizer.php",
 	'MediaWiki\\Tests\\Unit\\MockBlockTrait' => "$testDir/phpunit/mocks/MockBlockTrait.php",
 	'MediaWiki\\Tests\\Unit\\MockServiceDependenciesTrait' => "$testDir/phpunit/mocks/MockServiceDependenciesTrait.php",
+	'MediaWiki\\Tests\\Language\\MockLocalisationCacheTrait' => "$testDir/phpunit/mocks/languages/MockLocalisationCacheTrait.php",
 	'MockBitmapHandler' => "$testDir/phpunit/mocks/media/MockBitmapHandler.php",
 	'MockChangesListFilter' => "$testDir/phpunit/mocks/MockChangesListFilter.php",
 	'MockChangesListFilterGroup' => "$testDir/phpunit/mocks/MockChangesListFilterGroup.php",
