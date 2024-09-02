@@ -724,14 +724,34 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Run a child maintenance script. Pass all of the current arguments
-	 * to it.
+	 * Returns an instance of the given maintenance script, with all of the current arguments
+	 * passed to it.
+	 *
+	 * Callers are expected to run the returned maintenance script instance by calling {@link Maintenance::execute}
+	 *
+	 * @deprecated Since 1.43. Use {@link Maintenance::createChild} instead. This method is an alias to that method.
+	 * @param string $maintClass A name of a child maintenance class
+	 * @param string|null $classFile Full path of where the child is
+	 * @return Maintenance The created instance, which the caller is expected to run by calling
+	 *   {@link Maintenance::execute} on the returned object.
+	 */
+	public function runChild( $maintClass, $classFile = null ) {
+		return self::createChild( $maintClass, $classFile );
+	}
+
+	/**
+	 * Returns an instance of the given maintenance script, with all of the current arguments
+	 * passed to it.
+	 *
+	 * Callers are expected to run the returned maintenance script instance by calling {@link Maintenance::execute}
+	 *
 	 * @param string $maintClass A name of a child maintenance class
 	 * @param string|null $classFile Full path of where the child is
 	 * @stable to override
-	 * @return Maintenance
+	 * @return Maintenance The created instance, which the caller is expected to run by calling
+	 *   {@link Maintenance::execute} on the returned object.
 	 */
-	public function runChild( $maintClass, $classFile = null ) {
+	public function createChild( string $maintClass, ?string $classFile = null ): Maintenance {
 		// Make sure the class is loaded first
 		if ( !class_exists( $maintClass ) ) {
 			if ( $classFile ) {
