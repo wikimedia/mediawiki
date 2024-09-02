@@ -314,9 +314,10 @@ Parser.prototype = {
 	getAst: function ( key, replacements ) {
 		if ( !Object.prototype.hasOwnProperty.call( this.astCache, key ) ) {
 			var wikiText = this.settings.messages.get( key );
+			// Keep this synchronised with Message#parser in mediawiki.base.js
 			if (
 				mw.config.get( 'wgUserLanguage' ) === 'qqx' &&
-				wikiText === '(' + key + ')'
+				( !wikiText || wikiText === '(' + key + ')' )
 			) {
 				wikiText = '(' + key + '$*)';
 			} else if ( typeof wikiText !== 'string' ) {

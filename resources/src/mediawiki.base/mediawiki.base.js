@@ -76,9 +76,19 @@ Message.prototype = /** @lends mw.Message.prototype */ {
 	 */
 	parser: function ( format ) {
 		var text = this.map.get( this.key );
+
+		// Apply qqx formatting.
+		//
+		// - Keep this synchronised with LanguageQqx/MessageCache in PHP.
+		// - Keep this synchronised with mw.jqueryMsg.Parser#getAst.
+		//
+		// Unlike LanguageQqx in PHP, this doesn't replace unconditionally.
+		// It replaces non-existent messages, and messages that were exported by
+		// load.php as "(key)" in qqx formatting. Some extensions export other data
+		// via their message blob (T222944).
 		if (
 			mw.config.get( 'wgUserLanguage' ) === 'qqx' &&
-			text === '(' + this.key + ')'
+			( !text || text === '(' + this.key + ')' )
 		) {
 			text = '(' + this.key + '$*)';
 		}
@@ -119,15 +129,18 @@ Message.prototype = /** @lends mw.Message.prototype */ {
 	 */
 	toString: function ( format ) {
 		if ( !this.exists() ) {
-			// Use ⧼key⧽ as text if key does not exist
-			// Err on the side of safety, ensure that the output
-			// is always html safe in the event the message key is
-			// missing, since in that case its highly likely the
-			// message key is user-controlled.
-			// '⧼' is used instead of '<' to side-step any
-			// double-escaping issues.
-			// (Keep synchronised with Message::toString() in PHP.)
-			return '⧼' + mw.html.escape( this.key ) + '⧽';
+			// Make sure qqx works for non-existent messages, see parser() above.
+			if ( mw.config.get( 'wgUserLanguage' ) !== 'qqx' ) {
+				// Use ⧼key⧽ as text if key does not exist
+				// Err on the side of safety, ensure that the output
+				// is always html safe in the event the message key is
+				// missing, since in that case its highly likely the
+				// message key is user-controlled.
+				// '⧼' is used instead of '<' to side-step any
+				// double-escaping issues.
+				// (Keep synchronised with Message::toString() in PHP.)
+				return '⧼' + mw.html.escape( this.key ) + '⧽';
+			}
 		}
 
 		if ( !format ) {

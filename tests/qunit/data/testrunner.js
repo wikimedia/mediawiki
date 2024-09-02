@@ -101,7 +101,12 @@
 				mw.config.set( localEnv.config );
 			}
 
-			mw.messages.values = deepClone( liveMessages );
+			// Start with a clean message store.
+			// Optimization: Use fast empty object instead of deep clone to preserve
+			// server response (on mediawiki-wmf-quibble with 2000 tests, reduces
+			// newMwEnvironment_beforeEach from 3.7s to 0.7s). ResourceLoader runs
+			// tests with lang=qqx so tests shouldn't rely on these anyway.
+			mw.messages.values = {};
 			if ( localEnv.messages ) {
 				mw.messages.set( localEnv.messages );
 			}
