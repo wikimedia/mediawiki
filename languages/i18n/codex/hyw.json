@@ -7,5 +7,6 @@
 	"cdx-dialog-close-button-label": "Գոցել",
 	"cdx-message-dismiss-button-label": "Գոցել",
 	"cdx-search-input-search-button-label": "Որոնել",
-	"cdx-typeahead-search-search-results-label": "Որոնման արդիւնքներ"
+	"cdx-typeahead-search-search-results-label": "Որոնման արդիւնքներ",
+	"cdx-table-pager-button-next-page": "Յաջորդ էջը"
 }
