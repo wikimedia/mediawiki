@@ -6,9 +6,7 @@
  * @license MIT
  */
 ( function () {
-	var identity = function ( data ) {
-		return data;
-	};
+	const identity = ( data ) => data;
 
 	/**
 	 * Enable inline confirmation for given clickable element (like `<a />` or `<button />`).
@@ -66,7 +64,7 @@
 	};
 
 	$.fn.confirmable.handler = function ( event, options ) {
-		var $element = $( event.target );
+		const $element = $( event.target );
 
 		if ( $element.data( 'jquery-confirmable-button' ) ) {
 			// We're running on a clone of this element that represents the 'Yes' or 'No' button.
@@ -78,8 +76,8 @@
 		// is impossible because they might have already run (we have no control over the order).
 		event.preventDefault();
 
-		var rtl = $element.css( 'direction' ) === 'rtl';
-		var positionOffscreen, positionRestore, sideMargin, elementSideMargin;
+		const rtl = $element.css( 'direction' ) === 'rtl';
+		let positionOffscreen, positionRestore, sideMargin, elementSideMargin;
 		if ( rtl ) {
 			positionOffscreen = { position: 'absolute', right: '-9999px' };
 			positionRestore = { position: '', right: '' };
@@ -93,7 +91,7 @@
 		}
 
 		$element.addClass( 'hidden' );
-		var $wrapper, $interface, interfaceWidth, elementWidth, elementPadding;
+		let $wrapper, $interface, interfaceWidth, elementWidth, elementPadding;
 		// eslint-disable-next-line no-jquery/no-class-state
 		if ( $element.hasClass( 'jquery-confirmable-element' ) ) {
 			$wrapper = $element.closest( '.jquery-confirmable-wrapper' );
@@ -103,10 +101,10 @@
 			elementWidth = $element.data( 'jquery-confirmable-width' );
 			elementPadding = $element.data( 'jquery-confirmable-padding' );
 			// Restore visibility to interface text if it is opened again after being cancelled.
-			var $existingText = $interface.find( '.jquery-confirmable-text' );
+			const $existingText = $interface.find( '.jquery-confirmable-text' );
 			$existingText.removeClass( 'hidden' );
 		} else {
-			var $elementClone = $element.clone( true );
+			const $elementClone = $element.clone( true );
 			$element.addClass( 'jquery-confirmable-element' );
 
 			elementWidth = $element.width();
@@ -119,14 +117,14 @@
 			$element.wrap( $wrapper );
 
 			// Build the mini-dialog
-			var $text = $( '<span>' )
+			const $text = $( '<span>' )
 				.addClass( 'jquery-confirmable-text' )
 				.text( options.i18n.confirm );
 
 			// Clone original element along with event handlers to easily replicate its behavior.
 			// We could fiddle with .trigger() etc., but that is troublesome especially since
 			// Safari doesn't implement .click() on <a> links and jQuery follows suit.
-			var $buttonYes = $elementClone.clone( true )
+			let $buttonYes = $elementClone.clone( true )
 				.addClass( 'jquery-confirmable-button jquery-confirmable-button-yes' )
 				.removeClass( 'hidden' )
 				.data( 'jquery-confirmable-button', true )
@@ -140,7 +138,7 @@
 			$buttonYes = options.buttonCallback( $buttonYes, 'yes' );
 
 			// Clone it without any events and prevent default action to represent the 'No' button.
-			var $buttonNo = $elementClone.clone( false )
+			let $buttonNo = $elementClone.clone( false )
 				.addClass( 'jquery-confirmable-button jquery-confirmable-button-no' )
 				.removeClass( 'hidden' )
 				.data( 'jquery-confirmable-button', true )
