@@ -18,7 +18,7 @@
 	 *
 	 * @type {module:jquery.spinner~SpinnerOpts}
 	 */
-	var defaults = {
+	const defaults = {
 		id: undefined,
 		size: 'small',
 		type: 'inline'
@@ -51,12 +51,12 @@
 		 *
 		 * @example
 		 * // Create a large spinner reserving all available horizontal space.
-		 * var $spinner = $.createSpinner( { size: 'large', type: 'block' } );
+		 * const $spinner = $.createSpinner( { size: 'large', type: 'block' } );
 		 * // Insert above page content.
 		 * $( '#mw-content-text' ).prepend( $spinner );
 		 *
 		 * // Place a small inline spinner next to the "Save" button
-		 * var $spinner = $.createSpinner( { size: 'small', type: 'inline' } );
+		 * const $spinner = $.createSpinner( { size: 'small', type: 'inline' } );
 		 * // Alternatively, just `$.createSpinner();` as these are the default options.
 		 * $( '#wpSave' ).after( $spinner );
 		 *
@@ -71,9 +71,7 @@
 		 *   of the {@link module:mediawiki.jqueryMsg~SpinnerOpts#id} option.
 		 * @return {jQuery}
 		 */
-		createSpinner: function ( opts ) {
-			var i, $spinner, $container;
-
+		createSpinner: ( opts ) => {
 			if ( typeof opts === 'string' ) {
 				opts = {
 					id: opts
@@ -82,7 +80,7 @@
 
 			opts = Object.assign( {}, defaults, opts );
 
-			$spinner = $( '<div>' ).addClass( 'mw-spinner' );
+			const $spinner = $( '<div>' ).addClass( 'mw-spinner' );
 			if ( opts.id !== undefined ) {
 				$spinner.attr( 'id', 'mw-spinner-' + opts.id );
 			}
@@ -91,8 +89,8 @@
 				.addClass( opts.size === 'large' ? 'mw-spinner-large' : 'mw-spinner-small' )
 				.addClass( opts.type === 'block' ? 'mw-spinner-block' : 'mw-spinner-inline' );
 
-			$container = $( '<div>' ).addClass( 'mw-spinner-container' ).appendTo( $spinner );
-			for ( i = 0; i < 12; i++ ) {
+			const $container = $( '<div>' ).addClass( 'mw-spinner-container' ).appendTo( $spinner );
+			for ( let i = 0; i < 12; i++ ) {
 				$container.append( $( '<div>' ) );
 			}
 
@@ -107,9 +105,7 @@
 		 * @param {string} id Id of the spinner, as passed to {@link module:jquery.spinner.createSpinner createSpinner}
 		 * @return {jQuery} The (now detached) spinner element
 		 */
-		removeSpinner: function ( id ) {
-			return $( '#mw-spinner-' + id ).remove();
-		}
+		removeSpinner: ( id ) => $( '#mw-spinner-' + id ).remove()
 	} );
 
 	/**
