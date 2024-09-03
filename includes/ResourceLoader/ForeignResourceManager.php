@@ -108,13 +108,17 @@ class ForeignResourceManager {
 		};
 
 		// Support XDG_CACHE_HOME to speed up CI by avoiding repeated downloads.
-		$conf = MediaWikiServices::getInstance()->getMainConfig();
-		if ( ( $cacheHome = getenv( 'XDG_CACHE_HOME' ) ) !== false ) {
+		$cacheHome = getenv( 'XDG_CACHE_HOME' );
+		if ( $cacheHome !== false ) {
 			$this->cacheDir = realpath( $cacheHome ) . '/mw-foreign';
-		} elseif ( ( $cacheConf = $conf->get( MainConfigNames::CacheDirectory ) ) !== false ) {
-			$this->cacheDir = "$cacheConf/ForeignResourceManager";
 		} else {
-			$this->cacheDir = "{$this->libDir}/.foreign/cache";
+			$conf = MediaWikiServices::getInstance()->getMainConfig();
+			$cacheConf = $conf->get( MainConfigNames::CacheDirectory );
+			if ( $cacheConf !== false ) {
+				$this->cacheDir = "$cacheConf/ForeignResourceManager";
+			} else {
+				$this->cacheDir = "{$this->libDir}/.foreign/cache";
+			}
 		}
 	}
 
