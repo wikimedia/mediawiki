@@ -21,6 +21,7 @@
 /**
  * Fake maintenance wrapper, mostly used for the web installer/updater
  * @ingroup Maintenance
+ * @codeCoverageIgnore
  */
 class FakeMaintenance extends Maintenance {
 	protected $mSelf = "FakeMaintenanceScript";
