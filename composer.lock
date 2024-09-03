@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1dc682b751bac81914040290e5712a68",
+    "content-hash": "143ee7cf0a59aada173ea6a7b2b29314",
     "packages": [
         {
             "name": "addshore/psr-6-mediawiki-bagostuff-adapter",
@@ -676,16 +676,16 @@
         },
         {
             "name": "gr4vy/gr4vy-php",
-            "version": "v0.21.1",
+            "version": "v0.21.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gr4vy/gr4vy-php.git",
-                "reference": "8201ca3e5ba1d41b7159c1f1bd7a7cb82853a2ee"
+                "reference": "95ec15ab34ef12d341daa0c659becd09850dc32e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gr4vy/gr4vy-php/zipball/8201ca3e5ba1d41b7159c1f1bd7a7cb82853a2ee",
-                "reference": "8201ca3e5ba1d41b7159c1f1bd7a7cb82853a2ee",
+                "url": "https://api.github.com/repos/gr4vy/gr4vy-php/zipball/95ec15ab34ef12d341daa0c659becd09850dc32e",
+                "reference": "95ec15ab34ef12d341daa0c659becd09850dc32e",
                 "shasum": ""
             },
             "require": {
@@ -728,9 +728,9 @@
                 "sdk"
             ],
             "support": {
-                "source": "https://github.com/gr4vy/gr4vy-php/tree/v0.21.1"
+                "source": "https://github.com/gr4vy/gr4vy-php/tree/v0.21.2"
             },
-            "time": "2024-06-14T16:22:33+00:00"
+            "time": "2024-08-01T20:52:46+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -5037,16 +5037,16 @@
         },
         {
             "name": "wikimedia/smash-pig",
-            "version": "v0.8.11.5",
+            "version": "v0.8.11.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/wikimedia-fundraising-SmashPig.git",
-                "reference": "8be5537f773e1a9b11c90e2c108ad8b13bda7eb2"
+                "reference": "bd724a3ab01dd5ecf98337b3bfd5d775171f6ebe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/wikimedia-fundraising-SmashPig/zipball/8be5537f773e1a9b11c90e2c108ad8b13bda7eb2",
-                "reference": "8be5537f773e1a9b11c90e2c108ad8b13bda7eb2",
+                "url": "https://api.github.com/repos/wikimedia/wikimedia-fundraising-SmashPig/zipball/bd724a3ab01dd5ecf98337b3bfd5d775171f6ebe",
+                "reference": "bd724a3ab01dd5ecf98337b3bfd5d775171f6ebe",
                 "shasum": ""
             },
             "require": {
@@ -5056,7 +5056,7 @@
                 "ext-curl": "*",
                 "ext-json": "*",
                 "ext-pdo": "*",
-                "gr4vy/gr4vy-php": "0.21.1",
+                "gr4vy/gr4vy-php": "0.21.2",
                 "php": ">=7.4",
                 "phpmailer/phpmailer": "^6",
                 "predis/predis": "^1.1",
@@ -5122,9 +5122,9 @@
                 "payments"
             ],
             "support": {
-                "source": "https://github.com/wikimedia/wikimedia-fundraising-SmashPig/tree/v0.8.11.5"
+                "source": "https://github.com/wikimedia/wikimedia-fundraising-SmashPig/tree/v0.8.11.7"
             },
-            "time": "2024-08-27T20:05:47+00:00"
+            "time": "2024-08-28T17:52:41+00:00"
         },
         {
             "name": "wikimedia/timestamp",
