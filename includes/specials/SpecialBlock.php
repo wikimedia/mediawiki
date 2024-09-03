@@ -408,6 +408,8 @@ class SpecialBlock extends FormSpecialPage {
 			'default' => $defaultExpiry->text(),
 			'section' => 'expiry',
 		];
+		$this->codexFormData[ 'blockExpiryOptions' ] = $suggestedDurations;
+		$this->codexFormData[ 'blockDefaultExpiry' ] = $defaultExpiry->text();
 
 		$a['Reason'] = [
 			'type' => 'selectandother',

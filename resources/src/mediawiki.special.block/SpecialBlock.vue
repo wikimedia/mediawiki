@@ -7,7 +7,7 @@
 			v-model="blockPartialOptionsSelected"
 			:partial-block-options="blockPartialOptions"
 		></block-type-field>
-		<expiration-field></expiration-field>
+		<expiry-field v-model="expiry"></expiry-field>
 		<reason-field></reason-field>
 		<block-details-field
 			v-model="blockDetailsSelected"
@@ -37,7 +37,7 @@ const UserLookup = require( './components/UserLookup.vue' );
 const TargetActiveBlocks = require( './components/TargetActiveBlocks.vue' );
 const TargetBlockLog = require( './components/TargetBlockLog.vue' );
 const BlockTypeField = require( './components/BlockTypeField.vue' );
-const ExpirationField = require( './components/ExpirationField.vue' );
+const ExpiryField = require( './components/ExpiryField.vue' );
 const ReasonField = require( './components/ReasonField.vue' );
 const BlockDetailsField = require( './components/BlockDetailsOptions.vue' );
 
@@ -49,13 +49,14 @@ module.exports = defineComponent( {
 		TargetActiveBlocks,
 		TargetBlockLog,
 		BlockTypeField,
-		ExpirationField,
+		ExpiryField,
 		ReasonField,
 		BlockDetailsField,
 		CdxButton
 	},
 	setup() {
 		const targetUser = ref( '' );
+		const expiry = ref( {} );
 
 		const blockPartialOptions = mw.config.get( 'partialBlockActionOptions' ) ?
 			Object.keys( mw.config.get( 'partialBlockActionOptions' ) ).map(
@@ -130,12 +131,11 @@ module.exports = defineComponent( {
 		 * @return {jQuery.Promise}
 		 */
 		function block() {
-
 			const params = {
 				action: 'block',
 				format: 'json',
 				user: targetUser.value,
-				expiry: '2025-02-25T07:27:50Z',
+				expiry: expiry.value.value,
 				reason: 'API Test'
 			};
 
@@ -191,6 +191,7 @@ module.exports = defineComponent( {
 		}
 		return {
 			targetUser,
+			expiry,
 			handleSubmit,
 			blockDetailsOptions,
 			blockDetailsSelected,
