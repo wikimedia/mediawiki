@@ -2549,10 +2549,14 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			$metadata->addExternalLink( $url );
 		}
 		foreach ( $this->mProperties as $prop => $value ) {
-			if ( is_string( $value ) ) {
-				$metadata->setUnsortedPageProperty( $prop, $value );
-			} else {
+			if ( is_numeric( $value ) ) {
 				$metadata->setNumericPageProperty( $prop, $value );
+			} else {
+				if ( !is_string( $value ) ) {
+					// (T373920) Scalar but neither numeric nor string, so probably boolean?
+					wfLogWarning( __METHOD__ . ": bad type for '$prop', set '$value' (T373920)" );
+				}
+				$metadata->setUnsortedPageProperty( $prop, $value );
 			}
 		}
 		foreach ( $this->mWarningMsgs as $msg => $args ) {
