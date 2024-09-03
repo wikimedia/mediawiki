@@ -595,6 +595,7 @@ class SpecialPageFactory {
 				'UserFactory',
 				'UserIdentityLookup',
 				'DatabaseBlockStore',
+				'TempUserConfig',
 			]
 		],
 		'Preferences' => [
@@ -622,6 +623,7 @@ class SpecialPageFactory {
 				'UserFactory',
 				'UserIdentityLookup',
 				'DatabaseBlockStore',
+				'TempUserConfig',
 			]
 		],
 		'Listgrouprights' => [
