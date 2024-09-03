@@ -36,9 +36,10 @@ $namespaceAliases = [
 	'MediaWiki_razgovor' => NS_MEDIAWIKI_TALK,
 ];
 
-# Some dummy translations to prevent language fallback for now
-# @TODO: Check whether localising them is appropriate.
-$namespaceGenderAliases = [];
+$namespaceGenderAliases = [
+	NS_USER => [ 'male' => 'Korisnik', 'female' => 'Korisnica' ],
+	NS_USER_TALK => [ 'male' => 'Razgovor_s_korisnikom', 'female' => 'Razgovor_s_korisnicom' ],
+];
 
 $datePreferences = [
 	'default',
