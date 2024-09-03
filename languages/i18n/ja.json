@@ -151,7 +151,8 @@
 			"Yushu-kasai",
 			"Cookai1205",
 			"Amire80",
-			"TAKAHASHI Shuuji"
+			"TAKAHASHI Shuuji",
+			"FlatLanguage"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -3405,7 +3406,7 @@
 	"comma-separator": "、",
 	"colon-separator": ":&#32;",
 	"pipe-separator": "&#32;|&#32;",
-	"word-separator": "",
+	"word-separator": "&#32;",
 	"ellipsis": "…",
 	"percent": "$1%",
 	"brackets": "[$1]",

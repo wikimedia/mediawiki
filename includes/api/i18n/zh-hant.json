@@ -1223,7 +1223,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-languagevariants": "在啟用了 [[mw:Special:MyLanguage/LanguageConverter|LanguageConverter]] 且支援各語言變化時，回傳語言代碼清單。",
 	"apihelp-query+siteinfo-paramvalue-prop-skins": "回傳所有已啟用的外觀清單（可透過 <var>$1inlanguagecode</var> 來選用本地化，不然會是內容語言）。",
 	"apihelp-query+siteinfo-paramvalue-prop-extensiontags": "回傳解析擴充標籤清單。",
-	"apihelp-query+siteinfo-paramvalue-prop-functionhooks": "回傳解析器函數掛鉤清單。",
+	"apihelp-query+siteinfo-paramvalue-prop-functionhooks": "回傳解析器函數鉤清單。",
 	"apihelp-query+siteinfo-paramvalue-prop-showhooks": "回傳所有訂閱掛勾清單（<var>[[mw:Special:MyLanguage/Manual:$wgHooks|$wgHooks]]</var> 的內容）。",
 	"apihelp-query+siteinfo-paramvalue-prop-variables": "回傳變數 ID 清單。",
 	"apihelp-query+siteinfo-paramvalue-prop-protocols": "回傳在外部連結裡所允許的協議清單。",
