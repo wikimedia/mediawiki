@@ -128,6 +128,44 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $hookContainer->isRegistered( 'BooEvent' ), 'BooEvent' );
 	}
 
+	public function testGetDomainEventListeners() {
+		$manifest = [
+			'Listeners' => [
+				'AnEvent' => self::class . '::onAnEvent',
+				'BooEvent' => 'main',
+			],
+			'HookHandlers' => [
+				'main' => [ 'class' => self::class ]
+			],
+		];
+
+		$file = $this->makeManifestFile( $manifest );
+
+		$registry = new ExtensionRegistry();
+		$this->setExtensionRegistry( $registry );
+
+		$registry->queue( $file );
+		$registry->loadFromQueue();
+
+		$this->assertArrayEquals(
+			[ 'AnEvent', 'BooEvent', ],
+			$registry->getDomainEventTypes()
+		);
+
+		$this->assertArrayEquals(
+			[ self::class . '::onAnEvent' ],
+			$registry->getDomainEventListeners( 'AnEvent' )
+		);
+
+		$this->assertArrayEquals(
+			[ [
+				'handler' => [ 'class' => self::class, 'name' => 'Test-main' ],
+				'extensionPath' => $file
+			] ],
+			$registry->getDomainEventListeners( 'BooEvent' )
+		);
+	}
+
 	public function testExportAutoload() {
 		global $wgAutoloadClasses;
 		$oldAutoloadClasses = $wgAutoloadClasses;

@@ -147,6 +147,7 @@ class ExtensionProcessor implements Processor {
 		'TranslationAliasesDirs',
 		'ForeignResourcesDir',
 		'Hooks',
+		'Listeners',
 		'MessagePosterModule',
 		'MessagesDirs',
 		'OOUIThemePaths',
@@ -259,6 +260,7 @@ class ExtensionProcessor implements Processor {
 	public function extractInfo( $path, array $info, $version ) {
 		$dir = dirname( $path );
 		$this->extractHooks( $info, $path );
+		$this->extractListeners( $info, $path );
 		$this->extractExtensionMessagesFiles( $dir, $info );
 		$this->extractRestModuleFiles( $dir, $info );
 		$this->extractMessagesDirs( $dir, $info );
@@ -469,14 +471,18 @@ class ExtensionProcessor implements Processor {
 	 * @param array $hookHandlersAttr handler definitions from 'HookHandler' attribute
 	 * @param string $name
 	 * @param string $path extension.json file path
-	 *
-	 * @throws UnexpectedValueException
+	 * @param array &$modernTarget reference to an array that will receive
+	 *              handlers using object references.
+	 * @param array &$legacyTarget reference to an array that will receive
+	 *              handlers using object specs.
 	 */
-	private function setArrayHookHandler(
+	private function setArrayCallback(
 		array $callback,
 		array $hookHandlersAttr,
 		string $name,
-		string $path
+		string $path,
+		array &$modernTarget,
+		array &$legacyTarget
 	) {
 		if ( isset( $callback['handler'] ) ) {
 			$handlerName = $callback['handler'];
@@ -488,17 +494,31 @@ class ExtensionProcessor implements Processor {
 			}
 			$callback['handler'] = $handlerDefinition;
 			$callback['extensionPath'] = $path;
-			$this->attributes['Hooks'][$name][] = $callback;
+			$modernTarget[$name][] = $callback;
 		} else {
 			foreach ( $callback as $callable ) {
 				if ( is_array( $callable ) ) {
 					if ( isset( $callable['handler'] ) ) { // Non-legacy style handler
-						$this->setArrayHookHandler( $callable, $hookHandlersAttr, $name, $path );
+						$this->setArrayCallback(
+							$callable,
+							$hookHandlersAttr,
+							$name,
+							$path,
+							$modernTarget,
+							$legacyTarget
+						);
 					} else { // Legacy style handler array
-						$this->globals['wgHooks'][$name][] = $callable;
+						$legacyTarget[$name][] = $callable;
 					}
 				} elseif ( is_string( $callable ) ) {
-					$this->setStringHookHandler( $callable, $hookHandlersAttr, $name, $path );
+					$this->setStringCallback(
+						$callable,
+						$hookHandlersAttr,
+						$name,
+						$path,
+						$modernTarget,
+						$legacyTarget
+					);
 				}
 			}
 		}
@@ -513,21 +533,27 @@ class ExtensionProcessor implements Processor {
 	 * @param array $hookHandlersAttr handler definitions from 'HookHandler' attribute
 	 * @param string $name
 	 * @param string $path
+	 * @param array &$modernTarget reference to an array that will receive
+	 *              handlers using object references.
+	 * @param array &$legacyTarget reference to an array that will receive
+	 *              handlers using object specs.
 	 */
-	private function setStringHookHandler(
+	private function setStringCallback(
 		string $callback,
 		array $hookHandlersAttr,
 		string $name,
-		string $path
+		string $path,
+		array &$modernTarget,
+		array &$legacyTarget
 	) {
 		if ( isset( $hookHandlersAttr[$callback] ) ) {
 			$handler = [
 				'handler' => $hookHandlersAttr[$callback],
 				'extensionPath' => $path
 			];
-			$this->attributes['Hooks'][$name][] = $handler;
+			$modernTarget[$name][] = $handler;
 		} else { // legacy style handler
-			$this->globals['wgHooks'][$name][] = $callback;
+			$legacyTarget[$name][] = $callback;
 		}
 	}
 
@@ -546,11 +572,28 @@ class ExtensionProcessor implements Processor {
 			foreach ( $info['HookHandlers'] ?? [] as $name => $def ) {
 				$hookHandlersAttr[$name] = [ 'name' => "$extName-$name" ] + $def;
 			}
+
+			$this->attributes['Hooks'] ??= [];
+			$this->globals['wgHooks'] ??= [];
 			foreach ( $info['Hooks'] as $name => $callback ) {
 				if ( is_string( $callback ) ) {
-					$this->setStringHookHandler( $callback, $hookHandlersAttr, $name, $path );
+					$this->setStringCallback(
+						$callback,
+						$hookHandlersAttr,
+						$name,
+						$path,
+						$this->attributes['Hooks'],
+						$this->globals['wgHooks']
+					);
 				} elseif ( is_array( $callback ) ) {
-					$this->setArrayHookHandler( $callback, $hookHandlersAttr, $name, $path );
+					$this->setArrayCallback(
+						$callback,
+						$hookHandlersAttr,
+						$name,
+						$path,
+						$this->attributes['Hooks'],
+						$this->globals['wgHooks']
+					);
 				}
 			}
 		}
@@ -564,6 +607,49 @@ class ExtensionProcessor implements Processor {
 				$this->attributes['DeprecatedHooks'] += $deprecatedHooks;
 			} else {
 				$this->attributes['DeprecatedHooks'] = $deprecatedHooks;
+			}
+		}
+	}
+
+	/**
+	 * Extract listeners.
+	 *
+	 * @param array $info attributes and associated values from extension.json
+	 * @param string $path path to extension.json
+	 */
+	protected function extractListeners( array $info, string $path ) {
+		$extName = $info['name'];
+		if ( isset( $info['Listeners'] ) ) {
+			$hookHandlersAttr = [];
+
+			// The term "HookHandlers" is kind of confusing here, but
+			// renaming it would be hard, and it's not clear what we'd
+			// want to rename it to...
+			foreach ( $info['HookHandlers'] ?? [] as $name => $def ) {
+				$hookHandlersAttr[$name] = [ 'name' => "$extName-$name" ] + $def;
+			}
+
+			$this->attributes['Listeners'] ??= [];
+			foreach ( $info['Listeners'] as $name => $callback ) {
+				if ( is_string( $callback ) ) {
+					$this->setStringCallback(
+						$callback,
+						$hookHandlersAttr,
+						$name,
+						$path,
+						$this->attributes['Listeners'],
+						$this->attributes['Listeners']
+					);
+				} elseif ( is_array( $callback ) ) {
+					$this->setArrayCallback(
+						$callback,
+						$hookHandlersAttr,
+						$name,
+						$path,
+						$this->attributes['Listeners'],
+						$this->attributes['Listeners']
+					);
+				}
 			}
 		}
 	}

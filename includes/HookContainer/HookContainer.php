@@ -257,13 +257,15 @@ class HookContainer implements SalvageableService {
 		}
 
 		$obj = $this->handlerObjects[$name];
-		$method = $this->getHookMethodName( $hook );
+		$method = $this->getHookMethodName( $hook, $options );
 
 		return [ $obj, $method ];
 	}
 
 	/**
 	 * Normalize/clean up format of argument passed as hook handler
+	 *
+	 * @internal for use in DomainEventDispatcher
 	 *
 	 * @param string $hook Hook name
 	 * @param string|array|callable $handler Executable handler function. See register() for supported structures.
@@ -273,10 +275,11 @@ class HookContainer implements SalvageableService {
 	 *  - callback: (callable) Executable handler function
 	 *  - functionName: (string) Handler name for passing to wfDeprecated() or Exceptions thrown
 	 *  - args: (array) Extra handler function arguments (omitted when not needed)
+	 *  - prefix: the prefix to use when constructing a handler method name. Default is "on".
 	 */
-	private function normalizeHandler( string $hook, $handler, array $options = [] ) {
+	public function normalizeHandler( string $hook, $handler, array $options = [] ) {
 		if ( is_object( $handler ) && !$handler instanceof Closure ) {
-			$handler = [ $handler, $this->getHookMethodName( $hook ) ];
+			$handler = [ $handler, $this->getHookMethodName( $hook, $options ) ];
 		}
 
 		// Backwards compatibility with old-style callable that uses a qualified method name.
@@ -294,7 +297,7 @@ class HookContainer implements SalvageableService {
 		// Backwards compatibility: support objects wrapped in an array but no method name.
 		if ( is_array( $handler ) && is_object( $handler[0] ?? false ) && !isset( $handler[1] ) ) {
 			if ( !$handler[0] instanceof Closure ) {
-				$handler[1] = $this->getHookMethodName( $hook );
+				$handler[1] = $this->getHookMethodName( $hook, $options );
 				$msg = self::callableToString( $handler );
 				wfDeprecatedMsg( "Deprecated handler style for hook '$hook': object wrapped in array ($msg)" );
 			}
@@ -695,9 +698,10 @@ class HookContainer implements SalvageableService {
 	 *
 	 * @return string
 	 */
-	private function getHookMethodName( string $hook ): string {
+	private function getHookMethodName( string $hook, array $options = [] ): string {
+		$prefix = $options['prefix'] ?? 'on';
 		$hook = strtr( $hook, ':\\-', '___' );
-		return "on$hook";
+		return "$prefix$hook";
 	}
 
 	/**
