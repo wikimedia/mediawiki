@@ -40,7 +40,6 @@ class UploadFromUrl extends UploadBase {
 	/** @var string */
 	protected $mUrl;
 
-	protected $mTempPath;
 	/** @var resource|null|false */
 	protected $mTmpHandle;
 
@@ -349,9 +348,6 @@ class UploadFromUrl extends UploadBase {
 		$copyUploadProxy = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::CopyUploadProxy );
 		$copyUploadTimeout = MediaWikiServices::getInstance()->getMainConfig()
 			->get( MainConfigNames::CopyUploadTimeout );
-		if ( $this->mTempPath === false ) {
-			return Status::newFatal( 'tmp-create-error' );
-		}
 
 		// Note the temporary file should already be created by makeTemporaryFile()
 		$this->mTmpHandle = fopen( $this->mTempPath, 'wb' );
