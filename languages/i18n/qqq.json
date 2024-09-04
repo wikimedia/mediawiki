@@ -1397,6 +1397,7 @@
 	"userrights-cannot-shorten-expiry": "Error message on [[Special:UserRights]] when the user tries to move the expiry date to be closer to the present and they do not have permission to do so. \"Bring forward\" is a phrasal verb meaning \"move to an earlier time\".\n\nParameters:\n* $1 - group name",
 	"userrights-no-tempuser": "Used as error message on [[Special:UserRights]] when the user is temporary user.",
 	"userrights-no-group": "Used as error message on [[Special:UserRights]] when the user is temporary user.",
+	"userrights-cross-wiki-assignment-for-reserved-name": "Used as an error message on [[Special:UserRights]] when a user tries to assign rights to a user on another wiki and the name is reserved by the temporary accounts system.",
 	"userrights-conflict": "Shown on [[Special:UserRights]] if the target's rights have been changed since the form was loaded.",
 	"group": "{{Identical|Group}}",
 	"group-user": "{{doc-group|user}}\n{{Identical|User}}",
