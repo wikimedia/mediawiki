@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
 /**
@@ -96,7 +95,7 @@ class CLIParser extends Maintenance {
 			$options
 		);
 		// TODO T371008 consider if using the Content framework makes sense instead of creating the pipeline
-		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
+		$pipeline = $this->getServiceContainer()->getDefaultOutputPipeline();
 		return $pipeline->run( $po, $options, [ 'wrapperDivClass' => '' ] )->getContentHolderText();
 	}
 
