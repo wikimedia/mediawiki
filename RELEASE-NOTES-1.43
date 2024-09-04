@@ -615,6 +615,8 @@ because of Phabricator reports.
   class and the ParamType::OBJECT constant are likewise deprecated.
 * The Less mixin .column-break-after-avoid() is deprecated. Use just the
   CSS rule `break-after: avoid-column;` instead now.
+* The Less mixins .horizontal-gradient and .vertical-gradient are deprecated.
+  Use CSS rule linear-gradient directly.
 * The following method are deprecated; instead call the appropriate
   constructor method in PageRestHelperFactory with the appropriate
   initialization arguments:
