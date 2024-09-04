@@ -24,6 +24,7 @@
 namespace MediaWiki\Installer;
 
 use FixInconsistentRedirects;
+use MediaWiki\Maintenance\FixAutoblockLogTitles;
 use MigrateExternallinks;
 use MigrateRevisionActorTemp;
 use MigrateRevisionCommentTemp;
@@ -439,6 +440,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'runMaintenance', \MigrateBlocks::class ],
 			[ 'dropTable', 'ipblocks' ],
 			[ 'dropField', 'pagelinks', 'pl_title', 'patch-pagelinks-drop-pl_title.sql' ],
+			[ 'addPostDatabaseUpdateMaintenance', FixAutoblockLogTitles::class ],
 		];
 	}
 
