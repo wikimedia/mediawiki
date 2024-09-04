@@ -1,0 +1,700 @@
+{
+  "_Icon.js": {
+    "file": "Icon.js",
+    "name": "Icon",
+    "imports": [
+      "src/composables/useComputedDirection.ts",
+      "src/composables/useComputedLanguage.ts",
+      "_constants.js",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "Icon-bidi.css"
+    ]
+  },
+  "__plugin-vue_export-helper.js": {
+    "file": "_plugin-vue_export-helper.js",
+    "name": "_plugin-vue_export-helper"
+  },
+  "_constants.js": {
+    "file": "constants.js",
+    "name": "constants"
+  },
+  "_floating-ui.dom.js": {
+    "file": "floating-ui.dom.js",
+    "name": "floating-ui.dom"
+  },
+  "_useButtonGroupKeyboardNav.js": {
+    "file": "useButtonGroupKeyboardNav.js",
+    "name": "useButtonGroupKeyboardNav",
+    "imports": [
+      "src/composables/useComputedDirection.ts"
+    ]
+  },
+  "_useI18nWithOverride.js": {
+    "file": "useI18nWithOverride.js",
+    "name": "useI18nWithOverride",
+    "imports": [
+      "src/composables/useI18n.ts"
+    ]
+  },
+  "_useIconOnlyButton.js": {
+    "file": "useIconOnlyButton.js",
+    "name": "useIconOnlyButton",
+    "imports": [
+      "_useSlotContents.js",
+      "src/composables/useWarnOnce.ts"
+    ]
+  },
+  "_useLabelChecker.js": {
+    "file": "useLabelChecker.js",
+    "name": "useLabelChecker",
+    "imports": [
+      "_useSlotContents.js",
+      "src/composables/useWarnOnce.ts"
+    ]
+  },
+  "_useOptionalModelWrapper.js": {
+    "file": "useOptionalModelWrapper.js",
+    "name": "useOptionalModelWrapper"
+  },
+  "_useSlotContents.js": {
+    "file": "useSlotContents.js",
+    "name": "useSlotContents"
+  },
+  "src/components/accordion/Accordion.vue": {
+    "file": "CdxAccordion.cjs",
+    "name": "CdxAccordion",
+    "src": "src/components/accordion/Accordion.vue",
+    "isEntry": true,
+    "imports": [
+      "_Icon.js",
+      "src/components/button/Button.vue",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxAccordion-bidi.css"
+    ]
+  },
+  "src/components/button-group/ButtonGroup.vue": {
+    "file": "CdxButtonGroup.cjs",
+    "name": "CdxButtonGroup",
+    "src": "src/components/button-group/ButtonGroup.vue",
+    "isEntry": true,
+    "imports": [
+      "_useButtonGroupKeyboardNav.js",
+      "src/components/button/Button.vue",
+      "_Icon.js",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxButtonGroup-bidi.css"
+    ]
+  },
+  "src/components/button/Button.vue": {
+    "file": "CdxButton.cjs",
+    "name": "CdxButton",
+    "src": "src/components/button/Button.vue",
+    "isEntry": true,
+    "imports": [
+      "_constants.js",
+      "_useIconOnlyButton.js",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxButton-bidi.css"
+    ]
+  },
+  "src/components/card/Card.vue": {
+    "file": "CdxCard.cjs",
+    "name": "CdxCard",
+    "src": "src/components/card/Card.vue",
+    "isEntry": true,
+    "imports": [
+      "_Icon.js",
+      "src/components/thumbnail/Thumbnail.vue",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxCard-bidi.css"
+    ]
+  },
+  "src/components/checkbox/Checkbox.vue": {
+    "file": "CdxCheckbox.cjs",
+    "name": "CdxCheckbox",
+    "src": "src/components/checkbox/Checkbox.vue",
+    "isEntry": true,
+    "imports": [
+      "src/components/label/Label.vue",
+      "_useLabelChecker.js",
+      "src/composables/useModelWrapper.ts",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useFieldData.ts",
+      "_constants.js",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxCheckbox-bidi.css"
+    ]
+  },
+  "src/components/chip-input/ChipInput.vue": {
+    "file": "CdxChipInput.cjs",
+    "name": "CdxChipInput",
+    "src": "src/components/chip-input/ChipInput.vue",
+    "isEntry": true,
+    "imports": [
+      "src/components/button/Button.vue",
+      "_Icon.js",
+      "src/composables/useI18n.ts",
+      "__plugin-vue_export-helper.js",
+      "_constants.js",
+      "src/composables/useSplitAttributes.ts",
+      "src/composables/useFieldData.ts",
+      "src/composables/useComputedDirection.ts",
+      "_useOptionalModelWrapper.js"
+    ],
+    "css": [
+      "CdxChipInput-bidi.css"
+    ]
+  },
+  "src/components/combobox/Combobox.vue": {
+    "file": "CdxCombobox.cjs",
+    "name": "CdxCombobox",
+    "src": "src/components/combobox/Combobox.vue",
+    "isEntry": true,
+    "imports": [
+      "_Icon.js",
+      "src/components/button/Button.vue",
+      "src/components/menu/Menu.vue",
+      "src/components/text-input/TextInput.vue",
+      "src/composables/useModelWrapper.ts",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useSplitAttributes.ts",
+      "src/composables/useFieldData.ts",
+      "src/composables/useFloatingMenu.ts",
+      "_constants.js",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxCombobox-bidi.css"
+    ]
+  },
+  "src/components/dialog/Dialog.vue": {
+    "file": "CdxDialog.cjs",
+    "name": "CdxDialog",
+    "src": "src/components/dialog/Dialog.vue",
+    "isEntry": true,
+    "imports": [
+      "src/components/button/Button.vue",
+      "_Icon.js",
+      "src/composables/useGeneratedId.ts",
+      "_useI18nWithOverride.js",
+      "src/composables/useResizeObserver.ts",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxDialog-bidi.css"
+    ]
+  },
+  "src/components/field/Field.vue": {
+    "file": "CdxField.cjs",
+    "name": "CdxField",
+    "src": "src/components/field/Field.vue",
+    "isEntry": true,
+    "imports": [
+      "src/components/label/Label.vue",
+      "src/components/message/Message.vue",
+      "_constants.js",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useComputedDisabled.ts",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxField-bidi.css"
+    ]
+  },
+  "src/components/icon/Icon.vue": {
+    "file": "CdxIcon.cjs",
+    "name": "CdxIcon",
+    "src": "src/components/icon/Icon.vue",
+    "isEntry": true,
+    "imports": [
+      "_Icon.js",
+      "__plugin-vue_export-helper.js"
+    ]
+  },
+  "src/components/info-chip/InfoChip.vue": {
+    "file": "CdxInfoChip.cjs",
+    "name": "CdxInfoChip",
+    "src": "src/components/info-chip/InfoChip.vue",
+    "isEntry": true,
+    "imports": [
+      "_constants.js",
+      "_Icon.js",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxInfoChip-bidi.css"
+    ]
+  },
+  "src/components/label/Label.vue": {
+    "file": "CdxLabel.cjs",
+    "name": "CdxLabel",
+    "src": "src/components/label/Label.vue",
+    "isEntry": true,
+    "imports": [
+      "_Icon.js",
+      "src/composables/useFieldData.ts",
+      "src/composables/useSplitAttributes.ts",
+      "_useI18nWithOverride.js",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxLabel-bidi.css"
+    ]
+  },
+  "src/components/lookup/Lookup.vue": {
+    "file": "CdxLookup.cjs",
+    "name": "CdxLookup",
+    "src": "src/components/lookup/Lookup.vue",
+    "isEntry": true,
+    "imports": [
+      "src/components/menu/Menu.vue",
+      "src/components/text-input/TextInput.vue",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useModelWrapper.ts",
+      "_useOptionalModelWrapper.js",
+      "src/composables/useSplitAttributes.ts",
+      "src/composables/useFieldData.ts",
+      "src/composables/useFloatingMenu.ts",
+      "_constants.js",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxLookup-bidi.css"
+    ]
+  },
+  "src/components/menu-button/MenuButton.vue": {
+    "file": "CdxMenuButton.cjs",
+    "name": "CdxMenuButton",
+    "src": "src/components/menu-button/MenuButton.vue",
+    "isEntry": true,
+    "imports": [
+      "src/components/toggle-button/ToggleButton.vue",
+      "src/components/menu/Menu.vue",
+      "src/composables/useFieldData.ts",
+      "src/composables/useFloatingMenu.ts",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useModelWrapper.ts",
+      "src/composables/useSplitAttributes.ts",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxMenuButton-bidi.css"
+    ]
+  },
+  "src/components/menu-item/MenuItem.vue": {
+    "file": "CdxMenuItem.cjs",
+    "name": "CdxMenuItem",
+    "src": "src/components/menu-item/MenuItem.vue",
+    "isEntry": true,
+    "imports": [
+      "_Icon.js",
+      "src/components/thumbnail/Thumbnail.vue",
+      "src/components/search-result-title/SearchResultTitle.vue",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxMenuItem-bidi.css"
+    ]
+  },
+  "src/components/menu/Menu.vue": {
+    "file": "CdxMenu.cjs",
+    "name": "CdxMenu",
+    "src": "src/components/menu/Menu.vue",
+    "isEntry": true,
+    "imports": [
+      "src/components/menu-item/MenuItem.vue",
+      "src/components/progress-bar/ProgressBar.vue",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useIntersectionObserver.ts",
+      "src/composables/useSplitAttributes.ts",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxMenu-bidi.css"
+    ]
+  },
+  "src/components/message/Message.vue": {
+    "file": "CdxMessage.cjs",
+    "name": "CdxMessage",
+    "src": "src/components/message/Message.vue",
+    "isEntry": true,
+    "imports": [
+      "_Icon.js",
+      "src/components/button/Button.vue",
+      "_constants.js",
+      "_useI18nWithOverride.js",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxMessage-bidi.css"
+    ]
+  },
+  "src/components/progress-bar/ProgressBar.vue": {
+    "file": "CdxProgressBar.cjs",
+    "name": "CdxProgressBar",
+    "src": "src/components/progress-bar/ProgressBar.vue",
+    "isEntry": true,
+    "imports": [
+      "src/composables/useWarnOnce.ts",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxProgressBar-bidi.css"
+    ]
+  },
+  "src/components/radio/Radio.vue": {
+    "file": "CdxRadio.cjs",
+    "name": "CdxRadio",
+    "src": "src/components/radio/Radio.vue",
+    "isEntry": true,
+    "imports": [
+      "src/components/label/Label.vue",
+      "_useLabelChecker.js",
+      "src/composables/useModelWrapper.ts",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useFieldData.ts",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxRadio-bidi.css"
+    ]
+  },
+  "src/components/search-input/SearchInput.vue": {
+    "file": "CdxSearchInput.cjs",
+    "name": "CdxSearchInput",
+    "src": "src/components/search-input/SearchInput.vue",
+    "isEntry": true,
+    "imports": [
+      "_Icon.js",
+      "src/components/button/Button.vue",
+      "src/components/text-input/TextInput.vue",
+      "src/composables/useModelWrapper.ts",
+      "src/composables/useSplitAttributes.ts",
+      "src/composables/useFieldData.ts",
+      "_useI18nWithOverride.js",
+      "_constants.js",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxSearchInput-bidi.css"
+    ]
+  },
+  "src/components/search-result-title/SearchResultTitle.vue": {
+    "file": "CdxSearchResultTitle.cjs",
+    "name": "CdxSearchResultTitle",
+    "src": "src/components/search-result-title/SearchResultTitle.vue",
+    "isEntry": true,
+    "imports": [
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxSearchResultTitle-bidi.css"
+    ]
+  },
+  "src/components/select/Select.vue": {
+    "file": "CdxSelect.cjs",
+    "name": "CdxSelect",
+    "src": "src/components/select/Select.vue",
+    "isEntry": true,
+    "imports": [
+      "_Icon.js",
+      "src/components/menu/Menu.vue",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useModelWrapper.ts",
+      "src/composables/useFieldData.ts",
+      "src/composables/useSplitAttributes.ts",
+      "src/composables/useFloatingMenu.ts",
+      "_constants.js",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxSelect-bidi.css"
+    ]
+  },
+  "src/components/tab/Tab.vue": {
+    "file": "CdxTab.cjs",
+    "name": "CdxTab",
+    "src": "src/components/tab/Tab.vue",
+    "isEntry": true,
+    "imports": [
+      "_constants.js",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxTab-bidi.css"
+    ]
+  },
+  "src/components/table/Table.vue": {
+    "file": "CdxTable.cjs",
+    "name": "CdxTable",
+    "src": "src/components/table/Table.vue",
+    "isEntry": true,
+    "imports": [
+      "src/components/checkbox/Checkbox.vue",
+      "_Icon.js",
+      "src/components/button/Button.vue",
+      "src/components/select/Select.vue",
+      "src/composables/useModelWrapper.ts",
+      "src/composables/useI18n.ts",
+      "__plugin-vue_export-helper.js",
+      "src/components/progress-bar/ProgressBar.vue",
+      "_constants.js"
+    ],
+    "css": [
+      "CdxTable-bidi.css"
+    ]
+  },
+  "src/components/tabs/Tabs.vue": {
+    "file": "CdxTabs.cjs",
+    "name": "CdxTabs",
+    "src": "src/components/tabs/Tabs.vue",
+    "isEntry": true,
+    "imports": [
+      "_Icon.js",
+      "src/components/button/Button.vue",
+      "src/components/tab/Tab.vue",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useComputedDirection.ts",
+      "_useOptionalModelWrapper.js",
+      "src/composables/useIntersectionObserver.ts",
+      "_useSlotContents.js",
+      "_constants.js",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxTabs-bidi.css"
+    ]
+  },
+  "src/components/text-area/TextArea.vue": {
+    "file": "CdxTextArea.cjs",
+    "name": "CdxTextArea",
+    "src": "src/components/text-area/TextArea.vue",
+    "isEntry": true,
+    "imports": [
+      "_Icon.js",
+      "src/composables/useSplitAttributes.ts",
+      "src/composables/useModelWrapper.ts",
+      "src/composables/useFieldData.ts",
+      "_constants.js",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxTextArea-bidi.css"
+    ]
+  },
+  "src/components/text-input/TextInput.vue": {
+    "file": "CdxTextInput.cjs",
+    "name": "CdxTextInput",
+    "src": "src/components/text-input/TextInput.vue",
+    "isEntry": true,
+    "imports": [
+      "_Icon.js",
+      "_constants.js",
+      "src/composables/useModelWrapper.ts",
+      "src/composables/useSplitAttributes.ts",
+      "src/composables/useFieldData.ts",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxTextInput-bidi.css"
+    ]
+  },
+  "src/components/thumbnail/Thumbnail.vue": {
+    "file": "CdxThumbnail.cjs",
+    "name": "CdxThumbnail",
+    "src": "src/components/thumbnail/Thumbnail.vue",
+    "isEntry": true,
+    "imports": [
+      "_Icon.js",
+      "_constants.js",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxThumbnail-bidi.css"
+    ]
+  },
+  "src/components/toggle-button-group/ToggleButtonGroup.vue": {
+    "file": "CdxToggleButtonGroup.cjs",
+    "name": "CdxToggleButtonGroup",
+    "src": "src/components/toggle-button-group/ToggleButtonGroup.vue",
+    "isEntry": true,
+    "imports": [
+      "_useButtonGroupKeyboardNav.js",
+      "_Icon.js",
+      "src/components/toggle-button/ToggleButton.vue",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxToggleButtonGroup-bidi.css"
+    ]
+  },
+  "src/components/toggle-button/ToggleButton.vue": {
+    "file": "CdxToggleButton.cjs",
+    "name": "CdxToggleButton",
+    "src": "src/components/toggle-button/ToggleButton.vue",
+    "isEntry": true,
+    "imports": [
+      "_useIconOnlyButton.js",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxToggleButton-bidi.css"
+    ]
+  },
+  "src/components/toggle-switch/ToggleSwitch.vue": {
+    "file": "CdxToggleSwitch.cjs",
+    "name": "CdxToggleSwitch",
+    "src": "src/components/toggle-switch/ToggleSwitch.vue",
+    "isEntry": true,
+    "imports": [
+      "src/components/label/Label.vue",
+      "_useLabelChecker.js",
+      "src/composables/useModelWrapper.ts",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useSplitAttributes.ts",
+      "src/composables/useFieldData.ts",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxToggleSwitch-bidi.css"
+    ]
+  },
+  "src/components/tooltip/Tooltip.ts": {
+    "file": "CdxTooltip.cjs",
+    "name": "CdxTooltip",
+    "src": "src/components/tooltip/Tooltip.ts",
+    "isEntry": true,
+    "imports": [
+      "src/composables/useGeneratedId.ts",
+      "_floating-ui.dom.js"
+    ],
+    "css": [
+      "CdxTooltip-bidi.css"
+    ]
+  },
+  "src/components/typeahead-search/TypeaheadSearch.vue": {
+    "file": "CdxTypeaheadSearch.cjs",
+    "name": "CdxTypeaheadSearch",
+    "src": "src/components/typeahead-search/TypeaheadSearch.vue",
+    "isEntry": true,
+    "imports": [
+      "_Icon.js",
+      "src/components/menu/Menu.vue",
+      "src/components/search-input/SearchInput.vue",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useSplitAttributes.ts",
+      "src/composables/useI18n.ts",
+      "_constants.js",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxTypeaheadSearch-bidi.css"
+    ]
+  },
+  "src/composables/useComputedDirection.ts": {
+    "file": "useComputedDirection.cjs",
+    "name": "useComputedDirection",
+    "src": "src/composables/useComputedDirection.ts",
+    "isEntry": true
+  },
+  "src/composables/useComputedDisabled.ts": {
+    "file": "useComputedDisabled.cjs",
+    "name": "useComputedDisabled",
+    "src": "src/composables/useComputedDisabled.ts",
+    "isEntry": true,
+    "imports": [
+      "_constants.js"
+    ]
+  },
+  "src/composables/useComputedLanguage.ts": {
+    "file": "useComputedLanguage.cjs",
+    "name": "useComputedLanguage",
+    "src": "src/composables/useComputedLanguage.ts",
+    "isEntry": true
+  },
+  "src/composables/useFieldData.ts": {
+    "file": "useFieldData.cjs",
+    "name": "useFieldData",
+    "src": "src/composables/useFieldData.ts",
+    "isEntry": true,
+    "imports": [
+      "src/composables/useComputedDisabled.ts",
+      "_constants.js"
+    ]
+  },
+  "src/composables/useFloatingMenu.ts": {
+    "file": "useFloatingMenu.cjs",
+    "name": "useFloatingMenu",
+    "src": "src/composables/useFloatingMenu.ts",
+    "isEntry": true,
+    "imports": [
+      "_floating-ui.dom.js"
+    ]
+  },
+  "src/composables/useGeneratedId.ts": {
+    "file": "useGeneratedId.cjs",
+    "name": "useGeneratedId",
+    "src": "src/composables/useGeneratedId.ts",
+    "isEntry": true,
+    "imports": [
+      "_constants.js"
+    ]
+  },
+  "src/composables/useI18n.ts": {
+    "file": "useI18n.cjs",
+    "name": "useI18n",
+    "src": "src/composables/useI18n.ts",
+    "isEntry": true
+  },
+  "src/composables/useIntersectionObserver.ts": {
+    "file": "useIntersectionObserver.cjs",
+    "name": "useIntersectionObserver",
+    "src": "src/composables/useIntersectionObserver.ts",
+    "isEntry": true
+  },
+  "src/composables/useModelWrapper.ts": {
+    "file": "useModelWrapper.cjs",
+    "name": "useModelWrapper",
+    "src": "src/composables/useModelWrapper.ts",
+    "isEntry": true
+  },
+  "src/composables/useResizeObserver.ts": {
+    "file": "useResizeObserver.cjs",
+    "name": "useResizeObserver",
+    "src": "src/composables/useResizeObserver.ts",
+    "isEntry": true
+  },
+  "src/composables/useSlotContents.ts": {
+    "file": "useSlotContents.cjs",
+    "name": "useSlotContents",
+    "src": "src/composables/useSlotContents.ts",
+    "isEntry": true,
+    "imports": [
+      "_useSlotContents.js"
+    ]
+  },
+  "src/composables/useSplitAttributes.ts": {
+    "file": "useSplitAttributes.cjs",
+    "name": "useSplitAttributes",
+    "src": "src/composables/useSplitAttributes.ts",
+    "isEntry": true
+  },
+  "src/composables/useWarnOnce.ts": {
+    "file": "useWarnOnce.cjs",
+    "name": "useWarnOnce",
+    "src": "src/composables/useWarnOnce.ts",
+    "isEntry": true
+  }
+}

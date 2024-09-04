@@ -1169,7 +1169,7 @@ const _hoisted_3$c = {
   class: "cdx-label__label__optional-flag"
 };
 const _hoisted_4$7 = ["id"];
-const _hoisted_5$6 = { class: "cdx-label__label" };
+const _hoisted_5$7 = { class: "cdx-label__label" };
 const _hoisted_6$6 = { class: "cdx-label__label__text" };
 const _hoisted_7$2 = {
   key: 1,
@@ -1227,7 +1227,7 @@ function _sfc_render$r(_ctx, _cache, $props, $setup, $data, $options) {
       style: _ctx.rootStyle
     }, _ctx.otherAttrs),
     [
-      createElementVNode("span", _hoisted_5$6, [
+      createElementVNode("span", _hoisted_5$7, [
         _ctx.icon ? (openBlock(), createBlock(_component_cdx_icon, {
           key: 0,
           icon: _ctx.icon,
@@ -1623,6 +1623,21 @@ function _sfc_render$p(_ctx, _cache, $props, $setup, $data, $options) {
   ], 42, _hoisted_1$o);
 }
 const CdxInputChip = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["render", _sfc_render$p]]);
+function useOptionalModelWrapper(internalValueRef, modelValueRef, emit, eventName) {
+  return computed({
+    get: () => {
+      var _a;
+      return (_a = modelValueRef.value) != null ? _a : internalValueRef.value;
+    },
+    set: (value) => {
+      if (modelValueRef.value !== null) {
+        emit(eventName || "update:modelValue", value);
+      } else {
+        internalValueRef.value = value;
+      }
+    }
+  });
+}
 const statusValidator$7 = makeStringTypeValidator(ValidationStatusTypes);
 const _sfc_main$o = defineComponent({
   name: "CdxChipInput",
@@ -1644,6 +1659,16 @@ const _sfc_main$o = defineComponent({
       required: true
     },
     /**
+     * Current value of the text input. This prop is optional and should only be used if you
+     * need to keep track of the text input value for some reason (e.g. for validation).
+     *
+     * Optionally provided by `v-model:input-value` binding in the parent component.
+     */
+    inputValue: {
+      type: String,
+      default: null
+    },
+    /**
      * Whether the text input should appear below the set of input chips.
      *
      * By default, the input chips are inline with the input.
@@ -1661,6 +1686,15 @@ const _sfc_main$o = defineComponent({
       validator: statusValidator$7
     },
     /**
+     * Validation function for chip text. If it returns false, the chip will not be added and
+     * the error status will be set.
+     */
+    chipValidator: {
+      type: Function,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      default: (value) => true
+    },
+    /**
      * Whether the input is disabled.
      */
     disabled: {
@@ -1674,13 +1708,26 @@ const _sfc_main$o = defineComponent({
      *
      * @property {ChipInputItem[]} inputChips The new set of inputChips
      */
-    "update:input-chips"
+    "update:input-chips",
+    /**
+     * When the input value changes. Only emitted if the inputValue prop is provided.
+     *
+     * @property {string | number} inputValue The new input value
+     */
+    "update:input-value"
   ],
   setup(props, { emit, attrs }) {
     const rootElement = ref();
+    const statusMessageContent = ref("");
     const computedDirection = useComputedDirection(rootElement);
     const input = ref();
-    const inputValue = ref("");
+    const internalInputValue = ref("");
+    const computedInputValue = useOptionalModelWrapper(
+      internalInputValue,
+      toRef(props, "inputValue"),
+      emit,
+      "update:input-value"
+    );
     const validatedStatus = ref("default");
     const internalStatus = computed(() => {
       if (validatedStatus.value === "error" || props.status === "error") {
@@ -1706,6 +1753,18 @@ const _sfc_main$o = defineComponent({
       otherAttrs
     } = useSplitAttributes(attrs, internalClasses);
     const chipRefs = [];
+    const currentChipToRemove = ref(null);
+    const computedChipToRemove = computed(() => currentChipToRemove.value ? currentChipToRemove.value.value : "");
+    const chipAddedMessage = useI18n(
+      "cdx-chip-input-chip-added",
+      (x) => "Chip ".concat(x, " was added."),
+      [computedInputValue]
+    );
+    const chipRemovedMessage = useI18n(
+      "cdx-chip-input-chip-removed",
+      (x) => "Chip ".concat(x, " was removed."),
+      [computedChipToRemove]
+    );
     function assignChipTemplateRef(chip, index) {
       if (chip !== null) {
         chipRefs[index] = chip;
@@ -1715,11 +1774,16 @@ const _sfc_main$o = defineComponent({
       input.value.focus();
     };
     function addChip() {
-      if (props.inputChips.find((chip) => chip.value === inputValue.value)) {
+      if (
+        // If the input value is the same as a chip's value, or...
+        !!props.inputChips.find((chip) => chip.value === computedInputValue.value) || // ...validation fails, set status to error.
+        !props.chipValidator(computedInputValue.value)
+      ) {
         validatedStatus.value = "error";
-      } else if (inputValue.value.length > 0) {
-        emit("update:input-chips", props.inputChips.concat({ value: inputValue.value }));
-        inputValue.value = "";
+      } else if (computedInputValue.value.length > 0) {
+        statusMessageContent.value = chipAddedMessage.value;
+        emit("update:input-chips", props.inputChips.concat({ value: computedInputValue.value }));
+        computedInputValue.value = "";
       }
     }
     function removeChip(chipToRemove) {
@@ -1747,11 +1811,13 @@ const _sfc_main$o = defineComponent({
         addChip();
         yield nextTick();
         removeChip(clickedChip);
-        inputValue.value = clickedChip.value;
+        computedInputValue.value = clickedChip.value;
         focusInput();
       });
     }
     function handleChipRemove(chipToRemove, index, method) {
+      currentChipToRemove.value = chipToRemove;
+      statusMessageContent.value = chipRemovedMessage.value;
       if (method === "button") {
         focusInput();
       } else if (method === "Backspace") {
@@ -1776,7 +1842,7 @@ const _sfc_main$o = defineComponent({
       const prevArrow = computedDirection.value === "rtl" ? "ArrowRight" : "ArrowLeft";
       switch (e.key) {
         case "Enter":
-          if (inputValue.value.length > 0) {
+          if (computedInputValue.value.length > 0) {
             addChip();
             e.preventDefault();
             e.stopPropagation();
@@ -1812,10 +1878,10 @@ const _sfc_main$o = defineComponent({
       }
     }
     watch(toRef(props, "inputChips"), (newVal) => {
-      const matchingChip = newVal.find((chip) => chip.value === inputValue.value);
+      const matchingChip = newVal.find((chip) => chip.value === computedInputValue.value);
       validatedStatus.value = matchingChip ? "error" : "default";
     });
-    watch(inputValue, () => {
+    watch(computedInputValue, () => {
       if (validatedStatus.value === "error") {
         validatedStatus.value = "default";
       }
@@ -1823,7 +1889,7 @@ const _sfc_main$o = defineComponent({
     return {
       rootElement,
       input,
-      inputValue,
+      computedInputValue,
       rootClasses,
       rootStyle,
       otherAttrs,
@@ -1836,7 +1902,8 @@ const _sfc_main$o = defineComponent({
       onInputFocus,
       onInputBlur,
       onFocusOut,
-      computedDisabled
+      computedDisabled,
+      statusMessageContent
     };
   }
 });
@@ -1851,6 +1918,11 @@ const _hoisted_3$a = {
   class: "cdx-chip-input__separate-input"
 };
 const _hoisted_4$6 = ["disabled"];
+const _hoisted_5$6 = {
+  class: "cdx-chip-input__aria-status",
+  role: "status",
+  "aria-live": "polite"
+};
 function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_input_chip = resolveComponent("cdx-input-chip");
   return openBlock(), createElementBlock(
@@ -1897,7 +1969,7 @@ function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
         !_ctx.separateInput ? withDirectives((openBlock(), createElementBlock("input", mergeProps({
           key: 0,
           ref: "input",
-          "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.inputValue = $event),
+          "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.computedInputValue = $event),
           class: "cdx-chip-input__input",
           disabled: _ctx.computedDisabled
         }, _ctx.otherAttrs, {
@@ -1905,13 +1977,13 @@ function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
           onFocus: _cache[2] || (_cache[2] = (...args) => _ctx.onInputFocus && _ctx.onInputFocus(...args)),
           onKeydown: _cache[3] || (_cache[3] = (...args) => _ctx.onInputKeydown && _ctx.onInputKeydown(...args))
         }), null, 16, _hoisted_2$f)), [
-          [vModelDynamic, _ctx.inputValue]
+          [vModelDynamic, _ctx.computedInputValue]
         ]) : createCommentVNode("v-if", true)
       ]),
       _ctx.separateInput ? (openBlock(), createElementBlock("div", _hoisted_3$a, [
         withDirectives(createElementVNode("input", mergeProps({
           ref: "input",
-          "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => _ctx.inputValue = $event),
+          "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => _ctx.computedInputValue = $event),
           class: "cdx-chip-input__input",
           disabled: _ctx.computedDisabled
         }, _ctx.otherAttrs, {
@@ -1919,9 +1991,16 @@ function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
           onFocus: _cache[6] || (_cache[6] = (...args) => _ctx.onInputFocus && _ctx.onInputFocus(...args)),
           onKeydown: _cache[7] || (_cache[7] = (...args) => _ctx.onInputKeydown && _ctx.onInputKeydown(...args))
         }), null, 16, _hoisted_4$6), [
-          [vModelDynamic, _ctx.inputValue]
+          [vModelDynamic, _ctx.computedInputValue]
         ])
-      ])) : createCommentVNode("v-if", true)
+      ])) : createCommentVNode("v-if", true),
+      createElementVNode(
+        "div",
+        _hoisted_5$6,
+        toDisplayString(_ctx.statusMessageContent),
+        1
+        /* TEXT */
+      )
     ],
     38
     /* CLASS, STYLE, NEED_HYDRATION */
@@ -5159,7 +5238,13 @@ const _sfc_main$i = defineComponent({
       var _a, _b;
       return (_b = (_a = menu.value) == null ? void 0 : _a.getHighlightedMenuItem()) == null ? void 0 : _b.id;
     });
-    const { computedDisabled } = useFieldData(toRef(props, "disabled"));
+    const {
+      computedDisabled,
+      computedStatus
+    } = useFieldData(
+      toRef(props, "disabled"),
+      toRef(props, "status")
+    );
     const internalClasses = computed(() => {
       return {
         "cdx-combobox--expanded": expanded.value,
@@ -5215,6 +5300,7 @@ const _sfc_main$i = defineComponent({
       expanded,
       highlightedId,
       computedDisabled,
+      computedStatus,
       onInputFocus,
       onInputBlur,
       onKeydown,
@@ -5257,7 +5343,7 @@ function _sfc_render$i(_ctx, _cache, $props, $setup, $data, $options) {
             "aria-expanded": _ctx.expanded,
             "aria-controls": _ctx.menuId,
             disabled: _ctx.computedDisabled,
-            status: _ctx.status,
+            status: _ctx.computedStatus,
             autocomplete: "off",
             role: "combobox",
             onKeydown: _ctx.onKeydown,
@@ -6301,11 +6387,32 @@ const _sfc_main$d = defineComponent({
       required: true
     },
     /**
-     * Initial value of the text input.
+     * Current value of the input. This prop is optional and should only be used if you need to
+     * keep track of the input value for some reason (e.g. to set an initial value).
+     *
+     * Optionally provided by `v-model:input-value` binding in the parent component.
+     */
+    inputValue: {
+      type: [String, Number],
+      default: null
+    },
+    // DEPRECATED: Remove (T373532).
+    /**
+     * Initial value of the text input. Non-reactive.
+     *
+     * @deprecated Use `inputValue` instead.
      */
     initialInputValue: {
       type: [String, Number],
-      default: ""
+      default: "",
+      validator: (value) => {
+        if (value) {
+          console.warn(
+            "CdxLookup: prop initialInputValue is deprecated. Use inputValue instead."
+          );
+        }
+        return true;
+      }
     },
     /**
      * Whether the entire component is disabled.
@@ -6342,6 +6449,12 @@ const _sfc_main$d = defineComponent({
      * @property {string | number | null} selected The new selected value
      */
     "update:selected",
+    /**
+     * When the input value changes. Only emitted if the inputValue prop is provided.
+     *
+     * @property {string | number} inputValue The new input value
+     */
+    "update:input-value",
     /**
      * When the user scrolls towards the bottom of the menu.
      *
@@ -6383,7 +6496,13 @@ const _sfc_main$d = defineComponent({
     const expanded = ref(false);
     const isActive = ref(false);
     const initialMenuItems = ref(props.menuItems);
-    const { computedDisabled } = useFieldData(toRef(props, "disabled"));
+    const {
+      computedDisabled,
+      computedStatus
+    } = useFieldData(
+      toRef(props, "disabled"),
+      toRef(props, "status")
+    );
     const selectedProp = toRef(props, "selected");
     const modelWrapper = useModelWrapper(selectedProp, emit, "update:selected");
     const selectedMenuItem = computed(
@@ -6393,7 +6512,13 @@ const _sfc_main$d = defineComponent({
       var _a, _b;
       return (_b = (_a = menu.value) == null ? void 0 : _a.getHighlightedMenuItem()) == null ? void 0 : _b.id;
     });
-    const inputValue = ref(props.initialInputValue);
+    const internalInputValue = ref(props.initialInputValue);
+    const computedInputValue = useOptionalModelWrapper(
+      internalInputValue,
+      toRef(props, "inputValue"),
+      emit,
+      "update:input-value"
+    );
     const internalClasses = computed(() => {
       return {
         "cdx-lookup--disabled": computedDisabled.value,
@@ -6406,7 +6531,11 @@ const _sfc_main$d = defineComponent({
       otherAttrs
     } = useSplitAttributes(attrs, internalClasses);
     function onUpdateInput(newVal) {
-      if (selectedMenuItem.value && selectedMenuItem.value.label !== newVal && selectedMenuItem.value.value !== newVal) {
+      if (selectedMenuItem.value) {
+        if (selectedMenuItem.value.label !== newVal && selectedMenuItem.value.value !== newVal) {
+          modelWrapper.value = null;
+        }
+      } else if (props.selected !== newVal) {
         modelWrapper.value = null;
       }
       if (newVal === "" && initialMenuItems.value.length === 0) {
@@ -6419,7 +6548,7 @@ const _sfc_main$d = defineComponent({
     }
     function onInputFocus(event) {
       isActive.value = true;
-      const hasInput = inputValue.value !== null && inputValue.value !== "";
+      const hasInput = computedInputValue.value !== null && computedInputValue.value !== "";
       const hasMenuItems = !!(props.menuItems.length > 0 || slots["no-results"]);
       if (hasMenuItems && (hasInput || initialMenuItems.value.length > 0)) {
         expanded.value = true;
@@ -6442,9 +6571,9 @@ const _sfc_main$d = defineComponent({
       var _a;
       if (newVal !== null) {
         const selectedValue = selectedMenuItem.value ? (_a = selectedMenuItem.value.label) != null ? _a : selectedMenuItem.value.value : "";
-        if (inputValue.value !== selectedValue) {
-          inputValue.value = selectedValue;
-          emit("input", inputValue.value);
+        if (computedInputValue.value !== selectedValue) {
+          computedInputValue.value = selectedValue;
+          emit("input", computedInputValue.value);
         }
       }
     });
@@ -6468,10 +6597,11 @@ const _sfc_main$d = defineComponent({
       menu,
       menuId,
       highlightedId,
-      inputValue,
+      computedInputValue,
       modelWrapper,
       expanded,
       computedDisabled,
+      computedStatus,
       onInputBlur,
       rootClasses,
       rootStyle,
@@ -6495,8 +6625,8 @@ function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
     [
       createVNode(_component_cdx_text_input, mergeProps({
         ref: "textInput",
-        modelValue: _ctx.inputValue,
-        "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.inputValue = $event)
+        modelValue: _ctx.computedInputValue,
+        "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.computedInputValue = $event)
       }, _ctx.otherAttrs, {
         class: "cdx-lookup__input",
         role: "combobox",
@@ -6506,7 +6636,7 @@ function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
         "aria-expanded": _ctx.expanded,
         "aria-activedescendant": _ctx.highlightedId,
         disabled: _ctx.computedDisabled,
-        status: _ctx.status,
+        status: _ctx.computedStatus,
         "onUpdate:modelValue": _ctx.onUpdateInput,
         onChange: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("change", $event)),
         onFocus: _ctx.onInputFocus,
@@ -8098,14 +8228,15 @@ const _hoisted_9 = {
 };
 const _hoisted_10 = ["aria-sort"];
 const _hoisted_11 = ["aria-selected", "onClick"];
-const _hoisted_12 = { key: 0 };
+const _hoisted_12 = { class: "cdx-table__table__sort-label" };
 const _hoisted_13 = { key: 0 };
-const _hoisted_14 = { key: 1 };
-const _hoisted_15 = { class: "cdx-table__table__empty-state" };
-const _hoisted_16 = { class: "cdx-table__table__empty-state-content" };
-const _hoisted_17 = { class: "cdx-table__pagination-status--long" };
-const _hoisted_18 = { class: "cdx-table__pagination-status--short" };
-const _hoisted_19 = {
+const _hoisted_14 = { key: 0 };
+const _hoisted_15 = { key: 1 };
+const _hoisted_16 = { class: "cdx-table__table__empty-state" };
+const _hoisted_17 = { class: "cdx-table__table__empty-state-content" };
+const _hoisted_18 = { class: "cdx-table__pagination-status--long" };
+const _hoisted_19 = { class: "cdx-table__pagination-status--short" };
+const _hoisted_20 = {
   key: 3,
   class: "cdx-table__footer"
 };
@@ -8246,8 +8377,10 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
                         class: "cdx-table__table__sort-button",
                         onClick: ($event) => _ctx.handleSort(column.id)
                       }, [
-                        createTextVNode(
-                          toDisplayString(column.label) + " ",
+                        createElementVNode(
+                          "span",
+                          _hoisted_12,
+                          toDisplayString(column.label),
                           1
                           /* TEXT */
                         ),
@@ -8284,7 +8417,7 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
             class: "cdx-table__pending-indicator"
           })) : createCommentVNode("v-if", true),
           renderSlot(_ctx.$slots, "tbody", {}, () => [
-            _ctx.dataForDisplay.length > 0 ? (openBlock(), createElementBlock("tbody", _hoisted_12, [
+            _ctx.dataForDisplay.length > 0 ? (openBlock(), createElementBlock("tbody", _hoisted_13, [
               (openBlock(true), createElementBlock(
                 Fragment,
                 null,
@@ -8296,7 +8429,7 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
                       class: normalizeClass(_ctx.getRowClass(row, rowIndex))
                     },
                     [
-                      _ctx.useRowSelection ? (openBlock(), createElementBlock("td", _hoisted_13, [
+                      _ctx.useRowSelection ? (openBlock(), createElementBlock("td", _hoisted_14, [
                         createVNode(_component_cdx_checkbox, {
                           modelValue: _ctx.wrappedSelectedRows,
                           "onUpdate:modelValue": [
@@ -8356,9 +8489,9 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
                 128
                 /* KEYED_FRAGMENT */
               ))
-            ])) : _ctx.$slots["empty-state"] && _ctx.$slots["empty-state"]().length > 0 ? (openBlock(), createElementBlock("tbody", _hoisted_14, [
-              createElementVNode("tr", _hoisted_15, [
-                createElementVNode("td", _hoisted_16, [
+            ])) : _ctx.$slots["empty-state"] && _ctx.$slots["empty-state"]().length > 0 ? (openBlock(), createElementBlock("tbody", _hoisted_15, [
+              createElementVNode("tr", _hoisted_16, [
+                createElementVNode("td", _hoisted_17, [
                   renderSlot(_ctx.$slots, "empty-state")
                 ])
               ])
@@ -8387,14 +8520,14 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
       default: withCtx(() => [
         createElementVNode(
           "span",
-          _hoisted_17,
+          _hoisted_18,
           toDisplayString(_ctx.paginationStatusMessageLong),
           1
           /* TEXT */
         ),
         createElementVNode(
           "span",
-          _hoisted_18,
+          _hoisted_19,
           toDisplayString(_ctx.paginationStatusMessageShort),
           1
           /* TEXT */
@@ -8403,7 +8536,7 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
       _: 1
       /* STABLE */
     }, 8, ["items-per-page", "pagination-size-options", "prev-disabled", "next-disabled", "last-disabled", "onNext", "onPrev", "onFirst", "onLast"])) : createCommentVNode("v-if", true),
-    _ctx.$slots.footer && _ctx.$slots.footer().length > 0 ? (openBlock(), createElementBlock("div", _hoisted_19, [
+    _ctx.$slots.footer && _ctx.$slots.footer().length > 0 ? (openBlock(), createElementBlock("div", _hoisted_20, [
       renderSlot(_ctx.$slots, "footer")
     ])) : createCommentVNode("v-if", true)
   ]);
@@ -8485,11 +8618,19 @@ const _sfc_main$4 = defineComponent({
     /**
      * The `name` of the currently active Tab in the layout.
      *
-     * Provided by `v-model:active` binding in the parent component.
+     * This prop is optional; if it is provided, it should be bound
+     * using a `v-model:active` directive in the parent component.
+     * Two-way binding the active tab is only necessary if some tab
+     * other than the first should be active as soon as the component
+     * renders (such as in cases where the active tab is bound to URL
+     * params). If this prop is not provided, then the first tab will
+     * be active by default. Regardless, the active tab can be changed
+     * normally by user interaction (clicking on tab headings) or by
+     * using the exposed methods "select", "next", and "prev".
      */
     active: {
       type: String,
-      required: true
+      default: null
     },
     /**
      * Whether or not the component should be displayed in a framed
@@ -8502,7 +8643,8 @@ const _sfc_main$4 = defineComponent({
   },
   emits: [
     /**
-     * Emitted whenever the active tab changes
+     * Emitted whenever the active tab changes, assuming that an `active`
+     * prop has been provided in the parent.
      *
      * @property {string} active The `name` of the current active tab
      */
@@ -8552,7 +8694,8 @@ const _sfc_main$4 = defineComponent({
         return map;
       }, /* @__PURE__ */ new Map());
     });
-    const activeTab = useModelWrapper(toRef(props, "active"), emit, "update:active");
+    const internalRefForActiveTab = ref(Array.from(tabsData.value.keys())[0]);
+    const activeTab = useOptionalModelWrapper(internalRefForActiveTab, toRef(props, "active"), emit, "update:active");
     const tabNames = computed(() => Array.from(tabsData.value.keys()));
     const activeTabIndex = computed(() => tabNames.value.indexOf(activeTab.value));
     const activeTabId = computed(() => {

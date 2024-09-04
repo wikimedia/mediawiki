@@ -1,3 +1,45 @@
+# 1.12.0 / 2024-09-04
+
+## Deprecating Changes
+- This release deprecates the `initialInputValue` prop of the Lookup component.
+  This prop will be removed in the next major release of Codex (v2.0). In the
+  meantime it is recommended that users stop using this prop in their own code;
+  the new `inputValue` prop should be used instead. See the Lookup component's
+  documentation for more information.
+
+## Features
+- ChipInput: Add optional modelValue and chipValidator props (Anne Tomasevich)
+- ChipInput: Add ARIA live region (Volker E)
+- Lookup: always clear the selection when the input changes (Anne Tomasevich)
+- Lookup: Add optional inputValue and deprecate initialInputValue (Anne Tomasevich)
+- demo, Combobox, Lookup: error state (lwatson)
+
+## Styles
+- Link: Don't accidentally style thumbnail placeholder icons (Anne Tomasevich)
+- Table: Improve column headings with sort (Anne Tomasevich)
+- Table: Align column heading content to the bottom (Anne Tomasevich)
+- Message: Set icon height in ems (Anne Tomasevich)
+- Generate bi-directional Codex stylesheets using PostCSS RTLCSS (Eric Gardner)
+
+## Code
+- Fix variable passing in branch-deploy.sh (Roan Kattouw)
+- tests: Don't use .trigger( 'keydown.enter' ) (Roan Kattouw)
+- Tabs: make 2-way binding of active tab optional (Eric Gardner)
+- Lookup: Make unit tests more realistic when inputting text (Anne Tomasevich)
+
+## Docs
+- RELEASING.md: Update instructions to add make-cdx command (Roan Kattouw)
+- docs: update releasing docs (lwatson)
+- docs: update MenuItem interaction states (bmartinezcalvo)
+- docs: update Field guidelines (bmartinezcalvo)
+- docs: Also protect against VitePress styles in dialogs (Roan Kattouw)
+- docs: update design contribution guidelines (bmartinezcalvo)
+- docs: Highlight deprecated props in the props table (Anne Tomasevich)
+- docs: Fix typos in types.ts: correct minor documentation errors (Doğu Abaris)
+- docs: Fix typo in constants.ts: correct "avialable" to "available" (Doğu Abaris)
+- docs: Add ADR 11 (Eric Gardner)
+
+
 # 1.11.1 / 2024-08-20
 
 ## Features

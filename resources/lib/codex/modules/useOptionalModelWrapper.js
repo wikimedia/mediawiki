@@ -1,0 +1,1 @@
+"use strict";const r=require("vue");function o(u,t,l,p){return r.computed({get:()=>{var e;return(e=t.value)!=null?e:u.value},set:e=>{t.value!==null?l(p||"update:modelValue",e):u.value=e}})}exports.useOptionalModelWrapper=o;

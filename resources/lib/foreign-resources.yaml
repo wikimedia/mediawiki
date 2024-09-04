@@ -125,11 +125,11 @@ codex:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
   authors: Design System team, Wikimedia Foundation
-  version: 1.11.1
-  purl: pkg:npm/@wikimedia/codex@1.11.1
+  version: 1.12.0
+  purl: pkg:npm/@wikimedia/codex@1.12.0
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-1.11.1.tgz
-  integrity: sha384-taFzSb4bjrDDQ9HDH1IrnqnnUDPmM/W6JOwex0LfaEuwhFmep4DP1b+TojH0Cimz
+  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-1.12.0.tgz
+  integrity: sha384-e2MO+dq0uLzar45BxgZtL5+qfbv4cZiCnn4s8guN01sXfY4i21pfka+/gNziv/p4
   dest:
     package/dist/codex.cjs:
     package/dist/codex.js:
@@ -146,11 +146,11 @@ codex-design-tokens:
   license: GPL-2.0+
   homepage: https://doc.wikimedia.org/codex/
   authors: Design System team, Wikimedia Foundation
-  version: 1.11.1
-  purl: pkg:npm/@wikimedia/codex-design-tokens@1.11.1
+  version: 1.12.0
+  purl: pkg:npm/@wikimedia/codex-design-tokens@1.12.0
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-1.11.1.tgz
-  integrity: sha384-4bckn/mT8Y/OxctHPhbfgnOMRhgr3AePkm0zXwu4eLro3oaEpNizu75BHOBYt7pE
+  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-1.12.0.tgz
+  integrity: sha384-XFZZ80qwZOCHz9NXyKxDlbgHXLY20M/0xzC0fU+ZWkWBChPCPOG+wtZ8Vd8QiYEp
   dest:
     package/dist/theme-*.less:
     package/dist/theme-wikimedia-ui-root.css:
@@ -163,10 +163,10 @@ codex-icons:
   homepage: https://doc.wikimedia.org/codex/
   authors: Design System team, Wikimedia Foundation
   version: 1.11.1
-  purl: pkg:npm/@wikimedia/codex-icons@1.11.1
+  purl: pkg:npm/@wikimedia/codex-icons@1.12.0
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-1.11.1.tgz
-  integrity: sha384-9JD3S6phsp8geUZ2drn2si6xN9jOvho2At3Qj2hp6SKR3fXHHFG1oW+vCOlQ1AEZ
+  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-1.12.0.tgz
+  integrity: sha384-SMwH+F7uQWix1k4hgMnCQh025DSbOowlRm0HATwunBsns+avYLcWx04+TSCcXIdD
   dest:
     package/dist/codex-icons.json:
     package/dist/codex-icon-paths.less:
