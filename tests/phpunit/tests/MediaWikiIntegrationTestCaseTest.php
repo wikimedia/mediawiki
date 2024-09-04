@@ -25,7 +25,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 
-	private static $startGlobals = [
+	private const START_GLOBALS = [
 		'MediaWikiIntegrationTestCaseTestGLOBAL-ExistingString' => 'foo',
 		'MediaWikiIntegrationTestCaseTestGLOBAL-ExistingStringEmpty' => '',
 		'MediaWikiIntegrationTestCaseTestGLOBAL-ExistingArray' => [ 1, 'foo' => 'bar' ],
@@ -34,21 +34,21 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 
 	public static function setUpBeforeClass(): void {
 		parent::setUpBeforeClass();
-		foreach ( self::$startGlobals as $key => $value ) {
+		foreach ( self::START_GLOBALS as $key => $value ) {
 			$GLOBALS[$key] = $value;
 		}
 	}
 
 	public static function tearDownAfterClass(): void {
 		parent::tearDownAfterClass();
-		foreach ( self::$startGlobals as $key => $value ) {
+		foreach ( self::START_GLOBALS as $key => $value ) {
 			unset( $GLOBALS[$key] );
 		}
 	}
 
 	public static function provideExistingKeysAndNewValues() {
 		$providedArray = [];
-		foreach ( self::$startGlobals as $key => $_ ) {
+		foreach ( self::START_GLOBALS as $key => $_ ) {
 			$providedArray[] = [ $key, 'newValue' ];
 			$providedArray[] = [ $key, [ 'newValue' ] ];
 		}
@@ -79,7 +79,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testSetGlobalsAreRestoredOnTearDown__after( $globalKey ) {
 		$this->assertSame(
-			self::$startGlobals[$globalKey],
+			self::START_GLOBALS[$globalKey],
 			$GLOBALS[$globalKey],
 			'Global failed to be restored on tearDown'
 		);

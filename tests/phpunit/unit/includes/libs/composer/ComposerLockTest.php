@@ -10,15 +10,10 @@ use Wikimedia\Composer\ComposerLock;
  */
 class ComposerLockTest extends TestCase {
 
-	private $lock;
-
-	protected function setUp(): void {
-		parent::setUp();
-		$this->lock = __DIR__ . "/../../../../data/composer/composer.lock";
-	}
+	private const LOCK = __DIR__ . '/../../../../data/composer/composer.lock';
 
 	public function testGetInstalledDependencies() {
-		$lock = new ComposerLock( $this->lock );
+		$lock = new ComposerLock( self::LOCK );
 		$this->assertEquals( [
 			'wikimedia/cdb' => [
 				'version' => '1.0.1',

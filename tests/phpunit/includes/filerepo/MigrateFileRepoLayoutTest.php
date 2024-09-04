@@ -16,7 +16,7 @@ class MigrateFileRepoLayoutTest extends MediaWikiIntegrationTestCase {
 	protected $migratorMock;
 	/** @var string */
 	protected $tmpFilepath;
-	protected $text = 'testing';
+	private const TEXT = 'testing';
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -41,7 +41,7 @@ class MigrateFileRepoLayoutTest extends MediaWikiIntegrationTestCase {
 
 		$imageRow = (object)[
 			'img_name' => $filename,
-			'img_sha1' => sha1( $this->text ),
+			'img_sha1' => sha1( self::TEXT ),
 		];
 
 		$dbMock->method( 'select' )
@@ -76,7 +76,7 @@ class MigrateFileRepoLayoutTest extends MediaWikiIntegrationTestCase {
 		$this->tmpFilepath = TempFSFile::factory(
 			'migratefilelayout-test-', 'png', wfTempDir() )->getPath();
 
-		file_put_contents( $this->tmpFilepath, $this->text );
+		file_put_contents( $this->tmpFilepath, self::TEXT );
 
 		$hashPath = $repoMock->getHashPath( $filename );
 
@@ -122,7 +122,7 @@ class MigrateFileRepoLayoutTest extends MediaWikiIntegrationTestCase {
 
 		ob_end_clean();
 
-		$sha1 = sha1( $this->text );
+		$sha1 = sha1( self::TEXT );
 
 		$expectedOriginalFilepath = $this->tmpPrefix
 			. '-original/'
@@ -135,16 +135,16 @@ class MigrateFileRepoLayoutTest extends MediaWikiIntegrationTestCase {
 			. $sha1;
 
 		$this->assertEquals(
+			self::TEXT,
 			file_get_contents( $expectedOriginalFilepath ),
-			$this->text,
 			'New sha1 file should be exist and have the right contents'
 		);
 
 		$expectedPublicFilepath = $this->tmpPrefix . '-public/f/f8/Foo.png';
 
 		$this->assertEquals(
+			self::TEXT,
 			file_get_contents( $expectedPublicFilepath ),
-			$this->text,
 			'Existing name file should still and have the right contents'
 		);
 	}

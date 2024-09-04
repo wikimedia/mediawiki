@@ -6,16 +6,12 @@ use MediaWiki\MainConfigNames;
  * @group Media
  */
 class BitmapMetadataHandlerTest extends MediaWikiIntegrationTestCase {
-
-	/** @var string */
-	private $filePath;
+	private const FILE_PATH = __DIR__ . '/../../data/media/';
 
 	protected function setUp(): void {
 		parent::setUp();
 
 		$this->overrideConfigValue( MainConfigNames::ShowEXIF, false );
-
-		$this->filePath = __DIR__ . '/../../data/media/';
 	}
 
 	/**
@@ -31,7 +27,7 @@ class BitmapMetadataHandlerTest extends MediaWikiIntegrationTestCase {
 	public function testMultilingualCascade() {
 		$this->overrideConfigValue( MainConfigNames::ShowEXIF, true );
 
-		$meta = BitmapMetadataHandler::Jpeg( $this->filePath .
+		$meta = BitmapMetadataHandler::Jpeg( self::FILE_PATH .
 			'/Xmp-exif-multilingual_test.jpg' );
 
 		$expected = [
@@ -55,7 +51,7 @@ class BitmapMetadataHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \BitmapMetadataHandler::Jpeg
 	 */
 	public function testJpegComment() {
-		$meta = BitmapMetadataHandler::Jpeg( $this->filePath .
+		$meta = BitmapMetadataHandler::Jpeg( self::FILE_PATH .
 			'jpeg-comment-utf.jpg' );
 
 		$this->assertEquals( 'UTF-8 JPEG Comment — ¼',
@@ -68,7 +64,7 @@ class BitmapMetadataHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \BitmapMetadataHandler::Jpeg
 	 */
 	public function testBadIPTC() {
-		$meta = BitmapMetadataHandler::Jpeg( $this->filePath .
+		$meta = BitmapMetadataHandler::Jpeg( self::FILE_PATH .
 			'iptc-invalid-psir.jpg' );
 		$this->assertEquals( 'Created with GIMP', $meta['JPEGFileComment'][0] );
 	}
@@ -77,7 +73,7 @@ class BitmapMetadataHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \BitmapMetadataHandler::Jpeg
 	 */
 	public function testIPTCDates() {
-		$meta = BitmapMetadataHandler::Jpeg( $this->filePath .
+		$meta = BitmapMetadataHandler::Jpeg( self::FILE_PATH .
 			'iptc-timetest.jpg' );
 
 		// raw date is 2020:07:13 14:04:05+11:32
@@ -85,7 +81,7 @@ class BitmapMetadataHandlerTest extends MediaWikiIntegrationTestCase {
 		// raw date is 1997:03:02 03:01:02-03:00
 		$this->assertEquals( '1997:03:02 00:01:02', $meta['DateTimeOriginal'] );
 
-		$meta = BitmapMetadataHandler::Jpeg( $this->filePath .
+		$meta = BitmapMetadataHandler::Jpeg( self::FILE_PATH .
 			'iptc-timetest-invalid.jpg' );
 
 		// raw date is 1845:03:02 03:01:02-03:00
@@ -127,7 +123,7 @@ class BitmapMetadataHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \BitmapMetadataHandler::png
 	 */
 	public function testPNGXMP() {
-		$result = BitmapMetadataHandler::PNG( $this->filePath . 'xmp.png' );
+		$result = BitmapMetadataHandler::PNG( self::FILE_PATH . 'xmp.png' );
 		$expected = [
 			'width' => 50,
 			'height' => 50,
@@ -148,7 +144,7 @@ class BitmapMetadataHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \BitmapMetadataHandler::png
 	 */
 	public function testPNGNative() {
-		$result = BitmapMetadataHandler::PNG( $this->filePath . 'Png-native-test.png' );
+		$result = BitmapMetadataHandler::PNG( self::FILE_PATH . 'Png-native-test.png' );
 		$expected = 'http://example.com/url';
 		$this->assertEquals( $expected, $result['metadata']['Identifier']['x-default'] );
 	}
@@ -157,7 +153,7 @@ class BitmapMetadataHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \BitmapMetadataHandler::getTiffByteOrder
 	 */
 	public function testTiffByteOrder() {
-		$res = BitmapMetadataHandler::getTiffByteOrder( $this->filePath . 'test.tiff' );
+		$res = BitmapMetadataHandler::getTiffByteOrder( self::FILE_PATH . 'test.tiff' );
 		$this->assertEquals( 'LE', $res );
 	}
 }

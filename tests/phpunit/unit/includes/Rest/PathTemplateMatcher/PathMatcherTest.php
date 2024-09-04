@@ -13,7 +13,7 @@ use MediaWikiUnitTestCase;
  * @covers \MediaWiki\Rest\PathTemplateMatcher\PathSegmentException
  */
 class PathMatcherTest extends MediaWikiUnitTestCase {
-	private static $normalRoutes = [
+	private const NORMAL_ROUTES = [
 		'/a/b',
 		'/b/{x}',
 		'/c/{x}/d',
@@ -65,7 +65,7 @@ class PathMatcherTest extends MediaWikiUnitTestCase {
 
 	public function createNormalRouter() {
 		$pm = new PathMatcher;
-		foreach ( self::$normalRoutes as $i => $route ) {
+		foreach ( self::NORMAL_ROUTES as $i => $route ) {
 			$pm->add( $route, $i );
 		}
 		return $pm;

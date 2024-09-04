@@ -52,7 +52,7 @@ class RandomImageGenerator {
 	 * Those seem to be rare in real images anyway (we also would need a
 	 * non-symmetric shape for the images to test those, like a letter F).
 	 */
-	private static $orientations = [
+	private const ORIENTATIONS = [
 		[
 			'0thRow' => 'top',
 			'0thCol' => 'left',
@@ -272,9 +272,9 @@ class RandomImageGenerator {
 		 * direction (0, 90, 180 or 270 degrees) and a countering rotation
 		 * should turn the triangle points upward again.
 		 */
-		$orientation = self::$orientations[0]; // default is normal orientation
+		$orientation = self::ORIENTATIONS[0]; // default is normal orientation
 		if ( $format == 'jpg' ) {
-			$orientation = self::$orientations[array_rand( self::$orientations )];
+			$orientation = self::ORIENTATIONS[array_rand( self::ORIENTATIONS )];
 			$spec = self::rotateImageSpec( $spec, $orientation['counterRotation'] );
 		}
 

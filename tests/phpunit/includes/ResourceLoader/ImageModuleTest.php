@@ -15,7 +15,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ImageModuleTest extends ResourceLoaderTestCase {
 
-	public static $commonImageData = [
+	public const COMMON_IMAGE_DATA = [
 		'abc' => 'abc.gif',
 		'def' => [
 			'file' => 'def.svg',
@@ -47,7 +47,7 @@ class ImageModuleTest extends ResourceLoaderTestCase {
 		]
 	];
 
-	public static $commonImageVariants = [
+	private const COMMON_IMAGE_VARIANTS = [
 		'invert' => [
 			'color' => '#FFFFFF',
 			'global' => true,
@@ -69,8 +69,8 @@ class ImageModuleTest extends ResourceLoaderTestCase {
 				[
 					'class' => ImageModule::class,
 					'prefix' => 'oo-ui-icon',
-					'variants' => self::$commonImageVariants,
-					'images' => self::$commonImageData,
+					'variants' => self::COMMON_IMAGE_VARIANTS,
+					'images' => self::COMMON_IMAGE_DATA,
 				],
 				'.oo-ui-icon-abc {
 	...
@@ -112,8 +112,8 @@ class ImageModuleTest extends ResourceLoaderTestCase {
 					'selectorWithoutVariant' => '.mw-ui-icon-{name}:after, .mw-ui-icon-{name}:before',
 					'selectorWithVariant' =>
 						'.mw-ui-icon-{name}-{variant}:after, .mw-ui-icon-{name}-{variant}:before',
-					'variants' => self::$commonImageVariants,
-					'images' => self::$commonImageData,
+					'variants' => self::COMMON_IMAGE_VARIANTS,
+					'images' => self::COMMON_IMAGE_DATA,
 				],
 				'.mw-ui-icon-abc:after, .mw-ui-icon-abc:before {
 	...

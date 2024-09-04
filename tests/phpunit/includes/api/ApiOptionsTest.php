@@ -38,7 +38,7 @@ class ApiOptionsTest extends ApiTestCase {
 	/** @var DerivativeContext */
 	private $mContext;
 
-	private static $Success = [ 'options' => 'success' ];
+	private const SUCCESS = [ 'options' => 'success' ];
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -283,7 +283,7 @@ class ApiOptionsTest extends ApiTestCase {
 			if ( $expectException ) {
 				$this->fail( 'Expected a "notloggedin" error.' );
 			} else {
-				$this->assertEquals( self::$Success, $response );
+				$this->assertEquals( self::SUCCESS, $response );
 			}
 		} catch ( ApiUsageException $e ) {
 			if ( !$expectException ) {
@@ -315,7 +315,7 @@ class ApiOptionsTest extends ApiTestCase {
 			if ( $expectException ) {
 				$this->fail( "Expected an ApiUsageException" );
 			} else {
-				$this->assertEquals( self::$Success, $response );
+				$this->assertEquals( self::SUCCESS, $response );
 			}
 		} catch ( ApiUsageException $e ) {
 			if ( !$expectException ) {
@@ -367,7 +367,7 @@ class ApiOptionsTest extends ApiTestCase {
 			if ( $expectException ) {
 				$this->fail( "Expected an ApiUsageException" );
 			} else {
-				$this->assertEquals( self::$Success, $response );
+				$this->assertEquals( self::SUCCESS, $response );
 			}
 		} catch ( ApiUsageException $e ) {
 			if ( !$expectException ) {
@@ -414,7 +414,7 @@ class ApiOptionsTest extends ApiTestCase {
 		$response = $this->executeQuery( $request );
 
 		if ( !$result ) {
-			$result = self::$Success;
+			$result = self::SUCCESS;
 		}
 		$this->assertEquals( $result, $response, $message );
 	}
