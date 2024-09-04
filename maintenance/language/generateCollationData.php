@@ -175,6 +175,7 @@ class GenerateCollationData extends Maintenance {
 		// For each character with an entry in allkeys.txt, overwrite the implicit
 		// entry in $this->weights that came from the UCD.
 		// Also gather a list of tertiary weights, for use in selecting the group header
+		// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 		while ( ( $line = fgets( $file ) ) !== false ) {
 			// We're only interested in single-character weights, pick them out with a regex
 			$line = trim( $line );

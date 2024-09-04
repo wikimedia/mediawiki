@@ -109,6 +109,7 @@ class MWEval extends Maintenance {
 		( new HookRunner( $this->getServiceContainer()->getHookContainer() ) )->onMaintenanceShellStart();
 
 		$__e = null; // PHP exception
+		// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 		while ( ( $__line = Maintenance::readconsole() ) !== false ) {
 			if ( !$__ignoreErrors && $__e && !preg_match( '/^(exit|die);?$/', $__line ) ) {
 				// Internal state may be corrupted or fatals may occur later due

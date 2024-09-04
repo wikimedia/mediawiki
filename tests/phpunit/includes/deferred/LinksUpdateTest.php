@@ -883,10 +883,12 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 
 	private function runAllRelatedJobs() {
 		$queueGroup = $this->getServiceContainer()->getJobQueueGroup();
+		// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 		while ( $job = $queueGroup->pop( 'refreshLinksPrioritized' ) ) {
 			$job->run();
 			$queueGroup->ack( $job );
 		}
+		// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 		while ( $job = $queueGroup->pop( 'categoryMembershipChange' ) ) {
 			$job->run();
 			$queueGroup->ack( $job );

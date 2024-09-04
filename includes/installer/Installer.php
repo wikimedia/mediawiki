@@ -1325,6 +1325,7 @@ abstract class Installer {
 		$dh = opendir( $extDir );
 		$exts = [];
 		$status = new Status;
+		// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 		while ( ( $file = readdir( $dh ) ) !== false ) {
 			// skip non-dirs and hidden directories
 			if ( !is_dir( "$extDir/$file" ) || $file[0] === '.' ) {

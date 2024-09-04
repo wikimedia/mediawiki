@@ -846,6 +846,7 @@ abstract class QueryPage extends SpecialPage {
 
 			// $res might contain the whole 1,000 rows, so we read up to
 			// $num [should update this to use a Pager]
+			// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.Found
 			for ( $i = 0; $i < $num && $row = $res->fetchObject(); $i++ ) {
 				$line = $this->formatResult( $skin, $row );
 				if ( $line ) {

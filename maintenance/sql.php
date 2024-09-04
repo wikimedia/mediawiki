@@ -139,6 +139,7 @@ class MwSql extends Maintenance {
 		$doDie = !Maintenance::posix_isatty( 0 );
 		$res = 1;
 		$batchCount = 0;
+		// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 		while ( ( $line = Maintenance::readconsole( $prompt ) ) !== false ) {
 			if ( !$line ) {
 				# User simply pressed return key

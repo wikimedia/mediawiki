@@ -95,6 +95,7 @@ TEXT
 
 			// do the work, batch by batch
 			$affectedRows = 0;
+			// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 			while ( ( $result = $this->doWork( $mode ) ) !== false ) {
 				$affectedRows += $result;
 				usleep( $this->getOption( 'throttle', 0 ) * 1000 );

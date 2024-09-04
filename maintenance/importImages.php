@@ -439,6 +439,7 @@ class ImportImages extends Maintenance {
 			return;
 		}
 
+		// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 		while ( ( $file = readdir( $dhl ) ) !== false ) {
 			if ( is_file( $dir . '/' . $file ) ) {
 				$ext = pathinfo( $file, PATHINFO_EXTENSION );

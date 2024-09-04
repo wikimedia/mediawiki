@@ -83,6 +83,7 @@ class PruneFileCache extends Maintenance {
 	protected function prune_directory( $dir, $report = false ) {
 		$tsNow = time();
 		$dirHandle = opendir( $dir );
+		// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 		while ( ( $file = readdir( $dirHandle ) ) !== false ) {
 			// Skip ".", "..", and also any dirs or files like ".svn" or ".htaccess"
 			if ( $file[0] != "." ) {

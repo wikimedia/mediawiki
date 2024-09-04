@@ -709,6 +709,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 			// An error occurred that can be recovered from via query retry
 			$this->flagsHolder::contains( $status->flags, self::ERR_RETRY_QUERY ) &&
 			// The retry has not been exhausted (consume it now)
+			// phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 			$retryLeft && !( $retryLeft = false )
 		);
 
