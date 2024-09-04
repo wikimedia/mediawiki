@@ -126,20 +126,22 @@ class SpecialUserRights extends SpecialPage {
 	 * @return bool
 	 */
 	public function userCanChangeRights( UserIdentity $targetUser, $checkIfSelf = true ) {
-		$isself = $this->getUser()->equals( $targetUser );
+		if (
+			!$targetUser->isRegistered() ||
+			$this->userNameUtils->isTemp( $targetUser->getName() )
+		) {
+			return false;
+		}
 
 		$userGroupManager = $this->userGroupManagerFactory
 			->getUserGroupManager( $targetUser->getWikiId() );
 		$available = $userGroupManager->getGroupsChangeableBy( $this->getAuthority() );
-		if ( !$targetUser->isRegistered() ) {
-			return false;
-		}
-
 		if ( $available['add'] || $available['remove'] ) {
 			// can change some rights for any user
 			return true;
 		}
 
+		$isself = $this->getUser()->equals( $targetUser );
 		if ( ( $available['add-self'] || $available['remove-self'] )
 			&& ( $isself || !$checkIfSelf )
 		) {
