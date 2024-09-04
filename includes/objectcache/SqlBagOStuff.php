@@ -77,8 +77,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	protected $writeBatchSize = 100;
 	/** @var string */
 	protected $tableName = 'objectcache';
-	/** @var bool Whether to use replicas instead of primaries (if using LoadBalancer) */
-	protected $replicaOnly;
 	/** @var bool Whether multi-primary mode is enabled */
 	protected $multiPrimaryMode;
 
@@ -141,7 +139,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 *   - purgeLimit: int
 	 *   - tableName: string
 	 *   - shards: int
-	 *   - replicaOnly: bool
 	 *   - writeBatchSize: int
 	 */
 	public function __construct( $params ) {
@@ -177,7 +174,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$this->tableName = $params['tableName'] ?? $this->tableName;
 		$this->numTableShards = intval( $params['shards'] ?? $this->numTableShards );
 		$this->writeBatchSize = intval( $params['writeBatchSize'] ?? $this->writeBatchSize );
-		$this->replicaOnly = $params['replicaOnly'] ?? false;
 		$this->multiPrimaryMode = $params['multiPrimaryMode'] ?? false;
 
 		$this->attrMap[self::ATTR_DURABILITY] = self::QOS_DURABILITY_RDBMS;
@@ -1679,7 +1675,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			// If the RDBMS has row/table/page level locking, then use separate auto-commit
 			// connection to avoid needless contention and deadlocks.
 			$conn = $lb->getMaintenanceConnectionRef(
-				$this->replicaOnly ? DB_REPLICA : DB_PRIMARY,
+				DB_PRIMARY,
 				[],
 				$this->dbDomain,
 				$lb::CONN_TRX_AUTOCOMMIT
