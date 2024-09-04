@@ -647,25 +647,28 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 			}
 		}
 
-		# Add a link to change user rights for privileged users
-		$userrightsPage = new SpecialUserRights();
-		$userrightsPage->setContext( $sp->getContext() );
-		if ( $userrightsPage->userCanChangeRights( $target ) ) {
-			$tools['userrights'] = $linkRenderer->makeKnownLink(
-				SpecialPage::getTitleFor( 'Userrights', $username ),
-				$sp->msg( 'sp-contributions-userrights', $username )->text(),
-				[ 'class' => 'mw-contributions-link-user-rights' ]
-			);
-		}
+		# (T373988) Don't show some links for temporary accounts
+		if ( !$target->isTemp() ) {
+			# Add a link to change user rights for privileged users
+			$userrightsPage = new SpecialUserRights();
+			$userrightsPage->setContext( $sp->getContext() );
+			if ( $userrightsPage->userCanChangeRights( $target ) ) {
+				$tools['userrights'] = $linkRenderer->makeKnownLink(
+					SpecialPage::getTitleFor( 'Userrights', $username ),
+					$sp->msg( 'sp-contributions-userrights', $username )->text(),
+					[ 'class' => 'mw-contributions-link-user-rights' ]
+				);
+			}
 
-		# Add a link to rename the user
-		if ( $id && $this->permissionManager->userHasRight( $sp->getUser(), 'renameuser' ) && !$target->isTemp() ) {
-			$tools['renameuser'] = $sp->getLinkRenderer()->makeKnownLink(
-				SpecialPage::getTitleFor( 'Renameuser' ),
-				$sp->msg( 'renameuser-linkoncontribs', $userpage->getText() )->text(),
-				[ 'title' => $sp->msg( 'renameuser-linkoncontribs-text', $userpage->getText() )->parse() ],
-				[ 'oldusername' => $userpage->getText() ]
-			);
+			# Add a link to rename the user
+			if ( $id && $this->permissionManager->userHasRight( $sp->getUser(), 'renameuser' ) ) {
+				$tools['renameuser'] = $sp->getLinkRenderer()->makeKnownLink(
+					SpecialPage::getTitleFor( 'Renameuser' ),
+					$sp->msg( 'renameuser-linkoncontribs', $userpage->getText() )->text(),
+					[ 'title' => $sp->msg( 'renameuser-linkoncontribs-text', $userpage->getText() )->parse() ],
+					[ 'oldusername' => $userpage->getText() ]
+				);
+			}
 		}
 
 		$this->getHookRunner()->onContributionsToolLinks( $id, $userpage, $tools, $sp );
