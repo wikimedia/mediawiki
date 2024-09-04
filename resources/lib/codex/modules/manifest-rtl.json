@@ -54,6 +54,10 @@
       "src/composables/useWarnOnce.ts"
     ]
   },
+  "_useOptionalModelWrapper.js": {
+    "file": "useOptionalModelWrapper.js",
+    "name": "useOptionalModelWrapper"
+  },
   "_useSlotContents.js": {
     "file": "useSlotContents.js",
     "name": "useSlotContents"
@@ -146,7 +150,8 @@
       "_constants.js",
       "src/composables/useSplitAttributes.ts",
       "src/composables/useFieldData.ts",
-      "src/composables/useComputedDirection.ts"
+      "src/composables/useComputedDirection.ts",
+      "_useOptionalModelWrapper.js"
     ],
     "css": [
       "CdxChipInput-rtl.css"
@@ -258,6 +263,7 @@
       "src/components/text-input/TextInput.vue",
       "src/composables/useGeneratedId.ts",
       "src/composables/useModelWrapper.ts",
+      "_useOptionalModelWrapper.js",
       "src/composables/useSplitAttributes.ts",
       "src/composables/useFieldData.ts",
       "src/composables/useFloatingMenu.ts",
@@ -461,7 +467,7 @@
       "src/components/tab/Tab.vue",
       "src/composables/useGeneratedId.ts",
       "src/composables/useComputedDirection.ts",
-      "src/composables/useModelWrapper.ts",
+      "_useOptionalModelWrapper.js",
       "src/composables/useIntersectionObserver.ts",
       "_useSlotContents.js",
       "_constants.js",
