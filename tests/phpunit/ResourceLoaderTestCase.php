@@ -223,18 +223,6 @@ class ResourceLoaderFileTestModule extends FileModule {
 		return $this->lessVars;
 	}
 
-	/**
-	 * @param Context $context
-	 * @return array
-	 */
-	protected function getFileDependencies( Context $context ) {
-		// No-op
-		return [];
-	}
-
-	protected function saveFileDependencies( Context $context, $refs ) {
-		// No-op
-	}
 }
 
 class ResourceLoaderFileModuleTestingSubclass extends FileModule {
