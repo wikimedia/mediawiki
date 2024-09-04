@@ -2552,10 +2552,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			if ( is_numeric( $value ) ) {
 				$metadata->setNumericPageProperty( $prop, $value );
 			} else {
-				if ( !is_string( $value ) ) {
-					// (T373920) Scalar but neither numeric nor string, so probably boolean?
-					wfLogWarning( __METHOD__ . ": bad type for '$prop', set '$value' (T373920)" );
-				}
+				// T373920: Scalar but neither numeric nor string, so probably boolean
+				// It is too noisy to log here now. We can revisit  logging once we fix
+				// the known sites from T374046.
 				$metadata->setUnsortedPageProperty( $prop, $value );
 			}
 		}
