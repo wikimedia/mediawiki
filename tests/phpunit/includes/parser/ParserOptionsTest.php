@@ -5,12 +5,16 @@ namespace MediaWiki\Tests\Parser;
 use DummyContentForTesting;
 use InvalidArgumentException;
 use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiLangTestCase;
 use ParserOptions;
@@ -22,6 +26,8 @@ use Wikimedia\ScopedCallback;
  * @group Database
  */
 class ParserOptionsTest extends MediaWikiLangTestCase {
+
+	use TempUserTestTrait;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -83,6 +89,78 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 			$this->fail( 'Excpected exception not thrown' );
 		} catch ( InvalidArgumentException $ex ) {
 		}
+	}
+
+	private function commonTestNewFromContext( IContextSource $context, UserIdentity $expectedUser ) {
+		$popt = ParserOptions::newFromContext( $context );
+		$this->assertTrue( $expectedUser->equals( $popt->getUserIdentity() ) );
+		$this->assertSame( $context->getLanguage(), $popt->getUserLangObj() );
+	}
+
+	/** @dataProvider provideNewFromContext */
+	public function testNewFromContext( $contextUserIdentity, $contextLanguage ) {
+		$this->enableAutoCreateTempUser();
+		// Get a context which has our provided user and language set, then call ::newFromContext with it.
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setUser(
+			$this->getServiceContainer()->getUserFactory()->newFromUserIdentity( $contextUserIdentity )
+		);
+		$context->setLanguage( $contextLanguage );
+		$this->commonTestNewFromContext( $context, $context->getUser() );
+	}
+
+	public static function provideNewFromContext() {
+		return [
+			'Username does not exist and user lang as en' => [ UserIdentityValue::newAnonymous( 'Testabc' ), 'en' ],
+			'Username is IP address, no stashed temporary username, and user lang as qqx' => [
+				UserIdentityValue::newAnonymous( '1.2.3.4' ), 'qqx',
+			],
+		];
+	}
+
+	public function testNewFromContextForNamedAccount() {
+		$this->testNewFromContext( $this->getTestUser()->getUser(), 'qqx' );
+	}
+
+	public function testNewFromContextForTemporaryAccount() {
+		$this->testNewFromContext(
+			$this->getServiceContainer()->getTempUserCreator()
+				->create( null, new FauxRequest() )->getUser(),
+			'de'
+		);
+	}
+
+	public function testNewFromContextForAnonWhenTempNameStashed() {
+		$this->enableAutoCreateTempUser();
+		// Get a context which uses an anon user as the user.
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setUser(
+			$this->getServiceContainer()->getUserFactory()
+				->newFromUserIdentity( UserIdentityValue::newAnonymous( '1.2.3.4' ) )
+		);
+		// Create a temporary account name and stash it in associated Session for the $context
+		$stashedName = $this->getServiceContainer()->getTempUserCreator()
+			->acquireAndStashName( $context->getRequest()->getSession() );
+		// Call ::newFromContext and expect that that stashed name is used
+		$this->commonTestNewFromContext( $context, UserIdentityValue::newAnonymous( $stashedName ) );
+	}
+
+	public function testNewFromContextForAnonWhenTempNameStashedButFeatureSinceDisabled() {
+		$this->enableAutoCreateTempUser();
+		// Get a context which uses an anon user as the user.
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setUser(
+			$this->getServiceContainer()->getUserFactory()
+				->newFromUserIdentity( UserIdentityValue::newAnonymous( '1.2.3.4' ) )
+		);
+		// Create a temporary account name and stash it in associated Session for the $context
+		$this->getServiceContainer()->getTempUserCreator()
+			->acquireAndStashName( $context->getRequest()->getSession() );
+		// Simulate that in the interim the temporary accounts system has been disabled, and check that an IP
+		// address is used in this case
+		$this->disableAutoCreateTempUser( [ 'known' => true ] );
+		// Call ::newFromContext and expect that that stashed name is used
+		$this->commonTestNewFromContext( $context, UserIdentityValue::newAnonymous( '1.2.3.4' ) );
 	}
 
 	/**
