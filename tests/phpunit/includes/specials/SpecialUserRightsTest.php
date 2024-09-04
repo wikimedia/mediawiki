@@ -22,7 +22,8 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 			$services->getUserNamePrefixSearch(),
 			$services->getUserFactory(),
 			$services->getActorStoreFactory(),
-			$services->getWatchlistManager()
+			$services->getWatchlistManager(),
+			$services->getTempUserConfig()
 		);
 	}
 
@@ -52,6 +53,27 @@ class SpecialUserRightsTest extends SpecialPageTestBase {
 			[ 'bot' ],
 			$this->getServiceContainer()->getUserGroupManager()->getUserGroups( $target )
 		);
+	}
+
+	public function testSaveUserGroupsForTemporaryAccount() {
+		$target = $this->getServiceContainer()->getTempUserCreator()->create( null, new FauxRequest() )->getUser();
+		$performer = $this->getTestSysop()->getUser();
+		$request = new FauxRequest(
+			[
+				'saveusergroups' => true,
+				'conflictcheck-originalgroups' => '',
+				'wpGroup-bot' => true,
+				'wpExpiry-bot' => 'existing',
+				'wpEditToken' => $performer->getEditToken( $target->getName() ),
+			],
+			true
+		);
+
+		[ $html ] = $this->executeSpecialPage( $target->getName(), $request, 'qqx', $performer );
+
+		$this->assertNull( $request->getSession()->get( 'specialUserrightsSaveSuccess' ) );
+		$this->assertCount( 0, $this->getServiceContainer()->getUserGroupManager()->getUserGroups( $target ) );
+		$this->assertStringContainsString( 'userrights-no-group', $html );
 	}
 
 	public function testSaveUserGroups_change() {

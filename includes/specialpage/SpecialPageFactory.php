@@ -666,6 +666,7 @@ class SpecialPageFactory {
 				'UserFactory',
 				'ActorStoreFactory',
 				'WatchlistManager',
+				'TempUserConfig',
 			]
 		],
 		'EditWatchlist' => [

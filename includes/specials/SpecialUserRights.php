@@ -34,6 +34,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\ActorStoreFactory;
+use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
@@ -77,6 +78,7 @@ class SpecialUserRights extends SpecialPage {
 	private UserFactory $userFactory;
 	private ActorStoreFactory $actorStoreFactory;
 	private WatchlistManager $watchlistManager;
+	private TempUserConfig $tempUserConfig;
 
 	/**
 	 * @param UserGroupManagerFactory|null $userGroupManagerFactory
@@ -85,6 +87,7 @@ class SpecialUserRights extends SpecialPage {
 	 * @param UserFactory|null $userFactory
 	 * @param ActorStoreFactory|null $actorStoreFactory
 	 * @param WatchlistManager|null $watchlistManager
+	 * @param TempUserConfig|null $tempUserConfig
 	 */
 	public function __construct(
 		UserGroupManagerFactory $userGroupManagerFactory = null,
@@ -92,7 +95,8 @@ class SpecialUserRights extends SpecialPage {
 		UserNamePrefixSearch $userNamePrefixSearch = null,
 		UserFactory $userFactory = null,
 		ActorStoreFactory $actorStoreFactory = null,
-		WatchlistManager $watchlistManager = null
+		WatchlistManager $watchlistManager = null,
+		TempUserConfig $tempUserConfig = null
 	) {
 		parent::__construct( 'Userrights' );
 		$services = MediaWikiServices::getInstance();
@@ -103,6 +107,7 @@ class SpecialUserRights extends SpecialPage {
 		$this->userGroupManagerFactory = $userGroupManagerFactory ?? $services->getUserGroupManagerFactory();
 		$this->actorStoreFactory = $actorStoreFactory ?? $services->getActorStoreFactory();
 		$this->watchlistManager = $watchlistManager ?? $services->getWatchlistManager();
+		$this->tempUserConfig = $tempUserConfig ?? $services->getTempUserConfig();
 	}
 
 	public function doesWrites() {
@@ -338,6 +343,16 @@ class SpecialUserRights extends SpecialPage {
 		if ( $this->userNameUtils->isTemp( $user->getName() ) ) {
 			return Status::newFatal( 'userrights-no-tempuser' );
 		}
+
+		// Prevent cross-wiki assignment of groups to temporary accounts on wikis where the feature is not known.
+		if (
+			$user->getWikiId() !== UserIdentity::LOCAL &&
+			!$this->tempUserConfig->isKnown() &&
+			$this->tempUserConfig->isReservedName( $user->getName() )
+		) {
+			return Status::newFatal( 'userrights-cross-wiki-assignment-for-reserved-name' );
+		}
+
 		$allgroups = $this->userGroupManager->listAllGroups();
 		$addgroup = [];
 		$groupExpiries = []; // associative array of (group name => expiry)
@@ -658,6 +673,16 @@ class SpecialUserRights extends SpecialPage {
 
 		if ( !$user || !$user->isRegistered() ) {
 			return Status::newFatal( 'nosuchusershort', $username );
+		}
+
+		// Prevent cross-wiki assignment of groups to temporary accounts on wikis where the feature is not known.
+		// We have to check this here, as ApiUserrights uses this to validate before assigning user rights.
+		if (
+			$user->getWikiId() !== UserIdentity::LOCAL &&
+			!$this->tempUserConfig->isKnown() &&
+			$this->tempUserConfig->isReservedName( $name )
+		) {
+			return Status::newFatal( 'userrights-no-group' );
 		}
 
 		if ( $user->getWikiId() === UserIdentity::LOCAL &&
