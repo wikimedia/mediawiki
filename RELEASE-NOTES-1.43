@@ -345,6 +345,9 @@ because of Phabricator reports.
 * IMaintainableDatabase::listViews(), deprecated since 1.42, has been removed.
 * IMaintainableDatabase::truncate(), deprecated since 1.42, has been removed.
 * IMaintainableDatabase::textFieldSize() was removed without deprecation.
+* ReplicatedBagOStuff, deprecated since 1.42, has been removed.
+* The 'replicaOnly' option to SqlBagOStuff has been removed without deprecation.
+  It existed for internal use by SqlBagOStuff only.
 * LockManager::sha1Base16Absolute(), has been removed without deprecation.
 * The "options" parameter to User::createNew() and the $data parameter to
   UserOptionsManager::loadUserOptions() were removed.

@@ -2829,7 +2829,6 @@ $wgAutoloadLocalClasses = [
 	'RenameuserLogFormatter' => __DIR__ . '/includes/logging/RenameuserLogFormatter.php',
 	'RenderAction' => __DIR__ . '/includes/actions/RenderAction.php',
 	'ReplacementArray' => __DIR__ . '/includes/libs/ReplacementArray.php',
-	'ReplicatedBagOStuff' => __DIR__ . '/includes/libs/objectcache/ReplicatedBagOStuff.php',
 	'RepoGroup' => __DIR__ . '/includes/filerepo/RepoGroup.php',
 	'RequestContext' => __DIR__ . '/includes/context/RequestContext.php',
 	'ResetAuthenticationThrottle' => __DIR__ . '/maintenance/resetAuthenticationThrottle.php',

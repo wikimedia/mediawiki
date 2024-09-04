@@ -2439,9 +2439,6 @@ config-schema:
                  between 0 and shards-1. The number of digits used in the suffix is the minimum number
                  required to hold the largest shard index. Data is distributed among the tables via
                  key hashing. This helps mitigate MySQL bugs 61735 and 61736.
-              - replicaOnly: Whether to only use replica servers and only support read operations.
-                 This option requires the use of LoadBalancer and should only be used by
-                 ReplicatedBagOStuff.
               - writeBatchSize: Default maximum number of rows to change in each query for write
                  operations that can be chunked into a set of smaller writes.
             For MemcachedPhpBagOStuff parameters see {@link MemcachedPhpBagOStuff::__construct}
