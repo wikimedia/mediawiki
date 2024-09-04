@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\FileBackend\FileBackendGroup;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\FileBackend\FileBackend;
 
@@ -97,7 +98,8 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 		// Get three random base 36 characters to act as shard directories
 		$rand = Wikimedia\base_convert( (string)mt_rand( 0, 46655 ), 10, 36, 3 );
 		// Make sure ID is roughly lexicographically increasing for performance
-		$id = str_pad( UIDGenerator::newTimestampedUID128( 32 ), 26, '0', STR_PAD_LEFT );
+		$gen = MediaWikiServices::getInstance()->getGlobalIdGenerator();
+		$id = str_pad( $gen->newTimestampedUID128( 32 ), 26, '0', STR_PAD_LEFT );
 		// Segregate items by DB domain ID for the sake of bookkeeping
 		$domain = $this->isDbDomainExplicit
 			? $this->dbDomain
