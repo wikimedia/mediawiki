@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Storage;
 
-use Exception;
 use Psr\Log\LoggerInterface;
 use WANObjectCache;
 use Wikimedia\Assert\Assert;
@@ -29,7 +28,6 @@ use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
-use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * @since 1.31
@@ -393,111 +391,23 @@ class NameTableStore {
 		Assert::parameter( $name !== '', '$name', 'should not be an empty string' );
 		// Note: this is only called internally so normalization of $name has already occurred.
 
-		$dbw = $this->getDBConnection( DB_PRIMARY );
+		$dbw = $this->getDBConnection( DB_PRIMARY, ILoadBalancer::CONN_TRX_AUTOCOMMIT );
 
-		$id = null;
-		$dbw->doAtomicSection(
-			__METHOD__,
-			function ( IDatabase $unused, $fname )
-			use ( $name, &$id, $dbw ) {
-				// NOTE: use IDatabase from the parent scope here, not the function parameter.
-				// If $dbw is a wrapper around the actual DB, we need to call the wrapper here,
-				// not the inner instance.
-				$dbw->newInsertQueryBuilder()
-					->insertInto( $this->table )
-					->ignore()
-					->row( $this->getFieldsToStore( $name ) )
-					->caller( $fname )->execute();
+		$dbw->newInsertQueryBuilder()
+			->insertInto( $this->table )
+			->ignore()
+			->row( $this->getFieldsToStore( $name ) )
+			->caller( __METHOD__ )->execute();
 
-				if ( $dbw->affectedRows() === 0 ) {
-					$this->logger->info(
-						'Tried to insert name into table ' . $this->table . ', but value already existed.'
-					);
-
-					return;
-				}
-
-				$id = $dbw->insertId();
-
-				// Any open transaction may still be rolled back. If that happens, we have to re-try the
-				// insertion and restore a consistent state of the cached table.
-				$dbw->onAtomicSectionCancel(
-					function ( $trigger, IDatabase $unused ) use ( $name, $id, $dbw ) {
-						$this->retryStore( $dbw, $name, $id );
-					},
-				$fname );
-			},
-			IDatabase::ATOMIC_CANCELABLE
-		);
-
-		return $id;
-	}
-
-	/**
-	 * After the initial insertion got rolled back, this can be used to try the insertion again,
-	 * and ensure a consistent state of the cache.
-	 *
-	 * @param IDatabase $dbw
-	 * @param string $name
-	 * @param int $id
-	 */
-	private function retryStore( IDatabase $dbw, $name, $id ) {
-		// NOTE: in the closure below, use the IDatabase from the original method call,
-		// not the one passed to the closure as a parameter.
-		// If $dbw is a wrapper around the actual DB, we need to call the wrapper,
-		// not the inner instance.
-
-		try {
-			$dbw->doAtomicSection(
-				__METHOD__,
-				function ( IDatabase $unused, $fname ) use ( $name, $id, $dbw ) {
-					// Try to insert a row with the ID we originally got.
-					// If that fails (because of a key conflict), we will just try to get another ID again later.
-					$dbw->newInsertQueryBuilder()
-						->insertInto( $this->table )
-						->row( $this->getFieldsToStore( $name, $id ) )
-						->caller( $fname )->execute();
-
-					// Make sure we re-load the map in case this gets rolled back again.
-					// We could re-try once more, but that bears the risk of an infinite loop.
-					// So let's just give up on the ID.
-					$dbw->onAtomicSectionCancel(
-						function ( $trigger, IDatabase $unused ) {
-							$this->logger->warning(
-								'Re-insertion of name into table ' . $this->table
-								. ' was rolled back. Giving up and reloading the cache.'
-							);
-							$this->reloadMap( ILoadBalancer::CONN_TRX_AUTOCOMMIT );
-						},
-						$fname
-					);
-
-					$this->logger->info(
-						'Re-insert name into table ' . $this->table . ' after failed transaction.'
-					);
-				},
-				IDatabase::ATOMIC_CANCELABLE
+		if ( $dbw->affectedRows() === 0 ) {
+			$this->logger->info(
+				'Tried to insert name into table ' . $this->table . ', but value already existed.'
 			);
-		} catch ( TimeoutException $e ) {
-			throw $e;
-		} catch ( Exception $ex ) {
-			$this->logger->error(
-				'Re-insertion of name into table ' . $this->table . ' failed: ' . $ex->getMessage()
-			);
-		} finally {
-			// NOTE: we reload regardless of whether the above insert succeeded. There is
-			// only three possibilities: the insert succeeded, so the new map will have
-			// the desired $id/$name mapping. Or the insert failed because another
-			// process already inserted that same $id/$name mapping, in which case the
-			// new map will also have it. Or another process grabbed the desired ID for
-			// another name, or the database refuses to insert the given ID into the
-			// auto increment field - in that case, the new map will not have a mapping
-			// for $name (or has a different mapping for $name). In that last case, we can
-			// only hope that the ID produced within the failed transaction has not been
-			// used outside that transaction.
 
-			$this->reloadMap( ILoadBalancer::CONN_TRX_AUTOCOMMIT );
+			return null;
 		}
+
+		return $dbw->insertId();
 	}
 
 	/**
