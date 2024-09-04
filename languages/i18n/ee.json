@@ -14,7 +14,9 @@
 			"Latercio2000",
 			"Natsubee",
 			"Savh",
-			"아라"
+			"아라",
+			"E4Esau",
+			"H78c67c"
 		]
 	},
 	"tog-underline": "Flitete ɖe kadodo te:",
@@ -687,6 +689,7 @@
 	"logentry-newusers-create": "Ezazãŋkɔ $1 la {{GENDER:$2|wɔ vɔ}}",
 	"logentry-upload-upload": "Nedze",
 	"searchsuggest-search": "Di {{SITENAME}}",
+	"searchsuggest-containing": "Di axa siwo me...",
 	"expand_templates_preview": "Kpɔe do ŋgɔ",
 	"nstab-mainpage": "Axa vevitɔ",
 	"skin-action-protect": "Kpɔ eta",

@@ -4,7 +4,8 @@
 			"Amire80",
 			"BaRaN6161 TURK",
 			"BukhariSaeed",
-			"Saraiki"
+			"Saraiki",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "لنک  ہیٹھ لکیر:",
@@ -641,6 +642,8 @@
 	"diff-multi-otherusers": "({{PLURAL:$2|ہک ٻئے صارف|$2 صارفین}} {{PLURAL:$1|دا ہک درمیانی نسخہ کائنی ݙکھایا ڳیا|$1 دے درمیانی نسخے کائنی ݙکھائے ڳئے}})",
 	"diff-paragraph-moved-tonew": "پیرا ٹور ݙتا ڳئے۔ نویں جاہ تے ٹپ مار تے ون٘ڄݨ کیتے کلک کرو۔",
 	"diff-paragraph-moved-toold": "پیرا ٹور ݙتا ڳئے۔ پُراݨی جاہ تے ٹپ مار تے ون٘ڄݨ کیتے کلک کرو۔",
+	"diff-inline-tooltip-ins": "مواد شامل تھیا",
+	"diff-inline-tooltip-del": "مواد مٹ ڳیا",
 	"diff-inline-format-label": "ان لائن",
 	"diff-table-format-label": "ٹیبل",
 	"diff-line-deleted": "⟵ مٹاؤ",
