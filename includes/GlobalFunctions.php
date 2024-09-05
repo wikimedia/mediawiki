@@ -570,12 +570,14 @@ function wfRemoveDotSegments( $urlPath ) {
 /**
  * Returns a partial regular expression of recognized URL protocols, e.g. "http:\/\/|https:\/\/"
  *
- * @deprecated since 1.39, use UrlUtils::validProtocols()
+ * @deprecated since 1.39, use UrlUtils::validProtocols(); hard-deprecated since 1.43
  * @param bool $includeProtocolRelative If false, remove '//' from the returned protocol list.
  *        DO NOT USE this directly, use wfUrlProtocolsWithoutProtRel() instead
  * @return string
  */
 function wfUrlProtocols( $includeProtocolRelative = true ) {
+	wfDeprecated( __FUNCTION__, '1.39' );
+
 	return $includeProtocolRelative ? wfGetUrlUtils()->validProtocols() :
 		wfGetUrlUtils()->validAbsoluteProtocols();
 }
