@@ -29,6 +29,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -37,6 +38,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SiteStats\SiteStats;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\RemexHtml\Tokenizer\Attributes;
@@ -124,6 +126,8 @@ class CoreParserFunctions {
 			# is the same as passing an empty first argument
 			'bcp47',
 			'dir',
+			'iwlink',
+			'langlink',
 		];
 		foreach ( $noHashFunctions as $func ) {
 			$parser->setFunctionHook( $func, [ __CLASS__, $func ], Parser::SFH_NO_HASH );
@@ -1680,6 +1684,56 @@ class CoreParserFunctions {
 			return implode( '|', $names );
 		}
 		return '';
+	}
+
+	public static function iwlink( $parser, $prefix = '', $title = '', $linkText = null ) {
+		$services = MediaWikiServices::getInstance();
+		if (
+			$prefix !== '' &&
+			$services->getInterwikiLookup()->isValidInterwiki( $prefix )
+		) {
+			if ( $linkText !== null ) {
+				$linkText = Parser::stripOuterParagraph(
+					$parser->recursiveTagParseFully( $linkText )
+				);
+			}
+			[ $title, $frag ] = array_pad( explode( '#', $title, 2 ), 2, '' );
+			$target = new TitleValue( NS_MAIN, $title, $frag, $prefix );
+			$parser->getOutput()->addInterwikiLink( $target );
+			return [
+				'text' => Linker::link( $target, $linkText ),
+				'isHTML' => true,
+			];
+		}
+		// Invalid interwiki link, render as plain text
+		return [ 'found' => false ];
+	}
+
+	public static function langlink( $parser, $prefix = '', $title = '', $linkText = null ) {
+		$services = MediaWikiServices::getInstance();
+		$extraInterlanguageLinkPrefixes = $services->getMainConfig()->get(
+			MainConfigNames::ExtraInterlanguageLinkPrefixes
+		);
+		if (
+			$prefix !== '' &&
+			$services->getInterwikiLookup()->isValidInterwiki( $prefix ) &&
+			(
+				$services->getLanguageNameUtils()->getLanguageName(
+					$prefix, LanguageNameUtils::AUTONYMS, LanguageNameUtils::DEFINED
+				) || in_array( $prefix, $extraInterlanguageLinkPrefixes, true )
+			)
+		) {
+			// $linkText is ignored for language links, but fragment is kept
+			[ $title, $frag ] = array_pad( explode( '#', $title, 2 ), 2, '' );
+			$parser->getOutput()->addLanguageLink(
+				new TitleValue(
+					NS_MAIN, $title, $frag, $prefix
+				)
+			);
+			return '';
+		}
+		// Invalid language link, render as plain text
+		return [ 'found' => false ];
 	}
 }
 

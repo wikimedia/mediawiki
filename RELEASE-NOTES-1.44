@@ -44,6 +44,10 @@ For notes on 1.43.x and older releases, see HISTORY.
 
 === New user-facing features in 1.44 ===
 
+* (T363538, T204792) New parser functions {{#iwlink:prefix|title|caption}}
+  and {{#langlink:prefix|title}} to unambiguously create interwiki and
+  interlanguage links, respectively, even when the "prefix" might conflict
+  with a namespace on the local wiki.
 * …
 
 === New features for sysadmins in 1.44 ===
