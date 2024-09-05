@@ -400,7 +400,7 @@ class ImageModule extends Module {
 		$primaryUrl = CSSMin::buildUrlValue( $primary );
 		if ( $this->supportsMaskImage() ) {
 			return [
-				"--webkit-mask-image: $primaryUrl;",
+				"-webkit-mask-image: $primaryUrl;",
 				"mask-image: $primaryUrl;",
 			];
 		}
