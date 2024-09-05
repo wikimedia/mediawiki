@@ -1651,8 +1651,15 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @since 1.38
 	 */
 	public function setPageProperty( string $name, $value ): void {
-		if ( !is_scalar( $value ) ) {
-			wfDeprecated( __METHOD__ . " with non-scalar value for $name" );
+		if ( $value === null ) {
+			// Use an empty string instead.
+			wfDeprecated( __METHOD__ . " with null value for $name", '1.42' );
+		} elseif ( !is_scalar( $value ) ) {
+			// Use ::setExtensionData() instead.
+			wfDeprecated( __METHOD__ . " with non-scalar value for $name", '1.42' );
+		} elseif ( !is_string( $value ) ) {
+			// Use ::setNumericPageProperty() instead.
+			wfDeprecated( __METHOD__ . " with non-string value for $name", '1.42' );
 		}
 		$this->mProperties[$name] = $value;
 	}

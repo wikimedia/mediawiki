@@ -181,8 +181,11 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	 * @covers \MediaWiki\Parser\ParserOutput::getPageProperties
 	 * @dataProvider providePageProperties
 	 */
-	public function testPageProperties( string $setPageProperty, $value1, $value2 ) {
+	public function testPageProperties( string $setPageProperty, $value1, $value2, bool $expectDeprecation = false ) {
 		$po = new ParserOutput();
+		if ( $expectDeprecation ) {
+			MWDebug::filterDeprecationForTest( '/::setPageProperty with non-string value/' );
+		}
 
 		$po->$setPageProperty( 'foo', $value1 );
 
@@ -207,7 +210,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		yield 'Unsorted' => [ 'setUnsortedPageProperty', 'val', 'second val' ];
 		yield 'Numeric' => [ 'setNumericPageProperty', 42, 3.14 ];
 		yield 'Unsorted (old style)' => [ 'setPageProperty', 'val', 'second val' ];
-		yield 'Numeric (old style)' => [ 'setPageProperty', 123, 456 ];
+		yield 'Numeric (old style)' => [ 'setPageProperty', 123, 456, true ];
 	}
 
 	/**
