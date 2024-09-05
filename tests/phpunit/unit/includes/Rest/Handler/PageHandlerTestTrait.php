@@ -110,7 +110,10 @@ trait PageHandlerTestTrait {
 				new ServiceOptions( PageContentHelper::CONSTRUCTOR_OPTIONS, $config ),
 				$services->getRevisionLookup(),
 				$services->getTitleFormatter(),
-				$services->getPageStore()
+				$services->getPageStore(),
+				$services->getTitleFactory(),
+				$services->getConnectionProvider(),
+				$services->getChangeTagsStore()
 			) );
 
 		$parsoidOutputStash = $this->getParsoidOutputStash();

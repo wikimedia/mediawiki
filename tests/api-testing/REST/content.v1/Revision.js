@@ -69,6 +69,23 @@ describe( 'Revision', () => {
 		} );
 	} );
 
+	describe( 'GET /revision/{id}/bare with x-restbase-compat', () => {
+		it( 'Should successfully return restbase-compatible revision meta-data', async () => {
+			const { status, body, text, headers } = await client
+				.get( `/revision/${ newrevid }/bare` )
+				.set( 'x-restbase-compat', 'true' );
+
+			assert.deepEqual( status, 200, text );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
+			assert.containsAllKeys( body, [ 'title', 'page_id', 'rev', 'tid', 'namespace', 'user_id',
+				'user_text', 'timestamp', 'comment', 'tags', 'restrictions', 'page_language', 'redirect' ] );
+
+			assert.deepEqual( body.title, utils.dbkey( page ) );
+			assert.deepEqual( body.page_id, pageid );
+			assert.deepEqual( body.rev, newrevid );
+		} );
+	} );
+
 	describe( 'GET /revision/{id}/with_html', () => {
 		it( 'should successfully get metadata and HTML of revision', async () => {
 			const { status, body, text, headers } = await client.get( `/revision/${ newrevid }/with_html` );

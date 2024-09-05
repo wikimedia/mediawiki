@@ -183,6 +183,23 @@ describe( 'Page Source', () => {
 		} );
 	} );
 
+	describe( 'GET /page/{title}/bare with x-restbase-compat', () => {
+		it( 'Should successfully return restbase-compatible revision meta-data', async () => {
+			const { status, body, text, headers } = await client
+				.get( `/page/${ page }/bare` )
+				.set( 'x-restbase-compat', 'true' );
+
+			assert.deepEqual( status, 200, text );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
+			assert.containsAllKeys( body, [ 'title', 'page_id', 'rev', 'tid', 'namespace', 'user_id',
+				'user_text', 'timestamp', 'comment', 'tags', 'restrictions', 'page_language', 'redirect' ] );
+
+			assert.deepEqual( body.title, utils.dbkey( page ) );
+			assert.isAbove( body.page_id, 0 );
+			assert.isAbove( body.rev, 0 );
+		} );
+	} );
+
 	describe( 'GET /page/{title}/html', () => {
 		it( 'Title normalization should return permanent redirect (301)', async () => {
 			const { status, text, headers } = await client.get( `/page/${ redirectPage }/html`, { flavor: 'edit' } );
