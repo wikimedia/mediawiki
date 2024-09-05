@@ -39,11 +39,11 @@ use UnexpectedValueException;
  * Can fetch a random image, or also write a number of them to disk with random filenames.
  */
 class RandomImageGenerator {
-	private $minWidth = 400;
-	private $maxWidth = 800;
-	private $minHeight = 400;
-	private $maxHeight = 800;
-	private $shapesToDraw = 5;
+	private $minWidth = 16;
+	private $maxWidth = 16;
+	private $minHeight = 16;
+	private $maxHeight = 16;
+	private $shapesToDraw = 0;
 
 	/**
 	 * Orientations: 0th row, 0th column, Exif orientation code, rotation 2x2
@@ -179,7 +179,7 @@ class RandomImageGenerator {
 		$diagonalLength = sqrt( $spec['width'] ** 2 + $spec['height'] ** 2 );
 
 		$draws = [];
-		for ( $i = 0; $i <= $this->shapesToDraw; $i++ ) {
+		for ( $i = 0; $i < $this->shapesToDraw; $i++ ) {
 			$radius = mt_rand( 0, (int)( $diagonalLength / 4 ) );
 			if ( $radius == 0 ) {
 				continue;
