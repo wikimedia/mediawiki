@@ -39,7 +39,6 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 				] + $defaults,
 			] )
 		);
-		$this->getServiceContainer()->resetServiceForTesting( 'InterwikiLookup' );
 	}
 
 	public static function provideGetParserOutput() {
@@ -259,9 +258,6 @@ class WikitextContentHandlerIntegrationTest extends TextContentHandlerIntegratio
 	 * @param string $expectedTarget Expected target string in the HTML redirect
 	 */
 	public function testMakeRedirectContent( LinkTarget $target, string $expectedWT, string $expectedTarget ) {
-		$this->getServiceContainer()->resetServiceForTesting( 'ContentLanguage' );
-		$this->getServiceContainer()->resetServiceForTesting( 'MagicWordFactory' );
-
 		$handler = $this->getServiceContainer()->getContentHandlerFactory()
 			->getContentHandler( CONTENT_MODEL_WIKITEXT );
 		$content = $handler->makeRedirectContent( Title::newFromLinkTarget( $target ) );
