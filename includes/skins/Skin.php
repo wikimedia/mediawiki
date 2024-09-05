@@ -1440,26 +1440,30 @@ abstract class Skin extends ContextSource {
 					];
 				}
 
-				$sur = new SpecialUserRights;
-				$sur->setContext( $this->getContext() );
-				$canChange = $sur->userCanChangeRights( $user );
-				$delimiter = $this->getConfig()->get(
-					MainConfigNames::UserrightsInterwikiDelimiter );
-				if ( str_contains( $rootUser, $delimiter ) ) {
-					// Username contains interwiki delimiter, link it via the
-					// #{userid} syntax. (T260222)
-					$linkArgs = [ false, [ 'user' => '#' . $user->getId() ] ];
-				} else {
-					$linkArgs = [ $rootUser ];
+				// Don't show links to Special:UserRights for temporary accounts (as they cannot have groups)
+				$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
+				if ( !$userNameUtils->isTemp( $user->getName() ) ) {
+					$sur = new SpecialUserRights;
+					$sur->setContext( $this->getContext() );
+					$canChange = $sur->userCanChangeRights( $user );
+					$delimiter = $this->getConfig()->get(
+						MainConfigNames::UserrightsInterwikiDelimiter );
+					if ( str_contains( $rootUser, $delimiter ) ) {
+						// Username contains interwiki delimiter, link it via the
+						// #{userid} syntax. (T260222)
+						$linkArgs = [ false, [ 'user' => '#' . $user->getId() ] ];
+					} else {
+						$linkArgs = [ $rootUser ];
+					}
+					$nav_urls['userrights'] = [
+						'icon' => 'userGroup',
+						'text' => $this->msg(
+							$canChange ? 'tool-link-userrights' : 'tool-link-userrights-readonly',
+							$rootUser
+						)->text(),
+						'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Userrights', ...$linkArgs )
+					];
 				}
-				$nav_urls['userrights'] = [
-					'icon' => 'userGroup',
-					'text' => $this->msg(
-						$canChange ? 'tool-link-userrights' : 'tool-link-userrights-readonly',
-						$rootUser
-					)->text(),
-					'href' => SkinComponentUtils::makeSpecialUrlSubpage( 'Userrights', ...$linkArgs )
-				];
 			}
 		}
 

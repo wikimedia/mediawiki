@@ -8,6 +8,7 @@ use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\MockBlockTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\UserIdentity;
@@ -21,6 +22,7 @@ use MediaWiki\User\UserIdentityValue;
 class SkinTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
 	use MockBlockTrait;
+	use TempUserTestTrait;
 
 	/**
 	 * @covers \Skin
@@ -624,5 +626,39 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$this->assertSame( false, $hasUserDefinedLinks, 'Languages does not support user defined links' );
+	}
+
+	public function testBuildSidebarForContributionsPageOfTemporaryAccount() {
+		// Don't allow extensions to modify the TOOLBOX array as we assert pretty strictly against it.
+		$this->clearHook( 'SidebarBeforeOutput' );
+
+		$this->overrideConfigValues( [
+			MainConfigNames::UploadNavigationUrl => false,
+			MainConfigNames::EnableUploads => false,
+			MainConfigNames::EnableSpecialMute => true,
+		] );
+		$foo1 = new class( 'foo' ) extends Skin {
+			public function outputPage() {
+			}
+		};
+
+		// Simulate the settings and context for Special:Contributions for a temporary account
+		// (no article related and relevant user set).
+		$this->enableAutoCreateTempUser();
+		$tempUser = $this->getServiceContainer()->getTempUserCreator()
+			->create( null, new FauxRequest() )->getUser();
+		$context = RequestContext::newExtraneousContext(
+			Title::makeTitle( NS_SPECIAL, 'Contributions/' . $tempUser->getName() )
+		);
+		$context->setUser( $this->getTestSysop()->getUser() );
+		$foo1->setContext( $context );
+		$foo1->setRelevantUser( $tempUser );
+		$foo1->getOutput()->setArticleRelated( false );
+
+		// Verify that the "userrights" key is not present, by checking that the list of keys is as expected.
+		$this->assertArrayEquals(
+			[ 'contributions', 'log', 'blockip', 'mute', 'print', 'specialpages' ],
+			array_keys( $foo1->buildSidebar()['TOOLBOX'] )
+		);
 	}
 }
