@@ -2551,11 +2551,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		foreach ( $this->mProperties as $prop => $value ) {
 			if ( is_numeric( $value ) ) {
 				$metadata->setNumericPageProperty( $prop, $value );
-			} else {
-				// T373920: Scalar but neither numeric nor string, so probably boolean
-				// It is too noisy to log here now. We can revisit  logging once we fix
-				// the known sites from T374046.
+			} elseif ( is_string( $value ) ) {
 				$metadata->setUnsortedPageProperty( $prop, $value );
+			} else {
+				// Deprecated, but there are still sites which call
+				// ::setPageProperty() with "unusual" values (T374046)
+				$metadata->setPageProperty( $prop, $value );
 			}
 		}
 		foreach ( $this->mWarningMsgs as $msg => $args ) {
