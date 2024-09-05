@@ -16,6 +16,7 @@ use MediaWiki\User\UserIdentityValue;
  * @group Database
  */
 class LogFormatterTest extends MediaWikiLangTestCase {
+	/** @var array */
 	private static $oldExtMsgFiles;
 
 	/**

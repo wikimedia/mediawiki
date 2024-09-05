@@ -75,6 +75,7 @@ class FormOptions implements ArrayAccess {
 	 * - 'consumed' - true/false, whether the option was consumed using
 	 *   consumeValue() or consumeValues()
 	 * - 'type' - one of the type constants (but never AUTO)
+	 * @var array
 	 */
 	protected $options = [];
 

@@ -55,6 +55,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 abstract class ContributionsPager extends RangeChronologicalPager {
 
+	/** @inheritDoc */
 	public $mGroupByDate = true;
 
 	/**
@@ -124,6 +125,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	 */
 	private $revisionsOnly;
 
+	/** @var bool */
 	private $preventClickjacking = false;
 
 	/**

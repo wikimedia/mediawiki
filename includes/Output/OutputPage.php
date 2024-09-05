@@ -241,6 +241,7 @@ class OutputPage extends ContextSource {
 	 * @todo We should split JS / CSS.
 	 * mScripts content is inserted as is in "<head>" by Skin. This might
 	 * contain either a link to a stylesheet or inline CSS.
+	 * @var string
 	 */
 	private $mScripts = '';
 
@@ -304,6 +305,7 @@ class OutputPage extends ContextSource {
 	/** @var string */
 	public $mRedirectCode = '';
 
+	/** @var null */
 	protected $mFeedLinksAppendQuery = null;
 
 	/** @var array
@@ -330,6 +332,7 @@ class OutputPage extends ContextSource {
 	 * Handles the Atom / RSS links.
 	 * We probably only support Atom in 2011.
 	 * @see $wgAdvertisedFeedTypes
+	 * @var array
 	 */
 	private $mFeedLinks = [];
 
@@ -398,7 +401,9 @@ class OutputPage extends ContextSource {
 	 */
 	protected $styles = [];
 
+	/** @var string */
 	private $mIndexPolicy = 'index';
+	/** @var string */
 	private $mFollowPolicy = 'follow';
 
 	/** @var array */
@@ -423,6 +428,7 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Additional key => value data
+	 * @var array
 	 */
 	private $mProperties = [];
 
@@ -462,6 +468,7 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Link: header contents
+	 * @var array
 	 */
 	private $mLinkHeader = [];
 

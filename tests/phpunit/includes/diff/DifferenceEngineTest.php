@@ -26,8 +26,10 @@ use MediaWiki\User\UserIdentityValue;
 class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 	use MockTitleTrait;
 
+	/** @var RequestContext */
 	protected $context;
 
+	/** @var int[] */
 	private static $revisions;
 
 	protected function setUp(): void {
