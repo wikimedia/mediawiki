@@ -56,7 +56,7 @@
 	"prefs-help-realname": "Oikean nimen ilmoittaminen on vapaaehtoista.\nJos ilmoitettu, sitä voidaan käyttää tekijän mainitsemiseen.",
 	"yourpassword": "Salasana:",
 	"prefs-resetpass": "Muuta salasana",
-	"passwordtooshort": "Salasanan täytyy olla vähintään {{PLURAL:$1|yhden merkin pituinen|$1 merkkiä pitkä}}.",
+	"passwordtooshort": "Salasanan tulee olla vähintään {{PLURAL:$1|yhden merkin pituinen|$1 merkkiä pitkä}}.",
 	"passwordtoolong": "Salasanat saavat olla enintään $1 {{PLURAL:$1|merkin}} pituisia.",
 	"password-substring-username-match": "Käyttäjänimesi ei saa sisältää salasanaasi.",
 	"password-name-match": "Salasanasi täytyy olla eri kuin käyttäjänimesi.",

@@ -200,7 +200,7 @@
 	"prefs-watchlist-edits-max": "Највише: 1000",
 	"prefs-advancedwatchlist": "Напредне опције",
 	"tog-extendwatchlist": "Прошируј списак надгледања за приказ свих измена, не само скорашњих",
-	"tog-watchlistunwatchlinks": "Додај звездицу за  надгледање/прекид нагледања ({{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}}) страница (за функционалност потребан је JavaScript)",
+	"tog-watchlistunwatchlinks": "Додај звездицу за  надгледање/прекид нагледања ({{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}}) страница (потребан JavaScript)",
 	"rcfilters-watchlist-preference-label": "Интерфејс без JavaScript-а",
 	"rcfilters-watchlist-preference-help": "Учитава [[{{#special:Watchlist}}|списак надгледања]] без претраге филтера и могућности истицања измена.",
 	"prefs-changeswatchlist": "Приказане измене",

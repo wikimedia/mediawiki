@@ -3542,7 +3542,7 @@
 	"tag-hidden": "$1（隐藏的标签）",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|标签}}]]：$2",
 	"tag-mw-contentmodelchange": "内容模型更改",
-	"tag-mw-contentmodelchange-description": "更改页面[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel 内容模型]的编辑",
+	"tag-mw-contentmodelchange-description": "更改页面内容模型的编辑",
 	"tag-mw-new-redirect": "新重定向",
 	"tag-mw-new-redirect-description": "创建新重定向或更改页面为重定向的编辑",
 	"tag-mw-removed-redirect": "移除重定向",
