@@ -4132,7 +4132,7 @@ class Parser {
 			$text = $mw->replace( '', $text );
 			# For consistency with all other double-underscores
 			# (see below)
-			$this->mOutput->setPageProperty( 'toc', '' );
+			$this->mOutput->setUnsortedPageProperty( 'toc' );
 		}
 
 		# Now match and remove the rest of them
@@ -4163,7 +4163,7 @@ class Parser {
 
 		# Cache all double underscores in the database
 		foreach ( $this->mDoubleUnderscores as $key => $val ) {
-			$this->mOutput->setPageProperty( $key, '' );
+			$this->mOutput->setUnsortedPageProperty( $key );
 		}
 
 		return $text;
