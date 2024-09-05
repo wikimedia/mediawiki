@@ -34,51 +34,82 @@ use Wikimedia\ObjectCache\IStoreKeyEncoder;
  *
  * ### Using WANObjectCache
  *
- * This class intends to boost performance of code paths by using cache-aside logic
- * for data potentially derived from source databases subject to replication lag. Callers
- * will generally make use of the getWithSetCallback() method.
+ * %WANObjectCache (known as **WANCache**, pronounced whan-cache) improves performance
+ * by reducing database load, increasing web server capacity (fewer repeated computations) and
+ * providing faster access to data. The data cached here follows a "cache-aside" strategy, with
+ * data potentially derived from database rows. Generally speaking, cache data should be treated
+ * as equally up-to-date to data from a replica database, and is thus essentially subject to the
+ * same replication lag.
  *
- * All operations go to the local datacenter cache, except for delete(), touchCheckKey(),
- * and resetCheckKey(), which are also broadcasted to caches in all datacenters.
+ * The primary way to interact with this class is via the getWithSetCallback() method.
  *
- * To ensure consumers of the cache see new values in a timely manner, you need to
- * follow either the validation strategy, or the purge strategy.
+ * Each data center has its own cache cluster, with web servers in a given datacenter
+ * populating and reading from the local datacenter only. The exceptions are methods delete(),
+ * touchCheckKey(), and resetCheckKey(), which also asynchronously broadcast the equivalent
+ * purge to other datacenters.
+ *
+ * To learn how this is used and configured at Wikimedia Foundation,
+ * refer to <https://wikitech.wikimedia.org/wiki/Memcached_for_MediaWiki>.
+ *
+ * For broader guidance on how to approach caching in MediaWiki at scale,
+ * refer to <https://wikitech.wikimedia.org/wiki/MediaWiki_Engineering/Guides/Backend_performance_practices>.
+ *
+ * For your code to "see" new values in a timely manner, you need to follow either the
+ * validation strategy, or the purge strategy.
+ *
+ * #### Strategy 1: Validation
  *
  * The validation strategy refers to the natural avoidance of stale data
  * by one of the following means:
  *
  *   - A) The cached value is immutable.
- *        If the consumer has access to an identifier that uniquely describes a value,
- *        cached value need not change. Instead, the key can change. This also allows
- *        all servers to access their perceived current version. This is important
- *        in context of multiple deployed versions of your application and/or cross-dc
- *        database replication, to ensure deterministic values without oscillation.
- *   - B) Validity is checked against the source after get().
- *        This is the inverse of A. The unique identifier is embedded inside the value
- *        and validated after on retrieval. If outdated, the value is recomputed.
- *   - C) The value is cached with a modest TTL (without validation).
- *        If value recomputation is reasonably performant, and the value is allowed to
- *        be stale, one should consider using TTL only – using the value's age as
- *        method of validation.
+ *
+ *        If you can obtain all the information needed to uniquely describe the value,
+ *        then the value never has to change or be purged. Instead, the key changes,
+ *        which naturally creates a miss where you can compute the right value.
+ *        For example, a transformation like parsing or transforming some input,
+ *        could have a cache key like `example-myparser, option-xyz, v2, hash1234`
+ *        which would describe the transformation, the version/parameters, and a hash
+ *        of the exact input.
+ *
+ *        This also naturally avoids oscillation or corruption in the context of multiple
+ *        servers and data centers, where your code may not always be running the same version
+ *        everywhere at the same time. Newer code would have its own set of cache keys,
+ *        ensuring a deterministic outcome.
+ *   - B) The value is cached with a low TTL.
+ *
+ *        If you can tolerate a few seconds or minutes of delay before changes are reflected
+ *        in the way your data is used, and if recomputation is quick, you can consider
+ *        caching it with a "blind" TTL – using the value's age as your method of validation.
+ *   - C) Validity is checked against an external source.
+ *
+ *        Perhaps you prefer to utilize the old data as fallback or to help compute the new
+ *        value, or for other reasons you need to have a stable key across input changes
+ *        (e.g. cache by page title instead of revision ID). If you put the variable identifier
+ *        (e.g. input hash, or revision ID) in the cache value, and validate this on retrieval
+ *        then you don't don't need purging or expiration.
+ *
+ *        After calling get() you can validate the ID inside the cached value against what
+ *        you know. When needed, recompute the value and call set().
+ *
+ * #### Strategy 2: Purge
  *
  * The purge strategy refers to the approach whereby your application knows that source
- * data has changed and can react by purging the relevant cache keys. Since purges are
- * expensive, this strategy should be avoided if possible. The simplest purge method is
- * delete().
+ * data has changed and can react by purging the relevant cache keys.
+ * The simplest purge method is delete().
  *
- * In any case, callers must not assume that updates and purges are immediately visible
- * to all application servers. It should be treated like a replica database in this regard.
- * If such semantics are required, then solutions must be sought outside WANObjectCache.
+ * Note that cache updates and purges are not immediately visible to all application servers in
+ * all data centers. The cache should be treated like a replica database in this regard.
+ * If immediate synchronization is required, then solutions must be sought outside WANCache.
  *
- * Note that write operations, such as set() and delete(), are allowed to return true as
- * soon as the command could be sent or buffered via an open socket to the relevant cache
- * backend server. If that server is a proxy, then it is responsible for detecting
- * and tracking downed servers.
+ * Write operations like delete() and the "set" part of getWithSetCallback(), may return true as
+ * soon as the command has been sent or buffered to an open connection to the cache cluster.
+ * It will be processed and/or broadcasted asynchronously.
  *
  * @anchor wanobjectcache-deployment
  * ### Deploying WANObjectCache
  *
- * There are two supported ways to set up broadcasted operations:
+ * There are two supported ways for sysadmins to set up multi-DC cache purging:
  *
  *   - A) Set up mcrouter as the cache backend, with a memcached BagOStuff class for the 'cache'
  *        parameter, and a wildcard routing prefix for the 'broadcastRoutingPrefix' parameter.
