@@ -241,6 +241,8 @@ interface SecondaryAuthenticationProvider extends AuthenticationProvider {
 	 *    testForAccountCreation(). In this case, the provider might return
 	 *    StatusValue::newGood() here and let the later call to
 	 *    testForAccountCreation() do a more thorough test.
+	 *  - canAlwaysAutocreate: (bool) If true the session provider is exempt from
+	 *    autocreate user permissions checks.
 	 * @return StatusValue
 	 */
 	public function testUserForCreation( $user, $autocreate, array $options = [] );
