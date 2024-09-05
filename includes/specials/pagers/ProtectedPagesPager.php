@@ -37,7 +37,6 @@ use Wikimedia\Rdbms\IConnectionProvider;
 
 class ProtectedPagesPager extends TablePager {
 
-	public $mConds;
 	private $type;
 	private $level;
 	/** @var int|null */
@@ -63,7 +62,6 @@ class ProtectedPagesPager extends TablePager {
 	 * @param LinkRenderer $linkRenderer
 	 * @param IConnectionProvider $dbProvider
 	 * @param RowCommentFormatter $rowCommentFormatter
-	 * @param array $conds
 	 * @param string $type
 	 * @param string $level
 	 * @param int|null $namespace
@@ -80,7 +78,6 @@ class ProtectedPagesPager extends TablePager {
 		LinkRenderer $linkRenderer,
 		IConnectionProvider $dbProvider,
 		RowCommentFormatter $rowCommentFormatter,
-		$conds,
 		$type,
 		$level,
 		$namespace,
@@ -96,7 +93,6 @@ class ProtectedPagesPager extends TablePager {
 		$this->commentStore = $commentStore;
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->rowCommentFormatter = $rowCommentFormatter;
-		$this->mConds = $conds;
 		$this->type = $type ?: 'edit';
 		$this->level = $level;
 		$this->namespace = $namespace;
@@ -294,11 +290,12 @@ class ProtectedPagesPager extends TablePager {
 
 	public function getQueryInfo() {
 		$dbr = $this->getDatabase();
-		$conds = $this->mConds;
-		$conds[] = $dbr->expr( 'pr_expiry', '>', $dbr->timestamp() )
-			->or( 'pr_expiry', '=', null );
-		$conds[] = 'page_id=pr_page';
-		$conds[] = $dbr->expr( 'pr_type', '=', $this->type );
+		$conds = [
+			$dbr->expr( 'pr_expiry', '>', $dbr->timestamp() )
+				->or( 'pr_expiry', '=', null ),
+			'page_id=pr_page',
+			$dbr->expr( 'pr_type', '=', $this->type ),
+		];
 
 		if ( $this->sizetype == 'min' ) {
 			$conds[] = 'page_len>=' . $this->size;

@@ -34,11 +34,6 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class ProtectedTitlesPager extends AlphabeticPager {
 
-	/**
-	 * @var array
-	 */
-	public $mConds;
-
 	/** @var string|null */
 	private $level;
 
@@ -52,28 +47,19 @@ class ProtectedTitlesPager extends AlphabeticPager {
 	 * @param LinkRenderer $linkRenderer
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param IConnectionProvider $dbProvider
-	 * @param array $conds
-	 * @param string|null $type
 	 * @param string|null $level
 	 * @param int|null $namespace
-	 * @param string|null $sizetype
-	 * @param int|null $size
 	 */
 	public function __construct(
 		IContextSource $context,
 		LinkRenderer $linkRenderer,
 		LinkBatchFactory $linkBatchFactory,
 		IConnectionProvider $dbProvider,
-		$conds,
-		$type,
 		$level,
-		$namespace,
-		$sizetype,
-		$size
+		$namespace
 	) {
 		// Set database before parent constructor to avoid setting it there
 		$this->mDb = $dbProvider->getReplicaDatabase();
-		$this->mConds = $conds;
 		$this->level = $level;
 		$this->namespace = $namespace;
 		parent::__construct( $context, $linkRenderer );
@@ -135,9 +121,10 @@ class ProtectedTitlesPager extends AlphabeticPager {
 	 */
 	public function getQueryInfo() {
 		$dbr = $this->getDatabase();
-		$conds = $this->mConds;
-		$conds[] = $dbr->expr( 'pt_expiry', '>', $this->mDb->timestamp() )
-			->or( 'pt_expiry', '=', null );
+		$conds = [
+			$dbr->expr( 'pt_expiry', '>', $this->mDb->timestamp() )
+				->or( 'pt_expiry', '=', null ),
+		];
 		if ( $this->level ) {
 			$conds['pt_create_perm'] = $this->level;
 		}

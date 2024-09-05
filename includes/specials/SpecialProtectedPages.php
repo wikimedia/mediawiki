@@ -39,9 +39,6 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @ingroup SpecialPage
  */
 class SpecialProtectedPages extends SpecialPage {
-	protected $IdLevel = 'level';
-	protected $IdType = 'type';
-
 	private LinkBatchFactory $linkBatchFactory;
 	private IConnectionProvider $dbProvider;
 	private CommentStore $commentStore;
@@ -77,8 +74,8 @@ class SpecialProtectedPages extends SpecialPage {
 		$this->addHelpLink( 'Help:Protected_pages' );
 
 		$request = $this->getRequest();
-		$type = $request->getVal( $this->IdType );
-		$level = $request->getVal( $this->IdLevel );
+		$type = $request->getVal( 'type' );
+		$level = $request->getVal( 'level' );
 		$sizetype = $request->getVal( 'size-mode' );
 		$size = $request->getIntOrNull( 'size' );
 		$ns = $request->getIntOrNull( 'namespace' );
@@ -95,7 +92,6 @@ class SpecialProtectedPages extends SpecialPage {
 			$this->getLinkRenderer(),
 			$this->dbProvider,
 			$this->rowCommentFormatter,
-			[],
 			$type,
 			$level,
 			$ns,
@@ -188,8 +184,8 @@ class SpecialProtectedPages extends SpecialPage {
 			'type' => 'select',
 			'options' => $options,
 			'label' => $this->msg( 'restriction-type' )->text(),
-			'name' => $this->IdType,
-			'id' => $this->IdType,
+			'name' => 'type',
+			'id' => 'type',
 		];
 	}
 
@@ -213,8 +209,8 @@ class SpecialProtectedPages extends SpecialPage {
 			'type' => 'select',
 			'options-messages' => $options,
 			'label-message' => 'restriction-level',
-			'name' => $this->IdLevel,
-			'id' => $this->IdLevel
+			'name' => 'level',
+			'id' => 'level',
 		];
 	}
 
