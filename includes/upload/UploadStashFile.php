@@ -24,9 +24,13 @@ use MediaWiki\SpecialPage\SpecialPage;
  * @ingroup Upload
  */
 class UploadStashFile extends UnregisteredLocalFile {
+	/** @var string */
 	private $fileKey;
+	/** @var string|null Lazy set as in-memory cache */
 	private $urlName;
+	/** @var string|null Lazy set as in-memory cache */
 	protected $url;
+	/** @var string|null */
 	private $sha1;
 
 	/**

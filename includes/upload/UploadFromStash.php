@@ -32,8 +32,11 @@ use MediaWiki\User\UserIdentity;
  * @author Bryan Tong Minh
  */
 class UploadFromStash extends UploadBase {
+	/** @var string */
 	protected $mFileKey;
+	/** @var string */
 	protected $mVirtualTempPath;
+	/** @var string */
 	protected $mSourceType;
 
 	/** @var UploadStash */

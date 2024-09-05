@@ -37,11 +37,14 @@ use MediaWiki\Status\Status;
  * @author Michael Dale
  */
 class UploadFromUrl extends UploadBase {
+	/** @var string */
 	protected $mUrl;
 
 	protected $mTempPath;
+	/** @var resource|null|false */
 	protected $mTmpHandle;
 
+	/** @var array<string,bool> */
 	protected static $allowedUrls = [];
 
 	/**
