@@ -1917,7 +1917,7 @@ abstract class Skin extends ContextSource {
 
 		$this->getHookRunner()->onSiteNoticeAfter( $siteNotice, $this );
 		if ( $this->getOptions()[ 'wrapSiteNotice' ] ) {
-			$siteNotice = Html::rawElement( 'div', [ 'id' => 'siteNotice', 'class' => 'notheme' ], $siteNotice );
+			$siteNotice = Html::rawElement( 'div', [ 'id' => 'siteNotice' ], $siteNotice );
 		}
 		return $siteNotice;
 	}
