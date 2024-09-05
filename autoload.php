@@ -3127,7 +3127,6 @@ $wgAutoloadLocalClasses = [
 	'TrivialMediaHandlerState' => __DIR__ . '/includes/media/TrivialMediaHandlerState.php',
 	'UDPRCFeedEngine' => __DIR__ . '/includes/recentchanges/RCFeed/UDPRCFeedEngine.php',
 	'UDPTransport' => __DIR__ . '/includes/libs/UDPTransport.php',
-	'UIDGenerator' => __DIR__ . '/includes/utils/UIDGenerator.php',
 	'UcdXmlReader' => __DIR__ . '/maintenance/language/generateCollationData.php',
 	'Undelete' => __DIR__ . '/maintenance/undelete.php',
 	'UnifiedDiffFormatter' => __DIR__ . '/includes/libs/Diff/UnifiedDiffFormatter.php',

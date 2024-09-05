@@ -126,15 +126,6 @@ class GlobalIdGeneratorTest extends PHPUnit\Framework\TestCase {
 				"UID $id has the right format"
 			);
 		}
-
-		for ( $i = 0; $i < 100; $i++ ) {
-			$id = $this->globalIdGenerator->newRawUUIDv4( UIDGenerator::QUICK_RAND );
-			$this->assertMatchesRegularExpression(
-				'!^[0-9a-f]{12}4[0-9a-f]{3}[89ab][0-9a-f]{15}$!',
-				$id,
-				"UID $id has the right format"
-			);
-		}
 	}
 
 	public function testNewSequentialID() {
