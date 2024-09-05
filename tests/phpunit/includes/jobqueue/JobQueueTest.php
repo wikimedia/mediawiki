@@ -11,8 +11,6 @@ use Wikimedia\ObjectCache\HashBagOStuff;
  * @covers \JobQueue
  */
 class JobQueueTest extends MediaWikiIntegrationTestCase {
-	protected $key;
-
 	protected ?JobQueue $queueRand;
 	protected ?JobQueue $queueRandTTL;
 	protected ?JobQueue $queueTimestamp;
