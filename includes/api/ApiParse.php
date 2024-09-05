@@ -480,6 +480,7 @@ class ApiParse extends ApiBase {
 			// - Hook: SkinSubPageSubtitle
 			// - Hook: OutputPageParserOutput
 			// - Hook: OutputPageMakeCategoryLinks
+			// - Hook: OutputPageRenderCategoryLink
 			// - Hook: OutputPageBeforeHTML
 			// HACK Adding the 'mobileformat' parameter *also* enables the skin, for compatibility with legacy
 			// apps. This behavior should be considered deprecated so new users should not rely on this and

@@ -1735,6 +1735,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Output\\Hook\\OutputPageCheckLastModifiedHook' => __DIR__ . '/includes/Output/Hook/OutputPageCheckLastModifiedHook.php',
 	'MediaWiki\\Output\\Hook\\OutputPageMakeCategoryLinksHook' => __DIR__ . '/includes/Output/Hook/OutputPageMakeCategoryLinksHook.php',
 	'MediaWiki\\Output\\Hook\\OutputPageParserOutputHook' => __DIR__ . '/includes/Output/Hook/OutputPageParserOutputHook.php',
+	'MediaWiki\\Output\\Hook\\OutputPageRenderCategoryLinkHook' => __DIR__ . '/includes/Output/Hook/OutputPageRenderCategoryLinkHook.php',
 	'MediaWiki\\Output\\OutputHandler' => __DIR__ . '/includes/Output/OutputHandler.php',
 	'MediaWiki\\Output\\OutputPage' => __DIR__ . '/includes/Output/OutputPage.php',
 	'MediaWiki\\Output\\StreamFile' => __DIR__ . '/includes/Output/StreamFile.php',

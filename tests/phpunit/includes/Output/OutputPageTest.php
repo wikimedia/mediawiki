@@ -1249,6 +1249,39 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @dataProvider provideGetCategories
+	 */
+	public function testOutputPageRenderCategoryLinkHook(
+		array $args, array $fakeResults, ?callable $variantLinkCallback,
+		array $expectedNormal, array $expectedHidden, array $expectedText
+	) {
+		$expectedNormal = $this->extractExpectedCategories( $expectedNormal, 'add' );
+		$expectedHidden = $this->extractExpectedCategories( $expectedHidden, 'add' );
+
+		$op = $this->setupCategoryTests( $fakeResults, $variantLinkCallback );
+
+		$tf = $this->getServiceContainer()->getTitleFormatter();
+		$this->setTemporaryHook( 'OutputPageRenderCategoryLink',
+			static function ( $outputPage, $categoryTitle, $text, &$link ) use ( $tf ) {
+				$link = 'Custom link: ' . $tf->getPrefixedText( $categoryTitle ) . ", text: ($text)";
+			}
+		);
+		$op->addCategoryLinks( $args );
+
+		$this->doCategoryAsserts( $op, $expectedNormal, $expectedHidden );
+		$this->doCategoryLinkAsserts( $op, $expectedNormal, $expectedHidden );
+		$i = 0;
+		foreach ( $op->getCategoryLinks() as $type => $actual ) {
+			foreach ( $actual as $link ) {
+				$text = $expectedText[$i++];
+				$this->assertStringContainsString( 'Custom link: Category:', $link );
+				$this->assertStringContainsString( ", text: ($text)", $link );
+			}
+		}
+		$this->assertCount( $i, $expectedText );
+	}
+
+	/**
 	 * We allow different expectations for different tests as an associative array, like
 	 * [ 'set' => [ ... ], 'default' => [ ... ] ] if setCategoryLinks() will give a different
 	 * result.
@@ -1340,7 +1373,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideGetCategories() {
 		return [
-			'No categories' => [ [], [], null, [], [] ],
+			'No categories' => [ [], [], null, [], [], [] ],
 			'Simple test' => [
 				[ 'Test1' => 'Some sortkey', 'Test2' => 'A different sortkey' ],
 				[ 'Test1' => (object)[ 'pp_value' => 1, 'page_title' => 'Test1' ],
@@ -1348,6 +1381,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 				null,
 				[ 'Test2' ],
 				[ 'Test1' ],
+				[ 'Test1', 'Test2' ],
 			],
 			'Invalid title' => [
 				[ '[' => '[', 'Test' => 'Test' ],
@@ -1355,6 +1389,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 				null,
 				[ 'Test' ],
 				[],
+				[ 'Test' ],
 			],
 			'Variant link' => [
 				[ 'Test' => 'Test', 'Estay' => 'Estay' ],
@@ -1369,6 +1404,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 				// but if you add them all together the second time gets skipped.
 				[ 'onebyone' => [ 'Test', 'Test' ], 'default' => [ 'Test' ] ],
 				[],
+				[ 'tseT' ],
 			],
 		];
 	}

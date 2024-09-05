@@ -1648,7 +1648,11 @@ class OutputPage extends ContextSource {
 					continue;
 				}
 				$text = $languageConverter->convertHtml( $title->getText() );
-				$link = $linkRenderer->makeLink( $title, new HtmlArmor( $text ) );
+				$link = null;
+				$this->getHookRunner()->onOutputPageRenderCategoryLink( $this, $title->toPageIdentity(), $text, $link );
+				if ( $link === null ) {
+					$link = $linkRenderer->makeLink( $title, new HtmlArmor( $text ) );
+				}
 				$this->mCategoryData[] = [
 					'sortKey' => $collation->getSortKey( $text ),
 					'type' => $type,

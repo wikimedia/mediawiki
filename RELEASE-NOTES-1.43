@@ -121,6 +121,8 @@ For notes on 1.42.x and older releases, see HISTORY.
 * The ResourceLoaderModifyStartupSourceUrls hook was added.
 * The AuthManagerFilterProviders hook was added.
 * The AuthManagerVerifyAuthentication hook was added.
+* The OutputPageRenderCategoryLink hook was added, as a replacement for the
+  older OutputPageMakeCategoryLinks hook.
 * …
 
 === External library changes in 1.43 ===

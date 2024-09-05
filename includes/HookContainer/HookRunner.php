@@ -13,6 +13,7 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Mail\UserEmailContact;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Parser\Parser;
@@ -282,6 +283,7 @@ class HookRunner implements
 	\MediaWiki\Output\Hook\OutputPageCheckLastModifiedHook,
 	\MediaWiki\Output\Hook\OutputPageMakeCategoryLinksHook,
 	\MediaWiki\Output\Hook\OutputPageParserOutputHook,
+	\MediaWiki\Output\Hook\OutputPageRenderCategoryLinkHook,
 	\MediaWiki\Hook\PageHistoryBeforeListHook,
 	\MediaWiki\Hook\PageHistoryLineEndingHook,
 	\MediaWiki\Hook\PageHistoryPager__doBatchLookupsHook,
@@ -2761,6 +2763,19 @@ class HookRunner implements
 		$this->container->run(
 			'OutputPageParserOutput',
 			[ $outputPage, $parserOutput ],
+			[ 'abortable' => false ]
+		);
+	}
+
+	public function onOutputPageRenderCategoryLink(
+		OutputPage $outputPage,
+		ProperPageIdentity $categoryTitle,
+		string $text,
+		?string &$link
+	): void {
+		$this->container->run(
+			'OutputPageRenderCategoryLink',
+			[ $outputPage, $categoryTitle, $text, &$link ],
 			[ 'abortable' => false ]
 		);
 	}
