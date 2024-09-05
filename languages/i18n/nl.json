@@ -116,7 +116,8 @@
 			"Wolf Lambert",
 			"Xxmarijnw",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"IJzeren Jan"
 		]
 	},
 	"tog-underline": "Koppelingen onderstrepen:",
@@ -3469,7 +3470,7 @@
 	"watchlistedit-clear-done": "Uw volglijst is gewist.",
 	"watchlistedit-clear-jobqueue": "Uw volglijst wordt leeggemaakt. Dit kan enige tijd duren!",
 	"watchlistedit-clear-removed": "Er {{PLURAL:$1|is 1 pagina|zijn $1 pagina's}} verwijderd:",
-	"watchlistedit-too-many": "U volglijst is bijgewerkt. Er zijn te veel pagina's om hier weer te geven.",
+	"watchlistedit-too-many": "Uw volglijst is bijgewerkt. Er zijn te veel pagina's om hier weer te geven.",
 	"watchlisttools-clear": "Volglijst wissen",
 	"watchlisttools-view": "Relevante wijzigingen bekijken",
 	"watchlisttools-edit": "Volglijst bekijken en bewerken",

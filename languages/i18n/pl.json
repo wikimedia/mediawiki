@@ -2412,7 +2412,7 @@
 	"trackingcategories-summary": "Ta strona zawiera listę kategorii monitorujących wypełnianych automatycznie przez oprogramowanie MediaWiki. Nazwy kategorii można zmienić edytując odpowiednie komunikaty systemowe znajdujące się w przestrzeni nazw {{ns:8}}.",
 	"trackingcategories-msg": "Śledzenie kategorii",
 	"trackingcategories-name": "Nazwa komunikatu",
-	"trackingcategories-desc": "Kryteria włączenia kategorii",
+	"trackingcategories-desc": "Kryteria włączenia do kategorii",
 	"restricted-displaytitle-ignored": "Strony z ignorowanym formatowaniem tytułu",
 	"restricted-displaytitle-ignored-desc": "Strona ma ignorowany <code><nowiki>{{DISPLAYTITLE}}</nowiki></code> ponieważ nie pasuje on do tytułu aktualnej strony.",
 	"nonnumeric-formatnum": "Strony z nienumerycznymi argumentami formatnum",

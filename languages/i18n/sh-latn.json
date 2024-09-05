@@ -3263,6 +3263,7 @@
 	"watchlisttools-raw": "Uredi bez obrade",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|razgovor]])",
 	"signature-temp": "[[{{#special:Contributions}}/$1|$2]] ([[{{ns:user_talk}}:$1|razgovor]])",
+	"timezone-utc": "UTC",
 	"timezone-local": "Lokalno",
 	"duplicate-defaultsort": "'''Upozorenje''': Postavljeni ključ sortiranja \"$2\" zamjenjuje raniji ključ \"$1\".",
 	"duplicate-displaytitle": "<strong>Upozorenje:</strong> Prikazni naslov \"$2\" zameniće prethodnito prikazan naslov \"$1\".",

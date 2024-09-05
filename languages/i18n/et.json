@@ -35,7 +35,9 @@
 			"Silvar",
 			"Võrok",
 			"WikedKentaur",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"Castellum",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Linkide allakriipsutus:",
@@ -2643,7 +2645,7 @@
 	"month": "Alates kuust (ja varasemad):",
 	"year": "Alates aastast (ja varasemad):",
 	"date": "Alates kuupäevast (ja varasemad):",
-	"sp-contributions-blocklog": "blokeerimised",
+	"sp-contributions-blocklog": "blokeerimislogi",
 	"sp-contributions-suppresslog": "{{GENDER:$1|varjatud}} kaastöö",
 	"sp-contributions-deleted": "{{GENDER:$1|kustutatud}} kaastöö",
 	"sp-contributions-uploads": "üleslaadimised",
@@ -2787,7 +2789,7 @@
 	"ipblocklist-empty": "Blokeerimiste loend on tühi.",
 	"ipblocklist-no-results": "Päritud IP-aadressile või kasutajanimele vastavaid blokeeringuid ei leitud.",
 	"blocklink": "blokeeri",
-	"unblocklink": "lõpeta blokeerimine",
+	"unblocklink": "eemalda blokeering",
 	"change-blocklink": "muuda blokeeringut",
 	"empty-username": "(kasutajanimi puudub)",
 	"blocklist-hidden-placeholder": "(kasutajanimi peidetud)",

@@ -197,6 +197,7 @@
 	"apihelp-validatepassword-example-1": "Validéiert d'Passwuert <kbd>foobar</kbd> fir den aktuelle Benotzer.",
 	"apihelp-watch-example-watch": "D'Säit <kbd>Main Page</kbd> iwwerwaachen.",
 	"api-login-fail-badsessionprovider": "Net méiglech sech anzelogge mat $1.",
+	"api-help-main-header": "Haaptmodul",
 	"api-help-undocumented-module": "Keng Dokumentatioun fir de Modul $1.",
 	"api-help-source": "Quell: $1",
 	"api-help-source-unknown": "Quell: <span class=\"apihelp-unknown\">onbekannt</span>",

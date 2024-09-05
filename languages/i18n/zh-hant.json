@@ -2415,7 +2415,7 @@
 	"activeusers-submit": "顯示活動中的使用者",
 	"listgrouprights": "使用者群組權限",
 	"listgrouprights-summary": "以下為此 Wiki 的使用者群組清單，以及相關的存取權限。您可以在[[{{MediaWiki:Listgrouprights-helppage}}|詳細資訊]]找到有關個別權限的資訊。",
-	"listgrouprights-key": "說明：\n* <span class=\"listgrouprights-granted\">已授予的權限</span>\n* <span class=\"listgrouprights-revoked\">已撤銷的權限</span>",
+	"listgrouprights-key": "說明：\n* <span class=\"listgrouprights-granted\">授予的權限</span>\n* <span class=\"listgrouprights-revoked\">撤銷的權限</span>",
 	"listgrouprights-group": "群組",
 	"listgrouprights-rights": "權限",
 	"listgrouprights-helppage": "Help:使用者群組權限",

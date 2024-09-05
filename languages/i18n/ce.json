@@ -131,7 +131,7 @@
 	"pagecategories": "{{PLURAL:$1|1=Категори|Категореш}}",
 	"category_header": "«$1» категори чуьра агӀонаш",
 	"subcategories": "Бухаркатегореш",
-	"category-media-header": "Файлаш оцу категори чохь «$1»",
+	"category-media-header": "«$1» категори чуьра файлаш",
 	"category-empty": "''ХӀара категори хӀинца йаьсса йу.''",
 	"hidden-categories": "{{PLURAL:$1|1=Къайлаха категори|Къайлаха йолу категореш}}",
 	"hidden-category-category": "Къайлаха йолу категореш",

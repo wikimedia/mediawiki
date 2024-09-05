@@ -2672,7 +2672,7 @@
 	"movepagebtn": "Adenvel ar pennad",
 	"pagemovedsub": "Dilec'hiadenn kaset da benn vat",
 	"movepage-moved": "'''Adkaset eo bet \"$1\" war-du \"$2\"'''",
-	"movepage-moved-redirect": "Krouet ez eus bet un adkas.",
+	"movepage-moved-redirect": "Un adkas zo bet krouet.",
 	"movepage-moved-noredirect": "Nullet eo bet krouidigezeh un adkas adal an anv kozh.",
 	"articleexists": "Ur pennad gantañ an anv [[:$1]] zo dija, pe n'eo ket reizh an titl hoc'h eus dibabet.\nDibabit unan all mar plij.",
 	"redirectexists": "Un adkas zo dija e [[:$1]], ha ne c’hall ket bezañ diverket ent emgefreek.\nDibabit un anv all mar plij.",
