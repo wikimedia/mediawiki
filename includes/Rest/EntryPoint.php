@@ -158,7 +158,6 @@ class EntryPoint extends MediaWikiEntryPoint {
 		$routeFiles = array_merge(
 			[
 				'includes/Rest/coreRoutes.json',
-				'includes/Rest/content.v1.json'
 			],
 			$conf->get( MainConfigNames::RestAPIAdditionalRouteFiles )
 		);
