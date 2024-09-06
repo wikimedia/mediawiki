@@ -803,10 +803,12 @@ EOF
 		$a->addLink( Title::makeTitle( NS_MAIN, 'Kittens' ), 6 );
 		$a->addLink( new TitleValue( NS_TALK, 'Kittens' ), 16 );
 		$a->addLink( new TitleValue( NS_MAIN, 'Goats_786827346' ) );
+		# fragments are stripped for local links
+		$a->addLink( new TitleValue( NS_TALK, 'Puppies', 'Topic' ), 17 );
 
 		$expected = [
 			NS_MAIN => [ 'Kittens' => 6, 'Goats_786827346' => 0 ],
-			NS_TALK => [ 'Kittens' => 16 ]
+			NS_TALK => [ 'Kittens' => 16, 'Puppies' => 17 ]
 		];
 		$this->assertSame( $expected, $a->getLinks() );
 	}
@@ -816,19 +818,27 @@ EOF
 		$a = new ParserOutput();
 		$a->addLink( Title::makeTitle( NS_MAIN, 'Kittens' ), 6 );
 		$a->addLink( new TitleValue( NS_TALK, 'Kittens' ), 16 );
-		$a->addLink( new TitleValue( NS_MAIN, 'Goats' ), 7 );
+		# fragments are stripped in local links
+		$a->addLink( new TitleValue( NS_MAIN, 'Goats', 'Kids' ), 7 );
 
 		$a->addTemplate( Title::makeTitle( NS_TEMPLATE, 'Goats' ), 107, 1107 );
 
-		$a->addLanguageLink( new TitleValue( NS_MAIN, 'de' ) );
-		$a->addLanguageLink( new TitleValue( NS_MAIN, 'ru' ) );
+		$a->addLanguageLink( new TitleValue( NS_MAIN, 'de', '', 'de' ) );
+		# fragments are preserved in language links
+		$a->addLanguageLink( new TitleValue( NS_MAIN, 'ru', 'ru', 'ru' ) );
 		$a->addInterwikiLink( Title::makeTitle( NS_MAIN, 'Kittens DE', '', 'de' ) );
-		$a->addInterwikiLink( new TitleValue( NS_MAIN, 'Kittens RU', '', 'ru' ) );
+		# fragments are stripped in interwiki links
+		$a->addInterwikiLink( new TitleValue( NS_MAIN, 'Kittens RU', 'ru', 'ru' ) );
 		$a->addExternalLink( 'https://kittens.wikimedia.test' );
-		$a->addExternalLink( 'https://goats.wikimedia.test' );
+		# fragments are preserved in external links
+		$a->addExternalLink( 'https://goats.wikimedia.test#kids' );
 
-		$a->addCategory( 'Foo', 'X' );
-		$a->addImage( new TitleValue( NS_FILE, 'Billy.jpg' ), '20180101000013', 'DEAD' );
+		# fragments are stripped for categories (syntax is overloaded for sort)
+		$a->addCategory( new TitleValue( NS_CATEGORY, 'Foo', 'bar' ), 'X' );
+		# fragments are stripped for images
+		$a->addImage( new TitleValue( NS_FILE, 'Billy.jpg', 'fragment' ), '20180101000013', 'DEAD' );
+		# fragments are stripped for links to special pages
+		$a->addLink( new TitleValue( NS_SPECIAL, 'Version', 'section' ) );
 
 		$b = new ParserOutput();
 		$b->addLink( Title::makeTitle( NS_MAIN, 'Goats' ), 7 );
@@ -836,15 +846,16 @@ EOF
 		$b->addLink( new TitleValue( NS_MAIN, 'Dragons' ), 8 );
 		$b->addLink( new TitleValue( NS_FILE, 'Dragons.jpg' ), 28 );
 
-		$b->addTemplate( Title::makeTitle( NS_TEMPLATE, 'Dragons' ), 108, 1108 );
-		$a->addTemplate( new TitleValue( NS_MAIN, 'Dragons' ), 118, 1118 );
+		# fragments are stripped from template links
+		$b->addTemplate( Title::makeTitle( NS_TEMPLATE, 'Dragons', 'red' ), 108, 1108 );
+		$a->addTemplate( new TitleValue( NS_MAIN, 'Dragons', 'platinum' ), 118, 1118 );
 
-		$b->addLanguageLink( new TitleValue( NS_MAIN, 'fr' ) );
-		$b->addLanguageLink( new TitleValue( NS_MAIN, 'ru' ) );
+		$b->addLanguageLink( new TitleValue( NS_MAIN, 'fr', '', 'fr' ) );
+		$b->addLanguageLink( new TitleValue( NS_MAIN, 'ru', 'ru', 'ru' ) );
 		$b->addInterwikiLink( Title::makeTitle( NS_MAIN, 'Kittens FR', '', 'fr' ) );
 		$b->addInterwikiLink( new TitleValue( NS_MAIN, 'Dragons RU', '', 'ru' ) );
 		$b->addExternalLink( 'https://dragons.wikimedia.test' );
-		$b->addExternalLink( 'https://goats.wikimedia.test' );
+		$b->addExternalLink( 'https://goats.wikimedia.test#kids' );
 
 		$b->addCategory( 'Bar', 'Y' );
 		$b->addImage( new TitleValue( NS_FILE, 'Puff.jpg' ), '20180101000017', 'BEEF' );
@@ -882,7 +893,7 @@ EOF
 					'Goats' => 1107,
 				],
 			],
-			'getLanguageLinks' => [ 'de', 'ru', 'fr' ],
+			'getLanguageLinks' => [ 'de:de', 'ru:ru#ru', 'fr:fr' ],
 			'getInterwikiLinks' => [
 				'de' => [ 'Kittens_DE' => 1 ],
 				'ru' => [ 'Kittens_RU' => 1, 'Dragons_RU' => 1, ],
@@ -897,7 +908,7 @@ EOF
 			'getExternalLinks' => [
 				'https://dragons.wikimedia.test' => 1,
 				'https://kittens.wikimedia.test' => 1,
-				'https://goats.wikimedia.test' => 1,
+				'https://goats.wikimedia.test#kids' => 1,
 			]
 		] ];
 
@@ -957,6 +968,23 @@ EOF
 		// test twice, to make sure the operation is idempotent
 		$a->mergeTrackingMetaDataFrom( $b );
 
+		$this->assertFieldValues( $a, $expected );
+	}
+
+	/**
+	 * @dataProvider provideMergeTrackingMetaDataFrom
+	 * @covers \MediaWiki\Parser\ParserOutput::collectMetadata
+	 *
+	 * @param ParserOutput $a
+	 * @param ParserOutput $b
+	 * @param array $expected
+	 */
+	public function testCollectMetaData( ParserOutput $a, ParserOutput $b, $expected ) {
+		$b->collectMetadata( $a );
+
+		# T26502/T358950 parsoid and legacy parser currently disagree about
+		# where deduplication of language links occurs.
+		unset( $expected['getLanguageLinks'] );
 		$this->assertFieldValues( $a, $expected );
 	}
 
