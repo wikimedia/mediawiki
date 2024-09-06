@@ -24,9 +24,7 @@ version=2
 # (Previously, these options pre- or post- pended to the html section)
 #
 # cat           add category links
-#               (ignored by Parsoid, since it emits <link>s)
 # ill           add inter-language links
-#               (ignored by Parsoid, since it emits <link>s)
 # property=XXX  add the value of the page property with the given name.
 #               This can also be a comma-separated list.
 # extension=XXX add the JSON-encoded value of the given extension data.
