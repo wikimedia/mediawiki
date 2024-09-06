@@ -264,7 +264,7 @@ class ImageModuleTest extends ResourceLoaderTestCase {
 			],
 			[
 				'data:image/svg+xml',
-				"--webkit-mask-image: url(data:image/svg+xml);\n	mask-image: url(data:image/svg+xml);",
+				"-webkit-mask-image: url(data:image/svg+xml);\n	mask-image: url(data:image/svg+xml);",
 				true
 			]
 		];
