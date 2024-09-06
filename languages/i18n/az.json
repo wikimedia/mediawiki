@@ -1102,6 +1102,7 @@
 	"userrights-cannot-shorten-expiry": "Siz \"$1\" qrupunun bitmə müddətini irəli çəkə bilməzsiniz. Yalnız bu qrupu əlavə etmək və silmək icazəsi olan istifadəçilər bitmə vaxtlarını dəyişdirə bilər.",
 	"userrights-no-tempuser": "Müvəqqəti istifadəçilər qruplara əlavə edilə bilməz.",
 	"userrights-no-group": "Müvəqqəti istifadəçilərin qrupları yoxdur.",
+	"userrights-cross-wiki-assignment-for-reserved-name": "Qrupların müvəqqəti istifadəçilərə təyin edilməsinin qarşısını almaq üçün müvəqqəti hesablar sistemi tərəfindən rezerv edilmiş istifadəçi adı üçün lokal olmayan vikidə qruplar təyin edə bilməzsiniz.",
 	"userrights-conflict": "İstifadəçi hüquqlarının dəyişdirilməsi toqquşması! Dəyişikliklərinizi nəzərdən keçirin və təsdiqləyin.",
 	"group": "Qrup:",
 	"group-user": "İstifadəçilər",

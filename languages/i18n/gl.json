@@ -1093,6 +1093,7 @@
 	"userrights-cannot-shorten-expiry": "Non pode adiantar a data de caducidade de pertenza ó grupo \"$1\". Só os usuarios con permisos para engadir e eliminar este grupo poden adiantar datas de caducidade.",
 	"userrights-no-tempuser": "Os usuarios temporais non se poden engadir aos grupos.",
 	"userrights-no-group": "Os usuarios temporais non teñen grupos.",
+	"userrights-cross-wiki-assignment-for-reserved-name": "Non podes asignar grupos nun wiki non local a un nome de usuario reservado polo sistema de contas temporais, para así evitar que se asignen grupos a usuarios temporais.",
 	"userrights-conflict": "Hai un conflito na modificación dos dereitos de usuario! Por favor, revíseo e confirme os seus cambios.",
 	"group": "Grupo:",
 	"group-user": "Usuarios",

@@ -1171,6 +1171,7 @@
 	"userrights-cannot-shorten-expiry": "U kunt de verlooptijd van het groepslidmaatschip van groep \"$1\" niet verkorten. Alleen gebruikers met het recht om deze groep toe te voegen of te verwijderen kunnen de verlooptijd verkorten.",
 	"userrights-no-tempuser": "Tijdelijke gebruikers kunnen niet aan een gebruikersgroep worden toegevoegd.",
 	"userrights-no-group": "Tijdelijke gebruikers hebben geen groepen.",
+	"userrights-cross-wiki-assignment-for-reserved-name": "U kunt op een niet-lokale wiki geen groepen toewijzen aan een gebruikersnaam die is gereserveerd door het tijdelijke accountsysteem. Dit om te voorkomen dat groepen worden toegewezen aan tijdelijke gebruikers.",
 	"userrights-conflict": "Bewerkingsconflict bij het aanpassen van gebruikersrechten! Controleer en bevestig uw wijzigingen.",
 	"group": "Groep:",
 	"group-user": "gebruikers",

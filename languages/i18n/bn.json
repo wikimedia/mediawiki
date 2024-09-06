@@ -2461,6 +2461,7 @@
 	"contributions": "ব্যবহারকারীর অবদান",
 	"tool-link-contributions": "{{GENDER:$1|ব্যবহারকারীর}} অবদান",
 	"contributions-title": "ব্যবহারকারী $1-এর অবদানসমূহ",
+	"contributions-title-for-ip-when-temporary-accounts-enabled": "উত্তরাধিকারী আইপি $1-এর অবদানসমূহ",
 	"contribute-title": "ব্যবহারকারীর অবদান",
 	"mycontris": "অবদান",
 	"anoncontribs": "অবদান",
