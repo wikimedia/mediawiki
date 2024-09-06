@@ -22,7 +22,6 @@ class PreloadedContentBuilderTest extends MediaWikiIntegrationTestCase {
 
 		// Needed for the 'Default preload section' test case due to use of wfMessage()
 		$this->overrideConfigValue( MainConfigNames::UseDatabaseMessages, true );
-		$services->resetServiceForTesting( 'MessageCache' );
 
 		$this->preloadedContentBuilder = $services->getPreloadedContentBuilder();
 	}

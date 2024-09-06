@@ -56,12 +56,6 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			ClassicInterwikiLookup::buildCdbHash( $testInterwikis, $GLOBAL_SCOPE ),
 			MainConfigNames::RCWatchCategoryMembership => true,
 		] );
-		// Reset title services after interwiki prefixes change
-		$services = MediaWikiServices::getInstance();
-		$services->resetServiceForTesting( 'InterwikiLookup' );
-		$services->resetServiceForTesting( '_MediaWikiTitleCodec' );
-		$services->resetServiceForTesting( 'TitleFormatter' );
-		$services->resetServiceForTesting( 'TitleParser' );
 	}
 
 	public function addDBDataOnce() {

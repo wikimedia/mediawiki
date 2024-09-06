@@ -9,19 +9,6 @@ use Wikimedia\Rdbms\IReadableDatabase;
  * @group Database
  */
 class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
-	protected function setUp(): void {
-		parent::setUp();
-
-		// These services cache their joins
-		$this->getServiceContainer()->resetServiceForTesting( 'CommentStore' );
-		$this->getServiceContainer()->resetServiceForTesting( 'ActorMigration' );
-	}
-
-	protected function tearDown(): void {
-		$this->getServiceContainer()->resetServiceForTesting( 'CommentStore' );
-		$this->getServiceContainer()->resetServiceForTesting( 'ActorMigration' );
-		parent::tearDown();
-	}
 
 	/**
 	 * @covers \DatabaseLogEntry::newFromId
