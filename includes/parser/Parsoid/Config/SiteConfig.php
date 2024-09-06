@@ -321,7 +321,7 @@ class SiteConfig extends ISiteConfig {
 		if ( empty( $bits['path'] ) ) {
 			$path = '/';
 		} else {
-			$path = wfRemoveDotSegments( $bits['path'] );
+			$path = UrlUtils::removeDotSegments( $bits['path'] );
 		}
 
 		$relParts = [ 'query' => true, 'fragment' => true ];
