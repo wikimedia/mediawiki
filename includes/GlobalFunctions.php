@@ -30,7 +30,6 @@ use MediaWiki\ProcOpenError;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Shell\Shell;
-use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\Utils\UrlUtils;
@@ -820,58 +819,6 @@ function wfWarn( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {
  */
 function wfLogWarning( $msg, $callerOffset = 1, $level = E_USER_WARNING ) {
 	MWDebug::warning( $msg, $callerOffset + 1, $level, 'production' );
-}
-
-/**
- * Return a Language object from $langcode
- *
- * @deprecated since 1.41, use MediaWiki\Languages\LanguageFactory::getLanguage instead.
- * @param Language|string|bool $langcode Either:
- *                  - a Language object
- *                  - code of the language to get the message for, if it is
- *                    a valid code create a language for that language, if
- *                    it is a string but not a valid code then make a basic
- *                    language object
- *                  - a boolean: if it's false then use the global object for
- *                    the current user's language (as a fallback for the old parameter
- *                    functionality), or if it is true then use global object
- *                    for the wiki's content language.
- * @return Language|StubUserLang
- */
-function wfGetLangObj( $langcode = false ) {
-	wfDeprecated( __FUNCTION__, '1.41' );
-	# Identify which language to get or create a language object for.
-	# Using is_object here due to Stub objects.
-	if ( is_object( $langcode ) ) {
-		# Great, we already have the object (hopefully)!
-		return $langcode;
-	}
-
-	global $wgLanguageCode;
-	$services = MediaWikiServices::getInstance();
-	if ( $langcode === true || $langcode === $wgLanguageCode ) {
-		# $langcode is the language code of the wikis content language object.
-		# or it is a boolean and value is true
-		return $services->getContentLanguage();
-	}
-
-	global $wgLang;
-	if ( $langcode === false || $langcode === $wgLang->getCode() ) {
-		# $langcode is the language code of user language object.
-		# or it was a boolean and value is false
-		return $wgLang;
-	}
-
-	$languageNames = $services->getLanguageNameUtils()->getLanguageNames();
-	// FIXME: Can we use isSupportedLanguage here?
-	if ( isset( $languageNames[$langcode] ) ) {
-		# $langcode corresponds to a valid language.
-		return $services->getLanguageFactory()->getLanguage( $langcode );
-	}
-
-	# $langcode is a string, but not a valid language code; use content language.
-	wfDebug( "Invalid language code passed to wfGetLangObj, falling back to content language." );
-	return $services->getContentLanguage();
 }
 
 /**

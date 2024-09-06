@@ -227,6 +227,8 @@ because of Phabricator reports.
 * Parser::getFreshParser(), deprecated in 1.39, has been removed.
 * ConfigFactory::getDefaultInstance(), deprecated since 1.27, has been
   removed.
+* wfGetLangObj(), deprecated since 1.41, has been removed in favor of
+  LanguageFactory::getLanguage().
 * wfRemoveDotSegments(), deprecated in 1.39, has been removed.
 * IReadableDatabase::getReplicaPos() has been removed without deprecation
   as it's not used anywhere.
