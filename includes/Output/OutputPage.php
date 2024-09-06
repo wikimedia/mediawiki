@@ -2473,7 +2473,7 @@ class OutputPage extends ContextSource {
 		$skinOptions = $skin->getOptions();
 		$oldText = $parserOutput->getRawText();
 		$poOptions += [
-			'suppressClone' => true, // T371022
+			'allowClone' => false, // T371022
 			'skin' => $skin,
 			'injectTOC' => $skinOptions['toc'],
 		];
