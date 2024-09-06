@@ -31,7 +31,6 @@ use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ObjectCache\MemcachedBagOStuff;
 use Wikimedia\ObjectCache\MultiWriteBagOStuff;
 use Wikimedia\ObjectCache\RESTBagOStuff;
-use Wikimedia\ObjectCache\WinCacheBagOStuff;
 use Wikimedia\Stats\StatsFactory;
 
 /**
@@ -155,6 +154,9 @@ class ObjectCacheFactory {
 			} elseif ( $id === CACHE_HASH ) {
 				return new HashBagOStuff();
 			} elseif ( $id === CACHE_ACCEL ) {
+				return self::makeLocalServerCache( $this->getDefaultKeyspace() );
+			} elseif ( $id === 'wincache' ) {
+				wfDeprecated( __METHOD__ . ' with cache ID "wincache"', '1.43' );
 				return self::makeLocalServerCache( $this->getDefaultKeyspace() );
 			}
 
@@ -345,8 +347,6 @@ class ObjectCacheFactory {
 				return APCUBagOStuff::class;
 
 			}
-		} elseif ( function_exists( 'wincache_ucache_get' ) ) {
-			return WinCacheBagOStuff::class;
 		}
 
 		return EmptyBagOStuff::class;

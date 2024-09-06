@@ -2334,7 +2334,7 @@ config-schema:
             - CACHE_NONE:       Do not cache
             - CACHE_DB:         Store cache objects in the DB
             - CACHE_MEMCACHED:  MemCached, must specify servers in $wgMemCachedServers
-            - CACHE_ACCEL:      APC, APCU or WinCache
+            - CACHE_ACCEL:      APC or APCu
             - (other):          A string may be used which identifies a cache
                                 configuration in $wgObjectCaches.
             For a multi-datacenter setup, the underlying service should be configured
@@ -2394,7 +2394,6 @@ config-schema:
             hash: { class: Wikimedia\ObjectCache\HashBagOStuff, reportDupes: false }
             apc: { class: Wikimedia\ObjectCache\APCUBagOStuff, reportDupes: false }
             apcu: { class: Wikimedia\ObjectCache\APCUBagOStuff, reportDupes: false }
-            wincache: { class: Wikimedia\ObjectCache\WinCacheBagOStuff, reportDupes: false }
         type: object
         description: |-
             Advanced object cache configuration.

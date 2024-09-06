@@ -355,6 +355,13 @@ because of Phabricator reports.
 * ReplicatedBagOStuff, deprecated since 1.42, has been removed.
 * The 'replicaOnly' option to SqlBagOStuff has been removed without deprecation.
   It existed for internal use by SqlBagOStuff only.
+* Support for WinCache as local server cache has been removed, because WinCache
+  is not available for supported versions of PHP. The WinCacheBagOStuff class
+  has been removed. Use MediaWikiServices::getLocalServerObjectCache() instead,
+  or the CACHE_ACCEL type instead, which automatically selects APCu when
+  available.
+  The "wincache" cache type (e.g. to ObjectCache::getInstance, and in
+  "wg*CacheType" configuration) remains supported as an alias for CACHE_ACCEL.
 * LockManager::sha1Base16Absolute(), has been removed without deprecation.
 * The "options" parameter to User::createNew() and the $data parameter to
   UserOptionsManager::loadUserOptions() were removed.

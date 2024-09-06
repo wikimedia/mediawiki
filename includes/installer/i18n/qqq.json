@@ -80,7 +80,6 @@
 	"config-memory-bad": "Parameters:\n* $1 is the configured <code>memory_limit</code>.",
 	"config-apc": "Message indicates if this program is available",
 	"config-apcu": "Message indicates if this program is available",
-	"config-wincache": "Message indicates if this program is available",
 	"config-no-cache-apcu": "Status message in the MediaWiki installer environment checks.",
 	"config-mod-security": "Status message in the MediaWiki installer environment checks.",
 	"config-diff3-bad": "Status message in the MediaWiki installer environment checks.",

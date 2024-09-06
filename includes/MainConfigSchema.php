@@ -96,7 +96,6 @@ use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ObjectCache\MemcachedPeclBagOStuff;
 use Wikimedia\ObjectCache\MemcachedPhpBagOStuff;
-use Wikimedia\ObjectCache\WinCacheBagOStuff;
 
 /**
  * This class contains schema declarations for all configuration variables
@@ -3812,7 +3811,7 @@ class MainConfigSchema {
 	 * - CACHE_NONE:       Do not cache
 	 * - CACHE_DB:         Store cache objects in the DB
 	 * - CACHE_MEMCACHED:  MemCached, must specify servers in $wgMemCachedServers
-	 * - CACHE_ACCEL:      APC, APCU or WinCache
+	 * - CACHE_ACCEL:      APC or APCu
 	 * - (other):          A string may be used which identifies a cache
 	 *                     configuration in $wgObjectCaches.
 	 *
@@ -3973,7 +3972,6 @@ class MainConfigSchema {
 			//   use ObjectCache::makeLocalServerCache().
 			'apc' => [ 'class' => APCUBagOStuff::class, 'reportDupes' => false ],
 			'apcu' => [ 'class' => APCUBagOStuff::class, 'reportDupes' => false ],
-			'wincache' => [ 'class' => WinCacheBagOStuff::class, 'reportDupes' => false ],
 		],
 		'type' => 'map',
 	];

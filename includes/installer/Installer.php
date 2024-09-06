@@ -291,7 +291,6 @@ abstract class Installer {
 	 */
 	protected $objectCaches = [
 		'apcu' => 'apcu_fetch',
-		'wincache' => 'wincache_ucache_get'
 	];
 
 	/**
