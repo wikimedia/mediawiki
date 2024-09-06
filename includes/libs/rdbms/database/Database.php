@@ -1455,7 +1455,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	/**
 	 * Get information about an index into an object
 	 *
-	 * @param string $table Unqualified name of table
+	 * @param string $table The unqualified name of a table
 	 * @param string $index Index name
 	 * @param string $fname Calling function name
 	 * @return array<string,mixed>|false Index info map; false if it does not exist
@@ -1681,7 +1681,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	}
 
 	/**
-	 * @param string $table Unqualified name of table
+	 * @param string $table The unqualified name of a table
 	 * @return string|null The AUTO_INCREMENT/SERIAL column; null if not needed
 	 */
 	protected function getInsertIdColumnForUpsert( $table ) {
@@ -1689,7 +1689,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	}
 
 	/**
-	 * @param string $table Unqualified name of table
+	 * @param string $table The unqualified name of a table
 	 * @return array<string,string> Map of (column => type); [] if not needed
 	 */
 	protected function getValueTypesForWithClause( $table ) {
@@ -1842,8 +1842,8 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	 * we don't want to select everything into memory
 	 *
 	 * @see IDatabase::insertSelect()
-	 * @param string $destTable Unqualified name of destination table
-	 * @param string|array $srcTable Unqualified name of source table
+	 * @param string $destTable The unqualified name of destination table
+	 * @param string|array $srcTable The unqualified name of source table
 	 * @param array $varMap
 	 * @param array $conds
 	 * @param string $fname

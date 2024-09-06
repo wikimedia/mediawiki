@@ -486,7 +486,7 @@ interface ISQLPlatform {
 	 * Calling this twice will completely clear any old table aliases. Also, note that
 	 * callers are responsible for making sure the schemas and databases actually exist.
 	 *
-	 * @param array[] $aliases Map of (unqualified table name => (dbname, schema, prefix) map)
+	 * @param array[] $aliases Map of (unqualified name of table => (dbname, schema, prefix) map)
 	 * @since 1.28 in IDatabase, moved to ISQLPlatform in 1.39
 	 */
 	public function setTableAliases( array $aliases );
@@ -521,7 +521,8 @@ interface ISQLPlatform {
 	 *
 	 * @see IDatabase::select()
 	 *
-	 * @param string|array $tables Table reference(s) using unqualified table names
+	 * @param string|array $tables Table reference(s), using the unqualified name of tables
+	 *   or of the form "information_schema.<identifier>".
 	 * @param-taint $tables exec_sql
 	 * @param string|array $vars Field names
 	 * @param-taint $vars exec_sql
@@ -556,13 +557,20 @@ interface ISQLPlatform {
 	 * themselves. Pass the canonical name to such functions. This is only needed
 	 * when calling {@link query()} directly.
 	 *
+	 * The provided name should not qualify the database nor the schema, unless the name
+	 * is of the form "information_schema.<identifier>". Unlike information_schema tables,
+	 * regular tables can receive writes and are subject to configuration regarding table
+	 * aliases, virtual domains, and LBFactory sharding. Callers needing to access remote
+	 * databases should use appropriate connection factory methods.
+	 *
 	 * @note This function does not sanitize user input. It is not safe to use
 	 *   this function to escape user input.
-	 * @param string $name Unqualified name of table (no quotes, db, schema, nor table prefix)
+	 * @param string $name The unqualified name of a table (no quotes, db, schema, nor table
+	 *   prefix), or a table name of the form "information_schema.<unquoted identifier>".
 	 * @param string $format One of:
 	 *   quoted - Automatically pass the table name through addIdentifierQuotes()
 	 *            so that it can be used in a query.
-	 *   raw - Do not add identifier quotes to the table name
+	 *   raw - Do not add identifier quotes to the table name.
 	 * @return string Qualified table name (includes any applicable prefix or foreign db/schema)
 	 */
 	public function tableName( string $name, $format = 'quoted' );
@@ -621,7 +629,8 @@ interface ISQLPlatform {
 	 * Code using the results may need to use the PHP unique() or sort() methods.
 	 *
 	 * @param string $delim Glue to bind the results together
-	 * @param string|array $tables Table reference(s) using unqualified table names
+	 * @param string|array $tables Table reference(s), using the unqualified name of tables
+	 *   or of the form "information_schema.<identifier>". {@see select} for details.
 	 * @param string $field Field name
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 *   Conditions
@@ -638,7 +647,8 @@ interface ISQLPlatform {
 	 *
 	 * @see IDatabase::selectSQLText()
 	 *
-	 * @param string|array $tables Table reference(s) using unqualified table names
+	 * @param string|array $tables Table reference(s), using the unqualified name of tables
+	 *   or of the form "information_schema.<identifier>". {@see select} for details.
 	 * @param string|array $vars Field names
 	 * @param string|array $conds Conditions
 	 * @param string $fname Caller function name

@@ -1014,7 +1014,7 @@ class SQLPlatform implements ISQLPlatform {
 	 * and "(SELECT * from tableA) newTablename" for subqueries (e.g. derived tables)
 	 *
 	 * @see Database::tableName()
-	 * @param string|Subquery $table Unqualified table name or subquery
+	 * @param string|Subquery $table The unqualified name of a table, or Subquery
 	 * @param string|false $alias Table alias (optional)
 	 * @return string SQL name for aliased table. Will not alias a table to its own name
 	 */
@@ -1577,7 +1577,7 @@ class SQLPlatform implements ISQLPlatform {
 	}
 
 	/**
-	 * @param string $table Unqualified name of table
+	 * @param string $table The unqualified name of a table
 	 * @param string|array $conds
 	 * @return Query
 	 */

@@ -115,7 +115,7 @@ class UpdateQueryBuilder {
 	/**
 	 * Manually set the table name to be passed to IDatabase::update()
 	 *
-	 * @param string $table Unqualified name of table
+	 * @param string $table The unqualified name of a table
 	 * @param-taint $table exec_sql
 	 * @return $this
 	 */
@@ -127,7 +127,7 @@ class UpdateQueryBuilder {
 	/**
 	 * Set table for the query. Alias for table().
 	 *
-	 * @param string $table Unqualified name of table
+	 * @param string $table The unqualified name of a table
 	 * @param-taint $table exec_sql
 	 * @return $this
 	 */

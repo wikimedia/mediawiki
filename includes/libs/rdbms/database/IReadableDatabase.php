@@ -167,8 +167,8 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 *
 	 * @internal callers outside of rdbms library should use SelectQueryBuilder instead.
 	 *
-	 * @param string|array $tables Table reference(s) using unqualified table names.
-	 *  {@see select} for details.
+	 * @param string|array $tables Table reference(s), using the unqualified name of tables
+	 *  or of the form "information_schema.<identifier>". {@see select} for details.
 	 * @param-taint $tables exec_sql
 	 * @param string|array $var The field name to select. This must be a valid SQL fragment: do not
 	 *  use unvalidated user input. Can be an array, but must contain exactly 1 element then.
@@ -201,8 +201,8 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 *
 	 * @internal callers outside of rdbms library should use SelectQueryBuilder instead.
 	 *
-	 * @param string|array $tables Table reference(s) using unqualified table names.
-	 *   {@see select} for details.
+	 * @param string|array $tables Table reference(s), using the unqualified name of tables
+	 *   or of the form "information_schema.<identifier>". {@see select} for details.
 	 * @param-taint $tables exec_sql
 	 * @param string $var The field name to select. This must be a valid SQL
 	 *   fragment: do not use unvalidated user input.
@@ -232,7 +232,8 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 * New callers should use {@link newSelectQueryBuilder} with {@link SelectQueryBuilder::fetchResultSet}
 	 * instead, which is more readable and less error-prone.
 	 *
-	 * @param string|array $tables Table reference(s) using unqualified table names.
+	 * @param string|array $tables Table reference(s), using the unqualified name of tables
+	 *   or of the form "information_schema.<identifier>".
 	 * @param-taint $tables exec_sql
 	 *
 	 * Each table reference assigns a table name to a specified collection of rows
@@ -451,8 +452,8 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 * instead, which is more readable and less error-prone.
 	 *
 	 * @internal
-	 * @param string|array $tables Table reference(s) using unqualified table names.
-	 *   {@see select} for details.
+	 * @param string|array $tables Table reference(s), using the unqualified name of tables
+	 *   or of the form "information_schema.<identifier>". {@see select} for details.
 	 * @param-taint $tables exec_sql
 	 * @param string|array $vars Field names
 	 * @param-taint $vars exec_sql
@@ -495,7 +496,8 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 * instead, which is more readable and less error-prone.
 	 *
 	 * @internal
-	 * @param string|string[] $tables Unqualified name of table(s)
+	 * @param string|string[] $tables Table reference(s), using the unqualified name of tables
+	 *   or of the form "information_schema.<identifier>". {@see select} for details.
 	 * @param string $var Column for which NULL values are not counted [default "*"]
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 *   Filters on the table
@@ -522,7 +524,8 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 * @since 1.27 Added $join_conds parameter
 	 *
 	 * @internal
-	 * @param string|string[] $tables Unqualified name of table(s)
+	 * @param string|string[] $tables Table reference(s), using the unqualified name of tables
+	 *   or of the form "information_schema.<identifier>". {@see select} for details.
 	 * @param-taint $tables exec_sql
 	 * @param string $var Column for which NULL values are not counted [default "*"]
 	 * @param-taint $var exec_sql
