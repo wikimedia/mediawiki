@@ -2312,7 +2312,7 @@ MESSAGE;
 		// Internal variables for use by MediaWiki core and/or ResourceLoader.
 		$vars += [
 			// @internal For mediawiki.widgets
-			'wgUrlProtocols' => wfUrlProtocols(),
+			'wgUrlProtocols' => $services->getUrlUtils()->validProtocols(),
 			// @internal For mediawiki.page.watch
 			// Force object to avoid "empty" associative array from
 			// becoming [] instead of {} in JS (T36604)

@@ -493,7 +493,8 @@ class Sanitizer {
 			wfDeprecated( __METHOD__ . ' with sequential array', '1.35' );
 			$allowed = array_fill_keys( $allowed, true );
 		}
-		$hrefExp = '/^(' . wfUrlProtocols() . ')[^\s]+$/';
+		$validProtocols = MediaWikiServices::getInstance()->getUrlUtils()->validProtocols();
+		$hrefExp = '/^(' . $validProtocols . ')[^\s]+$/';
 
 		$out = [];
 		foreach ( $attribs as $attribute => $value ) {
@@ -861,8 +862,9 @@ class Sanitizer {
 		] );
 
 		# Stupid hack
+		$validProtocols = MediaWikiServices::getInstance()->getUrlUtils()->validProtocols();
 		$encValue = preg_replace_callback(
-			'/((?i)' . wfUrlProtocols() . ')/',
+			'/((?i)' . $validProtocols . ')/',
 			static function ( $matches ) {
 				return str_replace( ':', '&#58;', $matches[1] );
 			},
