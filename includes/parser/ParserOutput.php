@@ -418,8 +418,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * Get the output HTML
 	 *
-	 * T293512: in the future, ParserOutput::getText() will be deprecated in favor of invoking the
-	 * ParserOutputTransform pipeline directly on a ParserOutput.
+	 * T293512: in the future, ParserOutput::getText() will be deprecated in favor of invoking
+	 * the OutputTransformPipeline directly on a ParserOutput.
 	 * @param array $options (since 1.31) Transformations to apply to the HTML
 	 * 	- allowClone: (bool) Whether to clone the ParserOutput before
 	 *     applying transformations. Default is false.
@@ -455,7 +455,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @return-taint escaped
 	 * @deprecated since 1.42, this method has side-effects on the ParserOutput
 	 *  (see T353257) and so should be avoided in favor of directly invoking
-	 *  the default output pipeline on a ParserOutput.
+	 *  the default output pipeline on a ParserOutput; for now, use of
+	 *  ::runOutputPipeline() is preferred to ensure that ParserOptions are
+	 *  available.
 	 */
 	public function getText( $options = [] ) {
 		$oldText = $this->mRawText; // T353257

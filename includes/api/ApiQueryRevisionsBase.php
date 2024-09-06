@@ -692,13 +692,15 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				}
 			}
 			if ( $this->parseContent ) {
+				$popts = ParserOptions::newFromContext( $this->getContext() );
 				$po = $this->contentRenderer->getParserOutput(
 					$content,
 					$title,
 					$revision,
-					ParserOptions::newFromContext( $this->getContext() )
+					$popts
 				);
-				$text = $po->getText();
+				// TODO T371004 move runOutputPipeline out of $parserOutput
+				$text = $po->runOutputPipeline( $popts, [] )->getContentHolderText();
 			}
 
 			if ( $text === null ) {

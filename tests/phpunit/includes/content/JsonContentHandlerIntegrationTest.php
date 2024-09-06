@@ -77,15 +77,16 @@ class JsonContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 
 		$content = new JsonContent( $data );
 		$contentRenderer = $this->getServiceContainer()->getContentRenderer();
+		$opts = ParserOptions::newFromAnon();
 		$parserOutput = $contentRenderer->getParserOutput(
 			$content,
 			$title,
 			null,
-			null,
+			$opts,
 			true
 		);
 		$this->assertInstanceOf( ParserOutput::class, $parserOutput );
-		$this->assertEquals( $expected, $parserOutput->getText() );
+		$this->assertEquals( $expected, $parserOutput->runOutputPipeline( $opts, [] )->getContentHolderText() );
 	}
 
 	public function testValidateSave() {

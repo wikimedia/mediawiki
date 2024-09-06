@@ -320,10 +320,11 @@ class McrUndoAction extends FormAction {
 			$parserOutput = $this->revisionRenderer
 				->getRenderedRevision( $rev, $parserOptions, $this->getAuthority() )
 				->getRevisionParserOutput();
-			$previewHTML = $parserOutput->getText( [
+			// TODO T371004 move runOutputPipeline out of $parserOutput
+			$previewHTML = $parserOutput->runOutputPipeline( $parserOptions, [
 				'enableSectionEditLinks' => false,
 				'includeDebugInfo' => true,
-			] );
+			] )->getContentHolderText();
 
 			$out->addParserOutputMetadata( $parserOutput );
 			if ( count( $parserOutput->getWarnings() ) ) {

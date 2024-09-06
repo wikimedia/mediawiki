@@ -56,8 +56,10 @@ class FallbackContentHandlerTest extends MediaWikiLangTestCase {
 
 		$content = $this->newContent( 'Horkyporky' );
 		$contentRenderer = $this->getServiceContainer()->getContentRenderer();
-		$po = $contentRenderer->getParserOutput( $content, $title );
-		$html = $po->getText();
+		$opts = ParserOptions::newFromAnon();
+		// TODO T371004
+		$po = $contentRenderer->getParserOutput( $content, $title, null, $opts );
+		$html = $po->runOutputPipeline( $opts, [] )->getContentHolderText();
 		$html = preg_replace( '#<!--.*?-->#sm', '', $html ); // strip comments
 
 		$this->assertStringNotContainsString( 'Horkyporky', $html );

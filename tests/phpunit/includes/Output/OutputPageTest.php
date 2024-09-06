@@ -1593,17 +1593,17 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	private function createParserOutputStubWithFlags( array $retVals, array $flags ): ParserOutput {
 		$pOut = $this->createMock( ParserOutput::class );
 
-		$mockedGetText = false;
+		$mockedRunOutputPipeline = false;
 		foreach ( $retVals as $method => $retVal ) {
 			$pOut->method( $method )->willReturn( $retVal );
-			if ( $method === 'getText' ) {
-				$mockedGetText = true;
+			if ( $method === 'runOutputPipeline' ) {
+				$mockedRunOutputPipeline = true;
 			}
 		}
 
 		// Needed to ensure OutputPage::getParserOutputText doesn't return null
-		if ( !$mockedGetText ) {
-			$pOut->method( 'getText' )->willReturn( '' );
+		if ( !$mockedRunOutputPipeline ) {
+			$pOut->method( 'runOutputPipeline' )->willReturn( new ParserOutput( '' ) );
 		}
 
 		$arrayReturningMethods = [
@@ -1884,7 +1884,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( '', $op->getHTML() );
 
 		$text = '<some text>';
-		$pOut = $this->createParserOutputStub( 'getText', $text );
+		$pOut = $this->createParserOutputStub( 'runOutputPipeline', new ParserOutput( $text ) );
 
 		$op->addParserOutputMetadata( $pOut );
 		$this->assertSame( '', $op->getHTML() );

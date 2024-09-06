@@ -262,7 +262,6 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	 * @covers \MediaWiki\Parser\ParserOutput::getWrapperDivClass
 	 * @covers \MediaWiki\Parser\ParserOutput::addWrapperDivClass
 	 * @covers \MediaWiki\Parser\ParserOutput::clearWrapperDivClass
-	 * @covers \MediaWiki\Parser\ParserOutput::getText
 	 */
 	public function testWrapperDivClass() {
 		$po = new ParserOutput();
@@ -270,8 +269,9 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
 
 		$po->setRawText( 'Kittens' );
-		$this->assertStringContainsString( 'Kittens', $po->getText() );
-		$this->assertStringNotContainsString( '<div', $po->getText() );
+		$text = $pipeline->run( $po, $opts, [] )->getContentHolderText();
+		$this->assertStringContainsString( 'Kittens', $text );
+		$this->assertStringNotContainsString( '<div', $text );
 		$this->assertSame( 'Kittens', $po->getRawText() );
 
 		$po->addWrapperDivClass( 'foo' );
@@ -543,44 +543,6 @@ EOF
 
 		$this->expectException( LogicException::class );
 		$po->getText();
-	}
-
-	public static function provideGetText_absoluteURLs() {
-		yield 'empty' => [
-			'text' => '',
-			'expectedText' => '',
-		];
-		yield 'no-links' => [
-			'text' => '<p>test</p>',
-			'expectedText' => '<p>test</p>',
-		];
-		yield 'simple link' => [
-			'text' => '<a href="/wiki/Test">test</a>',
-			'expectedText' => '<a href="//TEST_SERVER/wiki/Test">test</a>',
-		];
-		yield 'already absolute, relative' => [
-			'text' => '<a href="//TEST_SERVER/wiki/Test">test</a>',
-			'expectedText' => '<a href="//TEST_SERVER/wiki/Test">test</a>',
-		];
-		yield 'already absolute, https' => [
-			'text' => '<a href="https://TEST_SERVER/wiki/Test">test</a>',
-			'expectedText' => '<a href="https://TEST_SERVER/wiki/Test">test</a>',
-		];
-		yield 'external' => [
-			'text' => '<a href="https://en.wikipedia.org/wiki/Test">test</a>',
-			'expectedText' => '<a href="https://en.wikipedia.org/wiki/Test">test</a>',
-		];
-	}
-
-	/**
-	 * This test aims at being replaced by its version in DefaultOutputTransformTest when ParserOutput::getText
-	 * gets deprecated.
-	 * @dataProvider provideGetText_absoluteURLs
-	 */
-	public function testGetText_absoluteURLs( string $text, string $expectedText ) {
-		$this->overrideConfigValue( MainConfigNames::Server, '//TEST_SERVER' );
-		$parserOutput = new ParserOutput( $text );
-		$this->assertSame( $expectedText, $parserOutput->getText( [ 'absoluteURLs' => true ] ) );
 	}
 
 	/**

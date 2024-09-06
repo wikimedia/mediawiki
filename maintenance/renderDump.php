@@ -142,7 +142,8 @@ class DumpRenderer extends Maintenance {
 			"<title>" . htmlspecialchars( $display, ENT_COMPAT ) . "</title>\n" .
 			"</head>\n" .
 			"<body>\n" .
-			$output->getText() .
+			// TODO T371004 move runOutputPipeline out of $parserOutput
+			$output->runOutputPipeline( $options, [] )->getContentHolderText() .
 			"</body>\n" .
 			"</html>" );
 	}
