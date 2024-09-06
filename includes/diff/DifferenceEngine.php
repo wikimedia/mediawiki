@@ -233,6 +233,7 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * Extra query parameters to be appended to diff page links
+	 * @var array
 	 */
 	private $extraQueryParams = [];
 

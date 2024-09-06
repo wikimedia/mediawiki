@@ -31,6 +31,7 @@ use MediaWiki\Status\Status;
  */
 class PurgeAction extends FormAction {
 
+	/** @var string */
 	private $redirectParams;
 
 	public function getName() {

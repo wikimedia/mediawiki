@@ -53,14 +53,17 @@ use stdClass;
 #[\AllowDynamicProperties]
 class HistoryPager extends ReverseChronologicalPager {
 
+	/** @inheritDoc */
 	public $mGroupByDate = true;
 
 	public HistoryAction $historyPage;
 	public string $buttons;
 	public array $conds;
 
+	/** @var int */
 	protected $oldIdChecked;
 
+	/** @var bool */
 	protected $preventClickjacking = false;
 	/**
 	 * @var array

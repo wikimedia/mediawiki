@@ -52,6 +52,7 @@ class LogEventsList extends ContextSource {
 	public const NO_EXTRA_USER_LINKS = 2;
 	public const USE_CHECKBOXES = 4;
 
+	/** @var int */
 	public $flags;
 
 	/**

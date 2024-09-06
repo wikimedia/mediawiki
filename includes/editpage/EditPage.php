@@ -393,19 +393,29 @@ class EditPage implements IEditObject {
 
 	/** @var string Before even the preview */
 	public $editFormPageTop = '';
+	/** @var string */
 	public $editFormTextTop = '';
+	/** @var string */
 	public $editFormTextBeforeContent = '';
+	/** @var string */
 	public $editFormTextAfterWarn = '';
+	/** @var string */
 	public $editFormTextAfterTools = '';
+	/** @var string */
 	public $editFormTextBottom = '';
+	/** @var string */
 	public $editFormTextAfterContent = '';
+	/** @var string */
 	public $previewTextAfterContent = '';
 
 	/** @var bool should be set to true whenever an article was successfully altered. */
 	public $didSave = false;
+	/** @var int */
 	public $undidRev = 0;
+	/** @var int */
 	private $undoAfter = 0;
 
+	/** @var bool */
 	public $suppressIntro = false;
 
 	/** @var bool */

@@ -40,6 +40,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class MergeHistoryPager extends ReverseChronologicalPager {
 
+	/** @inheritDoc */
 	public $mGroupByDate = true;
 
 	/** @var array */

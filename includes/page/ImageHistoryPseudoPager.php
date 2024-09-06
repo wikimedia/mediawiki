@@ -27,6 +27,7 @@ use MediaWiki\Title\Title;
 use Wikimedia\Timestamp\TimestampException;
 
 class ImageHistoryPseudoPager extends ReverseChronologicalPager {
+	/** @var bool */
 	protected $preventClickjacking = false;
 
 	/**
