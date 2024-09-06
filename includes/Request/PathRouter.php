@@ -23,6 +23,7 @@
 namespace MediaWiki\Request;
 
 use FatalError;
+use MediaWiki\Utils\UrlUtils;
 use stdClass;
 
 /**
@@ -265,7 +266,7 @@ class PathRouter {
 		$matches = $this->internalParse( $path );
 		if ( $matches === null ) {
 			// Try with the normalized path (T100782)
-			$path = wfRemoveDotSegments( $path );
+			$path = UrlUtils::removeDotSegments( $path );
 			$path = preg_replace( '#/+#', '/', $path );
 			$matches = $this->internalParse( $path );
 		}
