@@ -31,7 +31,9 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\StubObject\StubObject;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
+use Wikimedia\IPUtils;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -1111,7 +1113,23 @@ class ParserOptions {
 	 * @return ParserOptions
 	 */
 	public static function newFromContext( IContextSource $context ) {
-		return new ParserOptions( $context->getUser(), $context->getLanguage() );
+		$contextUser = $context->getUser();
+
+		// Use the stashed temporary account name instead of an IP address as the user for the ParserOptions
+		// (if a stashed name is set). This is so that magic words like {{REVISIONUSER}} show the temporary account
+		// name instead of IP address.
+		$tempUserCreator = MediaWikiServices::getInstance()->getTempUserCreator();
+		if ( $tempUserCreator->isEnabled() && IPUtils::isIPAddress( $contextUser->getName() ) ) {
+			// We do not attempt to acquire a temporary account name if no name is stashed, as this may be called in
+			// contexts (such as the parse API) where the user will not be performing an edit on their next action
+			// and therefore would be increasing the rate limit unnecessarily.
+			$tempName = $tempUserCreator->getStashedName( $context->getRequest()->getSession() );
+			if ( $tempName !== null ) {
+				$contextUser = UserIdentityValue::newAnonymous( $tempName );
+			}
+		}
+
+		return new ParserOptions( $contextUser, $context->getLanguage() );
 	}
 
 	/**
