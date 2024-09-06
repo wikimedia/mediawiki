@@ -1014,7 +1014,7 @@ class WebRequest {
 		$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
 		// Pass an explicit PROTO constant instead of PROTO_CURRENT so that we
 		// do not rely on state from the global $wgRequest object (which it would,
-		// via wfGetServerUrl/UrlUtils::expand()/$wgRequest->protocol).
+		// via UrlUtils::getServer()/UrlUtils::expand()/$wgRequest->protocol).
 		if ( $this->getProtocol() === 'http' ) {
 			return ( $urlUtils->getServer( PROTO_HTTP ) ?? '' ) . $this->getRequestURL();
 		} else {

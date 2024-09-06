@@ -528,12 +528,14 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
  * Get the wiki's "server", i.e. the protocol and host part of the URL, with a
  * protocol specified using a PROTO_* constant as in wfExpandUrl()
  *
- * @deprecated since 1.39, use UrlUtils::getServer()
+ * @deprecated since 1.39, use UrlUtils::getServer(); hard-deprecated since 1.43
  * @since 1.32
  * @param string|int|null $proto One of the PROTO_* constants.
  * @return string The URL
  */
 function wfGetServerUrl( $proto ) {
+	wfDeprecated( __FUNCTION__, '1.39' );
+
 	return wfGetUrlUtils()->getServer( $proto ) ?? '';
 }
 

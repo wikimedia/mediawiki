@@ -336,6 +336,7 @@ class GenerateSitemap extends Maintenance {
 		$services = $this->getServiceContainer();
 		$contLang = $services->getContentLanguage();
 		$langConverter = $services->getLanguageConverterFactory()->getLanguageConverter( $contLang );
+		$serverUrl = $services->getUrlUtils()->getServer( PROTO_CANONICAL ) ?? '';
 
 		fwrite( $this->findex, $this->openIndex() );
 
@@ -372,7 +373,7 @@ class GenerateSitemap extends Maintenance {
 					$filename = $this->sitemapFilename( $namespace, $smcount++ );
 					$this->file = $this->open( $this->fspath . $filename, 'wb' );
 					$this->write( $this->file, $this->openFile() );
-					fwrite( $this->findex, $this->indexEntry( $filename ) );
+					fwrite( $this->findex, $this->indexEntry( $filename, $serverUrl ) );
 					$this->output( "\t$this->fspath$filename\n" );
 					$length = $this->limit[0];
 					$i = 1;
@@ -508,11 +509,12 @@ class GenerateSitemap extends Maintenance {
 	 * Return the XML for a single sitemap indexfile entry
 	 *
 	 * @param string $filename The filename of the sitemap file
+	 * @param string $serverUrl Current server url
 	 * @return string
 	 */
-	private function indexEntry( $filename ) {
+	private function indexEntry( $filename, $serverUrl ) {
 		return "\t<sitemap>\n" .
-			"\t\t<loc>" . wfGetServerUrl( PROTO_CANONICAL ) .
+			"\t\t<loc>" . $serverUrl .
 				( substr( $this->urlpath, 0, 1 ) === "/" ? "" : "/" ) .
 				"{$this->urlpath}$filename</loc>\n" .
 			"\t\t<lastmod>{$this->timestamp}</lastmod>\n" .
