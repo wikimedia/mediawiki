@@ -2164,10 +2164,10 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		$cs = $this->commenceCriticalSection( __METHOD__ );
 
 		// Remove the last section (no need to re-index the array)
-		$this->transactionManager->popAtomicLevel();
+		$finalLevelOfImplicitTrxPopped = $this->transactionManager->popAtomicLevel();
 
 		try {
-			if ( $this->transactionManager->isClean() ) {
+			if ( $finalLevelOfImplicitTrxPopped ) {
 				$this->commit( $fname, self::FLUSHING_INTERNAL );
 				$runPostCommitCallbacks = true;
 			} elseif ( $savepointId !== null && $savepointId !== self::NOT_APPLICABLE ) {
