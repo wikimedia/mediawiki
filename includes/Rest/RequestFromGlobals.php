@@ -15,8 +15,11 @@ use MediaWiki\Request\WebRequest;
  * other global PHP state, notably php://input.
  */
 class RequestFromGlobals extends RequestBase {
+	/** @var Uri|null */
 	private $uri;
+	/** @var string|null */
 	private $protocol;
+	/** @var array|null */
 	private $uploadedFiles;
 
 	/**

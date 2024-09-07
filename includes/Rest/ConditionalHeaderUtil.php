@@ -8,9 +8,13 @@ use RuntimeException;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 class ConditionalHeaderUtil {
+	/** @var bool */
 	private $varnishETagHack = true;
+	/** @var string|null */
 	private $eTag;
+	/** @var int|null */
 	private $lastModified;
+	/** @var bool */
 	private $hasRepresentation;
 
 	/**

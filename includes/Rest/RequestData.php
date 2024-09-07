@@ -12,25 +12,31 @@ use Psr\Http\Message\UriInterface;
  * of testing or internal requests.
  */
 class RequestData extends RequestBase {
+	/** @var string */
 	private $method;
 
 	/** @var UriInterface */
 	private $uri;
 
+	/** @var string */
 	private $protocolVersion;
 
 	/** @var StreamInterface */
 	private $body;
 
+	/** @var array */
 	private $serverParams;
 
+	/** @var array */
 	private $cookieParams;
 
+	/** @var array */
 	private $queryParams;
 
 	/** @var UploadedFileInterface[] */
 	private $uploadedFiles;
 
+	/** @var array */
 	private $postParams;
 
 	/**
