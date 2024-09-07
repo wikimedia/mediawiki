@@ -10,7 +10,9 @@ use Wikimedia\RemexHtml\Tokenizer\NullTokenHandler;
  * @internal
  */
 class RemexStripTagHandler extends NullTokenHandler {
+	/** @var bool */
 	private $insideNonVisibleTag = false;
+	/** @var string */
 	private $text = '';
 
 	public function getResult() {

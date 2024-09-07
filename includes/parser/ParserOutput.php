@@ -351,6 +351,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 	/** string CSS classes to use for the wrapping div, stored in the array keys.
 	 * If no class is given, no wrapper is added.
+	 * @var array<string,true>
 	 */
 	private $mWrapperDivClasses = [];
 
