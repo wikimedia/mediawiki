@@ -616,11 +616,13 @@ function wfParseUrl( $url ) {
  * encoded non-ASCII Unicode characters with their UTF-8 original forms
  * for more compact display and legibility for local audiences.
  *
- * @deprecated since 1.39, use UrlUtils::expandIRI()
+ * @deprecated since 1.39, use UrlUtils::expandIRI(); hard-deprecated since 1.43
  * @param string $url
  * @return string
  */
 function wfExpandIRI( $url ) {
+	wfDeprecated( __FUNCTION__, '1.39' );
+
 	return wfGetUrlUtils()->expandIRI( (string)$url ) ?? '';
 }
 

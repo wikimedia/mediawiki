@@ -527,6 +527,7 @@ because of Phabricator reports.
 * Title::getPageViewLanguage(), deprecated in 1.42, now emits warnings.
 * wfUrlProtocols(), deprecated in 1.39, now emits warnings.
 * wfGetServerUrl(), deprecated in 1.39, now emits warnings.
+* wfExpandIRI(), deprecated in 1.39, now emits warnings.
 * The following methods, previously deprecated, now emit deprecation warnings:
   - ContentHandler::getDefaultModelFor(), deprecated since 1.33
   - ContentHandler::getAllContentFormats(), deprecated since 1.35
