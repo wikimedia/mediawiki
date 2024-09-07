@@ -37,6 +37,7 @@ use MediaWiki\User\Options\UserOptionsLookup;
  */
 class UserOptionsModule extends Module {
 
+	/** @inheritDoc */
 	protected $origin = self::ORIGIN_CORE_INDIVIDUAL;
 
 	/**

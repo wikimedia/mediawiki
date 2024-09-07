@@ -34,6 +34,7 @@ use MediaWiki\Title\TitleValue;
  */
 class UserStylesModule extends WikiModule {
 
+	/** @inheritDoc */
 	protected $origin = self::ORIGIN_USER_INDIVIDUAL;
 
 	/**

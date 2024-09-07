@@ -50,6 +50,7 @@ class StartUpModule extends Module {
 	 */
 	private const STORAGE_VERSION = '2';
 
+	/** @var int[] */
 	private $groupIds = [
 		// These reserved numbers MUST start at 0 and not skip any. These are preset
 		// for forward compatibility so that they can be safely referenced by mediawiki.js,

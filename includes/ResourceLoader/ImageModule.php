@@ -41,6 +41,7 @@ class ImageModule extends Module {
 	 */
 	protected $localBasePath = '';
 
+	/** @inheritDoc */
 	protected $origin = self::ORIGIN_CORE_SITEWIDE;
 
 	/** @var Image[][]|null */
@@ -49,6 +50,7 @@ class ImageModule extends Module {
 	protected $images = [];
 	/** @var string|null */
 	protected $defaultColor = null;
+	/** @var bool */
 	protected $useDataURI = true;
 	/** @var array|null */
 	protected $globalVariants = null;
@@ -56,7 +58,9 @@ class ImageModule extends Module {
 	protected $variants = [];
 	/** @var string|null */
 	protected $prefix = null;
+	/** @var string */
 	protected $selectorWithoutVariant = '.{prefix}-{name}';
+	/** @var string */
 	protected $selectorWithVariant = '.{prefix}-{name}-{variant}';
 
 	/**
