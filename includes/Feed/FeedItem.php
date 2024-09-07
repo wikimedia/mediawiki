@@ -27,6 +27,7 @@ use MediaWiki\Language\LanguageCode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
+use MediaWiki\Utils\UrlUtils;
 
 /**
  * @defgroup Feed Feed
@@ -55,6 +56,8 @@ class FeedItem {
 
 	public $rssIsPermalink = false;
 
+	protected UrlUtils $urlUtils;
+
 	/**
 	 * @param string|Title $title Item's title
 	 * @param string $description
@@ -73,22 +76,26 @@ class FeedItem {
 		$this->date = $date;
 		$this->author = $author;
 		$this->comments = $comments;
+		$this->urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
 	}
 
 	/**
 	 * Encode $string so that it can be safely embedded in a XML document
 	 *
 	 * @param string $string String to encode
+	 *
 	 * @return string
 	 */
 	public function xmlEncode( $string ) {
 		$string = str_replace( "\r\n", "\n", $string );
 		$string = preg_replace( '/[\x00-\x08\x0b\x0c\x0e-\x1f]/', '', $string );
+
 		return htmlspecialchars( $string );
 	}
 
 	/**
 	 * Get the unique id of this item; already xml-encoded
+	 *
 	 * @return string
 	 */
 	public function getUniqueID() {
@@ -100,12 +107,15 @@ class FeedItem {
 
 	/**
 	 * Get the unique id of this item, without any escaping
-	 * @return string
+	 *
+	 * @return string|null
 	 */
-	public function getUniqueIdUnescaped() {
+	public function getUniqueIdUnescaped(): ?string {
 		if ( $this->uniqueId ) {
-			return wfExpandUrl( $this->uniqueId, PROTO_CURRENT );
+			return $this->urlUtils->expand( $this->uniqueId, PROTO_CURRENT );
 		}
+
+		return null;
 	}
 
 	/**
@@ -223,6 +233,7 @@ class FeedItem {
 	 * Quickie hack... strip out wikilinks to more legible form from the comment.
 	 *
 	 * @param string $text Wikitext
+	 *
 	 * @return string
 	 */
 	public static function stripComment( $text ) {
