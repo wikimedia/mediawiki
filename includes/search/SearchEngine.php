@@ -62,6 +62,7 @@ abstract class SearchEngine {
 
 	/** @var bool */
 	protected $showSuggestion = true;
+	/** @var string */
 	private $sort = self::DEFAULT_SORT;
 
 	/** @var array Feature values */

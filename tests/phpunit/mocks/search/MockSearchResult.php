@@ -1,8 +1,11 @@
 <?php
 
 class MockSearchResult extends RevisionSearchResult {
+	/** @var bool */
 	private $isMissingRevision = false;
+	/** @var bool */
 	private $isBrokenTitle = false;
+	/** @var string */
 	private $interwikiPrefix = '';
 
 	public function isMissingRevision() {
