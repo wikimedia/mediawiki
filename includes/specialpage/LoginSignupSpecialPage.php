@@ -1152,11 +1152,15 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 							. 'cdx-button--fake-button cdx-button--fake-button--enabled';
 
 						return Html::rawElement( 'div',
+							// The following element IDs are used here:
+							// mw-createaccount, mw-createaccount-cta
 							[ 'id' => 'mw-createaccount' . ( !$isLoggedIn ? '-cta' : '' ),
 								'class' => ( $isLoggedIn ? 'mw-form-related-link-container' : 'mw-ui-vform-field' ) ],
 							( $isLoggedIn ? '' : $this->msg( 'userlogin-noaccount' )->escaped() )
 							. Html::element( 'a',
 								[
+									// The following element IDs are used here:
+									// mw-createaccount-join, mw-createaccount-join-loggedin
 									'id' => 'mw-createaccount-join' . ( $isLoggedIn ? '-loggedin' : '' ),
 									'href' => $linkTitle->getLocalURL( $params['linkQuery'] ),
 									'class' => [ 'mw-authentication-popup-link', $buttonClasses => !$isLoggedIn ],
