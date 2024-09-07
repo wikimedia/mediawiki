@@ -13,6 +13,7 @@ use MWException;
  */
 class ApiFormatRawTest extends ApiFormatTestBase {
 
+	/** @inheritDoc */
 	protected $printerName = 'raw';
 
 	/**

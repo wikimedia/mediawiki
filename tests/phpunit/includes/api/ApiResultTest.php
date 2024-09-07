@@ -1422,6 +1422,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 }
 
 class ApiResultTestStringifiableObject implements Stringable {
+	/** @var string */
 	private $ret;
 
 	public function __construct( $ret = 'Ok' ) {
@@ -1435,6 +1436,7 @@ class ApiResultTestStringifiableObject implements Stringable {
 
 #[AllowDynamicProperties]
 class ApiResultTestSerializableObject implements Stringable {
+	/** @var string */
 	private $ret;
 
 	public function __construct( $ret ) {

@@ -19,6 +19,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ApiFormatBaseTest extends ApiFormatTestBase {
 
+	/** @inheritDoc */
 	protected $printerName = 'mockbase';
 
 	protected function setUp(): void {

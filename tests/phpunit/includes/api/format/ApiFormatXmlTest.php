@@ -12,6 +12,7 @@ use MediaWiki\Title\Title;
  */
 class ApiFormatXmlTest extends ApiFormatTestBase {
 
+	/** @inheritDoc */
 	protected $printerName = 'xml';
 
 	protected function setUp(): void {
