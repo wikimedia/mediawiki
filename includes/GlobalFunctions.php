@@ -22,7 +22,6 @@
 
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Libs\UnpackFailedException;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
@@ -1980,30 +1979,6 @@ function wfShorthandToInteger( ?string $string = '', int $default = -1 ): int {
 	}
 
 	return $val;
-}
-
-/**
- * Wrapper around php's unpack.
- *
- * @param string $format The format string (See php's docs)
- * @param string $data A binary string of binary data
- * @param int|bool $length The minimum length of $data or false. This is to
- * 	prevent reading beyond the end of $data. false to disable the check.
- *
- * Also be careful when using this function to read unsigned 32 bit integer
- * because php might make it negative.
- *
- * @throws MWException If $data not long enough, or if unpack fails
- * @return array Associative array of the extracted data
- * @deprecated since 1.42 Use StringUtils::unpack instead
- */
-function wfUnpack( $format, $data, $length = false ) {
-	wfDeprecated( __FUNCTION__, '1.42' );
-	try {
-		return StringUtils::unpack( (string)$format, (string)$data, $length );
-	} catch ( UnpackFailedException $e ) {
-		throw new MWException( $e->getMessage(), 0, $e );
-	}
 }
 
 /**

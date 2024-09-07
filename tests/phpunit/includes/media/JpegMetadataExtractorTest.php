@@ -111,7 +111,7 @@ class JpegMetadataExtractorTest extends MediaWikiIntegrationTestCase {
 	public function testInfiniteRead() {
 		// test file truncated right after a segment, which previously
 		// caused an infinite loop looking for the next segment byte.
-		// Should get past infinite loop and throw in wfUnpack()
+		// Should get past infinite loop and throw in StringUtils::unpack()
 		$this->expectException( InvalidJpegException::class );
 		$res = JpegMetadataExtractor::segmentSplitter( self::FILE_PATH . 'jpeg-segment-loop1.jpg' );
 	}
