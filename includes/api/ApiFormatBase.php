@@ -39,8 +39,11 @@ abstract class ApiFormatBase extends ApiBase {
 	private string $mFormat;
 	private string $mBuffer = '';
 	private bool $mDisabled = false;
+	/** @var bool */
 	private $mIsWrappedHtml = false;
+	/** @var int|false */
 	private $mHttpStatus = false;
+	/** @var bool */
 	protected $mForceDefaultParams = false;
 
 	/**

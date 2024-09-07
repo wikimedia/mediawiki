@@ -29,6 +29,7 @@ use MediaWiki\Title\ForeignTitle;
  * @ingroup API
  */
 class ApiImportReporter extends ImportReporter {
+	/** @var array[] */
 	private $mResultArr = [];
 
 	/**

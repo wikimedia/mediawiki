@@ -27,6 +27,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  * @ingroup API
  */
 class ApiImageRotate extends ApiBase {
+	/** @var ApiPageSet|null */
 	private $mPageSet = null;
 
 	private RepoGroup $repoGroup;

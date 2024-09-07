@@ -35,7 +35,9 @@ use Wikimedia\ParamValidator\ParamValidator;
 class ApiOpenSearch extends ApiBase {
 	use SearchApi;
 
+	/** @var string|null */
 	private $format = null;
+	/** @var string|null */
 	private $fm = null;
 
 	private LinkBatchFactory $linkBatchFactory;

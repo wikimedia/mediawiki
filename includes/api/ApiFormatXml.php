@@ -30,9 +30,13 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiFormatXml extends ApiFormatBase {
 
+	/** @var string */
 	private $mRootElemName = 'api';
+	/** @var string */
 	public static $namespace = 'http://www.mediawiki.org/xml/api/';
+	/** @var bool */
 	private $mIncludeNamespace = false;
+	/** @var string|null */
 	private $mXslt = null;
 
 	public function getMimeType() {

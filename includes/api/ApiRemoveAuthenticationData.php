@@ -31,7 +31,9 @@ use MediaWiki\MainConfigNames;
  */
 class ApiRemoveAuthenticationData extends ApiBase {
 
+	/** @var string */
 	private $authAction;
+	/** @var string */
 	private $operation;
 
 	private AuthManager $authManager;

@@ -51,6 +51,7 @@ trait SearchApi {
 	 * a valid option for an array for PARAM_TYPE, so we'll use a fake name
 	 * that can't possibly be a class name and describes what the null behavior
 	 * does
+	 * @var string
 	 */
 	private static $BACKEND_NULL_PARAM = 'database-backed';
 

@@ -38,6 +38,7 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiFeedRecentChanges extends ApiBase {
 
+	/** @var array */
 	private $params;
 
 	private SpecialPageFactory $specialPageFactory;

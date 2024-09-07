@@ -26,6 +26,7 @@
  * @ingroup API
  */
 class ApiOpenSearchFormatJson extends ApiFormatJson {
+	/** @var bool */
 	private $warningsAsError;
 
 	public function __construct( ApiMain $main, $fm, $warningsAsError ) {

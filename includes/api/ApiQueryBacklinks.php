@@ -45,9 +45,11 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	 */
 	private $linksMigration;
 
+	/** @var array */
 	private $params;
 	/** @var array */
 	private $cont;
+	/** @var bool */
 	private $redirect;
 
 	private string $bl_ns;
@@ -67,9 +69,12 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	 * @var array
 	 */
 	private $pageMap = [];
+	/** @var array */
 	private $resultArr;
 
+	/** @var array */
 	private $redirTitles = [];
+	/** @var string|null */
 	private $continueStr = null;
 
 	/** @var string[][] output element name, database column field prefix, database table */

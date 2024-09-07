@@ -36,6 +36,7 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryImageInfo extends ApiQueryBase {
 	public const TRANSFORM_LIMIT = 50;
+	/** @var int */
 	private static $transformCount = 0;
 
 	private RepoGroup $repoGroup;

@@ -46,6 +46,7 @@ class ApiComparePages extends ApiBase {
 
 	/** @var Title|null|false */
 	private $guessedTitle = false;
+	/** @var array<string,true> */
 	private $props;
 
 	private IContentHandlerFactory $contentHandlerFactory;

@@ -64,20 +64,31 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 	// endregion
 
-	// phpcs:ignore MediaWiki.Commenting.PropertyDocumentation.WrongStyle
+	/** @var int|string|null */
 	protected $limit;
+	/** @var int|string|null */
 	protected $diffto;
+	/** @var string|null */
 	protected $difftotext;
+	/** @var bool */
 	protected $difftotextpst;
+	/** @var int|string|null */
 	protected $expandTemplates;
+	/** @var bool */
 	protected $generateXML;
+	/** @var int|string|null */
 	protected $section;
+	/** @var bool */
 	protected $parseContent;
+	/** @var bool */
 	protected $fetchContent;
+	/** @var string */
 	protected $contentFormat;
 	protected bool $setParsedLimit = true;
 	protected ?array $slotRoles = null;
+	/** @var string[] */
 	protected $slotContentFormats;
+	/** @var bool */
 	protected $needSlots;
 
 	protected bool $fld_ids = false;

@@ -288,6 +288,7 @@ abstract class ApiBase extends ContextSource {
 	/** @var string */
 	private $mModulePrefix;
 
+	/** @var IReadableDatabase|null */
 	private $mReplicaDB = null;
 	/**
 	 * @var array

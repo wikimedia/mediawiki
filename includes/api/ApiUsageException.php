@@ -31,7 +31,9 @@ use Wikimedia\Message\MessageSpecifier;
  */
 class ApiUsageException extends MWException implements Stringable, ILocalizedException {
 
+	/** @var string|null */
 	protected $modulePath;
+	/** @var StatusValue */
 	protected $status;
 
 	/**

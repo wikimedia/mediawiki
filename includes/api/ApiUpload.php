@@ -49,6 +49,7 @@ class ApiUpload extends ApiBase {
 	/** @var UploadBase|UploadFromChunks */
 	protected $mUpload = null;
 
+	/** @var array */
 	protected $mParams;
 
 	private JobQueueGroup $jobQueueGroup;

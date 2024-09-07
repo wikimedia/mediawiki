@@ -40,10 +40,15 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 	private string $table;
 	private string $tablePrefix;
 	private string $indexTag;
+	/** @var string */
 	private $fieldTitle = 'title';
+	/** @var int */
 	private $dfltNamespace = NS_MAIN;
+	/** @var bool */
 	private $hasNamespace = true;
+	/** @var string|null */
 	private $useIndex = null;
+	/** @var array */
 	private $props = [];
 
 	private NamespaceInfo $namespaceInfo;
