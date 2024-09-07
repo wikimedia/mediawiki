@@ -156,7 +156,7 @@ class LanguageNameUtils {
 	 * @return bool
 	 */
 	public function isValidBuiltInCode( string $code ): bool {
-		return (bool)preg_match( '/^[a-z0-9-]{2,}$/', $code );
+		return (bool)preg_match( '/^[a-z0-9-]{2,128}$/', $code );
 	}
 
 	/**
