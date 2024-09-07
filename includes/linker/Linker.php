@@ -1536,8 +1536,9 @@ class Linker {
 				return $node->name === 'a' && isset( $node->attrs['href'] );
 			},
 			static function ( SerializerNode $node ): SerializerNode {
+				$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
 				$node->attrs['href'] =
-					wfExpandUrl( $node->attrs['href'], PROTO_RELATIVE );
+					$urlUtils->expand( $node->attrs['href'], PROTO_RELATIVE ) ?? false;
 				return $node;
 			}
 		);

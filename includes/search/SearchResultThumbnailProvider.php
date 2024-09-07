@@ -5,6 +5,7 @@ namespace MediaWiki\Search;
 use File;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Search\Entity\SearchResultThumbnail;
 use RepoGroup;
@@ -71,13 +72,14 @@ class SearchResultThumbnailProvider {
 			return null;
 		}
 
+		$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
 		return new SearchResultThumbnail(
 			$thumb->getFile()->getMimeType(),
 			null,
 			$thumb->getWidth(),
 			$thumb->getHeight(),
 			null,
-			wfExpandUrl( $thumb->getUrl(), PROTO_RELATIVE ),
+			$urlUtils->expand( $thumb->getUrl(), PROTO_RELATIVE ) ?? false,
 			$file->getName()
 		);
 	}

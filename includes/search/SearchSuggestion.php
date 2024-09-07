@@ -19,6 +19,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
 /**
@@ -103,7 +104,8 @@ class SearchSuggestion {
 	public function setSuggestedTitle( Title $title = null ) {
 		$this->suggestedTitle = $title;
 		if ( $title !== null ) {
-			$this->url = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
+			$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
+			$this->url = $urlUtils->expand( $title->getFullURL(), PROTO_CURRENT ) ?? false;
 		}
 	}
 
