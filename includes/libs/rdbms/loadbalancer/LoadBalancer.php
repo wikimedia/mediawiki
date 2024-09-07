@@ -819,10 +819,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		return $conn;
 	}
 
-	public function reuseConnection( IDatabase $conn ) {
-		// no-op
-	}
-
 	/**
 	 * @deprecated since 1.39.
 	 */
