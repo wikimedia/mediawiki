@@ -96,6 +96,7 @@ abstract class DatabaseUpdater {
 	 */
 	protected $maintenance;
 
+	/** @var bool */
 	protected $shared = false;
 
 	/** @var HookContainer|null */

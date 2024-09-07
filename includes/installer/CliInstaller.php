@@ -37,6 +37,7 @@ use Wikimedia\Message\MessageSpecifier;
  * @since 1.17
  */
 class CliInstaller extends Installer {
+	/** @var bool */
 	private $specifiedScriptPath = false;
 
 	private $optionMap = [
