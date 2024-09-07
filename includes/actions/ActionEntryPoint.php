@@ -98,7 +98,7 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 		$trxLimits = $this->getConfig( MainConfigNames::TrxProfilerLimits );
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$trxProfiler->setLogger( LoggerFactory::getInstance( 'rdbms' ) );
-		$trxProfiler->setStatsdDataFactory( $this->getStatsdDataFactory() );
+		$trxProfiler->setStatsFactory( $this->getStatsFactory() );
 		$trxProfiler->setRequestMethod( $request->getMethod() );
 		if ( $request->hasSafeMethod() ) {
 			$trxProfiler->setExpectations( $trxLimits['GET'], __METHOD__ );

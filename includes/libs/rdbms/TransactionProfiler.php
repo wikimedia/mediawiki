@@ -19,14 +19,12 @@
  */
 namespace Wikimedia\Rdbms;
 
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
-use NullStatsdDataFactory;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
-use StatsdAwareInterface;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * Detect high-contention DB queries via profiling calls.
@@ -38,11 +36,11 @@ use Wikimedia\ScopedCallback;
  * @ingroup Profiler
  * @ingroup Database
  */
-class TransactionProfiler implements LoggerAwareInterface, StatsdAwareInterface {
+class TransactionProfiler implements LoggerAwareInterface {
 	/** @var LoggerInterface */
 	private $logger;
-	/** @var StatsdDataFactoryInterface */
-	private $stats;
+	/** @var StatsFactory */
+	private $statsFactory;
 	/** @var array<string,array> Map of (event name => map of FLD_* class constants) */
 	private $expect;
 	/** @var array<string,int> Map of (event name => current hits) */
@@ -114,15 +112,21 @@ class TransactionProfiler implements LoggerAwareInterface, StatsdAwareInterface 
 		$this->silenced = array_fill_keys( self::EVENT_NAMES, 0 );
 
 		$this->setLogger( new NullLogger() );
-		$this->setStatsdDataFactory( new NullStatsdDataFactory() );
+		$this->statsFactory = StatsFactory::newNull();
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
 	}
 
-	public function setStatsdDataFactory( StatsdDataFactoryInterface $statsFactory ) {
-		$this->stats = $statsFactory;
+	/**
+	 * Set statsFactory
+	 *
+	 * @param StatsFactory $statsFactory
+	 * @return void
+	 */
+	public function setStatsFactory( StatsFactory $statsFactory ) {
+		$this->statsFactory = $statsFactory;
 	}
 
 	/**
@@ -502,7 +506,11 @@ class TransactionProfiler implements LoggerAwareInterface, StatsdAwareInterface 
 		$violations = ++$this->violations[$event];
 		// First violation; check if this is a web request
 		if ( $violations === 1 && $this->method !== null ) {
-			$this->stats->increment( "rdbms_trxprofiler_warnings.$event.{$this->method}" );
+			$this->statsFactory->getCounter( 'rdbms_trxprofiler_warnings_total' )
+				->setLabel( 'event', $event )
+				->setLabel( 'method', $this->method )
+				->copyToStatsdAt( "rdbms_trxprofiler_warnings.$event.{$this->method}" )
+				->increment();
 		}
 
 		$max = $this->expect[$event][self::FLD_LIMIT];
