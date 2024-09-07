@@ -23,6 +23,7 @@ use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserRigorOptions;
+use MediaWiki\Utils\UrlUtils;
 use MessageLocalizer;
 use RepoGroup;
 use Skin;
@@ -59,6 +60,7 @@ class IntroMessageBuilder {
 	private NamespaceInfo $namespaceInfo;
 	private SkinFactory $skinFactory;
 	private IConnectionProvider $dbProvider;
+	private UrlUtils $urlUtils;
 
 	public function __construct(
 		Config $config,
@@ -74,7 +76,8 @@ class IntroMessageBuilder {
 		RepoGroup $repoGroup,
 		NamespaceInfo $namespaceInfo,
 		SkinFactory $skinFactory,
-		IConnectionProvider $dbProvider
+		IConnectionProvider $dbProvider,
+		UrlUtils $urlUtils
 	) {
 		$this->config = $config;
 		$this->linkRenderer = $linkRenderer;
@@ -90,6 +93,7 @@ class IntroMessageBuilder {
 		$this->namespaceInfo = $namespaceInfo;
 		$this->skinFactory = $skinFactory;
 		$this->dbProvider = $dbProvider;
+		$this->urlUtils = $urlUtils;
 	}
 
 	/**
@@ -409,9 +413,9 @@ class IntroMessageBuilder {
 		}
 
 		if ( !$page->exists() ) {
-			$helpLink = wfExpandUrl( Skin::makeInternalOrExternalUrl(
+			$helpLink = $this->urlUtils->expand( Skin::makeInternalOrExternalUrl(
 				$localizer->msg( 'helppage' )->inContentLanguage()->text()
-			) );
+			), PROTO_CURRENT );
 			if ( $performer->getUser()->isRegistered() ) {
 				$messages->add(
 					$localizer->msg( 'newarticletext', $helpLink ),
