@@ -444,6 +444,8 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::wfMatchesDomainList
 	 */
 	public function testWfMatchesDomainList( $url, $domains, $expected ) {
+		$this->hideDeprecated( 'wfMatchesDomainList' );
+
 		$actual = wfMatchesDomainList( $url, $domains );
 		$this->assertEquals( $expected, $actual );
 	}
