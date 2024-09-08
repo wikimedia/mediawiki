@@ -90,6 +90,7 @@ class ApiMain extends ApiBase {
 			'class' => ApiClientLogin::class,
 			'services' => [
 				'AuthManager',
+				'UrlUtils',
 			],
 		],
 		'logout' => [
@@ -99,12 +100,14 @@ class ApiMain extends ApiBase {
 			'class' => ApiAMCreateAccount::class,
 			'services' => [
 				'AuthManager',
+				'UrlUtils',
 			],
 		],
 		'linkaccount' => [
 			'class' => ApiLinkAccount::class,
 			'services' => [
 				'AuthManager',
+				'UrlUtils',
 			],
 		],
 		'unlinkaccount' => [
@@ -247,6 +250,9 @@ class ApiMain extends ApiBase {
 		],
 		'cspreport' => [
 			'class' => ApiCSPReport::class,
+			'services' => [
+				'UrlUtils',
+			]
 		],
 		'validatepassword' => [
 			'class' => ApiValidatePassword::class,
