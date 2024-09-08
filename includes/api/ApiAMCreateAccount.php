@@ -22,6 +22,7 @@
 
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Utils\UrlUtils;
 
 /**
  * Create an account with AuthManager
@@ -31,19 +32,23 @@ use MediaWiki\Auth\AuthManager;
 class ApiAMCreateAccount extends ApiBase {
 
 	private AuthManager $authManager;
+	private UrlUtils $urlUtils;
 
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
 	 * @param AuthManager $authManager
+	 * @param UrlUtils $urlUtils
 	 */
 	public function __construct(
 		ApiMain $main,
 		$action,
-		AuthManager $authManager
+		AuthManager $authManager,
+		UrlUtils $urlUtils
 	) {
 		parent::__construct( $main, $action, 'create' );
 		$this->authManager = $authManager;
+		$this->urlUtils = $urlUtils;
 	}
 
 	public function getFinalDescription() {
@@ -65,7 +70,7 @@ class ApiAMCreateAccount extends ApiBase {
 		$this->requireAtLeastOneParameter( $params, 'continue', 'returnurl' );
 
 		if ( $params['returnurl'] !== null ) {
-			$bits = wfParseUrl( $params['returnurl'] );
+			$bits = $this->urlUtils->parse( $params['returnurl'] );
 			if ( !$bits || $bits['scheme'] === '' ) {
 				$encParamName = $this->encodeParamName( 'returnurl' );
 				$this->dieWithError(

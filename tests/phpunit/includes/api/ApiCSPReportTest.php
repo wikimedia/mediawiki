@@ -3,7 +3,10 @@
 namespace MediaWiki\Tests\Api;
 
 use ApiCSPReport;
+use ApiMain;
 use ApiResult;
+use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWikiIntegrationTestCase;
@@ -103,8 +106,12 @@ class ApiCSPReportTest extends MediaWikiIntegrationTestCase {
 			'User-Agent' => 'Test/0.0'
 		] );
 
+		$services = $this->getServiceContainer();
+		$context = new DerivativeContext( RequestContext::getMain() );
+		$context->setRequest( $req );
+		$main = new ApiMain( $context );
 		$api = $this->getMockBuilder( ApiCSPReport::class )
-			->disableOriginalConstructor()
+			->setConstructorArgs( [ $main, 'mock', $services->getUrlUtils() ] )
 			->onlyMethods( [ 'getParameter', 'getRequest', 'getResult' ] )
 			->getMock();
 		$api->method( 'getParameter' )->willReturnCallback(
