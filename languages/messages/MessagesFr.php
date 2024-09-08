@@ -60,6 +60,7 @@ $specialPageAliases = [
 	'Deadendpages'              => [ 'Pages_en_impasse', 'PagesEnImpasse' ],
 	'DeletedContributions'      => [ 'Contributions_supprimées', 'ContributionsSupprimées', 'ContributionSupprimees' ],
 	'DoubleRedirects'           => [ 'Doubles_redirections', 'DoublesRedirections', 'Redirections_doubles', 'RedirectionsDoubles' ],
+	'EditRecovery'              => [ 'Récupération_des_modifications' ],
 	'EditWatchlist'             => [ 'Éditer_Liste_de_suivi', 'ÉditerListeDeSuivi' ],
 	'Emailuser'                 => [ 'Envoyer_un_courriel', 'EnvoyerUnCourriel', 'Courriel', 'Envoyer_un_e-mail', 'EnvoyerUnEMail', 'E-mail', 'EMail' ],
 	'ExpandTemplates'           => [ 'ExpansionDesModèles' ],
