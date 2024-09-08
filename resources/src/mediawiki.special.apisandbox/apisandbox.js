@@ -627,7 +627,7 @@
 		 */
 		formatRequest: function ( displayParams, rawParams, method, ajaxOptions ) {
 			var jsonLayout, phpLayout,
-				apiUrl = new mw.Uri( mw.util.wikiScript( 'api' ) ).toString(),
+				apiUrl = new URL( mw.util.wikiScript( 'api' ), location.origin ).toString(),
 				items = [
 					new OO.ui.MenuOptionWidget( {
 						label: Util.parseMsg( 'apisandbox-request-format-url-label' ),
