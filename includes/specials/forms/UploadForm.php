@@ -50,8 +50,6 @@ class UploadForm extends HTMLForm {
 
 	protected $mSourceIds;
 
-	protected $mMaxFileSize = [];
-
 	/** @var array */
 	protected $mMaxUploadSize = [];
 
