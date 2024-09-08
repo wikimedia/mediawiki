@@ -332,8 +332,8 @@ class SiteConfig extends ISiteConfig {
 		$base['path'] = substr( $path, 0, $i + 1 );
 		$rel['path'] = '.' . substr( $path, $i );
 
-		$this->baseUri = wfAssembleUrl( $base );
-		$this->relativeLinkPrefix = wfAssembleUrl( $rel );
+		$this->baseUri = UrlUtils::assemble( $base );
+		$this->relativeLinkPrefix = UrlUtils::assemble( $rel );
 	}
 
 	public function baseURI(): string {
