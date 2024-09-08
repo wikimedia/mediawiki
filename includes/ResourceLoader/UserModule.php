@@ -33,6 +33,7 @@ use MediaWiki\Title\TitleValue;
  * @internal
  */
 class UserModule extends WikiModule {
+	/** @inheritDoc */
 	protected $origin = self::ORIGIN_USER_INDIVIDUAL;
 
 	/**

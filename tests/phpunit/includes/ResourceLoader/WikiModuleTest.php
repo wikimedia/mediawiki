@@ -456,6 +456,7 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 }
 
 class TestResourceLoaderWikiModule extends WikiModule {
+	/** @var array|null */
 	public static $returnFetchTitleInfo = null;
 
 	protected static function fetchTitleInfo( IReadableDatabase $db, array $pages, $fname = null ) {

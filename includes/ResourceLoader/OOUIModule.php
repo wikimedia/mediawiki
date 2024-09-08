@@ -30,8 +30,11 @@ use MediaWiki\Registration\ExtensionRegistry;
  * @internal
  */
 trait OOUIModule {
+	/** @var string[] */
 	protected static $knownScriptsModules = [ 'core' ];
+	/** @var string[] */
 	protected static $knownStylesModules = [ 'core', 'widgets', 'toolbars', 'windows' ];
+	/** @var string[] */
 	protected static $knownImagesModules = [
 		'indicators',
 		// Extra icons

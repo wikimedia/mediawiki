@@ -31,6 +31,7 @@ use Wikimedia\Minify\CSSMin;
  * @since 1.32
  */
 class LessVarFileModule extends FileModule {
+	/** @var array */
 	protected $lessVariables = [];
 
 	/**
