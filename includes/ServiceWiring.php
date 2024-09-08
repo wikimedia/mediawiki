@@ -1007,7 +1007,8 @@ return [
 			$services->getRepoGroup(),
 			$services->getNamespaceInfo(),
 			$services->getSkinFactory(),
-			$services->getConnectionProvider()
+			$services->getConnectionProvider(),
+			$services->getUrlUtils()
 		);
 	},
 
