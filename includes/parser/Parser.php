@@ -440,6 +440,7 @@ class Parser {
 		MainConfigNames::PreprocessorCacheThreshold,
 		MainConfigNames::ParserEnableLegacyMediaDOM,
 		MainConfigNames::EnableParserLimitReporting,
+		MainConfigNames::ParserEnableUserLanguage,
 	];
 
 	/**

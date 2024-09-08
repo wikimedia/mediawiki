@@ -90,6 +90,8 @@ For notes on 1.42.x and older releases, see HISTORY.
   namespaces are valid and have associated talk pages.
 * New preference: "Send password reset emails only when both email address
   and username are provided."
+* (T4085) Added new magic word {{USERLANGUAGE}} which returns the language code
+  of the interface set by the user.
 * …
 
 === New features for sysadmins in 1.43 ===

@@ -300,6 +300,12 @@ class CoreMagicVariables {
 				return $parser->getContentLanguage()->getCode();
 			case 'pagelanguage':
 				return $pageLang->getCode();
+			case 'userlanguage':
+				if ( $svcOptions->get( MainConfigNames::ParserEnableUserLanguage ) ) {
+					return $parser->getOptions()->getUserLang();
+				} else {
+					return $pageLang->getCode();
+				}
 			case 'bcp47':
 			case 'dir':
 			case 'language':

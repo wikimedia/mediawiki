@@ -395,6 +395,7 @@ $magicWords = [
 	'url_path'                => [ 0, 'PATH' ],
 	'url_query'               => [ 0, 'QUERY' ],
 	'url_wiki'                => [ 0, 'WIKI' ],
+	'userlanguage'            => [ 1, 'USERLANGUAGE' ],
 ];
 
 /**

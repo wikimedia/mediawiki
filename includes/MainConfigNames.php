@@ -2463,6 +2463,12 @@ class MainConfigNames {
 	public const EnableMagicLinks = 'EnableMagicLinks';
 
 	/**
+	 * Name constant for the ParserEnableUserLanguage setting, for use with Config::get()
+	 * @see MainConfigSchema::ParserEnableUserLanguage
+	 */
+	public const ParserEnableUserLanguage = 'ParserEnableUserLanguage';
+
+	/**
 	 * Name constant for the ArticleCountMethod setting, for use with Config::get()
 	 * @see MainConfigSchema::ArticleCountMethod
 	 */
