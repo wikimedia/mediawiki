@@ -4,7 +4,8 @@
 			"BaRaN6161 TURK",
 			"BukhariSaeed",
 			"Saraiki",
-			"Amire80"
+			"Amire80",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "لنک  ہیٹھ لکیر:",
@@ -2521,7 +2522,7 @@
 	"feedback-submit": "جمع کرواؤ",
 	"feedback-thanks-title": "شکریہ!",
 	"feedback-useragent": "یوزر ایجنٹ:",
-	"searchsuggest-search": "ڳولو",
+	"searchsuggest-search": "{{SITENAME}} وچ ڳولو",
 	"searchsuggest-containing": "وچ شامل آلے۔۔۔",
 	"api-clientside-error-aborted": "ارداس ترُٻھ پئی۔",
 	"api-clientside-error-invalidresponse": "سرور ولوں غلط جواب۔",
