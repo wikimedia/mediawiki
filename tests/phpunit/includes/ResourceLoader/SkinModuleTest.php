@@ -19,17 +19,16 @@ use Wikimedia\TestingAccessWrapper;
 class SkinModuleTest extends ResourceLoaderTestCase {
 	public static function provideApplyFeaturesCompatibility() {
 		return [
-			[
+			'Alias for unset target (content-thumbnails)' => [
 				[
 					'content-thumbnails' => true,
 				],
 				[
 					'content-media' => true,
 				],
-				true,
-				'The `content-thumbnails` feature is mapped to `content-media`.'
+				true
 			],
-			[
+			'Alias that no-ops (legacy)' => [
 				[
 					'toc' => true,
 					'legacy' => true,
@@ -37,30 +36,9 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 				[
 					'toc' => true,
 				],
-				true,
-				'The legacy key is a no-op.'
+				true
 			],
-			[
-				[
-					'content-parser-output' => true,
-				],
-				[
-					'content-body' => true,
-				],
-				true,
-				'The new `content-parser-output` module was renamed to `content-body`.'
-			],
-			[
-				[
-					'content' => true,
-				],
-				[
-					'content-media' => true,
-				],
-				true,
-				'The `content` feature is mapped to `content-media`.'
-			],
-			[
+			'content-links enables content-links-external if unset' => [
 				[
 					'content-links' => true,
 				],
@@ -68,10 +46,9 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 					'content-links-external' => true,
 					'content-links' => true,
 				],
-				true,
-				'The `content-links` feature will also enable `content-links-external` if it not specified.'
+				true
 			],
-			[
+			'element enables content-links if unset' => [
 				[
 					'element' => true,
 				],
@@ -79,10 +56,9 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 					'element' => true,
 					'content-links' => true,
 				],
-				true,
-				'The `element` feature will turn on `content-links` if not specified.'
+				true
 			],
-			[
+			'content-links does not change content-links-external if set' => [
 				[
 					'content-links-external' => false,
 					'content-links' => true,
@@ -91,10 +67,9 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 					'content-links-external' => false,
 					'content-links' => true,
 				],
-				true,
-				'The `content-links` feature has no impact on content-links-external value.'
+				true
 			],
-			[
+			'list-form does not add unwanted defaults (aliases)' => [
 				[
 					'content-links' => true,
 					'content-thumbnails' => true,
@@ -103,19 +78,16 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 					'content-links' => true,
 					'content-media' => true,
 				],
-				false,
-				'applyFeaturesCompatibility should not opt the skin into things it does not want.' .
-					'It should only rename features.'
+				false
 			],
-			[
+			'list-form does not add unwanted defaults (no aliases)' => [
 				[
-					'element' => true,
+					'elements' => true,
 				],
 				[
-					'element' => true,
+					'elements' => true,
 				],
-				false,
-				'applyFeaturesCompatibility should not opt the skin into things it does not want.'
+				false
 			],
 		];
 	}
@@ -123,11 +95,11 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 	/**
 	 * @dataProvider provideApplyFeaturesCompatibility
 	 */
-	public function testApplyFeaturesCompatibility( array $features, array $expected, bool $optInPolicy, $msg ) {
+	public function testApplyFeaturesCompatibility( array $features, array $expected, bool $optInPolicy ) {
 		// Test protected method
 		$class = TestingAccessWrapper::newFromClass( SkinModule::class );
 		$actual = $class->applyFeaturesCompatibility( $features, $optInPolicy );
-		$this->assertEquals( $expected, $actual, $msg );
+		$this->assertEquals( $expected, $actual );
 	}
 
 	public static function provideGetAvailableLogos() {

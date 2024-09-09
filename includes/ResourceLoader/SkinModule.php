@@ -280,10 +280,14 @@ class SkinModule extends LessVarFileModule {
 
 		$messages = '';
 		// NOTE: Compatibility is only applied when features are provided
-		// in map-form. The list-form does not currently get these.
-		$features = $listMode ? self::applyFeaturesCompatibility(
-			array_fill_keys( $features, true ), false, $messages
-		) : self::applyFeaturesCompatibility( $features, true, $messages );
+		// in map-form. The list-form takes full control instead.
+		$features = $listMode ?
+			self::applyFeaturesCompatibility(
+				array_fill_keys( $features, true ),
+				false,
+				$messages
+			)
+			: self::applyFeaturesCompatibility( $features, true, $messages );
 
 		foreach ( $features as $key => $enabled ) {
 			if ( !isset( self::FEATURE_FILES[$key] ) ) {
@@ -315,8 +319,8 @@ class SkinModule extends LessVarFileModule {
 	/**
 	 * @internal
 	 * @param array $features
-	 * @param bool $addUnspecifiedFeatures whether to add new features if missing
-	 * @param string &$messages to report deprecations
+	 * @param bool $addUnspecifiedFeatures Whether to add new features if missing
+	 * @param string &$messages Messages to report deprecations
 	 * @return array
 	 */
 	protected static function applyFeaturesCompatibility(
@@ -339,7 +343,8 @@ class SkinModule extends LessVarFileModule {
 		}
 
 		// If `content-links` feature is set but no preference for `content-links-external` is set
-		if ( $addUnspecifiedFeatures && isset( $features[ 'content-links' ] )
+		if ( $addUnspecifiedFeatures
+			&& isset( $features[ 'content-links' ] )
 			&& !isset( $features[ 'content-links-external' ] )
 		) {
 			// Assume the same true/false preference for both.
