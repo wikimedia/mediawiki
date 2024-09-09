@@ -107,7 +107,8 @@ exports.config = {
 		[ 'junit', {
 			outputDir: logPath,
 			outputFileFormat: function () {
-				return `WDIO.xunit-${ makeFilenameDate() }.xml`;
+				const random = Math.random().toString( 16 ).slice( 2, 10 );
+				return `WDIO.xunit-${ makeFilenameDate() }-${ random }.xml`;
 			}
 		} ]
 	],
