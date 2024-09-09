@@ -1,12 +1,9 @@
 ( function () {
 
-	var api = new mw.Api(),
-		pageUrl = new mw.Uri();
-
 	function itemTemplate( results ) {
 
 		return results.map( ( result ) => {
-			var imageThumbnailSrc = result.thumbnail ? result.thumbnail.source : '';
+			const imageThumbnailSrc = result.thumbnail ? result.thumbnail.source : '';
 
 			return $( '<div>' ).addClass( 'iw-result__mini-gallery' ).append(
 				$( '<a>' )
@@ -45,10 +42,13 @@
 
 	}
 
+	const api = new mw.Api();
+	const pageUrl = new URL( location.href );
+
 	api.get( {
 		action: 'query',
 		generator: 'search',
-		gsrsearch: pageUrl.query.search,
+		gsrsearch: pageUrl.searchParams.get( 'search' ),
 		gsrnamespace: mw.config.get( 'wgNamespaceIds' ).file,
 		gsrlimit: 3,
 		prop: 'pageimages',
@@ -57,8 +57,7 @@
 		pithumbsize: 300,
 		formatversion: 2
 	} ).done( ( resp ) => {
-		var results = resp.query && resp.query.pages || false,
-			multimediaWidgetTemplate;
+		const results = resp.query && resp.query.pages || false;
 
 		if ( !results ) {
 			return;
@@ -66,7 +65,10 @@
 
 		results.sort( ( a, b ) => a.index - b.index );
 
-		multimediaWidgetTemplate = itemWrapperTemplate( pageUrl.query.search, itemTemplate( results ) );
+		const multimediaWidgetTemplate = itemWrapperTemplate(
+			pageUrl.searchParams.get( 'search' ),
+			itemTemplate( results )
+		);
 		/* we really only need to wait for document ready for DOM manipulation */
 		$( () => {
 			$( '.iw-results' ).append( multimediaWidgetTemplate );

@@ -2036,7 +2036,6 @@ return [
 			'UtilMixin.js',
 		],
 		'dependencies' => [
-			'mediawiki.Uri',
 			'mediawiki.api',
 			'mediawiki.jqueryMsg',
 			'mediawiki.util',
@@ -2049,6 +2048,7 @@ return [
 			'mediawiki.widgets.datetime',
 			'mediawiki.widgets.TitlesMultiselectWidget',
 			'jquery.makeCollapsible',
+			'web2017-polyfills'
 		],
 		'messages' => [
 			'apisandbox-intro',
@@ -2428,7 +2428,7 @@ return [
 		'dependencies' => [
 			'mediawiki.api',
 			'mediawiki.Title',
-			'mediawiki.Uri'
+			'web2017-polyfills'
 		],
 		'messages' => [
 			'search-interwiki-more-results',
