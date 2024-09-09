@@ -10,8 +10,13 @@
 		v-model="targetUser"
 		@input="alreadyBlocked = false"
 	></user-lookup>
-	<target-active-blocks></target-active-blocks>
-	<target-block-log></target-block-log>
+	<target-active-blocks
+		v-if="blockEnableMultiblocks"
+		:target-user="targetUser"
+	></target-active-blocks>
+	<target-block-log
+		:target-user="targetUser"
+	></target-block-log>
 	<block-type-field
 		v-model="blockPartialOptionsSelected"
 		:partial-block-options="blockPartialOptions"
@@ -72,7 +77,7 @@ module.exports = exports = defineComponent( {
 	setup() {
 		const targetUser = ref( mw.config.get( 'blockTargetUser' ) );
 		const expiry = ref( {} );
-
+		const blockEnableMultiblocks = mw.config.get( 'blockEnableMultiblocks' ) || false;
 		const blockPartialOptions = mw.config.get( 'partialBlockActionOptions' ) ?
 			Object.keys( mw.config.get( 'partialBlockActionOptions' ) ).map(
 				// Messages that can be used here:
@@ -232,7 +237,8 @@ module.exports = exports = defineComponent( {
 			additionalDetailsOptions,
 			additionalDetailsSelected,
 			blockPartialOptions,
-			blockPartialOptionsSelected
+			blockPartialOptionsSelected,
+			blockEnableMultiblocks
 		};
 	}
 } );
@@ -240,6 +246,16 @@ module.exports = exports = defineComponent( {
 
 <style lang="less">
 @import 'mediawiki.skin.variables.less';
+
+// HACK: The accordions within the form need to be full width.
+.mw-htmlform-codex {
+	max-width: unset;
+}
+
+// HACK: Set the max-width of the fields back to what they should be.
+.cdx-field {
+	max-width: @size-4000;
+}
 
 .mw-block-hr {
 	margin-top: @spacing-200;
