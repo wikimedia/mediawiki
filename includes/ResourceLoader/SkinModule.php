@@ -357,8 +357,8 @@ class SkinModule extends LessVarFileModule {
 
 		// The `content-links` feature was split out from `elements`.
 		// Make sure skins asking for `elements` also get these by default.
-		if ( $addUnspecifiedFeatures && isset( $features[ 'element' ] ) && !isset( $features[ 'content-links' ] ) ) {
-			$features[ 'content-links' ] = $features[ 'element' ];
+		if ( $addUnspecifiedFeatures && isset( $features[ 'elements' ] ) && !isset( $features[ 'content-links' ] ) ) {
+			$features[ 'content-links' ] = $features[ 'elements' ];
 		}
 
 		// The interface module is a short hand for several modules. Enable them now.
