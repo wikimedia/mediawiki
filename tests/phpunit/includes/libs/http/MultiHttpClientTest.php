@@ -318,6 +318,115 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'https://example.com/path?query=another%20string', $reqs[1]['url'] );
 	}
 
+	/**
+	 * @dataProvider provideAssembleUrl
+	 * @param array $bits
+	 * @param string $expected
+	 * @throws ReflectionException
+	 */
+	public function testAssembleUrl( array $bits, string $expected ) {
+		$class = TestingAccessWrapper::newFromClass( MultiHttpClient::class );
+		$this->assertSame( $expected, $class->assembleUrl( $bits ) );
+	}
+
+	public static function provideAssembleUrl(): Generator {
+		$schemes = [
+			'' => [],
+			'http://' => [
+				'scheme' => 'http',
+			],
+		];
+
+		$hosts = [
+			'' => [],
+			'example.com' => [
+				'host' => 'example.com',
+			],
+			'example.com:123' => [
+				'host' => 'example.com',
+				'port' => 123,
+			],
+			'id@example.com' => [
+				'user' => 'id',
+				'host' => 'example.com',
+			],
+			'id@example.com:123' => [
+				'user' => 'id',
+				'host' => 'example.com',
+				'port' => 123,
+			],
+			'id:key@example.com' => [
+				'user' => 'id',
+				'pass' => 'key',
+				'host' => 'example.com',
+			],
+			'id:key@example.com:123' => [
+				'user' => 'id',
+				'pass' => 'key',
+				'host' => 'example.com',
+				'port' => 123,
+			],
+		];
+
+		foreach ( $schemes as $scheme => $schemeParts ) {
+			foreach ( $hosts as $host => $hostParts ) {
+				foreach ( [ '', '/', '/0', '/path' ] as $path ) {
+					foreach ( [ '', '0', 'query' ] as $query ) {
+						foreach ( [ '', '0', 'fragment' ] as $fragment ) {
+							$parts = array_merge(
+								$schemeParts,
+								$hostParts
+							);
+							$url = $scheme .
+								$host .
+								$path;
+
+							if ( $path !== '' ) {
+								$parts['path'] = $path;
+							}
+							if ( $query !== '' ) {
+								$parts['query'] = $query;
+								$url .= '?' . $query;
+							}
+							if ( $fragment !== '' ) {
+								$parts['fragment'] = $fragment;
+								$url .= '#' . $fragment;
+							}
+
+							yield [ $parts, $url ];
+						}
+					}
+				}
+			}
+		}
+
+		yield [
+			[
+				'scheme' => 'http',
+				'user' => 'id',
+				'pass' => 'key',
+				'host' => 'example.org',
+				'port' => 321,
+				'path' => '/over/there',
+				'query' => 'name=ferret&foo=bar',
+				'fragment' => 'nose',
+			],
+			'http://id:key@example.org:321/over/there?name=ferret&foo=bar#nose',
+		];
+
+		// Account for parse_url() on PHP >= 8 returning an empty query field for URLs ending with
+		// '?' such as "http://url.with.empty.query/foo?" (T268852)
+		yield [
+			[
+				'scheme' => 'http',
+				'host' => 'url.with.empty.query',
+				'path' => '/foo',
+				'query' => '',
+			],
+			'http://url.with.empty.query/foo',
+		];
+	}
+
 	public static function provideHeader() {
 		// Invalid
 		yield 'colon space' => [ false, [ 'Foo: X' => 'Y' ] ];

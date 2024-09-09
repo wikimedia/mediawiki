@@ -710,28 +710,75 @@ class MultiHttpClient implements LoggerAwareInterface {
 	}
 
 	private function useReverseProxy( array &$req, $proxy ) {
-		$parsedProxy = wfParseUrl( $proxy );
+		$parsedProxy = parse_url( $proxy );
 		if ( $parsedProxy === false ) {
 			throw new InvalidArgumentException( "Invalid reverseProxy configured: $proxy" );
 		}
-		$parsedUrl = wfParseUrl( $req['url'] );
+		$parsedUrl = parse_url( $req['url'] );
 		if ( $parsedUrl === false ) {
 			throw new InvalidArgumentException( "Invalid url specified: {$req['url']}" );
 		}
 		// Set the current host in the Host header
+		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset
 		$req['headers']['Host'] = $parsedUrl['host'];
 		// Replace scheme, host and port in the request
+		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset
 		$parsedUrl['scheme'] = $parsedProxy['scheme'];
+		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset
 		$parsedUrl['host'] = $parsedProxy['host'];
 		if ( isset( $parsedProxy['port'] ) ) {
 			$parsedUrl['port'] = $parsedProxy['port'];
 		} else {
 			unset( $parsedUrl['port'] );
 		}
-		$req['url'] = wfAssembleUrl( $parsedUrl );
+		$req['url'] = self::assembleUrl( $parsedUrl );
 		// Explicitly disable use of another proxy by setting to false,
 		// since null will fallback to $this->proxy
 		$req['proxy'] = false;
+	}
+
+	/**
+	 * This is derived from MediaWiki\Utils\UrlUtils::assemble but changed to work
+	 * with parse_url's result so the delimiter is hardcoded.
+	 *
+	 * The basic structure used:
+	 * [scheme://][[user][:pass]@][host][:port][path][?query][#fragment]
+	 *
+	 * @param array $urlParts URL parts, as output from parse_url()
+	 * @return string URL assembled from its component parts
+	 */
+	private static function assembleUrl( array $urlParts ): string {
+		$result = isset( $urlParts['scheme'] ) ? $urlParts['scheme'] . '://' : '';
+
+		if ( isset( $urlParts['host'] ) ) {
+			if ( isset( $urlParts['user'] ) ) {
+				$result .= $urlParts['user'];
+				if ( isset( $urlParts['pass'] ) ) {
+					$result .= ':' . $urlParts['pass'];
+				}
+				$result .= '@';
+			}
+
+			$result .= $urlParts['host'];
+
+			if ( isset( $urlParts['port'] ) ) {
+				$result .= ':' . $urlParts['port'];
+			}
+		}
+
+		if ( isset( $urlParts['path'] ) ) {
+			$result .= $urlParts['path'];
+		}
+
+		if ( isset( $urlParts['query'] ) && $urlParts['query'] !== '' ) {
+			$result .= '?' . $urlParts['query'];
+		}
+
+		if ( isset( $urlParts['fragment'] ) ) {
+			$result .= '#' . $urlParts['fragment'];
+		}
+
+		return $result;
 	}
 
 	/**
