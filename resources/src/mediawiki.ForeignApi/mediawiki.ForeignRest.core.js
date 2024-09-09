@@ -8,7 +8,7 @@ module.exports = ( function () {
 	 * The foreign wiki must be configured to accept requests from the current wiki. See
 	 * <https://www.mediawiki.org/wiki/Manual:$wgCrossSiteAJAXdomains> for details.
 	 * ```
-	 * var api = new mw.ForeignRest( 'https://commons.wikimedia.org/w/rest.php' );
+	 * const api = new mw.ForeignRest( 'https://commons.wikimedia.org/w/rest.php' );
 	 * api.get( '/page/Main_Page/html' )
 	 * .done( function ( data ) {
 	 *     console.log( data );
