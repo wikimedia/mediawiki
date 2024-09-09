@@ -525,7 +525,7 @@ class GlobalIdGenerator {
 				$clkSeq = ( $clkSeq + 1 ) % $clockSeqSize;
 				$sec = time();
 				$msecCounter = 0;
-				$randOffset = mt_rand( 0, $offsetSize - 1 );
+				$randOffset = random_int( 0, $offsetSize - 1 );
 				trigger_error( "Clock was set back; sequence number incremented." );
 			} elseif ( $sec === $prevSec ) {
 				// The time matches the last ID. Bump the tie-breaking counter.
@@ -541,10 +541,10 @@ class GlobalIdGenerator {
 			}
 		} else {
 			// Initialize UID lock file information
-			$clkSeq = mt_rand( 0, $clockSeqSize - 1 );
+			$clkSeq = random_int( 0, $clockSeqSize - 1 );
 			$sec = time();
 			$msecCounter = 0;
-			$randOffset = mt_rand( 0, $offsetSize - 1 );
+			$randOffset = random_int( 0, $offsetSize - 1 );
 		}
 
 		// Update and release the UID lock file
