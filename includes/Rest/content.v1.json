@@ -1,6 +1,6 @@
 {
 	"mwapi": "1.0.0",
-	"moduleId": "content.v1",
+	"moduleId": "content/v1",
 	"info": {
 		"version": "1.0"
 	},

@@ -3,7 +3,7 @@
 const { action, assert, REST, utils } = require( 'api-testing' );
 const url = require( 'url' );
 
-let pathPrefix = 'rest.php/content.v1';
+let pathPrefix = 'rest.php/content/v1';
 
 // Parse a URL-ref, which may or may not contain a protocol and host.
 // WHATWG URL currently doesn't support partial URLs, see https://github.com/whatwg/url/issues/531

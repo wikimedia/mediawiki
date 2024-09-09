@@ -2,7 +2,7 @@
 
 const { action, assert, REST, utils } = require( 'api-testing' );
 
-let pathPrefix = 'rest.php/content.v1';
+let pathPrefix = 'rest.php/content/v1';
 
 describe( 'PUT /page/{title}', () => {
 	let client, mindy, mindyToken;
