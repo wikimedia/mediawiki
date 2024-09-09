@@ -31,6 +31,17 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 			],
 			[
 				[
+					'toc' => true,
+					'legacy' => true,
+				],
+				[
+					'toc' => true,
+				],
+				true,
+				'The legacy key is a no-op.'
+			],
+			[
+				[
 					'content-parser-output' => true,
 				],
 				[
