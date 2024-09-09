@@ -49,12 +49,17 @@ class SkinTemplate extends Skin {
 	 */
 	public $template;
 
+	/** @var string */
 	public $thispage;
+	/** @var string */
 	public $titletxt;
+	/** @var string */
 	public $userpage;
 	/** @var bool TODO: Rename this to $isRegistered (but that's a breaking change) */
 	public $loggedin;
+	/** @var string */
 	public $username;
+	/** @var array */
 	public $userpageUrlDetails;
 
 	/** @var bool */
@@ -63,6 +68,7 @@ class SkinTemplate extends Skin {
 	/** @var bool */
 	private $isNamedUser;
 
+	/** @var bool */
 	private $templateContextSet = false;
 	/** @var array|null */
 	private $contentNavigationCached;

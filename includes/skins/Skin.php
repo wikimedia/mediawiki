@@ -73,6 +73,7 @@ abstract class Skin extends ContextSource {
 	 * @var array Skin options passed into constructor
 	 */
 	protected $options = [];
+	/** @var Title|null */
 	protected $mRelevantTitle = null;
 
 	/**
