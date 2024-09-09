@@ -28,6 +28,16 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 				],
 				true
 			],
+			'Alias with conflict (content-thumbnails)' => [
+				[
+					'content-thumbnails' => true,
+					'content-media' => false,
+				],
+				[
+					'content-media' => false,
+				],
+				true
+			],
 			'Alias that no-ops (legacy)' => [
 				[
 					'toc' => true,
