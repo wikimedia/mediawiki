@@ -176,7 +176,7 @@ class ApiMain extends ApiBase {
 				'ContentHandlerFactory',
 				'PageEditStash',
 				'RevisionLookup',
-				'StatsdDataFactory',
+				'StatsFactory',
 				'WikiPageFactory',
 				'TempUserCreator',
 				'UserFactory',
