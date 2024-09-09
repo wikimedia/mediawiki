@@ -2368,7 +2368,6 @@
 	"mycontris": "Doprinosi",
 	"anoncontribs": "Doprinosi",
 	"contribute": "Doprinosi",
-	"contribsub2": "Za {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "Za {{GENDER:$2|$1}}",
 	"contributions-edit-count": "{{GENDER:$1|Korisnik|Korisnica}} sa $2 {{PLURAL:$2|izmena|izmene}}.",
 	"contributions-account-creation-date": "Nalog napravljen $1",

@@ -2140,7 +2140,6 @@
 	"mycontris": "Contribucions",
 	"anoncontribs": "Contribucions",
 	"contribute": "Contribuïr",
-	"contribsub2": "Per {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "Per {{GENDER:$2|$1}}",
 	"contributions-account-creation-date": "Còmpte creat sus $1.",
 	"contributions-userdoesnotexist": "Lo compte d'utilizaire « $1 » es pas enregistrat.",

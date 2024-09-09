@@ -2500,7 +2500,6 @@
 	"mycontris": "Bidrag",
 	"anoncontribs": "Bidrag",
 	"contribute": "Bidra",
-	"contribsub2": "För {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "För {{GENDER:$2|$1}}",
 	"contributions-edit-count": "En {{GENDER:$1|användare}} med $2 {{PLURAL:$2|redigering|redigeringar}}.",
 	"contributions-account-creation-date": "Konto skapat $1.",

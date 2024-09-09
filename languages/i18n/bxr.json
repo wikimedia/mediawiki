@@ -2398,7 +2398,6 @@
 	"mycontris": "Хуби нэмэри",
 	"anoncontribs": "Хуби нэмэри",
 	"contribute": "Оруулһан хуби нэмэри",
-	"contribsub2": " {{GENDER:$3|$1}} ($2)-ой хуби нэмэри",
 	"contributions-subtitle": "{{GENDER:$2|$1}} тула",
 	"contributions-edit-count": "{{GENDER:$1|Эрэгтэй хабаадагша|Эмэгтэй хабаадагша}}  $2=һоо {{PLURAL:$2|заһабаряар|заһабаринуудаар}}.",
 	"contributions-account-creation-date": "$1 бүридхэлэй бэшэлгэ зохёогдоо.",

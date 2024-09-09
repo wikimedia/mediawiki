@@ -2238,7 +2238,6 @@
 	"contributions-title": "$1 қатысушысының үлесі",
 	"mycontris": "Үлесім",
 	"anoncontribs": "Үлесім",
-	"contribsub2": "{{GENDER:$3|$1}} үлесі ($2)",
 	"contributions-subtitle": "{{GENDER:$2|$1}} үлесі",
 	"contributions-edit-count": "Қатысушының $2 өңдемесі бар.",
 	"contributions-account-creation-date": "Аккаунт $1 құрылған.",

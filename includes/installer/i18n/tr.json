@@ -85,7 +85,6 @@
 	"config-memory-bad": "<strong>Uyarı:</strong> PHP'nin <code>memory_limit</code> (hafıza sınırı) değeri $1.\nBu büyük ihtimalle çok düşük.\nKurulum başarısız olabilir!",
 	"config-apc": "[https://www.php.net/tr/apc APC] kuruldu",
 	"config-apcu": "[https://www.php.net/tr/apcu APCu] kuruldu",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] kuruldu",
 	"config-no-cache-apcu": "<strong>Uyarı:</strong> [https://www.php.net/tr/apcu APCu] veya [https://www.iis.net/downloads/microsoft/wincache-extension WinCache] kurulumu bulunamadı.\nNesne önbellekleme etkin değil.",
 	"config-mod-security": "<strong>Uyarı:</strong> Web sunucunuz [https://modsecurity.org/mod_security2 mod_security] etkin. Bunun birçok yaygın yapılandırması bulunur ve eğer yanlış yapılandırılmış ise, bu MediaWiki ve kullanıcılara isteğe bağlı içerik göndermesine izin veren diğer yazılımlar için sorun oluşturabilir.\nMümkünse bu devre dışı bırakılmalıdır. Aksi takdirde rastgele hatalar alırsanız, [https://modsecurity.org/documentation/mod_security belgelemesine] bakın veya sunucunuzun desteğine başvurun.",
 	"config-diff3-bad": "GNU diff3 metin karşılaştırma programı bulunamadı. Şimdilik bunu görmezden gelebilirsiniz, ancak daha sık düzenleme çakışmalarına maruz kalabilirsiniz.",

@@ -2488,7 +2488,6 @@
 	"mycontris": "Muokkaukset",
 	"anoncontribs": "Muokkaukset",
 	"contribute": "Osallistu",
-	"contribsub2": "Käyttäjän {{GENDER:$3|$1}} ($2) muokkaukset",
 	"contributions-subtitle": "Käyttäjän {{GENDER:$2|$1}} muokkaukset",
 	"contributions-edit-count": "{{GENDER:$1|Käyttäjällä}} on $2 {{PLURAL:$2|muokkaus|muokkausta}}.",
 	"contributions-account-creation-date": "Tunnus on luotu $1.",

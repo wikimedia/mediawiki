@@ -24,7 +24,6 @@
 	"config-env-good": "محیط بررسی بوته.\nشما ئه توانیت میڈیاویکی ئا نصب کنیت.",
 	"config-apc": "[https://www.php.net/apc APC] نصب بوت.",
 	"config-apcu": "[https://www.php.net/apcu APCu] نصب بوت.",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] نصب بوت.",
 	"config-ns-generic": "پروژه",
 	"config-ns-other-default": "نی ویکی",
 	"config-admin-password": "چیهر گال یا پاسورد:",

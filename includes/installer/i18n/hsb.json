@@ -51,7 +51,6 @@
 	"config-memory-raised": "PHP-parameter <code>memory_limit</code> je $1, je so na hódnotu $2 zwyšił.",
 	"config-memory-bad": "'''Warnowanje:''' PHP-parameter <code>memory_limit</code> ma hódnotu $1,\nTo je najskerje přeniske.\nInstalacija móhła so njeporadźić!",
 	"config-apc": "[https://www.php.net/apc APC] je instalowany",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] je instalowany",
 	"config-diff3-bad": "GNU diff3 njenamakany.",
 	"config-no-uri": "'''Zmylk:''' Aktualny URI njeda so postajić.\nInstalacija bu přetorhnjena.",
 	"config-no-cli-uri": "'''Warnowanje''': Žana skriptowa šćežka (<code>--scriptpath</code>) podata, standard so wužiwa: <code>$1</code>.",

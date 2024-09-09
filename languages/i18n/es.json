@@ -2649,7 +2649,6 @@
 	"mycontris": "Contribuciones",
 	"anoncontribs": "Contribuciones",
 	"contribute": "Contribuir",
-	"contribsub2": "Para {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "Para {{GENDER:$2|$1}}",
 	"contributions-edit-count": "{{GENDER:$1|Un usuario|Una usuaria}} con $2 {{PLURAL:$2|edición|ediciones}}.",
 	"contributions-account-creation-date": "Cuenta creada el $1.",

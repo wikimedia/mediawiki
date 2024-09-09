@@ -2416,7 +2416,6 @@
 	"mycontris": "ჩქიმი მიშნაღელი თია",
 	"anoncontribs": "მიშნაღელი თიეფი",
 	"contribute": "ავტორი",
-	"contribsub2": "მახვარებუ {{GENDER:$3|$1}} მიშნაღელი თია ($2)",
 	"contributions-subtitle": "{{GENDER:$2|$1}}-შო",
 	"contributions-edit-count": "{{GENDER:$1|მახვარებუ}} $2 {{PLURAL:$2|რედაქტირაფათ}}.",
 	"contributions-account-creation-date": "ანგარიშიშ გოჭყაფაშ თარიღი: $1.",

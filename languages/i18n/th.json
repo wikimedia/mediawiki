@@ -2433,7 +2433,6 @@
 	"mycontris": "ส่วนร่วม",
 	"anoncontribs": "ส่วนร่วม",
 	"contribute": "ส่วนร่วม",
-	"contribsub2": "สำหรับ {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "สำหรับ {{GENDER:$2|$1}}",
 	"contributions-edit-count": "{{GENDER:$1|ผู้ใช้}}ได้ทำ{{PLURAL:$2|การแก้ไข}}ไป $2 ครั้ง",
 	"contributions-account-creation-date": "บัญชีสร้างขึ้นเมื่อ $1",

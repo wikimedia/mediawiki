@@ -1930,7 +1930,6 @@
 	"contribute-title": "Dalībnieka devums",
 	"mycontris": "Devums",
 	"anoncontribs": "Devums",
-	"contribsub2": "{{GENDER:$3|Dalībnieks|Dalībniece}}: $1 ($2)",
 	"contributions-edit-count": "{{GENDER:$1|Dalībnieks|Dalībniece}} ar $2 {{PLURAL:$2|labojumiem|labojumu|labojumiem}}.",
 	"contributions-account-creation-date": "Konts izveidots $1.",
 	"contributions-userdoesnotexist": "Dalībnieks \"$1\" nav reģistrēts.",

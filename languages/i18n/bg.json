@@ -2406,7 +2406,6 @@
 	"mycontris": "Приноси",
 	"anoncontribs": "Приноси",
 	"contribute": "Добавете своя принос",
-	"contribsub2": "За {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "За {{GENDER:$2|$1}}",
 	"contributions-edit-count": "{{GENDER:$1|Потребител}} с $2 {{PLURAL:$2|редакция|редакции}}.",
 	"contributions-account-creation-date": "Сметката е създадена на $1.",

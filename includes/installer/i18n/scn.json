@@ -20,7 +20,6 @@
 	"config-env-php": "PHP $1 è nstallatu.",
 	"config-apc": "[https://www.php.net/apc APC] è nstallatu",
 	"config-apcu": "[https://www.php.net/apcu APCu] è nstallatu",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] è nstallatu",
 	"config-db-type": "Tipu di databbasi:",
 	"config-db-host": "Host dû databbasi:",
 	"config-db-install-account": "Cuntu utentu pâ nstallazzioni",

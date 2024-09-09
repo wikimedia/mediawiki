@@ -17,6 +17,7 @@
 			"Macofe",
 			"Maria zaos",
 			"Matma Rex",
+			"McDutchie",
 			"Toliño",
 			"Umherirrender",
 			"VaiPolaSombra"
@@ -74,7 +75,7 @@
 	"apihelp-changecontentmodel-param-title": "Título da páxina para a que cambiar o modelo de contido. Non pode usarse xunto con <var>$1pageid</var>.",
 	"apihelp-changecontentmodel-param-pageid": "Identificador da páxina para a que cambiar o modelo de contido. Non pode usarse xunto con <var>$1title</var>.",
 	"apihelp-changecontentmodel-param-summary": "Editar o resumo e o motivo da entrada do rexistro",
-	"apihelp-changecontentmodel-param-tags": "Cambiar as etiquetas para aplicalas á entrada do rexistro e editalas.",
+	"apihelp-changecontentmodel-param-tags": "As etiquetas de cambio que se aplicarán á entrada do rexistro e á edición.",
 	"apihelp-changecontentmodel-param-model": "Modelo de contido para o novo contido.",
 	"apihelp-changecontentmodel-param-bot": "Marcar o cambio de modelo de contido cun sinal de bot.",
 	"apihelp-changecontentmodel-example": "Cambiar a páxina principal para ter o modelo de contido <code>text</code>",

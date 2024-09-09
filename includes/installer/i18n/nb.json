@@ -67,7 +67,6 @@
 	"config-memory-bad": "'''Advarsel:''' PHPs <code>memory_limit</code> er $1.\nDette er sannsynligvis for lavt.\nInstallasjonen kan mislykkes!",
 	"config-apc": "[https://www.php.net/apc APC] er installert",
 	"config-apcu": "[https://www.php.net/apcu APCu] er installert",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] er installert",
 	"config-no-cache-apcu": "<strong>Advarsel:</strong> Kunne ikke finne [https://www.php.net/apcu APCu] eller [https://www.iis.net/downloads/microsoft/wincache-extension WinCache].\nObjekthurtiglagring er ikke aktivert.",
 	"config-mod-security": "'''Advarsel''': Din web-tjener har [https://modsecurity.org/ mod_security] påslått. Hvis denne er feilinnstilt, kan det gi problemer for MediaWiki eller annen programvare som tillater brukere å poste vilkårlig innhold.\nSjekk [https://modsecurity.org/documentation/ mod_security-dokumentasjonen] eller ta kontakt med din nettleverandør hvis du opplever tilfeldige feil.",
 	"config-diff3-bad": "GNU diff3 ikke funnet. Du kan ignorere dette for øyeblikket, men du kan støte på redigeringskonflikter oftere.",

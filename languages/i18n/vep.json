@@ -2386,7 +2386,6 @@
 	"mycontris": "Tehtud rad",
 	"anoncontribs": "Tehtud rad",
 	"contribute": "Abuta",
-	"contribsub2": "Täht {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "{{GENDER:$2|$1}} täht",
 	"contributions-edit-count": "{{GENDER:$1|kävutai}} $2 {{PLURAL:$2|vajehtusenke|vajehtusidenke}}.",
 	"contributions-account-creation-date": "Lehtpol' om tehtud $1.",

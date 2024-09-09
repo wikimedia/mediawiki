@@ -42,7 +42,6 @@
 	"config-env-bad": "Umhverfið hefur verið athugað.\nÞú getur ekki hlaðið niður MediaWiki.",
 	"config-env-php": "PHP $1 er uppsett.",
 	"config-apc": "[https://www.php.net/apc APC] er uppsett",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] er uppsett",
 	"config-diff3-bad": "GNU diff3 textasamanburðartólið fannst ekki. Þú getur hunsað þetta núna, en þú gætir lent oftar í breytingaárekstrum.",
 	"config-using-server": "Nota \"<nowiki>$1</nowiki>\" sem heiti á þjóni.",
 	"config-using-uri": "Nota \"<nowiki>$1$2</nowiki>\" sem slóð á þjón.",

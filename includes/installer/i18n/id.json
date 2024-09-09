@@ -77,7 +77,6 @@
 	"config-memory-bad": "'''Peringatan:''' <code>memory_limit</code> PHP adalah $1.\nIni terlalu rendah.\nInstalasi terancam gagal!",
 	"config-apc": "[https://www.php.net/apc APC] telah dipasang",
 	"config-apcu": "[https://www.php.net/apcu APCu] telah dipasang",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] telah diinstal",
 	"config-no-cache-apcu": "<strong>Peringatan:</strong> Tidak dapat menemukan [https://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] atau [https://www.iis.net/downloads/microsoft/wincache-extension WinCache]. Singgahan obyek tidak diaktifkan.",
 	"config-mod-security": "<strong>Peringatan:</strong> Server web Anda memiliki [https://modsecurity.org/ mod_security] yang diaktifkan. Jika salah dalam mengkonfigurasi, ini dapat menyebabkan masalah untuk MediaWiki atau perangkat lunak lain yang memungkinkan pengguna untuk mengirim sembarang konten.\nLihat [https://modsecurity.org/documentation/ dokumentasi mod_security] atau hubungi layanan host Anda jika Anda mengalami kesalahan acak.",
 	"config-diff3-bad": "Utilitas perbandingan teks GNU diff3 tidak ditemukan. Anda bisa mengabaikan ini untuk sekarang, tetapi kemungkinan akan lebih sering menghadapi konflik penyuntingan.",

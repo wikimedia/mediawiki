@@ -30,7 +30,6 @@
 	"config-memory-raised": "PHP's <code>memory_limit</code>, نسخهٔ $1 هسته، ونه نسخهٔ $2 ره بَیری آپگریت هاکنی.",
 	"config-apc": "[https://www.php.net/apc APC] نصب بیه.",
 	"config-apcu": "[https://www.php.net/apcu APCu] نصب بیه.",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] نصب بیه.",
 	"config-diff3-bad": "GNU diff3 پیدا نیه.",
 	"config-ns-generic": "پروژه",
 	"config-ns-other": "دیگه ( تعیین هاکنین)",

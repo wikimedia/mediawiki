@@ -50,7 +50,6 @@
 	"config-memory-raised": "पीएचपीची <code>memory_limit</code> ही $1 आहे, त्यास $2 ला वाढविली.",
 	"config-memory-bad": "पीएचपीची <code>memory_limit</code> ही $1 आहे.\nही बरीच खालच्या स्तरावरची आहे.\nउभारणी अयशस्वी होऊ शकते!",
 	"config-apc": "[https://www.php.net/apc APC] उभारली आहे",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] उभारली आहे",
 	"config-diff3-bad": "GNU diff3 सापडली नाही.",
 	"config-git-bad": "गीट आवृत्ती नियमन संचेतन सापडली नाही.",
 	"config-db-type": "डाटाबेसचा प्रकार:",

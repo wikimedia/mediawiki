@@ -60,7 +60,6 @@
 	"config-memory-bad": "<strong>Atences:</strong> la limito por PHP <code>memory_limit</code> esas $1.\nTo probable esas nesuficanta.\nL'instalo-procedo povas faliar!",
 	"config-apc": "[https://www.php.net/apc APC] instalesis",
 	"config-apcu": "[https://www.php.net/apcu APCu] instalesis",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] instalesis",
 	"config-no-cache-apcu": "<strong>Atencez:</strong> Ne povis trovar [https://www.php.net/apcu APCu] o [https://www.iis.net/downloads/microsoft/wincache-extension WinCache]. Do, la konservo di objekti en 'cache' ne esos posibla.",
 	"config-mod-security": "<strong>Atencez (angle):</strong> Your web server has [https://modsecurity.org/ mod_security]/mod_security2 enabled. Many common configurations of this will cause problems for MediaWiki and other software that allows users to post arbitrary content.\nIf possible, this should be disabled. Otherwise, refer to [https://modsecurity.org/documentation/ mod_security documentation] or contact your host's support if you encounter random errors.",
 	"config-diff3-bad": "GNU diff3 text comparison utility not found. You can ignore this for now, but might run into edit conflicts more frequently.",

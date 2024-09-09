@@ -62,7 +62,6 @@
 	"config-memory-raised": "Рөхсәт ителгән PHP хәтеренә сикләү (<code>memory_limit</code>)  $1  $2 тиклем арттырылған.",
 	"config-memory-bad": "<strong>Иҫкәртеү:</strong> PHP  <code>memory_limit</code> күләме $1 тәшкил итә.\nКүрәһең, был саманан тыш аҙ. \nҠуйыу хаталы тамамланыуы мөмкин!",
 	"config-apc": "[https://www.php.net/apc APC] ҡуйылды",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] ҡуйылды",
 	"config-no-cache-apcu": "<strong>Иҫкәртеү:</strong>  [https://www.php.net/apcu APCu] йәки [https://www.iis.net/downloads/microsoft/wincache-extension WinCache] табылманы.\nОбъекттарҙы кэшлау һүндереләсәк.",
 	"config-mod-security": "<strong>Иғтибар</strong>: һеҙҙең веб-серверығыҙҙа [https://modsecurity.org/ mod_security]/mod_security2 ҡабыҙылған. Уның күп кенә стандарт көйләүҙәре MediaWiki йәки бүтән ПО ҡулланыусыларға серверға ирекле контент ебәрегрә мөмкинлек буйынса проблемалар тыуҙырыуы мөмкин.\nКөтөлмәгән хаталарға тап булһағыҙ, ошонда [https://modsecurity.org/documentation/ документации mod_security]йәки үҙегеҙҙең хостинг-провайдерығыҙға мөрәжәғәт итегеҙ.",
 	"config-diff3-bad": "GNU diff3 сағыштырыу өсөн программа табылманы. Әлегә һеҙ уға иғтибар итмәҫкә мөмкинһегеҙ, әммә мөхәррирләү конфликты килеп сыҡҡан һайын күрәсәкһегеҙ.",

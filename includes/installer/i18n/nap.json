@@ -57,7 +57,6 @@
 	"config-memory-bad": "<strong>Attenziò:</strong> 'o valore 'e PHP <code>memory_limit</code> è $1.\nProbabbilmente troppo basso.\n'A installazione se putesse scassà!",
 	"config-apc": "[https://www.php.net/apc APC] è installato",
 	"config-apcu": "[https://www.php.net/apcu APCu] è installato",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] è installato",
 	"config-no-cache-apcu": "<strong>Attenziò:</strong> [https://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] o [https://www.iis.net/downloads/microsoft/wincache-extension WinCache] nun so' state truvate.\n'A funziona caching 'e ll'oggette non è apicciata.",
 	"config-mod-security": "<strong>Attenziò:</strong> 'O servitore web vuosto téne [https://modsecurity.org/ mod_security]/mod_security2 appicciato. Ce stanno tante mpustaziune commune ca 'o facessero causà prubbleme a MediaWiki e ll'ati software ca permettessero ll'utente 'e pubbrecà cuntenute.\nSi putite, stutate sta funziona. Sinò, riferite 'a [https://modsecurity.org/documentation/ documentaziona ncopp' 'o mod_security] o cuntattate 'o host vuosto pe' ve dà supporto quanno se scummogliasse cocch'errore.",
 	"config-diff3-bad": "GNU diff3 nun truvato.",

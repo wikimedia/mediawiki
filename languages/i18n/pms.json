@@ -2279,7 +2279,6 @@
 	"contributions-title": "Contribussion ëd $1",
 	"mycontris": "Contribussion",
 	"anoncontribs": "Contribussion",
-	"contribsub2": "Për {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "Për {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "Ël cont utent «$1» a l'é pa argistrà.",
 	"negative-namespace-not-supported": "Jë spassi nominaj con valor negativ a son nen mantnù.",

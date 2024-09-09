@@ -80,7 +80,6 @@
 	"config-memory-bad": "'''هشدار:''' PHP's <code>memory_limit</code> نسخهٔ $1 است.\nاین ممکن است خیلی پایین باشد.\nممکن است نصب با مشکل رو‌به‌رو شود.",
 	"config-apc": "[https://www.php.net/apc APC] نصب شده است.",
 	"config-apcu": "[https://www.php.net/apcu APCu] نصب شده است",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] نصب شده است.",
 	"config-no-cache-apcu": "<strong>هشدار:</strong> پیوند [https://www.php.net/apcu APCu] یا [https://www.iis.net/downloads/microsoft/wincache-extension WinCache] یافت نشد. ذخیره شی فعال نیست.",
 	"config-mod-security": "'''هشدار:''' وب‌سرور شما [https://modsecurity.org/ mod_security] فعال است.اگر اشتباه پیکربندی شده‌‌ باشد،می تواند باعث ایجاد مشکلاتی برای مدیاویکی یا دیگر نرم‌افزاری شود که به کاربران اجازه می‌دهد پیام دلخواه بفرستند.\nبه [https://modsecurity.org/documentation/ mod_security documentation] مراجعه کنید یا اگر با خطاهای اتفاقی مواجه شدید، با پشتیبانی میزبان خود در تماس باشید.",
 	"config-diff3-bad": "ابزار مقایسه متن تفاوت۳ گنو پیدا نشد. می‌توانید فعلاً این پیام را نادیده بگیرید، اما ممکن است به دفعات بیشتری دچار تعارض ویرایشی شوید.",

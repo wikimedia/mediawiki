@@ -2126,7 +2126,6 @@
 	"mycontris": "個人貢獻",
 	"anoncontribs": "貢獻",
 	"contribute": "貢獻",
-	"contribsub2": "{{GENDER:$3|$1}}嘅貢獻 （$2）",
 	"contributions-subtitle": "{{GENDER:$2|$1}}",
 	"contributions-edit-count": "有$2{{PLURAL:$2|次編輯}}嘅{{GENDER:$1|用戶}}。",
 	"contributions-account-creation-date": "喺$1開戶。",

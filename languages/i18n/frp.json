@@ -2269,7 +2269,6 @@
 	"contributions-title": "Contribucions a l’utilisato{{GENDER:$1|r|sa}} $1",
 	"mycontris": "Contribucions",
 	"anoncontribs": "Contribucions",
-	"contribsub2": "Por {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Lo comptio utilisator « $1 » est pas encartâ.",
 	"nocontribs": "Y at gins de changement que corrèspond a celos critèros.",
 	"uctop": "d’ora",

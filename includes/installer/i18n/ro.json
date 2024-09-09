@@ -67,7 +67,6 @@
 	"config-memory-bad": "<strong>Atenție:</strong> PHP<code>memory_limit</code> este $1.\nAcesta este probabil mai jos.\nAceastă instalare eșuează!",
 	"config-apc": "[https://www.php.net/apc APC] este instalat",
 	"config-apcu": "[https://www.php.net/apcu APCu] este instalat",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] este instalat",
 	"config-no-cache-apcu": "<strong>Atenție:</strong> Nu am putut găsi [https://www.php.net/apcu APCu] sau [https://www.iis.net/downloads/microsoft/wincache-extension WinCache].\nObiect cache nu este activat.",
 	"config-mod-security": "<strong>Avertisment:</strong> Serverul dvs. web are activat [https://modsecurity.org/ mod_security] / mod_security2. Multe configurații comune vor provoca probleme pentru MediaWiki și alte programe software care permit utilizatorilor să posteze conținuturi arbitrare.\nDacă este posibil, aceasta ar trebui dezactivată. În caz contrar, consultați documentația [https://modsecurity.org/documentation/ mod_security] sau contactați asistența gazdei dvs. dacă întâmpinați erori aleatorii.",
 	"config-diff3-bad": "Utilitarul de comparare a textului GNU diff3 nu a fost găsit. Puteți ignora acest lucru pentru moment, dar ar putea apărea mai frecvent conflicte de editare.",

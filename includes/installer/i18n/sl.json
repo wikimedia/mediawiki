@@ -62,7 +62,6 @@
 	"config-memory-bad": "<strong>Opozorilo:</strong> PHP-jev <code>memory_limit</code> je $1.\nTo je verjetno prenizko.\nNamestitev morda ne bo uspela!",
 	"config-apc": "[https://www.php.net/apc APC] je nameščen",
 	"config-apcu": "[https://www.php.net/apcu APCu] je nameščen",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] je nameščen",
 	"config-no-cache-apcu": "<strong>Opozorilo:</strong> Ni bilo mogoče najti [https://www.php.net/apcu APCu] ali [https://www.iis.net/downloads/microsoft/wincache-razširitve WinCache].\nPredpomnjenje objektov ni omogočeno.",
 	"config-mod-security": "<strong>Opozorilo:</strong> Vaš spletni strežnik ima omogočeno [https://modsecurity.org/ mod_security]/mod_security2. Veliko običajnih konfiguracij tega bo za MediaWiki in drugo programsko opremo, ki uporabnikom omogoča objavo poljubne vsebine, povzročilo težave.\nČe je mogoče, naj bo to onemogočeno. V nasprotnem primeru glejte [https://modsecurity.org/documentation/ mod_security dokumentacijo] ali se obrnite na podporo svojega gostitelja, če naletite na naključne napake.",
 	"config-diff3-bad": "Pripomočka za primerjavo besedila GNU diff3 nismo našli. To lahko zaenkrat prezrete, ampak morda boste pogosteje naleteli na spore pri urejanju.",

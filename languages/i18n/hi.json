@@ -2320,7 +2320,6 @@
 	"contributions-title": "$1 के सदस्य योगदान",
 	"mycontris": "योगदान",
 	"anoncontribs": "योगदान",
-	"contribsub2": "{{GENDER:$3|$1}} ($2) के लिए",
 	"contributions-userdoesnotexist": "उपयोगकर्ता खाता  \"$1\" पंजीकृत नहीं है।",
 	"nocontribs": "इन मानदंडों से मेल खाने वाला कोई बदलाव नहीं मिला।",
 	"uctop": "वर्तमान",

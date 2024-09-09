@@ -2200,7 +2200,6 @@
 	"mycontris": "Kontributadi",
 	"anoncontribs": "Kontributadi",
 	"contribute": "Kontributar",
-	"contribsub2": "Por {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "Por {{GENDER:$2|$1}}",
 	"contributions-edit-count": "Uzero kun $2 {{PLURAL:$2|kontributado|kontributadi}}.",
 	"contributions-userdoesnotexist": "L'uzeronomo \"$1\" ne enrejistresis.",

@@ -91,7 +91,6 @@
 	"config-memory-bad": "<strong>Внимание</strong>: размер PHP <code>memory_limit</code> составляет $1.\nВероятно, этого слишком мало.\nУстановка может завершиться ошибкой!",
 	"config-apc": "[https://www.php.net/apc APC] установлен",
 	"config-apcu": "[https://www.php.net/apcu APCu] установлен",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] установлен",
 	"config-no-cache-apcu": "<strong>Внимание</strong>: не найдены [https://www.php.net/apcu APCu] или [https://www.iis.net/downloads/microsoft/wincache-extension WinCache].\nКэширование объектов будет отключено.",
 	"config-mod-security": "<strong>Внимание</strong>: На вашем веб-сервере включён [https://modsecurity.org/ mod_security]/mod_security2. Многие его стандартные настройки могут вызывать проблемы для MediaWiki или другого ПО, позволяющего пользователям отправлять на сервер произвольный контент.\nПо возможности он должен быть отключён. Обратитесь к [https://modsecurity.org/documentation/ документации mod_security] или в службу поддержки вашего хостинг-провайдера, если вы сталкиваетесь со случайными ошибками.",
 	"config-diff3-bad": "Утилита для сравнения GNU diff3 не найдена. Вы можете пока это проигнорировать, но, скорее всего, вы будете видеть эту ошибку вновь и вновь при конфликтах редактирования.",

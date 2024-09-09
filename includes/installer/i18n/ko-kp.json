@@ -53,7 +53,6 @@
 	"config-memory-bad": "<strong>경고:</strong> PHP의 <code>memory_limit</code>는 $1입니다.\n아마도 너무 낮은것 같습니다.\n설치가 실패할수 있습니다!",
 	"config-apc": "[https://www.php.net/apc APC]가 설치되였습니다",
 	"config-apcu": "[https://www.php.net/apcu APCu]가 설치되였습니다",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache]가 설치되였습니다",
 	"config-no-cache-apcu": "<strong>경고:</strong> [https://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] 또는 [https://www.iis.net/downloads/microsoft/wincache-extension WinCache]를 찾을수 없습니다.\n객체 캐싱을 활성화할수 없습니다.",
 	"config-mod-security": "<strong>경고:</strong> 웨브 봉사기에 [https://modsecurity.org/ mod_security]가 허용되였습니다. 잘못 설정된 경우 매체위키나 사용자가 임의의 내용을 게시할수 있는 다른 쏘프트웨어에 대한 문제를 일으킬수 있습니다.\n[https://modsecurity.org/documentation/ mod_security] 문서를 참고하거나 임의의 오유가 발생할 경우 주콤퓨터의 지원 요청에 문의하십시오.",
 	"config-diff3-bad": "GNU diff3를 찾을수 없습니다.",

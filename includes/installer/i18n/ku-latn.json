@@ -28,7 +28,6 @@
 	"config-page-existingwiki": "Wîkiya heye",
 	"config-restart": "Erê, jinûve bide destpêkirin",
 	"config-apc": "[https://www.php.net/apc APC] hate avakirin",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] hate avakirin",
 	"config-diff3-bad": "GNU diff3 nehat dîtin. Tu dikarî niha guh lê nedî, lê problem bi guhartina re bêhtir dikarin çêbibin.",
 	"config-db-type": "Cureya danegehê:",
 	"config-db-wiki-settings": "Vê wîkiyê bide danasîn",

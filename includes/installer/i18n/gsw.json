@@ -46,7 +46,6 @@
 	"config-memory-raised": "Dr PHP-Parameter <code>memory_limit</code> lyt bi $1 un isch uf $2 uffegsetzt wore.",
 	"config-memory-bad": "'''Warnig:''' Dr PHP-Parameter <code>memory_limit</code> lyt bi $1.\nDää Wärt isch wahrschyns z nider.\nDr Inschtallationsvorgang chennt wäge däm fählschlaa!",
 	"config-apc": "[https://www.php.net/apc APC] isch inschtalliert",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] isch inschtalliert",
 	"config-diff3-bad": "GNU diff3 isch nit gfunde wore.",
 	"config-imagemagick": "ImageMagick isch gfunde wore: <code>$1</code>.\nMiniaturaasichte vu Bilder sin megli, sobald s Uffelade vu Dateie aktiviert isch.",
 	"config-help": "Hilf",

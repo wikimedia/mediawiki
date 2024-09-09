@@ -52,7 +52,6 @@
 	"config-memory-raised": "পিএইচপির <code>memory_limit</code> হচ্ছে $1, বৃদ্ধি পেয়ে $2 হয়েছে।",
 	"config-apc": "[https://www.php.net/apc এপিসি] ইনস্টল করা হয়েছে",
 	"config-apcu": "[https://www.php.net/apcu এপিসিu] ইনস্টল করা হয়েছে",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] ইনস্টল করা হয়েছে",
 	"config-diff3-bad": "GNU diff3 লেখা তুলনা করার কার্যকারিতা পাওয়া যায়নি। আপনি এখন এটিকে উপেক্ষা করতে পারেন, তবে এতে আপনি আরও ঘন ঘন সম্পাদনা সংঘাতের মধ্যে পড়তে পারেন।",
 	"config-git": "Git সংস্করণের নিয়ন্ত্রণ সফটওয়্যার পাওয়া গেছে: <code>$1</code>।",
 	"config-git-bad": "Git সংস্করণ নিয়ন্ত্রণের সফটওয়্যার পাওয়া যায়নি। টীকা Special:Version commit হ্যাশগুলি প্রদর্শন করবে না।",

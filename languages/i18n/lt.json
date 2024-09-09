@@ -2408,7 +2408,6 @@
 	"mycontris": "Indėlis",
 	"anoncontribs": "Indėlis",
 	"contribute": "Prisidėti",
-	"contribsub2": "Naudotojas: {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "{{GENDER:$2|$1}}",
 	"contributions-edit-count": "{{GENDER:$1|Naudotojo|Naudotojos}} pakeitimų skaičius – $2.",
 	"contributions-account-creation-date": "Paskyra sukurta $1",

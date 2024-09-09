@@ -1501,7 +1501,6 @@
 	"contributions-title": "$1 մասնակցի ներդրումը",
 	"mycontris": "Ներդրում",
 	"anoncontribs": "Ներդրումներ",
-	"contribsub2": "{{GENDER:$3|$1}}-ի ներդրումները ($2)",
 	"contributions-subtitle": "{{GENDER:$2|$1}}-ի համար",
 	"nocontribs": "Այս չափանիշներին համապատասխանող փոփոխություններ չեն գտնվել։",
 	"uctop": "վերջինը",

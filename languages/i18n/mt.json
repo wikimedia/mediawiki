@@ -1999,7 +1999,6 @@
 	"contributions-title": "Kontribuzzjonijiet tal-utent għal $1",
 	"mycontris": "Kontributi",
 	"anoncontribs": "Kontribuzzjonijiet",
-	"contribsub2": "Għal {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "Għal {{GENDER:$2|$1}}",
 	"contributions-userdoesnotexist": "L-utent \"$1\" mhuwiex reġistrat.",
 	"negative-namespace-not-supported": "Spazji tal-isem b'valuri negattivi mhux disponibbli.",

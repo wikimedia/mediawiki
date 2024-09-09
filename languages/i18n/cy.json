@@ -2286,7 +2286,6 @@
 	"mycontris": "Cyfraniadau",
 	"anoncontribs": "Cyfraniadau",
 	"contribute": "Cyfrannu",
-	"contribsub2": "Gan {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "Ar gyfer {{GENDER:$2|$1}}",
 	"contributions-edit-count": "{{GENDER:$1|Defnyddiwr}} â $2 {{PLURAL:$2|golygiad|golygiad|olygiad|golygiad}}.",
 	"contributions-account-creation-date": "Crëwyd y cyfrif ar $1.",

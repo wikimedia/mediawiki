@@ -2466,7 +2466,6 @@
 	"mycontris": "অবদান",
 	"anoncontribs": "অবদান",
 	"contribute": "অবদান রাখুন",
-	"contribsub2": "{{GENDER:$3|$1}}-এর জন্য ($2)",
 	"contributions-subtitle": "{{GENDER:$2|$1}}-এর জন্য",
 	"contributions-edit-count": "এই {{GENDER:$1|ব্যবহারকারী}} $2টি {{PLURAL:$2|সম্পাদনা করেছেন}}।",
 	"contributions-account-creation-date": "অ্যাকাউন্টটি $1 সালে তৈরি করা হয়েছে।",

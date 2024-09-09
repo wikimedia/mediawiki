@@ -2451,7 +2451,6 @@
 	"mycontris": "Συνεισφορές",
 	"anoncontribs": "Συνεισφορές",
 	"contribute": "Συνεισφέρετε",
-	"contribsub2": "Για {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "Για {{GENDER:$2|τον|την}} $1",
 	"contributions-edit-count": "{{GENDER:$1|Χρήστη|Χρήστρια}} με $2 {{PLURAL:$2|επεξεργασία|επεξεργασίες}}.",
 	"contributions-account-creation-date": "Ο λογαριασμός δημιουργήθηκε στις $1 .",

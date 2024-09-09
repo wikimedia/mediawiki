@@ -2360,7 +2360,6 @@
 	"mycontris": "Пай",
 	"anoncontribs": "Пай",
 	"contribute": "Пай",
-	"contribsub2": "{{GENDER:$3|$1}} ($2)понда",
 	"contributions-subtitle": "{{GENDER:$2|$1}} понда",
 	"contributions-edit-count": "$2 {{PLURAL:$2|вильмӧтӧм|вильмӧтӧммез}} керись {{GENDER:$1|уджкерись}}",
 	"contributions-account-creation-date": "Аккаунт лӧсьӧтӧма $1-ӧн",

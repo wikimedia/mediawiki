@@ -2357,7 +2357,6 @@
 	"mycontris": "Суруйуу тиһилигэ",
 	"anoncontribs": "Суруйуу тиһилигэ",
 	"contribute": "Суруйуу",
-	"contribsub2": "$1 ($2) суруйуута",
 	"contributions-subtitle": "{{GENDER:$2|$1}} аналлаах",
 	"contributions-edit-count": "$2 {{PLURAL:$2|уларытыы|уларытыылаах}} {{GENDER:$1|кыттааччы}}",
 	"contributions-account-creation-date": "$1 бэлиэтэнии оҥоһулунна.",

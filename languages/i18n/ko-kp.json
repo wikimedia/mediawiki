@@ -957,7 +957,6 @@
 	"contributions-title": "$1의 사용자 기여",
 	"mycontris": "기여",
 	"anoncontribs": "기여",
-	"contribsub2": "{{GENDER:$3|$1}}($2)의 기여",
 	"nocontribs": "지정한 조건과 일치하는 바뀜을 찾을수 없습니다.",
 	"uctop": "최신",
 	"month": "월:",

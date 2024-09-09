@@ -2228,7 +2228,6 @@
 	"contributions-title": "$1 कय योगदान",
 	"mycontris": "योगदान",
 	"anoncontribs": "योगदान",
-	"contribsub2": "{{GENDER:$3|$1}} ($2) कय खर्तीन",
 	"contributions-subtitle": "{{GENDER:$2|$1}} कय खर्तीन",
 	"contributions-userdoesnotexist": "सदस्य \"$1\" पंजीकृत नाइ है।",
 	"negative-namespace-not-supported": "Namespaces with negative values are not supported.",

@@ -1160,7 +1160,6 @@
 	"contributions-title": "$1 qullanıcısınıñ isseleri",
 	"mycontris": "İsseler",
 	"anoncontribs": "İsseler",
-	"contribsub2": "{{GENDER:$3|$1}} ($2) içün",
 	"contributions-subtitle": "{{GENDER:$2|$1}} içün",
 	"contributions-edit-count": "$2 {{PLURAL:$2|deñiştirme}} yapqan bir {{GENDER:$1|qullanıcı}}.",
 	"contributions-account-creation-date": "Qullanıcı esabınıñ yaratılğan tarihı: $1",

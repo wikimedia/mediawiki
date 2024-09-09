@@ -65,7 +65,6 @@
 	"config-memory-bad": "<strong>คำเตือน:</strong> <code>memory_limit</code> ของ PHP คือ $1.\nเป็นไปได้ว่ามันอาจต่ำเกินไป\nการติดตั้งอาจล้มเหลวได้!",
 	"config-apc": "มี [https://www.php.net/apc APC] ติดตั้งอยู่",
 	"config-apcu": "มี [https://www.php.net/apcu APCu] ติดตั้งอยู่",
-	"config-wincache": "มี [https://www.iis.net/downloads/microsoft/wincache-extension WinCache] ติดตั้งอยู่",
 	"config-no-cache-apcu": "<strong>คำเตือน:</strong> ไม่พบ [https://www.php.net/apcu APCu] [http://xcache.lighttpd.net/ XCache] หรือ [https://www.iis.net/downloads/microsoft/wincache-extension WinCache]\nการแคชวัตถุไม่ได้ถูกเปิดใช้งาน",
 	"config-mod-security": "<strong>คำเตือน:</strong> เว็บเซิร์ฟเวอร์ของคุณมี [https://modsecurity.org/ mod_security]/mod_security2 เปิดใช้งานอยู่ การตั้งค่าทั่วไปหลายอย่างของสิ่งนี้จะก่อให้เกิดปัญหาสำหรับ MediaWiki และซอฟต์แวร์อื่นที่อนุญาตให้ผู้ใช้สามารถโพสต์เนื้อหาได้ตามที่ผู้ใช้\nหากเป็นไปได้ ควรปิดใช้งานคุณลักษณะนี้ หรือมิฉะนั้นก็ อ้างไปยัง[https://modsecurity.org/documentation/ เอกสารกำกับการใช้งาน mod_security] หรือติดต่อการสนับสนุนจากโฮสต์ของคุณ ถ้าคุณพบข้อผิดพลาดโดยสุ่ม",
 	"config-diff3-bad": "ไม่พบโปรแกรมเปรียบเทียบข้อความ GNU diff3 คุณสามารถละเว้นสิ่งนี้ได้ในตอนนี้ แต่อาจพบข้อขัดแย้งในการแก้ไขบ่อยครั้งกว่า",

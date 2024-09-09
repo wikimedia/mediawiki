@@ -59,7 +59,6 @@
 	"config-memory-bad": "'''Diwallit :''' Da $1 emañ arventenn <code>memory_limit</code> PHP.\nRe izel eo moarvat.\nMarteze e c'hwito ar staliadenn !",
 	"config-apc": "Staliet eo [https://www.php.net/apc APC]",
 	"config-apcu": "Staliet eo [https://www.php.net/apcu APCu]",
-	"config-wincache": "Staliet eo [https://www.iis.net/downloads/microsoft/wincache-extension WinCache]",
 	"config-no-cache-apcu": "<strong>Taolit pled :</strong> N'eus ket bet gallet kavout [https://www.php.net/apcu APCu], [http://xcache.lighttpd.net/ XCache] pe [https://www.iis.net/downloads/microsoft/wincache-extension WinCache].\nN'eo ket gweredekaet ar c'hrubuilhañ traezoù.",
 	"config-mod-security": "<strong>Taolit pled :</strong> Gweredekaet eo [https://modsecurity.org/ mod_security]/mod_security2 gant ho servijer web. Ma n'eo ket kfluniet mat e c'hall tegas trubuilhoù da MediaWiki ha meziantoù all a aotre implijerien da ouzhpennañ danvez evel ma karont.\nE kement ha m'eo posupl e tlefe bezañ diweredekaet. A-hend-all, sellit ouzh [https://modsecurity.org/documentation/ mod_security an teuliadur] pe kit e darempred gant skoazell ho herberc'hier m'en em gavit gant fazioù dargouezhek.",
 	"config-diff3-bad": "N'eo ket bet kavet GNU diff3.",

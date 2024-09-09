@@ -2186,7 +2186,6 @@
 	"contributions-title": "Doprinosi {{GENDER:$1|korisnika|korisnice}} $1",
 	"mycontris": "Doprinosi",
 	"anoncontribs": "Doprinosi",
-	"contribsub2": "Za {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "Za {{GENDER:$2|$1}}",
 	"contributions-edit-count": "{{GENDER:$1|Ukupno}} {{PLURAL:$2|izmjena}}: $2.",
 	"contributions-account-creation-date": "Datum registracije: $1.",

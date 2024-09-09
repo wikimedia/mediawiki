@@ -14,6 +14,7 @@
 			"Mansil",
 			"Mansil alfalb",
 			"Matma Rex",
+			"McDutchie",
 			"Vitorvicentevalente",
 			"Waldir"
 		]
@@ -69,7 +70,7 @@
 	"apihelp-changecontentmodel-summary": "Alterar o modelo de conteúdo de uma página",
 	"apihelp-changecontentmodel-param-title": "Título da página para a qual alterar o modelo de conteúdo. Não pode ser usado em conjunto com <var>$1pageid</var>.",
 	"apihelp-changecontentmodel-param-pageid": "Identificador da página para a qual alterar o modelo de conteúdo. Não pode ser usado em conjunto com <var>$1title</var>.",
-	"apihelp-changecontentmodel-param-summary": "Editar resumo de edição e motivo da entrada no registo",
+	"apihelp-changecontentmodel-param-summary": "O resumo da edição e o motivo da entrada no registo",
 	"apihelp-changecontentmodel-param-tags": "Etiquetas de mudança a aplicar à entrada do registo e à edição.",
 	"apihelp-changecontentmodel-param-model": "Modelo de conteúdo do novo conteúdo.",
 	"apihelp-changecontentmodel-param-bot": "Marca a mudança do modelo de conteúdo com um indicador de robô.",

@@ -2439,7 +2439,6 @@
 	"mycontris": "Sumbangan",
 	"anoncontribs": "Sumbangan",
 	"contribute": "Sumbang",
-	"contribsub2": "Untuk {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "Untuk {{GENDER:$2|$1}}",
 	"contributions-edit-count": "{{GENDER:$1|Pengguna}} dengan $2 {{PLURAL:$2|suntingan}}.",
 	"contributions-account-creation-date": "Akaun dibuat pada $1.",

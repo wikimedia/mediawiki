@@ -60,7 +60,6 @@
 	"config-memory-bad": "<strong>Warning:</strong> PHPko <code>memory_limit</code> $1 da.\nZiurrenik hau oso baxua da.\nInstalazioa huts egin dezake!",
 	"config-apc": "[https://www.php.net/apc APC] instalatuta dago",
 	"config-apcu": "[https://www.php.net/apcu APCu] instalatuta dago",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] instalatuta dago",
 	"config-no-cache-apcu": "<strong>Warning:</strong> Ezin izan da [https://www.php.net/apcu APCu] edo [https://www.iis.net/downloads/microsoft/wincache-extension WinCache] aurkitu.\nObjektu katxea ez dago aktibatuta.",
 	"config-mod-security": "<strong>Warning:</strong> Zure web zerbitzariak [https://modsecurity.org/mod_security] / mod_security2 aktibatu du. Honen konfigurazio komun asko sortu ahal dituzte arazoak MediaWikin  eta beste software batzuetan, hautazko edukia argitaratzeko aukera ematen dutenei erabiltzaileei.\nAhal izanez gero, desgaitu egin beharko litzateke. Bestela, kontsultatu [https://modsecurity.org/documentation/ mod_security documentation] edo jarri harremanetan zure ostalariarekin ausazko akatsak aurkitzen badituzu.",
 	"config-diff3-bad": "GNU diff3 ez da aurkitu.",

@@ -2370,7 +2370,6 @@
 	"mycontris": "Путфкст",
 	"anoncontribs": "Путфкст",
 	"contribute": "Путфкс",
-	"contribsub2": "{{GENDER:$3|$1}}-нь путфоц ($2)",
 	"contributions-subtitle": "{{GENDER:$2|$1}}-нди",
 	"contributions-edit-count": "A {{GENDER\n:$1|сувайсь}} $2 {{PLURAL:$2|петьксонь|петькснень}} мархта.",
 	"contributions-account-creation-date": "Учётонь сёрмаёрматфксь тиф $1.",
