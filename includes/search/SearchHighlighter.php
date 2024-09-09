@@ -38,6 +38,7 @@ class SearchHighlighter {
 	public const DEFAULT_CONTEXT_LINES = 2;
 	public const DEFAULT_CONTEXT_CHARS = 75;
 
+	/** @var bool */
 	protected $mCleanWikitext = true;
 
 	/**

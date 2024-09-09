@@ -30,6 +30,7 @@ class SearchResultSet extends BaseSearchResultSet {
 
 	use SearchResultSetTrait;
 
+	/** @var bool */
 	protected $containedSyntax = false;
 
 	/**
