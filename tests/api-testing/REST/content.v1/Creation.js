@@ -3,7 +3,7 @@
 const { action, assert, REST, utils } = require( 'api-testing' );
 const supertest = require( 'supertest' );
 
-let pathPrefix = 'rest.php/content.v1';
+let pathPrefix = 'rest.php/content/v1';
 
 describe( 'POST /page', () => {
 	let client, mindy, anon, anonToken;
