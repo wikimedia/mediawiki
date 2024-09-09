@@ -35,6 +35,20 @@ class ApiLogoutTest extends ApiTestCase {
 		}
 	}
 
+	public function testUserLogoutAlreadyLoggedOut() {
+		$user = $this->getServiceContainer()->getUserFactory()->newAnonymous( '1.2.3.4' );
+
+		$this->assertFalse( $user->isRegistered() );
+		$token = $this->getUserCsrfTokenFromApi( $user );
+		$response = $this->doUserLogout( $token, $user )[0];
+		$this->assertFalse( $user->isRegistered() );
+
+		$this->assertArrayEquals(
+			[ 'warnings' => [ 'logout' => [ 'warnings' => 'You must be logged in.' ] ] ],
+			$response
+		);
+	}
+
 	public function testUserLogout() {
 		$user = $this->getTestSysop()->getUser();
 

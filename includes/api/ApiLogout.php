@@ -51,6 +51,13 @@ class ApiLogout extends ApiBase {
 		}
 
 		$user = $this->getUser();
+
+		if ( $user->isAnon() ) {
+			// Cannot logout a anon user, so add a warning and return early.
+			$this->addWarning( 'apierror-mustbeloggedin-generic', 'notloggedin' );
+			return;
+		}
+
 		$oldName = $user->getName();
 		$user->logout();
 
