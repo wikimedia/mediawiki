@@ -8,6 +8,7 @@ use MediaWiki\OutputTransform\ContentTextTransformStage;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
+use MediaWiki\Utils\UrlUtils;
 use ParserOptions;
 use Psr\Log\LoggerInterface;
 use Wikimedia\RemexHtml\Serializer\SerializerNode;
@@ -18,15 +19,18 @@ use Wikimedia\RemexHtml\Serializer\SerializerNode;
  */
 class ExtractBody extends ContentTextTransformStage {
 
+	private UrlUtils $urlUtils;
+
 	// @phan-suppress-next-line PhanUndeclaredTypeProperty
 	private ?\MobileContext $mobileContext;
 
 	public function __construct(
-		ServiceOptions $options, LoggerInterface $logger,
+		ServiceOptions $options, LoggerInterface $logger, UrlUtils $urlUtils,
 		// @phan-suppress-next-line PhanUndeclaredTypeParameter
 		?\MobileContext $mobileContext
 	) {
 		parent::__construct( $options, $logger );
+		$this->urlUtils = $urlUtils;
 		$this->mobileContext = $mobileContext;
 	}
 
@@ -38,7 +42,12 @@ class ExtractBody extends ContentTextTransformStage {
 		'a' => true, 'img' => true, 'video' => true, 'audio' => true,
 	];
 
-	private static function expandRelativeAttrs( string $text, string $baseHref, string $pageFragmentPrefix ): string {
+	private static function expandRelativeAttrs(
+		string $text,
+		string $baseHref,
+		string $pageFragmentPrefix,
+		UrlUtils $urlUtils
+	): string {
 		// T350952: Expand relative links
 		// What we should be doing here is parsing as a title and then
 		// using Title::getLocalURL()
@@ -51,7 +60,7 @@ class ExtractBody extends ContentTextTransformStage {
 				$attr = $node->name === 'a' ? 'href' : 'resource';
 				return str_starts_with( $node->attrs[$attr] ?? '', './' );
 			},
-			static function ( SerializerNode $node ) use ( $baseHref, $pageFragmentPrefix ): SerializerNode {
+			static function ( SerializerNode $node ) use ( $baseHref, $pageFragmentPrefix, $urlUtils ): SerializerNode {
 				$attr = $node->name === 'a' ? 'href' : 'resource';
 				$href = $node->attrs[$attr];
 				// Convert page fragment urls to true fragment urls
@@ -62,7 +71,7 @@ class ExtractBody extends ContentTextTransformStage {
 					$node->attrs[$attr] = substr( $href, strlen( $pageFragmentPrefix ) - 1 );
 				} else {
 					$href = $baseHref . $href;
-					$node->attrs[$attr] = wfExpandUrl( $href, PROTO_RELATIVE );
+					$node->attrs[$attr] = $urlUtils->expand( $href, PROTO_RELATIVE ) ?? false;
 				}
 				return $node;
 			}
@@ -91,9 +100,12 @@ class ExtractBody extends ContentTextTransformStage {
 		}
 		$pageFragmentPrefix = "./" . $title . "#";
 		foreach ( $po->getIndicators() as $name => $html ) {
-			$po->setIndicator( $name, self::expandRelativeAttrs( $html, $baseHref, $pageFragmentPrefix ) );
+			$po->setIndicator(
+				$name,
+				self::expandRelativeAttrs( $html, $baseHref, $pageFragmentPrefix, $this->urlUtils )
+			);
 		}
 		$text = Parser::extractBody( $text );
-		return self::expandRelativeAttrs( $text, $baseHref, $pageFragmentPrefix );
+		return self::expandRelativeAttrs( $text, $baseHref, $pageFragmentPrefix, $this->urlUtils );
 	}
 }

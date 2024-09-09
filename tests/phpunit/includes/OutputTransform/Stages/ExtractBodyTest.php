@@ -16,7 +16,8 @@ use Psr\Log\NullLogger;
 class ExtractBodyTest extends OutputTransformStageTestBase {
 
 	public function createStage(): OutputTransformStage {
-		return new ExtractBody( new ServiceOptions( [] ), new NullLogger(), null );
+		$urlUtils = $this->getServiceContainer()->getUrlUtils();
+		return new ExtractBody( new ServiceOptions( [] ), new NullLogger(), $urlUtils, null );
 	}
 
 	public function provideShouldRun(): array {
