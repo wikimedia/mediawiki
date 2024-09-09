@@ -429,7 +429,7 @@ class GlobalIdGenerator {
 	/**
 	 * Get a (time,counter,clock sequence) where (time,counter) is higher
 	 * than any previous (time,counter) value for the given clock sequence.
-	 * This is useful for making UIDs sequential on a per-node bases.
+	 * This is useful for making UIDs sequential on a per-node basis.
 	 *
 	 * @param string $lockFile Name of a local lock file
 	 * @param int $clockSeqSize The number of possible clock sequence values
@@ -490,7 +490,7 @@ class GlobalIdGenerator {
 		//    - For any drift above 10ms, we pretend that the clock went backwards, and treat
 		//      it the same way as after an NTP sync, by incrementing clock sequence instead.
 		//      Given the sequence rolls over automatically, and silently, and is meant to be
-		//      rare, this is essentially sacrifices a reasonable guarantee of uniqueness.
+		//      rare, this essentially sacrifices a reasonable guarantee of uniqueness.
 		//    - For long running processes (e.g. longer than a few seconds) the drift can
 		//      easily be more than 2 seconds. Because we only have a single lock file
 		//      and don't want to keep too many counters and deal with clearing those,
@@ -513,33 +513,31 @@ class GlobalIdGenerator {
 			// The UID lock file was already initialized
 			$clkSeq = (int)$data[0] % $clockSeqSize;
 			$prevSec = (int)$data[1];
-			// Counter for UIDs with the same timestamp,
-			$msecCounter = 0;
+			$prevMsecCounter = (int)$data[2] % $msecCounterSize;
 			$randOffset = (int)$data[3] % $counterSize;
-
-			// If the system clock moved backwards by an NTP sync,
-			// or if the last writer process had its clock drift ahead,
-			// Try to catch up if the gap is small, so that we can keep a single
-			// monotonic logic file.
+			// If the system clock moved back or inter-process clock drift caused the last
+			// writer process to record a higher time than the current process time, then
+			// briefly wait for the current process clock to catch up.
 			$sec = $this->timeWaitUntil( $prevSec );
 			if ( $sec === false ) {
-				// Gap is too big. Looks like the clock got moved back significantly.
-				// Start a new clock sequence, and re-randomize the extra offset,
-				// which is useful for UIDs that do not include the clock sequence number.
+				// There was too much clock drift to wait. Bump the clock sequence number to
+				// avoid collisions between new and already-generated IDs with the same time.
 				$clkSeq = ( $clkSeq + 1 ) % $clockSeqSize;
 				$sec = time();
+				$msecCounter = 0;
 				$randOffset = mt_rand( 0, $offsetSize - 1 );
 				trigger_error( "Clock was set back; sequence number incremented." );
 			} elseif ( $sec === $prevSec ) {
-				// Double check, only keep remainder if a previous writer wrote
-				// something here that we don't accept.
-				$msecCounter = (int)$data[2] % $msecCounterSize;
-				// Bump the counter if the time has not changed yet
-				if ( ++$msecCounter >= $msecCounterSize ) {
+				// The time matches the last ID. Bump the tie-breaking counter.
+				$msecCounter = $prevMsecCounter + 1;
+				if ( $msecCounter >= $msecCounterSize ) {
 					// More IDs generated with the same time than counterSize can accommodate
 					flock( $handle, LOCK_UN );
 					throw new RuntimeException( "Counter overflow for timestamp value." );
 				}
+			} else {
+				// The time is higher than the last ID. Reset the tie-breaking counter.
+				$msecCounter = 0;
 			}
 		} else {
 			// Initialize UID lock file information
