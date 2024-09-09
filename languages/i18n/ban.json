@@ -2383,7 +2383,6 @@
 	"mycontris": "Pituut",
 	"anoncontribs": "Pituut",
 	"contribute": "Pituut",
-	"contribsub2": "Antuk {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "Antuk {{GENDER:$2|$1}}",
 	"contributions-edit-count": "{{GENDER:$1|Sang anganggé}} antuk $2 {{PLURAL:$2|uahan}}.",
 	"contributions-account-creation-date": "Akun kakardi ring $1.",

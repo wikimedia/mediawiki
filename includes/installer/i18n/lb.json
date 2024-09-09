@@ -52,7 +52,6 @@
 	"config-memory-bad": "<strong>Opgepasst:</strong> De Parameter <code>memory_limit</code> vu PHP ass $1.\nDat ass warscheinlech ze niddreg.\nD'Installatioun kéint net funktionéieren.",
 	"config-apc": "[https://www.php.net/apc APC] ass installéiert",
 	"config-apcu": "[https://www.php.net/apcu APCu] ass installéiert.",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] ass installéiert",
 	"config-diff3-bad": "GNU diff3 gouf net fonnt.",
 	"config-git": "D'Software Git fir d'Kontroll vu Versioune gouf fonnt: <code>$1</code>.",
 	"config-git-bad": "D'Software fir d'Kontroll vun de Versiounen 'Git' gouf net fonnt.",

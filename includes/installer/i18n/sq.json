@@ -55,7 +55,6 @@
 	"config-no-db": "S’u gjet dot një përudhës i përshtatshëm baze të dhënash! Lypset të instaloni një përudhës baze të dhënash për PHP-në.\n{{PLURAL:$2|Mbulohet lloji vijues|Mbulohen llojet vijuese}} baze të dhënash: $1.\n\nNëse e përpiluat ju vetë PHP-në, riformësojeni me një klient baze të dhënash të aktivizuar, për shembull, duke përdorur <code>./configure --with-mysqli</code>.\nNëse e instaluat PHP-në prej një pakete Debian ose Ubuntu, atëherë ju duhet të instaloni, për shembull, paketën <code>php-mysql</code>.",
 	"config-apc": "[https://www.php.net/apc APC] u instalua",
 	"config-apcu": "[https://www.php.net/apcu APCu] është i instaluar",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] u instalua",
 	"config-mod-security": "<strong>Kujdes:</strong> Shërbyesi juaj ka [https://modsecurity.org/ mod_security]/mod_security2 të aktivizuar. Mjaft formësime të rëndomtë të këtij do të shkaktojnë probleme për MediaWiki-n dhe software tjetër që u lejojnë përdoruesve të postojnë lëndë sipas qejfit.\nNëse mundet, ky duhet çaktivizuar. Përndryshe, referojuni [https://modsecurity.org/documentation/ mod_security documentation], ose lidhuni me asistencën e strehës, nëse hasni gabime të rëndomtë.",
 	"config-diff3-bad": "S’u gjet mjet krahasimesh tekstesh GNU diff3. Mund ta shpërfillni këtë për tani, por mund të hasni më shpesh përplasje përpunimesh.",
 	"config-git": "U gjet software Git kontrolli versionesh: <code>$1</code>.",

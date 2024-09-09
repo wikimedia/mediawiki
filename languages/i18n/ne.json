@@ -2025,7 +2025,6 @@
 	"mycontris": "मेरो योगदानहरू",
 	"anoncontribs": "मेरो योगदानहरू",
 	"contribute": "योगदान गर्नुहोस्",
-	"contribsub2": " {{GENDER:$3|$1}} ($2)को लागि",
 	"contributions-subtitle": "{{GENDER:$2|$1}}को लागी",
 	"contributions-edit-count": "$2 {{PLURAL:$2|सम्पादन|सम्पादनहरू}} भएको एक {{GENDER:$1|प्रयोगकर्ता}}।",
 	"contributions-account-creation-date": "खाता $1 मा सिर्जना गरिएको थियो।",

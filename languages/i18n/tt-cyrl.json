@@ -2368,7 +2368,6 @@
 	"mycontris": "Кертем",
 	"anoncontribs": "Кертемнәр",
 	"contribute": "Кертем",
-	"contribsub2": "Кертем {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "{{GENDER:$2|$1}} өчен",
 	"contributions-edit-count": "Кулланучы $2 төзәтмә ясаган.",
 	"contributions-account-creation-date": "Хисап язмасы $1 датасында төзелгән.",

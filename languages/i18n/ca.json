@@ -2414,7 +2414,6 @@
 	"mycontris": "Contribucions",
 	"anoncontribs": "Contribucions",
 	"contribute": "Contribució",
-	"contribsub2": "Per a {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "Pertanyents a {{GENDER:$2|$1}}",
 	"contributions-account-creation-date": "Compte creat el $1.",
 	"contributions-userdoesnotexist": "El compte d'usuari «$1» no està registrat.",

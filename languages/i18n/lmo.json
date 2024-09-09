@@ -2352,7 +2352,6 @@
 	"mycontris": "Contribuzzion",
 	"anoncontribs": "Contribuzzion",
 	"contribute": "Contribuzzion",
-	"contribsub2": "Per {{GENDER:$3|el $1|la $1| $1}} ($2)",
 	"contributions-subtitle": "Per {{GENDER:$2|el $1|la $1}}",
 	"contributions-userdoesnotexist": "L'utenza \"$1\" l'è minga registrada.",
 	"negative-namespace-not-supported": "I spazzi di nom con di valor negativ a inn minga suportad.",

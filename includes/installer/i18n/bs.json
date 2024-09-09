@@ -51,7 +51,6 @@
 	"config-memory-bad": "<strong>Upozorenje:</strong> <code>memory_limit</code> za PHP iznosi $1.\nOvo je vjerovatno premalo.\nInstalacija možda neće uspjeti!",
 	"config-apc": "[https://www.php.net/apc APC] je instaliran",
 	"config-apcu": "[https://www.php.net/apcu APCu] je instaliran",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] je instaliran",
 	"config-diff3-bad": "GNU diff3 nije pronađen.",
 	"config-git": "Pronađen je Git program za kontrolu verzija: <code>$1</code>.",
 	"config-git-bad": "Nije pronađen Git program za kontrolu verzija.",

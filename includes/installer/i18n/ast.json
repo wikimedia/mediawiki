@@ -59,7 +59,6 @@
 	"config-memory-bad": "<strong>Alvertencia:</strong>: el parámetru <code>memory_limit</code> de PHP ye $1.\nProbablemente sía demasiáu baxu.\n¡La instalación puede fallar!",
 	"config-apc": "[https://www.php.net/apc APC] ta instaláu",
 	"config-apcu": "[https://www.php.net/apcu APCu] ta instaláu",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] ta instaláu",
 	"config-no-cache-apcu": "<strong>Atención:</strong> Nun pudo alcontrase [https://www.php.net/apcu APCu] o [https://www.iis.net/downloads/microsoft/wincache-extension WinCache].\nLa caché d'oxetos nun ta activada.",
 	"config-mod-security": "<strong>Alvertencia:</strong> El to servidor web tien activáu [https://modsecurity.org/mod_security]/mod_security2 .Munches de les sos configuraciones comunes pueden causar problemes a MediaWiki o otru software que dexe a los usuarios publicar conteníu arbitrario. De ser posible, tendríes de desactivalo. Si non, consulta la  [https://modsecurity.org/documentation/ mod_security documentation] o contacta col alministrador del to servidor si atopes erros aleatorios.",
 	"config-diff3-bad": "Nun s'alcontró la utilidá de comparanza de testos GNU diff3. Pues inorar esto pel momentu pero podríes tener problemes d'edición davezu.",

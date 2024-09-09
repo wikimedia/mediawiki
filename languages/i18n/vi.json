@@ -2472,7 +2472,6 @@
 	"mycontris": "Đóng góp",
 	"anoncontribs": "Đóng góp",
 	"contribute": "Đóng góp",
-	"contribsub2": "Của {{GENDER:$3}}$1 ($2)",
 	"contributions-subtitle": "Của {{GENDER:$2}}$1",
 	"contributions-edit-count": "{{GENDER:$1|Thành viên}} với $2 {{PLURAL:$2|lần sửa đổi}}.",
 	"contributions-account-creation-date": "Đã mở tài khoản vào $1.",

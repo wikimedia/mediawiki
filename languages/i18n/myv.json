@@ -2369,7 +2369,6 @@
 	"mycontris": "Путовкст",
 	"anoncontribs": "Путовкст",
 	"contribute": "Путовкс",
-	"contribsub2": "{{GENDER:$3|$1}}-нь путовксозо ($2)",
 	"contributions-subtitle": "{{GENDER:$2|$1}} туртов",
 	"contributions-edit-count": "A {{GENDER:$1|совиця}} $2 {{PLURAL:$2|совиця|совицятнень}} марто.",
 	"contributions-account-creation-date": "Учётонь сёрмадовксось теезь $1.",

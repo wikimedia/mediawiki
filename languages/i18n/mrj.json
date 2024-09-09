@@ -2400,7 +2400,6 @@
 	"mycontris": "Вкладвлӓ",
 	"anoncontribs": "Вкладвлӓ",
 	"contribute": "Вклад",
-	"contribsub2": "{{GENDER:$3|$1}} вкладшы ($2)",
 	"contributions-subtitle": "{{GENDER:$2|$1}} пользовательлӓн",
 	"contributions-edit-count": "$2 {{PLURAL:$2|тӧрлӓтӹмӓш}} доно {{GENDER:$1|пользователь}}.",
 	"contributions-account-creation-date": "Аккаунтым ӹштӹмӹ жеп: $1.",

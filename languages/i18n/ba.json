@@ -2415,7 +2415,6 @@
 	"mycontris": "Өлөш",
 	"anoncontribs": "Өлөш",
 	"contribute": "Индергән өлөш",
-	"contribsub2": "{{GENDER:$3|$1}} өлөшө ($2)",
 	"contributions-subtitle": "{{GENDER:$2|$1}} өсөн",
 	"contributions-edit-count": "{{GENDER:$1|Ҡатнашыусы}} $2 {{PLURAL:$2|төҙәтеү}} эшләгән.",
 	"contributions-account-creation-date": "Иҫәп яҙмаһы $1 булдырылған.",

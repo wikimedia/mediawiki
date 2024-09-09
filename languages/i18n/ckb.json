@@ -1877,7 +1877,6 @@
 	"contributions-title": "بەشدارییەکانی بەکارھێنەر $1",
 	"mycontris": "بەشدارییەکان",
 	"anoncontribs": "بەشدارییەکان",
-	"contribsub2": "بۆ {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "بۆ {{GENDER:$2|$1}}",
 	"contributions-edit-count": "{{GENDER:$1|بەکارھێنەرێک}} بە $2 {{PLURAL:$2|دەستکارییەوە|دەستکارییەوە}}.",
 	"contributions-account-creation-date": "ھەژمارەکە لە $1 دروست کراوە.",

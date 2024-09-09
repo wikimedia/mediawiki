@@ -2404,7 +2404,6 @@
 	"mycontris": "Мыйын надырем",
 	"anoncontribs": "Надыр",
 	"contribute": "Надыр",
-	"contribsub2": "{{GENDER:$3|$1}} ушнышын надырже ($2)",
 	"contributions-subtitle": "{{GENDER:$2|$1}} ушнышылан",
 	"contributions-edit-count": "$2 {{PLURAL:$2|тӧрлымаш}} дене {{GENDER:$1|ушнышо}}.",
 	"contributions-account-creation-date": "Аккаунтым ыштыме жап: $1.",

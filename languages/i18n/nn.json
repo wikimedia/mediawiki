@@ -2192,7 +2192,6 @@
 	"mycontris": "Bidrag",
 	"anoncontribs": "Bidrag",
 	"contribute": "Bidra",
-	"contribsub2": "For {{GENDER:$3|$1}} ($2)",
 	"contributions-edit-count": "Ein {{GENDER:$1|brukar}} med $2 {{PLURAL:$2|endring|endringar}}.",
 	"contributions-account-creation-date": "Konto oppretta $1.",
 	"contributions-userdoesnotexist": "Brukarkontoen «$1» er ikkje oppretta.",

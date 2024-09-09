@@ -66,7 +66,6 @@
 	"config-memory-bad": "<strong>चेतावनी:</strong> PHP का <code>memory_limit</code> $1 है।\nयह कुछ ज़्यादा ही कम है।\nस्थापना असफल हो सकती है!",
 	"config-apc": "[https://www.php.net/apc APC] स्थापित है",
 	"config-apcu": "[https://www.php.net/apcu APCu] स्थापित है",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] स्थापित है",
 	"config-no-cache-apcu": "<strong>चेतावनी:</strong> [https://www.php.net/apcu APCu] या [https://www.iis.net/downloads/microsoft/wincache-extension WinCache] नहीं मिला।\nवस्तु कैशिंग अक्षम है।",
 	"config-mod-security": "<strong>चेतावनी:</strong> आपके वेब ब्राउज़र पर [https://modsecurity.org/ mod_security]/mod_security2 सक्षम है। इसके कई साधारण कॉन्फ़िगरेशन्स से मीडियाविकि और दूसरे सॉफ़्टवेयरों को समस्याएँ आएँगी जिसमें मनमानी सामग्री जोड़ी जा सकती है।\nअगर संभव हो तो इसे अक्षम कर देना चाहिए। वरना अगर आपको त्रुटियाँ आए तो [https://modsecurity.org/documentation/ mod_security का प्रलेख पढ़ें] या फिर अपने होस्ट से मदद माँगें।",
 	"config-diff3-bad": "GNU diff3 टेक्स्ट तुलना उपकरण नहीं मिला। आप अभी के लिए इसे अनदेखा कर सकते हैं, मगर आपको संपादन टकराव ज़्यादा मात्रा में आ सकते हैं।",

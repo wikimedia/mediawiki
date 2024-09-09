@@ -79,7 +79,6 @@
 	"config-memory-bad": "<strong>تحذير:</strong> في PHP <code>memory_limit</code> $1،\nهذا على الارجح منخفض جدا;\nقد يفشل التثبيت!",
 	"config-apc": "تثبيت [https://www.php.net/apc APC]",
 	"config-apcu": "[https://www.php.net/apcu APCu] مثبت",
-	"config-wincache": "تثبيت [https://www.iis.net/downloads/microsoft/wincache-extension WinCache]",
 	"config-no-cache-apcu": "<strong>تحذير:</strong> تعذر العثور على [https://www.php.net/apcu APCu] أو [https://www.iis.net/downloads/microsoft/wincache-extension WinCache];\nكائن التخزين المؤقت غير ممكّّن.",
 	"config-mod-security": "<strong>تحذير:</strong> تم تمكين خادم الويب الخاص بك [https://modsecurity.org/ mod_security]/mod_security2، العديد من التكوينات الشائعة له سوف تتسبب في مشاكل لميدياويكي والبرامج الأخرى التي تسمح للمستخدمين بنشر محتوى عشوائي; \nإذا كان ذلك ممكنا، يجب تعطيل هذا، أو يمكنك الرجوع إلى [https://modsecurity.org/documentation/ توثيق mod_security] أو الاتصال بدعم مضيفك إذا واجهتك أخطاء عشوائية.",
 	"config-diff3-bad": "أداة جنو diff3 لمقارنة النصوص غير موجودة. يمكنك تجاهل هذا الآن، لكن ربما تصادف تضاربات تحريرية أكثر من المعتاد.",

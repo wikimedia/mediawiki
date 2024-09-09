@@ -1958,7 +1958,6 @@
 	"contributions-title": "Pasumbanging naraguna $1",
 	"mycontris": "Pasumbang",
 	"anoncontribs": "Pasumbang",
-	"contribsub2": "Kanggo {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "Marang {{GENDER:$2|$1}}",
 	"contributions-edit-count": "{{GENDER:$1|Naraguna}} mawa $2 {{PLURAL:$2|besutan}}.",
 	"contributions-account-creation-date": "Akun digawé ing surya $1.",

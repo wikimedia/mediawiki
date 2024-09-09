@@ -2358,7 +2358,6 @@
 	"mycontris": "నా మార్పులు",
 	"anoncontribs": "మార్పుచేర్పులు",
 	"contribute": "తోడ్పడండి",
-	"contribsub2": "{{GENDER:$3|$1}} ($2) కొరకు",
 	"contributions-subtitle": "{{GENDER:$2|$1}} కొరకు",
 	"contributions-userdoesnotexist": "వాడుకరి ఖాతా \"$1\" నమోదుకాలేదు.",
 	"negative-namespace-not-supported": "నెగటివ్ విలువలున్న పేరుబరులకు మద్దతు లేదు.",

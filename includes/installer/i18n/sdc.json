@@ -32,7 +32,6 @@
 	"config-sidebar-upgrade": "Attuarizeggi",
 	"config-apc": "L'isthallazioni di [https://www.php.net/apc APC] è accabadda.",
 	"config-apcu": "L'isthallazioni di [https://www.php.net/apcu APCu] è accabadda.",
-	"config-wincache": "L'isthallazioni di [https://www.iis.net/downloads/microsoft/wincache-extension WinCache] è accabadda.",
 	"config-db-web-create": "Crea lu profiru, si nò esisthi già.",
 	"config-site-name": "Nommu di la vichi:",
 	"config-ns-generic": "Prugettu",

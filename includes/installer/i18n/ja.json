@@ -90,7 +90,6 @@
 	"config-memory-bad": "<strong>警告:</strong> PHPの<code>memory_limit</code>に$1に設定されています。\nこの値はおそらく小さすぎます。\nインストールが失敗するおそれがあります!",
 	"config-apc": "[https://www.php.net/apc APC] がインストール済み",
 	"config-apcu": "[https://www.php.net/apcu APCu] がインストール済み",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] がインストール済み",
 	"config-no-cache-apcu": "<strong>警告:</strong> [https://www.php.net/apcu APCu]、 [https://www.iis.net/downloads/microsoft/wincache-extension WinCache] のいずれも見つかりませんでした。\nオブジェクトのキャッシュは有効化されません。",
 	"config-mod-security": "<strong>警告:</strong> あなたのウェブサーバーでは [https://modsecurity.org/ mod_security] が有効になっています。正しく構成されていない場合は、MediaWiki や利用者にコンテンツの投稿を許可するその他のソフトウェアに問題が発生する場合があります。\n[https://modsecurity.org/documentation/ mod_security の説明文書]を確認するか、ランダムなエラーが発生した場合はあなたのホストのサポートにお問い合わせください。",
 	"config-diff3-bad": "GNU diff3テキスト比較ユーティリティが見つかりません。無視することもできますが、その場合編集の競合が頻繁に発生する可能性があります。",

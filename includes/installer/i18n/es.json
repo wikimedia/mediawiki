@@ -109,7 +109,6 @@
 	"config-memory-bad": "<strong>Advertencia:</strong> el parámetro <code>memory_limit</code> de PHP es $1.\nProbablemente sea demasiado bajo.\n¡La instalación puede fallar!",
 	"config-apc": "[https://www.php.net/apc APC] está instalado",
 	"config-apcu": "[https://www.php.net/apcu APCu] está instalado",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] está instalado",
 	"config-no-cache-apcu": "<strong>Atención:</strong> no se pudo encontrar [https://www.php.net/apcu APCu] o [https://www.iis.net/downloads/microsoft/wincache-extension WinCache].\nEl almacenamiento en antememoria de objetos no está activado.",
 	"config-mod-security": "<strong>Advertencia:</strong> tu servidor web tiene activado [https://modsecurity.org/ mod_security]/mod_security2. Muchas de sus configuraciones comunes pueden causar problemas a MediaWiki u otro software que permita a los usuarios publicar contenido arbitrario. De ser posible, deberías desactivarlo. Si no, consulta la [https://modsecurity.org/documentation/ documentación de mod_security] o contacta con el administrador de tu servidor si encuentras errores aleatorios.",
 	"config-diff3-bad": "No se encontró la utilidad de comparación de texto Diff3 de GNU. Por ahora, puedes pasar por alto esta situación, pero puede que se produzcan conflictos de edición con más frecuencia.",

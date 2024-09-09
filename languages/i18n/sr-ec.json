@@ -2404,7 +2404,6 @@
 	"mycontris": "Доприноси",
 	"anoncontribs": "Доприноси",
 	"contribute": "Доприноси",
-	"contribsub2": "За {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "За {{GENDER:$2|$1}}",
 	"contributions-edit-count": "{{GENDER:$1|Корисник|Корисница}} са $2 {{PLURAL:$2|измена|измене}}.",
 	"contributions-account-creation-date": "Налог направљен $1",

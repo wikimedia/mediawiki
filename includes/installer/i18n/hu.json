@@ -71,7 +71,6 @@
 	"config-memory-bad": "<strong>Figyelmeztetés:</strong> A PHP <code>memory_limit</code> beállításának értéke $1.\nEz az érték valószínűleg túl kevés, a telepítés sikertelen lehet.",
 	"config-apc": "Az [https://www.php.net/apc APC] telepítve van",
 	"config-apcu": "Az [https://www.php.net/apcu APCu] telepítve van",
-	"config-wincache": "A [https://www.iis.net/downloads/microsoft/wincache-extension WinCache] telepítve van",
 	"config-no-cache-apcu": "<strong>Figyelmeztetés:</strong> nem található sem az [https://www.php.net/apcu APCu], sem a [https://www.iis.net/downloads/microsoft/wincache-extension WinCache].\nAz objektum-gyorsítótárazás nincs engedélyezve.",
 	"config-mod-security": "<strong>Figyelmeztetés:</strong>A webszerverek [https://modsecurity.org/ ModSecurity] vagy ModSecurity2 engedélyezve van. Ez számos szokásos konfiguráció esetén problémát okozhat a MediaWiki és már szoftverek számára. Ha lehetséges, tiltsd le. További információért olvasd el [https://modsecurity.org/documentation/ mod_security dokumentációt], vagy lépj kapcsolatba a hoszt szolgáltató támogató csapatával, ha véletlenszerű hibák keletkeznek.",
 	"config-diff3-bad": "A GNU diff3 szöveg összehasonlító eszköz nem található. Most ezt figyelmen kívül hagyhatod, de gyakrabban futhatsz szerkesztési ütközésbe.",

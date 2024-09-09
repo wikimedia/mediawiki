@@ -55,7 +55,6 @@
 	"config-no-fts3": "<strong>Amaran:</strong> SQLite disusun tanpa [//sqlite.org/fts3.html modil FTS3], maka ciri-ciri pencarian tidak akan disediakan pada backend ini.",
 	"config-memory-bad": "<strong>Amaran:</strong> <code>memory_limit</code> (Had memori) PHP ialah $1.\nIni mungkin terlalu rendah.\nPemasangan mungkin akan gagal!",
 	"config-apc": "[https://www.php.net/apc APC] dipasang",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] dipasang",
 	"config-mod-security": "<strong>Amaran:</strong> Pelayan web anda dihidupkan [https://modsecurity.org/ mod_security]/mod_security2. Kebanyakan konfigurasinya yang umum boleh menimbulkan kesulitan untuk MediaWiki dan perisian-perisian lain yang membolehkan pengguna untuk mengeposkan kandungan yang sewenang-wenang.\nJika boleh, ciri-ciri ini harus dimatikan. Jika tidak, rujuki [https://modsecurity.org/documentation/ dokumentasi mod_security] atau hubungi bantuan hos anda jika anda menghadapi ralat sembarangan.",
 	"config-diff3-bad": "GNU diff3 tidak dijumpai.",
 	"config-git": "Perisian kawalan versi Git dijumpai: <code>$1</code>.",

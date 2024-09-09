@@ -34,7 +34,6 @@
 	"config-env-php": "PHP $1 قورولوبدور.",
 	"config-apc": "[https://www.php.net/apc APC] نصب اولونوب.",
 	"config-apcu": "[https://www.php.net/apcu APCu] نصب اولونوب",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] نصب اولونوب.",
 	"config-no-cache-apcu": "<strong>ایخطار:</strong> پیوند [https://www.php.net/apcu APCu] یا [https://www.iis.net/downloads/microsoft/wincache-extension WinCache] تاپیلمادی. شئین ذخیره سی چالیشمیر.",
 	"config-using-server": "«<nowiki>$1</nowiki>» سِروِر آدی ایشلنیر.",
 	"config-using-uri": "«<nowiki>$1$2</nowiki>» سِروِر آدرسی ایشلنیر.",

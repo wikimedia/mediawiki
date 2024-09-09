@@ -2353,7 +2353,6 @@
 	"mycontris": "Kohendukset",
 	"anoncontribs": "Kohendukset",
 	"contribute": "Kohendukset",
-	"contribsub2": "Käyttäjän {{GENDER:$3|$1}} ($2) kohendukset",
 	"contributions-subtitle": "Käyttäjän {{GENDER:$2|$1}} kohendukset",
 	"contributions-edit-count": "{{GENDER:$1|Käyttäjäl}} on $2 {{PLURAL:$2|kohendus|kohendustu}}.",
 	"contributions-account-creation-date": "Käyttäjäntunnus on luajittu $1.",

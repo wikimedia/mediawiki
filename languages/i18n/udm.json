@@ -2374,7 +2374,6 @@
 	"mycontris": "Ваёсъёс",
 	"anoncontribs": "Ваёсъёс",
 	"contribute": "Ваёс",
-	"contribsub2": "{{GENDER:$3|$1}}-лы ($2)",
 	"contributions-subtitle": "{{GENDER:$2|$1}}-лы",
 	"contributions-edit-count": "{{GENDER:$1|юзчи}} $2-ысь {{PLURAL:$2|тупатэ|тупато}}.",
 	"contributions-account-creation-date": "$1-ын аккаунт кылдытэмын",

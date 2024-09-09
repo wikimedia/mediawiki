@@ -1048,7 +1048,6 @@
 	"tool-link-contributions": "{{GENDER:$1|用戶}}貢獻",
 	"contributions-title": "$1嗰用戶貢獻",
 	"mycontris": "貢獻",
-	"contribsub2": "{{GENDER:$3|$1}}嗰貢獻 （$2）",
 	"nocontribs": "冇尋到合到條件嗰改動。",
 	"uctop": "頭上",
 	"month": "從箇月 （或更早）:",

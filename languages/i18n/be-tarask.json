@@ -2380,7 +2380,6 @@
 	"mycontris": "Унёсак",
 	"anoncontribs": "Унёсак",
 	"contribute": "Зрабіць унёсак",
-	"contribsub2": "Для {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "Для {{GENDER:$2|$1}}",
 	"contributions-edit-count": "{{GENDER:$1|Удзельнік|Удзельніца}} з $2 {{PLURAL:$2|рэдагаваньнем|рэдагаваньнямі}}.",
 	"contributions-userdoesnotexist": "Рахунак удзельніка «$1» не зарэгістраваны.",

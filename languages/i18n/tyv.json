@@ -2352,7 +2352,6 @@
 	"mycontris": "Дадывыр",
 	"anoncontribs": "Үлүү",
 	"contribute": "Үлүг",
-	"contribsub2": "{{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "{{GENDER:$2|$1}}-ге",
 	"contributions-edit-count": "$2 {{PLURAL:$2|Эдилгелиг}} {{GENDER:$1|киржикчи}}.",
 	"contributions-account-creation-date": "Аккаунт $1 чаяаттынган.",

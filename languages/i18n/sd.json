@@ -1683,7 +1683,6 @@
 	"mycontris": "ڀاڱيداريون",
 	"anoncontribs": "ڀاڱيداريون",
 	"contribute": "ڀاڱيداري ڪريو",
-	"contribsub2": "{{GENDER:$3|$1}} ($2) لاءِ",
 	"contributions-subtitle": "{{GENDER:$2|$1}} لاءِ",
 	"contributions-edit-count": "$2 {{PLURAL:$2|سنوار|سنوارون}} رکندڙ {{GENDER:$1|واپرائيندڙ}}.",
 	"contributions-account-creation-date": "کاتو $1ع تي کوليو ويو.",

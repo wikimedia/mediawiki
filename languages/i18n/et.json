@@ -2436,7 +2436,6 @@
 	"mycontris": "Kaastöö",
 	"anoncontribs": "Kaastöö",
 	"contribute": "Tee kaastööd",
-	"contribsub2": "Kasutaja {{GENDER:$3|$1}} ($2) kaastöö",
 	"contributions-subtitle": "{{GENDER:$2|$1}}",
 	"contributions-edit-count": "$2 {{PLURAL:$2|muudatusega}} {{GENDER:$1|kasutaja}}.",
 	"contributions-account-creation-date": "Konto loodud: $1.",

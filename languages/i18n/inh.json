@@ -2377,7 +2377,6 @@
 	"mycontris": "Къахьегам",
 	"anoncontribs": "Къахьегам",
 	"contribute": "Къахьегам",
-	"contribsub2": "Къахьегам {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "{{GENDER:$2|$1}}",
 	"contributions-edit-count": "Ер $2 {{PLURAL:$2|хувцам}} баь {{GENDER:$1|доакъашхо ва|доакъашхо я}}.",
 	"contributions-account-creation-date": "Цун аккаунт кхеллай $1.",

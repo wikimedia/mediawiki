@@ -69,7 +69,6 @@
 	"config-memory-bad": "<strong>Avís:</strong> El <code>memory_limit</code> del PHP és $1.\nAixò és probablement massa baix.\nLa instal·lació pot fallar!",
 	"config-apc": "L'[https://www.php.net/apc APC] està instal·lat",
 	"config-apcu": "L'[https://www.php.net/apcu APCu] està instal·lat",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] està instal·lat",
 	"config-no-cache-apcu": "<strong>Avís:</strong> no s'ha pogut trobar [https://www.php.net/apcu APCu] o [https://www.iis.net/downloads/microsoft/wincache-extension WinCache].\nNo s'habilitarà la memòria cau d'objectes.",
 	"config-mod-security": "<strong>Avís:</strong> El vostre servidor web té habilitat [https://modsecurity.org/ mod_security]/mod_security2. Moltes configuracions habituals poden ocasionar problemes amb MediaWiki i altre programari, que permeten enviar contingut arbitrari.\nSi fos possible, s'hauria d'inhabilitar. Altrament, referiu-vos a la [https://modsecurity.org/documentation/ documentació de mod_security] o contacteu amb el proveïdor del vostre servidor si us trobeu amb errors inesperats.",
 	"config-diff3-bad": "No s'ha trobat el GNU diff3. Podeu ignorar-ho per ara, però us podeu trobar amb conflictes d'edició més habitualment.",

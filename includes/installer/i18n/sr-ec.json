@@ -64,7 +64,6 @@
 	"config-memory-bad": "<strong>Упозорење:</strong> Вредност параметра <code>memory_limit</code> PHP-а износи $1.\nОво је вероватно прениско.\nИнсталација можда неће успети!",
 	"config-apc": "[https://www.php.net/apc APC] је инсталиран",
 	"config-apcu": "[https://www.php.net/apcu APCu] је инсталиран",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] је инсталиран",
 	"config-no-cache-apcu": "<strong>Упозорење:</strong> Није могуће пронаћи [https://www.php.net/apcu APCu] или [https://www.iis.net/downloads/microsoft/wincache-extension WinCache].\nКеширање објеката није омогућено.",
 	"config-diff3-bad": "Алатка GNU diff3 за разликовање текста није пронађена. Ово можете за сада да игноришете, али ћете можда чешће упадати у конфликте изменама.",
 	"config-git": "Пронађен је Git софтвер за контролу верзија: <code>$1</code>",

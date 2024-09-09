@@ -2504,7 +2504,6 @@
 	"mycontris": "기여",
 	"anoncontribs": "기여",
 	"contribute": "기여",
-	"contribsub2": "{{GENDER:$3|$1}}($2)의 기여",
 	"contributions-subtitle": "{{GENDER:$2|$1}}의 기여",
 	"contributions-edit-count": "{{GENDER:$1|사용자}} {{PLURAL:$2|편집}} 수: $2건.",
 	"contributions-account-creation-date": "계정 생성일: $1.",

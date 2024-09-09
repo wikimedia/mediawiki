@@ -68,7 +68,6 @@
 	"config-memory-bad": "<strong>Προειδοποίηση:</strong> το <code>memory_limit</code> της PHP είναι $1.\nΑυτή η τιμή είναι πιθανώς πολύ χαμηλή.\n\nΗ εγκατάσταση ενδέχεται να αποτύχει!",
 	"config-apc": "Το [https://www.php.net/apc APC] είναι εγκατεστημένο",
 	"config-apcu": "Το [https://www.php.net/apcu APCu] είναι εγκατεστημένο",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension Το WinCache] είναι εγκατεστημένο",
 	"config-no-cache-apcu": "<strong>Προειδοποίηση:</strong> Αποτυχία εύρεσης του [https://www.php.net/apcu APCu] ή του [https://www.iis.net/downloads/microsoft/wincache-extension WinCache].\nΗ αρχειοθέτηση αντικειμένων δεν έχει ενεργοποιηθεί.",
 	"config-diff3-bad": "Το βοηθητικό πρόγραμμα σύγκρισης κειμένων GNU diff3 δεν βρέθηκε. Μπορείτε να το αγνοήσετε για τώρα, αλλά ενδέχεται να αντιμετωπίζετε συχνότερα διενέξεις επεξεργασίας.",
 	"config-git": "Βρέθηκε το λογισμικό ελέγχου εκδόσεων Git: <code>$1</code>.",

@@ -1425,7 +1425,6 @@
 	"contributions-title": "Beşdariyên ji bo $1",
 	"mycontris": "Beşdariyên min",
 	"anoncontribs": "Beşdariyên min",
-	"contribsub2": "Bo {{GENDER:$3|$1}} ($2)",
 	"contributions-edit-count": "Bikarhênerek{{GENDER:$1|î|e|î}} bi $2 {{PLURAL:$2|guhartinê|guhartinan}}.",
 	"contributions-account-creation-date": "Hesab di $1 de hatiye çêkirin.",
 	"nocontribs": "Ti guhartin bi van parzûnan nehatin dîtin.",

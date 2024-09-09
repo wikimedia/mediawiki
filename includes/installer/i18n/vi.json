@@ -68,7 +68,6 @@
 	"config-memory-bad": "<strong>Cảnh báo:</strong> <code>memory_limit</code> của PHP là $1.\nGiá trị này có lẽ quá thấp.\nCài đặt có thể bị thất bại!",
 	"config-apc": "[https://www.php.net/apc APC] đã được cài đặt",
 	"config-apcu": "[https://www.php.net/apcu APCu] đã được cài đặt",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] đã được cài đặt",
 	"config-no-cache-apcu": "<strong>Cảnh báo:</strong> Không tìm thấy [https://www.php.net/apcu APCu] hoặc [https://www.iis.net/downloads/microsoft/wincache-extension WinCache].\nVùng nhớ đệm đối tượng không được kích hoạt.",
 	"config-mod-security": "<strong>Cảnh báo:</strong> [https://modsecurity.org/ mod_security]/mod_security2 đã được kích hoạt trên máy chủ Web của bạn. Nhiều cấu hình phổ biến của phần mềm này sẽ gây vấn đề cho MediaWiki và những phần mềm khác cho phép người dùng đăng các nội dung tùy tiện.\nNếu có thể, bạn nên vô hiệu nó. Còn không, tra cứu [https://modsecurity.org/documentation/ tài liệu mod_security] hoặc liên hệ với nhà cung cấp hỗ trợ cho máy chủ nếu bạn gặp những lỗi ngẫu nhiên nào đó.",
 	"config-diff3-bad": "Không tìm thấy tiện ích so sánh văn bản GNU diff3. Bạn có thể bỏ qua vấn đề này bây giờ, nhưng các mâu thuẫn sửa đổi có thể xảy ra thường xuyên hơn.",

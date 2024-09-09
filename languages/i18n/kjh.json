@@ -2360,7 +2360,6 @@
 	"mycontris": "Хозым",
 	"anoncontribs": "Хозым",
 	"contribute": "Хозым",
-	"contribsub2": "Хозым {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "{{GENDER:$2|$1}}",
 	"contributions-edit-count": "$2{{PLURAL:$2|тӱзедіг}} иткен {{GENDER:$1|араласчы}}.",
 	"contributions-account-creation-date": "Аккаунт идiлген $1.",

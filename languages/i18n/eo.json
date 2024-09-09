@@ -2413,7 +2413,6 @@
 	"mycontris": "Kontribuoj",
 	"anoncontribs": "Kontribuoj",
 	"contribute": "Kontribuu",
-	"contribsub2": "De {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "Por {{GENDER:$2|$1}}",
 	"contributions-edit-count": "{{GENDER:$1|Uzanto|Uzantino|Uzanto}} kun $2 {{PLURAL:$2|redakto|redaktoj}}.",
 	"contributions-account-creation-date": "Konto kreita je $1.",

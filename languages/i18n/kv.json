@@ -2366,7 +2366,6 @@
 	"mycontris": "Вӧчӧмтор",
 	"anoncontribs": "Вӧчӧмтор",
 	"contribute": "Пай",
-	"contribsub2": "{{GENDER:$3|$1}} ($2)-лы",
 	"contributions-subtitle": "{{GENDER:$2|$1}}-лы",
 	"contributions-edit-count": "$2 {{PLURAL:$2|вежӧм|вежӧмъяс}} вӧчысь {{GENDER:$1|пырӧдчысь}}.",
 	"contributions-account-creation-date": "Аккаунтсӧ лӧсьӧдіс $1.",

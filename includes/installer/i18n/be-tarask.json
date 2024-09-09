@@ -63,7 +63,6 @@
 	"config-memory-bad": "'''Папярэджаньне:''' памер PHP <code>memory_limit</code> складае $1.\nВерагодна, гэта вельмі мала.\nУсталяваньне можа быць няўдалым!",
 	"config-apc": "[https://www.php.net/apc APC] усталяваны",
 	"config-apcu": "[https://www.php.net/apcu APCu] ўсталяваны",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] усталяваны",
 	"config-no-cache-apcu": "<strong>Папярэджаньне:</strong> ня знойдзеныя [https://www.php.net/apcu APCu] ці [https://www.iis.net/downloads/microsoft/wincache-extension WinCache]. Кэшаваньне аб’ектаў адключанае.",
 	"config-mod-security": "'''Папярэджаньне''': на Вашым ўэб-сэрверы ўключаны [https://modsecurity.org/ mod_security]. У выпадку няслушнай наладцы, ён можа стаць прычынай праблемаў для MediaWiki ці іншага праграмнага забесьпячэньня, якое дазваляе ўдзельнікам дасылаць на сэрвэр любы зьмест.\nГлядзіце [https://modsecurity.org/documentation/ дакумэнтацыю mod_security] ці зьвярніцеся ў падтрымку Вашага хосту, калі ў Вас узьнікаюць выпадковыя праблемы.",
 	"config-diff3-bad": "Праграма параўнаньня тэксту GNU diff3 ня знойдзеная. Вы можаце праігнараваць гэта, але можаце сутыкнуцца з канфліктамі рэдагаваньня больш часта.",

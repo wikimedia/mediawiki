@@ -722,7 +722,6 @@
 	"contributions-title": "Käyttäjän $1 mookkaukset",
 	"mycontris": "Mookkaukset",
 	"anoncontribs": "Mookkaukset",
-	"contribsub2": "Käyttäjän {{GENDER:$3|$1}} mookkaukset ($2)",
 	"contributions-subtitle": "Käyttäjän {{GENDER:$2|$1}} mookkaukset",
 	"nocontribs": "Näihin ehtoihin sopivia mookkauksia ei löytynyt.",
 	"uctop": "nykynen",

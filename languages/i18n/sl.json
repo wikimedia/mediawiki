@@ -2418,7 +2418,6 @@
 	"mycontris": "Prispevki",
 	"anoncontribs": "Prispevki",
 	"contribute": "Prispevaj",
-	"contribsub2": "Za {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "Za {{GENDER:$2|$1}}",
 	"contributions-edit-count": "{{GENDER:$1|Uporabnik|Uporabnica}} s/z $2 {{PLURAL:$2|urejanjem|urejanjema|urejanji}}.",
 	"contributions-account-creation-date": "Račun je bil ustvarjen dne $1.",

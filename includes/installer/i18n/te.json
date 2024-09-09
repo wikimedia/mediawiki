@@ -52,7 +52,6 @@
 	"config-memory-raised": "PHP యొక్క <code>memory_limit</code> $1, దాన్ని $2 కి పెంచాం.",
 	"config-memory-bad": "<strong>హెచ్చరిక:</strong> PHP యొక్క <code>memory_limit</code> $1.\nబహుశా ఇది మరీ తక్కువ.\nస్థాపన విఫలం కావచ్చు!",
 	"config-apc": "[https://www.php.net/apc APC] స్థాపించబడింది",
-	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] స్థాపించబడింది",
 	"config-diff3-bad": "GNU diff3 కనబడలేదు.",
 	"config-no-uri": "<strong>లోపం:</strong> ప్రస్తుత URI ఏమిటో నిర్ధారించలేకపోయాం.\nస్థాపన ఆగిపోయింది.",
 	"config-using-server": "సర్వరు పేరు \"<nowiki>$1</nowiki>\" ను వాడుతున్నాం.",

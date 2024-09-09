@@ -2610,7 +2610,6 @@
 	"mycontris": "贡献",
 	"anoncontribs": "贡献",
 	"contribute": "贡献",
-	"contribsub2": "{{GENDER:$3|$1}}的贡献（$2）",
 	"contributions-subtitle": "{{GENDER:$2|$1}}",
 	"contributions-edit-count": "此{{GENDER:$1|用户}}有$2次{{PLURAL:$2|编辑}}。",
 	"contributions-account-creation-date": "账号创建于$1。",

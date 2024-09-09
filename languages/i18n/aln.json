@@ -325,7 +325,7 @@
 	"summary-preview": "Parapamja e përmbledhjes:",
 	"blockedtitle": "Përdoruesi âsht i bllokuem",
 	"blockedtext": "<strong>Llogaria e juaj apo adresa IP është bllokuar.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\n\nJu mund të kontaktoni $1 ose ndonjë [[{{MediaWiki:Grouppage-sysop}}|administrator]] për ta diskutuar bllokimin.\nNuk mund ta shfrytëzoni funksionin 'dërgo email këtij përdoruesi' përveç nëse keni specifikuar adresë emaili në [[Special:Preferences|parapëlqimet e llogarisë]] dhe nuk jeni bllokuar.\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
-	"autoblockedtext": "Adresa juej e IPs âsht bllokue automatikisht meqenëse âsht përdorë prej nji përdoruesi tjetër, i cili âsht bllokue prej $1.\nArsyeja e dhânë âsht kjo:\n\n:''$2''\n\n* Fillimi i bllokimit: $8\n* Përfundimi i bllokimit: $6\n* I bllokuemi i synuem: $7\n\nMundeni me kontaktue $1 ose ndonji [[{{MediaWiki:Grouppage-sysop}}|administrator]] për me diskutue bllokimin.\n\nNuk mundeni me shfrytëzue funksionin 'dërgo email këtij përdoruesi' përveç nëse keni specifikue adresë emaili në [[Special:Preferences|parapëlqimet e llogarisë]] dhe nuk jeni bllokue.\n\nAdresa juej aktuale e IP âsht $3, dhe ID e bllokimit âsht #$5.\nJu lutemi përfshini këto shenime në të gjitha shkresat që i bâni.",
+	"autoblockedtext": "Adresa juej e IPs âsht bllokue automatikisht meqenëse âsht përdorë prej nji përdoruesi tjetër, i cili âsht bllokue prej $1.\nArsyeja e dhânë âsht kjo:\n\n:<em>$2</em>.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\n\nNuk mundeni me shfrytëzue funksionin 'dërgo email këtij përdoruesi' përveç nëse keni specifikue adresë emaili në [[Special:Preferences|parapëlqimet e llogarisë]] dhe nuk jeni bllokue.\n\n{{int:blockedtext-block-ip|$3}} {{int:blockedtext-block-id|$5}}\n{{int:blockedtext-include-details-queries}}",
 	"blockednoreason": "nuk âsht dhânë arsye",
 	"whitelistedittext": "Duheni me u $1 për me redaktue artikuj.",
 	"confirmedittext": "Duheni me vërtetue adresën tuej të emailit para se me redaktue.\nJu lutemi vërtetoni adresën tuej të emailit përmjet [[Special:Preferences|parapëlqimeve]] tueja.",
@@ -743,7 +743,6 @@
 	"tool-link-contributions": "Kontributet",
 	"contributions-title": "Kontributet e përdoruesit në $1",
 	"mycontris": "Redaktimet e mia",
-	"contribsub2": "Për $1 ($2)",
 	"uctop": "në krye",
 	"month": "Prej muejit (e mâ herët):",
 	"year": "Prej vjetit (e mâ herët):",
@@ -900,5 +899,11 @@
 	"skin-action-undelete": "Kthe fshimjen mbrapsht",
 	"skin-action-delete": "Fshij",
 	"skin-action-move": "Zhvendos",
-	"blockedtext-block-id": "ID e bllokimit është #$5."
+	"blockedtext-start-time": "Fillimi i bllokimit: $1",
+	"blockedtext-expiration-time": "Përfundimi i bllokimit: $1",
+	"blockedtext-intended-blockee": "I bllokuemi i synuem: $1",
+	"blockedtext-contact-blocker-admin": "Mundeni me kontaktue $1 ose ndonji [[{{MediaWiki:Grouppage-sysop}}|administrator]] për me diskutue bllokimin.",
+	"blockedtext-block-ip": "Adresa juej aktuale e IP âsht $1.",
+	"blockedtext-block-id": "ID e bllokimit është #$1.",
+	"blockedtext-include-details-queries": "Ju lutemi përfshini këto shenime në të gjitha shkresat që i bâni."
 }

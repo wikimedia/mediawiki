@@ -2515,7 +2515,6 @@
 	"mycontris": "مساهمات",
 	"anoncontribs": "مساهمات",
 	"contribute": "ساهم",
-	"contribsub2": "ل{{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "لـ{{GENDER:$2|$1}}",
 	"contributions-edit-count": "{{GENDER:$1|مستخدم له|مستخدمة لها}} في {{GENDER:$1|سجله|سجلها}} $2 {{PLURAL:$2|تعديل|تعديلًا}}.",
 	"contributions-account-creation-date": "أُنشِئَ الحساب في $1.",
