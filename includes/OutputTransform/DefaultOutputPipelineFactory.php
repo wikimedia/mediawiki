@@ -39,6 +39,9 @@ class DefaultOutputPipelineFactory {
 	private const CORE_LIST = [
 		'ExtractBody' => [
 			'class' => ExtractBody::class,
+			'services' => [
+				'UrlUtils',
+			],
 			'optional_services' => [
 				'MobileFrontend.Context',
 			],
