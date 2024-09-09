@@ -125,6 +125,10 @@ For notes on 1.42.x and older releases, see HISTORY.
 * The AuthManagerVerifyAuthentication hook was added.
 * The OutputPageRenderCategoryLink hook was added, as a replacement for the
   deprecated OutputPageMakeCategoryLinks hook.
+* PreAuthenticationProvider, PrimaryAuthenticationProvider, and
+  SecondaryAuthenticationProvider now receive a `canAlwaysAutocreate` flag in
+  the options of the `testUserForCreation` invocation. This flag is true when
+  the session provider is exempt from autocreate user permissions checks.
 * …
 
 === External library changes in 1.43 ===

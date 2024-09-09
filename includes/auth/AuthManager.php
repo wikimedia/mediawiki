@@ -1993,6 +1993,7 @@ class AuthManager implements LoggerAwareInterface {
 		$options = [
 			'flags' => IDBAccessObject::READ_LATEST,
 			'creating' => true,
+			'canAlwaysAutocreate' => $session && $session->getProvider()->canAlwaysAutocreate(),
 		];
 		$providers = $this->getPreAuthenticationProviders() +
 			$this->getPrimaryAuthenticationProviders() +
