@@ -118,7 +118,9 @@ mw.cookie = {
 	},
 
 	/**
-	 * Get the value of a SameSite=None cookie, using the legacy ss0- cookie if needed.
+	 * Get the value of a cookie.
+	 *
+	 * @deprecated since 1.43, use {@link module:mediawiki.cookie.get mw.cookie.get}
 	 *
 	 * @param {string} key
 	 * @param {string} [prefix=wgCookiePrefix] The prefix of the key. If `prefix` is
@@ -129,18 +131,12 @@ mw.cookie = {
 	 * @memberof module:mediawiki.cookie
 	 */
 	getCrossSite: function ( key, prefix, defaultValue ) {
-		let value;
-
-		value = this.get( key, prefix, null );
-		if ( value === null ) {
-			value = this.get( 'ss0-' + key, prefix, null );
-		}
-		if ( value === null ) {
-			value = defaultValue;
-		}
-		return value;
+		return this.get( key, prefix, defaultValue );
 	}
 };
+
+mw.log.deprecate( mw.cookie, 'getCrossSite', mw.cookie.getCrossSite,
+	'Use mw.cookie.get instead.', 'mw.cookie.getCrossSite' );
 
 if ( window.QUnit ) {
 	module.exports = {

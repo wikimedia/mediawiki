@@ -699,6 +699,8 @@ because of Phabricator reports.
   - mNewSectionLink      - Get with showNewSectionLink()
   - mHideNewSectionLink  - Set with forceHideNewSectionLink()
   - mNoGallery           - getNoGallery()
+* mw.cookie.getCrossSite() has been deprecated due to the removal of
+  $wgUseSameSiteLegacyCookies in MW 1.42. Use mw.cookie.get().
 * The 'help' key in HTMLForm descriptors is deprecated. Use the 'help-raw'
   key instead.
 * ImageGalleryBase::setWidths() and ::setHeights() will now emit a deprecation

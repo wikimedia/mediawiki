@@ -186,18 +186,4 @@
 		assert.strictEqual( key, 'barfoo' );
 	} );
 
-	QUnit.test( 'getCrossSite( key, prefix )', ( assert ) => {
-		jqcookie.withArgs( 'barfoo' ).returns( 'x' );
-		jqcookie.withArgs( 'barss0-foo' ).returns( 'y' );
-		assert.strictEqual( mw.cookie.getCrossSite( 'foo', 'bar', 'def' ), 'x' );
-
-		jqcookie.withArgs( 'barfoo' ).returns( null );
-		jqcookie.withArgs( 'barss0-foo' ).returns( 'z' );
-		assert.strictEqual( mw.cookie.getCrossSite( 'foo', 'bar', 'def' ), 'z' );
-
-		jqcookie.withArgs( 'barfoo' ).returns( null );
-		jqcookie.withArgs( 'barss0-foo' ).returns( null );
-		assert.strictEqual( mw.cookie.getCrossSite( 'foo', 'bar', 'def' ), 'def' );
-	} );
-
 }() );
