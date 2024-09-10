@@ -129,6 +129,10 @@ For notes on 1.42.x and older releases, see HISTORY.
   SecondaryAuthenticationProvider now receive a `canAlwaysAutocreate` flag in
   the options of the `testUserForCreation` invocation. This flag is true when
   the session provider is exempt from autocreate user permissions checks.
+* The CentralIdLookup service gained the isOwned() method, which can be used
+  to check if a local username is reserved for a central user, even if a local
+  user account does not exist yet. This can be used by extensions to look
+  up information about the central user.
 * …
 
 === External library changes in 1.43 ===
