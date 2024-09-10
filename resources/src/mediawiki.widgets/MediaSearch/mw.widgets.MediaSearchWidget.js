@@ -149,8 +149,7 @@
 	 * @method
 	 */
 	mw.widgets.MediaSearchWidget.prototype.queryMediaQueue = function () {
-		const search = this,
-			value = this.getQueryValue();
+		const value = this.getQueryValue();
 
 		if ( value === '' ) {
 			if ( mw.user.isAnon() ) {
@@ -170,19 +169,19 @@
 		this.recentUploadsMessage.toggle( this.currentQueue === this.userUploadsQueue );
 
 		this.query.pushPending();
-		search.noItemsMessage.toggle( false );
+		this.noItemsMessage.toggle( false );
 
 		this.currentQueue.get( this.constructor.static.limit )
 			.then( ( items ) => {
 				if ( items.length > 0 ) {
-					search.processQueueResults( items );
-					search.currentItemCache = search.currentItemCache.concat( items );
+					this.processQueueResults( items );
+					this.currentItemCache = this.currentItemCache.concat( items );
 				}
 
-				search.query.popPending();
-				search.noItemsMessage.toggle( search.results.isEmpty() );
-				if ( !search.results.isEmpty() ) {
-					search.lazyLoadResults();
+				this.query.popPending();
+				this.noItemsMessage.toggle( this.results.isEmpty() );
+				if ( !this.results.isEmpty() ) {
+					this.lazyLoadResults();
 				}
 
 			} );

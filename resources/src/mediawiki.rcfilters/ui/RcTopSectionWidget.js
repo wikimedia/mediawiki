@@ -14,8 +14,7 @@ const RcTopSectionWidget = function MwRcfiltersUiRcTopSectionWidget(
 ) {
 	const topLinksCookieName = 'rcfilters-toplinks-collapsed-state',
 		topLinksCookie = mw.cookie.get( topLinksCookieName ),
-		topLinksCookieValue = topLinksCookie || 'collapsed',
-		widget = this;
+		topLinksCookieValue = topLinksCookie || 'collapsed';
 
 	config = config || {};
 
@@ -39,12 +38,12 @@ const RcTopSectionWidget = function MwRcfiltersUiRcTopSectionWidget(
 		.on( 'beforeExpand.mw-collapsible', () => {
 			mw.cookie.set( topLinksCookieName, 'expanded' );
 			toplinksTitle.setIndicator( 'up' );
-			widget.switchTopLinks( 'expanded' );
+			this.switchTopLinks( 'expanded' );
 		} )
 		.on( 'beforeCollapse.mw-collapsible', () => {
 			mw.cookie.set( topLinksCookieName, 'collapsed' );
 			toplinksTitle.setIndicator( 'down' );
-			widget.switchTopLinks( 'collapsed' );
+			this.switchTopLinks( 'collapsed' );
 		} );
 
 	this.$topLinks.find( '.mw-recentchanges-toplinks-title' )
@@ -86,7 +85,7 @@ const RcTopSectionWidget = function MwRcfiltersUiRcTopSectionWidget(
 	$( '.mw-rcfilters-head' ).before( this.$top );
 
 	// Initialize top links position
-	widget.switchTopLinks( topLinksCookieValue );
+	this.switchTopLinks( topLinksCookieValue );
 };
 
 /* Initialization */

@@ -54,11 +54,10 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 	};
 
 	EmptyResourceProvider.prototype.getResults = function () {
-		const provider = this,
-			deferred = $.Deferred(),
+		const deferred = $.Deferred(),
 			timer = setTimeout(
 				() => {
-					provider.toggleDepleted( true );
+					this.toggleDepleted( true );
 					// Always resolve with empty value
 					deferred.resolve( [] );
 				},
@@ -70,12 +69,11 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 	};
 
 	SingleResultResourceProvider.prototype.getResults = function ( howMany ) {
-		const provider = this,
-			deferred = $.Deferred();
+		const deferred = $.Deferred();
 
 		const timer = setTimeout(
 			() => {
-				provider.toggleDepleted( howMany > 1 );
+				this.toggleDepleted( howMany > 1 );
 				// Always resolve with one value
 				deferred.resolve( [ 'one result (' + ( itemCounter++ + 1 ) + ')' ] );
 			},

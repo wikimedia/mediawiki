@@ -40,8 +40,6 @@
 	 * @return {jQuery.Promise} Promise returning config object
 	 */
 	ForeignStructuredUpload.prototype.loadConfig = function () {
-		const upload = this;
-
 		if ( this.configPromise ) {
 			return this.configPromise;
 		}
@@ -51,7 +49,7 @@
 			setTimeout( () => {
 				// Resolve asynchronously, so that it's harder to accidentally write synchronous code that
 				// will break for cross-wiki uploads
-				deferred.resolve( upload.config );
+				deferred.resolve( this.config );
 			} );
 			this.configPromise = deferred.promise();
 		} else {
@@ -66,8 +64,8 @@
 				} ).then( ( resp ) => {
 					// Foreign wiki might be running a pre-1.27 MediaWiki, without support for this
 					if ( resp.query && resp.query.uploaddialog ) {
-						upload.config = resp.query.uploaddialog;
-						return upload.config;
+						this.config = resp.query.uploaddialog;
+						return this.config;
 					} else {
 						return $.Deferred().reject( 'upload-foreign-cant-load-config' );
 					}
@@ -177,8 +175,7 @@
 	 * @return {string}
 	 */
 	ForeignStructuredUpload.prototype.getDescriptions = function () {
-		const upload = this;
-		return this.descriptions.map( ( desc ) => upload.config.format.description
+		return this.descriptions.map( ( desc ) => this.config.format.description
 			.replace( '$LANGUAGE', desc.language )
 			.replace( '$TEXT', desc.text ) ).join( '\n' );
 	};

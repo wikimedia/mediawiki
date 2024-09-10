@@ -59,7 +59,6 @@ HtmlformChecker.prototype.attach = function ( $extraElements ) {
  */
 HtmlformChecker.prototype.validate = function () {
 	let currentRequestInternal;
-	const that = this;
 	const value = this.$element.val();
 
 	// Abort any pending requests.
@@ -75,22 +74,22 @@ HtmlformChecker.prototype.validate = function () {
 
 	this.currentRequest = currentRequestInternal = this.validator( value )
 		.done( ( info ) => {
-			const forceReplacement = value !== that.currentValue;
+			const forceReplacement = value !== this.currentValue;
 
 			// Another request was fired in the meantime, the result we got here is no longer current.
 			// This shouldn't happen as we abort pending requests, but you never know.
-			if ( that.currentRequest !== currentRequestInternal ) {
+			if ( this.currentRequest !== currentRequestInternal ) {
 				return;
 			}
 			// If we're here, then the current request has finished, avoid calling .abort() needlessly.
-			that.currentRequest = undefined;
+			this.currentRequest = undefined;
 
-			that.currentValue = value;
+			this.currentValue = value;
 
-			that.setErrors( info.valid, info.messages, forceReplacement );
+			this.setErrors( info.valid, info.messages, forceReplacement );
 		} ).fail( () => {
-			that.currentValue = null;
-			that.setErrors( true, [] );
+			this.currentValue = null;
+			this.setErrors( true, [] );
 		} );
 
 	return currentRequestInternal;

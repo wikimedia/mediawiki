@@ -104,8 +104,7 @@ ChangesListWrapperWidget.prototype.onModelUpdate = function (
 		// not loaded for the 'regular' mode in the backend
 		loaderPromise = mw.user.options.get( 'usenewrc' ) && !OO.ui.isMobile() ?
 			mw.loader.using( [ 'mediawiki.special.changeslist.enhanced' ] ) :
-			$.Deferred().resolve(),
-		widget = this;
+			$.Deferred().resolve();
 
 	this.$element.toggleClass( 'mw-changeslist', !isEmpty );
 	if ( isEmpty ) {
@@ -167,7 +166,7 @@ ChangesListWrapperWidget.prototype.onModelUpdate = function (
 	loaderPromise.done( () => {
 		if ( !isInitialDOM && !isEmpty ) {
 			// Make sure enhanced RC re-initializes correctly
-			mw.hook( 'wikipage.content' ).fire( widget.$element );
+			mw.hook( 'wikipage.content' ).fire( this.$element );
 		}
 
 		$( document.body ).removeClass( 'mw-rcfilters-ui-loading' );

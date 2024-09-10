@@ -60,7 +60,6 @@ OO.initClass( Controller );
 Controller.prototype.initialize = function ( filterStructure, namespaceStructure, tagList, conditionalViews ) {
 	const displayConfig = mw.config.get( 'StructuredChangeFiltersDisplayConfig' ),
 		defaultSavedQueryExists = mw.config.get( 'wgStructuredChangeFiltersDefaultSavedQueryExists' ),
-		controller = this,
 		views = $.extend( true, {}, conditionalViews ),
 		url = new URL( location.href );
 
@@ -183,7 +182,7 @@ Controller.prototype.initialize = function ( filterStructure, namespaceStructure
 				},
 				default: mw.user.options.get( this.limitPreferenceName, displayConfig.limitDefault ),
 				sticky: true,
-				filters: displayConfig.limitArray.map( ( num ) => controller._createFilterDataFromNumber( num, num ) )
+				filters: displayConfig.limitArray.map( ( num ) => this._createFilterDataFromNumber( num, num ) )
 			},
 			{
 				name: 'days',
@@ -212,7 +211,7 @@ Controller.prototype.initialize = function ( filterStructure, namespaceStructure
 					0.04166, 0.0833, 0.25, 0.5
 				// Days
 				].concat( displayConfig.daysArray )
-					.map( ( num ) => controller._createFilterDataFromNumber(
+					.map( ( num ) => this._createFilterDataFromNumber(
 						num,
 						// Convert fractions of days to number of hours for the labels
 						num < 1 ? Math.round( num * 24 ) : num
@@ -255,7 +254,7 @@ Controller.prototype.initialize = function ( filterStructure, namespaceStructure
 				if ( groupData.default !== undefined ) {
 					extraValues.push( String( groupData.default ) );
 				}
-				controller.addNumberValuesToGroup( groupData, extraValues );
+				this.addNumberValuesToGroup( groupData, extraValues );
 			}
 		} );
 	}
@@ -396,15 +395,14 @@ Controller.prototype._createFilterDataFromNumber = function ( num, numForDisplay
  * @param {string|string[]} arbitraryValues An array of arbitrary values to add to the group
  */
 Controller.prototype.addNumberValuesToGroup = function ( groupData, arbitraryValues ) {
-	const controller = this,
-		normalizeWithinRange = function ( range, val ) {
-			if ( val < range.min ) {
-				return range.min; // Min
-			} else if ( val >= range.max ) {
-				return range.max; // Max
-			}
-			return val;
-		};
+	const normalizeWithinRange = function ( range, val ) {
+		if ( val < range.min ) {
+			return range.min; // Min
+		} else if ( val >= range.max ) {
+			return range.max; // Max
+		}
+		return val;
+	};
 
 	arbitraryValues = Array.isArray( arbitraryValues ) ? arbitraryValues : [ arbitraryValues ];
 
@@ -438,7 +436,7 @@ Controller.prototype.addNumberValuesToGroup = function ( groupData, arbitraryVal
 				.indexOf( String( val ) ) === -1
 		) {
 			// Add the filter information
-			groupData.filters.push( controller._createFilterDataFromNumber(
+			groupData.filters.push( this._createFilterDataFromNumber(
 				val,
 				groupData.numToLabelFunc ?
 					groupData.numToLabelFunc( val ) :

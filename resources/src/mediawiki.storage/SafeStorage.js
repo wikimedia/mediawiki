@@ -20,9 +20,8 @@ function SafeStorage( store ) {
 
 	// Purge expired items once per page session
 	if ( !window.QUnit ) {
-		const storage = this;
 		setTimeout( () => {
-			storage.clearExpired();
+			this.clearExpired();
 		}, 2000 );
 	}
 }
@@ -160,13 +159,12 @@ const MIN_WORK_TIME = 3;
  * @return {jQuery.Promise} Resolves when items have been expired
  */
 SafeStorage.prototype.clearExpired = function () {
-	const storage = this;
 	return this.getExpiryKeys().then( ( keys ) => $.Deferred( ( d ) => {
-		mw.requestIdleCallback( function iterate( deadline ) {
+		const iterate = ( deadline ) => {
 			while ( keys[ 0 ] !== undefined && deadline.timeRemaining() > MIN_WORK_TIME ) {
 				const key = keys.shift();
-				if ( storage.isExpired( key ) ) {
-					storage.remove( key );
+				if ( this.isExpired( key ) ) {
+					this.remove( key );
 				}
 			}
 			if ( keys[ 0 ] !== undefined ) {
@@ -175,7 +173,8 @@ SafeStorage.prototype.clearExpired = function () {
 			} else {
 				return d.resolve();
 			}
-		} );
+		};
+		mw.requestIdleCallback( iterate );
 	} ) );
 };
 

@@ -148,8 +148,7 @@ MenuSelectWidget.prototype.toggle = function ( show ) {
  * lazy creation of the menu
  */
 MenuSelectWidget.prototype.lazyMenuCreation = function () {
-	const widget = this,
-		items = [],
+	const items = [],
 		viewGroupCount = {},
 		groups = this.model.getFilterGroups();
 
@@ -184,26 +183,26 @@ MenuSelectWidget.prototype.lazyMenuCreation = function () {
 				currentItems.push(
 					// Group section
 					new FilterMenuSectionOptionWidget(
-						widget.controller,
+						this.controller,
 						groupModel,
 						{
-							$overlay: widget.$overlay
+							$overlay: this.$overlay
 						}
 					)
 				);
 			}
 
 			// Add items
-			widget.model.getGroupFilters( groupName ).forEach( ( filterItem ) => {
+			this.model.getGroupFilters( groupName ).forEach( ( filterItem ) => {
 				currentItems.push(
 					new FilterMenuOptionWidget(
-						widget.controller,
-						widget.model,
-						widget.model.getInvertModel( view ),
+						this.controller,
+						this.model,
+						this.model.getInvertModel( view ),
 						filterItem,
-						widget.highlightPopup,
+						this.highlightPopup,
 						{
-							$overlay: widget.$overlay
+							$overlay: this.$overlay
 						}
 					)
 				);
@@ -211,8 +210,8 @@ MenuSelectWidget.prototype.lazyMenuCreation = function () {
 
 			// Cache the items per view, so we can switch between them
 			// without rebuilding the widgets each time
-			widget.views[ view ] = widget.views[ view ] || [];
-			widget.views[ view ] = widget.views[ view ].concat( currentItems );
+			this.views[ view ] = this.views[ view ] || [];
+			this.views[ view ] = this.views[ view ].concat( currentItems );
 			items.push( ...currentItems );
 		}
 	} );

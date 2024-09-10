@@ -11,7 +11,6 @@
 		 * @return {jQuery.Promise<Object.<string, string>>}
 		 */
 		getMessages: function ( messages, options ) {
-			const that = this;
 			options = options || {};
 			messages = Array.isArray( messages ) ? messages : [ messages ];
 			return this.get( Object.assign( {
@@ -39,7 +38,7 @@
 					return result;
 				}
 
-				return that.getMessages( messages.slice( 50 ), options ).then(
+				return this.getMessages( messages.slice( 50 ), options ).then(
 					// Merge result objects
 					( innerResult ) => Object.assign( result, innerResult )
 				);

@@ -145,7 +145,6 @@ FeedbackDialog.prototype.getSetupProcess = function ( data ) {
 		.next( () => {
 			// Get the URL of the target page, we want to use that in links in the intro
 			// and in the success dialog
-			const dialog = this;
 			if ( data.foreignApi ) {
 				return data.foreignApi.get( {
 					action: 'query',
@@ -154,7 +153,7 @@ FeedbackDialog.prototype.getSetupProcess = function ( data ) {
 					formatversion: 2,
 					titles: data.settings.title.getPrefixedText()
 				} ).then( ( response ) => {
-					dialog.feedbackPageUrl = OO.getProp( response, 'query', 'pages', 0, 'canonicalurl' );
+					this.feedbackPageUrl = OO.getProp( response, 'query', 'pages', 0, 'canonicalurl' );
 				} );
 			} else {
 				this.feedbackPageUrl = data.settings.title.getUrl();
@@ -223,8 +222,7 @@ FeedbackDialog.prototype.getActionProcess = function ( action ) {
 		} );
 	} else if ( action === 'submit' ) {
 		return new OO.ui.Process( () => {
-			const fb = this,
-				userAgentMessage = ':' +
+			const userAgentMessage = ':' +
 					'<small>' +
 					mw.msg( 'feedback-useragent' ) +
 					' ' +
@@ -239,12 +237,12 @@ FeedbackDialog.prototype.getActionProcess = function ( action ) {
 			}
 
 			// Post the message
-			return this.messagePosterPromise.then( ( poster ) => fb.postMessage( poster, subject, message ), () => {
-				fb.status = 'error4';
+			return this.messagePosterPromise.then( ( poster ) => this.postMessage( poster, subject, message ), () => {
+				this.status = 'error4';
 				mw.log.warn( 'Feedback report failed because MessagePoster could not be fetched' );
 			} ).then( () => {
-				fb.close();
-			}, () => fb.getErrorMessage() );
+				this.close();
+			}, () => this.getErrorMessage() );
 		} );
 	}
 	// Fallback to parent handler
@@ -279,26 +277,24 @@ FeedbackDialog.prototype.getErrorMessage = function () {
  * @return {jQuery.Promise} Promise representing success of message posting action
  */
 FeedbackDialog.prototype.postMessage = function ( poster, subject, message ) {
-	const fb = this;
-
 	return poster.post(
 		subject,
 		message
 	).then( () => {
-		fb.status = 'submitted';
+		this.status = 'submitted';
 	}, ( mainCode, secondaryCode, details ) => {
 		if ( mainCode === 'api-fail' ) {
 			if ( secondaryCode === 'http' ) {
-				fb.status = 'error3';
+				this.status = 'error3';
 				// ajax request failed
 				mw.log.warn( 'Feedback report failed with HTTP error: ' + details.textStatus );
 			} else {
-				fb.status = 'error2';
+				this.status = 'error2';
 				mw.log.warn( 'Feedback report failed with API error: ' + secondaryCode );
 			}
-			fb.$statusFromApi = ( new mw.Api() ).getErrorMessage( details );
+			this.$statusFromApi = ( new mw.Api() ).getErrorMessage( details );
 		} else {
-			fb.status = 'error1';
+			this.status = 'error1';
 		}
 	} );
 };

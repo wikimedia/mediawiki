@@ -42,11 +42,10 @@ TextParamMixin.prototype.setApiValue = function ( newValue ) {
  * @return {jQuery.Promise}
  */
 TextParamMixin.prototype.apiCheckValid = function ( shouldSuppressErrors ) {
-	const that = this;
 	return this.getValidity().then( () => $.Deferred().resolve( true ).promise(), () => $.Deferred().resolve( false ).promise() ).done( ( ok ) => {
 		ok = ok || shouldSuppressErrors;
-		that.setIcon( ok ? null : 'alert' );
-		that.setTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
+		this.setIcon( ok ? null : 'alert' );
+		this.setTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
 	} );
 };
 

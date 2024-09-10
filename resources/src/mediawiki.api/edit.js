@@ -114,12 +114,11 @@
 		 * @return {jQuery.Promise} Edit API response
 		 */
 		edit: function ( title, transform ) {
-			const api = this;
 
 			title = String( title );
 
 			let basetimestamp, curtimestamp;
-			return api.get( {
+			return this.get( {
 				action: 'query',
 				prop: 'revisions',
 				rvprop: [ 'content', 'timestamp' ],
@@ -148,7 +147,7 @@
 				} )
 				.then( ( params ) => {
 					const editParams = typeof params === 'object' ? params : { text: String( params ) };
-					return api.postWithEditToken( Object.assign( {
+					return this.postWithEditToken( Object.assign( {
 						action: 'edit',
 						title: title,
 						formatversion: '2',

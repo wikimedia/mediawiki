@@ -84,8 +84,6 @@ OO.mixinClass( SavedQueriesModel, OO.EmitterList );
  * @fires initialize
  */
 SavedQueriesModel.prototype.initialize = function ( savedQueries ) {
-	const model = this;
-
 	savedQueries = savedQueries || {};
 
 	this.clearItems();
@@ -110,7 +108,7 @@ SavedQueriesModel.prototype.initialize = function ( savedQueries ) {
 		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( savedQueries.queries || {}, ( id, obj ) => {
 			if ( obj.data && obj.data.filters ) {
-				obj.data = model.convertToParameters( obj.data );
+				obj.data = this.convertToParameters( obj.data );
 			}
 		} );
 
@@ -127,14 +125,14 @@ SavedQueriesModel.prototype.initialize = function ( savedQueries ) {
 		if ( normalizedData && normalizedData.params ) {
 			// Backwards-compat fix: Remove sticky parameters from
 			// the given data, if they exist
-			normalizedData.params = model.filtersModel.removeStickyParams( normalizedData.params );
+			normalizedData.params = this.filtersModel.removeStickyParams( normalizedData.params );
 
 			// Correct the invert state for effective selection
 			if ( normalizedData.params.invert && !normalizedData.params.namespace ) {
 				delete normalizedData.params.invert;
 			}
 
-			model.cleanupHighlights( normalizedData );
+			this.cleanupHighlights( normalizedData );
 
 			id = String( id );
 
@@ -144,7 +142,7 @@ SavedQueriesModel.prototype.initialize = function ( savedQueries ) {
 			// validity of items and minimizes the query. This isn't necessary for queries loaded
 			// from the backend, and has the risk of removing values if they're temporarily
 			// invalid (example: if we temporarily removed a cssClass from a filter in the backend)
-			model.addItems( [
+			this.addItems( [
 				new SavedQueryItemModel(
 					id,
 					obj.label,
@@ -154,7 +152,7 @@ SavedQueriesModel.prototype.initialize = function ( savedQueries ) {
 			] );
 
 			if ( isDefault ) {
-				model.default = id;
+				this.default = id;
 			}
 		}
 	} );

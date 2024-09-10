@@ -182,8 +182,7 @@
 		 * @return {jQuery.Promise}
 		 */
 		uploadChunk: function ( file, data, start, end, filekey, retries ) {
-			const api = this,
-				chunk = this.slice( file, start, end );
+			const chunk = this.slice( file, start, end );
 
 			// When uploading in chunks, we're going to be issuing a lot more
 			// requests and there's always a chance of 1 getting dropped.
@@ -229,8 +228,8 @@
 					}
 
 					// If the call flat out failed, we may want to try again...
-					const retry = api.uploadChunk.bind( api, file, data, start, end, filekey, retries - 1 );
-					return api.retry( code, result, retry );
+					const retry = this.uploadChunk.bind( this, file, data, start, end, filekey, retries - 1 );
+					return this.retry( code, result, retry );
 				},
 				// Since we're only uploading small parts of a file, we
 				// need to adjust the reported progress to reflect where
@@ -320,12 +319,9 @@
 		 *  function that should be called to finish the upload.
 		 */
 		finishUploadToStash: function ( uploadPromise, data ) {
-			const api = this;
 			let filekey;
 
-			function finishUpload( moreData ) {
-				return api.uploadFromStash( filekey, Object.assign( {}, data, moreData ) );
-			}
+			const finishUpload = ( moreData ) => this.uploadFromStash( filekey, Object.assign( {}, data, moreData ) );
 
 			return uploadPromise.then(
 				( result ) => {

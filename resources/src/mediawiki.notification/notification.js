@@ -208,18 +208,16 @@
 	 * @memberof Notification
 	 */
 	Notification.prototype.resume = function () {
-		const notif = this;
-
-		if ( !notif.isPaused ) {
+		if ( !this.isPaused ) {
 			return;
 		}
 		// Start any autoHide timeouts
-		if ( notif.options.autoHide ) {
-			notif.isPaused = false;
-			notif.timeoutId = notif.timeout.set( () => {
+		if ( this.options.autoHide ) {
+			this.isPaused = false;
+			this.timeoutId = this.timeout.set( () => {
 				// Already finished, so don't try to re-clear it
-				delete notif.timeoutId;
-				notif.close();
+				delete this.timeoutId;
+				this.close();
 			}, this.autoHideSeconds * 1000 );
 		}
 	};
@@ -230,8 +228,6 @@
 	 * @memberof Notification
 	 */
 	Notification.prototype.close = function () {
-		const notif = this;
-
 		if ( !this.isOpen ) {
 			return;
 		}
@@ -252,18 +248,18 @@
 		notification.resume();
 
 		requestAnimationFrame( () => {
-			notif.$notification.removeClass( 'mw-notification-visible' );
+			this.$notification.removeClass( 'mw-notification-visible' );
 
 			setTimeout( () => {
 				if ( openNotificationCount === 0 ) {
 					// Hide the area after the last notification closes. Otherwise, the padding on
 					// the area can be obscure content, despite the area being empty/invisible (T54659). // FIXME
 					$area.css( 'display', 'none' );
-					notif.$notification.remove();
+					this.$notification.remove();
 				} else {
 					// FIXME: Use CSS transition
 					// eslint-disable-next-line no-jquery/no-slide
-					notif.$notification.slideUp( 'fast', function () {
+					this.$notification.slideUp( 'fast', function () {
 						$( this ).remove();
 					} );
 				}
