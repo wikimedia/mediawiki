@@ -26,7 +26,9 @@ use WANObjectCache;
 use Wikimedia\Rdbms\ILBFactory;
 
 class NameTableStoreFactory {
+	/** @var array[]|null */
 	private static $info;
+	/** @var NameTableStore[][] */
 	private $stores = [];
 
 	/** @var ILBFactory */
@@ -110,9 +112,7 @@ class NameTableStoreFactory {
 			$this->cache,
 			$this->logger,
 			$tableName,
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 			$info['idField'],
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 			$info['nameField'],
 			$info['normalizationCallback'] ?? null,
 			$wiki,
