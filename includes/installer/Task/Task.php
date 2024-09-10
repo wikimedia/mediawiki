@@ -7,9 +7,9 @@ use MediaWiki\Installer\ConnectionStatus;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use RuntimeException;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
  * Base class for installer tasks
@@ -141,9 +141,9 @@ abstract class Task {
 	 * connection to already be cached.
 	 *
 	 * @param string $type
-	 * @return Database
+	 * @return IMaintainableDatabase
 	 */
-	protected function definitelyGetConnection( $type ): Database {
+	protected function definitelyGetConnection( $type ): IMaintainableDatabase {
 		$status = $this->getConnection( $type );
 		if ( !$status->isOK() ) {
 			throw new RuntimeException( __METHOD__ . ': unexpected DB connection error' );
@@ -154,7 +154,7 @@ abstract class Task {
 	/**
 	 * Apply a SQL source file to the database as part of running an installation step.
 	 *
-	 * @param Database $conn
+	 * @param IMaintainableDatabase $conn
 	 * @param string $relPath
 	 * @return Status
 	 */
@@ -163,7 +163,7 @@ abstract class Task {
 		$status = Status::newGood();
 		try {
 			$conn->doAtomicSection( __METHOD__,
-				static function ( $conn ) use ( $path ) {
+				static function () use ( $conn, $path ) {
 					$conn->sourceFile( $path );
 				},
 				IDatabase::ATOMIC_CANCELABLE

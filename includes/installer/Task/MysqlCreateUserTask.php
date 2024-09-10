@@ -4,10 +4,10 @@ namespace MediaWiki\Installer\Task;
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Status\Status;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseFactory;
 use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\DBQueryError;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
  * Create the MySQL/MariaDB user
@@ -25,7 +25,8 @@ class MysqlCreateUserTask extends Task {
 
 	public function isSkipped(): bool {
 		$dbUser = $this->getConfigVar( MainConfigNames::DBuser );
-		return $dbUser == $this->getOption( 'InstallUser' );
+		return $dbUser == $this->getOption( 'InstallUser' )
+			|| $this->getOption( 'InstallUser' ) === null;
 	}
 
 	public function execute(): Status {
@@ -121,7 +122,7 @@ class MysqlCreateUserTask extends Task {
 
 	/**
 	 * Return a formal 'User'@'Host' username for use in queries
-	 * @param Database $conn
+	 * @param IMaintainableDatabase $conn
 	 * @param string $name Username, quotes will be added
 	 * @param string $host Hostname, quotes will be added
 	 * @return string
@@ -133,7 +134,7 @@ class MysqlCreateUserTask extends Task {
 	/**
 	 * Try to see if the user account exists. Our "superuser" may not have
 	 * access to mysql.user, so false means "no" or "maybe"
-	 * @param Database $conn
+	 * @param IMaintainableDatabase $conn
 	 * @param string $host Hostname to check
 	 * @param string $user Username to check
 	 * @return bool

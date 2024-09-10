@@ -3,7 +3,7 @@
 namespace MediaWiki\Installer\Task;
 
 use MediaWiki\MainConfigNames;
-use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
  * @internal For use by the installer
@@ -67,7 +67,7 @@ class PostgresUtils {
 
 	/**
 	 * Recursive helper for canCreateObjectsForWebUser().
-	 * @param Database $conn
+	 * @param IMaintainableDatabase $conn
 	 * @param int $targetMember Role ID of the member to look for
 	 * @param int $group Role ID of the group to look for
 	 * @param int $maxDepth Maximum recursive search depth

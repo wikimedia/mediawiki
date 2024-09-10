@@ -27,9 +27,9 @@ namespace MediaWiki\Installer;
 use MediaWiki\Installer\Task\ITaskContext;
 use MediaWiki\Status\Status;
 use RuntimeException;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
  * Base class for DBMS-specific installation helper classes.
@@ -58,11 +58,11 @@ abstract class DatabaseInstaller implements ITaskContext {
 
 	/**
 	 * @deprecated since 1.43 -- use definitelyGetConnection()
-	 * @var Database
+	 * @var IMaintainableDatabase
 	 */
 	public $db = null;
 
-	/** @var Database|null */
+	/** @var IMaintainableDatabase|null */
 	private $cachedConn;
 	/** @var string|null */
 	private $cachedConnType;
@@ -180,9 +180,9 @@ abstract class DatabaseInstaller implements ITaskContext {
 	 * exception on failure.
 	 *
 	 * @param string $type
-	 * @return Database
+	 * @return IMaintainableDatabase
 	 */
-	public function definitelyGetConnection( string $type ): Database {
+	public function definitelyGetConnection( string $type ): IMaintainableDatabase {
 		$status = $this->getConnection( $type );
 		if ( !$status->isOK() ) {
 			throw new RuntimeException( __METHOD__ . ': unexpected DB connection error' );
@@ -204,7 +204,7 @@ abstract class DatabaseInstaller implements ITaskContext {
 	 * CONN_CREATE_TABLES means a fully-configured connection, suitable for
 	 * most tasks, so converting from it is a no-op.
 	 *
-	 * @param Database $conn
+	 * @param IMaintainableDatabase $conn
 	 * @param string &$storedType One of the self::CONN_* constants. An in/out
 	 *   parameter, set to the new type on success. It is set to the "real" new
 	 *   type, reflecting the highest configuration level reached, to avoid
@@ -213,7 +213,7 @@ abstract class DatabaseInstaller implements ITaskContext {
 	 * @param string $newType One of the self::CONN_* constants
 	 * @return ConnectionStatus
 	 */
-	protected function changeConnType( Database $conn, &$storedType, $newType ) {
+	protected function changeConnType( IMaintainableDatabase $conn, &$storedType, $newType ) {
 		// Change type from database to schema, if requested
 		if ( $storedType === self::CONN_CREATE_DATABASE ) {
 			if ( $newType === self::CONN_CREATE_SCHEMA || $newType === self::CONN_CREATE_TABLES ) {
@@ -242,10 +242,10 @@ abstract class DatabaseInstaller implements ITaskContext {
 	 * Change the type of a connection from CONN_CREATE_SCHEMA to CONN_CREATE_TABLES.
 	 * Postgres overrides this.
 	 *
-	 * @param Database $conn
+	 * @param IMaintainableDatabase $conn
 	 * @return ConnectionStatus
 	 */
-	protected function changeConnTypeFromSchemaToTables( Database $conn ) {
+	protected function changeConnTypeFromSchemaToTables( IMaintainableDatabase $conn ) {
 		return new ConnectionStatus( $conn );
 	}
 
