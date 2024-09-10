@@ -26,18 +26,16 @@ class GenerateRandomImages extends Maintenance {
 			'maxWidth::',
 			'minHeight::',
 			'maxHeight::',
-			'shapesToDraw::',
-			'shape::',
 
 			'number::',
 			'format::'
 		];
-		$options = getopt( null, $getOptSpec );
+		$options = getopt( '', $getOptSpec );
 
-		$format = $options['format'] ?? 'jpg';
+		$format = $options['format'] ?? 'svg';
 		unset( $options['format'] );
 
-		$number = (int)( $options['number'] ?? 10 );
+		$number = (int)( $options['number'] ?? 1 );
 		unset( $options['number'] );
 
 		$randomImageGenerator = new RandomImageGenerator( $options );
