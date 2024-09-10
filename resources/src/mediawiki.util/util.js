@@ -67,7 +67,7 @@ function escapeIdInternal( str, mode ) {
  * const mwUtil = mw.util;
  * @exports mediawiki.util
  */
-var util = {
+const util = {
 
 	/**
 	 * Encode the string like PHP's rawurlencode.

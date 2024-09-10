@@ -826,7 +826,7 @@
 
 				let i = 0;
 				while ( addPages.length ) {
-					var page = addPages.shift();
+					const page = addPages.shift();
 					if ( bookletPages[ i ] !== page ) {
 						for ( let j = i; j < bookletPages.length; j++ ) {
 							if ( bookletPages[ j ].getName() === page.getName() ) {

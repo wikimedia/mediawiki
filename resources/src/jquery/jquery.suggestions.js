@@ -456,9 +456,9 @@
 				preventDefault = wasVisible;
 				break;
 			// Enter
-			case 13:
+			case 13: {
 				preventDefault = wasVisible;
-				var $selected = context.data.$container.find( '.suggestions-result-current' );
+				const $selected = context.data.$container.find( '.suggestions-result-current' );
 				hide( context );
 				if ( $selected.length === 0 || context.data.selectedWithMouse ) {
 					// If nothing is selected or if something was selected with the mouse
@@ -482,6 +482,7 @@
 					}
 				}
 				break;
+			}
 			default:
 				update( context, true );
 				break;

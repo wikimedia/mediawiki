@@ -102,15 +102,14 @@
 			empty = 0,
 			needed = ( rows.length > 4 ) ? 5 : rows.length;
 
+		let nodeValue;
 		while ( i < l ) {
-			var cellIndex;
-			var nodeValue;
 			// if this is a child row, continue to the next row (as buildCache())
 			// eslint-disable-next-line no-jquery/no-class-state
 			if ( rows[ rowIndex ] && !$( rows[ rowIndex ] ).hasClass( config.cssChildRow ) ) {
 				if ( rowIndex !== lastRowIndex ) {
 					lastRowIndex = rowIndex;
-					cellIndex = $( rows[ rowIndex ] ).data( 'columnToCell' )[ column ];
+					const cellIndex = $( rows[ rowIndex ] ).data( 'columnToCell' )[ column ];
 					nodeValue = getElementSortKey( rows[ rowIndex ].cells[ cellIndex ] );
 				}
 			} else {
@@ -508,7 +507,7 @@
 		cache.normalized.sort( function ( array1, array2 ) {
 			for ( let n = 0; n < sortList.length; n++ ) {
 				const col = sortList[ n ][ 0 ];
-				var ret;
+				let ret;
 				if ( sortList[ n ][ 1 ] === 2 ) {
 					// initial order
 					const orderIndex = array1.length - 2;
