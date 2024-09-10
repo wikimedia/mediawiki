@@ -20,6 +20,11 @@ class LocalUserOptionsStore implements UserOptionsStore {
 		UserIdentity $user,
 		int $recency
 	): array {
+		// In core, only users with local accounts may have preferences
+		if ( !$user->getId() ) {
+			return [];
+		}
+
 		$dbr = DBAccessObjectUtils::getDBFromRecency( $this->dbProvider, $recency );
 		$res = $dbr->newSelectQueryBuilder()
 			->select( [ 'up_property', 'up_value' ] )
@@ -38,6 +43,11 @@ class LocalUserOptionsStore implements UserOptionsStore {
 	}
 
 	public function store( UserIdentity $user, array $updates ) {
+		// In core, only users with local accounts may have preferences
+		if ( !$user->getId() ) {
+			return false;
+		}
+
 		$oldOptions = $this->optionsFromDb[ $user->getId() ]
 			?? $this->fetch( $user, \IDBAccessObject::READ_LATEST );
 		$newOptions = $oldOptions;

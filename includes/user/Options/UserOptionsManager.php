@@ -31,7 +31,6 @@ use MediaWiki\Language\LanguageConverter;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
@@ -87,6 +86,8 @@ class UserOptionsManager extends UserOptionsLookup {
 	private LoggerInterface $logger;
 	private HookRunner $hookRunner;
 	private UserNameUtils $userNameUtils;
+	private array $storeProviders;
+
 	private ObjectFactory $objectFactory;
 
 	/** @var UserOptionsCacheEntry[] */
@@ -105,6 +106,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @param UserFactory $userFactory
 	 * @param UserNameUtils $userNameUtils
 	 * @param ObjectFactory $objectFactory
+	 * @param array $storeProviders
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -115,7 +117,8 @@ class UserOptionsManager extends UserOptionsLookup {
 		HookContainer $hookContainer,
 		UserFactory $userFactory,
 		UserNameUtils $userNameUtils,
-		ObjectFactory $objectFactory
+		ObjectFactory $objectFactory,
+		array $storeProviders
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->serviceOptions = $options;
@@ -127,6 +130,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		$this->userFactory = $userFactory;
 		$this->userNameUtils = $userNameUtils;
 		$this->objectFactory = $objectFactory;
+		$this->storeProviders = $storeProviders;
 	}
 
 	/**
@@ -382,8 +386,8 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @internal only public for use in User::saveSettings
 	 */
 	public function saveOptionsInternal( UserIdentity $user ): bool {
-		if ( !$user->isRegistered() || $this->userNameUtils->isTemp( $user->getName() ) ) {
-			throw new InvalidArgumentException( __METHOD__ . ' was called on anon or temporary user' );
+		if ( $this->userNameUtils->isIP( $user->getName() ) || $this->userNameUtils->isTemp( $user->getName() ) ) {
+			throw new InvalidArgumentException( __METHOD__ . ' was called on IP or temporary user' );
 		}
 
 		$userKey = $this->getCacheKey( $user );
@@ -482,7 +486,8 @@ class UserOptionsManager extends UserOptionsLookup {
 		UserIdentity $user,
 		int $queryFlags
 	): array {
-		$this->logger->debug( 'Loading options from database', [ 'user_id' => $user->getId() ] );
+		$this->logger->debug( 'Loading options from database',
+			[ 'user_id' => $user->getId(), 'user_name' => $user->getName() ] );
 		$mergedOptions = [];
 		$cache = $this->cache[ $this->getCacheKey( $user ) ] ??= new UserOptionsCacheEntry;
 		foreach ( $this->getStores() as $storeName => $store ) {
@@ -542,7 +547,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		$userKey = $this->getCacheKey( $user );
 		$defaultOptions = $this->defaultOptionsLookup->getDefaultOptions( $user );
 		$cache = $this->cache[$userKey] ??= new UserOptionsCacheEntry;
-		if ( !$user->isRegistered() || $this->userNameUtils->isTemp( $user->getName() ) ) {
+		if ( $this->userNameUtils->isIP( $user->getName() ) || $this->userNameUtils->isTemp( $user->getName() ) ) {
 			// For unlogged-in users, load language/variant options from request.
 			// There's no need to do it for logged-in users: they can set preferences,
 			// and handling of page content is done by $pageLang->getPreferredVariant() and such,
@@ -599,10 +604,17 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @return string
 	 */
 	private function getCacheKey( UserIdentity $user ): string {
-		if ( !$user->isRegistered() || $this->userNameUtils->isTemp( $user->getName() ) ) {
+		$name = $user->getName();
+		if ( $this->userNameUtils->isIP( $name ) || $this->userNameUtils->isTemp( $name ) ) {
+			// IP and temporary users may not have custom preferences, so they can share a key
 			return 'anon';
-		} else {
+		} elseif ( $user->isRegistered() ) {
 			return "u:{$user->getId()}";
+		} else {
+			// Allow users with no local account to have preferences provided by alternative
+			// UserOptionsStore implementations (e.g. in GlobalPreferences)
+			$canonical = $this->userNameUtils->getCanonical( $name ) ?: $name;
+			return "a:$canonical";
 		}
 	}
 
@@ -642,9 +654,7 @@ class UserOptionsManager extends UserOptionsLookup {
 			$stores = [
 				self::LOCAL_STORE_KEY => new LocalUserOptionsStore( $this->dbProvider )
 			];
-			$specs = ExtensionRegistry::getInstance()
-				->getAttribute( 'UserOptionsStoreProviders' );
-			foreach ( $specs as $name => $spec ) {
+			foreach ( $this->storeProviders as $name => $spec ) {
 				$store = $this->objectFactory->createObject( $spec );
 				if ( !$store instanceof UserOptionsStore ) {
 					throw new \RuntimeException( "Invalid type for extension store \"$name\"" );

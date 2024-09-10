@@ -2491,7 +2491,8 @@ return [
 			$services->getHookContainer(),
 			$services->getUserFactory(),
 			$services->getUserNameUtils(),
-			$services->getObjectFactory()
+			$services->getObjectFactory(),
+			ExtensionRegistry::getInstance()->getAttribute( 'UserOptionsStoreProviders' )
 		);
 	},
 
