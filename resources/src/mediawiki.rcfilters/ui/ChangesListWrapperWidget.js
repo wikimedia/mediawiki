@@ -97,8 +97,7 @@ ChangesListWrapperWidget.prototype.onModelInvalidate = function () {
 ChangesListWrapperWidget.prototype.onModelUpdate = function (
 	$changesListContent, $fieldset, noResultsDetails, isInitialDOM, from
 ) {
-	let conflictItem,
-		$message = $( '<div>' )
+	const $message = $( '<div>' )
 			.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results' ),
 		isEmpty = $changesListContent === 'NO_RESULTS',
 		// For enhanced mode, we have to load this modules, which is
@@ -113,7 +112,7 @@ ChangesListWrapperWidget.prototype.onModelUpdate = function (
 		this.$element.empty();
 
 		if ( this.filtersViewModel.hasConflict() ) {
-			conflictItem = this.filtersViewModel.getFirstConflictedItem();
+			const conflictItem = this.filtersViewModel.getFirstConflictedItem();
 
 			$message
 				.append(
@@ -208,15 +207,14 @@ ChangesListWrapperWidget.prototype.getMsgKeyForNoResults = function ( reason ) {
  * @param {string} from Anything newer than this is considered 'new'
  */
 ChangesListWrapperWidget.prototype.emphasizeNewChanges = function ( from ) {
-	let $firstNew,
-		$indicator,
-		$newChanges = $( [] ),
-		selector = this.inEnhancedMode() ?
+	const selector = this.inEnhancedMode() ?
 			'table.mw-enhanced-rc[data-mw-ts]' :
 			'li[data-mw-ts]',
 		$set = this.$element.find( selector ),
 		length = $set.length;
 
+	let $firstNew,
+		$newChanges = $( [] );
 	$set.each( function ( index ) {
 		const $this = $( this ),
 			ts = $this.data( 'mw-ts' );
@@ -233,7 +231,7 @@ ChangesListWrapperWidget.prototype.emphasizeNewChanges = function ( from ) {
 	} );
 
 	if ( $firstNew ) {
-		$indicator = $( '<div>' )
+		const $indicator = $( '<div>' )
 			.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-previousChangesIndicator' );
 
 		$firstNew.after( $indicator );
@@ -254,31 +252,28 @@ ChangesListWrapperWidget.prototype.emphasizeNewChanges = function ( from ) {
  * This is called every time highlights are applied.
  */
 ChangesListWrapperWidget.prototype.updateEnhancedParentHighlight = function () {
-	let activeHighlightClasses,
-		$enhancedTopPageCell = this.$element.find( 'table.mw-enhanced-rc' );
+	const $enhancedTopPageCell = this.$element.find( 'table.mw-enhanced-rc' );
 
-	activeHighlightClasses = this.filtersViewModel.getCurrentlyUsedHighlightColors().map( ( color ) => 'mw-rcfilters-highlight-color-' + color );
+	const activeHighlightClasses = this.filtersViewModel.getCurrentlyUsedHighlightColors().map( ( color ) => 'mw-rcfilters-highlight-color-' + color );
 
 	// Go over top pages and their children, and figure out if all subpages have the
 	// same highlights between themselves. If they do, the parent should be highlighted
 	// with all colors. If classes are different, the parent should receive a grey
 	// background
 	$enhancedTopPageCell.each( function () {
-		let firstChildClasses, $rowsWithDifferentHighlights,
-			$table = $( this );
+		const $table = $( this );
 
 		// Collect the relevant classes from the first nested child
-		firstChildClasses = activeHighlightClasses.filter(
+		const firstChildClasses = activeHighlightClasses.filter(
 			// eslint-disable-next-line no-jquery/no-class-state
 			( className ) => $table.find( 'tr' ).eq( 2 ).hasClass( className )
 		);
 		// Filter the non-head rows and see if they all have the same classes
 		// to the first row
-		$rowsWithDifferentHighlights = $table.find( 'tr:not(:first-child)' ).filter( function () {
-			let classesInThisRow,
-				$this = $( this );
+		const $rowsWithDifferentHighlights = $table.find( 'tr:not(:first-child)' ).filter( function () {
+			const $this = $( this );
 
-			classesInThisRow = activeHighlightClasses.filter(
+			const classesInThisRow = activeHighlightClasses.filter(
 				// eslint-disable-next-line no-jquery/no-class-state
 				( className ) => $this.hasClass( className )
 			);

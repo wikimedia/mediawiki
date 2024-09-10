@@ -1,5 +1,4 @@
-let SavedQueryItemModel = require( './SavedQueryItemModel.js' ),
-	SavedQueriesModel;
+const SavedQueryItemModel = require( './SavedQueryItemModel.js' );
 
 /**
  * View model for saved queries.
@@ -13,7 +12,7 @@ let SavedQueryItemModel = require( './SavedQueryItemModel.js' ),
  * @param {Object} [config] Configuration options
  * @param {string} [config.default] Default query ID
  */
-SavedQueriesModel = function MwRcfiltersDmSavedQueriesModel( filtersModel, config ) {
+const SavedQueriesModel = function MwRcfiltersDmSavedQueriesModel( filtersModel, config ) {
 	config = config || {};
 
 	// Mixin constructor

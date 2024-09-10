@@ -12,8 +12,7 @@
 const RcTopSectionWidget = function MwRcfiltersUiRcTopSectionWidget(
 	savedLinksListWidget, $topLinks, config
 ) {
-	let toplinksTitle,
-		topLinksCookieName = 'rcfilters-toplinks-collapsed-state',
+	const topLinksCookieName = 'rcfilters-toplinks-collapsed-state',
 		topLinksCookie = mw.cookie.get( topLinksCookieName ),
 		topLinksCookieValue = topLinksCookie || 'collapsed',
 		widget = this;
@@ -25,7 +24,7 @@ const RcTopSectionWidget = function MwRcfiltersUiRcTopSectionWidget(
 
 	this.$topLinks = $topLinks;
 
-	toplinksTitle = new OO.ui.ButtonWidget( {
+	const toplinksTitle = new OO.ui.ButtonWidget( {
 		framed: false,
 		indicator: topLinksCookieValue === 'collapsed' ? 'down' : 'up',
 		flags: [ 'progressive' ],

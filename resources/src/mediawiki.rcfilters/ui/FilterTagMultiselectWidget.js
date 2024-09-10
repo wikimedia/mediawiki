@@ -1,8 +1,7 @@
-let ViewSwitchWidget = require( './ViewSwitchWidget.js' ),
+const ViewSwitchWidget = require( './ViewSwitchWidget.js' ),
 	SaveFiltersPopupButtonWidget = require( './SaveFiltersPopupButtonWidget.js' ),
 	MenuSelectWidget = require( './MenuSelectWidget.js' ),
-	FilterTagItemWidget = require( './FilterTagItemWidget.js' ),
-	FilterTagMultiselectWidget;
+	FilterTagItemWidget = require( './FilterTagItemWidget.js' );
 
 /**
  * List displaying all filter groups.
@@ -21,9 +20,8 @@ let ViewSwitchWidget = require( './ViewSwitchWidget.js' ),
  *  system. If not given, falls back to this widget's $element
  * @param {boolean} [config.collapsed] Filter area is collapsed
  */
-FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( controller, model, savedQueriesModel, config ) {
-	let $rcFiltersRow,
-		title = new OO.ui.LabelWidget( {
+const FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( controller, model, savedQueriesModel, config ) {
+	const title = new OO.ui.LabelWidget( {
 			label: mw.msg( 'rcfilters-activefilters' ),
 			classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-content-title' ]
 		} ),
@@ -165,7 +163,7 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 	// wide the button is; the button also changes its width depending
 	// on language and its state, so the safest way to present both side
 	// by side is with a table layout
-	$rcFiltersRow = $( '<div>' )
+	const $rcFiltersRow = $( '<div>' )
 		.addClass( 'mw-rcfilters-ui-row' )
 		.append(
 			this.$content
@@ -505,8 +503,8 @@ FilterTagMultiselectWidget.prototype.onModelUpdate = function () {
  * Update the elements in the widget to the current view
  */
 FilterTagMultiselectWidget.prototype.updateElementsForView = function () {
-	let view = this.model.getCurrentView(),
-		inputValue = this.input.getValue().trim(),
+	let inputValue = this.input.getValue().trim();
+	const view = this.model.getCurrentView(),
 		inputView = this.model.getViewByTrigger( inputValue.slice( 0, 1 ) );
 
 	if ( inputView !== 'default' ) {

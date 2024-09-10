@@ -1,5 +1,4 @@
-let ItemModel = require( './ItemModel.js' ),
-	FilterItem;
+const ItemModel = require( './ItemModel.js' );
 
 /**
  * Filter item model.
@@ -17,7 +16,7 @@ let ItemModel = require( './ItemModel.js' ),
  * @param {Object} [config.conflicts] Defines the conflicts for this filter
  * @param {boolean} [config.visible=true] The visibility of the group
  */
-FilterItem = function MwRcfiltersDmFilterItem( param, groupModel, config ) {
+const FilterItem = function MwRcfiltersDmFilterItem( param, groupModel, config ) {
 	config = config || {};
 
 	this.groupModel = groupModel;
@@ -91,8 +90,8 @@ FilterItem.prototype.getCurrentConflictResultMessage = function () {
  */
 FilterItem.prototype.getConflictDetails = function ( conflicts, key ) {
 	let group,
-		conflictMessage = '',
-		itemLabels = [];
+		conflictMessage = '';
+	const itemLabels = [];
 
 	key = key || 'contextDescription';
 

@@ -108,10 +108,8 @@ UriProcessor.prototype.getUpdatedUri = function ( uri ) {
  * @private
  */
 UriProcessor.prototype._normalizeTargetInUri = function ( uri ) {
-	let parts,
-		// matches [/wiki/]SpecialNS:RCL/[Namespace:]Title/Subpage/Subsubpage/etc
-
-		re = /^((?:\/.+?\/)?.*?:.*?)\/(.*)$/;
+	// matches [/wiki/]SpecialNS:RCL/[Namespace:]Title/Subpage/Subsubpage/etc
+	const re = /^((?:\/.+?\/)?.*?:.*?)\/(.*)$/;
 
 	if ( !this.normalizeTarget ) {
 		return uri;
@@ -119,18 +117,18 @@ UriProcessor.prototype._normalizeTargetInUri = function ( uri ) {
 
 	// target in title param
 	if ( uri.query.title ) {
-		parts = uri.query.title.match( re );
-		if ( parts ) {
-			uri.query.title = parts[ 1 ];
-			uri.query.target = parts[ 2 ];
+		const titleParts = uri.query.title.match( re );
+		if ( titleParts ) {
+			uri.query.title = titleParts[ 1 ];
+			uri.query.target = titleParts[ 2 ];
 		}
 	}
 
 	// target in path
-	parts = mw.Uri.decode( uri.path ).match( re );
-	if ( parts ) {
-		uri.path = parts[ 1 ];
-		uri.query.target = parts[ 2 ];
+	const pathParts = mw.Uri.decode( uri.path ).match( re );
+	if ( pathParts ) {
+		uri.path = pathParts[ 1 ];
+		uri.query.target = pathParts[ 2 ];
 	}
 
 	return uri;
@@ -210,25 +208,24 @@ UriProcessor.prototype.updateModelBasedOnQuery = function ( uriQuery ) {
  * @return {boolean} This is a new state
  */
 UriProcessor.prototype.isNewState = function ( currentUriQuery, updatedUriQuery ) {
-	let currentParamState, updatedParamState,
-		notEquivalent = function ( obj1, obj2 ) {
-			const keys = Object.keys( obj1 ).concat( Object.keys( obj2 ) );
-			return keys.some(
-				( key ) => obj1[ key ] != obj2[ key ] // eslint-disable-line eqeqeq
-			);
-		};
+	const notEquivalent = function ( obj1, obj2 ) {
+		const keys = Object.keys( obj1 ).concat( Object.keys( obj2 ) );
+		return keys.some(
+			( key ) => obj1[ key ] != obj2[ key ] // eslint-disable-line eqeqeq
+		);
+	};
 
 	// Compare states instead of parameters
 	// This will allow us to always have a proper check of whether
 	// the requested new url is one to change or not, regardless of
 	// actual parameter visibility/representation in the URL
-	currentParamState = $.extend(
+	const currentParamState = $.extend(
 		true,
 		{},
 		this.filtersModel.getMinimizedParamRepresentation( currentUriQuery ),
 		this.getUnrecognizedParams( currentUriQuery )
 	);
-	updatedParamState = $.extend(
+	const updatedParamState = $.extend(
 		true,
 		{},
 		this.filtersModel.getMinimizedParamRepresentation( updatedUriQuery ),

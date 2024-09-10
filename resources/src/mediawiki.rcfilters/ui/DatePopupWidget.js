@@ -1,5 +1,4 @@
-let ValuePickerWidget = require( './ValuePickerWidget.js' ),
-	DatePopupWidget;
+const ValuePickerWidget = require( './ValuePickerWidget.js' );
 
 /**
  * Widget defining the popup to choose date for the results.
@@ -11,7 +10,7 @@ let ValuePickerWidget = require( './ValuePickerWidget.js' ),
  * @param {mw.rcfilters.dm.FilterGroup} model Group model for 'days'
  * @param {Object} [config] Configuration object
  */
-DatePopupWidget = function MwRcfiltersUiDatePopupWidget( model, config ) {
+const DatePopupWidget = function MwRcfiltersUiDatePopupWidget( model, config ) {
 	config = config || {};
 
 	// Parent

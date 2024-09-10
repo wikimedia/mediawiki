@@ -1,6 +1,5 @@
-let byteLength = require( 'mediawiki.String' ).byteLength,
-	UriProcessor = require( './UriProcessor.js' ),
-	Controller;
+const byteLength = require( 'mediawiki.String' ).byteLength,
+	UriProcessor = require( './UriProcessor.js' );
 
 /* eslint no-underscore-dangle: "off" */
 /**
@@ -22,7 +21,7 @@ let byteLength = require( 'mediawiki.String' ).byteLength,
  *  title normalization to separate title subpage/parts into the target= url
  *  parameter
  */
-Controller = function MwRcfiltersController( filtersModel, changesListModel, savedQueriesModel, config ) {
+const Controller = function MwRcfiltersController( filtersModel, changesListModel, savedQueriesModel, config ) {
 	this.filtersModel = filtersModel;
 	this.changesListModel = changesListModel;
 	this.savedQueriesModel = savedQueriesModel;
@@ -59,17 +58,14 @@ OO.initClass( Controller );
  * @param {Object} [conditionalViews] Conditional view definition
  */
 Controller.prototype.initialize = function ( filterStructure, namespaceStructure, tagList, conditionalViews ) {
-	let parsedSavedQueries, pieces,
-		nsAllContents, nsAllDiscussions,
-		displayConfig = mw.config.get( 'StructuredChangeFiltersDisplayConfig' ),
+	const displayConfig = mw.config.get( 'StructuredChangeFiltersDisplayConfig' ),
 		defaultSavedQueryExists = mw.config.get( 'wgStructuredChangeFiltersDefaultSavedQueryExists' ),
 		controller = this,
 		views = $.extend( true, {}, conditionalViews ),
-		items = [],
 		url = new URL( location.href );
 
 	// Prepare views
-	nsAllContents = {
+	const nsAllContents = {
 		name: 'all-contents',
 		label: mw.msg( 'rcfilters-allcontents-label' ),
 		description: '',
@@ -77,7 +73,7 @@ Controller.prototype.initialize = function ( filterStructure, namespaceStructure
 		cssClass: 'mw-changeslist-ns-subject',
 		subset: []
 	};
-	nsAllDiscussions = {
+	const nsAllDiscussions = {
 		name: 'all-discussions',
 		label: mw.msg( 'rcfilters-alldiscussions-label' ),
 		description: '',
@@ -85,7 +81,7 @@ Controller.prototype.initialize = function ( filterStructure, namespaceStructure
 		cssClass: 'mw-changeslist-ns-talk',
 		subset: []
 	};
-	items = [ nsAllContents, nsAllDiscussions ];
+	const items = [ nsAllContents, nsAllDiscussions ];
 	for ( const namespaceID in namespaceStructure ) {
 		const label = namespaceStructure[ namespaceID ];
 		// Build and clean up the individual namespace items definition
@@ -272,6 +268,7 @@ Controller.prototype.initialize = function ( filterStructure, namespaceStructure
 		{ normalizeTarget: this.normalizeTarget }
 	);
 
+	let parsedSavedQueries;
 	if ( !mw.user.isAnon() ) {
 		try {
 			parsedSavedQueries = JSON.parse( mw.user.options.get( this.savedQueriesPreferenceName ) || '{}' );
@@ -302,7 +299,7 @@ Controller.prototype.initialize = function ( filterStructure, namespaceStructure
 		// again
 		this.updateStateFromUrl( false );
 
-		pieces = this._extractChangesListInfo( $( '#mw-content-text' ) );
+		const pieces = this._extractChangesListInfo( $( '#mw-content-text' ) );
 
 		// Update the changes list with the existing data
 		// so it gets processed
@@ -344,8 +341,7 @@ Controller.prototype.isInitialized = function () {
  * @return {jQuery} return.fieldset Fieldset
  */
 Controller.prototype._extractChangesListInfo = function ( $root, statusCode ) {
-	let info,
-		$changesListContents = $root.find( '.mw-changeslist' ).first().contents(),
+	const $changesListContents = $root.find( '.mw-changeslist' ).first().contents(),
 		areResults = !!$changesListContents.length,
 		checkForLogout = !areResults && statusCode === 200;
 
@@ -359,7 +355,7 @@ Controller.prototype._extractChangesListInfo = function ( $root, statusCode ) {
 		return;
 	}
 
-	info = {
+	const info = {
 		changes: $changesListContents.length ? $changesListContents : 'NO_RESULTS',
 		fieldset: $root.find( 'fieldset.cloptions' ).first()
 	};
@@ -814,10 +810,9 @@ Controller.prototype.setDefaultSavedQuery = function ( queryID ) {
  * @param {string} queryID Query id
  */
 Controller.prototype.applySavedQuery = function ( queryID ) {
-	let currentMatchingQuery,
-		params = this.savedQueriesModel.getItemParams( queryID );
+	const params = this.savedQueriesModel.getItemParams( queryID );
 
-	currentMatchingQuery = this.findQueryMatchingCurrentState();
+	const currentMatchingQuery = this.findQueryMatchingCurrentState();
 
 	if (
 		currentMatchingQuery &&
@@ -854,12 +849,11 @@ Controller.prototype.findQueryMatchingCurrentState = function () {
  * query item representation in the user settings.
  */
 Controller.prototype._saveSavedQueries = function () {
-	let stringified, oldPrefValue,
-		backupPrefName = this.savedQueriesPreferenceName + '-versionbackup',
+	const backupPrefName = this.savedQueriesPreferenceName + '-versionbackup',
 		state = this.savedQueriesModel.getState();
 
 	// Stringify state
-	stringified = JSON.stringify( state );
+	const stringified = JSON.stringify( state );
 
 	if ( byteLength( stringified ) > 65535 ) {
 		// Double check, since the preference can only hold that.
@@ -869,7 +863,7 @@ Controller.prototype._saveSavedQueries = function () {
 	if ( !this.wereSavedQueriesSaved && this.savedQueriesModel.isConverted() ) {
 		// The queries were converted from the previous version
 		// Keep the old string in the [prefname]-versionbackup
-		oldPrefValue = mw.user.options.get( this.savedQueriesPreferenceName );
+		const oldPrefValue = mw.user.options.get( this.savedQueriesPreferenceName );
 
 		// Save the old preference in the backup preference
 		new mw.Api().saveOption( backupPrefName, oldPrefValue );
@@ -1050,10 +1044,8 @@ Controller.prototype._getDefaultParams = function () {
  * @return {jQuery.Promise} Promise object resolved with { content, status }
  */
 Controller.prototype._queryChangesList = function ( counterId, params ) {
-	let uri = this.uriProcessor.getUpdatedUri(),
-		stickyParams = this.filtersModel.getStickyParamsValues(),
-		requestId,
-		latestRequest;
+	const uri = this.uriProcessor.getUpdatedUri(),
+		stickyParams = this.filtersModel.getStickyParamsValues();
 
 	params = params || {};
 	params.action = 'render'; // bypasses MW chrome
@@ -1061,8 +1053,8 @@ Controller.prototype._queryChangesList = function ( counterId, params ) {
 	uri.extend( params );
 
 	this.requestCounter[ counterId ] = this.requestCounter[ counterId ] || 0;
-	requestId = ++this.requestCounter[ counterId ];
-	latestRequest = function () {
+	const requestId = ++this.requestCounter[ counterId ];
+	const latestRequest = function () {
 		return requestId === this.requestCounter[ counterId ];
 	}.bind( this );
 
@@ -1109,8 +1101,6 @@ Controller.prototype._fetchChangesList = function () {
 	return this._queryChangesList( 'updateChangesList' )
 		.then(
 			( data ) => {
-				let $parsed;
-
 				// Status code 0 is not HTTP status code,
 				// but is valid value of XMLHttpRequest status.
 				// It is used for variety of network errors, for example
@@ -1124,7 +1114,7 @@ Controller.prototype._fetchChangesList = function () {
 					};
 				}
 
-				$parsed = $( '<div>' ).append( $( $.parseHTML(
+				const $parsed = $( '<div>' ).append( $( $.parseHTML(
 					data ? data.content : ''
 				) ) );
 
@@ -1141,12 +1131,11 @@ Controller.prototype._fetchChangesList = function () {
  * @return {boolean} New applied model state is different than the previous state
  */
 Controller.prototype.applyParamChange = function ( newParamState ) {
-	let after,
-		before = this.filtersModel.getSelectedState();
+	const before = this.filtersModel.getSelectedState();
 
 	this.filtersModel.updateStateFromParams( newParamState );
 
-	after = this.filtersModel.getSelectedState();
+	const after = this.filtersModel.getSelectedState();
 
 	return !OO.compare( before, after );
 };
