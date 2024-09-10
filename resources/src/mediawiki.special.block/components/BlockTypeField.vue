@@ -39,7 +39,7 @@ const { defineComponent, ref, toRef } = require( 'vue' );
 const { CdxCheckbox, CdxRadio, CdxField, useModelWrapper } = require( '@wikimedia/codex' );
 
 // @vue/component
-module.exports = defineComponent( {
+module.exports = exports = defineComponent( {
 	name: 'BlockTypeField',
 	components: { CdxCheckbox, CdxRadio, CdxField },
 	props: {

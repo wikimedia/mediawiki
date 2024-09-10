@@ -24,7 +24,7 @@ const { CdxLookup, CdxField, useModelWrapper } = require( '@wikimedia/codex' );
 const { cdxIconSearch } = require( '../icons.json' );
 
 // @vue/component
-module.exports = defineComponent( {
+module.exports = exports = defineComponent( {
 	name: 'UserLookup',
 	components: { CdxLookup, CdxField },
 	props: {

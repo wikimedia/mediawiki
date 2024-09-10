@@ -42,7 +42,7 @@ const ReasonField = require( './components/ReasonField.vue' );
 const BlockDetailsField = require( './components/BlockDetailsOptions.vue' );
 
 // @vue/component
-module.exports = defineComponent( {
+module.exports = exports = defineComponent( {
 	name: 'SpecialBlock',
 	components: {
 		UserLookup,
