@@ -89,7 +89,7 @@ interface IMaintainableDatabase extends IDatabase {
 	/**
 	 * Delete a table
 	 *
-	 * @param string $table Unqualified name of table
+	 * @param string $table The unqualified name of a table
 	 * @param string $fname
 	 * @return bool Whether the table already existed
 	 * @throws DBError If an error occurs
@@ -99,7 +99,7 @@ interface IMaintainableDatabase extends IDatabase {
 	/**
 	 * Delete all data in a table and reset any sequences owned by that table
 	 *
-	 * @param string $table Unqualified name of table
+	 * @param string $table The unqualified name of a table
 	 * @param string $fname
 	 * @throws DBError If an error occurs
 	 * @since 1.42
@@ -141,7 +141,7 @@ interface IMaintainableDatabase extends IDatabase {
 	 * Get information about a field
 	 * Returns false if the field doesn't exist
 	 *
-	 * @param string $table Unqualified name of table
+	 * @param string $table The unqualified name of a table
 	 * @param string $field Field name
 	 *
 	 * @return false|Field
@@ -151,7 +151,7 @@ interface IMaintainableDatabase extends IDatabase {
 	/**
 	 * Determines whether a field exists in a table
 	 *
-	 * @param string $table Unqualified name of table
+	 * @param string $table The unqualified name of a table
 	 * @param string $field Field to check on that table
 	 * @param string $fname Calling function name (optional)
 	 * @return bool Whether $table has field $field
@@ -162,7 +162,7 @@ interface IMaintainableDatabase extends IDatabase {
 	/**
 	 * Determines whether an index exists
 	 *
-	 * @param string $table Unqualified name of table
+	 * @param string $table The unqualified name of a table
 	 * @param string $index
 	 * @param string $fname
 	 * @return bool
@@ -173,7 +173,7 @@ interface IMaintainableDatabase extends IDatabase {
 	/**
 	 * Determines if a given index is unique
 	 *
-	 * @param string $table Unqualified name of table
+	 * @param string $table The unqualified name of a table
 	 * @param string $index
 	 * @param string $fname Calling function name
 	 * @return bool|null Returns null if the index does not exist
@@ -184,7 +184,7 @@ interface IMaintainableDatabase extends IDatabase {
 	/**
 	 * Query whether a given table exists
 	 *
-	 * @param string $table Unqualified name of table
+	 * @param string $table The unqualified name of a table
 	 * @param string $fname
 	 * @return bool
 	 * @throws DBError If an error occurs, {@see query}
