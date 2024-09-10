@@ -1221,7 +1221,8 @@ class CoreParserFunctions {
 				// ... and we can
 				if ( $mto && !$mto->isError() ) {
 					// ... change the URL to point to a thumbnail.
-					$url = wfExpandUrl( $mto->getUrl(), PROTO_RELATIVE );
+					$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
+					$url = $urlUtils->expand( $mto->getUrl(), PROTO_RELATIVE ) ?? false;
 				}
 			}
 			if ( $isNowiki ) {

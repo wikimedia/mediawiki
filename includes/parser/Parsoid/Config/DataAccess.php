@@ -291,7 +291,7 @@ class DataAccess extends IDataAccess {
 
 					// Proposed MediaTransformOutput serialization method for T51896 etc.
 					// Note that getAPIData(['fullurl']) would return
-					// wfExpandUrl(), which wouldn't respect the wiki's
+					// UrlUtils::expand(), which wouldn't respect the wiki's
 					// protocol preferences -- instead it would use the
 					// protocol used for the API request.
 					if ( is_callable( [ $mto, 'getAPIData' ] ) ) {

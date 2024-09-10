@@ -366,6 +366,7 @@ class EmailNotification {
 		$services = MediaWikiServices::getInstance();
 		$config = $services->getMainConfig();
 		$userOptionsLookup = $services->getUserOptionsLookup();
+		$urlUtils = $services->getUrlUtils();
 
 		$this->composed_common = true;
 
@@ -431,9 +432,10 @@ class EmailNotification {
 		}
 
 		$keys['$PAGEEDITOR_WIKI'] = $this->editor->getTalkPage()->getCanonicalURL();
-		$keys['$HELPPAGE'] = wfExpandUrl(
-			Skin::makeInternalOrExternalUrl( wfMessage( 'helppage' )->inContentLanguage()->text() )
-		);
+		$keys['$HELPPAGE'] = $urlUtils->expand(
+			Skin::makeInternalOrExternalUrl( wfMessage( 'helppage' )->inContentLanguage()->text() ),
+			PROTO_CURRENT
+		) ?? false;
 
 		# Replace this after transforming the message, T37019
 		$postTransformKeys['$PAGESUMMARY'] = $this->summary == '' ? ' - ' : $this->summary;

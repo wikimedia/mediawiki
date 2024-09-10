@@ -647,10 +647,10 @@ EOT;
 					} else {
 						$newThumbUrl = $targetFile->getThumbUrl( $newThumbName );
 					}
-					$redirectedLocation = wfExpandUrl(
+					$redirectedLocation = $this->getUrlUtils()->expand(
 						$newThumbUrl,
 						PROTO_CURRENT
-					);
+					) ?? false;
 				}
 			}
 		}
@@ -756,10 +756,10 @@ EOT;
 			return false;
 		} elseif ( rawurldecode( $rel404 ) === $img->getThumbRel( $thumbName2 ) ) {
 			// Request for the "long" thumbnail name; redirect to canonical name
-			$target = wfExpandUrl(
+			$target = $this->getUrlUtils()->expand(
 				$img->getThumbUrl( $thumbName ),
 				PROTO_CURRENT
-			);
+			) ?? false;
 			$this->status( 301 );
 			$this->header( 'Location: ' . $target );
 			$this->header(
