@@ -10,7 +10,7 @@
  * @param {Object} config Configuration object
  * @param {jQuery} [config.$overlay] A jQuery object serving as overlay for popups
  */
-var FilterMenuHeaderWidget = function MwRcfiltersUiFilterMenuHeaderWidget( controller, model, config ) {
+const FilterMenuHeaderWidget = function MwRcfiltersUiFilterMenuHeaderWidget( controller, model, config ) {
 	config = config || {};
 
 	this.controller = controller;
@@ -143,7 +143,7 @@ FilterMenuHeaderWidget.prototype.onModelInitialize = function () {
  * Respond to model update event
  */
 FilterMenuHeaderWidget.prototype.onModelSearchChange = function () {
-	var currentView = this.model.getCurrentView();
+	const currentView = this.model.getCurrentView();
 
 	if ( this.view !== currentView ) {
 		this.setLabel( this.model.getViewTitle( currentView ) );

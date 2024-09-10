@@ -21,12 +21,12 @@
 	 * @hideconstructor
 	 */
 
-	var inspect = mw.inspect,
+	const inspect = mw.inspect,
 		byteLength = require( 'mediawiki.String' ).byteLength,
 		hasOwn = Object.prototype.hasOwnProperty;
 
 	function sortByProperty( array, prop, descending ) {
-		var order = descending ? -1 : 1;
+		const order = descending ? -1 : 1;
 		return array.sort( ( a, b ) => {
 			if ( a[ prop ] === undefined || b[ prop ] === undefined ) {
 				// Sort undefined to the end, regardless of direction
@@ -37,7 +37,7 @@
 	}
 
 	function humanSize( bytesInput ) {
-		var i,
+		let i,
 			bytes = +bytesInput,
 			units = [ '', ' KiB', ' MiB', ' GiB', ' TiB', ' PiB' ];
 
@@ -62,11 +62,11 @@
 	 * @method mediawiki.inspect.getDependencyGraph
 	 */
 	inspect.getDependencyGraph = function () {
-		var modules = inspect.getLoadedModules(),
+		const modules = inspect.getLoadedModules(),
 			graph = {};
 
 		modules.forEach( ( moduleName ) => {
-			var dependencies = mw.loader.moduleRegistry[ moduleName ].dependencies || [];
+			const dependencies = mw.loader.moduleRegistry[ moduleName ].dependencies || [];
 
 			if ( !hasOwn.call( graph, moduleName ) ) {
 				graph[ moduleName ] = { requiredBy: [] };
@@ -98,7 +98,7 @@
 		//
 		// The module declarator function is stored by mw.loader.implement(), allowing easy
 		// computation of the exact size.
-		var module = mw.loader.moduleRegistry[ moduleName ];
+		const module = mw.loader.moduleRegistry[ moduleName ];
 
 		if ( module.state !== 'ready' ) {
 			return null;
@@ -122,13 +122,13 @@
 	 * @method mediawiki.inspect.auditSelectors
 	 */
 	inspect.auditSelectors = function ( css ) {
-		var selectors = { total: 0, matched: 0 },
+		const selectors = { total: 0, matched: 0 },
 			style = document.createElement( 'style' );
 
 		style.textContent = css;
 		document.body.appendChild( style );
-		var cssRules = style.sheet.cssRules;
-		for ( var index in cssRules ) {
+		const cssRules = style.sheet.cssRules;
+		for ( const index in cssRules ) {
 			const rule = cssRules[ index ];
 			selectors.total++;
 			// document.querySelector() on prefixed pseudo-elements can throw exceptions
@@ -176,7 +176,7 @@
 	 * @method mediawiki.inspect.runReports
 	 */
 	inspect.runReports = function () {
-		var reports = arguments.length > 0 ?
+		const reports = arguments.length > 0 ?
 			Array.prototype.slice.call( arguments ) :
 			Object.keys( inspect.reports );
 
@@ -210,7 +210,7 @@
 		}
 
 		return inspect.getLoadedModules().filter( ( moduleName ) => {
-			var module = mw.loader.moduleRegistry[ moduleName ];
+			const module = mw.loader.moduleRegistry[ moduleName ];
 
 			// Grep module's JavaScript
 			if ( typeof module.script === 'function' && pattern.test( module.script.toString() ) ) {
@@ -244,7 +244,7 @@
 		 */
 		size: function () {
 			// Map each module to a descriptor object.
-			var modules = inspect.getLoadedModules().map( ( module ) => ( {
+			const modules = inspect.getLoadedModules().map( ( module ) => ( {
 				name: module,
 				size: inspect.getModuleSize( module )
 			} ) );
@@ -268,10 +268,10 @@
 		 * @return {Object[]} CSS reports
 		 */
 		css: function () {
-			var modules = [];
+			const modules = [];
 
 			inspect.getLoadedModules().forEach( ( name ) => {
-				var css, stats, module = mw.loader.moduleRegistry[ name ];
+				let css, stats, module = mw.loader.moduleRegistry[ name ];
 
 				try {
 					css = module.style.css.join();
@@ -301,7 +301,7 @@
 		 * @return {Object[]} Store stats
 		 */
 		store: function () {
-			var raw, stats = { enabled: mw.loader.store.enabled };
+			let raw, stats = { enabled: mw.loader.store.enabled };
 			if ( stats.enabled ) {
 				Object.assign( stats, mw.loader.store.stats );
 				try {
@@ -322,7 +322,7 @@
 		 * @return {Object[]} Table rows
 		 */
 		time: function () {
-			var modules;
+			let modules;
 
 			if ( !mw.loader.profiler ) {
 				mw.log.warn( 'mw.inspect: The time report requires $wgResourceLoaderEnableJSProfiler.' );

@@ -45,7 +45,7 @@ UploadSelectFileParamWidget.prototype.setApiValue = function () {
  * @return {jQuery.Promise}
  */
 UploadSelectFileParamWidget.prototype.apiCheckValid = function ( shouldSuppressErrors ) {
-	var ok = this.getValue() !== null && this.getValue() !== undefined || shouldSuppressErrors;
+	const ok = this.getValue() !== null && this.getValue() !== undefined || shouldSuppressErrors;
 	this.info.setIcon( ok ? null : 'alert' );
 	this.setTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
 	return $.Deferred().resolve( ok ).promise();

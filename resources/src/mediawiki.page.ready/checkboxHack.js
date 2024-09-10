@@ -165,7 +165,7 @@ function setCheckedState( checkbox, checked ) {
 	checkbox.checked = checked;
 	// Chrome and Firefox sends the builtin Event with .bubbles == true and .composed == true.
 	/** @type {Event} */
-	var e;
+	let e;
 	if ( typeof Event === 'function' ) {
 		e = new Event( 'input', { bubbles: true, composed: true } );
 	} else {
@@ -227,7 +227,7 @@ function bindUpdateAriaExpandedOnInput( checkbox, button ) {
 		mw.log.warn( '[1.38] The button parameter in bindUpdateAriaExpandedOnInput is deprecated, aria-expanded will be applied to the checkbox going forward. View the updated checkbox hack documentation for more details.' );
 	}
 
-	var listener = updateAriaExpanded.bind( undefined, checkbox, button );
+	const listener = updateAriaExpanded.bind( undefined, checkbox, button );
 	// Whenever the checkbox state changes, update the `aria-expanded` state.
 	checkbox.addEventListener( 'input', listener );
 
@@ -345,7 +345,7 @@ function bindToggleOnEnter( checkbox ) {
  * @return {function(): void} Cleanup function that removes the added event listeners.
  */
 function bindDismissOnClickOutside( window, checkbox, button, target ) {
-	var listener = dismissIfExternalEventTarget.bind( undefined, checkbox, button, target );
+	const listener = dismissIfExternalEventTarget.bind( undefined, checkbox, button, target );
 	window.addEventListener( 'click', listener, true );
 
 	return function () {
@@ -367,7 +367,7 @@ function bindDismissOnClickOutside( window, checkbox, button, target ) {
 function bindDismissOnFocusLoss( window, checkbox, button, target ) {
 	// If focus is given to any element outside the target, dismiss the target. Setting a focusout
 	// listener on the target would be preferable, but this interferes with the click listener.
-	var listener = dismissIfExternalEventTarget.bind( undefined, checkbox, button, target );
+	const listener = dismissIfExternalEventTarget.bind( undefined, checkbox, button, target );
 	window.addEventListener( 'focusin', listener, true );
 
 	return function () {
@@ -420,7 +420,7 @@ function bindDismissOnClickLink( checkbox, target ) {
  * @return {function(): void} Cleanup function that removes the added event listeners.
  */
 function bind( window, checkbox, button, target ) {
-	var cleanups = [
+	const cleanups = [
 		bindUpdateAriaExpandedOnInput( checkbox ),
 		bindToggleOnClick( checkbox, button ),
 		bindToggleOnEnter( checkbox ),

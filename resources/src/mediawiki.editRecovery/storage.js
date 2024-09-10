@@ -7,7 +7,7 @@ const dbName = mw.config.get( 'wgDBname' ) + '_editRecovery';
 const editRecoveryExpiry = config.EditRecoveryExpiry;
 const objectStoreName = 'unsaved-page-data';
 
-var db = null;
+let db = null;
 
 // TODO: Document Promise objects as native promises, not jQuery ones.
 
@@ -36,7 +36,7 @@ function openDatabaseLocal() {
  */
 function upgradeDatabase( versionChangeEvent ) {
 	const keyPathParts = [ 'pageName', 'section' ];
-	var objectStore;
+	let objectStore;
 
 	db = versionChangeEvent.target.result;
 	if ( !db.objectStoreNames.contains( objectStoreName ) ) {

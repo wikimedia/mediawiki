@@ -7,7 +7,7 @@
  */
 ( function () {
 	function patrol( link ) {
-		var $spinner,
+		let $spinner,
 			api = new mw.Api();
 
 		// Preload a module concurrently with the ajax request.
@@ -23,7 +23,7 @@
 			rcid: mw.util.getParamValue( 'rcid', link.href )
 		} )
 			.then( ( data ) => {
-				var title = new mw.Title( data.patrol.title );
+				const title = new mw.Title( data.patrol.title );
 				mw.notify( mw.msg( 'markedaspatrollednotify', title.toText() ) );
 				// Remove link wrapper (including the spinner).
 				$( link ).closest( '.patrollink' ).remove();

@@ -4,10 +4,10 @@
  * @namespace mw.user
  */
 ( function () {
-	var userInfoPromise, tempUserNamePromise, pageviewRandomId, sessionId;
-	var CLIENTPREF_COOKIE_NAME = 'mwclientpreferences';
-	var CLIENTPREF_SUFFIX = '-clientpref-';
-	var CLIENTPREF_DELIMITER = ',';
+	let userInfoPromise, tempUserNamePromise, pageviewRandomId, sessionId;
+	const CLIENTPREF_COOKIE_NAME = 'mwclientpreferences';
+	const CLIENTPREF_SUFFIX = '-clientpref-';
+	const CLIENTPREF_DELIMITER = ',';
 
 	/**
 	 * Get the current user's groups or rights
@@ -30,17 +30,17 @@
 	 * @param {string} value
 	 */
 	function saveClientPrefs( feature, value ) {
-		var existingCookie = mw.cookie.get( CLIENTPREF_COOKIE_NAME ) || '';
-		var data = {};
+		const existingCookie = mw.cookie.get( CLIENTPREF_COOKIE_NAME ) || '';
+		const data = {};
 		existingCookie.split( CLIENTPREF_DELIMITER ).forEach( ( keyValuePair ) => {
-			var m = keyValuePair.match( /^([\w-]+)-clientpref-(\w+)$/ );
+			const m = keyValuePair.match( /^([\w-]+)-clientpref-(\w+)$/ );
 			if ( m ) {
 				data[ m[ 1 ] ] = m[ 2 ];
 			}
 		} );
 		data[ feature ] = value;
 
-		var newCookie = Object.keys( data ).map( ( key ) => key + CLIENTPREF_SUFFIX + data[ key ] ).join( CLIENTPREF_DELIMITER );
+		const newCookie = Object.keys( data ).map( ( key ) => key + CLIENTPREF_SUFFIX + data[ key ] ).join( CLIENTPREF_DELIMITER );
 		mw.cookie.set( CLIENTPREF_COOKIE_NAME, newCookie );
 	}
 
@@ -210,7 +210,7 @@
 				// Temporary user username already acquired
 				tempUserNamePromise = $.Deferred().resolve( mw.config.get( 'wgTempUserName' ) );
 			} else {
-				var api = new mw.Api();
+				const api = new mw.Api();
 				tempUserNamePromise = api.post( { action: 'acquiretempusername' } ).then( ( resp ) => {
 					mw.config.set( 'wgTempUserName', resp.acquiretempusername );
 					return resp.acquiretempusername;
@@ -230,7 +230,7 @@
 		 *  unavailable, or Date for when the user registered.
 		 */
 		getRegistration: function () {
-			var registration;
+			let registration;
 			if ( mw.user.isAnon() ) {
 				return false;
 			}
@@ -251,7 +251,7 @@
 			if ( mw.user.isAnon() ) {
 				return false;
 			}
-			var registration = mw.config.get( 'wgUserFirstRegistration' );
+			const registration = mw.config.get( 'wgUserFirstRegistration' );
 			// Registration may be unavailable if the user signed up before MediaWiki
 			// began tracking this.
 			return registration ? new Date( registration ) : null;
@@ -310,7 +310,7 @@
 		 * @return {jQuery.Promise}
 		 */
 		getGroups: function ( callback ) {
-			var userGroups = mw.config.get( 'wgUserGroups', [] );
+			const userGroups = mw.config.get( 'wgUserGroups', [] );
 
 			// Uses promise for backwards compatibility
 			return $.Deferred().resolve( userGroups ).then( callback );
@@ -373,13 +373,13 @@
 				if ( !isValidFeatureName( feature ) || !isValidFeatureValue( value ) ) {
 					return false;
 				}
-				var currentValue = mw.user.clientPrefs.get( feature );
+				const currentValue = mw.user.clientPrefs.get( feature );
 				// the feature is not recognized
 				if ( !currentValue ) {
 					return false;
 				}
-				var oldFeatureClass = feature + CLIENTPREF_SUFFIX + currentValue;
-				var newFeatureClass = feature + CLIENTPREF_SUFFIX + value;
+				const oldFeatureClass = feature + CLIENTPREF_SUFFIX + currentValue;
+				const newFeatureClass = feature + CLIENTPREF_SUFFIX + value;
 				// The following classes are removed here:
 				// * feature-name-clientpref-<old-feature-value>
 				// * e.g. vector-font-size--clientpref-small
@@ -401,16 +401,16 @@
 			 *  returns string if a feature was found.
 			 */
 			get: function ( feature ) {
-				var featurePrefix = feature + CLIENTPREF_SUFFIX;
-				var docClass = document.documentElement.className;
+				const featurePrefix = feature + CLIENTPREF_SUFFIX;
+				const docClass = document.documentElement.className;
 
-				var featureRegEx = new RegExp(
+				const featureRegEx = new RegExp(
 					'(^| )' + mw.util.escapeRegExp( featurePrefix ) + '([a-zA-Z0-9]+)( |$)'
 				);
-				var match = docClass.match( featureRegEx );
+				const match = docClass.match( featureRegEx );
 
 				// check no further matches if we replaced this occurance.
-				var isAmbiguous = docClass.replace( featureRegEx, '$1$3' ).match( featureRegEx ) !== null;
+				const isAmbiguous = docClass.replace( featureRegEx, '$1$3' ).match( featureRegEx ) !== null;
 				return !isAmbiguous && match ? match[ 2 ] : false;
 			}
 		}

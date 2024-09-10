@@ -40,7 +40,7 @@
 	 * @return {jQuery.Promise} Promise returning config object
 	 */
 	ForeignStructuredUpload.prototype.loadConfig = function () {
-		var deferred,
+		let deferred,
 			upload = this;
 
 		if ( this.configPromise ) {
@@ -147,7 +147,7 @@
 	 * @inheritdoc
 	 */
 	ForeignStructuredUpload.prototype.getComment = function () {
-		var
+		const
 			isLocal = this.target === 'local',
 			comment = typeof this.config.comment === 'string' ?
 				this.config.comment :
@@ -180,7 +180,7 @@
 	 * @return {string}
 	 */
 	ForeignStructuredUpload.prototype.getDescriptions = function () {
-		var upload = this;
+		const upload = this;
 		return this.descriptions.map( ( desc ) => upload.config.format.description
 			.replace( '$LANGUAGE', desc.language )
 			.replace( '$TEXT', desc.text ) ).join( '\n' );
@@ -228,7 +228,7 @@
 	 * @return {string}
 	 */
 	ForeignStructuredUpload.prototype.getUser = function () {
-		var username, namespace;
+		let username, namespace;
 		// Do not localise, we don't know the language of target wiki
 		namespace = 'User';
 		username = mw.config.get( 'wgUserName' );

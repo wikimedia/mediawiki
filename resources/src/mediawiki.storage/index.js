@@ -44,7 +44,7 @@
 // Catch exceptions to avoid fatal in Chrome's "Block data storage" mode
 // which throws when accessing the localStorage property itself, as opposed
 // to the standard behaviour of throwing on getItem/setItem. (T148998)
-var
+const
 	localStorage = ( function () {
 		try {
 			return window.localStorage;
@@ -56,7 +56,7 @@ var
 		} catch ( e ) {}
 	}() );
 
-var SafeStorage = require( './SafeStorage.js' );
+const SafeStorage = require( './SafeStorage.js' );
 
 /**
  * Alias for {@link module:mediawiki.storage.local}.

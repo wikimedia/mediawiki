@@ -10,8 +10,8 @@ const pageName = mw.config.get( 'wgPageName' );
 const section = $( 'input[name="wpSection"]' ).val() || null;
 const inputFields = {};
 const fieldNamePrefix = 'field_';
-var originalData = {};
-var changeDebounceTimer = null;
+let originalData = {};
+let changeDebounceTimer = null;
 
 // Number of miliseconds to debounce form input.
 const debounceTime = 5000;
@@ -266,7 +266,7 @@ function getFormData() {
 	const formData = {};
 	Object.keys( inputFields ).forEach( ( fieldName ) => {
 		const field = inputFields[ fieldName ];
-		var newValue = null;
+		let newValue = null;
 		if ( !( field instanceof OO.ui.Widget ) && field.nodeName !== undefined && field.nodeName === 'TEXTAREA' ) {
 			// Text areas.
 			newValue = $( field ).textSelection( 'getContents' );

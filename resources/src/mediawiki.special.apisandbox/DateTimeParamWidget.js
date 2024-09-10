@@ -1,4 +1,4 @@
-var TextParamMixin = require( './TextParamMixin.js' ),
+const TextParamMixin = require( './TextParamMixin.js' ),
 	UtilMixin = require( './UtilMixin.js' );
 
 /**

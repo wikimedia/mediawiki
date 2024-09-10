@@ -3,7 +3,7 @@
 ( function () {
 	'use strict';
 
-	var debug,
+	let debug,
 		hovzer = $.getFootHovzer();
 
 	OO.ui.getViewportSpacing = function () {
@@ -68,7 +68,7 @@
 		 * @param {jQuery.Event} e
 		 */
 		switchPane: function ( e ) {
-			var currentPaneId = debug.$container.data( 'currentPane' ),
+			let currentPaneId = debug.$container.data( 'currentPane' ),
 				requestedPaneId = $( this ).prop( 'id' ).slice( 9 ),
 				$currentPane = $( '#mw-debug-pane-' + currentPaneId ),
 				$requestedPane = $( '#mw-debug-pane-' + requestedPaneId ),
@@ -113,7 +113,7 @@
 		 * Construct the HTML for the debugging toolbar.
 		 */
 		buildHtml: function () {
-			var $container, $bits, panes, paneId, gitInfoText, $gitInfo;
+			let $container, $bits, panes, paneId, gitInfoText, $gitInfo;
 
 			$container = $( '<div>' )
 				.attr( {
@@ -246,7 +246,7 @@
 		 * @return {jQuery} Console panel
 		 */
 		buildConsoleTable: function () {
-			var $table, entryTypeText, i, length, entry;
+			let $table, entryTypeText, i, length, entry;
 
 			$table = $( '<table>' ).attr( 'id', 'mw-debug-console' );
 			length = this.data.log.length;
@@ -295,7 +295,7 @@
 		 * @return {jQuery}
 		 */
 		buildQueryTable: function () {
-			var $table, i, length, query;
+			let $table, i, length, query;
 
 			$table = $( '<table>' ).attr( 'id', 'mw-debug-querylist' );
 			length = this.data.queries.length;
@@ -327,7 +327,7 @@
 		 * @return {jQuery}
 		 */
 		buildDebugLogTable: function () {
-			var $list, i, length, line;
+			let $list, i, length, line;
 			$list = $( '<ul>' );
 			length = this.data.debugLog.length;
 
@@ -349,7 +349,7 @@
 		buildRequestPane: function () {
 
 			function buildTable( title, data ) {
-				var $unit, $table, key;
+				let $unit, $table, key;
 
 				$unit = $( '<div>' ).append( $( '<h2>' ).text( title ) );
 
@@ -384,7 +384,7 @@
 		 * @return {jQuery}
 		 */
 		buildIncludesPane: function () {
-			var $table, i, length, file;
+			let $table, i, length, file;
 
 			$table = $( '<table>' );
 			length = this.data.includes.length;

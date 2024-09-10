@@ -1,5 +1,5 @@
 ( function () {
-	var parser, properties;
+	let parser, properties;
 
 	/**
 	 * Function that's useful when constructing the URI string -- we frequently encounter the pattern
@@ -66,12 +66,12 @@
 	 * @return {mw.Uri} An mw.Uri class constructor
 	 */
 	mw.UriRelative = function ( documentLocation ) {
-		var getDefaultUri = ( function () {
+		const getDefaultUri = ( function () {
 			// Cache
-			var href, uri;
+			let href, uri;
 
 			return function () {
-				var hrefCur = typeof documentLocation === 'string' ? documentLocation : documentLocation();
+				const hrefCur = typeof documentLocation === 'string' ? documentLocation : documentLocation();
 				if ( href === hrefCur ) {
 					return uri;
 				}
@@ -158,7 +158,7 @@
 		 * @throws {Error} when the query string or fragment contains an unknown % sequence
 		 */
 		function Uri( uri, options ) {
-			var prop, hrefCur,
+			let prop, hrefCur,
 				hasOptions = ( options !== undefined ),
 				defaultUri = getDefaultUri();
 
@@ -318,7 +318,7 @@
 			 * @throws {Error} when the query string or fragment contains an unknown % sequence
 			 */
 			parse: function ( str, options ) {
-				var q, matches,
+				let q, matches,
 					uri = this,
 					hasOwn = Object.prototype.hasOwnProperty;
 
@@ -336,7 +336,7 @@
 				if ( uri.query ) {
 
 					uri.query.replace( /(?:^|&)([^&=]*)(?:(=)([^&]*))?/g, ( match, k, eq, v ) => {
-						var arrayKeyMatch, i;
+						let arrayKeyMatch, i;
 						if ( k ) {
 							k = Uri.decode( k );
 							v = ( eq === '' || eq === undefined ) ? null : Uri.decode( v );
@@ -425,15 +425,15 @@
 			 * @return {string}
 			 */
 			getQueryString: function () {
-				var args = [],
+				const args = [],
 					arrayParams = this.arrayParams;
 				Object.keys( this.query ).forEach( ( key ) => {
-					var val = this.query[ key ];
-					var k = Uri.encode( key ),
+					const val = this.query[ key ];
+					const k = Uri.encode( key ),
 						isArrayParam = Array.isArray( val ),
 						vals = isArrayParam ? val : [ val ];
 					vals.forEach( ( v, i ) => {
-						var ki = k;
+						let ki = k;
 						if ( arrayParams && isArrayParam ) {
 							ki += Uri.encode( '[' + i + ']' );
 						}

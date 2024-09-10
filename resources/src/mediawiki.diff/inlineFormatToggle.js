@@ -2,7 +2,7 @@
  * JavaScript for diff inline toggle
  */
 module.exports = function ( $inlineToggleSwitchLayout ) {
-	var $wikitextDiffContainer, $wikitextDiffHeader, $wikitextDiffBody,
+	let $wikitextDiffContainer, $wikitextDiffHeader, $wikitextDiffBody,
 		$wikitextDiffBodyInline, $wikitextDiffBodyTable,
 		url = new URL( location.href ),
 		api = new mw.Api(),
@@ -76,7 +76,7 @@ module.exports = function ( $inlineToggleSwitchLayout ) {
 	function switchQueryParams( isInline ) {
 		$( '#differences-prevlink, #differences-nextlink' )
 			.each( function () {
-				var linkUrl;
+				let linkUrl;
 				try {
 					linkUrl = new URL( this.href );
 				} catch ( e ) {
@@ -113,7 +113,7 @@ module.exports = function ( $inlineToggleSwitchLayout ) {
 	 * @param {boolean} isInline
 	 */
 	function fetchDiff( isInline ) {
-		var apiParams, oldPageName, newPageName,
+		let apiParams, oldPageName, newPageName,
 			diffType = isInline ? 'inline' : 'table',
 			oldRevId = mw.config.get( 'wgDiffOldId' ),
 			newRevId = mw.config.get( 'wgDiffNewId' );

@@ -1,4 +1,4 @@
-var ViewSwitchWidget = require( './ViewSwitchWidget.js' ),
+let ViewSwitchWidget = require( './ViewSwitchWidget.js' ),
 	SaveFiltersPopupButtonWidget = require( './SaveFiltersPopupButtonWidget.js' ),
 	MenuSelectWidget = require( './MenuSelectWidget.js' ),
 	FilterTagItemWidget = require( './FilterTagItemWidget.js' ),
@@ -22,7 +22,7 @@ var ViewSwitchWidget = require( './ViewSwitchWidget.js' ),
  * @param {boolean} [config.collapsed] Filter area is collapsed
  */
 FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( controller, model, savedQueriesModel, config ) {
-	var $rcFiltersRow,
+	let $rcFiltersRow,
 		title = new OO.ui.LabelWidget( {
 			label: mw.msg( 'rcfilters-activefilters' ),
 			classes: [ 'mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-content-title' ]
@@ -251,7 +251,7 @@ OO.inheritClass( FilterTagMultiselectWidget, OO.ui.MenuTagMultiselectWidget );
  * @return {OO.ui.ButtonGroupWidget}
  */
 FilterTagMultiselectWidget.prototype.createViewsSelectWidget = function () {
-	var viewsSelectWidget = new OO.ui.ButtonGroupWidget( {
+	const viewsSelectWidget = new OO.ui.ButtonGroupWidget( {
 		classes: this.isMobile ?
 			[
 				'mw-rcfilters-ui-table',
@@ -386,7 +386,7 @@ FilterTagMultiselectWidget.prototype.onSavedQueriesItemUpdate = function ( item 
  */
 FilterTagMultiselectWidget.prototype.onMenuToggle = function ( isVisible ) {
 
-	var scrollToElement = this.isMobile ? this.input.$input : this.$element;
+	const scrollToElement = this.isMobile ? this.input.$input : this.$element;
 
 	// Parent
 	FilterTagMultiselectWidget.super.prototype.onMenuToggle.call( this );
@@ -505,7 +505,7 @@ FilterTagMultiselectWidget.prototype.onModelUpdate = function () {
  * Update the elements in the widget to the current view
  */
 FilterTagMultiselectWidget.prototype.updateElementsForView = function () {
-	var view = this.model.getCurrentView(),
+	let view = this.model.getCurrentView(),
 		inputValue = this.input.getValue().trim(),
 		inputView = this.model.getViewByTrigger( inputValue.slice( 0, 1 ) );
 
@@ -613,7 +613,7 @@ FilterTagMultiselectWidget.prototype.onMenuChoose = function ( item ) {
  * @param {boolean} isHighlightEnabled Highlight is enabled
  */
 FilterTagMultiselectWidget.prototype.onModelHighlightChange = function ( isHighlightEnabled ) {
-	var highlightedItems = this.model.getHighlightedItems();
+	const highlightedItems = this.model.getHighlightedItems();
 
 	if ( isHighlightEnabled ) {
 		// Add capsule widgets
@@ -639,7 +639,7 @@ FilterTagMultiselectWidget.prototype.onModelHighlightChange = function ( isHighl
  * @inheritdoc
  */
 FilterTagMultiselectWidget.prototype.onTagSelect = function ( tagItem ) {
-	var menuOption = this.menu.getItemFromModel( tagItem.getModel() );
+	const menuOption = this.menu.getItemFromModel( tagItem.getModel() );
 
 	this.menu.setUserSelecting( true );
 	// Parent method
@@ -662,7 +662,7 @@ FilterTagMultiselectWidget.prototype.onTagSelect = function ( tagItem ) {
  *  omit to deselect all
  */
 FilterTagMultiselectWidget.prototype.selectTag = function ( item ) {
-	var i, len, selected;
+	let i, len, selected;
 
 	for ( i = 0, len = this.items.length; i < len; i++ ) {
 		selected = this.items[ i ] === item;
@@ -739,7 +739,7 @@ FilterTagMultiselectWidget.prototype.toggleCollapsed = function ( isCollapsed ) 
  * Reevaluate the restore state for the widget between setting to defaults and clearing all filters
  */
 FilterTagMultiselectWidget.prototype.reevaluateResetRestoreState = function () {
-	var defaultsAreEmpty = this.controller.areDefaultsEmpty(),
+	const defaultsAreEmpty = this.controller.areDefaultsEmpty(),
 		currFiltersAreEmpty = this.model.areVisibleFiltersEmpty(),
 		hideResetButton = currFiltersAreEmpty && defaultsAreEmpty;
 
@@ -773,7 +773,7 @@ FilterTagMultiselectWidget.prototype.createMenuWidget = function ( menuConfig ) 
  * @inheritdoc
  */
 FilterTagMultiselectWidget.prototype.createTagItemWidget = function ( data ) {
-	var filterItem = this.model.getItemByName( data );
+	const filterItem = this.model.getItemByName( data );
 
 	if ( filterItem ) {
 		return new FilterTagItemWidget(
@@ -821,7 +821,7 @@ FilterTagMultiselectWidget.prototype.emphasize = function () {
  * @param {number} [threshold.max] Minimum distance below the element
  */
 FilterTagMultiselectWidget.prototype.scrollToTop = function ( $element, marginFromTop, threshold ) {
-	var container = OO.ui.Element.static.getClosestScrollableContainer( $element[ 0 ], 'y' ),
+	const container = OO.ui.Element.static.getClosestScrollableContainer( $element[ 0 ], 'y' ),
 		pos = OO.ui.Element.static.getRelativePosition( $element, $( container ) ),
 		containerScrollTop = $( container ).scrollTop(),
 		effectiveScrollTop = $( container ).is( 'body, html' ) ? 0 : containerScrollTop,

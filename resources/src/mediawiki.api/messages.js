@@ -11,7 +11,7 @@
 		 * @return {jQuery.Promise<Object.<string, string>>}
 		 */
 		getMessages: function ( messages, options ) {
-			var that = this;
+			const that = this;
 			options = options || {};
 			messages = Array.isArray( messages ) ? messages : [ messages ];
 			return this.get( Object.assign( {
@@ -21,7 +21,7 @@
 				amlang: mw.config.get( 'wgUserLanguage' ),
 				formatversion: 2
 			}, options ) ).then( ( data ) => {
-				var result = {};
+				const result = {};
 
 				data.query.allmessages.forEach( ( obj ) => {
 					if ( !obj.missing ) {
@@ -68,7 +68,7 @@
 		 */
 		loadMessagesIfMissing: function ( messages, options ) {
 			messages = Array.isArray( messages ) ? messages : [ messages ];
-			var missing = messages.filter(
+			const missing = messages.filter(
 				// eslint-disable-next-line mediawiki/msg-doc
 				( msg ) => !mw.message( msg ).exists()
 			);

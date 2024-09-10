@@ -2,7 +2,7 @@
  * @private
  */
 ( function () {
-	var $hovzer, footHovzer, $spacer;
+	let $hovzer, footHovzer, $spacer;
 
 	function getHovzer() {
 		if ( $hovzer === undefined ) {
@@ -43,7 +43,7 @@
 		 * Update dimensions of stack to account for changes in the subtree.
 		 */
 		update: function () {
-			var $body;
+			let $body;
 
 			$body = $( document.body );
 

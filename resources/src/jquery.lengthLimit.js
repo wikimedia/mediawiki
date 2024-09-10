@@ -16,7 +16,7 @@
  */
 ( function () {
 
-	var
+	const
 		eventKeys = [
 			'keyup.lengthLimit',
 			'keydown.lengthLimit',
@@ -54,7 +54,7 @@
 		'Use require( \'mediawiki.String\' ).trimByteLength instead.', '$.trimByteLength' );
 
 	function lengthLimit( trimFn, limit, filterFunction ) {
-		var allowNativeMaxlength = trimFn === trimByteLength;
+		const allowNativeMaxlength = trimFn === trimByteLength;
 
 		// If the first argument is the function,
 		// set filterFunction to the first argument's value and ignore the second argument.
@@ -69,7 +69,7 @@
 
 		// The following is specific to each element in the collection.
 		return this.each( ( i, el ) => {
-			var $el, elLimit, prevSafeVal;
+			let $el, elLimit, prevSafeVal;
 
 			$el = $( el );
 
@@ -143,7 +143,7 @@
 			// the order and characteristics of the key events.
 
 			function enforceLimit() {
-				var res = trimFn(
+				const res = trimFn(
 					prevSafeVal,
 					this.value,
 					elLimit,

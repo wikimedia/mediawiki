@@ -1,4 +1,4 @@
-var HighlightColors = require( '../HighlightColors.js' );
+const HighlightColors = require( '../HighlightColors.js' );
 
 /**
  * A widget representing a filter item highlight color picker.
@@ -11,8 +11,8 @@ var HighlightColors = require( '../HighlightColors.js' );
  * @param {mw.rcfilters.Controller} controller RCFilters controller
  * @param {Object} [config] Configuration object
  */
-var HighlightColorPickerWidget = function MwRcfiltersUiHighlightColorPickerWidget( controller, config ) {
-	var colors = [ 'none' ].concat( HighlightColors );
+const HighlightColorPickerWidget = function MwRcfiltersUiHighlightColorPickerWidget( controller, config ) {
+	const colors = [ 'none' ].concat( HighlightColors );
 	config = config || {};
 
 	// Parent
@@ -103,7 +103,7 @@ HighlightColorPickerWidget.prototype.updateUiBasedOnModel = function () {
  * @param {string} color Selected color
  */
 HighlightColorPickerWidget.prototype.selectColor = function ( color ) {
-	var previousItem = this.buttonSelect.findItemFromData( this.currentSelection ),
+	const previousItem = this.buttonSelect.findItemFromData( this.currentSelection ),
 		selectedItem = this.buttonSelect.findItemFromData( color );
 
 	if ( this.currentSelection !== color ) {
@@ -121,7 +121,7 @@ HighlightColorPickerWidget.prototype.selectColor = function ( color ) {
 };
 
 HighlightColorPickerWidget.prototype.onChooseColor = function ( button ) {
-	var color = button.data;
+	const color = button.data;
 	if ( color === 'none' ) {
 		this.controller.clearHighlightColor( this.filterItem.getName() );
 	} else {

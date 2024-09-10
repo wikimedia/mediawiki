@@ -8,12 +8,12 @@
 	}
 
 	$( () => {
-		var wpReason = OO.ui.infuse( $( '#wpReason' ) );
+		const wpReason = OO.ui.infuse( $( '#wpReason' ) );
 
 		// Infuse for pretty dropdown
 		OO.ui.infuse( $( '#wpNewTitle' ) );
 
-		var wpReasonList = OO.ui.infuse( $( '#wpReasonList' ).closest( '.oo-ui-widget' ) );
+		const wpReasonList = OO.ui.infuse( $( '#wpReasonList' ).closest( '.oo-ui-widget' ) );
 
 		mw.widgets.visibleCodePointLimitWithDropdown( wpReason, wpReasonList, mw.config.get( 'wgCommentCodePointLimit' ) );
 	} );

@@ -1,4 +1,4 @@
-var byteLength = require( 'mediawiki.String' ).byteLength,
+let byteLength = require( 'mediawiki.String' ).byteLength,
 	UriProcessor = require( './UriProcessor.js' ),
 	Controller;
 
@@ -59,7 +59,7 @@ OO.initClass( Controller );
  * @param {Object} [conditionalViews] Conditional view definition
  */
 Controller.prototype.initialize = function ( filterStructure, namespaceStructure, tagList, conditionalViews ) {
-	var parsedSavedQueries, pieces,
+	let parsedSavedQueries, pieces,
 		nsAllContents, nsAllDiscussions,
 		displayConfig = mw.config.get( 'StructuredChangeFiltersDisplayConfig' ),
 		defaultSavedQueryExists = mw.config.get( 'wgStructuredChangeFiltersDefaultSavedQueryExists' ),
@@ -86,10 +86,10 @@ Controller.prototype.initialize = function ( filterStructure, namespaceStructure
 		subset: []
 	};
 	items = [ nsAllContents, nsAllDiscussions ];
-	for ( var namespaceID in namespaceStructure ) {
-		var label = namespaceStructure[ namespaceID ];
+	for ( const namespaceID in namespaceStructure ) {
+		const label = namespaceStructure[ namespaceID ];
 		// Build and clean up the individual namespace items definition
-		var isTalk = mw.Title.isTalkNamespace( namespaceID ),
+		const isTalk = mw.Title.isTalkNamespace( namespaceID ),
 			nsFilter = {
 				name: namespaceID,
 				label: label || mw.msg( 'blanknamespace' ),
@@ -246,10 +246,10 @@ Controller.prototype.initialize = function ( filterStructure, namespaceStructure
 	// Before we do anything, we need to see if we require additional items in the
 	// groups that have 'AllowArbitrary'. For the moment, those are only single_option
 	// groups; if we ever expand it, this might need further generalization:
-	for ( var viewName in views ) {
-		var viewData = views[ viewName ];
+	for ( const viewName in views ) {
+		const viewData = views[ viewName ];
 		viewData.groups.forEach( ( groupData ) => {
-			var extraValues = [];
+			const extraValues = [];
 			if ( groupData.allowArbitrary ) {
 				// If the value in the URI isn't in the group, add it
 				if ( uri.query[ groupData.name ] !== undefined ) {
@@ -344,7 +344,7 @@ Controller.prototype.isInitialized = function () {
  * @return {jQuery} return.fieldset Fieldset
  */
 Controller.prototype._extractChangesListInfo = function ( $root, statusCode ) {
-	var info,
+	let info,
 		$changesListContents = $root.find( '.mw-changeslist' ).first().contents(),
 		areResults = !!$changesListContents.length,
 		checkForLogout = !areResults && statusCode === 200;
@@ -400,7 +400,7 @@ Controller.prototype._createFilterDataFromNumber = function ( num, numForDisplay
  * @param {string|string[]} arbitraryValues An array of arbitrary values to add to the group
  */
 Controller.prototype.addNumberValuesToGroup = function ( groupData, arbitraryValues ) {
-	var controller = this,
+	const controller = this,
 		normalizeWithinRange = function ( range, val ) {
 			if ( val < range.min ) {
 				return range.min; // Min
@@ -461,7 +461,7 @@ Controller.prototype.addNumberValuesToGroup = function ( groupData, arbitraryVal
  * Reset to default filters
  */
 Controller.prototype.resetToDefaults = function () {
-	var params = this._getDefaultParams();
+	const params = this._getDefaultParams();
 	if ( this.applyParamChange( params ) ) {
 		// Only update the changes list if there was a change to actual filters
 		this.updateChangesList();
@@ -498,7 +498,7 @@ Controller.prototype.emptyFilters = function () {
  * @param {boolean} [isSelected] Filter selected state
  */
 Controller.prototype.toggleFilterSelect = function ( filterName, isSelected ) {
-	var filterItem = this.filtersModel.getItemByName( filterName );
+	const filterItem = this.filtersModel.getItemByName( filterName );
 
 	if ( !filterItem ) {
 		// If no filter was found, break
@@ -523,7 +523,7 @@ Controller.prototype.toggleFilterSelect = function ( filterName, isSelected ) {
  * @param {string} filterName Name of the filter item
  */
 Controller.prototype.clearFilter = function ( filterName ) {
-	var filterItem = this.filtersModel.getItemByName( filterName ),
+	const filterItem = this.filtersModel.getItemByName( filterName ),
 		isHighlighted = filterItem.isHighlighted(),
 		isSelected = filterItem.isSelected();
 
@@ -602,7 +602,7 @@ Controller.prototype.toggleInvertedNamespaces = function () {
  * @param {boolean} value
  */
 Controller.prototype.setShowLinkedTo = function ( value ) {
-	var targetItem = this.filtersModel.getGroup( 'page' ).getItemByParamName( 'target' ),
+	const targetItem = this.filtersModel.getGroup( 'page' ).getItemByParamName( 'target' ),
 		showLinkedToItem = this.filtersModel.getGroup( 'toOrFrom' ).getItemByParamName( 'showlinkedto' );
 
 	this.filtersModel.toggleFilterSelected( showLinkedToItem.getName(), value );
@@ -619,7 +619,7 @@ Controller.prototype.setShowLinkedTo = function ( value ) {
  * @param {string} page
  */
 Controller.prototype.setTargetPage = function ( page ) {
-	var targetItem = this.filtersModel.getGroup( 'page' ).getItemByParamName( 'target' );
+	const targetItem = this.filtersModel.getGroup( 'page' ).getItemByParamName( 'target' );
 	targetItem.setValue( page );
 	this.uriProcessor.updateURL();
 	this.updateChangesList();
@@ -683,7 +683,7 @@ Controller.prototype._doLiveUpdate = function () {
 		.then( ( statusCode ) => {
 			// no result is 204 with the 'peek' param
 			// logged out is 205
-			var newChanges = statusCode === 200;
+			const newChanges = statusCode === 200;
 
 			if ( !this._shouldCheckForNewChanges() ) {
 				// by the time the response is received,
@@ -732,7 +732,7 @@ Controller.prototype._shouldCheckForNewChanges = function () {
  * @private
  */
 Controller.prototype._checkForNewChanges = function () {
-	var params = {
+	const params = {
 		limit: 1,
 		peek: 1, // bypasses ChangesList specific UI
 		from: this.changesListModel.getNextFrom(),
@@ -789,7 +789,7 @@ Controller.prototype.removeSavedQuery = function ( queryID ) {
  * @param {string} newLabel New label for the query
  */
 Controller.prototype.renameSavedQuery = function ( queryID, newLabel ) {
-	var queryItem = this.savedQueriesModel.getItemByID( queryID );
+	const queryItem = this.savedQueriesModel.getItemByID( queryID );
 
 	if ( queryItem ) {
 		queryItem.updateLabel( newLabel );
@@ -814,7 +814,7 @@ Controller.prototype.setDefaultSavedQuery = function ( queryID ) {
  * @param {string} queryID Query id
  */
 Controller.prototype.applySavedQuery = function ( queryID ) {
-	var currentMatchingQuery,
+	let currentMatchingQuery,
 		params = this.savedQueriesModel.getItemParams( queryID );
 
 	currentMatchingQuery = this.findQueryMatchingCurrentState();
@@ -854,7 +854,7 @@ Controller.prototype.findQueryMatchingCurrentState = function () {
  * query item representation in the user settings.
  */
 Controller.prototype._saveSavedQueries = function () {
-	var stringified, oldPrefValue,
+	let stringified, oldPrefValue,
 		backupPrefName = this.savedQueriesPreferenceName + '-versionbackup',
 		state = this.savedQueriesModel.getState();
 
@@ -1008,7 +1008,7 @@ Controller.prototype.updateChangesList = function ( params, updateMode ) {
 		.then(
 			// Success
 			( pieces ) => {
-				var $changesListContent = pieces.changes,
+				const $changesListContent = pieces.changes,
 					$fieldset = pieces.fieldset;
 				this.changesListModel.update(
 					$changesListContent,
@@ -1050,7 +1050,7 @@ Controller.prototype._getDefaultParams = function () {
  * @return {jQuery.Promise} Promise object resolved with { content, status }
  */
 Controller.prototype._queryChangesList = function ( counterId, params ) {
-	var uri = this.uriProcessor.getUpdatedUri(),
+	let uri = this.uriProcessor.getUpdatedUri(),
 		stickyParams = this.filtersModel.getStickyParamsValues(),
 		requestId,
 		latestRequest;
@@ -1109,7 +1109,7 @@ Controller.prototype._fetchChangesList = function () {
 	return this._queryChangesList( 'updateChangesList' )
 		.then(
 			( data ) => {
-				var $parsed;
+				let $parsed;
 
 				// Status code 0 is not HTTP status code,
 				// but is valid value of XMLHttpRequest status.
@@ -1141,7 +1141,7 @@ Controller.prototype._fetchChangesList = function () {
  * @return {boolean} New applied model state is different than the previous state
  */
 Controller.prototype.applyParamChange = function ( newParamState ) {
-	var after,
+	let after,
 		before = this.filtersModel.getSelectedState();
 
 	this.filtersModel.updateStateFromParams( newParamState );
@@ -1155,7 +1155,7 @@ Controller.prototype.applyParamChange = function ( newParamState ) {
  * Mark all changes as seen on Watchlist
  */
 Controller.prototype.markAllChangesAsSeen = function () {
-	var api = new mw.Api();
+	const api = new mw.Api();
 	api.postWithToken( 'csrf', {
 		formatversion: 2,
 		action: 'setnotificationtimestamp',

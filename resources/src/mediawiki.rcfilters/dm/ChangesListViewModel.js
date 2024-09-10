@@ -7,7 +7,7 @@
  *
  * @param {jQuery} $initialFieldset The initial server-generated legacy form content
  */
-var ChangesListViewModel = function MwRcfiltersDmChangesListViewModel( $initialFieldset ) {
+const ChangesListViewModel = function MwRcfiltersDmChangesListViewModel( $initialFieldset ) {
 	// Mixin constructor
 	OO.EventEmitter.call( this );
 
@@ -86,7 +86,7 @@ ChangesListViewModel.prototype.invalidate = function () {
  * @fires update
  */
 ChangesListViewModel.prototype.update = function ( changesListContent, $fieldset, noResultsDetails, isInitialDOM, separateOldAndNew ) {
-	var from = this.nextFrom;
+	const from = this.nextFrom;
 	this.valid = true;
 	this.extractNextFrom( $fieldset );
 	this.checkForUnseenWatchedChanges( changesListContent );
@@ -119,7 +119,7 @@ ChangesListViewModel.prototype.getNewChangesExist = function () {
  * @param {jQuery} $fieldset
  */
 ChangesListViewModel.prototype.extractNextFrom = function ( $fieldset ) {
-	var data = $fieldset.find( '.rclistfrom > a, .wlinfo' ).data( 'params' );
+	const data = $fieldset.find( '.rclistfrom > a, .wlinfo' ).data( 'params' );
 	if ( data && data.from ) {
 		this.nextFrom = data.from;
 		this.nextFromFormatted = data.fromFormatted;

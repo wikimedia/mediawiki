@@ -1,5 +1,5 @@
 'use strict';
-var EXPIRY_PREFIX = '_EXPIRY_';
+const EXPIRY_PREFIX = '_EXPIRY_';
 
 /**
  * @classdesc
@@ -20,7 +20,7 @@ function SafeStorage( store ) {
 
 	// Purge expired items once per page session
 	if ( !window.QUnit ) {
-		var storage = this;
+		const storage = this;
 		setTimeout( () => {
 			storage.clearExpired();
 		}, 2000 );
@@ -93,7 +93,7 @@ SafeStorage.prototype.remove = function ( key ) {
  *  is not JSON-parseable, or false if storage is not available.
  */
 SafeStorage.prototype.getObject = function ( key ) {
-	var json = this.get( key );
+	const json = this.get( key );
 
 	if ( json === false ) {
 		return false;
@@ -115,7 +115,7 @@ SafeStorage.prototype.getObject = function ( key ) {
  * @return {boolean} The value was set
  */
 SafeStorage.prototype.setObject = function ( key, value, expiry ) {
-	var json;
+	let json;
 	try {
 		json = JSON.stringify( value );
 		return this.set( key, json, expiry );
@@ -151,7 +151,7 @@ SafeStorage.prototype.setExpires = function ( key, expiry ) {
 };
 
 // Minimum amount of time (in milliseconds) for an iteration involving localStorage access.
-var MIN_WORK_TIME = 3;
+const MIN_WORK_TIME = 3;
 
 /**
  * Clear any expired items from the store
@@ -160,11 +160,11 @@ var MIN_WORK_TIME = 3;
  * @return {jQuery.Promise} Resolves when items have been expired
  */
 SafeStorage.prototype.clearExpired = function () {
-	var storage = this;
+	const storage = this;
 	return this.getExpiryKeys().then( ( keys ) => $.Deferred( ( d ) => {
 		mw.requestIdleCallback( function iterate( deadline ) {
 			while ( keys[ 0 ] !== undefined && deadline.timeRemaining() > MIN_WORK_TIME ) {
-				var key = keys.shift();
+				const key = keys.shift();
 				if ( storage.isExpired( key ) ) {
 					storage.remove( key );
 				}
@@ -187,12 +187,12 @@ SafeStorage.prototype.clearExpired = function () {
  *  expiry values (unprefixed), or as many could be retrieved in the allocated time.
  */
 SafeStorage.prototype.getExpiryKeys = function () {
-	var store = this.store;
+	const store = this.store;
 	return $.Deferred( ( d ) => {
 		mw.requestIdleCallback( ( deadline ) => {
-			var prefixLength = EXPIRY_PREFIX.length;
-			var keys = [];
-			var length = 0;
+			const prefixLength = EXPIRY_PREFIX.length;
+			const keys = [];
+			let length = 0;
 			try {
 				length = store.length;
 			} catch ( e ) {}
@@ -205,8 +205,8 @@ SafeStorage.prototype.getExpiryKeys = function () {
 			// We don't expect to have more keys than we can handle in 50ms long-task window.
 			// But, we might still run out of time when other tasks run before this,
 			// or when the device receives UI events (especially on low-end devices).
-			for ( var i = 0; ( i < length && deadline.timeRemaining() > MIN_WORK_TIME ); i++ ) {
-				var key = null;
+			for ( let i = 0; ( i < length && deadline.timeRemaining() > MIN_WORK_TIME ); i++ ) {
+				let key = null;
 				try {
 					key = store.key( i );
 				} catch ( e ) {}
@@ -227,7 +227,7 @@ SafeStorage.prototype.getExpiryKeys = function () {
  * @return {boolean} Whether key is expired
  */
 SafeStorage.prototype.isExpired = function ( key ) {
-	var expiry;
+	let expiry;
 	try {
 		expiry = this.store.getItem( EXPIRY_PREFIX + key );
 	} catch ( e ) {

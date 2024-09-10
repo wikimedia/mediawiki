@@ -1,4 +1,4 @@
-var TagItemWidget = require( './TagItemWidget.js' ),
+let TagItemWidget = require( './TagItemWidget.js' ),
 	FilterTagItemWidget;
 
 /**

@@ -3,7 +3,7 @@
  */
 ( function () {
 	mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
-		var $target = $root.find( '#wpTimeCorrection' );
+		const $target = $root.find( '#wpTimeCorrection' );
 
 		if (
 			// This preference could theoretically be disabled ($wgHiddenPrefs)
@@ -14,13 +14,13 @@
 		}
 
 		// This is identical to OO.ui.infuse( ... ), but it makes the class name of the result known.
-		var timezoneWidget = mw.widgets.SelectWithInputWidget.static.infuse( $target );
+		const timezoneWidget = mw.widgets.SelectWithInputWidget.static.infuse( $target );
 
-		var $localtimeHolder = $( '#wpLocalTime' );
-		var servertime = parseInt( $( 'input[name="wpServerTime"]' ).val(), 10 );
+		const $localtimeHolder = $( '#wpLocalTime' );
+		const servertime = parseInt( $( 'input[name="wpServerTime"]' ).val(), 10 );
 
 		function minutesToHours( min ) {
-			var tzHour = Math.floor( Math.abs( min ) / 60 ),
+			const tzHour = Math.floor( Math.abs( min ) / 60 ),
 				tzMin = Math.abs( min ) % 60,
 				tzString = ( ( min >= 0 ) ? '' : '-' ) + ( ( tzHour < 10 ) ? '0' : '' ) + tzHour +
 					':' + ( ( tzMin < 10 ) ? '0' : '' ) + tzMin;
@@ -28,11 +28,11 @@
 		}
 
 		function hoursToMinutes( hour ) {
-			var arr = hour.split( ':' );
+			const arr = hour.split( ':' );
 
 			arr[ 0 ] = parseInt( arr[ 0 ], 10 );
 
-			var minutes;
+			let minutes;
 			if ( arr.length === 1 ) {
 				// Specification is of the form [-]XX
 				minutes = arr[ 0 ] * 60;
@@ -52,9 +52,9 @@
 		}
 
 		function updateTimezoneSelection() {
-			var type = timezoneWidget.dropdowninput.getValue();
+			const type = timezoneWidget.dropdowninput.getValue();
 
-			var minuteDiff;
+			let minuteDiff;
 			if ( type === 'other' ) {
 				// User specified time zone manually in <input>
 				// Grab data from the textbox, parse it.
@@ -71,7 +71,7 @@
 			}
 
 			// Determine local time from server time and minutes difference, for display.
-			var localTime = servertime + minuteDiff;
+			let localTime = servertime + minuteDiff;
 
 			// Bring time within the [0,1440) range.
 			localTime = ( ( localTime % 1440 ) + 1440 ) % 1440;

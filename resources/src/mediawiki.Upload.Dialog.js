@@ -199,7 +199,7 @@
 	 * @inheritdoc
 	 */
 	mw.Upload.Dialog.prototype.getActionProcess = function ( action ) {
-		var dialog = this;
+		const dialog = this;
 
 		if ( action === 'upload' ) {
 			return new OO.ui.Process( this.uploadBooklet.uploadFile() );

@@ -42,7 +42,7 @@
 	 * @param {Function} fallback To execute as a fallback.
 	 */
 	function execInsertText( field, content, fallback ) {
-		var inserted = false;
+		let inserted = false;
 
 		if (
 			supportsInsertText() &&
@@ -73,7 +73,7 @@
 		}
 	}
 
-	var fn = {
+	const fn = {
 		/**
 		 * Get the contents of the textarea.
 		 *
@@ -94,7 +94,7 @@
 		 */
 		setContents: function ( content ) {
 			return this.each( function () {
-				var scrollTop = this.scrollTop;
+				const scrollTop = this.scrollTop;
 				this.select();
 				execInsertText( this, content, function () {
 					$( this ).val( content );
@@ -111,9 +111,9 @@
 		 * @memberof module:jquery.textSelection
 		 */
 		getSelection: function () {
-			var el = this.get( 0 );
+			const el = this.get( 0 );
 
-			var val;
+			let val;
 			if ( !el ) {
 				val = '';
 			} else {
@@ -134,10 +134,10 @@
 		replaceSelection: function ( value ) {
 			return this.each( function () {
 				execInsertText( this, value, function () {
-					var allText = $( this ).textSelection( 'getContents' );
-					var currSelection = $( this ).textSelection( 'getCaretPosition', { startAndEnd: true } );
-					var startPos = currSelection[ 0 ];
-					var endPos = currSelection[ 1 ];
+					const allText = $( this ).textSelection( 'getContents' );
+					const currSelection = $( this ).textSelection( 'getCaretPosition', { startAndEnd: true } );
+					const startPos = currSelection[ 0 ];
+					const endPos = currSelection[ 1 ];
 
 					$( this ).textSelection( 'setContents', allText.slice( 0, startPos ) + value +
 						allText.slice( endPos ) );
@@ -174,7 +174,7 @@
 		 */
 		encapsulateSelection: function ( options ) {
 			return this.each( function () {
-				var selText, isSample,
+				let selText, isSample,
 					pre = options.pre,
 					post = options.post;
 
@@ -215,9 +215,9 @@
 				 * @return {string} Wrapped text
 				 */
 				function doSplitLines( text, preText, postText ) {
-					var insText = '',
+					let insText = '',
 						selTextArr = text.split( '\n' );
-					for ( var i = 0; i < selTextArr.length; i++ ) {
+					for ( let i = 0; i < selTextArr.length; i++ ) {
 						insText += preText + selTextArr[ i ] + postText;
 						if ( i !== selTextArr.length - 1 ) {
 							insText += '\n';
@@ -233,12 +233,12 @@
 				}
 
 				selText = $( this ).textSelection( 'getSelection' );
-				var allText = $( this ).textSelection( 'getContents' );
-				var currSelection = $( this ).textSelection( 'getCaretPosition', { startAndEnd: true } );
-				var startPos = currSelection[ 0 ];
-				var endPos = currSelection[ 1 ];
+				const allText = $( this ).textSelection( 'getContents' );
+				const currSelection = $( this ).textSelection( 'getCaretPosition', { startAndEnd: true } );
+				let startPos = currSelection[ 0 ];
+				const endPos = currSelection[ 1 ];
 				checkSelectedText();
-				var combiningCharSelectionBug = false;
+				let combiningCharSelectionBug = false;
 				if (
 					options.selectionStart !== undefined &&
 					endPos - startPos !== options.selectionEnd - options.selectionStart
@@ -252,7 +252,7 @@
 					// Minimal test case: https://jsfiddle.net/z4q7a2ko/
 				}
 
-				var insertText = pre + selText + post;
+				let insertText = pre + selText + post;
 				if ( options.splitlines ) {
 					insertText = doSplitLines( selText, pre, post );
 				}
@@ -299,7 +299,7 @@
 		 */
 		getCaretPosition: function ( options ) {
 			function getCaret( e ) {
-				var caretPos = 0,
+				let caretPos = 0,
 					endPos = 0;
 				if ( e ) {
 					caretPos = e.selectionStart;
@@ -348,7 +348,7 @@
 		 */
 		scrollToCaretPosition: function ( options ) {
 			return this.each( function () {
-				var clientHeight = this.clientHeight,
+				const clientHeight = this.clientHeight,
 					origValue = this.value,
 					origSelectionStart = this.selectionStart,
 					origSelectionEnd = this.selectionEnd,
@@ -361,7 +361,7 @@
 				this.scrollTop = this.scrollHeight;
 				// Chrome likes to adjust scroll position when changing value, so save and re-set later.
 				// Note that this is not equal to scrollHeight, it's scrollHeight minus clientHeight.
-				var calcScrollTop = this.scrollTop;
+				let calcScrollTop = this.scrollTop;
 				this.value = origValue;
 				this.selectionStart = origSelectionStart;
 				this.selectionEnd = origSelectionEnd;
@@ -426,10 +426,10 @@
 	 * @return {any} Depending on the command
 	 */
 	$.fn.textSelection = function ( command, commandOptions ) {
-		var alternateFn = $( this ).data( 'jquery.textSelection' );
+		const alternateFn = $( this ).data( 'jquery.textSelection' );
 
 		// Prevent values of `undefined` overwriting defaults (T368102)
-		for ( var key in commandOptions ) {
+		for ( const key in commandOptions ) {
 			if ( commandOptions[ key ] === undefined ) {
 				delete commandOptions[ key ];
 			}
@@ -486,7 +486,7 @@
 				return;
 		}
 
-		var retval = ( alternateFn && alternateFn[ command ] || fn[ command ] ).call( this, commandOptions );
+		const retval = ( alternateFn && alternateFn[ command ] || fn[ command ] ).call( this, commandOptions );
 
 		return retval;
 	};

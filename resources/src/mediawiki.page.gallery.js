@@ -5,7 +5,7 @@
  * - Dynamically resize images to fill horizontal space.
  */
 ( function () {
-	var $galleries,
+	let $galleries,
 		bound = false,
 		lastWidth = window.innerWidth,
 		justifyNeeded = false,
@@ -21,12 +21,12 @@
 	 * @this HTMLElement A `ul.mw-gallery-*` element
 	 */
 	function justify() {
-		var lastTop,
+		let lastTop,
 			rows = [],
 			$gallery = $( this );
 
 		$gallery.children( 'li.gallerybox' ).each( function () {
-			var $imageDiv, $img, imgWidth, imgHeight, outerWidth, captionWidth,
+			let $imageDiv, $img, imgWidth, imgHeight, outerWidth, captionWidth,
 				// Math.floor, to be paranoid if things are off by 0.00000000001
 				top = Math.floor( $( this ).position().top ),
 				$this = $( this );
@@ -79,7 +79,7 @@
 		} );
 
 		( function () {
-			var maxWidth,
+			let maxWidth,
 				combinedAspect,
 				combinedPadding,
 				curRow,
@@ -223,7 +223,7 @@
 			return $( this ).height();
 		} );
 		$galleries.children( 'li.gallerybox' ).each( function () {
-			var imgWidth = $( this ).data( 'imgWidth' ),
+			let imgWidth = $( this ).data( 'imgWidth' ),
 				imgHeight = $( this ).data( 'imgHeight' ),
 				width = $( this ).data( 'width' ),
 				captionWidth = $( this ).data( 'captionWidth' ),
@@ -273,7 +273,7 @@
 			// within the caption text receives focus.
 			$content.find( 'ul.mw-gallery-packed-hover li.gallerybox' ).on( 'focus blur', 'a', function ( e ) {
 				// Confusingly jQuery leaves e.type as focusout for delegated blur events
-				var gettingFocus = e.type !== 'blur' && e.type !== 'focusout';
+				const gettingFocus = e.type !== 'blur' && e.type !== 'focusout';
 				$( this ).closest( 'li.gallerybox' ).toggleClass( 'mw-gallery-focused', gettingFocus );
 			} );
 		}

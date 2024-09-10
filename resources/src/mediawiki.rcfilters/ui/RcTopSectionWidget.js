@@ -9,10 +9,10 @@
  * @param {jQuery} $topLinks Content of the community-defined links
  * @param {Object} [config] Configuration object
  */
-var RcTopSectionWidget = function MwRcfiltersUiRcTopSectionWidget(
+const RcTopSectionWidget = function MwRcfiltersUiRcTopSectionWidget(
 	savedLinksListWidget, $topLinks, config
 ) {
-	var toplinksTitle,
+	let toplinksTitle,
 		topLinksCookieName = 'rcfilters-toplinks-collapsed-state',
 		topLinksCookie = mw.cookie.get( topLinksCookieName ),
 		topLinksCookieValue = topLinksCookie || 'collapsed',

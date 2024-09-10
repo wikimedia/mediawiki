@@ -15,7 +15,7 @@
 	$( () => {
 		// FIXME: This shouldn't be a global selector to avoid conflicts
 		// with unrelated content on the same page. (T131318)
-		var $checkboxes = $( 'li input[type="checkbox"]' );
+		const $checkboxes = $( 'li input[type="checkbox"]' );
 
 		function selectAll( check ) {
 			$checkboxes.prop( 'checked', check ).trigger( 'change' );

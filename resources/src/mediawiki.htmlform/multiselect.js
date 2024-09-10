@@ -4,15 +4,15 @@
  */
 
 function convertCheckboxesWidgetToTags( fieldLayout ) {
-	var checkboxesWidget = fieldLayout.fieldWidget;
-	var checkboxesOptions = checkboxesWidget.checkboxMultiselectWidget.getItems();
-	var menuTagOptions = checkboxesOptions.map( ( option ) => new OO.ui.MenuOptionWidget( {
+	const checkboxesWidget = fieldLayout.fieldWidget;
+	const checkboxesOptions = checkboxesWidget.checkboxMultiselectWidget.getItems();
+	const menuTagOptions = checkboxesOptions.map( ( option ) => new OO.ui.MenuOptionWidget( {
 		data: option.getData(),
 		label: option.getLabel(),
 		disabled: option.disabled // Don't take the state of parent elements into account.
 	} ) );
-	var fieldData = checkboxesWidget.data || {};
-	var menuTagWidget = new OO.ui.MenuTagMultiselectWidget( {
+	const fieldData = checkboxesWidget.data || {};
+	const menuTagWidget = new OO.ui.MenuTagMultiselectWidget( {
 		$overlay: true,
 		menu: {
 			items: menuTagOptions
@@ -24,7 +24,7 @@ function convertCheckboxesWidgetToTags( fieldLayout ) {
 
 	menuTagOptions.forEach( ( option ) => {
 		if ( option.disabled ) {
-			var tagItem = menuTagWidget.findItemFromData( option.getData() );
+			const tagItem = menuTagWidget.findItemFromData( option.getData() );
 			// When this disabled option is selected by default.
 			if ( tagItem ) {
 				tagItem.setFixed( true );
@@ -51,10 +51,10 @@ function convertCheckboxesWidgetToTags( fieldLayout ) {
 }
 
 mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
-	var $dropdowns = $root.find( '.mw-htmlform-dropdown:not(.oo-ui-widget)' );
+	const $dropdowns = $root.find( '.mw-htmlform-dropdown:not(.oo-ui-widget)' );
 	if ( $dropdowns.length ) {
 		$dropdowns.each( function () {
-			var $el = $( this ),
+			let $el = $( this ),
 				data, modules, extraModules;
 			if ( $el.is( '[data-ooui]' ) ) {
 				// Avoid kicks in multiple times and causing a mess

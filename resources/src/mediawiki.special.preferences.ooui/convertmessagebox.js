@@ -3,7 +3,7 @@
  */
 ( function () {
 	$( () => {
-		var convertmessagebox = require( 'mediawiki.notification.convertmessagebox' );
+		const convertmessagebox = require( 'mediawiki.notification.convertmessagebox' );
 		convertmessagebox();
 	} );
 }() );

@@ -1,4 +1,4 @@
-var ViewSwitchWidget;
+let ViewSwitchWidget;
 
 /**
  * A widget for the footer for the default view, allowing to switch views.
@@ -61,7 +61,7 @@ OO.inheritClass( ViewSwitchWidget, OO.ui.Widget );
  * Respond to model update event
  */
 ViewSwitchWidget.prototype.onModelUpdate = function () {
-	var currentView = this.model.getCurrentView();
+	const currentView = this.model.getCurrentView();
 
 	this.buttons.getItems().forEach( ( buttonWidget ) => {
 		buttonWidget.setActive( buttonWidget.getData() === currentView );

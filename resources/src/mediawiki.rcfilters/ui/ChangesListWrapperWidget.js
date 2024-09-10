@@ -1,4 +1,4 @@
-var HighlightColors = require( '../HighlightColors.js' );
+const HighlightColors = require( '../HighlightColors.js' );
 
 /**
  * List of changes.
@@ -13,7 +13,7 @@ var HighlightColors = require( '../HighlightColors.js' );
  * @param {jQuery} $changesListRoot Root element of the changes list to attach to
  * @param {Object} [config] Configuration object
  */
-var ChangesListWrapperWidget = function MwRcfiltersUiChangesListWrapperWidget(
+const ChangesListWrapperWidget = function MwRcfiltersUiChangesListWrapperWidget(
 	filtersViewModel,
 	changesListViewModel,
 	controller,
@@ -97,7 +97,7 @@ ChangesListWrapperWidget.prototype.onModelInvalidate = function () {
 ChangesListWrapperWidget.prototype.onModelUpdate = function (
 	$changesListContent, $fieldset, noResultsDetails, isInitialDOM, from
 ) {
-	var conflictItem,
+	let conflictItem,
 		$message = $( '<div>' )
 			.addClass( 'mw-rcfilters-ui-changesListWrapperWidget-results' ),
 		isEmpty = $changesListContent === 'NO_RESULTS',
@@ -192,7 +192,7 @@ ChangesListWrapperWidget.prototype.toggleOverlay = function ( isVisible ) {
  * @return {string} Key for the message that explains why there is no results in this case
  */
 ChangesListWrapperWidget.prototype.getMsgKeyForNoResults = function ( reason ) {
-	var reasonMsgKeyMap = {
+	const reasonMsgKeyMap = {
 		NO_RESULTS_NORMAL: 'recentchanges-noresult',
 		NO_RESULTS_TIMEOUT: 'recentchanges-timeout',
 		NO_RESULTS_NETWORK_ERROR: 'recentchanges-network',
@@ -208,7 +208,7 @@ ChangesListWrapperWidget.prototype.getMsgKeyForNoResults = function ( reason ) {
  * @param {string} from Anything newer than this is considered 'new'
  */
 ChangesListWrapperWidget.prototype.emphasizeNewChanges = function ( from ) {
-	var $firstNew,
+	let $firstNew,
 		$indicator,
 		$newChanges = $( [] ),
 		selector = this.inEnhancedMode() ?
@@ -218,7 +218,7 @@ ChangesListWrapperWidget.prototype.emphasizeNewChanges = function ( from ) {
 		length = $set.length;
 
 	$set.each( function ( index ) {
-		var $this = $( this ),
+		const $this = $( this ),
 			ts = $this.data( 'mw-ts' );
 
 		if ( ts >= from ) {
@@ -254,7 +254,7 @@ ChangesListWrapperWidget.prototype.emphasizeNewChanges = function ( from ) {
  * This is called every time highlights are applied.
  */
 ChangesListWrapperWidget.prototype.updateEnhancedParentHighlight = function () {
-	var activeHighlightClasses,
+	let activeHighlightClasses,
 		$enhancedTopPageCell = this.$element.find( 'table.mw-enhanced-rc' );
 
 	activeHighlightClasses = this.filtersViewModel.getCurrentlyUsedHighlightColors().map( ( color ) => 'mw-rcfilters-highlight-color-' + color );
@@ -264,7 +264,7 @@ ChangesListWrapperWidget.prototype.updateEnhancedParentHighlight = function () {
 	// with all colors. If classes are different, the parent should receive a grey
 	// background
 	$enhancedTopPageCell.each( function () {
-		var firstChildClasses, $rowsWithDifferentHighlights,
+		let firstChildClasses, $rowsWithDifferentHighlights,
 			$table = $( this );
 
 		// Collect the relevant classes from the first nested child
@@ -275,7 +275,7 @@ ChangesListWrapperWidget.prototype.updateEnhancedParentHighlight = function () {
 		// Filter the non-head rows and see if they all have the same classes
 		// to the first row
 		$rowsWithDifferentHighlights = $table.find( 'tr:not(:first-child)' ).filter( function () {
-			var classesInThisRow,
+			let classesInThisRow,
 				$this = $( this );
 
 			classesInThisRow = activeHighlightClasses.filter(
@@ -296,7 +296,7 @@ ChangesListWrapperWidget.prototype.updateEnhancedParentHighlight = function () {
  * @return {boolean} Whether the changes are grouped by page
  */
 ChangesListWrapperWidget.prototype.inEnhancedMode = function () {
-	var uri = new mw.Uri();
+	const uri = new mw.Uri();
 	return ( uri.query.enhanced !== undefined && Number( uri.query.enhanced ) ) ||
 		( uri.query.enhanced === undefined && Number( mw.user.options.get( 'usenewrc' ) ) );
 };
@@ -310,7 +310,7 @@ ChangesListWrapperWidget.prototype.applyHighlight = function () {
 	}
 
 	this.filtersViewModel.getHighlightedItems().forEach( ( filterItem ) => {
-		var $elements = this.$element.find( '.' + filterItem.getCssClass() );
+		const $elements = this.$element.find( '.' + filterItem.getCssClass() );
 
 		// Add highlight class to all highlighted list items
 		// The following classes are used here:
@@ -328,7 +328,7 @@ ChangesListWrapperWidget.prototype.applyHighlight = function () {
 
 		// Track the filters for each item in .data( 'highlightedFilters' )
 		$elements.each( function () {
-			var filters = $( this ).data( 'highlightedFilters' );
+			let filters = $( this ).data( 'highlightedFilters' );
 			if ( !filters ) {
 				filters = [];
 				$( this ).data( 'highlightedFilters', filters );
@@ -340,7 +340,7 @@ ChangesListWrapperWidget.prototype.applyHighlight = function () {
 	} );
 	// Apply a title to each highlighted item, with a list of filters
 	this.$element.find( '.mw-rcfilters-highlighted' ).each( function () {
-		var filters = $( this ).data( 'highlightedFilters' );
+		const filters = $( this ).data( 'highlightedFilters' );
 
 		if ( filters && filters.length ) {
 			$( this ).attr( 'title', mw.msg(

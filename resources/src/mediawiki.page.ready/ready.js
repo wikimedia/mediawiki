@@ -1,6 +1,6 @@
-var checkboxShift = require( './checkboxShift.js' );
-var config = require( './config.json' );
-var teleportTarget = require( './teleportTarget.js' );
+const checkboxShift = require( './checkboxShift.js' );
+const config = require( './config.json' );
+const teleportTarget = require( './teleportTarget.js' );
 
 // Break out of framesets
 if ( mw.config.get( 'wgBreakFrames' ) ) {
@@ -13,9 +13,9 @@ if ( mw.config.get( 'wgBreakFrames' ) ) {
 }
 
 mw.hook( 'wikipage.content' ).add( ( $content ) => {
-	var modules = [];
+	const modules = [];
 
-	var $collapsible;
+	let $collapsible;
 	if ( config.collapsible ) {
 		$collapsible = $content.find( '.mw-collapsible' );
 		if ( $collapsible.length ) {
@@ -23,7 +23,7 @@ mw.hook( 'wikipage.content' ).add( ( $content ) => {
 		}
 	}
 
-	var $sortable;
+	let $sortable;
 	if ( config.sortable ) {
 		$sortable = $content.find( 'table.sortable' );
 		if ( $sortable.length ) {
@@ -69,9 +69,9 @@ $( () => {
 	 * @ignore
 	 */
 	function fixViewportForTabletDevices() {
-		var $viewport = $( 'meta[name=viewport]' );
-		var content = $viewport.attr( 'content' );
-		var scale = window.outerWidth / window.innerWidth;
+		const $viewport = $( 'meta[name=viewport]' );
+		const content = $viewport.attr( 'content' );
+		const scale = window.outerWidth / window.innerWidth;
 		// This adjustment is limited to tablet devices. It must be a non-zero value to work.
 		// (these values correspond to @min-width-breakpoint-tablet and @min-width-breakpoint-desktop
 		// See https://doc.wikimedia.org/codex/main/design-tokens/breakpoint.html
@@ -88,7 +88,7 @@ $( () => {
 	// Add accesskey hints to the tooltips
 	$( '[accesskey]' ).updateTooltipAccessKeys();
 
-	var node = document.querySelector( '.mw-indicators' );
+	const node = document.querySelector( '.mw-indicators' );
 	if ( node && node.children.length ) {
 		/**
 		 * Fired when a page's status indicators are being added to the DOM.
@@ -101,7 +101,7 @@ $( () => {
 		mw.hook( 'wikipage.indicators' ).fire( $( node.children ) );
 	}
 
-	var $content = $( '#mw-content-text' );
+	const $content = $( '#mw-content-text' );
 	// Avoid unusable events, and the errors they cause, for custom skins that
 	// do not display any content (T259577).
 	if ( $content.length ) {
@@ -122,7 +122,7 @@ $( () => {
 		mw.hook( 'wikipage.content' ).fire( $content );
 	}
 
-	var $nodes = $( '.catlinks[data-mw="interface"]' );
+	let $nodes = $( '.catlinks[data-mw="interface"]' );
 	if ( $nodes.length ) {
 		/**
 		 * Fired when categories are being added to the DOM.
@@ -162,7 +162,7 @@ $( () => {
 		e.preventDefault();
 	} );
 
-	var $permanentLink = $( '#t-permalink a' );
+	const $permanentLink = $( '#t-permalink a' );
 	function updatePermanentLinkHash() {
 		if ( mw.util.getTargetFromFragment() ) {
 			$permanentLink[ 0 ].hash = location.hash;
@@ -185,13 +185,13 @@ $( () => {
 	 * @memberof Hooks
 	 * @param {string} href Full URL
 	 */
-	var LOGOUT_EVENT = 'skin.logout';
+	const LOGOUT_EVENT = 'skin.logout';
 	function logoutViaPost( href ) {
 		mw.notify(
 			mw.message( 'logging-out-notify' ),
 			{ tag: 'logout', autoHide: false }
 		);
-		var api = new mw.Api();
+		const api = new mw.Api();
 		if ( mw.user.isTemp() ) {
 			// Indicate to the success page that the user was previously a temporary account, so that the success
 			// message can be customised appropriately.
@@ -248,7 +248,7 @@ function loadSearchModule( moduleName ) {
 	// Vue search isn't loaded through this function so we are only collecting
 	// legacy search performance metrics here.
 
-	var shouldTestSearch = !!( moduleName === 'mediawiki.searchSuggest' &&
+	const shouldTestSearch = !!( moduleName === 'mediawiki.searchSuggest' &&
 		mw.config.get( 'skin' ) === 'vector' &&
 		window.performance &&
 		performance.mark &&

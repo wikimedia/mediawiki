@@ -3,9 +3,9 @@
  */
 
 // Whether to use 'test-' instead of correct prefix (for unit tests)
-var testMode = false;
+let testMode = false;
 
-var cachedModifiers;
+let cachedModifiers;
 
 /**
  * Find the modifier keys that need to be pressed together with the accesskey to trigger the input.
@@ -23,8 +23,8 @@ function getAccessKeyModifiers( nav ) {
 		return cachedModifiers;
 	}
 
-	var profile = $.client.profile( nav );
-	var accessKeyModifiers;
+	const profile = $.client.profile( nav );
+	let accessKeyModifiers;
 
 	switch ( profile.name ) {
 		// Historical: Opera 8-13 used shift-esc- (Presto engine, no longer supported).
@@ -114,18 +114,18 @@ function getAccessKeyLabel( element ) {
  * @param {HTMLElement} titleElement Element with the title to update (may be the same as `element`)
  */
 function updateTooltipOnElement( element, titleElement ) {
-	var oldTitle = titleElement.title;
+	const oldTitle = titleElement.title;
 	if ( !oldTitle ) {
 		// don't add a title if the element didn't have one before
 		return;
 	}
 
-	var separatorMsg = mw.message( 'word-separator' ).plain();
-	var parts = ( separatorMsg + mw.message( 'brackets' ).plain() ).split( '$1' );
+	const separatorMsg = mw.message( 'word-separator' ).plain();
+	const parts = ( separatorMsg + mw.message( 'brackets' ).plain() ).split( '$1' );
 
-	var regexp = new RegExp( parts.map( mw.util.escapeRegExp ).join( '.*?' ) + '$' );
-	var newTitle = oldTitle.replace( regexp, '' );
-	var accessKeyLabel = getAccessKeyLabel( element );
+	const regexp = new RegExp( parts.map( mw.util.escapeRegExp ).join( '.*?' ) + '$' );
+	let newTitle = oldTitle.replace( regexp, '' );
+	const accessKeyLabel = getAccessKeyLabel( element );
 
 	if ( accessKeyLabel ) {
 		// Should be build the same as in Linker::titleAttrib
@@ -138,7 +138,7 @@ function updateTooltipOnElement( element, titleElement ) {
 
 // HTML elements that can have an associated label
 // https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#Form-associated_content
-var labelable = 'button, input, textarea, keygen, meter, output, progress, select';
+const labelable = 'button, input, textarea, keygen, meter, output, progress, select';
 
 /**
  * Update the title for an element to show the correct access key label.
@@ -150,19 +150,19 @@ function updateTooltip( element ) {
 	updateTooltipOnElement( element, element );
 
 	// update associated label if there is one
-	var $element = $( element );
+	const $element = $( element );
 	if ( $element.is( labelable ) ) {
 		// Search it using 'for' attribute
-		var id = element.id.replace( /"/g, '\\"' );
+		const id = element.id.replace( /"/g, '\\"' );
 		if ( id ) {
-			var $label = $( 'label[for="' + id + '"]' );
+			const $label = $( 'label[for="' + id + '"]' );
 			if ( $label.length === 1 ) {
 				updateTooltipOnElement( element, $label[ 0 ] );
 			}
 		}
 
 		// Search it as parent, because the form control can also be inside the label element itself
-		var $labelParent = $element.parents( 'label' );
+		const $labelParent = $element.parents( 'label' );
 		if ( $labelParent.length === 1 ) {
 			updateTooltipOnElement( element, $labelParent[ 0 ] );
 		}

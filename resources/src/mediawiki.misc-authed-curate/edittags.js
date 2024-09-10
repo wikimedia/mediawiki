@@ -6,8 +6,8 @@
 		return;
 	}
 	$( () => {
-		var $wpReason = $( '#wpReason' );
-		var $tagList = $( '#mw-edittags-tag-list' );
+		const $wpReason = $( '#wpReason' );
+		const $tagList = $( '#mw-edittags-tag-list' );
 
 		if ( $tagList.length ) {
 			$tagList.chosen( {

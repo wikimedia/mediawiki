@@ -11,7 +11,7 @@
  *  title normalization to separate title subpage/parts into the target= url
  *  parameter
  */
-var UriProcessor = function MwRcfiltersController( filtersModel, config ) {
+const UriProcessor = function MwRcfiltersController( filtersModel, config ) {
 	config = config || {};
 	this.filtersModel = filtersModel;
 
@@ -72,7 +72,7 @@ UriProcessor.prototype.getVersion = function ( uriQuery ) {
  * @return {mw.Uri} Updated Uri
  */
 UriProcessor.prototype.getUpdatedUri = function ( uri ) {
-	var normalizedUri = this._normalizeTargetInUri( uri || new mw.Uri() ),
+	const normalizedUri = this._normalizeTargetInUri( uri || new mw.Uri() ),
 		unrecognizedParams = this.getUnrecognizedParams( normalizedUri.query );
 
 	normalizedUri.query = this.filtersModel.getMinimizedParamRepresentation(
@@ -108,7 +108,7 @@ UriProcessor.prototype.getUpdatedUri = function ( uri ) {
  * @private
  */
 UriProcessor.prototype._normalizeTargetInUri = function ( uri ) {
-	var parts,
+	let parts,
 		// matches [/wiki/]SpecialNS:RCL/[Namespace:]Title/Subpage/Subsubpage/etc
 
 		re = /^((?:\/.+?\/)?.*?:.*?)\/(.*)$/;
@@ -144,7 +144,7 @@ UriProcessor.prototype._normalizeTargetInUri = function ( uri ) {
  */
 UriProcessor.prototype.getUnrecognizedParams = function ( params ) {
 	// Start with full representation
-	var givenParamNames = Object.keys( params ),
+	const givenParamNames = Object.keys( params ),
 		unrecognizedParams = $.extend( true, {}, params );
 
 	// Extract unrecognized parameters
@@ -169,7 +169,7 @@ UriProcessor.prototype.getUnrecognizedParams = function ( params ) {
  * @param {Object} [params] Extra parameters to add to the API call
  */
 UriProcessor.prototype.updateURL = function ( params ) {
-	var currentUri = new mw.Uri(),
+	const currentUri = new mw.Uri(),
 		updatedUri = this.getUpdatedUri();
 
 	updatedUri.extend( params || {} );
@@ -210,9 +210,9 @@ UriProcessor.prototype.updateModelBasedOnQuery = function ( uriQuery ) {
  * @return {boolean} This is a new state
  */
 UriProcessor.prototype.isNewState = function ( currentUriQuery, updatedUriQuery ) {
-	var currentParamState, updatedParamState,
+	let currentParamState, updatedParamState,
 		notEquivalent = function ( obj1, obj2 ) {
-			var keys = Object.keys( obj1 ).concat( Object.keys( obj2 ) );
+			const keys = Object.keys( obj1 ).concat( Object.keys( obj2 ) );
 			return keys.some(
 				( key ) => obj1[ key ] != obj2[ key ] // eslint-disable-line eqeqeq
 			);
@@ -246,7 +246,7 @@ UriProcessor.prototype.isNewState = function ( currentUriQuery, updatedUriQuery 
  * @return {boolean} Query contains valid recognized parameters
  */
 UriProcessor.prototype.doesQueryContainRecognizedParams = function ( uriQuery ) {
-	var anyValidInUrl,
+	let anyValidInUrl,
 		validParameterNames = Object.keys( this.filtersModel.getEmptyParameterState() );
 
 	uriQuery = uriQuery || new mw.Uri().query;
@@ -276,7 +276,7 @@ UriProcessor.prototype._getNormalizedQueryParams = function ( uriQuery ) {
 	// wiki default.
 	// Any subsequent change of the URL through the RCFilters
 	// system will receive 'urlversion=2'
-	var base = this.getVersion( uriQuery ) === 2 ?
+	const base = this.getVersion( uriQuery ) === 2 ?
 		{} :
 		this.filtersModel.getDefaultParams();
 

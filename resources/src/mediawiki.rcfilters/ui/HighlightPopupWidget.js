@@ -1,4 +1,4 @@
-var HighlightColorPickerWidget = require( './HighlightColorPickerWidget.js' ),
+let HighlightColorPickerWidget = require( './HighlightColorPickerWidget.js' ),
 	HighlightPopupWidget;
 /**
  * A popup containing a color picker, for setting highlight colors.

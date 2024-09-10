@@ -3,7 +3,7 @@
 	// Return a promise that is resolved when the element is blurred (loses focus).
 	// If it already is blurred, resolved immediately.
 	function whenBlurred( $elem ) {
-		var deferred = $.Deferred();
+		const deferred = $.Deferred();
 		if ( $elem.is( ':focus' ) ) {
 			$elem.one( 'blur', deferred.resolve );
 		} else {
@@ -13,7 +13,7 @@
 	}
 
 	$( () => {
-		var startReady, endReady;
+		let startReady, endReady;
 
 		// Do not infuse the date input while it has user focus.
 		// This is especially important on Firefox, where hiding the native date input while the native

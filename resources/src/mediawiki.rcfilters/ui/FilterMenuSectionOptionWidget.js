@@ -10,8 +10,8 @@
  * @param {Object} config Configuration object
  * @param {jQuery} [config.$overlay] Overlay
  */
-var FilterMenuSectionOptionWidget = function MwRcfiltersUiFilterMenuSectionOptionWidget( controller, model, config ) {
-	var whatsThisMessages,
+const FilterMenuSectionOptionWidget = function MwRcfiltersUiFilterMenuSectionOptionWidget( controller, model, config ) {
+	let whatsThisMessages,
 		$header = $( '<div>' )
 			.addClass( 'mw-rcfilters-ui-filterMenuSectionOptionWidget-header' ),
 		$popupContent = $( '<div>' )

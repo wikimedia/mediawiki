@@ -9,24 +9,24 @@
 		// slower and more complicated. It works fine to treat them as HTML elements.)
 		function isPrefsChanged() {
 			// eslint-disable-next-line no-jquery/no-sizzle
-			var $inputs = $( '#mw-prefs-form :input[name]' );
+			const $inputs = $( '#mw-prefs-form :input[name]' );
 
-			for ( var index = 0; index < $inputs.length; index++ ) {
-				var input = $inputs[ index ];
-				var $input = $( input );
+			for ( let index = 0; index < $inputs.length; index++ ) {
+				const input = $inputs[ index ];
+				const $input = $( input );
 
 				// Different types of inputs have different methods for accessing defaults
 				if ( $input.is( 'select' ) ) {
 					// <select> has the property defaultSelected for each option
-					for ( var optIndex = 0; optIndex < input.options.length; optIndex++ ) {
-						var opt = input.options[ optIndex ];
+					for ( let optIndex = 0; optIndex < input.options.length; optIndex++ ) {
+						const opt = input.options[ optIndex ];
 						if ( opt.selected !== opt.defaultSelected ) {
 							return true;
 						}
 					}
 				} else if ( $input.is( 'input' ) || $input.is( 'textarea' ) ) {
 					// <input> has defaultValue or defaultChecked
-					var inputType = input.type;
+					const inputType = input.type;
 					if ( inputType === 'radio' || inputType === 'checkbox' ) {
 						if ( input.checked !== input.defaultChecked ) {
 							return true;
@@ -40,7 +40,7 @@
 			return false;
 		}
 
-		var saveButton = OO.ui.infuse( $( '#prefcontrol' ) );
+		const saveButton = OO.ui.infuse( $( '#prefcontrol' ) );
 
 		// Disable the button to save preferences unless preferences have changed
 		// Check if preferences have been changed before JS has finished loading
@@ -60,7 +60,7 @@
 		} );
 
 		// Prompt users if they try to leave the page without saving.
-		var allowCloseWindow = mw.confirmCloseWindow( {
+		const allowCloseWindow = mw.confirmCloseWindow( {
 			test: isPrefsChanged
 		} );
 		$( '#mw-prefs-form' ).on( 'submit', allowCloseWindow.release );

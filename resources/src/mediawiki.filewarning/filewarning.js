@@ -5,7 +5,7 @@
  * @since 1.25
  */
 ( function () {
-	var warningConfig = mw.config.get( 'wgFileWarning' ),
+	const warningConfig = mw.config.get( 'wgFileWarning' ),
 		warningMessages = warningConfig.messages,
 		warningLink = warningConfig.link,
 		$origMimetype = $( '.fullMedia .fileInfo .mime-type' ),

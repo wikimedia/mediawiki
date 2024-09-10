@@ -40,12 +40,12 @@
 		// allowing the module to be testable, and making it possible to
 		// e.g. implement persistence via cookies
 		$collapsible.trigger( expand ? 'beforeExpand.mw-collapsible' : 'beforeCollapse.mw-collapsible' );
-		var hookCallback = function () {
+		const hookCallback = function () {
 			$collapsible.trigger( expand ? 'afterExpand.mw-collapsible' : 'afterCollapse.mw-collapsible' );
 		};
 
 		// Handle different kinds of elements
-		var $containers;
+		let $containers;
 		if ( !options.plainMode && $collapsible.is( 'table' ) ) {
 			// Tables
 			// If there is a caption, hide all rows; otherwise, only hide body rows
@@ -68,7 +68,7 @@
 			}
 		} else {
 			// Everything else: <div>, <p> etc.
-			var $collapsibleContent = $collapsible.find( '> .mw-collapsible-content' );
+			const $collapsibleContent = $collapsible.find( '> .mw-collapsible-content' );
 
 			// If a collapsible-content is defined, act on it
 			if ( !options.plainMode && $collapsibleContent.length ) {
@@ -117,7 +117,7 @@
 		}
 
 		// This allows the element to be hidden on initial toggle without fiddling with the class
-		var wasCollapsed;
+		let wasCollapsed;
 		if ( options.wasCollapsed !== undefined ) {
 			wasCollapsed = options.wasCollapsed;
 		} else {
@@ -142,10 +142,10 @@
 
 		// Toggle the text ("Show"/"Hide") within elements tagged with mw-collapsible-text
 		if ( options.toggleText ) {
-			var collapseText = options.toggleText.collapseText;
-			var expandText = options.toggleText.expandText;
+			const collapseText = options.toggleText.collapseText;
+			const expandText = options.toggleText.expandText;
 
-			var $textContainer = $toggle.find( '.mw-collapsible-text' );
+			const $textContainer = $toggle.find( '.mw-collapsible-text' );
 			if ( $textContainer.length ) {
 				$textContainer.text( wasCollapsed ? collapseText : expandText );
 			}
@@ -162,13 +162,13 @@
 	 * @private
 	 */
 	function hashHandler() {
-		var fragment = mw.util.getTargetFromFragment();
+		const fragment = mw.util.getTargetFromFragment();
 		if ( !fragment ) {
 			// The fragment doesn't exist
 			return;
 		}
 
-		var $parents = $( fragment ).parents( '.mw-collapsed' );
+		const $parents = $( fragment ).parents( '.mw-collapsed' );
 		if ( !$parents.length ) {
 			// The fragment is not in a collapsed element
 			return;
@@ -176,7 +176,7 @@
 
 		// Expand collapsed parents
 		$parents.each( function () {
-			var $collapsible = $( this );
+			const $collapsible = $( this );
 			if ( $collapsible.data( 'mw-made-collapsible' ) ) {
 				$collapsible.data( 'mw-collapsible' ).expand();
 			} else {
@@ -233,7 +233,7 @@
 		this.each( function () {
 			// Ensure class "mw-collapsible" is present in case .makeCollapsible()
 			// is called on element(s) that don't have it yet.
-			var $collapsible = $( this ).addClass( 'mw-collapsible' );
+			const $collapsible = $( this ).addClass( 'mw-collapsible' );
 
 			// Return if it has been enabled already.
 			if ( $collapsible.data( 'mw-made-collapsible' ) ) {
@@ -247,12 +247,12 @@
 			}
 
 			// Use custom text or default?
-			var collapseText = options.collapseText || $collapsible.attr( 'data-collapsetext' ) || mw.msg( 'collapsible-collapse' );
-			var expandText = options.expandText || $collapsible.attr( 'data-expandtext' ) || mw.msg( 'collapsible-expand' );
+			const collapseText = options.collapseText || $collapsible.attr( 'data-collapsetext' ) || mw.msg( 'collapsible-collapse' );
+			const expandText = options.expandText || $collapsible.attr( 'data-expandtext' ) || mw.msg( 'collapsible-expand' );
 
 			// Default click/keydown handler and toggle link to use when none is present
-			var actionHandler = function ( e, opts ) {
-				var defaultOpts = {
+			let actionHandler = function ( e, opts ) {
+				const defaultOpts = {
 					toggleClasses: true,
 					toggleARIA: true,
 					toggleText: { collapseText: collapseText, expandText: expandText }
@@ -263,7 +263,7 @@
 				// link is not inside the original collapsible, make it toggle the
 				// cloned collapsible (which we expect to be there) instead of
 				// original.
-				var $currentCollapsible = $.contains( $collapsible.get( 0 ), this ) ?
+				let $currentCollapsible = $.contains( $collapsible.get( 0 ), this ) ?
 					$collapsible :
 					$( this ).closest( '.mw-collapsible' );
 				// However, if we still can't find the collapsible, fallback to original
@@ -275,7 +275,7 @@
 			};
 
 			// Default toggle link. Only build it when needed to avoid jQuery memory leaks (event data).
-			var buildDefaultToggleLink = function () {
+			const buildDefaultToggleLink = function () {
 				return $( '<span>' )
 					.addClass( 'mw-collapsible-text' )
 					.text( collapseText )
@@ -285,11 +285,11 @@
 
 			// Check if this element has a custom position for the toggle link
 			// (ie. outside the container or deeper inside the tree)
-			var $customTogglers;
+			let $customTogglers;
 			if ( options.$customTogglers ) {
 				$customTogglers = $( options.$customTogglers );
 			} else {
-				var collapsibleId = $collapsible.attr( 'id' ) || '';
+				let collapsibleId = $collapsible.attr( 'id' ) || '';
 				if ( collapsibleId.indexOf( 'mw-customcollapsible-' ) === 0 ) {
 					collapsibleId = $.escapeSelector( collapsibleId );
 					$customTogglers = $( '.' + collapsibleId.replace( 'mw-customcollapsible', 'mw-customtoggle' ) )
@@ -298,10 +298,10 @@
 			}
 
 			// Add event handlers to custom togglers or create our own ones
-			var $toggle;
+			let $toggle;
 			if ( $customTogglers && $customTogglers.length ) {
 				actionHandler = function ( e, opts ) {
-					var defaultOpts = {};
+					const defaultOpts = {};
 					opts = Object.assign( defaultOpts, options, opts );
 					togglingHandler( $( this ), $collapsible, e, opts );
 				};
@@ -313,12 +313,12 @@
 				// contents and add the toggle link. Different elements are
 				// treated differently.
 
-				var $firstItem;
+				let $firstItem;
 				if ( $collapsible.is( 'table' ) ) {
 
 					// If the table has a caption, collapse to the caption
 					// as opposed to the first row
-					var $caption = $collapsible.find( '> caption' );
+					const $caption = $collapsible.find( '> caption' );
 					if ( $caption.length ) {
 						$toggle = $caption.find( '> .mw-collapsible-toggle, .mw-collapsible-toggle-placeholder' ).first();
 
@@ -354,7 +354,7 @@
 						// Make sure the numeral order doesn't get messed up, force the first (soon to be second) item
 						// to be "1". Except if the value-attribute is already used.
 						// If no value was set WebKit returns "", Mozilla returns '-1', others return 0, null or undefined.
-						var firstval = $firstItem.prop( 'value' );
+						const firstval = $firstItem.prop( 'value' );
 						if ( firstval === undefined || !firstval || firstval === '-1' || firstval === -1 ) {
 							$firstItem.prop( 'value', '1' );
 						}
@@ -382,7 +382,7 @@
 			// If the toggle is just a placeholder, replace it with a real one
 			// eslint-disable-next-line no-jquery/no-class-state
 			if ( $toggle.hasClass( 'mw-collapsible-toggle-placeholder' ) ) {
-				var $realToggle = buildDefaultToggleLink();
+				const $realToggle = buildDefaultToggleLink();
 				$toggle.replaceWith( $realToggle );
 				$toggle = $realToggle;
 			}

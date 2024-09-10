@@ -7,7 +7,7 @@
 
 $( () => {
 
-	var config = require( './config.json' ),
+	const config = require( './config.json' ),
 		$tempUserBannerEl = $( '.mw-temp-user-banner ' ),
 		$tempUserBannerTooltipEl = $( '.mw-temp-user-banner-tooltip ' ),
 		$tempUserBannerTooltipButtonEl = $( '#mw-temp-user-banner-tooltip-button' ),
@@ -31,8 +31,8 @@ $( () => {
 	 * @return {boolean}
 	 */
 	function isWithinExpirationNotificationPeriod() {
-		var expirationDurationMs = TTL_DAY_MS * config.AutoCreateTempUser.expireAfterDays;
-		var notificationDurationMs = TTL_DAY_MS * config.AutoCreateTempUser.notifyBeforeExpirationDays;
+		const expirationDurationMs = TTL_DAY_MS * config.AutoCreateTempUser.expireAfterDays;
+		const notificationDurationMs = TTL_DAY_MS * config.AutoCreateTempUser.notifyBeforeExpirationDays;
 		return getTemporaryAccountDurationMs() > ( expirationDurationMs - notificationDurationMs );
 	}
 
@@ -59,9 +59,9 @@ $( () => {
 	 * @return {boolean}
 	 */
 	function shouldShowExpirationAlert() {
-		var tempUserExpirationAlertDismissed = localStorage.getItem( 'tempUserExpirationAlertDismissed' );
-		var expirationIsSet = typeof config.AutoCreateTempUser.expireAfterDays === 'number';
-		var notifyBeforeExpirationIsSet = typeof config.AutoCreateTempUser.notifyBeforeExpirationDays === 'number';
+		const tempUserExpirationAlertDismissed = localStorage.getItem( 'tempUserExpirationAlertDismissed' );
+		const expirationIsSet = typeof config.AutoCreateTempUser.expireAfterDays === 'number';
+		const notifyBeforeExpirationIsSet = typeof config.AutoCreateTempUser.notifyBeforeExpirationDays === 'number';
 		return expirationIsSet &&
 			notifyBeforeExpirationIsSet &&
 			!tempUserExpirationAlertDismissed &&
@@ -75,9 +75,9 @@ $( () => {
 	 * @return {string}
 	 */
 	function getExpirationDescriptionText() {
-		var timeToExpirationDays = Math.floor( getTimeToExpirationMs() / TTL_DAY_MS );
-		var params = [ timeToExpirationDays ];
-		var key = 'temp-user-banner-tooltip-description-expiration-soon';
+		const timeToExpirationDays = Math.floor( getTimeToExpirationMs() / TTL_DAY_MS );
+		const params = [ timeToExpirationDays ];
+		let key = 'temp-user-banner-tooltip-description-expiration-soon';
 		if ( timeToExpirationDays < 1 ) {
 			key += '-day';
 			params.pop();
@@ -96,7 +96,7 @@ $( () => {
 	 * @return {jQuery}
 	 */
 	function getTooltipContent( shouldShowExpiration ) {
-		var descriptionText = shouldShowExpiration ?
+		const descriptionText = shouldShowExpiration ?
 			getExpirationDescriptionText() :
 			mw.message( 'temp-user-banner-tooltip-description-learn-more' ).parseDom();
 		return $( '<div>' ).append(
@@ -118,7 +118,7 @@ $( () => {
 			return;
 		}
 
-		var popup;
+		let popup;
 
 		/**
 		 * Creates the tooltip if it doesn't already exist and toggles it.
@@ -132,7 +132,7 @@ $( () => {
 				'oojs-ui-widgets',
 				'oojs-ui.styles.icons-interactions'
 			] ).then( () => {
-				var shouldShowExpiration = shouldShowExpirationAlert();
+				const shouldShowExpiration = shouldShowExpirationAlert();
 				if ( !popup ) {
 					popup = new OO.ui.PopupWidget( {
 						icon: 'clock',

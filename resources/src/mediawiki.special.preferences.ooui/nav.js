@@ -2,8 +2,8 @@
  * JavaScript for Special:Preferences: section navigation.
  */
 ( function () {
-	var switchingNoHash;
-	var session = require( 'mediawiki.storage' ).session;
+	let switchingNoHash;
+	const session = require( 'mediawiki.storage' ).session;
 	/**
 	 * @ignore
 	 */
@@ -55,14 +55,14 @@
 		 * @param {Function} setSection callback for opening the section
 		 */
 		detectHash: function ( setSection ) {
-			var hash = location.hash;
+			const hash = location.hash;
 			if ( /^#mw-prefsection-[\w]+$/.test( hash ) ) {
 				session.remove( 'mwpreferences-prevTab' );
 				// Open proper section.
 				this.switchPrefSection( setSection, hash.slice( 1 ) );
 			} else if ( /^#mw-[\w-]+$/.test( hash ) ) {
-				var subsection = document.getElementById( hash.slice( 1 ) );
-				var $section = $( subsection ).closest( '.mw-prefs-section-fieldset' );
+				const subsection = document.getElementById( hash.slice( 1 ) );
+				const $section = $( subsection ).closest( '.mw-prefs-section-fieldset' );
 				if ( $section.length ) {
 					session.remove( 'mwpreferences-prevTab' );
 					// Open proper section and scroll to selected fieldset.
@@ -79,7 +79,7 @@
 		 * @param {string} defaultSectionName The name of a section to load by default
 		 */
 		onHashChange: function ( setSection, defaultSectionName ) {
-			var hash = location.hash;
+			const hash = location.hash;
 			if ( /^#mw-[\w-]+/.test( hash ) ) {
 				this.detectHash( setSection );
 			} else if ( hash === '' && defaultSectionName ) {
@@ -107,7 +107,7 @@
 		 * @param {Function} onSubmit callback for saving the active section name
 		 */
 		restorePrevSection: function ( setSection, onSubmit ) {
-			var sectionName = session.get( 'mwpreferences-prevTab' );
+			const sectionName = session.get( 'mwpreferences-prevTab' );
 			if ( sectionName ) {
 				this.switchPrefSection( setSection, sectionName, undefined, true );
 				// Deleting the key, the section states should be reset until we press Save

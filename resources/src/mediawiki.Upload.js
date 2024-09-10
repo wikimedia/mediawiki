@@ -1,5 +1,5 @@
 ( function () {
-	var UP;
+	let UP;
 
 	/**
 	 * @classdesc Upload to a wiki. Most of the functionality is implemented
@@ -103,7 +103,7 @@
 	 * @param {string} filekey
 	 */
 	UP.setFilekey = function ( filekey ) {
-		var upload = this;
+		const upload = this;
 
 		this.setState( Upload.State.STASHED );
 		this.stashPromise = $.Deferred().resolve( ( data ) => upload.api.uploadFromStash( filekey, data ) );
@@ -116,7 +116,7 @@
 	 * @method
 	 */
 	UP.setFilenameFromFile = function () {
-		var file = this.getFile();
+		const file = this.getFile();
 		if ( !file ) {
 			return;
 		}
@@ -299,7 +299,7 @@
 	 * @return {jQuery.Promise}
 	 */
 	UP.upload = function () {
-		var upload = this;
+		const upload = this;
 
 		if ( !this.getFile() ) {
 			return $.Deferred().reject( 'No file to upload. Call setFile to add one.' );
@@ -338,7 +338,7 @@
 	 * @return {jQuery.Promise}
 	 */
 	UP.uploadToStash = function () {
-		var upload = this;
+		const upload = this;
 
 		if ( !this.getFile() ) {
 			return $.Deferred().reject( 'No file to upload. Call setFile to add one.' );
@@ -376,7 +376,7 @@
 	 * @return {jQuery.Promise}
 	 */
 	UP.finishStashUpload = function () {
-		var upload = this;
+		const upload = this;
 
 		if ( !this.stashPromise ) {
 			return $.Deferred().reject( 'This upload has not been stashed, please upload it to the stash first.' );

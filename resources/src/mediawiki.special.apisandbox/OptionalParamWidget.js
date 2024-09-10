@@ -8,7 +8,7 @@
  * @param {Object} [config] Configuration options
  */
 function OptionalParamWidget( widget, config ) {
-	var k;
+	let k;
 
 	config = config || {};
 

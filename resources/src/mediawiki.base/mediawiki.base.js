@@ -1,6 +1,6 @@
 'use strict';
 
-var slice = Array.prototype.slice;
+const slice = Array.prototype.slice;
 
 // Apply site-level data
 mw.config.set( require( './config.json' ) );
@@ -75,7 +75,7 @@ Message.prototype = /** @lends mw.Message.prototype */ {
 	 * @return {string} Parsed message
 	 */
 	parser: function ( format ) {
-		var text = this.map.get( this.key );
+		let text = this.map.get( this.key );
 
 		// Apply qqx formatting.
 		//
@@ -247,7 +247,7 @@ mw.widgets = {};
  * @ignore
  */
 mw.inspect = function () {
-	var args = arguments;
+	const args = arguments;
 	// Lazy-load
 	mw.loader.using( 'mediawiki.inspect', () => {
 		mw.inspect.runReports.apply( mw.inspect, args );
@@ -265,7 +265,7 @@ mw.inspect = function () {
  */
 mw.internalDoTransformFormatForQqx = function ( formatString, parameters ) {
 	if ( formatString.indexOf( '$*' ) !== -1 ) {
-		var replacement = '';
+		let replacement = '';
 		if ( parameters.length ) {
 			replacement = ': ' + parameters.map( ( _, i ) => '$' + ( i + 1 ) ).join( ', ' );
 		}
@@ -306,10 +306,10 @@ mw.internalWikiUrlencode = function ( str ) {
  * @return {string} Formatted string
  */
 mw.format = function ( formatString ) {
-	var parameters = slice.call( arguments, 1 );
+	const parameters = slice.call( arguments, 1 );
 	formatString = mw.internalDoTransformFormatForQqx( formatString, parameters );
 	return formatString.replace( /\$(\d+)/g, ( str, match ) => {
-		var index = parseInt( match, 10 ) - 1;
+		const index = parseInt( match, 10 ) - 1;
 		return parameters[ index ] !== undefined ? parameters[ index ] : '$' + match;
 	} );
 };
@@ -329,7 +329,7 @@ mw.Message = Message;
  * @return {mw.Message}
  */
 mw.message = function ( key ) {
-	var parameters = slice.call( arguments, 1 );
+	const parameters = slice.call( arguments, 1 );
 	return new Message( mw.messages, key, parameters );
 };
 
@@ -364,8 +364,8 @@ mw.notify = function ( message, options ) {
 	return mw.loader.using( 'mediawiki.notification' ).then( () => mw.notification.notify( message, options ) );
 };
 
-var trackCallbacks = $.Callbacks( 'memory' );
-var trackHandlers = [];
+const trackCallbacks = $.Callbacks( 'memory' );
+let trackHandlers = [];
 
 /**
  * Track an analytic event.
@@ -412,10 +412,10 @@ mw.track = function ( topic, data ) {
  * @param {Object} [callback.data]
  */
 mw.trackSubscribe = function ( topic, callback ) {
-	var seen = 0;
+	let seen = 0;
 	function handler( trackQueue ) {
 		for ( ; seen < trackQueue.length; seen++ ) {
-			var event = trackQueue[ seen ];
+			const event = trackQueue[ seen ];
 			if ( event.topic.indexOf( topic ) === 0 ) {
 				callback.call( event, event.topic, event.data );
 			}
@@ -490,7 +490,7 @@ trackCallbacks.fire( mw.trackQueue );
  * See available global events below.
  */
 
-var hooks = Object.create( null );
+const hooks = Object.create( null );
 
 /**
  * Create an instance of {@link Hook}.
@@ -505,8 +505,8 @@ var hooks = Object.create( null );
  */
 mw.hook = function ( name ) {
 	return hooks[ name ] || ( hooks[ name ] = ( function () {
-		var memory;
-		var fns = [];
+		let memory;
+		const fns = [];
 		function rethrow( e ) {
 			setTimeout( () => {
 				throw e;
@@ -527,7 +527,7 @@ mw.hook = function ( name ) {
 			 * @return {Hook}
 			 */
 			add: function () {
-				for ( var i = 0; i < arguments.length; i++ ) {
+				for ( let i = 0; i < arguments.length; i++ ) {
 					fns.push( arguments[ i ] );
 					if ( memory ) {
 						try {
@@ -547,7 +547,7 @@ mw.hook = function ( name ) {
 			 * @return {Hook}
 			 */
 			remove: function () {
-				for ( var i = 0; i < arguments.length; i++ ) {
+				for ( let i = 0; i < arguments.length; i++ ) {
 					var j;
 					while ( ( j = fns.indexOf( arguments[ i ] ) ) !== -1 ) {
 						fns.splice( j, 1 );
@@ -564,7 +564,7 @@ mw.hook = function ( name ) {
 			 * @chainable
 			 */
 			fire: function () {
-				for ( var i = 0; i < fns.length; i++ ) {
+				for ( let i = 0; i < fns.length; i++ ) {
 					try {
 						fns[ i ].apply( null, arguments );
 					} catch ( e ) {
@@ -637,11 +637,11 @@ mw.html = {
 	 * @return {string} HTML
 	 */
 	element: function ( name, attrs, contents ) {
-		var s = '<' + name;
+		let s = '<' + name;
 
 		if ( attrs ) {
-			for ( var attrName in attrs ) {
-				var v = attrs[ attrName ];
+			for ( const attrName in attrs ) {
+				let v = attrs[ attrName ];
 				// Convert name=true, to name=name
 				if ( v === true ) {
 					v = attrName;
@@ -701,7 +701,7 @@ window.addOnloadHook = function ( fn ) {
 	} );
 };
 
-var loadedScripts = {};
+const loadedScripts = {};
 
 /**
  * Import a script using an absolute URI.
@@ -815,7 +815,7 @@ mw.loader.getModuleNames = function () {
  * @return {jQuery.Promise} With a `require` function
  */
 mw.loader.using = function ( dependencies, ready, error ) {
-	var deferred = $.Deferred();
+	const deferred = $.Deferred();
 
 	// Allow calling with a single dependency as a string
 	if ( !Array.isArray( dependencies ) ) {
@@ -896,7 +896,7 @@ mw.user = {
 mw.user.options.set( require( './user.json' ) );
 
 // Process callbacks for modern browsers (Grade A) that require modules.
-var queue = window.RLQ;
+const queue = window.RLQ;
 // Replace temporary RLQ implementation from startup.js with the
 // final implementation that also processes callbacks that can
 // require modules. It must also support late arrivals of

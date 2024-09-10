@@ -3,14 +3,14 @@
  */
 ( function () {
 	$( () => {
-		var checkAllChangeOngoing = false;
-		var multiselectChangeOngoing = false;
+		let checkAllChangeOngoing = false;
+		let multiselectChangeOngoing = false;
 
-		var checkAllCheckboxes = $( '.mw-watchlistedit-checkall .oo-ui-checkboxInputWidget' )
+		const checkAllCheckboxes = $( '.mw-watchlistedit-checkall .oo-ui-checkboxInputWidget' )
 			.toArray()
 			.map( ( element ) => OO.ui.infuse( element ) );
 
-		var multiselects = $( '.mw-watchlistedit-check .oo-ui-checkboxMultiselectInputWidget' )
+		const multiselects = $( '.mw-watchlistedit-check .oo-ui-checkboxMultiselectInputWidget' )
 			.toArray()
 			.map( ( element ) => OO.ui.infuse( element ).checkboxMultiselectWidget );
 
@@ -22,7 +22,7 @@
 				checkAllChangeOngoing = true;
 
 				// Select or de-select all the title checkboxes for this namespace
-				var multiselect = multiselects[ index ];
+				const multiselect = multiselects[ index ];
 				multiselect.selectItems( isChecked ? multiselect.items : [] );
 
 				checkAllChangeOngoing = false;
@@ -37,8 +37,8 @@
 				multiselectChangeOngoing = true;
 
 				// Update the state of the check-all checkbox for this namespace
-				var checkAllCheckbox = checkAllCheckboxes[ index ];
-				var numSelectedItems = multiselect.findSelectedItems().length;
+				const checkAllCheckbox = checkAllCheckboxes[ index ];
+				const numSelectedItems = multiselect.findSelectedItems().length;
 				if ( numSelectedItems === multiselect.items.length ) {
 					checkAllCheckbox.setSelected( true );
 					checkAllCheckbox.setIndeterminate( false );

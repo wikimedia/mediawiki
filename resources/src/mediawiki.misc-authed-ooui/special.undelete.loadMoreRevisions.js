@@ -3,17 +3,17 @@
  */
 ( function () {
 	'use strict';
-	var $linkSpan = $( '#mw-load-more-revisions' );
-	var $link = $( '<a>' );
+	const $linkSpan = $( '#mw-load-more-revisions' );
+	let $link = $( '<a>' );
 
 	$link = $linkSpan.wrapAll( $link ).on( 'click', () => {
 		// Get the URL of the last link in the list
-		var urlString = $( '.mw-undelete-revlist li:last-child a' ).prop( 'href' );
+		const urlString = $( '.mw-undelete-revlist li:last-child a' ).prop( 'href' );
 		// Extract the timestamp
-		var timestamp = mw.util.getParamValue( 'timestamp', urlString );
-		var $oldList = $( '.mw-undelete-revlist' );
-		var $spinner = $.createSpinner( { size: 'large', type: 'block' } );
-		var path = mw.util.wikiScript() + '?' + $.param( {
+		const timestamp = mw.util.getParamValue( 'timestamp', urlString );
+		const $oldList = $( '.mw-undelete-revlist' );
+		const $spinner = $.createSpinner( { size: 'large', type: 'block' } );
+		const path = mw.util.wikiScript() + '?' + $.param( {
 			title: mw.config.get( 'wgPageName' ),
 			target: mw.config.get( 'wgRelevantPageName' )
 		} );
@@ -30,11 +30,11 @@
 			},
 			success: function ( data, status, jqXHR ) {
 				$spinner.remove();
-				var $newDoc = $.parseHTML( data );
+				const $newDoc = $.parseHTML( data );
 				if ( !$newDoc.length ) {
 					return;
 				}
-				var $newList = $( $newDoc[ 0 ] );
+				const $newList = $( $newDoc[ 0 ] );
 				$oldList.append( $newList.children() );
 				if ( jqXHR.status !== 206 ) {
 					$link.hide();

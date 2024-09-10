@@ -7,7 +7,7 @@
 	}
 
 	$( () => {
-		var reasonList = OO.ui.infuse( $( '#wpDeleteReasonList' ) ),
+		const reasonList = OO.ui.infuse( $( '#wpDeleteReasonList' ) ),
 			reason = OO.ui.infuse( $( '#wpReason' ) );
 
 		mw.widgets.visibleCodePointLimitWithDropdown( reason, reasonList, mw.config.get( 'wgCommentCodePointLimit' ) );

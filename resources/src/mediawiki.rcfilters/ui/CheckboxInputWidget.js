@@ -7,7 +7,7 @@
  *
  * @param {Object} config Configuration object
  */
-var CheckboxInputWidget = function MwRcfiltersUiCheckboxInputWidget( config ) {
+const CheckboxInputWidget = function MwRcfiltersUiCheckboxInputWidget( config ) {
 	config = config || {};
 
 	// Parent

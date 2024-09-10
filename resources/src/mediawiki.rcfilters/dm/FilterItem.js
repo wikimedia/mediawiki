@@ -1,4 +1,4 @@
-var ItemModel = require( './ItemModel.js' ),
+let ItemModel = require( './ItemModel.js' ),
 	FilterItem;
 
 /**
@@ -67,7 +67,7 @@ FilterItem.prototype.getState = function () {
  * @return {string} Conflict result message key
  */
 FilterItem.prototype.getCurrentConflictResultMessage = function () {
-	var details;
+	let details;
 
 	// First look in filter's own conflicts
 	details = this.getConflictDetails( this.getOwnConflicts(), 'globalDescription' );
@@ -90,7 +90,7 @@ FilterItem.prototype.getCurrentConflictResultMessage = function () {
  * @return {string[]} return.names Conflicting item labels
  */
 FilterItem.prototype.getConflictDetails = function ( conflicts, key ) {
-	var group,
+	let group,
 		conflictMessage = '',
 		itemLabels = [];
 
@@ -123,7 +123,7 @@ FilterItem.prototype.getConflictDetails = function ( conflicts, key ) {
  * @inheritdoc
  */
 FilterItem.prototype.getStateMessage = function () {
-	var messageKey, details, superset,
+	let messageKey, details, superset,
 		affectingItems = [];
 
 	if ( this.isSelected() ) {

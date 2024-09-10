@@ -20,7 +20,7 @@
 	 * @return {string}
 	 */
 	function pad( text, size, ch, end ) {
-		var out, padStr, count;
+		let out, padStr, count;
 
 		if ( !ch ) {
 			ch = '0';
@@ -50,7 +50,7 @@
 	 * @return {string}
 	 */
 	function commafyNumber( value, pattern, options ) {
-		var padLength,
+		let padLength,
 			patternDigits,
 			index,
 			whole,
@@ -154,7 +154,7 @@
 	 * @private
 	 */
 	function commafyInternal( value, pattern, minimumGroupingDigits ) {
-		var numberPattern,
+		let numberPattern,
 			transformTable = mw.language.getSeparatorTransformTable(),
 			group = transformTable[ ',' ] || ',',
 
@@ -186,7 +186,7 @@
 	 * @return {Object}
 	 */
 	function flipTransform() {
-		var i, key, table, flipped = {};
+		let i, key, table, flipped = {};
 
 		// Ensure we strip thousand separators. This might be overwritten.
 		flipped[ ',' ] = '';
@@ -213,7 +213,7 @@
 		 * @return {number|string} Formatted number
 		 */
 		convertNumber: function ( num, integer ) {
-			var transformTable, digitTransformTable, separatorTransformTable,
+			let transformTable, digitTransformTable, separatorTransformTable,
 				i, numberString, convertedNumber, pattern, minimumGroupingDigits;
 
 			// Quick shortcut for plain numbers

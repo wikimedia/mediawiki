@@ -1,4 +1,4 @@
-var ChangesLimitPopupWidget = require( './ChangesLimitPopupWidget.js' ),
+let ChangesLimitPopupWidget = require( './ChangesLimitPopupWidget.js' ),
 	DatePopupWidget = require( './DatePopupWidget.js' ),
 	ChangesLimitAndDateButtonWidget;
 
@@ -46,7 +46,7 @@ OO.inheritClass( ChangesLimitAndDateButtonWidget, OO.ui.Widget );
  * Respond to model initialize event
  */
 ChangesLimitAndDateButtonWidget.prototype.onModelInitialize = function () {
-	var selectedItem, currentValue, datePopupWidget,
+	let selectedItem, currentValue, datePopupWidget,
 		displayGroupModel = this.model.getGroup( 'display' );
 
 	this.limitGroupModel = this.model.getGroup( 'limit' );
@@ -137,7 +137,7 @@ ChangesLimitAndDateButtonWidget.prototype.onPopupClosing = function () {
  * @param {string} filterName Chosen filter name
  */
 ChangesLimitAndDateButtonWidget.prototype.onPopupLimit = function ( filterName ) {
-	var item = this.limitGroupModel.getItemByName( filterName );
+	const item = this.limitGroupModel.getItemByName( filterName );
 
 	this.controller.toggleFilterSelect( filterName, true );
 	this.controller.updateLimitDefault( item.getParamName() );
@@ -169,7 +169,7 @@ ChangesLimitAndDateButtonWidget.prototype.onPopupGroupByPageUserClick = function
  * @param {string} filterName Chosen filter name
  */
 ChangesLimitAndDateButtonWidget.prototype.onPopupDays = function ( filterName ) {
-	var item = this.daysGroupModel.getItemByName( filterName );
+	const item = this.daysGroupModel.getItemByName( filterName );
 
 	this.controller.toggleFilterSelect( filterName, true );
 	this.controller.updateDaysDefault( item.getParamName() );
@@ -180,7 +180,7 @@ ChangesLimitAndDateButtonWidget.prototype.onPopupDays = function ( filterName ) 
  * Respond to limit choose event
  */
 ChangesLimitAndDateButtonWidget.prototype.updateButtonLabel = function () {
-	var message,
+	let message,
 		limit = this.limitGroupModel.findSelectedItems()[ 0 ],
 		label = limit && limit.getLabel(),
 		days = this.daysGroupModel.findSelectedItems()[ 0 ];

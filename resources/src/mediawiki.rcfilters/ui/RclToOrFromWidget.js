@@ -10,7 +10,7 @@
  * @param {mw.rcfilters.dm.FilterItem} showLinkedToModel model this widget is bound to
  * @param {Object} [config] Configuration object
  */
-var RclToOrFromWidget = function MwRcfiltersUiRclToOrFromWidget(
+const RclToOrFromWidget = function MwRcfiltersUiRclToOrFromWidget(
 	controller, showLinkedToModel, config
 ) {
 	config = config || {};

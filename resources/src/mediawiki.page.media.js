@@ -6,12 +6,12 @@
 		$content.find(
 			'figure[typeof~="mw:File/Thumb"] > :not(figcaption) .mw-file-element'
 		).each( function () {
-			var inner = this.parentNode;
-			var wrapper = inner.parentNode;
+			const inner = this.parentNode;
+			const wrapper = inner.parentNode;
 
 			if ( this.classList.contains( 'mw-broken-media' ) ) {
 				// Resize broken media spans, where needed
-				var isDefault = wrapper.classList.contains( 'mw-default-size' );
+				const isDefault = wrapper.classList.contains( 'mw-default-size' );
 				if ( isDefault ) {
 					return;
 				}
@@ -23,14 +23,14 @@
 				}
 			} else {
 				// Add magnify links to thumbs, where needed
-				var resource = this.getAttribute( 'resource' );
+				const resource = this.getAttribute( 'resource' );
 				if ( !resource ) {
 					return;
 				}
 				if ( inner.classList.contains( 'mw-file-description' ) ) {
 					return;
 				}
-				var desc = this.ownerDocument.createElement( 'a' );
+				const desc = this.ownerDocument.createElement( 'a' );
 				desc.setAttribute( 'href', resource );
 				// Using a different class than mw-file-description to avoid the
 				// expectation that the media will be found inside it

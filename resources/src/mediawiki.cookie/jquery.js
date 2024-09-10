@@ -1,4 +1,4 @@
-var jar = require( './jar.js' );
+const jar = require( './jar.js' );
 
 /**
  * Set a cookie.

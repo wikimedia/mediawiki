@@ -5,7 +5,7 @@
 
 ( function () {
 	function invalidateSkinPrefsDisplay( $root ) {
-		var
+		const
 			// The skin preferences section. Skins with preferences should use the
 			// section `rendering/skin/skin-prefs` toa dd skin specific preferences
 			// in their onGetPreferences() hook.
@@ -19,7 +19,7 @@
 	}
 
 	function onHTMLFormEnhance( $root ) {
-		var $skins = $root.find( '#mw-input-wpskin' );
+		const $skins = $root.find( '#mw-input-wpskin' );
 		// Don't kick in before this tab panel is infused and hide-if executed (T352358).
 		if ( !$skins.length || $skins.closest( '.mw-htmlform-autoinfuse-lazy' ).length ) {
 			return;

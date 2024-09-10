@@ -4,7 +4,7 @@
 ( function () {
 	$( () => {
 		$( 'a.mw-watch-link' ).on( 'click', function ( e ) {
-			var promise,
+			let promise,
 				api = new mw.Api(),
 				$link = $( this ),
 				$subjectLink = $link.closest( 'li' ).children( 'a' ).eq( 0 ),

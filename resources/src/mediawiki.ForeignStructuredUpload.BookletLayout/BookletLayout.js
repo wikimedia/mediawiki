@@ -44,7 +44,7 @@
 	 * @ignore
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.initialize = function () {
-		var booklet = this;
+		const booklet = this;
 		return mw.ForeignStructuredUpload.BookletLayout.super.prototype.initialize.call( this ).then(
 			() => $.when(
 				// Point the CategoryMultiselectWidget to the right wiki
@@ -58,7 +58,7 @@
 				} ),
 				// Set up booklet fields and license messages to match configuration
 				booklet.upload.loadConfig().then( ( config ) => {
-					var
+					let
 						msgPromise,
 						isLocal = booklet.upload.target === 'local',
 						fields = config.fields,
@@ -87,7 +87,7 @@
 
 					// Update license messages
 					return msgPromise.then( () => {
-						var $labels;
+						let $labels;
 						// The following messages are used here:
 						// * upload-form-label-own-work-message-generic-local
 						// * upload-form-label-own-work-message-generic-foreign
@@ -151,7 +151,7 @@
 	 * @inheritdoc
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.renderUploadForm = function () {
-		var fieldset,
+		let fieldset,
 			layout = this;
 
 		// These elements are filled with text in #initialize
@@ -195,7 +195,7 @@
 		this.ownWorkCheckbox.on( 'change', this.onUploadFormChange.bind( this ) );
 
 		this.selectFileWidget.on( 'change', () => {
-			var file = layout.getFile();
+			const file = layout.getFile();
 
 			// Set the date to lastModified once we have the file
 			if ( layout.getDateFromLastModified( file ) !== undefined ) {
@@ -217,7 +217,7 @@
 	 * @inheritdoc
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.onUploadFormChange = function () {
-		var file = this.selectFileWidget.getValue(),
+		const file = this.selectFileWidget.getValue(),
 			ownWork = this.ownWorkCheckbox.isSelected(),
 			valid = !!file && ownWork;
 		this.emit( 'uploadValid', valid );
@@ -227,7 +227,7 @@
 	 * @inheritdoc
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.renderInfoForm = function () {
-		var fieldset;
+		let fieldset;
 
 		this.filePreview = new OO.ui.Widget( {
 			classes: [ 'mw-upload-bookletLayout-filePreview' ]
@@ -308,7 +308,7 @@
 	 * @inheritdoc
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.onInfoFormChange = function () {
-		var layout = this,
+		const layout = this,
 			validityPromises = [];
 
 		validityPromises.push( this.filenameWidget.getValidity() );
@@ -358,7 +358,7 @@
 	 * @inheritdoc
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.saveFile = function () {
-		var title = mw.Title.newFromText(
+		const title = mw.Title.newFromText(
 			this.getFilename(),
 			mw.config.get( 'wgNamespaceIds' ).file
 		);
@@ -374,7 +374,7 @@
 	 * @inheritdoc
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.getText = function () {
-		var language = mw.config.get( 'wgContentLanguage' ),
+		const language = mw.config.get( 'wgContentLanguage' ),
 			categories = this.categoriesWidget.getItems().map( ( item ) => item.data );
 		this.upload.clearDescriptions();
 		this.upload.addDescription( language, this.descriptionWidget.getValue() );
@@ -391,13 +391,13 @@
 	 * @return {jQuery.Promise} Promise resolved with the EXIF date
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.getDateFromExif = function ( file ) {
-		var fileReader,
+		let fileReader,
 			deferred = $.Deferred();
 
 		if ( file && file.type === 'image/jpeg' ) {
 			fileReader = new FileReader();
 			fileReader.onload = function () {
-				var fileStr, arr, i, metadata,
+				let fileStr, arr, i, metadata,
 					jpegmeta = require( 'mediawiki.libs.jpegmeta' );
 
 				if ( typeof fileReader.result === 'string' ) {

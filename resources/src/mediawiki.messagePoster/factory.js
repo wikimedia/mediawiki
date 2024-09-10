@@ -86,7 +86,7 @@
 	 *   - details Further error details
 	 */
 	MessagePosterFactory.prototype.create = function ( title, apiUrl ) {
-		var factory = this,
+		const factory = this,
 			api = apiUrl ? new mw.ForeignApi( apiUrl ) : new mw.Api();
 
 		return api.get( {
@@ -95,7 +95,7 @@
 			prop: 'info',
 			titles: title.getPrefixedDb()
 		} ).then( ( data ) => {
-			var contentModel, page = data.query.pages[ 0 ];
+			let contentModel, page = data.query.pages[ 0 ];
 			if ( !page ) {
 				return $.Deferred().reject( 'unexpected-response', 'Unexpected API response' );
 			}

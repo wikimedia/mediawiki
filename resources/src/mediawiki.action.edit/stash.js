@@ -4,26 +4,26 @@
  * See also PageEditStash in PHP.
  */
 $( () => {
-	var PRIORITY_LOW = 1;
-	var PRIORITY_HIGH = 2;
+	const PRIORITY_LOW = 1;
+	const PRIORITY_HIGH = 2;
 
 	// Do not attempt to stash "new section" edits, because for those cases the ParserOutput
 	// varies on the edit summary field, and thus pre-parsing the page whilst that field is
 	// being typed in would be counter-productive. (The field is re-purposed for the new
 	// section's heading.)
-	var $form = $( '#editform' );
-	var section = $form.find( '[name=wpSection]' ).val();
+	const $form = $( '#editform' );
+	const section = $form.find( '[name=wpSection]' ).val();
 	if ( !$form.length || section === 'new' ) {
 		return;
 	}
 
-	var lastText, lastSummary, lastTextHash;
-	var lastPriority = 0;
-	var $text = $form.find( '#wpTextbox1' );
-	var $summary = $form.find( '#wpSummary' );
-	var model = $form.find( '[name=model]' ).val();
-	var format = $form.find( '[name=format]' ).val();
-	var revId = $form.find( '[name=parentRevId]' ).val();
+	let lastText, lastSummary, lastTextHash;
+	let lastPriority = 0;
+	const $text = $form.find( '#wpTextbox1' );
+	const $summary = $form.find( '#wpSummary' );
+	const model = $form.find( '[name=model]' ).val();
+	const format = $form.find( '[name=format]' ).val();
+	const revId = $form.find( '[name=parentRevId]' ).val();
 
 	// Whether the body text content changed since the last stashEdit()
 	function isTextChanged() {
@@ -38,11 +38,11 @@ $( () => {
 	// Send a request to stash the edit to the API.
 	// If a request is in progress, abort it since its payload is stale and the API
 	// may limit concurrent stash parses.
-	var api = new mw.Api();
-	var stashReq;
+	const api = new mw.Api();
+	let stashReq;
 	function stashEdit() {
-		var textChanged = isTextChanged();
-		var priority = textChanged ? PRIORITY_HIGH : PRIORITY_LOW;
+		const textChanged = isTextChanged();
+		const priority = textChanged ? PRIORITY_HIGH : PRIORITY_LOW;
 
 		if ( stashReq ) {
 			if ( lastPriority > priority ) {
@@ -62,7 +62,7 @@ $( () => {
 			lastTextHash = null;
 		}
 
-		var params = {
+		const params = {
 			formatversion: 2,
 			action: 'stashedit',
 			title: mw.config.get( 'wgPageName' ),
@@ -79,7 +79,7 @@ $( () => {
 			params.text = lastText;
 		}
 
-		var req = api.postWithToken( 'csrf', params );
+		const req = api.postWithToken( 'csrf', params );
 		stashReq = req;
 		req.then( ( data ) => {
 			if ( req === stashReq ) {
@@ -104,8 +104,8 @@ $( () => {
 		stashEdit();
 	}
 
-	var idleTimeout = 3000;
-	var timer;
+	let idleTimeout = 3000;
+	let timer;
 	function onKeyUp( e ) {
 		// Ignore keystrokes that don't modify text, like cursor movements.
 		// See <http://www.javascripter.net/faq/keycodes.htm> and

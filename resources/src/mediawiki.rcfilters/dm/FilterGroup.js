@@ -1,4 +1,4 @@
-var FilterItem = require( './FilterItem.js' ),
+let FilterItem = require( './FilterItem.js' ),
 	utils = require( '../utils.js' ),
 	FilterGroup;
 
@@ -99,14 +99,14 @@ OO.mixinClass( FilterGroup, OO.EmitterList );
  * @param {string|Object} [groupDefault] Definition of the group default
  */
 FilterGroup.prototype.initializeFilters = function ( filterDefinition, groupDefault ) {
-	var defaultParam,
+	let defaultParam,
 		supersetMap = {},
 		model = this,
 		items = [];
 
 	filterDefinition.forEach( ( filter ) => {
 		// Instantiate an item
-		var subsetNames = [],
+		let subsetNames = [],
 			filterItem = new FilterItem( filter.name, model, {
 				group: model.getName(),
 				label: filter.label || filter.name,
@@ -127,7 +127,7 @@ FilterGroup.prototype.initializeFilters = function ( filterDefinition, groupDefa
 				// Subsets (unlike conflicts) are always inside the same group
 				// We can re-map the names of the filters we are getting from
 				// the subsets with the group prefix
-				var subsetName = model.getPrefixedName( subsetFilterName );
+				const subsetName = model.getPrefixedName( subsetFilterName );
 				// For convenience, we should store each filter's "supersets" -- these are
 				// the filters that have that item in their subset list. This will just
 				// make it easier to go through whether the item has any other items
@@ -207,9 +207,9 @@ FilterGroup.prototype.initializeFilters = function ( filterDefinition, groupDefa
 
 	// Check for filters that should be initially selected by their default value
 	if ( this.isSticky() ) {
-		var defaultFilters = this.defaultFilters;
-		for ( var filterName in defaultFilters ) {
-			var filterValue = defaultFilters[ filterName ];
+		const defaultFilters = this.defaultFilters;
+		for ( const filterName in defaultFilters ) {
+			const filterValue = defaultFilters[ filterName ];
 			model.getItemByName( filterName ).toggleSelected( filterValue );
 		}
 	}
@@ -237,7 +237,7 @@ FilterGroup.prototype.initializeFilters = function ( filterDefinition, groupDefa
  */
 FilterGroup.prototype.onFilterItemUpdate = function ( item ) {
 	// Update state
-	var changed = false,
+	let changed = false,
 		active = this.areAnySelected(),
 		model = this;
 
@@ -261,7 +261,7 @@ FilterGroup.prototype.onFilterItemUpdate = function ( item ) {
 				// not selected, this loop will end up unselecting
 				// all items, which would trigger the case above
 				// when the last item is unselected anyways
-				var selected = itemModel.getName() === item.getName() &&
+				const selected = itemModel.getName() === item.getName() &&
 					item.isSelected();
 
 				itemModel.toggleSelected( selected );
@@ -450,7 +450,7 @@ FilterGroup.prototype.areAnySelected = function () {
  * @return {boolean} All items are selected
  */
 FilterGroup.prototype.areAllSelected = function () {
-	var selected = [],
+	const selected = [],
 		unselected = [];
 
 	this.getItems().forEach( ( filterItem ) => {
@@ -477,7 +477,7 @@ FilterGroup.prototype.areAllSelected = function () {
  * @return {mw.rcfilters.dm.FilterItem[]} Selected items
  */
 FilterGroup.prototype.findSelectedItems = function ( excludeItem ) {
-	var excludeName = ( excludeItem && excludeItem.getName() ) || '';
+	const excludeName = ( excludeItem && excludeItem.getName() ) || '';
 
 	return this.getItems().filter( ( item ) => item.getName() !== excludeName && item.isSelected() );
 };
@@ -489,7 +489,7 @@ FilterGroup.prototype.findSelectedItems = function ( excludeItem ) {
  * @return {boolean} All selected items are in conflict with this item
  */
 FilterGroup.prototype.areAllSelectedInConflictWith = function ( filterItem ) {
-	var selectedItems = this.findSelectedItems( filterItem );
+	const selectedItems = this.findSelectedItems( filterItem );
 
 	return selectedItems.length > 0 &&
 		(
@@ -507,7 +507,7 @@ FilterGroup.prototype.areAllSelectedInConflictWith = function ( filterItem ) {
  * @return {boolean} Any of the selected items are in conflict with this item
  */
 FilterGroup.prototype.areAnySelectedInConflictWith = function ( filterItem ) {
-	var selectedItems = this.findSelectedItems( filterItem );
+	const selectedItems = this.findSelectedItems( filterItem );
 
 	return selectedItems.length > 0 && (
 		// The group as a whole is in conflict with this item
@@ -526,7 +526,7 @@ FilterGroup.prototype.areAnySelectedInConflictWith = function ( filterItem ) {
  * @return {Object} Parameter representation
  */
 FilterGroup.prototype.getParamRepresentation = function ( filterRepresentation ) {
-	var values,
+	let values,
 		areAnySelected = false,
 		buildFromCurrentState = !filterRepresentation,
 		defaultFilters = this.getDefaultFilters(),
@@ -534,7 +534,7 @@ FilterGroup.prototype.getParamRepresentation = function ( filterRepresentation )
 		model = this,
 		filterParamNames = {},
 		getSelectedParameter = function ( filters ) {
-			var item,
+			let item,
 				selected = [];
 
 			// Find if any are selected
@@ -634,7 +634,7 @@ FilterGroup.prototype.getParamRepresentation = function ( filterRepresentation )
  * @return {Object} Filter representation
  */
 FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation ) {
-	var areAnySelected, paramValues, item, currentValue,
+	let areAnySelected, paramValues, item, currentValue,
 		oneWasSelected = false,
 		defaultParams = this.getDefaultParams(),
 		expandedParams = $.extend( true, {}, paramRepresentation ),
@@ -657,7 +657,7 @@ FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation )
 	) {
 		// Go over param representation; map and check for selections
 		this.getItems().forEach( ( filterItem ) => {
-			var paramName = filterItem.getParamName();
+			const paramName = filterItem.getParamName();
 
 			expandedParams[ paramName ] = paramRepresentation[ paramName ] || '0';
 			paramToFilterMap[ paramName ] = filterItem;
@@ -669,7 +669,7 @@ FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation )
 
 		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( expandedParams, ( paramName, paramValue ) => {
-			var filterItem = paramToFilterMap[ paramName ];
+			const filterItem = paramToFilterMap[ paramName ];
 
 			if ( model.getType() === 'send_unselected_if_any' ) {
 				// Flip the definition between the parameter
@@ -713,7 +713,7 @@ FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation )
 	} else if ( this.getType() === 'single_option' ) {
 		// There is parameter that fits a single filter and if not, get the default
 		this.getItems().forEach( ( filterItem ) => {
-			var selected = filterItem.getParamName() === paramRepresentation[ model.getName() ];
+			const selected = filterItem.getParamName() === paramRepresentation[ model.getName() ];
 
 			result[ filterItem.getName() ] = selected;
 			oneWasSelected = oneWasSelected || selected;
@@ -761,7 +761,7 @@ FilterGroup.prototype.getFalsyValue = function () {
  * @return {Object} Selected state
  */
 FilterGroup.prototype.getSelectedState = function () {
-	var state = {};
+	const state = {};
 
 	this.getItems().forEach( ( filterItem ) => {
 		state[ filterItem.getName() ] = filterItem.getValue();

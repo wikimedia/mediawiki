@@ -36,7 +36,7 @@ function HtmlformChecker( $element, validator ) {
  * @chainable
  */
 HtmlformChecker.prototype.attach = function ( $extraElements ) {
-	var $e = this.$element,
+	let $e = this.$element,
 		// We need to hook to all of these events to be sure we are
 		// notified of all changes to the value of an <input type=text>
 		// field.
@@ -56,7 +56,7 @@ HtmlformChecker.prototype.attach = function ( $extraElements ) {
  * @return {jQuery.Promise|undefined}
  */
 HtmlformChecker.prototype.validate = function () {
-	var currentRequestInternal,
+	let currentRequestInternal,
 		that = this,
 		value = this.$element.val();
 
@@ -73,7 +73,7 @@ HtmlformChecker.prototype.validate = function () {
 
 	this.currentRequest = currentRequestInternal = this.validator( value )
 		.done( ( info ) => {
-			var forceReplacement = value !== that.currentValue;
+			const forceReplacement = value !== that.currentValue;
 
 			// Another request was fired in the meantime, the result we got here is no longer current.
 			// This shouldn't happen as we abort pending requests, but you never know.
@@ -106,7 +106,7 @@ HtmlformChecker.prototype.validate = function () {
  * @chainable
  */
 HtmlformChecker.prototype.setErrors = function ( valid, errors, forceReplacement ) {
-	var $oldErrorBox,
+	let $oldErrorBox,
 		showFunc,
 		$text,
 		replace,

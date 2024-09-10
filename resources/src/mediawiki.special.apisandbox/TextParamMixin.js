@@ -42,7 +42,7 @@ TextParamMixin.prototype.setApiValue = function ( newValue ) {
  * @return {jQuery.Promise}
  */
 TextParamMixin.prototype.apiCheckValid = function ( shouldSuppressErrors ) {
-	var that = this;
+	const that = this;
 	return this.getValidity().then( () => $.Deferred().resolve( true ).promise(), () => $.Deferred().resolve( false ).promise() ).done( ( ok ) => {
 		ok = ok || shouldSuppressErrors;
 		that.setIcon( ok ? null : 'alert' );

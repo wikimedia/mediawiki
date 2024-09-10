@@ -7,12 +7,12 @@
 // selected state of the watchthis checkbox.
 $( () => {
 	// The 'wpWatchthis' and 'wpWatchlistExpiry' fields come from EditPage.php.
-	var watchThisNode = document.getElementById( 'wpWatchthisWidget' ),
+	const watchThisNode = document.getElementById( 'wpWatchthisWidget' ),
 		expiryNode = document.getElementById( 'wpWatchlistExpiryWidget' );
 
 	if ( watchThisNode && expiryNode ) {
-		var watchThisWidget = OO.ui.infuse( watchThisNode );
-		var expiryWidget = OO.ui.infuse( expiryNode );
+		const watchThisWidget = OO.ui.infuse( watchThisNode );
+		const expiryWidget = OO.ui.infuse( expiryNode );
 		// Set initial state to match the watchthis checkbox.
 		expiryWidget.setDisabled( !watchThisWidget.isSelected() );
 

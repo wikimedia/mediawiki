@@ -1,4 +1,4 @@
-var SavedLinksListItemWidget = require( './SavedLinksListItemWidget.js' ),
+let SavedLinksListItemWidget = require( './SavedLinksListItemWidget.js' ),
 	SavedLinksListWidget;
 
 /**
@@ -13,7 +13,7 @@ var SavedLinksListItemWidget = require( './SavedLinksListItemWidget.js' ),
  * @param {jQuery} [config.$overlay] A jQuery object serving as overlay for popups
  */
 SavedLinksListWidget = function MwRcfiltersUiSavedLinksListWidget( controller, model, config ) {
-	var $labelNoEntries = $( '<div>' )
+	const $labelNoEntries = $( '<div>' )
 		.append(
 			$( '<div>' )
 				.addClass( 'mw-rcfilters-ui-savedLinksListWidget-placeholder-title' )

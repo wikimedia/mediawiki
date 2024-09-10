@@ -1,6 +1,6 @@
 ( function () {
 
-	var config = require( './config.json' );
+	const config = require( './config.json' );
 
 	/**
 	 * @classdesc Upload to another MediaWiki site.
@@ -24,7 +24,7 @@
 	 * @param {Object} [apiconfig] Passed to the constructor of {@link mw.ForeignApi} or {@link mw.Api}, as needed.
 	 */
 	function ForeignUpload( target, apiconfig ) {
-		var api,
+		let api,
 			validTargets = config.ForeignUploadTargets,
 			upload = this;
 
@@ -65,7 +65,7 @@
 				meta: 'filerepoinfo',
 				friprop: [ 'name', 'scriptDirUrl', 'canUpload' ]
 			} ).then( ( data ) => {
-				var i, repo,
+				let i, repo,
 					repos = data.query.repos;
 
 				// First pass - try to find the passed-in target and check
@@ -125,7 +125,7 @@
 	 * @inheritdoc
 	 */
 	ForeignUpload.prototype.upload = function () {
-		var upload = this;
+		const upload = this;
 		return this.apiPromise.then( ( api ) => {
 			upload.api = api;
 			return mw.Upload.prototype.upload.call( upload );
@@ -138,7 +138,7 @@
 	 * @inheritdoc
 	 */
 	ForeignUpload.prototype.uploadToStash = function () {
-		var upload = this;
+		const upload = this;
 		return this.apiPromise.then( ( api ) => {
 			upload.api = api;
 			return mw.Upload.prototype.uploadToStash.call( upload );

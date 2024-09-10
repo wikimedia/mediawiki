@@ -1,6 +1,6 @@
 ( function () {
 
-	var saveOptionsRequests = {};
+	const saveOptionsRequests = {};
 
 	Object.assign( mw.Api.prototype, /** @lends mw.Api.prototype */ {
 
@@ -39,7 +39,7 @@
 		 * @return {jQuery.Promise}
 		 */
 		saveOptions: function ( options, params ) {
-			var name, value, bundleable,
+			let name, value, bundleable,
 				grouped = [],
 				promise;
 

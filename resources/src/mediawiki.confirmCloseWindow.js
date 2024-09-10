@@ -36,8 +36,8 @@
 	 * @return {Object} An object of functions to work with this module
 	 */
 	mw.confirmCloseWindow = function ( options ) {
-		var beforeunloadEvent = 'beforeunload';
-		var test = options && options.test || function () {
+		let beforeunloadEvent = 'beforeunload';
+		const test = options && options.test || function () {
 			return true;
 		};
 
@@ -100,7 +100,7 @@
 			 * @return {boolean}
 			 */
 			trigger: function () {
-				var message = mw.msg( 'confirmleave-warning' );
+				const message = mw.msg( 'confirmleave-warning' );
 				// use confirm to show the message to the user (if options.text() is true)
 				// eslint-disable-next-line no-alert
 				if ( test() && !confirm( message ) ) {

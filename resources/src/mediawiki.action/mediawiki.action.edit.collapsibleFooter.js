@@ -1,5 +1,5 @@
 ( function () {
-	var collapsibleLists, handleOne;
+	let collapsibleLists, handleOne;
 
 	// Collapsible lists of categories and templates
 	// If changing or removing a storeKey, ensure there is a strategy for old keys.
@@ -23,7 +23,7 @@
 	];
 
 	handleOne = function ( $list, $toggler, storeKey ) {
-		var collapsedVal = '0',
+		const collapsedVal = '0',
 			expandedVal = '1',
 			// Default to collapsed if not set
 			isCollapsed = mw.storage.get( storeKey ) !== expandedVal;
@@ -55,7 +55,7 @@
 	};
 
 	mw.hook( 'wikipage.editform' ).add( ( $editForm ) => {
-		var i;
+		let i;
 		for ( i = 0; i < collapsibleLists.length; i++ ) {
 			// Pass to a function for iteration-local variables
 			handleOne(

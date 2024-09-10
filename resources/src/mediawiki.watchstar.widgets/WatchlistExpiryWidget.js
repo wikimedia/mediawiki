@@ -11,7 +11,7 @@
  * @param {Object} config Configuration object
  */
 function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
-	var dataExpiryOptions = require( './data.json' ).options,
+	let dataExpiryOptions = require( './data.json' ).options,
 		messageLabel,
 		dropdownLabel,
 		expiryDropdown,
@@ -78,7 +78,7 @@ function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
 			classes: [ 'mw-watchexpiry' ]
 		} );
 		onDropdownChange = function ( value ) {
-			var notif = mw.notification,
+			const notif = mw.notification,
 				optionSelectedLabel = expiryDropdown.dropdownWidget.label;
 
 			if ( typeof $link !== 'undefined' ) {
@@ -90,7 +90,7 @@ function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
 			api = new mw.Api();
 			api.watch( pageTitle, value )
 				.done( ( watchResponse ) => {
-					var message,
+					let message,
 						mwTitle = mw.Title.newFromText( pageTitle ),
 						isInfinity = mw.util.isInfinity( value );
 					if ( mwTitle.isTalkPage() ) {
@@ -114,7 +114,7 @@ function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
 				} )
 				.fail( ( code, data ) => {
 					// Format error message
-					var $msg = api.getErrorMessage( data );
+					const $msg = api.getErrorMessage( data );
 
 					// Report to user about the error
 					mw.notify( $msg, {

@@ -16,7 +16,7 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 	$root.find( '.mw-htmlform' ).removeAttr( 'novalidate' );
 
 	// Enable collapsible forms
-	var $collapsible = $root.find( '.mw-htmlform-ooui .oo-ui-fieldsetLayout.mw-collapsible' );
+	const $collapsible = $root.find( '.mw-htmlform-ooui .oo-ui-fieldsetLayout.mw-collapsible' );
 	if ( $collapsible.length ) {
 		mw.loader.using( 'jquery.makeCollapsible' ).then( () => {
 			$collapsible.makeCollapsible();

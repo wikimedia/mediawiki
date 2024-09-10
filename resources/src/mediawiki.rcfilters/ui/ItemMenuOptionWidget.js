@@ -1,4 +1,4 @@
-var FilterItemHighlightButton = require( './FilterItemHighlightButton.js' ),
+let FilterItemHighlightButton = require( './FilterItemHighlightButton.js' ),
 	CheckboxInputWidget = require( './CheckboxInputWidget.js' ),
 	ItemMenuOptionWidget;
 
@@ -19,7 +19,7 @@ var FilterItemHighlightButton = require( './FilterItemHighlightButton.js' ),
 ItemMenuOptionWidget = function MwRcfiltersUiItemMenuOptionWidget(
 	controller, filtersViewModel, invertModel, itemModel, highlightPopup, config
 ) {
-	var layout,
+	let layout,
 		$widgetRow,
 		classes,
 		$label = $( '<div>' )

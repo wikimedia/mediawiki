@@ -9,7 +9,7 @@
  * @param {mw.rcfilters.dm.ChangesListViewModel} model Changes list view model
  * @param {Object} [config] Configuration object
  */
-var MarkSeenButtonWidget = function MwRcfiltersUiMarkSeenButtonWidget( controller, model, config ) {
+const MarkSeenButtonWidget = function MwRcfiltersUiMarkSeenButtonWidget( controller, model, config ) {
 	config = config || {};
 
 	// Parent
