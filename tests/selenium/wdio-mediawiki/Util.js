@@ -18,27 +18,25 @@ module.exports = {
 	 * having a talk page, being subject to redirects, being editable, or similar concerns.
 	 *
 	 * @param {string} target The name of the page in question.
-	 * @return {boolean} True if the target is not wikitext.
+	 * @return {Promise<boolean>} True if the target is not wikitext.
 	 */
 	async isTargetNotWikitext( target ) {
 		// First, make sure that the 'mw' object should exist
 		await this.waitForModuleState( 'mediawiki.base' );
 
 		// Then, ask the API for the basic 'info' data about the given page
-		const apiResponse = await browser.execute( async ( target_ ) => {
-
-			await mw.loader.using( 'mediawiki.api' );
-
-			const api = new mw.Api();
-			return await api.get( {
-				action: 'query', prop: 'info', titles: target_,
-				format: 'json', formatversion: 2
+		return browser.executeAsync( ( target_, done ) => {
+			mw.loader.using( 'mediawiki.api' ).then( () => {
+				const api = new mw.Api();
+				api.get( {
+					action: 'query', prop: 'info', titles: target_,
+					format: 'json', formatversion: 2
+				} ).then( ( result ) => {
+					// Finally, return whether said page is wikitext (or would be, if it doesn't yet exist)
+					done( result.query.pages[ 0 ].contentmodel !== 'wikitext' );
+				} );
 			} );
-
 		}, target );
-
-		// Finally, return whether said page is wikitext (or would be, if it doesn't yet exist)
-		return apiResponse.query.pages[ 0 ].contentmodel !== 'wikitext';
 	},
 
 	/**
@@ -50,7 +48,7 @@ module.exports = {
 	 */
 	async waitForModuleState( moduleName, moduleStatus = 'ready', timeout = 5000 ) {
 		await browser.waitUntil(
-			async () => await browser.execute(
+			() => browser.execute(
 				( arg ) => typeof mw !== 'undefined' && mw.loader.getState( arg.name ) === arg.status,
 				{ status: moduleStatus, name: moduleName }
 			), {
