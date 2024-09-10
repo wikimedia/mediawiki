@@ -32,8 +32,10 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @deprecated since 1.43, use ActorStore
  */
 class UserCache {
-	protected $cache = []; // (uid => property => value)
-	protected $typesCached = []; // (uid => cache type => 1)
+	/** @var array (uid => property => value) */
+	protected $cache = [];
+	/** @var array (uid => cache type => 1) */
+	protected $typesCached = [];
 
 	/** @var LoggerInterface */
 	private $logger;
