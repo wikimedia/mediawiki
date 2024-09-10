@@ -123,7 +123,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	private $targetLanguage = null;
 
 	/**
-	 * Should we ignore mismatches $page and the page that $revision belongs to?
+	 * Should we ignore mismatches between $page and the page that $revision belongs to?
 	 * Usually happens because of page moves. This should be set to true only for internal API calls.
 	 */
 	private bool $lenientRevHandling = false;
@@ -176,7 +176,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 * @param array $parameters
 	 * @param Authority|null $authority
 	 * @param RevisionRecord|int|null $revision
-	 * @param bool $lenientRevHandling Should we ignore mismatches
+	 * @param bool $lenientRevHandling Should we ignore mismatches between
 	 *    $page and the page that $revision belongs to? Usually happens
 	 *    because of page moves. This should be set to true only for
 	 *    internal API calls.
@@ -284,7 +284,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 
 			// TODO: (T347426) At some later point, we may reintroduce support for
 			// non-default content versions as part of work on the content
-			// negotiatiation protocol.
+			// negotiation protocol.
 			//
 			// // See Parsoid::wikitext2html
 			// $this->parsoidOptions['outputContentVersion'] = $outputContentVersion;
@@ -373,7 +373,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 * Set the content to render. Useful when rendering for previews
 	 * or when switching the editor from source mode to visual mode.
 	 *
-	 * This will create a fake revision for rendering, the revision ID will be 0.
+	 * This will create a fake revision for rendering. The revision ID will be 0.
 	 *
 	 * @param string $source The source data, e.g. wikitext
 	 * @param string $model The content model indicating how to interpret $source, e.g. CONTENT_MODEL_WIKITEXT
@@ -392,9 +392,9 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	}
 
 	/**
-	 * This is equivalent of 'pageLanguageOverride' in PageConfigFactory
+	 * This is equivalent to 'pageLanguageOverride' in PageConfigFactory
 	 * For example, when clients call the REST API with the 'content-language'
-	 * header to effect language variant conversion.
+	 * header to affect language variant conversion.
 	 *
 	 * @param Bcp47Code|string $pageLanguage the page language, as a Bcp47Code
 	 *   or a BCP-47 string.
@@ -695,7 +695,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 */
 	public function putHeaders( ResponseInterface $response, bool $forHtml = true ): void {
 		if ( $forHtml ) {
-			// For HTML we want to set the Content-Language. For JSON, we probably don't.
+			// For HTML, we want to set the Content-Language. For JSON, we probably don't.
 			$response->setHeader( 'Content-Language', $this->getHtmlOutputContentLanguage()->toBcp47Code() );
 
 			$pb = $this->getPageBundle();
@@ -756,12 +756,12 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 */
 	public function getRevisionId(): ?int {
 		if ( !$this->revisionOrId ) {
-			// If we don't have a revision set or it's 0, we are rendering the current revision.
+			// If we don't have a revision set, or it's 0, we are rendering the current revision.
 			return 0;
 		}
 
 		if ( is_object( $this->revisionOrId ) ) {
-			// NOTE: return null even of getId() gave us 0
+			// NOTE: return null even if getId() gave us 0
 			return $this->revisionOrId->getId() ?: null;
 		}
 
@@ -805,7 +805,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 */
 	private function getParserOutputInternal( ParserOptions $parserOptions ): Status {
 		// NOTE: ParserOutputAccess::getParserOutput() should be used for revisions
-		//       that comes from the database. Either this revision is null to indicate
+		//       that come from the database. Either this revision is null to indicate
 		//       the current revision or the revision must have an ID.
 		// If we have a revision and the ID is 0 or null, then it's a fake revision
 		// representing a preview.
