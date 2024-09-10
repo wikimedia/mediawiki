@@ -13,7 +13,7 @@ use Doctrine\DBAL\Schema\Schema;
 class DoctrineSchemaChangeBuilder implements SchemaChangeBuilder {
 	use DoctrineAbstractSchemaTrait;
 
-	private $platform;
+	private AbstractPlatform $platform;
 
 	/**
 	 * A builder object that take abstract schema definition and produces sql to create the tables.

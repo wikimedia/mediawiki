@@ -10,7 +10,7 @@ use Stringable;
  * @since 1.38
  */
 class ArraySource implements Stringable, SettingsSource {
-	private $settings;
+	private array $settings;
 
 	public function __construct( array $settings ) {
 		$this->settings = $settings;

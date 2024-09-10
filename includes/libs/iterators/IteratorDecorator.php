@@ -23,7 +23,7 @@
  * @ingroup Maintenance
  */
 abstract class IteratorDecorator implements Iterator {
-	protected $iterator;
+	protected Iterator $iterator;
 
 	/**
 	 * @stable to call
