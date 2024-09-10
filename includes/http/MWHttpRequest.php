@@ -22,6 +22,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Status\Status;
+use MediaWiki\Utils\UrlUtils;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -90,6 +91,8 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 */
 	protected $logger;
 
+	private UrlUtils $urlUtils;
+
 	/**
 	 * @param string $url Url to use. If protocol-relative, will be expanded to an http:// URL
 	 * @param array $options extra params to pass (see HttpRequestFactory::create())
@@ -102,12 +105,13 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	public function __construct(
 		$url, array $options, $caller = __METHOD__, Profiler $profiler = null
 	) {
+		$this->urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
 		if ( !array_key_exists( 'timeout', $options )
 			|| !array_key_exists( 'connectTimeout', $options ) ) {
 			throw new InvalidArgumentException( "timeout and connectionTimeout options are required" );
 		}
-		$this->url = wfExpandUrl( $url, PROTO_HTTP );
-		$this->parsedUrl = wfParseUrl( $this->url );
+		$this->url = $this->urlUtils->expand( $url, PROTO_HTTP ) ?? false;
+		$this->parsedUrl = $this->urlUtils->parse( (string)$this->url ) ?? false;
 
 		$this->logger = $options['logger'] ?? new NullLogger();
 		$this->timeout = $options['timeout'];
@@ -246,7 +250,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @param string $proxy URL of proxy
 	 */
 	protected function setReverseProxy( string $proxy ) {
-		$parsedProxy = wfParseUrl( $proxy );
+		$parsedProxy = $this->urlUtils->parse( $proxy ) ?? false;
 		if ( $parsedProxy === false ) {
 			throw new InvalidArgumentException( "Invalid reverseProxy configured: $proxy" );
 		}
@@ -260,7 +264,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 		} else {
 			unset( $this->parsedUrl['port'] );
 		}
-		$this->url = wfAssembleUrl( $this->parsedUrl );
+		$this->url = UrlUtils::assemble( (array)$this->parsedUrl );
 		// Mark that we're already using a proxy
 		$this->noProxy = true;
 	}
