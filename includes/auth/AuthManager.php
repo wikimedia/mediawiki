@@ -2524,7 +2524,13 @@ class AuthManager implements LoggerAwareInterface {
 			case self::ACTION_CREATE:
 				$reqs[] = new UsernameAuthenticationRequest;
 				$reqs[] = new UserDataAuthenticationRequest;
-				if ( $options['username'] !== null ) {
+
+				// Registered users should be prompted to provide a rationale for account creations,
+				// except for the case of a temporary user registering a full account (T328718).
+				if (
+					$options['username'] !== null &&
+					!$this->userNameUtils->isTemp( $options['username'] )
+				) {
 					$reqs[] = new CreationReasonAuthenticationRequest;
 					$options['username'] = null; // Don't fill in the username below
 				}
