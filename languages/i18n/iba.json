@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Song GK"
+			"Song GK",
+			"Amire80"
 		]
 	},
 	"sunday": "Hari Minggu",
@@ -10,7 +11,7 @@
 	"wednesday": "Hari Tiga",
 	"thursday": "Hari Empat",
 	"friday": "Hari Lima",
-	"saturday": "Hari Enam",
+	"saturday": "Hari Nam",
 	"sun": "Hari Minggu",
 	"mon": "H1",
 	"tue": "H2",

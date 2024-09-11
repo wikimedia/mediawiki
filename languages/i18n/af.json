@@ -1622,7 +1622,7 @@
 	"listduplicatedfiles": "Lys van lêers met duplikate",
 	"listduplicatedfiles-entry": "[[:File:$1|$1]] het [[$3|{{PLURAL:$2|'n duplikaat|$2 duplikate}}]].",
 	"unusedtemplates": "Ongebruikte sjablone",
-	"unusedtemplatestext": "Hierdie blad lys alle bladsye in die {{ns:template}}-naamruimte wat nêrens in 'n ander blad ingesluit word nie. Onthou om ook ander skakels na die sjablone na te gaan voor verwydering.",
+	"unusedtemplatestext": "Hierdie blad lys alle bladsye in die {{ns:template}}-naamruimte wat nêrens in 'n ander blad ingesluit word nie. Onthou om ook ander skakels na die sjablone na te gaan voor verwydering.\n\nU kan bladsye uitfiltreer wat na verwagting permanent daar sal wees, soos sandkaste, toetssake en sjablone wat altyd vervang word. Redigeerders kan die __EXPECTUNUSEDTEMPLATE__ towerwoord by 'n sjabloonbladsy voeg om dit van die lys te versteek.",
 	"unusedtemplateswlh": "ander skakels",
 	"randompage": "Lukrake bladsy",
 	"randompage-nopages": "Daar is geen bladsye in die volgende {{PLURAL:$2|naamruimte|naamruimtes}} nie: $1.",
