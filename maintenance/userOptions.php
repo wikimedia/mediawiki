@@ -113,6 +113,10 @@ The new option is NOT validated.' );
 		$userOptionsLookup = $this->getServiceContainer()->getUserOptionsLookup();
 		$defaultOptions = $userOptionsLookup->getDefaultOptions();
 
+		if ( $option && !array_key_exists( $option, $defaultOptions ) ) {
+			$this->fatalError( "Invalid user option. Use --list to see valid choices\n" );
+		}
+
 		// We list user by user_id from one of the replica DBs
 		$dbr = $this->getServiceContainer()->getConnectionProvider()->getReplicaDatabase();
 
@@ -126,10 +130,6 @@ The new option is NOT validated.' );
 
 			// Get the options and update stats
 			if ( $option ) {
-				if ( !array_key_exists( $option, $defaultOptions ) ) {
-					$this->fatalError( "Invalid user option. Use --list to see valid choices\n" );
-				}
-
 				$userValue = $userOptionsLookup->getOption( $user, $option );
 				if ( $userValue != $defaultOptions[$option] ) {
 					$ret[$option][$userValue] = ( $ret[$option][$userValue] ?? 0 ) + 1;
