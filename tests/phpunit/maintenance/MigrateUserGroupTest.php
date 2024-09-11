@@ -35,8 +35,7 @@ class MigrateUserGroupTest extends MaintenanceBaseTestCase {
 	}
 
 	public function testExecute() {
-		// Test moving 5 users with the "bot" group to the "sysop" group, adding one already into the "sysop" group
-		// to test that functionality.
+		// Test moving 3 users with the "bot" group to the "sysop" group
 		$testUsers = $this->createTestUsersWithGroup( 'bot', 3 );
 		$this->maintenance->setArg( 'oldgroup', 'bot' );
 		$this->maintenance->setArg( 'newgroup', 'sysop' );
@@ -66,5 +65,13 @@ class MigrateUserGroupTest extends MaintenanceBaseTestCase {
 			$this->assertNotContains( 'bot', $testUserGroups );
 		}
 		$this->expectOutputRegex( "/Done! 5 users in group 'bot' are now in 'sysop' instead.\n/" );
+	}
+
+	public function testExecuteForNoUsersInOldGroup() {
+		$this->maintenance->setArg( 'oldgroup', 'bot' );
+		$this->maintenance->setArg( 'newgroup', 'sysop' );
+		$this->expectOutputRegex( "/no users in the 'bot' group/" );
+		$this->expectCallToFatalError();
+		$this->maintenance->execute();
 	}
 }
