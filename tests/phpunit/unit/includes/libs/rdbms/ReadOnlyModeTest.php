@@ -11,6 +11,7 @@ use Wikimedia\Rdbms\ReadOnlyMode;
  */
 class ReadOnlyModeTest extends MediaWikiUnitTestCase {
 
+	/** @var string */
 	private $fileName;
 
 	protected function setUp(): void {

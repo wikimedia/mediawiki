@@ -28,8 +28,10 @@ class UnionQueryBuilder {
 	/** @var IDatabase */
 	private $db;
 
+	/** @var bool */
 	private $all = IReadableDatabase::UNION_DISTINCT;
 
+	/** @var array */
 	private $options = [];
 
 	/**

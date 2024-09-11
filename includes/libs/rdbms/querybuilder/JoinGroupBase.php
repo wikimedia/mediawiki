@@ -16,6 +16,7 @@ abstract class JoinGroupBase {
 	/** @var array */
 	protected $joinConds = [];
 
+	/** @var string|null */
 	protected $lastAlias;
 
 	/**

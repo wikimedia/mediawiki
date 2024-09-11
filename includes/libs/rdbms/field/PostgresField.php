@@ -7,11 +7,13 @@ class PostgresField implements Field {
 	private string $tablename;
 	private string $type;
 	private bool $nullable;
+	/** @var int */
 	private $max_length;
 	private bool $deferred;
 	private bool $deferrable;
 	private ?string $conname;
 	private bool $has_default;
+	/** @var mixed */
 	private $default;
 
 	/**
