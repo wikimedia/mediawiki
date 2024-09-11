@@ -1811,9 +1811,6 @@ class WANObjectCache implements
 		}
 		$postCallbackTime = $this->getCurrentTime();
 
-		// How long it took to fetch, validate, and generate the value
-		$elapsed = max( $postCallbackTime - $startTime, 0.0 );
-
 		// How long it took to generate the value
 		$walltime = max( $postCallbackTime - $preCallbackTime, 0.0 );
 
@@ -1829,11 +1826,6 @@ class WANObjectCache implements
 			// Current thread was not raced out of a regeneration lock or key is tombstoned
 			( !$useRegenerationLock || $hasLock || $isKeyTombstoned )
 		) {
-			$this->stats->getTiming( 'wanobjectcache_regen_set_delay_seconds' )
-				->setLabel( 'keygroup', $keygroup )
-				->copyToStatsdAt( "wanobjectcache.$keygroup.regen_set_delay" )
-				->observe( 1e3 * $elapsed );
-
 			// If the key is write-holed then use the (volatile) interim key as an alternative
 			if ( $isKeyTombstoned ) {
 				$this->setInterimValue(
