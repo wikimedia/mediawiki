@@ -67,19 +67,36 @@ class DeleteSelfExternals extends Maintenance {
 			];
 		}
 
-		foreach ( $conds as $cond ) {
-			if ( !$cond ) {
-				continue;
-			}
-			$cond = $db->makeList( $cond, LIST_AND );
-			do {
-				$this->commitTransaction( $db, __METHOD__ );
-				$q = $db->limitResult( "DELETE /* deleteSelfExternals */ FROM externallinks WHERE $cond",
-					$this->mBatchSize );
-				$this->output( "Deleting a batch\n" );
-				$db->query( $q, __METHOD__ );
-			} while ( $db->affectedRows() );
-		}
+		// Convert the array of $conds into an IExpression object for use in the DELETE query
+		// The use of array_filter is just there for a sanity check, as LinkFilter::getQueryConditions
+		// only returns false if the host was invalid (we have already validated this above).
+		$conds = array_map( static function ( $cond ) use ( $db ) {
+			return $db->andExpr( $cond );
+		}, array_filter( $conds ) );
+		$domainExpr = $db->orExpr( $conds );
+
+		$totalRows = 0;
+		$batchStart = 0;
+		$batchEnd = $batchStart + $this->getBatchSize();
+		do {
+			$this->output( "Deleting self-externals with el_id $batchStart to $batchEnd\n" );
+
+			$db->newDeleteQueryBuilder()
+				->deleteFrom( 'externallinks' )
+				->where( $domainExpr )
+				->andWhere( $db->expr( 'el_id', '>', $batchStart ) )
+				->andWhere( $db->expr( 'el_id', '<=', $batchEnd ) )
+				->caller( __METHOD__ )
+				->execute();
+			$rowsDeletedInThisBatch = $db->affectedRows();
+			$totalRows += $rowsDeletedInThisBatch;
+
+			$batchStart += $this->getBatchSize();
+			$batchEnd += $this->getBatchSize();
+			$this->waitForReplication();
+		} while ( $rowsDeletedInThisBatch );
+
+		$this->output( "done; deleted $totalRows rows\n" );
 	}
 }
 
