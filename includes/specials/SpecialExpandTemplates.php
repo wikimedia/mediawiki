@@ -278,7 +278,7 @@ class SpecialExpandTemplates extends SpecialPage {
 		}
 
 		$out->addParserOutputContent( $pout, [ 'enableSectionEditLinks' => false ] );
-		$out->setCategoryLinks( $pout->getCategoryMap() );
+		$out->addCategoryLinks( $pout->getCategoryMap() );
 	}
 
 	protected function getGroupName() {
