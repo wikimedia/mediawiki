@@ -1,8 +1,7 @@
 <?php
 
-use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Tests\Language\MockLocalisationCacheTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
-use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -13,46 +12,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;
-
-	/**
-	 * @param array $hooks Hook overrides
-	 * @param array $options Service options (see {@link LocalisationCache::CONSTRUCTOR_OPTIONS})
-	 * @return LocalisationCache
-	 */
-	protected function getMockLocalisationCache( $hooks = [], $options = [] ) {
-		global $IP;
-
-		$hookContainer = $this->createHookContainer( $hooks );
-
-		// in case any of the LanguageNameUtils hooks are being used
-		$langNameUtils = $this->getDummyLanguageNameUtils(
-			[ 'hookContainer' => $hookContainer ]
-		);
-
-		$options += [
-			'forceRecache' => false,
-			'manualRecache' => false,
-			'ExtensionMessagesFiles' => [],
-			'MessagesDirs' => [],
-			'TranslationAliasesDirs' => [],
-		];
-
-		$lc = $this->getMockBuilder( LocalisationCache::class )
-			->setConstructorArgs( [
-				new ServiceOptions( LocalisationCache::CONSTRUCTOR_OPTIONS, $options ),
-				new LCStoreDB( [] ),
-				new NullLogger,
-				[],
-				$langNameUtils,
-				$hookContainer
-			] )
-			->onlyMethods( [ 'getMessagesDirs' ] )
-			->getMock();
-		$lc->method( 'getMessagesDirs' )
-			->willReturn( [ "$IP/tests/phpunit/data/localisationcache" ] );
-
-		return $lc;
-	}
+	use MockLocalisationCacheTrait;
 
 	public function testPluralRulesFallback() {
 		$cache = $this->getMockLocalisationCache();
