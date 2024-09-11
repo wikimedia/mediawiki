@@ -19,7 +19,6 @@
  * @ingroup Cache
  */
 
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -28,6 +27,7 @@ use Wikimedia\LightweightObjectStore\StorageAwareness;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\IStoreKeyEncoder;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * Multi-datacenter aware caching interface
@@ -168,7 +168,7 @@ class WANObjectCache implements
 	protected $processCaches = [];
 	/** @var LoggerInterface */
 	protected $logger;
-	/** @var StatsdDataFactoryInterface */
+	/** @var StatsFactory */
 	protected $stats;
 	/** @var callable|null Function that takes a WAN cache callback and runs it later */
 	protected $asyncHandler;
@@ -336,7 +336,8 @@ class WANObjectCache implements
 	 * @param array $params
 	 *   - cache    : BagOStuff object for a persistent cache
 	 *   - logger   : LoggerInterface object
-	 *   - stats    : StatsdDataFactoryInterface object
+	 *   - stats    : StatsFactory object. Since 1.43, constructing a WANObjectCache object
+	 *       with an IBufferingStatsdDataFactory stats collector will emit a warning.
 	 *   - asyncHandler : A function that takes a callback and runs it later. If supplied,
 	 *       whenever a preemptive refresh would be triggered in getWithSetCallback(), the
 	 *       current cache value is still used instead. However, the async-handler function
@@ -373,9 +374,17 @@ class WANObjectCache implements
 		}
 
 		$this->setLogger( $params['logger'] ?? new NullLogger() );
-		$this->stats = $params['stats'] ?? new NullStatsdDataFactory();
-		$this->asyncHandler = $params['asyncHandler'] ?? null;
 
+		if ( isset( $params['stats'] ) && $params['stats'] instanceof IBufferingStatsdDataFactory ) {
+			wfDeprecated(
+				__METHOD__,
+				'Use of StatsdDataFactory is deprecated in 1.43. Use StatsFactory instead.'
+			);
+			$params['stats'] = null;
+		}
+		$this->stats = $params['stats'] ?? StatsFactory::newNull();
+
+		$this->asyncHandler = $params['asyncHandler'] ?? null;
 		$this->missLog = array_fill( 0, 10, [ '', 0.0 ] );
 	}
 
@@ -812,7 +821,11 @@ class WANObjectCache implements
 			$opts['creating'] ?? false
 		);
 
-		$this->stats->increment( "wanobjectcache.$keygroup.set." . ( $ok ? 'ok' : 'error' ) );
+		$this->stats->getCounter( 'wanobjectcache_set_total' )
+			->setLabel( 'keygroup', $keygroup )
+			->setLabel( 'result', ( $ok ? 'ok' : 'error' ) )
+			->copyToStatsdAt( "wanobjectcache.$keygroup.set." . ( $ok ? 'ok' : 'error' ) )
+			->increment();
 
 		return $ok;
 	}
@@ -1065,7 +1078,12 @@ class WANObjectCache implements
 		}
 
 		$keygroup = $this->determineKeyGroupForStats( $key );
-		$this->stats->increment( "wanobjectcache.$keygroup.delete." . ( $ok ? 'ok' : 'error' ) );
+
+		$this->stats->getCounter( 'wanobjectcache_delete_total' )
+			->setLabel( 'keygroup', $keygroup )
+			->setLabel( 'result', ( $ok ? 'ok' : 'error' ) )
+			->copyToStatsdAt( "wanobjectcache.$keygroup.delete." . ( $ok ? 'ok' : 'error' ) )
+			->increment();
 
 		return $ok;
 	}
@@ -1224,7 +1242,12 @@ class WANObjectCache implements
 		$ok = $this->relayVolatilePurge( $checkSisterKey, $purge, self::CHECK_KEY_TTL );
 
 		$keygroup = $this->determineKeyGroupForStats( $key );
-		$this->stats->increment( "wanobjectcache.$keygroup.ck_touch." . ( $ok ? 'ok' : 'error' ) );
+
+		$this->stats->getCounter( 'wanobjectcache_check_total' )
+			->setLabel( 'keygroup', $keygroup )
+			->setLabel( 'result', ( $ok ? 'ok' : 'error' ) )
+			->copyToStatsdAt( "wanobjectcache.$keygroup.ck_touch." . ( $ok ? 'ok' : 'error' ) )
+			->increment();
 
 		return $ok;
 	}
@@ -1261,7 +1284,12 @@ class WANObjectCache implements
 		$ok = $this->relayNonVolatilePurge( $checkSisterKey );
 
 		$keygroup = $this->determineKeyGroupForStats( $key );
-		$this->stats->increment( "wanobjectcache.$keygroup.ck_reset." . ( $ok ? 'ok' : 'error' ) );
+
+		$this->stats->getCounter( 'wanobjectcache_reset_total' )
+			->setLabel( 'keygroup', $keygroup )
+			->setLabel( 'result', ( $ok ? 'ok' : 'error' ) )
+			->copyToStatsdAt( "wanobjectcache.$keygroup.ck_reset." . ( $ok ? 'ok' : 'error' ) )
+			->increment();
 
 		return $ok;
 	}
@@ -1641,21 +1669,27 @@ class WANObjectCache implements
 		// Get the current key value and its metadata
 		$curState = $this->fetchKeys( [ $key ], $checkKeys, $startTime, $touchedCb )[$key];
 		$curValue = $curState[self::RES_VALUE];
+
 		// Use the cached value if it exists and is not due for synchronous regeneration
 		if ( $this->isAcceptablyFreshValue( $curState, $graceTTL, $minAsOf ) ) {
 			if ( !$this->isLotteryRefreshDue( $curState, $lowTTL, $ageNew, $hotTTR, $startTime ) ) {
-				$this->stats->timing(
-					"wanobjectcache.$keygroup.hit.good",
-					1e3 * ( $this->getCurrentTime() - $startTime )
-				);
+				$this->stats->getTiming( 'wanobjectcache_getwithset_seconds' )
+					->setLabel( 'keygroup', $keygroup )
+					->setLabel( 'result', 'hit' )
+					->setLabel( 'reason', 'good' )
+					->copyToStatsdAt( "wanobjectcache.$keygroup.hit.good" )
+					->observe( 1e3 * ( $this->getCurrentTime() - $startTime ) );
 
 				return [ $curValue, $curState[self::RES_VERSION], $curState[self::RES_AS_OF] ];
 			} elseif ( $this->scheduleAsyncRefresh( $key, $ttl, $callback, $opts, $cbParams ) ) {
 				$this->logger->debug( "fetchOrRegenerate($key): hit with async refresh" );
-				$this->stats->timing(
-					"wanobjectcache.$keygroup.hit.refresh",
-					1e3 * ( $this->getCurrentTime() - $startTime )
-				);
+
+				$this->stats->getTiming( 'wanobjectcache_getwithset_seconds' )
+					->setLabel( 'keygroup', $keygroup )
+					->setLabel( 'result', 'hit' )
+					->setLabel( 'reason', 'refresh' )
+					->copyToStatsdAt( "wanobjectcache.$keygroup.hit.refresh" )
+					->observe( 1e3 * ( $this->getCurrentTime() - $startTime ) );
 
 				return [ $curValue, $curState[self::RES_VERSION], $curState[self::RES_AS_OF] ];
 			} else {
@@ -1687,10 +1721,13 @@ class WANObjectCache implements
 		$safeMinAsOf = max( $minAsOf, $lastPurgeTime + self::TINY_POSITIVE );
 		if ( $this->isExtremelyNewValue( $volState, $safeMinAsOf, $startTime ) ) {
 			$this->logger->debug( "fetchOrRegenerate($key): volatile hit" );
-			$this->stats->timing(
-				"wanobjectcache.$keygroup.hit.volatile",
-				1e3 * ( $this->getCurrentTime() - $startTime )
-			);
+
+			$this->stats->getTiming( 'wanobjectcache_getwithset_seconds' )
+				->setLabel( 'keygroup', $keygroup )
+				->setLabel( 'result', 'hit' )
+				->setLabel( 'reason', 'volatile' )
+				->copyToStatsdAt( "wanobjectcache.$keygroup.hit.volatile" )
+				->observe( 1e3 * ( $this->getCurrentTime() - $startTime ) );
 
 			return [ $volValue, $volState[self::RES_VERSION], $curState[self::RES_AS_OF] ];
 		}
@@ -1730,19 +1767,26 @@ class WANObjectCache implements
 			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 			if ( $this->isValid( $volValue, $volState[self::RES_AS_OF], $minAsOf ) ) {
 				$this->logger->debug( "fetchOrRegenerate($key): returning stale value" );
-				$this->stats->timing(
-					"wanobjectcache.$keygroup.hit.stale",
-					1e3 * ( $this->getCurrentTime() - $startTime )
-				);
+
+				$this->stats->getTiming( 'wanobjectcache_getwithset_seconds' )
+					->setLabel( 'keygroup', $keygroup )
+					->setLabel( 'result', 'hit' )
+					->setLabel( 'reason', 'stale' )
+					->copyToStatsdAt( "wanobjectcache.$keygroup.hit.stale" )
+					->observe( 1e3 * ( $this->getCurrentTime() - $startTime ) );
 
 				return [ $volValue, $volState[self::RES_VERSION], $curState[self::RES_AS_OF] ];
 			} elseif ( $busyValue !== null ) {
 				$miss = is_infinite( $minAsOf ) ? 'renew' : 'miss';
 				$this->logger->debug( "fetchOrRegenerate($key): busy $miss" );
-				$this->stats->timing(
-					"wanobjectcache.$keygroup.$miss.busy",
-					1e3 * ( $this->getCurrentTime() - $startTime )
-				);
+
+				$this->stats->getTiming( 'wanobjectcache_getwithset_seconds' )
+					->setLabel( 'keygroup', $keygroup )
+					->setLabel( 'result', $miss )
+					->setLabel( 'reason', 'busy' )
+					->copyToStatsdAt( "wanobjectcache.$keygroup.$miss.busy" )
+					->observe( 1e3 * ( $this->getCurrentTime() - $startTime ) );
+
 				$placeholderValue = $this->resolveBusyValue( $busyValue );
 
 				return [ $placeholderValue, $version, $curState[self::RES_AS_OF] ];
@@ -1773,7 +1817,11 @@ class WANObjectCache implements
 
 		// How long it took to generate the value
 		$walltime = max( $postCallbackTime - $preCallbackTime, 0.0 );
-		$this->stats->timing( "wanobjectcache.$keygroup.regen_walltime", 1e3 * $walltime );
+
+		$this->stats->getTiming( 'wanobjectcache_regen_seconds' )
+			->setLabel( 'keygroup', $keygroup )
+			->copyToStatsdAt( "wanobjectcache.$keygroup.regen_walltime" )
+			->observe( 1e3 * $walltime );
 
 		// Attempt to save the newly generated value if applicable
 		if (
@@ -1782,7 +1830,11 @@ class WANObjectCache implements
 			// Current thread was not raced out of a regeneration lock or key is tombstoned
 			( !$useRegenerationLock || $hasLock || $isKeyTombstoned )
 		) {
-			$this->stats->timing( "wanobjectcache.$keygroup.regen_set_delay", 1e3 * $elapsed );
+			$this->stats->getTiming( 'wanobjectcache_regen_set_delay_seconds' )
+				->setLabel( 'keygroup', $keygroup )
+				->copyToStatsdAt( "wanobjectcache.$keygroup.regen_set_delay" )
+				->observe( 1e3 * $elapsed );
+
 			// If the key is write-holed then use the (volatile) interim key as an alternative
 			if ( $isKeyTombstoned ) {
 				$this->setInterimValue(
@@ -1817,10 +1869,13 @@ class WANObjectCache implements
 
 		$miss = is_infinite( $minAsOf ) ? 'renew' : 'miss';
 		$this->logger->debug( "fetchOrRegenerate($key): $miss, new value computed" );
-		$this->stats->timing(
-			"wanobjectcache.$keygroup.$miss.compute",
-			1e3 * ( $this->getCurrentTime() - $startTime )
-		);
+
+		$this->stats->getTiming( 'wanobjectcache_getwithset_seconds' )
+			->setLabel( 'keygroup', $keygroup )
+			->setLabel( 'result', $miss )
+			->setLabel( 'reason', 'compute' )
+			->copyToStatsdAt( "wanobjectcache.$keygroup.$miss.compute" )
+			->observe( 1e3 * ( $this->getCurrentTime() - $startTime ) );
 
 		return [ $value, $version, $curState[self::RES_AS_OF] ];
 	}
