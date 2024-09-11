@@ -54,15 +54,17 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param null $insertCalls
-	 * @param null $selectCalls
+	 * @param int $insertCalls
+	 * @param int $selectCalls
+	 * @param int $selectFieldCalls
 	 *
 	 * @return MockObject&IDatabase
 	 */
-	private function getProxyDb( $insertCalls = null, $selectCalls = null ) {
+	private function getProxyDb( $insertCalls, $selectCalls, $selectFieldCalls ) {
 		$proxiedMethods = [
 			'select' => $selectCalls,
 			'insert' => $insertCalls,
+			'selectField' => $selectFieldCalls,
 			'affectedRows' => null,
 			'insertId' => null,
 			'getSessionLagStatus' => null,
@@ -89,11 +91,14 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 		BagOStuff $cacheBag,
 		$insertCalls,
 		$selectCalls,
+		$selectFieldCalls,
 		$normalizationCallback = null,
 		$insertCallback = null
 	) {
 		return new NameTableStore(
-			$this->getMockLoadBalancer( $this->getProxyDb( $insertCalls, $selectCalls ) ),
+			$this->getMockLoadBalancer(
+				$this->getProxyDb( $insertCalls, $selectCalls, $selectFieldCalls )
+			),
 			$this->getHashWANObjectCache( $cacheBag ),
 			new NullLogger(),
 			'slot_roles', 'role_id', 'role_name',
@@ -146,7 +151,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 		$expectedId
 	) {
 		$this->populateTable( $existingValues );
-		$store = $this->getNameTableSqlStore( $cacheBag, (int)$needsInsert, $selectCalls );
+		$store = $this->getNameTableSqlStore( $cacheBag, (int)$needsInsert, $selectCalls, 0 );
 
 		// Some names will not initially exist
 		try {
@@ -189,6 +194,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 			new EmptyBagOStuff(),
 			1,
 			1,
+			0,
 			$normalizationCallback
 		);
 		$acquiredId = $store->acquireId( $nameIn );
@@ -209,7 +215,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 		$now = microtime( true );
 		$cacheBag->setMockTime( $now );
 		// Check for operations to in-memory cache (IMC) and persistent cache (PC)
-		$store = $this->getNameTableSqlStore( $cacheBag, $insertCalls, $selectCalls );
+		$store = $this->getNameTableSqlStore( $cacheBag, $insertCalls, $selectCalls, 0 );
 
 		// Get 1 ID and make sure getName returns correctly
 		$fooId = $store->acquireId( 'foo' ); // regen PC, set IMC, update IMC, tombstone PC
@@ -237,7 +243,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetName_masterFallback() {
-		$store = $this->getNameTableSqlStore( new EmptyBagOStuff(), 1, 2 );
+		$store = $this->getNameTableSqlStore( new EmptyBagOStuff(), 1, 2, 0 );
 
 		// Insert a new name
 		$fooId = $store->acquireId( 'foo' );
@@ -251,14 +257,14 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetMap_empty() {
 		$this->populateTable( [] );
-		$store = $this->getNameTableSqlStore( new HashBagOStuff(), 0, 1 );
+		$store = $this->getNameTableSqlStore( new HashBagOStuff(), 0, 1, 0 );
 		$table = $store->getMap();
 		$this->assertSame( [], $table );
 	}
 
 	public function testGetMap_twoValues() {
 		$this->populateTable( [ 'foo', 'bar' ] );
-		$store = $this->getNameTableSqlStore( new HashBagOStuff(), 0, 1 );
+		$store = $this->getNameTableSqlStore( new HashBagOStuff(), 0, 1, 0 );
 
 		// We are using a cache, so 2 calls should only result in 1 select on the db
 		$store->getMap();
@@ -272,7 +278,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 
 	public function testReloadMap() {
 		$this->populateTable( [ 'foo' ] );
-		$store = $this->getNameTableSqlStore( new HashBagOStuff(), 0, 2 );
+		$store = $this->getNameTableSqlStore( new HashBagOStuff(), 0, 2, 0 );
 
 		// force load
 		$this->assertCount( 1, $store->getMap() );
@@ -287,9 +293,9 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 
 	public function testCacheRaceCondition() {
 		$wanHashBag = new HashBagOStuff();
-		$store1 = $this->getNameTableSqlStore( $wanHashBag, 1, 1 );
-		$store2 = $this->getNameTableSqlStore( $wanHashBag, 1, 0 );
-		$store3 = $this->getNameTableSqlStore( $wanHashBag, 1, 1 );
+		$store1 = $this->getNameTableSqlStore( $wanHashBag, 1, 1, 0 );
+		$store2 = $this->getNameTableSqlStore( $wanHashBag, 1, 0, 0 );
+		$store3 = $this->getNameTableSqlStore( $wanHashBag, 2, 0, 2 );
 
 		// Cache the current table in the instances we will use
 		// This simulates multiple requests running simultaneously
@@ -308,7 +314,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 		// A new store should be able to get both of these new Ids
 		// Note: before there was a race condition here where acquireId( 'bar' ) would update the
 		//       cache with data missing the 'foo' key that it was not aware of
-		$store4 = $this->getNameTableSqlStore( $wanHashBag, 0, 1 );
+		$store4 = $this->getNameTableSqlStore( $wanHashBag, 0, 1, 0 );
 		$this->assertSame( $fooId, $store4->getId( 'foo' ) );
 		$this->assertSame( $barId, $store4->getId( 'bar' ) );
 
@@ -325,6 +331,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 			new EmptyBagOStuff(),
 			1,
 			1,
+			0,
 			null,
 			static function ( $insertFields ) {
 				$insertFields['role_id'] = 7251;

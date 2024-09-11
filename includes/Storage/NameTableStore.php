@@ -44,7 +44,7 @@ class NameTableStore {
 	/** @var LoggerInterface */
 	private $logger;
 
-	/** @var string[] */
+	/** @var array<int,string>|null */
 	private $tableCache = null;
 
 	/** @var bool|string */
@@ -145,14 +145,12 @@ class NameTableStore {
 	 * Acquire the id of the given name.
 	 * This creates a row in the table if it doesn't already exist.
 	 *
-	 * @note If called within an atomic section, there is a chance for the acquired ID
-	 * to be lost on rollback. A best effort is made to re-insert the mapping
-	 * in this case, and consistency of the cache with the database table is ensured
-	 * by re-loading the map after a failed atomic section. However, there is no guarantee
-	 * that an ID returned by this method is valid outside the transaction in which it
-	 * was produced. This means that calling code should not retain the return value beyond
-	 * the scope of a transaction, but rather call acquireId() again after the transaction
-	 * is complete. In some rare cases, this may produce an ID different from the first call.
+	 * @note If called within an atomic section, there is a chance for the acquired ID to be
+	 * lost on rollback. There is no guarantee that an ID returned by this method is valid
+	 * outside the transaction in which it was produced. This means that calling code should
+	 * not retain the return value beyond the scope of a transaction, but rather call acquireId()
+	 * again after the transaction is complete. In some rare cases, this may produce an ID
+	 * different from the first call.
 	 *
 	 * @param string $name
 	 * @throws NameTableAccessException
@@ -165,44 +163,23 @@ class NameTableStore {
 		$searchResult = array_search( $name, $table, true );
 		if ( $searchResult === false ) {
 			$id = $this->store( $name );
-			if ( $id === null ) {
-				// RACE: $name was already in the db, probably just inserted, so load from primary DB.
-				// Use DBO_TRX to avoid missing inserts due to other threads or REPEATABLE-READs.
-				$table = $this->reloadMap( ILoadBalancer::CONN_TRX_AUTOCOMMIT );
 
-				$searchResult = array_search( $name, $table, true );
-				if ( $searchResult === false ) {
-					// Insert failed due to IGNORE flag, but DB_PRIMARY didn't give us the data
-					$m = "No insert possible but primary DB didn't give us a record for " .
-						"'{$name}' in '{$this->table}'";
-					$this->logger->error( $m );
-					throw new NameTableAccessException( $m );
-				}
-			} else {
-				if ( isset( $table[$id] ) ) {
-					// This can happen when a transaction is rolled back and acquireId is called in
-					// an onTransactionResolution() callback, which gets executed before retryStore()
-					// has a chance to run. The right thing to do in this case is to discard the old
-					// value. According to the contract of acquireId, the caller should not have
-					// used it outside the transaction, so it should not be persisted anywhere after
-					// the rollback.
-					$m = "Got ID $id for '$name' from insert"
-						. " into '{$this->table}', but ID $id was previously associated with"
-						. " the name '{$table[$id]}'. Overriding the old value, which presumably"
-						. " has been removed from the database due to a transaction rollback.";
-
-					$this->logger->warning( $m );
-				}
-
-				$table[$id] = $name;
-				$searchResult = $id;
-
-				// As store returned an ID we know we inserted so delete from WAN cache
-				$dbw = $this->getDBConnection( DB_PRIMARY );
-				$dbw->onTransactionPreCommitOrIdle( function () {
-					$this->cache->delete( $this->getCacheKey(), WANObjectCache::HOLDOFF_TTL_NONE );
-				}, __METHOD__ );
+			if ( isset( $table[$id] ) ) {
+				// This can happen when a name is assigned an ID within a transaction due to
+				// CONN_TRX_AUTOCOMMIT being unable to use a separate connection (e.g. SQLite).
+				// The right thing to do in this case is to discard the old value. According to
+				// the contract of acquireId, the caller should not have used it outside the
+				// transaction, so it should not be persisted anywhere after the rollback.
+				$m = "Got ID $id for '$name' from insert"
+					. " into '{$this->table}', but ID $id was previously associated with"
+					. " the name '{$table[$id]}'. Overriding the old value, which presumably"
+					. " has been removed from the database due to a transaction rollback.";
+				$this->logger->warning( $m );
 			}
+
+			$table[$id] = $name;
+			$searchResult = $id;
+
 			$this->tableCache = $table;
 		}
 
@@ -222,12 +199,6 @@ class NameTableStore {
 	 * @return string[] The freshly reloaded name map
 	 */
 	public function reloadMap( $connFlags = 0 ) {
-		if ( $connFlags !== 0 && defined( 'MW_PHPUNIT_TEST' ) ) {
-			// HACK: We can't use $connFlags while doing PHPUnit tests, because the
-			// fake database tables are bound to a single connection.
-			$connFlags = 0;
-		}
-
 		$dbw = $this->getDBConnection( DB_PRIMARY, $connFlags );
 		$this->tableCache = $this->loadTable( $dbw );
 		$dbw->onTransactionPreCommitOrIdle( function () {
@@ -334,7 +305,7 @@ class NameTableStore {
 	}
 
 	/**
-	 * @return string[]
+	 * @return array<int,string>
 	 */
 	private function getTableFromCachesOrReplica() {
 		if ( $this->tableCache !== null ) {
@@ -360,8 +331,7 @@ class NameTableStore {
 	 * Gets the table from the db
 	 *
 	 * @param IReadableDatabase $db
-	 *
-	 * @return string[]
+	 * @return array<int,string>
 	 */
 	private function loadTable( IReadableDatabase $db ) {
 		$result = $db->newSelectQueryBuilder()
@@ -375,7 +345,7 @@ class NameTableStore {
 
 		$assocArray = [];
 		foreach ( $result as $row ) {
-			$assocArray[$row->id] = $row->name;
+			$assocArray[(int)$row->id] = $row->name;
 		}
 
 		return $assocArray;
@@ -385,7 +355,7 @@ class NameTableStore {
 	 * Stores the given name in the DB, returning the ID when an insert occurs.
 	 *
 	 * @param string $name
-	 * @return int|null int if we know the ID, null if we don't
+	 * @return int The new or colliding ID
 	 */
 	private function store( string $name ) {
 		Assert::parameter( $name !== '', '$name', 'should not be an empty string' );
@@ -399,15 +369,43 @@ class NameTableStore {
 			->row( $this->getFieldsToStore( $name ) )
 			->caller( __METHOD__ )->execute();
 
-		if ( $dbw->affectedRows() === 0 ) {
-			$this->logger->info(
-				'Tried to insert name into table ' . $this->table . ', but value already existed.'
+		if ( $dbw->affectedRows() > 0 ) {
+			$id = $dbw->insertId();
+			// As store returned an ID we know we inserted so delete from WAN cache
+			$dbw->onTransactionPreCommitOrIdle(
+				function () {
+					$this->cache->delete( $this->getCacheKey() );
+				},
+				__METHOD__
 			);
 
-			return null;
+			return $id;
 		}
 
-		return $dbw->insertId();
+		$this->logger->info(
+			'Tried to insert name into table ' . $this->table . ', but value already existed.'
+		);
+
+		// Note that in MySQL, even if this method somehow runs in a transaction, a plain
+		// (non-locking) SELECT will see the new row created by the other transaction, even
+		// with REPEATABLE-READ. This is due to how "consistent reads" works: the latest
+		// version of rows become visible to the snapshot after the transaction sees those
+		// rows as either matching an update query or conflicting with an insert query.
+		$id = $dbw->newSelectQueryBuilder()
+			->select( [ 'id' => $this->idField ] )
+			->from( $this->table )
+			->where( [ $this->nameField => $name ] )
+			->caller( __METHOD__ )->fetchField();
+
+		if ( $id === false ) {
+			// Insert failed due to IGNORE flag, but DB_PRIMARY didn't give us the data
+			$m = "No insert possible but primary DB didn't give us a record for " .
+				"'{$name}' in '{$this->table}'";
+			$this->logger->error( $m );
+			throw new NameTableAccessException( $m );
+		}
+
+		return (int)$id;
 	}
 
 	/**
