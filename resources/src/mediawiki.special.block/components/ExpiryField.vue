@@ -61,7 +61,7 @@
 const { defineComponent, ref, computed, watch } = require( 'vue' );
 const { CdxField, CdxRadio, CdxSelect, CdxTextInput } = require( '@wikimedia/codex' );
 
-module.exports = defineComponent( {
+module.exports = exports = defineComponent( {
 	name: 'ExpiryField',
 	components: {
 		CdxField,

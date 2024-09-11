@@ -8,7 +8,7 @@
 const { defineComponent } = require( 'vue' );
 
 // @vue/component
-module.exports = defineComponent( {
+module.exports = exports = defineComponent( {
 	name: 'TargetActiveBlocks'
 } );
 </script>
