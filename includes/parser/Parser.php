@@ -5435,7 +5435,8 @@ class Parser {
 
 				# Special case; width and height come in one variable together
 				if ( $type === 'handler' && $paramName === 'width' ) {
-					$parsedWidthParam = $this->parseWidthParam( $value );
+					// The 'px' suffix has already been localized by img_width
+					$parsedWidthParam = $this->parseWidthParam( $value, true, true );
 					// Parsoid applies data-(width|height) attributes to broken
 					// media spans, for client use.  See T273013
 					$validateFunc = static function ( $name, $value ) use ( $handler ) {
@@ -6373,17 +6374,27 @@ class Parser {
 	 *
 	 * @param string $value
 	 * @param bool $parseHeight
+	 * @param bool $localized Defaults to false; set to true if the $value
+	 *   has already been matched against `img_width` to localize the `px`
+	 *   suffix.
 	 *
 	 * @return array
 	 * @since 1.20
 	 * @internal
 	 */
-	public function parseWidthParam( $value, $parseHeight = true ) {
+	public function parseWidthParam( $value, $parseHeight = true, bool $localized = false ) {
 		$parsedWidthParam = [];
 		if ( $value === '' ) {
 			return $parsedWidthParam;
 		}
 		$m = [];
+		if ( !$localized ) {
+			// Strip a localized 'px' suffix (T374311)
+			$mwArray = $this->magicWordFactory->newArray( [ 'img_width' ] );
+			[ $magicWord, $newValue ] = $mwArray->matchVariableStartToEnd( $value );
+			$value = $magicWord ? $newValue : $value;
+		}
+
 		# (T15500) In both cases (width/height and width only),
 		# permit trailing "px" for backward compatibility.
 		if ( $parseHeight && preg_match( '/^([0-9]*)x([0-9]*)\s*(px)?\s*$/', $value, $m ) ) {

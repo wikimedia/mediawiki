@@ -520,6 +520,34 @@ cat=Pages_with_image_sizes_containing_extra_px sort=
 !! end
 
 !! test
+T374311: Gallery with trailing px should not trigger double-px
+!! config
+wgParserEnableLegacyMediaDOM=false
+!! options
+parsoid=wt2html
+cat
+!! wikitext
+<gallery widths="100px">
+File:Foobar.jpg
+</gallery>
+!! metadata
+!! html/php
+<ul class="gallery mw-gallery-traditional">
+		<li class="gallerybox" style="width: 135px">
+			<div class="thumb" style="width: 130px; height: 150px;"><span typeof="mw:File"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/100px-Foobar.jpg" decoding="async" width="100" height="11" class="mw-file-element" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/150px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg 2x" /></a></span></div>
+			<div class="gallerytext"></div>
+		</li>
+</ul>
+!! html/parsoid
+<ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" data-mw='{"name":"gallery","attrs":{"widths":"100px"},"body":{}}'>
+<li class="gallerybox" style="width: 135px;">
+<div class="thumb" style="width: 130px; height: 150px;"><span typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/100px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="11" width="100" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/150px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg 2x" class="mw-file-element"/></a></span></div>
+<div class="gallerytext"></div>
+</li>
+</ul>
+!! end
+
+!! test
 Image with link parameter, wiki target
 !! config
 wgParserEnableLegacyMediaDOM=false
