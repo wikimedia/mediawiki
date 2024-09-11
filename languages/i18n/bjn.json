@@ -806,7 +806,7 @@
 	"searchrelated": "bakulaan",
 	"searchall": "samunyaan",
 	"search-showingresults": "{{PLURAL:$4|Kulihan <strong>$1</strong> matan <strong>$3</strong>|Kulihan <strong>$1 - $2</strong> matan <strong>$3</strong>}}",
-	"search-nonefound": "Kadada hasil nang pas lawan pamintaan.",
+	"search-nonefound": "Kadada hasil nang pas lawan pamintan.",
 	"powersearch-legend": "Panggagaian mahir",
 	"powersearch-ns": "Manggagai di ngaran kamar:",
 	"powersearch-togglelabel": "Pilihi:",

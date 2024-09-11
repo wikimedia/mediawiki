@@ -3757,7 +3757,7 @@
 	"purge": "Purger",
 	"specialpurge-page": "Page cible",
 	"specialpurge-submit": "Aller à la page",
-	"namespaceinfo": "Informations sur l'espace de noms",
+	"namespaceinfo": "Informations sur les espaces de noms",
 	"namespaceinfo-heading-id": "ID",
 	"namespaceinfo-heading-canonical": "Nom canonique",
 	"namespaceinfo-heading-local": "Nom local",

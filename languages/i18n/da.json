@@ -835,6 +835,7 @@
 	"unstrip-size-warning": "Unstrip størrelsesgrænse er nået ($1)",
 	"unstrip-size-category": "Sider hvor størrelsesgrænsen for unstrip er nået",
 	"unstrip-size-category-desc": "Siden overskrider grænsen for unstrip størrelse.",
+	"bad-language-code-category": "Sider med ugyldige sprogkoder",
 	"double-px-category": "Sider med billedstørrelser, der indeholder ekstra px",
 	"converter-manual-rule-error": "Fejl opdaget i manuel sprogkonvertingsregel",
 	"undo-success": "Redigeringen kan fortrydes.\nKontroller venligst sammenligningen herunder for at bekræfte at det er hvad du ønsker at gøre, og gem så ændringerne for at fuldføre fjernelsen.",

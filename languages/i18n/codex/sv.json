@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"WikiPhoenix",
+			"Yupik"
+		]
+	},
+	"cdx-chip-input-chip-added": "Chip $1 lades till.",
+	"cdx-chip-input-chip-removed": "Chip $1 togs bort.",
+	"cdx-input-chip-aria-description": "Tryck på Enter för att redigera eller Delete för att ta bort.",
+	"cdx-dialog-close-button-label": "Stäng",
+	"cdx-label-optional-flag": "(valfritt)",
+	"cdx-message-dismiss-button-label": "Stäng",
+	"cdx-search-input-search-button-label": "Sök",
+	"cdx-table-select-all-label": "Markera alla rader",
+	"cdx-table-select-row-label": "Markera rad $1 av $2",
+	"cdx-table-sort-caption": "$1, kolumnrubriker med knappar går att sortera.",
+	"cdx-typeahead-search-search-results-label": "Sökresultat",
+	"cdx-table-pager-button-first-page": "Första sidan",
+	"cdx-table-pager-button-last-page": "Sista sidan",
+	"cdx-table-pager-button-next-page": "Nästa sida",
+	"cdx-table-pager-button-prev-page": "Föregående sida",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 rad|$1 rader}}",
+	"cdx-table-pager-items-per-page-default": "Resultat per sida",
+	"cdx-table-pagination-status-message-determinate-long": "Visar resultat $1–$2 av $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 av $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Visar resultat $1–$2 av många",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 av många",
+	"cdx-table-pagination-status-message-indeterminate-final": "Visar {{PLURAL:$1|det senaste resultatet|de $1 senaste resultaten}}",
+	"cdx-table-pagination-status-message-pending": "Läser in resultat..."
+}

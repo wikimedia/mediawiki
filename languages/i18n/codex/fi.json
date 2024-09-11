@@ -4,13 +4,15 @@
 			"Samoasambia"
 		]
 	},
+	"cdx-chip-input-chip-added": "Chip $1 lisättiin.",
+	"cdx-chip-input-chip-removed": "Chip $1 poistettiin.",
 	"cdx-input-chip-aria-description": "Paina Enter muokataksesi tai Delete poistaaksesi.",
 	"cdx-dialog-close-button-label": "Sulje",
 	"cdx-label-optional-flag": "(valinnainen)",
 	"cdx-message-dismiss-button-label": "Sulje",
 	"cdx-search-input-search-button-label": "Hae",
 	"cdx-table-select-all-label": "Valitse kaikki rivit",
-	"cdx-table-select-row-label": "Valitse rivi $1/$2",
+	"cdx-table-select-row-label": "Valitse rivi $1 / $2",
 	"cdx-table-sort-caption": "$1, sarakeotsikot, joissa painikkeet, ovat lajitettavissa.",
 	"cdx-typeahead-search-search-results-label": "Hakutulokset",
 	"cdx-table-pager-button-first-page": "Ensimmäinen sivu",
@@ -18,5 +20,11 @@
 	"cdx-table-pager-button-next-page": "Seuraava sivu",
 	"cdx-table-pager-button-prev-page": "Edellinen sivu",
 	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 rivi|$1 riviä}}",
+	"cdx-table-pager-items-per-page-default": "Tuloksia sivulla",
+	"cdx-table-pagination-status-message-determinate-long": "Näytetään tulokset $1–$2 / $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 / $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Näytetään tulokset $1–$2 / monta",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 / monta",
+	"cdx-table-pagination-status-message-indeterminate-final": "Näytetään {{PLURAL:$1|viimeinen $1 tulos|viimeiset $1 tulosta}}",
 	"cdx-table-pagination-status-message-pending": "Ladataan tuloksia..."
 }
