@@ -122,15 +122,21 @@ class GrepPages extends Maintenance {
 				$orConds[] = $prefixExpr;
 			}
 		}
-		$res = $dbr->newSelectQueryBuilder()
-			->queryInfo( WikiPage::getQueryInfo() )
-			->where( $orConds ? $dbr->orExpr( $orConds ) : [] )
-			->caller( __METHOD__ )
-			->fetchResultSet();
-		foreach ( $res as $row ) {
-			$title = Title::newFromRow( $row );
-			yield $this->wikiPageFactory->newFromTitle( $title );
-		}
+		$lastId = 0;
+		do {
+			$res = $dbr->newSelectQueryBuilder()
+				->queryInfo( WikiPage::getQueryInfo() )
+				->where( $orConds ? $dbr->orExpr( $orConds ) : [] )
+				->andWhere( $dbr->expr( 'page_id', '>', $lastId ) )
+				->limit( 200 )
+				->caller( __METHOD__ )
+				->fetchResultSet();
+			foreach ( $res as $row ) {
+				$title = Title::newFromRow( $row );
+				yield $this->wikiPageFactory->newFromTitle( $title );
+				$lastId = $row->page_id;
+			}
+		} while ( $res->numRows() );
 	}
 }
 
