@@ -39,8 +39,6 @@ class PPDStack_Hash {
 	public $out;
 	public $elementClass = PPDStackElement_Hash::class;
 
-	public static $false = false;
-
 	public function __construct() {
 		$this->stack = [];
 		$this->top = false;
@@ -91,7 +89,7 @@ class PPDStack_Hash {
 			$this->top = $this->stack[count( $this->stack ) - 1];
 			$this->accum =& $this->top->getAccum();
 		} else {
-			$this->top = self::$false;
+			$this->top = false;
 			$this->accum =& $this->rootAccum;
 		}
 		return $temp;
