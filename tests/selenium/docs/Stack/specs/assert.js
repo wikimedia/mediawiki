@@ -13,7 +13,7 @@ const assert = require( 'assert' );
 
 describe( 'Main page', () => {
 	it( 'should have "Log in" link when using assert', async () => {
-		await browser.url( `${ baseUrl }/Main_Page` );
+		await browser.url( `${ baseUrl }Main_Page` );
 		const displayed = await $( 'li#pt-login-2 a' ).isDisplayed();
 		assert( displayed );
 	} );

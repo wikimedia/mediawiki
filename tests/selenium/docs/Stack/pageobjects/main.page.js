@@ -17,7 +17,7 @@ class MainPage extends Page {
 	}
 
 	async open() {
-		await super.open( `${ baseUrl }/Main_Page` );
+		await super.open( `${ baseUrl }Main_Page` );
 	}
 }
 module.exports = new MainPage();
