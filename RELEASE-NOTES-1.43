@@ -950,6 +950,10 @@ because of Phabricator reports.
   details, see <https://developer.mozilla.org/en-US/docs/Web/API/URL>.
 * The parameter $default in WebRequest::getRawVal() is deprecated. Use ??
   instead.
+* SpecialBlock::processForm(), SpecialBlock::parseExpiryInput() and
+  SpecialBlock::canBlockEmail(), deprecated since 1.36, and
+  SpecialBlock::getSuggestedDurations(), deprecated since 1.42, now emit
+  deprecation warnings.
 * …
 
 === Other changes in 1.43 ===

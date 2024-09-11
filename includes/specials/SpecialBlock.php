@@ -896,12 +896,14 @@ class SpecialBlock extends FormSpecialPage {
 	/**
 	 * Given the form data, actually implement a block.
 	 *
-	 * @deprecated since 1.36, use BlockUserFactory service instead
+	 * @deprecated since 1.36, use BlockUserFactory service instead,
+	 *     hard-deprecated since 1.43
 	 * @param array $data
 	 * @param IContextSource $context
 	 * @return bool|string|array|Status
 	 */
 	public static function processForm( array $data, IContextSource $context ) {
+		wfDeprecated( __METHOD__, '1.36' );
 		$services = MediaWikiServices::getInstance();
 		return self::processFormInternal(
 			$data,
@@ -1070,7 +1072,8 @@ class SpecialBlock extends FormSpecialPage {
 	 * Get an array of suggested block durations from MediaWiki:Ipboptions
 	 * @todo FIXME: This uses a rather odd syntax for the options, should it be converted
 	 *     to the standard "**<duration>|<displayname>" format?
-	 * @deprecated since 1.42, use Language::getBlockDurations() instead.
+	 * @deprecated since 1.42, use Language::getBlockDurations() instead,
+	 *     hard-deprecated since 1.43
 	 * @param Language|null $lang The language to get the durations in, or null to use
 	 *     the wiki's content language
 	 * @param bool $includeOther Whether to include the 'other' option in the list of
@@ -1078,6 +1081,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return string[]
 	 */
 	public static function getSuggestedDurations( Language $lang = null, $includeOther = true ) {
+		wfDeprecated( __METHOD__, '1.42' );
 		$lang ??= MediaWikiServices::getInstance()->getContentLanguage();
 		return $lang->getBlockDurations( $includeOther );
 	}
@@ -1086,23 +1090,27 @@ class SpecialBlock extends FormSpecialPage {
 	 * Convert a submitted expiry time, which may be relative ("2 weeks", etc) or absolute
 	 * ("24 May 2034", etc), into an absolute timestamp we can put into the database.
 	 *
-	 * @deprecated since 1.36, use BlockUser::parseExpiryInput instead
+	 * @deprecated since 1.36, use BlockUser::parseExpiryInput instead,
+	 *     hard-deprecated since 1.43
 	 *
 	 * @param string $expiry Whatever was typed into the form
 	 * @return string|bool Timestamp or 'infinity' or false on error.
 	 */
 	public static function parseExpiryInput( $expiry ) {
+		wfDeprecated( __METHOD__, '1.36' );
 		return BlockUser::parseExpiryInput( $expiry );
 	}
 
 	/**
 	 * Can we do an email block?
 	 *
-	 * @deprecated since 1.36, use BlockPermissionChecker service instead
+	 * @deprecated since 1.36, use BlockPermissionChecker service instead,
+	 *     hard-deprecated since 1.43
 	 * @param UserIdentity $user The sysop wanting to make a block
 	 * @return bool
 	 */
 	public static function canBlockEmail( UserIdentity $user ) {
+		wfDeprecated( __METHOD__, '1.36' );
 		return MediaWikiServices::getInstance()
 			->getBlockPermissionCheckerFactory()
 			->newBlockPermissionChecker( null, User::newFromIdentity( $user ) )
