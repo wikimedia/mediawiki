@@ -1,11 +1,12 @@
 <?php
 
-namespace MediaWiki\Tests\Maintenance;
+namespace MediaWiki\Tests\Maintenance\Includes;
 
 use Maintenance;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Tests\Maintenance\MaintenanceBaseTestCase;
 use PHPUnit\Framework\Assert;
 use Wikimedia\TestingAccessWrapper;
 
@@ -645,6 +646,12 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		];
 	}
 
+	public function testValidateUserOptionForValidUser() {
+		$testUser = $this->getTestUser()->getUserIdentity();
+		$this->maintenance->setOption( 'userid', $testUser->getId() );
+		$this->assertTrue( $testUser->equals( $this->maintenance->validateUserOption( "unused" ) ) );
+	}
+
 	public function testRunChildForNonExistentClass() {
 		$this->expectCallToFatalError();
 		$this->expectOutputRegex( '/Cannot spawn child.*NonExistingTestClassForMaintenanceTest/' );
@@ -662,6 +669,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 	/** @dataProvider provideSetBatchSize */
 	public function testSetBatchSize( $batchSize, $shouldHaveBatchSizeOption ) {
 		$this->maintenance->setBatchSize( $batchSize );
+		$this->assertSame( $batchSize, $this->maintenance->getBatchSize() );
 		$this->assertSame(
 			$shouldHaveBatchSizeOption,
 			$this->maintenance->supportsOption( 'batch-size' )
@@ -679,5 +687,55 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 		// Regression test for the method breaking if no rows exist in the content_address table.
 		$this->maintenance->purgeRedundantText();
 		$this->expectOutputRegex( '/0 inactive items found[\s\S]*(?!Deleting)/' );
+	}
+
+	public function testDeleteOptionLoop() {
+		$this->maintenance->addOption( 'test-for-deletion', 'testing' );
+		$this->assertTrue( $this->maintenance->getParameters()->supportsOption( 'test-for-deletion' ) );
+		$this->maintenance->deleteOption( 'test-for-deletion' );
+		$this->assertFalse( $this->maintenance->getParameters()->supportsOption( 'test-for-deletion' ) );
+	}
+
+	public function testAddDescription() {
+		$this->maintenance->addDescription( 'testing-description abcdef' );
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( '/testing-description abcdef/' );
+		$this->maintenance->getParameters()->setName( 'test.php' );
+		$this->maintenance->maybeHelp( true );
+	}
+
+	public function testGetArgName() {
+		$this->maintenance->addArg( 'testing', 'test' );
+		$this->assertSame( 'testing', $this->maintenance->getArgName( 0 ) );
+	}
+
+	public function testHasArg() {
+		$this->maintenance->addArg( 'testing', 'test' );
+		$this->maintenance->setArg( 'testing', 'abc' );
+		$this->assertTrue( $this->maintenance->hasArg( 0 ) );
+		$this->assertTrue( $this->maintenance->hasArg( 'testing' ) );
+		$this->assertSame( [ 'abc' ], $this->maintenance->getArgs() );
+	}
+
+	public function testSetName() {
+		$this->maintenance->setName( 'test.php' );
+		$this->assertSame( 'test.php', $this->maintenance->getName() );
+		$this->assertSame( 'test.php', $this->maintenance->getParameters()->getName() );
+	}
+
+	public function testGetDir() {
+		$this->assertSame( realpath( MW_INSTALL_PATH . '/maintenance' ), realpath( $this->maintenance->getDir() ) );
+	}
+
+	/** @dataProvider provideParseIntList */
+	public function testParseIntList( $text, $expected ) {
+		$this->assertArrayEquals( $expected, $this->maintenance->parseIntList( $text ) );
+	}
+
+	public static function provideParseIntList() {
+		return [
+			'Integers separated by ","' => [ '1,2,3,3', [ 1, 2, 3, 3 ] ],
+			'Integers separated by "|"' => [ '1|2|3|4|4', [ 1, 2, 3, 4, 4 ] ],
+		];
 	}
 }
