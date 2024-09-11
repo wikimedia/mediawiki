@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Maintenance\MaintenanceBaseTestCase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -53,11 +54,67 @@ class ResetUserEmailTest extends MaintenanceBaseTestCase {
 		$testUserBeforeExecution = $this->getTestSysop()->getUser();
 		$oldEmail = $testUserBeforeExecution->getEmail();
 		$this->assertNotNull( $oldEmail );
+		$passwordHashBeforeExecution = $this->newSelectQueryBuilder()
+			->select( 'user_password' )
+			->from( 'user' )
+			->where( [ 'user_id' => $testUserBeforeExecution->getId() ] )
+			->fetchField();
 		// Test providing the maintenance script with a user ID.
 		$this->commonTestEmailReset(
 			"#" . $testUserBeforeExecution->getId(), [ 'no-reset-password' => 1 ],
 			$testUserBeforeExecution->getName(), $oldEmail
 		);
+		// Check that the password hash for the user has not changed
+		$passwordAfterExecution = $this->newSelectQueryBuilder()
+			->select( 'user_password' )
+			->from( 'user' )
+			->where( [ 'user_id' => $testUserBeforeExecution->getId() ] )
+			->fetchField();
+		$this->assertSame( $passwordHashBeforeExecution, $passwordAfterExecution );
+	}
+
+	public function testEmailReset() {
+		// Target an existing user with an email attached
+		$testUserBeforeExecution = $this->getTestSysop()->getUser();
+		$oldEmail = $testUserBeforeExecution->getEmail();
+		$this->assertNotNull( $oldEmail );
+		$passwordHashBeforeExecution = $this->newSelectQueryBuilder()
+			->select( 'user_password' )
+			->from( 'user' )
+			->where( [ 'user_id' => $testUserBeforeExecution->getId() ] )
+			->fetchField();
+		// Test providing the maintenance script with a user ID.
+		$this->commonTestEmailReset(
+			"#" . $testUserBeforeExecution->getId(), [],
+			$testUserBeforeExecution->getName(), $oldEmail
+		);
+		// Check that the password hash for the user has changed
+		$passwordAfterExecution = $this->newSelectQueryBuilder()
+			->select( 'user_password' )
+			->from( 'user' )
+			->where( [ 'user_id' => $testUserBeforeExecution->getId() ] )
+			->fetchField();
+		$this->assertNotSame( $passwordHashBeforeExecution, $passwordAfterExecution );
+	}
+
+	public function testEmailResetWithNoPasswordResetAndEmailPasswordOnFailure() {
+		$this->overrideConfigValue( MainConfigNames::EnableEmail, true );
+		// Abort all password reset submissions for the test
+		$this->setTemporaryHook( 'SpecialPasswordResetOnSubmit', static function ( $users, $data, &$error ) {
+			$error = 'test';
+			return false;
+		} );
+		// Target an existing user with an email attached
+		$testUserBeforeExecution = $this->getTestSysop()->getUser();
+		$oldEmail = $testUserBeforeExecution->getEmail();
+		$this->assertNotNull( $oldEmail );
+		// Test providing the maintenance script with a username.
+		$this->commonTestEmailReset(
+			$testUserBeforeExecution->getName(), [ 'no-reset-password' => 1, 'email-password' => 1 ],
+			$testUserBeforeExecution->getName(),
+			$oldEmail
+		);
+		$this->expectOutputRegex( "/Email couldn't be sent because[\s\S]*Done/" );
 	}
 
 	public function testEmailResetOnInvalidNewEmail() {
