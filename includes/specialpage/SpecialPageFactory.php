@@ -529,6 +529,7 @@ class SpecialPageFactory {
 				'TitleFormatter',
 				'NamespaceInfo',
 				'UserOptionsLookup',
+				'WatchlistManager'
 			]
 		],
 		'Unblock' => [
