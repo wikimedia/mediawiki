@@ -250,8 +250,8 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @param string $proxy URL of proxy
 	 */
 	protected function setReverseProxy( string $proxy ) {
-		$parsedProxy = $this->urlUtils->parse( $proxy ) ?? false;
-		if ( $parsedProxy === false ) {
+		$parsedProxy = $this->urlUtils->parse( $proxy );
+		if ( $parsedProxy === null ) {
 			throw new InvalidArgumentException( "Invalid reverseProxy configured: $proxy" );
 		}
 		// Set the current host in the Host header
@@ -264,7 +264,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 		} else {
 			unset( $this->parsedUrl['port'] );
 		}
-		$this->url = UrlUtils::assemble( (array)$this->parsedUrl );
+		$this->url = UrlUtils::assemble( $this->parsedUrl );
 		// Mark that we're already using a proxy
 		$this->noProxy = true;
 	}

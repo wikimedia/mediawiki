@@ -87,7 +87,7 @@ class UploadFromUrl extends UploadBase {
 		if ( !count( $domains ) ) {
 			return true;
 		}
-		$parsedUrl = wfParseUrl( $url );
+		$parsedUrl = wfGetUrlUtils()->parse( $url );
 		if ( !$parsedUrl ) {
 			return false;
 		}

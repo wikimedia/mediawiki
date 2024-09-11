@@ -57,7 +57,8 @@ class RedisPubSubFeedEngine extends FormattedRCFeed {
 	 * @return bool
 	 */
 	public function send( array $feed, $line ) {
-		$parsed = wfParseUrl( $feed['uri'] );
+		$parsed = wfGetUrlUtils()->parse( $feed['uri'] );
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable Valid URL
 		$server = $parsed['host'];
 		$options = [ 'serializer' => 'none' ];
 		$channel = 'rc';

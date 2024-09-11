@@ -334,12 +334,12 @@ class ContentSecurityPolicy {
 			// A schema source (e.g. blob: or data:)
 			return $url;
 		}
-		$bits = wfParseUrl( $url );
+		$bits = wfGetUrlUtils()->parse( $url );
 		if ( !$bits && strpos( $url, '/' ) === false ) {
 			// probably something like example.com.
 			// try again protocol-relative.
 			$url = '//' . $url;
-			$bits = wfParseUrl( $url );
+			$bits = wfGetUrlUtils()->parse( $url );
 		}
 		if ( $bits && isset( $bits['host'] )
 			&& $bits['host'] !== $this->mwConfig->get( MainConfigNames::ServerName )
