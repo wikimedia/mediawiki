@@ -69,6 +69,7 @@ module.exports = defineComponent( {
 		const blockPartialOptionsSelected = ref( [ 'ipb-action-create' ] );
 		const blockAllowsUTEdit = mw.config.get( 'blockAllowsUTEdit' ) || false;
 		const blockEmailBan = mw.config.get( 'blockAllowsEmailBan' ) || false;
+		const blockAutoblockExpiry = mw.config.get( 'blockAutoblockExpiry' );
 		const hideUser = mw.config.get( 'hideUser' ) || false;
 		const blockDetailsSelected = ref( [] );
 		const blockDetailsOptions = [
@@ -94,7 +95,7 @@ module.exports = defineComponent( {
 
 		const additionalDetailsSelected = ref( [ 'wpAutoBlock' ] );
 		const additionalDetailsOptions = [ {
-			label: mw.message( 'ipbenableautoblock' ),
+			label: mw.message( 'ipbenableautoblock', blockAutoblockExpiry ),
 			value: 'wpAutoBlock',
 			disabled: false
 		} ];

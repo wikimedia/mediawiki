@@ -431,6 +431,8 @@ class SpecialBlock extends FormSpecialPage {
 			'default' => true,
 			'section' => 'options',
 		];
+		$this->codexFormData['blockAutoblockExpiry'] = $this->getLanguage()
+			->formatDuration( $conf->get( MainConfigNames::AutoblockExpiry ) );
 
 		// Allow some users to hide name from block log, blocklist and listusers
 		if ( $this->getAuthority()->isAllowed( 'hideuser' ) ) {
@@ -441,7 +443,7 @@ class SpecialBlock extends FormSpecialPage {
 				'section' => 'options',
 			];
 
-			$this->codexFormData[ 'hideUser'] = true;
+			$this->codexFormData['hideUser'] = true;
 		}
 
 		// Watchlist their user page? (Only if user is logged in)
