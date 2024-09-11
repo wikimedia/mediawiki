@@ -12,7 +12,7 @@ const baseUrl = `${ process.env.MW_SERVER }${ process.env.MW_SCRIPT_PATH }/index
 const assert = require( 'assert' );
 
 describe( 'Main page', () => {
-	it( 'should have "Log in" link', async () => {
+	it( 'should have "Log in" link when using assert', async () => {
 		await browser.url( `${ baseUrl }/Main_Page` );
 		const displayed = await $( 'li#pt-login-2 a' ).isDisplayed();
 		assert( displayed );

@@ -7,7 +7,7 @@ const assert = require( 'assert' );
 const MainPage = require( '../pageobjects/main.page' );
 
 describe( 'Main Page', () => {
-	it( 'should have "Log in" link', async () => {
+	it( 'should have "Log in" link when using page object', async () => {
 		await MainPage.open();
 		assert( await MainPage.login.isDisplayed() );
 	} );
