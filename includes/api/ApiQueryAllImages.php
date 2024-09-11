@@ -359,12 +359,12 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 				ParamValidator::PARAM_TYPE => 'timestamp'
 			],
 			'prop' => [
-				ParamValidator::PARAM_TYPE => ApiQueryImageInfo::getPropertyNames( $this->propertyFilter ),
+				ParamValidator::PARAM_TYPE => ApiQueryImageInfo::getPropertyNames( self::PROPERTY_FILTER ),
 				ParamValidator::PARAM_DEFAULT => 'timestamp|url',
 				ParamValidator::PARAM_ISMULTI => true,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+imageinfo-param-prop',
 				ApiBase::PARAM_HELP_MSG_PER_VALUE =>
-					ApiQueryImageInfo::getPropertyMessages( $this->propertyFilter ),
+					ApiQueryImageInfo::getPropertyMessages( self::PROPERTY_FILTER ),
 			],
 			'prefix' => null,
 			'minsize' => [
@@ -406,7 +406,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 		return $ret;
 	}
 
-	private $propertyFilter = [ 'archivename', 'thumbmime', 'uploadwarning' ];
+	private const PROPERTY_FILTER = [ 'archivename', 'thumbmime', 'uploadwarning' ];
 
 	protected function getExamplesMessages() {
 		return [

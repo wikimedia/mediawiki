@@ -96,7 +96,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 		}
 	}
 
-	private static $propertyFilter = [
+	private const PROPERTY_FILTER = [
 		'user', 'userid', 'comment', 'parsedcomment',
 		'mediatype', 'archivename', 'uploadwarning',
 	];
@@ -108,7 +108,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 	 * @return array
 	 */
 	public static function getPropertyNames( $filter = null ) {
-		return parent::getPropertyNames( $filter ?? self::$propertyFilter );
+		return parent::getPropertyNames( $filter ?? self::PROPERTY_FILTER );
 	}
 
 	/**
@@ -118,7 +118,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 	 * @return array
 	 */
 	public static function getPropertyMessages( $filter = null ) {
-		return parent::getPropertyMessages( $filter ?? self::$propertyFilter );
+		return parent::getPropertyMessages( $filter ?? self::PROPERTY_FILTER );
 	}
 
 	public function getAllowedParams() {

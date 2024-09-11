@@ -62,7 +62,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 	private TitleFactory $titleFactory;
 	private LinksMigration $linksMigration;
 
-	protected $limits = [ 20, 50, 100, 250, 500 ];
+	private const LIMITS = [ 20, 50, 100, 250, 500 ];
 
 	/**
 	 * @param IConnectionProvider $dbProvider
@@ -626,7 +626,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 			->setPage( $this->getPageTitle( $this->target->getPrefixedDBkey() ) )
 			// Remove 'target', already included in the request title
 			->setLinkQuery( array_diff_key( $this->opts->getChangedValues(), [ 'target' => null ] ) )
-			->setLimits( $this->limits )
+			->setLimits( self::LIMITS )
 			->setLimitLinkQueryParam( 'limit' )
 			->setCurrentLimit( $this->opts->getValue( 'limit' ) )
 			->setPrevMsg( 'whatlinkshere-prev' )

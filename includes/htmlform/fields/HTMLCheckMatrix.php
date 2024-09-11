@@ -39,7 +39,7 @@ use MediaWiki\Xml\Xml;
  * @stable to extend
  */
 class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
-	private static $requiredParams = [
+	private const REQUIRED_PARAMS = [
 		// Required by underlying HTMLFormField
 		'fieldname',
 		// Required by HTMLCheckMatrix
@@ -52,7 +52,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 	 * @inheritDoc
 	 */
 	public function __construct( $params ) {
-		$missing = array_diff( self::$requiredParams, array_keys( $params ) );
+		$missing = array_diff( self::REQUIRED_PARAMS, array_keys( $params ) );
 		if ( $missing ) {
 			throw new HTMLFormFieldRequiredOptionsException( $this, $missing );
 		}

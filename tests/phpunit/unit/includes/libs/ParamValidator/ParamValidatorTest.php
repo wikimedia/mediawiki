@@ -28,7 +28,7 @@ class ParamValidatorTest extends TestCase {
 			new SimpleCallbacks( [] ),
 			new ObjectFactory( $this->getMockForAbstractClass( ContainerInterface::class ) )
 		);
-		$this->assertSame( array_keys( ParamValidator::$STANDARD_TYPES ), $validator->knownTypes() );
+		$this->assertSame( array_keys( ParamValidator::STANDARD_TYPES ), $validator->knownTypes() );
 
 		$validator = new ParamValidator(
 			new SimpleCallbacks( [] ),
@@ -194,7 +194,7 @@ class ParamValidatorTest extends TestCase {
 		$validator = new ParamValidator(
 			$callbacks,
 			new ObjectFactory( $this->getMockForAbstractClass( ContainerInterface::class ) ),
-			[ 'typeDefs' => [ 'foo' => $mock1, 'NULL' => $mock2 ] + ParamValidator::$STANDARD_TYPES ]
+			[ 'typeDefs' => [ 'foo' => $mock1, 'NULL' => $mock2 ] + ParamValidator::STANDARD_TYPES ]
 		);
 
 		$this->assertEquals( $expect, $validator->checkSettings( 'dummy', $settings, [] ) );
@@ -603,7 +603,7 @@ class ParamValidatorTest extends TestCase {
 				'foo' => 'x|y|z'
 			] ),
 			new ObjectFactory( $this->getMockForAbstractClass( ContainerInterface::class ) ),
-			[ 'typeDefs' => ParamValidator::$STANDARD_TYPES ]
+			[ 'typeDefs' => ParamValidator::STANDARD_TYPES ]
 		);
 
 		$options = [
@@ -649,7 +649,7 @@ class ParamValidatorTest extends TestCase {
 		$validator = new ParamValidator(
 			new SimpleCallbacks( [] ),
 			new ObjectFactory( $this->getMockForAbstractClass( ContainerInterface::class ) ),
-			[ 'typeDefs' => ParamValidator::$STANDARD_TYPES ]
+			[ 'typeDefs' => ParamValidator::STANDARD_TYPES ]
 		);
 
 		$this->expectException( $expectedException );
