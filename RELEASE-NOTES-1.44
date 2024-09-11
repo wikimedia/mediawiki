@@ -412,6 +412,9 @@ because of Phabricator reports.
   marked as @internal and must not be used by extensions.
 * The modules codex-search-styles and @wikimedia/codex-search have been
   removed. Please use MediaWiki\\ResourceLoader\\CodexModule instead.
+* SpecialBlock::processForm(), SpecialBlock::parseExpiryInput() and
+  SpecialBlock::canBlockEmail(), deprecated in 1.36, and
+  SpecialBlock::getSuggestedDurations(), deprecated in 1.42, has been removed.
 * …
 
 === Deprecations in 1.44 ===
