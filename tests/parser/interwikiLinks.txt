@@ -71,13 +71,20 @@ parsoid=wt2html,wt2wt
 </ul>
 !! end
 
+# Note that fragment is suppressed in metadata
 !! test
 Interwiki link with fragment (T4130)
+!! options
+iwl
+!! metadata
+iwl=meatball:SoftSecurity
 !! wikitext
 [[MeatBall:SoftSecurity#foo]]
-!! html
+!! html/php
 <p><a href="http://www.usemod.com/cgi-bin/mb.pl?SoftSecurity#foo" class="extiw" title="meatball:SoftSecurity">MeatBall:SoftSecurity#foo</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?SoftSecurity#foo" title="meatball:SoftSecurity" class="extiw">MeatBall:SoftSecurity#foo</a></p>
 !! end
 
 ## The non-local interwiki case here continues to be legacy escaped because of the

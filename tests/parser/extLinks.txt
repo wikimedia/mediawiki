@@ -28,8 +28,12 @@ Dummy article to suppress redlinks in tests
 
 !! test
 External links: non-bracketed
+!! options
+extlinks
 !! wikitext
 Non-bracketed: http://example.com
+!! metadata
+extlink=http://example.com
 !! html
 <p>Non-bracketed: <a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>
 </p>
@@ -489,8 +493,12 @@ ja-style clickable images: [http://example.com http://meta.wikimedia.org/upload/
 
 !! test
 External links: raw ampersand
+!! options
+extlinks
 !! wikitext
 Old &amp; use: http://x&y
+!! metadata
+extlink=http://x&y
 !! html
 <p>Old &amp; use: <a rel="nofollow" class="external free" href="http://x&amp;y">http://x&amp;y</a>
 </p>
@@ -498,8 +506,12 @@ Old &amp; use: http://x&y
 
 !! test
 External links: encoded ampersand
+!! options
+extlinks
 !! wikitext
 Old &amp; use: http://x&amp;y
+!! metadata
+extlink=http://x&y
 !! html/php
 <p>Old &amp; use: <a rel="nofollow" class="external free" href="http://x&amp;y">http://x&amp;y</a>
 </p>
@@ -509,8 +521,12 @@ Old &amp; use: http://x&amp;y
 
 !! test
 External links: encoded equals (T8102)
+!! options
+extlinks
 !! wikitext
 http://example.com/?foo&#61;bar
+!! metadata
+extlink=http://example.com/?foo=bar
 !! html/php
 <p><a rel="nofollow" class="external free" href="http://example.com/?foo=bar">http://example.com/?foo=bar</a>
 </p>
@@ -526,8 +542,12 @@ http://example.com/?foo&#61;bar
 
 !! test
 External links: [raw ampersand]
+!! options
+extlinks
 !! wikitext
 Old &amp; use: [http://x&y]
+!! metadata
+extlink=http://x&y
 !! html/php
 <p>Old &amp; use: <a rel="nofollow" class="external autonumber" href="http://x&amp;y">[1]</a>
 </p>
@@ -541,8 +561,11 @@ Old &amp; use: [http://x&y]
 External links: [encoded ampersand]
 !! options
 parsoid=wt2html,wt2wt,html2html
+extlinks
 !! wikitext
 Old &amp; use: [http://x&amp;y]
+!! metadata
+extlink=http://x&y
 !! html/php
 <p>Old &amp; use: <a rel="nofollow" class="external autonumber" href="http://x&amp;y">[1]</a>
 </p>
@@ -552,8 +575,12 @@ Old &amp; use: [http://x&amp;y]
 
 !! test
 External links: [raw equals]
+!! options
+extlinks
 !! wikitext
 [http://example.com/?foo=bar]
+!! metadata
+extlink=http://example.com/?foo=bar
 !! html/php
 <p><a rel="nofollow" class="external autonumber" href="http://example.com/?foo=bar">[1]</a>
 </p>
@@ -567,8 +594,11 @@ External links: [raw equals]
 External links: [encoded equals] (T8102)
 !! options
 parsoid=wt2html,wt2wt,html2html
+extlinks
 !! wikitext
 [http://example.com/?foo&#61;bar]
+!! metadata
+extlink=http://example.com/?foo=bar
 !! html/php
 <p><a rel="nofollow" class="external autonumber" href="http://example.com/?foo=bar">[1]</a>
 </p>

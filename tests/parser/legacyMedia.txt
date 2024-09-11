@@ -3874,3 +3874,73 @@ wgParserEnableLegacyMediaDOM=true
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Error mw:File/Thumb" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Broken.jpg"><span class="mw-file-element mw-broken-media" resource="./File:Broken.jpg" data-width="180">File:Broken.jpg</span></a><figcaption>A caption for the media.</figcaption></figure>
 !! end
+
+!! test
+Collect media metadata
+!! config
+wgParserEnableLegacyMediaDOM=true
+!! options
+showmedia
+!! wikitext
+[[File:Foobar.jpg|123]]
+!! metadata
+images=Foobar.jpg
+!! html/parsoid
+<p><span class="mw-default-size" typeof="mw:File" data-mw='{"caption":"123"}'><a href="./File:Foobar.jpg" class="mw-file-description" title="123"><img alt="123" resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span></p>
+!! html/php
+<p><a href="/wiki/File:Foobar.jpg" class="image" title="123"><img alt="123" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a>
+</p>
+!! end
+
+!! test
+Fragment in media filename
+!! config
+wgParserEnableLegacyMediaDOM=true
+!! options
+showmedia
+!! wikitext
+[[File:Foobar.jpg#fragment|123]]
+!! metadata
+images=Foobar.jpg
+!! html/parsoid
+<p><span class="mw-default-size" typeof="mw:File" data-mw='{"caption":"123"}'><a href="./File:Foobar.jpg" class="mw-file-description" title="123"><img alt="123" resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span></p>
+!! html/php
+<p><a href="/wiki/File:Foobar.jpg" class="image" title="123"><img alt="123" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a>
+</p>
+!! end
+
+!! test
+Entities in media filenames
+!! config
+wgParserEnableLegacyMediaDOM=true
+!! options
+showmedia
+!! wikitext
+[[File:Hi&#45;ho.jpg|thumb]]
+
+<gallery>
+Hi&#45;ho.jpg
+File:Hi&#45;ho.jpg
+</gallery>
+!! metadata
+images=Hi-ho.jpg
+!! html/php
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Hi-ho.jpg" class="image"><img alt="Hi-ho.jpg" src="http://example.com/images/thumb/9/9d/Hi-ho.jpg/180px-Hi-ho.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/9/9d/Hi-ho.jpg/270px-Hi-ho.jpg 1.5x, http://example.com/images/thumb/9/9d/Hi-ho.jpg/360px-Hi-ho.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Hi-ho.jpg" class="internal" title="Enlarge"></a></div></div></div></div>
+<ul class="gallery mw-gallery-traditional">
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Hi-ho.jpg" class="image"><img alt="Hi-ho.jpg" src="http://example.com/images/thumb/9/9d/Hi-ho.jpg/120px-Hi-ho.jpg" decoding="async" width="120" height="14" srcset="http://example.com/images/thumb/9/9d/Hi-ho.jpg/180px-Hi-ho.jpg 1.5x, http://example.com/images/thumb/9/9d/Hi-ho.jpg/240px-Hi-ho.jpg 2x" /></a></div></div>
+			<div class="gallerytext"></div>
+		</div></li>
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/File:Hi-ho.jpg" class="image"><img alt="Hi-ho.jpg" src="http://example.com/images/thumb/9/9d/Hi-ho.jpg/120px-Hi-ho.jpg" decoding="async" width="120" height="14" srcset="http://example.com/images/thumb/9/9d/Hi-ho.jpg/180px-Hi-ho.jpg 1.5x, http://example.com/images/thumb/9/9d/Hi-ho.jpg/240px-Hi-ho.jpg 2x" /></a></div></div>
+			<div class="gallerytext"></div>
+		</div></li>
+</ul>
+!! html/parsoid
+<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Hi-ho.jpg" class="mw-file-description"><img resource="./File:Hi-ho.jpg" src="http://example.com/images/thumb/9/9d/Hi-ho.jpg/180px-Hi-ho.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/9/9d/Hi-ho.jpg/270px-Hi-ho.jpg 1.5x, http://example.com/images/thumb/9/9d/Hi-ho.jpg/360px-Hi-ho.jpg 2x" class="mw-file-element" data-parsoid='{"a":{"resource":"./File:Hi-ho.jpg","height":"20","width":"180"},"sa":{"resource":"File:Hi&amp;#45;ho.jpg"}}'/></a><figcaption></figcaption></figure>
+
+<ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-parsoid='{"dsr":[30,83,9,10]}' data-mw='{"name":"gallery","attrs":{},"body":{}}'>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="./File:Hi-ho.jpg" class="mw-file-description"><img resource="./File:Hi-ho.jpg" src="http://example.com/images/thumb/9/9d/Hi-ho.jpg/120px-Hi-ho.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/9/9d/Hi-ho.jpg/180px-Hi-ho.jpg 1.5x, http://example.com/images/thumb/9/9d/Hi-ho.jpg/240px-Hi-ho.jpg 2x" class="mw-file-element" data-parsoid='{"a":{"resource":"./File:Hi-ho.jpg","height":"14","width":"120"},"sa":{"resource":"Hi&amp;#45;ho.jpg"}}'/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="./File:Hi-ho.jpg" class="mw-file-description"><img resource="./File:Hi-ho.jpg" src="http://example.com/images/thumb/9/9d/Hi-ho.jpg/120px-Hi-ho.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/9/9d/Hi-ho.jpg/180px-Hi-ho.jpg 1.5x, http://example.com/images/thumb/9/9d/Hi-ho.jpg/240px-Hi-ho.jpg 2x" class="mw-file-element" data-parsoid='{"a":{"resource":"./File:Hi-ho.jpg","height":"14","width":"120"},"sa":{"resource":"File:Hi&amp;#45;ho.jpg"}}'/></a></span></div><div class="gallerytext"></div></li>
+</ul>
+!! end
