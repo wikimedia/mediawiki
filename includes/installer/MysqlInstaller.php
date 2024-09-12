@@ -39,6 +39,7 @@ use Wikimedia\Rdbms\IDatabase;
  */
 class MysqlInstaller extends DatabaseInstaller {
 
+	/** @inheritDoc */
 	protected $globalNames = [
 		'wgDBserver',
 		'wgDBname',
@@ -49,21 +50,26 @@ class MysqlInstaller extends DatabaseInstaller {
 		'wgDBTableOptions',
 	];
 
+	/** @inheritDoc */
 	protected $internalDefaults = [
 		'_MysqlEngine' => 'InnoDB',
 		'_MysqlCharset' => 'binary',
 		'_InstallUser' => 'root',
 	];
 
+	/** @var string[] */
 	public $supportedEngines = [ 'InnoDB' ];
 
 	private const MIN_VERSIONS = [
 		'MySQL' => '5.7.0',
 		'MariaDB' => '10.3',
 	];
+	/** @inheritDoc */
 	public static $minimumVersion;
+	/** @inheritDoc */
 	protected static $notMinimumVersionMessage;
 
+	/** @var string[] */
 	public $webUserPrivs = [
 		'DELETE',
 		'INSERT',

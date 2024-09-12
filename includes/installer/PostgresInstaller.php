@@ -40,6 +40,7 @@ use Wikimedia\Rdbms\DBQueryError;
  */
 class PostgresInstaller extends DatabaseInstaller {
 
+	/** @inheritDoc */
 	protected $globalNames = [
 		'wgDBserver',
 		'wgDBport',
@@ -50,12 +51,16 @@ class PostgresInstaller extends DatabaseInstaller {
 		'wgDBmwschema',
 	];
 
+	/** @inheritDoc */
 	protected $internalDefaults = [
 		'_InstallUser' => 'postgres',
 	];
 
+	/** @inheritDoc */
 	public static $minimumVersion = '10';
+	/** @inheritDoc */
 	protected static $notMinimumVersionMessage = 'config-postgres-old';
+	/** @var int */
 	public $maxRoleSearchDepth = 5;
 
 	/**

@@ -39,7 +39,9 @@ use Wikimedia\Rdbms\DBConnectionError;
  */
 class SqliteInstaller extends DatabaseInstaller {
 
+	/** @inheritDoc */
 	public static $minimumVersion = '3.8.0';
+	/** @inheritDoc */
 	protected static $notMinimumVersionMessage = 'config-outdated-sqlite';
 
 	/**
@@ -47,6 +49,7 @@ class SqliteInstaller extends DatabaseInstaller {
 	 */
 	public $db;
 
+	/** @inheritDoc */
 	protected $globalNames = [
 		'wgDBname',
 		'wgSQLiteDataDir',

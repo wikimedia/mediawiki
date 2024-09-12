@@ -30,11 +30,17 @@ use InvalidArgumentException;
  */
 class LocalSettingsGenerator {
 
+	/** @var string[] */
 	protected $extensions = [];
+	/** @var string[] */
 	protected $skins = [];
+	/** @var string[] */
 	protected $values = [];
+	/** @var bool[][] */
 	protected $groupPermissions = [];
+	/** @var string */
 	protected $dbSettings = '';
+	/** @var string */
 	protected $IP;
 
 	/**
