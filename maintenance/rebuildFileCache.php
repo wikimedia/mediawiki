@@ -39,6 +39,7 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class RebuildFileCache extends Maintenance {
+	/** @var bool */
 	private $enabled = true;
 
 	public function __construct() {

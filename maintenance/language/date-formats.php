@@ -32,6 +32,7 @@ require_once __DIR__ . '/../Maintenance.php';
  */
 class DateFormats extends Maintenance {
 
+	/** @var string */
 	private $ts = '20010115123456';
 
 	public function __construct() {

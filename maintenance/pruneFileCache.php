@@ -32,6 +32,7 @@ require_once __DIR__ . '/Maintenance.php';
  */
 class PruneFileCache extends Maintenance {
 
+	/** @var int */
 	protected $minSurviveTimestamp;
 
 	public function __construct() {

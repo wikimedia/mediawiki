@@ -8,10 +8,15 @@ require_once __DIR__ . '/../Maintenance.php';
 // @codeCoverageIgnoreEnd
 
 class ImportExtensionMessages extends Maintenance {
+	/** @var string */
 	private $extensionDir;
+	/** @var string */
 	private $extName;
+	/** @var string[] */
 	private $excludedMsgs;
+	/** @var string */
 	private $outDir;
+	/** @var string[] */
 	private $coreDataCache;
 
 	public function __construct() {

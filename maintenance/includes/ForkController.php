@@ -50,6 +50,7 @@ class ForkController {
 	/** @var int */
 	protected $procsToStart = 0;
 
+	/** @var int[] */
 	protected static $RESTARTABLE_SIGNALS = [];
 
 	/** @var int[] */

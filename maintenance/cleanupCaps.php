@@ -44,7 +44,9 @@ require_once __DIR__ . '/TableCleanup.php';
  */
 class CleanupCaps extends TableCleanup {
 
+	/** @var User */
 	private $user;
+	/** @var int */
 	private $namespace;
 
 	public function __construct() {

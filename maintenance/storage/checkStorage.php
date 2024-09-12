@@ -59,6 +59,7 @@ class CheckStorage extends Maintenance {
 		$this->check( $fix, $xml );
 	}
 
+	/** @var string[] */
 	public $errorDescriptions = [
 		'restore text' => 'Damaged text, need to be restored from a backup',
 		'restore revision' => 'Damaged revision row, need to be restored from a backup',

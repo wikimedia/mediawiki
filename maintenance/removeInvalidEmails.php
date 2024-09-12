@@ -19,6 +19,7 @@ require_once __DIR__ . '/Maintenance.php';
  */
 class RemoveInvalidEmails extends Maintenance {
 
+	/** @var bool */
 	private $commit = false;
 
 	public function __construct() {

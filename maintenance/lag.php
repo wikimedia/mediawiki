@@ -32,6 +32,7 @@ require_once __DIR__ . '/Maintenance.php';
  */
 class DatabaseLag extends Maintenance {
 
+	/** @var bool */
 	protected $stopReporting = false;
 
 	public function __construct() {

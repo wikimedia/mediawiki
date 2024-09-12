@@ -43,6 +43,7 @@ class BenchmarkParse extends Maintenance {
 	/** @var string MediaWiki concatenated string timestamp (YYYYMMDDHHMMSS) */
 	private $templateTimestamp = null;
 
+	/** @var bool */
 	private $clearLinkCache = false;
 
 	/**

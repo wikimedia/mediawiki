@@ -38,6 +38,7 @@ require_once __DIR__ . '/TableCleanup.php';
  * @ingroup Maintenance
  */
 class CleanupImages extends TableCleanup {
+	/** @inheritDoc */
 	protected $defaultParams = [
 		'table' => 'image',
 		'conds' => [],

@@ -31,6 +31,7 @@ require_once __DIR__ . '/../includes/Benchmarker.php';
  * @ingroup Benchmark
  */
 class BenchmarkHooks extends Benchmarker {
+	/** @inheritDoc */
 	protected $defaultCount = 10;
 
 	public function __construct() {

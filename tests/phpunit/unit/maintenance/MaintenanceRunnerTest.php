@@ -12,6 +12,7 @@ class MaintenanceRunnerTest extends TestCase {
 
 	public const FIXTURE_DIRECTORY = MW_INSTALL_PATH . '/tests/phpunit/data/MaintenanceRunner';
 
+	/** @var string */
 	private $oldWorkDir;
 
 	/**
