@@ -24,7 +24,6 @@
 use MediaWiki\Auth\Throttler;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\IPUtils;
 
 // @codeCoverageIgnoreStart
@@ -158,7 +157,7 @@ class ResetAuthenticationThrottle extends Maintenance {
 		}
 		$throttler = new Throttler( $accountCreationThrottle, [
 			'type' => 'acctcreate',
-			'cache' => MediaWikiServices::getInstance()->getObjectCacheFactory()
+			'cache' => $this->getServiceContainer()->getObjectCacheFactory()
 				->getLocalClusterInstance(),
 		] );
 
@@ -177,7 +176,7 @@ class ResetAuthenticationThrottle extends Maintenance {
 		}
 		$throttler = new Throttler( $tempAccountCreationThrottle, [
 			'type' => 'tempacctcreate',
-			'cache' => MediaWikiServices::getInstance()->getObjectCacheFactory()
+			'cache' => $this->getServiceContainer()->getObjectCacheFactory()
 				->getLocalClusterInstance(),
 		] );
 
@@ -198,7 +197,7 @@ class ResetAuthenticationThrottle extends Maintenance {
 		}
 		$throttler = new Throttler( $tempAccountNameAcquisitionThrottle, [
 			'type' => 'tempacctnameacquisition',
-			'cache' => MediaWikiServices::getInstance()->getObjectCacheFactory()
+			'cache' => $this->getServiceContainer()->getObjectCacheFactory()
 				->getLocalClusterInstance(),
 		] );
 

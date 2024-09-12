@@ -21,7 +21,6 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\TextContent;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Rest\Handler\Helper\PageRestHelperFactory;
 use MediaWiki\Revision\SlotRecord;
@@ -145,7 +144,7 @@ class CompareLanguageConverterOutput extends Maintenance {
 
 		$po = $parser->parse( $wikiContent, $pageTitle, $parserOptions );
 		// TODO T371008 consider if using the Content framework makes sense instead of creating the pipeline
-		$pipeline = MediaWikiServices::getInstance()->getDefaultOutputPipeline();
+		$pipeline = $mwInstance->getDefaultOutputPipeline();
 		$options = [ 'deduplicateStyles' => false ];
 		return $pipeline->run( $po, $parserOptions, $options );
 	}
