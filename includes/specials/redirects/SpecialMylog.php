@@ -24,6 +24,7 @@ use LogPage;
 use MediaWiki\SpecialPage\RedirectSpecialPage;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
+use MediaWiki\User\TempUser\TempUserConfig;
 
 /**
  * Redirect to Special:Log for the current user's name or IP.
@@ -31,8 +32,17 @@ use MediaWiki\Title\Title;
  * @ingroup SpecialPage
  */
 class SpecialMylog extends RedirectSpecialPage {
-	public function __construct() {
+
+	private TempUserConfig $tempUserConfig;
+
+	/**
+	 * @param TempUserConfig $tempUserConfig
+	 */
+	public function __construct( TempUserConfig $tempUserConfig ) {
 		parent::__construct( 'Mylog' );
+
+		$this->tempUserConfig = $tempUserConfig;
+
 		$this->mAllowedRedirectParams = [ 'type', 'subtype', 'page', 'pattern',
 			'tagfilter', 'tagInvert', 'offset', 'dir', 'offender',
 			'year', 'month', 'day' ];
@@ -43,9 +53,15 @@ class SpecialMylog extends RedirectSpecialPage {
 	 * @return Title
 	 */
 	public function getRedirect( $subpage ) {
+		// Redirect to login for anon users when temp accounts are enabled.
+		if ( $this->tempUserConfig->isEnabled() && $this->getUser()->isAnon() ) {
+			$this->requireLogin();
+		}
+
 		if ( $subpage === null || $subpage === '' ) {
 			return SpecialPage::getSafeTitleFor( 'Log', $this->getUser()->getName() );
 		}
+
 		return SpecialPage::getSafeTitleFor( 'Log', $subpage . '/' . $this->getUser()->getName() );
 	}
 
