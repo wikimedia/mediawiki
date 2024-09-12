@@ -667,6 +667,7 @@
 	"template-protected": "(zaščičeny)",
 	"template-semiprotected": "(čestično zaščičena)",
 	"hiddencategories": "Tuta stranica jest člen {{PLURAL:$1|skrytoj kategorije|$1 skrytyh kategorij}}:",
+	"edittools": "<!-- Text here will be shown below edit and upload forms. -->",
 	"nocreatetext": "Na {{GRAMMAR:locative|{{SITENAME}}}} možnost stvorjenja novyh stranic jest ograničena.\nVy možete vratiti se i praviti jestvujuču stranicu, [[Special:UserLogin|prijaviti se ili stvoriti koristničsko konto]].",
 	"nocreate-loggedin": "Tvorjenje novyh stranic ne jest vam dozvoljeno.",
 	"sectioneditnotsupported-title": "Pravjenje razdělov ne poddrživaje se.",

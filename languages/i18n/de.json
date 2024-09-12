@@ -129,7 +129,8 @@
 			"Zylbath",
 			"לערי ריינהארט",
 			"✓",
-			"21 little ducks"
+			"21 little ducks",
+			"Rye Greenwood"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -1224,7 +1225,7 @@
 	"prefs-description-searchoptions": "Wähle aus, wie die automatische Vervollständigung und die Ergebnisse funktionieren.",
 	"prefs-description-misc": "Anpassen des Inhaltsverzeichnisses",
 	"prefs-help-recentchangescount": "Maximale Anzahl: 1000",
-	"prefs-help-watchlist-token2": "Dies ist der geheime Schlüssel zum Webfeed deiner Beobachtungsliste.\nJeder, der ihn kennt, kann deine Beobachtungsliste lesen. Teile ihn deshalb nicht Anderen mit.\nSofern notwendig, [[Special:ResetTokens|kannst du ihn zurücksetzen]].",
+	"prefs-help-watchlist-token2": "Dies ist der geheime Schlüssel zum Webfeed deiner Beobachtungsliste.\nJeder, der ihn kennt, kann deine Beobachtungsliste lesen. Teile ihn deshalb niemandem mit.\nSofern notwendig, [[Special:ResetTokens|kannst du ihn zurücksetzen]].",
 	"prefs-help-tokenmanagement": "Du kannst den geheimen Schlüssel zum Zugriff auf den Webfeed der Beobachtungsliste für dein Benutzerkonto ansehen und zurücksetzen. Jeder, der den Schlüssel kennt, kann deine Beobachtungsliste lesen. Deshalb teile ihn anderen nicht mit.",
 	"prefs-user-downloaddata-label": "Zugriff auf Benutzerdaten:",
 	"prefs-user-downloaddata-info": "ansehen",
@@ -2894,7 +2895,7 @@
 	"blocklist-hidden-param": "Benutzername versteckt",
 	"contribslink": "Beiträge",
 	"emaillink": "E-Mail senden",
-	"autoblocker": "Automatische Sperre, da du eine gemeinsame IP-Adresse mit [[User:$1|$1]] verwendet.\nGrund der Benutzersperre: „$2“",
+	"autoblocker": "Automatisch gesperrt, weil deine IP-Adresse kürzlich von \"[[User:$1|$1]]\" verwendet wurde. Der angegebene Grund für die Sperrung von $1 ist „$2“",
 	"blocklogpage": "Benutzersperr-Logbuch",
 	"blocklog-showlog": "{{GENDER:$1|Dieser Benutzer|Diese Benutzerin}} wurde schon früher gesperrt. Es folgt der Eintrag aus dem Benutzersperr-Logbuch:",
 	"blocklog-showsuppresslog": "{{GENDER:$1|Dieser Benutzer|Diese Benutzerin}} wurde schon früher gesperrt und versteckt.\nEs folgt der Eintrag aus dem Unterdrückungs-Logbuch:",
@@ -3493,8 +3494,8 @@
 	"watchlistedit-too-many": "Deine Beobachtungsliste wurde aktualisiert. Es existieren hier zu viele Seiten zum Anzeigen.",
 	"watchlisttools-clear": "Beobachtungsliste leeren",
 	"watchlisttools-view": "Beobachtungsliste: Änderungen",
-	"watchlisttools-edit": "normal bearbeiten",
-	"watchlisttools-raw": "im Listenformat bearbeiten (Import/Export)",
+	"watchlisttools-edit": "Beobachtungsliste ansehen und bearbeiten",
+	"watchlisttools-raw": "Quelltext der Watchlist bearbeiten",
 	"hijri-calendar-m3": "Rabiʿ al-auwal",
 	"hijri-calendar-m4": "Rabiʿ ath-thani",
 	"hijri-calendar-m5": "Dschumada l-ula",

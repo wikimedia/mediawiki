@@ -8,7 +8,8 @@
 			"Macofe",
 			"Matma Rex",
 			"Songhay",
-			"Vlad5250"
+			"Vlad5250",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Dobu ganda-žeeriyan:",
@@ -1697,7 +1698,7 @@
 	"alreadyrolled": "Ši hin ka [[:$1]] barmay koraa kaŋ [[User:$2|$2]] n'a tee willi banda ([[User talk:$2|talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);\n\nBarmay koraa kaŋ [[User:$3|$3]] n'a tee moɲoo ga ([[User talk:$3|talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "Fasal duurandoo: <em>$1</em>.",
 	"revertpage": "[[User:$1|$1]] na barmawey kaŋ [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]) n'i tee willi filla koraa ga",
-	"revertpage-nouser": "Reverted edits by a hidden user to last revision by {{GENDER:$1|[[User:$1|$1]]}}Goykaw tugante na barmawey willi filla koraa ga kaŋ {{GENDER:$1|[[User:$1|$1]]}} n'i tee",
+	"revertpage-nouser": "Goykaw tugante na barmawey willi filla koraa ga kaŋ {{GENDER:$1|[[User:$1|$1]]}} n'i tee",
 	"rollback-success": "Barmawey kaŋ $1 n'i willi;\n$2 n'i yeeti filla koraa ga. \\",
 	"sessionfailure-title": "Goywaati kayyan",
 	"sessionfailure": "A ga hima šenday foo na war huruyanoo kubay;\nteeraa woo n' ka kay saajaw sabbu se ka ganji boro ma war fondokosay.\nWilli moo bisantaa ga, moɲoo zumandi taaga de war ma ceei koyne.",

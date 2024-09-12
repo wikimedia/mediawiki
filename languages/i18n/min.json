@@ -26,7 +26,8 @@
 			"Vlad5250",
 			"VoteITP",
 			"Zakiy",
-			"아라"
+			"아라",
+			"Ezagren"
 		]
 	},
 	"tog-underline": "Garih bawahi pautan:",
@@ -1416,7 +1417,7 @@
 	"rcfilters-filter-user-experience-level-learner-description": "Panyuntiang tadaftar nan pangalamannyo barado antaro \"pangguno baru\" jo \"pangguno bapangalaman\".",
 	"rcfilters-filter-user-experience-level-experienced-label": "Pangguno bapangalaman",
 	"rcfilters-filter-user-experience-level-experienced-description": "Panyuntiang tadaftar jo labiah dari 500 suntiangan sarato aktivitas salamo 30 ari.",
-	"rcfilters-filtergroup-automated": "Kontribusi otomatis",
+	"rcfilters-filtergroup-automated": "Jariah otomatis",
 	"rcfilters-filter-bots-label": "Bot",
 	"rcfilters-filter-bots-description": "Suntiangan nan dibuek jo pakakeh taotomatisasi.",
 	"rcfilters-filter-humans-label": "Manusio (bukan bot)",
