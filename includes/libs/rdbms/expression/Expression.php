@@ -14,6 +14,7 @@ use Wikimedia\Rdbms\Database\DbQuoter;
 class Expression implements IExpression {
 	private string $field;
 	private string $op;
+	/** @var ?scalar|RawSQLValue|Blob|LikeValue|non-empty-list<scalar|Blob> */
 	private $value;
 
 	/**

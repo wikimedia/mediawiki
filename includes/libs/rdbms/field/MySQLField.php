@@ -5,7 +5,9 @@ namespace Wikimedia\Rdbms;
 class MySQLField implements Field {
 	private string $name;
 	private string $tablename;
+	/** @var mixed */
 	private $default;
+	/** @var int */
 	private $max_length;
 	private bool $nullable;
 	private bool $is_pk;
