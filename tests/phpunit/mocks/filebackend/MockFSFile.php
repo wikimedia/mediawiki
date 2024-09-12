@@ -32,7 +32,8 @@
  * @ingroup FileBackend
  */
 class MockFSFile extends FSFile {
-	protected $sha1Base36 = null; // File Sha1Base36
+	/** @inheritDoc */
+	protected $sha1Base36 = null;
 
 	public function exists() {
 		return true;

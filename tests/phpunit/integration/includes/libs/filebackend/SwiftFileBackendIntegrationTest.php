@@ -8,6 +8,7 @@ use MediaWiki\WikiMap\WikiMap;
  * @covers SwiftFileBackend
  */
 class SwiftFileBackendIntegrationTest extends FileBackendIntegrationTestBase {
+	/** @var SwiftFileBackend|null */
 	private static $backendToUse;
 
 	private function getBackendConfig(): ?array {

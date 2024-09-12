@@ -58,8 +58,10 @@ abstract class LockManager {
 	/** @var array Map of (resource path => lock type => count) */
 	protected $locksHeld = [];
 
-	protected $domain; // string; domain (usually wiki ID)
-	protected $lockTTL; // integer; maximum time locks can be held
+	/** @var string domain (usually wiki ID) */
+	protected $domain;
+	/** @var int maximum time locks can be held */
+	protected $lockTTL;
 
 	/** @var string Random 32-char hex number */
 	protected $session;

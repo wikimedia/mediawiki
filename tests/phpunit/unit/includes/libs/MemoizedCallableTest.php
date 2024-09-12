@@ -139,6 +139,7 @@ class MemoizedCallableTest extends TestCase {
  * in an instance property rather than APC or APCu.
  */
 class ArrayBackedMemoizedCallable extends MemoizedCallable {
+	/** @var array */
 	private $cache = [];
 
 	protected function fetchResult( $key, &$success ) {

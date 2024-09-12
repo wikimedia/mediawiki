@@ -28,6 +28,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class FloatDef extends NumericDef {
 
+	/** @inheritDoc */
 	protected $valueType = 'double';
 
 	public function validate( $name, $value, array $settings, array $options ) {

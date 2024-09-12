@@ -32,6 +32,7 @@ use Wikimedia\RequestTimeout\TimeoutException;
  * @since 1.26
  */
 class SamplingStatsdClient extends StatsdClient {
+	/** @var array */
 	protected $samplingRates = [];
 
 	/**

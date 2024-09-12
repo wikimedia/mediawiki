@@ -13,6 +13,7 @@ use MediaWiki\Json\JsonDeserializer;
  * @newable
  */
 class ListParam extends MessageParam {
+	/** @var string */
 	private $listType;
 
 	/**

@@ -50,6 +50,7 @@ class StringDef extends TypeDef {
 	 */
 	public const PARAM_MAX_CHARS = 'param-max-chars';
 
+	/** @var bool */
 	protected $allowEmptyWhenRequired = false;
 
 	/**

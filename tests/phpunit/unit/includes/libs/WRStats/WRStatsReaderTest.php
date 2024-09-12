@@ -18,6 +18,7 @@ use Wikimedia\WRStats\WRStatsWriter;
  * @covers \Wikimedia\WRStats\ArrayStatsStore
  */
 class WRStatsReaderTest extends TestCase {
+	/** @var ArrayStatsStore|null */
 	private $store;
 
 	public function testLatest() {

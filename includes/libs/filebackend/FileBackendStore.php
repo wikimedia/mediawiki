@@ -58,7 +58,8 @@ abstract class FileBackendStore extends FileBackend {
 	/** @var callable|null Method to get the MIME type of files */
 	protected $mimeCallback;
 
-	protected $maxFileSize = 32 * 1024 * 1024 * 1024; // integer bytes (32GiB)
+	/** @var int Size in bytes, defaults to 32 GiB */
+	protected $maxFileSize = 32 * 1024 * 1024 * 1024;
 
 	protected const CACHE_TTL = 10; // integer; TTL in seconds for process cache entries
 	protected const CACHE_CHEAP_SIZE = 500; // integer; max entries in "cheap cache"

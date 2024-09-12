@@ -22,11 +22,17 @@
  */
 
 class Cookie {
+	/** @var string */
 	protected $name;
+	/** @var string */
 	protected $value;
+	/** @var int|false */
 	protected $expires;
+	/** @var string|null */
 	protected $path;
+	/** @var string|null */
 	protected $domain;
+	/** @var bool */
 	protected $isSessionKey = true;
 	// TO IMPLEMENT  protected $secure
 	// TO IMPLEMENT? protected $maxAge (add onto expires)
