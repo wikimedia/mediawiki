@@ -96,7 +96,7 @@ foo
 
 # This is unlikely to ever be used in any production wikipage
 # since it doesn't make any sense embedding tables in links.
-# FIXME: Note that the PHP parser and Parsoid differ on this!
+# FIXME: Note that the legacy parser and Parsoid differ on this!
 !! test
 Tables with multiple newlines after individual lines embedded in links
 !! options
@@ -1296,7 +1296,7 @@ parsoid={ "modes": ["wt2html","selser"], "suppressErrors": true }
 </table>
 !! html/parsoid
 <ul data-parsoid='{"fostered":true,"autoInsertedEnd":true}'><li>a</li><li>b</li></ul><table>
-<tbody><tr data-parsoid='{"startTagSrc":"|-"}'>
+<tbody><tr class="mw-empty-elt" data-parsoid='{"startTagSrc":"|-"}'>
 
 </tr></tbody></table>
 !! end
@@ -1922,3 +1922,42 @@ parsoid={
 |}
 !! end
 
+!! test
+Spec syntactic differences in parsing of !! compared to ||
+!! options
+parsoid=wt2html,wt2wt
+!! wikitext
+{|
+<!--cmt-->!!foo
+{{1x|!!foo}}
+<!--cmt-->!!foo!!bar
+{{1x|!!foo}}{{1x|!!bar}}
+|}
+!! html/php
+<table>
+<tbody><tr>
+<th>!foo
+</th>
+<th>!foo
+</th>
+<th>!foo</th>
+<th>bar
+</th>
+<th>!foo</th>
+<th>bar
+</th></tr></tbody></table>
+!! html/parsoid+integrated
+<table><!--cmt-->
+<tbody>
+<tr>
+<th>!foo</th>
+<th about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"!!foo"}},"i":0}}]}'>!foo</th>
+<!--cmt-->
+<th>!foo</th>
+<th>bar</th>
+<th about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"!!foo"}},"i":0}}]}'>!foo</th>
+<th about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"!!bar"}},"i":0}}]}'>bar</th>
+</tr>
+</tbody>
+</table>
+!! end

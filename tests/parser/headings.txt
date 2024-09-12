@@ -1350,17 +1350,33 @@ flags=no-toc
 <section data-mw-section-id="4"><h3 id="Four">Four</h3></section></section>
 !! end
 
+## Note that the legacy parser doesn't set the flag.  It instead uses the presence
+## of the behavior switch to inhibit the creation of the placeholders that would
+## get replaced with the section edit links.
 !! test
 __NOEDITSECTION__ keyword
+!! options
+showflags
+parsoid={
+	"wrapSections": true
+}
 !! config
 wgParserEnableLegacyHeadingDOM=false
 !! wikitext
 __NOEDITSECTION__
 ==Section 1==
 ==Section 2==
-!! html
+!! html/php
 <div class="mw-heading mw-heading2"><h2 id="Section_1">Section 1</h2></div>
 <div class="mw-heading mw-heading2"><h2 id="Section_2">Section 2</h2></div>
+!! metadata/php
+flags=
+!! html/parsoid
+<section data-mw-section-id="0"><meta property="mw:PageProp/noeditsection" data-parsoid='{"magicSrc":"__NOEDITSECTION__"}'/>
+</section><section data-mw-section-id="1"><h2 id="Section_1" data-parsoid='{}'>Section 1</h2>
+</section><section data-mw-section-id="2"><h2 id="Section_2" data-parsoid='{}'>Section 2</h2></section>
+!! metadata/parsoid
+flags=no-section-edit-links
 !! end
 
 !! test
@@ -2910,4 +2926,112 @@ wgParserEnableLegacyHeadingDOM=false
 !! metadata
 Sections:
  h3 index:T-1 toclevel:1 number:1 title:Template:With_a_section? off:NULL anchor/linkAnchor:test line:test
+!! end
+
+!! article
+Template:With one
+!! text
+=== in ===
+123
+!! endarticle
+
+!! article
+Template:With two
+!! text
+=== in 2 ===
+456
+
+=== in 3 ===
+789
+!! endarticle
+
+!! test
+Reset section numbering per template
+!! options
+nohtml
+showtocdata
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
+!! config
+wgParserEnableLegacyHeadingDOM=false
+!! wikitext
+=== out ===
+123
+
+{{with one}}
+
+=== out 2 ===
+456
+
+{{with two}}
+
+{{with one}}
+!! metadata
+Sections:
+ h3 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor:out line:out
+ h3 index:T-1 toclevel:1 number:2 title:Template:With_one off:NULL anchor/linkAnchor:in line:in
+ h3 index:2 toclevel:1 number:3 title:Parser_test off:31 anchor/linkAnchor:out_2 line:out 2
+ h3 index:T-1 toclevel:1 number:4 title:Template:With_two off:NULL anchor/linkAnchor:in_2 line:in 2
+ h3 index:T-2 toclevel:1 number:5 title:Template:With_two off:NULL anchor/linkAnchor:in_3 line:in 3
+ h3 index:T-1 toclevel:1 number:6 title:Template:With_one off:NULL anchor/linkAnchor:in_4 line:in
+!! end
+
+!! article
+Template:With heading nesting
+!! text
+=== in 4 ===
+lala
+
+{{with two}}
+!! endarticle
+
+## FIXME: Parsoid doesn't have insight into nested templates
+!! test
+Nested section numbering
+!! options
+nohtml
+showtocdata
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
+!! config
+wgParserEnableLegacyHeadingDOM=false
+!! wikitext
+=== out ===
+123
+
+{{with heading nesting}}
+!! metadata
+Sections:
+ h3 index:1 toclevel:1 number:1 title:Parser_test off:0 anchor/linkAnchor:out line:out
+ h3 index:T-1 toclevel:1 number:2 title:Template:With_heading_nesting off:NULL anchor/linkAnchor:in_4 line:in 4
+ h3 index:T-1 toclevel:1 number:3 title:Template:With_two off:NULL anchor/linkAnchor:in_2 line:in 2
+ h3 index:T-2 toclevel:1 number:4 title:Template:With_two off:NULL anchor/linkAnchor:in_3 line:in 3
+!! end
+
+!! article
+Template:With redirect
+!! text
+#REDIRECT [[Template:With one]]
+!! endarticle
+
+!! test
+Sections follow template redirects
+!! options
+nohtml
+showtocdata
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
+!! config
+wgParserEnableLegacyHeadingDOM=false
+!! wikitext
+{{with redirect}}
+!! metadata
+Sections:
+ h3 index:T-1 toclevel:1 number:1 title:Template:With_one off:NULL anchor/linkAnchor:in line:in
 !! end

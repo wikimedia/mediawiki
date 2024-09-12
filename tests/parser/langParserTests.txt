@@ -227,7 +227,7 @@ wgParserEnableLegacyMediaDOM=false
 </p><p><span class="mw-default-size" typeof="mw:File"><a href="/wiki/%D0%94%D0%B0%D1%82%D0%BE%D1%82%D0%B5%D0%BA%D0%B0:Foobar.jpg" class="mw-file-description"><img alt="&quot; onload=&quot;alert(1)&quot; data-foo=&quot;" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="mw-file-element" /></a></span>
 </p>
 !! html/parsoid
-<p><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"oneway":[{"f":"foAjrjvi","l":"sr-el","t":"\" onload=\"alert(1)\" data-foo=\""}]}'/></p>
+<p class="mw-empty-elt"><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"oneway":[{"f":"foAjrjvi","l":"sr-el","t":"\" onload=\"alert(1)\" data-foo=\""}]}'/></p>
 
 <p><span class="mw-default-size" typeof="mw:File mw:ExpandedAttrs" about="#mwt1" data-mw='{"attribs":[["alt",{"html":"alt=&lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&apos;{\"disabled\":{\"t\":\"\"}}&apos; data-parsoid=&apos;{\"fl\":[],\"dsr\":[76,80,null,2]}&apos;>&lt;/span>foAjrjvi&lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&apos;{\"disabled\":{\"t\":\"\"}}&apos; data-parsoid=&apos;{\"fl\":[],\"dsr\":[88,92,null,2]}&apos;>&lt;/span>","txt":"foAjrjvi"}]]}'><a href="./Датотека:Foobar.jpg" class="mw-file-description"><img alt="foAjrjvi" resource="./Датотека:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./Датотека:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:Foobar.jpg"}}' class="mw-file-element"/></a></span></p>
 !! end
@@ -925,7 +925,7 @@ language=zh htmlVariantLanguage=zh title=[[ZH]] showtitle
 <p class="mw-empty-elt">
 </p>
 !! html/parsoid
-<p><meta typeof="mw:LanguageVariant" data-parsoid='{"tSp":[6]}' data-mw-variant='{"title":true,"twoway":[{"l":"zh-cn","t":"CN"},{"l":"zh-tw","t":"TW"}]}'/></p>
+<p class="mw-empty-elt"><meta typeof="mw:LanguageVariant" data-parsoid='{"tSp":[6]}' data-mw-variant='{"title":true,"twoway":[{"l":"zh-cn","t":"CN"},{"l":"zh-tw","t":"TW"}]}'/></p>
 !! end
 
 !! test
@@ -939,7 +939,7 @@ language=zh htmlVariantLanguage=zh title=[[ZH]] showtitle
 <p class="mw-empty-elt">
 </p>
 !! html/parsoid
-<p><meta typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"TW"},"title":true}'/></p>
+<p class="mw-empty-elt"><meta typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"TW"},"title":true}'/></p>
 !! end
 
 !! test
@@ -1479,7 +1479,7 @@ Language converter tricky html2wt cases (5)
 language=zh htmlVariantLanguage=zh-Hans-CN
 !! html/parsoid
 <p><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"oneway":[{"f":"a:b=>c","l":"zh-cn","t":"x;foo=>zh-cn:boo"},{"f":"bar","l":"zh-cn","t":"bat;xyz=>zh-cn:abc"}]}'/>foobar</p>
-<p><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"oneway":[{"f":"A","l":"bo:g;us","t":"B"}]}'/></p>
+<p class="mw-empty-elt"><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"oneway":[{"f":"A","l":"bo:g;us","t":"B"}]}'/></p>
 <p><span typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"twoway":[{"l":"zh-tw","t":"xyz"},{"l":"zh-cn","t":"0;zh-tw:bar"}]}'></span></p>
 <p><span typeof="mw:LanguageVariant" data-mw-variant='{"twoway":[{"l":"bo:g;us","t":"xyz"},{"l":"zh-cn","t":"abc"}]}'></span></p>
 <p>a:b=>c xyz</p>
@@ -1517,7 +1517,7 @@ parsoid=wt2html,html2html
 
 </p>
 !! html/parsoid
-<p><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"twoway":[{"l":"zh-cn","t":"约翰·塞纳"},{"l":"zh-hk","t":"莊·先拿"},{"l":"zh-tw","t":"約翰·希南"}]}'/>
+<p class="mw-empty-elt"><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"twoway":[{"l":"zh-cn","t":"约翰·塞纳"},{"l":"zh-hk","t":"莊·先拿"},{"l":"zh-tw","t":"約翰·希南"}]}'/>
 <meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"twoway":[{"l":"zh-cn","t":"泰瑞斯·吉布森"},{"l":"zh-hk","t":"泰列斯·吉遜"},{"l":"zh-tw","t":"泰瑞斯·吉布森"}]}'/>
 <meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"twoway":[{"l":"zh-cn","t":"金·米尔福特"},{"l":"zh-tw","t":"金·米爾福特"}]}'/></p>
 !! end
@@ -1533,7 +1533,7 @@ parsoid=wt2html,html2html
 <p class="mw-empty-elt">
 </p>
 !! html/parsoid
-<p><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"twoway":[{"l":"zh-cn","t":"玛格特·罗比"},{"l":"zh-tw","t":"瑪格·羅比"},{"l":"zh-hk","t":"瑪歌·羅比"},{"l":"zh-sg","t":"玛格·罗比"}]}'/></p>
+<p class="mw-empty-elt"><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"twoway":[{"l":"zh-cn","t":"玛格特·罗比"},{"l":"zh-tw","t":"瑪格·羅比"},{"l":"zh-hk","t":"瑪歌·羅比"},{"l":"zh-sg","t":"玛格·罗比"}]}'/></p>
 !! end
 
 !! test

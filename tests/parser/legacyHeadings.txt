@@ -1352,15 +1352,28 @@ flags=no-toc
 
 !! test
 __NOEDITSECTION__ keyword
+!! options
+showflags
+parsoid={
+	"wrapSections": true
+}
 !! config
 wgParserEnableLegacyHeadingDOM=true
 !! wikitext
 __NOEDITSECTION__
 ==Section 1==
 ==Section 2==
-!! html
+!! html/php
 <h2><span class="mw-headline" id="Section_1">Section 1</span></h2>
 <h2><span class="mw-headline" id="Section_2">Section 2</span></h2>
+!! metadata/php
+flags=
+!! html/parsoid
+<section data-mw-section-id="0"><meta property="mw:PageProp/noeditsection" data-parsoid='{"magicSrc":"__NOEDITSECTION__"}'/>
+</section><section data-mw-section-id="1"><h2 id="Section_1" data-parsoid='{}'>Section 1</h2>
+</section><section data-mw-section-id="2"><h2 id="Section_2" data-parsoid='{}'>Section 2</h2></section>
+!! metadata/parsoid
+flags=no-section-edit-links
 !! end
 
 !! test

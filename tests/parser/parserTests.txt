@@ -3893,6 +3893,31 @@ parsoid=wt2html,html2html
 <li>b<meta typeof="mw:Placeholder/StrippedTag" data-parsoid='{"src":"&lt;/span>","name":"span"}'/></li></ul>
 !! end
 
+## The legacy parser output matches the HTML5 spec, the token is ignored.
+## Parsoid's ListHandler doesn't track open elements outside of the list frame
+## so the token induces an implied end to the list.  Considering that Parsoid
+## already diverges from the HTML5 spec in which tag names induce implied ends
+## (see the discussion above about "wikitext block"), we accept this edge case
+## as a known difference.
+!! test
+T368721: Closing block tags not on the stack of open elements in lists
+!! wikitext
+<!-- block tag  -->
+*a</div>b
+
+<!-- wikitext block tag -->
+*a</p>b
+!! html/php
+<ul><li>ab</li></ul>
+<ul><li>a<p class="mw-empty-elt"></p>b</li></ul>
+!! html/parsoid
+<!-- block tag  -->
+<ul><li>a</li></ul><p>b</p>
+
+<!-- wikitext block tag -->
+<ul><li>a</li></ul><p class="mw-empty-elt" data-parsoid='{"autoInsertedStart":true,"stx":"html"}'></p><p>b</p>
+!! end
+
 # Parsoid does some post-dom-building cleanup
 # which is why its output differs from Remex.
 !! test
@@ -4490,6 +4515,38 @@ parsoid=wt2html
 <p>{{1{{2<span about="#mwt5" typeof="mw:Param" data-mw='{"parts":[{"templatearg":{"target":{"wt":"3"},"params":{},"i":0}}]}'>{{{3}}}</span>|4=5}}}}</p>
 !! html/parsoid+integrated
 <p>{{1<span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"2{{{3}}}","href":"./Template:2"},"params":{"4":{"wt":"5"}},"i":0}}]}'>{{2{{{3}}}|4=5}}</span>}}</p>
+!! end
+
+## Regression test (T372669) that is only exercised in integrated mode.
+## By adding {{1x|ignore-this[[Category:Foo]]}} to the 2nd param of the surround {{1x|1x}},
+## it ensures that the output is discarded, but not if Parsoid eagerly processes the attribute.
+!! test
+T372669: While processing templates with templated names, other attributes shouldn't be processed
+!! options
+cat
+parsoid=wt2html
+!! wikitext
+{{{{1x|1x}}|foo|{{1x|ignore-this[[Category:Foo]]}}}}
+!! html/php
+<p>foo
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"},{"k":"2"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"{{1x|1x}}","href":"./Template:1x"},"params":{"1":{"wt":"foo"},"2":{"wt":"{{1x|ignore-this[[Category:Foo]]}}"}},"i":0}}]}'>foo</span></p>
+!! metadata/php
+!! metadata/parsoid+integrated
+!! end
+
+!! test
+T372669: Template names from multiple templates
+!! options
+parsoid=wt2html
+!! wikitext
+{{{{1x|1}}{{1x|x}}|foo}}
+!! html/php
+<p>foo
+</p>
+!! html/parsoid
+<p><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"{{1x|1}}{{1x|x}}","href":"./Template:1x"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</span></p>
 !! end
 
 ## wt2html only, since the bare {{ will get escaped when serializing
@@ -7557,14 +7614,17 @@ ill
 [[es:Alimento]]
 [[fr:Nourriture]]
 [[zh:食品]]
-!! html/php
+!! metadata
 es:Alimento fr:Nourriture zh:食品
+!! html/php
 !! html/parsoid
 <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Alimento"/>
 <link rel="mw:PageProp/Language" href="http://fr.wikipedia.org/wiki/Nourriture"/>
 <link rel="mw:PageProp/Language" href="http://zh.wikipedia.org/wiki/食品"/>
 !! end
 
+# Known difference: parsoid does not throw away duplicate language links.
+# Metadata are going to be deduplicated in the LinksUpdate job
 !! test
 Duplicate interlanguage links (T26502)
 !! options
@@ -7574,8 +7634,11 @@ ill
 [[es:2]]
 [[fr:1]]
 [[fr:2]]
-!! html/php
+!! metadata/php
 es:1 fr:1
+!! metadata/parsoid
+es:1 es:2 fr:1 fr:2
+!! html/php
 !! html/parsoid
 <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/1"/>
 <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/2"/>
@@ -12569,6 +12632,18 @@ T5158: Test for French spaces in attributes
 </p>
 !! end
 
+# This test relies on the fact that image captions are processed
+# as independent document fragments.
+!! test
+Displayspace processing on embedded fragments
+!! options
+parsoid=wt2html
+!! wikitext
+[[File:Foobar.jpg|« test »]]
+!! html/parsoid
+<p><span class="mw-default-size" typeof="mw:File" data-parsoid='{"optList":[{"ck":"caption","ak":"« test »"}]}' data-mw='{"caption":"«&lt;span typeof=\"mw:DisplaySpace\" data-parsoid=&apos;{\"dsr\":[null,null,null,null]}&apos;> &lt;/span>test&lt;span typeof=\"mw:DisplaySpace\" data-parsoid=&apos;{\"dsr\":[null,null,null,null]}&apos;> &lt;/span>»"}'><a href="./File:Foobar.jpg" class="mw-file-description" title="« test »" data-parsoid="{}"><img alt="« test »" resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span></p>
+!! end
+
 !! test
 HTML5 data attributes
 !! wikitext
@@ -13858,7 +13933,7 @@ Empty TR followed by mixed-ws-comment line should RT correctly
 <tbody>
 <tr class='mw-empty-elt'></tr>
  <!--c-->
-<tr>
+<tr class="mw-empty-elt">
 <!--c--> </tr><!--d-->
 </tbody></table>
 !! end
@@ -16656,6 +16731,19 @@ Empty LI (T49673)
 <li class="mw-empty-elt"></li>
 <li class="mw-empty-elt"></li>
 <li>b</li></ul>
+!! end
+
+!! test
+Empty list item with rendering transparent tag
+!! wikitext
+{{1x|*hmm
+*[[category:123]]}}
+!! html/php
+<ul><li>hmm</li>
+<li class="mw-empty-elt"></li></ul>
+!! html/parsoid
+<ul about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"*hmm\n*[[category:123]]"}},"i":0}}]}'><li>hmm</li>
+<li class="mw-empty-elt"><link rel="mw:PageProp/Category" href="./Category:123"/></li></ul>
 !! end
 
 !! test
