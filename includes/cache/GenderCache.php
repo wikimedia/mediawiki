@@ -40,10 +40,16 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @ingroup Cache
  */
 class GenderCache {
+	/** @var string[] */
 	protected $cache = [];
+	/** @var string|null */
 	protected $default = null;
+	/** @var int */
 	protected $misses = 0;
-	/** @internal Exposed for MediaWiki core unit tests. */
+	/**
+	 * @internal Exposed for MediaWiki core unit tests.
+	 * @var int
+	 */
 	protected $missLimit = 1000;
 
 	private NamespaceInfo $nsInfo;

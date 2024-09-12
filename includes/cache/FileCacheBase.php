@@ -46,10 +46,15 @@ abstract class FileCacheBase {
 		MainConfigNames::UseGzip,
 	];
 
+	/** @var string */
 	protected $mKey;
+	/** @var string */
 	protected $mType = 'object';
+	/** @var string */
 	protected $mExt = 'cache';
+	/** @var string|null */
 	protected $mFilePath;
+	/** @var bool */
 	protected $mUseGzip;
 	/** @var bool|null lazy loaded */
 	protected $mCached;
