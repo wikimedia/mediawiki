@@ -924,22 +924,25 @@ class ApiParse extends ApiBase {
 		$result = [];
 		foreach ( $links as $link ) {
 			$entry = [];
-			$bits = explode( ':', $link, 2 );
-			$title = Title::newFromText( $link );
+			[ $lang, $titleWithFrag ] = explode( ':', $link, 2 );
+			[ $title, $frag ] = array_pad( explode( '#', $titleWithFrag, 2 ), 2, '' );
+			$title = TitleValue::tryNew( NS_MAIN, $title, $frag, $lang );
+			$title = $title ? Title::newFromLinkTarget( $title ) : null;
 
-			$entry['lang'] = $bits[0];
+			$entry['lang'] = $lang;
 			if ( $title ) {
 				$entry['url'] = (string)$this->urlUtils->expand( $title->getFullURL(), PROTO_CURRENT );
+				// title validity implies language code validity
 				// localised language name in 'uselang' language
 				$entry['langname'] = $this->languageNameUtils->getLanguageName(
-					$title->getInterwiki(),
+					$lang,
 					$this->getLanguage()->getCode()
 				);
 
 				// native language name
-				$entry['autonym'] = $this->languageNameUtils->getLanguageName( $title->getInterwiki() );
+				$entry['autonym'] = $this->languageNameUtils->getLanguageName( $lang );
 			}
-			ApiResult::setContentValue( $entry, 'title', $bits[1] );
+			ApiResult::setContentValue( $entry, 'title', $titleWithFrag );
 			$result[] = $entry;
 		}
 
