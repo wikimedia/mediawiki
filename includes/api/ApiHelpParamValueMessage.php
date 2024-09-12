@@ -35,8 +35,11 @@ use MediaWiki\Message\Message;
  */
 class ApiHelpParamValueMessage extends Message {
 
+	/** @var string */
 	protected $paramValue;
+	/** @var bool */
 	protected $deprecated;
+	/** @var bool */
 	protected $internal;
 
 	/**

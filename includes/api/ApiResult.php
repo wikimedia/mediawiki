@@ -143,6 +143,7 @@ class ApiResult implements ApiSerializable {
 	 */
 	public const META_BC_SUBELEMENTS = '_BC_subelements';
 
+	/** @var mixed */
 	private $data;
 	private int $size;
 	/** @var int|false */

@@ -2422,6 +2422,7 @@ class ApiMain extends ApiBase {
 		}
 	}
 
+	/** @var bool|null */
 	private $mCanApiHighLimits = null;
 
 	/**

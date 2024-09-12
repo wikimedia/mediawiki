@@ -37,6 +37,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
  */
 class ApiSetNotificationTimestamp extends ApiBase {
 
+	/** @var ApiPageSet|null */
 	private $mPageSet = null;
 
 	private RevisionStore $revisionStore;

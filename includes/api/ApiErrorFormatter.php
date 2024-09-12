@@ -46,7 +46,9 @@ class ApiErrorFormatter {
 	protected $lang;
 	/** @var PageReference|null page used for rendering error messages, or null to use the dummy title */
 	private $title = null;
+	/** @var bool */
 	protected $useDB = false;
+	/** @var string */
 	protected $format = 'none';
 
 	/**

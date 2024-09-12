@@ -33,6 +33,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiParamInfo extends ApiBase {
 
+	/** @var string */
 	private $helpFormat;
 
 	/** @var RequestContext */

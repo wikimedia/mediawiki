@@ -95,6 +95,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	private $fld_associatedpage = false;
 
+	/** @var array */
 	private $params;
 
 	/** @var array<int,PageIdentity> */
@@ -130,15 +131,25 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	private $pageLength;
 
+	/** @var array[][][] */
 	private $protections;
+	/** @var string[][][] */
 	private $restrictionTypes;
+	/** @var bool[][] */
 	private $watched;
+	/** @var int[][] */
 	private $watchers;
+	/** @var int[][] */
 	private $visitingwatchers;
+	/** @var string[][] */
 	private $notificationtimestamps;
+	/** @var int[][] */
 	private $talkids;
+	/** @var int[][] */
 	private $subjectids;
+	/** @var string[][] */
 	private $displaytitles;
+	/** @var string[][] */
 	private $variantTitles;
 
 	/**
@@ -153,8 +164,10 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	private $linkClasses;
 
+	/** @var bool */
 	private $showZeroWatchers = false;
 
+	/** @var int */
 	private $countTestedActions = 0;
 
 	/**

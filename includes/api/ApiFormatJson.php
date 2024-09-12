@@ -29,6 +29,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiFormatJson extends ApiFormatBase {
 
+	/** @var bool */
 	private $isRaw;
 
 	public function __construct( ApiMain $main, $format ) {

@@ -27,6 +27,7 @@
  */
 abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 
+	/** @var ApiPageSet|null */
 	private $mGeneratorPageSet = null;
 
 	/**

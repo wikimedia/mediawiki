@@ -30,6 +30,7 @@ trait ApiMessageTrait {
 	/**
 	 * Compatibility code mappings for various MW messages.
 	 * @todo Ideally anything relying on this should be changed to use ApiMessage.
+	 * @var string[]
 	 */
 	protected static $messageMap = [
 		'actionthrottledtext' => 'ratelimited',
@@ -93,7 +94,9 @@ trait ApiMessageTrait {
 		'userrights-no-interwiki' => 'nointerwikiuserrights',
 	];
 
+	/** @var string|null */
 	protected $apiCode = null;
+	/** @var array */
 	protected $apiData = [];
 
 	public function getApiCode() {

@@ -37,7 +37,9 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiFeedWatchlist extends ApiBase {
 
+	/** @var ApiBase|null */
 	private $watchlistModule = null;
+	/** @var bool */
 	private $linkToSections = false;
 
 	private ParserFactory $parserFactory;

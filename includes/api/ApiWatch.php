@@ -35,6 +35,7 @@ use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
  * @ingroup API
  */
 class ApiWatch extends ApiBase {
+	/** @var ApiPageSet|null */
 	private $mPageSet = null;
 
 	/** @var bool Whether watchlist expiries are enabled. */

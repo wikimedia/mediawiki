@@ -567,7 +567,9 @@ class ApiQuery extends ApiBase {
 	 */
 	private $mPageSet;
 
+	/** @var array */
 	private $mParams;
+	/** @var ApiModuleManager */
 	private $mModuleMgr;
 
 	private WikiExporterFactory $wikiExporterFactory;

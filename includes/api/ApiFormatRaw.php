@@ -26,7 +26,9 @@
  */
 class ApiFormatRaw extends ApiFormatBase {
 
+	/** @var ApiFormatBase|null */
 	private $errorFallback;
+	/** @var bool */
 	private $mFailWithHTTPError = false;
 
 	/**

@@ -36,6 +36,7 @@ use Wikimedia\ParamValidator\ParamValidator;
 class ApiQueryUsers extends ApiQueryBase {
 	use ApiQueryBlockInfoTrait;
 
+	/** @var array<string,true> */
 	private $prop;
 
 	private UserNameUtils $userNameUtils;

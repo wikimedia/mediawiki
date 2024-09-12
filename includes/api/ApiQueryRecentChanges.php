@@ -55,6 +55,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	private TempUserConfig $tempUserConfig;
 	private LogFormatterFactory $logFormatterFactory;
 
+	/** @var string[] */
 	private $formattedComments = [];
 
 	/**
