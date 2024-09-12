@@ -517,6 +517,7 @@ because of Phabricator reports.
 * ResourceLoader::makeConfigSetScript() is now deprecated. Consider using
   package files instead. Or, you can return "mw.config.set()" combined with
   RL\Context::encodeJson, if available. If not, use FormatJson::encode.
+* wfAssembleUrl(), deprecated in 1.39, now emits warnings.
 * BlockManager::getUserBlock(), deprecated since 1.42, now emits warnings.
 * DatabaseBlock methods newFromRow(), delete(), insert(), update(),
   doAutoblock(), isExemptedFromAutoblocks(), doAutoblock(), updateTimestamp(),

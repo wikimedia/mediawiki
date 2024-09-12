@@ -549,12 +549,14 @@ function wfGetServerUrl( $proto ) {
  * This is the basic structure used (brackets contain keys for $urlParts):
  * [scheme][delimiter][user]:[pass]@[host]:[port][path]?[query]#[fragment]
  *
- * @deprecated since 1.39, use UrlUtils::assemble()
+ * @deprecated since 1.39, use UrlUtils::assemble(); hard-deprecated since 1.44
  * @since 1.19
  * @param array $urlParts URL parts, as output from wfParseUrl
  * @return string URL assembled from its component parts
  */
 function wfAssembleUrl( $urlParts ) {
+	wfDeprecated( __FUNCTION__, '1.39' );
+
 	return UrlUtils::assemble( (array)$urlParts );
 }
 
