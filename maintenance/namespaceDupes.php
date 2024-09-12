@@ -281,7 +281,7 @@ class NamespaceDupes extends Maintenance {
 				} else {
 					$action = 'alternate';
 				}
-			} elseif ( $newTitle->exists() ) {
+			} elseif ( $newTitle->exists( IDBAccessObject::READ_LATEST ) ) {
 				if ( $options['merge'] ) {
 					if ( $this->canMerge( $row->page_id, $newTitle, $logStatus ) ) {
 						$action = 'merge';
