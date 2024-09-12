@@ -38,7 +38,10 @@
 			"Urhixidur",
 			"Vogone",
 			"Wnme",
-			"Zabe"
+			"Zabe",
+			"Amire80",
+			"Nikki",
+			"Woytecr"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -256,6 +259,7 @@
 	"nosuchuser": "Der Benutzername „$1“ existiert nicht.\nÜberprüfen Sie die Schreibweise (Groß-/Kleinschreibung beachten) oder [[Special:CreateAccount|melden Sie sich als neuer Benutzer an]].",
 	"nosuchusershort": "Der Benutzername „$1“ ist nicht vorhanden. Bitte überprüfen Sie die Schreibweise.",
 	"nouserspecified": "Bitte geben Sie einen Benutzernamen an.",
+	"fatalpassworderror": "$1\n\nAus Sicherheitsgründen können Sie sich mit diesem Passwort nicht anmelden. Bitte [$2 fordern Sie eine E-Mail zum Zurücksetzen des Passworts an].",
 	"wrongpassword": "Der Benutzername oder das Passwort ist falsch. Bitte versuchen Sie es erneut.",
 	"wrongpasswordempty": "Es wurde kein Passwort eingegeben. Bitte versuchen Sie es erneut.",
 	"password-name-match": "Ihr Passwort muss sich von Ihrem Benutzernamen unterscheiden.",

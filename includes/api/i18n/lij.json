@@ -59,7 +59,7 @@
 	"apihelp-changecontentmodel-param-title": "Tìtolo da pàgina da quæ cangiâ o modéllo de contegnûo. O no peu êse dêuviòu insémme a <var>$1pageid</var>.",
 	"apihelp-changecontentmodel-param-pageid": "ID da pàgina da quæ cangiâ o modéllo de contegnûo. O no peu êse dêuviòu insémme a <var>$1pageid</var>.",
 	"apihelp-changecontentmodel-param-summary": "Somâio de modìfiche e raxón de vôxe into regìstro",
-	"apihelp-changecontentmodel-param-tags": "Cangiâ i tag da aplicâ a-a vôxe into regìstro e modificâli.",
+	"apihelp-changecontentmodel-param-tags": "I tag de cangiaménto da aplicâ a-a vôxe de regìstro e a-a modìfica.",
 	"apihelp-changecontentmodel-param-model": "Modéllo de contegnûo di nêuvi contegnûi.",
 	"apihelp-changecontentmodel-param-bot": "Marcâ o cangiaménto a-o modéllo de contegnûo con flag de bot.",
 	"apihelp-changecontentmodel-example": "Cangiâ a pàgina prinçipâ pe avéi o modéllo de contegnûo <code>text</code>",
