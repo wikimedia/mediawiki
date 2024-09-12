@@ -17,8 +17,6 @@ use Wikimedia\ParamValidator\ValidationException;
  */
 class TagsDefTest extends MediaWikiIntegrationTestCase {
 
-	protected static $testClass = TagsDef::class;
-
 	protected function setUp(): void {
 		parent::setUp();
 
