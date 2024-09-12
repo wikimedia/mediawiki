@@ -1014,5 +1014,11 @@
 	"skin-action-undelete": "Kthe fshimjen mbrapsht",
 	"skin-action-delete": "Fshij",
 	"skin-action-move": "Zhvendos",
-	"blockedtext-block-id": "ID e bllokimit është #$5."
+	"blockedtext-start-time": "Fillimi i bllokimit: $1",
+	"blockedtext-expiration-time": "Përfundimi i bllokimit: $1",
+	"blockedtext-intended-blockee": "I bllokuemi i synuem: $1",
+	"blockedtext-contact-blocker-admin": "Mundeni me kontaktue $1 ose ndonji [[{{MediaWiki:Grouppage-sysop}}|administrator]] për me diskutue bllokimin.",
+	"blockedtext-block-ip": "Adresa juej aktuale e IP âsht $1.",
+	"blockedtext-block-id": "ID e bllokimit është #$1.",
+	"blockedtext-include-details-queries": "Ju lutemi përfshini këto shenime në të gjitha shkresat që i bâni."
 }

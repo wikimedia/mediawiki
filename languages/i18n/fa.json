@@ -4061,6 +4061,7 @@
 	"mw-widgets-titlesmultiselect-placeholder": "افزودن بیشتر...",
 	"date-range-from": "از تاریخ:",
 	"date-range-to": "تا تاریخ:",
+	"session-page-restricted": "شما با استفاده از مجوز کنونی مجاز به ویرایش این صفحه نیستید",
 	"sessionmanager-tie": "نمی‌توان چندین نوع درخواست اصالت‌سنجی را ترکیب کرد: $1.",
 	"sessionprovider-generic": "$1 فصل",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "فصل‌های کوکی‌محور",

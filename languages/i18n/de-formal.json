@@ -38,7 +38,10 @@
 			"Urhixidur",
 			"Vogone",
 			"Wnme",
-			"Zabe"
+			"Zabe",
+			"Amire80",
+			"Nikki",
+			"Woytecr"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -257,6 +260,7 @@
 	"nosuchuser": "Der Benutzername „$1“ existiert nicht.\nÜberprüfen Sie die Schreibweise (Groß-/Kleinschreibung beachten) oder [[Special:CreateAccount|melden Sie sich als neuer Benutzer an]].",
 	"nosuchusershort": "Der Benutzername „$1“ ist nicht vorhanden. Bitte überprüfen Sie die Schreibweise.",
 	"nouserspecified": "Bitte geben Sie einen Benutzernamen an.",
+	"fatalpassworderror": "$1\n\nAus Sicherheitsgründen können Sie sich mit diesem Passwort nicht anmelden. Bitte [$2 fordern Sie eine E-Mail zum Zurücksetzen des Passworts an].",
 	"wrongpassword": "Der Benutzername oder das Passwort ist falsch. Bitte versuchen Sie es erneut.",
 	"wrongpasswordempty": "Es wurde kein Passwort eingegeben. Bitte versuchen Sie es erneut.",
 	"password-name-match": "Ihr Passwort muss sich von Ihrem Benutzernamen unterscheiden.",
@@ -312,6 +316,9 @@
 	"changeemail-maxlength": "Ihre E-Mail-Adresse darf maximal 255 Zeichen lang sein.",
 	"resettokens-text": "Sie können Tokens zurücksetzen, welche Ihnen den Zugriff auf bestimmte private Daten ermöglichen, die mit Ihrem Benutzerkonto hier verknüpft sind.\n\nSie sollten dies nur machen, wenn Sie die Tokens versehentlich mit jemandem geteilt haben oder Ihr Konto gefährdet ist.",
 	"resettokens-watchlist-token": "Token für den Webfeed (Atom/RSS) der [[Special:Watchlist|Änderungen an Seiten auf ihrer Beobachtungsliste]]",
+	"edit-recovery-special-recovered-on-tooltip": "Das Datum und die Uhrzeit der letzten Speicherung Ihrer Wiederherstellungsdaten",
+	"edit-recovery-loaded-message-different-rev": "<em>Beachten Sie, dass sich die Seite möglicherweise geändert hat, seit Sie mit der Bearbeitung begonnen haben.</em>",
+	"edit-recovery-loaded-message-different-rev-publish": "<em>Bitte überprüfen Sie Ihre Änderungen vor der Veröffentlichung.</em>",
 	"savearticle": "Seite speichern",
 	"blankarticle": "<strong>Warnung:</strong> Die Seite, die Sie erstellen, ist leer.\nWenn Sie erneut auf „$1“ klicken, wird die Seite ohne Inhalt erstellt.",
 	"anoneditwarning": "<strong>Warnung:</strong> Sie sind nicht angemeldet. Ihre IP-Adresse wird öffentlich sichtbar, falls Sie Bearbeitungen durchführen. Sofern Sie sich <strong>[$1 anmelden]</strong> oder <strong>[$2 ein Benutzerkonto erstellen]</strong>, werden Ihre Bearbeitungen zusammen mit anderen Beiträgen Ihrem Benutzernamen zugeordnet.",

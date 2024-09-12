@@ -102,7 +102,7 @@
 	"apihelp-changeauthenticationdata-example-password": "Intento para cambiar la contraseña del usuario actual a <kbd>ExamplePassword</kbd>.",
 	"apihelp-changecontentmodel-summary": "Cambia el modelo de contenido de una página",
 	"apihelp-changecontentmodel-param-summary": "Resumen de edición y razón para entrada de registro.",
-	"apihelp-changecontentmodel-param-tags": "Cambia etiquetas para aplicar a la entrada de registro y edición.",
+	"apihelp-changecontentmodel-param-tags": "Las etiquetas de cambio que se aplicarán a la entrada de registro y a la edición.",
 	"apihelp-changecontentmodel-param-model": "Modelo de contenido del nuevo contenido.",
 	"apihelp-changecontentmodel-param-bot": "Marca el cambio de modelo de contenido con un indicador bot.",
 	"apihelp-changecontentmodel-example": "Cambiar la página principal para tener el modelo de contenido <code>text</code>",

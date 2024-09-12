@@ -2436,7 +2436,7 @@
 	"sp-contributions-blocklog": "fyrri bönn",
 	"sp-contributions-suppresslog": "bæld framlög {{GENDER:$1|notanda}}",
 	"sp-contributions-deleted": "eyddar breytingar {{GENDER:$1|notanda}}",
-	"sp-contributions-uploads": "innsendingar",
+	"sp-contributions-uploads": "upphleðslur",
 	"sp-contributions-logs": "aðgerðaskrá",
 	"sp-contributions-talk": "spjall",
 	"sp-contributions-userrights": "{{GENDER:$1|notenda}}réttindastjórnun",
