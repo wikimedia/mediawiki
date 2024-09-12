@@ -34,9 +34,6 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @ingroup SpecialPage
  */
 class SpecialProtectedTitles extends SpecialPage {
-	protected $IdLevel = 'level';
-	protected $IdType = 'type';
-
 	private LinkBatchFactory $linkBatchFactory;
 	private IConnectionProvider $dbProvider;
 
@@ -59,10 +56,7 @@ class SpecialProtectedTitles extends SpecialPage {
 		$this->addHelpLink( 'Help:Protected_pages' );
 
 		$request = $this->getRequest();
-		$type = $request->getVal( $this->IdType );
-		$level = $request->getVal( $this->IdLevel );
-		$sizetype = $request->getVal( 'sizetype' );
-		$size = $request->getIntOrNull( 'size' );
+		$level = $request->getVal( 'level' );
 		$NS = $request->getIntOrNull( 'namespace' );
 
 		$pager = new ProtectedTitlesPager(
@@ -70,12 +64,8 @@ class SpecialProtectedTitles extends SpecialPage {
 			$this->getLinkRenderer(),
 			$this->linkBatchFactory,
 			$this->dbProvider,
-			[],
-			$type,
 			$level,
-			$NS,
-			$sizetype,
-			$size
+			$NS
 		);
 
 		$this->getOutput()->addHTML( $this->showOptions() );
@@ -138,8 +128,8 @@ class SpecialProtectedTitles extends SpecialPage {
 			'type' => 'select',
 			'options-messages' => $options,
 			'label-message' => 'restriction-level',
-			'name' => $this->IdLevel,
-			'id' => $this->IdLevel
+			'name' => 'level',
+			'id' => 'level',
 		];
 	}
 
