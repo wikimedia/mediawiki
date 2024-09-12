@@ -10,6 +10,7 @@ use ApiResult;
  */
 class ApiFormatNoneTest extends ApiFormatTestBase {
 
+	/** @inheritDoc */
 	protected $printerName = 'none';
 
 	public static function provideGeneralEncoding() {

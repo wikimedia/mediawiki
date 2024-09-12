@@ -8,6 +8,7 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
 
@@ -37,7 +38,9 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 	private const IMAGE_2_TIMESTAMP = '20230101000000';
 	private const IMAGE_2_SIZE = 12345;
 
+	/** @var UserIdentity */
 	private $testUser = null;
+	/** @var User */
 	private $tempUser = null;
 
 	public function addDBData() {

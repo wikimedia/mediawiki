@@ -34,6 +34,7 @@ class ApiOptionsTest extends ApiTestCase {
 	private $userOptionsManagerMock;
 	/** @var ApiOptions */
 	private $mTested;
+	/** @var array */
 	private $mSession;
 	/** @var DerivativeContext */
 	private $mContext;

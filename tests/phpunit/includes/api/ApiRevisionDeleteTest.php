@@ -20,6 +20,7 @@ use MWCryptRand;
 class ApiRevisionDeleteTest extends ApiTestCase {
 	use MockAuthorityTrait;
 
+	/** @var int[] */
 	public $revs = [];
 
 	protected function setUp(): void {

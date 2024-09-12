@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Api\Query;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\User\User;
 
 /**
  * @group API
@@ -18,6 +19,7 @@ class ApiQueryAllUsersTest extends ApiTestCase {
 
 	private const USER_PREFIX = 'ApiQueryAllUsersTest ';
 
+	/** @var User[] */
 	private static $usersAdded = [];
 
 	public function addDBDataOnce() {

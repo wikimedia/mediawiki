@@ -43,7 +43,9 @@ use SkinFallback;
 class ApiParseTest extends ApiTestCase {
 	use DummyServicesTrait;
 
+	/** @var int */
 	protected static $pageId;
+	/** @var int[] */
 	protected static $revIds = [];
 
 	public function addDBDataOnce() {

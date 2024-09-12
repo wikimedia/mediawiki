@@ -21,6 +21,7 @@ class ApiComparePagesTest extends ApiTestCase {
 
 	use TempUserTestTrait;
 
+	/** @var array */
 	protected static $repl = [];
 
 	protected function addPage( $page, $text, $model = CONTENT_MODEL_WIKITEXT ) {

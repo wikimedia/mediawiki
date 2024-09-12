@@ -30,6 +30,7 @@ use Exception;
  * @covers \ApiQuery
  */
 class ApiQueryContinue2Test extends ApiQueryContinueTestBase {
+	/** @var Exception|null */
 	protected $exceptionFromAddDBData;
 
 	/**

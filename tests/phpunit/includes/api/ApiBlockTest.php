@@ -10,6 +10,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
 use MediaWiki\Utils\MWTimestamp;
 
@@ -23,7 +24,9 @@ use MediaWiki\Utils\MWTimestamp;
 class ApiBlockTest extends ApiTestCase {
 	use MockAuthorityTrait;
 
+	/** @var User|null */
 	protected $mUser = null;
+	/** @var DatabaseBlockStore */
 	private $blockStore;
 
 	protected function setUp(): void {

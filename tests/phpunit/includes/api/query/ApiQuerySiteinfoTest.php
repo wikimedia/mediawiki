@@ -27,6 +27,7 @@ use Wikimedia\TestingAccessWrapper;
 class ApiQuerySiteinfoTest extends ApiTestCase {
 	use TempUserTestTrait;
 
+	/** @var array[]|null */
 	private $originalRegistryLoaded = null;
 
 	protected function tearDown(): void {

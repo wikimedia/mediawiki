@@ -23,9 +23,13 @@ use UnexpectedValueException;
  * Can fetch a random image, or also write a number of them to disk with random filenames.
  */
 class RandomImageGenerator {
+	/** @var int */
 	private $minWidth = 16;
+	/** @var int */
 	private $maxWidth = 16;
+	/** @var int */
 	private $minHeight = 16;
+	/** @var int */
 	private $maxHeight = 16;
 
 	public function __construct( $options = [] ) {

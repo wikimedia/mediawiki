@@ -27,8 +27,10 @@ use ReturnTypeWillChange;
 abstract class ApiTestCase extends MediaWikiLangTestCase {
 	use MockAuthorityTrait;
 
+	/** @var string */
 	protected static $apiUrl;
 
+	/** @var ApiErrorFormatter|null */
 	protected static $errorFormatter = null;
 
 	/**

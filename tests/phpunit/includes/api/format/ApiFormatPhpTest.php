@@ -10,6 +10,7 @@ use ApiResult;
  */
 class ApiFormatPhpTest extends ApiFormatTestBase {
 
+	/** @inheritDoc */
 	protected $printerName = 'php';
 
 	private static function addFormatVersion( $format, $arr ) {

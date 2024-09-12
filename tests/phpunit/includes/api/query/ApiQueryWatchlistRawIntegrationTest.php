@@ -16,8 +16,9 @@ use MediaWiki\Watchlist\WatchedItemQueryService;
  */
 class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 	// TODO: This test should use Authority, but can't due to User::saveSettings
-	// phpcs:ignore MediaWiki.Commenting.PropertyDocumentation.WrongStyle
+	/** @var User */
 	private $loggedInUser;
+	/** @var User */
 	private $notLoggedInUser;
 
 	protected function setUp(): void {

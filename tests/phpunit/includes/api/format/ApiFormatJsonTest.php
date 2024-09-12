@@ -12,6 +12,7 @@ use MWException;
  */
 class ApiFormatJsonTest extends ApiFormatTestBase {
 
+	/** @inheritDoc */
 	protected $printerName = 'json';
 
 	private static function addFormatVersion( $format, $arr ) {

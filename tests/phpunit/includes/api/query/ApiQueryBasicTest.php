@@ -34,6 +34,7 @@ use MediaWiki\Title\Title;
  * @covers \ApiQuery
  */
 class ApiQueryBasicTest extends ApiQueryTestBase {
+	/** @var Exception|null */
 	protected $exceptionFromAddDBData;
 
 	/**
