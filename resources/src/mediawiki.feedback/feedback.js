@@ -8,7 +8,7 @@
  */
 ( function () {
 
-	var FeedbackDialog = require( './FeedbackDialog.js' );
+	const FeedbackDialog = require( './FeedbackDialog.js' );
 
 	/**
 	 * @classdesc Obtain feedback from users. Functionality is provided
@@ -108,7 +108,7 @@
 	 * @param {string} feedbackPageUrl
 	 */
 	mw.Feedback.prototype.onDialogSubmit = function ( status, feedbackPageName, feedbackPageUrl ) {
-		var dialogConfig;
+		let dialogConfig;
 
 		if ( status !== 'submitted' ) {
 			return;

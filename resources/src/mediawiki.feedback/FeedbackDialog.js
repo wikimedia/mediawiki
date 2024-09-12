@@ -50,7 +50,7 @@ FeedbackDialog.static.actions = [
  * @inheritdoc
  */
 FeedbackDialog.prototype.initialize = function () {
-	var feedbackSubjectFieldLayout, feedbackMessageFieldLayout,
+	let feedbackSubjectFieldLayout, feedbackMessageFieldLayout,
 		feedbackFieldsetLayout, termsOfUseLabel;
 
 	// Parent method
@@ -90,7 +90,7 @@ FeedbackDialog.prototype.initialize = function () {
 		align: 'inline'
 	} );
 
-	var $termsOfUseLabelText = $( '<p>' ).append( mw.message( 'feedback-termsofuse' ).parseDom() );
+	const $termsOfUseLabelText = $( '<p>' ).append( mw.message( 'feedback-termsofuse' ).parseDom() );
 	$termsOfUseLabelText.find( 'a' ).attr( 'target', '_blank' );
 	termsOfUseLabel = new OO.ui.LabelWidget( {
 		classes: [ 'mw-feedbackDialog-feedback-termsofuse' ],
@@ -120,7 +120,7 @@ FeedbackDialog.prototype.initialize = function () {
  * @memberof mw.Feedback.Dialog
  */
 FeedbackDialog.prototype.validateFeedbackForm = function () {
-	var isValid = (
+	const isValid = (
 		(
 			!this.useragentMandatory ||
 			this.useragentCheckbox.isSelected()
@@ -148,7 +148,7 @@ FeedbackDialog.prototype.getSetupProcess = function ( data ) {
 		.next( function () {
 			// Get the URL of the target page, we want to use that in links in the intro
 			// and in the success dialog
-			var dialog = this;
+			const dialog = this;
 			if ( data.foreignApi ) {
 				return data.foreignApi.get( {
 					action: 'query',
@@ -164,7 +164,7 @@ FeedbackDialog.prototype.getSetupProcess = function ( data ) {
 			}
 		}, this )
 		.next( function () {
-			var $link,
+			let $link,
 				settings = data.settings;
 			data.contents = data.contents || {};
 
@@ -227,7 +227,7 @@ FeedbackDialog.prototype.getActionProcess = function ( action ) {
 		}, this );
 	} else if ( action === 'submit' ) {
 		return new OO.ui.Process( function () {
-			var fb = this,
+			let fb = this,
 				userAgentMessage = ':' +
 					'<small>' +
 					mw.msg( 'feedback-useragent' ) +
@@ -283,7 +283,7 @@ FeedbackDialog.prototype.getErrorMessage = function () {
  * @return {jQuery.Promise} Promise representing success of message posting action
  */
 FeedbackDialog.prototype.postMessage = function ( poster, subject, message ) {
-	var fb = this;
+	const fb = this;
 
 	return poster.post(
 		subject,

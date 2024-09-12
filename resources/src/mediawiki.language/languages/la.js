@@ -4,7 +4,7 @@
  */
 
 mw.language.convertGrammar = function ( word, form ) {
-	var grammarForms = mw.language.getData( 'la', 'grammarForms' );
+	const grammarForms = mw.language.getData( 'la', 'grammarForms' );
 	if ( grammarForms && grammarForms[ form ] ) {
 		return grammarForms[ form ][ word ];
 	}

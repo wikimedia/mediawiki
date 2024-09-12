@@ -1,4 +1,4 @@
-var doc, HIDDEN, VISIBILITY_CHANGE,
+let doc, HIDDEN, VISIBILITY_CHANGE,
 	nextId = 1,
 	clearHandles = Object.create( null );
 
@@ -39,7 +39,7 @@ module.exports = {
 	 *  value can be passed to clear() to cancel the timeout.
 	 */
 	set: function ( fn, delay ) {
-		var nativeId = null,
+		let nativeId = null,
 			visibleId = nextId++,
 			lastStartedAt = mw.now();
 
@@ -61,7 +61,7 @@ module.exports = {
 		}
 
 		function visibilityCheck() {
-			var now = mw.now();
+			const now = mw.now();
 
 			if ( HIDDEN && doc[ HIDDEN ] ) {
 				if ( nativeId !== null ) {

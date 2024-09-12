@@ -3,7 +3,7 @@
  */
 
 ( function () {
-	var jqXhr, $multipageimage, $spinner,
+	let jqXhr, $multipageimage, $spinner,
 		cache = {},
 		cacheOrder = [];
 
@@ -55,7 +55,7 @@
 	 */
 	function switchPage( url, hist ) {
 		// Start fetching data (might be cached)
-		var promise = fetchPageData( url );
+		const promise = fetchPageData( url );
 
 		// Add a new spinner if one doesn't already exist and the data is not already ready
 		if ( !$spinner && promise.state() !== 'resolved' ) {
@@ -94,7 +94,7 @@
 
 	function bindPageNavigation( $container ) {
 		$container.find( '.mw-filepage-multipage-navigation' ).one( 'click', 'a', function ( e ) {
-			var page, url;
+			let page, url;
 
 			// Generate the same URL on client side as the one generated in ImagePage::openShowImage.
 			// We avoid using the URL in the link directly since it could have been manipulated (T68608)
@@ -125,7 +125,7 @@
 		// Update the url using the History API
 		history.replaceState( { tag: 'mw-pagination' }, '' );
 		$( window ).on( 'popstate', ( e ) => {
-			var state = e.originalEvent.state;
+			const state = e.originalEvent.state;
 			if ( state && state.tag === 'mw-pagination' ) {
 				switchPage( location.href, true );
 			}

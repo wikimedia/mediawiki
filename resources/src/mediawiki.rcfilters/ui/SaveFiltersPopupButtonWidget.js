@@ -12,8 +12,8 @@
  * @param {mw.rcfilters.dm.SavedQueriesModel} model View model
  * @param {Object} [config] Configuration object
  */
-var SaveFiltersPopupButtonWidget = function MwRcfiltersUiSaveFiltersPopupButtonWidget( controller, model, config ) {
-	var layout,
+const SaveFiltersPopupButtonWidget = function MwRcfiltersUiSaveFiltersPopupButtonWidget( controller, model, config ) {
+	let layout,
 		checkBoxLayout,
 		$popupContent = $( '<div>' );
 
@@ -171,7 +171,7 @@ SaveFiltersPopupButtonWidget.prototype.onApplyButtonClick = function () {
  * Apply and add the new quick link
  */
 SaveFiltersPopupButtonWidget.prototype.apply = function () {
-	var label = this.input.getValue().trim();
+	const label = this.input.getValue().trim();
 
 	// This condition is more for double-checking, since the
 	// apply button should be disabled if the label is empty

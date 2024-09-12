@@ -46,7 +46,7 @@ const inlineFormatToggle = require( './inlineFormatToggle.js' );
 				// Right click.
 				return;
 			}
-			var clickSide = getNodeSide( e.target );
+			const clickSide = getNodeSide( e.target );
 			if ( getCurrentlyLockedSide() !== clickSide ) {
 				document.getSelection().removeAllRanges();
 			}
@@ -54,7 +54,7 @@ const inlineFormatToggle = require( './inlineFormatToggle.js' );
 		}
 
 		function selectionHandler() {
-			var textNode = document.getSelection().anchorNode;
+			const textNode = document.getSelection().anchorNode;
 
 			if ( !textNode ) {
 				return;

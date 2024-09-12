@@ -4,7 +4,7 @@
  */
 
 // cache the separator to avoid require on each keypress
-var colonSeparator = require( './contentMessages.json' ).colonSeparator;
+const colonSeparator = require( './contentMessages.json' ).colonSeparator;
 
 mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 	// This checks the length together with the value from the select field
@@ -13,7 +13,7 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 	$root
 		.find( '.mw-htmlform-select-and-other-field' )
 		.each( function () {
-			var $reasonList, currentValReasonList, maxlengthUnit, lengthLimiter, widget,
+			let $reasonList, currentValReasonList, maxlengthUnit, lengthLimiter, widget,
 				$this = $( this ),
 				$widget = $this.closest( '.oo-ui-widget[data-ooui]' );
 			// find the reason list
@@ -40,7 +40,7 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 				lengthLimiter = maxlengthUnit === 'codepoints' ? 'codePointLimit' : 'byteLimit';
 				$this[ lengthLimiter ]( ( input ) => {
 					// Should be built the same as in HTMLSelectAndOtherField::loadDataFromRequest
-					var comment = currentValReasonList;
+					let comment = currentValReasonList;
 					if ( comment === 'other' ) {
 						comment = input;
 					} else if ( input !== '' ) {

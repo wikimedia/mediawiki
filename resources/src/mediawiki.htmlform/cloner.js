@@ -3,7 +3,7 @@
  * Add/remove cloner clones without having to resubmit the form.
  */
 
-var cloneCounter = 0;
+let cloneCounter = 0;
 
 /**
  * Appends a new row with fields to the cloner.
@@ -12,18 +12,18 @@ var cloneCounter = 0;
  * @param {jQuery} $createButton
  */
 function appendToCloner( $createButton ) {
-	var $ul = $createButton.prev( 'ul.mw-htmlform-cloner-ul' ),
+	const $ul = $createButton.prev( 'ul.mw-htmlform-cloner-ul' ),
 
 		cloneRegex = new RegExp( mw.util.escapeRegExp( $ul.data( 'uniqueId' ) ), 'g' ),
 		// Assume the ids that need to be made unique will start with 'ooui-php-'. See T274533
 		inputIdRegex = new RegExp( /(ooui-php-[0-9]*)/, 'gm' );
 
 	++cloneCounter;
-	var html = $ul.data( 'template' )
+	const html = $ul.data( 'template' )
 		.replace( cloneRegex, 'clone' + cloneCounter )
 		.replace( inputIdRegex, '$1-clone' + cloneCounter );
 
-	var $li = $( '<li>' )
+	const $li = $( '<li>' )
 		.addClass( 'mw-htmlform-cloner-li' )
 		.html( html )
 		.appendTo( $ul );
@@ -32,15 +32,15 @@ function appendToCloner( $createButton ) {
 }
 
 mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
-	var $deleteElement = $root.find( '.mw-htmlform-cloner-delete-button' ),
+	const $deleteElement = $root.find( '.mw-htmlform-cloner-delete-button' ),
 		$createElement = $root.find( '.mw-htmlform-cloner-create-button' );
 
 	$deleteElement.each( function () {
-		var $element = $( this );
+		const $element = $( this );
 
 		// eslint-disable-next-line no-jquery/no-class-state
 		if ( $element.hasClass( 'oo-ui-widget' ) ) {
-			var deleteButton = OO.ui.infuse( $element );
+			const deleteButton = OO.ui.infuse( $element );
 			deleteButton.on( 'click', () => {
 				deleteButton.$element.closest( 'li.mw-htmlform-cloner-li' ).remove();
 			} );
@@ -54,11 +54,11 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 	} );
 
 	$createElement.each( function () {
-		var $element = $( this );
+		const $element = $( this );
 
 		// eslint-disable-next-line no-jquery/no-class-state
 		if ( $element.hasClass( 'oo-ui-widget' ) ) {
-			var createButton = OO.ui.infuse( $element );
+			const createButton = OO.ui.infuse( $element );
 			createButton.on( 'click', () => {
 				appendToCloner( createButton.$element );
 			} );

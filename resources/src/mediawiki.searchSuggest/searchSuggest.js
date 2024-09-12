@@ -3,7 +3,7 @@
  */
 ( function () {
 	// eslint-disable-next-line no-jquery/no-map-util
-	var searchNS = $.map( mw.config.get( 'wgFormattedNamespaces' ), ( nsName, nsID ) => {
+	const searchNS = $.map( mw.config.get( 'wgFormattedNamespaces' ), ( nsName, nsID ) => {
 			if ( nsID >= 0 && mw.user.options.get( 'searchNs' + nsID ) ) {
 			// Cast string key to number
 				return Number( nsID );
@@ -79,7 +79,7 @@
 	};
 
 	$( () => {
-		var api, searchboxesSelectors,
+		let api, searchboxesSelectors,
 			// Region where the suggestions box will appear directly below
 			// (using the same width). Can be a container element or the input
 			// itself, depending on what suits best in the environment.
@@ -92,7 +92,7 @@
 			previousSearchText = $searchInput.val();
 
 		function serializeObject( fields ) {
-			var i,
+			let i,
 				obj = {};
 
 			for ( i = 0; i < fields.length; i++ ) {
@@ -104,7 +104,7 @@
 
 		// Compute form data for search suggestions functionality.
 		function getFormData( context ) {
-			var $form, baseHref, linkParams;
+			let $form, baseHref, linkParams;
 
 			if ( !context.formData ) {
 				// Compute common parameters for links' hrefs
@@ -132,7 +132,7 @@
 		 * @ignore
 		 */
 		function onBeforeUpdate() {
-			var searchText = this.val();
+			const searchText = this.val();
 
 			if ( searchText && searchText !== previousSearchText ) {
 				mw.track( 'mediawiki.searchSuggest', {
@@ -182,7 +182,7 @@
 		 * @param {Object} metadata
 		 */
 		function onAfterUpdate( metadata ) {
-			var context = this.data( 'suggestionsContext' );
+			const context = this.data( 'suggestionsContext' );
 
 			mw.track( 'mediawiki.searchSuggest', {
 				action: 'impression-results',
@@ -226,7 +226,7 @@
 
 		// The function used to render the suggestions.
 		function renderFunction( text, context ) {
-			var formData = getFormData( context ),
+			const formData = getFormData( context ),
 				textboxConfig = context.data.$textbox.data( 'mw-searchsuggest' ) || {};
 
 			// linkParams object is modified and reused
@@ -256,7 +256,7 @@
 
 		// The function used when the user makes a selection
 		function selectFunction( $input, source ) {
-			var context = $input.data( 'suggestionsContext' ),
+			const context = $input.data( 'suggestionsContext' ),
 				text = $input.val(),
 				url = $( this ).parent( 'a' ).attr( 'href' );
 
@@ -289,7 +289,7 @@
 		}
 
 		function specialRenderFunction( query, context ) {
-			var $el = this,
+			const $el = this,
 				formData = getFormData( context );
 
 			// linkParams object is modified and reused
@@ -340,14 +340,14 @@
 		$( searchboxesSelectors.join( ', ' ) )
 			.suggestions( {
 				fetch: function ( query, response, maxRows ) {
-					var node = this[ 0 ];
+					const node = this[ 0 ];
 
 					api = api || new mw.Api();
 
 					$.data( node, 'request', mw.searchSuggest.request( api, query, response, maxRows ) );
 				},
 				cancel: function () {
-					var node = this[ 0 ],
+					const node = this[ 0 ],
 						request = $.data( node, 'request' );
 
 					if ( request ) {
@@ -378,7 +378,7 @@
 			// (they use 2 elements to get a sensible font-height). So, instead of making exceptions for
 			// each skin or adding more stylesheets, just copy it from the active element so auto-fit.
 			.each( function () {
-				var $this = $( this );
+				const $this = $( this );
 				$this
 					.data( 'suggestions-context' )
 					.data.$container.css( 'fontSize', $this.css( 'fontSize' ) );
@@ -405,7 +405,7 @@
 			special: {
 				render: specialRenderFunction,
 				select: function ( $input, source ) {
-					var context = $input.data( 'suggestionsContext' ),
+					const context = $input.data( 'suggestionsContext' ),
 						text = $input.val();
 					if ( source === 'mouse' ) {
 						// mouse click won't trigger form submission, so we need to send a click event
@@ -431,13 +431,13 @@
 			$region: $searchRegion
 		} );
 
-		var $searchForm = $searchInput.closest( 'form' );
+		const $searchForm = $searchInput.closest( 'form' );
 		$searchForm
 			// Track the form submit event.
 			// Note that the form is mainly submitted for manual user input;
 			// selecting a suggestion is tracked as a click instead (see selectFunction()).
 			.on( 'submit', () => {
-				var context = $searchInput.data( 'suggestionsContext' );
+				const context = $searchInput.data( 'suggestionsContext' );
 				mw.track( 'mediawiki.searchSuggest', {
 					action: 'submit-form',
 					numberOfResults: context.config.suggestions.length,

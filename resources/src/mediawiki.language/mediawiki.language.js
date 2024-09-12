@@ -10,7 +10,7 @@
 		 * @return {string} Correct form for quantifier in this language
 		 */
 		convertPlural: function ( count, forms, explicitPluralForms ) {
-			var pluralRules,
+			let pluralRules,
 				pluralFormIndex = 0;
 
 			if ( explicitPluralForms && ( explicitPluralForms[ count ] !== undefined ) ) {
@@ -84,7 +84,7 @@
 		 * @return {string}
 		 */
 		convertGrammar: function ( word, form ) {
-			var userLanguage, forms, transformations,
+			let userLanguage, forms, transformations,
 				patterns, i, rule, sourcePattern, regexp, replacement;
 
 			userLanguage = mw.config.get( 'wgUserLanguage' );
@@ -137,9 +137,9 @@
 		 * @return {string}
 		 */
 		listToText: function ( list ) {
-			var text = '';
+			let text = '';
 
-			for ( var i = 0; i < list.length; i++ ) {
+			for ( let i = 0; i < list.length; i++ ) {
 				text += list[ i ];
 				if ( list.length - 2 === i ) {
 					text += mw.msg( 'and' ) + mw.msg( 'word-separator' );
@@ -158,7 +158,7 @@
 		 * @return {string}
 		 */
 		bcp47: function ( languageTag ) {
-			var bcp47Map,
+			let bcp47Map,
 				formatted,
 				segments,
 				isFirstSegment = true,
@@ -173,7 +173,7 @@
 
 			segments = languageTag.split( '-' );
 			formatted = segments.map( ( segment ) => {
-				var newSegment;
+				let newSegment;
 
 				// when previous segment is x, it is a private segment and should be lc
 				if ( isPrivate ) {

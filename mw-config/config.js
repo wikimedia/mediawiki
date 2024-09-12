@@ -1,10 +1,10 @@
 /* global extDependencyMap */
 ( function () {
 	$( () => {
-		var $label, labelText;
+		let $label, labelText;
 
 		function syncText() {
-			var value = $( this ).val()
+			let value = $( this ).val()
 				.replace( /[\[\]{}|#<>%+? ]/g, '_' ) // eslint-disable-line no-useless-escape
 				.replace( /&/, '&amp;' )
 				.replace( /__+/g, '_' )
@@ -21,7 +21,7 @@
 		} );
 		$( document.getElementById( $( '.dbRadio:checked' ).attr( 'rel' ) ) ).show();
 		$( '.dbRadio' ).on( 'click', () => {
-			var $checked = $( '.dbRadio:checked' ),
+			const $checked = $( '.dbRadio:checked' ),
 				$wrapper = $( document.getElementById( $checked.attr( 'rel' ) ) );
 			// eslint-disable-next-line no-jquery/no-sizzle
 			if ( $wrapper.is( ':hidden' ) ) {
@@ -40,7 +40,7 @@
 
 		// Show/hide random stuff (email, upload)
 		$( '.showHideRadio' ).on( 'click', function () {
-			var $wrapper = $( '#' + $( this ).attr( 'rel' ) );
+			const $wrapper = $( '#' + $( this ).attr( 'rel' ) );
 			if ( $( this ).is( ':checked' ) ) {
 				// FIXME: Use CSS transition
 				// eslint-disable-next-line no-jquery/no-animate-toggle
@@ -51,7 +51,7 @@
 			}
 		} );
 		$( '.hideShowRadio' ).on( 'click', function () {
-			var $wrapper = $( '#' + $( this ).attr( 'rel' ) );
+			const $wrapper = $( '#' + $( this ).attr( 'rel' ) );
 			if ( $( this ).is( ':checked' ) ) {
 				// FIXME: Use CSS transition
 				// eslint-disable-next-line no-jquery/no-animate-toggle
@@ -70,7 +70,7 @@
 
 		// Enable/disable "other" textboxes
 		$( '.enableForOther' ).on( 'click', function () {
-			var $textbox = $( document.getElementById( $( this ).attr( 'rel' ) ) );
+			const $textbox = $( document.getElementById( $( this ).attr( 'rel' ) ) );
 			// FIXME: Ugh, this is ugly
 			if ( $( this ).val() === 'other' ) {
 				// FIXME: Use CSS transition
@@ -90,7 +90,7 @@
 
 		// Show/Hide memcached servers when needed
 		$( 'input[name$="config__MainCacheType"]' ).on( 'change', () => {
-			var $memc = $( '#config-memcachewrapper' );
+			const $memc = $( '#config-memcachewrapper' );
 			if ( $( 'input[name$="config__MainCacheType"]:checked' ).val() === 'memcached' ) {
 				// FIXME: Use CSS transition
 				// eslint-disable-next-line no-jquery/no-animate-toggle
@@ -102,7 +102,7 @@
 		} );
 
 		function areReqsSatisfied( name ) {
-			var i, ext, skin, node;
+			let i, ext, skin, node;
 			if ( !extDependencyMap[ name ] ) {
 				return true;
 			}
@@ -133,7 +133,7 @@
 		$( '.mw-ext-with-dependencies input' ).prop( 'disabled', true );
 		$( '.config-ext-input[data-name]' ).on( 'change', () => {
 			$( '.mw-ext-with-dependencies input' ).each( function () {
-				var name = this.getAttribute( 'data-name' );
+				const name = this.getAttribute( 'data-name' );
 				if ( areReqsSatisfied( name ) ) {
 					// Re-enable it!
 					this.disabled = false;
@@ -145,12 +145,12 @@
 			} );
 		} );
 
-		var base = window.location.pathname.split( '/mw-config' )[ 0 ];
+		const base = window.location.pathname.split( '/mw-config' )[ 0 ];
 		function getLogoPath( src ) {
 			return src.replace( '$wgResourceBasePath', base );
 		}
 
-		var nodes = {
+		const nodes = {
 			sidebar: 'config__Logo1x',
 			icon: 'config__LogoIcon',
 			wordmark: 'config__LogoWordmark',
@@ -159,9 +159,9 @@
 
 		// setup live preview of logos
 		function getLogoData() {
-			var data = {};
+			const data = {};
 			Object.keys( nodes ).forEach( ( key ) => {
-				var input = document.getElementById( nodes[ key ] );
+				const input = document.getElementById( nodes[ key ] );
 				if ( input ) {
 					data[ key ] = getLogoPath( input.value );
 				}
@@ -175,38 +175,38 @@
 		 * @param {jQuery} $preview
 		 */
 		function renderLogo( $preview ) {
-			var data = getLogoData();
-			var $sidebar = $( '<div>' );
+			const data = getLogoData();
+			const $sidebar = $( '<div>' );
 			$sidebar.addClass( 'sidebar' );
-			var sidebarLogo = data.sidebar || data.icon;
+			const sidebarLogo = data.sidebar || data.icon;
 			if ( sidebarLogo ) {
-				var $sidebarCard = $( '<span>' ).addClass( 'cdx-card' ).css( 'display', 'inline-block' ).append(
+				const $sidebarCard = $( '<span>' ).addClass( 'cdx-card' ).css( 'display', 'inline-block' ).append(
 					$( '<span>' ).addClass( 'cdx-card__thumbnail cdx-thumbnail' ).html(
 						$( '<img>' ).attr( 'src', sidebarLogo ).addClass( 'logo-sidebar' )
 					)
 				).appendTo( $sidebar );
 
-				var $menu = $( '<span>' ).addClass( 'cdx-card__text' ).append(
+				const $menu = $( '<span>' ).addClass( 'cdx-card__text' ).append(
 					$( '<span>' ).addClass( 'cdx-card__text__title' ).append(
 						$( '<a>' ).attr( 'href', '#' ).text( $preview.data( 'main-page' ) )
 					)
 				);
 				$menu.appendTo( $sidebarCard );
 			}
-			var $main = $( '<span>' ).addClass( 'logo-main' ).addClass( 'cdx-card' );
+			const $main = $( '<span>' ).addClass( 'logo-main' ).addClass( 'cdx-card' );
 			if ( data.icon ) {
 				$( '<span>' ).addClass( 'cdx-card__thumbnail cdx-thumbnail' ).html(
 					$( '<img>' ).attr( 'src', data.icon ).addClass( 'logo-icon' )
 				).appendTo( $main );
 			}
-			var $container = $( '<span>' ).addClass( 'cdx-card__text' ).appendTo( $main );
+			const $container = $( '<span>' ).addClass( 'cdx-card__text' ).appendTo( $main );
 
-			var fallback = {
+			const fallback = {
 				wordmark: $( '[name=config_LogoSiteName]' ).val()
 			};
 			[ 'wordmark', 'tagline' ].forEach( ( key ) => {
-				var src = data[ key ];
-				var $el = src ?
+				const src = data[ key ];
+				const $el = src ?
 					$( '<img>' ).attr( 'src', src ) :
 					$( '<div>' ).text( fallback[ key ] );
 
@@ -226,8 +226,8 @@
 		 */
 		function addDroppers( $preview, tooltip ) {
 			Object.keys( nodes ).forEach( ( key ) => {
-				var dropper = document.createElement( 'div' );
-				var input = document.getElementById( nodes[ key ] );
+				const dropper = document.createElement( 'div' );
+				const input = document.getElementById( nodes[ key ] );
 				dropper.textContent = tooltip;
 				input.parentNode.insertBefore( dropper, input.nextSibling );
 				dropper.classList.add( 'logo-dropper' );
@@ -237,15 +237,15 @@
 				dropper.addEventListener( 'drop', function ( ev ) {
 					// Prevent default behavior (Prevent file from being opened)
 					ev.preventDefault();
-					var d = this;
-					var item = ev.dataTransfer.items[ 0 ];
+					const d = this;
+					const item = ev.dataTransfer.items[ 0 ];
 					// Only allow images.
 					if ( item && item.type.indexOf( 'image/' ) === 0 ) {
-						var blob = item.getAsFile();
-						var reader = new FileReader();
+						const blob = item.getAsFile();
+						const reader = new FileReader();
 						reader.readAsDataURL( blob );
 						reader.onloadend = function () {
-							var base64data = reader.result;
+							const base64data = reader.result;
 							d.previousSibling.value = base64data;
 							renderLogo( $preview );
 						};
@@ -255,9 +255,9 @@
 		}
 
 		// setup preview area to respond to changes.
-		var $pOptions = $( '.config-personalization-options' );
+		const $pOptions = $( '.config-personalization-options' );
 		if ( $pOptions.length ) {
-			var $previewArea = $pOptions.find( '.logo-preview-area' );
+			const $previewArea = $pOptions.find( '.logo-preview-area' );
 			$pOptions.find( ' input' ).on( 'input', () => {
 				renderLogo( $previewArea );
 			} );

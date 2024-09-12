@@ -60,7 +60,7 @@
 		 *  specified langCode)
 		 */
 		getData: function ( langCode, dataKey ) {
-			var langData = mw.language.data;
+			const langData = mw.language.data;
 			langCode = langCode.toLowerCase();
 			if ( langData && langData[ langCode ] instanceof mw.Map ) {
 				return langData[ langCode ].get( dataKey );
@@ -78,7 +78,7 @@
 		 * @param {any} [value] Value for dataKey, omit if dataKey is an object
 		 */
 		setData: function ( langCode, dataKey, value ) {
-			var langData = mw.language.data;
+			const langData = mw.language.data;
 			langCode = langCode.toLowerCase();
 			if ( !( langData[ langCode ] instanceof mw.Map ) ) {
 				langData[ langCode ] = new mw.Map();

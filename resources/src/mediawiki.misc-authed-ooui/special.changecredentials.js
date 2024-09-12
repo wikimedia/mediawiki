@@ -3,10 +3,10 @@
  */
 ( function () {
 	mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
-		var api = new mw.Api();
+		const api = new mw.Api();
 
 		$root.find( '.mw-changecredentials-validate-password.oo-ui-fieldLayout' ).each( function () {
-			var currentApiPromise,
+			let currentApiPromise,
 				self = OO.ui.FieldLayout.static.infuse( $( this ) );
 
 			self.getField().setValidation( ( passwordValue ) => {
@@ -22,7 +22,7 @@
 					return true;
 				}
 
-				var d = $.Deferred();
+				const d = $.Deferred();
 				currentApiPromise = api.post( {
 					action: 'validatepassword',
 					password: passwordValue,
@@ -31,12 +31,12 @@
 					errorsuselocal: true,
 					uselang: mw.config.get( 'wgUserLanguage' )
 				} ).done( ( resp ) => {
-					var pwinfo = resp.validatepassword,
+					const pwinfo = resp.validatepassword,
 						good = pwinfo.validity === 'Good';
 
 					currentApiPromise = undefined;
 
-					var errors;
+					let errors;
 					if ( !good ) {
 						errors = pwinfo.validitymessages.map( ( m ) => new OO.ui.HtmlSnippet( m.html ) );
 					}

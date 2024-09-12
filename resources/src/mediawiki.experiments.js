@@ -9,7 +9,7 @@
 	 * @singleton
 	 */
 
-	var CONTROL_BUCKET = 'control',
+	const CONTROL_BUCKET = 'control',
 		MAX_INT32_UNSIGNED = 4294967295;
 
 	/**
@@ -23,7 +23,7 @@
 	 */
 	function hashString( string ) {
 		/* eslint-disable no-bitwise */
-		var hash = 0,
+		let hash = 0,
 			i = string.length;
 
 		while ( i-- ) {
@@ -74,7 +74,7 @@
 		 * @return {string|undefined} The bucket
 		 */
 		getBucket: function ( experiment, token ) {
-			var buckets = experiment.buckets,
+			let buckets = experiment.buckets,
 				key,
 				range = 0,
 				hash,

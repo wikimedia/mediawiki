@@ -9,7 +9,7 @@
 		 *  whether the category exists.
 		 */
 		isCategory: function ( title ) {
-			var apiPromise = this.get( {
+			const apiPromise = this.get( {
 				formatversion: 2,
 				prop: 'categoryinfo',
 				titles: [ String( title ) ]
@@ -34,7 +34,7 @@
 		 */
 		getCategoriesByPrefix: function ( prefix ) {
 			// Fetch with allpages to only get categories that have a corresponding description page.
-			var apiPromise = this.get( {
+			const apiPromise = this.get( {
 				formatversion: 2,
 				list: 'allpages',
 				apprefix: prefix,
@@ -54,7 +54,7 @@
 		 *  category titles, or with false if the title was not found.
 		 */
 		getCategories: function ( title ) {
-			var apiPromise = this.get( {
+			const apiPromise = this.get( {
 				formatversion: 2,
 				prop: 'categories',
 				titles: [ String( title ) ]
@@ -62,7 +62,7 @@
 
 			return apiPromise
 				.then( ( data ) => {
-					var page;
+					let page;
 
 					if ( !data.query || !data.query.pages ) {
 						return false;

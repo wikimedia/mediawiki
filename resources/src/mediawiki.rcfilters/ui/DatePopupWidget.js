@@ -1,4 +1,4 @@
-var ValuePickerWidget = require( './ValuePickerWidget.js' ),
+let ValuePickerWidget = require( './ValuePickerWidget.js' ),
 	DatePopupWidget;
 
 /**

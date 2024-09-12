@@ -1,4 +1,4 @@
-var FilterTagMultiselectWidget = require( './FilterTagMultiselectWidget.js' ),
+let FilterTagMultiselectWidget = require( './FilterTagMultiselectWidget.js' ),
 	LiveUpdateButtonWidget = require( './LiveUpdateButtonWidget.js' ),
 	ChangesLimitAndDateButtonWidget = require( './ChangesLimitAndDateButtonWidget.js' ),
 	FilterWrapperWidget;
@@ -25,7 +25,7 @@ var FilterTagMultiselectWidget = require( './FilterTagMultiselectWidget.js' ),
 FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget(
 	controller, model, savedQueriesModel, changesListModel, config
 ) {
-	var $bottom;
+	let $bottom;
 	config = config || {};
 
 	// Parent

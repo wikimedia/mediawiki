@@ -12,8 +12,8 @@
  */
 ( function () {
 
-	var pluses = /\+/g;
-	var config, cookie;
+	const pluses = /\+/g;
+	let config, cookie;
 
 	function raw( s ) {
 		return s;
@@ -64,7 +64,7 @@
 			}
 
 			if ( typeof options.expires === 'number' ) {
-				var days = options.expires, t = options.expires = new Date();
+				const days = options.expires, t = options.expires = new Date();
 				t.setDate( t.getDate() + days );
 			}
 
@@ -87,19 +87,19 @@
 		}
 
 		// read
-		var decode = config.raw ? raw : decoded;
-		var cookies;
+		const decode = config.raw ? raw : decoded;
+		let cookies;
 		try {
 			cookies = document.cookie.split( '; ' );
 		} catch ( e ) {
 			// Fail silently if the document is not allowed to access cookies.
 			cookies = [];
 		}
-		var result = key ? null : {};
-		for ( var i = 0, l = cookies.length; i < l; i++ ) {
-			var parts = cookies[ i ].split( '=' );
-			var name = decode( parts.shift() );
-			var s = decode( parts.join( '=' ) );
+		let result = key ? null : {};
+		for ( let i = 0, l = cookies.length; i < l; i++ ) {
+			const parts = cookies[ i ].split( '=' );
+			const name = decode( parts.shift() );
+			const s = decode( parts.join( '=' ) );
 
 			if ( key && key === name ) {
 				result = fromJSON( s );

@@ -2,11 +2,11 @@
  * Add autocomplete suggestions for names of registered users.
  */
 ( function () {
-	var api, config;
+	let api, config;
 
 	config = {
 		fetch: function ( userInput, response, maxRows ) {
-			var node = this[ 0 ];
+			const node = this[ 0 ];
 
 			api = api || new mw.Api();
 
@@ -17,12 +17,12 @@
 				auprefix: userInput,
 				aulimit: maxRows
 			} ).done( ( data ) => {
-				var users = data.query.allusers.map( ( userObj ) => userObj.name );
+				const users = data.query.allusers.map( ( userObj ) => userObj.name );
 				response( users );
 			} ) );
 		},
 		cancel: function () {
-			var node = this[ 0 ],
+			const node = this[ 0 ],
 				request = $.data( node, 'request' );
 
 			if ( request ) {

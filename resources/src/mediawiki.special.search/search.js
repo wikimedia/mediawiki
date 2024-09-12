@@ -3,7 +3,7 @@
  */
 ( function () {
 	$( () => {
-		var $checkboxes, $headerLinks, updateHeaderLinks, searchWidget;
+		let $checkboxes, $headerLinks, updateHeaderLinks, searchWidget;
 
 		// Emulate HTML5 autofocus behavior in non HTML5 compliant browsers
 		if ( !( 'autofocus' in document.createElement( 'input' ) ) ) {
@@ -24,7 +24,7 @@
 		searchWidget = OO.ui.infuse( $( '#searchText' ) );
 		updateHeaderLinks = function ( value ) {
 			$headerLinks.each( function () {
-				var parts = $( this ).attr( 'href' ).split( 'search=' ),
+				let parts = $( this ).attr( 'href' ).split( 'search=' ),
 					lastpart = '',
 					prefix = 'search=';
 				if ( parts.length > 1 && parts[ 1 ].indexOf( '&' ) !== -1 ) {

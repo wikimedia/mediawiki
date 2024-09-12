@@ -1,5 +1,5 @@
 ( function () {
-	var api = new mw.Api();
+	const api = new mw.Api();
 
 	/**
 	 * Show the edit summary.
@@ -9,8 +9,8 @@
 	 * @param {Object} response
 	 */
 	function showEditSummary( $formNode, response ) {
-		var $summaryPreview = $formNode.find( '.mw-summary-preview' ).empty();
-		var parse = response.parse;
+		const $summaryPreview = $formNode.find( '.mw-summary-preview' ).empty();
+		const parse = response.parse;
 
 		if ( !parse || !parse.parsedsummary ) {
 			return;
@@ -62,7 +62,7 @@
 
 		// Add whitespace between the <div>s because
 		// they get displayed with display: inline-block
-		var newList = [];
+		const newList = [];
 		indicators.forEach( ( indicator ) => {
 			newList.push( indicator, document.createTextNode( '\n' ) );
 		} );
@@ -81,10 +81,10 @@
 	function showTemplates( templates ) {
 		// The .templatesUsed div can be empty, if no templates are in use.
 		// In that case, we have to create the required structure.
-		var $parent = $( '.templatesUsed' );
+		const $parent = $( '.templatesUsed' );
 
 		// Find or add the explanation text (the toggler for collapsing).
-		var $explanation = $parent.find( '.mw-templatesUsedExplanation p' );
+		let $explanation = $parent.find( '.mw-templatesUsedExplanation p' );
 		if ( $explanation.length === 0 ) {
 			$explanation = $( '<p>' );
 			$parent.append( $( '<div>' )
@@ -94,7 +94,7 @@
 
 		// Find or add the list. The makeCollapsible() method is called on this
 		// in resources/src/mediawiki.action/mediawiki.action.edit.collapsibleFooter.js
-		var $list = $parent.find( 'ul' );
+		let $list = $parent.find( 'ul' );
 		if ( $list.length === 0 ) {
 			$list = $( '<ul>' ).addClass( [ 'mw-editfooter-list', 'mw-collapsible', 'mw-made-collapsible' ] );
 			$parent.append( $list );
@@ -108,11 +108,11 @@
 
 		// Fetch info about all templates, batched because API is limited to 50 at a time.
 		$parent.addClass( 'mw-preview-loading-elements-loading' );
-		var batchSize = 50;
-		var requests = [];
-		for ( var batch = 0; batch < templates.length; batch += batchSize ) {
+		const batchSize = 50;
+		const requests = [];
+		for ( let batch = 0; batch < templates.length; batch += batchSize ) {
 			// Build a list of template names for this batch.
-			var titles = templates
+			const titles = templates
 				.slice( batch, batch + batchSize )
 				.map( ( template ) => template.title );
 			requests.push( api.post( {
@@ -127,12 +127,12 @@
 			} ) );
 		}
 		$.when.apply( null, requests ).done( function () {
-			var templatesAllInfo = [];
+			const templatesAllInfo = [];
 			// For the first batch, empty the list in preparation for either adding new items or not needing to.
-			for ( var r = 0; r < arguments.length; r++ ) {
+			for ( let r = 0; r < arguments.length; r++ ) {
 				// Response is either the whole argument, or the 0th element of it.
-				var response = arguments[ r ][ 0 ] || arguments[ r ];
-				var templatesInfo = ( response.query && response.query.pages ) || [];
+				const response = arguments[ r ][ 0 ] || arguments[ r ];
+				const templatesInfo = ( response.query && response.query.pages ) || [];
 				templatesInfo.forEach( ( ti ) => {
 					templatesAllInfo.push( {
 						title: mw.Title.newFromText( ti.title ),
@@ -153,7 +153,7 @@
 			} );
 
 			// Add new template list, and update the list header.
-			var $listNew = $( '<ul>' );
+			const $listNew = $( '<ul>' );
 			addItemToTemplateListPromise( $listNew, templatesAllInfo, 0 )
 				.then( () => {
 					$list.html( $listNew.html() );
@@ -193,30 +193,30 @@
 	 * @return {jQuery.Promise}
 	 */
 	function addItemToTemplateList( $list, template ) {
-		var canEdit = template.apiData.actions.edit !== undefined;
-		var linkClasses = template.apiData.linkclasses || [];
+		const canEdit = template.apiData.actions.edit !== undefined;
+		const linkClasses = template.apiData.linkclasses || [];
 		if ( template.apiData.missing !== undefined && template.apiData.known === undefined ) {
 			linkClasses.push( 'new' );
 		}
-		var $baseLink = $( '<a>' )
+		const $baseLink = $( '<a>' )
 			// Additional CSS classes (e.g. link colors) used for links to this template.
 			// The following classes might be used here:
 			// * new
 			// * mw-redirect
 			// * any added by the GetLinkColours hook
 			.addClass( linkClasses );
-		var $link = $baseLink.clone()
+		const $link = $baseLink.clone()
 			.attr( 'href', template.title.getUrl() )
 			.text( template.title.getPrefixedText() );
-		var $editLink = $baseLink.clone()
+		const $editLink = $baseLink.clone()
 			.attr( 'href', template.title.getUrl( { action: 'edit' } ) )
 			.append( mw.msg( canEdit ? 'editlink' : 'viewsourcelink' ) );
-		var wordSep = mw.message( 'word-separator' ).escaped();
+		const wordSep = mw.message( 'word-separator' ).escaped();
 		return getRestrictionsText( template.apiData.protection || [] )
 			.then( ( restrictionsList ) => {
 				// restrictionsList is a comma-separated parentheses-wrapped localized list of restriction level names.
-				var editLinkParens = parenthesesWrap( $editLink[ 0 ].outerHTML );
-				var $li = $( '<li>' ).append( $link, wordSep, editLinkParens, wordSep, restrictionsList );
+				const editLinkParens = parenthesesWrap( $editLink[ 0 ].outerHTML );
+				const $li = $( '<li>' ).append( $link, wordSep, editLinkParens, wordSep, restrictionsList );
 				$list.append( $li );
 			} );
 	}
@@ -231,13 +231,13 @@
 	 * @return {jQuery.Promise}
 	 */
 	function getRestrictionsText( restrictions ) {
-		var msg = '';
+		let msg = '';
 		if ( !restrictions ) {
 			return $.Deferred().resolve( msg );
 		}
 
 		// Record other restriction levels, in case it's protected for others.
-		var restrictionLevels = [];
+		const restrictionLevels = [];
 		restrictions.forEach( ( r ) => {
 			if ( r.type !== 'edit' ) {
 				return;
@@ -258,7 +258,7 @@
 
 		// Otherwise, if the edit restriction isn't one of the backwards-compatible ones,
 		// use the (possibly custom) restriction-level-* messages.
-		var msgs = [];
+		const msgs = [];
 		restrictionLevels.forEach( ( level ) => {
 			msgs.push( 'restriction-level-' + level );
 		} );
@@ -268,7 +268,7 @@
 
 		// Custom restriction levels don't have their messages loaded, so we have to do that.
 		return api.loadMessagesIfMissing( msgs ).then( () => {
-			var localizedMessages = msgs.map(
+			const localizedMessages = msgs.map(
 				// Messages that can be used here include:
 				// * restriction-level-sysop
 				// * restriction-level-autoconfirmed
@@ -287,8 +287,8 @@
 	 * @param {Array} langLinks
 	 */
 	function showLanguageLinks( langLinks ) {
-		var newList = langLinks.map( ( langLink ) => {
-			var bcp47 = mw.language.bcp47( langLink.lang );
+		const newList = langLinks.map( ( langLink ) => {
+			const bcp47 = mw.language.bcp47( langLink.lang );
 			// eslint-disable-next-line mediawiki/class-doc
 			return $( '<li>' )
 				.addClass( 'interlanguage-link interwiki-' + langLink.lang )
@@ -302,7 +302,7 @@
 					.text( langLink.autonym )
 				);
 		} );
-		var $list = $( '#p-lang ul' ),
+		const $list = $( '#p-lang ul' ),
 			$parent = $list.parent();
 		$list.detach().empty().append( newList ).prependTo( $parent );
 	}
@@ -315,9 +315,9 @@
 	 * @param {Object} response
 	 */
 	function showPreviewNotes( config, response ) {
-		var arrow = $( document.body ).css( 'direction' ) === 'rtl' ? '←' : '→';
+		const arrow = $( document.body ).css( 'direction' ) === 'rtl' ? '←' : '→';
 
-		var $previewHeader = $( '<div>' )
+		const $previewHeader = $( '<div>' )
 			.addClass( 'previewnote' )
 			.append( $( '<h2>' )
 				.attr( 'id', 'mw-previewheader' )
@@ -351,7 +351,7 @@
 	 * @param {jQuery} $message
 	 */
 	function showError( config, $message ) {
-		var $errorBox = $( '<div>' )
+		const $errorBox = $( '<div>' )
 			.addClass( 'mw-message-box-error mw-message-box' )
 			.append(
 				$( '<strong>' ).text( mw.msg( 'previewerrortext' ) ),
@@ -371,7 +371,7 @@
 	 * @param {Object} response
 	 */
 	function handleParseResponse( config, response ) {
-		var $content;
+		let $content;
 
 		// Js config variables and modules.
 		if ( response.parse.jsconfigvars ) {
@@ -458,7 +458,7 @@
 	 * @return {jQuery.Promise}
 	 */
 	function getParseRequest( config, section ) {
-		var params = {
+		const params = {
 			formatversion: 2,
 			action: 'parse',
 			summary: config.summary,
@@ -539,7 +539,7 @@
 			mw.hook( 'wikipage.diff' ).fire( $table );
 		} else {
 			// The diff is empty.
-			var $tableCell = $( '<td>' )
+			const $tableCell = $( '<td>' )
 				.attr( 'colspan', 4 )
 				.addClass( 'diff-notice' )
 				.append(
@@ -566,7 +566,7 @@
 	 * @return {jQuery.Promise}
 	 */
 	function getDiffRequest( config, section, pageExists ) {
-		var contents = config.$textareaNode.textSelection( 'getContents' ),
+		let contents = config.$textareaNode.textSelection( 'getContents' ),
 			sectionTitle = config.summary;
 
 		if ( section === 'new' ) {
@@ -589,7 +589,7 @@
 			contents = sectionTitle + contents;
 		}
 
-		var params = {
+		const params = {
 			action: 'compare',
 			fromtitle: config.title,
 			totitle: config.title,
@@ -707,7 +707,7 @@
 			loadingSelectors: getLoadingSelectors()
 		}, config );
 
-		var section = config.$formNode.find( '[name="wpSection"]' ).val();
+		const section = config.$formNode.find( '[name="wpSection"]' ).val();
 
 		if ( !config.$textareaNode || config.$textareaNode.length === 0 ) {
 			return;
@@ -715,7 +715,7 @@
 
 		// Fetch edit summary, if not already given.
 		if ( !config.summary ) {
-			var $summaryWidget = $( '#wpSummaryWidget' );
+			const $summaryWidget = $( '#wpSummaryWidget' );
 			if ( $summaryWidget.length ) {
 				config.summary = OO.ui.infuse( $summaryWidget ).getValue();
 			}
@@ -750,14 +750,14 @@
 		}
 
 		// Gray out the 'copy elements' while we wait for a response.
-		var $loadingElements = $( config.loadingSelectors.join( ',' ) );
+		const $loadingElements = $( config.loadingSelectors.join( ',' ) );
 		$loadingElements.addClass( [ 'mw-preview-loading-elements', 'mw-preview-loading-elements-loading' ] );
 
 		// Acquire a temporary user username before previewing or diffing, so that signatures and
 		// user-related magic words display the temp user instead of IP user in the preview. (T331397)
-		var tempUserNamePromise = mw.user.acquireTempUserName();
+		const tempUserNamePromise = mw.user.acquireTempUserName();
 
-		var parseRequest, diffRequest;
+		let parseRequest, diffRequest;
 
 		parseRequest = tempUserNamePromise.then( () => getParseRequest( config, section ) );
 

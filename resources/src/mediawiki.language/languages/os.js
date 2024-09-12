@@ -4,7 +4,7 @@
  */
 
 mw.language.convertGrammar = function ( word, form ) {
-	var grammarForms = mw.language.getData( 'os', 'grammarForms' ),
+	let grammarForms = mw.language.getData( 'os', 'grammarForms' ),
 		// Ending for allative case
 		endAllative = 'мæ',
 		// Variable for 'j' beetwen vowels

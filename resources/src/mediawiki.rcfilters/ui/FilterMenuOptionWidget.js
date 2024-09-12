@@ -1,4 +1,4 @@
-var ItemMenuOptionWidget = require( './ItemMenuOptionWidget.js' ),
+let ItemMenuOptionWidget = require( './ItemMenuOptionWidget.js' ),
 	FilterMenuOptionWidget;
 
 /**

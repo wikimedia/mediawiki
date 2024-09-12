@@ -1,7 +1,7 @@
 ( function () {
 	'use strict';
 
-	var notification,
+	let notification,
 		// The .mw-notification-area div that all notifications are contained inside.
 		$area,
 		// Number of open notification boxes at any time
@@ -23,7 +23,7 @@
 	 * @param {mw.notification.NotificationOptions} options
 	 */
 	function Notification( message, options ) {
-		var $notification, $notificationContent;
+		let $notification, $notificationContent;
 
 		$notification = $( '<div>' )
 			.data( 'mw-notification', this )
@@ -123,7 +123,7 @@
 	 * @private
 	 */
 	Notification.prototype.start = function () {
-		var options, $notification, $tagMatches, autohideCount;
+		let options, $notification, $tagMatches, autohideCount;
 
 		$area.css( 'display', '' );
 
@@ -148,7 +148,7 @@
 			// While there can be only one "open" notif with a given tag, there can be several
 			// matches here because they remain in the DOM until the animation is finished.
 			$tagMatches.each( function () {
-				var notif = $( this ).data( 'mw-notification' );
+				const notif = $( this ).data( 'mw-notification' );
 				if ( notif && notif.isOpen ) {
 					// Detach from render flow with position absolute so that the new tag can
 					// occupy its space instead.
@@ -210,7 +210,7 @@
 	 * @memberof Notification
 	 */
 	Notification.prototype.resume = function () {
-		var notif = this;
+		const notif = this;
 
 		if ( !notif.isPaused ) {
 			return;
@@ -232,7 +232,7 @@
 	 * @memberof Notification
 	 */
 	Notification.prototype.close = function () {
-		var notif = this;
+		const notif = this;
 
 		if ( !this.isOpen ) {
 			return;
@@ -284,7 +284,7 @@
 	 */
 	function callEachNotification( $notifications, fn ) {
 		$notifications.each( function () {
-			var notif = $( this ).data( 'mw-notification' );
+			const notif = $( this ).data( 'mw-notification' );
 			if ( notif ) {
 				notif[ fn ]();
 			}
@@ -298,11 +298,11 @@
 	 * @ignore
 	 */
 	function init() {
-		var offset, $overlay,
+		let offset, $overlay,
 			isFloating = false;
 
 		function updateAreaMode() {
-			var shouldFloat = window.pageYOffset > offset.top;
+			const shouldFloat = window.pageYOffset > offset.top;
 			if ( isFloating === shouldFloat ) {
 				return;
 			}
@@ -334,7 +334,7 @@
 			} )
 			// When clicking on a notification close it.
 			.on( 'click', '.mw-notification', function () {
-				var notif = $( this ).data( 'mw-notification' );
+				const notif = $( this ).data( 'mw-notification' );
 				if ( notif ) {
 					notif.close();
 				}
@@ -350,7 +350,7 @@
 		// Must be in the next frame to avoid synchronous layout
 		// computation from offset()/getBoundingClientRect().
 		requestAnimationFrame( () => {
-			var notif;
+			let notif;
 
 			offset = $area.offset();
 
@@ -422,7 +422,7 @@
 		 * @return {Notification} Notification object
 		 */
 		notify: function ( message, options ) {
-			var notif;
+			let notif;
 			options = Object.assign( {}, notification.defaults, options );
 
 			notif = new Notification( message, options );

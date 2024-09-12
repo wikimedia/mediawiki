@@ -1,4 +1,4 @@
-var SavedQueryItemModel = require( './SavedQueryItemModel.js' ),
+let SavedQueryItemModel = require( './SavedQueryItemModel.js' ),
 	SavedQueriesModel;
 
 /**
@@ -85,7 +85,7 @@ OO.mixinClass( SavedQueriesModel, OO.EmitterList );
  * @fires initialize
  */
 SavedQueriesModel.prototype.initialize = function ( savedQueries ) {
-	var model = this;
+	const model = this;
 
 	savedQueries = savedQueries || {};
 
@@ -122,7 +122,7 @@ SavedQueriesModel.prototype.initialize = function ( savedQueries ) {
 	// Initialize the query items
 	// eslint-disable-next-line no-jquery/no-each-util
 	$.each( savedQueries.queries || {}, ( id, obj ) => {
-		var normalizedData = obj.data,
+		const normalizedData = obj.data,
 			isDefault = String( savedQueries.default ) === String( id );
 
 		if ( normalizedData && normalizedData.params ) {
@@ -187,7 +187,7 @@ SavedQueriesModel.prototype.cleanupHighlights = function ( data ) {
  * @return {Object} New converted query data
  */
 SavedQueriesModel.prototype.convertToParameters = function ( data ) {
-	var newData = {},
+	const newData = {},
 		defaultFilters = this.filtersModel.getFiltersFromParameters( this.filtersModel.getDefaultParams() ),
 		fullFilterRepresentation = $.extend( true, {}, defaultFilters, data.filters ),
 		highlightEnabled = data.highlights.highlight;
@@ -225,7 +225,7 @@ SavedQueriesModel.prototype.convertToParameters = function ( data ) {
  * @return {string} ID of the newly added query
  */
 SavedQueriesModel.prototype.addNewQuery = function ( label, fulldata, isDefault, id ) {
-	var normalizedData = { params: {}, highlights: {} },
+	const normalizedData = { params: {}, highlights: {} },
 		highlightParamNames = Object.keys( this.filtersModel.getEmptyHighlightParameters() ),
 		randomID = String( id || Date.now() ),
 		data = this.filtersModel.getMinimizedParamRepresentation( fulldata );
@@ -272,7 +272,7 @@ SavedQueriesModel.prototype.addNewQuery = function ( label, fulldata, isDefault,
  * @param {string} queryID Query ID
  */
 SavedQueriesModel.prototype.removeQuery = function ( queryID ) {
-	var query = this.getItemByID( queryID );
+	const query = this.getItemByID( queryID );
 
 	if ( query ) {
 		// Check if this item was the default
@@ -336,7 +336,7 @@ SavedQueriesModel.prototype.getDefaultParams = function () {
  * @return {Object} Parameter representation
  */
 SavedQueriesModel.prototype.getItemParams = function ( queryID ) {
-	var item = this.getItemByID( queryID ),
+	const item = this.getItemByID( queryID ),
 		data = item ? item.getData() : {};
 
 	return !$.isEmptyObject( data ) ? this.buildParamsFromData( data ) : {};
@@ -363,7 +363,7 @@ SavedQueriesModel.prototype.buildParamsFromData = function ( data ) {
  * @return {Object} Object representing the state of the model and items
  */
 SavedQueriesModel.prototype.getState = function () {
-	var obj = { queries: {}, version: '2' };
+	const obj = { queries: {}, version: '2' };
 
 	// Translate the items to the saved object
 	this.getItems().forEach( ( item ) => {

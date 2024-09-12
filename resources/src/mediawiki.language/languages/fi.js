@@ -4,7 +4,7 @@
  */
 
 mw.language.convertGrammar = function ( word, form ) {
-	var grammarForms, aou, origWord;
+	let grammarForms, aou, origWord;
 
 	grammarForms = mw.language.getData( 'fi', 'grammarForms' );
 	if ( grammarForms && grammarForms[ form ] ) {

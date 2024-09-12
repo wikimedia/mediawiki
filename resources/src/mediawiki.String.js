@@ -58,7 +58,7 @@
 	function charAt( string, offset, backwards ) {
 		// We don't need to check for offsets at the beginning or end of string,
 		// String#slice will simply return a shorter (or empty) substring.
-		var maybePair = backwards ?
+		const maybePair = backwards ?
 			string.slice( offset - 1, offset + 1 ) :
 			string.slice( offset, offset + 2 );
 		if ( /^[\uD800-\uDBFF][\uDC00-\uDFFF]$/.test( maybePair ) ) {
@@ -76,7 +76,7 @@
 	 * @return {string}
 	 */
 	function lcFirst( string ) {
-		var firstChar = charAt( string, 0 );
+		const firstChar = charAt( string, 0 );
 		return firstChar.toLowerCase() + string.slice( firstChar.length );
 	}
 
@@ -88,12 +88,12 @@
 	 * @return {string}
 	 */
 	function ucFirst( string ) {
-		var firstChar = charAt( string, 0 );
+		const firstChar = charAt( string, 0 );
 		return firstChar.toUpperCase() + string.slice( firstChar.length );
 	}
 
 	function trimLength( safeVal, newVal, length, lengthFn ) {
-		var startMatches, endMatches, matchesLen, inpParts, chopOff, oldChar, newChar,
+		let startMatches, endMatches, matchesLen, inpParts, chopOff, oldChar, newChar,
 			oldVal = safeVal;
 
 		// Run the hook if one was provided, but only on the length
@@ -188,7 +188,7 @@
 	 * @return {module:mediawiki.String~StringTrimmed}
 	 */
 	function trimByteLength( safeVal, newVal, byteLimit, filterFunction ) {
-		var lengthFn;
+		let lengthFn;
 		if ( filterFunction ) {
 			lengthFn = function ( val ) {
 				return byteLength( filterFunction( val ) );
@@ -216,7 +216,7 @@
 	 * @return {module:mediawiki.String~StringTrimmed}
 	 */
 	function trimCodePointLength( safeVal, newVal, codePointLimit, filterFunction ) {
-		var lengthFn;
+		let lengthFn;
 		if ( filterFunction ) {
 			lengthFn = function ( val ) {
 				return codePointLength( filterFunction( val ) );

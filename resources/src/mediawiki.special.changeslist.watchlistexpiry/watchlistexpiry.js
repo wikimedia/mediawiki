@@ -8,7 +8,7 @@
 	 * @param {Event} event The click event.
 	 */
 	function addDaysLeftMessages( event ) {
-		var timeLeft, msg,
+		let timeLeft, msg,
 			$clock = $( event.target );
 		timeLeft = $clock.data( 'days-left' );
 		if ( timeLeft === undefined ) {

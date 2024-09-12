@@ -86,7 +86,7 @@ module.exports = ( function () {
 	 * @return {string|undefined}
 	 */
 	CoreForeignApi.prototype.getOrigin = function () {
-		var origin, apiUri, apiOrigin;
+		let origin, apiUri, apiOrigin;
 		if ( this.anonymous ) {
 			return '*';
 		}
@@ -110,7 +110,7 @@ module.exports = ( function () {
 	 * @inheritdoc
 	 */
 	CoreForeignApi.prototype.ajax = function ( parameters, ajaxOptions ) {
-		var url, origin, newAjaxOptions;
+		let url, origin, newAjaxOptions;
 
 		// 'origin' query parameter must be part of the request URI, and not just POST request body
 		if ( ajaxOptions.type === 'POST' ) {

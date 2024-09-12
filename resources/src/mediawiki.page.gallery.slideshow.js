@@ -132,7 +132,7 @@
 	 * Draws the carousel and the interface around it.
 	 */
 	mw.GallerySlideshow.prototype.drawCarousel = function () {
-		var nextButton, prevButton, toggleButton, interfaceElements, carouselStack;
+		let nextButton, prevButton, toggleButton, interfaceElements, carouselStack;
 
 		this.$carousel = $( '<li>' ).addClass( 'gallerycarousel' );
 
@@ -201,7 +201,7 @@
 	 * now need URLs for a different size.
 	 */
 	mw.GallerySlideshow.prototype.setSizeRequirement = function () {
-		var w = this.$imgContainer.width(),
+		let w = this.$imgContainer.width(),
 			h = Math.min( $( window ).height() * ( 3 / 4 ), this.$imgContainer.width() ) - this.getChromeHeight();
 
 		// Round values in case the user's browser is returning non-integer values.
@@ -269,7 +269,7 @@
 	 * @param {boolean} init Image being shown during gallery init (i.e. first image)
 	 */
 	mw.GallerySlideshow.prototype.showCurrentImage = function ( init ) {
-		var $thumbnail, $imgLink,
+		let $thumbnail, $imgLink,
 			$imageLi = this.getCurrentImage(),
 			$caption = $imageLi.find( '.gallerytext' );
 
@@ -327,7 +327,7 @@
 			}
 		} ).fail( () => {
 			// Image didn't load
-			var title = mw.Title.newFromImg( this.$img );
+			const title = mw.Title.newFromImg( this.$img );
 			this.$imgContainer.text( title ? title.getMainText() : '' );
 		} );
 	};
@@ -341,7 +341,7 @@
 	 */
 	mw.GallerySlideshow.prototype.loadImage = function ( $img ) {
 		return this.getImageInfo( $img ).then( ( info ) => {
-			var img, d = $.Deferred();
+			let img, d = $.Deferred();
 			img = new Image();
 			img.src = info.thumburl;
 			img.onload = function () {
@@ -361,7 +361,7 @@
 	 * @return {jQuery.Promise} Resolves with the image's info.
 	 */
 	mw.GallerySlideshow.prototype.getImageInfo = function ( $img ) {
-		var api, title, params,
+		let api, title, params,
 			imageSrc = $img.attr( 'src' );
 
 		// Reject promise if there is no thumbnail image
@@ -409,7 +409,7 @@
 	 * @return {string}
 	 */
 	mw.GallerySlideshow.prototype.getDimensionToRequest = function ( $img ) {
-		var ratio = $img.width() / $img.height();
+		const ratio = $img.width() / $img.height();
 
 		if ( this.imageHeight * ratio <= this.imageWidth ) {
 			return 'height';

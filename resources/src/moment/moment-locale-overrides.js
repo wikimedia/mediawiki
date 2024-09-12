@@ -13,9 +13,9 @@
 	// wgTranslateNumerals is respected.
 	moment.updateLocale( moment.locale(), {
 		preparse: function ( s ) {
-			var table = mw.language.getDigitTransformTable();
+			const table = mw.language.getDigitTransformTable();
 			if ( mw.config.get( 'wgTranslateNumerals' ) ) {
-				for ( var i = 0; i < 10; i++ ) {
+				for ( let i = 0; i < 10; i++ ) {
 					if ( table[ i ] !== undefined ) {
 
 						s = s.replace( new RegExp( mw.util.escapeRegExp( table[ i ] ), 'g' ), i );
@@ -31,9 +31,9 @@
 			return s;
 		},
 		postformat: function ( s ) {
-			var table = mw.language.getDigitTransformTable();
+			const table = mw.language.getDigitTransformTable();
 			if ( mw.config.get( 'wgTranslateNumerals' ) ) {
-				for ( var i = 0; i < 10; i++ ) {
+				for ( let i = 0; i < 10; i++ ) {
 					if ( table[ i ] !== undefined ) {
 
 						s = s.replace( new RegExp( i, 'g' ), table[ i ] );

@@ -11,7 +11,7 @@
 	 * @type {mw.Rest.Options}
 	 * @private
 	 */
-	var defaultOptions = {
+	const defaultOptions = {
 		ajax: {
 			url: mw.util.wikiScript( 'rest' ),
 			timeout: 30 * 1000 // 30 seconds
@@ -62,7 +62,7 @@
 	 * @param {mw.Rest.Options} [options] See {@link mw.Rest.Options}
 	 */
 	mw.Rest = function ( options ) {
-		var defaults = Object.assign( {}, options );
+		const defaults = Object.assign( {}, options );
 		defaults.ajax = Object.assign( {}, defaultOptions.ajax, defaults.ajax );
 
 		this.url = defaults.ajax.url;
@@ -177,7 +177,7 @@
 		 *  Fail: Error code
 		 */
 		ajax: function ( path, ajaxOptions ) {
-			var self = this,
+			let self = this,
 				apiDeferred = $.Deferred(),
 				xhr, requestIndex;
 

@@ -1,4 +1,4 @@
-var MarkSeenButtonWidget = require( './MarkSeenButtonWidget.js' ),
+let MarkSeenButtonWidget = require( './MarkSeenButtonWidget.js' ),
 	WatchlistTopSectionWidget;
 /**
  * Top section (between page title and filters) on Special:Watchlist.
@@ -16,7 +16,7 @@ var MarkSeenButtonWidget = require( './MarkSeenButtonWidget.js' ),
 WatchlistTopSectionWidget = function MwRcfiltersUiWatchlistTopSectionWidget(
 	controller, changesListModel, savedLinksListWidget, $watchlistDetails, config
 ) {
-	var editWatchlistButton,
+	let editWatchlistButton,
 		markSeenButton,
 		$topTable,
 		$bottomTable,

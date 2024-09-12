@@ -1,12 +1,12 @@
 /*!
  * JavaScript for signup form.
  */
-var HtmlformChecker = require( './HtmlformChecker.js' );
+const HtmlformChecker = require( './HtmlformChecker.js' );
 
 // When sending password by email, hide the password input fields.
 $( () => {
 	// Always required if checked, otherwise it depends, so we use the original
-	var $emailLabel = $( 'label[for="wpEmail"] .cdx-label__label__text' ),
+	let $emailLabel = $( 'label[for="wpEmail"] .cdx-label__label__text' ),
 		originalText = $emailLabel.text(),
 		requiredText = mw.msg( 'createacct-emailrequired' ),
 		$createByMailCheckbox = $( '#wpCreateaccountMail' ),
@@ -14,7 +14,7 @@ $( () => {
 		$pwds;
 
 	function updateForCheckbox() {
-		var checked = $createByMailCheckbox.prop( 'checked' );
+		const checked = $createByMailCheckbox.prop( 'checked' );
 		if ( checked ) {
 			$pwds = $( '.mw-row-password' ).detach();
 			// TODO when this uses the optional flag, show/hide that instead of changing the text
@@ -34,7 +34,7 @@ $( () => {
 
 // Check if the username is invalid or already taken; show username normalisation warning
 mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
-	var $usernameInput = $root.find( '#wpName2' ),
+	let $usernameInput = $root.find( '#wpName2' ),
 		$passwordInput = $root.find( '#wpPassword2' ),
 		$emailInput = $root.find( '#wpEmail' ),
 		$realNameInput = $root.find( '#wpRealName' ),
@@ -43,7 +43,7 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 
 	function checkUsername( username ) {
 		// We could just use .then() if we didn't have to pass on .abort()…
-		var d, apiPromise;
+		let d, apiPromise;
 
 		// Leading/trailing/multiple whitespace characters are always stripped in usernames,
 		// this should not require a warning. We do warn about underscores.
@@ -61,7 +61,7 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 			uselang: mw.config.get( 'wgUserLanguage' )
 		} )
 			.done( ( resp ) => {
-				var userinfo = resp.query.users[ 0 ];
+				const userinfo = resp.query.users[ 0 ];
 
 				if ( resp.query.users.length !== 1 || userinfo.invalid ) {
 					d.resolve( { valid: false, messages: [ mw.message( 'noname' ).parseDom() ] } );
@@ -87,7 +87,7 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 
 	function checkPassword() {
 		// We could just use .then() if we didn't have to pass on .abort()…
-		var apiPromise,
+		let apiPromise,
 			d = $.Deferred();
 
 		if ( $usernameInput.val().trim() === '' ) {
@@ -107,7 +107,7 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 			uselang: mw.config.get( 'wgUserLanguage' )
 		} )
 			.done( ( resp ) => {
-				var pwinfo = resp.validatepassword || {};
+				const pwinfo = resp.validatepassword || {};
 
 				d.resolve( {
 					valid: pwinfo.validity === 'Good',

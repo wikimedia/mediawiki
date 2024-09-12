@@ -45,7 +45,7 @@
  * @property {TemplateCompileFunction} compile
  */
 ( function () {
-	var compiledTemplates = {},
+	const compiledTemplates = {},
 		compilers = {};
 
 	mw.template = {
@@ -74,7 +74,7 @@
 		 * @return {string} Name of a compiler
 		 */
 		getCompilerName: function ( templateName ) {
-			var nameParts = templateName.split( '.' );
+			const nameParts = templateName.split( '.' );
 			if ( nameParts.length < 2 ) {
 				throw new Error( 'Template name must have a suffix' );
 			}
@@ -89,7 +89,7 @@
 		 * @throws {Error} when unknown compiler provided
 		 */
 		getCompiler: function ( name ) {
-			var compiler = compilers[ name ];
+			const compiler = compilers[ name ];
 			if ( !compiler ) {
 				throw new Error( 'Unknown compiler ' + name );
 			}
@@ -108,7 +108,7 @@
 		 */
 		add: function ( moduleName, templateName, templateBody ) {
 			// Precompile and add to cache
-			var compiled = this.compile( templateBody, this.getCompilerName( templateName ) );
+			const compiled = this.compile( templateBody, this.getCompilerName( templateName ) );
 			if ( !compiledTemplates[ moduleName ] ) {
 				compiledTemplates[ moduleName ] = {};
 			}
@@ -125,7 +125,7 @@
 		 * @return {TemplateRenderer} Compiled template
 		 */
 		get: function ( moduleName, templateName ) {
-			var moduleTemplates;
+			let moduleTemplates;
 
 			// Try cache first
 			if ( compiledTemplates[ moduleName ] && compiledTemplates[ moduleName ][ templateName ] ) {

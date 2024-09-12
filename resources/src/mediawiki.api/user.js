@@ -53,7 +53,7 @@
 		 * @return {Object}
 		 */
 		assertCurrentUser: function ( query ) {
-			var user = mw.config.get( 'wgUserName' ),
+			const user = mw.config.get( 'wgUserName' ),
 				assertParams = {};
 
 			if ( user !== null ) {

@@ -1,8 +1,8 @@
 'use strict';
 
-var config = require( './config.json' );
-var portletLinkOptions = require( './portletLinkOptions.json' );
-var infinityValues = require( './infinityValues.json' );
+let config = require( './config.json' );
+const portletLinkOptions = require( './portletLinkOptions.json' );
+const infinityValues = require( './infinityValues.json' );
 
 require( './jquery.accessKeyLabel.js' );
 
@@ -132,11 +132,11 @@ var util = {
 		}
 		// Per https://html.spec.whatwg.org/multipage/browsing-the-web.html#target-element
 		// we try the raw fragment first, then the percent-decoded fragment.
-		var element = document.getElementById( hash );
+		const element = document.getElementById( hash );
 		if ( element ) {
 			return element;
 		}
-		var decodedHash = this.percentDecodeFragment( hash );
+		const decodedHash = this.percentDecodeFragment( hash );
 		if ( !decodedHash ) {
 			// decodedHash can return null, calling getElementById would cast it to a string
 			return null;
@@ -160,7 +160,7 @@ var util = {
 	 * @return {string|null} Decoded text, null if decoding failed
 	 */
 	percentDecodeFragment: function ( text ) {
-		var params = new URLSearchParams(
+		const params = new URLSearchParams(
 			'q=' +
 			text
 				// Query string param decoding replaces '+' with ' ' before doing the
@@ -192,13 +192,13 @@ var util = {
 	debounce: function ( func, wait, immediate ) {
 		// Old signature (wait, func).
 		if ( typeof func === 'number' ) {
-			var tmpWait = wait;
+			const tmpWait = wait;
 			wait = func;
 			func = tmpWait;
 		}
-		var timeout;
+		let timeout;
 		return function () {
-			var context = this,
+			const context = this,
 				args = arguments,
 				later = function () {
 					timeout = null;
@@ -232,7 +232,7 @@ var util = {
 	 * @return {Function} Throttled function
 	 */
 	throttle: function ( func, wait ) {
-		var context, args, timeout,
+		let context, args, timeout,
 			previous = Date.now() - wait,
 			run = function () {
 				timeout = null;
@@ -245,7 +245,7 @@ var util = {
 			// period. If it's less, run the function immediately. If it's more,
 			// set a timeout for the remaining time -- but don't replace an
 			// existing timeout, since that'd indefinitely prolong the wait.
-			var remaining = Math.max( wait - ( Date.now() - previous ), 0 );
+			const remaining = Math.max( wait - ( Date.now() - previous ), 0 );
 			context = this;
 			args = arguments;
 			if ( !timeout ) {
@@ -280,7 +280,7 @@ var util = {
 	 * @return {string} URL, relative to `wgServer`.
 	 */
 	getUrl: function ( pageName, params ) {
-		var fragmentIdx, url, query, fragment,
+		let fragmentIdx, url, query, fragment,
 			title = typeof pageName === 'string' ? pageName : mw.config.get( 'wgPageName' );
 
 		// Find any fragment
@@ -357,7 +357,7 @@ var util = {
 	 * @return {CSSStyleSheet} The sheet object
 	 */
 	addCSS: function ( text ) {
-		var s = mw.loader.addStyleTag( text );
+		const s = mw.loader.addStyleTag( text );
 		return s.sheet;
 	},
 
@@ -376,7 +376,7 @@ var util = {
 	getParamValue: function ( param, url ) {
 		// Get last match, stop at hash
 
-		var re = new RegExp( '^[^#]*[&?]' + util.escapeRegExp( param ) + '=([^&#]*)' ),
+		const re = new RegExp( '^[^#]*[&?]' + util.escapeRegExp( param ) + '=([^&#]*)' ),
 			m = re.exec( url !== undefined ? url : location.href );
 
 		if ( m ) {
@@ -409,17 +409,17 @@ var util = {
 	 */
 	getArrayParam: function ( param, params ) {
 
-		var paramRe = new RegExp( '^' + util.escapeRegExp( param ) + '\\[(\\d*)\\]$' );
+		const paramRe = new RegExp( '^' + util.escapeRegExp( param ) + '\\[(\\d*)\\]$' );
 
 		if ( !params ) {
 			params = new URLSearchParams( location.search );
 		}
 
-		var arr = [];
+		const arr = [];
 		params.forEach( ( v, k ) => {
-			var paramMatch = k.match( paramRe );
+			const paramMatch = k.match( paramRe );
 			if ( paramMatch ) {
-				var i = paramMatch[ 1 ];
+				let i = paramMatch[ 1 ];
 				if ( i === '' ) {
 					// If no explicit index, append at the end
 					i = arr.length;
@@ -458,7 +458,7 @@ var util = {
 	 * @param {string} portletId ID of the target portlet (e.g. 'p-cactions' or 'p-personal')
 	 */
 	hidePortlet: function ( portletId ) {
-		var portlet = document.getElementById( portletId );
+		const portlet = document.getElementById( portletId );
 		if ( portlet ) {
 			portlet.classList.add( 'emptyPortlet' );
 		}
@@ -471,7 +471,7 @@ var util = {
 	 * @return {boolean}
 	 */
 	isPortletVisible: function ( portletId ) {
-		var portlet = document.getElementById( portletId );
+		const portlet = document.getElementById( portletId );
 		return portlet && !portlet.classList.contains( 'emptyPortlet' );
 	},
 
@@ -481,7 +481,7 @@ var util = {
 	 * @param {string} portletId ID of the target portlet (e.g. 'p-cactions' or 'p-personal')
 	 */
 	showPortlet: function ( portletId ) {
-		var portlet = document.getElementById( portletId );
+		const portlet = document.getElementById( portletId );
 		if ( portlet ) {
 			portlet.classList.remove( 'emptyPortlet' );
 		}
@@ -492,7 +492,7 @@ var util = {
 	 * after edit with response from parse API.
 	 */
 	clearSubtitle: function () {
-		var subtitle = document.getElementById( 'mw-content-subtitle' );
+		const subtitle = document.getElementById( 'mw-content-subtitle' );
 		if ( subtitle ) {
 			subtitle.innerHTML = '';
 		}
@@ -504,7 +504,7 @@ var util = {
 	 * @param {HTMLElement|string} nodeOrHTMLString
 	 */
 	addSubtitle: function ( nodeOrHTMLString ) {
-		var subtitle = document.getElementById( 'mw-content-subtitle' );
+		const subtitle = document.getElementById( 'mw-content-subtitle' );
 		if ( subtitle ) {
 			if ( typeof nodeOrHTMLString === 'string' ) {
 				subtitle.innerHTML += nodeOrHTMLString;
@@ -561,7 +561,7 @@ var util = {
 		listWrapper.appendChild( list );
 		portlet.appendChild( listWrapper );
 		if ( selectorHint ) {
-			var referenceNode;
+			let referenceNode;
 			try {
 				referenceNode = document.querySelector( selectorHint );
 			} catch ( e ) {
@@ -659,24 +659,24 @@ var util = {
 			return null;
 		}
 
-		var portlet = document.getElementById( portletId );
+		const portlet = document.getElementById( portletId );
 		if ( !portlet ) {
 			// Invalid portlet ID
 			return null;
 		}
 
 		// Setup the anchor tag and set any the properties
-		var link = document.createElement( 'a' );
+		const link = document.createElement( 'a' );
 		link.href = href;
 
-		var linkChild = document.createTextNode( text );
-		var i = portletLinkOptions[ 'text-wrapper' ].length;
+		let linkChild = document.createTextNode( text );
+		let i = portletLinkOptions[ 'text-wrapper' ].length;
 		// Wrap link using text-wrapper option if provided
 		// Iterate backward since the wrappers are declared from outer to inner,
 		// and we build it up from the inside out.
 		while ( i-- ) {
-			var wrapper = portletLinkOptions[ 'text-wrapper' ][ i ];
-			var wrapperElement = document.createElement( wrapper.tag );
+			const wrapper = portletLinkOptions[ 'text-wrapper' ][ i ];
+			const wrapperElement = document.createElement( wrapper.tag );
 			if ( wrapper.attributes ) {
 				$( wrapperElement ).attr( wrapper.attributes );
 			}
@@ -695,7 +695,7 @@ var util = {
 		// Unhide portlet if it was hidden before
 		util.showPortlet( portletId );
 
-		var item = $( '<li>' ).append( link )[ 0 ];
+		const item = $( '<li>' ).append( link )[ 0 ];
 		// mw-list-item-js distinguishes portlet links added via javascript and the server
 		item.className = 'mw-list-item mw-list-item-js';
 		if ( id ) {
@@ -703,11 +703,11 @@ var util = {
 		}
 
 		// Select the first (most likely only) unordered list inside the portlet
-		var ul = portlet.tagName.toLowerCase() === 'ul' ? portlet : portlet.querySelector( 'ul' );
+		let ul = portlet.tagName.toLowerCase() === 'ul' ? portlet : portlet.querySelector( 'ul' );
 		if ( !ul ) {
 			// If it didn't have an unordered list yet, create one
 			ul = document.createElement( 'ul' );
-			var portletDiv = portlet.querySelector( 'div' );
+			const portletDiv = portlet.querySelector( 'div' );
 			if ( portletDiv ) {
 				// Support: Legacy skins have a div (such as div.body or div.pBody).
 				// Append the <ul> to that.
@@ -718,7 +718,7 @@ var util = {
 			}
 		}
 
-		var next;
+		let next;
 		if ( nextnode && ( typeof nextnode === 'string' || nextnode.nodeType || nextnode.jquery ) ) {
 			// eslint-disable-next-line no-jquery/variable-pattern
 			nextnode = $( ul ).find( nextnode );
@@ -798,7 +798,7 @@ var util = {
 		//     "`" / "{" /
 		//     "|" / "}" /
 		//     "~"
-		var rfc5322Atext = 'a-z0-9!#$%&\'*+\\-/=?^_`{|}~';
+		const rfc5322Atext = 'a-z0-9!#$%&\'*+\\-/=?^_`{|}~';
 
 		// Next define the RFC 1034 'ldh-str'
 		//     <domain> ::= <subdomain> | " "
@@ -807,9 +807,9 @@ var util = {
 		//     <ldh-str> ::= <let-dig-hyp> | <let-dig-hyp> <ldh-str>
 		//     <let-dig-hyp> ::= <let-dig> | "-"
 		//     <let-dig> ::= <letter> | <digit>
-		var rfc1034LdhStr = 'a-z0-9\\-';
+		const rfc1034LdhStr = 'a-z0-9\\-';
 
-		var html5EmailRegexp = new RegExp(
+		const html5EmailRegexp = new RegExp(
 			// start of string
 			'^' +
 			// User part which is liberal :p
@@ -847,7 +847,7 @@ var util = {
 	 * @return {boolean}
 	 */
 	isIPv4Address: function ( address, allowBlock ) {
-		var block,
+		let block,
 			RE_IP_BYTE = '(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|0?[0-9]?[0-9])',
 			RE_IP_ADD = '(?:' + RE_IP_BYTE + '\\.){3}' + RE_IP_BYTE;
 
@@ -879,7 +879,7 @@ var util = {
 	 * @return {boolean}
 	 */
 	isIPv6Address: function ( address, allowBlock ) {
-		var block, RE_IPV6_ADD;
+		let block, RE_IPV6_ADD;
 
 		if ( typeof address !== 'string' ) {
 			return false;
@@ -959,7 +959,7 @@ var util = {
 	 *   image/thumbnail URL.
 	 */
 	parseImageUrl: function ( url ) {
-		var name, decodedName, width, urlTemplate;
+		let name, decodedName, width, urlTemplate;
 
 		// thumb.php-generated thumbnails
 		// thumb.php?f=<name>&w[idth]=<width>[px]
@@ -969,7 +969,7 @@ var util = {
 			width = mw.util.getParamValue( 'width', url ) || mw.util.getParamValue( 'w', url );
 			urlTemplate = url.replace( /([&?])w(?:idth)?=[^&]+/g, '' ) + '&width={width}';
 		} else {
-			var regexes = [
+			const regexes = [
 				// Thumbnails
 				// /<hash prefix>/<name>/[<options>-]<width>-<name*>[.<ext>]
 				// where <name*> could be the filename, 'thumbnail.<ext>' (for long filenames)
@@ -990,8 +990,8 @@ var util = {
 				// /<name>
 				/\/([^\s/]+)$/
 			];
-			for ( var i = 0; i < regexes.length; i++ ) {
-				var match = url.match( regexes[ i ] );
+			for ( let i = 0; i < regexes.length; i++ ) {
+				const match = url.match( regexes[ i ] );
 				if ( match ) {
 					name = match[ 1 ];
 					decodedName = decodeURIComponent( name );
@@ -1015,7 +1015,7 @@ var util = {
 			} else if ( width && !urlTemplate ) {
 				// Javascript does not expose regexp capturing group indexes, and the width
 				// part could in theory also occur in the filename so hide that first.
-				var strippedUrl = url.replace( name, '{name}' )
+				const strippedUrl = url.replace( name, '{name}' )
 					.replace( name, '{name}' )
 					.replace( width + 'px-', '{width}px-' );
 				urlTemplate = strippedUrl.replace( /\{name\}/g, name );
@@ -1074,11 +1074,11 @@ var util = {
 			return ip.replace( /(^|\.)0+(\d)/g, '$1$2' );
 		}
 		ip = ip.toUpperCase();
-		var abbrevPos = ip.indexOf( '::' );
+		const abbrevPos = ip.indexOf( '::' );
 		if ( abbrevPos !== -1 ) {
-			var CIDRStart = ip.indexOf( '/' );
-			var addressEnd = ( CIDRStart !== -1 ) ? CIDRStart - 1 : ip.length - 1;
-			var repeatStr, extra, pad;
+			const CIDRStart = ip.indexOf( '/' );
+			const addressEnd = ( CIDRStart !== -1 ) ? CIDRStart - 1 : ip.length - 1;
+			let repeatStr, extra, pad;
 			if ( abbrevPos === 0 ) {
 				repeatStr = '0:';
 				extra = ip === '::' ? '0' : '';
@@ -1092,7 +1092,7 @@ var util = {
 				extra = ':';
 				pad = 8;
 			}
-			var count = pad - ( ip.split( ':' ).length - 1 );
+			const count = pad - ( ip.split( ':' ).length - 1 );
 			ip = ip.replace( '::', repeatStr.repeat( count ) + extra );
 		}
 		return ip.replace( /(^|:)0+(([0-9A-Fa-f]{1,4}))/g, '$1$2' );
@@ -1114,7 +1114,7 @@ var util = {
 			return null;
 		}
 		if ( this.isIPv6Address( ip, true ) ) {
-			var cidr, matches, ipCidrSplit, i, replaceZeros;
+			let cidr, matches, ipCidrSplit, i, replaceZeros;
 			if ( ip.indexOf( '/' ) !== -1 ) {
 				ipCidrSplit = ip.split( '/', 2 );
 				ip = ipCidrSplit[ 0 ];
@@ -1158,25 +1158,25 @@ var util = {
 			return false;
 		}
 		/** @type {string|string[]} */
-		var matchPatterns = config.AutoCreateTempUser.matchPattern;
+		let matchPatterns = config.AutoCreateTempUser.matchPattern;
 		if ( typeof matchPatterns === 'string' ) {
 			matchPatterns = [ matchPatterns ];
 		} else if ( matchPatterns === null ) {
 			matchPatterns = [ config.AutoCreateTempUser.genPattern ];
 		}
-		for ( var i = 0; i < matchPatterns.length; i++ ) {
-			var autoCreateUserMatchPattern = matchPatterns[ i ];
+		for ( let i = 0; i < matchPatterns.length; i++ ) {
+			const autoCreateUserMatchPattern = matchPatterns[ i ];
 			// Check each match pattern, and if any matches then return a match.
-			var position = autoCreateUserMatchPattern.indexOf( '$1' );
+			const position = autoCreateUserMatchPattern.indexOf( '$1' );
 
 			// '$1' was not found in autoCreateUserMatchPattern
 			if ( position === -1 ) {
 				return false;
 			}
-			var prefix = autoCreateUserMatchPattern.slice( 0, position );
-			var suffix = autoCreateUserMatchPattern.slice( position + '$1'.length );
+			const prefix = autoCreateUserMatchPattern.slice( 0, position );
+			const suffix = autoCreateUserMatchPattern.slice( position + '$1'.length );
 
-			var match = true;
+			let match = true;
 			if ( prefix !== '' ) {
 				match = ( username.indexOf( prefix ) === 0 );
 			}
@@ -1216,7 +1216,7 @@ function init() {
 	// You may also use class "mw-body mw-body-primary" if you use
 	// mw-body in multiple locations. Or class "mw-body-primary" if
 	// you use mw-body deeper in the DOM.
-	var content = document.querySelector( '.mw-body-primary' ) ||
+	const content = document.querySelector( '.mw-body-primary' ) ||
 		document.querySelector( '.mw-body' ) ||
 		// If the skin has no such class, fall back to the parser output
 		document.querySelector( '#mw-content-text' ) ||

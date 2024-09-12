@@ -4,7 +4,7 @@
  */
 
 mw.language.convertGrammar = function ( word, form ) {
-	var grammarForms = mw.language.getData( 'hu', 'grammarForms' );
+	const grammarForms = mw.language.getData( 'hu', 'grammarForms' );
 	if ( grammarForms && grammarForms[ form ] ) {
 		return grammarForms[ form ][ word ];
 	}

@@ -1,4 +1,4 @@
-var TextParamMixin = require( './TextParamMixin.js' );
+const TextParamMixin = require( './TextParamMixin.js' );
 
 /**
  * A wrapper for OO.ui.TextInputWidget
@@ -31,7 +31,7 @@ OO.mixinClass( LimitParamWidget, TextParamMixin );
  * @return {boolean}
  */
 LimitParamWidget.prototype.validate = function ( value ) {
-	var n;
+	let n;
 	if ( value === 'max' ) {
 		return true;
 	} else {

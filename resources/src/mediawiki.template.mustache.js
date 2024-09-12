@@ -19,10 +19,10 @@
 				 * @return {jQuery} Rendered HTML
 				 */
 				render: function ( data, partialTemplates ) {
-					var partials = {};
+					const partials = {};
 					if ( partialTemplates ) {
-						for ( var name in partialTemplates ) {
-							var template = partialTemplates[ name ];
+						for ( const name in partialTemplates ) {
+							const template = partialTemplates[ name ];
 							partials[ name ] = template.getSource();
 						}
 					}

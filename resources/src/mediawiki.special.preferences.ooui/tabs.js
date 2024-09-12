@@ -2,11 +2,11 @@
  * JavaScript for Special:Preferences: Tab navigation.
  */
 ( function () {
-	var nav = require( './nav.js' );
+	const nav = require( './nav.js' );
 	$( () => {
-		var $tabNavigationHint = nav.insertHints( mw.msg( 'prefs-tabs-navigation-hint' ) );
+		const $tabNavigationHint = nav.insertHints( mw.msg( 'prefs-tabs-navigation-hint' ) );
 
-		var tabs = OO.ui.infuse( $( '.mw-prefs-tabs' ) );
+		const tabs = OO.ui.infuse( $( '.mw-prefs-tabs' ) );
 
 		// Support: Chrome
 		// https://bugs.chromium.org/p/chromium/issues/detail?id=1252507
@@ -36,10 +36,10 @@
 			}
 			// Handle hash manually to prevent jumping,
 			// therefore save and restore scrollTop to prevent jumping.
-			var scrollTop = $( window ).scrollTop();
+			const scrollTop = $( window ).scrollTop();
 			// Changing the hash apparently causes keyboard focus to be lost?
 			// Save and restore it. This makes no sense though.
-			var active = document.activeElement;
+			const active = document.activeElement;
 			location.hash = '#' + panel.getName();
 			if ( active ) {
 				active.focus();
@@ -50,7 +50,7 @@
 		tabs.on( 'set', onTabPanelSet );
 
 		// Hash navigation callback
-		var setSection = function ( sectionName, fieldset ) {
+		const setSection = function ( sectionName, fieldset ) {
 			tabs.setTabPanel( sectionName );
 			enhancePanel( tabs.getCurrentTabPanel() );
 			// Scroll to a fieldset if provided.
@@ -60,8 +60,8 @@
 		};
 
 		// onSubmit callback
-		var onSubmit = function () {
-			var value = tabs.getCurrentTabPanelName();
+		const onSubmit = function () {
+			const value = tabs.getCurrentTabPanelName();
 			mw.storage.session.set( 'mwpreferences-prevTab', value );
 		};
 
@@ -70,18 +70,18 @@
 		nav.restorePrevSection( setSection, onSubmit );
 
 		// Search index
-		var index, texts;
+		let index, texts;
 		function buildIndex() {
 			index = {};
-			var $fields = tabs.contentPanel.$element.find( '[class^=mw-htmlform-field-]:not( .mw-prefs-search-noindex )' );
-			var $descFields = $fields.filter(
+			const $fields = tabs.contentPanel.$element.find( '[class^=mw-htmlform-field-]:not( .mw-prefs-search-noindex )' );
+			const $descFields = $fields.filter(
 				'.oo-ui-fieldsetLayout-group > .oo-ui-widget > .mw-htmlform-field-HTMLInfoField'
 			);
 			$fields.not( $descFields ).each( function () {
-				var $field = $( this );
-				var $wrapper = $field.parents( '.mw-prefs-fieldset-wrapper' );
-				var $tabPanel = $field.closest( '.oo-ui-tabPanelLayout' );
-				var $labels = $field.find(
+				let $field = $( this );
+				const $wrapper = $field.parents( '.mw-prefs-fieldset-wrapper' );
+				const $tabPanel = $field.closest( '.oo-ui-tabPanelLayout' );
+				const $labels = $field.find(
 					'.oo-ui-labelElement-label, .oo-ui-textInputWidget .oo-ui-inputWidget-input, p'
 				).add(
 					$wrapper.find( '> .oo-ui-fieldsetLayout > .oo-ui-fieldsetLayout-header .oo-ui-labelElement-label' )
@@ -89,7 +89,7 @@
 				$field = $field.add( $tabPanel.find( $descFields ) );
 
 				function addToIndex( $label, $highlight ) {
-					var text = $label.val() || $label[ 0 ].textContent.toLowerCase().trim().replace( /\s+/, ' ' );
+					const text = $label.val() || $label[ 0 ].textContent.toLowerCase().trim().replace( /\s+/, ' ' );
 					if ( text ) {
 						index[ text ] = index[ text ] || [];
 						index[ text ].push( {
@@ -105,10 +105,10 @@
 					addToIndex( $( this ) );
 
 					// Check if there we are in an infusable dropdown and collect other options
-					var $dropdown = $( this ).closest( '.oo-ui-dropdownInputWidget[data-ooui],.mw-widget-selectWithInputWidget[data-ooui]' );
+					const $dropdown = $( this ).closest( '.oo-ui-dropdownInputWidget[data-ooui],.mw-widget-selectWithInputWidget[data-ooui]' );
 					if ( $dropdown.length ) {
-						var dropdown = OO.ui.infuse( $dropdown[ 0 ] );
-						var dropdownWidget = ( dropdown.dropdowninput || dropdown ).dropdownWidget;
+						const dropdown = OO.ui.infuse( $dropdown[ 0 ] );
+						const dropdownWidget = ( dropdown.dropdowninput || dropdown ).dropdownWidget;
 						if ( dropdownWidget ) {
 							dropdownWidget.getMenu().getItems().forEach( ( option ) => {
 								// Highlight the dropdown handle and the matched label, for when the dropdown is opened
@@ -125,7 +125,7 @@
 
 		function infuseAllPanels() {
 			tabs.stackLayout.items.forEach( ( tabPanel ) => {
-				var wasVisible = tabPanel.isVisible();
+				const wasVisible = tabPanel.isVisible();
 				// Force panel to be visible while infusing
 				tabPanel.toggle( true );
 
@@ -136,8 +136,8 @@
 			} );
 		}
 
-		var searchWrapper = OO.ui.infuse( $( '.mw-prefs-search' ) );
-		var search = searchWrapper.fieldWidget;
+		const searchWrapper = OO.ui.infuse( $( '.mw-prefs-search' ) );
+		const search = searchWrapper.fieldWidget;
 		search.$input.on( 'focus', () => {
 			if ( !index ) {
 				// Lazy-build index on first focus
@@ -146,21 +146,21 @@
 				buildIndex();
 			}
 		} );
-		var $noResults = $( '<div>' ).addClass( 'mw-prefs-noresults' ).text( mw.msg( 'searchprefs-noresults' ) );
+		const $noResults = $( '<div>' ).addClass( 'mw-prefs-noresults' ).text( mw.msg( 'searchprefs-noresults' ) );
 		search.on( 'change', ( val ) => {
 			if ( !index ) {
 				// In case 'focus' hasn't fired yet
 				infuseAllPanels();
 				buildIndex();
 			}
-			var isSearching = !!val;
+			const isSearching = !!val;
 			tabs.$element.toggleClass( 'mw-prefs-tabs-searching', isSearching );
 			tabs.tabSelectWidget.toggle( !isSearching );
 			tabs.contentPanel.setContinuous( isSearching );
 
 			$( '.mw-prefs-search-matched' ).removeClass( 'mw-prefs-search-matched' );
 			$( '.mw-prefs-search-highlight' ).removeClass( 'mw-prefs-search-highlight' );
-			var countResults = 0;
+			let countResults = 0;
 			if ( isSearching ) {
 				val = val.toLowerCase();
 				texts.forEach( ( text ) => {

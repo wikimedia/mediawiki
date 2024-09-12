@@ -28,7 +28,7 @@ module.exports = {
 	 * @return {string[]}
 	 */
 	normalizeParamOptions: function ( givenOptions, legalOptions, supportsAll ) {
-		var result = [];
+		const result = [];
 		supportsAll = supportsAll === undefined ? true : !!supportsAll;
 
 		if ( supportsAll && givenOptions.indexOf( 'all' ) > -1 ) {

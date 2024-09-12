@@ -1,4 +1,4 @@
-var UtilMixin = require( './UtilMixin.js' );
+const UtilMixin = require( './UtilMixin.js' );
 
 /**
  * A wrapper for OO.ui.ToggleSwitchWidget

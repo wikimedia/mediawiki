@@ -1,4 +1,4 @@
-var RclToOrFromWidget = require( './RclToOrFromWidget.js' ),
+let RclToOrFromWidget = require( './RclToOrFromWidget.js' ),
 	RclTargetPageWidget = require( './RclTargetPageWidget.js' ),
 	RclTopSectionWidget;
 
@@ -18,7 +18,7 @@ var RclToOrFromWidget = require( './RclToOrFromWidget.js' ),
 RclTopSectionWidget = function MwRcfiltersUiRclTopSectionWidget(
 	savedLinksListWidget, controller, showLinkedToModel, targetPageModel, config
 ) {
-	var toOrFromWidget,
+	let toOrFromWidget,
 		targetPage;
 	config = config || {};
 

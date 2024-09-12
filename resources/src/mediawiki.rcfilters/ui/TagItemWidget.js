@@ -13,7 +13,7 @@
  * @param {Object} config Configuration object
  * @param {jQuery} [config.$overlay] A jQuery object serving as overlay for popups
  */
-var TagItemWidget = function MwRcfiltersUiTagItemWidget(
+const TagItemWidget = function MwRcfiltersUiTagItemWidget(
 	controller, filtersViewModel, invertModel, itemModel, config
 ) {
 	// Configuration initialization
@@ -86,7 +86,7 @@ OO.mixinClass( TagItemWidget, OO.ui.mixin.PopupElement );
  */
 TagItemWidget.prototype.updateUiBasedOnState = function () {
 	// Update label if needed
-	var labelMsg = this.itemModel.getLabelMessageKey( this.invertModel && this.invertModel.isSelected() );
+	const labelMsg = this.itemModel.getLabelMessageKey( this.invertModel && this.invertModel.isSelected() );
 	if ( labelMsg ) {
 		this.setLabel(
 			$( '<bdi>' ).append(
@@ -110,7 +110,7 @@ TagItemWidget.prototype.updateUiBasedOnState = function () {
  * Set the current highlight color for this item
  */
 TagItemWidget.prototype.setHighlightColor = function () {
-	var selectedColor = this.filtersViewModel.isHighlightEnabled() && this.itemModel.isHighlighted ?
+	const selectedColor = this.filtersViewModel.isHighlightEnabled() && this.itemModel.isHighlighted ?
 		this.itemModel.getHighlightColor() :
 		null;
 
@@ -131,7 +131,7 @@ TagItemWidget.prototype.setCurrentMuteState = function () {};
  * Respond to mouse enter event
  */
 TagItemWidget.prototype.onMouseEnter = function () {
-	var labelText = this.itemModel.getStateMessage();
+	const labelText = this.itemModel.getStateMessage();
 
 	if ( labelText ) {
 		this.popupLabel.setLabel( labelText );

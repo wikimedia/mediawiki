@@ -18,7 +18,7 @@
 	function doWatchInternal( pages, addParams ) {
 		// XXX: Parameter addParams is undocumented because we inherit this
 		// documentation in the public method...
-		var apiPromise = this.postWithToken( 'watch',
+		const apiPromise = this.postWithToken( 'watch',
 			Object.assign(
 				{
 					formatversion: 2,

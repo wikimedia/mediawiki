@@ -14,7 +14,7 @@
 	 * @private
 	 * @type {mw.Api.Options}
 	 */
-	var defaultOptions;
+	let defaultOptions;
 
 	/**
 	 * @classdesc Interact with the MediaWiki API. `mw.Api` is a client library for
@@ -56,7 +56,7 @@
 	 *  [ajax()]{@link mw.Api#ajax}) later on.
 	 */
 	mw.Api = function ( options ) {
-		var defaults = Object.assign( {}, options ),
+		const defaults = Object.assign( {}, options ),
 			setsUrl = options && options.ajax && options.ajax.url !== undefined;
 
 		defaults.parameters = Object.assign( {}, defaultOptions.parameters, defaults.parameters );
@@ -92,7 +92,7 @@
 
 	function mapLegacyToken( action ) {
 		// Legacy types for backward-compatibility with API action=tokens.
-		var csrfActions = [
+		const csrfActions = [
 			'edit',
 			'delete',
 			'protect',
@@ -112,14 +112,14 @@
 	}
 
 	function createTokenCache() {
-		var tokenPromises = {};
+		const tokenPromises = {};
 
 		// Pre-populate with fake ajax promises to avoid HTTP requests for tokens that
 		// we already have on the page from the embedded user.options module (T36733).
 		tokenPromises[ defaultOptions.ajax.url ] = {};
-		var tokens = mw.user.tokens.get();
-		for ( var tokenKey in tokens ) {
-			var value = tokens[ tokenKey ];
+		const tokens = mw.user.tokens.get();
+		for ( const tokenKey in tokens ) {
+			const value = tokens[ tokenKey ];
 			// This requires #getToken to use the same key as mw.user.tokens.
 			// Format: token-type + "Token" (eg. csrfToken, patrolToken, watchToken).
 			tokenPromises[ defaultOptions.ajax.url ][ tokenKey ] = $.Deferred()
@@ -131,7 +131,7 @@
 	}
 
 	// Keyed by ajax url and symbolic name for the individual request
-	var promises = createTokenCache();
+	let promises = createTokenCache();
 
 	mw.Api.prototype = {
 		/**
@@ -184,7 +184,7 @@
 		 * @param {boolean} useUS Whether to use U+001F when joining multivalued parameters.
 		 */
 		preprocessParameters: function ( parameters, useUS ) {
-			var key;
+			let key;
 			// Handle common MediaWiki API idioms for passing parameters
 			for ( key in parameters ) {
 				// Multiple values are pipe-separated
@@ -231,7 +231,7 @@
 		 *       {@link JSON.parse}.
 		 */
 		ajax: function ( parameters, ajaxOptions ) {
-			var token, requestIndex,
+			let token, requestIndex,
 				api = this,
 				apiDeferred = $.Deferred(),
 				xhr, key, formData;
@@ -298,7 +298,7 @@
 				} )
 				// AJAX success just means "200 OK" response, also check API error codes
 				.done( ( result, textStatus, jqXHR ) => {
-					var code;
+					let code;
 					if ( result === undefined || result === null || result === '' ) {
 						apiDeferred.reject( 'ok-but-empty',
 							'OK response but empty result (check HTTP headers?)',
@@ -350,7 +350,7 @@
 		 * @since 1.22
 		 */
 		postWithToken: function ( tokenType, params, ajaxOptions ) {
-			var api = this,
+			let api = this,
 				assertParams = {
 					assert: params.assert,
 					assertuser: params.assertuser
@@ -415,12 +415,12 @@
 				additionalParams = { assert: additionalParams };
 			}
 
-			var cacheKey = type + 'Token';
-			var promiseGroup = promises[ this.defaults.ajax.url ];
+			const cacheKey = type + 'Token';
+			let promiseGroup = promises[ this.defaults.ajax.url ];
 			if ( !promiseGroup ) {
 				promiseGroup = promises[ this.defaults.ajax.url ] = {};
 			}
-			var promise = promiseGroup && promiseGroup[ cacheKey ];
+			let promise = promiseGroup && promiseGroup[ cacheKey ];
 
 			function reject() {
 				// Clear cache. Do not cache errors.
@@ -431,7 +431,7 @@
 			}
 
 			if ( !promise ) {
-				var apiPromise = this.get( Object.assign( {
+				const apiPromise = this.get( Object.assign( {
 					action: 'query',
 					meta: 'tokens',
 					type: type
@@ -469,7 +469,7 @@
 		 * @since 1.26
 		 */
 		badToken: function ( type ) {
-			var promiseGroup = promises[ this.defaults.ajax.url ];
+			const promiseGroup = promises[ this.defaults.ajax.url ];
 
 			type = mapLegacyToken( type );
 			if ( promiseGroup ) {
@@ -548,7 +548,7 @@
 				// errorformat: 'html'
 				return $( data.errors.map( ( err ) => {
 					// formatversion: 1 / 2
-					var $node = $( '<div>' ).html( err[ '*' ] || err.html );
+					const $node = $( '<div>' ).html( err[ '*' ] || err.html );
 					return $node[ 0 ];
 				} ) );
 

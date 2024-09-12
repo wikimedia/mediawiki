@@ -1,5 +1,5 @@
 ( function () {
-	var
+	const
 		fieldsAllowed = {
 			stash: true,
 			filekey: true,
@@ -62,7 +62,7 @@
 		 * @return {jQuery.Promise}
 		 */
 		uploadWithFormData: function ( file, data ) {
-			var key, request,
+			let key, request,
 				deferred = $.Deferred();
 
 			for ( key in data ) {
@@ -88,7 +88,7 @@
 				timeout: 0,
 				// Provide upload progress notifications
 				xhr: function () {
-					var xhr = $.ajaxSettings.xhr();
+					const xhr = $.ajaxSettings.xhr();
 					if ( xhr.upload ) {
 						// need to bind this event before we open the connection (see note at
 						// https://developer.mozilla.org/en-US/docs/DOM/XMLHttpRequest/Using_XMLHttpRequest#Monitoring_progress)
@@ -127,7 +127,7 @@
 		 * @return {jQuery.Promise}
 		 */
 		chunkedUpload: function ( file, data, chunkSize, chunkRetries ) {
-			var start, end, promise, next, active,
+			let start, end, promise, next, active,
 				deferred = $.Deferred();
 
 			chunkSize = chunkSize === undefined ? 5 * 1024 * 1024 : chunkSize;
@@ -155,7 +155,7 @@
 				// having to properly relay the results to the returned promise.
 				// eslint-disable-next-line no-loop-func
 				promise.done( function ( s, e, n, result ) {
-					var filekey = result.upload.filekey;
+					const filekey = result.upload.filekey;
 					active = this.uploadChunk( file, data, s, e, filekey, chunkRetries )
 						.done( e === file.size ? deferred.resolve : n.resolve )
 						.fail( deferred.reject )
@@ -183,7 +183,7 @@
 		 * @return {jQuery.Promise}
 		 */
 		uploadChunk: function ( file, data, start, end, filekey, retries ) {
-			var upload,
+			let upload,
 				api = this,
 				chunk = this.slice( file, start, end );
 
@@ -207,7 +207,7 @@
 			return upload.then(
 				null,
 				( code, result ) => {
-					var retry;
+					let retry;
 
 					// uploadWithFormData will reject uploads with warnings, but
 					// these warnings could be "harmless" or recovered from
@@ -253,7 +253,7 @@
 		 * @return {jQuery.Promise}
 		 */
 		retry: function ( code, result, callable ) {
-			var uploadPromise,
+			let uploadPromise,
 				retryTimer,
 				deferred = $.Deferred(),
 				// Wrap around the callable, so that once it completes, it'll
@@ -325,7 +325,7 @@
 		 *  function that should be called to finish the upload.
 		 */
 		finishUploadToStash: function ( uploadPromise, data ) {
-			var filekey,
+			let filekey,
 				api = this;
 
 			function finishUpload( moreData ) {
@@ -375,7 +375,7 @@
 		 *  function that should be called to finish the upload.
 		 */
 		uploadToStash: function ( file, data ) {
-			var promise;
+			let promise;
 
 			if ( !data.filename ) {
 				throw new Error( 'Filename not included in file data.' );
@@ -401,7 +401,7 @@
 		 *  function that should be called to finish the upload.
 		 */
 		chunkedUploadToStash: function ( file, data, chunkSize, chunkRetries ) {
-			var promise;
+			let promise;
 
 			if ( !data.filename ) {
 				throw new Error( 'Filename not included in file data.' );

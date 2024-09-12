@@ -9,7 +9,7 @@
  * @param {mw.rcfilters.dm.FilterItem} targetPageModel
  * @param {Object} [config] Configuration object
  */
-var RclTargetPageWidget = function MwRcfiltersUiRclTargetPageWidget(
+const RclTargetPageWidget = function MwRcfiltersUiRclTargetPageWidget(
 	controller, targetPageModel, config
 ) {
 	config = config || {};
@@ -71,7 +71,7 @@ RclTargetPageWidget.prototype.onLookupInputBlur = function () {
  * Respond to the model being updated
  */
 RclTargetPageWidget.prototype.updateUiBasedOnModel = function () {
-	var title = mw.Title.newFromText( this.model.getValue() ),
+	const title = mw.Title.newFromText( this.model.getValue() ),
 		text = title ? title.toText() : this.model.getValue();
 	this.titleSearch.setValue( text );
 	this.titleSearch.setTitle( text );

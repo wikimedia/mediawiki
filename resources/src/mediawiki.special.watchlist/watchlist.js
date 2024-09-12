@@ -11,13 +11,13 @@
 	}
 
 	$( () => {
-		var api = new mw.Api(), $progressBar, $resetForm = $( '#mw-watchlist-resetbutton' );
+		let api = new mw.Api(), $progressBar, $resetForm = $( '#mw-watchlist-resetbutton' );
 
 		// If the user wants to reset their watchlist, use an API call to do so (no reload required)
 		// Adapted from a user script by User:NQ of English Wikipedia
 		// (User:NQ/WatchlistResetConfirm.js)
 		$resetForm.on( 'submit', ( event ) => {
-			var $button = $resetForm.find( 'input[name=mw-watchlist-reset-submit]' );
+			const $button = $resetForm.find( 'input[name=mw-watchlist-reset-submit]' );
 
 			event.preventDefault();
 
@@ -68,7 +68,7 @@
 			// After unwatching a page, the '×' becomes a '+', which if clicked re-watches the page.
 			// Unwatched page entries are struck through and have lowered opacity.
 			$( '.mw-changeslist' ).on( 'click', '.mw-unwatch-link, .mw-watch-link', function ( event ) {
-				var $unwatchLink = $( this ), // EnhancedChangesList uses <table> for each row, while OldChangesList uses <li> for each row
+				const $unwatchLink = $( this ), // EnhancedChangesList uses <table> for each row, while OldChangesList uses <li> for each row
 					$watchlistLine = $unwatchLink.closest( 'li, table' )
 						.find( '[data-target-page]' ),
 					pageTitle = String( $watchlistLine.data( 'targetPage' ) ),
@@ -78,14 +78,14 @@
 				// a certain page or its associated page (e.g. Talk)
 				function forEachMatchingTitle( title, callback ) {
 
-					var titleObj = mw.Title.newFromText( title ),
+					const titleObj = mw.Title.newFromText( title ),
 						associatedTitleObj = titleObj.isTalkPage() ? titleObj.getSubjectPage() : titleObj.getTalkPage(),
 						associatedTitle = associatedTitleObj.getPrefixedText();
 					$( '.mw-changeslist-line' ).each( function () {
-						var $line = $( this ), $row, $link;
+						let $line = $( this ), $row, $link;
 
 						$line.find( '[data-target-page]' ).each( function () {
-							var $this = $( this ), rowTitle = String( $this.data( 'targetPage' ) );
+							const $this = $( this ), rowTitle = String( $this.data( 'targetPage' ) );
 							if ( rowTitle === title || rowTitle === associatedTitle ) {
 
 								// EnhancedChangesList groups log entries by performer rather than target page. Therefore...
@@ -148,7 +148,7 @@
 										.removeClass( 'mw-changelist-line-inner-unwatched' );
 									$row.find( '.mw-changesList-watchlistExpiry' ).each( function () {
 										// Add the missing semicolon (T266747)
-										var $expiry = $( this );
+										const $expiry = $( this );
 										$expiry.next( '.mw-changeslist-separator' )
 											.addClass( 'mw-changeslist-separator--semicolon' )
 											.removeClass( 'mw-changeslist-separator' );

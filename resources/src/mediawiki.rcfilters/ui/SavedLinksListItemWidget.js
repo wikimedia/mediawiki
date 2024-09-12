@@ -9,7 +9,7 @@
  * @param {Object} [config] Configuration object
  * @param {jQuery} [config.$overlay] A jQuery object serving as overlay for popups
  */
-var SavedLinksListItemWidget = function MwRcfiltersUiSavedLinksListWidget( model, config ) {
+const SavedLinksListItemWidget = function MwRcfiltersUiSavedLinksListWidget( model, config ) {
 	config = config || {};
 
 	this.model = model;
@@ -185,7 +185,7 @@ SavedLinksListItemWidget.prototype.onDefaultIconClick = function () {
  * @fires default
  */
 SavedLinksListItemWidget.prototype.onMenuChoose = function ( item ) {
-	var action = item.getData();
+	const action = item.getData();
 
 	if ( action === 'edit' ) {
 		this.toggleEdit( true );
@@ -239,7 +239,7 @@ SavedLinksListItemWidget.prototype.onInputChange = function ( value ) {
  * @fires edit
  */
 SavedLinksListItemWidget.prototype.save = function () {
-	var value = this.editInput.getValue().trim();
+	const value = this.editInput.getValue().trim();
 
 	if ( value ) {
 		this.emit( 'edit', value );

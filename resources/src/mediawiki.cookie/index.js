@@ -1,6 +1,6 @@
 'use strict';
 
-var config = require( './config.json' ),
+let config = require( './config.json' ),
 	defaults = {
 		prefix: config.prefix,
 		domain: config.domain,
@@ -55,7 +55,7 @@ mw.cookie = {
 	 */
 
 	set: function ( key, value, options ) {
-		var prefix, date;
+		let prefix, date;
 
 		// The 'options' parameter may be a shortcut for the expiry.
 		if ( arguments.length > 2 && ( !options || options instanceof Date || typeof options === 'number' ) ) {
@@ -101,7 +101,7 @@ mw.cookie = {
 	 * @memberof module:mediawiki.cookie
 	 */
 	get: function ( key, prefix, defaultValue ) {
-		var result;
+		let result;
 
 		if ( prefix === undefined || prefix === null ) {
 			prefix = defaults.prefix;
@@ -129,7 +129,7 @@ mw.cookie = {
 	 * @memberof module:mediawiki.cookie
 	 */
 	getCrossSite: function ( key, prefix, defaultValue ) {
-		var value;
+		let value;
 
 		value = this.get( key, prefix, null );
 		if ( value === null ) {
@@ -146,7 +146,7 @@ if ( window.QUnit ) {
 	module.exports = {
 		jar,
 		setDefaults: function ( value ) {
-			var prev = defaults;
+			const prev = defaults;
 			defaults = value;
 			return prev;
 		}

@@ -1,4 +1,4 @@
-var FilterMenuHeaderWidget = require( './FilterMenuHeaderWidget.js' ),
+let FilterMenuHeaderWidget = require( './FilterMenuHeaderWidget.js' ),
 	HighlightPopupWidget = require( './HighlightPopupWidget.js' ),
 	FilterMenuSectionOptionWidget = require( './FilterMenuSectionOptionWidget.js' ),
 	FilterMenuOptionWidget = require( './FilterMenuOptionWidget.js' ),
@@ -30,7 +30,7 @@ var FilterMenuHeaderWidget = require( './FilterMenuHeaderWidget.js' ),
  *  ]
  */
 MenuSelectWidget = function MwRcfiltersUiMenuSelectWidget( controller, model, config ) {
-	var header;
+	let header;
 
 	config = config || {};
 
@@ -97,7 +97,7 @@ MenuSelectWidget = function MwRcfiltersUiMenuSelectWidget( controller, model, co
 	// based on view
 	config.footers = config.isMobile ? [] : config.footers || [];
 	config.footers.forEach( ( footerData ) => {
-		var isSticky = footerData.sticky === undefined ? true : !!footerData.sticky,
+		const isSticky = footerData.sticky === undefined ? true : !!footerData.sticky,
 			adjustedData = {
 				// Wrap the element with our own footer wrapper
 				// The following classes are used here:
@@ -150,7 +150,7 @@ MenuSelectWidget.prototype.toggle = function ( show ) {
  * lazy creation of the menu
  */
 MenuSelectWidget.prototype.lazyMenuCreation = function () {
-	var widget = this,
+	let widget = this,
 		items = [],
 		viewGroupCount = {},
 		groups = this.model.getFilterGroups();
@@ -176,7 +176,7 @@ MenuSelectWidget.prototype.lazyMenuCreation = function () {
 
 	// eslint-disable-next-line no-jquery/no-each-util
 	$.each( groups, ( groupName, groupModel ) => {
-		var currentItems = [],
+		const currentItems = [],
 			view = groupModel.getView();
 
 		if ( !groupModel.isHidden() ) {
@@ -236,7 +236,7 @@ MenuSelectWidget.prototype.onModelInitialize = function () {
  * Update view
  */
 MenuSelectWidget.prototype.updateView = function () {
-	var viewName = this.model.getCurrentView();
+	const viewName = this.model.getCurrentView();
 
 	if ( this.views[ viewName ] && this.currentView !== viewName ) {
 		this.updateFooterVisibility( viewName );
@@ -282,7 +282,7 @@ MenuSelectWidget.prototype.updateFooterVisibility = function ( currentView ) {
  * widget appears if the menu is empty.
  */
 MenuSelectWidget.prototype.postProcessItems = function () {
-	var i,
+	let i,
 		itemWasSelected = false,
 		items = this.getItems();
 
@@ -325,7 +325,7 @@ MenuSelectWidget.prototype.getItemFromModel = function ( model ) {
  * @inheritdoc
  */
 MenuSelectWidget.prototype.onDocumentKeyDown = function ( e ) {
-	var nextItem,
+	let nextItem,
 		currentItem = this.findHighlightedItem() || this.findSelectedItem();
 
 	// Call parent

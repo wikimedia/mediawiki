@@ -18,10 +18,10 @@
  * @return {jQuery|null}
  */
 function conditionGetField( $root, name ) {
-	var nameFilter = function () {
+	const nameFilter = function () {
 		return this.name === name;
 	};
-	var $found = $root.find( '[name]' ).filter( nameFilter );
+	let $found = $root.find( '[name]' ).filter( nameFilter );
 	if ( !$found.length ) {
 		// Field cloner can load from template dynamically and fire event on sub element
 		$found = $root.closest( 'form' ).find( '[name]' ).filter( nameFilter );
@@ -38,7 +38,7 @@ function conditionGetField( $root, name ) {
  * @return {OO.ui.Widget|null}
  */
 function getWidget( $field ) {
-	var $widget = $field.closest( '.oo-ui-widget[data-ooui]' );
+	const $widget = $field.closest( '.oo-ui-widget[data-ooui]' );
 	if ( $widget.length ) {
 		return OO.ui.Widget.static.infuse( $widget );
 	}
@@ -58,10 +58,10 @@ function getWidget( $field ) {
  * @return {Function} return.1 Test function
  */
 function conditionParse( $root, spec ) {
-	var v, fields, func;
+	let v, fields, func;
 
-	var op = spec[ 0 ];
-	var l = spec.length;
+	const op = spec[ 0 ];
+	let l = spec.length;
 	switch ( op ) {
 		case 'AND':
 		case 'OR':
@@ -69,7 +69,7 @@ function conditionParse( $root, spec ) {
 		case 'NOR':
 			var funcs = [];
 			fields = [];
-			for ( var i = 1; i < l; i++ ) {
+			for ( let i = 1; i < l; i++ ) {
 				if ( !Array.isArray( spec[ i ] ) ) {
 					throw new Error( op + ' parameters must be arrays' );
 				}
@@ -82,7 +82,7 @@ function conditionParse( $root, spec ) {
 			var valueChk = { AND: false, OR: true, NAND: false, NOR: true };
 			var valueRet = { AND: true, OR: false, NAND: false, NOR: true };
 			func = function () {
-				for ( var j = 0; j < l; j++ ) {
+				for ( let j = 0; j < l; j++ ) {
 					if ( valueChk[ op ] === funcs[ j ]() ) {
 						return !valueRet[ op ];
 					}
@@ -129,14 +129,14 @@ function conditionParse( $root, spec ) {
 
 				if ( widget ) {
 					if ( widget.supports( 'isSelected' ) ) {
-						var selected = widget.isSelected();
+						const selected = widget.isSelected();
 						return selected ? widget.getValue() : '';
 					} else {
 						return widget.getValue();
 					}
 				} else {
 					if ( $field.prop( 'type' ) === 'radio' || $field.prop( 'type' ) === 'checkbox' ) {
-						var $selected = $field.filter( ':checked' );
+						const $selected = $field.filter( ':checked' );
 						return $selected.length ? $selected.val() : '';
 					} else {
 						return $field.val();
@@ -174,16 +174,16 @@ function conditionParse( $root, spec ) {
  * @return {string[]}
  */
 function gatherOOUIModules( $fields ) {
-	var $oouiFields = $fields.filter( '[data-ooui]' );
-	var modules = [];
+	const $oouiFields = $fields.filter( '[data-ooui]' );
+	const modules = [];
 
 	if ( $oouiFields.length ) {
 		modules.push( 'mediawiki.htmlform.ooui' );
 		$oouiFields.each( function () {
-			var data = $( this ).data( 'mw-modules' );
+			const data = $( this ).data( 'mw-modules' );
 			if ( data ) {
 				// We can trust this value, 'data-mw-*' attributes are banned from user content in Sanitizer
-				var extraModules = data.split( ',' );
+				const extraModules = data.split( ',' );
 				modules.push.apply( modules, extraModules );
 			}
 		} );
@@ -193,16 +193,16 @@ function gatherOOUIModules( $fields ) {
 }
 
 mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
-	var $exclude = $root.find( '.mw-htmlform-autoinfuse-lazy' )
+	const $exclude = $root.find( '.mw-htmlform-autoinfuse-lazy' )
 		.find( '.mw-htmlform-hide-if, .mw-htmlform-disable-if' );
-	var $fields = $root.find( '.mw-htmlform-hide-if, .mw-htmlform-disable-if' ).not( $exclude );
+	const $fields = $root.find( '.mw-htmlform-hide-if, .mw-htmlform-disable-if' ).not( $exclude );
 
 	// Load modules for the fields we will hide/disable
 	mw.loader.using( gatherOOUIModules( $fields ) ).done( () => {
 		$fields.each( function () {
-			var $el = $( this );
+			const $el = $( this );
 
-			var spec, $elOrLayout, $form;
+			let spec, $elOrLayout, $form;
 			if ( $el.is( '[data-ooui]' ) ) {
 				// $elOrLayout should be a FieldLayout that mixes in mw.htmlform.Element
 				$elOrLayout = OO.ui.FieldLayout.static.infuse( $el );
@@ -218,18 +218,18 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 				return;
 			}
 
-			var fields = [];
-			var test = {};
+			let fields = [];
+			const test = {};
 			[ 'hide', 'disable' ].forEach( ( type ) => {
 				if ( spec[ type ] ) {
-					var v = conditionParse( $form, spec[ type ] );
+					const v = conditionParse( $form, spec[ type ] );
 					fields = fields.concat( fields, v[ 0 ] );
 					test[ type ] = v[ 1 ];
 				}
 			} );
-			var func = function () {
-				var shouldHide = spec.hide ? test.hide() : false;
-				var shouldDisable = shouldHide || ( spec.disable ? test.disable() : false );
+			const func = function () {
+				const shouldHide = spec.hide ? test.hide() : false;
+				const shouldDisable = shouldHide || ( spec.disable ? test.disable() : false );
 				if ( spec.hide ) {
 					// The .toggle() method works mostly the same for jQuery objects and OO.ui.Widget
 					$elOrLayout.toggle( !shouldHide );
@@ -247,7 +247,7 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 					// * Event handlers are fired in the order they were registered, so even if the handler
 					//   for parent messed up the child, the handle for child will run next and fix it
 					$elOrLayout.find( 'input, textarea, select' ).each( function () {
-						var $this = $( this );
+						const $this = $( this );
 						if ( shouldDisable ) {
 							if ( $this.data( 'was-disabled' ) === undefined ) {
 								$this.data( 'was-disabled', $this.prop( 'disabled' ) );
@@ -270,7 +270,7 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 				}
 			};
 
-			var oouiNodes = fields.map(
+			const oouiNodes = fields.map(
 				// We expect undefined for non-OOUI nodes (T308626)
 				( $node ) => $node.closest( '.oo-ui-fieldLayout[data-ooui]' )[ 0 ]
 			).filter(
@@ -280,8 +280,8 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 
 			// Load modules for the fields whose state we will check
 			mw.loader.using( gatherOOUIModules( $( oouiNodes ) ) ).done( () => {
-				for ( var i = 0; i < fields.length; i++ ) {
-					var widget = getWidget( fields[ i ] );
+				for ( let i = 0; i < fields.length; i++ ) {
+					const widget = getWidget( fields[ i ] );
 					if ( widget ) {
 						fields[ i ] = widget;
 					}

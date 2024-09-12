@@ -176,7 +176,7 @@
 	 * @return {jQuery.Promise} Promise resolved when everything is initialized
 	 */
 	mw.Upload.BookletLayout.prototype.initialize = function () {
-		var booklet = this;
+		const booklet = this;
 
 		this.clear();
 		this.upload = this.createUpload();
@@ -246,7 +246,7 @@
 	 * @return {jQuery.Promise}
 	 */
 	mw.Upload.BookletLayout.prototype.uploadFile = function () {
-		var deferred = $.Deferred(),
+		const deferred = $.Deferred(),
 			startTime = mw.now(),
 			layout = this,
 			file = this.getFile();
@@ -282,7 +282,7 @@
 				deferred.reject( errorMessage );
 			} );
 		}, ( progress ) => {
-			var elapsedTime = mw.now() - startTime,
+			const elapsedTime = mw.now() - startTime,
 				estimatedTotalTime = ( 1 / progress ) * elapsedTime,
 				estimatedRemainingTime = moment.duration( estimatedTotalTime - elapsedTime );
 			layout.emit( 'fileUploadProgress', progress, estimatedRemainingTime );
@@ -308,7 +308,7 @@
 	 * {@link OO.ui.Error error}, or resolves if the upload was successful.
 	 */
 	mw.Upload.BookletLayout.prototype.saveFile = function () {
-		var layout = this,
+		const layout = this,
 			deferred = $.Deferred();
 
 		this.upload.setFilename( this.getFilename() );
@@ -316,7 +316,7 @@
 
 		this.uploadPromise.then( () => {
 			layout.upload.finishStashUpload().then( () => {
-				var name;
+				let name;
 
 				// Normalize page name and localise the 'File:' prefix
 				name = new mw.Title( 'File:' + layout.upload.getFilename() ).toString();
@@ -343,7 +343,7 @@
 	 * @return {jQuery.Promise|undefined} A Promise that will be resolved with an OO.ui.Error.
 	 */
 	mw.Upload.BookletLayout.prototype.getErrorMessageForStateDetails = function () {
-		var state = this.upload.getState(),
+		let state = this.upload.getState(),
 			stateDetails = this.upload.getStateDetails(),
 			warnings = stateDetails.upload && stateDetails.upload.warnings,
 			$ul = $( '<ul>' ),
@@ -379,7 +379,7 @@
 				) );
 			} else if ( Array.isArray( warnings.duplicate ) ) {
 				warnings.duplicate.forEach( ( filename ) => {
-					var $a = $( '<a>' ).text( filename ),
+					const $a = $( '<a>' ).text( filename ),
 						href = mw.Title.makeTitle( mw.config.get( 'wgNamespaceIds' ).file, filename ).getUrl( {} );
 
 					$a.attr( { href: href, target: '_blank' } );
@@ -437,7 +437,7 @@
 	 * @return {OO.ui.FormLayout}
 	 */
 	mw.Upload.BookletLayout.prototype.renderUploadForm = function () {
-		var fieldset,
+		let fieldset,
 			layout = this;
 
 		this.selectFileWidget = this.getFileWidget();
@@ -513,7 +513,7 @@
 	 * @return {OO.ui.FormLayout}
 	 */
 	mw.Upload.BookletLayout.prototype.renderInfoForm = function () {
-		var fieldset;
+		let fieldset;
 
 		this.filePreview = new OO.ui.Widget( {
 			classes: [ 'mw-upload-bookletLayout-filePreview' ]
@@ -572,7 +572,7 @@
 	 * @fires mw.Upload.BookletLayout.infoValid
 	 */
 	mw.Upload.BookletLayout.prototype.onInfoFormChange = function () {
-		var layout = this;
+		const layout = this;
 		$.when(
 			this.filenameWidget.getValidity(),
 			this.descriptionWidget.getValidity()
@@ -591,7 +591,7 @@
 	 * @return {OO.ui.FormLayout}
 	 */
 	mw.Upload.BookletLayout.prototype.renderInsertForm = function () {
-		var fieldset;
+		let fieldset;
 
 		this.filenameUsageWidget = new OO.ui.TextInputWidget();
 		fieldset = new OO.ui.FieldsetLayout( {
@@ -629,7 +629,7 @@
 	 * @return {string}
 	 */
 	mw.Upload.BookletLayout.prototype.getFilename = function () {
-		var filename = this.filenameWidget.getValue();
+		let filename = this.filenameWidget.getValue();
 		if ( this.filenameExtension ) {
 			filename += '.' + this.filenameExtension;
 		}
@@ -643,7 +643,7 @@
 	 * @param {string} filename
 	 */
 	mw.Upload.BookletLayout.prototype.setFilename = function ( filename ) {
-		var title = mw.Title.newFromFileName( filename );
+		const title = mw.Title.newFromFileName( filename );
 
 		if ( title ) {
 			this.filenameWidget.setValue( title.getNameText() );

@@ -1,4 +1,4 @@
-var SavedLinksListWidget = require( './SavedLinksListWidget.js' ),
+let SavedLinksListWidget = require( './SavedLinksListWidget.js' ),
 	FilterWrapperWidget = require( './FilterWrapperWidget.js' ),
 	ChangesListWrapperWidget = require( './ChangesListWrapperWidget.js' ),
 	RcTopSectionWidget = require( './RcTopSectionWidget.js' ),
@@ -89,7 +89,7 @@ OO.inheritClass( MainWrapperWidget, OO.ui.Widget );
  * @param {string} specialPage
  */
 MainWrapperWidget.prototype.setTopSection = function ( specialPage ) {
-	var topSection;
+	let topSection;
 
 	if ( specialPage === 'Recentchanges' ) {
 		topSection = new RcTopSectionWidget(

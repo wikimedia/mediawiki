@@ -3,7 +3,7 @@
  */
 
 mw.language.convertGrammar = function ( word, form ) {
-	var grammarForms = mw.language.getData( 'bs', 'grammarForms' );
+	const grammarForms = mw.language.getData( 'bs', 'grammarForms' );
 	if ( grammarForms && grammarForms[ form ] ) {
 		return grammarForms[ form ][ word ];
 	}

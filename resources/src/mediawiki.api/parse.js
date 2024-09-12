@@ -11,7 +11,7 @@
 		 * @return {jQuery.Promise<string>} Promise that resolves with the parsed HTML of `wikitext`
 		 */
 		parse: function ( content, additionalParams ) {
-			var apiPromise,
+			let apiPromise,
 				config = Object.assign( {
 					formatversion: 2,
 					action: 'parse',

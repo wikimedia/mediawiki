@@ -3,7 +3,7 @@
  */
 ( function () {
 	mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
-		var $target = $root.find( '#mw-input-wpeditfont' );
+		const $target = $root.find( '#mw-input-wpeditfont' );
 
 		if (
 			// This preference could theoretically be disabled ($wgHiddenPrefs)
@@ -13,7 +13,7 @@
 			return;
 		}
 
-		var widget = OO.ui.infuse( $target );
+		const widget = OO.ui.infuse( $target );
 
 		// Style options
 		widget.dropdownWidget.menu.items.forEach( ( item ) => {
@@ -24,7 +24,7 @@
 			item.$label.addClass( 'mw-editfont-' + item.getData() );
 		} );
 
-		var lastValue;
+		let lastValue;
 
 		function updateLabel( value ) {
 			// Style selected item label

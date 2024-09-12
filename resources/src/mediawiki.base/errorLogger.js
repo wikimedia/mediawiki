@@ -36,7 +36,7 @@ function installGlobalHandler( window ) {
 	// opposite way than normal event handlers (returning true will prevent the default
 	// action, returning false will let the browser handle the error normally, by e.g.
 	// logging to the console), so our fallback old handler needs to return false.
-	var oldHandler = window.onerror || function () {
+	const oldHandler = window.onerror || function () {
 		return false;
 	};
 

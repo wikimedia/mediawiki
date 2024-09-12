@@ -114,7 +114,7 @@
 		 * @return {jQuery.Promise} Edit API response
 		 */
 		edit: function ( title, transform ) {
-			var basetimestamp, curtimestamp,
+			let basetimestamp, curtimestamp,
 				api = this;
 
 			title = String( title );
@@ -128,7 +128,7 @@
 				curtimestamp: true
 			} )
 				.then( ( data ) => {
-					var page, revision;
+					let page, revision;
 					if ( !data.query || !data.query.pages ) {
 						return $.Deferred().reject( 'unknown' );
 					}
@@ -148,7 +148,7 @@
 					} );
 				} )
 				.then( ( params ) => {
-					var editParams = typeof params === 'object' ? params : { text: String( params ) };
+					const editParams = typeof params === 'object' ? params : { text: String( params ) };
 					return api.postWithEditToken( Object.assign( {
 						action: 'edit',
 						title: title,

@@ -8,7 +8,7 @@
 		 * @return {jQuery.Promise} See [post()]{@link mw.Api#post}
 		 */
 		login: function ( username, password ) {
-			var params, apiPromise, innerPromise,
+			let params, apiPromise, innerPromise,
 				api = this;
 
 			params = {
@@ -24,7 +24,7 @@
 					params.lgtoken = data.login.token;
 					innerPromise = api.post( params )
 						.then( ( response ) => {
-							var code;
+							let code;
 							if ( response.login.result !== 'Success' ) {
 								// Set proper error code whenever possible
 								code = response.error && response.error.code || 'unknown';

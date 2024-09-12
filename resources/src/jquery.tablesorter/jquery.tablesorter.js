@@ -26,13 +26,13 @@
  *         { <Integer column index>: <String 'asc' or 'desc'> }
  */
 ( function () {
-	var ts,
+	let ts,
 		parsers = [];
 
 	/* Parser utility functions */
 
 	function getParserById( name ) {
-		for ( var i = 0; i < parsers.length; i++ ) {
+		for ( let i = 0; i < parsers.length; i++ ) {
 			if ( parsers[ i ].id.toLowerCase() === name.toLowerCase() ) {
 				return parsers[ i ];
 			}
@@ -51,7 +51,7 @@
 			// changes from other code paths via data(), which reside only in jQuery.
 			// Must use $().data() instead of $.data(), as the latter *only*
 			// accesses the live values, without reading HTML5 attribs first (T40152).
-			var data = $( currentNode ).data( 'sortValue' );
+			const data = $( currentNode ).data( 'sortValue' );
 
 			if ( data !== null && data !== undefined ) {
 				// Cast any numbers or other stuff to a string. Methods
@@ -64,7 +64,7 @@
 			// eslint-disable-next-line no-jquery/no-map-util
 			return $.map( currentNode.childNodes, ( elem ) => {
 				if ( elem.nodeType === Node.ELEMENT_NODE ) {
-					var nodeName = elem.nodeName.toLowerCase();
+					const nodeName = elem.nodeName.toLowerCase();
 					if ( nodeName === 'img' ) {
 						return elem.alt;
 					}
@@ -91,7 +91,7 @@
 	}
 
 	function detectParserForColumn( table, rows, column ) {
-		var l = parsers.length,
+		let l = parsers.length,
 			config = $( table ).data( 'tablesorter' ).config,
 			nextRow = false,
 			// Start with 1 because 0 is the fallback parser
@@ -161,14 +161,14 @@
 	}
 
 	function buildParserCache( table, $headers ) {
-		var rows = table.tBodies[ 0 ].rows,
+		const rows = table.tBodies[ 0 ].rows,
 			config = $( table ).data( 'tablesorter' ).config,
 			cachedParsers = [];
 
 		if ( rows[ 0 ] ) {
-			for ( var j = 0; j < config.columns; j++ ) {
-				var parser = false;
-				var sortType = $headers.eq( config.columnToHeader[ j ] ).data( 'sortType' );
+			for ( let j = 0; j < config.columns; j++ ) {
+				let parser = false;
+				const sortType = $headers.eq( config.columnToHeader[ j ] ).data( 'sortType' );
 				if ( sortType !== undefined ) {
 					// Cast any numbers or other stuff to a string. Methods
 					// like charAt, toLowerCase and split are expected in callers.
@@ -188,7 +188,7 @@
 	/* Other utility functions */
 
 	function buildCache( table ) {
-		var totalRows = ( table.tBodies[ 0 ] && table.tBodies[ 0 ].rows.length ) || 0,
+		let totalRows = ( table.tBodies[ 0 ] && table.tBodies[ 0 ].rows.length ) || 0,
 			config = $( table ).data( 'tablesorter' ).config,
 			cachedParsers = config.parsers,
 			cellIndex,
@@ -197,11 +197,11 @@
 				normalized: []
 			};
 
-		for ( var i = 0; i < totalRows; i++ ) {
+		for ( let i = 0; i < totalRows; i++ ) {
 
 			// Add the table data to main data array
-			var $row = $( table.tBodies[ 0 ].rows[ i ] );
-			var cols = [];
+			const $row = $( table.tBodies[ 0 ].rows[ i ] );
+			let cols = [];
 
 			// if this is a child row, add it to the last row's children and
 			// continue to the next row
@@ -218,7 +218,7 @@
 				$row.data( 'initialOrder', i );
 			}
 
-			for ( var j = 0; j < cachedParsers.length; j++ ) {
+			for ( let j = 0; j < cachedParsers.length; j++ ) {
 				cellIndex = $row.data( 'columnToCell' )[ j ];
 				cols.push( cachedParsers[ j ].format( getElementSortKey( $row[ 0 ].cells[ cellIndex ] ) ) );
 			}
@@ -237,17 +237,17 @@
 	}
 
 	function appendToTable( table, cache ) {
-		var row = cache.row,
+		const row = cache.row,
 			normalized = cache.normalized,
 			totalRows = normalized.length,
 			checkCell = ( normalized[ 0 ].length - 1 ),
 			fragment = document.createDocumentFragment();
 
-		for ( var i = 0; i < totalRows; i++ ) {
-			var pos = normalized[ i ][ checkCell ];
+		for ( let i = 0; i < totalRows; i++ ) {
+			const pos = normalized[ i ][ checkCell ];
 
-			var l = row[ pos ].length;
-			for ( var j = 0; j < l; j++ ) {
+			const l = row[ pos ].length;
+			for ( let j = 0; j < l; j++ ) {
 				fragment.appendChild( row[ pos ][ j ] );
 			}
 
@@ -269,10 +269,10 @@
 	 * @param {jQuery} $table object for a <table>
 	 */
 	function emulateTHeadAndFoot( $table ) {
-		var $rows = $table.find( '> tbody > tr' );
+		const $rows = $table.find( '> tbody > tr' );
 
 		if ( !$table.get( 0 ).tHead ) {
-			var $thead = $( '<thead>' );
+			const $thead = $( '<thead>' );
 			$rows.each( function () {
 				if ( $( this ).children( 'td' ).length ) {
 					// This row contains a <td>, so it's not a header row
@@ -284,7 +284,7 @@
 			$table.find( '> tbody' ).first().before( $thead );
 		}
 		if ( !$table.get( 0 ).tFoot ) {
-			var $tfoot = $( '<tfoot>' ),
+			let $tfoot = $( '<tfoot>' ),
 				tfootRows = [],
 				remainingCellRowSpan = 0;
 
@@ -307,7 +307,7 @@
 	}
 
 	function uniqueElements( array ) {
-		var uniques = [];
+		const uniques = [];
 		array.forEach( ( elem ) => {
 			if ( elem !== undefined && uniques.indexOf( elem ) === -1 ) {
 				uniques.push( elem );
@@ -317,7 +317,7 @@
 	}
 
 	function buildHeaders( table, msg ) {
-		var config = $( table ).data( 'tablesorter' ).config,
+		let config = $( table ).data( 'tablesorter' ).config,
 			maxSeen = 0,
 			colspanOffset = 0,
 			$tableHeaders = $( [] ),
@@ -326,21 +326,21 @@
 		if ( $tableRows.length <= 1 ) {
 			$tableHeaders = $tableRows.children( 'th' );
 		} else {
-			var exploded = [];
+			const exploded = [];
 
 			// Loop through all the dom cells of the thead
 			$tableRows.each( ( rowIndex, row ) => {
 				// eslint-disable-next-line no-jquery/no-each-util
 				$.each( row.cells, ( columnIndex, cell ) => {
-					var rowspan = Number( cell.rowSpan );
-					var colspan = Number( cell.colSpan );
+					const rowspan = Number( cell.rowSpan );
+					const colspan = Number( cell.colSpan );
 
 					// Skip the spots in the exploded matrix that are already filled
 					while ( exploded[ rowIndex ] && exploded[ rowIndex ][ columnIndex ] !== undefined ) {
 						++columnIndex;
 					}
 
-					var matrixRowIndex,
+					let matrixRowIndex,
 						matrixColumnIndex;
 					// Find the actual dimensions of the thead, by placing each cell
 					// in the exploded matrix rowspan times colspan times, with the proper offsets
@@ -354,10 +354,10 @@
 					}
 				} );
 			} );
-			var longestTR;
+			let longestTR;
 			// We want to find the row that has the most columns (ignoring colspan)
 			exploded.forEach( ( cellArray, index ) => {
-				var headerCount = $( uniqueElements( cellArray ) ).filter( 'th' ).length;
+				const headerCount = $( uniqueElements( cellArray ) ).filter( 'th' ).length;
 				if ( headerCount >= maxSeen ) {
 					maxSeen = headerCount;
 					longestTR = index;
@@ -372,10 +372,10 @@
 		config.columnToHeader = [];
 		config.headerToColumns = [];
 		config.headerList = [];
-		var headerIndex = 0;
+		let headerIndex = 0;
 		$tableHeaders.each( function () {
-			var $cell = $( this );
-			var columns = [];
+			const $cell = $( this );
+			const columns = [];
 
 			// eslint-disable-next-line no-jquery/no-class-state
 			if ( !$cell.hasClass( config.unsortableClass ) ) {
@@ -390,7 +390,7 @@
 						title: msg[ 2 ]
 					} );
 
-				for ( var k = 0; k < this.colSpan; k++ ) {
+				for ( let k = 0; k < this.colSpan; k++ ) {
 					config.columnToHeader[ colspanOffset + k ] = headerIndex;
 					columns.push( colspanOffset + k );
 				}
@@ -419,7 +419,7 @@
 	}
 
 	function isValueInArray( v, a ) {
-		for ( var i = 0; i < a.length; i++ ) {
+		for ( let i = 0; i < a.length; i++ ) {
 			if ( a[ i ][ 0 ] === v ) {
 				return true;
 			}
@@ -440,7 +440,7 @@
 		headerToColumns.forEach( ( columns, headerIndex ) => {
 
 			columns.forEach( ( columnIndex, i ) => {
-				var header = $headers[ headerIndex ],
+				const header = $headers[ headerIndex ],
 					$header = $( header );
 
 				if ( !isValueInArray( columnIndex, sortList ) ) {
@@ -451,8 +451,8 @@
 					} );
 				} else {
 					// Column shall be sorted: Apply designated count and order.
-					for ( var j = 0; j < sortList.length; j++ ) {
-						var sortColumn = sortList[ j ];
+					for ( let j = 0; j < sortList.length; j++ ) {
+						const sortColumn = sortList[ j ];
 						if ( sortColumn[ 0 ] === i ) {
 							$header.data( {
 								order: sortColumn[ 1 ],
@@ -474,7 +474,7 @@
 		// * headerSortDown
 		$headers.removeClass( css ).attr( 'title', msg[ 2 ] );
 
-		for ( var i = 0; i < list.length; i++ ) {
+		for ( let i = 0; i < list.length; i++ ) {
 			// The following classes are used here:
 			// * headerSortUp
 			// * headerSortDown
@@ -494,10 +494,10 @@
 	}
 
 	function multisort( table, sortList, cache ) {
-		var sortFn = [],
+		const sortFn = [],
 			cachedParsers = $( table ).data( 'tablesorter' ).config.parsers;
 
-		for ( var i = 0; i < sortList.length; i++ ) {
+		for ( let i = 0; i < sortList.length; i++ ) {
 			// Android doesn't support Intl.Collator
 			if ( window.Intl && Intl.Collator && cachedParsers[ sortList[ i ][ 0 ] ].type === 'text' ) {
 				sortFn[ i ] = sortText;
@@ -506,12 +506,12 @@
 			}
 		}
 		cache.normalized.sort( function ( array1, array2 ) {
-			for ( var n = 0; n < sortList.length; n++ ) {
-				var col = sortList[ n ][ 0 ];
+			for ( let n = 0; n < sortList.length; n++ ) {
+				const col = sortList[ n ][ 0 ];
 				var ret;
 				if ( sortList[ n ][ 1 ] === 2 ) {
 					// initial order
-					var orderIndex = array1.length - 2;
+					const orderIndex = array1.length - 2;
 					ret = sortNumeric.call( this, array1[ orderIndex ], array2[ orderIndex ] );
 				} else if ( sortList[ n ][ 1 ] === 1 ) {
 					// descending
@@ -531,7 +531,7 @@
 	}
 
 	function buildTransformTable() {
-		var digits = '0123456789,.'.split( '' ),
+		const digits = '0123456789,.'.split( '' ),
 			separatorTransformTable = mw.config.get( 'wgSeparatorTransformTable' ),
 			digitTransformTable = mw.config.get( 'wgDigitTransformTable' );
 
@@ -541,16 +541,16 @@
 			ts.transformTable = {};
 
 			// Unpack the transform table
-			var ascii = separatorTransformTable[ 0 ].split( '\t' ).concat( digitTransformTable[ 0 ].split( '\t' ) );
-			var localised = separatorTransformTable[ 1 ].split( '\t' ).concat( digitTransformTable[ 1 ].split( '\t' ) );
+			const ascii = separatorTransformTable[ 0 ].split( '\t' ).concat( digitTransformTable[ 0 ].split( '\t' ) );
+			const localised = separatorTransformTable[ 1 ].split( '\t' ).concat( digitTransformTable[ 1 ].split( '\t' ) );
 
 			// Construct regexes for number identification
-			for ( var i = 0; i < ascii.length; i++ ) {
+			for ( let i = 0; i < ascii.length; i++ ) {
 				ts.transformTable[ localised[ i ] ] = ascii[ i ];
 				digits.push( mw.util.escapeRegExp( localised[ i ] ) );
 			}
 		}
-		var digitClass = '[' + digits.join( '', digits ) + ']';
+		const digitClass = '[' + digits.join( '', digits ) + ']';
 
 		// We allow a trailing percent sign, which we just strip. This works fine
 		// if percents and regular numbers aren't being mixed.
@@ -566,12 +566,12 @@
 	}
 
 	function buildDateTable() {
-		var regex = [];
+		let regex = [];
 
 		ts.monthNames = {};
 
-		for ( var i = 0; i < 12; i++ ) {
-			var name = mw.language.months.names[ i ].toLowerCase();
+		for ( let i = 0; i < 12; i++ ) {
+			let name = mw.language.months.names[ i ].toLowerCase();
 			ts.monthNames[ name ] = i + 1;
 			regex.push( mw.util.escapeRegExp( name ) );
 			name = mw.language.months.genitive[ i ].toLowerCase();
@@ -616,7 +616,7 @@
 	 * @param {jQuery} $table jQuery object for a <table>
 	 */
 	function explodeRowspans( $table ) {
-		var spanningRealCellIndex, colSpan,
+		let spanningRealCellIndex, colSpan,
 			rowspanCells = $table.find( '> tbody > tr > [rowspan]' ).get();
 
 		// Short circuit
@@ -628,8 +628,8 @@
 		// account colspans. We also cache the rowIndex to avoid having to take
 		// cell.parentNode.rowIndex in the sorting function below.
 		$table.find( '> tbody > tr' ).each( function () {
-			var col = 0;
-			for ( var c = 0; c < this.cells.length; c++ ) {
+			let col = 0;
+			for ( let c = 0; c < this.cells.length; c++ ) {
 				$( this.cells[ c ] ).data( 'tablesorter', {
 					realCellIndex: col,
 					realRowIndex: this.rowIndex
@@ -644,9 +644,9 @@
 		// might change the sort order.
 		function resortCells() {
 			rowspanCells = rowspanCells.sort( ( a, b ) => {
-				var cellAData = $.data( a, 'tablesorter' );
-				var cellBData = $.data( b, 'tablesorter' );
-				var ret = cellAData.realCellIndex - cellBData.realCellIndex;
+				const cellAData = $.data( a, 'tablesorter' );
+				const cellBData = $.data( b, 'tablesorter' );
+				let ret = cellAData.realCellIndex - cellBData.realCellIndex;
 				if ( !ret ) {
 					ret = cellAData.realRowIndex - cellBData.realRowIndex;
 				}
@@ -674,16 +674,16 @@
 				resortCells();
 			}
 
-			var cell = rowspanCells.shift();
-			var cellData = $.data( cell, 'tablesorter' );
-			var rowSpan = cell.rowSpan;
+			const cell = rowspanCells.shift();
+			const cellData = $.data( cell, 'tablesorter' );
+			const rowSpan = cell.rowSpan;
 			colSpan = cell.colSpan;
 			spanningRealCellIndex = cellData.realCellIndex;
 			cell.rowSpan = 1;
-			var $nextRows = $( cell ).parent().nextAll();
+			const $nextRows = $( cell ).parent().nextAll();
 
-			for ( var i = 0; i < rowSpan - 1; i++ ) {
-				var row = $nextRows[ i ];
+			for ( let i = 0; i < rowSpan - 1; i++ ) {
+				const row = $nextRows[ i ];
 				if ( !row ) {
 					// Badly formatted HTML for table.
 					// Ignore this row, but leave a warning for someone to be able to find this.
@@ -692,8 +692,8 @@
 					mw.log.warn( mw.message( 'sort-rowspan-error' ).plain() );
 					break;
 				}
-				var $tds = $( row.cells ).filter( filterfunc );
-				var $clone = $( cell ).clone();
+				const $tds = $( row.cells ).filter( filterfunc );
+				const $clone = $( cell ).clone();
 				$clone.data( 'tablesorter', {
 					realCellIndex: spanningRealCellIndex,
 					realRowIndex: cellData.realRowIndex + i,
@@ -718,15 +718,15 @@
 	 * @param {jQuery} $table object for a <table>
 	 */
 	function manageColspans( $table ) {
-		var $rows = $table.find( '> tbody > tr' ),
+		let $rows = $table.find( '> tbody > tr' ),
 			totalRows = $rows.length || 0,
 			config = $table.data( 'tablesorter' ).config,
 			columns = config.columns,
 			columnToCell, cellsInRow, index;
 
-		for ( var i = 0; i < totalRows; i++ ) {
+		for ( let i = 0; i < totalRows; i++ ) {
 
-			var $row = $rows.eq( i );
+			const $row = $rows.eq( i );
 			// if this is a child row, continue to the next row (as buildCache())
 			// eslint-disable-next-line no-jquery/no-class-state
 			if ( $row.hasClass( config.cssChildRow ) ) {
@@ -737,13 +737,13 @@
 			columnToCell = [];
 			cellsInRow = ( $row[ 0 ].cells.length ) || 0; // all cells in this row
 			index = 0; // real cell index in this row
-			for ( var j = 0; j < columns; index++ ) {
+			for ( let j = 0; j < columns; index++ ) {
 				if ( index === cellsInRow ) {
 					// Row with cells less than columns: add empty cell
 					$row.append( '<td>' );
 					cellsInRow++;
 				}
-				for ( var k = 0; k < $row[ 0 ].cells[ index ].colSpan; k++ ) {
+				for ( let k = 0; k < $row[ 0 ].cells[ index ].colSpan; k++ ) {
 					columnToCell[ j++ ] = index;
 				}
 			}
@@ -753,12 +753,12 @@
 	}
 
 	function buildCollation() {
-		var keys = [];
+		const keys = [];
 		ts.collationTable = mw.config.get( 'tableSorterCollation' );
 		ts.collationRegex = null;
 		if ( ts.collationTable ) {
 			// Build array of key names
-			for ( var key in ts.collationTable ) {
+			for ( const key in ts.collationTable ) {
 				keys.push( mw.util.escapeRegExp( key ) );
 			}
 			if ( keys.length ) {
@@ -805,11 +805,11 @@
 	 * @return {Array} List of internal sort definitions.
 	 */
 	function convertSortList( sortObjects ) {
-		var sortList = [];
+		const sortList = [];
 		sortObjects.forEach( ( sortObject ) => {
 			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( sortObject, ( columnIndex, order ) => {
-				var orderIndex = ( order === 'desc' ) ? 1 : 0;
+				const orderIndex = ( order === 'desc' ) ? 1 : 0;
 				sortList.push( [ parseInt( columnIndex, 10 ), orderIndex ] );
 			} );
 		} );
@@ -847,7 +847,7 @@
 		construct: function ( $tables, settings ) {
 			return $tables.each( ( i, table ) => {
 				// Declare and cache.
-				var cache,
+				let cache,
 					$table = $( table ),
 					firstTime = true;
 
@@ -876,19 +876,19 @@
 				$table.addClass( 'jquery-tablesorter sortable' );
 
 				// Merge and extend
-				var config = Object.assign( {}, $.tablesorter.defaultOptions, settings );
+				const config = Object.assign( {}, $.tablesorter.defaultOptions, settings );
 
 				// Save the settings where they read
 				$.data( table, 'tablesorter', { config: config } );
 
 				// Get the CSS class names, could be done elsewhere
-				var sortCSS = [ config.cssAsc, config.cssDesc, config.cssInitial ];
+				const sortCSS = [ config.cssAsc, config.cssDesc, config.cssInitial ];
 				// Messages tell the user what the *next* state will be
 				// so are shifted by one relative to the CSS classes.
-				var sortMsg = [ mw.msg( 'sort-descending' ), mw.msg( 'sort-initial' ), mw.msg( 'sort-ascending' ) ];
+				const sortMsg = [ mw.msg( 'sort-descending' ), mw.msg( 'sort-initial' ), mw.msg( 'sort-ascending' ) ];
 
 				// Build headers
-				var $headers = buildHeaders( table, sortMsg );
+				const $headers = buildHeaders( table, sortMsg );
 
 				// Grab and process locale settings.
 				buildTransformTable();
@@ -899,7 +899,7 @@
 				cacheRegexs();
 
 				function setupForFirstSort() {
-					var $tfoot, $sortbottoms, $sorttops;
+					let $tfoot, $sortbottoms, $sorttops;
 
 					firstTime = false;
 
@@ -960,11 +960,11 @@
 					// cells get event .change() and bubbles up to the <table> here
 					cache = buildCache( table );
 
-					var totalRows = ( $table[ 0 ].tBodies[ 0 ] && $table[ 0 ].tBodies[ 0 ].rows.length ) || 0;
+					const totalRows = ( $table[ 0 ].tBodies[ 0 ] && $table[ 0 ].tBodies[ 0 ].rows.length ) || 0;
 					if ( totalRows > 0 ) {
-						var cell = this;
-						var $cell = $( cell );
-						var numSortOrders = 3;
+						const cell = this;
+						const $cell = $( cell );
+						const numSortOrders = 3;
 
 						// Get current column sort order
 						$cell.data( {
@@ -973,10 +973,10 @@
 						} );
 
 						// Get current column index
-						var columns = config.headerToColumns[ $cell.data( 'headerIndex' ) ];
-						var newSortList = columns.map( ( c ) => [ c, $cell.data( 'order' ) ] );
+						const columns = config.headerToColumns[ $cell.data( 'headerIndex' ) ];
+						const newSortList = columns.map( ( c ) => [ c, $cell.data( 'order' ) ] );
 						// Index of first column belonging to this header
-						var col = columns[ 0 ];
+						const col = columns[ 0 ];
 
 						if ( !e[ config.sortMultiSortKey ] ) {
 							// User only wants to sort on one column set
@@ -989,9 +989,9 @@
 							if ( isValueInArray( col, config.sortList ) ) {
 								// The user has clicked on an already sorted column.
 								// Reverse the sorting direction for all tables.
-								for ( var j = 0; j < config.sortList.length; j++ ) {
-									var s = config.sortList[ j ];
-									var o = config.headerList[ config.columnToHeader[ s[ 0 ] ] ];
+								for ( let j = 0; j < config.sortList.length; j++ ) {
+									const s = config.sortList[ j ];
+									const o = config.headerList[ config.columnToHeader[ s[ 0 ] ] ];
 									if ( isValueInArray( s[ 0 ], newSortList ) ) {
 										$( o ).data( 'count', s[ 1 ] + 1 );
 										s[ 1 ] = $( o ).data( 'count' ) % numSortOrders;
@@ -1078,9 +1078,9 @@
 
 		formatDigit: function ( s ) {
 			if ( ts.transformTable !== false ) {
-				var out = '';
-				for ( var p = 0; p < s.length; p++ ) {
-					var c = s.charAt( p );
+				let out = '';
+				for ( let p = 0; p < s.length; p++ ) {
+					const c = s.charAt( p );
 					if ( c in ts.transformTable ) {
 						out += ts.transformTable[ c ];
 					} else {
@@ -1089,17 +1089,17 @@
 				}
 				s = out;
 			}
-			var i = parseFloat( s.replace( /[, ]/g, '' ).replace( '\u2212', '-' ) );
+			const i = parseFloat( s.replace( /[, ]/g, '' ).replace( '\u2212', '-' ) );
 			return isNaN( i ) ? -Infinity : i;
 		},
 
 		formatFloat: function ( s ) {
-			var i = parseFloat( s );
+			const i = parseFloat( s );
 			return isNaN( i ) ? -Infinity : i;
 		},
 
 		formatInt: function ( s ) {
-			var i = parseInt( s, 10 );
+			const i = parseInt( s, 10 );
 			return isNaN( i ) ? -Infinity : i;
 		},
 
@@ -1155,11 +1155,11 @@
 		},
 		format: function ( s ) {
 			if ( ts.collationRegex ) {
-				var tsc = ts.collationTable;
+				const tsc = ts.collationTable;
 				s = s.replace( ts.collationRegex, ( match ) => {
-					var upper = match.toUpperCase(),
+					const upper = match.toUpperCase(),
 						lower = match.toLowerCase();
-					var r;
+					let r;
 					if ( upper === match && !lower === match ) {
 						r = tsc[ lower ] ? tsc[ lower ] : tsc[ upper ];
 						r = r.toUpperCase();
@@ -1180,10 +1180,10 @@
 			return ts.rgx.IPAddress[ 0 ].test( s );
 		},
 		format: function ( s ) {
-			var a = s.split( '.' ),
+			let a = s.split( '.' ),
 				r = '';
-			for ( var i = 0; i < a.length; i++ ) {
-				var item = a[ i ];
+			for ( let i = 0; i < a.length; i++ ) {
+				const item = a[ i ];
 				if ( item.length === 1 ) {
 					r += '00' + item;
 				} else if ( item.length === 2 ) {
@@ -1227,7 +1227,7 @@
 		format: function ( s ) {
 			s = s.toLowerCase();
 
-			var match;
+			let match;
 			if ( ( match = s.match( ts.dateRegex[ 0 ] ) ) !== null ) {
 				if ( mw.config.get( 'wgDefaultDateFormat' ) === 'mdy' || mw.config.get( 'wgPageContentLanguage' ) === 'en' ) {
 					s = [ match[ 3 ], match[ 1 ], match[ 2 ] ];
@@ -1255,7 +1255,7 @@
 				s[ 2 ] = '0' + s[ 2 ];
 			}
 
-			var y;
+			let y;
 			if ( ( y = parseInt( s[ 0 ], 10 ) ) < 100 ) {
 				// Guestimate years without centuries
 				if ( y < 30 ) {

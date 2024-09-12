@@ -23,7 +23,7 @@
  *  added and considered in the view.
  * @param {string} [config.defaultHighlightColor=null] If set, highlight this filter by default with this color
  */
-var ItemModel = function MwRcfiltersDmItemModel( param, config ) {
+const ItemModel = function MwRcfiltersDmItemModel( param, config ) {
 	config = config || {};
 
 	// Mixin constructor

@@ -1,4 +1,4 @@
-var HighlightColors = require( '../HighlightColors.js' );
+const HighlightColors = require( '../HighlightColors.js' );
 
 /**
  * A button to configure highlight for a filter item.
@@ -12,7 +12,7 @@ var HighlightColors = require( '../HighlightColors.js' );
  * @param {mw.rcfilters.ui.HighlightPopupWidget} highlightPopup Shared highlight color picker
  * @param {Object} [config] Configuration object
  */
-var FilterItemHighlightButton = function MwRcfiltersUiFilterItemHighlightButton( controller, model, highlightPopup, config ) {
+const FilterItemHighlightButton = function MwRcfiltersUiFilterItemHighlightButton( controller, model, highlightPopup, config ) {
 	config = config || {};
 
 	// Parent
@@ -65,7 +65,7 @@ FilterItemHighlightButton.prototype.onAction = function () {
  * Respond to item model update event
  */
 FilterItemHighlightButton.prototype.updateUiBasedOnModel = function () {
-	var currentColor = this.model.getHighlightColor(),
+	const currentColor = this.model.getHighlightColor(),
 		widget = this;
 
 	this.$icon.toggleClass(

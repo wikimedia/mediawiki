@@ -51,7 +51,7 @@ const rcfilters = {
  * @return {Array} Filtered array of namespaces
  */
 function getNamespaces( unusedNamespaces ) {
-	var i, length, name, id,
+	let i, length, name, id,
 		namespaceIds = mw.config.get( 'wgNamespaceIds' ),
 		namespaces = mw.config.get( 'wgFormattedNamespaces' );
 
@@ -68,7 +68,7 @@ function getNamespaces( unusedNamespaces ) {
  * @private
  */
 function init() {
-	var $topSection,
+	let $topSection,
 		mainWrapperWidget,
 		conditionalViews = {},
 		$initialFieldset = $( 'fieldset.cloptions' ),

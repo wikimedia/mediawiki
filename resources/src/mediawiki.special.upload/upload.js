@@ -7,13 +7,13 @@
  */
 
 ( function () {
-	var uploadWarning, uploadTemplatePreview, $warningBox,
+	let uploadWarning, uploadTemplatePreview, $warningBox,
 		NS_FILE = mw.config.get( 'wgNamespaceIds' ).file;
 
 	window.wgUploadWarningObj = uploadWarning = {
 
 		checkNow: function ( nameToCheck ) {
-			var $spinnerDestCheck, title, requestTitle;
+			let $spinnerDestCheck, title, requestTitle;
 			if ( nameToCheck.trim() === '' ) {
 				return;
 			}
@@ -36,7 +36,7 @@
 				errorformat: 'html',
 				errorlang: mw.config.get( 'wgUserLanguage' )
 			} ).then( ( result ) => {
-				var
+				let
 					resultOut = '',
 					page = result.query.pages[ 0 ];
 				if ( page.imageinfo ) {
@@ -77,7 +77,7 @@
 		 * @param {jQuery} $previewContainer The container to display the preview in
 		 */
 		getPreview: function ( $element, $previewContainer ) {
-			var template = $element.val(),
+			let template = $element.val(),
 				$spinner;
 
 			if ( Object.prototype.hasOwnProperty.call( this.responseCache, template ) ) {
@@ -125,7 +125,7 @@
 			$( '<tr>' ).append( $warningBox )
 		);
 
-		var $license = $( '#wpLicense' );
+		const $license = $( '#wpLicense' );
 		if ( mw.config.get( 'wgAjaxLicensePreview' ) && $license.length ) {
 			// License selector check
 			$license.on( 'change', () => {
@@ -147,7 +147,7 @@
 		// so fallback to empty array.
 		mw.config.get( 'wgUploadSourceIds', [] ).forEach( ( sourceId ) => {
 			$( '#' + sourceId ).on( 'change', function () {
-				var path, slash, backslash, fname, title;
+				let path, slash, backslash, fname, title;
 				if ( !mw.config.get( 'wgUploadAutoFill' ) ) {
 					return;
 				}
@@ -236,7 +236,7 @@
 		 * @return {boolean}
 		 */
 		function fileIsPreviewable( file ) {
-			var known = [ 'image/png', 'image/gif', 'image/jpeg', 'image/svg+xml', 'image/webp' ],
+			const known = [ 'image/png', 'image/gif', 'image/jpeg', 'image/svg+xml', 'image/webp' ],
 				tooHuge = 10 * 1024 * 1024;
 			return ( known.indexOf( file.type ) !== -1 ) && file.size > 0 && file.size < tooHuge;
 		}
@@ -250,7 +250,7 @@
 		 * @return {string}
 		 */
 		function prettySize( s ) {
-			var sizeMsgs = [ 'size-bytes', 'size-kilobytes', 'size-megabytes', 'size-gigabytes' ];
+			let sizeMsgs = [ 'size-bytes', 'size-kilobytes', 'size-megabytes', 'size-gigabytes' ];
 			while ( s >= 1024 && sizeMsgs.length > 1 ) {
 				s /= 1024;
 				sizeMsgs = sizeMsgs.slice( 1 );
@@ -274,7 +274,7 @@
 		 * @param {Function} callbackBinary
 		 */
 		function fetchPreview( file, callback, callbackBinary ) {
-			var reader = new FileReader();
+			const reader = new FileReader();
 			if ( callbackBinary && 'readAsBinaryString' in reader ) {
 				// To fetch JPEG metadata we need a binary string; start there.
 				// TODO
@@ -290,7 +290,7 @@
 				// However, our JPEG metadata library wants a string.
 				// So, this is going to be an ugly conversion.
 				reader.onload = function () {
-					var i,
+					let i,
 						buffer = new Uint8Array( reader.result ),
 						string = '';
 					for ( i = 0; i < buffer.byteLength; i++ ) {
@@ -344,7 +344,7 @@
 		 * @param {File} file
 		 */
 		function showPreview( file ) {
-			var $canvas,
+			let $canvas,
 				ctx,
 				meta,
 				previewSize = 180,
@@ -362,7 +362,7 @@
 			$( '#mw-htmlform-source' ).parent().prepend( thumb );
 
 			fetchPreview( file, ( dataURL ) => {
-				var img = new Image(),
+				let img = new Image(),
 					rotation = 0;
 
 				if ( meta && meta.tiff && meta.tiff.Orientation ) {
@@ -382,7 +382,7 @@
 				}
 
 				img.onload = function () {
-					var info, width, height, x, y, dx, dy, logicalWidth, logicalHeight;
+					let info, width, height, x, y, dx, dy, logicalWidth, logicalHeight;
 
 					// Fit the image within the previewSizexpreviewSize box
 					if ( img.width > img.height ) {
@@ -443,7 +443,7 @@
 				};
 				img.src = dataURL;
 			}, mw.config.get( 'wgFileCanRotate' ) && !CSS.supports( 'image-orientation', 'from-image' ) ? ( data ) => {
-				var jpegmeta = require( 'mediawiki.libs.jpegmeta' );
+				const jpegmeta = require( 'mediawiki.libs.jpegmeta' );
 				try {
 					meta = jpegmeta( data, file.fileName );
 					// eslint-disable-next-line no-underscore-dangle, camelcase
@@ -461,10 +461,10 @@
 		 * @return {boolean}
 		 */
 		function checkMaxUploadSize( file ) {
-			var maxSize, $error;
+			let maxSize, $error;
 
 			function getMaxUploadSize( type ) {
-				var sizes = mw.config.get( 'wgMaxUploadSize' );
+				const sizes = mw.config.get( 'wgMaxUploadSize' );
 
 				if ( sizes[ type ] !== undefined ) {
 					return sizes[ type ];
@@ -493,7 +493,7 @@
 		if ( hasFileAPI() ) {
 			// Update thumbnail when the file selection control is updated.
 			$( '#wpUploadFile' ).on( 'change', function () {
-				var file;
+				let file;
 				clearPreview();
 				if ( this.files && this.files.length ) {
 					// Note: would need to be updated to handle multiple files.
@@ -513,10 +513,10 @@
 
 	// Disable all upload source fields except the selected one
 	$( () => {
-		var $rows = $( '.mw-htmlform-field-UploadSourceField' );
+		const $rows = $( '.mw-htmlform-field-UploadSourceField' );
 
 		$rows.on( 'change', 'input[type="radio"]', function ( e ) {
-			var currentRow = e.delegateTarget;
+			const currentRow = e.delegateTarget;
 
 			if ( !this.checked ) {
 				return;
@@ -543,7 +543,7 @@
 
 	$( () => {
 		// Prevent losing work
-		var allowCloseWindow,
+		let allowCloseWindow,
 			$uploadForm = $( '#mw-upload-form' );
 
 		if ( !mw.user.options.get( 'useeditwarning' ) ) {
@@ -555,7 +555,7 @@
 
 		allowCloseWindow = mw.confirmCloseWindow( {
 			test: function () {
-				var $wpUploadFile = $( '#wpUploadFile' );
+				const $wpUploadFile = $( '#wpUploadFile' );
 				// check for existence of #wpUploadFile in case a gadget removed it (T262844)
 				return (
 					$wpUploadFile.length && $wpUploadFile.get( 0 ).files.length !== 0
