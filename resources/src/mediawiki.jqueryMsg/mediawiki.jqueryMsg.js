@@ -948,16 +948,17 @@ function HtmlEmitter( language, magic ) {
 				return node;
 
 			// typeof returns object for arrays
-			case 'object':
+			case 'object': {
 				// node is an array of nodes
 				// eslint-disable-next-line no-jquery/no-map-util
-				var subnodes = $.map( node.slice( 1 ), ( n ) => jmsg.emit( n, replacements ) );
-				var operation = node[ 0 ].toLowerCase();
+				const subnodes = $.map( node.slice( 1 ), ( n ) => jmsg.emit( n, replacements ) );
+				const operation = node[ 0 ].toLowerCase();
 				if ( typeof jmsg[ operation ] === 'function' ) {
 					return jmsg[ operation ]( subnodes, replacements );
 				} else {
 					throw new Error( 'Unknown operation "' + operation + '"' );
 				}
+			}
 
 			case 'undefined':
 				// Parsing the empty string (as an entire expression, or as a paramExpression in a template) results in undefined

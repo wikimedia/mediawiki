@@ -548,7 +548,7 @@ mw.hook = function ( name ) {
 			 */
 			remove: function () {
 				for ( let i = 0; i < arguments.length; i++ ) {
-					var j;
+					let j;
 					while ( ( j = fns.indexOf( arguments[ i ] ) ) !== -1 ) {
 						fns.splice( j, 1 );
 					}

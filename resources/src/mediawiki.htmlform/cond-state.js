@@ -66,8 +66,8 @@ function conditionParse( $root, spec ) {
 		case 'AND':
 		case 'OR':
 		case 'NAND':
-		case 'NOR':
-			var funcs = [];
+		case 'NOR': {
+			const funcs = [];
 			fields = [];
 			for ( let i = 1; i < l; i++ ) {
 				if ( !Array.isArray( spec[ i ] ) ) {
@@ -79,8 +79,8 @@ function conditionParse( $root, spec ) {
 			}
 
 			l = funcs.length;
-			var valueChk = { AND: false, OR: true, NAND: false, NOR: true };
-			var valueRet = { AND: true, OR: false, NAND: false, NOR: true };
+			const valueChk = { AND: false, OR: true, NAND: false, NOR: true };
+			const valueRet = { AND: true, OR: false, NAND: false, NOR: true };
 			func = function () {
 				for ( let j = 0; j < l; j++ ) {
 					if ( valueChk[ op ] === funcs[ j ]() ) {
@@ -91,6 +91,7 @@ function conditionParse( $root, spec ) {
 			};
 
 			return [ fields, func ];
+		}
 
 		case 'NOT':
 			if ( l !== 2 ) {
@@ -107,11 +108,11 @@ function conditionParse( $root, spec ) {
 			} ];
 
 		case '===':
-		case '!==':
+		case '!==': {
 			if ( l !== 3 ) {
 				throw new Error( op + ' takes exactly two parameters' );
 			}
-			var $field = conditionGetField( $root, spec[ 1 ] );
+			const $field = conditionGetField( $root, spec[ 1 ] );
 			if ( !$field ) {
 				return [ [], function () {
 					return false;
@@ -119,8 +120,8 @@ function conditionParse( $root, spec ) {
 			}
 			v = spec[ 2 ];
 
-			var widget;
-			var getVal = function () {
+			let widget;
+			const getVal = function () {
 				// When the value is requested for the first time,
 				// determine if we need to treat this field as a OOUI widget.
 				if ( widget === undefined ) {
@@ -158,6 +159,7 @@ function conditionParse( $root, spec ) {
 			}
 
 			return [ [ $field ], func ];
+		}
 
 		default:
 			throw new Error( 'Unrecognized operation \'' + op + '\'' );
