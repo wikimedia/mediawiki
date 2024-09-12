@@ -36,7 +36,9 @@ class PPDStack_Hash {
 	 * @var PPDStackElement_Hash|false
 	 */
 	public $top;
+	/** @var string|null */
 	public $out;
+	/** @var string */
 	public $elementClass = PPDStackElement_Hash::class;
 
 	public function __construct() {

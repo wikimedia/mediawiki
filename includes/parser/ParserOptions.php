@@ -145,6 +145,7 @@ class ParserOptions {
 
 	/**
 	 * Appended to the options hash
+	 * @var string
 	 */
 	private $mExtraKey = '';
 

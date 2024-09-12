@@ -29,17 +29,25 @@ use MediaWiki\Parser\Parser;
  * @ingroup Parser
  */
 class StripState {
+	/** @var array[] */
 	protected $data;
+	/** @var string */
 	protected $regex;
 
 	protected ?Parser $parser;
 
+	/** @var array */
 	protected $circularRefGuard;
+	/** @var int */
 	protected $depth = 0;
+	/** @var int */
 	protected $highestDepth = 0;
+	/** @var int */
 	protected $expandSize = 0;
 
+	/** @var int */
 	protected $depthLimit = 20;
+	/** @var int */
 	protected $sizeLimit = 5_000_000;
 
 	/**
