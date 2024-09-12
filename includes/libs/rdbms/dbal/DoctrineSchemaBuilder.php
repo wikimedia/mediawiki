@@ -12,8 +12,8 @@ use Doctrine\DBAL\Schema\Schema;
 class DoctrineSchemaBuilder implements SchemaBuilder {
 	use DoctrineAbstractSchemaTrait;
 
-	private $schema;
-	private $platform;
+	private Schema $schema;
+	private AbstractPlatform $platform;
 
 	/**
 	 * A builder object that take abstract schema definition and produces sql to create the tables.

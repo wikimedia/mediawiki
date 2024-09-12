@@ -32,7 +32,7 @@ class StripState {
 	protected $data;
 	protected $regex;
 
-	protected $parser;
+	protected ?Parser $parser;
 
 	protected $circularRefGuard;
 	protected $depth = 0;

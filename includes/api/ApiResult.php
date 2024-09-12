@@ -147,7 +147,7 @@ class ApiResult implements ApiSerializable {
 	private int $size;
 	/** @var int|false */
 	private $maxSize;
-	private $errorFormatter;
+	private ApiErrorFormatter $errorFormatter;
 
 	/**
 	 * @param int|false $maxSize Maximum result "size", or false for no limit

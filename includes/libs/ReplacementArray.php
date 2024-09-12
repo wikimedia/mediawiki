@@ -24,7 +24,7 @@ namespace MediaWiki\Language;
  * Wrapper around strtr() that holds replacements
  */
 class ReplacementArray {
-	private $data;
+	private array $data;
 
 	/**
 	 * Create an object with the specified replacement array

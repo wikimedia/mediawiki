@@ -33,7 +33,7 @@ use RecentChange;
  * @ingroup RecentChanges
  */
 abstract class FormattedRCFeed extends RCFeed {
-	private $params;
+	private array $params;
 
 	/**
 	 * @param array $params

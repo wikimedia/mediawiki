@@ -13,8 +13,8 @@ use MediaWiki\Rest\RequestInterface;
  * @internal
  */
 abstract class BasicRequestAuthorizer {
-	protected $request;
-	protected $handler;
+	protected RequestInterface $request;
+	protected Handler $handler;
 
 	/**
 	 * @param RequestInterface $request
