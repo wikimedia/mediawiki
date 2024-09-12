@@ -75,11 +75,14 @@ class SpecialSpecialPages extends UnlistedSpecialPage {
 				wfDeprecated( "string return from {$page->getName()}::getDescription()", '1.41' );
 				$desc = ( new RawMessage( '$1' ) )->rawParams( $desc );
 			}
-			$groups[$group][$desc->text()] = [
-				$page->getPageTitle(),
-				$page->isRestricted(),
-				$page->isCached()
-			];
+			// (T360723) Only show an entry if the message isn't blanked, to allow on-wiki unlisting
+			if ( !$desc->isDisabled() ) {
+				$groups[$group][$desc->text()] = [
+					$page->getPageTitle(),
+					$page->isRestricted(),
+					$page->isCached()
+				];
+			}
 		}
 
 		// Sort
