@@ -459,6 +459,9 @@ class SpecialPageFactory {
 		],
 		'Userlogout' => [
 			'class' => SpecialUserLogout::class,
+			'services' => [
+				'TempUserConfig',
+			],
 		],
 		'CreateAccount' => [
 			'class' => SpecialCreateAccount::class,

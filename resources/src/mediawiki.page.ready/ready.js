@@ -192,6 +192,13 @@ $( () => {
 			{ tag: 'logout', autoHide: false }
 		);
 		var api = new mw.Api();
+		if ( mw.user.isTemp() ) {
+			// Indicate to the success page that the user was previously a temporary account, so that the success
+			// message can be customised appropriately.
+			const url = new URL( href );
+			url.searchParams.append( 'wasTempUser', 1 );
+			href = url;
+		}
 		api.postWithToken( 'csrf', {
 			action: 'logout'
 		} ).then(

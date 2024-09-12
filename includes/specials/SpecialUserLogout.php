@@ -26,6 +26,7 @@ use MediaWiki\Session\SessionManager;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
+use MediaWiki\User\TempUser\TempUserConfig;
 
 /**
  * Implements Special:Userlogout
@@ -39,8 +40,11 @@ class SpecialUserLogout extends FormSpecialPage {
 	 */
 	private $oldUserName;
 
-	public function __construct() {
+	private TempUserConfig $tempUserConfig;
+
+	public function __construct( TempUserConfig $tempUserConfig ) {
 		parent::__construct( 'Userlogout' );
+		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	public function doesWrites() {
@@ -125,7 +129,17 @@ class SpecialUserLogout extends FormSpecialPage {
 			$this->getRequest()->getValues( 'returnto', 'returntoquery' ) );
 
 		$out = $this->getOutput();
-		$out->addWikiMsg( 'logouttext', $loginURL );
+
+		$messageKey = 'logouttext';
+		if (
+			( isset( $this->oldUserName ) && $this->tempUserConfig->isTempName( $this->oldUserName ) ) ||
+			$this->getRequest()->getCheck( 'wasTempUser' )
+		) {
+			// Generates the message key logouttext-for-temporary-account which is used to customise the success
+			// message for a temporary account.
+			$messageKey .= '-for-temporary-account';
+		}
+		$out->addWikiMsg( $messageKey, $loginURL );
 
 		$out->returnToMain();
 	}
@@ -136,6 +150,18 @@ class SpecialUserLogout extends FormSpecialPage {
 	 */
 	public function requiresUnblock() {
 		return false;
+	}
+
+	public function getDescription() {
+		// Set the page title as "templogout" if the user is (or just was) logged in to a temporary account
+		if (
+			$this->getUser()->isTemp() ||
+			( isset( $this->oldUserName ) && $this->tempUserConfig->isTempName( $this->oldUserName ) ) ||
+			$this->getRequest()->getCheck( 'wasTempUser' )
+		) {
+			return $this->msg( 'templogout' );
+		}
+		return parent::getDescription();
 	}
 }
 
