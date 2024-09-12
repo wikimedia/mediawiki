@@ -5,6 +5,7 @@ namespace MediaWiki\Rest;
 use GuzzleHttp\Psr7;
 
 class Stream extends Psr7\Stream implements CopyableStreamInterface {
+	/** @var resource */
 	private $stream;
 
 	public function __construct( $stream, $options = [] ) {

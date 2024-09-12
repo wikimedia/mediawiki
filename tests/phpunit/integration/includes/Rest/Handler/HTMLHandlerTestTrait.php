@@ -22,6 +22,7 @@ use WikiPage;
  */
 trait HTMLHandlerTestTrait {
 
+	/** @var ParsoidOutputStash|null */
 	private $parsoidOutputStash = null;
 
 	private function getParsoidOutputStash(): ParsoidOutputStash {

@@ -11,6 +11,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  * Test mock for asserting parameter processing and validation in Handler and Router.
  */
 class EchoHandler extends Handler {
+	/** @var bool */
 	private $postValidationSetupCalled = false;
 
 	public function execute() {

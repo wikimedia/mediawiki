@@ -47,6 +47,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 	/** @var Throwable[] */
 	private $reportedErrors = [];
 
+	/** @var HashBagOStuff */
 	private $cacheBag;
 
 	protected function setUp(): void {

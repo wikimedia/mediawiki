@@ -8,9 +8,13 @@ use Exception;
  * @newable
  */
 class PathConflict extends Exception {
+	/** @var string */
 	public $newTemplate;
+	/** @var mixed */
 	public $newUserData;
+	/** @var string */
 	public $existingTemplate;
+	/** @var mixed */
 	public $existingUserData;
 
 	/**

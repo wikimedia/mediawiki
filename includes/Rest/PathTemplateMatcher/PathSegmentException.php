@@ -8,7 +8,9 @@ use Exception;
  * @newable
  */
 class PathSegmentException extends Exception {
+	/** @var string */
 	public $template;
+	/** @var mixed */
 	public $userData;
 
 	/**
