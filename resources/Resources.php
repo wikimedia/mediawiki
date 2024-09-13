@@ -821,7 +821,7 @@ return [
 		'dependencies' => [
 			'mediawiki.api',
 			'oojs',
-			'mediawiki.Uri',
+			'web2017-polyfills',
 		],
 	],
 	'mediawiki.helplink' => [
