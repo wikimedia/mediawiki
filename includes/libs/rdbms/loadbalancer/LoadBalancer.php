@@ -801,7 +801,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			$this->trxProfiler->recordConnection(
 				$conn->getServerName(),
 				$conn->getDBname(),
-				( $i === ServerInfo::WRITER_INDEX && $this->hasReplicaServers() )
+				( $i === ServerInfo::WRITER_INDEX && $this->hasStreamingReplicaServers() )
 			);
 		}
 
