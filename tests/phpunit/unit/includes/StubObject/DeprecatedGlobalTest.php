@@ -25,6 +25,7 @@ use Wikimedia\ObjectCache\HashBagOStuff;
  * @covers \MediaWiki\StubObject\DeprecatedGlobal
  */
 class DeprecatedGlobalTest extends MediaWikiUnitTestCase {
+	/** @var int */
 	private $oldErrorLevel;
 
 	protected function setUp(): void {

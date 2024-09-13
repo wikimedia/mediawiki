@@ -24,6 +24,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 		'ConfiguredReadOnlyMode',
 	];
 
+	/** @var array */
 	public static $mockServiceWiring = [];
 
 	/**

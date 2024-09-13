@@ -17,6 +17,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 
+	/** @var array */
 	private $autoloaderState;
 
 	/** @var ?ExtensionRegistry */

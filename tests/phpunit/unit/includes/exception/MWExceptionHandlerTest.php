@@ -9,6 +9,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class MWExceptionHandlerTest extends \MediaWikiUnitTestCase {
 
+	/** @var int */
 	private $oldSettingValue;
 
 	protected function setUp(): void {

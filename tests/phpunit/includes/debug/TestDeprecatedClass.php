@@ -7,12 +7,18 @@ class TestDeprecatedClass {
 
 	use DeprecationHelper;
 
+	/** @var int */
 	protected $protectedDeprecated = 1;
+	/** @var int */
 	protected $protectedNonDeprecated = 1;
+	/** @var int */
 	private $privateDeprecated = 1;
+	/** @var int */
 	private $privateNonDeprecated = 1;
+	/** @var int */
 	private $fallbackDeprecated = 1;
 
+	/** @var string */
 	private $foo = 'FOO';
 
 	public function __construct() {

@@ -17,8 +17,10 @@ use Wikimedia\TestingAccessWrapper;
 class ExtensionRegistryTest extends MediaWikiUnitTestCase {
 	private const DATA_DIR = __DIR__ . '/../../../data/registration';
 
+	/** @var array */
 	private $restoreGlobals = [];
 
+	/** @var array */
 	private $unsetGlobals = [];
 
 	protected function tearDown(): void {

@@ -30,6 +30,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class SignatureValidatorTest extends MediaWikiIntegrationTestCase {
 
+	/** @var SignatureValidator */
 	private $validator;
 
 	protected function setUp(): void {

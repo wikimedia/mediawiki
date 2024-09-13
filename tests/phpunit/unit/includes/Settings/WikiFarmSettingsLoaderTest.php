@@ -17,6 +17,7 @@ use PHPUnit\Framework\MockObject\MockObject;
  */
 class WikiFarmSettingsLoaderTest extends MediaWikiUnitTestCase {
 
+	/** @var array|null */
 	private $originalServerVars = null;
 
 	/**

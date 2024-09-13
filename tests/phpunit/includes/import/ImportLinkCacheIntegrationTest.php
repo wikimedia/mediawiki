@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 
 /**
@@ -16,6 +17,7 @@ use MediaWiki\Title\Title;
  */
 class ImportLinkCacheIntegrationTest extends MediaWikiIntegrationTestCase {
 
+	/** @var Status */
 	private $importStreamSource;
 
 	protected function setUp(): void {

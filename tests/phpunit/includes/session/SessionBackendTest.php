@@ -48,6 +48,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 	/** @var TestBagOStuff */
 	protected $store;
 
+	/** @var bool */
 	protected $onSessionMetadataCalled = false;
 
 	/**

@@ -34,6 +34,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  */
 class LinksUpdateTest extends MediaWikiLangTestCase {
+	/** @var int */
 	protected static $testingPageId;
 
 	protected function setUp(): void {

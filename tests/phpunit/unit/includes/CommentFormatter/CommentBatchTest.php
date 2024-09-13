@@ -16,6 +16,7 @@ use MediaWikiUnitTestCase;
  * @covers \MediaWiki\CommentFormatter\StringCommentIterator
  */
 class CommentBatchTest extends MediaWikiUnitTestCase {
+	/** @var array */
 	private $calls;
 
 	private function getFormatter() {

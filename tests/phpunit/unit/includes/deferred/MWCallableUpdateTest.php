@@ -6,6 +6,7 @@ use MediaWiki\Deferred\MWCallableUpdate;
  * @covers \MediaWiki\Deferred\MWCallableUpdate
  */
 class MWCallableUpdateTest extends MediaWikiUnitTestCase {
+	/** @var int */
 	private $callbackMethodRan = 0;
 
 	public function testDoUpdate() {

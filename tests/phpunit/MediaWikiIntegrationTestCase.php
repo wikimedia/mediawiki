@@ -111,8 +111,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	protected $tablesUsed = []; // tables with data
 
+	/** @var bool */
 	private static $useTemporaryTables = true;
+	/** @var bool */
 	private static $dbSetup = false;
+	/** @var string */
 	private static $oldTablePrefix = '';
 
 	/**

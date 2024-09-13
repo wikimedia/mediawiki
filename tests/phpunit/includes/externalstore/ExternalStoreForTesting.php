@@ -2,6 +2,7 @@
 
 class ExternalStoreForTesting {
 
+	/** @var array */
 	protected $data = [
 		'cluster1' => [
 			'200' => 'Hello',

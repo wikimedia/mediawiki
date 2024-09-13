@@ -10,6 +10,7 @@ use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOutput;
@@ -37,6 +38,7 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
 class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
 
+	/** @var PageIdentity */
 	private $fakePage;
 
 	protected function setUp(): void {

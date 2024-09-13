@@ -17,6 +17,7 @@ use MediaWiki\User\User;
  * @covers \MediaWiki\Content\TextContentHandler
  */
 class TextContentTest extends MediaWikiLangTestCase {
+	/** @var RequestContext */
 	protected $context;
 
 	protected function setUp(): void {
