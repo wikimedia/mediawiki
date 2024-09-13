@@ -22,6 +22,8 @@ namespace MediaWiki\Page;
 use InvalidArgumentException;
 use MapCacheLRU;
 use MediaWiki\Logger\Spi as LoggerSpi;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
@@ -419,7 +421,14 @@ class ParserOutputAccess {
 
 		$useCache = $this->shouldUseCache( $page, $revision );
 
-		if ( $previousOutput === null && $parserOptions->getUseParsoid() ) {
+		// T371713: Temporary statistics collection code to determine
+		// feasibility of Parsoid selective update
+		$sampleRate = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::ParsoidSelectiveUpdateSampleRate
+		);
+		$doSample = ( $sampleRate && mt_rand( 1, $sampleRate ) === 1 );
+
+		if ( $previousOutput === null && ( $doSample || $parserOptions->getUseParsoid() ) ) {
 			// If $useCache === self::CACHE_SECONDARY we could potentially
 			// try to reuse the parse of $revision-1 from the secondary cache,
 			// but it is likely those template transclusions are out of date.
@@ -428,6 +437,17 @@ class ParserOutputAccess {
 			if ( !( $options & self::OPT_NO_CHECK_CACHE ) ) {
 				$previousOutput = $this->getPrimaryCache( $parserOptions )->getDirty( $page, $parserOptions ) ?: null;
 			}
+		}
+
+		if ( $doSample ) {
+			$this->statsFactory
+				->getCounter( 'parsercache_selective' )
+				->setLabel( 'source', 'ParserOutputAccess' )
+				->setLabel( 'type', $previousOutput === null ? 'full' : 'selective' )
+				->setLabel( 'reason', $parserOptions->getRenderReason() )
+				->setLabel( 'parser', $parserOptions->getUseParsoid() ? 'parsoid' : 'legacy' )
+				->setLabel( 'opportunistic', 'false' )
+				->increment();
 		}
 
 		$renderedRev = $this->revisionRenderer->getRenderedRevision(

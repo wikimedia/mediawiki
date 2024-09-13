@@ -501,6 +501,7 @@ return [
 				'StashDuration' => 86400,
 				'WarmParsoidParserCache' => false,
 			],
+			'ParsoidSelectiveUpdateSampleRate' => 0,
 			'ParserCacheFilterConfig' => [
 				'pcache' => [
 					'default' => [
@@ -2717,6 +2718,7 @@ return [
 				'integer',
 			],
 			'ParsoidCacheConfig' => 'object',
+			'ParsoidSelectiveUpdateSampleRate' => 'integer',
 			'ParserCacheFilterConfig' => 'object',
 			'ChronologyProtectorStash' => [
 				'string',

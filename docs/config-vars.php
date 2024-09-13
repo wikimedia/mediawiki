@@ -1503,6 +1503,12 @@ $wgMainStash = null;
 $wgParsoidCacheConfig = null;
 
 /**
+ * Config variable stub for the ParsoidSelectiveUpdateSampleRate setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ParsoidSelectiveUpdateSampleRate
+ */
+$wgParsoidSelectiveUpdateSampleRate = null;
+
+/**
  * Config variable stub for the ParserCacheFilterConfig setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ParserCacheFilterConfig
  */
