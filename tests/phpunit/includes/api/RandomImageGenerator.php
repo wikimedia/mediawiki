@@ -49,13 +49,13 @@ class RandomImageGenerator {
 	 * @param int $number Number of filenames to write
 	 * @param string $format Optional, must be understood by ImageMagick, such as 'jpg' or 'gif'
 	 * @param string|null $dir Directory, optional (will default to current working directory)
-	 * @return array Filenames we just wrote
+	 * @return string[] Filenames we just wrote
 	 */
-	public function writeImages( $number, $format = 'svg', $dir = null ) {
-		$filenames = $this->getRandomFilenames( $number, $format, $dir );
+	public function writeImages( int $number, string $format = 'svg', string $dir = null ): array {
+		$filenames = $this->getRandomFilenames( $number, $format, $dir ?? getcwd() );
 		$imageWriteMethod = $this->getImageWriteMethod( $format );
 		foreach ( $filenames as $filename ) {
-			$this->{$imageWriteMethod}( $this->getImageSpec(), $format, $filename );
+			$imageWriteMethod( $this->getImageSpec(), $format, $filename );
 		}
 
 		return $filenames;
@@ -67,22 +67,21 @@ class RandomImageGenerator {
 	 * @param string $format (a typical extension like 'svg', 'jpg', etc.)
 	 *
 	 * @throws Exception
-	 * @return string
 	 */
-	public function getImageWriteMethod( $format ) {
+	private function getImageWriteMethod( string $format ): callable {
 		global $wgUseImageMagick, $wgImageMagickConvertCommand;
 		if ( $format === 'svg' ) {
-			return 'writeSvg';
+			return [ $this, 'writeSvg' ];
 		} else {
 			// figure out how to write images
 			global $wgExiv2Command;
 			if ( class_exists( Imagick::class ) && $wgExiv2Command && is_executable( $wgExiv2Command ) ) {
-				return 'writeImageWithApi';
+				return [ $this, 'writeImageWithApi' ];
 			} elseif ( $wgUseImageMagick
 				&& $wgImageMagickConvertCommand
 				&& is_executable( $wgImageMagickConvertCommand )
 			) {
-				return 'writeImageWithCommandLine';
+				return [ $this, 'writeImageWithCommandLine' ];
 			}
 		}
 		throw new Exception( "RandomImageGenerator: could not find a suitable "
@@ -94,20 +93,13 @@ class RandomImageGenerator {
 	 *
 	 * Each filename uses follows the pattern "hex_timestamp_1.jpg".
 	 *
-	 * @param int $number Number of filenames to generate
-	 * @param string $extension
-	 * @param string|null $dir Optional, defaults to current working directory
 	 * @return string[]
 	 */
-	private function getRandomFilenames( $number, $extension = 'svg', $dir = null ) {
-		$dir ??= getcwd();
+	private function getRandomFilenames( int $number, string $extension, string $dir ): array {
 		$filenames = [];
 		$prefix = wfRandomString( 3 ) . '_' . gmdate( 'YmdHis' ) . '_';
 		foreach ( range( 1, $number ) as $offset ) {
-			$filename = $prefix . $offset;
-			if ( $extension !== null ) {
-				$filename .= '.' . $extension;
-			}
+			$filename = $prefix . $offset . '.' . $extension;
 			$filenames[] = "$dir/$filename";
 		}
 
@@ -119,10 +111,8 @@ class RandomImageGenerator {
 	 * consisting of randomly colored and sized upward pointing triangles
 	 * against a random background color. (This data is used in the
 	 * writeImage* methods).
-	 *
-	 * @return array
 	 */
-	public function getImageSpec() {
+	private function getImageSpec(): array {
 		return [
 			'width' => mt_rand( $this->minWidth, $this->maxWidth ),
 			'height' => mt_rand( $this->minHeight, $this->maxHeight ),
@@ -134,13 +124,9 @@ class RandomImageGenerator {
 	 * Based on image specification, write a very simple SVG file to disk.
 	 * Ignores the background spec because transparency is cool. :)
 	 *
-	 * @param array $spec Spec describing background and shapes to draw
-	 * @param string $format File format to write (which is obviously always svg here)
-	 * @param string $filename Filename to write to
-	 *
 	 * @throws Exception
 	 */
-	public function writeSvg( $spec, $format, $filename ) {
+	private function writeSvg( array $spec, string $format, string $filename ): void {
 		$svg = new SimpleXmlElement( '<svg/>' );
 		$svg->addAttribute( 'xmlns', 'http://www.w3.org/2000/svg' );
 		$svg->addAttribute( 'width', $spec['width'] );
@@ -158,11 +144,8 @@ class RandomImageGenerator {
 
 	/**
 	 * Based on an image specification, write such an image to disk, using Imagick PHP extension
-	 * @param array $spec Spec describing background and circles to draw
-	 * @param string $format File format to write
-	 * @param string $filename Filename to write to
 	 */
-	public function writeImageWithApi( $spec, $format, $filename ) {
+	private function writeImageWithApi( array $spec, string $format, string $filename ): void {
 		$image = new Imagick();
 		$image->newImage( $spec['width'], $spec['height'], new ImagickPixel( $spec['fill'] ) );
 		$image->setImageFormat( $format );
@@ -178,15 +161,8 @@ class RandomImageGenerator {
 	 *      -draw 'fill rgb(12,34,56)   polygon 41,39 44,57 50,57 41,39' \
 	 *   -draw 'fill rgb(99,123,231) circle 59,39 56,57' \
 	 *   -draw 'fill rgb(240,12,32)  circle 50,21 50,3'  filename.png
-	 *
-	 * @param array $spec Spec describing background and shapes to draw
-	 * @param string $format File format to write (unused by this method but
-	 *   kept so it has the same signature as writeImageWithApi).
-	 * @param string $filename Filename to write to
-	 *
-	 * @return bool
 	 */
-	public function writeImageWithCommandLine( $spec, $format, $filename ) {
+	private function writeImageWithCommandLine( array $spec, string $format, string $filename ): void {
 		global $wgImageMagickConvertCommand;
 
 		$args = [
