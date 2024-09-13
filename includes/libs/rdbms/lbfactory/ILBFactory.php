@@ -108,7 +108,7 @@ interface ILBFactory extends IConnectionProvider {
 	 * @return string Database domain ID; this specifies DB name, schema, and table prefix
 	 * @since 1.32
 	 */
-	public function getLocalDomainID();
+	public function getLocalDomainID(): string;
 
 	/**
 	 * Close all connections and redefine the local database domain
