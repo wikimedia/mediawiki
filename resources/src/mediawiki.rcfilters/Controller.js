@@ -66,7 +66,7 @@ Controller.prototype.initialize = function ( filterStructure, namespaceStructure
 		controller = this,
 		views = $.extend( true, {}, conditionalViews ),
 		items = [],
-		uri = new mw.Uri();
+		url = new URL( location.href );
 
 	// Prepare views
 	nsAllContents = {
@@ -251,9 +251,9 @@ Controller.prototype.initialize = function ( filterStructure, namespaceStructure
 		viewData.groups.forEach( ( groupData ) => {
 			const extraValues = [];
 			if ( groupData.allowArbitrary ) {
-				// If the value in the URI isn't in the group, add it
-				if ( uri.query[ groupData.name ] !== undefined ) {
-					extraValues.push( uri.query[ groupData.name ] );
+				// If the value in the URL isn't in the group, add it
+				if ( url.searchParams.get( groupData.name ) !== null ) {
+					extraValues.push( url.searchParams.get( groupData.name ) );
 				}
 				// If the default value isn't in the group, add it
 				if ( groupData.default !== undefined ) {

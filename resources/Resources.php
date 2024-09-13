@@ -1956,6 +1956,7 @@ return [
 			'quotation-marks',
 		],
 		'dependencies' => [
+			'web2017-polyfills',
 			'jquery.makeCollapsible',
 			'mediawiki.String',
 			'mediawiki.api',
