@@ -73,7 +73,7 @@ class RSSFeed extends ChannelFeed {
 		$templateParams = [
 			"title" => $item->getTitle(),
 			"url" => $this->xmlEncode(
-				$this->urlUtils->expand( $this->getUrlUnescaped(), PROTO_CURRENT ) ?? ''
+				$this->urlUtils->expand( $item->getUrlUnescaped(), PROTO_CURRENT ) ?? ''
 			),
 			"permalink" => $item->rssIsPermalink,
 			"uniqueID" => $item->getUniqueID(),
