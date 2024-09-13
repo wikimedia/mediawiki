@@ -21,7 +21,7 @@ const { remote } = require( 'webdriverio' );
 		}
 	} );
 
-	await browser.url( `${ baseUrl }/Main_Page` );
+	await browser.url( `${ baseUrl }Main_Page` );
 
 	const displayed = await browser.$( 'li#pt-login-2 a' ).isDisplayed();
 	if ( displayed === false ) {
