@@ -3,6 +3,7 @@
 namespace MediaWiki\Deferred\LinksUpdate;
 
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\ParserOutputLinkTypes;
 
 /**
  * langlinks
@@ -21,14 +22,18 @@ class LangLinksTable extends LinksTable {
 
 	public function setParserOutput( ParserOutput $parserOutput ) {
 		// Convert the format of the interlanguage links
-		// I didn't want to change it in the ParserOutput, because that array is passed all
-		// the way back to the skin, so either a skin API break would be required, or an
-		// inefficient back-conversion.
-		$ill = $parserOutput->getLanguageLinks();
 		$this->newLinks = [];
-		foreach ( $ill as $link ) {
-			[ $key, $title ] = explode( ':', $link, 2 );
-			// Ensure that the "first" link has precedence: T26502
+		foreach (
+			$parserOutput->getLinkList( ParserOutputLinkTypes::LANGUAGE )
+			as [ 'link' => $link ]
+		) {
+			$key = $link->getInterwiki();
+			$title = $link->getText();
+			if ( $link->hasFragment() ) {
+				$title .= '#' . $link->getFragment();
+			}
+			// Ensure that the "first" link has precedence (T26502) although
+			// ParserOutput::addLanguageLink() should ensure we don't see dups
 			$this->newLinks[$key] ??= $title;
 		}
 	}

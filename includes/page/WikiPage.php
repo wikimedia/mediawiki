@@ -932,11 +932,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 			// nasty special case to avoid re-parsing to detect links
 
 			if ( $editInfo ) {
-				// ParserOutput::getLinks() is a 2D array of page links, so
-				// to be really correct we would need to recurse in the array
-				// but the main array should only have items in it if there are
-				// links.
-				$hasLinks = (bool)count( $editInfo->output->getLinks() );
+				$hasLinks = $editInfo->output->hasLinks();
 			} else {
 				// NOTE: keep in sync with RevisionRenderer::getLinkCount
 				// NOTE: keep in sync with DerivedPageDataUpdater::isCountable

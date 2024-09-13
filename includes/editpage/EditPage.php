@@ -73,6 +73,7 @@ use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\ParserOutputLinkTypes;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
@@ -4229,10 +4230,11 @@ class EditPage implements IEditObject {
 			if ( !isset( $this->mParserOutput ) ) {
 				return $templates;
 			}
-			foreach ( $this->mParserOutput->getTemplates() as $ns => $template ) {
-				foreach ( $template as $dbk => $_ ) {
-					$templates[] = Title::makeTitle( $ns, $dbk );
-				}
+			foreach (
+				$this->mParserOutput->getLinkList( ParserOutputLinkTypes::TEMPLATE )
+				as [ 'link' => $link ]
+			) {
+				$templates[] = Title::newFromLinkTarget( $link );
 			}
 			return $templates;
 		} else {

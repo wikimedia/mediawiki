@@ -3,6 +3,7 @@
 namespace MediaWiki\Deferred\LinksUpdate;
 
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\ParserOutputLinkTypes;
 
 /**
  * iwlinks
@@ -21,7 +22,13 @@ class InterwikiLinksTable extends LinksTable {
 	private $existingLinks;
 
 	public function setParserOutput( ParserOutput $parserOutput ) {
-		$this->newLinks = $parserOutput->getInterwikiLinks();
+		$this->newLinks = [];
+		foreach (
+			$parserOutput->getLinkList( ParserOutputLinkTypes::INTERWIKI )
+			as [ 'link' => $link ]
+		) {
+			$this->newLinks[$link->getInterwiki()][$link->getDBkey()] = 1;
+		}
 	}
 
 	protected function getTableName() {

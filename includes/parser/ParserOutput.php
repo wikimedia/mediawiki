@@ -872,6 +872,21 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
+	 * Return true if the given parser output has local links registered
+	 * in the metadata.
+	 * @return bool
+	 * @since 1.44
+	 */
+	public function hasLinks(): bool {
+		foreach ( $this->mLinks as $ns => $arr ) {
+			foreach ( $arr as $dbkey => $id ) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * @return array Keys are DBKs for the links to special pages in the document
 	 * @since 1.35
 	 * @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::SPECIAL)
@@ -893,6 +908,15 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/** @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::MEDIA) */
 	public function &getImages() {
 		return $this->mImages;
+	}
+
+	/**
+	 * Return true if there are image dependencies registered for this
+	 * ParserOutput.
+	 * @since 1.44
+	 */
+	public function hasImages(): bool {
+		return $this->mImages !== [];
 	}
 
 	/** @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::MEDIA) */
@@ -2650,23 +2674,44 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @param ParserOutput $source
 	 */
 	public function mergeTrackingMetaDataFrom( ParserOutput $source ): void {
-		foreach ( $source->getLanguageLinks() as $ll ) {
-			$this->addLanguageLink( $ll );
+		foreach (
+			$source->getLinkList( ParserOutputLinkTypes::LANGUAGE )
+			as [ 'link' => $link ]
+		) {
+			$this->addLanguageLink( $link );
 		}
 		$this->mCategories = self::mergeMap( $this->mCategories, $source->getCategoryMap() );
-		$this->mLinks = self::merge2D( $this->mLinks, $source->getLinks() );
-		$this->mTemplates = self::merge2D( $this->mTemplates, $source->getTemplates() );
-		$this->mTemplateIds = self::merge2D( $this->mTemplateIds, $source->getTemplateIds() );
-		$this->mImages = self::mergeMap( $this->mImages, $source->getImages() );
-		$this->mFileSearchOptions = self::mergeMap(
-			$this->mFileSearchOptions,
-			$source->getFileSearchOptions()
-		);
+		foreach (
+			$source->getLinkList( ParserOutputLinkTypes::LOCAL )
+			as [ 'link' => $link, 'pageid' => $pageid ]
+		) {
+			$this->addLink( $link, $pageid );
+		}
+		foreach (
+			$source->getLinkList( ParserOutputLinkTypes::TEMPLATE )
+				as [ 'link' => $link, 'pageid' => $pageid, 'revid' => $revid ]
+		) {
+			$this->addTemplate( $link, $pageid, $revid );
+		}
+		foreach (
+			$source->getLinkList( ParserOutputLinkTypes::MEDIA ) as $item
+		) {
+			$this->addImage( $item['link'], $item['time'] ?? null, $item['sha1'] ?? null );
+		}
 		$this->mExternalLinks = self::mergeMap( $this->mExternalLinks, $source->getExternalLinks() );
-		$this->mInterwikiLinks = self::merge2D(
-			$this->mInterwikiLinks,
-			$source->getInterwikiLinks()
-		);
+		foreach (
+			$source->getLinkList( ParserOutputLinkTypes::INTERWIKI )
+			as [ 'link' => $link ]
+		) {
+			$this->addInterwikiLink( $link );
+		}
+
+		foreach (
+			$source->getLinkList( ParserOutputLinkTypes::SPECIAL )
+			as [ 'link' => $link ]
+		) {
+			$this->addLink( $link );
+		}
 
 		// TODO: add a $mergeStrategy parameter to setPageProperty to allow different
 		// kinds of properties to be merged in different ways.
@@ -2914,25 +2959,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			}
 		}
 		return $a;
-	}
-
-	private static function merge2D( array $a, array $b ): array {
-		$values = [];
-		$keys = array_merge( array_keys( $a ), array_keys( $b ) );
-
-		foreach ( $keys as $k ) {
-			if ( empty( $a[$k] ) ) {
-				$values[$k] = $b[$k];
-			} elseif ( empty( $b[$k] ) ) {
-				$values[$k] = $a[$k];
-			} elseif ( is_array( $a[$k] ) && is_array( $b[$k] ) ) {
-				$values[$k] = array_replace( $a[$k], $b[$k] );
-			} else {
-				$values[$k] = $b[$k];
-			}
-		}
-
-		return $values;
 	}
 
 	private static function useEachMinValue( array $a, array $b ): array {

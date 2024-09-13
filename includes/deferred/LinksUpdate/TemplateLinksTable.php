@@ -4,6 +4,7 @@ namespace MediaWiki\Deferred\LinksUpdate;
 
 use LogicException;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\ParserOutputLinkTypes;
 
 /**
  * templatelinks
@@ -12,7 +13,14 @@ use MediaWiki\Parser\ParserOutput;
  */
 class TemplateLinksTable extends GenericPageLinksTable {
 	public function setParserOutput( ParserOutput $parserOutput ) {
-		$this->newLinks = $parserOutput->getTemplates();
+		// Convert the format of the template links
+		$this->newLinks = [];
+		foreach (
+			$parserOutput->getLinkList( ParserOutputLinkTypes::TEMPLATE )
+			as [ 'link' => $link, 'pageid' => $pageid ]
+		) {
+			$this->newLinks[$link->getNamespace()][$link->getDBkey()] = $pageid;
+		}
 	}
 
 	protected function getTableName() {

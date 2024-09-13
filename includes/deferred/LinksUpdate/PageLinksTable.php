@@ -6,6 +6,7 @@ use MediaWiki\Config\Config;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\ParserOutputLinkTypes;
 
 /**
  * pagelinks
@@ -26,7 +27,14 @@ class PageLinksTable extends GenericPageLinksTable {
 	}
 
 	public function setParserOutput( ParserOutput $parserOutput ) {
-		$this->newLinks = $parserOutput->getLinks();
+		// Convert the format of the local links
+		$this->newLinks = [];
+		foreach (
+			$parserOutput->getLinkList( ParserOutputLinkTypes::LOCAL )
+			as [ 'link' => $link, 'pageid' => $pageid ]
+		) {
+			$this->newLinks[$link->getNamespace()][$link->getDBkey()] = $pageid;
+		}
 	}
 
 	protected function getTableName() {
