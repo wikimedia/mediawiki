@@ -1689,6 +1689,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Mail\\UserEmailContact' => __DIR__ . '/includes/mail/UserEmailContact.php',
 	'MediaWiki\\MainConfigNames' => __DIR__ . '/includes/MainConfigNames.php',
 	'MediaWiki\\MainConfigSchema' => __DIR__ . '/includes/MainConfigSchema.php',
+	'MediaWiki\\Maintenance\\FixAutoblockLogTitles' => __DIR__ . '/maintenance/fixAutoblockLogTitles.php',
 	'MediaWiki\\Maintenance\\ForkController' => __DIR__ . '/maintenance/includes/ForkController.php',
 	'MediaWiki\\Maintenance\\MaintenanceFatalError' => __DIR__ . '/maintenance/includes/MaintenanceFatalError.php',
 	'MediaWiki\\Maintenance\\MaintenanceParameters' => __DIR__ . '/maintenance/includes/MaintenanceParameters.php',
