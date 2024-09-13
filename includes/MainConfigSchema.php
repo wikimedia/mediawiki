@@ -1351,6 +1351,18 @@ class MainConfigSchema {
 	 * See LockManager::__construct() for more details.
 	 * Additional parameters are specific to the lock manager class used.
 	 * These settings should be global to all wikis.
+	 *
+	 * Minimal example:
+	 *
+	 * ```
+	 * $wgLockManagers[] = [
+	 *   'name' => 'locky-mc-lock-face',
+	 *   'class' => 'MemcLockManager',
+	 *   'lockServers' => [
+	 *     '127.0.0.1:11211',
+	 *   ],
+	 * ];
+	 * ```
 	 */
 	public const LockManagers = [
 		'default' => [],

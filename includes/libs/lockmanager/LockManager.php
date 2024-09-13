@@ -74,39 +74,34 @@ abstract class LockManager {
 	/** Max expected lock expiry in any context */
 	protected const MAX_LOCK_TTL = 2 * 3600; // 2 hours
 
-	/** Default lock TTL in CLI mode */
-	protected const CLI_LOCK_TTL = 3600; // 1 hour
-
 	/** Minimum lock TTL. The configured lockTTL is ignored if it is less than this value. */
 	protected const MIN_LOCK_TTL = 5; // seconds
-
-	/** The minimum lock TTL if it is guessed from max_execution_time rather than configured. */
-	protected const MIN_GUESSED_LOCK_TTL = 5 * 60; // 5 minutes
 
 	/**
 	 * Construct a new instance from configuration
 	 * @stable to call
 	 *
 	 * @param array $config Parameters include:
-	 *   - domain  : Domain (usually wiki ID) that all resources are relative to [optional]
-	 *   - lockTTL : Age (in seconds) at which resource locks should expire.
-	 *               This only applies if locks are not tied to a connection/process.
+	 *   - domain  : [optional] Domain (usually wiki ID) that all resources are relative to.
+	 *   - lockTTL : [optional] Customize the maximum duration (in seconds) that a lock
+	 *               may be held for. This TTL is stored by LockManager subclasses and serves
+	 *               as a recovery mechanism. If a process crashes before it can unlock, locks
+	 *               are eventually released.
+	 *               Default for web: 5min, or twice the length of max_execution_time (if higher).
+	 *               Default for CLI: 1 hour.
 	 */
 	public function __construct( array $config ) {
 		$this->domain = $config['domain'] ?? 'global';
 		if ( isset( $config['lockTTL'] ) ) {
 			$this->lockTTL = max( self::MIN_LOCK_TTL, $config['lockTTL'] );
 		} elseif ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' ) {
-			$this->lockTTL = self::CLI_LOCK_TTL;
+			$this->lockTTL = 3600; // 1 hour
 		} else {
 			$ttl = 2 * ceil( RequestTimeout::singleton()->getWallTimeLimit() );
-			$this->lockTTL = ( $ttl === INF || $ttl < self::MIN_GUESSED_LOCK_TTL )
-				? self::MIN_GUESSED_LOCK_TTL : $ttl;
+			$minMaxTTL = 5 * 60; // 5 minutes
+			$this->lockTTL = ( $ttl === INF || $ttl < $minMaxTTL ) ? $minMaxTTL : $ttl;
 		}
 
-		// Upper bound on how long to keep lock structures around. This is useful when setting
-		// TTLs, as the "lockTTL" value may vary based on CLI mode and app server group. This is
-		// a "safe" value that can be used to avoid clobbering other locks that use high TTLs.
 		$this->lockTTL = min( $this->lockTTL, self::MAX_LOCK_TTL );
 
 		$random = [];
