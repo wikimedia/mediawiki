@@ -354,7 +354,7 @@
 	"virus-unknownscanner": "unknown antivirus:",
 	"logouttext": "<strong>You are now logged out.</strong>\n\nNote that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.",
 	"logouttext-for-temporary-account": "<strong>You are now logged out of your temporary account.</strong>\n\nNote that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.",
-	"logging-out-notify": "You are being logged out, please wait.",
+	"logging-out-notify": "You are being logged out. Please wait.",
 	"logout-failed": "Cannot log out now: $1",
 	"cannotlogoutnow-title": "Cannot log out now",
 	"cannotlogoutnow-text": "Logging out is not possible when using $1.",
