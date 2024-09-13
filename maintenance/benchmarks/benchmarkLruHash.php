@@ -31,6 +31,7 @@ require_once __DIR__ . '/../includes/Benchmarker.php';
  * @ingroup Benchmark
  */
 class BenchmarkLruHash extends Benchmarker {
+	/** @inheritDoc */
 	protected $defaultCount = 1000;
 
 	public function __construct() {

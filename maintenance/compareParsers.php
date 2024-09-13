@@ -45,6 +45,7 @@ require_once __DIR__ . '/dumpIterator.php';
  */
 class CompareParsers extends DumpIterator {
 
+	/** @var int */
 	private $count = 0;
 	/** @var string|false */
 	private $saveFailed = false;

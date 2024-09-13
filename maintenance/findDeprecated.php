@@ -32,6 +32,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
  * A PHPParser node visitor that associates each node with its file name.
  */
 class FileAwareNodeVisitor extends PhpParser\NodeVisitorAbstract {
+	/** @var string|null */
 	private $currentFile = null;
 
 	public function enterNode( PhpParser\Node $node ) {
@@ -54,8 +55,10 @@ class FileAwareNodeVisitor extends PhpParser\NodeVisitorAbstract {
  */
 class DeprecatedInterfaceFinder extends FileAwareNodeVisitor {
 
+	/** @var string */
 	private $currentClass = null;
 
+	/** @var array[] */
 	private $foundNodes = [];
 
 	public function getFoundNodes() {

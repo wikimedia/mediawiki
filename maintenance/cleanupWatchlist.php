@@ -42,6 +42,7 @@ require_once __DIR__ . '/TableCleanup.php';
  * @ingroup Maintenance
  */
 class CleanupWatchlist extends TableCleanup {
+	/** @inheritDoc */
 	protected $defaultParams = [
 		'table' => 'watchlist',
 		'index' => [ 'wl_id' ],

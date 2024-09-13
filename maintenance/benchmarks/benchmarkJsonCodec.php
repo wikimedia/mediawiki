@@ -28,6 +28,7 @@ require_once __DIR__ . '/../includes/Benchmarker.php';
  * @ingroup Benchmark
  */
 class BenchmarkJsonCodec extends Benchmarker {
+	/** @inheritDoc */
 	protected $defaultCount = 100;
 
 	public function __construct() {

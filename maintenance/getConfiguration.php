@@ -36,8 +36,10 @@ require_once __DIR__ . '/Maintenance.php';
  */
 class GetConfiguration extends Maintenance {
 
+	/** @var string|null */
 	protected $regex = null;
 
+	/** @var array */
 	protected $settings_list = [];
 
 	/**

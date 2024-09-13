@@ -59,20 +59,35 @@ $job->execute();
  * @ingroup Maintenance ExternalStorage
  */
 class RecompressTracked {
+	/** @var string[] */
 	public $destClusters;
+	/** @var int */
 	public $batchSize = 1000;
+	/** @var int */
 	public $orphanBatchSize = 1000;
+	/** @var int */
 	public $reportingInterval = 10;
+	/** @var int */
 	public $numProcs = 1;
+	/** @var int */
 	public $numBatches = 0;
+	/** @var string */
 	public $pageBlobClass;
+	/** @var string */
 	public $orphanBlobClass;
+	/** @var resource[] */
 	public $childPipes;
+	/** @var resource[] */
 	public $childProcs;
+	/** @var int */
 	public $prevChildId;
+	/** @var bool */
 	public $copyOnly = false;
+	/** @var bool */
 	public $isChild = false;
+	/** @var int|false */
 	public $childId = false;
+	/** @var bool */
 	public $noCount = false;
 	public ?string $debugLog = null;
 	public ?string $infoLog = null;
@@ -82,6 +97,7 @@ class RecompressTracked {
 	/** @var SqlBlobStore */
 	private $blobStore;
 
+	/** @var string[] */
 	private static $optionsWithArgs = [
 		'procs',
 		'child-id',
@@ -90,6 +106,7 @@ class RecompressTracked {
 		'critical-log'
 	];
 
+	/** @var string[] */
 	private static $cmdLineOptionMap = [
 		'no-count' => 'noCount',
 		'procs' => 'numProcs',
@@ -691,9 +708,11 @@ class RecompressTracked {
 class CgzCopyTransaction {
 	/** @var RecompressTracked */
 	public $parent;
+	/** @var string */
 	public $blobClass;
 	/** @var ConcatenatedGzipHistoryBlob|false */
 	public $cgz;
+	/** @var string[] */
 	public $referrers;
 	/** @var array */
 	private $texts;

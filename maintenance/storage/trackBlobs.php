@@ -31,12 +31,18 @@ require_once __DIR__ . '/../Maintenance.php';
 // @codeCoverageIgnoreEnd
 
 class TrackBlobs extends Maintenance {
+	/** @var string[] */
 	public $clusters;
+	/** @var IExpression|null */
 	public $textClause;
+	/** @var bool */
 	public $doBlobOrphans;
+	/** @var array */
 	public $trackedBlobs = [];
 
+	/** @var int */
 	public $batchSize = 1000;
+	/** @var int */
 	public $reportingInterval = 10;
 
 	public function __construct() {

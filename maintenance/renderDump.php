@@ -44,6 +44,7 @@ require_once __DIR__ . '/Maintenance.php';
  */
 class DumpRenderer extends Maintenance {
 
+	/** @var int */
 	private $count = 0;
 	private string $outputDirectory;
 	private float $startTime;

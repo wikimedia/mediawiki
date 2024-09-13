@@ -35,6 +35,7 @@ require_once __DIR__ . '/Maintenance.php';
  */
 class CheckDependencies extends Maintenance {
 
+	/** @var bool */
 	private $checkDev;
 
 	public function __construct() {

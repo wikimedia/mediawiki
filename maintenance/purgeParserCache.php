@@ -43,7 +43,9 @@ class PurgeParserCache extends Maintenance {
 	/** @var null|float */
 	private $lastTimestamp;
 
+	/** @var int */
 	private $tmpCount = 0;
+	/** @var float */
 	private $usleep = 0;
 
 	public function __construct() {

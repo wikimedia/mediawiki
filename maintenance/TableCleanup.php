@@ -33,6 +33,7 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class TableCleanup extends Maintenance {
+	/** @var array */
 	protected $defaultParams = [
 		'table' => 'page',
 		'conds' => [],
@@ -40,7 +41,9 @@ class TableCleanup extends Maintenance {
 		'callback' => 'processRow',
 	];
 
+	/** @var bool */
 	protected $dryrun = false;
+	/** @var int */
 	protected $reportInterval = 100;
 
 	protected int $processed;

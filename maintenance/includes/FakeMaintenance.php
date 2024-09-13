@@ -24,6 +24,7 @@
  * @codeCoverageIgnore
  */
 class FakeMaintenance extends Maintenance {
+	/** @inheritDoc */
 	protected $mSelf = "FakeMaintenanceScript";
 
 	public function execute() {

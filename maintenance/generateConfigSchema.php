@@ -31,6 +31,7 @@ class GenerateConfigSchema extends Maintenance {
 	private const DEFAULT_ARRAY_PATH = __DIR__ . '/../includes/config-schema.php';
 	private const DEFAULT_SCHEMA_PATH = __DIR__ . '/../docs/config-schema.yaml';
 	private const STDOUT = 'php://stdout';
+	/** @var array */
 	private $settingsArray;
 
 	public function __construct() {

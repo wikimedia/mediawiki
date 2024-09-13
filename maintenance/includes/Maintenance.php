@@ -557,7 +557,9 @@ abstract class Maintenance {
 		}
 	}
 
+	/** @var bool */
 	private $atLineStart = true;
+	/** @var string|null */
 	private $lastChannel = null;
 
 	/**

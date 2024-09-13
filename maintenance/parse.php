@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Title\Title;
 
 /**
@@ -62,6 +64,7 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 class CLIParser extends Maintenance {
+	/** @var Parser|ParsoidParser */
 	protected $parser;
 
 	public function __construct() {

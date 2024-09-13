@@ -85,11 +85,15 @@ class FetchTextTest extends MediaWikiIntegrationTestCase {
 
 	// We add 5 Revisions for this test. Their corresponding text id's
 	// are stored in the following 5 variables.
-	// phpcs:ignore MediaWiki.Commenting.PropertyDocumentation.WrongStyle
+	/** @var int */
 	protected static $textId1;
+	/** @var int */
 	protected static $textId2;
+	/** @var int */
 	protected static $textId3;
+	/** @var int */
 	protected static $textId4;
+	/** @var int */
 	protected static $textId5;
 
 	/**

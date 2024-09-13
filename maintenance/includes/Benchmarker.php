@@ -38,6 +38,7 @@ require_once __DIR__ . '/../Maintenance.php';
  * @ingroup Benchmark
  */
 abstract class Benchmarker extends Maintenance {
+	/** @var int */
 	protected $defaultCount = 100;
 
 	public function __construct() {

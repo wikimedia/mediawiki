@@ -33,21 +33,24 @@ use Wikimedia\StaticArrayWriter;
  * @ingroup MaintenanceLanguage
  */
 class GenerateCollationData extends Maintenance {
-	/** The directory with source data files in it */
+	/** @var string The directory with source data files in it */
 	public $dataDir;
 
-	/** The primary weights, indexed by codepoint */
+	/** @var int The primary weights, indexed by codepoint */
 	public $weights;
 
 	/**
 	 * A hashtable keyed by codepoint, where presence indicates that a character
 	 * has a decomposition mapping. This makes it non-preferred for group header
 	 * selection.
+	 * @var string[]
 	 */
 	public $mappedChars;
 
+	/** @var string */
 	public $debugOutFile;
 
+	/** @var string[] */
 	private $groups;
 
 	public function __construct() {
@@ -300,11 +303,17 @@ class GenerateCollationData extends Maintenance {
 }
 
 class UcdXmlReader {
+	/** @var string */
 	public $fileName;
+	/** @var callable */
 	public $callback;
+	/** @var array */
 	public $groupAttrs;
+	/** @var XMLReader */
 	public $xml;
+	/** @var array[] */
 	public $blocks = [];
+	/** @var array */
 	public $currentBlock;
 
 	public function __construct( $fileName ) {

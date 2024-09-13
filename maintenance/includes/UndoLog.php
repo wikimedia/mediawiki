@@ -9,7 +9,9 @@ use Wikimedia\Rdbms\IDatabase;
  * a file.
  */
 class UndoLog {
+	/** @var resource */
 	private $file;
+	/** @var IDatabase */
 	private $dbw;
 
 	/**

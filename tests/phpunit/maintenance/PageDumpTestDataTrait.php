@@ -38,7 +38,9 @@ trait PageDumpTestDataTrait {
 	private Title $pageTitle4;
 	private Title $pageTitle5;
 
+	/** @var int */
 	private static $numOfPages = 4;
+	/** @var int */
 	private static $numOfRevs = 8;
 
 	private RevisionRecord $rev1_1;

@@ -70,7 +70,9 @@ SPARQLD;
 	 */
 	private $categoriesRdf;
 
+	/** @var string */
 	private $startTS;
+	/** @var string */
 	private $endTS;
 
 	/**
