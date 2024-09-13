@@ -133,6 +133,10 @@ For notes on 1.42.x and older releases, see HISTORY.
   to check if a local username is reserved for a central user, even if a local
   user account does not exist yet. This can be used by extensions to look
   up information about the central user.
+* (T251790) A Jest-based test suite has been introduced for testing front-end
+  code such as Vue components. Tests can be run via `npm run jest`, and test
+  files live in `tests/jest/`. See https://www.mediawiki.org/wiki/Jest
+  for more information.
 * …
 
 === External library changes in 1.43 ===
@@ -146,6 +150,14 @@ For notes on 1.42.x and older releases, see HISTORY.
 
 ===== New development-only external libraries =====
 
+* (T251790) Some development-only external libraries have been added for the new
+  testing tools for front-end Vue components:
+ * Added jest and jest-environment-jsdom at v29.7.0.
+ * Added @vue/test-utils v2.4.6.
+ * Added @vue/vue3-jest v29.2.6.
+ * Added @babel/preset-env v7.25.4.
+ * Codex, already available via ResourceLoader, now has the npm versions, i.e.
+   @wikimedia/codex and @wikimedia/codex-icons, also installed for this testing.
 * …
 
 ==== Changed external libraries ====
