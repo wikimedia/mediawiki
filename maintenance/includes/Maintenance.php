@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Config\Config;
+use MediaWiki\Debug\MWDebug;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
@@ -736,6 +737,7 @@ abstract class Maintenance {
 	 *   {@link Maintenance::execute} on the returned object.
 	 */
 	public function runChild( $maintClass, $classFile = null ) {
+		MWDebug::detectDeprecatedOverride( $this, __CLASS__, 'runChild', '1.43' );
 		return self::createChild( $maintClass, $classFile );
 	}
 
