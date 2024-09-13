@@ -138,7 +138,7 @@ class RefreshLinks extends Maintenance {
 		// Give extensions a chance to optimize settings
 		$this->getHookRunner()->onMaintenanceRefreshLinksInit( $this );
 
-		$estimateCount = $builder->estimateRowCount();
+		$estimateCount = $builder->caller( __METHOD__ )->estimateRowCount();
 		$this->output( "Estimated page count: $estimateCount\n" );
 
 		$i = 0;
