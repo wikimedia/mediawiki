@@ -456,7 +456,7 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 			// Show a note if the user is blocked and display the last block log entry.
 			// Do not expose the autoblocks, since that may lead to a leak of accounts' IPs,
 			// and also this will display a totally irrelevant log entry as a current block.
-			$shouldShowBlocks = !$this->including();
+			$shouldShowBlocks = $this->shouldShowBlockLogExtract( $userObj );
 			if ( $shouldShowBlocks ) {
 				// For IP ranges you must give DatabaseBlock::newFromTarget the CIDR string
 				// and not a user object.
@@ -969,5 +969,13 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 	 */
 	protected function getResultsPageTitleMessageKey( UserIdentity $target ) {
 		return 'contributions-title';
+	}
+
+	/**
+	 * @param UserIdentity $target The target of the search that produced the results page
+	 * @return bool Whether the block log extract should be shown if the target is blocked.
+	 */
+	protected function shouldShowBlockLogExtract( UserIdentity $target ): bool {
+		return !$this->including();
 	}
 }
