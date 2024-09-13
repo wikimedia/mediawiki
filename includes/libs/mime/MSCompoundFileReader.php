@@ -55,7 +55,7 @@ class MSCompoundFileReader {
 	public const ERROR_READ_PAST_END = 5;
 	public const ERROR_INVALID_FORMAT = 6;
 
-	private static $mimesByClsid = [
+	private const MIMES_BY_CLSID = [
 		// From http://justsolve.archiveteam.org/wiki/Microsoft_Compound_File
 		'00020810-0000-0000-C000-000000000046' => 'application/vnd.ms-excel',
 		'00020820-0000-0000-C000-000000000046' => 'application/vnd.ms-excel',
@@ -345,8 +345,8 @@ class MSCompoundFileReader {
 			$name = iconv( 'UTF-16LE', 'UTF-8', substr( $entry['name_raw'], 0, $entry['name_length'] - 2 ) );
 
 			$clsid = $this->decodeClsid( $entry['clsid'] );
-			if ( $type == self::TYPE_ROOT && isset( self::$mimesByClsid[$clsid] ) ) {
-				$this->mimeFromClsid = self::$mimesByClsid[$clsid];
+			if ( $type == self::TYPE_ROOT && isset( self::MIMES_BY_CLSID[$clsid] ) ) {
+				$this->mimeFromClsid = self::MIMES_BY_CLSID[$clsid];
 			}
 
 			if ( $name === 'Workbook' ) {

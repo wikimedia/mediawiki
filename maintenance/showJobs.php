@@ -35,7 +35,7 @@ require_once __DIR__ . '/Maintenance.php';
  * @author Antoine Musso
  */
 class ShowJobs extends Maintenance {
-	protected static $stateMethods = [
+	private const STATE_METHODS = [
 		'unclaimed' => 'getAllQueuedJobs',
 		'delayed'   => 'getAllDelayedJobs',
 		'claimed'   => 'getAllAcquiredJobs',
@@ -63,8 +63,8 @@ class ShowJobs extends Maintenance {
 			? [ $typeFilter ]
 			: $group->getQueueTypes();
 		$filteredStates = $stateFilter
-			? array_intersect_key( self::$stateMethods, [ $stateFilter => 1 ] )
-			: self::$stateMethods;
+			? array_intersect_key( self::STATE_METHODS, [ $stateFilter => 1 ] )
+			: self::STATE_METHODS;
 
 		if ( $this->hasOption( 'list' ) ) {
 			$count = 0;

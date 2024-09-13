@@ -22,8 +22,8 @@ class BooleanDefTest extends TypeDefTestCase {
 		$enforceType = [ TypeDef::OPT_ENFORCE_JSON_TYPES => true ];
 
 		foreach ( [
-			[ BooleanDef::$TRUEVALS, true ],
-			[ BooleanDef::$FALSEVALS, false ],
+			[ BooleanDef::TRUEVALS, true ],
+			[ BooleanDef::FALSEVALS, false ],
 			[ [ '' ], false ],
 		] as [ $vals, $expect ] ) {
 			foreach ( $vals as $v ) {

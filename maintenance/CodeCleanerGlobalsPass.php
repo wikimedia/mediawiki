@@ -35,12 +35,12 @@
  * configuration settings is less cumbersome, and behavior is closer to that of eval.php.
  */
 class CodeCleanerGlobalsPass extends \Psy\CodeCleaner\CodeCleanerPass {
-	private static $superglobals = [
+	private const SUPERGLOBALS = [
 		'GLOBALS', '_SERVER', '_ENV', '_FILES', '_COOKIE', '_POST', '_GET', '_SESSION'
 	];
 
 	public function beforeTraverse( array $nodes ) {
-		$globalVars = array_diff( array_keys( $GLOBALS ), self::$superglobals );
+		$globalVars = array_diff( array_keys( $GLOBALS ), self::SUPERGLOBALS );
 		$validGlobalVars = array_filter( $globalVars, static function ( string $name ) {
 			// https://www.php.net/manual/en/language.variables.basics.php
 			return preg_match( '/^[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*$/', $name );

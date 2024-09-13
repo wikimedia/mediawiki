@@ -11,7 +11,7 @@ require_once __DIR__ . '/Maintenance.php';
 
 class ConvertExtensionToRegistration extends Maintenance {
 
-	protected $custom = [
+	private const CUSTOM_GLOBALS = [
 		'MessagesDirs' => 'handleMessagesDirs',
 		'ExtensionMessagesFiles' => 'handleExtensionMessagesFiles',
 		'AutoloadClasses' => 'removeAbsolutePath',
@@ -25,28 +25,22 @@ class ConvertExtensionToRegistration extends Maintenance {
 
 	/**
 	 * Things that were formerly globals and should still be converted
-	 *
-	 * @var string[]
 	 */
-	protected $formerGlobals = [
+	private const FORMER_GLOBALS = [
 		'TrackingCategories',
 	];
 
 	/**
 	 * No longer supported globals (with reason) should not be converted and emit a warning
-	 *
-	 * @var string[]
 	 */
-	protected $noLongerSupportedGlobals = [
+	private const NO_LONGER_SUPPORTED_GLOBALS = [
 		'SpecialPageGroups' => 'deprecated', // Deprecated 1.21, removed in 1.26
 	];
 
 	/**
 	 * Keys that should be put at the top of the generated JSON file (T86608)
-	 *
-	 * @var string[]
 	 */
-	protected $promote = [
+	private const PROMOTE_ATTRIBUTES = [
 		'name',
 		'namemsg',
 		'version',
@@ -75,7 +69,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 		$processor = new ReflectionClass( ExtensionProcessor::class );
 		$settings = $processor->getProperty( 'globalSettings' );
 		$settings->setAccessible( true );
-		return array_merge( $settings->getValue(), $this->formerGlobals );
+		return array_merge( $settings->getValue(), self::FORMER_GLOBALS );
 	}
 
 	public function execute() {
@@ -83,7 +77,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 		// fatal unless an array is already set. So set an empty value.
 		// And use the weird $__settings name to avoid any conflicts
 		// with real poorly named settings.
-		$__settings = array_merge( $this->getAllGlobals(), array_keys( $this->custom ) );
+		$__settings = array_merge( $this->getAllGlobals(), array_keys( self::CUSTOM_GLOBALS ) );
 		foreach ( $__settings as $var ) {
 			$var = 'wg' . $var;
 			$$var = [];
@@ -118,14 +112,14 @@ class ConvertExtensionToRegistration extends Maintenance {
 				continue;
 			}
 
-			if ( isset( $this->custom[$realName] ) ) {
-				call_user_func_array( [ $this, $this->custom[$realName] ],
+			if ( isset( self::CUSTOM_GLOBALS[$realName] ) ) {
+				call_user_func_array( [ $this, self::CUSTOM_GLOBALS[$realName] ],
 					[ $realName, $value, $vars ] );
 			} elseif ( in_array( $realName, $globalSettings ) ) {
 				$this->json[$realName] = $value;
-			} elseif ( array_key_exists( $realName, $this->noLongerSupportedGlobals ) ) {
+			} elseif ( array_key_exists( $realName, self::NO_LONGER_SUPPORTED_GLOBALS ) ) {
 				$this->output( 'Warning: Skipped global "' . $name . '" (' .
-					$this->noLongerSupportedGlobals[$realName] . '). ' .
+					self::NO_LONGER_SUPPORTED_GLOBALS[$realName] . '). ' .
 					"Please update the entry point before convert to registration.\n" );
 				$this->hasWarning = true;
 			} elseif ( strpos( $name, $configPrefix ) === 0 ) {
@@ -167,7 +161,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 
 		// Move some keys to the top
 		$out = [];
-		foreach ( $this->promote as $key ) {
+		foreach ( self::PROMOTE_ATTRIBUTES as $key ) {
 			if ( isset( $this->json[$key] ) ) {
 				$out[$key] = $this->json[$key];
 				unset( $this->json[$key] );

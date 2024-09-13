@@ -179,7 +179,7 @@ class ParamValidator {
 	public const ALL_DEFAULT_STRING = '*';
 
 	/** A list of standard type names and types that may be passed as `$typeDefs` to __construct(). */
-	public static $STANDARD_TYPES = [
+	public const STANDARD_TYPES = [
 		'boolean' => [ 'class' => TypeDef\BooleanDef::class ],
 		'checkbox' => [ 'class' => TypeDef\PresenceBooleanDef::class ],
 		'integer' => [ 'class' => TypeDef\IntegerDef::class ],
@@ -219,7 +219,7 @@ class ParamValidator {
 	 * @param Callbacks $callbacks
 	 * @param ObjectFactory $objectFactory To turn specs into TypeDef objects
 	 * @param array $options Associative array of additional settings
-	 *  - 'typeDefs': (array) As for addTypeDefs(). If omitted, self::$STANDARD_TYPES will be used.
+	 *  - 'typeDefs': (array) As for addTypeDefs(). If omitted, self::STANDARD_TYPES will be used.
 	 *    Pass an empty array if you want to start with no registered types.
 	 *  - 'ismultiLimits': (int[]) Two ints, being the default values for PARAM_ISMULTI_LIMIT1 and
 	 *    PARAM_ISMULTI_LIMIT2. If not given, defaults to `[ 50, 500 ]`.
@@ -232,7 +232,7 @@ class ParamValidator {
 		$this->callbacks = $callbacks;
 		$this->objectFactory = $objectFactory;
 
-		$this->addTypeDefs( $options['typeDefs'] ?? self::$STANDARD_TYPES );
+		$this->addTypeDefs( $options['typeDefs'] ?? self::STANDARD_TYPES );
 		$this->ismultiLimit1 = $options['ismultiLimits'][0] ?? 50;
 		$this->ismultiLimit2 = $options['ismultiLimits'][1] ?? 500;
 	}

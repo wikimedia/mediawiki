@@ -40,7 +40,7 @@ class CliInstaller extends Installer {
 	/** @var bool */
 	private $specifiedScriptPath = false;
 
-	private $optionMap = [
+	private const OPTION_MAP = [
 		'dbtype' => 'wgDBtype',
 		'dbserver' => 'wgDBserver',
 		'dbname' => 'wgDBname',
@@ -71,7 +71,7 @@ class CliInstaller extends Installer {
 			$this->specifiedScriptPath = true;
 		}
 
-		foreach ( $this->optionMap as $opt => $global ) {
+		foreach ( self::OPTION_MAP as $opt => $global ) {
 			if ( isset( $options[$opt] ) ) {
 				$GLOBALS[$global] = $options[$opt];
 				$this->setVar( $global, $options[$opt] );
