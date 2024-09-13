@@ -472,7 +472,12 @@ class RecentChange implements Taggable {
 
 		# Normalize UserIdentity to actor ID
 		$user = $this->getPerformerIdentity();
-		$row['rc_actor'] = $services->getActorStore()->acquireActorId( $user, $dbw );
+		if ( array_key_exists( 'forImport', $this->mExtra ) && $this->mExtra['forImport'] ) {
+			$actorStore = $services->getActorStoreFactory()->getActorStoreForImport();
+		} else {
+			$actorStore = $services->getActorStoreFactory()->getActorStore();
+		}
+		$row['rc_actor'] = $actorStore->acquireActorId( $user, $dbw );
 		unset( $row['rc_user'], $row['rc_user_text'] );
 
 		# Don't reuse an existing rc_id for the new row, if one happens to be
@@ -1071,6 +1076,7 @@ class RecentChange implements Taggable {
 	 * @param string $ip IP address of the user, if the change was made anonymously
 	 * @param int $deleted Indicates whether the change has been deleted
 	 * @param bool|null $added true, if the category was added, false for removed
+	 * @param bool $forImport Whether the associated revision was imported
 	 *
 	 * @return RecentChange
 	 */
@@ -1086,7 +1092,8 @@ class RecentChange implements Taggable {
 		$bot,
 		$ip = '',
 		$deleted = 0,
-		$added = null
+		$added = null,
+		bool $forImport = false
 	) {
 		// Done in a backwards compatible way.
 		$categoryWikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()
@@ -1147,7 +1154,8 @@ class RecentChange implements Taggable {
 			'lastTimestamp' => $lastTimestamp,
 			'oldSize' => 0,
 			'newSize' => 0,
-			'pageStatus' => 'changed'
+			'pageStatus' => 'changed',
+			'forImport' => $forImport,
 		];
 
 		return $rc;

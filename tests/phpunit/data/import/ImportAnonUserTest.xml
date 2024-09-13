@@ -1,0 +1,48 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.6/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.11/ http://www.mediawiki.org/xml/export-0.11.xsd" version="0.11" xml:lang="de">
+	<siteinfo>
+		<sitename>dewiki.home.arpa</sitename>
+		<dbname>dewiki</dbname>
+		<base>https://dewiki.home.arpa/wiki/Hauptseite</base>
+		<generator>MediaWiki 1.43.0-alpha</generator>
+		<case>first-letter</case>
+		<namespaces>
+			<namespace key="-2" case="first-letter">Medium</namespace>
+			<namespace key="-1" case="first-letter">Spezial</namespace>
+			<namespace key="0" case="first-letter"/>
+			<namespace key="1" case="first-letter">Diskussion</namespace>
+			<namespace key="2" case="first-letter">Benutzer</namespace>
+			<namespace key="3" case="first-letter">Benutzer Diskussion</namespace>
+			<namespace key="4" case="first-letter">Localwiki</namespace>
+			<namespace key="5" case="first-letter">Localwiki Diskussion</namespace>
+			<namespace key="6" case="first-letter">Datei</namespace>
+			<namespace key="7" case="first-letter">Datei Diskussion</namespace>
+			<namespace key="8" case="first-letter">MediaWiki</namespace>
+			<namespace key="9" case="first-letter">MediaWiki Diskussion</namespace>
+			<namespace key="10" case="first-letter">Vorlage</namespace>
+			<namespace key="11" case="first-letter">Vorlage Diskussion</namespace>
+			<namespace key="12" case="first-letter">Hilfe</namespace>
+			<namespace key="13" case="first-letter">Hilfe Diskussion</namespace>
+			<namespace key="14" case="first-letter">Kategorie</namespace>
+			<namespace key="15" case="first-letter">Kategorie Diskussion</namespace>
+		</namespaces>
+	</siteinfo>
+	<page>
+		<title>Test</title>
+		<ns>0</ns>
+		<id>2</id>
+		<revision>
+			<id>3</id>
+			<parentid>2</parentid>
+			<timestamp>2024-07-24T17:52:45Z</timestamp>
+			<contributor>
+				<ip>192.0.2.14</ip>
+			</contributor>
+			<origin>3</origin>
+			<model>wikitext</model>
+			<format>text/x-wiki</format>
+			<text bytes="6" sha1="ds3uttzolz1snno6cj6u7ox76say863" xml:space="preserve">test
+[[Category:Test]]</text>
+			<sha1>0xfsdg7qfs9179iudbmlqrbzi6uws92</sha1>
+		</revision>
+	</page>
+</mediawiki>
