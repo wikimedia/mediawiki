@@ -199,7 +199,9 @@ class SkinModule extends LessVarFileModule {
 			'screen' => [ 'resources/src/mediawiki.skinning/i18n-ordered-lists.less' ],
 		],
 		// Deprecated since 1.43, it's merged into the `elements` module.
-		'i18n-all-lists-margins' => [],
+		'i18n-all-lists-margins' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/i18n-all-lists-margins.less' ],
+		],
 		'i18n-headings' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/i18n-headings.less' ],
 		],
@@ -319,9 +321,10 @@ class SkinModule extends LessVarFileModule {
 	): array {
 		// The `i18n-all-lists-margins` feature is ignored.
 		if ( isset( $features[ 'i18n-all-lists-margins' ] ) ) {
-			unset( $features[ 'i18n-all-lists-margins' ] );
 			$messages .= '[1.43] The use of the `i18n-all-lists-margins` feature with SkinModule'
-				. ' is deprecated as it is now provided by `elements`. Please remove. ';
+				. ' is deprecated as it is now provided by `elements`. Please remove and '
+				. ' add `elements`, drop support for RTL languages, or incorporate the '
+				. ' styles provided by this module into your skin.';
 		}
 
 		// The `content` feature is mapped to `content-media`.
