@@ -404,6 +404,9 @@ because of Phabricator reports.
 * UserMailer::rfc822Phrase(), deprecated since 1.38, has been removed.
 * QueryPage::getSQL(), deprecated since 1.39, has been removed. The replacement
   QueryPage::getQueryInfo() is now abstract.
+* update-keys.sql was removed. It is not recommended to install MediaWiki by
+  manually sourcing SQL files, but if you are doing this, run
+  `update.php --initial` instead of sourcing update-keys.sql.
 * …
 
 === Deprecations in 1.43 ===

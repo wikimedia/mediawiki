@@ -537,6 +537,12 @@ abstract class DatabaseUpdater {
 
 		$what = array_fill_keys( $what, true );
 		$this->skipSchema = isset( $what['noschema'] ) || $this->fileHandle !== null;
+
+		if ( isset( $what['initial'] ) ) {
+			$this->output( 'Inserting initial update keys...' );
+			$this->insertInitialUpdateKeys();
+			$this->output( "done.\n" );
+		}
 		if ( isset( $what['core'] ) ) {
 			$this->doCollationUpdate();
 			$this->runUpdates( $this->getCoreUpdateList(), false );
@@ -649,6 +655,22 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * Add initial keys to the updatelog table. Should be called during installation.
+	 */
+	public function insertInitialUpdateKeys() {
+		$this->db->clearFlag( DBO_DDLMODE );
+		$iqb = $this->db->newInsertQueryBuilder()
+			->insertInto( 'updatelog' )
+			->ignore()
+			->caller( __METHOD__ );
+		foreach ( $this->getInitialUpdateKeys() as $key ) {
+			$iqb->row( [ 'ul_key' => $key ] );
+		}
+		$iqb->execute();
+		$this->db->setFlag( DBO_DDLMODE );
+	}
+
+	/**
 	 * Returns whether updates should be executed on the database table $name.
 	 * Updates will be prevented if the table is a shared table, and it is not
 	 * specified to run updates on shared tables.
@@ -681,6 +703,18 @@ abstract class DatabaseUpdater {
 	 * @return array[]
 	 */
 	abstract protected function getCoreUpdateList();
+
+	/**
+	 * Get an array of update keys to insert into the updatelog table after a
+	 * new installation. The named operations will then be skipped by a
+	 * subsequent update.
+	 *
+	 * Add keys here to skip updates that are redundant or harmful on a new
+	 * installation, for example reducing field sizes, adding constraints, etc.
+	 *
+	 * @return string[]
+	 */
+	abstract protected function getInitialUpdateKeys();
 
 	/**
 	 * Append an SQL fragment to the open file handle.
