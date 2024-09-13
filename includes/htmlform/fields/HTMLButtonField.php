@@ -28,12 +28,15 @@ use MediaWiki\Message\Message;
  * @since 1.22
  */
 class HTMLButtonField extends HTMLFormField {
+	/** @var string */
 	protected $buttonType = 'button';
+	/** @var string|null */
 	protected $buttonLabel = null;
 
 	/** @var array Flags to add to OOUI Button widget */
 	protected $mFlags = [];
 
+	/** @var bool */
 	protected $mFormnovalidate = false;
 
 	/**

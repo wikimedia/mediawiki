@@ -8,6 +8,7 @@ use MediaWiki\HTMLForm\HTMLFormField;
  * @stable to extend
  */
 class HTMLHiddenField extends HTMLFormField {
+	/** @var bool */
 	protected $outputAsDefault = true;
 
 	/**

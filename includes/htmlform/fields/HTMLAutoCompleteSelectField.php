@@ -36,6 +36,7 @@ use MediaWiki\Xml\XmlSelect;
  * @stable to extend
  */
 class HTMLAutoCompleteSelectField extends HTMLTextField {
+	/** @var string[] */
 	protected $autocompleteData = [];
 
 	/**

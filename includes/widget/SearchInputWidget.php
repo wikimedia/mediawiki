@@ -12,10 +12,15 @@ use OOUI\Tag;
  */
 class SearchInputWidget extends TitleInputWidget {
 
+	/** @var bool */
 	protected $performSearchOnClick = true;
+	/** @var bool */
 	protected $validateTitle = false;
+	/** @var bool */
 	protected $highlightFirst = false;
+	/** @var string */
 	protected $dataLocation = 'header';
+	/** @var bool */
 	protected $showDescriptions = false;
 
 	/**
@@ -31,6 +36,7 @@ class SearchInputWidget extends TitleInputWidget {
 			'maxLength' => null,
 			'icon' => 'search',
 		], $config );
+		'@phan-var array $config';
 
 		parent::__construct( $config );
 

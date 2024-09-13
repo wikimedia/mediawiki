@@ -35,6 +35,7 @@ use MediaWiki\Parser\Sanitizer;
  */
 class CodexHTMLForm extends HTMLForm {
 
+	/** @inheritDoc */
 	protected $displayFormat = 'codex';
 
 	public static function loadInputFromParameters( $fieldname, $descriptor,

@@ -7,6 +7,7 @@ use MediaWiki\Tests\Integration\HTMLForm\HTMLFormFieldTestCase;
  * @covers MediaWiki\HTMLForm\Field\HTMLButtonField
  */
 class HTMLButtonFieldTest extends HTMLFormFieldTestCase {
+	/** @inheritDoc */
 	protected $className = 'HTMLButtonField';
 
 	public static function provideInputHtml() {

@@ -29,26 +29,38 @@ abstract class HTMLFormField {
 
 	/** @var callable(mixed,array,HTMLForm):(StatusValue|string|bool|Message) */
 	protected $mValidationCallback;
+	/** @var callable(mixed,array,HTMLForm):(StatusValue|string|bool|Message) */
 	protected $mFilterCallback;
+	/** @var string */
 	protected $mName;
+	/** @var string */
 	protected $mDir;
-	protected $mLabel; # String label, as HTML. Set on construction.
+	/** @var string String label, as HTML. Set on construction. */
+	protected $mLabel;
+	/** @var string */
 	protected $mID;
+	/** @var string */
 	protected $mClass = '';
+	/** @var string */
 	protected $mVFormClass = '';
+	/** @var string|false */
 	protected $mHelpClass = false;
+	/** @var mixed */
 	protected $mDefault;
+	/** @var array */
 	private $mNotices;
 
 	/**
 	 * @var array|null|false
 	 */
 	protected $mOptions = false;
+	/** @var bool */
 	protected $mOptionsLabelsNotFromMessage = false;
 	/**
 	 * @var array Array to hold params for 'hide-if' or 'disable-if' statements
 	 */
 	protected $mCondState = [];
+	/** @var array */
 	protected $mCondStateClass = [];
 
 	/**

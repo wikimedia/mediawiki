@@ -10,6 +10,7 @@ namespace MediaWiki\Widget;
  */
 class NamespacesMultiselectWidget extends TagMultiselectWidget {
 
+	/** @var bool|null */
 	protected $allowEditTags = null;
 
 	/**

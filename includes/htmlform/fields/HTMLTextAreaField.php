@@ -14,7 +14,9 @@ class HTMLTextAreaField extends HTMLFormField {
 	protected const DEFAULT_COLS = 80;
 	protected const DEFAULT_ROWS = 25;
 
+	/** @var string */
 	protected $mPlaceholder = '';
+	/** @var bool */
 	protected $mUseEditFont = false;
 
 	/**

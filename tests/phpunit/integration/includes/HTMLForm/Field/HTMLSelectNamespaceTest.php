@@ -9,6 +9,7 @@ use MediaWiki\Tests\Integration\HTMLForm\HTMLFormFieldTestCase;
  * @covers MediaWiki\HTMLForm\Field\HTMLSelectNamespace
  */
 class HTMLSelectNamespaceTest extends HTMLFormFieldTestCase {
+	/** @inheritDoc */
 	protected $className = 'HTMLSelectNamespace';
 
 	/**

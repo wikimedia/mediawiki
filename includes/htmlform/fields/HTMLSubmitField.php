@@ -9,8 +9,10 @@ namespace MediaWiki\HTMLForm\Field;
  * @stable to extend
  */
 class HTMLSubmitField extends HTMLButtonField {
+	/** @inheritDoc */
 	protected $buttonType = 'submit';
 
+	/** @inheritDoc */
 	protected $mFlags = [ 'primary', 'progressive' ];
 
 	public function skipLoadData( $request ) {

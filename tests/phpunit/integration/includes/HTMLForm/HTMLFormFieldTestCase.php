@@ -8,6 +8,7 @@ use MediaWiki\HTMLForm\HTMLFormField;
 use MediaWikiIntegrationTestCase;
 
 abstract class HTMLFormFieldTestCase extends MediaWikiIntegrationTestCase {
+	/** @var string|null */
 	protected $className = null;
 
 	/**
