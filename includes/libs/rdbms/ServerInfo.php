@@ -6,7 +6,7 @@ use InvalidArgumentException;
 use UnexpectedValueException;
 
 /**
- * Information about an individual database host
+ * Container for accessing information about the database servers in a database cluster
  *
  * @internal
  * @ingroup Database
