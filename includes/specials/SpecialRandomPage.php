@@ -32,9 +32,12 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @author Rob Church <robchur@gmail.com>, Ilmari Karonen
  */
 class SpecialRandomPage extends SpecialPage {
-	private $namespaces; // namespaces to select pages from
-	protected $isRedir = false; // should the result be a redirect?
-	protected $extra = []; // Extra SQL statements
+	/** @var int[] namespaces to select pages from */
+	private $namespaces;
+	/** @var bool should the result be a redirect? */
+	protected $isRedir = false;
+	/** @var array Extra SQL statements */
+	protected $extra = [];
 
 	private IConnectionProvider $dbProvider;
 

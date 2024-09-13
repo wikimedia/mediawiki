@@ -55,6 +55,7 @@ use Wikimedia\Rdbms\RawSQLExpression;
  */
 class SpecialRecentChanges extends ChangesListSpecialPage {
 
+	/** @var array */
 	private $watchlistFilterGroupDefinition;
 
 	private WatchedItemStoreInterface $watchedItemStore;

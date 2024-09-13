@@ -35,11 +35,13 @@ use StatusValue;
  * @ingroup Auth
  */
 class SpecialUserLogin extends LoginSignupSpecialPage {
+	/** @inheritDoc */
 	protected static $allowedActions = [
 		AuthManager::ACTION_LOGIN,
 		AuthManager::ACTION_LOGIN_CONTINUE
 	];
 
+	/** @inheritDoc */
 	protected static $messages = [
 		'authform-newtoken' => 'nocookiesforlogin',
 		'authform-notoken' => 'sessionfailure',

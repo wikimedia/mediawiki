@@ -2,6 +2,7 @@
 
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\DatabaseBlockStore;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
@@ -23,6 +24,7 @@ use Wikimedia\TestingAccessWrapper;
 class SpecialBlockTest extends SpecialPageTestBase {
 	use MockAuthorityTrait;
 
+	/** @var DatabaseBlockStore */
 	private $blockStore;
 
 	/**

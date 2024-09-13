@@ -1,9 +1,13 @@
 <?php
 
 class SpecialSearchTestMockResultSet extends SearchResultSet {
+	/** @var array */
 	protected $results;
+	/** @var string|null */
 	protected $suggestion;
+	/** @var string|null */
 	protected $rewrittenQuery;
+	/** @var bool */
 	protected $containedSyntax;
 
 	public function __construct(

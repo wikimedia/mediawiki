@@ -50,6 +50,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class BlockListPager extends TablePager {
 
+	/** @var array */
 	protected $conds;
 
 	/**

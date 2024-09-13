@@ -11,10 +11,13 @@ use MediaWiki\MainConfigNames;
  * @ingroup SpecialPage
  */
 class SpecialRemoveCredentials extends SpecialChangeCredentials {
+	/** @inheritDoc */
 	protected static $allowedActions = [ AuthManager::ACTION_REMOVE ];
 
+	/** @inheritDoc */
 	protected static $messagePrefix = 'removecredentials';
 
+	/** @inheritDoc */
 	protected static $loadUserData = false;
 
 	/**

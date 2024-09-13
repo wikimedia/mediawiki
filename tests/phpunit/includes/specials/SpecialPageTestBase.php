@@ -17,6 +17,7 @@ use MediaWiki\SpecialPage\SpecialPage;
  */
 abstract class SpecialPageTestBase extends MediaWikiIntegrationTestCase {
 
+	/** @var int */
 	private $obLevel;
 
 	protected function setUp(): void {

@@ -35,19 +35,27 @@ use Wikimedia\RequestTimeout\TimeoutException;
  * Sub class of HTMLForm that provides the form section of SpecialUpload
  */
 class UploadForm extends HTMLForm {
+	/** @var bool */
 	protected $mWatch;
+	/** @var bool */
 	protected $mForReUpload;
+	/** @var string */
 	protected $mSessionKey;
+	/** @var bool */
 	protected $mHideIgnoreWarning;
+	/** @var bool */
 	protected $mDestWarningAck;
+	/** @var string */
 	protected $mDestFile;
 
+	/** @var string */
 	protected $mComment;
 	/** @var string raw html */
 	protected $mTextTop;
 	/** @var string raw html */
 	protected $mTextAfterSummary;
 
+	/** @var string[] */
 	protected $mSourceIds;
 
 	/** @var array */

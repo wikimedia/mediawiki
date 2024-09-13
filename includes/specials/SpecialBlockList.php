@@ -45,10 +45,13 @@ use Wikimedia\Rdbms\IReadableDatabase;
  * @ingroup SpecialPage
  */
 class SpecialBlockList extends SpecialPage {
+	/** @var string */
 	protected $target;
 
+	/** @var array */
 	protected $options;
 
+	/** @var string|null */
 	protected $blockType;
 
 	private LinkBatchFactory $linkBatchFactory;

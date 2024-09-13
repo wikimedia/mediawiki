@@ -21,6 +21,7 @@ use StatusValue;
  * @ingroup Auth
  */
 class SpecialLinkAccounts extends AuthManagerSpecialPage {
+	/** @inheritDoc */
 	protected static $allowedActions = [
 		AuthManager::ACTION_LINK, AuthManager::ACTION_LINK_CONTINUE,
 	];

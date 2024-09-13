@@ -25,11 +25,13 @@ use MediaWiki\Title\Title;
  * @ingroup Auth
  */
 class SpecialChangeCredentials extends AuthManagerSpecialPage {
+	/** @inheritDoc */
 	protected static $allowedActions = [ AuthManager::ACTION_CHANGE ];
 
+	/** @var string */
 	protected static $messagePrefix = 'changecredentials';
 
-	/** Change action needs user data; remove action does not */
+	/** @var bool Change action needs user data; remove action does not */
 	protected static $loadUserData = true;
 
 	/**

@@ -1,10 +1,12 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialContributions;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
+use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
@@ -19,7 +21,9 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 	use TempUserTestTrait;
 
 	private const PAGE_NAME = __CLASS__ . 'BlaBlaTest';
+	/** @var Authority */
 	private static $admin;
+	/** @var User */
 	private static $user;
 	private static int $useModWikiIPRevId;
 

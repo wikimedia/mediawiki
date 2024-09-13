@@ -34,6 +34,7 @@ use MediaWiki\SpecialPage\SpecialPage;
  * @deprecated since 1.26
  */
 class SpecialResetTokens extends FormSpecialPage {
+	/** @var array|null */
 	private $tokensList;
 
 	public function __construct() {

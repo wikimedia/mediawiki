@@ -55,6 +55,7 @@ class SpecialNewPages extends IncludableSpecialPage {
 	/** @var array[] */
 	protected $customFilters;
 
+	/** @var bool */
 	protected $showNavigation = false;
 
 	private LinkBatchFactory $linkBatchFactory;
