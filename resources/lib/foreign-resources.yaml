@@ -130,13 +130,13 @@ url:
   type: multi-file
   files:
     URL.js:
-      src: https://raw.githubusercontent.com/Financial-Times/polyfill-library/0ece79ce32/polyfills/URL/polyfill.js
+      src: https://raw.githubusercontent.com/mrhenry/polyfill-library/0ece79ce32/polyfills/URL/polyfill.js
       integrity: sha384-ZAFKMtnv4166IfCOoSoxGM1b4JQx/njgDOWwnaSQPESHAqvjE0e5gXmYBYyjQEl8
     URL-toJSON.js:
-      src: https://raw.githubusercontent.com/Financial-Times/polyfill-library/0ece79ce32/polyfills/URL/prototype/toJSON/polyfill.js
+      src: https://raw.githubusercontent.com/mrhenry/polyfill-library/0ece79ce32/polyfills/URL/prototype/toJSON/polyfill.js
       integrity: sha384-Fy884Llzghu/2ag7WG9GtW4BhSprpT9ZdbSKfetBSoD7V6VW1AE5hx1PA0LXVqlC
     LICENSE.md:
-      src: https://raw.githubusercontent.com/Financial-Times/polyfill-library/0ece79ce32/LICENSE.md
+      src: https://raw.githubusercontent.com/mrhenry/polyfill-library/0ece79ce32/LICENSE.md
       integrity: sha384-kXXDJ+mVdRawUrEAkIAPr1Lz40TzWjVxllGDCxB9+fHcLXtNsSYrKIvzNgTBF+En
 
 fetch-polyfill:
