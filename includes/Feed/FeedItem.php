@@ -42,18 +42,25 @@ class FeedItem {
 	/** @var Title */
 	public $title;
 
+	/** @var string */
 	public $description;
 
+	/** @var string */
 	public $url;
 
+	/** @var string */
 	public $date;
 
+	/** @var string */
 	public $author;
 
+	/** @var string */
 	public $uniqueId;
 
+	/** @var string */
 	public $comments;
 
+	/** @var bool */
 	public $rssIsPermalink = false;
 
 	protected UrlUtils $urlUtils;

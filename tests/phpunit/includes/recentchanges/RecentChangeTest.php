@@ -10,6 +10,7 @@ use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\Title\Title;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
 
@@ -21,8 +22,11 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	use MockTitleTrait;
 	use TempUserTestTrait;
 
+	/** @var PageIdentity */
 	protected $title;
+	/** @var PageIdentity */
 	protected $target;
+	/** @var UserIdentity */
 	protected $user;
 	private const USER_COMMENT = '<User comment about action>';
 
