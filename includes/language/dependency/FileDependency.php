@@ -27,7 +27,9 @@ use Wikimedia\AtEase\AtEase;
  * @ingroup Language
  */
 class FileDependency extends CacheDependency {
+	/** @var string */
 	private $filename;
+	/** @var null|false|int */
 	private $timestamp;
 
 	/**

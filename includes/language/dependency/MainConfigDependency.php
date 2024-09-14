@@ -25,7 +25,9 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Language
  */
 class MainConfigDependency extends CacheDependency {
+	/** @var string */
 	private $name;
+	/** @var mixed */
 	private $value;
 
 	public function __construct( $name ) {

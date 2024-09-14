@@ -90,6 +90,7 @@ class MniConverter extends LanguageConverterSpecific {
 		'ꯞ' => 'প',
 	];
 	private const NON_WORD_CHARACTER_PATTERN = "/[\s꯫\p{P}<>=\-\|$+^~]+?/u";
+	/** @var string[] */
 	private $CONSONANTS = [
 		'ꯀ' => 'ক',
 		'ꯈ' => 'খ',
@@ -118,6 +119,7 @@ class MniConverter extends LanguageConverterSpecific {
 		'ꯁ' => 'স',
 		'ꯍ' => 'হ',
 	];
+	/** @var string[] */
 	private $VOWELS = [
 		'ꯑ' => 'অ',
 		'ꯏ' => 'ই',
@@ -125,6 +127,7 @@ class MniConverter extends LanguageConverterSpecific {
 		'ꯢ' => 'ই',
 		'ꯨ' => 'ু',
 	];
+	/** @var string[] */
 	private $MTEI_TO_BENG_MAP = [
 		'꯫' => '।',
 		'꯭' => '্',

@@ -157,14 +157,20 @@ class CrhConverter extends LanguageConverterSpecific {
 
 		];
 
+	/** @var string[] */
 	public $mCyrl2LatnExceptions = [];
+	/** @var string[] */
 	public $mLatn2CyrlExceptions = [];
 
+	/** @var string[] */
 	public $mCyrl2LatnPatterns = [];
+	/** @var string[] */
 	public $mLatn2CyrlPatterns = [];
 
+	/** @var string[] */
 	public $mCyrlCleanUpRegexes = [];
 
+	/** @var bool */
 	public $mExceptionsLoaded = false;
 
 	/**
