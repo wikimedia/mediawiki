@@ -296,9 +296,9 @@ ChangesListWrapperWidget.prototype.updateEnhancedParentHighlight = function () {
  * @return {boolean} Whether the changes are grouped by page
  */
 ChangesListWrapperWidget.prototype.inEnhancedMode = function () {
-	const uri = new mw.Uri();
-	return ( uri.query.enhanced !== undefined && Number( uri.query.enhanced ) ) ||
-		( uri.query.enhanced === undefined && Number( mw.user.options.get( 'usenewrc' ) ) );
+	const enhanced = new URL( location.href ).searchParams.get( 'enhanced' );
+	return ( enhanced !== null && Number( enhanced ) ) ||
+		( enhanced === null && Number( mw.user.options.get( 'usenewrc' ) ) );
 };
 
 /**
