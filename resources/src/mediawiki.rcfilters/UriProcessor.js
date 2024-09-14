@@ -239,25 +239,6 @@ UriProcessor.prototype.isNewState = function ( currentUriQuery, updatedUriQuery 
 };
 
 /**
- * Check whether the given query has parameters that are
- * recognized as parameters we should load the system with
- *
- * @param {mw.Uri} [uriQuery] Given URI query
- * @return {boolean} Query contains valid recognized parameters
- */
-UriProcessor.prototype.doesQueryContainRecognizedParams = function ( uriQuery ) {
-	let anyValidInUrl,
-		validParameterNames = Object.keys( this.filtersModel.getEmptyParameterState() );
-
-	uriQuery = uriQuery || new mw.Uri().query;
-
-	anyValidInUrl = Object.keys( uriQuery ).some( ( parameter ) => validParameterNames.indexOf( parameter ) > -1 );
-
-	// URL version 2 is allowed to be empty or within nonrecognized params
-	return anyValidInUrl || this.getVersion( uriQuery ) === 2;
-};
-
-/**
  * Get the adjusted URI params based on the url version
  * If the urlversion is not 2, the parameters are merged with
  * the model's defaults.

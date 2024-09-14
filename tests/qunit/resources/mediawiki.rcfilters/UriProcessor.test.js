@@ -197,49 +197,6 @@
 		} );
 	} );
 
-	QUnit.test( 'doesQueryContainRecognizedParams', ( assert ) => {
-		var uriProcessor,
-			filtersModel = new rcfilters.dm.FiltersViewModel(),
-			cases = [
-				{
-					query: {},
-					result: false,
-					message: 'Empty query is not valid for load.'
-				},
-				{
-					query: { highlight: '1' },
-					result: false,
-					message: 'Highlight state alone is not valid for load'
-				},
-				{
-					query: { urlversion: '2' },
-					result: true,
-					message: 'urlversion=2 state alone is valid for load as an empty state'
-				},
-				{
-					query: { filter1: '1', foo: 'bar' },
-					result: true,
-					message: 'Existence of recognized parameters makes the query valid for load'
-				},
-				{
-					query: { foo: 'bar', debug: true },
-					result: false,
-					message: 'Only unrecognized parameters makes the query invalid for load'
-				}
-			];
-
-		filtersModel.initializeFilters( mockFilterStructure );
-		uriProcessor = new rcfilters.UriProcessor( filtersModel );
-
-		cases.forEach( ( testCase ) => {
-			assert.strictEqual(
-				uriProcessor.doesQueryContainRecognizedParams( testCase.query ),
-				testCase.result,
-				testCase.message
-			);
-		} );
-	} );
-
 	QUnit.test( '_getNormalizedQueryParams', ( assert ) => {
 		var uriProcessor,
 			filtersModel = new rcfilters.dm.FiltersViewModel(),
