@@ -95,19 +95,29 @@ class SpecialUndelete extends SpecialPage {
 	 */
 	private const REVISION_HISTORY_LIMIT = 500;
 
+	/** @var string */
 	private $mAction;
+	/** @var string */
 	private $mTarget;
+	/** @var string */
 	private $mTimestamp;
+	/** @var bool */
 	private $mRestore;
+	/** @var bool */
 	private $mRevdel;
+	/** @var bool */
 	private $mInvert;
+	/** @var string */
 	private $mFilename;
 	/** @var string[] */
 	private $mTargetTimestamp = [];
+	/** @var bool */
 	private $mAllowed;
+	/** @var bool */
 	private $mCanView;
 	/** @var string */
 	private $mComment = '';
+	/** @var string */
 	private $mToken;
 	/** @var bool|null */
 	private $mPreview;

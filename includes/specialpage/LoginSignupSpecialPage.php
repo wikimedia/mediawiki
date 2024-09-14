@@ -82,18 +82,30 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 */
 	protected string $mReturnToAnchor;
 
+	/** @var bool */
 	protected $mPosted;
+	/** @var string */
 	protected $mAction;
+	/** @var string */
 	protected $mToken;
+	/** @var bool */
 	protected $mStickHTTPS;
+	/** @var bool */
 	protected $mFromHTTP;
+	/** @var string */
 	protected $mEntryError = '';
+	/** @var string */
 	protected $mEntryErrorType = 'error';
+	/** @var string */
 	protected $mDisplay = 'page';
 
+	/** @var bool */
 	protected $mLoaded = false;
+	/** @var bool */
 	protected $mLoadedRequest = false;
+	/** @var string|null */
 	protected $mSecureLoginUrl;
+	/** @var string|true|null */
 	private $reasonValidatorResult = null;
 
 	/** @var string */

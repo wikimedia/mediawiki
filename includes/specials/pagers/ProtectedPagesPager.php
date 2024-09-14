@@ -37,15 +37,21 @@ use Wikimedia\Rdbms\IConnectionProvider;
 
 class ProtectedPagesPager extends TablePager {
 
+	/** @var string */
 	private $type;
+	/** @var string */
 	private $level;
 	/** @var int|null */
 	private $namespace;
+	/** @var string */
 	private $sizetype;
 	/** @var int */
 	private $size;
+	/** @var bool */
 	private $indefonly;
+	/** @var bool */
 	private $cascadeonly;
+	/** @var bool */
 	private $noredirect;
 
 	private CommentStore $commentStore;

@@ -16,6 +16,7 @@ use StatusValue;
  * @ingroup Auth
  */
 class SpecialUnlinkAccounts extends AuthManagerSpecialPage {
+	/** @inheritDoc */
 	protected static $allowedActions = [ AuthManager::ACTION_UNLINK ];
 
 	/**

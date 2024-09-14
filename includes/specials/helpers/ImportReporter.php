@@ -36,13 +36,21 @@ use MediaWiki\Xml\Xml;
 class ImportReporter extends ContextSource {
 	use ProtectedHookAccessorTrait;
 
+	/** @var string */
 	private $reason;
+	/** @var string[] */
 	private $logTags = [];
+	/** @var callable|null */
 	private $mOriginalLogCallback;
+	/** @var callable|null */
 	private $mOriginalPageOutCallback;
+	/** @var int */
 	private $mLogItemCount = 0;
+	/** @var int */
 	private $mPageCount = 0;
+	/** @var bool */
 	private $mIsUpload;
+	/** @var string */
 	private $mInterwiki;
 
 	/**

@@ -43,8 +43,11 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 class SpecialMIMESearch extends QueryPage {
+	/** @var string */
 	protected $major;
+	/** @var string */
 	protected $minor;
+	/** @var string */
 	protected $mime;
 
 	private ILanguageConverter $languageConverter;

@@ -37,6 +37,7 @@ use Wikimedia\Rdbms\LikeValue;
  * @author Rob Church <robchur@gmail.com>
  */
 class SpecialWithoutInterwiki extends PageQueryPage {
+	/** @var string */
 	private $prefix = '';
 
 	private NamespaceInfo $namespaceInfo;

@@ -98,6 +98,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 	/** @var bool */
 	protected $moveOverShared;
 
+	/** @var bool */
 	private $watch = false;
 
 	private MovePageFactory $movePageFactory;

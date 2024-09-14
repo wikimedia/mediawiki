@@ -66,6 +66,7 @@ class SpecialUserRights extends SpecialPage {
 	 * @var null|UserIdentity The user object of the target username or null.
 	 */
 	protected $mFetchedUser = null;
+	/** @var bool */
 	protected $isself = false;
 
 	private UserGroupManagerFactory $userGroupManagerFactory;

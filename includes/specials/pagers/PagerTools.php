@@ -15,7 +15,9 @@ use MediaWiki\Revision\RevisionRecord;
  * @since 1.40
  */
 class PagerTools {
+	/** @var bool */
 	private $preventClickjacking = false;
+	/** @var array */
 	private $tools = [];
 
 	/**

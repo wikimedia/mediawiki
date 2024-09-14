@@ -70,11 +70,13 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	public const EDIT_NORMAL = 3;
 	public const VIEW = 4;
 
+	/** @var string|null */
 	protected $successMessage;
 
 	/** @var TOCData */
 	protected $tocData;
 
+	/** @var array[] */
 	private $badItems = [];
 
 	private TitleParser $titleParser;

@@ -40,9 +40,11 @@ class SpecialPrefixIndex extends SpecialAllPages {
 	/**
 	 * Whether to remove the searched prefix from the displayed link. Useful
 	 * for inclusion of a set of subpages in a root page.
+	 * @var bool
 	 */
 	protected $stripPrefix = false;
 
+	/** @var bool */
 	protected $hideRedirects = false;
 
 	// Inherit $maxPerPage

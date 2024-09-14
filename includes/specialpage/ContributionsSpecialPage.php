@@ -66,7 +66,9 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @since 1.43 Refactored from SpecialContributions
  */
 class ContributionsSpecialPage extends IncludableSpecialPage {
+	/** @var array */
 	protected $opts = [];
+	/** @var bool */
 	protected $formErrors = false;
 
 	protected IConnectionProvider $dbProvider;

@@ -107,6 +107,7 @@ class SpecialUpload extends SpecialPage {
 
 	/** @var WebRequest|FauxRequest The request this form is supposed to handle */
 	public $mRequest;
+	/** @var string */
 	public $mSourceType;
 
 	/** @var string The cache key to use to retreive the status of your async upload */
@@ -117,26 +118,32 @@ class SpecialUpload extends SpecialPage {
 
 	/** @var LocalFile */
 	public $mLocalFile;
+	/** @var bool */
 	public $mUploadClicked;
 
 	// User input variables from the "description" section
 
 	/** @var string The requested target file name */
 	public $mDesiredDestName;
+	/** @var string */
 	public $mComment;
+	/** @var string */
 	public $mLicense;
 
 	// User input variables from the root section
 
-	// phpcs:ignore MediaWiki.Commenting.PropertyDocumentation.WrongStyle
+	/** @var bool */
 	public $mIgnoreWarning;
+	/** @var bool */
 	public $mWatchthis;
+	/** @var string */
 	public $mCopyrightStatus;
+	/** @var string */
 	public $mCopyrightSource;
 
 	// Hidden variables
 
-	// phpcs:ignore MediaWiki.Commenting.PropertyDocumentation.WrongStyle
+	/** @var string */
 	public $mDestWarningAck;
 
 	/** @var bool The user followed an "overwrite this file" link */
@@ -144,6 +151,7 @@ class SpecialUpload extends SpecialPage {
 
 	/** @var bool The user clicked "Cancel and return to upload form" button */
 	public $mCancelUpload;
+	/** @var bool */
 	public $mTokenOk;
 
 	/** @var bool Subclasses can use this to determine whether a file was uploaded */

@@ -38,6 +38,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @ingroup SpecialPage
  */
 class SpecialWantedCategories extends WantedQueryPage {
+	/** @var int[] */
 	private $currentCategoryCounts;
 
 	private ILanguageConverter $languageConverter;
