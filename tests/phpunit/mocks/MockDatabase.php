@@ -28,6 +28,7 @@ use Wikimedia\Rdbms\TransactionProfiler;
  * @since 1.42
  */
 class MockDatabase extends Database {
+	/** @var int */
 	private $nextInsertId = 0;
 
 	public function __construct( $options = [] ) {

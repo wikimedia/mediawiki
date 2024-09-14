@@ -25,7 +25,9 @@ use MediaWiki\Status\Status;
  * Fake PoolCounter that always fails
  */
 class MockPoolCounterFailing extends PoolCounter {
+	/** @var Status|null */
 	private $mockAcquire;
+	/** @var Status|null */
 	private $mockRelease;
 
 	public function __construct( $conf, $type, $key ) {

@@ -12,6 +12,7 @@ use MediaWiki\Json\JsonDeserializer;
 class JsonDeserializableSuperClass implements JsonDeserializable {
 	use JsonDeserializableTrait;
 
+	/** @var mixed */
 	private $superClassField;
 
 	public function __construct( $superClassFieldValue ) {

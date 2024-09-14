@@ -16,11 +16,13 @@ use MediaWiki\User\User;
  * for mocks.
  */
 class DummySessionBackend {
+	/** @var array */
 	public $data = [
 		'foo' => 1,
 		'bar' => 2,
 		0 => 'zero',
 	];
+	/** @var bool */
 	public $dirty = false;
 
 	public function &getData() {
