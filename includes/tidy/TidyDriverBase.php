@@ -6,6 +6,7 @@ namespace MediaWiki\Tidy;
  * Base class for HTML cleanup utilities
  */
 abstract class TidyDriverBase {
+	/** @var array */
 	protected $config;
 
 	public function __construct( $config ) {

@@ -42,6 +42,7 @@ use MediaWiki\WikiMap\WikiMap;
  * @ingroup Mail
  */
 class UserMailer {
+	/** @var string */
 	private static $mErrorString;
 
 	/**

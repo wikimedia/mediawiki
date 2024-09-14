@@ -37,6 +37,7 @@ class LinksMigration {
 	/** @var LinkTargetLookup */
 	private $linkTargetLookup;
 
+	/** @var array[] */
 	public static $mapping = [
 		'templatelinks' => [
 			'config' => -1,
@@ -61,6 +62,7 @@ class LinksMigration {
 		],
 	];
 
+	/** @var string[] */
 	public static $prefixToTableMapping = [
 		'tl' => 'templatelinks',
 		'pl' => 'pagelinks',

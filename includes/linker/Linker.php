@@ -1966,6 +1966,7 @@ class Linker {
 		return $tooltip;
 	}
 
+	/** @var (string|false)[] */
 	public static $accesskeycache;
 
 	/**

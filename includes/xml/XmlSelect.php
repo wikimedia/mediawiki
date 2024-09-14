@@ -28,9 +28,13 @@ use MediaWiki\Html\Html;
  * Class for generating HTML <select> or <datalist> elements.
  */
 class XmlSelect {
+	/** @var array[] */
 	protected $options = [];
+	/** @var string|array|false */
 	protected $default = false;
+	/** @var string|array */
 	protected $tagName = 'select';
+	/** @var (string|int)[] */
 	protected $attributes = [];
 
 	public function __construct( $name = false, $id = false, $default = false ) {

@@ -67,12 +67,16 @@ class RemexMungerData {
 	/**
 	 * This is true if the node is a body or blockquote, which activates
 	 * p-wrapping of child nodes.
+	 *
+	 * @var bool
 	 */
 	public $needsPWrapping = false;
 
 	/**
 	 * The number of child nodes, not counting whitespace-only text nodes or
 	 * comments.
+	 *
+	 * @var int
 	 */
 	public $nonblankNodeCount = 0;
 

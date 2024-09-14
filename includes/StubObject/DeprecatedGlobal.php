@@ -27,6 +27,7 @@ namespace MediaWiki\StubObject;
  * when people use globals that we do not want them to.
  */
 class DeprecatedGlobal extends StubObject {
+	/** @var string|false */
 	protected $version;
 
 	/**
