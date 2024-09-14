@@ -13,7 +13,9 @@ use MediaWiki\Json\JsonDeserializableTrait;
 abstract class MessageParam implements JsonDeserializable {
 	use JsonDeserializableTrait;
 
+	/** @var string */
 	protected $type;
+	/** @var mixed */
 	protected $value;
 
 	/**

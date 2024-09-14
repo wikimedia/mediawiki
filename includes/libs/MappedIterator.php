@@ -33,7 +33,8 @@ class MappedIterator extends FilterIterator {
 	/** @var array */
 	protected $cache = [];
 
-	protected $rewound = false; // boolean; whether rewind() has been called
+	/** @var bool whether rewind() has been called */
+	protected $rewound = false;
 
 	/**
 	 * Build a new iterator from a base iterator by having the former wrap the

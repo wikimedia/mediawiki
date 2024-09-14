@@ -31,16 +31,26 @@
  * @ingroup Mime
  */
 class MSCompoundFileReader {
+	/** @var resource */
 	private $file;
+	/** @var array */
 	private $header;
+	/** @var string */
 	private $mime;
+	/** @var string */
 	private $mimeFromClsid;
+	/** @var string|null */
 	private $error;
+	/** @var int|null */
 	private $errorCode;
+	/** @var bool */
 	private $valid = false;
 
+	/** @var int */
 	private $sectorLength;
+	/** @var int[] */
 	private $difat;
+	/** @var int[][] */
 	private $fat = [];
 
 	private const TYPE_UNALLOCATED = 0;

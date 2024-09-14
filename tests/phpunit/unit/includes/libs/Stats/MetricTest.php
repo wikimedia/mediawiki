@@ -106,6 +106,7 @@ class MetricTest extends TestCase {
 		'dogstatsd.timing.noComponent' => [ 'mediawiki.test_unit:2|ms' ],
 	];
 
+	/** @var StatsCache */
 	private $cache;
 
 	public function handleTest( $test, $type, $format ) {

@@ -10,6 +10,7 @@ class HTTPFileStreamerTest extends TestCase {
 
 	private const FILE = MW_INSTALL_PATH . '/tests/phpunit/data/media/test.jpg';
 
+	/** @var int */
 	private $obLevel = null;
 
 	protected function setUp(): void {
