@@ -27,8 +27,6 @@ use Wikimedia\ObjectCache\HashBagOStuff;
  * @covers \PPNode_Hash_Attr
  */
 class PreprocessorTest extends MediaWikiIntegrationTestCase {
-	protected $mTitle = 'Page title';
-	protected $mPPNodeCount = 0;
 	/** @var ParserOptions */
 	protected $mOptions;
 	/** @var Preprocessor */
