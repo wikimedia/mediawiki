@@ -479,7 +479,7 @@ class Names {
 		'skr' => 'سرائیکی', # Saraiki (multiple scripts - defaults to Arabic)
 		'skr-arab' => 'سرائیکی', # Saraiki (Arabic script)
 		'sl' => 'slovenščina', # Slovenian
-		'sli' => 'Schläsch', # Lower Selisian
+		'sli' => 'Schläsch', # Lower Silesian
 		'sm' => 'Gagana Samoa', # Samoan
 		'sma' => 'åarjelsaemien', # Southern Sami
 		'smn' => 'anarâškielâ', # Inari Sami
