@@ -25,10 +25,7 @@
  */
 class ShConverter extends LanguageConverter {
 
-	/**
-	 * @var string[]
-	 */
-	private $mToCyrillic = [
+	private const TO_CYRILLIC = [
 		'dž' => 'џ',
 		'lj' => 'љ',
 		'nj' => 'њ',
@@ -112,7 +109,7 @@ class ShConverter extends LanguageConverter {
 
 	protected function loadDefaultTables(): array {
 		return [
-			'sh-cyrl' => new ReplacementArray( $this->mToCyrillic ),
+			'sh-cyrl' => new ReplacementArray( self::TO_CYRILLIC ),
 			'sh-latn' => new ReplacementArray(),
 		];
 	}

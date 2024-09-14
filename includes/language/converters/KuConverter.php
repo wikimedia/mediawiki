@@ -25,10 +25,7 @@
  */
 class KuConverter extends LanguageConverterSpecific {
 
-	/**
-	 * @var string[]
-	 */
-	public $mArabicToLatin = [
+	private const ARABIC_TO_LATIN = [
 		'ب' => 'b', 'ج' => 'c', 'چ' => 'ç', 'د' => 'd', 'ف' => 'f', 'گ' => 'g', 'ھ' => 'h',
 		'ہ' => 'h', 'ه' => 'h', 'ح' => 'h', 'ژ' => 'j', 'ك' => 'k', 'ک' => 'k', 'ل' => 'l',
 		'م' => 'm', 'ن' => 'n', 'پ' => 'p', 'ق' => 'q', 'ر' => 'r', 'س' => 's', 'ش' => 'ş',
@@ -70,10 +67,7 @@ class KuConverter extends LanguageConverterSpecific {
 		'٩' => '9', # U+0669
 	];
 
-	/**
-	 * @var string[]
-	 */
-	public $mLatinToArabic = [
+	private const LATIN_TO_ARABIC = [
 		'b' => 'ب', 'c' => 'ج', 'ç' => 'چ', 'd' => 'د', 'f' => 'ف', 'g' => 'گ',
 		'h' => 'ه', 'j' => 'ژ', 'k' => 'ک', 'l' => 'ل',
 		'm' => 'م', 'n' => 'ن', 'p' => 'پ', 'q' => 'ق', 'r' => 'ر', 's' => 'س', 'ş' => 'ش',
@@ -165,8 +159,8 @@ class KuConverter extends LanguageConverterSpecific {
 
 	protected function loadDefaultTables(): array {
 		return [
-			'ku-latn' => new ReplacementArray( $this->mArabicToLatin ),
-			'ku-arab' => new ReplacementArray( $this->mLatinToArabic ),
+			'ku-latn' => new ReplacementArray( self::ARABIC_TO_LATIN ),
+			'ku-arab' => new ReplacementArray( self::LATIN_TO_ARABIC ),
 			'ku' => new ReplacementArray()
 		];
 	}

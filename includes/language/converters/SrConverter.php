@@ -31,10 +31,7 @@
  */
 class SrConverter extends LanguageConverterSpecific {
 
-	/**
-	 * @var string[]
-	 */
-	public $mToLatin = [
+	private const TO_LATIN = [
 		'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd',
 		'ђ' => 'đ', 'е' => 'e', 'ж' => 'ž', 'з' => 'z', 'и' => 'i',
 		'ј' => 'j', 'к' => 'k', 'л' => 'l', 'љ' => 'lj', 'м' => 'm',
@@ -50,10 +47,7 @@ class SrConverter extends LanguageConverterSpecific {
 		'Х' => 'H', 'Ц' => 'C', 'Ч' => 'Č', 'Џ' => 'Dž', 'Ш' => 'Š',
 	];
 
-	/**
-	 * @var string[]
-	 */
-	public $mToCyrillics = [
+	private const TO_CYRILLICS = [
 		'a' => 'а', 'b' => 'б', 'c' => 'ц', 'č' => 'ч', 'ć' => 'ћ',
 		'd' => 'д', 'dž' => 'џ', 'đ' => 'ђ', 'e' => 'е', 'f' => 'ф',
 		'g' => 'г', 'h' => 'х', 'i' => 'и', 'j' => 'ј', 'k' => 'к',
@@ -104,8 +98,8 @@ class SrConverter extends LanguageConverterSpecific {
 
 	protected function loadDefaultTables(): array {
 		return [
-			'sr-ec' => new ReplacementArray( $this->mToCyrillics ),
-			'sr-el' => new ReplacementArray( $this->mToLatin ),
+			'sr-ec' => new ReplacementArray( self::TO_CYRILLICS ),
+			'sr-el' => new ReplacementArray( self::TO_LATIN ),
 			'sr' => new ReplacementArray()
 		];
 	}

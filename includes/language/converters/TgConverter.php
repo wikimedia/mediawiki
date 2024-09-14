@@ -25,10 +25,7 @@
  */
 class TgConverter extends LanguageConverter {
 
-	/**
-	 * @var array
-	 */
-	private $table = [
+	private const TABLE = [
 		'а' => 'a',
 		'б' => 'b',
 		'в' => 'v',
@@ -118,7 +115,7 @@ class TgConverter extends LanguageConverter {
 
 	protected function loadDefaultTables(): array {
 		return [
-			'tg-latn' => new ReplacementArray( $this->table ),
+			'tg-latn' => new ReplacementArray( self::TABLE ),
 			'tg' => new ReplacementArray()
 		];
 	}

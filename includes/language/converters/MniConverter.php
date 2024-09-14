@@ -25,22 +25,22 @@
  * @ingroup Languages
  */
 class MniConverter extends LanguageConverterSpecific {
-	private $O = 'ꯑ';
-	private $OO = 'ꯑꯣ';
-	private $U = 'ꯎ';
-	private $EE = 'ꯑꯤ';
-	private $YA = 'ꯌ';
-	private $Y_ = 'য';
-	private $WA = 'ꯋ';
-	private $BA = 'ꯕ';
-	private $NA_ = 'ꯟ';
-	private $NA = 'ꯅ';
-	private $DIACRITIC_AA = 'ꯥ';
-	private $HALANTA = '꯭';
-	private $SKIP = '';
-	private $PERIOD = '꯫';
-	private $PA_ = 'ꯞ';
-	private $DIACRITICS_WITH_O = [
+	private const O = 'ꯑ';
+	private const OO = 'ꯑꯣ';
+	private const U = 'ꯎ';
+	private const EE = 'ꯑꯤ';
+	private const YA = 'ꯌ';
+	private const Y_ = 'য';
+	private const WA = 'ꯋ';
+	private const BA = 'ꯕ';
+	private const NA_ = 'ꯟ';
+	private const NA = 'ꯅ';
+	private const DIACRITIC_AA = 'ꯥ';
+	private const HALANTA = '꯭';
+	private const SKIP = '';
+	private const PERIOD = '꯫';
+	private const PA_ = 'ꯞ';
+	private const DIACRITICS_WITH_O = [
 		'ꯣ' => 'ো',
 		'ꯤ' => 'ী',
 		'ꯥ' => 'া',
@@ -49,7 +49,7 @@ class MniConverter extends LanguageConverterSpecific {
 		'ꯩ' => 'ৈ',
 		'ꯪ' => 'ং',
 	];
-	private $CONJUGATE_WITH_O = [
+	private const CONJUGATE_WITH_O = [
 		'ꯑꯣ' => 'ও',
 		'ꯑꯤ' => 'ঈ',
 		'ꯑꯥ' => 'আ',
@@ -58,8 +58,8 @@ class MniConverter extends LanguageConverterSpecific {
 		'ꯑꯩ' => 'ঐ',
 		'ꯑꯪ' => 'অং',
 	];
-	private $NOT_WEIRD_AFTER_NA_ = [ 'ꯇ', 'ꯊ', 'ꯗ', 'ꯙ', 'ꯟ', 'ꯕ', 'ꯌ', 'ꯁ' ];
-	private $NUMERALS = [
+	private const NOT_WEIRD_AFTER_NA_ = [ 'ꯇ', 'ꯊ', 'ꯗ', 'ꯙ', 'ꯟ', 'ꯕ', 'ꯌ', 'ꯁ' ];
+	private const NUMERALS = [
 		'꯰' => '০',
 		'꯱' => '১',
 		'꯲' => '২',
@@ -71,7 +71,7 @@ class MniConverter extends LanguageConverterSpecific {
 		'꯸' => '৮',
 		'꯹' => '৯',
 	];
-	private $HALANTA_CONSONANTS = [
+	private const HALANTA_CONSONANTS = [
 		'ꯟ' => 'ন্',
 		'ꯛ' => 'ক্',
 		'ꯝ' => 'ম্',
@@ -80,7 +80,7 @@ class MniConverter extends LanguageConverterSpecific {
 		'ꯠ' => 'ৎ',
 		'ꯞ' => 'প্',
 	];
-	private $HALANTA_CONSONANTS_TO_NORMAL = [
+	private const HALANTA_CONSONANTS_TO_NORMAL = [
 		'ꯟ' => 'ন',
 		'ꯛ' => 'ক',
 		'ꯝ' => 'ম',
@@ -89,7 +89,7 @@ class MniConverter extends LanguageConverterSpecific {
 		'ꯠ' => 'ৎ',
 		'ꯞ' => 'প',
 	];
-	private $NON_WORD_CHARACTER_PATTERN = "/[\s꯫\p{P}<>=\-\|$+^~]+?/u";
+	private const NON_WORD_CHARACTER_PATTERN = "/[\s꯫\p{P}<>=\-\|$+^~]+?/u";
 	private $CONSONANTS = [
 		'ꯀ' => 'ক',
 		'ꯈ' => 'খ',
@@ -132,22 +132,22 @@ class MniConverter extends LanguageConverterSpecific {
 
 	public function __construct( $_ ) {
 		parent::__construct( $_ );
-		$this->VOWELS += $this->DIACRITICS_WITH_O + $this->CONJUGATE_WITH_O;
-		$this->CONSONANTS += $this->HALANTA_CONSONANTS;
+		$this->VOWELS += self::DIACRITICS_WITH_O + self::CONJUGATE_WITH_O;
+		$this->CONSONANTS += self::HALANTA_CONSONANTS;
 		$this->MTEI_TO_BENG_MAP += $this->VOWELS + $this->CONSONANTS;
-		$this->MTEI_TO_BENG_MAP += $this->NUMERALS;
+		$this->MTEI_TO_BENG_MAP += self::NUMERALS;
 	}
 
 	private function isBeginning( $position, $text ) {
 		$at_first = $position === 0;
-		return $at_first || preg_match( $this->NON_WORD_CHARACTER_PATTERN, $text[$position - 1] );
+		return $at_first || preg_match( self::NON_WORD_CHARACTER_PATTERN, $text[$position - 1] );
 	}
 
 	private function isEndOfWord( $char ) {
-		if ( $char === $this->PERIOD ) {
+		if ( $char === self::PERIOD ) {
 			return true;
 		}
-		$status = preg_match( $this->NON_WORD_CHARACTER_PATTERN, $char, $matches );
+		$status = preg_match( self::NON_WORD_CHARACTER_PATTERN, $char, $matches );
 		return count( $matches ) > 0;
 	}
 
@@ -158,52 +158,52 @@ class MniConverter extends LanguageConverterSpecific {
 		while ( $i < $l ) {
 			$char = $chars[$i];
 			if (
-				$char === $this->O &&
+				$char === self::O &&
 				$i + 1 < $l &&
-				array_key_exists( $chars[ $i + 1 ], $this->DIACRITICS_WITH_O )
+				array_key_exists( $chars[ $i + 1 ], self::DIACRITICS_WITH_O )
 			) {
 				/**
 				 * We have only 3 true vowels,
 				 * ꯑ(a), ꯏ(i), ꯎ (u)
 				 * Others are just extension from "a" by mixing with diacritics
 				 */
-				yield $this->CONJUGATE_WITH_O[$char . $chars[ $i + 1 ]];
+				yield self::CONJUGATE_WITH_O[$char . $chars[ $i + 1 ]];
 				$i += 1;
 			} elseif (
-				$char === $this->HALANTA &&
+				$char === self::HALANTA &&
 				$i > 0 &&
-				array_key_exists( $chars[ $i - 1 ], $this->HALANTA_CONSONANTS )
+				array_key_exists( $chars[ $i - 1 ], self::HALANTA_CONSONANTS )
 			) {
 				// Remove halanta if the consonant has halanta already
-				yield $this->SKIP;
+				yield self::SKIP;
 			} elseif (
-				array_key_exists( $char, $this->HALANTA_CONSONANTS ) &&
+				array_key_exists( $char, self::HALANTA_CONSONANTS ) &&
 				( $i === $l - 1 || ( $i + 1 < $l &&
 					$this->isEndOfWord( $chars[ $i + 1 ] )
 				) )
 			) {
 				// Remove halanta if this is the last character of the word
-				yield $this->HALANTA_CONSONANTS_TO_NORMAL[$char];
-			} elseif ( $char === $this->YA &&
-				$i > 0 && $chars[ $i - 1 ] === $this->HALANTA ) {
+				yield self::HALANTA_CONSONANTS_TO_NORMAL[$char];
+			} elseif ( $char === self::YA &&
+				$i > 0 && $chars[ $i - 1 ] === self::HALANTA ) {
 				// য + ্ = য়
-				yield $this->Y_;
+				yield self::Y_;
 			} elseif (
-				$char === $this->WA &&
-				$i - 2 >= 0 && $chars[ $i - 1 ] === $this->HALANTA &&
+				$char === self::WA &&
+				$i - 2 >= 0 && $chars[ $i - 1 ] === self::HALANTA &&
 				array_key_exists( $chars[ $i - 2 ], $this->CONSONANTS )
 			) {
 				// ব + ্ + র = ব্র
-				yield $this->CONSONANTS[$this->BA];
+				yield $this->CONSONANTS[self::BA];
 			} elseif (
-				$char === $this->PA_ && $i + 1 < $l && $chars[ $i + 1 ] === 'ꯀ'
+				$char === self::PA_ && $i + 1 < $l && $chars[ $i + 1 ] === 'ꯀ'
 			) {
 				// do not conjugate with halanta if it's followed by "ক"
-				yield $this->HALANTA_CONSONANTS_TO_NORMAL[$char];
+				yield self::HALANTA_CONSONANTS_TO_NORMAL[$char];
 			} elseif (
-				$char === $this->NA_ &&
+				$char === self::NA_ &&
 				$i + 1 < $l &&
-				!in_array( $chars[ $i + 1 ], $this->NOT_WEIRD_AFTER_NA_ ) &&
+				!in_array( $chars[ $i + 1 ], self::NOT_WEIRD_AFTER_NA_ ) &&
 				array_key_exists( $chars[ $i + 1 ], $this->CONSONANTS )
 			) {
 				/**
@@ -211,30 +211,30 @@ class MniConverter extends LanguageConverterSpecific {
 				 * (except, ট, ঠ, ড, ঢ, , ত, থ, দ, ধ, ন, ব, য, য়) = weird
 				 * Any consonant + ্ + ন =  maybe ok
 				 */
-				yield $this->MTEI_TO_BENG_MAP[$this->NA];
+				yield $this->MTEI_TO_BENG_MAP[self::NA];
 				$i += 1;
 				continue;
-			} elseif ( $char === $this->U && !$this->isBeginning( $i, $text ) ) {
+			} elseif ( $char === self::U && !$this->isBeginning( $i, $text ) ) {
 				// উ/ঊ in the middle of words are often replaced by ও
-				yield $this->MTEI_TO_BENG_MAP[$this->OO];
-			} elseif ( $char === $this->O &&
-				$i + 2 < $l && $chars[$i + 1] === $this->EE[0] && $chars[ $i + 2 ] === $this->EE[1] ) {
+				yield $this->MTEI_TO_BENG_MAP[self::OO];
+			} elseif ( $char === self::O &&
+				$i + 2 < $l && $chars[$i + 1] === self::EE[0] && $chars[ $i + 2 ] === self::EE[1] ) {
 				/**
 				 * Instead of হাঈবা, people love to use হায়বা.
 				 * But this is only in the case when ee or ya is
 				 * in the middle of the words,
 				 * never to do it if it's in the beginning.
 				 */
-				yield $this->MTEI_TO_BENG_MAP[$this->YA];
+				yield $this->MTEI_TO_BENG_MAP[self::YA];
 			} elseif (
-				!array_key_exists( $char, $this->HALANTA_CONSONANTS ) &&
+				!array_key_exists( $char, self::HALANTA_CONSONANTS ) &&
 				array_key_exists( $char, $this->CONSONANTS ) &&
 				( $i === $l - 1 || ( $i + 1 < $l &&
 					$this->isEndOfWord( $chars[ $i + 1 ] )
 				) )
 			) {
 				// Consonants without halantas should end with diacritics of aa sound everytime.
-				yield $this->MTEI_TO_BENG_MAP[$char] . $this->MTEI_TO_BENG_MAP[$this->DIACRITIC_AA];
+				yield $this->MTEI_TO_BENG_MAP[$char] . $this->MTEI_TO_BENG_MAP[self::DIACRITIC_AA];
 			} else {
 				yield (
 					array_key_exists( $char, $this->MTEI_TO_BENG_MAP ) ?

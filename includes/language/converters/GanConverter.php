@@ -66,8 +66,8 @@ class GanConverter extends LanguageConverter {
 
 	protected function loadDefaultTables(): array {
 		return [
-			'gan-hans' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2Hans ),
-			'gan-hant' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2Hant ),
+			'gan-hans' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::ZH_TO_HANS ),
+			'gan-hant' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::ZH_TO_HANT ),
 			'gan' => new ReplacementArray
 		];
 	}

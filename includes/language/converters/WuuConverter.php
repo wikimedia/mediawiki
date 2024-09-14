@@ -66,8 +66,8 @@ class WuuConverter extends LanguageConverter {
 
 	protected function loadDefaultTables(): array {
 		return [
-			'wuu-hans' => new ReplacementArray( ZhConversion::$zh2Hans ),
-			'wuu-hant' => new ReplacementArray( ZhConversion::$zh2Hant ),
+			'wuu-hans' => new ReplacementArray( ZhConversion::ZH_TO_HANS ),
+			'wuu-hant' => new ReplacementArray( ZhConversion::ZH_TO_HANT ),
 			'wuu' => new ReplacementArray,
 		];
 	}
