@@ -54,12 +54,19 @@ class ChangesList extends ContextSource {
 
 	public const CSS_CLASS_PREFIX = 'mw-changeslist-';
 
+	/** @var bool */
 	protected $watchlist = false;
+	/** @var string */
 	protected $lastdate;
+	/** @var string[] */
 	protected $message;
+	/** @var array */
 	protected $rc_cache;
+	/** @var int */
 	protected $rcCacheIndex;
+	/** @var bool */
 	protected $rclistOpen;
+	/** @var int */
 	protected $rcMoveIndex;
 
 	/** @var callable */

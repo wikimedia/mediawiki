@@ -135,6 +135,7 @@ class RecentChange implements Taggable {
 
 	/** @var array */
 	public $mAttribs = [];
+	/** @var array */
 	public $mExtra = [];
 
 	/**
@@ -147,7 +148,9 @@ class RecentChange implements Taggable {
 	 */
 	private $mPerformer = null;
 
-	public $numberofWatchingusers = 0; # Dummy to prevent error message in SpecialRecentChangesLinked
+	/** @var int */
+	public $numberofWatchingusers = 0;
+	/** @var bool */
 	public $notificationtimestamp;
 
 	/**

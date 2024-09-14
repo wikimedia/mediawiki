@@ -34,6 +34,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @ingroup Feed
  */
 class ChangesFeed {
+	/** @var string */
 	private $format;
 
 	/**
