@@ -1,5 +1,5 @@
 <?php
-/** Pu-Xian Min (Traditional Han script) (莆仙語（繁體）)
+/** Puxian (Traditional Han script) (莆仙語（繁體）)
  *
  * @file
  * @ingroup Languages

@@ -1,5 +1,5 @@
 <?php
-/** Pu-Xian Min (莆仙語 / Pó-sing-gṳ̂)
+/** Puxian (莆仙語 / Pó-sing-gṳ̂)
  *
  * @file
  * @ingroup Languages
