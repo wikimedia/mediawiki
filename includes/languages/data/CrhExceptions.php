@@ -14,24 +14,20 @@ class CrhExceptions {
 
 	private const WB = '\b'; # default word boundary; may be updated in the future
 
-	public function __construct() {
-		$this->loadRegs();
-	}
+	/** @var string[] */
+	private array $Cyrl2LatnExceptions = [];
+	/** @var string[] */
+	private array $Latn2CyrlExceptions = [];
 
 	/** @var string[] */
-	public $Cyrl2LatnExceptions = [];
+	private array $Cyrl2LatnPatterns = [];
 	/** @var string[] */
-	public $Latn2CyrlExceptions = [];
+	private array $Latn2CyrlPatterns = [];
 
 	/** @var string[] */
-	public $Cyrl2LatnPatterns = [];
+	private array $lc2uc = [];
 	/** @var string[] */
-	public $Latn2CyrlPatterns = [];
-
-	/** @var string[] */
-	private $lc2uc;
-	/** @var string[] */
-	private $uc2lc;
+	private array $uc2lc = [];
 
 	private function initLcUc( $lcChars, $ucChars, $reinit = false ) {
 		# bail if we've already done this, unless we are re-initializing
@@ -65,8 +61,7 @@ class CrhExceptions {
 		return $this->myUc( mb_substr( $string, 0, 1 ) ) . $this->myLc( mb_substr( $string, 1 ) );
 	}
 
-	private function addMappings( $mapArray, &$A2B, &$B2A, $exactCase = false,
-			$prePat = '', $postPat = '' ) {
+	private function addMappings( $mapArray, &$A2B, &$B2A, $exactCase = false, $prePat = '', $postPat = '' ) {
 		foreach ( $mapArray as $WordA => $WordB ) {
 			if ( !$exactCase ) {
 				$ucA = $this->myUc( $WordA );
@@ -118,8 +113,8 @@ class CrhExceptions {
 			$this->Cyrl2LatnPatterns, $this->Latn2CyrlPatterns, false, '/', self::WB . '/u' );
 
 		# tack on one-way mappings to the ends of the prefix and suffix patterns
-		$this->Cyrl2LatnPatterns += $this->Cyrl2LatnRegexes;
-		$this->Latn2CyrlPatterns += $this->Latn2CyrlRegexes;
+		$this->Cyrl2LatnPatterns += self::CYRL_TO_LATN_REGEXES;
+		$this->Latn2CyrlPatterns += self::LATN_TO_CYRL_REGEXES;
 
 		return [ $this->Cyrl2LatnExceptions, $this->Latn2CyrlExceptions, $this->Cyrl2LatnPatterns,
 			$this->Latn2CyrlPatterns, self::CYRL_CLEAN_UP_REGEXES ];
@@ -144,7 +139,6 @@ class CrhExceptions {
 	 * variants: all lowercase, all uppercase, first letter capitalized
 	 */
 	private const MULTI_CASE_MAPPINGS = [
-
 		#### Cyrillic to Latin
 		'аджыумер' => 'acıümer', 'аджыусеин' => 'acıüsein', 'алейкум' => 'aleyküm',
 		'бозтюс' => 'boztüs', 'боливия' => 'boliviya', 'большевик' => 'bolşevik', 'борис' => 'boris',
@@ -354,7 +348,6 @@ class CrhExceptions {
 		'ярославль' => 'yaroslavl', 'благовеще' => 'blagoveşçe', 'мальдив' => 'maldiv',
 		'бальбек' => 'balbek', 'альчик' => 'alçik', 'харьков' => 'harkov', 'волынск' => 'volınsk',
 		'волынь' => 'volın',
-
 	];
 
 	/**
@@ -386,7 +379,6 @@ class CrhExceptions {
 		'льная' => 'lnaya', 'льное' => 'lnoye', 'льный' => 'lnıy', 'льний' => 'lniy',
 		'льская' => 'lskaya', 'льский' => 'lskiy', 'льское' => 'lskoye', 'ополь' => 'opol',
 		'щее' => 'şçeye', 'щий' => 'şçiy', 'щая' => 'şçaya', 'цепс' => 'tseps',
-
 	];
 
 	/**
@@ -412,392 +404,373 @@ class CrhExceptions {
 
 		# more prefixes
 		'ком-кок' => 'köm-kök',
-
 	];
 
-	/** @var string[] */
-	private $Cyrl2LatnRegexes = [];
-	/** @var string[] */
-	private $Latn2CyrlRegexes = [];
+	private const CYRL_TO_LATN_REGEXES = [
+		# относятся ко всему слову
+		# whole words
 
-	private function loadRegs() {
-		// Regexes as keys need to be declared in a function.
-		$this->Cyrl2LatnRegexes = [
-			# относятся ко всему слову
-			# whole words
+		// TODO: refactor upper/lower/first capital whole words without
+		// regexes into simpler list
 
-			// TODO: refactor upper/lower/first capital whole words without
-			// regexes into simpler list
+		'/' . self::WB . 'КъЮШ' . self::WB . '/u' => 'QYŞ',
+		'/' . self::WB . 'ЮШ' . self::WB . '/u' => 'YŞ',
 
-			'/' . self::WB . 'КъЮШ' . self::WB . '/u' => 'QYŞ',
-			'/' . self::WB . 'ЮШ' . self::WB . '/u' => 'YŞ',
+		'/' . self::WB . 'кок' . self::WB . '/u' => 'kök',
+		'/' . self::WB . 'Кок' . self::WB . '/u' => 'Kök',
+		'/' . self::WB . 'КОК' . self::WB . '/u' => 'KÖK',
+		'/' . self::WB . 'ком-кок' . self::WB . '/u' => 'köm-kök',
+		'/' . self::WB . 'Ком-кок' . self::WB . '/u' => 'Köm-kök',
+		'/' . self::WB . 'КОМ-КОК' . self::WB . '/u' => 'KÖM-KÖK',
 
-			'/' . self::WB . 'кок' . self::WB . '/u' => 'kök',
-			'/' . self::WB . 'Кок' . self::WB . '/u' => 'Kök',
-			'/' . self::WB . 'КОК' . self::WB . '/u' => 'KÖK',
-			'/' . self::WB . 'ком-кок' . self::WB . '/u' => 'köm-kök',
-			'/' . self::WB . 'Ком-кок' . self::WB . '/u' => 'Köm-kök',
-			'/' . self::WB . 'КОМ-КОК' . self::WB . '/u' => 'KÖM-KÖK',
+		'/' . self::WB . 'коп' . self::WB . '/u' => 'köp',
+		'/' . self::WB . 'Коп' . self::WB . '/u' => 'Köp',
+		'/' . self::WB . 'КОП' . self::WB . '/u' => 'KÖP',
 
-			'/' . self::WB . 'коп' . self::WB . '/u' => 'köp',
-			'/' . self::WB . 'Коп' . self::WB . '/u' => 'Köp',
-			'/' . self::WB . 'КОП' . self::WB . '/u' => 'KÖP',
+		'/' . self::WB . 'курк' . self::WB . '/u' => 'kürk',
+		'/' . self::WB . 'Курк' . self::WB . '/u' => 'Kürk',
+		'/' . self::WB . 'КУРК' . self::WB . '/u' => 'KÜRK',
 
-			'/' . self::WB . 'курк' . self::WB . '/u' => 'kürk',
-			'/' . self::WB . 'Курк' . self::WB . '/u' => 'Kürk',
-			'/' . self::WB . 'КУРК' . self::WB . '/u' => 'KÜRK',
+		'/' . self::WB . 'ог' . self::WB . '/u' => 'ög',
+		'/' . self::WB . 'Ог' . self::WB . '/u' => 'Ög',
+		'/' . self::WB . 'ОГ' . self::WB . '/u' => 'ÖG',
 
-			'/' . self::WB . 'ог' . self::WB . '/u' => 'ög',
-			'/' . self::WB . 'Ог' . self::WB . '/u' => 'Ög',
-			'/' . self::WB . 'ОГ' . self::WB . '/u' => 'ÖG',
+		'/' . self::WB . 'юрип' . self::WB . '/u' => 'yürip',
+		'/' . self::WB . 'Юрип' . self::WB . '/u' => 'Yürip',
+		'/' . self::WB . 'ЮРИП' . self::WB . '/u' => 'YÜRİP',
 
-			'/' . self::WB . 'юрип' . self::WB . '/u' => 'yürip',
-			'/' . self::WB . 'Юрип' . self::WB . '/u' => 'Yürip',
-			'/' . self::WB . 'ЮРИП' . self::WB . '/u' => 'YÜRİP',
+		'/' . self::WB . 'юз' . self::WB . '/u' => 'yüz',
+		'/' . self::WB . 'Юз' . self::WB . '/u' => 'Yüz',
+		'/' . self::WB . 'ЮЗ' . self::WB . '/u' => 'YÜZ',
 
-			'/' . self::WB . 'юз' . self::WB . '/u' => 'yüz',
-			'/' . self::WB . 'Юз' . self::WB . '/u' => 'Yüz',
-			'/' . self::WB . 'ЮЗ' . self::WB . '/u' => 'YÜZ',
+		'/' . self::WB . 'юк' . self::WB . '/u' => 'yük',
+		'/' . self::WB . 'Юк' . self::WB . '/u' => 'Yük',
+		'/' . self::WB . 'ЮК' . self::WB . '/u' => 'YÜK',
 
-			'/' . self::WB . 'юк' . self::WB . '/u' => 'yük',
-			'/' . self::WB . 'Юк' . self::WB . '/u' => 'Yük',
-			'/' . self::WB . 'ЮК' . self::WB . '/u' => 'YÜK',
+		'/' . self::WB . 'буюп' . self::WB . '/u' => 'büyüp',
+		'/' . self::WB . 'Буюп' . self::WB . '/u' => 'Büyüp',
+		'/' . self::WB . 'БУЮП' . self::WB . '/u' => 'BÜYÜP',
 
-			'/' . self::WB . 'буюп' . self::WB . '/u' => 'büyüp',
-			'/' . self::WB . 'Буюп' . self::WB . '/u' => 'Büyüp',
-			'/' . self::WB . 'БУЮП' . self::WB . '/u' => 'BÜYÜP',
+		'/' . self::WB . 'буюк' . self::WB . '/u' => 'büyük',
+		'/' . self::WB . 'Буюк' . self::WB . '/u' => 'Büyük',
+		'/' . self::WB . 'БУЮК' . self::WB . '/u' => 'BÜYÜK',
 
-			'/' . self::WB . 'буюк' . self::WB . '/u' => 'büyük',
-			'/' . self::WB . 'Буюк' . self::WB . '/u' => 'Büyük',
-			'/' . self::WB . 'БУЮК' . self::WB . '/u' => 'BÜYÜK',
+		'/' . self::WB . 'джонк' . self::WB . '/u' => 'cönk',
+		'/' . self::WB . 'Джонк' . self::WB . '/u' => 'Cönk',
+		'/' . self::WB . 'ДЖОНК' . self::WB . '/u' => 'CÖNK',
+		'/' . self::WB . 'джонкю' . self::WB . '/u' => 'cönkü',
+		'/' . self::WB . 'Джонкю' . self::WB . '/u' => 'Cönkü',
+		'/' . self::WB . 'ДЖОНКЮ' . self::WB . '/u' => 'CÖNKÜ',
 
-			'/' . self::WB . 'джонк' . self::WB . '/u' => 'cönk',
-			'/' . self::WB . 'Джонк' . self::WB . '/u' => 'Cönk',
-			'/' . self::WB . 'ДЖОНК' . self::WB . '/u' => 'CÖNK',
-			'/' . self::WB . 'джонкю' . self::WB . '/u' => 'cönkü',
-			'/' . self::WB . 'Джонкю' . self::WB . '/u' => 'Cönkü',
-			'/' . self::WB . 'ДЖОНКЮ' . self::WB . '/u' => 'CÖNKÜ',
+		'/' . self::WB . 'куркчи/u' => 'kürkçi',
+		'/' . self::WB . 'Куркчи/u' => 'Kürkçi',
+		'/' . self::WB . 'КУРКЧИ/u' => 'KÜRKÇI',
 
-			'/' . self::WB . 'куркчи/u' => 'kürkçi',
-			'/' . self::WB . 'Куркчи/u' => 'Kürkçi',
-			'/' . self::WB . 'КУРКЧИ/u' => 'KÜRKÇI',
+		'/' . self::WB . 'устке' . self::WB . '/u' => 'üstke',
+		'/' . self::WB . 'Устке' . self::WB . '/u' => 'Üstke',
+		'/' . self::WB . 'УСТКЕ' . self::WB . '/u' => 'ÜSTKE',
+		'/' . self::WB . 'устте' . self::WB . '/u' => 'üstte',
+		'/' . self::WB . 'Устте' . self::WB . '/u' => 'Üstte',
+		'/' . self::WB . 'УСТТЕ' . self::WB . '/u' => 'ÜSTTE',
+		'/' . self::WB . 'усттен' . self::WB . '/u' => 'üstten',
+		'/' . self::WB . 'Усттен' . self::WB . '/u' => 'Üstten',
+		'/' . self::WB . 'УСТТЕН' . self::WB . '/u' => 'ÜSTTEN',
 
-			'/' . self::WB . 'устке' . self::WB . '/u' => 'üstke',
-			'/' . self::WB . 'Устке' . self::WB . '/u' => 'Üstke',
-			'/' . self::WB . 'УСТКЕ' . self::WB . '/u' => 'ÜSTKE',
-			'/' . self::WB . 'устте' . self::WB . '/u' => 'üstte',
-			'/' . self::WB . 'Устте' . self::WB . '/u' => 'Üstte',
-			'/' . self::WB . 'УСТТЕ' . self::WB . '/u' => 'ÜSTTE',
-			'/' . self::WB . 'усттен' . self::WB . '/u' => 'üstten',
-			'/' . self::WB . 'Усттен' . self::WB . '/u' => 'Üstten',
-			'/' . self::WB . 'УСТТЕН' . self::WB . '/u' => 'ÜSTTEN',
+		# отдельно стоящие Ё и Я
+		# stand-alone Ё and Я
+		'/' . self::WB . 'Я' . self::WB . '/u' => 'Ya',
+		'/' . self::WB . 'Ё' . self::WB . '/u' => 'Yo',
 
-			# отдельно стоящие Ё и Я
-			# stand-alone Ё and Я
-			'/' . self::WB . 'Я' . self::WB . '/u' => 'Ya',
-			'/' . self::WB . 'Ё' . self::WB . '/u' => 'Yo',
+		# относятся к началу слова
+		# word prefixes
+		'/' . self::WB . 'КъЮШн/u' => 'QYŞn',
+		'/' . self::WB . 'ЮШн/u' => 'YŞn',
 
-			# относятся к началу слова
-			# word prefixes
-			'/' . self::WB . 'КъЮШн/u' => 'QYŞn',
-			'/' . self::WB . 'ЮШн/u' => 'YŞn',
+		# need to convert digraphs (гъ, къ, нъ, дж) now to match patterns
+		'/гъ/u' => 'ğ',
+		'/Г[ъЪ]/u' => 'Ğ',
+		'/къ/u' => 'q',
+		'/К[ъЪ]/u' => 'Q',
+		'/нъ/u' => 'ñ',
+		'/Н[ъЪ]/u' => 'Ñ',
+		'/дж/u' => 'c',
+		'/Д[жЖ]/u' => 'C',
 
-			# need to convert digraphs (гъ, къ, нъ, дж) now to match patterns
-			'/гъ/u' => 'ğ',
-			'/Г[ъЪ]/u' => 'Ğ',
-			'/къ/u' => 'q',
-			'/К[ъЪ]/u' => 'Q',
-			'/нъ/u' => 'ñ',
-			'/Н[ъЪ]/u' => 'Ñ',
-			'/дж/u' => 'c',
-			'/Д[жЖ]/u' => 'C',
+		# о => ö
+		'/' . self::WB . '([' . Crh::C_M_CONS . '])о([' . Crh::C_CONS . '])([' . Crh::C_CONS . '])([еиэюьü])/u'
+			=> '$1ö$2$3$4',
+		'/' . self::WB . 'о([' . Crh::C_CONS . '])([' . Crh::C_CONS . '])([еиэюьü])/u' => 'ö$1$2$3',
+		'/' . self::WB . '([' . Crh::C_M_CONS . '])О([' . Crh::C_CONS . '])([' . Crh::C_CONS . '])([еиэюьüЕИЭЮЬÜ])/u'
+			 => '$1Ö$2$3$4',
+		'/' . self::WB . 'О([' . Crh::C_CONS . '])([' . Crh::C_CONS . '])([еиэюьüЕИЭЮЬÜ])/u'
+			=> 'Ö$1$2$3',
 
-			# о => ö
-			'/' . self::WB . '([' . Crh::C_M_CONS . '])о([' . Crh::C_CONS . '])([' . Crh::C_CONS .
-				'])([еиэюьü])/u' => '$1ö$2$3$4',
-			'/' . self::WB . 'о([' . Crh::C_CONS . '])([' . Crh::C_CONS . '])([еиэюьü])/u' => 'ö$1$2$3',
-			'/' . self::WB . '([' . Crh::C_M_CONS . '])О([' . Crh::C_CONS . '])([' . Crh::C_CONS .
-				'])([еиэюьüЕИЭЮЬÜ])/u' => '$1Ö$2$3$4',
-			'/' . self::WB . 'О([' . Crh::C_CONS . '])([' . Crh::C_CONS . '])([еиэюьüЕИЭЮЬÜ])/u'
-				=> 'Ö$1$2$3',
+		'/' . self::WB . '([' . Crh::C_M_CONS . '])о([' . Crh::C_CONS . '])([еиэюьü])/u' => '$1ö$2$3',
+		'/' . self::WB . 'о([' . Crh::C_CONS . '])([еиэюьü])/u' => 'ö$1$2',
+		'/' . self::WB . '([' . Crh::C_M_CONS . '])О([' . Crh::C_CONS . '])([еиэюьüЕИЭЮЬÜ])/u' => '$1Ö$2$3',
+		'/' . self::WB . 'О([' . Crh::C_CONS . '])([еиэюьüЕИЭЮЬÜ])/u' => 'Ö$1$2',
 
-			'/' . self::WB . '([' . Crh::C_M_CONS . '])о([' . Crh::C_CONS . '])([еиэюьü])/u' => '$1ö$2$3',
-			'/' . self::WB . 'о([' . Crh::C_CONS . '])([еиэюьü])/u' => 'ö$1$2',
-			'/' . self::WB . '([' . Crh::C_M_CONS . '])О([' . Crh::C_CONS . '])([еиэюьüЕИЭЮЬÜ])/u'
-				=> '$1Ö$2$3',
-			'/' . self::WB . 'О([' . Crh::C_CONS . '])([еиэюьüЕИЭЮЬÜ])/u' => 'Ö$1$2',
+		# ё => yö
+		'/' . self::WB . 'ё([' . Crh::C_CONS . '])([' . Crh::C_CONS . '])([ьеюü])/u' => 'yö$1$2$3',
+		'/' . self::WB . 'Ё([' . Crh::C_CONS_LC . '])([' . Crh::C_CONS_LC . '])([ьеюü])/u' => 'Yö$1$2$3',
+		'/' . self::WB . 'Ё([' . Crh::C_CONS_UC . '])([' . Crh::C_CONS_UC . '])([ЬЕЮÜ])/u' => 'YÖ$1$2$3',
+		'/' . self::WB . 'ё([' . Crh::C_CONS . '])([ьеюü])/u' => 'yö$1$2',
+		'/' . self::WB . 'Ё([' . Crh::C_CONS_LC . '])([ьеюü])/u' => 'Yö$1$2',
+		'/' . self::WB . 'Ё([' . Crh::C_CONS_UC . '])([ЬЕЮÜ])/u' => 'YÖ$1$2',
 
-			# ё => yö
-			'/' . self::WB . 'ё([' . Crh::C_CONS . '])([' . Crh::C_CONS . '])([ьеюü])/u' => 'yö$1$2$3',
-			'/' . self::WB . 'Ё([' . Crh::C_CONS_LC . '])([' . Crh::C_CONS_LC . '])([ьеюü])/u' => 'Yö$1$2$3',
-			'/' . self::WB . 'Ё([' . Crh::C_CONS_UC . '])([' . Crh::C_CONS_UC . '])([ЬЕЮÜ])/u' => 'YÖ$1$2$3',
-			'/' . self::WB . 'ё([' . Crh::C_CONS . '])([ьеюü])/u' => 'yö$1$2',
-			'/' . self::WB . 'Ё([' . Crh::C_CONS_LC . '])([ьеюü])/u' => 'Yö$1$2',
-			'/' . self::WB . 'Ё([' . Crh::C_CONS_UC . '])([ЬЕЮÜ])/u' => 'YÖ$1$2',
+		# у => ü, ую => üyü
+		'/' . self::WB . '([' . Crh::C_M_CONS . '])у([' . Crh::C_CONS . '])([' . Crh::C_CONS . '])([еиэюьü])/u'
+			=> '$1ü$2$3$4',
+		'/' . self::WB . 'у([' . Crh::C_CONS . '])([' . Crh::C_CONS . '])([еиэюьü])/u' => 'ü$1$2$3',
+		'/' . self::WB . 'ую([' . Crh::C_CONS . '])([' . Crh::C_CONS . '])([еиэюьü])/u' => 'üyü$1$2$3',
+		'/' . self::WB . '([' . Crh::C_M_CONS . '])У([' . Crh::C_CONS . '])([' . Crh::C_CONS . '])([еиэюьüЕИЭЮЬÜ])/u'
+			=> '$1Ü$2$3$4',
+		'/' . self::WB . 'У([' . Crh::C_CONS . '])([' . Crh::C_CONS . '])([еиэюьüЕИЭЮЬÜ])/u' => 'Ü$1$2$3',
+		'/' . self::WB . 'Ую([' . Crh::C_CONS . '])([' . Crh::C_CONS . '])([еиэюьü])/u' => 'Üyü$1$2$3',
+		'/' . self::WB . 'УЮ([' . Crh::C_CONS . '])([' . Crh::C_CONS . '])([еиэюьü])/u' => 'ÜYÜ$1$2$3',
 
-			# у => ü, ую => üyü
-			'/' . self::WB . '([' . Crh::C_M_CONS . '])у([' . Crh::C_CONS . '])([' . Crh::C_CONS .
-				'])([еиэюьü])/u' => '$1ü$2$3$4',
-			'/' . self::WB . 'у([' . Crh::C_CONS . '])([' . Crh::C_CONS . '])([еиэюьü])/u' => 'ü$1$2$3',
-			'/' . self::WB . 'ую([' . Crh::C_CONS . '])([' . Crh::C_CONS . '])([еиэюьü])/u' => 'üyü$1$2$3',
-			'/' . self::WB . '([' . Crh::C_M_CONS . '])У([' . Crh::C_CONS . '])([' . Crh::C_CONS .
-				'])([еиэюьüЕИЭЮЬÜ])/u' => '$1Ü$2$3$4',
-			'/' . self::WB . 'У([' . Crh::C_CONS . '])([' . Crh::C_CONS . '])([еиэюьüЕИЭЮЬÜ])/u'
-				=> 'Ü$1$2$3',
-			'/' . self::WB . 'Ую([' . Crh::C_CONS . '])([' . Crh::C_CONS . '])([еиэюьü])/u' => 'Üyü$1$2$3',
-			'/' . self::WB . 'УЮ([' . Crh::C_CONS . '])([' . Crh::C_CONS . '])([еиэюьü])/u' => 'ÜYÜ$1$2$3',
+		'/' . self::WB . '([' . Crh::C_M_CONS . '])у([' . Crh::C_CONS . '])([еиэюьü])/u' => '$1ü$2$3',
+		'/' . self::WB . 'у([' . Crh::C_CONS . '])([еиэюьü])/u' => 'ü$1$2',
+		'/' . self::WB . 'ую([' . Crh::C_CONS . '])([еиэюьü])/u' => 'üyü$1$2',
+		'/' . self::WB . '([' . Crh::C_M_CONS . '])У([' . Crh::C_CONS . '])([еиэюьüЕИЭЮЬÜ])/u' => '$1Ü$2$3',
+		'/' . self::WB . 'У([' . Crh::C_CONS . '])([еиэюьüЕИЭЮЬÜ])/u' => 'Ü$1$2',
+		'/' . self::WB . 'Ую([' . Crh::C_CONS . '])([еиэюьü])/u' => 'Üyü$1$2',
+		'/' . self::WB . 'УЮ([' . Crh::C_CONS . '])([еиэюьü])/u' => 'ÜYÜ$1$2',
 
-			'/' . self::WB . '([' . Crh::C_M_CONS . '])у([' . Crh::C_CONS . '])([еиэюьü])/u' => '$1ü$2$3',
-			'/' . self::WB . 'у([' . Crh::C_CONS . '])([еиэюьü])/u' => 'ü$1$2',
-			'/' . self::WB . 'ую([' . Crh::C_CONS . '])([еиэюьü])/u' => 'üyü$1$2',
-			'/' . self::WB . '([' . Crh::C_M_CONS . '])У([' . Crh::C_CONS . '])([еиэюьüЕИЭЮЬÜ])/u'
-				=> '$1Ü$2$3',
-			'/' . self::WB . 'У([' . Crh::C_CONS . '])([еиэюьüЕИЭЮЬÜ])/u' => 'Ü$1$2',
-			'/' . self::WB . 'Ую([' . Crh::C_CONS . '])([еиэюьü])/u' => 'Üyü$1$2',
-			'/' . self::WB . 'УЮ([' . Crh::C_CONS . '])([еиэюьü])/u' => 'ÜYÜ$1$2',
+		# ю => yü
+		'/' . self::WB . '([аыоуеиёюАЫОУЕИЁЮ]?)ю([' . Crh::C_CONS . '])([' . Crh::C_CONS . '])([ьеюü])/u'
+			=> '$1yü$2$3$4',
+		'/' . self::WB . '([АЫОУЕИЁЮ]?)Ю([' . Crh::C_CONS_LC . '])([' . Crh::C_CONS_LC . '])([ьеюü])/u'
+			=> '$1Yü$2$3$4',
+		'/' . self::WB . '([АЫОУЕИЁЮ]?)Ю([' . Crh::C_CONS_UC . '])([' . Crh::C_CONS_UC . '])([ЬЕЮÜ])/u'
+			=> '$1YÜ$2$3$4',
+		'/' . self::WB . '([аыоуеиёюАЫОУЕИЁЮ]?)ю([' . Crh::C_CONS . '])([ьеюü])/u' => '$1yü$2$3',
+		'/' . self::WB . '([АЫОУЕИЁЮ]?)Ю([' . Crh::C_CONS_LC . '])([ьеюü])/u' => '$1Yü$2$3',
+		'/' . self::WB . '([АЫОУЕИЁЮ]?)Ю([' . Crh::C_CONS_UC . '])([ЬЕЮÜ])/u' => '$1YÜ$2$3',
 
-			# ю => yü
-			'/' . self::WB . '([аыоуеиёюАЫОУЕИЁЮ]?)ю([' . Crh::C_CONS . '])([' . Crh::C_CONS . '])([ьеюü])/u'
-				=> '$1yü$2$3$4',
-			'/' . self::WB . '([АЫОУЕИЁЮ]?)Ю([' . Crh::C_CONS_LC . '])([' . Crh::C_CONS_LC . '])([ьеюü])/u'
-				=> '$1Yü$2$3$4',
-			'/' . self::WB . '([АЫОУЕИЁЮ]?)Ю([' . Crh::C_CONS_UC . '])([' . Crh::C_CONS_UC . '])([ЬЕЮÜ])/u'
-				=> '$1YÜ$2$3$4',
-			'/' . self::WB . '([аыоуеиёюАЫОУЕИЁЮ]?)ю([' . Crh::C_CONS . '])([ьеюü])/u' => '$1yü$2$3',
-			'/' . self::WB . '([АЫОУЕИЁЮ]?)Ю([' . Crh::C_CONS_LC . '])([ьеюü])/u' => '$1Yü$2$3',
-			'/' . self::WB . '([АЫОУЕИЁЮ]?)Ю([' . Crh::C_CONS_UC . '])([ЬЕЮÜ])/u' => '$1YÜ$2$3',
+		# e => ye, я => ya
+		'/' . self::WB . 'е/u' => 'ye',
+		'/' . self::WB . 'Е([' . Crh::C_LC . 'cğñqöü])/u' => 'Ye$1',
+		'/' . self::WB . 'Е([' . Crh::C_UC . 'CĞÑQÖÜ])/u' => 'YE$1',
+		'/' . self::WB . 'я/u' => 'ya',
+		'/' . self::WB . 'Я([' . Crh::C_LC . 'cğñqöü])/u' => 'Ya$1',
+		'/' . self::WB . 'Я([' . Crh::C_UC . 'CĞÑQÖÜ])/u' => 'YA$1',
+		'/([аеёиоуыэюяйьъaeöüАЕЁИОУЫЭЮЯЙЬЪAEÖÜ])е/u' => '$1ye',
+		'/([аеёиоуыэюяйьъaeöüАЕЁИОУЫЭЮЯЙЬЪAEÖÜ])Е([' . Crh::C_LC . 'cğñqöü])/u' => '$1Ye$2',
+		'/([аеёиоуыэюяйьъaeöüАЕЁИОУЫЭЮЯЙЬЪAEÖÜ])Е([' . Crh::C_UC . 'CĞÑQÖÜ])/u' => '$1YE$2',
+		'/([аеёиоуыэюяйьъaeöüğqАЕЁИОУЫЭЮЯЙЬЪAEÖÜĞQ])я/u' => '$1ya',
+		'/([аеёиоуыэюяйьъaeöüğqАЕЁИОУЫЭЮЯЙЬЪAEÖÜĞQ])Я([' . Crh::C_LC . 'cğñqöü])/u' => '$1Ya$2',
+		'/([аеёиоуыэюяйьъaeöüğqАЕЁИОУЫЭЮЯЙЬЪAEÖÜĞQ])Я([' . Crh::C_UC . 'CĞÑQÖÜ])/u' => '$1YA$2',
 
-			# e => ye, я => ya
-			'/' . self::WB . 'е/u' => 'ye',
-			'/' . self::WB . 'Е([' . Crh::C_LC . 'cğñqöü])/u' => 'Ye$1',
-			'/' . self::WB . 'Е([' . Crh::C_UC . 'CĞÑQÖÜ])/u' => 'YE$1',
-			'/' . self::WB . 'я/u' => 'ya',
-			'/' . self::WB . 'Я([' . Crh::C_LC . 'cğñqöü])/u' => 'Ya$1',
-			'/' . self::WB . 'Я([' . Crh::C_UC . 'CĞÑQÖÜ])/u' => 'YA$1',
-			'/([аеёиоуыэюяйьъaeöüАЕЁИОУЫЭЮЯЙЬЪAEÖÜ])е/u' => '$1ye',
-			'/([аеёиоуыэюяйьъaeöüАЕЁИОУЫЭЮЯЙЬЪAEÖÜ])Е([' . Crh::C_LC . 'cğñqöü])/u' => '$1Ye$2',
-			'/([аеёиоуыэюяйьъaeöüАЕЁИОУЫЭЮЯЙЬЪAEÖÜ])Е([' . Crh::C_UC . 'CĞÑQÖÜ])/u' => '$1YE$2',
-			'/([аеёиоуыэюяйьъaeöüğqАЕЁИОУЫЭЮЯЙЬЪAEÖÜĞQ])я/u' => '$1ya',
-			'/([аеёиоуыэюяйьъaeöüğqАЕЁИОУЫЭЮЯЙЬЪAEÖÜĞQ])Я([' . Crh::C_LC . 'cğñqöü])/u' => '$1Ya$2',
-			'/([аеёиоуыэюяйьъaeöüğqАЕЁИОУЫЭЮЯЙЬЪAEÖÜĞQ])Я([' . Crh::C_UC . 'CĞÑQÖÜ])/u' => '$1YA$2',
+		# не зависят от места в слове
+		# position independent
 
-			# не зависят от места в слове
-			# position independent
+		# слова на -льон
+		# words with -льон
+		'/льон/u' => 'lyon',
+		'/ЛЬОН/u' => 'LYON',
 
-			# слова на -льон
-			# words with -льон
-			'/льон/u' => 'lyon',
-			'/ЛЬОН/u' => 'LYON',
+		'/козь([^я])/u' => 'köz$1',
+		'/Козь([^я])/u' => 'Köz$1',
+		'/КОЗЬ([^Я])/u' => 'KÖZ$1',
 
-			'/козь([^я])/u' => 'köz$1',
-			'/Козь([^я])/u' => 'Köz$1',
-			'/КОЗЬ([^Я])/u' => 'KÖZ$1',
+		# Ö, Ü 1-й заход: ё, ю после согласных > ö, ü
+		# Ö, Ü 1st instance: ё, ю after consonants > ö, ü
+		'/([' . Crh::C_CONS . '])ю/u' => '$1ü',
+		'/([' . Crh::C_CONS . '])Ю/u' => '$1Ü',
+		'/([' . Crh::C_CONS . '])ё/u' => '$1ö',
+		'/([' . Crh::C_CONS . '])Ё/u' => '$1Ö',
 
-			# Ö, Ü 1-й заход: ё, ю после согласных > ö, ü
-			# Ö, Ü 1st instance: ё, ю after consonants > ö, ü
-			'/([' . Crh::C_CONS . '])ю/u' => '$1ü',
-			'/([' . Crh::C_CONS . '])Ю/u' => '$1Ü',
-			'/([' . Crh::C_CONS . '])ё/u' => '$1ö',
-			'/([' . Crh::C_CONS . '])Ё/u' => '$1Ö',
+		# остальные вхождения о, у, ё, ю
+		# other occurrences of о, у, ё, ю
+		'/Ё([' . Crh::C_UC . 'CĞÑQÖÜ])/u' => 'YO$1',
+		'/Ю([' . Crh::C_UC . 'CĞÑQÖÜ])/u' => 'YU$1',
 
-			# остальные вхождения о, у, ё, ю
-			# other occurrences of о, у, ё, ю
-			'/Ё([' . Crh::C_UC . 'CĞÑQÖÜ])/u' => 'YO$1',
-			'/Ю([' . Crh::C_UC . 'CĞÑQÖÜ])/u' => 'YU$1',
+		# Ц & Щ
+		'/Ц([' . Crh::C_UC . 'CĞÑQÖÜ])/u' => 'TS$1',
+		'/Щ([' . Crh::C_UC . 'CĞÑQÖÜ])/u' => 'ŞÇ$1',
+	];
 
-			# Ц & Щ
-			'/Ц([' . Crh::C_UC . 'CĞÑQÖÜ])/u' => 'TS$1',
-			'/Щ([' . Crh::C_UC . 'CĞÑQÖÜ])/u' => 'ŞÇ$1',
-		];
+	private const LATN_TO_CYRL_REGEXES = [
+		// TODO: refactor upper/lower/first capital whole words without
+		// regexes into simpler list
 
-		$this->Latn2CyrlRegexes = [
+		'/' . self::WB . 'an' . self::WB . '/u' => 'ань',
+		'/' . self::WB . 'An' . self::WB . '/u' => 'Ань',
+		'/' . self::WB . 'AN' . self::WB . '/u' => 'АНЬ',
+		'/' . self::WB . 'ange' . self::WB . '/u' => 'аньге',
+		'/' . self::WB . 'Ange' . self::WB . '/u' => 'Аньге',
+		'/' . self::WB . 'ANGE' . self::WB . '/u' => 'АНЬГЕ',
+		'/' . self::WB . 'ande' . self::WB . '/u' => 'аньде',
+		'/' . self::WB . 'Ande' . self::WB . '/u' => 'Аньде',
+		'/' . self::WB . 'ANDE' . self::WB . '/u' => 'АНЬДЕ',
+		'/' . self::WB . 'anki' . self::WB . '/u' => 'аньки',
+		'/' . self::WB . 'Anki' . self::WB . '/u' => 'Аньки',
+		'/' . self::WB . 'ANKİ' . self::WB . '/u' => 'АНЬКИ',
+		'/' . self::WB . 'deral' . self::WB . '/u' => 'деръал',
+		'/' . self::WB . 'Deral' . self::WB . '/u' => 'Деръал',
+		'/' . self::WB . 'DERAL' . self::WB . '/u' => 'ДЕРЪАЛ',
+		'/' . self::WB . 'kör' . self::WB . '/u' => 'кёр',
+		'/' . self::WB . 'Kör' . self::WB . '/u' => 'Кёр',
+		'/' . self::WB . 'KÖR' . self::WB . '/u' => 'КЁР',
+		'/' . self::WB . 'mer' . self::WB . '/u' => 'мэр',
+		'/' . self::WB . 'Mer' . self::WB . '/u' => 'Мэр',
+		'/' . self::WB . 'MER' . self::WB . '/u' => 'МЭР',
 
-			// TODO: refactor upper/lower/first capital whole words without
-			// regexes into simpler list
+		'/' . self::WB . 'cönk/u' => 'джонк',
+		'/' . self::WB . 'Cönk/u' => 'Джонк',
+		'/' . self::WB . 'CÖNK/u' => 'ДЖОНК',
 
-			'/' . self::WB . 'an' . self::WB . '/u' => 'ань',
-			'/' . self::WB . 'An' . self::WB . '/u' => 'Ань',
-			'/' . self::WB . 'AN' . self::WB . '/u' => 'АНЬ',
-			'/' . self::WB . 'ange' . self::WB . '/u' => 'аньге',
-			'/' . self::WB . 'Ange' . self::WB . '/u' => 'Аньге',
-			'/' . self::WB . 'ANGE' . self::WB . '/u' => 'АНЬГЕ',
-			'/' . self::WB . 'ande' . self::WB . '/u' => 'аньде',
-			'/' . self::WB . 'Ande' . self::WB . '/u' => 'Аньде',
-			'/' . self::WB . 'ANDE' . self::WB . '/u' => 'АНЬДЕ',
-			'/' . self::WB . 'anki' . self::WB . '/u' => 'аньки',
-			'/' . self::WB . 'Anki' . self::WB . '/u' => 'Аньки',
-			'/' . self::WB . 'ANKİ' . self::WB . '/u' => 'АНЬКИ',
-			'/' . self::WB . 'deral' . self::WB . '/u' => 'деръал',
-			'/' . self::WB . 'Deral' . self::WB . '/u' => 'Деръал',
-			'/' . self::WB . 'DERAL' . self::WB . '/u' => 'ДЕРЪАЛ',
-			'/' . self::WB . 'kör' . self::WB . '/u' => 'кёр',
-			'/' . self::WB . 'Kör' . self::WB . '/u' => 'Кёр',
-			'/' . self::WB . 'KÖR' . self::WB . '/u' => 'КЁР',
-			'/' . self::WB . 'mer' . self::WB . '/u' => 'мэр',
-			'/' . self::WB . 'Mer' . self::WB . '/u' => 'Мэр',
-			'/' . self::WB . 'MER' . self::WB . '/u' => 'МЭР',
+		# (y)etsin -> етсин/этсин
+		# note that target starts with CYRILLIC е/Е!
+		'/yetsin/u' => 'етсин',
+		'/Yetsin/u' => 'Етсин',
+		'/YETSİN/u' => 'ЕТСИН',
 
-			'/' . self::WB . 'cönk/u' => 'джонк',
-			'/' . self::WB . 'Cönk/u' => 'Джонк',
-			'/' . self::WB . 'CÖNK/u' => 'ДЖОНК',
+		# note that target starts with LATIN e/E!
+		# (other transformations will determine CYRILLIC е/э as needed)
+		'/etsin/u' => 'eтсин',
+		'/Etsin/u' => 'Eтсин',
+		'/ETSİN/u' => 'EТСИН',
 
-			# (y)etsin -> етсин/этсин
-			# note that target starts with CYRILLIC е/Е!
-			'/yetsin/u' => 'етсин',
-			'/Yetsin/u' => 'Етсин',
-			'/YETSİN/u' => 'ЕТСИН',
+		# буква Ё - первый заход
+		# расставляем Ь после согласных
+		'/' . self::WB . '([yY])ö([' . Crh::L_N_CONS . '])([aAuU' . Crh::L_CONS . ']|' . self::WB . ')/u'
+			=> '$1ö$2ь$3',
+		'/' . self::WB . '([yY])Ö([' . Crh::L_N_CONS . '])([aAuU' . Crh::L_CONS . ']|' . self::WB . ')/u'
+			=> '$1Ö$2Ь$3',
+		'/' . self::WB . 'AQŞ([^AEI]|' . self::WB . ')/u' => 'АКъШ$1',
 
-			# note that target starts with LATIN e/E!
-			# (other transformations will determine CYRILLIC е/э as needed)
-			'/etsin/u' => 'eтсин',
-			'/Etsin/u' => 'Eтсин',
-			'/ETSİN/u' => 'EТСИН',
+		# буква Ю - первый заход
+		# расставляем Ь после согласных
+		'/' . self::WB . '([yY])ü([' . Crh::L_N_CONS . '])([aAuU' . Crh::L_CONS . ']|' . self::WB . ')/u'
+			=> '$1ü$2ь$3',
+		'/' . self::WB . '([yY])Ü([' . Crh::L_N_CONS . '])([aAuU' . Crh::L_CONS . ']|' . self::WB . ')/u'
+			=> '$1Ü$2Ь$3',
 
-			# буква Ё - первый заход
-			# расставляем Ь после согласных
-			'/' . self::WB . '([yY])ö([' . Crh::L_N_CONS . '])([aAuU' . Crh::L_CONS . ']|' . self::WB . ')/u'
-				=> '$1ö$2ь$3',
-			'/' . self::WB . '([yY])Ö([' . Crh::L_N_CONS . '])([aAuU' . Crh::L_CONS . ']|' . self::WB . ')/u'
-				=> '$1Ö$2Ь$3',
-			'/' . self::WB . 'AQŞ([^AEI]|' . self::WB . ')/u' => 'АКъШ$1',
+		'/' . self::WB . '([bcgkpşBCGKPŞ])ö([' . Crh::L_N_CONS . '])([' . Crh::L_CONS . ']|' . self::WB . ')/u'
+			=> '$1ö$2ь$3',
+		'/' . self::WB . '([bcgkpşBCGKPŞ])Ö([' . Crh::L_N_CONS . '])([' . Crh::L_CONS . ']|' . self::WB . ')/u'
+			=> '$1Ö$2Ь$3',
+		'/' . self::WB . '([bcgkpşBCGKPŞ])ü([' . Crh::L_N_CONS . '])([' . Crh::L_CONS . ']|' . self::WB . ')/u'
+			=> '$1ü$2ь$3',
+		'/' . self::WB . '([bcgkpşBCGKPŞ])Ü([' . Crh::L_N_CONS . '])([' . Crh::L_CONS . ']|' . self::WB . ')/u'
+			=> '$1Ü$2Ь$3',
 
-			# буква Ю - первый заход
-			# расставляем Ь после согласных
-			'/' . self::WB . '([yY])ü([' . Crh::L_N_CONS . '])([aAuU' . Crh::L_CONS . ']|' . self::WB . ')/u'
-				=> '$1ü$2ь$3',
-			'/' . self::WB . '([yY])Ü([' . Crh::L_N_CONS . '])([aAuU' . Crh::L_CONS . ']|' . self::WB . ')/u'
-				=> '$1Ü$2Ь$3',
+		# ö и ü в начале слова
+		# случаи, когда нужен Ь
+		'/' . self::WB . 'ö([' . Crh::L_N_CONS . 'pP])([' . Crh::L_CONS . ']|' . self::WB . ')/u' => 'ö$1ь$2',
+		'/' . self::WB . 'Ö([' . Crh::L_N_CONS_LC . 'p])([' . Crh::L_CONS . ']|' . self::WB . ')/u' => 'Ö$1ь$2',
+		'/' . self::WB . 'Ö([' . Crh::L_N_CONS_UC . 'P])([' . Crh::L_CONS . ']|' . self::WB . ')/u' => 'Ö$1Ь$2',
+		'/' . self::WB . 'ü([' . Crh::L_N_CONS . '])([' . Crh::L_CONS . ']|' . self::WB . ')/u' => 'ü$1ь$2',
+		'/' . self::WB . 'Ü([' . Crh::L_N_CONS_LC . '])([' . Crh::L_CONS . ']|' . self::WB . ')/u' => 'Ü$1ь$2',
+		'/' . self::WB . 'Ü([' . Crh::L_N_CONS_UC . '])([' . Crh::L_CONS . ']|' . self::WB . ')/u' => 'Ü$1Ь$2',
 
-			'/' . self::WB . '([bcgkpşBCGKPŞ])ö([' . Crh::L_N_CONS . '])([' . Crh::L_CONS . ']|' .
-				self::WB . ')/u' => '$1ö$2ь$3',
-			'/' . self::WB . '([bcgkpşBCGKPŞ])Ö([' . Crh::L_N_CONS . '])([' . Crh::L_CONS . ']|' .
-				self::WB . ')/u' => '$1Ö$2Ь$3',
-			'/' . self::WB . '([bcgkpşBCGKPŞ])ü([' . Crh::L_N_CONS . '])([' . Crh::L_CONS . ']|' .
-				self::WB . ')/u' => '$1ü$2ь$3',
-			'/' . self::WB . '([bcgkpşBCGKPŞ])Ü([' . Crh::L_N_CONS . '])([' . Crh::L_CONS . ']|' .
-				self::WB . ')/u' => '$1Ü$2Ь$3',
+		'/ts' . self::WB . '/u' => 'ц',
+		'/şç' . self::WB . '/u' => 'щ',
+		'/Ş[çÇ]' . self::WB . '/u' => 'Щ',
+		'/T[sS]' . self::WB . '/u' => 'Ц',
 
-			# ö и ü в начале слова
-			# случаи, когда нужен Ь
-			'/' . self::WB . 'ö([' . Crh::L_N_CONS . 'pP])([' . Crh::L_CONS . ']|' . self::WB . ')/u'
-				=> 'ö$1ь$2',
-			'/' . self::WB . 'Ö([' . Crh::L_N_CONS_LC . 'p])([' . Crh::L_CONS . ']|' . self::WB . ')/u'
-				=> 'Ö$1ь$2',
-			'/' . self::WB . 'Ö([' . Crh::L_N_CONS_UC . 'P])([' . Crh::L_CONS . ']|' . self::WB . ')/u'
-				=> 'Ö$1Ь$2',
-			'/' . self::WB . 'ü([' . Crh::L_N_CONS . '])([' . Crh::L_CONS . ']|' . self::WB . ')/u'
-				=> 'ü$1ь$2',
-			'/' . self::WB . 'Ü([' . Crh::L_N_CONS_LC . '])([' . Crh::L_CONS . ']|' . self::WB . ')/u'
-				=> 'Ü$1ь$2',
-			'/' . self::WB . 'Ü([' . Crh::L_N_CONS_UC . '])([' . Crh::L_CONS . ']|' . self::WB . ')/u'
-				=> 'Ü$1Ь$2',
+		# Ь после Л
+		# add Ь after Л
+		'/([' . Crh::L_F . '])l([' . Crh::L_CONS_LC . ']|' . self::WB . ')/u' => '$1ль$2',
+		'/([' . Crh::L_F_UC . '])L([' . Crh::L_CONS . ']|' . self::WB . ')/u' => '$1ЛЬ$2',
 
-			'/ts' . self::WB . '/u' => 'ц',
-			'/şç' . self::WB . '/u' => 'щ',
-			'/Ş[çÇ]' . self::WB . '/u' => 'Щ',
-			'/T[sS]' . self::WB . '/u' => 'Ц',
+		# относятся к началу слова
+		'/' . self::WB . 'ts/u' => 'ц',
+		'/' . self::WB . 'T[sS]/u' => 'Ц',
 
-			# Ь после Л
-			# add Ь after Л
-			'/([' . Crh::L_F . '])l([' . Crh::L_CONS_LC . ']|' . self::WB . ')/u' => '$1ль$2',
-			'/([' . Crh::L_F_UC . '])L([' . Crh::L_CONS . ']|' . self::WB . ')/u' => '$1ЛЬ$2',
+		'/' . self::WB . 'şç/u' => 'щ',
+		'/' . self::WB . 'Ş[çÇ]/u' => 'Щ',
 
-			# относятся к началу слова
-			'/' . self::WB . 'ts/u' => 'ц',
-			'/' . self::WB . 'T[sS]/u' => 'Ц',
+		# Э
+		'/(' . self::WB . '|[' . Crh::L_VOW . 'аеэяАЕЭЯ])e/u' => '$1э',
+		'/(' . self::WB . '|[' . Crh::L_VOW_UC . 'АЕЭЯ])E/u' => '$1Э',
 
-			'/' . self::WB . 'şç/u' => 'щ',
-			'/' . self::WB . 'Ş[çÇ]/u' => 'Щ',
+		'/' . self::WB . '([' . Crh::L_M_CONS . '])ö/u' => '$1о',
+		'/' . self::WB . '([' . Crh::L_M_CONS . '])Ö/u' => '$1О',
+		'/' . self::WB . '([' . Crh::L_M_CONS . '])ü/u' => '$1у',
+		'/' . self::WB . '([' . Crh::L_M_CONS . '])Ü/u' => '$1У',
 
-			# Э
-			'/(' . self::WB . '|[' . Crh::L_VOW . 'аеэяАЕЭЯ])e/u' => '$1э',
-			'/(' . self::WB . '|[' . Crh::L_VOW_UC . 'АЕЭЯ])E/u' => '$1Э',
+		'/' . self::WB . 'ö/u' => 'о',
+		'/' . self::WB . 'Ö/u' => 'О',
+		'/' . self::WB . 'ü/u' => 'у',
+		'/' . self::WB . 'Ü/u' => 'У',
 
-			'/' . self::WB . '([' . Crh::L_M_CONS . '])ö/u' => '$1о',
-			'/' . self::WB . '([' . Crh::L_M_CONS . '])Ö/u' => '$1О',
-			'/' . self::WB . '([' . Crh::L_M_CONS . '])ü/u' => '$1у',
-			'/' . self::WB . '([' . Crh::L_M_CONS . '])Ü/u' => '$1У',
+		# некоторые исключения
+		# some exceptions
+		'/maal([^e])/u' => 'мааль$1',
+		'/Maal([^e])/u' => 'Мааль$1',
+		'/MAAL([^E])/u' => 'МААЛЬ$1',
+		'/küf([^eü])/u' => 'куфь$1',
+		'/Küf([^eü])/u' => 'Куфь$1',
+		'/KÜF([^EÜ])/u' => 'КУФЬ$1',
+		'/köz([^eü])/u' => 'козь$1',
+		'/Köz([^eü])/u' => 'Козь$1',
+		'/KÖZ([^EÜ])/u' => 'КОЗЬ$1',
 
-			'/' . self::WB . 'ö/u' => 'о',
-			'/' . self::WB . 'Ö/u' => 'О',
-			'/' . self::WB . 'ü/u' => 'у',
-			'/' . self::WB . 'Ü/u' => 'У',
+		# Punctuation
+		'/#|No\./u' => '№',
 
-			# некоторые исключения
-			# some exceptions
-			'/maal([^e])/u' => 'мааль$1',
-			'/Maal([^e])/u' => 'Мааль$1',
-			'/MAAL([^E])/u' => 'МААЛЬ$1',
-			'/küf([^eü])/u' => 'куфь$1',
-			'/Küf([^eü])/u' => 'Куфь$1',
-			'/KÜF([^EÜ])/u' => 'КУФЬ$1',
-			'/köz([^eü])/u' => 'козь$1',
-			'/Köz([^eü])/u' => 'Козь$1',
-			'/KÖZ([^EÜ])/u' => 'КОЗЬ$1',
+		# некоторые случаи употребления Ц
+		'/tsi([^zñ])/u' => 'ци$1',
+		'/T[sS][iİ]([^zZñÑ])/u' => 'ЦИ$1',
+		'/ts([ou])/u' => 'ц$1',
+		'/T[sS]([oOuU])/u' => 'Ц$1',
+		'/ts([' . Crh::L_CONS . '])/u' => 'ц$1',
+		'/T[sS]([' . Crh::L_CONS . '])/u' => 'Ц$1',
+		'/([' . Crh::L_CONS . '])ts/u' => '$1ц',
+		'/([' . Crh::L_CONS . '])T[sS]/u' => '$1Ц',
+		'/tsиал/u' => 'циал',
+		'/TSИАЛ/u' => 'ЦИАЛ',
 
-			# Punctuation
-			'/#|No\./u' => '№',
+		# убираем ьi
+		# remove ьi (note Cyrillic ь and Latin i)
+		'/[ьЬ]([iİ])/u' => '$1',
 
-			# некоторые случаи употребления Ц
-			'/tsi([^zñ])/u' => 'ци$1',
-			'/T[sS][iİ]([^zZñÑ])/u' => 'ЦИ$1',
-			'/ts([ou])/u' => 'ц$1',
-			'/T[sS]([oOuU])/u' => 'Ц$1',
-			'/ts([' . Crh::L_CONS . '])/u' => 'ц$1',
-			'/T[sS]([' . Crh::L_CONS . '])/u' => 'Ц$1',
-			'/([' . Crh::L_CONS . '])ts/u' => '$1ц',
-			'/([' . Crh::L_CONS . '])T[sS]/u' => '$1Ц',
-			'/tsиал/u' => 'циал',
-			'/TSИАЛ/u' => 'ЦИАЛ',
+		# ya & ye
+		'/([' . Crh::L_CONS . '])ya/u' => '$1ья',
+		'/([' . Crh::L_CONS . '])Y[aA]/u' => '$1ЬЯ',
+		'/([' . Crh::L_CONS . '])ye/u' => '$1ье',
+		'/([' . Crh::L_CONS . '])Y[eE]/u' => '$1ЬЕ',
 
-			# убираем ьi
-			# remove ьi (note Cyrillic ь and Latin i)
-			'/[ьЬ]([iİ])/u' => '$1',
+		# расставляем Ь перед Ё
+		# place Ь in front of Ё
+		'/([' . Crh::L_CONS . '])y[oö]/u' => '$1ьё',
+		'/([' . Crh::L_CONS . '])Y[oOöÖ]/u' => '$1ЬЁ',
+		# оставшиеся вхождения yo и yö
+		# remaining occurrences of yo and yö
+		'/y[oö]/u' => 'ё',
+		'/[yY][oOöÖ]/u' => 'Ё',
 
-			# ya & ye
-			'/([' . Crh::L_CONS . '])ya/u' => '$1ья',
-			'/([' . Crh::L_CONS . '])Y[aA]/u' => '$1ЬЯ',
-			'/([' . Crh::L_CONS . '])ye/u' => '$1ье',
-			'/([' . Crh::L_CONS . '])Y[eE]/u' => '$1ЬЕ',
+		# расставляем Ь перед Ю
+		# place Ь in front of Ю
+		'/([' . Crh::L_CONS . '])y[uü]/u' => '$1ью',
+		'/([' . Crh::L_CONS . '])Y[uUüÜ]/u' => '$1ЬЮ',
+		# оставшиеся вхождения yu и yü
+		# remaining occurrences of yu and yü
+		'/y[uü]/u' => 'ю',
+		'/[yY][uUüÜ]/u' => 'Ю',
 
-			# расставляем Ь перед Ё
-			# place Ь in front of Ё
-			'/([' . Crh::L_CONS . '])y[oö]/u' => '$1ьё',
-			'/([' . Crh::L_CONS . '])Y[oOöÖ]/u' => '$1ЬЁ',
-			# оставшиеся вхождения yo и yö
-			# remaining occurrences of yo and yö
-			'/y[oö]/u' => 'ё',
-			'/[yY][oOöÖ]/u' => 'Ё',
+		# убираем ьa
+		# remove ьa (note Cyrillic ь and Latin a)
+		'/[ьЬ]([aA])/u' => '$1',
 
-			# расставляем Ь перед Ю
-			# place Ь in front of Ю
-			'/([' . Crh::L_CONS . '])y[uü]/u' => '$1ью',
-			'/([' . Crh::L_CONS . '])Y[uUüÜ]/u' => '$1ЬЮ',
-			# оставшиеся вхождения yu и yü
-			# remaining occurrences of yu and yü
-			'/y[uü]/u' => 'ю',
-			'/[yY][uUüÜ]/u' => 'Ю',
+		# дж
+		'/C([' . Crh::L_UC . Crh::C_UC . 'АЕЁЙОУЭЮЯ])/u' => 'ДЖ$1',
+		'/([' . Crh::L_UC . Crh::C_UC . 'АЕЁЙОУЭЮЯ])C/u' => '$1ДЖ',
 
-			# убираем ьa
-			# remove ьa (note Cyrillic ь and Latin a)
-			'/[ьЬ]([aA])/u' => '$1',
+		# гъ, къ, нъ
+		'/Ğ([' . Crh::L_UC . Crh::C_UC . '])/u' => 'ГЪ$1',
+		'/([' . Crh::L_UC . Crh::C_UC . 'Ъ])Ğ/u' => '$1ГЪ',
 
-			# дж
-			'/C([' . Crh::L_UC . Crh::C_UC . 'АЕЁЙОУЭЮЯ])/u' => 'ДЖ$1',
-			'/([' . Crh::L_UC . Crh::C_UC . 'АЕЁЙОУЭЮЯ])C/u' => '$1ДЖ',
+		'/Q([' . Crh::L_UC . Crh::C_UC . '])/u' => 'КЪ$1',
+		'/([' . Crh::L_UC . Crh::C_UC . 'Ъ])Q/u' => '$1КЪ',
 
-			# гъ, къ, нъ
-			'/Ğ([' . Crh::L_UC . Crh::C_UC . '])/u' => 'ГЪ$1',
-			'/([' . Crh::L_UC . Crh::C_UC . 'Ъ])Ğ/u' => '$1ГЪ',
+		'/Ñ([' . Crh::L_UC . Crh::C_UC . '])/u' => 'НЪ$1',
+		'/([' . Crh::L_UC . Crh::C_UC . 'Ъ])Ñ/u' => '$1НЪ',
 
-			'/Q([' . Crh::L_UC . Crh::C_UC . '])/u' => 'КЪ$1',
-			'/([' . Crh::L_UC . Crh::C_UC . 'Ъ])Q/u' => '$1КЪ',
-
-			'/Ñ([' . Crh::L_UC . Crh::C_UC . '])/u' => 'НЪ$1',
-			'/([' . Crh::L_UC . Crh::C_UC . 'Ъ])Ñ/u' => '$1НЪ',
-
-		];
-	}
+	];
 
 	private const CYRL_CLEAN_UP_REGEXES = [
 		'/([клнрст])ь\1/u' => '$1$1',
