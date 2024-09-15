@@ -36,6 +36,8 @@ use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\LegacyArticleIdAccess;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
@@ -1401,6 +1403,10 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 			return $this->constructSlotRecords( $revId, $res, $queryFlags, $page );
 		}
 
+		$ttl = MediaWikiServices::getInstance()
+			->getMainConfig()
+			->get( MainConfigNames::RevisionSlotsCacheExpiry );
+
 		// TODO: These caches should not be needed. See T297147#7563670
 		$res = $this->localCache->getWithSetCallback(
 			$this->localCache->makeKey(
@@ -1409,8 +1415,8 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 				$page->getId( $page->getWikiId() ),
 				$revId
 			),
-			$this->localCache::TTL_HOUR,
-			function () use ( $revId, $queryFlags, $page ) {
+			$ttl['local'] ?? $this->localCache::TTL_UNCACHEABLE,
+			function () use ( $revId, $queryFlags, $page, $ttl ) {
 				return $this->cache->getWithSetCallback(
 					$this->cache->makeKey(
 						'revision-slots',
@@ -1418,7 +1424,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 						$page->getId( $page->getWikiId() ),
 						$revId
 					),
-					WANObjectCache::TTL_DAY,
+					$ttl['WAN'] ?? WANObjectCache::TTL_UNCACHEABLE,
 					function () use ( $revId, $queryFlags, $page ) {
 						$res = $this->loadSlotRecordsFromDb( $revId, $queryFlags, $page );
 						if ( !$res ) {
