@@ -23,8 +23,8 @@ namespace Wikimedia\LightweightObjectStore;
 /**
  * Generic interface providing error code and quality-of-service constants for object stores
  *
+ * @internal For use by BagOStuff and WANObjectCache
  * @ingroup Cache
- * @since 1.35
  */
 interface StorageAwareness {
 	/** No storage medium error */
