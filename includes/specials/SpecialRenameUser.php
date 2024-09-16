@@ -236,14 +236,6 @@ class SpecialRenameUser extends SpecialPage {
 			return;
 		}
 
-		if ( $oldUser->equals( $performer ) ) {
-			$out->addHTML( Html::errorBox(
-				$out->msg( 'renameuser-error-self-rename' )->parse()
-			) );
-
-			return;
-		}
-
 		// Give other affected extensions a chance to validate or abort
 		if ( !$this->getHookRunner()->onRenameUserAbort( $uid, $oldName, $newName ) ) {
 			return;

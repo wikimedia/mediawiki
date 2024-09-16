@@ -48,6 +48,8 @@ For notes on 1.43.x and older releases, see HISTORY.
 
 === New features for sysadmins in 1.44 ===
 
+* (T267477) Users with rename userright can now rename themselves through
+  [[Special:RenameUser]].
 * …
 
 === New developer features in 1.44 ===
