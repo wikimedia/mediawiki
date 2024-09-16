@@ -146,7 +146,7 @@ class PageSourceHandler extends SimpleHandler {
 	}
 
 	private function getOutputMode(): string {
-		if ( $this->getRequest()->getHeaderLine( 'x-restbase-compat' ) === 'true' ) {
+		if ( $this->getRouter()->isRestbaseCompatEnabled( $this->getRequest() ) ) {
 			return 'restbase';
 		}
 		return $this->getConfig()['format'];

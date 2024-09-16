@@ -225,15 +225,17 @@ class ResponseFactory {
 
 	/**
 	 * Turn a throwable into a JSON error response.
+	 *
 	 * @param Throwable $exception
+	 * @param array $extraData if present, used to generate a RESTbase-style response
 	 * @return Response
 	 */
-	public function createFromException( Throwable $exception ) {
+	public function createFromException( Throwable $exception, array $extraData = [] ) {
 		if ( $exception instanceof LocalizedHttpException ) {
 			$response = $this->createLocalizedHttpError(
 				$exception->getCode(),
 				$exception->getMessageValue(),
-				$exception->getErrorData() + [
+				$exception->getErrorData() + $extraData + [
 					'errorKey' => $exception->getErrorKey(),
 				]
 			);
