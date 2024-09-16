@@ -2,7 +2,7 @@
     "$schema": "http://cyclonedx.org/schema/bom-1.6.schema.json",
     "bomFormat": "CycloneDX",
     "specVersion": "1.6",
-    "serialNumber": "urn:uuid:ed6da747-aad0-49a5-a5c0-30d05f44e679",
+    "serialNumber": "urn:uuid:ced7280e-2b8b-4305-abec-2c33b2be74dc",
     "version": 1,
     "components": [
         {
@@ -121,7 +121,7 @@
                     }
                 }
             ],
-            "purl": "pkg:github/financial-times/polyfill-library@0ece79ce32",
+            "purl": "pkg:github/mrhenry/polyfill-library@0ece79ce32",
             "authors": [
                 {
                     "name": "Financial Times"
@@ -129,7 +129,7 @@
             ],
             "externalReferences": [
                 {
-                    "url": "https://github.com/financial-times/polyfill-library",
+                    "url": "https://github.com/mrhenry/polyfill-library",
                     "type": "website"
                 }
             ]
