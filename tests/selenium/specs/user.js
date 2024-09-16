@@ -6,7 +6,7 @@
 const assert = require( 'assert' );
 const CreateAccountPage = require( 'wdio-mediawiki/CreateAccountPage' );
 const EditPage = require( '../pageobjects/edit.page' );
-const UserLoginPage = require( 'wdio-mediawiki/LoginPage' );
+const LoginPage = require( 'wdio-mediawiki/LoginPage' );
 const Api = require( 'wdio-mediawiki/Api' );
 const Util = require( 'wdio-mediawiki/Util' );
 
@@ -36,7 +36,7 @@ describe( 'User', () => {
 		await Api.createAccount( bot, username, password );
 
 		// log in
-		await UserLoginPage.login( username, password );
+		await LoginPage.login( username, password );
 
 		// check
 		const actualUsername = await browser.execute( () => mw.config.get( 'wgUserName' ) );
@@ -45,7 +45,7 @@ describe( 'User', () => {
 
 	it( 'named user should see extra signup form fields when creating an account', async () => {
 		await Api.createAccount( bot, username, password );
-		await UserLoginPage.login( username, password );
+		await LoginPage.login( username, password );
 
 		await CreateAccountPage.open();
 
