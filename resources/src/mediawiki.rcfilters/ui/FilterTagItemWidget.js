@@ -1,5 +1,4 @@
-let TagItemWidget = require( './TagItemWidget.js' ),
-	FilterTagItemWidget;
+const TagItemWidget = require( './TagItemWidget.js' );
 
 /**
  * Extend OOUI's FilterTagItemWidget to also display a popup on hover.
@@ -14,7 +13,7 @@ let TagItemWidget = require( './TagItemWidget.js' ),
  * @param {mw.rcfilters.dm.FilterItem} itemModel Item model
  * @param {Object} config Configuration object
  */
-FilterTagItemWidget = function MwRcfiltersUiFilterTagItemWidget(
+const FilterTagItemWidget = function MwRcfiltersUiFilterTagItemWidget(
 	controller, filtersViewModel, invertModel, itemModel, config
 ) {
 	config = config || {};

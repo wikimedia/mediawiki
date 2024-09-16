@@ -1,5 +1,4 @@
-let ItemMenuOptionWidget = require( './ItemMenuOptionWidget.js' ),
-	FilterMenuOptionWidget;
+const ItemMenuOptionWidget = require( './ItemMenuOptionWidget.js' );
 
 /**
  * A widget representing a single toggle filter.
@@ -15,7 +14,7 @@ let ItemMenuOptionWidget = require( './ItemMenuOptionWidget.js' ),
  * @param {mw.rcfilters.ui.HighlightPopupWidget} highlightPopup Shared highlight color picker popup
  * @param {Object} config Configuration object
  */
-FilterMenuOptionWidget = function MwRcfiltersUiFilterMenuOptionWidget(
+const FilterMenuOptionWidget = function MwRcfiltersUiFilterMenuOptionWidget(
 	controller, filtersViewModel, invertModel, itemModel, highlightPopup, config
 ) {
 	config = config || {};

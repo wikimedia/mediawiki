@@ -13,9 +13,7 @@
  * @param {Object} [config] Configuration object
  */
 const SaveFiltersPopupButtonWidget = function MwRcfiltersUiSaveFiltersPopupButtonWidget( controller, model, config ) {
-	let layout,
-		checkBoxLayout,
-		$popupContent = $( '<div>' );
+	const $popupContent = $( '<div>' );
 
 	config = config || {};
 
@@ -44,13 +42,13 @@ const SaveFiltersPopupButtonWidget = function MwRcfiltersUiSaveFiltersPopupButto
 	this.input = new OO.ui.TextInputWidget( {
 		placeholder: mw.msg( 'rcfilters-savedqueries-new-name-placeholder' )
 	} );
-	layout = new OO.ui.FieldLayout( this.input, {
+	const layout = new OO.ui.FieldLayout( this.input, {
 		label: mw.msg( 'rcfilters-savedqueries-new-name-label' ),
 		align: 'top'
 	} );
 
 	this.setAsDefaultCheckbox = new OO.ui.CheckboxInputWidget();
-	checkBoxLayout = new OO.ui.FieldLayout( this.setAsDefaultCheckbox, {
+	const checkBoxLayout = new OO.ui.FieldLayout( this.setAsDefaultCheckbox, {
 		label: mw.msg( 'rcfilters-savedqueries-setdefault' ),
 		align: 'inline'
 	} );

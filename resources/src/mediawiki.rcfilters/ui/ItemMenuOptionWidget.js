@@ -1,6 +1,5 @@
-let FilterItemHighlightButton = require( './FilterItemHighlightButton.js' ),
-	CheckboxInputWidget = require( './CheckboxInputWidget.js' ),
-	ItemMenuOptionWidget;
+const FilterItemHighlightButton = require( './FilterItemHighlightButton.js' ),
+	CheckboxInputWidget = require( './CheckboxInputWidget.js' );
 
 /**
  * A widget representing a base toggle item.
@@ -16,14 +15,11 @@ let FilterItemHighlightButton = require( './FilterItemHighlightButton.js' ),
  * @param {mw.rcfilters.ui.HighlightPopupWidget} highlightPopup Shared highlight color picker
  * @param {Object} config Configuration object
  */
-ItemMenuOptionWidget = function MwRcfiltersUiItemMenuOptionWidget(
+const ItemMenuOptionWidget = function MwRcfiltersUiItemMenuOptionWidget(
 	controller, filtersViewModel, invertModel, itemModel, highlightPopup, config
 ) {
-	let layout,
-		$widgetRow,
-		classes,
-		$label = $( '<div>' )
-			.addClass( 'mw-rcfilters-ui-itemMenuOptionWidget-label' );
+	const $label = $( '<div>' )
+		.addClass( 'mw-rcfilters-ui-itemMenuOptionWidget-label' );
 
 	config = config || {};
 
@@ -91,7 +87,7 @@ ItemMenuOptionWidget = function MwRcfiltersUiItemMenuOptionWidget(
 		this.itemModel.isSelected()
 	);
 
-	layout = new OO.ui.FieldLayout( this.checkboxWidget, {
+	const layout = new OO.ui.FieldLayout( this.checkboxWidget, {
 		label: $label,
 		align: 'inline'
 	} );
@@ -109,7 +105,7 @@ ItemMenuOptionWidget = function MwRcfiltersUiItemMenuOptionWidget(
 	// defaults on 'click' as well.
 	layout.$label.on( 'click', false );
 
-	$widgetRow = $( '<div>' )
+	const $widgetRow = $( '<div>' )
 		.addClass( 'mw-rcfilters-ui-table' )
 		.append(
 			$( '<div>' )
@@ -139,7 +135,7 @@ ItemMenuOptionWidget = function MwRcfiltersUiItemMenuOptionWidget(
 		);
 	}
 
-	classes = this.itemModel.getIdentifiers().map( ( ident ) => 'mw-rcfilters-ui-itemMenuOptionWidget-identifier-' + ident ).concat(
+	const classes = this.itemModel.getIdentifiers().map( ( ident ) => 'mw-rcfilters-ui-itemMenuOptionWidget-identifier-' + ident ).concat(
 		'mw-rcfilters-ui-itemMenuOptionWidget',
 		'mw-rcfilters-ui-itemMenuOptionWidget-view-' + this.itemModel.getGroupModel().getView()
 	);

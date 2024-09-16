@@ -1,8 +1,7 @@
-let FilterMenuHeaderWidget = require( './FilterMenuHeaderWidget.js' ),
+const FilterMenuHeaderWidget = require( './FilterMenuHeaderWidget.js' ),
 	HighlightPopupWidget = require( './HighlightPopupWidget.js' ),
 	FilterMenuSectionOptionWidget = require( './FilterMenuSectionOptionWidget.js' ),
-	FilterMenuOptionWidget = require( './FilterMenuOptionWidget.js' ),
-	MenuSelectWidget;
+	FilterMenuOptionWidget = require( './FilterMenuOptionWidget.js' );
 
 /**
  * A floating menu widget for the filter list.
@@ -29,9 +28,7 @@ let FilterMenuHeaderWidget = require( './FilterMenuHeaderWidget.js' ),
  *     }
  *  ]
  */
-MenuSelectWidget = function MwRcfiltersUiMenuSelectWidget( controller, model, config ) {
-	let header;
-
+const MenuSelectWidget = function MwRcfiltersUiMenuSelectWidget( controller, model, config ) {
 	config = config || {};
 
 	this.controller = controller;
@@ -57,6 +54,7 @@ MenuSelectWidget = function MwRcfiltersUiMenuSelectWidget( controller, model, co
 			.addClass( 'mw-rcfilters-ui-menuSelectWidget-group' )
 	);
 
+	let header;
 	if ( !config.isMobile ) {
 		// When hiding the header (i.e. mobile mode) avoid problems
 		// with clippable and the menu's fixed width.
@@ -150,7 +148,7 @@ MenuSelectWidget.prototype.toggle = function ( show ) {
  * lazy creation of the menu
  */
 MenuSelectWidget.prototype.lazyMenuCreation = function () {
-	let widget = this,
+	const widget = this,
 		items = [],
 		viewGroupCount = {},
 		groups = this.model.getFilterGroups();
@@ -215,7 +213,7 @@ MenuSelectWidget.prototype.lazyMenuCreation = function () {
 			// without rebuilding the widgets each time
 			widget.views[ view ] = widget.views[ view ] || [];
 			widget.views[ view ] = widget.views[ view ].concat( currentItems );
-			items = items.concat( currentItems );
+			items.push( ...currentItems );
 		}
 	} );
 
@@ -282,15 +280,14 @@ MenuSelectWidget.prototype.updateFooterVisibility = function ( currentView ) {
  * widget appears if the menu is empty.
  */
 MenuSelectWidget.prototype.postProcessItems = function () {
-	let i,
-		itemWasSelected = false,
-		items = this.getItems();
+	let itemWasSelected = false;
+	const items = this.getItems();
 
 	// If we are not already selecting an item, always make sure
 	// that the top item is selected
 	if ( !this.userSelecting ) {
 		// Select the first item in the list
-		for ( i = 0; i < items.length; i++ ) {
+		for ( let i = 0; i < items.length; i++ ) {
 			if (
 				!( items[ i ] instanceof OO.ui.MenuSectionOptionWidget ) &&
 				items[ i ].isVisible()
@@ -325,8 +322,8 @@ MenuSelectWidget.prototype.getItemFromModel = function ( model ) {
  * @inheritdoc
  */
 MenuSelectWidget.prototype.onDocumentKeyDown = function ( e ) {
-	let nextItem,
-		currentItem = this.findHighlightedItem() || this.findSelectedItem();
+	const currentItem = this.findHighlightedItem() || this.findSelectedItem();
+	let nextItem;
 
 	// Call parent
 	MenuSelectWidget.super.prototype.onDocumentKeyDown.call( this, e );

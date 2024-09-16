@@ -1,6 +1,5 @@
-let ChangesLimitPopupWidget = require( './ChangesLimitPopupWidget.js' ),
-	DatePopupWidget = require( './DatePopupWidget.js' ),
-	ChangesLimitAndDateButtonWidget;
+const ChangesLimitPopupWidget = require( './ChangesLimitPopupWidget.js' ),
+	DatePopupWidget = require( './DatePopupWidget.js' );
 
 /**
  * Widget defining the button controlling the popup for the number of results.
@@ -14,7 +13,7 @@ let ChangesLimitPopupWidget = require( './ChangesLimitPopupWidget.js' ),
  * @param {Object} [config] Configuration object
  * @param {jQuery} [config.$overlay] A jQuery object serving as overlay for popups
  */
-ChangesLimitAndDateButtonWidget = function MwRcfiltersUiChangesLimitWidget( controller, model, config ) {
+const ChangesLimitAndDateButtonWidget = function MwRcfiltersUiChangesLimitWidget( controller, model, config ) {
 	config = config || {};
 
 	// Parent
@@ -46,8 +45,7 @@ OO.inheritClass( ChangesLimitAndDateButtonWidget, OO.ui.Widget );
  * Respond to model initialize event
  */
 ChangesLimitAndDateButtonWidget.prototype.onModelInitialize = function () {
-	let selectedItem, currentValue, datePopupWidget,
-		displayGroupModel = this.model.getGroup( 'display' );
+	const displayGroupModel = this.model.getGroup( 'display' );
 
 	this.limitGroupModel = this.model.getGroup( 'limit' );
 	this.groupByPageItemModel = displayGroupModel.getItemByParamName( 'enhanced' );
@@ -64,15 +62,15 @@ ChangesLimitAndDateButtonWidget.prototype.onModelInitialize = function () {
 			this.groupByPageItemModel
 		);
 
-		datePopupWidget = new DatePopupWidget(
+		const datePopupWidget = new DatePopupWidget(
 			this.daysGroupModel,
 			{
 				label: mw.msg( 'rcfilters-date-popup-title' )
 			}
 		);
 
-		selectedItem = this.limitGroupModel.findSelectedItems()[ 0 ];
-		currentValue = ( selectedItem && selectedItem.getLabel() ) ||
+		const selectedItem = this.limitGroupModel.findSelectedItems()[ 0 ];
+		const currentValue = ( selectedItem && selectedItem.getLabel() ) ||
 			mw.language.convertNumber( this.limitGroupModel.getDefaultParamValue() );
 
 		this.button = new OO.ui.PopupButtonWidget( {
@@ -180,14 +178,13 @@ ChangesLimitAndDateButtonWidget.prototype.onPopupDays = function ( filterName ) 
  * Respond to limit choose event
  */
 ChangesLimitAndDateButtonWidget.prototype.updateButtonLabel = function () {
-	let message,
-		limit = this.limitGroupModel.findSelectedItems()[ 0 ],
+	const limit = this.limitGroupModel.findSelectedItems()[ 0 ],
 		label = limit && limit.getLabel(),
 		days = this.daysGroupModel.findSelectedItems()[ 0 ];
 
 	// Update the label
 	if ( label && days ) {
-		message = mw.msg( 'rcfilters-limit-and-date-label', label,
+		const message = mw.msg( 'rcfilters-limit-and-date-label', label,
 			mw.msg(
 				Number( days.getParamName() ) < 1 ?
 					'rcfilters-days-show-hours' :

@@ -1,5 +1,4 @@
-let MarkSeenButtonWidget = require( './MarkSeenButtonWidget.js' ),
-	WatchlistTopSectionWidget;
+const MarkSeenButtonWidget = require( './MarkSeenButtonWidget.js' );
 /**
  * Top section (between page title and filters) on Special:Watchlist.
  *
@@ -13,27 +12,22 @@ let MarkSeenButtonWidget = require( './MarkSeenButtonWidget.js' ),
  * @param {jQuery} $watchlistDetails Content of the 'details' section that includes watched pages count
  * @param {Object} [config] Configuration object
  */
-WatchlistTopSectionWidget = function MwRcfiltersUiWatchlistTopSectionWidget(
+const WatchlistTopSectionWidget = function MwRcfiltersUiWatchlistTopSectionWidget(
 	controller, changesListModel, savedLinksListWidget, $watchlistDetails, config
 ) {
-	let editWatchlistButton,
-		markSeenButton,
-		$topTable,
-		$bottomTable,
-		$separator;
 	config = config || {};
 
 	// Parent
 	WatchlistTopSectionWidget.super.call( this, config );
 
-	editWatchlistButton = new OO.ui.ButtonWidget( {
+	const editWatchlistButton = new OO.ui.ButtonWidget( {
 		label: mw.msg( 'rcfilters-watchlist-edit-watchlist-button' ),
 		icon: 'edit',
 		href: require( '../config.json' ).StructuredChangeFiltersEditWatchlistUrl
 	} );
-	markSeenButton = new MarkSeenButtonWidget( controller, changesListModel );
+	const markSeenButton = new MarkSeenButtonWidget( controller, changesListModel );
 
-	$topTable = $( '<div>' )
+	const $topTable = $( '<div>' )
 		.addClass( 'mw-rcfilters-ui-table' )
 		.append(
 			$( '<div>' )
@@ -52,7 +46,7 @@ WatchlistTopSectionWidget = function MwRcfiltersUiWatchlistTopSectionWidget(
 				)
 		);
 
-	$bottomTable = $( '<div>' )
+	const $bottomTable = $( '<div>' )
 		.addClass( 'mw-rcfilters-ui-table' )
 		.addClass( 'mw-rcfilters-ui-watchlistTopSectionWidget-savedLinksTable' )
 		.append(
@@ -71,7 +65,7 @@ WatchlistTopSectionWidget = function MwRcfiltersUiWatchlistTopSectionWidget(
 				)
 		);
 
-	$separator = $( '<div>' )
+	const $separator = $( '<div>' )
 		.addClass( 'mw-rcfilters-ui-watchlistTopSectionWidget-separator' );
 
 	this.$element

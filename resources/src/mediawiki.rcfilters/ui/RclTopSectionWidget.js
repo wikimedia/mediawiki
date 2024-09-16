@@ -1,6 +1,5 @@
-let RclToOrFromWidget = require( './RclToOrFromWidget.js' ),
-	RclTargetPageWidget = require( './RclTargetPageWidget.js' ),
-	RclTopSectionWidget;
+const RclToOrFromWidget = require( './RclToOrFromWidget.js' );
+const RclTargetPageWidget = require( './RclTargetPageWidget.js' );
 
 /**
  * Top section (between page title and filters) on Special:RecentChangesLinked (AKA RelatedChanges).
@@ -15,11 +14,9 @@ let RclToOrFromWidget = require( './RclToOrFromWidget.js' ),
  * @param {mw.rcfilters.dm.FilterItem} targetPageModel Model for 'target' parameter
  * @param {Object} [config] Configuration object
  */
-RclTopSectionWidget = function MwRcfiltersUiRclTopSectionWidget(
+const RclTopSectionWidget = function MwRcfiltersUiRclTopSectionWidget(
 	savedLinksListWidget, controller, showLinkedToModel, targetPageModel, config
 ) {
-	let toOrFromWidget,
-		targetPage;
 	config = config || {};
 
 	// Parent
@@ -27,8 +24,8 @@ RclTopSectionWidget = function MwRcfiltersUiRclTopSectionWidget(
 
 	this.controller = controller;
 
-	toOrFromWidget = new RclToOrFromWidget( controller, showLinkedToModel );
-	targetPage = new RclTargetPageWidget( controller, targetPageModel );
+	const toOrFromWidget = new RclToOrFromWidget( controller, showLinkedToModel );
+	const targetPage = new RclTargetPageWidget( controller, targetPageModel );
 
 	// Initialize
 	this.$element

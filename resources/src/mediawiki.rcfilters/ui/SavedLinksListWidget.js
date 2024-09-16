@@ -1,5 +1,4 @@
-let SavedLinksListItemWidget = require( './SavedLinksListItemWidget.js' ),
-	SavedLinksListWidget;
+const SavedLinksListItemWidget = require( './SavedLinksListItemWidget.js' );
 
 /**
  * Quick links widget.
@@ -12,7 +11,7 @@ let SavedLinksListItemWidget = require( './SavedLinksListItemWidget.js' ),
  * @param {Object} [config] Configuration object
  * @param {jQuery} [config.$overlay] A jQuery object serving as overlay for popups
  */
-SavedLinksListWidget = function MwRcfiltersUiSavedLinksListWidget( controller, model, config ) {
+const SavedLinksListWidget = function MwRcfiltersUiSavedLinksListWidget( controller, model, config ) {
 	const $labelNoEntries = $( '<div>' )
 		.append(
 			$( '<div>' )

@@ -1,5 +1,3 @@
-let ViewSwitchWidget;
-
 /**
  * A widget for the footer for the default view, allowing to switch views.
  *
@@ -11,7 +9,7 @@ let ViewSwitchWidget;
  * @param {mw.rcfilters.dm.FiltersViewModel} model View model
  * @param {Object} [config] Configuration object
  */
-ViewSwitchWidget = function MwRcfiltersUiViewSwitchWidget( controller, model, config ) {
+const ViewSwitchWidget = function MwRcfiltersUiViewSwitchWidget( controller, model, config ) {
 	config = config || {};
 
 	// Parent

@@ -51,13 +51,12 @@ const rcfilters = {
  * @return {Array} Filtered array of namespaces
  */
 function getNamespaces( unusedNamespaces ) {
-	let i, length, name, id,
-		namespaceIds = mw.config.get( 'wgNamespaceIds' ),
+	const namespaceIds = mw.config.get( 'wgNamespaceIds' ),
 		namespaces = mw.config.get( 'wgFormattedNamespaces' );
 
-	for ( i = 0, length = unusedNamespaces.length; i < length; i++ ) {
-		name = unusedNamespaces[ i ];
-		id = namespaceIds[ name.toLowerCase() ];
+	for ( let i = 0, length = unusedNamespaces.length; i < length; i++ ) {
+		const name = unusedNamespaces[ i ];
+		const id = namespaceIds[ name.toLowerCase() ];
 		delete namespaces[ id ];
 	}
 
@@ -68,9 +67,7 @@ function getNamespaces( unusedNamespaces ) {
  * @private
  */
 function init() {
-	let $topSection,
-		mainWrapperWidget,
-		conditionalViews = {},
+	const conditionalViews = {},
 		$initialFieldset = $( 'fieldset.cloptions' ),
 		savedQueriesPreferenceName = mw.config.get( 'wgStructuredChangeFiltersSavedQueriesPreferenceName' ),
 		daysPreferenceName = mw.config.get( 'wgStructuredChangeFiltersDaysPreferenceName' ),
@@ -95,6 +92,7 @@ function init() {
 	// TODO: The changesListWrapperWidget should be able to initialize
 	// after the model is ready.
 
+	let $topSection;
 	if ( specialPage === 'Recentchanges' ) {
 		$topSection = $( '.mw-recentchanges-toplinks' ).detach();
 	} else if ( specialPage === 'Watchlist' ) {
@@ -133,7 +131,7 @@ function init() {
 		};
 	}
 
-	mainWrapperWidget = new rcfilters.ui.MainWrapperWidget(
+	const mainWrapperWidget = new rcfilters.ui.MainWrapperWidget(
 		controller,
 		filtersModel,
 		savedQueriesModel,

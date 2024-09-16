@@ -1,7 +1,6 @@
-let FilterTagMultiselectWidget = require( './FilterTagMultiselectWidget.js' ),
+const FilterTagMultiselectWidget = require( './FilterTagMultiselectWidget.js' ),
 	LiveUpdateButtonWidget = require( './LiveUpdateButtonWidget.js' ),
-	ChangesLimitAndDateButtonWidget = require( './ChangesLimitAndDateButtonWidget.js' ),
-	FilterWrapperWidget;
+	ChangesLimitAndDateButtonWidget = require( './ChangesLimitAndDateButtonWidget.js' );
 
 /**
  * List displaying all filter groups.
@@ -22,10 +21,9 @@ let FilterTagMultiselectWidget = require( './FilterTagMultiselectWidget.js' ),
  *  system. If not given, falls back to this widget's $element
  * @param {boolean} [config.collapsed] Filter area is collapsed
  */
-FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget(
+const FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget(
 	controller, model, savedQueriesModel, changesListModel, config
 ) {
-	let $bottom;
 	config = config || {};
 
 	// Parent
@@ -82,7 +80,7 @@ FilterWrapperWidget = function MwRcfiltersUiFilterWrapperWidget(
 	this.$top = $( '<div>' )
 		.addClass( 'mw-rcfilters-ui-filterWrapperWidget-top' );
 
-	$bottom = $( '<div>' )
+	const $bottom = $( '<div>' )
 		.addClass( 'mw-rcfilters-ui-filterWrapperWidget-bottom' )
 		.addClass( OO.ui.isMobile() ? 'mw-rcfilters-ui-filterWrapperWidget-bottom-mobile' : '' )
 		.append(

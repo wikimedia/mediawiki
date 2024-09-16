@@ -1,6 +1,5 @@
-let FilterItem = require( './FilterItem.js' ),
-	utils = require( '../utils.js' ),
-	FilterGroup;
+const FilterItem = require( './FilterItem.js' ),
+	utils = require( '../utils.js' );
 
 /**
  * View model for a filter group.
@@ -42,7 +41,7 @@ let FilterItem = require( './FilterItem.js' ),
  * @param {string} [config.whatsThis.linkMessage] The text for the link in the whatsThis popup message
  * @param {boolean} [config.visible=true] The visibility of the group
  */
-FilterGroup = function MwRcfiltersDmFilterGroup( name, config ) {
+const FilterGroup = function MwRcfiltersDmFilterGroup( name, config ) {
 	config = config || {};
 
 	// Mixin constructor
@@ -99,29 +98,28 @@ OO.mixinClass( FilterGroup, OO.EmitterList );
  * @param {string|Object} [groupDefault] Definition of the group default
  */
 FilterGroup.prototype.initializeFilters = function ( filterDefinition, groupDefault ) {
-	let defaultParam,
-		supersetMap = {},
+	let defaultParam;
+	const supersetMap = {},
 		model = this,
 		items = [];
 
 	filterDefinition.forEach( ( filter ) => {
 		// Instantiate an item
-		let subsetNames = [],
-			filterItem = new FilterItem( filter.name, model, {
-				group: model.getName(),
-				label: filter.label || filter.name,
-				description: filter.description || '',
-				labelPrefixKey: model.labelPrefixKey,
-				cssClass: filter.cssClass,
-				helpLink: filter.helpLink,
-				identifiers: filter.identifiers,
-				defaultHighlightColor: filter.defaultHighlightColor
-			} );
+		const filterItem = new FilterItem( filter.name, model, {
+			group: model.getName(),
+			label: filter.label || filter.name,
+			description: filter.description || '',
+			labelPrefixKey: model.labelPrefixKey,
+			cssClass: filter.cssClass,
+			helpLink: filter.helpLink,
+			identifiers: filter.identifiers,
+			defaultHighlightColor: filter.defaultHighlightColor
+		} );
 
 		if ( filter.subset ) {
 			filter.subset = filter.subset.map( ( el ) => el.filter );
 
-			subsetNames = [];
+			const subsetNames = [];
 
 			filter.subset.forEach( ( subsetFilterName ) => {
 				// Subsets (unlike conflicts) are always inside the same group
@@ -237,8 +235,8 @@ FilterGroup.prototype.initializeFilters = function ( filterDefinition, groupDefa
  */
 FilterGroup.prototype.onFilterItemUpdate = function ( item ) {
 	// Update state
-	let changed = false,
-		active = this.areAnySelected(),
+	let changed = false;
+	const active = this.areAnySelected(),
 		model = this;
 
 	if ( this.getType() === 'single_option' ) {
@@ -526,16 +524,14 @@ FilterGroup.prototype.areAnySelectedInConflictWith = function ( filterItem ) {
  * @return {Object} Parameter representation
  */
 FilterGroup.prototype.getParamRepresentation = function ( filterRepresentation ) {
-	let values,
-		areAnySelected = false,
-		buildFromCurrentState = !filterRepresentation,
+	let areAnySelected = false;
+	const buildFromCurrentState = !filterRepresentation,
 		defaultFilters = this.getDefaultFilters(),
 		result = {},
 		model = this,
 		filterParamNames = {},
 		getSelectedParameter = function ( filters ) {
-			let item,
-				selected = [];
+			const selected = [];
 
 			// Find if any are selected
 			// eslint-disable-next-line no-jquery/no-each-util
@@ -545,7 +541,7 @@ FilterGroup.prototype.getParamRepresentation = function ( filterRepresentation )
 				}
 			} );
 
-			item = model.getItemByName( selected[ 0 ] );
+			const item = model.getItemByName( selected[ 0 ] );
 			return ( item && item.getParamName() ) || '';
 		};
 
@@ -603,7 +599,7 @@ FilterGroup.prototype.getParamRepresentation = function ( filterRepresentation )
 			}
 		} );
 	} else if ( this.getType() === 'string_options' ) {
-		values = [];
+		const values = [];
 
 		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( filterRepresentation, ( name, value ) => {
@@ -634,9 +630,9 @@ FilterGroup.prototype.getParamRepresentation = function ( filterRepresentation )
  * @return {Object} Filter representation
  */
 FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation ) {
-	let areAnySelected, paramValues, item, currentValue,
-		oneWasSelected = false,
-		defaultParams = this.getDefaultParams(),
+	let areAnySelected,
+		oneWasSelected = false;
+	const defaultParams = this.getDefaultParams(),
 		expandedParams = $.extend( true, {}, paramRepresentation ),
 		model = this,
 		paramToFilterMap = {},
@@ -688,10 +684,10 @@ FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation )
 			}
 		} );
 	} else if ( this.getType() === 'string_options' ) {
-		currentValue = paramRepresentation[ this.getName() ] || '';
+		const currentValue = paramRepresentation[ this.getName() ] || '';
 
 		// Normalize the given parameter values
-		paramValues = utils.normalizeParamOptions(
+		const paramValues = utils.normalizeParamOptions(
 			// Given
 			currentValue.split(
 				this.getSeparator()
@@ -737,7 +733,7 @@ FilterGroup.prototype.getFilterRepresentation = function ( paramRepresentation )
 		this.getType() === 'single_option' &&
 		!oneWasSelected
 	) {
-		item = this.getItems()[ 0 ];
+		let item = this.getItems()[ 0 ];
 		if ( defaultParams[ this.getName() ] ) {
 			item = this.getItemByParamName( defaultParams[ this.getName() ] );
 		}
