@@ -177,18 +177,17 @@
 		 *  Fail: Error code
 		 */
 		ajax: function ( path, ajaxOptions ) {
-			let self = this,
-				apiDeferred = $.Deferred(),
-				xhr, requestIndex;
+			const self = this,
+				apiDeferred = $.Deferred();
 
 			ajaxOptions = Object.assign( {}, this.defaults.ajax, ajaxOptions );
 			ajaxOptions.url = this.url + path;
 
 			// Make the AJAX request.
-			xhr = $.ajax( ajaxOptions );
+			const xhr = $.ajax( ajaxOptions );
 
 			// Save it to make it possible to abort.
-			requestIndex = this.requests.length;
+			const requestIndex = this.requests.length;
 			this.requests.push( xhr );
 			xhr.always( () => {
 				self.requests[ requestIndex ] = null;

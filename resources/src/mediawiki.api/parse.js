@@ -11,15 +11,15 @@
 		 * @return {jQuery.Promise<string>} Promise that resolves with the parsed HTML of `wikitext`
 		 */
 		parse: function ( content, additionalParams ) {
-			let apiPromise,
-				config = Object.assign( {
-					formatversion: 2,
-					action: 'parse',
-					// Minimize the JSON we get back, there is no way to access anything else anyway
-					prop: 'text',
-					contentmodel: 'wikitext'
-				}, additionalParams );
+			const config = Object.assign( {
+				formatversion: 2,
+				action: 'parse',
+				// Minimize the JSON we get back, there is no way to access anything else anyway
+				prop: 'text',
+				contentmodel: 'wikitext'
+			}, additionalParams );
 
+			let apiPromise;
 			if ( mw.Title && content instanceof mw.Title ) {
 				// Parse existing page
 				config.page = content.getPrefixedDb();
