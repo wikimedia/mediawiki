@@ -1031,6 +1031,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @param ParsoidLinkTarget|string $t
 	 */
 	public function addLanguageLink( $t ): void {
+		# Note that fragments are preserved
 		if ( $t instanceof ParsoidLinkTarget ) {
 			// language links are unusual in using 'text' rather than 'db key'
 			// T296019: This should be made more efficient so we don't need
@@ -2546,6 +2547,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			}
 		}
 
+		foreach ( $this->mInterwikiLinks as $prefix => $arr ) {
+			foreach ( $arr as $dbk => $ignore ) {
+				$lt = TitleValue::tryNew( NS_MAIN, (string)$dbk, '', $prefix );
+				$metadata->addLink( $lt );
+			}
+		}
+
 		foreach ( $this->mLinksSpecial as $dbk => $ignore ) {
 			// Numeric titles are going to come out of the
 			// `mLinks` array as ints; cast back to string.
@@ -2560,9 +2568,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			$metadata->addImage( $lt, $props['time'] ?? null, $props['sha1'] ?? null );
 		}
 
-		foreach ( $this->mLanguageLinks as $title ) {
-			// Convert $title (in "full text" format) back to LinkTarget
-			$lt = Title::newFromText( $title );
+		foreach ( $this->mLanguageLinks as $link ) {
+			[ $lang, $title ] = explode( ':', $link, 2 );
+			# language links can have fragments!
+			[ $title, $frag ] = array_pad( explode( '#', $title, 2 ), 2, '' );
+			$lt = TitleValue::tryNew( NS_MAIN, $title, $frag, $lang );
 			$metadata->addLanguageLink( $lt );
 		}
 
@@ -2663,6 +2673,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			$otherTitle = $metadata->getTitleText();
 			if ( $otherTitle === null || $otherTitle === '' ) {
 				$metadata->setTitleText( $this->getTitleText() );
+			}
+			foreach ( $this->mTemplates as $ns => $arr ) {
+				foreach ( $arr as $dbk => $page_id ) {
+					$rev_id = $this->mTemplateIds[$ns][$dbk];
+					$metadata->addTemplate( TitleValue::tryNew( $ns, (string)$dbk ), $page_id, $rev_id );
+				}
 			}
 		}
 	}
