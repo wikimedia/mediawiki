@@ -40,7 +40,7 @@ describe( 'User', () => {
 
 		// check
 		const actualUsername = await browser.execute( () => mw.config.get( 'wgUserName' ) );
-		assert.strictEqual( await actualUsername, username );
+		assert.strictEqual( actualUsername, username );
 	} );
 
 	it( 'named user should see extra signup form fields when creating an account', async () => {
@@ -90,8 +90,8 @@ describe( 'User', () => {
 
 		await CreateAccountPage.submitForm( username, password );
 
-		const actualUsername = browser.execute( () => mw.config.get( 'wgUserName' ) );
-		assert.strictEqual( await actualUsername, username );
+		const actualUsername = await browser.execute( () => mw.config.get( 'wgUserName' ) );
+		assert.strictEqual( actualUsername, username );
 		assert.strictEqual( await CreateAccountPage.heading.getText(), `Welcome, ${ username }!` );
 	} );
 } );
