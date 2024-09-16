@@ -974,10 +974,14 @@ class ContributionsSpecialPage extends IncludableSpecialPage {
 	}
 
 	/**
+	 * Whether the block log extract should be shown on the special page. This is public to allow extensions which
+	 * add block log entries to skip adding them when this returns false.
+	 *
+	 * @since 1.43
 	 * @param UserIdentity $target The target of the search that produced the results page
 	 * @return bool Whether the block log extract should be shown if the target is blocked.
 	 */
-	protected function shouldShowBlockLogExtract( UserIdentity $target ): bool {
+	public function shouldShowBlockLogExtract( UserIdentity $target ): bool {
 		return !$this->including();
 	}
 }
