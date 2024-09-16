@@ -3,6 +3,7 @@
 namespace MediaWiki\Rest\Handler\Helper;
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Edit\ParsoidOutputStash;
@@ -21,8 +22,10 @@ use MediaWiki\Rest\Router;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
+use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
 use Wikimedia\Bcp47Code\Bcp47Code;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * @since 1.40 Factory for helper objects designed for sharing logic between REST handlers that deal with page content.
@@ -49,23 +52,10 @@ class PageRestHelperFactory {
 	private LanguageFactory $languageFactory;
 	private RedirectStore $redirectStore;
 	private LanguageConverterFactory $languageConverterFactory;
+	private TitleFactory $titleFactory;
+	private IConnectionProvider $connectionProvider;
+	private ChangeTagsStore $changeTagStore;
 
-	/**
-	 * @param ServiceOptions $options
-	 * @param RevisionLookup $revisionLookup
-	 * @param RevisionRenderer $revisionRenderer
-	 * @param TitleFormatter $titleFormatter
-	 * @param PageLookup $pageLookup
-	 * @param ParsoidOutputStash $parsoidOutputStash
-	 * @param StatsdDataFactoryInterface $statsDataFactory
-	 * @param ParserOutputAccess $parserOutputAccess
-	 * @param ParsoidSiteConfig $parsoidSiteConfig
-	 * @param HtmlTransformFactory $htmlTransformFactory
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param LanguageFactory $languageFactory
-	 * @param RedirectStore $redirectStore
-	 * @param LanguageConverterFactory $languageConverterFactory
-	 */
 	public function __construct(
 		ServiceOptions $options,
 		RevisionLookup $revisionLookup,
@@ -80,7 +70,10 @@ class PageRestHelperFactory {
 		IContentHandlerFactory $contentHandlerFactory,
 		LanguageFactory $languageFactory,
 		RedirectStore $redirectStore,
-		LanguageConverterFactory $languageConverterFactory
+		LanguageConverterFactory $languageConverterFactory,
+		TitleFactory $titleFactory,
+		IConnectionProvider $connectionProvider,
+		ChangeTagsStore $changeTagStore
 	) {
 		$this->options = $options;
 		$this->revisionLookup = $revisionLookup;
@@ -96,6 +89,9 @@ class PageRestHelperFactory {
 		$this->languageFactory = $languageFactory;
 		$this->redirectStore = $redirectStore;
 		$this->languageConverterFactory = $languageConverterFactory;
+		$this->titleFactory = $titleFactory;
+		$this->connectionProvider = $connectionProvider;
+		$this->changeTagStore = $changeTagStore;
 	}
 
 	public function newRevisionContentHelper(): RevisionContentHelper {
@@ -103,7 +99,10 @@ class PageRestHelperFactory {
 			$this->options,
 			$this->revisionLookup,
 			$this->titleFormatter,
-			$this->pageLookup
+			$this->pageLookup,
+			$this->titleFactory,
+			$this->connectionProvider,
+			$this->changeTagStore
 		);
 	}
 
@@ -112,7 +111,10 @@ class PageRestHelperFactory {
 			$this->options,
 			$this->revisionLookup,
 			$this->titleFormatter,
-			$this->pageLookup
+			$this->pageLookup,
+			$this->titleFactory,
+			$this->connectionProvider,
+			$this->changeTagStore
 		);
 	}
 

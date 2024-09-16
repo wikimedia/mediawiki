@@ -150,4 +150,32 @@ class RevisionSourceHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $rev->getUser()->getName(), $data['user']['name'] );
 	}
 
+	/**
+	 * @param RevisionRecord $rev
+	 * @param array $data
+	 */
+	private function assertRestbaseCompatibleResponseData( RevisionRecord $rev, array $data ): void {
+		$page = $this->getServiceContainer()->getWikiPageFactory()
+			->newFromTitle( $rev->getPage() );
+
+		$this->assertSame( $page->getTitle()->getPrefixedDBkey(), $data['title'] );
+		$this->assertSame( $rev->getPage()->getId(), $data['page_id'] );
+		$this->assertSame( $rev->getId(), $data['rev'] );
+		$this->assertSame( $rev->getPage()->getNamespace(), $data['namespace'] );
+		$this->assertSame( $page->getUser(), $data['user_id'] );
+		$this->assertSame( $page->getUserText(), $data['user_text'] );
+		$this->assertSame(
+			wfTimestampOrNull( TS_ISO_8601, $page->getTimestamp() ),
+			$data['timestamp']
+		);
+		$this->assertSame( $rev->getComment()->text, $data['comment'] );
+		$this->assertSame( [], $data['tags'] );
+		$this->assertSame( [], $data['restrictions'] );
+		$this->assertSame(
+			$page->getTitle()->getPageLanguage()->getCode(),
+			$data['page_language']
+		);
+		$this->assertSame( $page->isRedirect(), $data['redirect'] );
+	}
+
 }

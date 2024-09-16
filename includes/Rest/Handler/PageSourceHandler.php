@@ -97,6 +97,9 @@ class PageSourceHandler extends SimpleHandler {
 
 		$outputMode = $this->getOutputMode();
 		switch ( $outputMode ) {
+			case 'restbase': // compatibility for restbase migration
+				$body = $this->contentHelper->constructRestbaseCompatibleMetadata();
+				break;
 			case 'bare':
 				$body = $this->contentHelper->constructMetadata();
 				$body['html_url'] = $this->constructHtmlUrl( $page );
@@ -143,6 +146,9 @@ class PageSourceHandler extends SimpleHandler {
 	}
 
 	private function getOutputMode(): string {
+		if ( $this->getRequest()->getHeaderLine( 'x-restbase-compat' ) === 'true' ) {
+			return 'restbase';
+		}
 		return $this->getConfig()['format'];
 	}
 

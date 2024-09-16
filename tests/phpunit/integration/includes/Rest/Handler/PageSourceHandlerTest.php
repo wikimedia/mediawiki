@@ -75,6 +75,25 @@ class PageSourceHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $content->getText(), $data['source'] );
 	}
 
+	public function testExecuteRestbaseCompat() {
+		$page = $this->getExistingTestPage( 'Talk:SourceEndpointTestPage/with/slashes' );
+		$request = new RequestData(
+			[
+				'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ],
+				'headers' => [ 'x-restbase-compat' => 'true' ]
+			]
+
+		);
+
+		$htmlUrl = 'https://wiki.example.com/rest/mock/page/Talk%3ASourceEndpointTestPage%2Fwith%2Fslashes/html';
+
+		$handler = $this->newHandler();
+		$config = [ 'format' => 'bare' ];
+		$data = $this->executeHandlerAndGetBodyData( $handler, $request, $config );
+
+		$this->assertRestbaseCompatibleResponseData( $page, $data );
+	}
+
 	public function testExecute_missingparam() {
 		$request = new RequestData();
 
@@ -135,6 +154,31 @@ class PageSourceHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( CONTENT_MODEL_WIKITEXT, $data['content_model'] );
 		$this->assertSame( 'https://example.com/rights', $data['license']['url'] );
 		$this->assertSame( 'some rights', $data['license']['title'] );
+	}
+
+	/**
+	 * @param WikiPage $page
+	 * @param array $data
+	 */
+	private function assertRestbaseCompatibleResponseData( WikiPage $page, array $data ): void {
+		$this->assertSame( $page->getTitle()->getPrefixedDBkey(), $data['title'] );
+		$this->assertSame( $page->getId(), $data['page_id'] );
+		$this->assertSame( $page->getLatest(), $data['rev'] );
+		$this->assertSame( $page->getNamespace(), $data['namespace'] );
+		$this->assertSame( $page->getUser(), $data['user_id'] );
+		$this->assertSame( $page->getUserText(), $data['user_text'] );
+		$this->assertSame(
+			wfTimestampOrNull( TS_ISO_8601, $page->getTimestamp() ),
+			$data['timestamp']
+		);
+		$this->assertSame( $page->getComment(), $data['comment'] );
+		$this->assertSame( [], $data['tags'] );
+		$this->assertSame( [], $data['restrictions'] );
+		$this->assertSame(
+			$page->getTitle()->getPageLanguage()->getCode(),
+			$data['page_language']
+		);
+		$this->assertSame( $page->isRedirect(), $data['redirect'] );
 	}
 
 }

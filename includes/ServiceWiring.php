@@ -1471,7 +1471,10 @@ return [
 			$services->getContentHandlerFactory(),
 			$services->getLanguageFactory(),
 			$services->getRedirectStore(),
-			$services->getLanguageConverterFactory()
+			$services->getLanguageConverterFactory(),
+			$services->getTitleFactory(),
+			$services->getConnectionProvider(),
+			$services->getChangeTagsStore()
 		);
 	},
 

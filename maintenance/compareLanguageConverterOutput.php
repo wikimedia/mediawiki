@@ -105,7 +105,10 @@ class CompareLanguageConverterOutput extends Maintenance {
 			$services->getContentHandlerFactory(),
 			$services->getLanguageFactory(),
 			$services->getRedirectStore(),
-			$services->getLanguageConverterFactory()
+			$services->getLanguageConverterFactory(),
+			$services->getTitleFactory(),
+			$services->getConnectionProvider(),
+			$services->getChangeTagsStore()
 		);
 		return $factory;
 	}

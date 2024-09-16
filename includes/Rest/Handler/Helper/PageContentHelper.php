@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Rest\Handler\Helper;
 
+use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Content\WikitextContent;
@@ -21,9 +22,11 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * @internal for use by core REST infrastructure
@@ -55,6 +58,9 @@ class PageContentHelper {
 	protected RevisionLookup $revisionLookup;
 	protected TitleFormatter $titleFormatter;
 	protected PageLookup $pageLookup;
+	private TitleFactory $titleFactory;
+	private IConnectionProvider $connectionProvider;
+	private ChangeTagsStore $changeTagStore;
 
 	/** @var Authority|null */
 	protected $authority = null;
@@ -75,12 +81,18 @@ class PageContentHelper {
 		ServiceOptions $options,
 		RevisionLookup $revisionLookup,
 		TitleFormatter $titleFormatter,
-		PageLookup $pageLookup
+		PageLookup $pageLookup,
+		TitleFactory $titleFactory,
+		IConnectionProvider $connectionProvider,
+		ChangeTagsStore $changeTagStore
 	) {
 		$this->options = $options;
 		$this->revisionLookup = $revisionLookup;
 		$this->titleFormatter = $titleFormatter;
 		$this->pageLookup = $pageLookup;
+		$this->titleFactory = $titleFactory;
+		$this->connectionProvider = $connectionProvider;
+		$this->changeTagStore = $changeTagStore;
 	}
 
 	/**
@@ -243,16 +255,7 @@ class PageContentHelper {
 	 * @return array
 	 */
 	public function constructMetadata(): array {
-		if ( $this->useDefaultSystemMessage() ) {
-			$title = Title::newFromText( $this->getTitleText() );
-			$content = new WikitextContent( $title->getDefaultMessageText() );
-			$revision = new MutableRevisionRecord( $title );
-			$revision->setPageId( 0 );
-			$revision->setId( 0 );
-			$revision->setContent( SlotRecord::MAIN, $content );
-		} else {
-			$revision = $this->getTargetRevision();
-		}
+		$revision = $this->getRevisionRecordForMetadata();
 
 		$page = $revision->getPage();
 		return [
@@ -269,6 +272,53 @@ class PageContentHelper {
 				'url' => $this->options->get( MainConfigNames::RightsUrl ),
 				'title' => $this->options->get( MainConfigNames::RightsText )
 			],
+		];
+	}
+
+	/**
+	 * @return array
+	 */
+	public function constructRestbaseCompatibleMetadata(): array {
+		$revision = $this->getRevisionRecordForMetadata();
+
+		$page = $revision->getPage();
+		$title = $this->titleFactory->newFromPageIdentity( $page );
+
+		$tags = $this->changeTagStore->getTags(
+			$this->connectionProvider->getReplicaDatabase(),
+			null, $revision->getId(), null
+		);
+
+		$restrictions = [];
+
+		if ( $revision->isDeleted( RevisionRecord::DELETED_COMMENT ) ) {
+			$restrictions[] = 'commenthidden';
+		}
+
+		if ( $revision->isDeleted( RevisionRecord::DELETED_USER ) ) {
+			$restrictions[] = 'userhidden';
+		}
+
+		return [
+			'title' => $title->getPrefixedDBkey(),
+			'page_id' => $page->getId(),
+			'rev' => $revision->getId(),
+
+			// We could look up the tid from a ParserOutput, but it's expensive,
+			// and the tid can't be used for anything anymore anyway.
+			// Don't use an empty string though, that may break routing when the
+			// value is used as a path parameter.
+			'tid' => 'DUMMY',
+
+			'namespace' => $page->getNamespace(),
+			'user_id' => $revision->getUser( RevisionRecord::RAW )->getId(),
+			'user_text' => $revision->getUser( RevisionRecord::FOR_PUBLIC )->getName(),
+			'timestamp' => wfTimestampOrNull( TS_ISO_8601, $revision->getTimestamp() ),
+			'comment' => $revision->getComment()->text,
+			'tags' => $tags,
+			'restrictions' => $restrictions,
+			'page_language' => $title->getPageLanguage()->getCode(),
+			'redirect' => $title->isRedirect()
 		];
 	}
 
@@ -378,6 +428,27 @@ class PageContentHelper {
 	public function checkAccess() {
 		$this->checkHasContent(); // Status 404: Not Found
 		$this->checkAccessPermission(); // Status 403: Forbidden
+	}
+
+	/**
+	 * @return MutableRevisionRecord|RevisionRecord|null
+	 */
+	private function getRevisionRecordForMetadata() {
+		if ( $this->useDefaultSystemMessage() ) {
+			$title = Title::newFromText( $this->getTitleText() );
+			$content = new WikitextContent( $title->getDefaultMessageText() );
+			$revision = new MutableRevisionRecord( $title );
+			$revision->setPageId( 0 );
+			$revision->setId( 0 );
+			$revision->setContent(
+				SlotRecord::MAIN,
+				$content
+			);
+		} else {
+			$revision = $this->getTargetRevision();
+		}
+
+		return $revision;
 	}
 
 }
