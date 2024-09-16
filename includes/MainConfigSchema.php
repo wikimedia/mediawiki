@@ -4078,6 +4078,20 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Sample rate for collecting statistics on Parsoid selective update.
+	 *
+	 * Zero disables collection; 1000 means "1 in every 1000 parses will
+	 * be sampled".
+	 *
+	 * @warning This is EXPERIMENTAL and will disappear once analysis is
+	 * complete.
+	 */
+	public const ParsoidSelectiveUpdateSampleRate = [
+		'type' => 'integer',
+		'default' => 0,
+	];
+
+	/**
 	 * Per-namespace configuration for the ParserCache filter.
 	 *
 	 * There is one top level key for each cache name supported in ParserCacheFactory.

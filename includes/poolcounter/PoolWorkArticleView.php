@@ -21,6 +21,7 @@
 namespace MediaWiki\PoolCounter;
 
 use MediaWiki\Logger\Spi as LoggerSpi;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
@@ -81,9 +82,26 @@ class PoolWorkArticleView extends PoolCounterWork {
 	 *
 	 * @param ?ParserOutput $previousOutput previously-cached output for this
 	 *   page (used by Parsoid for selective updates)
+	 * @param bool $doSample Whether to collect statistics on this render
+	 * @param string $sourceLabel the source label to use on the statistics
 	 * @return Status with the value being a ParserOutput or null
 	 */
-	public function renderRevision( ?ParserOutput $previousOutput = null ): Status {
+	public function renderRevision(
+		?ParserOutput $previousOutput = null,
+		bool $doSample = false,
+		string $sourceLabel = ''
+	): Status {
+		if ( $doSample ) {
+			MediaWikiServices::getInstance()->getStatsFactory()
+				->getCounter( 'parsercache_selective' )
+				->setLabel( 'source', $sourceLabel )
+				->setLabel( 'type', $previousOutput === null ? 'full' : 'selective' )
+				->setLabel( 'reason', $this->parserOptions->getRenderReason() )
+				->setLabel( 'parser', $this->parserOptions->getUseParsoid() ? 'parsoid' : 'legacy' )
+				->setLabel( 'opportunistic', 'false' )
+				->increment();
+		}
+
 		$renderedRevision = $this->renderer->getRenderedRevision(
 			$this->revision,
 			$this->parserOptions,

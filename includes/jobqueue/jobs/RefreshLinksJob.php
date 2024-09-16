@@ -400,6 +400,30 @@ class RefreshLinksJob extends Job {
 
 		$causeAction = $this->params['causeAction'] ?? 'RefreshLinksJob';
 		$parserOptions = $page->makeParserOptions( 'canonical' );
+
+		// T371713: Temporary statistics collection code to determine
+		// feasibility of Parsoid selective update
+		$sampleRate = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::ParsoidSelectiveUpdateSampleRate
+		);
+		if ( $sampleRate && mt_rand( 1, $sampleRate ) === 1 ) {
+			if ( $cachedOutput === null ) {
+				// In order to collect accurate statistics, check for
+				// a dirty copy in the cache even if we wouldn't have
+				// to otherwise.
+				$cachedOutput = $parserCache->getDirty( $page, $parserOptions );
+			}
+			$opportunistic = !empty( $this->params['isOpportunistic'] );
+			$stats
+				->getCounter( 'parsercache_selective' )
+				->setLabel( 'source', 'RefreshLinksJob' )
+				->setLabel( 'type', $cachedOutput === null ? 'full' : 'selective' )
+				->setLabel( 'reason', $causeAction )
+				->setLabel( 'parser', $parserOptions->getUseParsoid() ? 'parsoid' : 'legacy' )
+				->setLabel( 'opportunistic', $opportunistic ? 'true' : 'false' )
+				->increment();
+		}
+
 		$renderedRevision = $renderer->getRenderedRevision(
 			$revision,
 			$parserOptions,

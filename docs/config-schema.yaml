@@ -2519,6 +2519,15 @@ config-schema:
             @unstable Per MediaWiki 1.39, the structure of this configuration is still subject to
                       change.
         default: null
+    ParsoidSelectiveUpdateSampleRate:
+        type: integer
+        default: 0
+        description: |-
+            Sample rate for collecting statistics on Parsoid selective update.
+            Zero disables collection; 1000 means "1 in every 1000 parses will
+            be sampled".
+            @warning This is EXPERIMENTAL and will disappear once analysis is
+            complete.
     ParserCacheFilterConfig:
         type: object
         default:

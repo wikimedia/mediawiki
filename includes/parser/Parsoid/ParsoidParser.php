@@ -5,6 +5,7 @@ namespace MediaWiki\Parser\Parsoid;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOutput;
@@ -114,6 +115,30 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 				$htmlVariantLanguage = $langCode;
 			}
 		}
+		$oldPageConfig = null;
+		$oldPageBundle = null;
+
+		// T371713: Temporary statistics collection code to determine
+		// feasibility of Parsoid selective update
+		$sampleRate = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::ParsoidSelectiveUpdateSampleRate
+		);
+		$doSample = ( $sampleRate && mt_rand( 1, $sampleRate ) === 1 );
+		if ( $doSample && $previousOutput !== null && $previousOutput->getCacheRevisionId() ) {
+			// Allow fetching the old wikitext corresponding to the
+			// $previousOutput
+			$oldPageConfig = $this->pageConfigFactory->create(
+				Title::newFromLinkTarget( $pageConfig->getLinkTarget() ),
+				$options->getUserIdentity(),
+				$previousOutput->getCacheRevisionId(),
+				null,
+				$previousOutput->getLanguage(),
+			);
+			$oldPageBundle =
+				PageBundleParserOutputConverter::pageBundleFromParserOutput(
+					$previousOutput
+				);
+		}
 
 		$defaultOptions = [
 			'pageBundle' => true,
@@ -123,7 +148,9 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			'htmlVariantLanguage' => $htmlVariantLanguage,
 			'offsetType' => 'byte',
 			'outputContentVersion' => Parsoid::defaultHTMLVersion(),
-			'previousOutput' => $previousOutput,
+			'previousOutput' => $oldPageBundle,
+			'previousInput' => $oldPageConfig,
+			'sample_stats' => $doSample,
 		];
 
 		$parserOutput->resetParseStartTime();
@@ -145,7 +172,7 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			Title::newFromLinkTarget( $pageConfig->getLinkTarget() )->getPrefixedDBkey()
 		);
 
-		// Register a watcher again because the $parserOuptut arg
+		// Register a watcher again because the $parserOutput arg
 		// and $parserOutput return value above are different objects!
 		$options->registerWatcher( [ $parserOutput, 'recordOption' ] );
 
@@ -154,12 +181,19 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 		$parserOutput->recordTimeProfile();
 		$this->makeLimitReport( $options, $parserOutput );
 
-		// Collect statistics on parsing time -vs- presence of $previousOutput
-		MediaWikiServices::getInstance()->getStatsFactory()
+		// T371713: Collect statistics on parsing time -vs- presence of
+		// $previousOutput
+		$stats = MediaWikiServices::getInstance()->getStatsFactory();
+		$stats
 			->getCounter( 'Parsoid_parse_time_total' )
 			->setLabel( 'type', $previousOutput === null ? 'full' : 'selective' )
 			->setLabel( 'reason', $options->getRenderReason() ?: 'unknown' )
 			->incrementBy( $parserOutput->getTimeProfile( 'cpu' ) );
+		$stats
+			->getCounter( 'Parsoid_parse_count_total' )
+			->setLabel( 'type', $previousOutput === null ? 'full' : 'selective' )
+			->setLabel( 'reason', $options->getRenderReason() ?: 'unknown' )
+			->increment();
 
 		// Add Parsoid skinning module
 		$parserOutput->addModuleStyles( [ 'mediawiki.skinning.content.parsoid' ] );
