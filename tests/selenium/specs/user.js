@@ -39,7 +39,7 @@ describe( 'User', () => {
 		await LoginPage.login( username, password );
 
 		// check
-		const actualUsername = await browser.execute( () => mw.config.get( 'wgUserName' ) );
+		const actualUsername = await LoginPage.getActualUsername();
 		assert.strictEqual( actualUsername, username );
 	} );
 
@@ -90,7 +90,7 @@ describe( 'User', () => {
 
 		await CreateAccountPage.submitForm( username, password );
 
-		const actualUsername = await browser.execute( () => mw.config.get( 'wgUserName' ) );
+		const actualUsername = await LoginPage.getActualUsername();
 		assert.strictEqual( actualUsername, username );
 		assert.strictEqual( await CreateAccountPage.heading.getText(), `Welcome, ${ username }!` );
 	} );

@@ -26,6 +26,10 @@ class LoginPage extends Page {
 		super.openTitle( 'Special:UserLogin' );
 	}
 
+	async getActualUsername() {
+		return browser.execute( () => mw.config.get( 'wgUserName' ) );
+	}
+
 	async login( username, password ) {
 		await this.open();
 		await this.username.setValue( username );
