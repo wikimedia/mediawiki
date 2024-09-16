@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hakimi97"
+			"Hakimi97",
+			"Tofeiku"
 		]
 	},
+	"cdx-chip-input-chip-added": "Cip $1 telah ditambahkan.",
+	"cdx-chip-input-chip-removed": "Cip $1 telah dibuang.",
 	"cdx-input-chip-aria-description": "Tekan Enter untuk menyunting atau Padam untuk mengalih keluar.",
 	"cdx-dialog-close-button-label": "Tutup",
 	"cdx-label-optional-flag": "(pilihan)",

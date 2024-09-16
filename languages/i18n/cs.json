@@ -397,7 +397,7 @@
 	"virus-scanfailed": "prověřování selhalo (kód $1)",
 	"virus-unknownscanner": "neznámý antivirus:",
 	"logouttext": "<strong>Nyní jste odhlášeni.</strong>\n\nNěkteré stránky se mohou i nadále zobrazovat, jako byste byli dosud přihlášeni, dokud nevyprázdníte cache prohlížeče.",
-	"logging-out-notify": "Probíhá vaše odhlašování, prosím čekejte.",
+	"logging-out-notify": "Jste odhlášeni. Čekejte prosím.",
 	"logout-failed": "Momentálně se nelze odhlásit: $1",
 	"cannotlogoutnow-title": "Momentálně se nelze odhlásit",
 	"cannotlogoutnow-text": "Odhlášení není možné, když se používají $1.",

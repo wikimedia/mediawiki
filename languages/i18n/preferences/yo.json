@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Demmy"
+			"Demmy",
+			"SolutionTomi"
 		]
 	},
 	"preferences": "Àwọn ìfẹ́ràn",
@@ -94,7 +95,7 @@
 	"imagemaxsize": "Iye ìtóbi àwòrán lórí ojúewé ìjúwe fáìlì:",
 	"thumbsize": "Ìtóbi àwòrán kékeré:",
 	"prefs-diffs": "Àwọn ìyàtọ̀",
-	"tog-diffonly": "Kò gbọdọ̀ ṣàfihàn àkóónú ojúewé lábẹ́ àwọn ìyàtọ̀",
+	"tog-diffonly": "O kò gbọdọ̀ ṣàfihàn àkóónú ojúewé lábẹ́ àwọn ìyàtọ̀",
 	"tog-norollbackdiff": "Mọ fi ìyàtọ̀ hàn lẹ́yín tí ìyísẹ́yìn bá parí",
 	"prefs-advancedrendering": "Àwọn àṣàyàn onígíga",
 	"tog-underline": "Ìfàlàsábẹ́ àwọn àjápọ̀:",

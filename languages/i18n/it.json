@@ -893,6 +893,8 @@
 	"unstrip-size-category-desc": "La pagina eccede la dimensione limite di unstrip.",
 	"bad-language-code-category": "Pagine con codice lingua non valido",
 	"bad-language-code-category-desc": "La pagina contiene un <code><nowiki>{{#dir}}</nowiki></code> con un codice lingua non valido.",
+	"double-px-category": "Pagine con dimensione dell'immagine contenenti suffissi px superflui",
+	"double-px-category-desc": "La pagina contiene un'immagine la cui dimensione contiene un suffisso <code>px</code> superfluo, ad esempio: <code>100pxpx</code>.",
 	"converter-manual-rule-error": "Rilevato errore nella regola manuale di conversione della lingua",
 	"undo-success": "Questa modifica può essere annullata.\nControlla le differenze mostrate sotto fra le due versioni per essere certo che il contenuto corrisponda a quanto desiderato, e quindi pubblicare le modifiche per completare la procedura di annullamento.",
 	"undo-failure": "Impossibile annullare la modifica a causa di un conflitto con modifiche intermedie.",

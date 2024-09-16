@@ -46,6 +46,7 @@
 	"prefs-tabs-navigation-hint": "Vihje: Voit käyttää vasenta ja oikeata nuolinäppäintä liikkumiseen välilehtien välillä.",
 	"prefs-sections-navigation-hint": "Vihje: Voit käyttää Tab-näppäintä sekä Tab- ja Shift-näppäimiä liikkumiseen välilehtien välillä.",
 	"prefs-personal": "Käyttäjätiedot",
+	"prefs-description-personal": "Hallitse miten näyt, viestit ja olet yhteydessä muihin.",
 	"prefs-info": "Perustiedot",
 	"username": "{{GENDER:$1|Käyttäjänimi}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Jäsenenä}} {{PLURAL:$1|ryhmässä|ryhmissä}}:",

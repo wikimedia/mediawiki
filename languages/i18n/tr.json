@@ -454,6 +454,7 @@
 	"virus-scanfailed": "tarama başarısız (kod $1)",
 	"virus-unknownscanner": "bilinmeyen antivirüs:",
 	"logouttext": "<strong>Artık oturumunuzu kapattınız.</strong>\n\nTarayıcınızın önbelleğini temizleyinceye kadar bazı sayfalarda, oturumunuz açıkmış gibi gözükmeye devam edebilir.",
+	"logouttext-for-temporary-account": "<strong>Geçici hesabınızdan şu anda çıkış yaptınız.</strong> \n\nTarayıcınızın önbelleğini temizleyene kadar bazı sayfalarda hala oturumunuz açıkmış gibi görüntülenmeye devam edebileceğini unutmayın.",
 	"logging-out-notify": "Oturumunuz kapatılıyor, lütfen bekleyin.",
 	"logout-failed": "Oturum şu an kapatılamıyor: $1",
 	"cannotlogoutnow-title": "Şu an oturum kapatılamıyor",

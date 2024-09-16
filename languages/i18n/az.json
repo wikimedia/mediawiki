@@ -375,6 +375,7 @@
 	"virus-scanfailed": "yoxlama başa çatmadı (kod $1)",
 	"virus-unknownscanner": "naməlum antivirus:",
 	"logouttext": "<strong>Sistemdən çıxdınız.</strong>\n\nVeb-brauzerin keş yaddaşını təmizləyənədək bəzi səhifələr hələ də sistemdə imişsiniz kimi görünə bilər.",
+	"logouttext-for-temporary-account": "<strong>Müvəqqəti hesabınızdan çıxış etdiniz.</strong> \n\nQeyd edək ki, bəzi səhifələr brauzerinizin keşini təmizləyənə qədər siz hələ də daxil olmusunuz kimi göstərilməyə davam edə bilər.",
 	"logging-out-notify": "Sistemdən çıxdınız, xahiş edirik, gözləyin.",
 	"logout-failed": "Çıxış etmək mümkün olmadı: $1",
 	"cannotlogoutnow-title": "Çıxış etmək mümkün olmadı",

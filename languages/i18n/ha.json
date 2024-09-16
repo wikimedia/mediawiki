@@ -26,6 +26,7 @@
 			"Muhammad Idriss Criteria",
 			"Nura A Sani",
 			"Omar Ali",
+			"Umar2z",
 			"Yusuf Sa'adu",
 			"아라"
 		]
@@ -134,6 +135,7 @@
 	"permalink": "Dawwamammen mahaɗi",
 	"print": "Buga",
 	"view": "Duba",
+	"viewcontribs": "Dubi gudumawa",
 	"skin-view-view": "Karanta",
 	"skin-view-foreign": "Duba wannan hoto a $1",
 	"edit": "Gyarawa",
@@ -150,6 +152,7 @@
 	"skin-action-unprotect": "Canza kariya",
 	"unprotect": "Canza kariya",
 	"newpage": "Sabon shafi",
+	"newpage-desc": "Fara sabon shafi don batun da aka bukata",
 	"talkpagelinktext": "hira",
 	"specialpage": "Shafi na Musamman",
 	"personaltools": "Zaɓaɓɓin kayan aiki",

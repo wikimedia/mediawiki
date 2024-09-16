@@ -229,7 +229,7 @@
 	"prefs-description-searchoptions": "Pilih bagaimana fungsinya autolengkap dan hasil.",
 	"prefs-searchmisc": "Umum",
 	"searchlimit-label": "Bilangan hasil carian untuk dipaparkan pada setiap halaman:",
-	"searchlimit-help": "Bilangan maksimum: 500",
+	"searchlimit-help": "Bilangan maksimum:$1",
 	"search-thumbnail-extra-namespaces-label": "Tunjukkan lakaran kenit dalam Khas:Cari pada Desktop",
 	"search-thumbnail-extra-namespaces-message": "Paparkan lakaran kenit untuk {{PLURAL:$2|ruang nama}} $1 hasil pada halaman {{#special:search}}.",
 	"prefs-advancedsearchoptions": "Pilihan lanjutan",

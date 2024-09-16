@@ -445,6 +445,7 @@
 	"virus-scanfailed": "skanowanie nieudane (błąd $1)",
 	"virus-unknownscanner": "nieznany program antywirusowy:",
 	"logouttext": "'''Nie jesteś już zalogowany.'''\n\nZauważ, że do momentu wyczyszczenia pamięci podręcznej przeglądarki niektóre strony mogą wyglądać tak, jakbyś wciąż był zalogowany.",
+	"logouttext-for-temporary-account": "<strong>Nie jesteś już zalogowany na konto tymczasowe.</strong>\n\nZauważ, że do momentu wyczyszczenia pamięci podręcznej przeglądarki niektóre strony mogą wyglądać tak, jakbyś wciąż był zalogowany.",
 	"logging-out-notify": "Zostałeś wylogowany, proszę czekać.",
 	"logout-failed": "Nie możesz się teraz wylogować: $1",
 	"cannotlogoutnow-title": "Nie możesz się teraz wylogować",

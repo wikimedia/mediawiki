@@ -814,6 +814,8 @@
 	"unstrip-size-warning": "S'ha excedit el límit de mida de substitució ($1)",
 	"unstrip-size-category": "Pàgines en què s'excedeix el límit de mida de substitució",
 	"unstrip-size-category-desc": "La pàgina excedeix el límit de mida de substitució.",
+	"double-px-category": "Pàgines amb mides d'imatge que contenen px addicionals",
+	"double-px-category-desc": "Aquesta pàgina conté una imatge amb un sufix <code>px</code> addicional, com <code>100pxpx</code>.",
 	"converter-manual-rule-error": "Error detectat a la norma de conversió de llengua manual",
 	"undo-success": "L'edició es pot desfer. <br>Comproveu la comparació següent per verificar que això és el que voleu fer, i després publiqueu els canvis següents per acabar de desfer l'edició.",
 	"undo-failure": "No pot desfer-se la modificació perquè hi ha edicions intermèdies en conflicte.",
