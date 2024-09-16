@@ -2,6 +2,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\RenameUser\RenameuserSQL;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Database
@@ -32,6 +33,11 @@ class RenameuserSQLTest extends MediaWikiIntegrationTestCase {
 		$blockId = $block->getId();
 
 		$renamer = new RenameuserSQL( $oldName, $newName, $userId, $admin );
+		$access = TestingAccessWrapper::newFromObject( $renamer );
+		$this->assertFalse( $access->isTableShared( 'user' ) );
+		$this->assertFalse( $access->isTableShared( 'actor' ) );
+		$this->assertTrue( $access->shouldUpdate( 'user' ) );
+		$this->assertTrue( $access->shouldUpdate( 'actor' ) );
 		$this->assertTrue( $renamer->rename() );
 
 		$this->newSelectQueryBuilder()

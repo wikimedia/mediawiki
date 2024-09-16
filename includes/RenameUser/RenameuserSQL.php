@@ -87,6 +87,15 @@ class RenameuserSQL {
 	 */
 	private $debugPrefix = '';
 
+	/**
+	 * Whether shared tables and virtual domains should be updated
+	 *
+	 * When this is set to true, it is assumed that the shared tables are already updated.
+	 *
+	 * @var bool
+	 */
+	private $derived = false;
+
 	// B/C constants for tablesJob field
 	public const NAME_COL = 0;
 	public const UID_COL  = 1;
@@ -124,6 +133,7 @@ class RenameuserSQL {
 	 *    'reason' - string, reason for the rename
 	 *    'debugPrefix' - string, prefixed to debug messages
 	 *    'checkIfUserExists' - bool, whether to update the user table
+	 *    'derived' - bool, whether to skip updates to shared tables
 	 */
 	public function __construct( $old, $new, $uid, User $renamer, $options = [] ) {
 		$services = MediaWikiServices::getInstance();
@@ -155,6 +165,10 @@ class RenameuserSQL {
 			$this->reason = $options['reason'];
 		}
 
+		if ( isset( $options['derived'] ) ) {
+			$this->derived = $options['derived'];
+		}
+
 		$this->tables = []; // Immediate updates
 		$this->tablesJob = []; // Slow updates
 
@@ -179,11 +193,17 @@ class RenameuserSQL {
 		$this->hookRunner->onRenameUserPreRename( $this->uid, $this->old, $this->new );
 
 		// Make sure the user exists if needed
-		if ( $this->checkIfUserExists && !$this->lockUserAndGetId( $this->old ) ) {
-			$this->debug( "User {$this->old} does not exist, bailing out" );
-			$dbw->cancelAtomic( __METHOD__, $atomicId );
+		if ( $this->checkIfUserExists ) {
+			// if derived is true and 'user' table is shared,
+			// then 'user.user_name' should already be updated
+			$userRenamed = $this->derived && self::isTableShared( 'user' );
+			$currentName = $userRenamed ? $this->new : $this->old;
+			if ( !$this->lockUserAndGetId( $currentName ) ) {
+				$this->debug( "User $currentName does not exist, bailing out" );
+				$dbw->cancelAtomic( __METHOD__, $atomicId );
 
-			return false;
+				return false;
+			}
 		}
 
 		// Grab the user's edit count before any updates are made; used later in a log entry
@@ -192,16 +212,29 @@ class RenameuserSQL {
 		// Rename and touch the user before re-attributing edits to avoid users still being
 		// logged in and making new edits (under the old name) while being renamed.
 		$this->debug( "Starting rename of {$this->old} to {$this->new}" );
-		$dbw->newUpdateQueryBuilder()
-			->update( 'user' )
-			->set( [ 'user_name' => $this->new, 'user_touched' => $dbw->timestamp() ] )
-			->where( [ 'user_name' => $this->old, 'user_id' => $this->uid ] )
-			->caller( __METHOD__ )->execute();
-		$dbw->newUpdateQueryBuilder()
-			->update( 'actor' )
-			->set( [ 'actor_name' => $this->new ] )
-			->where( [ 'actor_name' => $this->old, 'actor_user' => $this->uid ] )
-			->caller( __METHOD__ )->execute();
+		if ( !$this->derived ) {
+			$this->debug( "Rename of {$this->old} to {$this->new} will update shared tables" );
+		}
+		if ( $this->shouldUpdate( 'user' ) ) {
+			$this->debug( "Updating user table for {$this->old} to {$this->new}" );
+			$dbw->newUpdateQueryBuilder()
+				->update( 'user' )
+				->set( [ 'user_name' => $this->new, 'user_touched' => $dbw->timestamp() ] )
+				->where( [ 'user_name' => $this->old, 'user_id' => $this->uid ] )
+				->caller( __METHOD__ )->execute();
+		} else {
+			$this->debug( "Skipping user table for rename from {$this->old} to {$this->new}" );
+		}
+		if ( $this->shouldUpdate( 'actor' ) ) {
+			$this->debug( "Updating actor table for {$this->old} to {$this->new}" );
+			$dbw->newUpdateQueryBuilder()
+				->update( 'actor' )
+				->set( [ 'actor_name' => $this->new ] )
+				->where( [ 'actor_name' => $this->old, 'actor_user' => $this->uid ] )
+				->caller( __METHOD__ )->execute();
+		} else {
+			$this->debug( "Skipping actor table for rename from {$this->old} to {$this->new}" );
+		}
 
 		// If this user is renaming themself, make sure that code below uses a proper name
 		if ( $this->renamer->getId() === $this->uid ) {
@@ -219,52 +252,70 @@ class RenameuserSQL {
 		$user->invalidateCache();
 
 		// Update the block_target table rows if this user has a block in there.
-		$dbw->newUpdateQueryBuilder()
-			->update( 'block_target' )
-			->set( [ 'bt_user_text' => $this->new ] )
-			->where( [ 'bt_user' => $this->uid, 'bt_user_text' => $this->old ] )
-			->caller( __METHOD__ )->execute();
+		if ( $this->shouldUpdate( 'block_target' ) ) {
+			$this->debug( "Updating block_target table for {$this->old} to {$this->new}" );
+			$dbw->newUpdateQueryBuilder()
+				->update( 'block_target' )
+				->set( [ 'bt_user_text' => $this->new ] )
+				->where( [ 'bt_user' => $this->uid, 'bt_user_text' => $this->old ] )
+				->caller( __METHOD__ )->execute();
+		} else {
+			$this->debug( "Skipping block_target table for rename from {$this->old} to {$this->new}" );
+		}
 
 		// Update this users block/rights log. Ideally, the logs would be historical,
 		// but it is really annoying when users have "clean" block logs by virtue of
 		// being renamed, which makes admin tasks more of a pain...
 		$oldTitle = $this->titleFactory->makeTitle( NS_USER, $this->old );
 		$newTitle = $this->titleFactory->makeTitle( NS_USER, $this->new );
-		$this->debug( "Updating logging table for {$this->old} to {$this->new}" );
 
 		// Exclude user renames per T200731
 		$logTypesOnUser = array_diff( SpecialLog::getLogTypesOnUser(), [ 'renameuser' ] );
 
-		$dbw->newUpdateQueryBuilder()
-			->update( 'logging' )
-			->set( [ 'log_title' => $newTitle->getDBkey() ] )
-			->where( [
-				'log_type' => $logTypesOnUser,
-				'log_namespace' => NS_USER,
-				'log_title' => $oldTitle->getDBkey()
-			] )
-			->caller( __METHOD__ )->execute();
+		if ( $this->shouldUpdate( 'logging' ) ) {
+			$this->debug( "Updating logging table for {$this->old} to {$this->new}" );
+			$dbw->newUpdateQueryBuilder()
+				->update( 'logging' )
+				->set( [ 'log_title' => $newTitle->getDBkey() ] )
+				->where( [
+					'log_type' => $logTypesOnUser,
+					'log_namespace' => NS_USER,
+					'log_title' => $oldTitle->getDBkey()
+				] )
+				->caller( __METHOD__ )->execute();
+		} else {
+			$this->debug( "Skipping logging table for rename from {$this->old} to {$this->new}" );
+		}
 
-		$this->debug( "Updating recentchanges table for rename from {$this->old} to {$this->new}" );
-		$dbw->newUpdateQueryBuilder()
-			->update( 'recentchanges' )
-			->set( [ 'rc_title' => $newTitle->getDBkey() ] )
-			->where( [
-				'rc_type' => RC_LOG,
-				'rc_log_type' => $logTypesOnUser,
-				'rc_namespace' => NS_USER,
-				'rc_title' => $oldTitle->getDBkey()
-			] )
-			->caller( __METHOD__ )->execute();
+		if ( $this->shouldUpdate( 'recentchanges' ) ) {
+			$this->debug( "Updating recentchanges table for rename from {$this->old} to {$this->new}" );
+			$dbw->newUpdateQueryBuilder()
+				->update( 'recentchanges' )
+				->set( [ 'rc_title' => $newTitle->getDBkey() ] )
+				->where( [
+					'rc_type' => RC_LOG,
+					'rc_log_type' => $logTypesOnUser,
+					'rc_namespace' => NS_USER,
+					'rc_title' => $oldTitle->getDBkey()
+				] )
+				->caller( __METHOD__ )->execute();
+		} else {
+			$this->debug( "Skipping recentchanges table for rename from {$this->old} to {$this->new}" );
+		}
 
 		// Do immediate re-attribution table updates...
 		foreach ( $this->tables as $table => $fieldSet ) {
 			[ $nameCol, $userCol ] = $fieldSet;
-			$dbw->newUpdateQueryBuilder()
-				->update( $table )
-				->set( [ $nameCol => $this->new ] )
-				->where( [ $nameCol => $this->old, $userCol => $this->uid ] )
-				->caller( __METHOD__ )->execute();
+			if ( $this->shouldUpdate( $table ) ) {
+				$this->debug( "Updating {$table} table for rename from {$this->old} to {$this->new}" );
+				$dbw->newUpdateQueryBuilder()
+					->update( $table )
+					->set( [ $nameCol => $this->new ] )
+					->where( [ $nameCol => $this->old, $userCol => $this->uid ] )
+					->caller( __METHOD__ )->execute();
+			} else {
+				$this->debug( "Skipping {$table} table for rename from {$this->old} to {$this->new}" );
+			}
 		}
 
 		/** @var RenameUserJob[] $jobs */
@@ -277,6 +328,12 @@ class RenameuserSQL {
 		// randomly mixed between the two new names. Some sort of rename
 		// lock might be in order...
 		foreach ( $this->tablesJob as $table => $params ) {
+			if ( !$this->shouldUpdate( $table ) ) {
+				$this->debug( "Skipping {$table} table for rename from {$this->old} to {$this->new}" );
+				continue;
+			}
+			$this->debug( "Updating {$table} table for rename from {$this->old} to {$this->new}" );
+
 			$userTextC = $params[self::NAME_COL]; // some *_user_text column
 			$userIDC = $params[self::UID_COL]; // some *_user column
 			$timestampC = $params[self::TIME_COL]; // some *_timestamp column
@@ -338,7 +395,8 @@ class RenameuserSQL {
 		$logEntry->setParameters( [
 			'4::olduser' => $this->old,
 			'5::newuser' => $this->new,
-			'6::edits' => $contribs
+			'6::edits' => $contribs,
+			'derived' => $this->derived
 		] );
 		$logid = $logEntry->insert();
 
@@ -387,5 +445,25 @@ class RenameuserSQL {
 			->from( 'user' )
 			->where( [ 'user_name' => $name ] )
 			->caller( __METHOD__ )->fetchField();
+	}
+
+	/**
+	 * Checks if a table should be updated in this rename.
+	 * @param string $table
+	 * @return bool
+	 */
+	private function shouldUpdate( string $table ) {
+		return !$this->derived || !self::isTableShared( $table );
+	}
+
+	/**
+	 * Check if a table is shared.
+	 *
+	 * @param string $table The table name
+	 * @return bool Returns true if the table is shared
+	 */
+	private static function isTableShared( string $table ) {
+		global $wgSharedTables, $wgSharedDB;
+		return $wgSharedDB && in_array( $table, $wgSharedTables, true );
 	}
 }
