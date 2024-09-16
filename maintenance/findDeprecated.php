@@ -83,10 +83,14 @@ class DeprecatedInterfaceFinder extends FileAwareNodeVisitor {
 			return false;
 		}
 		foreach ( $node->stmts as $stmt ) {
-			if (
-				$stmt instanceof PhpParser\Node\Expr\FuncCall
-				&& $stmt->name->toString() === 'wfDeprecated'
-			) {
+			$functionExpression = null;
+			if ( $stmt instanceof PhpParser\Node\Expr\FuncCall ) {
+				$functionExpression = $stmt;
+			}
+			if ( isset( $stmt->expr ) && $stmt->expr instanceof PhpParser\Node\Expr\FuncCall ) {
+				$functionExpression = $stmt->expr;
+			}
+			if ( $functionExpression && $functionExpression->name->toString() === 'wfDeprecated' ) {
 				return true;
 			}
 			return false;
@@ -139,12 +143,17 @@ class FindDeprecated extends Maintenance {
 	}
 
 	/**
+	 * @return string The installation path of MediaWiki. This method is mocked in PHPUnit tests.
+	 */
+	protected function getMwInstallPath() {
+		return MW_INSTALL_PATH;
+	}
+
+	/**
 	 * @return SplFileInfo[]
 	 */
 	public function getFiles() {
-		global $IP;
-
-		$files = new RecursiveDirectoryIterator( $IP . '/includes' );
+		$files = new RecursiveDirectoryIterator( $this->getMwInstallPath() . '/includes' );
 		$files = new RecursiveIteratorIterator( $files );
 		$files = new RegexIterator( $files, '/\.php$/' );
 		return iterator_to_array( $files, false );
@@ -163,6 +172,8 @@ class FindDeprecated extends Maintenance {
 
 		$fileCount = count( $files );
 
+		$outputProgress = !defined( 'MW_PHPUNIT_TEST' );
+
 		for ( $i = 0; $i < $fileCount; $i++ ) {
 			$file = $files[$i];
 			$code = file_get_contents( $file );
@@ -177,11 +188,15 @@ class FindDeprecated extends Maintenance {
 
 			if ( $i % $chunkSize === 0 ) {
 				$percentDone = 100 * $i / $fileCount;
-				fprintf( STDERR, "\r[%-72s] %d%%", str_repeat( '#', $i / $chunkSize ), $percentDone );
+				if ( $outputProgress ) {
+					fprintf( STDERR, "\r[%-72s] %d%%", str_repeat( '#', $i / $chunkSize ), $percentDone );
+				}
 			}
 		}
 
-		fprintf( STDERR, "\r[%'#-72s] 100%%\n", '' );
+		if ( $outputProgress ) {
+			fprintf( STDERR, "\r[%'#-72s] 100%%\n", '' );
+		}
 
 		// Colorize output if STDOUT is an interactive terminal.
 		if ( posix_isatty( STDOUT ) ) {
