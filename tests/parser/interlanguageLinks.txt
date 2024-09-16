@@ -33,9 +33,13 @@ Test.
 
 !! test
 Interlanguage link
+!! options
+ill
 !! wikitext
 Blah blah blah
 [[zh:Chinese]]
+!! metadata
+ill=zh:Chinese
 !! html/php
 <p>Blah blah blah
 </p>
@@ -49,9 +53,12 @@ Blah blah blah
 Interlanguage link with spacing
 !! options
 parsoid=wt2html,wt2wt,html2html
+ill
 !! wikitext
 Blah blah blah
 [[   zh  :    Chinese     ]]
+!! metadata
+ill=zh:Chinese
 !! html/php
 <p>Blah blah blah
 </p>
@@ -62,10 +69,15 @@ Blah blah blah
 
 !! test
 Double interlanguage link
+!! options
+ill
 !! wikitext
 Blah blah blah
 [[es:Spanish]]
 [[zh:Chinese]]
+!! metadata
+ill=es:Spanish
+ill=zh:Chinese
 !! html/php
 <p>Blah blah blah
 </p>
@@ -80,11 +92,15 @@ Blah blah blah
 Interlanguage link variations
 !! options
 parsoid=wt2html,wt2wt,html2html
+ill
 !! wikitext
 Blah blah blah
 [[   es :Spanish]]
 [[ ZH :Chinese]]
 [[es:Foo_bar]]
+!! metadata
+ill=es:Spanish
+ill=zh:Chinese
 !! html/php
 <p>Blah blah blah
 </p>
@@ -97,10 +113,13 @@ Blah blah blah
 
 !! test
 Escaping of interlanguage links (T129218, T156308)
+!! options
+ill
 !! wikitext
 Blah blah blah
 [[:es:Spanish]]
 [[ : zh : Chinese ]]
+!! metadata
 !! html/php
 <p>Blah blah blah
 <a href="http://es.wikipedia.org/wiki/Spanish" class="extiw" title="es:Spanish">es:Spanish</a>
@@ -116,10 +135,12 @@ Blah blah blah
 Multiple colons escaping interlanguage links
 !! options
 parsoid=wt2html
+ill
 !! wikitext
 [[:es:Spanish]]
 [[::es:Spanish]]
 [[:::es:Spanish]]
+!! metadata
 !! html/php
 <p><a href="http://es.wikipedia.org/wiki/Spanish" class="extiw" title="es:Spanish">es:Spanish</a>
 [[::es:Spanish]]
@@ -136,9 +157,12 @@ parsoid=wt2html
 Space and question mark encoding in interlanguage links (T95473)
 !! options
 parsoid=wt2html,wt2wt,html2html
+ill
 !! wikitext
 Blah blah blah
 [[es:Foo bar?]]
+!! metadata
+ill=es:Foo bar?
 !! html/php
 <p>Blah blah blah
 </p>
@@ -151,9 +175,12 @@ Blah blah blah
 Interlanguage link, with prefix links
 !! options
 language=ln
+ill
 !! wikitext
 Blah blah blah
 [[zh:Chinese]]
+!! metadata
+ill=zh:Chinese
 !! html/php
 <p>Blah blah blah
 </p>
@@ -166,10 +193,14 @@ Blah blah blah
 Double interlanguage link, with prefix links (T10897)
 !! options
 language=ln
+ill
 !! wikitext
 Blah blah blah
 [[es:Spanish]]
 [[zh:Chinese]]
+!! metadata
+ill=es:Spanish
+ill=zh:Chinese
 !! html/php
 <p>Blah blah blah
 </p>
@@ -183,9 +214,13 @@ Blah blah blah
 ## title property to be set on the interlanguage link in integrated mode.
 !! test
 "Extra" interlanguage links (T34189 / gerrit 111390)
+!! options
+ill
 !! wikitext
 Blah blah blah
 [[mul:Article]]
+!! metadata
+ill=mul:Article
 !! html/php
 <p>Blah blah blah
 </p>
@@ -197,31 +232,41 @@ Blah blah blah
 <link rel="mw:PageProp/Language" title="Multilingual" href="http://wikisource.org/wiki/Article"/>
 !! end
 
-## PHP parser tests script needs an update
 ## Parsoid html2wt will normalize output to [[:zh:Chinese]]
 !! test
 Language links render as inline links if $wgInterwikiMagic=false
 !! options
 parsoid=wt2html,wt2wt,html2html
+ill
 !! config
 wgInterwikiMagic=false
 !! wikitext
 Blah blah blah
 [[zh:Chinese]]
+!! metadata
+!! html/php
+<p>Blah blah blah
+<a href="http://zh.wikipedia.org/wiki/Chinese" class="extiw" title="zh:Chinese">zh:Chinese</a>
+</p>
 !! html/parsoid
 <p>Blah blah blah <a rel="mw:WikiLink/Interwiki" href="http://zh.wikipedia.org/wiki/Chinese" title="zh:Chinese" class="extiw">zh:Chinese</a></p>
 !! end
 
-## PHP parser tests script needs an update
 ## Parsoid html2wt will normalize output to [[:zh:Chinese]]
 !! test
 Language links render as inline links in the Talk namespace
 !! options
 title=Talk:Foo
 parsoid=wt2html,wt2wt,html2html
+ill
 !! wikitext
 Blah blah blah
 [[zh:Chinese]]
+!! metadata
+!! html/php
+<p>Blah blah blah
+<a href="http://zh.wikipedia.org/wiki/Chinese" class="extiw" title="zh:Chinese">zh:Chinese</a>
+</p>
 !! html/parsoid
 <p>Blah blah blah <a rel="mw:WikiLink/Interwiki" href="http://zh.wikipedia.org/wiki/Chinese" title="zh:Chinese" class="extiw">zh:Chinese</a></p>
 !! end
@@ -236,7 +281,7 @@ ill
 
 [[ko:]]
 !! metadata
-es:
+ill=es:
 !! html/php
 <p><br />
 <a href="/wiki/Ko:" title="Ko:">ko:</a>
@@ -252,10 +297,12 @@ es:
 Parsoid: recognize interwiki links without a target page
 !! options
 parsoid=wt2html,wt2wt,html2html
+ill
 !! wikitext
 [[:es:]]
 
 [[:ko:]]
+!! metadata
 !! html/php
 <p><a href="http://es.wikipedia.org/wiki/" class="extiw" title="es:">es:</a>
 </p><p><a href="/wiki/Ko:" title="Ko:">ko:</a>
@@ -267,8 +314,11 @@ parsoid=wt2html,wt2wt,html2html
 
 !! test
 Handle interwiki links pointing to the current wiki as plain wiki links (T47209)
+!! options
+ill
 !! wikitext
 [[mi:Foo]]
+!! metadata
 !! html/php
 <p><a href="/wiki/Foo" title="Foo">mi:Foo</a>
 </p>
@@ -280,9 +330,11 @@ Handle interwiki links pointing to the current wiki as plain wiki links (T47209)
 Interlanguage link with preceding local interwiki link (T70085)
 !! options
 parsoid=wt2html,wt2wt,html2html
+ill
 !! wikitext
 Blah blah blah
 [[local:es:Spanish]]
+!! metadata
 !! html/php
 <p>Blah blah blah
 <a href="http://es.wikipedia.org/wiki/Spanish" class="extiw" title="es:Spanish">local:es:Spanish</a>
@@ -296,9 +348,11 @@ Blah blah blah
 Looks like an interlanguage link, but is actually a local interwiki
 !! options
 parsoid=wt2html,wt2wt,html2html
+ill
 !! wikitext
 Blah blah blah
 [[mi:Template:Foo]]
+!! metadata
 !! html/php
 <p>Blah blah blah
 <a href="/wiki/Template:Foo" title="Template:Foo">mi:Template:Foo</a>
@@ -306,4 +360,17 @@ Blah blah blah
 !! html/parsoid
 <p>Blah blah blah
 <a rel="mw:WikiLink" href="./Template:Foo" title="Template:Foo">mi:Template:Foo</a></p>
+!! end
+
+# Note that fragments are preserved
+!! test
+Interlanguage link with a fragment
+!! options
+ill
+!! wikitext
+[[zh:Chinese#fragment]]
+!! metadata
+ill=zh:Chinese#fragment
+!! html/php
+!! html/parsoid
 !! end

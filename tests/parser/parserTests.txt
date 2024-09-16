@@ -24,7 +24,12 @@ version=2
 # (Previously, these options pre- or post- pended to the html section)
 #
 # cat           add category links
+# extlinks      add external link metadata
 # ill           add inter-language links
+# iwl           add inter-wiki links
+# links         add local wiki links
+# special       add links to special pages
+# templates     add template information
 # property=XXX  add the value of the page property with the given name.
 #               This can also be a comma-separated list.
 # extension=XXX add the JSON-encoded value of the given extension data.
@@ -1138,9 +1143,14 @@ maxtemplatedepth=1
 
 !! test
 multiple templates that are redirects
+!! options
+templates
 !! wikitext
 {{redirect to foo}}
 {{redirect to foo}}
+!! metadata
+template=Template:Redirect_to_foo
+template=Template:Foo
 !! html/php
 <p>FOO
 FOO
@@ -1148,6 +1158,21 @@ FOO
 !! html/parsoid+integrated
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"redirect to foo","href":"./Template:Redirect_to_foo"},"params":{},"i":0}}]}'>FOO</span>
 <span about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"redirect to foo","href":"./Template:Redirect_to_foo"},"params":{},"i":0}}]}'>FOO</span></p>
+!! end
+
+!! test
+Transclusion with a (stripped) fragment
+!! options
+templates
+!! wikitext
+{{Foo#bar}}
+!! metadata
+template=Template:Foo
+!! html/php
+<p>FOO
+</p>
+!! html/parsoid+integrated
+<p><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Foo#bar","href":"./Template:Foo#bar"},"params":{},"i":0}}]}'>FOO</span></p>
 !! end
 
 !! test
@@ -1873,8 +1898,12 @@ Broken link
 # Parsoid does not. (T227693)
 !! test
 Broken link with fragment
+!! options
+links
 !! wikitext
 [[Zigzagzogzagzig#zug]]
+!! metadata
+link=Zigzagzogzagzig
 !! html/php
 <p><a href="/index.php?title=Zigzagzogzagzig&amp;action=edit&amp;redlink=1" class="new" title="Zigzagzogzagzig (page does not exist)">Zigzagzogzagzig#zug</a>
 </p>
@@ -1884,8 +1913,12 @@ Broken link with fragment
 
 !! test
 Special page link with fragment
+!! options
+special
 !! wikitext
 [[Special:Version#anchor]]
+!! metadata
+special=Special:Version
 !! html
 <p><a href="/wiki/Special:Version#anchor" title="Special:Version">Special:Version#anchor</a>
 </p>
@@ -2013,8 +2046,12 @@ Link with multiple pipes
 Anchor containing a #. (T65430)
 !! config
 wgFragmentMode=[ "html5", "legacy" ]
+!! options
+links
 !! wikitext
 [[Main Page#And#Link]]
+!! metadata
+link=Main_Page
 !! html/php
 <p><a href="/wiki/Main_Page#And#Link" title="Main Page">Main Page#And#Link</a>
 </p>
@@ -6912,8 +6949,11 @@ blah
 
 !! test
 Link to category
+!! options
+cat
 !! wikitext
 [[:Category:MediaWiki User's Guide]]
+!! metadata
 !! html
 <p><a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User&#39;s Guide">Category:MediaWiki User's Guide</a>
 </p>
@@ -7615,7 +7655,9 @@ ill
 [[fr:Nourriture]]
 [[zh:食品]]
 !! metadata
-es:Alimento fr:Nourriture zh:食品
+ill=es:Alimento
+ill=fr:Nourriture
+ill=zh:食品
 !! html/php
 !! html/parsoid
 <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Alimento"/>
@@ -7635,9 +7677,13 @@ ill
 [[fr:1]]
 [[fr:2]]
 !! metadata/php
-es:1 fr:1
+ill=es:1
+ill=fr:1
 !! metadata/parsoid
-es:1 es:2 fr:1 fr:2
+ill=es:1
+ill=es:2
+ill=fr:1
+ill=fr:2
 !! html/php
 !! html/parsoid
 <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/1"/>

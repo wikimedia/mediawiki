@@ -1538,6 +1538,7 @@ class ParserTestRunner {
 	) {
 		$before = [];
 		$after = [];
+		$titleFormatter = MediaWikiServices::getInstance()->getTitleFormatter();
 		// The "before" entries may contain HTML.
 		if ( isset( $opts['showtitle'] ) ) {
 			if ( $output->getTitleText() ) {
@@ -1546,7 +1547,7 @@ class ParserTestRunner {
 				// TitleFormatter doesn't (yet) take ParsoidLinkTarget
 				// (which is identical to core's LinkTarget, but phan doesn't
 				// know that), so go through TitleValue for now.
-				$titleText = MediaWikiServices::getInstance()->getTitleFormatter()->getPrefixedText(
+				$titleText = $titleFormatter->getPrefixedText(
 					TitleValue::newFromLinkTarget( $title )
 				);
 			}
@@ -1559,15 +1560,57 @@ class ParserTestRunner {
 			}
 		}
 
-		if ( isset( $opts['ill'] ) ) {
-			$after[] = implode( ' ', $output->getLanguageLinks() );
-		}
-
 		if ( isset( $opts['cat'] ) ) {
 			$defaultSortKey = $output->getPageProperty( 'defaultsort' ) ?? '';
 			foreach ( $output->getCategoryNames() as $name ) {
 				$sortkey = $output->getCategorySortKey( $name ) ?: $defaultSortKey;
 				$after[] = "cat=$name sort=$sortkey";
+			}
+		}
+
+		if ( isset( $opts['extlinks'] ) ) {
+			foreach ( $output->getExternalLinks() as $url => $ignore ) {
+				$after[] = "extlink=$url";
+			}
+		}
+
+		if ( isset( $opts['ill'] ) ) {
+			foreach ( $output->getLanguageLinks() as $ll ) {
+				$after[] = "ill=$ll";
+			}
+		}
+
+		if ( isset( $opts['iwl'] ) ) {
+			foreach ( $output->getInterwikiLinks() as $prefix => $arr ) {
+				foreach ( $arr as $dbk => $ignore ) {
+					$after[] = "iwl=$prefix:$dbk";
+				}
+			}
+		}
+
+		if ( isset( $opts['links'] ) ) {
+			foreach ( $output->getLinks() as $ns => $arr ) {
+				foreach ( $arr as $dbk => $page_id ) {
+					$nsName = $titleFormatter->getNamespaceName( $ns, $dbk );
+					$t = $nsName ? "$nsName:$dbk" : $dbk;
+					$after[] = "link=$t";
+				}
+			}
+		}
+
+		if ( isset( $opts['special'] ) ) {
+			foreach ( $output->getLinksSpecial() as $dbk => $ignore ) {
+				$after[] = "special=Special:$dbk";
+			}
+		}
+
+		if ( isset( $opts['templates'] ) ) {
+			foreach ( $output->getTemplates() as $ns => $arr ) {
+				foreach ( $arr as $dbk => $page_id ) {
+					$nsName = $titleFormatter->getNamespaceName( $ns, $dbk );
+					$t = $nsName ? "$nsName:$dbk" : $dbk;
+					$after[] = "template=$t";
+				}
 			}
 		}
 
