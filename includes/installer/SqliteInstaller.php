@@ -162,9 +162,10 @@ class SqliteInstaller extends DatabaseInstaller {
 	}
 
 	/**
+	 * @param string $type
 	 * @return ConnectionStatus
 	 */
-	public function openConnection() {
+	public function openConnection( string $type ) {
 		$status = new ConnectionStatus;
 		$dir = $this->getVar( 'wgSQLiteDataDir' );
 		$dbName = $this->getVar( 'wgDBname' );
@@ -229,7 +230,6 @@ class SqliteInstaller extends DatabaseInstaller {
 		$this->setVar( 'wgDBserver', '' );
 		$this->setVar( 'wgDBuser', '' );
 		$this->setVar( 'wgDBpassword', '' );
-		$this->setupSchemaVars();
 
 		# Create the l10n cache DB
 		try {
@@ -286,7 +286,7 @@ EOT;
 		}
 
 		# Open the main DB
-		$mainConnStatus = $this->getConnection();
+		$mainConnStatus = $this->getConnection( self::CONN_CREATE_TABLES );
 		// Use WAL mode. This has better performance
 		// when the DB is being read and written concurrently.
 		// This causes the DB to be created in this mode

@@ -34,7 +34,7 @@ class PostgresSettingsForm extends DatabaseSettingsForm {
 		} else {
 			// Check if the web user exists
 			// Connect to the database with the install user
-			$status = $this->getPostgresInstaller()->getPgConnection( 'create-db' );
+			$status = $this->getPostgresInstaller()->getConnection( DatabaseInstaller::CONN_CREATE_DATABASE );
 			if ( !$status->isOK() ) {
 				return $status;
 			}

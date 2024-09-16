@@ -25,6 +25,7 @@
 namespace MediaWiki\Installer;
 
 use MediaWiki\Status\Status;
+use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseFactory;
 use Wikimedia\Rdbms\DatabaseMySQL;
 use Wikimedia\Rdbms\DBConnectionError;
@@ -109,10 +110,13 @@ class MysqlInstaller extends DatabaseInstaller {
 	}
 
 	/**
+	 * @param string $type
 	 * @return ConnectionStatus
 	 */
-	public function openConnection() {
+	protected function openConnection( string $type ) {
 		$status = new ConnectionStatus;
+		$dbName = $type === DatabaseInstaller::CONN_CREATE_DATABASE
+			? null : $this->getVar( 'wgDBname' );
 		try {
 			/** @var DatabaseMySQL $db */
 			$db = ( new DatabaseFactory() )->create( 'mysql', [
@@ -120,7 +124,7 @@ class MysqlInstaller extends DatabaseInstaller {
 				'user' => $this->getVar( '_InstallUser' ),
 				'password' => $this->getVar( '_InstallPassword' ),
 				'ssl' => $this->getVar( 'wgDBssl' ),
-				'dbname' => null,
+				'dbname' => $dbName,
 				'flags' => 0,
 				'tablePrefix' => $this->getVar( 'wgDBprefix' ) ] );
 			$status->setDB( $db );
@@ -134,14 +138,13 @@ class MysqlInstaller extends DatabaseInstaller {
 	public function preUpgrade() {
 		global $wgDBuser, $wgDBpassword;
 
-		$status = $this->getConnection();
+		$status = $this->getConnection( self::CONN_CREATE_TABLES );
 		if ( !$status->isOK() ) {
 			$this->parent->showStatusMessage( $status );
 
 			return;
 		}
 		$conn = $status->getDB();
-		$this->selectDatabase( $conn, $this->getVar( 'wgDBname' ) );
 		# Determine existing default character set
 		if ( $conn->tableExists( "revision", __METHOD__ ) ) {
 			$revision = $this->escapeLikeInternal( $this->getVar( 'wgDBprefix' ) . 'revision', '\\' );
@@ -199,7 +202,7 @@ class MysqlInstaller extends DatabaseInstaller {
 	 * @return array
 	 */
 	public function getEngines() {
-		$status = $this->getConnection();
+		$status = $this->getConnection( self::CONN_CREATE_DATABASE );
 		$conn = $status->getDB();
 
 		$engines = [];
@@ -229,7 +232,7 @@ class MysqlInstaller extends DatabaseInstaller {
 	 * @return bool
 	 */
 	public function canCreateAccounts() {
-		$status = $this->getConnection();
+		$status = $this->getConnection( self::CONN_CREATE_DATABASE );
 		if ( !$status->isOK() ) {
 			return false;
 		}
@@ -324,7 +327,7 @@ class MysqlInstaller extends DatabaseInstaller {
 	 * @return Status
 	 */
 	public function setupDatabase() {
-		$status = $this->getConnection();
+		$status = $this->getConnection( self::CONN_CREATE_DATABASE );
 		if ( !$status->isOK() ) {
 			return $status;
 		}
@@ -337,7 +340,6 @@ class MysqlInstaller extends DatabaseInstaller {
 			);
 		}
 		$this->selectDatabase( $conn, $dbName );
-		$this->setupSchemaVars();
 
 		return $status;
 	}
@@ -348,12 +350,12 @@ class MysqlInstaller extends DatabaseInstaller {
 	 * @return bool
 	 */
 	private function databaseExists( $dbName ) {
-		$encDatabase = $this->db->addQuotes( $dbName );
-
-		return $this->db->query(
-			"SELECT 1 FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = $encDatabase",
-			__METHOD__
-		)->numRows() > 0;
+		return (bool)$this->definitelyGetConnection( self::CONN_CREATE_DATABASE )
+			->newSelectQueryBuilder()
+			->select( '1' )
+			->from( 'information_schema.schemata' )
+			->where( [ 'schema_name' => $dbName ] )
+			->fetchRow();
 	}
 
 	/**
@@ -364,14 +366,12 @@ class MysqlInstaller extends DatabaseInstaller {
 		if ( $dbUser == $this->getVar( '_InstallUser' ) ) {
 			return Status::newGood();
 		}
-		$status = $this->getConnection();
+		$status = $this->getConnection( self::CONN_CREATE_DATABASE );
 		if ( !$status->isOK() ) {
 			return $status;
 		}
 
-		$this->setupSchemaVars();
-		$dbName = $this->getVar( 'wgDBname' );
-		$this->selectDatabase( $this->db, $dbName );
+		$conn = $status->getDB();
 		$server = $this->getVar( 'wgDBserver' );
 		$password = $this->getVar( 'wgDBpassword' );
 		$grantableNames = [];
@@ -388,13 +388,13 @@ class MysqlInstaller extends DatabaseInstaller {
 					'flags' => 0,
 					'tablePrefix' => $this->getVar( 'wgDBprefix' )
 				] );
-				$grantableNames[] = $this->buildFullUserName( $dbUser, $server );
+				$grantableNames[] = $this->buildFullUserName( $conn, $dbUser, $server );
 				$tryToCreate = false;
 			} catch ( DBConnectionError $e ) {
 				$tryToCreate = true;
 			}
 		} else {
-			$grantableNames[] = $this->buildFullUserName( $dbUser, $server );
+			$grantableNames[] = $this->buildFullUserName( $conn, $dbUser, $server );
 			$tryToCreate = false;
 		}
 
@@ -407,27 +407,27 @@ class MysqlInstaller extends DatabaseInstaller {
 			];
 
 			$createHostList = array_unique( $createHostList );
-			$escPass = $this->db->addQuotes( $password );
+			$escPass = $conn->addQuotes( $password );
 
 			foreach ( $createHostList as $host ) {
-				$fullName = $this->buildFullUserName( $dbUser, $host );
-				if ( !$this->userDefinitelyExists( $host, $dbUser ) ) {
+				$fullName = $this->buildFullUserName( $conn, $dbUser, $host );
+				if ( !$this->userDefinitelyExists( $conn, $host, $dbUser ) ) {
 					try {
-						$this->db->begin( __METHOD__ );
-						$this->db->query( "CREATE USER $fullName IDENTIFIED BY $escPass", __METHOD__ );
-						$this->db->commit( __METHOD__ );
+						$conn->begin( __METHOD__ );
+						$conn->query( "CREATE USER $fullName IDENTIFIED BY $escPass", __METHOD__ );
+						$conn->commit( __METHOD__ );
 						$grantableNames[] = $fullName;
 					} catch ( DBQueryError $dqe ) {
-						if ( $this->db->lastErrno() == 1396 /* ER_CANNOT_USER */ ) {
+						if ( $conn->lastErrno() == 1396 /* ER_CANNOT_USER */ ) {
 							// User (probably) already exists
-							$this->db->rollback( __METHOD__ );
+							$conn->rollback( __METHOD__ );
 							$status->warning( 'config-install-user-alreadyexists', $dbUser );
 							$grantableNames[] = $fullName;
 							break;
 						} else {
 							// If we couldn't create for some bizarre reason and the
 							// user probably doesn't exist, skip the grant
-							$this->db->rollback( __METHOD__ );
+							$conn->rollback( __METHOD__ );
 							$status->warning( 'config-install-user-create-failed', $dbUser, $dqe->getMessage() );
 						}
 					}
@@ -440,14 +440,14 @@ class MysqlInstaller extends DatabaseInstaller {
 		}
 
 		// Try to grant to all the users we know exist or we were able to create
-		$dbAllTables = $this->db->addIdentifierQuotes( $dbName ) . '.*';
+		$dbAllTables = $conn->addIdentifierQuotes( $this->getVar( 'wgDBname' ) ) . '.*';
 		foreach ( $grantableNames as $name ) {
 			try {
-				$this->db->begin( __METHOD__ );
-				$this->db->query( "GRANT ALL PRIVILEGES ON $dbAllTables TO $name", __METHOD__ );
-				$this->db->commit( __METHOD__ );
+				$conn->begin( __METHOD__ );
+				$conn->query( "GRANT ALL PRIVILEGES ON $dbAllTables TO $name", __METHOD__ );
+				$conn->commit( __METHOD__ );
 			} catch ( DBQueryError $dqe ) {
-				$this->db->rollback( __METHOD__ );
+				$conn->rollback( __METHOD__ );
 				$status->fatal( 'config-install-user-grant-failed', $dbUser, $dqe->getMessage() );
 			}
 		}
@@ -457,24 +457,26 @@ class MysqlInstaller extends DatabaseInstaller {
 
 	/**
 	 * Return a formal 'User'@'Host' username for use in queries
+	 * @param Database $conn
 	 * @param string $name Username, quotes will be added
 	 * @param string $host Hostname, quotes will be added
 	 * @return string
 	 */
-	private function buildFullUserName( $name, $host ) {
-		return $this->db->addQuotes( $name ) . '@' . $this->db->addQuotes( $host );
+	private function buildFullUserName( $conn, $name, $host ) {
+		return $conn->addQuotes( $name ) . '@' . $conn->addQuotes( $host );
 	}
 
 	/**
 	 * Try to see if the user account exists. Our "superuser" may not have
 	 * access to mysql.user, so false means "no" or "maybe"
+	 * @param Database $conn
 	 * @param string $host Hostname to check
 	 * @param string $user Username to check
 	 * @return bool
 	 */
-	private function userDefinitelyExists( $host, $user ) {
+	private function userDefinitelyExists( $conn, $host, $user ) {
 		try {
-			$res = $this->db->newSelectQueryBuilder()
+			$res = $conn->newSelectQueryBuilder()
 				->select( [ 'Host', 'User' ] )
 				->from( 'mysql.user' )
 				->where( [ 'Host' => $host, 'User' => $user ] )

@@ -63,11 +63,6 @@ class PostgresInstaller extends DatabaseInstaller {
 	/** @var int */
 	public $maxRoleSearchDepth = 5;
 
-	/**
-	 * @var DatabasePostgres[]
-	 */
-	protected $pgConns = [];
-
 	public function getName() {
 		return 'postgres';
 	}
@@ -82,19 +77,6 @@ class PostgresInstaller extends DatabaseInstaller {
 
 	public function getSettingsForm( WebInstaller $webInstaller ): DatabaseSettingsForm {
 		return new PostgresSettingsForm( $webInstaller, $this );
-	}
-
-	public function getConnection() {
-		$status = $this->getPgConnection( 'create-tables' );
-		if ( $status->isOK() ) {
-			$this->db = $status->getDB();
-		}
-
-		return $status;
-	}
-
-	public function openConnection() {
-		return $this->openPgConnection( 'create-tables' );
 	}
 
 	/**
@@ -126,25 +108,6 @@ class PostgresInstaller extends DatabaseInstaller {
 	}
 
 	/**
-	 * Get a special type of connection
-	 * @param string $type See openPgConnection() for details.
-	 * @return ConnectionStatus
-	 */
-	public function getPgConnection( $type ) {
-		if ( isset( $this->pgConns[$type] ) ) {
-			return new ConnectionStatus( $this->pgConns[$type] );
-		}
-		$status = $this->openPgConnection( $type );
-
-		if ( $status->isOK() ) {
-			$conn = $status->getDB();
-			$this->pgConns[$type] = $conn;
-		}
-
-		return $status;
-	}
-
-	/**
 	 * Get a connection of a specific PostgreSQL-specific type. Connections
 	 * of a given type are cached.
 	 *
@@ -160,27 +123,27 @@ class PostgresInstaller extends DatabaseInstaller {
 	 * dependencies.
 	 *
 	 * @param string $type The type of connection to get:
-	 *    - create-db:     A connection for creating DBs, suitable for pre-
-	 *                     installation.
-	 *    - create-schema: A connection to the new DB, for creating schemas and
-	 *                     other similar objects in the new DB.
-	 *    - create-tables: A connection with a role suitable for creating tables.
+	 *    - self::CONN_CREATE_DATABASE: A connection for creating DBs, suitable for pre-
+	 *                                  installation.
+	 *    - self::CONN_CREATE_SCHEMA:   A connection to the new DB, for creating schemas and
+	 *                                  other similar objects in the new DB.
+	 *    - self::CONN_CREATE_TABLES:   A connection with a role suitable for creating tables.
 	 * @return ConnectionStatus On success, a connection object will be in the value member.
 	 */
-	protected function openPgConnection( $type ) {
+	protected function openConnection( string $type ) {
 		switch ( $type ) {
-			case 'create-db':
+			case self::CONN_CREATE_DATABASE:
 				return $this->openConnectionToAnyDB(
 					$this->getVar( '_InstallUser' ),
 					$this->getVar( '_InstallPassword' ) );
-			case 'create-schema':
+			case self::CONN_CREATE_SCHEMA:
 				return $this->openConnectionWithParams(
 					$this->getVar( '_InstallUser' ),
 					$this->getVar( '_InstallPassword' ),
 					$this->getVar( 'wgDBname' ),
 					$this->getVar( 'wgDBmwschema' ) );
-			case 'create-tables':
-				$status = $this->openPgConnection( 'create-schema' );
+			case self::CONN_CREATE_TABLES:
+				$status = $this->openConnection( self::CONN_CREATE_SCHEMA );
 				if ( $status->isOK() ) {
 					$conn = $status->getDB();
 					$safeRole = $conn->addIdentifierQuotes( $this->getVar( 'wgDBuser' ) );
@@ -189,8 +152,14 @@ class PostgresInstaller extends DatabaseInstaller {
 
 				return $status;
 			default:
-				throw new InvalidArgumentException( "Invalid special connection type: \"$type\"" );
+				throw new InvalidArgumentException( "Invalid connection type: \"$type\"" );
 		}
+	}
+
+	protected function changeConnTypeFromSchemaToTables( Database $conn ) {
+		$safeRole = $conn->addIdentifierQuotes( $this->getVar( 'wgDBuser' ) );
+		$conn->query( "SET ROLE $safeRole", __METHOD__ );
+		return new ConnectionStatus( $conn );
 	}
 
 	public function openConnectionToAnyDB( $user, $password ) {
@@ -231,7 +200,7 @@ class PostgresInstaller extends DatabaseInstaller {
 	}
 
 	protected function getInstallUserPermissions() {
-		$status = $this->getPgConnection( 'create-db' );
+		$status = $this->getConnection( self::CONN_CREATE_DATABASE );
 		if ( !$status->isOK() ) {
 			return false;
 		}
@@ -264,12 +233,11 @@ class PostgresInstaller extends DatabaseInstaller {
 			return true;
 		}
 
-		$status = $this->getPgConnection( 'create-db' );
+		$status = $this->getConnection( self::CONN_CREATE_DATABASE );
 		if ( !$status->isOK() ) {
 			return false;
 		}
 		$conn = $status->getDB();
-
 		$installerId = $conn->selectField( '"pg_catalog"."pg_roles"', 'oid',
 			[ 'rolname' => $this->getVar( '_InstallUser' ) ], __METHOD__ );
 		$webId = $conn->selectField( '"pg_catalog"."pg_roles"', 'oid',
@@ -317,10 +285,6 @@ class PostgresInstaller extends DatabaseInstaller {
 			'name' => 'user',
 			'callback' => [ $this, 'setupUser' ],
 		];
-		$commitCB = [
-			'name' => 'pg-commit',
-			'callback' => [ $this, 'commitChanges' ],
-		];
 		$plpgCB = [
 			'name' => 'pg-plpgsql',
 			'callback' => [ $this, 'setupPLpgSQL' ],
@@ -333,13 +297,12 @@ class PostgresInstaller extends DatabaseInstaller {
 		if ( $this->getVar( '_CreateDBAccount' ) ) {
 			$this->parent->addInstallStep( $createDbAccount, 'database' );
 		}
-		$this->parent->addInstallStep( $commitCB, 'interwiki' );
 		$this->parent->addInstallStep( $plpgCB, 'database' );
 		$this->parent->addInstallStep( $schemaCB, 'database' );
 	}
 
 	public function setupDatabase() {
-		$status = $this->getPgConnection( 'create-db' );
+		$status = $this->getConnection( self::CONN_CREATE_DATABASE );
 		if ( !$status->isOK() ) {
 			return $status;
 		}
@@ -359,7 +322,7 @@ class PostgresInstaller extends DatabaseInstaller {
 
 	public function setupSchema() {
 		// Get a connection to the target database
-		$status = $this->getPgConnection( 'create-schema' );
+		$status = $this->getConnection( self::CONN_CREATE_SCHEMA );
 		if ( !$status->isOK() ) {
 			return $status;
 		}
@@ -385,18 +348,12 @@ class PostgresInstaller extends DatabaseInstaller {
 		return Status::newGood();
 	}
 
-	public function commitChanges() {
-		$this->db->commit( __METHOD__ );
-
-		return Status::newGood();
-	}
-
 	public function setupUser() {
 		if ( !$this->getVar( '_CreateDBAccount' ) ) {
 			return Status::newGood();
 		}
 
-		$status = $this->getPgConnection( 'create-db' );
+		$status = $this->getConnection( self::CONN_CREATE_DATABASE );
 		if ( !$status->isOK() ) {
 			return $status;
 		}
@@ -453,7 +410,7 @@ class PostgresInstaller extends DatabaseInstaller {
 	public function createTables() {
 		$schema = $this->getVar( 'wgDBmwschema' );
 
-		$status = $this->getConnection();
+		$status = $this->getConnection( self::CONN_CREATE_TABLES );
 		if ( !$status->isOK() ) {
 			return $status;
 		}
@@ -514,7 +471,7 @@ class PostgresInstaller extends DatabaseInstaller {
 	public function setupPLpgSQL() {
 		// Connect as the install user, since it owns the database and so is
 		// the user that needs to run "CREATE LANGUAGE"
-		$status = $this->getPgConnection( 'create-schema' );
+		$status = $this->getConnection( self::CONN_CREATE_SCHEMA );
 		if ( !$status->isOK() ) {
 			return $status;
 		}

@@ -70,7 +70,7 @@ class PostgresConnectForm extends DatabaseConnectForm {
 			return $status;
 		}
 
-		$status = $this->getPostgresInstaller()->getPgConnection( 'create-db' );
+		$status = $this->getPostgresInstaller()->getConnection( DatabaseInstaller::CONN_CREATE_DATABASE );
 		if ( !$status->isOK() ) {
 			return $status;
 		}

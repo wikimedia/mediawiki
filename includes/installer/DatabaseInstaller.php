@@ -43,6 +43,31 @@ use Wikimedia\Rdbms\LBFactorySingle;
  * @since 1.17
  */
 abstract class DatabaseInstaller {
+	/**
+	 * A connection for creating DBs, suitable for pre-installation.
+	 */
+	public const CONN_CREATE_DATABASE = 'create-database';
+
+	/**
+	 * A connection to the new DB, for creating schemas and other similar
+	 * objects in the new DB.
+	 */
+	public const CONN_CREATE_SCHEMA = 'create-schema';
+
+	/**
+	 * A connection with a role suitable for creating tables.
+	 */
+	public const CONN_CREATE_TABLES = 'create-tables';
+
+	/**
+	 * Legacy default connection type. Before MW 1.43, getConnection() with no
+	 * parameters would return the cached connection. The state (especially the
+	 * selected domain) would depend on the previously executed install steps.
+	 * Using this constant tries to reproduce this behaviour.
+	 *
+	 * @deprecated since 1.43
+	 */
+	public const CONN_DONT_KNOW = 'dont-know';
 
 	/**
 	 * The Installer object.
@@ -62,11 +87,15 @@ abstract class DatabaseInstaller {
 	protected static $notMinimumVersionMessage;
 
 	/**
-	 * The database connection.
-	 *
+	 * @deprecated since 1.43 -- use definitelyGetConnection()
 	 * @var Database
 	 */
 	public $db = null;
+
+	/** @var Database|null */
+	private $cachedConn;
+	/** @var string|null */
+	private $cachedConnType;
 
 	/**
 	 * Internal variables for installation.
@@ -125,9 +154,10 @@ abstract class DatabaseInstaller {
 	 * object. On success, the status object will contain a Database object in
 	 * its value member.
 	 *
+	 * @param string $type One of the self::CONN_* constants, except CONN_DONT_KNOW
 	 * @return ConnectionStatus
 	 */
-	abstract public function openConnection();
+	abstract protected function openConnection( string $type );
 
 	/**
 	 * Create the database and return a Status object indicating success or
@@ -144,19 +174,111 @@ abstract class DatabaseInstaller {
 	 *
 	 * This will return a cached connection if one is available.
 	 *
+	 * @param string $type One of the self::CONN_* constants. Using CONN_DONT_KNOW
+	 *   is deprecated and will cause an exception to be thrown in a future release.
 	 * @return ConnectionStatus
 	 */
-	public function getConnection() {
-		if ( $this->db ) {
-			return new ConnectionStatus( $this->db );
+	public function getConnection( $type = self::CONN_DONT_KNOW ) {
+		if ( $type === self::CONN_DONT_KNOW ) {
+			if ( $this->cachedConnType ) {
+				$type = $this->cachedConnType;
+			} else {
+				$type = self::CONN_CREATE_DATABASE;
+			}
 		}
-
-		$status = $this->openConnection();
+		if ( $this->cachedConn ) {
+			if ( $this->cachedConnType === $type ) {
+				return new ConnectionStatus( $this->cachedConn );
+			} else {
+				return $this->changeConnType( $this->cachedConn, $this->cachedConnType, $type );
+			}
+		}
+		$status = $this->openConnection( $type );
 		if ( $status->isOK() ) {
-			$this->db = $status->getDB();
+			$this->cachedConn = $status->getDB();
+			$this->cachedConnType = $type;
+			// Assign to $this->db for b/c
+			$this->db = $this->cachedConn;
+
+			if ( $type === self::CONN_CREATE_SCHEMA || $type === self::CONN_CREATE_TABLES ) {
+				$this->cachedConn->setSchemaVars( $this->getSchemaVars() );
+			}
 		}
 
 		return $status;
+	}
+
+	/**
+	 * Get a connection and unwrap it from its Status object, throwing an
+	 * exception on failure.
+	 *
+	 * @param string $type
+	 * @return Database
+	 */
+	public function definitelyGetConnection( string $type ): Database {
+		$status = $this->getConnection( $type );
+		if ( !$status->isOK() ) {
+			throw new RuntimeException( __METHOD__ . ': unexpected DB connection error' );
+		}
+		return $status->getDB();
+	}
+
+	/**
+	 * Change the type of a connection.
+	 *
+	 * CONN_CREATE_DATABASE means the domain is indeterminate and irrelevant,
+	 * so converting from this type can be done by selecting the domain, and
+	 * converting to it is a no-op.
+	 *
+	 * CONN_CREATE_SCHEMA means the domain is correct but tables created by
+	 * PostgreSQL will have the incorrect role. So to convert from this to
+	 * CONN_CREATE_TABLES, we set the role.
+	 *
+	 * CONN_CREATE_TABLES means a fully-configured connection, suitable for
+	 * most tasks, so converting from it is a no-op.
+	 *
+	 * @param Database $conn
+	 * @param string &$storedType One of the self::CONN_* constants. An in/out
+	 *   parameter, set to the new type on success. It is set to the "real" new
+	 *   type, reflecting the highest configuration level reached, to avoid
+	 *   unnecessary selectDomain() calls when we need to temporarily give an
+	 *   unconfigured connection.
+	 * @param string $newType One of the self::CONN_* constants
+	 * @return ConnectionStatus
+	 */
+	protected function changeConnType( Database $conn, &$storedType, $newType ) {
+		// Change type from database to schema, if requested
+		if ( $storedType === self::CONN_CREATE_DATABASE ) {
+			if ( $newType === self::CONN_CREATE_SCHEMA || $newType === self::CONN_CREATE_TABLES ) {
+				$conn->selectDomain( new DatabaseDomain(
+					$this->getVar( 'wgDBname' ),
+					$this->getVar( 'wgDBmwschema' ),
+					$this->getVar( 'wgDBprefix' ) ?? ''
+				) );
+				$conn->setSchemaVars( $this->getSchemaVars() );
+				$storedType = self::CONN_CREATE_SCHEMA;
+			}
+		}
+		// Change type from schema to tables, if requested
+		if ( $newType === self::CONN_CREATE_TABLES && $storedType === self::CONN_CREATE_SCHEMA ) {
+			$status = $this->changeConnTypeFromSchemaToTables( $conn );
+			if ( $status->isOK() ) {
+				$storedType = self::CONN_CREATE_TABLES;
+			}
+			return $status;
+		}
+		return new ConnectionStatus( $conn );
+	}
+
+	/**
+	 * Change the type of a connection from CONN_CREATE_SCHEMA to CONN_CREATE_TABLES.
+	 * Postgres overrides this.
+	 *
+	 * @param Database $conn
+	 * @return ConnectionStatus
+	 */
+	protected function changeConnTypeFromSchemaToTables( Database $conn ) {
+		return new ConnectionStatus( $conn );
 	}
 
 	/**
@@ -172,31 +294,31 @@ abstract class DatabaseInstaller {
 		$stepName,
 		$tableThatMustNotExist = false
 	) {
-		$status = $this->getConnection();
+		$status = $this->getConnection( self::CONN_CREATE_TABLES );
 		if ( !$status->isOK() ) {
 			return $status;
 		}
-		$this->selectDatabase( $this->db, $this->getVar( 'wgDBname' ) );
+		$conn = $status->getDB();
 
-		if ( $tableThatMustNotExist && $this->db->tableExists( $tableThatMustNotExist, __METHOD__ ) ) {
+		if ( $tableThatMustNotExist && $conn->tableExists( $tableThatMustNotExist, __METHOD__ ) ) {
 			$status->warning( "config-$stepName-tables-exist" );
 			$this->enableLB();
 
 			return $status;
 		}
 
-		$this->db->setFlag( DBO_DDLMODE );
-		$this->db->begin( __METHOD__ );
+		$conn->setFlag( DBO_DDLMODE );
+		$conn->begin( __METHOD__ );
 
-		$error = $this->db->sourceFile(
-			call_user_func( [ $this, $sourceFileMethod ], $this->db )
+		$error = $conn->sourceFile(
+			call_user_func( [ $this, $sourceFileMethod ], $conn )
 		);
 		if ( $error !== true ) {
-			$this->db->reportQueryError( $error, 0, '', __METHOD__ );
-			$this->db->rollback( __METHOD__ );
+			$conn->reportQueryError( $error, 0, '', __METHOD__ );
+			$conn->rollback( __METHOD__ );
 			$status->fatal( "config-$stepName-tables-failed", $error );
 		} else {
-			$this->db->commit( __METHOD__ );
+			$conn->commit( __METHOD__ );
 		}
 		// Resume normal operations
 		if ( $status->isOK() ) {
@@ -230,7 +352,8 @@ abstract class DatabaseInstaller {
 	 * @return Status
 	 */
 	public function insertUpdateKeys() {
-		$updater = DatabaseUpdater::newForDB( $this->db );
+		$updater = DatabaseUpdater::newForDB(
+			$this->definitelyGetConnection( self::CONN_CREATE_TABLES ) );
 		$updater->insertInitialUpdateKeys();
 		return Status::newGood();
 	}
@@ -280,14 +403,14 @@ abstract class DatabaseInstaller {
 	 * @return Status
 	 */
 	public function createExtensionTables() {
-		$status = $this->getConnection();
+		$status = $this->getConnection( self::CONN_CREATE_TABLES );
 		if ( !$status->isOK() ) {
 			return $status;
 		}
 		$this->enableLB();
 
 		// Now run updates to create tables for old extensions
-		$updater = DatabaseUpdater::newForDB( $this->db );
+		$updater = DatabaseUpdater::newForDB( $status->getDB() );
 		$updater->setAutoExtensionHookContainer( $this->parent->getAutoExtensionHookContainer() );
 		$updater->doUpdates( [ 'extensions' ] );
 
@@ -311,35 +434,12 @@ abstract class DatabaseInstaller {
 	}
 
 	/**
-	 * Set appropriate schema variables in the current database connection.
-	 *
-	 * This should be called after any request data has been imported, but before
-	 * any write operations to the database.
-	 */
-	public function setupSchemaVars() {
-		$status = $this->getConnection();
-		if ( $status->isOK() ) {
-			$status->getDB()->setSchemaVars( $this->getSchemaVars() );
-		} else {
-			$msg = __METHOD__ . ': unexpected error while establishing'
-				. ' a database connection with message: '
-				. $status->getMessage()->plain();
-			throw new RuntimeException( $msg );
-		}
-	}
-
-	/**
 	 * Set up LBFactory so that getPrimaryDatabase() etc. works.
 	 * We set up a special LBFactory instance which returns the current
 	 * installer connection.
 	 */
 	public function enableLB() {
-		$status = $this->getConnection();
-		if ( !$status->isOK() ) {
-			throw new RuntimeException( __METHOD__ . ': unexpected DB connection error' );
-		}
-
-		$connection = $status->getDB();
+		$connection = $this->definitelyGetConnection( self::CONN_CREATE_TABLES );
 		$virtualDomains = array_merge(
 			$this->parent->getVirtualDomains(),
 			MWLBFactory::CORE_VIRTUAL_DOMAINS
@@ -361,12 +461,12 @@ abstract class DatabaseInstaller {
 	 * @return bool
 	 */
 	public function doUpgrade() {
-		$this->setupSchemaVars();
 		$this->enableLB();
 
 		$ret = true;
 		ob_start( [ $this, 'outputHandler' ] );
-		$up = DatabaseUpdater::newForDB( $this->db );
+		$up = DatabaseUpdater::newForDB(
+			$this->definitelyGetConnection( self::CONN_CREATE_TABLES ) );
 		try {
 			$up->doUpdates();
 			$up->purgeCache();
@@ -497,13 +597,14 @@ abstract class DatabaseInstaller {
 	 * @return bool
 	 */
 	public function needsUpgrade() {
-		$status = $this->getConnection();
+		$status = $this->getConnection( self::CONN_CREATE_DATABASE );
 		if ( !$status->isOK() ) {
 			return false;
 		}
+		$db = $status->getDB();
 
 		try {
-			$this->selectDatabase( $this->db, $this->getVar( 'wgDBname' ) );
+			$this->selectDatabase( $db, $this->getVar( 'wgDBname' ) );
 		} catch ( DBConnectionError $e ) {
 			// Don't catch DBConnectionError
 			throw $e;
@@ -511,8 +612,8 @@ abstract class DatabaseInstaller {
 			return false;
 		}
 
-		return $this->db->tableExists( 'cur', __METHOD__ ) ||
-			$this->db->tableExists( 'revision', __METHOD__ );
+		return $db->tableExists( 'cur', __METHOD__ ) ||
+			$db->tableExists( 'revision', __METHOD__ );
 	}
 
 	/**
@@ -521,13 +622,13 @@ abstract class DatabaseInstaller {
 	 * @return Status
 	 */
 	public function populateInterwikiTable() {
-		$status = $this->getConnection();
+		$status = $this->getConnection( self::CONN_CREATE_TABLES );
 		if ( !$status->isOK() ) {
 			return $status;
 		}
-		$this->selectDatabase( $this->db, $this->getVar( 'wgDBname' ) );
+		$conn = $status->getDB();
 
-		$row = $this->db->newSelectQueryBuilder()
+		$row = $conn->newSelectQueryBuilder()
 			->select( '1' )
 			->from( 'interwiki' )
 			->caller( __METHOD__ )->fetchRow();
@@ -544,7 +645,7 @@ abstract class DatabaseInstaller {
 		if ( !$rows ) {
 			return Status::newFatal( 'config-install-interwiki-list' );
 		}
-		$insert = $this->db->newInsertQueryBuilder()
+		$insert = $conn->newInsertQueryBuilder()
 			->insertInto( 'interwiki' );
 		foreach ( $rows as $row ) {
 			$row = preg_replace( '/^\s*([^#]*?)\s*(#.*)?$/', '\\1', $row ); // strip comments - whee
