@@ -1,9 +1,7 @@
 <?php
 
 use MediaWiki\Maintenance\Maintenance;
-use MediaWiki\Page\MovePageFactory;
-use MediaWiki\RenameUser\RenameuserSQL;
-use MediaWiki\Status\Status;
+use MediaWiki\RenameUser\RenameUserFactory;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\TempUser\Pattern;
 use MediaWiki\User\User;
@@ -18,8 +16,8 @@ class RenameUsersMatchingPattern extends Maintenance {
 	/** @var UserFactory */
 	private $userFactory;
 
-	/** @var MovePageFactory */
-	private $movePageFactory;
+	/** @var RenameUserFactory */
+	private $renameUserFactory;
 
 	/** @var TitleFactory */
 	private $titleFactory;
@@ -65,7 +63,7 @@ class RenameUsersMatchingPattern extends Maintenance {
 			$this->fatalError( "This script cannot be run when CentralAuth is enabled." );
 		}
 		$this->userFactory = $services->getUserFactory();
-		$this->movePageFactory = $services->getMovePageFactory();
+		$this->renameUserFactory = $services->getRenameUserFactory();
 		$this->titleFactory = $services->getTitleFactory();
 	}
 
@@ -147,76 +145,39 @@ class RenameUsersMatchingPattern extends Maintenance {
 	 * @return bool True if the user was renamed
 	 */
 	private function renameUser( $oldName, $newName ) {
-		$id = $this->userFactory->newFromName( $oldName )->getId();
+		$oldUser = $this->userFactory->newFromName( $oldName );
+		if ( !$oldUser ) {
+			$this->output( "Invalid user name \"$oldName\"" );
+			return false;
+		}
+
+		$id = $oldUser->getId();
 		if ( !$id ) {
 			$this->output( "Cannot rename non-existent user \"$oldName\"" );
+			return false;
 		}
 
 		if ( $this->dryRun ) {
 			$this->output( "$oldName would be renamed to $newName\n" );
 		} else {
-			$renamer = new RenameuserSQL(
-				$oldName,
-				$newName,
-				$id,
-				$this->performer,
-				[
-					'reason' => $this->reason
-				]
-			);
+			$rename = $this->renameUserFactory->newRenameUser( $this->performer, $oldUser, $newName, $this->reason, [
+				'forceGlobalDetach' => $this->getOption( 'force-global-detach' ),
+				'movePages' => !$this->getOption( 'skip-page-moves' ),
+				'suppressRedirect' => $this->getOption( 'suppress-redirect' ),
+			] );
+			$status = $rename->renameGlobal();
 
-			if ( !$renamer->rename() ) {
-				$this->output( "Unable to rename $oldName" );
-				return false;
-			} else {
+			if ( $status->isGood() ) {
 				$this->output( "$oldName was successfully renamed to $newName.\n" );
-			}
-		}
-
-		if ( $this->skipPageMoves ) {
-			return true;
-		}
-
-		$this->movePageAndSubpages( NS_USER, 'User', $oldName, $newName );
-		$this->movePageAndSubpages( NS_USER_TALK, 'User talk', $oldName, $newName );
-		return true;
-	}
-
-	private function movePageAndSubpages( $ns, $nsName, $oldName, $newName ) {
-		$oldTitle = $this->titleFactory->makeTitleSafe( $ns, $oldName );
-		if ( !$oldTitle ) {
-			$this->output( "[[$nsName:$oldName]] is an invalid title, can't move it.\n" );
-			return true;
-		}
-		$newTitle = $this->titleFactory->makeTitleSafe( $ns, $newName );
-		if ( !$newTitle ) {
-			$this->output( "[[$nsName:$newName]] is an invalid title, can't move to it.\n" );
-			return true;
-		}
-
-		$movePage = $this->movePageFactory->newMovePage( $oldTitle, $newTitle );
-		$movePage->setMaximumMovedPages( -1 );
-
-		$logMessage = wfMessage(
-			'renameuser-move-log', $oldName, $newName
-		)->inContentLanguage()->text();
-
-		if ( $this->dryRun ) {
-			if ( $oldTitle->exists() ) {
-				$this->output( "Would move [[$nsName:$oldName]] to [[$nsName:$newName]].\n" );
-			}
-		} else {
-			if ( $oldTitle->exists() ) {
-				$status = $movePage->move(
-					$this->performer, $logMessage, !$this->suppressRedirect );
 			} else {
-				$status = Status::newGood();
-			}
-			$status->merge( $movePage->moveSubpages(
-				$this->performer, $logMessage, !$this->suppressRedirect ) );
-			if ( !$status->isGood() ) {
-				$this->output( "Failed to rename user page\n" );
-				$this->error( $status );
+				if ( $status->isOK() ) {
+					$this->output( "$oldName was renamed to $newName.\n" );
+				} else {
+					$this->output( "Unable to rename $oldName.\n" );
+				}
+				foreach ( $status->getMessages() as $msg ) {
+					$this->output( '  - ' . wfMessage( $msg )->text() );
+				}
 			}
 		}
 		return true;

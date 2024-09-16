@@ -135,6 +135,7 @@ use MediaWiki\PoolCounter\PoolCounterFactory;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\Registration\ExtensionRegistry;
+use MediaWiki\RenameUser\RenameUserFactory;
 use MediaWiki\Request\ProxyLookup;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Rest\Handler\Helper\PageRestHelperFactory;
@@ -1743,6 +1744,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getRedirectStore(): RedirectStore {
 		return $this->getService( 'RedirectStore' );
+	}
+
+	/**
+	 * @since 1.44
+	 */
+	public function getRenameUserFactory(): RenameUserFactory {
+		return $this->getService( 'RenameUserFactory' );
 	}
 
 	/**

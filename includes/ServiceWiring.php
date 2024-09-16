@@ -181,6 +181,7 @@ use MediaWiki\Preferences\SignatureValidator;
 use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\RecentChanges\ChangeTrackingEventIngress;
 use MediaWiki\Registration\ExtensionRegistry;
+use MediaWiki\RenameUser\RenameUserFactory;
 use MediaWiki\Request\ProxyLookup;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\ResourceLoader\MessageBlobStore;
@@ -1869,6 +1870,19 @@ return [
 		);
 	},
 
+	'RenameUserFactory' => static function ( MediaWikiServices $services ): RenameUserFactory {
+		return new RenameUserFactory(
+			new ServiceOptions( RenameUserFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			$services->getCentralIdLookupFactory(),
+			$services->getJobQueueGroupFactory(),
+			$services->getMovePageFactory(),
+			$services->getUserFactory(),
+			$services->getUserNameUtils(),
+			$services->getPermissionManager(),
+			$services->getTitleFactory(),
+		);
+	},
+
 	'RepoGroup' => static function ( MediaWikiServices $services ): RepoGroup {
 		$config = $services->getMainConfig();
 		return new RepoGroup(
@@ -2809,7 +2823,7 @@ return [
 			$services->getTitleFactory(),
 			$services->getBlockActionInfo()
 		);
-	},
+	}
 
 	///////////////////////////////////////////////////////////////////////////
 	// NOTE: When adding a service here, don't forget to add a getter function

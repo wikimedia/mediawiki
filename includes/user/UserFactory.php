@@ -434,4 +434,13 @@ class UserFactory implements UserRigorOptions {
 
 		return $lb->getConnection( $mode, [], $wikiId );
 	}
+
+	/**
+	 * Returns if the user table is shared with other wikis.
+	 * @return bool
+	 */
+	public function isUserTableShared(): bool {
+		return $this->options->get( MainConfigNames::SharedDB ) &&
+			in_array( 'user', $this->options->get( MainConfigNames::SharedTables ) );
+	}
 }
