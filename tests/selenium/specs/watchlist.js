@@ -1,6 +1,5 @@
 'use strict';
 
-const assert = require( 'assert' );
 const Api = require( 'wdio-mediawiki/Api' );
 const WatchlistPage = require( '../pageobjects/watchlist.page' );
 const WatchablePage = require( '../pageobjects/watchable.page' );
@@ -45,7 +44,7 @@ describe( 'Special:Watchlist', () => {
 		// but by default Special:Watchlist includes both seen and unseen changes, so
 		// it'll show up anyway. The title we just edited will be first because the edit
 		// was the most recent.
-		assert.strictEqual( await WatchlistPage.titles[ 0 ].getText(), title );
+		await expect( await WatchlistPage.titles[ 0 ] ).toHaveText( title );
 	} );
 
 } );

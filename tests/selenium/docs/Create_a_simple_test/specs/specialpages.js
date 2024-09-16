@@ -3,12 +3,11 @@
 
 'use strict';
 
-const assert = require( 'assert' );
 const SpecialPages = require( '../pageobjects/specialpages.page' );
 
 describe( 'Special:SpecialPages', () => {
 	it( 'should not have Edit link', async () => {
 		await SpecialPages.open();
-		assert( !( await SpecialPages.edit.isExisting() ) );
+		await expect( SpecialPages.edit ).not.toExist();
 	} );
 } );

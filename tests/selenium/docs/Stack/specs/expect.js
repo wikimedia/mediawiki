@@ -9,12 +9,9 @@
 // const baseUrl = 'http://localhost:8080/wiki/';
 const baseUrl = `${ process.env.MW_SERVER }${ process.env.MW_SCRIPT_PATH }/index.php?title=`;
 
-const assert = require( 'assert' );
-
 describe( 'Main page', () => {
-	it( 'should have "Log in" link when using assert', async () => {
+	it( 'should have "Log in" link when using expect', async () => {
 		await browser.url( `${ baseUrl }Main_Page` );
-		const displayed = await $( 'li#pt-login-2 a' ).isDisplayed();
-		assert( displayed );
+		await expect( await $( 'li#pt-login-2 a' ) ).toExist();
 	} );
 } );

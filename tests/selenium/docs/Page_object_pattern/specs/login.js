@@ -4,7 +4,6 @@
 'use strict';
 
 const Api = require( 'wdio-mediawiki/Api' );
-const assert = require( 'assert' );
 const Util = require( 'wdio-mediawiki/Util' );
 
 // baseUrl is required for our continuous integration.
@@ -37,6 +36,6 @@ describe( 'User', () => {
 
 		// check
 		const actualUsername = await browser.execute( () => mw.config.get( 'wgUserName' ) );
-		assert.strictEqual( await actualUsername, username );
+		expect( actualUsername ).toBe( username );
 	} );
 } );

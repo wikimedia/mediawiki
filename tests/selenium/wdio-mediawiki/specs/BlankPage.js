@@ -1,6 +1,5 @@
 'use strict';
 
-const assert = require( 'assert' );
 const BlankPage = require( './../BlankPage' );
 
 describe( 'BlankPage', () => {
@@ -8,6 +7,6 @@ describe( 'BlankPage', () => {
 		await BlankPage.open();
 
 		// check
-		assert.strictEqual( await BlankPage.heading.getText(), 'Blank page' );
+		await expect( await BlankPage.heading ).toHaveText( 'Blank page' );
 	} );
 } );

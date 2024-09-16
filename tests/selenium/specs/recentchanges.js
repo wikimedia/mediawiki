@@ -1,6 +1,5 @@
 'use strict';
 
-const assert = require( 'assert' );
 const Api = require( 'wdio-mediawiki/Api' );
 const BlankPage = require( 'wdio-mediawiki/BlankPage' );
 const RecentChangesPage = require( '../pageobjects/recentchanges.page' );
@@ -44,7 +43,7 @@ describe( 'Special:RecentChanges', () => {
 			async () => ( await RecentChangesPage.titles[ 0 ].getText() ) === name,
 			{ timeout: 10000 }
 		);
-		assert.strictEqual( await RecentChangesPage.titles[ 0 ].getText(), name );
+		await expect( await RecentChangesPage.titles[ 0 ] ).toHaveText( name );
 	} );
 
 } );

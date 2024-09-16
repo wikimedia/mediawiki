@@ -3,7 +3,6 @@
 
 'use strict';
 
-const assert = require( 'assert' );
 const CreateAccountPage = require( 'wdio-mediawiki/CreateAccountPage' );
 const EditPage = require( '../pageobjects/edit.page' );
 const LoginPage = require( 'wdio-mediawiki/LoginPage' );
@@ -28,7 +27,7 @@ describe( 'User', () => {
 		await CreateAccountPage.createAccount( username, password );
 
 		// check
-		assert.strictEqual( await CreateAccountPage.heading.getText(), `Welcome, ${ username }!` );
+		await expect( await CreateAccountPage.heading ).toHaveText( `Welcome, ${ username }!` );
 	} );
 
 	it( 'should be able to log in', async () => {
@@ -40,7 +39,7 @@ describe( 'User', () => {
 
 		// check
 		const actualUsername = await LoginPage.getActualUsername();
-		assert.strictEqual( actualUsername, username );
+		expect( actualUsername ).toBe( username );
 	} );
 
 	it( 'named user should see extra signup form fields when creating an account', async () => {
@@ -49,15 +48,13 @@ describe( 'User', () => {
 
 		await CreateAccountPage.open();
 
-		assert.ok( await CreateAccountPage.username.isExisting() );
-		assert.ok( await CreateAccountPage.password.isExisting() );
-		assert.ok(
-			await CreateAccountPage.tempPasswordInput.isExisting(),
-			'Named users should have the option to have a temporary password sent on signup (T328718)'
+		await expect( await CreateAccountPage.username ).toExist();
+		await expect( await CreateAccountPage.password ).toExist();
+		await expect( await CreateAccountPage.tempPasswordInput ).toExist(
+			{ message: 'Named users should have the option to have a temporary password sent on signup (T328718)' }
 		);
-		assert.ok(
-			await CreateAccountPage.reasonInput.isExisting(),
-			'Named users should have to provide a reason for their account creation (T328718)'
+		await expect( await CreateAccountPage.reasonInput ).toExist(
+			{ message: 'Named users should have to provide a reason for their account creation (T328718)' }
 		);
 	} );
 
@@ -68,15 +65,13 @@ describe( 'User', () => {
 		await EditPage.edit( pageTitle, pageText );
 		await EditPage.openCreateAccountPageAsTempUser();
 
-		assert.ok( await CreateAccountPage.username.isExisting() );
-		assert.ok( await CreateAccountPage.password.isExisting() );
-		assert.ok(
-			!await CreateAccountPage.tempPasswordInput.isExisting(),
-			'Temporary users should not have the option to have a temporary password sent on signup (T328718)'
+		await expect( await CreateAccountPage.username ).toExist();
+		await expect( await CreateAccountPage.password ).toExist();
+		await expect( await CreateAccountPage.tempPasswordInput ).not.toExist(
+			{ message: 'Temporary users should not have the option to have a temporary password sent on signup (T328718)' }
 		);
-		assert.ok(
-			!await CreateAccountPage.reasonInput.isExisting(),
-			'Temporary users should not have to provide a reason for their account creation (T328718)'
+		await expect( await CreateAccountPage.reasonInput ).not.toExist(
+			{ message: 'Temporary users should not have to provide a reason for their account creation (T328718)' }
 		);
 	} );
 
@@ -91,7 +86,7 @@ describe( 'User', () => {
 		await CreateAccountPage.submitForm( username, password );
 
 		const actualUsername = await LoginPage.getActualUsername();
-		assert.strictEqual( actualUsername, username );
-		assert.strictEqual( await CreateAccountPage.heading.getText(), `Welcome, ${ username }!` );
+		expect( actualUsername ).toBe( username );
+		await expect( await CreateAccountPage.heading ).toHaveText( `Welcome, ${ username }!` );
 	} );
 } );

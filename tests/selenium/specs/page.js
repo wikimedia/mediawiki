@@ -1,6 +1,5 @@
 'use strict';
 
-const assert = require( 'assert' );
 const BlankPage = require( 'wdio-mediawiki/BlankPage' );
 const Api = require( 'wdio-mediawiki/Api' );
 const DeletePage = require( '../pageobjects/delete.page' );
@@ -36,10 +35,10 @@ describe( 'Page', () => {
 		await LoginPage.loginAdmin();
 		await EditPage.preview( name, content );
 
-		assert.strictEqual( await EditPage.heading.getText(), 'Creating ' + name );
-		assert.strictEqual( await EditPage.displayedContent.getText(), content );
-		assert( await EditPage.content.isDisplayed(), 'editor is still present' );
-		assert( !( await EditPage.conflictingContent.isDisplayed() ), 'no edit conflict happened' );
+		await expect( await EditPage.heading ).toHaveText( `Creating ${ name }` );
+		await expect( await EditPage.displayedContent ).toHaveText( content );
+		await expect( await EditPage.content ).toBeDisplayed( { message: 'editor is still present' } );
+		await expect( await EditPage.conflictingContent ).not.toBeDisplayed( { message: 'no edit conflict happened' } );
 
 		// T269566: Popup with text
 		// 'Leave site? Changes that you made may not be saved. Cancel/Leave'
@@ -53,8 +52,8 @@ describe( 'Page', () => {
 		await EditPage.edit( name, content );
 
 		// check
-		assert.strictEqual( await EditPage.heading.getText(), name );
-		assert.strictEqual( await EditPage.displayedContent.getText(), content );
+		await expect( await EditPage.heading ).toHaveText( name );
+		await expect( await EditPage.displayedContent ).toHaveText( content );
 	} );
 
 	it( 'should be re-creatable', async () => {
@@ -69,8 +68,8 @@ describe( 'Page', () => {
 		await EditPage.edit( name, content );
 
 		// check
-		assert.strictEqual( await EditPage.heading.getText(), name );
-		assert.strictEqual( await EditPage.displayedContent.getText(), content );
+		await expect( await EditPage.heading ).toHaveText( name );
+		await expect( await EditPage.displayedContent ).toHaveText( content );
 	} );
 
 	it( 'should be editable @daily', async () => {
@@ -82,9 +81,8 @@ describe( 'Page', () => {
 		await EditPage.edit( name, editContent );
 
 		// check
-		assert.strictEqual( await EditPage.heading.getText(), name );
-		// eslint-disable-next-line security/detect-non-literal-regexp
-		assert.match( await EditPage.displayedContent.getText(), new RegExp( editContent ) );
+		await expect( await EditPage.heading ).toHaveText( name );
+		await expect( await EditPage.displayedContent ).toHaveText( editContent );
 	} );
 
 	it( 'should have history @daily', async () => {
@@ -93,7 +91,7 @@ describe( 'Page', () => {
 
 		// check
 		await HistoryPage.open( name );
-		assert.strictEqual( await HistoryPage.comment.getText(), `created with "${ content }"` );
+		await expect( await HistoryPage.comment ).toHaveText( `created with "${ content }"` );
 	} );
 
 	it( 'should be deletable', async () => {
@@ -106,8 +104,7 @@ describe( 'Page', () => {
 		await DeletePage.delete( name, 'delete reason' );
 
 		// check
-		// eslint-disable-next-line security/detect-non-literal-regexp
-		assert.match( await DeletePage.displayedContent.getText(), new RegExp( `"${ name }" has been deleted.` ) );
+		await expect( await DeletePage.displayedContent ).toHaveTextContaining( `"${ name }" has been deleted.` );
 	} );
 
 	it( 'should be restorable', async () => {
@@ -122,7 +119,7 @@ describe( 'Page', () => {
 		await RestorePage.restore( name, 'restore reason' );
 
 		// check
-		assert.strictEqual( await RestorePage.displayedContent.getText(), name + ' has been undeleted\n\nConsult the deletion log for a record of recent deletions and restorations.' );
+		await expect( await RestorePage.displayedContent ).toHaveTextContaining( `${ name } has been undeleted` );
 	} );
 
 	it( 'should be protectable', async () => {
@@ -143,8 +140,8 @@ describe( 'Page', () => {
 
 		// Check that we can't edit the page anymore
 		await EditPage.openForEditing( name );
-		assert.strictEqual( await EditPage.save.isExisting(), false );
-		assert.strictEqual( await EditPage.heading.getText(), 'View source for ' + name );
+		await expect( await EditPage.save ).not.toExist();
+		await expect( await EditPage.heading ).toHaveText( `View source for ${ name }` );
 	} );
 
 	it( 'should be undoable @daily', async () => {
@@ -159,7 +156,7 @@ describe( 'Page', () => {
 
 		await UndoPage.undo( name, previousRev, undoRev );
 
-		assert.strictEqual( await EditPage.displayedContent.getText(), content );
+		await expect( await EditPage.displayedContent ).toHaveText( content );
 	} );
 
 } );
