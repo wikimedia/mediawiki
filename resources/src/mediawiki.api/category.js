@@ -62,12 +62,10 @@
 
 			return apiPromise
 				.then( ( data ) => {
-					let page;
-
 					if ( !data.query || !data.query.pages ) {
 						return false;
 					}
-					page = data.query.pages[ 0 ];
+					const page = data.query.pages[ 0 ];
 					if ( !page.categories ) {
 						return false;
 					}

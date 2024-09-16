@@ -39,15 +39,14 @@
 		 * @return {jQuery.Promise}
 		 */
 		saveOptions: function ( options, params ) {
-			let name, value, bundleable,
-				grouped = [],
-				promise;
+			const grouped = [];
 
 			// Logged-out users can't have user options; we can't depend on mw.user, that'd be circular
 			if ( mw.config.get( 'wgUserName' ) === null || mw.config.get( 'wgUserIsTemp' ) ) {
 				return $.Deferred().reject( 'notloggedin' ).promise();
 			}
 
+			let promise;
 			// If another options request to this API is pending, wait for it first
 			if (
 				saveOptionsRequests[ this.defaults.ajax.url ] &&
@@ -63,9 +62,10 @@
 				promise = $.Deferred().resolve();
 			}
 
-			for ( name in options ) {
-				value = options[ name ] === null ? null : String( options[ name ] );
+			for ( const name in options ) {
+				const value = options[ name ] === null ? null : String( options[ name ] );
 
+				let bundleable;
 				// Can we bundle this option, or does it need a separate request?
 				if ( this.defaults.useUS ) {
 					bundleable = name.indexOf( '=' ) === -1;

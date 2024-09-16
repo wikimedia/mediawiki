@@ -14,7 +14,7 @@
 	 * @private
 	 * @type {mw.Api.Options}
 	 */
-	let defaultOptions;
+	let defaultOptions = null;
 
 	/**
 	 * @classdesc Interact with the MediaWiki API. `mw.Api` is a client library for
@@ -231,14 +231,13 @@
 		 *       {@link JSON.parse}.
 		 */
 		ajax: function ( parameters, ajaxOptions ) {
-			let token, requestIndex,
-				api = this,
-				apiDeferred = $.Deferred(),
-				xhr, key, formData;
+			const api = this,
+				apiDeferred = $.Deferred();
 
 			parameters = Object.assign( {}, this.defaults.parameters, parameters );
 			ajaxOptions = Object.assign( {}, this.defaults.ajax, ajaxOptions );
 
+			let token;
 			// Ensure that token parameter is last (per [[mw:API:Edit#Token]]).
 			if ( parameters.token ) {
 				token = parameters.token;
@@ -254,9 +253,9 @@
 				ajaxOptions.contentType === 'multipart/form-data'
 			) {
 
-				formData = new FormData();
+				const formData = new FormData();
 
-				for ( key in parameters ) {
+				for ( const key in parameters ) {
 					formData.append( key, parameters[ key ] );
 				}
 				// If we extracted a token parameter, add it back in.
@@ -286,7 +285,7 @@
 			}
 
 			// Make the AJAX request
-			xhr = $.ajax( ajaxOptions )
+			const xhr = $.ajax( ajaxOptions )
 				// If AJAX fails, reject API call with error code 'http'
 				// and the details in the second argument.
 				.fail( ( jqXHR, textStatus, exception ) => {
@@ -318,7 +317,7 @@
 					}
 				} );
 
-			requestIndex = this.requests.length;
+			const requestIndex = this.requests.length;
 			this.requests.push( xhr );
 			xhr.always( () => {
 				api.requests[ requestIndex ] = null;
@@ -350,14 +349,14 @@
 		 * @since 1.22
 		 */
 		postWithToken: function ( tokenType, params, ajaxOptions ) {
-			let api = this,
+			const api = this,
 				assertParams = {
 					assert: params.assert,
 					assertuser: params.assertuser
 				},
 				abortedPromise = $.Deferred().reject( 'http',
-					{ textStatus: 'abort', exception: 'abort' } ).promise(),
-				abortable,
+					{ textStatus: 'abort', exception: 'abort' } ).promise();
+			let abortable,
 				aborted;
 
 			return api.getToken( tokenType, assertParams ).then( ( token ) => {

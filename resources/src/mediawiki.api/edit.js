@@ -114,11 +114,11 @@
 		 * @return {jQuery.Promise} Edit API response
 		 */
 		edit: function ( title, transform ) {
-			let basetimestamp, curtimestamp,
-				api = this;
+			const api = this;
 
 			title = String( title );
 
+			let basetimestamp, curtimestamp;
 			return api.get( {
 				action: 'query',
 				prop: 'revisions',
@@ -128,18 +128,17 @@
 				curtimestamp: true
 			} )
 				.then( ( data ) => {
-					let page, revision;
 					if ( !data.query || !data.query.pages ) {
 						return $.Deferred().reject( 'unknown' );
 					}
-					page = data.query.pages[ 0 ];
+					const page = data.query.pages[ 0 ];
 					if ( !page || page.invalid ) {
 						return $.Deferred().reject( 'invalidtitle' );
 					}
 					if ( page.missing ) {
 						return $.Deferred().reject( 'nocreate-missing' );
 					}
-					revision = page.revisions[ 0 ];
+					const revision = page.revisions[ 0 ];
 					basetimestamp = revision.timestamp;
 					curtimestamp = data.curtimestamp;
 					return transform( {

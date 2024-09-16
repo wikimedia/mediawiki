@@ -8,17 +8,17 @@
 		 * @return {jQuery.Promise} See [post()]{@link mw.Api#post}
 		 */
 		login: function ( username, password ) {
-			let params, apiPromise, innerPromise,
-				api = this;
+			const api = this;
 
-			params = {
+			const params = {
 				action: 'login',
 				lgname: username,
 				lgpassword: password
 			};
 
-			apiPromise = api.post( params );
+			const apiPromise = api.post( params );
 
+			let innerPromise;
 			return apiPromise
 				.then( ( data ) => {
 					params.lgtoken = data.login.token;

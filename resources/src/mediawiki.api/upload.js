@@ -62,10 +62,9 @@
 		 * @return {jQuery.Promise}
 		 */
 		uploadWithFormData: function ( file, data ) {
-			let key, request,
-				deferred = $.Deferred();
+			const deferred = $.Deferred();
 
-			for ( key in data ) {
+			for ( const key in data ) {
 				if ( !fieldsAllowed[ key ] ) {
 					delete data[ key ];
 				}
@@ -81,7 +80,7 @@
 			}
 
 			// Use this.postWithEditToken() or this.post()
-			request = this[ this.needToken() ? 'postWithEditToken' : 'post' ]( data, {
+			const request = this[ this.needToken() ? 'postWithEditToken' : 'post' ]( data, {
 				// Use FormData (if we got here, we know that it's available)
 				contentType: 'multipart/form-data',
 				// No timeout (default from mw.Api is 30 seconds)
@@ -127,8 +126,7 @@
 		 * @return {jQuery.Promise}
 		 */
 		chunkedUpload: function ( file, data, chunkSize, chunkRetries ) {
-			let start, end, promise, next, active,
-				deferred = $.Deferred();
+			const deferred = $.Deferred();
 
 			chunkSize = chunkSize === undefined ? 5 * 1024 * 1024 : chunkSize;
 			chunkRetries = chunkRetries === undefined ? 1 : chunkRetries;
@@ -137,16 +135,17 @@
 				throw new Error( 'Filename not included in file data.' );
 			}
 
+			let promise;
 			// Submit first chunk to get the filekey
-			active = promise = this.uploadChunk( file, data, 0, chunkSize, '', chunkRetries )
+			let active = promise = this.uploadChunk( file, data, 0, chunkSize, '', chunkRetries )
 				.done( chunkSize >= file.size ? deferred.resolve : null )
 				.fail( deferred.reject )
 				.progress( deferred.notify );
 
 			// Now iteratively submit the rest of the chunks
-			for ( start = chunkSize; start < file.size; start += chunkSize ) {
-				end = Math.min( start + chunkSize, file.size );
-				next = $.Deferred();
+			for ( let start = chunkSize; start < file.size; start += chunkSize ) {
+				const end = Math.min( start + chunkSize, file.size );
+				const next = $.Deferred();
 
 				// We could simply chain one this.uploadChunk after another with
 				// .then(), but then we'd hit an `Uncaught RangeError: Maximum
@@ -183,8 +182,7 @@
 		 * @return {jQuery.Promise}
 		 */
 		uploadChunk: function ( file, data, start, end, filekey, retries ) {
-			let upload,
-				api = this,
+			const api = this,
 				chunk = this.slice( file, start, end );
 
 			// When uploading in chunks, we're going to be issuing a lot more
@@ -203,12 +201,10 @@
 				data.filekey = filekey;
 			}
 
-			upload = this.uploadWithFormData( file, data );
+			const upload = this.uploadWithFormData( file, data );
 			return upload.then(
 				null,
 				( code, result ) => {
-					let retry;
-
 					// uploadWithFormData will reject uploads with warnings, but
 					// these warnings could be "harmless" or recovered from
 					// (e.g. exists-normalized, when it'll be renamed later)
@@ -233,7 +229,7 @@
 					}
 
 					// If the call flat out failed, we may want to try again...
-					retry = api.uploadChunk.bind( api, file, data, start, end, filekey, retries - 1 );
+					const retry = api.uploadChunk.bind( api, file, data, start, end, filekey, retries - 1 );
 					return api.retry( code, result, retry );
 				},
 				// Since we're only uploading small parts of a file, we
@@ -253,9 +249,8 @@
 		 * @return {jQuery.Promise}
 		 */
 		retry: function ( code, result, callable ) {
-			let uploadPromise,
-				retryTimer,
-				deferred = $.Deferred(),
+			let uploadPromise;
+			const deferred = $.Deferred(),
 				// Wrap around the callable, so that once it completes, it'll
 				// resolve/reject the promise we'll return
 				retry = function () {
@@ -269,7 +264,7 @@
 				return deferred.reject( code, result );
 			}
 
-			retryTimer = setTimeout( retry, 1000 );
+			const retryTimer = setTimeout( retry, 1000 );
 			return deferred.promise( { abort: function () {
 				// Clear the scheduled upload, or abort if already in flight
 				if ( retryTimer ) {
@@ -325,8 +320,8 @@
 		 *  function that should be called to finish the upload.
 		 */
 		finishUploadToStash: function ( uploadPromise, data ) {
-			let filekey,
-				api = this;
+			const api = this;
+			let filekey;
 
 			function finishUpload( moreData ) {
 				return api.uploadFromStash( filekey, Object.assign( {}, data, moreData ) );
@@ -375,13 +370,11 @@
 		 *  function that should be called to finish the upload.
 		 */
 		uploadToStash: function ( file, data ) {
-			let promise;
-
 			if ( !data.filename ) {
 				throw new Error( 'Filename not included in file data.' );
 			}
 
-			promise = this.upload( file, { stash: true, filename: data.filename, ignorewarnings: data.ignorewarnings } );
+			const promise = this.upload( file, { stash: true, filename: data.filename, ignorewarnings: data.ignorewarnings } );
 
 			return this.finishUploadToStash( promise, data );
 		},
@@ -401,13 +394,11 @@
 		 *  function that should be called to finish the upload.
 		 */
 		chunkedUploadToStash: function ( file, data, chunkSize, chunkRetries ) {
-			let promise;
-
 			if ( !data.filename ) {
 				throw new Error( 'Filename not included in file data.' );
 			}
 
-			promise = this.chunkedUpload(
+			const promise = this.chunkedUpload(
 				file,
 				{ stash: true, filename: data.filename, ignorewarnings: data.ignorewarnings },
 				chunkSize,
