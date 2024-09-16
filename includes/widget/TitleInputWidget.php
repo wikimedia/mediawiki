@@ -12,10 +12,15 @@ use OOUI\TextInputWidget;
  */
 class TitleInputWidget extends TextInputWidget {
 
+	/** @var int|null */
 	protected $namespace = null;
+	/** @var bool|null */
 	protected $relative = null;
+	/** @var bool|null */
 	protected $suggestions = null;
+	/** @var bool|null */
 	protected $highlightFirst = null;
+	/** @var bool|null */
 	protected $validateTitle = null;
 
 	/**

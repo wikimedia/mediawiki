@@ -13,7 +13,9 @@ namespace MediaWiki\HTMLForm;
  */
 trait HTMLFormElement {
 
+	/** @var array|null */
 	protected $condState = null;
+	/** @var array|null */
 	protected $modules = null;
 
 	public function initializeHTMLFormElement( array $config = [] ) {

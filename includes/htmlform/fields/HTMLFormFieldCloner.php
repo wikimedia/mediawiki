@@ -47,6 +47,7 @@ use MediaWiki\Xml\Xml;
  * @stable to extend
  */
 class HTMLFormFieldCloner extends HTMLFormField {
+	/** @var int */
 	private static $counter = 0;
 
 	/**

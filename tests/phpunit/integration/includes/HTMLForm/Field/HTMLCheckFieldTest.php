@@ -7,6 +7,7 @@ use MediaWiki\Tests\Integration\HTMLForm\HTMLFormFieldTestCase;
  * @covers MediaWiki\HTMLForm\Field\HTMLCheckField
  */
 class HTMLCheckFieldTest extends HTMLFormFieldTestCase {
+	/** @inheritDoc */
 	protected $className = 'HTMLCheckField';
 
 	public static function provideInputCodex() {

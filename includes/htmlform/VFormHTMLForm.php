@@ -37,6 +37,7 @@ class VFormHTMLForm extends HTMLForm {
 	 */
 	protected $mWrapperLegend = false;
 
+	/** @inheritDoc */
 	protected $displayFormat = 'vform';
 
 	public static function loadInputFromParameters( $fieldname, $descriptor,

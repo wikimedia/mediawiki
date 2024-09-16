@@ -16,11 +16,17 @@ use OOUI\Widget;
  */
 class ComplexNamespaceInputWidget extends Widget {
 
+	/** @var array */
 	protected $config;
+	/** @var NamespaceInputWidget */
 	protected $namespace;
+	/** @var CheckboxInputWidget|null */
 	protected $associated = null;
+	/** @var FieldLayout|null */
 	protected $associatedLabel = null;
+	/** @var CheckboxInputWidget|null */
 	protected $invert = null;
+	/** @var FieldLayout|null */
 	protected $invertLabel = null;
 
 	/**

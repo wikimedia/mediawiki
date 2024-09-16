@@ -13,7 +13,9 @@ use OOUI\Widget;
 class ComplexTitleInputWidget extends Widget {
 	/** @var array */
 	protected $config;
+	/** @var NamespaceInputWidget|null */
 	protected $namespace = null;
+	/** @var TitleInputWidget|null */
 	protected $title = null;
 
 	/**

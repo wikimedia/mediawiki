@@ -11,6 +11,7 @@ use MediaWiki\HTMLForm\HTMLFormField;
  * @stable to extend
  */
 class HTMLTagFilter extends HTMLFormField {
+	/** @var array */
 	protected $tagFilter;
 
 	public function getTableRow( $value ) {

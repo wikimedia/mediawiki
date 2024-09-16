@@ -257,19 +257,26 @@ class HTMLForm extends ContextSource {
 		'namespacesmultiselect' => HTMLNamespacesMultiselectField::class,
 	];
 
+	/** @var array */
 	public $mFieldData;
 
+	/** @var string */
 	protected $mMessagePrefix;
 
 	/** @var HTMLFormField[] */
 	protected $mFlatFields = [];
+	/** @var array */
 	protected $mFieldTree = [];
+	/** @var bool */
 	protected $mShowSubmit = true;
 	/** @var string[] */
 	protected $mSubmitFlags = [ 'primary', 'progressive' ];
+	/** @var bool */
 	protected $mShowCancel = false;
+	/** @var LinkTarget|string|null */
 	protected $mCancelTarget;
 
+	/** @var callable|null */
 	protected $mSubmitCallback;
 	/**
 	 * @var array[]
@@ -277,27 +284,44 @@ class HTMLForm extends ContextSource {
 	 */
 	protected $mValidationErrorMessage;
 
+	/** @var string */
 	protected $mPre = '';
+	/** @var string */
 	protected $mHeader = '';
+	/** @var string */
 	protected $mFooter = '';
+	/** @var string[] */
 	protected $mSectionHeaders = [];
+	/** @var string[] */
 	protected $mSectionFooters = [];
+	/** @var string */
 	protected $mPost = '';
+	/** @var string|null */
 	protected $mId;
+	/** @var string|null */
 	protected $mName;
+	/** @var string */
 	protected $mTableId = '';
 
+	/** @var string|null */
 	protected $mSubmitID;
+	/** @var string|null */
 	protected $mSubmitName;
+	/** @var string|null */
 	protected $mSubmitText;
+	/** @var string|null */
 	protected $mSubmitTooltip;
 
+	/** @var string|null */
 	protected $mFormIdentifier;
+	/** @var bool */
 	protected $mSingleForm = false;
 
 	/** @var Title|null */
 	protected $mTitle;
+	/** @var string */
 	protected $mMethod = 'post';
+	/** @var bool */
 	protected $mWasSubmitted = false;
 
 	/**
@@ -328,6 +352,7 @@ class HTMLForm extends ContextSource {
 	 */
 	protected $mAutocomplete = null;
 
+	/** @var bool */
 	protected $mUseMultipart = false;
 	/**
 	 * @var array[]
@@ -340,7 +365,9 @@ class HTMLForm extends ContextSource {
 	 */
 	protected $mButtons = [];
 
+	/** @var string|false */
 	protected $mWrapperLegend = false;
+	/** @var array */
 	protected $mWrapperAttributes = [];
 
 	/**

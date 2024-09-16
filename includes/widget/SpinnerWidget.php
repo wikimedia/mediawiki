@@ -17,7 +17,9 @@ use Stringable;
  */
 class SpinnerWidget implements Stringable {
 
+	/** @var array */
 	private $attributes;
+	/** @var string */
 	private $content;
 
 	/**

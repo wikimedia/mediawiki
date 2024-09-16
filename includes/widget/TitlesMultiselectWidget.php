@@ -10,8 +10,11 @@ namespace MediaWiki\Widget;
  */
 class TitlesMultiselectWidget extends TagMultiselectWidget {
 
+	/** @var bool|null */
 	protected $showMissing = null;
+	/** @var bool|null */
 	protected $excludeDynamicNamespaces = null;
+	/** @var bool|null */
 	protected $allowEditTags = null;
 
 	/**

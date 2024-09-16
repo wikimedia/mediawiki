@@ -35,7 +35,9 @@ use MediaWiki\Status\Status;
  * @stable to extend
  */
 class OOUIHTMLForm extends HTMLForm {
+	/** @var array */
 	private $oouiErrors;
+	/** @var array */
 	private $oouiWarnings;
 
 	/**
@@ -48,6 +50,7 @@ class OOUIHTMLForm extends HTMLForm {
 		$this->getOutput()->addModuleStyles( 'mediawiki.htmlform.ooui.styles' );
 	}
 
+	/** @inheritDoc */
 	protected $displayFormat = 'ooui';
 
 	public static function loadInputFromParameters( $fieldname, $descriptor,

@@ -14,9 +14,13 @@ use OOUI\Tag;
  */
 class DateTimeInputWidget extends InputWidget {
 
+	/** @var string|null */
 	protected $type = null;
+	/** @var string|null */
 	protected $min = null;
+	/** @var string|null */
 	protected $max = null;
+	/** @var bool|null */
 	protected $clearable = null;
 
 	/**

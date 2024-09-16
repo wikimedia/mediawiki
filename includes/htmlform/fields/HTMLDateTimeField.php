@@ -26,12 +26,14 @@ use Wikimedia\RequestTimeout\TimeoutException;
  * @note This widget is not likely to work well in non-OOUI forms.
  */
 class HTMLDateTimeField extends HTMLTextField {
+	/** @var string[] */
 	protected static $patterns = [
 		'date' => '[0-9]{4}-[01][0-9]-[0-3][0-9]',
 		'time' => '[0-2][0-9]:[0-5][0-9]:[0-5][0-9](?:\.[0-9]+)?',
 		'datetime' => '[0-9]{4}-[01][0-9]-[0-3][0-9][T ][0-2][0-9]:[0-5][0-9]:[0-5][0-9](?:\.[0-9]+)?Z?',
 	];
 
+	/** @var string */
 	protected $mType = 'datetime';
 
 	/**

@@ -10,6 +10,7 @@ use MediaWiki\Message\Message;
  * @covers \MediaWiki\HTMLForm\Field\HTMLCheckMatrix
  */
 class HTMLCheckMatrixTest extends MediaWikiUnitTestCase {
+	/** @var array */
 	private $defaultOptions = [
 		'rows' => [ 'r1', 'r2' ],
 		'columns' => [ 'c1', 'c2' ],

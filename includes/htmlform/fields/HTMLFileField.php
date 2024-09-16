@@ -19,7 +19,9 @@ use OOUI\Widget;
  * @stable to extend
  */
 class HTMLFileField extends HTMLFormField {
+	/** @var string */
 	protected $mPlaceholder = '';
+	/** @var string[]|null */
 	protected $mAccept = null;
 
 	/** @var bool */
