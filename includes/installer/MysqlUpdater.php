@@ -175,6 +175,17 @@ class MysqlUpdater extends DatabaseUpdater {
 		];
 	}
 
+	protected function getInitialUpdateKeys() {
+		return [
+			'filearchive-fa_major_mime-patch-fa_major_mime-chemical.sql',
+			'image-img_major_mime-patch-img_major_mime-chemical.sql',
+			'oldimage-oi_major_mime-patch-oi_major_mime-chemical.sql',
+			'user_groups-ug_group-patch-ug_group-length-increase-255.sql',
+			'user_former_groups-ufg_group-patch-ufg_group-length-increase-255.sql',
+			'user_properties-up_property-patch-up_property.sql',
+		];
+	}
+
 	public function getSchemaVars() {
 		global $wgDBTableOptions;
 

@@ -230,7 +230,9 @@ abstract class DatabaseInstaller {
 	 * @return Status
 	 */
 	public function insertUpdateKeys() {
-		return $this->stepApplySourceFile( 'getUpdateKeysPath', 'updates', false );
+		$updater = DatabaseUpdater::newForDB( $this->db );
+		$updater->insertInitialUpdateKeys();
+		return Status::newGood();
 	}
 
 	/**
@@ -271,17 +273,6 @@ abstract class DatabaseInstaller {
 	 */
 	public function getGeneratedSchemaPath( $db ) {
 		return $this->getSqlFilePath( $db, 'tables-generated.sql' );
-	}
-
-	/**
-	 * Return a path to the DBMS-specific update key file,
-	 * otherwise default to update-keys.sql
-	 *
-	 * @param IDatabase $db
-	 * @return string
-	 */
-	public function getUpdateKeysPath( $db ) {
-		return $this->getSqlFilePath( $db, 'update-keys.sql' );
 	}
 
 	/**

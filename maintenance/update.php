@@ -49,6 +49,8 @@ class UpdateMediaWiki extends Maintenance {
 		parent::__construct();
 		$this->addDescription( 'MediaWiki database updater' );
 		$this->addOption( 'quick', 'Skip 5 second countdown before starting' );
+		$this->addOption( 'initial',
+			'Do initial updates required after manual installation using tables-generated.sql' );
 		$this->addOption( 'doshared', 'Also update shared tables' );
 		$this->addOption( 'noschema', 'Only do the updates that are not done during schema updates' );
 		$this->addOption(
@@ -173,6 +175,9 @@ class UpdateMediaWiki extends Maintenance {
 				$updates[] = 'noschema';
 			}
 			$updates[] = 'stats';
+		}
+		if ( $this->hasOption( 'initial' ) ) {
+			$updates[] = 'initial';
 		}
 
 		$updater = DatabaseUpdater::newForDB( $db, $shared, $this );
