@@ -20,7 +20,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Amire80",
-			"Reedy"
+			"Reedy",
+			"Sławobóg"
 		]
 	},
 	"tog-underline": "Wotkazy podšmórnyć:",
@@ -176,8 +177,8 @@
 	"view": "Wobhladać",
 	"skin-view-view": "Čitać",
 	"skin-view-foreign": "Na $1 sej wobhladać",
-	"edit": "wobdźěłać",
-	"skin-view-edit": "wobdźěłać",
+	"edit": "Wobdźěłać",
+	"skin-view-edit": "Wobdźěłać",
 	"edit-local": "Lokalny wopis wobdźěłać .",
 	"create": "Wutworić",
 	"skin-view-create": "Wutworić",
@@ -193,7 +194,7 @@
 	"talkpagelinktext": "diskusija",
 	"specialpage": "Specialna strona",
 	"personaltools": "Wosobinske nastroje",
-	"talk": "diskusija",
+	"talk": "Diskusija",
 	"views": "Zwobraznjenja",
 	"toolbox": "Nastroje",
 	"cactions": "Dalše",
@@ -279,7 +280,7 @@
 	"red-link-title": "$1 (strona njeeksistuje)",
 	"sort-descending": "Spadowacy sortěrować",
 	"sort-ascending": "Postupowacy sortěrować",
-	"nstab-main": "nastawk",
+	"nstab-main": "Nastawk",
 	"nstab-user": "{{GENDER:$1|Wužiwarska strona}}",
 	"nstab-media": "Medijowa strona",
 	"nstab-special": "Specialna strona",
@@ -3099,6 +3100,6 @@
 	"skin-view-edit-local": "Lokalny wopis wobdźěłać .",
 	"skin-action-protect": "škitać",
 	"skin-action-undelete": "Wobnowić",
-	"skin-action-delete": "wušmórnyć",
+	"skin-action-delete": "Wušmórnyć",
 	"skin-action-move": "přesunyć"
 }

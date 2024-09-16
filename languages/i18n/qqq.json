@@ -657,7 +657,7 @@
 	"virus-badscanner": "Used as error message. Parameters:\n* $1 - virus scanner name which is defined in the variable [[mw:Special:MyLanguage/Manual:$wgAntivirus|$wgAntivirus]].",
 	"virus-scanfailed": "Used as error message. \"scan\" stands for \"virus scan\". Parameters:\n* $1 - exit code of virus scanner",
 	"virus-unknownscanner": "Used as error message. This message is followed by the virus scanner name.",
-	"logouttext": "Log out message. Parameters:\n* $1 - (Unused) an URL to [[Special:Userlogin]] containing <code>returnto</code> and <code>returntoquery</code> parameters",
+	"logouttext": "Log out message. If the user just logged out of a temporary account, the {{msg-mw|logouttext-for-temporary-account}} message is used instead. Parameters:\n* $1 - (Unused) an URL to [[Special:Userlogin]] containing <code>returnto</code> and <code>returntoquery</code> parameters",
 	"logging-out-notify": "The message when the user is being logged out.",
 	"logout-failed": "Message when log out fails in notification popup. Parameters:\n* $1 - Error message",
 	"cannotlogoutnow-title": "Error page title shown when logging out is not possible.",

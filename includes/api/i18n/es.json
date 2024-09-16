@@ -55,7 +55,8 @@
 			"Pierpao",
 			"Superzerocool",
 			"Amire80",
-			"No se"
+			"No se",
+			"Eulalio"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentación]]\n* [[mw:Special:MyLanguage/API:Etiquette|Normas de uso y etiqueta]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de correo]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anuncios API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Errores y peticiones]\n</div>\n<strong>Estado:</strong> La API de MediaWiki es una interfaz madura y estable que se mejora y prueba activamente. Aunque tratamos de evitarlo, es posible que ocasionalmente debamos hacer cambios importantes. Suscríbete a la [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ lista de correo mediawiki-api-announce] para recibir avisos de actualizaciones.\n\n<strong>Solicitudes erróneas:</strong> Cuando se envían solicitudes erróneas a la API, se enviará un encabezado HTTP con la clave «MediaWiki-API-Error» y, luego, el valor del encabezado y el código de error devuelto se establecerán en el mismo valor. Para obtener más información, consulta [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errores y advertencias]].\n\n<p class=\"mw-apisandbox-link\"><strong>Pruebas:</strong> Para facilitar la comprobación de las solicitudes de API, consulta [[Special:ApiSandbox]].</p>",
@@ -99,7 +100,7 @@
 	"apihelp-changeauthenticationdata-example-password": "Intento para cambiar la contraseña del usuario actual a <kbd>ExamplePassword</kbd>.",
 	"apihelp-changecontentmodel-summary": "Cambia el modelo de contenido de una página",
 	"apihelp-changecontentmodel-param-summary": "Resumen de edición y razón para entrada de registro.",
-	"apihelp-changecontentmodel-param-tags": "Cambia etiquetas para aplicar a la entrada de registro y edición.",
+	"apihelp-changecontentmodel-param-tags": "Las etiquetas de cambio que se aplicarán a la entrada de registro y a la edición.",
 	"apihelp-changecontentmodel-param-model": "Modelo de contenido del nuevo contenido.",
 	"apihelp-changecontentmodel-param-bot": "Marca el cambio de modelo de contenido con un indicador bot.",
 	"apihelp-changecontentmodel-example": "Cambiar la página principal para tener el modelo de contenido <code>text</code>",
