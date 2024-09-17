@@ -46,7 +46,7 @@ use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\DOM\Document;
 use Wikimedia\Parsoid\Parsoid;
-use Wikimedia\Stats\NullStatsdDataFactory;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * @group Database
@@ -1389,7 +1389,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$handler = $this->newParsoidHandler( [
 			'getHtmlInputHelper' => function () use ( $factory, $page, $html ) {
 				$helper = new HtmlInputTransformHelper(
-					new NullStatsdDataFactory(),
+					StatsFactory::newNull(),
 					$factory,
 					$this->getServiceContainer()->getParsoidOutputStash(),
 					$this->getServiceContainer()->getParserOutputAccess(),

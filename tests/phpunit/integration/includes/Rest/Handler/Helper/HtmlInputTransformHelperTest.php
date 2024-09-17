@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Rest\Handler\Helper;
 
 use Exception;
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Content\WikitextContent;
@@ -30,6 +29,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
+use Psr\Log\NullLogger;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ClientError;
@@ -38,7 +38,9 @@ use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Stats\BufferingStatsdDataFactory;
-use Wikimedia\Stats\NullStatsdDataFactory;
+use Wikimedia\Stats\Emitters\NullEmitter;
+use Wikimedia\Stats\StatsCache;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * @covers \MediaWiki\Rest\Handler\Helper\HtmlInputTransformHelper
@@ -72,7 +74,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param array $transformMethodOverrides
-	 * @param StatsdDataFactoryInterface|null $stats
+	 * @param StatsFactory|null $stats
 	 * @param ?PageIdentity $page
 	 * @param array|string $body Body structure, or an HTML string
 	 * @param array $parameters
@@ -84,7 +86,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function newHelper(
 		array $transformMethodOverrides = [],
-		?StatsdDataFactoryInterface $stats = null,
+		?StatsFactory $stats = null,
 		?PageIdentity $page = null,
 		$body = '',
 		array $parameters = [],
@@ -94,8 +96,9 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		// TODO: $cache = $cache ?: new EmptyBagOStuff();
 		// TODO: $stash = new SimpleParsoidOutputStash( $cache, 1 );
 
-		$helper = new HtmlInputTransformHelper(
-			$stats ?: new NullStatsdDataFactory(),
+		$stats = $stats ?? StatsFactory::newNull();
+		return new HtmlInputTransformHelper(
+			$stats,
 			$this->newMockHtmlTransformFactory( $transformMethodOverrides ),
 			$this->getServiceContainer()->getParsoidOutputStash(),
 			$this->getServiceContainer()->getParserOutputAccess(),
@@ -108,8 +111,6 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 			$originalRevision,
 			$pageLanguage
 		);
-
-		return $helper;
 	}
 
 	private function getTextFromFile( string $name ): string {
@@ -709,7 +710,10 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 			$originalContent = '';
 		}
 
-		$stats = new BufferingStatsdDataFactory( '' );
+		$statsCache = new StatsCache();
+		$statsdFactory = new BufferingStatsdDataFactory( '' );
+		$stats = new StatsFactory( $statsCache, new NullEmitter(), new NullLogger() );
+		$stats = $stats->withStatsdDataFactory( $statsdFactory );
 
 		// TODO: find a way to test $pageLanguage
 		$helper = $this->newHelper( [], $stats, $page, $body, $params );
@@ -733,12 +737,12 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		// Ensure that exactly one key with the given prefix is set.
 		// This ensures that the number of keys set always adds up to 100%,
 		// for any set of keys under this prefix.
-		$this->assertMetricsCount( 1, $stats, 'html_input_transform.original_html.' );
+		$this->assertMetricsCount( 1, $statsdFactory, 'html_input_transform.original_html.' );
 	}
 
-	private function assertMetricsCount( $expected, BufferingStatsdDataFactory $metrics, $prefix = '' ) {
+	private function assertMetricsCount( $expected, BufferingStatsdDataFactory $stats, $prefix = '' ) {
 		$keys = [];
-		foreach ( $metrics->getData() as $datum ) {
+		foreach ( $stats->getData() as $datum ) {
 			if ( str_starts_with( $datum->getKey(), $prefix ) ) {
 				$keys[] = $datum->getKey();
 			}
@@ -853,10 +857,12 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 			'html' => $html
 		];
 
-		$stats = new BufferingStatsdDataFactory( '' );
+		$statsCache = new StatsCache();
+		$statsdFactory = new BufferingStatsdDataFactory( '' );
+		$stats = new StatsFactory( $statsCache, new NullEmitter(), new NullLogger() );
+		$stats = $stats->withStatsdDataFactory( $statsdFactory );
 
 		$helper = $this->newHelper( [], $stats, $page, $body, $params );
-
 		$helper->setOriginal( $rev, $originalRendering );
 
 		$response = $this->createResponse();
@@ -875,9 +881,9 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		// This ensures that the number of keys set always adds up to 100%,
 		// for any set of keys under this prefix.
 		if ( $rev || $originalRendering ) {
-			$this->assertMetricsCount( 1, $stats, 'html_input_transform.original_html.given' );
+			$this->assertMetricsCount( 1, $statsdFactory, 'html_input_transform.original_html.given' );
 		} else {
-			$this->assertMetricsCount( 1, $stats, 'html_input_transform.original_html.not_given' );
+			$this->assertMetricsCount( 1, $statsdFactory, 'html_input_transform.original_html.not_given' );
 		}
 	}
 
@@ -893,7 +899,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 			'html' => $html
 		];
 
-		$helper = $this->newHelper( [], null, $page, $body, $params );
+		$helper = $this->newHelper( [], StatsFactory::newNull(), $page, $body, $params );
 
 		$transform = $helper->getTransform();
 
@@ -929,7 +935,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 
 		$page = PageIdentityValue::localIdentity( 7, NS_MAIN, $body['pageName'] ?? 'HtmlInputTransformHelperTest' );
 
-		$helper = $this->newHelper( [], null, $page, $body, $params, $revision );
+		$helper = $this->newHelper( [], StatsFactory::newNull(), $page, $body, $params, $revision );
 
 		$response = $this->createResponse();
 		$helper->putContent( $response );
@@ -977,7 +983,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 			new SelserContext( $pb, $page->getLatest() ),
 		);
 
-		$helper = $this->newHelper( [], null, $page, $body, $params );
+		$helper = $this->newHelper( [], StatsFactory::newNull(), $page, $body, $params );
 
 		$content = $helper->getContent();
 
@@ -1029,7 +1035,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 			new SelserContext( $pb, 0, $content )
 		);
 
-		$helper = $this->newHelper( [], null, $page, $body, $params );
+		$helper = $this->newHelper( [], StatsFactory::newNull(), $page, $body, $params );
 
 		$content = $helper->getContent();
 
@@ -1060,7 +1066,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 
 		$this->expectException( HttpException::class );
 		$this->expectExceptionCode( 412 );
-		$helper = $this->newHelper( [], null, $page, $body, $params );
+		$helper = $this->newHelper( [], StatsFactory::newNull(), $page, $body, $params );
 		$helper->getContent();
 	}
 
@@ -1076,7 +1082,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 
 		$this->expectException( HttpException::class );
 		$this->expectExceptionCode( 412 );
-		$helper = $this->newHelper( [], null, $page, $body, $params );
+		$helper = $this->newHelper( [], StatsFactory::newNull(), $page, $body, $params );
 		$helper->getContent();
 	}
 
@@ -1103,7 +1109,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		// We are asking for a stash key that is not in the stash.
 		// However, a rendering with the corresponding key is in the ParserCache.
 		// Because of this, the code below will not throw to trigger a 412 response.
-		$helper = $this->newHelper( [], null, $page, $body, $params );
+		$helper = $this->newHelper( [], StatsFactory::newNull(), $page, $body, $params );
 		$content = $helper->getContent();
 
 		// The wikitext should not have been normalized by re-serialization
@@ -1131,7 +1137,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		// We are asking for a stash key that is not in the stash.
 		// However, a rendering with the corresponding key is in the ParserCache.
 		// Because of this, the code below will not trigger a 412 response.
-		$helper = $this->newHelper( [], null, $page, $body, $params );
+		$helper = $this->newHelper( [], StatsFactory::newNull(), $page, $body, $params );
 		$content = $helper->getContent();
 
 		// The wikitext should not have been normalized by re-serialization
@@ -1177,7 +1183,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 			'htmlToContent' => static function () use ( $parsoidException ) {
 				throw $parsoidException;
 			}
-		], null, $page, $body, $params );
+		], StatsFactory::newNull(), $page, $body, $params );
 
 		$this->expectExceptionObject( $expectedException );
 		$helper->getContent();
