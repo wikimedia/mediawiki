@@ -1,36 +1,37 @@
 <template>
-	<div>
-		<user-lookup v-model="targetUser"></user-lookup>
-		<target-active-blocks></target-active-blocks>
-		<target-block-log></target-block-log>
-		<block-type-field
-			v-model="blockPartialOptionsSelected"
-			:partial-block-options="blockPartialOptions"
-		></block-type-field>
-		<expiry-field v-model="expiry"></expiry-field>
-		<reason-field
-			v-model:selected="reasonSelected"
-			v-model:other="reasonOther"
-		></reason-field>
-		<block-details-field
-			v-model="blockDetailsSelected"
-			:checkboxes="blockDetailsOptions"
-			:label="$i18n( 'block-details' ).text()"
-			:description="$i18n( 'block-details-description' ).text()"
-		></block-details-field>
-		<block-details-field
-			v-model="additionalDetailsSelected"
-			:checkboxes="additionalDetailsOptions"
-			:label="$i18n( 'block-options' ).text()"
-			:description="$i18n( 'block-options-description' ).text()"
-		></block-details-field>
-		<cdx-button
-			action="progressive"
-			weight="primary"
-			@click="handleSubmit">
-			{{ $i18n( 'block-save' ).text() }}
-		</cdx-button>
-	</div>
+	<user-lookup v-model="targetUser"></user-lookup>
+	<target-active-blocks></target-active-blocks>
+	<target-block-log></target-block-log>
+	<block-type-field
+		v-model="blockPartialOptionsSelected"
+		:partial-block-options="blockPartialOptions"
+	></block-type-field>
+	<expiry-field v-model="expiry"></expiry-field>
+	<reason-field
+		v-model:selected="reasonSelected"
+		v-model:other="reasonOther"
+	></reason-field>
+	<block-details-field
+		v-model="blockDetailsSelected"
+		:checkboxes="blockDetailsOptions"
+		:label="$i18n( 'block-details' ).text()"
+		:description="$i18n( 'block-details-description' ).text()"
+	></block-details-field>
+	<block-details-field
+		v-model="additionalDetailsSelected"
+		:checkboxes="additionalDetailsOptions"
+		:label="$i18n( 'block-options' ).text()"
+		:description="$i18n( 'block-options-description' ).text()"
+	></block-details-field>
+	<hr class="mw-block-hr">
+	<cdx-button
+		action="progressive"
+		weight="primary"
+		@click="handleSubmit"
+		class="mw-block-submit"
+	>
+		{{ $i18n( 'block-save' ).text() }}
+	</cdx-button>
 </template>
 
 <script>
@@ -221,3 +222,15 @@ module.exports = exports = defineComponent( {
 	}
 } );
 </script>
+
+<style lang="less">
+@import 'mediawiki.skin.variables.less';
+
+.mw-block-hr {
+	margin-top: @spacing-200;
+}
+
+.mw-block-submit.cdx-button {
+	margin-top: @spacing-100;
+}
+</style>
