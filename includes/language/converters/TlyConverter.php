@@ -66,12 +66,6 @@ class TlyConverter extends LanguageConverter {
 		'ш' => 'ş', 'Ш' => 'Ş',
 	];
 
-	/**
-	 * @var string[]
-	 * Filled with data in loadDefaultTables by flipping self::TO_LATIN.
-	 */
-	private $toCyrillic = [];
-
 	public function getMainCode(): string {
 		return 'tly';
 	}
@@ -87,10 +81,8 @@ class TlyConverter extends LanguageConverter {
 	}
 
 	protected function loadDefaultTables(): array {
-		$this->toCyrillic = array_flip( self::TO_LATIN );
-
 		return [
-			'tly-cyrl' => new ReplacementArray( $this->toCyrillic ),
+			'tly-cyrl' => new ReplacementArray( array_flip( self::TO_LATIN ) ),
 			'tly' => new ReplacementArray( self::TO_LATIN ),
 		];
 	}

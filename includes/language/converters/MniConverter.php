@@ -90,8 +90,7 @@ class MniConverter extends LanguageConverterSpecific {
 		'ꯞ' => 'প',
 	];
 	private const NON_WORD_CHARACTER_PATTERN = "/[\s꯫\p{P}<>=\-\|$+^~]+?/u";
-	/** @var string[] */
-	private $CONSONANTS = [
+	private const CONSONANTS = self::HALANTA_CONSONANTS + [
 		'ꯀ' => 'ক',
 		'ꯈ' => 'খ',
 		'ꯒ' => 'গ',
@@ -119,27 +118,24 @@ class MniConverter extends LanguageConverterSpecific {
 		'ꯁ' => 'স',
 		'ꯍ' => 'হ',
 	];
-	/** @var string[] */
-	private $VOWELS = [
+	private const VOWELS = [
 		'ꯑ' => 'অ',
 		'ꯏ' => 'ই',
 		'ꯎ' => 'উ',
 		'ꯢ' => 'ই',
 		'ꯨ' => 'ু',
 	];
-	/** @var string[] */
-	private $MTEI_TO_BENG_MAP = [
+	private const MTEI_TO_BENG_MAP_EXTRA = [
 		'꯫' => '।',
 		'꯭' => '্',
 	];
-
-	public function __construct( $_ ) {
-		parent::__construct( $_ );
-		$this->VOWELS += self::DIACRITICS_WITH_O + self::CONJUGATE_WITH_O;
-		$this->CONSONANTS += self::HALANTA_CONSONANTS;
-		$this->MTEI_TO_BENG_MAP += $this->VOWELS + $this->CONSONANTS;
-		$this->MTEI_TO_BENG_MAP += self::NUMERALS;
-	}
+	private const MTEI_TO_BENG_MAP =
+		self::VOWELS +
+		self::DIACRITICS_WITH_O +
+		self::CONJUGATE_WITH_O +
+		self::CONSONANTS +
+		self::NUMERALS +
+		self::MTEI_TO_BENG_MAP_EXTRA;
 
 	private function isBeginning( $position, $text ) {
 		$at_first = $position === 0;
@@ -194,10 +190,10 @@ class MniConverter extends LanguageConverterSpecific {
 			} elseif (
 				$char === self::WA &&
 				$i - 2 >= 0 && $chars[ $i - 1 ] === self::HALANTA &&
-				array_key_exists( $chars[ $i - 2 ], $this->CONSONANTS )
+				array_key_exists( $chars[ $i - 2 ], self::CONSONANTS )
 			) {
 				// ব + ্ + র = ব্র
-				yield $this->CONSONANTS[self::BA];
+				yield self::CONSONANTS[self::BA];
 			} elseif (
 				$char === self::PA_ && $i + 1 < $l && $chars[ $i + 1 ] === 'ꯀ'
 			) {
@@ -207,19 +203,19 @@ class MniConverter extends LanguageConverterSpecific {
 				$char === self::NA_ &&
 				$i + 1 < $l &&
 				!in_array( $chars[ $i + 1 ], self::NOT_WEIRD_AFTER_NA_ ) &&
-				array_key_exists( $chars[ $i + 1 ], $this->CONSONANTS )
+				array_key_exists( $chars[ $i + 1 ], self::CONSONANTS )
 			) {
 				/**
 				 * ন্ / ণ্ + any consonant
 				 * (except, ট, ঠ, ড, ঢ, , ত, থ, দ, ধ, ন, ব, য, য়) = weird
-				 * Any consonant + ্ + ন =  maybe ok
+				 * Any consonant + ্ + ন = maybe ok
 				 */
-				yield $this->MTEI_TO_BENG_MAP[self::NA];
+				yield self::MTEI_TO_BENG_MAP[self::NA];
 				$i += 1;
 				continue;
 			} elseif ( $char === self::U && !$this->isBeginning( $i, $text ) ) {
 				// উ/ঊ in the middle of words are often replaced by ও
-				yield $this->MTEI_TO_BENG_MAP[self::OO];
+				yield self::MTEI_TO_BENG_MAP[self::OO];
 			} elseif ( $char === self::O &&
 				$i + 2 < $l && $chars[$i + 1] === self::EE[0] && $chars[ $i + 2 ] === self::EE[1] ) {
 				/**
@@ -228,20 +224,20 @@ class MniConverter extends LanguageConverterSpecific {
 				 * in the middle of the words,
 				 * never to do it if it's in the beginning.
 				 */
-				yield $this->MTEI_TO_BENG_MAP[self::YA];
+				yield self::MTEI_TO_BENG_MAP[self::YA];
 			} elseif (
 				!array_key_exists( $char, self::HALANTA_CONSONANTS ) &&
-				array_key_exists( $char, $this->CONSONANTS ) &&
+				array_key_exists( $char, self::CONSONANTS ) &&
 				( $i === $l - 1 || ( $i + 1 < $l &&
 					$this->isEndOfWord( $chars[ $i + 1 ] )
 				) )
 			) {
 				// Consonants without halantas should end with diacritics of aa sound everytime.
-				yield $this->MTEI_TO_BENG_MAP[$char] . $this->MTEI_TO_BENG_MAP[self::DIACRITIC_AA];
+				yield self::MTEI_TO_BENG_MAP[$char] . self::MTEI_TO_BENG_MAP[self::DIACRITIC_AA];
 			} else {
 				yield (
-					array_key_exists( $char, $this->MTEI_TO_BENG_MAP ) ?
-					$this->MTEI_TO_BENG_MAP[$char] : $char
+					array_key_exists( $char, self::MTEI_TO_BENG_MAP ) ?
+					self::MTEI_TO_BENG_MAP[$char] : $char
 				);
 			}
 			$i += 1;

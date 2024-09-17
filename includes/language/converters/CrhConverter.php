@@ -103,7 +103,6 @@ class CrhConverter extends LanguageConverterSpecific {
 	}
 
 	public const CYRILLIC_TO_LATIN = [
-
 		## these are independent of location in the word, but have
 		## to go first so other transforms don't bleed them
 		'гъ' => 'ğ', 'Гъ' => 'Ğ', 'ГЪ' => 'Ğ',
@@ -129,7 +128,6 @@ class CrhConverter extends LanguageConverterSpecific {
 		'Ё' => 'Yo', 'ё' => 'yo', 'Ю' => 'Yu', 'ю' => 'yu',
 		'Ц' => 'Ts', 'ц' => 'ts', 'Щ' => 'Şç', 'щ' => 'şç',
 		'Ь' => '', 'ь' => '', 'Ъ' => '', 'ъ' => '',
-
 	];
 
 	public const LATIN_TO_CYRILLIC = [
@@ -154,24 +152,22 @@ class CrhConverter extends LanguageConverterSpecific {
 		'Ü' => 'Ю', 'ü' => 'ю', 'Y' => 'Й', 'y' => 'й',
 		'C' => 'Дж', 'c' => 'дж', 'Ğ' => 'Гъ', 'ğ' => 'гъ',
 		'Ñ' => 'Нъ', 'ñ' => 'нъ', 'Q' => 'Къ', 'q' => 'къ',
-
-		];
-
-	/** @var string[] */
-	public $mCyrl2LatnExceptions = [];
-	/** @var string[] */
-	public $mLatn2CyrlExceptions = [];
+	];
 
 	/** @var string[] */
-	public $mCyrl2LatnPatterns = [];
+	private array $mCyrl2LatnExceptions = [];
 	/** @var string[] */
-	public $mLatn2CyrlPatterns = [];
+	private array $mLatn2CyrlExceptions = [];
 
 	/** @var string[] */
-	public $mCyrlCleanUpRegexes = [];
+	private array $mCyrl2LatnPatterns = [];
+	/** @var string[] */
+	private array $mLatn2CyrlPatterns = [];
 
-	/** @var bool */
-	public $mExceptionsLoaded = false;
+	/** @var string[] */
+	private array $mCyrlCleanUpRegexes = [];
+
+	private bool $mExceptionsLoaded = false;
 
 	/**
 	 * @inheritDoc
@@ -197,8 +193,8 @@ class CrhConverter extends LanguageConverterSpecific {
 	}
 
 	/**
-	 *  It translates text into variant, specials:
-	 *    - omitting roman numbers
+	 * It translates text into variant, specials:
+	 * - omitting roman numbers
 	 *
 	 * @param string $text
 	 * @param string $toVariant
