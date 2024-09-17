@@ -37,7 +37,7 @@ class ZghConverter extends LanguageConverterSpecific {
 	 * by IRCAM (https://tal.ircam.ma/dglai/lexieam.php, DGLAi),
 	 * with the labio-velarization mark in the end.
 	 */
-	public $mToLatin = [
+	private const TO_LATIN = [
 		'ⴰ' => 'a',
 		'ⴱ' => 'b',
 		'ⴳ' => 'g',
@@ -86,7 +86,7 @@ class ZghConverter extends LanguageConverterSpecific {
 
 	protected function loadDefaultTables(): array {
 		return [
-			'zgh-latn' => new ReplacementArray( $this->mToLatin ),
+			'zgh-latn' => new ReplacementArray( self::TO_LATIN ),
 			'zgh' => new ReplacementArray()
 		];
 	}

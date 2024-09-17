@@ -99,14 +99,14 @@ class ZhConverter extends LanguageConverter {
 
 	protected function loadDefaultTables(): array {
 		return [
-			'zh-hans' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2Hans ),
-			'zh-hant' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2Hant ),
-			'zh-cn' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2CN ),
-			'zh-hk' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2HK ),
-			'zh-mo' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2HK ),
-			'zh-my' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2CN ),
-			'zh-sg' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2CN ),
-			'zh-tw' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2TW ),
+			'zh-hans' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::ZH_TO_HANS ),
+			'zh-hant' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::ZH_TO_HANT ),
+			'zh-cn' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::ZH_TO_CN ),
+			'zh-hk' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::ZH_TO_HK ),
+			'zh-mo' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::ZH_TO_HK ),
+			'zh-my' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::ZH_TO_CN ),
+			'zh-sg' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::ZH_TO_CN ),
+			'zh-tw' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::ZH_TO_TW ),
 			'zh' => new ReplacementArray
 		];
 	}

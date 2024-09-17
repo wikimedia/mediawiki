@@ -418,15 +418,15 @@ def main():
 namespace MediaWiki\Languages\Data;
 
 class ZhConversion {
-	public static $zh2Hant = [\n'''
+	public const ZH_TO_HANT = [\n'''
     php += PHPArray(toHant) \
-        + '\n\t];\n\n\tpublic static $zh2Hans = [\n' \
+        + '\n\t];\n\n\tpublic const ZH_TO_HANS = [\n' \
         + PHPArray(toHans) \
-        + '\n\t];\n\n\tpublic static $zh2TW = [\n' \
+        + '\n\t];\n\n\tpublic const ZH_TO_TW = [\n' \
         + PHPArray(toTW) \
-        + '\n\t];\n\n\tpublic static $zh2HK = [\n' \
+        + '\n\t];\n\n\tpublic const ZH_TO_HK = [\n' \
         + PHPArray(toHK) \
-        + '\n\t];\n\n\tpublic static $zh2CN = [\n' \
+        + '\n\t];\n\n\tpublic const ZH_TO_CN = [\n' \
         + PHPArray(toCN) \
         + '\n\t];\n}\n'
 

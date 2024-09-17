@@ -97,18 +97,18 @@ class CrhExceptions {
 		$this->initLcUc( $lcChars, $ucChars );
 
 		# no regex prefix/suffix needed
-		$this->addMappings( $this->ManyToOneC2LMappings,
+		$this->addMappings( self::MANY_TO_ONE_C2L_MAPPINGS,
 			// reverse exception mapping order to handle many-to-one C2L mappings
 			$this->Latn2CyrlExceptions, $this->Cyrl2LatnExceptions );
-		$this->addMappings( $this->multiCaseMappings,
+		$this->addMappings( self::MULTI_CASE_MAPPINGS,
 			$this->Cyrl2LatnExceptions, $this->Latn2CyrlExceptions );
-		$this->addMappings( $this->exactCaseMappings,
+		$this->addMappings( self::EXACT_CASE_MAPPINGS,
 			$this->Cyrl2LatnExceptions, $this->Latn2CyrlExceptions, true );
 
 		# load C2L and L2C bidirectional affix mappings
-		$this->addMappings( $this->prefixMapping,
+		$this->addMappings( self::PREFIX_MAPPING,
 			$this->Cyrl2LatnPatterns, $this->Latn2CyrlPatterns, false, '/' . self::WB, '/u' );
-		$this->addMappings( $this->suffixMapping,
+		$this->addMappings( self::SUFFIX_MAPPING,
 			$this->Cyrl2LatnPatterns, $this->Latn2CyrlPatterns, false, '/', self::WB . '/u' );
 
 		# tack on one-way mappings to the ends of the prefix and suffix patterns
@@ -116,14 +116,14 @@ class CrhExceptions {
 		$this->Latn2CyrlPatterns += $this->Latn2CyrlRegexes;
 
 		return [ $this->Cyrl2LatnExceptions, $this->Latn2CyrlExceptions, $this->Cyrl2LatnPatterns,
-			$this->Latn2CyrlPatterns, $this->CyrlCleanUpRegexes ];
+			$this->Latn2CyrlPatterns, self::CYRL_CLEAN_UP_REGEXES ];
 	}
 
 	/**
-	 * @var string[] map Latin to Cyrillic and back, simple string match only (no regex)
+	 * map Latin to Cyrillic and back, simple string match only (no regex)
 	 * variants: all lowercase, all uppercase, first letter capitalized
 	 */
-	private $ManyToOneC2LMappings = [
+	private const MANY_TO_ONE_C2L_MAPPINGS = [
 		# Carefully ordered many-to-one mapping.
 		# These are ordered so that the C2L is correct (the later Latin one).
 		# See also the L2C mappings below
@@ -134,10 +134,10 @@ class CrhExceptions {
 	];
 
 	/**
-	 * @var string[] map Cyrillic to Latin and back, simple string match only (no regex)
+	 * map Cyrillic to Latin and back, simple string match only (no regex)
 	 * variants: all lowercase, all uppercase, first letter capitalized
 	 */
-	private $multiCaseMappings = [
+	private const MULTI_CASE_MAPPINGS = [
 
 		#### Cyrillic to Latin
 		'аджыумер' => 'acıümer', 'аджыусеин' => 'acıüsein', 'алейкум' => 'aleyküm',
@@ -209,7 +209,7 @@ class CrhExceptions {
 
 		### Carefully ordered many-to-one mappings
 		# these are ordered so L2C is correct (the later Cyrillic one)
-		# see also $ManyToOneC2LMappings above for C2L
+		# see also self::MANY_TO_ONE_C2L_MAPPINGS above for C2L
 		'шофер' => 'şoför', 'шофёр' => 'şoför',
 		'бугун' => 'bugün', 'бугунь' => 'bugün',
 		'демирёл' => 'demiryol', 'демиръёл' => 'demiryol',
@@ -352,10 +352,10 @@ class CrhExceptions {
 	];
 
 	/**
-	 * @var string[] map Cyrillic to Latin and back, simple string match only (no regex)
+	 * map Cyrillic to Latin and back, simple string match only (no regex)
 	 * no variants: map exactly as is
 	 */
-	private $exactCaseMappings = [
+	private const EXACT_CASE_MAPPINGS = [
 		# аббревиатуры
 		# abbreviations
 		'ОБСЕ' => 'OBSE', 'КъМДж' => 'QMC', 'КъДж' => 'QC', 'КъАЭ' => 'QAE', 'ГъСМК' => 'ĞSMK',
@@ -364,13 +364,13 @@ class CrhExceptions {
 	];
 
 	/**
-	 * @var string[] map Cyrillic to Latin and back, match end of word
+	 * map Cyrillic to Latin and back, match end of word
 	 * variants: all lowercase, all uppercase, first letter capitalized
 	 * "first letter capitalized" variant was in the source
 	 * items with capture group refs (e.g., $1) are only mapped from the
 	 * regex to the reference
 	 */
-	private $suffixMapping = [
+	private const SUFFIX_MAPPING = [
 		# originally C2L
 		'иаль' => 'ial', 'нуль' => 'nul', 'кой' => 'köy', 'койнинъ' => 'köyniñ', 'койни' => 'köyni',
 		'койге' => 'köyge', 'койде' => 'köyde', 'койдеки' => 'köydeki', 'койден' => 'köyden',
@@ -384,12 +384,12 @@ class CrhExceptions {
 	];
 
 	/**
-	 * @var string[] map Cyrillic to Latin and back, match beginning of word
+	 * map Cyrillic to Latin and back, match beginning of word
 	 * variants: all lowercase letters, all uppercase letters, first letter capitalized
 	 * items with capture group refs (e.g., $1) are only mapped from the
 	 * regex to the reference
 	 */
-	private $prefixMapping = [
+	private const PREFIX_MAPPING = [
 		# originally C2L
 		'буюк([^ъ])' => 'büyük$1', 'бую([гдйлмнпрстчшc])(и)' => 'büyü$1$2',
 		'буют([^ыа])' => 'büyüt$1', 'джонк([^ъ])' => 'cönk$1', 'коюм' => 'köyüm', 'коюнъ' => 'köyüñ',
@@ -791,7 +791,7 @@ class CrhExceptions {
 		];
 	}
 
-	private $CyrlCleanUpRegexes = [
+	private const CYRL_CLEAN_UP_REGEXES = [
 		'/([клнрст])ь\1/u' => '$1$1',
 		'/([КЛНРСТ])Ь\1/u' => '$1$1',
 		'/К[ьЬ]к/u' => 'Кк',

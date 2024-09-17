@@ -39,7 +39,7 @@ class ShiConverter extends LanguageConverterSpecific {
 	 * by IRCAM (https://tal.ircam.ma/dglai/lexieam.php, DGLAi),
 	 * with the labio-velarization mark in the end
 	 */
-	public $mToLatin = [
+	private const TO_LATIN = [
 		'ⴰ' => 'a',
 		'ⴱ' => 'b',
 		'ⴳ' => 'g',
@@ -75,7 +75,7 @@ class ShiConverter extends LanguageConverterSpecific {
 	];
 
 	/** The sequence is based on DGLAi, with the non-standard letters in the end */
-	public $mUpperToLowerCaseLatin = [
+	private const UPPER_TO_LOWER_CASE_LATIN = [
 		'A' => 'a',
 		'B' => 'b',
 		'G' => 'g',
@@ -116,7 +116,7 @@ class ShiConverter extends LanguageConverterSpecific {
 	 * The sequence is based on DGLAi, with the labio-velarization mark and
 	 * the non-standard letters in the end
 	 */
-	public $mToTifinagh = [
+	private const TO_TIFINAGH = [
 		'a' => 'ⴰ',
 		'b' => 'ⴱ',
 		'g' => 'ⴳ',
@@ -172,9 +172,9 @@ class ShiConverter extends LanguageConverterSpecific {
 
 	protected function loadDefaultTables(): array {
 		return [
-			'lowercase' => new ReplacementArray( $this->mUpperToLowerCaseLatin ),
-			'shi-tfng' => new ReplacementArray( $this->mToTifinagh ),
-			'shi-latn' => new ReplacementArray( $this->mToLatin ),
+			'lowercase' => new ReplacementArray( self::UPPER_TO_LOWER_CASE_LATIN ),
+			'shi-tfng' => new ReplacementArray( self::TO_TIFINAGH ),
+			'shi-latn' => new ReplacementArray( self::TO_LATIN ),
 			'shi' => new ReplacementArray()
 		];
 	}

@@ -11,7 +11,7 @@
 namespace MediaWiki\Languages\Data;
 
 class ZhConversion {
-	public static $zh2Hant = [
+	public const ZH_TO_HANT = [
 		'㐷' => '傌',
 		'㐹' => '㑶',
 		'㐽' => '偑',
@@ -9624,7 +9624,7 @@ class ZhConversion {
 		'，个中' => '，箇中',
 	];
 
-	public static $zh2Hans = [
+	public const ZH_TO_HANS = [
 		'㑯' => '㑔',
 		'㑳' => '㑇',
 		'㑶' => '㐹',
@@ -14286,7 +14286,7 @@ class ZhConversion {
 		'，陞' => '，升',
 	];
 
-	public static $zh2TW = [
+	public const ZH_TO_TW = [
 		'0字节' => '0位元組',
 		'0杆' => '0桿',
 		'1字节' => '1位元組',
@@ -15238,7 +15238,7 @@ class ZhConversion {
 		'鼻樑' => '鼻梁',
 	];
 
-	public static $zh2HK = [
+	public const ZH_TO_HK = [
 		'0字节' => '0位元組',
 		'1字节' => '1位元組',
 		'2字节' => '2位元組',
@@ -17760,7 +17760,7 @@ class ZhConversion {
 		'鼻梁' => '鼻樑',
 	];
 
-	public static $zh2CN = [
+	public const ZH_TO_CN = [
 		'16進位制' => '16进位制',
 		'16進位' => '16进制',
 		'IP位址' => 'IP地址',

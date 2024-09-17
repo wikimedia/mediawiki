@@ -24,7 +24,7 @@
  * @ingroup Languages
  */
 class UzConverter extends LanguageConverter {
-	public $toLatin = [
+	private const TO_LATIN = [
 		'а' => 'a', 'А' => 'A',
 		'б' => 'b', 'Б' => 'B',
 		'д' => 'd', 'Д' => 'D',
@@ -62,7 +62,7 @@ class UzConverter extends LanguageConverter {
 		'ъ' => 'ʼ',
 	];
 
-	public $toCyrillic = [
+	private const TO_CYRILLIC = [
 		'a' => 'а', 'A' => 'А',
 		'b' => 'б', 'B' => 'Б',
 		'd' => 'д', 'D' => 'Д',
@@ -119,8 +119,8 @@ class UzConverter extends LanguageConverter {
 
 	protected function loadDefaultTables(): array {
 		return [
-			'uz-cyrl' => new ReplacementArray( $this->toCyrillic ),
-			'uz-latn' => new ReplacementArray( $this->toLatin ),
+			'uz-cyrl' => new ReplacementArray( self::TO_CYRILLIC ),
+			'uz-latn' => new ReplacementArray( self::TO_LATIN ),
 			'uz' => new ReplacementArray()
 		];
 	}

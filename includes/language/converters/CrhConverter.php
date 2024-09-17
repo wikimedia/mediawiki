@@ -102,7 +102,7 @@ class CrhConverter extends LanguageConverterSpecific {
 		$this->loadExceptions();
 	}
 
-	public $mCyrillicToLatin = [
+	public const CYRILLIC_TO_LATIN = [
 
 		## these are independent of location in the word, but have
 		## to go first so other transforms don't bleed them
@@ -132,7 +132,7 @@ class CrhConverter extends LanguageConverterSpecific {
 
 	];
 
-	public $mLatinToCyrillic = [
+	public const LATIN_TO_CYRILLIC = [
 		'Â' => 'Я', 'â' => 'я', 'B' => 'Б', 'b' => 'б',
 		'Ç' => 'Ч', 'ç' => 'ч', 'D' => 'Д', 'd' => 'д',
 		'F' => 'Ф', 'f' => 'ф', 'G' => 'Г', 'g' => 'г',
@@ -172,8 +172,8 @@ class CrhConverter extends LanguageConverterSpecific {
 	 */
 	protected function loadDefaultTables(): array {
 		return [
-			'crh-latn' => new ReplacementArray( $this->mCyrillicToLatin ),
-			'crh-cyrl' => new ReplacementArray( $this->mLatinToCyrillic ),
+			'crh-latn' => new ReplacementArray( self::CYRILLIC_TO_LATIN ),
+			'crh-cyrl' => new ReplacementArray( self::LATIN_TO_CYRILLIC ),
 			'crh' => new ReplacementArray()
 		];
 	}
