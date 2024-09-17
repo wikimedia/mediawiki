@@ -52,6 +52,7 @@ use ZhConverter;
  */
 class LanguageConverterFactory {
 
+	/** @var ILanguageConverter[] */
 	private $cache = [];
 	/**
 	 * @var array

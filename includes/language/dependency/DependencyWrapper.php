@@ -29,6 +29,7 @@ use Wikimedia\ObjectCache\BagOStuff;
  * @ingroup Language
  */
 class DependencyWrapper {
+	/** @var mixed */
 	private $value;
 	/** @var CacheDependency[] */
 	private $deps;

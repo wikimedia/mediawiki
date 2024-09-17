@@ -18,13 +18,19 @@ class CrhExceptions {
 		$this->loadRegs();
 	}
 
+	/** @var string[] */
 	public $Cyrl2LatnExceptions = [];
+	/** @var string[] */
 	public $Latn2CyrlExceptions = [];
 
+	/** @var string[] */
 	public $Cyrl2LatnPatterns = [];
+	/** @var string[] */
 	public $Latn2CyrlPatterns = [];
 
+	/** @var string[] */
 	private $lc2uc;
+	/** @var string[] */
 	private $uc2lc;
 
 	private function initLcUc( $lcChars, $ucChars, $reinit = false ) {
@@ -409,7 +415,9 @@ class CrhExceptions {
 
 	];
 
+	/** @var string[] */
 	private $Cyrl2LatnRegexes = [];
+	/** @var string[] */
 	private $Latn2CyrlRegexes = [];
 
 	private function loadRegs() {

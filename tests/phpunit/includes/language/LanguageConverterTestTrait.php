@@ -8,6 +8,7 @@ use MediaWiki\MainConfigNames;
 
 trait LanguageConverterTestTrait {
 
+	/** @var string */
 	private $codeRegex = '/^(.+)ConverterTest$/';
 
 	/** @var LanguageConverterFactory */

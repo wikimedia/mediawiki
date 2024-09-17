@@ -39,15 +39,21 @@ class ConverterRule {
 	 * @var LanguageConverter
 	 */
 	public $mConverter;
+	/** @var string|false */
 	public $mRuleDisplay = '';
+	/** @var string|false */
 	public $mRuleTitle = false;
 	/**
 	 * @var string the text of the rules
 	 */
 	public $mRules = '';
+	/** @var string */
 	public $mRulesAction = 'none';
+	/** @var array */
 	public $mFlags = [];
+	/** @var array */
 	public $mVariantFlags = [];
+	/** @var array */
 	public $mConvTable = [];
 	/**
 	 * @var array of the translation in each variant

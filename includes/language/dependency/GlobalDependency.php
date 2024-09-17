@@ -25,7 +25,9 @@
  * @ingroup Language
  */
 class GlobalDependency extends CacheDependency {
+	/** @var string */
 	private $name;
+	/** @var mixed */
 	private $value;
 
 	public function __construct( $name ) {
