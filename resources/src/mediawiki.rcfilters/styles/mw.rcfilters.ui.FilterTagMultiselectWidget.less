@@ -2,183 +2,185 @@
 @import 'mw.rcfilters.variables.less';
 @import 'mediawiki.mixins.less';
 
-.mw-rcfilters-ui-filterTagMultiselectWidget {
-	max-width: none;
-	margin-top: 16px;
+.mw-rcfilters-container {
+	.mw-rcfilters-ui-filterTagMultiselectWidget {
+		max-width: none;
+		margin-top: 16px;
 
-	.oo-ui-tagMultiselectWidget-input input {
-		// Make sure this uses the interface direction, not the content direction
-		direction: ltr;
-		border-bottom-right-radius: 0;
-		height: 2.5em;
-	}
-
-	&.oo-ui-widget-enabled {
-		.oo-ui-tagMultiselectWidget-handle {
-			background-color: @background-color-interactive-subtle;
-			border: @border-base;
-			border-bottom: 0;
-			border-radius: @border-radius-base @border-radius-base 0 0;
-			padding: 0 0.6em 0.6em 0.6em;
-			line-height: normal;
+		.oo-ui-tagMultiselectWidget-input input {
+			// Make sure this uses the interface direction, not the content direction
+			direction: ltr;
+			border-bottom-right-radius: 0;
+			height: 2.5em;
 		}
 
-		// Hamburger menu for dropdown.
-		.oo-ui-tagMultiselectWidget-input > .oo-ui-icon-menu {
-			cursor: pointer;
-		}
-	}
-
-	.mw-rcfilters-collapsed & {
-		// Taking from the handle, since border-bottom is set on the
-		// filters view which is hidden when collapsed
-		border-bottom: @border-base;
-
-		&.mw-rcfilters-ui-filterTagMultiselectWidget.oo-ui-widget-enabled .oo-ui-tagMultiselectWidget-handle {
-			padding-bottom: 0;
-			padding-top: 0;
-		}
-
-		.mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-hideshow {
-			border-left: @border-base;
-		}
-
-		&.oo-ui-tagMultiselectWidget-outlined {
-			// per T177206#4271707 we avoid keeping the collapsed element to take the whole width of the screen
-			// we are providing enough cues (keeping the labels) for it to be clear that the panel gets compacted
-			// to the left and the user not to feel lost with the transition.
-			width: auto;
-			max-width: 100%;
-		}
-
-		// Hide inner elements
-		.mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-filters,
-		.mw-rcfilters-ui-filterTagMultiselectWidget-views,
-		.mw-rcfilters-ui-filterTagMultiselectWidget-views-input {
-			display: none;
-		}
-	}
-
-	.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled &-animate.oo-ui-tagMultiselectWidget-handle {
-		transition: background-color 500ms ease-out;
-	}
-
-	.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled &-emphasize.oo-ui-tagMultiselectWidget-handle {
-		background-color: @background-color-progressive-subtle;
-	}
-
-	&-hideshowButton.oo-ui-buttonElement > .oo-ui-buttonElement-button {
-		// Override the OOUI default for buttons
-		font-weight: normal;
-	}
-
-	&-wrapper {
-		&-top {
-			display: flex;
-			flex-wrap: nowrap;
-			justify-content: space-between;
-
-			&-title {
-				padding: 0.6em 0; // Same top padding as the handle
-				flex: 0 0 auto;
+		&.oo-ui-widget-enabled {
+			.oo-ui-tagMultiselectWidget-handle {
+				background-color: @background-color-interactive-subtle;
+				border: @border-base;
+				border-bottom: 0;
+				border-radius: @border-radius-base @border-radius-base 0 0;
+				padding: 0 0.6em 0.6em 0.6em;
+				line-height: normal;
 			}
 
-			&-queryName {
-				flex: 1 1 auto;
-				padding: 0.6em 0; // Same top padding as the handle
-				white-space: nowrap;
-				min-width: 0; // This has to be here to enable the text truncation
-				overflow: hidden;
-				text-overflow: ellipsis;
-			}
-
-			&-hideshow {
-				flex: 0 0 auto;
-				margin-left: 0.5em;
-				padding-left: 0.5em;
+			// Hamburger menu for dropdown.
+			.oo-ui-tagMultiselectWidget-input > .oo-ui-icon-menu {
+				cursor: pointer;
 			}
 		}
 
-		&-content {
-			&-title {
-				font-weight: bold;
-				color: @color-subtle;
-				white-space: nowrap;
+		.mw-rcfilters-collapsed & {
+			// Taking from the handle, since border-bottom is set on the
+			// filters view which is hidden when collapsed
+			border-bottom: @border-base;
+
+			&.mw-rcfilters-ui-filterTagMultiselectWidget.oo-ui-widget-enabled .oo-ui-tagMultiselectWidget-handle {
+				padding-bottom: 0;
+				padding-top: 0;
 			}
 
-			&-savedQueryTitle {
-				color: @color-base;
-				padding-left: 1em;
-				font-weight: bold;
-				vertical-align: top;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				white-space: nowrap;
-				// This is necessary for Firefox to be able to
-				// truncate the text. Without this rule, the label
-				// is treated as if it's full-width, and while it is
-				// being truncated with the overflow:hidden,
-				// the ellipses isn't showing properly.
-				// This rule seems to convince Firefox to re-render,
-				// fix the label's width properly, and add the ellipses
+			.mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-hideshow {
+				border-left: @border-base;
+			}
+
+			&.oo-ui-tagMultiselectWidget-outlined {
+				// per T177206#4271707 we avoid keeping the collapsed element to take the whole width of the screen
+				// we are providing enough cues (keeping the labels) for it to be clear that the panel gets compacted
+				// to the left and the user not to feel lost with the transition.
+				width: auto;
 				max-width: 100%;
 			}
-		}
 
-		&-filters {
-			.mw-rcfilters-ui-cell {
-				align-self: center;
+			// Hide inner elements
+			.mw-rcfilters-ui-filterTagMultiselectWidget-wrapper-filters,
+			.mw-rcfilters-ui-filterTagMultiselectWidget-views,
+			.mw-rcfilters-ui-filterTagMultiselectWidget-views-input {
+				display: none;
 			}
 		}
-	}
 
-	&-views {
-		&-input {
-			flex-grow: 1;
+		.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled &-animate.oo-ui-tagMultiselectWidget-handle {
+			transition: background-color 500ms ease-out;
 		}
 
-		&-select {
-			&-widget.oo-ui-widget {
-				display: block;
-				box-sizing: border-box;
-				height: 2.5em;
-				border: @border-base;
-				border-left-width: 0;
-				border-radius: 0 0 @border-radius-base 0;
-				// For `padding-right` using the 'left' value from
-				// .oo-ui-buttonElement-frameless.oo-ui-iconElement >
-				// .oo-ui-buttonElement-button > .oo-ui-iconElement-icon
-				padding-right: 0.35714286em;
-				text-align: right;
-				white-space: nowrap;
+		.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled &-emphasize.oo-ui-tagMultiselectWidget-handle {
+			background-color: @background-color-progressive-subtle;
+		}
 
-				.oo-ui-buttonWidget:first-child {
-					margin-left: 0;
+		&-hideshowButton.oo-ui-buttonElement > .oo-ui-buttonElement-button {
+			// Override the OOUI default for buttons
+			font-weight: normal;
+		}
+
+		&-wrapper {
+			&-top {
+				display: flex;
+				flex-wrap: nowrap;
+				justify-content: space-between;
+
+				&-title {
+					padding: 0.6em 0; // Same top padding as the handle
+					flex: 0 0 auto;
+				}
+
+				&-queryName {
+					flex: 1 1 auto;
+					padding: 0.6em 0; // Same top padding as the handle
+					white-space: nowrap;
+					min-width: 0; // This has to be here to enable the text truncation
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+
+				&-hideshow {
+					flex: 0 0 auto;
+					margin-left: 0.5em;
+					padding-left: 0.5em;
+				}
+			}
+
+			&-content {
+				&-title {
+					font-weight: bold;
+					color: @color-subtle;
+					white-space: nowrap;
+				}
+
+				&-savedQueryTitle {
+					color: @color-base;
+					padding-left: 1em;
+					font-weight: bold;
+					vertical-align: top;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					// This is necessary for Firefox to be able to
+					// truncate the text. Without this rule, the label
+					// is treated as if it's full-width, and while it is
+					// being truncated with the overflow:hidden,
+					// the ellipses isn't showing properly.
+					// This rule seems to convince Firefox to re-render,
+					// fix the label's width properly, and add the ellipses
+					max-width: 100%;
+				}
+			}
+
+			&-filters {
+				.mw-rcfilters-ui-cell {
+					align-self: center;
 				}
 			}
 		}
-	}
 
-	&-emptyFilters {
-		color: @color-subtle;
-	}
+		&-views {
+			&-input {
+				flex-grow: 1;
+			}
 
-	&-cell-filters {
-		flex-grow: 1;
+			&-select {
+				&-widget.oo-ui-widget {
+					display: block;
+					box-sizing: border-box;
+					height: 2.5em;
+					border: @border-base;
+					border-left-width: 0;
+					border-radius: 0 0 @border-radius-base 0;
+					// For `padding-right` using the 'left' value from
+					// .oo-ui-buttonElement-frameless.oo-ui-iconElement >
+					// .oo-ui-buttonElement-button > .oo-ui-iconElement-icon
+					padding-right: 0.35714286em;
+					text-align: right;
+					white-space: nowrap;
 
-		div.oo-ui-tagMultiselectWidget-group {
-			margin-top: 0.2em;
-			display: block;
+					.oo-ui-buttonWidget:first-child {
+						margin-left: 0;
+					}
+				}
+			}
 		}
-	}
 
-	&-cell-reset {
-		text-align: right;
-		padding-left: 0.5em;
+		&-emptyFilters {
+			color: @color-subtle;
+		}
 
-		.oo-ui-buttonElement > .oo-ui-buttonElement-button {
-			// T356467
-			white-space: normal;
+		&-cell-filters {
+			flex-grow: 1;
+
+			div.oo-ui-tagMultiselectWidget-group {
+				margin-top: 0.2em;
+				display: block;
+			}
+		}
+
+		&-cell-reset {
+			text-align: right;
+			padding-left: 0.5em;
+
+			.oo-ui-buttonElement > .oo-ui-buttonElement-button {
+				// T356467
+				white-space: normal;
+			}
 		}
 	}
 }
