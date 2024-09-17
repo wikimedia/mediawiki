@@ -655,8 +655,9 @@ because of Phabricator reports.
 * UserOptionsManager::resetOptions(), ::listOptionKinds and ::getOptionKinds are
   deprecated and will emit deprecation warnings. Use the corresponding methods
   in PreferencesFactory and UserOptionsManager::resetOptionsByName().
-* The `i18n-all-lists-margins` module of SkinModule is deprecated as it's
-  merged into the `elements` module.
+* The `i18n-all-lists-margins` and `interface-message-box` module of SkinModule
+  are deprecated. The former has been merged into the `elements` module, the
+  latter has no required replacement. See JavaScript console for instructions.
 * ParsoidOutputAccess and all of its methods have been deprecated.  Use
   ParserOutputAccess with ParserOptions::setUseParsoid() instead.
 * ParserOutput::addJsConfigVars(), deprecated since 1.38, now emits deprecation

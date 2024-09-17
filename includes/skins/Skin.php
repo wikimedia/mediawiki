@@ -504,6 +504,13 @@ abstract class Skin extends ContextSource {
 		if ( strpos( $out->getHTML(), 'mw-ui-button' ) !== false ) {
 			$modules['styles']['content'][] = 'mediawiki.ui.button';
 		}
+		// Since 1.41, styling for mw-message-box is only required for
+		// messages that appear in article content.
+		// This should only be removed when a suitable alternative exists
+		// e.g. https://phabricator.wikimedia.org/T363607 is resolved.
+		if ( strpos( $out->getHTML(), 'mw-message-box' ) !== false ) {
+			$modules['styles']['content'][] = 'mediawiki.legacy.messageBox';
+		}
 
 		if ( $out->isTOCEnabled() ) {
 			$modules['content'][] = 'mediawiki.toc';

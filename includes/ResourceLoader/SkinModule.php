@@ -103,6 +103,7 @@ class SkinModule extends LessVarFileModule {
 	 *
 	 * "interface-message-box":
 	 *     Styles for message boxes. Can be used by skins that do not load Codex styles on page load.
+	 *     Deprecated since MediaWiki 1.43. Skins should now use CodexModule::class to style messages.
 	 *
 	 * "interface-site-notice":
 	 *     Default interface styling for site notices.
@@ -333,6 +334,14 @@ class SkinModule extends LessVarFileModule {
 				. ' is deprecated as it is now provided by `elements`. Please remove and '
 				. ' add `elements`, drop support for RTL languages, or incorporate the '
 				. ' styles provided by this module into your skin.';
+		}
+		if ( isset( $features[ 'interface-message-box' ] ) && $features[ 'interface-message-box' ] ) {
+			// Emit warning only. Key is supported as-is (For now)
+			// Replacement requires maintainer loading a suitable Codex module instead.
+			// Note: When removing this deprecation notice and associated code, please
+			// make sure mediawiki.legacy.messageBox is not broken.
+			$messages .= '[1.43] The use of the `interface-message-box` feature with SkinModule'
+				. ' is deprecated in favor of CodexModule. Please remove this feature.';
 		}
 
 		foreach ( self::COMPAT_ALIASES as $from => $to ) {

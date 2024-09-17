@@ -2699,6 +2699,13 @@ return [
 			],
 		],
 	],
+	// Lightweight compatibility module for legacy message box styles
+	'mediawiki.legacy.messageBox' => [
+		'class' => SkinModule::class,
+		'deprecated' => '[1.43] Please use Codex if possible. If styling user generated ' .
+			'content, please subscribe to https://phabricator.wikimedia.org/T363607 .',
+		'features' => [ 'interface-message-box' ],
+	],
 	// Lightweight module for button styles
 	'mediawiki.ui.button' => [
 		'deprecated' => '[1.41] Please use Codex. See migration guidelines: ' .
