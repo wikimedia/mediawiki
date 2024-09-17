@@ -9,7 +9,7 @@ const EditPage = require( '../pageobjects/edit.page' );
 const HistoryPage = require( '../pageobjects/history.page' );
 const UndoPage = require( '../pageobjects/undo.page' );
 const ProtectPage = require( '../pageobjects/protect.page' );
-const UserLoginPage = require( 'wdio-mediawiki/LoginPage' );
+const LoginPage = require( 'wdio-mediawiki/LoginPage' );
 const Util = require( 'wdio-mediawiki/Util' );
 
 describe( 'Page', () => {
@@ -33,7 +33,7 @@ describe( 'Page', () => {
 	} );
 
 	it( 'should be previewable @daily', async () => {
-		await UserLoginPage.loginAdmin();
+		await LoginPage.loginAdmin();
 		await EditPage.preview( name, content );
 
 		assert.strictEqual( await EditPage.heading.getText(), 'Creating ' + name );
@@ -49,7 +49,7 @@ describe( 'Page', () => {
 
 	it( 'should be creatable', async () => {
 		// create
-		await UserLoginPage.loginAdmin();
+		await LoginPage.loginAdmin();
 		await EditPage.edit( name, content );
 
 		// check
@@ -65,7 +65,7 @@ describe( 'Page', () => {
 		await bot.delete( name, 'delete prior to recreate' );
 
 		// re-create
-		await UserLoginPage.loginAdmin();
+		await LoginPage.loginAdmin();
 		await EditPage.edit( name, content );
 
 		// check
@@ -101,7 +101,7 @@ describe( 'Page', () => {
 		await bot.edit( name, content, 'create for delete' );
 
 		// login
-		await UserLoginPage.loginAdmin();
+		await LoginPage.loginAdmin();
 		// delete
 		await DeletePage.delete( name, 'delete reason' );
 
@@ -116,7 +116,7 @@ describe( 'Page', () => {
 		await bot.delete( name, 'delete for restore' );
 
 		// login
-		await UserLoginPage.loginAdmin();
+		await LoginPage.loginAdmin();
 
 		// restore
 		await RestorePage.restore( name, 'restore reason' );
@@ -130,7 +130,7 @@ describe( 'Page', () => {
 		await bot.edit( name, content, 'create for protect' );
 
 		// login
-		await UserLoginPage.loginAdmin();
+		await LoginPage.loginAdmin();
 
 		await ProtectPage.protect(
 			name,
