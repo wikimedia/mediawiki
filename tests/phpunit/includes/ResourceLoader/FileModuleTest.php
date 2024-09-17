@@ -998,10 +998,6 @@ class FileModuleTest extends ResourceLoaderTestCase {
 
 		$module->setName( $moduleInfo['name'] );
 		$module->setConfig( $context->getResourceLoader()->getConfig() );
-		$module->setDependencyAccessCallbacks(
-			[ $context->getResourceLoader(), 'loadModuleDependenciesInternal' ],
-			[ $context->getResourceLoader(), 'saveModuleDependenciesInternal' ]
-		);
 		$wrapper = TestingAccessWrapper::newFromObject( $module );
 		return $wrapper;
 	}
