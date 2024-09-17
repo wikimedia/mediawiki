@@ -43,23 +43,37 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 */
 	protected $timeout = 'default';
 
+	/** @var string|null */
 	protected $content;
+	/** @var bool|null */
 	protected $headersOnly = null;
+	/** @var array|null */
 	protected $postData = null;
+	/** @var string|null */
 	protected $proxy = null;
+	/** @var bool */
 	protected $noProxy = false;
+	/** @var bool */
 	protected $sslVerifyHost = true;
+	/** @var bool */
 	protected $sslVerifyCert = true;
+	/** @var string|null */
 	protected $caInfo = null;
+	/** @var string */
 	protected $method = "GET";
 	/** @var array */
 	protected $reqHeaders = [];
+	/** @var string */
 	protected $url;
+	/** @var array|false */
 	protected $parsedUrl;
 	/** @var callable */
 	protected $callback;
+	/** @var int */
 	protected $maxRedirects = 5;
+	/** @var bool */
 	protected $followRedirects = false;
+	/** @var int */
 	protected $connectTimeout;
 
 	/**
@@ -67,8 +81,11 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 */
 	protected $cookieJar;
 
+	/** @var array */
 	protected $headerList = [];
+	/** @var string */
 	protected $respVersion = "0.9";
+	/** @var string */
 	protected $respStatus = "200 Ok";
 	/** @var string[][] */
 	protected $respHeaders = [];

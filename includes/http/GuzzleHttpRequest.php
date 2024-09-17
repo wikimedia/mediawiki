@@ -26,6 +26,7 @@ use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Request;
 use MediaWiki\Status\Status;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\StreamInterface;
 use Psr\Log\NullLogger;
 
 /**
@@ -45,7 +46,9 @@ use Psr\Log\NullLogger;
 class GuzzleHttpRequest extends MWHttpRequest {
 	public const SUPPORTS_FILE_POSTS = true;
 
+	/** @var callable|null */
 	protected $handler = null;
+	/** @var StreamInterface|null */
 	protected $sink = null;
 	/** @var array */
 	protected $guzzleOptions = [ 'http_errors' => false ];
