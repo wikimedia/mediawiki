@@ -5,6 +5,4 @@
  * @ingroup Languages
  */
 
-$fallback = 'ro';
-
 $linkTrail = '/^([a-zâçğıĭİñöşüÂÇĞĬÑÖŞÜ]+)(.*)$/sDu';
