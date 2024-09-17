@@ -337,7 +337,11 @@ class SkinModule extends LessVarFileModule {
 
 		foreach ( self::COMPAT_ALIASES as $from => $to ) {
 			if ( isset( $features[ $from ] ) && $to !== null ) {
-				$features[ $to ] = $features[ $from ];
+				if ( isset( $features[ $to ] ) ) {
+					$messages .= "SkinModule feature `$from` conflicts with `$to` and was ignored. ";
+				} else {
+					$features[ $to ] = $features[ $from ];
+				}
 			}
 			unset( $features[ $from ] );
 		}
