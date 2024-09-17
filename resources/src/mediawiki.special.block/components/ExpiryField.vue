@@ -52,6 +52,7 @@
 			v-model="datetime"
 			class="mw-block-expiry-field__datetime"
 			input-type="datetime-local"
+			name="wpExpiry-other"
 			:min="new Date().toISOString().slice( 0, 16 )"
 		></cdx-text-input>
 	</cdx-field>

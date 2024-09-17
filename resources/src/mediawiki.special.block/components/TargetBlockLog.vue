@@ -18,7 +18,6 @@
 				{{ util.formatTimestamp( item ) }}
 			</template>
 			<template #item-target="{ item }">
-				<!-- TODO: Is this safe? -->
 				<!-- eslint-disable-next-line vue/no-v-html -->
 				<span v-html="$i18n( 'userlink-with-contribs', item ).parse()"></span>
 			</template>
@@ -26,7 +25,6 @@
 				{{ util.formatTimestamp( item ) }}
 			</template>
 			<template #item-blockedby="{ item }">
-				<!-- TODO: Is this safe? -->
 				<!-- eslint-disable-next-line vue/no-v-html -->
 				<span v-html="$i18n( 'userlink-with-contribs', item ).parse()"></span>
 			</template>
@@ -50,7 +48,7 @@ const { defineComponent } = require( 'vue' );
 const { CdxAccordion, CdxTable } = require( '@wikimedia/codex' );
 
 // @vue/component
-module.exports = defineComponent( {
+module.exports = exports = defineComponent( {
 	name: 'TargetBlockLog',
 	components: { CdxAccordion, CdxTable },
 	props: {
@@ -84,7 +82,6 @@ module.exports = defineComponent( {
 			const api = new mw.Api();
 
 			const params = {
-				origin: '*',
 				action: 'query',
 				format: 'json',
 				formatversion: 2,
@@ -106,6 +103,8 @@ module.exports = defineComponent( {
 					this.data = [];
 					// Look up the block(s) for the target user in the log
 					this.getUserBlocks( newValue ).then( ( data ) => {
+						// The fallback is only necessary for Jest tests.
+						data = data || { logevents: [] };
 						for ( let i = 0; i < data.logevents.length; i++ ) {
 							this.data.push( {
 								timestamp: data.logevents[ i ].timestamp,

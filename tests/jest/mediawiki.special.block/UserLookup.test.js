@@ -1,18 +1,10 @@
 'use strict';
 
 const { mount, flushPromises } = require( '@vue/test-utils' );
+const { mockMwApiGet } = require( './SpecialBlock.setup.js' );
 const UserLookup = require( '../../../resources/src/mediawiki.special.block/components/UserLookup.vue' );
 
-beforeAll( () => {
-	mw.Api.prototype.get = jest.fn().mockResolvedValue( {
-		query: {
-			allusers: [
-				{ name: 'UserLookup1' },
-				{ name: 'UserLookup2' }
-			]
-		}
-	} );
-} );
+beforeAll( () => mockMwApiGet() );
 
 describe( 'UserLookup', () => {
 	it( 'should update menu items based on the API response', async () => {
