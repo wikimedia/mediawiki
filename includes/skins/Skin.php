@@ -39,6 +39,7 @@ use MediaWiki\Skin\SkinComponentUtils;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\SpecialUserRights;
 use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
@@ -1224,15 +1225,15 @@ abstract class Skin extends ContextSource {
 			$langNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
 
 			foreach ( $this->getOutput()->getLanguageLinks() as $languageLinkText ) {
-				$class = 'interlanguage-link interwiki-' . explode( ':', $languageLinkText, 2 )[0];
+				[ $prefix, $title ] = explode( ':', $languageLinkText, 2 );
+				$class = 'interlanguage-link interwiki-' . $prefix;
 
-				$languageLinkTitle = Title::newFromText( $languageLinkText );
-				if ( !$languageLinkTitle ) {
+				[ $title, $frag ] = array_pad( explode( '#', $title, 2 ), 2, '' );
+				$languageLinkTitle = TitleValue::tryNew( NS_MAIN, $title, $frag, $prefix );
+				if ( $languageLinkTitle === null ) {
 					continue;
 				}
-
-				$ilInterwikiCode =
-					$this->mapInterwikiToLanguage( $languageLinkTitle->getInterwiki() );
+				$ilInterwikiCode = $this->mapInterwikiToLanguage( $prefix );
 
 				$ilLangName = $langNameUtils->getLanguageName( $ilInterwikiCode );
 
@@ -1285,8 +1286,11 @@ abstract class Skin extends ContextSource {
 				}
 
 				$ilInterwikiCodeBCP47 = LanguageCode::bcp47( $ilInterwikiCode );
+				// A TitleValue is sufficient above this point, but we need
+				// a full Title for ::getFullURL() and the hook invocation
+				$languageLinkFullTitle = Title::newFromLinkTarget( $languageLinkTitle );
 				$languageLink = [
-					'href' => $languageLinkTitle->getFullURL(),
+					'href' => $languageLinkFullTitle->getFullURL(),
 					'text' => $ilLangName,
 					'title' => $ilTitle,
 					'class' => $class,
@@ -1298,7 +1302,7 @@ abstract class Skin extends ContextSource {
 					'data-language-local-name' => $ilLangLocalName,
 				];
 				$hookRunner->onSkinTemplateGetLanguageLink(
-					$languageLink, $languageLinkTitle, $this->getTitle(), $this->getOutput()
+					$languageLink, $languageLinkFullTitle, $this->getTitle(), $this->getOutput()
 				);
 				$languageLinks[] = $languageLink;
 			}
