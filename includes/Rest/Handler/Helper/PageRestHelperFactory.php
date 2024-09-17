@@ -26,6 +26,7 @@ use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * @since 1.40 Factory for helper objects designed for sharing logic between REST handlers that deal with page content.
@@ -55,6 +56,7 @@ class PageRestHelperFactory {
 	private TitleFactory $titleFactory;
 	private IConnectionProvider $connectionProvider;
 	private ChangeTagsStore $changeTagStore;
+	private StatsFactory $statsFactory;
 
 	public function __construct(
 		ServiceOptions $options,
@@ -73,7 +75,8 @@ class PageRestHelperFactory {
 		LanguageConverterFactory $languageConverterFactory,
 		TitleFactory $titleFactory,
 		IConnectionProvider $connectionProvider,
-		ChangeTagsStore $changeTagStore
+		ChangeTagsStore $changeTagStore,
+		StatsFactory $statsFactory
 	) {
 		$this->options = $options;
 		$this->revisionLookup = $revisionLookup;
@@ -89,6 +92,7 @@ class PageRestHelperFactory {
 		$this->languageFactory = $languageFactory;
 		$this->redirectStore = $redirectStore;
 		$this->languageConverterFactory = $languageConverterFactory;
+		$this->statsFactory = $statsFactory;
 		$this->titleFactory = $titleFactory;
 		$this->connectionProvider = $connectionProvider;
 		$this->changeTagStore = $changeTagStore;
@@ -155,7 +159,7 @@ class PageRestHelperFactory {
 		}
 		return new HtmlOutputRendererHelper(
 			$this->parsoidOutputStash,
-			$this->stats,
+			$this->statsFactory,
 			$this->parserOutputAccess,
 			$this->pageLookup,
 			$this->revisionLookup,

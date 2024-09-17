@@ -27,6 +27,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use RepoGroup;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Parsoid\Parsoid;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * A trait providing utility functions for testing Page Handler classes.
@@ -121,7 +122,7 @@ trait PageHandlerTestTrait {
 			->willReturnCallback( static function ( $page, $parameters, $authority, $revision, $lenientRevHandling ) use ( $services, $parsoidOutputStash ) {
 				return new HtmlOutputRendererHelper(
 					$parsoidOutputStash,
-					$services->getStatsdDataFactory(),
+					StatsFactory::newNull(),
 					$services->getParserOutputAccess(),
 					$services->getPageStore(),
 					$services->getRevisionLookup(),

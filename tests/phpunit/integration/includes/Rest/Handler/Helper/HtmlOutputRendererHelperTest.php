@@ -53,7 +53,7 @@ use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
-use Wikimedia\Stats\NullStatsdDataFactory;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -244,7 +244,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 		return new HtmlOutputRendererHelper(
 			$stash,
-			new NullStatsdDataFactory(),
+			StatsFactory::newNull(),
 			$options['ParserOutputAccess'] ?? $this->newMockParserOutputAccess(
 				$options['expectedHtml'] ?? null
 			),
@@ -852,7 +852,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			$parserCacheFactory,
 			$services->getRevisionLookup(),
 			$services->getRevisionRenderer(),
-			$services->getStatsFactory(),
+			StatsFactory::newNull(),
 			$services->getDBLoadBalancerFactory(),
 			$services->getChronologyProtector(),
 			$this->getLoggerSpi(),

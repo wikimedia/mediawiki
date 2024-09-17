@@ -21,7 +21,6 @@ namespace MediaWiki\Rest\Handler\Helper;
 
 use HttpError;
 use InvalidArgumentException;
-use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Edit\ParsoidOutputStash;
@@ -68,7 +67,7 @@ use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 use Wikimedia\Parsoid\Utils\WTUtils;
-use Wikimedia\Stats\IBufferingStatsdDataFactory;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * Helper for getting output of a given wikitext page rendered by parsoid.
@@ -151,7 +150,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	private $isCacheable = true;
 
 	private ParsoidOutputStash $parsoidOutputStash;
-	private IBufferingStatsdDataFactory $stats;
+	private StatsFactory $statsFactory;
 	private ParserOutputAccess $parserOutputAccess;
 	private PageLookup $pageLookup;
 	private RevisionLookup $revisionLookup;
@@ -163,7 +162,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 
 	/**
 	 * @param ParsoidOutputStash $parsoidOutputStash
-	 * @param StatsdDataFactoryInterface $statsDataFactory
+	 * @param StatsFactory $statsFactory
 	 * @param ParserOutputAccess $parserOutputAccess
 	 * @param PageLookup $pageLookup
 	 * @param RevisionLookup $revisionLookup
@@ -185,7 +184,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	 */
 	public function __construct(
 		ParsoidOutputStash $parsoidOutputStash,
-		StatsdDataFactoryInterface $statsDataFactory,
+		StatsFactory $statsFactory,
 		ParserOutputAccess $parserOutputAccess,
 		PageLookup $pageLookup,
 		RevisionLookup $revisionLookup,
@@ -201,7 +200,7 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 		bool $lenientRevHandling = false
 	) {
 		$this->parsoidOutputStash = $parsoidOutputStash;
-		$this->stats = $statsDataFactory;
+		$this->statsFactory = $statsFactory;
 		$this->parserOutputAccess = $parserOutputAccess;
 		$this->pageLookup = $pageLookup;
 		$this->revisionLookup = $revisionLookup;
@@ -510,7 +509,10 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 				)
 			);
 			if ( !$stashSuccess ) {
-				$this->stats->increment( 'htmloutputrendererhelper.stash.fail' );
+				$this->statsFactory->getCounter( 'htmloutputrendererhelper_stash_total' )
+					->setLabel( 'status', 'fail' )
+					->copyToStatsdAt( 'htmloutputrendererhelper.stash.fail' )
+					->increment();
 
 				$errorData = [ 'parsoid-stash-key' => $parsoidStashKey ];
 				LoggerFactory::getInstance( 'HtmlOutputRendererHelper' )->error(
@@ -523,7 +525,10 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 					$errorData
 				);
 			}
-			$this->stats->increment( 'htmloutputrendererhelper.stash.save' );
+			$this->statsFactory->getCounter( 'htmloutputrendererhelper_stash_total' )
+				->setLabel( 'status', 'save' )
+				->copyToStatsdAt( 'htmloutputrendererhelper.stash.save' )
+				->increment();
 		}
 
 		if ( $this->flavor === 'edit' ) {

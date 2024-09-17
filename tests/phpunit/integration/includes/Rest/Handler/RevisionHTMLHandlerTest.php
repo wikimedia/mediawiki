@@ -25,6 +25,7 @@ use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * @covers \MediaWiki\Rest\Handler\RevisionHTMLHandler
@@ -82,7 +83,7 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			->willReturnCallback( static function ( $page, $parameters, $authority, $revision, $lenientRevHandling ) use ( $services, $parsoidOutputStash ) {
 				return new HtmlOutputRendererHelper(
 					$parsoidOutputStash,
-					$services->getStatsdDataFactory(),
+					StatsFactory::newNull(),
 					$services->getParserOutputAccess(),
 					$services->getPageStore(),
 					$services->getRevisionLookup(),

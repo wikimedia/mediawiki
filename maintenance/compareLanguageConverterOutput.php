@@ -32,6 +32,7 @@ use Wikimedia\Diff\ArrayDiffFormatter;
 use Wikimedia\Diff\ComplexityException;
 use Wikimedia\Diff\Diff;
 use Wikimedia\Stats\NullStatsdDataFactory;
+use Wikimedia\Stats\StatsFactory;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';
@@ -110,7 +111,8 @@ class CompareLanguageConverterOutput extends Maintenance {
 			$services->getLanguageConverterFactory(),
 			$services->getTitleFactory(),
 			$services->getConnectionProvider(),
-			$services->getChangeTagsStore()
+			$services->getChangeTagsStore(),
+			StatsFactory::newNull()
 		);
 		return $factory;
 	}

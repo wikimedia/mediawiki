@@ -1480,7 +1480,8 @@ return [
 			$services->getLanguageConverterFactory(),
 			$services->getTitleFactory(),
 			$services->getConnectionProvider(),
-			$services->getChangeTagsStore()
+			$services->getChangeTagsStore(),
+			$services->getStatsFactory()
 		);
 	},
 
