@@ -222,7 +222,7 @@ abstract class LBFactory implements ILBFactory {
 		}
 	}
 
-	public function getLocalDomainID() {
+	public function getLocalDomainID(): string {
 		return $this->localDomain->getId();
 	}
 
