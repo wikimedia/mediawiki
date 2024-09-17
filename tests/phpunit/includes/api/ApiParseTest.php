@@ -164,12 +164,21 @@ class ApiParseTest extends ApiTestCase {
 				'iw_wikiid' => '',
 				'iw_local' => false,
 			] )
+			// This deliberately conflicts with the Talk namespace
+			// (T204792/T363538)
+			->row( [
+				'iw_prefix' => 'talk',
+				'iw_url' => "https://talk.example.com/wiki/$1",
+				'iw_api' => '',
+				'iw_wikiid' => '',
+				'iw_local' => false,
+			] )
 			->caller( __METHOD__ )
 			->execute();
 
 		$this->overrideConfigValue(
 			MainConfigNames::ExtraInterlanguageLinkPrefixes,
-			[ 'madeuplanguage' ]
+			[ 'madeuplanguage', 'talk' ]
 		);
 	}
 
@@ -701,6 +710,12 @@ class ApiParseTest extends ApiTestCase {
 	 * @param array $arr Extra params to add to API request
 	 */
 	private function doTestLangLinks( array $arr = [] ) {
+		$this->setTemporaryHook( 'ParserAfterParse',
+			static function ( $parser ) {
+				$parserOutput = $parser->getOutput();
+				$parserOutput->addLanguageLink( 'talk:Page' ); // T363538
+			}
+		);
 		$res = $this->doApiRequest( array_merge( [
 			'action' => 'parse',
 			'title' => 'Omelette',
@@ -710,10 +725,13 @@ class ApiParseTest extends ApiTestCase {
 
 		$langLinks = $res[0]['parse']['langlinks'];
 
-		$this->assertCount( 1, $langLinks );
+		$this->assertCount( 2, $langLinks );
 		$this->assertSame( 'madeuplanguage', $langLinks[0]['lang'] );
 		$this->assertSame( 'Omelette', $langLinks[0]['title'] );
 		$this->assertSame( 'https://example.com/wiki/Omelette', $langLinks[0]['url'] );
+		$this->assertSame( 'talk', $langLinks[1]['lang'] );
+		$this->assertSame( 'Page', $langLinks[1]['title'] );
+		$this->assertSame( 'https://talk.example.com/wiki/Page', $langLinks[1]['url'] );
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
 	}
 
