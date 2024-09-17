@@ -54,20 +54,19 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 	const $dropdowns = $root.find( '.mw-htmlform-dropdown:not(.oo-ui-widget)' );
 	if ( $dropdowns.length ) {
 		$dropdowns.each( function () {
-			let $el = $( this ),
-				data, modules, extraModules;
+			const $el = $( this );
 			if ( $el.is( '[data-ooui]' ) ) {
 				// Avoid kicks in multiple times and causing a mess
 				if ( $el.find( '.oo-ui-menuTagMultiselectWidget' ).length ) {
 					return;
 				}
 				// Load 'oojs-ui-widgets' for TagMultiselectWidget
-				modules = [ 'mediawiki.htmlform.ooui', 'oojs-ui-widgets' ];
-				data = $el.data( 'mw-modules' );
+				const modules = [ 'mediawiki.htmlform.ooui', 'oojs-ui-widgets' ];
+				const data = $el.data( 'mw-modules' );
 				if ( data ) {
 					// We can trust this value, 'data-mw-*' attributes are banned from user content in Sanitizer
-					extraModules = data.split( ',' );
-					modules.push.apply( modules, extraModules );
+					const extraModules = data.split( ',' );
+					modules.push( ...extraModules );
 				}
 				mw.loader.using( modules, () => {
 					convertCheckboxesWidgetToTags( OO.ui.FieldLayout.static.infuse( $el ) );

@@ -104,7 +104,7 @@
 					}
 				}
 
-				return $.when.apply( $, this.providerPromises )
+				return $.when( ...this.providerPromises )
 					.then( Array.prototype.concat.bind( [] ) );
 			} );
 	};

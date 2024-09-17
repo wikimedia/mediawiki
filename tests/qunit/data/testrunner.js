@@ -163,7 +163,7 @@
 			arg.always( alt.resolve );
 		} );
 
-		return $.when.apply( $, altPromises );
+		return $.when( ...altPromises );
 	};
 
 	/**

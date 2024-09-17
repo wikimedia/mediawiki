@@ -9,8 +9,8 @@
 
 	// When the expected result is the same in both modes
 	function assertBothModes( assert, parserArguments, expectedResult, assertMessage ) {
-		assert.strictEqual( formatText.apply( null, parserArguments ), expectedResult, assertMessage + ' when format is \'text\'' );
-		assert.strictEqual( formatParse.apply( null, parserArguments ), expectedResult, assertMessage + ' when format is \'parse\'' );
+		assert.strictEqual( formatText( ...parserArguments ), expectedResult, assertMessage + ' when format is \'text\'' );
+		assert.strictEqual( formatParse( ...parserArguments ), expectedResult, assertMessage + ' when format is \'parse\'' );
 	}
 
 	QUnit.module( 'mediawiki.jqueryMsg', QUnit.newMwEnvironment( {

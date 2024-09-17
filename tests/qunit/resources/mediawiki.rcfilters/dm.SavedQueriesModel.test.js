@@ -289,7 +289,7 @@
 		queriesModel.initialize( {} );
 
 		cases.forEach( ( testCase ) => {
-			var itemID = queriesModel.addNewQuery.apply( queriesModel, testCase.methodParams ),
+			var itemID = queriesModel.addNewQuery( ...testCase.methodParams ),
 				item = queriesModel.getItemByID( itemID );
 
 			assert.deepEqual(

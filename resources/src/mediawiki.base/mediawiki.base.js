@@ -92,7 +92,7 @@ Message.prototype = /** @lends mw.Message.prototype */ {
 		) {
 			text = '(' + this.key + '$*)';
 		}
-		text = mw.format.apply( null, [ text ].concat( this.parameters ) );
+		text = mw.format( text, ...this.parameters );
 		if ( format === 'parse' ) {
 			// We don't know how to parse anything, so escape it all
 			text = mw.html.escape( text );
@@ -108,9 +108,7 @@ Message.prototype = /** @lends mw.Message.prototype */ {
 	 * @chainable
 	 */
 	params: function ( parameters ) {
-		// Optimization: push all parameter arguments at once. Can't use spread operator
-		// `this.parameters.push( ...parameters );` yet, but apply() does the same thing.
-		Array.prototype.push.apply( this.parameters, parameters );
+		this.parameters.push( ...parameters );
 		return this;
 	},
 
@@ -246,11 +244,10 @@ mw.widgets = {};
  *
  * @ignore
  */
-mw.inspect = function () {
-	const args = arguments;
+mw.inspect = function ( ...reports ) {
 	// Lazy-load
 	mw.loader.using( 'mediawiki.inspect', () => {
-		mw.inspect.runReports.apply( mw.inspect, args );
+		mw.inspect.runReports( ...reports );
 	} );
 };
 
@@ -305,8 +302,7 @@ mw.internalWikiUrlencode = function ( str ) {
  * @param {...Mixed} parameters Values for $N replacements
  * @return {string} Formatted string
  */
-mw.format = function ( formatString ) {
-	const parameters = slice.call( arguments, 1 );
+mw.format = function ( formatString, ...parameters ) {
 	formatString = mw.internalDoTransformFormatForQqx( formatString, parameters );
 	return formatString.replace( /\$(\d+)/g, ( str, match ) => {
 		const index = parseInt( match, 10 ) - 1;
@@ -344,10 +340,11 @@ mw.message = function ( key ) {
  * @param {...any} parameters Values for $N replacements
  * @return {string}
  */
-mw.msg = function () {
+mw.msg = function ( key, ...parameters ) {
 	// Shortcut must process text transformations by default
 	// if mediawiki.jqueryMsg is loaded. (T46459)
-	return mw.message.apply( mw, arguments ).text();
+	// eslint-disable-next-line mediawiki/msg-doc
+	return mw.message( key, ...parameters ).text();
 };
 
 /**

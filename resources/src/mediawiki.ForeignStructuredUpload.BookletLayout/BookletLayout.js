@@ -319,7 +319,7 @@
 			validityPromises.push( this.dateWidget.getValidity() );
 		}
 
-		$.when.apply( $, validityPromises ).done( () => {
+		$.when( ...validityPromises ).done( () => {
 			layout.emit( 'infoValid', true );
 		} ).fail( () => {
 			layout.emit( 'infoValid', false );

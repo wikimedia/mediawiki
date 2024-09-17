@@ -126,7 +126,7 @@
 				intestactions: 'edit'
 			} ) );
 		}
-		$.when.apply( null, requests ).done( function () {
+		$.when( ...requests ).done( function () {
 			const templatesAllInfo = [];
 			// For the first batch, empty the list in preparation for either adding new items or not needing to.
 			for ( let r = 0; r < arguments.length; r++ ) {

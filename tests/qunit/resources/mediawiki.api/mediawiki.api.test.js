@@ -10,7 +10,7 @@ QUnit.module( 'mediawiki.api', ( hooks ) => {
 			var response = responses[ i ];
 			if ( response ) {
 				i++;
-				request.respond.apply( request, response );
+				request.respond( ...response );
 			}
 		};
 	}
