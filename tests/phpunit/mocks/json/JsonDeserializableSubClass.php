@@ -11,6 +11,7 @@ use MediaWiki\Json\JsonDeserializer;
 class JsonDeserializableSubClass extends JsonDeserializableSuperClass {
 	use JsonDeserializableTrait;
 
+	/** @var mixed */
 	private $subClassField;
 
 	public function __construct( $superClassFieldValue, $subClassFieldValue ) {
