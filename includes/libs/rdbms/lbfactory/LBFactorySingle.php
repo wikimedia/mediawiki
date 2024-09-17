@@ -23,45 +23,49 @@ use BadMethodCallException;
 use InvalidArgumentException;
 
 /**
- * Manage a single hardcoded database connection.
+ * LoadBalancer manager for sites with one "main" cluster using only injected database connections
  *
+ * This class assumes that there are no "external" clusters.
+ *
+ * LoadBalancerDisabled will be used if a null connection handle is injected.
+ *
+ * @see ILBFactory
  * @ingroup Database
  */
 class LBFactorySingle extends LBFactory {
-	/** @var LoadBalancerSingle */
-	private $lb;
+	/** @var LoadBalancerSingle|LoadBalancerDisabled */
+	private $mainLB;
 
 	/**
-	 * You probably want to use {@link newFromConnection} instead.
+	 * @note Use of {@link newFromConnection} is preferable
 	 *
 	 * @param array $conf An associative array containing one of the following:
-	 *  - connection: The IDatabase connection object to use
-	 *  - lb: The ILoadBalancer object to use
+	 *  - connection: The IDatabase connection handle to use; null to disable access
 	 */
 	public function __construct( array $conf ) {
 		parent::__construct( $conf );
 
-		if ( isset( $conf['lb'] ) ) {
-			$lb = $conf['lb'];
-		} else {
-			if ( !isset( $conf['connection'] ) ) {
-				throw new InvalidArgumentException( "Missing 'connection' argument." );
-			}
-
-			$lb = new LoadBalancerSingle( array_merge(
-				$this->baseLoadBalancerParams(),
-				$conf
-			) );
+		if ( !array_key_exists( 'connection', $conf ) ) {
+			throw new InvalidArgumentException( "Missing 'connection' argument." );
 		}
 
-		$this->initLoadBalancer( $lb );
+		$conn = $conf['connection'];
+		if ( $conn ) {
+			$mainLB = new LoadBalancerSingle( array_merge(
+				$this->baseLoadBalancerParams(),
+				[ 'connection' => $conn ]
+			) );
+		} else {
+			$mainLB = new LoadBalancerDisabled( $this->baseLoadBalancerParams() );
+		}
+		$this->initLoadBalancer( $mainLB );
 
-		$this->lb = $lb;
+		$this->mainLB = $mainLB;
 	}
 
 	/**
 	 * @param IDatabase $db Live connection handle
-	 * @param array $params Parameter map to LBFactorySingle::__constructs()
+	 * @param array $params Parameter map to LBFactorySingle::__construct()
 	 * @return LBFactorySingle
 	 * @since 1.28
 	 */
@@ -75,14 +79,13 @@ class LBFactorySingle extends LBFactory {
 
 	/**
 	 * @param array $params Parameter map to LBFactorySingle::__construct()
-	 *        and LoadBalancerDisabled::__construct()
 	 * @return LBFactorySingle
 	 * @since 1.40
 	 */
 	public static function newDisabled( array $params = [] ) {
 		return new static( array_merge(
-			[ 'lb' => new LoadBalancerDisabled( $params ) ],
-			$params
+			$params,
+			[ 'connection' => null ]
 		) );
 	}
 
@@ -92,7 +95,7 @@ class LBFactorySingle extends LBFactory {
 	}
 
 	public function getMainLB( $domain = false ): ILoadBalancer {
-		return $this->lb;
+		return $this->mainLB;
 	}
 
 	public function newExternalLB( $cluster ): ILoadBalancerForOwner {
@@ -106,7 +109,7 @@ class LBFactorySingle extends LBFactory {
 	}
 
 	public function getAllMainLBs(): array {
-		return [ self::CLUSTER_MAIN_DEFAULT => $this->lb ];
+		return [ self::CLUSTER_MAIN_DEFAULT => $this->mainLB ];
 	}
 
 	public function getAllExternalLBs(): array {
@@ -114,8 +117,8 @@ class LBFactorySingle extends LBFactory {
 	}
 
 	protected function getLBsForOwner() {
-		if ( isset( $this->lb ) ) { // may not be set during _destruct()
-			yield $this->lb;
+		if ( $this->mainLB !== null ) {
+			yield $this->mainLB;
 		}
 	}
 

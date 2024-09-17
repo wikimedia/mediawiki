@@ -28,7 +28,7 @@ use InvalidArgumentException;
  * Each Load balancer instances corresponds to a specific database cluster.
  * A "cluster" is the set of database servers that manage a given dataset.
  *
- * The "core" clusters are meant to colocate the most basic and highly relational application
+ * The "main" clusters are meant to colocate the most basic and highly relational application
  * data for one or more "sister projects" managed by this site. This allows for highly flexible
  * queries. Each project is identified by a database domain. Note that if there are several
  * projects stored on a cluster, then the cluster dataset is a superset of the dataset for each
