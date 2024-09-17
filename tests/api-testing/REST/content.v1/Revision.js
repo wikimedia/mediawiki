@@ -84,6 +84,16 @@ describe( 'Revision', () => {
 			assert.deepEqual( body.page_id, pageid );
 			assert.deepEqual( body.rev, newrevid );
 		} );
+
+		it( 'Should successfully return restbase-compatible errors', async () => {
+			const { status, body, text, headers } = await client
+				.get( '/revision/987654321/bare' )
+				.set( 'x-restbase-compat', 'true' );
+
+			assert.deepEqual( status, 404, text );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
+			assert.containsAllKeys( body, [ 'type', 'title', 'method', 'detail', 'uri' ] );
+		} );
 	} );
 
 	describe( 'GET /revision/{id}/with_html', () => {
@@ -165,6 +175,17 @@ describe( 'Revision', () => {
 			assert.match( headers.vary, /\bAccept-Language\b/i );
 			assert.match( headers[ 'content-language' ], /en-x-piglatin/i );
 			assert.match( headers.etag, /en-x-piglatin/i );
+		} );
+	} );
+
+	describe( 'GET /revision/{id}/html with x-restbase-compat', () => {
+		it( 'Should successfully return restbase-compatible errors', async () => {
+			const { body, headers } = await client
+				.get( '/revision/99999999/html' )
+				.set( 'x-restbase-compat', 'true' );
+
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
+			assert.containsAllKeys( body, [ 'type', 'title', 'method', 'detail', 'uri' ] );
 		} );
 	} );
 } );

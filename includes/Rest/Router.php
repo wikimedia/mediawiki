@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Rest;
 
+use HttpStatus;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
@@ -445,7 +446,13 @@ class Router {
 			$fullPath = $request->getUri()->getPath();
 			$response = $this->doExecute( $fullPath, $request );
 		} catch ( HttpException $e ) {
-			$response = $this->responseFactory->createFromException( $e );
+			$extraData = [];
+			if ( $this->isRestbaseCompatEnabled( $request )
+				&& $e instanceof LocalizedHttpException
+			) {
+				$extraData = $this->getRestbaseCompatErrorData( $request, $e );
+			}
+			$response = $this->responseFactory->createFromException( $e, $extraData );
 		} catch ( Throwable $e ) {
 			$this->errorReporter->reportError( $e, null, $request );
 			$response = $this->responseFactory->createFromException( $e );
@@ -550,4 +557,33 @@ class Router {
 		return $module;
 	}
 
+	/**
+	 * @internal
+	 *
+	 * @return bool
+	 */
+	public function isRestbaseCompatEnabled( RequestInterface $request ): bool {
+		return $request->getHeaderLine( 'x-restbase-compat' ) === 'true';
+	}
+
+	/**
+	 * @internal
+	 *
+	 * @return array
+	 */
+	public function getRestbaseCompatErrorData( RequestInterface $request, LocalizedHttpException $e ): array {
+		$msg = $e->getMessageValue();
+		$fm = $this->responseFactory->formatMessage( $msg );
+
+		// Match error fields emitted by the RESTBase endpoints.
+		// EntryPoint::getTextFormatters() ensures 'en' is always available.
+		return [
+			'type' => "MediaWikiError/" .
+				str_replace( ' ', '_', HttpStatus::getMessage( $e->getCode() ) ),
+			'title' => $msg->getKey(),
+			'method' => strtolower( $request->getMethod() ),
+			'detail' => $fm['messageTranslations']['en'] ?? $msg->getKey(),
+			'uri' => (string)$request->getUri()
+		];
+	}
 }

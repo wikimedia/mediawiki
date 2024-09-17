@@ -6,6 +6,7 @@ use ArrayIterator;
 use Exception;
 use InvalidArgumentException;
 use MediaWiki\Rest\HttpException;
+use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RedirectException;
 use MediaWiki\Rest\ResponseException;
 use MediaWiki\Rest\ResponseFactory;
@@ -176,6 +177,17 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 		$wrapped = $rf->create();
 		$response = $rf->createFromException( new ResponseException( $wrapped ) );
 		$this->assertSame( $wrapped, $response );
+	}
+
+	public function testCreateFromExceptionWithExtraData() {
+		$rf = $this->createResponseFactory();
+		$e = new LocalizedHttpException( new MessageValue( 'rftest' ), 404 );
+		$response = $rf->createFromException( $e, [ 'foo' => 'bar' ] );
+		$body = $response->getBody();
+		$body->rewind();
+		$data = json_decode( $body->getContents(), true );
+		$this->assertArrayHasKey( 'foo', $data );
+		$this->assertSame( 'bar', $data['foo'] );
 	}
 
 	public static function provideCreateFromReturnValue() {

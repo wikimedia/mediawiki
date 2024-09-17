@@ -268,7 +268,13 @@ abstract class Module {
 
 			$response = $this->executeHandler( $handler );
 		} catch ( HttpException $e ) {
-			$response = $this->responseFactory->createFromException( $e );
+			$extraData = [];
+			if ( $this->router->isRestbaseCompatEnabled( $request )
+				&& $e instanceof LocalizedHttpException
+			) {
+				$extraData = $this->router->getRestbaseCompatErrorData( $request, $e );
+			}
+			$response = $this->responseFactory->createFromException( $e, $extraData );
 		} catch ( Throwable $e ) {
 			// Note that $handler is allowed to be null here.
 			$this->errorReporter->reportError( $e, $handler, $request );

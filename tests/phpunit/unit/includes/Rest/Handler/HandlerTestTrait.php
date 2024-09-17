@@ -105,7 +105,8 @@ trait HandlerTestTrait {
 			Router::class,
 			[
 				'getRoutePath',
-				'getRouteUrl'
+				'getRouteUrl',
+				'isRestbaseCompatEnabled'
 			]
 		);
 		$router->method( 'getRoutePath' )->willReturnCallback(
@@ -131,6 +132,11 @@ trait HandlerTestTrait {
 						$path,
 						$query
 					);
+			}
+		);
+		$router->method( 'isRestbaseCompatEnabled' )->willReturnCallback(
+			static function ( RequestInterface $request ) {
+				return $request->getHeaderLine( 'x-restbase-compat' ) === 'true';
 			}
 		);
 

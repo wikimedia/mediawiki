@@ -198,6 +198,17 @@ describe( 'Page Source', () => {
 			assert.isAbove( body.page_id, 0 );
 			assert.isAbove( body.rev, 0 );
 		} );
+
+		it( 'Should successfully return restbase-compatible errors', async () => {
+			const dummyPageTitle = utils.title( 'DummyPage_' );
+			const { status, body, text, headers } = await client
+				.get( `/page/${ dummyPageTitle }/bare` )
+				.set( 'x-restbase-compat', 'true' );
+
+			assert.deepEqual( status, 404, text );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
+			assert.containsAllKeys( body, [ 'type', 'title', 'method', 'detail', 'uri' ] );
+		} );
 	} );
 
 	describe( 'GET /page/{title}/html', () => {
@@ -310,6 +321,19 @@ describe( 'Page Source', () => {
 			assert.match( headers.vary, /\bAccept-Language\b/i );
 			assert.match( headers[ 'content-language' ], /sh-cyrl/i );
 			assert.match( headers.etag, /sh-cyrl/i );
+		} );
+	} );
+
+	describe( 'GET /page/{title}/html with x-restbase-compat', () => {
+		it( 'Should successfully return restbase-compatible errors', async () => {
+			const dummyPageTitle = utils.title( 'DummyPage_' );
+			const { status, body, text, headers } = await client
+				.get( `/page/${ dummyPageTitle }/html` )
+				.set( 'x-restbase-compat', 'true' );
+
+			assert.deepEqual( status, 404, text );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
+			assert.containsAllKeys( body, [ 'type', 'title', 'method', 'detail', 'uri' ] );
 		} );
 	} );
 
