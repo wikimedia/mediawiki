@@ -488,7 +488,7 @@ class ApiEditPage extends ApiBase {
 		// This is kind of a hack but it's the best we can do to make extensions work
 		$requestArray += $this->getRequest()->getValues();
 
-		// phpcs:ignore MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage
+		// phpcs:ignore MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage,MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle
 		global $wgTitle, $wgRequest;
 
 		$req = new DerivativeRequest( $this->getRequest(), $requestArray, true );

@@ -1144,6 +1144,7 @@ class Linker {
 	public static function makeExternalLink( $url, $text, $escape = true,
 		$linktype = '', $attribs = [], $title = null
 	) {
+		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle
 		global $wgTitle;
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		return $linkRenderer->makeExternalLink(

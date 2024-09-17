@@ -421,6 +421,7 @@ class CommentParser {
 							// We should deprecate `null` as a valid value for
 							// $selfLinkTarget to ensure that we can use it as
 							// the title context for the external link.
+							// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle
 							global $wgTitle;
 							$linkMarker = $this->addPageLink(
 								$target,

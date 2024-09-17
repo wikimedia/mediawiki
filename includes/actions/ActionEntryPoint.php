@@ -86,6 +86,7 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 	 * Determine and send the response headers and body for this web request
 	 */
 	protected function execute() {
+		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle
 		global $wgTitle;
 
 		// Get title from request parameters,
@@ -361,6 +362,7 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 	 * @return void
 	 */
 	protected function performRequest() {
+		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle
 		global $wgTitle;
 
 		$context = $this->getContext();
