@@ -48,7 +48,9 @@ class SVGReader {
 
 	/** @var array */
 	private $metadata = [];
+	/** @var int[] */
 	private $languages = [];
+	/** @var int[] */
 	private $languagePrefixes = [];
 
 	/**

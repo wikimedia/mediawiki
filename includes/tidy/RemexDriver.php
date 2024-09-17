@@ -13,10 +13,15 @@ use Wikimedia\RemexHtml\TreeBuilder\TreeBuilder;
 use Wikimedia\RemexHtml\TreeBuilder\TreeMutationTracer;
 
 class RemexDriver extends TidyDriverBase {
+	/** @var bool */
 	private $treeMutationTrace;
+	/** @var bool */
 	private $serializerTrace;
+	/** @var bool */
 	private $mungerTrace;
+	/** @var bool */
 	private $pwrap;
+	/** @var bool */
 	private $enableLegacyMediaDOM;
 
 	/** @internal */

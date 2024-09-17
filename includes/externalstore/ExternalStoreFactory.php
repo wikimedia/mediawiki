@@ -20,6 +20,7 @@ class ExternalStoreFactory implements LoggerAwareInterface {
 	private $localDomainId;
 	/** @var LoggerInterface */
 	private $logger;
+	/** @var ExternalStoreMedium[] */
 	private $stores = [];
 
 	/**

@@ -44,11 +44,13 @@ class PoolCounterConnectionManager {
 
 	/**
 	 * @internal Public for testing only
+	 * @var string
 	 */
 	public $host;
 
 	/**
 	 * @internal Public for testing only
+	 * @var int
 	 */
 	public $port;
 

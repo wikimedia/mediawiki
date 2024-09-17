@@ -14,7 +14,9 @@ use MediaWiki\Parser\ParserOutput;
  * @since 1.38
  */
 class LangLinksTable extends LinksTable {
+	/** @var string[] */
 	private $newLinks = [];
+	/** @var string[]|null */
 	private $existingLinks;
 
 	public function setParserOutput( ParserOutput $parserOutput ) {

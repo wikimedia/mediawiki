@@ -39,6 +39,7 @@ use MediaWiki\Session\Session;
  */
 class DerivativeRequest extends FauxRequest {
 	private WebRequest $base;
+	/** @var string|null */
 	private $ip;
 
 	/**

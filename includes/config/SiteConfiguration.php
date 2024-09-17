@@ -127,11 +127,13 @@ class SiteConfiguration {
 
 	/**
 	 * Array of suffixes, for self::siteFromDB()
+	 * @var string[]
 	 */
 	public $suffixes = [];
 
 	/**
 	 * Array of wikis, should be the same as $wgLocalDatabases
+	 * @var string[]
 	 */
 	public $wikis = [];
 
@@ -140,6 +142,7 @@ class SiteConfiguration {
 	 *
 	 * If the key "@replaceableSettings" exists, it contains a list of setting
 	 * names that are subject to string replacement of $params.
+	 * @var array
 	 */
 	public $settings = [];
 
@@ -149,7 +152,7 @@ class SiteConfiguration {
 	 */
 	public $fullLoadCallback = null;
 
-	/** Whether or not all data has been loaded */
+	/** @var bool Whether or not all data has been loaded */
 	public $fullLoadDone = false;
 
 	/**

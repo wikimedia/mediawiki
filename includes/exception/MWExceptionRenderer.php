@@ -47,6 +47,7 @@ class MWExceptionRenderer {
 	 * May be changed at runtime via MWExceptionRenderer::setShowExceptionDetails().
 	 *
 	 * @see MainConfigNames::ShowExceptionDetails
+	 * @var bool
 	 */
 	private static $showExceptionDetails = false;
 

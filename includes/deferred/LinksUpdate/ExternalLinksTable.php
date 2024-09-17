@@ -13,7 +13,9 @@ use MediaWiki\Parser\ParserOutput;
  * @since 1.38
  */
 class ExternalLinksTable extends LinksTable {
+	/** @var array<string,array<string,true>> */
 	private $newLinks = [];
+	/** @var array<string,array<string,true>>|null */
 	private $existingLinks;
 
 	public function setParserOutput( ParserOutput $parserOutput ) {

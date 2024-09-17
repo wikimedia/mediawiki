@@ -31,8 +31,11 @@ use MediaWiki\MediaWikiServices;
  * @ingroup HTTP
  */
 class FauxResponse extends WebResponse {
+	/** @var null|string[] */
 	private $headers;
+	/** @var array[] */
 	private $cookies = [];
+	/** @var int|null */
 	private $code;
 
 	/** @var ?Config */

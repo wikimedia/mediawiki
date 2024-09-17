@@ -9,7 +9,9 @@ use RuntimeException;
  * @since 1.29
  */
 class HeaderCallback {
+	/** @var RuntimeException */
 	private static $headersSentException;
+	/** @var bool */
 	private static $messageSent = false;
 
 	/**

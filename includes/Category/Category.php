@@ -40,8 +40,9 @@ use Wikimedia\Rdbms\ReadOnlyMode;
  * Member variables are lazy-initialized.
  */
 class Category {
-	/** Name of the category, normalized to DB-key form */
+	/** @var string|null Name of the category, normalized to DB-key form */
 	private $mName = null;
+	/** @var int|null|false */
 	private $mID = null;
 	/**
 	 * Category page title
