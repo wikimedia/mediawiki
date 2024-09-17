@@ -59,17 +59,13 @@ class SkinModule extends LessVarFileModule {
 	 *     TOC is present. This level is for skins that want to implement the entire style of even
 	 *     content area structures like the TOC themselves.
 	 *
-	 * "content":
-	 *     Deprecated. Alias for "content-media".
-	 *
-	 * "content-thumbnails":
-	 *     Deprecated. Alias for "content-media".
-	 *
 	 * "content-media":
 	 *     Styles for thumbnails and floated elements.
 	 *     Will add styles for the new media structure on wikis where $wgParserEnableLegacyMediaDOM is disabled,
 	 *     or $wgUseContentMediaStyles is enabled.
 	 *     See https://www.mediawiki.org/wiki/Parsing/Media_structure
+	 *
+	 *     Compatibility aliases: "content", "content-thumbnails".
 	 *
 	 * "content-links":
 	 *     The skin will apply optional styling rules for links that should be styled differently
@@ -121,7 +117,7 @@ class SkinModule extends LessVarFileModule {
 	 *     Styles for ordered lists elements that support mixed language content.
 	 *
 	 * "i18n-all-lists-margins":
-	 *     Deprecated. It's merged into the `elements` module.
+	 *     Deprecated since MediaWiki 1.43. It's merged into the `elements` module.
 	 *
 	 * "i18n-headings":
 	 *     Styles for line-heights of headings across different languages.
@@ -144,6 +140,7 @@ class SkinModule extends LessVarFileModule {
 			// Reserves whitespace for the logo in a pseudo element.
 			'print' => [ 'resources/src/mediawiki.skinning/logo-print.less' ],
 		],
+		// Placeholder for dynamic definition in getFeatureFilePaths()
 		'content-media' => [],
 		'content-links' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/content.links.less' ]
@@ -159,9 +156,6 @@ class SkinModule extends LessVarFileModule {
 			'screen' => [ 'resources/src/mediawiki.skinning/content.tables.less' ],
 			'print' => [ 'resources/src/mediawiki.skinning/content.tables-print.less' ]
 		],
-		// Legacy shorthand for 6 features: interface-core, interface-edit-section-links,
-		// interface-indicators, interface-subtitle, interface-site-notice, interface-user-message
-		'interface' => [],
 		'interface-category' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/interface.category.less' ],
 			'print' => [ 'resources/src/mediawiki.skinning/interface.category-print.less' ],
@@ -192,13 +186,9 @@ class SkinModule extends LessVarFileModule {
 			'screen' => [ 'resources/src/mediawiki.skinning/elements.less' ],
 			'print' => [ 'resources/src/mediawiki.skinning/elements-print.less' ],
 		],
-		// The styles of the legacy feature was removed in 1.39. This can be removed when no skins are referencing it
-		// (Dropping this line will trigger InvalidArgumentException: Feature 'legacy' is not recognised)
-		'legacy' => [],
 		'i18n-ordered-lists' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/i18n-ordered-lists.less' ],
 		],
-		// Deprecated since 1.43, it's merged into the `elements` module.
 		'i18n-all-lists-margins' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/i18n-all-lists-margins.less' ],
 		],
@@ -210,6 +200,19 @@ class SkinModule extends LessVarFileModule {
 			'screen' => [ 'resources/src/mediawiki.skinning/toc/screen.less' ],
 			'print' => [ 'resources/src/mediawiki.skinning/toc/print.less' ],
 		],
+	];
+
+	private const COMPAT_ALIASES = [
+		// MediaWiki 1.36
+		'content-parser-output' => 'content-body',
+		// MediaWiki 1.37
+		'content' => 'content-media',
+		'content-thumbnails' => 'content-media',
+		// MediaWiki 1.39
+		// The 'legacy' feature has been folded into other features that relevant skins
+		// are expected to have already enabled separately. It is now a no-op that can
+		// be safely removed from any skin.json files (T89981, T304325).
+		'legacy' => null,
 	];
 
 	/** @var string[] */
@@ -319,28 +322,20 @@ class SkinModule extends LessVarFileModule {
 	protected static function applyFeaturesCompatibility(
 		array $features, bool $addUnspecifiedFeatures = true, &$messages = ''
 	): array {
-		// The `i18n-all-lists-margins` feature is ignored.
 		if ( isset( $features[ 'i18n-all-lists-margins' ] ) ) {
+			// Emit warning only. Key is supported as-is.
+			// Replacement requires maintainer intervention as it has non-trivial side-effects.
 			$messages .= '[1.43] The use of the `i18n-all-lists-margins` feature with SkinModule'
 				. ' is deprecated as it is now provided by `elements`. Please remove and '
 				. ' add `elements`, drop support for RTL languages, or incorporate the '
 				. ' styles provided by this module into your skin.';
 		}
 
-		// The `content` feature is mapped to `content-media`.
-		if ( isset( $features[ 'content' ] ) ) {
-			$features[ 'content-media' ] = $features[ 'content' ];
-			unset( $features[ 'content' ] );
-			$messages .= '[1.37] The use of the `content` feature with SkinModule'
-				. ' is deprecated. Use `content-media` instead. ';
-		}
-
-		// The `content-thumbnails` feature is mapped to `content-media`.
-		if ( isset( $features[ 'content-thumbnails' ] ) ) {
-			$features[ 'content-media' ] = $features[ 'content-thumbnails' ];
-			$messages .= '[1.37] The use of the `content-thumbnails` feature with SkinModule'
-				. ' is deprecated. Use `content-media` instead. ';
-			unset( $features[ 'content-thumbnails' ] );
+		foreach ( self::COMPAT_ALIASES as $from => $to ) {
+			if ( isset( $features[ $from ] ) && $to !== null ) {
+				$features[ $to ] = $features[ $from ];
+			}
+			unset( $features[ $from ] );
 		}
 
 		// If `content-links` feature is set but no preference for `content-links-external` is set
@@ -351,31 +346,14 @@ class SkinModule extends LessVarFileModule {
 			$features[ 'content-links-external' ] = $features[ 'content-links' ];
 		}
 
-		// The legacy feature no longer exists (T89981) but to avoid fatals in skins is retained.
-		if ( isset( $features['legacy'] ) && $features['legacy'] ) {
-			$messages .= '[1.37] The use of the `legacy` feature with SkinModule is deprecated'
-				. '(T89981) and is a NOOP since 1.39 (T304325). This should be urgently omited to retain compatibility '
-				. 'with future MediaWiki versions';
-		}
-
 		// The `content-links` feature was split out from `elements`.
 		// Make sure skins asking for `elements` also get these by default.
 		if ( $addUnspecifiedFeatures && isset( $features[ 'element' ] ) && !isset( $features[ 'content-links' ] ) ) {
 			$features[ 'content-links' ] = $features[ 'element' ];
 		}
 
-		// `content-parser-output` was renamed to `content-body`.
-		// No need to go through deprecation process here since content-parser-output added and removed in 1.36.
-		// Remove this check when no matches for
-		// https://codesearch.wmcloud.org/search/?q=content-parser-output&i=nope&files=&excludeFiles=&repos=
-		if ( isset( $features[ 'content-parser-output' ] ) ) {
-			$features[ 'content-body' ] = $features[ 'content-parser-output' ];
-			unset( $features[ 'content-parser-output' ] );
-		}
-
 		// The interface module is a short hand for several modules. Enable them now.
 		if ( isset( $features[ 'interface' ] ) && $features[ 'interface' ] ) {
-			unset( $features[ 'interface' ] );
 			$features[ 'interface-core' ] = true;
 			$features[ 'interface-indicators' ] = true;
 			$features[ 'interface-subtitle' ] = true;
@@ -383,6 +361,7 @@ class SkinModule extends LessVarFileModule {
 			$features[ 'interface-site-notice' ] = true;
 			$features[ 'interface-edit-section-links' ] = true;
 		}
+		unset( $features[ 'interface' ] );
 
 		return $features;
 	}
