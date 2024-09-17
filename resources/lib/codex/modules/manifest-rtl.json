@@ -365,6 +365,7 @@
       "src/composables/useModelWrapper.ts",
       "src/composables/useGeneratedId.ts",
       "src/composables/useFieldData.ts",
+      "_constants.js",
       "__plugin-vue_export-helper.js"
     ],
     "css": [

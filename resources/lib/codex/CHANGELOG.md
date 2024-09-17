@@ -1,3 +1,32 @@
+# 1.13.0 / 2024-09-17
+
+## Features
+- MenuItem: multiselect check icon (lwatson)
+- Lookup: Only clear selection on input if there is one (Anne Tomasevich)
+- Radio: Add error handling (Volker E)
+- tokens: Expand color palette (Derek Torsani)
+
+## Styles
+- Message: Prevent content from being wider than the container (Bartosz Dziewoński)
+- styles, Thumbnail: set background color for visibility in dark mode (lwatson)
+
+## Code
+- build: Fix npm-shrinkwrap dependency (Volker E.)
+- build: upgrade browserslist-db to 1.0.30001660 (Volker E.)
+
+## Docs
+- docs: reorder MenuItem's config demo props (lwatson)
+- docs: update menu item guidelines (bmartinezcalvo)
+- docs: Update Colors page of the Style Guide (Anne Tomasevich)
+- docs: Link to WebAIM using HTTPS (Lucas Werkmeister)
+- demo, Radio, Checkbox: custom input CSS-only version (lwatson)
+- docs: Add basic usage instructions for dark mode tokens (Eric Gardner)
+- docs: Update RELEASING.md to include core Jest dependency updates (Volker E.)
+- docs: Fix whitespace according to coding conventions and HTML5 syntax (Volker E.)
+- docs: include error states in Combobox, Lookup, and Radio (bmartinezcalvo)
+- docs: Update all color mentions to use the new color names (Volker E.)
+- docs: Update images and illustrations to new colors (Volker E.)
+
 # 1.12.0 / 2024-09-04
 
 ## Deprecating Changes
