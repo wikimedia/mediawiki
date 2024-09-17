@@ -1256,4 +1256,53 @@ class WebInstaller extends Installer {
 			. Html::element( 'div', [ 'style' => 'clear: left;' ], ' ' );
 	}
 
+	/**
+	 * Determine whether the current database needs to be upgraded, i.e. whether
+	 * it already has MediaWiki tables.
+	 *
+	 * @return bool
+	 */
+	public function needsUpgrade() {
+		return $this->getDBInstaller()->needsUpgrade();
+	}
+
+	/**
+	 * Perform database upgrades
+	 *
+	 * @return bool
+	 */
+	public function doUpgrade() {
+		$dbInstaller = $this->getDBInstaller();
+		$dbInstaller->preUpgrade();
+		$this->restoreServices();
+
+		$ret = true;
+		ob_start( [ $this, 'outputHandler' ] );
+		$up = DatabaseUpdater::newForDB(
+			$dbInstaller->definitelyGetConnection( DatabaseInstaller::CONN_CREATE_TABLES ) );
+		try {
+			$up->doUpdates();
+			$up->purgeCache();
+
+			// If they're going to possibly regenerate LocalSettings, we
+			// need to create the upgrade/secret keys. T28481
+			if ( !$this->getVar( '_ExistingDBSettings' ) ) {
+				$this->generateKeys();
+			}
+			$this->setVar( '_UpgradeDone', true );
+		} catch ( Exception $e ) {
+			// TODO: Should this use MWExceptionRenderer?
+			echo "\nAn error occurred:\n";
+			echo $e->getMessage();
+			$ret = false;
+		}
+		ob_end_flush();
+
+		return $ret;
+	}
+
+	public function outputHandler( $string ) {
+		return htmlspecialchars( $string );
+	}
+
 }
