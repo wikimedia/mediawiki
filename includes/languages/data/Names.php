@@ -39,8 +39,16 @@ namespace MediaWiki\Languages\Data;
  * @ingroup Language
  */
 class Names {
-	/** @phpcs-require-sorted-array */
-	public static $names = [
+	/**
+	 * @deprecated since 1.43
+	 * @var string[]
+	 */
+	public static $names = self::NAMES;
+	/**
+	 * @internal Public for use by LanguageNameUtils, use LanguageNameUtils::getLanguageNames() instead.
+	 * @phpcs-require-sorted-array
+	 */
+	public const NAMES = [
 		'aa' => 'Qafár af', # Afar
 		'aae' => 'Arbërisht', # Arbëresh
 		'ab' => 'аԥсшәа', # Abkhaz

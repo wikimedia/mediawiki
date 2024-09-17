@@ -173,7 +173,7 @@ class LanguageNameUtils {
 			return false;
 		}
 
-		if ( isset( Data\Names::$names[$tag] ) || $this->getLanguageName( $tag, $tag ) !== '' ) {
+		if ( isset( Data\Names::NAMES[$tag] ) || $this->getLanguageName( $tag, $tag ) !== '' ) {
 			return true;
 		}
 
@@ -232,7 +232,7 @@ class LanguageNameUtils {
 			$this->hookRunner->onLanguageGetTranslatedLanguageNames( $names, $inLanguage );
 		}
 
-		$mwNames = $this->options->get( MainConfigNames::ExtraLanguageNames ) + Data\Names::$names;
+		$mwNames = $this->options->get( MainConfigNames::ExtraLanguageNames ) + Data\Names::NAMES;
 		if ( !$this->options->get( MainConfigNames::UsePigLatinVariant ) ) {
 			// Suppress Pig Latin unless explicitly enabled.
 			unset( $mwNames['en-x-piglatin'] );
