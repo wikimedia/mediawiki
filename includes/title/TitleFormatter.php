@@ -23,7 +23,6 @@
 
 namespace MediaWiki\Title;
 
-use InvalidArgumentException;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
 
@@ -100,7 +99,6 @@ interface TitleFormatter {
 	 * @param int $namespace
 	 * @param string $text
 	 *
-	 * @throws InvalidArgumentException
 	 * @return string Namespace name with underscores (not spaces), e.g. 'User_talk'
 	 */
 	public function getNamespaceName( $namespace, $text );

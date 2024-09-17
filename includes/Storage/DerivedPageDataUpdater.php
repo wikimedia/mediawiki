@@ -431,9 +431,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 *
 	 * @param string $newStage
 	 * @return string the previous stage
-	 *
-	 * @throws LogicException If a transition to the given stage is not possible in the current
-	 *         stage.
 	 */
 	private function doTransition( $newStage ) {
 		$this->assertTransition( $newStage );
@@ -450,8 +447,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 * @see docs/pageupdater.md for documentation of the life cycle.
 	 *
 	 * @param string $newStage
-	 *
-	 * @throws LogicException If this instance is not in the expected stage
 	 */
 	private function assertTransition( $newStage ) {
 		if ( empty( self::TRANSITIONS[$this->stage][$newStage] ) ) {

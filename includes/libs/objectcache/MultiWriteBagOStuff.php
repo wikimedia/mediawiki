@@ -133,7 +133,6 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 *      validation against the DB, or merge() is used to handle races.
 	 *
 	 * @phan-param array{caches:array<int,array|BagOStuff>,replication:string} $params
-	 * @throws InvalidArgumentException
 	 */
 	public function __construct( $params ) {
 		parent::__construct( $params );

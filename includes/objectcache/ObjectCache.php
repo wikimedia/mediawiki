@@ -83,7 +83,6 @@ class ObjectCache {
 	 * @deprecated since 1.42, Use ObjectCacheFactory::getLocalServerInstance()
 	 * @param int|string|array $fallback Fallback cache or parameter map with 'fallback'
 	 * @return BagOStuff
-	 * @throws InvalidArgumentException
 	 * @since 1.27
 	 */
 	public static function getLocalServerInstance( $fallback = CACHE_NONE ) {

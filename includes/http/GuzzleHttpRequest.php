@@ -93,7 +93,6 @@ class GuzzleHttpRequest extends MWHttpRequest {
 	 * This function overrides any 'sink' or 'callback' constructor option.
 	 *
 	 * @param callable|null $callback
-	 * @throws InvalidArgumentException
 	 */
 	public function setCallback( $callback ) {
 		$this->sink = null;
@@ -108,7 +107,6 @@ class GuzzleHttpRequest extends MWHttpRequest {
 	 * option to override the 'callback' constructor option.
 	 *
 	 * @param callable|null $callback
-	 * @throws InvalidArgumentException
 	 */
 	protected function doSetCallback( $callback ) {
 		if ( !$this->sink ) {

@@ -439,7 +439,6 @@ class JobQueueGroup {
 
 	/**
 	 * @param array $jobs
-	 * @throws InvalidArgumentException
 	 */
 	private function assertValidJobs( array $jobs ) {
 		foreach ( $jobs as $job ) {

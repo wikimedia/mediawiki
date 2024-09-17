@@ -153,7 +153,6 @@ class StringUtils {
 	 * @param callable $callback Function to call on each match
 	 * @param string $subject
 	 * @param string $flags Regular expression flags
-	 * @throws InvalidArgumentException
 	 * @return string
 	 */
 	private static function delimiterReplaceCallback( $startDelim, $endDelim, $callback,

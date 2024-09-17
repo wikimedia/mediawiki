@@ -85,7 +85,6 @@ class SiteImporter {
 	/**
 	 * @param string $xml
 	 *
-	 * @throws InvalidArgumentException
 	 */
 	public function importFromXML( $xml ) {
 		$document = new DOMDocument();

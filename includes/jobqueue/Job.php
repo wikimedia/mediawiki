@@ -70,7 +70,6 @@ abstract class Job implements RunnableJob {
 	 *
 	 * @param string $command Job command
 	 * @param array|PageReference $params Job parameters
-	 * @throws InvalidArgumentException
 	 * @return Job
 	 */
 	public static function factory( $command, $params = [] ) {

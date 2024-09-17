@@ -97,8 +97,6 @@ class ApiModuleManager extends ContextSource {
 	 * @param string|array $spec The ObjectFactory spec for instantiating the module,
 	 *  or a class name to instantiate.
 	 * @param callable|null $factory Callback for instantiating the module (deprecated).
-	 *
-	 * @throws InvalidArgumentException
 	 */
 	public function addModule( $name, $group, $spec, $factory = null ) {
 		if ( !is_string( $name ) ) {

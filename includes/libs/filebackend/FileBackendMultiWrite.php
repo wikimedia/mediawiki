@@ -96,7 +96,6 @@ class FileBackendMultiWrite extends FileBackend {
 	 *                      any checks from "syncChecks" are still synchronous.
 	 *
 	 * @param array $config
-	 * @throws LogicException
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );

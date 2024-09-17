@@ -3,7 +3,6 @@
 namespace Wikimedia\ObjectCache;
 
 use InvalidArgumentException;
-use LogicException;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Http\MultiHttpClient;
 
@@ -317,7 +316,6 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 	 * @param string $body request body to prepare
 	 *
 	 * @return string the prepared body
-	 * @throws LogicException
 	 */
 	private function encodeBody( $body ) {
 		switch ( $this->serializationType ) {

@@ -45,7 +45,6 @@ class PermissionsError extends ErrorPageError {
 	 * @param PermissionStatus|array $status PermissionStatus containing an array of errors,
 	 *   or an error array like in PermissionManager::getPermissionErrors();
 	 *   must not be empty if $permission is null
-	 * @throws \InvalidArgumentException
 	 */
 	public function __construct( ?string $permission, $status = [] ) {
 		$this->deprecatePublicProperty( 'permission', '1.43' );

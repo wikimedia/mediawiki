@@ -27,7 +27,6 @@ abstract class ApiFormatTestBase extends MediaWikiIntegrationTestCase {
 	/**
 	 * Return general data to be encoded for testing
 	 * @return array See self::testGeneralEncoding
-	 * @throws BadMethodCallException
 	 */
 	public static function provideGeneralEncoding() {
 		throw new BadMethodCallException( static::class . ' must implement ' . __METHOD__ );
