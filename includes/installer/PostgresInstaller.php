@@ -87,7 +87,7 @@ class PostgresInstaller extends DatabaseInstaller {
 	public function getConnection() {
 		$status = $this->getPgConnection( 'create-tables' );
 		if ( $status->isOK() ) {
-			$this->db = $status->value;
+			$this->db = $status->getDB();
 		}
 
 		return $status;
@@ -268,7 +268,8 @@ class PostgresInstaller extends DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			return false;
 		}
-		$conn = $status->value;
+		$conn = $status->getDB();
+
 		$installerId = $conn->selectField( '"pg_catalog"."pg_roles"', 'oid',
 			[ 'rolname' => $this->getVar( '_InstallUser' ) ], __METHOD__ );
 		$webId = $conn->selectField( '"pg_catalog"."pg_roles"', 'oid',
@@ -342,8 +343,8 @@ class PostgresInstaller extends DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
-		$conn = $status->value;
 
+		$conn = $status->getDB();
 		$dbName = $this->getVar( 'wgDBname' );
 
 		$exists = (bool)$conn->selectField( '"pg_catalog"."pg_database"', '1',

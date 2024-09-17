@@ -153,7 +153,7 @@ abstract class DatabaseInstaller {
 
 		$status = $this->openConnection();
 		if ( $status->isOK() ) {
-			$this->db = $status->value;
+			$this->db = $status->getDB();
 		}
 
 		return $status;
@@ -338,7 +338,8 @@ abstract class DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			throw new RuntimeException( __METHOD__ . ': unexpected DB connection error' );
 		}
-		$connection = $status->value;
+
+		$connection = $status->getDB();
 		$virtualDomains = array_merge(
 			$this->parent->getVirtualDomains(),
 			MWLBFactory::CORE_VIRTUAL_DOMAINS
