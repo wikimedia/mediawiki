@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Language;
 
-use InvalidArgumentException;
 use MediaWiki\Message\Message;
 
 /**
@@ -49,11 +48,7 @@ class RawMessage extends Message {
 	 * @param string $text Message to use.
 	 * @param array $params Parameters for the message.
 	 */
-	public function __construct( $text, $params = [] ) {
-		if ( !is_string( $text ) ) {
-			throw new InvalidArgumentException( '$text must be a string' );
-		}
-
+	public function __construct( string $text, $params = [] ) {
 		parent::__construct( $text, $params );
 
 		// The key is the message.
