@@ -1153,6 +1153,7 @@ return [
 			],
 		],
 		'dependencies' => 'mediawiki.util',
+		'deprecated' => '[1.43] Please use browser native URL.',
 	],
 	'mediawiki.user' => [
 		'scripts' => 'resources/src/mediawiki.user.js',
