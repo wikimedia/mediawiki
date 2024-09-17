@@ -186,7 +186,7 @@ function gatherOOUIModules( $fields ) {
 			if ( data ) {
 				// We can trust this value, 'data-mw-*' attributes are banned from user content in Sanitizer
 				const extraModules = data.split( ',' );
-				modules.push.apply( modules, extraModules );
+				modules.push( ...extraModules );
 			}
 		} );
 	}

@@ -85,9 +85,7 @@
 	 * @param {string[]} categories Array of categories to which this upload will be added.
 	 */
 	ForeignStructuredUpload.prototype.addCategories = function ( categories ) {
-		// The length of the array must be less than 10000.
-		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push#Merging_two_arrays
-		Array.prototype.push.apply( this.categories, categories );
+		this.categories.push( ...categories );
 	};
 
 	/**

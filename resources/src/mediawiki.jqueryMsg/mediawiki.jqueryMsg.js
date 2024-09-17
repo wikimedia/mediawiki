@@ -349,8 +349,7 @@ Parser.prototype = {
 			openExtlink, closeExtlink, wikilinkContents, openWikilink, closeWikilink, pipe, colon,
 			templateContents, openTemplate, closeTemplate,
 			nonWhitespaceExpression, paramExpression, expression, curlyBraceTransformExpression, res,
-			settings = this.settings,
-			concat = Array.prototype.concat;
+			settings = this.settings;
 
 		// Indicates current position in input as we parse through it.
 		// Shared among all parsing functions below.
@@ -762,7 +761,7 @@ Parser.prototype = {
 		function htmlAttributes() {
 			const parsedResult = nOrMore( 0, htmlAttribute )();
 			// Un-nest attributes array due to structure of jQueryMsg operations (see emit).
-			return concat.apply( [ 'HTMLATTRIBUTES' ], parsedResult );
+			return [ 'HTMLATTRIBUTES' ].concat( ...parsedResult );
 		}
 
 		openHtmlStartTag = makeStringParser( '<' );

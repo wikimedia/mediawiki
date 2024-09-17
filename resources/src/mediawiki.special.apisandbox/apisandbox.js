@@ -594,8 +594,9 @@
 		 * @param {...Mixed} parameters Values for $N replacements
 		 * @return {jQuery}
 		 */
-		parseMsg: function () {
-			const $ret = mw.message.apply( mw.message, arguments ).parseDom();
+		parseMsg: function ( key, ...parameters ) {
+			// eslint-disable-next-line mediawiki/msg-doc
+			const $ret = mw.message( key, ...parameters ).parseDom();
 			return Util.fixupHTML( $ret );
 		},
 
@@ -914,7 +915,7 @@
 				if ( checkPage.tokenWidget ) {
 					tokenWidgets.push( checkPage.tokenWidget );
 				}
-				deferreds = deferreds.concat( checkPage.apiCheckValid() );
+				deferreds.push( checkPage.apiCheckValid() );
 				checkPage.getQueryParams( params, displayParams, ajaxOptions );
 				if ( checkPage.paramInfo.mustbeposted !== undefined ) {
 					method = 'post';
@@ -933,7 +934,7 @@
 				baseRequestParams = Object.assign( {}, params );
 			}
 
-			$.when.apply( $, deferreds ).done( function () {
+			$.when( ...deferreds ).done( function () {
 				// Count how many times `value` occurs in `array`.
 				function countValues( value, array ) {
 					let count = 0;
@@ -957,7 +958,7 @@
 					let deferred;
 					if ( tokenWidgets.length ) {
 						// Check all token widgets' validity separately
-						deferred = $.when.apply( $, tokenWidgets.map( ( w ) => w.apiCheckValid( suppressErrors ) ) );
+						deferred = $.when( ...tokenWidgets.map( ( w ) => w.apiCheckValid( suppressErrors ) ) );
 
 						deferred.done( function () {
 							// If only the tokens are invalid, offer to fix them
@@ -1919,19 +1920,17 @@
 	 * @return {jQuery.Promise[]} One promise for each widget, resolved with `false` if invalid
 	 */
 	ApiSandbox.PageLayout.prototype.apiCheckValid = function () {
-		const layout = this;
-
 		if ( this.paramInfo === null ) {
 			return [];
 		} else {
 			// eslint-disable-next-line no-jquery/no-map-util
 			const promises = $.map( this.widgets, ( widget ) => widget.apiCheckValid( suppressErrors ) );
-			$.when.apply( $, promises ).then( function () {
-				layout.apiIsValid = Array.prototype.indexOf.call( arguments, false ) === -1;
-				if ( layout.getOutlineItem() ) {
-					layout.getOutlineItem().setIcon( layout.apiIsValid || suppressErrors ? null : 'alert' );
-					layout.getOutlineItem().setTitle(
-						layout.apiIsValid || suppressErrors ? '' : mw.message( 'apisandbox-alert-page' ).plain()
+			$.when( ...promises ).then( ( ...results ) => {
+				this.apiIsValid = results.indexOf( false ) === -1;
+				if ( this.getOutlineItem() ) {
+					this.getOutlineItem().setIcon( this.apiIsValid || suppressErrors ? null : 'alert' );
+					this.getOutlineItem().setTitle(
+						this.apiIsValid || suppressErrors ? '' : mw.message( 'apisandbox-alert-page' ).plain()
 					);
 				}
 			} );

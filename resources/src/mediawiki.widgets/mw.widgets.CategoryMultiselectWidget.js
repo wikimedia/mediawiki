@@ -146,9 +146,9 @@
 
 		this.pushPending();
 
-		$.when.apply( $, promises ).done( ( ...dataSets ) => {
+		$.when( ...promises ).done( ( ...dataSets ) => {
 			// Flatten array
-			const allData = Array.prototype.concat.apply( [], dataSets );
+			const allData = [].concat( ...dataSets );
 
 			const categoryNames = allData
 				// Remove duplicates
@@ -357,7 +357,7 @@
 
 					res.query.pages.forEach( ( page ) => {
 						if ( !page.missing && Array.isArray( page.categories ) ) {
-							categories.push.apply( categories, page.categories.map( ( category ) => category.title ) );
+							categories.push( ...page.categories.map( ( category ) => category.title ) );
 						}
 					} );
 

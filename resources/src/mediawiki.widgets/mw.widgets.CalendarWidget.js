@@ -302,7 +302,7 @@
 				break;
 		}
 
-		this.$body.append.apply( this.$body, items );
+		this.$body.append( ...items );
 
 		$bodyWrapper
 			.removeClass( 'mw-widget-calendarWidget-body-wrapper-fade-up' )
