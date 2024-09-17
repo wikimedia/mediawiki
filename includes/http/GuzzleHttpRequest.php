@@ -189,7 +189,7 @@ class GuzzleHttpRequest extends MWHttpRequest {
 				// TODO {error} will be 'NULL' on success which is unfortunate, but
 				//   doesn't seem fixable without a custom formatter. Same for using
 				//   PSR-3 variable replacement instead of raw strings.
-				'[{ts}] {method} {uri} HTTP/{version} - {code} {error}'
+				'{method} {uri} HTTP/{version} - {code} {error}'
 			) ), 'logger' );
 		}
 
