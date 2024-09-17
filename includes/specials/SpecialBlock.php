@@ -422,6 +422,15 @@ class SpecialBlock extends FormSpecialPage {
 			'section' => 'reason',
 		];
 
+		if ( $this->useCodex ) {
+			$blockReasonOptions = Html::listDropdownOptionsCodex(
+				Html::listDropdownOptions( $this->msg( 'ipbreason-dropdown' )->plain(),
+					[ 'other' => $this->msg( 'htmlform-selectorother-other' )->text() ]
+			) );
+			$this->codexFormData[ 'blockReasonOptions' ] = $blockReasonOptions;
+			$this->codexFormData[ 'blockReasonMaxLength' ] = CommentStore::COMMENT_CHARACTER_LIMIT;
+		}
+
 		$a['AutoBlock'] = [
 			'type' => 'check',
 			'label-message' => [
@@ -443,7 +452,7 @@ class SpecialBlock extends FormSpecialPage {
 				'section' => 'options',
 			];
 
-			$this->codexFormData['hideUser'] = true;
+			$this->codexFormData['blockHideUser'] = true;
 		}
 
 		// Watchlist their user page? (Only if user is logged in)

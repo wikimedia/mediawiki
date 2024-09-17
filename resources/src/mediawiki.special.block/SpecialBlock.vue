@@ -8,7 +8,10 @@
 			:partial-block-options="blockPartialOptions"
 		></block-type-field>
 		<expiry-field v-model="expiry"></expiry-field>
-		<reason-field></reason-field>
+		<reason-field
+			v-model:selected="reasonSelected"
+			v-model:other="reasonOther"
+		></reason-field>
 		<block-details-field
 			v-model="blockDetailsSelected"
 			:checkboxes="blockDetailsOptions"
@@ -67,10 +70,12 @@ module.exports = exports = defineComponent( {
 				( key ) => Object( { label: mw.message( key ).text(), value: key } ) ) :
 			[];
 		const blockPartialOptionsSelected = ref( [ 'ipb-action-create' ] );
+		const reasonSelected = ref( 'other' );
+		const reasonOther = ref( '' );
 		const blockAllowsUTEdit = mw.config.get( 'blockAllowsUTEdit' ) || false;
 		const blockEmailBan = mw.config.get( 'blockAllowsEmailBan' ) || false;
 		const blockAutoblockExpiry = mw.config.get( 'blockAutoblockExpiry' );
-		const hideUser = mw.config.get( 'hideUser' ) || false;
+		const blockHideUser = mw.config.get( 'blockHideUser' ) || false;
 		const blockDetailsSelected = ref( [] );
 		const blockDetailsOptions = [
 			{
@@ -100,7 +105,7 @@ module.exports = exports = defineComponent( {
 			disabled: false
 		} ];
 
-		if ( hideUser ) {
+		if ( blockHideUser ) {
 			additionalDetailsOptions.push( {
 				label: mw.message( 'ipbhidename' ),
 				value: 'wpHideName'
@@ -123,10 +128,11 @@ module.exports = exports = defineComponent( {
 			event.preventDefault();
 
 			// TODO: Implement validation
+
 			block();
 		}
 
-		/*
+		/**
 		 * Send block.
 		 *
 		 * @return {jQuery.Promise}
@@ -136,9 +142,17 @@ module.exports = exports = defineComponent( {
 				action: 'block',
 				format: 'json',
 				user: targetUser.value,
-				expiry: expiry.value.value,
-				reason: 'API Test'
+				expiry: expiry.value.value
 			};
+
+			// Reason selected concatenated with 'Other' field
+			if ( reasonSelected.value === 'other' ) {
+				params.reason = reasonOther.value;
+			} else {
+				params.reason = reasonSelected.value + (
+					reasonOther.value ? mw.msg( 'colon-separator' ) + reasonOther.value : ''
+				);
+			}
 
 			if ( blockPartialOptions ) {
 				const actionRestrictions = [];
@@ -190,12 +204,15 @@ module.exports = exports = defineComponent( {
 
 				} );
 		}
+
 		return {
 			targetUser,
 			expiry,
 			handleSubmit,
 			blockDetailsOptions,
 			blockDetailsSelected,
+			reasonOther,
+			reasonSelected,
 			additionalDetailsOptions,
 			additionalDetailsSelected,
 			blockPartialOptions,

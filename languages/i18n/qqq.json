@@ -2952,6 +2952,7 @@
 	"block-options": "Label for the checkboxes for specifying additional options for a block on [[Special:Block]]",
 	"block-options-description": "Description for the checkboxes for specifying additional options for a block on [[Special:Block]]",
 	"block-reason": "Label for the input for specifying the reason for a block on [[Special:Block]]\n{{Identical|Reason}}",
+	"block-reason-other": "Placeholder text for the 'Other' text field on [[Special:Block]].",
 	"block-user-label": "Label for the input for specifying the user of a block on [[Special:Block]]",
 	"block-user-description": "Description for the input for specifying the user of a block on [[Special:Block]]",
 	"block-user-placeholder": "Placeholder text for the input specifying the user of a block on [[Special:Block]]",
