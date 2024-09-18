@@ -115,11 +115,14 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @inheritDoc
 	 */
 	public function store( $location, $data ) {
+		$blobsTable = $this->getTable( $location );
+
 		$dbw = $this->getPrimary( $location );
 		$dbw->newInsertQueryBuilder()
-			->insertInto( $this->getTable( $dbw, $location ) )
+			->insertInto( $blobsTable )
 			->row( [ 'blob_text' => $data ] )
 			->caller( __METHOD__ )->execute();
+
 		$id = $dbw->insertId();
 		if ( !$id ) {
 			throw new ExternalStoreException( __METHOD__ . ': no insert ID' );
@@ -213,28 +216,25 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	}
 
 	/**
-	 * Get the 'blobs' table name for this database
+	 * Get the configured blobs table name for this database
 	 *
-	 * @param \Wikimedia\Rdbms\IReadableDatabase $db
-	 * @param string|null $cluster Cluster name
-	 * @return string Table name ('blobs' by default)
+	 * Typically, a suffix like "_clusterX" can be used to facilitate clean merging of
+	 * read-only storage clusters by simply cloning tables to the new cluster servers.
+	 *
+	 * @param string $cluster Cluster name
+	 * @return string Unqualified table name (e.g. "blobs_cluster32" or default "blobs")
+	 * @internal Only for use within ExternalStoreDB and its core maintenance scripts
 	 */
-	public function getTable( $db, $cluster = null ) {
-		if ( $cluster !== null ) {
-			$lb = $this->getLoadBalancer( $cluster );
-			$info = $lb->getServerInfo( ServerInfo::WRITER_INDEX );
-			if ( isset( $info['blobs table'] ) ) {
-				return $info['blobs table'];
-			}
-		}
+	public function getTable( string $cluster ) {
+		$lb = $this->getLoadBalancer( $cluster );
+		$info = $lb->getServerInfo( ServerInfo::WRITER_INDEX );
 
-		return 'blobs';
+		return $info['blobs table'] ?? 'blobs';
 	}
 
 	/**
 	 * Create the appropriate blobs table on this cluster
 	 *
-	 * @see getTable()
 	 * @since 1.34
 	 * @param string $cluster
 	 */
@@ -254,9 +254,8 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			throw new RuntimeException( "Failed to read '$sqlFilePath'." );
 		}
 
-		$rawTable = $this->getTable( $dbw, $cluster ); // e.g. "blobs_cluster23"
-		$encTable = $dbw->tableName( $rawTable );
-
+		$blobsTable = $this->getTable( $cluster );
+		$encTable = $dbw->tableName( $blobsTable );
 		$sqlWithReplacedVars = str_replace(
 			[ '/*$wgDBprefix*/blobs', '/*_*/blobs' ],
 			[ $encTable, $encTable ],
@@ -268,7 +267,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 				$sqlWithReplacedVars,
 				$dbw::QUERY_CHANGE_SCHEMA,
 				'CREATE',
-				$rawTable,
+				$blobsTable,
 				$sqlWithReplacedVars
 			),
 			__METHOD__
@@ -304,12 +303,15 @@ class ExternalStoreDB extends ExternalStoreMedium {
 
 		$this->logger->debug( __METHOD__ . ": cache miss on $cacheID" );
 
+		$blobsTable = $this->getTable( $cluster );
+
 		$dbr = $this->getReplica( $cluster );
 		$ret = $dbr->newSelectQueryBuilder()
 			->select( 'blob_text' )
-			->from( $this->getTable( $dbr, $cluster ) )
+			->from( $blobsTable )
 			->where( [ 'blob_id' => $id ] )
 			->caller( __METHOD__ )->fetchField();
+
 		if ( $ret === false ) {
 			// Try the primary DB
 			$this->logger->warning( __METHOD__ . ": primary DB fallback on $cacheID" );
@@ -318,7 +320,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			$dbw = $this->getPrimary( $cluster );
 			$ret = $dbw->newSelectQueryBuilder()
 				->select( 'blob_text' )
-				->from( $this->getTable( $dbw, $cluster ) )
+				->from( $blobsTable )
 				->where( [ 'blob_id' => $id ] )
 				->caller( __METHOD__ )->fetchField();
 			ScopedCallback::consume( $scope );
@@ -345,10 +347,12 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 *   Unlocated ids are not represented
 	 */
 	private function batchFetchBlobs( $cluster, array $ids ) {
+		$blobsTable = $this->getTable( $cluster );
+
 		$dbr = $this->getReplica( $cluster );
 		$res = $dbr->newSelectQueryBuilder()
 			->select( [ 'blob_id', 'blob_text' ] )
-			->from( $this->getTable( $dbr, $cluster ) )
+			->from( $blobsTable )
 			->where( [ 'blob_id' => array_keys( $ids ) ] )
 			->caller( __METHOD__ )
 			->fetchResultSet();
@@ -366,7 +370,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			$dbw = $this->getPrimary( $cluster );
 			$res = $dbw->newSelectQueryBuilder()
 				->select( [ 'blob_id', 'blob_text' ] )
-				->from( $this->getTable( $dbr, $cluster ) )
+				->from( $blobsTable )
 				->where( [ 'blob_id' => array_keys( $ids ) ] )
 				->caller( __METHOD__ )
 				->fetchResultSet();

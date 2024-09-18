@@ -236,7 +236,7 @@ class CheckStorage extends Maintenance {
 				foreach ( $externalConcatBlobs as $cluster => $xBlobIds ) {
 					$blobIds = array_keys( $xBlobIds );
 					$extDb = $this->dbStore->getReplica( $cluster );
-					$blobsTable = $this->dbStore->getTable( $extDb );
+					$blobsTable = $this->dbStore->getTable( $cluster );
 					$res = $extDb->newSelectQueryBuilder()
 						->select( [ 'blob_id' ] )
 						->from( $blobsTable )
@@ -435,7 +435,7 @@ class CheckStorage extends Maintenance {
 		foreach ( $externalConcatBlobs as $cluster => $oldIds ) {
 			$blobIds = array_keys( $oldIds );
 			$extDb = $this->dbStore->getReplica( $cluster );
-			$blobsTable = $this->dbStore->getTable( $extDb );
+			$blobsTable = $this->dbStore->getTable( $cluster );
 			$headerLength = strlen( self::CONCAT_HEADER );
 			$res = $extDb->newSelectQueryBuilder()
 				->select( [ 'blob_id', "LEFT(blob_text, $headerLength) AS header" ] )
