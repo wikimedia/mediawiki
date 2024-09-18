@@ -11,7 +11,7 @@ $fallback = 'ms';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Media',
-	NS_SPECIAL          => 'Spesial',
+	NS_SPECIAL          => 'Spesyel',
 	NS_TALK             => 'Randau',
 	NS_USER             => 'Penggena',
 	NS_USER_TALK        => 'Randau_penggena',
