@@ -21,7 +21,8 @@
 			"Ztimur",
 			"Викиней",
 			"Элдин беги",
-			"아라"
+			"아라",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Шилтемелердин астын сызуу:",
@@ -174,7 +175,7 @@
 	"view": "Көрүү",
 	"viewcontribs": "Салымдарым",
 	"skin-view-view": "Окуу",
-	"skin-view-foreign": "Көрүлдү $1",
+	"skin-view-foreign": "$1 сайтынан көрүү",
 	"edit": "Түзөтүү",
 	"skin-view-edit": "Түзөтүү",
 	"edit-local": "Жергиликтүү сыпаттаманы түзөтүү",
