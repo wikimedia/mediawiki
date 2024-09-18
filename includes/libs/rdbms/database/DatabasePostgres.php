@@ -303,11 +303,20 @@ class DatabasePostgres extends Database {
 
 	public function indexInfo( $table, $index, $fname = __METHOD__ ) {
 		$components = $this->platform->qualifiedTableComponents( $table );
-		$encTable = $this->addQuotes( end( $components ) );
+		if ( count( $components ) === 1 ) {
+			$schema = $this->getCoreSchema();
+			$tableComponent = $components[0];
+		} elseif ( count( $components ) === 2 ) {
+			[ $schema, $tableComponent ] = $components;
+		} else {
+			[ , $schema, $tableComponent ] = $components;
+		}
+		$encSchema = $this->addQuotes( $schema );
+		$encTable = $this->addQuotes( $tableComponent );
 		$encIndex = $this->addQuotes( $this->platform->indexName( $index ) );
 		$query = new Query(
 			"SELECT indexname,indexdef FROM pg_indexes " .
-				"WHERE tablename=$encTable AND indexname=$encIndex",
+				"WHERE schemaname=$encSchema AND tablename=$encTable AND indexname=$encIndex",
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE,
 			'SELECT'
 		);
