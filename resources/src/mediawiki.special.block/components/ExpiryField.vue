@@ -134,14 +134,25 @@ module.exports = exports = defineComponent( {
 		}, { deep: true, immediate: true } );
 
 		// Attempt to match up the default expiry (MediaWiki:Ipb-default-expiry) with one of the
-		// preset or custom duration options, or with "infinite" if it's infinite.
+		// preset or default or custom duration options, or with "infinite" if it's infinite.
+		const givenPresetDuration = mw.config.get( 'blockExpiryPreset' );
 		const givenDefaultDuration = mw.config.get( 'blockDefaultExpiry' );
 		if ( mw.util.isInfinity( givenDefaultDuration ) ) {
 			presetDuration.value = 'infinite';
 			expiryType.value = 'preset-duration';
+		} else if ( givenPresetDuration && presetDurationOptions.some( ( option ) => option.value === givenPresetDuration ) ) {
+			presetDuration.value = givenPresetDuration;
+			expiryType.value = 'preset-duration';
 		} else if ( presetDurationOptions.some( ( option ) => option.value === givenDefaultDuration ) ) {
 			presetDuration.value = givenDefaultDuration;
 			expiryType.value = 'preset-duration';
+		} else if ( givenPresetDuration && /^\d+ [a-z]+$/.test( givenPresetDuration ) ) {
+			const [ presetDurationNumber, presetDurationUnit ] = givenPresetDuration.split( ' ' );
+			if ( presetDurationNumber && customDurationOptions.some( ( option ) => option.value === presetDurationUnit ) ) {
+				customDurationNumber.value = Number( presetDurationNumber );
+				customDurationUnit.value = presetDurationUnit;
+				expiryType.value = 'custom-duration';
+			}
 		} else if ( /^\d+ [a-z]+$/.test( givenDefaultDuration ) ) {
 			const [ defaultDurationNumber, defaultDurationUnit ] = givenDefaultDuration.split( ' ' );
 			if ( defaultDurationNumber && customDurationOptions.some( ( option ) => option.value === defaultDurationUnit ) ) {

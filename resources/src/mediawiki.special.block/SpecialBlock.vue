@@ -33,7 +33,7 @@
 		:description="$i18n( 'block-details-description' ).text()"
 	></block-details-field>
 	<block-details-field
-		v-model="additionalDetailsSelected"
+		v-model="blockAdditionalDetailsSelected"
 		:checkboxes="additionalDetailsOptions"
 		:label="$i18n( 'block-options' ).text()"
 		:description="$i18n( 'block-options-description' ).text()"
@@ -93,7 +93,7 @@ module.exports = exports = defineComponent( {
 		const blockEmailBan = mw.config.get( 'blockAllowsEmailBan' ) || false;
 		const blockAutoblockExpiry = mw.config.get( 'blockAutoblockExpiry' );
 		const blockHideUser = mw.config.get( 'blockHideUser' ) || false;
-		const blockDetailsSelected = ref( [] );
+		const blockDetailsSelected = ref( mw.config.get( 'blockDetailsPreset' ) );
 		const blockDetailsOptions = [
 			{
 				label: mw.message( 'ipbcreateaccount' ),
@@ -115,7 +115,7 @@ module.exports = exports = defineComponent( {
 			} );
 		}
 
-		const additionalDetailsSelected = ref( [ 'wpAutoBlock' ] );
+		const blockAdditionalDetailsSelected = ref( mw.config.get( 'blockAdditionalDetailsPreset' ) );
 		const additionalDetailsOptions = [ {
 			label: mw.message( 'ipbenableautoblock', blockAutoblockExpiry ),
 			value: 'wpAutoBlock',
@@ -198,19 +198,19 @@ module.exports = exports = defineComponent( {
 				params.allowusertalk = 1;
 			}
 
-			if ( additionalDetailsSelected.value.indexOf( 'wpAutoBlock' ) !== -1 ) {
+			if ( blockAdditionalDetailsSelected.value.indexOf( 'wpAutoBlock' ) !== -1 ) {
 				params.autoblock = 1;
 			}
 
-			if ( additionalDetailsSelected.value.indexOf( 'wpHideName' ) !== -1 ) {
+			if ( blockAdditionalDetailsSelected.value.indexOf( 'wpHideName' ) !== -1 ) {
 				params.hidename = 1;
 			}
 
-			if ( additionalDetailsSelected.value.indexOf( 'wpWatch' ) !== -1 ) {
+			if ( blockAdditionalDetailsSelected.value.indexOf( 'wpWatch' ) !== -1 ) {
 				params.watchuser = 1;
 			}
 
-			if ( additionalDetailsSelected.value.indexOf( 'wpHardBlock' ) !== -1 ) {
+			if ( blockAdditionalDetailsSelected.value.indexOf( 'wpHardBlock' ) !== -1 ) {
 				params.nocreate = 1;
 			}
 
@@ -235,7 +235,7 @@ module.exports = exports = defineComponent( {
 			reasonOther,
 			reasonSelected,
 			additionalDetailsOptions,
-			additionalDetailsSelected,
+			blockAdditionalDetailsSelected,
 			blockPartialOptions,
 			blockPartialOptionsSelected,
 			blockEnableMultiblocks
