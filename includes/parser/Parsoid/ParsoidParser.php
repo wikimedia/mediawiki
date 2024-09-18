@@ -185,12 +185,12 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 		// $previousOutput
 		$stats = MediaWikiServices::getInstance()->getStatsFactory();
 		$stats
-			->getCounter( 'Parsoid_parse_time_total' )
+			->getCounter( 'Parsoid_parse_cpu_seconds' )
 			->setLabel( 'type', $previousOutput === null ? 'full' : 'selective' )
 			->setLabel( 'reason', $options->getRenderReason() ?: 'unknown' )
 			->incrementBy( $parserOutput->getTimeProfile( 'cpu' ) );
 		$stats
-			->getCounter( 'Parsoid_parse_count_total' )
+			->getCounter( 'Parsoid_parse_total' )
 			->setLabel( 'type', $previousOutput === null ? 'full' : 'selective' )
 			->setLabel( 'reason', $options->getRenderReason() ?: 'unknown' )
 			->increment();

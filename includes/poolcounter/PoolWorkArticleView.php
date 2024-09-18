@@ -93,7 +93,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	): Status {
 		if ( $doSample ) {
 			MediaWikiServices::getInstance()->getStatsFactory()
-				->getCounter( 'parsercache_selective' )
+				->getCounter( 'parsercache_selective_total' )
 				->setLabel( 'source', $sourceLabel )
 				->setLabel( 'type', $previousOutput === null ? 'full' : 'selective' )
 				->setLabel( 'reason', $this->parserOptions->getRenderReason() )
