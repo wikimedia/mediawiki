@@ -253,6 +253,15 @@ class SiteConfig extends ISiteConfig {
 	}
 
 	/**
+	 * Create a prefixed StatsFactory for parsoid stats
+	 * @return StatsFactory|null
+	 */
+	public function prefixedStatsFactory(): ?StatsFactory {
+		$component = $this->getStatsPrefix( true );
+		return $this->statsFactory->withComponent( $component );
+	}
+
+	/**
 	 * Record a timing metric
 	 * @param string $name
 	 * @param float $value
@@ -260,8 +269,7 @@ class SiteConfig extends ISiteConfig {
 	 * @return void
 	 */
 	public function observeTiming( string $name, float $value, array $labels ) {
-		$component = $this->getStatsPrefix( true );
-		$metric = $this->statsFactory->withComponent( $component )->getTiming( $name );
+		$metric = $this->prefixedStatsFactory()->getTiming( $name );
 		foreach ( $labels as $labelKey => $labelValue ) {
 			$metric->setLabel( $labelKey, $labelValue );
 		}
@@ -276,8 +284,7 @@ class SiteConfig extends ISiteConfig {
 	 * @return void
 	 */
 	public function incrementCounter( string $name, array $labels, float $amount = 1 ) {
-		$component = $this->getStatsPrefix( true );
-		$metric = $this->statsFactory->withComponent( $component )->getCounter( $name );
+		$metric = $this->prefixedStatsFactory()->getCounter( $name );
 		foreach ( $labels as $labelKey => $labelValue ) {
 			$metric->setLabel( $labelKey, $labelValue );
 		}
