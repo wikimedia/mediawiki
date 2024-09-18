@@ -99,6 +99,20 @@ trait MetricTrait {
 	}
 
 	/** @inheritDoc */
+	public function setLabels( array $labels ) {
+		try {
+			foreach ( $labels as $key => $value ) {
+				$this->baseMetric->addLabel( $key, $value );
+			}
+		} catch ( IllegalOperationException | InvalidArgumentException $ex ) {
+			// Log the condition and give the caller something that will absorb calls.
+			trigger_error( $ex->getMessage(), E_USER_WARNING );
+			return new NullMetric;
+		}
+		return $this;
+	}
+
+	/** @inheritDoc */
 	public function copyToStatsdAt( $statsdNamespaces ) {
 		try {
 			$this->baseMetric->setStatsdNamespaces( $statsdNamespaces );

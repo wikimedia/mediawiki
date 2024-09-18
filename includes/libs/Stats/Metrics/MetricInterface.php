@@ -97,6 +97,14 @@ interface MetricInterface {
 	public function setLabel( string $key, string $value );
 
 	/**
+	 * Convenience function to set a number of labels at once.
+	 * @see ::setLabel
+	 * @param array<string,string> $labels
+	 * @return self|NullMetric
+	 */
+	public function setLabels( array $labels );
+
+	/**
 	 * Copies metric operation to StatsD at provided namespace.
 	 *
 	 * Takes a namespace or multiple namespaces.
