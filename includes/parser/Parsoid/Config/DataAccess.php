@@ -448,16 +448,17 @@ class DataAccess extends IDataAccess {
 
 	/**
 	 * Add a tracking category with the given key to the metadata for the page.
-	 * @param string $key Message key (not localized)
-	 * @param IPageConfig $contextPage the page on which the tracking category
+	 * @param IPageConfig $pageConfig the page on which the tracking category
 	 *   is to be added
 	 * @param ContentMetadataCollector $metadata The metadata for the page
+	 * @param string $key Message key (not localized)
 	 */
 	public function addTrackingCategory(
-		string $key,
-		IPageConfig $contextPage,
-		ContentMetadataCollector $metadata ) {
-		$page = Title::newFromLinkTarget( $contextPage->getLinkTarget() );
+		IPageConfig $pageConfig,
+		ContentMetadataCollector $metadata,
+		string $key
+	): void {
+		$page = Title::newFromLinkTarget( $pageConfig->getLinkTarget() );
 		$this->trackingCategories->addTrackingCategory(
 			$metadata, $key, $page
 		);
