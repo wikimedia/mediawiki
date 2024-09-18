@@ -1,5 +1,8 @@
 <template>
-	<cdx-field :is-fieldset="true">
+	<cdx-field
+		:is-fieldset="true"
+		:disabled="disabled"
+	>
 		<cdx-lookup
 			v-model:selected="selection"
 			v-model:input-value="currentSearchTerm"
@@ -31,7 +34,11 @@ module.exports = exports = defineComponent( {
 	name: 'UserLookup',
 	components: { CdxLookup, CdxField },
 	props: {
-		modelValue: { type: [ String, null ], required: true }
+		modelValue: { type: [ String, null ], required: true },
+		/**
+		 * Whether the field is disabled
+		 */
+		disabled: { type: Boolean, default: false }
 	},
 	emits: [
 		'update:modelValue'

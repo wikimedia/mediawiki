@@ -2955,6 +2955,7 @@
 	"block-options-description": "Description for the checkboxes for specifying additional options for a block on [[Special:Block]]",
 	"block-reason": "Label for the input for specifying the reason for a block on [[Special:Block]]\n{{Identical|Reason}}",
 	"block-reason-other": "Placeholder text for the 'Other' text field on [[Special:Block]].",
+	"block-success": "Message shown when a block is successfully applied on [[Special:Block]]. Similar to {{msg-mw|blockipsuccesstext}} except only basic wikitext is allowed.\n\nParameters:\n* $1 - target username",
 	"block-user-label": "Label for the input for specifying the user of a block on [[Special:Block]]",
 	"block-user-active-blocks": "Header for the active blocks table",
 	"block-user-previous-blocks": "Header for the previous blocks table",

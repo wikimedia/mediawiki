@@ -2273,6 +2273,7 @@ return [
 		'dependencies' => [
 			'vue',
 			'@wikimedia/codex',
+			'mediawiki.jqueryMsg',
 		],
 		'messages' => [
 			'block-actions',
@@ -2342,6 +2343,8 @@ return [
 			'block-log-flags-angry-autoblock',
 			'block-log-flags-hiddenname',
 			'block-user-no-reason-given',
+			'blockipsuccesssub',
+			'block-success',
 		],
 	],
 	'mediawiki.protectionIndicators.styles' => [

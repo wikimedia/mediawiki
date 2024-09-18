@@ -1,5 +1,8 @@
 <template>
-	<cdx-field :is-fieldset="true">
+	<cdx-field
+		:is-fieldset="true"
+		:disabled="disabled"
+	>
 		<template #label>
 			{{ $i18n( 'block-actions' ).text() }}
 		</template>
@@ -15,7 +18,10 @@
 				<span v-i18n-html="radio.descriptionMsg"></span>
 			</template>
 		</cdx-radio>
-		<div v-if="wrappedBlockTypeValue === 'partial'" id="partial-options">
+		<div
+			v-if="wrappedBlockTypeValue === 'partial'"
+			class="mw-block-partial-options"
+		>
 			<div>
 				Pages Placeholder
 			</div>
@@ -59,6 +65,13 @@ module.exports = exports = defineComponent( {
 		blockTypeValue: {
 			type: String,
 			required: true
+		},
+		/**
+		 * Whether the field is disabled
+		 */
+		disabled: {
+			type: Boolean,
+			default: false
 		}
 	},
 	emits: [
@@ -98,7 +111,13 @@ module.exports = exports = defineComponent( {
 </script>
 
 <style lang="less">
-	#partial-options {
-		margin-left: 30px;
-	}
+@import 'mediawiki.skin.variables.less';
+
+.mw-block-form {
+	margin-top: @spacing-100;
+}
+
+.mw-block-partial-options {
+	padding-left: calc( @size-125 + @spacing-50 );
+}
 </style>

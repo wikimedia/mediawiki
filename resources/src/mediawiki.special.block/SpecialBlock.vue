@@ -1,13 +1,28 @@
 <template>
-	<cdx-message
-		v-if="targetUser && alreadyBlocked"
-		type="error"
-		inline
-	>
-		{{ $i18n( 'ipb-needreblock', targetUser ).text() }}
-	</cdx-message>
+	<div ref="messagesContainer" class="mw-block-messages">
+		<cdx-message
+			v-if="success"
+			type="success"
+			:allow-user-dismiss="true"
+			class="mw-block-success"
+		>
+			<p><strong>{{ $i18n( 'blockipsuccesssub' ) }}</strong></p>
+			<!-- eslint-disable-next-line vue/no-v-html -->
+			<p v-html="$i18n( 'block-success', targetUser ).parse()"></p>
+		</cdx-message>
+		<cdx-message
+			v-for="( formError, index ) in formErrors"
+			:key="index"
+			type="error"
+			class="mw-block-error"
+			inline
+		>
+			{{ formError }}
+		</cdx-message>
+	</div>
 	<user-lookup
 		v-model="targetUser"
+		:disabled="formDisabled"
 		@input="alreadyBlocked = false"
 	></user-lookup>
 	<target-active-blocks
@@ -19,31 +34,39 @@
 	></target-block-log>
 	<block-type-field
 		v-model="blockPartialOptionsSelected"
-		:partial-block-options="blockPartialOptions"
 		v-model:block-type-value="blockType"
+		:partial-block-options="blockPartialOptions"
+		:disabled="formDisabled"
 	></block-type-field>
-	<expiry-field v-model="expiry"></expiry-field>
+	<expiry-field
+		v-model="expiry"
+		:disabled="formDisabled"
+	></expiry-field>
 	<reason-field
 		v-model:selected="reasonSelected"
 		v-model:other="reasonOther"
+		:disabled="formDisabled"
 	></reason-field>
 	<block-details-field
 		v-model="blockDetailsSelected"
 		:checkboxes="blockDetailsOptions"
 		:label="$i18n( 'block-details' ).text()"
 		:description="$i18n( 'block-details-description' ).text()"
+		:disabled="formDisabled"
 	></block-details-field>
 	<block-details-field
 		v-model="blockAdditionalDetailsSelected"
 		:checkboxes="additionalDetailsOptions"
 		:label="$i18n( 'block-options' ).text()"
 		:description="$i18n( 'block-options-description' ).text()"
+		:disabled="formDisabled"
 	></block-details-field>
 	<hr class="mw-block-hr">
 	<cdx-button
 		action="destructive"
 		weight="primary"
 		class="mw-block-submit"
+		:disabled="formDisabled"
 		@click="handleSubmit"
 	>
 		{{ submitButtonMessage }}
@@ -60,8 +83,8 @@ const BlockTypeField = require( './components/BlockTypeField.vue' );
 const ExpiryField = require( './components/ExpiryField.vue' );
 const ReasonField = require( './components/ReasonField.vue' );
 const BlockDetailsField = require( './components/BlockDetailsOptions.vue' );
+const api = new mw.Api();
 
-// @vue/component
 module.exports = exports = defineComponent( {
 	name: 'SpecialBlock',
 	components: {
@@ -78,13 +101,17 @@ module.exports = exports = defineComponent( {
 	setup() {
 		const targetUser = ref( mw.config.get( 'blockTargetUser', '' ) );
 		const alreadyBlocked = ref( mw.config.get( 'blockAlreadyBlocked' ) );
-		const expiry = ref( {} );
 		const blockEnableMultiblocks = mw.config.get( 'blockEnableMultiblocks' ) || false;
+		const success = ref( false );
+		const formDisabled = ref( false );
+		const messagesContainer = ref();
+		const formErrors = ref( mw.config.get( 'blockPreErrors' ) );
 		// eslint-disable-next-line arrow-body-style
 		const submitButtonMessage = computed( () => {
 			return mw.message( alreadyBlocked.value ? 'ipb-change-block' : 'ipbsubmit' ).text();
 		} );
 		const blockType = ref( 'sitewide' );
+		const expiry = ref( {} );
 		const blockPartialOptions = mw.config.get( 'partialBlockActionOptions' ) ?
 			Object.keys( mw.config.get( 'partialBlockActionOptions' ) ).map(
 				// Messages that can be used here:
@@ -162,12 +189,18 @@ module.exports = exports = defineComponent( {
 		 * @return {jQuery.Promise}
 		 */
 		function block() {
+			formDisabled.value = true;
+
 			const params = {
 				action: 'block',
 				format: 'json',
 				user: targetUser.value,
 				// Remove browser-specific milliseconds for consistency.
-				expiry: expiry.value.value.replace( /\.000$/, '' )
+				expiry: expiry.value.value.replace( /\.000$/, '' ),
+				// Localize errors
+				uselang: mw.config.get( 'wgUserLanguage' ),
+				errorlang: mw.config.get( 'wgUserLanguage' ),
+				errorsuselocal: true
 			};
 
 			// Reason selected concatenated with 'Other' field
@@ -222,17 +255,31 @@ module.exports = exports = defineComponent( {
 				params.nocreate = 1;
 			}
 
-			const api = new mw.Api();
+			// Clear messages.
+			success.value = false;
+			formErrors.value = [];
 
 			return api.postWithEditToken( params )
 				.done( () => {
-
+					success.value = true;
+				} )
+				.fail( ( _code, errorObj ) => {
+					success.value = false;
+					formErrors.value = [ errorObj.error.info ];
+				} )
+				.always( () => {
+					formDisabled.value = false;
+					messagesContainer.value.scrollIntoView( { behavior: 'smooth' } );
 				} );
 		}
 
 		return {
-			blockType,
+			formDisabled,
+			messagesContainer,
+			formErrors,
+			success,
 			targetUser,
+			blockType,
 			expiry,
 			alreadyBlocked,
 			submitButtonMessage,
@@ -270,5 +317,9 @@ module.exports = exports = defineComponent( {
 
 .mw-block-submit.cdx-button {
 	margin-top: @spacing-100;
+}
+
+.mw-block-error {
+	margin-left: @spacing-75;
 }
 </style>
