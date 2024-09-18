@@ -319,16 +319,7 @@ EOT;
 	 */
 	public function createTables() {
 		$status = parent::createTables();
-		if ( $status->isGood() ) {
-			$status = parent::createManualTables();
-		}
-
 		return $this->setupSearchIndex( $status );
-	}
-
-	public function createManualTables() {
-		// Already handled above. Do nothing.
-		return Status::newGood();
 	}
 
 	/**

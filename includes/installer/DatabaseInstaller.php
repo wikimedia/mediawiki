@@ -29,6 +29,7 @@ use RuntimeException;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -282,41 +283,22 @@ abstract class DatabaseInstaller {
 	/**
 	 * Apply a SQL source file to the database as part of running an installation step.
 	 *
-	 * @param string $sourceFileMethod
-	 * @param string $stepName
-	 * @param string|false $tableThatMustNotExist
+	 * @param Database $conn
+	 * @param string $sqlFile
 	 * @return Status
 	 */
-	private function stepApplySourceFile(
-		$sourceFileMethod,
-		$stepName,
-		$tableThatMustNotExist = false
-	) {
-		$status = $this->getConnection( self::CONN_CREATE_TABLES );
-		if ( !$status->isOK() ) {
-			return $status;
+	private function applySourceFile( $conn, $sqlFile ) {
+		$status = Status::newGood();
+		try {
+			$conn->doAtomicSection( __METHOD__,
+				static function ( $conn ) use ( $sqlFile ) {
+					$conn->sourceFile( $sqlFile );
+				},
+				IDatabase::ATOMIC_CANCELABLE
+			);
+		} catch ( DBQueryError $e ) {
+			$status->fatal( "config-install-tables-failed", $e->getMessage() );
 		}
-		$conn = $status->getDB();
-
-		if ( $tableThatMustNotExist && $conn->tableExists( $tableThatMustNotExist, __METHOD__ ) ) {
-			$status->warning( "config-$stepName-tables-exist" );
-			return $status;
-		}
-
-		$conn->setFlag( DBO_DDLMODE );
-		$conn->begin( __METHOD__ );
-
-		$error = $conn->sourceFile(
-			call_user_func( [ $this, $sourceFileMethod ], $conn )
-		);
-		if ( $error !== true ) {
-			$conn->reportQueryError( $error, 0, '', __METHOD__ );
-			$conn->rollback( __METHOD__ );
-			$status->fatal( "config-$stepName-tables-failed", $error );
-		} else {
-			$conn->commit( __METHOD__ );
-		}
-
 		return $status;
 	}
 
@@ -326,16 +308,23 @@ abstract class DatabaseInstaller {
 	 * @return Status
 	 */
 	public function createTables() {
-		return $this->stepApplySourceFile( 'getGeneratedSchemaPath', 'install', 'archive' );
-	}
-
-	/**
-	 * Create database tables from scratch.
-	 *
-	 * @return Status
-	 */
-	public function createManualTables() {
-		return $this->stepApplySourceFile( 'getSchemaPath', 'install-manual' );
+		$status = $this->getConnection( self::CONN_CREATE_TABLES );
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+		$conn = $status->getDB();
+		if ( $conn->tableExists( 'archive', __METHOD__ ) ) {
+			$status->warning( "config-install-tables-exist" );
+			return $status;
+		}
+		$status = $this->applySourceFile( $conn,
+			$this->getSqlFilePath( 'tables-generated.sql' ) );
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+		$status->merge( $this->applySourceFile( $conn,
+			$this->getSqlFilePath( 'tables.sql' ) ) );
+		return $status;
 	}
 
 	/**
@@ -354,40 +343,18 @@ abstract class DatabaseInstaller {
 	 * Return a path to the DBMS-specific SQL file if it exists,
 	 * otherwise default SQL file
 	 *
-	 * @param IDatabase $db
 	 * @param string $filename
 	 * @return string
 	 */
-	private function getSqlFilePath( $db, $filename ) {
+	private function getSqlFilePath( string $filename ) {
 		global $IP;
 
-		$dbmsSpecificFilePath = "$IP/maintenance/" . $db->getType() . "/$filename";
+		$dbmsSpecificFilePath = "$IP/maintenance/" . $this->getName() . "/$filename";
 		if ( file_exists( $dbmsSpecificFilePath ) ) {
 			return $dbmsSpecificFilePath;
 		} else {
 			return "$IP/maintenance/$filename";
 		}
-	}
-
-	/**
-	 * Return a path to the DBMS-specific schema file,
-	 * otherwise default to tables.sql
-	 *
-	 * @param IDatabase $db
-	 * @return string
-	 */
-	public function getSchemaPath( $db ) {
-		return $this->getSqlFilePath( $db, 'tables.sql' );
-	}
-
-	/**
-	 * Return a path to the DBMS-specific automatically generated schema file.
-	 *
-	 * @param IDatabase $db
-	 * @return string
-	 */
-	public function getGeneratedSchemaPath( $db ) {
-		return $this->getSqlFilePath( $db, 'tables-generated.sql' );
 	}
 
 	/**

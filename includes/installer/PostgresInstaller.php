@@ -145,9 +145,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			case self::CONN_CREATE_TABLES:
 				$status = $this->openConnection( self::CONN_CREATE_SCHEMA );
 				if ( $status->isOK() ) {
-					$conn = $status->getDB();
-					$safeRole = $conn->addIdentifierQuotes( $this->getVar( 'wgDBuser' ) );
-					$conn->query( "SET ROLE $safeRole", __METHOD__ );
+					$status->merge( $this->changeConnTypeFromSchemaToTables( $status->getDB() ) );
 				}
 
 				return $status;
@@ -157,9 +155,20 @@ class PostgresInstaller extends DatabaseInstaller {
 	}
 
 	protected function changeConnTypeFromSchemaToTables( Database $conn ) {
+		if ( !( $conn instanceof DatabasePostgres ) ) {
+			throw new InvalidArgumentException( 'Invalid connection type' );
+		}
+		$status = new ConnectionStatus( $conn );
+		$schema = $this->getVar( 'wgDBmwschema' );
+		if ( !$conn->schemaExists( $schema ) ) {
+			$status->fatal( 'config-install-pg-schema-not-exist' );
+			return $status;
+		}
+		$conn->determineCoreSchema( $schema );
+
 		$safeRole = $conn->addIdentifierQuotes( $this->getVar( 'wgDBuser' ) );
 		$conn->query( "SET ROLE $safeRole", __METHOD__ );
-		return new ConnectionStatus( $conn );
+		return $status;
 	}
 
 	public function openConnectionToAnyDB( $user, $password ) {
@@ -342,9 +351,6 @@ class PostgresInstaller extends DatabaseInstaller {
 			}
 		}
 
-		// Select the new schema in the current connection
-		$conn->determineCoreSchema( $schema );
-
 		return Status::newGood();
 	}
 
@@ -405,51 +411,6 @@ class PostgresInstaller extends DatabaseInstaller {
 		# just copy these two
 		$wgDBuser = $this->getVar( '_InstallUser' );
 		$wgDBpassword = $this->getVar( '_InstallPassword' );
-	}
-
-	public function createTables() {
-		$schema = $this->getVar( 'wgDBmwschema' );
-
-		$status = $this->getConnection( self::CONN_CREATE_TABLES );
-		if ( !$status->isOK() ) {
-			return $status;
-		}
-		$conn = $status->getDB();
-		'@phan-var DatabasePostgres $conn'; /** @var DatabasePostgres $conn */
-
-		if ( $conn->tableExists( 'archive', __METHOD__ ) ) {
-			$status->warning( 'config-install-tables-exist' );
-			return $status;
-		}
-
-		$conn->begin( __METHOD__ );
-
-		if ( !$conn->schemaExists( $schema ) ) {
-			$status->fatal( 'config-install-pg-schema-not-exist' );
-			return $status;
-		}
-
-		$error = $conn->sourceFile( $this->getGeneratedSchemaPath( $conn ) );
-		if ( $error !== true ) {
-			$conn->reportQueryError( $error, 0, '', __METHOD__ );
-			$conn->rollback( __METHOD__ );
-			$status->fatal( 'config-install-tables-failed', $error );
-		} else {
-			$error = $conn->sourceFile( $this->getSchemaPath( $conn ) );
-			if ( $error !== true ) {
-				$conn->reportQueryError( $error, 0, '', __METHOD__ );
-				$conn->rollback( __METHOD__ );
-				$status->fatal( 'config-install-tables-manual-failed', $error );
-			} else {
-				$conn->commit( __METHOD__ );
-			}
-		}
-		return $status;
-	}
-
-	public function createManualTables() {
-		// Already handled above. Do nothing.
-		return Status::newGood();
 	}
 
 	public function getGlobalDefaults() {
