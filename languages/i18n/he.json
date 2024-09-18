@@ -2575,6 +2575,7 @@
 	"block-options": "אפשרויות נוספות:",
 	"block-options-description": "האפשרויות האלו עשויות לעזור לך לעקוב אחר המשתמש הזה כדי למנוע בעיות נוספות.",
 	"block-reason": "סיבה:",
+	"block-reason-other": "סיבה נוספת או אחרת",
 	"block-user-label": "איזה משתמש ברצונך לחסום?",
 	"block-user-description": "משתמש יכול להיות שם משתמש, כתובת IP או טווח IP.",
 	"block-user-placeholder": "נא להקליד משתמש...",

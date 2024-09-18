@@ -345,7 +345,7 @@
 	"virus-scanfailed": "De Scan huet net funktionéiert (Code $1)",
 	"virus-unknownscanner": "onbekannten Antivirus:",
 	"logouttext": "'''Dir sidd elo ausgeloggt.'''\n\nOpgepasst: Op verschiddene Säite kann et nach sou aus gesinn, wéi wann Dir nach ageloggt wiert, bis Dir Ärem Browser säin Tëschespäicher (cache) eidel maacht.",
-	"logging-out-notify": "Dir gitt ausgeloggt, waart wgl..",
+	"logging-out-notify": "Dir gitt ausgeloggt. Waart wgl. ee Moment.",
 	"logout-failed": "Ausloggen ass elo net méiglech: $1",
 	"cannotlogoutnow-title": "Ausloggen ass elo net méiglech",
 	"cannotlogoutnow-text": "Ausloggen ass net méiglech wann Dir $1 benotzt.",

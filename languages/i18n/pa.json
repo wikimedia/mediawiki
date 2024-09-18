@@ -1034,7 +1034,7 @@
 	"recentchanges-label-plusminus": "ਸਫ਼ੇ ਵਿੱਚ ਇੰਨੀਆਂ ਬਾਈਟਾਂ ਦੀ ਤਬਦੀਲੀ ਹੋਈ",
 	"recentchanges-legend-heading": "<strong>ਟੀਕਾ:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|ਨਵੇਂ ਸਫ਼ਿਆਂ ਦੀ ਸੂਚੀ]] ਵੀ ਵੇਖੋ)",
-	"recentchanges-legend-plusminus": "(''±੧੨੩'')",
+	"recentchanges-legend-plusminus": "(±123)",
 	"recentchanges-submit": "ਦਿਖਾਓ",
 	"rcfilters-tag-remove": "'$1' ਹਟਾਓ",
 	"rcfilters-activefilters-hide": "ਲੁਕਾਓ",

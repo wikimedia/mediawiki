@@ -498,6 +498,7 @@
 	"passwordreset-nocaller": "Tukang dudu porlu tiunjukko",
 	"passwordreset-nosuchcaller": "Tukang dudu makka: $1",
 	"passwordreset-ignored": "Pangulohan kata sandi mak tiurusi. Mangkali penyedia mak tiatur?",
+	"passwordreset-invalidemail": "Alamat email mak sah",
 	"passwordreset-nodata": "Golar pangguna atawa alamat email mak tiunjukko",
 	"changeemail": "Ubah atawa hapus alamat email",
 	"changeemail-header": "Longkapi formulir sa untuk ngubah alamat email mu. Man niku haga ngahapus kaunyin alamat email sai bukahikan rik akun mu, bangkangko alamat email harak ngirimko formulir.",

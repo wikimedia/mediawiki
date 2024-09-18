@@ -2648,6 +2648,7 @@
 	"block-options": "Zusätzliche Optionen:",
 	"block-options-description": "Diese Optionen können dir dabei helfen, diesen Benutzer im Blick zu behalten, um weitere Probleme zu vermeiden.",
 	"block-reason": "Grund:",
+	"block-reason-other": "Zusätzlicher oder anderer Grund",
 	"block-user-label": "Welchen Benutzer möchtest du sperren?",
 	"block-user-description": "Ein Benutzer kann ein Benutzername, eine IP-Adresse oder ein IP-Bereich sein.",
 	"block-user-placeholder": "Beginne mit der Eingabe eines Benutzers …",
