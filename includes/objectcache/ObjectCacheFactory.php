@@ -289,7 +289,7 @@ class ObjectCacheFactory {
 		'@phan-var array{caches:array[]} $params';
 		foreach ( $params['caches'] ?? [] as $i => $cacheInfo ) {
 			// Ensure logger, keyspace, asyncHandler, etc are injected just as if
-			// one of these was configured without MultiWriteBagOStuff.
+			// one of these was configured without MultiWriteBagOStuff (T318272)
 			$params['caches'][$i] = $this->newFromParams( $cacheInfo );
 		}
 	}

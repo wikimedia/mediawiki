@@ -1,7 +1,7 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Logger\Spi;
+use MediaWiki\Logger\NullSpi;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Stats\StatsFactory;
 
@@ -12,8 +12,8 @@ class ObjectCacheFactoryTest extends MediaWikiUnitTestCase {
 	private function newObjectCacheFactory() {
 		return new ObjectCacheFactory(
 			$this->createMock( ServiceOptions::class ),
-			$this->createMock( StatsFactory::class ),
-			$this->createMock( Spi::class ),
+			StatsFactory::newNull(),
+			new NullSpi(),
 			static function () {
 			},
 			'testWikiId'
