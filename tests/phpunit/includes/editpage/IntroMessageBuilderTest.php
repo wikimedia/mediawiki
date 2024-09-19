@@ -89,35 +89,36 @@ class IntroMessageBuilderTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideCases() {
 		// title, oldid, user, editIntro, pages, expectedMessage, expectedWrap
-
+		$errorClass = 'cdx-message--error';
+		$warningClass = 'cdx-message--warning';
 		yield 'Main namespace has no default message' =>
 			[ 'Hello', null, 'Alice', null, [ 'Hello' => '' ],
 				[], null ];
 
 		yield 'Logged-out warning' =>
 			[ 'Hello', null, null, null, [ 'Hello' => '' ],
-				[ "anoneditwarning" ], "mw-message-box-warning" ];
+				[ "anoneditwarning" ], $warningClass ];
 
 		// Code and message editing
 		yield 'User JavaScript requires alert as well as code-specific message' =>
 			[ 'User:Bob/common.js', null, 'Alice', null, [ 'User:Bob/common.js' => '' ],
-				[ "userjsdangerous", "editpage-code-message" ], "mw-message-box-error" ];
+				[ "userjsdangerous", "editpage-code-message" ], $errorClass ];
 
 		yield 'Inform users that their JS is public and suggest guidelines' =>
 			[ 'User:Bob/common.js', null, 'Bob', null, [ 'User:Bob/common.js' => '' ],
-				[ "userjsispublic", "userjsdangerous", "editpage-code-message", "userjsyoucanpreview" ], "mw-message-box-error" ];
+				[ "userjsispublic", "userjsdangerous", "editpage-code-message", "userjsyoucanpreview" ], $errorClass ];
 
 		yield 'MediaWiki: namespace JSON requires alert' =>
 			[ 'MediaWiki:Map.json', null, 'Alice', null, [],
-				[ "editinginterface", "newarticletext" ], "mw-message-box-error" ];
+				[ "editinginterface", "newarticletext" ], $errorClass ];
 
 		yield 'MediaWiki: namespace message requires alert' =>
 			[ 'MediaWiki:Does-not-exist-asdfasdf', null, 'Alice', null, [],
-				[ "editinginterface", "newarticletext" ], "mw-message-box-error" ];
+				[ "editinginterface", "newarticletext" ], $errorClass ];
 
 		yield 'Translateable MediaWiki: namespace message links to Translatewiki' =>
 			[ 'MediaWiki:View', null, 'Alice', null, [],
-				[ "editinginterface", "translateinterface", "newarticletext" ], "mw-message-box-error" ];
+				[ "editinginterface", "translateinterface", "newarticletext" ], $errorClass ];
 
 		// Files
 		yield 'Neither shared not local file exists' =>
