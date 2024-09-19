@@ -23,6 +23,7 @@ namespace MediaWiki\Specials\Redirects;
 
 use MediaWiki\SpecialPage\RedirectSpecialArticle;
 use MediaWiki\Title\Title;
+use MediaWiki\User\TempUser\TempUserConfig;
 
 /**
  * Redirect to the current user's user page.
@@ -30,8 +31,16 @@ use MediaWiki\Title\Title;
  * @ingroup SpecialPage
  */
 class SpecialMypage extends RedirectSpecialArticle {
-	public function __construct() {
+
+	private TempUserConfig $tempUserConfig;
+
+	/**
+	 * @param TempUserConfig $tempUserConfig
+	 */
+	public function __construct( TempUserConfig $tempUserConfig ) {
 		parent::__construct( 'Mypage' );
+
+		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	/**
@@ -39,6 +48,11 @@ class SpecialMypage extends RedirectSpecialArticle {
 	 * @return Title
 	 */
 	public function getRedirect( $subpage ) {
+		// Redirect to login for anon users when temp accounts are enabled.
+		if ( $this->tempUserConfig->isEnabled() && $this->getUser()->isAnon() ) {
+			$this->requireLogin();
+		}
+
 		if ( $subpage === null || $subpage === '' ) {
 			return Title::makeTitle( NS_USER, $this->getUser()->getName() );
 		}

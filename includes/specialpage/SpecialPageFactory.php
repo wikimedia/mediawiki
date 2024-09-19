@@ -1140,6 +1140,9 @@ class SpecialPageFactory {
 		],
 		'Mycontributions' => [
 			'class' => SpecialMycontributions::class,
+			'services' => [
+				'TempUserConfig',
+			],
 		],
 		'MyLanguage' => [
 			'class' => SpecialMyLanguage::class,
@@ -1150,12 +1153,21 @@ class SpecialPageFactory {
 		],
 		'Mylog' => [
 			'class' => SpecialMylog::class,
+			'services' => [
+				'TempUserConfig',
+			],
 		],
 		'Mypage' => [
 			'class' => SpecialMypage::class,
+			'services' => [
+				'TempUserConfig',
+			],
 		],
 		'Mytalk' => [
 			'class' => SpecialMytalk::class,
+			'services' => [
+				'TempUserConfig',
+			],
 		],
 		'PageHistory' => [
 			'class' => SpecialPageHistory::class,
@@ -1183,6 +1195,9 @@ class SpecialPageFactory {
 		],
 		'Myuploads' => [
 			'class' => SpecialMyuploads::class,
+			'services' => [
+				'TempUserConfig',
+			],
 		],
 		'AllMyUploads' => [
 			'class' => SpecialAllMyUploads::class,
