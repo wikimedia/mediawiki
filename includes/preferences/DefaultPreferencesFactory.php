@@ -902,6 +902,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 						'section' => 'personal/email',
 						'disabled' => $disableEmailPrefs,
 						'filter' => MultiUsernameFilter::class,
+						'excludetemp' => true,
 					];
 				}
 			}
