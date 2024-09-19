@@ -854,6 +854,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Auth\\AbstractPreAuthenticationProvider' => __DIR__ . '/includes/auth/AbstractPreAuthenticationProvider.php',
 	'MediaWiki\\Auth\\AbstractPrimaryAuthenticationProvider' => __DIR__ . '/includes/auth/AbstractPrimaryAuthenticationProvider.php',
 	'MediaWiki\\Auth\\AbstractSecondaryAuthenticationProvider' => __DIR__ . '/includes/auth/AbstractSecondaryAuthenticationProvider.php',
+	'MediaWiki\\Auth\\AbstractTemporaryPasswordPrimaryAuthenticationProvider' => __DIR__ . '/includes/auth/AbstractTemporaryPasswordPrimaryAuthenticationProvider.php',
 	'MediaWiki\\Auth\\AuthManager' => __DIR__ . '/includes/auth/AuthManager.php',
 	'MediaWiki\\Auth\\AuthenticationProvider' => __DIR__ . '/includes/auth/AuthenticationProvider.php',
 	'MediaWiki\\Auth\\AuthenticationRequest' => __DIR__ . '/includes/auth/AuthenticationRequest.php',
