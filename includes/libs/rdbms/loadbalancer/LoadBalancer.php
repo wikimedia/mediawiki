@@ -1736,7 +1736,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		return $this->laggedReplicaMode;
 	}
 
-	public function getReadOnlyReason( $domain = false ) {
+	public function getReadOnlyReason() {
 		if ( $this->readOnlyReason !== false ) {
 			return $this->readOnlyReason;
 		} elseif ( $this->isPrimaryRunningReadOnly() ) {
