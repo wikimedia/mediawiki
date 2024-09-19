@@ -23,6 +23,7 @@
 	<user-lookup
 		v-model="targetUser"
 		:disabled="formDisabled"
+		:form-submitted="formSubmitted"
 		@input="alreadyBlocked = false"
 	></user-lookup>
 	<target-active-blocks
@@ -41,6 +42,7 @@
 	<expiry-field
 		v-model="expiry"
 		:disabled="formDisabled"
+		:form-submitted="formSubmitted"
 	></expiry-field>
 	<reason-field
 		v-model:selected="reasonSelected"
@@ -74,7 +76,7 @@
 </template>
 
 <script>
-const { computed, defineComponent, ref } = require( 'vue' );
+const { computed, defineComponent, nextTick, ref, Ref } = require( 'vue' );
 const { CdxButton, CdxMessage } = require( '@wikimedia/codex' );
 const UserLookup = require( './components/UserLookup.vue' );
 const TargetActiveBlocks = require( './components/TargetActiveBlocks.vue' );
@@ -103,6 +105,13 @@ module.exports = exports = defineComponent( {
 		const alreadyBlocked = ref( mw.config.get( 'blockAlreadyBlocked' ) );
 		const blockEnableMultiblocks = mw.config.get( 'blockEnableMultiblocks' ) || false;
 		const success = ref( false );
+		/**
+		 * Whether the form has been submitted. This is used to only show error states
+		 * after the user has attempted to submit the form.
+		 *
+		 * @type {Ref<boolean>}
+		 */
+		const formSubmitted = ref( false );
 		const formDisabled = ref( false );
 		const messagesContainer = ref();
 		const formErrors = ref( mw.config.get( 'blockPreErrors' ) );
@@ -175,12 +184,36 @@ module.exports = exports = defineComponent( {
 			disabled: false
 		} );
 
+		/**
+		 * Handle form submission. If the form is invalid, show the browser's
+		 * validation messages along with any custom validation messages, and
+		 * scroll to the first error message to ensure the user sees it.
+		 *
+		 * If the form is valid, send the block request to the server,
+		 * add the success message and scroll to it.
+		 *
+		 * @param {Event} event
+		 */
 		function handleSubmit( event ) {
 			event.preventDefault();
+			formSubmitted.value = true;
 
-			// TODO: Implement validation
-
-			block();
+			// checkValidity() executes browser form validation, which triggers automatic
+			// validation states on applicable components (e.g. fields with `required` attr).
+			if ( event.target.form.checkValidity() && expiry.value.value ) {
+				block();
+			} else {
+				// nextTick() needed to ensure error messages are rendered before scrolling.
+				nextTick( () => {
+					// Currently, only the expiry field has custom validations.
+					// Scrolling to `cdx-message--error` is merely future-proofing to
+					// ensure the user sees the error message, wherever it may be.
+					// Actual validation logic should live in the respective component,
+					// and only apply after the form has been submitted via a `formSubmitted` prop.
+					document.querySelector( '.cdx-message--error' )
+						.scrollIntoView( { behavior: 'smooth' } );
+				} );
+			}
 		}
 
 		/**
@@ -275,6 +308,7 @@ module.exports = exports = defineComponent( {
 		}
 
 		return {
+			formSubmitted,
 			formDisabled,
 			messagesContainer,
 			formErrors,

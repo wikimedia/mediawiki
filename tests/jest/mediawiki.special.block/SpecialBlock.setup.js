@@ -1,10 +1,38 @@
 'use strict';
 
+const { mount, VueWrapper } = require( '@vue/test-utils' );
+const SpecialBlock = require( '../../../resources/src/mediawiki.special.block/SpecialBlock.vue' );
+
+/**
+ * Mount the SpecialBlock component with the default configuration,
+ * wrapping it in a form element and appending it to the document body.
+ * This is needed because the <form> element is created server-side.
+ *
+ * @param {Object} [config] Configuration to override the defaults.
+ * @param {Array<Object>} [apiMocks] Additional API mocks to add to the default list.
+ * @return {VueWrapper} The mounted component.
+ */
+function getSpecialBlock( config = {}, apiMocks = [] ) {
+	// Other various mocks that may be needed across the test suite.
+	HTMLElement.prototype.scrollIntoView = jest.fn();
+
+	// Mock calls to mw.config.get() and mw.Api.prototype.get().
+	mockMwConfigGet( config );
+	mockMwApiGet( apiMocks );
+
+	// Create a form element and append it to the document body.
+	const form = document.createElement( 'form' );
+	document.body.appendChild( form );
+
+	// Mount the SpecialBlock component inside the form element.
+	return mount( SpecialBlock, { attachTo: form } );
+}
+
 /**
  * Mock calls to mw.config.get().
  * The default implementation correlates to the SpecialBlock::codexFormData property in PHP.
  *
- * @param {Object} [config]
+ * @param {Object} [config] Will be merged with the defaults.
  */
 function mockMwConfigGet( config = {} ) {
 	const mockConfig = Object.assign( {
@@ -15,8 +43,9 @@ function mockMwConfigGet( config = {} ) {
 		blockAllowsEmailBan: true,
 		blockAllowsUTEdit: true,
 		blockAutoblockExpiry: '1 day',
-		blockDefaultExpiry: 'infinite',
+		blockDefaultExpiry: '',
 		blockDetailsPreset: [],
+		blockExpiryPreset: null,
 		blockHideUser: true,
 		blockExpiryOptions: {
 			infinite: 'infinite',
@@ -116,6 +145,7 @@ function mockMwApiGet( additionalMocks = [] ) {
 }
 
 module.exports = {
+	getSpecialBlock,
 	mockMwApiGet,
 	mockMwConfigGet
 };
