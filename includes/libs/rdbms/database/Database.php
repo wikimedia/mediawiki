@@ -36,8 +36,12 @@ use Wikimedia\RequestTimeout\CriticalSectionScope;
 use Wikimedia\ScopedCallback;
 
 /**
- * Relational database abstraction object
+ * A single concrete connection to a relational database.
  *
+ * This is the base class for all connection-specific relational database handles.
+ * No two instances of this class should share the same underlying network connection.
+ *
+ * @see IDatabase
  * @ingroup Database
  * @since 1.28
  */

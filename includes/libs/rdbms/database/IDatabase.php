@@ -32,7 +32,16 @@ use Wikimedia\ScopedCallback;
 // phpcs:disable Generic.Files.LineLength
 
 /**
- * Basic database interface for live and lazy-loaded relation database handles
+ * Interface to a relational database
+ *
+ * This is used for both primary databases and replicas, and used for both concrete
+ * connections, as well as wrappers around shared connections, like DBConnRef.
+ *
+ * As such, callers should not assume that the object represents a live connection
+ * (when using DBConnRef, the object may lazily defer the connection to the first query),
+ * and should not assume that they have complete control over the connection
+ * (when using DBConnRef, multiple objects may automatically share and reuse the same
+ * underlying connection).
  *
  * @ingroup Database
  */
@@ -58,9 +67,15 @@ interface IDatabase extends IReadableDatabase {
 
 	/** Commit/rollback is from outside the IDatabase handle and connection manager */
 	public const FLUSHING_ONE = '';
-	/** Commit/rollback is from the connection manager for the IDatabase handle */
+	/**
+	 * Commit/rollback is from the owning connection manager for the IDatabase handle
+	 * @internal Only for use within the rdbms library
+	 */
 	public const FLUSHING_ALL_PEERS = 'flush';
-	/** Commit/rollback is from the IDatabase handle internally */
+	/**
+	 * Commit/rollback is from the IDatabase handle internally
+	 * @internal Only for use within the rdbms library
+	 */
 	public const FLUSHING_INTERNAL = 'flush-internal';
 
 	/** Estimate total time (RTT, scanning, waiting on locks, applying) */

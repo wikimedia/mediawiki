@@ -22,11 +22,12 @@ namespace Wikimedia\Rdbms;
 use Exception;
 
 /**
- * Internal interface for LoadBalancer methods used by LBFactory
+ * Internal interface for load balancer instances exposed to their owner
  *
- * Used by untracked objects returned from newMainLB().
+ * Instances are either owned by an LBFactory object or owned by the caller that created
+ * the instance using a constructor/factory function such as LBFactory::newMain().
  *
- * @internal
+ * @internal Only for use within LBFactory/LoadMonitor/ChronologyProtector
  * @since 1.39
  * @ingroup Database
  */
