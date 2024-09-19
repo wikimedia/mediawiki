@@ -464,14 +464,14 @@ class ParserOutputAccess {
 				'wiki' => WikiMap::getCurrentWikiId(),
 				'model' => $content ? $content->getModel() : 'unknown',
 			];
-			$totalStat = $this->statsFactory->getCounter( 'ParserCache_selective_total' );
-			$timeStat = $this->statsFactory->getCounter( 'ParserCache_selective_cpu_seconds' );
-			foreach ( $labels as $key => $value ) {
-				$totalStat->setLabel( $key, $value );
-				$timeStat->setLabel( $key, $value );
-			}
-			$totalStat->increment();
-			$timeStat->incrementBy( $output->getTimeProfile( 'cpu' ) );
+			$this->statsFactory
+				->getCounter( 'ParserCache_selective_total' )
+				->setLabels( $labels )
+				->increment();
+			$this->statsFactory
+				->getCounter( 'ParserCache_selective_cpu_seconds' )
+				->setLabels( $labels )
+				->incrementBy( $output->getTimeProfile( 'cpu' ) );
 		}
 
 		if ( !( $options & self::OPT_NO_UPDATE_CACHE ) && $output->isCacheable() ) {

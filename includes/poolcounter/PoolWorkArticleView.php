@@ -117,14 +117,14 @@ class PoolWorkArticleView extends PoolCounterWork {
 				'wiki' => WikiMap::getCurrentWikiId(),
 				'model' => $content ? $content->getModel() : 'unknown',
 			];
-			$totalStat = $stats->getCounter( 'ParserCache_selective_total' );
-			$timeStat = $stats->getCounter( 'ParserCache_selective_cpu_seconds' );
-			foreach ( $labels as $key => $value ) {
-				$totalStat->setLabel( $key, $value );
-				$timeStat->setLabel( $key, $value );
-			}
-			$totalStat->increment();
-			$timeStat->incrementBy( $parserOutput->getTimeProfile( 'cpu' ) );
+			$stats
+				->getCounter( 'ParserCache_selective_total' )
+				->setLabels( $labels )
+				->increment();
+			$stats
+				->getCounter( 'ParserCache_selective_cpu_seconds' )
+				->setLabels( $labels )
+				->incrementBy( $parserOutput->getTimeProfile( 'cpu' ) );
 		}
 
 		return Status::newGood( $parserOutput );
