@@ -14,7 +14,8 @@
 			"Wolliger Mensch",
 			"Илья Драконов",
 			"ОйЛ",
-			"아라"
+			"아라",
+			"Некто участник"
 		]
 	},
 	"tog-oldsig": "твои нꙑнѣшьн҄ь аѵтографъ :",
@@ -164,6 +165,7 @@
 	"portal-url": "Project:Обьщєниꙗ съвѣтъ",
 	"privacy": "личьнъ вѣстии полїтїка",
 	"privacypage": "Project:Личьнъ вѣстии полїтїка",
+	"ok": "Да",
 	"pagetitle": "$1 · {{SITENAME}}",
 	"retrievedfrom": "поѩто иꙁ ⁖ $1 ⁖",
 	"new-messages": "$1 тєбѣ напьсанꙑ сѫтъ ($2)",
@@ -184,7 +186,7 @@
 	"restorelink": "{{PLURAL:$1|ѥдьна поничьжєна мѣна|$1 поничьжєноу мѣноу|$1 поничьжєнъ мѣнъ}}",
 	"red-link-title": "$1 (сѥѩ страницѧ нѣстъ)",
 	"nstab-main": "члѣнъ",
-	"nstab-user": "польꙃєватєл҄ь",
+	"nstab-user": "{{GENDER:$1|польꙃєватєлꙗ страница}} :",
 	"nstab-media": "срѣдьства",
 	"nstab-special": "нарочьна",
 	"nstab-project": "съвѣтъ",
@@ -323,6 +325,7 @@
 	"revdelete-edit-reasonlist": "поничьжєниꙗ съмꙑслъ исправлѥниѥ",
 	"mergehistory-reason": "какъ съмꙑслъ :",
 	"history-title": "иꙁмѣнѥнии їсторїꙗ страницѧ ⁖ $1 ⁖",
+	"lineno": "глава $1:",
 	"editundo": "отъмѣтаниѥ",
 	"searchresults": "исканиꙗ слѣдьствиѥ",
 	"searchresults-title": "исканиꙗ ⁖ $1 ⁖ слѣдьствиѥ",
@@ -751,6 +754,7 @@
 	"tags-activate-reason": "какъ съмꙑслъ :",
 	"tags-deactivate-reason": "какъ съмꙑслъ :",
 	"deletepage": "поничьжєниѥ",
+	"htmlform-submit": "Подтвѣрдить",
 	"htmlform-no": "нѣтъ",
 	"htmlform-yes": "да",
 	"logentry-delete-delete": "$1 {{GENDER:$2|поничьжи}} страницѫ ⁖ $3 ⁖",

@@ -68,7 +68,8 @@
 			"Withoutaname",
 			"Xð",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"SongNgu.xyz"
 		]
 	},
 	"tog-underline": "Gạch chân liên kết:",
@@ -4217,6 +4218,9 @@
 	"specialmute-label-mute-email": "Tắt thông báo thư điện tử từ {{GENDER:$1}}người dùng này",
 	"specialmute-header": "Thiết lập tùy chọn không làm phiền của bạn đối với người dùng <b>{{BIDI:[[User:$1|$1]]}}</b>.",
 	"specialmute-error-invalid-user": "Không tìm thấy tên người yêu cầu.",
+	"specialmute-error-email-disabled": "Không có sẵn tính năng không làm phiền vì bảo quản viên wiki đã vô hiệu hóa tính năng gửi thư điện tử.",
+	"specialmute-error-mutelist-disabled": "Không có sẵn tính năng không làm phiền vì bảo quản viên wiki đã vô hiệu hóa tính năng không làm phiền qua thư điện tử.",
+	"specialmute-error-no-email-set": "Không có sẵn tính năng không làm phiền vì bạn chưa xác nhận địa chỉ email của bạn.",
 	"specialmute-error-no-options": "Tính năng tắt âm không có sẵn.",
 	"specialmute-email-footer": "Để quản lý tùy chọn thư điện tử của người dùng {{BIDI:$2}}, xin hãy đi đến URL sau:\n$1",
 	"specialmute-login-required": "Xin vui lòng đăng nhập để thay đổi tùy chọn không làm phiền.",

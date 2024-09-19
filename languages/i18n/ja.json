@@ -152,7 +152,8 @@
 			"Cookai1205",
 			"Amire80",
 			"FlatLanguage",
-			"TAKAHASHI Shuuji"
+			"TAKAHASHI Shuuji",
+			"Yukkuri Shambis"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -2601,9 +2602,9 @@
 	"deletereason-dropdown": "*よくある削除理由\n** スパム\n** 荒らし\n** 著作権侵害\n** 投稿者依頼\n** 破損リダイレクト",
 	"delete-edit-reasonlist": "削除理由を編集",
 	"delete-edit-reasonlist-suppress": "秘匿理由を編集",
-	"delete-toobig": "このページには、$1版を超える巨大な編集履歴があります。\nこのようなページの削除は、{{SITENAME}}の運用に支障をもたらしかねないため、制限されています。",
+	"delete-toobig": "このページには、$1{{PLURAL:$1|版}}を超える巨大な編集履歴があります。\nこのようなページの削除は、{{SITENAME}}の運用に支障をもたらしかねないため、制限されています。",
 	"delete-toomanyrevisions": "あなたは$1を超える数の{{PLURAL:$1|版}}を一括削除しようとしています。\nこのような操作は、{{SITENAME}}の運用に支障をもたらしかねないため、制限されています。",
-	"delete-warning-toobig": "このページには、 $1版を超える巨大な編集履歴があります。\n削除するときは、{{SITENAME}}のデータベース運用に支障が出ることがありますので、\n十分注意してください。",
+	"delete-warning-toobig": "このページには、 $1{{PLURAL:$1|版}}を超える巨大な編集履歴があります。\n削除するときは、{{SITENAME}}のデータベース運用に支障が出ることがありますので、\n十分注意してください。",
 	"delete-error-associated-alreadytalk": "議論ページの付随する議論ページを削除できません。",
 	"delete-error-associated-doesnotexist": "存在しない付随する議論ページを削除できません。",
 	"deleteprotected": "このページは保護されているため削除できません。",
@@ -2656,7 +2657,7 @@
 	"protect-title-notallowed": "「$1」の保護設定を表示",
 	"prot_1movedto2": "[[$1]] を [[$2]] へ移動しました",
 	"protect-badnamespace-title": "保護不可能な名前空間",
-	"protect-badnamespace-text": "この名前空間のページは保護できません。",
+	"protect-badnamespace-text": "この名前空間内のページは保護できません。",
 	"protect-norestrictiontypes-text": "利用できる制限の種類がないため、このページは保護できません。",
 	"protect-norestrictiontypes-title": "保護できないページ",
 	"protect-legend": "保護の確認",

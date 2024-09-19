@@ -16,7 +16,9 @@
 			"Vlad5250",
 			"Wikicology",
 			"아라",
-			"AG202"
+			"AG202",
+			"Olafola2309",
+			"TheSymbyat"
 		]
 	},
 	"tog-underline": "Ìfàlàsábẹ́ àwọn àjápọ̀:",
@@ -174,6 +176,7 @@
 	"permalink": "Ìjápọ̀ tíkòníyípadà",
 	"print": "Ìtẹ̀síìwé",
 	"view": "Ìwòran",
+	"viewcontribs": "wo àbá",
 	"skin-view-view": "Àwòkà",
 	"skin-view-foreign": "Ìgbéwò lórí $1",
 	"edit": "Àtúnṣe",
@@ -263,6 +266,7 @@
 	"hidetoc": "bòmọ́lẹ̀",
 	"collapsible-collapse": "Kálura",
 	"collapsible-expand": "Fẹ̀hàn",
+	"collapsible-expand-all-text": "Fẹ ojú gbogbo rẹ̀",
 	"confirmable-confirm": "Ṣé ó dá {{GENDER:$1|yín}} lójú?",
 	"confirmable-yes": "Bẹ́ẹ̀ni",
 	"confirmable-no": "Bẹ́ẹ̀kọ́",
@@ -309,6 +313,7 @@
 	"missingarticle-rev": "(àtúnyẹ̀wò#: $1)",
 	"missingarticle-diff": "(Ìyàtọ̀: $1, $2)",
 	"readonly_lag": "Ibi ìpamọ́ dátà ti jẹ́ títìpa fúnrararẹ̀\nkí àwọn ẹ̀rọ-ìwọ̀fà àdàkọ ìpamọ́ dátà le baà yára bá ẹ̀rọ àkọ́kọ́",
+	"timeouterror": "Àkókò yìí ti pari",
 	"internalerror": "Àsìṣe inú",
 	"internalerror_info": "Àsìṣe inú: $1",
 	"internalerror-fatal-exception": "Ìṣàtì tí kò ṣe é túnṣe irú \"$1\"",

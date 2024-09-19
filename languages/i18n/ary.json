@@ -1313,7 +1313,7 @@
 	"listusers-editsonly": "وري غير لخدايميا لي فايت ساهمو",
 	"listusers-creationsort": "ستّف على حساب تاريخ لمصاوبة",
 	"usereditcount": "$1 ṫeĝdil{{PLURAL:$1||aṫ}}",
-	"usercreated": "{{GENDER:$3|نشؤو|نشآتو}} ف $1 فالساعة $2",
+	"usercreated": "{{GENDER:$3|صاوبو|صاوباتو}} ف $1 ف الساعة $2",
 	"newpages": "صفحات جداد",
 	"newpages-username": "سميت لخدايمي:",
 	"ancientpages": "صفاحي قدام",

@@ -423,7 +423,7 @@
 	"userlogin-noaccount": "Dinna hae aen accoont?",
 	"userlogin-joinproject": "Jyn {{SITENAME}}",
 	"createaccount": "Mak new accoont",
-	"userlogin-resetpassword-link": "Fergot yer password?",
+	"userlogin-resetpassword-link": "Furgot yer trystwird?",
 	"userlogin-helplink2": "Help wi loggin in",
 	"userlogin-loggedin": "Ye'r awreadie loggit in as {{GENDER:$1|$1}}.\nUise the form ablow tae log in as anither uiser.",
 	"userlogin-reauth": "Ye must log in again tae verify that ye are {{GENDER:$1|$1}}.",
