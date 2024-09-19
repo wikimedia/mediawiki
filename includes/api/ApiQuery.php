@@ -314,6 +314,7 @@ class ApiQuery extends ApiBase {
 				'UserGroupManager',
 				'GroupPermissionsLookup',
 				'ContentLanguage',
+				'TempUserConfig',
 			]
 		],
 		'backlinks' => [

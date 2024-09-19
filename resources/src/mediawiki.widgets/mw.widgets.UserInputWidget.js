@@ -17,6 +17,8 @@
 	 * @description Create a mw.widgets.UserInputWidget object.
 	 * @param {Object} [config] Configuration options
 	 * @param {number} [config.limit=10] Number of results to show
+	 * @param {boolean} [config.excludenamed] Whether to exclude named users or not
+	 * @param {boolean} [config.excludetemp] Whether to exclude temporary users or not
 	 * @param {mw.Api} [config.api] API object to use, creates a default mw.Api instance if not specified
 	 */
 	mw.widgets.UserInputWidget = function MwWidgetsUserInputWidget( config ) {
@@ -31,6 +33,8 @@
 
 		// Properties
 		this.limit = config.limit || 10;
+		this.excludeNamed = config.excludenamed || false;
+		this.excludeTemp = config.excludetemp || false;
 		this.api = config.api || new mw.Api();
 
 		// Initialization
@@ -80,7 +84,9 @@
 			action: 'query',
 			list: 'allusers',
 			auprefix: this.value,
-			aulimit: this.limit
+			aulimit: this.limit,
+			auexcludenamed: this.excludeNamed,
+			auexcludetemp: this.excludeTemp
 		} );
 	};
 

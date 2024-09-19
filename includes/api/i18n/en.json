@@ -668,6 +668,8 @@
 	"apihelp-query+allusers-summary": "Enumerate all registered users.",
 	"apihelp-query+allusers-param-from": "The username to start enumerating from.",
 	"apihelp-query+allusers-param-to": "The username to stop enumerating at.",
+	"apihelp-query+allusers-param-excludenamed": "Exclude users of named accounts.",
+	"apihelp-query+allusers-param-excludetemp": "Exclude users of temporary accounts.",
 	"apihelp-query+allusers-param-prefix": "Search for all users that begin with this value.",
 	"apihelp-query+allusers-param-dir": "Direction to sort in.",
 	"apihelp-query+allusers-param-group": "Only include users in the given groups. Does not include implicit or auto-promoted groups like *, user, or autoconfirmed.",

@@ -22,6 +22,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GroupPermissionsLookup;
+use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -41,6 +42,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	private UserGroupManager $userGroupManager;
 	private GroupPermissionsLookup $groupPermissionsLookup;
 	private Language $contentLanguage;
+	private TempUserConfig $tempUserConfig;
 
 	/**
 	 * @param ApiQuery $query
@@ -49,6 +51,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	 * @param UserGroupManager $userGroupManager
 	 * @param GroupPermissionsLookup $groupPermissionsLookup
 	 * @param Language $contentLanguage
+	 * @param TempUserConfig $tempUserConfig
 	 */
 	public function __construct(
 		ApiQuery $query,
@@ -56,13 +59,15 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		UserFactory $userFactory,
 		UserGroupManager $userGroupManager,
 		GroupPermissionsLookup $groupPermissionsLookup,
-		Language $contentLanguage
+		Language $contentLanguage,
+		TempUserConfig $tempUserConfig
 	) {
 		parent::__construct( $query, $moduleName, 'au' );
 		$this->userFactory = $userFactory;
 		$this->userGroupManager = $userGroupManager;
 		$this->groupPermissionsLookup = $groupPermissionsLookup;
 		$this->contentLanguage = $contentLanguage;
+		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	/**
@@ -123,6 +128,22 @@ class ApiQueryAllUsers extends ApiQueryBase {
 					new LikeValue( $this->getCanonicalUserName( $params['prefix'] ), $db->anyString() )
 				)
 			);
+		}
+
+		$excludeNamed = $params['excludenamed'];
+		$excludeTemp = $params['excludetemp'];
+
+		if ( $this->tempUserConfig->isKnown() ) {
+			if ( $excludeTemp ) {
+				$this->addWhere(
+					$this->tempUserConfig->getMatchCondition( $db, 'user_name', IExpression::NOT_LIKE )
+				);
+			}
+			if ( $excludeNamed ) {
+				$this->addWhere(
+					$this->tempUserConfig->getMatchCondition( $db, 'user_name', IExpression::LIKE )
+				);
+			}
 		}
 
 		if ( $params['rights'] !== null && count( $params['rights'] ) ) {
@@ -429,6 +450,12 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				],
 			],
 			'attachedwiki' => null,
+			'excludenamed' => [
+				ParamValidator::PARAM_TYPE => 'boolean',
+			],
+			'excludetemp' => [
+				ParamValidator::PARAM_TYPE => 'boolean',
+			],
 		];
 	}
 

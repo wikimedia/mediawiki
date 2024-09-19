@@ -19,6 +19,8 @@ use Wikimedia\IPUtils;
  *    'ipallowed' parameter must be set to true if this parameter is set to true.
  * 'iprange' - Whether an IP address range is interpreted as "valid"
  * 'iprangelimits' - Specifies the valid IP ranges for IPv4 and IPv6 in an array.
+ * 'excludenamed' - Whether to exclude named users or not.
+ * 'excludetemp' - Whether to exclude temporary users or not.
  *
  * @stable to extend
  * @since 1.26
@@ -39,6 +41,8 @@ class HTMLUserTextField extends HTMLTextField {
 					'IPv4' => 0,
 					'IPv6' => 0,
 				],
+				'excludenamed' => false,
+				'excludetemp' => false,
 			]
 		);
 
@@ -64,6 +68,13 @@ class HTMLUserTextField extends HTMLTextField {
 				!( $user->isHidden() && !( $this->mParent && $this->mParent->getUser()->isAllowed( 'hideuser' ) ) )
 			) ) {
 				return $this->msg( 'htmlform-user-not-exists', $user->getName() );
+			}
+
+			// check if the user account type matches the account type filter
+			$excludeNamed = $this->mParams['excludenamed'] ?? null;
+			$excludeTemp = $this->mParams['excludetemp'] ?? null;
+			if ( ( $excludeTemp && $user->isTemp() ) || ( $excludeNamed && $user->isNamed() ) ) {
+				return $this->msg( 'htmlform-user-not-valid', $user->getName() );
 			}
 		} else {
 			// not a valid username
@@ -135,6 +146,14 @@ class HTMLUserTextField extends HTMLTextField {
 	}
 
 	protected function getInputWidget( $params ) {
+		if ( isset( $this->mParams['excludenamed'] ) ) {
+			$params['excludenamed'] = $this->mParams['excludenamed'];
+		}
+
+		if ( isset( $this->mParams['excludetemp'] ) ) {
+			$params['excludetemp'] = $this->mParams['excludetemp'];
+		}
+
 		return new UserInputWidget( $params );
 	}
 
