@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.50.4
+ * OOUI v0.51.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-07-11T22:35:09Z
+ * Date: 2024-09-19T17:13:45Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -343,6 +343,10 @@
   background-image: linear-gradient(135deg, #fff 25%, transparent 25%, transparent 50%, #fff 50%, #fff 75%, transparent 75%, transparent);
   background-size: 1.5625em 1.5625em;
   animation: oo-ui-pendingElement-stripes 650ms linear infinite;
+}
+.oo-ui-pendingElement-pending:dir( rtl ) {
+  background-image: linear-gradient(45deg, #fff 25%, transparent 25%, transparent 50%, #fff 50%, #fff 75%, transparent 75%, transparent);
+  animation-direction: reverse;
 }
 @keyframes oo-ui-pendingElement-stripes {
   0% {

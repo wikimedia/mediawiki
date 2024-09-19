@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.50.4
+ * OOUI v0.51.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-07-11T22:35:09Z
+ * Date: 2024-09-19T17:13:45Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -168,24 +168,24 @@
   color: var(--color-progressive, #36c);
 }
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:hover {
-  color: var(--color-progressive--hover, #447ff5);
+  color: var(--color-progressive--hover, #4b77d6);
 }
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:active,
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
-  color: var(--color-progressive--active, #2a4b8d);
-  border-color: var(--color-progressive--active, #2a4b8d);
+  color: var(--color-progressive--active, #233566);
+  border-color: var(--color-progressive--active, #233566);
   box-shadow: none;
 }
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button {
   color: var(--color-destructive, #d73333);
 }
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button:hover {
-  color: var(--color-destructive--hover, #ff4242);
+  color: var(--color-destructive--hover, #fc493b);
 }
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button:active,
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
-  color: var(--color-destructive--active, #b32424);
-  border-color: var(--color-destructive--active, #b32424);
+  color: var(--color-destructive--active, #9f3526);
+  border-color: var(--color-destructive--active, #9f3526);
   box-shadow: none;
 }
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled[class*='oo-ui-flaggedElement'] > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon,
@@ -260,9 +260,9 @@
   box-shadow: inset 0 0 0 1px var(--box-shadow-color-progressive--focus, #36c);
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-buttonElement-active > .oo-ui-buttonElement-button {
-  background-color: var(--background-color-progressive--active, #2a4b8d);
+  background-color: var(--background-color-progressive--active, #233566);
   color: var(--color-inverted-fixed, #fff);
-  border-color: var(--border-color-input-binary--active, #2a4b8d);
+  border-color: var(--border-color-input-binary--active, #233566);
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-buttonElement-active > .oo-ui-buttonElement-button:focus {
   border-color: var(--border-color-progressive--focus, #36c);
@@ -280,7 +280,7 @@
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:hover {
   background-color: var(--background-color-base, #fff);
-  border-color: var(--border-color-progressive--hover, #447ff5);
+  border-color: var(--border-color-progressive--hover, #4b77d6);
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:focus {
   border-color: var(--color-progressive--focus, #36c);
@@ -292,8 +292,8 @@
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive.oo-ui-popupToolGroup-active > .oo-ui-buttonElement-button {
   background-color: var(--background-color-progressive-subtle, #eaf3ff);
-  color: var(--color-progressive--active, #2a4b8d);
-  border-color: var(--color-progressive--active, #2a4b8d);
+  color: var(--color-progressive--active, #233566);
+  border-color: var(--color-progressive--active, #233566);
   box-shadow: none;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button {
@@ -301,7 +301,7 @@
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button:hover {
   background-color: var(--background-color-base, #fff);
-  border-color: var(--border-color-destructive--hover, #ff4242);
+  border-color: var(--border-color-destructive--hover, #fc493b);
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button:focus {
   border-color: var(--color-destructive--focus, #36c);
@@ -312,9 +312,9 @@
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive.oo-ui-popupToolGroup-active > .oo-ui-buttonElement-button {
-  background-color: var(--background-color-destructive-subtle, #fee7e6);
-  color: var(--color-destructive--active, #b32424);
-  border-color: var(--color-destructive--active, #b32424);
+  background-color: var(--background-color-destructive-subtle, #ffe9e5);
+  color: var(--color-destructive--active, #9f3526);
+  border-color: var(--color-destructive--active, #9f3526);
   box-shadow: none;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button {
@@ -323,8 +323,8 @@
   border-color: var(--background-color-progressive, #36c);
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:hover {
-  background-color: var(--color-progressive--hover, #447ff5);
-  border-color: var(--color-progressive--hover, #447ff5);
+  background-color: var(--color-progressive--hover, #4b77d6);
+  border-color: var(--color-progressive--hover, #4b77d6);
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:focus {
   border-color: var(--color-progressive--focus, #36c);
@@ -336,8 +336,8 @@
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive.oo-ui-popupToolGroup-active > .oo-ui-buttonElement-button {
   color: var(--color-inverted-fixed, #fff);
-  background-color: var(--color-progressive--active, #2a4b8d);
-  border-color: var(--color-progressive--active, #2a4b8d);
+  background-color: var(--color-progressive--active, #233566);
+  border-color: var(--color-progressive--active, #233566);
   box-shadow: none;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button {
@@ -346,8 +346,8 @@
   border-color: var(--background-color-error, #d73333);
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button:hover {
-  background-color: var(--color-destructive--hover, #ff4242);
-  border-color: var(--color-destructive--hover, #ff4242);
+  background-color: var(--color-destructive--hover, #fc493b);
+  border-color: var(--color-destructive--hover, #fc493b);
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button:focus {
   border-color: var(--color-destructive--focus, #36c);
@@ -359,8 +359,8 @@
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive.oo-ui-buttonElement-active > .oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive.oo-ui-popupToolGroup-active > .oo-ui-buttonElement-button {
   color: var(--color-inverted-fixed, #fff);
-  background-color: var(--color-destructive--active, #b32424);
-  border-color: var(--color-destructive--active, #b32424);
+  background-color: var(--color-destructive--active, #9f3526);
+  border-color: var(--color-destructive--active, #9f3526);
   box-shadow: none;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-flaggedElement-primary > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon,
@@ -448,6 +448,10 @@
   background-image: linear-gradient(135deg, var(--background-color-base, #fff) 25%, transparent 25%, transparent 50%, var(--background-color-base, #fff) 50%, var(--background-color-base, #fff) 75%, transparent 75%, transparent);
   background-size: 1.4285714em 1.4285714em;
   animation: oo-ui-pendingElement-stripes 650ms linear infinite;
+}
+.oo-ui-pendingElement-pending:dir( rtl ) {
+  background-image: linear-gradient(45deg, var(--background-color-base, #fff) 25%, transparent 25%, transparent 50%, var(--background-color-base, #fff) 50%, var(--background-color-base, #fff) 75%, transparent 75%, transparent);
+  animation-direction: reverse;
 }
 @keyframes oo-ui-pendingElement-stripes {
   0% {
@@ -886,16 +890,16 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   right: 8px;
 }
 .oo-ui-messageWidget.oo-ui-messageWidget-block.oo-ui-flaggedElement-error {
-  background-color: var(--background-color-error-subtle, #fee7e6);
-  border-color: var(--border-color-error, #b32424);
+  background-color: var(--background-color-error-subtle, #ffe9e5);
+  border-color: var(--border-color-error, #9f3526);
 }
 .oo-ui-messageWidget.oo-ui-messageWidget-block.oo-ui-flaggedElement-warning {
-  background-color: var(--background-color-warning-subtle, #fef6e7);
-  border-color: var(--border-color-warning, #a66200);
+  background-color: var(--background-color-warning-subtle, #fdf2d5);
+  border-color: var(--border-color-warning, #987027);
 }
 .oo-ui-messageWidget.oo-ui-messageWidget-block.oo-ui-flaggedElement-success {
-  background-color: var(--background-color-success-subtle, #d5fdf4);
-  border-color: var(--border-color-success, #096450);
+  background-color: var(--background-color-success-subtle, #dff2eb);
+  border-color: var(--border-color-success, #196551);
 }
 .oo-ui-messageWidget.oo-ui-messageWidget-block.oo-ui-flaggedElement-notice {
   background-color: var(--background-color-notice-subtle, #eaecf0);
@@ -905,7 +909,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   color: var(--color-error, #d73333);
 }
 .oo-ui-messageWidget.oo-ui-flaggedElement-success:not( .oo-ui-messageWidget-block ) {
-  color: var(--color-success, #14866d);
+  color: var(--color-success, #14876b);
 }
 .oo-ui-messageWidget + .oo-ui-messageWidget {
   margin-top: 8px;
@@ -1292,12 +1296,12 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   outline: 1px solid transparent;
 }
 .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:hover + span {
-  border-color: var(--border-color-progressive--hover, #447ff5);
+  border-color: var(--border-color-progressive--hover, #4b77d6);
 }
 .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:active + span {
-  background-color: var(--background-color-progressive--active, #2a4b8d);
-  border-color: var(--border-color-input-binary--active, #2a4b8d);
-  box-shadow: inset 0 0 0 1px var(--box-shadow-color-progressive--active, #2a4b8d);
+  background-color: var(--background-color-progressive--active, #233566);
+  border-color: var(--border-color-input-binary--active, #233566);
+  box-shadow: inset 0 0 0 1px var(--box-shadow-color-progressive--active, #233566);
 }
 .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked + span,
 .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:indeterminate + span {
@@ -1312,14 +1316,14 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked:hover + span,
 .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:indeterminate:hover + span {
-  background-color: var(--background-color-progressive--hover, #447ff5);
-  border-color: var(--border-color-progressive--hover, #447ff5);
+  background-color: var(--background-color-progressive--hover, #4b77d6);
+  border-color: var(--border-color-progressive--hover, #4b77d6);
 }
 .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:checked:active + span,
 .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:indeterminate:active + span {
-  background-color: var(--background-color-progressive--active, #2a4b8d);
-  border-color: var(--border-color-input-binary--active, #2a4b8d);
-  box-shadow: inset 0 0 0 1px var(--box-shadow-color-progressive--active, #2a4b8d);
+  background-color: var(--background-color-progressive--active, #233566);
+  border-color: var(--border-color-input-binary--active, #233566);
+  box-shadow: inset 0 0 0 1px var(--box-shadow-color-progressive--active, #233566);
 }
 
 .oo-ui-checkboxMultiselectInputWidget .oo-ui-fieldLayout {
@@ -1474,11 +1478,11 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   transition-duration: 100ms;
 }
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:hover + span {
-  border-color: var(--border-color-progressive--hover, #447ff5);
+  border-color: var(--border-color-progressive--hover, #4b77d6);
 }
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:active + span {
-  background-color: var(--background-color-progressive--active, #2a4b8d);
-  border-color: var(--border-color-input-binary--active, #2a4b8d);
+  background-color: var(--background-color-progressive--active, #233566);
+  border-color: var(--border-color-input-binary--active, #233566);
 }
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked + span {
   border-color: var(--border-color-input-binary--checked, #36c);
@@ -1487,14 +1491,14 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border-color: var(--background-color-base-fixed, #fff);
 }
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:hover + span {
-  border-color: var(--border-color-progressive--hover, #447ff5);
+  border-color: var(--border-color-progressive--hover, #4b77d6);
 }
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:active + span {
-  border-color: var(--border-color-input-binary--active, #2a4b8d);
-  box-shadow: inset 0 0 0 1px var(--box-shadow-color-progressive--active, #2a4b8d);
+  border-color: var(--border-color-input-binary--active, #233566);
+  box-shadow: inset 0 0 0 1px var(--box-shadow-color-progressive--active, #233566);
 }
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:checked:active + span::before {
-  border-color: var(--border-color-input-binary--active, #2a4b8d);
+  border-color: var(--border-color-input-binary--active, #233566);
 }
 
 .oo-ui-radioSelectInputWidget .oo-ui-fieldLayout {
@@ -1652,7 +1656,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
     outline-offset: -2px;
   }
   .oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid textarea.oo-ui-inputWidget-input:focus {
-    outline-color: var(--border-color-error, #b32424);
+    outline-color: var(--border-color-error, #9f3526);
   }
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-iconElement-icon {
@@ -1662,13 +1666,13 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   opacity: 0.87;
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid .oo-ui-inputWidget-input {
-  border-color: var(--border-color-error, #b32424);
+  border-color: var(--border-color-error, #9f3526);
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid .oo-ui-inputWidget-input:hover {
-  border-color: var(--border-color-error, #b32424);
+  border-color: var(--border-color-error, #9f3526);
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid .oo-ui-inputWidget-input:focus {
-  border-color: var(--border-color-error, #b32424);
+  border-color: var(--border-color-error, #9f3526);
   box-shadow: inset 0 0 0 1px var(--box-shadow-color-destructive--focus, #36c);
 }
 .oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-inputWidget-input {
@@ -2214,12 +2218,12 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-selectFileInputWidget.oo-ui-widget-enabled.oo-ui-selectFileInputWidget-canDrop.oo-ui-selectFileInputWidget-dropTarget,
 .oo-ui-selectFileInputWidget.oo-ui-widget-enabled.oo-ui-selectFileInputWidget-canDrop .oo-ui-selectFileInputWidget-info > .oo-ui-inputWidget-input {
   background-color: var(--background-color-progressive-subtle, #eaf3ff);
-  color: var(--color-progressive--active, #2a4b8d);
+  color: var(--color-progressive--active, #233566);
 }
 .oo-ui-selectFileInputWidget.oo-ui-widget-enabled.oo-ui-selectFileInputWidget-cantDrop.oo-ui-selectFileInputWidget-dropTarget,
 .oo-ui-selectFileInputWidget.oo-ui-widget-enabled.oo-ui-selectFileInputWidget-cantDrop .oo-ui-selectFileInputWidget-info > .oo-ui-inputWidget-input {
-  background-color: var(--background-color-error-subtle, #fee7e6);
-  color: var(--border-color-error, #b32424);
+  background-color: var(--background-color-error-subtle, #ffe9e5);
+  color: var(--border-color-error, #9f3526);
 }
 .oo-ui-selectFileInputWidget.oo-ui-widget-disabled.oo-ui-selectFileInputWidget-dropTarget,
 .oo-ui-selectFileInputWidget.oo-ui-selectFileInputWidget-empty.oo-ui-widget-disabled.oo-ui-selectFileInputWidget-dropTarget {
@@ -2301,18 +2305,18 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:hover {
   background-color: var(--background-color-base, #fff);
-  border-color: var(--border-color-progressive--hover, #447ff5);
+  border-color: var(--border-color-progressive--hover, #4b77d6);
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:hover .oo-ui-toggleSwitchWidget-grip {
   background-color: var(--background-color-base, #fff);
-  border-color: var(--border-color-progressive--hover, #447ff5);
+  border-color: var(--border-color-progressive--hover, #4b77d6);
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:active,
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:active:hover,
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:active:focus {
-  background-color: var(--background-color-progressive--active, #2a4b8d);
-  border-color: var(--border-color-input-binary--active, #2a4b8d);
-  box-shadow: inset 0 0 0 1px var(--box-shadow-color-progressive--active, #2a4b8d);
+  background-color: var(--background-color-progressive--active, #233566);
+  border-color: var(--border-color-input-binary--active, #233566);
+  box-shadow: inset 0 0 0 1px var(--box-shadow-color-progressive--active, #233566);
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:active .oo-ui-toggleSwitchWidget-grip,
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:active:hover .oo-ui-toggleSwitchWidget-grip,
@@ -2337,13 +2341,13 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border-color: var(--background-color-base, #fff);
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled.oo-ui-toggleWidget-on:hover {
-  background-color: var(--background-color-progressive--hover, #447ff5);
-  border-color: var(--border-color-progressive--hover, #447ff5);
+  background-color: var(--background-color-progressive--hover, #4b77d6);
+  border-color: var(--border-color-progressive--hover, #4b77d6);
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled.oo-ui-toggleWidget-on:active,
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled.oo-ui-toggleWidget-on:active:hover {
-  background-color: var(--background-color-progressive--active, #2a4b8d);
-  border-color: var(--border-color-input-binary--active, #2a4b8d);
+  background-color: var(--background-color-progressive--active, #233566);
+  border-color: var(--border-color-input-binary--active, #233566);
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled.oo-ui-toggleWidget-on:focus {
   border-color: var(--border-color-input-binary--checked, #36c);

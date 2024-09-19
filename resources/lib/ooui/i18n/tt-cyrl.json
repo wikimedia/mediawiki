@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Ajdar",
+			"Don Alessandro",
 			"Ерней",
 			"Ильнар"
 		]
@@ -9,7 +10,7 @@
 	"ooui-copytextlayout-copy": "Күчермә алу",
 	"ooui-outline-control-move-down": "Элементны аска күчерү",
 	"ooui-outline-control-move-up": "Элементны өскә күчерү",
-	"ooui-outline-control-remove": "Пунктны бетерергә",
+	"ooui-outline-control-remove": "Элементны бетерү",
 	"ooui-toolbar-more": "Тагын",
 	"ooui-toolgroup-expand": "Күбрәк",
 	"ooui-toolgroup-collapse": "Азрак",

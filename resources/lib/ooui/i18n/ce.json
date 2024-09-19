@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
+			"Исмаил Садуев",
 			"Умар"
 		]
 	},
@@ -14,7 +15,7 @@
 	"ooui-toolgroup-collapse": "КӀезиг",
 	"ooui-item-remove": "ДӀайаккха",
 	"ooui-dialog-message-accept": "ХӀаъ",
-	"ooui-dialog-message-reject": "Цаоьшу",
+	"ooui-dialog-message-reject": "ДӀадаккхар",
 	"ooui-dialog-process-error": "Цхьа хӀума галдаьлла",
 	"ooui-dialog-process-dismiss": "ДӀачӀагӀа",
 	"ooui-dialog-process-retry": "Кхин цӀа гӀорта",

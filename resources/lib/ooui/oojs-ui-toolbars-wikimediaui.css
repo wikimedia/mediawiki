@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.50.4
+ * OOUI v0.51.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2024 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2024-07-11T22:35:09Z
+ * Date: 2024-09-19T17:13:45Z
  */
 .oo-ui-tool {
   box-sizing: border-box;
@@ -95,7 +95,7 @@
 .oo-ui-tool.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive.oo-ui-tool-active > .oo-ui-tool-link,
 .oo-ui-tool.oo-ui-widget-enabled.oo-ui-flaggedElement-progressive.oo-ui-popupToolGroup-active > .oo-ui-tool-link {
   background-color: var(--background-color-progressive-subtle, #eaf3ff);
-  color: var(--color-progressive--active, #2a4b8d);
+  color: var(--color-progressive--active, #233566);
   box-shadow: none;
 }
 .oo-ui-tool.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive > .oo-ui-tool-link {
@@ -111,8 +111,8 @@
 .oo-ui-tool.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive > .oo-ui-tool-link:active,
 .oo-ui-tool.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive.oo-ui-tool-active > .oo-ui-tool-link,
 .oo-ui-tool.oo-ui-widget-enabled.oo-ui-flaggedElement-destructive.oo-ui-popupToolGroup-active > .oo-ui-tool-link {
-  background-color: var(--background-color-destructive-subtle, #fee7e6);
-  color: var(--color-destructive--active, #b32424);
+  background-color: var(--background-color-destructive-subtle, #ffe9e5);
+  color: var(--color-destructive--active, #9f3526);
   box-shadow: none;
 }
 .oo-ui-tool.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-tool-link {
@@ -120,7 +120,7 @@
   background-color: var(--color-progressive, #36c);
 }
 .oo-ui-tool.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-tool-link:hover {
-  background-color: var(--color-progressive--hover, #447ff5);
+  background-color: var(--color-progressive--hover, #4b77d6);
 }
 .oo-ui-tool.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-tool-link:focus {
   outline: 1px solid var(--color-progressive--focus, #36c);
@@ -129,7 +129,7 @@
 .oo-ui-tool.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-tool-link:active,
 .oo-ui-tool.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive.oo-ui-tool-active > .oo-ui-tool-link {
   color: var(--color-inverted, #fff);
-  background-color: var(--color-progressive--active, #2a4b8d);
+  background-color: var(--color-progressive--active, #233566);
   box-shadow: none;
 }
 .oo-ui-tool.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive.oo-ui-widget-disabled > .oo-ui-tool-link,
@@ -142,7 +142,7 @@
   background-color: var(--color-destructive, #d73333);
 }
 .oo-ui-tool.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive > .oo-ui-tool-link:hover {
-  background-color: var(--color-destructive--hover, #ff4242);
+  background-color: var(--color-destructive--hover, #fc493b);
 }
 .oo-ui-tool.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive > .oo-ui-tool-link:focus {
   outline: 1px solid var(--color-destructive--focus, #36c);
@@ -151,7 +151,7 @@
 .oo-ui-tool.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive > .oo-ui-tool-link:active,
 .oo-ui-tool.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive.oo-ui-tool-active > .oo-ui-tool-link {
   color: var(--color-inverted, #fff);
-  background-color: var(--color-destructive--active, #b32424);
+  background-color: var(--color-destructive--active, #9f3526);
   box-shadow: none;
 }
 .oo-ui-tool.oo-ui-widget-enabled.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive.oo-ui-widget-disabled > .oo-ui-tool-link,
@@ -443,7 +443,7 @@
 .oo-ui-popupToolGroup.oo-ui-flaggedElement-progressive.oo-ui-tool-active > .oo-ui-popupToolGroup-handle,
 .oo-ui-popupToolGroup.oo-ui-flaggedElement-progressive.oo-ui-popupToolGroup-active > .oo-ui-popupToolGroup-handle {
   background-color: var(--background-color-progressive-subtle, #eaf3ff);
-  color: var(--color-progressive--active, #2a4b8d);
+  color: var(--color-progressive--active, #233566);
   box-shadow: none;
 }
 .oo-ui-popupToolGroup.oo-ui-flaggedElement-destructive > .oo-ui-popupToolGroup-handle {
@@ -459,8 +459,8 @@
 .oo-ui-popupToolGroup.oo-ui-flaggedElement-destructive > .oo-ui-popupToolGroup-handle:active,
 .oo-ui-popupToolGroup.oo-ui-flaggedElement-destructive.oo-ui-tool-active > .oo-ui-popupToolGroup-handle,
 .oo-ui-popupToolGroup.oo-ui-flaggedElement-destructive.oo-ui-popupToolGroup-active > .oo-ui-popupToolGroup-handle {
-  background-color: var(--background-color-destructive-subtle, #fee7e6);
-  color: var(--color-destructive--active, #b32424);
+  background-color: var(--background-color-destructive-subtle, #ffe9e5);
+  color: var(--color-destructive--active, #9f3526);
   box-shadow: none;
 }
 .oo-ui-popupToolGroup.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-popupToolGroup-handle {
@@ -468,7 +468,7 @@
   background-color: var(--color-progressive, #36c);
 }
 .oo-ui-popupToolGroup.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-popupToolGroup-handle:hover {
-  background-color: var(--color-progressive--hover, #447ff5);
+  background-color: var(--color-progressive--hover, #4b77d6);
 }
 .oo-ui-popupToolGroup.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-popupToolGroup-handle:focus {
   outline: 1px solid var(--color-progressive--focus, #36c);
@@ -477,7 +477,7 @@
 .oo-ui-popupToolGroup.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive > .oo-ui-popupToolGroup-handle:active,
 .oo-ui-popupToolGroup.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive.oo-ui-tool-active > .oo-ui-popupToolGroup-handle {
   color: var(--color-inverted, #fff);
-  background-color: var(--color-progressive--active, #2a4b8d);
+  background-color: var(--color-progressive--active, #233566);
   box-shadow: none;
 }
 .oo-ui-popupToolGroup.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-progressive.oo-ui-widget-disabled > .oo-ui-popupToolGroup-handle,
@@ -490,7 +490,7 @@
   background-color: var(--color-destructive, #d73333);
 }
 .oo-ui-popupToolGroup.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive > .oo-ui-popupToolGroup-handle:hover {
-  background-color: var(--color-destructive--hover, #ff4242);
+  background-color: var(--color-destructive--hover, #fc493b);
 }
 .oo-ui-popupToolGroup.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive > .oo-ui-popupToolGroup-handle:focus {
   outline: 1px solid var(--color-destructive--focus, #36c);
@@ -499,7 +499,7 @@
 .oo-ui-popupToolGroup.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive > .oo-ui-popupToolGroup-handle:active,
 .oo-ui-popupToolGroup.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive.oo-ui-tool-active > .oo-ui-popupToolGroup-handle {
   color: var(--color-inverted, #fff);
-  background-color: var(--color-destructive--active, #b32424);
+  background-color: var(--color-destructive--active, #9f3526);
   box-shadow: none;
 }
 .oo-ui-popupToolGroup.oo-ui-flaggedElement-primary.oo-ui-flaggedElement-destructive.oo-ui-widget-disabled > .oo-ui-popupToolGroup-handle,

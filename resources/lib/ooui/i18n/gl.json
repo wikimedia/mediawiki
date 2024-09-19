@@ -21,12 +21,14 @@
 	"ooui-dialog-message-reject": "Cancelar",
 	"ooui-dialog-process-error": "Algo foi mal",
 	"ooui-dialog-process-dismiss": "Agochar",
-	"ooui-dialog-process-retry": "Inténteo de novo",
+	"ooui-dialog-process-retry": "Inténtao de novo",
 	"ooui-dialog-process-continue": "Continuar",
 	"ooui-combobox-button-label": "Alternar as opcións",
 	"ooui-selectfile-button-select": "Seleccionar un ficheiro",
+	"ooui-selectfile-button-select-multiple": "Seleccionar ficheiros",
 	"ooui-selectfile-placeholder": "Non se seleccionou ningún ficheiro",
-	"ooui-selectfile-dragdrop-placeholder": "Solte un ficheiro aquí",
+	"ooui-selectfile-dragdrop-placeholder": "Solta un ficheiro aquí",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Solta os ficheiros aquí",
 	"ooui-popup-widget-close-button-aria-label": "Pechar",
 	"ooui-field-help": "Axuda"
 }

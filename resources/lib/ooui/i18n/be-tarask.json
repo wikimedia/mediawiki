@@ -27,7 +27,9 @@
 	"ooui-dialog-process-continue": "Працягваць",
 	"ooui-combobox-button-label": "Пераключыць можнасьці",
 	"ooui-selectfile-button-select": "Абраць файл",
+	"ooui-selectfile-button-select-multiple": "Абярыце файлы",
 	"ooui-selectfile-placeholder": "Ніводзін файл не абраны",
 	"ooui-selectfile-dragdrop-placeholder": "Перацягніце файл сюды",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Перацягніце файлы сюды",
 	"ooui-field-help": "Дапамога"
 }

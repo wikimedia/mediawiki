@@ -33,6 +33,7 @@
 	"ooui-dialog-process-dismiss": "Hylkää",
 	"ooui-dialog-process-retry": "Yritä uudelleen",
 	"ooui-dialog-process-continue": "Jatka",
+	"ooui-combobox-button-label": "Vaihda valinnat",
 	"ooui-selectfile-button-select": "Valitse tiedosto",
 	"ooui-selectfile-button-select-multiple": "Valitse tiedostot",
 	"ooui-selectfile-placeholder": "Tiedostoa ei ole valittu",
