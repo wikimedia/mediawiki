@@ -315,7 +315,7 @@ class LocalFileMoveBatch {
 			$unlockScope->cancel();
 			$this->db->onTransactionResolution( function () {
 				$this->releaseLocks();
-			} );
+			}, __METHOD__ );
 		} else {
 			ScopedCallback::consume( $unlockScope );
 		}

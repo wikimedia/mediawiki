@@ -49,7 +49,7 @@ class UpdateRestrictions extends Maintenance {
 			$this->fatalError( "page_restrictions table does not exist" );
 		}
 
-		if ( !$dbw->fieldExists( 'page', 'page_restrictions' ) ) {
+		if ( !$dbw->fieldExists( 'page', 'page_restrictions', __METHOD__ ) ) {
 			$this->output( "Migration is not needed.\n" );
 			return true;
 		}

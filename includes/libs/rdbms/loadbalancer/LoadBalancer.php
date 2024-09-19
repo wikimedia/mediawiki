@@ -1850,11 +1850,12 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		if ( !$this->hasReplicaServers() ) {
 			return [ ServerInfo::WRITER_INDEX => 0 ]; // no replication = no lag
 		}
+		$fname = __METHOD__;
 		return $this->wanCache->getWithSetCallback(
 			$this->wanCache->makeGlobalKey( 'rdbms-lags', $this->clusterName ?? '' ),
 			// Add jitter to avoid stampede
 			10 + mt_rand( 1, 10 ),
-			function () {
+			function () use ( $fname ) {
 				$lags = [];
 				foreach ( $this->serverInfo->getStreamingReplicaIndexes() as $i ) {
 					$conn = $this->getServerConnection(
@@ -1864,7 +1865,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 					);
 					if ( $conn ) {
 						$lags[$i] = $conn->getLag();
-						$conn->close();
+						$conn->close( $fname );
 					} else {
 						$lags[$i] = false;
 					}
