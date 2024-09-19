@@ -321,7 +321,7 @@ class Pingback {
 		$request = $this->http->create( $this->eventIntakeUri, [
 			'method' => 'POST',
 			'postData' => FormatJson::encode( $data ),
-		] );
+		], __METHOD__ );
 		$request->setHeader( 'Content-Type', 'application/json' );
 
 		$result = $request->execute();
