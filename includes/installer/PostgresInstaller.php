@@ -423,41 +423,17 @@ class PostgresInstaller extends DatabaseInstaller {
 
 	public function setupPLpgSQL() {
 		// Connect as the install user, since it owns the database and so is
-		// the user that needs to run "CREATE LANGUAGE"
+		// the user that needs to run "CREATE EXTENSION"
 		$status = $this->getConnection( self::CONN_CREATE_SCHEMA );
 		if ( !$status->isOK() ) {
 			return $status;
 		}
 		$conn = $status->getDB();
-
-		$exists = (bool)$conn->selectField( '"pg_catalog"."pg_language"', '1',
-			[ 'lanname' => 'plpgsql' ], __METHOD__ );
-		if ( $exists ) {
-			// Already exists, nothing to do
-			return Status::newGood();
-		}
-
-		// plpgsql is not installed, but if we have a pg_pltemplate table, we
-		// should be able to create it
-		$exists = (bool)$conn->selectField(
-			[ '"pg_catalog"."pg_class"', '"pg_catalog"."pg_namespace"' ],
-			'1',
-			[
-				'pg_namespace.oid=relnamespace',
-				'nspname' => 'pg_catalog',
-				'relname' => 'pg_pltemplate',
-			],
-			__METHOD__ );
-		if ( $exists ) {
-			try {
-				$conn->query( 'CREATE LANGUAGE plpgsql', __METHOD__ );
-			} catch ( DBQueryError $e ) {
-				return Status::newFatal( 'config-pg-no-plpgsql', $this->getVar( 'wgDBname' ) );
-			}
-		} else {
+		try {
+			$conn->query( 'CREATE EXTENSION IF NOT EXISTS plpgsql', __METHOD__ );
+		} catch ( DBQueryError $e ) {
 			return Status::newFatal( 'config-pg-no-plpgsql', $this->getVar( 'wgDBname' ) );
 		}
-
 		return Status::newGood();
 	}
 }
