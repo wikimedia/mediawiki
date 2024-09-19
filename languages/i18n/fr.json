@@ -2739,6 +2739,7 @@
 	"block-options": "Options supplémentaires :",
 	"block-options-description": "Ces optione peuvent vous aider à surveiller cet utilisateur pour éviter d'autres problèmes.",
 	"block-reason": "Motif :",
+	"block-reason-other": "Raison supplémentaire ou autre",
 	"block-user-label": "Quel utilisateur souhaitez-vous bloquer ?",
 	"block-user-description": "Un utilisateur peut être défini par un nom d'utilisateur, une adresse IP ou une plage IP.",
 	"block-user-placeholder": "Commencez à saisir un utilisateur...",

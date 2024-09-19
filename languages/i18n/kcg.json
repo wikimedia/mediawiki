@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
+			"Friday musa",
 			"Kambai Akau"
 		]
 	},
@@ -1429,6 +1430,10 @@
 	"ipboptions": "áwa 2:2 hours,mam 1:1 day,mmam 3:3 days,sati 1:1 week,a̱yaasati 2:2 weeks,zwat 1:1 month,zwát 3:3 months,zwát 6:6 months,a̱lyia̱ 1:1 year,a̱sang sangba̱p:infinite",
 	"blockipsuccesstext": "Á̱ ku fwun [[Special:Contributions/$1|$1]].<br />\nNwuan [[Special:BlockList|lyulyoot fwun]] hu a bu-nwuan nfwun na.",
 	"ipb-blocklist-contribs": "Jhyet mbwak {{GENDER:$1|$1}}",
+	"block-expiry-custom-minutes": "mminti",
+	"block-expiry-custom-days": "mma̱m",
+	"block-expiry-custom-weeks": "sa̱ti",
+	"block-expiry-custom-years": "lilyia̱",
 	"unblocked-ip": "Á̱ ti̱n fwun [[Special:Contributions/$1|$1]] hu.",
 	"infiniteblock": "a̱sang-sangba̱p",
 	"blocklink": "fwun",

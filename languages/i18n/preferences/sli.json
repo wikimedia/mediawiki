@@ -9,7 +9,7 @@
 			"Äberlausitzer"
 		]
 	},
-	"preferences": "Eenstellunga",
+	"preferences": "Eistellunga",
 	"saveprefs": "Eenstallunga speichern",
 	"savedprefs": "Denne Einstallunga waan gespeichert.",
 	"prefs-personal": "Nutzerdaten",
@@ -41,7 +41,7 @@
 	"emailauthenticated": "Denne E-Mail-Adresse wourde oam $2 im $3 Seeger bestätigt.",
 	"allowemail": "E-Mail-Empfang vu andern Benutzern ermeeglichn",
 	"tog-enotifwatchlistpages": "Bei Änderunga voo beobachteta Seyta mer an E-mail schicka",
-	"tog-enotifusertalkpages": "Bei Änderunga oa menner Benutzer-Dischkurseite E-mail oa mich schicka",
+	"tog-enotifusertalkpages": "Bei Änderunga oa meiner Benutzer-Dischkursseite E-mail senda",
 	"tog-enotifminoredits": "Au bei klenn Änderunga E-mail oa mich schicka",
 	"tog-enotifrevealaddr": "Denne E-mail Oaschrift wart ei Benoachrichtigungs-E-mails oagezäat",
 	"prefs-rendering": "Aussahn",
@@ -59,7 +59,7 @@
 	"tog-underline": "Verknipfonga unterstreeicha:",
 	"underline-default": "obhängig voo dan Eistellunga der Suchmaschine",
 	"tog-showhiddencats": "Vestackte Kategorien oazäan",
-	"prefs-editing": "Bearbta",
+	"prefs-editing": "Beoarbeeta",
 	"tog-editsectiononrightclick": "Eenzelne Oabschniete per Rechtsklick uf de Ieberschrift beoarbeeta",
 	"tog-editondblclick": "Seita mit Duppelklick beoarbeeta",
 	"editfont-style": "Schriftfamilie fier dann Text eim Beorbeetungsfanster:",
