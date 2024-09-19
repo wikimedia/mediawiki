@@ -738,6 +738,8 @@ because of Phabricator reports.
   rights from namespace protection ($wgNamespaceProtection) since that's
   only meant to prevent write actions.
 * Image captions are no longer trimmed.
+* 'SpecialPasswordResetOnSubmit' hook handlers can now receive both the
+  username and the email provided by the user, instead of only one of them.
 * …
 
 == Compatibility ==

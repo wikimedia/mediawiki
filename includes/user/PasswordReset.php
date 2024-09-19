@@ -230,7 +230,16 @@ class PasswordReset implements LoggerAwareInterface {
 		$users = [];
 
 		if ( $username !== null ) {
-			$users[] = $this->userFactory->newFromName( $username );
+			$user = $this->userFactory->newFromName( $username );
+			// User must have an email address to attempt sending a password reset email
+			if ( $user && $user->isRegistered() && $user->getEmail() && (
+				!$this->userOptionsLookup->getBoolOption( $user, 'requireemail' ) ||
+				$user->getEmail() === $email
+			) ) {
+				// Either providing the email in the form is not required to request a reset,
+				// or the correct email was provided
+				$users[] = $user;
+			}
 
 		} elseif ( $email !== null ) {
 			foreach ( $this->getUsersByEmail( $email ) as $userIdent ) {
@@ -249,10 +258,7 @@ class PasswordReset implements LoggerAwareInterface {
 		// Check for hooks (captcha etc), and allow them to modify the users list
 		$data = [
 			'Username' => $username,
-			// Email is not provided to the hooks when we're resetting by username.
-			// We check for 'requireemail' below rather than relying on the hooks to do it.
-			// (However, we rely on the hooks doing it when resetting by email? That's a bit weird.)
-			'Email' => $username === null ? $email : null,
+			'Email' => $email,
 		];
 
 		$error = [];
@@ -260,39 +266,14 @@ class PasswordReset implements LoggerAwareInterface {
 			return StatusValue::newFatal( Message::newFromSpecifier( $error ) );
 		}
 
+		if ( !$users ) {
+			// Don't reveal whether or not a username or email address is in use
+			return StatusValue::newGood();
+		}
+
 		// Get the first element in $users by using `reset` function since
 		// the key '0' might have been unset from $users array by a hook handler.
 		$firstUser = reset( $users );
-
-		$requireEmail = $username !== null
-			&& $firstUser
-			&& $this->userOptionsLookup->getBoolOption( $firstUser, 'requireemail' );
-		if ( $requireEmail && $email === null ) {
-			// Email is required but not supplied: pretend everything's fine.
-			return StatusValue::newGood();
-		}
-
-		if ( !$users ) {
-			if ( $username === null ) {
-				// Don't reveal whether or not an email address is in use
-				return StatusValue::newGood();
-			} else {
-				return StatusValue::newFatal( 'noname' );
-			}
-		}
-
-		// If the user doesn't exist, or if the user doesn't have an email address,
-		// don't disclose the information. We want to pretend everything is ok per T238961.
-		// Note that all the users will have the same email address (or none),
-		// so there's no need to check more than the first.
-		if ( !$firstUser || !$firstUser->getId() || !$firstUser->getEmail() ) {
-			return StatusValue::newGood();
-		}
-
-		// Email is required but the email doesn't match: pretend everything's fine.
-		if ( $requireEmail && $firstUser->getEmail() !== $email ) {
-			return StatusValue::newGood();
-		}
 
 		$this->hookRunner->onUser__mailPasswordInternal( $performingUser, $ip, $firstUser );
 
