@@ -20,6 +20,8 @@
 
 namespace MediaWiki\Specials;
 
+use HTMLForm;
+use HTMLUserTextField;
 use IDBAccessObject;
 use LogEventsList;
 use LogPage;
@@ -715,42 +717,33 @@ class SpecialUserRights extends SpecialPage {
 	}
 
 	/**
-	 * Output a form to allow searching for a user
+	 * Display a HTMLUserTextField form to allow searching for a named user only
 	 */
 	protected function switchForm() {
-		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
+		$formDescriptor = [
+			'user' => [
+				'class' => HTMLUserTextField::class,
+				'label-message' => 'userrights-user-editname',
+				'name' => 'user',
+				'ipallowed' => true,
+				'iprange' => true,
+				'excludetemp' => true, // Do not show temp users: T341684
+				'autofocus' => $this->mFetchedUser === null,
+				'default' => $this->mTarget,
+			]
+		];
 
-		$this->getOutput()->addHTML(
-			Html::openElement(
-				'form',
-				[
-					'method' => 'get',
-					'action' => wfScript(),
-					'name' => 'uluser',
-					'id' => 'mw-userrights-form1'
-				]
-			) .
-			Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
-			Xml::fieldset( $this->msg( 'userrights-lookup-user' )->text() ) .
-			Xml::inputLabel(
-				$this->msg( 'userrights-user-editname' )->text(),
-				'user',
-				'username',
-				30,
-				$this->mTarget !== null ? str_replace( '_', ' ', $this->mTarget ) : '',
-				[
-					'class' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
-				] + (
-					// Set autofocus on blank input and error input
-					$this->mFetchedUser === null ? [ 'autofocus' => '' ] : []
-				)
-			) . ' ' .
-			Xml::submitButton(
-				$this->msg( 'editusergroup' )->text()
-			) .
-			Html::closeElement( 'fieldset' ) .
-			Html::closeElement( 'form' ) . "\n"
-		);
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
+		$htmlForm
+			->setMethod( 'GET' )
+			->setAction( wfScript() )
+			->setName( 'uluser' )
+			->setTitle( SpecialPage::getTitleFor( 'Userrights' ) )
+			->setWrapperLegendMsg( 'userrights-lookup-user' )
+			->setId( 'mw-userrights-form1' )
+			->setSubmitTextMsg( 'editusergroup' )
+			->prepareForm()
+			->displayForm( true );
 	}
 
 	/**
