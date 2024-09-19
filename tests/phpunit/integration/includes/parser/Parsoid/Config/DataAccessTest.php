@@ -69,7 +69,7 @@ class DataAccessTest extends MediaWikiIntegrationTestCase {
 		);
 		$dataAccess = $this->getServiceContainer()->getParsoidDataAccess();
 		$parserOutput = new ParserOutput();
-		$dataAccess->addTrackingCategory( 'broken-file-category', $pageConfig, $parserOutput );
+		$dataAccess->addTrackingCategory( $pageConfig, $parserOutput, 'broken-file-category' );
 		$this->assertSame(
 			[ '(broken-file-category)' ],
 			$parserOutput->getCategoryNames()
