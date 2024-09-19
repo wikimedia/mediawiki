@@ -96,7 +96,7 @@ class HttpRequestFactory {
 	 *                          an associative array with 'ip' and 'userAgent').
 	 * @phpcs:ignore Generic.Files.LineLength
 	 * @phan-param array{timeout?:int|string,connectTimeout?:int|string,postData?:string|array,proxy?:?string,noProxy?:bool,sslVerifyHost?:bool,sslVerifyCert?:bool,caInfo?:?string,maxRedirects?:int,followRedirects?:bool,userAgent?:string,method?:string,logger?:\Psr\Log\LoggerInterface,username?:string,password?:string,originalRequest?:\MediaWiki\Request\WebRequest|array{ip:string,userAgent:string}} $options
-	 * @param string $caller The method making this request, for profiling
+	 * @param string $caller The method making this request, for profiling @phan-mandatory-param
 	 * @return MWHttpRequest
 	 * @see MWHttpRequest::__construct
 	 */
@@ -168,7 +168,7 @@ class HttpRequestFactory {
 	 * @param string $url Full URL to act on. If protocol-relative, will be expanded to an http://
 	 *  URL
 	 * @param array $options See HttpRequestFactory::create
-	 * @param string $caller The method making this request, for profiling
+	 * @param string $caller The method making this request, for profiling @phan-mandatory-param
 	 * @return string|null null on failure or a string on success
 	 */
 	public function request( $method, $url, array $options = [], $caller = __METHOD__ ) {
@@ -196,7 +196,7 @@ class HttpRequestFactory {
 	 * @since 1.34
 	 * @param string $url
 	 * @param array $options
-	 * @param string $caller
+	 * @param string $caller @phan-mandatory-param
 	 * @return string|null
 	 */
 	public function get( $url, array $options = [], $caller = __METHOD__ ) {
@@ -209,7 +209,7 @@ class HttpRequestFactory {
 	 * @since 1.34
 	 * @param string $url
 	 * @param array $options
-	 * @param string $caller
+	 * @param string $caller @phan-mandatory-param
 	 * @return string|null
 	 */
 	public function post( $url, array $options = [], $caller = __METHOD__ ) {

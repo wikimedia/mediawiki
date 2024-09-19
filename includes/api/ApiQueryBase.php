@@ -593,7 +593,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 *
 	 * @param IResultWrapper $res Result set to work on.
 	 *  The result set must have _namespace and _title fields with the provided field prefix
-	 * @param string $fname The caller function name, always use __METHOD__
+	 * @param string $fname The caller function name, always use __METHOD__ @phan-mandatory-param
 	 * @param string $fieldPrefix Prefix for fields to check gender for
 	 */
 	protected function executeGenderCacheFromResultWrapper(

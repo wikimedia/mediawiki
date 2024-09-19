@@ -113,6 +113,9 @@ class TaintCheckAnnotationsTest {
 		$db->query( $db->buildLike( '', '', '', '', '', $_GET['a'] ) );// Safe
 	}
 
+	/**
+	 * @suppress PhanParamTooFewInPHPDoc
+	 */
 	function testIDatabase( \Wikimedia\Rdbms\IDatabase $db ) {
 		$db->query( $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		echo $db->query( 'safe' ); // @phan-suppress-current-line SecurityCheck-XSS
@@ -179,6 +182,9 @@ class TaintCheckAnnotationsTest {
 		echo $db->makeList( [] );// Safe
 	}
 
+	/**
+	 * @suppress PhanParamTooFewInPHPDoc
+	 */
 	function testIMaintainableDatabase( \Wikimedia\Rdbms\IMaintainableDatabase $db ) {
 		$db->query( $_GET['a'] ); // @phan-suppress-current-line SecurityCheck-SQLInjection
 		echo $db->query( 'safe' ); // @phan-suppress-current-line SecurityCheck-XSS

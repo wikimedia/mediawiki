@@ -58,7 +58,7 @@ class GuzzleHttpRequest extends MWHttpRequest {
 	 *
 	 * @param string $url Url to use. If protocol-relative, will be expanded to an http:// URL
 	 * @param array $options (optional) extra params to pass (see HttpRequestFactory::create())
-	 * @param string $caller The method making this request, for profiling
+	 * @param string $caller The method making this request, for profiling @phan-mandatory-param
 	 * @param Profiler|null $profiler An instance of the profiler for profiling, or null
 	 * @throws Exception
 	 */

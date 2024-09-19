@@ -126,7 +126,7 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 *
 	 * @internal Only for use by LoadBalancer
 	 *
-	 * @param string $fname Caller name
+	 * @param string $fname Caller name @phan-mandatory-param
 	 * @return bool Success
 	 * @throws DBError
 	 */
@@ -177,7 +177,7 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $cond
 	 *  The condition array. {@see select} for details.
 	 * @param-taint $cond exec_sql_numkey
-	 * @param string $fname The function name of the caller.
+	 * @param string $fname The function name of the caller. @phan-mandatory-param
 	 * @param-taint $fname exec_sql
 	 * @param string|array $options The query options. {@see select} for details.
 	 * @param-taint $options none This is special-cased in MediaWikiSecurityCheckPlugin
@@ -210,7 +210,7 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $cond
 	 *   The condition array. {@see select} for details.
 	 * @param-taint $cond exec_sql_numkey
-	 * @param string $fname The function name of the caller.
+	 * @param string $fname The function name of the caller. @phan-mandatory-param
 	 * @param-taint $fname exec_sql
 	 * @param string|array $options The query options. {@see select} for details.
 	 * @param-taint $options none This is special-cased in MediaWikiSecurityCheckPlugin
@@ -343,7 +343,7 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 *     // $join_conds...
 	 *     'actor' => [ 'JOIN', 'rev_actor = actor_id' ],
 	 *
-	 * @param string $fname Caller function name
+	 * @param string $fname Caller function name @phan-mandatory-param
 	 * @param-taint $fname exec_sql
 	 *
 	 * @param string|array $options Query options
@@ -460,7 +460,7 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 *   Conditions
 	 * @param-taint $conds exec_sql_numkey
-	 * @param string $fname Caller function name
+	 * @param string $fname Caller function name @phan-mandatory-param
 	 * @param-taint $fname exec_sql
 	 * @param string|array $options Query options
 	 * @param-taint $options none This is special-cased in MediaWikiSecurityCheckPlugin
@@ -501,7 +501,7 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 * @param string $var Column for which NULL values are not counted [default "*"]
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 *   Filters on the table
-	 * @param string $fname Function name for profiling
+	 * @param string $fname Function name for profiling @phan-mandatory-param
 	 * @param array $options Options for select
 	 * @param array|string $join_conds Join conditions
 	 * @return int Row count
@@ -532,7 +532,7 @@ interface IReadableDatabase extends Stringable, ISQLPlatform, DbQuoter, IDatabas
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 *   Filters on the table
 	 * @param-taint $conds exec_sql_numkey
-	 * @param string $fname Function name for profiling
+	 * @param string $fname Function name for profiling @phan-mandatory-param
 	 * @param-taint $fname exec_sql
 	 * @param array $options Options for select
 	 * @param-taint $options none This is special-cased in MediaWikiSecurityCheckPlugin

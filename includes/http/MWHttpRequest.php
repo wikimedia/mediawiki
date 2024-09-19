@@ -115,7 +115,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @param array $options extra params to pass (see HttpRequestFactory::create())
 	 * @phpcs:ignore Generic.Files.LineLength
 	 * @phan-param array{timeout?:int|string,connectTimeout?:int|string,postData?:array,proxy?:string,noProxy?:bool,sslVerifyHost?:bool,sslVerifyCert?:bool,caInfo?:string,maxRedirects?:int,followRedirects?:bool,userAgent?:string,logger?:LoggerInterface,username?:string,password?:string,originalRequest?:WebRequest|array{ip:string,userAgent:string},method?:string} $options
-	 * @param string $caller The method making this request, for profiling
+	 * @param string $caller The method making this request, for profiling @phan-mandatory-param
 	 * @param Profiler|null $profiler An instance of the profiler for profiling, or null
 	 * @throws Exception
 	 */

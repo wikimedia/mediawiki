@@ -109,7 +109,7 @@ interface IDatabaseForOwner extends IDatabase {
 	 *
 	 * Connection and query errors will be suppressed and logged
 	 *
-	 * @param string $fname Calling function name
+	 * @param string $fname Calling function name @phan-mandatory-param
 	 * @param string $flush Flush flag, set to a situationally valid IDatabase::FLUSHING_*
 	 *   constant to disable warnings about explicitly rolling back implicit transactions.
 	 *   This will silently break any ongoing explicit transaction. Only set the flush flag
