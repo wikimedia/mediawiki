@@ -8,6 +8,7 @@ use MediaWiki\Title\Title;
  * @covers \MediaWiki\Cache\BacklinkCache
  */
 class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
+	/** @var array */
 	private static $backlinkCacheTest;
 
 	public function addDBDataOnce() {

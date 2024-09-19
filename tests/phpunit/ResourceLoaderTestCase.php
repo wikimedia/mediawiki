@@ -119,17 +119,29 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 /* Stubs */
 
 class ResourceLoaderTestModule extends Module {
+	/** @var string[] */
 	protected $messages = [];
+	/** @var string[] */
 	protected $dependencies = [];
+	/** @var string|null */
 	protected $group = null;
+	/** @var string */
 	protected $source = 'local';
+	/** @var string */
 	protected $script = '';
+	/** @var string */
 	protected $styles = '';
+	/** @var string|null */
 	protected $skipFunction = null;
+	/** @var bool */
 	protected $isRaw = false;
+	/** @var bool */
 	protected $isKnownEmpty = false;
+	/** @var string */
 	protected $type = Module::LOAD_GENERAL;
+	/** @var bool|null */
 	protected $shouldEmbed = null;
+	/** @var bool */
 	protected $mayValidateScript = false;
 
 	public function __construct( $options = [] ) {
@@ -208,6 +220,7 @@ class ResourceLoaderTestModule extends Module {
  * - Disables database persistance of discovered file dependencies.
  */
 class ResourceLoaderFileTestModule extends FileModule {
+	/** @var array */
 	protected $lessVars = [];
 
 	public function __construct( $options = [] ) {

@@ -7,6 +7,7 @@ use MediaWiki\MainConfigNames;
  * @covers MemcLockManager
  */
 class MemcLockManagerIntegrationTest extends LockManagerIntegrationTestBase {
+	/** @var LockManager[] */
 	private static $managersToUse = [];
 
 	private function getManagerConfig(): ?array {

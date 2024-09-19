@@ -27,7 +27,9 @@ use Wikimedia\TestingAccessWrapper;
 class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 	use SessionProviderTestTrait;
 
+	/** @var HashConfig */
 	private $config;
+	/** @var string */
 	private $configHash;
 
 	private function getProvider( $name = null, $prefix = null, $isApiRequest = true ) {

@@ -38,7 +38,9 @@ class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 	private CommentStore $commentStore;
 	private PageStore $pageStore;
 
+	/** @var array */
 	private static $testPageRestrictionSource;
+	/** @var array */
 	private static $testPageRestrictionCascade;
 
 	protected function setUp(): void {

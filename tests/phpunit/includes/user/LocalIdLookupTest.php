@@ -6,6 +6,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\CentralId\LocalIdLookup;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 
 /**
@@ -15,6 +16,7 @@ use MediaWiki\User\UserIdentityValue;
 class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
 
+	/** @var UserIdentity[] */
 	private $localUsers = [];
 
 	public function addDBData() {

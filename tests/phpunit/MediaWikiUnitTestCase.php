@@ -47,7 +47,9 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 	use MediaWikiCoversValidator;
 	use MediaWikiTestCaseTrait;
 
+	/** @var array */
 	private static $originalGlobals;
+	/** @var array */
 	private static $unitGlobals;
 
 	private ?MediaWikiServices $serviceContainer = null;

@@ -8,6 +8,7 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
  */
 class MediaWikiIntegrationTestCaseSchema1Test extends MediaWikiIntegrationTestCase {
 
+	/** @var bool */
 	public static $hasRun = false;
 
 	protected function setUp(): void {

@@ -16,6 +16,7 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
  */
 class ActorMigrationTest extends MediaWikiLangTestCase {
 
+	/** @var int */
 	protected static $amId = 0;
 
 	private const STAGES_BY_NAME = [

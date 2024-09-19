@@ -10,6 +10,7 @@ use MediaWiki\Title\Title;
  */
 class EmailNotificationTest extends MediaWikiIntegrationTestCase {
 
+	/** @var EmailNotification */
 	protected $emailNotification;
 
 	protected function setUp(): void {

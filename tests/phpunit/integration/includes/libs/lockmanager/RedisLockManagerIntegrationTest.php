@@ -7,6 +7,7 @@ use MediaWiki\MainConfigNames;
  * @covers RedisLockManager
  */
 class RedisLockManagerIntegrationTest extends LockManagerIntegrationTestBase {
+	/** @var LockManager[] */
 	private static $managersToUse = [];
 
 	private function getManagerConfig(): ?array {
