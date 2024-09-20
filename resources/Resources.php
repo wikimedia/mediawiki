@@ -638,6 +638,14 @@ return [
 		'codexStyleOnly' => true,
 	],
 
+	'mediawiki.codex.messagebox.styles' => [
+		'class' => CodexModule::class,
+		'codexComponents' => [
+			'CdxMessage',
+		],
+		'codexStyleOnly' => true
+	],
+
 	'@wikimedia/codex-search' => [
 		'deprecated' => '[1.43] Use a CodexModule with codexComponents to set your specific components used: '
 			. 'https://www.mediawiki.org/wiki/Codex#Using_a_limited_subset_of_components',
