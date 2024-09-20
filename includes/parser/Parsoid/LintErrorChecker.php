@@ -5,6 +5,7 @@ namespace MediaWiki\Parser\Parsoid;
 
 use MediaWiki\Config\Config;
 use MediaWiki\Content\WikitextContent;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -85,7 +86,8 @@ class LintErrorChecker {
 
 		return $this->parsoid->wikitext2lint(
 			$this->pageConfigFactory->create( $title, null, $fakeRevision ),
-			$this->linterOptions( $disabled )
+			$this->linterOptions( $disabled ),
+			new ParserOutput()
 		);
 	}
 }

@@ -31,6 +31,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ProperPageIdentity;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Handler\Helper\HtmlInputTransformHelper;
@@ -653,7 +654,8 @@ abstract class ParsoidHandler extends Handler {
 		];
 		try {
 			$parsoid = $this->newParsoid();
-			return $parsoid->wikitext2lint( $pageConfig, $envOptions );
+			$parserOutput = new ParserOutput();
+			return $parsoid->wikitext2lint( $pageConfig, $envOptions, $parserOutput );
 		} catch ( ClientError $e ) {
 			throw new LocalizedHttpException( new MessageValue( "rest-parsoid-error", [ $e->getMessage() ] ), 400 );
 		} catch ( ResourceLimitExceededException $e ) {
