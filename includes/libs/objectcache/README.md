@@ -14,11 +14,8 @@ statistics in entry points where MW_ENTRY_POINT is 'cli'.
 Upon cache access via `WANObjectCache::getWithSetCallback()`, this measures the total time spent
 in this method from start to end for all cases, except process-cache hits.
 
-See also subsets of this measure:
-
-* `wanobjectcache.{kClass}.regen_walltime`: If regenerated, just the portion of time to regenerate the value.
-* `wanobjectcache.{kClass}.regen_set_delay`: If regenerated and approved for storing, the time from start to right
-  before storing.
+See also `wanobjectcache.{kClass}.regen_walltime`, which, during misses/renews, measures just the
+portion of time spent in the callback to regenerate the value.
 
 * Type: Measure (in milliseconds).
 * Variable `kClass`: The first part of your cache key.
@@ -48,19 +45,6 @@ See also subsets of this measure:
 
 Upon cache update due to a cache miss or async refresh, this measures the time spent in
 the regeneration callback when computing a new value.
-
-* Type: Measure (in milliseconds).
-* Variable `kClass`: The first part of your cache key.
-
-#### `wanobjectcache.{kClass}.regen_set_delay`
-
-Upon cache update due to a cache miss or async refresh, this measures the time spent in
-`WANObjectCache::getWithSetCallback()`, from the start of the method to right after
-the new value has been computed by the callback.
-
-This essentially measures the whole method (including retrieval of any old value,
-validation, any regeneration locks, and the callback), except for the time spent
-in sending the value to the backend store.
 
 * Type: Measure (in milliseconds).
 * Variable `kClass`: The first part of your cache key.
