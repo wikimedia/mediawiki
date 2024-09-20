@@ -313,7 +313,7 @@
 				$( '<tr>' )
 					.append( $( '<td>' ).text( i + 1 ) )
 					.append( $( '<td>' ).text( query.sql ) )
-					.append( $( '<td>' ).text( ( query.time * 1000 ).toFixed( 4 ) + 'ms' ).addClass( 'stats' ) )
+					.append( $( '<td>' ).text( ( query.time * 1000 ).toFixed( 3 ) + 'ms' ).addClass( 'stats' ) )
 					.append( $( '<td>' ).text( query.function ) )
 					.appendTo( $table );
 			}
