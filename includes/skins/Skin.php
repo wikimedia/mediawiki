@@ -24,6 +24,7 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageCode;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
@@ -516,7 +517,16 @@ abstract class Skin extends ContextSource {
 		// For content, this should not be considered stable, and will likely
 		// be removed when https://phabricator.wikimedia.org/T363607 is resolved.
 		if ( strpos( $out->getHTML(), 'cdx-message' ) !== false ) {
-			$modules['styles']['content'][] = 'mediawiki.codex.messagebox.styles';
+			// This channel will be used to identify pages relying on this method that
+			// shouldn't be.
+			$logger = LoggerFactory::getInstance( 'SkinCodex' );
+			$codexModules = array_filter( $out->getModules(), static function ( $module ) {
+				return strpos( $module, 'codex' ) !== false;
+			} );
+			if ( !$codexModules ) {
+				$logger->warning( 'Page uses Codex markup without appropriate style pack.' );
+				$modules['styles']['content'][] = 'mediawiki.codex.messagebox.styles';
+			}
 		}
 
 		if ( $out->isTOCEnabled() ) {
