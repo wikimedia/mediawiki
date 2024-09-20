@@ -462,4 +462,41 @@ abstract class Module {
 	public function getOpenApiInfo() {
 		return [];
 	}
+
+	/**
+	 * Returns fields to be included when describing this module in the
+	 * discovery document.
+	 *
+	 * Supported keys are described in /docs/discovery-1.0.json#/definitions/Module
+	 *
+	 * @see /docs/discovery-1.0.json
+	 * @see /docs/mwapi-1.0.json
+	 * @see DiscoveryHandler
+	 */
+	public function getModuleDescription(): array {
+		// TODO: Include the designated audience (T366567).
+		// Note that each module object is designated for only one audience,
+		// even if the spec allows multiple.
+		$moduleId = $this->getPathPrefix();
+
+		// Fields from OAS Info to include.
+		// Note that mwapi-1.0 is based on OAS 3.0, so it doesn't support the
+		// "summary" property introduced in 3.1.
+		$infoFields = [ 'version', 'title', 'description' ];
+
+		return [
+			'moduleId' => $moduleId,
+			'info' => array_intersect_key(
+				$this->getOpenApiInfo(),
+				array_flip( $infoFields )
+			),
+			'base' => $this->getRouter()->getRouteUrl(
+				'/' . $moduleId
+			),
+			'spec' => $this->getRouter()->getRouteUrl(
+				'/specs/v0/module/{module}', // hard-coding this here isn't very pretty
+				[ 'module' => $moduleId == '' ? '-' : $moduleId ]
+			)
+		];
+	}
 }

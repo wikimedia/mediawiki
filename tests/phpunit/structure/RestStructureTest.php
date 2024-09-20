@@ -1,11 +1,9 @@
 <?php
 
-use MediaWiki\Config\HashConfig;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
-use MediaWiki\MainConfigSchema;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\ParamValidator\TypeDef\ArrayDef;
@@ -41,6 +39,22 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;
 	use JsonSchemaAssertionTrait;
 
+	private const SPEC_FILES = [
+		'https://spec.openapis.org/oas/3.0/schema/2021-09-28#' =>
+			MW_INSTALL_PATH . '/tests/phpunit/integration/includes/' .
+				'Rest/Handler/data/OpenApi-3.0.json',
+
+		'http://json-schema.org/draft-04/schema#' =>
+			MW_INSTALL_PATH . '/vendor/justinrainbow/json-schema/dist/' .
+				'schema/json-schema-draft-04.json',
+
+		'https://www.mediawiki.org/schema/mwapi-1.0#' =>
+			MW_INSTALL_PATH . '/docs/rest/mwapi-1.0.json',
+
+		'https://www.mediawiki.org/schema/discovery-1.0#' =>
+			MW_INSTALL_PATH . '/docs/rest/discovery-1.0.json',
+	];
+
 	/** @var ?Router */
 	private $router = null;
 
@@ -50,7 +64,7 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 	 * @return MediaWikiServices
 	 */
 	private function getFakeServiceContainer(): MediaWikiServices {
-		$config = new HashConfig( iterator_to_array( MainConfigSchema::listDefaultValues() ) );
+		$realConfig = MediaWikiServices::getInstance()->getMainConfig();
 
 		$objectFactory = $this->getDummyObjectFactory();
 		$hookContainer = new HookContainer(
@@ -68,7 +82,7 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 				'getStatsFactory',
 			]
 		);
-		$services->method( 'getMainConfig' )->willReturn( $config );
+		$services->method( 'getMainConfig' )->willReturn( $realConfig );
 		$services->method( 'getHookContainer' )->willReturn( $hookContainer );
 		$services->method( 'getObjectFactory' )->willReturn( $objectFactory );
 		$services->method( 'getLocalServerObjectCache' )->willReturn( new EmptyBagOStuff() );
@@ -240,7 +254,7 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 	public function provideModules(): Iterator {
 		$router = $this->getRouterForDataProviders();
 
-		foreach ( $router->getModuleNames() as $name ) {
+		foreach ( $router->getModuleIds() as $name ) {
 			yield "Module '$name'" => [ $name ];
 		}
 	}
@@ -248,7 +262,7 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 	public function provideRoutes(): Iterator {
 		$router = $this->getRouterForDataProviders();
 
-		foreach ( $router->getModuleNames() as $moduleName ) {
+		foreach ( $router->getModuleIds() as $moduleName ) {
 			$module = $router->getModule( $moduleName );
 
 			foreach ( $module->getDefinedPaths() as $path => $methods ) {
@@ -339,7 +353,7 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 		$router = $this->getTestRouter();
 		$routes = [];
 
-		foreach ( $router->getModuleNames() as $moduleName ) {
+		foreach ( $router->getModuleIds() as $moduleName ) {
 			$module = $router->getModule( $moduleName );
 			$paths = $module->getDefinedPaths();
 
@@ -377,12 +391,37 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 	public function testModuleDefinitionFiles( stdClass $moduleSpec ) {
 		$schemaFile = MW_INSTALL_PATH . '/docs/rest/mwapi-1.0.json';
 
-		$resolve = [
-			'https://spec.openapis.org/oas/3.0/schema/2021-09-28#' =>
-				__DIR__ . '/../integration/includes/Rest/Handler/data/OpenApi-3.0.json',
+		$this->assertMatchesJsonSchema( $schemaFile, $moduleSpec, self::SPEC_FILES );
+	}
+
+	/**
+	 * @dataProvider provideModules
+	 */
+	public function testGetModuleDescription( string $moduleName ): void {
+		static $infoSchema = [ '$ref' =>
+			'https://www.mediawiki.org/schema/discovery-1.0#/definitions/Module'
 		];
 
-		$this->assertMatchesJsonSchema( $schemaFile, $moduleSpec, $resolve );
+		$router = $this->getTestRouter();
+		$module = $router->getModule( $moduleName );
+		$info = $module->getModuleDescription();
+
+		$this->assertMatchesJsonSchema( $infoSchema, $info, self::SPEC_FILES );
+	}
+
+	/**
+	 * @dataProvider provideModules
+	 */
+	public function testGetOpenApiInfo( string $moduleName ): void {
+		static $infoSchema = [ '$ref' =>
+			'https://spec.openapis.org/oas/3.0/schema/2021-09-28#/definitions/Info'
+		];
+
+		$router = $this->getTestRouter();
+		$module = $router->getModule( $moduleName );
+		$info = $module->getOpenApiInfo();
+
+		$this->assertMatchesJsonSchema( $infoSchema, $info, self::SPEC_FILES );
 	}
 
 }

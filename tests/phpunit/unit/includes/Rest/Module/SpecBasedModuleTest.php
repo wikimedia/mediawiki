@@ -232,4 +232,12 @@ class SpecBasedModuleTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( 'test-error', $data['error'] );
 	}
 
+	public function testOpenApiInfo() {
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/test.v1/ModuleTest/throwWrapped' ) ] );
+		$module = $this->createOpenApiModule( $request );
+
+		$info = $module->getOpenApiInfo();
+		$this->assertSame( 'test', $info['title'] );
+		$this->assertSame( '1.0', $info['version'] );
+	}
 }

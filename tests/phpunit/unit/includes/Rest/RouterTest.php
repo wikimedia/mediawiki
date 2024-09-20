@@ -329,7 +329,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 		);
 
 		// Routes from flat route files end up on a module that uses the empty prefix.
-		$this->assertSame( [ 'mock/v1', '' ], $router->getModuleNames() );
+		$this->assertSame( [ 'mock/v1', '' ], $router->getModuleIds() );
 
 		$response = $router->execute( $request );
 		$this->assertSame( 200, $response->getStatusCode() );
@@ -345,7 +345,7 @@ class RouterTest extends MediaWikiUnitTestCase {
 			[ __DIR__ . '/Module/moduleFlatRoutes.json' ]
 		);
 
-		$this->assertSame( [ '' ], $router->getModuleNames() );
+		$this->assertSame( [ '' ], $router->getModuleIds() );
 
 		$response = $router->execute( $request );
 		$this->assertSame( 200, $response->getStatusCode() );

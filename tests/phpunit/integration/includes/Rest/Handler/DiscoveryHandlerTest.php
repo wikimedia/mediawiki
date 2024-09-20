@@ -7,8 +7,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
-use MediaWiki\Rest\Handler;
-use MediaWiki\Rest\Handler\ModuleSpecHandler;
+use MediaWiki\Rest\Handler\DiscoveryHandler;
 use MediaWiki\Rest\Reporter\MWErrorReporter;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
@@ -20,14 +19,13 @@ use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\Constraint\Constraint;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
-use Wikimedia\ParamValidator\ParamValidator;
 
 /**
- * @covers \MediaWiki\Rest\Handler\ModuleSpecHandler
+ * @covers \MediaWiki\Rest\Handler\DiscoveryHandler
  *
  * @group Database
  */
-class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
+class DiscoveryHandlerTest extends MediaWikiIntegrationTestCase {
 	use HandlerTestTrait;
 	use JsonSchemaAssertionTrait;
 
@@ -78,16 +76,18 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 
 	private function newHandler() {
 		$config = $this->getServiceContainer()->getMainConfig();
-		return new ModuleSpecHandler(
+		return new DiscoveryHandler(
 			$config
 		);
 	}
 
-	private function assertWellFormedOAS( array $spec ) {
-		$this->assertMatchesJsonSchema(
-			__DIR__ . '/data/OpenApi-3.0.json',
-			$spec
-		);
+	private function assertWellFormedDiscoveryDoc( array $discovery ) {
+		$schemaFile = MW_INSTALL_PATH . '/docs/rest/discovery-1.0.json';
+
+		$this->assertMatchesJsonSchema( $schemaFile, $discovery, [
+			'https://www.mediawiki.org/schema/mwapi-1.0' => MW_INSTALL_PATH . '/docs/rest/mwapi-1.0.json',
+			'https://spec.openapis.org/oas/3.0/schema/2021-09-28' => __DIR__ . '/data/OpenApi-3.0.json',
+		] );
 	}
 
 	private static function assertContainsRecursive(
@@ -110,89 +110,9 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public static function provideGetInfoSpecSuccess() {
-		yield 'module and version' => [
-			__DIR__ . '/SpecTestModule.json',
-			[
-				'pathParams' => [ 'module' => 'mock', 'version' => 'v1' ]
-			],
-			[
-				'info' => [
-					'title' => 'mock/v1 Module',
-					'version' => '1.3-test',
-					'contact' => [
-						'email' => 'test@example.com'
-					],
-				],
-				'servers' => [
-					[ 'url' => 'https://example.com:1234/api/mock/v1' ]
-				],
-				'paths' => [
-					'/foo/bar' => [
-						'get' => [
-							'parameters' => [ [ 'name' => 'q', 'in' => 'query' ] ],
-							'responses' => [ 200 => [ 'description' => 'OK' ] ]
-						],
-						'post' => [
-							'requestBody' => [
-								'required' => true,
-								'content' => [
-									'application/json' => [
-										'schema' => [
-											'type' => 'object',
-											'required' => [ 'b' ],
-											'properties' => [
-												'b' => [ 'type' => 'string' ]
-											],
-										]
-									]
-								]
-							],
-							'responses' => [ 200 => [ 'description' => 'OK' ] ]
-						],
-					]
-				],
-				'components' => [
-					'schemas' => [
-						'boolean-param' => [ 'type' => 'boolean' ],
-					],
-					'responses' => [
-						'GenericErrorResponse' => self::anything(),
-					],
-				]
-			]
-		];
-		yield 'prefix-less module' => [
-			__DIR__ . '/SpecTestFlatRoutes.json',
-			[
-				'pathParams' => [ 'module' => '-' ]
-			],
-			[
-				'info' => [
-					'title' => 'Extra Routes',
-					'version' => 'undefined',
-					'license' => [
-						'name' => 'Test License',
-						'url' => 'https://example.com/license',
-					],
-				],
-				'servers' => [
-					[ 'url' => 'https://example.com:1234/api' ]
-				],
-				'paths' => [
-					'/mock/v1/foo/bar' => [
-						'get' => [ 'responses' => [ 200 => [ 'description' => 'OK' ] ] ],
-					]
-				],
-			]
-		];
-	}
-
-	/**
-	 * @dataProvider provideGetInfoSpecSuccess
-	 */
-	public function testGetInfoSpecSuccess( $specFile, $params, $expected ) {
+	public function testGetInfoSpecSuccess() {
 		$this->overrideConfigValues( [
+			MainConfigNames::Sitename => 'Test Site',
 			MainConfigNames::RightsText => 'Test License',
 			MainConfigNames::RightsUrl => 'https://example.com/license',
 			MainConfigNames::EmergencyContact => 'test@example.com',
@@ -200,9 +120,8 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::RestPath => '/api',
 		] );
 
-		$request = new RequestData( $params );
-
-		$router = $this->createRouter( $request, $specFile );
+		$request = new RequestData( [] );
+		$router = $this->createRouter( $request, __DIR__ . '/SpecTestRoutes.json' );
 
 		$handler = $this->newHandler();
 		$response = $this->executeHandler(
@@ -222,34 +141,31 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$data = json_decode( (string)$response->getBody(), true );
 
 		$this->assertIsArray( $data, 'Body must be a JSON array' );
-		$this->assertWellFormedOAS( $data );
-		$this->assertContainsRecursive( $expected, $data );
-	}
+		$this->assertWellFormedDiscoveryDoc( $data );
 
-	public static function newFooBarHandler() {
-		return new class extends Handler {
-			public function getParamSettings() {
-				return [
-					'q' => [
-						Handler::PARAM_SOURCE => 'query',
-						ParamValidator::PARAM_REQUIRED => 'false',
+		$expected = [
+			'info' => [
+				'title' => 'Test Site',
+				'contact' => [
+					'email' => 'test@example.com',
+				],
+			],
+			'servers' => [
+				[ 'url' => 'https://example.com:1234/api', ],
+			],
+			'modules' => [
+				'mock/v1' => [
+					'info' => [
+						'version' => '1.0',
+						'title' => 'test module',
 					],
-				];
-			}
+					'base' => 'https://example.com:1234/api/mock/v1',
+					'spec' => 'https://example.com:1234/api/specs/v0/module/mock%2Fv1',
+				],
+			],
+		];
 
-			public function getBodyParamSettings(): array {
-				return [
-					'b' => [
-						Handler::PARAM_SOURCE => 'body',
-						ParamValidator::PARAM_REQUIRED => 'true',
-					],
-				];
-			}
-
-			public function execute() {
-				return 'foo bar';
-			}
-		};
+		self::assertContainsRecursive( $expected, $data );
 	}
 
 }

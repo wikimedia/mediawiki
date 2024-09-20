@@ -19,6 +19,8 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ModuleSpecHandler extends SimpleHandler {
 
+	public const MODULE_SPEC_PATH = '/coredev/v0/specs/module/{module}';
+
 	/**
 	 * @internal
 	 */
@@ -89,6 +91,8 @@ class ModuleSpecHandler extends SimpleHandler {
 	}
 
 	private function getLicenseSpec(): array {
+		// TODO: get terms-of-use URL, not content license.
+
 		return [
 			'name' => $this->options->get( MainConfigNames::RightsText ),
 			'url' => $this->options->get( MainConfigNames::RightsUrl ),
