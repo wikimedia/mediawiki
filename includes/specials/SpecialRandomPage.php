@@ -212,7 +212,7 @@ class SpecialRandomPage extends SpecialPage {
 		];
 	}
 
-	private function selectRandomPageFromDB( $randstr, $fname = __METHOD__ ) {
+	private function selectRandomPageFromDB( $randstr, $fname ) {
 		$dbr = $this->dbProvider->getReplicaDatabase();
 
 		$query = $this->getQueryInfo( $randstr );

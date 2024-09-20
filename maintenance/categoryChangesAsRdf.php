@@ -238,9 +238,9 @@ SPARQL;
 	 */
 	private function setupChangesIterator(
 		IReadableDatabase $dbr,
-		array $columns = [],
-		array $extra_tables = [],
-		$fname = __METHOD__
+		array $columns,
+		array $extra_tables,
+		string $fname
 	) {
 		$tables = [ 'recentchanges', 'page_props', 'category' ];
 		if ( $extra_tables ) {

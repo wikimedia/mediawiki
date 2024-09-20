@@ -285,7 +285,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 	 * @param string $fname The name of the calling method
 	 * @return stdClass|false Info for the title selected.
 	 */
-	private function selectRandomPageFromDB( $rand, $offset, $up, $fname = __METHOD__ ) {
+	private function selectRandomPageFromDB( $rand, $offset, $up, $fname ) {
 		return $this->getQueryBuilder( $rand, $offset, $up )->caller( $fname )->fetchRow();
 	}
 
