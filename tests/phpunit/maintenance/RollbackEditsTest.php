@@ -84,6 +84,7 @@ class RollbackEditsTest extends MaintenanceBaseTestCase {
 		}
 		$this->maintenance->execute();
 		$this->expectOutputRegex( $expectedOutputRegex . '/' );
+
 		foreach ( $titlesToBeRolledBack as $title ) {
 			// Assert that the content of the first revision and the latest revision are the same after the rollback.
 			$latestRevision = $this->getServiceContainer()->getRevisionLookup()

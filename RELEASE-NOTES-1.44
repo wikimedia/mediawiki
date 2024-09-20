@@ -120,9 +120,13 @@ because of Phabricator reports.
   listExplicitlyDefinedTags(), listSoftwareActivatedTags(),
   listSoftwareDefinedTags(), makeTagSummarySubquery(), modifyDisplayQuery(),
   purgeTagCacheAll(), tagUsageStatistics(), and updateTags().
+* Maintenance::beginTransaction(), Maintenance::commitTransaction(),
+  Maintenance::rollbackTransaction(), and Maintenance::waitForReplication()
+  are now deprecated. Use Maintenance::*TransactionRound() instead.
 * PageUpdater::setUsePageCreationLog() is deprecated and emitting warnings.
   Use setFlags( EDIT_SUPPRESS_RC ) instead.
 * ...
+* …
 
 === Other changes in 1.44 ===
 * …

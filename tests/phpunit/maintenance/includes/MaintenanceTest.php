@@ -2,8 +2,10 @@
 
 namespace MediaWiki\Tests\Maintenance\Includes;
 
+use AtomicSectionUpdate;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Maintenance\MaintenanceBaseTestCase;
@@ -737,5 +739,66 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 			'Integers separated by ","' => [ '1,2,3,3', [ 1, 2, 3, 3 ] ],
 			'Integers separated by "|"' => [ '1|2|3|4|4', [ 1, 2, 3, 4, 4 ] ],
 		];
+	}
+
+	public function testTransactionRoundCommit() {
+		$m1 = $this->createMaintenance();
+		$fname = get_class( $m1 ) . '::execute';
+
+		$runs = 0;
+		$dbw = $m1->getPrimaryDB();
+
+		$this->assertSame( 0, $dbw->trxLevel() );
+		$m1->beginTransactionRound( $fname );
+		$this->assertSame( 0, $dbw->trxLevel() );
+
+		$dbw->startAtomic( __METHOD__ );
+		$this->assertSame( 1, $dbw->trxLevel() );
+		$update = new AtomicSectionUpdate(
+			$dbw,
+			$fname,
+			static function () use ( &$runs ) {
+				++$runs;
+			}
+		);
+		DeferredUpdates::addUpdate( $update );
+		$this->assertSame( 1, DeferredUpdates::pendingUpdatesCount() );
+		$dbw->endAtomic( __METHOD__ );
+
+		$m1->commitTransactionRound( $fname );
+		$this->assertSame( 0, $dbw->trxLevel() );
+		DeferredUpdates::tryOpportunisticExecute();
+		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount() );
+		$this->assertSame( 1, $runs );
+	}
+
+	public function testTransactionRoundRollback() {
+		$m1 = $this->createMaintenance();
+		$fname = get_class( $m1 ) . '::execute';
+
+		$runs = 0;
+		$dbw = $m1->getPrimaryDB();
+
+		$this->assertSame( 0, $dbw->trxLevel() );
+		$m1->beginTransactionRound( $fname );
+		$this->assertSame( 0, $dbw->trxLevel() );
+
+		$dbw->startAtomic( __METHOD__ );
+		$this->assertSame( 1, $dbw->trxLevel() );
+		$update = new AtomicSectionUpdate(
+			$dbw,
+			$fname,
+			static function () use ( &$runs ) {
+				++$runs;
+			}
+		);
+		DeferredUpdates::addUpdate( $update );
+		$this->assertSame( 1, DeferredUpdates::pendingUpdatesCount() );
+
+		$m1->rollbackTransactionRound( $fname );
+		$this->assertSame( 0, $dbw->trxLevel() );
+		DeferredUpdates::tryOpportunisticExecute();
+		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount() );
+		$this->assertSame( 0, $runs );
 	}
 }

@@ -76,8 +76,9 @@ class MoveBatch extends Maintenance {
 		}
 		StubGlobalUser::setUser( $user );
 
+		$movePageFactory = $this->getServiceContainer()->getMovePageFactory();
+
 		# Setup complete, now start
-		$dbw = $this->getPrimaryDB();
 		for ( $lineNum = 1; !feof( $file ); $lineNum++ ) {
 			$line = fgets( $file );
 			if ( $line === false ) {
@@ -96,15 +97,14 @@ class MoveBatch extends Maintenance {
 			}
 
 			$this->output( $source->getPrefixedText() . ' --> ' . $dest->getPrefixedText() );
-			$this->beginTransaction( $dbw, __METHOD__ );
-			$mp = $this->getServiceContainer()->getMovePageFactory()
-				->newMovePage( $source, $dest );
+			$this->beginTransactionRound( __METHOD__ );
+			$mp = $movePageFactory->newMovePage( $source, $dest );
 			$status = $mp->move( $user, $reason, !$noRedirects );
 			if ( !$status->isOK() ) {
 				$this->output( " FAILED\n" );
 				$this->error( $status );
 			}
-			$this->commitTransaction( $dbw, __METHOD__ );
+			$this->commitTransactionRound( __METHOD__ );
 			$this->output( "\n" );
 
 			if ( $interval ) {

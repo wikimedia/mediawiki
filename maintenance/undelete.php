@@ -58,9 +58,12 @@ class Undelete extends Maintenance {
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 		$this->output( "Undeleting " . $title->getPrefixedDBkey() . "...\n" );
 
+		$this->beginTransactionRound( __METHOD__ );
 		$status = $this->getServiceContainer()->getUndeletePageFactory()
 			->newUndeletePage( $page, $user )
 			->undeleteUnsafe( $reason );
+		$this->commitTransactionRound( __METHOD__ );
+
 		if ( !$status->isGood() ) {
 			$this->fatalError( $status );
 		}
