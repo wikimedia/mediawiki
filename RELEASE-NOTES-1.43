@@ -233,6 +233,7 @@ because of Phabricator reports.
   (nan-latn-pehoeji).
 * (T354937, T369899) Added language support for Minnan (Tâi-lô)
   (nan-latn-tailo).
+* (T375052) Added language support for Tigre (tig).
 * …
 
 === Breaking changes in 1.43 ===

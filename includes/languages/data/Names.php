@@ -521,6 +521,7 @@ class Names {
 		'tg-latn' => 'tojikī', # Tajiki (Latin script)
 		'th' => 'ไทย', # Thai
 		'ti' => 'ትግርኛ', # Tigrinya
+		'tig' => 'ትግሬ', # Tigre
 		'tk' => 'Türkmençe', # Turkmen
 		'tl' => 'Tagalog', # Tagalog
 		'tly' => 'tolışi', # Talysh
