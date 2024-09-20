@@ -415,7 +415,7 @@ class RefreshLinksJob extends Job {
 			}
 			$opportunistic = !empty( $this->params['isOpportunistic'] );
 			$stats
-				->getCounter( 'parsercache_selective' )
+				->getCounter( 'parsercache_selective_total' )
 				->setLabel( 'source', 'RefreshLinksJob' )
 				->setLabel( 'type', $cachedOutput === null ? 'full' : 'selective' )
 				->setLabel( 'reason', $causeAction )

@@ -441,7 +441,7 @@ class ParserOutputAccess {
 
 		if ( $doSample ) {
 			$this->statsFactory
-				->getCounter( 'parsercache_selective' )
+				->getCounter( 'parsercache_selective_total' )
 				->setLabel( 'source', 'ParserOutputAccess' )
 				->setLabel( 'type', $previousOutput === null ? 'full' : 'selective' )
 				->setLabel( 'reason', $parserOptions->getRenderReason() )
