@@ -325,7 +325,7 @@ class ThumbnailEntryPoint extends MediaWikiEntryPoint {
 		// Instead of generating the thumbnail ourselves, we proxy the request to another service
 		$thumbProxiedUrl = $thumbProxyUrl . $img->getThumbRel( $thumbName );
 
-		$req = MediaWikiServices::getInstance()->getHttpRequestFactory()->create( $thumbProxiedUrl );
+		$req = MediaWikiServices::getInstance()->getHttpRequestFactory()->create( $thumbProxiedUrl, [], __METHOD__ );
 		$secret = $img->getRepo()->getThumbProxySecret();
 
 		// Pass a secret key shared with the proxied service if any
