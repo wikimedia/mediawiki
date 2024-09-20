@@ -14,7 +14,7 @@ class BenchmarkTruncate extends Benchmarker {
 		$fname = __METHOD__;
 		$dbw = $this->getDB( DB_PRIMARY );
 
-		$dbw->dropTable( 'benchmark_perm_test' );
+		$dbw->dropTable( 'benchmark_perm_test', $fname );
 		$permTable = $dbw->tableName( 'benchmark_perm_test', 'raw' );
 		$dbw->duplicateTableStructure(
 			$dbw->tableName( 'page', 'raw' ),
@@ -23,7 +23,7 @@ class BenchmarkTruncate extends Benchmarker {
 			$fname
 		);
 
-		$dbw->dropTable( 'benchmark_temp_test' );
+		$dbw->dropTable( 'benchmark_temp_test', $fname );
 		$tempTable = $dbw->tableName( 'benchmark_temp_test', 'raw' );
 		$dbw->duplicateTableStructure(
 			$dbw->tableName( 'page', 'raw' ),

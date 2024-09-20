@@ -85,7 +85,7 @@ class MysqlReplicationReporter extends ReplicationReporter {
 			null,
 			'SHOW SLAVE STATUS'
 		);
-		$res = $conn->query( $query );
+		$res = $conn->query( $query, __METHOD__ );
 		$row = $res ? $res->fetchObject() : false;
 		// If the server is not replicating, there will be no row
 		if ( $row && strval( $row->Seconds_Behind_Master ) !== '' ) {
@@ -163,7 +163,7 @@ class MysqlReplicationReporter extends ReplicationReporter {
 			"SELECT TIMESTAMPDIFF(MICROSECOND,ts,UTC_TIMESTAMP(6)) AS us_ago " .
 			"FROM heartbeat.heartbeat WHERE ? ORDER BY ts DESC LIMIT 1",
 		);
-		$res = $conn->query( $query );
+		$res = $conn->query( $query, __METHOD__ );
 		$row = $res ? $res->fetchObject() : false;
 
 		return $row ? ( $row->us_ago / 1e6 ) : null;

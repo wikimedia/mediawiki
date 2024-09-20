@@ -41,8 +41,8 @@ class DbTestRecorder extends TestRecorder {
 	public function start() {
 		$this->db->begin( __METHOD__ );
 
-		if ( !$this->db->tableExists( 'testrun' )
-			|| !$this->db->tableExists( 'testitem' )
+		if ( !$this->db->tableExists( 'testrun', __METHOD__ )
+			|| !$this->db->tableExists( 'testitem', __METHOD__ )
 		) {
 			print "WARNING> `testrun` table not found in database. Trying to create table.\n";
 			$updater = DatabaseUpdater::newForDB( $this->db );
