@@ -645,6 +645,8 @@
 	"apihelp-query+allusers-summary": "Auflisten aller registrierten Benutzer.",
 	"apihelp-query+allusers-param-from": "Der Benutzername, bei dem die Auflistung beginnen soll.",
 	"apihelp-query+allusers-param-to": "Der Benutzername, bei dem die Auflistung enden soll.",
+	"apihelp-query+allusers-param-excludenamed": "Benutzer benannter Konten ausschließen.",
+	"apihelp-query+allusers-param-excludetemp": "Benutzer mit temporären Konten ausschließen.",
 	"apihelp-query+allusers-param-prefix": "Sucht nach allen Benutzern, die mit diesem Wert beginnen.",
 	"apihelp-query+allusers-param-dir": "Sortierrichtung.",
 	"apihelp-query+allusers-param-group": "Nur Benutzer der angegebenen Gruppen einbeziehen. Beinhaltet keine impliziten oder automatisch zugeteilte Gruppen wie *, user oder autoconfirmed.",

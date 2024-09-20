@@ -637,6 +637,8 @@
 	"apihelp-query+allusers-summary": "למנות את כל המשתמשים הרשומים.",
 	"apihelp-query+allusers-param-from": "מאיזה שם משתמש להתחיל למנות.",
 	"apihelp-query+allusers-param-to": "באיזה שם משתמש להפסיק למנות.",
+	"apihelp-query+allusers-param-excludenamed": "לא לכלול משתמשים של חשבונות בעלי שם.",
+	"apihelp-query+allusers-param-excludetemp": "לא לכלול משתמשים של חשבונות חולפים.",
 	"apihelp-query+allusers-param-prefix": "חיפוש כל המשתמשים שמתחילים בערך הזה.",
 	"apihelp-query+allusers-param-dir": "באיזה כיוון למיין.",
 	"apihelp-query+allusers-param-group": "לכלול רק משתמשים בקבוצות הנתונות. לא כולל קבוצות משתמעות או אוטומטיות כגון *, user או autoconfirmed.",

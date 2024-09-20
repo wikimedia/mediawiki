@@ -644,6 +644,8 @@
 	"apihelp-query+allusers-summary": "列舉所有已註冊使用者。",
 	"apihelp-query+allusers-param-from": "起始列舉的使用者名稱。",
 	"apihelp-query+allusers-param-to": "終止列舉的使用者名稱。",
+	"apihelp-query+allusers-param-excludenamed": "排除指名帳號的使用者。",
+	"apihelp-query+allusers-param-excludetemp": "排除臨時帳號的使用者。",
 	"apihelp-query+allusers-param-prefix": "搜尋以此值為開頭的所有使用者。",
 	"apihelp-query+allusers-param-dir": "排序的方向。",
 	"apihelp-query+allusers-param-group": "只包含指定組中的使用者。不包含隱性或自動提升的使用者群組，例如*、使用者或自動確認使用者。",
