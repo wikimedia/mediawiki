@@ -2,7 +2,9 @@
 	"mwapi": "1.0.0",
 	"moduleId": "content/v1",
 	"info": {
-		"version": "1.0"
+		"version": "1.0",
+		"title": "Page content",
+		"description": "Provides access to the content and meta-data of pages and revisions"
 	},
 	"paths": {
 		"/page": {

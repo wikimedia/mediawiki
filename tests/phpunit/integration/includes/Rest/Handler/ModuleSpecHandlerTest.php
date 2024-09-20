@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
+use JsonSchemaAssertionTrait;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
@@ -28,6 +29,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 	use HandlerTestTrait;
+	use JsonSchemaAssertionTrait;
 
 	private function createRouter(
 		RequestInterface $request,
@@ -81,31 +83,11 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	private static function assertWellFormedOAS( array $spec ) {
-		$requiredTop = [
-			'openapi',
-			'info',
-			'servers',
-			'paths',
-			'components'
-		];
-
-		foreach ( $requiredTop as $key ) {
-			Assert::assertArrayHasKey( $key, $spec );
-		}
-
-		Assert::assertSame( '3.0.0', $spec['openapi'] );
-
-		$requiredInfo = [
-			'title',
-			'version',
-		];
-
-		foreach ( $requiredInfo as $key ) {
-			Assert::assertArrayHasKey( $key, $spec['info'] );
-		}
-
-		Assert::assertNotEmpty( $spec['servers'] );
+	private function assertWellFormedOAS( array $spec ) {
+		$this->assertMatchesJsonSchema(
+			__DIR__ . '/data/OpenApi-3.0.json',
+			$spec
+		);
 	}
 
 	private static function assertContainsRecursive(
@@ -240,8 +222,8 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$data = json_decode( (string)$response->getBody(), true );
 
 		$this->assertIsArray( $data, 'Body must be a JSON array' );
-		self::assertWellFormedOAS( $data );
-		self::assertContainsRecursive( $expected, $data );
+		$this->assertWellFormedOAS( $data );
+		$this->assertContainsRecursive( $expected, $data );
 	}
 
 	public static function newFooBarHandler() {

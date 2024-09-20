@@ -1,5 +1,5 @@
 {
-	"$schema": "http://json-schema.org/draft-06/schema#",
+	"$schema": "http://json-schema.org/draft-04/schema#",
 	"$id": "https://www.mediawiki.org/schema/mwapi-1.0",
 	"title": "MediaWiki REST API module definition",
 	"description": "Module definition files provide meta-data about modules and define the available routes. They are similar to OpenAPI specs.",
@@ -65,12 +65,11 @@
 		},
 		"OperationImpl": {
 			"oneOf": [
-				{ "$ref": "#/definitions/Handler" },
-				{ "$ref": "#/definitions/Redirect" }
-			],
-			"additionalProperties": false
+				{ "$ref": "#/definitions/WithHandler" },
+				{ "$ref": "#/definitions/WithRedirect" }
+			]
 		},
-		"Handler": {
+		"WithHandler": {
 			"required": [ "handler" ],
 			"properties": {
 				"handler": {
@@ -104,9 +103,10 @@
 					"item": { "type": "string" },
 					"description": "List of services to pass as arguments. Each name will be looked up in MediaWikiServices. If the service is unknown the parameter is set to 'null' instead of causing an error."
 				}
-			}
+			},
+			"additionalProperties": true
 		},
-		"Redirect": {
+		"WithRedirect": {
 			"required": [ "redirect" ],
 			"properties": {
 				"redirect": {
@@ -115,7 +115,8 @@
 					"properties": {
 						"path": { "type": "string" },
 						"code": { "type": "integer" }
-					}
+					},
+					"additionalProperties": false
 				}
 			}
 		}

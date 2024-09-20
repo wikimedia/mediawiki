@@ -1,0 +1,14 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "https://www.mediawiki.org/test-schema/test1",
+	"type": "object",
+	"required": [ "context", "user" ],
+	"properties": {
+		"user": { "$ref": "https://www.mediawiki.org/test-schema/test2#/definitions/User" },
+		"context": { "$ref": "#/definitions/Context" }
+	},
+	"definitions": {
+		"Context": { "type": "string" }
+	},
+	"additionalProperties": false
+}
