@@ -175,12 +175,15 @@ class CommandFactory {
 	 * @since 1.36
 	 * @param ?string $service Name of Shellbox (as configured in
 	 *                         $wgShellboxUrls) that should be used
+	 * @param int|float|null $wallTimeLimit The wall time limit, or null to use the default.
+	 *   This needs to be set early so that the HTTP timeout is configured correctly.
 	 * @return BoxedCommand
 	 */
-	public function createBoxed( ?string $service = null ): BoxedCommand {
+	public function createBoxed( ?string $service = null, $wallTimeLimit = null ): BoxedCommand {
+		$wallTimeLimit ??= $this->limits['walltime'];
 		if ( $this->shellboxClientFactory->isEnabled( $service ) ) {
 			$client = $this->shellboxClientFactory->getClient( [
-				'timeout' => $this->limits['walltime'] + 1,
+				'timeout' => $wallTimeLimit + 1,
 				'service' => $service,
 			] );
 			$executor = new RemoteBoxedExecutor( $client );
@@ -192,7 +195,7 @@ class CommandFactory {
 		}
 		return $executor->createCommand()
 			->cpuTimeLimit( $this->limits['time'] )
-			->wallTimeLimit( $this->limits['walltime'] )
+			->wallTimeLimit( $wallTimeLimit )
 			->memoryLimit( $this->limits['memory'] * 1024 )
 			->fileSizeLimit( $this->limits['filesize'] * 1024 )
 			->logStderr( $this->doLogStderr );
