@@ -511,6 +511,15 @@ abstract class Skin extends ContextSource {
 		if ( strpos( $out->getHTML(), 'mw-message-box' ) !== false ) {
 			$modules['styles']['content'][] = 'mediawiki.legacy.messageBox';
 		}
+		// If the page is using Codex message box markup load Codex styles.
+		// Since 1.41. Skins can unset this if they prefer to handle this via other
+		// means.
+		// This is intended for extensions.
+		// For content, this should not be considered stable, and will likely
+		// be removed when https://phabricator.wikimedia.org/T363607 is resolved.
+		if ( strpos( $out->getHTML(), 'cdx-message' ) !== false ) {
+			$modules['styles']['content'][] = 'mediawiki.codex.messagebox.styles';
+		}
 
 		if ( $out->isTOCEnabled() ) {
 			$modules['content'][] = 'mediawiki.toc';
