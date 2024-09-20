@@ -4,7 +4,6 @@ namespace MediaWiki\Installer;
 
 use MediaWiki\Html\Html;
 use MediaWiki\Status\Status;
-use Wikimedia\Rdbms\Database;
 
 /**
  * @internal
@@ -75,10 +74,8 @@ class PostgresConnectForm extends DatabaseConnectForm {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
-		/**
-		 * @var Database $conn
-		 */
-		$conn = $status->value;
+
+		$conn = $status->getDB();
 
 		// Check version
 		$status = PostgresInstaller::meetsMinimumRequirement( $conn );
