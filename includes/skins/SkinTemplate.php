@@ -69,6 +69,9 @@ class SkinTemplate extends Skin {
 	private $isNamedUser;
 
 	/** @var bool */
+	private $isAnonUser;
+
+	/** @var bool */
 	private $templateContextSet = false;
 	/** @var array|null */
 	private $contentNavigationCached;
@@ -128,6 +131,7 @@ class SkinTemplate extends Skin {
 		$this->username = $user->getName();
 		$this->isTempUser = $user->isTemp();
 		$this->isNamedUser = $this->loggedin && !$this->isTempUser;
+		$this->isAnonUser = $user->isAnon();
 
 		if ( $this->isNamedUser ) {
 			$this->userpageUrlDetails = self::makeUrlDetails( $userpageTitle );
@@ -410,7 +414,9 @@ class SkinTemplate extends Skin {
 		$services = MediaWikiServices::getInstance();
 		$authManager = $services->getAuthManager();
 		$groupPermissionsLookup = $services->getGroupPermissionsLookup();
+		$tempUserConfig = $services->getTempUserConfig();
 		$returnto = SkinComponentUtils::getReturnToParam( $title, $request, $authority );
+		$shouldHideUserLinks = $this->isAnonUser && $tempUserConfig->isKnown();
 
 		/* set up the default links for the personal toolbar */
 		$personal_urls = [];
@@ -473,8 +479,7 @@ class SkinTemplate extends Skin {
 			if ( $request->getSession()->canSetUser() ) {
 				$personal_urls['logout'] = $this->buildLogoutLinkData();
 			}
-		} else {
-			$tempUserConfig = $services->getTempUserConfig();
+		} elseif ( !$shouldHideUserLinks ) {
 			$canEdit = $authority->isAllowed( 'edit' );
 			$canEditWithTemp = $tempUserConfig->isAutoCreateAction( 'edit' );
 			// No need to show Talk and Contributions to anons if they can't contribute!
@@ -503,6 +508,7 @@ class SkinTemplate extends Skin {
 				$personal_urls = $this->makeContributionsLink( $personal_urls, 'anoncontribs', null, false );
 			}
 		}
+
 		if ( !$this->loggedin ) {
 			$useCombinedLoginLink = $this->useCombinedLoginLink();
 			$login_url = $this->buildLoginData( $returnto, $useCombinedLoginLink );
