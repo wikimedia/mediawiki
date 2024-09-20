@@ -1,6 +1,7 @@
 <?php
 namespace MediaWiki\Tests\Integration\HTMLForm\Field;
 
+use MediaWiki\HTMLForm\Field\HTMLButtonField;
 use MediaWiki\Tests\Integration\HTMLForm\HTMLFormFieldTestCase;
 
 /**
@@ -8,7 +9,7 @@ use MediaWiki\Tests\Integration\HTMLForm\HTMLFormFieldTestCase;
  */
 class HTMLButtonFieldTest extends HTMLFormFieldTestCase {
 	/** @inheritDoc */
-	protected $className = 'HTMLButtonField';
+	protected $className = HTMLButtonField::class;
 
 	public static function provideInputHtml() {
 		yield 'Basic button' => [

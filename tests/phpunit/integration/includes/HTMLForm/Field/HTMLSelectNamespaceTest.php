@@ -1,6 +1,7 @@
 <?php
 namespace MediaWiki\Tests\Integration\HTMLForm\Field;
 
+use MediaWiki\HTMLForm\Field\HTMLSelectNamespace;
 use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Integration\HTMLForm\HTMLFormFieldTestCase;
@@ -10,7 +11,7 @@ use MediaWiki\Tests\Integration\HTMLForm\HTMLFormFieldTestCase;
  */
 class HTMLSelectNamespaceTest extends HTMLFormFieldTestCase {
 	/** @inheritDoc */
-	protected $className = 'HTMLSelectNamespace';
+	protected $className = HTMLSelectNamespace::class;
 
 	/**
 	 * Until T277470 is fixed, because each time this is run it might be on a box that has
