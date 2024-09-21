@@ -1,6 +1,7 @@
 <?php
 namespace MediaWiki\Tests\Integration\HTMLForm\Field;
 
+use MediaWiki\HTMLForm\Field\HTMLRadioField;
 use MediaWiki\Tests\Integration\HTMLForm\HTMLFormFieldTestCase;
 
 /**
@@ -8,7 +9,7 @@ use MediaWiki\Tests\Integration\HTMLForm\HTMLFormFieldTestCase;
  */
 class HTMLRadioFieldTest extends HTMLFormFieldTestCase {
 	/** @inheritDoc */
-	protected $className = 'HTMLRadioField';
+	protected $className = HTMLRadioField::class;
 
 	public static function provideInputCodex() {
 		yield 'Radios with none selected' => [

@@ -143,7 +143,7 @@ trait TestRepoTrait {
 		$dir = $options['directory'];
 
 		$info = $options + [
-			"class" => "LocalRepo",
+			"class" => LocalRepo::class,
 			"name" => "test",
 			"domainId" => "mywiki",
 			"directory" => $dir,

@@ -31,7 +31,7 @@ class ObjectCacheFactoryTest extends MediaWikiUnitTestCase {
 		$factory = $this->newObjectCacheFactory();
 
 		$objCache = $factory->newFromParams( [
-			'class' => 'HashBagOStuff',
+			'class' => HashBagOStuff::class,
 			'args' => [ 'foo', 'bar' ],
 		] );
 
