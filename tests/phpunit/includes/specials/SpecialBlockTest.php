@@ -812,7 +812,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @covers ::getTargetAndTypeInternal
 	 */
 	public function testGetTargetAndType( $par, $requestData, $expectedTarget ) {
-		$request = $requestData ? new FauxRequest( $requestData ) : null;
+		$request = new FauxRequest( $requestData );
 		/** @var SpecialBlock $page */
 		$page = TestingAccessWrapper::newFromObject( $this->newSpecialPage() );
 		[ $target, $type ] = $page->getTargetAndTypeInternal( $par, $request );
@@ -858,9 +858,9 @@ class SpecialBlockTest extends SpecialPageTestBase {
 				],
 				'4.4.4.0/24',
 			],
-			'No web request' => [
+			'Subpage, no valid request data' => [
 				'2.2.2.0/24',
-				false,
+				[],
 				'2.2.2.0/24',
 			],
 			'No valid request data or subpage parameter' => [

@@ -196,7 +196,7 @@ class SpecialBlock extends FormSpecialPage {
 		// need to extract *every* variable from the form just for processing here, but
 		// there are legitimate uses for some variables
 		$request = $this->getRequest();
-		[ $this->target, $this->type ] = self::getTargetAndTypeInternal( $par, $request );
+		[ $this->target, $this->type ] = $this->getTargetAndTypeInternal( $par, $request );
 		if ( $this->target instanceof UserIdentity ) {
 			// Set the 'relevant user' in the skin, so it displays links like Contributions,
 			// User logs, UserRights, etc.
@@ -795,15 +795,11 @@ class SpecialBlock extends FormSpecialPage {
 	 *
 	 * @param string|null $par Subpage parameter passed to setup, or data value from
 	 *  the HTMLForm
-	 * @param WebRequest|null $request Optionally try and get data from a request too
+	 * @param WebRequest $request Try and get data from a request too
 	 * @return array [ UserIdentity|string|null, DatabaseBlock::TYPE_ constant|null ]
 	 * @phan-return array{0:UserIdentity|string|null,1:int|null}
 	 */
-	private static function getTargetAndTypeInternal( ?string $par, WebRequest $request = null ) {
-		if ( !$request instanceof WebRequest ) {
-			return MediaWikiServices::getInstance()->getBlockUtils()->parseBlockTarget( $par );
-		}
-
+	private function getTargetAndTypeInternal( ?string $par, WebRequest $request ) {
 		$possibleTargets = [
 			$request->getVal( 'wpTarget', null ),
 			$par,
@@ -812,8 +808,7 @@ class SpecialBlock extends FormSpecialPage {
 			$request->getVal( 'wpBlockAddress', null ),
 		];
 		foreach ( $possibleTargets as $possibleTarget ) {
-			$targetAndType = MediaWikiServices::getInstance()
-				->getBlockUtils()
+			$targetAndType = $this->blockUtils
 				->parseBlockTarget( $possibleTarget );
 			// If type is not null then target is valid
 			if ( $targetAndType[ 1 ] !== null ) {
