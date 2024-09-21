@@ -172,7 +172,7 @@ class SpecialExport extends SpecialPage {
 					$history['offset'] = $offset;
 				}
 
-				if ( strtolower( $dir ) == 'desc' ) {
+				if ( strtolower( $dir ?? '' ) == 'desc' ) {
 					$history['dir'] = 'desc';
 				}
 			}
