@@ -137,10 +137,10 @@ class Names {
 		'ckb' => 'کوردی', # Central Kurdish
 		'co' => 'corsu', # Corsican
 		'cps' => 'Capiceño', # Capiznon
-		'cpx' => '莆仙語 / Pó-sing-gṳ̂', # Pu-Xian Min (multiple scripts - defaults to Traditional Han)
-		'cpx-hans' => '莆仙语（简体）', # Pu-Xian Min (Simplified Han script)
-		'cpx-hant' => '莆仙語（繁體）', # Pu-Xian Min (Traditional Han script)
-		'cpx-latn' => 'Pó-sing-gṳ̂ (Báⁿ-uā-ci̍)', # Pu-Xian Min (Latin script)
+		'cpx' => '莆仙語 / Pó-sing-gṳ̂', # Puxian (multiple scripts - defaults to Traditional Han)
+		'cpx-hans' => '莆仙语（简体）', # Puxian (Simplified Han script)
+		'cpx-hant' => '莆仙語（繁體）', # Puxian (Traditional Han script)
+		'cpx-latn' => 'Pó-sing-gṳ̂ (Báⁿ-uā-ci̍)', # Puxian (Latin script)
 		'cr' => 'Nēhiyawēwin / ᓀᐦᐃᔭᐍᐏᐣ', # Cree
 		'crh' => 'qırımtatarca', # Crimean Tatar (multiple scripts - defaults to Latin)
 		'crh-cyrl' => 'къырымтатарджа (Кирилл)', # Crimean Tatar (Cyrillic)
