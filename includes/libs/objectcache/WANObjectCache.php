@@ -78,7 +78,7 @@ use Wikimedia\Stats\StatsFactory;
  *   - B) The value is cached with a low TTL.
  *
  *        If you can tolerate a few seconds or minutes of delay before changes are reflected
- *        in the way your data is used, and if recomputation is quick, you can consider
+ *        in the way your data is used, and if re-computation is quick, you can consider
  *        caching it with a "blind" TTL – using the value's age as your method of validation.
  *   - C) Validity is checked against an external source.
  *
@@ -86,7 +86,7 @@ use Wikimedia\Stats\StatsFactory;
  *        value, or for other reasons you need to have a stable key across input changes
  *        (e.g. cache by page title instead of revision ID). If you put the variable identifier
  *        (e.g. input hash, or revision ID) in the cache value, and validate this on retrieval
- *        then you don't don't need purging or expiration.
+ *        then you don't need purging or expiration.
  *
  *        After calling get() you can validate the ID inside the cached value against what
  *        you know. When needed, recompute the value and call set().
@@ -354,7 +354,7 @@ class WANObjectCache implements
 	 *   - secret: stable secret used for hashing long strings into key components. [optional]
 	 *   - coalesceScheme: which key scheme to use in order to encourage the backend to place any
 	 *       "helper" keys for a "value" key within the same cache server. This reduces network
-	 *       overhead and reduces the chance the a single downed cache server causes disruption.
+	 *       overhead and reduces the chance the single downed cache server causes disruption.
 	 *       Use "hash_stop" with mcrouter and "hash_tag" with dynomite. [default: "hash_stop"]
 	 */
 	public function __construct( array $params ) {
@@ -425,7 +425,7 @@ class WANObjectCache implements
 	 *   - c) When the source data that "check" keys represent changes,
 	 *        the touchCheckKey() method is called on them
 	 *
-	 * Source data entities might exists in a DB that uses snapshot isolation
+	 * Source data entities might exist in a DB that uses snapshot isolation
 	 * (e.g. the default REPEATABLE-READ in innoDB). Even for mutable data, that
 	 * isolation can largely be maintained by doing the following:
 	 *   - a) Calling delete() on entity change *and* creation, before DB commit
@@ -1015,7 +1015,7 @@ class WANObjectCache implements
 	 * uncommitted or not-yet-replicated changes (callback generally use replica DBs).
 	 *
 	 * When using potentially long-running ACID transactions, a good pattern is
-	 * to use a pre-commit hook to issue the delete. This means that immediately
+	 * to use a pre-commit hook to issue the delete(). This means that immediately
 	 * after commit, callers will see the tombstone in cache upon purge relay.
 	 * It also avoids the following race condition:
 	 *   - a) T1 begins, changes a row, and calls delete()
