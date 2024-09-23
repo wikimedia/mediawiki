@@ -917,6 +917,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Block\\Hook\\GetAllBlockActionsHook' => __DIR__ . '/includes/block/Hook/GetAllBlockActionsHook.php',
 	'MediaWiki\\Block\\Hook\\GetUserBlockHook' => __DIR__ . '/includes/block/Hook/GetUserBlockHook.php',
 	'MediaWiki\\Block\\Hook\\PerformRetroactiveAutoblockHook' => __DIR__ . '/includes/block/Hook/PerformRetroactiveAutoblockHook.php',
+	'MediaWiki\\Block\\Hook\\SpreadAnyEditBlockHook' => __DIR__ . '/includes/block/Hook/SpreadAnyEditBlockHook.php',
 	'MediaWiki\\Block\\Restriction\\AbstractRestriction' => __DIR__ . '/includes/block/Restriction/AbstractRestriction.php',
 	'MediaWiki\\Block\\Restriction\\ActionRestriction' => __DIR__ . '/includes/block/Restriction/ActionRestriction.php',
 	'MediaWiki\\Block\\Restriction\\NamespaceRestriction' => __DIR__ . '/includes/block/Restriction/NamespaceRestriction.php',

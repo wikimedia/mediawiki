@@ -1701,4 +1701,60 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame( $expected, $field );
 	}
+
+	/**
+	 * @covers \MediaWiki\User\User::spreadAnyEditBlock
+	 * @covers \MediaWiki\User\User::spreadBlock
+	 */
+	public function testSpreadAnyEditBlockForAnonUser() {
+		$hookCalled = false;
+		$this->setTemporaryHook( 'SpreadAnyEditBlock', static function () use ( &$hookCalled ){
+			$hookCalled = true;
+		} );
+		$user = new User;
+		$user->setName( '1.2.3.4' );
+		$user->spreadAnyEditBlock();
+		$this->assertFalse( $hookCalled );
+	}
+
+	/**
+	 * @covers \MediaWiki\User\User::spreadAnyEditBlock
+	 * @covers \MediaWiki\User\User::spreadBlock
+	 * @dataProvider provideBlockWasSpreadValues
+	 */
+	public function testSpreadAnyEditBlockForUnblockedUser( $mockBlockWasSpreadHookValue ) {
+		// Assert that the SpreadAnyEditBlock hook gets called with the right arguments when
+		// ::spreadAnyEditBlock is called for a registered user.
+		$hookCalled = false;
+		$this->setTemporaryHook(
+			'SpreadAnyEditBlock',
+			function ( $user, &$blockWasSpread ) use ( &$hookCalled, $mockBlockWasSpreadHookValue ) {
+				$hookCalled = true;
+				$blockWasSpread = $mockBlockWasSpreadHookValue;
+				$this->assertSame( $this->user, $user );
+			}
+		);
+		$this->assertSame( $mockBlockWasSpreadHookValue, $this->user->spreadAnyEditBlock() );
+		$this->assertTrue( $hookCalled );
+	}
+
+	public static function provideBlockWasSpreadValues() {
+		return [
+			'SpreadAnyEditBlock hook handler sets $blockWasSpread to true' => [ true ],
+			'No SpreadAnyEditBlock hook handler spread a block' => [ false ],
+		];
+	}
+
+	/**
+	 * @covers \MediaWiki\User\User::spreadAnyEditBlock
+	 * @covers \MediaWiki\User\User::spreadBlock
+	 */
+	public function testSpreadAnyEditBlockForBlockedUser() {
+		$this->getServiceContainer()->getBlockUserFactory()->newBlockUser(
+			$this->user, $this->getTestSysop()->getAuthority(), 'indefinite', '', [ 'isAutoblocking' => true ]
+		)->placeBlockUnsafe();
+		RequestContext::getMain()->getRequest()->setIP( '1.2.3.4' );
+		$this->assertTrue( $this->user->spreadAnyEditBlock() );
+		$this->assertNotNull( $this->getServiceContainer()->getBlockManager()->getIpBlock( '1.2.3.4', true ) );
+	}
 }

@@ -59,6 +59,7 @@ class HookRunner implements
 	\MediaWiki\Block\Hook\GetAllBlockActionsHook,
 	\MediaWiki\Block\Hook\GetUserBlockHook,
 	\MediaWiki\Block\Hook\PerformRetroactiveAutoblockHook,
+	\MediaWiki\Block\Hook\SpreadAnyEditBlockHook,
 	\MediaWiki\Cache\Hook\BacklinkCacheGetConditionsHook,
 	\MediaWiki\Cache\Hook\BacklinkCacheGetPrefixHook,
 	\MediaWiki\Cache\Hook\HtmlCacheUpdaterAppendUrlsHook,
@@ -3943,6 +3944,13 @@ class HookRunner implements
 		return $this->container->run(
 			'SpecialWatchlistGetNonRevisionTypes',
 			[ &$nonRevisionTypes ]
+		);
+	}
+
+	public function onSpreadAnyEditBlock( $user, bool &$blockWasSpread ) {
+		return $this->container->run(
+			'SpreadAnyEditBlock',
+			[ $user, &$blockWasSpread ]
 		);
 	}
 
