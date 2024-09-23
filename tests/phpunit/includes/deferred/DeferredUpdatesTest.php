@@ -354,7 +354,6 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 		DeferredUpdates::attemptUpdate(
 			new MWCallableUpdate(
 				static function () use ( $lbFactory, $fname, &$called ) {
-					$lbFactory->flushReplicaSnapshots( $fname );
 					$lbFactory->commitPrimaryChanges( $fname );
 					$called = true;
 				},

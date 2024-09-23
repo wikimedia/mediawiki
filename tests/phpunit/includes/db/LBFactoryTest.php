@@ -191,6 +191,29 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$factory->closeAll( __METHOD__ );
 	}
 
+	public function testLBFactoryMultiRoundTransactionSnapshots() {
+		$factory = $this->newLBFactoryMultiLBs();
+		$dbr = $factory->getMainLB()->getConnection( DB_REPLICA );
+		$dbw = $factory->getMainLB()->getConnection( DB_PRIMARY );
+
+		$dbr->begin( __METHOD__, $dbr::TRANSACTION_INTERNAL );
+		$this->assertSame( 1, $dbr->trxLevel() );
+		$this->assertSame( 0, $dbw->trxLevel() );
+
+		$factory->beginPrimaryChanges( __METHOD__ );
+		$this->assertSame( 0, $dbr->trxLevel() );
+		$this->assertSame( 0, $dbw->trxLevel() );
+
+		$dbr->begin( __METHOD__, $dbr::TRANSACTION_INTERNAL );
+		$dbw->begin( __METHOD__, $dbw::TRANSACTION_INTERNAL );
+		$this->assertSame( 1, $dbr->trxLevel() );
+		$this->assertSame( 1, $dbw->trxLevel() );
+
+		$factory->commitPrimaryChanges( __METHOD__ );
+		$this->assertSame( 0, $dbr->trxLevel() );
+		$this->assertSame( 0, $dbw->trxLevel() );
+	}
+
 	private function newLBFactoryMultiLBs() {
 		global $wgDBserver, $wgDBport, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype;
 		global $wgSQLiteDataDir;

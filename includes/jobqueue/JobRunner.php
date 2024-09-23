@@ -365,7 +365,6 @@ class JobRunner {
 				$this->lbFactory->beginPrimaryChanges( $fnameTrxOwner ); // new explicit round
 			}
 			// Clear any stale REPEATABLE-READ snapshots from replica DB connections
-			$this->lbFactory->flushReplicaSnapshots( $fnameTrxOwner );
 			$status = $job->run();
 			$error = $job->getLastError();
 			// Commit all pending changes from this job

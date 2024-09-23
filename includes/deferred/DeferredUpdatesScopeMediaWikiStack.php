@@ -112,10 +112,6 @@ class DeferredUpdatesScopeMediaWikiStack extends DeferredUpdatesScopeStack {
 			// Start a new implicit round
 			$lbFactory->commitPrimaryChanges( $fnameTrxOwner );
 		}
-
-		// Ensure any stale repeatable-read snapshot on the primary DB have been flushed
-		// before running the update. E.g. left-over from an implicit transaction round
-		$lbFactory->flushReplicaSnapshots( $fnameTrxOwner );
 	}
 
 	public function onRunUpdateEnd( DeferrableUpdate $update ): void {

@@ -806,6 +806,7 @@ because of Phabricator reports.
   SelectQueryBuilder::recency() instead.
 * IDatabase::lockForUpdate is deprecated, use
   SelectQueryBuilder::acquireRowLocks instead.
+* ILBFactory::flushReplicaSnapshots() is deprecated no longer needed.
 * wfGetUrlUtils() is deprecated; instead, get a UrlUtils from services.
 * DerivedPageDataUpdater::getPreparedEdit(), provided for back-compatibility, is
   now deprecated; use the getters directly, instead.
