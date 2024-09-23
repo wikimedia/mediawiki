@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Constraque",
 			"Engelseziekte",
 			"Gazeb",
 			"McDutchie",
@@ -75,7 +76,7 @@
 	"prefs-custom-css": "Властный CSS",
 	"prefs-custom-js": "Властный JavaScript",
 	"prefs-dateformat": "Формат датуму",
-	"datedefault": "Імпліцітный",
+	"datedefault": "Штандартный",
 	"prefs-timeoffset": "Часовый посун",
 	"servertime": "Час сервера:",
 	"localtime": "Містный час:",

@@ -619,6 +619,8 @@
 	"apihelp-query+allusers-summary": "O l'elénca tùtti i uténti registræ.",
 	"apihelp-query+allusers-param-from": "O nómme uténte da-o quæ comensâ l'elénco.",
 	"apihelp-query+allusers-param-to": "O nómme uténte a-o quæ interónpe l'elénco.",
+	"apihelp-query+allusers-param-excludenamed": "Esclùdde i uténti de uténse nominæ.",
+	"apihelp-query+allusers-param-excludetemp": "Esclùdde i uténti de uténse tenporànie.",
 	"apihelp-query+allusers-param-prefix": "Riçèrca pe tùtti i uténti che coménsan con sto valô chi.",
 	"apihelp-query+allusers-param-dir": "Direçión de l'ordinaménto.",
 	"apihelp-query+allusers-param-group": "O l'inclùdde sôlo i uténti inti grùppi indicæ. O no l'inclùdde i grùppi sotintéixi ò da outo-promoçioìn cómme *, uténte ò aotoconvalidòu.",

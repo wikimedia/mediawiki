@@ -2618,6 +2618,7 @@
 	"block-details": "Szczegóły blokady",
 	"block-details-description": "Jakie działania chcesz zablokować?",
 	"block-expiry": "Czas trwania:",
+	"block-expiry-preset": "Predefiniowany czas trwania",
 	"block-expiry-preset-placeholder": "Wybierz czas trwania",
 	"block-expiry-custom": "Niestandardowy czas trwania",
 	"block-expiry-custom-minutes": "minuty",

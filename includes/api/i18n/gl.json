@@ -635,6 +635,8 @@
 	"apihelp-query+allusers-summary": "Enumerar tódolos usuarios rexistrados.",
 	"apihelp-query+allusers-param-from": "Nome de usuario para comezar a enumeración",
 	"apihelp-query+allusers-param-to": "Nome de usuario para rematar a enumeración.",
+	"apihelp-query+allusers-param-excludenamed": "Excluír os usuarios de contas nomeadas.",
+	"apihelp-query+allusers-param-excludetemp": "Excluír os usuarios de contas temporais.",
 	"apihelp-query+allusers-param-prefix": "Buscar tódolos nomes de usuario que comezan con este valor.",
 	"apihelp-query+allusers-param-dir": "Dirección na que ordenar.",
 	"apihelp-query+allusers-param-group": "Incluír só ós usuarios dos grupos dados. Non se inclúen grupos implícitos nin autopromocionados como *, usuario ou autoconfirmado.",

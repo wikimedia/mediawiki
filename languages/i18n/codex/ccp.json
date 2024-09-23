@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"BivutiChakma"
+		]
+	},
+	"cdx-chip-input-chip-added": "𑄌𑄨𑄛𑄴 $1 𑄆𑄉𑄧𑄖𑄴𑄧𑄢𑄴 𑄉𑄮𑄢𑄳𑄦 𑄦𑄮𑄠𑄬𑅁",
+	"cdx-chip-input-chip-removed": "𑄌𑄨𑄛𑄴 $1 𑄛𑄪𑄏𑄨 𑄜𑄬𑄣𑄬𑄭 𑄘𑄳𑄠𑄬 𑄦𑄮𑄠𑄬𑅁",
+	"cdx-input-chip-aria-description": "𑄆𑄓𑄨𑄖𑄴 𑄉𑄧𑄖𑄴𑄬 𑄃𑅅 𑄛𑄪𑄏𑄨 𑄜𑄬𑄣𑄘𑄬 𑄆𑄚𑄴𑄑𑄢𑄴 𑄌𑄨𑄝𑄴𑅁",
+	"cdx-dialog-close-button-label": "𑄚𑄖𑄴",
+	"cdx-label-optional-flag": "𑄃𑄧𑄛𑄴𑄥𑄮𑄚𑄣𑄴",
+	"cdx-message-dismiss-button-label": "𑄚𑄖𑄴",
+	"cdx-search-input-search-button-label": "𑄖𑄮𑄉𑄚",
+	"cdx-table-select-all-label": "𑄝𑄬𑄇𑄴 𑄣𑄭𑄚𑄴𑄅𑄚𑄴 𑄝𑄎𑄨 𑄣𑄧𑅁",
+	"cdx-table-select-row-label": "$2 𑄄𑄝𑄬𑄢𑄴 𑄟𑄧𑄖𑄴𑄙𑄳𑄠𑄬 $1 𑄚𑄧𑄟𑄴𑄝𑄧𑄢𑄴 𑄣𑄭𑄚𑄴 𑄝𑄎𑄨 𑄣𑄧",
+	"cdx-typeahead-search-search-results-label": "𑄜𑄧𑄣𑄜𑄧𑄣𑄚𑄨 𑄖𑄮𑄉𑄚",
+	"cdx-table-pager-button-first-page": "𑄛𑄧𑄖𑄴𑄧𑄟𑄴 𑄛𑄘",
+	"cdx-table-pager-button-last-page": "𑄗𑄪𑄟𑄮𑄢𑄴 𑄛𑄘",
+	"cdx-table-pager-button-next-page": "𑄡𑄬𑄢𑄧 𑄛𑄘",
+	"cdx-table-pager-button-prev-page": "𑄃𑄊𑄧𑄢𑄴 𑄛𑄘",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1𑄈𑄚𑄴 𑄣𑄭𑄚𑄴}}"
+}
