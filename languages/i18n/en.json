@@ -2693,7 +2693,6 @@
 	"block-user-label": "Which user do you want to block?",
 	"block-user-description": "A user can be a username, IP address, or an IP range.",
 	"block-user-placeholder": "Start typing a user...",
-	"block-save": "Save block",
 	"block-target": "Username, IP address, or IP range:",
 	"block-target-placeholder": "UserName, 1.1.1.42, or 1.1.1.42/16",
 	"unblockip": "Unblock user",

@@ -1,31 +1,21 @@
 'use strict';
 
 const { mount } = require( '@vue/test-utils' );
-
-// Mock calls to mw.config.get.
-// This correlates to the SpecialBlock::codexFormData property in PHP.
-const mockConfig = {
-	blockAllowsEmailBan: true,
-	blockAllowsUTEdit: true,
-	blockAutoblockExpiry: '1 day',
-	blockDefaultExpiry: 'infinite',
-	blockHideUser: true,
-	blockExpiryOptions: {
-		infinite: 'infinite',
-		'Other time:': 'other'
-	},
-	blockReasonOptions: [
-		{ label: 'block-reason-1', value: 'block-reason-1' },
-		{ label: 'block-reason-2', value: 'block-reason-2' }
-	]
-};
-mw.config.get.mockImplementation( ( key ) => mockConfig[ key ] );
-
+const { mockMwConfigGet } = require( './SpecialBlock.setup.js' );
 const SpecialBlock = require( '../../../resources/src/mediawiki.special.block/SpecialBlock.vue' );
 
 describe( 'SpecialBlock', () => {
-	it( 'should show a submit button with the correct text', () => {
-		const wrapper = mount( SpecialBlock );
-		expect( wrapper.find( 'button.cdx-button' ).text() ).toBe( 'block-save' );
+	it( 'should show a banner and a submit button with text based on if user is already blocked', () => {
+		mockMwConfigGet();
+		let wrapper = mount( SpecialBlock );
+		expect( wrapper.find( 'button.cdx-button' ).text() ).toStrictEqual( 'ipbsubmit' );
+		mockMwConfigGet( {
+			blockAlreadyBlocked: true,
+			blockTargetUser: 'ExampleUser'
+		} );
+		wrapper = mount( SpecialBlock );
+		expect( wrapper.find( '.cdx-message__content' ).text() )
+			.toStrictEqual( 'ipb-needreblock:[ExampleUser]' );
+		expect( wrapper.find( 'button.cdx-button' ).text() ).toStrictEqual( 'ipb-change-block' );
 	} );
 } );

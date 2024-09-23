@@ -2956,7 +2956,6 @@
 	"block-user-label": "Label for the input for specifying the user of a block on [[Special:Block]]",
 	"block-user-description": "Description for the input for specifying the user of a block on [[Special:Block]]",
 	"block-user-placeholder": "Placeholder text for the input specifying the user of a block on [[Special:Block]]",
-	"block-save": "Label for submit button on block form [[Special:Block]]",
 	"block-target": "Label for the input for specifying the target of a block on [[Special:Block]]",
 	"block-target-placeholder": "Placeholder text for the input specifying the target of a block on [[Special:Block]]",
 	"unblockip": "Used as title and legend for the form in [[Special:Unblock]].",
