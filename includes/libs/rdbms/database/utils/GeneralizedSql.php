@@ -61,4 +61,21 @@ class GeneralizedSql {
 	public function getRawSql() {
 		return $this->rawSql;
 	}
+
+	/**
+	 * @param Query $query
+	 * @param string $prefix
+	 * @return self
+	 */
+	public static function newFromQuery( Query $query, $prefix ) {
+		$generalizedSql = new self( $query->getSQL(), $prefix );
+
+		$cleanedSql = $query->getCleanedSql();
+		if ( $cleanedSql != '' ) {
+			// Generalized SQL already provided; no need to use regexes
+			$generalizedSql->genericSql = $prefix . $cleanedSql;
+		}
+
+		return $generalizedSql;
+	}
 }
