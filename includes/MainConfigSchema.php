@@ -8349,8 +8349,7 @@ class MainConfigSchema {
 	 * [ event => criteria, ... ]
 	 * ```
 	 *
-	 * Where event is either:
-	 *    - 'onEdit' (when user edits)
+	 * The only recognised value for event is 'onEdit' (when the user edits).
 	 *
 	 * Criteria has the same format as $wgAutopromote
 	 *
