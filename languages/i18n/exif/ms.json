@@ -193,6 +193,12 @@
 	"exif-photometricinterpretation-0": "Hitam dan putih (Putih ialah 0)",
 	"exif-photometricinterpretation-1": "Hitam dan putih (Hitam ialah 0)",
 	"exif-photometricinterpretation-3": "Palet",
+	"exif-photometricinterpretation-4": "Topeng lut sinar",
+	"exif-photometricinterpretation-5": "Dipisahkan (Mungkin CMYK)",
+	"exif-photometricinterpretation-9": "CIE L*a*b* (pengekodan ICC)",
+	"exif-photometricinterpretation-10": "CIE L*a*b* (pengekodan ITU)",
+	"exif-photometricinterpretation-32803": "Tatasusunan Penapis Warna",
+	"exif-photometricinterpretation-34892": "Mentah linear",
 	"exif-unknowndate": "Tarikh tidak diketahui",
 	"exif-orientation-1": "Normal",
 	"exif-orientation-2": "Dibalikkan secara mengufuk",
@@ -354,5 +360,7 @@
 	"exif-usepanoramaviewer-true": "Ya",
 	"exif-usepanoramaviewer-false": "Tidak",
 	"exif-exposurelockused-true": "Ya",
-	"exif-exposurelockused-false": "Tidak"
+	"exif-exposurelockused-false": "Tidak",
+	"exif-initialcameradolly": "Doli kamera awal",
+	"exif-stitchingsoftware": "Perisian jahit"
 }

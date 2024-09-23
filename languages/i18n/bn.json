@@ -499,7 +499,7 @@
 	"createacct-another-submit": "অ্যাকাউন্ট তৈরি করুন",
 	"createacct-continue-submit": "অ্যাকাউন্ট তৈরি চালিয়ে যান",
 	"createacct-another-continue-submit": "অ্যাকাউন্ট তৈরি চালিয়ে যান",
-	"createacct-benefit-heading": "{{SITENAME}} আপনার মত লোকের দ্বারাই তৈরি।",
+	"createacct-benefit-heading": "{{SITENAME}} আপনার মত মানুষের দ্বারাই তৈরি।",
 	"createacct-benefit-body1": "{{PLURAL:$1|টি সম্পাদনা}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|টি পাতা}}",
 	"createacct-benefit-body3": "জন সাম্প্রতিক {{PLURAL:$1|অবদানকারী}}",

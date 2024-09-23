@@ -868,7 +868,7 @@
 	"history-feed-empty": "Axtardığınız səhifə mövcud deyil.\nÇox guman ki, bu səhifə silinib və ya onun adı dəyişdirilib.\nVikidə buna bənzər səhifələri [[Special:Search|axtarmağa]] cəhd edin.",
 	"history-edit-tags": "Seçilmiş versiyaların teqlərini dəyiş",
 	"history-empty": "Uyğun redaktə tapılmadı.",
-	"rev-deleted-comment": "(şərhlər silindi)",
+	"rev-deleted-comment": "(dəyişiklik izahı silindi)",
 	"rev-deleted-user": "(İstifadəçi adı silindi)",
 	"rev-deleted-event": "(jurnal detalları silindi)",
 	"rev-deleted-user-contribs": "[istifadəçi adı və ya IP-ünvanı silindi - dəyişiklik fəaliyyətlərdən çıxarıldı]",

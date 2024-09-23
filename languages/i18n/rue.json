@@ -2323,6 +2323,7 @@
 	"pageinfo-length": "Довжына сторінкы (в байтах)",
 	"pageinfo-article-id": "ID сторінкы",
 	"pageinfo-language": "Язык обсягу сторінкы",
+	"pageinfo-content-model": "Модель обсягу сторінкы",
 	"pageinfo-robot-policy": "Індексованя роботами",
 	"pageinfo-robot-index": "Дозволено",
 	"pageinfo-robot-noindex": "Заказане",
