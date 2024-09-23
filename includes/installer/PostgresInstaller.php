@@ -25,12 +25,10 @@ namespace MediaWiki\Installer;
 
 use InvalidArgumentException;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Status\Status;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseFactory;
 use Wikimedia\Rdbms\DatabasePostgres;
 use Wikimedia\Rdbms\DBConnectionError;
-use Wikimedia\Rdbms\DBQueryError;
 
 /**
  * Class for setting up the MediaWiki database using Postgres.
@@ -60,8 +58,6 @@ class PostgresInstaller extends DatabaseInstaller {
 	public static $minimumVersion = '10';
 	/** @inheritDoc */
 	protected static $notMinimumVersionMessage = 'config-postgres-old';
-	/** @var int */
-	public $maxRoleSearchDepth = 5;
 
 	public function getName() {
 		return 'postgres';
@@ -208,191 +204,6 @@ class PostgresInstaller extends DatabaseInstaller {
 		}
 	}
 
-	protected function getInstallUserPermissions() {
-		$status = $this->getConnection( self::CONN_CREATE_DATABASE );
-		if ( !$status->isOK() ) {
-			return false;
-		}
-		$conn = $status->getDB();
-		$superuser = $this->getVar( '_InstallUser' );
-
-		$row = $conn->selectRow( '"pg_catalog"."pg_roles"', '*',
-			[ 'rolname' => $superuser ], __METHOD__ );
-
-		return $row;
-	}
-
-	public function canCreateAccounts() {
-		$perms = $this->getInstallUserPermissions();
-		return ( $perms && $perms->rolsuper ) || $perms->rolcreaterole;
-	}
-
-	protected function isSuperUser() {
-		$perms = $this->getInstallUserPermissions();
-		return $perms && $perms->rolsuper;
-	}
-
-	/**
-	 * Returns true if the install user is able to create objects owned
-	 * by the web user, false otherwise.
-	 * @return bool
-	 */
-	public function canCreateObjectsForWebUser() {
-		if ( $this->isSuperUser() ) {
-			return true;
-		}
-
-		$status = $this->getConnection( self::CONN_CREATE_DATABASE );
-		if ( !$status->isOK() ) {
-			return false;
-		}
-		$conn = $status->getDB();
-		$installerId = $conn->selectField( '"pg_catalog"."pg_roles"', 'oid',
-			[ 'rolname' => $this->getVar( '_InstallUser' ) ], __METHOD__ );
-		$webId = $conn->selectField( '"pg_catalog"."pg_roles"', 'oid',
-			[ 'rolname' => $this->getVar( 'wgDBuser' ) ], __METHOD__ );
-
-		return $this->isRoleMember( $conn, $installerId, $webId, $this->maxRoleSearchDepth );
-	}
-
-	/**
-	 * Recursive helper for canCreateObjectsForWebUser().
-	 * @param Database $conn
-	 * @param int $targetMember Role ID of the member to look for
-	 * @param int $group Role ID of the group to look for
-	 * @param int $maxDepth Maximum recursive search depth
-	 * @return bool
-	 */
-	protected function isRoleMember( $conn, $targetMember, $group, $maxDepth ) {
-		if ( $targetMember === $group ) {
-			// A role is always a member of itself
-			return true;
-		}
-		// Get all members of the given group
-		$res = $conn->select( '"pg_catalog"."pg_auth_members"', [ 'member' ],
-			[ 'roleid' => $group ], __METHOD__ );
-		foreach ( $res as $row ) {
-			if ( $row->member == $targetMember ) {
-				// Found target member
-				return true;
-			}
-			// Recursively search each member of the group to see if the target
-			// is a member of it, up to the given maximum depth.
-			if ( $maxDepth > 0 &&
-				$this->isRoleMember( $conn, $targetMember, $row->member, $maxDepth - 1 )
-			) {
-				// Found member of member
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	public function preInstall() {
-		$createDbAccount = [
-			'name' => 'user',
-			'callback' => [ $this, 'setupUser' ],
-		];
-		$plpgCB = [
-			'name' => 'pg-plpgsql',
-			'callback' => [ $this, 'setupPLpgSQL' ],
-		];
-		$schemaCB = [
-			'name' => 'schema',
-			'callback' => [ $this, 'setupSchema' ]
-		];
-
-		if ( $this->getVar( '_CreateDBAccount' ) ) {
-			$this->parent->addInstallStep( $createDbAccount, 'database' );
-		}
-		$this->parent->addInstallStep( $plpgCB, 'database' );
-		$this->parent->addInstallStep( $schemaCB, 'database' );
-	}
-
-	public function setupDatabase() {
-		$status = $this->getConnection( self::CONN_CREATE_DATABASE );
-		if ( !$status->isOK() ) {
-			return $status;
-		}
-
-		$conn = $status->getDB();
-		$dbName = $this->getVar( 'wgDBname' );
-
-		$exists = (bool)$conn->selectField( '"pg_catalog"."pg_database"', '1',
-			[ 'datname' => $dbName ], __METHOD__ );
-		if ( !$exists ) {
-			$safedb = $conn->addIdentifierQuotes( $dbName );
-			$conn->query( "CREATE DATABASE $safedb", __METHOD__ );
-		}
-
-		return Status::newGood();
-	}
-
-	public function setupSchema() {
-		// Get a connection to the target database
-		$status = $this->getConnection( self::CONN_CREATE_SCHEMA );
-		if ( !$status->isOK() ) {
-			return $status;
-		}
-		$conn = $status->getDB();
-		'@phan-var DatabasePostgres $conn'; /** @var DatabasePostgres $conn */
-
-		// Create the schema if necessary
-		$schema = $this->getVar( 'wgDBmwschema' );
-		$safeschema = $conn->addIdentifierQuotes( $schema );
-		$safeuser = $conn->addIdentifierQuotes( $this->getVar( 'wgDBuser' ) );
-		if ( !$conn->schemaExists( $schema ) ) {
-			try {
-				$conn->query( "CREATE SCHEMA $safeschema AUTHORIZATION $safeuser", __METHOD__ );
-			} catch ( DBQueryError $e ) {
-				return Status::newFatal( 'config-install-pg-schema-failed',
-					$this->getVar( '_InstallUser' ), $schema );
-			}
-		}
-
-		return Status::newGood();
-	}
-
-	public function setupUser() {
-		if ( !$this->getVar( '_CreateDBAccount' ) ) {
-			return Status::newGood();
-		}
-
-		$status = $this->getConnection( self::CONN_CREATE_DATABASE );
-		if ( !$status->isOK() ) {
-			return $status;
-		}
-		$conn = $status->getDB();
-		'@phan-var DatabasePostgres $conn'; /** @var DatabasePostgres $conn */
-
-		$safeuser = $conn->addIdentifierQuotes( $this->getVar( 'wgDBuser' ) );
-		$safepass = $conn->addQuotes( $this->getVar( 'wgDBpassword' ) );
-
-		// Check if the user already exists
-		$userExists = $conn->roleExists( $this->getVar( 'wgDBuser' ) );
-		if ( !$userExists ) {
-			// Create the user
-			try {
-				$sql = "CREATE ROLE $safeuser NOCREATEDB LOGIN PASSWORD $safepass";
-
-				// If the install user is not a superuser, we need to make the install
-				// user a member of the new user's group, so that the install user will
-				// be able to create a schema and other objects on behalf of the new user.
-				if ( !$this->isSuperUser() ) {
-					$sql .= ' ROLE' . $conn->addIdentifierQuotes( $this->getVar( '_InstallUser' ) );
-				}
-
-				$conn->query( $sql, __METHOD__ );
-			} catch ( DBQueryError $e ) {
-				return Status::newFatal( 'config-install-user-create-failed',
-					$this->getVar( 'wgDBuser' ), $e->getMessage() );
-			}
-		}
-
-		return Status::newGood();
-	}
-
 	public function getLocalSettings() {
 		$port = $this->getVar( 'wgDBport' );
 		$useSsl = $this->getVar( 'wgDBssl' ) ? 'true' : 'false';
@@ -419,21 +230,5 @@ class PostgresInstaller extends DatabaseInstaller {
 		return array_merge( parent::getGlobalDefaults(), [
 			'wgDBmwschema' => 'mediawiki',
 		] );
-	}
-
-	public function setupPLpgSQL() {
-		// Connect as the install user, since it owns the database and so is
-		// the user that needs to run "CREATE EXTENSION"
-		$status = $this->getConnection( self::CONN_CREATE_SCHEMA );
-		if ( !$status->isOK() ) {
-			return $status;
-		}
-		$conn = $status->getDB();
-		try {
-			$conn->query( 'CREATE EXTENSION IF NOT EXISTS plpgsql', __METHOD__ );
-		} catch ( DBQueryError $e ) {
-			return Status::newFatal( 'config-pg-no-plpgsql', $this->getVar( 'wgDBname' ) );
-		}
-		return Status::newGood();
 	}
 }

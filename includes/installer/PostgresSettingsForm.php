@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Installer;
 
+use MediaWiki\Installer\Task\ITaskContext;
+use MediaWiki\Installer\Task\PostgresUtils;
 use MediaWiki\Status\Status;
 use Wikimedia\Rdbms\DatabasePostgres;
 
@@ -11,7 +13,7 @@ use Wikimedia\Rdbms\DatabasePostgres;
 class PostgresSettingsForm extends DatabaseSettingsForm {
 
 	public function getHtml() {
-		if ( $this->getPostgresInstaller()->canCreateAccounts() ) {
+		if ( $this->getPostgresUtils()->canCreateAccounts() ) {
 			$noCreateMsg = false;
 		} else {
 			$noCreateMsg = 'config-db-web-no-create-privs';
@@ -34,7 +36,7 @@ class PostgresSettingsForm extends DatabaseSettingsForm {
 		} else {
 			// Check if the web user exists
 			// Connect to the database with the install user
-			$status = $this->getPostgresInstaller()->getConnection( DatabaseInstaller::CONN_CREATE_DATABASE );
+			$status = $this->dbInstaller->getConnection( ITaskContext::CONN_CREATE_DATABASE );
 			if ( !$status->isOK() ) {
 				return $status;
 			}
@@ -44,7 +46,7 @@ class PostgresSettingsForm extends DatabaseSettingsForm {
 		}
 
 		// Validate the create checkbox
-		if ( $this->getPostgresInstaller()->canCreateAccounts() && !$same && !$exists ) {
+		if ( $this->getPostgresUtils()->canCreateAccounts() && !$same && !$exists ) {
 			$create = $this->getVar( '_CreateDBAccount' );
 		} else {
 			$this->setVar( '_CreateDBAccount', false );
@@ -52,7 +54,7 @@ class PostgresSettingsForm extends DatabaseSettingsForm {
 		}
 
 		if ( !$create && !$exists ) {
-			if ( $this->getPostgresInstaller()->canCreateAccounts() ) {
+			if ( $this->getPostgresUtils()->canCreateAccounts() ) {
 				$msg = 'config-install-user-missing-create';
 			} else {
 				$msg = 'config-install-user-missing';
@@ -77,7 +79,7 @@ class PostgresSettingsForm extends DatabaseSettingsForm {
 		// The web user is conventionally the table owner in PostgreSQL
 		// installations. Make sure the install user is able to create
 		// objects on behalf of the web user.
-		if ( $same || $this->getPostgresInstaller()->canCreateObjectsForWebUser() ) {
+		if ( $same || $this->getPostgresUtils()->canCreateObjectsForWebUser() ) {
 			return Status::newGood();
 		} else {
 			return Status::newFatal( 'config-pg-not-in-role' );
@@ -91,6 +93,10 @@ class PostgresSettingsForm extends DatabaseSettingsForm {
 	private function getPostgresInstaller(): PostgresInstaller {
 		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return $this->dbInstaller;
+	}
+
+	private function getPostgresUtils() {
+		return new PostgresUtils( $this->dbInstaller );
 	}
 
 }
