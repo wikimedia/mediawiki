@@ -533,9 +533,9 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			try {
 				if (
 					// Random purging is enabled
-					$this->purgePeriod &&
+					$this->purgePeriod >= 1 &&
 					// Only purge on one in every $this->purgePeriod writes
-					mt_rand( 0, $this->purgePeriod - 1 ) == 0 &&
+					mt_rand( 1, $this->purgePeriod ) == 1 &&
 					// Avoid repeating the delete within a few seconds
 					( $this->getCurrentTime() - $this->lastGarbageCollect ) > self::GC_DELAY_SEC
 				) {
