@@ -75,7 +75,7 @@ module.exports = exports = defineComponent( {
 		CdxMessage
 	},
 	setup() {
-		const targetUser = ref( mw.config.get( 'blockTargetUser' ) );
+		const targetUser = ref( mw.config.get( 'blockTargetUser', '' ) );
 		const expiry = ref( {} );
 		const blockEnableMultiblocks = mw.config.get( 'blockEnableMultiblocks' ) || false;
 		const blockPartialOptions = mw.config.get( 'partialBlockActionOptions' ) ?
