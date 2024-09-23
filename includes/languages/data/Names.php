@@ -400,6 +400,7 @@ class Names {
 		'nog' => 'ногайша', # Nogai
 		'nov' => 'Novial', # Novial
 		'nqo' => 'ߒߞߏ', # N'Ko
+		'nr' => 'isiNdebele seSewula', # Southern Ndebele
 		'nrm' => 'Nouormand', # Norman (invalid code; 'nrf' in ISO 639 since 2014)
 		'nso' => 'Sesotho sa Leboa', # Northern Sotho
 		'nup' => 'Nupe', # Nupe
