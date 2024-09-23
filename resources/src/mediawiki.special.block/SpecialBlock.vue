@@ -42,15 +42,15 @@
 	<cdx-button
 		action="destructive"
 		weight="primary"
-		@click="handleSubmit"
 		class="mw-block-submit"
+		@click="handleSubmit"
 	>
-		{{ submitBtnMsg }}
+		{{ submitButtonMessage }}
 	</cdx-button>
 </template>
 
 <script>
-const { defineComponent, ref } = require( 'vue' );
+const { computed, defineComponent, ref } = require( 'vue' );
 const { CdxButton, CdxMessage } = require( '@wikimedia/codex' );
 const UserLookup = require( './components/UserLookup.vue' );
 const TargetActiveBlocks = require( './components/TargetActiveBlocks.vue' );
@@ -76,8 +76,13 @@ module.exports = exports = defineComponent( {
 	},
 	setup() {
 		const targetUser = ref( mw.config.get( 'blockTargetUser', '' ) );
+		const alreadyBlocked = ref( mw.config.get( 'blockAlreadyBlocked' ) );
 		const expiry = ref( {} );
 		const blockEnableMultiblocks = mw.config.get( 'blockEnableMultiblocks' ) || false;
+		// eslint-disable-next-line arrow-body-style
+		const submitButtonMessage = computed( () => {
+			return mw.message( alreadyBlocked.value ? 'ipb-change-block' : 'ipbsubmit' ).text();
+		} );
 		const blockPartialOptions = mw.config.get( 'partialBlockActionOptions' ) ?
 			Object.keys( mw.config.get( 'partialBlockActionOptions' ) ).map(
 				// Messages that can be used here:
@@ -222,13 +227,11 @@ module.exports = exports = defineComponent( {
 				} );
 		}
 
-		const alreadyBlocked = mw.config.get( 'blockAlreadyBlocked' );
-
 		return {
 			targetUser,
 			expiry,
 			alreadyBlocked,
-			submitBtnMsg: mw.message( alreadyBlocked ? 'ipb-change-block' : 'ipbsubmit' ).text(),
+			submitButtonMessage,
 			handleSubmit,
 			blockDetailsOptions,
 			blockDetailsSelected,
