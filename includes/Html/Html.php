@@ -699,7 +699,6 @@ class Html {
 			$html = self::element( 'h2', [], $heading ) . $html;
 		}
 		$coreClasses = [
-			'mw-message-box',
 			'cdx-message',
 			'cdx-message--block'
 		];
@@ -734,7 +733,6 @@ class Html {
 	 */
 	public static function noticeBox( $html, $className, $heading = '', $iconClassName = '' ) {
 		return self::messageBox( $html, [
-			'mw-message-box-notice',
 			'cdx-message--notice',
 			$className
 		], $heading, $iconClassName );
@@ -751,7 +749,6 @@ class Html {
 	 */
 	public static function warningBox( $html, $className = '' ) {
 		return self::messageBox( $html, [
-			'mw-message-box-warning',
 			'cdx-message--warning', $className ] );
 	}
 
@@ -767,7 +764,6 @@ class Html {
 	 */
 	public static function errorBox( $html, $heading = '', $className = '' ) {
 		return self::messageBox( $html, [
-			'mw-message-box-error',
 			'cdx-message--error', $className ], $heading );
 	}
 
@@ -782,7 +778,6 @@ class Html {
 	 */
 	public static function successBox( $html, $className = '' ) {
 		return self::messageBox( $html, [
-			'mw-message-box-success',
 			'cdx-message--success', $className ] );
 	}
 

@@ -468,7 +468,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 
 	public function testWarningBox() {
 		$this->assertEquals(
-			'<div class="mw-message-box cdx-message cdx-message--block mw-message-box-warning cdx-message--warning">'
+			'<div class="cdx-message cdx-message--block cdx-message--warning">'
 				. '<span class="cdx-message__icon"></span>'
 				. '<div class="cdx-message__content">warn</div></div>',
 			Html::warningBox( 'warn' )
@@ -477,13 +477,13 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 
 	public function testErrorBox() {
 		$this->assertEquals(
-			'<div class="mw-message-box cdx-message cdx-message--block mw-message-box-error cdx-message--error">'
+			'<div class="cdx-message cdx-message--block cdx-message--error">'
 				. '<span class="cdx-message__icon"></span>'
 				. '<div class="cdx-message__content">err</div></div>',
 			Html::errorBox( 'err' )
 		);
 		$this->assertEquals(
-			'<div class="mw-message-box cdx-message cdx-message--block mw-message-box-error cdx-message--error errorbox-custom-class">'
+			'<div class="cdx-message cdx-message--block cdx-message--error errorbox-custom-class">'
 				. '<span class="cdx-message__icon"></span>'
 				. '<div class="cdx-message__content">'
 				. '<h2>heading</h2>err'
@@ -491,7 +491,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 			Html::errorBox( 'err', 'heading', 'errorbox-custom-class' )
 		);
 		$this->assertEquals(
-			'<div class="mw-message-box cdx-message cdx-message--block mw-message-box-error cdx-message--error">'
+			'<div class="cdx-message cdx-message--block cdx-message--error">'
 				. '<span class="cdx-message__icon"></span>'
 				. '<div class="cdx-message__content">'
 				. '<h2>0</h2>err'
@@ -502,13 +502,13 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 
 	public function testSuccessBox() {
 		$this->assertEquals(
-			'<div class="mw-message-box cdx-message cdx-message--block mw-message-box-success cdx-message--success">'
+			'<div class="cdx-message cdx-message--block cdx-message--success">'
 				. '<span class="cdx-message__icon"></span>'
 				. '<div class="cdx-message__content">great</div></div>',
 			Html::successBox( 'great' )
 		);
 		$this->assertEquals(
-			'<div class="mw-message-box cdx-message cdx-message--block mw-message-box-success cdx-message--success">'
+			'<div class="cdx-message cdx-message--block cdx-message--success">'
 				. '<span class="cdx-message__icon"></span>'
 				. '<div class="cdx-message__content">'
 				. '<script>beware no escaping!</script>'
