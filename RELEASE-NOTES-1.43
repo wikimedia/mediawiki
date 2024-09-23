@@ -227,6 +227,7 @@ because of Phabricator reports.
 * (T365365) Added language support for Chakma (ccp).
 * (T367991) Added language support for Iban (iba).
 * (T367688) Added language support for Interslavic (Latin) (isv-latn).
+* (T375360) Added language support for Interslavic (Cyrillic) (isv-cyrl).
 * (T370123) Added language support for Nupe (nup).
 * (T371051) Added language support for Saint Lucian Creole (acf).
 * (T354937, T370987) Added language support for Minnan (Pe̍h-ōe-jī)

@@ -3,6 +3,8 @@
  *
  * @file
  * @ingroup Languages
+ *
+ * @author IJzeren Jan
  */
 
 $namespaceNames = [
@@ -20,4 +22,9 @@ $namespaceNames = [
 	NS_HELP_TALK        => 'Besěda_o_pomoči',
 	NS_CATEGORY         => 'Kategorija',
 	NS_CATEGORY_TALK    => 'Besěda_o_kategoriji',
+];
+
+$namespaceGenderAliases = [
+	NS_USER => [ 'male' => 'Koristnik', 'female' => 'Koristnica' ],
+	NS_USER_TALK => [ 'male' => 'Besěda_s_koristnikom', 'female' => 'Besěda_s_koristniceju' ],
 ];
