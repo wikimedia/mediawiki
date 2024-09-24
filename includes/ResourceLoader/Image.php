@@ -338,6 +338,7 @@ class Image {
 		header( 'Content-Type: ' . $mime );
 		header( 'Content-Disposition: ' .
 			FileBackend::makeContentDisposition( 'inline', $filename ) );
+		header( 'Access-Control-Allow-Origin: *' );
 	}
 
 	/**
