@@ -1334,7 +1334,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$noticeContent = $this->msg( 'createacct-temp-warning', $this->getUser()->getName() )->parse();
 		return Html::noticeBox(
 			$noticeContent,
-			'',
+			'mw-createaccount-temp-warning',
 			'',
 			'mw-userLogin-icon--user-temporary'
 		);
