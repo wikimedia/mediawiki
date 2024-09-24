@@ -7,6 +7,7 @@
 	"preferences": "Preferences",
 	"preferences-summary": "",
 	"prefsnologintext2": "Please log in to change your preferences.",
+	"prefsnologintext2-for-temp-user": "Please create an account to change preferences.",
 	"searchprefs": "Search preferences",
 	"searchprefs-noresults": "No results",
 	"searchprefs-results": "$1 {{PLURAL:$1|result|results}}",

@@ -265,6 +265,7 @@
 	"preferences": "Title of the [[Special:Preferences]] page.\n{{Identical|Preferences}}",
 	"preferences-summary": "{{doc-specialpagesummary|preferences}}",
 	"prefsnologintext2": "Showed on Special:Userlogin when user tries to access their preferences before logging in",
+	"prefsnologintext2-for-temp-user": "Showed on [[Special:CreateAccount]] when temporary account tries to access their preferences.",
 	"searchprefs": "'''Note that this means \"Search in the preferences\" and not \"Preferences of searching\".'''\n\nPlaceholder for the input users can use to search the preferences page.",
 	"searchprefs-noresults": "Message used when no results are found when searching the preferences page.",
 	"searchprefs-results": "Message used when results are found when searching the preferences page. Parameters:\n* $1 - number of results",

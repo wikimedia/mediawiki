@@ -89,7 +89,7 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 		}
 
 		if ( $code === null || $code === '' ) {
-			$this->requireNamedUser( 'confirmemail_needlogin' );
+			$this->requireNamedUser( 'confirmemail_needlogin', 'exception-nologin', true );
 			if ( Sanitizer::validateEmail( $this->getUser()->getEmail() ) ) {
 				$this->showRequestForm();
 			} else {
