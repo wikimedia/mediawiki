@@ -62,7 +62,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	/** @var array<string,array<int,Database[]>> Map of (connection pool => server index => Database[]) */
 	private $conns;
 
-	/** @var string|null The name of the DB cluster */
+	/** @var string The name of the DB cluster */
 	private $clusterName;
 	/** @var ServerInfo */
 	private $serverInfo;
@@ -175,6 +175,9 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			}
 			$this->groupLoads[self::GROUP_GENERIC][$i] = $server['load'];
 		}
+		// If the cluster name is not specified, fallback to the current primary name
+		$this->clusterName = $params['clusterName']
+			?? $this->serverInfo->getServerName( ServerInfo::WRITER_INDEX );
 
 		if ( isset( $params['readOnlyReason'] ) && is_string( $params['readOnlyReason'] ) ) {
 			$this->readOnlyReason = $params['readOnlyReason'];
@@ -191,7 +194,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		};
 		$this->logger = $params['logger'] ?? new NullLogger();
 
-		$this->clusterName = $params['clusterName'] ?? null;
 		$this->trxProfiler = $params['trxProfiler'] ?? new TransactionProfiler();
 		$this->statsd = $params['statsdDataFactory'] ?? new NullStatsdDataFactory();
 
@@ -236,8 +238,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	public function getClusterName(): string {
-		// Fallback to the current primary name if not specified
-		return $this->clusterName ?? $this->getServerName( ServerInfo::WRITER_INDEX );
+		return $this->clusterName;
 	}
 
 	public function getLocalDomainID(): string {
@@ -1852,7 +1853,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 		$fname = __METHOD__;
 		return $this->wanCache->getWithSetCallback(
-			$this->wanCache->makeGlobalKey( 'rdbms-lags', $this->clusterName ?? '' ),
+			$this->wanCache->makeGlobalKey( 'rdbms-lags', $this->getClusterName() ),
 			// Add jitter to avoid stampede
 			10 + mt_rand( 1, 10 ),
 			function () use ( $fname ) {
