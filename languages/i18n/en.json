@@ -348,7 +348,6 @@
 	"invalidtitle-unknownnamespace": "Invalid title with unknown namespace number $1 and text \"$2\"",
 	"exception-nologin": "Not logged in",
 	"exception-nologin-text": "Please log in to be able to access this page or action.",
-	"exception-nologin-text-manual": "Please $1 to be able to access this page or action.",
 	"virus-badscanner": "Bad configuration: Unknown virus scanner: <em>$1</em>",
 	"virus-scanfailed": "scan failed (code $1)",
 	"virus-unknownscanner": "unknown antivirus:",
