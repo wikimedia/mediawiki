@@ -421,10 +421,9 @@ interface ILoadBalancer {
 
 	/**
 	 * @note This method may trigger a DB connection if not yet done
-	 * @param string|false $domain DB domain ID or false (unused and deprecated since 1.40)
 	 * @return string|false Reason the primary is read-only or false if it is not
 	 */
-	public function getReadOnlyReason( $domain = false );
+	public function getReadOnlyReason();
 
 	/**
 	 * @return bool

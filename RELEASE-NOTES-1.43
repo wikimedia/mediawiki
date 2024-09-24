@@ -345,6 +345,8 @@ because of Phabricator reports.
   Use ServerInfo::WRITER_INDEX constant instead.
 * MaintainableDBConnRef, deprecated since 1.39, has been removed.
 * ILoadBalancer::reuseConnection(), deprecated since 1.39, has been removed.
+* The $domain parameter to ILoadBalancer::getReadOnlyReason(), deprecated in
+  1.40, has been removed.
 * WikiPage::doDeleteArticleBatched, hard deprecated since 1.37, has been
   removed.
 * SpecialEmailUser::submit, deprecated since 1.41, has been removed.
