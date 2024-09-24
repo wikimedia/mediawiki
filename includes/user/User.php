@@ -2635,16 +2635,24 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * If this user is logged-in and blocked,
-	 * block any IP address they've successfully logged in from.
+	 * If this user is logged-in and blocked, block any IP address they've successfully logged in from.
+	 * Calls the "SpreadAnyEditBlock" hook, so this may block the IP address using a non-core blocking mechanism.
+	 *
 	 * @return bool A block was spread
 	 */
 	public function spreadAnyEditBlock() {
-		if ( $this->isRegistered() && $this->getBlock() ) {
-			return $this->spreadBlock();
+		if ( !$this->isRegistered() ) {
+			return false;
 		}
 
-		return false;
+		$blockWasSpread = false;
+		$this->getHookRunner()->onSpreadAnyEditBlock( $this, $blockWasSpread );
+
+		if ( $this->getBlock() ) {
+			$blockWasSpread = $blockWasSpread || $this->spreadBlock();
+		}
+
+		return $blockWasSpread;
 	}
 
 	/**
