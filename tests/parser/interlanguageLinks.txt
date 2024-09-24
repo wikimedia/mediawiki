@@ -373,4 +373,5 @@ ill
 ill=zh:Chinese#fragment
 !! html/php
 !! html/parsoid
+<link rel="mw:PageProp/Language" href="http://zh.wikipedia.org/wiki/Chinese#fragment" data-parsoid='{"stx":"simple","a":{"href":"http://zh.wikipedia.org/wiki/Chinese#fragment"},"sa":{"href":"zh:Chinese#fragment"}}'/>
 !! end
