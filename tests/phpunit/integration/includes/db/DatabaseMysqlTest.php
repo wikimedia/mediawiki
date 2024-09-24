@@ -3,6 +3,7 @@
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ChangedTablesTracker;
 use Wikimedia\Rdbms\DatabaseMySQL;
+use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DBQueryDisconnectedError;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\DBQueryTimeoutError;
@@ -11,6 +12,7 @@ use Wikimedia\Rdbms\DBTransactionStateError;
 use Wikimedia\Rdbms\DBUnexpectedError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
+use Wikimedia\Rdbms\Platform\SQLPlatform;
 use Wikimedia\Rdbms\Query;
 use Wikimedia\Rdbms\TransactionManager;
 
@@ -148,6 +150,76 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 
 		$row = $this->conn->query( 'SELECT "x" AS v', __METHOD__ )->fetchObject();
 		$this->assertSame( 'x', $row->v, "Recovered" );
+
+		$adminConn->close( __METHOD__ );
+	}
+
+	public function testConnectionLossSnapshotFlush() {
+		$fakeWriteQuery = new Query( 'SELECT 1', SQLPlatform::QUERY_CHANGE_ROWS, 'SELECT' );
+
+		$this->conn->begin( __METHOD__, IDatabase::TRANSACTION_INTERNAL );
+		$row = $this->conn->query( 'SELECT connection_id() AS id', __METHOD__ )->fetchObject();
+		$encId = intval( $row->id );
+
+		$adminConn = $this->newConnection();
+		$adminConn->query( "KILL $encId", __METHOD__ );
+
+		$this->conn->flushSnapshot( __METHOD__ );
+		$this->assertSame( 0, $this->conn->trxLevel(), "Lost connection during snapshot flush" );
+		$this->assertSame( TransactionManager::STATUS_TRX_NONE, $this->conn->trxStatus() );
+
+		$this->conn->begin( __METHOD__, IDatabase::TRANSACTION_INTERNAL );
+		$this->conn->query( $fakeWriteQuery, __METHOD__ );
+
+		$row = $this->conn->query( 'SELECT connection_id() AS id', __METHOD__ )->fetchObject();
+		$encId = intval( $row->id );
+		$adminConn->query( "KILL $encId", __METHOD__ );
+
+		try {
+			$this->conn->query( $fakeWriteQuery, __METHOD__ );
+			$this->fail( "Error thrown due to connection loss with pending writes" );
+		} catch ( DBError $e ) {
+			$this->assertInstanceOf( DBQueryDisconnectedError::class, $e );
+			$this->assertSame( TransactionManager::STATUS_TRX_ERROR, $this->conn->trxStatus() );
+		}
+
+		try {
+			$this->conn->query( 'SELECT 1', __METHOD__ );
+			$this->fail( "Error thrown due to unacknowledged transaction error" );
+		} catch ( DBError $e ) {
+			$this->assertInstanceOf( DBTransactionStateError::class, $e );
+			$this->assertSame( TransactionManager::STATUS_TRX_ERROR, $this->conn->trxStatus() );
+		}
+
+		$this->conn->flushSnapshot( __METHOD__ );
+		$this->assertSame( 0, $this->conn->trxLevel(), "Snapshot flush after lost writes" );
+		$this->assertSame( TransactionManager::STATUS_TRX_NONE, $this->conn->trxStatus() );
+
+		// Get a lock outside of any transaction
+		$unlocker = $this->conn->getScopedLockAndFlush( 'testing-key', __METHOD__, 0 );
+		// Start transaction *after* getting the lock
+		$this->conn->begin( __METHOD__, IDatabase::TRANSACTION_INTERNAL );
+
+		$row = $this->conn->query( 'SELECT connection_id() AS id', __METHOD__ )->fetchObject();
+		$encId = intval( $row->id );
+		$adminConn->query( "KILL $encId", __METHOD__ );
+
+		try {
+			$this->conn->query( 'SELECT 1', __METHOD__ );
+			$this->fail( "Error thrown due to connection loss with locks" );
+		} catch ( DBError $e ) {
+			$this->assertSame( TransactionManager::STATUS_TRX_ERROR, $this->conn->trxStatus() );
+		}
+
+		$this->conn->flushSnapshot( __METHOD__ );
+		$this->assertSame( 0, $this->conn->trxLevel(), "Snapshot flush with lost lock" );
+
+		try {
+			$this->conn->query( 'SELECT 1', __METHOD__ );
+			$this->fail( "Error thrown due to unacknowledged session error" );
+		} catch ( DBError $e ) {
+			$this->assertInstanceOf( DBSessionStateError::class, $e );
+		}
 
 		$adminConn->close( __METHOD__ );
 	}
