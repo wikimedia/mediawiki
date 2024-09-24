@@ -32,7 +32,6 @@ class LoginHelper extends ContextSource {
 		'exception-nologin-text',
 		'watchlistanontext',
 		'changeemail-no-info',
-		'resetpass-no-info',
 		'confirmemail_needlogin',
 		'prefsnologintext2',
 		'specialmute-login-required',

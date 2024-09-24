@@ -543,7 +543,6 @@
 	"botpasswords-locked": "You cannot login with a bot password as your account is locked.",
 	"resetpass_forbidden": "Passwords cannot be changed",
 	"resetpass_forbidden-reason": "Passwords cannot be changed: $1",
-	"resetpass-no-info": "You must be logged in to access this page directly.",
 	"resetpass-submit-loggedin": "Change password",
 	"resetpass-submit-cancel": "Cancel",
 	"resetpass-wrong-oldpass": "Invalid temporary or current password.\nYou may have already changed your password or requested a new temporary password.",
