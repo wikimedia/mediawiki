@@ -58,12 +58,12 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 				],
 				true
 			],
-			'element enables content-links if unset' => [
+			'elements enables content-links if unset' => [
 				[
-					'element' => true,
+					'elements' => true,
 				],
 				[
-					'element' => true,
+					'elements' => true,
 					'content-links' => true,
 				],
 				true
