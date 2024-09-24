@@ -26,9 +26,9 @@ use WANObjectCache;
 use Wikimedia\Rdbms\ILBFactory;
 
 class NameTableStoreFactory {
-	/** @var array[]|null */
+	/** @var array<string,mixed> */
 	private static $info;
-	/** @var NameTableStore[][] */
+	/** @var array<string,array<string,NameTableStore>> */
 	private $stores = [];
 
 	/** @var ILBFactory */
