@@ -458,6 +458,10 @@ class Router {
 			$response = $this->responseFactory->createFromException( $e );
 		}
 
+		// TODO: Only send the vary header for handlers that opt into
+		//       restbase compat!
+		$this->varyOnRestbaseCompat( $response );
+
 		return $response;
 	}
 
@@ -563,7 +567,13 @@ class Router {
 	 * @return bool
 	 */
 	public function isRestbaseCompatEnabled( RequestInterface $request ): bool {
+		// See T374136
 		return $request->getHeaderLine( 'x-restbase-compat' ) === 'true';
+	}
+
+	private function varyOnRestbaseCompat( ResponseInterface $response ) {
+		// See T374136
+		$response->addHeader( 'Vary', 'x-restbase-compat' );
 	}
 
 	/**

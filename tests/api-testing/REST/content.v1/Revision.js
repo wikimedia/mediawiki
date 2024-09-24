@@ -27,6 +27,7 @@ describe( 'Revision', () => {
 
 			assert.strictEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
+			assert.match( headers.vary, /\bx-restbase-compat\b/ );
 			assert.strictEqual( body.id, newrevid );
 			assert.strictEqual( body.minor, false );
 			assert.deepEqual( body.page, { id: pageid, title: page, key: utils.dbkey( page ) } );
@@ -77,6 +78,7 @@ describe( 'Revision', () => {
 
 			assert.deepEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
+			assert.match( headers.vary, /\bx-restbase-compat\b/ );
 			assert.containsAllKeys( body, [ 'title', 'page_id', 'rev', 'tid', 'namespace', 'user_id',
 				'user_text', 'timestamp', 'comment', 'tags', 'restrictions', 'page_language', 'redirect' ] );
 
