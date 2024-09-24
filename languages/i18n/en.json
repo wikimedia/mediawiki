@@ -2607,7 +2607,7 @@
 	"sp-contributions-concurrency-user": "Sorry, too many requests are being made from your user account. Please try again later.",
 	"sp-contributions-concurrency-ip": "Sorry, too many requests are being made from your IP address. Please try again later.",
 	"whatlinkshere": "What links here",
-	"whatlinkshere-count": "Displayed $1 {{PLURAL:$1|item|items}}.",
+	"whatlinkshere-count": "Displaying $1 {{PLURAL:$1|item|items}}.",
 	"whatlinkshere-title": "Pages that link to \"$1\"",
 	"whatlinkshere-summary": "",
 	"whatlinkshere-page": "Page:",
