@@ -606,7 +606,7 @@ class TransactionManager {
 		$this->trxEndCallbacks[] = [ $callback, $fname, $this->currentAtomicSectionId() ];
 	}
 
-	public function addPostCommitOrIdleCallback( callable $callback, $fname = __METHOD__ ) {
+	public function addPostCommitOrIdleCallback( callable $callback, $fname ) {
 		$this->trxPostCommitOrIdleCallbacks[] = [
 			$callback,
 			$fname,
@@ -614,7 +614,7 @@ class TransactionManager {
 		];
 	}
 
-	final public function addPreCommitOrIdleCallback( callable $callback, $fname = __METHOD__ ) {
+	final public function addPreCommitOrIdleCallback( callable $callback, $fname ) {
 		$this->trxPreCommitOrIdleCallbacks[] = [
 			$callback,
 			$fname,

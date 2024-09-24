@@ -1770,7 +1770,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	 * @return bool Whether an INSERT SELECT with these options will be replication safe
 	 * @since 1.31
 	 */
-	protected function isInsertSelectSafe( array $insertOptions, array $selectOptions, $fname = __METHOD__ ) {
+	protected function isInsertSelectSafe( array $insertOptions, array $selectOptions, $fname ) {
 		return true;
 	}
 
