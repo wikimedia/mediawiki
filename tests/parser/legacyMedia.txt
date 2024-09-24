@@ -3892,6 +3892,8 @@ images=Foobar.jpg
 </p>
 !! end
 
+# Parsoid currently includes the fragment in the resource attribute, but
+# this may change in the future: T374893
 !! test
 Fragment in media filename
 !! config
@@ -3903,7 +3905,7 @@ showmedia
 !! metadata
 images=Foobar.jpg
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:File" data-mw='{"caption":"123"}'><a href="./File:Foobar.jpg" class="mw-file-description" title="123"><img alt="123" resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span></p>
+<p><span class="mw-default-size" typeof="mw:File" data-mw='{"caption":"123"}'><a href="./File:Foobar.jpg" class="mw-file-description" title="123"><img alt="123" resource="./File:Foobar.jpg#fragment" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" class="mw-file-element"/></a></span></p>
 !! html/php
 <p><a href="/wiki/File:Foobar.jpg" class="image" title="123"><img alt="123" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a>
 </p>

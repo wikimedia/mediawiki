@@ -7228,24 +7228,28 @@ parsoid=wt2html
 ##
 ## The whitespace on the empty line is part of the test. Please do not delete
 !! test
-1. Categories and newlines: All preceding newlines should be suppressed (courtesy T2087)
+1. cats/langlinks and newlines: All preceding newlines should be suppressed (courtesy T2087)
 !! options
 parsoid=wt2html
 !! wikitext
 This
    
-[[Category:Foo]] and this should be part of same paragraph (not an indent-pre)
+[[Category:Foo]] and this
+[[es:Foo]] and this should be part of same paragraph (not an indent-pre)
    
 {{1x|[[Category:Foo]] and so should this!}}
+{{1x|[[es:Foo]] and this!}}
 !! html/php
-<p>This and this should be part of same paragraph (not an indent-pre) and so should this!
+<p>This and this and this should be part of same paragraph (not an indent-pre) and so should this! and this!
 </p>
 !! html/parsoid
 <p>This
    
-<link rel="mw:PageProp/Category" href="./Category:Foo"/> and this should be part of same paragraph (not an indent-pre)
+<link rel="mw:PageProp/Category" href="./Category:Foo" /> and this
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo" /> and this should be part of same paragraph (not an indent-pre)
    
-<link rel="mw:PageProp/Category" href="./Category:Foo" about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[Category:Foo]] and so should this!"}},"i":0}}]}'/><span about="#mwt1"> and so should this!</span></p>
+<link rel="mw:PageProp/Category" href="./Category:Foo" about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[Category:Foo]] and so should this!"}},"i":0}}]}'/><span about="#mwt1"> and so should this!</span>
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo" about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[es:Foo]] and this!"}},"i":0}}]}'/><span about="#mwt2"> and this!</span></p>
 !! end
 
 ## Parsoid will not try to wt2wt this while preserving newlines because
@@ -7257,31 +7261,37 @@ This
 ##
 ## The whitespace on the empty line is part of the test. Please do not delete
 !! test
-2. Categories and newlines: All preceding newlines should be suppressed (courtesy T2087)
+2. cats/langlinks and newlines: All preceding newlines should be suppressed (courtesy T2087)
 !! options
 parsoid=wt2html
 !! wikitext
 * This
    
-[[Category:Foo]] and this should be part of the same list item
+[[Category:Foo]] and this
+[[es:Foo]] and this should be part of the same list item
 * So should this
 
-{{1x|[[Category:Foo]] and this should be part of the same list item}}
+{{1x|[[Category:Foo]] and this}}
+{{1x|[[es:Foo]] and this should be part of the same list item}}
 !! html/php
-<ul><li>This and this should be part of the same list item</li>
-<li>So should this and this should be part of the same list item</li></ul>
+<ul><li>This and this and this should be part of the same list item</li>
+<li>So should this and this and this should be part of the same list item</li></ul>
 !! html/parsoid
-<ul>
-<li>This <link rel="mw:PageProp/Category" href="./Category:Foo"/> and this should be part of the same list item</li>
-<li>So should this <link rel="mw:PageProp/Category" href="./Category:Foo" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[Category:Foo]] and this should be part of the same list item"}},"i":0}}]}'/><span> and this should be part of the same list item</span></li>
-</ul>
+<ul><li>This
+   
+<link rel="mw:PageProp/Category" href="./Category:Foo" /> and this
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo" /> and this should be part of the same list item</li>
+<li>So should this
+
+<link rel="mw:PageProp/Category" href="./Category:Foo" about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[Category:Foo]] and this"}},"i":0}}]}'/><span about="#mwt1"> and this</span>
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo" about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[es:Foo]] and this should be part of the same list item"}},"i":0}}]}'/><span about="#mwt2"> and this should be part of the same list item</span></li></ul>
 !! end
 
 ## Newlines and categories that follow the last item of a list
 ## are treated differently because this (list followed by categories)
 ## is an extremely common pattern on wikis.
 !! test
-3. Categories and newlines: newline suppression for last list item should RT properly
+3. cats/langlinks and newlines: newline suppression for last list item should RT properly
 !! wikitext
 *a
 *b
@@ -7290,6 +7300,7 @@ parsoid=wt2html
    
 [[Category:Bar]]
 [[Category:Baz]]
+[[es:Foo]]
 
 :c
 
@@ -7298,41 +7309,46 @@ parsoid=wt2html
 ;d
 
 [[Category:D]]
+[[es:Bar]]
 !! html/parsoid
 <ul><li>a</li>
 <li>b</li></ul>
    
-<link rel="mw:PageProp/Category" href="./Category:Foo"/>
+<link rel="mw:PageProp/Category" href="./Category:Foo" />
    
-<link rel="mw:PageProp/Category" href="./Category:Bar"/>
-<link rel="mw:PageProp/Category" href="./Category:Baz"/>
+<link rel="mw:PageProp/Category" href="./Category:Bar" />
+<link rel="mw:PageProp/Category" href="./Category:Baz" />
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo" />
 
 <dl><dd>c</dd></dl>
 
-<link rel="mw:PageProp/Category" href="./Category:C"/>
+<link rel="mw:PageProp/Category" href="./Category:C" />
 
 <dl><dt>d</dt></dl>
 
-<link rel="mw:PageProp/Category" href="./Category:D"/>
+<link rel="mw:PageProp/Category" href="./Category:D" />
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Bar" />
 !! end
 
 !! test
-4. Categories and newlines: newline suppression for last list item should RT properly
+4. cats/langlinks: newline suppression for last list item should RT properly
 !! wikitext
 *a
 ****b
 
 [[Category:Foo]]
+[[es:Foo]]
 !! html/parsoid
 <ul><li>a
 <ul><li><ul><li><ul><li>b</li></ul></li></ul></li></ul></li></ul>
 
-<link rel="mw:PageProp/Category" href="./Category:Foo" data-parsoid='{"stx":"simple","a":{"href":"./Category:Foo"},"sa":{"href":"Category:Foo"}}'/>
+<link rel="mw:PageProp/Category" href="./Category:Foo" />
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo" />
 !! end
 
 ## only wt2html for this to make sure the algo only applies to the rightmost path
 !! test
-5. Categories and newlines: migrateTrailingCategories dom pass should only run on the rightmost path of nested lists
+5. cats/langlinks: migrateTrailingSolTransparentLinks dom pass should only run on the rightmost path of nested lists
 !! options
 parsoid=wt2html
 !! wikitext
@@ -7342,13 +7358,15 @@ parsoid=wt2html
 *c
 **d
 [[Category:Foo]]
+[[es:Foo]]
 !! html/parsoid
 <ul><li>a
 <ul><li>b
-<link rel="mw:PageProp/Category" href="./Category:Foo" data-parsoid='{"stx":"simple","a":{"href":"./Category:Foo"},"sa":{"href":"Category:Foo"}}'/></li></ul></li>
+<link rel="mw:PageProp/Category" href="./Category:Foo" /></li></ul></li>
 <li>c
 <ul><li>d</li></ul></li></ul>
-<link rel="mw:PageProp/Category" href="./Category:Foo" data-parsoid='{"stx":"simple","a":{"href":"./Category:Foo"},"sa":{"href":"Category:Foo"}}'/>
+<link rel="mw:PageProp/Category" href="./Category:Foo" />
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo" />
 !! end
 
 ## We used to, but no longer wt2wt this test since the default serializer
@@ -7356,56 +7374,64 @@ parsoid=wt2html
 ## This wikitext usage is going to be fairly uncommon in production and
 ## selser will take care of preserving formatting in those scenarios.
 !! test
-6. Categories and newlines: migrateTrailingCategories dom pass should not migrate categories not preceded by newlines
+6. cats/langlinks: migrateTrailingSolTransparentLinks dom pass should not migrate them when not preceded by newlines
 !! options
 parsoid=wt2html
 !! wikitext
 *a [[Category:Foo]]
+*b [[es:Foo]]
 !! html/parsoid
-<ul><li>a<link rel="mw:PageProp/Category" href="./Category:Foo" data-parsoid='{"stx":"simple","a":{"href":"./Category:Foo"},"sa":{"href":"Category:Foo"}}'/></li></ul>
+<ul><li>a<link rel="mw:PageProp/Category" href="./Category:Foo" /></li>
+<li>b<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo" /></li></ul>
 !! end
 
 # This test also demonstrates because of newline+category tunneling
 # through the list hander, template wrapping doesn't expand to the
 # containing list when the list item swallows the category.
 !! test
-7. Categories and newlines: migrateTrailingCategories dom pass should leave template content alone
+7. cats/langlinks: migrateTrailingSolTransparentLinks dom pass should leave template content alone
 !! wikitext
 *{{1x|a
-[[Category:Foo]]}}
+[[Category:Foo]]
+[[es:Foo]]}}
 !! html/parsoid
-<ul><li><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"a\n[[Category:Foo]]"}},"i":0}}]}'>a
-</span><link rel="mw:PageProp/Category" href="./Category:Foo" about="#mwt1" data-parsoid='{"stx":"simple","a":{"href":"./Category:Foo"},"sa":{"href":"Category:Foo"}}'/></li></ul>
+<ul><li><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"a\n[[Category:Foo]]\n[[es:Foo]]"}},"i":0}}]}'>a
+</span><link rel="mw:PageProp/Category" href="./Category:Foo" about="#mwt1" /><span about="#mwt1">
+</span><link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo" about="#mwt1"/></li></ul>
 !! end
 
 !! test
-8. Categories and newlines: migrateTrailingCategories dom pass should not get tripped by intervening templates
+8. cats/langlinks: migrateTrailingSolTransparentLinks dom pass should not get tripped by intervening templates
 !! wikitext
 *a
 
 {{1x|[[Category:Foo]]
 [[Category:Bar]]}}
 [[Category:Baz]]
+[[es:Baz]]
 !! html/parsoid
 <ul><li>a</li></ul>
 
 <link rel="mw:PageProp/Category" href="./Category:Foo" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"simple","a":{"href":"./Category:Foo"},"sa":{"href":"Category:Foo"},"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[Category:Foo]]\n[[Category:Bar]]"}},"i":0}}]}'/><span about="#mwt1">
 </span><link rel="mw:PageProp/Category" href="./Category:Bar" about="#mwt1" data-parsoid='{"stx":"simple","a":{"href":"./Category:Bar"},"sa":{"href":"Category:Bar"}}'/>
 <link rel="mw:PageProp/Category" href="./Category:Baz" data-parsoid='{"stx":"simple","a":{"href":"./Category:Baz"},"sa":{"href":"Category:Baz"}}'/>
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Baz" />
 !! end
 
 !! test
-Categories and newlines: migrateTrailingCategories dom pass should not get tripped by comments and whitespace
+cats/langlinks: migrateTrailingSolTransparentLinks dom pass should not get tripped by comments and whitespace
 !! wikitext
 *a
 
 [[Category:Bar]]<!--boo1--> <!--boo2-->
 [[Category:Baz]]<!--boo3--> <!--boo4-->
+[[es:Foo]]<!--boo5--> <!--boo6-->
 !! html/parsoid
 <ul><li>a</li></ul>
 
-<link rel="mw:PageProp/Category" href="./Category:Bar"/><!--boo1--> <!--boo2-->
-<link rel="mw:PageProp/Category" href="./Category:Baz"/><!--boo3--> <!--boo4-->
+<link rel="mw:PageProp/Category" href="./Category:Bar" /><!--boo1--> <!--boo2-->
+<link rel="mw:PageProp/Category" href="./Category:Baz" /><!--boo3--> <!--boo4-->
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo" /><!--boo5--> <!--boo6-->
 !! end
 
 !! test
