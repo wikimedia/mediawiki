@@ -85,8 +85,10 @@ describe( 'Page Source', () => {
 		} );
 
 		it( 'Should successfully return page source and metadata for Wikitext page', async () => {
-			const { status, body, text } = await client.get( `/page/${ page }` );
+			const { status, body, text, headers } = await client.get( `/page/${ page }` );
 			assert.deepEqual( status, 200, text );
+			assert.match( headers[ 'content-type' ], /^application\/json/ );
+			assert.match( headers.vary, /\bx-restbase-compat\b/ );
 			assert.containsAllKeys( body, [ 'latest', 'id', 'key', 'license', 'title', 'content_model', 'source' ] );
 			assert.nestedPropertyVal( body, 'content_model', 'wikitext' );
 			assert.nestedPropertyVal( body, 'title', pageWithSpaces );
@@ -191,6 +193,7 @@ describe( 'Page Source', () => {
 
 			assert.deepEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
+			assert.match( headers.vary, /\bx-restbase-compat\b/ );
 			assert.containsAllKeys( body, [ 'title', 'page_id', 'rev', 'tid', 'namespace', 'user_id',
 				'user_text', 'timestamp', 'comment', 'tags', 'restrictions', 'page_language', 'redirect' ] );
 
