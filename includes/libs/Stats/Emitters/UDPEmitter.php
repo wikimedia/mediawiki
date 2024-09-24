@@ -120,13 +120,12 @@ class UDPEmitter implements EmitterInterface {
 	private function batch( array $samples, int $payloadSize ): void {
 		$payload = '';
 		foreach ( $samples as $sample ) {
-			if ( strlen( $payload ) + strlen( $sample ) + 1 < $payloadSize ) {
-				$payload .= $sample . "\n";
-			} else {
+			if ( strlen( $payload ) + strlen( $sample ) + 1 > $payloadSize ) {
 				// Send this payload and make a new one
 				$this->transport->emit( $payload );
 				$payload = '';
 			}
+			$payload .= $sample . "\n";
 		}
 		// Send what is left in the payload
 		if ( strlen( $payload ) > 0 ) {
