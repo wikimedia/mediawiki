@@ -20,6 +20,10 @@ class ObjectCacheFactoryIntegrationTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::MessageCacheType => CACHE_NONE,
 			MainConfigNames::ParserCacheType => CACHE_NONE,
 		] );
+
+		// Mock ACCEL with 'hash' as being installed.
+		// This makes tests deterministic regardless of whether APCu is installed.
+		ObjectCacheFactory::$localServerCacheClass = 'HashBagOStuff';
 	}
 
 	protected function tearDown(): void {
@@ -34,9 +38,6 @@ class ObjectCacheFactoryIntegrationTest extends MediaWikiIntegrationTestCase {
 			CACHE_ANYTHING => [ 'class' => HashBagOStuff::class ],
 		];
 		$this->overrideConfigValue( MainConfigNames::ObjectCaches, $arr + $defaults );
-		// Mock ACCEL with 'hash' as being installed.
-		// This makes tests deterministic regardless of APC.
-		ObjectCacheFactory::$localServerCacheClass = 'HashBagOStuff';
 	}
 
 	public function testNewAnythingNothing() {
@@ -85,7 +86,7 @@ class ObjectCacheFactoryIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	public function testNewAnythingNoAccelNoDb() {
 		$this->setCacheConfig( [
-			// Mock APC not being installed (T160519, T147161)
+			// Mock APCu not being installed (T160519, T147161)
 			CACHE_ACCEL => [ 'class' => EmptyBagOStuff::class ]
 		] );
 		$this->setMainCache( CACHE_ACCEL );
@@ -162,10 +163,40 @@ class ObjectCacheFactoryIntegrationTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::DBname => $dbName,
 			MainConfigNames::DBprefix => $dbPrefix,
 		] );
-		// Regression against T247562 (2020), T361177 (2024).
+		// Regression against T247562, T361177.
 		$cache = $this->getServiceContainer()->getObjectCacheFactory()->getInstance( CACHE_ACCEL );
 		$cache = TestingAccessWrapper::newFromObject( $cache );
 		$this->assertSame( $expect, $cache->keyspace );
+	}
+
+	public function testNewMultiWrite() {
+		$this->overrideConfigValues( [
+			MainConfigNames::CachePrefix => 'moon-river',
+		] );
+		$this->setCacheConfig( [
+			'multi-example' => [
+				'class' => 'MultiWriteBagOStuff',
+				'caches' => [
+					0 => [
+						'class' => 'HashBagOStuff',
+					],
+					1 => [
+						'class' => 'HashBagOStuff',
+					],
+				],
+			],
+		] );
+
+		$ocf = $this->getServiceContainer()->getObjectCacheFactory();
+		$multi = $ocf->getInstance( 'multi-example' );
+		$caches = TestingAccessWrapper::newFromObject( $multi )->caches;
+
+		$this->assertSame( 'moon-river:x', $multi->makeKey( 'x' ), 'MultiWrite key' );
+
+		// Confirm that dependency injection is also applied to the objects constructed
+		// for the child caches (T318272).
+		$this->assertSame( 'moon-river:x', $caches[0]->makeKey( 'x' ), 'inject cache 0 keyspace' );
+		$this->assertSame( 'moon-river:x', $caches[1]->makeKey( 'x' ), 'inject cache 1 keyspace' );
 	}
 
 	public static function provideIsDatabaseId() {
