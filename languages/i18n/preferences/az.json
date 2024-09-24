@@ -43,7 +43,7 @@
 	"prefs-help-realname": "Əsl ad istəyə bağlıdır.\nTəqdim olunarsa, o, yazdıqlarınıza istinad vermək üçün istifadə edilə bilər.",
 	"yourpassword": "Parol:",
 	"prefs-resetpass": "Parolu dəyiş",
-	"passwordtooshort": "Parolda ən azı {{PLURAL:$1|1 hərf yaxud simvol|$1 hərf yaxud simvol}} olmalıdır.",
+	"passwordtooshort": "Parolda ən azı {{PLURAL:$1|1 simvol}} olmalıdır.",
 	"passwordtoolong": "Parolda ən azı {{PLURAL:$1|1 hərf yaxud simvol|$1 hərf yaxud simvol}} olmalıdır.",
 	"password-substring-username-match": "Parolunuz istifadəçi adınızda görünməməlidir.",
 	"password-name-match": "Parol adınızdan fərqli olmalıdır.",

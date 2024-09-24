@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kalakpagh"
+		]
+	},
+	"cdx-chip-input-chip-added": "Chiriga $1 nyɛla bɛ ni daa pahi shɛli",
+	"cdx-chip-input-chip-removed": "Chiriga $1 nyɛla bɛ ni daa yihi shɛli",
+	"cdx-input-chip-aria-description": "Pahimi suɣilo kpɛma ti niŋ maliniŋ bee kpihimi ka yihi.",
+	"cdx-dialog-close-button-label": "Lɔk",
+	"cdx-label-optional-flag": "(suhiyubu)",
+	"cdx-message-dismiss-button-label": "Lɔk",
+	"cdx-search-input-search-button-label": "vihi",
+	"cdx-table-select-all-label": "piimi kulisi maa zaa",
+	"cdx-table-select-row-label": "piimi kuliga $1 zaŋ n-ti $2",
+	"cdx-typeahead-search-search-results-label": "vihigu labisibu",
+	"cdx-table-pager-button-first-page": "Tuuli yaɣili",
+	"cdx-table-pager-button-last-page": "Bahigu yaɣili",
+	"cdx-table-pager-button-next-page": "Yaɣili din paya",
+	"cdx-table-pager-button-prev-page": "yaɣili din gari",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 kuliga|$1 kulisi}}",
+	"cdx-table-pager-items-per-page-default": "labisibu zaŋ n-ti yaɣili kam",
+	"cdx-table-pagination-status-message-determinate-long": " Wuhiri labisibu $1–$2 zaŋ n-ti $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 zaŋ n-ti $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Wuhiri labisibu $1–$2 zaŋ n-ti pam",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 zaŋ n-ti pam",
+	"cdx-table-pagination-status-message-indeterminate-final": "Wuhiri bahigu ŋɔ {{PLURAL:$1|$1 labisibu|$1 labisibu}}",
+	"cdx-table-pagination-status-message-pending": "ʒili labisibu ..."
+}
