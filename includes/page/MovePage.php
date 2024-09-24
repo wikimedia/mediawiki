@@ -52,8 +52,8 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use RepoGroup;
-use RuntimeException;
 use StringUtils;
+use Wikimedia\NormalizedException\NormalizedException;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use WikiPage;
@@ -915,11 +915,15 @@ class MovePage {
 		);
 		if ( $nullRevision === null ) {
 			$id = $nt->getArticleID( IDBAccessObject::READ_EXCLUSIVE );
-			$msg = 'Failed to create null revision while moving page ID ' .
-				$oldid . ' to ' . $nt->getPrefixedDBkey() . " (page ID $id)";
-
 			// XXX This should be handled more gracefully
-			throw new RuntimeException( $msg );
+			throw new NormalizedException( 'Failed to create null revision while ' .
+				'moving page ID {oldId} to {prefixedDBkey} (page ID {id})',
+				[
+					'oldId' => $oldid,
+					'prefixedDBkey' => $nt->getPrefixedDBkey(),
+					'id' => $id,
+				]
+			);
 		}
 
 		$nullRevision = $this->revisionStore->insertRevisionOn( $nullRevision, $dbw );
