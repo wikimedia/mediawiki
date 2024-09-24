@@ -83,7 +83,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 			throw new ErrorPageError( 'changeemail', 'cannotchangeemail' );
 		}
 
-		$this->requireNamedUser( 'changeemail-no-info' );
+		$this->requireNamedUser( 'changeemail-no-info', 'exception-nologin', true );
 
 		// This could also let someone check the current email address, so
 		// require both permissions.

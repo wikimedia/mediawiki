@@ -30,11 +30,15 @@ class LoginHelper extends ContextSource {
 	 */
 	public static $validErrorMessages = [
 		'exception-nologin-text',
+		'exception-nologin-text-for-temp-user',
 		'watchlistanontext',
+		'watchlistanontext-for-temp-user',
 		'changeemail-no-info',
 		'confirmemail_needlogin',
 		'prefsnologintext2',
+		'prefsnologintext2-for-temp-user',
 		'specialmute-login-required',
+		'specialmute-login-required-for-temp-user',
 	];
 
 	/**

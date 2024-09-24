@@ -444,14 +444,18 @@ class SpecialPage implements MessageLocalizer {
 	 *
 	 * @since 1.39
 	 * @param string $reasonMsg [optional] Message key to be displayed on login page
-	 * @param string $titleMsg [optional] Passed on to UserNotLoggedIn constructor
+	 * @param string $titleMsg [optional] Passed on to UserNotLoggedIn constructor. Default 'exception-nologin'
+	 *    which is used when $titleMsg is null.
+	 * @param bool $alwaysRedirectToLoginPage [optional] Should the redirect always go to Special:UserLogin?
+	 *    If false (the default), the redirect will be to Special:CreateAccount when the user is logged in to
+	 *    a temporary account.
 	 * @throws UserNotLoggedIn
 	 */
 	public function requireNamedUser(
-		$reasonMsg = 'exception-nologin-text', $titleMsg = 'exception-nologin'
+		$reasonMsg = 'exception-nologin-text', $titleMsg = 'exception-nologin', bool $alwaysRedirectToLoginPage = false
 	) {
 		if ( !$this->getUser()->isNamed() ) {
-			throw new UserNotLoggedIn( $reasonMsg, $titleMsg );
+			throw new UserNotLoggedIn( $reasonMsg, $titleMsg, [], $alwaysRedirectToLoginPage );
 		}
 	}
 
