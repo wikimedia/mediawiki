@@ -499,6 +499,38 @@ const util = {
 	},
 
 	/**
+	 * Create a message box element. Callers are responsible for ensuring suitable Codex styles
+	 * have been added to the page e.g. mediawiki.codex.messagebox.styles.
+	 *
+	 * @since 1.43
+	 * @param {string|Element} textOrElement text or node.
+	 * @param {string} [type] defaults to notice.
+	 * @return {Element}
+	 */
+	messageBox: function ( textOrElement, type = 'notice' ) {
+		const msgBoxElement = document.createElement( 'div' );
+		if ( [ 'error', 'warning', 'success', 'notice' ].indexOf( type ) > -1 ) {
+			// The following CSS classes are used here:
+			// * cdx-message--notice
+			// * cdx-message--warning
+			// * cdx-message--error
+			msgBoxElement.classList.add( `cdx-message--${ type }` );
+		}
+		const iconElement = document.createElement( 'span' );
+		iconElement.classList.add( 'cdx-message__icon' );
+		const contentElement = document.createElement( 'div' );
+		contentElement.classList.add( 'cdx-message__content' );
+		if ( typeof textOrElement === 'string' ) {
+			contentElement.textContent = textOrElement;
+		} else {
+			contentElement.appendChild( textOrElement );
+		}
+		msgBoxElement.appendChild( iconElement );
+		msgBoxElement.appendChild( contentElement );
+		return msgBoxElement;
+	},
+
+	/**
 	 * Add content to the subtitle of the skin.
 	 *
 	 * @param {HTMLElement|string} nodeOrHTMLString

@@ -270,6 +270,16 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 			.map( ( el ) => el.tagName + ( el.className && '.' + el.className ) + ( el.id && '#' + el.id ) );
 	}
 
+	QUnit.test( 'messageBox', ( assert ) => {
+		const message = util.messageBox( 'test' );
+		const errSpan = document.createElement( 'span' );
+		errSpan.textContent = 'error';
+		const errorMessage = util.messageBox( errSpan, 'error' );
+		assert.strictEqual( message.querySelector( '.cdx-message__content' ).textContent, 'test' );
+		assert.strictEqual( errorMessage.querySelector( '.cdx-message__content span' ).textContent, 'error' );
+		assert.true( errorMessage.classList.contains( 'cdx-message--error' ) );
+	} );
+
 	QUnit.test( 'addPortlet does not append to DOM if no `before` is provided', ( assert ) => {
 		$( '#qunit-fixture' ).html(
 			'<div class="portlet" id="p-toolbox"></div>'
