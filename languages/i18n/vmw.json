@@ -126,7 +126,7 @@
 	"jumpto": "Otuphela vakina",
 	"jumptonavigation": "Ophavelasa mmekuni",
 	"jumptosearch": "Ophavelasa",
-	"aboutsite": "Mwaha wa nsina wa nipuro",
+	"aboutsite": "Mwaha wa {{SITENAME}}",
 	"aboutpage": "Project:Wooluluwana",
 	"copyrightpage": "{{ns:project}}:ihakhi sa namapaka",
 	"currentevents": "Sookhumelela Sinhimiya",
