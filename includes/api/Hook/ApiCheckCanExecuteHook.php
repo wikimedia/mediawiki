@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Api\Hook;
 
-use ApiBase;
-use IApiMessage;
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\IApiMessage;
 use MediaWiki\Message\Message;
 use MediaWiki\User\User;
 

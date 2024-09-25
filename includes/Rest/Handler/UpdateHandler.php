@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use IApiMessage;
+use MediaWiki\Api\IApiMessage;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\ParamValidator\TypeDef\ArrayDef;

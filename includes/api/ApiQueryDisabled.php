@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 /**
  * API module that does nothing
  *
@@ -47,3 +49,6 @@ class ApiQueryDisabled extends ApiQueryBase {
 		] ];
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryDisabled::class, 'ApiQueryDisabled' );

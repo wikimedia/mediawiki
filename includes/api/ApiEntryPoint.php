@@ -27,7 +27,6 @@
 
 namespace MediaWiki\Api;
 
-use ApiMain;
 use LogicException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\EntryPointEnvironment;

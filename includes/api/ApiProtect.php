@@ -20,6 +20,9 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use ChangeTags;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Title\Title;
@@ -235,3 +238,6 @@ class ApiProtect extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Protect';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiProtect::class, 'ApiProtect' );

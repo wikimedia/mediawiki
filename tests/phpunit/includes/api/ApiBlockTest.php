@@ -19,7 +19,7 @@ use MediaWiki\Utils\MWTimestamp;
  * @group Database
  * @group medium
  *
- * @covers \ApiBlock
+ * @covers \MediaWiki\Api\ApiBlock
  */
 class ApiBlockTest extends ApiTestCase {
 	use MockAuthorityTrait;

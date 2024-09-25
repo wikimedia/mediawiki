@@ -21,6 +21,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Parser;
@@ -259,3 +261,6 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Exturlusage';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryExtLinksUsage::class, 'ApiQueryExtLinksUsage' );

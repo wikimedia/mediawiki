@@ -20,11 +20,15 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use Exception;
 use MediaWiki\Feed\FeedItem;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
+use ParserFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -321,3 +325,6 @@ class ApiFeedWatchlist extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Watchlist_feed';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiFeedWatchlist::class, 'ApiFeedWatchlist' );

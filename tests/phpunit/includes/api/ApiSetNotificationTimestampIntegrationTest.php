@@ -4,7 +4,7 @@ namespace MediaWiki\Tests\Api;
 
 /**
  * @author Addshore
- * @covers \ApiSetNotificationTimestamp
+ * @covers MediaWiki\Api\ApiSetNotificationTimestamp
  * @group API
  * @group medium
  * @group Database

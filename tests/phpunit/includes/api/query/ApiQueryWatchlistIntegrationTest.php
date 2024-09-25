@@ -19,7 +19,7 @@ use RecentChange;
  * @group API
  * @group Database
  *
- * @covers \ApiQueryWatchlist
+ * @covers MediaWiki\Api\ApiQueryWatchlist
  * @covers \MediaWiki\Watchlist\WatchedItemQueryService
  */
 class ApiQueryWatchlistIntegrationTest extends ApiTestCase {

@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 /**
  * API module that dies with an error immediately.
  *
@@ -51,3 +53,6 @@ class ApiDisabled extends ApiBase {
 		] ];
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiDisabled::class, 'ApiDisabled' );

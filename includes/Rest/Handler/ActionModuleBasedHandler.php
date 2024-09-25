@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use ApiBase;
-use ApiMain;
-use ApiMessage;
-use ApiUsageException;
-use IApiMessage;
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiMessage;
+use MediaWiki\Api\ApiUsageException;
+use MediaWiki\Api\IApiMessage;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Request\WebResponse;

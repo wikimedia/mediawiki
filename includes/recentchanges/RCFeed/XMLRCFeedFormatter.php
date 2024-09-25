@@ -20,7 +20,7 @@
 
 namespace MediaWiki\RCFeed;
 
-use ApiFormatXml;
+use MediaWiki\Api\ApiFormatXml;
 
 /**
  * @since 1.23

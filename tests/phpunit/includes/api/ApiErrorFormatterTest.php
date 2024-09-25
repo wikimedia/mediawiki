@@ -2,13 +2,13 @@
 
 namespace MediaWiki\Tests\Api;
 
-use ApiErrorFormatter;
-use ApiErrorFormatter_BackCompat;
-use ApiMessage;
-use ApiResult;
 use Exception;
-use IApiMessage;
 use LocalizedException;
+use MediaWiki\Api\ApiErrorFormatter;
+use MediaWiki\Api\ApiErrorFormatter_BackCompat;
+use MediaWiki\Api\ApiMessage;
+use MediaWiki\Api\ApiResult;
+use MediaWiki\Api\IApiMessage;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;
 use MediaWiki\Status\Status;
@@ -22,7 +22,7 @@ use Wikimedia\TestingAccessWrapper;
 class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 
 	/**
-	 * @covers \ApiErrorFormatter
+	 * @covers \MediaWiki\Api\ApiErrorFormatter
 	 */
 	public function testErrorFormatterBasics() {
 		$result = new ApiResult( 8_388_608 );
@@ -49,8 +49,8 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \ApiErrorFormatter
-	 * @covers \ApiErrorFormatter_BackCompat
+	 * @covers \MediaWiki\Api\ApiErrorFormatter
+	 * @covers \MediaWiki\Api\ApiErrorFormatter_BackCompat
 	 */
 	public function testNewWithFormat() {
 		$result = new ApiResult( 8_388_608 );
@@ -70,7 +70,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \ApiErrorFormatter
+	 * @covers \MediaWiki\Api\ApiErrorFormatter
 	 * @dataProvider provideErrorFormatter
 	 */
 	public function testErrorFormatter( $format, $lang, $useDB,
@@ -410,7 +410,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \ApiErrorFormatter_BackCompat
+	 * @covers \MediaWiki\Api\ApiErrorFormatter_BackCompat
 	 */
 	public function testErrorFormatterBC() {
 		$aboutpage = wfMessage( 'aboutpage' );
@@ -606,8 +606,8 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideGetMessageFromException
-	 * @covers \ApiErrorFormatter::getMessageFromException
-	 * @covers \ApiErrorFormatter::formatException
+	 * @covers \MediaWiki\Api\ApiErrorFormatter::getMessageFromException
+	 * @covers \MediaWiki\Api\ApiErrorFormatter::formatException
 	 * @param Exception $exception
 	 * @param array $options
 	 * @param array $expect
@@ -634,7 +634,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideGetMessageFromException
-	 * @covers \ApiErrorFormatter_BackCompat::formatException
+	 * @covers \MediaWiki\Api\ApiErrorFormatter_BackCompat::formatException
 	 * @param Exception $exception
 	 * @param array $options
 	 * @param array $expect
@@ -703,9 +703,9 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers \ApiErrorFormatter::addMessagesFromStatus
-	 * @covers \ApiErrorFormatter::addWarningOrError
-	 * @covers \ApiErrorFormatter::formatMessageInternal
+	 * @covers \MediaWiki\Api\ApiErrorFormatter::addMessagesFromStatus
+	 * @covers \MediaWiki\Api\ApiErrorFormatter::addWarningOrError
+	 * @covers \MediaWiki\Api\ApiErrorFormatter::formatMessageInternal
 	 */
 	public function testAddMessagesFromStatus_filter() {
 		$result = new ApiResult( 8_388_608 );
@@ -745,7 +745,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideIsValidApiCode
-	 * @covers \ApiErrorFormatter::isValidApiCode
+	 * @covers \MediaWiki\Api\ApiErrorFormatter::isValidApiCode
 	 * @param string $code
 	 * @param bool $expect
 	 */

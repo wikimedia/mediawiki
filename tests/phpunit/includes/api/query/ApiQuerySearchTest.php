@@ -13,7 +13,7 @@ use MockSearchResultSet;
 
 /**
  * @group medium
- * @covers \ApiQuerySearch
+ * @covers MediaWiki\Api\ApiQuerySearch
  */
 class ApiQuerySearchTest extends ApiTestCase {
 

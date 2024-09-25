@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\ParamValidator\TypeDef;
 
-use ApiResult;
+use MediaWiki\Api\ApiResult;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
 use MediaWiki\Tests\Unit\DummyServicesTrait;

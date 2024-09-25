@@ -20,7 +20,13 @@
  * @since 1.28
  */
 
+namespace MediaWiki\Api;
+
+use LogicException;
 use MediaWiki\Context\IContextSource;
+use SearchEngine;
+use SearchEngineConfig;
+use SearchEngineFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -212,3 +218,6 @@ trait SearchApi {
 	 */
 	abstract public function getContext();
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( SearchApi::class, 'SearchApi' );

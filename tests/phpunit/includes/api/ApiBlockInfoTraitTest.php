@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Api;
 
-use ApiBlockInfoTrait;
+use MediaWiki\Api\ApiBlockInfoTrait;
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
@@ -11,7 +11,7 @@ use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \ApiBlockInfoTrait
+ * @covers \MediaWiki\Api\ApiBlockInfoTrait
  */
 class ApiBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;

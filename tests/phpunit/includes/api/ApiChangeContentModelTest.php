@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Api;
 
-use ApiUsageException;
 use IDBAccessObject;
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Status\Status;
@@ -18,7 +18,7 @@ use MediaWiki\Title\Title;
  * @group Database
  * @group medium
  *
- * @covers \ApiChangeContentModel
+ * @covers \MediaWiki\Api\ApiChangeContentModel
  * @author DannyS712
  */
 class ApiChangeContentModelTest extends ApiTestCase {

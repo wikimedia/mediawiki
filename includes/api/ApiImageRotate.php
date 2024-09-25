@@ -18,9 +18,13 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use ChangeTags;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\TitleFactory;
+use RepoGroup;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -224,3 +228,6 @@ class ApiImageRotate extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Imagerotate';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiImageRotate::class, 'ApiImageRotate' );

@@ -22,6 +22,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 /**
  * @ingroup API
  */
@@ -60,3 +62,6 @@ class ApiOpenSearchFormatJson extends ApiFormatJson {
 		parent::execute();
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiOpenSearchFormatJson::class, 'ApiOpenSearchFormatJson' );

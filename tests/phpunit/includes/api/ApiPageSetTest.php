@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Api;
 
-use ApiMain;
-use ApiPageSet;
-use ApiResult;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiPageSet;
+use MediaWiki\Api\ApiResult;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
@@ -21,7 +21,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group API
  * @group medium
  * @group Database
- * @covers \ApiPageSet
+ * @covers \MediaWiki\Api\ApiPageSet
  */
 class ApiPageSetTest extends ApiTestCase {
 	use DummyServicesTrait;
@@ -104,7 +104,7 @@ class ApiPageSetTest extends ApiTestCase {
 	}
 
 	public function testRedirectMergePolicyRedirectLoop() {
-		$this->hideDeprecated( 'ApiPageSet::getTitles' );
+		$this->hideDeprecated( ApiPageSet::class . '::getTitles' );
 
 		$redirectOneTitle = 'ApiPageSetTestRedirectOne';
 		$redirectTwoTitle = 'ApiPageSetTestRedirectTwo';
@@ -334,12 +334,12 @@ class ApiPageSetTest extends ApiTestCase {
 	}
 
 	public function testPopulateFromTitles() {
-		$this->hideDeprecated( 'ApiPageSet::getTitles' );
-		$this->hideDeprecated( 'ApiPageSet::getGoodTitles' );
-		$this->hideDeprecated( 'ApiPageSet::getMissingTitles' );
-		$this->hideDeprecated( 'ApiPageSet::getGoodAndMissingTitles' );
-		$this->hideDeprecated( 'ApiPageSet::getRedirectTitles' );
-		$this->hideDeprecated( 'ApiPageSet::getSpecialTitles' );
+		$this->hideDeprecated( ApiPageSet::class . '::getTitles' );
+		$this->hideDeprecated( ApiPageSet::class . '::getGoodTitles' );
+		$this->hideDeprecated( ApiPageSet::class . '::getMissingTitles' );
+		$this->hideDeprecated( ApiPageSet::class . '::getGoodAndMissingTitles' );
+		$this->hideDeprecated( ApiPageSet::class . '::getRedirectTitles' );
+		$this->hideDeprecated( ApiPageSet::class . '::getSpecialTitles' );
 
 		$interwikiLookup = $this->getDummyInterwikiLookup( [ 'acme' ] );
 		$this->setService( 'InterwikiLookup', $interwikiLookup );

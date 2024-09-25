@@ -2,15 +2,15 @@
 
 namespace MediaWiki\Tests\Api;
 
-use ApiBase;
-use ApiErrorFormatter;
-use ApiMain;
-use ApiMessage;
-use ApiQueryTokens;
-use ApiResult;
-use ApiUsageException;
 use ArrayAccess;
 use LogicException;
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiErrorFormatter;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiMessage;
+use MediaWiki\Api\ApiQueryTokens;
+use MediaWiki\Api\ApiResult;
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;

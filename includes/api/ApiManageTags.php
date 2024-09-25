@@ -19,6 +19,10 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use ChangeTags;
+use UnexpectedValueException;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -144,3 +148,6 @@ class ApiManageTags extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tag_management';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiManageTags::class, 'ApiManageTags' );

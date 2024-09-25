@@ -20,6 +20,9 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use ChangeTags;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -174,3 +177,6 @@ class ApiQueryTags extends ApiQueryBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tags';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryTags::class, 'ApiQueryTags' );

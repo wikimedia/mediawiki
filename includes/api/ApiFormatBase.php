@@ -20,6 +20,9 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use HttpStatus;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Html\Html;
 use MediaWiki\Json\FormatJson;
@@ -400,3 +403,6 @@ abstract class ApiFormatBase extends ApiBase {
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  */
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiFormatBase::class, 'ApiFormatBase' );

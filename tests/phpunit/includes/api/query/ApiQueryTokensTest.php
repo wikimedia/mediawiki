@@ -9,7 +9,7 @@ use MediaWiki\Tests\Api\ApiTestCase;
 /**
  * @group API
  * @group medium
- * @covers \ApiQueryTokens
+ * @covers MediaWiki\Api\ApiQueryTokens
  */
 class ApiQueryTokensTest extends ApiTestCase {
 

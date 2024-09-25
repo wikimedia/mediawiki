@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;
 use Wikimedia\Message\MessageSpecifier;
@@ -90,3 +92,6 @@ class ApiMessage extends Message implements IApiMessage {
 		$this->setApiCode( $code, $data );
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiMessage::class, 'ApiMessage' );

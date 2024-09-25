@@ -23,6 +23,10 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use ChangeTags;
+use IDBAccessObject;
 use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Specials\SpecialUserRights;
@@ -289,3 +293,6 @@ class ApiUserrights extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:User_group_membership';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiUserrights::class, 'ApiUserrights' );

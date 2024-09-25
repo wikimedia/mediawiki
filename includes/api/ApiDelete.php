@@ -20,6 +20,10 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use ChangeTags;
+use File;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\DeletePageFactory;
@@ -28,7 +32,10 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
+use RepoGroup;
+use StatusValue;
 use Wikimedia\ParamValidator\ParamValidator;
+use WikiPage;
 
 /**
  * API module that facilitates deleting pages. The API equivalent of action=delete.
@@ -320,3 +327,6 @@ class ApiDelete extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Delete';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiDelete::class, 'ApiDelete' );

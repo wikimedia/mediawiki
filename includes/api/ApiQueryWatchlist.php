@@ -20,9 +20,16 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use ChangesList;
+use LogEventsList;
+use LogFormatterFactory;
+use LogPage;
 use MediaWiki\Cache\GenderCache;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
@@ -31,6 +38,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\Watchlist\WatchedItem;
 use MediaWiki\Watchlist\WatchedItemQueryService;
+use RecentChange;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -612,3 +620,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Watchlist';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryWatchlist::class, 'ApiQueryWatchlist' );

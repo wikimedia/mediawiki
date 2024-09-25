@@ -20,7 +20,13 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use MediaWiki\Language\Language;
 use MediaWiki\Page\File\BadFileLookup;
+use RepoGroup;
+use UploadStashBadPathException;
+use UploadStashFileNotFoundException;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -172,3 +178,6 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Stashimageinfo';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryStashImageInfo::class, 'ApiQueryStashImageInfo' );

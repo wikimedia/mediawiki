@@ -2,13 +2,13 @@
 
 namespace MediaWiki\Tests\Api\Format;
 
-use ApiResult;
+use MediaWiki\Api\ApiResult;
 use MediaWiki\Title\Title;
 
 /**
  * @group API
  * @group Database
- * @covers \ApiFormatXml
+ * @covers MediaWiki\Api\ApiFormatXml
  */
 class ApiFormatXmlTest extends ApiFormatTestBase {
 

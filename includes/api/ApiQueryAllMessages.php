@@ -20,10 +20,15 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use LocalisationCache;
+use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Pager\AllMessagesTablePager;
 use MediaWiki\Title\Title;
+use MessageCache;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -288,3 +293,6 @@ class ApiQueryAllMessages extends ApiQueryBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Allmessages';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryAllMessages::class, 'ApiQueryAllMessages' );

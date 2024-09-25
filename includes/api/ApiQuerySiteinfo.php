@@ -20,8 +20,12 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\Language\Language;
 use MediaWiki\Language\LanguageCode;
+use MediaWiki\Language\LanguageConverter;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageNameUtils;
@@ -43,6 +47,10 @@ use MediaWiki\Utils\ExtensionInfo;
 use MediaWiki\Utils\GitInfo;
 use MediaWiki\Utils\UrlUtils;
 use MediaWiki\WikiMap\WikiMap;
+use ParserFactory;
+use Skin;
+use SkinFactory;
+use UploadBase;
 use Wikimedia\Composer\ComposerInstalled;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -1157,3 +1165,6 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Siteinfo';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQuerySiteinfo::class, 'ApiQuerySiteinfo' );

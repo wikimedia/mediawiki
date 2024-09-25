@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
@@ -318,3 +320,6 @@ class ApiCSPReport extends ApiBase {
 		return false;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiCSPReport::class, 'ApiCSPReport' );

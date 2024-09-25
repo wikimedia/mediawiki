@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Utils\UrlUtils;
@@ -143,3 +145,6 @@ class ApiLinkAccount extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Linkaccount';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiLinkAccount::class, 'ApiLinkAccount' );

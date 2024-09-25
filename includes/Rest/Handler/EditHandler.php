@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use IApiMessage;
+use MediaWiki\Api\IApiMessage;
 use MediaWiki\Config\Config;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MainConfigNames;

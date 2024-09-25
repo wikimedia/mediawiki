@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Api\Hook;
 
-use ApiQueryBase;
+use MediaWiki\Api\ApiQueryBase;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

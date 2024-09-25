@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Message\Message;
@@ -362,3 +364,6 @@ abstract class ApiOptionsBase extends ApiBase {
 		return 'csrf';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiOptionsBase::class, 'ApiOptionsBase' );

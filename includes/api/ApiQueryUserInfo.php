@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Config\Config;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -403,3 +405,6 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Userinfo';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryUserInfo::class, 'ApiQueryUserInfo' );

@@ -20,10 +20,10 @@
 
 namespace MediaWiki\Specials;
 
-use ApiMessage;
 use LogEventsList;
 use LogPage;
 use ManualLogEntry;
+use MediaWiki\Api\ApiMessage;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HTMLForm\HTMLForm;

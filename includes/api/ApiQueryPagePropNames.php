@@ -21,6 +21,8 @@
  * @since 1.21
  */
 
+namespace MediaWiki\Api;
+
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -109,3 +111,6 @@ class ApiQueryPagePropNames extends ApiQueryBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Pagepropnames';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryPagePropNames::class, 'ApiQueryPagePropNames' );

@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -74,3 +76,6 @@ class ApiFormatPhp extends ApiFormatBase {
 		];
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiFormatPhp::class, 'ApiFormatPhp' );

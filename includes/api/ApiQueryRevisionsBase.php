@@ -20,7 +20,10 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\Content\Content;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
@@ -39,6 +42,9 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNameUtils;
+use ParserFactory;
+use ParserOptions;
+use stdClass;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -415,7 +421,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 			if ( !( $revDel & self::CANNOT_VIEW ) ) {
 				try {
-					$vals['sha1'] = Wikimedia\base_convert( $revision->getSha1(), 36, 16, 40 );
+					$vals['sha1'] = \Wikimedia\base_convert( $revision->getSha1(), 36, 16, 40 );
 				} catch ( RevisionAccessException $e ) {
 					// Back compat: If there's no sha1, return empty string.
 					// @todo: Gergő says to mention T198099 as a "todo" here.
@@ -595,7 +601,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 			if ( !( $revDel & self::CANNOT_VIEW ) ) {
 				if ( $slot->getSha1() != '' ) {
-					$vals['sha1'] = Wikimedia\base_convert( $slot->getSha1(), 36, 16, 40 );
+					$vals['sha1'] = \Wikimedia\base_convert( $slot->getSha1(), 36, 16, 40 );
 				} else {
 					$vals['sha1'] = '';
 				}
@@ -932,3 +938,6 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		];
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryRevisionsBase::class, 'ApiQueryRevisionsBase' );

@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Title\Title;
@@ -181,3 +183,6 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Extlinks';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryExternalLinks::class, 'ApiQueryExternalLinks' );

@@ -16,7 +16,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @group medium
  * @group Database
  *
- * @covers \ApiQueryInfo
+ * @covers MediaWiki\Api\ApiQueryInfo
  */
 class ApiQueryInfoTest extends ApiTestCase {
 	use TempUserTestTrait;

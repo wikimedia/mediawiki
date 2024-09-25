@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Api\Hook;
 
-use ApiQueryWatchlist;
+use MediaWiki\Api\ApiQueryWatchlist;
 use MediaWiki\Watchlist\WatchedItem;
 
 /**

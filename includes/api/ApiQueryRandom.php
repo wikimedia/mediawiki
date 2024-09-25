@@ -21,6 +21,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -233,3 +235,6 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Random';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryRandom::class, 'ApiQueryRandom' );

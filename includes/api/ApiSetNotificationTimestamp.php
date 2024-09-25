@@ -23,6 +23,9 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use IDBAccessObject;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
@@ -303,3 +306,6 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:SetNotificationTimestamp';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiSetNotificationTimestamp::class, 'ApiSetNotificationTimestamp' );

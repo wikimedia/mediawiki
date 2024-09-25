@@ -20,6 +20,14 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use ChangesList;
+use ChangeTags;
+use Exception;
+use LogEventsList;
+use LogFormatterFactory;
+use LogPage;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MainConfigNames;
@@ -32,6 +40,8 @@ use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Title\Title;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserNameUtils;
+use RecentChange;
+use stdClass;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\Rdbms\IExpression;
@@ -676,7 +686,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				$row->rev_deleted, RevisionRecord::DELETED_TEXT, $user
 			) ) {
 				if ( $row->rev_sha1 !== '' ) {
-					$vals['sha1'] = Wikimedia\base_convert( $row->rev_sha1, 36, 16, 40 );
+					$vals['sha1'] = \Wikimedia\base_convert( $row->rev_sha1, 36, 16, 40 );
 				} else {
 					$vals['sha1'] = '';
 				}
@@ -832,3 +842,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Recentchanges';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryRecentChanges::class, 'ApiQueryRecentChanges' );

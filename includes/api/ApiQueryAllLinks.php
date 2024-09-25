@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Cache\GenderCache;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
@@ -386,3 +388,6 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		return "https://www.mediawiki.org/wiki/Special:MyLanguage/API:{$name}";
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryAllLinks::class, 'ApiQueryAllLinks' );

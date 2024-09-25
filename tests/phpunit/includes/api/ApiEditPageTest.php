@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Api;
 
-use ApiUsageException;
 use IDBAccessObject;
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\JavaScriptContent;
@@ -29,7 +29,7 @@ use WikiPage;
  * @group Database
  * @group medium
  *
- * @covers \ApiEditPage
+ * @covers \MediaWiki\Api\ApiEditPage
  */
 class ApiEditPageTest extends ApiTestCase {
 

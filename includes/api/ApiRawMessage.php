@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Language\RawMessage;
 
 /**
@@ -63,3 +65,6 @@ class ApiRawMessage extends RawMessage implements IApiMessage {
 		return $this->apiCode;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiRawMessage::class, 'ApiRawMessage' );

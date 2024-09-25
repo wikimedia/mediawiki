@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Message\Message;
 use MediaWiki\Parser\Parser;
@@ -471,3 +473,6 @@ class ApiParamInfo extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Parameter_information';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiParamInfo::class, 'ApiParamInfo' );

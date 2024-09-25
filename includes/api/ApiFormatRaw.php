@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 /**
  * Formatter that spits out anything you like with any desired MIME type
  * @ingroup API
@@ -113,3 +115,6 @@ class ApiFormatRaw extends ApiFormatBase {
 		$this->mFailWithHTTPError = $fail;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiFormatRaw::class, 'ApiFormatRaw' );

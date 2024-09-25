@@ -23,6 +23,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\UrlUtils;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -207,3 +209,6 @@ class ApiQueryIWLinks extends ApiQueryBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Iwlinks';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryIWLinks::class, 'ApiQueryIWLinks' );

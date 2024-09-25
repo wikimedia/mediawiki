@@ -8,7 +8,7 @@ use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWiki\User\UserIdentityValue;
 
 /**
- * @covers \ApiQueryLogEvents
+ * @covers MediaWiki\Api\ApiQueryLogEvents
  * @group API
  * @group Database
  * @group medium

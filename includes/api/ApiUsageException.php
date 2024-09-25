@@ -18,7 +18,15 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use ILocalizedException;
+use InvalidArgumentException;
 use MediaWiki\Status\Status;
+use MWException;
+use StatusValue;
+use Stringable;
+use Throwable;
 use Wikimedia\Message\MessageSpecifier;
 
 /**
@@ -135,3 +143,6 @@ class ApiUsageException extends MWException implements Stringable, ILocalizedExc
 	}
 
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiUsageException::class, 'ApiUsageException' );

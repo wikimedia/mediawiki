@@ -20,6 +20,9 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use ChangeTags;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
@@ -34,6 +37,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\ActorMigration;
 use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserFactory;
+use ParserFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -348,3 +352,6 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Allrevisions';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryAllRevisions::class, 'ApiQueryAllRevisions' );

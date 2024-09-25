@@ -20,9 +20,13 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use Article;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\Content\Content;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
@@ -45,12 +49,19 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
+use MediaWiki\Title\TitleValue;
 use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserFactory;
 use MediaWiki\Utils\UrlUtils;
 use MediaWiki\WikiMap\WikiMap;
+use MWContentSerializationException;
+use ParserFactory;
+use ParserOptions;
+use Skin;
+use SkinFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
+use WikiPage;
 
 /**
  * @ingroup API
@@ -1188,3 +1199,6 @@ class ApiParse extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Parsing_wikitext';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiParse::class, 'ApiParse' );

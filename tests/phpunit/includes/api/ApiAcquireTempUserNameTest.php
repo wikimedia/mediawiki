@@ -12,7 +12,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @group Database
  * @group medium
  *
- * @covers \ApiAcquireTempUserName
+ * @covers \MediaWiki\Api\ApiAcquireTempUserName
  */
 class ApiAcquireTempUserNameTest extends ApiTestCase {
 	use MockAuthorityTrait;

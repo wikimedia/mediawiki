@@ -19,6 +19,9 @@
  * @since 1.23
  */
 
+namespace MediaWiki\Api;
+
+use ChangesFeed;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Feed\ChannelFeed;
 use MediaWiki\MainConfigNames;
@@ -27,6 +30,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\Title;
 use MediaWiki\User\TempUser\TempUserConfig;
+use RuntimeException;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -227,3 +231,6 @@ class ApiFeedRecentChanges extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Feedrecentchanges';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiFeedRecentChanges::class, 'ApiFeedRecentChanges' );

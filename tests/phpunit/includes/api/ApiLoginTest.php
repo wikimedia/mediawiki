@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Api;
 
-use ApiErrorFormatter;
+use MediaWiki\Api\ApiErrorFormatter;
 use MediaWiki\Auth\AbstractSecondaryAuthenticationProvider;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\UsernameAuthenticationRequest;
@@ -20,7 +20,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @group medium
  *
- * @covers \ApiLogin
+ * @covers \MediaWiki\Api\ApiLogin
  */
 class ApiLoginTest extends ApiTestCase {
 

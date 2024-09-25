@@ -20,7 +20,7 @@
 
 namespace MediaWiki\Status;
 
-use ApiMessage;
+use MediaWiki\Api\ApiMessage;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;

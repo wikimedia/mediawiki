@@ -20,7 +20,13 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use ChangeTags;
+use Exception;
+use ImportStreamSource;
 use MediaWiki\MainConfigNames;
+use WikiImporterFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -200,3 +206,6 @@ class ApiImport extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Import';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiImport::class, 'ApiImport' );

@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\CreateFromLoginAuthenticationRequest;
@@ -156,3 +158,6 @@ class ApiClientLogin extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Login';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiClientLogin::class, 'ApiClientLogin' );

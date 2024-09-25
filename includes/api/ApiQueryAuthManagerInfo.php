@@ -21,6 +21,8 @@
  * @since 1.27
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\MainConfigNames;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -142,3 +144,6 @@ class ApiQueryAuthManagerInfo extends ApiQueryBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Authmanagerinfo';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryAuthManagerInfo::class, 'ApiQueryAuthManagerInfo' );

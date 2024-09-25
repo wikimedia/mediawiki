@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Api;
 
-use ApiCSPReport;
-use ApiMain;
-use ApiResult;
+use MediaWiki\Api\ApiCSPReport;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiResult;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
@@ -15,7 +15,7 @@ use Psr\Log\AbstractLogger;
 /**
  * @group API
  * @group medium
- * @covers \ApiCSPReport
+ * @covers \MediaWiki\Api\ApiCSPReport
  */
 class ApiCSPReportTest extends MediaWikiIntegrationTestCase {
 
@@ -43,7 +43,7 @@ class ApiCSPReportTest extends MediaWikiIntegrationTestCase {
 					'[report-only] Received CSP report: ' .
 						'<https://blocked.test> blocked from being loaded on <https://doc.test/path>:4',
 					[
-						'method' => 'ApiCSPReport::execute',
+						'method' => ApiCSPReport::class . '::execute',
 						'user_id' => 'logged-out',
 						'user-agent' => 'Test/0.0',
 						'source' => 'internal'

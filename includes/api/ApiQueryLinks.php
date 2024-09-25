@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
@@ -271,3 +273,6 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		return $this->helpUrl;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryLinks::class, 'ApiQueryLinks' );

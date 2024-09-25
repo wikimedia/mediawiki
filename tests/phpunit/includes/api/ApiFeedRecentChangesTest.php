@@ -2,16 +2,16 @@
 
 namespace MediaWiki\Tests\Api;
 
-use ApiBase;
-use ApiFeedRecentChanges;
-use ApiMain;
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiFeedRecentChanges;
+use MediaWiki\Api\ApiMain;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
 use MediaWikiIntegrationTestCase;
 
 /**
  * @group API
- * @covers \ApiFeedRecentChanges
+ * @covers \MediaWiki\Api\ApiFeedRecentChanges
  */
 class ApiFeedRecentChangesTest extends MediaWikiIntegrationTestCase {
 

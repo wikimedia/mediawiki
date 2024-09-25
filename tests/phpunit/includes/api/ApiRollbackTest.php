@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Api;
 
-use ApiUsageException;
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 
@@ -13,7 +13,7 @@ use MediaWiki\Title\Title;
  * @group Database
  * @group medium
  *
- * @covers \ApiRollback
+ * @covers MediaWiki\Api\ApiRollback
  */
 class ApiRollbackTest extends ApiTestCase {
 

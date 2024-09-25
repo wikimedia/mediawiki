@@ -19,6 +19,9 @@
  *
  * @file
  */
+
+namespace MediaWiki\Api;
+
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\EditPage\IntroMessageBuilder;
 use MediaWiki\EditPage\PreloadedContentBuilder;
@@ -44,6 +47,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\Utils\UrlUtils;
 use MediaWiki\Watchlist\WatchedItem;
 use MediaWiki\Watchlist\WatchedItemStore;
+use MessageLocalizer;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 
@@ -1128,3 +1132,6 @@ class ApiQueryInfo extends ApiQueryBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Info';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryInfo::class, 'ApiQueryInfo' );

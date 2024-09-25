@@ -2,17 +2,17 @@
 
 namespace MediaWiki\Tests\Api;
 
-use ApiContinuationManager;
-use ApiMain;
-use ApiResult;
-use ApiUsageException;
+use MediaWiki\Api\ApiContinuationManager;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiResult;
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Request\FauxRequest;
 use UnexpectedValueException;
 
 /**
- * @covers \ApiContinuationManager
+ * @covers \MediaWiki\Api\ApiContinuationManager
  * @group API
  */
 class ApiContinuationManagerTest extends ApiTestCase {
@@ -198,8 +198,8 @@ class ApiContinuationManagerTest extends ApiTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( UnexpectedValueException $ex ) {
 			$this->assertSame(
-				'Module \'mocklist\' called ApiContinuationManager::addContinueParam ' .
-					'but was not passed to ApiContinuationManager::__construct',
+				'Module \'mocklist\' called ' . ApiContinuationManager::class . '::addContinueParam ' .
+					'but was not passed to ' . ApiContinuationManager::class . '::__construct',
 				$ex->getMessage(),
 				'Expected exception'
 			);

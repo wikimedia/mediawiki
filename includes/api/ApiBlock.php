@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
@@ -332,3 +334,6 @@ class ApiBlock extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Block';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiBlock::class, 'ApiBlock' );

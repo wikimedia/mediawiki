@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Language\LanguageCode;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
@@ -262,3 +264,6 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 	}
 
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryLanguageinfo::class, 'ApiQueryLanguageinfo' );

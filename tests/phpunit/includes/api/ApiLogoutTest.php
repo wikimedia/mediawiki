@@ -9,7 +9,7 @@ use MediaWiki\User\User;
  * @group Database
  * @group medium
  *
- * @covers \ApiLogout
+ * @covers \MediaWiki\Api\ApiLogout
  */
 class ApiLogoutTest extends ApiTestCase {
 

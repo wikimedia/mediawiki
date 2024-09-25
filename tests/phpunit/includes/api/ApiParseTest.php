@@ -23,7 +23,7 @@
 
 namespace MediaWiki\Tests\Api;
 
-use ApiUsageException;
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
@@ -38,7 +38,7 @@ use SkinFallback;
  * @group Database
  * @group medium
  *
- * @covers \ApiParse
+ * @covers MediaWiki\Api\ApiParse
  */
 class ApiParseTest extends ApiTestCase {
 	use DummyServicesTrait;

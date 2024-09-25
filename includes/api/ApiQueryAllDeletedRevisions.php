@@ -23,6 +23,9 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use ChangeTags;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
@@ -38,6 +41,7 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserFactory;
+use ParserFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
@@ -536,3 +540,6 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Alldeletedrevisions';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryAllDeletedRevisions::class, 'ApiQueryAllDeletedRevisions' );

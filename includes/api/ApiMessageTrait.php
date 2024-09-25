@@ -18,6 +18,10 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use InvalidArgumentException;
+
 /**
  * Trait to implement the IApiMessage interface for Message subclasses
  * @since 1.27
@@ -154,3 +158,6 @@ trait ApiMessageTrait {
 		$this->apiData = $data['apiData'];
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiMessageTrait::class, 'ApiMessageTrait' );

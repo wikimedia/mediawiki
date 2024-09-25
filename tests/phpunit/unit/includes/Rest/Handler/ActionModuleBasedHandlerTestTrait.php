@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
-use ApiBase;
-use ApiMain;
 use Exception;
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiMain;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Language\Language;
 use MediaWiki\Request\FauxRequest;

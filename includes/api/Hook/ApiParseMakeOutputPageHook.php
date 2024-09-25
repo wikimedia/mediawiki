@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Api\Hook;
 
-use ApiBase;
+use MediaWiki\Api\ApiBase;
 use MediaWiki\Output\OutputPage;
 
 /**

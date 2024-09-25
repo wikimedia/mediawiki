@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Api\Validator;
 
-use ApiMain;
-use ApiModuleManager;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiModuleManager;
 use MediaWiki\Api\Validator\SubmoduleDef;
 use MediaWiki\Tests\Api\MockApi;
 use Wikimedia\Message\DataMessageValue;

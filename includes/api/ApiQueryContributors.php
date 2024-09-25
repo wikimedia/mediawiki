@@ -23,6 +23,8 @@
  * @since 1.23
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -313,3 +315,6 @@ class ApiQueryContributors extends ApiQueryBase {
 		return parent::getSummaryMessage();
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryContributors::class, 'ApiQueryContributors' );

@@ -23,6 +23,8 @@
  * @since 1.24
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
@@ -462,3 +464,6 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		return "https://www.mediawiki.org/wiki/Special:MyLanguage/API:{$name}";
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryBacklinksprop::class, 'ApiQueryBacklinksprop' );

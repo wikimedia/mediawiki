@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\MainConfigNames;
@@ -127,3 +129,6 @@ class ApiRemoveAuthenticationData extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Manage_authentication_data';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiRemoveAuthenticationData::class, 'ApiRemoveAuthenticationData' );

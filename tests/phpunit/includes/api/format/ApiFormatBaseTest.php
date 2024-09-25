@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Api\Format;
 
-use ApiBase;
-use ApiFormatBase;
-use ApiMain;
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiFormatBase;
+use MediaWiki\Api\ApiMain;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
@@ -15,7 +15,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group API
  * @group Database
- * @covers \ApiFormatBase
+ * @covers \MediaWiki\Api\ApiFormatBase
  */
 class ApiFormatBaseTest extends ApiFormatTestBase {
 

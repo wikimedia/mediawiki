@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Api\Validator;
 
-use ApiBase;
-use ApiMain;
-use ApiMessage;
-use ApiUsageException;
 use Exception;
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiMessage;
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Message\Converter as MessageConverter;
 use MediaWiki\Message\Message;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;

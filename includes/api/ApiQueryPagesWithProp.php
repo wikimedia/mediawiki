@@ -21,6 +21,8 @@
  * @since 1.21
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -184,3 +186,6 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Pageswithprop';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryPagesWithProp::class, 'ApiQueryPagesWithProp' );

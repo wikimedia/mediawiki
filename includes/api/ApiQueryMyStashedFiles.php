@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -150,3 +152,6 @@ class ApiQueryMyStashedFiles extends ApiQueryBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:mystashedfiles';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryMyStashedFiles::class, 'ApiQueryMyStashedFiles' );

@@ -20,6 +20,9 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use ChangeTags;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MainConfigNames;
@@ -35,6 +38,8 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserNameUtils;
+use RecentChange;
+use stdClass;
 use Wikimedia\IPUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -763,3 +768,6 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Usercontribs';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryUserContribs::class, 'ApiQueryUserContribs' );

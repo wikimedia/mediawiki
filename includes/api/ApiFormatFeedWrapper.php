@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Feed\ChannelFeed;
 use MediaWiki\Feed\FeedItem;
 
@@ -117,3 +119,6 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiFormatFeedWrapper::class, 'ApiFormatFeedWrapper' );

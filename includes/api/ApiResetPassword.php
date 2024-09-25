@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Status\Status;
@@ -161,3 +163,6 @@ class ApiResetPassword extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Manage_authentication_data';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiResetPassword::class, 'ApiResetPassword' );

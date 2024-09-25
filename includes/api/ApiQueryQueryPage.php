@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\QueryPage;
 use MediaWiki\SpecialPage\SpecialPageFactory;
@@ -209,3 +211,6 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Querypage';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryQueryPage::class, 'ApiQueryQueryPage' );

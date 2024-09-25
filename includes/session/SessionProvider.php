@@ -23,9 +23,9 @@
 
 namespace MediaWiki\Session;
 
-use ApiUsageException;
 use ErrorPageError;
 use InvalidArgumentException;
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Config\Config;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;

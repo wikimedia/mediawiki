@@ -25,6 +25,12 @@
  * @todo: split the different cases of upload in subclasses or submethods.
  */
 
+namespace MediaWiki\Api;
+
+use AssembleUploadChunksJob;
+use ChangeTags;
+use Exception;
+use JobQueueGroup;
 use MediaWiki\Config\Config;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
@@ -35,6 +41,22 @@ use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\Watchlist\WatchlistManager;
 use Psr\Log\LoggerInterface;
+use PublishStashedFileJob;
+use StatusValue;
+use UploadBase;
+use UploadFromChunks;
+use UploadFromFile;
+use UploadFromStash;
+use UploadFromUrl;
+use UploadFromUrlJob;
+use UploadStashBadPathException;
+use UploadStashException;
+use UploadStashFileException;
+use UploadStashFileNotFoundException;
+use UploadStashNoSuchKeyException;
+use UploadStashNotLoggedInException;
+use UploadStashWrongOwnerException;
+use UploadStashZeroLengthFileException;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -1248,3 +1270,6 @@ class ApiUpload extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Upload';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiUpload::class, 'ApiUpload' );

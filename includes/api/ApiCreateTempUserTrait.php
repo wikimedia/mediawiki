@@ -1,6 +1,7 @@
 <?php
 
-use MediaWiki\Api\ApiHookRunner;
+namespace MediaWiki\Api;
+
 use MediaWiki\Request\WebRequest;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -91,3 +92,6 @@ trait ApiCreateTempUserTrait {
 	/** @} */
 	// endregion -- end of methods required from ApiBase
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiCreateTempUserTrait::class, 'ApiCreateTempUserTrait' );

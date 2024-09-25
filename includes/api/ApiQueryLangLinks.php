@@ -20,6 +20,9 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
@@ -216,3 +219,6 @@ class ApiQueryLangLinks extends ApiQueryBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Langlinks';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryLangLinks::class, 'ApiQueryLangLinks' );

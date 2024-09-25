@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Status\Status;
@@ -161,3 +163,6 @@ class ApiMergeHistory extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Mergehistory';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiMergeHistory::class, 'ApiMergeHistory' );

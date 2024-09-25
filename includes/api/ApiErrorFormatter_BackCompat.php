@@ -18,7 +18,11 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\MediaWikiServices;
+use StatusValue;
+use Throwable;
 
 /**
  * Format errors and warnings in the old style, for backwards compatibility.
@@ -133,3 +137,6 @@ class ApiErrorFormatter_BackCompat extends ApiErrorFormatter {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiErrorFormatter_BackCompat::class, 'ApiErrorFormatter_BackCompat' );
