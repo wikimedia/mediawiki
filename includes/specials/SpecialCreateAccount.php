@@ -26,6 +26,8 @@ use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\SpecialPage\LoginSignupSpecialPage;
 use MediaWiki\Title\Title;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityUtils;
 use StatusValue;
 
 /**
@@ -50,15 +52,22 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 
 	private FormatterFactory $formatterFactory;
 
+	private UserIdentityUtils $identityUtils;
+
 	/**
 	 * @param AuthManager $authManager
 	 * @param FormatterFactory $formatterFactory
 	 */
-	public function __construct( AuthManager $authManager, FormatterFactory $formatterFactory ) {
+	public function __construct(
+		AuthManager $authManager,
+		FormatterFactory $formatterFactory,
+		UserIdentityUtils $identityUtils
+	) {
 		parent::__construct( 'CreateAccount', 'createaccount' );
 
 		$this->setAuthManager( $authManager );
 		$this->formatterFactory = $formatterFactory;
+		$this->identityUtils = $identityUtils;
 	}
 
 	public function doesWrites() {
@@ -183,10 +192,11 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		return 'users';
 	}
 
-	protected function logAuthResult( $success, $status = null ) {
+	protected function logAuthResult( $success, UserIdentity $performer, $status = null ) {
 		LoggerFactory::getInstance( 'authevents' )->info( 'Account creation attempt', [
 			'event' => 'accountcreation',
 			'successful' => $success,
+			'accountType' => $this->identityUtils->getShortUserTypeInternal( $performer ),
 			'status' => strval( $status ),
 		] );
 	}

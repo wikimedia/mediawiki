@@ -68,6 +68,7 @@ class ApiAMCreateAccount extends ApiBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
+		$performer = $this->getUser();
 
 		$this->requireAtLeastOneParameter( $params, 'continue', 'returnurl' );
 
@@ -89,7 +90,7 @@ class ApiAMCreateAccount extends ApiBase {
 			$res = AuthenticationResponse::newFail( $this->msg( 'userlogin-cannot-' . AuthManager::ACTION_CREATE ) );
 			$this->getResult()->addValue( null, 'createaccount',
 				$helper->formatAuthenticationResponse( $res ) );
-			$helper->logAuthenticationResult( 'accountcreation', $res );
+			$helper->logAuthenticationResult( 'accountcreation', $performer, $res );
 			return;
 		}
 
@@ -114,7 +115,7 @@ class ApiAMCreateAccount extends ApiBase {
 
 		$this->getResult()->addValue( null, 'createaccount',
 			$helper->formatAuthenticationResponse( $res ) );
-		$helper->logAuthenticationResult( 'accountcreation', $res );
+		$helper->logAuthenticationResult( 'accountcreation', $performer, $res );
 	}
 
 	public function isReadMode() {

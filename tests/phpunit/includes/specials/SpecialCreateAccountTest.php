@@ -23,7 +23,8 @@ class SpecialCreateAccountTest extends SpecialPageTestBase {
 		$context ??= RequestContext::getMain();
 		$page = new SpecialCreateAccount(
 			$services->getAuthManager(),
-			$services->getFormatterFactory()
+			$services->getFormatterFactory(),
+			$services->getUserIdentityUtils()
 		);
 		$page->setContext( $context );
 		$context->setTitle( $page->getPageTitle() );
