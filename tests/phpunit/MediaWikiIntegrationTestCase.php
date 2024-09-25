@@ -334,7 +334,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			if ( $title === null ) {
 				static $counter;
 				$counter = $counter === null ? random_int( 10, 1000 ) : ++$counter;
-				$title = Title::newFromText( "Test page $counter $caller", $this->getDefaultWikitextNS( $title, NS_MAIN ) );
+				$title = Title::newFromText( "Test page $counter $caller", $this->getDefaultWikitextNS() );
 			} else {
 				$title = Title::newFromText( $title );
 			}
