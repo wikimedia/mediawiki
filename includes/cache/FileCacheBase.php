@@ -253,7 +253,7 @@ abstract class FileCacheBase {
 	 * @return void
 	 */
 	public function incrMissesRecent( WebRequest $request ) {
-		if ( mt_rand( 0, self::MISS_FACTOR - 1 ) == 0 ) {
+		if ( mt_rand( 1, self::MISS_FACTOR ) == 1 ) {
 			# Get a large IP range that should include the user  even if that
 			# person's IP address changes
 			$ip = $request->getIP();
