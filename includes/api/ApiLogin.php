@@ -31,6 +31,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\User\BotPassword;
+use MediaWiki\User\UserIdentityUtils;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -42,13 +43,23 @@ class ApiLogin extends ApiBase {
 
 	private AuthManager $authManager;
 
+	private UserIdentityUtils $identityUtils;
+
+	/**
+	 * @param ApiMain $main
+	 * @param string $action
+	 * @param AuthManager $authManager
+	 * @param UserIdentityUtils $identityUtils IdentityUtils to retrieve account type
+	 */
 	public function __construct(
 		ApiMain $main,
 		string $action,
-		AuthManager $authManager
+		AuthManager $authManager,
+		UserIdentityUtils $identityUtils
 	) {
 		parent::__construct( $main, $action, 'lg' );
 		$this->authManager = $authManager;
+		$this->identityUtils = $identityUtils;
 	}
 
 	protected function getExtendedDescription() {
@@ -122,6 +133,7 @@ class ApiLogin extends ApiBase {
 
 		$authRes = false;
 		$loginType = 'N/A';
+		$performer = $this->getUser();
 
 		// Check login token
 		$token = $session->getToken( '', 'login' );
@@ -251,6 +263,7 @@ class ApiLogin extends ApiBase {
 		LoggerFactory::getInstance( 'authevents' )->info( 'Login attempt', [
 			'event' => 'login',
 			'successful' => $authRes === 'Success',
+			'accountType' => $this->identityUtils->getShortUserTypeInternal( $performer ),
 			'loginType' => $loginType,
 			'status' => $authRes,
 		] );
