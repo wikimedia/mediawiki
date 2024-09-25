@@ -518,7 +518,6 @@ return [
 					],
 				],
 			],
-			'ChronologyProtectorStash' => null,
 			'ChronologyProtectorSecret' => '',
 			'ParserCacheExpireTime' => 86400,
 			'OldRevisionParserCacheExpireTime' => 3600,
@@ -2726,10 +2725,6 @@ return [
 			'ParsoidCacheConfig' => 'object',
 			'ParsoidSelectiveUpdateSampleRate' => 'integer',
 			'ParserCacheFilterConfig' => 'object',
-			'ChronologyProtectorStash' => [
-				'string',
-				'null',
-			],
 			'ChronologyProtectorSecret' => 'string',
 			'PHPSessionHandling' => 'string',
 			'SuspiciousIpExpiry' => [
