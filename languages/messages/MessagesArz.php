@@ -355,6 +355,7 @@ $magicWords = [
 	'url_path'                  => [ '0', 'مسار', 'PATH' ],
 	'url_query'                 => [ '0', 'استعلام', 'QUERY' ],
 	'url_wiki'                  => [ '0', 'ويكى', 'ويكي', 'WIKI' ],
+	'userlanguage'              => [ '1', 'لغه_اليوزر', 'USERLANGUAGE' ],
 ];
 
 // (T18469) Override Eastern Arabic numberals, use Western
