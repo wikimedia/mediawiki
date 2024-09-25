@@ -259,6 +259,8 @@ class SpecialBlock extends FormSpecialPage {
 
 		$suggestedDurations = $this->getLanguage()->getBlockDurations();
 
+		$this->codexFormData[ 'blockEnableMultiblocks' ] = $conf->get( MainConfigNames::EnableMultiBlocks );
+
 		$a = [];
 
 		$a['Target'] = [
