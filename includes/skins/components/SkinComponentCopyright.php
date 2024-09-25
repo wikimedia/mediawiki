@@ -7,6 +7,7 @@ use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -63,12 +64,6 @@ class SkinComponentCopyright implements SkinComponent {
 			$type = 'normal';
 		}
 
-		if ( $type == 'history' ) {
-			$msg = 'history_copyright';
-		} else {
-			$msg = 'copyright';
-		}
-
 		if ( $config->get( MainConfigNames::RightsPage ) ) {
 			$title = Title::newFromText( $config->get( MainConfigNames::RightsPage ) );
 			$link = $linkRenderer->makeKnownLink( $title,
@@ -87,8 +82,32 @@ class SkinComponentCopyright implements SkinComponent {
 			return '';
 		}
 
+		if ( $config->get( MainConfigNames::AllowRawHtmlCopyrightMessages ) ) {
+			// First check whether the old, raw HTML message exists (if not disallowed by wiki config),
+			// for compatibility with on-wiki message overrides.
+			$msgKey = $type === 'history' ? 'history_copyright' : 'copyright';
+
+			// Allow for site and per-namespace customization of copyright notice.
+			$this->getHookRunner()->onSkinCopyrightFooter( $title, $type, $msgKey, $link );
+
+			$msg = $localizer->msg( $msgKey )->rawParams( $link );
+			if ( !$msg->isDisabled() ) {
+				return $msg->text();
+			}
+		}
+
+		// If it does not exist or disabled, use the new, safer wikitext message.
+		$msgKey = $type === 'history' ? 'copyright-footer-history' : 'copyright-footer';
+		$msgSpec = Message::newFromSpecifier( $msgKey )->rawParams( $link );
+
 		// Allow for site and per-namespace customization of copyright notice.
-		$this->getHookRunner()->onSkinCopyrightFooter( $title, $type, $msg, $link );
-		return $localizer->msg( $msg )->rawParams( $link )->text();
+		$this->getHookRunner()->onSkinCopyrightFooterMessage( $title, $type, $msgSpec );
+
+		$msg = $localizer->msg( $msgSpec );
+		if ( !$msg->isDisabled() ) {
+			return $msg->parse();
+		}
+
+		return '';
 	}
 }

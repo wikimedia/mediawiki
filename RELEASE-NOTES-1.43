@@ -40,6 +40,11 @@ For notes on 1.42.x and older releases, see HISTORY.
   sort the categories shown on article pages.  This is an experimental setting;
   its future will depend on community adoption and feedback on the phab task
   is welcome.
+* (T45646) $wgAllowRawHtmlCopyrightMessages - Defaults to true, can be set to
+  false to disable the use of the localisation messages 'copyright' and
+  'history_copyright' and the hook 'SkinCopyrightFooter', which have been
+  deprecated in this release. This helps protect your wiki against attacks by
+  a rogue administrator account and will become the default in the future.
 * …
 
 ==== Changed configuration ====
@@ -856,6 +861,12 @@ because of Phabricator reports.
   called.  Please set the parser appropriately when using the image gallery.
 * The hook OutputPageMakeCategoryLinks is deprecated. Use the new hook
   OutputPageRenderCategoryLink instead.
+* (T45646) The localisation messages 'copyright' and 'history_copyright' are
+  deprecated in favor of 'copyright-footer' and 'copyright-footer-history'.
+  The new messages are parsed as wikitext instead of being treated as raw HTML.
+* (T45646) The hook 'SkinCopyrightFooter' is deprecated in favor of
+  'SkinCopyrightFooterMessage'. The new hook allows specifying copyright
+  messages that are parsed as wikitext instead of being treated as raw HTML.
 * …
 
 === Other changes in 1.43 ===

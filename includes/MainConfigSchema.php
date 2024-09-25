@@ -5027,6 +5027,17 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Whether on-wiki overrides for the 'copyright' and 'history_copyright' messages, which allow raw
+	 * HTML, will be used.
+	 *
+	 * @since 1.43
+	 */
+	public const AllowRawHtmlCopyrightMessages = [
+		'default' => true,
+		'type' => 'boolean',
+	];
+
+	/**
 	 * Fake out the timezone that the server thinks it's in. This will be used for
 	 * date display and not for what's stored in the DB. Leave to null to retain
 	 * your server's OS-based timezone value.
