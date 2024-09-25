@@ -158,4 +158,5 @@ STR;
 	}
 }
 
+/** @deprecated class alias since 1.42 */
 class_alias( ApiQueryTestBase::class, 'ApiQueryTestBase' );

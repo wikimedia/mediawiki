@@ -171,4 +171,5 @@ abstract class ApiUploadTestCase extends ApiTestCase {
 	}
 }
 
+/** @deprecated class alias since 1.42 */
 class_alias( ApiUploadTestCase::class, 'ApiUploadTestCase' );

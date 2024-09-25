@@ -27,4 +27,5 @@ class ApiTestContext extends RequestContext {
 	}
 }
 
+/** @deprecated class alias since 1.42 */
 class_alias( ApiTestContext::class, 'ApiTestContext' );
