@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
@@ -246,3 +248,6 @@ class ApiWatch extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Watch';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiWatch::class, 'ApiWatch' );

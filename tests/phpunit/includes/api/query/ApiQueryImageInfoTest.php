@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Api\Query;
 
-use ApiQueryImageInfo;
 use File;
+use MediaWiki\Api\ApiQueryImageInfo;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
@@ -13,7 +13,7 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
 
 /**
- * @covers \ApiQueryImageInfo
+ * @covers \MediaWiki\Api\ApiQueryImageInfo
  * @group API
  * @group medium
  * @group Database

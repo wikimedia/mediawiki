@@ -1,5 +1,7 @@
 <?php
 
+namespace MediaWiki\Api;
+
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\User\Options\UserOptionsLookup;
@@ -190,3 +192,6 @@ trait ApiWatchlistTrait {
 		return null;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiWatchlistTrait::class, 'ApiWatchlistTrait' );

@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\Integration\Permissions;
 
 use Action;
-use ApiMessage;
+use MediaWiki\Api\ApiMessage;
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;

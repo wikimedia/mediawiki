@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use Wikimedia\Message\MessageSpecifier;
 
 /**
@@ -69,3 +71,6 @@ interface IApiMessage extends MessageSpecifier {
 	 */
 	public function setApiData( array $data );
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( IApiMessage::class, 'IApiMessage' );

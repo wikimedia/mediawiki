@@ -2,16 +2,16 @@
 
 namespace MediaWiki\Tests\Api;
 
-use ApiBase;
-use ApiContinuationManager;
-use ApiErrorFormatter;
-use ApiErrorFormatter_BackCompat;
-use ApiMain;
-use ApiRawMessage;
-use ApiUsageException;
 use Generator;
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiContinuationManager;
+use MediaWiki\Api\ApiErrorFormatter;
+use MediaWiki\Api\ApiErrorFormatter_BackCompat;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiRawMessage;
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Config\MultiConfig;
@@ -41,7 +41,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @group Database
  * @group medium
  *
- * @covers \ApiMain
+ * @covers \MediaWiki\Api\ApiMain
  */
 class ApiMainTest extends ApiTestCase {
 	use MockAuthorityTrait;

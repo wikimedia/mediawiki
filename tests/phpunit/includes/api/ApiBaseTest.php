@@ -2,13 +2,13 @@
 
 namespace MediaWiki\Tests\Api;
 
-use ApiBase;
-use ApiBlockInfoTrait;
-use ApiMain;
-use ApiMessage;
-use ApiUsageException;
 use DomainException;
 use Exception;
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiBlockInfoTrait;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiMessage;
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Api\Validator\SubmoduleDef;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Context\DerivativeContext;
@@ -35,7 +35,7 @@ use WikiPage;
  * @group Database
  * @group medium
  *
- * @covers \ApiBase
+ * @covers \MediaWiki\Api\ApiBase
  */
 class ApiBaseTest extends ApiTestCase {
 
@@ -1396,7 +1396,7 @@ class ApiBaseTest extends ApiTestCase {
 					ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 				],
 				'messages' => new MWException(
-					'Internal error in ApiBase::getFinalParamDescription: '
+					'Internal error in ' . ApiBase::class . '::getFinalParamDescription: '
 					. 'ApiBase::PARAM_HELP_MSG_PER_VALUE may only be used when '
 					. "ParamValidator::PARAM_TYPE is an array or it is 'string' "
 					. 'and ParamValidator::PARAM_ISMULTI is true'
@@ -1579,7 +1579,7 @@ class ApiBaseTest extends ApiTestCase {
 	}
 
 	/**
-	 * @covers \ApiBase::extractRequestParams
+	 * @covers \MediaWiki\Api\ApiBase::extractRequestParams
 	 */
 	public function testExtractRequestParams() {
 		$request = new FauxRequest( [

@@ -18,11 +18,14 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
+use MediaWiki\Language\Language;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
 
@@ -137,3 +140,6 @@ trait ApiBlockInfoTrait {
 	// endregion -- end of methods required from ApiBase
 
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiBlockInfoTrait::class, 'ApiBlockInfoTrait' );

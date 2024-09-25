@@ -20,6 +20,9 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use IDBAccessObject;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\UndeletePage;
 use MediaWiki\Page\UndeletePageFactory;
@@ -195,3 +198,6 @@ class ApiUndelete extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Undelete';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiUndelete::class, 'ApiUndelete' );

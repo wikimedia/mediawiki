@@ -24,10 +24,16 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use File;
+use LocalFile;
+use LocalRepo;
 use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Title\Title;
+use RepoGroup;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\Rdbms\IExpression;
@@ -248,7 +254,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 			if ( !$this->validateSha1Hash( $sha1 ) ) {
 				$this->dieWithError( 'apierror-invalidsha1hash' );
 			}
-			$sha1 = Wikimedia\base_convert( $sha1, 16, 36, 31 );
+			$sha1 = \Wikimedia\base_convert( $sha1, 16, 36, 31 );
 		} elseif ( isset( $params['sha1base36'] ) ) {
 			$sha1 = strtolower( $params['sha1base36'] );
 			if ( !$this->validateSha1Base36Hash( $sha1 ) ) {
@@ -427,3 +433,6 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Allimages';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryAllImages::class, 'ApiQueryAllImages' );

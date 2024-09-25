@@ -18,6 +18,10 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use DifferenceEngine;
+use Exception;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
@@ -32,6 +36,8 @@ use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Title\Title;
 use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserFactory;
+use MWContentSerializationException;
+use ParserOptions;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\RequestTimeout\TimeoutException;
 
@@ -806,3 +812,6 @@ class ApiComparePages extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Compare';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiComparePages::class, 'ApiComparePages' );

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Api;
 
-use ApiUsageException;
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
@@ -15,7 +15,7 @@ use RevisionDeleter;
  * @group API
  * @group Database
  * @group medium
- * @covers \ApiComparePages
+ * @covers \MediaWiki\Api\ApiComparePages
  */
 class ApiComparePagesTest extends ApiTestCase {
 

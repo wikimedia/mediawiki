@@ -19,6 +19,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\User\TempUser\TempUserCreator;
 
 /**
@@ -74,3 +76,6 @@ class ApiAcquireTempUserName extends ApiBase {
 		return true;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiAcquireTempUserName::class, 'ApiAcquireTempUserName' );

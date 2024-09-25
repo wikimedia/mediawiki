@@ -20,8 +20,8 @@
 
 namespace MediaWiki\Debug;
 
-use ApiResult;
 use LogicException;
+use MediaWiki\Api\ApiResult;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
 use MediaWiki\Logger\LegacyLogger;

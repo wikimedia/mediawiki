@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Json\FormatJson;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -140,3 +142,6 @@ class ApiFormatJson extends ApiFormatBase {
 		];
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiFormatJson::class, 'ApiFormatJson' );

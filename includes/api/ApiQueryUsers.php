@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Cache\GenderCache;
 use MediaWiki\User\User;
@@ -360,3 +362,6 @@ class ApiQueryUsers extends ApiQueryBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Users';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryUsers::class, 'ApiQueryUsers' );

@@ -20,6 +20,9 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
@@ -470,3 +473,6 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Allusers';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryAllUsers::class, 'ApiQueryAllUsers' );

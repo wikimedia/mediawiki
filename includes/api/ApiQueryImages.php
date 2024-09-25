@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Title\Title;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -184,3 +186,6 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Images';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryImages::class, 'ApiQueryImages' );

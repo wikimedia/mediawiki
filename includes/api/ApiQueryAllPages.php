@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Cache\GenderCache;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\RestrictionStore;
@@ -389,3 +391,6 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Allpages';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryAllPages::class, 'ApiQueryAllPages' );

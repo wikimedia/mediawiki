@@ -20,7 +20,10 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Cache\GenderCache;
+use MediaWiki\Language\Language;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
@@ -242,3 +245,6 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Watchlistraw';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryWatchlistRaw::class, 'ApiQueryWatchlistRaw' );

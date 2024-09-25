@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Html\Html;
@@ -36,6 +38,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Specials\SpecialVersion;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\ExtensionInfo;
+use SkinFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\RemexHtml\Serializer\SerializerNode;
@@ -747,3 +750,6 @@ class ApiHelp extends ApiBase {
 		];
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiHelp::class, 'ApiHelp' );

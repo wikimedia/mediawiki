@@ -20,6 +20,9 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use ChangeTags;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Specials\SpecialPageLanguage;
@@ -177,3 +180,6 @@ class ApiSetPageLanguage extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:SetPageLanguage';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiSetPageLanguage::class, 'ApiSetPageLanguage' );

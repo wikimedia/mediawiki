@@ -20,7 +20,9 @@
  * @file
  */
 
-use MediaWiki\Api\ApiHookRunner;
+namespace MediaWiki\Api;
+
+use ChangeTags;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\TextContent;
@@ -324,3 +326,6 @@ class ApiFeedContributions extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Feedcontributions';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiFeedContributions::class, 'ApiFeedContributions' );

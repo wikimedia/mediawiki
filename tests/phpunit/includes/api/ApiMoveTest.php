@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Api;
 
-use ApiUsageException;
 use IDBAccessObject;
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\SlotRecord;
@@ -15,7 +15,7 @@ use MediaWiki\User\User;
  * @group Database
  * @group medium
  *
- * @covers \ApiMove
+ * @covers MediaWiki\Api\ApiMove
  */
 class ApiMoveTest extends ApiTestCase {
 

@@ -16,7 +16,7 @@ use RepoGroup;
  * @group Database
  * @group medium
  *
- * @covers \ApiUpload
+ * @covers MediaWiki\Api\ApiUpload
  */
 class ApiUploadTest extends ApiUploadTestCase {
 	private ?Authority $uploader = null;

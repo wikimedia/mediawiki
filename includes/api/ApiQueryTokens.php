@@ -23,7 +23,8 @@
  * @since 1.24
  */
 
-use MediaWiki\Api\ApiHookRunner;
+namespace MediaWiki\Api;
+
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\User;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -98,16 +99,16 @@ class ApiQueryTokens extends ApiQueryBase {
 	/**
 	 * Get a token from a salt
 	 * @param User $user
-	 * @param MediaWiki\Session\Session $session
+	 * @param \MediaWiki\Session\Session $session
 	 * @param string|array $salt A string will be used as the salt for
 	 *  User::getEditTokenObject() to fetch the token, which will give a
 	 *  LoggedOutEditToken (always "+\\") for anonymous users. An array will
 	 *  be used as parameters to MediaWiki\Session\Session::getToken(), which
 	 *  will always return a full token even for anonymous users. An array will
 	 *  also persist the session.
-	 * @return MediaWiki\Session\Token
+	 * @return \MediaWiki\Session\Token
 	 */
-	public static function getToken( User $user, MediaWiki\Session\Session $session, $salt ) {
+	public static function getToken( User $user, \MediaWiki\Session\Session $session, $salt ) {
 		if ( is_array( $salt ) ) {
 			$session->persist();
 			return $session->getToken( ...$salt );
@@ -145,3 +146,6 @@ class ApiQueryTokens extends ApiQueryBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tokens';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryTokens::class, 'ApiQueryTokens' );

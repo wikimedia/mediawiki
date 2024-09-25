@@ -21,12 +21,15 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
+use MediaWiki\Session\SessionManager;
 use MediaWiki\User\BotPassword;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -106,7 +109,7 @@ class ApiLogin extends ApiBase {
 		$result = [];
 
 		// Make sure session is persisted
-		$session = MediaWiki\Session\SessionManager::getGlobalSession();
+		$session = SessionManager::getGlobalSession();
 		$session->persist();
 
 		// Make sure it's possible to log in
@@ -330,3 +333,6 @@ class ApiLogin extends ApiBase {
 		return $ret;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiLogin::class, 'ApiLogin' );

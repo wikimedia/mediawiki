@@ -20,12 +20,16 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use LogicException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
+use RepoGroup;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -275,3 +279,6 @@ class ApiMove extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Move';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiMove::class, 'ApiMove' );

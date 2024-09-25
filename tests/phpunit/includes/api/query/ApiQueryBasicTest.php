@@ -31,7 +31,7 @@ use MediaWiki\Title\Title;
  * @group API
  * @group Database
  * @group medium
- * @covers \ApiQuery
+ * @covers MediaWiki\Api\ApiQuery
  */
 class ApiQueryBasicTest extends ApiQueryTestBase {
 	/** @var Exception|null */

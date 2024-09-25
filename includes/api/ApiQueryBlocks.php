@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\DatabaseBlockStore;
@@ -474,3 +476,6 @@ class ApiQueryBlocks extends ApiQueryBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Blocks';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryBlocks::class, 'ApiQueryBlocks' );

@@ -1,5 +1,8 @@
 <?php
 
+namespace MediaWiki\Api;
+
+use IDBAccessObject;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Page\ContentModelChangeFactory;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -151,3 +154,6 @@ class ApiChangeContentModel extends ApiBase {
 		];
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiChangeContentModel::class, 'ApiChangeContentModel' );

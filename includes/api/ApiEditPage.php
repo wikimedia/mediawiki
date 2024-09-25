@@ -20,6 +20,11 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use Article;
+use ChangeTags;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\TextContent;
 use MediaWiki\Context\RequestContext;
@@ -40,6 +45,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
+use MWContentSerializationException;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -75,7 +81,7 @@ class ApiEditPage extends ApiBase {
 	 * Sends a cookie so anons get talk message notifications, mirroring SubmitAction (T295910)
 	 */
 	private function persistGlobalSession() {
-		MediaWiki\Session\SessionManager::getGlobalSession()->persist();
+		\MediaWiki\Session\SessionManager::getGlobalSession()->persist();
 	}
 
 	/**
@@ -820,3 +826,6 @@ class ApiEditPage extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Edit';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiEditPage::class, 'ApiEditPage' );

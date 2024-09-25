@@ -4,9 +4,9 @@ namespace MediaWiki\Tests\Api;
 
 namespace MediaWiki\Tests\Api;
 
-use ApiMain;
-use ApiOptions;
-use ApiUsageException;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiOptions;
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
@@ -23,7 +23,7 @@ use PHPUnit\Framework\MockObject\MockObject;
  * @group Database
  * @group medium
  *
- * @covers \ApiOptions
+ * @covers \MediaWiki\Api\ApiOptions
  */
 class ApiOptionsTest extends ApiTestCase {
 	use MockAuthorityTrait;

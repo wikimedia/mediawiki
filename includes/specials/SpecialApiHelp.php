@@ -20,9 +20,9 @@
 
 namespace MediaWiki\Specials;
 
-use ApiHelp;
-use ApiMain;
-use ApiUsageException;
+use MediaWiki\Api\ApiHelp;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Html\Html;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\Utils\UrlUtils;

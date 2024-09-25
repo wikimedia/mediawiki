@@ -18,6 +18,10 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use UnexpectedValueException;
+
 /**
  * This manages continuation state.
  * @since 1.25 this is no longer a subclass of ApiBase
@@ -275,3 +279,6 @@ class ApiContinuationManager {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiContinuationManager::class, 'ApiContinuationManager' );

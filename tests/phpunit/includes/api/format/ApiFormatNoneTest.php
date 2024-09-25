@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Tests\Api\Format;
 
-use ApiResult;
+use MediaWiki\Api\ApiResult;
 
 /**
  * @group API
- * @covers \ApiFormatNone
+ * @covers MediaWiki\Api\ApiFormatNone
  */
 class ApiFormatNoneTest extends ApiFormatTestBase {
 

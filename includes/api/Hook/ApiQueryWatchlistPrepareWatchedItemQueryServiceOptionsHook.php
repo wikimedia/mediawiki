@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Api\Hook;
 
-use ApiQueryWatchlist;
+use MediaWiki\Api\ApiQueryWatchlist;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

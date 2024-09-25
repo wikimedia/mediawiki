@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\WikiPageFactory;
@@ -210,3 +212,6 @@ class ApiPurge extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Purge';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiPurge::class, 'ApiPurge' );

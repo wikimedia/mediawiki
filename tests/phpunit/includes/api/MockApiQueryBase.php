@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Api;
 
-use ApiQueryBase;
+use MediaWiki\Api\ApiQueryBase;
 
 class MockApiQueryBase extends ApiQueryBase {
 	/** @var string */

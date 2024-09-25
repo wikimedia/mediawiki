@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Api;
 
-use ApiWatchlistTrait;
+use MediaWiki\Api\ApiWatchlistTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
@@ -12,7 +12,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group API
- * @covers \ApiWatchlistTrait
+ * @covers \MediaWiki\Api\ApiWatchlistTrait
  */
 class ApiWatchlistTraitTest extends MediaWikiUnitTestCase {
 

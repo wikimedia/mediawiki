@@ -20,6 +20,9 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use ImportReporter;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\ForeignTitle;
@@ -64,3 +67,6 @@ class ApiImportReporter extends ImportReporter {
 		return $this->mResultArr;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiImportReporter::class, 'ApiImportReporter' );

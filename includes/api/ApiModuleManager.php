@@ -21,8 +21,12 @@
  * @since 1.21
  */
 
+namespace MediaWiki\Api;
+
+use InvalidArgumentException;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\MediaWikiServices;
+use UnexpectedValueException;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
@@ -261,3 +265,6 @@ class ApiModuleManager extends ContextSource {
 		return array_keys( $this->mGroups );
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiModuleManager::class, 'ApiModuleManager' );

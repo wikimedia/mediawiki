@@ -24,6 +24,10 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use ArchivedFile;
+use File;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentFormatter\CommentItem;
 use MediaWiki\CommentStore\CommentStore;
@@ -128,7 +132,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				if ( !$this->validateSha1Hash( $sha1 ) ) {
 					$this->dieWithError( 'apierror-invalidsha1hash' );
 				}
-				$sha1 = Wikimedia\base_convert( $sha1, 16, 36, 31 );
+				$sha1 = \Wikimedia\base_convert( $sha1, 16, 36, 31 );
 			} elseif ( $sha1base36Set ) {
 				$sha1 = strtolower( $params['sha1base36'] );
 				if ( !$this->validateSha1Base36Hash( $sha1 ) ) {
@@ -219,7 +223,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				$file['filemissing'] = true;
 			}
 			if ( $fld_sha1 && $canViewFile && $exists ) {
-				$file['sha1'] = Wikimedia\base_convert( $row->fa_sha1, 36, 16, 40 );
+				$file['sha1'] = \Wikimedia\base_convert( $row->fa_sha1, 36, 16, 40 );
 			}
 			if ( $fld_timestamp ) {
 				$file['timestamp'] = wfTimestamp( TS_ISO_8601, $row->fa_timestamp );
@@ -337,3 +341,6 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Filearchive';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryFilearchive::class, 'ApiQueryFilearchive' );

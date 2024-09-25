@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Api;
 
-use ApiUsageException;
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -12,7 +12,7 @@ use MediaWiki\User\User;
  * @group Database
  * @group medium
  *
- * @covers \ApiUnblock
+ * @covers MediaWiki\Api\ApiUnblock
  */
 class ApiUnblockTest extends ApiTestCase {
 	/** @var User */

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
-use ApiUsageException;
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\MainConfigNames;

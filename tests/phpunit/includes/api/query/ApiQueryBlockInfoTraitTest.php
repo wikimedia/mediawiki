@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Api\Query;
 
-use ApiQueryBase;
-use ApiQueryBlockInfoTrait;
+use MediaWiki\Api\ApiQueryBase;
+use MediaWiki\Api\ApiQueryBlockInfoTrait;
 use MediaWiki\Tests\MockDatabase;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWikiIntegrationTestCase;
@@ -11,7 +11,7 @@ use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
- * @covers \ApiQueryBlockInfoTrait
+ * @covers \MediaWiki\Api\ApiQueryBlockInfoTrait
  */
 class ApiQueryBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;

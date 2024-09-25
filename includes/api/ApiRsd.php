@@ -23,6 +23,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
@@ -157,3 +159,6 @@ class ApiRsd extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Rsd';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiRsd::class, 'ApiRsd' );

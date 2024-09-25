@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Tests\Api\Validator;
 
-use ApiBase;
-use ApiMain;
-use ApiMessage;
-use ApiUsageException;
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiMessage;
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Api\Validator\ApiParamValidator;
 use MediaWiki\Message\Message;
 use MediaWiki\Request\FauxRequest;

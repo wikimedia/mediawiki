@@ -13,7 +13,7 @@ use MediaWiki\Title\Title;
  * @group Database
  * @group medium
  *
- * @covers \ApiUndelete
+ * @covers MediaWiki\Api\ApiUndelete
  */
 class ApiUndeleteTest extends ApiTestCase {
 
@@ -24,7 +24,7 @@ class ApiUndeleteTest extends ApiTestCase {
 	}
 
 	/**
-	 * @covers \ApiUndelete::execute()
+	 * @covers MediaWiki\Api\ApiUndelete::execute()
 	 */
 	public function testUndeleteWithWatch(): void {
 		$title = Title::makeTitle( NS_MAIN, 'TestUndeleteWithWatch' );

@@ -21,11 +21,17 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use ILocalizedException;
+use MediaWiki\Language\Language;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\Sanitizer;
+use StatusValue;
+use Throwable;
 use Wikimedia\Message\MessageSpecifier;
 
 /**
@@ -411,3 +417,6 @@ class ApiErrorFormatter {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiErrorFormatter::class, 'ApiErrorFormatter' );

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Api\Hook;
 
-use ApiQueryBase;
+use MediaWiki\Api\ApiQueryBase;
 use stdClass;
 
 /**

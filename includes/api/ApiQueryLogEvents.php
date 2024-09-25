@@ -20,6 +20,13 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use ChangeTags;
+use DatabaseLogEntry;
+use LogEventsList;
+use LogFormatterFactory;
+use LogPage;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
@@ -550,3 +557,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Logevents';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryLogEvents::class, 'ApiQueryLogEvents' );

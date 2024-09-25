@@ -13,7 +13,7 @@ use MediaWiki\User\UserRigorOptions;
  * @group API
  * @group Database
  * @group medium
- * @covers \ApiQueryUserContribs
+ * @covers MediaWiki\Api\ApiQueryUserContribs
  */
 class ApiQueryUserContribsTest extends ApiTestCase {
 

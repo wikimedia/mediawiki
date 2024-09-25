@@ -3,10 +3,10 @@
 namespace MediaWiki\Tests\Api;
 
 use AllowDynamicProperties;
-use ApiErrorFormatter;
-use ApiResult;
 use Exception;
 use InvalidArgumentException;
+use MediaWiki\Api\ApiErrorFormatter;
+use MediaWiki\Api\ApiResult;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use RuntimeException;
@@ -14,13 +14,13 @@ use Stringable;
 use UnexpectedValueException;
 
 /**
- * @covers \ApiResult
+ * @covers \MediaWiki\Api\ApiResult
  * @group API
  */
 class ApiResultTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * @covers \ApiResult
+	 * @covers \MediaWiki\Api\ApiResult
 	 */
 	public function testStaticDataMethods() {
 		$arr = [];
@@ -245,7 +245,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \ApiResult
+	 * @covers \MediaWiki\Api\ApiResult
 	 */
 	public function testInstanceDataMethods() {
 		$result = new ApiResult( 8_388_608 );
@@ -548,7 +548,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \ApiResult
+	 * @covers \MediaWiki\Api\ApiResult
 	 */
 	public function testMetadata() {
 		$arr = [ 'foo' => [ 'bar' => [] ] ];
@@ -613,7 +613,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \ApiResult
+	 * @covers \MediaWiki\Api\ApiResult
 	 */
 	public function testUtilityFunctions() {
 		$arr = [
@@ -702,7 +702,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \ApiResult
+	 * @covers \MediaWiki\Api\ApiResult
 	 * @dataProvider provideTransformations
 	 * @param string $label
 	 * @param array $input
@@ -1293,7 +1293,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \ApiResult
+	 * @covers \MediaWiki\Api\ApiResult
 	 */
 	public function testAddMetadataToResultVars() {
 		$arr = [

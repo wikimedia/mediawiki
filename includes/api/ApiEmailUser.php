@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Mail\EmailUserFactory;
 use MediaWiki\Status\Status;
@@ -132,3 +134,6 @@ class ApiEmailUser extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Email';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiEmailUser::class, 'ApiEmailUser' );

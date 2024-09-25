@@ -20,10 +20,14 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Title\Title;
+use ParserFactory;
+use ParserOptions;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -258,3 +262,6 @@ class ApiExpandTemplates extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Expandtemplates';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiExpandTemplates::class, 'ApiExpandTemplates' );

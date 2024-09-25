@@ -22,7 +22,11 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use ChangeTags;
 use MediaWiki\Revision\RevisionStore;
+use RecentChange;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -131,3 +135,6 @@ class ApiPatrol extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Patrol';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiPatrol::class, 'ApiPatrol' );

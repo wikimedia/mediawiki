@@ -10,7 +10,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @group API
  * @group Database
  * @group medium
- * @covers \ApiWatch
+ * @covers MediaWiki\Api\ApiWatch
  */
 class ApiWatchTest extends ApiTestCase {
 	protected function setUp(): void {

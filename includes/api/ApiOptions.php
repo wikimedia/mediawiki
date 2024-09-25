@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\User\Options\UserOptionsManager;
@@ -122,3 +124,6 @@ class ApiOptions extends ApiOptionsBase {
 		];
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiOptions::class, 'ApiOptions' );

@@ -21,7 +21,11 @@
  * @since 1.22
  */
 
+namespace MediaWiki\Api;
+
+use FileRepo;
 use MediaWiki\MainConfigNames;
+use RepoGroup;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -128,3 +132,6 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Filerepoinfo';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryFileRepoInfo::class, 'ApiQueryFileRepoInfo' );

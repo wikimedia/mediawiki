@@ -20,6 +20,10 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use File;
+use RepoGroup;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -205,3 +209,6 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Duplicatefiles';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryDuplicateFiles::class, 'ApiQueryDuplicateFiles' );

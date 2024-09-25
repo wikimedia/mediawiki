@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Api\Validator\SubmoduleDef;
 use MediaWiki\Cache\GenderCache;
 use MediaWiki\Cache\LinkBatch;
@@ -28,6 +30,7 @@ use MediaWiki\Cache\LinkCache;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Language\Language;
+use MediaWiki\Language\LanguageConverter;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -41,6 +44,7 @@ use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
+use stdClass;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -1712,3 +1716,6 @@ class ApiPageSet extends ApiBase {
 		return self::$generators;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiPageSet::class, 'ApiPageSet' );

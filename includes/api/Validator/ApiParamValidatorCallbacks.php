@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Api\Validator;
 
-use ApiMain;
+use MediaWiki\Api\ApiMain;
 use MediaWiki\Message\Converter as MessageConverter;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\Callbacks;

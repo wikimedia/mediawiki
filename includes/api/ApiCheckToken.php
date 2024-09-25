@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Session\Token;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -92,3 +94,6 @@ class ApiCheckToken extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Checktoken';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiCheckToken::class, 'ApiCheckToken' );

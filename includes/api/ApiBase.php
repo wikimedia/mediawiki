@@ -20,7 +20,10 @@
  * @file
  */
 
-use MediaWiki\Api\ApiHookRunner;
+namespace MediaWiki\Api;
+
+use InvalidArgumentException;
+use LogicException;
 use MediaWiki\Api\Validator\SubmoduleDef;
 use MediaWiki\Block\Block;
 use MediaWiki\Context\ContextSource;
@@ -41,6 +44,11 @@ use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
+use MWException;
+use ReflectionClass;
+use StatusValue;
+use stdClass;
+use Throwable;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
@@ -48,6 +56,7 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\ParamValidator\TypeDef\StringDef;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Timestamp\TimestampException;
+use WikiPage;
 
 /**
  * This abstract class implements many basic API functions, and is the base of
@@ -2247,3 +2256,6 @@ abstract class ApiBase extends ContextSource {
  *
  * vim: foldmarker=//\ region,//\ endregion foldmethod=marker
  */
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiBase::class, 'ApiBase' );

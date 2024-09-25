@@ -18,6 +18,9 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use Exception;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionLookup;
@@ -285,3 +288,6 @@ class ApiStashEdit extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Stashedit';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiStashEdit::class, 'ApiStashEdit' );

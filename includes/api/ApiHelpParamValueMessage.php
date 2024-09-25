@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Message\Message;
 
 /**
@@ -136,3 +138,6 @@ class ApiHelpParamValueMessage extends Message {
 	}
 
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiHelpParamValueMessage::class, 'ApiHelpParamValueMessage' );

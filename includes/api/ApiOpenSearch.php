@@ -22,18 +22,24 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use InvalidArgumentException;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\Utils\UrlUtils;
+use SearchEngine;
+use SearchEngineConfig;
+use SearchEngineFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * @ingroup API
  */
 class ApiOpenSearch extends ApiBase {
-	use SearchApi;
+	use \MediaWiki\Api\SearchApi;
 
 	/** @var string|null */
 	private $format = null;
@@ -405,3 +411,6 @@ class ApiOpenSearch extends ApiBase {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiOpenSearch::class, 'ApiOpenSearch' );

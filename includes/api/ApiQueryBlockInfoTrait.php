@@ -18,10 +18,13 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
+use stdClass;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -143,3 +146,6 @@ trait ApiQueryBlockInfoTrait {
 	// endregion -- end of methods required from ApiQueryBase
 
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryBlockInfoTrait::class, 'ApiQueryBlockInfoTrait' );

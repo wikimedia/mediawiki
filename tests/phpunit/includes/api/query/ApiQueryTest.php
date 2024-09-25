@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Tests\Api\Query;
 
-use ApiMain;
-use ApiModuleManager;
-use ApiQuery;
-use ApiUsageException;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiModuleManager;
+use MediaWiki\Api\ApiQuery;
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Api\ApiTestCase;
@@ -18,7 +18,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group API
  * @group Database
  * @group medium
- * @covers \ApiQuery
+ * @covers \MediaWiki\Api\ApiQuery
  */
 class ApiQueryTest extends ApiTestCase {
 	use DummyServicesTrait;

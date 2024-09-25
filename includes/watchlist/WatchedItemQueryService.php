@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Watchlist;
 
-use ApiUsageException;
 use ChangeTags;
 use LogPage;
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;

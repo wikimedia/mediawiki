@@ -20,10 +20,13 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
+use stdClass;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -629,3 +632,6 @@ abstract class ApiQueryBase extends ApiBase {
 
 	// endregion -- end of utility methods
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryBase::class, 'ApiQueryBase' );

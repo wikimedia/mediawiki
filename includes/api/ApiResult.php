@@ -18,8 +18,15 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use Exception;
+use InvalidArgumentException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
+use RuntimeException;
+use stdClass;
+use UnexpectedValueException;
 
 /**
  * This class represents the result of the API operations.
@@ -1245,3 +1252,6 @@ class ApiResult implements ApiSerializable {
  *
  * vim: foldmarker=//\ region,//\ endregion foldmethod=marker
  */
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiResult::class, 'ApiResult' );

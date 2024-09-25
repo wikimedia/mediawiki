@@ -21,6 +21,11 @@
  * @defgroup API API
  */
 
+namespace MediaWiki\Api;
+
+use ILocalizedException;
+use LogicException;
+use MediaWiki;
 use MediaWiki\Api\Validator\ApiParamValidator;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
@@ -42,6 +47,11 @@ use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\User\UserRigorOptions;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\WikiMap\WikiMap;
+use MWExceptionHandler;
+use MWExceptionRenderer;
+use Profiler;
+use Throwable;
+use UnexpectedValueException;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -2467,3 +2477,6 @@ class ApiMain extends ApiBase {
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  */
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiMain::class, 'ApiMain' );

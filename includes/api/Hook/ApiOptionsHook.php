@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Api\Hook;
 
-use ApiOptions;
+use MediaWiki\Api\ApiOptions;
 use MediaWiki\User\User;
 
 /**

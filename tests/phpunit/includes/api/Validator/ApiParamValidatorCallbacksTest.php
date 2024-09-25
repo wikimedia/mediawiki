@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Tests\Api\Validator;
 
-use ApiBase;
-use ApiMain;
-use ApiMessage;
-use ApiQueryBase;
 use Generator;
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiMessage;
+use MediaWiki\Api\ApiQueryBase;
 use MediaWiki\Api\Validator\ApiParamValidatorCallbacks;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Api\ApiUploadTestCase;

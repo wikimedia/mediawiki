@@ -14,7 +14,7 @@ use TestUserRegistry;
  * @group Database
  * @group medium
  *
- * @covers \ApiUserrights
+ * @covers MediaWiki\Api\ApiUserrights
  */
 class ApiUserrightsTest extends ApiTestCase {
 

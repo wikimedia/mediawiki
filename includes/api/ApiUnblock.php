@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
 use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
 use MediaWiki\Block\UnblockUserFactory;
@@ -217,3 +219,6 @@ class ApiUnblock extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Block';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiUnblock::class, 'ApiUnblock' );

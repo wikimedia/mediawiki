@@ -20,14 +20,19 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use DumpStringOutput;
 use MediaWiki\Export\WikiExporterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\Title\TitleFormatter;
+use WikiExporter;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\ParamValidator\ParamValidator;
+use XmlDumpWriter;
 
 /**
  * This is the main query class. It behaves similar to ApiMain: based on the
@@ -1039,3 +1044,6 @@ class ApiQuery extends ApiBase {
 		];
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQuery::class, 'ApiQuery' );

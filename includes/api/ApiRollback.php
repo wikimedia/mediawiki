@@ -20,6 +20,9 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use ChangeTags;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\RollbackPageFactory;
@@ -28,6 +31,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\Watchlist\WatchlistManager;
+use Profiler;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -235,3 +239,6 @@ class ApiRollback extends ApiBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Rollback';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiRollback::class, 'ApiRollback' );

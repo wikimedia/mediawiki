@@ -4,8 +4,8 @@ declare( strict_types=1 );
 
 namespace MediaWiki\Tests;
 
-use ApiMain;
-use ApiQuery;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiQuery;
 use MediaWiki\Auth\PreAuthenticationProvider;
 use MediaWiki\Auth\PrimaryAuthenticationProvider;
 use MediaWiki\Auth\SecondaryAuthenticationProvider;

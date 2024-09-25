@@ -20,7 +20,7 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use ApiOpenSearch;
+use MediaWiki\Api\ApiOpenSearch;
 use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;

@@ -20,6 +20,9 @@
  * @file
  */
 
+namespace MediaWiki\Api;
+
+use Collation;
 use MediaWiki\Collation\CollationFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
@@ -414,3 +417,6 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Categorymembers';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ApiQueryCategoryMembers::class, 'ApiQueryCategoryMembers' );
