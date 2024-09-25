@@ -4409,7 +4409,7 @@
 	"specialmute-error-no-email-set": "Mute features are unavailable, because you haven't confirmed your email address.",
 	"specialmute-error-no-options": "Mute features are unavailable.",
 	"specialmute-email-footer": "To manage email preferences for user {{BIDI:$2}}, please visit the following URL:\n$1",
-	"specialmute-login-required": "Please log in change your mute preferences.",
+	"specialmute-login-required": "Please log in to change your mute preferences.",
 	"specialmute-login-required-for-temp-user": "Please create an account to use mute features.",
 	"mute-preferences": "Mute preferences",
 	"revid": "revision $1",
