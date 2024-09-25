@@ -20,7 +20,6 @@ namespace MediaWiki\Skin;
 
 use MediaWiki\Config\Config;
 use MediaWiki\Context\IContextSource;
-use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Language\Language;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Title\Title;
@@ -34,7 +33,6 @@ use WikiPage;
  * @unstable
  */
 class SkinComponentRegistryContext implements ComponentRegistryContext {
-	use ProtectedHookAccessorTrait;
 
 	/** @var Skin */
 	private $skin;
@@ -117,28 +115,6 @@ class SkinComponentRegistryContext implements ComponentRegistryContext {
 	 */
 	public function getWikiPage() {
 		return $this->skin->getWikiPage();
-	}
-
-	/**
-	 * Run a hook
-	 *
-	 * @param string $methodName
-	 * @param array $args
-	 */
-	public function runHook( string $methodName, array $args ) {
-		$hookRunner = $this->getHookRunner();
-		$hook = [ $hookRunner, $methodName ];
-		switch ( $methodName ) {
-			case 'onSkinAddFooterLinks':
-				call_user_func_array(
-					$hook,
-					array_merge( [ $this->skin ], $args )
-				);
-				break;
-			default:
-				call_user_func_array( $hook, $args );
-				break;
-		}
 	}
 
 	/**
