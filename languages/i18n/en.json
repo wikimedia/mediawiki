@@ -2692,7 +2692,7 @@
 	"block-reason-other": "Additional or other reason",
 	"block-user-label": "Which user do you want to block?",
 	"block-user-active-blocks": "Active blocks",
-	"block-user-previous-blocks": "Account's block log",
+	"block-user-previous-blocks": "Block log",
 	"block-user-no-previous-blocks": "No previous blocks found",
 	"block-user-no-reason-given": "No block reason given",
 	"block-user-description": "A user can be a username, IP address, or an IP range.",
