@@ -26,6 +26,8 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\LoginSignupSpecialPage;
 use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityUtils;
 use StatusValue;
 
 /**
@@ -48,12 +50,15 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 		'authform-wrongtoken' => 'sessionfailure',
 	];
 
+	private UserIdentityUtils $identityUtils;
+
 	/**
 	 * @param AuthManager $authManager
 	 */
-	public function __construct( AuthManager $authManager ) {
+	public function __construct( AuthManager $authManager, UserIdentityUtils $identityUtils ) {
 		parent::__construct( 'Userlogin' );
 		$this->setAuthManager( $authManager );
+		$this->identityUtils = $identityUtils;
 	}
 
 	public function doesWrites() {
@@ -168,10 +173,11 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 		return 'login';
 	}
 
-	protected function logAuthResult( $success, $status = null ) {
+	protected function logAuthResult( $success, UserIdentity $performer, $status = null ) {
 		LoggerFactory::getInstance( 'authevents' )->info( 'Login attempt', [
 			'event' => 'login',
 			'successful' => $success,
+			'accountType' => $this->identityUtils->getShortUserTypeInternal( $performer ),
 			'status' => strval( $status ),
 		] );
 	}

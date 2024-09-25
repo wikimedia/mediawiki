@@ -2319,6 +2319,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 */
 	public function doLogout() {
 		$session = $this->getRequest()->getSession();
+		$accountType = MediaWikiServices::getInstance()->getUserIdentityUtils()->getShortUserTypeInternal( $this );
 		if ( !$session->canSetUser() ) {
 			LoggerFactory::getInstance( 'session' )
 				->warning( __METHOD__ . ": Cannot log out of an immutable session" );
@@ -2346,6 +2347,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 			'event' => 'logout',
 			'successful' => $error === false,
 			'status' => $error ?: 'success',
+			'accountType' => $accountType,
 		] );
 	}
 

@@ -74,4 +74,28 @@ class UserIdentityUtilsTest extends MediaWikiUnitTestCase {
 		);
 		$this->assertSame( $expected, $userIdentityUtils->isNamed( $userIdentity ) );
 	}
+
+	public function testGetShortUserTypeInternal() {
+		$tempUserConfig = $this->createMock( TempUserConfig::class );
+		$tempUserConfig
+			->method( 'isTempName' )
+			->willReturn( $this->onConsecutiveCalls( true, false ) );
+
+		$userIdentityUtils = new UserIdentityUtils( $tempUserConfig );
+		$anon = new UserIdentityValue(
+			0,
+			'127.0.0.1',
+		);
+		$temp = new UserIdentityValue(
+			1,
+			'Temp user'
+		);
+		$named = new UserIdentityValue(
+			2,
+			'Regular user'
+		);
+		$this->assertSame( 'anon', $userIdentityUtils->getShortUserTypeInternal( $anon ) );
+		$this->assertSame( 'temp', $userIdentityUtils->getShortUserTypeInternal( $temp ) );
+		$this->assertSame( 'named', $userIdentityUtils->getShortUserTypeInternal( $named ) );
+	}
 }
