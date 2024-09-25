@@ -124,4 +124,5 @@ abstract class AuthenticationRequestTestCase extends MediaWikiIntegrationTestCas
 	}
 }
 
+/** @deprecated class alias since 1.42 */
 class_alias( AuthenticationRequestTestCase::class, 'MediaWiki\\Auth\\AuthenticationRequestTestCase' );

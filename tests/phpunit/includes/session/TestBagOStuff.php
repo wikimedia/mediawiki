@@ -84,4 +84,5 @@ class TestBagOStuff extends CachedBagOStuff {
 
 }
 
+/** @deprecated class alias since 1.42 */
 class_alias( TestBagOStuff::class, 'MediaWiki\\Session\\TestBagOStuff' );

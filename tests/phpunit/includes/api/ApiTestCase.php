@@ -356,4 +356,5 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	}
 }
 
+/** @deprecated class alias since 1.42 */
 class_alias( ApiTestCase::class, 'ApiTestCase' );

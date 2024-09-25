@@ -117,4 +117,5 @@ class TestSites {
 	}
 }
 
+/** @deprecated class alias since 1.42 */
 class_alias( TestSites::class, 'TestSites' );

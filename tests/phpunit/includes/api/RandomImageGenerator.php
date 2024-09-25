@@ -421,4 +421,5 @@ class RandomImageGenerator {
 	}
 }
 
+/** @deprecated class alias since 1.42 */
 class_alias( RandomImageGenerator::class, 'RandomImageGenerator' );
