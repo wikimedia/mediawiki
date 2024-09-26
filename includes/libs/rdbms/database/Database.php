@@ -2386,7 +2386,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		if ( !$this->trxLevel() ) {
 			$this->transactionManager->setTrxStatusToNone();
 			$this->transactionManager->clearPreEndCallbacks();
-			if ( $this->transactionManager->trxLevel() <= TransactionManager::STATUS_TRX_ERROR ) {
+			if ( $this->transactionManager->trxLevel() === TransactionManager::STATUS_TRX_ERROR ) {
 				$this->logger->info(
 					"$fname: acknowledged server-side transaction loss on {db_server}",
 					$this->getLogContext()
@@ -2475,7 +2475,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 			);
 		}
 
-		if ( $this->transactionManager->sessionStatus() <= TransactionManager::STATUS_SESS_ERROR ) {
+		if ( $this->transactionManager->sessionStatus() === TransactionManager::STATUS_SESS_ERROR ) {
 			// If the session state was already lost due to either an unacknowledged session
 			// state loss error (e.g. dropped connection) or an explicit connection close call,
 			// then there is nothing to do here. Note that in such cases, even temporary tables
@@ -2947,8 +2947,8 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 			// spam and confusing replacement of an original DBError with one about unlock().
 			// Unlock query will fail anyway; avoid possibly triggering errors in rollback()
 			if (
-				$this->transactionManager->sessionStatus() <= TransactionManager::STATUS_SESS_ERROR ||
-				$this->transactionManager->trxStatus() <= TransactionManager::STATUS_TRX_ERROR
+				$this->transactionManager->sessionStatus() === TransactionManager::STATUS_SESS_ERROR ||
+				$this->transactionManager->trxStatus() === TransactionManager::STATUS_TRX_ERROR
 			) {
 				return;
 			}

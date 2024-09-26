@@ -177,7 +177,7 @@ class TransactionManager {
 	}
 
 	public function assertTransactionStatus( IDatabase $db, $deprecationLogger, $fname ) {
-		if ( $this->trxStatus < self::STATUS_TRX_OK ) {
+		if ( $this->trxStatus === self::STATUS_TRX_ERROR ) {
 			throw new DBTransactionStateError(
 				$db,
 				"Cannot execute query from $fname while transaction status is ERROR",
@@ -211,7 +211,7 @@ class TransactionManager {
 	 * @param Throwable $trxError
 	 */
 	public function setTransactionError( Throwable $trxError ) {
-		if ( $this->trxStatus > self::STATUS_TRX_ERROR ) {
+		if ( $this->trxStatus !== self::STATUS_TRX_ERROR ) {
 			$this->trxStatus = self::STATUS_TRX_ERROR;
 			$this->trxStatusCause = $trxError;
 		}
