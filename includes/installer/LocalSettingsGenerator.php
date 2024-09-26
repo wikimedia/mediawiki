@@ -250,7 +250,7 @@ class LocalSettingsGenerator {
 
 		$metaNamespace = '';
 		if ( $this->values['wgMetaNamespace'] !== $this->values['wgSitename'] ) {
-			$metaNamespace = "\$wgMetaNamespace = '{$this->values['wgMetaNamespace']}';\n";
+			$metaNamespace = "\$wgMetaNamespace = \"{$this->values['wgMetaNamespace']}\";\n";
 		}
 
 		$groupRights = '';
@@ -261,7 +261,7 @@ class LocalSettingsGenerator {
 				$group = self::escapePhpString( $group );
 				foreach ( $rightArr as $right => $perm ) {
 					$right = self::escapePhpString( $right );
-					$groupRights .= "\$wgGroupPermissions['$group']['$right'] = " .
+					$groupRights .= "\$wgGroupPermissions[\"$group\"][\"$right\"] = " .
 						wfBoolToStr( $perm ) . ";\n";
 				}
 			}
@@ -286,7 +286,7 @@ class LocalSettingsGenerator {
 		$serverSetting = "";
 		if ( array_key_exists( 'wgServer', $this->values ) && $this->values['wgServer'] !== null ) {
 			$serverSetting = "\n## The protocol and server name to use in fully-qualified URLs\n";
-			$serverSetting .= "\$wgServer = '{$this->values['wgServer']}';";
+			$serverSetting .= "\$wgServer = \"{$this->values['wgServer']}\";";
 		}
 
 		switch ( $this->values['_MainCacheType'] ) {
@@ -353,14 +353,14 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 ## Uncomment this to disable output compression
 # \$wgDisableOutputCompression = true;
 
-\$wgSitename = '{$this->values['wgSitename']}';
+\$wgSitename = \"{$this->values['wgSitename']}\";
 {$metaNamespace}
 ## The URL base path to the directory containing the wiki;
 ## defaults for all runtime URL paths are based off of this.
 ## For more information on customizing the URLs
 ## (like /w/index.php/Page_title to /wiki/Page_title) please see:
 ## https://www.mediawiki.org/wiki/Manual:Short_URL
-\$wgScriptPath = '{$this->values['wgScriptPath']}';
+\$wgScriptPath = \"{$this->values['wgScriptPath']}\";
 {$serverSetting}
 
 ## The URL path to static resources (images, scripts, etc.)
@@ -378,19 +378,19 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 \$wgEnableEmail = {$this->values['wgEnableEmail']};
 \$wgEnableUserEmail = {$this->values['wgEnableUserEmail']}; # UPO
 
-\$wgEmergencyContact = '{$this->values['wgEmergencyContact']}';
-\$wgPasswordSender = '{$this->values['wgPasswordSender']}';
+\$wgEmergencyContact = \"{$this->values['wgEmergencyContact']}\";
+\$wgPasswordSender = \"{$this->values['wgPasswordSender']}\";
 
 \$wgEnotifUserTalk = {$this->values['wgEnotifUserTalk']}; # UPO
 \$wgEnotifWatchlist = {$this->values['wgEnotifWatchlist']}; # UPO
 \$wgEmailAuthentication = {$this->values['wgEmailAuthentication']};
 
 ## Database settings
-\$wgDBtype = '{$this->values['wgDBtype']}';
-\$wgDBserver = '{$this->values['wgDBserver']}';
-\$wgDBname = '{$this->values['wgDBname']}';
-\$wgDBuser = '{$this->values['wgDBuser']}';
-\$wgDBpassword = '{$this->values['wgDBpassword']}';
+\$wgDBtype = \"{$this->values['wgDBtype']}\";
+\$wgDBserver = \"{$this->values['wgDBserver']}\";
+\$wgDBname = \"{$this->values['wgDBname']}\";
+\$wgDBuser = \"{$this->values['wgDBuser']}\";
+\$wgDBpassword = \"{$this->values['wgDBpassword']}\";
 
 {$this->dbSettings}
 
@@ -406,7 +406,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 ## is writable, then set this to true:
 \$wgEnableUploads = {$this->values['wgEnableUploads']};
 {$magic}\$wgUseImageMagick = true;
-{$magic}\$wgImageMagickConvertCommand = '{$this->values['wgImageMagickConvertCommand']}';
+{$magic}\$wgImageMagickConvertCommand = \"{$this->values['wgImageMagickConvertCommand']}\";
 
 # InstantCommons allows wiki to use images from https://commons.wikimedia.org
 \$wgUseInstantCommons = {$this->values['wgUseInstantCommons']};
@@ -417,39 +417,39 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 \$wgPingback = {$this->values['wgPingback']};
 
 # Site language code, should be one of the list in ./includes/languages/data/Names.php
-\$wgLanguageCode = '{$this->values['wgLanguageCode']}';
+\$wgLanguageCode = \"{$this->values['wgLanguageCode']}\";
 
 # Time zone
-\$wgLocaltimezone = '{$this->values['wgLocaltimezone']}';
+\$wgLocaltimezone = \"{$this->values['wgLocaltimezone']}\";
 
 ## Set \$wgCacheDirectory to a writable directory on the web server
 ## to make your wiki go slightly faster. The directory should not
 ## be publicly accessible from the web.
 #\$wgCacheDirectory = \"\$IP/cache\";
 
-\$wgSecretKey = '{$this->values['wgSecretKey']}';
+\$wgSecretKey = \"{$this->values['wgSecretKey']}\";
 
 # Changing this will log out all existing sessions.
-\$wgAuthenticationTokenVersion = '{$this->values['wgAuthenticationTokenVersion']}';
+\$wgAuthenticationTokenVersion = \"{$this->values['wgAuthenticationTokenVersion']}\";
 
 # Site upgrade key. Must be set to a string (default provided) to turn on the
 # web installer while LocalSettings.php is in place
-\$wgUpgradeKey = '{$this->values['wgUpgradeKey']}';
+\$wgUpgradeKey = \"{$this->values['wgUpgradeKey']}\";
 
 ## For attaching licensing metadata to pages, and displaying an
 ## appropriate copyright notice / icon. GNU Free Documentation
 ## License and Creative Commons licenses are supported so far.
 \$wgRightsPage = \"\"; # Set to the title of a wiki page that describes your license/copyright
-\$wgRightsUrl = '{$this->values['wgRightsUrl']}';
-\$wgRightsText = '{$this->values['wgRightsText']}';
+\$wgRightsUrl = \"{$this->values['wgRightsUrl']}\";
+\$wgRightsText = \"{$this->values['wgRightsText']}\";
 \$wgRightsIcon = \"{$this->values['wgRightsIcon']}\";
 
 # Path to the GNU diff3 utility. Used for conflict resolution.
-\$wgDiff3 = '{$this->values['wgDiff3']}';
+\$wgDiff3 = \"{$this->values['wgDiff3']}\";
 
 {$groupRights}{$noFollow}## Default skin: you can change the default skin. Use the internal symbolic
 ## names, e.g. 'vector' or 'monobook':
-\$wgDefaultSkin = '{$this->values['wgDefaultSkin']}';
+\$wgDefaultSkin = \"{$this->values['wgDefaultSkin']}\";
 ";
 	}
 }
