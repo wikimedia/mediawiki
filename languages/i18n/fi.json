@@ -88,7 +88,8 @@
 			"ZeiP",
 			"לערי ריינהארט",
 			"아라",
-			"Kimberli Mäkäräinen (WMNO)"
+			"Kimberli Mäkäräinen (WMNO)",
+			"Minilammas"
 		]
 	},
 	"tog-underline": "Linkkien alleviivaus:",
@@ -313,7 +314,7 @@
 	"mainpage": "Etusivu",
 	"mainpage-description": "Etusivu",
 	"policy-url": "Project:Käytännöt",
-	"portal": "Osallistujaportaali",
+	"portal": "Kahvihuone",
 	"portal-url": "Project:Kahvihuone",
 	"privacy": "Tietosuojakäytäntö",
 	"privacypage": "Project:Tietosuojakäytäntö",
@@ -835,7 +836,7 @@
 	"recreate-moveddeleted-warn": "'''Varoitus: Olet luomassa sellaista sivua, joka on aikaisemmin poistettu.'''\n\nHarkitse, kannattaako tätä sivua luoda uudelleen. \nAlla on tämän sivun poisto- ja siirtohistoria:",
 	"moveddeleted-notice": "Tätä sivua ei ole olemassa. \nAlla on sivun poisto-, suojaus- ja siirtohistoria.",
 	"moveddeleted-notice-recent": "Tämä sivu on poistettu äskettäin (viimeisen 24 tunnin aikana).\nAlla on sivun poisto-, suojaus- ja siirtohistoria.",
-	"log-fulllog": "Näytä loki kokonaan",
+	"log-fulllog": "Näytä koko loki",
 	"edit-hook-aborted": "Laajennuskoodi esti muokkauksen antamatta syytä.",
 	"edit-gone-missing": "Sivun päivitys ei onnistunut.\nSe on ilmeisesti poistettu.",
 	"edit-conflict": "Päällekkäinen muokkaus.",

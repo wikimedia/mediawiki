@@ -261,7 +261,7 @@
 	"hidden-category-category": "隱藏分類",
 	"category-subcat-count": "{{PLURAL:$2|此分類僅包含以下 1 個子分類。|此分類包含以下 $1 個子分類，共 $2 個。}}",
 	"category-subcat-count-limited": "此分類包含以下 $1 個子分類。",
-	"category-article-count": "{{PLURAL:$2|此分類僅包含以下頁面。|此分類共有 $2 個頁面，以下顯示其中 {{PLURAL:$1|$1 個頁面}}。}}",
+	"category-article-count": "{{PLURAL:$2|此分類僅包含以下頁面。|此分類共有 $2 個頁面，以下顯示其中 {{PLURAL:$1|$1 個}}。}}",
 	"category-article-count-limited": "此分類包含以下 $1 個頁面。",
 	"category-file-count": "{{PLURAL:$2|此分類僅包含以下 1 個檔案。|此分類包含以下 $1 個檔案，共 $2 個。}}",
 	"category-file-count-limited": "此分類包含 $1 個檔案。",

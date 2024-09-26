@@ -231,7 +231,7 @@
 	"pool-errorunknown": "Tundmatoi viga",
 	"pool-servererror": "The pool counter - holituz ei rada ($1).",
 	"poolcounter-usage-error": "Kävutamižen viga: $1",
-	"aboutsite": "Polhe {{SAITAN NIMI}}",
+	"aboutsite": "Polhe {{SITENAME}}",
 	"aboutpage": "Project:Polhe",
 	"copyright": "südäiolend kävutadas $1-licenzijan mödhe, ku ei ole ozutadud toižin.",
 	"copyrightpage": "{{ns:project}}:Tegijan oiktused",

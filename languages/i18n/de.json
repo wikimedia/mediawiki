@@ -2895,7 +2895,7 @@
 	"blocklist-hidden-param": "Benutzername versteckt",
 	"contribslink": "Beiträge",
 	"emaillink": "E-Mail senden",
-	"autoblocker": "Automatisch gesperrt, weil deine IP-Adresse kürzlich von \"[[User:$1|$1]]\" verwendet wurde. Der angegebene Grund für die Sperrung von $1 ist „$2“",
+	"autoblocker": "Automatisch gesperrt, weil deine IP-Adresse kürzlich von „[[User:$1|$1]]“ verwendet wurde.\nDer angegebene Grund für die Sperrung von $1 ist „$2“",
 	"blocklogpage": "Benutzersperr-Logbuch",
 	"blocklog-showlog": "{{GENDER:$1|Dieser Benutzer|Diese Benutzerin}} wurde schon früher gesperrt. Es folgt der Eintrag aus dem Benutzersperr-Logbuch:",
 	"blocklog-showsuppresslog": "{{GENDER:$1|Dieser Benutzer|Diese Benutzerin}} wurde schon früher gesperrt und versteckt.\nEs folgt der Eintrag aus dem Unterdrückungs-Logbuch:",

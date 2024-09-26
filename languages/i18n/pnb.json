@@ -701,7 +701,7 @@
 	"revertmerge": "وکھریاں کرو",
 	"mergelogpagetext": "تھلے اک صفحے والے کٹھے کیتے گۓ صفحے دی لسٹ اے۔",
 	"history-title": "\"$1\": ریویژن دی تریخ",
-	"difference-title": "\"{{lang|ur|$1}}\" دیاں دہرائیاں وچ وکھراپا",
+	"difference-title": "$1 دیاں دہرائیاں وچ وکھراپا",
 	"difference-multipage": "(صفحیاں وچ فرق)",
 	"lineno": "لیک $1 –",
 	"compareselectedversions": "چنے صفحے اپنے سامنے کرو",
