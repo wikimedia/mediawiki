@@ -439,17 +439,6 @@ class ParserOutputAccess {
 			}
 		}
 
-		if ( $doSample ) {
-			$this->statsFactory
-				->getCounter( 'parsercache_selective_total' )
-				->setLabel( 'source', 'ParserOutputAccess' )
-				->setLabel( 'type', $previousOutput === null ? 'full' : 'selective' )
-				->setLabel( 'reason', $parserOptions->getRenderReason() )
-				->setLabel( 'parser', $parserOptions->getUseParsoid() ? 'parsoid' : 'legacy' )
-				->setLabel( 'opportunistic', 'false' )
-				->increment();
-		}
-
 		$renderedRev = $this->revisionRenderer->getRenderedRevision(
 			$revision,
 			$parserOptions,
@@ -461,6 +450,24 @@ class ParserOutputAccess {
 		);
 
 		$output = $renderedRev->getRevisionParserOutput();
+
+		if ( $doSample ) {
+			$labels = [
+				'source' => 'ParserOutputAccess',
+				'type' => $previousOutput === null ? 'full' : 'selective',
+				'reason' => $parserOptions->getRenderReason(),
+				'parser' => $parserOptions->getUseParsoid() ? 'parsoid' : 'legacy',
+				'opportunistic' => 'false',
+			];
+			$totalStat = $this->statsFactory->getCounter( 'parsercache_selective_total' );
+			$timeStat = $this->statsFactory->getCounter( 'parsercache_selective_cpu_seconds' );
+			foreach ( $labels as $key => $value ) {
+				$totalStat->setLabel( $key, $value );
+				$timeStat->setLabel( $key, $value );
+			}
+			$totalStat->increment();
+			$timeStat->incrementBy( $output->getTimeProfile( 'cpu' ) );
+		}
 
 		if ( !( $options & self::OPT_NO_UPDATE_CACHE ) && $output->isCacheable() ) {
 			if ( $useCache === self::CACHE_PRIMARY ) {

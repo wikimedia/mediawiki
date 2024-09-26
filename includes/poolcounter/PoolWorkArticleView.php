@@ -91,17 +91,6 @@ class PoolWorkArticleView extends PoolCounterWork {
 		bool $doSample = false,
 		string $sourceLabel = ''
 	): Status {
-		if ( $doSample ) {
-			MediaWikiServices::getInstance()->getStatsFactory()
-				->getCounter( 'parsercache_selective_total' )
-				->setLabel( 'source', $sourceLabel )
-				->setLabel( 'type', $previousOutput === null ? 'full' : 'selective' )
-				->setLabel( 'reason', $this->parserOptions->getRenderReason() )
-				->setLabel( 'parser', $this->parserOptions->getUseParsoid() ? 'parsoid' : 'legacy' )
-				->setLabel( 'opportunistic', 'false' )
-				->increment();
-		}
-
 		$renderedRevision = $this->renderer->getRenderedRevision(
 			$this->revision,
 			$this->parserOptions,
@@ -113,6 +102,25 @@ class PoolWorkArticleView extends PoolCounterWork {
 		);
 
 		$parserOutput = $renderedRevision->getRevisionParserOutput();
+
+		if ( $doSample ) {
+			$stats = MediaWikiServices::getInstance()->getStatsFactory();
+			$labels = [
+				'source' => $sourceLabel,
+				'type' => $previousOutput === null ? 'full' : 'selective',
+				'reason' => $this->parserOptions->getRenderReason(),
+				'parser' => $this->parserOptions->getUseParsoid() ? 'parsoid' : 'legacy',
+				'opportunistic' => 'false',
+			];
+			$totalStat = $stats->getCounter( 'parsercache_selective_total' );
+			$timeStat = $stats->getCounter( 'parsercache_selective_cpu_seconds' );
+			foreach ( $labels as $key => $value ) {
+				$totalStat->setLabel( $key, $value );
+				$timeStat->setLabel( $key, $value );
+			}
+			$totalStat->increment();
+			$timeStat->incrementBy( $parserOutput->getTimeProfile( 'cpu' ) );
+		}
 
 		return Status::newGood( $parserOutput );
 	}

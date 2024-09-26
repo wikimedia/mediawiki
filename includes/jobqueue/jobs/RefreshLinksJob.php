@@ -406,22 +406,12 @@ class RefreshLinksJob extends Job {
 		$sampleRate = MediaWikiServices::getInstance()->getMainConfig()->get(
 			MainConfigNames::ParsoidSelectiveUpdateSampleRate
 		);
-		if ( $sampleRate && mt_rand( 1, $sampleRate ) === 1 ) {
-			if ( $cachedOutput === null ) {
-				// In order to collect accurate statistics, check for
-				// a dirty copy in the cache even if we wouldn't have
-				// to otherwise.
-				$cachedOutput = $parserCache->getDirty( $page, $parserOptions );
-			}
-			$opportunistic = !empty( $this->params['isOpportunistic'] );
-			$stats
-				->getCounter( 'parsercache_selective_total' )
-				->setLabel( 'source', 'RefreshLinksJob' )
-				->setLabel( 'type', $cachedOutput === null ? 'full' : 'selective' )
-				->setLabel( 'reason', $causeAction )
-				->setLabel( 'parser', $parserOptions->getUseParsoid() ? 'parsoid' : 'legacy' )
-				->setLabel( 'opportunistic', $opportunistic ? 'true' : 'false' )
-				->increment();
+		$doSample = $sampleRate && mt_rand( 1, $sampleRate ) === 1;
+		if ( $doSample && $cachedOutput === null ) {
+			// In order to collect accurate statistics, check for
+			// a dirty copy in the cache even if we wouldn't have
+			// to otherwise.
+			$cachedOutput = $parserCache->getDirty( $page, $parserOptions );
 		}
 
 		$renderedRevision = $renderer->getRenderedRevision(
@@ -443,6 +433,25 @@ class RefreshLinksJob extends Job {
 			'generate-html' => $this->shouldGenerateHTMLOnEdit( $revision )
 		] );
 		$output->setCacheTime( $parseTimestamp ); // notify LinksUpdate::doUpdate()
+		// T371713: Temporary statistics collection code to determine
+		// feasibility of Parsoid selective update
+		if ( $doSample ) {
+			$labels = [
+				'source' => 'RefreshLinksJob',
+				'type' => $cachedOutput === null ? 'full' : 'selective',
+				'reason' => $causeAction,
+				'parser' => $parserOptions->getUseParsoid() ? 'parsoid' : 'legacy',
+				'opportunistic' => empty( $this->params['isOpportunistic'] ) ? 'false' : 'true',
+			];
+			$totalStat = $stats->getCounter( 'parsercache_selective_total' );
+			$timeStat = $stats->getCounter( 'parsercache_selective_cpu_seconds' );
+			foreach ( $labels as $key => $value ) {
+				$totalStat->setLabel( $key, $value );
+				$timeStat->setLabel( $key, $value );
+			}
+			$totalStat->increment();
+			$timeStat->incrementBy( $output->getTimeProfile( 'cpu' ) );
+		}
 
 		// Collect stats on parses that don't actually change the page content.
 		// In that case, we could abort here, and perhaps we could also avoid
