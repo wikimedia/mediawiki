@@ -896,4 +896,27 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		// The old connection should have been called by DBConnRef.
 		$this->assertFalse( $con->isOpen() );
 	}
+
+	public function testSetWaitForReplicationListener() {
+		$factory = $this->newLBFactoryMultiLBs();
+
+		$allLBs = iterator_to_array( $factory->getAllLBs() );
+		$this->assertCount( 0, $allLBs );
+
+		$runs = 0;
+		$callback = static function () use ( &$runs ) {
+			++$runs;
+		};
+		$factory->setWaitForReplicationListener( 'test', $callback );
+
+		$this->assertSame( 0, $runs );
+		$factory->waitForReplication();
+		$this->assertSame( 1, $runs );
+
+		$factory->getMainLB();
+		$allLBs = iterator_to_array( $factory->getAllLBs() );
+		$this->assertCount( 1, $allLBs );
+		$factory->waitForReplication();
+		$this->assertSame( 2, $runs );
+	}
 }

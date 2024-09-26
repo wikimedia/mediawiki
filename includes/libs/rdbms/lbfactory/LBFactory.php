@@ -456,9 +456,6 @@ abstract class LBFactory implements ILBFactory {
 		foreach ( $this->getLBsForOwner() as $lb ) {
 			$lbs[] = $lb;
 		}
-		if ( !$lbs ) {
-			return true; // nothing actually used
-		}
 
 		// Get all the primary DB positions of applicable DBs right now.
 		// This can be faster since waiting on one cluster reduces the

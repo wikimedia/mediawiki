@@ -376,7 +376,7 @@ interface ILBFactory extends IConnectionProvider {
 	public function waitForReplication( array $opts = [] );
 
 	/**
-	 * Add a callback to be run in every call to waitForReplication() before waiting
+	 * Add a callback to be run in every call to waitForReplication() prior to any waiting
 	 *
 	 * Callbacks must clear any transactions that they start.
 	 *
