@@ -63,7 +63,7 @@ class MysqlConnectForm extends DatabaseConnectForm {
 		}
 
 		// Try to connect
-		$status = $this->dbInstaller->getConnection();
+		$status = $this->dbInstaller->getConnection( DatabaseInstaller::CONN_CREATE_DATABASE );
 		if ( !$status->isOK() ) {
 			return $status;
 		}

@@ -851,7 +851,7 @@ abstract class Installer {
 	 * @return Status
 	 */
 	public function populateSiteStats( DatabaseInstaller $installer ) {
-		$status = $installer->getConnection();
+		$status = $installer->getConnection( DatabaseInstaller::CONN_CREATE_TABLES );
 		if ( !$status->isOK() ) {
 			return $status;
 		}

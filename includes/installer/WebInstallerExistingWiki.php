@@ -163,7 +163,7 @@ class WebInstallerExistingWiki extends WebInstallerPage {
 		$this->setVar( '_InstallPassword', $vars['wgDBadminpassword'] ?? $vars['wgDBpassword'] );
 
 		// Test the database connection
-		$status = $installer->getConnection();
+		$status = $installer->getConnection( DatabaseInstaller::CONN_CREATE_DATABASE );
 		if ( !$status->isOK() ) {
 			// Adjust the error message to explain things correctly
 			$status->replaceMessage( 'config-connection-error',
