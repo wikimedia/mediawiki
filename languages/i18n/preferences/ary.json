@@ -12,9 +12,15 @@
 		]
 	},
 	"preferences": "تفضيلات",
+	"prefsnologintext2": "عافاك تلوڭا باش تبدل التفضيلات ديالك.",
+	"prefsnologintext2-for-temp-user": "عافاك صاوب كونط باش تبدل التفضيلات ديالك.",
+	"searchprefs": "قلّب ف التفضيلات",
+	"searchprefs-noresults": "تا نتيجة",
+	"searchprefs-results": "$1 {{PLURAL:$1|نتيجة|نتايج}}",
 	"saveprefs": "سجًل",
 	"tooltip-preferences-save": "قيّد التفضيلات",
 	"savedprefs": "تسجلات التفضيلات ديالك.",
+	"prefs-back-title": "رجوع للتفضيلات",
 	"prefs-personal": "فيشي د لخدايمي",
 	"prefs-info": "المعلومات الأساسية",
 	"username": "{{GENDER:$1|سميت لخدايمي|سميت لخدايمية}}:",
@@ -42,7 +48,7 @@
 	"yournick": "التوقيع:",
 	"tog-fancysig": "تعامل معا التوقيع بحال شي نص د ويكي (بلا ليان ؤطوماتيكي)",
 	"prefs-signature-error-details": "عرف كتر",
-	"badsig": "توقيع خام ماصالحش؛ شوف ل وسوم د HTML..",
+	"badsig": "توقيع خام ماصالحش.\nشوف الطاڭات د HTML.",
 	"prefs-email": "خيارات المايل",
 	"youremail": "إيمايل:",
 	"prefs-setemail": "دخل الإيمايل ديالك",
@@ -63,7 +69,7 @@
 	"prefs-rendering": "المظهر",
 	"prefs-skin": "واجهة",
 	"skin-preview": "عرض مسبق",
-	"prefs-common-config": "جاڤاسكريبط/CSS/JSON مشروك لڭاع لواجهات:",
+	"prefs-common-config": "جاڤاسكريپت/سي إس إس/دجيسون مشروك ل ڭاع الجلدات:",
 	"prefs-custom-css": "CSS مخصص",
 	"prefs-custom-js": "جاڤاسكريپت مخصص",
 	"prefs-dateformat": "صيغة الوقت",
@@ -158,5 +164,5 @@
 	"prefs-watchlist-token": "الساروت د الليستة د لحضيان:",
 	"prefs-searchoptions": "قلّب",
 	"prefs-advancedsearchoptions": "خيارات متقدمة",
-	"restoreprefs": "رجًع ڭاع لإعدادات لإفتراضية (فڭاع لأقسام)"
+	"restoreprefs": "رجًع ڭاع لإعدادات پارديفو (ف ڭاع لأقسام)"
 }

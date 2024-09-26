@@ -11,7 +11,6 @@
 	"tog-ccmeonemails": "Send me copies of emails I send to other users",
 	"tog-enotifwatchlistpages": "Email me when a page or a file on my watchlist has changed",
 	"tog-enotifusertalkpages": "Email me when my user talk page has changed",
-	"tog-diffonly": "Do not show page content below diffs",
 	"tog-norollbackdiff": "Don't show diff after performing a rollback",
 	"tog-showhiddencats": "Show hidden categories",
 	"tog-showrollbackconfirmation": "Show a confirmation prompt when clicking on a rollback link",

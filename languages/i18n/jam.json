@@ -329,7 +329,6 @@
 	"resetpass_submit": "Set paaswod ahn lag iin",
 	"changepassword-success": "Yu paaswod chienj soksesfuli!\nA lag yu iin nou ...",
 	"resetpass_forbidden": "Paaswod kyaahn chienj",
-	"resetpass-no-info": "Yu mos lag iin fi akses dis piej dairek.",
 	"resetpass-submit-loggedin": "Chienj paaswod",
 	"resetpass-submit-cancel": "Kiansl",
 	"resetpass-wrong-oldpass": "Invalid ar tempareri paaswod.\nYu maita chienj yu paaswod soksesfuli aredi ar rikwes wahn nyuu tempareri paaswod.",

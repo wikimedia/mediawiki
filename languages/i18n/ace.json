@@ -395,7 +395,6 @@
 	"botpasswords-label-resetpassword": "Atô keulayi lageuem tamöng",
 	"resetpass_forbidden": "Lageuëm rahsia h'an jeuët geugantoë",
 	"resetpass_forbidden-reason": "Lageuem tamöng h'an jeuet geugantoe: $1",
-	"resetpass-no-info": "Droeneuh peureulèe neutamöng mangat jeuet neueu laman nyoe",
 	"resetpass-submit-loggedin": "Gantoë lageuëm rahsia",
 	"resetpass-submit-cancel": "Pubateuë",
 	"resetpass-wrong-oldpass": "Narit rahsia salah.\nDroëneuh kadang ka meuhasé neuubah narit rahsia atawa neulakè narit rahsia barô",

@@ -379,7 +379,6 @@
 	"botpasswords-deleted-body": "{{GENDER:$2|ورتݨ آلا}} \"$2\" دے بوٹ ورتݨ ناں \"$1\" کیتے بوٹ پاسورڈ مٹ ڳیا ہائی۔",
 	"resetpass_forbidden": "پاسورڈ تبدیل نی تھی سڳدا",
 	"resetpass_forbidden-reason": "پاسورڈ تبدیل نی تھی سڳدے:$1",
-	"resetpass-no-info": "ایں ورقے تے براہ راست رسائی سانگے تہاکوں لاگ ان تھیوݨاں ضروری ہے۔",
 	"resetpass-submit-loggedin": "پاس ورڈ تبدیل کرو",
 	"resetpass-submit-cancel": "منسوخ",
 	"resetpass-temp-password": "عارضی لنگھݨ لفظ، پاس ورڈ",

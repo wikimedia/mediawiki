@@ -321,7 +321,6 @@
 	"resetpass_submit": "Soppil baatujàll bi te dugg",
 	"changepassword-success": "Coppiteeg baatujàll bi antu na : Yaa ngi dugg...",
 	"resetpass_forbidden": "Baatujàll bi manoo kaa soppi",
-	"resetpass-no-info": "faaw nga dugg ngir man a jot ci wii xët.",
 	"resetpass-submit-loggedin": "Soppi baatujàll bi",
 	"resetpass-wrong-oldpass": "Baatujall bu diiru walla bi teew baaxul.\nXèj-na baatujàll bi soppi nga ko ba noppi, walla xéj-na it dangaa laaj beneen baatujàll bu diiru.",
 	"resetpass-temp-password": "Baatujàll bu diiru :",

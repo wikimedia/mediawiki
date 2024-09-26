@@ -335,7 +335,6 @@
 	"botpasswords-locked": "You no go fi login with a bot password if dem lock your account.",
 	"resetpass_forbidden": "You no go fi change passwords",
 	"resetpass_forbidden-reason": "You no go fi chnge passwords: $1",
-	"resetpass-no-info": "You for be logged in, if you dey want access dis page directly.",
 	"resetpass-submit-loggedin": "You for change password",
 	"resetpass-submit-cancel": "Shawn",
 	"passwordreset": "Make you reset password",

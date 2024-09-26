@@ -390,7 +390,6 @@
 	"changepassword-success": "Modpas ou te chanje!",
 	"botpasswords": "Mopas wobo yo",
 	"resetpass_forbidden": "Nou pa kapab chanje mopas yo nan sistèm sa",
-	"resetpass-no-info": "Ou dwe konekte ou pou ou kapab jwenn paj sa.",
 	"resetpass-submit-loggedin": "Modifye mopas sa",
 	"resetpass-submit-cancel": "Anile",
 	"resetpass-wrong-oldpass": "Mopas sa pa bon ditou; li te mèt mopas ou an kounye a oubyen yon mopas tanporè.\nGendwa ou te deja modifye li oubyen ou te mande yon nouvo mopas tanporè.",

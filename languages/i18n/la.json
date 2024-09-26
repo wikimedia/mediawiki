@@ -360,7 +360,6 @@
 	"botpasswords-label-cancel": "Dimittere",
 	"botpasswords-label-delete": "Delere",
 	"resetpass_forbidden": "Tesserae mutari non possunt",
-	"resetpass-no-info": "Ad hanc paginam adeundam necesse est nomen dare.",
 	"resetpass-submit-loggedin": "Tesseram mutare",
 	"resetpass-submit-cancel": "Dimittere",
 	"resetpass-temp-password": "Tessera temporaria:",

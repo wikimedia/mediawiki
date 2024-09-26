@@ -301,7 +301,6 @@
 	"resetpass_submit": "Vendos fjalëkalimin dhe kyçu",
 	"changepassword-success": "Fjalëkalimi juej u ndryshue me sukses! Tash po kyçeni...",
 	"resetpass_forbidden": "Fjalëkalimet nuk mujnë me u ndryshue",
-	"resetpass-no-info": "Duheni me qenë të kyçun për me iu qasë kësaj faqeje direkt.",
 	"resetpass-submit-loggedin": "Ndrysho fjalëkalimin",
 	"resetpass-submit-cancel": "Harroji",
 	"resetpass-wrong-oldpass": "Fjalëkalimi i përkohshëm apo ai aktual invalid.\nNdoshta tashmâ e keni ndryshue fjalëkalimin me sukses, apo keni kërkue nji fjalëkalim të përkohshëm.",

@@ -22,6 +22,7 @@
 	},
 	"preferences": "Nizamlamalar",
 	"prefsnologintext2": "Nizamlamaları yadda saxlamaq üçün istifadəçi hesabınıza daxil olun.",
+	"prefsnologintext2-for-temp-user": "Nizamlamaları dəyişdirə bilmək üçün hesab yaradın.",
 	"searchprefs": "Nizamlamalarda axtar",
 	"searchprefs-noresults": "Nəticə yoxdur",
 	"searchprefs-results": "$1 {{PLURAL:$1|nəticə}}",

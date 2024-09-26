@@ -12,6 +12,7 @@
 	},
 	"preferences": "Нагодувања",
 	"prefsnologintext2": "Најавете се за да ги измените корисничките нагодувања.",
+	"prefsnologintext2-for-temp-user": "Направете сметка за да ги измените нагодувањата.",
 	"searchprefs": "Нагодувања на пребарувањето",
 	"searchprefs-noresults": "Не најдов ништо",
 	"searchprefs-results": "$1 {{PLURAL:$1|ставка|ставки}}",

@@ -266,7 +266,6 @@
 	"invalidtitle-knownnamespace": "Titul che ne vela nia cun namespace \"$2\" y test \"$3\"",
 	"exception-nologin": "Te ne ies nia culegà",
 	"exception-nologin-text": "Prëibel culeghete per rué ite a chësta plata o azion.",
-	"exception-nologin-text-manual": "Prëibel $1 per rué ite a chësta plata o azion.",
 	"logout-failed": "Nia bon de jì ora śën: $1",
 	"cannotlogoutnow-title": "Nia bon de jì ora śën",
 	"cannotlogoutnow-text": "Jì ora ne ie nia puscibel canche $1.",

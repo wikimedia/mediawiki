@@ -391,7 +391,6 @@
 	"resetpass_submit": "Sat-thin me̍t-ma pin tên-ngi̍p",
 	"changepassword-success": "Ngì yí-kîn kiên-kói ngì-ke me̍t-ma! \nKîm-hâ vì ngì tên-ngi̍p kín...",
 	"resetpass_forbidden": "無辦法更改密碼",
-	"resetpass-no-info": "汝必須登入後直接進入邇隻頁面。",
 	"resetpass-submit-loggedin": "Kiên-kói me̍t-ma",
 	"resetpass-submit-cancel": "Chhí-sêu",
 	"resetpass-wrong-oldpass": "無效嘅臨時或現有嘅密碼。\n汝可能已成功地更改矣汝嘅密碼，或者已經請求一隻新嘅臨時密碼。",

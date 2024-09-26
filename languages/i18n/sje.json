@@ -227,7 +227,6 @@
 	"ns-specialprotected": "E máhte särrabelijt rävvdadit.",
 	"exception-nologin": "Ij luggim sisa",
 	"exception-nologin-text": "Luggi sisa jus sida adnet dáv bielev jala dáv dagamusav.",
-	"exception-nologin-text-manual": "$1 jus sida adnet dáv bielev jala dáv dagamusav.",
 	"logout-failed": "Ij máhte luggit ulgus dálä: $1",
 	"cannotlogoutnow-title": "Ij máhte luggit ulgus dálä",
 	"welcomeuser": "Burist båhtem, $1!",

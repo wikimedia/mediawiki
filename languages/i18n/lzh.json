@@ -429,7 +429,6 @@
 	"botpasswords-deleted-title": "僕之符節已刪",
 	"botpasswords-deleted-body": "\"$2\"所執之僕\"$1\"之符節已刪也。",
 	"resetpass_forbidden": "符節之更也不可。",
-	"resetpass-no-info": "欲入此頁，爾須登簿。",
 	"resetpass-submit-loggedin": "改符節",
 	"resetpass-submit-cancel": "消",
 	"resetpass-wrong-oldpass": "無效之臨符或現符。\n爾或改符，或求新臨符。",

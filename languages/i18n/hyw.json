@@ -349,7 +349,6 @@
 	"botpasswords-deleted-title": "Մեքենայիկին անցաբառը ջնջուեցաւ",
 	"resetpass_forbidden": "Անցաբառերը չեն կրնար փոխել",
 	"resetpass_forbidden-reason": "Գաղտնաբառերը չեն կրնար փոխուիլ՝ $1",
-	"resetpass-no-info": "Այս էջին ուղիղ դիմելու համար անհրաժեշտ է մուտք գործել:",
 	"resetpass-submit-loggedin": "Անցաբառը փոխել",
 	"resetpass-submit-cancel": "Չեղարկել",
 	"resetpass-temp-password": "Ժամանակաւոր գաղտնաբառ.",

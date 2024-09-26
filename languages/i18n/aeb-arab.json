@@ -267,7 +267,6 @@
 	"resetpass_submit": "ضبط كلمة السر والدخول",
 	"changepassword-success": "تم تغيير كلمة السر الخاصة بك بنجاح! يتم تسجيل دخولك الآن...",
 	"resetpass_forbidden": "كلمات السر لا يمكن تغييرها",
-	"resetpass-no-info": "يجب أن تكون مسجل الدخول للوصول إلى هذه الصفحة مباشرة.",
 	"resetpass-submit-loggedin": "تغيير كلمة السر",
 	"resetpass-wrong-oldpass": "كلمة سر حالية أو مؤقتة غير صحيحة.\nربما تكون غيرت كلمة السر الخاصة بك بنجاح أو طلبت كلمة سر مؤقتة جديدة.",
 	"resetpass-temp-password": "كلمة سر مؤقتة:",

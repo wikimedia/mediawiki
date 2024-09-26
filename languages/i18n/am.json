@@ -343,7 +343,6 @@
 	"resetpass_submit": "መግቢያ ቃል ለመቀየርና ለመግባት",
 	"changepassword-success": "የመግቢያ ቃልዎ መቀየሩ ተከናወነ! አሁን መግባት ይደረግልዎታል......",
 	"resetpass_forbidden": "በ{{SITENAME}} የመግቢያ ቃል መቀየር አይቻልም።",
-	"resetpass-no-info": "ይህንን ገጽ በቀጥታ ለማግኘት አስቀድሞ መግባት ያስፈልጋል።",
 	"resetpass-submit-loggedin": "ቃልዎ ይቀየር",
 	"resetpass-submit-cancel": "ይቅር",
 	"resetpass-wrong-oldpass": "ጊዜያዊው ወይም ያሁኑኑ መግቢያ ቃል አይስማማም።\nምናልባት መግቢያ ቃልዎን መቀይሩ ተከናወነ፣ ወይም አዲስ ጊዜያዊ መግቢያ ቃልን ጠየቁ።",

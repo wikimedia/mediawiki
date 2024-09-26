@@ -333,7 +333,6 @@
 	"invalidtitle-knownnamespace": "نخش نوم که «$2» نوم‌فضا شنه و ونه بنویشت «$3» هسه",
 	"exception-nologin": "سیستم ره دله نمونی",
 	"exception-nologin-text": "لطفاً بئین [[Special:Userlogin|سیستم دله]] تا این صفحه جه دسترسی دارین.",
-	"exception-nologin-text-manual": "لطفاً  $1  تا این صفحه یا عمل شما ره وَرا بوشه.",
 	"virus-badscanner": "نخش کانفیگوریشن: ناشناس ویروس اسکنر: <em>$1</em>",
 	"virus-scanfailed": "اسکن نیه (کد $1)",
 	"virus-unknownscanner": "آنتی‌ویروس وَرا نی‌یه:",

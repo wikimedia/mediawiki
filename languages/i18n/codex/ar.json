@@ -2,14 +2,19 @@
 	"@metadata": {
 		"authors": [
 			"Gerges",
+			"Meno25",
 			"Mohammed Qays"
 		]
 	},
+	"cdx-chip-input-chip-added": "تمت إضافة الشريحة $1.",
+	"cdx-chip-input-chip-removed": "تمت إزالة الشريحة $1.",
 	"cdx-input-chip-aria-description": "الضغط على إدخال للتعديل أو على حذف للإزالة",
 	"cdx-dialog-close-button-label": "أغلق",
 	"cdx-label-optional-flag": "(اختياري)",
 	"cdx-message-dismiss-button-label": "أغلق",
 	"cdx-search-input-search-button-label": "بحث",
+	"cdx-table-select-all-label": "اختر جميع الصفوف",
+	"cdx-table-select-row-label": "اختر الصف $1 من $2",
 	"cdx-typeahead-search-search-results-label": "نتائج البحث",
 	"cdx-table-pager-button-first-page": "الصفحة الأولى",
 	"cdx-table-pager-button-last-page": "الصفحة الأخيرة",
@@ -18,5 +23,6 @@
 	"cdx-table-pager-items-per-page-default": "النتائج لكل صفحة",
 	"cdx-table-pagination-status-message-determinate-long": "عرض النتائج $1 – $2 من $3",
 	"cdx-table-pagination-status-message-determinate-short": "$1 – $2 من $3",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1 – $2 من العديد",
 	"cdx-table-pagination-status-message-pending": "جاري تحميل النتائج..."
 }

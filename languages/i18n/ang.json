@@ -344,7 +344,6 @@
 	"invalidtitle-unknownnamespace": "Ungenge titul þe hæfþ þæt uncuðe namstederim $1 and þæt gewrit \"$2\"",
 	"exception-nologin": "Þu eart ingan",
 	"exception-nologin-text": "Leof, inlogian þe þu mægst geferan þisne tramet oððe fremman þisne dæd.",
-	"exception-nologin-text-manual": "$1 þe þu mægst geferan þisne tramet oððe dæd.",
 	"virus-badscanner": "Yfel gesetedness: Uncuð wyrmsecend: <em>$1</em>",
 	"virus-scanfailed": "asmeagung trucode (run $1)",
 	"virus-unknownscanner": "uncuð wyrmsceaða:",

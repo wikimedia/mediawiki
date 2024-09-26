@@ -351,7 +351,6 @@
 	"resetpass_submit": "Cambiar a clau y identificar-se",
 	"changepassword-success": "A suya clau ya ye cambiata. Agora ya puede dentrar-ie...",
 	"resetpass_forbidden": "No se puede cambiar as claus d'acceso",
-	"resetpass-no-info": "Debe identificar-se como usuario ta poder acceder dreitament ta ista pachina.",
 	"resetpass-submit-loggedin": "Cambiar a clau",
 	"resetpass-submit-cancel": "Cancelar",
 	"resetpass-wrong-oldpass": "A clau actual u temporal no ye conforme.\nTalment ya ha cambiato a suya clau u ha demandato una nueva clau temporal.",

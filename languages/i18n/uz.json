@@ -388,7 +388,6 @@
 	"botpasswords-updated-title": "Bot maxfiy soʻzi yangilandi",
 	"botpasswords-deleted-title": "Bot maxfiy soʻzi oʻchirildi",
 	"resetpass_forbidden": "Maxfiy so'z o'zgartirilishi mumkin emas",
-	"resetpass-no-info": "Siz ushbu sahifaga toʻgʻridan toʻgʻri kirishingiz uchun tizimga kirgan boʻlishingiz kerak.",
 	"resetpass-submit-loggedin": "Maxfiy soʻzni oʻzgartirish",
 	"resetpass-submit-cancel": "Bekor",
 	"resetpass-temp-password": "Vaqtinchalik maxfiy soʻz",

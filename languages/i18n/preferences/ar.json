@@ -37,6 +37,7 @@
 	},
 	"preferences": "تفضيلات",
 	"prefsnologintext2": "الرجاء تسجيل الدخول لضبط تفضيلات المستخدم.",
+	"prefsnologintext2-for-temp-user": "يرجى إنشاء حساب لتغيير التفضيلات.",
 	"searchprefs": "ابحث في التفضيلات",
 	"searchprefs-noresults": "لا نتائج",
 	"searchprefs-results": "$1 {{PLURAL:$1|نتيجة|نتائج}}",

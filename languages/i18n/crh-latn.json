@@ -375,7 +375,6 @@
 	"botpasswords-label-cancel": "Lâğu",
 	"botpasswords-label-delete": "Yoq et",
 	"resetpass_forbidden": "Parol deñiştirmek yasaq",
-	"resetpass-no-info": "Bu saifege doğrudan irişmek içün oturım açmaq kereksiñiz.",
 	"resetpass-submit-loggedin": "Parolni deñiştir",
 	"resetpass-submit-cancel": "Lâğu",
 	"resetpass-wrong-oldpass": "Keçersiz muvaqqat ya da şimdiki parol.\nĞaliba paroliñizni endi deñiştirgen ya da yañı bir muvaqqat parol istegensiñiz.",

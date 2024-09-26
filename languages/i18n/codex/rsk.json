@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Keresturec"
+		]
+	},
+	"cdx-chip-input-chip-added": "Чип $1 додати.",
+	"cdx-chip-input-chip-removed": "Чип $1 одстранєти.",
+	"cdx-input-chip-aria-description": "Прицишнїце Enter же бисце ушорели або Delete же бисце одстранєли.",
+	"cdx-dialog-close-button-label": "Заври",
+	"cdx-label-optional-flag": "(нєобовязково)",
+	"cdx-message-dismiss-button-label": "Заври",
+	"cdx-search-input-search-button-label": "Преглєдованє",
+	"cdx-table-select-all-label": "Вибер шицки шори",
+	"cdx-table-select-row-label": "Вибер шор $1 зоз $2",
+	"cdx-table-sort-caption": "$1, наслови колонох зоз ґомбичками мож сортирац",
+	"cdx-typeahead-search-search-results-label": "Резултати преглєдованя",
+	"cdx-table-pager-button-first-page": "Перши бок",
+	"cdx-table-pager-button-last-page": "Остатнї бок",
+	"cdx-table-pager-button-next-page": "Шлїдуюци бок",
+	"cdx-table-pager-button-prev-page": "Предходни бок",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 шор|$1 шори}}",
+	"cdx-table-pager-items-per-page-default": "Резултати по боку",
+	"cdx-table-pagination-status-message-determinate-long": "Приказани резултати $1–$2 спомедзи $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 од $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Указованє резултатох $1–$2 з велїх",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1—$2 з велїх",
+	"cdx-table-pagination-status-message-indeterminate-final": "Указованє {{PLURAL:$1|остатнього $1 резултата|остатнїх $1 резултатох}}",
+	"cdx-table-pagination-status-message-pending": "Учитаванє резултатох..."
+}

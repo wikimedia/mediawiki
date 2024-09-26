@@ -327,7 +327,6 @@
 	"invalidtitle-unknownnamespace": "अज्ञात नामस्थान संख्या $1 आरो नाम \"$2\" बला गलत शीर्षक",
 	"exception-nologin": "लॉग-इन नै करलौ गेलौ छै",
 	"exception-nologin-text": "हैय पृष्ठ क क्रिया क उपयोग करै लेली लॉग-इन करौ।",
-	"exception-nologin-text-manual": "हैय पृष्ठ या क्रिया क उपयोग करै लेली $1।",
 	"virus-badscanner": "गलत कॉन्फ़िगरेशन: अज्ञात वायरस स्कैनर: <em>$1</em>",
 	"virus-scanfailed": "स्कैन विफल (कोड $1)",
 	"virus-unknownscanner": "अज्ञात ऐंटीवायरस:",

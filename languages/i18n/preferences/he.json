@@ -15,6 +15,7 @@
 	},
 	"preferences": "העדפות",
 	"prefsnologintext2": "נא להתחבר לחשבון כדי לשנות את ההעדפות שלך.",
+	"prefsnologintext2-for-temp-user": "נא ליצור חשבון כדי לשנות העדפות.",
 	"searchprefs": "חיפוש בהעדפות",
 	"searchprefs-noresults": "אין תוצאות",
 	"searchprefs-results": "{{PLURAL:$1|תוצאה אחת|$1 תוצאות}}",

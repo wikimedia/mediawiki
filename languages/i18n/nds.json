@@ -360,7 +360,6 @@
 	"resetpass_submit": "Passwoort instellen un inloggen",
 	"changepassword-success": "Dien Passwoort is mit Spood ännert worrn. Warrst nu anmellt …",
 	"resetpass_forbidden": "Passwöör köönt nich ännert warrn.",
-	"resetpass-no-info": "Du musst anmellt wesen, dat du disse Siet direkt opropen kannst.",
 	"resetpass-submit-loggedin": "Passwoord ännern",
 	"resetpass-submit-cancel": "Afbreken",
 	"resetpass-wrong-oldpass": "Dat Passwoord (temporär oder aktuell) gellt nich.\nVillicht hest du dien Passwoord al ännert oder noch wedder en nee temporär Passwoord anfeddert.",

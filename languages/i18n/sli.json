@@ -317,7 +317,6 @@
 	"resetpass_submit": "Poaßwurt iebermitteln und oamelda",
 	"changepassword-success": "Dei Poaßwurt wurde erfolgreich geändert. Is fulgt de Oameldung …",
 	"resetpass_forbidden": "Doas Poaßwurt koan ne geändert waan.",
-	"resetpass-no-info": "Du mußt diech oamelda, im uff diese Seite direkt zuzugreifa.",
 	"resetpass-submit-loggedin": "Poaßwurt ändern",
 	"resetpass-wrong-oldpass": "Ungiltiges temporäres oder aktuelles Poaßwurt.\nMeeglicherweise host du dei Poaßwurt bereits erfolgreich geändert oder a neues temporäres Poaßwurt beantragt.",
 	"resetpass-temp-password": "Temporäres Poaßwurt:",

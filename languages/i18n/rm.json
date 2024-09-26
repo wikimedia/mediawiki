@@ -373,7 +373,6 @@
 	"resetpass_submit": "Definir il pled clav e m'annunziar",
 	"changepassword-success": "Tes pled-clav è vegnì midà cun success!",
 	"resetpass_forbidden": "Il pled-clav na po betg vegnir midà",
-	"resetpass-no-info": "Ti stos t'annunziar per acceder directamain questa pagina.",
 	"resetpass-submit-loggedin": "Midar il pled-clav",
 	"resetpass-submit-cancel": "Interrumper",
 	"resetpass-wrong-oldpass": "Fauss pled-clav temporar u actual.\nEventualmain has ti gia midà cun success tes pled-clav u dumandà per in nov pled-clav temporar.",

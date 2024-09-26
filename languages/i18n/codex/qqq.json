@@ -14,7 +14,7 @@
 	"cdx-search-input-search-button-label": "Label for the CdxSearchInput's search button.",
 	"cdx-table-select-all-label": "Visually-hidden label for the 'select all rows' checkbox in a CdxTable with row selection.",
 	"cdx-table-select-row-label": "Visually-hidden label for each row selection checkbox in a CdxTable with row selection.\n\nParameters:\n* $1 - Index of the current row\n* $2 - Total number of rows",
-	"cdx-table-sort-caption": "Visually-hidden caption of a CdxTable with an additional note that some columns are sortable. $1 is shown to all users, and the rest is intended for screen readers.\n\nParameters:\n* $1 - The table caption\n\nComment: The text is based on the [https://www.w3.org/WAI/ARIA/apg/patterns/table/examples/sortable-table/ Sortable Table Example] by the W3C ARIA Authoring Practices Guide (APG).",
+	"cdx-table-sort-caption": "Visually-hidden caption of a CdxTable with an additional note that some columns are sortable. $1 is shown to all users, and the rest is intended for [[:w:en:Screen reader|screen readers]].\n\nParameters:\n* $1 - The table caption\n\nComment: The text is based on the [https://www.w3.org/WAI/ARIA/apg/patterns/table/examples/sortable-table/ Sortable Table Example] by the W3C ARIA Authoring Practices Guide (APG).",
 	"cdx-typeahead-search-search-results-label": "Visually-hidden label for the list of search results in CdxTypeaheadSearch.",
 	"cdx-table-pager-button-first-page": "Visually-hidden label for the 'first page' button in the CdxTable component",
 	"cdx-table-pager-button-last-page": "Visually-hidden label for the 'last page' button in the CdxTable component",

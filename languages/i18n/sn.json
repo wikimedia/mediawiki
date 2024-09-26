@@ -275,7 +275,6 @@
 	"invalidtitle-unknownnamespace": "Dumidzo risiro rine nhamba ye nzvimboyezita isingazivikwi $1 uye chinyorwa $2",
 	"exception-nologin": "Hauna kuzaruriswa",
 	"exception-nologin-text": "Tinokumbira kuti uzvizarurise kuti ukwanise kuwana zanhi iri kana chiito ichi.",
-	"exception-nologin-text-manual": "Tinokumbira $1 kuti ukwanise kuwana zanhi iri kana chiito ichi.",
 	"virus-badscanner": "Jenganiso yakashata: Skana ye chitachiwana isingazivikanwi: <em>$1</em>",
 	"virus-scanfailed": "skani yakoneka (kodhi $1)",
 	"virus-unknownscanner": "rukazachitachiwana rusingazivikwi:",

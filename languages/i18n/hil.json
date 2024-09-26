@@ -392,7 +392,6 @@
 	"changepassword-success": "Ang imo pasword madinalag-on nga gin-ilisan!\nGinapasulod ka na...",
 	"botpasswords-label-cancel": "Kanselaron",
 	"resetpass_forbidden": "Ang mga pasword indi mahimo nga paga-ilisan",
-	"resetpass-no-info": "Kinahanglan nga nakasulod ka agod nga makadtoan ang ini nga panid sing derecho.",
 	"resetpass-submit-loggedin": "Ilisan ang pasword",
 	"resetpass-submit-cancel": "Kanselahon",
 	"resetpass-wrong-oldpass": "Sala nga temporaryo ukon subong nga pasword.\nMahimo nga madinalag-on mo nga nga gin-ilisan ang imo pasword ukon nagpangabay ka na sang bag-o nga temporaryo nga pasword.",

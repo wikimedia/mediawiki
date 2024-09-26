@@ -72,6 +72,7 @@
 	"search-invalid-sort-order": "Sort order of $1 is unrecognised, default sorting will be applied. Valid sort orders are: $2",
 	"search-unknown-profile": "Search profile of $1 is unrecognised, default search profile will be applied.",
 	"prefs-description-misc": "Customise the table of contents.",
+	"linterror-night-mode-unaware-background-color": "Background colour inline style needs text colour",
 	"linterror-tidy-font-bug": "Font tag tries to change link colour",
 	"grant-group-customization": "Customisation and preferences",
 	"rcfilters-highlightmenu-title": "Select a colour",

@@ -365,7 +365,6 @@
 	"resetpass_submit": "Ἀναδιορισμὸς συνθήματος καὶ σύνδεσις",
 	"changepassword-success": "Τὸ σὸν σύνθημα εὖ μεταβεβλημένον ἐστίν!",
 	"resetpass_forbidden": "Οὐκ ἔξεστι τοῖς συνθήμασιν ἀλλαγῆναι",
-	"resetpass-no-info": "Ἐὰν μὴ συνδέῃ οὐκ ἔξεστί σοι εὐθέως δεῦρο βαίνειν.",
 	"resetpass-submit-loggedin": "Ἀλλάττειν σύνθημα",
 	"resetpass-submit-cancel": "Ἀκυροῦν",
 	"resetpass-temp-password": "Προσωρινὸν σύνθημα:",

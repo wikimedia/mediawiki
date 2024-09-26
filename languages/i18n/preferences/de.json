@@ -30,6 +30,7 @@
 	},
 	"preferences": "Einstellungen",
 	"prefsnologintext2": "Bitte melde dich an, um deine Benutzereinstellungen zu ändern.",
+	"prefsnologintext2-for-temp-user": "Bitte erstelle ein Konto, um deine Einstellungen zu ändern.",
 	"searchprefs": "Einstellungen suchen",
 	"searchprefs-noresults": "Keine Ergebnisse",
 	"searchprefs-results": "$1 {{PLURAL:$1|Ergebnis|Ergebnisse}}",
