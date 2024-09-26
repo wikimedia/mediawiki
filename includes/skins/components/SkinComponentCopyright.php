@@ -4,6 +4,7 @@ namespace MediaWiki\Skin;
 
 use HtmlArmor;
 use MediaWiki\Config\Config;
+use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -12,6 +13,8 @@ use MediaWiki\User\User;
 use MessageLocalizer;
 
 class SkinComponentCopyright implements SkinComponent {
+	use ProtectedHookAccessorTrait;
+
 	/** @var Config */
 	private $config;
 	/** @var MessageLocalizer */
@@ -85,7 +88,7 @@ class SkinComponentCopyright implements SkinComponent {
 		}
 
 		// Allow for site and per-namespace customization of copyright notice.
-		$this->skinContext->runHook( 'onSkinCopyrightFooter', [ $title, $type, &$msg, &$link ] );
+		$this->getHookRunner()->onSkinCopyrightFooter( $title, $type, $msg, $link );
 		return $localizer->msg( $msg )->rawParams( $link )->text();
 	}
 }
