@@ -61,9 +61,6 @@ class GlobalIdGenerator {
 	/** @var array Cached file handles */
 	protected $fileHandles = [];
 
-	/** @var int B/C constant (deprecated since 1.36) */
-	public const QUICK_VOLATILE = 1;
-
 	/**
 	 * Avoid using __CLASS__ so namespace separators aren't interpreted
 	 * as path components on Windows (T259693)
@@ -317,16 +314,13 @@ class GlobalIdGenerator {
 	 * Return an ID that is sequential *only* for this node and bucket
 	 *
 	 * These IDs are suitable for per-host sequence numbers, e.g. for some packet protocols.
-	 * If GlobalIdGenerator::QUICK_VOLATILE is used the counter might reset on
-	 * server restart.
 	 *
 	 * @param string $bucket Arbitrary bucket name (should be ASCII)
 	 * @param int $bits Bit size (<=48) of resulting numbers before wrap-around
-	 * @param int $flags (supports GlobalIdGenerator::QUICK_VOLATILE)
 	 * @return float Integer value as float
 	 */
-	public function newSequentialPerNodeID( $bucket, $bits = 48, $flags = 0 ) {
-		return current( $this->newSequentialPerNodeIDs( $bucket, $bits, 1, $flags ) );
+	public function newSequentialPerNodeID( $bucket, $bits = 48 ) {
+		return current( $this->newSequentialPerNodeIDs( $bucket, $bits, 1 ) );
 	}
 
 	/**
@@ -335,12 +329,11 @@ class GlobalIdGenerator {
 	 * @param string $bucket Arbitrary bucket name (should be ASCII)
 	 * @param int $bits Bit size (16 to 48) of resulting numbers before wrap-around
 	 * @param int $count Number of IDs to return
-	 * @param int $flags (supports GlobalIdGenerator::QUICK_VOLATILE)
 	 * @return array Ordered list of float integer values
 	 * @see GlobalIdGenerator::newSequentialPerNodeID()
 	 */
-	public function newSequentialPerNodeIDs( $bucket, $bits, $count, $flags = 0 ) {
-		return $this->getSequentialPerNodeIDs( $bucket, $bits, $count, $flags );
+	public function newSequentialPerNodeIDs( $bucket, $bits, $count ) {
+		return $this->getSequentialPerNodeIDs( $bucket, $bits, $count );
 	}
 
 	/**
@@ -374,12 +367,11 @@ class GlobalIdGenerator {
 	 * @param string $bucket Arbitrary bucket name (should be ASCII)
 	 * @param int $bits Bit size (16 to 48) of resulting numbers before wrap-around
 	 * @param int $count Number of IDs to return
-	 * @param int $flags (supports GlobalIdGenerator::QUICK_VOLATILE)
 	 * @return array Ordered list of float integer values
 	 * @throws RuntimeException
 	 * @see GlobalIdGenerator::newSequentialPerNodeID()
 	 */
-	protected function getSequentialPerNodeIDs( $bucket, $bits, $count, $flags ) {
+	protected function getSequentialPerNodeIDs( $bucket, $bits, $count ) {
 		if ( $count <= 0 ) {
 			return [];
 		}
