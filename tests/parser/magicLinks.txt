@@ -19,8 +19,12 @@ Magic links: internal link to RFC (T2479)
 
 !! test
 Magic links: RFC (T2479)
+!! options
+cat
 !! wikitext
 RFC 822
+!! metadata
+cat=Pages_using_RFC_magic_links sort=
 !! html/php
 <p><a class="external mw-magiclink-rfc" rel="nofollow" href="https://tools.ietf.org/html/rfc822">RFC 822</a>
 </p>
@@ -58,8 +62,12 @@ RFC
 
 !! test
 Magic links: ISBN (T3937)
+!! options
+cat
 !! wikitext
 ISBN 0-306-40615-2
+!! metadata
+cat=Pages_using_ISBN_magic_links sort=
 !! html/php
 <p><a href="/wiki/Special:BookSources/0306406152" class="internal mw-magiclink-isbn">ISBN 0-306-40615-2</a>
 </p>
@@ -114,8 +122,12 @@ PMID 1234
 
 !! test
 Magic links: PMID (T67278)
+!! options
+cat
 !! wikitext
 This is PMID 1234 but thisPMID 1234 is not PMID 1234linked.
+!! metadata
+cat=Pages_using_PMID_magic_links sort=
 !! html/php
 <p>This is <a class="external mw-magiclink-pmid" rel="nofollow" href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract">PMID 1234</a> but thisPMID 1234 is not PMID 1234linked.
 </p>
@@ -157,18 +169,426 @@ X[https://tools.ietf.org/html/rfc1234 foo]
 <p>X<a rel="mw:ExtLink" href="https://tools.ietf.org/html/rfc1234" class="external text">foo</a></p>
 !! end
 
-# Parsoid fails this test
 !! test
 Magic links: All disabled (T47942)
-!! options
+!! config
 wgEnableMagicLinks={"ISBN":false, "PMID":false, "RFC":false}
+!! options
+cat
 !! wikitext
 ISBN 0-306-40615-2
 PMID 1234
 RFC 4321
+!! metadata
 !! html
 <p>ISBN 0-306-40615-2
 PMID 1234
 RFC 4321
 </p>
 !! end
+
+!! test
+Magic links: html2wt of old wikitext when disabled (T47942)
+!! config
+wgEnableMagicLinks={"ISBN":false, "PMID":false, "RFC":false}
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p><a href="./Special:BookSources/0306406152" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 0-306-40615-2</a>
+<a href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract" rel="mw:ExtLink nofollow" class="external mw-magiclink" data-parsoid='{"stx":"magiclink"}'>PMID 1234</a>
+<a href="https://tools.ietf.org/html/rfc4321" rel="mw:ExtLink nofollow" class="external mw-magiclink" data-parsoid='{"stx":"magiclink"}'>RFC 4321</a></p>
+!! wikitext
+[[Special:BookSources/0306406152|ISBN 0-306-40615-2]]
+[//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract PMID 1234]
+[https://tools.ietf.org/html/rfc4321 RFC 4321]
+!! end
+
+# PMID has an interwiki setup (if the pmid-interwiki option is set), but RFC
+# doesn't.  Check that we round-trip correctly from the interwiki format,
+# whether magic links are enabled or not (and whether the interwiki is
+# present or not).
+
+!! test
+Prefer PMID magic link, no interwiki and magic links enabled (T145590#8608455)
+!! wikitext
+PMID 234
+!! html/php
+<p><a class="external mw-magiclink-pmid" rel="nofollow" href="//www.ncbi.nlm.nih.gov/pubmed/234?dopt=Abstract">PMID 234</a>
+</p>
+!! html/parsoid
+<p><a href="//www.ncbi.nlm.nih.gov/pubmed/234?dopt=Abstract" rel="mw:ExtLink" class="external mw-magiclink">PMID 234</a></p>
+!! end
+
+!! test
+Prefer PMID magic link, interwiki and magic links enabled (T145590#8608455)
+!! options
+pmid-interwiki
+!! wikitext
+PMID 234
+!! html/php
+<p><a class="external mw-magiclink-pmid" rel="nofollow" href="//www.ncbi.nlm.nih.gov/pubmed/234?dopt=Abstract">PMID 234</a>
+</p>
+!! html/parsoid
+<p><a href="//www.ncbi.nlm.nih.gov/pubmed/234?dopt=Abstract" rel="mw:ExtLink" class="external mw-magiclink">PMID 234</a></p>
+!! end
+
+!! test
+Round-trip PMID interwiki, magic links enabled (T145590#8608455)
+!! options
+pmid-interwiki
+!! wikitext
+[[pmid:234|PMID 234]]
+!! html/php
+<p><a href="//www.ncbi.nlm.nih.gov/pubmed/234?dopt=Abstract" class="extiw" title="pmid:234">PMID 234</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink/Interwiki" href="//www.ncbi.nlm.nih.gov/pubmed/234?dopt=Abstract" title="pmid:234" class="extiw">PMID 234</a></p>
+!! end
+
+!! test
+Prefer PMID interwiki, magic links disabled (T145590#8608455)
+!! options
+pmid-interwiki
+!! config
+wgEnableMagicLinks={"PMID":false,"RFC":false}
+!! wikitext
+[[pmid:234|PMID 234]]
+
+[https://tools.ietf.org/html/rfc4321 RFC 4321]
+!! html/php
+<p><a href="//www.ncbi.nlm.nih.gov/pubmed/234?dopt=Abstract" class="extiw" title="pmid:234">PMID 234</a>
+</p><p><a rel="nofollow" class="external text" href="https://tools.ietf.org/html/rfc4321">RFC 4321</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink/Interwiki"
+href="//www.ncbi.nlm.nih.gov/pubmed/234?dopt=Abstract" title="pmid:234" class="extiw">PMID 234</a></p>
+<p><a rel="mw:ExtLink" href="https://tools.ietf.org/html/rfc4321" class="external text">RFC 4321</a></p>
+!! end
+
+!! test
+Preder PMID extlink if no interwiki, magic links disabled (T145590#8608455)
+!! options
+parsoid=html2wt
+!! config
+wgEnableMagicLinks={"PMID":false,"RFC":false}
+!! wikitext
+[//www.ncbi.nlm.nih.gov/pubmed/234?dopt=Abstract PMID 234]
+!! html/parsoid
+<p><a rel="mw:WikiLink/Interwiki"
+href="//www.ncbi.nlm.nih.gov/pubmed/234?dopt=Abstract" title="pmid:234" class="extiw">PMID 234</a></p>
+!! end
+
+!! article
+Foo
+!! text
+FOO
+!! endarticle
+
+!! test
+Magic links inside links (not autolinked)
+!! wikitext
+[[Foo|http://example.com]]
+[[Foo|RFC 1234]]
+[[Foo|PMID 1234]]
+[[Foo|ISBN 123456789x]]
+
+[http://foo.com http://example.com]
+[http://foo.com RFC 1234]
+[http://foo.com PMID 1234]
+[http://foo.com ISBN 123456789x]
+!! html/php
+<p><a href="/wiki/Foo" title="Foo">http://example.com</a>
+<a href="/wiki/Foo" title="Foo">RFC 1234</a>
+<a href="/wiki/Foo" title="Foo">PMID 1234</a>
+<a href="/wiki/Foo" title="Foo">ISBN 123456789x</a>
+</p><p><a rel="nofollow" class="external text" href="http://foo.com">http://example.com</a>
+<a rel="nofollow" class="external text" href="http://foo.com">RFC 1234</a>
+<a rel="nofollow" class="external text" href="http://foo.com">PMID 1234</a>
+<a rel="nofollow" class="external text" href="http://foo.com">ISBN 123456789x</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Foo" title="Foo">http://example.com</a>
+<a rel="mw:WikiLink" href="./Foo" title="Foo">RFC 1234</a>
+<a rel="mw:WikiLink" href="./Foo" title="Foo">PMID 1234</a>
+<a rel="mw:WikiLink" href="./Foo" title="Foo">ISBN 123456789x</a></p>
+
+<p><a rel="mw:ExtLink" href="http://foo.com" class="external text">http://example.com</a>
+<a rel="mw:ExtLink" href="http://foo.com" class="external text">RFC 1234</a>
+<a rel="mw:ExtLink" href="http://foo.com" class="external text">PMID 1234</a>
+<a rel="mw:ExtLink" href="http://foo.com" class="external text">ISBN 123456789x</a></p>
+!! end
+
+!! test
+WTS of magic word text (T109371)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>RFC 1234</p>
+<p><a href="http://foo.com" rel="mw:ExtLink">RFC 1234</a></p>
+<p><a href="./Foo" rel="mw:WikiLink">RFC 1234</a></p>
+!! wikitext
+<nowiki>RFC 1234</nowiki>
+
+[http://foo.com RFC 1234]
+
+[[Foo|RFC 1234]]
+!! end
+
+!! test
+T4304: HTML attribute safety (ISBN)
+!! wikitext
+<div title="ISBN 1234567890"></div>
+!! html
+<div title="&#73;SBN 1234567890"></div>
+!! end
+
+!! test
+T4304: HTML attribute safety (RFC)
+!! wikitext
+<div title="RFC 1234"></div>
+!! html
+<div title="&#82;FC 1234"></div>
+!! end
+
+!! test
+T4304: HTML attribute safety (PMID)
+!! wikitext
+<div title="PMID 1234567890"></div>
+!! html
+<div title="&#80;MID 1234567890"></div>
+!! end
+
+!! test
+ISBN code coverage
+!! wikitext
+ISBN  978-0-1234-56&#x20;789
+!! html/php
+<p><a href="/wiki/Special:BookSources/9780123456" class="internal mw-magiclink-isbn">ISBN 978-0-1234-56</a>&#x20;789
+</p>
+!! html/parsoid
+<p><a href="./Special:BookSources/9780123456" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 978-0-1234-56</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#x20;","srcContent":" "}'> </span>789</p>
+!! end
+
+!! test
+ISBN followed by 5 spaces
+!! wikitext
+ISBN    
+!! html
+<p>ISBN    
+</p>
+!! end
+
+!! test
+Double ISBN
+!! wikitext
+ISBN ISBN 1234567890
+!! html/php
+<p>ISBN <a href="/wiki/Special:BookSources/1234567890" class="internal mw-magiclink-isbn">ISBN 1234567890</a>
+</p>
+!! html/parsoid
+<p>ISBN <a href="./Special:BookSources/1234567890" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1234567890</a></p>
+!! end
+
+# Uppercase X and lowercase x as well
+!! test
+ISBN with an X
+!! wikitext
+ISBN 3-462-04561-X
+ISBN 3-462-04561-x
+ISBN 080442957X
+ISBN 080442957x
+ISBN 978080442957X
+ISBN 978080442957x
+!! html/php
+<p><a href="/wiki/Special:BookSources/346204561X" class="internal mw-magiclink-isbn">ISBN 3-462-04561-X</a>
+<a href="/wiki/Special:BookSources/346204561X" class="internal mw-magiclink-isbn">ISBN 3-462-04561-x</a>
+<a href="/wiki/Special:BookSources/080442957X" class="internal mw-magiclink-isbn">ISBN 080442957X</a>
+<a href="/wiki/Special:BookSources/080442957X" class="internal mw-magiclink-isbn">ISBN 080442957x</a>
+<a href="/wiki/Special:BookSources/978080442957X" class="internal mw-magiclink-isbn">ISBN 978080442957X</a>
+<a href="/wiki/Special:BookSources/978080442957X" class="internal mw-magiclink-isbn">ISBN 978080442957x</a>
+</p>
+!! html/parsoid
+<p><a href="./Special:BookSources/346204561X" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 3-462-04561-X</a>
+<a href="./Special:BookSources/346204561X" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 3-462-04561-x</a>
+<a href="./Special:BookSources/080442957X" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 080442957X</a>
+<a href="./Special:BookSources/080442957X" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 080442957x</a>
+<a href="./Special:BookSources/978080442957X" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 978080442957X</a>
+<a href="./Special:BookSources/978080442957X" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 978080442957x</a></p>
+!! end
+
+!! test
+ISBN with empty prefix (parsoid test)
+!! wikitext
+ISBN 1234567890
+!! html/php
+<p><a href="/wiki/Special:BookSources/1234567890" class="internal mw-magiclink-isbn">ISBN 1234567890</a>
+</p>
+!! html/parsoid
+<p><a href="./Special:BookSources/1234567890" rel="mw:WikiLink">ISBN 1234567890</a></p>
+!! end
+
+!! test
+T24905: <abbr> followed by ISBN followed by </a>
+!! wikitext
+<abbr>(fr)</abbr> ISBN 2753300917 [http://www.example.com example.com]
+!! html/php
+<p><abbr>(fr)</abbr> <a href="/wiki/Special:BookSources/2753300917" class="internal mw-magiclink-isbn">ISBN 2753300917</a> <a rel="nofollow" class="external text" href="http://www.example.com">example.com</a>
+</p>
+!! html/parsoid
+<p><abbr data-parsoid='{"stx":"html"}'>(fr)</abbr> <a href="./Special:BookSources/2753300917" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 2753300917</a> <a rel="mw:ExtLink" href="http://www.example.com" class="external text">example.com</a></p>
+!! end
+
+!! test
+Double RFC
+!! wikitext
+RFC RFC 1234
+!! html/php
+<p>RFC <a class="external mw-magiclink-rfc" rel="nofollow" href="https://tools.ietf.org/html/rfc1234">RFC 1234</a>
+</p>
+!! html/parsoid
+<p>RFC <a href="https://tools.ietf.org/html/rfc1234" rel="mw:ExtLink" class="external mw-magiclink">RFC 1234</a></p>
+!! end
+
+!! test
+Double RFC with a wiki link
+!! wikitext
+RFC [[RFC 1234]]
+!! html/php
+<p>RFC <a href="/index.php?title=RFC_1234&amp;action=edit&amp;redlink=1" class="new" title="RFC 1234 (page does not exist)">RFC 1234</a>
+</p>
+!! html/parsoid
+<p>RFC <a rel="mw:WikiLink" href="./RFC_1234?action=edit&amp;redlink=1" title="RFC 1234" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./RFC_1234"},"sa":{"href":"RFC 1234"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["RFC 1234"]}}'>RFC 1234</a></p>
+!! end
+
+!! test
+RFC code coverage
+!! wikitext
+RFC   983&#x20;987
+!! html/php
+<p><a class="external mw-magiclink-rfc" rel="nofollow" href="https://tools.ietf.org/html/rfc983">RFC 983</a>&#x20;987
+</p>
+!! html/parsoid
+<p><a href="https://tools.ietf.org/html/rfc983" rel="mw:ExtLink" class="external mw-magiclink" data-parsoid='{"stx":"magiclink"}'>RFC   983</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#x20;","srcContent":" "}'> </span>987</p>
+!! end
+
+!! test
+ISBN with a dummy number
+!! wikitext
+ISBN ---
+!! html
+<p>ISBN ---
+</p>
+!! end
+
+!! test
+ISBN with space-delimited number
+!! wikitext
+ISBN 92 9017 032 8
+!! html/php
+<p><a href="/wiki/Special:BookSources/9290170328" class="internal mw-magiclink-isbn">ISBN 92 9017 032 8</a>
+</p>
+!! html/parsoid
+<p><a href="./Special:BookSources/9290170328" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 92 9017 032 8</a></p>
+!! end
+
+!! test
+ISBN with multiple spaces, no number
+!! wikitext
+ISBN  foo
+!! html
+<p>ISBN  foo
+</p>
+!! end
+
+!! test
+ISBN length
+!! wikitext
+ISBN 123456789
+
+ISBN 1234567890
+
+ISBN 12345678901
+!! html/php
+<p>ISBN 123456789
+</p><p><a href="/wiki/Special:BookSources/1234567890" class="internal mw-magiclink-isbn">ISBN 1234567890</a>
+</p><p>ISBN 12345678901
+</p>
+!! html/parsoid
+<p>ISBN 123456789</p>
+
+<p><a href="./Special:BookSources/1234567890" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1234567890</a></p>
+
+<p>ISBN 12345678901</p>
+!! end
+
+!! test
+ISBN with trailing year (T9110)
+!! wikitext
+ISBN 1-234-56789-0 - 2006
+
+ISBN 1 234 56789 0 - 2006
+!! html/php
+<p><a href="/wiki/Special:BookSources/1234567890" class="internal mw-magiclink-isbn">ISBN 1-234-56789-0</a> - 2006
+</p><p><a href="/wiki/Special:BookSources/1234567890" class="internal mw-magiclink-isbn">ISBN 1 234 56789 0</a> - 2006
+</p>
+!! html/parsoid
+<p><a href="./Special:BookSources/1234567890" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1-234-56789-0</a> - 2006</p>
+
+<p><a href="./Special:BookSources/1234567890" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1 234 56789 0</a> - 2006</p>
+!! end
+
+!! test
+Edited ISBN links not serializable as ISBN links should serialize as wikilinks
+(magic links enabled)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<a href="./Special:BookSources/1234567890" rel="mw:WikiLink">ISBN 1234567895</a>
+!! wikitext
+[[Special:BookSources/1234567890|ISBN 1234567895]]
+!! end
+
+!! test
+Edited ISBN links not serializable as ISBN links should serialize as wikilinks
+(magic links disabled)
+!! config
+wgEnableMagicLinks={"ISBN":false, "PMID":false, "RFC":false}
+!! options
+parsoid=html2wt
+!! html/parsoid
+<a href="./Special:BookSources/1234567890" rel="mw:WikiLink">ISBN 1234567895</a>
+!! wikitext
+[[Special:BookSources/1234567890|ISBN 1234567895]]
+!! end
+
+!! test
+Edited RFC links not serializable as RFC links should serialize as extlinks
+!! options
+parsoid=html2wt
+!! html/parsoid
+<a href="https://tools.ietf.org/html/rfc123" rel="mw:ExtLink">New RFC</a>
+!! wikitext
+[https://tools.ietf.org/html/rfc123 New RFC]
+!! end
+
+!! test
+Edited PMID links not serializable as PMID links should serialize as extlinks
+!! options
+parsoid=html2wt
+!! html/parsoid
+<a href="//www.ncbi.nlm.nih.gov/pubmed/123?dopt=Abstract" rel="mw:ExtLink">New PMID</a>
+!! wikitext
+[//www.ncbi.nlm.nih.gov/pubmed/123?dopt=Abstract New PMID]
+!! end
+
+!! test
+Edited PMID links not serializable as PMID links should serialize as wikilinks if possible
+!! options
+parsoid=html2wt
+pmid-interwiki
+!! html/parsoid
+<a href="//www.ncbi.nlm.nih.gov/pubmed/123?dopt=Abstract" rel="mw:ExtLink">New PMID</a>
+!! wikitext
+[[pmid:123|New PMID]]
+!! end
+
