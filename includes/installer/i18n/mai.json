@@ -34,5 +34,5 @@
 	"config-env-bad": "पर्यावरण क जाँच कएल गेल अछि।\nआहाँ मीडियाविकि स्थापित नै कर सकै चिए।",
 	"config-env-php": "PHP $1 स्थापित कएल ग्याल अछि।",
 	"mainpagetext": "<strong>मेडियाविकी नीक जकाँ प्रस्थापित भेल।</strong>",
-	"mainpagedocfooter": "सम्पर्क करी [https://meta.wikimedia.org/wiki/Help:Contents User's Guide] विकि सफ्टवेयर प्रयोगक जानकारी लेल।\n\n==प्रारम्भ कोना करी==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki release mailing list]"
+	"mainpagedocfooter": "सम्पर्क करी [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents User's Guide] विकि सफ्टवेयर प्रयोगक जानकारी लेल।\n\n==प्रारम्भ कोना करी==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki release mailing list]"
 }

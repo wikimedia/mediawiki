@@ -3,12 +3,14 @@
 		"authors": [
 			"Sasan700",
 			"Seb35",
-			"Умар"
+			"Умар",
+			"Робин"
 		]
 	},
 	"config-desc": "MediaWiki инсталлятор",
 	"config-title": "ХӀоттор MediaWiki $1",
 	"config-information": "Хаам",
+	"config-localsettings-upgrade": "Файл карийна <code>LocalSettings.php</code> И чудаккхар карладаккха, дехар ду хIар дIайаздар.\n <code>$wgUpgradeKey</code> Лахах файл чохь шуна карор ду и <code>LocalSettings.php</code>.",
 	"config-localsettings-key": "Карлаяккхаран догӀа:",
 	"config-localsettings-badkey": "Ахьа йаздина нийса доцу догӀа",
 	"config-session-error": "ГӀалат ду сесси йолош: $1",
@@ -134,7 +136,7 @@
 	"config-install-tables-manual": "Таблицаш кхоллар, шолгӀа гӀулч",
 	"config-install-manual-tables-exist": "'''ДӀахьедар''': MediaWiki таблицаш, йолуш хила там бу.\nЙуха кхоллар чекхдалийтар.",
 	"config-install-manual-tables-failed": "<strong>ГӀалат</strong>: Таблица кхолла таро йац гӀалат бахьнехь: $1",
-	"config-install-interwiki-list": "Файл <code>interwiki.list</code> каро цаелира.",
+	"config-install-interwiki-list": "Файл <code>interwiki.list</code> ца карийна.",
 	"config-install-stats": "Инициализацин статистика",
 	"config-install-keys": "Къайлаха долу догӀанаш кхоллар",
 	"config-install-sysop": "Администраторан аккаунт кхоллар",
@@ -143,7 +145,7 @@
 	"config-download-localsettings": "Чуйаккха <code>LocalSettings.php</code>",
 	"config-help": "гӀо",
 	"config-help-tooltip": "гайта тӀетаӀайе",
-	"config-nofile": "Файл \"$1\" каро цаелира. И дӀайаьккхина йарий?",
+	"config-nofile": "Файл \"$1\" ца карийна. И дӀайаьккхина йарий?",
 	"config-extension-link": "Хаий шуна, шу вики-проекта ловш ду [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions шордарш]?\n\nШун аьтту бу хьажа [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category шордарш категорешкахула]",
 	"config-skins-screenshots": "$1 (скриншоташ: $2)",
 	"config-extensions-requires": "$1 (оьшу $2)",

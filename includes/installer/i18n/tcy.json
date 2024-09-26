@@ -4,7 +4,8 @@
 			"Chidananda Kampa",
 			"Ravi Mundkur",
 			"VASANTH S.N.",
-			"Vishwanatha Badikana"
+			"Vishwanatha Badikana",
+			"ChiK"
 		]
 	},
 	"config-desc": "ಮೀಡಿಯ ವಿಕಿದ ಪ್ರತಿಸ್ಟಾಪನೆ",
@@ -50,7 +51,7 @@
 	"config-install-step-done": "ಆಂಡ್",
 	"config-install-step-failed": "ವಿಫಲವಾತ್‍ಂಡ್",
 	"config-install-extensions": "ವಿಸ್ತರಣೆಲೆನ್ ಸೇರಾದ್",
-	"config-help": "ಸಹಾಯೊ",
+	"config-help": "ಸಕಾಯೊ",
 	"mainpagetext": "'''ಮೀಡಿಯಾವಿಕಿ ಯಶಸ್ವಿಯಾದ್ ಸ್ಥಾಪನೆ ಆಂಡ್.'''",
-	"mainpagedocfooter": "ವಿಕಿ ತಂತ್ರಾಂಶನ್ ಉಪಗೋಗ ಮನ್ಪುನ ಬಗ್ಗೆ ಮಾಹಿತಿಗ್ [https://meta.wikimedia.org/wiki/Help:Contents ಸದಸ್ಯೆರ್ನ ನಿರ್ದೇಶನ ಪುಟ] ತೂಲೆ.\n\n== ಎಂಚ ಶುರು ಮಲ್ಪುನಿ ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ ಮೀಡಿಯವಿಕಿ FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki release mailing list]"
+	"mainpagedocfooter": "ವಿಕಿ ತಂತ್ರಾಂಶನ್ ಉಪಗೋಗ ಮನ್ಪುನ ಬಗ್ಗೆ ಮಾಹಿತಿಗ್ [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents ಸದಸ್ಯೆರ್ನ ನಿರ್ದೇಶನ ಪುಟ] ತೂಲೆ.\n\n== ಎಂಚ ಶುರು ಮಲ್ಪುನಿ ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ ಮೀಡಿಯವಿಕಿ FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki release mailing list]"
 }

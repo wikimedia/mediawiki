@@ -24,5 +24,6 @@
 	"apihelp-query+users-param-userids": "వివరాలు సేకరించవలసిన వాడుకరి ఐడీల జాబితా.",
 	"apihelp-rawfm-summary": "బయటకు వచ్చిన సమాచారo, డీబగ్గింగ్ అంశముతో కలిపి, JSON పద్ధతిలో (HTMLలో అందంగా-ముద్రించు)",
 	"api-help-param-internal-label": "అంతర్గత",
-	"apierror-blocked-partial": "ఈ పేజీని మీరు దిద్దడం మీద నిరోధం ఉంది."
+	"apierror-blocked-partial": "ఈ పేజీని మీరు దిద్దడం మీద నిరోధం ఉంది.",
+	"apierror-permissiondenied": "$1 అనుమతి మీకు లేదు."
 }

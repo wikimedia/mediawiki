@@ -15,7 +15,8 @@
 			"Vitorvicentevalente",
 			"Waldir",
 			"Amire80",
-			"Caiofernandes"
+			"Caiofernandes",
+			"McDutchie"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentação]]\n* [[mw:Special:MyLanguage/API:Etiquette|Diretrizes de etiqueta e utilização]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Lista de divulgação]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Anúncios da API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Defeitos e pedidos]\n</div>\n<strong>Estado:</strong> A API do MediaWiki é uma interface consolidada e estável que é constantemente suportada e melhorada. Embora tentemos evitá-lo, podemos ocasionalmente realizar alterações disruptivas. Inscreva-se na [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ lista de distribuição mediawiki-api-announce] para receber notificações das atualizações.\n\n<strong>Pedidos incorretos:</strong> Quando são enviados pedidos incorretos à API, será devolvido um cabeçalho HTTP com a chave \"MediaWiki-API-Error\" e depois tanto o valor desse cabeçalho como o código de erro devolvido serão definidos com o mesmo valor. Para mais informação, consulte [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Erros e avisos]].\n\n<p class=\"mw-apisandbox-link\"><strong>Testes:</strong> Para testar facilmente pedidos à API, visite [[Special:ApiSandbox|Testes da API]].</p>",
@@ -67,7 +68,7 @@
 	"apihelp-changecontentmodel-summary": "Alterar o modelo de conteúdo de uma página",
 	"apihelp-changecontentmodel-param-title": "Título da página para a qual alterar o modelo de conteúdo. Não pode ser usado em conjunto com <var>$1pageid</var>.",
 	"apihelp-changecontentmodel-param-pageid": "Identificador da página para a qual alterar o modelo de conteúdo. Não pode ser usado em conjunto com <var>$1title</var>.",
-	"apihelp-changecontentmodel-param-summary": "Editar resumo de edição e motivo da entrada no registo",
+	"apihelp-changecontentmodel-param-summary": "O resumo da edição e o motivo da entrada no registo",
 	"apihelp-changecontentmodel-param-tags": "Etiquetas de mudança a aplicar à entrada do registo e à edição.",
 	"apihelp-changecontentmodel-param-model": "Modelo de conteúdo do novo conteúdo.",
 	"apihelp-changecontentmodel-param-bot": "Marca a mudança do modelo de conteúdo com um indicador de robô.",

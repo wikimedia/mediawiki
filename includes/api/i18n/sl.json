@@ -226,7 +226,7 @@
 	"apihelp-query+protectedtitles-param-prop": "Katere lastnosti naj se pridobijo:",
 	"apihelp-query+protectedtitles-paramvalue-prop-user": "Doda uporabnika, ki je dodal zaščito.",
 	"apihelp-query+random-param-namespace": "Vrni samo strani v teh imenskih prostorih.",
-	"apihelp-query+random-example-simple": "Vrnitev dveh naključnih strani iz osnovnega imenskega prostora.",
+	"apihelp-query+random-example-simple": "Vrnitev dveh naključnih strani iz glavnega imenskega prostora.",
 	"apihelp-query+random-example-generator": "Vrnitev podatkov o strani za dve naključni strani v osnovnem imenskem prostoru.",
 	"apihelp-query+recentchanges-summary": "Oštevilči zadnje spremembe.",
 	"apihelp-query+recentchanges-paramvalue-prop-loginfo": "Dnevniškim zapisom doda dnevniške informacije (identifikator, vrsta zapisa idr.).",

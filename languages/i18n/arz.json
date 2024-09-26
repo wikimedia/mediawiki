@@ -432,7 +432,7 @@
 	"userlogin-loggedin": "حضرتك {{GENDER:$1|عملت|عملتى}} دخول قبل كده باسم $1. {{GENDER:$1|استخدم|استخدمى}} النموذج اللى تحت علشان لتسجيل الدخول بحساب تانى.",
 	"userlogin-reauth": "لازم تسجل الدخول تانى علشان تأكد انك {{GENDER:$1|$1}}.",
 	"userlogin-createanother": "افتح حساب  تانى",
-	"createacct-emailrequired": "عنوان البريد الالكترونى:",
+	"createacct-emailrequired": "عنوان البريد الالكترونى",
 	"createacct-emailoptional": "ايميل (اختيارى)",
 	"createacct-email-ph": "اكتب عنوان الإيميل بتاعك",
 	"createacct-another-email-ph": "اكتب عنوان الإيميل بتاعك",

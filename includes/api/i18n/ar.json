@@ -24,7 +24,9 @@
 			"Alshamiri1",
 			"Amire80",
 			"LaMagiaaa",
-			"علاء"
+			"علاء",
+			"McDutchie",
+			"Mohanad"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|التوثيق]]\n* [[mw:Special:MyLanguage/API:Etiquette|الآداب وإرشادات الاستخدام]]\n* [[mw:Special:MyLanguage/API:FAQ|الأسئلة الأكثر تكرارا]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ القائمة البريدية]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ إعلانات API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R الأخطاء والطلبات]\n</div>\n<strong>الحالة:</strong> API ميدياويكي هي واجهة ناضجة ومستقرة يتم دعمها وتحسينها بشكل نشط، في حين أننا نحاول تجنب ذلك، قد نحتاج في بعض الأحيان إلى إجراء تغييرات في التكسير، اشترك في [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ القائمة البريدية لإعلان API ميدياويكي] لإشعارات التحديثات.\n\n<strong>الطلبات الخاطئة:</strong>عندما يتم إرسال طلبات خاطئة إلى API، سيتم إرسال رأس HTTP مع مفتاح \"خطأ-API-ميدياويكي\"، وبعد ذلك سترجع قيمة الرأس ورمز الخطأ المرتجع إلى يتم تعيينه على نفس القيمة، لمزيد من المعلومات; راجع [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]].\n\n<p class=\"mw-apisandbox-link\"><strong>الاختبار:</strong>لسهولة اختبار طلبات API ; انظر [[Special:ApiSandbox]].</p>",
@@ -76,8 +78,8 @@
 	"apihelp-changecontentmodel-summary": "تغيير نموذج محتوى الصفحة",
 	"apihelp-changecontentmodel-param-title": "عنوان الصفحة لتغيير نموذج محتوى. لا يمكن استخدامها مع <var>$1pageid</var>.",
 	"apihelp-changecontentmodel-param-pageid": "معرّف الصفحة الخاص بالصفحة لتغيير نموذج المحتوى الخاص بها. لا يمكن استخدامها مع <var>$1title</var>.",
-	"apihelp-changecontentmodel-param-summary": "تحرير ملخص وسبب التدوين في السجل",
-	"apihelp-changecontentmodel-param-tags": "قم بتغيير العلامات لتطبيقها على إدخال السجل وتحريره.",
+	"apihelp-changecontentmodel-param-summary": "ملّخص التعديل ومُدخلة السجل الخاصة بالسبب",
+	"apihelp-changecontentmodel-param-tags": "وسوم التغيير المُراد تطبيقها على التعديل ومُدخلة السجل.",
 	"apihelp-changecontentmodel-param-model": "نموذج المحتوى للمحتوى الجديد.",
 	"apihelp-changecontentmodel-param-bot": "قم بتمييز تغيير نموذج المحتوى بعلامة bot.",
 	"apihelp-changecontentmodel-example": "قم بتغيير الصفحة الرئيسية للحصول على نموذج محتوى <code>text</code>",

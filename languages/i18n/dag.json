@@ -31,7 +31,8 @@
 			"Zak Raha",
 			"Attah Mohammed",
 			"Kalakpagh",
-			"Reedy"
+			"Reedy",
+			"Alhassan Abdul-Manan"
 		]
 	},
 	"tog-underline": "Zaŋ gɔhi din gbunni booi",
@@ -384,7 +385,7 @@
 	"cannotlogoutnow-title": "Ŋku tooi yi dini sahaŋɔ",
 	"cannotlogoutnow-text": "Yibu pala din yɛn niŋ kamaata din deei yi niŋ ka mali $1 ŋa tumda.",
 	"welcomeuser": "Amaraaba, $1!",
-	"welcomecreation-msg": "A daa akaunti maa nyɛla din nam.a ni tooi taɣi a {{SITENAME}}[[Special:Preference|preference]] a yi bɔra.",
+	"welcomecreation-msg": "A daa akaunti maa nyɛla din nam. a ni tooi taɣi a {{SITENAME}}[[Special:a ni bɔrisham |preference]] a yi bɔra.",
 	"yourname": "ŋun su yuli:",
 	"userlogin-yourname": "Ayuli",
 	"userlogin-yourname-ph": "Kpɛhimi ayuli",

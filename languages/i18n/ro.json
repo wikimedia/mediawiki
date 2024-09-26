@@ -55,7 +55,8 @@
 			"Alesaru",
 			"Heron702",
 			"Iketsi",
-			"Matma Rex"
+			"Matma Rex",
+			"Paloi Sciurala"
 		]
 	},
 	"tog-underline": "Sublinierea legăturilor:",
@@ -432,7 +433,7 @@
 	"logout-failed": "Nu se poate face dezautentificarea acum: $1",
 	"cannotlogoutnow-title": "Nu se poate deconecta acum",
 	"cannotlogoutnow-text": "Deconectarea nu este posibilă când se utilizează $1.",
-	"welcomeuser": "Bun venit, $1!",
+	"welcomeuser": "Bun-venit, $1!",
 	"welcomecreation-msg": "Contul dumneavoastră a fost creat.\nNu uitați să vă modificați [[Special:Preferences|preferințele]] pentru {{SITENAME}}.",
 	"yourname": "Nume de utilizator:",
 	"userlogin-yourname": "Nume de utilizator",

@@ -135,5 +135,5 @@
 	"config-download-localsettings": "Laai <code>LocalSettings.php</code> af",
 	"config-help": "hulp",
 	"mainpagetext": "'''MediaWiki is suksesvol geïnstalleer.'''",
-	"mainpagedocfooter": "Konsulteer '''[https://meta.wikimedia.org/wiki/Help:Contents User's Guide]''' vir inligting oor hoe om die wikisagteware te gebruik.\n\n== Hoe om te Begin ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki release mailing list]"
+	"mainpagedocfooter": "Konsulteer '''[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents User's Guide]''' vir inligting oor hoe om die wikisagteware te gebruik.\n\n== Hoe om te Begin ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki release mailing list]"
 }

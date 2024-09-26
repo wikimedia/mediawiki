@@ -8,7 +8,8 @@
 			"Subi",
 			"Xabier Armendaritz",
 			"පසිඳු කාවින්ද",
-			"Atzerritik"
+			"Atzerritik",
+			"Laquin"
 		]
 	},
 	"config-desc": "MediaWiki instalatzailea",
@@ -99,7 +100,7 @@
 	"config-db-prefix-help": "Datu-base bat elkarbanatu behar baduzu hainbat wiki orrien artean, edota MediaWiki eta best web aplikazio batekin, taula guztiei aurrizki bat gehitzea aukeratu ahal dezakezu, gatazkak ez sortzeko.\nEz erabili zuriunerik.\n\nAtal hau normalean utsik uzten da.",
 	"config-mysql-old": "MySQL $1 edo berriagoa behar da. Zuk $2 badaukazu.",
 	"config-db-port": "Datu-basearen ataka:",
-	"config-db-schema": "MediaWikirako eskema:",
+	"config-db-schema": "MediaWiki-rako eskema (marratxorik gabe):",
 	"config-db-schema-help": "Patroi hau normalean egokia da. Bakarrik aldatu beharrezkoa bada.",
 	"config-pg-test-error": "Ezin da datu-basearekin konektatu <strong>$1</strong>: $2",
 	"config-sqlite-dir": "SQLite -eko informazioaren direktorioa:",
@@ -143,7 +144,7 @@
 	"config-db-web-create": "Kontua sortu oraindik ez bada existitzen.",
 	"config-db-web-no-create-privs": "Zehaztu duzun kontuak ez dauka pribilegio nahikoak kontu bat sortzeko.\nZehaztu duzun kontua existitu behar da.",
 	"config-mysql-engine": "Biltegiratze motorea:",
-	"config-mysql-innodb": "InnoDB",
+	"config-mysql-innodb": "InnoDB (gomendatua)",
 	"config-mysql-engine-help": "<strong>InnoDB</strong> ia beti aukerarik onena da, konkurrentzia-laguntza ona duelako.\n\n<strong>MyISAM</strong> erabiltzaile bakarreko edo irakurketa bakarreko instalazioetan azkarragoa izan daiteke.\nMyISAM datu-basea gehiagokotan hondatuta ageri da InnoDB datu-baseareakin baino.",
 	"config-site-name": "Wikiaren izena:",
 	"config-site-name-help": "Hau nabigatzailearen tituluaren lerroan agertuko da eta pare bat leku gehiagotan.",
@@ -257,7 +258,7 @@
 	"config-install-user-grant-failed": "$1ri baimena emateak huts egin du: $2",
 	"config-install-user-missing": "Saru duzun erabiltzaile izena \"$1\" ez da existitzen.",
 	"config-install-user-missing-create": "Espezifikatu duzun erabiltzaile izena \"$1\" ez da existitzen.\n\nMesedez klikatu \"kontu bat sortu\" laukia, bat sortu nahi baduzu.",
-	"config-install-tables": "Taulak sortzen",
+	"config-install-tables": "Taulak sortzen, lehen urratsa",
 	"config-install-tables-exist": "<strong>Oharra:</strong> Badirudi MediaWkiko- taulak dagoeneko existitzen direla. Sorrera saltatzen.",
 	"config-install-tables-failed": "<strong>Errore:</strong> Taulen sorrerak huts egin du hurrengo erroreakin: $1",
 	"config-install-interwiki": "MediaWiki taula estandarrari datuak sartzen.",
@@ -268,7 +269,7 @@
 	"config-install-updates": "Saihestu egikaratzen behar ez diren aktualizazioak",
 	"config-install-updates-failed": "<strong>Errore</strong> Sartzea eguneratze-gakoak taulen barruan huts egin du hurrengo errorearekin: $1",
 	"config-install-sysop": "Administratzaile kontua sortzen",
-	"config-install-subscribe-fail": "Ezin izan da mediawiki-announce -ra harpidetu[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
+	"config-install-subscribe-fail": "Ezin izan da [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]-era harpidetu: $1",
 	"config-install-subscribe-notpossible": "cURL ez dago instalatuta eta <code> allow_url_fopen </ code> ez dago erabilgarri.",
 	"config-install-mainpage": "Orri nagusia sortzen  eduki estandarrarekin",
 	"config-install-mainpage-exists": "Orri nagusia dagoeneko existitzen da, hurrengora saltatzen",
@@ -286,5 +287,5 @@
 	"config-extensions-requires": "$1 ($2 behar du)",
 	"config-screenshot": "Pantaila-irudia",
 	"mainpagetext": "<strong>MediaWiki instalatu da.</strong>",
-	"mainpagedocfooter": "Ikusi [https://meta.wikimedia.org/wiki/Help:Contents Erabiltzailearen Gida] wiki softwarea erabiltzen hasteko informazio gehiagorako.\n\n== Nola hasi ==\n\n*\n [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Konfigurazio balioen zerrenda]\n*\n [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ (MediaWikin Maiz egindako galderak)]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWikiren argitalpenen posta zerrenda]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Aurkitu MediaWiki zure hizkuntzan]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Zure wikian spam-a nola borrokatzen ikasi]"
+	"mainpagedocfooter": "Ikusi [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Erabiltzailearen Gida] wiki softwarea erabiltzen hasteko informazio gehiagorako.\n\n== Nola hasi ==\n\n*\n [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Konfigurazio balioen zerrenda]\n*\n [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ (MediaWikin Maiz egindako galderak)]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWikiren argitalpenen posta zerrenda]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Aurkitu MediaWiki zure hizkuntzan]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Zure wikian spam-a nola borrokatzen ikasi]"
 }

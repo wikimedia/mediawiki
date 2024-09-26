@@ -21,7 +21,8 @@
 			"Sumbukompor",
 			"WongKentir",
 			"아라",
-			"Agam Riyandana"
+			"Agam Riyandana",
+			"Leapofod"
 		]
 	},
 	"config-desc": "Pemasang MediaWiki",
@@ -114,6 +115,7 @@
 	"config-db-prefix": "Prefiks tabel basis data (tanpa tanda hubung):",
 	"config-db-prefix-help": "Jika Anda perlu berbagi satu basis data di antara beberapa wiki, atau antara MediaWiki dan aplikasi web lain, Anda dapat memilih untuk menambahkan prefiks terhadap semua nama tabel demi menghindari konflik.\nJangan gunakan spasi.\n\nPrefiks ini biasanya dibiarkan kosong.",
 	"config-mysql-old": "MySQL $1 atau versi terbaru diperlukan, Anda menggunakan $2.",
+	"config-mariadb-old": "MariaDB $1 ke atas diperlukan. Anda menggunakan $2",
 	"config-db-port": "Porta basis data:",
 	"config-db-schema": "Skema untuk MediaWiki (tanpa tanda hubung):",
 	"config-db-schema-help": "Skema ini biasanya berjalan baik.\nUbah hanya jika Anda tahu Anda perlu mengubahnya.",
@@ -234,6 +236,12 @@
 	"config-logo-preview-main": "Halaman utama",
 	"config-logo-icon": "Logo (ikon):",
 	"config-logo-icon-help": "Ikon logo Anda harus berbentuk persegi dan idealnya lebih dari 50 piksel atau SVG.",
+	"config-logo-wordmark": "Wordmark (opsional):",
+	"config-logo-wordmark-help": "Nama dari situs Anda. Jika tidak ditentukan, umumnya akan kembali ke teks. Idealnya sebuah SVG dengan tinggi kurang dari atau sama dengan 30px.",
+	"config-logo-tagline": "Tagline (opsional):",
+	"config-logo-tagline-help": "Tagline situs Anda. Gunakan hanya jika Anda telah mendefinisikan wordmark di atas. Jika tidak ditentukan, umumnya akan kembali ke teks. Secara umum jumlah tinggi tagline dan wordmark disarankan tidak melebihi 50px.",
+	"config-logo-sidebar": "Logo sidebar (opsional):",
+	"config-logo-filedrop": "Letakkan file gambar di sini",
 	"config-instantcommons": "Aktifkan Instant Commons",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons] adalah fitur yang memungkinkan wiki untuk menggunakan gambar, suara, dan media lain dari [https://commons.wikimedia.org/ Wikimedia Commons].\nUntuk melakukannya, MediaWiki memerlukan akses ke Internet.\n\nUntuk informasi lebih lanjut tentang fitur ini, termasuk petunjuk tentang cara untuk mengatur untuk wiki selain Wikimedia Commons, baca [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos manual].",
 	"config-cc-error": "Pemilih lisensi Creative Commons tidak memberikan hasil.\nMasukkan nama lisensi secara manual.",

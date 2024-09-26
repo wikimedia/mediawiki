@@ -57,5 +57,5 @@
 	"config-help": "palīdzība",
 	"config-help-tooltip": "uzspiediet, lai izvērstu",
 	"mainpagetext": "<strong>MediaWiki veiksmīgi instalēts.</strong>",
-	"mainpagedocfooter": "Izlasi [https://meta.wikimedia.org/wiki/Help:Contents Lietotāja pamācību], lai iegūtu vairāk informācijas par Wiki programmatūras lietošanu.\n\n== Pirmie soļi ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Konfigurācijas iespēju saraksts]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki J&A]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Parakstīties uz paziņojumiem par jaunām MediaWiki versijām]"
+	"mainpagedocfooter": "Izlasi [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Lietotāja pamācību], lai iegūtu vairāk informācijas par Wiki programmatūras lietošanu.\n\n== Pirmie soļi ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Konfigurācijas iespēju saraksts]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki J&A]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Parakstīties uz paziņojumiem par jaunām MediaWiki versijām]"
 }

@@ -110,7 +110,7 @@
 	"apihelp-expandtemplates-paramvalue-prop-jsconfigvars": "Dà nfurmaziune 'e variabbele 'e mpustaziona JavaScript specifiche 'a paggena.",
 	"apihelp-expandtemplates-paramvalue-prop-encodedjsconfigvars": "Dà 'e variabbele 'e mpustaziona 'e JavaScript specifiche 'a na paggena comm'a na stringa JSON.",
 	"apihelp-expandtemplates-paramvalue-prop-parsetree": "L'albero 'e parse XML 'a ll'input.",
-	"apihelp-expandtemplates-param-includecomments": "Si s'avess'azzeccà cocche cummento HTML dint'a ll'output.",
+	"apihelp-expandtemplates-param-includecomments": "Si s'avess'azzeccà nu cummento HTML dint'a ll'output.",
 	"apihelp-expandtemplates-param-generatexml": "Generà ll'albero XML (scagnato 'a $1prop=parsetree).",
 	"apihelp-expandtemplates-example-simple": "Spanne 'o wikitesto <kbd><nowiki>{{Project:Sandbox}}</nowiki></kbd>.",
 	"apihelp-feedcontributions-summary": "Tuorna nu feed 'e cuntribbute 'utente.",

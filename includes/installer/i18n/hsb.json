@@ -224,5 +224,5 @@
 	"config-help": "pomoc",
 	"config-nofile": "Dataja \"$1\" njeje so namakała. Je so zhašała?",
 	"mainpagetext": "'''MediaWiki bu wuspěšnje instalowany.'''",
-	"mainpagedocfooter": "Prošu hlej [https://meta.wikimedia.org/wiki/Help:Contents dokumentaciju] za informacije wo wužiwanju softwary.\n\n== Za nowačkow ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Wo nastajenjach]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki release mailing list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources MediaWiki za twoju rěč lokalizować]"
+	"mainpagedocfooter": "Prošu hlej [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents dokumentaciju] za informacije wo wužiwanju softwary.\n\n== Za nowačkow ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Wo nastajenjach]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki release mailing list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources MediaWiki za twoju rěč lokalizować]"
 }

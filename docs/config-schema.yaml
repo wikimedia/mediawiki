@@ -5553,7 +5553,7 @@ config-schema:
         default: false
         type: boolean
         description: |-
-            Allow anonymous cross origin requests.
+            Allow anonymous cross origin requests to the REST API.
             This should be disabled for intranet sites (sites behind a firewall).
             @since 1.36
     RestAllowCrossOriginCookieAuth:

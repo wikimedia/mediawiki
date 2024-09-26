@@ -47,7 +47,7 @@
 	"apihelp-feedrecentchanges-param-hidepatrolled": "Къайлайаха теллина версеш.",
 	"apihelp-feedrecentchanges-param-hidemyself": "Къайладаха карарчу декъашхочун нисдарш.",
 	"apihelp-feedrecentchanges-param-hidecategorization": "Къайлайаккха агӀонийн категоризаци.",
-	"apihelp-feedrecentchanges-param-tagfilter": "Тегийн луьттург.",
+	"apihelp-feedrecentchanges-param-tagfilter": "Тегийн фильтр.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "ХӀокху агӀонан тӀе хьажоргаш йолучу агӀонийн нисдарш гайта",
 	"apihelp-feedrecentchanges-example-simple": "ТӀаьххьара хийцамийн могӀам.",
 	"apihelp-feedrecentchanges-example-30days": "ТӀаьххьара хийцамийн могӀам 30 ден чохь.",

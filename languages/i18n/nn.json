@@ -2353,7 +2353,7 @@
 	"anoncontribs": "Bidrag",
 	"contribsub2": "For {{GENDER:$3|$1}} ($2)",
 	"contributions-userdoesnotexist": "Brukarkontoen «$1» er ikkje oppretta.",
-	"nocontribs": "Det vart ikkje funne nokon endringar gjorde av denne brukaren.",
+	"nocontribs": "Det vart ikkje funne nokon endringar som passar med desse kriteria.",
 	"uctop": "gjeldande",
 	"month": "Månad:",
 	"year": "År:",

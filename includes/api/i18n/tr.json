@@ -19,7 +19,8 @@
 			"Uncitoyen",
 			"Uğurkent",
 			"İnternion",
-			"Amire80"
+			"Amire80",
+			"Cobija"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Belgelendirme]]\n* [[mw:Special:MyLanguage/API:Etiquette|Görgü kuralları ve kullanım kuralları]]\n* [[mw:Special:MyLanguage/API:FAQ|SSS]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Posta listesi]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ API Duyuruları]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Hatalar ve talepler]\n</div>\n<strong>Durum:</strong> MediaWiki API, aktif olarak desteklenen ve geliştirilen olgun ve kararlı bir arayüzdür. Bundan kaçınmaya çalışırken, zaman zaman kırılma değişiklikleri yapmamız gerekebilir; güncellemeleri bildirmek için [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ posta listesine] abone olun.\n\n<strong>Hatalı istekler:</strong> API'ya hatalı istekler gönderildiğinde, \"MediaWiki-API-Error\" anahtarını içeren bir HTTP başlığı gönderilir ve daha sonra hem başlığın değeri hem de geri gönderilen hata kodu olarak ayarlanır. aynı değer. Daha fazla bilgi için [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Hatalar ve uyarılar]] sayfasına bakın.\n\n<p class=\"mw-apisandbox-link\"><strong>Deneme:</strong> API isteklerini test etme kolaylığı için, [[Special:ApiSandbox]] sayfasına bakın.</p>",
@@ -1769,7 +1770,7 @@
 	"apierror-promised-nonwrite-api": "<code>Promise-Write-Non-Write-API-Action</code> HTTP üstbilgisi yazma modu API modüllerine gönderilemez.",
 	"apierror-protect-invalidaction": "Geçersiz koruma türü \"$1\".",
 	"apierror-protect-invalidlevel": "Geçersiz koruma seviyesi \"$1\".",
-	"apierror-ratelimited": "Ücret limitinizi aştınız. Lütfen biraz bekleyin ve tekrar deneyin.",
+	"apierror-ratelimited": "Gönderme sınırını aştınız. Lütfen bir süre sonra tekrar deneyin.",
 	"apierror-readapidenied": "Bu modülü kullanmak için okuma iznine ihtiyacınız var.",
 	"apierror-readonly": "Viki şu anda salt okunur modda.",
 	"apierror-reauthenticate": "Bu oturumda yakın zamanda kimlik doğrulamanız yapmadı, lütfen yeniden kimlik doğrulayın.",

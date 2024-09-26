@@ -12,7 +12,8 @@
 			"Strainu",
 			"Tuxilina",
 			"WebSourceContentRO",
-			"XXN"
+			"XXN",
+			"Paloi Sciurala"
 		]
 	},
 	"config-desc": "Programul de instalare pentru MediaWiki",
@@ -35,7 +36,7 @@
 	"config-back": "← Înapoi",
 	"config-continue": "Continuă →",
 	"config-page-language": "Limbă",
-	"config-page-welcome": "Bun venit la MediaWiki!",
+	"config-page-welcome": "Bun-venit la MediaWiki!",
 	"config-page-dbconnect": "Conectează la baza de date",
 	"config-page-upgrade": "Extinde instalarea existentă",
 	"config-page-dbsettings": "Setări ale bazei de date",

@@ -51,7 +51,9 @@
 			"아라",
 			"Amire80",
 			"Jkjk",
-			"Martin Urbanec"
+			"Martin Urbanec",
+			"Oujon",
+			"Paskooda"
 		]
 	},
 	"tog-underline": "Podčiarkovať odkazy:",
@@ -338,6 +340,7 @@
 	"databaseerror-function": "Funkcia: $1",
 	"databaseerror-error": "Chyba: $1",
 	"transaction-duration-limit-exceeded": "Aby predišlo veľkému oneskoreniu pri replikácii, táto transakcia bola prerušená, pretože doba jej zápisu ($1) prekročila limit $2 sekúnd.\nAk robíte naraz veľa zmien, skúste radšej robiť viacero menších operácií.",
+	"transaction-max-statement-time-exceeded": "Aby sa predišlo vysokému zaťaženiu databázy, tento dotaz bol prerušený, pretože trvanie prekročilo limit.\nAk čítate veľa položiek naraz, skúste namiesto toho vykonať viacero menších operácií.",
 	"laggedreplicamode": "Upozornenie: Je možné, že stránka neobsahuje posledné aktualizácie.",
 	"readonly": "Databáza je zamknutá",
 	"enterlockreason": "Zadajte dôvod požadovaného zamknutia vrátane odhadu, kedy očakávate odomknutie",

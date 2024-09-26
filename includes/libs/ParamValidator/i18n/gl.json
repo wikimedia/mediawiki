@@ -28,7 +28,7 @@
 	"paramvalidator-maxbytes": "O valor para o parámetro \"$1\" non pode superar $3 {{PLURAL:$3|byte|bytes}} (era $4).",
 	"paramvalidator-maxchars": "O valor para o parámetro \"$1\" non pode superar $3 {{PLURAL:$3|carácter|caracteres}} (era $4).",
 	"paramvalidator-missingparam": "Cómpre establecer o parámetro \"$1\".",
-	"paramvalidator-notmulti": "O parámetro \"$1\" só acepta un único valor. A separación multivalor U+001F só se pode utilizar para parámetros multivalor.",
+	"paramvalidator-notmulti": "O parámetro \"$1\" só acepta un único valor. A separación de valor múltiple U+001F só se pode utilizar para parámetros de valor múltiple.",
 	"paramvalidator-outofrange-max": "O valor \"$2\" para o parámetro \"$1\" non debe ser superior a $4.",
 	"paramvalidator-outofrange-minmax": "O valor \"$2\" para o parámetro \"$1\" debe estar entre $3 e $4.",
 	"paramvalidator-outofrange-min": "O valor \"$2\" para o parámetro \"$1\" non debe ser inferior a $3.",
