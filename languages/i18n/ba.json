@@ -995,7 +995,7 @@
 	"search-section": "($1 бүлеге)",
 	"search-category": "(категория $1)",
 	"search-file-match": "(файл эстәлеге менән тура килә)",
-	"search-suggest": "Ошоно күҙ уңында тотҡайнығыҙмы: $1.",
+	"search-suggest": "Һеҙ ошоно күҙ уңында тотҡанһығыҙмы: $1",
 	"search-rewritten": "$1 һөҙөмтәһе күрһәтелгән. $2 һөҙөмтәһе табылмаған.",
 	"search-interwiki-resultset-link": "Барлыҡ һөҙөмтәләрҙе ҡарарға",
 	"search-interwiki-more": "(тағы)",

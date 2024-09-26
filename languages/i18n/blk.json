@@ -2243,6 +2243,7 @@
 	"searchsuggest-search": "ထိုမ်ႏထွား {{SITENAME}}ကို",
 	"searchsuggest-containing": "ထိုမ်ႏထွား ကနွို့ပါဒါႏ လိတ်မဲ့ငါဖိုင်ႏတာႏ",
 	"duration-days": "$1 {{PLURAL:$1|မွူး|မွူးဖုံႏ}}",
+	"expand_templates_preview": "ထွားကျိုႏအစမ်ꩻ",
 	"mw-widgets-dateinput-no-date": "လွိုက်ခါꩻတဝ်းမွူးနီꩻ",
 	"mw-widgets-titleinput-description-new-page": "လိတ်မဲ့ငါ တအဝ်ႏတဝ်းဒွိုန်း",
 	"date-range-from": "အဝ်ႏမွူးနီꩻ:",

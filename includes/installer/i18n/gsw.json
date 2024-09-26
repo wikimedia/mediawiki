@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Als-Holder"
+			"Als-Holder",
+			"Pppery"
 		]
 	},
 	"config-desc": "S MediaWiki-Inschtallationsprogramm",
@@ -53,5 +54,5 @@
 	"config-imagemagick": "ImageMagick isch gfunde wore: <code>$1</code>.\nMiniaturaasichte vu Bilder sin megli, sobald s Uffelade vu Dateie aktiviert isch.",
 	"config-help": "Hilf",
 	"mainpagetext": "'''MediaWiki isch erfolgrich inschtalliert worre.'''",
-	"mainpagedocfooter": "Lueg uf d [https://meta.wikimedia.org/wiki/MediaWiki_localisation Dokumentation fir d Aapassig vu dr Benutzeroberflächi] un s [https://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuech] fir d Hilf iber d Benutzig un s Yystelle."
+	"mainpagedocfooter": "Lueg uf d [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Dokumentation fir d Aapassig vu dr Benutzeroberflächi] un s [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Benutzerhandbuech] fir d Hilf iber d Benutzig un s Yystelle."
 }

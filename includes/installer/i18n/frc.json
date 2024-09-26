@@ -65,5 +65,5 @@
 	"config-help": "aide",
 	"config-help-tooltip": "cliquer pour agrandir",
 	"mainpagetext": "'''Vous avez bien installé MediaWiki.'''",
-	"mainpagedocfooter": "Lisez la [https://meta.wikimedia.org/wiki/Help:Contents Guide des Useurs] pour apprendre à user le wiki software.\n\n== Pour Commencer ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Réglage]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki: Questions Souvent Posées]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki Liste à Malle]"
+	"mainpagedocfooter": "Lisez la [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Guide des Useurs] pour apprendre à user le wiki software.\n\n== Pour Commencer ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Réglage]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki: Questions Souvent Posées]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki Liste à Malle]"
 }

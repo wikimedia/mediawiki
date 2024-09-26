@@ -5,7 +5,8 @@
 			"Erinamukuta",
 			"Kizito",
 			"Macofe",
-			"아라"
+			"아라",
+			"Kateregga1"
 		]
 	},
 	"tog-underline": "Enyunzi ebengako olukoloboze?",
@@ -232,7 +233,7 @@
 	"page-atom-feed": "Mukutu ogw'amawulire ogw'ekika kya Atom \"$1\"",
 	"red-link-title": "$1 (olupapula olwogera ku kino terunakolebwawo)",
 	"nstab-main": "Lupapula",
-	"nstab-user": "Enfo ya memba",
+	"nstab-user": "{{GENDER:$1|Ebikwata ku muwandiisi}}",
 	"nstab-media": "Lupapula lwa mediya",
 	"nstab-special": "Olupapula olwawule",
 	"nstab-project": "Ekkuŋaanizo erya kawefube",
@@ -846,6 +847,7 @@
 	"specialpages": "Empapula enjawule",
 	"tags-edit": "kyusa",
 	"deletepage": "Gyawo olupapula",
+	"htmlform-submit": "Waayo",
 	"nstab-mainpage": "Olupapula Olusinga Omugaso",
 	"skin-action-protect": "Ssiba",
 	"skin-action-undelete": "Zawo",

@@ -13,7 +13,8 @@
 			"Str4nd",
 			"Surjection",
 			"Tarmo",
-			"Wix"
+			"Wix",
+			"Samoasambia"
 		]
 	},
 	"exif-imagewidth": "Leveys",
@@ -206,6 +207,7 @@
 	"exif-photometricinterpretation-5": "Erotettu (luultavasti CMYK)",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (ICC-koodaus)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (ITU-koodaus)",
+	"exif-photometricinterpretation-32803": "Värisuodinryhmä",
 	"exif-unknowndate": "Tuntematon päiväys",
 	"exif-orientation-1": "Normaali",
 	"exif-orientation-2": "Käännetty vaakasuunnassa",
@@ -280,6 +282,7 @@
 	"exif-customrendered-3": "HDR (alkuperäinen tallennettu)",
 	"exif-customrendered-4": "Alkuperäinen (HDR:lle)",
 	"exif-customrendered-6": "Panoraama",
+	"exif-customrendered-7": "Muotokuva-HDR",
 	"exif-customrendered-8": "Muotokuva",
 	"exif-exposuremode-0": "Automaattinen valotus",
 	"exif-exposuremode-1": "Käsinsäädetty valotus",
@@ -369,8 +372,12 @@
 	"exif-urgency-other": "Käyttäjän määrittelemä prioriteetti ($1)",
 	"exif-firstphotodate": "Ensimmäisen kuvan päiväys",
 	"exif-lastphotodate": "Viimeisimmän kuvan päiväys",
+	"exif-projectiontype": "Projektiotyyppi",
+	"exif-projectiontype-equirectangular": "Tasavälinen lieriöprojektio",
+	"exif-usepanoramaviewer": "Käytä panoraamakatselinta",
 	"exif-usepanoramaviewer-true": "Kyllä",
 	"exif-usepanoramaviewer-false": "Ei",
+	"exif-exposurelockused": "Valotuslukon käyttö",
 	"exif-exposurelockused-true": "Kyllä",
 	"exif-exposurelockused-false": "Ei"
 }

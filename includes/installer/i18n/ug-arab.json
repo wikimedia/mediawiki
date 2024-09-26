@@ -4,7 +4,8 @@
 			"AlimOmar",
 			"Sahran",
 			"TayfunEt.",
-			"Uzdil"
+			"Uzdil",
+			"Zolgoyo"
 		]
 	},
 	"config-install-tables": "جەدۋەل قۇرۇش ، بىرىنچى قەدەم",
@@ -13,5 +14,5 @@
 	"config-install-manual-tables-failed": "<strong> خاتالىق: </ strong> جەدۋەل قۇرۇش تۆۋەندىكى خاتالىق بىلەن مەغلۇپ بولدى: $1",
 	"config-screenshot": "ئېكراندىن رەسىم تۇتۇش",
 	"mainpagetext": "'''MediaWiki مۇۋەپپەقىيەتلىك قاچىلاندى.'''",
-	"mainpagedocfooter": "[https://meta.wikimedia.org/wiki/Help:Contents ئىشلەتكۈچى قوللانمىسى] نى زىيارەت قىلىپ ۋىكى يۇمشاق دېتالىنى ئىشلىتىش ئۇچۇرىغا ئېرىشىڭ.\n\n== دەسلەپكى ساۋات ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings سەپلىمە تەڭشەك تىزىملىكى]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki كۆپ ئۇچرايدىغان مەسىلىلەرگە جاۋاب]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki تارقاتقان ئېلخەت تىزىملىكى]"
+	"mainpagedocfooter": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents ئىشلەتكۈچى قوللانمىسى] نى زىيارەت قىلىپ ۋىكى يۇمشاق دېتالىنى ئىشلىتىش ئۇچۇرىغا ئېرىشىڭ.\n\n== دەسلەپكى ساۋات ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings سەپلىمە تەڭشەك تىزىملىكى]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki كۆپ ئۇچرايدىغان مەسىلىلەرگە جاۋاب]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki تارقاتقان ئېلخەت تىزىملىكى]"
 }

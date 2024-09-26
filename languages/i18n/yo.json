@@ -16,7 +16,9 @@
 			"아라",
 			"Aderiqueza",
 			"AG202",
-			"BigDareLibrary"
+			"BigDareLibrary",
+			"Olafola2309",
+			"TheSymbyat"
 		]
 	},
 	"tog-underline": "Ìfàlàsábẹ́ àwọn àjápọ̀:",
@@ -308,6 +310,7 @@
 	"missingarticle-rev": "(àtúnyẹ̀wò#: $1)",
 	"missingarticle-diff": "(Ìyàtọ̀: $1, $2)",
 	"readonly_lag": "Ibi ìpamọ́ dátà ti jẹ́ títìpa fúnrararẹ̀\nkí àwọn ẹ̀rọ-ìwọ̀fà àdàkọ ìpamọ́ dátà le baà yára bá ẹ̀rọ àkọ́kọ́",
+	"timeouterror": "Àkókò yìí ti pari",
 	"internalerror": "Àsìṣe inú",
 	"internalerror_info": "Àsìṣe inú: $1",
 	"internalerror-fatal-exception": "Ìṣàtì tí kò ṣe é túnṣe irú \"$1\"",

@@ -9,5 +9,5 @@
 	"config-license-cc-by-sa": "共享創意姓名標示－－相同方式分享",
 	"config-license-cc-by": "共享創意姓名標示",
 	"config-cc-not-chosen": "請選擇您要使用的共享創意授權條款，然後點選 \"proceed\"。",
-	"mainpagedocfooter": "請參閱[https://meta.wikimedia.org/wiki/Help:Contents 用戶手冊]以獲得使用此 wiki 軟件的訊息！\n\n== 入門 ==\n* [https://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki 配置設定清單]\n* [https://www.mediawiki.org/wiki/Manual:FAQ MediaWiki 常見問題解答]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki 發佈郵件清單]"
+	"mainpagedocfooter": "請參閱[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 用戶手冊]以獲得使用此 wiki 軟件的訊息！\n\n== 入門 ==\n* [https://www.mediawiki.org/wiki/Manual:Configuration_settings MediaWiki 配置設定清單]\n* [https://www.mediawiki.org/wiki/Manual:FAQ MediaWiki 常見問題解答]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki 發佈郵件清單]"
 }

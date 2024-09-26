@@ -12,7 +12,8 @@
 			"Nehal",
 			"Ramesh",
 			"Rangilo Gujarati",
-			"Sushant savla"
+			"Sushant savla",
+			"CptViraj"
 		]
 	},
 	"exif-imagewidth": "પહોળાઈ",
@@ -98,7 +99,7 @@
 	"exif-imageuniqueid": "અનન્ય ચિત્ર ID",
 	"exif-gpsversionid": "GPS ચિન્હ સંસ્કરણ",
 	"exif-gpslatituderef": "ઉત્તર કે દક્ષીણ અક્ષાંસ",
-	"exif-gpslatitude": "અક્ષાંસ",
+	"exif-gpslatitude": "અક્ષાંશ",
 	"exif-gpslongituderef": "પૂર્વ પશ્ચિમ રેખાંશ",
 	"exif-gpslongitude": "રેખાંશ",
 	"exif-gpsaltituderef": "ઊંચાઈ સંદર્ભ",

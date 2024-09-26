@@ -10,7 +10,8 @@
 			"Joseph",
 			"Андрей Саг.",
 			"Oxianboal",
-			"Sibday"
+			"Sibday",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Ссылкаларны сиирi:",
@@ -158,7 +159,7 @@
 	"searchbutton": "Тілирге",
 	"go": "Парарға",
 	"searcharticle": "Парарға",
-	"skin-view-history": "Тархынны кӧзiдерi",
+	"skin-view-history": "Тархынны кӧзiдерге",
 	"history": "Страницаның тархыны",
 	"history_short": "Тархын",
 	"history_small": "тархын",
@@ -3872,7 +3873,7 @@
 	"skin-view-create-local": "Пос тілінең чарыдары",
 	"nstab-mainpage": "Ӧӧн страница",
 	"skin-view-edit-local": "Пос тілінең пазылған статьяны тӱзедерге",
-	"skin-action-protect": "Арачилирға",
+	"skin-action-protect": "Арачылирға",
 	"skin-action-undelete": "Айландырарға",
 	"skin-action-delete": "Чох идерге",
 	"skin-action-move": "Адын алыстырарға",

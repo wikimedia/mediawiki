@@ -21,7 +21,8 @@
 			"Викиней",
 			"아라",
 			"Элдин беги",
-			"Pacha Tchernof"
+			"Pacha Tchernof",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Шилтемелердин астын сызуу:",
@@ -173,7 +174,7 @@
 	"print": "Басып чыгаруу",
 	"view": "Көрүү",
 	"skin-view-view": "Окуу",
-	"skin-view-foreign": "Көрүлдү $1",
+	"skin-view-foreign": "$1 сайтынан көрүү",
 	"edit": "Түзөтүү",
 	"skin-view-edit": "Түзөтүү",
 	"edit-local": "Жергиликтүү сыпаттаманы түзөтүү",

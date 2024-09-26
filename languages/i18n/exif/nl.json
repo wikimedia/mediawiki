@@ -376,5 +376,22 @@
 	"exif-usepanoramaviewer-false": "Nee",
 	"exif-exposurelockused": "Belichtingsvergrendeling gebruikt",
 	"exif-exposurelockused-true": "Ja",
-	"exif-exposurelockused-false": "Nee"
+	"exif-exposurelockused-false": "Nee",
+	"exif-poseheadingdegrees": "Positie-richting (graden)",
+	"exif-posepitchdegrees": "Stamphoek (graden)",
+	"exif-poserolldegrees": "Slingerhoek (graden)",
+	"exif-initialviewheadingdegrees": "Aanvankelijke zichtrichting (graden)",
+	"exif-initialviewpitchdegrees": "Aanvankelijke zichtstamphoek (graden)",
+	"exif-initialviewrolldegrees": "Aanvankelijke zichtslingerhoek (graden)",
+	"exif-initialhorizontalfovdegrees": "Aanvankelijk gezichtsveld (horizontale graden)",
+	"exif-initialverticalfovdegrees": "Aanvankelijk gezichtsveld (verticale graden)",
+	"exif-sourcephotoscount": "Aantal bronfoto's",
+	"exif-croppedareaimagewidthpixels": "Bijgesneden panoramabreedte",
+	"exif-croppedareaimageheightpixels": "Bijgesneden panoramahoogte",
+	"exif-fullpanowidthpixels": "Volledige panoramabreedte",
+	"exif-fullpanoheightpixels": "Volledige panoramahoogte",
+	"exif-croppedarealeftpixels": "Linker uitsnede van panorama",
+	"exif-croppedareatoppixels": "Bovenzijde uitsnede van panorama",
+	"exif-initialcameradolly": "Eerste cameradolly",
+	"exif-stitchingsoftware": "Software voor het samenvoegen"
 }

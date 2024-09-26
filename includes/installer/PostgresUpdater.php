@@ -138,7 +138,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addTable', 'change_tag_def', 'patch-change_tag_def.sql' ],
 			[ 'populateExternallinksIndex60' ],
 			[ 'dropDefault', 'externallinks', 'el_index_60' ],
-			[ 'runMaintenance', DeduplicateArchiveRevId::class, 'maintenance/deduplicateArchiveRevId.php' ],
+			[ 'runMaintenance', DeduplicateArchiveRevId::class ],
 			[ 'addPgField', 'change_tag', 'ct_tag_id', 'INTEGER NULL' ],
 			[
 				'addPgIndex',
@@ -156,7 +156,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addIndex', 'site_identifiers', 'site_identifiers_pkey', 'patch-site_identifiers-pk.sql' ],
 			[ 'addPgIndex', 'recentchanges', 'rc_this_oldid', '(rc_this_oldid)' ],
 			[ 'dropTable', 'transcache' ],
-			[ 'runMaintenance', PopulateChangeTagDef::class, 'maintenance/populateChangeTagDef.php' ],
+			[ 'runMaintenance', PopulateChangeTagDef::class ],
 			[ 'dropIndex', 'change_tag', 'change_tag_rc_tag', 'patch-change_tag-change_tag_rc_tag_id.sql' ],
 			[ 'addPgField', 'ipblocks', 'ipb_sitewide', 'SMALLINT NOT NULL DEFAULT 1' ],
 			[ 'addTable', 'ipblocks_restrictions', 'patch-ipblocks_restrictions-table.sql' ],
@@ -597,9 +597,9 @@ class PostgresUpdater extends DatabaseUpdater {
 
 			// 1.39
 			[ 'addTable', 'user_autocreate_serial', 'patch-user_autocreate_serial.sql' ],
-			[ 'runMaintenance', MigrateRevisionActorTemp::class, 'maintenance/migrateRevisionActorTemp.php' ],
+			[ 'runMaintenance', MigrateRevisionActorTemp::class ],
 			[ 'dropTable', 'revision_actor_temp' ],
-			[ 'runMaintenance', UpdateRestrictions::class, 'maintenance/updateRestrictions.php' ],
+			[ 'runMaintenance', UpdateRestrictions::class ],
 			[ 'dropPgField', 'page', 'page_restrictions' ],
 			[ 'migrateTemplatelinks' ],
 			[ 'changeNullableField', 'templatelinks', 'tl_target_id', 'NOT NULL', true ],
