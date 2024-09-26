@@ -1064,6 +1064,14 @@
 				ApiSandbox.updateUI();
 				booklet.setPage( '|results|' );
 
+				const selected = menu.findFirstSelectedItem();
+				if ( selected ) {
+					const textInput = selected.getData().textInput;
+					if ( textInput instanceof OO.ui.MultilineTextInputWidget ) {
+						textInput.updatePosition();
+					}
+				}
+
 				location.href = oldhash = '#' + query;
 
 				api[ method ]( params, Object.assign( ajaxOptions, {
