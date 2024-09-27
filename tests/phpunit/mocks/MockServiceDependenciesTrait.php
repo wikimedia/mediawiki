@@ -28,8 +28,9 @@ trait MockServiceDependenciesTrait {
 		$reflectionClass = new ReflectionClass( $serviceClass );
 		$constructor = $reflectionClass->getConstructor();
 		foreach ( $constructor->getParameters() as $parameter ) {
-			$params[] = $parameterOverrides[$parameter->getName()]
-				?? $this->getMockValueForParam( $parameter );
+			$params[] = array_key_exists( $parameter->getName(), $parameterOverrides )
+				? $parameterOverrides[$parameter->getName()]
+				: $this->getMockValueForParam( $parameter );
 		}
 		return new $serviceClass( ...$params );
 	}
