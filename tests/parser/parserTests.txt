@@ -7705,11 +7705,6 @@ ill
 !! metadata
 ill=es:1
 ill=fr:1
-!! metadata/parsoid+integrated
-ill=es:1
-ill=es:2
-ill=fr:1
-ill=fr:2
 !! html/php
 !! html/parsoid
 <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/1"/>

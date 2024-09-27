@@ -74,6 +74,7 @@ use Wikimedia\AtEase\AtEase;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\Message\MessageSpecifier;
+use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\RelPath;
@@ -232,7 +233,7 @@ class OutputPage extends ContextSource {
 	private $mIndicators = [];
 
 	/**
-	 * @var string[] Array of Interwiki Prefixed (non DB key) Titles (e.g. 'fr:Test page')
+	 * @var array<string,string> Array mapping interwiki prefix to (non DB key) Titles (e.g. 'fr' => 'Test page')
 	 */
 	private $mLanguageLinks = [];
 
@@ -1565,21 +1566,40 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add new language links
 	 *
-	 * @param string[] $newLinkArray Array of interwiki-prefixed (non DB key) titles
-	 *                               (e.g. 'fr:Test page')
+	 * @param string[]|ParsoidLinkTarget[] $newLinkArray Array of
+	 *    interwiki-prefixed (non DB key) titles (e.g. 'fr:Test page')
 	 */
 	public function addLanguageLinks( array $newLinkArray ) {
-		$this->mLanguageLinks = array_merge( $this->mLanguageLinks, $newLinkArray );
+		# $newLinkArray is in order of appearance on the page;
+		# deduplicate so only the first for a given prefix is used
+		# (T26502)
+		foreach ( $newLinkArray as $item ) {
+			if ( is_string( $item ) ) {
+				[ $prefix, $title ] = explode( ':', $item, 2 );
+				# note that $title may have a fragment
+			} else {
+				$prefix = $item->getInterwiki();
+				$title = $item->getText();
+				if ( $item->getFragment() !== '' ) {
+					$title .= '#' . $item->getFragment();
+				}
+			}
+			$this->mLanguageLinks[$prefix] ??= $title;
+		}
 	}
 
 	/**
 	 * Reset the language links and add new language links
 	 *
-	 * @param string[] $newLinkArray Array of interwiki-prefixed (non DB key) titles
+	 * @param string[]|ParsoidLinkTarget[] $newLinkArray Array of interwiki-prefixed (non DB key) titles
 	 *                               (e.g. 'fr:Test page')
+	 * @deprecated since 1.43, use ::addLanguageLinks() instead, or
+	 * use the LanguageLinksHook in the rare case that you need to remove
+	 * or replace language links from the output page.
 	 */
 	public function setLanguageLinks( array $newLinkArray ) {
-		$this->mLanguageLinks = $newLinkArray;
+		$this->mLanguageLinks = [];
+		$this->addLanguageLinks( $newLinkArray );
 	}
 
 	/**
@@ -1588,7 +1608,11 @@ class OutputPage extends ContextSource {
 	 * @return string[] Array of interwiki-prefixed (non DB key) titles (e.g. 'fr:Test page')
 	 */
 	public function getLanguageLinks() {
-		return $this->mLanguageLinks;
+		$result = [];
+		foreach ( $this->mLanguageLinks as $prefix => $title ) {
+			$result[] = "$prefix:$title";
+		}
+		return $result;
 	}
 
 	/**
@@ -2335,8 +2359,7 @@ class OutputPage extends ContextSource {
 	public function addParserOutputMetadata( ParserOutput $parserOutput ) {
 		// T301020 This should eventually use the standard "merge ParserOutput"
 		// function between $parserOutput and $this->metadata.
-		$this->mLanguageLinks =
-			array_merge( $this->mLanguageLinks, $parserOutput->getLanguageLinks() );
+		$this->addLanguageLinks( $parserOutput->getLanguageLinks() );
 		$this->addCategoryLinks( $parserOutput->getCategoryMap() );
 
 		// Parser-generated indicators get wrapped like other parser output.
@@ -2442,7 +2465,11 @@ class OutputPage extends ContextSource {
 		// Link flags are ignored for now, but may in the future be
 		// used to mark individual language links.
 		$linkFlags = [];
-		$this->getHookRunner()->onLanguageLinks( $this->getTitle(), $this->mLanguageLinks, $linkFlags );
+		$languageLinks = $this->getLanguageLinks();
+		// This hook can be used to remove/replace language links
+		$this->getHookRunner()->onLanguageLinks( $this->getTitle(), $languageLinks, $linkFlags );
+		$this->mLanguageLinks = [];
+		$this->addLanguageLinks( $languageLinks );
 
 		$this->getHookRunner()->onOutputPageParserOutput( $this, $parserOutput );
 

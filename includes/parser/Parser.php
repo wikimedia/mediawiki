@@ -368,13 +368,6 @@ class Parser {
 	private ?RevisionRecord $mRevisionRecordObject = null;
 
 	/**
-	 * Array with the language name of each language link (i.e. the
-	 * interwiki prefix) in the key, value arbitrary. Used to avoid sending
-	 * duplicate language links to the ParserOutput.
-	 */
-	private array $mLangLinkLanguages;
-
-	/**
 	 * A cache of the current revisions of titles. Keys are $title->getPrefixedDbKey()
 	 *
 	 * @since 1.24
@@ -633,7 +626,6 @@ class Parser {
 		$this->mRevisionRecordObject = null;
 		$this->mVarCache = [];
 		$this->mUser = null;
-		$this->mLangLinkLanguages = [];
 		$this->currentRevisionCache = null;
 
 		$this->mStripState = new StripState( $this );
@@ -2705,11 +2697,8 @@ class Parser {
 						|| in_array( $iw, $this->svcOptions->get( MainConfigNames::ExtraInterlanguageLinkPrefixes ) )
 					)
 				) {
-					# T26502: filter duplicates
-					if ( !isset( $this->mLangLinkLanguages[$iw] ) ) {
-						$this->mLangLinkLanguages[$iw] = true;
-						$this->mOutput->addLanguageLink( $nt );
-					}
+					# T26502: duplicates are resolved in ParserOutput
+					$this->mOutput->addLanguageLink( $nt );
 
 					/**
 					 * Strip the whitespace interlanguage links produce, see

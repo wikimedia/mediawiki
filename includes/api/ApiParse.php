@@ -586,7 +586,7 @@ class ApiParse extends ApiBase {
 				$langlinks = $outputPage->getLanguageLinks();
 			} else {
 				$langlinks = $p_result->getLanguageLinks();
-				// The deprecated 'effectivelanglinks' option depredates OutputPage
+				// The deprecated 'effectivelanglinks' option pre-dates OutputPage
 				// support via 'useskin'. If not already applied, then run just this
 				// one hook of OutputPage::addParserOutputMetadata here.
 				if ( $params['effectivelanglinks'] ) {

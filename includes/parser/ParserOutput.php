@@ -139,9 +139,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mRawText = null;
 
 	/**
-	 * @var string[] List of the full text of language links, in the order they appear.
+	 * @var array<string,string> Array mapping interwiki prefix to (non DB key) Titles (e.g. 'fr' => 'Test page')
 	 */
-	private $mLanguageLinks;
+	private $mLanguageLinkMap = [];
 
 	/**
 	 * @var array<string,string> Map of category names to sort keys
@@ -381,9 +381,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$unused = false, $titletext = ''
 	) {
 		$this->mRawText = $text;
-		$this->mLanguageLinks = $languageLinks;
 		$this->mCategories = $categoryLinks;
 		$this->mTitleText = $titletext;
+		foreach ( $languageLinks as $ll ) {
+			$this->addLanguageLink( $ll );
+		}
 	}
 
 	/**
@@ -656,8 +658,17 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return $this->revisionUsedSha1Base36;
 	}
 
-	public function &getLanguageLinks() {
-		return $this->mLanguageLinks;
+	/**
+	 * @return string[]
+	 * @note Before 1.43, this function returned an array reference.
+	 */
+	public function getLanguageLinks() {
+		$result = [];
+		foreach ( $this->mLanguageLinkMap as $lang => $title ) {
+			// T374736: Back-compat with empty prefix; see ::addLanguageLink()
+			$result[] = $title === '|' ? "$lang" : "$lang:$title";
+		}
+		return $result;
 	}
 
 	public function getInterwikiLinks() {
@@ -923,7 +934,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @deprecated since 1.42, use ::addLanguageLink() instead.
 	 */
 	public function setLanguageLinks( $ll ) {
-		return wfSetVar( $this->mLanguageLinks, $ll );
+		$old = $this->getLanguageLinks();
+		$this->mLanguageLinkMap = [];
+		foreach ( $ll as $l ) {
+			$this->addLanguageLink( $l );
+		}
+		return $old;
 	}
 
 	public function setTitleText( $t ) {
@@ -1038,7 +1054,14 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			// a full title lookup.
 			$t = Title::newfromLinkTarget( $t )->getFullText();
 		}
-		$this->mLanguageLinks[] = $t;
+		if ( !str_contains( $t, ':' ) ) {
+			// T374736: For backward compatibility with test cases only!
+			wfDeprecated( __METHOD__ . ' without prefix', '1.43' );
+			[ $lang, $title ] = [ $t, '|' ]; // | can not occur in valid title
+		} else {
+			[ $lang, $title ] = explode( ':', $t, 2 );
+		}
+		$this->mLanguageLinkMap[$lang] ??= $title;
 	}
 
 	/**
@@ -2474,7 +2497,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @param ParserOutput $source
 	 */
 	public function mergeTrackingMetaDataFrom( ParserOutput $source ): void {
-		$this->mLanguageLinks = self::mergeList( $this->mLanguageLinks, $source->getLanguageLinks() );
+		foreach ( $source->getLanguageLinks() as $ll ) {
+			$this->addLanguageLink( $ll );
+		}
 		$this->mCategories = self::mergeMap( $this->mCategories, $source->getCategoryMap() );
 		$this->mLinks = self::merge2D( $this->mLinks, $source->getLinks() );
 		$this->mTemplates = self::merge2D( $this->mTemplates, $source->getTemplates() );
@@ -2568,11 +2593,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			$metadata->addImage( $lt, $props['time'] ?? null, $props['sha1'] ?? null );
 		}
 
-		foreach ( $this->mLanguageLinks as $link ) {
-			[ $lang, $title ] = explode( ':', $link, 2 );
+		foreach ( $this->mLanguageLinkMap as $lang => $title ) {
+			if ( $title === '|' ) {
+				continue; // T374736: not a valid language link
+			}
 			# language links can have fragments!
 			[ $title, $frag ] = array_pad( explode( '#', $title, 2 ), 2, '' );
-			$lt = TitleValue::tryNew( NS_MAIN, $title, $frag, $lang );
+			$lt = TitleValue::tryNew( NS_MAIN, $title, $frag, (string)$lang );
 			$metadata->addLanguageLink( $lt );
 		}
 
@@ -2801,7 +2828,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 		$data = [
 			'Text' => $this->mRawText,
-			'LanguageLinks' => $this->mLanguageLinks,
+			'LanguageLinks' => $this->getLanguageLinks(),
 			'Categories' => $this->mCategories,
 			'Indicators' => $this->mIndicators,
 			'TitleText' => $this->mTitleText,
@@ -2890,7 +2917,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 
 		$this->mRawText = $jsonData['Text'];
-		$this->mLanguageLinks = $jsonData['LanguageLinks'];
+		$this->setLanguageLinks( $jsonData['LanguageLinks'] );
 		$this->mCategories = $jsonData['Categories'];
 		$this->mIndicators = $jsonData['Indicators'];
 		$this->mTitleText = $jsonData['TitleText'];
@@ -3030,10 +3057,16 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		if ( $mText !== null ) {
 			$this->setRawText( $mText );
 		}
+		// Backwards compatibility, pre 1.42
+		$ll = $this->getGhostFieldValue( 'mLanguageLinks', ...$oldAliases );
+		if ( $ll !== null && $ll !== [] ) {
+			foreach ( $ll as $l ) {
+				$this->addLanguageLink( $l );
+			}
+		}
 		// Backward compatibility with private fields, pre 1.42
 		$oldPrivateFields = [
 			'mRawText',
-			'mLanguageLinks',
 			'mCategories',
 			'mIndicators',
 			'mTitleText',

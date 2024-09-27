@@ -28,7 +28,8 @@ class LangLinksTable extends LinksTable {
 		$this->newLinks = [];
 		foreach ( $ill as $link ) {
 			[ $key, $title ] = explode( ':', $link, 2 );
-			$this->newLinks[$key] = $title;
+			// Ensure that the "first" link has precedence: T26502
+			$this->newLinks[$key] ??= $title;
 		}
 	}
 

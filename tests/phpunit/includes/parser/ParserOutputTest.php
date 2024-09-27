@@ -982,9 +982,6 @@ EOF
 	public function testCollectMetaData( ParserOutput $a, ParserOutput $b, $expected ) {
 		$b->collectMetadata( $a );
 
-		# T26502/T358950 parsoid and legacy parser currently disagree about
-		# where deduplication of language links occurs.
-		unset( $expected['getLanguageLinks'] );
 		$this->assertFieldValues( $a, $expected );
 	}
 
