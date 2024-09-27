@@ -69,7 +69,7 @@
 	display: inline-block;
 
 	// this is important for increasing the size via padding. Overrides `.view-border-box *`.
-	// stylelint-disable-next-line declaration-no-important
+	/* stylelint-disable declaration-no-important */
 	box-sizing: content-box !important;
 	width: @icon-size-md;
 	height: @icon-size-md;
@@ -78,6 +78,7 @@
 	min-width: @icon-size-md;
 	min-height: @icon-size-md;
 	flex-basis: @icon-size-md;
+	/* stylelint-enable declaration-no-important */
 
 	// alignment
 	vertical-align: middle;

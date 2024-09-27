@@ -72,7 +72,8 @@
 	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	.mw-collapsible:not( @{exclude} ):has( .mw-collapsible-toggle, .mw-collapsible-toggle-placeholder ) th::before,
 	.mw-collapsible:not( @{exclude} ):has( .mw-collapsible-toggle, .mw-collapsible-toggle-placeholder )::before {
-		content: none !important; // stylelint-disable-line declaration-no-important
+		/* stylelint-disable-next-line declaration-no-important */
+		content: none !important;
 	}
 
 	// Special case for table where first child is caption element

@@ -88,22 +88,26 @@
 	width: @calendarWidth * 2;
 	height: @calendarHeight;
 
+	/* stylelint-disable declaration-no-important */
 	.mw-widget-calendarWidget-body:first-child {
-		margin-top: 0 !important; /* stylelint-disable-line declaration-no-important */
-		margin-left: 0 !important; /* stylelint-disable-line declaration-no-important */
+		margin-top: 0 !important;
+		margin-left: 0 !important;
 		transition: margin-left 500ms;
 	}
+	/* stylelint-enable declaration-no-important */
 }
 
 .mw-widget-calendarWidget-body-wrapper-fade-next {
 	width: @calendarWidth * 2;
 	height: @calendarHeight;
 
+	/* stylelint-disable declaration-no-important */
 	.mw-widget-calendarWidget-body:first-child {
-		margin-left: -@calendarWidth !important; /* stylelint-disable-line declaration-no-important */
-		margin-top: 0 !important; /* stylelint-disable-line declaration-no-important */
+		margin-left: -@calendarWidth !important;
+		margin-top: 0 !important;
 		transition: margin-left 500ms;
 	}
+	/* stylelint-enable declaration-no-important */
 }
 
 .mw-widget-calendarWidget-body-wrapper-fade-up {
@@ -115,11 +119,13 @@
 		display: grid;
 	}
 
+	/* stylelint-disable declaration-no-important */
 	.mw-widget-calendarWidget-body:first-child {
-		margin-left: 0 !important; /* stylelint-disable-line declaration-no-important */
-		margin-top: 0 !important; /* stylelint-disable-line declaration-no-important */
+		margin-left: 0 !important;
+		margin-top: 0 !important;
 		transition: margin-top 500ms;
 	}
+	/* stylelint-enable declaration-no-important */
 }
 
 .mw-widget-calendarWidget-body-wrapper-fade-down {
@@ -131,11 +137,13 @@
 		display: grid;
 	}
 
+	/* stylelint-disable declaration-no-important */
 	.mw-widget-calendarWidget-body:first-child {
-		margin-left: 0 !important; /* stylelint-disable-line declaration-no-important */
-		margin-top: -@calendarHeight !important; /* stylelint-disable-line declaration-no-important */
+		margin-left: 0 !important;
+		margin-top: -@calendarHeight !important;
 		transition: margin-top 500ms;
 	}
+	/* stylelint-enable declaration-no-important */
 }
 
 // Support: Browsers that render CSS Grid. All others ignore unknown `grid-*` properties.

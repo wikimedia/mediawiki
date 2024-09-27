@@ -59,7 +59,7 @@
 
 	&.mw-ui-icon-element {
 		&:not( .mw-ui-icon-with-label-desktop ) {
-			// stylelint-disable-next-line declaration-no-important
+			/* stylelint-disable-next-line declaration-no-important */
 			color: transparent !important;
 
 			span:not( .mw-ui-icon ) {
@@ -68,13 +68,13 @@
 		}
 
 		@media all and ( max-width: @max-width-breakpoint-tablet ) {
-			&.mw-ui-icon-with-label-desktop {
-				// stylelint-disable-next-line declaration-no-important
-				color: transparent !important;
-			}
-
 			span:not( .mw-ui-icon ) {
 				.mixin-screen-reader-text();
+			}
+
+			&.mw-ui-icon-with-label-desktop {
+				/* stylelint-disable-next-line declaration-no-important */
+				color: transparent !important;
 			}
 		}
 	}
