@@ -1859,6 +1859,7 @@
 	"apierror-filenopath": "Cannot get local file path.",
 	"apierror-filetypecannotberotated": "File type cannot be rotated.",
 	"apierror-formatphp": "This response cannot be represented using <kbd>format=php</kbd>. See https://phabricator.wikimedia.org/T68776.",
+	"apierror-http-contenttoolarge": "HTTP Request Content too large. Maximum length: $1.",
 	"apierror-imageusage-badtitle": "The title for <kbd>$1</kbd> must be a file.",
 	"apierror-import-unknownerror": "Unknown error on import: $1.",
 	"apierror-info-singlepagerevision": "Multiple pages or revisions were supplied, but <var>$1prop=preloadcontent</var> and <var>$1prop=editintro</var> may only be used with a single page and revision.",

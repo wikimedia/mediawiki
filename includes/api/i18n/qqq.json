@@ -1762,6 +1762,7 @@
 	"apierror-filenopath": "{{doc-apierror}}",
 	"apierror-filetypecannotberotated": "{{doc-apierror}}",
 	"apierror-formatphp": "{{doc-apierror}}",
+	"apierror-http-contenttoolarge": "{{doc-apierror}}\n\nParameters:\n* $1 - maximum size parameter (already formatted as \"1 KB\" or similar).",
 	"apierror-imageusage-badtitle": "{{doc-apierror}}\n\nParameters:\n* $1 - Module name.",
 	"apierror-import-unknownerror": "{{doc-apierror}}\n\nParameters:\n* $1 - Error message returned by the import, probably in English.",
 	"apierror-info-singlepagerevision": "{{doc-apierror}}\n\nParameters:\n* $1 - Module parameter prefix, e.g. \"in\".",
