@@ -20,7 +20,7 @@
 
 namespace MediaWiki\RCFeed;
 
-use RedisConnectionPool;
+use Wikimedia\Redis\RedisConnectionPool;
 
 /**
  * Send recent change to a Redis Pub/Sub channel.

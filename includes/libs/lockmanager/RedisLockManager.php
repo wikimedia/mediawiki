@@ -18,6 +18,8 @@
  * @file
  */
 
+use Wikimedia\Redis\RedisConnectionPool;
+
 /**
  * Manage locks using redis servers.
  *
