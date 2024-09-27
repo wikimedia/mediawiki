@@ -21,6 +21,7 @@
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
+use Wikimedia\ObjectCache\WANObjectCache;
 
 /**
  * Prioritized list of file repositories.

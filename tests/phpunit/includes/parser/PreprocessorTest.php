@@ -8,8 +8,8 @@ use MediaWikiIntegrationTestCase;
 use ParserOptions;
 use Preprocessor;
 use Preprocessor_Hash;
-use WANObjectCache;
 use Wikimedia\ObjectCache\HashBagOStuff;
+use Wikimedia\ObjectCache\WANObjectCache;
 
 /**
  * @covers \Preprocessor

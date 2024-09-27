@@ -36,9 +36,9 @@ use MediaWiki\Output\StreamFile;
 use MediaWiki\Status\Status;
 use MimeAnalyzer;
 use Profiler;
-use WANObjectCache;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\ReadOnlyMode;
 

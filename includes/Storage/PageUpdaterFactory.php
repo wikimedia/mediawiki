@@ -42,7 +42,7 @@ use MediaWiki\User\UserNameUtils;
 use MessageCache;
 use ParserCache;
 use Psr\Log\LoggerInterface;
-use WANObjectCache;
+use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\ILBFactory;
 
 /**

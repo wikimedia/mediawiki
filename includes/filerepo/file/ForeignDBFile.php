@@ -18,10 +18,12 @@
  * @file
  */
 
+use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\DBUnexpectedError;
 
 /**

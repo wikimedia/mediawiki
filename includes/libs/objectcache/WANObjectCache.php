@@ -18,14 +18,20 @@
  * @file
  */
 
+namespace Wikimedia\ObjectCache;
+
+use ArrayIterator;
+use Closure;
+use Exception;
+use IBufferingStatsdDataFactory;
+use MapCacheLRU;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use RuntimeException;
+use UnexpectedValueException;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\LightweightObjectStore\StorageAwareness;
-use Wikimedia\ObjectCache\BagOStuff;
-use Wikimedia\ObjectCache\EmptyBagOStuff;
-use Wikimedia\ObjectCache\IStoreKeyEncoder;
 use Wikimedia\Stats\StatsFactory;
 
 /**
@@ -3121,3 +3127,6 @@ class WANObjectCache implements
 		}
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( WANObjectCache::class, 'WANObjectCache' );

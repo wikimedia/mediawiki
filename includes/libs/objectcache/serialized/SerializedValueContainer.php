@@ -1,5 +1,9 @@
 <?php
 
+namespace Wikimedia\ObjectCache\Serialized;
+
+use stdClass;
+
 /**
  * Helper class for segmenting large cache values without relying
  * on serializing classes.
@@ -35,3 +39,6 @@ class SerializedValueContainer {
 		);
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( SerializedValueContainer::class, 'SerializedValueContainer' );

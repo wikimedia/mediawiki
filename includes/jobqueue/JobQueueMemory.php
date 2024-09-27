@@ -19,6 +19,7 @@
  */
 
 use Wikimedia\ObjectCache\HashBagOStuff;
+use Wikimedia\ObjectCache\WANObjectCache;
 
 /**
  * PHP memory-backed job queue storage, for testing.

@@ -4,6 +4,7 @@ namespace MediaWiki\Tests;
 
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\ObjectCache\HashBagOStuff;
+use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -53,7 +54,7 @@ class MockDatabase extends Database {
 		$this->replicationReporter = new ReplicationReporter(
 			$options['topologyRole'] ?? IDatabase::ROLE_STREAMING_MASTER,
 			$logger,
-			$options['srvCache'] ?? new \WANObjectCache( [
+			$options['srvCache'] ?? new WANObjectCache( [
 				'cache' => new HashBagOStuff(),
 				'logger' => $logger,
 			] )

@@ -8,14 +8,14 @@ use ArrayIterator;
 use MediaWikiUnitTestCase;
 use Psr\Log\NullLogger;
 use UnexpectedValueException;
-use WANObjectCache;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
+use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \WANObjectCache
+ * @covers \Wikimedia\ObjectCache\WANObjectCache
  */
 class WANObjectCacheTest extends MediaWikiUnitTestCase {
 

@@ -27,6 +27,7 @@ use MediaWiki\Utils\MWTimestamp;
 use Psr\Log\NullLogger;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
+use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Stats\StatsFactory;

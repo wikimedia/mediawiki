@@ -2,6 +2,7 @@
 
 use MediaWiki\SiteStats\SiteStats;
 use Wikimedia\ObjectCache\HashBagOStuff;
+use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**

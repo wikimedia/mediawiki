@@ -7,8 +7,8 @@ use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
-use WANObjectCache;
 use Wikimedia\ObjectCache\HashBagOStuff;
+use Wikimedia\ObjectCache\WANObjectCache;
 
 /**
  * @group ResourceLoader

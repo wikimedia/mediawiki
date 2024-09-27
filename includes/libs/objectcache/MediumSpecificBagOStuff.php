@@ -21,8 +21,8 @@ namespace Wikimedia\ObjectCache;
 
 use InvalidArgumentException;
 use JsonSerializable;
-use SerializedValueContainer;
 use stdClass;
+use Wikimedia\ObjectCache\Serialized\SerializedValueContainer;
 use Wikimedia\WaitConditionLoop;
 
 /**

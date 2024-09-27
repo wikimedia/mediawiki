@@ -25,7 +25,7 @@ use MediaWiki\Utils\UrlUtils;
 use MediaWikiUnitTestCase;
 use ParserFactory;
 use TestLogger;
-use WANObjectCache;
+use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\TestingAccessWrapper;
 
 /**

@@ -9,6 +9,7 @@ use MediaWiki\Output\StreamFile;
 use MediaWiki\Status\Status;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
+use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\TestingAccessWrapper;
 
 /**

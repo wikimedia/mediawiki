@@ -16,7 +16,7 @@ use MediaWiki\Page\PageStore;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use stdClass;
-use WANObjectCache;
+use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBAccessObjectUtils;
 use Wikimedia\Rdbms\IDBAccessObject;
