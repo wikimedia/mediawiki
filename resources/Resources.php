@@ -1724,6 +1724,11 @@ return [
 	'mediawiki.page.preview' => [
 		'localBasePath' => MW_INSTALL_PATH . '/resources/src',
 		'remoteBasePath' => "$wgResourceBasePath/resources/src",
+		"class" => CodexModule::class,
+		"codexComponents" => [
+			"CdxMessage",
+		],
+		"codexStyleOnly" => true,
 		'packageFiles' => [
 			'mediawiki.page.preview.js',
 		],
