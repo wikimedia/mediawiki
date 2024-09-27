@@ -8,6 +8,7 @@ use MailAddress;
 use ManualLogEntry;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\JsonContent;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\Linker\LinkRenderer;
@@ -27,9 +28,11 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use ParserOptions;
+use SearchEngine;
 use Skin;
 use StatusValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use WikiPage;
 
 /**
  * This class provides an implementation of the core hook interfaces,
@@ -3374,8 +3377,8 @@ class HookRunner implements
 		);
 	}
 
-	public function onSearchDataForIndex2( array &$fields, \ContentHandler $handler,
-		\WikiPage $page, ParserOutput $output, \SearchEngine $engine, RevisionRecord $revision
+	public function onSearchDataForIndex2( array &$fields, ContentHandler $handler,
+		WikiPage $page, ParserOutput $output, SearchEngine $engine, RevisionRecord $revision
 	) {
 		return $this->container->run(
 			'SearchDataForIndex2',

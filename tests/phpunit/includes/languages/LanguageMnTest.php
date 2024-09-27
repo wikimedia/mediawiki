@@ -11,7 +11,7 @@
 class LanguageMnTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providerGrammar
-	 * @covers \Language::convertGrammar
+	 * @covers \MediaWiki\Language\Language::convertGrammar
 	 */
 	public function testGrammar( $result, $word, $case ) {
 		$this->assertEquals( $result, $this->getLang()->convertGrammar( $word, $case ) );

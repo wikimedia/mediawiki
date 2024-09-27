@@ -22,8 +22,8 @@
 
 namespace MediaWiki\Specials;
 
-use Language;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\Language;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\NamespaceInfo;
 

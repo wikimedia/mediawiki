@@ -19,6 +19,7 @@
  * @author Ruben Vardanyan (Me@RubenVardanyan.com)
  */
 
+use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 

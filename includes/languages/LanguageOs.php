@@ -19,6 +19,7 @@
  * @author Soslan Khubulov
  */
 
+use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 

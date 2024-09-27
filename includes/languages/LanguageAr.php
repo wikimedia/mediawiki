@@ -20,6 +20,7 @@
  * @author Niklas Laxström
  */
 
+use MediaWiki\Language\Language;
 use MediaWiki\Languages\Data\NormalizeAr;
 
 /**

@@ -22,6 +22,8 @@ use MediaWiki\Context\ContextSource;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\Language;
+use MediaWiki\Language\LanguageCode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;

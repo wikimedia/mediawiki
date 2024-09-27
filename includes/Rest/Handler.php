@@ -3,6 +3,7 @@
 namespace MediaWiki\Rest;
 
 use DateTime;
+use MediaWiki\Debug\MWDebug;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Permissions\Authority;
@@ -11,7 +12,6 @@ use MediaWiki\Rest\Validator\BodyValidator;
 use MediaWiki\Rest\Validator\NullBodyValidator;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\Session;
-use MWDebug;
 use UtfNormal\Validator as UtfNormalValidator;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageValue;

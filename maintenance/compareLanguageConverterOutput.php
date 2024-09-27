@@ -21,6 +21,7 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\TextContent;
+use MediaWiki\Language\Language;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Rest\Handler\Helper\PageRestHelperFactory;
 use MediaWiki\Revision\SlotRecord;

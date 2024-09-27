@@ -21,6 +21,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Language\Language;
 
 /**
  * Kazakh (Қазақша)

@@ -17,7 +17,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Language
- * @covers \Language
+ * @covers \MediaWiki\Language\Language
  * @covers \MediaWiki\Languages\LanguageNameUtils
  */
 class LanguageIntegrationTest extends LanguageClassesTestCase {

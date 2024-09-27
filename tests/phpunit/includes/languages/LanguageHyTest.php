@@ -14,7 +14,7 @@
 class LanguageHyTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providePlural
-	 * @covers \Language::convertPlural
+	 * @covers \MediaWiki\Language\Language::convertPlural
 	 */
 	public function testPlural( $result, $value ) {
 		$forms = [ 'one', 'other' ];
@@ -23,7 +23,7 @@ class LanguageHyTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider providePlural
-	 * @covers \Language::getPluralRuleType
+	 * @covers \MediaWiki\Language\Language::getPluralRuleType
 	 */
 	public function testGetPluralRuleType( $result, $value ) {
 		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );

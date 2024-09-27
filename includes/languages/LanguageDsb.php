@@ -19,6 +19,7 @@
  * @author Niklas Laxström
  */
 
+use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 

@@ -4,6 +4,7 @@
  * It's split into a separate file so it can be tested.
  */
 
+use MediaWiki\Language\LanguageCode;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Title\NamespaceInfo;
 use Wikimedia\AtEase\AtEase;

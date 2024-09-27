@@ -18,6 +18,7 @@
  * @file
  */
 use MediaWiki\Language\ILanguageConverter;
+use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\StubObject\StubUserLang;

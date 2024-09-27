@@ -4,7 +4,7 @@ use MediaWiki\MainConfigNames;
 
 /**
  * @group Language
- * @covers \Language::userAdjust
+ * @covers \MediaWiki\Language\Language::userAdjust
  */
 class TimeAdjustTest extends MediaWikiLangTestCase {
 	private const LOCAL_TZ_OFFSET = 17;

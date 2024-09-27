@@ -11,7 +11,7 @@
 class LanguageNlTest extends LanguageClassesTestCase {
 
 	/**
-	 * @covers \Language::formatNum
+	 * @covers \MediaWiki\Language\Language::formatNum
 	 * @dataProvider provideFormatNum
 	 */
 	public function testFormatNum( $unformatted, $formatted ) {

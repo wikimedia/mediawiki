@@ -23,6 +23,7 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\LanguageCode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parser;

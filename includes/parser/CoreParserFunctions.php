@@ -23,6 +23,8 @@
 
 use MediaWiki\Category\Category;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Language\Language;
+use MediaWiki\Language\LanguageCode;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

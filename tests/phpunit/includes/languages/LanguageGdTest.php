@@ -11,7 +11,7 @@
 class LanguageGdTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providerPlural
-	 * @covers \Language::convertPlural
+	 * @covers \MediaWiki\Language\Language::convertPlural
 	 */
 	public function testPlural( $result, $value ) {
 		$forms = [ 'one', 'two', 'few', 'other' ];
@@ -33,7 +33,7 @@ class LanguageGdTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider providerPluralExplicit
-	 * @covers \Language::convertPlural
+	 * @covers \MediaWiki\Language\Language::convertPlural
 	 */
 	public function testExplicitPlural( $result, $value ) {
 		$forms = [ 'one', 'two', 'few', 'other', '11=Form11', '12=Form12' ];

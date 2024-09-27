@@ -19,6 +19,8 @@
  */
 // phpcs:ignoreFile Squiz.Classes.ValidClassName.NotCamelCaps
 
+use MediaWiki\Language\Language;
+
 /**
  * Simplified Chinese
  *

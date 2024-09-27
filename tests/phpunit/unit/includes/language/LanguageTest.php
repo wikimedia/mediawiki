@@ -10,7 +10,7 @@ use Wikimedia\Bcp47Code\Bcp47CodeValue;
 
 /**
  * @group Language
- * @covers \Language
+ * @covers \MediaWiki\Language\Language
  */
 class LanguageTest extends MediaWikiUnitTestCase {
 	/**
