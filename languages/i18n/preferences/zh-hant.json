@@ -28,6 +28,7 @@
 	},
 	"preferences": "偏好設定",
 	"prefsnologintext2": "請登入以變更您的偏好設定。",
+	"prefsnologintext2-for-temp-user": "請建立一個帳號來更改偏好設定。",
 	"searchprefs": "在偏好設定中搜尋",
 	"searchprefs-noresults": "沒有結果",
 	"searchprefs-results": "$1{{PLURAL:$1|個結果}}",

@@ -19,6 +19,7 @@
 	},
 	"preferences": "Подешавања",
 	"prefsnologintext2": "Морате бити пријављени да бисте мењали своја подешавања.",
+	"prefsnologintext2-for-temp-user": "Молимо отворите налог да промените подешавања.",
 	"searchprefs": "Претрага подешавања",
 	"searchprefs-noresults": "Нема резултата",
 	"searchprefs-results": "$1 {{PLURAL:$1|резултат|резултата}}",

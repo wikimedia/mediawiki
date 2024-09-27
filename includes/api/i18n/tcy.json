@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Bharathesha Alasandemajalu",
+			"Pragathi. BH",
 			"VASANTH S.N.",
 			"Vishwanatha Badikana"
 		]
@@ -16,6 +17,8 @@
 	"apihelp-login-param-name": "ಸದಸ್ಯೆರೆನ ಪುದರ್",
 	"apihelp-login-param-password": "ಪ್ರವೇಶ ಪದೊ",
 	"apihelp-login-example-login": "ಲಾಗಿನ್ ಆಲೆ",
+	"apihelp-query+allusers-param-excludenamed": "ತಾತ್ಕಾಲಿಕ ಖಾತೆಲೆನ ಬಳಕೆದಾರೆರೆನ್ ಬುಡುಗಡೆ ಮಲ್ಪುಲೆ.",
+	"apihelp-query+allusers-param-excludetemp": "ಪುದರ್ ದೀತಿನ ಖಾತೆಲೆನ ಬಳಕೆದಾರೆರೆನ್ ಬುಡುಗಡೆ ಮಲ್ಪುಲೆ.",
 	"apihelp-query+watchlist-param-type": "ವಾ ನಮೂನೆದ ಬದಲಾವಣೆ ತೊಜವೋಡು",
 	"apihelp-query+watchlist-paramvalue-type-external": "ಪಿದಯೀದ ಬದಲಾವಣೇ",
 	"apihelp-query+watchlist-paramvalue-type-new": "ಪುಟೊ ಉಂಡುಮಾನ್ಪುನಾ"
