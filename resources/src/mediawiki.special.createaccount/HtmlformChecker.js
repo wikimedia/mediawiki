@@ -1,3 +1,5 @@
+const util = require( 'mediawiki.util' );
+
 /**
  * A helper class to add validation to non-OOUI HTMLForm fields.
  *
@@ -17,9 +19,9 @@ function HtmlformChecker( $element, validator ) {
 	this.validator = validator;
 	this.$element = $element;
 
-	this.$errorBox = $element.next( '.mw-message-box-error' );
+	this.$errorBox = $element.next( '.html-form-error' );
 	if ( !this.$errorBox.length ) {
-		this.$errorBox = $( '<div>' );
+		this.$errorBox = $( '<div>' ).addClass( 'html-form-error' );
 		this.$errorBox.hide();
 		$element.after( this.$errorBox );
 	}
@@ -150,34 +152,35 @@ HtmlformChecker.prototype.setErrors = function ( valid, errors, forceReplacement
 			$oldErrorBox.after( this.$errorBox );
 		}
 
+		const oldErrorType = this.oldErrorType || 'notice';
+		const errorType = valid ? 'warning' : 'error';
+		this.oldErrorType = errorType;
 		showFunc = function () {
 			if ( $oldErrorBox !== $errorBox ) {
 				$oldErrorBox
 					.removeAttr( 'class' )
 					.detach();
 			}
-			$errorBox
-				.attr( 'class', 'mw-message-box' )
-				.addClass( valid ? 'mw-message-box-warning' : 'mw-message-box-error' )
-				.empty();
+			$errorBox.empty();
 			// Match behavior of HTMLFormField::formatErrors()
+			let errorHtml;
 			if ( errors.length === 1 ) {
-				$errorBox.append( errors[ 0 ] );
+				errorHtml = errors[ 0 ][ 0 ];
 			} else {
-				$errorBox.append(
-					$( '<ul>' ).append(
-						errors.map( ( e ) => $( '<li>' ).append( e ) )
-					)
-				);
+				errorHtml = $( '<ul>' ).append(
+					errors.map( ( e ) => $( '<li>' ).append( e ) )
+				)[ 0 ];
 			}
+			$errorBox.append(
+				util.messageBox( errorHtml, errorType )
+			);
 			// FIXME: Use CSS transition
 			// eslint-disable-next-line no-jquery/no-slide
 			$errorBox.slideDown();
 		};
 		if (
 			$oldErrorBox !== $errorBox &&
-			// eslint-disable-next-line no-jquery/no-class-state
-			( $oldErrorBox.hasClass( 'mw-message-box-error' ) || $oldErrorBox.hasClass( 'mw-message-box-warning' ) )
+			( oldErrorType === 'error' || oldErrorType === 'warning' )
 		) {
 			// eslint-disable-next-line no-jquery/no-slide
 			$oldErrorBox.slideUp( showFunc );
