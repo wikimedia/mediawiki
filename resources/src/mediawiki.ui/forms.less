@@ -70,43 +70,6 @@
 		box-sizing: content-box;
 		width: auto;
 	}
-
-	// Styles for information boxes
-	//
-	// Regular HTMLForm uses .error class, some special pages like
-	// SpecialUserlogin (login and create account) use Html::errorBox
-	//
-	// Markup:
-	// <form class="mw-ui-vform">
-	//   <div class="mw-message-box-error mw-message-box">
-	//     <ul><li>An error occurred. There are problems with some of your input.</li></ul>
-	//   </div>
-	//   <div class="mw-message-box-warning mw-message-box">A warning to be noted</div>
-	//   <div class="mw-message-box-success mw-message-box">Action successful!</div>
-	//   <div class="mw-ui-vform-field">
-	//     <input type="text" value="input" class="mw-ui-input">
-	//   </div>
-	//   <div class="mw-ui-vform-field">
-	//     <select>
-	//       <option value="1">Option 1</option>
-	//       <option value="2">Option 2</option>
-	//     </select>
-	//     <span class="error">The value you specified is not a valid option.</span>
-	//   </div>
-	//   <div class="mw-ui-vform-field">
-	//     <button class="mw-ui-button">Button in vform</button>
-	//   </div>
-	// </form>
-
-	// This specifies styling for individual field validation error messages.
-	// Show them below the fields to prevent line break glitches, and leave
-	// some space between the field and the error message box.
-	.mw-ui-vform-field {
-		.mw-message-box-error,
-		.mw-message-box-warning {
-			margin-top: 5px;
-		}
-	}
 }
 
 // --------------------------------------------------------------------------

@@ -1,5 +1,6 @@
 ( function () {
 	const api = new mw.Api();
+	const util = require( 'mediawiki.util' );
 
 	/**
 	 * Show the edit summary.
@@ -316,30 +317,32 @@
 	 */
 	function showPreviewNotes( config, response ) {
 		const arrow = $( document.body ).css( 'direction' ) === 'rtl' ? '←' : '→';
-
 		const $previewHeader = $( '<div>' )
 			.addClass( 'previewnote' )
 			.append( $( '<h2>' )
 				.attr( 'id', 'mw-previewheader' )
 				// TemplateSandbox will insert an HTML string here.
 				.append( config.previewHeader )
-			)
-			.append( $( '<div>' )
-				.addClass( 'mw-message-box-warning mw-message-box' )
-				.append(
-					// TemplateSandbox will insert a jQuery here.
-					config.previewNote,
-					' ',
-					$( '<span>' )
-						.addClass( 'mw-continue-editing' )
-						.append( $( '<a>' )
-							.attr( 'href', '#' + config.$formNode.attr( 'id' ) )
-							.text( arrow + ' ' + mw.msg( 'continue-editing' ) )
-						),
-					response.parse.parsewarningshtml.map( ( warning ) => $( '<p>' ).append( warning ) )
-				)
 			);
 
+		const warningContentElement = $( '<div>' )
+			.append(
+				// TemplateSandbox will insert a jQuery here.
+				config.previewNote,
+				' ',
+				$( '<span>' )
+					.addClass( 'mw-continue-editing' )
+					.append( $( '<a>' )
+						.attr( 'href', '#' + config.$formNode.attr( 'id' ) )
+						.text( arrow + ' ' + mw.msg( 'continue-editing' ) )
+					),
+				response.parse.parsewarningshtml.map( ( warning ) => $( '<p>' ).append( warning ) )
+			)[ 0 ];
+		const warningMessageElement = util.messageBox(
+			warningContentElement,
+			'warning'
+		);
+		$previewHeader.append( warningMessageElement );
 		config.$previewNode.prepend( $previewHeader );
 	}
 
@@ -351,13 +354,14 @@
 	 * @param {jQuery} $message
 	 */
 	function showError( config, $message ) {
-		const $errorBox = $( '<div>' )
-			.addClass( 'mw-message-box-error mw-message-box' )
+		const errorContentElement = $( '<div>' )
 			.append(
 				$( '<strong>' ).text( mw.msg( 'previewerrortext' ) ),
 				$message
-			);
-		config.$previewNode.hide().before( $errorBox );
+			)[ 0 ];
+		const errorMessageElement = util.messageBox( errorContentElement, 'error' );
+		errorMessageElement.classList.add( 'mw-page-preview-error' );
+		config.$previewNode.hide().before( errorMessageElement );
 		if ( config.$diffNode ) {
 			config.$diffNode.hide();
 		}
@@ -723,7 +727,7 @@
 
 		if ( config.isLivePreview ) {
 			// Not shown during normal preview, to be removed if present
-			$( '.mw-newarticletext, .mw-message-box-error' ).remove();
+			$( '.mw-newarticletext, .mw-page-preview-error' ).remove();
 
 			// Show #wikiPreview if it's hidden to be able to scroll to it.
 			// (If it is hidden, it's also empty, so nothing changes in the rendering.)
