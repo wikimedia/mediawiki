@@ -32,6 +32,7 @@ use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\PasswordAuthenticationRequest;
+use MediaWiki\Auth\UsernameAuthenticationRequest;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Html\Html;
@@ -825,7 +826,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		array $requests, array $fieldInfo, array &$formDescriptor, $action
 	) {
 		$formDescriptor = self::mergeDefaultFormDescriptor( $fieldInfo, $formDescriptor,
-			$this->getFieldDefinitions( $fieldInfo ) );
+			$this->getFieldDefinitions( $fieldInfo, $requests ) );
 	}
 
 	/**
@@ -841,10 +842,13 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 	/**
 	 * Create a HTMLForm descriptor for the core login fields.
+	 *
 	 * @param array $fieldInfo
+	 * @param array $requests
+	 *
 	 * @return array
 	 */
-	protected function getFieldDefinitions( array $fieldInfo ) {
+	protected function getFieldDefinitions( array $fieldInfo, array $requests ) {
 		$isLoggedIn = $this->getUser()->isRegistered();
 		$continuePart = $this->isContinued() ? 'continue-' : '';
 		$anotherPart = $isLoggedIn ? 'another-' : '';
@@ -1078,22 +1082,31 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			];
 		}
 
-		$fieldDefinitions['username'] += [
-			'type' => 'text',
-			'name' => 'wpName',
-			'cssclass' => 'loginText mw-userlogin-username',
-			'size' => 20,
-			'autocomplete' => 'username',
-			// 'required' => true,
-		];
-		$fieldDefinitions['password'] += [
-			'type' => 'password',
-			// 'label-message' => 'userlogin-yourpassword', // would override the changepassword label
-			'name' => 'wpPassword',
-			'cssclass' => 'loginPassword mw-userlogin-password',
-			'size' => 20,
-			// 'required' => true,
-		];
+		// T369641: We want to ensure that this transformation to the username and/or
+		// password fields are applied only when we have matching requests within the
+		// authentication manager.
+		$isUsernameOrPasswordRequest =
+			AuthenticationRequest::getRequestByClass( $requests, UsernameAuthenticationRequest::class ) ||
+			AuthenticationRequest::getRequestByClass( $requests, PasswordAuthenticationRequest::class );
+
+		if ( $isUsernameOrPasswordRequest ) {
+			$fieldDefinitions['username'] += [
+				'type' => 'text',
+				'name' => 'wpName',
+				'cssclass' => 'loginText mw-userlogin-username',
+				'size' => 20,
+				'autocomplete' => 'username',
+				// 'required' => true,
+			];
+			$fieldDefinitions['password'] += [
+				'type' => 'password',
+				// 'label-message' => 'userlogin-yourpassword', // would override the changepassword label
+				'name' => 'wpPassword',
+				'cssclass' => 'loginPassword mw-userlogin-password',
+				'size' => 20,
+				// 'required' => true,
+			];
+		}
 
 		if ( $this->mEntryError ) {
 			$defaultHtml = '';
