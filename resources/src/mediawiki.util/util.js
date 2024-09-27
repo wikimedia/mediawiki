@@ -505,10 +505,12 @@ const util = {
 	 * @since 1.43
 	 * @param {string|Element} textOrElement text or node.
 	 * @param {string} [type] defaults to notice.
+	 * @param {boolean} [inline] whether the notice should be inline.
 	 * @return {Element}
 	 */
-	messageBox: function ( textOrElement, type = 'notice' ) {
+	messageBox: function ( textOrElement, type = 'notice', inline = false ) {
 		const msgBoxElement = document.createElement( 'div' );
+		msgBoxElement.classList.add( 'cdx-message' );
 		if ( [ 'error', 'warning', 'success', 'notice' ].indexOf( type ) > -1 ) {
 			// The following CSS classes are used here:
 			// * cdx-message--notice
@@ -516,6 +518,8 @@ const util = {
 			// * cdx-message--error
 			msgBoxElement.classList.add( `cdx-message--${ type }` );
 		}
+		msgBoxElement.classList.add( inline ? 'cdx-message--inline' : 'cdx-message--block' );
+		msgBoxElement.setAttribute( 'aria-live', 'polite' );
 		const iconElement = document.createElement( 'span' );
 		iconElement.classList.add( 'cdx-message__icon' );
 		const contentElement = document.createElement( 'div' );
