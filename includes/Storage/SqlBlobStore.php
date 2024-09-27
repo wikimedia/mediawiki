@@ -26,17 +26,17 @@
 namespace MediaWiki\Storage;
 
 use AppendIterator;
-use DBAccessObjectUtils;
 use ExternalStoreAccess;
 use ExternalStoreException;
 use HistoryBlobUtils;
-use IDBAccessObject;
 use InvalidArgumentException;
 use StatusValue;
 use WANObjectCache;
 use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Rdbms\DBAccessObjectUtils;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**

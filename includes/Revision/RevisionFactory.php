@@ -22,8 +22,8 @@
 
 namespace MediaWiki\Revision;
 
-use IDBAccessObject;
 use MediaWiki\Page\PageIdentity;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 /**

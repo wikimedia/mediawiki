@@ -26,7 +26,6 @@
 namespace MediaWiki\Api;
 
 use ChangeTags;
-use IDBAccessObject;
 use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Specials\SpecialUserRights;
@@ -38,6 +37,7 @@ use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * @ingroup API

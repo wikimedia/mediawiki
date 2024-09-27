@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Page;
 
-use DBAccessObjectUtils;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\Hook\WikiPageFactoryHook;
 use MediaWiki\Title\Title;
@@ -10,6 +9,7 @@ use MediaWiki\Title\TitleFactory;
 use stdClass;
 use WikiCategoryPage;
 use WikiFilePage;
+use Wikimedia\Rdbms\DBAccessObjectUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 use WikiPage;
 

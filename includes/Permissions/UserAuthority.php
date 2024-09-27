@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Permissions;
 
-use IDBAccessObject;
 use InvalidArgumentException;
 use MediaWiki\Block\Block;
 use MediaWiki\Block\BlockErrorFormatter;
@@ -33,6 +32,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 use Wikimedia\DebugInfo\DebugInfoTrait;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * Represents the authority of a given User. For anonymous visitors, this will typically

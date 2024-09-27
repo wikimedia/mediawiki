@@ -22,7 +22,6 @@ namespace MediaWiki\Page;
 
 use ChangeTags;
 use File;
-use IDBAccessObject;
 use LogFormatterFactory;
 use ManualLogEntry;
 use MediaWiki\Collation\CollationFactory;
@@ -56,6 +55,7 @@ use StringUtils;
 use Wikimedia\NormalizedException\NormalizedException;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IDBAccessObject;
 use WikiPage;
 
 /**

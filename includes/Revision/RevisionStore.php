@@ -25,8 +25,6 @@
 
 namespace MediaWiki\Revision;
 
-use DBAccessObjectUtils;
-use IDBAccessObject;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\CommentStore\CommentStore;
@@ -70,7 +68,9 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\DBAccessObjectUtils;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;

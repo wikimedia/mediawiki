@@ -2,8 +2,8 @@
 
 namespace MediaWiki\User\Options;
 
-use IDBAccessObject;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * A UserOptionsLookup that's just an array. Useful for testing and creating staging environments.

@@ -22,7 +22,6 @@
 
 namespace MediaWiki\Deferred\LinksUpdate;
 
-use IDBAccessObject;
 use InvalidArgumentException;
 use Job;
 use MediaWiki\Cache\BacklinkCache;
@@ -44,6 +43,7 @@ use RefreshLinksJob;
 use RuntimeException;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\ScopedCallback;
 
 /**

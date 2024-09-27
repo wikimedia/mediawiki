@@ -3,8 +3,8 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use DeleteDefaultMessages;
-use IDBAccessObject;
 use TestUser;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * @covers \DeleteDefaultMessages

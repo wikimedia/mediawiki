@@ -22,7 +22,6 @@ namespace MediaWiki\Specials;
 
 use DoubleRedirectJob;
 use ErrorPageError;
-use IDBAccessObject;
 use LogEventsList;
 use LogPage;
 use MediaWiki\Cache\LinkBatchFactory;
@@ -62,6 +61,7 @@ use StatusValue;
 use StringUtils;
 use ThrottledError;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IExpression;
 use Wikimedia\Rdbms\LikeValue;
 

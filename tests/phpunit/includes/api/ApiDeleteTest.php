@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Tests\Api;
 
-use IDBAccessObject;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * Tests for MediaWiki api.php?action=delete.

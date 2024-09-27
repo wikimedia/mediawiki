@@ -22,7 +22,6 @@ namespace MediaWiki\Specials;
 
 use HTMLForm;
 use HTMLUserTextField;
-use IDBAccessObject;
 use LogEventsList;
 use LogPage;
 use ManualLogEntry;
@@ -50,6 +49,7 @@ use MediaWiki\Xml\Xml;
 use MediaWiki\Xml\XmlSelect;
 use PermissionsError;
 use UserBlockedError;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * Special page to allow managing user group membership

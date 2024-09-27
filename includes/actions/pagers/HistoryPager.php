@@ -27,7 +27,6 @@ use ChangesList;
 use ChangeTags;
 use HistoryAction;
 use HtmlArmor;
-use IDBAccessObject;
 use MapCacheLRU;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ChangeTags\ChangeTagsStore;
@@ -45,6 +44,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Watchlist\WatchlistManager;
 use stdClass;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * @ingroup Pager

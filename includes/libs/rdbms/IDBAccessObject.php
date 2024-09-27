@@ -21,6 +21,8 @@
  * @ingroup Database
  */
 
+namespace Wikimedia\Rdbms;
+
 /**
  * Interface for database access objects.
  *
@@ -74,3 +76,6 @@ interface IDBAccessObject {
 	/** Convenience constant for tracking how data was loaded (higher => higher QoS) */
 	public const READ_NONE = -1; // not loaded yet (or the object was cleared)
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( IDBAccessObject::class, 'IDBAccessObject' );

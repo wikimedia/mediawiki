@@ -687,6 +687,9 @@ because of Phabricator reports.
     - RESTBagOStuff
     - RedisBagOStuff
     - WinCacheBagOStuff
+  - Wikimedia\Rdbms:
+    - DBAccessObjectUtils
+    - IDBAccessObject
 * MessageCache::get() with $language other than Language or null is
   deprecated and emits deprecation warnings. For high-level access,
   use wfMessage() or RequestContext::msg() instead.

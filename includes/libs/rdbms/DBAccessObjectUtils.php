@@ -21,8 +21,9 @@
  * @ingroup Database
  */
 
-use Wikimedia\Rdbms\IConnectionProvider;
-use Wikimedia\Rdbms\IReadableDatabase;
+namespace Wikimedia\Rdbms;
+
+use InvalidArgumentException;
 
 /**
  * Helper class for DAO classes
@@ -101,3 +102,6 @@ class DBAccessObjectUtils implements IDBAccessObject {
 		return $dbProvider->getReplicaDatabase();
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( DBAccessObjectUtils::class, 'DBAccessObjectUtils' );

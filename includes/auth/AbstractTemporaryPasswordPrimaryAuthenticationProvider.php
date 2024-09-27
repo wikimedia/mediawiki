@@ -21,7 +21,6 @@
 
 namespace MediaWiki\Auth;
 
-use IDBAccessObject;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Password\InvalidPassword;
 use MediaWiki\Password\Password;
@@ -33,6 +32,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserRigorOptions;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * A primary authentication provider that uses a temporary password.

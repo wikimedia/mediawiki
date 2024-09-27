@@ -20,10 +20,10 @@
 
 namespace MediaWiki\Specials;
 
-use IDBAccessObject;
 use MediaWiki\SpecialPage\UnlistedSpecialPage;
 use MediaWiki\User\UserFactory;
 use Profiler;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\ScopedCallback;
 
 /**

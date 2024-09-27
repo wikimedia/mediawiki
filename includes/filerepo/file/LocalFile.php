@@ -36,6 +36,7 @@ use MediaWiki\User\UserIdentityValue;
 use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\SelectQueryBuilder;

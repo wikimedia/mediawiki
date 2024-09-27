@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Page;
 
-use IDBAccessObject;
 use InvalidArgumentException;
 use MediaWiki\Linker\LinkTarget;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * Service for looking up information about wiki pages.

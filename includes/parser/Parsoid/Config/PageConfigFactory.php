@@ -19,7 +19,6 @@
 
 namespace MediaWiki\Parser\Parsoid\Config;
 
-use IDBAccessObject;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\PageIdentity;
@@ -33,6 +32,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use ParserOptions;
 use Wikimedia\Bcp47Code\Bcp47Code;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * Helper class used by MediaWiki to create Parsoid PageConfig objects.

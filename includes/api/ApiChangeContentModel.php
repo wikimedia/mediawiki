@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Api;
 
-use IDBAccessObject;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Page\ContentModelChangeFactory;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * Api module to change the content model of existing pages

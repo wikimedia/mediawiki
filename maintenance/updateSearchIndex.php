@@ -32,6 +32,7 @@ use MediaWiki\Deferred\SearchUpdate;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';

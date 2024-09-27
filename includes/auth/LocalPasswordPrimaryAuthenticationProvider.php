@@ -21,12 +21,13 @@
 
 namespace MediaWiki\Auth;
 
-use IDBAccessObject;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Password\InvalidPassword;
 use MediaWiki\User\UserRigorOptions;
+use Wikimedia\Rdbms\DBAccessObjectUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * A primary authentication provider that uses the password field in the 'user' table.
@@ -191,7 +192,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 			return false;
 		}
 
-		$db = \DBAccessObjectUtils::getDBFromRecency( $this->dbProvider, $flags );
+		$db = DBAccessObjectUtils::getDBFromRecency( $this->dbProvider, $flags );
 		return (bool)$db->newSelectQueryBuilder()
 			->select( [ 'user_id' ] )
 			->from( 'user' )

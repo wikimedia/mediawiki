@@ -25,7 +25,6 @@
 
 namespace MediaWiki\Api;
 
-use IDBAccessObject;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
@@ -33,6 +32,7 @@ use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * API interface for setting the wl_notificationtimestamp field

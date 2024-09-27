@@ -20,7 +20,6 @@
 
 namespace MediaWiki\User;
 
-use IDBAccessObject;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\Throttler;
 use MediaWiki\Config\Config;
@@ -40,6 +39,7 @@ use MWRestrictions;
 use stdClass;
 use UnexpectedValueException;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 /**

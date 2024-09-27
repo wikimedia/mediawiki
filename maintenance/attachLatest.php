@@ -25,6 +25,7 @@
  */
 
 use MediaWiki\Title\Title;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';

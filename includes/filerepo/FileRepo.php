@@ -19,6 +19,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\FileBackend\FileBackend;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * Base code for file repositories.

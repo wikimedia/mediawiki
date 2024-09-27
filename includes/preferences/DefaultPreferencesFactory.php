@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Preferences;
 
-use IDBAccessObject;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Config\ServiceOptions;
@@ -71,6 +70,7 @@ use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
 use SkinFactory;
 use UnexpectedValueException;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * This is the default implementation of PreferencesFactory.

@@ -20,7 +20,6 @@
 
 namespace MediaWiki\User\Options;
 
-use IDBAccessObject;
 use InvalidArgumentException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Context\IContextSource;
@@ -38,6 +37,7 @@ use MediaWiki\User\UserTimeCorrection;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * A service class to control user options

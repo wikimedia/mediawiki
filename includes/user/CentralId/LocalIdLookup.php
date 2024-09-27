@@ -22,14 +22,14 @@
 
 namespace MediaWiki\User\CentralId;
 
-use DBAccessObjectUtils;
-use IDBAccessObject;
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\Config\Config;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\Rdbms\DBAccessObjectUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * A CentralIdLookup provider that just uses local IDs. Useful if the wiki

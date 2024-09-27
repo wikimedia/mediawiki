@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Specials;
 
-use IDBAccessObject;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Parser\Sanitizer;
@@ -33,6 +32,7 @@ use PermissionsError;
 use Profiler;
 use ReadOnlyError;
 use UserNotLoggedIn;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\ScopedCallback;
 
 /**
