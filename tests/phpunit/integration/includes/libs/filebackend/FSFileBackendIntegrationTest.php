@@ -2,6 +2,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\FileBackend\FSFileBackend;
 
 /**
  * @group FileRepo
@@ -10,18 +11,18 @@ use MediaWiki\WikiMap\WikiMap;
  *
  * @covers \Wikimedia\FileBackend\FileBackend
  *
- * @covers \CopyFileOp
- * @covers \CreateFileOp
- * @covers \DeleteFileOp
- * @covers \DescribeFileOp
+ * @covers \Wikimedia\FileBackend\FileOps\CopyFileOp
+ * @covers \Wikimedia\FileBackend\FileOps\CreateFileOp
+ * @covers \Wikimedia\FileBackend\FileOps\DeleteFileOp
+ * @covers \Wikimedia\FileBackend\FileOps\DescribeFileOp
  * @covers \FSFile
- * @covers \FSFileBackend
+ * @covers \Wikimedia\FileBackend\FSFileBackend
  * @covers \FSFileBackendDirList
  * @covers \FSFileBackendFileList
  * @covers \FSFileBackendList
  * @covers \FSFileOpHandle
  * @covers \FileBackendDBRepoWrapper
- * @covers \FileBackendError
+ * @covers \Wikimedia\FileBackend\FileBackendError
  * @covers \MediaWiki\FileBackend\FileBackendGroup
  * @covers \FileBackendMultiWrite
  * @covers \FileBackendStore
@@ -29,13 +30,13 @@ use MediaWiki\WikiMap\WikiMap;
  * @covers \FileBackendStoreShardDirIterator
  * @covers \FileBackendStoreShardFileIterator
  * @covers \FileBackendStoreShardListIterator
- * @covers \FileOp
+ * @covers \Wikimedia\FileBackend\FileOps\FileOp
  * @covers \FileOpBatch
  * @covers \HTTPFileStreamer
  * @covers \LockManagerGroup
- * @covers \MoveFileOp
- * @covers \NullFileOp
- * @covers \StoreFileOp
+ * @covers \Wikimedia\FileBackend\FileOps\MoveFileOp
+ * @covers \Wikimedia\FileBackend\FileOps\NullFileOp
+ * @covers \Wikimedia\FileBackend\FileOps\StoreFileOp
  * @covers \TempFSFile
  *
  * @covers \FSLockManager

@@ -21,9 +21,27 @@
  * @ingroup FileBackend
  */
 
+namespace Wikimedia\FileBackend;
+
+use InvalidArgumentException;
+use LockManager;
+use MapCacheLRU;
 use MediaWiki\Json\FormatJson;
+use StatusValue;
+use Traversable;
 use Wikimedia\AtEase\AtEase;
-use Wikimedia\FileBackend\FileBackend;
+use Wikimedia\FileBackend\FileIteration\FileBackendStoreShardDirIterator;
+use Wikimedia\FileBackend\FileIteration\FileBackendStoreShardFileIterator;
+use Wikimedia\FileBackend\FileOpHandle\FileBackendStoreOpHandle;
+use Wikimedia\FileBackend\FileOps\CopyFileOp;
+use Wikimedia\FileBackend\FileOps\CreateFileOp;
+use Wikimedia\FileBackend\FileOps\DeleteFileOp;
+use Wikimedia\FileBackend\FileOps\DescribeFileOp;
+use Wikimedia\FileBackend\FileOps\FileOp;
+use Wikimedia\FileBackend\FileOps\MoveFileOp;
+use Wikimedia\FileBackend\FileOps\NullFileOp;
+use Wikimedia\FileBackend\FileOps\StoreFileOp;
+use Wikimedia\FileBackend\FSFile\FSFile;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
@@ -1723,7 +1741,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $digits > 0 ) {
 			$numShards = $base ** $digits;
 			for ( $index = 0; $index < $numShards; $index++ ) {
-				$shards[] = '.' . Wikimedia\base_convert( (string)$index, 10, $base, $digits );
+				$shards[] = '.' . \Wikimedia\base_convert( (string)$index, 10, $base, $digits );
 			}
 		}
 
@@ -2035,3 +2053,6 @@ abstract class FileBackendStore extends FileBackend {
 		return $mime ?: 'unknown/unknown';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( FileBackendStore::class, 'FileBackendStore' );

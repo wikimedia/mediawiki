@@ -34,6 +34,7 @@ use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\Utils\UrlUtils;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\FileBackend\FileBackend;
+use Wikimedia\FileBackend\FSFile\TempFSFile;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\RequestTimeout\RequestTimeout;

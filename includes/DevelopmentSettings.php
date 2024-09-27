@@ -10,6 +10,8 @@
  * @file
  */
 
+use Wikimedia\FileBackend\FSFile\TempFSFile;
+
 /**
  * Ad-hoc debugging
  *

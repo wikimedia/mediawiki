@@ -21,6 +21,9 @@
  * @ingroup FileBackend
  */
 
+namespace Wikimedia\FileBackend\FileOps;
+
+use StatusValue;
 use Wikimedia\FileBackend\FileBackend;
 
 /**
@@ -75,3 +78,6 @@ class DescribeFileOp extends FileOp {
 		return [ $this->params['src'] ];
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( DescribeFileOp::class, 'DescribeFileOp' );

@@ -2,6 +2,8 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\FileBackend\FileBackend;
+use Wikimedia\FileBackend\FileBackendError;
+use Wikimedia\FileBackend\SwiftFileBackend;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -9,7 +11,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group FileBackend
  * @group medium
  *
- * @covers \SwiftFileBackend
+ * @covers \Wikimedia\FileBackend\SwiftFileBackend
  * @covers \SwiftFileBackendDirList
  * @covers \SwiftFileBackendFileList
  * @covers \SwiftFileBackendList

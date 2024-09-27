@@ -22,6 +22,8 @@
  * @author Russ Nelson
  */
 
+namespace Wikimedia\FileBackend\FileIteration;
+
 /**
  * Iterator for listing regular files
  */
@@ -46,3 +48,6 @@ class SwiftFileBackendFileList extends SwiftFileBackendList {
 		return $this->backend->getFileListPageInternal( $container, $dir, $after, $limit, $params );
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( SwiftFileBackendFileList::class, 'SwiftFileBackendFileList' );

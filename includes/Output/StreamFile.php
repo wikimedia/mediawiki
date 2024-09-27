@@ -23,13 +23,13 @@
 
 namespace MediaWiki\Output;
 
-use HTTPFileStreamer;
 use InvalidArgumentException;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use UploadBase;
 use Wikimedia\FileBackend\FileBackend;
+use Wikimedia\FileBackend\HTTPFileStreamer;
 
 /**
  * Functions related to the output of file content

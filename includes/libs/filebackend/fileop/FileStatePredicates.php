@@ -19,6 +19,10 @@
  * @ingroup FileBackend
  */
 
+namespace Wikimedia\FileBackend\FileOps;
+
+use Closure;
+
 /**
  * Helper class for tracking counterfactual file states when pre-checking file operation batches
  *
@@ -140,3 +144,6 @@ class FileStatePredicates {
 		return $snapshot;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( FileStatePredicates::class, 'FileStatePredicates' );

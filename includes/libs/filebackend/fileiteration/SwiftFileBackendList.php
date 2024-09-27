@@ -22,6 +22,12 @@
  * @author Russ Nelson
  */
 
+namespace Wikimedia\FileBackend\FileIteration;
+
+use Iterator;
+use Traversable;
+use Wikimedia\FileBackend\SwiftFileBackend;
+
 /**
  * SwiftFileBackend helper class to page through listings.
  * Swift also has a listing limit of 10,000 objects for performance.
@@ -152,3 +158,6 @@ abstract class SwiftFileBackendList implements Iterator {
 	 */
 	abstract protected function pageFromList( $container, $dir, &$after, $limit, array $params );
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( SwiftFileBackendList::class, 'SwiftFileBackendList' );

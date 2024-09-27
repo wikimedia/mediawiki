@@ -676,7 +676,42 @@ because of Phabricator reports.
     - Xml
     - XmlSelect
   - Wikimedia\FileBackend:
+    - FSFileBackend
+    - FSFileBackendDirList
+    - FSFileBackendFileList
+    - FSFileBackendList
     - FileBackend
+    - FileBackendError
+    - FileBackendMultiWrite
+    - FileBackendStore
+    - FileBackendStoreShardDirIterator
+    - FileBackendStoreShardFileIterator
+    - FileBackendStoreShardListIterator
+    - FileOpBatch
+    - HTTPFileStreamer
+    - MemoryFileBackend
+    - SwiftFileBackend
+    - SwiftFileBackendDirList
+    - SwiftFileBackendFileList
+    - SwiftFileBackendList
+    - Wikimedia\FileBackend\FileOps:
+      - CopyFileOp
+      - CreateFileOp
+      - DeleteFileOp
+      - DescribeFileOp
+      - FileOp
+      - FileStatePredicates
+      - MoveFileOp
+      - NullFileOp
+      - StoreFileOp
+    - Wikimedia\FileBackend\FileOpHandle:
+      - FSFileOpHandle
+      - SwiftFileOpHandle
+      - FileBackendStoreOpHandle
+    - Wikimedia\FileBackend\FSFile:
+      - FSFile
+      - TempFSFile
+      - TempFSFileFactory
   - Wikimedia\Http:
     - MultiHttpClient
   - Wikimedia\Message:

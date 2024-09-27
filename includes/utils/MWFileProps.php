@@ -21,6 +21,7 @@
  */
 
 use Wikimedia\FileBackend\FileBackend;
+use Wikimedia\FileBackend\FSFile\FSFile;
 use Wikimedia\Mime\MimeAnalyzer;
 
 /**
