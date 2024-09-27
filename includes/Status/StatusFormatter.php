@@ -28,6 +28,8 @@ use MediaWiki\Parser\ParserOutput;
 use MediaWiki\StubObject\StubUserLang;
 use MessageCache;
 use MessageLocalizer;
+use Psr\Log\LoggerInterface;
+use RuntimeException;
 use StatusValue;
 use UnexpectedValueException;
 use Wikimedia\Message\MessageSpecifier;
@@ -43,10 +45,16 @@ class StatusFormatter {
 
 	private MessageLocalizer $messageLocalizer;
 	private MessageCache $messageCache;
+	private LoggerInterface $logger;
 
-	public function __construct( MessageLocalizer $messageLocalizer, MessageCache $messageCache ) {
+	public function __construct(
+		MessageLocalizer $messageLocalizer,
+		MessageCache $messageCache,
+		LoggerInterface $logger
+	) {
 		$this->messageLocalizer = $messageLocalizer;
 		$this->messageCache = $messageCache;
+		$this->logger = $logger;
 	}
 
 	/**
@@ -96,16 +104,18 @@ class StatusFormatter {
 		$rawErrors = $status->getErrors();
 		if ( count( $rawErrors ) === 0 ) {
 			if ( $status->isOK() ) {
-				$status->fatal(
-					'internalerror_info',
-					__METHOD__ . " called for a good result, this is incorrect\n"
-				);
+				$errMsg = __METHOD__ . " called for a good result, this is incorrect\n";
 			} else {
-				$status->fatal(
-					'internalerror_info',
-					__METHOD__ . ": Invalid result object: no error text but not OK\n"
-				);
+				$errMsg = __METHOD__ . ": Invalid result object: no error text but not OK\n";
 			}
+
+			$status->fatal(
+				'internalerror_info',
+				$errMsg
+			);
+
+			$this->logger->warning( $errMsg, [ 'exception' => new RuntimeException() ] );
+
 			$rawErrors = $status->getErrors(); // just added a fatal
 		}
 
@@ -171,16 +181,18 @@ class StatusFormatter {
 		$rawErrors = $status->getErrors();
 		if ( count( $rawErrors ) === 0 ) {
 			if ( $status->isOK() ) {
-				$status->fatal(
-					'internalerror_info',
-					__METHOD__ . " called for a good result, this is incorrect\n"
-				);
+				$errMsg = __METHOD__ . " called for a good result, this is incorrect\n";
 			} else {
-				$status->fatal(
-					'internalerror_info',
-					__METHOD__ . ": Invalid result object: no error text but not OK\n"
-				);
+				$errMsg = __METHOD__ . ": Invalid result object: no error text but not OK\n";
 			}
+
+			$status->fatal(
+				'internalerror_info',
+				$errMsg
+			);
+
+			$this->logger->warning( $errMsg, [ 'exception' => new RuntimeException() ] );
+
 			$rawErrors = $status->getErrors(); // just added a fatal
 		}
 		if ( count( $rawErrors ) === 1 ) {

@@ -6,6 +6,7 @@ use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Title\TitleFormatter;
 use MediaWiki\User\UserIdentityUtils;
+use Psr\Log\NullLogger;
 
 /**
  * @covers \MediaWiki\Language\FormatterFactory
@@ -18,7 +19,8 @@ class FormatterFactoryTest extends MediaWikiUnitTestCase {
 			$this->createNoOpMock( TitleFormatter::class ),
 			$this->createNoOpMock( HookContainer::class ),
 			$this->createNoOpMock( UserIdentityUtils::class ),
-			$this->createNoOpMock( LanguageFactory::class )
+			$this->createNoOpMock( LanguageFactory::class ),
+			new NullLogger()
 		);
 	}
 
