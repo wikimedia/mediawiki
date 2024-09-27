@@ -46,7 +46,6 @@ use MediaWiki\Utils\UrlUtils;
 use MediaWiki\WikiMap\WikiMap;
 use MWUnknownContentModelException;
 use ParserFactory;
-use PrefixingStatsdDataFactoryProxy;
 use Psr\Log\LoggerInterface;
 use UnexpectedValueException;
 use Wikimedia\Bcp47Code\Bcp47Code;
@@ -55,6 +54,7 @@ use Wikimedia\Parsoid\Config\SiteConfig as ISiteConfig;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Parsoid\DOM\Document;
 use Wikimedia\Parsoid\Utils\Utils;
+use Wikimedia\Stats\PrefixingStatsdDataFactoryProxy;
 use Wikimedia\Stats\StatsFactory;
 
 /**

@@ -1,5 +1,7 @@
 <?php
 
+namespace Wikimedia\Stats;
+
 use Liuggio\StatsdClient\Entity\StatsdData;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 
@@ -43,3 +45,6 @@ interface IBufferingStatsdDataFactory extends StatsdDataFactoryInterface {
 	 */
 	public function setEnabled( $enabled );
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( IBufferingStatsdDataFactory::class, 'IBufferingStatsdDataFactory' );

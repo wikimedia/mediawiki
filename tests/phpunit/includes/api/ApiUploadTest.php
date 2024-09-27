@@ -8,8 +8,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
-use MimeAnalyzer;
 use RepoGroup;
+use Wikimedia\Mime\MimeAnalyzer;
 
 /**
  * @group API

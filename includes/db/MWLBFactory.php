@@ -36,6 +36,7 @@ use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
+use Wikimedia\Stats\IBufferingStatsdDataFactory;
 
 /**
  * MediaWiki-specific class for generating database load balancers

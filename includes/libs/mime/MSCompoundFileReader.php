@@ -14,6 +14,10 @@
  * specific language governing permissions and limitations under the License.
  */
 
+namespace Wikimedia\Mime;
+
+use RuntimeException;
+
 /**
  * Read the directory of a Microsoft Compound File Binary file, a.k.a. an OLE
  * file, and detect the MIME type.
@@ -369,3 +373,6 @@ class MSCompoundFileReader {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( MSCompoundFileReader::class, 'MSCompoundFileReader' );

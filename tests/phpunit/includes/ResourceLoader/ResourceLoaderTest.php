@@ -16,12 +16,12 @@ use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\ResourceLoader\SkinModule;
 use MediaWiki\ResourceLoader\StartUpModule;
 use MediaWiki\User\Options\StaticUserOptionsLookup;
-use NullStatsdDataFactory;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
 use UnexpectedValueException;
 use Wikimedia\Minify\IdentityMinifierState;
+use Wikimedia\Stats\NullStatsdDataFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**

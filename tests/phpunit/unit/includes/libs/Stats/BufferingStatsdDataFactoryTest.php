@@ -2,12 +2,12 @@
 
 namespace Wikimedia\Tests\Stats;
 
-use BufferingStatsdDataFactory;
 use PHPUnit\Framework\TestCase;
+use Wikimedia\Stats\BufferingStatsdDataFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \BufferingStatsdDataFactory
+ * @covers \Wikimedia\Stats\BufferingStatsdDataFactory
  */
 class BufferingStatsdDataFactoryTest extends TestCase {
 

@@ -6,10 +6,10 @@ use Liuggio\StatsdClient\Entity\StatsdData;
 use Liuggio\StatsdClient\Sender\SenderInterface;
 use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
-use SamplingStatsdClient;
+use Wikimedia\Stats\SamplingStatsdClient;
 
 /**
- * @covers \SamplingStatsdClient
+ * @covers \Wikimedia\Stats\SamplingStatsdClient
  */
 class SamplingStatsdClientTest extends TestCase {
 

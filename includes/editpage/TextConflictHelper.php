@@ -20,7 +20,6 @@
 
 namespace MediaWiki\EditPage;
 
-use IBufferingStatsdDataFactory;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -29,6 +28,7 @@ use MediaWiki\Output\OutputPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MWUnknownContentModelException;
+use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
 
 /**

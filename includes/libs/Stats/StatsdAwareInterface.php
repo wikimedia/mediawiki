@@ -1,5 +1,7 @@
 <?php
 
+namespace Wikimedia\Stats;
+
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 
 /**
@@ -21,3 +23,6 @@ interface StatsdAwareInterface {
 	public function setStatsdDataFactory( StatsdDataFactoryInterface $statsFactory );
 
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( StatsdAwareInterface::class, 'StatsdAwareInterface' );

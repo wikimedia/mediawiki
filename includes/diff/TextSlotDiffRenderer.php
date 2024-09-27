@@ -34,6 +34,7 @@ use MediaWiki\PoolCounter\PoolCounterWorkViaCallback;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use OOUI\ToggleSwitchWidget;
+use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
 
 /**

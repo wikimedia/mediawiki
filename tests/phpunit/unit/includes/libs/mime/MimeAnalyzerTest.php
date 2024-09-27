@@ -3,15 +3,15 @@
 namespace Wikimedia\Tests\Mime;
 
 use MediaWikiCoversValidator;
-use MimeAnalyzer;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
+use Wikimedia\Mime\MimeAnalyzer;
 use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Media
  * @group Mime
- * @covers \MimeAnalyzer
+ * @covers \Wikimedia\Mime\MimeAnalyzer
  */
 class MimeAnalyzerTest extends TestCase {
 

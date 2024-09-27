@@ -31,7 +31,7 @@ use MediaWiki\Pager\NewFilesPager;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\SpecialPage\IncludableSpecialPage;
-use MimeAnalyzer;
+use Wikimedia\Mime\MimeAnalyzer;
 use Wikimedia\Rdbms\IConnectionProvider;
 
 /**

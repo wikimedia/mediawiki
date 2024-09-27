@@ -672,6 +672,10 @@ because of Phabricator reports.
     - MultiHttpClient
   - Wikimedia\Message:
     - MessageSpecifier
+  - Wikimedia\Mime:
+    - MSCompoundFileReader
+    - MimeAnalyzer
+    - XmlTypeCheck
   - Wikimedia\ObjectCache:
     - APCUBagOStuff
     - BagOStuff
@@ -694,6 +698,13 @@ because of Phabricator reports.
   - Wikimedia\Redis:
     - RedisConnectionPool
     - RedisConnRef
+  - Wikimedia\Stats:
+    - BufferingStatsdDataFactory
+    - IBufferingStatsdDataFactory
+    - NullStatsdDataFactory
+    - PrefixingStatsdDataFactoryProxy
+    - SamplingStatsdClient
+    - StatsdAwareInterface
 * MessageCache::get() with $language other than Language or null is
   deprecated and emits deprecation warnings. For high-level access,
   use wfMessage() or RequestContext::msg() instead.

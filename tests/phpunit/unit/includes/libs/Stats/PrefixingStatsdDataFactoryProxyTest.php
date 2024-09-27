@@ -5,10 +5,10 @@ namespace Wikimedia\Tests\Stats;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use PrefixingStatsdDataFactoryProxy;
+use Wikimedia\Stats\PrefixingStatsdDataFactoryProxy;
 
 /**
- * @covers \PrefixingStatsdDataFactoryProxy
+ * @covers \Wikimedia\Stats\PrefixingStatsdDataFactoryProxy
  */
 class PrefixingStatsdDataFactoryProxyTest extends TestCase {
 

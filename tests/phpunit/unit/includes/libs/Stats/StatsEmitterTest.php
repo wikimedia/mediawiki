@@ -2,10 +2,10 @@
 
 namespace Wikimedia\Tests\Stats;
 
-use IBufferingStatsdDataFactory;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 use UDPTransport;
+use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\OutputFormats;
 use Wikimedia\Stats\StatsCache;
 use Wikimedia\Stats\StatsFactory;

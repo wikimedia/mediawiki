@@ -9934,7 +9934,7 @@ class MainConfigSchema {
 	 * Prefix for metric names sent to $wgStatsdServer.
 	 *
 	 * @see \MediaWiki\MediaWikiServices::getInstance()->getStatsdDataFactory
-	 * @see \BufferingStatsdDataFactory
+	 * @see \Wikimedia\Stats\BufferingStatsdDataFactory
 	 * @since 1.25
 	 */
 	public const StatsdMetricPrefix = [

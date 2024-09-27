@@ -22,7 +22,6 @@ namespace MediaWiki;
 
 use Exception;
 use HttpStatus;
-use IBufferingStatsdDataFactory;
 use JobQueueGroup;
 use JobRunner;
 use Liuggio\StatsdClient\Sender\SocketSender;
@@ -54,6 +53,7 @@ use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
 
 /**

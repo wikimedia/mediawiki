@@ -16,13 +16,13 @@
 
 namespace Wikimedia\Tests\Mime;
 
-use MSCompoundFileReader;
 use PHPUnit\Framework\TestCase;
+use Wikimedia\Mime\MSCompoundFileReader;
 
 /**
  * @group Media
  * @group Mime
- * @covers \MSCompoundFileReader
+ * @covers \Wikimedia\Mime\MSCompoundFileReader
  */
 class MSCompoundFileReaderTest extends TestCase {
 	public static function provideValid() {

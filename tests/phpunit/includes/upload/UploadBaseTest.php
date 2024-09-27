@@ -2,6 +2,7 @@
 
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MainConfigNames;
+use Wikimedia\Mime\XmlTypeCheck;
 
 /**
  * @group Upload

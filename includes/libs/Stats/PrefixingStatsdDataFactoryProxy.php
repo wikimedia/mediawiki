@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace Wikimedia\Stats;
+
 use Liuggio\StatsdClient\Entity\StatsdDataInterface;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 
@@ -94,3 +96,6 @@ class PrefixingStatsdDataFactoryProxy implements StatsdDataFactoryInterface {
 		);
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( PrefixingStatsdDataFactoryProxy::class, 'PrefixingStatsdDataFactoryProxy' );
