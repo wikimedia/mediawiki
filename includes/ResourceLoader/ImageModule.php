@@ -20,6 +20,7 @@
  */
 namespace MediaWiki\ResourceLoader;
 
+use DomainException;
 use InvalidArgumentException;
 use Wikimedia\Minify\CSSMin;
 
@@ -335,7 +336,14 @@ class ImageModule extends Module {
 
 		// Build CSS rules
 		$rules = [];
-		$script = $context->getResourceLoader()->getLoadScript( $this->getSource() );
+
+		$sources = $oldSources = $context->getResourceLoader()->getSources();
+		$this->getHookRunner()->onResourceLoaderModifyEmbeddedSourceUrls( $sources );
+		if ( array_keys( $sources ) !== array_keys( $oldSources ) ) {
+			throw new DomainException( 'ResourceLoaderModifyEmbeddedSourceUrls hook must not add or remove sources' );
+		}
+		$script = $sources[ $this->getSource() ];
+
 		$selectors = $this->getSelectors();
 
 		foreach ( $this->getImages( $context ) as $name => $image ) {

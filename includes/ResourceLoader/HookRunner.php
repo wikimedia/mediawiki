@@ -13,7 +13,7 @@ use MediaWiki\HookContainer\HookContainer;
 class HookRunner implements
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderExcludeUserOptionsHook,
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderForeignApiModulesHook,
-	\MediaWiki\ResourceLoader\Hook\ResourceLoaderModifyStartupSourceUrlsHook,
+	\MediaWiki\ResourceLoader\Hook\ResourceLoaderModifyEmbeddedSourceUrlsHook,
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderRegisterModulesHook,
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderSiteModulePagesHook,
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderSiteStylesModulePagesHook,
@@ -43,10 +43,10 @@ class HookRunner implements
 		);
 	}
 
-	public function onResourceLoaderModifyStartupSourceUrls( array &$urls, Context $context ): void {
+	public function onResourceLoaderModifyEmbeddedSourceUrls( array &$urls ): void {
 		$this->container->run(
-			'ResourceLoaderModifyStartupSourceUrls',
-			[ &$urls, $context ],
+			'ResourceLoaderModifyEmbeddedSourceUrls',
+			[ &$urls ],
 			[ 'abortable' => false ]
 		);
 	}
