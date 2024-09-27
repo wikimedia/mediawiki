@@ -97,6 +97,7 @@ class ComposerLaunchParallel extends ForkController {
 			"--cache-result-file=.phpunit_group_{$groupId}_{$groupName}.result.cache"
 		);
 		$command->includeStderr( true );
+		$command->environment( [ 'MW_PHPUNIT_SPLIT_GROUP_ID' => $groupId ] );
 		print( "Running command '" . $command->getCommandString() . "' ..." . PHP_EOL );
 		$result = $command->execute();
 		print( $result->getStdout() );

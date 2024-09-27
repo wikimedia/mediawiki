@@ -60,15 +60,36 @@ if ( $logDir ) {
 	if ( !file_exists( $logDir ) ) {
 		mkdir( $logDir );
 	}
-	if ( MW_ENTRY_POINT === 'cli' ) {
-		$wgDebugLogFile = "$logDir/mw-debug-cli.log";
-	} else {
-		$wgDebugLogFile = "$logDir/mw-debug-www.log";
+	$logFileNames = [
+		'debug-cli' => 'mw-debug-cli',
+		'debug-web' => 'mw-debug-web',
+		'db' => 'mw-dberror',
+		'ratelimit' => 'mw-ratelimit',
+		'error' => 'mw-error',
+	];
+	// For PHPUnit tests run in parallel via ComposerLaunchParallel,
+	// there will be an environment variable containing the group ID
+	// of the batch of tests being run in a process. Use this to group
+	// those logs together.
+	$splitGroupLogId = getenv( 'MW_PHPUNIT_SPLIT_GROUP_ID' );
+
+	foreach ( $logFileNames as $key => $logFileName ) {
+		if ( $splitGroupLogId ) {
+			$logFileNames[$key] = "$logDir/$logFileName.split-group-$splitGroupLogId.log";
+		} else {
+			$logFileNames[$key] = "$logDir/$logFileName.log";
+		}
 	}
-	$wgDBerrorLog = "$logDir/mw-dberror.log";
-	$wgDebugLogGroups['ratelimit'] = "$logDir/mw-ratelimit.log";
-	$wgDebugLogGroups['error'] = "$logDir/mw-error.log";
-	$wgDebugLogGroups['exception'] = "$logDir/mw-error.log";
+
+	if ( MW_ENTRY_POINT === 'cli' ) {
+		$wgDebugLogFile = $logFileNames['debug-cli'];
+	} else {
+		$wgDebugLogFile = $logFileNames['debug-web'];
+	}
+	$wgDBerrorLog = $logFileNames['db'];
+	$wgDebugLogGroups['ratelimit'] = $logFileNames['ratelimit'];
+	$wgDebugLogGroups['error'] = $logFileNames['error'];
+	$wgDebugLogGroups['exception'] = $logFileNames['error'];
 }
 unset( $logDir );
 
