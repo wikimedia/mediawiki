@@ -20,8 +20,8 @@
 
 namespace MediaWiki\User\Options;
 
-use IDBAccessObject;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * Provides access to user options

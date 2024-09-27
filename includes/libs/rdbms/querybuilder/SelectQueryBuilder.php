@@ -2,7 +2,6 @@
 
 namespace Wikimedia\Rdbms;
 
-use IDBAccessObject;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 // Very long type annotations :(

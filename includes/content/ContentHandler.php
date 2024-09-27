@@ -32,7 +32,6 @@ use Action;
 use ChangeTags;
 use DifferenceEngine;
 use DifferenceEngineSlotDiffRenderer;
-use IDBAccessObject;
 use InvalidArgumentException;
 use Language;
 use LogicException;
@@ -68,6 +67,7 @@ use StatusValue;
 use TextSlotDiffRenderer;
 use UnexpectedValueException;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\ScopedCallback;
 use WikiPage;
 

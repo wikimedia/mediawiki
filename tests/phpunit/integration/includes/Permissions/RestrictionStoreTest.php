@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Integration\Permissions;
 
-use IDBAccessObject;
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\CommentStore\CommentStore;
@@ -17,6 +16,7 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use WANObjectCache;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\TestingAccessWrapper;
 

@@ -23,9 +23,9 @@
 
 namespace MediaWiki\Auth;
 
-use IDBAccessObject;
 use MediaWiki\User\User;
 use StatusValue;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * A primary authentication provider is responsible for associating the submitted

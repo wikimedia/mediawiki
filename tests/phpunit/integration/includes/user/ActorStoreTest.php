@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\User;
 
 use CannotCreateActorException;
-use IDBAccessObject;
 use InvalidArgumentException;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\MainConfigNames;
@@ -17,6 +16,7 @@ use MediaWiki\User\UserSelectQueryBuilder;
 use stdClass;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * @covers \MediaWiki\User\ActorStore

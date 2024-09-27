@@ -24,9 +24,7 @@
 
 namespace MediaWiki\Title;
 
-use DBAccessObjectUtils;
 use HTMLCacheUpdateJob;
-use IDBAccessObject;
 use InvalidArgumentException;
 use MapCacheLRU;
 use MediaWiki\Cache\LinkCache;
@@ -63,8 +61,10 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
 use Wikimedia\Parsoid\Core\LinkTargetTrait;
+use Wikimedia\Rdbms\DBAccessObjectUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IDBAccessObject;
 use WikiPage;
 
 /**

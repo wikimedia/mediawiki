@@ -4,10 +4,10 @@ namespace MediaWiki\Tests\Api;
 
 use Exception;
 use FSFile;
-use IDBAccessObject;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\File\FileDeleteForm;
 use MediaWiki\Title\Title;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * Abstract class to support upload tests

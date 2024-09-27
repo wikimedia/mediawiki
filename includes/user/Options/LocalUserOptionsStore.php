@@ -2,9 +2,10 @@
 
 namespace MediaWiki\User\Options;
 
-use DBAccessObjectUtils;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\Rdbms\DBAccessObjectUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 class LocalUserOptionsStore implements UserOptionsStore {
 	private IConnectionProvider $dbProvider;
@@ -49,7 +50,7 @@ class LocalUserOptionsStore implements UserOptionsStore {
 		}
 
 		$oldOptions = $this->optionsFromDb[ $user->getId() ]
-			?? $this->fetch( $user, \IDBAccessObject::READ_LATEST );
+			?? $this->fetch( $user, IDBAccessObject::READ_LATEST );
 		$newOptions = $oldOptions;
 		$keysToDelete = [];
 		$rowsToInsert = [];

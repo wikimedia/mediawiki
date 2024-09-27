@@ -22,7 +22,6 @@
 
 namespace MediaWiki\User;
 
-use IDBAccessObject;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
@@ -34,6 +33,7 @@ use MWRestrictions;
 use StatusValue;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 /**

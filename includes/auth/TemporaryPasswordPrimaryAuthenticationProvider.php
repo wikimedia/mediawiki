@@ -21,10 +21,10 @@
 
 namespace MediaWiki\Auth;
 
-use DBAccessObjectUtils;
-use IDBAccessObject;
 use MediaWiki\Password\Password;
 use MediaWiki\User\UserRigorOptions;
+use Wikimedia\Rdbms\DBAccessObjectUtils;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * A primary authentication provider that uses the temporary password field in

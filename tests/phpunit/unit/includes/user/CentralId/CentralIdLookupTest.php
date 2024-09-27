@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\User\CentralId;
 
-use IDBAccessObject;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Permissions\Authority;
@@ -14,6 +13,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\TestingAccessWrapper;
 
 /**

@@ -21,7 +21,6 @@
 namespace MediaWiki\User;
 
 use CannotCreateActorException;
-use IDBAccessObject;
 use InvalidArgumentException;
 use MediaWiki\Block\HideUserUtils;
 use MediaWiki\DAO\WikiAwareEntity;
@@ -32,6 +31,7 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
 

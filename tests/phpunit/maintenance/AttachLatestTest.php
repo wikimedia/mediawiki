@@ -3,8 +3,8 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use AttachLatest;
-use IDBAccessObject;
 use MediaWiki\Title\Title;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * @covers \AttachLatest

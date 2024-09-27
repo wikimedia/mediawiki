@@ -23,7 +23,6 @@
 
 namespace MediaWiki\Cache;
 
-use IDBAccessObject;
 use InvalidArgumentException;
 use MapCacheLRU;
 use MediaWiki\Linker\LinkTarget;
@@ -41,6 +40,7 @@ use Psr\Log\NullLogger;
 use stdClass;
 use WANObjectCache;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
 

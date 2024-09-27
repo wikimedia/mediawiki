@@ -2,7 +2,6 @@
 namespace MediaWiki\Tests\Page;
 
 use Exception;
-use IDBAccessObject;
 use InvalidArgumentException;
 use LinkCacheTestTrait;
 use MediaWiki\Config\ServiceOptions;
@@ -18,6 +17,7 @@ use MediaWikiIntegrationTestCase;
 use MockTitleTrait;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Stats\Metrics\MetricInterface;
 use Wikimedia\Stats\StatsFactory;

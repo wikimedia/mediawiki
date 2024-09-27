@@ -3,7 +3,6 @@
 namespace MediaWiki\Page;
 
 use EmptyIterator;
-use IDBAccessObject;
 use InvalidArgumentException;
 use Iterator;
 use MediaWiki\Cache\LinkCache;
@@ -16,6 +15,7 @@ use MediaWiki\Title\TitleParser;
 use stdClass;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Parsoid\Core\LinkTarget as ParsoidLinkTarget;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Stats\StatsFactory;

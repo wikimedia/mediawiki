@@ -21,7 +21,6 @@
 namespace MediaWiki\Storage;
 
 use ChangeTags;
-use IDBAccessObject;
 use InvalidArgumentException;
 use LogicException;
 use ManualLogEntry;
@@ -56,6 +55,7 @@ use RuntimeException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IDBAccessObject;
 use WikiPage;
 
 /**

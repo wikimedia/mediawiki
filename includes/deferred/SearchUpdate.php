@@ -25,7 +25,6 @@
 
 namespace MediaWiki\Deferred;
 
-use IDBAccessObject;
 use MediaWiki\Content\Content;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
@@ -33,6 +32,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageIdentity;
 use SearchEngine;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * Database independent search index updater

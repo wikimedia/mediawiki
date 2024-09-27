@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Tests\User;
 
-use IDBAccessObject;
 use InvalidArgumentException;
 use LogEntryBase;
 use MediaWiki\Block\DatabaseBlock;
@@ -44,6 +43,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Rule\InvokedCount;
 use TestLogger;
 use Wikimedia\Assert\PreconditionException;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * @covers \MediaWiki\User\UserGroupManager

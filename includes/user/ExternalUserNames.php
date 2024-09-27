@@ -22,11 +22,11 @@
 
 namespace MediaWiki\User;
 
-use IDBAccessObject;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * Class to parse and build external user names

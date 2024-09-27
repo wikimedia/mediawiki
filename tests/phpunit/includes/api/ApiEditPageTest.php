@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Api;
 
-use IDBAccessObject;
 use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\CommentStore\CommentStoreComment;
@@ -18,6 +17,7 @@ use MediaWiki\Title\TitleValue;
 use MediaWiki\User\User;
 use MediaWiki\Utils\MWTimestamp;
 use RevisionDeleter;
+use Wikimedia\Rdbms\IDBAccessObject;
 use WikiPage;
 
 /**

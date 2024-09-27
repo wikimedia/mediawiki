@@ -3,6 +3,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\User;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * @since 1.31

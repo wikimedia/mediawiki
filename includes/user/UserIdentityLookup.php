@@ -20,8 +20,8 @@
 
 namespace MediaWiki\User;
 
-use IDBAccessObject;
 use InvalidArgumentException;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 /**

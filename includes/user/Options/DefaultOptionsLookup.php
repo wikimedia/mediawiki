@@ -20,7 +20,6 @@
 
 namespace MediaWiki\User\Options;
 
-use IDBAccessObject;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -31,6 +30,7 @@ use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\User\UserIdentity;
 use Skin;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * A service class to control default user options

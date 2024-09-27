@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Revision;
 
-use IDBAccessObject;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Content\WikitextContentHandler;
 use MediaWiki\Page\PageIdentityValue;
@@ -15,6 +14,7 @@ use MediaWikiIntegrationTestCase;
 use MWException;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\TestingAccessWrapper;

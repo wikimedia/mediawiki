@@ -22,9 +22,9 @@
 
 namespace MediaWiki\Revision;
 
-use IDBAccessObject;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * Service for looking up page revisions.

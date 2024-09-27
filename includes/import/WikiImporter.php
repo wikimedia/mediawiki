@@ -51,6 +51,7 @@ use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\ExternalUserNames;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\NormalizedException\NormalizedException;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * XML file reader for the page data importer.

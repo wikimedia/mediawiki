@@ -25,7 +25,6 @@ use ChangesList;
 use ChangeTags;
 use ErrorPageError;
 use File;
-use IDBAccessObject;
 use LocalRepo;
 use LogEventsList;
 use LogPage;
@@ -79,6 +78,7 @@ use RepoGroup;
 use SearchEngineFactory;
 use UserBlockedError;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**

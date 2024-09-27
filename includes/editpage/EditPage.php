@@ -24,7 +24,6 @@ use Article;
 use BadMethodCallException;
 use CategoryPage;
 use ErrorPageError;
-use IDBAccessObject;
 use LogPage;
 use ManualLogEntry;
 use MediaWiki\Auth\AuthManager;
@@ -118,6 +117,7 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use WikiPage;
 

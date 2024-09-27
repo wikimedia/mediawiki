@@ -20,11 +20,11 @@
 
 namespace MediaWiki\Permissions;
 
-use IDBAccessObject;
 use InvalidArgumentException;
 use MediaWiki\Block\Block;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * Represents an authority that has a specific set of permissions

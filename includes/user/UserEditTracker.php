@@ -2,14 +2,14 @@
 
 namespace MediaWiki\User;
 
-use DBAccessObjectUtils;
-use IDBAccessObject;
 use InvalidArgumentException;
 use JobQueueGroup;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\UserEditCountUpdate;
 use UserEditCountInitJob;
+use Wikimedia\Rdbms\DBAccessObjectUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 

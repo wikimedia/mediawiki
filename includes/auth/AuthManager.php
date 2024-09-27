@@ -23,7 +23,6 @@
 
 namespace MediaWiki\Auth;
 
-use IDBAccessObject;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Auth\Hook\AuthManagerVerifyAuthenticationHook;
@@ -62,6 +61,7 @@ use Psr\Log\NullLogger;
 use StatusValue;
 use Wikimedia\NormalizedException\NormalizedException;
 use Wikimedia\ObjectFactory\ObjectFactory;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\ScopedCallback;

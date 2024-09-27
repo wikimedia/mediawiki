@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Tests\Api;
 
-use IDBAccessObject;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Title\Title;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * Tests for Undelete API.

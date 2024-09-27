@@ -15,6 +15,7 @@ use MediaWiki\User\User;
 use MediaWiki\Watchlist\WatchedItemStore;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * @covers \MediaWiki\Page\MovePage

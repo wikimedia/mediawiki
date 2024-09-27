@@ -21,7 +21,6 @@
 namespace MediaWiki\Storage;
 
 use CategoryMembershipChangeJob;
-use IDBAccessObject;
 use InvalidArgumentException;
 use JobQueueGroup;
 use LogicException;
@@ -72,6 +71,7 @@ use Psr\Log\NullLogger;
 use RevertedTagUpdateJob;
 use WANObjectCache;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ILBFactory;
 use WikiPage;
 

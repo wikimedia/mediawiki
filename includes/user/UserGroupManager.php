@@ -20,7 +20,6 @@
 
 namespace MediaWiki\User;
 
-use IDBAccessObject;
 use InvalidArgumentException;
 use JobQueueGroup;
 use ManualLogEntry;
@@ -39,6 +38,7 @@ use UserGroupExpiryJob;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\ReadOnlyMode;

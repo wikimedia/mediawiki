@@ -2,7 +2,6 @@
 
 namespace MediaWiki\RenameUser;
 
-use IDBAccessObject;
 use JobQueueGroup;
 use JobSpecification;
 use ManualLogEntry;
@@ -17,6 +16,7 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserFactory;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IConnectionProvider;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**

@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
-use IDBAccessObject;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use RollbackEdits;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * @covers \RollbackEdits

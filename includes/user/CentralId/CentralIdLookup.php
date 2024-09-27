@@ -22,7 +22,6 @@
 
 namespace MediaWiki\User\CentralId;
 
-use IDBAccessObject;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\MediaWikiServices;
@@ -31,6 +30,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use Throwable;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * The CentralIdLookup service allows for connecting local users with

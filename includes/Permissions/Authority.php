@@ -20,10 +20,10 @@
 
 namespace MediaWiki\Permissions;
 
-use IDBAccessObject;
 use MediaWiki\Block\Block;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * This interface represents the authority associated with the current execution context,

@@ -2,7 +2,7 @@
 
 namespace MediaWiki\User\Options;
 
-use IDBAccessObject;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 /**
  * @internal
