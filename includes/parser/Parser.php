@@ -3200,27 +3200,29 @@ class Parser {
 						}
 					}
 
-					// Create a new context to execute the special page
-					$context = new RequestContext;
-					$context->setTitle( $title );
-					$context->setRequest( new FauxRequest( $pageArgs ) );
-					if ( $specialPage && $specialPage->maxIncludeCacheTime() === 0 ) {
-						$context->setUser( $this->userFactory->newFromUserIdentity( $this->getUserIdentity() ) );
-					} else {
-						// If this page is cached, then we better not be per user.
-						$context->setUser( User::newFromName( '127.0.0.1', false ) );
-					}
-					$context->setLanguage( $this->mOptions->getUserLangObj() );
-					$ret = $this->specialPageFactory->capturePath( $title, $context, $this->getLinkRenderer() );
-					if ( $ret ) {
-						$text = $context->getOutput()->getHTML();
-						$this->mOutput->addOutputPageMetadata( $context->getOutput() );
-						$found = true;
-						$isHTML = true;
-						if ( $specialPage && $specialPage->maxIncludeCacheTime() !== false ) {
-							$this->mOutput->updateRuntimeAdaptiveExpiry(
-								$specialPage->maxIncludeCacheTime()
-							);
+					// Create a new context to execute the special page, that is expensive
+					if ( $this->incrementExpensiveFunctionCount() ) {
+						$context = new RequestContext;
+						$context->setTitle( $title );
+						$context->setRequest( new FauxRequest( $pageArgs ) );
+						if ( $specialPage && $specialPage->maxIncludeCacheTime() === 0 ) {
+							$context->setUser( $this->userFactory->newFromUserIdentity( $this->getUserIdentity() ) );
+						} else {
+							// If this page is cached, then we better not be per user.
+							$context->setUser( User::newFromName( '127.0.0.1', false ) );
+						}
+						$context->setLanguage( $this->mOptions->getUserLangObj() );
+						$ret = $this->specialPageFactory->capturePath( $title, $context, $this->getLinkRenderer() );
+						if ( $ret ) {
+							$text = $context->getOutput()->getHTML();
+							$this->mOutput->addOutputPageMetadata( $context->getOutput() );
+							$found = true;
+							$isHTML = true;
+							if ( $specialPage && $specialPage->maxIncludeCacheTime() !== false ) {
+								$this->mOutput->updateRuntimeAdaptiveExpiry(
+									$specialPage->maxIncludeCacheTime()
+								);
+							}
 						}
 					}
 				} elseif ( $this->nsInfo->isNonincludable( $title->getNamespace() ) ) {
