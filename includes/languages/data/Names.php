@@ -279,7 +279,7 @@ class Names {
 		'kcg' => 'Tyap', # Tyap
 		'kea' => 'kabuverdianu', # Cape Verdean Creole
 		'kg' => 'Kongo', # Kongo, (FIXME!) should probably be KiKongo or KiKoongo
-		'kge' => 'Basa Kumoring', # Komering
+		'kge' => 'Kumoring', # Komering
 		'khw' => 'کھوار', # Khowar
 		'ki' => 'Gĩkũyũ', # Gikuyu
 		'kiu' => 'Kırmancki', # Kirmanjki

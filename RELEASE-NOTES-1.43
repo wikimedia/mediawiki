@@ -225,6 +225,7 @@ because of Phabricator reports.
 
 * (T357853) Added unidirectional script conversion for Meitei to Bengali script.
 * (T367377) Updated the autonym for Tai Nuea (tdd)
+* (T375947) Updated the autonym for Komering (kge)
 * (T354937, T362041) Added language support for Minnan (Traditional Han script)
   (nan-hant).
 * (T290657) Added language support for Levantine Arabic (apc).

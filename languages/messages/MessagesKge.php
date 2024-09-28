@@ -1,5 +1,5 @@
 <?php
-/** Komering
+/** Komering (Kumoring)
  *
  * @file
  * @ingroup Languages
