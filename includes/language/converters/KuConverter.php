@@ -31,14 +31,10 @@ class KuConverter extends LanguageConverterSpecific {
 		'م' => 'm', 'ن' => 'n', 'پ' => 'p', 'ق' => 'q', 'ر' => 'r', 'س' => 's', 'ش' => 'ş',
 		'ت' => 't', 'ڤ' => 'v', 'خ' => 'x', 'غ' => 'x', 'ز' => 'z',
 
-		// ک و => ku -- ist richtig
-		//  و ك=> ku -- ist auch richtig
-
-		/* Doppel- und Halbvokale */
+		/* full and semi-vowel */
 		'ڵ' => 'll', # ll
 		'ڕ' => 'rr', # rr
 		'ا' => 'a',
-		# 'ئێ' => 'ê', # initial e
 		'ە' => 'e',
 		'ه‌' => 'e', # with one non-joiner
 		'ه‌‌' => 'e', # with two non-joiners
@@ -80,13 +76,6 @@ class KuConverter extends LanguageConverterSpecific {
 		'T' => 'ت', 'V' => 'ڤ', 'W' => 'و', 'X' => 'خ',
 		'Y' => 'ی', 'Z' => 'ز',
 
-		/* Doppelkonsonanten */
-		# 'll' => 'ڵ', # wenn es geht, doppel-l und l getrennt zu behandeln
-		# 'rr' => 'ڕ', # selbiges für doppel-r
-
-		/* Einzelne Großbuchstaben */
-		// ' C' => 'ج',
-
 		/* Vowels */
 		'a' => 'ا',
 		'e' => 'ە',
@@ -122,24 +111,7 @@ class KuConverter extends LanguageConverterSpecific {
 		' O' => 'ئۆ ',
 		' U' => 'ئو ',
 		' Û' => 'ئوو ',
-		# eyn erstmal deaktivieren, einfache Anführungsstriche sind einfach zu
-		# häufig, um sie als eyn zu interpretieren.
-		# '\'' => 'ع',
-
-/*		# deactivated for now, breaks links i.e. in header of Special:Recentchanges :-(
-		# digits
-		'0' => '٠', # U+0660
-		'1' => '١', # U+0661
-		'2' => '٢', # U+0662
-		'3' => '٣', # U+0663
-		'4' => '٤', # U+0664
-		'5' => '٥', # U+0665
-		'6' => '٦', # U+0666
-		'7' => '٧', # U+0667
-		'8' => '٨', # U+0668
-		'9' => '٩', # U+0669
-*/
-		];
+	];
 
 	public function getMainCode(): string {
 		return 'ku';
