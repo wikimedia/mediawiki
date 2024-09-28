@@ -210,6 +210,38 @@ class SpecialBlock extends FormSpecialPage {
 		[ $this->previousTarget, /*...*/ ] = $this->blockUtils
 			->parseBlockTarget( $request->getVal( 'wpPreviousTarget' ) );
 		$this->requestedHideUser = $request->getBool( 'wpHideUser' );
+
+		if ( $this->useCodex ) {
+			$this->codexFormData[ 'blockExpiryPreset' ] = $request->getVal( 'wpExpiry' );
+			$blockAdditionalDetailsPreset = $blockDetailsPreset = [];
+
+			if ( $request->getBool( 'wpCreateAccount' ) ) {
+				$blockDetailsPreset[] = 'wpCreateAccount';
+			}
+
+			if ( $request->getBool( 'wpDisableEmail' ) ) {
+				$blockDetailsPreset[] = 'wpDisableEmail';
+			}
+
+			if ( $request->getBool( 'wpDisableUTEdit' ) ) {
+				$blockDetailsPreset[] = 'wpDisableUTEdit';
+			}
+
+			if ( $request->getVal( 'wpAutoBlock' ) !== '0' ) {
+				$blockAdditionalDetailsPreset[] = 'wpAutoBlock';
+			}
+
+			if ( $request->getBool( 'wpWatch' ) ) {
+				$blockAdditionalDetailsPreset[] = 'wpWatch';
+			}
+
+			if ( $request->getBool( 'wpHardBlock' ) ) {
+				$blockAdditionalDetailsPreset[] = 'wpHardBlock';
+			}
+
+			$this->codexFormData[ 'blockDetailsPreset' ] = $blockDetailsPreset;
+			$this->codexFormData[ 'blockAdditionalDetailsPreset' ] = $blockAdditionalDetailsPreset;
+		}
 	}
 
 	/**
