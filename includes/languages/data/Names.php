@@ -161,7 +161,7 @@ class Names {
 		'din' => 'Thuɔŋjäŋ', # Dinka
 		'diq' => 'Zazaki', # Zazaki
 		'dsb' => 'dolnoserbski', # Lower Sorbian
-		'dtp' => 'Dusun Bundu-liwan', # Central Dusun
+		'dtp' => 'Kadazandusun', # Central Dusun
 		'dty' => 'डोटेली', # Doteli
 		'dua' => 'Duálá', # Duala
 		'dv' => 'ދިވެހިބަސް', # Dhivehi

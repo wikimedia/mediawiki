@@ -1,5 +1,5 @@
 <?php
-/** Central Dusun (Dusun Bundu-liwan)
+/** Central Dusun (Kadazandusun)
  *
  * @file
  * @ingroup Languages
