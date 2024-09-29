@@ -359,7 +359,7 @@ class ImagePage extends Article {
 		$out = $context->getOutput();
 		$user = $context->getUser();
 		$lang = $context->getLanguage();
-		$dirmark = $lang->getDirMarkEntity();
+		$sitedir = MediaWikiServices::getInstance()->getContentLanguage()->getDir();
 		$request = $context->getRequest();
 
 		if ( $this->displayImg->exists() ) {
@@ -600,23 +600,19 @@ class ImagePage extends Article {
 
 			if ( !$this->displayImg->isSafeFile() ) {
 				$warning = $context->msg( 'mediawarning' )->plain();
-				// dirmark is needed here to separate the file name, which
+				// <bdi> is needed here to separate the file name, which
 				// most likely ends in Latin characters, from the description,
 				// which may begin with the file type. In RTL environment
 				// this will get messy.
-				// The dirmark, however, must not be immediately adjacent
-				// to the filename, because it can get copied with it.
-				// See T27277.
-				// phpcs:disable Generic.Files.LineLength
 				$out->wrapWikiTextAsInterface( 'fullMedia', <<<EOT
-<span class="dangerousLink">{$medialink}</span> $dirmark<span class="fileInfo">$longDesc</span>
+<bdi dir="$sitedir"><span class="dangerousLink">$medialink</span></bdi> <span class="fileInfo">$longDesc</span>
 EOT
 				);
 				// phpcs:enable
 				$out->wrapWikiTextAsInterface( 'mediaWarning', $warning );
 			} else {
 				$out->wrapWikiTextAsInterface( 'fullMedia', <<<EOT
-{$medialink} {$dirmark}<span class="fileInfo">$longDesc</span>
+<bdi dir="$sitedir">$medialink</bdi> <span class="fileInfo">$longDesc</span>
 EOT
 				);
 			}
