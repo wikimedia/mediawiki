@@ -36,6 +36,10 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	protected function setUp(): void {
+		$this->overrideConfigValue(
+			MainConfigNames::GroupPermissions,
+			[ '*' => [ 'edit' => true ] ]
+		);
 		parent::setUp();
 		$this->clearHooks();
 	}
@@ -78,7 +82,6 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		}
 
 		$this->changesListSpecialPage->setContext( $context );
-		$this->changesListSpecialPage->filterGroups = [];
 		$formOptions = $this->changesListSpecialPage->setup( null );
 
 		# Filter out rc_timestamp conditions which depends on the test runtime
@@ -395,6 +398,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 	public function testRcHidepatrolledDisabledFilter() {
 		$this->overrideConfigValue( MainConfigNames::UseRCPatrol, false );
+		$this->changesListSpecialPage->filterGroups = [];
 		$user = $this->getTestUser()->getUser();
 		$this->assertConditions(
 			[ # expected
@@ -409,6 +413,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 	public function testRcHideunpatrolledDisabledFilter() {
 		$this->overrideConfigValue( MainConfigNames::UseRCPatrol, false );
+		$this->changesListSpecialPage->filterGroups = [];
 		$user = $this->getTestUser()->getUser();
 		$this->assertConditions(
 			[ # expected
@@ -763,6 +768,35 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 			],
 			"rc conditions: userExpLevel=unregistered;experienced"
 		);
+	}
+
+	public function testFilterUserExpLevelRegistrationRequiredToEditRemovesRegistrationFilters() {
+		$this->overrideConfigValue(
+			MainConfigNames::GroupPermissions,
+			[ '*' => [ 'edit' => false ] ]
+		);
+		parent::setUp();
+		$this->assertCount( 3, $this->changesListSpecialPage->filterGroupDefinitions[1]['filters'] );
+
+		$actualFilterGroupDefinitions = [];
+		foreach ( $this->changesListSpecialPage->filterGroupDefinitions[1]['filters'] as $key => $value ) {
+			if ( $value['name'] ) {
+				array_push( $actualFilterGroupDefinitions, $value['name'] );
+			}
+		}
+		$this->assertSame( [ "newcomer", "learner", "experienced" ], $actualFilterGroupDefinitions );
+	}
+
+	public function testFilterUserExpLevelRegistrationNotRequiredToEditDoesNotRemoveRegistrationFilters() {
+		$this->assertCount( 5, $this->changesListSpecialPage->filterGroupDefinitions[1]['filters'] );
+
+		$actualFilterGroupDefinitions = [];
+		foreach ( $this->changesListSpecialPage->filterGroupDefinitions[1]['filters'] as $key => $value ) {
+			if ( $value['name'] ) {
+				array_push( $actualFilterGroupDefinitions, $value['name'] );
+			}
+		}
+		$this->assertSame( [ "unregistered", "registered", "newcomer", "learner", "experienced" ], $actualFilterGroupDefinitions );
 	}
 
 	public function testFilterUserExpLevel() {
