@@ -66,7 +66,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	private $clusterName;
 	/** @var ServerInfo */
 	private $serverInfo;
-	/** @var array[] Map of (group => server index => weight) */
+	/** @var array<string,array<int,int|float>> Map of (group => server index => weight) */
 	private $groupLoads;
 	/** @var string|null Default query group to use with getConnection() */
 	private $defaultGroup;
@@ -190,7 +190,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		$this->databaseFactory = $params['databaseFactory'] ?? new DatabaseFactory( $params );
 
 		$this->errorLogger = $params['errorLogger'] ?? static function ( Throwable $e ) {
-				trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
+			trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
 		};
 		$this->logger = $params['logger'] ?? new NullLogger();
 
@@ -368,20 +368,22 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	/**
-	 * @param array $loads
-	 * @param int|float $maxLag Restrict the maximum allowed lag to this many seconds, or INF for no max
-	 * @return int|string|false
+	 * @param array<int,int|float> $loads Map of (server index => weight) for a load group
+	 * @param int|float $sessionLagLimit Additional maximum lag threshold imposed by the session;
+	 *  use INF if none applies. Servers will count as lagged if their lag exceeds either this
+	 *  value or the configured "max lag" value.
+	 * @return int|false Index of a non-lagged server with non-zero weight; false if none
 	 */
-	private function getRandomNonLagged( array $loads, $maxLag = INF ) {
+	private function getRandomNonLagged( array $loads, $sessionLagLimit = INF ) {
 		$lags = $this->getLagTimes();
 
-		# Unset excessively lagged servers
+		// Unset excessively lagged servers from the load group
 		foreach ( $lags as $i => $lag ) {
 			if ( $i !== ServerInfo::WRITER_INDEX ) {
-				# How much lag this server nominally is allowed to have
-				$maxServerLag = $this->serverInfo->getServerMaxLag( $i ); // default
-				# Constrain that further by $maxLag argument
-				$maxServerLag = min( $maxServerLag, $maxLag );
+				// How much lag normally counts as "excessive" for this server
+				$maxServerLag = $this->serverInfo->getServerMaxLag( $i );
+				// How much lag counts as "excessive" for this server given the session
+				$maxServerLag = min( $maxServerLag, $sessionLagLimit );
 
 				$srvName = $this->serverInfo->getServerName( $i );
 				if ( $lag === false && !is_infinite( $maxServerLag ) ) {
@@ -402,12 +404,12 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		if ( array_sum( $loads ) == 0 ) {
-			// All the replicas with non-zero load are lagged and the primary has zero load.
+			// All the replicas with non-zero weight are lagged and the primary has zero load.
 			// Inform caller so that it can use switch to read-only mode and use a lagged replica.
 			return false;
 		}
 
-		# Return a random representative of the remainder
+		// Return a server index based on weighted random selection
 		return ArrayUtils::pickRandom( $loads );
 	}
 
@@ -439,11 +441,11 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		// seeing even higher replication positions (e.g. from concurrent requests).
 		$this->loadSessionPrimaryPos();
 
-		// Scale the configured load ratios according to each server's load/state.
+		// Scale the configured load weights according to each server's load/state.
 		// This can sometimes trigger server connections due to cache regeneration.
 		$this->loadMonitor->scaleLoads( $loads );
 
-		// Pick a server, accounting for weight, load, lag, and session consistency
+		// Pick a server, accounting for load weights, lag, and session consistency
 		$i = $this->pickReaderIndex( $loads );
 		if ( $i === false ) {
 			// Connection attempts failed
@@ -481,28 +483,28 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	/**
-	 * Pick a server that is reachable, preferably non-lagged, and return its server index
+	 * Pick a server that is reachable and preferably non-lagged based on the load weights
 	 *
 	 * This will leave the server connection open within the pool for reuse
 	 *
-	 * @param array $loads List of server weights
-	 * @return int|false reader index or false
+	 * @param array<int,int|float> $loads Map of (server index => weight) for a load group
+	 * @return int|false Server index to use as the load group reader index; false on failure
 	 */
 	private function pickReaderIndex( array $loads ) {
 		if ( $loads === [] ) {
-			throw new InvalidArgumentException( "Server configuration array is empty" );
+			throw new InvalidArgumentException( "Load group array is empty" );
 		}
 
+		$i = false;
 		// Quickly look through the available servers for a server that meets criteria...
 		$currentLoads = $loads;
-		$i = false;
 		while ( count( $currentLoads ) ) {
 			if ( $this->waitForPos && $this->waitForPos->asOfTime() ) {
 				$this->logger->debug( __METHOD__ . ": session has replication position" );
-				// ChronologyProtector::getSessionPrimaryPos called in $this->loadSessionPrimaryPos()
-				// sets "waitForPos" for session consistency.
-				// This triggers doWait() after connect, so it's especially good to
-				// avoid lagged servers so as to avoid excessive delay in that method.
+				// ChronologyProtector::getSessionPrimaryPos called in loadSessionPrimaryPos()
+				// sets "waitForPos" for session consistency. This triggers doWait() after
+				// connect, so it's especially good to avoid lagged servers so as to avoid
+				// excessive delay in that method.
 				$ago = microtime( true ) - $this->waitForPos->asOfTime();
 				// Aim for <= 1 second of waiting (being too picky can backfire)
 				$i = $this->getRandomNonLagged( $currentLoads, $ago + 1 );

@@ -49,7 +49,7 @@ interface ILoadMonitor extends LoggerAwareInterface, StatsdAwareInterface {
 	/**
 	 * Perform load ratio adjustment before deciding which server to use
 	 *
-	 * @param int[] &$weightByServer Map of (server index => float weight)
+	 * @param array<int,int|float> &$weightByServer Map of (server index => weight)
 	 */
 	public function scaleLoads( array &$weightByServer );
 }
