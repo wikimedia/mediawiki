@@ -11,6 +11,13 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.41.2 ===
 * Localisation updates.
+* Parser: Deprecate use of mOutput before initialization.
+* Clarify that $wgAllowCrossOrigin only applies to REST.
+* composer.json: Add 5 more ext- to suggests.
+* resources: Fix 404 Not Found for foreign Financial-Times/polyfill-library.
+* ResourceLoader: Fix regression of color mapping in Less.php.
+* ResourceLoader: Upgrade wikimedia/less.php to 4.4.1.
+* SpecialExport: Prevent passing null to strtolower.
 
 == MediaWiki 1.41.2 ==
 
