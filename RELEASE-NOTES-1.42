@@ -4,6 +4,13 @@ PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
 PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 
+== MediaWiki 1.42.3 ==
+
+This is a maintenance release of the MediaWiki 1.42 branch.
+
+=== Changes since MediaWiki 1.42.2 ===
+* Fix issue related to backport of AbuseFilter patch for T372998.
+
 == MediaWiki 1.42.2 ==
 
 This is a security and maintenance release of the MediaWiki 1.42 branch.
