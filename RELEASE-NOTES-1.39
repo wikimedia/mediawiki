@@ -7,7 +7,7 @@ PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 
 == Mediawiki 1.39.9 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.39 branch.
 
 === Changes since 1.39.8 ===
 * Localisation updates.
