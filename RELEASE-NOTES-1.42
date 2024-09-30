@@ -10,6 +10,13 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.42.1 ===
 * Localisation updates.
+* Parser: Deprecate use of mOutput before initialization.
+* (T365565) PrefixSearch: Make sure $prefix is a string.
+* Clarify that $wgAllowCrossOrigin only applies to REST.
+* composer.json: Add 5 more ext- to suggests.
+* resources: Fix 404 Not Found for foreign Financial-Times/polyfill-library.
+* ResourceLoader: Upgrade wikimedia/less.php to 4.4.1.
+* SpecialExport: Prevent passing null to strtolower.
 
 Additionally, some language support improvements which went out in 1.42.0 were
 not noted; they are included here for completeness:
