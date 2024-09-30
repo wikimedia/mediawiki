@@ -7,7 +7,7 @@ PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 
 == MediaWiki 1.41.3 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.41 branch.
 
 === Changes since MediaWiki 1.41.2 ===
 * Localisation updates.
