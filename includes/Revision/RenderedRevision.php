@@ -220,6 +220,8 @@ class RenderedRevision implements SlotRenderingProvider {
 	 *
 	 * @throws SuppressedDataException if the content is not accessible for the audience
 	 *         specified in the constructor.
+	 * @throws BadRevisionException
+	 * @throws RevisionAccessException
 	 * @return ParserOutput
 	 */
 	public function getSlotParserOutput( $role, array $hints = [] ) {

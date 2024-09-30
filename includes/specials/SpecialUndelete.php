@@ -45,6 +45,7 @@ use MediaWiki\Page\UndeletePageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\ArchivedRevisionLookup;
+use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionArchiveRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
@@ -656,11 +657,15 @@ class SpecialUndelete extends SpecialPage {
 		$t = $lang->userTime( $timestamp, $user );
 		$userLink = Linker::revUserTools( $revRecord );
 
-		$content = $revRecord->getContent(
-			SlotRecord::MAIN,
-			RevisionRecord::FOR_THIS_USER,
-			$user
-		);
+		try {
+			$content = $revRecord->getContent(
+				SlotRecord::MAIN,
+				RevisionRecord::FOR_THIS_USER,
+				$user
+			);
+		} catch ( RevisionAccessException $e ) {
+			$content = null;
+		}
 
 		// TODO: MCR: this will have to become something like $hasTextSlots and $hasNonTextSlots
 		$isText = ( $content instanceof TextContent );
@@ -709,20 +714,23 @@ class SpecialUndelete extends SpecialPage {
 
 			$popts = $out->parserOptions();
 
-			$rendered = $this->revisionRenderer->getRenderedRevision(
-				$revRecord,
-				$popts,
-				$user,
-				[ 'audience' => RevisionRecord::FOR_THIS_USER, 'causeAction' => 'undelete-preview' ]
-			);
+			try {
+				$rendered = $this->revisionRenderer->getRenderedRevision(
+					$revRecord,
+					$popts,
+					$user,
+					[ 'audience' => RevisionRecord::FOR_THIS_USER, 'causeAction' => 'undelete-preview' ]
+				);
 
-			// Fail hard if the audience check fails, since we already checked
-			// at the beginning of this method.
-			$pout = $rendered->getRevisionParserOutput();
+				// Fail hard if the audience check fails, since we already checked
+				// at the beginning of this method.
+				$pout = $rendered->getRevisionParserOutput();
 
-			$out->addParserOutput( $pout, [
-				'enableSectionEditLinks' => false,
-			] );
+				$out->addParserOutput( $pout, [
+					'enableSectionEditLinks' => false,
+				] );
+			} catch ( RevisionAccessException $e ) {
+			}
 		}
 
 		$out->enableOOUI();

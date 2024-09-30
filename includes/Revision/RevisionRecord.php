@@ -152,6 +152,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * @param Authority|null $performer user on whose behalf to check
 	 *
 	 * @return Content|null The content of the given slot, or null on error
+	 * @throws RevisionAccessException
 	 */
 	public function getContent( $role, $audience = self::FOR_PUBLIC, Authority $performer = null ): ?Content {
 		try {
