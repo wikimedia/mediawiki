@@ -175,7 +175,7 @@
 	"poolcounter-usage-error": "Sala sa paggamit: $1",
 	"aboutsite": "Manungod sa {{SITENAME}}",
 	"aboutpage": "Project:Manungod",
-	"copyright": "An kalamnan manunumpungan sa laog kan $1 o baya notado na ining laen.",
+	"copyright-footer": "An kalamnan manunumpungan sa laog kan $1 o baya notado na ining laen.",
 	"copyrightpage": "{{ns:project}}:Katanusan sa pagsasadiri",
 	"currentevents": "Pangyayari sa ngunyan",
 	"currentevents-url": "Project:Pangyayari sa ngunyan",

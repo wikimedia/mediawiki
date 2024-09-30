@@ -181,7 +181,7 @@
 	"poolcounter-usage-error": "Тевс нолдамонь ильведевкс: $1",
 	"aboutsite": "{{SITENAME}} ланга",
 	"aboutpage": "Project:Эрьва кодамо ёндо невтема",
-	"copyright": "$1-сто муят мезе тесэ, бути лиякс апак ёвта.",
+	"copyright-footer": "$1-сто муят мезе тесэ, бути лиякс апак ёвта.",
 	"copyrightpage": "{{ns:project}}:Азоронь прават",
 	"currentevents": "Неень шкань молевкс",
 	"currentevents-url": "Project:Неень шкань молевкст",

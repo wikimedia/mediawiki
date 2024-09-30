@@ -193,7 +193,7 @@
 	"poolcounter-usage-error": "Izmantošanas kļūda: $1",
 	"aboutsite": "Par {{grammar:akuzatīvs|{{SITENAME}}}}",
 	"aboutpage": "Project:Par",
-	"copyright": "Saturs ir pieejams saskaņā ar $1, ja vien nav norādīts citādi.",
+	"copyright-footer": "Saturs ir pieejams saskaņā ar $1, ja vien nav norādīts citādi.",
 	"copyrightpage": "{{ns:project}}:Autortiesības",
 	"currentevents": "Aktualitātes",
 	"currentevents-url": "Project:Aktualitātes",

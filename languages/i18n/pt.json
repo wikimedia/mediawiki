@@ -254,7 +254,7 @@
 	"poolcounter-usage-error": "Erro de uso: $1",
 	"aboutsite": "Sobre a wiki {{SITENAME}}",
 	"aboutpage": "Project:Sobre",
-	"copyright": "Conteúdo disponibilizado nos termos da $1, salvo indicação em contrário.",
+	"copyright-footer": "Conteúdo disponibilizado nos termos da $1, salvo indicação em contrário.",
 	"copyrightpage": "{{ns:project}}:Direitos de autor",
 	"currentevents": "Notícias",
 	"currentevents-url": "Project:Notícias",

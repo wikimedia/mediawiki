@@ -155,7 +155,7 @@
 	"pool-errorunknown": "Anuon era",
 	"aboutsite": "Info pon {{SITENAME}}",
 	"aboutpage": "Project:Info",
-	"copyright": "Kantent avielobl anda $1.",
+	"copyright-footer": "Kantent avielobl anda $1.",
 	"copyrightpage": "{{ns:project}}:Kapirait",
 	"currentevents": "Wah gwaan",
 	"currentevents-url": "Project:Wah gwaan",

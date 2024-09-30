@@ -168,7 +168,7 @@
 	"poolcounter-usage-error": "प्रयोग गल्ती:$1",
 	"aboutsite": "{{SITENAME}}आ बारेमी",
 	"aboutpage": "Project:बारेमी",
-	"copyright": "सामाग्री $1 अनुसार उपलब्ध छ, खुलाइएको अवस्था बाहेकका हकमी ।",
+	"copyright-footer": "सामाग्री $1 अनुसार उपलब्ध छ, खुलाइएको अवस्था बाहेकका हकमी ।",
 	"copyrightpage": "{{ns:project}}:प्रतिलिपी अधिकारअन",
 	"currentevents": "आजभोलका घटना",
 	"currentevents-url": "Project:आजभोलका घटना",

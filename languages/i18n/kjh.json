@@ -172,7 +172,7 @@
 	"poolcounter-usage-error": "Саба тузаланғаны: $1",
 	"aboutsite": "{{SITENAME}} проекттеңер",
 	"aboutpage": "Project: Проекттеңер",
-	"copyright": "Пасхазы кӧзіділбеен полза, контент $1 лицензия хоостыра азых.",
+	"copyright-footer": "Пасхазы кӧзіділбеен полза, контент $1 лицензия хоостыра азых.",
 	"copyrightpage": "{{ns:project}}:Автор правозы",
 	"currentevents": "Амғы киректер",
 	"currentevents-url": "Project:Амғы киректер",

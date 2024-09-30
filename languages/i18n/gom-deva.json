@@ -158,7 +158,7 @@
 	"poolcounter-usage-error": "उपयोगी त्रुटि: $1",
 	"aboutsite": "{{SITENAME}} विशीं",
 	"aboutpage": "Project:विशीं",
-	"copyright": "मजकूर $1 हाच्या खाला उपलब्ध आसा खेरीज हेर नोंदी केल्या शिवाय.",
+	"copyright-footer": "मजकूर $1 हाच्या खाला उपलब्ध आसा खेरीज हेर नोंदी केल्या शिवाय.",
 	"copyrightpage": "{{ns:project}}:प्रात-हक",
 	"currentevents": "चालंत घडणुको",
 	"currentevents-url": "Project:चालंत घडणुको",

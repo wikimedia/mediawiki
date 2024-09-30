@@ -267,7 +267,6 @@
 	"config-install-schema": "Membuat skema",
 	"config-install-pg-schema-not-exist": "Skema PostgreSQL tidak tersedia.",
 	"config-install-pg-schema-failed": "Pembuatan tabel gagal.\nPastikan bahwa pengguna \"$1\" dapat menulis ke skema \"$2\".",
-	"config-install-pg-commit": "Melakukan perubahan",
 	"config-install-pg-plpgsql": "Memeriksa bahasa PL / pgSQL",
 	"config-pg-no-plpgsql": "Anda perlu menginstal bahasa PL/pgSQL pada basis data $1",
 	"config-pg-no-create-privs": "Akun yang Anda tetapkan untuk instalasi tidak memiliki hak yang cukup untuk membuat akun.",

@@ -193,7 +193,7 @@
 	"poolcounter-usage-error": "Қолдану қатесі: $1",
 	"aboutsite": "{{SITENAME}} туралы",
 	"aboutpage": "Project:Жоба туралы",
-	"copyright": "Мазмұн $1 бойынша қолжетімді, басқаша айтылмаса.",
+	"copyright-footer": "Мазмұн $1 бойынша қолжетімді, басқаша айтылмаса.",
 	"copyrightpage": "{{ns:project}}:Авторлық құқықтар",
 	"currentevents": "Қазіргі оқиғалар",
 	"currentevents-url": "Project:Қазіргі оқиғалар",

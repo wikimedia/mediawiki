@@ -216,7 +216,7 @@
 	"poolcounter-usage-error": "वापर त्रुटी:$1",
 	"aboutsite": "{{SITENAME}} बद्दल",
 	"aboutpage": "Project:माहितीपृष्ठ",
-	"copyright": "येथील मजकूर $1च्या अंतर्गत उपलब्ध आहे जोपर्यंत इतर नोंदी केलेल्या नाहीत.",
+	"copyright-footer": "येथील मजकूर $1च्या अंतर्गत उपलब्ध आहे जोपर्यंत इतर नोंदी केलेल्या नाहीत.",
 	"copyrightpage": "{{ns:project}}:प्रताधिकार",
 	"currentevents": "सद्य घटना",
 	"currentevents-url": "Project:सद्य घटना",

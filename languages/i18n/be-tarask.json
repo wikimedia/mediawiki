@@ -187,7 +187,7 @@
 	"poolcounter-usage-error": "Памылка выкарыстаньня: $1",
 	"aboutsite": "Пра {{GRAMMAR:вінавальны|{{SITENAME}}}}",
 	"aboutpage": "Project:Пра {{GRAMMAR:вінавальны|{{SITENAME}}}}",
-	"copyright": "Зьмест даступны на ўмовах $1, калі не пазначана іншае.",
+	"copyright-footer": "Зьмест даступны на ўмовах $1, калі не пазначана іншае.",
 	"copyrightpage": "{{ns:project}}:Аўтарскія правы",
 	"currentevents": "Актуальныя падзеі",
 	"currentevents-url": "Project:Актуальныя падзеі",

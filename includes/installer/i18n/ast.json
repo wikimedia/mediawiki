@@ -220,7 +220,6 @@
 	"config-install-database": "Configurando la base de datos",
 	"config-install-schema": "Creando l'esquema",
 	"config-install-pg-schema-not-exist": "L'esquema PostgreSQL nun esiste.",
-	"config-install-pg-commit": "Tramitando los cambios",
 	"config-install-pg-plpgsql": "Comprobación de llinguaxe PL/pgSQL",
 	"config-pg-no-plpgsql": "Precises instalar el llinguaxe PL/pgSQL na base de datos $1",
 	"config-pg-no-create-privs": "La cuenta que conseñasti pa la instalación nun tien permisos abondo pa crear una cuenta.",

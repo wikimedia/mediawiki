@@ -180,7 +180,7 @@
 	"pool-errorunknown": "Error ignotus",
 	"aboutsite": "De {{grammar:ablative|{{SITENAME}}}}",
 	"aboutpage": "Project:De {{GRAMMAR:ablative|{{SITENAME}}}}",
-	"copyright": "Res ad manum sub $1 nisi aliter denuntiatum est.",
+	"copyright-footer": "Res ad manum sub $1 nisi aliter denuntiatum est.",
 	"copyrightpage": "{{ns:project}}:Verba privata",
 	"currentevents": "Novissima",
 	"currentevents-url": "Project:Novissima",

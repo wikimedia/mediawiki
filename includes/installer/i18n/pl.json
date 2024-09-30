@@ -277,7 +277,6 @@
 	"config-install-schema": "Tworzenie schematu",
 	"config-install-pg-schema-not-exist": "Schemat PostgreSQL nie istnieje.",
 	"config-install-pg-schema-failed": "Utworzenie tabel nie powiodło się.\nUpewnij się, że użytkownik „$1” może zapisywać do schematu „$2”.",
-	"config-install-pg-commit": "Zatwierdzanie zmian",
 	"config-install-pg-plpgsql": "Sprawdzanie języka PL/pgSQL",
 	"config-pg-no-plpgsql": "Musisz zainstalować język PL/pgSQL w bazie danych $1",
 	"config-pg-no-create-privs": "Konto, które zostało określone dla instalacji nie ma wystarczających uprawnień, aby utworzyć konto.",

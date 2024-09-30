@@ -185,7 +185,7 @@
 	"poolcounter-usage-error": "Tuccḍa  n useqdec: $1",
 	"aboutsite": "Ɣef {{SITENAME}}",
 	"aboutpage": "Project:Ɣef",
-	"copyright": "Agbur yella ddaw $1 ḥaca ma abdar anemgal.",
+	"copyright-footer": "Agbur yella ddaw $1 ḥaca ma abdar anemgal.",
 	"copyrightpage": "{{ns:project}}:Izerfanɣel",
 	"currentevents": "Isallen n tura",
 	"currentevents-url": "Project:Isallen n tura",

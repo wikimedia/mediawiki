@@ -165,7 +165,7 @@
 	"poolcounter-usage-error": "خطا استفاده شه: $1",
 	"aboutsite": "مالومات بِه {{SITENAME}}ئي باره‌ئا",
 	"aboutpage": "Project:بِه باره‌ئا",
-	"copyright": "محتوایات بی  $1 اجازه نامه ئا هستنت مگه ای که آی خلاف ئا ذکر بوته بیئنت .",
+	"copyright-footer": "محتوایات بی  $1 اجازه نامه ئا هستنت مگه ای که آی خلاف ئا ذکر بوته بیئنت .",
 	"copyrightpage": "{{ns:project}}:کاپی رایت یا باز کورتینی حق",
 	"currentevents": "انونین واقعات",
 	"currentevents-url": "Project:انونین واقعاتان",

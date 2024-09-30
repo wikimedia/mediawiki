@@ -262,7 +262,6 @@
 	"config-install-schema": "Opprette \"schema\"",
 	"config-install-pg-schema-not-exist": "PostgreSQL \"schema\" finnes ikke.",
 	"config-install-pg-schema-failed": "Opprettelse av tabell var mislykket.\nPass på at bruker \"$1\" kan skrive til schema \"$2\".",
-	"config-install-pg-commit": "Beslutte endringer",
 	"config-install-pg-plpgsql": "Sjekk om språket er PL/pgSQL",
 	"config-pg-no-plpgsql": "Du må installere språket PL/pgSQL i database $1",
 	"config-pg-no-create-privs": "Brukerkontoen du anga for installering har ikke nok privilegier for å opprette annen brukerkonto.",

@@ -110,7 +110,6 @@
 	"config-install-database": "Crèacion de la bâsa de balyês",
 	"config-install-schema": "Crèacion de plan",
 	"config-install-pg-schema-not-exist": "Lo plan PostgreSQL ègziste pas",
-	"config-install-pg-commit": "Validacion des changements",
 	"config-install-pg-plpgsql": "Contrôlo du lengâjo PL/pgSQL",
 	"config-install-user": "Crèacion d’un usanciér de la bâsa de balyês",
 	"config-install-user-alreadyexists": "L’usanciér « $1 » ègziste ja",

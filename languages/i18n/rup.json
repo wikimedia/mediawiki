@@ -147,7 +147,7 @@
 	"pool-servererror": "Serviciulu di contorizari a rezervâľei nu ma easti disponibilu ($1).",
 	"aboutsite": "Trâ {{SITENAME}}",
 	"aboutpage": "Project:Trâ aestâ",
-	"copyright": "Conținutlu easti disponibilu sum $1, fârâ chirolu tu cari s-specificâ altâ.",
+	"copyright-footer": "Conținutlu easti disponibilu sum $1, fârâ chirolu tu cari s-specificâ altâ.",
 	"copyrightpage": "{{ns:project}}:Ndirepturi di autoru",
 	"currentevents": "Evenimenti di tora",
 	"currentevents-url": "Project:Cafine",

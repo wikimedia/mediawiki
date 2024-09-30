@@ -226,7 +226,6 @@
 	"config-install-schema": "Γίνεται δημιουργία του σχήματος της βάσης δεδομένων",
 	"config-install-pg-schema-not-exist": "PostgreSQL σχήμα δεν υφίσταται.",
 	"config-install-pg-schema-failed": "Η δημιουργία πινάκων απέτυχε.\nΒεβαιωθείτε ότι ο χρήστης \"$1\" μπορεί  να γράψει στο σχήμα \"$2\".",
-	"config-install-pg-commit": "Γίνονται οι αλλαγές",
 	"config-install-pg-plpgsql": "Γίνεται έλεγχος για τη γλώσσα PL/pgSQL",
 	"config-pg-no-plpgsql": "Πρέπει να εγκαταστήσετε τη γλώσσα PL/pgSQL στη βάση δεδομένων $1",
 	"config-install-user": "Γίνεται η δημιουργία του χρήστη της βάσης δεδομένων",

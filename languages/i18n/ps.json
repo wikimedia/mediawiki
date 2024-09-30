@@ -172,7 +172,7 @@
 	"poolcounter-usage-error": "د کارېدلو تېروتنه: $1",
 	"aboutsite": "د {{SITENAME}} په اړه",
 	"aboutpage": "Project:په اړه",
-	"copyright": "دا مېنځپانگه د $1 له مخې ستاسې لاسرسي ته پرته ده، خو هغه څه چې په خلاف يې وييل شوي.",
+	"copyright-footer": "دا مېنځپانگه د $1 له مخې ستاسې لاسرسي ته پرته ده، خو هغه څه چې په خلاف يې وييل شوي.",
 	"copyrightpage": "{{ns:project}}:رښتې",
 	"currentevents": "اوسنۍ پېښې",
 	"currentevents-url": "Project:تازه پېښې",

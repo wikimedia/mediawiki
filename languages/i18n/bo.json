@@ -161,7 +161,7 @@
 	"poolcounter-usage-error": "བཀོལ་སྤྱོད་མཁན་ལ་ནོར་འཁྲུལ། $1",
 	"aboutsite": "{{SITENAME}}ཡི་སྐོར།",
 	"aboutpage": "Project:སྐོར།",
-	"copyright": "དེ་མིན་གྱི་མཆན་འགྲེལ་ཡོད་ན་མ་གཏོགས། དྲ་བའི་ནང་དོན་ $1 སྟེང་དུ་ཡོད།",
+	"copyright-footer": "དེ་མིན་གྱི་མཆན་འགྲེལ་ཡོད་ན་མ་གཏོགས། དྲ་བའི་ནང་དོན་ $1 སྟེང་དུ་ཡོད།",
 	"copyrightpage": "{{ns:project}}:པར་དབང་།",
 	"currentevents": "ད་ལྟའི་དོན་གནད།",
 	"currentevents-url": "Project:ད་ལྟའི་དོན་གནད།",

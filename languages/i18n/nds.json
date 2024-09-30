@@ -165,7 +165,7 @@
 	"pool-errorunknown": "Unbekannten Fehler",
 	"aboutsite": "Över {{SITENAME}}",
 	"aboutpage": "Project:Över",
-	"copyright": "Inholt is verfögbor ünner de $1.",
+	"copyright-footer": "Inholt is verfögbor ünner de $1.",
 	"copyrightpage": "{{ns:project}}:Lizenz",
 	"currentevents": "Aktuell Schehn",
 	"currentevents-url": "Project:Aktuell Schehn",

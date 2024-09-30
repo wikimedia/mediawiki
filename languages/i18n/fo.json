@@ -167,7 +167,7 @@
 	"poolcounter-usage-error": "Nýtslufeilur: $1",
 	"aboutsite": "Um {{SITENAME}}",
 	"aboutpage": "Project:Um",
-	"copyright": "Innihaldið er tøkt undir $1, um ikki annað er viðmerkt.",
+	"copyright-footer": "Innihaldið er tøkt undir $1, um ikki annað er viðmerkt.",
 	"copyrightpage": "{{ns:project}}:Upphavsrættur",
 	"currentevents": "Aktuellar hendingar",
 	"currentevents-url": "Project:Aktuellar hendingar",

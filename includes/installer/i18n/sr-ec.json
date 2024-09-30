@@ -227,7 +227,6 @@
 	"config-install-schema": "Прављење шеме",
 	"config-install-pg-schema-not-exist": "Шема PostgreSQL не постоји.",
 	"config-install-pg-schema-failed": "Прављење табела није успело.\nУверите се да корисник „$1” може да пише у шеми „$2”.",
-	"config-install-pg-commit": "Извршавање промена",
 	"config-install-pg-plpgsql": "Проверавање језика PL/pgSQL",
 	"config-pg-no-plpgsql": "Морате да инсталирате језик PL/pgSQL у бази података $1",
 	"config-pg-no-create-privs": "Налог који сте навели за инсталацију нема довољне привилегије да отвори налог.",

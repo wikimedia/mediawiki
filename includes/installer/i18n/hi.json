@@ -255,7 +255,6 @@
 	"config-install-schema": "स्केमा बन रहा है",
 	"config-install-pg-schema-not-exist": "PostgreSQL स्केमा मौजूद नहीं है।",
 	"config-install-pg-schema-failed": "टेबल न बनाए जा सके।\nसुनिश्चित करें कि सदस्य \"$1\" को स्केमा \"$2\" में लिखने की अनुमति है।",
-	"config-install-pg-commit": "बदलाव कमिट किए जा रहे हैं",
 	"config-install-pg-plpgsql": "PL/pgSQL भाषा को जाँचा जा रहा है",
 	"config-pg-no-plpgsql": "आपको डेटाबेस $1 में PL/pgSQL भाषा स्थापित करनी होगी",
 	"config-pg-no-create-privs": "स्थापना के लिए आपने जो खाता दर्ज किया है उसके पास खाता बनाने की अनुमति नहीं है।",

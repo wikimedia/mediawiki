@@ -183,7 +183,7 @@
 	"poolcounter-usage-error": "Galat penggunaan: $1",
 	"aboutsite": "Tantang {{SITENAME}}",
 	"aboutpage": "Project:Tantang_{{SITENAME}}",
-	"copyright": "Isi tasadio dalam $1",
+	"copyright-footer": "Isi tasadio dalam $1",
 	"copyrightpage": "{{ns:project}}:Hak cipta",
 	"currentevents": "Kajadian kini ko",
 	"currentevents-url": "Project:Kajadian kini ko",

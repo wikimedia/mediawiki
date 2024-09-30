@@ -139,7 +139,7 @@
 	"jumptosearch": "jalaki",
 	"aboutsite": "Satontang {{SITENAME}}",
 	"aboutpage": "Project:Satontang",
-	"copyright": "Konten tarsadio itoru $1 lainkon adong parnyataan nalain.",
+	"copyright-footer": "Konten tarsadio itoru $1 lainkon adong parnyataan nalain.",
 	"copyrightpage": "{{ns:project}}:Hak cipta",
 	"currentevents": "Namasa sonnari",
 	"currentevents-url": "Project:Kajadian nabaru",

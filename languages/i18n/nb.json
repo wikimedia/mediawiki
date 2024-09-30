@@ -225,7 +225,7 @@
 	"poolcounter-usage-error": "Bruksfeil: $1",
 	"aboutsite": "Om {{SITENAME}}",
 	"aboutpage": "Project:Om",
-	"copyright": "Innholdet er tilgjengelig under $1 med mindre annet er spesifikt angitt.",
+	"copyright-footer": "Innholdet er tilgjengelig under $1 med mindre annet er spesifikt angitt.",
 	"copyrightpage": "{{ns:project}}:Opphavsrett",
 	"currentevents": "Aktuelt",
 	"currentevents-url": "Project:Aktuelt",

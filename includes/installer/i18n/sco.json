@@ -229,7 +229,6 @@
 	"config-install-schema": "Makin schema",
 	"config-install-pg-schema-not-exist": "PostgreSQL schema disna exeest.",
 	"config-install-pg-schema-failed": "Buirds makin failed.\nMak sair that the uiser \"$1\" can write til the schema \"$2\".",
-	"config-install-pg-commit": "Committin chynges",
 	"config-install-pg-plpgsql": "Checkin fer lied PL/pgSQL",
 	"config-pg-no-plpgsql": "Ye need tae install the leid PL/pgSQL in the database $1",
 	"config-pg-no-create-privs": "The accoont ye speceefied fer installâtion disna hae enough preevileges tae mak aen accoont.",

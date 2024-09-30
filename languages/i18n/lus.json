@@ -154,7 +154,7 @@
 	"pool-errorunknown": "Kan hriatthiam loh dikhlel a awm tlat",
 	"aboutsite": "{{SITENAME}} chungchang",
 	"aboutpage": "Project:Chungchang",
-	"copyright": "A chhung thute hi $1 hmanga lakchhawn phal a ni.",
+	"copyright-footer": "A chhung thute hi $1 hmanga lakchhawn phal a ni.",
 	"copyrightpage": "{{ns:project}}:Lakchhawn phalphung",
 	"currentevents": "Chanchinthar",
 	"currentevents-url": "Project: Chanchin thar",

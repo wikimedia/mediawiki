@@ -158,7 +158,7 @@
 	"pool-errorunknown": "Малумтушир гъалатӀ",
 	"aboutsite": "{{SITENAME}}кай",
 	"aboutpage": "Project:Гьакъиндай",
-	"copyright": "Къене авайбур $1 жугъуриз жеда.",
+	"copyright-footer": "Къене авайбур $1 жугъуриз жеда.",
 	"copyrightpage": "{{ns:project}}:Автордин ихтияр",
 	"currentevents": "Алай вакъиаяр",
 	"currentevents-url": "Project:Алай вакъиаяр",

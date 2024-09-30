@@ -261,7 +261,7 @@
 	"poolcounter-usage-error": "Galat penggunaan: $1",
 	"aboutsite": "Tentang {{SITENAME}}",
 	"aboutpage": "Project:Tentang",
-	"copyright": "Konten tersedia sesuai di bawah $1.",
+	"copyright-footer": "Konten tersedia sesuai di bawah $1.",
 	"copyrightpage": "{{ns:project}}:Hak cipta",
 	"currentevents": "Peristiwa terkini",
 	"currentevents-url": "Project:Peristiwa terkini",

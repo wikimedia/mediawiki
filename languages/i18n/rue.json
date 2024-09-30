@@ -172,7 +172,7 @@
 	"pool-errorunknown": "Незнама хыба",
 	"aboutsite": "О&nbsp;{{grammar:genitive|{{SITENAME}}}}",
 	"aboutpage": "Project:{{SITENAME}}",
-	"copyright": "Обсяг є доступный під $1, кідь не є вказане інше.",
+	"copyright-footer": "Обсяг є доступный під $1, кідь не є вказане інше.",
 	"copyrightpage": "{{ns:project}}:Авторьске право",
 	"currentevents": "Актуалны подїї",
 	"currentevents-url": "Project:Актуалны подїї",

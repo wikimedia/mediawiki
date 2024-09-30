@@ -215,7 +215,7 @@
 	"poolcounter-usage-error": "Greška korištenja: $1",
 	"aboutsite": "O projektu {{SITENAME}}",
 	"aboutpage": "Project:O_projektu_{{SITENAME}}",
-	"copyright": "Sadržaji se koriste u skladu s $1.",
+	"copyright-footer": "Sadržaji se koriste u skladu s $1.",
 	"copyrightpage": "{{ns:project}}:Autorska prava",
 	"currentevents": "Novosti",
 	"currentevents-url": "Project:Novosti",

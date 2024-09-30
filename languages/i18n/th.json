@@ -206,7 +206,6 @@
 	"poolcounter-usage-error": "เกิดข้อผิดพลาดในการใช้งาน: $1",
 	"aboutsite": "เกี่ยวกับ{{SITENAME}}",
 	"aboutpage": "Project:เกี่ยวกับ",
-	"copyright": "เนื้อหาอนุญาตให้เผยแพร่ภายใต้ $1 เว้นแต่ระบุไว้เป็นอย่างอื่น",
 	"copyrightpage": "{{ns:project}}:ลิขสิทธิ์",
 	"currentevents": "เหตุการณ์ปัจจุบัน",
 	"currentevents-url": "Project:เหตุการณ์ปัจจุบัน",

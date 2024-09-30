@@ -173,7 +173,7 @@
 	"pool-errorunknown": "Salah hana meukön",
 	"aboutsite": "Bhaih {{SITENAME}}",
 	"aboutpage": "Project:Bhaih",
-	"copyright": "Asoë na meunurôt $1 keucuali meunyö na hay la'én nyang geupeugah",
+	"copyright-footer": "Asoë na meunurôt $1 keucuali meunyö na hay la'én nyang geupeugah",
 	"copyrightpage": "{{ns:project}}:Hak karang",
 	"currentevents": "Haba barô",
 	"currentevents-url": "Project:Haba barô",

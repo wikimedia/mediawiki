@@ -142,7 +142,7 @@
 	"pool-errorunknown": "Doilleeid gyn enney",
 	"aboutsite": "Mychione {{SITENAME}}",
 	"aboutpage": "Project:Mychione",
-	"copyright": "Ta stoo ry-gheddyn rere $1.",
+	"copyright-footer": "Ta stoo ry-gheddyn rere $1.",
 	"copyrightpage": "{{ns:project}}:Coip-chiartyn",
 	"currentevents": "Cooishyn y laa",
 	"currentevents-url": "Project:Cooishyn y laa",

@@ -120,7 +120,7 @@
 	"jumptosearch": "fatukile",
 	"aboutsite": "Ngesi ye ng'i atulile {{SITENAME}}",
 	"aboutpage": "Project:Ngesi ye ng'i atulile",
-	"copyright": "Bye sa ilonungi di $1.",
+	"copyright-footer": "Bye sa ilonungi di $1.",
 	"copyrightpage": "{{ns:project}}:Copyright ng'i",
 	"currentevents": "Muembatami",
 	"currentevents-url": "Project:Muembatami",

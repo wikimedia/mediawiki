@@ -191,7 +191,7 @@
 	"poolcounter-usage-error": "Gwall defnydd: $1",
 	"aboutsite": "Ynglŷn â {{SITENAME}}",
 	"aboutpage": "Project:Ynghylch",
-	"copyright": "Rhoddir y cynnwys ar gael ar delerau'r drwydded $1, heblaw ei fod wedi nodi'n wahanol.",
+	"copyright-footer": "Rhoddir y cynnwys ar gael ar delerau'r drwydded $1, heblaw ei fod wedi nodi'n wahanol.",
 	"copyrightpage": "{{ns:project}}:Hawlfraint",
 	"currentevents": "Materion cyfoes",
 	"currentevents-url": "Project:Materion cyfoes",

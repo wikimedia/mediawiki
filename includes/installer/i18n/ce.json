@@ -121,7 +121,6 @@
 	"config-install-database": "Хаамийн базан нисдаран гӀирс",
 	"config-install-schema": "Схема кхоллар",
 	"config-install-pg-schema-not-exist": "PostgreSQL схема йац",
-	"config-install-pg-commit": "Бина хийцамаш",
 	"config-install-pg-plpgsql": "PL/pgSQL мотт таллар",
 	"config-install-user": "Декъашхочун хаамийн база кхоллар",
 	"config-install-user-alreadyexists": "Декъашхо «$1» хӀинцале волуш ву",

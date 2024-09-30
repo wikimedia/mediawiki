@@ -180,7 +180,7 @@
 	"poolcounter-usage-error": "Wužiwanski zmylk: $1",
 	"aboutsite": "Wo {{GRAMMAR:lokatiw|{{SITENAME}}}}",
 	"aboutpage": "Project:Wo",
-	"copyright": "Wobsah pod $1 k dispoziciji steji, jeli njeje so hinak podało.",
+	"copyright-footer": "Wobsah pod $1 k dispoziciji steji, jeli njeje so hinak podało.",
 	"copyrightpage": "{{ns:project}}:Awtorske prawa",
 	"currentevents": "Aktualne podawki",
 	"currentevents-url": "Project:Aktualne podawki",

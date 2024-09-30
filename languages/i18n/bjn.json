@@ -174,7 +174,7 @@
 	"poolcounter-usage-error": "Galat pamakaian: $1",
 	"aboutsite": "Hiwal {{SITENAME}}",
 	"aboutpage": "Project:Pasal",
-	"copyright": "Isi tasadia sasuai lawan $1.",
+	"copyright-footer": "Isi tasadia sasuai lawan $1.",
 	"copyrightpage": "{{ns:project}}:Hak cipta",
 	"currentevents": "Garamaan",
 	"currentevents-url": "Project:Garamaan",

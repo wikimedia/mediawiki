@@ -150,7 +150,7 @@
 	"poolcounter-usage-error": "Upyogachi chuk: $1",
 	"aboutsite": "{{SITENAME}} vixim",
 	"aboutpage": "Project:Vixoiavixim",
-	"copyright": "Mozkur $1 hachea khala uplobdh asa kheriz her nondi kelea xivai.",
+	"copyright-footer": "Mozkur $1 hachea khala uplobdh asa kheriz her nondi kelea xivai.",
 	"copyrightpage": "{{ns:project}}:Prat-hokk",
 	"currentevents": "Chalont ghoddnneo",
 	"currentevents-url": "Project:Chalont ghoddneo",

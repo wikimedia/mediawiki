@@ -166,7 +166,7 @@
 	"poolcounter-usage-error": "Sifasala: $1",
 	"aboutsite": "Sanandrösa {{SITENAME}}",
 	"aboutpage": "Project:Sanandrösa",
-	"copyright": "Te'asogö nösi barö $1, hatö na fabö'ö nifatunö",
+	"copyright-footer": "Te'asogö nösi barö $1, hatö na fabö'ö nifatunö",
 	"copyrightpage": "{{ns:project}}:Hak cipta",
 	"currentevents": "Salua barö da'a",
 	"currentevents-url": "Project:Salua barö da'a",

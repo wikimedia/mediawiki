@@ -174,7 +174,7 @@
 	"poolcounter-usage-error": "Hadisoam-pampiasana : $1",
 	"aboutsite": "Mombamomba ny {{SITENAME}}",
 	"aboutpage": "Project:Mombamomba",
-	"copyright": "Ny lisansa $1 no mamehy ny fampiasana ity voatoatiny ity.",
+	"copyright-footer": "Ny lisansa $1 no mamehy ny fampiasana ity voatoatiny ity.",
 	"copyrightpage": "{{ns:project}}:Copyright",
 	"currentevents": "Ny vaovao",
 	"currentevents-url": "Project:Vaovao",

@@ -187,7 +187,6 @@
 	"config-install-schema": "స్కీమాను సృష్టిస్తున్నాం",
 	"config-install-pg-schema-not-exist": "PostgreSQL స్కీమా లేదు.",
 	"config-install-pg-schema-failed": "టేబుళ్ళ సృష్టి విఫలమైంది.\nవాడుకరి \"$1\" కు స్కీమా \"$2\" లో రాసే అనుమతి ఉన్నదని నిర్ధారించుకోండి.",
-	"config-install-pg-commit": "మార్పులను నిర్ధారిస్తున్నాం",
 	"config-install-pg-plpgsql": "PL/pgSQL భాష కోసం పరీక్షిస్తున్నాం",
 	"config-pg-no-plpgsql": "డేటాబేసు $1 లో PL/pgSQL భాషను స్థాపించాల్సిన అవసరం ఉంది.",
 	"config-pg-no-create-privs": "స్థాపన కోసం మీరిచ్చిన ఖాతాకు, ఓ ఖాతా సృష్టించేందుకు అవసరమైన హక్కులు లేవు.",

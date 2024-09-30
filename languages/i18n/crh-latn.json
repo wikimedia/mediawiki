@@ -163,7 +163,7 @@
 	"poolcounter-usage-error": "Qullanuv hatası: $1",
 	"aboutsite": "{{SITENAME}} aqqında",
 	"aboutpage": "Project:Aqqında",
-	"copyright": "Başqası bildirilmese, malümat $1 litsenziyasınen berile.",
+	"copyright-footer": "Başqası bildirilmese, malümat $1 litsenziyasınen berile.",
 	"copyrightpage": "{{ns:project}}:Müelliflik aqları",
 	"currentevents": "Şimdiki vaqialar",
 	"currentevents-url": "Project:Şimdiki vaqialar",

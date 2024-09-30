@@ -126,7 +126,7 @@
 	"jumptosearch": "guck uff",
 	"aboutsite": "Iwwer {{SITENAME}}",
 	"aboutpage": "Project:Iwwer_{{SITENAME}}",
-	"copyright": "Was do drin schdeht iss unner $1 verfiechbar",
+	"copyright-footer": "Was do drin schdeht iss unner $1 verfiechbar",
 	"copyrightpage": "{{ns:project}}:Urhewerrechte",
 	"disclaimers": "Impressum",
 	"disclaimerpage": "Project:Impressum",

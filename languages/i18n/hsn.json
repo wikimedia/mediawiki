@@ -152,7 +152,7 @@
 	"pool-errorunknown": "不晓得的问题",
 	"aboutsite": "关于{{SITENAME}}",
 	"aboutpage": "Project:關於",
-	"copyright": "该个站文字内容冚使用$1授权。",
+	"copyright-footer": "该个站文字内容冚使用$1授权。",
 	"copyrightpage": "{{ns:project}}:版权",
 	"currentevents": "近日亇路子",
 	"currentevents-url": "Project:近日亇路子",

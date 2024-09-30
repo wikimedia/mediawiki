@@ -181,7 +181,7 @@
 	"poolcounter-usage-error": "کارگِرَگءِ مِشتک: $1",
 	"aboutsite": "{{SITENAME}}ءِ بارہ‌ئا",
 	"aboutpage": "Project:بارہ‌ئا",
-	"copyright": "محتوا مان اجازت نامهٔ $1 انت مگان ایشی که آئی هلاپء آرگ ببیت انت.",
+	"copyright-footer": "محتوا مان اجازت نامهٔ $1 انت مگان ایشی که آئی هلاپء آرگ ببیت انت.",
 	"copyrightpage": "{{ns:project}}:نکلء ھَک اندݔم اِنت",
 	"currentevents": "ھنیگݔن پݔش‌آتک",
 	"currentevents-url": "Project:هنیگݔن پݔش‌آتک",

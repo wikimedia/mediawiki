@@ -199,7 +199,7 @@
 	"poolcounter-usage-error": "ഉപയോഗ പിഴവ്:  $1",
 	"aboutsite": "{{SITENAME}} സം‌രംഭത്തെക്കുറിച്ച്",
 	"aboutpage": "Project:വിവരണം",
-	"copyright": "പ്രത്യേകം പറയാത്ത പക്ഷം ഉള്ളടക്കം $1 പ്രകാരം ലഭ്യം.",
+	"copyright-footer": "പ്രത്യേകം പറയാത്ത പക്ഷം ഉള്ളടക്കം $1 പ്രകാരം ലഭ്യം.",
 	"copyrightpage": "{{ns:project}}:പകർപ്പവകാശം",
 	"currentevents": "സമകാലികം",
 	"currentevents-url": "Project:സമകാലികം",

@@ -262,7 +262,6 @@
 	"config-install-schema": "S'està creant l'esquema",
 	"config-install-pg-schema-not-exist": "No existeix un esquema PostgreSQL.",
 	"config-install-pg-schema-failed": "La creació de les taules ha fallat.\nAssegureu-vos que l'usuari «$1» pot escriure a l'esquema «$2».",
-	"config-install-pg-commit": "S'estan trametent els canvis",
 	"config-install-pg-plpgsql": "S'està comprovant si hi ha llenguatge PL/pgSQL",
 	"config-pg-no-plpgsql": "Necessiteu instal·lar l'idioma PL/pgSQL a la base de dades $1",
 	"config-pg-no-create-privs": "El compte que heu especificat per a la instal·lació no té suficients permisos per crear un compte.",

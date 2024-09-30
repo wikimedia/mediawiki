@@ -25,7 +25,6 @@
 	"config-install-step-failed": "میں ناکام رہے",
 	"config-install-extensions": "سمیت ملانے",
 	"config-install-database": "ڈیٹا بیس کی ترتیب",
-	"config-install-pg-commit": "تبدیلیوں کے ارتکاب",
 	"config-install-keys": "خفیہ چابیاں پیدا",
 	"config-install-sysop": "منتظم کے صارف کے اکاؤنٹ کی تشکیل",
 	"config-install-mainpage": "پہلے سے طے شدہ مواد کے ساتھ سب سے کامیاب کی تشکیل",

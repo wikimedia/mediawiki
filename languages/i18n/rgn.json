@@ -118,7 +118,7 @@
 	"jumptosearch": "zerca",
 	"aboutsite": "A prupòsit de {{SITENAME}}",
 	"aboutpage": "Project: A pruposit",
-	"copyright": "Oci! T'an fèga e' patàca. Sora 'ste scrètt u j è e' brevet $1.",
+	"copyright-footer": "Oci! T'an fèga e' patàca. Sora 'ste scrètt u j è e' brevet $1.",
 	"copyrightpage": "{{ns:project}}:Brevèt d'l'autor",
 	"disclaimers": "Infurmaziòn legêli",
 	"disclaimerpage": "Project: Avìs generèl",

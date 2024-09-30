@@ -179,7 +179,7 @@
 	"poolcounter-usage-error": "غلط الاستخدام: $1",
 	"aboutsite": "عن {{SITENAME}}",
 	"aboutpage": "Project:معلومات عن",
-	"copyright": "الكلام و الصور منشورين حسب   $1 ماعدا الحالات إللى مكتوب عندها حاجه تانيه.",
+	"copyright-footer": "الكلام و الصور منشورين حسب   $1 ماعدا الحالات إللى مكتوب عندها حاجه تانيه.",
 	"copyrightpage": "{{ns:project}}:حقوق النسخ",
 	"currentevents": "الاخبار دلوقتى",
 	"currentevents-url": "Project:الاخبار دلوقتى",

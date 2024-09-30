@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Къарачайлы"
+		]
+	},
+	"cdx-chip-input-chip-added": "$1 чип къошулду.",
+	"cdx-chip-input-chip-removed": "$1 чип къооратылды.",
+	"cdx-input-chip-aria-description": "Тюзетир ючюн Enter, къоратыр ючюн Delete типеклеге бас.",
+	"cdx-dialog-close-button-label": "Джаб",
+	"cdx-label-optional-flag": "(амалсыз тюлдю)",
+	"cdx-message-dismiss-button-label": "Джаб",
+	"cdx-search-input-search-button-label": "Изле",
+	"cdx-table-select-all-label": "Бютеу тизгинлени сайла",
+	"cdx-table-select-row-label": "$2 тизгинден $1 сайла",
+	"cdx-table-sort-caption": "$1, тиекли багъаначыкъны башлыкъларын айырырчады.",
+	"cdx-typeahead-search-search-results-label": "Излеуню эсеби",
+	"cdx-table-pager-button-first-page": "Биринчи бет",
+	"cdx-table-pager-button-last-page": "Ахыр бет",
+	"cdx-table-pager-button-next-page": "Эндиги бет",
+	"cdx-table-pager-button-prev-page": "Аллындагъы бет",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 тизгин}}",
+	"cdx-table-pager-items-per-page-default": "Бет башына эсебле",
+	"cdx-table-pagination-status-message-determinate-long": "$3 эсебден $1-$2 кёргюзюледи",
+	"cdx-table-pagination-status-message-determinate-short": "$3 эсебден $1-$2",
+	"cdx-table-pagination-status-message-indeterminate-long": "Кёб эсебден $1-$2 кёргюзюледи",
+	"cdx-table-pagination-status-message-indeterminate-short": "Кёб эсебден $1-$2",
+	"cdx-table-pagination-status-message-indeterminate-final": "Ахыр {{PLURAL:$1|$1 эсеб}} кёргюзюледи",
+	"cdx-table-pagination-status-message-pending": "Эсебле джюкленедиле..."
+}

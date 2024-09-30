@@ -260,7 +260,6 @@
 	"poolcounter-usage-error": "Användningsfel: $1",
 	"aboutsite": "Om {{SITENAME}}",
 	"aboutpage": "Project:Om",
-	"copyright": "Innehållet är tillgängligt under $1 om inte annat anges.",
 	"copyrightpage": "{{ns:project}}:Upphovsrätt",
 	"currentevents": "Aktuella händelser",
 	"currentevents-url": "Project:Aktuella händelser",

@@ -181,7 +181,7 @@
 	"pool-errorunknown": "Unbekånnter Feeler",
 	"aboutsite": "Iwer {{SITENAME}}",
 	"aboutpage": "Project:Iwer",
-	"copyright": "Den Inhoid gibts unta da Lizent $1, wen nix andast oogem is.",
+	"copyright-footer": "Den Inhoid gibts unta da Lizent $1, wen nix andast oogem is.",
 	"copyrightpage": "{{ns:project}}:Urhéwerrecht",
 	"currentevents": "Aktuelle Ereigniss",
 	"currentevents-url": "Project:Aktuelle Ereigniss",

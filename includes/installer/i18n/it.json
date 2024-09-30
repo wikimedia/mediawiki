@@ -274,7 +274,6 @@
 	"config-install-schema": "Creazione dello schema",
 	"config-install-pg-schema-not-exist": "Lo schema PostgreSQL non esiste.",
 	"config-install-pg-schema-failed": "Creazione tabelle non riuscita.\nAssicurati che l'utente \"$1\" può scrivere nello schema \"$2\".",
-	"config-install-pg-commit": "Applica le modifiche",
 	"config-install-pg-plpgsql": "Controllo il linguaggio PL/pgSQL",
 	"config-pg-no-plpgsql": "È necessario installare il linguaggio PL/pgSQL nel database $1",
 	"config-pg-no-create-privs": "L'account indicato per l'installazione non dispone dei permessi necessari per creare un'utenza.",

@@ -178,7 +178,7 @@
 	"pool-errorunknown": "Earráid anaithnid",
 	"aboutsite": "Maidir le {{SITENAME}}",
 	"aboutpage": "Project:Maidir leis",
-	"copyright": "Tá an t-ábhar le fáil faoin $1 mura sonraítear a mhalairt.",
+	"copyright-footer": "Tá an t-ábhar le fáil faoin $1 mura sonraítear a mhalairt.",
 	"copyrightpage": "{{ns:project}}:Cóipchearta",
 	"currentevents": "Cúrsaí reatha",
 	"currentevents-url": "Project:Cúrsaí reatha",

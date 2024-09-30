@@ -166,7 +166,7 @@
 	"poolcounter-usage-error": "Jepuru jejavy: $1",
 	"aboutsite": "{{SITENAME}} rehegua",
 	"aboutpage": "Project:Rehegua",
-	"copyright": "Tembikuaa'aty ikatu ojepuru <i>$1</i> rekópe",
+	"copyright-footer": "Tembikuaa'aty ikatu ojepuru <i>$1</i> rekópe",
 	"copyrightpage": "{{ns:project}}:Apohára rekomba'e",
 	"currentevents": "Ag̃agua",
 	"currentevents-url": "Project:Ag̃agua",

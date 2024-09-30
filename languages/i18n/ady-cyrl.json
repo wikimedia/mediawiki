@@ -161,7 +161,7 @@
 	"poolcounter-usage-error": "Гъэфедэныгъэм и къончагъэ: $1",
 	"aboutsite": "{{SITENAME}} фэгъэхьыгъэу",
 	"aboutpage": "Project:Фэгъэхьыгъэу",
-	"copyright": "$1-м тетэу кIоцIрытыр олъэгъу, нэмыкIым игугъу къамышIмэ.",
+	"copyright-footer": "$1-м тетэу кIоцIрытыр олъэгъу, нэмыкIым игугъу къамышIмэ.",
 	"copyrightpage": "{{ns:project}}:Ауторфитныгъэхэр",
 	"currentevents": "Джыр хъугъэ-шӀагъэхэр",
 	"currentevents-url": "Project:Джыр хъугъэ-шӀагъэхэр",

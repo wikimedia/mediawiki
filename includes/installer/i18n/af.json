@@ -108,7 +108,6 @@
 	"config-install-database": "Stel die databasis op",
 	"config-install-pg-schema-not-exist": "Die skema vir PostgreSQL bestaan ​​nie.",
 	"config-install-pg-schema-failed": "Die skep van tabelle het gefaal.\nMaak seker dat die gebruiker \"$1\" na skema \"$2\" mag skryf.",
-	"config-install-pg-commit": "Wysigings word gestoor",
 	"config-install-pg-plpgsql": "Kontroleer vir taal PL/pgSQL",
 	"config-pg-no-plpgsql": "U moet die taal PL/pgSQL in die database $1 installeer",
 	"config-install-user": "Besig om die databasisgebruiker te skep",

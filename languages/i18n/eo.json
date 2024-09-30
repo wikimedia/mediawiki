@@ -229,7 +229,7 @@
 	"poolcounter-usage-error": "Uzeraro: $1",
 	"aboutsite": "Pri {{SITENAME}}",
 	"aboutpage": "Project:Enkonduko",
-	"copyright": "La enhavo estas disponebla laŭ $1, se ne estas alia indiko.",
+	"copyright-footer": "La enhavo estas disponebla laŭ $1, se ne estas alia indiko.",
 	"copyrightpage": "{{ns:project}}:Aŭtorrajto",
 	"currentevents": "Aktualaĵoj",
 	"currentevents-url": "Project:Aktualaĵoj",

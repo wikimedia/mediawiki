@@ -279,7 +279,6 @@
 	"config-install-schema": "建立 schema",
 	"config-install-pg-schema-not-exist": "PostgreSQL Schema 不存在",
 	"config-install-pg-schema-failed": "資料表建立失敗。\n請確認使用者 \"$1\" 可以寫入 Schema \"$2\"。",
-	"config-install-pg-commit": "認可變更中",
 	"config-install-pg-plpgsql": "正在檢查 PL/pgSQL 語言",
 	"config-pg-no-plpgsql": "您需要安裝 PL/pgSQL 到資料庫 $1",
 	"config-pg-no-create-privs": "您所指定用來給安裝程序使用的帳號沒有足夠的權限可以建立新帳號。",

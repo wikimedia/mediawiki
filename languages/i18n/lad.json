@@ -161,7 +161,7 @@
 	"pool-errorunknown": "Yerro deskonosido",
 	"aboutsite": "Sovre {{SITENAME}}",
 	"aboutpage": "Project:Encima de",
-	"copyright": "El kontenido se puede topar debasho de la $1 salvo ke indika al kontrario.",
+	"copyright-footer": "El kontenido se puede topar debasho de la $1 salvo ke indika al kontrario.",
 	"copyrightpage": "{{ns:project}}:Derechos del otor",
 	"currentevents": "Novedades",
 	"currentevents-url": "Project:Novedades",

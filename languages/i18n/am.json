@@ -156,7 +156,7 @@
 	"pool-errorunknown": "የማይታወቅ ስኅተት",
 	"aboutsite": "ስለ {{SITENAME}}",
 	"aboutpage": "Project: ጥቂት ስለ",
-	"copyright": "ይዘቱ በ$1 ሥር ይገኛል።",
+	"copyright-footer": "ይዘቱ በ$1 ሥር ይገኛል።",
 	"copyrightpage": "{{ns:project}}:የማብዛት መብት ደንብ",
 	"currentevents": "ወቅታዊ ጉዳዮች",
 	"currentevents-url": "Project:ወቅታዊ ጉዳዮች",

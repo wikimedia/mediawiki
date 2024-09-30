@@ -273,7 +273,6 @@
 	"config-install-schema": "Datenschema wird erstellt",
 	"config-install-pg-schema-not-exist": "Das PostgesSQL-Datenschema ist nicht vorhanden",
 	"config-install-pg-schema-failed": "Das Erstellen der Datentabellen ist gescheitert.\nEs muss sichergestellt sein, dass der Benutzer „$1“ Schreibzugriff auf das Datenschema „$2“ hat.",
-	"config-install-pg-commit": "Änderungen anwenden",
 	"config-install-pg-plpgsql": "Suche nach der Datenbanksprache PL/pgSQL",
 	"config-pg-no-plpgsql": "Für Datenbank $1 muss die Datenbanksprache PL/pgSQL installiert werden",
 	"config-pg-no-create-privs": "Das für die Installation angegeben Konto verfügt nicht über ausreichende Berechtigungen, um ein Datenbanknutzerkonto zu erstellen.",

@@ -252,7 +252,6 @@
 	"config-install-schema": "Krear skemo",
 	"config-install-pg-schema-not-exist": "PostgreSQL ''schema'' ne existas.",
 	"config-install-pg-schema-failed": "La kreo di tabeli faliis.\nVerifikez se l'uzero \"$1\" povas modifikar ''schema'' \"$2\".",
-	"config-install-pg-commit": "Validiganta modifikuri",
 	"config-install-pg-plpgsql": "Verifikar la programo-linguo PL/pgSQL",
 	"config-pg-no-plpgsql": "Vu mustas instalar la programo-linguo PL/pgSQL che datumaro $1",
 	"config-pg-no-create-privs": "La konto quon vu informis por instalar ne havas suficanta privileji por krear ula konto.",

@@ -172,7 +172,7 @@
 	"poolcounter-usage-error": "Уджӧтӧмын сорсьӧм: $1",
 	"aboutsite": "{{SITENAME}} йылiсь",
 	"aboutpage": "Project:сы йылiсь",
-	"copyright": "Модік абу кӧ иньдӧм, пытшкӧссӧ позьӧ видзӧтны $1 лицензия сьӧрті.",
+	"copyright-footer": "Модік абу кӧ иньдӧм, пытшкӧссӧ позьӧ видзӧтны $1 лицензия сьӧрті.",
 	"copyrightpage": "{{ns:project}}:Авторлӧн позяннэз",
 	"currentevents": "Ӧння лоöмторрез",
 	"currentevents-url": "Project:Ӧння лоöмторрез",

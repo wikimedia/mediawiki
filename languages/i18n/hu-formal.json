@@ -146,7 +146,7 @@
 	"pool-errorunknown": "Ismeretlen hiba",
 	"aboutsite": "A {{SITENAME}} wikiről",
 	"aboutpage": "Project:Rólunk",
-	"copyright": "A tartalom további jelölés hiányában a(z) $1 feltételei szerint használható fel.",
+	"copyright-footer": "A tartalom további jelölés hiányában a(z) $1 feltételei szerint használható fel.",
 	"copyrightpage": "{{ns:project}}:Szerzői jogok",
 	"currentevents": "Aktuális események",
 	"currentevents-url": "Project:Friss események",

@@ -152,7 +152,7 @@
 	"pool-errorunknown": ".i na djuno tu'a le nabmi",
 	"aboutsite": "ve skicu la'o zoi. {{SITENAME}} .zoi",
 	"aboutpage": "Project:ve skicu",
-	"copyright": "lo selvau cu gubni ja'i la'o gy. $1 .gy.",
+	"copyright-footer": "lo selvau cu gubni ja'i la'o gy. $1 .gy.",
 	"copyrightpage": "{{ns:project}}:fukyzifpo'e",
 	"currentevents": "ca'o fasnu",
 	"currentevents-url": "Project:ca'o fasnu",

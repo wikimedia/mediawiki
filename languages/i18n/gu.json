@@ -190,7 +190,7 @@
 	"poolcounter-usage-error": "વપરાશ ક્ષતિ: $1",
 	"aboutsite": "{{SITENAME}} વિષે",
 	"aboutpage": "Project:વિષે",
-	"copyright": "અલગથી ઉલ્લેખ ન કરાયો હોય ત્યાં સુધી માહિતી $1 હેઠળ ઉપલબ્ધ છે.",
+	"copyright-footer": "અલગથી ઉલ્લેખ ન કરાયો હોય ત્યાં સુધી માહિતી $1 હેઠળ ઉપલબ્ધ છે.",
 	"copyrightpage": "{{ns:project}}:પ્રકાશનાધિકાર",
 	"currentevents": "વર્તમાન ઘટનાઓ",
 	"currentevents-url": "Project:વર્તમાન ઘટનાઓ",

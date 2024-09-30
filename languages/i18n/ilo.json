@@ -170,7 +170,7 @@
 	"poolcounter-usage-error": "Biddut ti panagusar: $1",
 	"aboutsite": "Maipanggep iti {{SITENAME}}",
 	"aboutpage": "Project:Maipanggep",
-	"copyright": "Ti linaon ket magun-od babaen ti $1 malaksid no adda sabali a naibaga.",
+	"copyright-footer": "Ti linaon ket magun-od babaen ti $1 malaksid no adda sabali a naibaga.",
 	"copyrightpage": "{{ns:project}}:Dagiti karbengan ti kopia",
 	"currentevents": "Agdama a paspasamak",
 	"currentevents-url": "Project:Agdama a paspasamak",

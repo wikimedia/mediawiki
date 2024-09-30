@@ -221,7 +221,6 @@
 	"config-install-schema": "Creassion dë schema",
 	"config-install-pg-schema-not-exist": "Lë schema postgreSQL a esist pa.",
 	"config-install-pg-schema-failed": "Creassion dle tàule falìa.\nSigurte che l'utent \"$1\" a peussa scrive lë schema \"$2\".",
-	"config-install-pg-commit": "Salvé ij cambi.",
 	"config-install-pg-plpgsql": "Contròl dël langagi PL/pgSQL",
 	"config-pg-no-plpgsql": "A dev istalé ël langage PL/pgSQL ant la base ëd dàit $1",
 	"config-pg-no-create-privs": "Ël cont ch'a l'ha specificà për l'istalassion a l'ha pa basta 'd privilegi për creé un cont.",

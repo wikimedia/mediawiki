@@ -172,7 +172,7 @@
 	"poolcounter-usage-error": "Вӧдитчан сорсьӧм: $1",
 	"aboutsite": "{{SITENAME}} йылысь",
 	"aboutpage": "Project:Гӧгӧрвоӧдӧм",
-	"copyright": "Мӧдтор кӧ абу индӧма, контентыскӧд позьӧ тӧдмасьны $1 лицензия серти.",
+	"copyright-footer": "Мӧдтор кӧ абу индӧма, контентыскӧд позьӧ тӧдмасьны $1 лицензия серти.",
 	"copyrightpage": "{{ns:project}}:Автор инӧд",
 	"currentevents": "Быд лунся лоӧмтор",
 	"currentevents-url": "Project:Сӧвмысь лоӧмторъяс",

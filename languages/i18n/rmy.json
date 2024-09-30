@@ -80,7 +80,7 @@
 	"jumptosearch": "rodipen",
 	"aboutsite": "Andar {{SITENAME}}",
 	"aboutpage": "Project:Andar",
-	"copyright": "Ander dino tar o $1.",
+	"copyright-footer": "Ander dino tar o $1.",
 	"copyrightpage": "{{ns:project}}:Autorenge xakaya (chachimata)",
 	"currentevents": "Nevimata",
 	"currentevents-url": "Project:Nevimata",

@@ -182,7 +182,7 @@
 	"poolcounter-usage-error": "Kaam me lae pe karrbarr: $1",
 	"aboutsite": "{{SITENAME}} ke baare me",
 	"aboutpage": "Project:Ke baare me",
-	"copyright": "Agar duusra kaaran nai dewa gais hae, tab aap ii panna me likha gae chij ke aap $1 ke niche kaam me lae sakta hai.",
+	"copyright-footer": "Agar duusra kaaran nai dewa gais hae, tab aap ii panna me likha gae chij ke aap $1 ke niche kaam me lae sakta hai.",
 	"copyrightpage": "{{ns:project}}:Chhaape ke adhikaar",
 	"currentevents": "Abhi ke ghatna",
 	"currentevents-url": "Project:Abhi ke ghatna",

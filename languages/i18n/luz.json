@@ -165,7 +165,7 @@
 	"pool-servererror": "شمارنده سرویس استخر ور تیه نی ($1).",
 	"aboutsite": "دٱرباراٛی {{SITENAME}}",
 	"aboutpage": "Project:دٱرباراٛی",
-	"copyright": "مطلب دومن $ 1 هس نکه خلاف هونو ذکر وابی.",
+	"copyright-footer": "مطلب دومن $ 1 هس نکه خلاف هونو ذکر وابی.",
 	"copyrightpage": "{{ns:project}}:کۉپی رایت",
 	"currentevents": "اتفاقل جاری",
 	"currentevents-url": "Project:اتفاقل جاری",

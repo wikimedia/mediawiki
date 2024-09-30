@@ -148,7 +148,7 @@
 	"pool-errorunknown": "Ubkonnde Irrdumm",
 	"aboutsite": "Iwwa {{SITENAME}}",
 	"aboutpage": "Project:Iwwa",
-	"copyright": "Was do drin schded isch unna $1 vafieschba, wonn nedd onnaschda vameagd.",
+	"copyright-footer": "Was do drin schded isch unna $1 vafieschba, wonn nedd onnaschda vameagd.",
 	"copyrightpage": "{{ns:project}}:Uahewareschd",
 	"currentevents": "Aggduelli Gscheniss",
 	"currentevents-url": "Project: Leschdi Gschneniss",

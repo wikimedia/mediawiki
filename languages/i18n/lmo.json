@@ -189,7 +189,7 @@
 	"poolcounter-usage-error": "Eror de utilizazzion: $1",
 	"aboutsite": "Informazzion sora {{SITENAME}}",
 	"aboutpage": "Project:A proposit de",
-	"copyright": "Se minga marcaa in manera diferenta, el cuntegnüü a l'è dispunibil sota a una licenza $1.",
+	"copyright-footer": "Se minga marcaa in manera diferenta, el cuntegnüü a l'è dispunibil sota a una licenza $1.",
 	"copyrightpage": "{{ns:project}}:Dirit d'autor",
 	"currentevents": "Aveniment recent",
 	"currentevents-url": "Project:Aveniment recent",

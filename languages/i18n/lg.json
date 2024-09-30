@@ -145,7 +145,7 @@
 	"pool-errorunknown": "Ekireesewo kiremya tekitegeerese",
 	"aboutsite": "Okutangaaza ku {{SITENAME}}",
 	"aboutpage": "Project:Okutangaaza ku",
-	"copyright": "Ebiri kuno bifugibwa $1.",
+	"copyright-footer": "Ebiri kuno bifugibwa $1.",
 	"copyrightpage": "{{ns:project}}:Ebikugizo eby'obwa nannyini",
 	"currentevents": "Ebibindabinda",
 	"currentevents-url": "Project:Ebibindabinda",

@@ -185,7 +185,7 @@
 	"poolcounter-usage-error": "$1:ایشلتمک خطاسی",
 	"aboutsite": "{{SITENAME}}-ه گؤره",
 	"aboutpage": "Project:گؤره",
-	"copyright": "ایچینده‌کیلر $1 لیسانسی احاطه‌سینده‌دیلر.",
+	"copyright-footer": "ایچینده‌کیلر $1 لیسانسی احاطه‌سینده‌دیلر.",
 	"copyrightpage": "{{ns:project}}:کوْپی حاقلاری",
 	"currentevents": "ایندیکی حادیثه‌لر",
 	"currentevents-url": "Project:ایندیکی اولایلار",

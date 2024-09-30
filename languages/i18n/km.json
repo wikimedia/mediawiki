@@ -178,7 +178,7 @@
 	"poolcounter-usage-error": "បញ្ហាបម្រើបម្រាស់៖ $1",
 	"aboutsite": "អំពី{{SITENAME}}",
 	"aboutpage": "Project:អំពី",
-	"copyright": "ខ្លឹមសារអត្ថបទប្រើប្រាស់បានក្រោមអាជ្ញាបណ្ឌ$1 លើកលែងតែមានបញ្ជាក់ផ្សេងពីនោះ។",
+	"copyright-footer": "ខ្លឹមសារអត្ថបទប្រើប្រាស់បានក្រោមអាជ្ញាបណ្ឌ$1 លើកលែងតែមានបញ្ជាក់ផ្សេងពីនោះ។",
 	"copyrightpage": "{{ns:project}}:រក្សាសិទ្ធិ​",
 	"currentevents": "ព្រឹត្តិការណ៍​ថ្មីៗ",
 	"currentevents-url": "Project:ព្រឹត្តិការណ៍​ថ្មីៗ",

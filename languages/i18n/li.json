@@ -180,7 +180,7 @@
 	"poolcounter-usage-error": "Gebroeksfout: $1",
 	"aboutsite": "Euver {{SITENAME}}",
 	"aboutpage": "Project:Info",
-	"copyright": "De inhawd is besjikbaar ónger de $1 behauve is angers aangegeve.",
+	"copyright-footer": "De inhawd is besjikbaar ónger de $1 behauve is angers aangegeve.",
 	"copyrightpage": "{{ns:project}}:Autäörsrechte",
 	"currentevents": "In 't nuujs",
 	"currentevents-url": "Project:In 't nuujs",

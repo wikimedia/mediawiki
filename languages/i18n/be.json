@@ -210,7 +210,7 @@
 	"poolcounter-usage-error": "Памылка выкарыстання: $1",
 	"aboutsite": "Пра {{GRAMMAR:вінавальны|{{SITENAME}}}}",
 	"aboutpage": "Project:Што такое свабодная энцыклапедыя",
-	"copyright": "Матэрыял даступны на ўмовах $1 (калі не пазначана іншае).",
+	"copyright-footer": "Матэрыял даступны на ўмовах $1 (калі не пазначана іншае).",
 	"copyrightpage": "{{ns:project}}:Аўтарскія правы",
 	"currentevents": "Актуальныя падзеі",
 	"currentevents-url": "Project:Актуальныя падзеі",

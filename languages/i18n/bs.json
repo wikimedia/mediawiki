@@ -197,7 +197,7 @@
 	"poolcounter-usage-error": "Greška pri upotrebi: $1",
 	"aboutsite": "O {{GRAMMAR:dativ|{{SITENAME}}}}",
 	"aboutpage": "Project:O {{GRAMMAR:dativ|{{SITENAME}}}}",
-	"copyright": "Sadržaj je dostupan pod licencom $1 osim ako je navedeno drugačije.",
+	"copyright-footer": "Sadržaj je dostupan pod licencom $1 osim ako je navedeno drugačije.",
 	"copyrightpage": "{{ns:project}}:Autorska prava",
 	"currentevents": "Novosti",
 	"currentevents-url": "Project:Novosti",

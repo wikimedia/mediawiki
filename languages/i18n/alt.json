@@ -176,7 +176,7 @@
 	"poolcounter-usage-error": "Эдингенниҥ јастыразы: $1",
 	"aboutsite": "{{SITENAME}} керегинде",
 	"aboutpage": "Project:Јартамалы",
-	"copyright": "Контентти јараткан лицензия $1.",
+	"copyright-footer": "Контентти јараткан лицензия $1.",
 	"copyrightpage": "{{ns:project}}:Авторский ээжилер",
 	"currentevents": "Болуп турган керектер",
 	"currentevents-url": "Project:Болуп турган керектер",

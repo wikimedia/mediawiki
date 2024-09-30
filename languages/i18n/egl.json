@@ -159,7 +159,7 @@
 	"poolcounter-usage-error": "Erōr 'd ûş:$1",
 	"aboutsite": "Infurmasiòun só {{SITENAME}}",
 	"aboutpage": "Project:Infurmasiòun",
-	"copyright": "Còl che gh' é che dèinter a 's pōl druvêr sòta licèinsa $1, s' an gh'é mia scrét diversamèint.",
+	"copyright-footer": "Còl che gh' é che dèinter a 's pōl druvêr sòta licèinsa $1, s' an gh'é mia scrét diversamèint.",
 	"copyrightpage": "{{ns:project}}:Dirét 'd avtōr",
 	"currentevents": "Fât e prugèt ed tót",
 	"currentevents-url": "Project:Prugèt_ed_tót",

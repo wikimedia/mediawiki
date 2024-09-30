@@ -412,7 +412,7 @@
 	"poolcounter-usage-error": "Error de uso: $1",
 	"aboutsite": "Acerca de {{SITENAME}}",
 	"aboutpage": "Project:Acerca de",
-	"copyright": "El contenido está disponible bajo la licencia $1 a menos que se indique lo contrario.",
+	"copyright-footer": "El contenido está disponible bajo la licencia $1 a menos que se indique lo contrario.",
 	"copyrightpage": "{{ns:project}}:Derechos de autor",
 	"currentevents": "Actualidad",
 	"currentevents-url": "Project:Actualidad",

@@ -278,7 +278,6 @@
 	"config-install-schema": "Şema oluşturma",
 	"config-install-pg-schema-not-exist": "PostgreSQL şeması mevcut değil.",
 	"config-install-pg-schema-failed": "Tablo oluşturulamadı.\n\"$1\" kullanıcısının \"$2\" şemasına yazabileceğinden emin olun.",
-	"config-install-pg-commit": "Değişiklikleri yapılıyor",
 	"config-install-pg-plpgsql": "PL/pgSQL dilini denetleme",
 	"config-pg-no-plpgsql": "$1 veritabanına PL/pgSQL dilini kurmanız gerekiyor",
 	"config-pg-no-create-privs": "Kurulum için belirttiğiniz hesap yeni bir hesap oluşturmak için gereken izinlere sahip değil.",

@@ -40,6 +40,7 @@
 	},
 	"preferences": "Настройки",
 	"prefsnologintext2": "Пожалуйста, войдите, чтобы изменить настройки.",
+	"prefsnologintext2-for-temp-user": "Пожалуйста, создайте учётную запись, чтобы изменить настройки.",
 	"searchprefs": "Искать по настройкам",
 	"searchprefs-noresults": "Ничего не найдено",
 	"searchprefs-results": "$1 {{PLURAL:$1|результат|результата|результатов}}",

@@ -198,7 +198,7 @@
 	"poolcounter-usage-error": "Օգտագործման սխալ՝ $1",
 	"aboutsite": "{{grammar:genitive|{{SITENAME}}}} մասին",
 	"aboutpage": "Project:Էությունը",
-	"copyright": "Կայքի բովանդակությունը թողարկված է $1 թույլատրագրով, եթե այլ բան նշված չէ։",
+	"copyright-footer": "Կայքի բովանդակությունը թողարկված է $1 թույլատրագրով, եթե այլ բան նշված չէ։",
 	"copyrightpage": "{{ns:project}}:Հեղինակային իրավունքներ",
 	"currentevents": "Ընթացիկ իրադարձություններ",
 	"currentevents-url": "Project:Ընթացիկ իրադարձություններ",

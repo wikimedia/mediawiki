@@ -276,7 +276,6 @@
 	"config-install-schema": "Het schema wordt aangemaakt",
 	"config-install-pg-schema-not-exist": "Het schema voor PostgreSQL bestaat niet",
 	"config-install-pg-schema-failed": "Het aanmaken van de tabellen is mislukt.\nZorg dat de gebruiker \"$1\" in het schema \"$2\" mag schrijven.",
-	"config-install-pg-commit": "Wijzigingen worden doorgevoerd",
 	"config-install-pg-plpgsql": "Controle op de taal PL/pgSQL",
 	"config-pg-no-plpgsql": "U moet de taal PL/pgSQL installeren in de database $1",
 	"config-pg-no-create-privs": "Het account dat u voor installatie hebt opgegeven, heeft niet voldoende rechten om een account aan te maken.",

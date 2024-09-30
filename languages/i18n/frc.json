@@ -158,7 +158,7 @@
 	"poolcounter-usage-error": "Erreur d’utilisation : $1",
 	"aboutsite": "Qui c'est {{SITENAME}}?",
 	"aboutpage": "Project:Info",
-	"copyright": "Les matières sont avalable en accord avec $1",
+	"copyright-footer": "Les matières sont avalable en accord avec $1",
 	"copyrightpage": "{{ns:project}}:Protection de Droits",
 	"currentevents": "Événements",
 	"currentevents-url": "Project:Événements",

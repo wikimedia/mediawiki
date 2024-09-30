@@ -188,7 +188,7 @@
 	"poolcounter-usage-error": "Error d’utilizacion : $1",
 	"aboutsite": "A prepaus de {{SITENAME}}",
 	"aboutpage": "Project:A prepaus",
-	"copyright": "Lo contengut es disponible jos licéncia $1 levat mencion contrària.",
+	"copyright-footer": "Lo contengut es disponible jos licéncia $1 levat mencion contrària.",
 	"copyrightpage": "{{ns:project}}:Copyright",
 	"currentevents": "Actualitats",
 	"currentevents-url": "Project:Actualitats",

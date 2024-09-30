@@ -183,7 +183,7 @@
 	"poolcounter-usage-error": "Żball fl-użu: $1",
 	"aboutsite": "Dwar {{SITENAME}}",
 	"aboutpage": "Project:Dwar",
-	"copyright": "Il-kontenut huwa disponibbli taħt il-liċenzja $1 sakemm mhux indikat mod ieħor.",
+	"copyright-footer": "Il-kontenut huwa disponibbli taħt il-liċenzja $1 sakemm mhux indikat mod ieħor.",
 	"copyrightpage": "{{ns:project}}:Copyright",
 	"currentevents": "Ġrajjiet kurrenti",
 	"currentevents-url": "Project:Ġrajjiet kurrenti",

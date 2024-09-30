@@ -183,7 +183,7 @@
 	"pool-errorunknown": "kuskuren da ba'asani bah",
 	"aboutsite": "Game da {{SITENAME}}",
 	"aboutpage": "Project:Game da",
-	"copyright": "Bayannai sun samu a ƙarƙashin $1.",
+	"copyright-footer": "Bayannai sun samu a ƙarƙashin $1.",
 	"copyrightpage": "{{ns:project}}:Hakkin Mallaka",
 	"currentevents": "Labarai",
 	"currentevents-url": "Project:Ababen dake wakana",

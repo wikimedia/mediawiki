@@ -164,7 +164,7 @@
 	"pool-servererror": "Wayt'ana yupana sirwiyqa manam kanchu ($1).",
 	"aboutsite": "{{SITENAME}}manta",
 	"aboutpage": "Project:{{SITENAME}}manta",
-	"copyright": "Samiqwanqa llamk'ankiman $1 nisqa ruraq hayñikama, mana wakin hina willaptinqa.",
+	"copyright-footer": "Samiqwanqa llamk'ankiman $1 nisqa ruraq hayñikama, mana wakin hina willaptinqa.",
 	"copyrightpage": "{{ns:project}}:Ruraqpa hayñin",
 	"currentevents": "Kunan pacha",
 	"currentevents-url": "Project:Kunan pacha",

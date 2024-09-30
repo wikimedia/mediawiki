@@ -188,7 +188,7 @@
 	"poolcounter-usage-error": "کێشەی بەکارهێنان: $1",
 	"aboutsite": "دەربارەی {{SITENAME}}",
 	"aboutpage": "Project:سەبارەت",
-	"copyright": "ناوەرۆک لە ژێر $1 لەبەردەستدایە، مەگەر بێجگە لەمە وترابێ.",
+	"copyright-footer": "ناوەرۆک لە ژێر $1 لەبەردەستدایە، مەگەر بێجگە لەمە وترابێ.",
 	"copyrightpage": "{{ns:project}}:مافەکانی لەبەرگرتنەوە",
 	"currentevents": "ڕووداوە ھەنووکەیییەکان",
 	"currentevents-url": "Project:ڕووداوە بەردەوامەکان",

@@ -167,7 +167,7 @@
 	"poolcounter-usage-error": "Usage error: $1",
 	"aboutsite": "Prakara {{SITENAME}}",
 	"aboutpage": "Project:Prakara",
-	"copyright": "Kabeh teks ana miturut $1 namung sing cathetan liya beda.",
+	"copyright-footer": "Kabeh teks ana miturut $1 namung sing cathetan liya beda.",
 	"copyrightpage": "{{ns:project}}:Hak cipta",
 	"currentevents": "Kedaden Anyar",
 	"currentevents-url": "Project:Prastawa sekiye",

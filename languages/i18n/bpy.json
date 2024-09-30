@@ -154,7 +154,7 @@
 	"pool-errorunknown": "হারনাপাসি লালহান",
 	"aboutsite": "{{SITENAME}}র বারে",
 	"aboutpage": "Project:বারে",
-	"copyright": "$1-র মাতুঙে এহানর মেথেলহানি পানা একরের।",
+	"copyright-footer": "$1-র মাতুঙে এহানর মেথেলহানি পানা একরের।",
 	"copyrightpage": "{{ns:project}}:স্বত্তাধিকারহানি",
 	"currentevents": "হাদি এহানর ঘটনা",
 	"currentevents-url": "Project:হাদি এহানর ঘটনাহানি",

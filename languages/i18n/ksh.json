@@ -169,7 +169,7 @@
 	"poolcounter-usage-error": "Fähler beim Aanwände: $1",
 	"aboutsite": "Övver {{GRAMMAR:Akkusativ|{{ucfirst:{{SITENAME}}}}}}",
 	"aboutpage": "Project:Övver {{GRAMMAR:Akkusativ|{{ucfirst:{{SITENAME}}}}}}",
-	"copyright": "Dä Enhald steiht unger dä Lezänz $1, ußer wann ußdröklesch jäd anders jesaad es.",
+	"copyright-footer": "Dä Enhald steiht unger dä Lezänz $1, ußer wann ußdröklesch jäd anders jesaad es.",
 	"copyrightpage": "{{ns:project}}:Lizenz",
 	"currentevents": "Et Neuste",
 	"currentevents-url": "Project:Et Neuste",

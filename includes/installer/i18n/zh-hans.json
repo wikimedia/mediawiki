@@ -296,7 +296,6 @@
 	"config-install-schema": "创建架构",
 	"config-install-pg-schema-not-exist": "PostgreSQL架构不存在。",
 	"config-install-pg-schema-failed": "创建数据表失败。请确保用户“$1”拥有写入模式“$2”的权限。",
-	"config-install-pg-commit": "正在提交更改",
 	"config-install-pg-plpgsql": "正在检查PL/pgSQL语言",
 	"config-pg-no-plpgsql": "您需要为数据库$1安装PL/pgSQL语言",
 	"config-pg-no-create-privs": "为安装程序指定的账号缺少创建账号的权限。",

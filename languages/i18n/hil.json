@@ -180,7 +180,7 @@
 	"poolcounter-usage-error": "Sayop sa paggamit: $1",
 	"aboutsite": "Nahanungod sa {{SITENAME}}",
 	"aboutpage": "Project:Nahanungod",
-	"copyright": "Ang unod nga abeylabol nga naga paidalum $1.",
+	"copyright-footer": "Ang unod nga abeylabol nga naga paidalum $1.",
 	"copyrightpage": "{{ns:project}}:Kapirayts",
 	"currentevents": "Mga hitabo subong",
 	"currentevents-url": "Project:Mga hitabo subong",

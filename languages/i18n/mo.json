@@ -113,7 +113,7 @@
 	"jumptosearch": "кэутаре",
 	"aboutsite": "Деспре {{SITENAME}}",
 	"aboutpage": "Project:Деспре",
-	"copyright": "Концинутул есте диспонибил суб $1, ексчептынд казуриле ын каре се спечификэ алтфел.",
+	"copyright-footer": "Концинутул есте диспонибил суб $1, ексчептынд казуриле ын каре се спечификэ алтфел.",
 	"copyrightpage": "{{ns:project}}:Дрептурь де аутор",
 	"currentevents": "Дискутэ ла кафеня",
 	"currentevents-url": "Project:Кафеня",

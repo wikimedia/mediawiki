@@ -172,7 +172,7 @@
 	"poolcounter-usage-error": "Käyttöhaireh: $1",
 	"aboutsite": "{{SITENAME}}:h nähte",
 	"aboutpage": "Project:Tieduo",
-	"copyright": "Sizäldö on käytös luval $1, ei olle toizin mainittu.",
+	"copyright-footer": "Sizäldö on käytös luval $1, ei olle toizin mainittu.",
 	"copyrightpage": "{{ns:project}}:Luadijan oigevukset",
 	"currentevents": "Aijankohtazet tapahtumat",
 	"currentevents-url": "Project:Aijankohtazet tapahtumat",

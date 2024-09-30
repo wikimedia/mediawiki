@@ -155,7 +155,7 @@
 	"pool-errorunknown": "ХэщӀыкӀыгъэ зимыӀэ щэуэгъуэ",
 	"aboutsite": "{{grammar:genitive|{{SITENAME}}}}: зытеухуар",
 	"aboutpage": "Project: Зытеухуар",
-	"copyright": "Мыбы итыр къэутӀыпщащ зытещӀыхьари: $1.",
+	"copyright-footer": "Мыбы итыр къэутӀыпщащ зытещӀыхьари: $1.",
 	"copyrightpage": "‎{{ns:project}}:Лэжьыгъэр зи Ӏэдакъэ щӀэкӀам и хуитыныгъэ",
 	"currentevents": "Ӏуэхугъуэ екӀуэкӀхэр",
 	"currentevents-url": "‎Project:КъекӀуэкӀ къэхъукъащӀахэр",

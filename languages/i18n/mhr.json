@@ -181,7 +181,7 @@
 	"poolcounter-usage-error": "Кучылтмаш йоҥылыш: $1",
 	"aboutsite": "{{SITENAME}} нерген",
 	"aboutpage": "Project:Возен ончыктымаш",
-	"copyright": "Контентым $1 лицензий почеш кучылт кертыда (весым возымо огыл гын).",
+	"copyright-footer": "Контентым $1 лицензий почеш кучылт кертыда (весым возымо огыл гын).",
 	"copyrightpage": "{{ns:project}}:Автор кертыж",
 	"currentevents": "Кызытсе лиймаш",
 	"currentevents-url": "Project:Кызытсе лиймаш",

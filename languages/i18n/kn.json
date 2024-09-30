@@ -205,7 +205,7 @@
 	"poolcounter-usage-error": "ಬಳಕೆಯ ದೋಷ: $1",
 	"aboutsite": "{{SITENAME}} ಬಗ್ಗೆ",
 	"aboutpage": "Project:ಬಗ್ಗೆ",
-	"copyright": "ವಿಷಯ $1 ರ ಅಡಿಯಲ್ಲಿ ಲಭ್ಯವಿದೆ.ಹಕ್ಕುಸ್ವಾಮ್ಯ ಗಮನಿಸದಿದ್ದರೆ",
+	"copyright-footer": "ವಿಷಯ $1 ರ ಅಡಿಯಲ್ಲಿ ಲಭ್ಯವಿದೆ.ಹಕ್ಕುಸ್ವಾಮ್ಯ ಗಮನಿಸದಿದ್ದರೆ",
 	"copyrightpage": "{{ns:project}}:ಕೃತಿಸ್ವಾಮ್ಯತೆಗಳು",
 	"currentevents": "ಪ್ರಚಲಿತ ಸಂಗತಿಗಳು",
 	"currentevents-url": "Project:ಪ್ರಚಲಿತ ಸಂಗತಿಗಳು",

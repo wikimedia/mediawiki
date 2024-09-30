@@ -72,7 +72,7 @@
 	"lastmodifiedat": "Ya modifica con este pagina por ultimo vez en hora $2 del $1.",
 	"aboutsite": "Acerca de {{SITENAME}}",
 	"aboutpage": "Project:Acerca de",
-	"copyright": "Obtenible el maga texto de este Wikipedia bajo los terminos y maga condicion del <i>$1</i>.",
+	"copyright-footer": "Obtenible el maga texto de este Wikipedia bajo los terminos y maga condicion del <i>$1</i>.",
 	"copyrightpage": "{{ns:project}}:Maga derecho del autor",
 	"currentevents": "Maga sucesos actual",
 	"currentevents-url": "Project:Maga sucesos actual",

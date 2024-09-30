@@ -145,7 +145,7 @@
 	"pool-errorunknown": "Wala nabal-an nga kasal-anan",
 	"aboutsite": "Tuhoy sa {{SITENAME}}",
 	"aboutpage": "Project:Nahanungod sa",
-	"copyright": "Ang unod bakante sa idalum sang $1",
+	"copyright-footer": "Ang unod bakante sa idalum sang $1",
 	"copyrightpage": "{{ns:project}}:Kinamatarong sa pangpanag-iya",
 	"currentevents": "Mga yanda nga hitabo",
 	"currentevents-url": "Project: Mga yanda nga hitabo",

@@ -204,7 +204,6 @@
 	"config-install-schema": "Pravim šemu",
 	"config-install-pg-schema-not-exist": "PostgreSQL-šema ne postoji.",
 	"config-install-pg-schema-failed": "Pravljenje natabela nije uspelo.\nUvjerite se da korisnik „$1” može da zapisuje u šemi „$2”.",
-	"config-install-pg-commit": "Usproveđivanje promjena",
 	"config-install-user": "Pravim korisnika baze podataka",
 	"config-install-user-alreadyexists": "Korisnik \"$1\" već postoji",
 	"config-install-user-create-failed": "Pravljenje korisnika \"$1\" nije uspjelo: $2",

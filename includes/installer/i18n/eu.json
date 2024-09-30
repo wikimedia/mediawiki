@@ -237,7 +237,6 @@
 	"config-install-schema": "Eskema sortu",
 	"config-install-pg-schema-not-exist": "PostgreSQL eskema ez da existitzen.",
 	"config-install-pg-schema-failed": "Tauleen sorrerak huts egin du.\nEgiaztatu \"$1\" erabiltzaileak \"$2\" eskeman idatzi ahal duela.",
-	"config-install-pg-commit": "Aldaketak egiten",
 	"config-install-pg-plpgsql": "PL/pgSQL hizkuntza bilatzen.",
 	"config-pg-no-plpgsql": "$1 datu-basean instalatu behar duzu PL/pgSQL hizkuntza.",
 	"config-pg-no-create-privs": "Zehaztu duzun kontua instalazio prozesurako ez dauka pribilegio nahikoak kontu bat sortzeko.",

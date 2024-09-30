@@ -164,7 +164,7 @@
 	"poolcounter-usage-error": "استعمالہ خامی: $1",
 	"aboutsite": "تعارف {{SITENAME}}",
 	"aboutpage": "Project:کھوار ویکیپیڈیو تعارف",
-	"copyright": "تمام مواد $1 تحتہ میانسار شیر",
+	"copyright-footer": "تمام مواد $1 تحتہ میانسار شیر",
 	"copyrightpage": "{{ns:project}}:حقوق تصانیف",
 	"currentevents": "ھنونو واقعات",
 	"currentevents-url": "Project:ھنونو واقعات",

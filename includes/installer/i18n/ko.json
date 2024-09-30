@@ -268,7 +268,6 @@
 	"config-install-schema": "스키마를 만드는 중",
 	"config-install-pg-schema-not-exist": "PostgreSQL 스키마가 존재하지 않습니다.",
 	"config-install-pg-schema-failed": "테이블을 만드는 데 실패했습니다.\n\"$2\" 스키마에 쓸 수 있는 \"$1\" 사용자가 있는지 확인하세요.",
-	"config-install-pg-commit": "변경사항을 적용하는 중",
 	"config-install-pg-plpgsql": "PL/pgSQL 언어에 대해 확인하는 중",
 	"config-pg-no-plpgsql": "$1 데이터베이스에 PL/pgSQL 언어를 설치해야 합니다",
 	"config-pg-no-create-privs": "설치를 위한 지정한 계정에 계정을 만드는 데 충분한 권한이 없습니다,",

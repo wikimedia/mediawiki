@@ -155,7 +155,7 @@
 	"view-pool-error": "Pasensya, overloaded ang mga serber sa kasamtangan.\nSobra ka daghang gumagamit ang misulay og tan-aw niining panid.\nPalihog paghulat bag-o nimo sulayan pag-akses og usab ang kining panid.\n\n$1",
 	"aboutsite": "Mahitungod sa {{SITENAME}}",
 	"aboutpage": "Project:Mahitungod sa",
-	"copyright": "Mga sulod makita sa $1.",
+	"copyright-footer": "Mga sulod makita sa $1.",
 	"copyrightpage": "{{ns:project}}:Mga katungod sa pagpatik",
 	"currentevents": "Mga bag-ong panghitabo",
 	"currentevents-url": "Project:Kasamtangang panghitabo",

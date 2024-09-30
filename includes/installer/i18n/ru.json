@@ -286,7 +286,6 @@
 	"config-install-schema": "Создание схемы",
 	"config-install-pg-schema-not-exist": "Схемы PostgreSQL не существует",
 	"config-install-pg-schema-failed": "Не удалось создать таблицы.\nУбедитесь в том, что пользователь «$1» может писать в схему «$2».",
-	"config-install-pg-commit": "Внесение изменений",
 	"config-install-pg-plpgsql": "Проверка языка PL/pgSQL",
 	"config-pg-no-plpgsql": "Вам необходимо установить поддержку языка PL/pgSQL для базы данных $1",
 	"config-pg-no-create-privs": "Учётная запись, указанная для установки, не обладает достаточными привилегиями для создания учётной записи.",

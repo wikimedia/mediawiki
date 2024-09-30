@@ -259,7 +259,6 @@
 	"config-install-schema": "در حال ایجاد طرحواره",
 	"config-install-pg-schema-not-exist": "طرح کلی PostgreSQL وجود ندارد.",
 	"config-install-pg-schema-failed": "ایجاد جدول‌ها با شکست روبه‌رو شد.\nمطمئن شوید که کاربر \"$1\" می‌تواند طرح کلی \"$2\" را بنویسد.",
-	"config-install-pg-commit": "ارسال تغییرات",
 	"config-install-pg-plpgsql": "بررسی زبان پی‌ال/پی‌جی‌اس‌کیو‌ال",
 	"config-pg-no-plpgsql": "شما ملزم به نصب زبان پی‌ال/پی‌جی‌اس‌کیو‌ال در پایگاه اطلاعاتی $1 هستید",
 	"config-pg-no-create-privs": "حسابی که شما برای نصب تعیین کردید، امتیازات کافی برای ایجاد یک حساب را ندارد.",

@@ -183,7 +183,7 @@
 	"poolcounter-usage-error": "Verwändigsfähler: $1",
 	"aboutsite": "Über {{GRAMMAR:akkusativ|{{SITENAME}}}}",
 	"aboutpage": "Project:Über {{UCFIRST:{{GRAMMAR:akkusativ|{{SITENAME}}}}}}",
-	"copyright": "Dr Inhalt vu dere Syte stoht unter dr Lizänz $1, wänn s nit andersch aagee isch.",
+	"copyright-footer": "Dr Inhalt vu dere Syte stoht unter dr Lizänz $1, wänn s nit andersch aagee isch.",
 	"copyrightpage": "{{ns:project}}:Copyright",
 	"currentevents": "Aktuelli Mäldige",
 	"currentevents-url": "Project:Aktuelli Termin",

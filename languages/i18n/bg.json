@@ -215,7 +215,7 @@
 	"poolcounter-usage-error": "Грешка в употребата: $1",
 	"aboutsite": "За {{SITENAME}}",
 	"aboutpage": "Project:За {{SITENAME}}",
-	"copyright": "Освен ако не е посочено друго, съдържанието е достъпно при условията на $1.",
+	"copyright-footer": "Освен ако не е посочено друго, съдържанието е достъпно при условията на $1.",
 	"copyrightpage": "{{ns:project}}:Авторски права",
 	"currentevents": "Текущи събития",
 	"currentevents-url": "Project:Текущи събития",

@@ -169,7 +169,7 @@
 	"poolcounter-usage-error": "용법 오유: $1",
 	"aboutsite": "{{SITENAME}} 소개",
 	"aboutpage": "Project:소개",
-	"copyright": "별도로 명시하지 않은 경우, 내용은 $1에 따라 사용할수 있습니다.",
+	"copyright-footer": "별도로 명시하지 않은 경우, 내용은 $1에 따라 사용할수 있습니다.",
 	"copyrightpage": "{{ns:project}}:저작권",
 	"currentevents": "요즘 화제",
 	"currentevents-url": "Project:요즘 화제",

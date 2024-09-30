@@ -185,7 +185,7 @@
 	"poolcounter-usage-error": "उपयोगत्रुटिः : $1",
 	"aboutsite": "{{SITENAME}} विषयकं",
 	"aboutpage": "प्रकल्पः:विषये",
-	"copyright": "भिन्नोल्लखः न भवति तावत् $1 अत्र उल्लेखो भवति ।",
+	"copyright-footer": "भिन्नोल्लखः न भवति तावत् $1 अत्र उल्लेखो भवति ।",
 	"copyrightpage": "{{ns:project}}:प्रतिकृत्यधिकाराः",
 	"currentevents": "वर्तमानकार्यविशेषाः",
 	"currentevents-url": "Project:वर्तमानकार्यविशेषाः",

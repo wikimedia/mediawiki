@@ -189,7 +189,6 @@
 	"config-install-schema": "Datowa šema so twori",
 	"config-install-pg-schema-not-exist": "Šema PostgreSQL njeeksistuje",
 	"config-install-pg-schema-failed": "Wutworjenje tabelow je so njeporadźiło.\nZawěsć, zo wužiwar \"$1\" móže do šemy \"$2\" pisać.",
-	"config-install-pg-commit": "Změny so wotesyłaja",
 	"config-install-pg-plpgsql": "Pruwowanje za rěču PL/pgSQL",
 	"config-pg-no-plpgsql": "Dyrbiš rěč PL/pgSQL w datowej bance $1 instalować",
 	"config-pg-no-create-privs": "Konto, kotrež sy za instalaciju podał, nima dosahace prawa za wutworjenje konta.",

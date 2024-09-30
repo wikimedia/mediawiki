@@ -238,7 +238,6 @@
 	"config-install-schema": "Създаване на схема",
 	"config-install-pg-schema-not-exist": "PostgreSQL схемата не съществува",
 	"config-install-pg-schema-failed": "Създаването на таблиците пропадна.\nНеобходимо е потребител „$1“ да има права за писане в схемата „$2“.",
-	"config-install-pg-commit": "Извършване на промени",
 	"config-install-pg-plpgsql": "Проверяване за езика PL/pgSQL",
 	"config-pg-no-plpgsql": "Необходимо е да се инсталира езикът PL/pgSQL в базата от данни $1",
 	"config-pg-no-create-privs": "Посочената сметка за инсталацията не притежава достатъчно права за създаване на сметка.",

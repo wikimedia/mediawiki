@@ -168,7 +168,7 @@
 	"poolcounter-usage-error": "غلطة تاع ستُعمال: $1",
 	"aboutsite": "كلّ شي على {{SITENAME}}",
 	"aboutpage": "Project:معلومات",
-	"copyright": "المحتاوا راه تحت النسخة $1 تاع الليسانس، غير يلا كان مكتوب حاجاخرة.",
+	"copyright-footer": "المحتاوا راه تحت النسخة $1 تاع الليسانس، غير يلا كان مكتوب حاجاخرة.",
 	"copyrightpage": "{{ns:project}}:حقوق النسخ",
 	"currentevents": "الختيّارات",
 	"currentevents-url": "Project:خبورات",

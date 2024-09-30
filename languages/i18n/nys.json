@@ -114,7 +114,7 @@
 	"jumptosearch": "genuniny",
 	"aboutsite": "nartj nitja {{SITENAME}}",
 	"aboutpage": "Project:nartj nitja",
-	"copyright": "Content is available under $1 unless otherwise noted.",
+	"copyright-footer": "Content is available under $1 unless otherwise noted.",
 	"copyrightpage": "{{ns:project}}:Copyrights",
 	"currentevents": "Yeye events",
 	"currentevents-url": "Project:Yeye events",

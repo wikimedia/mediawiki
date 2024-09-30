@@ -232,7 +232,6 @@
 	"config-install-schema": "Crianno schema",
 	"config-install-pg-schema-not-exist": "'O schema PostgreSQL nun esiste.",
 	"config-install-pg-schema-failed": "Criazione 'e tabbelle scassata.\nCuntrullate si l'utente \"$1\" può scrivere dint' 'o schema \"$2\".",
-	"config-install-pg-commit": "Mannann' 'e cagnamiente",
 	"config-install-pg-plpgsql": "Cuntrollo p' 'o lenguaggio PL/pgSQL",
 	"config-pg-no-plpgsql": "Ce vulesse 'a installazione d' 'o linguagio PL/pgSQL dint' 'o database $1",
 	"config-pg-no-create-privs": "'O cunto innecato p' 'a installazione nun tene premmesse abbastanza pe' puté crià n'utenza.",

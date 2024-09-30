@@ -173,7 +173,7 @@
 	"poolcounter-usage-error": "Feeler bi't bewerkin: $1",
 	"aboutsite": "Auer {{SITENAME}}",
 	"aboutpage": "Project:Auer",
-	"copyright": "Det sidj as tu fun oner $1 , wan diar niks ööders stäänt.",
+	"copyright-footer": "Det sidj as tu fun oner $1 , wan diar niks ööders stäänt.",
 	"copyrightpage": "{{ns:project}}:Copyrights",
 	"currentevents": "Aktuels",
 	"currentevents-url": "Project:Aktuels",

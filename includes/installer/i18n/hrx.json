@@ -220,7 +220,6 @@
 	"config-install-schema": "Dateschema weard erstellt",
 	"config-install-pg-schema-not-exist": "Das PostgesSQL-Datenschema ist net voarhande",
 	"config-install-pg-schema-failed": "Das Erstelle von der Datetabelle ist gescheitert.\nDas muss sichergestellt sin, dass der Benutzer „$1“ Schreibzugriff uff das Dateschema „$2“ hot.",
-	"config-install-pg-commit": "Ändrunge oonwenne",
 	"config-install-pg-plpgsql": "Such noh der Datebanksprache PL/pgSQL",
 	"config-pg-no-plpgsql": "Für Datebank $1 muss die Datebanksprache PL/pgSQL installiert sin",
 	"config-pg-no-create-privs": "Das für die Installation oongeb Konto verfücht net üwer ausreichende Berechtichunge, um en Datebanknutzerkonto zu erstelle.",

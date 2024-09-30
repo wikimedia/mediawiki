@@ -110,7 +110,7 @@
 	"pool-errorunknown": "मस्युगु इरर",
 	"aboutsite": "{{SITENAME}}या बारेय्",
 	"aboutpage": "Project:बारेय्",
-	"copyright": "कण्टेण्ट $1 कथं उपलब्ध दु।",
+	"copyright-footer": "कण्टेण्ट $1 कथं उपलब्ध दु।",
 	"copyrightpage": "{{ns:project}}:लेखाधिकार",
 	"currentevents": "जुयाच्वँगु घटना",
 	"currentevents-url": "Project:जुयाच्वँगु घटना",

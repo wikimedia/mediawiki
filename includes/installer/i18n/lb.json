@@ -163,7 +163,6 @@
 	"config-install-step-failed": "huet net funktionéiert",
 	"config-install-extensions": "Mat den Ereiderungen",
 	"config-install-database": "Datebank gëtt installéiert",
-	"config-install-pg-commit": "Ännerungen applizéieren",
 	"config-install-pg-plpgsql": "No der Sprooch PL/pgSQL sichen",
 	"config-pg-no-plpgsql": "Fir d'Datebank $1 muss d'Datebanksprooch PL/pgSQL installéiert ginn",
 	"config-install-user": "Datebank Benotzer uleeën",

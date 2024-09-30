@@ -178,7 +178,7 @@
 	"poolcounter-usage-error": "کاربردی خطا: $1",
 	"aboutsite": "{{SITENAME}} خَوِری",
 	"aboutpage": "Project:امه خوری",
-	"copyright": "این صفحه ره بَنوشته‌ئون  $1  زیر شِمه دسـت دَرنه.",
+	"copyright-footer": "این صفحه ره بَنوشته‌ئون  $1  زیر شِمه دسـت دَرنه.",
 	"copyrightpage": "{{ns:project}}:کوپی‌رایتون",
 	"currentevents": "تازه خـَوِرون",
 	"currentevents-url": "Project:خورون",

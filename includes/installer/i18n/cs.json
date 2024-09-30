@@ -266,7 +266,6 @@
 	"config-install-schema": "Vytváří se schéma",
 	"config-install-pg-schema-not-exist": "Schéma PostgreSQL neexistuje.",
 	"config-install-pg-schema-failed": "Založení tabulek se nezdařilo.\nUjistěte se, že uživatel „$1“ může zapisovat do schématu „$2“.",
-	"config-install-pg-commit": "Potvrzují se změny",
 	"config-install-pg-plpgsql": "Kontroluje se jazyk PL/pgSQL",
 	"config-pg-no-plpgsql": "Musíte do databáze $1 nainstalovat jazyk PL/pgSQL",
 	"config-pg-no-create-privs": "Účet zadaný pro instalaci nemá oprávnění k založení uživatelského účtu.",

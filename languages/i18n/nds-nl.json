@@ -178,7 +178,7 @@
 	"poolcounter-usage-error": "Gebruuksfaut: $1",
 	"aboutsite": "Oaver {{SITENAME}}",
 	"aboutpage": "Project:Info",
-	"copyright": "De inhoud is beschikbaor onder de $1 as der niks aanders an-egeven is.",
+	"copyright-footer": "De inhoud is beschikbaor onder de $1 as der niks aanders an-egeven is.",
 	"copyrightpage": "{{ns:project}}:Autöörsrechten",
 	"currentevents": "In et nys",
 	"currentevents-url": "Project:In et nys",

@@ -245,7 +245,6 @@
 	"config-install-schema": "กำลังสร้าง Schema",
 	"config-install-pg-schema-not-exist": "ไม่พบ Schema ของ PostgreSQL",
 	"config-install-pg-schema-failed": "การสร้างตารางล้มเหลว\nโปรดตรวจสอบให้แน่ใจว่าผู้ใช้ \"$1\" สามารถเขียนไปยังแบบแผน \"$2\" ได้",
-	"config-install-pg-commit": "กำลังส่งการเปลี่ยนแปลง",
 	"config-install-pg-plpgsql": "กำลังตรวจสอบภาษา PL/pgSQL",
 	"config-pg-no-plpgsql": "คุณต้องติดตั้งภาษา PL/pgSQL ในฐานข้อมูล $1",
 	"config-pg-no-create-privs": "บัญชีที่คุณระบุสำหรับการติดตั้งมีสิทธิไม่เพียงพอที่จะสร้างบัญชี",

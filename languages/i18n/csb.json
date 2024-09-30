@@ -169,7 +169,7 @@
 	"poolcounter-usage-error": "Fela ùżëcô: $1",
 	"aboutsite": "Ò {{SITENAME}}",
 	"aboutpage": "Project:Ò_{{SITENAME}}",
-	"copyright": "Zamkłosc hewòtny starnë je ùprzëstãpnianô wedle reglów $1, jeżlë nie pòdóno jinaczi.",
+	"copyright-footer": "Zamkłosc hewòtny starnë je ùprzëstãpnianô wedle reglów $1, jeżlë nie pòdóno jinaczi.",
 	"copyrightpage": "{{ns:project}}:Ùsôdzkòwé prawa",
 	"currentevents": "Aktualné wëdarzenia",
 	"currentevents-url": "Project:Aktualné wëdarzenia",

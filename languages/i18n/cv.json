@@ -180,7 +180,7 @@
 	"poolcounter-usage-error": "Усӑ курнӑ чухне тухнӑ йӑнӑш: $1",
 	"aboutsite": "{{SITENAME}} çинчен",
 	"aboutpage": "Project:Википеди çинчен",
-	"copyright": "Ку материал $1 лицензипе килĕшӳллĕн сарăлать (урăххине кăтартман пулсан).",
+	"copyright-footer": "Ку материал $1 лицензипе килĕшӳллĕн сарăлать (урăххине кăтартман пулсан).",
 	"copyrightpage": "{{ns:project}}:Автор прависем",
 	"currentevents": "Хыпарсем",
 	"currentevents-url": "Project:Хыпарсем",

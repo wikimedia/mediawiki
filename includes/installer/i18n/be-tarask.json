@@ -242,7 +242,6 @@
 	"config-install-schema": "Стварэньне схемы",
 	"config-install-pg-schema-not-exist": "Схема PostgreSQL не існуе",
 	"config-install-pg-schema-failed": "Немагчыма стварыць табліцу.\nУпэўніцеся, што карыстальнік «$1» можа пісаць у схему «$2».",
-	"config-install-pg-commit": "Захаваньне зьменаў",
 	"config-install-pg-plpgsql": "Праверка падтрымкі мовы PL/pgSQL",
 	"config-pg-no-plpgsql": "Вам неабходна ўсталяваць падтрымку мовы PL/pgSQL у базе зьвестак $1",
 	"config-pg-no-create-privs": "Рахунак, які Вы пазначылі для ўсталяваньня ня мае дастаткова правоў для стварэньня рахунку.",

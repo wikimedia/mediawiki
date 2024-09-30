@@ -257,7 +257,6 @@
 	"config-install-schema": "Ustvarjanje sheme",
 	"config-install-pg-schema-not-exist": "Shema PostgreSQL ne obstaja.",
 	"config-install-pg-schema-failed": "Ustvarjanje tabel ni uspelo.\nZagotovite, da lahko uporabnik »$1« piše v shemo »$2«.",
-	"config-install-pg-commit": "Uveljavljanje sprememb",
 	"config-install-pg-plpgsql": "Preverjanje jezika PL/pgSQL",
 	"config-pg-no-plpgsql": "V podatkovno zbirko $1 morate namestiti jezik PL/pgSQL",
 	"config-pg-no-create-privs": "Račun, ki ste ga določili za namestitev, nima dovolj pravic za ustvaritev računa.",

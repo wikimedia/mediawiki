@@ -152,7 +152,7 @@
 	"pool-queuefull": "Piha ke kiʻo kiū",
 	"pool-errorunknown": "Hewa ʻikeʻole",
 	"aboutsite": "No {{SITENAME}}",
-	"copyright": "Aia nā mealoko ma lalo o ka laikini $1 inā noka ʻole ia.",
+	"copyright-footer": "Aia nā mealoko ma lalo o ka laikini $1 inā noka ʻole ia.",
 	"copyrightpage": "{{ns:project}}:Kūleana kope",
 	"currentevents": "Nūhou",
 	"currentevents-url": "Project:Nūhou",

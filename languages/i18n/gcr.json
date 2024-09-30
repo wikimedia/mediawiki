@@ -157,7 +157,7 @@
 	"poolcounter-usage-error": "Lérò di litilizasyon : $1",
 	"aboutsite": "Apropo di {{SITENAME}}",
 	"aboutpage": "Project:Apropo di",
-	"copyright": "Kontni-a sa disponib anba lisans $1 sof mansyon kontrèr.",
+	"copyright-footer": "Kontni-a sa disponib anba lisans $1 sof mansyon kontrèr.",
 	"copyrightpage": "{{ns:project}}:Copyrights",
 	"currentevents": "Atchwalité",
 	"currentevents-url": "Project:Atchwalité",

@@ -295,7 +295,6 @@
 	"config-install-schema": "Creando el esquema",
 	"config-install-pg-schema-not-exist": "El esquema PostgreSQL no existe.",
 	"config-install-pg-schema-failed": "Falló la creación de las tablas.\nAsegúrate de que la cuenta «$1» tiene permiso de escritura para el esquema «$2».",
-	"config-install-pg-commit": "Validando los cambios",
 	"config-install-pg-plpgsql": "Comprobación de lenguaje PL/pgSQL",
 	"config-pg-no-plpgsql": "Necesitas instalar el lenguaje PL/pgSQL en la base de datos $1",
 	"config-pg-no-create-privs": "La cuenta especificada para la instalación no tiene suficientes privilegios para crear una cuenta.",

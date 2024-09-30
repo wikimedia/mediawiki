@@ -182,7 +182,7 @@
 	"poolcounter-usage-error": "Tyht gedwola: $1",
 	"aboutsite": "Leorna ymbe {{SITENAME}}",
 	"aboutpage": "Project:Gefræge",
-	"copyright": "Man mæg innunge under $1 findan, būton þǣr hit is elles amearcod.",
+	"copyright-footer": "Man mæg innunge under $1 findan, būton þǣr hit is elles amearcod.",
 	"copyrightpage": "{{ns:project}}:Bewritungriht",
 	"currentevents": "Gelimpunga þisses timan",
 	"currentevents-url": "Project:Gelimpunga þisses timan",

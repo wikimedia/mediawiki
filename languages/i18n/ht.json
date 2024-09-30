@@ -177,7 +177,7 @@
 	"poolcounter-usage-error": "Erè nan itilizasyon: $1",
 	"aboutsite": "Apwopo {{SITENAME}}",
 	"aboutpage": "Project:Apwopo",
-	"copyright": "Kontni disponib selon lisans $1 sof si gen lòt endikasyon.",
+	"copyright-footer": "Kontni disponib selon lisans $1 sof si gen lòt endikasyon.",
 	"copyrightpage": "{{ns:project}}:Dwa rezève",
 	"currentevents": "Aktyalite yo",
 	"currentevents-url": "Project:Aktyalite",

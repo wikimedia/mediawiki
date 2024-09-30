@@ -174,7 +174,7 @@
 	"poolcounter-usage-error": "Fôta d’usâjo : $1",
 	"aboutsite": "Sus {{SITENAME}}",
 	"aboutpage": "Project:A propôs",
-	"copyright": "Lo contegnu est disponiblo desot licence $1 betâ a pârt mencion contrèra.",
+	"copyright-footer": "Lo contegnu est disponiblo desot licence $1 betâ a pârt mencion contrèra.",
 	"copyrightpage": "{{ns:project}}:Drêts d’ôtor",
 	"currentevents": "Novèles",
 	"currentevents-url": "Project:Novèles",

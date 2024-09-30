@@ -177,7 +177,7 @@
 	"poolcounter-usage-error": "Gebrûksflater: $1",
 	"aboutsite": "Oer {{GRAMMAR:lidw|{{SITENAME}}}}",
 	"aboutpage": "Project:Ynfo",
-	"copyright": "Ynhâld is beskikber ûnder $1, at net oars neamd wurdt.",
+	"copyright-footer": "Ynhâld is beskikber ûnder $1, at net oars neamd wurdt.",
 	"copyrightpage": "{{ns:project}}:Auteursrjochten",
 	"currentevents": "Rinnende saken",
 	"currentevents-url": "Project:Rinnende saken",

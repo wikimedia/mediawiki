@@ -150,7 +150,7 @@
 	"view-pool-error": "Na vjen keq, serverat janë të stërngarkuem momentalisht.\nTepër shumë përdorues po tentojnë me pâ këtë faqe.\nJu lutem pritni pak para se me tentue me iu qasë faqes prap.\n\n$1",
 	"aboutsite": "Rreth {{SITENAME}}",
 	"aboutpage": "Project:Rreth",
-	"copyright": "Përmbajtja mundësohet simbas $1.",
+	"copyright-footer": "Përmbajtja mundësohet simbas $1.",
 	"copyrightpage": "{{ns:project}}:Të drejtat autoriale",
 	"currentevents": "Ndodhitë aktuale",
 	"currentevents-url": "Project:Ndodhitë aktuale",

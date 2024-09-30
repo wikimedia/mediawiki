@@ -147,7 +147,7 @@
 	"jumptosearch": "paintunan",
 	"aboutsite": "Tungkul {{SITENAME}}",
 	"aboutpage": "Project:tungkul",
-	"copyright": "Mipaintulutan ing laman na niti lalam ning $1.",
+	"copyright-footer": "Mipaintulutan ing laman na niti lalam ning $1.",
 	"copyrightpage": "{{ns:project}}:Deng Copyright",
 	"currentevents": "Kasalungsungan a mengapalyari",
 	"currentevents-url": "Project:Kasalungsungan a malilyari",

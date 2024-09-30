@@ -217,7 +217,7 @@
 	"poolcounter-usage-error": "Eroare de utilizare: $1",
 	"aboutsite": "Despre {{SITENAME}}",
 	"aboutpage": "Project:Despre",
-	"copyright": "Conținutul este disponibil sub $1, exceptând cazurile în care se specifică altfel.",
+	"copyright-footer": "Conținutul este disponibil sub $1, exceptând cazurile în care se specifică altfel.",
 	"copyrightpage": "{{ns:project}}:Drepturi de autor",
 	"currentevents": "Discută la cafenea",
 	"currentevents-url": "Project:Cafenea",

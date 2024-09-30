@@ -184,7 +184,7 @@
 	"poolcounter-usage-error": "ବ୍ୟବହାରିକ ତ୍ରୁଟି: $1",
 	"aboutsite": "{{SITENAME}} ବାବଦରେ",
 	"aboutpage": "Project:ବାବଦରେ",
-	"copyright": "ଯଦି ଉଲ୍ଲେଖ ହୋଇନାହିଁ ଏହା $1 ଅଧୀନରେ ବିତରିତ ।",
+	"copyright-footer": "ଯଦି ଉଲ୍ଲେଖ ହୋଇନାହିଁ ଏହା $1 ଅଧୀନରେ ବିତରିତ ।",
 	"copyrightpage": "{{ns:project}}:କପିରାଇଟ",
 	"currentevents": "ଏବେକାର ଘଟଣା",
 	"currentevents-url": "Project:ଏବେକାର ଘଟଣା",

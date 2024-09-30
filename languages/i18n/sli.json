@@ -158,7 +158,6 @@
 	"view-pool-error": "Entschuldigung, de Server sein eim Moment ieberlastet.\nZu viele Benutzer versucha, diese Seite zu besucha.\nBitte warte eenige Minuta, bevur du 's noo eemool versuchst.\n\n$1",
 	"aboutsite": "Ieber {{SITENAME}}",
 	"aboutpage": "Project:Ieber",
-	"copyright": "Inhalt ies verfügbar unter der $1.",
 	"copyrightpage": "{{ns:project}}:Urheberrecht",
 	"currentevents": "Aktuelle Ereignisse",
 	"currentevents-url": "Project:Aktuelle Ereignisse",

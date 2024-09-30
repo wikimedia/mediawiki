@@ -152,7 +152,6 @@
 	"config-install-database": "Se creează baza de date",
 	"config-install-schema": "Se creează schema",
 	"config-install-pg-schema-not-exist": "Schema PostgreSQL nu există.",
-	"config-install-pg-commit": "Se validează modificările",
 	"config-install-user": "Se creează utilizatorul pentru baza de date",
 	"config-install-user-alreadyexists": "Utilizatorul „$1” există deja",
 	"config-install-user-create-failed": "Crearea utilizatorului „$1” a eșuat: $2",

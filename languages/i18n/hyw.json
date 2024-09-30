@@ -163,7 +163,7 @@
 	"poolcounter-usage-error": "Օգտագործման սխալ. $1",
 	"aboutsite": "{{SITENAME}}յի մասին",
 	"aboutpage": "Project:Ուիքիփետիայի Մասին",
-	"copyright": "Բովանդակութիւնը առկայ է $1 ներքոյ, եթէ այլ բան նշուած չէ։",
+	"copyright-footer": "Բովանդակութիւնը առկայ է $1 ներքոյ, եթէ այլ բան նշուած չէ։",
 	"copyrightpage": "{{ns:project}}:Հեղինակային իրաւունքներ",
 	"currentevents": "Ընթացիկ իրադարձութիւններ",
 	"currentevents-url": "Project:Ընթացիկ իրադարձութիւններ",

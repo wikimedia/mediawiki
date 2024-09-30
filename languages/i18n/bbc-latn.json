@@ -154,7 +154,7 @@
 	"pool-errorunknown": "Hasalaan na so binoto",
 	"aboutsite": "Taringot tu {{SITENAME}}",
 	"aboutpage": "Project:Na marpadomuan tu",
-	"copyright": "Sude siguriton rade saguru tu $1.",
+	"copyright-footer": "Sude siguriton rade saguru tu $1.",
 	"copyrightpage": "{{ns:project}}:Agian ni panopaon",
 	"currentevents": "Angka na masa na imbaru",
 	"currentevents-url": "Project:Na masa nuaeng",

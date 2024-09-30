@@ -264,7 +264,6 @@
 	"config-install-schema": "Luodaan rakennetta",
 	"config-install-pg-schema-not-exist": "PostgreSQL-rakennetta ei ole olemassa.",
 	"config-install-pg-schema-failed": "Taulun luominen epäonnistui.\nVarmista, että käyttäjätunnus \"$1\" pystyy kirjoittamaan rakenteeseen \"$2\".",
-	"config-install-pg-commit": "Muutoksia tallennetaan",
 	"config-install-pg-plpgsql": "Tarkistetaan PL/pgSQL:n kieltä.",
 	"config-pg-no-plpgsql": "PL/pgSQL-kieli pitää asentaa tietokantaan $1",
 	"config-pg-no-create-privs": "Määrittelemälläsi tilillä ei ole riittävästi oikeuksia luoda tiliä.",

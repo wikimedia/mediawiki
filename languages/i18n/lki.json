@@ -175,7 +175,7 @@
 	"poolcounter-usage-error": "خطای استفاده: $1",
 	"aboutsite": "دۀربارۀ {{SITENAME}}",
 	"aboutpage": "Project:درباره",
-	"copyright": " محتوایۀل هانإ ژئرنظر اجازه‌نامهٔ $1 مۀگۀر یۀگإ خلاف یۀ بوشرئ/ذکر بو",
+	"copyright-footer": " محتوایۀل هانإ ژئرنظر اجازه‌نامهٔ $1 مۀگۀر یۀگإ خلاف یۀ بوشرئ/ذکر بو",
 	"copyrightpage": "{{ns:project}}:حق تکثیر",
 	"currentevents": "پێش هەتێەل ایسگە",
 	"currentevents-url": "Project:واقعهٔ نهایی",

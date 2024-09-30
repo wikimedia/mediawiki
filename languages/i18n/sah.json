@@ -185,7 +185,7 @@
 	"poolcounter-usage-error": "Туһаныы алҕаһа: $1",
 	"aboutsite": "{{SITENAME}} туһунан",
 	"aboutpage": "Project:Бу туһунан",
-	"copyright": "Маны туһанары $1 лиссиэнсийэ көҥүллүүр (атын ыйыллыбытах буоллаҕына).",
+	"copyright-footer": "Маны туһанары $1 лиссиэнсийэ көҥүллүүр (атын ыйыллыбытах буоллаҕына).",
 	"copyrightpage": "{{ns:project}}:Бас билии",
 	"currentevents": "Туох буола турара",
 	"currentevents-url": "Project:Сонуннар",

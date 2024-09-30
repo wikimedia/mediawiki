@@ -133,7 +133,7 @@
 	"poolcounter-usage-error": "Къоллав хата: $1",
 	"aboutsite": "{{SITENAME}} гьакъында",
 	"aboutpage": "Project:Сыпатлав",
-	"copyright": "Ичделиги $1 лисензиягъа гёре гиришли (башгъасы мекенленмеген буса).",
+	"copyright-footer": "Ичделиги $1 лисензиягъа гёре гиришли (башгъасы мекенленмеген буса).",
 	"copyrightpage": "{{ns:project}}:Ясавчу гьакълар",
 	"currentevents": "Гьалиги гьаллар",
 	"currentevents-url": "Project:Гьалиги гьаллар",

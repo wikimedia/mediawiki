@@ -106,7 +106,6 @@
 	"config-install-database": "දත්ත සංචිතය සකසමින්",
 	"config-install-schema": "සංක්ෂිප්ත නිරූපණය තනමින්",
 	"config-install-pg-schema-not-exist": "PostgreSQL සංක්ෂිප්ත නිරූපණය නොපවතියි.",
-	"config-install-pg-commit": "වෙනස්කම් ප්‍රයාපනය කරමින්",
 	"config-install-pg-plpgsql": "PL/pgSQL භාෂාව සඳහා පරික්ෂා කරමින්",
 	"config-install-user": "දත්ත සංචිත පරිශීලක තනමින්",
 	"config-install-user-alreadyexists": "\"$1\" පරිශීලක දැනටමත් පවතී",

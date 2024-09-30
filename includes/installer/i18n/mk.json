@@ -259,7 +259,6 @@
 	"config-install-schema": "Создавам шема",
 	"config-install-pg-schema-not-exist": "PostgreSQL-шемата не постои",
 	"config-install-pg-schema-failed": "Создавањето натабелите не успеа.\nПроверете дали корисникот „$1“ може да запишува во шемата „$2“.",
-	"config-install-pg-commit": "Спроведување на промени",
 	"config-install-pg-plpgsql": "Проверувам јазик PL/pgSQL",
 	"config-pg-no-plpgsql": "Ќе треба да го воспоставите јазикот PL/pgSQL во базата $1",
 	"config-pg-no-create-privs": "Сметката што ја наведовте за воспоставката нема доволно привилегии за да создаде друга сметка.",

@@ -262,7 +262,6 @@
 	"config-install-schema": "יצירת סכמה",
 	"config-install-pg-schema-not-exist": "סכמה של PostgreSQL אינה קיימת",
 	"config-install-pg-schema-failed": "יצירת טבלאות נכשלה.\nודאו כי המשתמש \"$1\" יכול לכתוב לסכמה \"$2\".",
-	"config-install-pg-commit": "שמירת שינויים",
 	"config-install-pg-plpgsql": "בדיקת שפת PL/pgSQL",
 	"config-pg-no-plpgsql": "צריך להתקין את שפת PL/pgSQL במסד הנתונים $1",
 	"config-pg-no-create-privs": "לחשבון שהגדרתם להתקנה אין מספיק הרשאות ליצירת חשבון.",

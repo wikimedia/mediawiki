@@ -12,7 +12,8 @@
 		]
 	},
 	"preferences": "Preferencias",
-	"prefsnologintext2": "Accede ao sistema para modificar as túas preferencias.",
+	"prefsnologintext2": "Entra no sistema para modificar as túas preferencias.",
+	"prefsnologintext2-for-temp-user": "Crea unha conta para modificar as túas preferencias.",
 	"searchprefs": "Procurar nas preferencias",
 	"searchprefs-noresults": "Non hai resultados",
 	"searchprefs-results": "$1 {{PLURAL:$1|resultado|resultados}}",

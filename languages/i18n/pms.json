@@ -184,7 +184,7 @@
 	"poolcounter-usage-error": "Eror d'utilisassion: $1",
 	"aboutsite": "A propòsit ëd {{SITENAME}}",
 	"aboutpage": "Project:A propòsit",
-	"copyright": "Ël contnù a resta disponìbil sota $1 gavà ch'a sia marcà an n'àutra manera.",
+	"copyright-footer": "Ël contnù a resta disponìbil sota $1 gavà ch'a sia marcà an n'àutra manera.",
 	"copyrightpage": "{{ns:project}}:Drit d'autor",
 	"currentevents": "Neuve",
 	"currentevents-url": "Project:Neuve",

@@ -168,7 +168,7 @@
 	"poolcounter-usage-error": "Kengabluan pemakéan: $1",
 	"aboutsite": "Pasal {{SITENAME}}",
 	"aboutpage": "Project:Pasal",
-	"copyright": "Isi derak di bawah $1, kecuali ada catetan tambahan.",
+	"copyright-footer": "Isi derak di bawah $1, kecuali ada catetan tambahan.",
 	"copyrightpage": "{{ns:project}}:Hak keja",
 	"currentevents": "Kejadian sekarang-sekarang",
 	"currentevents-url": "Project:Kejadian sekarang-sekarang",

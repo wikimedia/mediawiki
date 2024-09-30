@@ -180,7 +180,7 @@
 	"poolcounter-usage-error": "Errore de usu: $1",
 	"aboutsite": "Concernent {{SITENAME}}",
 	"aboutpage": "Project:Concernent_{{SITENAME}}",
-	"copyright": "Contenete attiņibil sub $1, si ne altrimen indicat.",
+	"copyright-footer": "Contenete attiņibil sub $1, si ne altrimen indicat.",
 	"copyrightpage": "{{ns:project}}:Jure editorial",
 	"currentevents": "Actual evenimentes",
 	"currentevents-url": "Project:Actual evenimentes",

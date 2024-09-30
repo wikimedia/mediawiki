@@ -259,7 +259,7 @@
 	"poolcounter-usage-error": "خطای کاربرد: $1",
 	"aboutsite": "دربارهٔ {{SITENAME}}",
 	"aboutpage": "Project:درباره",
-	"copyright": "محتوایات تحت اجازه‌نامهٔ $1 هستند مگر اینکه خلافش ذکر شده باشد.",
+	"copyright-footer": "محتوایات تحت اجازه‌نامهٔ $1 هستند مگر اینکه خلافش ذکر شده باشد.",
 	"copyrightpage": "{{ns:project}}:حق تکثیر",
 	"currentevents": "رویدادهای کنونی",
 	"currentevents-url": "Project:رویدادهای کنونی",

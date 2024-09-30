@@ -261,7 +261,6 @@
 	"config-install-schema": "Skapar schema",
 	"config-install-pg-schema-not-exist": "PostgreSQL-schemat finns inte.",
 	"config-install-pg-schema-failed": "Det gick inte att skapa tabeller.\nSe till att användaren \"$1\" kan skriva till schemat \"$2\".",
-	"config-install-pg-commit": "Begår ändringar",
 	"config-install-pg-plpgsql": "Kontroll för språket PL/pgSQL",
 	"config-pg-no-plpgsql": "Du måste installera språket PL/pgSQL i databasen $1",
 	"config-pg-no-create-privs": "Det konto som du har angett för installationen har inte tillräcklig behörighet för att skapa ett konto.",

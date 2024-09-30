@@ -170,7 +170,7 @@
 	"poolcounter-usage-error": "خٱتای اْسفاْڌاْ:$1",
 	"aboutsite": "راجوڤ ب {{SITENAME}}",
 	"aboutpage": "Project:راجوڤ ب",
-	"copyright": "محتوا باای شماره قابل دسترسیه\n $1.",
+	"copyright-footer": "محتوا باای شماره قابل دسترسیه\n $1.",
 	"copyrightpage": "{{ns:project}}:کوپی رایت",
 	"currentevents": "روخ ڤٱندٱل تازاْ",
 	"currentevents-url": "Project:روخ ڤٱندٱل تازاْ",

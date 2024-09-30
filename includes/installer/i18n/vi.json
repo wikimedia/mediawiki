@@ -246,7 +246,6 @@
 	"config-install-schema": "Đang tạo giản đồ",
 	"config-install-pg-schema-not-exist": "Lược đồ PostgreSQL không tồn tại.",
 	"config-install-pg-schema-failed": "Thất bại khi tạo các bảng.\nHãy chắc chắn rằng người dùng “$1” có thể ghi vào giản đồ “$2”.",
-	"config-install-pg-commit": "Đang chuyển giao các thay đổi",
 	"config-install-pg-plpgsql": "Tìm ngôn ngữ PL/pgSQL",
 	"config-pg-no-plpgsql": "Bạn cần phải cài đặt ngôn ngữ PL/pgSQL vào cơ sở dữ liệu $1",
 	"config-pg-no-create-privs": "Tài khoản bạn xác định để cài đặt không đủ quyền hạn để tạo một tài khoản.",

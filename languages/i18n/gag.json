@@ -135,7 +135,7 @@
 	"jumptosearch": "ara",
 	"aboutsite": "{{SITENAME}} için",
 	"aboutpage": "Project:Uurunda",
-	"copyright": "İçersindeki $1 altında.",
+	"copyright-footer": "İçersindeki $1 altında.",
 	"copyrightpage": "{{ns:project}}:Avtorluk hakları",
 	"currentevents": "Hergünkü sluçaylar",
 	"currentevents-url": "Project:Hergünkü sluçaylar",

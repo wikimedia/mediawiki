@@ -135,7 +135,6 @@
 	"config-install-database": "Creacion de la basa de donadas",
 	"config-install-schema": "Creacion d'esquèma",
 	"config-install-pg-schema-not-exist": "L'esquèma PostgreSQL existís pas",
-	"config-install-pg-commit": "Validacion de las modificacions",
 	"config-install-pg-plpgsql": "Verificacion del lengatge PL/pgSQL",
 	"config-install-user": "Creacion d'un utilizaire de la basa de donadas",
 	"config-install-user-alreadyexists": "L'utilizaire « $1 » existís ja.",

@@ -272,7 +272,6 @@
 	"config-install-schema": "إنشاء مخطط البيانات",
 	"config-install-pg-schema-not-exist": "مخطط PostgreSQL غير موجود.",
 	"config-install-pg-schema-failed": "فشل إنشاء الجداول.\nتأكد من أن المستخدم «$1» يمكن أن يكتب إلى المخطط «$2».",
-	"config-install-pg-commit": "تنفيذ التغييرات",
 	"config-install-pg-plpgsql": "التحقق من لغة PL/pgSQL",
 	"config-pg-no-plpgsql": "تحتاج إلى تثبيت لغة PL/pgSQL في قاعدة البيانات $1",
 	"config-pg-no-create-privs": "الحساب الذي حددته للتنزيل ليست لديه امتيازات كافية لإنشاء حساب.",

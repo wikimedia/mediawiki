@@ -229,7 +229,6 @@
 	"config-install-schema": "Dat Schema en dä Daatebank weed aanjelaat.",
 	"config-install-pg-schema-not-exist": "Dat Scheema för <i lang=\"en\">PostgreSQL</i> es nit doh.",
 	"config-install-pg-schema-failed": "Et Tabälle-Opsäze es donävve jejange.\nDonn doför sorrje, dat dä Daatebangk-Aanwänder „$1“ en dämm Daatebangkscheema „$2“ schrieve kann.",
-	"config-install-pg-commit": "Ben de Änderonge aam ennbränge.",
 	"config-install-pg-plpgsql": "Ben noh dä Daatebangkshprooch <code lang=\"en\">PL/pgSQL</code> aam söhke.",
 	"config-pg-no-plpgsql": "Do moß de Daatebangkshprooch <code lang=\"en\">PL/pgSQL</code> en dä Daatebangk $1 enreeschte.",
 	"config-pg-no-create-privs": "Dä Daatebangk-Aanwänder för et Enreeschte hät nit jenooch Rääschde, öm ene andere Daatebangk-Aanwänder en dä Daatebangk aanzelääje.",

@@ -154,7 +154,7 @@
 	"poolcounter-usage-error": "Bérlurage d’utilisacion : $1",
 	"aboutsite": "à pérpos éd {{SITENAME}}",
 	"aboutpage": "Project:à pérpos",
-	"copyright": "Ch'contnu, il est disponipe dsou licince $1 sauf mincion invérse.",
+	"copyright-footer": "Ch'contnu, il est disponipe dsou licince $1 sauf mincion invérse.",
 	"copyrightpage": "{{ns:project}}:Copyrights",
 	"currentevents": "Darinnetés picardes",
 	"currentevents-url": "Project:Darinnetés picardes",

@@ -234,7 +234,6 @@
 	"config-install-schema": "Схема эшләү",
 	"config-install-pg-schema-not-exist": "PostgreSQL схемаһы юҡ.",
 	"config-install-pg-schema-failed": "Таблица эшләп булманы. Ҡулланыусы «$1» «$2» схемаһын яҙа алыуына инанығыҙ.",
-	"config-install-pg-commit": "Үҙгәртеүҙәр индерергә",
 	"config-install-pg-plpgsql": "PL/pgSQL телен тикшерергә",
 	"config-pg-no-plpgsql": "Һеҙгә $1 мәғлүмәт базаһы өсөн PL/pgSQL телен ҡуйырға кәрәк",
 	"config-pg-no-create-privs": "Ҡуйыу өсөн күрһәтелгән иҫәп яҙмаһының иҫәп яҙмаһы булдырыу өсөн етерлек хоҡуғы юҡ.",

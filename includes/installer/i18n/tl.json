@@ -223,7 +223,6 @@
 	"config-install-schema": "Nililikha ang panukala",
 	"config-install-pg-schema-not-exist": "Hindi umiiral ang panukala ng PostgreSQL.",
 	"config-install-pg-schema-failed": "Nabigo ang paglikha ng mga talahanayan.\nTiyakin na ang tagagamit na \"$1\" ay maaaring makasulat sa balangkas na \"$2\".",
-	"config-install-pg-commit": "Isinasagawa ang mga pagbabago",
 	"config-install-pg-plpgsql": "Sumusuri ng wikang PL/pgSQL",
 	"config-pg-no-plpgsql": "Kailangan mong magtalaga ng wikang PL/pgSQL sa loob ng kalipunan ng datong $1",
 	"config-pg-no-create-privs": "Ang tinukoy mong accountpara sa pagtatalaga ay walang sapat na mga pribilehiyo upang makalikha ng isang account.",

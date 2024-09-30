@@ -59,7 +59,6 @@
 	"config-install-schema": "Création de schéma",
 	"config-install-pg-schema-not-exist": "Le schéma PostgreSQL existe pas",
 	"config-install-pg-schema-failed": "Échoué lors de la création des tables.\nAssurez-vous que l'useur \"$1\" peut écrire selon le schéma \"$2\".",
-	"config-install-pg-commit": "Validation des modifications",
 	"config-help": "aide",
 	"config-help-tooltip": "cliquer pour agrandir",
 	"mainpagetext": "'''Vous avez bien installé MediaWiki.'''",

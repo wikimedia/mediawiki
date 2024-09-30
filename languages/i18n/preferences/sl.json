@@ -11,6 +11,7 @@
 	},
 	"preferences": "Nastavitve",
 	"prefsnologintext2": "Za spreminjanje svojih nastavitev se prijavite.",
+	"prefsnologintext2-for-temp-user": "Za spreminjanje nastavitev se prijavite.",
 	"searchprefs": "Iskanje po nastavitvah",
 	"searchprefs-noresults": "Ni zadetkov",
 	"searchprefs-results": "$1 {{PLURAL:$1|zadetek|zadetka|zadetki|zadetkov}}",

@@ -185,7 +185,7 @@
 	"poolcounter-usage-error": "Errore d'uso: $1",
 	"aboutsite": "Nfurmazzione ncòppa a {{SITENAME}}",
 	"aboutpage": "Project:'Nfurmazzione",
-	"copyright": "Cuntenute suggiette a licienza 'e auso $1 se nun fuje ritto atro.",
+	"copyright-footer": "Cuntenute suggiette a licienza 'e auso $1 se nun fuje ritto atro.",
 	"copyrightpage": "{{ns:project}}:Copyrights",
 	"currentevents": "Nuvità",
 	"currentevents-url": "Project:Novità",

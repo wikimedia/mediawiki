@@ -156,7 +156,7 @@
 	"pool-errorunknown": "Билинмеген хата",
 	"aboutsite": "{{SITENAME}} акъкъында",
 	"aboutpage": "Project:Акъкъында",
-	"copyright": "Башкъасы бильдирильмесе, малюмат $1 лицензиясынен бериле.",
+	"copyright-footer": "Башкъасы бильдирильмесе, малюмат $1 лицензиясынен бериле.",
 	"copyrightpage": "{{ns:project}}:Муэллифлик акълары",
 	"currentevents": "Шимдики вакъиалар",
 	"currentevents-url": "Project:Агъымдаки вакъиалар",

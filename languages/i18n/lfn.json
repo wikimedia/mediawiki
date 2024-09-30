@@ -173,7 +173,7 @@
 	"poolcounter-usage-error": "Era de usa: $1",
 	"aboutsite": "Sur {{SITENAME}}",
 	"aboutpage": "Project:Sur",
-	"copyright": "La contenida es disponeda su $1, estra diferes notada.",
+	"copyright-footer": "La contenida es disponeda su $1, estra diferes notada.",
 	"copyrightpage": "{{ns:project}}:Diretos de autor",
 	"currentevents": "Avenis corente",
 	"currentevents-url": "Project:Avenis corente",

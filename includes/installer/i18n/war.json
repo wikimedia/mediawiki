@@ -83,7 +83,6 @@
 	"config-install-extensions": "Lakip an mga panugtong",
 	"config-install-schema": "Naghihimo hin iskima",
 	"config-install-pg-schema-not-exist": "Waray natatad-an nga iskima PostgreSQL.",
-	"config-install-pg-commit": "Nagsasaad hin pagbabag-o",
 	"config-install-user": "Naghihimo hin gumaramit hit database",
 	"config-install-user-alreadyexists": "May-ada na gumaramit nga \"$1\"",
 	"config-install-user-create-failed": "Pakyas an paghimo hin gumaramit nga \"$1\": $2",

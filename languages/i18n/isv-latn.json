@@ -164,7 +164,7 @@
 	"poolcounter-usage-error": "Pogrěška pri upotrěbě: $1",
 	"aboutsite": "O projektu {{SITENAME}}",
 	"aboutpage": "Project:O projektu",
-	"copyright": "Sodržanje jest dostupno pod licencijeju $1, ako ne jest napisano inače.",
+	"copyright-footer": "Sodržanje jest dostupno pod licencijeju $1, ako ne jest napisano inače.",
 	"copyrightpage": "{{ns:project}}:Avtorske prava",
 	"currentevents": "Tekuče sobytja",
 	"currentevents-url": "Project:Tekuče sobytja",

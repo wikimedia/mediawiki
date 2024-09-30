@@ -178,7 +178,7 @@
 	"poolcounter-usage-error": "Хэрэглээний алдаа: $1",
 	"aboutsite": "{{SITENAME}}-н тухай",
 	"aboutpage": "Project:Тухай",
-	"copyright": "Тусгайлсан тайлбар байхгүй бол энэ агуулгыг $1 лицензийн дагуу хэрэглэх боломжтой.",
+	"copyright-footer": "Тусгайлсан тайлбар байхгүй бол энэ агуулгыг $1 лицензийн дагуу хэрэглэх боломжтой.",
 	"copyrightpage": "{{ns:project}}:Зохиогчийн эрх",
 	"currentevents": "Одоогийн үйл явдал",
 	"currentevents-url": "Project:Одоогийн үйл явдал",

@@ -186,7 +186,7 @@
 	"poolcounter-usage-error": "उपयोग त्रुटि: $1",
 	"aboutsite": "{{SITENAME}}क बारेमे",
 	"aboutpage": "Project:विवरण",
-	"copyright": "$1क अन्तर्गत विषय सूची उपलब्ध अछि",
+	"copyright-footer": "$1क अन्तर्गत विषय सूची उपलब्ध अछि",
 	"copyrightpage": "{{ns:project}}:सर्वाधिकार",
 	"currentevents": "आइ-काल्हिक घटनासभ",
 	"currentevents-url": "Project:आइ-काल्हिक घटनासभ",

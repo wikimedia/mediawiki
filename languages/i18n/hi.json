@@ -275,7 +275,7 @@
 	"poolcounter-usage-error": "प्रयोग त्रुटि: $1",
 	"aboutsite": "{{SITENAME}} के बारे में",
 	"aboutpage": "Project:परिचय",
-	"copyright": "उपलब्ध सामग्री $1 के अधीन है जब तक अलग से उल्लेख ना किया गया हो।",
+	"copyright-footer": "उपलब्ध सामग्री $1 के अधीन है जब तक अलग से उल्लेख ना किया गया हो।",
 	"copyrightpage": "{{ns:project}}:कॉपीराइट",
 	"currentevents": "हाल की घटनाएँ",
 	"currentevents-url": "Project:हाल की घटनाएँ",

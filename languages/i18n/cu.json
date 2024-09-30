@@ -147,7 +147,7 @@
 	"pool-errorunknown": "нєвѣдома блаꙁна",
 	"aboutsite": "{{grammar:genitive|{{SITENAME}}}} опьсаниѥ",
 	"aboutpage": "Project:О сѥмь опꙑтьствовании",
-	"copyright": "подъ прощєниѥмь $1 пьсано ѥстъ · ащє ино нє каꙁано ѥстъ",
+	"copyright-footer": "подъ прощєниѥмь $1 пьсано ѥстъ · ащє ино нє каꙁано ѥстъ",
 	"copyrightpage": "{{ns:project}}:Творьць права",
 	"currentevents": "сѫщѧѩ вѣщиѥ",
 	"currentevents-url": "Project:Сѫщѧѩ вѣщиѥ",

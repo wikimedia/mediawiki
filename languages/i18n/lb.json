@@ -185,7 +185,7 @@
 	"poolcounter-usage-error": "Benotzungsfeeler: $1",
 	"aboutsite": "Iwwer {{SITENAME}}",
 	"aboutpage": "Project:Iwwer",
-	"copyright": "Den Inhalt ass ënner $1 disponibel wann et net anescht uginn ass.",
+	"copyright-footer": "Den Inhalt ass ënner $1 disponibel wann et net anescht uginn ass.",
 	"copyrightpage": "{{ns:project}}:Copyright",
 	"currentevents": "Aktualitéit",
 	"currentevents-url": "Project:Aktualitéit",

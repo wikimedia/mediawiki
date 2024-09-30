@@ -158,7 +158,7 @@
 	"poolcounter-usage-error": "Brugsfejl: $1",
 	"aboutsite": "Om {{SITENAME}}",
 	"aboutpage": "Project:Om",
-	"copyright": "Inholje ä utdjøwen unje $1 mämenna ånj ä åndjøwen.",
+	"copyright-footer": "Inholje ä utdjøwen unje $1 mämenna ånj ä åndjøwen.",
 	"copyrightpage": "{{ns:project}}:Ophawsrett",
 	"currentevents": "Aktuell bedjøwenhede",
 	"currentevents-url": "Project:Aktuell bedjøwenhede",

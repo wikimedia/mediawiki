@@ -186,7 +186,7 @@
 	"poolcounter-usage-error": "အသုံးပြုမှု အမှား: $1",
 	"aboutsite": "{{SITENAME}} အကြောင်း",
 	"aboutpage": "Project: အကြောင်းအရာ",
-	"copyright": "$1 အောက်တွင် ဤအကြောင်းအရာကို မှတ်သားမထားပါက ရရှိနိုင်သည်။",
+	"copyright-footer": "$1 အောက်တွင် ဤအကြောင်းအရာကို မှတ်သားမထားပါက ရရှိနိုင်သည်။",
 	"copyrightpage": "{{ns:project}}: မူပိုင်ခွင့်",
 	"currentevents": "လက်ရှိဖြစ်ရပ်များ",
 	"currentevents-url": "Project:လက်ရှိဖြစ်ရပ်များ",

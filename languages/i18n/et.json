@@ -198,7 +198,7 @@
 	"poolcounter-usage-error": "Kasutustõrge: $1",
 	"aboutsite": "{{GRAMMAR:genitive|{{SITENAME}}}} tiitelandmed",
 	"aboutpage": "Project:Tiitelandmed",
-	"copyright": "Sisu on kasutatav litsentsi $1 tingimustel, kui pole öeldud teisiti.",
+	"copyright-footer": "Sisu on kasutatav litsentsi $1 tingimustel, kui pole öeldud teisiti.",
 	"copyrightpage": "{{ns:project}}:Autoriõigus",
 	"currentevents": "Sündmused",
 	"currentevents-url": "Project:Sündmused",

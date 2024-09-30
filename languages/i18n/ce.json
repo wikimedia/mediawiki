@@ -181,7 +181,7 @@
 	"poolcounter-usage-error": "Лелочун гӀалат: $1",
 	"aboutsite": "{{grammar:genitive|{{SITENAME}}}} лаьцна",
 	"aboutpage": "Project:Цуьнах лаьцна",
-	"copyright": "Чулацам лело мега $1 лицензица (кхиниг билгалйина яцахь).",
+	"copyright-footer": "Чулацам лело мега $1 лицензица (кхиниг билгалйина яцахь).",
 	"copyrightpage": "{{ns:project}}:Авторан бакъонаш",
 	"currentevents": "Карара хилларш",
 	"currentevents-url": "Project:Карара хилларш",

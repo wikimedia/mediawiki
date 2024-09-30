@@ -203,7 +203,7 @@
 	"poolcounter-usage-error": "用誤：$1",
 	"aboutsite": "{{SITENAME}}自序",
 	"aboutpage": "Project:述",
-	"copyright": "若無側註，諸文皆奉$1以行。",
+	"copyright-footer": "若無側註，諸文皆奉$1以行。",
 	"copyrightpage": "{{ns:project}}:版權",
 	"currentevents": "世事",
 	"currentevents-url": "Project:世事",

@@ -264,7 +264,6 @@
 	"config-install-schema": "Adatbázisséma létrehozása",
 	"config-install-pg-schema-not-exist": "A PostgreSQL-adatbázisséma nem létezik.",
 	"config-install-pg-schema-failed": "A táblák létrehozása nem sikerült.\nEllenőrizd, hogy „$1” felhasználó írhat-e a következő adatbázisba: „$2”.",
-	"config-install-pg-commit": "Változtatások közzététele",
 	"config-install-pg-plpgsql": "PL/pgSQL nyelv meglétének ellenőrzése",
 	"config-pg-no-plpgsql": "Telepítened kell a PL/pgSQL nyelvet a következő adatbázishoz: $1",
 	"config-pg-no-create-privs": "A telepítéshez megadott felhasználói fiók nem rendelkezik új fiók létrehozásához szükséges jogosultságokkal.",

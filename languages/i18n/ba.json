@@ -198,7 +198,7 @@
 	"poolcounter-usage-error": "Ҡулланыу хатаһы: $1",
 	"aboutsite": "{{SITENAME}} тураһында",
 	"aboutpage": "Project:Тасуирлама",
-	"copyright": "$1 лицензияһына ярашлы, эстәлеге менән һәр кем файҙалана ала (башҡаһы күрһәтелмәһә)",
+	"copyright-footer": "$1 лицензияһына ярашлы, эстәлеге менән һәр кем файҙалана ала (башҡаһы күрһәтелмәһә)",
 	"copyrightpage": "{{ns:project}}:Авторлыҡ хоҡуҡтары",
 	"currentevents": "Ағымдағы ваҡиғалар",
 	"currentevents-url": "Project:Ағымдағы ваҡиғалар",

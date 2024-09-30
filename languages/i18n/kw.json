@@ -152,7 +152,7 @@
 	"pool-errorunknown": "Gwall ankoth",
 	"aboutsite": "A-dro dhe {{SITENAME}}",
 	"aboutpage": "Project:Kedhlow",
-	"copyright": "Kavadow yw an dalgh yn-dann $1, marnas avisyes yn ken maner.",
+	"copyright-footer": "Kavadow yw an dalgh yn-dann $1, marnas avisyes yn ken maner.",
 	"copyrightpage": "{{ns:project}}:Gwirbryntyansow",
 	"currentevents": "Hwarvosow a-lemmyn",
 	"currentevents-url": "Project:Hwarvosow a-lemmyn",

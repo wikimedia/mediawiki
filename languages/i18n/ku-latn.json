@@ -184,7 +184,7 @@
 	"poolcounter-usage-error": "Çewtiya bikaranînê: $1",
 	"aboutsite": "Di derbarê {{GRAMMAR:oblique|{{SITENAME}}}} de",
 	"aboutpage": "Project:Der barê",
-	"copyright": "Naverok di $1 de derbasdar e.",
+	"copyright-footer": "Naverok di $1 de derbasdar e.",
 	"copyrightpage": "{{ns:project}}:Mafên nivîsanê",
 	"currentevents": "Bûyerên rojane",
 	"currentevents-url": "Project:Bûyerên rojane",

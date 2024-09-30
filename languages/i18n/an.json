@@ -166,7 +166,7 @@
 	"pool-errorunknown": "Error desconoixida",
 	"aboutsite": "Información sobre {{SITENAME}}",
 	"aboutpage": "Project:Sobre",
-	"copyright": "O conteniu ye disponible baixo a licencia $1.",
+	"copyright-footer": "O conteniu ye disponible baixo a licencia $1.",
 	"copyrightpage": "{{ns:project}}:Dreitos d'autor",
 	"currentevents": "Actualidat",
 	"currentevents-url": "Project:Actualidat",

@@ -170,7 +170,7 @@
 	"poolcounter-usage-error": "Erôr di ûs: $1",
 	"aboutsite": "Informazions su {{SITENAME}}",
 	"aboutpage": "Project:Informazions",
-	"copyright": "Il contignût al è disponibil sot de licence $1 se nol è specificât in altre maniere",
+	"copyright-footer": "Il contignût al è disponibil sot de licence $1 se nol è specificât in altre maniere",
 	"copyrightpage": "{{ns:project}}:Copyrights",
 	"currentevents": "Lis gnovis",
 	"currentevents-url": "Project:Lis gnovis",

@@ -254,7 +254,6 @@
 	"config-install-schema": "Creaçión do schêma",
 	"config-install-pg-schema-not-exist": "O schêma PostgreSQL o no l'exìste.",
 	"config-install-pg-schema-failed": "Creaçión tabélle no ariêscîa.\nAseguâte che l'uténte \"$1\" o posse scrîve into schêma \"$2\".",
-	"config-install-pg-commit": "Aplicâ i cangiaménti",
 	"config-install-pg-plpgsql": "Contròllo o lengoàggio PL/pgSQL",
 	"config-pg-no-plpgsql": "O l'é necesâio instalâ o lengoàggio PL/pgSQL inta bànca dæti $1",
 	"config-pg-no-create-privs": "L'uténza indicâ pe l'instalaçión a no dispónn-e di privilêgi necesâi pe creâ 'n'uténza.",

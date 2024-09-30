@@ -187,7 +187,7 @@
 	"poolcounter-usage-error": "ব্যৱহাৰ ত্ৰুটি: $1",
 	"aboutsite": "{{SITENAME}}ৰ বিষয়ে",
 	"aboutpage": "Project:ইতিবৃত্ত",
-	"copyright": "আন একো উল্লেখ নাথাকিলে এই বিষয়বস্তু $1 ৰ আওতাত উপলব্ধ।",
+	"copyright-footer": "আন একো উল্লেখ নাথাকিলে এই বিষয়বস্তু $1 ৰ আওতাত উপলব্ধ।",
 	"copyrightpage": "{{ns:project}}:স্বত্ব",
 	"currentevents": "সাম্প্ৰতিক ঘটনাৱলী",
 	"currentevents-url": "Project:শেহতীয়া ঘটনাৱলী",

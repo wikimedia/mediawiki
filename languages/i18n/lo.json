@@ -162,7 +162,7 @@
 	"poolcounter-usage-error": "ຂໍ້ຜິດພາດໃນການໃຊ້ງານ: $1",
 	"aboutsite": "ກ່ຽວກັບ{{SITENAME}}",
 	"aboutpage": "Project:ກ່ຽວກັບ",
-	"copyright": "ເນື້ອໃນສາມາດໃຊ້ໄດ້ພາຍໃຕ້ $1 ຖ້າບໍ່ແມ່ນຢ່າງອື່ນໃດທີ່ລະບຸໄວ້.",
+	"copyright-footer": "ເນື້ອໃນສາມາດໃຊ້ໄດ້ພາຍໃຕ້ $1 ຖ້າບໍ່ແມ່ນຢ່າງອື່ນໃດທີ່ລະບຸໄວ້.",
 	"copyrightpage": "{{ns:project}}:ລິຂະສິດ",
 	"currentevents": "ເຫດການປັດຈຸບັນ",
 	"currentevents-url": "Project:ເຫດການປັດຈຸບັນ",

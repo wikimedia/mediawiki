@@ -152,7 +152,7 @@
 	"pool-errorunknown": "ܦܘܕܐ ܠܐ ܝܕܝܥܐ",
 	"aboutsite": "ܡܢܘ {{SITENAME}}",
 	"aboutpage": "Project:ܡܢܘ",
-	"copyright": "ܚܒܝܫܬ̈ܐ ܐܝܬ ܬܚܝܬ $1 ܐܢ ܠܝܬ ܠܩܘܒܠܐ.",
+	"copyright-footer": "ܚܒܝܫܬ̈ܐ ܐܝܬ ܬܚܝܬ $1 ܐܢ ܠܝܬ ܠܩܘܒܠܐ.",
 	"copyrightpage": "{{ns:project}}:ܙܕ̈ܩܐ ܕܚܬܡܐ",
 	"currentevents": "ܓܕ̈ܫܐ ܗܫܝ̈ܐ",
 	"currentevents-url": "Project:ܓܕ̈ܫܐ ܗܫܝ̈ܐ",

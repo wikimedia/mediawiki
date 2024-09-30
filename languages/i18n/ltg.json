@@ -122,7 +122,7 @@
 	"jumptosearch": "meklēt",
 	"aboutsite": "Ap {{grammar:akuzativs|{{SITENAME}}}}",
 	"aboutpage": "Project:Ap",
-	"copyright": "Turīņs ir daīmams pa $1.",
+	"copyright-footer": "Turīņs ir daīmams pa $1.",
 	"copyrightpage": "{{ns:project}}:Autortīseibys",
 	"currentevents": "Īmamuos nūtikšonys",
 	"currentevents-url": "Project:Īmamuos nūtikšonys",

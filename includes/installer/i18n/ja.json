@@ -285,7 +285,6 @@
 	"config-install-schema": "スキーマの作成",
 	"config-install-pg-schema-not-exist": "PostgreSQL スキーマがありません。",
 	"config-install-pg-schema-failed": "テーブルの作成に失敗しました。\n利用者「$1」がスキーマ「$2」に書き込めるようにしてください。",
-	"config-install-pg-commit": "変更を送信",
 	"config-install-pg-plpgsql": "PL/pgSQLの言語をチェックしています",
 	"config-pg-no-plpgsql": "データベース $1 内に PL/pgSQL 言語をインストールする必要があります。",
 	"config-pg-no-create-privs": "インストール用に指定したアカウントには、アカウントを作成するのに十分な特権がありません。",

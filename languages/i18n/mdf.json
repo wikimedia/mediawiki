@@ -177,7 +177,7 @@
 	"poolcounter-usage-error": "Тевс нолдамань эльбятькс: $1",
 	"aboutsite": "{{SITENAME}} колга",
 	"aboutpage": "Project:Колга",
-	"copyright": "Сёрматфсь ули кода мумс $1са, къда илякс апак аст.",
+	"copyright-footer": "Сёрматфсь ули кода мумс $1са, къда илякс апак аст.",
 	"copyrightpage": "{{ns:project}}:Азорксши",
 	"currentevents": "Тяниень кулят",
 	"currentevents-url": "Project:Тяниень кулят",

@@ -178,7 +178,7 @@
 	"pool-errorunknown": "انجان غلطی",
 	"aboutsite": "{{SITENAME}} بارے",
 	"aboutpage": "Project:بارے",
-	"copyright": "مال $1 دے تھلے ہے گا اے۔",
+	"copyright-footer": "مال $1 دے تھلے ہے گا اے۔",
 	"copyrightpage": "{{ns:project}}:نقل دے حق",
 	"currentevents": "حالیہ واقعے",
 	"currentevents-url": "Project:حالیہ واقعے",

@@ -182,7 +182,7 @@
 	"poolcounter-usage-error": "Masalah pangguna: $1",
 	"aboutsite": "Bab {{SITENAME}}",
 	"aboutpage": "Project:Bab",
-	"copyright": "Isi cumepak kanthi pangayoman $1, kajaba ana katerangan liyané.",
+	"copyright-footer": "Isi cumepak kanthi pangayoman $1, kajaba ana katerangan liyané.",
 	"copyrightpage": "{{ns:project}}:Hak cipta",
 	"currentevents": "Kadadéan saiki",
 	"currentevents-url": "Project:Kadadéan saiki",

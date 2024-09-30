@@ -175,7 +175,7 @@
 	"pool-errorunknown": "Njeznata zmólka",
 	"aboutsite": "Wó {{GRAMMAR:lokatiw|{{SITENAME}}}}",
 	"aboutpage": "Project:Wó_{{GRAMMAR:lokatiw|{{SITENAME}}}}",
-	"copyright": "Wopśimjeśe stoj pód $1 k dispoziciji, jolic njejo se hynac pódało.",
+	"copyright-footer": "Wopśimjeśe stoj pód $1 k dispoziciji, jolic njejo se hynac pódało.",
 	"copyrightpage": "{{ns:project}}:Stwóriśelske pšawo",
 	"currentevents": "Aktualne tšojenja",
 	"currentevents-url": "Project:Aktualne tšojenja",

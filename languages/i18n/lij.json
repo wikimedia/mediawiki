@@ -186,7 +186,7 @@
 	"poolcounter-usage-error": "Erô d'utilìzzo: $1",
 	"aboutsite": "Informaçioìn in sce {{SITENAME}}",
 	"aboutpage": "Project:Informaçioìn",
-	"copyright": "O contegno o l'è disponibile in base a-a liçensa $1, se no diversamente speçificou.",
+	"copyright-footer": "O contegno o l'è disponibile in base a-a liçensa $1, se no diversamente speçificou.",
 	"copyrightpage": "{{ns:project}}:Dirìtti d'aotô",
 	"currentevents": "Atoalitæ",
 	"currentevents-url": "Project:Atoalitæ",

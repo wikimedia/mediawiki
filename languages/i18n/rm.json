@@ -158,7 +158,7 @@
 	"pool-errorunknown": "Errur nunenconuschenta",
 	"aboutsite": "Davart {{SITENAME}}",
 	"aboutpage": "Project:Davart",
-	"copyright": "Il cuntegn è disponibel sut la licenza $1 sche betg inditgà autramain.",
+	"copyright-footer": "Il cuntegn è disponibel sut la licenza $1 sche betg inditgà autramain.",
 	"copyrightpage": "{{ns:project}}:Resguardar dretgs d autur",
 	"currentevents": "Events actuals",
 	"currentevents-url": "Project:Events actuals",

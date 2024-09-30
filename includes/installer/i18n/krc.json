@@ -252,7 +252,6 @@
 	"config-install-schema": "Схеманы къурау",
 	"config-install-pg-schema-not-exist": "PostgreSQL схема джокъду.",
 	"config-install-pg-schema-failed": "Таблица джаратылалмады.\n\"$1\" хайырланыучуну \"$2\" схемагъа джазаллыгъына ишексиз болугъуз.",
-	"config-install-pg-commit": "Тюрлениуле этиледиле",
 	"config-install-pg-plpgsql": "PL/pgSQL тилни тинтиу",
 	"config-pg-no-plpgsql": "$1 билги базагъа PL/pgSQL тилни къурургъа керекди",
 	"config-pg-no-create-privs": "Къуруу ючюн белгиледигиз хыйсаб, джангы хыйсаб болдурур ючюн керекли эркинликлеге ие тюлдю.",

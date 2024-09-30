@@ -224,7 +224,6 @@
 	"config-install-schema": "O krouiñ ar chema",
 	"config-install-pg-schema-not-exist": "N'eus ket eus chema PostgreSQL.",
 	"config-install-pg-schema-failed": "C'hwitet eo krouidigezh an taolennoù.\nGwiriit hag-eñ e c'hall an implijer « $1 » skrivañ er brastres « $2 ».",
-	"config-install-pg-commit": "O wiriekaat ar c'hemmoù",
 	"config-install-pg-plpgsql": "O wiriañ ar yezh PL/pgSQL",
 	"config-pg-no-plpgsql": "Ret eo deoc'h staliañ ar yezh PL/pgSQL en diaz roadennoù $1",
 	"config-pg-no-create-privs": "N'eus ket gwirioù a-walc'h gant ar gont hoc'h eus merket evit ar staliadur evit gallout krouiñ ur gont.",

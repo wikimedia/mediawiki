@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bbeshir"
+		]
+	},
+	"cdx-chip-input-chip-added": "ሸሪሓት $1 ወሰከት",
+	"cdx-chip-input-chip-removed": "ሸሪሓት $1 ወርኬት",
+	"cdx-dialog-close-button-label": "ድባእ",
+	"cdx-message-dismiss-button-label": "ድባእ",
+	"cdx-search-input-search-button-label": "ሕዜ",
+	"cdx-table-select-all-label": "ኩለን ስፉፍ ሕረ",
+	"cdx-table-select-row-label": "ስፍ $1 ምን $2 ሕረ",
+	"cdx-typeahead-search-search-results-label": "ፍገሪት በሐስ",
+	"cdx-table-pager-button-first-page": "ኣወላይት ገጽ",
+	"cdx-table-pager-button-last-page": "ኣክራይት ገጽ",
+	"cdx-table-pager-button-next-page": "ገጽ ላትተለ",
+	"cdx-table-pager-button-prev-page": "← ቀዳሚት ገጽ",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 ሰፍ|$1 ስፉፍ }}",
+	"cdx-table-pager-items-per-page-default": "ነታእጅ እብ ገጽ",
+	"cdx-table-pagination-status-message-determinate-long": "ነታእጅ $1–$2 ምን $3 ለረኤ",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 ምን $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "ነታእጅ $1–$2 ምን $ቡዙሕ ለረኤ",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 ምን ብዙሕ",
+	"cdx-table-pagination-status-message-indeterminate-final": "ናይ ኣክር {{PLURAL:$1|$1 ነቲጀት |$1 ነታእጅ }} ለረኤ",
+	"cdx-table-pagination-status-message-pending": "ነታእጅ ልትጻዓን ህላ ..."
+}

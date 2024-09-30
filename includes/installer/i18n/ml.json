@@ -104,7 +104,6 @@
 	"config-install-step-failed": "പരാജയപ്പെട്ടു",
 	"config-install-extensions": "അനുബന്ധങ്ങൾ ഉൾപ്പെടുത്തുന്നു",
 	"config-install-database": "ഡേറ്റാബേസ് സജ്ജമാക്കുന്നു",
-	"config-install-pg-commit": "മാറ്റങ്ങൾ സ്വീകരിക്കുന്നു",
 	"config-install-user": "ഡേറ്റാബേസ് ഉപയോക്താവിനെ സൃഷ്ടിക്കുന്നു",
 	"config-install-sysop": "കാര്യനിർവാഹക അംഗത്വം സൃഷ്ടിക്കുന്നു",
 	"config-install-mainpage": "സ്വാഭാവിക ഉള്ളടക്കത്തോടുകൂടി പ്രധാനതാൾ സൃഷ്ടിക്കുന്നു",

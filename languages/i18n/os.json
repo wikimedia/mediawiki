@@ -159,7 +159,7 @@
 	"poolcounter-usage-error": "Кусыны рæдыд: $1",
 	"aboutsite": "{{grammar:genitive|{{SITENAME}}}} тыххæй",
 	"aboutpage": "Project:Афыст",
-	"copyright": "Мидис у гом {{grammar:allative|$1}} гæсгæ, кæд æндæр исты амынд нæу, уæд.",
+	"copyright-footer": "Мидис у гом {{grammar:allative|$1}} гæсгæ, кæд æндæр исты амынд нæу, уæд.",
 	"copyrightpage": "{{ns:project}}:Авторы бартæ",
 	"currentevents": "Ног хабæрттæ",
 	"currentevents-url": "Project:Ног хабæрттæ",

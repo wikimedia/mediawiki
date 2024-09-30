@@ -181,7 +181,7 @@
 	"poolcounter-usage-error": "Eroro di uzado:$1",
 	"aboutsite": "Pri {{SITENAME}}",
 	"aboutpage": "Project:Pri {{SITENAME}}",
-	"copyright": "La kontenajo esas disponebla sub $1, ecepte kande kontree mencionata.",
+	"copyright-footer": "La kontenajo esas disponebla sub $1, ecepte kande kontree mencionata.",
 	"copyrightpage": "{{ns:project}}:Autor-yuri",
 	"currentevents": "Aktualaji",
 	"currentevents-url": "Project:Aktualaji",

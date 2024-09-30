@@ -246,7 +246,7 @@
 	"poolcounter-usage-error": "Brugsfejl: $1",
 	"aboutsite": "Om {{SITENAME}}",
 	"aboutpage": "Project:Om",
-	"copyright": "Indholdet er udgivet under $1 medmindre andet er angivet.",
+	"copyright-footer": "Indholdet er udgivet under $1 medmindre andet er angivet.",
 	"copyrightpage": "{{ns:project}}:Ophavsret",
 	"currentevents": "Aktuelle begivenheder",
 	"currentevents-url": "Project:Aktuelle begivenheder",

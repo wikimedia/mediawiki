@@ -198,7 +198,7 @@
 	"poolcounter-usage-error": "Bruksfeil: $1",
 	"aboutsite": "Om {{SITENAME}}",
 	"aboutpage": "Project:Om",
-	"copyright": "Innhaldet er utgjeve under $1 minder anna er oppgjeve.",
+	"copyright-footer": "Innhaldet er utgjeve under $1 minder anna er oppgjeve.",
 	"copyrightpage": "{{ns:project}}:Opphavsrett",
 	"currentevents": "Aktuelt",
 	"currentevents-url": "Project:Aktuelt",
