@@ -25,6 +25,8 @@
  */
 class LanguageYue extends Language {
 
+	private const WORD_SEGMENTATION_REGEX = '/([\xc0-\xff][\x80-\xbf]*)/';
+
 	public function hasWordBreaks() {
 		return false;
 	}
@@ -38,7 +40,6 @@ class LanguageYue extends Language {
 	 * @return string
 	 */
 	public function segmentByWord( $string ) {
-		$reg = "/([\\xc0-\\xff][\\x80-\\xbf]*)/";
-		return self::insertSpace( $string, $reg );
+		return self::insertSpace( $string, self::WORD_SEGMENTATION_REGEX );
 	}
 }

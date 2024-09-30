@@ -25,6 +25,9 @@
  * @ingroup Languages
  */
 class LanguageZh_hans extends Language {
+
+	private const WORD_SEGMENTATION_REGEX = '/([\xc0-\xff][\x80-\xbf]*)/';
+
 	public function hasWordBreaks() {
 		return false;
 	}
@@ -35,8 +38,7 @@ class LanguageZh_hans extends Language {
 	 * @inheritDoc
 	 */
 	public function segmentByWord( $string ) {
-		$reg = "/([\\xc0-\\xff][\\x80-\\xbf]*)/";
-		return self::insertSpace( $string, $reg );
+		return self::insertSpace( $string, self::WORD_SEGMENTATION_REGEX );
 	}
 
 	public function normalizeForSearch( $s ) {
