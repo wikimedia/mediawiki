@@ -1,13 +1,15 @@
 <template>
 	<cdx-field :is-fieldset="true">
 		<cdx-lookup
-			v-model:selected="wrappedModel"
-			v-model:input-value="wrappedModel"
+			v-model:selected="selection"
+			v-model:input-value="currentSearchTerm"
 			name="wpTarget"
 			:menu-items="menuItems"
-			:start-icon="cdxIconSearch"
 			:placeholder="$i18n( 'block-user-placeholder' ).text()"
+			:start-icon="cdxIconSearch"
 			@input="onInput"
+			@change="onChange"
+			@update:selected="currentSearchTerm = selection"
 		>
 		</cdx-lookup>
 		<template #label>
@@ -23,22 +25,25 @@
 const { defineComponent, toRef, ref } = require( 'vue' );
 const { CdxLookup, CdxField, useModelWrapper } = require( '@wikimedia/codex' );
 const { cdxIconSearch } = require( '../icons.json' );
+const api = new mw.Api();
 
-// @vue/component
 module.exports = exports = defineComponent( {
 	name: 'UserLookup',
 	components: { CdxLookup, CdxField },
 	props: {
-		// eslint-disable-next-line vue/no-unused-properties
-		modelValue: { type: [ Number, String, null ], required: true }
+		modelValue: { type: [ String, null ], required: true }
 	},
 	emits: [
 		'update:modelValue'
 	],
 	setup( props, { emit } ) {
+		// Set a flag to keep track of pending API requests, so we can abort if
+		// the target string changes
+		let pending = false;
+
 		const menuItems = ref( [] );
 		const currentSearchTerm = ref( props.modelValue || '' );
-		const wrappedModel = useModelWrapper(
+		const selection = useModelWrapper(
 			toRef( props, 'modelValue' ),
 			emit
 		);
@@ -47,13 +52,9 @@ module.exports = exports = defineComponent( {
 		 * Get search results.
 		 *
 		 * @param {string} searchTerm
-		 * @param {number} offset Optional result offset
-		 *
 		 * @return {Promise}
 		 */
 		function fetchResults( searchTerm ) {
-			const api = new mw.Api();
-
 			const params = {
 				action: 'query',
 				format: 'json',
@@ -73,6 +74,12 @@ module.exports = exports = defineComponent( {
 		 * @param {string} value
 		 */
 		function onInput( value ) {
+			// Abort any existing request if one is still pending
+			if ( pending ) {
+				pending = false;
+				api.abort();
+			}
+
 			// Internally track the current search term.
 			currentSearchTerm.value = value;
 
@@ -84,6 +91,8 @@ module.exports = exports = defineComponent( {
 
 			fetchResults( value )
 				.then( ( data ) => {
+					pending = false;
+
 					// Make sure this data is still relevant first.
 					if ( currentSearchTerm.value !== value ) {
 						return;
@@ -107,11 +116,22 @@ module.exports = exports = defineComponent( {
 				} );
 		}
 
+		/**
+		 * Handle lookup change.
+		 *
+		 * @param {Event} event
+		 */
+		function onChange( event ) {
+			emit( 'update:modelValue', event.target.value );
+		}
+
 		return {
 			menuItems,
+			onChange,
 			onInput,
 			cdxIconSearch,
-			wrappedModel
+			currentSearchTerm,
+			selection
 		};
 	}
 } );
