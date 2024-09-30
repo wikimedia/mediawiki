@@ -336,6 +336,7 @@ class Names {
 		'lrc' => 'لۊری شومالی', # Northern Luri
 		'lt' => 'lietuvių', # Lithuanian
 		'ltg' => 'latgaļu', # Latgalian
+		'lua' => 'ciluba', # Luba-Lulua
 		'lus' => 'Mizo ţawng', # Mizo/Lushai
 		'luz' => 'لئری دوٙمینی', # Southern Luri
 		'lv' => 'latviešu', # Latvian
