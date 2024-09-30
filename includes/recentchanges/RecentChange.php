@@ -251,7 +251,7 @@ class RecentChange implements Taggable {
 	 * Find the first recent change matching some specific conditions
 	 *
 	 * @param array $conds Array of conditions
-	 * @param mixed $fname Override the method name in profiling/logs
+	 * @param mixed $fname Override the method name in profiling/logs @phan-mandatory-param
 	 * @param int $dbType DB_* constant
 	 *
 	 * @return RecentChange|null

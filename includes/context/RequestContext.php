@@ -626,7 +626,7 @@ class RequestContext implements IContextSource, MutableContext {
 	 * Get the RequestContext object associated with the main request
 	 * and gives a warning to the log, to find places, where a context maybe is missing.
 	 *
-	 * @param string $func
+	 * @param string $func @phan-mandatory-param
 	 * @return RequestContext
 	 * @since 1.24
 	 */

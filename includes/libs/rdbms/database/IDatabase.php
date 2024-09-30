@@ -211,7 +211,7 @@ interface IDatabase extends IReadableDatabase {
 	 *
 	 * @param string|Query $sql Single-statement SQL query
 	 * @param-taint $sql exec_sql
-	 * @param string $fname Caller name; used for profiling/SHOW PROCESSLIST comments
+	 * @param string $fname Caller name; used for profiling/SHOW PROCESSLIST comments @phan-mandatory-param
 	 * @param int $flags Bit field of ISQLPlatform::QUERY_* constants
 	 * @return bool|IResultWrapper True for a successful write query, IResultWrapper object
 	 *     for a successful read query, or false on failure if QUERY_SILENCE_ERRORS is set
@@ -276,7 +276,7 @@ interface IDatabase extends IReadableDatabase {
 	 * @param string|string[] $table The unqualified name of table(s) (use an array for a join)
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 *   Condition in the format of IDatabase::select() conditions
-	 * @param string $fname Function name for profiling
+	 * @param string $fname Function name for profiling @phan-mandatory-param
 	 * @param array $options Options for select ("FOR UPDATE" is added automatically)
 	 * @param array $join_conds Join conditions
 	 * @return int Number of matching rows found (and locked)
@@ -303,7 +303,7 @@ interface IDatabase extends IReadableDatabase {
 	 *   - An integer-keyed list of such string-keyed maps, defining a list of new rows.
 	 *     The keys in each map must be identical to each other and in the same order.
 	 *     The rows must not collide with each other.
-	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
+	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling @phan-mandatory-param
 	 * @param string|array $options Combination map/list where each string-keyed entry maps
 	 *   a non-boolean option to the option parameters and each integer-keyed value is the
 	 *   name of a boolean option. Supported options are:
@@ -339,7 +339,7 @@ interface IDatabase extends IReadableDatabase {
 	 *   accidentally, an empty condition for 'update' queries isn't allowed.
 	 *   IDatabase::ALL_ROWS should be passed explicitly in order to update all rows.
 	 * @param-taint $conds exec_sql_numkey
-	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
+	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling @phan-mandatory-param
 	 * @param-taint $fname exec_sql
 	 * @param string|array $options Combination map/list where each string-keyed entry maps
 	 *   a non-boolean option to the option parameters and each integer-keyed value is the
@@ -387,7 +387,7 @@ interface IDatabase extends IReadableDatabase {
 	 *   - An integer-keyed list of such string-keyed maps, defining a list of new rows.
 	 *     The keys in each map must be identical to each other and in the same order.
 	 *     The rows must not collide with each other.
-	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
+	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling @phan-mandatory-param
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ );
@@ -428,7 +428,7 @@ interface IDatabase extends IReadableDatabase {
 	 *   even if they are just "secondary" unique keys. For multi-row upserts, use
 	 *   buildExcludedValue() to reference the value of a column from the corresponding row
 	 *   in $rows that conflicts with the current row.
-	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
+	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling @phan-mandatory-param
 	 * @throws DBError If an error occurs, {@see query}
 	 * @since 1.22
 	 */
@@ -454,7 +454,7 @@ interface IDatabase extends IReadableDatabase {
 	 * @param string|IExpression|array<string,?scalar|non-empty-array<int,?scalar>|RawSQLValue>|array<int,string|IExpression> $conds
 	 *   Condition array of field names mapped to variables,
 	 *   ANDed together in the WHERE clause
-	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
+	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling @phan-mandatory-param
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function deleteJoin(
@@ -482,7 +482,7 @@ interface IDatabase extends IReadableDatabase {
 	 *   accidentally, an empty condition for 'delete' queries isn't allowed.
 	 *   IDatabase::ALL_ROWS should be passed explicitly in order to delete all rows.
 	 * @param-taint $conds exec_sql_numkey
-	 * @param string $fname Name of the calling function
+	 * @param string $fname Name of the calling function @phan-mandatory-param
 	 * @param-taint $fname exec_sql
 	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 * @return-taint none
@@ -511,7 +511,7 @@ interface IDatabase extends IReadableDatabase {
 	 *    Condition array. See $conds in IDatabase::select() for
 	 *    the details of the format of condition arrays. May be "*" to copy the
 	 *    whole table.
-	 * @param string $fname The function name of the caller, from __METHOD__
+	 * @param string $fname The function name of the caller, from __METHOD__ @phan-mandatory-param
 	 * @param array $insertOptions Options for the INSERT part of the query, see
 	 *    IDatabase::insert() for details. Also, one additional option is
 	 *    available: pass 'NO_AUTO_COLUMNS' to hint that the query does not use
@@ -561,7 +561,7 @@ interface IDatabase extends IReadableDatabase {
 	 * @note Use onAtomicSectionCancel() to take action as soon as an atomic section is cancelled
 	 *
 	 * @param callable $callback
-	 * @param string $fname Caller name
+	 * @param string $fname Caller name @phan-mandatory-param
 	 * @throws DBError If an error occurs, {@see query}
 	 * @throws Exception If the callback runs immediately and an error occurs in it
 	 * @since 1.28
@@ -597,7 +597,7 @@ interface IDatabase extends IReadableDatabase {
 	 * Callbacks will execute in the order they were enqueued.
 	 *
 	 * @param callable $callback
-	 * @param string $fname Caller name
+	 * @param string $fname Caller name @phan-mandatory-param
 	 * @throws DBError If an error occurs, {@see query}
 	 * @throws Exception If the callback runs immediately and an error occurs in it
 	 * @since 1.32
@@ -628,7 +628,7 @@ interface IDatabase extends IReadableDatabase {
 	 * Callbacks will execute in the order they were enqueued.
 	 *
 	 * @param callable $callback
-	 * @param string $fname Caller name
+	 * @param string $fname Caller name @phan-mandatory-param
 	 * @throws DBError If an error occurs, {@see query}
 	 * @throws Exception If the callback runs immediately and an error occurs in it
 	 * @since 1.22
@@ -655,7 +655,7 @@ interface IDatabase extends IReadableDatabase {
 	 *   - This IDatabase instance
 	 *
 	 * @param callable $callback
-	 * @param string $fname Caller name
+	 * @param string $fname Caller name @phan-mandatory-param
 	 * @since 1.34
 	 */
 	public function onAtomicSectionCancel( callable $callback, $fname = __METHOD__ );
@@ -728,7 +728,7 @@ interface IDatabase extends IReadableDatabase {
 	 * @endcode
 	 *
 	 * @since 1.23
-	 * @param string $fname
+	 * @param string $fname @phan-mandatory-param
 	 * @param string $cancelable Pass self::ATOMIC_CANCELABLE to use a
 	 *  savepoint and enable self::cancelAtomic() for this section.
 	 * @return AtomicSectionIdentifier section ID token
@@ -744,7 +744,7 @@ interface IDatabase extends IReadableDatabase {
 	 *
 	 * @since 1.23
 	 * @see IDatabase::startAtomic
-	 * @param string $fname
+	 * @param string $fname @phan-mandatory-param
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function endAtomic( $fname = __METHOD__ );
@@ -769,7 +769,7 @@ interface IDatabase extends IReadableDatabase {
 	 *   when startAtomic() was called with the ATOMIC_CANCELABLE flag.
 	 * @since 1.31
 	 * @see IDatabase::startAtomic
-	 * @param string $fname
+	 * @param string $fname @phan-mandatory-param
 	 * @param AtomicSectionIdentifier|null $sectionId Section ID from startAtomic();
 	 *   passing this enables cancellation of unclosed nested sections [optional]
 	 * @throws DBError If an error occurs, {@see query}
@@ -837,7 +837,7 @@ interface IDatabase extends IReadableDatabase {
 	 * @see Database::endAtomic
 	 * @see Database::cancelAtomic
 	 *
-	 * @param string $fname Caller name (usually __METHOD__)
+	 * @param string $fname Caller name (usually __METHOD__) @phan-mandatory-param
 	 * @param callable $callback Callback that issues write queries
 	 * @param string $cancelable Pass self::ATOMIC_CANCELABLE to use a
 	 *  savepoint and enable self::cancelAtomic() for this section.
@@ -867,7 +867,7 @@ interface IDatabase extends IReadableDatabase {
 	 * will cause a warning, unless the current transaction was started
 	 * automatically because of the DBO_TRX flag.
 	 *
-	 * @param string $fname Calling function name
+	 * @param string $fname Calling function name @phan-mandatory-param
 	 * @param string $mode A situationally valid IDatabase::TRANSACTION_* constant [optional]
 	 * @throws DBError If an error occurs, {@see query}
 	 */
@@ -882,7 +882,7 @@ interface IDatabase extends IReadableDatabase {
 	 * See https://www.mediawiki.org/wiki/Database_transactions for details.
 	 * Nesting of transactions is not supported.
 	 *
-	 * @param string $fname
+	 * @param string $fname @phan-mandatory-param
 	 * @param string $flush Flush flag, set to situationally valid IDatabase::FLUSHING_*
 	 *   constant to disable warnings about explicitly committing implicit transactions,
 	 *   or calling commit when no transaction is in progress.
@@ -904,7 +904,7 @@ interface IDatabase extends IReadableDatabase {
 	 *
 	 * Query, connection, and onTransaction* callback errors will be suppressed and logged.
 	 *
-	 * @param string $fname Calling function name
+	 * @param string $fname Calling function name @phan-mandatory-param
 	 * @param string $flush Flush flag, set to a situationally valid IDatabase::FLUSHING_*
 	 *   constant to disable warnings about explicitly rolling back implicit transactions.
 	 *   This will silently break any ongoing explicit transaction. Only set the flush flag
@@ -923,7 +923,7 @@ interface IDatabase extends IReadableDatabase {
 	 * useful to call on a replica server after waiting on replication to catch up to the
 	 * primary server.
 	 *
-	 * @param string $fname Calling function name
+	 * @param string $fname Calling function name @phan-mandatory-param
 	 * @param string $flush Flush flag, set to situationally valid IDatabase::FLUSHING_*
 	 *   constant to disable warnings about explicitly committing implicit transactions,
 	 *   or calling commit when no transaction is in progress.

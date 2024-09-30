@@ -249,7 +249,7 @@ interface ILBFactory extends IConnectionProvider {
 	 *
 	 * This is useful for getting rid of stale data from an implicit transaction round
 	 *
-	 * @param string $fname Caller name
+	 * @param string $fname Caller name @phan-mandatory-param
 	 */
 	public function flushReplicaSnapshots( $fname = __METHOD__ );
 
@@ -264,7 +264,7 @@ interface ILBFactory extends IConnectionProvider {
 	 *
 	 * This allows for custom transaction rounds from any outer transaction scope.
 	 *
-	 * @param string $fname
+	 * @param string $fname @phan-mandatory-param
 	 * @throws DBTransactionError
 	 * @since 1.37
 	 */
@@ -275,7 +275,7 @@ interface ILBFactory extends IConnectionProvider {
 	 *
 	 * This only applies to the instantiated tracked load balancer instances.
 	 *
-	 * @param string $fname Caller name
+	 * @param string $fname Caller name @phan-mandatory-param
 	 * @param int $maxWriteDuration abort if more than this much time was spent in write queries
 	 * @throws DBTransactionError
 	 * @since 1.37
@@ -287,7 +287,7 @@ interface ILBFactory extends IConnectionProvider {
 	 *
 	 * This only applies to the instantiated tracked load balancer instances.
 	 *
-	 * @param string $fname Caller name
+	 * @param string $fname Caller name @phan-mandatory-param
 	 * @since 1.37
 	 */
 	public function rollbackPrimaryChanges( $fname = __METHOD__ );
@@ -300,7 +300,7 @@ interface ILBFactory extends IConnectionProvider {
 	 * This should only be called by application entry point functions, since there must be
 	 * no chance that a future caller will still be expecting some of the lost session state.
 	 *
-	 * @param string $fname Caller name
+	 * @param string $fname Caller name @phan-mandatory-param
 	 * @since 1.38
 	 */
 	public function flushPrimarySessions( $fname = __METHOD__ );
@@ -403,7 +403,7 @@ interface ILBFactory extends IConnectionProvider {
 	/**
 	 * Close all connections on instantiated tracked load balancer instances
 	 *
-	 * @param string $fname Caller name (e.g. __METHOD__)
+	 * @param string $fname Caller name (e.g. __METHOD__) @phan-mandatory-param
 	 */
 	public function closeAll( $fname = __METHOD__ );
 

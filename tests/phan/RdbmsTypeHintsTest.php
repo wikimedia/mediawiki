@@ -47,6 +47,9 @@ class RdbmsTypeHintsTest {
 		$conds[] = $db->expr( 'a', '=', array_unique( [ 1, 1, 2, 2 ] ) );
 	}
 
+	/**
+	 * @suppress PhanParamTooFewInPHPDoc
+	 */
 	function testSelectConds( \Wikimedia\Rdbms\IDatabase $db ) {
 		// Missing key for array value
 		// @phan-suppress-next-line PhanTypeMismatchArgument

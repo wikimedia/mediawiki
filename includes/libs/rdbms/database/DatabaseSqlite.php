@@ -376,7 +376,7 @@ class DatabaseSqlite extends Database {
 	 *   SELECT foo FROM dbname.table
 	 * @param bool|string $file Database file name. If omitted, will be generated
 	 *   using $name and configured data directory
-	 * @param string $fname Calling function name
+	 * @param string $fname Calling function name @phan-mandatory-param
 	 * @return IResultWrapper
 	 */
 	public function attachDatabase( $name, $file = false, $fname = __METHOD__ ) {

@@ -65,7 +65,7 @@ interface IMaintainableDatabase extends IDatabase {
 	 * @param resource $fp File handle
 	 * @param callable|null $lineCallback Optional function called before reading each query
 	 * @param callable|null $resultCallback Optional function called for each MySQL result
-	 * @param string $fname Calling function name
+	 * @param string $fname Calling function name @phan-mandatory-param
 	 * @param callable|null $inputCallback Optional function called for each complete query sent
 	 * @return bool|string
 	 */
@@ -90,7 +90,7 @@ interface IMaintainableDatabase extends IDatabase {
 	 * Delete a table
 	 *
 	 * @param string $table The unqualified name of a table
-	 * @param string $fname
+	 * @param string $fname @phan-mandatory-param
 	 * @return bool Whether the table already existed
 	 * @throws DBError If an error occurs
 	 */
@@ -100,7 +100,7 @@ interface IMaintainableDatabase extends IDatabase {
 	 * Delete all data in a table and reset any sequences owned by that table
 	 *
 	 * @param string $table The unqualified name of a table
-	 * @param string $fname
+	 * @param string $fname @phan-mandatory-param
 	 * @throws DBError If an error occurs
 	 * @since 1.42
 	 */
@@ -117,7 +117,7 @@ interface IMaintainableDatabase extends IDatabase {
 	 * @param string $oldName Name of table whose structure should be copied
 	 * @param string $newName Name of table to be created
 	 * @param bool $temporary Whether the new table should be temporary
-	 * @param string $fname Calling function name
+	 * @param string $fname Calling function name @phan-mandatory-param
 	 * @return bool True if operation was successful
 	 * @throws RuntimeException
 	 */
@@ -131,7 +131,7 @@ interface IMaintainableDatabase extends IDatabase {
 	 * Since MW 1.42, this will no longer include MySQL views.
 	 *
 	 * @param string|null $prefix Only show tables with this prefix, e.g. mw_
-	 * @param string $fname Calling function name
+	 * @param string $fname Calling function name @phan-mandatory-param
 	 * @throws DBError
 	 * @return array
 	 */
@@ -153,7 +153,7 @@ interface IMaintainableDatabase extends IDatabase {
 	 *
 	 * @param string $table The unqualified name of a table
 	 * @param string $field Field to check on that table
-	 * @param string $fname Calling function name (optional)
+	 * @param string $fname Calling function name @phan-mandatory-param
 	 * @return bool Whether $table has field $field
 	 * @throws DBError If an error occurs, {@see query}
 	 */
@@ -164,7 +164,7 @@ interface IMaintainableDatabase extends IDatabase {
 	 *
 	 * @param string $table The unqualified name of a table
 	 * @param string $index
-	 * @param string $fname
+	 * @param string $fname @phan-mandatory-param
 	 * @return bool
 	 * @throws DBError If an error occurs, {@see query}
 	 */
@@ -175,7 +175,7 @@ interface IMaintainableDatabase extends IDatabase {
 	 *
 	 * @param string $table The unqualified name of a table
 	 * @param string $index
-	 * @param string $fname Calling function name
+	 * @param string $fname Calling function name @phan-mandatory-param
 	 * @return bool|null Returns null if the index does not exist
 	 * @throws DBError If an error occurs, {@see query}
 	 */
@@ -185,7 +185,7 @@ interface IMaintainableDatabase extends IDatabase {
 	 * Query whether a given table exists
 	 *
 	 * @param string $table The unqualified name of a table
-	 * @param string $fname
+	 * @param string $fname @phan-mandatory-param
 	 * @return bool
 	 * @throws DBError If an error occurs, {@see query}
 	 */

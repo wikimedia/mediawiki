@@ -538,7 +538,7 @@ class WikiModule extends Module {
 	/**
 	 * @param IReadableDatabase $db
 	 * @param string[] $pages
-	 * @param string $fname
+	 * @param string $fname @phan-mandatory-param
 	 * @return array
 	 */
 	protected static function fetchTitleInfo( IReadableDatabase $db, array $pages, $fname = __METHOD__ ) {
