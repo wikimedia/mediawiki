@@ -71,6 +71,7 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $this->cache2->get( $key ), 'Not written to tier 2' );
 
 		$dbw->commit();
+		$this->runDeferredUpdates();
 
 		// Set in tier 2
 		$this->assertEquals( $value, $this->cache2->get( $key ), 'Written to tier 2' );
@@ -100,6 +101,7 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $value, $cache2->get( $key ), 'Written to tier 2' );
 
 		$dbw->commit();
+		$this->runDeferredUpdates();
 	}
 
 	public function testSetDelayed() {
@@ -121,6 +123,7 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $this->cache2->get( $key ), 'Not written to tier 2' );
 
 		$dbw->commit();
+		$this->runDeferredUpdates();
 
 		// Set in tier 2
 		$this->assertEquals( $expectValue, $this->cache2->get( $key ), 'Written to tier 2' );

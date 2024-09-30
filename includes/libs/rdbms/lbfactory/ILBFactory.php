@@ -398,6 +398,7 @@ interface ILBFactory extends IConnectionProvider {
 	 *
 	 * @param string $name Callback name
 	 * @param callable|null $callback Use null to unset a callback
+	 * @deprecated Since 1.44
 	 */
 	public function setWaitForReplicationListener( $name, ?callable $callback = null );
 

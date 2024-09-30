@@ -1208,6 +1208,8 @@ abstract class Maintenance {
 	/**
 	 * Commit the transaction on a DB handle and wait for replica DB servers to catch up
 	 *
+	 * This method also triggers {@link DeferredUpdates::tryOpportunisticExecute()}.
+	 *
 	 * Maintenance scripts should call this method instead of {@link IDatabase::commit()}.
 	 * Use of this method makes it clear that the caller is a maintenance script, which has
 	 * the outermost transaction scope needed to explicitly commit transactions.
@@ -1222,6 +1224,7 @@ abstract class Maintenance {
 	 */
 	protected function commitTransaction( IDatabase $dbw, $fname ) {
 		$dbw->commit( $fname );
+
 		return $this->waitForReplication();
 	}
 
@@ -1270,6 +1273,15 @@ abstract class Maintenance {
 		// If no config callback was configured, this has no effect.
 		$lbFactory->autoReconfigure();
 
+		// Periodically run any deferred updates that accumulate
+		DeferredUpdates::tryOpportunisticExecute();
+		// Flush stats periodically in long-running CLI scripts to avoid OOM (T181385)
+		MediaWikiEntryPoint::emitBufferedStats(
+			$this->getServiceContainer()->getStatsFactory(),
+			$this->getServiceContainer()->getStatsdDataFactory(),
+			$this->getConfig()
+		);
+
 		return $waitSucceeded;
 	}
 
@@ -1299,6 +1311,8 @@ abstract class Maintenance {
 	 * Commit a transactional batch of DB operations and wait for replica DB servers to catch up
 	 *
 	 * Use this method for scripts that split up their work into logical transactions.
+	 *
+	 * This method also triggers {@link DeferredUpdates::tryOpportunisticExecute()}.
 	 *
 	 * @see ILBfactory::commitPrimaryChanges()
 	 *

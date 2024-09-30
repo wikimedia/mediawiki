@@ -155,6 +155,8 @@ class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$this->getDb()->endAtomic( __METHOD__ ); // run deferred updates
+		$this->runDeferredUpdates();
+
 		$this->assertSame(
 			0,
 			DeferredUpdates::pendingUpdatesCount(),

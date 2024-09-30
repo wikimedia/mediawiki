@@ -215,6 +215,8 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertGreaterThan( $updateCountBefore, $updateCountAfter, 'An update should have been queued' );
 
 		$this->getDb()->endAtomic( __METHOD__ ); // run deferred updates
+		$this->runDeferredUpdates();
+
 		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount(), 'No pending updates' );
 
 		// Notification should have been deleted from the DB

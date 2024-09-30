@@ -82,6 +82,10 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 			->saveRevision( $summary );
 
 		$this->assertNotNull( $newRevision, 'Create page ' . $title->getPrefixedDBkey() );
+
+		// Run the updates if no outer transaction is active
+		DeferredUpdates::tryOpportunisticExecute();
+
 		return $newRevision;
 	}
 
@@ -127,6 +131,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 			'Updates are reflected in-process immediately' );
 		$this->makePage( 'Go', 'de', 'Race!' );
 		$dbw->endAtomic( __METHOD__ );
+		$this->runDeferredUpdates();
 
 		$this->assertSame( 0,
 			DeferredUpdates::pendingUpdatesCount(),
