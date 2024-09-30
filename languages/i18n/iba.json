@@ -233,6 +233,7 @@
 	"databaseerror-error": "Penyalah: $1",
 	"transaction-duration-limit-exceeded": "Dikena nyeliahka diri ari ngaga lag replikasyen ti tinggi, transaksyen tu dibuai laban timpuh nulis ($1) ngelui ari $2 sekat saat.\nEnti nuan nukar mayuh utai sekali, uji ngereja mayuh operasyen ti mit agi nganti nya.",
 	"transaction-max-statement-time-exceeded": "Dikena nyeliahka diri ari ngaga beban pangkalan data ti tinggi, tanya tu dibuai laban timpuh ngelui ari sekat.\nEnti nuan macha mayuh item sekali, uji ngereja mayuh operasyen ti mit agi nganti nya.",
+	"laggedreplicamode": "<strong>Jaku tangkan:</strong> Laman engka nadai ngundan pemadah ti baru.",
 	"readonly": "Pengakalan data dikunchi",
 	"enterlockreason": "Padah siti kebuah pengunchi, nyengkaum anggar kemaya kunchi tu deka dibuka baru",
 	"internalerror": "Penyalah ba dalam",

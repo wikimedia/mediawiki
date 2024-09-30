@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
-			"Tofeiku"
+			"Tofeiku",
+			"Hakimi97"
 		]
 	},
 	"tog-underline": "ڤاءوتکن ݢاريس باوه:",
@@ -208,6 +209,7 @@
 	"databaseerror": "رالت ڤڠکلن داتا",
 	"databaseerror-function": "فوڠسي: $1",
 	"databaseerror-error": "رالت: $1",
+	"readonly": "ڤڠکلن داتا دکونچي",
 	"missingarticle-rev": "(سيمقن#: $1)",
 	"internalerror": "رالت دالمن",
 	"internalerror_info": "رالت دالمن: $1",
@@ -277,6 +279,7 @@
 	"botpasswords-label-resetpassword": "سيت سمولا کات لالوان",
 	"resetpass-submit-loggedin": "توکر کات لالوان",
 	"resetpass-submit-cancel": "بطل",
+	"resetpass-temp-password": "کات لالوان سمنتارا:",
 	"passwordreset": "سيت سمولا کات لالوان",
 	"passwordreset-username": "نام ڤڠݢونا:",
 	"passwordreset-domain": "دوماءين:",
