@@ -11,8 +11,17 @@ THIS IS NOT A RELEASE YET
 
 === Changes since 1.39.8 ===
 * Localisation updates.
-* When using the 'runMaintenance' method in a LoadExtensionSchemaUpdates hook
-  handler, only the script's class name is required, not its path. (T367918)
+* (T303007) skins: Fix Skin::buildSidebar to not share cache between skins.
+* (T367918) When using the 'runMaintenance' method in a
+  LoadExtensionSchemaUpdates hook handler, only the script's class name is
+  required, not its path.
+* Clarify that $wgAllowCrossOrigin only applies to REST.
+* (T370380) installer: Support MW_SKIP_EXTERNAL_DEPENDENCIES in update.php.
+* composer.json: Add 5 more ext- to suggests.
+* resources: Fix 404 Not Found for foreign Financial-Times/polyfill-library.
+* ResourceLoader: Fix regression of color mapping in Less.php.
+* ResourceLoader: Upgrade wikimedia/less.php to 4.4.1.
+* SpecialExport: Prevent passing null to strtolower.
 
 == MediaWiki 1.39.8 ==
 
