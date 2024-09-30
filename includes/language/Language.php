@@ -2982,6 +2982,11 @@ class Language implements Bcp47Code {
 	 * because it makes the output HTML source code more readable. When
 	 * the output is plain text or can be escaped, getDirMark() should be used.
 	 *
+	 * Use of hidden control characters when the output allows use of HTML markup
+	 * is discouraged and the recommendation is to use bdi HTML tag which doesn't
+	 * have the issue of hidden characters ending up in user clipboard in text
+	 * copy paste, see T375975.
+	 *
 	 * @param bool $opposite Get the direction mark opposite to your language
 	 * @return string
 	 * @since 1.20
@@ -2999,6 +3004,11 @@ class Language implements Bcp47Code {
 	 * the output may be hard to read and debug, so it should only be used
 	 * when the output is plain text or can be escaped. When the output is
 	 * HTML, use getDirMarkEntity() instead.
+	 *
+	 * Use of hidden control characters when the output allows use of HTML markup
+	 * is discouraged and the recommendation is to use bdi HTML tag which doesn't
+	 * have the issue of hidden characters ending up in user clipboard in text
+	 * copy paste, see T375975.
 	 *
 	 * @param bool $opposite Get the direction mark opposite to your language
 	 * @return string
