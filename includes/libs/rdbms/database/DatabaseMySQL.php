@@ -230,7 +230,7 @@ class DatabaseMySQL extends Database {
 		return $error;
 	}
 
-	protected function isInsertSelectSafe( array $insertOptions, array $selectOptions, $fname = __METHOD__ ) {
+	protected function isInsertSelectSafe( array $insertOptions, array $selectOptions, $fname ) {
 		$row = $this->replicationReporter->getReplicationSafetyInfo( $this, $fname );
 		// For row-based-replication, the resulting changes will be relayed, not the query
 		if ( $row->binlog_format === 'ROW' ) {

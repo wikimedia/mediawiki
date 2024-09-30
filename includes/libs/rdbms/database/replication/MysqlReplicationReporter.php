@@ -192,7 +192,7 @@ class MysqlReplicationReporter extends ReplicationReporter {
 	 * @param string $fname
 	 * @return stdClass Process cached row
 	 */
-	public function getReplicationSafetyInfo( IDatabase $conn, $fname = __METHOD__ ) {
+	public function getReplicationSafetyInfo( IDatabase $conn, $fname ) {
 		if ( $this->replicationInfoRow === null ) {
 			$this->replicationInfoRow = $conn->selectRow(
 				[],
@@ -470,7 +470,7 @@ class MysqlReplicationReporter extends ReplicationReporter {
 	 * @param string $fname
 	 * @return string[]
 	 */
-	protected function getServerGTIDs( IDatabase $conn, $fname = __METHOD__ ) {
+	protected function getServerGTIDs( IDatabase $conn, $fname ) {
 		$map = [];
 
 		$flags = ISQLPlatform::QUERY_IGNORE_DBO_TRX | ISQLPlatform::QUERY_CHANGE_NONE;
@@ -509,7 +509,7 @@ class MysqlReplicationReporter extends ReplicationReporter {
 	 * @param string $fname
 	 * @return array<string,mixed>|null Latest available server status row; false on failure
 	 */
-	protected function getServerRoleStatus( IDatabase $conn, $role, $fname = __METHOD__ ) {
+	protected function getServerRoleStatus( IDatabase $conn, $role, $fname ) {
 		$query = new Query(
 			"SHOW $role STATUS",
 			ISQLPlatform::QUERY_SILENCE_ERRORS | ISQLPlatform::QUERY_IGNORE_DBO_TRX | ISQLPlatform::QUERY_CHANGE_NONE,
