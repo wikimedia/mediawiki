@@ -1682,7 +1682,6 @@ abstract class Installer {
 		$coreInstallSteps = [
 			[ 'name' => 'database', 'callback' => [ $installer, 'setupDatabase' ] ],
 			[ 'name' => 'tables', 'callback' => [ $installer, 'createTables' ] ],
-			[ 'name' => 'tables-manual', 'callback' => [ $installer, 'createManualTables' ] ],
 			[ 'name' => 'interwiki', 'callback' => [ $installer, 'populateInterwikiTable' ] ],
 			[ 'name' => 'stats', 'callback' => [ $this, 'populateSiteStats' ] ],
 			[ 'name' => 'keys', 'callback' => [ $this, 'generateKeys' ] ],
