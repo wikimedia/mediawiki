@@ -22,6 +22,7 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Html\Html;
 use MediaWiki\SpecialPage\QueryPage;
 use MediaWiki\Title\Title;
 use Skin;
@@ -183,22 +184,26 @@ class SpecialDoubleRedirects extends QueryPage {
 			$edit = '';
 		}
 
-		$linkA = $linkRenderer->makeKnownLink(
+		$lang = $this->getLanguage();
+		$arrow = $lang->getArrow();
+		$dir = $lang->getDir();
+
+		$linkA = Html::rawElement( 'bdi', [ 'dir' => $dir ], $linkRenderer->makeKnownLink(
 			$titleA,
 			null,
 			[],
 			[ 'redirect' => 'no' ]
-		);
+		) );
 
 		$titleB = Title::makeTitle( $deep->b_namespace, $deep->b_title );
 		// We show fragment, but don't link to it, as it probably doesn't exist anymore.
 		$titleBFrag = Title::makeTitle( $deep->b_namespace, $deep->b_title, $deep->b_fragment );
-		$linkB = $linkRenderer->makeKnownLink(
+		$linkB = Html::rawElement( 'bdi', [ 'dir' => $dir ], $linkRenderer->makeKnownLink(
 			$titleB,
 			$titleBFrag->getFullText(),
 			[],
 			[ 'redirect' => 'no' ]
-		);
+		) );
 
 		$titleC = Title::makeTitle(
 			$deep->c_namespace,
@@ -206,12 +211,11 @@ class SpecialDoubleRedirects extends QueryPage {
 			$deep->c_fragment,
 			$deep->c_interwiki
 		);
-		$linkC = $linkRenderer->makeKnownLink( $titleC, $titleC->getFullText() );
+		$linkC = Html::rawElement( 'bdi', [ 'dir' => $dir ],
+			$linkRenderer->makeKnownLink( $titleC, $titleC->getFullText() )
+		);
 
-		$lang = $this->getLanguage();
-		$arr = $lang->getArrow() . $lang->getDirMark();
-
-		return ( "{$linkA} {$edit} {$arr} {$linkB} {$arr} {$linkC}" );
+		return ( "{$linkA} {$edit} {$arrow} {$linkB} {$arrow} {$linkC}" );
 	}
 
 	public function execute( $par ) {
