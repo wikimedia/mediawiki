@@ -178,6 +178,7 @@ const PendingDelay = 500;
 const MenuFooterValue = "cdx-menu-footer-item";
 const TabsKey = Symbol("CdxTabs");
 const ActiveTabKey = Symbol("CdxActiveTab");
+const AllowArbitraryKey = Symbol("CdxAllowArbitrary");
 const FieldInputIdKey = Symbol("CdxFieldInputId");
 const FieldDescriptionIdKey = Symbol("CdxFieldDescriptionId");
 const FieldStatusKey = Symbol("CdxFieldStatus");
@@ -1349,7 +1350,7 @@ const _sfc_main$q = defineComponent({
       default: false
     },
     /**
-     * `status` attribute of the checkbox.
+     * Validation status of the Checkbox.
      */
     status: {
       type: String,
@@ -1665,7 +1666,7 @@ const _sfc_main$o = defineComponent({
      * Optionally provided by `v-model:input-value` binding in the parent component.
      */
     inputValue: {
-      type: String,
+      type: [String, Number],
       default: null
     },
     /**
@@ -1718,9 +1719,12 @@ const _sfc_main$o = defineComponent({
   ],
   setup(props, { emit, attrs }) {
     const rootElement = ref();
+    const chipsContainer = ref();
+    const separateInputWrapper = ref();
     const statusMessageContent = ref("");
     const computedDirection = useComputedDirection(rootElement);
     const input = ref();
+    const allowArbitrary = inject(AllowArbitraryKey, ref(true));
     const internalInputValue = ref("");
     const computedInputValue = useOptionalModelWrapper(
       internalInputValue,
@@ -1780,7 +1784,7 @@ const _sfc_main$o = defineComponent({
         !props.chipValidator(computedInputValue.value)
       ) {
         validatedStatus.value = "error";
-      } else if (computedInputValue.value.length > 0) {
+      } else if (computedInputValue.value.toString().length > 0) {
         statusMessageContent.value = chipAddedMessage.value;
         emit("update:input-chips", props.inputChips.concat({ value: computedInputValue.value }));
         computedInputValue.value = "";
@@ -1842,7 +1846,7 @@ const _sfc_main$o = defineComponent({
       const prevArrow = computedDirection.value === "rtl" ? "ArrowRight" : "ArrowLeft";
       switch (e.key) {
         case "Enter":
-          if (computedInputValue.value.length > 0) {
+          if (computedInputValue.value.toString().length > 0 && allowArbitrary.value) {
             addChip();
             e.preventDefault();
             e.stopPropagation();
@@ -1873,7 +1877,7 @@ const _sfc_main$o = defineComponent({
     }
     function onFocusOut(e) {
       var _a;
-      if (!((_a = rootElement.value) == null ? void 0 : _a.contains(e.relatedTarget))) {
+      if (!((_a = rootElement.value) == null ? void 0 : _a.contains(e.relatedTarget)) && allowArbitrary.value) {
         addChip();
       }
     }
@@ -1888,6 +1892,8 @@ const _sfc_main$o = defineComponent({
     });
     return {
       rootElement,
+      chipsContainer,
+      separateInputWrapper,
       input,
       computedInputValue,
       rootClasses,
@@ -1908,6 +1914,7 @@ const _sfc_main$o = defineComponent({
   }
 });
 const _hoisted_1$n = {
+  ref: "chipsContainer",
   class: "cdx-chip-input__chips",
   role: "listbox",
   "aria-orientation": "horizontal"
@@ -1915,6 +1922,7 @@ const _hoisted_1$n = {
 const _hoisted_2$f = ["disabled"];
 const _hoisted_3$a = {
   key: 0,
+  ref: "separateInputWrapper",
   class: "cdx-chip-input__separate-input"
 };
 const _hoisted_4$6 = ["disabled"];
@@ -1935,65 +1943,80 @@ function _sfc_render$o(_ctx, _cache, $props, $setup, $data, $options) {
       onFocusout: _cache[9] || (_cache[9] = (...args) => _ctx.onFocusOut && _ctx.onFocusOut(...args))
     },
     [
-      createElementVNode("div", _hoisted_1$n, [
-        (openBlock(true), createElementBlock(
-          Fragment,
-          null,
-          renderList(_ctx.inputChips, (chip, index) => {
-            return openBlock(), createBlock(_component_cdx_input_chip, {
-              key: chip.value,
-              ref_for: true,
-              ref: (ref2) => _ctx.assignChipTemplateRef(ref2, index),
-              class: "cdx-chip-input__item",
-              icon: chip.icon,
-              disabled: _ctx.computedDisabled,
-              onClickChip: ($event) => _ctx.handleChipClick(chip),
-              onRemoveChip: (method) => _ctx.handleChipRemove(chip, index, method),
-              onArrowLeft: ($event) => _ctx.moveChipFocus("left", index),
-              onArrowRight: ($event) => _ctx.moveChipFocus("right", index)
-            }, {
-              default: withCtx(() => [
-                createTextVNode(
-                  toDisplayString(chip.value),
-                  1
-                  /* TEXT */
-                )
-              ]),
-              _: 2
-              /* DYNAMIC */
-            }, 1032, ["icon", "disabled", "onClickChip", "onRemoveChip", "onArrowLeft", "onArrowRight"]);
-          }),
-          128
-          /* KEYED_FRAGMENT */
-        )),
-        !_ctx.separateInput ? withDirectives((openBlock(), createElementBlock("input", mergeProps({
-          key: 0,
-          ref: "input",
-          "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.computedInputValue = $event),
-          class: "cdx-chip-input__input",
-          disabled: _ctx.computedDisabled
-        }, _ctx.otherAttrs, {
-          onBlur: _cache[1] || (_cache[1] = (...args) => _ctx.onInputBlur && _ctx.onInputBlur(...args)),
-          onFocus: _cache[2] || (_cache[2] = (...args) => _ctx.onInputFocus && _ctx.onInputFocus(...args)),
-          onKeydown: _cache[3] || (_cache[3] = (...args) => _ctx.onInputKeydown && _ctx.onInputKeydown(...args))
-        }), null, 16, _hoisted_2$f)), [
-          [vModelDynamic, _ctx.computedInputValue]
-        ]) : createCommentVNode("v-if", true)
-      ]),
-      _ctx.separateInput ? (openBlock(), createElementBlock("div", _hoisted_3$a, [
-        withDirectives(createElementVNode("input", mergeProps({
-          ref: "input",
-          "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => _ctx.computedInputValue = $event),
-          class: "cdx-chip-input__input",
-          disabled: _ctx.computedDisabled
-        }, _ctx.otherAttrs, {
-          onBlur: _cache[5] || (_cache[5] = (...args) => _ctx.onInputBlur && _ctx.onInputBlur(...args)),
-          onFocus: _cache[6] || (_cache[6] = (...args) => _ctx.onInputFocus && _ctx.onInputFocus(...args)),
-          onKeydown: _cache[7] || (_cache[7] = (...args) => _ctx.onInputKeydown && _ctx.onInputKeydown(...args))
-        }), null, 16, _hoisted_4$6), [
-          [vModelDynamic, _ctx.computedInputValue]
-        ])
-      ])) : createCommentVNode("v-if", true),
+      createElementVNode(
+        "div",
+        _hoisted_1$n,
+        [
+          (openBlock(true), createElementBlock(
+            Fragment,
+            null,
+            renderList(_ctx.inputChips, (chip, index) => {
+              return openBlock(), createBlock(_component_cdx_input_chip, {
+                key: chip.value,
+                ref_for: true,
+                ref: (ref2) => _ctx.assignChipTemplateRef(ref2, index),
+                class: "cdx-chip-input__item",
+                icon: chip.icon,
+                disabled: _ctx.computedDisabled,
+                onClickChip: ($event) => _ctx.handleChipClick(chip),
+                onRemoveChip: (method) => _ctx.handleChipRemove(chip, index, method),
+                onArrowLeft: ($event) => _ctx.moveChipFocus("left", index),
+                onArrowRight: ($event) => _ctx.moveChipFocus("right", index)
+              }, {
+                default: withCtx(() => {
+                  var _a;
+                  return [
+                    createTextVNode(
+                      toDisplayString((_a = chip.label) != null ? _a : chip.value),
+                      1
+                      /* TEXT */
+                    )
+                  ];
+                }),
+                _: 2
+                /* DYNAMIC */
+              }, 1032, ["icon", "disabled", "onClickChip", "onRemoveChip", "onArrowLeft", "onArrowRight"]);
+            }),
+            128
+            /* KEYED_FRAGMENT */
+          )),
+          !_ctx.separateInput ? withDirectives((openBlock(), createElementBlock("input", mergeProps({
+            key: 0,
+            ref: "input",
+            "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.computedInputValue = $event),
+            class: "cdx-chip-input__input",
+            disabled: _ctx.computedDisabled
+          }, _ctx.otherAttrs, {
+            onBlur: _cache[1] || (_cache[1] = (...args) => _ctx.onInputBlur && _ctx.onInputBlur(...args)),
+            onFocus: _cache[2] || (_cache[2] = (...args) => _ctx.onInputFocus && _ctx.onInputFocus(...args)),
+            onKeydown: _cache[3] || (_cache[3] = (...args) => _ctx.onInputKeydown && _ctx.onInputKeydown(...args))
+          }), null, 16, _hoisted_2$f)), [
+            [vModelDynamic, _ctx.computedInputValue]
+          ]) : createCommentVNode("v-if", true)
+        ],
+        512
+        /* NEED_PATCH */
+      ),
+      _ctx.separateInput ? (openBlock(), createElementBlock(
+        "div",
+        _hoisted_3$a,
+        [
+          withDirectives(createElementVNode("input", mergeProps({
+            ref: "input",
+            "onUpdate:modelValue": _cache[4] || (_cache[4] = ($event) => _ctx.computedInputValue = $event),
+            class: "cdx-chip-input__input",
+            disabled: _ctx.computedDisabled
+          }, _ctx.otherAttrs, {
+            onBlur: _cache[5] || (_cache[5] = (...args) => _ctx.onInputBlur && _ctx.onInputBlur(...args)),
+            onFocus: _cache[6] || (_cache[6] = (...args) => _ctx.onInputFocus && _ctx.onInputFocus(...args)),
+            onKeydown: _cache[7] || (_cache[7] = (...args) => _ctx.onInputKeydown && _ctx.onInputKeydown(...args))
+          }), null, 16, _hoisted_4$6), [
+            [vModelDynamic, _ctx.computedInputValue]
+          ])
+        ],
+        512
+        /* NEED_PATCH */
+      )) : createCommentVNode("v-if", true),
       createElementVNode(
         "div",
         _hoisted_5$6,
@@ -2997,8 +3020,10 @@ const _sfc_main$k = defineComponent({
         }
       }
     }
+    const menuListbox = ref();
     function maybeScrollIntoView() {
-      if (!props.visibleItemLimit || props.visibleItemLimit > props.menuItems.length || highlightedMenuItemIndex.value === void 0) {
+      const isListboxScrollable = menuListbox.value && menuListbox.value.scrollHeight > menuListbox.value.clientHeight;
+      if (highlightedMenuItemIndex.value === void 0 || !isListboxScrollable) {
         return;
       }
       const scrollIndex = highlightedMenuItemIndex.value >= 0 ? highlightedMenuItemIndex.value : 0;
@@ -3091,7 +3116,8 @@ const _sfc_main$k = defineComponent({
       handleKeyNavigation,
       ariaRelevant,
       isMultiselect,
-      isItemSelected
+      isItemSelected,
+      menuListbox
     };
   },
   // Public methods
@@ -3178,6 +3204,7 @@ function _sfc_render$k(_ctx, _cache, $props, $setup, $data, $options) {
     },
     [
       createElementVNode("ul", mergeProps({
+        ref: "menuListbox",
         class: "cdx-menu__listbox",
         role: "listbox",
         style: _ctx.listBoxStyle,
@@ -6947,7 +6974,7 @@ const _sfc_main$a = defineComponent({
       default: false
     },
     /**
-     * `status` attribute of the checkbox.
+     * Validation status of the Radio.
      */
     status: {
       type: String,
