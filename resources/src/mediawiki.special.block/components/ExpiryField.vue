@@ -1,5 +1,9 @@
 <template>
-	<cdx-field class="mw-block-expiry-field" is-fieldset>
+	<cdx-field
+		class="mw-block-expiry-field"
+		:is-fieldset="true"
+		:disabled="disabled"
+	>
 		<template #label>
 			{{ $i18n( 'block-expiry' ).text() }}
 		</template>
@@ -75,6 +79,13 @@ module.exports = exports = defineComponent( {
 		modelValue: {
 			type: Object,
 			required: true
+		},
+		/**
+		 * Whether the field is disabled
+		 */
+		disabled: {
+			type: Boolean,
+			default: false
 		}
 	},
 	emits: [

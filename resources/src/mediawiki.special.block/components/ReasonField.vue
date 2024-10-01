@@ -1,5 +1,8 @@
 <template>
-	<cdx-field :is-fieldset="true">
+	<cdx-field
+		:is-fieldset="true"
+		:disabled="disabled"
+	>
 		<template #label>
 			{{ $i18n( 'block-reason' ).text() }}
 		</template>
@@ -30,7 +33,11 @@ module.exports = exports = defineComponent( {
 		// eslint-disable-next-line vue/no-unused-properties
 		selected: { type: [ String, Number, null ], default: 'other' },
 		// eslint-disable-next-line vue/no-unused-properties
-		other: { type: String, default: '' }
+		other: { type: String, default: '' },
+		/**
+		 * Whether the field is disabled
+		 */
+		disabled: { type: Boolean, default: false }
 	},
 	emits: [
 		'update:selected',

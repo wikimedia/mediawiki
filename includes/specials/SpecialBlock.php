@@ -270,6 +270,10 @@ class SpecialBlock extends FormSpecialPage {
 					}, $this->preErrors ),
 				]
 			) );
+
+			if ( $this->useCodex ) {
+				$this->codexFormData[ 'blockPreErrors' ] = array_map( 'strval', $this->preErrors );
+			}
 		}
 	}
 
