@@ -62,7 +62,7 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 
 	protected function handleTopLevelError( Throwable $e ) {
 		$context = $this->getContext();
-		$action = $context->getRequest()->getRawVal( 'action', 'view' );
+		$action = $context->getRequest()->getRawVal( 'action' ) ?? 'view';
 		if (
 			$e instanceof DBConnectionError &&
 			$context->hasTitle() &&
@@ -543,7 +543,7 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 		$request = $this->getRequest();
 		$output = $this->getOutput();
 
-		if ( $request->getRawVal( 'action', 'view' ) != 'view'
+		if ( ( $request->getRawVal( 'action' ) ?? 'view' ) !== 'view'
 			|| $request->wasPosted()
 			|| ( $request->getCheck( 'title' )
 				&& $title->getPrefixedDBkey() == $request->getText( 'title' ) )
@@ -633,7 +633,7 @@ class ActionEntryPoint extends MediaWikiEntryPoint {
 
 		// Namespace might change when using redirects
 		// Check for redirects ...
-		$action = $request->getRawVal( 'action', 'view' );
+		$action = $request->getRawVal( 'action' ) ?? 'view';
 		$file = ( $page instanceof WikiFilePage ) ? $page->getFile() : null;
 		if ( ( $action == 'view' || $action == 'render' ) // ... for actions that show content
 			&& !$request->getCheck( 'oldid' ) // ... and are not old revisions
