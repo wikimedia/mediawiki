@@ -24,15 +24,12 @@
 
 namespace MediaWiki\Installer;
 
-use Exception;
 use MediaWiki\Status\Status;
-use MWLBFactory;
 use RuntimeException;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\LBFactorySingle;
 
 /**
  * Base class for DBMS-specific installation helper classes.
@@ -303,8 +300,6 @@ abstract class DatabaseInstaller {
 
 		if ( $tableThatMustNotExist && $conn->tableExists( $tableThatMustNotExist, __METHOD__ ) ) {
 			$status->warning( "config-$stepName-tables-exist" );
-			$this->enableLB();
-
 			return $status;
 		}
 
@@ -320,10 +315,6 @@ abstract class DatabaseInstaller {
 			$status->fatal( "config-$stepName-tables-failed", $error );
 		} else {
 			$conn->commit( __METHOD__ );
-		}
-		// Resume normal operations
-		if ( $status->isOK() ) {
-			$this->enableLB();
 		}
 
 		return $status;
@@ -408,7 +399,6 @@ abstract class DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
-		$this->enableLB();
 
 		// Now run updates to create tables for old extensions
 		$updater = DatabaseUpdater::newForDB( $status->getDB() );
@@ -435,51 +425,9 @@ abstract class DatabaseInstaller {
 	}
 
 	/**
-	 * Set up LBFactory so that getPrimaryDatabase() etc. works.
-	 * We set up a special LBFactory instance which returns the current
-	 * installer connection.
+	 * @deprecated since 1.43
 	 */
 	public function enableLB() {
-		$connection = $this->definitelyGetConnection( self::CONN_CREATE_TABLES );
-		$virtualDomains = array_merge(
-			$this->parent->getVirtualDomains(),
-			MWLBFactory::CORE_VIRTUAL_DOMAINS
-		);
-
-		$this->parent->resetMediaWikiServices( null, [
-			'DBLoadBalancerFactory' => static function () use ( $virtualDomains, $connection ) {
-				return LBFactorySingle::newFromConnection(
-					$connection,
-					[ 'virtualDomains' => $virtualDomains ]
-				);
-			}
-		] );
-	}
-
-	/**
-	 * Perform database upgrades
-	 *
-	 * @return bool
-	 */
-	public function doUpgrade() {
-		$this->enableLB();
-
-		$ret = true;
-		ob_start( [ $this, 'outputHandler' ] );
-		$up = DatabaseUpdater::newForDB(
-			$this->definitelyGetConnection( self::CONN_CREATE_TABLES ) );
-		try {
-			$up->doUpdates();
-			$up->purgeCache();
-		} catch ( Exception $e ) {
-			// TODO: Should this use MWExceptionRenderer?
-			echo "\nAn error occurred:\n";
-			echo $e->getMessage();
-			$ret = false;
-		}
-		ob_end_flush();
-
-		return $ret;
 	}
 
 	/**
@@ -507,7 +455,7 @@ abstract class DatabaseInstaller {
 	/**
 	 * Construct and initialise parent.
 	 * This is typically only called from Installer::getDBInstaller()
-	 * @param WebInstaller $parent
+	 * @param Installer $parent
 	 */
 	public function __construct( $parent ) {
 		$this->parent = $parent;
@@ -654,10 +602,6 @@ abstract class DatabaseInstaller {
 		$insert->caller( __METHOD__ )->execute();
 
 		return Status::newGood();
-	}
-
-	public function outputHandler( $string ) {
-		return htmlspecialchars( $string );
 	}
 
 	/**

@@ -419,8 +419,6 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		if ( $conn->tableExists( 'archive', __METHOD__ ) ) {
 			$status->warning( 'config-install-tables-exist' );
-			$this->enableLB();
-
 			return $status;
 		}
 
@@ -428,7 +426,6 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		if ( !$conn->schemaExists( $schema ) ) {
 			$status->fatal( 'config-install-pg-schema-not-exist' );
-
 			return $status;
 		}
 
@@ -447,11 +444,6 @@ class PostgresInstaller extends DatabaseInstaller {
 				$conn->commit( __METHOD__ );
 			}
 		}
-		// Resume normal operations
-		if ( $status->isOK() ) {
-			$this->enableLB();
-		}
-
 		return $status;
 	}
 

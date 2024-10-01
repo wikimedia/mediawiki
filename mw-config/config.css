@@ -167,7 +167,12 @@ main {
 }
 
 #config-live-log {
+	display: flex;
 	margin: 10px;
+}
+
+#config-live-log textarea {
+	width: 100%;
 }
 
 .cdx-card {

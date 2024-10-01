@@ -59,11 +59,13 @@ use MediaWiki\User\Options\StaticUserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\Utils\UrlUtils;
 use MWCryptRand;
+use MWLBFactory;
 use ParserOptions;
 use RuntimeException;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
+use Wikimedia\Rdbms\LBFactorySingle;
 use Wikimedia\Services\ServiceDisabledException;
 
 /**
@@ -1790,7 +1792,20 @@ abstract class Installer {
 			UrlUtils::SERVER => $GLOBALS['wgServer'],
 		];
 
+		$connection = $this->getDBInstaller()
+			->definitelyGetConnection( DatabaseInstaller::CONN_CREATE_TABLES );
+		$virtualDomains = array_merge(
+			$this->getVirtualDomains(),
+			MWLBFactory::CORE_VIRTUAL_DOMAINS
+		);
+
 		$this->resetMediaWikiServices( null, [
+			'DBLoadBalancerFactory' => static function () use ( $virtualDomains, $connection ) {
+				return LBFactorySingle::newFromConnection(
+					$connection,
+					[ 'virtualDomains' => $virtualDomains ]
+				);
+			},
 			'UrlUtils' => static function ( MediaWikiServices $services ) use ( $urlOptions ) {
 				return new UrlUtils( $urlOptions );
 			},
