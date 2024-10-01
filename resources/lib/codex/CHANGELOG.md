@@ -1,3 +1,22 @@
+# 1.13.1 / 2024-10-01
+
+## Features
+- LookupMultiselect: Add WIP component (Anne Tomasevich)
+
+## Styles
+- tokens: Fix `outline-color-progressive--focus` value (Volker E.)
+
+## Icons
+- icons: Add new external link icon (lwatson)
+
+## Code
+- Menu: key nav scrolls menu items into view (lwatson)
+
+## Docs
+- docs: Remove 'color update' banner from Colors page (Volker E.)
+- Radio, Checkbox: Update status prop documentation (Anne Tomasevich)
+- docs: minor updates to releasing.md (lwatson)
+
 # 1.13.0 / 2024-09-17
 
 ## Features
