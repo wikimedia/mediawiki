@@ -2964,6 +2964,7 @@
 	"block-user-no-reason-given-aria-details": "aria-details message, used to clarify to screen readers that no reason was given for a log entry",
 	"block-user-description": "Description for the input for specifying the user of a block on [[Special:Block]]",
 	"block-user-placeholder": "Placeholder text for the input specifying the user of a block on [[Special:Block]]",
+	"block-item-remove": "Menu item label for removing a block on [[Special:Block]]",
 	"block-target": "Label for the input for specifying the target of a block on [[Special:Block]]",
 	"block-target-placeholder": "Placeholder text for the input specifying the target of a block on [[Special:Block]]",
 	"block-pages-placeholder": "Placeholder text for the input specifying the pages the user is blocked from editing on [[Special:Block]]",

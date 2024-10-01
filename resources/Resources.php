@@ -2278,7 +2278,10 @@ return [
 				'name' => 'resources/src/mediawiki.special.block/icons.json',
 				'callback' => 'MediaWiki\\ResourceLoader\\CodexModule::getIcons',
 				'callbackParam' => [
-					'cdxIconSearch'
+					'cdxIconSearch',
+					'cdxIconEllipsis',
+					'cdxIconEdit',
+					'cdxIconTrash',
 				],
 			],
 		],
@@ -2363,6 +2366,8 @@ return [
 			'blockipsuccesssub',
 			'block-success',
 			'ipb_expiry_invalid',
+			'edit',
+			'block-item-remove',
 			'infiniteblock',
 			'log-action-filter-block-block',
 			'log-action-filter-block-reblock',
