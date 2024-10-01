@@ -61,6 +61,13 @@ interface InterwikiLookup {
 	 * - iw_trans: whether "scary transclusion" is allowed for this site.
 	 *             Defaults to false.
 	 *
+	 * The order of the rows matters! The *first* row matching a
+	 * given URL is used by VisualEditor/Parsoid when converting external URLs to
+	 * interwiki links. If, for example, both `labsconsole:` and
+	 * `wikitech:` resolve to the same URL, but you want VisualEditor to prefer
+	 * `wikitech` when adding new links, then the row for `wikitech` should
+	 * come before the row for `labsconsole`.
+	 *
 	 * @param bool|null $local If set, limit output to local or non-local interwikis
 	 * @return array[] interwiki rows.
 	 */
