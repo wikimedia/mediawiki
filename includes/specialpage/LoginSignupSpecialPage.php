@@ -85,7 +85,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 
 	/** @var bool */
 	protected $mPosted;
-	/** @var string */
+	/** @var string|null */
 	protected $mAction;
 	/** @var string */
 	protected $mToken;

@@ -95,7 +95,7 @@ class SpecialUndelete extends SpecialPage {
 	 */
 	private const REVISION_HISTORY_LIMIT = 500;
 
-	/** @var string */
+	/** @var string|null */
 	private $mAction;
 	/** @var string */
 	private $mTarget;
