@@ -51,6 +51,7 @@ describe( 'SpecialBlock', () => {
 			user: 'ExampleUser',
 			expiry: '2030-01-23T12:34:56',
 			reason: 'This is a test',
+			reblock: 0,
 			autoblock: 1,
 			errorlang: 'en',
 			errorsuselocal: true,
