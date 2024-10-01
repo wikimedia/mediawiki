@@ -734,6 +734,8 @@ because of Phabricator reports.
   warnings.  Use ::addCategoryLinks() instead.
 * OutputPage::setLanguageLinks() has been deprecated; use ::addLanguageLinks()
   instead.
+* (T375975) Language::getDirMarkEntity() has been hard deprecated; use
+  <bdi> HTML tag instead.
 * LoadBalancer::getConnectionRef(), deprecated since 1.39, now emits deprecation
   warnings. Use ::getConnection() instead.
 * DBAccessObjectUtils::getDBOptions() is deprecated, use
