@@ -31,7 +31,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Converter;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
-use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use UnexpectedValueException;
 use Wikimedia\Bcp47Code\Bcp47Code;
@@ -1058,17 +1057,20 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	public function addLanguageLink( $t ): void {
 		# Note that fragments are preserved
 		if ( $t instanceof ParsoidLinkTarget ) {
-			// language links are unusual in using 'text' rather than 'db key'
-			// T296019: This should be made more efficient so we don't need
-			// a full title lookup.
-			$t = Title::newfromLinkTarget( $t )->getFullText();
+			// Language links are unusual in using 'text' rather than 'db key'
+			// Note that fragments are preserved.
+			$lang = $t->getInterwiki();
+			$title = $t->getText();
+			if ( $t->hasFragment() ) {
+				$title .= '#' . $t->getFragment();
+			}
+		} else {
+			[ $lang, $title ] = array_pad( explode( ':', $t, 2 ), -2, '' );
 		}
-		if ( !str_contains( $t, ':' ) ) {
+		if ( $lang === '' ) {
 			// T374736: For backward compatibility with test cases only!
 			wfDeprecated( __METHOD__ . ' without prefix', '1.43' );
-			[ $lang, $title ] = [ $t, '|' ]; // | can not occur in valid title
-		} else {
-			[ $lang, $title ] = explode( ':', $t, 2 );
+			[ $lang, $title ] = [ $title, '|' ]; // | can not occur in valid title
 		}
 		$this->mLanguageLinkMap[$lang] ??= $title;
 	}
