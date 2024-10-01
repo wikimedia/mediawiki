@@ -25,7 +25,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		wgDefaultDateFormat: 'dmy',
 		wgSeparatorTransformTable: [ '', '' ],
 		wgDigitTransformTable: [ '', '' ],
-		wgPageContentLanguage: 'en'
+		wgPageViewLanguage: 'en'
 	}
 } ), () => {
 	/**
@@ -453,7 +453,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 				[ '09.11.2011' ]
 			] );
 			mw.config.set( 'wgDefaultDateFormat', 'dmy' );
-			mw.config.set( 'wgPageContentLanguage', 'de' );
+			mw.config.set( 'wgPageViewLanguage', 'de' );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
 
@@ -601,7 +601,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		'Accented Characters Swedish locale',
 		( assert ) => {
 			var $table = tableCreate( [ 'Name' ], umlautWords );
-			mw.config.set( 'wgPageContentLanguage', 'sv' );
+			mw.config.set( 'wgPageViewLanguage', 'sv' );
 
 			$table.tablesorter();
 			// eslint-disable-next-line no-jquery/no-sizzle
@@ -1651,7 +1651,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		QUnit.test( 'MDY Dates using dmy content language', function ( assert ) {
 			mw.config.set( {
 				wgDefaultDateFormat: 'dmy',
-				wgPageContentLanguage: 'de'
+				wgPageViewLanguage: 'de'
 			} );
 			this.parser( assert, 'date', [
 				[ 'January 17, 2010', true, 20100117, 'Long middle endian date' ],
@@ -1692,7 +1692,7 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		QUnit.test( 'DMY Dates', function ( assert ) {
 			mw.config.set( {
 				wgDefaultDateFormat: 'dmy',
-				wgPageContentLanguage: 'it'
+				wgPageViewLanguage: 'it'
 			} );
 			this.parser( assert, 'date', [
 				[ '1º January 2010', true, 20100101, 'T305375 - dates with the ordinal indicator º' ]
