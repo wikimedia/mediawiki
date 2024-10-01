@@ -31,8 +31,6 @@ use RuntimeException;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
-use Wikimedia\Rdbms\DBConnectionError;
-use Wikimedia\Rdbms\DBExpectedError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LBFactorySingle;
 
@@ -154,6 +152,8 @@ abstract class DatabaseInstaller {
 	 * object. On success, the status object will contain a Database object in
 	 * its value member.
 	 *
+	 * The database should not be implicitly created.
+	 *
 	 * @param string $type One of the self::CONN_* constants, except CONN_DONT_KNOW
 	 * @return ConnectionStatus
 	 */
@@ -250,6 +250,7 @@ abstract class DatabaseInstaller {
 		// Change type from database to schema, if requested
 		if ( $storedType === self::CONN_CREATE_DATABASE ) {
 			if ( $newType === self::CONN_CREATE_SCHEMA || $newType === self::CONN_CREATE_TABLES ) {
+				// TODO: catch exceptions from selectDomain and report as a Status
 				$conn->selectDomain( new DatabaseDomain(
 					$this->getVar( 'wgDBname' ),
 					$this->getVar( 'wgDBmwschema' ),
@@ -597,21 +598,11 @@ abstract class DatabaseInstaller {
 	 * @return bool
 	 */
 	public function needsUpgrade() {
-		$status = $this->getConnection( self::CONN_CREATE_DATABASE );
+		$status = $this->getConnection( self::CONN_CREATE_SCHEMA );
 		if ( !$status->isOK() ) {
 			return false;
 		}
 		$db = $status->getDB();
-
-		try {
-			$this->selectDatabase( $db, $this->getVar( 'wgDBname' ) );
-		} catch ( DBConnectionError $e ) {
-			// Don't catch DBConnectionError
-			throw $e;
-		} catch ( DBExpectedError $e ) {
-			return false;
-		}
-
 		return $db->tableExists( 'cur', __METHOD__ ) ||
 			$db->tableExists( 'revision', __METHOD__ );
 	}

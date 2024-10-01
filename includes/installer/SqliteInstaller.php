@@ -169,6 +169,15 @@ class SqliteInstaller extends DatabaseInstaller {
 		$status = new ConnectionStatus;
 		$dir = $this->getVar( 'wgSQLiteDataDir' );
 		$dbName = $this->getVar( 'wgDBname' );
+
+		// Don't implicitly create the file
+		$file = DatabaseSqlite::generateFileName( $dir, $dbName );
+		if ( !file_exists( $file ) ) {
+			$status->fatal( 'config-sqlite-connection-error',
+				'file does not exist' );
+			return $status;
+		}
+
 		try {
 			$db = MediaWikiServices::getInstance()->getDatabaseFactory()->create(
 				'sqlite', [ 'dbname' => $dbName, 'dbDirectory' => $dir ]
@@ -179,21 +188,6 @@ class SqliteInstaller extends DatabaseInstaller {
 		}
 
 		return $status;
-	}
-
-	/**
-	 * @return bool
-	 */
-	public function needsUpgrade() {
-		$dir = $this->getVar( 'wgSQLiteDataDir' );
-		$dbName = $this->getVar( 'wgDBname' );
-		// Don't create the data file yet
-		if ( !file_exists( DatabaseSqlite::generateFileName( $dir, $dbName ) ) ) {
-			return false;
-		}
-
-		// If the data file exists, look inside it
-		return parent::needsUpgrade();
 	}
 
 	/**
