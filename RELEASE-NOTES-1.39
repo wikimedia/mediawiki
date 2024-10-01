@@ -5,14 +5,37 @@ PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
 PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 
-== Mediawiki 1.39.9 ==
+== MediaWiki 1.39.11 ==
 
 THIS IS NOT A RELEASE YET
 
+=== Changes since 1.39.10 ===
+* Localisation updates.
+
+== MediaWiki 1.39.10 ==
+
+This is a maintenance release of the MediaWiki 1.39 branch.
+
+=== Changes since 1.39.9 ===
+* Fix issue related to backport of AbuseFilter patch for T372998.
+
+== Mediawiki 1.39.9 ==
+
+This is a security and maintenance release of the MediaWiki 1.39 branch.
+
 === Changes since 1.39.8 ===
 * Localisation updates.
-* When using the 'runMaintenance' method in a LoadExtensionSchemaUpdates hook
-  handler, only the script's class name is required, not its path. (T367918)
+* (T303007) skins: Fix Skin::buildSidebar to not share cache between skins.
+* (T367918) When using the 'runMaintenance' method in a
+  LoadExtensionSchemaUpdates hook handler, only the script's class name is
+  required, not its path.
+* Clarify that $wgAllowCrossOrigin only applies to REST.
+* (T370380) installer: Support MW_SKIP_EXTERNAL_DEPENDENCIES in update.php.
+* composer.json: Add 5 more ext- to suggests.
+* resources: Fix 404 Not Found for foreign Financial-Times/polyfill-library.
+* ResourceLoader: Fix regression of color mapping in Less.php.
+* ResourceLoader: Upgrade wikimedia/less.php to 4.4.1.
+* SpecialExport: Prevent passing null to strtolower.
 
 == MediaWiki 1.39.8 ==
 

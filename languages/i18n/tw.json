@@ -19,7 +19,8 @@
 			"Naa2Darkoa",
 			"Nemo bis",
 			"Rberchie",
-			"Robertjamal12"
+			"Robertjamal12",
+			"Rsaawah"
 		]
 	},
 	"tog-underline": "Twa link nyina ase:",
@@ -296,6 +297,7 @@
 	"databaseerror-function": "Function: $1",
 	"databaseerror-error": "Ɛnyɛ $1",
 	"laggedreplicamode": "<strong>Ahwɛ yiye:</strong> Ɛbɛtumi aba sɛ kratafa yi nkura nea wo sea siesie.",
+	"internalerror": "Mfomsoɔ a emfiri wo",
 	"cannotdelete-title": "Yɛntumi mpepa kratafa \"$1\"",
 	"delete-scheduled": "Y'ahyehyɛ kratafa \"$1\" sɛ yɛ bɛ pepa.\nYɛsrɛ wo nya abotrɛ.",
 	"badtitle": "Atifi asɛm a ɛnyɛ",

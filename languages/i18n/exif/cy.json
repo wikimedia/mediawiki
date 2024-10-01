@@ -6,7 +6,8 @@
 			"Thaf",
 			"Xxglennxx",
 			"Afalau",
-			"JonesT143"
+			"JonesT143",
+			"Ceirios"
 		]
 	},
 	"exif-imagewidth": "Lled",
@@ -198,6 +199,8 @@
 	"exif-photometricinterpretation-5": "Ar wahân (CMYK efallai)",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (amgodio ICC)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (amgodio ITU)",
+	"exif-photometricinterpretation-32803": "Arae Hidlo Lliw",
+	"exif-photometricinterpretation-34892": "Amrwd llinol",
 	"exif-unknowndate": "Dyddiad anhysbys",
 	"exif-orientation-1": "Normal",
 	"exif-orientation-2": "Wedi troi tu chwith ar lorwedd",

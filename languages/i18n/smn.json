@@ -281,6 +281,7 @@
 	"nospecialpagetext": "<strong>Tuu koijâdem toimâsijđo ij kavnuu.</strong>\n\nLuvâttâllâm toimâsiijđoin kávnoo siijđost  [[Special:SpecialPages|{{int:specialpages}}]].",
 	"error": "Feilâ",
 	"databaseerror": "Tiätuvuáđufeilâ",
+	"databaseerror-query": "Koijâdâllâm: $1",
 	"databaseerror-function": "Funktio: $1",
 	"databaseerror-error": "Feilâ: $1",
 	"laggedreplicamode": "<strong>Huám!</strong> Siijđost iä lah veltihánnáá vorâs nubástusah.",

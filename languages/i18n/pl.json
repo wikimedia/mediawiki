@@ -4075,7 +4075,7 @@
 	"specialmute-error-invalid-user": "Pożądana nazwa użytkownika nie została odnaleziona.",
 	"specialmute-error-no-options": "Funkcje wyciszania są niedostępne. Jest tak dlatego, że nie {{GENDER:|potwierdziłeś|potwierdziłaś}} swojego adresu e-mail, administrator wiki wyłączył funkcję wysyłania maili lub listę wyciszonych adresów e-mail dla tej wiki.",
 	"specialmute-email-footer": "Aby zarządzać preferencjami ignorowania dla {{GENDER:$2|użytkownika|użytkowniczki}} {{BIDI:$2}} odwiedź <$1>.",
-	"specialmute-login-required": "Zaloguj się, aby zmienić swoje preferencje wyignorowania.",
+	"specialmute-login-required": "Zaloguj się, aby zmienić swoje preferencje ignorowania.",
 	"mute-preferences": "Ustawienia ignorowania",
 	"revid": "wersja $1",
 	"pageid": "ID strony: $1",
