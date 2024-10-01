@@ -27,10 +27,7 @@ use MediaWiki\Title\Title;
 /**
  * Describe and execute a background job.
  *
- * Push jobs onto queues via the JobQueueGroup service.
- *
- * Job objects must implement IJobSpecification to allow JobQueue to store the job,
- * and later re-constructing the object from storage in a JobRunner.
+ * Callers should use JobQueueGroup to enqueue jobs for deferred execution.
  *
  * See [the architecture doc](@ref jobqueuearch) for more information.
  *
