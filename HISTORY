@@ -6,6 +6,38 @@ PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
 PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
 
+== MediaWiki 1.42.3 ==
+
+This is a maintenance release of the MediaWiki 1.42 branch.
+
+=== Changes since MediaWiki 1.42.2 ===
+* Fix issue related to backport of AbuseFilter patch for T372998.
+
+== MediaWiki 1.42.2 ==
+
+This is a security and maintenance release of the MediaWiki 1.42 branch.
+
+=== Changes since MediaWiki 1.42.1 ===
+* Localisation updates.
+* Parser: Deprecate use of mOutput before initialization.
+* (T365565) PrefixSearch: Make sure $prefix is a string.
+* Clarify that $wgAllowCrossOrigin only applies to REST.
+* composer.json: Add 5 more ext- to suggests.
+* resources: Fix 404 Not Found for foreign Financial-Times/polyfill-library.
+* ResourceLoader: Upgrade wikimedia/less.php to 4.4.1.
+* SpecialExport: Prevent passing null to strtolower.
+
+Additionally, some language support improvements which went out in 1.42.0 were
+not noted; they are included here for completeness:
+
+* (T343865) Added language support for Pu–Xian Min (Simplified Han script)
+  (cpx-hans).
+* (T343865) Added language support for Pu–Xian Min (Traditional Han script)
+  (cpx-hant).
+* (T284043) Added language support for Manchu (mnc).
+* (T284043) Added language support for Manchu (Mongolian script) (mnc-mong).
+* Added language converter for Central Moroccan Tamazigh (zgh).
+
 == MediaWiki 1.42.1 ==
 
 This is a maintenance release of the MediaWiki 1.42 branch.
@@ -801,6 +833,27 @@ PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
 PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
 PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
+
+== MediaWiki 1.41.4 ==
+
+This is a maintenance release of the MediaWiki 1.41 branch.
+
+=== Changes since MediaWiki 1.41.3 ===
+* Fix issue related to backport of AbuseFilter patch for T372998.
+
+== MediaWiki 1.41.3 ==
+
+This is a security and maintenance release of the MediaWiki 1.41 branch.
+
+=== Changes since MediaWiki 1.41.2 ===
+* Localisation updates.
+* Parser: Deprecate use of mOutput before initialization.
+* Clarify that $wgAllowCrossOrigin only applies to REST.
+* composer.json: Add 5 more ext- to suggests.
+* resources: Fix 404 Not Found for foreign Financial-Times/polyfill-library.
+* ResourceLoader: Fix regression of color mapping in Less.php.
+* ResourceLoader: Upgrade wikimedia/less.php to 4.4.1.
+* SpecialExport: Prevent passing null to strtolower.
 
 == MediaWiki 1.41.2 ==
 
@@ -2895,6 +2948,31 @@ PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
 PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
 PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 PHP 8.3 workboard: https://phabricator.wikimedia.org/tag/php_8.3_support/
+
+== MediaWiki 1.39.10 ==
+
+This is a maintenance release of the MediaWiki 1.39 branch.
+
+=== Changes since 1.39.9 ===
+* Fix issue related to backport of AbuseFilter patch for T372998.
+
+== Mediawiki 1.39.9 ==
+
+This is a security and maintenance release of the MediaWiki 1.39 branch.
+
+=== Changes since 1.39.8 ===
+* Localisation updates.
+* (T303007) skins: Fix Skin::buildSidebar to not share cache between skins.
+* (T367918) When using the 'runMaintenance' method in a
+  LoadExtensionSchemaUpdates hook handler, only the script's class name is
+  required, not its path.
+* Clarify that $wgAllowCrossOrigin only applies to REST.
+* (T370380) installer: Support MW_SKIP_EXTERNAL_DEPENDENCIES in update.php.
+* composer.json: Add 5 more ext- to suggests.
+* resources: Fix 404 Not Found for foreign Financial-Times/polyfill-library.
+* ResourceLoader: Fix regression of color mapping in Less.php.
+* ResourceLoader: Upgrade wikimedia/less.php to 4.4.1.
+* SpecialExport: Prevent passing null to strtolower.
 
 == MediaWiki 1.39.8 ==
 
