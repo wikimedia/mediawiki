@@ -944,9 +944,8 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	}
 
 	/**
-	 * Check if the given query is appropriate to run in a public context
+	 * Check if callers outside of Database can run the given query given the session state
 	 *
-	 * The caller is assumed to come from outside Database.
 	 * In order to keep the DB handle's session state tracking in sync, certain queries
 	 * like "USE", "BEGIN", "COMMIT", and "ROLLBACK" must not be issued directly from
 	 * outside callers. Such commands should only be issued through dedicated methods
@@ -1073,9 +1072,11 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		}
 		if ( $priorSessInfo->trxExplicit && $verb !== 'ROLLBACK' && $verb !== 'COMMIT' ) {
 			// Transaction automatically rolled back, breaking the expectations of callers
-			// relying on that transaction to provide atomic writes, serializability, or use
-			// one  point-in-time snapshot for all reads. Assume that connection loss is OK
-			// with ROLLBACK (non-SAVEPOINT). Likewise for COMMIT (T127428).
+			// relying on the continued existence of that transaction for things like atomic
+			// writes, serializability, or reads from the same point-in-time snapshot. If the
+			// connection loss occured on ROLLBACK (non-SAVEPOINT) or COMMIT, then we do not
+			// need to mark the transaction state as corrupt, since no transaction would still
+			// be open even if the query did succeed (T127428).
 			$res = max( $res, self::ERR_ABORT_TRX );
 			$blockers[] = 'explicit transaction';
 		}
@@ -2507,7 +2508,14 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 
 	public function flushSnapshot( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
 		$this->transactionManager->onFlushSnapshot( $this, $fname, $flush, $this->getTransactionRoundId() );
-		$this->commit( $fname, self::FLUSHING_INTERNAL );
+		if (
+			$this->transactionManager->sessionStatus() === TransactionManager::STATUS_SESS_ERROR ||
+			$this->transactionManager->trxStatus() === TransactionManager::STATUS_TRX_ERROR
+		) {
+			$this->rollback( $fname, self::FLUSHING_INTERNAL );
+		} else {
+			$this->commit( $fname, self::FLUSHING_INTERNAL );
+		}
 	}
 
 	public function duplicateTableStructure(
