@@ -6,7 +6,7 @@
 		<cdx-radio
 			v-for="radio in blockTypeOptions"
 			:key="'radio-' + radio.value"
-			v-model="blockTypeValue"
+			v-model="wrappedBlockTypeValue"
 			name="radio-group-descriptions"
 			:input-value="radio.value"
 		>
@@ -15,7 +15,7 @@
 				<span v-i18n-html="radio.descriptionMsg"></span>
 			</template>
 		</cdx-radio>
-		<div v-if="blockTypeValue === 'partial' " id="partial-options">
+		<div v-if="wrappedBlockTypeValue === 'partial'" id="partial-options">
 			<div>
 				Pages Placeholder
 			</div>
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-const { defineComponent, ref, toRef } = require( 'vue' );
+const { defineComponent, toRef } = require( 'vue' );
 const { CdxCheckbox, CdxRadio, CdxField, useModelWrapper } = require( '@wikimedia/codex' );
 
 // @vue/component
@@ -54,17 +54,27 @@ module.exports = exports = defineComponent( {
 		modelValue: {
 			type: Array,
 			required: true
+		},
+		// eslint-disable-next-line vue/no-unused-properties
+		blockTypeValue: {
+			type: String,
+			required: true
 		}
 	},
 	emits: [
-		'update:modelValue'
+		'update:modelValue',
+		'update:blockTypeValue'
 	],
 	setup( props, { emit } ) {
 		const wrappedModel = useModelWrapper(
 			toRef( props, 'modelValue' ),
 			emit
 		);
-		const blockTypeValue = ref( 'partial' );
+		const wrappedBlockTypeValue = useModelWrapper(
+			toRef( props, 'blockTypeValue' ),
+			emit,
+			'update:blockTypeValue'
+		);
 		const blockTypeOptions = [
 			{
 				label: mw.message( 'blocklist-type-opt-sitewide' ),
@@ -79,9 +89,9 @@ module.exports = exports = defineComponent( {
 		];
 
 		return {
-			blockTypeValue,
 			blockTypeOptions,
-			wrappedModel
+			wrappedModel,
+			wrappedBlockTypeValue
 		};
 	}
 } );

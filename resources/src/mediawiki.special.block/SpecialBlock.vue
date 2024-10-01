@@ -20,6 +20,7 @@
 	<block-type-field
 		v-model="blockPartialOptionsSelected"
 		:partial-block-options="blockPartialOptions"
+		v-model:block-type-value="blockType"
 	></block-type-field>
 	<expiry-field v-model="expiry"></expiry-field>
 	<reason-field
@@ -83,6 +84,7 @@ module.exports = exports = defineComponent( {
 		const submitButtonMessage = computed( () => {
 			return mw.message( alreadyBlocked.value ? 'ipb-change-block' : 'ipbsubmit' ).text();
 		} );
+		const blockType = ref( 'sitewide' );
 		const blockPartialOptions = mw.config.get( 'partialBlockActionOptions' ) ?
 			Object.keys( mw.config.get( 'partialBlockActionOptions' ) ).map(
 				// Messages that can be used here:
@@ -164,7 +166,8 @@ module.exports = exports = defineComponent( {
 				action: 'block',
 				format: 'json',
 				user: targetUser.value,
-				expiry: expiry.value.value
+				// Remove browser-specific milliseconds for consistency.
+				expiry: expiry.value.value.replace( /\.000$/, '' )
 			};
 
 			// Reason selected concatenated with 'Other' field
@@ -176,7 +179,7 @@ module.exports = exports = defineComponent( {
 				);
 			}
 
-			if ( blockPartialOptions ) {
+			if ( blockType.value === 'partial' ) {
 				const actionRestrictions = [];
 				params.partial = 1;
 				if ( blockPartialOptionsSelected.value.indexOf( 'ipb-action-upload' ) !== -1 ) {
@@ -221,13 +224,14 @@ module.exports = exports = defineComponent( {
 
 			const api = new mw.Api();
 
-			return api.postWithToken( 'csrf', params )
+			return api.postWithEditToken( params )
 				.done( () => {
 
 				} );
 		}
 
 		return {
+			blockType,
 			targetUser,
 			expiry,
 			alreadyBlocked,
