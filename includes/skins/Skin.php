@@ -990,12 +990,12 @@ abstract class Skin extends ContextSource {
 					$count++;
 
 					if ( $count > 1 ) {
-						$subpages .= $lang->getDirMarkEntity() . $this->msg( 'pipe-separator' )->escaped();
+						$subpages .= $this->msg( 'pipe-separator' )->escaped();
 					} else {
 						$subpages .= '&lt; ';
 					}
 
-					$subpages .= $getlink;
+					$subpages .= Html::rawElement( 'bdi', [ 'dir' => $lang->getDir() ], $getlink );
 					$display = '';
 				} else {
 					$display .= '/';
