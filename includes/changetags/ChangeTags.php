@@ -254,7 +254,7 @@ class ChangeTags {
 	public static function tagHelpLink( $tag, MessageLocalizer $context ) {
 		$msg = $context->msg( "tag-$tag-helppage" )->inContentLanguage();
 		if ( $msg->exists() && !$msg->isDisabled() ) {
-			$url = Skin::makeInternalOrExternalUrl( $msg->plain() );
+			$url = Skin::makeInternalOrExternalUrl( $msg->text() );
 			if ( $url ) {
 				return $url;
 			}
