@@ -3,6 +3,7 @@
 .mw-EditRecovery-LoadNotification-buttons {
 	margin-top: @size-50;
 	text-align: center;
+	display: flex;
 
 	// Allow long phrases in buttons to wrap to multiple lines rather than extend outside the notification box.
 	.oo-ui-buttonElement > .oo-ui-buttonElement-button {
@@ -11,7 +12,6 @@
 
 	.oo-ui-buttonWidget,
 	.oo-ui-buttonWidget:last-child {
-		display: block;
 		// Remove trailing margins (because we handle horizontal spacing above), and add a top
 		// margin to keep separation between the buttons and between the buttons and the text above.
 		margin: @size-50 auto 0 auto;

@@ -126,7 +126,6 @@ function onLoadData( pageData ) {
 	}
 	// If there is data stored, load it into the form.
 	if ( !wasPosted && pageData !== undefined && !isSameAsOriginal( pageData, true ) ) {
-		loadData( pageData );
 		const loadNotification = new LoadNotification( {
 			differentRev: originalData.field_parentRevId !== pageData.field_parentRevId
 		} );
@@ -135,19 +134,17 @@ function onLoadData( pageData ) {
 		track( 'show', 1 );
 
 		const notification = loadNotification.getNotification();
-		// On 'show changes'.
-		loadNotification.getDiffButton().on( 'click', () => {
-			// use live diff view rather than reloading the whole page.
-			mw.loader.using( [ 'mediawiki.page.preview' ] ).then( () => {
-				const pagePreview = require( 'mediawiki.page.preview' );
-				pagePreview.doPreview( { showDiff: true } );
-			} );
+		// On 'restore changes'.
+		loadNotification.getRecoverButton().on( 'click', () => {
+			loadData( pageData );
+			notification.close();
+			// statsv: Track the number of times the edit recovery data is recovered.
+			track( 'recover', 1 );
 		} );
 		// On 'discard changes'.
 		loadNotification.getDiscardButton().on( 'click', () => {
 			loadData( originalData );
 			storage.deleteData( pageName, section ).then( () => {
-				$( '#wikiDiff' ).hide();
 				notification.close();
 			} );
 			// statsv: Track the number of times the edit recovery data is discarded.

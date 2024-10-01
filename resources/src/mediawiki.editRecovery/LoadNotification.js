@@ -8,8 +8,9 @@
  */
 const LoadNotification = function mwWidgetsEditRecoveryLoadNotification( config ) {
 	LoadNotification.super.call( this, {} );
-	this.diffButton = new OO.ui.ButtonWidget( {
-		label: mw.msg( 'edit-recovery-loaded-show' )
+	this.recoverButton = new OO.ui.ButtonWidget( {
+		label: mw.msg( 'edit-recovery-loaded-recover' ),
+		flags: [ 'progressive' ]
 	} );
 	this.discardButton = new OO.ui.ButtonWidget( {
 		label: mw.msg( 'edit-recovery-loaded-discard' ),
@@ -19,7 +20,7 @@ const LoadNotification = function mwWidgetsEditRecoveryLoadNotification( config 
 	const $buttons = $( '<div>' )
 		.addClass( 'mw-EditRecovery-LoadNotification-buttons' )
 		.append(
-			this.diffButton.$element,
+			this.recoverButton.$element,
 			this.discardButton.$element
 		);
 	let differentRev = null;
@@ -57,8 +58,8 @@ LoadNotification.prototype.getNotification = function () {
  * @ignore
  * @return {OO.ui.ButtonWidget}
  */
-LoadNotification.prototype.getDiffButton = function () {
-	return this.diffButton;
+LoadNotification.prototype.getRecoverButton = function () {
+	return this.recoverButton;
 };
 
 /**

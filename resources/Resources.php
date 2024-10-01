@@ -1390,7 +1390,7 @@ return [
 			'edit-recovery-loaded-message-different-rev',
 			'edit-recovery-loaded-message-different-rev-publish',
 			'edit-recovery-loaded-message-different-rev-save',
-			'edit-recovery-loaded-show',
+			'edit-recovery-loaded-recover',
 			'edit-recovery-loaded-discard',
 			'word-separator',
 		],
