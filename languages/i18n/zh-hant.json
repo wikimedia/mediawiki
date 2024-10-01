@@ -3191,7 +3191,7 @@
 	"months": "{{PLURAL:$1|$1 個月}}",
 	"years": "$1年",
 	"ago": "$1 前",
-	"just-now": "剛才",
+	"just-now": "剛剛",
 	"hours-ago": "$1 小時前",
 	"minutes-ago": "$1 分鐘前",
 	"seconds-ago": "$1 秒鐘前",

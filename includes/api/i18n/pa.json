@@ -10,5 +10,6 @@
 	"apihelp-query+iwbacklinks-param-prefix": "ਅੰਤਰ-ਵਿਕੀ ਲਈ ਅਗੇਤਰ।",
 	"apihelp-query+iwbacklinks-paramvalue-prop-iwprefix": "ਅੰਤਰ-ਵਿਕੀ ਦਾ ਸਿਰਲੇਖ ਜੋੜਦਾ ਹੈ।",
 	"apihelp-query+iwbacklinks-paramvalue-prop-iwtitle": "ਅੰਤਰ-ਵਿਕੀ ਦਾ ਸਿਰਲੇਖ ਜੋੜਦਾ ਹੈ।",
-	"apihelp-query+iwlinks-param-limit": "ਕਿੰਨਿਆਂ ਅੰਤਰਵਿਕੀ ਕੜਿਆਂ ਵਾਪਸ ਕਰਨਿਆ ਹਨ।"
+	"apihelp-query+iwlinks-param-limit": "ਕਿੰਨਿਆਂ ਅੰਤਰਵਿਕੀ ਕੜਿਆਂ ਵਾਪਸ ਕਰਨਿਆ ਹਨ।",
+	"apihelp-revisiondelete-param-show": "ਹਰੇਕ ਸੋਧ ਲਈ ਕੀ ਮੁੜ-ਵਿਖਾਉਣਾ ਹੈ।"
 }

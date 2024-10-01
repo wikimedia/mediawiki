@@ -408,7 +408,7 @@
 	"rcfilters-filter-major-label": "ንኢሽ ለይ ጋአት ኣስነዮት",
 	"rcfilters-filter-logactions-label": "ላትሰጀለያ ኣፍዓል",
 	"rcfilters-filter-accountcreations-label": "ሕሳብ ፍትሓት",
-	"rcnotefrom": "ዲብ ታሓት {{PLURAL\n:$5|ተቅይር|ተቅይራት }} ምን <strong>$3, $4</strong> (ኣስክ <strong>$1</strong> ለረአ).",
+	"rcnotefrom": "ዲብ ታሓት {{PLURAL:$5|ተቅይር|ተቅይራት }} ምን <strong>$3, $4</strong> (ኣስክ <strong>$1</strong> ለረአ).",
 	"rclistfrom": "ምን $2፡$3 ለለአነብት ተቃዪር ጀዲድ ረአው።",
 	"rcshowhideminor": "$1 ንኢሽ ኣስነዮት",
 	"rcshowhideminor-show": "ኣርአ",

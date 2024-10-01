@@ -36,6 +36,7 @@
 	},
 	"preferences": "Preferenze",
 	"prefsnologintext2": "Per modificare le tue preferenze è necessario effettuare l'accesso.",
+	"prefsnologintext2-for-temp-user": "Crea un'utenza per modificare le preferenze.",
 	"searchprefs": "Cerca preferenze",
 	"searchprefs-noresults": "Nessun risultato",
 	"searchprefs-results": "$1 {{PLURAL:$1|risultato|risultati}}",
