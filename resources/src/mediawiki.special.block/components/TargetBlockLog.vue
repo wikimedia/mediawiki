@@ -17,26 +17,38 @@
 			<template #item-timestamp="{ item }">
 				{{ util.formatTimestamp( item ) }}
 			</template>
-			<template #item-target="{ item }">
-				<!-- eslint-disable-next-line vue/no-v-html -->
-				<span v-html="$i18n( 'userlink-with-contribs', item ).parse()"></span>
+			<template #item-type="{ item }">
+				{{ util.getBlockActionMessage( item ) }}
 			</template>
 			<template #item-expiry="{ item }">
-				{{ util.formatTimestamp( item ) }}
+				<div v-if="item.type === 'unblock'">
+					—
+				</div>
+				<span v-else>
+					{{ util.formatTimestamp( item.expires, item.duration ) }}
+				</span>
 			</template>
 			<template #item-blockedby="{ item }">
 				<!-- eslint-disable-next-line vue/no-v-html -->
 				<span v-html="$i18n( 'userlink-with-contribs', item ).parse()"></span>
 			</template>
 			<template #item-parameters="{ item }">
-				<ul>
+				<div v-if="!item" class="mw-block-params-hyphen">
+					—
+				</div>
+				<ul v-else>
 					<li v-for="( parameter, index ) in item" :key="index">
 						{{ util.getBlockFlagMessage( parameter ) }}
 					</li>
 				</ul>
 			</template>
 			<template #item-reason="{ item }">
-				{{ item ? item : $i18n( 'block-user-no-reason-given' ).text() }}
+				<div v-if="!item">
+					—
+				</div>
+				<span v-else>
+					{{ item }}
+				</span>
 			</template>
 		</cdx-table>
 	</cdx-accordion>
@@ -60,7 +72,7 @@ module.exports = exports = defineComponent( {
 	setup() {
 		const columns = [
 			{ id: 'timestamp', label: mw.message( 'blocklist-timestamp' ).text(), minWidth: '112px' },
-			{ id: 'target', label: mw.message( 'blocklist-target' ).text(), minWidth: '150px' },
+			{ id: 'type', label: mw.message( 'blocklist-type-header' ).text(), minWidth: '112px' },
 			{ id: 'expiry', label: mw.message( 'blocklist-expiry' ).text(), minWidth: '112px' },
 			{ id: 'blockedby', label: mw.message( 'blocklist-by' ).text(), minWidth: '150px' },
 			{ id: 'parameters', label: mw.message( 'blocklist-params' ).text(), minWidth: '160px' },
@@ -108,8 +120,12 @@ module.exports = exports = defineComponent( {
 						for ( let i = 0; i < data.logevents.length; i++ ) {
 							this.data.push( {
 								timestamp: data.logevents[ i ].timestamp,
-								target: newValue,
-								expiry: data.logevents[ i ].params.expiry,
+								type: data.logevents[ i ].action,
+								expiry: {
+									expires: data.logevents[ i ].params.expiry,
+									duration: data.logevents[ i ].params.duration,
+									type: data.logevents[ i ].action
+								},
 								blockedby: data.logevents[ i ].user,
 								parameters: data.logevents[ i ].params.flags,
 								reason: data.logevents[ i ].comment
@@ -129,5 +145,9 @@ module.exports = exports = defineComponent( {
 
 .mw-block-previous-blocks {
 	word-break: auto-phrase;
+}
+
+.mw-block-params-hyphen {
+	padding-left: @spacing-75;
 }
 </style>

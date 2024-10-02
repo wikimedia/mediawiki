@@ -2987,6 +2987,7 @@
 	"blocklist-indefblocks": "Used as the label for the multi-select checkbox in the form on [[Special:BlockList]].\n{{Related|Blocklist-blocks}}",
 	"blocklist-addressblocks": "Used as the label for the multi-select checkbox in the form on [[Special:BlockList]].\n{{Related|Blocklist-blocks}}",
 	"blocklist-type": "Used as label for dropdown box in [[Special:BlockList]].\n\n{{Identical|Type}}",
+	"blocklist-type-header": "Used as the header for the block log type column in the table on the page [[Special:Block]].",
 	"blocklist-type-opt-all": "Used as option for dropdown box in [[Special:BlockList]]. This is the default option and indicates that \"all\" blocks will be listed\n{{Identical|All}}",
 	"blocklist-type-opt-sitewide": "Used as option for dropdown box in [[Special:BlockList]]. This option indicates that only \"sitewide\" blocks will be listed.",
 	"blocklist-type-opt-partial": "Used as option for dropdown box in [[Special:BlockList]]. This option indicates that only \"partial\" blocks will be listed.",

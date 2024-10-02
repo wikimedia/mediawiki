@@ -83,7 +83,8 @@ function mockMwApiGet( additionalMocks = [] ) {
 		{
 			params: {
 				list: 'logevents',
-				letype: 'block'
+				letype: 'block',
+				letitle: 'User:ExampleUser'
 			},
 			response: {
 				query: {
@@ -105,6 +106,18 @@ function mockMwApiGet( additionalMocks = [] ) {
 							comment: 'A reason'
 						}
 					]
+				}
+			}
+		},
+		{
+			params: {
+				list: 'logevents',
+				letype: 'block',
+				letitle: 'User:NeverBlocked'
+			},
+			response: {
+				query: {
+					logevents: []
 				}
 			}
 		},
