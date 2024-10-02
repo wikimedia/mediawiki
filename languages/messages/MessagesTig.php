@@ -27,4 +27,9 @@ $namespaceNames = [
 	NS_CATEGORY_TALK    => 'ህድግ_ከረርም',
 ];
 
+$namespaceGenderAliases = [
+	NS_USER => [ 'male' => 'መትነፈዓይ', 'female' => ' መትነፈዓይት' ],
+	NS_USER_TALK => [ 'male' => 'ህድግ_መትነፈዓይ', 'female' => 'ህድግ_መትነፈዓይት' ],
+];
+
 $linkTrail = "/^([a-z\x{1200}-\x{137F}]+)(.*)$/sDu";
