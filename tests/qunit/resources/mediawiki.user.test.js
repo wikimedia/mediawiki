@@ -88,21 +88,17 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 	} );
 
 	QUnit.test( 'generateRandomSessionId', ( assert ) => {
-		let result, result2;
-
-		result = mw.user.generateRandomSessionId();
+		const result = mw.user.generateRandomSessionId();
 		assert.strictEqual( typeof result, 'string', 'type' );
 		assert.strictEqual( result.trim(), result, 'no whitespace at beginning or end' );
 		assert.strictEqual( result.length, 20, 'size' );
 
-		result2 = mw.user.generateRandomSessionId();
+		const result2 = mw.user.generateRandomSessionId();
 		assert.notStrictEqual( result, result2, 'different when called multiple times' );
 
 	} );
 
 	QUnit.test( 'generateRandomSessionId (fallback)', ( assert ) => {
-		let result, result2;
-
 		// Pretend crypto API is not there to test the Math.random fallback
 		delete window.crypto;
 		delete window.msCrypto;
@@ -113,12 +109,12 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 		// However, deleting does work. (T203275)
 		assert.strictEqual( window.crypto || window.msCrypto, undefined, 'fallback is active' );
 
-		result = mw.user.generateRandomSessionId();
+		const result = mw.user.generateRandomSessionId();
 		assert.strictEqual( typeof result, 'string', 'type' );
 		assert.strictEqual( result.trim(), result, 'no whitespace at beginning or end' );
 		assert.strictEqual( result.length, 20, 'size' );
 
-		result2 = mw.user.generateRandomSessionId();
+		const result2 = mw.user.generateRandomSessionId();
 		assert.notStrictEqual( result, result2, 'different when called multiple times' );
 	} );
 

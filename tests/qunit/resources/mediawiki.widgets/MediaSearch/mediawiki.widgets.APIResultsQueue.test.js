@@ -7,22 +7,20 @@
 QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 
 ( function () {
-	let itemCounter, FullResourceProvider, EmptyResourceProvider, SingleResultResourceProvider;
-
-	itemCounter = 0;
-	FullResourceProvider = function ( config ) {
+	let itemCounter = 0;
+	const FullResourceProvider = function ( config ) {
 		this.timer = null;
 		this.responseDelay = 1;
 		// Inheritance
 		FullResourceProvider.super.call( this, '', config );
 	};
-	EmptyResourceProvider = function ( config ) {
+	const EmptyResourceProvider = function ( config ) {
 		this.timer = null;
 		this.responseDelay = 1;
 		// Inheritance
 		EmptyResourceProvider.super.call( this, '', config );
 	};
-	SingleResultResourceProvider = function ( config ) {
+	const SingleResultResourceProvider = function ( config ) {
 		this.timer = null;
 		this.responseDelay = 1;
 		// Inheritance
@@ -34,16 +32,16 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 	OO.inheritClass( SingleResultResourceProvider, mw.widgets.APIResultsProvider );
 
 	FullResourceProvider.prototype.getResults = function ( howMany ) {
-		let i, timer,
-			result = [],
+		const result = [],
 			deferred = $.Deferred();
 
+		let i;
 		for ( i = itemCounter; i < itemCounter + howMany; i++ ) {
 			result.push( 'result ' + ( i + 1 ) );
 		}
 		itemCounter = i;
 
-		timer = setTimeout(
+		const timer = setTimeout(
 			() => {
 				// Always resolve with some values
 				deferred.resolve( result );
@@ -72,11 +70,10 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 	};
 
 	SingleResultResourceProvider.prototype.getResults = function ( howMany ) {
-		let timer,
-			provider = this,
+		const provider = this,
 			deferred = $.Deferred();
 
-		timer = setTimeout(
+		const timer = setTimeout(
 			() => {
 				provider.toggleDepleted( howMany > 1 );
 				// Always resolve with one value
@@ -161,8 +158,7 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 	} );
 
 	QUnit.test( 'Abort providers', ( assert ) => {
-		let done = assert.async(),
-			completed = false,
+		const done = assert.async(),
 			biggerQueue = new mw.widgets.APIResultsQueue( {
 				threshold: 5
 			} ),
@@ -171,6 +167,7 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 				new EmptyResourceProvider(),
 				new SingleResultResourceProvider()
 			];
+		let completed = false;
 
 		// Make the delay higher
 		providers.forEach( ( provider ) => {

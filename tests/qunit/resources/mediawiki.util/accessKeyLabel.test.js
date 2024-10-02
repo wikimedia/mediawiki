@@ -1,6 +1,4 @@
 ( function () {
-	let getAccessKeyPrefixTestData, updateTooltipAccessKeysTestData;
-
 	QUnit.module( 'mediawiki.util: jquery.accessKeyLabel', QUnit.newMwEnvironment( {
 		messages: {
 			brackets: '[$1]',
@@ -8,7 +6,7 @@
 		}
 	} ) );
 
-	getAccessKeyPrefixTestData = [
+	const getAccessKeyPrefixTestData = [
 		// ua string, platform string, expected prefix
 		// Internet Explorer
 		[ 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)', 'Win32', 'alt-' ],
@@ -30,7 +28,7 @@
 		[ 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.3a) Gecko/20021207 Phoenix/0.5', 'Linux i686', 'alt-' ]
 	];
 	// strings appended to title to make sure updateTooltipAccessKeys handles them correctly
-	updateTooltipAccessKeysTestData = [ '', ' [a]', ' [test-a]', ' [alt-b]' ];
+	const updateTooltipAccessKeysTestData = [ '', ' [a]', ' [test-a]', ' [alt-b]' ];
 
 	function makeInput( title, accessKey ) {
 		// The properties aren't escaped, so make sure you don't call this function with values that need to be escaped!
@@ -82,12 +80,11 @@
 	} );
 
 	QUnit.test( 'updateTooltipAccessKeys with label element', ( assert ) => {
-		let html, $label, $input;
 		$.fn.updateTooltipAccessKeys.setTestMode( true );
-		html = '<label for="testInput" title="Title">Label</label><input id="testInput" accessKey="a" />';
+		const html = '<label for="testInput" title="Title">Label</label><input id="testInput" accessKey="a" />';
 		$( '#qunit-fixture' ).html( html );
-		$label = $( '#qunit-fixture label' );
-		$input = $( '#qunit-fixture input' );
+		const $label = $( '#qunit-fixture label' );
+		const $input = $( '#qunit-fixture input' );
 		$input.updateTooltipAccessKeys();
 		assert.strictEqual( $input.prop( 'title' ), '', 'No title attribute added to input element.' );
 		assert.strictEqual( $label.prop( 'title' ), 'Title [test-a]', 'title updated for associated label element.' );
@@ -95,12 +92,11 @@
 	} );
 
 	QUnit.test( 'updateTooltipAccessKeys with label element as parent', ( assert ) => {
-		let html, $label, $input;
 		$.fn.updateTooltipAccessKeys.setTestMode( true );
-		html = '<label title="Title">Label<input id="testInput" accessKey="a" /></label>';
+		const html = '<label title="Title">Label<input id="testInput" accessKey="a" /></label>';
 		$( '#qunit-fixture' ).html( html );
-		$label = $( '#qunit-fixture label' );
-		$input = $( '#qunit-fixture input' );
+		const $label = $( '#qunit-fixture label' );
+		const $input = $( '#qunit-fixture input' );
 		$input.updateTooltipAccessKeys();
 		assert.strictEqual( $input.prop( 'title' ), '', 'No title attribute added to input element.' );
 		assert.strictEqual( $label.prop( 'title' ), 'Title [test-a]', 'title updated for associated label element.' );

@@ -363,8 +363,7 @@ QUnit.module( 'mediawiki.api', ( hooks ) => {
 	} );
 
 	QUnit.test( 'postWithToken() - badtoken-cached', function ( assert ) {
-		let sequenceA,
-			api = new mw.Api();
+		const api = new mw.Api();
 
 		this.server.respondWith( /type=testonce/, sequenceBodies( 200, { 'Content-Type': 'application/json' },
 			[
@@ -372,7 +371,7 @@ QUnit.module( 'mediawiki.api', ( hooks ) => {
 				'{ "query": { "tokens": { "testoncetoken": "good-B" } } }'
 			]
 		) );
-		sequenceA = sequenceBodies( 200, { 'Content-Type': 'application/json' },
+		const sequenceA = sequenceBodies( 200, { 'Content-Type': 'application/json' },
 			[
 				'{ "example": { "value": "A" } }',
 				'{ "error": { "code": "badtoken" } }'

@@ -315,8 +315,7 @@
 	} );
 
 	QUnit.test( 'Manipulating queries', ( assert ) => {
-		let id1, id2, item1, matchingItem,
-			queriesStructure = {},
+		const queriesStructure = {},
 			filtersModel = new rcfilters.dm.FiltersViewModel(),
 			queriesModel = new rcfilters.dm.SavedQueriesModel( filtersModel );
 
@@ -326,7 +325,7 @@
 		queriesModel.initialize( {} );
 
 		// Add items
-		id1 = queriesModel.addNewQuery(
+		const id1 = queriesModel.addNewQuery(
 			'New query 1',
 			{
 				group2: 'filter5',
@@ -334,7 +333,7 @@
 				group3__group3option1_color: 'c1'
 			}
 		);
-		id2 = queriesModel.addNewQuery(
+		const id2 = queriesModel.addNewQuery(
 			'New query 2',
 			{
 				filter1: '1',
@@ -342,7 +341,7 @@
 				invert: '1'
 			}
 		);
-		item1 = queriesModel.getItemByID( id1 );
+		const item1 = queriesModel.getItemByID( id1 );
 
 		assert.strictEqual(
 			item1.getID(),
@@ -412,7 +411,7 @@
 		);
 
 		// Find matching query
-		matchingItem = queriesModel.findMatchingQuery(
+		let matchingItem = queriesModel.findMatchingQuery(
 			{
 				group2: 'filter5',
 				group1__filter1_color: 'c5',
@@ -443,8 +442,7 @@
 	} );
 
 	QUnit.test( 'Testing invert property', ( assert ) => {
-		let itemID, item,
-			filtersModel = new rcfilters.dm.FiltersViewModel(),
+		const filtersModel = new rcfilters.dm.FiltersViewModel(),
 			queriesModel = new rcfilters.dm.SavedQueriesModel( filtersModel ),
 			viewsDefinition = {
 				namespace: {
@@ -491,13 +489,13 @@
 			group1__filter3: true,
 			invertGroup__invert: true
 		} );
-		itemID = queriesModel.addNewQuery(
+		let itemID = queriesModel.addNewQuery(
 			'label1', // Label
 			filtersModel.getMinimizedParamRepresentation(),
 			true, // isDefault
 			'2345' // ID
 		);
-		item = queriesModel.getItemByID( itemID );
+		let item = queriesModel.getItemByID( itemID );
 
 		assert.deepEqual(
 			item.getState(),

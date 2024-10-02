@@ -200,10 +200,8 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 	} );
 
 	QUnit.test( 'addCSS', ( assert ) => {
-		let $el, style;
-		$el = $( '<div>' ).attr( 'id', 'mw-addcsstest' ).appendTo( '#qunit-fixture' );
-
-		style = util.addCSS( '#mw-addcsstest { visibility: hidden; }' );
+		const $el = $( '<div>' ).attr( 'id', 'mw-addcsstest' ).appendTo( '#qunit-fixture' );
+		const style = util.addCSS( '#mw-addcsstest { visibility: hidden; }' );
 		assert.strictEqual( typeof style, 'object', 'addCSS returned an object' );
 		assert.strictEqual( style.disabled, false, 'property "disabled" is available and set to false' );
 
@@ -307,15 +305,13 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 	} );
 
 	QUnit.test( 'addPortletLink (Vector list)', ( assert ) => {
-		let link;
-
 		$( '#qunit-fixture' ).html(
 			'<div class="portlet" id="p-toolbox">' +
 				'<h3>Tools</h3>' +
 				'<div class="body"><ul></ul></div>' +
 				'</div>'
 		);
-		link = util.addPortletLink( 'p-toolbox', 'https://foo.test/',
+		const link = util.addPortletLink( 'p-toolbox', 'https://foo.test/',
 			'Foo', 't-foo', 'Tooltip', 'l'
 		);
 
@@ -342,10 +338,8 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 	} );
 
 	QUnit.test( 'addPortletLink (Minerva list)', ( assert ) => {
-		let link;
-
 		$( '#qunit-fixture' ).html( '<ul id="p-list"></ul>' );
-		link = util.addPortletLink( 'p-list', '#', 'Foo', 't-foo' );
+		const link = util.addPortletLink( 'p-list', '#', 'Foo', 't-foo' );
 
 		assert.domEqual(
 			link,
@@ -370,14 +364,12 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 	} );
 
 	QUnit.test( 'addPortletLink (nextNode option)', ( assert ) => {
-		let linkFoo, link;
-
 		$( '#qunit-fixture' ).html( '<ul id="p-toolbox"></ul>' );
-		linkFoo = util.addPortletLink( 'p-toolbox', 'https://foo.test/',
+		const linkFoo = util.addPortletLink( 'p-toolbox', 'https://foo.test/',
 			'Foo', 't-foo', 'Tooltip', 'l'
 		);
 
-		link = util.addPortletLink( 'p-toolbox', '#',
+		let link = util.addPortletLink( 'p-toolbox', '#',
 			'Label', 't-node', null, null, linkFoo );
 		assert.strictEqual( link.nextSibling, linkFoo, 'HTMLElement' );
 
@@ -399,10 +391,9 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 	} );
 
 	QUnit.test( 'addPortletLink (accesskey option)', ( assert ) => {
-		let link;
 		$( '#qunit-fixture' ).html( '<ul id="p-toolbox"></ul>' );
 
-		link = util.addPortletLink( 'p-toolbox', '#', 'Label', null, 'Tooltip [shift-x]', 'z' );
+		const link = util.addPortletLink( 'p-toolbox', '#', 'Label', null, 'Tooltip [shift-x]', 'z' );
 		assert.strictEqual(
 			link.querySelector( 'a' ).title,
 			'Tooltip [test-z]',
