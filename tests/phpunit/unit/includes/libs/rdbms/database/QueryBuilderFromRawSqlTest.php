@@ -145,4 +145,45 @@ class QueryBuilderFromRawSqlTest extends MediaWikiUnitTestCase {
 			[ 'CREATE TABLE foobar', true ]
 		];
 	}
+
+	/**
+	 * @dataProvider provideGeneralizeSQL
+	 */
+	public function testGeneralizeSQL( string $sql, string $generalizedSql ) {
+		// Note that the default pcre.backtrack_limit is 1000000
+		$this->assertSame( $generalizedSql, QueryBuilderFromRawSql::generalizeSQL( $sql ) );
+	}
+
+	public static function provideGeneralizeSQL() {
+		return [
+			[
+				'SELECT * FROM t1 WHERE c1 = 5',
+				'SELECT * FROM t1 WHERE c1 = N'
+			],
+			[
+				'SELECT * FROM t1 WHERE c1 = "A"',
+				'SELECT * FROM t1 WHERE c1 = \'X\''
+			],
+			[
+				'SELECT * FROM t1 WHERE c1 = \'A\'',
+				'SELECT * FROM t1 WHERE c1 = \'X\''
+			],
+			[
+				'SELECT * FROM t1 WHERE c1 IN (5,-6)',
+				'SELECT * FROM t1 WHERE c1 IN (N,...,N)'
+			],
+			[
+				'SELECT * FROM t1 WHERE c1 IN ("A","B")',
+				'SELECT * FROM t1 WHERE c1 IN (\'X\')'
+			],
+			[
+				'SELECT * FROM t2 WHERE c1 IN ("1","2","3","4")',
+				'SELECT * FROM t2 WHERE c1 IN (\'X\')'
+			],
+			[
+				'SELECT * FROM t3 WHERE c1 IN (' . implode( ',', range( -1, -5000 ) ) . ')',
+				'SELECT * FROM t3 WHERE c1 IN (N,...,N)'
+			]
+		];
+	}
 }
