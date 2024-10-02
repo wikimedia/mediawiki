@@ -4861,9 +4861,27 @@ foo
 T2041: Template parameters shown as broken links
 !! wikitext
 {{{parameter}}}
-!! html
+!! html/php
 <p>{{{parameter}}}
 </p>
+!! html/parsoid
+<p about="#mwt1" typeof="mw:Param" data-mw='{"parts":[{"templatearg":{"target":{"wt":"parameter"},"params":{},"i":0}}]}'>{{{parameter}}}</p>
+!! end
+
+!! test
+Unsubstituted template argument with newlines
+!! wikitext
+{{{testing
+
+123}}}
+!! html/php
+<p>{{{testing
+</p><p>123}}}
+</p>
+!! html/parsoid
+<p about="#mwt1" typeof="mw:Param" data-mw='{"parts":[{"templatearg":{"target":{"wt":"testing\n\n123"},"params":{},"i":0}}]}'>{{{testing</p><span about="#mwt1">
+
+</span><p about="#mwt1">123}}}</p>
 !! end
 
 !! test
