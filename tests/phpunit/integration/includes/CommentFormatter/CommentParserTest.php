@@ -117,58 +117,58 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 			],
 			// MediaWiki\CommentFormatter\CommentParser::doSectionLinks
 			[
-				'<span dir="auto"><span class="autocomment"><a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→‎autocomment</a></span></span>',
+				'<span class="autocomment"><a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→<bdi dir="ltr">autocomment</bdi></a></span>',
 				"/* autocomment */",
 			],
 			[
-				'<span dir="auto"><span class="autocomment"><a href="/wiki/Special:BlankPage#linkie.3F" title="Special:BlankPage">→‎&#91;[linkie?]]</a></span></span>',
+				'<span class="autocomment"><a href="/wiki/Special:BlankPage#linkie.3F" title="Special:BlankPage">→<bdi dir="ltr">&#91;[linkie?]]</bdi></a></span>',
 				"/* [[linkie?]] */",
 			],
 			[
-				'<span dir="auto"><span class="autocomment">: </span> // Edit via via</span>',
+				'<span class="autocomment">: </span> // Edit via via',
 				// Regression test for T222857
 				"/*  */ // Edit via via",
 			],
 			[
-				'<span dir="auto"><span class="autocomment">: </span> foobar</span>',
+				'<span class="autocomment">: </span> foobar',
 				// Regression test for T222857
 				"/**/ foobar",
 			],
 			[
-				'<span dir="auto"><span class="autocomment"><a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→‎autocomment</a>: </span> post</span>',
+				'<span class="autocomment"><a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→<bdi dir="ltr">autocomment</bdi></a>: </span> post',
 				"/* autocomment */ post",
 			],
 			[
-				'pre <span dir="auto"><span class="autocomment"><a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→‎autocomment</a></span></span>',
+				'pre <span class="autocomment"><a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→<bdi dir="ltr">autocomment</bdi></a></span>',
 				"pre /* autocomment */",
 			],
 			[
-				'pre <span dir="auto"><span class="autocomment"><a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→‎autocomment</a>: </span> post</span>',
+				'pre <span class="autocomment"><a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→<bdi dir="ltr">autocomment</bdi></a>: </span> post',
 				"pre /* autocomment */ post",
 			],
 			[
-				'<span dir="auto"><span class="autocomment"><a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→‎autocomment</a>: </span> multiple? <span dir="auto"><span class="autocomment"><a href="/wiki/Special:BlankPage#autocomment2" title="Special:BlankPage">→‎autocomment2</a></span></span></span>',
+				'<span class="autocomment"><a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→<bdi dir="ltr">autocomment</bdi></a>: </span> multiple? <span class="autocomment"><a href="/wiki/Special:BlankPage#autocomment2" title="Special:BlankPage">→<bdi dir="ltr">autocomment2</bdi></a></span>',
 				"/* autocomment */ multiple? /* autocomment2 */",
 			],
 			[
-				'<span dir="auto"><span class="autocomment"><a href="/wiki/Special:BlankPage#autocomment_containing_.2F.2A" title="Special:BlankPage">→‎autocomment containing /*</a>: </span> T70361</span>',
+				'<span class="autocomment"><a href="/wiki/Special:BlankPage#autocomment_containing_.2F.2A" title="Special:BlankPage">→<bdi dir="ltr">autocomment containing /*</bdi></a>: </span> T70361',
 				"/* autocomment containing /* */ T70361"
 			],
 			[
-				'<span dir="auto"><span class="autocomment"><a href="/wiki/Special:BlankPage#autocomment_containing_.22quotes.22" title="Special:BlankPage">→‎autocomment containing &quot;quotes&quot;</a></span></span>',
+				'<span class="autocomment"><a href="/wiki/Special:BlankPage#autocomment_containing_.22quotes.22" title="Special:BlankPage">→<bdi dir="ltr">autocomment containing &quot;quotes&quot;</bdi></a></span>',
 				"/* autocomment containing \"quotes\" */"
 			],
 			[
-				'<span dir="auto"><span class="autocomment"><a href="/wiki/Special:BlankPage#autocomment_containing_.3Cscript.3Etags.3C.2Fscript.3E" title="Special:BlankPage">→‎autocomment containing &lt;script&gt;tags&lt;/script&gt;</a></span></span>',
+				'<span class="autocomment"><a href="/wiki/Special:BlankPage#autocomment_containing_.3Cscript.3Etags.3C.2Fscript.3E" title="Special:BlankPage">→<bdi dir="ltr">autocomment containing &lt;script&gt;tags&lt;/script&gt;</bdi></a></span>',
 				"/* autocomment containing <script>tags</script> */"
 			],
 			[
-				'<span dir="auto"><span class="autocomment"><a href="#autocomment">→‎autocomment</a></span></span>',
+				'<span class="autocomment"><a href="#autocomment">→<bdi dir="ltr">autocomment</bdi></a></span>',
 				"/* autocomment */",
 				false, true
 			],
 			[
-				'<span dir="auto"><span class="autocomment">autocomment</span></span>',
+				'<span class="autocomment">autocomment</span>',
 				"/* autocomment */",
 				null
 			],
@@ -183,32 +183,32 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 				null
 			],
 			[
-				'<span dir="auto"><span class="autocomment">[[</span></span>',
+				'<span class="autocomment">[[</span>',
 				"/* [[ */",
 				false, true
 			],
 			[
-				'<span dir="auto"><span class="autocomment">[[</span></span>',
+				'<span class="autocomment">[[</span>',
 				"/* [[ */",
 				null
 			],
 			[
-				"foo <span dir=\"auto\"><span class=\"autocomment\"><a href=\"#.23\">→‎&#91;[#_\t_]]</a></span></span>",
+				"foo <span class=\"autocomment\"><a href=\"#.23\">→<bdi dir=\"ltr\">&#91;[#_\t_]]</bdi></a></span>",
 				"foo /* [[#_\t_]] */",
 				false, true
 			],
 			[
-				"foo <span dir=\"auto\"><span class=\"autocomment\"><a href=\"#_.09\">#_\t_</a></span></span>",
+				"foo <span class=\"autocomment\"><a href=\"#_.09\">#_\t_</a></span>",
 				"foo /* [[#_\t_]] */",
 				null
 			],
 			[
-				'<span dir="auto"><span class="autocomment"><a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→‎autocomment</a></span></span>',
+				'<span class="autocomment"><a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→<bdi dir="ltr">autocomment</bdi></a></span>',
 				"/* autocomment */",
 				false, false
 			],
 			[
-				'<span dir="auto"><span class="autocomment"><a class="external" rel="nofollow" href="//foo.example.org/foo/Special:BlankPage#autocomment">→‎autocomment</a></span></span>',
+				'<span class="autocomment"><a class="external" rel="nofollow" href="//foo.example.org/foo/Special:BlankPage#autocomment">→<bdi dir="ltr">autocomment</bdi></a></span>',
 				"/* autocomment */",
 				false, false, 'foowiki'
 			],

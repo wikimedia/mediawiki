@@ -12030,7 +12030,7 @@ comment title=[[Main Page]]
 !! wikitext
 /* External links */ removed bogus entries
 !! html/php
-<span dir="auto"><span class="autocomment"><a href="/wiki/Main_Page#External_links" title="Main Page">→‎External links</a>: </span> removed bogus entries</span>
+<span class="autocomment"><a href="/wiki/Main_Page#External_links" title="Main Page">→<bdi dir="ltr">External links</bdi></a>: </span> removed bogus entries
 !!end
 
 !! test
@@ -12040,7 +12040,7 @@ comment title=[[Main Page]]
 !! wikitext
 pre-comment text /* External links */ removed bogus entries
 !! html/php
-pre-comment text <span dir="auto"><span class="autocomment"><a href="/wiki/Main_Page#External_links" title="Main Page">→‎External links</a>: </span> removed bogus entries</span>
+pre-comment text <span class="autocomment"><a href="/wiki/Main_Page#External_links" title="Main Page">→<bdi dir="ltr">External links</bdi></a>: </span> removed bogus entries
 !!end
 
 !! test
@@ -12050,7 +12050,7 @@ comment local title=[[Main Page]]
 !! wikitext
 /* External links */ removed bogus entries
 !! html/php
-<span dir="auto"><span class="autocomment"><a href="#External_links">→‎External links</a>: </span> removed bogus entries</span>
+<span class="autocomment"><a href="#External_links">→<bdi dir="ltr">External links</bdi></a>: </span> removed bogus entries
 !!end
 
 !! test
@@ -12060,7 +12060,7 @@ comment local title=[[Main Page]]
 !! wikitext
 /* [[A link]] */
 !! html/php
-<span dir="auto"><span class="autocomment"><a href="#A_link">→‎&#91;[A link]]</a></span></span>
+<span class="autocomment"><a href="#A_link">→<bdi dir="ltr">&#91;[A link]]</bdi></a></span>
 !! end
 
 !! test
@@ -12070,7 +12070,7 @@ comment local title=[[Main Page]]
 !! wikitext
 /* {{foobar|param}} */
 !! html/php
-<span dir="auto"><span class="autocomment"><a href="#.7B.7Bfoobar.7Cparam.7D.7D">→‎{{foobar|param}}</a></span></span>
+<span class="autocomment"><a href="#.7B.7Bfoobar.7Cparam.7D.7D">→<bdi dir="ltr">{{foobar|param}}</bdi></a></span>
 !! end
 
 !! test
@@ -12180,7 +12180,7 @@ title=[[Main Page]]
 !! wikitext
 /* __hello__world__ */
 !! html/php
-<span dir="auto"><span class="autocomment"><a href="/wiki/Main_Page#hello_world" title="Main Page">→‎__hello__world__</a></span></span>
+<span class="autocomment"><a href="/wiki/Main_Page#hello_world" title="Main Page">→<bdi dir="ltr">__hello__world__</bdi></a></span>
 !! end
 
 !! test

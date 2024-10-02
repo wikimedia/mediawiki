@@ -9,6 +9,7 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Html\Html;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
@@ -206,12 +207,6 @@ class CommentParser {
 		$samePage = false,
 		$wikiId = false
 	) {
-		// @todo $append here is something of a hack to preserve the status
-		// quo. Someone who knows more about bidi and such should decide
-		// (1) what sensible rendering even *is* for an LTR edit summary on an RTL
-		// wiki, both when autocomments exist and when they don't, and
-		// (2) what markup will make that actually happen.
-		$append = '';
 		$comment = preg_replace_callback(
 		// To detect the presence of content before or after the
 		// auto-comment, we use capturing groups inside optional zero-width
@@ -219,7 +214,7 @@ class CommentParser {
 		// zero-width assertions optional, so wrap them in a non-capturing
 		// group.
 			'!(?:(?<=(.)))?/\*\s*(.*?)\s*\*/(?:(?=(.)))?!',
-			function ( $match ) use ( &$append, $selfLinkTarget, $samePage, $wikiId ) {
+			function ( $match ) use ( $selfLinkTarget, $samePage, $wikiId ) {
 				// Ensure all match positions are defined
 				$match += [ '', '', '', '' ];
 
@@ -260,7 +255,8 @@ class CommentParser {
 						}
 						$auto = $this->makeSectionLink(
 							$sectionTitle,
-							$this->userLang->getArrow() . $this->userLang->getDirMark() . $sectionText,
+							$this->userLang->getArrow() .
+								Html::rawElement( 'bdi', [ 'dir' => $this->userLang->getDir() ], $sectionText ),
 							$wikiId,
 							$selfLinkTarget
 						);
@@ -275,15 +271,13 @@ class CommentParser {
 					$auto .= wfMessage( 'colon-separator' )->inContentLanguage()->escaped();
 				}
 				if ( $auto ) {
-					$auto = '<span dir="auto"><span class="autocomment">' . $auto . '</span>';
-					$append .= '</span>';
+					$auto = Html::rawElement( 'span', [ 'class' => 'autocomment' ], $auto );
 				}
-				$comment = $pre . $auto;
-				return $comment;
+				return $pre . $auto;
 			},
 			$comment
 		);
-		return $comment . $append;
+		return $comment;
 	}
 
 	/**
