@@ -383,7 +383,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mRawText = $text;
 		$this->mCategories = $categoryLinks;
 		$this->mTitleText = $titletext;
-		foreach ( $languageLinks as $ll ) {
+		if ( $languageLinks === null ) { // T376323
+			wfDeprecated( __METHOD__ . ' with null $languageLinks', '1.43' );
+		}
+		foreach ( ( $languageLinks ?? [] ) as $ll ) {
 			$this->addLanguageLink( $ll );
 		}
 	}
@@ -936,7 +939,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	public function setLanguageLinks( $ll ) {
 		$old = $this->getLanguageLinks();
 		$this->mLanguageLinkMap = [];
-		foreach ( $ll as $l ) {
+		if ( $ll === null ) { // T376323
+			wfDeprecated( __METHOD__ . ' with null argument', '1.43' );
+		}
+		foreach ( ( $ll ?? [] ) as $l ) {
 			$this->addLanguageLink( $l );
 		}
 		return $old;
@@ -2917,7 +2923,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 
 		$this->mRawText = $jsonData['Text'];
-		$this->setLanguageLinks( $jsonData['LanguageLinks'] );
+		$this->mLanguageLinkMap = [];
+		foreach ( ( $jsonData['LanguageLinks'] ?? [] ) as $l ) {
+			$this->addLanguageLink( $l );
+		}
 		$this->mCategories = $jsonData['Categories'];
 		$this->mIndicators = $jsonData['Indicators'];
 		$this->mTitleText = $jsonData['TitleText'];
