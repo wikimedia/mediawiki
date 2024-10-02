@@ -242,6 +242,7 @@ because of Phabricator reports.
   (nan-latn-tailo).
 * (T375052) Added language support for Tigre (tig).
 * (T375999) Added language support for Luba-Lulua (lua).
+* (T376248) Added language support for Duala (dua).
 * …
 
 === Breaking changes in 1.43 ===
