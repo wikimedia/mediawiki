@@ -254,9 +254,9 @@ class StartUpModule extends Module {
 
 		// Register sources
 		$sources = $oldSources = $resourceLoader->getSources();
-		$this->getHookRunner()->onResourceLoaderModifyStartupSourceUrls( $sources, $context );
+		$this->getHookRunner()->onResourceLoaderModifyEmbeddedSourceUrls( $sources );
 		if ( array_keys( $sources ) !== array_keys( $oldSources ) ) {
-			throw new DomainException( 'ResourceLoaderModifyStartupSourceUrls hook must not add or remove sources' );
+			throw new DomainException( 'ResourceLoaderModifyEmbeddedSourceUrls hook must not add or remove sources' );
 		}
 		$out = ResourceLoader::makeLoaderSourcesScript( $context, $sources );
 

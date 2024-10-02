@@ -125,7 +125,7 @@ For notes on 1.42.x and older releases, see HISTORY.
   which takes two timestamps and a precision in order to calculate a more
   accurate text representation of duration.
 * Added an interactive mode to the install.php maintenance script.
-* The ResourceLoaderModifyStartupSourceUrls hook was added.
+* The ResourceLoaderModifyEmbeddedSourceUrls hook was added.
 * The AuthManagerFilterProviders hook was added.
 * The AuthManagerVerifyAuthentication hook was added.
 * The OutputPageRenderCategoryLink hook was added, as a replacement for the

@@ -657,7 +657,7 @@ mw.loader.register([
 	 * @dataProvider provideGetModuleRegistrations
 	 */
 	public function testGetModuleRegistrations( $case ) {
-		$this->clearHook( 'ResourceLoaderModifyStartupSourceUrls' );
+		$this->clearHook( 'ResourceLoaderModifyEmbeddedSourceUrls' );
 
 		$extraQuery = $case['extraQuery'] ?? [];
 		$context = $this->getResourceLoaderContext( $extraQuery );
@@ -729,7 +729,7 @@ mw.loader.register([
 	 * @dataProvider provideGetModuleRegistrationsProduction
 	 */
 	public function testGetModuleRegistrationsProduction( array $case ) {
-		$this->clearHook( 'ResourceLoaderModifyStartupSourceUrls' );
+		$this->clearHook( 'ResourceLoaderModifyEmbeddedSourceUrls' );
 
 		$context = $this->getResourceLoaderContext( [ 'debug' => 'false' ] );
 		$rl = $context->getResourceLoader();
@@ -749,8 +749,8 @@ mw.loader.register([
 	}
 
 	public function testGetModuleRegistrations_hook() {
-		$this->clearHook( 'ResourceLoaderModifyStartupSourceUrls' );
-		$this->setTemporaryHook( 'ResourceLoaderModifyStartupSourceUrls', function ( &$urls, $context ) {
+		$this->clearHook( 'ResourceLoaderModifyEmbeddedSourceUrls' );
+		$this->setTemporaryHook( 'ResourceLoaderModifyEmbeddedSourceUrls', function ( &$urls ) {
 			$urlUtils = $this->getServiceContainer()->getUrlUtils();
 			$urls['local'] = $urlUtils->expand( $urls['local'] );
 		} );
@@ -794,7 +794,7 @@ mw.loader.register([]);';
 	 * @dataProvider provideRegistrations
 	 */
 	public function testRegistrationsMinified( $modules ) {
-		$this->clearHook( 'ResourceLoaderModifyStartupSourceUrls' );
+		$this->clearHook( 'ResourceLoaderModifyEmbeddedSourceUrls' );
 
 		$context = $this->getResourceLoaderContext( [
 			'debug' => 'false',
@@ -822,7 +822,7 @@ mw.loader.register([]);';
 	 * @dataProvider provideRegistrations
 	 */
 	public function testRegistrationsUnminified( $modules ) {
-		$this->clearHook( 'ResourceLoaderModifyStartupSourceUrls' );
+		$this->clearHook( 'ResourceLoaderModifyEmbeddedSourceUrls' );
 
 		$context = $this->getResourceLoaderContext( [
 			'debug' => 'true',
@@ -861,7 +861,7 @@ mw.loader.register([
 	}
 
 	public function testGetVersionHash_varyConfig() {
-		$this->clearHook( 'ResourceLoaderModifyStartupSourceUrls' );
+		$this->clearHook( 'ResourceLoaderModifyEmbeddedSourceUrls' );
 		$context = $this->getResourceLoaderContext();
 
 		$module = new StartUpModule();
@@ -881,7 +881,7 @@ mw.loader.register([
 	}
 
 	public function testGetVersionHash_varyModule() {
-		$this->clearHook( 'ResourceLoaderModifyStartupSourceUrls' );
+		$this->clearHook( 'ResourceLoaderModifyEmbeddedSourceUrls' );
 
 		$context1 = $this->getResourceLoaderContext( [
 			'debug' => 'false',
@@ -939,7 +939,7 @@ mw.loader.register([
 	}
 
 	public function testGetVersionHash_varyDeps() {
-		$this->clearHook( 'ResourceLoaderModifyStartupSourceUrls' );
+		$this->clearHook( 'ResourceLoaderModifyEmbeddedSourceUrls' );
 
 		$context = $this->getResourceLoaderContext( [ 'debug' => 'false' ] );
 		$rl = $context->getResourceLoader();

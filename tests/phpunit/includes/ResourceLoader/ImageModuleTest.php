@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Tests\ResourceLoader;
 
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\FilePath;
@@ -159,6 +161,10 @@ class ImageModuleTest extends ResourceLoaderTestCase {
 	 * skin attributes.
 	 */
 	public function testResourceLoaderFilePath() {
+		$hookContainer = new HookContainer(
+			new StaticHookRegistry(),
+			$this->getServiceContainer()->getObjectFactory()
+		);
 		$basePath = __DIR__ . '/../../data/blahblah';
 		$filePath = __DIR__ . '/../../data/rlfilepath';
 		$testModule = new ImageModule( [
@@ -176,6 +182,7 @@ class ImageModuleTest extends ResourceLoaderTestCase {
 			],
 		] );
 		$testModule->setName( 'testModule' );
+		$testModule->setHookContainer( $hookContainer );
 		$expectedModule = new ImageModule( [
 			'localBasePath' => $filePath,
 			'remoteBasePath' => 'rlfilepath',
@@ -191,6 +198,7 @@ class ImageModuleTest extends ResourceLoaderTestCase {
 			],
 		] );
 		$expectedModule->setName( 'testModule' );
+		$expectedModule->setHookContainer( $hookContainer );
 
 		$context = $this->getResourceLoaderContext();
 		$this->assertEquals(
@@ -208,6 +216,10 @@ class ImageModuleTest extends ResourceLoaderTestCase {
 			$module,
 			__DIR__ . '/../../data/resourceloader'
 		);
+		$module->setHookContainer( new HookContainer(
+			new StaticHookRegistry(),
+			$this->getServiceContainer()->getObjectFactory()
+		) );
 		$styles = $module->getStyles( $this->getResourceLoaderContext() );
 		$this->assertEquals( $expected, $styles['all'] );
 	}
