@@ -7,7 +7,7 @@
 QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 
 ( function () {
-	var itemCounter, FullResourceProvider, EmptyResourceProvider, SingleResultResourceProvider;
+	let itemCounter, FullResourceProvider, EmptyResourceProvider, SingleResultResourceProvider;
 
 	itemCounter = 0;
 	FullResourceProvider = function ( config ) {
@@ -34,7 +34,7 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 	OO.inheritClass( SingleResultResourceProvider, mw.widgets.APIResultsProvider );
 
 	FullResourceProvider.prototype.getResults = function ( howMany ) {
-		var i, timer,
+		let i, timer,
 			result = [],
 			deferred = $.Deferred();
 
@@ -56,7 +56,7 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 	};
 
 	EmptyResourceProvider.prototype.getResults = function () {
-		var provider = this,
+		const provider = this,
 			deferred = $.Deferred(),
 			timer = setTimeout(
 				() => {
@@ -72,7 +72,7 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 	};
 
 	SingleResultResourceProvider.prototype.getResults = function ( howMany ) {
-		var timer,
+		let timer,
 			provider = this,
 			deferred = $.Deferred();
 
@@ -92,7 +92,7 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 	/* Tests */
 
 	QUnit.test( 'Query providers', ( assert ) => {
-		var done = assert.async(),
+		const done = assert.async(),
 			providers = [
 				new FullResourceProvider(),
 				new EmptyResourceProvider(),
@@ -161,7 +161,7 @@ QUnit.module( 'mediawiki.widgets.APIResultsQueue' );
 	} );
 
 	QUnit.test( 'Abort providers', ( assert ) => {
-		var done = assert.async(),
+		let done = assert.async(),
 			completed = false,
 			biggerQueue = new mw.widgets.APIResultsQueue( {
 				threshold: 5

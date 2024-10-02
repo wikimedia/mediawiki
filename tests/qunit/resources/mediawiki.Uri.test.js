@@ -126,7 +126,7 @@ QUnit.module( 'mediawiki.Uri', ( hooks ) => {
 	} );
 
 	QUnit.test( 'new mw.Uri( Object )', ( assert ) => {
-		var uri = new mw.Uri( {
+		let uri = new mw.Uri( {
 			protocol: 'http',
 			host: 'www.foo.local',
 			path: '/this'
@@ -153,7 +153,7 @@ QUnit.module( 'mediawiki.Uri', ( hooks ) => {
 	} );
 
 	QUnit.test( 'new mw.Uri( empty )', ( assert ) => {
-		var testuri, MyUri, uri;
+		let testuri, MyUri, uri;
 
 		testuri = 'http://example.org/w/index.php?a=1&a=2';
 		MyUri = mw.UriRelative( testuri );
@@ -175,7 +175,7 @@ QUnit.module( 'mediawiki.Uri', ( hooks ) => {
 	} );
 
 	QUnit.test( 'Setting properties', ( assert ) => {
-		var uriBase, uri;
+		let uriBase, uri;
 
 		uriBase = new mw.Uri( 'http://en.wiki.local/w/api.php' );
 
@@ -212,7 +212,7 @@ QUnit.module( 'mediawiki.Uri', ( hooks ) => {
 	} );
 
 	QUnit.test( '.getQueryString()', ( assert ) => {
-		var uri = new mw.Uri( 'http://search.example.com/?q=uri' );
+		let uri = new mw.Uri( 'http://search.example.com/?q=uri' );
 
 		assert.propContains( uri,
 			{
@@ -238,7 +238,7 @@ QUnit.module( 'mediawiki.Uri', ( hooks ) => {
 	} );
 
 	QUnit.test( 'arrayParams', ( assert ) => {
-		var uri1, uri2, uri3, expectedQ, expectedS,
+		let uri1, uri2, uri3, expectedQ, expectedS,
 			uriMissing, expectedMissingQ, expectedMissingS,
 			uriWeird, expectedWeirdQ, expectedWeirdS;
 
@@ -282,7 +282,7 @@ QUnit.module( 'mediawiki.Uri', ( hooks ) => {
 	} );
 
 	QUnit.test( '.clone()', ( assert ) => {
-		var original, clone;
+		let original, clone;
 
 		original = new mw.Uri( 'http://foo.example.org/index.php?one=1&two=2' );
 		clone = original.clone();
@@ -306,7 +306,7 @@ QUnit.module( 'mediawiki.Uri', ( hooks ) => {
 	} );
 
 	QUnit.test( '.toString() after query manipulation', ( assert ) => {
-		var uri;
+		let uri;
 
 		uri = new mw.Uri( 'http://www.example.com/dir/?m=foo&m=bar&n=1', {
 			overrideKeys: true
@@ -345,7 +345,7 @@ QUnit.module( 'mediawiki.Uri', ( hooks ) => {
 	} );
 
 	QUnit.test( 'Variable defaultUri', ( assert ) => {
-		var uri,
+		let uri,
 			href = 'http://example.org/w/index.php#here',
 			UriClass = mw.UriRelative( () => href );
 
@@ -415,7 +415,7 @@ QUnit.module( 'mediawiki.Uri', ( hooks ) => {
 	} );
 
 	QUnit.test( 'Parse a uri with an @ symbol in the path and query', ( assert ) => {
-		var uri = new mw.Uri( 'http://www.example.com/test@test?x=@uri&y@=uri&z@=@' );
+		const uri = new mw.Uri( 'http://www.example.com/test@test?x=@uri&y@=uri&z@=@' );
 		assert.propContains( uri,
 			{
 				protocol: 'http',
@@ -433,7 +433,7 @@ QUnit.module( 'mediawiki.Uri', ( hooks ) => {
 	} );
 
 	QUnit.test( 'Handle protocol-relative URLs', ( assert ) => {
-		var UriRel, uri;
+		let UriRel, uri;
 
 		UriRel = mw.UriRelative( 'glork://en.wiki.local/foo.php' );
 

@@ -1,6 +1,6 @@
 ( function () {
 
-	var NOW = 9012, // miliseconds
+	let NOW = 9012, // miliseconds
 		DEFAULT_DURATION = 5678, // seconds
 		jqcookie,
 		defaults = {
@@ -30,7 +30,7 @@
 	} );
 
 	QUnit.test( 'set( key, value )', ( assert ) => {
-		var call;
+		let call;
 
 		// Simple case
 		mw.cookie.set( 'foo', 'bar' );
@@ -63,7 +63,7 @@
 	} );
 
 	QUnit.test( 'set( key, value, expires )', ( assert ) => {
-		var date, options;
+		let date, options;
 
 		date = new Date();
 		date.setTime( 1234 );
@@ -101,7 +101,7 @@
 	} );
 
 	QUnit.test( 'set( key, value, options )', ( assert ) => {
-		var date, call;
+		let date, call;
 
 		mw.cookie.set( 'foo', 'bar', {
 			prefix: 'myPrefix',
@@ -142,7 +142,7 @@
 	} );
 
 	QUnit.test( 'get( key ) - no values', ( assert ) => {
-		var key, value;
+		let key, value;
 
 		mw.cookie.get( 'foo' );
 
@@ -169,7 +169,7 @@
 	} );
 
 	QUnit.test( 'get( key ) - with value', ( assert ) => {
-		var value;
+		let value;
 
 		jqcookie.returns( 'bar' );
 
@@ -178,7 +178,7 @@
 	} );
 
 	QUnit.test( 'get( key, prefix )', ( assert ) => {
-		var key;
+		let key;
 
 		mw.cookie.get( 'foo', 'bar' );
 

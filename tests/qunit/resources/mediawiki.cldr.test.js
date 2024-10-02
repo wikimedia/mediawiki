@@ -1,5 +1,5 @@
 ( function () {
-	var pluralTestcases = {
+	const pluralTestcases = {
 		/*
 		 * Sample:
 		 * languagecode : [
@@ -63,7 +63,7 @@
 
 	function pluralTest( langCode, tests ) {
 		QUnit.test( 'Plural Test for ' + langCode, ( assert ) => {
-			var i;
+			let i;
 			for ( i = 0; i < tests.length; i++ ) {
 				assert.strictEqual(
 					mw.language.convertPlural( tests[ i ][ 0 ], tests[ i ][ 1 ] ),

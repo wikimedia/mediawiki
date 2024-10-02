@@ -35,7 +35,7 @@
 	} );
 
 	QUnit.module( 'mw.Message', ( hooks ) => {
-		var parserDefaults;
+		let parserDefaults;
 		hooks.before( () => {
 			parserDefaults = jqueryMsg.getParserDefaults();
 			jqueryMsg.setParserDefaults( {
@@ -54,7 +54,7 @@
 		} );
 
 		QUnit.test( 'Construct', ( assert ) => {
-			var hello = mw.message( 'hello' );
+			const hello = mw.message( 'hello' );
 
 			assert.strictEqual( hello.map, mw.messages, 'internal "map" property' );
 			assert.strictEqual( hello.key, 'hello', 'internal "key" property' );
@@ -62,38 +62,38 @@
 		} );
 
 		QUnit.test( 'plain()', ( assert ) => {
-			var hello = mw.message( 'hello' );
+			const hello = mw.message( 'hello' );
 			assert.strictEqual( hello.plain(), 'Hello <b>awesome</b> world', 'hello' );
-			var script = mw.message( 'script' );
+			const script = mw.message( 'script' );
 			assert.strictEqual( script.plain(), '<script  >alert( "Who?" );</script>', 'script' );
 		} );
 
 		QUnit.test( 'escaped()', ( assert ) => {
-			var hello = mw.message( 'hello' );
+			const hello = mw.message( 'hello' );
 			assert.strictEqual( hello.escaped(), 'Hello &lt;b&gt;awesome&lt;/b&gt; world', 'hello' );
-			var script = mw.message( 'script' );
+			const script = mw.message( 'script' );
 			assert.strictEqual( script.escaped(), '&lt;script  &gt;alert( &quot;Who?&quot; );&lt;/script&gt;', 'script' );
 		} );
 
 		QUnit.test( 'parse()', ( assert ) => {
-			var hello = mw.message( 'hello' );
+			const hello = mw.message( 'hello' );
 			assert.strictEqual( hello.parse(), 'Hello <b>awesome</b> world', 'hello' );
-			var script = mw.message( 'script' );
+			const script = mw.message( 'script' );
 			assert.strictEqual( script.parse(), '&lt;script  &gt;alert( "Who?" );&lt;/script&gt;', 'script' );
 		} );
 
 		QUnit.test( 'exists()', ( assert ) => {
-			var hello = mw.message( 'hello' );
+			const hello = mw.message( 'hello' );
 			assert.true( hello.exists(), 'Existing message' );
 
-			var goodbye = mw.message( 'goodbye' );
+			const goodbye = mw.message( 'goodbye' );
 			assert.false( goodbye.exists(), 'Non-existing message' );
 		} );
 
 		QUnit.test( 'toString() non-existing', ( assert ) => {
 			mw.config.set( 'wgUserLanguage', 'en' );
-			var obj = mw.message( 'good<>bye' );
-			var expected = '⧼good&lt;&gt;bye⧽';
+			const obj = mw.message( 'good<>bye' );
+			const expected = '⧼good&lt;&gt;bye⧽';
 			assert.strictEqual( obj.plain(), expected, 'plain' );
 			assert.strictEqual( obj.text(), expected, 'text' );
 			assert.strictEqual( obj.escaped(), expected, 'escaped' );
@@ -123,8 +123,8 @@
 				'test-plural': 'There {{PLURAL:$1|is|are}} $1 {{PLURAL:$1|result|results}}'
 			} );
 
-			var obj = mw.message( 'test-plural', 6 );
-			var expected = 'There are 6 results';
+			let obj = mw.message( 'test-plural', 6 );
+			const expected = 'There are 6 results';
 
 			assert.strictEqual( obj.plain(), 'There {{PLURAL:6|is|are}} 6 {{PLURAL:6|result|results}}', 'plain applies parameter but leaves magic words' );
 			assert.strictEqual( obj.text(), expected, 'Plural text' );

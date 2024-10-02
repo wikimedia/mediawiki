@@ -37,7 +37,7 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 	} );
 
 	QUnit.test( 'mw.hook - Variadic firing data and array data type', ( assert ) => {
-		var data;
+		let data;
 		mw.hook( 'test.data' ).add( ( one, two ) => {
 			data = { arg1: one, arg2: two };
 		} );
@@ -225,9 +225,9 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 	} );
 
 	QUnit.test( 'mw.log.makeDeprecated()', function ( assert ) {
-		var track = [];
-		var log = [];
-		var fn;
+		let track = [];
+		let log = [];
+		let fn;
 		this.sandbox.stub( mw, 'track', ( topic, key ) => {
 			if ( topic === 'mw.deprecate' ) {
 				track.push( key );
@@ -238,7 +238,7 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 		} );
 
 		fn = mw.log.makeDeprecated( 'key', 'Warning.' );
-		for ( var i = 0; i <= 3; i++ ) {
+		for ( let i = 0; i <= 3; i++ ) {
 			fn();
 		}
 		assert.deepEqual( track, [ 'key' ], 'track' );
@@ -247,7 +247,7 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 		log = [];
 		track = [];
 		fn = mw.log.makeDeprecated( null, 'Warning.' );
-		for ( var j = 0; j <= 3; j++ ) {
+		for ( let j = 0; j <= 3; j++ ) {
 			fn();
 		}
 		assert.deepEqual( track, [], 'no track' );
@@ -255,8 +255,8 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 	} );
 
 	QUnit.test( 'mw.log.deprecate()', function ( assert ) {
-		var track = [];
-		var log = [];
+		let track = [];
+		let log = [];
 		this.sandbox.stub( mw, 'track', ( topic, key ) => {
 			if ( topic === 'mw.deprecate' ) {
 				track.push( key );
@@ -269,7 +269,7 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 			return 42;
 		}
 
-		var obj = {};
+		const obj = {};
 		mw.log.deprecate( obj, 'foo', getFoo );
 
 		// By default only logging and no tracking
@@ -280,7 +280,7 @@ QUnit.module( 'mediawiki.base', ( hooks ) => {
 		// Ignore later calls from the same source code line
 		log = [];
 		track = [];
-		for ( var i = 0; i <= 3; i++ ) {
+		for ( let i = 0; i <= 3; i++ ) {
 			obj.foo();
 		}
 		assert.deepEqual( track, [], 'multi track' );

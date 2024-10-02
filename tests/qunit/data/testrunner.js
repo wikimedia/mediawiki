@@ -42,7 +42,7 @@
 	};
 	QUnit.hooks.beforeEach( function () {
 		// Sinon sandbox
-		var config = sinon.getConfig( sinon.config );
+		const config = sinon.getConfig( sinon.config );
 		config.injectInto = this;
 		sinon.sandbox.create( config );
 	} );
@@ -92,8 +92,8 @@
 	QUnit.newMwEnvironment = function newMwEnvironment( localEnv ) {
 		localEnv = localEnv || {};
 
-		var orgBeforeEach = localEnv.beforeEach;
-		var orgAfterEach = localEnv.afterEach;
+		const orgBeforeEach = localEnv.beforeEach;
+		const orgAfterEach = localEnv.afterEach;
 
 		localEnv.beforeEach = function () {
 			mw.config.values = deepClone( liveConfig );
@@ -119,7 +119,7 @@
 			}
 		};
 		localEnv.afterEach = function () {
-			var ret;
+			let ret;
 			if ( orgAfterEach ) {
 				ret = orgAfterEach.apply( this, arguments );
 			}
@@ -151,11 +151,11 @@
 	 * @return {jQuery.Promise}
 	 */
 	QUnit.whenPromisesComplete = function () {
-		var altPromises = [];
+		const altPromises = [];
 
 		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( arguments, ( i, arg ) => {
-			var alt = $.Deferred();
+			const alt = $.Deferred();
 			altPromises.push( alt );
 
 			// Whether this one fails or not, forwards it to
@@ -176,14 +176,14 @@
 	 */
 	function getDomStructure( node ) {
 		if ( node.nodeType === Node.ELEMENT_NODE ) {
-			var processedChildren = [];
+			const processedChildren = [];
 			$( node ).contents().each( ( i, el ) => {
 				if ( el.nodeType === Node.ELEMENT_NODE || el.nodeType === Node.TEXT_NODE ) {
 					processedChildren.push( getDomStructure( el ) );
 				}
 			} );
 
-			var attribs = {};
+			const attribs = {};
 			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( node.attributes, ( i, attrib ) => {
 				attribs[ attrib.name ] = attrib.value;
@@ -207,11 +207,11 @@
 	 * @return {Object}
 	 */
 	function getHtmlStructure( html ) {
-		var el = $( '<div>' ).append( html )[ 0 ];
+		const el = $( '<div>' ).append( html )[ 0 ];
 		return getDomStructure( el );
 	}
 
-	var addons = {
+	const addons = {
 
 		/**
 		 * Assert numerical value less than X
@@ -285,7 +285,7 @@
 		 * @param {string} message Assertion message.
 		 */
 		domEqual: function ( actual, expectedStruct, message ) {
-			var actualStruct = getDomStructure( actual );
+			const actualStruct = getDomStructure( actual );
 			this.pushResult( {
 				result: QUnit.equiv( actualStruct, expectedStruct ),
 				actual: actualStruct,
@@ -302,7 +302,7 @@
 		 * @param {string} message Assertion message.
 		 */
 		htmlEqual: function ( actualHtml, expectedHtml, message ) {
-			var actual = getHtmlStructure( actualHtml ),
+			const actual = getHtmlStructure( actualHtml ),
 				expected = getHtmlStructure( expectedHtml );
 			this.pushResult( {
 				result: QUnit.equiv( actual, expected ),
@@ -320,7 +320,7 @@
 		 * @param {string} message Assertion message.
 		 */
 		notHtmlEqual: function ( actualHtml, expectedHtml, message ) {
-			var actual = getHtmlStructure( actualHtml ),
+			const actual = getHtmlStructure( actualHtml ),
 				expected = getHtmlStructure( expectedHtml );
 
 			this.pushResult( {
@@ -345,13 +345,13 @@
 		// 2. Reduce noise in the output.
 		// 3. Makes it actually run instead of skipped when selecting a single module,
 		//    or re-running a single test.
-		var issues = [];
+		const issues = [];
 		function ensure( ok, issue ) {
 			if ( !ok ) {
 				issues.push( issue );
 			}
 		}
-		var env = QUnit.newMwEnvironment( {
+		const env = QUnit.newMwEnvironment( {
 			beforeEach: function () {
 				this.mwHtmlLive = mw.html;
 				mw.html = {
@@ -389,7 +389,7 @@
 		ensure( mw.messages.get( 'testMsg' ) === null, 'newMwEnvironment leaks messages' );
 
 		mw.loader.getModuleNames().forEach( ( name ) => {
-			var state = mw.loader.getState( name );
+			const state = mw.loader.getState( name );
 			if ( state === 'error' ) {
 				issues.push( `Module "${ name }" in error state` );
 			} else if ( state === 'missing' ) {

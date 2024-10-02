@@ -27,7 +27,7 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 
 	QUnit.test( 'escapeIdForAttribute', ( assert ) => {
 		// Test cases are kept in sync with SanitizerTest.php
-		var text = 'foo тест_#%!\'()[]:<>',
+		const text = 'foo тест_#%!\'()[]:<>',
 			legacyEncoded = 'foo_.D1.82.D0.B5.D1.81.D1.82_.23.25.21.27.28.29.5B.5D:.3C.3E',
 			html5Encoded = 'foo_тест_#%!\'()[]:<>',
 			// Settings: this is $wgFragmentMode
@@ -55,7 +55,7 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 
 	QUnit.test( 'escapeIdForLink', ( assert ) => {
 		// Test cases are kept in sync with SanitizerTest.php
-		var text = 'foo тест_#%!\'()[]:<>',
+		const text = 'foo тест_#%!\'()[]:<>',
 			legacyEncoded = 'foo_.D1.82.D0.B5.D1.81.D1.82_.23.25.21.27.28.29.5B.5D:.3C.3E',
 			html5Encoded = 'foo_тест_#%!\'()[]:<>',
 			// Settings: this is wgFragmentMode
@@ -120,7 +120,7 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 	} );
 
 	QUnit.test( 'getUrl', ( assert ) => {
-		var href;
+		let href;
 		mw.config.set( {
 			wgScript: '/w/index.php',
 			wgArticlePath: '/wiki/$1',
@@ -200,7 +200,7 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 	} );
 
 	QUnit.test( 'addCSS', ( assert ) => {
-		var $el, style;
+		let $el, style;
 		$el = $( '<div>' ).attr( 'id', 'mw-addcsstest' ).appendTo( '#qunit-fixture' );
 
 		style = util.addCSS( '#mw-addcsstest { visibility: hidden; }' );
@@ -214,7 +214,7 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 	} );
 
 	QUnit.test( 'getParamValue', ( assert ) => {
-		var url;
+		let url;
 
 		url = 'http://example.org/?foo=wrong&foo=right#&foo=bad';
 		assert.strictEqual( util.getParamValue( 'foo', url ), 'right', 'Use latest one, ignore hash' );
@@ -307,7 +307,7 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 	} );
 
 	QUnit.test( 'addPortletLink (Vector list)', ( assert ) => {
-		var link;
+		let link;
 
 		$( '#qunit-fixture' ).html(
 			'<div class="portlet" id="p-toolbox">' +
@@ -342,7 +342,7 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 	} );
 
 	QUnit.test( 'addPortletLink (Minerva list)', ( assert ) => {
-		var link;
+		let link;
 
 		$( '#qunit-fixture' ).html( '<ul id="p-list"></ul>' );
 		link = util.addPortletLink( 'p-list', '#', 'Foo', 't-foo' );
@@ -370,7 +370,7 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 	} );
 
 	QUnit.test( 'addPortletLink (nextNode option)', ( assert ) => {
-		var linkFoo, link;
+		let linkFoo, link;
 
 		$( '#qunit-fixture' ).html( '<ul id="p-toolbox"></ul>' );
 		linkFoo = util.addPortletLink( 'p-toolbox', 'https://foo.test/',
@@ -399,7 +399,7 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 	} );
 
 	QUnit.test( 'addPortletLink (accesskey option)', ( assert ) => {
-		var link;
+		let link;
 		$( '#qunit-fixture' ).html( '<ul id="p-toolbox"></ul>' );
 
 		link = util.addPortletLink( 'p-toolbox', '#', 'Label', null, 'Tooltip [shift-x]', 'z' );
@@ -615,7 +615,7 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		}
 	}, ( assert, thisCase ) => {
 		mw.util.setOptionsForTest( { GenerateThumbnailOnParse: false } );
-		var data = mw.util.parseImageUrl( thisCase.url );
+		const data = mw.util.parseImageUrl( thisCase.url );
 		if ( !thisCase.name ) {
 			assert.strictEqual( data, null, 'return null' );
 			return;
@@ -636,7 +636,7 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		mw.util.setOptionsForTest( { GenerateThumbnailOnParse: true } );
 		this.sandbox.stub( mw.config.values, 'wgScript', '/w' );
 
-		var resizeUrl = mw.util.parseImageUrl( '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/939px-thumbnail.jpg' ).resizeUrl;
+		const resizeUrl = mw.util.parseImageUrl( '//upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Princess_Alexandra_of_Denmark_%28later_Queen_Alexandra%2C_wife_of_Edward_VII%29_with_her_two_eldest_sons%2C_Prince_Albert_Victor_%28Eddy%29_and_George_Frederick_Ernest_Albert_%28later_George_V%29.jpg/939px-thumbnail.jpg' ).resizeUrl;
 
 		assert.strictEqual( typeof resizeUrl, 'function', 'resizeUrl is set' );
 		assert.strictEqual( resizeUrl( 500 ), '/w?title=Special:Redirect/file/Princess_Alexandra_of_Denmark_(later_Queen_Alexandra,_wife_of_Edward_VII)_with_her_two_eldest_sons,_Prince_Albert_Victor_(Eddy)_and_George_Frederick_Ernest_Albert_(later_George_V).jpg&width=500', 'Resized URL is correct' );
@@ -675,7 +675,7 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 	} );
 
 	QUnit.test( 'debounce(Function, timeout)', async function ( assert ) {
-		var fn = mw.util.debounce( ( data ) => {
+		const fn = mw.util.debounce( ( data ) => {
 			assert.step( data );
 		}, 5 );
 
@@ -694,7 +694,7 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 	} );
 
 	QUnit.test( 'debounce(Function, timeout, immediate=true)', async function ( assert ) {
-		var fn = mw.util.debounce( ( data ) => {
+		const fn = mw.util.debounce( ( data ) => {
 			assert.step( data );
 		}, 5, true );
 
@@ -713,7 +713,7 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 	} );
 
 	QUnit.test( 'debounce(timeout, Function) [old signature]', async function ( assert ) {
-		var fn = mw.util.debounce( 5, ( data ) => {
+		const fn = mw.util.debounce( 5, ( data ) => {
 			assert.step( data );
 		} );
 
@@ -732,7 +732,7 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 	} );
 
 	QUnit.test( 'init (.mw-body-primary)', ( assert ) => {
-		var node = $( '<div class="mw-body-primary mw-body">primary</div>' )[ 0 ];
+		const node = $( '<div class="mw-body-primary mw-body">primary</div>' )[ 0 ];
 		$( '#qunit-fixture' ).append(
 			'<div id="mw-content-text"></div>',
 			'<div class="mw-body"></div>',
@@ -744,7 +744,7 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 	} );
 
 	QUnit.test( 'init (first of multiple .mw-body)', ( assert ) => {
-		var node = $( '<div class="mw-body">first</div>' )[ 0 ];
+		const node = $( '<div class="mw-body">first</div>' )[ 0 ];
 		$( '#qunit-fixture' ).append(
 			'<div id="mw-content-text"></div>',
 			node,
@@ -758,7 +758,7 @@ QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 	} );
 
 	QUnit.test( 'init (#mw-content-text fallback)', ( assert ) => {
-		var node = $( '<div id="mw-content-text">fallback</div>' )[ 0 ];
+		const node = $( '<div id="mw-content-text">fallback</div>' )[ 0 ];
 		$( '#qunit-fixture' ).append(
 			node
 		);

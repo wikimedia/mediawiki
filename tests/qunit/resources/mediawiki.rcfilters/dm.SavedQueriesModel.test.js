@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 ( function () {
 	const rcfilters = require( 'mediawiki.rcfilters.filters.ui' );
-	var filterDefinition = [ {
+	const filterDefinition = [ {
 			name: 'group1',
 			type: 'send_unselected_if_any',
 			filters: [
@@ -104,7 +104,7 @@
 			}
 		},
 		removeHighlights = function ( data ) {
-			var copy = $.extend( true, {}, data );
+			const copy = $.extend( true, {}, data );
 			copy.queries[ 1234 ].data.highlights = {};
 			return copy;
 		};
@@ -112,7 +112,7 @@
 	QUnit.module( 'mediawiki.rcfilters - SavedQueriesModel' );
 
 	QUnit.test( 'Initializing queries', ( assert ) => {
-		var filtersModel = new rcfilters.dm.FiltersViewModel(),
+		const filtersModel = new rcfilters.dm.FiltersViewModel(),
 			queriesModel = new rcfilters.dm.SavedQueriesModel( filtersModel ),
 			exampleQueryStructure = {
 				version: '2',
@@ -216,7 +216,7 @@
 	} );
 
 	QUnit.test( 'Adding new queries', ( assert ) => {
-		var filtersModel = new rcfilters.dm.FiltersViewModel(),
+		const filtersModel = new rcfilters.dm.FiltersViewModel(),
 			queriesModel = new rcfilters.dm.SavedQueriesModel( filtersModel ),
 			cases = [
 				{
@@ -289,7 +289,7 @@
 		queriesModel.initialize( {} );
 
 		cases.forEach( ( testCase ) => {
-			var itemID = queriesModel.addNewQuery( ...testCase.methodParams ),
+			const itemID = queriesModel.addNewQuery( ...testCase.methodParams ),
 				item = queriesModel.getItemByID( itemID );
 
 			assert.deepEqual(
@@ -315,7 +315,7 @@
 	} );
 
 	QUnit.test( 'Manipulating queries', ( assert ) => {
-		var id1, id2, item1, matchingItem,
+		let id1, id2, item1, matchingItem,
 			queriesStructure = {},
 			filtersModel = new rcfilters.dm.FiltersViewModel(),
 			queriesModel = new rcfilters.dm.SavedQueriesModel( filtersModel );
@@ -443,7 +443,7 @@
 	} );
 
 	QUnit.test( 'Testing invert property', ( assert ) => {
-		var itemID, item,
+		let itemID, item,
 			filtersModel = new rcfilters.dm.FiltersViewModel(),
 			queriesModel = new rcfilters.dm.SavedQueriesModel( filtersModel ),
 			viewsDefinition = {

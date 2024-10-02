@@ -47,7 +47,7 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 	} );
 
 	QUnit.test( 'getGroups (callback)', ( assert ) => {
-		var done = assert.async();
+		const done = assert.async();
 		mw.config.set( 'wgUserGroups', [ '*', 'user' ] );
 
 		mw.user.getGroups( ( groups ) => {
@@ -65,7 +65,7 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 	} );
 
 	QUnit.test( 'getRights (callback)', function ( assert ) {
-		var done = assert.async();
+		const done = assert.async();
 
 		this.server.respond( [ 200, { 'Content-Type': 'application/json' },
 			'{ "query": { "userinfo": { "groups": [ "unused" ], "rights": [ "read", "edit", "createtalk" ] } } }'
@@ -88,7 +88,7 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 	} );
 
 	QUnit.test( 'generateRandomSessionId', ( assert ) => {
-		var result, result2;
+		let result, result2;
 
 		result = mw.user.generateRandomSessionId();
 		assert.strictEqual( typeof result, 'string', 'type' );
@@ -101,7 +101,7 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 	} );
 
 	QUnit.test( 'generateRandomSessionId (fallback)', ( assert ) => {
-		var result, result2;
+		let result, result2;
 
 		// Pretend crypto API is not there to test the Math.random fallback
 		delete window.crypto;
@@ -123,7 +123,7 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 	} );
 
 	QUnit.test( 'getPageviewToken', ( assert ) => {
-		var result = mw.user.getPageviewToken(),
+		const result = mw.user.getPageviewToken(),
 			result2 = mw.user.getPageviewToken();
 		assert.strictEqual( typeof result, 'string', 'type' );
 		assert.strictEqual( /^[a-f0-9]{20}$/.test( result ), true, '20 HEX symbols string' );
@@ -131,7 +131,7 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 	} );
 
 	QUnit.test( 'sessionId', ( assert ) => {
-		var result = mw.user.sessionId(),
+		const result = mw.user.sessionId(),
 			result2 = mw.user.sessionId();
 		assert.strictEqual( typeof result, 'string', 'type' );
 		assert.strictEqual( result.trim(), result, 'no leading or trailing whitespace' );
@@ -139,8 +139,8 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 	} );
 
 	QUnit.module( 'clientPrefs', ( hooks ) => {
-		var CLIENT_PREF_COOKIE_NAME = 'mwclientpreferences';
-		var docClass;
+		const CLIENT_PREF_COOKIE_NAME = 'mwclientpreferences';
+		let docClass;
 
 		hooks.beforeEach( () => {
 			docClass = document.documentElement.getAttribute( 'class' );
@@ -157,9 +157,9 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 
 		QUnit.test( 'get() [from HTML element]', ( assert ) => {
 			document.documentElement.setAttribute( 'class', 'client-js font-size-clientpref-1 font-size-clientpref-unrelated-class invalid-clientpref-bad-value ambiguous-clientpref-off ambiguous-clientpref-on' );
-			var result = mw.user.clientPrefs.get( 'font-size' );
-			var badValue = mw.user.clientPrefs.get( 'invalid' );
-			var ambiguousValue = mw.user.clientPrefs.get( 'ambiguous' );
+			const result = mw.user.clientPrefs.get( 'font-size' );
+			const badValue = mw.user.clientPrefs.get( 'invalid' );
+			const ambiguousValue = mw.user.clientPrefs.get( 'ambiguous' );
 			assert.strictEqual( result, '1', 'client preferences are read from HTML element' );
 			assert.strictEqual( badValue, false, 'classes in the wrong format are ignored.' );
 			assert.strictEqual( ambiguousValue, false, 'ambiguous values are resolved to false' );
@@ -167,15 +167,15 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 
 		QUnit.test( 'get() [never read from cookie]', ( assert ) => {
 			mw.cookie.set( CLIENT_PREF_COOKIE_NAME, 'unknown~500' );
-			var resultUnknown = mw.user.clientPrefs.get( 'unknown' );
+			const resultUnknown = mw.user.clientPrefs.get( 'unknown' );
 			assert.false( resultUnknown,
 				'if an appropriate class is not on the HTML element it returns false even if there is a value in the cookie' );
 		} );
 
 		QUnit.test( 'set() [valid preferences]', ( assert ) => {
 			document.documentElement.classList.add( 'limited-width-clientpref-1', 'font-size-clientpref-100' );
-			var resultLimitedWidth = mw.user.clientPrefs.set( 'limited-width', '0' );
-			var resultFontSize = mw.user.clientPrefs.set( 'font-size', '10' );
+			const resultLimitedWidth = mw.user.clientPrefs.set( 'limited-width', '0' );
+			const resultFontSize = mw.user.clientPrefs.set( 'font-size', '10' );
 			assert.true( resultLimitedWidth, 'the client preference limited width was set correctly' );
 			assert.true( resultFontSize, 'the client preference font size was set correctly' );
 			assert.true( document.documentElement.classList.contains( 'limited-width-clientpref-0' ),
@@ -193,7 +193,7 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 
 		QUnit.test( 'set() [invalid preferences]', ( assert ) => {
 			document.documentElement.classList.add( 'client-js' );
-			var result = mw.user.clientPrefs.set( 'client', 'nojs' );
+			const result = mw.user.clientPrefs.set( 'client', 'nojs' );
 			assert.false( result, 'the client preference was rejected (lacking -clientpref- suffix)' );
 			assert.true( document.documentElement.classList.contains( 'client-js' ), 'the classes on the document were not changed' );
 		} );
@@ -209,7 +209,7 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 				[ 'feature', '' ],
 				[ 'foo!client~no-js!bar', 'hi' ]
 			].forEach( ( test, i ) => {
-				var result = mw.user.clientPrefs.set( test[ 0 ], test[ 1 ] );
+				const result = mw.user.clientPrefs.set( test[ 0 ], test[ 1 ] );
 				assert.false( result, 'the client preference was rejected (invalid characters in name) (test case ' + i + ')' );
 			} );
 
@@ -218,7 +218,7 @@ QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment(), ( hooks ) => {
 
 		QUnit.test( 'set() [create cookie on change]', ( assert ) => {
 			document.documentElement.setAttribute( 'class', 'dark-mode-clientpref-enabled' );
-			var result = mw.user.clientPrefs.set( 'dark-mode', 'disabled' );
+			let result = mw.user.clientPrefs.set( 'dark-mode', 'disabled' );
 			assert.true( result, 'the client preference was stored successfully' );
 			assert.strictEqual(
 				document.documentElement.getAttribute( 'class' ),

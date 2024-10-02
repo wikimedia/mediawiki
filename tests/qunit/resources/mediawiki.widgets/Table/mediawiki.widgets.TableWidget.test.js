@@ -5,7 +5,7 @@
 QUnit.module( 'mediawiki.widgets.TableWidget' );
 
 ( function () {
-	var widgetA = new mw.widgets.TableWidget( {
+	const widgetA = new mw.widgets.TableWidget( {
 			rows: [
 				{
 					key: 'foo',
