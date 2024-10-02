@@ -198,9 +198,11 @@ class ProtectedPagesPager extends TablePager {
 				} else {
 					$formatted = $linkRenderer->makeLink( $title );
 				}
+				$formatted = Html::rawElement( 'bdi', [
+					'dir' => $this->getLanguage()->getDir()
+				], $formatted );
 				if ( $row->page_len !== null ) {
-					$formatted .= $this->getLanguage()->getDirMark() .
-						' ' . Html::rawElement(
+					$formatted .= ' ' . Html::rawElement(
 							'span',
 							[ 'class' => 'mw-protectedpages-length' ],
 							Linker::formatRevisionSize( $row->page_len )
