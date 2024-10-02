@@ -101,7 +101,8 @@
 			"LR0725",
 			"기나ㅏㄴ",
 			"이강철",
-			"Herness17"
+			"Herness17",
+			"*Youngjin"
 		]
 	},
 	"tog-underline": "링크에 밑줄 긋기:",
@@ -4202,5 +4203,6 @@
 	"renameuser-move-log": "\"[[User:$1|$1]]\" {{GENDER:$2|사용자}}의 이름을 \"[[User:$2|$2]]\"(으)로 바꿀 때 문서를 자동으로 이동했습니다",
 	"action-renameuser": "사용자 이름을 바꿀",
 	"right-renameuser": "사용자 이름 바꾸기",
-	"renameuser-renamed-notice": "이 사용자의 이름을 바꾸었습니다.\n참조를 위해 아래에 이름 바꾸기 기록을 제공합니다."
+	"renameuser-renamed-notice": "이 사용자의 이름을 바꾸었습니다.\n참조를 위해 아래에 이름 바꾸기 기록을 제공합니다.",
+	"log-unknown-action": "[[$1]]에 대해 알 수 없는 \"$2\" 작업을 수행했습니다"
 }
