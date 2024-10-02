@@ -773,7 +773,6 @@
 	"edit-recovery-loaded-message-different-rev": "<em>请注意，此页面在您开始编辑后发生了其他更改。</em>",
 	"edit-recovery-loaded-message-different-rev-publish": "<em>请在发布前检查您的更改。</em>",
 	"edit-recovery-loaded-message-different-rev-save": "<em>请在保存前检查您的更改。</em>",
-	"edit-recovery-loaded-show": "显示更改",
 	"edit-recovery-loaded-discard": "放弃更改",
 	"summary": "摘要：",
 	"subject": "主题：",

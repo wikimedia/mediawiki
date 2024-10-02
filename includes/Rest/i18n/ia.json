@@ -14,6 +14,7 @@
 	"rest-nonexistent-revision": "Le version specificate ($1) non existe",
 	"rest-nonexistent-user": "Le usator specificate ($1) non existe",
 	"rest-invalid-user": "Le nomine de usator specificate ($1) non es valide",
+	"rest-invalid-ip": "Le adresse IP specificate ($1) non es valide",
 	"rest-invalid-title": "Le titulo specificate ($1) non refere a un pagina wiki.",
 	"rest-unsupported-content-type": "Typo de contento (Content-Type) non supportate: $1",
 	"rest-permission-error": "Permission refusate: $1",

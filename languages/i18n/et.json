@@ -604,7 +604,6 @@
 	"edit-recovery-loaded-message-different-rev": "<em>Pane tähele, et lehekülge võib olla muudetud pärast seda, kui redigeerimist alustasid.</em>",
 	"edit-recovery-loaded-message-different-rev-publish": "<em>Palun vaata enda muudatused enne avaldamist üle.</em>",
 	"edit-recovery-loaded-message-different-rev-save": "<em>Palun vaata enda muudatused enne salvestamist üle.</em>",
-	"edit-recovery-loaded-show": "Näita muudatusi",
 	"edit-recovery-loaded-discard": "Hülga muudatused",
 	"summary": "Resümee:",
 	"subject": "Teema:",

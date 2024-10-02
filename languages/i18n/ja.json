@@ -721,7 +721,6 @@
 	"edit-recovery-loaded-message-different-rev": "<em>編集を開始してから、ページが変更された可能性があります。</em>",
 	"edit-recovery-loaded-message-different-rev-publish": "<em>公開する前に変更を確認してください。</em>",
 	"edit-recovery-loaded-message-different-rev-save": "<em>保存する前に変更を確認してください。</em>",
-	"edit-recovery-loaded-show": "差分を表示",
 	"edit-recovery-loaded-discard": "変更内容を破棄",
 	"summary": "編集内容の要約:",
 	"subject": "題名:",

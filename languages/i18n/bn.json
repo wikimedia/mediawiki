@@ -631,7 +631,6 @@
 	"edit-recovery-loaded-message-different-rev": "<em>লক্ষ্য করুন যে আপনি সম্পাদনা শুরু করার পর থেকে হয়তো পাতাটি পরিবর্তিত হয়েছে।</em>",
 	"edit-recovery-loaded-message-different-rev-publish": "<em>প্রকাশ করার পূর্বে অনুগ্রহ করে আপনার পরিবর্তনগুলি পর্যালোচনা করুন।</em>",
 	"edit-recovery-loaded-message-different-rev-save": "<em>সংরক্ষণ করার পূর্বে অনুগ্রহ করে আপনার পরিবর্তনগুলি পর্যালোচনা করুন।</em>",
-	"edit-recovery-loaded-show": "পরিবর্তনগুলি দেখুন",
 	"edit-recovery-loaded-discard": "পরিবর্তন বাতিল করুন",
 	"summary": "সারাংশ:",
 	"subject": "বিষয়:",

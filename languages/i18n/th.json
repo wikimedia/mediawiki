@@ -603,7 +603,6 @@
 	"edit-recovery-loaded-title": "กู้คืนการเปลี่ยนแปลงแล้ว",
 	"edit-recovery-loaded-message": "การเปลี่ยนแปลงที่ไม่ได้บันทึกของคุณได้ถูกกู้คืนโดยอัตโนมัติแล้ว",
 	"edit-recovery-loaded-message-different-rev": "หมายเหตุว่าหน้าอาจมีการเปลี่ยนแปลงนับตั้งแต่คุณเริ่มแก้ไข ตรวจสอบการเปลี่ยนแปลงของคุณก่อนเริ่มบันทึก",
-	"edit-recovery-loaded-show": "แสดงการเปลี่ยนแปลง",
 	"edit-recovery-loaded-discard": "ละทิ้งการเปลี่ยนแปลง",
 	"summary": "ความย่อ:",
 	"subject": "เรื่อง:",

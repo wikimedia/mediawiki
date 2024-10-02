@@ -630,7 +630,6 @@
 	"edit-recovery-loaded-message-different-rev": "<em>Merk at siden kan ha blitt endret siden du begynte å redigere.</em>",
 	"edit-recovery-loaded-message-different-rev-publish": "<em>Se gjennom endringene dine før du publiserer.</em>",
 	"edit-recovery-loaded-message-different-rev-save": "<em>Se gjennom endringene dine før du lagrer.</em>",
-	"edit-recovery-loaded-show": "Vis endringer",
 	"edit-recovery-loaded-discard": "Forkast endringer",
 	"summary": "Redigeringsforklaring:",
 	"subject": "Emne:",

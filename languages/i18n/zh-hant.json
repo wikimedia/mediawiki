@@ -711,7 +711,6 @@
 	"edit-recovery-loaded-message-different-rev": "<em>請注意，此頁面在您開始編輯後已有其他變更。</em>",
 	"edit-recovery-loaded-message-different-rev-publish": "<em>請在發布之前檢查您的變更。</em>",
 	"edit-recovery-loaded-message-different-rev-save": "<em>請在儲存之前檢查您的變更。</em>",
-	"edit-recovery-loaded-show": "顯示變更",
 	"edit-recovery-loaded-discard": "取消變更",
 	"summary": "摘要：",
 	"subject": "主旨：",

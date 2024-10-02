@@ -701,7 +701,6 @@
 	"edit-recovery-special-recovered-on-tooltip": "Data e ora in cui i dati di ripristino sono stati salvati per l'ultima volta",
 	"edit-recovery-loaded-title": "Modifiche ripristinate",
 	"edit-recovery-loaded-message": "Le tue modifiche non salvate sono state automaticamente ripristinate.",
-	"edit-recovery-loaded-show": "Mostra modifiche",
 	"edit-recovery-loaded-discard": "Ignora modifiche",
 	"summary": "Oggetto:",
 	"subject": "Oggetto:",

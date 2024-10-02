@@ -642,7 +642,6 @@
 	"edit-recovery-loaded-message-different-rev": "<em>Bemærk, at siden kan have ændret sig, siden du begyndte at redigere.</em>",
 	"edit-recovery-loaded-message-different-rev-publish": "<em>Gennemgå dine ændringer, før du publicerer.</em>",
 	"edit-recovery-loaded-message-different-rev-save": "<em>Gennemgå dine ændringer, før du gemmer.</em>",
-	"edit-recovery-loaded-show": "Vis ændringer",
 	"edit-recovery-loaded-discard": "Kassér ændringer",
 	"summary": "Resumé:",
 	"subject": "Emne:",

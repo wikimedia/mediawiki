@@ -664,7 +664,6 @@
 	"edit-recovery-loaded-message-different-rev": "<em>Observera att sidan kan ha ändrats sedan du började redigera.</em>",
 	"edit-recovery-loaded-message-different-rev-publish": "<em>Granska dina ändringar innan du publicerar.</em>",
 	"edit-recovery-loaded-message-different-rev-save": "<em>Granska dina ändringar innan du sparar.</em>",
-	"edit-recovery-loaded-show": "Visa ändringar",
 	"edit-recovery-loaded-discard": "Ignorera ändringar",
 	"summary": "Sammanfattning:",
 	"subject": "Ämne:",

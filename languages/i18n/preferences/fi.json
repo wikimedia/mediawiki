@@ -199,7 +199,7 @@
 	"rcfilters-preference-label": "Käytä käyttöliittymää ilman JavaScriptiä",
 	"rcfilters-preference-help": "Lataa [[{{#special:RecentChanges}}|viimeiset muutokset]] ja [[{{#special:RecentChangesLinked}}|liittyvät muutokset]] ilman suodatettua hakua tai korostustoimintoa.",
 	"prefs-changesrc": "Näytettävät muutokset",
-	"tog-hideminor": "Piilota pienet muutokset \"tuoreet muutokset\" -listasta",
+	"tog-hideminor": "Piilota pienet muutokset ”tuoreet muutokset” -listasta",
 	"tog-hidecategorization": "Piilota sivujen luokittelu",
 	"tog-hidepatrolled": "Piilota tarkastetut muutokset tuoreista muutoksista",
 	"tog-newpageshidepatrolled": "Piilota tarkastetut sivut uusien sivujen listalta",

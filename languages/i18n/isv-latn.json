@@ -568,7 +568,6 @@
 	"edit-recovery-loaded-message-different-rev": "<em>Čuvanje: stranica može byti izměnjena od momenta, kogda vy načeli jeste ju praviti.</em>",
 	"edit-recovery-loaded-message-different-rev-publish": "<em>Prosimo, prověrite svoje izměny prěd publikovanjem.</em>",
 	"edit-recovery-loaded-message-different-rev-save": "<em>Prosimo, prověrite svoje izměny prěd zapisanjem.</em>",
-	"edit-recovery-loaded-show": "Pokazati izměny",
 	"edit-recovery-loaded-discard": "Odvrgnuti izměny",
 	"summary": "Kratky opis:",
 	"subject": "Prědmet:",

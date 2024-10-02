@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"MiiCii"
+		]
+	},
+	"cdx-chip-input-chip-added": "Temgetulere afahari -i farsi $1 emgeri nonggibuhabi.",
+	"cdx-chip-input-chip-removed": "Temgetulere afahari -i farsi $1 emgeri guribuhebi.",
+	"cdx-input-chip-aria-description": "Enter baten be anafi banjibume arara, Delete baten be anafi meitere.",
+	"cdx-dialog-close-button-label": "Yaksire",
+	"cdx-label-optional-flag": "(Sonjoci ojoro)",
+	"cdx-message-dismiss-button-label": "Yaksire",
+	"cdx-search-input-search-button-label": "Suwelere",
+	"cdx-table-select-all-label": "Gubci ijin be sonjoro",
+	"cdx-table-select-row-label": "$1 ci ijin be sonjoro (uheri $2 ijin)",
+	"cdx-table-sort-caption": "$1, baten bisire iletun -i uju be ilhi faidaci ojoro.",
+	"cdx-typeahead-search-search-results-label": "Suwelehe šošon",
+	"cdx-table-pager-button-first-page": "Ujui afaha",
+	"cdx-table-pager-button-last-page": "Dubei afaha",
+	"cdx-table-pager-button-next-page": "Ishūn afaha",
+	"cdx-table-pager-button-prev-page": "Duleke afaha",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1}} ijin",
+	"cdx-table-pager-items-per-page-default": "Meimeni afaha -i šošon",
+	"cdx-table-pagination-status-message-determinate-long": "$1 ci $2 de isitala šošon be iletulere（uheri$3 justan）",
+	"cdx-table-pagination-status-message-determinate-short": "$1 ci $2 de isitala（uheri $3 justan）",
+	"cdx-table-pagination-status-message-indeterminate-long": "$1 ci $2 de isitala labdu šošon be iletulere",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1 ci $2 de isitala labdu šošon",
+	"cdx-table-pagination-status-message-indeterminate-final": "Šuwe amala {{PLURAL:$1|$1}} justan -i šošon be iletulere",
+	"cdx-table-pagination-status-message-pending": "Šošon be dahime ejemebi..."
+}

@@ -632,7 +632,6 @@
 	"edit-recovery-special-recovered-on": "de $1",
 	"edit-recovery-loaded-title": "S'han recuperat els canvis",
 	"edit-recovery-loaded-message": "Els canvis no desats s'han recuperat automàticament",
-	"edit-recovery-loaded-show": "Mostra els canvis",
 	"edit-recovery-loaded-discard": "Descarta els canvis",
 	"summary": "Resum:",
 	"subject": "Assumpte:",
