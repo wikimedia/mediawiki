@@ -827,6 +827,8 @@ because of Phabricator reports.
   ParserOutputAccess with ParserOptions::setUseParsoid() instead.
 * ParserOutput::addJsConfigVars(), deprecated since 1.38, now emits deprecation
   warnings. Use ParserOutput::setJsConfigVar() instead.
+* ParserOutput::setLanguageLinks(null) now emits deprecation warnings.  Use
+  an empty array as an argument, not `null`.
 * To support a future change allowing serializing of MessageValue objects
   as JSON, the methods MessageValue::objectParams(), Message::objectParams()
   and Message::objectParam() are deprecated. The UserGroupMembershipParam
