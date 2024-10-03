@@ -21,6 +21,8 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Redis\RedisConnectionPool;
+use Wikimedia\Redis\RedisConnRef;
 
 /**
  * Redis-backed job queue storage.

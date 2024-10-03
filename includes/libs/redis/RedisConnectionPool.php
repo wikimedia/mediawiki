@@ -21,9 +21,16 @@
  * @defgroup Redis Redis
  */
 
+namespace Wikimedia\Redis;
+
+use Exception;
+use InvalidArgumentException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Redis;
+use RedisException;
+use RuntimeException;
 
 /**
  * Helper class to manage Redis connections.
@@ -416,3 +423,6 @@ class RedisConnectionPool implements LoggerAwareInterface {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( RedisConnectionPool::class, 'RedisConnectionPool' );

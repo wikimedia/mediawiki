@@ -21,8 +21,8 @@
 namespace MediaWiki\Maintenance;
 
 use MediaWiki\MediaWikiServices;
-use RedisConnectionPool;
 use RuntimeException;
+use Wikimedia\Redis\RedisConnectionPool;
 
 /**
  * Manage forking inside CLI maintenance scripts.

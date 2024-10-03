@@ -22,9 +22,9 @@ namespace Wikimedia\ObjectCache;
 use ArrayUtils;
 use Exception;
 use Redis;
-use RedisConnectionPool;
-use RedisConnRef;
 use RedisException;
+use Wikimedia\Redis\RedisConnectionPool;
+use Wikimedia\Redis\RedisConnRef;
 
 /**
  * Store data in Redis.

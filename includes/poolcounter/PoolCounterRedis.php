@@ -24,9 +24,9 @@ use ArrayUtils;
 use Exception;
 use HashRing;
 use MediaWiki\Status\Status;
-use RedisConnectionPool;
-use RedisConnRef;
 use RedisException;
+use Wikimedia\Redis\RedisConnectionPool;
+use Wikimedia\Redis\RedisConnRef;
 
 /**
  * Version of PoolCounter that uses Redis

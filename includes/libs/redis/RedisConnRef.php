@@ -17,8 +17,13 @@
  *
  * @file
  */
+
+namespace Wikimedia\Redis;
+
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use Redis;
+use RedisException;
 
 /**
  * Helper class to handle automatically marking connections as reusable (via RAII pattern)
@@ -301,3 +306,6 @@ class RedisConnRef implements LoggerAwareInterface {
 		$this->pool->freeConnection( $this->server, $this->conn );
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( RedisConnRef::class, 'RedisConnRef' );
