@@ -520,7 +520,6 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 
 	private function listItem( stdClass $row, PageIdentity $nt, LinkTarget $target, bool $notClose = false ) {
 		$legacyTitle = $this->titleFactory->newFromPageIdentity( $nt );
-		$dirmark = $this->getLanguage()->getDirMark();
 
 		if ( $row->rd_from ) {
 			$query = [ 'redirect' => 'no' ];
@@ -528,12 +527,13 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 			$query = [];
 		}
 
-		$link = $this->getLinkRenderer()->makeKnownLink(
+		$dir = $this->getLanguage()->getDir();
+		$link = Html::rawElement( 'bdi', [ 'dir' => $dir ], $this->getLinkRenderer()->makeKnownLink(
 			$nt,
 			null,
 			$row->page_is_redirect ? [ 'class' => 'mw-redirect' ] : [],
 			$query
-		);
+		) );
 
 		// Display properties (redirect or template)
 		$propsText = '';
@@ -575,8 +575,8 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 		);
 
 		return $notClose ?
-			Xml::openElement( 'li' ) . "$link $propsText $dirmark $wlh\n" :
-			Xml::tags( 'li', null, "$link $propsText $dirmark $wlh" ) . "\n";
+			Xml::openElement( 'li' ) . "$link $propsText $wlh\n" :
+			Xml::tags( 'li', null, "$link $propsText $wlh" ) . "\n";
 	}
 
 	protected function listEnd() {
