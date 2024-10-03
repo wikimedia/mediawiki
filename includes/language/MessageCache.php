@@ -599,6 +599,7 @@ class MessageCache implements LoggerAwareInterface {
 
 		// Common conditions
 		$conds = [
+			// Treat redirects as not existing (T376398)
 			'page_is_redirect' => 0,
 			'page_namespace' => NS_MEDIAWIKI,
 		];
@@ -1660,7 +1661,10 @@ class MessageCache implements LoggerAwareInterface {
 	 */
 	private function getMessageTextFromContent( Content $content = null ) {
 		// @TODO: could skip pseudo-messages like js/css here, based on content model
-		if ( $content ) {
+		if ( $content && $content->isRedirect() ) {
+			// Treat redirects as not existing (T376398)
+			$msgText = false;
+		} elseif ( $content ) {
 			// Message page exists...
 			// XXX: Is this the right way to turn a Content object into a message?
 			// NOTE: $content is typically either WikitextContent, JavaScriptContent or
