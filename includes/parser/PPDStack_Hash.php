@@ -19,6 +19,10 @@
  * @ingroup Parser
  */
 
+namespace MediaWiki\Parser;
+
+use RuntimeException;
+
 /**
  * Stack class to help Preprocessor::preprocessToObj()
  * @ingroup Parser
@@ -117,3 +121,6 @@ class PPDStack_Hash {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( PPDStack_Hash::class, 'PPDStack_Hash' );

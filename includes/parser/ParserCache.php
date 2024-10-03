@@ -21,14 +21,16 @@
  * @ingroup Cache Parser
  */
 
+namespace MediaWiki\Parser;
+
+use Exception;
+use InvalidArgumentException;
+use JsonException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\WikiPageFactory;
-use MediaWiki\Parser\ParserCacheFilter;
-use MediaWiki\Parser\ParserCacheMetadata;
-use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\TitleFactory;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ObjectCache\BagOStuff;
@@ -739,3 +741,6 @@ class ParserCache {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ParserCache::class, 'ParserCache' );

@@ -19,9 +19,13 @@
  * @ingroup Parser
  */
 
+namespace MediaWiki\Parser;
+
+use InvalidArgumentException;
 use MediaWiki\Message\Message;
-use MediaWiki\Parser\Parser;
 use MediaWiki\Title\Title;
+use RuntimeException;
+use Stringable;
 
 /**
  * An expansion frame, used as a context to expand the result of preprocessToObj()
@@ -637,3 +641,6 @@ class PPFrame_Hash implements Stringable, PPFrame {
 		return $this->ttl;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( PPFrame_Hash::class, 'PPFrame_Hash' );

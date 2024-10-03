@@ -20,9 +20,12 @@
  * @file
  * @ingroup Parser
  */
+
+namespace MediaWiki\Parser;
+
+use DateTime;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Parser\Parser;
 use MediaWiki\Specials\SpecialVersion;
 use MediaWiki\Utils\MWTimestamp;
 use Psr\Log\LoggerInterface;
@@ -362,3 +365,6 @@ class CoreMagicVariables {
 		$parser->getOutput()->updateCacheExpiry( $ttl );
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( CoreMagicVariables::class, 'CoreMagicVariables' );

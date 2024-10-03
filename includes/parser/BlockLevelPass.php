@@ -23,6 +23,12 @@
  * @ingroup Parser
  * @internal
  */
+
+namespace MediaWiki\Parser;
+
+use LogicException;
+use StringUtils;
+
 class BlockLevelPass {
 	/** @var bool */
 	private $DTopen = false;
@@ -607,3 +613,6 @@ class BlockLevelPass {
 		return false;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( BlockLevelPass::class, 'BlockLevelPass' );

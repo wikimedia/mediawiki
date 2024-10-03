@@ -19,6 +19,8 @@
  * @ingroup Parser
  */
 
+namespace MediaWiki\Parser;
+
 use MediaWiki\Title\Title;
 
 /**
@@ -205,3 +207,6 @@ interface PPFrame {
 	 */
 	public function getTitle();
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( PPFrame::class, 'PPFrame' );

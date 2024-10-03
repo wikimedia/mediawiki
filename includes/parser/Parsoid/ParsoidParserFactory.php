@@ -3,8 +3,8 @@
 namespace MediaWiki\Parser\Parsoid;
 
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
-use ParserFactory;
 use Wikimedia\Parsoid\Config\DataAccess;
 use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Parsoid;

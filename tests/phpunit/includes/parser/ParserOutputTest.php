@@ -7,6 +7,7 @@ use MediaWiki\Context\RequestContext;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\ParserOutputStringSets;
@@ -14,7 +15,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiLangTestCase;
-use ParserOptions;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\Core\TOCData;
@@ -23,7 +23,7 @@ use Wikimedia\Tests\SerializationTestTrait;
 
 /**
  * @covers \MediaWiki\Parser\ParserOutput
- * @covers \CacheTime
+ * @covers \Mediawiki\Parser\CacheTime
  * @group Database
  *        ^--- trigger DB shadowing because we are using Title magic
  */
@@ -989,7 +989,7 @@ EOF
 	}
 
 	public function provideMergeInternalMetaDataFrom() {
-		MWDebug::filterDeprecationForTest( '/^CacheTime::setCacheTime called with -1 as an argument/' );
+		$this->filterDeprecated( '/^.*CacheTime::setCacheTime called with -1 as an argument/' );
 
 		// flags & co
 		$a = new ParserOutput();
@@ -1174,7 +1174,7 @@ EOF
 	 * @param array $expected
 	 */
 	public function testMergeInternalMetaDataFrom( ParserOutput $a, ParserOutput $b, $expected ) {
-		$this->filterDeprecated( '/^CacheTime::setCacheTime called with -1 as an argument/' );
+		$this->filterDeprecated( '/^.*CacheTime::setCacheTime called with -1 as an argument/' );
 		$a->mergeInternalMetaDataFrom( $b );
 
 		$this->assertFieldValues( $a, $expected );

@@ -2,15 +2,15 @@
 
 namespace MediaWiki\Tests\Parser;
 
-use CacheTime;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Parser\CacheTime;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
-use ParserOptions;
 use Wikimedia\Tests\SerializationTestTrait;
 
 /**
- * @covers \CacheTime
+ * @covers \MediaWiki\Parser\CacheTime
  */
 class CacheTimeTest extends MediaWikiIntegrationTestCase {
 	use SerializationTestTrait;

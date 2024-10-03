@@ -19,11 +19,11 @@
 
 namespace MediaWiki\Parser\Parsoid\Config;
 
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleHandler;
 use MediaWiki\Title\Title;
-use ParserOptions;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Parsoid\Config\PageConfig as IPageConfig;
 use Wikimedia\Parsoid\Config\PageContent as IPageContent;

@@ -22,11 +22,11 @@
 namespace MediaWiki\Preferences;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
-use ParserOptions;
 
 /**
  * @since 1.38

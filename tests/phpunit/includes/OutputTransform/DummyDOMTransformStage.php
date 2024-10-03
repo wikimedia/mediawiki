@@ -3,8 +3,8 @@
 namespace MediaWiki\Tests\OutputTransform;
 
 use MediaWiki\OutputTransform\ContentDOMTransformStage;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use ParserOptions;
 use Wikimedia\Parsoid\DOM\Document;
 
 class DummyDOMTransformStage extends ContentDOMTransformStage {

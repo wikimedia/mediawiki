@@ -21,6 +21,9 @@
  * @ingroup Parser
  */
 
+namespace MediaWiki\Parser;
+
+use HtmlArmor;
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -28,8 +31,6 @@ use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Parser\Parser;
-use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Title\Title;
 
 /**
@@ -496,3 +497,6 @@ class LinkHolderArray {
 		);
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( LinkHolderArray::class, 'LinkHolderArray' );

@@ -19,16 +19,17 @@
  * @ingroup Parser
  */
 
+namespace MediaWiki\Parser;
+
 use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Page\File\BadFileLookup;
-use MediaWiki\Parser\MagicWordFactory;
-use MediaWiki\Parser\Parser;
 use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Tidy\TidyDriverBase;
@@ -277,3 +278,6 @@ class ParserFactory {
 	}
 
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ParserFactory::class, 'ParserFactory' );

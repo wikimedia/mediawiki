@@ -24,10 +24,10 @@ namespace MediaWiki\Api;
 
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\ParserFactory;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Title\Title;
-use ParserFactory;
-use ParserOptions;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

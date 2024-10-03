@@ -10,10 +10,10 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\OutputTransform\ContentTextTransformStage;
 use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Tidy\TidyDriverBase;
-use ParserOptions;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Parsoid\Core\TOCData;
 

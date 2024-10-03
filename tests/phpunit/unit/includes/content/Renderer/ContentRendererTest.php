@@ -27,10 +27,10 @@ use MediaWiki\Content\WikitextContent;
 use MediaWiki\Content\WikitextContentHandler;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWikiUnitTestCase;
-use ParserOptions;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**

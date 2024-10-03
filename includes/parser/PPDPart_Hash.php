@@ -19,6 +19,8 @@
  * @ingroup Parser
  */
 
+namespace MediaWiki\Parser;
+
 /**
  * @ingroup Parser
  */
@@ -52,3 +54,6 @@ class PPDPart_Hash {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( PPDPart_Hash::class, 'PPDPart_Hash' );

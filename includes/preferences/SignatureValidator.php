@@ -23,6 +23,8 @@ namespace MediaWiki\Preferences;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Parser\ParserFactory;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\Parsoid\LintErrorChecker;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -31,8 +33,6 @@ use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
 use OOUI\ButtonWidget;
-use ParserFactory;
-use ParserOptions;
 
 /**
  * @since 1.35

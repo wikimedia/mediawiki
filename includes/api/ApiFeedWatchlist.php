@@ -25,10 +25,10 @@ namespace MediaWiki\Api;
 use Exception;
 use MediaWiki\Feed\FeedItem;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
-use ParserFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 

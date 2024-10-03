@@ -3,10 +3,10 @@
 namespace MediaWiki\Tests\Parser;
 
 use InvalidArgumentException;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
-use ParserOptions;
 
 /**
  * @group Database

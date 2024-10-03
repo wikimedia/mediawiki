@@ -3,8 +3,8 @@
 namespace MediaWiki\OutputTransform\Stages;
 
 use MediaWiki\OutputTransform\ContentTextTransformStage;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use ParserOptions;
 
 /**
  * Adds RedirectHeader if it exists

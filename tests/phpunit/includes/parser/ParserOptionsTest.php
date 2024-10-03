@@ -9,6 +9,7 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
@@ -17,12 +18,11 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiLangTestCase;
-use ParserOptions;
 use stdClass;
 use Wikimedia\ScopedCallback;
 
 /**
- * @covers \ParserOptions
+ * @covers \MediaWiki\Parser\ParserOptions
  * @group Database
  */
 class ParserOptionsTest extends MediaWikiLangTestCase {

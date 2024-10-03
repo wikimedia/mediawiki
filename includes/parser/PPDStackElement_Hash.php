@@ -19,6 +19,8 @@
  * @ingroup Parser
  */
 
+namespace MediaWiki\Parser;
+
 /**
  * @ingroup Parser
  *
@@ -147,3 +149,6 @@ class PPDStackElement_Hash {
 		return $accum;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( PPDStackElement_Hash::class, 'PPDStackElement_Hash' );

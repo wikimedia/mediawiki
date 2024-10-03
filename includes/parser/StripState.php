@@ -21,7 +21,10 @@
  * @ingroup Parser
  */
 
-use MediaWiki\Parser\Parser;
+namespace MediaWiki\Parser;
+
+use Closure;
+use InvalidArgumentException;
 
 /**
  * @todo document, briefly.
@@ -277,3 +280,6 @@ class StripState {
 		return preg_replace( $this->regex, '', $text );
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( StripState::class, 'StripState' );

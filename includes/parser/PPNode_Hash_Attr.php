@@ -19,6 +19,12 @@
  * @ingroup Parser
  */
 
+namespace MediaWiki\Parser;
+
+use InvalidArgumentException;
+use LogicException;
+use Stringable;
+
 /**
  * @ingroup Parser
  */
@@ -99,3 +105,6 @@ class PPNode_Hash_Attr implements Stringable, PPNode {
 		throw new LogicException( __METHOD__ . ': not supported' );
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( PPNode_Hash_Attr::class, 'PPNode_Hash_Attr' );

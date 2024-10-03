@@ -22,6 +22,7 @@ namespace MediaWiki\Parser\Parsoid\Config;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -30,7 +31,6 @@ use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Revision\SuppressedDataException;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
-use ParserOptions;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Rdbms\IDBAccessObject;
 

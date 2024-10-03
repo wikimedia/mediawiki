@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Storage\Hook;
 
-use ParserOptions;
+use MediaWiki\Parser\ParserOptions;
 use WikiPage;
 
 /**

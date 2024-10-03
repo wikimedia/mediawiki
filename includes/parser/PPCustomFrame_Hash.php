@@ -19,6 +19,8 @@
  * @ingroup Parser
  */
 
+namespace MediaWiki\Parser;
+
 /**
  * Expansion frame with custom arguments
  * @ingroup Parser
@@ -73,3 +75,6 @@ class PPCustomFrame_Hash extends PPFrame_Hash {
 		return $this->args;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( PPCustomFrame_Hash::class, 'PPCustomFrame_Hash' );

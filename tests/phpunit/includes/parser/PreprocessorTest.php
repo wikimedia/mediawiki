@@ -3,18 +3,18 @@
 namespace MediaWiki\Tests\Parser;
 
 use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\ParserOptions;
+use MediaWiki\Parser\Preprocessor;
+use MediaWiki\Parser\Preprocessor_Hash;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
-use ParserOptions;
-use Preprocessor;
-use Preprocessor_Hash;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;
 
 /**
- * @covers \Preprocessor
+ * @covers \MediaWiki\Parser\Preprocessor
  *
- * @covers \Preprocessor_Hash
+ * @covers \MediaWiki\Parser\Preprocessor_Hash
  * @covers \PPDStack_Hash
  * @covers \PPDStackElement_Hash
  * @covers \PPDPart_Hash

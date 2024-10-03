@@ -21,7 +21,10 @@
  * @ingroup Parser
  */
 
+namespace MediaWiki\Parser;
+
 use MediaWiki\Html\Html;
+use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -316,3 +319,6 @@ class DateFormatter {
 		return $text;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( DateFormatter::class, 'DateFormatter' );

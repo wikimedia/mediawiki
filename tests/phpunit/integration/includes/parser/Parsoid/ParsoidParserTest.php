@@ -3,10 +3,10 @@
 namespace MediaWiki\Tests\Parser\Parsoid;
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
-use ParserOptions;
 
 /**
  * @covers \MediaWiki\Parser\Parsoid\ParsoidParser::parse

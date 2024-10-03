@@ -21,12 +21,13 @@
  * @ingroup Parser
  */
 
+namespace MediaWiki\Parser;
+
 use MediaWiki\Json\JsonDeserializable;
 use MediaWiki\Json\JsonDeserializableTrait;
 use MediaWiki\Json\JsonDeserializer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Parser\ParserCacheMetadata;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\Reflection\GhostFieldAccessTrait;
 
@@ -326,3 +327,6 @@ class CacheTime implements ParserCacheMetadata, JsonDeserializable {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( CacheTime::class, 'CacheTime' );

@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Parser;
 
-use CacheTime;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Edit\ParsoidRenderID;
@@ -34,7 +33,6 @@ use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
-use ParserOptions;
 use UnexpectedValueException;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;

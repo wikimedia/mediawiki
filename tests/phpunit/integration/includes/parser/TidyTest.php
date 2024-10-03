@@ -2,12 +2,12 @@
 
 namespace MediaWiki\Tests\Parser;
 
+use MediaWiki\Parser\MWTidy;
 use MediaWiki\Parser\Sanitizer;
-use MWTidy;
 
 /**
  * @group Parser
- * @covers \MWTidy
+ * @covers \MediaWiki\Parser\MWTidy
  */
 class TidyTest extends \MediaWikiIntegrationTestCase {
 

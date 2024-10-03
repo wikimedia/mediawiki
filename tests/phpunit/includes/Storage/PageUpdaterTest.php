@@ -12,6 +12,7 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Revision\RenderedRevision;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -21,7 +22,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 use MediaWikiIntegrationTestCase;
-use ParserOptions;
 use RecentChange;
 use WikiPage;
 

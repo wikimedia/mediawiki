@@ -6,10 +6,10 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Html\HtmlHelper;
 use MediaWiki\OutputTransform\ContentTextTransformStage;
 use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Utils\UrlUtils;
-use ParserOptions;
 use Psr\Log\LoggerInterface;
 use Wikimedia\RemexHtml\Serializer\SerializerNode;
 

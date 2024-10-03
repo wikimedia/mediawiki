@@ -3,7 +3,7 @@
 namespace MediaWiki\Hook;
 
 use MediaWiki\Parser\Parser;
-use StripState;
+use MediaWiki\Parser\StripState;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

@@ -26,6 +26,7 @@ use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionArchiveRecord;
@@ -37,7 +38,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserFactory;
 use MWContentSerializationException;
-use ParserOptions;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\RequestTimeout\TimeoutException;
 

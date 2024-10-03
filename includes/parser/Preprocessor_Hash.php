@@ -21,7 +21,8 @@
  * @ingroup Parser
  */
 
-use MediaWiki\Parser\Parser;
+namespace MediaWiki\Parser;
+
 use Wikimedia\ObjectCache\WANObjectCache;
 
 /**
@@ -811,3 +812,6 @@ class Preprocessor_Hash extends Preprocessor {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( Preprocessor_Hash::class, 'Preprocessor_Hash' );

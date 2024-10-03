@@ -23,12 +23,12 @@ namespace MediaWiki\PoolCounter;
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Status\Status;
-use ParserOptions;
 
 /**
  * PoolWorkArticleView for an old revision of a page, using a simple cache.

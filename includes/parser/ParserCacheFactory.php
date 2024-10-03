@@ -27,7 +27,6 @@ use MediaWiki\Json\JsonCodec;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Title\TitleFactory;
-use ParserCache;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\WANObjectCache;

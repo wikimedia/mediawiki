@@ -2,7 +2,7 @@
 namespace MediaWiki\Content\Transform;
 
 use MediaWiki\Page\PageReference;
-use ParserOptions;
+use MediaWiki\Parser\ParserOptions;
 
 /**
  * @since 1.37

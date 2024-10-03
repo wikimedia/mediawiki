@@ -2,14 +2,14 @@
 
 namespace MediaWiki\Tests\Parser;
 
-use CoreParserFunctions;
 use MediaWiki\Language\RawMessage;
+use MediaWiki\Parser\CoreParserFunctions;
 use MediaWiki\User\User;
 use MediaWikiLangTestCase;
 
 /**
  * @group Database
- * @covers \CoreParserFunctions
+ * @covers \MediaWiki\Parser\CoreParserFunctions
  */
 class CoreParserFunctionsTest extends MediaWikiLangTestCase {
 

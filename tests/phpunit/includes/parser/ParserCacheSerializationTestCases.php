@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Tests\Parser;
 
-use CacheTime;
 use JsonSerializable;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\Json\JsonCodec;
+use MediaWiki\Parser\CacheTime;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Tests\Json\JsonDeserializableSubClass;
 use MediaWiki\Title\Title;

@@ -22,11 +22,11 @@
 namespace MediaWiki\Tests\Parser\Parsoid;
 
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Parser\ParserFactory;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWikiUnitTestCase;
-use ParserFactory;
 use Wikimedia\Parsoid\Config\DataAccess;
 use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\UUID\GlobalIdGenerator;

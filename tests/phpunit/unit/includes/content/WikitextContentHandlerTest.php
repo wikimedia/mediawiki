@@ -11,6 +11,8 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Parser\MagicWord;
 use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\ParserFactory;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
@@ -21,8 +23,6 @@ use MediaWiki\Title\TitleFactory;
 use MediaWikiUnitTestCase;
 use MockTitleTrait;
 use MWException;
-use ParserFactory;
-use ParserOptions;
 use ReflectionClass;
 use Wikimedia\UUID\GlobalIdGenerator;
 

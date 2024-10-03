@@ -21,12 +21,16 @@
  * @ingroup Parser
  */
 
+namespace MediaWiki\Parser;
+
+use InvalidArgumentException;
+use LogicException;
+use MediaWiki\Content\Content;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Parser\Parser;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\StubObject\StubObject;
@@ -34,6 +38,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Utils\MWTimestamp;
+use ReflectionClass;
 use Wikimedia\IPUtils;
 use Wikimedia\ScopedCallback;
 
@@ -1583,6 +1588,9 @@ class ParserOptions {
 		$this->renderReason = $renderReason;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( ParserOptions::class, 'ParserOptions' );
 
 /**
  * For really cool vim folding this needs to be at the end:

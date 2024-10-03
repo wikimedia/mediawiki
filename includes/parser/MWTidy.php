@@ -21,6 +21,8 @@
  * @ingroup Parser
  */
 
+namespace MediaWiki\Parser;
+
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -43,3 +45,6 @@ class MWTidy {
 		return MediaWikiServices::getInstance()->getTidy()->tidy( $text );
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( MWTidy::class, 'MWTidy' );

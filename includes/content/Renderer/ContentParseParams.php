@@ -2,8 +2,8 @@
 namespace MediaWiki\Content\Renderer;
 
 use MediaWiki\Page\PageReference;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use ParserOptions;
 
 /**
  * @internal

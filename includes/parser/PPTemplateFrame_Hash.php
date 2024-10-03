@@ -19,6 +19,8 @@
  * @ingroup Parser
  */
 
+namespace MediaWiki\Parser;
+
 use MediaWiki\Title\Title;
 
 /**
@@ -211,3 +213,6 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 		$this->parent->setTTL( $ttl );
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( PPTemplateFrame_Hash::class, 'PPTemplateFrame_Hash' );

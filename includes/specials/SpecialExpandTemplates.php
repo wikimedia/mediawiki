@@ -26,6 +26,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\ParserFactory;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Status\Status;
@@ -33,8 +35,6 @@ use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\Title\Title;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\Xml\Xml;
-use ParserFactory;
-use ParserOptions;
 
 /**
  * A special page to enter wikitext and expands its templates, parser functions,

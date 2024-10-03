@@ -4,9 +4,9 @@ namespace MediaWiki\Tests\Parser;
 
 use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Parser\ParserCacheFilter;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWikiUnitTestCase;
-use ParserOptions;
 
 /**
  * @covers \MediaWiki\Parser\ParserCacheFilter

@@ -23,13 +23,13 @@ namespace MediaWiki\PoolCounter;
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ParserOutputAccess;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\WikiMap\WikiMap;
-use ParserOptions;
 
 /**
  * PoolCounter protected work wrapping RenderedRevision->getRevisionParserOutput.

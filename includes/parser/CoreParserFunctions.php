@@ -21,6 +21,9 @@
  * @ingroup Parser
  */
 
+namespace MediaWiki\Parser;
+
+use InvalidArgumentException;
 use MediaWiki\Category\Category;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Language\Language;
@@ -29,10 +32,6 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
-use MediaWiki\Parser\MagicWordFactory;
-use MediaWiki\Parser\Parser;
-use MediaWiki\Parser\ParserOutputFlags;
-use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SiteStats\SiteStats;
@@ -1683,3 +1682,6 @@ class CoreParserFunctions {
 		return '';
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( CoreParserFunctions::class, 'CoreParserFunctions' );

@@ -652,6 +652,34 @@ because of Phabricator reports.
     - SchemaMaintenance
     - SevenZipStream
     - TextPassDumper
+  - MediaWiki\Parser:
+    - BlockLevelPass
+    - CacheTime
+    - CoreMagicVariables
+    - CoreParserFunctions
+    - CoreTagHooks
+    - DateFormatter
+    - DateFormatterFactory
+    - LinkHolderArray
+    - MWTidy
+    - PPCustomFrame_Hash
+    - PPDPart_Hash
+    - PPDStackElement_Hash
+    - PPDStack_Hash
+    - PPFrame
+    - PPFrame_Hash
+    - PPNode
+    - PPNode_Hash_Array
+    - PPNode_Hash_Attr
+    - PPNode_Hash_Text
+    - PPNode_Hash_Tree
+    - PPTemplateFrame_Hash
+    - ParserCache
+    - ParserFactory
+    - ParserOptions
+    - Preprocessor
+    - Preprocessor_Hash
+    - StripState
   - MediaWiki\RCFeed:
     - FormattedRCFeed
     - IRCColourfulRCFeedFormatter

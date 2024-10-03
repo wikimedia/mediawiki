@@ -4,9 +4,9 @@ namespace MediaWiki\Content\Renderer;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
-use ParserOptions;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**

@@ -4,9 +4,9 @@ namespace MediaWiki\Api;
 
 use Article;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Session\Session;
 use MediaWiki\User\UserIdentity;
-use ParserOptions;
 
 /**
  * This class provides an implementation of the hook interfaces used

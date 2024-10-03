@@ -9,6 +9,7 @@ use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
@@ -17,7 +18,6 @@ use MediaWiki\User\User;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiLangTestCase;
 use MockTitleTrait;
-use ParserOptions;
 
 /**
  * @group Database

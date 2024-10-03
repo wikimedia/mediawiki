@@ -9,11 +9,11 @@ use MediaWiki\Html\Html;
 use MediaWiki\Html\HtmlHelper;
 use MediaWiki\MainConfigNames;
 use MediaWiki\OutputTransform\ContentTextTransformStage;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Title\TitleFactory;
-use ParserOptions;
 use Psr\Log\LoggerInterface;
 use Skin;
 

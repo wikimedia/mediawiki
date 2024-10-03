@@ -19,6 +19,8 @@
  * @ingroup Parser
  */
 
+namespace MediaWiki\Parser;
+
 /**
  * There are three types of nodes:
  *     * Tree nodes, which have a name and contain other nodes as children
@@ -110,3 +112,6 @@ interface PPNode {
 	 */
 	public function splitHeading();
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( PPNode::class, 'PPNode' );

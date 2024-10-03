@@ -23,13 +23,11 @@
 
 namespace MediaWiki\Parser;
 
-use CacheTime;
 use InvalidArgumentException;
 use JsonException;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Utils\MWTimestamp;
-use ParserOptions;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Stats\StatsFactory;

@@ -4,8 +4,8 @@ namespace MediaWiki\OutputTransform\Stages;
 
 use MediaWiki\Message\Message;
 use MediaWiki\OutputTransform\ContentDOMTransformStage;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use ParserOptions;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Parsoid\DOM\Document;

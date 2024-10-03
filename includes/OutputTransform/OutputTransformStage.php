@@ -3,8 +3,8 @@
 namespace MediaWiki\OutputTransform;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use ParserOptions;
 use Psr\Log\LoggerInterface;
 
 /**

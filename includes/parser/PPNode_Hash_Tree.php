@@ -19,6 +19,12 @@
  * @ingroup Parser
  */
 
+namespace MediaWiki\Parser;
+
+use BadMethodCallException;
+use InvalidArgumentException;
+use Stringable;
+
 /**
  * @ingroup Parser
  */
@@ -368,3 +374,6 @@ class PPNode_Hash_Tree implements Stringable, PPNode {
 		return $bits;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( PPNode_Hash_Tree::class, 'PPNode_Hash_Tree' );

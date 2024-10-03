@@ -2,10 +2,10 @@
 
 namespace MediaWiki\OutputTransform;
 
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
-use ParserOptions;
 
 /**
  * @unstable

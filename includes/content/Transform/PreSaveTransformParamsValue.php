@@ -2,8 +2,8 @@
 namespace MediaWiki\Content\Transform;
 
 use MediaWiki\Page\PageReference;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\User\UserIdentity;
-use ParserOptions;
 
 /**
  * @internal

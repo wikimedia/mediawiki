@@ -2,9 +2,9 @@
 
 namespace MediaWiki\OutputTransform;
 
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
-use ParserOptions;
 use stdClass;
 use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\DOM\Document;
