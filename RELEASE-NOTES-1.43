@@ -440,6 +440,7 @@ because of Phabricator reports.
 * update-keys.sql was removed. It is not recommended to install MediaWiki by
   manually sourcing SQL files, but if you are doing this, run
   `update.php --initial` instead of sourcing update-keys.sql.
+* MediaWikiVersionFetcher, deprecated since 1.42 has been removed.
 * …
 
 === Deprecations in 1.43 ===

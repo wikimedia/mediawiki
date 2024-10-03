@@ -807,7 +807,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki' => __DIR__ . '/includes/MediaWiki.php',
 	'MediaWikiSite' => __DIR__ . '/includes/site/MediaWikiSite.php',
 	'MediaWikiTitleCodec' => __DIR__ . '/includes/title/MediaWikiTitleCodec.php',
-	'MediaWikiVersionFetcher' => __DIR__ . '/includes/composer/MediaWikiVersionFetcher.php',
 	'MediaWiki\\Actions\\ActionEntryPoint' => __DIR__ . '/includes/actions/ActionEntryPoint.php',
 	'MediaWiki\\Actions\\ActionFactory' => __DIR__ . '/includes/actions/ActionFactory.php',
 	'MediaWiki\\Actions\\ActionInfo' => __DIR__ . '/includes/actions/ActionInfo.php',
