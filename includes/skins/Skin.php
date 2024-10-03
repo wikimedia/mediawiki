@@ -350,7 +350,7 @@ abstract class Skin extends ContextSource {
 	 *
 	 *     Opt-in menus:
 	 *     - `associated-pages`
-	 *     - `notification`
+	 *     - `notifications`
 	 *     - `user-interface-preferences`
 	 *     - `user-page`
 	 *     - `user-menu`
