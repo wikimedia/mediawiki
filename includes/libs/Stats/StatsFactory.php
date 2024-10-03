@@ -21,7 +21,6 @@ declare( strict_types=1 );
 
 namespace Wikimedia\Stats;
 
-use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;

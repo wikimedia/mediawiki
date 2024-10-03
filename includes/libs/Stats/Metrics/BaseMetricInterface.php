@@ -21,7 +21,7 @@ declare( strict_types=1 );
 
 namespace Wikimedia\Stats\Metrics;
 
-use IBufferingStatsdDataFactory;
+use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\Sample;
 
 /**
