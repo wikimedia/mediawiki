@@ -192,33 +192,48 @@ module.exports = exports = defineComponent( {
 			}
 		}, { deep: true, immediate: true } );
 
-		// Attempt to match up the default expiry (MediaWiki:Ipb-default-expiry) with one of the
-		// preset or default or custom duration options, or with "infinite" if it's infinite.
-		const givenPresetDuration = mw.config.get( 'blockExpiryPreset' );
-		const givenDefaultDuration = mw.config.get( 'blockDefaultExpiry' );
-		if ( mw.util.isInfinity( givenDefaultDuration ) ) {
-			presetDuration.value = 'infinite';
-			expiryType.value = 'preset-duration';
-		} else if ( givenPresetDuration && presetDurationOptions.some( ( option ) => option.value === givenPresetDuration ) ) {
-			presetDuration.value = givenPresetDuration;
-			expiryType.value = 'preset-duration';
-		} else if ( presetDurationOptions.some( ( option ) => option.value === givenDefaultDuration ) ) {
-			presetDuration.value = givenDefaultDuration;
-			expiryType.value = 'preset-duration';
-		} else if ( givenPresetDuration && /^\d+ [a-z]+$/.test( givenPresetDuration ) ) {
-			const [ presetDurationNumber, presetDurationUnit ] = givenPresetDuration.split( ' ' );
-			if ( presetDurationNumber && customDurationOptions.some( ( option ) => option.value === presetDurationUnit ) ) {
-				customDurationNumber.value = Number( presetDurationNumber );
-				customDurationUnit.value = presetDurationUnit;
-				expiryType.value = 'custom-duration';
+		/**
+		 * Set the form fields according to the given expiry.
+		 *
+		 * @param {string} given
+		 * @return {boolean} false if the given expiry is invalid or of an unsupported format.
+		 */
+		function setDurationFromGiven( given ) {
+			const optionsContainsValue = ( opts, v ) => opts.some( ( option ) => option.value === v );
+			if ( mw.util.isInfinity( given ) ) {
+				expiryType.value = 'preset-duration';
+				// FIXME: Assumes that the "infinite" option exists.
+				// (It has to be for this form as there's no other way to specify infinite)
+				presetDuration.value = 'infinite';
+			} else if ( optionsContainsValue( presetDurationOptions, given ) ) {
+				expiryType.value = 'preset-duration';
+				presetDuration.value = given;
+			} else if ( /^\d+ [a-z]+$/.test( given ) ) {
+				const [ number, unit ] = given.split( ' ' );
+				// Normalize the unit to plural form, as used by customDurationOptions.
+				const unitPlural = unit.replace( /s?$/, 's' );
+				if ( optionsContainsValue( customDurationOptions, unitPlural ) ) {
+					expiryType.value = 'custom-duration';
+					customDurationNumber.value = Number( number );
+					customDurationUnit.value = unitPlural;
+				} else {
+					return false;
+				}
+			} else if ( /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test( given ) ) {
+				expiryType.value = 'datetime';
+				datetime.value = given;
+			} else {
+				// Unsupported format.
+				return false;
 			}
-		} else if ( /^\d+ [a-z]+$/.test( givenDefaultDuration ) ) {
-			const [ defaultDurationNumber, defaultDurationUnit ] = givenDefaultDuration.split( ' ' );
-			if ( defaultDurationNumber && customDurationOptions.some( ( option ) => option.value === defaultDurationUnit ) ) {
-				customDurationNumber.value = Number( defaultDurationNumber );
-				customDurationUnit.value = defaultDurationUnit;
-				expiryType.value = 'custom-duration';
-			}
+
+			return true;
+		}
+
+		// Set the form fields according to the preselected expiry (?wpExpiry=).
+		if ( !setDurationFromGiven( mw.config.get( 'blockExpiryPreset' ) ) ) {
+			// If no expiry is preselected, attempt to go by [[MediaWiki:Ipb-default-expiry]].
+			setDurationFromGiven( mw.config.get( 'blockExpiryDefault' ) );
 		}
 
 		/**

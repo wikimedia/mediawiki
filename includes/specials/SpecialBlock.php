@@ -212,7 +212,13 @@ class SpecialBlock extends FormSpecialPage {
 		$this->requestedHideUser = $request->getBool( 'wpHideUser' );
 
 		if ( $this->useCodex ) {
-			$this->codexFormData[ 'blockExpiryPreset' ] = $request->getVal( 'wpExpiry' );
+			$expiry = date_parse( $request->getVal( 'wpExpiry', '' ) );
+			$this->codexFormData[ 'blockExpiryPreset' ] = isset( $expiry[ 'relative' ] ) ?
+				// Relative expiry (e.g. '1 week')
+				$expiry :
+				// Absolute expiry, formatted for <input type="datetime-local">
+				$this->formatExpiryForHtml( $request->getVal( 'wpExpiry', '' ) );
+
 			$blockAdditionalDetailsPreset = $blockDetailsPreset = [];
 
 			if ( $request->getBool( 'wpCreateAccount' ) ) {
@@ -451,7 +457,7 @@ class SpecialBlock extends FormSpecialPage {
 			'section' => 'expiry',
 		];
 		$this->codexFormData[ 'blockExpiryOptions' ] = $suggestedDurations;
-		$this->codexFormData[ 'blockDefaultExpiry' ] = $defaultExpiry->text();
+		$this->codexFormData[ 'blockExpiryDefault' ] = $defaultExpiry->text();
 
 		$a['Reason'] = [
 			'type' => 'selectandother',
@@ -600,9 +606,14 @@ class SpecialBlock extends FormSpecialPage {
 			}
 
 			if ( $block->getExpiry() == 'infinity' ) {
-				$fields['Expiry']['default'] = 'infinite';
+				$fields['Expiry']['default'] = $this->codexFormData[ 'blockExpiryDefault' ] = 'infinite';
 			} else {
 				$fields['Expiry']['default'] = wfTimestamp( TS_RFC2822, $block->getExpiry() );
+
+				// Don't overwrite if expiry was specified in the URL
+				if ( !isset( $this->codexFormData[ 'blockExpiryPreset' ] ) ) {
+					$this->codexFormData[ 'blockExpiryPreset' ] = $this->formatExpiryForHtml( $block->getExpiry() );
+				}
 			}
 
 			if ( !$block->isSitewide() ) {
@@ -660,6 +671,20 @@ class SpecialBlock extends FormSpecialPage {
 			unset( $fields['Confirm']['default'] );
 			$this->preErrors[] = $this->msg( 'ipb-blockingself', 'ipb-confirmaction' );
 		}
+	}
+
+	/**
+	 * Format a date string for use by <input type="datetime-local">
+	 *
+	 * @param string $expiry
+	 * @return string Formatted as YYYY-MM-DDTHH:mm
+	 */
+	private function formatExpiryForHtml( string $expiry ): string {
+		if ( preg_match( '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/', $expiry ) === 1 ) {
+			// YYYY-MM-DDTHH:mm which is accepted by <input type="datetime-local">, but not by MediaWiki.
+			return substr( $expiry, 0, 16 );
+		}
+		return substr( wfTimestamp( TS_ISO_8601, $expiry ), 0, 16 );
 	}
 
 	/**
