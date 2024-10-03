@@ -3013,6 +3013,7 @@ class Language implements Bcp47Code {
 	 * have the issue of hidden characters ending up in user clipboard in text
 	 * copy paste, see T375975.
 	 *
+	 * @deprecated since 1.43, use bdi HTML tag in HTML context where possible.
 	 * @param bool $opposite Get the direction mark opposite to your language
 	 * @return string
 	 */
