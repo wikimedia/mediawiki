@@ -23,6 +23,7 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Html\Html;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\SpecialPage\QueryPage;
@@ -167,8 +168,10 @@ class SpecialListRedirects extends QueryPage {
 		if ( $target ) {
 			# Make a link to the destination page
 			$lang = $this->getLanguage();
-			$arr = $lang->getArrow() . $lang->getDirMark();
+			$arr = $lang->getArrow();
+			$rd_link = Html::rawElement( 'bdi', [ 'dir' => $lang->getDir() ], $rd_link );
 			$targetLink = $linkRenderer->makeLink( $target, $target->getFullText() );
+			$targetLink = Html::rawElement( 'bdi', [ 'dir' => $lang->getDir() ], $targetLink );
 
 			return "$rd_link $arr $targetLink";
 		} else {
