@@ -19,6 +19,8 @@
  * @author Niklas Laxström, 2008
  */
 
+use MediaWiki\Language\Language;
+
 /**
  * Burmese (Myanmasa)
  *

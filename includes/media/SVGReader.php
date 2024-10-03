@@ -26,6 +26,7 @@
  * @license GPL-2.0-or-later
  */
 
+use MediaWiki\Language\LanguageCode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;

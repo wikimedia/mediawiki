@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Html\Html;
+use MediaWiki\Language\LanguageCode;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

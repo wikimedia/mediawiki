@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Language\Language;
+
 /**
  * Azerbaijani (Azərbaycan) specific code.
  *

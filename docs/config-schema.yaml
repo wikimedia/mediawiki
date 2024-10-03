@@ -3903,7 +3903,7 @@ config-schema:
                 'Help' => 100,
             ];
             ```
-            @see \Language::getNamespaceAliases for accessing the full list of aliases,
+            @see \MediaWiki\Language\Language::getNamespaceAliases for accessing the full list of aliases,
             including those defined by other means.
     LegalTitleChars:
         default: ' %!"$&''()*,\-.\/0-9:;=?@A-Z\\^_`a-z~\x80-\xFF+'

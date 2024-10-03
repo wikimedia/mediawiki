@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Language\Language;
 use MediaWiki\Languages\Data\CrhExceptions;
 use MediaWiki\StubObject\StubUserLang;
 

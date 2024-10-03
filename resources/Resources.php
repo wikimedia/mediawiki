@@ -22,6 +22,7 @@
 
 use MediaWiki\Config\Config;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

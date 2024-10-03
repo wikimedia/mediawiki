@@ -19,6 +19,8 @@
  * @author Niklas Laxström
  */
 
+use MediaWiki\Language\Language;
+
 /**
  * Khmer (ភាសាខ្មែរ)
  *

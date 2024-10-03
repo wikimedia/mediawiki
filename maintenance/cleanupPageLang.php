@@ -25,6 +25,8 @@
 require_once __DIR__ . '/TableCleanup.php';
 // @codeCoverageIgnoreEnd
 
+use MediaWiki\Language\LanguageCode;
+
 /**
  * Maintenance script to clean up deprecated language codes in page_lang
  *

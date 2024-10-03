@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Language\Language;
+
 /**
  * Walloon (Walon)
  *

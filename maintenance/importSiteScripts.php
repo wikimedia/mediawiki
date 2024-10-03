@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;

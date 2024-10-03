@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Language\Language;
+
 /**
  * Dummy language that returns the message names.
  *

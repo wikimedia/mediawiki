@@ -22,7 +22,7 @@ class LanguageBe_taraskTest extends LanguageClassesTestCase {
 
 	/**
 	 * @see T25156 & r64981
-	 * @covers \Language::normalizeForSearch
+	 * @covers \MediaWiki\Language\Language::normalizeForSearch
 	 */
 	public function testSearchRightSingleQuotationMarkAsApostroph() {
 		$this->assertEquals(
@@ -34,7 +34,7 @@ class LanguageBe_taraskTest extends LanguageClassesTestCase {
 
 	/**
 	 * @see T25156 & r64981
-	 * @covers \Language::formatNum
+	 * @covers \MediaWiki\Language\Language::formatNum
 	 */
 	public function testFormatNum() {
 		$this->assertEquals( '1 234 567', $this->getLang()->formatNum( '1234567' ) );
@@ -43,7 +43,7 @@ class LanguageBe_taraskTest extends LanguageClassesTestCase {
 
 	/**
 	 * @see T25156 & r64981
-	 * @covers \Language::formatNum
+	 * @covers \MediaWiki\Language\Language::formatNum
 	 */
 	public function testDoesNotCommafyFourDigitsNumber() {
 		$this->assertSame( '1234', $this->getLang()->formatNum( '1234' ) );
@@ -51,7 +51,7 @@ class LanguageBe_taraskTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider providePlural
-	 * @covers \Language::convertPlural
+	 * @covers \MediaWiki\Language\Language::convertPlural
 	 */
 	public function testPlural( $result, $value ) {
 		$forms = [ 'one', 'few', 'many', 'other' ];
@@ -60,7 +60,7 @@ class LanguageBe_taraskTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider providePlural
-	 * @covers \Language::getPluralRuleType
+	 * @covers \MediaWiki\Language\Language::getPluralRuleType
 	 */
 	public function testGetPluralRuleType( $result, $value ) {
 		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
@@ -84,7 +84,7 @@ class LanguageBe_taraskTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider providePluralTwoForms
-	 * @covers \Language::convertPlural
+	 * @covers \MediaWiki\Language\Language::convertPlural
 	 */
 	public function testPluralTwoForms( $result, $value ) {
 		$forms = [ '1=one', 'other' ];

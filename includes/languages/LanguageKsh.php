@@ -19,6 +19,8 @@
  * @author Purodha Blissenbach
  */
 
+use MediaWiki\Language\Language;
+
 /**
  * Ripuarian (Ripoarėsh)
  *

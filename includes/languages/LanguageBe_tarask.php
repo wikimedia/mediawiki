@@ -21,6 +21,8 @@
  * @license GFDL-1.3-or-later
  */
 
+use MediaWiki\Language\Language;
+
 /**
  * Belarusian in Taraškievica orthography (Беларуская тарашкевіца)
  *

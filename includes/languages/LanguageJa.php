@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Language\Language;
+
 /**
  * Japanese (日本語)
  *

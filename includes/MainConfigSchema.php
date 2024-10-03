@@ -6164,7 +6164,7 @@ class MainConfigSchema {
 	 * ];
 	 * ```
 	 *
-	 * @see \Language::getNamespaceAliases for accessing the full list of aliases,
+	 * @see \MediaWiki\Language\Language::getNamespaceAliases for accessing the full list of aliases,
 	 * including those defined by other means.
 	 */
 	public const NamespaceAliases = [

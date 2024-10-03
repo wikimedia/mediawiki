@@ -11,7 +11,7 @@
 class LanguageRuTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider providePlural
-	 * @covers \Language::convertPlural
+	 * @covers \MediaWiki\Language\Language::convertPlural
 	 */
 	public function testPlural( $result, $value ) {
 		$forms = [ 'one', 'few', 'many', 'other' ];
@@ -20,7 +20,7 @@ class LanguageRuTest extends LanguageClassesTestCase {
 
 	/**
 	 * Test explicit plural forms - n=FormN forms
-	 * @covers \Language::convertPlural
+	 * @covers \MediaWiki\Language\Language::convertPlural
 	 */
 	public function testExplicitPlural() {
 		$forms = [ 'one', 'few', 'many', 'other', '12=dozen' ];
@@ -31,7 +31,7 @@ class LanguageRuTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider providePlural
-	 * @covers \Language::getPluralRuleType
+	 * @covers \MediaWiki\Language\Language::getPluralRuleType
 	 */
 	public function testGetPluralRuleType( $result, $value ) {
 		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
@@ -55,7 +55,7 @@ class LanguageRuTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider providePluralTwoForms
-	 * @covers \Language::convertPlural
+	 * @covers \MediaWiki\Language\Language::convertPlural
 	 */
 	public function testPluralTwoForms( $result, $value ) {
 		$forms = [ '1=one', 'other' ];
@@ -73,7 +73,7 @@ class LanguageRuTest extends LanguageClassesTestCase {
 
 	/**
 	 * @dataProvider providerGrammar
-	 * @covers \Language::convertGrammar
+	 * @covers \MediaWiki\Language\Language::convertGrammar
 	 */
 	public function testGrammar( $result, $word, $case ) {
 		$this->assertEquals( $result, $this->getLang()->convertGrammar( $word, $case ) );
