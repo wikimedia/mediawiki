@@ -2552,6 +2552,7 @@
 	"block-options-description": "Овие можности може да ви помогнат во надгледувањето на овој корисник за спречите понатамошни проблеми.",
 	"block-reason": "Причина:",
 	"block-reason-other": "Дополнителна или друга причина",
+	"block-success": "[[Special:Contributions/$1|$1]] е блокиран. Погледајте го [[Special:BlockList|списокот на блокови]] за да ги прегледате.",
 	"block-user-label": "Кој корисник сакате да го блокирате?",
 	"block-user-active-blocks": "Активни блокови",
 	"block-user-previous-blocks": "Дневник на блокови",

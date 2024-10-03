@@ -461,6 +461,8 @@
 	"sp-contributions-logs": "Mabeji aa malubu",
 	"sp-contributions-talk": "Kuakula",
 	"sp-contributions-search": "Kukebulula bidibu basangisha",
+	"sp-contributions-username": "Muaba wa IP anyi dina dia udi ukuata mudimu:",
+	"sp-contributions-toponly": "Kuleeja anu masangisha aa difuka dia mifudu ya ndekelu",
 	"sp-contributions-submit": "Kukebulula",
 	"whatlinkshere": "Tshinganyi links muaba eu",
 	"whatlinkshere-title": "dibeji udi ulonda ku \"$1\"",

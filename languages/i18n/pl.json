@@ -2632,6 +2632,7 @@
 	"block-options-description": "Te opcje mogą pomóc ci w dalszym obserwowaniu działań użytkownika, aby zapobiec dalszym problemom.",
 	"block-reason": "Powód:",
 	"block-reason-other": "Dodatkowy lub inny powód",
+	"block-success": "[[Special:Contributions/$1|$1]] {{GENDER:$1|został zablokowany|została zablokowana}}. Przejdź do [[Special:BlockList|listy blokad]], by przejrzeć blokady.",
 	"block-user-label": "Jakiego użytkownika chcesz zablokować?",
 	"block-user-active-blocks": "Aktywne blokady",
 	"block-user-previous-blocks": "Rejestr blokad",

@@ -2567,6 +2567,7 @@
 	"block-options-description": "Bu seçimlər əlavə problemlərin qarşısını almaq üçün bu istifadəçini izləməyə kömək edə bilər.",
 	"block-reason": "Səbəb:",
 	"block-reason-other": "Əlavə və ya başqa səbəb",
+	"block-success": "[[Special:Contributions/$1|$1]] bloklandı. Bloklara nəzər yetirmək üçün [[Special:BlockList|blok siyahısına]] baxın.",
 	"block-user-label": "Hansı istifadəçini bloklamaq istəyirsiniz?",
 	"block-user-active-blocks": "Aktiv bloklar",
 	"block-user-previous-blocks": "Blok jurnalı",

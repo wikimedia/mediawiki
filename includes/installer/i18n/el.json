@@ -237,8 +237,6 @@
 	"config-install-tables": "Γίνεται δημιουργία πινάκων, βήμα πρώτο",
 	"config-install-tables-exist": "<strong>Προειδοποίηση:</strong> Οι πίνακες MediaWiki φαίνεται να υπάρχουν ήδη.\nΠαρακάμπτοντας τη δημιουργία.",
 	"config-install-tables-failed": "<strong>Σφάλμα:</strong>Η δημιουργία πινάκων απέτυχε με το ακόλουθο μήνυμα λάθους: $1",
-	"config-install-tables-manual": "Γίνεται δημιουργία πινάκων, βήμα δεύτερο",
-	"config-install-manual-tables-exist": "<strong>Προειδοποίηση:</strong> Οι πίνακες MediaWiki φαίνεται να υπάρχουν ήδη.\nΠαράλειψη δημιουργίας.",
 	"config-install-interwiki": "Γίνεται συμπλήρωση του προεπιλεγμένου πίνακα interwiki",
 	"config-install-interwiki-list": "Αδυναμία ανάγνωσης του αρχείου <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "<strong>Προειδοποίηση:</strong> O πίνακας interwiki φαίνεται να έχει ήδη καταχωρηθεί.\nΠαρακάμπτοντας προεπιλεγμένη λίστα.",
