@@ -18,12 +18,12 @@
  * @file
  */
 
+use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\Field\HTMLCheckField;
 use MediaWiki\HTMLForm\Field\HTMLToggleSwitchField;
 use MediaWiki\HTMLForm\HTMLNestedFilterable;
 use MediaWiki\HTMLForm\OOUIHTMLForm;
 use MediaWiki\User\User;
-use MediaWiki\Xml\Xml;
 
 /**
  * Form to edit user preferences.
@@ -106,7 +106,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	}
 
 	public function wrapForm( $html ) {
-		$html = Xml::tags( 'div', [ 'id' => 'preferences' ], $html );
+		$html = Html::rawElement( 'div', [ 'id' => 'preferences' ], $html );
 
 		return parent::wrapForm( $html );
 	}

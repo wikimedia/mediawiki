@@ -32,7 +32,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
-use MediaWiki\Xml\Xml;
 use stdClass;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IConnectionProvider;
@@ -246,7 +245,7 @@ class AllMessagesTablePager extends TablePager {
 	}
 
 	protected function getStartBody() {
-		return Xml::openElement( 'table', [
+		return Html::openElement( 'table', [
 			'class' => $this->getTableClass(),
 			'id' => 'mw-allmessagestable'
 		] ) .

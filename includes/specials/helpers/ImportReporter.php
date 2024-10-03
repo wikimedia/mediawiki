@@ -28,7 +28,6 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Status\Status;
 use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Title\ForeignTitle;
-use MediaWiki\Xml\Xml;
 
 /**
  * Reporting callback
@@ -186,7 +185,7 @@ class ImportReporter extends ContextSource {
 		$out = $this->getOutput();
 		if ( $this->mLogItemCount > 0 ) {
 			$msg = $this->msg( 'imported-log-entries' )->numParams( $this->mLogItemCount )->parse();
-			$out->addHTML( Xml::tags( 'li', null, $msg ) );
+			$out->addHTML( Html::rawElement( 'li', [], $msg ) );
 		} elseif ( $this->mPageCount == 0 && $this->mLogItemCount == 0 ) {
 			$out->addHTML( "</ul>\n" );
 

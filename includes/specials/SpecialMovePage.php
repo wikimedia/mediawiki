@@ -47,7 +47,6 @@ use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\Widget\ComplexTitleInputWidget;
-use MediaWiki\Xml\Xml;
 use OOUI\ButtonInputWidget;
 use OOUI\CheckboxInputWidget;
 use OOUI\DropdownInputWidget;
@@ -967,7 +966,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 	private function showLogFragment( Title $title ) {
 		$moveLogPage = new LogPage( 'move' );
 		$out = $this->getOutput();
-		$out->addHTML( Xml::element( 'h2', null, $moveLogPage->getName()->text() ) );
+		$out->addHTML( Html::element( 'h2', [], $moveLogPage->getName()->text() ) );
 		LogEventsList::showLogExtract( $out, 'move', $title );
 	}
 

@@ -28,7 +28,6 @@ use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupMembership;
-use MediaWiki\Xml\Xml;
 
 /**
  * This special page lists the defined password policies for user groups.
@@ -62,10 +61,10 @@ class SpecialPasswordPolicies extends SpecialPage {
 		$this->addHelpLink( 'Manual:$wgPasswordPolicy' );
 
 		$out->addHTML(
-			Xml::openElement( 'table', [ 'class' => 'wikitable mw-passwordpolicies-table' ] ) .
+			Html::openElement( 'table', [ 'class' => 'wikitable mw-passwordpolicies-table' ] ) .
 				'<tr>' .
-				Xml::element( 'th', null, $this->msg( 'passwordpolicies-group' )->text() ) .
-				Xml::element( 'th', null, $this->msg( 'passwordpolicies-policies' )->text() ) .
+			Html::element( 'th', [], $this->msg( 'passwordpolicies-group' )->text() ) .
+			Html::element( 'th', [], $this->msg( 'passwordpolicies-policies' )->text() ) .
 				'</tr>'
 		);
 
@@ -123,7 +122,7 @@ class SpecialPasswordPolicies extends SpecialPage {
 
 		}
 
-		$out->addHTML( Xml::closeElement( 'table' ) );
+		$out->addHTML( Html::closeElement( 'table' ) );
 	}
 
 	/**

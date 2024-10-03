@@ -23,6 +23,7 @@ namespace MediaWiki\Specials;
 use MediaWiki\Api\ApiMessage;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Languages\LanguageNameUtils;
@@ -36,7 +37,6 @@ use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\MalformedTitleException;
 use MediaWiki\Title\Title;
-use MediaWiki\Xml\Xml;
 use SearchEngineFactory;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
@@ -310,7 +310,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 
 	private function showLogFragment( string $title ): string {
 		$moveLogPage = new LogPage( 'pagelang' );
-		$out1 = Xml::element( 'h2', null, $moveLogPage->getName()->text() );
+		$out1 = Html::element( 'h2', [], $moveLogPage->getName()->text() );
 		$out2 = '';
 		LogEventsList::showLogExtract( $out2, 'pagelang', $title );
 		return $out1 . $out2;

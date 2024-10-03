@@ -47,7 +47,6 @@ use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Watchlist\WatchlistManager;
 use MediaWiki\WikiMap\WikiMap;
-use MediaWiki\Xml\Xml;
 use MediaWiki\Xml\XmlSelect;
 use Wikimedia\Rdbms\IDBAccessObject;
 
@@ -867,7 +866,8 @@ class SpecialUserRights extends SpecialPage {
 							Html::label( $this->msg( 'userrights-reason' )->text(), 'wpReason' ) .
 						"</td>
 						<td class='mw-input'>" .
-							Xml::input( 'user-reason', 60, $this->getRequest()->getVal( 'user-reason' ) ?? false, [
+							Html::input( 'user-reason', $this->getRequest()->getVal( 'user-reason' ) ?? false, 'text', [
+								'size' => 60,
 								'id' => 'wpReason',
 								// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
 								// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
@@ -892,14 +892,14 @@ class SpecialUserRights extends SpecialPage {
 							'&nbsp;' . Html::label( $this->msg( 'userrights-watchuser' )->text(), 'wpWatch' ) .
 						"</td>
 					</tr>" .
-				Xml::closeElement( 'table' ) . "\n"
+				Html::closeElement( 'table' ) . "\n"
 			);
 		} else {
 			$this->getOutput()->addHTML( $grouplist );
 		}
 		$this->getOutput()->addHTML(
-			Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' ) . "\n"
+			Html::closeElement( 'fieldset' ) .
+			Html::closeElement( 'form' ) . "\n"
 		);
 	}
 
@@ -959,16 +959,16 @@ class SpecialUserRights extends SpecialPage {
 		}
 
 		// Build the HTML table
-		$ret .= Xml::openElement( 'table', [ 'class' => 'mw-userrights-groups' ] ) .
+		$ret .= Html::openElement( 'table', [ 'class' => 'mw-userrights-groups' ] ) .
 			"<tr>\n";
 		foreach ( $columns as $name => $column ) {
 			if ( $column === [] ) {
 				continue;
 			}
 			// Messages: userrights-changeable-col, userrights-unchangeable-col
-			$ret .= Xml::element(
+			$ret .= Html::element(
 				'th',
-				null,
+				[],
 				$this->msg( 'userrights-' . $name . '-col', count( $column ) )->text()
 			);
 		}
@@ -1013,11 +1013,11 @@ class SpecialUserRights extends SpecialPage {
 							$expiryFormatted = $uiLanguage->userTimeAndDate( $currentExpiry, $uiUser );
 							$expiryFormattedD = $uiLanguage->userDate( $currentExpiry, $uiUser );
 							$expiryFormattedT = $uiLanguage->userTime( $currentExpiry, $uiUser );
-							$expiryHtml = Xml::element( 'span', null,
+							$expiryHtml = Html::element( 'span', [],
 								$this->msg( 'userrights-expiry-current' )->params(
 								$expiryFormatted, $expiryFormattedD, $expiryFormattedT )->text() );
 						} else {
-							$expiryHtml = Xml::element( 'span', null,
+							$expiryHtml = Html::element( 'span', [],
 								$this->msg( 'userrights-expiry-none' )->text() );
 						}
 						// T171345: Add a hidden form element so that other groups can still be manipulated,

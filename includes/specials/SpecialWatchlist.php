@@ -44,7 +44,6 @@ use MediaWiki\User\UserIdentityUtils;
 use MediaWiki\Watchlist\WatchedItem;
 use MediaWiki\Watchlist\WatchedItemStoreInterface;
 use MediaWiki\Watchlist\WatchlistManager;
-use MediaWiki\Xml\Xml;
 use MediaWiki\Xml\XmlSelect;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IReadableDatabase;
@@ -702,18 +701,18 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		$form = '';
 
-		$form .= Xml::openElement( 'form', [
+		$form .= Html::openElement( 'form', [
 			'method' => 'get',
 			'action' => wfScript(),
 			'id' => 'mw-watchlist-form'
 		] );
 		$form .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
-		$form .= Xml::openElement(
+		$form .= Html::openElement(
 			'fieldset',
 			[ 'id' => 'mw-watchlist-options', 'class' => 'cloptions' ]
 		);
-		$form .= Xml::element(
-			'legend', null, $this->msg( 'watchlist-options' )->text()
+		$form .= Html::element(
+			'legend', [], $this->msg( 'watchlist-options' )->text()
 		);
 
 		if ( !$this->isStructuredFilterUiEnabled() ) {
@@ -805,15 +804,15 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$namespaceForm
 		);
 
-		$form .= Xml::submitButton(
+		$form .= Html::submitButton(
 			$this->msg( 'watchlist-submit' )->text(),
 			[ 'class' => 'cloption-submit' ]
 		) . "\n";
 		foreach ( $hiddenFields as $key => $value ) {
 			$form .= Html::hidden( $key, $value ) . "\n";
 		}
-		$form .= Xml::closeElement( 'fieldset' ) . "\n";
-		$form .= Xml::closeElement( 'form' ) . "\n";
+		$form .= Html::closeElement( 'fieldset' ) . "\n";
+		$form .= Html::closeElement( 'form' ) . "\n";
 
 		// Insert a placeholder for RCFilters
 		if ( $this->isStructuredFilterUiEnabled() ) {
@@ -922,17 +921,17 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		);
 
 		if ( $numItems > 0 && $showUpdatedMarker ) {
-			$form .= Xml::openElement( 'form', [ 'method' => 'post',
+			$form .= Html::openElement( 'form', [ 'method' => 'post',
 				'action' => $this->getPageTitle()->getLocalURL(),
 				'id' => 'mw-watchlist-resetbutton' ] ) . "\n" .
-			Xml::submitButton( $this->msg( 'enotif_reset' )->text(),
+			Html::submitButton( $this->msg( 'enotif_reset' )->text(),
 				[ 'name' => 'mw-watchlist-reset-submit' ] ) . "\n" .
 			Html::hidden( 'token', $user->getEditToken() ) . "\n" .
 			Html::hidden( 'reset', 'all' ) . "\n";
 			foreach ( $nondefaults as $key => $value ) {
 				$form .= Html::hidden( $key, $value ) . "\n";
 			}
-			$form .= Xml::closeElement( 'form' ) . "\n";
+			$form .= Html::closeElement( 'form' ) . "\n";
 		}
 
 		$this->getOutput()->addHTML( $form );
