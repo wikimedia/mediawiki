@@ -3824,7 +3824,7 @@
 	"revdelete-uname-unhid": "Benutzername freigegeben",
 	"revdelete-restricted": "Einschränkungen gelten auch für Administratoren",
 	"revdelete-unrestricted": "Einschränkungen für Administratoren aufgehoben",
-	"logentry-block-block": "$1 {{GENDER:$2|sperrte}} {{GENDER:$4|$3}} für $5 $6",
+	"logentry-block-block": "$1 {{GENDER:$2|sperrte}} {{GENDER:$4|$3}} für eine Dauer von $5 $6",
 	"logentry-block-unblock": "$1 {{GENDER:$2|hob}} die Sperre von {{GENDER:$4|$3}} auf",
 	"logentry-block-reblock": "$1 {{GENDER:$2|änderte}} die Sperreinstellungen für {{GENDER:$4|$3}} auf eine Dauer von $5 $6",
 	"logentry-partialblock-block-page": "die Bearbeitung der {{PLURAL:$1|Seite|Seiten}} $2",

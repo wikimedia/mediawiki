@@ -115,7 +115,8 @@
 			"아라",
 			"Gerges",
 			"Mohammed Qays",
-			"Mohanad"
+			"Mohanad",
+			"جودت"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -1808,6 +1809,8 @@
 	"uploadbtn": "رفع ملفٍّ",
 	"reuploaddesc": "إلغاء الرفع والرجوع إلى استمارة الرفع",
 	"upload-refresh": "تحديث",
+	"upload-progress-queued": "في انتظار بدء التنزيل. يرجى الضغط على زر التحديث للتحقق مرة أخرى.",
+	"upload-progress-downloading": "جارٍ تنزيل الصورة. الرجاء الضغط على زر التحديث للتحقق مرة أخرى.",
 	"upload-tryagain": "أرسل وصف ملف معدل",
 	"upload-tryagain-nostash": "ارفع الملف المعاد رفعه والوصف المعدل",
 	"uploadnologin": "غير مسجل الدخول",

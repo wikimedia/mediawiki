@@ -4182,7 +4182,7 @@
 	"specialmute-error-no-email-set": "De negeerfunctionaliteit is niet beschikbaar omdat uw e-mailadres nog niet bevestigd is.",
 	"specialmute-error-no-options": "De negeerfunctionaliteit is niet beschikbaar.",
 	"specialmute-email-footer": "Om uw e-mailvoorkeuren voor gebruiker {{BIDI:$2}} te beheren gaat u naar de volgende pagina:\n$1.",
-	"specialmute-login-required": "U moet aanmelden om voorkeuren voor het negeren van gebruikers in te stellen.",
+	"specialmute-login-required": "U moet zich aanmelden om voorkeuren voor het negeren van gebruikers in te stellen.",
 	"mute-preferences": "Negeervoorkeuren",
 	"revid": "versie $1",
 	"pageid": "Pagina-ID $1",

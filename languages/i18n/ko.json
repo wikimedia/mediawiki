@@ -101,7 +101,8 @@
 			"LR0725",
 			"기나ㅏㄴ",
 			"이강철",
-			"Herness17"
+			"Herness17",
+			"*Youngjin"
 		]
 	},
 	"tog-underline": "링크에 밑줄 긋기:",
@@ -4267,8 +4268,13 @@
 	"action-renameuser": "사용자 이름을 바꿀",
 	"right-renameuser": "사용자 이름 바꾸기",
 	"renameuser-renamed-notice": "이 사용자의 이름을 바꾸었습니다.\n참조를 위해 아래에 이름 바꾸기 기록을 제공합니다.",
+	"log-unknown-action": "[[$1]]에 대해 알 수 없는 \"$2\" 작업을 수행했습니다",
 	"createacct-benefit-heading-temp-user": "{{SITENAME}}에 기여해 주셔서 감사합니다. 더 많은 기능에 접근하려면 계정을 만드세요.",
 	"createacct-benefit-subheading-temp-user": "{{SITENAME}} 사이트는 여러분과 같은 사람들이 만듭니다. 계정을 사용하면 다음과 같은 기능에 접근하여 영구적이고 안전한 신원을 가질 수 있습니다:",
+	"benefit-1-description": "관심 있는 문서를 추적할 수 있는 주시문서 목록입니다.",
+	"benefit-2-description": "당신이 프로젝트에 수행한 영구적인 기여 목록입니다.",
+	"benefit-3-description": "경험을 맞춤 설정할 수 있는 환경 설정입니다.",
+	"temp-user-unable-to-acquire": "임시 계정 사용자 이름을 가져올 수 없습니다. 다시 시도해 주십시오.",
 	"composer-deps-outdated": "$1: $2 설치됨, $3 필요함.",
 	"composer-deps-notinstalled": "$1: 설치되지 않음, $2 필요함."
 }

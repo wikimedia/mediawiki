@@ -1007,7 +1007,7 @@
 	"difference-title-multipage": "$1 และ $2: ความแตกต่างระหว่างหน้า",
 	"difference-multipage": "(ผลต่างระหว่างหน้า)",
 	"lineno": "บรรทัดที่ $1:",
-	"lineno-inline": "เส้น $1 ⟶ $2:",
+	"lineno-inline": "บรรทัดที่ $1 ⟶ $2:",
 	"compareselectedversions": "เปรียบเทียบรุ่นที่เลือก",
 	"showhideselectedversions": "เปลี่ยนการมองเห็นของรุ่นที่เลือก",
 	"showhideselectedfileversions": "เปลี่ยนการมองเห็นของรุ่นของไฟล์ที่เลือก",

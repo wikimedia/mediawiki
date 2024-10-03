@@ -3874,6 +3874,7 @@
 	"blockedtext-start-time": "खंड की शुरुआत: $1",
 	"blockedtext-expiration-time": "खंड का निःश्वसन: $1",
 	"blockedtext-intended-blockee": "अभिप्रेत खंड",
+	"blockedtext-block-ip": "आपका वर्तमान आईपी पता $1 है।",
 	"renameuser": "सदस्यनाम बदलें",
 	"renameuser-linkoncontribs": "सदस्यनाम बदलें",
 	"renameuser-linkoncontribs-text": "इस सदस्य का नाम बदलें",
