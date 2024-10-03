@@ -410,7 +410,7 @@ class RefreshLinksJob extends Job {
 			// In order to collect accurate statistics, check for
 			// a dirty copy in the cache even if we wouldn't have
 			// to otherwise.
-			$cachedOutput = $parserCache->getDirty( $page, $parserOptions );
+			$cachedOutput = $parserCache->getDirty( $page, $parserOptions ) ?: null;
 		}
 
 		$renderedRevision = $renderer->getRenderedRevision(
