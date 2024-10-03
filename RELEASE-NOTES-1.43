@@ -898,6 +898,9 @@ because of Phabricator reports.
 * (T45646) The hook 'SkinCopyrightFooter' is deprecated in favor of
   'SkinCopyrightFooterMessage'. The new hook allows specifying copyright
   messages that are parsed as wikitext instead of being treated as raw HTML.
+* (T374314) The 'mw.Uri' module has been deprecated in favour of the browser-
+  native URL interface, which is now provided in all supported user agents. For
+  details, see <https://developer.mozilla.org/en-US/docs/Web/API/URL>.
 * …
 
 === Other changes in 1.43 ===
