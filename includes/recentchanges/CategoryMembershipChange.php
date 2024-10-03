@@ -55,6 +55,9 @@ class CategoryMembershipChange {
 	 */
 	private $revision;
 
+	/** @var bool Whether this was caused by an import */
+	private $forImport;
+
 	/**
 	 * @var int
 	 * Number of pages this WikiPage is embedded by
@@ -74,10 +77,12 @@ class CategoryMembershipChange {
 	 * @param Title $pageTitle Title instance of the categorized page
 	 * @param BacklinkCache $backlinkCache
 	 * @param RevisionRecord|null $revision Latest revision of the categorized page.
+	 * @param bool $forImport Whether this was caused by a import
 	 */
 	public function __construct(
-		Title $pageTitle, BacklinkCache $backlinkCache, RevisionRecord $revision = null
+		Title $pageTitle, BacklinkCache $backlinkCache, RevisionRecord $revision = null, bool $forImport = false
 	) {
+		// TODO: Update callers of this method to pass for import
 		$this->pageTitle = $pageTitle;
 		$this->revision = $revision;
 		if ( $revision === null ) {
@@ -87,6 +92,7 @@ class CategoryMembershipChange {
 		}
 		$this->newForCategorizationCallback = [ RecentChange::class, 'newForCategorization' ];
 		$this->backlinkCache = $backlinkCache;
+		$this->forImport = $forImport;
 	}
 
 	/**
@@ -147,6 +153,7 @@ class CategoryMembershipChange {
 			$this->pageTitle,
 			$this->getPreviousRevisionTimestamp(),
 			$this->revision,
+			$this->forImport,
 			$type === self::CATEGORY_ADDITION
 		);
 	}
@@ -159,6 +166,7 @@ class CategoryMembershipChange {
 	 * @param PageIdentity $page Page that is being added or removed
 	 * @param string $lastTimestamp Parent revision timestamp of this change in TS_MW format
 	 * @param RevisionRecord|null $revision
+	 * @param bool $forImport Whether the associated revision was imported
 	 * @param bool $added true, if the category was added, false for removed
 	 */
 	private function notifyCategorization(
@@ -169,6 +177,7 @@ class CategoryMembershipChange {
 		PageIdentity $page,
 		$lastTimestamp,
 		$revision,
+		bool $forImport,
 		$added
 	) {
 		$deleted = $revision ? $revision->getVisibility() & RevisionRecord::SUPPRESSED_USER : 0;
@@ -209,7 +218,8 @@ class CategoryMembershipChange {
 			$bot,
 			$ip,
 			$deleted,
-			$added
+			$added,
+			$forImport
 		);
 		$rc->save();
 	}

@@ -88,7 +88,7 @@ class CategoryMembershipChangeJobTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testJobSpecRemovesDuplicates() {
-		$jobSpec = CategoryMembershipChangeJob::newSpec( $this->title, MWTimestamp::now() );
+		$jobSpec = CategoryMembershipChangeJob::newSpec( $this->title, MWTimestamp::now(), false );
 		$job = new CategoryMembershipChangeJob(
 			$this->title,
 			$jobSpec->getParams()
@@ -99,8 +99,8 @@ class CategoryMembershipChangeJobTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testJobSpecDeduplicationIgnoresRevTimestamp() {
-		$jobSpec1 = CategoryMembershipChangeJob::newSpec( $this->title, '20191008204617' );
-		$jobSpec2 = CategoryMembershipChangeJob::newSpec( $this->title, '20201008204617' );
+		$jobSpec1 = CategoryMembershipChangeJob::newSpec( $this->title, '20191008204617', false );
+		$jobSpec2 = CategoryMembershipChangeJob::newSpec( $this->title, '20201008204617', false );
 		$this->assertArrayEquals( $jobSpec1->getDeduplicationInfo(), $jobSpec2->getDeduplicationInfo() );
 	}
 }

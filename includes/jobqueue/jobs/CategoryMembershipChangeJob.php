@@ -52,14 +52,16 @@ class CategoryMembershipChangeJob extends Job {
 	/**
 	 * @param PageIdentity $page the page for which to update category membership.
 	 * @param string $revisionTimestamp The timestamp of the new revision that triggered the job.
+	 * @param bool $forImport Whether the new revision that triggered the import was imported
 	 * @return JobSpecification
 	 */
-	public static function newSpec( PageIdentity $page, $revisionTimestamp ) {
+	public static function newSpec( PageIdentity $page, $revisionTimestamp, bool $forImport ) {
 		return new JobSpecification(
 			'categoryMembershipChange',
 			[
 				'pageId' => $page->getId(),
 				'revTimestamp' => $revisionTimestamp,
+				'forImport' => $forImport,
 			],
 			[
 				'removeDuplicates' => true,
@@ -206,7 +208,7 @@ class CategoryMembershipChangeJob extends Job {
 		}
 
 		$blc = $services->getBacklinkCacheFactory()->getBacklinkCache( $title );
-		$catMembChange = new CategoryMembershipChange( $title, $blc, $newRev );
+		$catMembChange = new CategoryMembershipChange( $title, $blc, $newRev, $this->params['forImport'] ?? false );
 		$catMembChange->checkTemplateLinks();
 
 		$batchSize = $services->getMainConfig()->get( MainConfigNames::UpdateRowsPerQuery );

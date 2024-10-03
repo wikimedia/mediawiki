@@ -1605,7 +1605,8 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 			$this->jobQueueGroup->lazyPush(
 				CategoryMembershipChangeJob::newSpec(
 					$this->getTitle(),
-					$this->revision->getTimestamp()
+					$this->revision->getTimestamp(),
+					$this->options['causeAction'] === 'import-page'
 				)
 			);
 		}
