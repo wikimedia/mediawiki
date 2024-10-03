@@ -21,8 +21,8 @@ namespace Wikimedia\Rdbms;
 
 use Psr\Log\LoggerAwareInterface;
 use StatsdAwareInterface;
-use WANObjectCache;
 use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\ObjectCache\WANObjectCache;
 
 /**
  * Database load monitoring interface

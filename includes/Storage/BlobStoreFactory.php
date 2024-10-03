@@ -23,7 +23,7 @@ namespace MediaWiki\Storage;
 use ExternalStoreAccess;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
-use WANObjectCache;
+use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\ILBFactory;
 
 /**

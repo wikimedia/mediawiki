@@ -7,6 +7,7 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleValue;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
+use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\IDBAccessObject;
 
 /**

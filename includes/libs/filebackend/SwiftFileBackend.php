@@ -30,6 +30,7 @@ use Wikimedia\FileBackend\FileBackend;
 use Wikimedia\Http\MultiHttpClient;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
+use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**

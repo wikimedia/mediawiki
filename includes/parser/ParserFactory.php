@@ -39,6 +39,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Utils\UrlUtils;
 use Psr\Log\LoggerInterface;
+use Wikimedia\ObjectCache\WANObjectCache;
 
 /**
  * @since 1.32

@@ -21,9 +21,9 @@
 namespace MediaWiki\Storage;
 
 use Psr\Log\LoggerInterface;
-use WANObjectCache;
 use Wikimedia\Assert\Assert;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
+use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;

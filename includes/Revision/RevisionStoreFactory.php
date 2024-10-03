@@ -36,9 +36,9 @@ use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\ActorStoreFactory;
 use Psr\Log\LoggerInterface;
-use WANObjectCache;
 use Wikimedia\Assert\Assert;
 use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\ILBFactory;
 
 /**

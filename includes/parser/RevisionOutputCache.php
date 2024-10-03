@@ -31,7 +31,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Utils\MWTimestamp;
 use ParserOptions;
 use Psr\Log\LoggerInterface;
-use WANObjectCache;
+use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\UUID\GlobalIdGenerator;
 

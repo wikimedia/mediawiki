@@ -29,8 +29,8 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Title\TitleFactory;
 use ParserCache;
 use Psr\Log\LoggerInterface;
-use WANObjectCache;
 use Wikimedia\ObjectCache\BagOStuff;
+use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Stats\StatsFactory;
 use Wikimedia\UUID\GlobalIdGenerator;
 

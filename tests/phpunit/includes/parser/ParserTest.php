@@ -30,7 +30,7 @@ use MediaWikiIntegrationTestCase;
 use ParserFactory;
 use Psr\Log\NullLogger;
 use ReflectionObject;
-use WANObjectCache;
+use Wikimedia\ObjectCache\WANObjectCache;
 
 /**
  * @covers \MediaWiki\Parser\Parser::__construct

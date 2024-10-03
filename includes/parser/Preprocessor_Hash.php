@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Parser\Parser;
+use Wikimedia\ObjectCache\WANObjectCache;
 
 /**
  * Differences from DOM schema:

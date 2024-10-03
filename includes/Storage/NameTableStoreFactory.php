@@ -22,7 +22,7 @@ namespace MediaWiki\Storage;
 
 use InvalidArgumentException;
 use Psr\Log\LoggerInterface;
-use WANObjectCache;
+use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\ILBFactory;
 
 class NameTableStoreFactory {

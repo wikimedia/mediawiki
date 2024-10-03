@@ -42,7 +42,7 @@ use MediaWiki\Title\TitleValue;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
 use stdClass;
-use WANObjectCache;
+use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IReadableDatabase;

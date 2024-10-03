@@ -695,6 +695,7 @@ because of Phabricator reports.
     - MultiWriteBagOStuff
     - RESTBagOStuff
     - RedisBagOStuff
+    - WANObjectCache
     - WinCacheBagOStuff
   - Wikimedia\Rdbms:
     - DBAccessObjectUtils

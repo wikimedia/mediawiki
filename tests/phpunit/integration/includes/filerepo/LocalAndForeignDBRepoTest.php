@@ -2,6 +2,7 @@
 
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\ObjectCache\HashBagOStuff;
+use Wikimedia\ObjectCache\WANObjectCache;
 
 class LocalAndForeignDBRepoTest extends MediaWikiIntegrationTestCase {
 	/**
