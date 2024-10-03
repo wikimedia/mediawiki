@@ -11,9 +11,13 @@ use MediaWiki\Parser\ParserOutput;
 class PreparedEditTest extends \MediaWikiUnitTestCase {
 	public function testCallback() {
 		$output = new ParserOutput();
+		$output->clearParseStartTime();
+
 		$edit = new PreparedEdit();
 		$edit->parserOutputCallback = static function () {
-			return new ParserOutput();
+			$output = new ParserOutput();
+			$output->clearParseStartTime();
+			return $output;
 		};
 
 		$this->assertEquals( $output, $edit->getOutput() );

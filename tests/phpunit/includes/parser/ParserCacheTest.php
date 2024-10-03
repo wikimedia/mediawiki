@@ -526,6 +526,8 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 			'RejectParserCacheValue' =>
 				function ( ParserOutput $value, WikiPage $hookPage, ParserOptions $popts )
 				use ( $wikiPageMock, $parserOutput, $options ) {
+					// parse start time is not saved/restored in the cache
+					$parserOutput->clearParseStartTime();
 					$this->assertEquals( $parserOutput, $value );
 					$this->assertSame( $wikiPageMock, $hookPage );
 					$this->assertSame( $options, $popts );
@@ -729,6 +731,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 
 		// make sure we can load non-json cache data
 		$cachedOutput = $cache->get( $this->page, $options );
+		$parserOutput1->clearParseStartTime(); // not saved/restored
 		$this->assertEquals( $parserOutput1, $cachedOutput );
 
 		// now test that the cache works when using JSON
@@ -737,6 +740,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 
 		// make sure we can load json cache data
 		$cachedOutput = $cache->get( $this->page, $options );
+		$parserOutput2->clearParseStartTime(); // not saved/restored
 		$this->assertEquals( $parserOutput2, $cachedOutput );
 	}
 
