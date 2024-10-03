@@ -21,9 +21,9 @@ declare( strict_types=1 );
 
 namespace Wikimedia\Stats\Metrics;
 
-use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
 use Wikimedia\Stats\Exceptions\IllegalOperationException;
+use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\Sample;
 use Wikimedia\Stats\StatsUtils;
 
