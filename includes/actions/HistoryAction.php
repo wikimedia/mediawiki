@@ -221,7 +221,7 @@ class HistoryAction extends FormlessAction {
 			# show deletion/move log if there is an entry
 			LogEventsList::showLogExtract(
 				$out,
-				[ 'delete', 'move', 'protect' ],
+				[ 'delete', 'move', 'protect', 'merge' ],
 				$this->getTitle(),
 				'',
 				[ 'lim' => 10,
