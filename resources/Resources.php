@@ -2262,6 +2262,7 @@ return [
 			'resources/src/mediawiki.special.block/components/TargetActiveBlocks.vue',
 			'resources/src/mediawiki.special.block/components/TargetBlockLog.vue',
 			'resources/src/mediawiki.special.block/components/UserLookup.vue',
+			'resources/src/mediawiki.special.block/components/ValidatingTextInput.js',
 			'resources/src/mediawiki.special.block/SpecialBlock.vue',
 			[
 				'name' => 'resources/src/mediawiki.special.block/icons.json',
@@ -2346,6 +2347,7 @@ return [
 			'block-user-no-reason-given',
 			'blockipsuccesssub',
 			'block-success',
+			'ipb_expiry_invalid'
 		],
 	],
 	'mediawiki.protectionIndicators.styles' => [

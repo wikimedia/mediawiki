@@ -2,11 +2,14 @@
 	<cdx-field
 		:is-fieldset="true"
 		:disabled="disabled"
+		:status="status"
+		:messages="messages"
 	>
 		<cdx-lookup
 			v-model:selected="selection"
 			v-model:input-value="currentSearchTerm"
 			name="wpTarget"
+			required
 			:menu-items="menuItems"
 			:placeholder="$i18n( 'block-user-placeholder' ).text()"
 			:start-icon="cdxIconSearch"
@@ -25,7 +28,7 @@
 </template>
 
 <script>
-const { defineComponent, toRef, ref } = require( 'vue' );
+const { defineComponent, toRef, ref, watch } = require( 'vue' );
 const { CdxLookup, CdxField, useModelWrapper } = require( '@wikimedia/codex' );
 const { cdxIconSearch } = require( '../icons.json' );
 const api = new mw.Api();
@@ -35,6 +38,14 @@ module.exports = exports = defineComponent( {
 	components: { CdxLookup, CdxField },
 	props: {
 		modelValue: { type: [ String, null ], required: true },
+		/**
+		 * Whether the form has been submitted yet. This is used to show
+		 * validation messages only after the form has been submitted.
+		 */
+		formSubmitted: {
+			type: Boolean,
+			default: false
+		},
 		/**
 		 * Whether the field is disabled
 		 */
@@ -54,6 +65,8 @@ module.exports = exports = defineComponent( {
 			toRef( props, 'modelValue' ),
 			emit
 		);
+		const status = ref( 'default' );
+		const messages = ref( {} );
 
 		/**
 		 * Get search results.
@@ -124,13 +137,35 @@ module.exports = exports = defineComponent( {
 		}
 
 		/**
+		 * Validate the input element.
+		 *
+		 * @param {HTMLInputElement} el
+		 */
+		function validate( el ) {
+			if ( el.checkValidity() ) {
+				status.value = 'default';
+				messages.value = {};
+			} else {
+				status.value = 'error';
+				messages.value = { error: el.validationMessage };
+			}
+		}
+
+		/**
 		 * Handle lookup change.
 		 *
 		 * @param {Event} event
 		 */
 		function onChange( event ) {
+			validate( event.target );
 			emit( 'update:modelValue', event.target.value );
 		}
+
+		// Validate the input when the form is submitted.
+		// TODO: Remove once Codex supports native validations (T373872).
+		watch( () => props.formSubmitted, () => {
+			validate( document.querySelector( '[name="wpTarget"]' ) );
+		} );
 
 		return {
 			menuItems,
@@ -138,7 +173,9 @@ module.exports = exports = defineComponent( {
 			onInput,
 			cdxIconSearch,
 			currentSearchTerm,
-			selection
+			selection,
+			status,
+			messages
 		};
 	}
 } );

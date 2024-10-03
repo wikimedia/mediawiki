@@ -7,64 +7,97 @@
 		<template #label>
 			{{ $i18n( 'block-expiry' ).text() }}
 		</template>
+
 		<cdx-radio
 			v-model="expiryType"
 			name="expiryType"
 			input-value="preset-duration"
 		>
 			{{ $i18n( 'block-expiry-preset' ).text() }}
+			<template v-if="expiryType === 'preset-duration'" #custom-input>
+				<cdx-field
+					class="mw-block-expiry-field__preset-duration"
+					:status="presetDurationStatus"
+					:messages="presetDurationMessages"
+				>
+					<cdx-select
+						v-if="expiryType === 'preset-duration'"
+						v-model:selected="presetDuration"
+						:menu-items="presetDurationOptions"
+						:default-label="$i18n( 'block-expiry-preset-placeholder' ).text()"
+						@update:selected="() => {
+							presetDurationStatus = 'default';
+							presetDurationMessages = {};
+						}"
+					></cdx-select>
+				</cdx-field>
+			</template>
 		</cdx-radio>
-		<cdx-select
-			v-if="expiryType === 'preset-duration'"
-			v-model:selected="presetDuration"
-			class="mw-block-expiry-field__preset-duration"
-			:menu-items="presetDurationOptions"
-			:default-label="$i18n( 'block-expiry-preset-placeholder' ).text()"
-		></cdx-select>
+
 		<cdx-radio
 			v-model="expiryType"
 			name="expiryType"
 			input-value="custom-duration"
 		>
 			{{ $i18n( 'block-expiry-custom' ).text() }}
+			<template v-if="expiryType === 'custom-duration'" #custom-input>
+				<cdx-field
+					class="mw-block-expiry-field__custom-duration"
+					:status="customDurationStatus"
+					:messages="customDurationMessages"
+				>
+					<validating-text-input
+						v-model="customDurationNumber"
+						input-type="number"
+						min="1"
+						required
+						@update:status="( status, message ) => {
+							customDurationMessages = message;
+							customDurationStatus = status;
+						}"
+					></validating-text-input>
+					<cdx-select
+						v-model:selected="customDurationUnit"
+						:menu-items="customDurationOptions"
+					></cdx-select>
+				</cdx-field>
+			</template>
 		</cdx-radio>
-		<div
-			v-if="expiryType === 'custom-duration'"
-			class="mw-block-expiry-field__custom-duration"
-		>
-			<cdx-text-input
-				v-model="customDurationNumber"
-				class="mw-block-expiry-field__custom-duration__number"
-				input-type="number"
-				min="1"
-			></cdx-text-input>
-			<cdx-select
-				v-model:selected="customDurationUnit"
-				:menu-items="customDurationOptions"
-				class="mw-block-expiry-field__custom-duration__unit"
-			></cdx-select>
-		</div>
+
 		<cdx-radio
 			v-model="expiryType"
 			name="expiryType"
 			input-value="datetime"
 		>
 			{{ $i18n( 'block-expiry-datetime' ).text() }}
+			<template v-if="expiryType === 'datetime'" #custom-input>
+				<cdx-field
+					class="mw-block-expiry-field__datetime"
+					:status="datetimeStatus"
+					:messages="datetimeMessages"
+				>
+					<validating-text-input
+						v-if="expiryType === 'datetime'"
+						v-model="datetime"
+						input-type="datetime-local"
+						name="wpExpiry-other"
+						:min="new Date().toISOString().slice( 0, 16 )"
+						required
+						@update:status="( status, message ) => {
+							datetimeMessages = message;
+							datetimeStatus = status;
+						}"
+					></validating-text-input>
+				</cdx-field>
+			</template>
 		</cdx-radio>
-		<cdx-text-input
-			v-if="expiryType === 'datetime'"
-			v-model="datetime"
-			class="mw-block-expiry-field__datetime"
-			input-type="datetime-local"
-			name="wpExpiry-other"
-			:min="new Date().toISOString().slice( 0, 16 )"
-		></cdx-text-input>
 	</cdx-field>
 </template>
 
 <script>
 const { defineComponent, ref, computed, watch } = require( 'vue' );
-const { CdxField, CdxRadio, CdxSelect, CdxTextInput } = require( '@wikimedia/codex' );
+const { CdxField, CdxRadio, CdxSelect } = require( '@wikimedia/codex' );
+const ValidatingTextInput = require( './ValidatingTextInput.js' );
 
 module.exports = exports = defineComponent( {
 	name: 'ExpiryField',
@@ -72,13 +105,21 @@ module.exports = exports = defineComponent( {
 		CdxField,
 		CdxRadio,
 		CdxSelect,
-		CdxTextInput
+		ValidatingTextInput
 	},
 	props: {
 		// This is an object of the form { value: String, type: String }
 		modelValue: {
 			type: Object,
 			required: true
+		},
+		/**
+		 * Whether the form has been submitted yet. This is used to show
+		 * validation messages only after the form has been submitted.
+		 */
+		formSubmitted: {
+			type: Boolean,
+			default: false
 		},
 		/**
 		 * Whether the field is disabled
@@ -108,9 +149,15 @@ module.exports = exports = defineComponent( {
 		];
 
 		const presetDuration = ref( null );
+		const presetDurationStatus = ref( 'default' );
+		const presetDurationMessages = ref( {} );
 		const customDurationNumber = ref( 1 );
 		const customDurationUnit = ref( 'hours' );
+		const customDurationStatus = ref( 'default' );
+		const customDurationMessages = ref( {} );
 		const datetime = ref( '' );
+		const datetimeStatus = ref( 'default' );
+		const datetimeMessages = ref( {} );
 		const expiryType = ref( 'preset-duration' );
 
 		const computedModelValue = computed( () => {
@@ -174,13 +221,30 @@ module.exports = exports = defineComponent( {
 			}
 		}
 
+		/**
+		 * The preset duration field is a dropdown that requires custom validation.
+		 * We simply need to assert something is selected, but only do so after form submission.
+		 */
+		watch( () => props.formSubmitted, () => {
+			if ( expiryType.value === 'preset-duration' && !presetDuration.value ) {
+				presetDurationStatus.value = 'error';
+				presetDurationMessages.value = { error: mw.msg( 'ipb_expiry_invalid' ) };
+			}
+		} );
+
 		return {
 			presetDurationOptions,
+			presetDurationStatus,
+			presetDurationMessages,
+			customDurationStatus,
+			customDurationMessages,
 			customDurationOptions,
 			presetDuration,
 			customDurationNumber,
 			customDurationUnit,
 			datetime,
+			datetimeStatus,
+			datetimeMessages,
 			expiryType
 		};
 	}
@@ -191,26 +255,15 @@ module.exports = exports = defineComponent( {
 @import 'mediawiki.skin.variables.less';
 
 .mw-block-expiry-field {
-	&__preset-duration,
-	&__custom-duration,
-	&__datetime {
-		// HACK: We want @spacing-35 between the radio and the input, and @spacing-75 between the
-		// input and the next radio. But the input is outside the radio, and the radio sets a
-		// margin-bottom of spacing-75. So cancel out part of that using a negative margin-top on
-		// the input, then reapply spacing-75 as the margin-bottom on the input.
-		// This won't be needed once the Radio component has a slot to put an input in.
-		margin-top: @spacing-35 - @spacing-75;
-		margin-bottom: @spacing-75;
-		// HACK: Apply the same padding to the input that Radio applies to the label, so that they
-		// line up.
-		padding-left: calc( @size-125 + @spacing-50 );
-		// Make the inputs the same width as the other form fields, so that their ends line up.
-		// But use border-box so that the padding-left is taken into account.
-		min-width: @size-4000;
-		box-sizing: @box-sizing-base;
+	.cdx-radio__custom-input .cdx-label {
+		display: none;
 	}
 
-	&__custom-duration {
+	.cdx-select-vue {
+		margin-bottom: 0;
+	}
+
+	&__custom-duration .cdx-field__control {
 		display: flex;
 		gap: @spacing-50;
 
