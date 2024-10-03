@@ -2987,11 +2987,15 @@ class Language implements Bcp47Code {
 	 * have the issue of hidden characters ending up in user clipboard in text
 	 * copy paste, see T375975.
 	 *
+	 * @deprecated hard deprecated since 1.43, use bdi HTML tag in HTML context
+	 *             where possible.
 	 * @param bool $opposite Get the direction mark opposite to your language
 	 * @return string
 	 * @since 1.20
 	 */
 	public function getDirMarkEntity( $opposite = false ) {
+		wfDeprecated( __METHOD__, '1.43' );
+
 		if ( $opposite ) {
 			return $this->isRTL() ? '&lrm;' : '&rlm;';
 		}
@@ -3002,8 +3006,7 @@ class Language implements Bcp47Code {
 	 * A hidden direction mark (LRM or RLM), depending on the language direction.
 	 * This function produces them as invisible Unicode characters and
 	 * the output may be hard to read and debug, so it should only be used
-	 * when the output is plain text or can be escaped. When the output is
-	 * HTML, use getDirMarkEntity() instead.
+	 * when the output is plain text or can be escaped.
 	 *
 	 * Use of hidden control characters when the output allows use of HTML markup
 	 * is discouraged and the recommendation is to use bdi HTML tag which doesn't
