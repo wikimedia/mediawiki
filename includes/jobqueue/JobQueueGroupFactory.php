@@ -20,7 +20,6 @@
 
 namespace MediaWiki\JobQueue;
 
-use IBufferingStatsdDataFactory;
 use JobQueueGroup;
 use LogicException;
 use MediaWiki\Config\ServiceOptions;
@@ -28,6 +27,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\ReadOnlyMode;
+use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**

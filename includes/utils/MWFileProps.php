@@ -21,6 +21,7 @@
  */
 
 use Wikimedia\FileBackend\FileBackend;
+use Wikimedia\Mime\MimeAnalyzer;
 
 /**
  * MimeMagic helper wrapper

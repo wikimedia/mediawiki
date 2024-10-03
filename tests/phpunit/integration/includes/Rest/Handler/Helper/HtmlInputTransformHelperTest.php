@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Rest\Handler\Helper;
 
-use BufferingStatsdDataFactory;
 use Exception;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
@@ -29,7 +28,6 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWikiIntegrationTestCase;
-use NullStatsdDataFactory;
 use ParserOptions;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Bcp47Code\Bcp47Code;
@@ -39,6 +37,8 @@ use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
+use Wikimedia\Stats\BufferingStatsdDataFactory;
+use Wikimedia\Stats\NullStatsdDataFactory;
 
 /**
  * @covers \MediaWiki\Rest\Handler\Helper\HtmlInputTransformHelper

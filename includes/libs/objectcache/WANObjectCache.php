@@ -23,7 +23,6 @@ namespace Wikimedia\ObjectCache;
 use ArrayIterator;
 use Closure;
 use Exception;
-use IBufferingStatsdDataFactory;
 use MapCacheLRU;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -32,6 +31,7 @@ use RuntimeException;
 use UnexpectedValueException;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\LightweightObjectStore\StorageAwareness;
+use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
 
 /**

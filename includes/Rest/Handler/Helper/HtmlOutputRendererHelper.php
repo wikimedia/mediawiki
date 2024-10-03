@@ -20,7 +20,6 @@
 namespace MediaWiki\Rest\Handler\Helper;
 
 use HttpError;
-use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Content\Content;
@@ -69,6 +68,7 @@ use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 use Wikimedia\Parsoid\Utils\WTUtils;
+use Wikimedia\Stats\IBufferingStatsdDataFactory;
 
 /**
  * Helper for getting output of a given wikitext page rendered by parsoid.

@@ -20,9 +20,14 @@
  * @file
  */
 
+namespace Wikimedia\Stats;
+
+use Exception;
+use InvalidArgumentException;
 use Liuggio\StatsdClient\Entity\StatsdData;
 use Liuggio\StatsdClient\Entity\StatsdDataInterface;
 use Liuggio\StatsdClient\StatsdClient;
+use LogicException;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
@@ -162,3 +167,6 @@ class SamplingStatsdClient extends StatsdClient {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( SamplingStatsdClient::class, 'SamplingStatsdClient' );

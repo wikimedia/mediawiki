@@ -4,13 +4,13 @@ namespace Wikimedia\Tests\ObjectCache;
 
 use InvalidArgumentException;
 use MediaWikiCoversValidator;
-use NullStatsdDataFactory;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 use UDPTransport;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Stats\Metrics\MetricInterface;
+use Wikimedia\Stats\NullStatsdDataFactory;
 use Wikimedia\Stats\OutputFormats;
 use Wikimedia\Stats\StatsCache;
 use Wikimedia\Stats\StatsFactory;

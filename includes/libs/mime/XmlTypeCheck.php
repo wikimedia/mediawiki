@@ -18,6 +18,11 @@
  * @file
  */
 
+namespace Wikimedia\Mime;
+
+use Exception;
+use XMLReader;
+
 /**
  * XML syntax and type checker.
  *
@@ -505,3 +510,6 @@ class XmlTypeCheck {
 		return $parsed;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( XmlTypeCheck::class, 'XmlTypeCheck' );

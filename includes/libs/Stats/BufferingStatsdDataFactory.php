@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace Wikimedia\Stats;
+
 use Liuggio\StatsdClient\Entity\StatsdData;
 use Liuggio\StatsdClient\Entity\StatsdDataInterface;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
@@ -213,3 +215,6 @@ class BufferingStatsdDataFactory extends StatsdDataFactory implements IBuffering
 		$this->enabled = $enabled;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( BufferingStatsdDataFactory::class, 'BufferingStatsdDataFactory' );

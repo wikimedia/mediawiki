@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Integration\Permissions;
 
-use BufferingStatsdDataFactory;
 use Liuggio\StatsdClient\Entity\StatsdData;
 use Liuggio\StatsdClient\Entity\StatsdDataInterface;
 use MediaWiki\Config\ServiceOptions;
@@ -15,6 +14,7 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\ObjectCache\HashBagOStuff;
+use Wikimedia\Stats\BufferingStatsdDataFactory;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\WRStats\BagOStuffStatsStore;
 use Wikimedia\WRStats\WRStatsFactory;

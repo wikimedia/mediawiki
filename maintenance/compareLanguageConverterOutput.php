@@ -30,6 +30,7 @@ use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\Diff\ArrayDiffFormatter;
 use Wikimedia\Diff\ComplexityException;
 use Wikimedia\Diff\Diff;
+use Wikimedia\Stats\NullStatsdDataFactory;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';

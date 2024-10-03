@@ -4,12 +4,12 @@ namespace Wikimedia\Tests;
 
 use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
-use XmlTypeCheck;
+use Wikimedia\Mime\XmlTypeCheck;
 
 /**
  * @author physikerwelt
  * @group Xml
- * @covers \XmlTypeCheck
+ * @covers \Wikimedia\Mime\XmlTypeCheck
  */
 class XmlTypeCheckTest extends TestCase {
 	use MediaWikiCoversValidator;

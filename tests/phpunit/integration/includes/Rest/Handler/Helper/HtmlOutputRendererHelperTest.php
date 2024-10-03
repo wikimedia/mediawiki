@@ -38,7 +38,6 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWikiIntegrationTestCase;
-use NullStatsdDataFactory;
 use ParserCache;
 use ParserOptions;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -54,6 +53,7 @@ use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
+use Wikimedia\Stats\NullStatsdDataFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
