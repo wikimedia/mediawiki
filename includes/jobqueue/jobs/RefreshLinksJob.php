@@ -28,8 +28,10 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Stats\StatsFactory;
 
@@ -435,15 +437,18 @@ class RefreshLinksJob extends Job {
 		// T371713: Temporary statistics collection code to determine
 		// feasibility of Parsoid selective update
 		if ( $doSample ) {
+			$content = $revision->getContent( SlotRecord::MAIN );
 			$labels = [
 				'source' => 'RefreshLinksJob',
 				'type' => $cachedOutput === null ? 'full' : 'selective',
 				'reason' => $causeAction,
 				'parser' => $parserOptions->getUseParsoid() ? 'parsoid' : 'legacy',
 				'opportunistic' => empty( $this->params['isOpportunistic'] ) ? 'false' : 'true',
+				'wiki' => WikiMap::getCurrentWikiId(),
+				'model' => $content ? $content->getModel() : 'unknown',
 			];
-			$totalStat = $stats->getCounter( 'parsercache_selective_total' );
-			$timeStat = $stats->getCounter( 'parsercache_selective_cpu_seconds' );
+			$totalStat = $stats->getCounter( 'ParserCache_selective_total' );
+			$timeStat = $stats->getCounter( 'ParserCache_selective_cpu_seconds' );
 			foreach ( $labels as $key => $value ) {
 				$totalStat->setLabel( $key, $value );
 				$timeStat->setLabel( $key, $value );
