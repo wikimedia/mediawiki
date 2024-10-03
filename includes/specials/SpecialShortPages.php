@@ -173,8 +173,6 @@ class SpecialShortPages extends QueryPage {
 	 * @return string
 	 */
 	public function formatResult( $skin, $result ) {
-		$dm = $this->getLanguage()->getDirMark();
-
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
 		if ( !$title ) {
 			return Html::element( 'span', [ 'class' => 'mw-invalidtitle' ],
@@ -197,12 +195,11 @@ class SpecialShortPages extends QueryPage {
 			$plink = $linkRenderer->makeKnownLink( $title );
 			$exists = true;
 		}
-
+		$plink = Html::rawElement( 'bdi', [ 'dir' => $this->getLanguage()->getDir() ], $plink );
 		$size = $this->msg( 'nbytes' )->numParams( $result->value )->escaped();
+		$result = "{$hlinkInParentheses} {$plink} [{$size}]";
 
-		return $exists
-			? "{$hlinkInParentheses} {$dm}{$plink} {$dm}[{$size}]"
-			: "<del>{$hlinkInParentheses} {$dm}{$plink} {$dm}[{$size}]</del>";
+		return $exists ? $result : Html::rawElement( 'del', [], $result );
 	}
 
 	protected function getGroupName() {
