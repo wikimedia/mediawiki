@@ -20,6 +20,9 @@
  * @file
  */
 
+namespace Wikimedia\FileBackend;
+
+use HttpStatus;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -304,3 +307,6 @@ class HTTPFileStreamer {
 		( $this->headerFunc )( $header );
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( HTTPFileStreamer::class, 'HTTPFileStreamer' );

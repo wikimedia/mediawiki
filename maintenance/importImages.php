@@ -41,6 +41,7 @@ use MediaWiki\Specials\SpecialUpload;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use Wikimedia\FileBackend\FSFile\FSFile;
 
 class ImportImages extends Maintenance {
 

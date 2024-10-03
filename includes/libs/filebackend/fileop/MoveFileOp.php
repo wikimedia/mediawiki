@@ -21,6 +21,9 @@
  * @ingroup FileBackend
  */
 
+namespace Wikimedia\FileBackend\FileOps;
+
+use StatusValue;
 use Wikimedia\FileBackend\FileBackend;
 
 /**
@@ -119,3 +122,6 @@ class MoveFileOp extends FileOp {
 		return [ $this->params['src'], $this->params['dst'] ];
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( MoveFileOp::class, 'MoveFileOp' );

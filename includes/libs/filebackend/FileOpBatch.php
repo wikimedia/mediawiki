@@ -21,6 +21,13 @@
  * @ingroup FileBackend
  */
 
+namespace Wikimedia\FileBackend;
+
+use StatusValue;
+use Wikimedia\FileBackend\FileOpHandle\FileBackendStoreOpHandle;
+use Wikimedia\FileBackend\FileOps\FileOp;
+use Wikimedia\FileBackend\FileOps\FileStatePredicates;
+
 /**
  * Helper class for representing batch file operations.
  * Do not use this class from places outside FileBackend.
@@ -180,3 +187,6 @@ class FileOpBatch {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( FileOpBatch::class, 'FileOpBatch' );

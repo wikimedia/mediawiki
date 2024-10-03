@@ -21,6 +21,9 @@
  * @ingroup FileBackend
  */
 
+namespace Wikimedia\FileBackend\FileOps;
+
+use StatusValue;
 use Wikimedia\AtEase\AtEase;
 
 /**
@@ -97,7 +100,7 @@ class StoreFileOp extends FileOp {
 		$hash = sha1_file( $this->params['src'] );
 		AtEase::restoreWarnings();
 		if ( $hash !== false ) {
-			$hash = Wikimedia\base_convert( $hash, 16, 36, 31 );
+			$hash = \Wikimedia\base_convert( $hash, 16, 36, 31 );
 		}
 
 		return $hash;
@@ -107,3 +110,6 @@ class StoreFileOp extends FileOp {
 		return [ $this->params['dst'] ];
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( StoreFileOp::class, 'StoreFileOp' );

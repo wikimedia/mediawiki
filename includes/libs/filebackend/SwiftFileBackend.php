@@ -22,11 +22,20 @@
  * @author Russ Nelson
  */
 
+namespace Wikimedia\FileBackend;
+
+use Exception;
+use LockManager;
+use MapCacheLRU;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Utils\MWTimestamp;
 use Psr\Log\LoggerInterface;
+use StatusValue;
+use stdClass;
 use Wikimedia\AtEase\AtEase;
-use Wikimedia\FileBackend\FileBackend;
+use Wikimedia\FileBackend\FileIteration\SwiftFileBackendDirList;
+use Wikimedia\FileBackend\FileIteration\SwiftFileBackendFileList;
+use Wikimedia\FileBackend\FileOpHandle\SwiftFileOpHandle;
 use Wikimedia\Http\MultiHttpClient;
 use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\EmptyBagOStuff;
@@ -307,7 +316,7 @@ class SwiftFileBackend extends FileBackendStore {
 					'etag' => md5( $params['content'] ),
 					'content-length' => strlen( $params['content'] ),
 					'x-object-meta-sha1base36' =>
-						Wikimedia\base_convert( sha1( $params['content'] ), 16, 36, 31 )
+						\Wikimedia\base_convert( sha1( $params['content'] ), 16, 36, 31 )
 				]
 			),
 			'body' => $params['content']
@@ -395,7 +404,7 @@ class SwiftFileBackend extends FileBackendStore {
 					'content-length' => $srcSize,
 					'etag' => hash_final( $md5Context ),
 					'x-object-meta-sha1base36' =>
-						Wikimedia\base_convert( hash_final( $sha1Context ), 16, 36, 31 )
+						\Wikimedia\base_convert( hash_final( $sha1Context ), 16, 36, 31 )
 				]
 			),
 			'body' => $srcHandle // resource
@@ -1982,3 +1991,6 @@ class SwiftFileBackend extends FileBackendStore {
 		$this->logger->error( $msg, $msgParams );
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( SwiftFileBackend::class, 'SwiftFileBackend' );

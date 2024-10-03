@@ -19,6 +19,8 @@
  * @ingroup FileBackend
  */
 
+namespace Wikimedia\FileBackend\FileIteration;
+
 class FSFileBackendFileList extends FSFileBackendList {
 	protected function filterViaNext() {
 		while ( $this->iter->valid() ) {
@@ -30,3 +32,6 @@ class FSFileBackendFileList extends FSFileBackendList {
 		}
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( FSFileBackendFileList::class, 'FSFileBackendFileList' );

@@ -21,9 +21,15 @@
  * @ingroup FileBackend
  */
 
+namespace Wikimedia\FileBackend;
+
+use InvalidArgumentException;
+use LockManager;
+use LogicException;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Json\FormatJson;
-use Wikimedia\FileBackend\FileBackend;
+use StatusValue;
+use StringUtils;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -835,3 +841,6 @@ class FileBackendMultiWrite extends FileBackend {
 		return !empty( $params['latest'] ) ? $this->masterIndex : $this->readIndex;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( FileBackendMultiWrite::class, 'FileBackendMultiWrite' );

@@ -41,9 +41,17 @@
  * @ingroup FileBackend
  */
 
+namespace Wikimedia\FileBackend;
+
+use MapCacheLRU;
 use Shellbox\Shellbox;
+use StatusValue;
 use Wikimedia\AtEase\AtEase;
-use Wikimedia\FileBackend\FileBackend;
+use Wikimedia\FileBackend\FileIteration\FSFileBackendDirList;
+use Wikimedia\FileBackend\FileIteration\FSFileBackendFileList;
+use Wikimedia\FileBackend\FileOpHandle\FSFileOpHandle;
+use Wikimedia\FileBackend\FSFile\FSFile;
+use Wikimedia\FileBackend\FSFile\TempFSFile;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -1049,3 +1057,6 @@ class FSFileBackend extends FileBackendStore {
 		return (bool)preg_match( $this->getFileNotFoundRegex(), $error );
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( FSFileBackend::class, 'FSFileBackend' );

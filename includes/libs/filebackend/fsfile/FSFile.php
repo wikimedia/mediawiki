@@ -21,6 +21,8 @@
  * @ingroup FileBackend
  */
 
+namespace Wikimedia\FileBackend\FSFile;
+
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -180,7 +182,7 @@ class FSFile {
 		AtEase::restoreWarnings();
 
 		if ( $this->sha1Base36 !== false ) {
-			$this->sha1Base36 = Wikimedia\base_convert( $this->sha1Base36, 16, 36, 31 );
+			$this->sha1Base36 = \Wikimedia\base_convert( $this->sha1Base36, 16, 36, 31 );
 		}
 
 		return $this->sha1Base36;
@@ -228,3 +230,6 @@ class FSFile {
 		return $fsFile->getSha1Base36();
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( FSFile::class, 'FSFile' );

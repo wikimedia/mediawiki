@@ -31,7 +31,6 @@
 
 namespace Wikimedia\FileBackend;
 
-use FSFile;
 use InvalidArgumentException;
 use LockManager;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
@@ -42,6 +41,7 @@ use Psr\Log\NullLogger;
 use ScopedLock;
 use StatusValue;
 use TempFSFile;
+use Wikimedia\FileBackend\FSFile\FSFile;
 use Wikimedia\ScopedCallback;
 
 /**

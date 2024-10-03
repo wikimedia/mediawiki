@@ -2,8 +2,8 @@
 
 namespace MediaWiki\FileBackend\FSFile;
 
-use TempFSFile;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\FileBackend\FSFile\TempFSFile;
 
 /**
  * @ingroup FileBackend

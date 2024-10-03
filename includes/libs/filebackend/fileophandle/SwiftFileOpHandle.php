@@ -22,6 +22,11 @@
  * @author Russ Nelson
  */
 
+namespace Wikimedia\FileBackend\FileOpHandle;
+
+use Closure;
+use Wikimedia\FileBackend\SwiftFileBackend;
+
 class SwiftFileOpHandle extends FileBackendStoreOpHandle {
 	/** @var array[] List of HTTP request maps for SwiftFileBackend::requestWithAuth */
 	public $httpOp;
@@ -53,3 +58,6 @@ class SwiftFileOpHandle extends FileBackendStoreOpHandle {
 		$this->httpOp = $httpOp;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( SwiftFileOpHandle::class, 'SwiftFileOpHandle' );

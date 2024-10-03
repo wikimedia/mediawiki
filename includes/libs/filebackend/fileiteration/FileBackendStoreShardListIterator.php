@@ -19,6 +19,13 @@
  * @ingroup FileBackend
  */
 
+namespace Wikimedia\FileBackend\FileIteration;
+
+use AppendIterator;
+use FilterIterator;
+use Iterator;
+use Wikimedia\FileBackend\FileBackendStore;
+
 /**
  * FileBackendStore helper function to handle listings that span container shards.
  * Do not use this class from places outside of FileBackendStore.
@@ -94,3 +101,6 @@ abstract class FileBackendStoreShardListIterator extends FilterIterator {
 	 */
 	abstract protected function listFromShard( $container );
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( FileBackendStoreShardListIterator::class, 'FileBackendStoreShardListIterator' );
