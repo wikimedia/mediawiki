@@ -1,8 +1,5 @@
 <template>
-	<cdx-field
-		:is-fieldset="true"
-		:disabled="disabled"
-	>
+	<cdx-field :is-fieldset="true">
 		<template #label>
 			{{ $i18n( 'block-actions' ).text() }}
 		</template>
@@ -65,13 +62,6 @@ module.exports = exports = defineComponent( {
 		blockTypeValue: {
 			type: String,
 			required: true
-		},
-		/**
-		 * Whether the field is disabled
-		 */
-		disabled: {
-			type: Boolean,
-			default: false
 		}
 	},
 	emits: [

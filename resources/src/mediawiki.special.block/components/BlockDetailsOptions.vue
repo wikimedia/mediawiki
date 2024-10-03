@@ -1,8 +1,5 @@
 <template>
-	<cdx-field
-		:is-fieldset="true"
-		:disabled="disabled"
-	>
+	<cdx-field :is-fieldset="true">
 		<cdx-checkbox
 			v-for="checkbox in checkboxes"
 			:key="'checkbox-' + checkbox.value"
@@ -61,13 +58,6 @@ module.exports = exports = defineComponent( {
 		modelValue: {
 			type: Array,
 			required: true
-		},
-		/**
-		 * Whether the field is disabled
-		 */
-		disabled: {
-			type: Boolean,
-			default: false
 		}
 	},
 	emits: [

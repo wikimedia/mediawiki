@@ -1,7 +1,6 @@
 <template>
 	<cdx-field
 		:is-fieldset="true"
-		:disabled="disabled"
 		:status="status"
 		:messages="messages"
 	>
@@ -45,11 +44,7 @@ module.exports = exports = defineComponent( {
 		formSubmitted: {
 			type: Boolean,
 			default: false
-		},
-		/**
-		 * Whether the field is disabled
-		 */
-		disabled: { type: Boolean, default: false }
+		}
 	},
 	emits: [
 		'update:modelValue'

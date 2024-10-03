@@ -1,83 +1,82 @@
 <template>
-	<div ref="messagesContainer" class="mw-block-messages">
-		<cdx-message
-			v-if="success"
-			type="success"
-			:allow-user-dismiss="true"
-			class="mw-block-success"
-		>
-			<p><strong>{{ $i18n( 'blockipsuccesssub' ) }}</strong></p>
-			<!-- eslint-disable-next-line vue/no-v-html -->
-			<p v-html="$i18n( 'block-success', targetUser ).parse()"></p>
-		</cdx-message>
-		<cdx-message
-			v-for="( formError, index ) in formErrors"
-			:key="index"
-			type="error"
-			class="mw-block-error"
-			inline
-		>
-			{{ formError }}
-		</cdx-message>
-	</div>
-	<user-lookup
-		v-model="targetUser"
+	<cdx-field
+		class="mw-block-fieldset"
+		:is-fieldset="true"
 		:disabled="formDisabled"
-		:form-submitted="formSubmitted"
-		@input="alreadyBlocked = false"
-	></user-lookup>
-	<target-active-blocks
-		v-if="blockEnableMultiblocks"
-		:target-user="targetUser"
-	></target-active-blocks>
-	<target-block-log
-		:target-user="targetUser"
-	></target-block-log>
-	<block-type-field
-		v-model="blockPartialOptionsSelected"
-		v-model:block-type-value="blockType"
-		:partial-block-options="blockPartialOptions"
-		:disabled="formDisabled"
-	></block-type-field>
-	<expiry-field
-		v-model="expiry"
-		:disabled="formDisabled"
-		:form-submitted="formSubmitted"
-	></expiry-field>
-	<reason-field
-		v-model:selected="reasonSelected"
-		v-model:other="reasonOther"
-		:disabled="formDisabled"
-	></reason-field>
-	<block-details-field
-		v-model="blockDetailsSelected"
-		:checkboxes="blockDetailsOptions"
-		:label="$i18n( 'block-details' ).text()"
-		:description="$i18n( 'block-details-description' ).text()"
-		:disabled="formDisabled"
-	></block-details-field>
-	<block-details-field
-		v-model="blockAdditionalDetailsSelected"
-		:checkboxes="additionalDetailsOptions"
-		:label="$i18n( 'block-options' ).text()"
-		:description="$i18n( 'block-options-description' ).text()"
-		:disabled="formDisabled"
-	></block-details-field>
-	<hr class="mw-block-hr">
-	<cdx-button
-		action="destructive"
-		weight="primary"
-		class="mw-block-submit"
-		:disabled="formDisabled"
-		@click="handleSubmit"
 	>
-		{{ submitButtonMessage }}
-	</cdx-button>
+		<div ref="messagesContainer" class="mw-block-messages">
+			<cdx-message
+				v-if="success"
+				type="success"
+				:allow-user-dismiss="true"
+				class="mw-block-success"
+			>
+				<p><strong>{{ $i18n( 'blockipsuccesssub' ) }}</strong></p>
+				<!-- eslint-disable-next-line vue/no-v-html -->
+				<p v-html="$i18n( 'block-success', targetUser ).parse()"></p>
+			</cdx-message>
+			<cdx-message
+				v-for="( formError, index ) in formErrors"
+				:key="index"
+				type="error"
+				class="mw-block-error"
+				inline
+			>
+				{{ formError }}
+			</cdx-message>
+		</div>
+		<user-lookup
+			v-model="targetUser"
+			@input="alreadyBlocked = false"
+			:form-submitted="formSubmitted"
+		></user-lookup>
+		<target-active-blocks
+			v-if="blockEnableMultiblocks"
+			:target-user="targetUser"
+		></target-active-blocks>
+		<target-block-log
+			:target-user="targetUser"
+		></target-block-log>
+		<block-type-field
+			v-model="blockPartialOptionsSelected"
+			v-model:block-type-value="blockType"
+			:partial-block-options="blockPartialOptions"
+		></block-type-field>
+		<expiry-field
+			v-model="expiry"
+			:form-submitted="formSubmitted"
+		></expiry-field>
+		<reason-field
+			v-model:selected="reasonSelected"
+			v-model:other="reasonOther"
+		></reason-field>
+		<block-details-field
+			v-model="blockDetailsSelected"
+			:checkboxes="blockDetailsOptions"
+			:label="$i18n( 'block-details' ).text()"
+			:description="$i18n( 'block-details-description' ).text()"
+		></block-details-field>
+		<block-details-field
+			v-model="blockAdditionalDetailsSelected"
+			:checkboxes="additionalDetailsOptions"
+			:label="$i18n( 'block-options' ).text()"
+			:description="$i18n( 'block-options-description' ).text()"
+		></block-details-field>
+		<hr class="mw-block-hr">
+		<cdx-button
+			action="destructive"
+			weight="primary"
+			class="mw-block-submit"
+			@click="handleSubmit"
+		>
+			{{ submitButtonMessage }}
+		</cdx-button>
+	</cdx-field>
 </template>
 
 <script>
 const { computed, defineComponent, nextTick, ref, Ref } = require( 'vue' );
-const { CdxButton, CdxMessage } = require( '@wikimedia/codex' );
+const { CdxButton, CdxField, CdxMessage } = require( '@wikimedia/codex' );
 const UserLookup = require( './components/UserLookup.vue' );
 const TargetActiveBlocks = require( './components/TargetActiveBlocks.vue' );
 const TargetBlockLog = require( './components/TargetBlockLog.vue' );
@@ -98,6 +97,7 @@ module.exports = exports = defineComponent( {
 		ReasonField,
 		BlockDetailsField,
 		CdxButton,
+		CdxField,
 		CdxMessage
 	},
 	setup() {
@@ -342,7 +342,7 @@ module.exports = exports = defineComponent( {
 }
 
 // HACK: Set the max-width of the fields back to what they should be.
-.cdx-field {
+.cdx-field:not( .mw-block-fieldset ) {
 	max-width: @size-4000;
 }
 
