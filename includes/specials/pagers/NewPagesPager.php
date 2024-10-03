@@ -237,19 +237,18 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$attribs = [ 'data-mw-revid' => $row->rc_this_oldid ];
 
 		$lang = $this->getLanguage();
-		$dm = $lang->getDirMark();
 		$time = ChangesList::revDateLink( $revRecord, $this->getUser(), $lang, null, 'mw-newpages-time' );
 
 		$linkRenderer = $this->getLinkRenderer();
 
 		$query = $title->isRedirect() ? [ 'redirect' => 'no' ] : [];
 
-		$plink = $linkRenderer->makeKnownLink(
+		$plink = Html::rawElement( 'bdi', [ 'dir' => $lang->getDir() ], $linkRenderer->makeKnownLink(
 			$title,
 			null,
 			[ 'class' => 'mw-newpages-pagename' ],
 			$query
-		);
+		) );
 		$linkArr = [];
 		$linkArr[] = $linkRenderer->makeKnownLink(
 			$title,
@@ -334,7 +333,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 			);
 		}
 
-		$ret = "{$time} {$dm}{$plink} {$links} {$dm}{$length} {$dm}{$ulink} {$comment} "
+		$ret = "{$time} {$plink} {$links} {$length} {$ulink} {$comment} "
 			. "{$tagDisplay} {$oldTitleText}";
 
 		// Let extensions add data
