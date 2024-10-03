@@ -446,13 +446,9 @@ class HistoryPager extends ReverseChronologicalPager {
 		}
 
 		$lang = $this->getLanguage();
-		$dirmark = $lang->getDirMark();
-
-		$s .= " $link";
-		$s .= $dirmark;
+		$s .= ' ' . Html::rawElement( 'bdi', [ 'dir' => $lang->getDir() ], $link );
 		$s .= " <span class='history-user'>" .
 			Linker::revUserTools( $revRecord, true, false ) . "</span>";
-		$s .= $dirmark;
 
 		if ( $revRecord->isMinor() ) {
 			$s .= ' ' . ChangesList::flag( 'minor', $this->getContext() );
