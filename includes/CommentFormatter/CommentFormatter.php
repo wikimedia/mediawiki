@@ -177,36 +177,6 @@ class CommentFormatter {
 	}
 
 	/**
-	 * Given an array of comments as strings which all have the same self link
-	 * target, format the comments and wrap them in standard punctuation and
-	 * formatting.
-	 *
-	 * If you need a different title for each comment, use createBatch().
-	 *
-	 * @param string[] $strings
-	 * @param LinkTarget|null $selfLinkTarget The title used for fragment-only
-	 *   and section links, formerly $title.
-	 * @param bool $samePage If true, self links are rendered with a fragment-
-	 *   only URL. Formerly $local.
-	 * @param string|false|null $wikiId ID of the wiki to link to (if not the local
-	 *   wiki), as used by WikiMap.
-	 * @param bool $useParentheses
-	 * @return string[]
-	 */
-	public function formatStringsAsBlock( $strings, LinkTarget $selfLinkTarget = null,
-		$samePage = false, $wikiId = false, $useParentheses = true
-	) {
-		$parser = $this->parserFactory->create();
-		$outputs = [];
-		foreach ( $strings as $i => $comment ) {
-			$outputs[$i] = $this->wrapCommentWithBlock(
-				$parser->preprocess( $comment, $selfLinkTarget, $samePage, $wikiId ),
-				$useParentheses );
-		}
-		return $parser->finalize( $outputs );
-	}
-
-	/**
 	 * Wrap and format the given revision's comment block, if the specified
 	 * user is allowed to view it.
 	 *
