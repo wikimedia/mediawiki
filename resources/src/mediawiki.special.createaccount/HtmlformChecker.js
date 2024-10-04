@@ -38,11 +38,11 @@ function HtmlformChecker( $element, validator ) {
  * @chainable
  */
 HtmlformChecker.prototype.attach = function ( $extraElements ) {
-	let $e = this.$element,
-		// We need to hook to all of these events to be sure we are
-		// notified of all changes to the value of an <input type=text>
-		// field.
-		events = 'keyup keydown change mouseup cut paste focus blur';
+	let $e = this.$element;
+	// We need to hook to all of these events to be sure we are
+	// notified of all changes to the value of an <input type=text>
+	// field.
+	const events = 'keyup keydown change mouseup cut paste focus blur';
 
 	if ( $extraElements ) {
 		$e = $e.add( $extraElements );
@@ -58,9 +58,9 @@ HtmlformChecker.prototype.attach = function ( $extraElements ) {
  * @return {jQuery.Promise|undefined}
  */
 HtmlformChecker.prototype.validate = function () {
-	let currentRequestInternal,
-		that = this,
-		value = this.$element.val();
+	let currentRequestInternal;
+	const that = this;
+	const value = this.$element.val();
 
 	// Abort any pending requests.
 	if ( this.currentRequest && this.currentRequest.abort ) {
@@ -108,11 +108,8 @@ HtmlformChecker.prototype.validate = function () {
  * @chainable
  */
 HtmlformChecker.prototype.setErrors = function ( valid, errors, forceReplacement ) {
-	let $oldErrorBox,
-		showFunc,
-		$text,
-		replace,
-		$errorBox = this.$errorBox;
+	let replace;
+	let $errorBox = this.$errorBox;
 
 	if ( errors.length === 0 ) {
 		// FIXME: Use CSS transition
@@ -129,7 +126,7 @@ HtmlformChecker.prototype.setErrors = function ( valid, errors, forceReplacement
 		// changing the text with no animation).
 		replace = forceReplacement;
 		if ( !replace ) {
-			$text = $( '<div>' );
+			const $text = $( '<div>' );
 			// Match behavior of HTMLFormField::formatErrors()
 			if ( errors.length === 1 ) {
 				$text.append( errors[ 0 ] );
@@ -145,7 +142,7 @@ HtmlformChecker.prototype.setErrors = function ( valid, errors, forceReplacement
 			}
 		}
 
-		$oldErrorBox = $errorBox;
+		const $oldErrorBox = $errorBox;
 		if ( replace ) {
 			this.$errorBox = $errorBox = $( '<div>' );
 			$errorBox.hide();
@@ -155,7 +152,7 @@ HtmlformChecker.prototype.setErrors = function ( valid, errors, forceReplacement
 		const oldErrorType = this.oldErrorType || 'notice';
 		const errorType = valid ? 'warning' : 'error';
 		this.oldErrorType = errorType;
-		showFunc = function () {
+		const showFunc = function () {
 			if ( $oldErrorBox !== $errorBox ) {
 				$oldErrorBox
 					.removeAttr( 'class' )

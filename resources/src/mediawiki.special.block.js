@@ -11,7 +11,7 @@
 	}
 
 	$( () => {
-		let blockTargetWidget, anonOnlyWidget, enableAutoblockWidget, hideUserWidget, watchUserWidget,
+		let blockTargetWidget, anonOnlyWidget, enableAutoblockWidget, hideUserWidget, watchUserWidget = null,
 			expiryWidget, editingRestrictionWidget, partialActionsRestrictionsWidget, preventTalkPageEditWidget,
 			pageRestrictionsWidget, namespaceRestrictionsWidget, createAccountWidget,
 			userChangedCreateAccount, updatingBlockOptions;

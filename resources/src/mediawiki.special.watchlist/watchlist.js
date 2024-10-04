@@ -11,7 +11,9 @@
 	}
 
 	$( () => {
-		let api = new mw.Api(), $progressBar, $resetForm = $( '#mw-watchlist-resetbutton' );
+		const api = new mw.Api();
+		const $resetForm = $( '#mw-watchlist-resetbutton' );
+		let $progressBar;
 
 		// If the user wants to reset their watchlist, use an API call to do so (no reload required)
 		// Adapted from a user script by User:NQ of English Wikipedia
@@ -82,7 +84,7 @@
 						associatedTitleObj = titleObj.isTalkPage() ? titleObj.getSubjectPage() : titleObj.getTalkPage(),
 						associatedTitle = associatedTitleObj.getPrefixedText();
 					$( '.mw-changeslist-line' ).each( function () {
-						let $line = $( this ), $row, $link;
+						const $line = $( this );
 
 						$line.find( '[data-target-page]' ).each( function () {
 							const $this = $( this ), rowTitle = String( $this.data( 'targetPage' ) );
@@ -92,10 +94,10 @@
 								// * If using OldChangesList, use the <li>
 								// * If using EnhancedChangesList and $this is part of a grouped log entry, use the <td> sub-entry
 								// * If using EnhancedChangesList and $this is not part of a grouped log entry, use the <table> grouped entry
-								$row =
+								const $row =
 									$this.closest(
 										'li, .mw-enhancedchanges-checkbox + table.mw-changeslist-log td[data-target-page], table' );
-								$link = $row.find( '.mw-unwatch-link, .mw-watch-link' );
+								const $link = $row.find( '.mw-unwatch-link, .mw-watch-link' );
 
 								callback( rowTitle, $row, $link );
 							}

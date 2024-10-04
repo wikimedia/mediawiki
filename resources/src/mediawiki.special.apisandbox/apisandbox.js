@@ -1,17 +1,17 @@
 ( function () {
 	'use strict';
-	let ApiSandbox, Util, WidgetMethods, Validators,
+	let ApiSandbox = null, Util = null,
 		windowManager,
 		formatDropdown,
-		api = new mw.Api(),
-		bookletPages = [],
-		availableFormats = {},
 		resultPage = null,
 		suppressErrors = true,
 		updatingBooklet = false,
-		pages = {},
-		moduleInfoCache = {},
 		baseRequestParams = {},
+		pages = {};
+	const api = new mw.Api(),
+		bookletPages = [],
+		availableFormats = {},
+		moduleInfoCache = {},
 		OptionalParamWidget = require( './OptionalParamWidget.js' ),
 		ParamLabelWidget = require( './ParamLabelWidget.js' ),
 		BooleanToggleSwitchParamWidget = require( './BooleanToggleSwitchParamWidget.js' ),
@@ -20,7 +20,7 @@
 		PasswordParamWidget = require( './PasswordParamWidget.js' ),
 		UploadSelectFileParamWidget = require( './UploadSelectFileParamWidget.js' );
 
-	WidgetMethods = {
+	const WidgetMethods = {
 		textInputWidget: {
 			getApiValue: function () {
 				return this.getValue();
@@ -171,7 +171,7 @@
 		}
 	};
 
-	Validators = {
+	const Validators = {
 		generic: function () {
 			return !Util.apiBool( this.paramInfo.required ) || this.getApiValue() !== '';
 		}
@@ -627,65 +627,65 @@
 		 * @return {OO.ui.MenuOptionWidget[]} Each item's data should be an OO.ui.FieldLayout
 		 */
 		formatRequest: function ( displayParams, rawParams, method, ajaxOptions ) {
-			let jsonLayout, phpLayout,
-				apiUrl = new URL( mw.util.wikiScript( 'api' ), location.origin ).toString(),
-				items = [
-					new OO.ui.MenuOptionWidget( {
-						label: Util.parseMsg( 'apisandbox-request-format-url-label' ),
-						data: new mw.widgets.CopyTextLayout( {
-							label: Util.parseMsg( 'apisandbox-request-url-label' ),
-							copyText: apiUrl + '?' + $.param( displayParams )
-						} )
-					} ),
-					new OO.ui.MenuOptionWidget( {
-						label: Util.parseMsg( 'apisandbox-request-format-json-label' ),
-						data: jsonLayout = new mw.widgets.CopyTextLayout( {
-							label: Util.parseMsg( 'apisandbox-request-json-label' ),
-							copyText: JSON.stringify( displayParams, null, '\t' ),
-							multiline: true,
-							textInput: {
-								classes: [ 'mw-apisandbox-textInputCode' ],
-								autosize: true,
-								maxRows: 6
-							}
-						} ).on( 'toggle', ( visible ) => {
-							if ( visible ) {
-								// Call updatePosition instead of adjustSize
-								// because the latter has weird caching
-								// behavior and the former bypasses it.
-								jsonLayout.textInput.updatePosition();
-							}
-						} )
-					} ),
-					new OO.ui.MenuOptionWidget( {
-						label: Util.parseMsg( 'apisandbox-request-format-php-label' ),
-						data: phpLayout = new mw.widgets.CopyTextLayout( {
-							label: Util.parseMsg( 'apisandbox-request-php-label' ),
-							copyText: '[\n' +
-								Object.keys( displayParams ).map(
-									// displayParams is a dictionary of strings or numbers
-									( param ) => '\t' +
-										JSON.stringify( param ) +
-										' => ' +
-										JSON.stringify( displayParams[ param ] ).replace( /\$/g, '\\$' )
-								).join( ',\n' ) +
-								'\n]',
-							multiline: true,
-							textInput: {
-								classes: [ 'mw-apisandbox-textInputCode' ],
-								autosize: true,
-								maxRows: 6
-							}
-						} ).on( 'toggle', ( visible ) => {
-							if ( visible ) {
-								// Call updatePosition instead of adjustSize
-								// because the latter has weird caching
-								// behavior and the former bypasses it.
-								phpLayout.textInput.updatePosition();
-							}
-						} )
+			let jsonLayout, phpLayout;
+			const apiUrl = new URL( mw.util.wikiScript( 'api' ), location.origin ).toString();
+			const items = [
+				new OO.ui.MenuOptionWidget( {
+					label: Util.parseMsg( 'apisandbox-request-format-url-label' ),
+					data: new mw.widgets.CopyTextLayout( {
+						label: Util.parseMsg( 'apisandbox-request-url-label' ),
+						copyText: apiUrl + '?' + $.param( displayParams )
 					} )
-				];
+				} ),
+				new OO.ui.MenuOptionWidget( {
+					label: Util.parseMsg( 'apisandbox-request-format-json-label' ),
+					data: jsonLayout = new mw.widgets.CopyTextLayout( {
+						label: Util.parseMsg( 'apisandbox-request-json-label' ),
+						copyText: JSON.stringify( displayParams, null, '\t' ),
+						multiline: true,
+						textInput: {
+							classes: [ 'mw-apisandbox-textInputCode' ],
+							autosize: true,
+							maxRows: 6
+						}
+					} ).on( 'toggle', ( visible ) => {
+						if ( visible ) {
+							// Call updatePosition instead of adjustSize
+							// because the latter has weird caching
+							// behavior and the former bypasses it.
+							jsonLayout.textInput.updatePosition();
+						}
+					} )
+				} ),
+				new OO.ui.MenuOptionWidget( {
+					label: Util.parseMsg( 'apisandbox-request-format-php-label' ),
+					data: phpLayout = new mw.widgets.CopyTextLayout( {
+						label: Util.parseMsg( 'apisandbox-request-php-label' ),
+						copyText: '[\n' +
+							Object.keys( displayParams ).map(
+								// displayParams is a dictionary of strings or numbers
+								( param ) => '\t' +
+									JSON.stringify( param ) +
+									' => ' +
+									JSON.stringify( displayParams[ param ] ).replace( /\$/g, '\\$' )
+							).join( ',\n' ) +
+							'\n]',
+						multiline: true,
+						textInput: {
+							classes: [ 'mw-apisandbox-textInputCode' ],
+							autosize: true,
+							maxRows: 6
+						}
+					} ).on( 'toggle', ( visible ) => {
+						if ( visible ) {
+							// Call updatePosition instead of adjustSize
+							// because the latter has weird caching
+							// behavior and the former bypasses it.
+							phpLayout.textInput.updatePosition();
+						}
+					} )
+				} )
+			];
 
 			mw.hook( 'apisandbox.formatRequest' ).fire( items, displayParams, rawParams, method, ajaxOptions );
 
@@ -888,11 +888,11 @@
 		 *   The form fields will be updated to match.
 		 */
 		sendRequest: function ( params ) {
-			let deferreds = [],
-				paramsAreForced = !!params,
+			let method = 'get';
+			const paramsAreForced = !!params,
+				deferreds = [],
 				displayParams = {},
 				ajaxOptions = {},
-				method = 'get',
 				tokenWidgets = [],
 				checkPages = [ pages.main ];
 
@@ -1223,8 +1223,8 @@
 		 * pages and then re-submits the query.
 		 */
 		fixTokenAndResend: function () {
-			let ok = true,
-				tokenWait = { dummy: true },
+			let ok = true;
+			const tokenWait = { dummy: true },
 				checkPages = [ pages.main ],
 				success = function ( k ) {
 					delete tokenWait[ k ];
@@ -1641,8 +1641,8 @@
 	 * Fetch module information for this page's module, then create UI
 	 */
 	ApiSandbox.PageLayout.prototype.loadParamInfo = function () {
-		let dynamicFieldset, dynamicParamNameWidget,
-			layout = this,
+		let dynamicFieldset, dynamicParamNameWidget;
+		const layout = this,
 			removeDynamicParamWidget = function ( name, item ) {
 				dynamicFieldset.removeItems( [ item ] );
 				delete layout.widgets[ name ];

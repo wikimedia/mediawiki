@@ -4,18 +4,18 @@
 ( function () {
 	$( () => {
 		$( 'a.mw-watch-link' ).on( 'click', function ( e ) {
-			let promise,
-				api = new mw.Api(),
+			const api = new mw.Api(),
 				$link = $( this ),
 				$subjectLink = $link.closest( 'li' ).children( 'a' ).eq( 0 ),
-				title = mw.util.getParamValue( 'title', $link.attr( 'href' ) );
-			// nice format
-			title = mw.Title.newFromText( title ).toText();
+				titleParam = mw.util.getParamValue( 'title', $link.attr( 'href' ) ),
+				// nice format
+				title = mw.Title.newFromText( titleParam ).toText();
 			$link.addClass( 'mw-watch-link-disabled' );
 
 			// Preload the notification module for mw.notify
 			mw.loader.load( 'mediawiki.notification' );
 
+			let promise;
 			// Use the class to determine whether to watch or unwatch
 			// eslint-disable-next-line no-jquery/no-class-state
 			if ( !$subjectLink.hasClass( 'mw-watched-item' ) ) {
