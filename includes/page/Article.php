@@ -1580,7 +1580,7 @@ class Article implements Page {
 		$sessionExists = $context->getRequest()->getSession()->isPersistent();
 
 		if ( $isRegistered || $dbCache->get( $key ) || $sessionExists ) {
-			$logTypes = [ 'delete', 'move', 'protect' ];
+			$logTypes = [ 'delete', 'move', 'protect', 'merge' ];
 
 			$dbr = $this->dbProvider->getReplicaDatabase();
 

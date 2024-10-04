@@ -355,21 +355,21 @@ class MergeHistory {
 		// Update source page, histories and invalidate caches
 		if ( !$haveRevisions ) {
 			if ( $reason ) {
-				$reason = wfMessage(
+				$revisionComment = wfMessage(
 					'mergehistory-comment',
 					$this->titleFormatter->getPrefixedText( $this->source ),
 					$this->titleFormatter->getPrefixedText( $this->dest ),
 					$reason
 				)->inContentLanguage()->text();
 			} else {
-				$reason = wfMessage(
+				$revisionComment = wfMessage(
 					'mergehistory-autocomment',
 					$this->titleFormatter->getPrefixedText( $this->source ),
 					$this->titleFormatter->getPrefixedText( $this->dest )
 				)->inContentLanguage()->text();
 			}
 
-			$this->updateSourcePage( $status, $performer, $reason );
+			$this->updateSourcePage( $status, $performer, $revisionComment );
 
 		} else {
 			$legacySource->invalidateCache();
@@ -408,9 +408,10 @@ class MergeHistory {
 	 *
 	 * @param Status $status
 	 * @param Authority $performer
-	 * @param string $reason
+	 * @param string $revisionComment Edit summary for the redirect or empty revision
+	 *   to be created in place of the source page
 	 */
-	private function updateSourcePage( $status, $performer, $reason ): void {
+	private function updateSourcePage( $status, $performer, $revisionComment ): void {
 		$deleteSource = false;
 		$legacySourceTitle = $this->titleFactory->newFromPageIdentity( $this->source );
 		$legacyDestTitle = $this->titleFactory->newFromPageIdentity( $this->dest );
@@ -461,7 +462,7 @@ class MergeHistory {
 		// content model supports redirects, then it will be the redirect content.
 		// If the content model does not supports redirect, this content will aid
 		// proper deletion of the page below.
-		$comment = CommentStoreComment::newUnsavedComment( $reason );
+		$comment = CommentStoreComment::newUnsavedComment( $revisionComment );
 		$revRecord = new MutableRevisionRecord( $this->source );
 		$revRecord->setContent( SlotRecord::MAIN, $newContent )
 			->setPageId( $this->source->getId() )
