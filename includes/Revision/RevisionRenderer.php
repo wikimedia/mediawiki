@@ -109,6 +109,8 @@ class RevisionRenderer {
 	 *        logging and debugging.
 	 *
 	 * @return RenderedRevision|null The rendered revision, or null if the audience checks fails.
+	 * @throws BadRevisionException
+	 * @throws RevisionAccessException
 	 */
 	// phpcs:enable Generic.Files.LineLength.TooLong
 	public function getRenderedRevision(
@@ -218,6 +220,9 @@ class RevisionRenderer {
 	 * @param array $hints see RenderedRevision::getRevisionParserOutput()
 	 *
 	 * @return ParserOutput
+	 * @throws SuppressedDataException
+	 * @throws BadRevisionException
+	 * @throws RevisionAccessException
 	 */
 	private function combineSlotOutput( RenderedRevision $rrev, ParserOptions $options, array $hints = [] ) {
 		$revision = $rrev->getRevision();
