@@ -35,6 +35,7 @@ use MediaWiki\Page\PageReferenceValue;
  * MediaWikiServices::getInstance()->getJobQueueGroup()->push( $job )
  * @endcode
  *
+ * @newable
  * @since 1.23
  * @ingroup JobQueue
  */
