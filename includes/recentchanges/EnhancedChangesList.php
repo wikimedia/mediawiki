@@ -220,8 +220,7 @@ class EnhancedChangesList extends ChangesList {
 		asort( $usercounts );
 		$users = [];
 		foreach ( $usercounts as $username => $count ) {
-			$text = $userlinks[$username];
-			$text .= $this->getLanguage()->getDirMark();
+			$text = (string)$userlinks[$username];
 			if ( $count > 1 ) {
 				$formattedCount = $this->msg( 'ntimes' )->numParams( $count )->escaped();
 				$text .= ' ' . $this->msg( 'parentheses' )->rawParams( $formattedCount )->escaped();
@@ -326,7 +325,6 @@ class EnhancedChangesList extends ChangesList {
 			'charDifference' => $charDifference,
 			'collectedRcFlags' => $this->recentChangesFlags( $collectedRcFlags ),
 			'filterClasses' => $filterClasses,
-			'languageDirMark' => $this->getLanguage()->getDirMark(),
 			'lines' => $lines,
 			'logText' => $logText,
 			'numberofWatchingusers' => $numberofWatchingusers,

@@ -138,8 +138,6 @@ class OldChangesList extends ChangesList {
 		} else {
 			# User tool links
 			$this->insertUserRelatedLinks( $html, $rc );
-			# LTR/RTL direction mark
-			$html .= $this->getLanguage()->getDirMark();
 			$html .= $this->insertComment( $rc );
 		}
 
