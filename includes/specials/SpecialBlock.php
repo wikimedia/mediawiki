@@ -144,7 +144,8 @@ class SpecialBlock extends FormSpecialPage {
 		$this->blockActionInfo = $blockActionInfo;
 		$this->titleFormatter = $titleFormatter;
 		$this->namespaceInfo = $namespaceInfo;
-		$this->useCodex = $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock );
+		$this->useCodex = $this->getConfig()->get( MainConfigNames::UseCodexSpecialBlock ) ||
+			$this->getRequest()->getBool( 'usecodex' );
 	}
 
 	public function execute( $par ) {
@@ -295,7 +296,8 @@ class SpecialBlock extends FormSpecialPage {
 
 		$suggestedDurations = $this->getLanguage()->getBlockDurations();
 
-		$this->codexFormData[ 'blockEnableMultiblocks' ] = $conf->get( MainConfigNames::EnableMultiBlocks );
+		$this->codexFormData[ 'blockEnableMultiblocks' ] = $conf->get( MainConfigNames::EnableMultiBlocks ) ||
+			$this->getRequest()->getBool( 'multiblocks' );
 
 		$a = [];
 
