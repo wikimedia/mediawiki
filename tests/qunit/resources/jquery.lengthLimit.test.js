@@ -218,8 +218,7 @@ QUnit.module( 'jquery.lengthLimit', () => {
 	} );
 
 	QUnit.test( 'Do not cut up false matching substrings in emoji insertions', ( assert ) => {
-		let $el,
-			oldVal = '\uD83D\uDCA9\uD83D\uDCA9', // "💩💩"
+		const oldVal = '\uD83D\uDCA9\uD83D\uDCA9', // "💩💩"
 			newVal = '\uD83D\uDCA9\uD83D\uDCB9\uD83E\uDCA9\uD83D\uDCA9', // "💩💹🢩💩"
 			expected = '\uD83D\uDCA9\uD83D\uDCB9\uD83D\uDCA9'; // "💩💹💩"
 
@@ -229,7 +228,7 @@ QUnit.module( 'jquery.lengthLimit', () => {
 		// * With correct trimming but bad detection of inserted text:
 		//   '\uD83D\uDCA9\uD83D\uDCB9\uDCA9' "💩💹�"
 
-		$el = $( '<input>' ).attr( 'type', 'text' )
+		const $el = $( '<input>' ).attr( 'type', 'text' )
 			.appendTo( '#qunit-fixture' )
 			.byteLimit( 12 )
 			.val( oldVal ).trigger( 'change' )

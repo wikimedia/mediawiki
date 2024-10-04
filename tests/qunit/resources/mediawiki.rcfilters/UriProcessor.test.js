@@ -60,8 +60,7 @@
 	} );
 
 	QUnit.test( 'getUpdatedUri', ( assert ) => {
-		let uriProcessor,
-			filtersModel = new rcfilters.dm.FiltersViewModel(),
+		const filtersModel = new rcfilters.dm.FiltersViewModel(),
 			makeUri = function ( queryParams ) {
 				const uri = new mw.Uri( 'http://server/wiki/Special:RC' );
 				uri.query = queryParams;
@@ -69,7 +68,7 @@
 			};
 
 		filtersModel.initializeFilters( mockFilterStructure );
-		uriProcessor = new rcfilters.UriProcessor( filtersModel );
+		const uriProcessor = new rcfilters.UriProcessor( filtersModel );
 
 		assert.deepEqual(
 			( uriProcessor.getUpdatedUri( makeUri( {} ) ) ).query,
@@ -103,11 +102,10 @@
 	} );
 
 	QUnit.test( 'updateModelBasedOnQuery', ( assert ) => {
-		let uriProcessor,
-			filtersModel = new rcfilters.dm.FiltersViewModel();
+		const filtersModel = new rcfilters.dm.FiltersViewModel();
 
 		filtersModel.initializeFilters( mockFilterStructure );
-		uriProcessor = new rcfilters.UriProcessor( filtersModel );
+		const uriProcessor = new rcfilters.UriProcessor( filtersModel );
 
 		uriProcessor.updateModelBasedOnQuery( {} );
 		assert.deepEqual(
@@ -132,8 +130,7 @@
 	} );
 
 	QUnit.test( 'isNewState', ( assert ) => {
-		let uriProcessor,
-			filtersModel = new rcfilters.dm.FiltersViewModel(),
+		const filtersModel = new rcfilters.dm.FiltersViewModel(),
 			cases = [
 				{
 					states: {
@@ -186,7 +183,7 @@
 			];
 
 		filtersModel.initializeFilters( mockFilterStructure );
-		uriProcessor = new rcfilters.UriProcessor( filtersModel );
+		const uriProcessor = new rcfilters.UriProcessor( filtersModel );
 
 		cases.forEach( ( testCase ) => {
 			assert.strictEqual(
@@ -198,8 +195,7 @@
 	} );
 
 	QUnit.test( '_getNormalizedQueryParams', ( assert ) => {
-		let uriProcessor,
-			filtersModel = new rcfilters.dm.FiltersViewModel(),
+		const filtersModel = new rcfilters.dm.FiltersViewModel(),
 			cases = [
 				{
 					query: {},
@@ -224,7 +220,7 @@
 			];
 
 		filtersModel.initializeFilters( mockFilterStructure );
-		uriProcessor = new rcfilters.UriProcessor( filtersModel );
+		const uriProcessor = new rcfilters.UriProcessor( filtersModel );
 
 		cases.forEach( ( testCase ) => {
 			assert.deepEqual(

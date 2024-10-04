@@ -159,12 +159,11 @@
 	} );
 
 	QUnit.test( 'makeTitle', ( assert ) => {
-		let cases,
-			NS_MAIN = 0,
+		const NS_MAIN = 0,
 			NS_TALK = 1,
 			NS_TEMPLATE = 10;
 
-		cases = [
+		const cases = [
 			{
 				namespace: NS_TEMPLATE,
 				text: 'Foo',
@@ -204,8 +203,7 @@
 	} );
 
 	QUnit.test( 'Basic parsing', ( assert ) => {
-		let title;
-		title = new mw.Title( 'File:Foo_bar.JPG' );
+		let title = new mw.Title( 'File:Foo_bar.JPG' );
 
 		assert.strictEqual( title.getNamespaceId(), 6 );
 		assert.strictEqual( title.getNamespacePrefix(), 'File:' );
@@ -237,9 +235,7 @@
 	} );
 
 	QUnit.test( 'Transformation', ( assert ) => {
-		let title;
-
-		title = new mw.Title( 'File:quux pif.jpg' );
+		let title = new mw.Title( 'File:quux pif.jpg' );
 		assert.strictEqual( title.getFileNameTextWithoutExtension(), 'Quux pif', 'First character of title' );
 		assert.strictEqual( title.getNameText(), 'Quux pif', 'First character of title' );
 
@@ -276,9 +272,7 @@
 	} );
 
 	QUnit.test( 'Namespace detection and conversion', ( assert ) => {
-		let title;
-
-		title = new mw.Title( 'File:User:Example' );
+		let title = new mw.Title( 'File:User:Example' );
 		assert.strictEqual( title.getNamespaceId(), 6, 'Titles can contain namespace prefixes, which are otherwise ignored' );
 
 		title = new mw.Title( 'Example', 6 );
@@ -308,9 +302,7 @@
 	} );
 
 	QUnit.test( 'isTalkPage/getTalkPage/getSubjectPage', ( assert ) => {
-		let title;
-
-		title = new mw.Title( 'User:Foo' );
+		let title = new mw.Title( 'User:Foo' );
 		assert.strictEqual( title.isTalkPage(), false, 'Non-talk page detected as such' );
 		assert.strictEqual( title.getSubjectPage().getPrefixedText(), 'User:Foo', 'getSubjectPage on a subject page is a no-op' );
 
@@ -360,12 +352,10 @@
 	} );
 
 	QUnit.test( 'Case-sensivity', ( assert ) => {
-		let title;
-
 		// Default config
 		mw.config.set( 'wgCaseSensitiveNamespaces', [] );
 
-		title = new mw.Title( 'article' );
+		let title = new mw.Title( 'article' );
 		assert.strictEqual( title.toString(), 'Article', 'Default config: No sensitive namespaces by default. First-letter becomes uppercase' );
 
 		title = new mw.Title( 'ß' );
@@ -414,11 +404,9 @@
 	} );
 
 	QUnit.test( 'exists', ( assert ) => {
-		let title;
-
 		// Empty registry, checks default to null
 
-		title = new mw.Title( 'Some random page', 4 );
+		let title = new mw.Title( 'Some random page', 4 );
 		assert.strictEqual( title.exists(), null, 'Return null with empty existance registry' );
 
 		// Basic registry, checks default to boolean
@@ -433,13 +421,12 @@
 	} );
 
 	QUnit.test( 'getUrl', ( assert ) => {
-		let title;
 		mw.config.set( {
 			wgScript: '/w/index.php',
 			wgArticlePath: '/wiki/$1'
 		} );
 
-		title = new mw.Title( 'Foobar' );
+		let title = new mw.Title( 'Foobar' );
 		assert.strictEqual( title.getUrl(), '/wiki/Foobar', 'Basic functionality, getUrl uses mw.util.getUrl' );
 		assert.strictEqual( title.getUrl( { action: 'edit' } ), '/w/index.php?title=Foobar&action=edit', 'Basic functionality, \'params\' parameter' );
 
@@ -474,11 +461,10 @@
 		];
 
 		cases.forEach( ( caseItem ) => {
-			let prefix,
-				title = mw.Title.newFromImg( { src: caseItem.url } );
+			const title = mw.Title.newFromImg( { src: caseItem.url } );
 
 			if ( caseItem.nameText !== undefined ) {
-				prefix = '[' + caseItem.typeOfUrl + ' URL] ';
+				const prefix = '[' + caseItem.typeOfUrl + ' URL] ';
 
 				assert.notStrictEqual( title, null, prefix + 'Parses successfully' );
 				assert.strictEqual( title.getFileNameTextWithoutExtension(), caseItem.nameText,
@@ -750,11 +736,10 @@
 		}
 
 		cases.forEach( ( caseItem ) => {
-			let prefix,
-				title = mw.Title.newFromFileName( caseItem.fileName );
+			const title = mw.Title.newFromFileName( caseItem.fileName );
 
 			if ( caseItem.nameText !== undefined ) {
-				prefix = '[' + caseItem.typeOfName + '] ';
+				const prefix = '[' + caseItem.typeOfName + '] ';
 
 				assert.notStrictEqual( title, null, prefix + 'Parses successfully' );
 				assert.strictEqual( title.getFileNameTextWithoutExtension(),
@@ -769,7 +754,6 @@
 	} );
 
 	QUnit.test( 'makeTitle for non existent namespace', function ( assert ) {
-		let title, title2;
 		this.sandbox.stub( mw.config, 'get' )
 			.withArgs( 'wgFormattedNamespaces' ).returns( {
 				4: 'NoTalk'
@@ -778,8 +762,8 @@
 			.withArgs( 'wgNamespaceIds' ).returns( {
 				notalk: 4
 			} );
-		title = mw.Title.makeTitle( 4, 'Text' );
-		title2 = mw.Title.makeTitle( 5, 'Text' );
+		const title = mw.Title.makeTitle( 4, 'Text' );
+		const title2 = mw.Title.makeTitle( 5, 'Text' );
 		assert.strictEqual( title.getPrefixedDb(), 'NoTalk:Text' );
 		assert.strictEqual( title2, null, 'Namespace 5 is unknown' );
 	} );

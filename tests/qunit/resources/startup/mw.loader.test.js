@@ -70,8 +70,8 @@
 	 * @param {Function} fn
 	 */
 	function assertStyleAsync( assert, $element, prop, val, fn ) {
-		let styleTestStart,
-			el = $element.get( 0 ),
+		let styleTestStart = null;
+		const el = $element.get( 0 ),
 			styleTestTimeout = ( QUnit.config.testTimeout || 5000 ) - 200;
 
 		function isCssImportApplied() {
@@ -368,8 +368,8 @@
 
 	// @import (T33676)
 	QUnit.test( '.implement( styles with @import )', ( assert ) => {
-		let $element,
-			done = assert.async();
+		let $element;
+		const done = assert.async();
 
 		mw.loader.implement(
 			'test.implement.import',
@@ -478,8 +478,8 @@
 	} );
 
 	QUnit.test( '.implement() [packageFiles long paths]', ( assert ) => {
-		let done = assert.async(),
-			initJsRan = false,
+		const done = assert.async();
+		let initJsRan = false,
 			counter = 41;
 		mw.loader.implement(
 			'test.implement.packageFiles',
@@ -1137,12 +1137,10 @@
 			};
 		} );
 		return mw.loader.using( [ 'test.require1', 'test.require2', 'test.require3', 'test.require4' ] ).then( ( require ) => {
-			let module1, module2, module3, module4;
-
-			module1 = require( 'test.require1' );
-			module2 = require( 'test.require2' );
-			module3 = require( 'test.require3' );
-			module4 = require( 'test.require4' );
+			const module1 = require( 'test.require1' );
+			const module2 = require( 'test.require2' );
+			const module3 = require( 'test.require3' );
+			const module4 = require( 'test.require4' );
 
 			assert.strictEqual( typeof module1, 'object', 'export of module with no export' );
 			assert.strictEqual( module2, 1, 'export a number' );

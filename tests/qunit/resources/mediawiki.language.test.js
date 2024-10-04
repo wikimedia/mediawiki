@@ -1,8 +1,6 @@
 ( function () {
 	'use strict';
 
-	let grammarTests, bcp47Tests;
-
 	QUnit.module( 'mediawiki.language', QUnit.newMwEnvironment( {
 		beforeEach: function () {
 			this.liveLangData = mw.language.data;
@@ -95,7 +93,7 @@
 	}
 
 	// These tests run only for the current UI language.
-	grammarTests = {
+	const grammarTests = {
 		bs: [
 			{
 				word: 'word',
@@ -774,7 +772,7 @@
 		assert.strictEqual( mw.language.listToText( [ 'a', 'b', 'c' ] ), 'a, b and c', 'More than two items' );
 	} );
 
-	bcp47Tests = [
+	const bcp47Tests = [
 		// Extracted from BCP 47 (list not exhaustive)
 		// # 2.1.1
 		[ 'en-ca-x-ca', 'en-CA-x-ca' ],

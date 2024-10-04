@@ -15,7 +15,7 @@
 	} ) );
 
 	QUnit.test( 'callback', function ( assert ) {
-		let sequence;
+		const sequence = [];
 
 		mw.requestIdleCallback( () => {
 			sequence.push( 'x' );
@@ -27,7 +27,6 @@
 			sequence.push( 'z' );
 		} );
 
-		sequence = [];
 		this.tick();
 		assert.deepEqual( sequence, [ 'x', 'y', 'z' ] );
 	} );
@@ -59,8 +58,8 @@
 	} );
 
 	QUnit.test( 'timeRemaining', function ( assert ) {
-		let sequence,
-			tick = this.tick,
+		let sequence;
+		const tick = this.tick,
 			jobs = [
 				{ time: 10, key: 'a' },
 				{ time: 20, key: 'b' },

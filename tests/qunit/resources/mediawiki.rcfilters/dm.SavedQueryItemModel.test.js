@@ -16,9 +16,7 @@
 	QUnit.module( 'mediawiki.rcfilters - SavedQueryItemModel' );
 
 	QUnit.test( 'Initializing and getters', ( assert ) => {
-		let model;
-
-		model = new rcfilters.dm.SavedQueryItemModel(
+		const model = new rcfilters.dm.SavedQueryItemModel(
 			'randomID',
 			'Some label',
 			$.extend( true, {}, itemData )

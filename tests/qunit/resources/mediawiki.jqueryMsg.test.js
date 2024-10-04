@@ -2,9 +2,9 @@
 	const jqueryMsg = require( 'mediawiki.jqueryMsg' ).test;
 
 	/* eslint-disable camelcase */
-	let formatText, formatParse, formatnumTests, specialCharactersPageName, expectedListUsers,
-		expectedListUsersSitename, expectedLinkPagenamee, expectedEntrypoints,
-		testData = require( 'mediawiki.language.testdata' ),
+	let formatText, formatParse, specialCharactersPageName, expectedListUsers,
+		expectedListUsersSitename, expectedLinkPagenamee, expectedEntrypoints;
+	const testData = require( 'mediawiki.language.testdata' ),
 		phpParserData = testData.phpParserData;
 
 	// When the expected result is the same in both modes
@@ -372,10 +372,9 @@
 		const self = this;
 		mw.messages.set( phpParserData.messages );
 		phpParserData.tests.forEach( ( test ) => {
-			let parser,
-				langClass = self.getMwLanguage( test.lang );
+			const langClass = self.getMwLanguage( test.lang );
 			mw.config.set( 'wgUserLanguage', test.lang );
-			parser = new jqueryMsg.Parser( { language: langClass } );
+			const parser = new jqueryMsg.Parser( { language: langClass } );
 			assert.strictEqual(
 				parser.parse( test.key, test.args ).html(),
 				test.result,
@@ -385,11 +384,6 @@
 	} );
 
 	QUnit.test( 'Links', function ( assert ) {
-		let testCases,
-			expectedDisambiguationsText,
-			expectedMultipleBars,
-			expectedSpecialCharacters;
-
 		// The below three are all identical to or based on real messages.  For disambiguations-text,
 		// the bold was removed because it is not yet implemented.
 
@@ -399,7 +393,7 @@
 			'Piped wikilink'
 		);
 
-		expectedDisambiguationsText = 'The following pages contain at least one link to a disambiguation page.\nThey may have to link to a more appropriate page instead.\nA page is treated as a disambiguation page if it uses a template that is linked from ' +
+		const expectedDisambiguationsText = 'The following pages contain at least one link to a disambiguation page.\nThey may have to link to a more appropriate page instead.\nA page is treated as a disambiguation page if it uses a template that is linked from ' +
 			'<a title="MediaWiki:Disambiguationspage" href="/wiki/MediaWiki:Disambiguationspage">MediaWiki:Disambiguationspage</a>.';
 
 		mw.messages.set( 'disambiguations-text', 'The following pages contain at least one link to a disambiguation page.\nThey may have to link to a more appropriate page instead.\nA page is treated as a disambiguation page if it uses a template that is linked from [[MediaWiki:Disambiguationspage]].' );
@@ -437,7 +431,7 @@
 		);
 		this.restoreWarnings();
 
-		expectedMultipleBars = '<a title="Main Page" href="/wiki/Main_Page">Main|Page</a>';
+		const expectedMultipleBars = '<a title="Main Page" href="/wiki/Main_Page">Main|Page</a>';
 		mw.messages.set( 'multiple-bars', '[[Main Page|Main|Page]]' );
 		assert.htmlEqual(
 			formatParse( 'multiple-bars' ),
@@ -445,7 +439,7 @@
 			'Bar in anchor'
 		);
 
-		expectedSpecialCharacters = '<a title="&quot;Who&quot; wants to be a millionaire &amp; live on &#039;Exotic Island&#039;?" href="/wiki/%22Who%22_wants_to_be_a_millionaire_%26_live_on_%27Exotic_Island%27%3F">&quot;Who&quot; wants to be a millionaire &amp; live on &#039;Exotic Island&#039;?</a>';
+		const expectedSpecialCharacters = '<a title="&quot;Who&quot; wants to be a millionaire &amp; live on &#039;Exotic Island&#039;?" href="/wiki/%22Who%22_wants_to_be_a_millionaire_%26_live_on_%27Exotic_Island%27%3F">&quot;Who&quot; wants to be a millionaire &amp; live on &#039;Exotic Island&#039;?</a>';
 
 		mw.messages.set( 'special-characters', '[[' + specialCharactersPageName + ']]' );
 		assert.htmlEqual(
@@ -473,7 +467,7 @@
 			'External link with parser function in the URL'
 		);
 
-		testCases = [
+		const testCases = [
 			[
 				'extlink-html-full',
 				'asd [http://example.org <strong>Example</strong>] asd',
@@ -714,11 +708,10 @@
 	} );
 
 	QUnit.test( 'Int', ( assert ) => {
-		let newarticletextSource = 'You have followed a link to a page that does not exist yet. To create the page, start typing in the box below (see the [[{{Int:Foobar}}|foobar]] for more info). If you are here by mistake, click your browser\'s back button.',
-			expectedNewarticletext,
+		const newarticletextSource = 'You have followed a link to a page that does not exist yet. To create the page, start typing in the box below (see the [[{{Int:Foobar}}|foobar]] for more info). If you are here by mistake, click your browser\'s back button.',
 			helpPageTitle = 'Help:Foobar';
 
-		expectedNewarticletext = 'You have followed a link to a page that does not exist yet. To create the page, start typing in the box below (see the ' +
+		const expectedNewarticletext = 'You have followed a link to a page that does not exist yet. To create the page, start typing in the box below (see the ' +
 			'<a title="Help:Foobar" href="/wiki/Help:Foobar">foobar</a> for more info). If you are here by mistake, click your browser\'s back button.';
 
 		mw.config.set( 'wgUserLanguage', 'en' );
@@ -807,11 +800,10 @@
 		} );
 
 		function verifyGetMessageFunction( key, format, shouldCall ) {
-			let message;
 			outerCalled = false;
 			innerCalled = false;
 			// eslint-disable-next-line mediawiki/msg-doc
-			message = mw.message( key );
+			const message = mw.message( key );
 			message[ format ]();
 			assert.strictEqual( outerCalled, shouldCall, 'Outer function called for ' + key );
 			assert.strictEqual( innerCalled, shouldCall, 'Inner function called for ' + key );
@@ -855,7 +847,7 @@
 		);
 	} );
 
-	formatnumTests = [
+	const formatnumTests = [
 		{
 			lang: 'en',
 			number: 987654321.654321,
@@ -959,10 +951,9 @@
 		mw.messages.set( 'formatnum-msg', '{{formatnum:$1}}' );
 		mw.messages.set( 'formatnum-msg-int', '{{formatnum:$1|R}}' );
 		formatnumTests.forEach( ( test ) => {
-			let parser,
-				langClass = self.getMwLanguage( test.lang );
+			const langClass = self.getMwLanguage( test.lang );
 			mw.config.set( 'wgUserLanguage', test.lang );
-			parser = new jqueryMsg.Parser( { language: langClass } );
+			const parser = new jqueryMsg.Parser( { language: langClass } );
 			assert.strictEqual(
 				parser.parse( test.integer ? 'formatnum-msg-int' : 'formatnum-msg',
 					[ test.number ] ).html(),
@@ -1183,11 +1174,10 @@
 	} );
 
 	QUnit.test( 'Behavior in case of invalid wikitext', function ( assert ) {
-		let logSpy;
 		mw.messages.set( 'invalid-wikitext', '<b>{{FAIL}}</b>' );
 
 		this.suppressWarnings();
-		logSpy = this.sandbox.spy( mw.log, 'warn' );
+		const logSpy = this.sandbox.spy( mw.log, 'warn' );
 
 		assert.strictEqual(
 			mw.message( 'invalid-wikitext' ).isParseable(),
@@ -1211,8 +1201,6 @@
 	} );
 
 	QUnit.test( 'Non-string parameters to various functions', ( assert ) => {
-		let i, cases;
-
 		// For jquery-param-int
 		mw.messages.set( 'x', 'y' );
 		// For jquery-param-grammar
@@ -1222,7 +1210,7 @@
 			]
 		} );
 
-		cases = [
+		const cases = [
 			{
 				key: 'jquery-param-wikilink',
 				msg: '[[$1]] [[$1|a]]',
@@ -1265,7 +1253,7 @@
 			}
 		];
 
-		for ( i = 0; i < cases.length; i++ ) {
+		for ( let i = 0; i < cases.length; i++ ) {
 			mw.messages.set( cases[ i ].key, cases[ i ].msg );
 			assert.strictEqual(
 				// eslint-disable-next-line mediawiki/msg-doc

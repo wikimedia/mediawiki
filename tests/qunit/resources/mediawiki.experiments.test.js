@@ -18,8 +18,8 @@
 	QUnit.module( 'mediawiki.experiments' );
 
 	QUnit.test( 'getBucket( experiment, token )', ( assert ) => {
-		let experiment = createExperiment(),
-			token = '123457890';
+		const token = '123457890';
+		let experiment = createExperiment();
 
 		assert.strictEqual(
 			getBucket( experiment, token ),

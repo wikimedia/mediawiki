@@ -94,16 +94,14 @@ QUnit.test( 'basic usage when visible', function ( assert ) {
 } );
 
 QUnit.test( 'basic usage - fallback assumes visible', function ( assert ) {
-	let mockDoc, visible, called;
-
-	mockDoc = {
+	const mockDoc = {
 		addEventListener: function () {},
 		removeEventListener: function () {}
 	};
-	visible = require( 'mediawiki.visibleTimeout' );
+	const visible = require( 'mediawiki.visibleTimeout' );
 	visible.init( mockDoc );
 
-	called = 0;
+	let called = 0;
 
 	visible.set( () => {
 		called++;
