@@ -267,14 +267,19 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		$out->addModules( 'mediawiki.misc-authed-ooui' );
 		$this->addHelpLink( 'Help:Moving a page' );
 
-		$handlerSupportsRedirects = $this->contentHandlerFactory
-			->getContentHandler( $this->oldTitle->getContentModel() )
-			->supportsRedirects();
+		$handler = $this->contentHandlerFactory
+			->getContentHandler( $this->oldTitle->getContentModel() );
+		$createRedirect = $handler->supportsRedirects() && !(
+			// Do not create redirects for wikitext message overrides (T376399).
+			// Maybe one day they will have a custom content model and this special case won't be needed.
+			$this->oldTitle->getNamespace() === NS_MEDIAWIKI &&
+			$this->oldTitle->getContentModel() === CONTENT_MODEL_WIKITEXT
+		);
 
 		if ( $this->getConfig()->get( MainConfigNames::FixDoubleRedirects ) ) {
 			$out->addWikiMsg( 'movepagetext' );
 		} else {
-			$out->addWikiMsg( $handlerSupportsRedirects ?
+			$out->addWikiMsg( $createRedirect ?
 				'movepagetext-noredirectfixer' :
 				'movepagetext-noredirectsupport' );
 		}
@@ -520,7 +525,7 @@ class SpecialMovePage extends UnlistedSpecialPage {
 		}
 
 		if ( $this->permManager->userHasRight( $user, 'suppressredirect' ) ) {
-			if ( $handlerSupportsRedirects ) {
+			if ( $createRedirect ) {
 				$isChecked = $this->leaveRedirect;
 				$isDisabled = false;
 			} else {
@@ -763,7 +768,12 @@ class SpecialMovePage extends UnlistedSpecialPage {
 
 		$handler = $this->contentHandlerFactory->getContentHandler( $ot->getContentModel() );
 
-		if ( !$handler->supportsRedirects() ) {
+		if ( !$handler->supportsRedirects() || (
+			// Do not create redirects for wikitext message overrides (T376399).
+			// Maybe one day they will have a custom content model and this special case won't be needed.
+			$ot->getNamespace() === NS_MEDIAWIKI &&
+			$ot->getContentModel() === CONTENT_MODEL_WIKITEXT
+		) ) {
 			$createRedirect = false;
 		} elseif ( $this->permManager->userHasRight( $user, 'suppressredirect' ) ) {
 			$createRedirect = $this->leaveRedirect;
