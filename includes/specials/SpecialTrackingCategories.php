@@ -104,10 +104,11 @@ class SpecialTrackingCategories extends SpecialPage {
 			);
 
 			foreach ( $data['cats'] as $catTitle ) {
-				$html = $linkRenderer->makeLink(
-					$catTitle,
-					$catTitle->getText()
-				);
+				$html = Html::rawElement( 'bdi', [ 'dir' => $this->getContentLanguage()->getDir() ],
+					$linkRenderer->makeLink(
+						$catTitle,
+						$catTitle->getText()
+					) );
 
 				$this->getHookRunner()->onSpecialTrackingCategories__generateCatLink(
 					$this, $catTitle, $html );
