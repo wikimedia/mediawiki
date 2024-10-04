@@ -13,31 +13,30 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 	$root
 		.find( '.mw-htmlform-select-and-other-field' )
 		.each( function () {
-			let $reasonList, currentValReasonList, maxlengthUnit, lengthLimiter, widget,
-				$this = $( this ),
+			const $this = $( this ),
 				$widget = $this.closest( '.oo-ui-widget[data-ooui]' );
 			// find the reason list
-			$reasonList = $root.find( '#' + $this.data( 'id-select' ) );
+			const $reasonList = $root.find( '#' + $this.data( 'id-select' ) );
 
 			if ( $widget ) {
 				mw.loader.using( 'mediawiki.widgets.SelectWithInputWidget', () => {
-					widget = OO.ui.Widget.static.infuse( $widget );
-					maxlengthUnit = widget.getData().maxlengthUnit;
-					lengthLimiter = maxlengthUnit === 'codepoints' ?
+					const widget = OO.ui.Widget.static.infuse( $widget );
+					const maxlengthUnit = widget.getData().maxlengthUnit;
+					const lengthLimiter = maxlengthUnit === 'codepoints' ?
 						'visibleCodePointLimitWithDropdown' : 'visibleByteLimitWithDropdown';
 					mw.widgets[ lengthLimiter ]( widget.textinput, widget.dropdowninput );
 				} );
 			} else {
 				// cache the current selection to avoid expensive lookup
-				currentValReasonList = $reasonList.val();
+				let currentValReasonList = $reasonList.val();
 
 				$reasonList.on( 'change', () => {
 					currentValReasonList = $reasonList.val();
 				} );
 
 				// Select the function for the length limit
-				maxlengthUnit = $this.data( 'mw-maxlength-unit' );
-				lengthLimiter = maxlengthUnit === 'codepoints' ? 'codePointLimit' : 'byteLimit';
+				const maxlengthUnit = $this.data( 'mw-maxlength-unit' );
+				const lengthLimiter = maxlengthUnit === 'codepoints' ? 'codePointLimit' : 'byteLimit';
 				$this[ lengthLimiter ]( ( input ) => {
 					// Should be built the same as in HTMLSelectAndOtherField::loadDataFromRequest
 					let comment = currentValReasonList;

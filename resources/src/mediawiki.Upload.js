@@ -1,6 +1,4 @@
 ( function () {
-	let UP;
-
 	/**
 	 * @classdesc Upload to a wiki. Most of the functionality is implemented
 	 * in {@link mw.Api#upload} and friends, but this model class will tie it
@@ -60,7 +58,7 @@
 		this.imageinfo = undefined;
 	}
 
-	UP = Upload.prototype;
+	const UP = Upload.prototype;
 
 	/**
 	 * Get the mw.Api instance used by this Upload object.

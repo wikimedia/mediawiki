@@ -4,9 +4,9 @@
  */
 
 mw.language.convertGrammar = function ( word, form ) {
-	let grammarForms = mw.language.getData( 'os', 'grammarForms' ),
-		// Ending for allative case
-		endAllative = 'мæ',
+	const grammarForms = mw.language.getData( 'os', 'grammarForms' );
+	// Ending for allative case
+	let endAllative = 'мæ',
 		// Variable for 'j' beetwen vowels
 		jot = '',
 		// Variable for "-" for not Ossetic words

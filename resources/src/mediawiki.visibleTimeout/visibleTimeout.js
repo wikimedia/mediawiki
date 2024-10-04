@@ -1,6 +1,6 @@
 let doc, HIDDEN, VISIBILITY_CHANGE,
-	nextId = 1,
-	clearHandles = Object.create( null );
+	nextId = 1;
+const clearHandles = Object.create( null );
 
 function init( overrideDoc ) {
 	doc = overrideDoc || document;
@@ -40,8 +40,8 @@ module.exports = {
 	 */
 	set: function ( fn, delay ) {
 		let nativeId = null,
-			visibleId = nextId++,
 			lastStartedAt = mw.now();
+		const visibleId = nextId++;
 
 		function clearHandle() {
 			if ( nativeId !== null ) {

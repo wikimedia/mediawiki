@@ -79,23 +79,22 @@
 	};
 
 	$( () => {
-		let api, searchboxesSelectors,
-			// Region where the suggestions box will appear directly below
-			// (using the same width). Can be a container element or the input
-			// itself, depending on what suits best in the environment.
-			// For Vector the suggestion box should align with the simpleSearch
-			// container's borders, in other skins it should align with the input
-			// element (not the search form, as that would leave the buttons
-			// vertically between the input and the suggestions).
-			$searchRegion = $( '#simpleSearch, #searchInput' ).first(),
-			$searchInput = $( '#searchInput' ),
-			previousSearchText = $searchInput.val();
+		let api;
+		// Region where the suggestions box will appear directly below
+		// (using the same width). Can be a container element or the input
+		// itself, depending on what suits best in the environment.
+		// For Vector the suggestion box should align with the simpleSearch
+		// container's borders, in other skins it should align with the input
+		// element (not the search form, as that would leave the buttons
+		// vertically between the input and the suggestions).
+		const $searchRegion = $( '#simpleSearch, #searchInput' ).first(),
+			$searchInput = $( '#searchInput' );
+		let previousSearchText = $searchInput.val();
 
 		function serializeObject( fields ) {
-			let i,
-				obj = {};
+			const obj = {};
 
-			for ( i = 0; i < fields.length; i++ ) {
+			for ( let i = 0; i < fields.length; i++ ) {
 				obj[ fields[ i ].name ] = fields[ i ].value;
 			}
 
@@ -104,16 +103,14 @@
 
 		// Compute form data for search suggestions functionality.
 		function getFormData( context ) {
-			let $form, baseHref, linkParams;
-
 			if ( !context.formData ) {
 				// Compute common parameters for links' hrefs
-				$form = context.config.$region.closest( 'form' );
+				const $form = context.config.$region.closest( 'form' );
 
-				baseHref = $form.attr( 'action' ) || '';
+				let baseHref = $form.attr( 'action' ) || '';
 				baseHref += baseHref.indexOf( '?' ) > -1 ? '&' : '?';
 
-				linkParams = serializeObject( $form.serializeArray() );
+				const linkParams = serializeObject( $form.serializeArray() );
 
 				context.formData = {
 					textParam: context.data.$textbox.attr( 'name' ),
@@ -330,7 +327,7 @@
 		}
 
 		// Generic suggestions functionality for all search boxes
-		searchboxesSelectors = [
+		const searchboxesSelectors = [
 			// Primary searchbox on every page in standard skins
 			'#searchInput',
 			// Generic selector for skins with multiple searchboxes (used by CologneBlue)

@@ -761,9 +761,9 @@
 		// user-related magic words display the temp user instead of IP user in the preview. (T331397)
 		const tempUserNamePromise = mw.user.acquireTempUserName();
 
-		let parseRequest, diffRequest;
+		let diffRequest;
 
-		parseRequest = tempUserNamePromise.then( () => getParseRequest( config, section ) );
+		const parseRequest = tempUserNamePromise.then( () => getParseRequest( config, section ) );
 
 		if ( config.showDiff ) {
 			config.$previewNode.hide();

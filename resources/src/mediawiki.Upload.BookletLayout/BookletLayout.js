@@ -316,10 +316,8 @@
 
 		this.uploadPromise.then( () => {
 			layout.upload.finishStashUpload().then( () => {
-				let name;
-
 				// Normalize page name and localise the 'File:' prefix
-				name = new mw.Title( 'File:' + layout.upload.getFilename() ).toString();
+				const name = new mw.Title( 'File:' + layout.upload.getFilename() ).toString();
 				layout.filenameUsageWidget.setValue( '[[' + name + ']]' );
 				layout.setPage( 'insert' );
 
@@ -343,14 +341,13 @@
 	 * @return {jQuery.Promise|undefined} A Promise that will be resolved with an OO.ui.Error.
 	 */
 	mw.Upload.BookletLayout.prototype.getErrorMessageForStateDetails = function () {
-		let state = this.upload.getState(),
+		const state = this.upload.getState(),
 			stateDetails = this.upload.getStateDetails(),
 			warnings = stateDetails.upload && stateDetails.upload.warnings,
-			$ul = $( '<ul>' ),
-			$error;
+			$ul = $( '<ul>' );
 
 		if ( state === mw.Upload.State.ERROR ) {
-			$error = ( new mw.Api() ).getErrorMessage( stateDetails );
+			const $error = ( new mw.Api() ).getErrorMessage( stateDetails );
 
 			return $.Deferred().resolve( new OO.ui.Error(
 				$error,
@@ -437,11 +434,10 @@
 	 * @return {OO.ui.FormLayout}
 	 */
 	mw.Upload.BookletLayout.prototype.renderUploadForm = function () {
-		let fieldset,
-			layout = this;
+		const layout = this;
 
 		this.selectFileWidget = this.getFileWidget();
-		fieldset = new OO.ui.FieldsetLayout();
+		const fieldset = new OO.ui.FieldsetLayout();
 		fieldset.addItems( [ this.selectFileWidget ] );
 		this.uploadForm = new OO.ui.FormLayout( { items: [ fieldset ] } );
 
@@ -513,8 +509,6 @@
 	 * @return {OO.ui.FormLayout}
 	 */
 	mw.Upload.BookletLayout.prototype.renderInfoForm = function () {
-		let fieldset;
-
 		this.filePreview = new OO.ui.Widget( {
 			classes: [ 'mw-upload-bookletLayout-filePreview' ]
 		} );
@@ -535,7 +529,7 @@
 			autosize: true
 		} );
 
-		fieldset = new OO.ui.FieldsetLayout( {
+		const fieldset = new OO.ui.FieldsetLayout( {
 			label: mw.msg( 'upload-form-label-infoform-title' )
 		} );
 		fieldset.addItems( [
@@ -591,10 +585,8 @@
 	 * @return {OO.ui.FormLayout}
 	 */
 	mw.Upload.BookletLayout.prototype.renderInsertForm = function () {
-		let fieldset;
-
 		this.filenameUsageWidget = new OO.ui.TextInputWidget();
-		fieldset = new OO.ui.FieldsetLayout( {
+		const fieldset = new OO.ui.FieldsetLayout( {
 			label: mw.msg( 'upload-form-label-usage-title' )
 		} );
 		fieldset.addItems( [

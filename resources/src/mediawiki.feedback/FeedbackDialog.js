@@ -50,9 +50,6 @@ FeedbackDialog.static.actions = [
  * @inheritdoc
  */
 FeedbackDialog.prototype.initialize = function () {
-	let feedbackSubjectFieldLayout, feedbackMessageFieldLayout,
-		feedbackFieldsetLayout, termsOfUseLabel;
-
 	// Parent method
 	FeedbackDialog.super.prototype.initialize.call( this );
 
@@ -72,13 +69,13 @@ FeedbackDialog.prototype.initialize = function () {
 	this.feedbackMessageInput = new OO.ui.MultilineTextInputWidget( {
 		autosize: true
 	} );
-	feedbackSubjectFieldLayout = new OO.ui.FieldLayout( this.feedbackSubjectInput, {
+	const feedbackSubjectFieldLayout = new OO.ui.FieldLayout( this.feedbackSubjectInput, {
 		label: mw.msg( 'feedback-subject' )
 	} );
-	feedbackMessageFieldLayout = new OO.ui.FieldLayout( this.feedbackMessageInput, {
+	const feedbackMessageFieldLayout = new OO.ui.FieldLayout( this.feedbackMessageInput, {
 		label: mw.msg( 'feedback-message' )
 	} );
-	feedbackFieldsetLayout = new OO.ui.FieldsetLayout( {
+	const feedbackFieldsetLayout = new OO.ui.FieldsetLayout( {
 		items: [ feedbackSubjectFieldLayout, feedbackMessageFieldLayout ],
 		classes: [ 'mw-feedbackDialog-feedback-form' ]
 	} );
@@ -92,7 +89,7 @@ FeedbackDialog.prototype.initialize = function () {
 
 	const $termsOfUseLabelText = $( '<p>' ).append( mw.message( 'feedback-termsofuse' ).parseDom() );
 	$termsOfUseLabelText.find( 'a' ).attr( 'target', '_blank' );
-	termsOfUseLabel = new OO.ui.LabelWidget( {
+	const termsOfUseLabel = new OO.ui.LabelWidget( {
 		classes: [ 'mw-feedbackDialog-feedback-termsofuse' ],
 		label: $termsOfUseLabelText
 	} );
@@ -164,8 +161,7 @@ FeedbackDialog.prototype.getSetupProcess = function ( data ) {
 			}
 		}, this )
 		.next( function () {
-			let $link,
-				settings = data.settings;
+			const settings = data.settings;
 			data.contents = data.contents || {};
 
 			// Prefill subject/message
@@ -186,7 +182,7 @@ FeedbackDialog.prototype.getSetupProcess = function ( data ) {
 			this.useragentMandatory = settings.useragentCheckbox.mandatory;
 			this.useragentFieldLayout.toggle( settings.useragentCheckbox.show );
 
-			$link = $( '<a>' )
+			const $link = $( '<a>' )
 				.attr( 'href', this.feedbackPageUrl )
 				.attr( 'target', '_blank' )
 				.text( this.feedbackPageName );
@@ -227,15 +223,15 @@ FeedbackDialog.prototype.getActionProcess = function ( action ) {
 		}, this );
 	} else if ( action === 'submit' ) {
 		return new OO.ui.Process( function () {
-			let fb = this,
+			const fb = this,
 				userAgentMessage = ':' +
 					'<small>' +
 					mw.msg( 'feedback-useragent' ) +
 					' ' +
 					mw.html.escape( navigator.userAgent ) +
 					'</small>\n\n',
-				subject = this.feedbackSubjectInput.getValue(),
-				message = this.feedbackMessageInput.getValue();
+				subject = this.feedbackSubjectInput.getValue();
+			let message = this.feedbackMessageInput.getValue();
 
 			// Add user agent if checkbox is selected
 			if ( this.useragentCheckbox.isSelected() ) {

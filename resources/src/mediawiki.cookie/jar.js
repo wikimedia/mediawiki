@@ -13,7 +13,7 @@
 ( function () {
 
 	const pluses = /\+/g;
-	let config, cookie;
+	let config = null, cookie;
 
 	function raw( s ) {
 		return s;

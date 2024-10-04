@@ -1,13 +1,13 @@
 ( function () {
 	'use strict';
 
-	let notification,
+	let notification = null,
 		// The .mw-notification-area div that all notifications are contained inside.
 		$area,
 		// Number of open notification boxes at any time
 		openNotificationCount = 0,
-		isPageReady = false,
-		preReadyNotifQueue = [];
+		isPageReady = false;
+	const preReadyNotifQueue = [];
 
 	/**
 	 * @classdesc Describes a notification. See [mw.notification module]{@link mw.notification}. A Notification object for 1 message.
@@ -23,9 +23,8 @@
 	 * @param {mw.notification.NotificationOptions} options
 	 */
 	function Notification( message, options ) {
-		let $notification, $notificationContent;
 
-		$notification = $( '<div>' )
+		const $notification = $( '<div>' )
 			.data( 'mw-notification', this )
 			.attr( 'role', 'status' )
 			.addClass( [
@@ -69,7 +68,7 @@
 			$notification.addClass( options.classes );
 		}
 
-		$notificationContent = $( '<div>' ).addClass( 'mw-notification-content' );
+		const $notificationContent = $( '<div>' ).addClass( 'mw-notification-content' );
 
 		if ( typeof message === 'object' ) {
 			// Handle mw.Message objects separately from DOM nodes and jQuery objects
@@ -123,8 +122,6 @@
 	 * @private
 	 */
 	Notification.prototype.start = function () {
-		let options, $notification, $tagMatches, autohideCount;
-
 		$area.css( 'display', '' );
 
 		if ( this.isOpen ) {
@@ -134,9 +131,10 @@
 		this.isOpen = true;
 		openNotificationCount++;
 
-		options = this.options;
-		$notification = this.$notification;
+		const options = this.options;
+		const $notification = this.$notification;
 
+		let $tagMatches;
 		if ( options.tag ) {
 			// Find notifications with the same tag
 			$tagMatches = $area.find( '.mw-notification-tag-' + options.tag );
@@ -179,7 +177,7 @@
 		// By default a notification is paused.
 		// If this notification is within the first {autoHideLimit} notifications then
 		// start the auto-hide timer as soon as it's created.
-		autohideCount = $area.find( '.mw-notification-autohide' ).length;
+		const autohideCount = $area.find( '.mw-notification-autohide' ).length;
 		if ( autohideCount <= notification.autoHideLimit ) {
 			this.resume();
 		}
@@ -422,10 +420,9 @@
 		 * @return {Notification} Notification object
 		 */
 		notify: function ( message, options ) {
-			let notif;
 			options = Object.assign( {}, notification.defaults, options );
 
-			notif = new Notification( message, options );
+			const notif = new Notification( message, options );
 
 			if ( isPageReady ) {
 				notif.start();

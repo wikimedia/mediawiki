@@ -10,8 +10,7 @@
 		 * @return {string} Correct form for quantifier in this language
 		 */
 		convertPlural: function ( count, forms, explicitPluralForms ) {
-			let pluralRules,
-				pluralFormIndex = 0;
+			let pluralFormIndex = 0;
 
 			if ( explicitPluralForms && ( explicitPluralForms[ count ] !== undefined ) ) {
 				return explicitPluralForms[ count ];
@@ -21,7 +20,7 @@
 				return '';
 			}
 
-			pluralRules = mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'pluralRules' );
+			const pluralRules = mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'pluralRules' );
 			if ( !pluralRules ) {
 				// default fallback.
 				return ( count === 1 ) ? forms[ 0 ] : forms[ 1 ];
@@ -84,23 +83,20 @@
 		 * @return {string}
 		 */
 		convertGrammar: function ( word, form ) {
-			let userLanguage, forms, transformations,
-				patterns, i, rule, sourcePattern, regexp, replacement;
+			const userLanguage = mw.config.get( 'wgUserLanguage' );
 
-			userLanguage = mw.config.get( 'wgUserLanguage' );
-
-			forms = mw.language.getData( userLanguage, 'grammarForms' );
+			const forms = mw.language.getData( userLanguage, 'grammarForms' );
 			if ( forms && forms[ form ] ) {
 				return forms[ form ][ word ];
 			}
 
-			transformations = mw.language.getData( userLanguage, 'grammarTransformations' );
+			const transformations = mw.language.getData( userLanguage, 'grammarTransformations' );
 
 			if ( !( transformations && transformations[ form ] ) ) {
 				return word;
 			}
 
-			patterns = transformations[ form ];
+			let patterns = transformations[ form ];
 
 			// Some names of grammar rules are aliases for other rules.
 			// In such cases the value is a string rather than object,
@@ -109,16 +105,16 @@
 				patterns = transformations[ patterns ];
 			}
 
-			for ( i = 0; i < patterns.length; i++ ) {
-				rule = patterns[ i ];
-				sourcePattern = rule[ 0 ];
+			for ( let i = 0; i < patterns.length; i++ ) {
+				const rule = patterns[ i ];
+				const sourcePattern = rule[ 0 ];
 
 				if ( sourcePattern === '@metadata' ) {
 					continue;
 				}
 
-				regexp = new RegExp( sourcePattern );
-				replacement = rule[ 1 ];
+				const regexp = new RegExp( sourcePattern );
+				const replacement = rule[ 1 ];
 
 				if ( word.match( regexp ) ) {
 					return word.replace( regexp, replacement );
@@ -158,21 +154,18 @@
 		 * @return {string}
 		 */
 		bcp47: function ( languageTag ) {
-			let bcp47Map,
-				formatted,
-				segments,
-				isFirstSegment = true,
+			let isFirstSegment = true,
 				isPrivate = false;
 
 			languageTag = languageTag.toLowerCase();
 
-			bcp47Map = mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'bcp47Map' );
+			const bcp47Map = mw.language.getData( mw.config.get( 'wgUserLanguage' ), 'bcp47Map' );
 			if ( bcp47Map && Object.prototype.hasOwnProperty.call( bcp47Map, languageTag ) ) {
 				languageTag = bcp47Map[ languageTag ];
 			}
 
-			segments = languageTag.split( '-' );
-			formatted = segments.map( ( segment ) => {
+			const segments = languageTag.split( '-' );
+			const formatted = segments.map( ( segment ) => {
 				let newSegment;
 
 				// when previous segment is x, it is a private segment and should be lc

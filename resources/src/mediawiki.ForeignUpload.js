@@ -24,8 +24,7 @@
 	 * @param {Object} [apiconfig] Passed to the constructor of {@link mw.ForeignApi} or {@link mw.Api}, as needed.
 	 */
 	function ForeignUpload( target, apiconfig ) {
-		let api,
-			validTargets = config.ForeignUploadTargets,
+		const validTargets = config.ForeignUploadTargets,
 			upload = this;
 
 		if ( typeof target === 'object' ) {
@@ -59,19 +58,18 @@
 				this.apiPromise = $.Deferred().resolve( new mw.Api( apiconfig ) );
 			}
 		} else {
-			api = new mw.Api();
+			const api = new mw.Api();
 			this.apiPromise = api.get( {
 				action: 'query',
 				meta: 'filerepoinfo',
 				friprop: [ 'name', 'scriptDirUrl', 'canUpload' ]
 			} ).then( ( data ) => {
-				let i, repo,
-					repos = data.query.repos;
+				const repos = data.query.repos;
 
 				// First pass - try to find the passed-in target and check
 				// that it's configured for uploads.
-				for ( i in repos ) {
-					repo = repos[ i ];
+				for ( const i in repos ) {
+					const repo = repos[ i ];
 
 					// Skip repos that are not our target, or if they
 					// are the target, cannot be uploaded to.

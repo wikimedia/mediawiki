@@ -2,9 +2,7 @@
  * JavaScript for diff inline toggle
  */
 module.exports = function ( $inlineToggleSwitchLayout ) {
-	let $wikitextDiffContainer, $wikitextDiffHeader, $wikitextDiffBody,
-		$wikitextDiffBodyInline, $wikitextDiffBodyTable,
-		url = new URL( location.href ),
+	const url = new URL( location.href ),
 		api = new mw.Api(),
 		$inlineLegendContainer = $( '.mw-diff-inline-legend' ),
 		inlineToggleSwitchLayout = OO.ui.FieldLayout.static.infuse( $inlineToggleSwitchLayout ),
@@ -15,11 +13,12 @@ module.exports = function ( $inlineToggleSwitchLayout ) {
 	} );
 	inlineToggleSwitch.on( 'disable', onDiffTypeInlineDisabled );
 
-	$wikitextDiffContainer = $( 'table.diff[data-mw="interface"]' );
-	$wikitextDiffHeader = $wikitextDiffContainer.find( 'tr.diff-title' )
+	const $wikitextDiffContainer = $( 'table.diff[data-mw="interface"]' );
+	const $wikitextDiffHeader = $wikitextDiffContainer.find( 'tr.diff-title' )
 		.add( $wikitextDiffContainer.find( 'td.diff-multi, td.diff-notice' ).parent() );
-	$wikitextDiffBody = $wikitextDiffContainer.find( 'tr' ).not( $wikitextDiffHeader );
+	let $wikitextDiffBody = $wikitextDiffContainer.find( 'tr' ).not( $wikitextDiffHeader );
 
+	let $wikitextDiffBodyInline, $wikitextDiffBodyTable;
 	if ( inlineToggleSwitch.getValue() ) {
 		$wikitextDiffBodyInline = $wikitextDiffBody;
 	} else {
@@ -113,11 +112,11 @@ module.exports = function ( $inlineToggleSwitchLayout ) {
 	 * @param {boolean} isInline
 	 */
 	function fetchDiff( isInline ) {
-		let apiParams, oldPageName, newPageName,
-			diffType = isInline ? 'inline' : 'table',
+		const diffType = isInline ? 'inline' : 'table',
 			oldRevId = mw.config.get( 'wgDiffOldId' ),
 			newRevId = mw.config.get( 'wgDiffNewId' );
 
+		let oldPageName, newPageName;
 		if ( mw.config.get( 'wgCanonicalSpecialPageName' ) !== 'ComparePages' ) {
 			oldPageName = newPageName = mw.config.get( 'wgRelevantPageName' );
 		} else {
@@ -125,7 +124,7 @@ module.exports = function ( $inlineToggleSwitchLayout ) {
 			newPageName = url.searchParams.get( 'page2' );
 		}
 
-		apiParams = {
+		const apiParams = {
 			action: 'compare',
 			fromtitle: oldPageName,
 			totitle: newPageName,

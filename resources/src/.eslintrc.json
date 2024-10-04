@@ -12,7 +12,6 @@
 	"rules": {
 		"es-x/no-promise-prototype-finally": "off",
 		"max-len": "off",
-		"prefer-const": "warn",
 		"no-jquery/no-global-selector": "off",
 		"jsdoc/no-undefined-types": [ 1, {
 			"definedTypes": [

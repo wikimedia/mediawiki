@@ -1,15 +1,15 @@
 'use strict';
 
-let config = require( './config.json' ),
-	defaults = {
-		prefix: config.prefix,
-		domain: config.domain,
-		path: config.path,
-		expires: config.expires,
-		secure: false,
-		sameSite: ''
-	},
+const config = require( './config.json' ),
 	jar = require( './jar.js' );
+let defaults = {
+	prefix: config.prefix,
+	domain: config.domain,
+	path: config.path,
+	expires: config.expires,
+	secure: false,
+	sameSite: ''
+};
 
 // define jQuery Cookie methods
 require( './jquery.js' );
@@ -55,8 +55,6 @@ mw.cookie = {
 	 */
 
 	set: function ( key, value, options ) {
-		let prefix, date;
-
 		// The 'options' parameter may be a shortcut for the expiry.
 		if ( arguments.length > 2 && ( !options || options instanceof Date || typeof options === 'number' ) ) {
 			options = { expires: options };
@@ -65,7 +63,7 @@ mw.cookie = {
 		options = Object.assign( {}, defaults, options );
 
 		// Don't pass invalid option to jar.cookie
-		prefix = options.prefix;
+		const prefix = options.prefix;
 		delete options.prefix;
 
 		if ( !options.expires ) {
@@ -74,7 +72,7 @@ mw.cookie = {
 			delete options.expires;
 		} else if ( typeof options.expires === 'number' ) {
 			// Lifetime in seconds
-			date = new Date();
+			const date = new Date();
 			date.setTime( Number( date ) + ( options.expires * 1000 ) );
 			options.expires = date;
 		}
@@ -101,8 +99,6 @@ mw.cookie = {
 	 * @memberof module:mediawiki.cookie
 	 */
 	get: function ( key, prefix, defaultValue ) {
-		let result;
-
 		if ( prefix === undefined || prefix === null ) {
 			prefix = defaults.prefix;
 		}
@@ -112,7 +108,7 @@ mw.cookie = {
 			defaultValue = null;
 		}
 
-		result = jar.cookie( prefix + key );
+		const result = jar.cookie( prefix + key );
 
 		return result !== null ? result : defaultValue;
 	},

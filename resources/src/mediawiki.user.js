@@ -230,11 +230,10 @@
 		 *  unavailable, or Date for when the user registered.
 		 */
 		getRegistration: function () {
-			let registration;
 			if ( mw.user.isAnon() ) {
 				return false;
 			}
-			registration = mw.config.get( 'wgUserRegistration' );
+			const registration = mw.config.get( 'wgUserRegistration' );
 			// Registration may be unavailable if the user signed up before MediaWiki
 			// began tracking this.
 			return !registration ? null : new Date( registration );

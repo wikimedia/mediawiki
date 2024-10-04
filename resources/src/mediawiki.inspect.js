@@ -37,14 +37,14 @@
 	}
 
 	function humanSize( bytesInput ) {
-		let i,
-			bytes = +bytesInput,
-			units = [ '', ' KiB', ' MiB', ' GiB', ' TiB', ' PiB' ];
+		let bytes = +bytesInput;
+		const units = [ '', ' KiB', ' MiB', ' GiB', ' TiB', ' PiB' ];
 
 		if ( bytes === 0 || isNaN( bytes ) ) {
 			return bytesInput;
 		}
 
+		let i;
 		for ( i = 0; bytes >= 1024; bytes /= 1024 ) {
 			i++;
 		}
@@ -271,8 +271,9 @@
 			const modules = [];
 
 			inspect.getLoadedModules().forEach( ( name ) => {
-				let css, stats, module = mw.loader.moduleRegistry[ name ];
+				const module = mw.loader.moduleRegistry[ name ];
 
+				let css;
 				try {
 					css = module.style.css.join();
 				} catch ( e ) {
@@ -280,7 +281,7 @@
 					return;
 				}
 
-				stats = inspect.auditSelectors( css );
+				const stats = inspect.auditSelectors( css );
 				modules.push( {
 					module: name,
 					allSelectors: stats.total,
@@ -301,11 +302,11 @@
 		 * @return {Object[]} Store stats
 		 */
 		store: function () {
-			let raw, stats = { enabled: mw.loader.store.enabled };
+			const stats = { enabled: mw.loader.store.enabled };
 			if ( stats.enabled ) {
 				Object.assign( stats, mw.loader.store.stats );
 				try {
-					raw = localStorage.getItem( mw.loader.store.key );
+					const raw = localStorage.getItem( mw.loader.store.key );
 					stats.totalSizeInBytes = byteLength( raw );
 					stats.totalSize = humanSize( byteLength( raw ) );
 				} catch ( e ) {}
@@ -322,14 +323,12 @@
 		 * @return {Object[]} Table rows
 		 */
 		time: function () {
-			let modules;
-
 			if ( !mw.loader.profiler ) {
 				mw.log.warn( 'mw.inspect: The time report requires $wgResourceLoaderEnableJSProfiler.' );
 				return [];
 			}
 
-			modules = inspect.getLoadedModules()
+			const modules = inspect.getLoadedModules()
 				.map( ( moduleName ) => mw.loader.profiler.getProfile( moduleName ) )
 				.filter(
 					// Exclude modules that reached "ready" state without involvement from mw.loader.

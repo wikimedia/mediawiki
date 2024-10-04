@@ -215,8 +215,8 @@
 				 * @return {string} Wrapped text
 				 */
 				function doSplitLines( text, preText, postText ) {
-					let insText = '',
-						selTextArr = text.split( '\n' );
+					const selTextArr = text.split( '\n' );
+					let insText = '';
 					for ( let i = 0; i < selTextArr.length; i++ ) {
 						insText += preText + selTextArr[ i ] + postText;
 						if ( i !== selTextArr.length - 1 ) {

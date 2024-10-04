@@ -40,15 +40,14 @@
 	 * @return {jQuery.Promise} Promise returning config object
 	 */
 	ForeignStructuredUpload.prototype.loadConfig = function () {
-		let deferred,
-			upload = this;
+		const upload = this;
 
 		if ( this.configPromise ) {
 			return this.configPromise;
 		}
 
 		if ( this.target === 'local' ) {
-			deferred = $.Deferred();
+			const deferred = $.Deferred();
 			setTimeout( () => {
 				// Resolve asynchronously, so that it's harder to accidentally write synchronous code that
 				// will break for cross-wiki uploads
@@ -226,10 +225,9 @@
 	 * @return {string}
 	 */
 	ForeignStructuredUpload.prototype.getUser = function () {
-		let username, namespace;
 		// Do not localise, we don't know the language of target wiki
-		namespace = 'User';
-		username = mw.config.get( 'wgUserName' );
+		const namespace = 'User';
+		let username = mw.config.get( 'wgUserName' );
 		if ( !username ) {
 			// The user is not logged in locally. However, they might be logged in on the foreign wiki.
 			// We should record their username there. (If they're not logged in there either, this will

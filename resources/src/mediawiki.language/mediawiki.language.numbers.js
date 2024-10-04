@@ -20,15 +20,13 @@
 	 * @return {string}
 	 */
 	function pad( text, size, ch, end ) {
-		let out, padStr, count;
-
 		if ( !ch ) {
 			ch = '0';
 		}
 
-		out = String( text );
-		count = Math.ceil( ( size - out.length ) / ch.length );
-		padStr = ch.repeat( Math.max( 0, count ) );
+		const out = String( text );
+		const count = Math.ceil( ( size - out.length ) / ch.length );
+		const padStr = ch.repeat( Math.max( 0, count ) );
 
 		return end ? out + padStr : padStr + out;
 	}
@@ -50,19 +48,13 @@
 	 * @return {string}
 	 */
 	function commafyNumber( value, pattern, options ) {
-		let padLength,
-			patternDigits,
-			index,
-			whole,
-			off,
-			remainder,
-			patternParts = pattern.split( '.' ),
+		const patternParts = pattern.split( '.' ),
 			maxPlaces = ( patternParts[ 1 ] || [] ).length,
 			valueParts = String( Math.abs( value ) ).split( '.' ),
 			fractional = valueParts[ 1 ] || '',
-			groupSize = 0,
-			groupSize2 = 0,
 			pieces = [];
+		let groupSize = 0,
+			groupSize2 = 0;
 
 		options = options || {
 			group: ',',
@@ -73,6 +65,7 @@
 			return value;
 		}
 
+		let padLength;
 		if ( patternParts[ 1 ] ) {
 			// Pad fractional with trailing zeros
 			padLength = ( patternParts[ 1 ] && patternParts[ 1 ].lastIndexOf( '0' ) + 1 );
@@ -92,7 +85,7 @@
 		}
 
 		// Pad whole with leading zeros
-		patternDigits = patternParts[ 0 ].replace( ',', '' );
+		const patternDigits = patternParts[ 0 ].replace( ',', '' );
 
 		padLength = patternDigits.indexOf( '0' );
 
@@ -110,11 +103,11 @@
 		}
 
 		// Add group separators
-		index = patternParts[ 0 ].lastIndexOf( ',' );
+		let index = patternParts[ 0 ].lastIndexOf( ',' );
 
 		if ( index !== -1 ) {
 			groupSize = patternParts[ 0 ].length - index - 1;
-			remainder = patternParts[ 0 ].slice( 0, index );
+			const remainder = patternParts[ 0 ].slice( 0, index );
 			index = remainder.lastIndexOf( ',' );
 			if ( index !== -1 ) {
 				groupSize2 = remainder.length - index - 1;
@@ -125,8 +118,8 @@
 			options.minimumGroupingDigits === null ||
 			valueParts[ 0 ].length >= groupSize + options.minimumGroupingDigits
 		) {
-			for ( whole = valueParts[ 0 ]; whole; ) {
-				off = groupSize ? whole.length - groupSize : 0;
+			for ( let whole = valueParts[ 0 ]; whole; ) {
+				const off = groupSize ? whole.length - groupSize : 0;
 				pieces.push( ( off > 0 ) ? whole.slice( off ) : whole );
 				whole = ( off > 0 ) ? whole.slice( 0, off ) : '';
 
@@ -154,8 +147,7 @@
 	 * @private
 	 */
 	function commafyInternal( value, pattern, minimumGroupingDigits ) {
-		let numberPattern,
-			transformTable = mw.language.getSeparatorTransformTable(),
+		const transformTable = mw.language.getSeparatorTransformTable(),
 			group = transformTable[ ',' ] || ',',
 
 			numberPatternRE = /[#0,]*[#0](?:\.0*#*)?/, // not precise, but good enough
@@ -164,7 +156,7 @@
 			positivePattern = patternList[ 0 ];
 
 		pattern = patternList[ ( value < 0 ) ? 1 : 0 ] || ( '-' + positivePattern );
-		numberPattern = positivePattern.match( numberPatternRE );
+		const numberPattern = positivePattern.match( numberPatternRE );
 
 		minimumGroupingDigits = minimumGroupingDigits !== undefined ? minimumGroupingDigits : null;
 
@@ -186,14 +178,14 @@
 	 * @return {Object}
 	 */
 	function flipTransform() {
-		let i, key, table, flipped = {};
+		const flipped = {};
 
 		// Ensure we strip thousand separators. This might be overwritten.
 		flipped[ ',' ] = '';
 
-		for ( i = 0; i < arguments.length; i++ ) {
-			table = arguments[ i ];
-			for ( key in table ) {
+		for ( let i = 0; i < arguments.length; i++ ) {
+			const table = arguments[ i ];
+			for ( const key in table ) {
 				// The thousand separator should be deleted
 				flipped[ table[ key ] ] = key === ',' ? '' : key;
 			}
@@ -213,18 +205,16 @@
 		 * @return {number|string} Formatted number
 		 */
 		convertNumber: function ( num, integer ) {
-			let transformTable, digitTransformTable, separatorTransformTable,
-				i, numberString, convertedNumber, pattern, minimumGroupingDigits;
-
 			// Quick shortcut for plain numbers
 			if ( integer && parseInt( num, 10 ) === num ) {
 				return num;
 			}
 
 			// Load the transformation tables (can be empty)
-			digitTransformTable = mw.language.getDigitTransformTable();
-			separatorTransformTable = mw.language.getSeparatorTransformTable();
+			const digitTransformTable = mw.language.getDigitTransformTable();
+			const separatorTransformTable = mw.language.getSeparatorTransformTable();
 
+			let transformTable, numberString;
 			if ( integer ) {
 				// Reverse the digit transformation tables if we are doing unformatting
 				transformTable = flipTransform( separatorTransformTable, digitTransformTable );
@@ -238,16 +228,17 @@
 
 				// Commaying is more complex, so we handle it here separately.
 				// When unformatting, we just use separatorTransformTable.
-				pattern = mw.language.getData( mw.config.get( 'wgUserLanguage' ),
+				const pattern = mw.language.getData( mw.config.get( 'wgUserLanguage' ),
 					'digitGroupingPattern' ) || '#,##0.###';
-				minimumGroupingDigits = mw.language.getData( mw.config.get( 'wgUserLanguage' ),
+				const minimumGroupingDigits = mw.language.getData( mw.config.get( 'wgUserLanguage' ),
 					'minimumGroupingDigits' ) || null;
 				numberString = commafyInternal( num, pattern, minimumGroupingDigits );
 			}
 
+			let convertedNumber;
 			if ( transformTable ) {
 				convertedNumber = '';
-				for ( i = 0; i < numberString.length; i++ ) {
+				for ( let i = 0; i < numberString.length; i++ ) {
 					if ( Object.prototype.hasOwnProperty.call( transformTable, numberString[ i ] ) ) {
 						convertedNumber += transformTable[ numberString[ i ] ];
 					} else {

@@ -58,9 +58,7 @@
 				} ),
 				// Set up booklet fields and license messages to match configuration
 				booklet.upload.loadConfig().then( ( config ) => {
-					let
-						msgPromise,
-						isLocal = booklet.upload.target === 'local',
+					const isLocal = booklet.upload.target === 'local',
 						fields = config.fields,
 						msgs = config.licensemessages[ isLocal ? 'local' : 'foreign' ];
 
@@ -71,6 +69,7 @@
 					// Update form validity
 					booklet.onInfoFormChange();
 
+					let msgPromise;
 					// Load license messages from the remote wiki if we don't have these messages locally
 					// (this means that we only load messages from the foreign wiki for custom config)
 					// These messages are documented where msgPromise resolves
@@ -87,7 +86,6 @@
 
 					// Update license messages
 					return msgPromise.then( () => {
-						let $labels;
 						// The following messages are used here:
 						// * upload-form-label-own-work-message-generic-local
 						// * upload-form-label-own-work-message-generic-foreign
@@ -99,7 +97,7 @@
 						// * upload-form-label-not-own-work-local-generic-foreign
 						booklet.$notOwnWorkLocal.msg( 'upload-form-label-not-own-work-local-' + msgs );
 
-						$labels = $( [
+						const $labels = $( [
 							booklet.$ownWorkMessage[ 0 ],
 							booklet.$notOwnWorkMessage[ 0 ],
 							booklet.$notOwnWorkLocal[ 0 ]
@@ -151,8 +149,7 @@
 	 * @inheritdoc
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.renderUploadForm = function () {
-		let fieldset,
-			layout = this;
+		const layout = this;
 
 		// These elements are filled with text in #initialize
 		// TODO Refactor this to be in one place
@@ -173,7 +170,7 @@
 			layout.messageLabel.toggle( !on );
 		} );
 
-		fieldset = new OO.ui.FieldsetLayout();
+		const fieldset = new OO.ui.FieldsetLayout();
 		fieldset.addItems( [
 			new OO.ui.FieldLayout( this.selectFileWidget, {
 				align: 'top'
@@ -227,8 +224,6 @@
 	 * @inheritdoc
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.renderInfoForm = function () {
-		let fieldset;
-
 		this.filePreview = new OO.ui.Widget( {
 			classes: [ 'mw-upload-bookletLayout-filePreview' ]
 		} );
@@ -278,7 +273,7 @@
 			align: 'top'
 		} );
 
-		fieldset = new OO.ui.FieldsetLayout( {
+		const fieldset = new OO.ui.FieldsetLayout( {
 			label: mw.msg( 'upload-form-label-infoform-title' )
 		} );
 		fieldset.addItems( [
@@ -391,26 +386,26 @@
 	 * @return {jQuery.Promise} Promise resolved with the EXIF date
 	 */
 	mw.ForeignStructuredUpload.BookletLayout.prototype.getDateFromExif = function ( file ) {
-		let fileReader,
-			deferred = $.Deferred();
+		const deferred = $.Deferred();
 
 		if ( file && file.type === 'image/jpeg' ) {
-			fileReader = new FileReader();
+			const fileReader = new FileReader();
 			fileReader.onload = function () {
-				let fileStr, arr, i, metadata,
-					jpegmeta = require( 'mediawiki.libs.jpegmeta' );
+				const jpegmeta = require( 'mediawiki.libs.jpegmeta' );
 
+				let fileStr;
 				if ( typeof fileReader.result === 'string' ) {
 					fileStr = fileReader.result;
 				} else {
 					// Array buffer; convert to binary string for the library.
-					arr = new Uint8Array( fileReader.result );
+					const arr = new Uint8Array( fileReader.result );
 					fileStr = '';
-					for ( i = 0; i < arr.byteLength; i++ ) {
+					for ( let i = 0; i < arr.byteLength; i++ ) {
 						fileStr += String.fromCharCode( arr[ i ] );
 					}
 				}
 
+				let metadata;
 				try {
 					metadata = jpegmeta( fileStr, file.name );
 				} catch ( e ) {

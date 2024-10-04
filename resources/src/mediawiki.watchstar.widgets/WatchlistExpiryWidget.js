@@ -11,21 +11,16 @@
  * @param {Object} config Configuration object
  */
 function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
-	let dataExpiryOptions = require( './data.json' ).options,
-		messageLabel,
-		dropdownLabel,
-		expiryDropdown,
-		onDropdownChange,
-		api,
-		$link,
+	const dataExpiryOptions = require( './data.json' ).options,
 		expiryOptions = [];
+	let expiryDropdown;
 
 	config = config || {};
-	$link = config.$link;
+	const $link = config.$link;
 
 	WatchlistExpiryWidget.super.call( this, config );
 
-	messageLabel = new OO.ui.LabelWidget( {
+	const messageLabel = new OO.ui.LabelWidget( {
 		label: config.message
 	} );
 
@@ -69,7 +64,7 @@ function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
 			expiryOptions.push( { data: dataExpiryOptions[ key ], label: key } );
 		} );
 
-		dropdownLabel = new OO.ui.LabelWidget( {
+		const dropdownLabel = new OO.ui.LabelWidget( {
 			label: mw.message( 'addedwatchexpiry-options-label' ).parseDom(),
 			classes: [ 'mw-WatchlistExpiryWidgetwatchlist-dropdown-label' ]
 		} );
@@ -77,7 +72,7 @@ function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
 			options: expiryOptions,
 			classes: [ 'mw-watchexpiry' ]
 		} );
-		onDropdownChange = function ( value ) {
+		const onDropdownChange = function ( value ) {
 			const notif = mw.notification,
 				optionSelectedLabel = expiryDropdown.dropdownWidget.label;
 
@@ -87,11 +82,11 @@ function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
 
 			// Pause the mw.notify so that we can wait for watch request to finish
 			notif.pause();
-			api = new mw.Api();
+			const api = new mw.Api();
 			api.watch( pageTitle, value )
 				.done( ( watchResponse ) => {
-					let message,
-						mwTitle = mw.Title.newFromText( pageTitle ),
+					let message;
+					const mwTitle = mw.Title.newFromText( pageTitle ),
 						isInfinity = mw.util.isInfinity( value );
 					if ( mwTitle.isTalkPage() ) {
 						message = isInfinity ? 'addedwatchindefinitelytext-talk' : 'addedwatchexpirytext-talk';

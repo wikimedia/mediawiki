@@ -2,7 +2,7 @@
  * @private
  */
 ( function () {
-	let $hovzer, footHovzer, $spacer;
+	let $hovzer, footHovzer = null, $spacer;
 
 	function getHovzer() {
 		if ( $hovzer === undefined ) {
@@ -43,9 +43,7 @@
 		 * Update dimensions of stack to account for changes in the subtree.
 		 */
 		update: function () {
-			let $body;
-
-			$body = $( document.body );
+			const $body = $( document.body );
 
 			if ( $spacer === undefined ) {
 				$spacer = $( '<div>' ).attr( 'id', 'jquery-foot-hovzer-spacer' );

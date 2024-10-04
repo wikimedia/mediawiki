@@ -95,11 +95,11 @@
 			prop: 'info',
 			titles: title.getPrefixedDb()
 		} ).then( ( data ) => {
-			let contentModel, page = data.query.pages[ 0 ];
+			const page = data.query.pages[ 0 ];
 			if ( !page ) {
 				return $.Deferred().reject( 'unexpected-response', 'Unexpected API response' );
 			}
-			contentModel = page.contentmodel;
+			const contentModel = page.contentmodel;
 			if ( !factory.contentModelToClass[ contentModel ] ) {
 				return $.Deferred().reject( 'content-model-unknown', 'No handler for "' + contentModel + '"' );
 			}

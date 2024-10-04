@@ -8,11 +8,11 @@
 	let $galleries,
 		bound = false,
 		lastWidth = window.innerWidth,
-		justifyNeeded = false,
+		justifyNeeded = false;
 		// Is there a better way to detect a touchscreen? Current check taken from stack overflow.
-		isTouchScreen = !!( window.ontouchstart !== undefined ||
-			window.DocumentTouch !== undefined && document instanceof window.DocumentTouch
-		);
+	const isTouchScreen = !!( window.ontouchstart !== undefined ||
+		window.DocumentTouch !== undefined && document instanceof window.DocumentTouch
+	);
 
 	/**
 	 * Perform the layout justification.
@@ -21,14 +21,13 @@
 	 * @this HTMLElement A `ul.mw-gallery-*` element
 	 */
 	function justify() {
-		let lastTop,
-			rows = [],
+		let lastTop;
+		const rows = [],
 			$gallery = $( this );
 
 		$gallery.children( 'li.gallerybox' ).each( function () {
-			let $imageDiv, $img, imgWidth, imgHeight, outerWidth, captionWidth,
-				// Math.floor, to be paranoid if things are off by 0.00000000001
-				top = Math.floor( $( this ).position().top ),
+			// Math.floor, to be paranoid if things are off by 0.00000000001
+			const top = Math.floor( $( this ).position().top ),
 				$this = $( this );
 
 			if ( top !== lastTop ) {
@@ -36,8 +35,9 @@
 				lastTop = top;
 			}
 
-			$imageDiv = $this.find( 'div.thumb' ).first();
-			$img = $imageDiv.find( 'img, video' ).first();
+			const $imageDiv = $this.find( 'div.thumb' ).first();
+			const $img = $imageDiv.find( 'img, video' ).first();
+			let imgWidth, imgHeight;
 			if ( $img.length && $img[ 0 ].height ) {
 				imgHeight = $img[ 0 ].height;
 				imgWidth = $img[ 0 ].width;
@@ -57,8 +57,8 @@
 				imgHeight = 0;
 			}
 
-			captionWidth = $this.find( 'div.gallerytextwrapper' ).width();
-			outerWidth = $this.outerWidth();
+			const captionWidth = $this.find( 'div.gallerytextwrapper' ).width();
+			const outerWidth = $this.outerWidth();
 			rows[ rows.length - 1 ].push( {
 				$elm: $this,
 				width: outerWidth,
@@ -79,34 +79,16 @@
 		} );
 
 		( function () {
-			let maxWidth,
-				combinedAspect,
-				combinedPadding,
-				curRow,
-				curRowHeight,
-				wantedWidth,
-				preferredHeight,
-				newWidth,
-				padding,
-				$gallerybox,
-				$outerDiv,
-				$imageDiv,
-				$imageElm,
-				imageElm,
-				$caption,
-				i,
-				j,
-				avgZoom,
-				totalZoom = 0;
+			let totalZoom = 0;
 
-			for ( i = 0; i < rows.length; i++ ) {
-				maxWidth = $gallery.width();
-				combinedAspect = 0;
-				combinedPadding = 0;
-				curRow = rows[ i ];
-				curRowHeight = 0;
+			for ( let i = 0; i < rows.length; i++ ) {
+				const maxWidth = $gallery.width();
+				let combinedAspect = 0;
+				let combinedPadding = 0;
+				const curRow = rows[ i ];
+				let curRowHeight = 0;
 
-				for ( j = 0; j < curRow.length; j++ ) {
+				for ( let j = 0; j < curRow.length; j++ ) {
 					if ( curRowHeight === 0 ) {
 						if ( isFinite( curRow[ j ].height ) ) {
 							// Get the height of this row, by taking the first
@@ -127,8 +109,8 @@
 
 				// Add some padding for inter-element spacing.
 				combinedPadding += 5 * curRow.length;
-				wantedWidth = maxWidth - combinedPadding;
-				preferredHeight = wantedWidth / combinedAspect;
+				const wantedWidth = maxWidth - combinedPadding;
+				let preferredHeight = wantedWidth / combinedAspect;
 
 				if ( preferredHeight > curRowHeight * 1.5 ) {
 					// Only expand at most 1.5 times current size
@@ -139,7 +121,7 @@
 					if ( i === rows.length - 1 ) {
 						// If its the last row, and we can't fit it,
 						// don't make the entire row huge.
-						avgZoom = totalZoom / ( rows.length - 1 );
+						const avgZoom = totalZoom / ( rows.length - 1 );
 						if ( isFinite( avgZoom ) && avgZoom >= 1 && avgZoom <= 1.5 ) {
 							preferredHeight = avgZoom * curRowHeight;
 						} else {
@@ -168,15 +150,15 @@
 					totalZoom += 1;
 				}
 
-				for ( j = 0; j < curRow.length; j++ ) {
-					newWidth = preferredHeight * curRow[ j ].aspect;
-					padding = curRow[ j ].width - curRow[ j ].imgWidth;
-					$gallerybox = curRow[ j ].$elm;
+				for ( let j = 0; j < curRow.length; j++ ) {
+					const newWidth = preferredHeight * curRow[ j ].aspect;
+					const padding = curRow[ j ].width - curRow[ j ].imgWidth;
+					const $gallerybox = curRow[ j ].$elm;
 					// This wrapper is only present if ParserEnableLegacyMediaDOM is true
-					$outerDiv = $gallerybox.children( 'div:not( [class] )' ).first();
-					$imageDiv = $gallerybox.find( 'div.thumb' ).first();
-					$imageElm = $imageDiv.find( 'img, video' ).first();
-					$caption = $gallerybox.find( 'div.gallerytextwrapper' );
+					const $outerDiv = $gallerybox.children( 'div:not( [class] )' ).first();
+					const $imageDiv = $gallerybox.find( 'div.thumb' ).first();
+					const $imageElm = $imageDiv.find( 'img, video' ).first();
+					const $caption = $gallerybox.find( 'div.gallerytextwrapper' );
 
 					// Since we are going to re-adjust the height, the vertical
 					// centering margins need to be reset.
@@ -199,7 +181,7 @@
 
 					// We don't always have an img, e.g. in the case of an invalid file.
 					if ( $imageElm[ 0 ] ) {
-						imageElm = $imageElm[ 0 ];
+						const imageElm = $imageElm[ 0 ];
 						imageElm.width = newWidth;
 						imageElm.height = preferredHeight;
 					} else {
@@ -223,14 +205,13 @@
 			return $( this ).height();
 		} );
 		$galleries.children( 'li.gallerybox' ).each( function () {
-			let imgWidth = $( this ).data( 'imgWidth' ),
+			const imgWidth = $( this ).data( 'imgWidth' ),
 				imgHeight = $( this ).data( 'imgHeight' ),
 				width = $( this ).data( 'width' ),
 				captionWidth = $( this ).data( 'captionWidth' ),
 				// This wrapper is only present if ParserEnableLegacyMediaDOM is true
 				$outerDiv = $( this ).children( 'div:not( [class] )' ).first(),
-				$imageDiv = $( this ).find( 'div.thumb' ).first(),
-				$imageElm, imageElm;
+				$imageDiv = $( this ).find( 'div.thumb' ).first();
 
 			// Restore original sizes so we can arrange the elements as on freshly loaded page
 			$( this ).width( width );
@@ -238,9 +219,9 @@
 			$imageDiv.width( imgWidth );
 			$( this ).find( 'div.gallerytextwrapper' ).width( captionWidth );
 
-			$imageElm = $imageDiv.find( 'img, video' ).first();
+			const $imageElm = $imageDiv.find( 'img, video' ).first();
 			if ( $imageElm[ 0 ] ) {
-				imageElm = $imageElm[ 0 ];
+				const imageElm = $imageElm[ 0 ];
 				imageElm.width = imgWidth;
 				imageElm.height = imgHeight;
 			} else {

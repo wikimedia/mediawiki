@@ -2,9 +2,9 @@
  * Add autocomplete suggestions for names of registered users.
  */
 ( function () {
-	let api, config;
+	let api;
 
-	config = {
+	const config = {
 		fetch: function ( userInput, response, maxRows ) {
 			const node = this[ 0 ];
 

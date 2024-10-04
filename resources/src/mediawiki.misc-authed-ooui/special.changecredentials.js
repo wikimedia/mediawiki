@@ -6,9 +6,9 @@
 		const api = new mw.Api();
 
 		$root.find( '.mw-changecredentials-validate-password.oo-ui-fieldLayout' ).each( function () {
-			let currentApiPromise,
-				self = OO.ui.FieldLayout.static.infuse( $( this ) );
+			const self = OO.ui.FieldLayout.static.infuse( $( this ) );
 
+			let currentApiPromise;
 			self.getField().setValidation( ( passwordValue ) => {
 				if ( currentApiPromise ) {
 					currentApiPromise.abort();

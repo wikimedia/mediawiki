@@ -4,16 +4,14 @@
  */
 
 mw.language.convertGrammar = function ( word, form ) {
-	let grammarForms, aou, origWord;
-
-	grammarForms = mw.language.getData( 'fi', 'grammarForms' );
+	const grammarForms = mw.language.getData( 'fi', 'grammarForms' );
 	if ( grammarForms && grammarForms[ form ] ) {
 		return grammarForms[ form ][ word ];
 	}
 
 	// vowel harmony flag
-	aou = /[aou][^äöy]*$/i.test( word );
-	origWord = word;
+	let aou = /[aou][^äöy]*$/i.test( word );
+	const origWord = word;
 	if ( /wiki$/i.test( word ) ) {
 		aou = false;
 	}

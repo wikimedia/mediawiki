@@ -7,14 +7,13 @@
  */
 ( function () {
 	function patrol( link ) {
-		let $spinner,
-			api = new mw.Api();
+		const api = new mw.Api();
 
 		// Preload a module concurrently with the ajax request.
 		mw.loader.load( 'mediawiki.notification' );
 
 		// Hide the link and show a spinner inside the brackets.
-		$spinner = $.createSpinner( { size: 'small', type: 'inline' } );
+		const $spinner = $.createSpinner( { size: 'small', type: 'inline' } );
 		$( link ).css( 'display', 'none' ).after( $spinner );
 
 		api.postWithToken( 'patrol', {

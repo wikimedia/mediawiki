@@ -132,28 +132,26 @@
 	 * Draws the carousel and the interface around it.
 	 */
 	mw.GallerySlideshow.prototype.drawCarousel = function () {
-		let nextButton, prevButton, toggleButton, interfaceElements, carouselStack;
-
 		this.$carousel = $( '<li>' ).addClass( 'gallerycarousel' );
 
 		// Buttons for the interface
-		prevButton = new OO.ui.ButtonWidget( {
+		const prevButton = new OO.ui.ButtonWidget( {
 			framed: false,
 			icon: 'previous'
 		} ).connect( this, { click: 'prevImage' } );
 
-		nextButton = new OO.ui.ButtonWidget( {
+		const nextButton = new OO.ui.ButtonWidget( {
 			framed: false,
 			icon: 'next'
 		} ).connect( this, { click: 'nextImage' } );
 
-		toggleButton = new OO.ui.ButtonWidget( {
+		const toggleButton = new OO.ui.ButtonWidget( {
 			framed: false,
 			icon: 'imageGallery',
 			title: mw.msg( 'gallery-slideshow-toggle' )
 		} ).connect( this, { click: 'toggleThumbnails' } );
 
-		interfaceElements = new OO.ui.PanelLayout( {
+		const interfaceElements = new OO.ui.PanelLayout( {
 			expanded: false,
 			classes: [ 'mw-gallery-slideshow-buttons' ],
 			$content: $( '<div>' ).append(
@@ -169,7 +167,7 @@
 		this.$imgContainer = $( '<div>' )
 			.attr( 'class', 'mw-gallery-slideshow-img-container' );
 
-		carouselStack = new OO.ui.StackLayout( {
+		const carouselStack = new OO.ui.StackLayout( {
 			continuous: true,
 			expanded: false,
 			items: [
@@ -269,9 +267,8 @@
 	 * @param {boolean} init Image being shown during gallery init (i.e. first image)
 	 */
 	mw.GallerySlideshow.prototype.showCurrentImage = function ( init ) {
-		let $thumbnail, $imgLink,
-			$imageLi = this.getCurrentImage(),
-			$caption = $imageLi.find( '.gallerytext' );
+		const $imageLi = this.getCurrentImage();
+		const $caption = $imageLi.find( '.gallerytext' );
 
 		// The order of the following is important for size calculations
 		// 1. Highlight current thumbnail
@@ -288,7 +285,7 @@
 				alt: this.$thumbnail.attr( 'alt' )
 			} );
 			// 'image' class required for detection by MultimediaViewer
-			$imgLink = $( '<a>' ).addClass( 'image' )
+			const $imgLink = $( '<a>' ).addClass( 'image' )
 				.attr( 'href', $imageLi.find( 'a' ).eq( 0 ).attr( 'href' ) )
 				.append( this.$img );
 
@@ -310,7 +307,7 @@
 		// 4. Stretch thumbnail to correct size
 		this.setImageSize();
 
-		$thumbnail = this.$thumbnail;
+		const $thumbnail = this.$thumbnail;
 		// 5. Load image at the required size
 		this.loadImage( this.$thumbnail ).done( ( info ) => {
 			// Show this image to the user only if its still the current one
@@ -341,8 +338,8 @@
 	 */
 	mw.GallerySlideshow.prototype.loadImage = function ( $img ) {
 		return this.getImageInfo( $img ).then( ( info ) => {
-			let img, d = $.Deferred();
-			img = new Image();
+			const d = $.Deferred();
+			const img = new Image();
 			img.src = info.thumburl;
 			img.onload = function () {
 				d.resolve( info );
@@ -361,8 +358,7 @@
 	 * @return {jQuery.Promise} Resolves with the image's info.
 	 */
 	mw.GallerySlideshow.prototype.getImageInfo = function ( $img ) {
-		let api, title, params,
-			imageSrc = $img.attr( 'src' );
+		const imageSrc = $img.attr( 'src' );
 
 		// Reject promise if there is no thumbnail image
 		if ( $img[ 0 ] === undefined ) {
@@ -370,10 +366,10 @@
 		}
 
 		if ( this.imageInfoCache[ imageSrc ] === undefined ) {
-			api = new mw.Api();
+			const api = new mw.Api();
 			// TODO: This supports only gallery of images
-			title = mw.Title.newFromImg( $img );
-			params = {
+			const title = mw.Title.newFromImg( $img );
+			const params = {
 				action: 'query',
 				formatversion: 2,
 				titles: title.toString(),

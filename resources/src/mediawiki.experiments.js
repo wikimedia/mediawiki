@@ -74,25 +74,22 @@
 		 * @return {string|undefined} The bucket
 		 */
 		getBucket: function ( experiment, token ) {
-			let buckets = experiment.buckets,
-				key,
-				range = 0,
-				hash,
-				max,
+			const buckets = experiment.buckets;
+			let range = 0,
 				acc = 0;
 
 			if ( !experiment.enabled || !Object.keys( experiment.buckets ).length ) {
 				return CONTROL_BUCKET;
 			}
 
-			for ( key in buckets ) {
+			for ( const key in buckets ) {
 				range += buckets[ key ];
 			}
 
-			hash = hashString( experiment.name + ':' + token );
-			max = ( hash / MAX_INT32_UNSIGNED ) * range;
+			const hash = hashString( experiment.name + ':' + token );
+			const max = ( hash / MAX_INT32_UNSIGNED ) * range;
 
-			for ( key in buckets ) {
+			for ( const key in buckets ) {
 				acc += buckets[ key ];
 
 				if ( max <= acc ) {

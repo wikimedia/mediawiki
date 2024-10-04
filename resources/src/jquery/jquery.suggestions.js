@@ -271,8 +271,7 @@
 
 						// Process expandFrom, after this it is set to left or right.
 						context.config.expandFrom = ( function ( expandFrom ) {
-							let regionWidth, docWidth, regionCenter, docCenter,
-								isRTL = $( document.documentElement ).css( 'direction' ) === 'rtl',
+							const isRTL = $( document.documentElement ).css( 'direction' ) === 'rtl',
 								$region = context.config.$region;
 
 							// Backwards compatible
@@ -289,16 +288,16 @@
 									// If the markup explicitly contains a direction, use it.
 									expandFrom = $region.data( 'searchsuggest-expand-dir' );
 								} else {
-									regionWidth = $region.outerWidth();
-									docWidth = $( document ).width();
+									const regionWidth = $region.outerWidth();
+									const docWidth = $( document ).width();
 									if ( regionWidth > ( 0.85 * docWidth ) ) {
 										// If the input size takes up more than 85% of the document horizontally
 										// expand the suggestions to the writing direction's native end.
 										expandFrom = 'start';
 									} else {
 										// Calculate the center points of the input and document
-										regionCenter = regionPosition.left + regionWidth / 2;
-										docCenter = docWidth / 2;
+										const regionCenter = regionPosition.left + regionWidth / 2;
+										const docCenter = docWidth / 2;
 										if ( Math.abs( regionCenter - docCenter ) < ( 0.10 * docCenter ) ) {
 											// If the input's center is within 10% of the document center
 											// use the writing direction's native end.
@@ -425,8 +424,8 @@
 	 */
 	function keypress( e, context, key ) {
 		// eslint-disable-next-line no-jquery/no-sizzle
-		let wasVisible = context.data.$container.is( ':visible' ),
-			preventDefault = false;
+		const wasVisible = context.data.$container.is( ':visible' );
+		let preventDefault = false;
 
 		switch ( key ) {
 			// Arrow down

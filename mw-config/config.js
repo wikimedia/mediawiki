@@ -1,7 +1,7 @@
 /* global extDependencyMap */
 ( function () {
 	$( () => {
-		let $label, labelText;
+		let $label = null, labelText = null;
 
 		function syncText() {
 			let value = $( this ).val()

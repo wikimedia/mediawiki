@@ -29,7 +29,6 @@
 	 * @param {string} [options.tags] [Change tags](https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Tags) to add to the message's revision, pipe-separated.
 	 */
 	WikitextMessagePoster.prototype.post = function ( subject, body, options ) {
-		let additionalParams;
 		options = options || {};
 		mw.messagePoster.WikitextMessagePoster.super.prototype.post.call( this, subject, body, options );
 
@@ -38,7 +37,7 @@
 			body += '\n\n~~~~';
 		}
 
-		additionalParams = { redirect: true };
+		const additionalParams = { redirect: true };
 		if ( options.tags !== undefined ) {
 			additionalParams.tags = options.tags;
 		}

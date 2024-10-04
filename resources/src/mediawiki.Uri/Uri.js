@@ -1,6 +1,4 @@
 ( function () {
-	let parser, properties;
-
 	/**
 	 * Function that's useful when constructing the URI string -- we frequently encounter the pattern
 	 * of having to add something to the URI as we go, but only if it's present, and to include a
@@ -33,7 +31,7 @@
 	 * @static
 	 * @property {Object} parser
 	 */
-	parser = {
+	const parser = {
 		strict: require( './strict.regexp.js' ),
 		loose: require( './loose.regexp.js' )
 	};
@@ -45,7 +43,7 @@
 	 * @static
 	 * @property {string[]} properties
 	 */
-	properties = [
+	const properties = [
 		'protocol',
 		'user',
 		'password',
@@ -158,8 +156,7 @@
 		 * @throws {Error} when the query string or fragment contains an unknown % sequence
 		 */
 		function Uri( uri, options ) {
-			let prop, hrefCur,
-				hasOptions = ( options !== undefined ),
+			const hasOptions = ( options !== undefined ),
 				defaultUri = getDefaultUri();
 
 			options = typeof options === 'object' ? options : { strictMode: !!options };
@@ -176,7 +173,7 @@
 					this.parse( uri, options );
 				} else if ( typeof uri === 'object' ) {
 					// Copy data over from existing URI object
-					for ( prop in uri ) {
+					for ( const prop in uri ) {
 						// Only copy direct properties, not inherited ones
 						if ( Object.prototype.hasOwnProperty.call( uri, prop ) ) {
 							// Deep copy object properties
@@ -193,7 +190,7 @@
 				}
 			} else if ( hasOptions ) {
 				// We didn't get a URI in the constructor, but we got options.
-				hrefCur = typeof documentLocation === 'string' ? documentLocation : documentLocation();
+				const hrefCur = typeof documentLocation === 'string' ? documentLocation : documentLocation();
 				this.parse( hrefCur, options );
 			} else {
 				// We didn't get a URI or options in the constructor, use the default instance.
@@ -318,12 +315,11 @@
 			 * @throws {Error} when the query string or fragment contains an unknown % sequence
 			 */
 			parse: function ( str, options ) {
-				let q, matches,
-					uri = this,
+				const uri = this,
 					hasOwn = Object.prototype.hasOwnProperty;
 
 				// Apply parser regex and set all properties based on the result
-				matches = parser[ options.strictMode ? 'strict' : 'loose' ].exec( str );
+				const matches = parser[ options.strictMode ? 'strict' : 'loose' ].exec( str );
 				properties.forEach( ( property, i ) => {
 					uri[ property ] = matches[ i + 1 ];
 				} );
@@ -331,7 +327,7 @@
 				// uri.query starts out as the query string; we will parse it into key-val pairs then make
 				// that object the "query" property.
 				// we overwrite query in uri way to make cloning easier, it can use the same list of properties.
-				q = {};
+				const q = {};
 				// using replace to iterate over a string
 				if ( uri.query ) {
 

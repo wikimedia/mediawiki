@@ -340,20 +340,12 @@ Parser.prototype = {
 	 * @return {any} abstract syntax tree
 	 */
 	wikiTextToAst: function ( input ) {
-		let pos,
-			regularLiteral, regularLiteralWithoutBar, regularLiteralWithoutSpace, regularLiteralWithSquareBrackets,
-			doubleQuote, singleQuote, backslash, anyCharacter, asciiAlphabetLiteral,
-			escapedOrLiteralWithoutSpace, escapedOrLiteralWithoutBar, escapedOrRegularLiteral,
-			whitespace, dollar, digits, htmlDoubleQuoteAttributeValue, htmlSingleQuoteAttributeValue,
-			htmlAttributeEquals, openHtmlStartTag, optionalForwardSlash, openHtmlEndTag, closeHtmlTag,
-			openExtlink, closeExtlink, wikilinkContents, openWikilink, closeWikilink, pipe, colon,
-			templateContents, openTemplate, closeTemplate,
-			nonWhitespaceExpression, paramExpression, expression, curlyBraceTransformExpression, res,
-			settings = this.settings;
+		let nonWhitespaceExpression = null, expression = null, templateContents = null, paramExpression = null, colon = null;
+		const settings = this.settings;
 
 		// Indicates current position in input as we parse through it.
 		// Shared among all parsing functions below.
-		pos = 0;
+		let pos = 0;
 
 		// =========================================================
 		// parsing combinators - could be a library on its own
@@ -388,11 +380,10 @@ Parser.prototype = {
 		 * @return {string[]|null}
 		 */
 		function sequence( ps ) {
-			let i, r,
-				originalPos = pos,
+			const originalPos = pos,
 				result = [];
-			for ( i = 0; i < ps.length; i++ ) {
-				r = ps[ i ]();
+			for ( let i = 0; i < ps.length; i++ ) {
+				const r = ps[ i ]();
 				if ( r === null ) {
 					pos = originalPos;
 					return null;
@@ -413,9 +404,9 @@ Parser.prototype = {
 		 */
 		function nOrMore( n, p ) {
 			return function () {
-				let originalPos = pos,
-					result = [],
-					parsed = p();
+				const originalPos = pos,
+					result = [];
+				let parsed = p();
 				while ( parsed !== null ) {
 					result.push( parsed );
 					parsed = p();
@@ -483,13 +474,13 @@ Parser.prototype = {
 		// This may be because, to save code, memoization was removed
 
 		/* eslint-disable no-useless-escape */
-		regularLiteral = makeRegexParser( /^[^{}\[\]$<\\]/ );
-		regularLiteralWithoutBar = makeRegexParser( /^[^{}\[\]$\\|]/ );
-		regularLiteralWithoutSpace = makeRegexParser( /^[^{}\[\]$\s]/ );
+		const regularLiteral = makeRegexParser( /^[^{}\[\]$<\\]/ );
+		const regularLiteralWithoutBar = makeRegexParser( /^[^{}\[\]$\\|]/ );
+		const regularLiteralWithoutSpace = makeRegexParser( /^[^{}\[\]$\s]/ );
 		/* eslint-enable no-useless-escape */
 
-		backslash = makeStringParser( '\\' );
-		anyCharacter = makeRegexParser( /^./ );
+		const backslash = makeStringParser( '\\' );
+		const anyCharacter = makeRegexParser( /^./ );
 		function escapedLiteral() {
 			const result = sequence( [
 				backslash,
@@ -497,15 +488,15 @@ Parser.prototype = {
 			] );
 			return result === null ? null : result[ 1 ];
 		}
-		escapedOrLiteralWithoutSpace = choice( [
+		const escapedOrLiteralWithoutSpace = choice( [
 			escapedLiteral,
 			regularLiteralWithoutSpace
 		] );
-		escapedOrLiteralWithoutBar = choice( [
+		const escapedOrLiteralWithoutBar = choice( [
 			escapedLiteral,
 			regularLiteralWithoutBar
 		] );
-		escapedOrRegularLiteral = choice( [
+		const escapedOrRegularLiteral = choice( [
 			escapedLiteral,
 			regularLiteral
 		] );
@@ -526,12 +517,12 @@ Parser.prototype = {
 			return result === null ? null : result.join( '' );
 		}
 
-		asciiAlphabetLiteral = makeRegexParser( /^[A-Za-z]+/ );
+		const asciiAlphabetLiteral = makeRegexParser( /^[A-Za-z]+/ );
 
-		whitespace = makeRegexParser( /^\s+/ );
+		const whitespace = makeRegexParser( /^\s+/ );
 
-		dollar = makeStringParser( '$' );
-		digits = makeRegexParser( /^\d+/ );
+		const dollar = makeStringParser( '$' );
+		const digits = makeRegexParser( /^\d+/ );
 		function replacement() {
 			const result = sequence( [
 				dollar,
@@ -542,8 +533,8 @@ Parser.prototype = {
 			}
 			return [ 'REPLACE', parseInt( result[ 1 ], 10 ) - 1 ];
 		}
-		openExtlink = makeStringParser( '[' );
-		closeExtlink = makeStringParser( ']' );
+		const openExtlink = makeStringParser( '[' );
+		const closeExtlink = makeStringParser( ']' );
 		// this extlink MUST have inner contents, e.g. [foo] not allowed; [foo bar] [foo <i>bar</i>], etc. are allowed
 		function extlink() {
 			const parsedResult = sequence( [
@@ -569,10 +560,10 @@ Parser.prototype = {
 				[ 'CONCAT' ].concat( parsedResult[ 3 ] )
 			];
 		}
-		pipe = makeStringParser( '|' );
+		const pipe = makeStringParser( '|' );
 
-		openTemplate = makeStringParser( '{{' );
-		closeTemplate = makeStringParser( '}}' );
+		const openTemplate = makeStringParser( '{{' );
+		const closeTemplate = makeStringParser( '}}' );
 		function template() {
 			const result = sequence( [
 				openTemplate,
@@ -670,13 +661,13 @@ Parser.prototype = {
 			];
 		}
 
-		wikilinkContents = choice( [
+		const wikilinkContents = choice( [
 			pipedWikilink,
 			unpipedWikilink
 		] );
 
-		openWikilink = makeStringParser( '[[' );
-		closeWikilink = makeStringParser( ']]' );
+		const openWikilink = makeStringParser( '[[' );
+		const closeWikilink = makeStringParser( ']]' );
 		function wikilink() {
 			const parsedResult = sequence( [
 				openWikilink,
@@ -687,8 +678,8 @@ Parser.prototype = {
 		}
 
 		// TODO: Support data- if appropriate
-		doubleQuote = makeStringParser( '"' );
-		htmlDoubleQuoteAttributeValue = makeRegexParser( /^[^"]*/ );
+		const doubleQuote = makeStringParser( '"' );
+		const htmlDoubleQuoteAttributeValue = makeRegexParser( /^[^"]*/ );
 		function doubleQuotedHtmlAttributeValue() {
 			const parsedResult = sequence( [
 				doubleQuote,
@@ -698,8 +689,8 @@ Parser.prototype = {
 			return parsedResult === null ? null : parsedResult[ 1 ];
 		}
 
-		singleQuote = makeStringParser( '\'' );
-		htmlSingleQuoteAttributeValue = makeRegexParser( /^[^']*/ );
+		const singleQuote = makeStringParser( '\'' );
+		const htmlSingleQuoteAttributeValue = makeRegexParser( /^[^']*/ );
 		function singleQuotedHtmlAttributeValue() {
 			const parsedResult = sequence( [
 				singleQuote,
@@ -709,7 +700,7 @@ Parser.prototype = {
 			return parsedResult === null ? null : parsedResult[ 1 ];
 		}
 
-		htmlAttributeEquals = makeRegexParser( /^\s*=\s*/ );
+		const htmlAttributeEquals = makeRegexParser( /^\s*=\s*/ );
 		function htmlAttribute() {
 			const parsedResult = sequence( [
 				whitespace,
@@ -764,10 +755,10 @@ Parser.prototype = {
 			return [ 'HTMLATTRIBUTES' ].concat( ...parsedResult );
 		}
 
-		openHtmlStartTag = makeStringParser( '<' );
-		optionalForwardSlash = makeRegexParser( /^\/?/ );
-		openHtmlEndTag = makeStringParser( '</' );
-		closeHtmlTag = makeRegexParser( /^\s*>/ );
+		const openHtmlStartTag = makeStringParser( '<' );
+		const optionalForwardSlash = makeRegexParser( /^\/?/ );
+		const openHtmlEndTag = makeStringParser( '</' );
+		const closeHtmlTag = makeRegexParser( /^\s*>/ );
 		// Subset of allowed HTML markup.
 		// Most elements and many attributes allowed on the server are not supported yet.
 		function html() {
@@ -868,14 +859,14 @@ Parser.prototype = {
 			literal
 		] );
 
-		regularLiteralWithSquareBrackets = makeRegexParser( /^[^{}$\\]/ );
+		const regularLiteralWithSquareBrackets = makeRegexParser( /^[^{}$\\]/ );
 		function curlyBraceTransformExpressionLiteral() {
 			const result = nOrMore( 1, regularLiteralWithSquareBrackets )();
 			return result === null ? null : result.join( '' );
 		}
 		// Used when only {{-transformation is wanted, for 'text'
 		// or 'escaped' formats
-		curlyBraceTransformExpression = choice( [
+		const curlyBraceTransformExpression = choice( [
 			template,
 			replacement,
 			curlyBraceTransformExpressionLiteral
@@ -899,7 +890,7 @@ Parser.prototype = {
 		// I am deferring the work of turning it into prototypes & objects. It's quite fast enough
 		// finally let's do some actual work...
 
-		res = start( this.settings.onlyCurlyBraceTransform ? curlyBraceTransformExpression : expression );
+		const res = start( this.settings.onlyCurlyBraceTransform ? curlyBraceTransformExpression : expression );
 
 		/*
 		 * For success, the p must have gotten to the end of the input
@@ -1145,8 +1136,8 @@ HtmlEmitter.prototype = {
 	 * @return {Object} Object mapping attribute name to attribute value
 	 */
 	htmlattributes: function ( nodes ) {
-		let i, len, mapping = {};
-		for ( i = 0, len = nodes.length; i < len; i += 2 ) {
+		const mapping = {};
+		for ( let i = 0, len = nodes.length; i < len; i += 2 ) {
 			mapping[ nodes[ i ] ] = decodePrimaryHtmlEntities( nodes[ i + 1 ] );
 		}
 		return mapping;
@@ -1180,9 +1171,9 @@ HtmlEmitter.prototype = {
 	 * @return {jQuery}
 	 */
 	extlink: function ( nodes ) {
-		let $el,
-			arg = nodes[ 0 ],
+		const arg = nodes[ 0 ],
 			contents = nodes[ 1 ];
+		let $el;
 		if ( arg instanceof $ && !arg.hasClass( 'mediaWiki_htmlEmitter' ) ) {
 			$el = arg;
 		} else {
@@ -1228,21 +1219,20 @@ HtmlEmitter.prototype = {
 	 * @return {string|jQuery} selected pluralized form according to current language
 	 */
 	plural: function ( nodes ) {
-		let firstChild, firstChildText, explicitPluralFormNumber, formIndex, form,
-			explicitPluralForms = {};
+		const explicitPluralForms = {};
 
 		const count = parseFloat( this.language.convertNumber( textify( nodes[ 0 ] ), true ) );
 		let forms = nodes.slice( 1 );
-		for ( formIndex = 0; formIndex < forms.length; formIndex++ ) {
-			form = forms[ formIndex ];
+		for ( let formIndex = 0; formIndex < forms.length; formIndex++ ) {
+			const form = forms[ formIndex ];
 
 			if ( form instanceof $ && form.hasClass( 'mediaWiki_htmlEmitter' ) ) {
 				// This is a nested node, may be an explicit plural form like 5=[$2 linktext]
-				firstChild = form.contents().get( 0 );
+				const firstChild = form.contents().get( 0 );
 				if ( firstChild && firstChild.nodeType === Node.TEXT_NODE ) {
-					firstChildText = firstChild.textContent;
+					const firstChildText = firstChild.textContent;
 					if ( /^\d+=/.test( firstChildText ) ) {
-						explicitPluralFormNumber = parseInt( firstChildText.split( /=/ )[ 0 ], 10 );
+						const explicitPluralFormNumber = parseInt( firstChildText.split( /=/ )[ 0 ], 10 );
 						// Use the digit part as key and rest of first text node and
 						// rest of child nodes as value.
 						firstChild.textContent = firstChildText.slice( firstChildText.indexOf( '=' ) + 1 );
@@ -1252,7 +1242,7 @@ HtmlEmitter.prototype = {
 				}
 			} else if ( /^\d+=/.test( form ) ) {
 				// Simple explicit plural forms like 12=a dozen
-				explicitPluralFormNumber = parseInt( form.split( /=/ )[ 0 ], 10 );
+				const explicitPluralFormNumber = parseInt( form.split( /=/ )[ 0 ], 10 );
 				explicitPluralForms[ explicitPluralFormNumber ] = form.slice( form.indexOf( '=' ) + 1 );
 				forms[ formIndex ] = undefined;
 			}
@@ -1280,14 +1270,14 @@ HtmlEmitter.prototype = {
 	 * @return {string|jQuery} Selected gender form according to current language
 	 */
 	gender: function ( nodes ) {
-		let gender,
-			maybeUser = nodes[ 0 ],
-			forms = nodes.slice( 1 );
+		const forms = nodes.slice( 1 );
 
+		let maybeUser = nodes[ 0 ];
 		if ( maybeUser === '' ) {
 			maybeUser = mw.user;
 		}
 
+		let gender;
 		// If we are passed a mw.user-like object, check their gender.
 		// Otherwise, assume the gender string itself was passed .
 		if ( maybeUser && maybeUser.options instanceof mw.Map ) {

@@ -93,8 +93,7 @@
 	}
 
 	function trimLength( safeVal, newVal, length, lengthFn ) {
-		let startMatches, endMatches, matchesLen, inpParts, chopOff, oldChar, newChar,
-			oldVal = safeVal;
+		const oldVal = safeVal;
 
 		// Run the hook if one was provided, but only on the length
 		// assessment. The value itself is not to be affected by the hook.
@@ -109,8 +108,8 @@
 
 		// Current input is longer than the active limit.
 		// Figure out what was added and limit the addition.
-		startMatches = 0;
-		endMatches = 0;
+		let startMatches = 0;
+		let endMatches = 0;
 
 		// It is important that we keep the search within the range of
 		// the shortest string's length.
@@ -118,13 +117,13 @@
 		// (e.g. "foo" -> "foofoo"). startMatches would be 3, but without
 		// limiting both searches to the shortest length, endMatches would
 		// also be 3.
-		matchesLen = Math.min( newVal.length, oldVal.length );
+		const matchesLen = Math.min( newVal.length, oldVal.length );
 
 		// Count same characters from the left, first.
 		// (if "foo" -> "foofoo", assume addition was at the end).
 		while ( startMatches < matchesLen ) {
-			oldChar = charAt( oldVal, startMatches, false );
-			newChar = charAt( newVal, startMatches, false );
+			const oldChar = charAt( oldVal, startMatches, false );
+			const newChar = charAt( newVal, startMatches, false );
 			if ( oldChar !== newChar ) {
 				break;
 			}
@@ -132,15 +131,15 @@
 		}
 
 		while ( endMatches < ( matchesLen - startMatches ) ) {
-			oldChar = charAt( oldVal, oldVal.length - 1 - endMatches, true );
-			newChar = charAt( newVal, newVal.length - 1 - endMatches, true );
+			const oldChar = charAt( oldVal, oldVal.length - 1 - endMatches, true );
+			const newChar = charAt( newVal, newVal.length - 1 - endMatches, true );
 			if ( oldChar !== newChar ) {
 				break;
 			}
 			endMatches += oldChar.length;
 		}
 
-		inpParts = [
+		const inpParts = [
 			// Same start
 			newVal.slice( 0, startMatches ),
 			// Inserted content
@@ -154,7 +153,7 @@
 		// Make sure to stop when there is nothing to slice (T43450).
 		while ( lengthFn( inpParts.join( '' ) ) > length && inpParts[ 1 ].length > 0 ) {
 			// Do not chop off halves of surrogate pairs
-			chopOff = /[\uD800-\uDBFF][\uDC00-\uDFFF]$/.test( inpParts[ 1 ] ) ? 2 : 1;
+			const chopOff = /[\uD800-\uDBFF][\uDC00-\uDFFF]$/.test( inpParts[ 1 ] ) ? 2 : 1;
 			inpParts[ 1 ] = inpParts[ 1 ].slice( 0, -chopOff );
 		}
 

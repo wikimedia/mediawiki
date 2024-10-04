@@ -69,9 +69,7 @@
 
 		// The following is specific to each element in the collection.
 		return this.each( ( i, el ) => {
-			let $el, elLimit, prevSafeVal;
-
-			$el = $( el );
+			const $el = $( el );
 
 			// If no limit was passed to lengthLimit(), use the maxlength value.
 			// Can't re-use 'limit' variable because it's in the higher scope
@@ -84,7 +82,7 @@
 			// Also cast to a (primitive) number (most commonly because the maxlength
 			// attribute contains a string, but theoretically the limit parameter
 			// could be something else as well).
-			elLimit = Number( limit === undefined ? $el.attr( 'maxlength' ) : limit );
+			const elLimit = Number( limit === undefined ? $el.attr( 'maxlength' ) : limit );
 
 			// If there is no (valid) limit passed or found in the property,
 			// skip this. The < 0 check is required for Firefox, which returns
@@ -127,7 +125,7 @@
 			// and the state that triggered the event handler below - and enforce the
 			// limit approppiately (e.g. don't chop from the end if text was inserted
 			// at the beginning of the string).
-			prevSafeVal = '';
+			let prevSafeVal = '';
 
 			// We need to listen to after the change has already happened because we've
 			// learned that trying to guess the new value and canceling the event

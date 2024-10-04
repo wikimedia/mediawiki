@@ -26,8 +26,8 @@
  *         { <Integer column index>: <String 'asc' or 'desc'> }
  */
 ( function () {
-	let ts,
-		parsers = [];
+	const parsers = [];
+	let ts = null;
 
 	/* Parser utility functions */
 
@@ -91,16 +91,16 @@
 	}
 
 	function detectParserForColumn( table, rows, column ) {
-		let l = parsers.length,
+		const l = parsers.length,
 			config = $( table ).data( 'tablesorter' ).config,
+			needed = ( rows.length > 4 ) ? 5 : rows.length;
+		// Start with 1 because 0 is the fallback parser
+		let i = 1,
 			nextRow = false,
-			// Start with 1 because 0 is the fallback parser
-			i = 1,
 			lastRowIndex = -1,
 			rowIndex = 0,
 			concurrent = 0,
-			empty = 0,
-			needed = ( rows.length > 4 ) ? 5 : rows.length;
+			empty = 0;
 
 		let nodeValue;
 		while ( i < l ) {
@@ -187,10 +187,9 @@
 	/* Other utility functions */
 
 	function buildCache( table ) {
-		let totalRows = ( table.tBodies[ 0 ] && table.tBodies[ 0 ].rows.length ) || 0,
+		const totalRows = ( table.tBodies[ 0 ] && table.tBodies[ 0 ].rows.length ) || 0,
 			config = $( table ).data( 'tablesorter' ).config,
 			cachedParsers = config.parsers,
-			cellIndex,
 			cache = {
 				row: [],
 				normalized: []
@@ -218,7 +217,7 @@
 			}
 
 			for ( let j = 0; j < cachedParsers.length; j++ ) {
-				cellIndex = $row.data( 'columnToCell' )[ j ];
+				const cellIndex = $row.data( 'columnToCell' )[ j ];
 				cols.push( cachedParsers[ j ].format( getElementSortKey( $row[ 0 ].cells[ cellIndex ] ) ) );
 			}
 
@@ -283,8 +282,8 @@
 			$table.find( '> tbody' ).first().before( $thead );
 		}
 		if ( !$table.get( 0 ).tFoot ) {
-			let $tfoot = $( '<tfoot>' ),
-				tfootRows = [],
+			const $tfoot = $( '<tfoot>' );
+			let tfootRows = [],
 				remainingCellRowSpan = 0;
 
 			$rows.each( function () {
@@ -316,11 +315,12 @@
 	}
 
 	function buildHeaders( table, msg ) {
-		let config = $( table ).data( 'tablesorter' ).config,
-			maxSeen = 0,
-			colspanOffset = 0,
-			$tableHeaders = $( [] ),
+		const config = $( table ).data( 'tablesorter' ).config,
 			$tableRows = $( table ).find( 'thead' ).eq( 0 ).find( '> tr:not(.sorttop)' );
+		let $tableHeaders = $( [] );
+
+		let maxSeen = 0,
+			colspanOffset = 0;
 
 		if ( $tableRows.length <= 1 ) {
 			$tableHeaders = $tableRows.children( 'th' );
@@ -717,11 +717,10 @@
 	 * @param {jQuery} $table object for a <table>
 	 */
 	function manageColspans( $table ) {
-		let $rows = $table.find( '> tbody > tr' ),
+		const $rows = $table.find( '> tbody > tr' ),
 			totalRows = $rows.length || 0,
 			config = $table.data( 'tablesorter' ).config,
-			columns = config.columns,
-			columnToCell, cellsInRow, index;
+			columns = config.columns;
 
 		for ( let i = 0; i < totalRows; i++ ) {
 
@@ -733,9 +732,9 @@
 				continue;
 			}
 
-			columnToCell = [];
-			cellsInRow = ( $row[ 0 ].cells.length ) || 0; // all cells in this row
-			index = 0; // real cell index in this row
+			const columnToCell = [];
+			let cellsInRow = ( $row[ 0 ].cells.length ) || 0; // all cells in this row
+			let index = 0; // real cell index in this row
 			for ( let j = 0; j < columns; index++ ) {
 				if ( index === cellsInRow ) {
 					// Row with cells less than columns: add empty cell
@@ -847,8 +846,8 @@
 			return $tables.each( ( i, table ) => {
 				// Declare and cache.
 				let cache,
-					$table = $( table ),
 					firstTime = true;
+				const $table = $( table );
 
 				// Don't construct twice on the same table
 				if ( $.data( table, 'tablesorter' ) ) {
@@ -898,8 +897,6 @@
 				cacheRegexs();
 
 				function setupForFirstSort() {
-					let $tfoot, $sortbottoms, $sorttops;
-
 					firstTime = false;
 
 					// Defer buildCollationTable to first sort. As user and site scripts
@@ -909,9 +906,9 @@
 					buildCollation();
 
 					// Move .sortbottom rows to the <tfoot> at the bottom of the <table>
-					$sortbottoms = $table.find( '> tbody > tr.sortbottom' );
+					const $sortbottoms = $table.find( '> tbody > tr.sortbottom' );
 					if ( $sortbottoms.length ) {
-						$tfoot = $table.children( 'tfoot' );
+						const $tfoot = $table.children( 'tfoot' );
 						if ( $tfoot.length ) {
 							$tfoot.eq( 0 ).prepend( $sortbottoms );
 						} else {
@@ -921,7 +918,7 @@
 
 					// Move .sorttop rows to the <thead> at the top of the <table>
 					// <thead> should exist if we got this far
-					$sorttops = $table.find( '> tbody > tr.sorttop' );
+					const $sorttops = $table.find( '> tbody > tr.sorttop' );
 					if ( $sorttops.length ) {
 						$table.children( 'thead' ).append( $sorttops );
 					}
@@ -1179,8 +1176,8 @@
 			return ts.rgx.IPAddress[ 0 ].test( s );
 		},
 		format: function ( s ) {
-			let a = s.split( '.' ),
-				r = '';
+			const a = s.split( '.' );
+			let r = '';
 			for ( let i = 0; i < a.length; i++ ) {
 				const item = a[ i ];
 				if ( item.length === 1 ) {

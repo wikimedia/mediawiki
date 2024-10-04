@@ -233,12 +233,12 @@ const util = {
 	 */
 	throttle: function ( func, wait ) {
 		let context, args, timeout,
-			previous = Date.now() - wait,
-			run = function () {
-				timeout = null;
-				previous = Date.now();
-				func.apply( context, args );
-			};
+			previous = Date.now() - wait;
+		const run = function () {
+			timeout = null;
+			previous = Date.now();
+			func.apply( context, args );
+		};
 		return function () {
 			// Check how long it's been since the last time the function was
 			// called, and whether it's more or less than the requested throttle
@@ -280,11 +280,11 @@ const util = {
 	 * @return {string} URL, relative to `wgServer`.
 	 */
 	getUrl: function ( pageName, params ) {
-		let fragmentIdx, url, query, fragment,
+		let url, query, fragment,
 			title = typeof pageName === 'string' ? pageName : mw.config.get( 'wgPageName' );
 
 		// Find any fragment
-		fragmentIdx = title.indexOf( '#' );
+		const fragmentIdx = title.indexOf( '#' );
 		if ( fragmentIdx !== -1 ) {
 			fragment = title.slice( fragmentIdx + 1 );
 			// Exclude the fragment from the page name
@@ -883,15 +883,14 @@ const util = {
 	 * @return {boolean}
 	 */
 	isIPv4Address: function ( address, allowBlock ) {
-		let block,
-			RE_IP_BYTE = '(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|0?[0-9]?[0-9])',
-			RE_IP_ADD = '(?:' + RE_IP_BYTE + '\\.){3}' + RE_IP_BYTE;
 
 		if ( typeof address !== 'string' ) {
 			return false;
 		}
 
-		block = allowBlock ? '(?:\\/(?:3[0-2]|[12]?\\d))?' : '';
+		const RE_IP_BYTE = '(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|0?[0-9]?[0-9])';
+		const RE_IP_ADD = '(?:' + RE_IP_BYTE + '\\.){3}' + RE_IP_BYTE;
+		const block = allowBlock ? '(?:\\/(?:3[0-2]|[12]?\\d))?' : '';
 
 		return ( new RegExp( '^' + RE_IP_ADD + block + '$' ).test( address ) );
 	},
@@ -915,14 +914,12 @@ const util = {
 	 * @return {boolean}
 	 */
 	isIPv6Address: function ( address, allowBlock ) {
-		let block, RE_IPV6_ADD;
-
 		if ( typeof address !== 'string' ) {
 			return false;
 		}
 
-		block = allowBlock ? '(?:\\/(?:12[0-8]|1[01][0-9]|[1-9]?\\d))?' : '';
-		RE_IPV6_ADD =
+		const block = allowBlock ? '(?:\\/(?:12[0-8]|1[01][0-9]|[1-9]?\\d))?' : '';
+		let RE_IPV6_ADD =
 			'(?:' + // starts with "::" (including "::")
 				':(?::|(?::' +
 					'[0-9A-Fa-f]{1,4}' +
@@ -1150,18 +1147,18 @@ const util = {
 			return null;
 		}
 		if ( this.isIPv6Address( ip, true ) ) {
-			let cidr, matches, ipCidrSplit, i, replaceZeros;
+			let cidr, replaceZeros;
 			if ( ip.indexOf( '/' ) !== -1 ) {
-				ipCidrSplit = ip.split( '/', 2 );
+				const ipCidrSplit = ip.split( '/', 2 );
 				ip = ipCidrSplit[ 0 ];
 				cidr = ipCidrSplit[ 1 ];
 			} else {
 				cidr = '';
 			}
-			matches = ip.match( /(?:^|:)0(?::0)+(?:$|:)/g );
+			const matches = ip.match( /(?:^|:)0(?::0)+(?:$|:)/g );
 			if ( matches ) {
 				replaceZeros = matches[ 0 ];
-				for ( i = 1; i < matches.length; i++ ) {
+				for ( let i = 1; i < matches.length; i++ ) {
 					if ( matches[ i ].length > replaceZeros.length ) {
 						replaceZeros = matches[ i ];
 					}

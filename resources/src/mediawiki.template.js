@@ -125,14 +125,12 @@
 		 * @return {TemplateRenderer} Compiled template
 		 */
 		get: function ( moduleName, templateName ) {
-			let moduleTemplates;
-
 			// Try cache first
 			if ( compiledTemplates[ moduleName ] && compiledTemplates[ moduleName ][ templateName ] ) {
 				return compiledTemplates[ moduleName ][ templateName ];
 			}
 
-			moduleTemplates = mw.templates.get( moduleName );
+			const moduleTemplates = mw.templates.get( moduleName );
 			if ( !moduleTemplates || moduleTemplates[ templateName ] === undefined ) {
 				throw new Error( 'Template ' + templateName + ' not found in module ' + moduleName );
 			}

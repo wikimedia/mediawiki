@@ -1,10 +1,8 @@
 ( function () {
-	let collapsibleLists, handleOne;
-
 	// Collapsible lists of categories and templates
 	// If changing or removing a storeKey, ensure there is a strategy for old keys.
 	// E.g. detect existence via requestIdleCallback and remove. (T121646)
-	collapsibleLists = [
+	const collapsibleLists = [
 		{
 			listSel: '.templatesUsed ul',
 			togglerSel: '.mw-templatesUsedExplanation',
@@ -22,7 +20,7 @@
 		}
 	];
 
-	handleOne = function ( $list, $toggler, storeKey ) {
+	const handleOne = function ( $list, $toggler, storeKey ) {
 		const collapsedVal = '0',
 			expandedVal = '1',
 			// Default to collapsed if not set
@@ -55,8 +53,7 @@
 	};
 
 	mw.hook( 'wikipage.editform' ).add( ( $editForm ) => {
-		let i;
-		for ( i = 0; i < collapsibleLists.length; i++ ) {
+		for ( let i = 0; i < collapsibleLists.length; i++ ) {
 			// Pass to a function for iteration-local variables
 			handleOne(
 				$editForm.find( collapsibleLists[ i ].listSel ),

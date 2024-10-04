@@ -108,13 +108,11 @@
 	 * @param {string} feedbackPageUrl
 	 */
 	mw.Feedback.prototype.onDialogSubmit = function ( status, feedbackPageName, feedbackPageUrl ) {
-		let dialogConfig;
-
 		if ( status !== 'submitted' ) {
 			return;
 		}
 
-		dialogConfig = {
+		const dialogConfig = {
 			title: mw.msg( 'feedback-thanks-title' ),
 			message: $( '<span>' ).msg(
 				'feedback-thanks',

@@ -4,8 +4,8 @@
 
 ( function () {
 	let jqXhr, $multipageimage, $spinner,
-		cache = {},
 		cacheOrder = [];
+	const cache = {};
 
 	/* Fetch the next page, caching up to 10 last-loaded pages.
 	 * @param {string} url
@@ -94,12 +94,10 @@
 
 	function bindPageNavigation( $container ) {
 		$container.find( '.mw-filepage-multipage-navigation' ).one( 'click', 'a', function ( e ) {
-			let page, url;
-
 			// Generate the same URL on client side as the one generated in ImagePage::openShowImage.
 			// We avoid using the URL in the link directly since it could have been manipulated (T68608)
-			page = mw.util.getParamValue( 'page', this.href );
-			url = mw.util.getUrl( null, page ? { page: page } : {} );
+			const page = mw.util.getParamValue( 'page', this.href );
+			const url = mw.util.getUrl( null, page ? { page: page } : {} );
 
 			switchPage( url );
 			e.preventDefault();

@@ -35,8 +35,8 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 	 * @param {boolean|jQuery.Event} instant
 	 */
 	function handleSelectOrOther( instant ) {
-		let $select = $( this ).find( 'select' ),
-			$other = $( this ).find( 'input' );
+		const $select = $( this ).find( 'select' );
+		let $other = $( this ).find( 'input' );
 		$other = $other.add( $other.siblings( 'br' ) );
 		if ( $select.val() === 'other' ) {
 			$other.goIn( instant );
