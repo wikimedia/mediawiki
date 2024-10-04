@@ -66,57 +66,17 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 		self::$revUser = self::$pageRev->getUser( RevisionRecord::RAW );
 	}
 
-	private function newChange( ?RevisionRecord $revision = null ) {
+	private function newChange( RevisionRecord $revision ): CategoryMembershipChange {
 		$title = Title::makeTitle( NS_MAIN, self::$pageName );
 		$blcFactory = $this->getServiceContainer()->getBacklinkCacheFactory();
 		$change = new CategoryMembershipChange(
-			$title, $blcFactory->getBacklinkCache( $title ), $revision
+			$title, $blcFactory->getBacklinkCache( $title ), $revision, false
 		);
 		$change->overrideNewForCategorizationCallback(
 			'CategoryMembershipChangeTest::newForCategorizationCallback'
 		);
 
 		return $change;
-	}
-
-	public function testChangeAddedNoRev() {
-		$change = $this->newChange();
-		$change->triggerCategoryAddedNotification( Title::makeTitle( NS_CATEGORY, 'CategoryName' ) );
-
-		$this->assertSame( 1, self::$notifyCallCounter );
-
-		$this->assertSame( 14, strlen( self::$lastNotifyArgs[0] ) );
-		$this->assertEquals( 'Category:CategoryName', self::$lastNotifyArgs[1]->getPrefixedText() );
-		$this->assertEquals( '(autochange-username)', self::$lastNotifyArgs[2]->getName() );
-		$this->assertEquals( '(recentchanges-page-added-to-category: ' . self::$pageName . ')',
-			self::$lastNotifyArgs[3] );
-		$this->assertEquals( self::$pageName, self::$lastNotifyArgs[4]->getPrefixedText() );
-		$this->assertSame( 0, self::$lastNotifyArgs[5] );
-		$this->assertSame( 0, self::$lastNotifyArgs[6] );
-		$this->assertNull( self::$lastNotifyArgs[7] );
-		$this->assertSame( 1, self::$lastNotifyArgs[8] );
-		$this->assertSame( '', self::$lastNotifyArgs[9] );
-		$this->assertSame( 0, self::$lastNotifyArgs[10] );
-	}
-
-	public function testChangeRemovedNoRev() {
-		$change = $this->newChange();
-		$change->triggerCategoryRemovedNotification( Title::makeTitle( NS_CATEGORY, 'CategoryName' ) );
-
-		$this->assertSame( 1, self::$notifyCallCounter );
-
-		$this->assertSame( 14, strlen( self::$lastNotifyArgs[0] ) );
-		$this->assertEquals( 'Category:CategoryName', self::$lastNotifyArgs[1]->getPrefixedText() );
-		$this->assertEquals( '(autochange-username)', self::$lastNotifyArgs[2]->getName() );
-		$this->assertEquals( '(recentchanges-page-removed-from-category: ' . self::$pageName . ')',
-			self::$lastNotifyArgs[3] );
-		$this->assertEquals( self::$pageName, self::$lastNotifyArgs[4]->getPrefixedText() );
-		$this->assertSame( 0, self::$lastNotifyArgs[5] );
-		$this->assertSame( 0, self::$lastNotifyArgs[6] );
-		$this->assertNull( self::$lastNotifyArgs[7] );
-		$this->assertSame( 1, self::$lastNotifyArgs[8] );
-		$this->assertSame( '', self::$lastNotifyArgs[9] );
-		$this->assertSame( 0, self::$lastNotifyArgs[10] );
 	}
 
 	public function testChangeAddedWithRev() {

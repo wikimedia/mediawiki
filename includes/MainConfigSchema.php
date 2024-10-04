@@ -7429,7 +7429,7 @@ class MainConfigSchema {
 			'msg:proxyblocker', // For $wgProxyList and Special:Blockme (removed in 1.22)
 			'msg:sorbs', // For $wgEnableDnsBlacklist etc.
 			'msg:spambot_username', // Used by cleanupSpam.php
-			'msg:autochange-username', // Used by anon category RC entries (parser functions, Lua & purges)
+			'msg:autochange-username', // Used by anon category RC entries (removed in 1.44)
 		],
 		'type' => 'list',
 	];
