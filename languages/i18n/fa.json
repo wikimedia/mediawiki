@@ -2546,7 +2546,7 @@
 	"isimage": "پیوند به پرونده",
 	"whatlinkshere-prev": "{{PLURAL:$1|قبلی|$1 مورد قبلی}}",
 	"whatlinkshere-next": "{{PLURAL:$1|بعدی|$1 مورد بعدی}}",
-	"whatlinkshere-links": "پیوندها",
+	"whatlinkshere-links": "→ پیوندها",
 	"whatlinkshere-hideredirs": "نهفتن تغییرمسیرها",
 	"whatlinkshere-hidetrans": "نهفتن تراگنجانش‌ها",
 	"whatlinkshere-hidelinks": "نهفتن پیوندها",
