@@ -771,6 +771,23 @@ abstract class Handler {
 	 * @return ?array
 	 */
 	protected function getResponseBodySchema(): ?array {
+		$file = $this->getResponseBodySchemaFileName();
+		return $file ? Module::loadJsonFile( $file ) : null;
+	}
+
+	/**
+	 * Returns the path and name of a JSON file containing an OpenAPI Schema Object
+	 * specification structure.
+	 *
+	 * @see https://swagger.io/specification/#schema-object
+	 *
+	 * Returns null by default. Subclasses with a suitable JSON file should implement this method.
+	 *
+	 * @stable to override
+	 * @since 1.43
+	 * @return ?string
+	 */
+	protected function getResponseBodySchemaFileName(): ?string {
 		return null;
 	}
 
