@@ -55,7 +55,7 @@ class DatabaseSettingsForm extends DatabaseForm {
 			$this->getPasswordBox( 'wgDBpassword', 'config-db-password' ) .
 			$this->webInstaller->getHelpBox( 'config-db-web-help' );
 		if ( $noCreateMsg ) {
-			$s .= Html::warningBox( wfMessage( $noCreateMsg )->plain(), 'config-warning-box' );
+			$s .= Html::warningBox( wfMessage( $noCreateMsg )->parse(), 'config-warning-box' );
 		} else {
 			$s .= $this->getCheckBox( '_CreateDBAccount', 'config-db-web-create' );
 		}

@@ -219,7 +219,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			}
 		} else {
 			$skinHtml .=
-				Html::warningBox( wfMessage( 'config-skins-missing' )->plain(), 'config-warning-box' ) .
+				Html::warningBox( wfMessage( 'config-skins-missing' )->parse(), 'config-warning-box' ) .
 				Html::hidden( 'config_wgDefaultSkin', $chosenSkinName );
 		}
 
