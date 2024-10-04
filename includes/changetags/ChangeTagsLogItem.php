@@ -95,8 +95,8 @@ class ChangeTagsLogItem extends RevisionItemBase {
 		// User links and action text
 		$action = $formatter->getActionText();
 
-		$comment = $this->list->getLanguage()->getDirMark() .
-			$formatter->getComment();
+		$dir = $this->list->getLanguage()->getDir();
+		$comment = Html::rawElement( 'bdi', [ 'dir' => $dir ], $formatter->getComment() );
 
 		$content = "$loglink $date $action $comment";
 		$attribs = [];
