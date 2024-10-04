@@ -184,31 +184,6 @@ class CommentFormatterTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function testFormatStringsAsBlock() {
-		$formatter = $this->newCommentFormatter();
-		$result = $formatter->formatStringsAsBlock(
-			[
-				'a' => 'A',
-				'b' => 'B'
-			],
-			new TitleValue( 0, 'Page' ),
-			true,
-			'enwiki',
-			true
-		);
-		$this->assertSame(
-			[
-				'a' => ' <span class="comment">(' .
-					'comment=A, selfLinkTarget=0:Page, samePage, wikiId=enwiki, enableSectionLinks' .
-					')</span>',
-				'b' => ' <span class="comment">(' .
-					'comment=B, selfLinkTarget=0:Page, samePage, wikiId=enwiki, enableSectionLinks' .
-					')</span>'
-			],
-			$result
-		);
-	}
-
 	public static function provideFormatRevision() {
 		$normal = ' <span class="comment">(' .
 			'comment=hello, selfLinkTarget=Page, !samePage, enableSectionLinks' .

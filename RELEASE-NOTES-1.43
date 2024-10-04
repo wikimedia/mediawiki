@@ -271,6 +271,8 @@ because of Phabricator reports.
 * wfRemoveDotSegments(), deprecated in 1.39, has been removed.
 * IReadableDatabase::getReplicaPos() has been removed without deprecation
   as it's not used anywhere.
+* CommentFormatter::formatStringsAsBlock() has been removed without deprecation
+  as it's not used anywhere.
 * ILoadBalancer::laggedReplicaUsed() has been moved to ILoadBalancerForOwner::
   effectively making it internal.
 * Define DB_MASTER, deprecated since 1.36, has been removed.
