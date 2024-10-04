@@ -14,7 +14,7 @@
 	} );
 
 	QUnit.test( 'Use toggle', function ( assert ) {
-		var tocNode, tocToggle;
+		let tocNode, tocToggle;
 
 		tocNode = $.parseHTML( this.tocHtml )[ 0 ];
 		tocToggle = tocNode.querySelector( '.toctogglelabel' );
@@ -32,7 +32,7 @@
 	} );
 
 	QUnit.test( 'Initially hidden', function ( assert ) {
-		var tocNode;
+		let tocNode;
 
 		this.getCookie.returns( '1' );
 

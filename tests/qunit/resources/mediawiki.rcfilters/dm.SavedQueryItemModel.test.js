@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 ( function () {
 	const rcfilters = require( 'mediawiki.rcfilters.filters.ui' );
-	var itemData = {
+	const itemData = {
 		params: {
 			param1: '1',
 			param2: 'foo|bar',
@@ -16,7 +16,7 @@
 	QUnit.module( 'mediawiki.rcfilters - SavedQueryItemModel' );
 
 	QUnit.test( 'Initializing and getters', ( assert ) => {
-		var model;
+		let model;
 
 		model = new rcfilters.dm.SavedQueryItemModel(
 			'randomID',
@@ -50,7 +50,7 @@
 	} );
 
 	QUnit.test( 'Default', ( assert ) => {
-		var model;
+		let model;
 
 		model = new rcfilters.dm.SavedQueryItemModel(
 			'randomID',

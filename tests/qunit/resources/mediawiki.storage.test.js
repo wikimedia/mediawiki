@@ -4,7 +4,7 @@
 	QUnit.module( 'mediawiki.storage' );
 
 	QUnit.test( 'set/get(Object) with storage support', function ( assert ) {
-		var data = {},
+		const data = {},
 			done = assert.async(),
 			object = { test: 'value' },
 			stub = {
@@ -48,7 +48,7 @@
 		mw.storage.set( 'baz', 'Non-JSON' );
 		assert.strictEqual( mw.storage.getObject( 'baz' ), null, 'Non-JSON values are null' );
 
-		var now = Math.floor( Date.now() / 1000 );
+		const now = Math.floor( Date.now() / 1000 );
 		mw.storage.set( 'foo', 'test', 60 * 60 );
 		assert.true( mw.storage.get( EXPIRY_PREFIX + 'foo' ) > now, 'Future expiry time stored' );
 		assert.strictEqual( mw.storage.get( 'foo' ), 'test', 'Non-expired item fetched from store' );
@@ -83,7 +83,7 @@
 		// (quota full, or security/privacy settings).
 		// On most browsers, these interface will be accessible with
 		// their methods throwing.
-		var stub = {
+		const stub = {
 			getItem: this.sandbox.stub(),
 			removeItem: this.sandbox.stub(),
 			setItem: this.sandbox.stub()
@@ -108,7 +108,7 @@
 		// but trying to read the object as window.localStorage would throw
 		// an exception. Such case would instantiate SafeStorage with
 		// undefined after the internal try/catch.
-		var old = mw.storage.store;
+		const old = mw.storage.store;
 		mw.storage.store = undefined;
 
 		assert.strictEqual( mw.storage.get( 'foo' ), false );
@@ -123,8 +123,8 @@
 	} );
 
 	QUnit.test( 'set/get with expiry - partial failure', function ( assert ) {
-		var store = {};
-		var stub = {
+		const store = {};
+		const stub = {
 			setItem: this.sandbox.spy( ( k, v ) => {
 				if ( k.startsWith( EXPIRY_PREFIX ) ) {
 					// Mock a failing store when trying to set a key with expiry

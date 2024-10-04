@@ -2,7 +2,7 @@
 
 	QUnit.module( 'mediawiki.template', {
 		beforeEach: function () {
-			var abcCompiler = {
+			const abcCompiler = {
 				compile: function () {
 					return 'abc default compiler';
 				}

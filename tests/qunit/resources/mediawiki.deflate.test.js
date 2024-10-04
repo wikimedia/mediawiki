@@ -1,11 +1,11 @@
 QUnit.module( 'mediawiki.deflate', () => {
-	var seed = 1234567890;
+	let seed = 1234567890;
 	function getPseudoRandom() {
 		seed = seed * 16807 % 2147483646;
 		return seed;
 	}
 
-	var longData = new TextDecoder( 'utf-8' ).decode(
+	const longData = new TextDecoder( 'utf-8' ).decode(
 		Uint32Array.from(
 			{ length: 5 * 1024 * 1024 },
 			getPseudoRandom
@@ -35,7 +35,7 @@ QUnit.module( 'mediawiki.deflate', () => {
 		if ( data.expected ) {
 			assert.strictEqual( mw.deflate( data.data ), data.expected );
 		} else {
-			var deflated = mw.deflate( data.data );
+			const deflated = mw.deflate( data.data );
 			assert.strictEqual( deflated.length, data.expectedLength, 'length' );
 			assert.strictEqual( deflated.slice( 11, 21 ), data.expectedHead, 'head' );
 			assert.strictEqual( deflated.slice( -10 ), data.expectedTail, 'tail' );

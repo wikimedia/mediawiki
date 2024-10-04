@@ -130,19 +130,19 @@ QUnit.module( 'jquery.textSelection', () => {
 			replace: ulist
 		}
 	}, ( assert, opt ) => {
-		var $textarea = $( '<textarea>' ).appendTo( '#qunit-fixture' );
+		const $textarea = $( '<textarea>' ).appendTo( '#qunit-fixture' );
 		$textarea.textSelection( 'setContents', opt.before.text );
-		var replace = Object.assign( {
+		const replace = Object.assign( {
 			selectionStart: opt.before.start,
 			selectionEnd: opt.before.end
 		}, opt.replace );
 		$textarea.textSelection( 'encapsulateSelection', replace );
 
-		var text = $textarea.textSelection( 'getContents' ).replace( /\r\n/g, '\n' );
+		const text = $textarea.textSelection( 'getContents' ).replace( /\r\n/g, '\n' );
 		assert.strictEqual( text, opt.after.text, 'after encapsulation' );
 
 		if ( opt.after.selected !== undefined ) {
-			var selected = $textarea.textSelection( 'getSelection' );
+			const selected = $textarea.textSelection( 'getSelection' );
 			assert.strictEqual( selected, opt.after.selected, 'selected text' );
 		}
 	} );

@@ -2,7 +2,7 @@
 	const jqueryMsg = require( 'mediawiki.jqueryMsg' ).test;
 
 	/* eslint-disable camelcase */
-	var formatText, formatParse, formatnumTests, specialCharactersPageName, expectedListUsers,
+	let formatText, formatParse, formatnumTests, specialCharactersPageName, expectedListUsers,
 		expectedListUsersSitename, expectedLinkPagenamee, expectedEntrypoints,
 		testData = require( 'mediawiki.language.testdata' ),
 		phpParserData = testData.phpParserData;
@@ -221,7 +221,7 @@
 	} );
 
 	QUnit.test( 'Gender', ( assert ) => {
-		var originalGender = mw.user.options.get( 'gender' );
+		const originalGender = mw.user.options.get( 'gender' );
 
 		// TODO: These tests should be for mw.msg once mw.msg integrated with jqueryMsg
 		// TODO: English may not be the best language for these tests. Use a language like Arabic or Russian
@@ -369,10 +369,10 @@
 	} );
 
 	QUnit.test( 'Match PHP parser', function ( assert ) {
-		var self = this;
+		const self = this;
 		mw.messages.set( phpParserData.messages );
 		phpParserData.tests.forEach( ( test ) => {
-			var parser,
+			let parser,
 				langClass = self.getMwLanguage( test.lang );
 			mw.config.set( 'wgUserLanguage', test.lang );
 			parser = new jqueryMsg.Parser( { language: langClass } );
@@ -385,7 +385,7 @@
 	} );
 
 	QUnit.test( 'Links', function ( assert ) {
-		var testCases,
+		let testCases,
 			expectedDisambiguationsText,
 			expectedMultipleBars,
 			expectedSpecialCharacters;
@@ -497,7 +497,7 @@
 		];
 
 		testCases.forEach( ( testCase ) => {
-			var
+			const
 				key = testCase[ 0 ],
 				input = testCase[ 1 ],
 				output = testCase[ 2 ];
@@ -526,7 +526,7 @@
 
 	// Test case sensitive namespaces
 	QUnit.test( 'CaseSensitiveNamespaces', ( assert ) => {
-		var oldCaseSensitiveNamespaces = mw.config.get( 'wgCaseSensitiveNamespaces' );
+		const oldCaseSensitiveNamespaces = mw.config.get( 'wgCaseSensitiveNamespaces' );
 		mw.config.set( 'wgCaseSensitiveNamespaces', [ 0 ] );
 
 		mw.messages.set( 'jquerymsg-lowercase-link', 'A [[lowercase]] and [[Uppercase]] wiki-link' );
@@ -550,7 +550,7 @@
 	} );
 
 	QUnit.test( 'Replacements in links', ( assert ) => {
-		var testCases = [
+		const testCases = [
 			[
 				'extlink-param-href-full',
 				'asd [$1 Example] asd',
@@ -624,7 +624,7 @@
 		];
 
 		testCases.forEach( ( testCase ) => {
-			var
+			const
 				key = testCase[ 0 ],
 				input = testCase[ 1 ],
 				output = testCase[ 2 ],
@@ -641,7 +641,7 @@
 
 	// Tests that {{-transformation vs. general parsing are done as requested
 	QUnit.test( 'Curly brace transformation', ( assert ) => {
-		var oldUserLang = mw.config.get( 'wgUserLanguage' );
+		const oldUserLang = mw.config.get( 'wgUserLanguage' );
 
 		assertBothModes( assert, [ 'gender-msg', 'Bob', 'male' ], 'Bob: blue', 'gender is resolved' );
 
@@ -714,7 +714,7 @@
 	} );
 
 	QUnit.test( 'Int', ( assert ) => {
-		var newarticletextSource = 'You have followed a link to a page that does not exist yet. To create the page, start typing in the box below (see the [[{{Int:Foobar}}|foobar]] for more info). If you are here by mistake, click your browser\'s back button.',
+		let newarticletextSource = 'You have followed a link to a page that does not exist yet. To create the page, start typing in the box below (see the [[{{Int:Foobar}}|foobar]] for more info). If you are here by mistake, click your browser\'s back button.',
 			expectedNewarticletext,
 			helpPageTitle = 'Help:Foobar';
 
@@ -790,7 +790,7 @@
 	// Tests that getMessageFunction is used for non-plain messages with curly braces or
 	// square brackets, but not otherwise.
 	QUnit.test( 'mw.Message.prototype.parser monkey-patch', ( assert ) => {
-		var outerCalled, innerCalled;
+		let outerCalled, innerCalled;
 
 		mw.messages.set( {
 			'curly-brace': '{{int:message}}',
@@ -807,7 +807,7 @@
 		} );
 
 		function verifyGetMessageFunction( key, format, shouldCall ) {
-			var message;
+			let message;
 			outerCalled = false;
 			innerCalled = false;
 			// eslint-disable-next-line mediawiki/msg-doc
@@ -955,11 +955,11 @@
 	];
 
 	QUnit.test( 'formatnum', function ( assert ) {
-		var self = this;
+		const self = this;
 		mw.messages.set( 'formatnum-msg', '{{formatnum:$1}}' );
 		mw.messages.set( 'formatnum-msg-int', '{{formatnum:$1|R}}' );
 		formatnumTests.forEach( ( test ) => {
-			var parser,
+			let parser,
 				langClass = self.getMwLanguage( test.lang );
 			mw.config.set( 'wgUserLanguage', test.lang );
 			parser = new jqueryMsg.Parser( { language: langClass } );
@@ -1183,7 +1183,7 @@
 	} );
 
 	QUnit.test( 'Behavior in case of invalid wikitext', function ( assert ) {
-		var logSpy;
+		let logSpy;
 		mw.messages.set( 'invalid-wikitext', '<b>{{FAIL}}</b>' );
 
 		this.suppressWarnings();
@@ -1211,7 +1211,7 @@
 	} );
 
 	QUnit.test( 'Non-string parameters to various functions', ( assert ) => {
-		var i, cases;
+		let i, cases;
 
 		// For jquery-param-int
 		mw.messages.set( 'x', 'y' );
@@ -1309,7 +1309,7 @@
 	} );
 
 	QUnit.test( 'Integration', ( assert ) => {
-		var expected = '<b><a title="Bold" href="/wiki/Bold">Bold</a>!</b>';
+		const expected = '<b><a title="Bold" href="/wiki/Bold">Bold</a>!</b>';
 		mw.messages.set( 'integration-test', '<b>[[Bold]]!</b>' );
 		mw.messages.set( 'param-test', 'Hello $1' );
 		mw.messages.set( 'param-test-with-link', 'Hello $1 [[$2|$3]]' );
@@ -1345,8 +1345,8 @@
 		);
 
 		mw.messages.set( 'object-double-replace', 'Foo 1: $1 2: $1' );
-		var $messageArgument = $( '<div class="bar">&gt;</div>' );
-		var $message = $( '<span>' ).msg( 'object-double-replace', $messageArgument );
+		const $messageArgument = $( '<div class="bar">&gt;</div>' );
+		const $message = $( '<span>' ).msg( 'object-double-replace', $messageArgument );
 		assert.true(
 			$message[ 0 ].contains( $messageArgument[ 0 ] ),
 			'The original jQuery object is actually in the DOM'
@@ -1376,7 +1376,7 @@
 		);
 
 		mw.messages.set( 'integration-test-extlink', '[$1 Link]' );
-		var msg = mw.message(
+		const msg = mw.message(
 			'integration-test-extlink',
 			$( '<a>' ).attr( 'href', 'http://example.com/' )
 		);
@@ -1389,7 +1389,7 @@
 
 		mw.config.set( 'wgUserLanguage', 'qqx' );
 
-		var $bar = $( '<b>' ).text( 'bar' );
+		const $bar = $( '<b>' ).text( 'bar' );
 		mw.messages.set( 'qqx-message', '(qqx-message)' );
 		mw.messages.set( 'non-qqx-message', '<b>hello world</b>' );
 

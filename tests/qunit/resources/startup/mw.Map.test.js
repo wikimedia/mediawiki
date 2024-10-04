@@ -1,27 +1,27 @@
 ( function () {
 
 	// Dummy variables
-	var funky = function () {};
-	var arry = [];
+	const funky = function () {};
+	const arry = [];
 
 	QUnit.module( 'mw.Map' );
 
 	QUnit.test( 'Store simple string key', ( assert ) => {
-		var conf = new mw.Map();
+		const conf = new mw.Map();
 
 		assert.true( conf.set( 'foo', 'Bar' ), 'set' );
 		assert.strictEqual( conf.get( 'foo' ), 'Bar', 'get' );
 	} );
 
 	QUnit.test( 'Store number-like key', ( assert ) => {
-		var conf = new mw.Map();
+		const conf = new mw.Map();
 
 		assert.true( conf.set( '42', 'X' ), 'set' );
 		assert.strictEqual( conf.get( '42' ), 'X', 'get' );
 	} );
 
 	QUnit.test( 'get()', ( assert ) => {
-		var conf = new mw.Map();
+		let conf = new mw.Map();
 
 		assert.strictEqual( conf.get( 'example' ), null, 'default fallback' );
 		assert.strictEqual( conf.get( 'example', arry ), arry, 'array fallback' );
@@ -63,7 +63,7 @@
 
 	// Expose 'values' getter with all values, for developer convenience on the console
 	QUnit.test( 'values', ( assert ) => {
-		var conf = new mw.Map();
+		const conf = new mw.Map();
 		conf.set( { num: 7, num2: 42 } );
 		conf.set( 'foo', 'bar' );
 
@@ -71,7 +71,7 @@
 	} );
 
 	QUnit.test( 'set()', ( assert ) => {
-		var conf = new mw.Map();
+		const conf = new mw.Map();
 
 		// There should not be an implied default value
 		assert.false( conf.set( 'no-value' ), 'reject without value argument' );
@@ -93,7 +93,7 @@
 	} );
 
 	QUnit.test( 'exists()', ( assert ) => {
-		var conf = new mw.Map();
+		const conf = new mw.Map();
 
 		assert.false( conf.exists( 'doesNotExist' ), 'unknown' );
 
@@ -106,7 +106,7 @@
 
 	// Confirm protection against Object.prototype inheritance
 	QUnit.test( 'Avoid prototype pollution', ( assert ) => {
-		var conf = new mw.Map();
+		const conf = new mw.Map();
 
 		assert.strictEqual( conf.get( 'constructor' ), null, 'Get unknown "constructor"' );
 		assert.strictEqual( conf.get( 'hasOwnProperty' ), null, 'Get unkonwn "hasOwnProperty"' );

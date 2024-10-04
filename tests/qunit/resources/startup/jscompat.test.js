@@ -11,7 +11,7 @@ QUnit.module( 'startup/jscompat', () => {
 	} );
 
 	function repeat( str, n ) {
-		var out;
+		let out;
 		if ( n <= 0 ) {
 			return '';
 		} else {

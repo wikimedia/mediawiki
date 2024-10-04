@@ -25,7 +25,7 @@ QUnit.module( 'mediawiki.String', () => {
 	const { charAt } = require( 'mediawiki.String' );
 
 	QUnit.test( 'charAt() [simple]', ( assert ) => {
-		var azLc = 'abcdefghijklmnopqrstuvwxyz';
+		const azLc = 'abcdefghijklmnopqrstuvwxyz';
 
 		assert.strictEqual( charAt( azLc, 0 ), 'a', 'First char' );
 		assert.strictEqual( charAt( azLc, 25 ), 'z', 'Last char' );
@@ -155,7 +155,7 @@ QUnit.module( 'mediawiki.String', () => {
 			expected: '\uD800'
 		}
 	}, ( assert, opt ) => {
-		var res = trimByteLength( opt.initial || '', opt.sample, opt.limit, opt.fn || null );
+		const res = trimByteLength( opt.initial || '', opt.sample, opt.limit, opt.fn || null );
 		assert.strictEqual(
 			res.newVal,
 			opt.expected,

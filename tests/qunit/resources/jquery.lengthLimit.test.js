@@ -18,7 +18,7 @@ QUnit.module( 'jquery.lengthLimit', () => {
 			return $el.val() + charstr.charAt( i );
 		}
 
-		for ( var c = 0; c < charstr.length; c++ ) {
+		for ( let c = 0; c < charstr.length; c++ ) {
 			$input
 				.val( x( $input, c ) )
 				.trigger( 'change' );
@@ -87,7 +87,7 @@ QUnit.module( 'jquery.lengthLimit', () => {
 		'Pass the limit and a callback as input filter': {
 			$input: $( '<input>' ).attr( 'type', 'text' )
 				.byteLimit( 6, ( val ) => {
-					var title = mw.Title.newFromText( String( val ) );
+					const title = mw.Title.newFromText( String( val ) );
 					// Return without namespace prefix
 					return title ? title.getMain() : '';
 				} ),
@@ -99,7 +99,7 @@ QUnit.module( 'jquery.lengthLimit', () => {
 			$input: $( '<input>' ).attr( 'type', 'text' )
 				.attr( 'maxlength', '6' )
 				.byteLimit( ( val ) => {
-					var title = mw.Title.newFromText( String( val ) );
+					const title = mw.Title.newFromText( String( val ) );
 					// Return without namespace prefix
 					return title ? title.getMain() : '';
 				} ),
@@ -110,7 +110,7 @@ QUnit.module( 'jquery.lengthLimit', () => {
 		'Truncate with exceeded limit and filter callback': {
 			$input: $( '<input>' ).attr( 'type', 'text' )
 				.byteLimit( 6, ( val ) => {
-					var title = mw.Title.newFromText( String( val ) );
+					const title = mw.Title.newFromText( String( val ) );
 					// Return without namespace prefix
 					return title ? title.getMain() : '';
 				} ),
@@ -155,7 +155,7 @@ QUnit.module( 'jquery.lengthLimit', () => {
 	} );
 
 	QUnit.test( 'Confirm properties and attributes set', ( assert ) => {
-		var $el;
+		let $el;
 
 		$el = $( '<input>' ).attr( 'type', 'text' )
 			.attr( 'maxlength', '7' )
@@ -196,7 +196,7 @@ QUnit.module( 'jquery.lengthLimit', () => {
 	} );
 
 	QUnit.test( 'Trim from insertion when limit exceeded', ( assert ) => {
-		var $el;
+		let $el;
 
 		// Use a new <input> because the bug only occurs on the first time
 		// the limit it reached (T42850)
@@ -218,7 +218,7 @@ QUnit.module( 'jquery.lengthLimit', () => {
 	} );
 
 	QUnit.test( 'Do not cut up false matching substrings in emoji insertions', ( assert ) => {
-		var $el,
+		let $el,
 			oldVal = '\uD83D\uDCA9\uD83D\uDCA9', // "💩💩"
 			newVal = '\uD83D\uDCA9\uD83D\uDCB9\uD83E\uDCA9\uD83D\uDCA9', // "💩💹🢩💩"
 			expected = '\uD83D\uDCA9\uD83D\uDCB9\uD83D\uDCA9'; // "💩💹💩"

@@ -483,7 +483,7 @@ QUnit.module( 'jquery.makeCollapsible', () => {
 			collapsed: true
 		} );
 		$collapsible.children( '.mw-collapsible-toggle' ).each( function () {
-			var $this = $( this );
+			const $this = $( this );
 			$this.parent().prev( 'p' ).append( $this );
 		} );
 

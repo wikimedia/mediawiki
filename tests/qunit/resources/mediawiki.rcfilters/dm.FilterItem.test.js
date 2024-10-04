@@ -4,7 +4,7 @@
 	const rcfilters = require( 'mediawiki.rcfilters.filters.ui' );
 
 	QUnit.test( 'Initializing filter item', ( assert ) => {
-		var item,
+		let item,
 			group1 = new rcfilters.dm.FilterGroup( 'group1' ),
 			group2 = new rcfilters.dm.FilterGroup( 'group2' );
 
@@ -155,7 +155,7 @@
 	} );
 
 	QUnit.test( 'Emitting events', ( assert ) => {
-		var group1 = new rcfilters.dm.FilterGroup( 'group1' ),
+		const group1 = new rcfilters.dm.FilterGroup( 'group1' ),
 			item = new rcfilters.dm.FilterItem( 'filter1', group1 ),
 			events = [];
 
@@ -187,7 +187,7 @@
 	} );
 
 	QUnit.test( 'get/set boolean value', ( assert ) => {
-		var group = new rcfilters.dm.FilterGroup( 'group1', { type: 'boolean' } ),
+		const group = new rcfilters.dm.FilterGroup( 'group1', { type: 'boolean' } ),
 			item = new rcfilters.dm.FilterItem( 'filter1', group );
 
 		item.setValue( '1' );
@@ -196,7 +196,7 @@
 	} );
 
 	QUnit.test( 'get/set any value', ( assert ) => {
-		var group = new rcfilters.dm.FilterGroup( 'group1', { type: 'any_value' } ),
+		const group = new rcfilters.dm.FilterGroup( 'group1', { type: 'any_value' } ),
 			item = new rcfilters.dm.FilterItem( 'filter1', group );
 
 		item.setValue( '1' );

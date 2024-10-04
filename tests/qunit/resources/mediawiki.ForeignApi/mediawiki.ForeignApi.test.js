@@ -1,5 +1,5 @@
 QUnit.module( 'mediawiki.ForeignApi', ( hooks ) => {
-	var CoreForeignApi = require( 'mediawiki.ForeignApi.core' ).ForeignApi;
+	const CoreForeignApi = require( 'mediawiki.ForeignApi.core' ).ForeignApi;
 
 	hooks.beforeEach( function () {
 		this.server = this.sandbox.useFakeServer();
@@ -7,7 +7,7 @@ QUnit.module( 'mediawiki.ForeignApi', ( hooks ) => {
 	} );
 
 	QUnit.test( 'origin is included in GET requests', function ( assert ) {
-		var api = new CoreForeignApi( '//localhost:4242/w/api.php' );
+		const api = new CoreForeignApi( '//localhost:4242/w/api.php' );
 
 		this.server.respond( ( request ) => {
 			assert.true( /origin=/.test( request.url ), 'origin is included in GET requests' );
@@ -18,7 +18,7 @@ QUnit.module( 'mediawiki.ForeignApi', ( hooks ) => {
 	} );
 
 	QUnit.test( 'origin is included in POST requests', function ( assert ) {
-		var api = new CoreForeignApi( '//localhost:4242/w/api.php' );
+		const api = new CoreForeignApi( '//localhost:4242/w/api.php' );
 
 		this.server.respond( ( request ) => {
 			assert.true( /origin=/.test( request.requestBody ), 'origin is included in POST request body' );
@@ -30,7 +30,7 @@ QUnit.module( 'mediawiki.ForeignApi', ( hooks ) => {
 	} );
 
 	QUnit.test( 'origin is not included in same-origin GET requests', function ( assert ) {
-		var apiUrl = location.protocol + '//' + location.host + '/w/api.php',
+		const apiUrl = location.protocol + '//' + location.host + '/w/api.php',
 			api = new CoreForeignApi( apiUrl );
 
 		this.server.respond( ( request ) => {
@@ -42,7 +42,7 @@ QUnit.module( 'mediawiki.ForeignApi', ( hooks ) => {
 	} );
 
 	QUnit.test( 'origin is not included in same-origin POST requests', function ( assert ) {
-		var apiUrl = location.protocol + '//' + location.host + '/w/api.php',
+		const apiUrl = location.protocol + '//' + location.host + '/w/api.php',
 			api = new CoreForeignApi( apiUrl );
 
 		this.server.respond( ( request ) => {

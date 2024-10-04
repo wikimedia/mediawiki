@@ -1,7 +1,7 @@
 QUnit.module( 'mediawiki.visibleTimeout', QUnit.newMwEnvironment( {
 	beforeEach: function () {
 		// Document with just enough stuff to make the tests work.
-		var listeners = [];
+		const listeners = [];
 		this.mockDocument = {
 			hidden: false,
 			addEventListener: function ( type, listener ) {
@@ -10,7 +10,7 @@ QUnit.module( 'mediawiki.visibleTimeout', QUnit.newMwEnvironment( {
 				}
 			},
 			removeEventListener: function ( type, listener ) {
-				var i;
+				let i;
 				if ( type === 'visibilitychange' ) {
 					i = listeners.indexOf( listener );
 					if ( i >= 0 ) {
@@ -20,7 +20,7 @@ QUnit.module( 'mediawiki.visibleTimeout', QUnit.newMwEnvironment( {
 			},
 			// Helper function to swap visibility and run listeners
 			toggleVisibility: function () {
-				var i;
+				let i;
 				this.hidden = !this.hidden;
 				for ( i = 0; i < listeners.length; i++ ) {
 					listeners[ i ]();
@@ -41,7 +41,7 @@ QUnit.module( 'mediawiki.visibleTimeout', QUnit.newMwEnvironment( {
 } ) );
 
 QUnit.test( 'visibleTimeoutId is always a positive integer', function ( assert ) {
-	var called = 0,
+	let called = 0,
 		visibleTimeoutId = this.visibleTimeout.set( () => {
 			called++;
 		}, 0 );
@@ -74,7 +74,7 @@ QUnit.test( 'visibleTimeoutId is always a positive integer', function ( assert )
 } );
 
 QUnit.test( 'basic usage when visible', function ( assert ) {
-	var called = 0;
+	let called = 0;
 
 	this.visibleTimeout.set( () => {
 		called++;
@@ -94,7 +94,7 @@ QUnit.test( 'basic usage when visible', function ( assert ) {
 } );
 
 QUnit.test( 'basic usage - fallback assumes visible', function ( assert ) {
-	var mockDoc, visible, called;
+	let mockDoc, visible, called;
 
 	mockDoc = {
 		addEventListener: function () {},
@@ -131,7 +131,7 @@ QUnit.test( 'basic usage - fallback assumes visible', function ( assert ) {
 } );
 
 QUnit.test( 'can cancel timeout', function ( assert ) {
-	var called = 0,
+	let called = 0,
 		timeout = this.visibleTimeout.set( () => {
 			called++;
 		}, 0 );
@@ -151,7 +151,7 @@ QUnit.test( 'can cancel timeout', function ( assert ) {
 } );
 
 QUnit.test( 'start hidden and become visible', function ( assert ) {
-	var called = 0;
+	let called = 0;
 
 	this.mockDocument.hidden = true;
 	this.visibleTimeout.set( () => {
@@ -166,7 +166,7 @@ QUnit.test( 'start hidden and become visible', function ( assert ) {
 } );
 
 QUnit.test( 'timeout is cumulative', function ( assert ) {
-	var called = 0;
+	let called = 0;
 
 	this.visibleTimeout.set( () => {
 		called++;

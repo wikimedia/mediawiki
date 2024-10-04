@@ -1,6 +1,6 @@
 QUnit.module( 'mediawiki.ForeignRest', ( hooks ) => {
-	var CoreForeignApi = require( 'mediawiki.ForeignApi.core' ).ForeignApi;
-	var CoreForeignRest = require( 'mediawiki.ForeignApi.core' ).ForeignRest;
+	const CoreForeignApi = require( 'mediawiki.ForeignApi.core' ).ForeignApi;
+	const CoreForeignRest = require( 'mediawiki.ForeignApi.core' ).ForeignRest;
 
 	hooks.beforeEach( function () {
 		this.server = this.sandbox.useFakeServer();
@@ -9,7 +9,7 @@ QUnit.module( 'mediawiki.ForeignRest', ( hooks ) => {
 	} );
 
 	QUnit.test( 'get()', function ( assert ) {
-		var api = new CoreForeignRest( 'http://test.example.com/rest.php', this.actionApi );
+		const api = new CoreForeignRest( 'http://test.example.com/rest.php', this.actionApi );
 
 		this.server.respond( ( request ) => {
 			assert.strictEqual( request.method, 'GET' );
@@ -23,7 +23,7 @@ QUnit.module( 'mediawiki.ForeignRest', ( hooks ) => {
 	} );
 
 	QUnit.test( 'post()', function ( assert ) {
-		var api = new CoreForeignRest( 'http://test.example.com/rest.php', this.actionApi );
+		const api = new CoreForeignRest( 'http://test.example.com/rest.php', this.actionApi );
 
 		this.server.respond( ( request ) => {
 			assert.strictEqual( request.method, 'POST', 'Method should be POST' );
@@ -44,7 +44,7 @@ QUnit.module( 'mediawiki.ForeignRest', ( hooks ) => {
 	} );
 
 	QUnit.test( 'http error', function ( assert ) {
-		var api = new CoreForeignRest( 'http://test.example.com/rest.php', this.actionApi );
+		const api = new CoreForeignRest( 'http://test.example.com/rest.php', this.actionApi );
 
 		this.server.respond( [ 404, {}, 'FAIL' ] );
 
