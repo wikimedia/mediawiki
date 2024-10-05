@@ -878,7 +878,6 @@ class SpecialPageFactory {
 		'NamespaceInfo' => [
 			'class' => SpecialNamespaceInfo::class,
 			'services' => [
-				'ContentLanguage',
 				'NamespaceInfo',
 			],
 		],
@@ -1222,7 +1221,6 @@ class SpecialPageFactory {
 			'class' => SpecialRenameUser::class,
 			'services' => [
 				'ConnectionProvider',
-				'ContentLanguage',
 				'MovePageFactory',
 				'PermissionManager',
 				'TitleFactory',

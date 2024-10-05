@@ -23,7 +23,6 @@
 namespace MediaWiki\Specials;
 
 use MediaWiki\Html\Html;
-use MediaWiki\Language\Language;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\NamespaceInfo;
 
@@ -36,16 +35,11 @@ use MediaWiki\Title\NamespaceInfo;
  */
 class SpecialNamespaceInfo extends SpecialPage {
 
-	private Language $contentLanguage;
 	private NamespaceInfo $namespaceInfo;
 
-	public function __construct(
-		Language $contentLanguage,
-		NamespaceInfo $namespaceInfo
-	) {
+	public function __construct( NamespaceInfo $namespaceInfo ) {
 		parent::__construct( 'NamespaceInfo' );
 
-		$this->contentLanguage = $contentLanguage;
 		$this->namespaceInfo = $namespaceInfo;
 	}
 
@@ -85,7 +79,7 @@ class SpecialNamespaceInfo extends SpecialPage {
 		);
 
 		$tableBodyRows = '';
-		foreach ( $this->contentLanguage->getFormattedNamespaces() as $ns => $localName ) {
+		foreach ( $this->getContentLanguage()->getFormattedNamespaces() as $ns => $localName ) {
 			$tableBodyRows .= $this->makeNamespaceRow( $ns, $localName );
 		}
 
