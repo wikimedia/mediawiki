@@ -66,17 +66,11 @@ class SpecialTrackingCategories extends SpecialPage {
 		$this->getOutput()->addHTML(
 			Html::openElement( 'table', [ 'class' => 'mw-datatable sortable',
 				'id' => 'mw-trackingcategories-table' ] ) . "\n" .
-			"<thead><tr>
-			<th>" .
-				$this->msg( 'trackingcategories-msg' )->escaped() . "
-			</th>
-			<th>" .
-				$this->msg( 'trackingcategories-name' )->escaped() .
-			"</th>
-			<th>" .
-				$this->msg( 'trackingcategories-desc' )->escaped() . "
-			</th>
-			</tr></thead>"
+			'<thead><tr>' .
+			Html::element( 'th', [], $this->msg( 'trackingcategories-msg' )->text() ) .
+			Html::element( 'th', [], $this->msg( 'trackingcategories-name' )->text() ) .
+			Html::element( 'th', [], $this->msg( 'trackingcategories-desc' )->text() ) .
+			'</tr></thead>'
 		);
 
 		$categoryList = $this->trackingCategories->getTrackingCategories();
