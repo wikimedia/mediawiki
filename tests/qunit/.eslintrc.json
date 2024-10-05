@@ -15,7 +15,6 @@
 		"max-len": "off",
 		"no-jquery/no-global-selector": "off",
 		"no-jquery/no-parse-html-literal": "off",
-		"prefer-const": "warn",
 		"no-shadow": [ "error", { "allow": [ "hooks" ] } ],
 		"qunit/resolve-async": "off"
 	}
