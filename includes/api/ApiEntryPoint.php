@@ -82,6 +82,7 @@ class ApiEntryPoint extends MediaWikiEntryPoint {
 	 * the URL.
 	 */
 	protected function execute() {
+		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle
 		global $wgTitle;
 
 		$context = $this->getContext();

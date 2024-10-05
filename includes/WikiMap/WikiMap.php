@@ -149,6 +149,7 @@ class WikiMap {
 	 * @return string|false HTML link or false if the wiki was not found
 	 */
 	public static function makeForeignLink( $wikiID, $page, $text = null ) {
+		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle
 		global $wgTitle;
 		if ( !$text ) {
 			$text = $page;

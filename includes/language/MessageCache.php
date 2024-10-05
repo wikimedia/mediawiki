@@ -1501,6 +1501,7 @@ class MessageCache implements LoggerAwareInterface {
 	public function parse( $text, PageReference $page = null, $linestart = true,
 		$interface = false, $language = null
 	) {
+		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle
 		global $wgTitle;
 
 		if ( $this->inParser ) {

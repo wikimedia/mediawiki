@@ -210,6 +210,7 @@ class RequestContext implements IContextSource, MutableContext {
 	 */
 	public function getTitle() {
 		if ( $this->title === null ) {
+			// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle
 			global $wgTitle; # fallback to $wg till we can improve this
 			$this->title = $wgTitle;
 			$logger = LoggerFactory::getInstance( 'GlobalTitleFail' );

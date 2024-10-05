@@ -510,6 +510,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * reset services here.
 	 */
 	public static function resetNonServiceCaches() {
+		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle
 		global $wgRequest, $wgJobClasses, $wgTitle;
 
 		/* Prevent global wgTitle state from carrying over between test cases
