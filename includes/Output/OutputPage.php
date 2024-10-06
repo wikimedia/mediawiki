@@ -70,7 +70,6 @@ use ParserOptions;
 use RuntimeException;
 use Skin;
 use Wikimedia\Assert\Assert;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 use Wikimedia\Message\MessageSpecifier;
@@ -930,10 +929,9 @@ class OutputPage extends ContextSource {
 		# this breaks strtotime().
 		$clientHeader = preg_replace( '/;.*$/', '', $clientHeader );
 
-		// E_STRICT system time warnings
-		AtEase::suppressWarnings();
-		$clientHeaderTime = strtotime( $clientHeader );
-		AtEase::restoreWarnings();
+		// Ignore timezone warning
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$clientHeaderTime = @strtotime( $clientHeader );
 		if ( !$clientHeaderTime ) {
 			wfDebug( __METHOD__
 				. ": unable to parse the client's If-Modified-Since header: $clientHeader" );
