@@ -3976,6 +3976,12 @@ class Language implements Bcp47Code {
 	 * there is no embedding equivalent of U+2068 FSI (isolation with heuristic
 	 * direction inference). The latter is cleaner but still not widely supported.
 	 *
+	 * Use of hidden control characters when the output allows use of HTML markup
+	 * is discouraged and the recommendation is to use bdi HTML tag which doesn't
+	 * have the issue of hidden characters ending up in user clipboard in text
+	 * copy paste, see T375975.
+	 *
+	 * @deprecated since 1.43, use bdi HTML tag in HTML context where possible.
 	 * @param string $text Text to wrap
 	 * @return string Text, wrapped in LRE...PDF or RLE...PDF or nothing
 	 */

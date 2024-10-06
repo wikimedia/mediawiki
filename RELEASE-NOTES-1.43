@@ -792,6 +792,8 @@ because of Phabricator reports.
   warnings.  Use ::addCategoryLinks() instead.
 * OutputPage::setLanguageLinks() has been deprecated; use ::addLanguageLinks()
   instead.
+* (T375975) Language::embedBidi() has been deprecated; use <bdi> HTML tag
+  instead.
 * (T375975) Language::getDirMark() has been deprecated; use <bdi> HTML tag
   instead.
 * (T375975) Language::getDirMarkEntity() has been hard deprecated; use
