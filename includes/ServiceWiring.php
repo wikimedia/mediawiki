@@ -352,7 +352,7 @@ return [
 		return new AutoblockExemptionList(
 			LoggerFactory::getInstance( 'AutoblockExemptionList' ),
 			$messageFormatterFactory->getTextFormatter(
-				$services->getContentLanguage()->getCode()
+				$services->getContentLanguageCode()->toString()
 			)
 		);
 	},
@@ -632,6 +632,11 @@ return [
 			$services->getMainConfig()->get( MainConfigNames::LanguageCode ) );
 	},
 
+	'ContentLanguageCode' => static function ( MediaWikiServices $services ): LanguageCode {
+		return $services->getLanguageFactory()->getLanguageCode(
+			$services->getMainConfig()->get( MainConfigNames::LanguageCode ) );
+	},
+
 	'ContentModelChangeFactory' => static function ( MediaWikiServices $services ): ContentModelChangeFactory {
 		return $services->getService( '_PageCommandFactory' );
 	},
@@ -801,7 +806,9 @@ return [
 			$services->getUserFactory(),
 			$services->getEmailer(),
 			$services->getMessageFormatterFactory(),
-			$services->getMessageFormatterFactory()->getTextFormatter( $services->getContentLanguage()->getCode() )
+			$services->getMessageFormatterFactory()->getTextFormatter(
+				$services->getContentLanguageCode()->toString()
+			)
 		);
 	},
 
@@ -2508,7 +2515,7 @@ return [
 			LoggerFactory::getInstance( 'UserNameUtils' ),
 			$services->getTitleParser(),
 			$messageFormatterFactory->getTextFormatter(
-				$services->getContentLanguage()->getCode()
+				$services->getContentLanguageCode()->toString()
 			),
 			$services->getHookContainer(),
 			$services->getTempUserConfig()
@@ -2742,7 +2749,7 @@ return [
 			LoggerFactory::getInstance( 'UndeletePage' ),
 			$services->getPageUpdaterFactory(),
 			$services->getMessageFormatterFactory()->getTextFormatter(
-				$services->getContentLanguage()->getCode()
+				$services->getContentLanguageCode()->toString()
 			),
 			$services->getArchivedRevisionLookup(),
 			$services->getRestrictionStore(),

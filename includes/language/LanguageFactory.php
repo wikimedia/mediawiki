@@ -152,6 +152,14 @@ class LanguageFactory {
 		return $this->getRawLanguage( $code );
 	}
 
+	public function getLanguageCode( string $code ): LanguageCode {
+		$code = $this->options->get( MainConfigNames::DummyLanguageCodes )[$code] ?? $code;
+		if ( !$this->langNameUtils->isValidCode( $code ) ) {
+			throw new InvalidArgumentException( "Invalid language code \"$code\"" );
+		}
+		return new LanguageCode( $code );
+	}
+
 	/**
 	 * Get a cached or new language object for a given language code
 	 * without normalization of the language code.

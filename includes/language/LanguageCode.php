@@ -27,9 +27,29 @@ use Wikimedia\Bcp47Code\Bcp47CodeValue;
  * Methods for dealing with language codes.
  *
  * @since 1.29
+ * @newable
  * @ingroup Language
  */
 class LanguageCode {
+
+	private string $code;
+
+	/**
+	 * @param string $code
+	 * @since 1.43
+	 */
+	public function __construct( string $code ) {
+		$this->code = $code;
+	}
+
+	/**
+	 * @return string
+	 * @since 1.43
+	 */
+	public function toString(): string {
+		return $this->code;
+	}
+
 	/**
 	 * Mapping of deprecated language codes that were used in previous
 	 * versions of MediaWiki to up-to-date, current language codes.
