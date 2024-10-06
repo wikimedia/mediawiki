@@ -225,19 +225,36 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 	 * @dataProvider provideNamedAndTempMethodNames
 	 */
 	public function testNamedAndTempWhenTempUserAutoCreateDisabled( $methodName ) {
+		$this->enableAutoCreateTempUser();
+		// Add a temporary accounts for the test
+		$tempUserCreateStatus = $this->getServiceContainer()->getTempUserCreator()
+			->create( null, new FauxRequest() );
+		$this->assertStatusOK( $tempUserCreateStatus );
+		$tempUser = $tempUserCreateStatus->getUser();
+
+		$this->resetServices();
 		$this->disableAutoCreateTempUser();
-		// Compare the query info array before and after the call to ::$methodName.
-		// These should be equal as the method should return without making any modifications
-		// to the query when temp users are disabled.
-		$queryBuilder = $this->getStore()->newSelectQueryBuilder();
-		$queryInfoBeforeCall = $queryBuilder->getQueryInfo();
-		$queryBuilder->$methodName();
-		$queryInfoAfterCall = $queryBuilder->getQueryInfo();
-		$this->assertArrayEquals(
-			$queryInfoBeforeCall,
-			$queryInfoAfterCall,
-			"The call to ::$methodName should have had no effect on the query as temp accounts are disabled."
+
+		$actors = iterator_to_array(
+			$this->getStore()
+				->newSelectQueryBuilder()
+				->limit( 100 )
+				->whereUserNamePrefix( '' )
+				->$methodName()
+				->fetchUserIdentities()
 		);
+		if ( $methodName === 'temp' ) {
+			$this->assertCount( 0, $actors );
+		} else {
+			// With temp users disabled, the temp user is treated as a normal user and included.
+			$this->assertArrayEquals(
+				array_merge(
+					array_map( fn ( $userRow ) => $userRow['actor_user'], self::TEST_USERS ),
+					[ $tempUser->getId() ]
+				),
+				array_map( fn ( $actor ) => $actor->getId(), $actors )
+			);
+		}
 	}
 
 	public static function provideNamedAndTempMethodNames() {
