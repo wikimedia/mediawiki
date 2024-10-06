@@ -293,8 +293,10 @@ class Language implements Bcp47Code {
 	public static $durationIntervals = self::DURATION_INTERVALS;
 
 	/**
-	 * Unicode directional formatting characters, for embedBidi()
+	 * Unicode directional formatting characters
 	 */
+	private const LRM = "\u{200E}"; // U+200E LEFT-TO-RIGHT MARK
+	private const RLM = "\u{200F}"; // U+200F RIGHT-TO-LEFT MARK
 	private const LRE = "\u{202A}"; // U+202A LEFT-TO-RIGHT EMBEDDING
 	private const RLE = "\u{202B}"; // U+202B RIGHT-TO-LEFT EMBEDDING
 	private const PDF = "\u{202C}"; // U+202C POP DIRECTIONAL FORMATTING
@@ -3018,12 +3020,10 @@ class Language implements Bcp47Code {
 	 * @return string
 	 */
 	public function getDirMark( $opposite = false ) {
-		$lrm = "\u{200E}"; # LEFT-TO-RIGHT MARK, commonly abbreviated LRM
-		$rlm = "\u{200F}"; # RIGHT-TO-LEFT MARK, commonly abbreviated RLM
 		if ( $opposite ) {
-			return $this->isRTL() ? $lrm : $rlm;
+			return $this->isRTL() ? self::LRM : self::RLM;
 		}
-		return $this->isRTL() ? $rlm : $lrm;
+		return $this->isRTL() ? self::RLM : self::LRM;
 	}
 
 	/**
