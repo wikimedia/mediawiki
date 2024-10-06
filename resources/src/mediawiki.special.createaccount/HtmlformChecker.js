@@ -12,8 +12,8 @@ const util = require( 'mediawiki.util' );
  * @param {string} validator.value Value of the form field to be validated
  * @param {jQuery.Promise} validator.return The promise should be resolved
  *  with an object with two properties: Boolean 'valid' to indicate success
- *  or failure of validation, and an array 'messages' to be passed to
- *  setErrors() on failure.
+ *  or failure of validation, and an array (containing HTML strings or
+ *  jQuery collections) 'messages' to be passed to setErrors() on failure.
  */
 function HtmlformChecker( $element, validator ) {
 	this.validator = validator;
@@ -100,8 +100,9 @@ HtmlformChecker.prototype.validate = function () {
  * Display errors associated with the form element
  *
  * @param {boolean} valid Whether the input is still valid regardless of the messages
- * @param {Array} errors Errorbox messages. Each errorbox message will be appended to a
- *  `<div>` or `<li>`, as with jQuery.append().
+ * @param {Array} errors A list of error messages with formatting. Each message may be
+ *  a string (which will be interpreted as HTML) or a jQuery collection. They will
+ *  be appended to `<div>` or `<li>`, as with jQuery.append().
  * @param {boolean} [forceReplacement] Set true to force a visual replacement even
  *  if the errors are the same. Ignored if errors are empty.
  * @return {HtmlformChecker}
@@ -120,26 +121,23 @@ HtmlformChecker.prototype.setErrors = function ( valid, errors, forceReplacement
 				.empty();
 		} );
 	} else {
+		let $error;
+		// Match behavior of HTMLFormField::formatErrors()
+		if ( errors.length === 1 ) {
+			$error = $( '<div>' ).append( errors[ 0 ] );
+		} else {
+			$error = $( '<ul>' ).append(
+				errors.map( ( e ) => $( '<li>' ).append( e ) )
+			);
+		}
+
 		// Animate the replacement if told to by the caller (i.e. to make it visually
 		// obvious that the changed field value gives the same errorbox) or if
 		// the errorbox text changes (because it makes more sense than
 		// changing the text with no animation).
 		replace = forceReplacement;
-		if ( !replace ) {
-			const $text = $( '<div>' );
-			// Match behavior of HTMLFormField::formatErrors()
-			if ( errors.length === 1 ) {
-				$text.append( errors[ 0 ] );
-			} else {
-				$text.append(
-					$( '<ul>' ).append(
-						errors.map( ( e ) => $( '<li>' ).append( e ) )
-					)
-				);
-			}
-			if ( $text.text() !== $errorBox.text() ) {
-				replace = true;
-			}
+		if ( !replace && $error.text() !== $errorBox.text() ) {
+			replace = true;
 		}
 
 		const $oldErrorBox = $errorBox;
@@ -159,17 +157,8 @@ HtmlformChecker.prototype.setErrors = function ( valid, errors, forceReplacement
 					.detach();
 			}
 			$errorBox.empty();
-			// Match behavior of HTMLFormField::formatErrors()
-			let errorHtml;
-			if ( errors.length === 1 ) {
-				errorHtml = errors[ 0 ][ 0 ];
-			} else {
-				errorHtml = $( '<ul>' ).append(
-					errors.map( ( e ) => $( '<li>' ).append( e ) )
-				)[ 0 ];
-			}
 			$errorBox.append(
-				util.messageBox( errorHtml, errorType )
+				util.messageBox( $error[ 0 ], errorType )
 			);
 			// FIXME: Use CSS transition
 			// eslint-disable-next-line no-jquery/no-slide
