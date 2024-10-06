@@ -30,6 +30,7 @@ use MediaWiki\Status\StatusFormatter;
 use MediaWiki\Tests\Unit\FakeQqxMessageLocalizer;
 use MediaWiki\User\User;
 use MediaWikiUnitTestCase;
+use Psr\Log\NullLogger;
 
 /**
  * @covers \MediaWiki\Permissions\UserAuthority
@@ -383,7 +384,11 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		$this->assertStatusError( 'blockedtext-partial', $permissionStatus );
 		$this->assertNotNull( $permissionStatus->getBlock() );
 
-		$formatter = new StatusFormatter( new FakeQqxMessageLocalizer(), $this->createNoOpMock( \MessageCache::class ) );
+		$formatter = new StatusFormatter(
+			new FakeQqxMessageLocalizer(),
+			$this->createNoOpMock( \MessageCache::class ),
+			new NullLogger()
+		);
 		// Despite all the futzing around with services, StatusFormatter depends on this global through wfEscapeWikiText
 		global $wgEnableMagicLinks;
 		$old = $wgEnableMagicLinks;

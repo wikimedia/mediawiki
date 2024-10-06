@@ -5,6 +5,7 @@ use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Message;
 use MediaWiki\Status\StatusFormatter;
 use MediaWiki\User\User;
+use Psr\Log\Test\TestLogger;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\TestingAccessWrapper;
 
@@ -12,6 +13,19 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \MediaWiki\Status\StatusFormatter
  */
 class StatusFormatterTest extends MediaWikiLangTestCase {
+
+	private ?TestLogger $logger;
+
+	protected function setUp(): void {
+		parent::setUp();
+
+		$this->logger = new TestLogger();
+	}
+
+	protected function tearDown(): void {
+		parent::tearDown();
+		$this->logger = null;
+	}
 
 	private function getFormatter( $lang = 'en' ) {
 		$localizer = new class() implements MessageLocalizer {
@@ -32,7 +46,7 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 
 		$localizer->lang = $lang;
 
-		return new StatusFormatter( $localizer, $cache );
+		return new StatusFormatter( $localizer, $cache, $this->logger );
 	}
 
 	/**
@@ -91,7 +105,12 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideGetWikiTextAndHtml
 	 */
 	public function testGetHtml(
-		StatusValue $status, $wikitext, $wrappedWikitext, $html, $wrappedHtml
+		StatusValue $status,
+		$wikitext,
+		$wrappedWikitext,
+		$html,
+		$wrappedHtml,
+		?string $expectedWarning = null
 	) {
 		$formatter = $this->getFormatter();
 		$this->assertEquals( $html, $formatter->getHTML( $status ) );
@@ -107,6 +126,12 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 				]
 			)
 		);
+
+		if ( $expectedWarning !== null ) {
+			$this->assertTrue( $this->logger->hasWarningThatContains( $expectedWarning ) );
+		} else {
+			$this->assertFalse( $this->logger->hasWarningRecords() );
+		}
 	}
 
 	/**
@@ -125,6 +150,7 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 			"<p>Internal error: MediaWiki\Status\StatusFormatter::getWikiText called for a good result, this is incorrect\n</p>",
 			"<p>(wrap-short: (internalerror_info: MediaWiki\Status\StatusFormatter::getWikiText called for a good result, " .
 				"this is incorrect\n))\n</p>",
+			'MediaWiki\Status\StatusFormatter::getWikiText called for a good result, this is incorrect'
 		];
 
 		$status = new StatusValue();
@@ -137,6 +163,7 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 			"<p>Internal error: MediaWiki\Status\StatusFormatter::getWikiText: Invalid result object: no error text but not OK\n</p>",
 			"<p>(wrap-short: (internalerror_info: MediaWiki\Status\StatusFormatter::getWikiText: Invalid result object: " .
 				"no error text but not OK\n))\n</p>",
+			'MediaWiki\Status\StatusFormatter::getWikiText: Invalid result object: no error text but not OK'
 		];
 
 		$status = new StatusValue();
@@ -204,7 +231,11 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideGetMessage
 	 */
 	public function testGetMessage(
-		StatusValue $status, $expectedParams, $expectedKey, $expectedWrapper
+		StatusValue $status,
+		$expectedParams,
+		$expectedKey,
+		$expectedWrapper,
+		?string $expectedWarning = null
 	) {
 		$formatter = $this->getFormatter();
 		$message = $formatter->getMessage( $status, [ 'lang' => 'qqx' ] );
@@ -233,6 +264,12 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 		$this->assertInstanceOf( Message::class, $message );
 		$this->assertEquals( 'wrapper', $message->getKey(), 'Message::getKey with wrappers' );
 		$this->assertCount( 1, $message->getParams(), 'Message::getParams with wrappers' );
+
+		if ( $expectedWarning !== null ) {
+			$this->assertTrue( $this->logger->hasWarningThatContains( $expectedWarning ) );
+		} else {
+			$this->assertFalse( $this->logger->hasWarningRecords() );
+		}
 	}
 
 	/**
@@ -248,7 +285,8 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 			new StatusValue(),
 			[ "MediaWiki\Status\StatusFormatter::getMessage called for a good result, this is incorrect&#10;" ],
 			'internalerror_info',
-			'wrapper-short'
+			'wrapper-short',
+			'MediaWiki\Status\StatusFormatter::getMessage called for a good result, this is incorrect'
 		];
 
 		$status = new StatusValue();
@@ -257,7 +295,8 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 			$status,
 			[ "MediaWiki\Status\StatusFormatter::getMessage: Invalid result object: no error text but not OK&#10;" ],
 			'internalerror_info',
-			'wrapper-short'
+			'wrapper-short',
+			'MediaWiki\Status\StatusFormatter::getMessage: Invalid result object: no error text but not OK'
 		];
 
 		$status = new StatusValue();
@@ -457,5 +496,4 @@ class StatusFormatterTest extends MediaWikiLangTestCase {
 			);
 		$this->assertTrue( true );
 	}
-
 }

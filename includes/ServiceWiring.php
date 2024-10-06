@@ -870,7 +870,8 @@ return [
 			$services->getTitleFormatter(),
 			$services->getHookContainer(),
 			$services->getUserIdentityUtils(),
-			$services->getLanguageFactory()
+			$services->getLanguageFactory(),
+			LoggerFactory::getInstance( 'status' )
 		);
 	},
 
