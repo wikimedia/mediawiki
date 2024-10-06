@@ -41,6 +41,7 @@ use MediaWiki\Config\Config;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Html\Html;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Languages\Data\NormalizeAr;
 use MediaWiki\Languages\Data\NormalizeMl;
@@ -4432,18 +4433,14 @@ class Language implements Bcp47Code {
 	 *
 	 * @param string $page Page link
 	 * @param string $details HTML safe text between brackets
-	 * @param bool $oppositedm Add the direction mark opposite to your
-	 *   language, to display text properly
 	 * @return string HTML escaped
 	 */
-	public function specialList( $page, $details, $oppositedm = true ) {
+	public function specialList( $page, $details ) {
 		if ( !$details ) {
 			return $page;
 		}
 
-		$dirmark = ( $oppositedm ? $this->getDirMark( true ) : '' ) . $this->getDirMark();
-		return $page .
-			$dirmark .
+		return Html::rawElement( 'bdi', [ 'dir' => $this->getDir() ], $page ) .
 			$this->msg( 'word-separator' )->escaped() .
 			$this->msg( 'parentheses' )->rawParams( $details )->escaped();
 	}
