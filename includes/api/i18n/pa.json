@@ -1,8 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Babanwalia"
+			"Babanwalia",
+			"Cabal"
 		]
 	},
-	"apihelp-help-example-recursive": "ਇੱਕੋ ਸਫ਼ੇ 'ਤੇ ਸਾਰੀ ਮਦਦ"
+	"apihelp-help-example-recursive": "ਇੱਕੋ ਸਫ਼ੇ 'ਤੇ ਸਾਰੀ ਮਦਦ",
+	"apihelp-import-param-interwikipage": "ਅੰਤਰ-ਵਿਕੀ ਆਯਾਤ ਵਾਸਤੇ: ਆਯਾਤ ਕਰਨ ਲਈ ਸਫ਼ਾ।",
+	"apihelp-query+iwbacklinks-param-prefix": "ਅੰਤਰ-ਵਿਕੀ ਲਈ ਅਗੇਤਰ।",
+	"apihelp-query+iwbacklinks-paramvalue-prop-iwprefix": "ਅੰਤਰ-ਵਿਕੀ ਦਾ ਸਿਰਲੇਖ ਜੋੜਦਾ ਹੈ।",
+	"apihelp-query+iwbacklinks-paramvalue-prop-iwtitle": "ਅੰਤਰ-ਵਿਕੀ ਦਾ ਸਿਰਲੇਖ ਜੋੜਦਾ ਹੈ।",
+	"apihelp-query+iwlinks-param-limit": "ਕਿੰਨਿਆਂ ਅੰਤਰਵਿਕੀ ਕੜਿਆਂ ਵਾਪਸ ਕਰਨਿਆ ਹਨ।",
+	"apihelp-revisiondelete-param-show": "ਹਰੇਕ ਸੋਧ ਲਈ ਕੀ ਮੁੜ-ਵਿਖਾਉਣਾ ਹੈ।"
 }

@@ -3105,7 +3105,7 @@
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|səhifə}}",
 	"file-info": "faylın ölçüsü: $1, MIME tipi: $2",
 	"file-info-size": "$1 × $2 piksel, fayl həcmi: $3, MIME növü: $4",
-	"file-info-size-pages": "$1 × $2 piksel, faylın ölçüsü: $3, MIME-tipi: $4, $5 {{PLURAL:$5|səhifə|səhifələr}}",
+	"file-info-size-pages": "$1 × $2 piksel, faylın ölçüsü: $3, MIME-tipi: $4, $5 {{PLURAL:$5|səhifə}}",
 	"file-nohires": "Daha yüksək versiyası yoxdur.",
 	"svg-long-desc": "SVG faylı, nominal olaraq $1 × $2 piksel, faylın ölçüsü: $3",
 	"svg-long-desc-animated": "Animasiya edilmiş SVG faylı, nominal olaraq $1 × $2 piksel, fayl ölçüsü: $3",
