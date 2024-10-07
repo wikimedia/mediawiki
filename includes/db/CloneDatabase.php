@@ -100,12 +100,10 @@ class CloneDatabase {
 						. " is name of both the old and the new table." );
 				}
 				$this->db->dropTable( $tbl, __METHOD__ );
-				wfDebug( __METHOD__ . " dropping {$newTableName}" );
 				// Dropping the oldTable because the prefix was changed
 			}
 
 			# Create new table
-			wfDebug( __METHOD__ . " duplicating $oldTableName to $newTableName" );
 			$this->db->duplicateTableStructure(
 				$oldTableName, $newTableName, $this->useTemporaryTables, __METHOD__ );
 		}
