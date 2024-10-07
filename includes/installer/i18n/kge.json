@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Es Krim 5 Juta Rasa"
+			"Es Krim 5 Juta Rasa",
+			"Amire80"
 		]
 	},
 	"config-desc": "Pamasang untuk MediaWiki",
@@ -97,7 +98,7 @@
 	"config-upload-enable": "Aktifko pangunggahan berkas",
 	"config-upload-deleted": "Direktori untuk berkas tihapus:",
 	"config-personalization-settings": "Personalisasi",
-	"config-logo-preview-main": "Halaman Utamo",
+	"config-logo-preview-main": "Garang",
 	"config-logo-icon": "Logo (ikon):",
 	"config-logo-wordmark": "Tandakata (opsional):",
 	"config-logo-tagline": "Slogan (opsional):",

@@ -65,6 +65,7 @@
 	"oct": "ng10",
 	"nov": "ng11",
 	"dec": "ng12",
+	"period-am": "KELE",
 	"pagecategories": "{{PLURAL:$1|Mutîndu|Mitindu}}",
 	"category_header": "Mikânda na mutîndu \"$1\"",
 	"category-media-header": "Media na mutîndu \"$1\"",
