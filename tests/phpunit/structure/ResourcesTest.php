@@ -1,5 +1,6 @@
 <?php
 
+use JsonSchema\Validator;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
@@ -79,6 +80,30 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 		}
 		$this->assertEquals( $expectedUnknown, $actualUnknown, 'Dependencies that do not exist' );
 		$this->assertEquals( $expectedIllegal, $actualIllegal, 'Dependencies that are not legal' );
+	}
+
+	public function testSchema() {
+		$data = include __DIR__ . '/../../../resources/Resources.php';
+		$schemaPath = __DIR__ . '/../../../docs/extension.schema.v2.json';
+
+		// Replace inline functions with fake callables
+		array_walk_recursive( $data, static function ( &$item, $key ) {
+			if ( $item instanceof Closure ) {
+				$item = 'Test::test';
+			}
+		} );
+		// Convert PHP associative arrays to stdClass objects recursively
+		$data = json_decode( json_encode( $data ) );
+
+		$validator = new Validator;
+		$validator->validate( $data, (object)[ '$ref' => 'file://' . $schemaPath . '#/properties/ResourceModules' ] );
+
+		$this->assertEquals(
+			[],
+			$validator->getErrors(),
+			'Found errors when validating Resources.php against the ResourceModules schema: ' .
+				json_encode( $validator->getErrors(), JSON_PRETTY_PRINT )
+		);
 	}
 
 	/**
