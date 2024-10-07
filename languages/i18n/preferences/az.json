@@ -74,7 +74,7 @@
 	"prefs-help-signature": "Müzakirə səhifələrindəki şərhlər \"<nowiki>~~~~</nowiki>\" işarələrinin köməyi ilə imzalanmalıdır. Bu, həmin şərhin sonuna sizin imzanızı və onun yazılma tarixini əlavə edir.",
 	"prefs-signature-invalid-warning": "İmzanız bəzi alətlərdə problem yarada bilər.",
 	"prefs-signature-invalid-new": "İndiki imzanız etibarsızdır.  Hələ istifadə edə bilsəniz də, düzəldənə qədər onu dəyişdirə bilməyəcəksiniz.",
-	"prefs-signature-invalid-disallow": "İndiki imzanız etibarsızdır. Düzəldənə qədər şərhlərinizi imzaladıqda standart imza istifadə ediləcəkdir.",
+	"prefs-signature-invalid-disallow": "Cari imzanız etibarsızdır. Düzəldənə qədər şərhlərinizi imzalamaq üçün standart imza istifadə ediləcək.",
 	"prefs-signature-highlight-error": "Xətanın yerini göstər",
 	"prefs-signature-error-details": "Daha ətraflı",
 	"badsig": "Səhv xam imza.\nHTML teqlərini nəzərdən keçirin.",

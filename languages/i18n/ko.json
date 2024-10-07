@@ -2620,6 +2620,7 @@
 	"block-options-description": "이러한 옵션은 추가적인 문제를 방지하기 위해 이 사용자를 주시하는데 도움이 될 수 있습니다.",
 	"block-reason": "이유:",
 	"block-reason-other": "추가 또는 기타 이유",
+	"block-success": "[[Special:Contributions/$1|$1]]님이 차단되었습니다. 차단을 검토하려면 [[Special:BlockList|차단 목록]]을 참고하십시오.",
 	"block-user-label": "어떤 사용자를 차단하시겠습니까?",
 	"block-user-active-blocks": "활성화된 차단",
 	"block-user-previous-blocks": "차단 기록",

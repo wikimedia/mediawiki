@@ -27,6 +27,7 @@
 	},
 	"preferences": "환경 설정",
 	"prefsnologintext2": "사용자 환경 설정을 바꾸려면 로그인하세요.",
+	"prefsnologintext2-for-temp-user": "환경 설정을 변경하려면 계정을 만들어 주십시오.",
 	"searchprefs": "환경 설정 검색",
 	"searchprefs-noresults": "결과 없음",
 	"searchprefs-results": "$1개 {{PLURAL:$1|결과}}",

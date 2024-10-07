@@ -383,6 +383,8 @@
 	"apihelp-query+alltransclusions-param-namespace": "열거할 이름공간.",
 	"apihelp-query+alltransclusions-param-limit": "반환할 총 항목 수입니다.",
 	"apihelp-query+allusers-summary": "등록된 모든 사용자를 열거합니다.",
+	"apihelp-query+allusers-param-excludenamed": "일반 계정 사용자를 제외합니다.",
+	"apihelp-query+allusers-param-excludetemp": "임시 계정 사용자를 제외합니다.",
 	"apihelp-query+allusers-param-dir": "정렬 방향.",
 	"apihelp-query+allusers-param-prop": "포함할 정보:",
 	"apihelp-query+allusers-paramvalue-prop-blockinfo": "현재 차단된 사용자의 정보를 추가함.",

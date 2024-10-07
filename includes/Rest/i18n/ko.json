@@ -71,6 +71,7 @@
 	"rest-bad-etag": "잘못된 ETag: $1",
 	"rest-unsupported-profile-version": "지원되지 않는 프로파일 버전: $1",
 	"rest-parsoid-unsupported-media": "지원하지 않는 미디어 유형",
+	"rest-missing-revision-html-content-type": "판 html의 콘텐츠 유형이 없습니다.",
 	"rest-unsupported-profile-conversion": "이 변환을 어떻게 하는지 모릅니다.",
 	"rest-edit-conflict": "편집 충돌 ($1)",
 	"rest-unknown-parsoid-transformation": "알 수 없는 변환.",

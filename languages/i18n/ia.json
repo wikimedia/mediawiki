@@ -2532,6 +2532,7 @@
 	"block-options-description": "Iste optiones pote adjutar te a surveliar iste usator, a fin de evitar ulterior problemas.",
 	"block-reason": "Motivo:",
 	"block-reason-other": "Motivo additional o altere",
+	"block-success": "[[Special:Contributions/$1|$1]] ha essite blocate. Vide le [[Special:BlockList|lista de blocadas]] pro revider le blocadas.",
 	"block-user-label": "Qual usator vole tu blocar?",
 	"block-user-active-blocks": "Blocadas active",
 	"block-user-previous-blocks": "Registro de blocadas",

@@ -10,6 +10,7 @@
 	},
 	"preferences": "Preferénse",
 	"prefsnologintext2": "Pe modificâ e tò preferénse l'é necesâio efetoâ l'intrâ.",
+	"prefsnologintext2-for-temp-user": "Pe piâxéi, creâ 'n'uténsa pe cangiâ e preferénse.",
 	"searchprefs": "Çèrca preferénse",
 	"searchprefs-noresults": "Nisciùn rizultâto",
 	"searchprefs-results": "$1 {{PLURAL:$1|rizultâto|rizultâti}}",

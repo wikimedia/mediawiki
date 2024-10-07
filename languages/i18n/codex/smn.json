@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Seipinne",
+			"Yupik"
+		]
+	},
+	"cdx-dialog-close-button-label": "Toopâ",
+	"cdx-label-optional-flag": "(valjimiävtulâš)",
+	"cdx-message-dismiss-button-label": "Toopâ",
+	"cdx-search-input-search-button-label": "Uusâ",
+	"cdx-table-select-all-label": "Valjii puoh raddalâsâid",
+	"cdx-table-select-row-label": "Valjii raddalâs $1 / $2",
+	"cdx-typeahead-search-search-results-label": "Uuccâmpuátuseh",
+	"cdx-table-pager-button-first-page": "Vuosmuš sijđo",
+	"cdx-table-pager-button-last-page": "Majemuš sijđo",
+	"cdx-table-pager-button-next-page": "Čuávuvâš sijđo",
+	"cdx-table-pager-button-prev-page": "Oovdeb sijđo",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 raddalâs|$1 raddalâs|$1 raddalâsâd}}",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 / $3"
+}

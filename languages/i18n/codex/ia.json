@@ -4,6 +4,8 @@
 			"McDutchie"
 		]
 	},
+	"cdx-chip-input-chip-added": "Le fragmento $1 ha essite addite.",
+	"cdx-chip-input-chip-removed": "Le fragmento $1 ha essite removite.",
 	"cdx-input-chip-aria-description": "Preme ‘Enter’ pro modificar o ‘Delete’ pro eliminar.",
 	"cdx-dialog-close-button-label": "Clauder",
 	"cdx-label-optional-flag": "(optional)",
@@ -12,5 +14,17 @@
 	"cdx-table-select-all-label": "Seliger tote le lineas",
 	"cdx-table-select-row-label": "Seliger le linea $1 de $2",
 	"cdx-table-sort-caption": "$1; le capites de columna con buttones es ordinabile.",
-	"cdx-typeahead-search-search-results-label": "Resultatos del recerca"
+	"cdx-typeahead-search-search-results-label": "Resultatos del recerca",
+	"cdx-table-pager-button-first-page": "Prime pagina",
+	"cdx-table-pager-button-last-page": "Ultime pagina",
+	"cdx-table-pager-button-next-page": "Pagina sequente",
+	"cdx-table-pager-button-prev-page": "Pagina precedente",
+	"cdx-table-pager-items-per-page-current": "$1 linea{{PLURAL:$1||s}}",
+	"cdx-table-pager-items-per-page-default": "Resultatos per pagina",
+	"cdx-table-pagination-status-message-determinate-long": "Resultatos $1–$2 de $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 de $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "Resultatos $1–$2 de multes",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 de multes",
+	"cdx-table-pagination-status-message-indeterminate-final": "Le ultime {{PLURAL:$1|resultato|$1 resultatos}}",
+	"cdx-table-pagination-status-message-pending": "Carga resultatos…"
 }

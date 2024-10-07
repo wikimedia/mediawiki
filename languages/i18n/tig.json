@@ -9,7 +9,7 @@
 			"Shekdin mensur"
 		]
 	},
-	"sunday": "ሰንበት ዓባይ",
+	"sunday": "ሰምበት ዓባይ",
 	"monday": "አትኒን",
 	"tuesday": "አተሉት",
 	"wednesday": "አረቡዕ",
@@ -210,6 +210,7 @@
 	"viewsource": "ዒን ርኤ",
 	"skin-action-viewsource": "ዒን ርኤ",
 	"viewsource-title": "ዒን ርኤ ናይ $1",
+	"viewsourcetext": "ዒን ናይ እሊ ገጽ እግል ትርኤ ዎ ትንገል ትቀድር።",
 	"virus-unknownscanner": "ለይትኣመራ antivirus:",
 	"welcomeuser": "ሰናይ ዳሓን መጸው, $1",
 	"yourname": "ስሜት መትነፈዓይ",
@@ -294,7 +295,7 @@
 	"publishchanges-start": "ተቅዪራት ኣሕትም ...",
 	"showpreview": "መርአዪ አርኤ",
 	"showdiff": "ተቅዪራት ራኣው",
-	"anoneditwarning": "<ዐቢ>ጥንቃቀ:</ዐቢ> እብ ሕሳብካ ኣቲ ኢሀሌከኒ. ዕልዋንካ ናይ ኣይ ፒ እብ ዕባባ እግል ልትረኤ ቱ ተቅዬር ሐቆ ወደከ. ሐቆ <strong>[$1 እብ ሕሳብከ አተከ]</strong> ወክ <strong>[$2 ሕሳብ ማኔከ]</strong>, ቀየሮትከ እግል ስምመትነፈዓይ ናይከ ግልትትሐሰብ ታ, ምስል ካልእ መንፈዖታት.",
+	"anoneditwarning": "<strong>ጥንቃቀ:</strong> እብ ሕሳብካ ኣቲ ኢሀሌከኒ. ዕልዋንካ ናይ ኣይ ፒ እብ ዕባባ እግል ልትረኤ ቱ ተቅዬር ሐቆ ወደከ. ሐቆ <strong>[$1 እብ ሕሳብከ አተከ]</strong> ወክ <strong>[$2 ሕሳብ ማኔከ]</strong>, ቀየሮትከ እግል ስምመትነፈዓይ ናይከ ግልትትሐሰብ ታ, ምስል ካልእ መንፈዖታት.",
 	"blockednoreason": "ሰበብ ኢትሃየባ",
 	"loginreqlink": "እተው",
 	"accmailtitle": "መሕለፊ ቃል ላኣከት",
@@ -572,6 +573,7 @@
 	"namespace": "አካን-ስሜት",
 	"blanknamespace": "መበገስ",
 	"contributions": "ሙሳሃማት ራኣው",
+	"contributions-title": "መሻረከት ምስተክድማይ ናይ $1",
 	"mycontris": "ሙሳሃማት",
 	"anoncontribs": "ሙሳሃማት",
 	"contributions-account-creation-date": "ሕሳብ ፈታሓ ዲብ $1",

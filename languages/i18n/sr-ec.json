@@ -213,6 +213,7 @@
 	"poolcounter-usage-error": "Грешка при употреби: $1",
 	"aboutsite": "О нама",
 	"aboutpage": "Project:О_нама",
+	"copyright-footer": "Садржај је доступан под лиценцом $1 осим ако је другачије наведено.",
 	"copyrightpage": "{{ns:project}}:Ауторска права",
 	"currentevents": "Актуелности",
 	"currentevents-url": "Project:Актуелности",

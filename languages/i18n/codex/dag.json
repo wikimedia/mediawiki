@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Dnshitobu",
 			"Kalakpagh"
 		]
 	},
@@ -24,6 +25,6 @@
 	"cdx-table-pagination-status-message-determinate-short": "$1–$2 zaŋ n-ti $3",
 	"cdx-table-pagination-status-message-indeterminate-long": "Wuhiri labisibu $1–$2 zaŋ n-ti pam",
 	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 zaŋ n-ti pam",
-	"cdx-table-pagination-status-message-indeterminate-final": "Wuhiri bahigu ŋɔ {{PLURAL:$1|$1 labisibu|$1 labisibu}}",
+	"cdx-table-pagination-status-message-indeterminate-final": "Di wuhiri la bahigu n bɔŋɔ {{PLURAL:$1|$1 labisibu|$1 labisibu nima}}",
 	"cdx-table-pagination-status-message-pending": "ʒili labisibu ..."
 }
