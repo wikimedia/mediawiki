@@ -1753,6 +1753,9 @@ abstract class ContentHandler {
 	 * @param Content $content
 	 * @param ContentParseParams $cpoParams
 	 * @param ParserOutput &$output The output object to fill (reference).
+	 * Most implementations should modify the output object passed in here;
+	 * if you choose to replace it with a fresh object instead,
+	 * make sure you call {@link ParserOutput::resetParseStartTime()} on it.
 	 */
 	protected function fillParserOutput(
 		Content $content,
