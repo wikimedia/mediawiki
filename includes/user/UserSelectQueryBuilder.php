@@ -221,7 +221,7 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 	 */
 	public function temp(): self {
 		if ( !$this->tempUserConfig->isKnown() ) {
-			// nothing to do: getMatchCondition throws if temp accounts aren't known
+			$this->conds( '1=0' );
 			return $this;
 		}
 		$this->conds( $this->tempUserConfig->getMatchCondition( $this->db, 'actor_name', IExpression::LIKE ) );

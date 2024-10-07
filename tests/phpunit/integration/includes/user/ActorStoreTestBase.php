@@ -14,17 +14,17 @@ use Wikimedia\Rdbms\ILoadBalancer;
  */
 abstract class ActorStoreTestBase extends MediaWikiIntegrationTestCase {
 	protected const IP = '2600:1004:B14A:5DDD:3EBE:BBA4:BFBA:F37E';
+	/** The user IDs set in addDBData() */
+	protected const TEST_USERS = [
+		'registered' => [ 'actor_id' => '42', 'actor_user' => '24', 'actor_name' => 'TestUser' ],
+		'anon' => [ 'actor_id' => '43', 'actor_user' => null, 'actor_name' => self::IP ],
+		'another registered' => [ 'actor_id' => '44', 'actor_user' => '25', 'actor_name' => 'TestUser1' ],
+		'external' => [ 'actor_id' => '45', 'actor_user' => null, 'actor_name' => 'acme>TestUser' ],
+		'user name 0' => [ 'actor_id' => '46', 'actor_user' => '26', 'actor_name' => '0' ],
+	];
 
 	public function addDBData() {
-		$actors = [
-			'registered' => [ 'actor_id' => '42', 'actor_user' => '24', 'actor_name' => 'TestUser' ],
-			'anon' => [ 'actor_id' => '43', 'actor_user' => null, 'actor_name' => self::IP ],
-			'another registered' => [ 'actor_id' => '44', 'actor_user' => '25', 'actor_name' => 'TestUser1' ],
-			'external' => [ 'actor_id' => '45', 'actor_user' => null, 'actor_name' => 'acme>TestUser' ],
-			'user name 0' => [ 'actor_id' => '46', 'actor_user' => '26', 'actor_name' => '0' ],
-		];
-
-		foreach ( $actors as $description => $row ) {
+		foreach ( self::TEST_USERS as $description => $row ) {
 			$this->getDb()->newInsertQueryBuilder()
 				->insertInto( 'actor' )
 				->ignore()
