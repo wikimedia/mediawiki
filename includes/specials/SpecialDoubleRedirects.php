@@ -184,11 +184,13 @@ class SpecialDoubleRedirects extends QueryPage {
 			$edit = '';
 		}
 
-		$lang = $this->getLanguage();
-		$arrow = $lang->getArrow();
-		$dir = $lang->getDir();
-
-		$linkA = Html::rawElement( 'bdi', [ 'dir' => $dir ], $linkRenderer->makeKnownLink(
+		$arrow = $this->getLanguage()->getArrow();
+		$contentLanguage = $this->getContentLanguage();
+		$bdiAttrs = [
+			'dir' => $contentLanguage->getDir(),
+			'lang' => $contentLanguage->getHtmlCode(),
+		];
+		$linkA = Html::rawElement( 'bdi', $bdiAttrs, $linkRenderer->makeKnownLink(
 			$titleA,
 			null,
 			[],
@@ -198,7 +200,7 @@ class SpecialDoubleRedirects extends QueryPage {
 		$titleB = Title::makeTitle( $deep->b_namespace, $deep->b_title );
 		// We show fragment, but don't link to it, as it probably doesn't exist anymore.
 		$titleBFrag = Title::makeTitle( $deep->b_namespace, $deep->b_title, $deep->b_fragment );
-		$linkB = Html::rawElement( 'bdi', [ 'dir' => $dir ], $linkRenderer->makeKnownLink(
+		$linkB = Html::rawElement( 'bdi', $bdiAttrs, $linkRenderer->makeKnownLink(
 			$titleB,
 			$titleBFrag->getFullText(),
 			[],
@@ -211,7 +213,7 @@ class SpecialDoubleRedirects extends QueryPage {
 			$deep->c_fragment,
 			$deep->c_interwiki
 		);
-		$linkC = Html::rawElement( 'bdi', [ 'dir' => $dir ],
+		$linkC = Html::rawElement( 'bdi', $bdiAttrs,
 			$linkRenderer->makeKnownLink( $titleC, $titleC->getFullText() )
 		);
 
