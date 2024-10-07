@@ -120,6 +120,7 @@
 	"prefs-description-editing": "Customise how you make, track, and review edits.",
 	"prefs-description-watchlist": "Manage and personalise the list of pages you track.",
 	"prefs-description-misc": "Customise the table of contents.",
+	"linterror-night-mode-unaware-background-color": "Background colour inline style needs text colour",
 	"linterror-tidy-font-bug": "Font tag tries to change link colour",
 	"grant-group-customization": "Customisation and preferences",
 	"rcfilters-highlightmenu-title": "Select a colour",

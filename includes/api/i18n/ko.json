@@ -251,6 +251,7 @@
 	"apihelp-logout-summary": "로그아웃하고 세션 데이터를 지웁니다.",
 	"apihelp-logout-example-logout": "현재 사용자를 로그아웃합니다.",
 	"apihelp-managetags-summary": "변경 태그에 관한 관리 작업을 수행합니다.",
+	"apihelp-managetags-param-operation": "수행할 작업:",
 	"apihelp-mergehistory-summary": "문서 역사를 합칩니다.",
 	"apihelp-mergehistory-param-reason": "문서 병합 이유.",
 	"apihelp-move-summary": "문서를 이동합니다.",

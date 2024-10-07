@@ -2487,6 +2487,8 @@
 	"anoncontribs": "Príspevky",
 	"contribsub2": "Príspevky {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "{{GENDER:$2|používateľa|používateľky}} $1",
+	"contributions-edit-count": "{{GENDER:$1|Redaktor|Redaktorka}} s $2 {{PLURAL:$2|úpravou|úpravami}}.",
+	"contributions-account-creation-date": "Účet vytvorený $1.",
 	"contributions-userdoesnotexist": "Používateľské konto „$1“ nie je zaregistrované.",
 	"negative-namespace-not-supported": "Menné priestory so zápornými hodnotami nie sú podporované.",
 	"nocontribs": "Neboli nájdené úpravy, ktoré by zodpovedali týmto kritériám.",

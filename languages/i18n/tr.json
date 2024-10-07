@@ -4222,7 +4222,7 @@
 	"specialmute-error-no-email-set": "E-posta adresinizi doğrulamadığınız için sessize alma özellikleri kullanılamıyor.",
 	"specialmute-error-no-options": "Sessize alma özellikleri kullanılamıyor.",
 	"specialmute-email-footer": "{{BIDI:$2}} kullanıcısının e-posta tercihlerini yönetmek için lütfen şu URL'ye gidin:\n$1",
-	"specialmute-login-required": "Sessiz tercihlerinizi değiştirmek için lütfen giriş yapın.",
+	"specialmute-login-required": "Sessize alma tercihlerinizi değiştirmek için lütfen giriş yapın.",
 	"mute-preferences": "Sessize alma tercihleri",
 	"revid": "revizyon $1",
 	"pageid": "sayfa kimliği $1",
