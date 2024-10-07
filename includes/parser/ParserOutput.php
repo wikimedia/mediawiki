@@ -389,6 +389,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		foreach ( ( $languageLinks ?? [] ) as $ll ) {
 			$this->addLanguageLink( $ll );
 		}
+		// If the content handler does not specify an alternative (by
+		// calling ::resetParseStartTime() at a later point) then use
+		// the creation of the ParserOutput as the "start of parse" time.
+		$this->resetParseStartTime();
 	}
 
 	/**
@@ -2062,6 +2066,19 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
+	 * Unset the parse start time.
+	 *
+	 * This is intended for testing purposes only, in order to avoid
+	 * spurious differences between testing outputs created at different
+	 * times.
+	 *
+	 * @since 1.43
+	 */
+	public function clearParseStartTime(): void {
+		$this->mParseStartTime = [];
+	}
+
+	/**
 	 * Record the time since resetParseStartTime() was last called.
 	 * The recorded time can be accessed using getTimeProfile().
 	 *
@@ -2865,7 +2882,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'LimitReportJSData' => $this->mLimitReportJSData,
 			'CacheMessage' => $this->mCacheMessage,
 			'TimeProfile' => $this->mTimeProfile,
-			'ParseStartTime' => $this->mParseStartTime, // useless
+			'ParseStartTime' => [], // don't serialize this
 			'PreventClickjacking' => $this->mPreventClickjacking,
 			'ExtraScriptSrcs' => $this->mExtraScriptSrcs,
 			'ExtraDefaultSrcs' => $this->mExtraDefaultSrcs,
@@ -2970,7 +2987,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mLimitReportData = $jsonData['LimitReportData'];
 		$this->mLimitReportJSData = $jsonData['LimitReportJSData'];
 		$this->mCacheMessage = $jsonData['CacheMessage'] ?? '';
-		$this->mParseStartTime = $jsonData['ParseStartTime']; // useless!
+		$this->mParseStartTime = []; // invalid after reloading
 		$this->mTimeProfile = $jsonData['TimeProfile'] ?? [];
 		$this->mPreventClickjacking = $jsonData['PreventClickjacking'];
 		$this->mExtraScriptSrcs = $jsonData['ExtraScriptSrcs'];
@@ -3123,6 +3140,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		foreach ( $oldPrivateFields as $f ) {
 			$this->restoreAliasedGhostField( $f, ...$oldAliases );
 		}
+		$this->clearParseStartTime();
 	}
 
 	public function __clone() {

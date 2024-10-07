@@ -65,6 +65,8 @@ class ExecutePostCacheTransformHooksTest extends \MediaWikiIntegrationTestCase {
 				'includeDebugInfo' => false,
 			]
 		);
+		$res->clearParseStartTime();
+		$expected->clearParseStartTime();
 		$this->assertEquals( $expected, $res );
 	}
 

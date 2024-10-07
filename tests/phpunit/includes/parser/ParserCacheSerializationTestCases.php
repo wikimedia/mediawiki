@@ -282,7 +282,7 @@ abstract class ParserCacheSerializationTestCases {
 
 		MWDebug::clearDeprecationFilters();
 
-		return [
+		$testCases = [
 			'empty' => [
 				'instance' => new ParserOutput( '' ),
 				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
@@ -527,6 +527,13 @@ abstract class ParserCacheSerializationTestCases {
 				}
 			],
 		];
+		// We don't serialize or restore parseStartTime any more, so
+		// ensure that it is cleared in the instances we are going to
+		// compare against.
+		foreach ( $testCases as $name => $case ) {
+			$case['instance']->clearParseStartTime();
+		}
+		return $testCases;
 	}
 
 	/**
