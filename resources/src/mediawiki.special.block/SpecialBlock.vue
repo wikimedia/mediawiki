@@ -119,7 +119,7 @@ module.exports = exports = defineComponent( {
 		const submitButtonMessage = computed( () => {
 			return mw.message( alreadyBlocked.value ? 'ipb-change-block' : 'ipbsubmit' ).text();
 		} );
-		const blockType = ref( 'sitewide' );
+		const blockType = ref( mw.config.get( 'blockTypePreset' ) );
 		const expiry = ref( {} );
 		const blockPartialOptions = mw.config.get( 'partialBlockActionOptions' ) ?
 			Object.keys( mw.config.get( 'partialBlockActionOptions' ) ).map(
@@ -131,7 +131,7 @@ module.exports = exports = defineComponent( {
 			[];
 		const blockPartialOptionsSelected = ref( [ 'ipb-action-create' ] );
 		const reasonSelected = ref( 'other' );
-		const reasonOther = ref( '' );
+		const reasonOther = ref( mw.config.get( 'blockReasonOtherPreset' ) );
 		const blockAllowsUTEdit = mw.config.get( 'blockAllowsUTEdit' ) || false;
 		const blockEmailBan = mw.config.get( 'blockAllowsEmailBan' ) || false;
 		const blockAutoblockExpiry = mw.config.get( 'blockAutoblockExpiry' );
