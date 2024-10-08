@@ -295,9 +295,7 @@ class SpecialBlock extends FormSpecialPage {
 		$conf = $this->getConfig();
 		$blockAllowsUTEdit = $conf->get( MainConfigNames::BlockAllowsUTEdit );
 
-		if ( !$this->useCodex ) {
-			$this->getOutput()->enableOOUI();
-		}
+		$this->getOutput()->enableOOUI();
 
 		$user = $this->getUser();
 
