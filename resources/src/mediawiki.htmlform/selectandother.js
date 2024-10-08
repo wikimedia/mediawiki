@@ -18,7 +18,7 @@ mw.hook( 'htmlform.enhance' ).add( ( $root ) => {
 			// find the reason list
 			const $reasonList = $root.find( '#' + $this.data( 'id-select' ) );
 
-			if ( $widget ) {
+			if ( $widget.length ) {
 				mw.loader.using( 'mediawiki.widgets.SelectWithInputWidget', () => {
 					const widget = OO.ui.Widget.static.infuse( $widget );
 					const maxlengthUnit = widget.getData().maxlengthUnit;
