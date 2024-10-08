@@ -29,7 +29,7 @@ class TrackingCategoriesTest extends MediaWikiLangTestCase {
 		);
 
 		$po = new ParserOutput;
-		$po->setPageProperty( 'defaultsort', 'foobar' );
+		$po->setUnsortedPageProperty( 'defaultsort', 'foobar' );
 
 		$page = PageReferenceValue::localReference( NS_USER, 'Testing' );
 

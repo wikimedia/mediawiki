@@ -39,7 +39,7 @@ class LinksDeletionUpdateTest extends MediaWikiLangTestCase {
 		$po->addLink( new TitleValue( 0, 'foo', '', 'iwprefix' ) );
 		$po->addLanguageLink( new TitleValue( 0, 'Francais', '', 'fr' ) );
 		$po->addLink( new TitleValue( 0, 'Target' ) );
-		$po->setPageProperty( 'int', 1 );
+		$po->setNumericPageProperty( 'int', 1 );
 		$po->addTemplate( new TitleValue( NS_TEMPLATE, '!' ), 1, 1 );
 
 		$linksUpdate = new LinksUpdate( $title, $po, false );

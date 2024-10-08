@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Content\WikitextContent;
+use MediaWiki\Debug\MWDebug;
 use MediaWiki\Deferred\LinksUpdate\LinksTable;
 use MediaWiki\Deferred\LinksUpdate\LinksTableGroup;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
@@ -751,6 +752,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			// ::setUnsortedPageProperty
 			$indexedPageProperty = 'setPageProperty';
 			$setUnsortedPageProperty = 'setPageProperty';
+			MWDebug::filterDeprecationForTest( '/::setPageProperty with non-string value/' );
 		}
 
 		$po->$setNumericPageProperty( 'deleted', 1 );
@@ -915,6 +917,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		if ( $useDeprecatedApi ) {
 			$setNumericPageProperty = 'setPageProperty';
 			$setUnsortedPageProperty = 'setPageProperty';
+			MWDebug::filterDeprecationForTest( '/::setPageProperty with non-string value/' );
 		}
 
 		/** @var ParserOutput $po */
@@ -932,7 +935,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		if ( $useDeprecatedApi ) {
 			$po->setPageProperty( 'true', true );
 			$po->setPageProperty( 'false', false );
-			$this->expectDeprecationAndContinue( '/::setPageProperty with non-scalar value/' );
+			$this->expectDeprecationAndContinue( '/::setPageProperty with null value/' );
 			$po->setPageProperty( 'null', null );
 		} else {
 			$po->$setUnsortedPageProperty( 'null', '' );
