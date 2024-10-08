@@ -630,7 +630,7 @@
 	"showpreview": "Ozuta ezikacund",
 	"showdiff": "Ozuta vajehtused",
 	"blankarticle": "<strong>Homaiče:</strong> Lehtpol', miččen sinä teged, om tühj.\nKu sinä painad möst \"$1\", lehtpol' linneb tehtud ilman südäimištota.",
-	"anoneditwarning": "<strong>Homaičuz:<strong> Sinä ed ole sistemas. Sinun IP-adresan nägištaba kaik, ku sinä tegeškanded hot’ miččid-ni vajehtusid. Ku sinä <strong>[$1 tuled sistemaha]</strong> libo <strong>[$2 teged lehtpolen]</strong>, ka sinun vajehtused linneb sidotud sinun kävutajan nimenke, siloi sinai linneb ližavoimusid.",
+	"anoneditwarning": "<strong>Homaičuz:</strong> Sinä ed ole sistemas. Sinun IP-adresan nägištaba kaik, ku sinä tegeškanded hot’ miččid-ni vajehtusid. Ku sinä <strong>[$1 tuled sistemaha]</strong> libo <strong>[$2 teged lehtpolen]</strong>, ka sinun vajehtused linneb sidotud sinun kävutajan nimenke, siloi sinai linneb ližavoimusid.",
 	"anonpreviewwarning": "<em>Sinä ed tulend sistemaha. Painusen aigan sinun IP-adres linneb pandud necen lehtpolen vajehtusiden istorijaha.</em>",
 	"missingsummary": "<strong>Muštatez:</strong> Sinä ed andand vajehtusen lühüdad sel'genzoitust.\nKu sinä painad völ kerdan \"$1\", sinun vajehtuz ei linne kaitud.",
 	"selfredirect": "<strong>Homaičuz:</strong> Sinä oigendad necen lehtpolen ičeleze.\nVoib olda, sinä kirjutid väran ten libo vajehtad toižen lehtpolen.\nKu sinä möst painad \"$1\", sindai kaiken-se oigetas.",

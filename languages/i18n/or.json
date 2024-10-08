@@ -2646,7 +2646,7 @@
 	"htmlform-cloner-delete": "ବାହାର କରନ୍ତୁ",
 	"htmlform-cloner-required": "ଅତି କମରେ ଗୋଟିଏ ମୂଲ୍ୟ ଲୋଡ଼ା",
 	"logentry-delete-delete": "$1, $3 ପୃଷ୍ଠାଟି {{GENDER:$2|ଲିଭାଇଦେଲେ}}",
-	"logentry-delete-delete_redir": "$1 $3 ଲେଉଟାଣିଟି {{GENDER:$2|କାଟି}} ତା' ବଦଳରେ ପୁଣି ଲେଖିଲେ",
+	"logentry-delete-delete_redir": "$1 \"$3\" ପ୍ରତିବଦଳ କରି ଲେଉଟାଣିଟି {{GENDER:$2|କାଟିଦେଲେ}}",
 	"logentry-delete-restore": "$1 $3 ପୃଷ୍ଠାଟି {{GENDER:$2|ପୁନସ୍ଥାପନ କଲେ}} ($4)",
 	"logentry-delete-event": "$1 {{PLURAL:$5|ଲଗ ଘଟଣାଟିଏ|$5 ଗୋଟି ଲଗ ଘଟଣା}}ର ଦେଖଣା $3 ପୃଷ୍ଠାରେ {{GENDER:$2|ବଦଳାଇଲେ}}: $4",
 	"logentry-delete-revision": "$1 {{PLURAL:$5|ସଂସ୍କରଣଟିଏ|$5 ଗୋଟି ସଂସ୍କରଣ}}ର ଦେଖଣା $3 ପୃଷ୍ଠାରେ {{GENDER:$2|ବଦଲାଇଲେ}}: $4",

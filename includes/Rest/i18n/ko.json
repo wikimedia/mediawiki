@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Ykhwong",
-			"Bluehill"
+			"Bluehill",
+			"Suleiman the Magnificent Television"
 		]
 	},
 	"rest-wrong-method": "요청 메소드($1)는 {{PLURAL:$3|이 경로에 대해 허용되는 메소드|이 경로에 대해 허용되는 메소드 중 하나}}가 아닙니다 ($2)",
@@ -31,6 +32,7 @@
 	"rest-search-error": "검색 결과를 반환할 때 오류가 발생했습니다: $1",
 	"rest-page-source-type-error": "요청한 문서의 콘텐츠 유형은 지원되지 않습니다",
 	"rest-no-revision": "$1 제목의 판을 검색할 수 없습니다",
+	"rest-media-too-many-links": "제목 $1에 너무 많은 미디어 링크가 발견되었습니다. (허용되는 링크 수: $2)",
 	"rest-html-backend-error": "파소이드 HTML을 가져올 수 없습니다",
 	"rest-bad-json-body": "유효하지 않은 요청 본문입니다. JSON 객체여야 합니다.",
 	"rest-json-body-parse-error": "요청 본문을 JSON으로 구문 분석하는 데 실패했습니다: $1",
