@@ -26,6 +26,9 @@ class ResponseFactory {
 
 	/**
 	 * @param ITextFormatter[] $textFormatters
+	 *
+	 * If there is a relative preference among the input text formatters, the formatters should
+	 * be ordered from most to least preferred.
 	 */
 	public function __construct( $textFormatters ) {
 		$this->textFormatters = $textFormatters;
@@ -318,7 +321,17 @@ class ResponseFactory {
 		return "<!doctype html><title>Redirect</title><a href=\"$url\">$url</a>";
 	}
 
-	public function formatMessage( MessageValue $messageValue ) {
+	/**
+	 * Tries to return the formatted string(s) for a message value object using the
+	 * response factory's text formatters. The returned array will either be empty (if there are
+	 * no text formatters), or have exactly one key, "messageTranslations", whose value
+	 * is an array of formatted strings, keyed by the associated language code.
+	 *
+	 * @param MessageValue $messageValue the message value object to format
+	 *
+	 * @return array
+	 */
+	public function formatMessage( MessageValue $messageValue ): array {
 		if ( !$this->textFormatters ) {
 			// For unit tests
 			return [];
@@ -330,6 +343,35 @@ class ResponseFactory {
 			$translations[$lang] = $messageText;
 		}
 		return [ 'messageTranslations' => $translations ];
+	}
+
+	/**
+	 * Tries to return one formatted string for a message value object. Return value will be:
+	 *   1) the formatted string for $preferredLang, if $preferredLang is supplied and the
+	 *      formatted string for that language is available.
+	 *   2) the first available formatted string, if any are available.
+	 *   3) the message key string, if no formatted strings are available.
+	 * Callers who need more specific control should call formatMessage() instead.
+	 *
+	 * @param MessageValue $messageValue the message value object to format
+	 * @param string $preferredlang preferred language for the formatted string, if available
+	 *
+	 * @return string
+	 */
+	public function getFormattedMessage(
+		MessageValue $messageValue, string $preferredlang = ''
+	): string {
+		$strings = $this->formatMessage( $messageValue );
+		if ( !$strings ) {
+			return $messageValue->getKey();
+		}
+
+		$strings = $strings['messageTranslations'];
+		if ( $preferredlang && array_key_exists( $preferredlang, $strings ) ) {
+			return $strings[ $preferredlang ];
+		} else {
+			return reset( $strings );
+		}
 	}
 
 	/**

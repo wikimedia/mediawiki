@@ -227,4 +227,28 @@ class ResponseFactoryTest extends MediaWikiUnitTestCase {
 			'{"messageTranslations":{"qqx":"rftest"},"httpCode":404,"httpReason":"Not Found"}',
 			$body->getContents() );
 	}
+
+	public function testFormatMessage() {
+		$rf = $this->createResponseFactory();
+		$mv = new MessageValue( 'rftest' );
+		$ret = $rf->formatMessage( $mv );
+		$this->assertIsArray( $ret );
+		$this->assertArrayHasKey( 'messageTranslations', $ret );
+		$this->assertIsArray( $ret['messageTranslations'] );
+		$this->assertArrayHasKey( 'qqx', $ret['messageTranslations'] );
+		$this->assertSame( 'rftest', $ret['messageTranslations']['qqx'] );
+	}
+
+	public function testGetFormattedMessage() {
+		$rf = $this->createResponseFactory();
+		$mv = new MessageValue( 'rftest' );
+
+		$ret = $rf->getFormattedMessage( $mv );
+		$this->assertIsString( $ret );
+		$this->assertSame( 'rftest', $ret );
+
+		$ret = $rf->getFormattedMessage( $mv, 'doesnotexist' );
+		$this->assertIsString( $ret );
+		$this->assertSame( 'rftest', $ret );
+	}
 }
