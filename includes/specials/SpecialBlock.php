@@ -685,6 +685,9 @@ class SpecialBlock extends FormSpecialPage {
 		if ( preg_match( '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/', $expiry ) === 1 ) {
 			// YYYY-MM-DDTHH:mm which is accepted by <input type="datetime-local">, but not by MediaWiki.
 			return substr( $expiry, 0, 16 );
+		} elseif ( $expiry === '' ) {
+			// No expiry specified
+			return '';
 		}
 		return substr( wfTimestamp( TS_ISO_8601, $expiry ), 0, 16 );
 	}
