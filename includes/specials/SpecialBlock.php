@@ -152,7 +152,6 @@ class SpecialBlock extends FormSpecialPage {
 		parent::execute( $par );
 
 		if ( $this->useCodex ) {
-			$this->getOutput()->addModules( 'mediawiki.special.block.codex' );
 			$this->codexFormData[ 'blockAlreadyBlocked' ] = $this->alreadyBlocked;
 			$this->codexFormData[ 'blockTargetUser' ] = $this->target instanceof UserIdentity ?
 				$this->target->getName() :
@@ -290,7 +289,9 @@ class SpecialBlock extends FormSpecialPage {
 		$conf = $this->getConfig();
 		$blockAllowsUTEdit = $conf->get( MainConfigNames::BlockAllowsUTEdit );
 
-		$this->getOutput()->enableOOUI();
+		if ( !$this->useCodex ) {
+			$this->getOutput()->enableOOUI();
+		}
 
 		$user = $this->getUser();
 
@@ -670,7 +671,11 @@ class SpecialBlock extends FormSpecialPage {
 	 */
 	protected function preHtml() {
 		$this->getOutput()->addModuleStyles( [ 'mediawiki.special' ] );
-		$this->getOutput()->addModules( [ 'mediawiki.special.block' ] );
+		if ( $this->useCodex ) {
+			$this->getOutput()->addModules( [ 'mediawiki.special.block.codex' ] );
+		} else {
+			$this->getOutput()->addModules( [ 'mediawiki.special.block' ] );
+		}
 
 		$blockCIDRLimit = $this->getConfig()->get( MainConfigNames::BlockCIDRLimit );
 		$text = $this->msg( 'blockiptext', $blockCIDRLimit['IPv4'], $blockCIDRLimit['IPv6'] )->parse();
