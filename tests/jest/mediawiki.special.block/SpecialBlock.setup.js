@@ -43,13 +43,13 @@ function mockMwConfigGet( config = {} ) {
 		blockAllowsEmailBan: true,
 		blockAllowsUTEdit: true,
 		blockAutoblockExpiry: '1 day',
-		blockDefaultExpiry: '',
 		blockDetailsPreset: [],
+		blockExpiryDefault: '',
 		blockExpiryPreset: null,
 		blockHideUser: true,
 		blockExpiryOptions: {
 			infinite: 'infinite',
-			'Other time:': 'other'
+			'31 horas': '31 hours'
 		},
 		blockPreErrors: [],
 		blockReasonOptions: [
