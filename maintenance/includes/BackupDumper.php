@@ -76,8 +76,6 @@ abstract class BackupDumper extends Maintenance {
 	protected $revCount = 0;
 	/** @var string|null null means use default */
 	protected $schemaVersion = null;
-	/** @var string|null null means use default */
-	protected $server = null;
 	/** @var DumpMultiWriter|DumpOutput|null Output filters */
 	protected $sink = null;
 	/** @var float */
@@ -162,7 +160,6 @@ abstract class BackupDumper extends Maintenance {
 			'<type>[:<options>]. <types>s: latest, notalk, namespace', false, true, false, true );
 		$this->addOption( 'report', 'Report position and speed after every n pages processed. ' .
 			'Default: 100.', false, true );
-		$this->addOption( 'server', 'Force reading from MySQL server', false, true );
 		$this->addOption( '7ziplevel', '7zip compression level for all 7zip outputs. Used for ' .
 			'-mx option to 7za command.', false, true );
 		// NOTE: we can't know the default schema version yet, since configuration has not been
@@ -299,10 +296,6 @@ abstract class BackupDumper extends Maintenance {
 			$this->reportingInterval = intval( $this->getOption( 'report' ) );
 		}
 
-		if ( $this->hasOption( 'server' ) ) {
-			$this->server = $this->getOption( 'server' );
-		}
-
 		$sink ??= new DumpOutput();
 		$sinks[] = $sink;
 
@@ -392,9 +385,6 @@ abstract class BackupDumper extends Maintenance {
 	}
 
 	/**
-	 * @todo Fixme: the --server parameter is currently not respected, as it
-	 * doesn't seem terribly easy to ask the load balancer for a particular
-	 * connection by name.
 	 * @return IMaintainableDatabase
 	 */
 	protected function backupDb() {
@@ -428,12 +418,6 @@ abstract class BackupDumper extends Maintenance {
 		if ( isset( $this->lb ) ) {
 			$this->lb->closeAll( __METHOD__ );
 		}
-	}
-
-	protected function backupServer() {
-		global $wgDBserver;
-
-		return $this->server ?: $wgDBserver;
 	}
 
 	public function reportPage() {
