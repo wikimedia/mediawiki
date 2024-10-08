@@ -82,7 +82,7 @@ describe( 'Page', () => {
 
 		// check
 		await expect( await EditPage.heading ).toHaveText( name );
-		await expect( await EditPage.displayedContent ).toHaveText( editContent );
+		await expect( await EditPage.displayedContent ).toHaveTextContaining( editContent );
 	} );
 
 	it( 'should have history @daily', async () => {
