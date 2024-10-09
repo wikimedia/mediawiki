@@ -12,7 +12,7 @@ use MediaWiki\User\UserIdentity;
  * @internal
  */
 class CorsUtils implements BasicAuthorizerInterface {
-	/** @var array */
+
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::AllowedCorsHeaders,
 		MainConfigNames::AllowCrossOrigin,

@@ -63,7 +63,6 @@ use Wikimedia\Parsoid\Parsoid;
 class HtmlInputTransformHelper {
 	/**
 	 * @internal
-	 * @var string[]
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::ParsoidCacheConfig

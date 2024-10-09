@@ -26,9 +26,8 @@ namespace Wikimedia\DependencyStore;
  * @internal For use by ResourceLoader\Module only
  */
 abstract class DependencyStore {
-	/** @var string */
+
 	protected const KEY_PATHS = 'paths';
-	/** @var string */
 	protected const KEY_AS_OF = 'asOf';
 
 	/**

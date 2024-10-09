@@ -174,7 +174,6 @@ class ParserTestRunner {
 	 */
 	public const DB_PREFIX = 'parsertest_';
 
-	/** @var string */
 	private const FILTER_MSG = "Test doesn't match filter";
 
 	/**

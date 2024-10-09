@@ -78,7 +78,6 @@ class Router {
 
 	/**
 	 * @internal
-	 * @var array
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::CanonicalServer,

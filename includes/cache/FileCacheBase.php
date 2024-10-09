@@ -37,7 +37,7 @@ use Wikimedia\ObjectCache\BagOStuff;
  * @ingroup Cache
  */
 abstract class FileCacheBase {
-	/** @var string[] */
+
 	private const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::CacheEpoch,
 		MainConfigNames::FileCacheDepth,

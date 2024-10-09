@@ -82,13 +82,11 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 
 	/**
 	 * @internal
-	 * @var string[]
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::ParsoidCacheConfig
 	];
 
-	/** @var string[] */
 	private const OUTPUT_FLAVORS = [ 'view', 'stash', 'fragment', 'edit' ];
 
 	/** @var PageIdentity|null */

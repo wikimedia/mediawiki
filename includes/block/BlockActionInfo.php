@@ -61,8 +61,6 @@ class BlockActionInfo {
 	 * ipb-action-upload
 	 * ipb-action-move
 	 * ipb-action-create
-	 *
-	 * @var int[]
 	 */
 	private const CORE_BLOCK_ACTIONS = [
 		'upload' => self::ACTION_UPLOAD,

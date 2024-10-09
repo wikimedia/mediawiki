@@ -40,8 +40,6 @@ class GaugeMetric implements MetricInterface {
 	 * The StatsD protocol type indicator:
 	 * https://github.com/statsd/statsd/blob/v0.9.0/docs/metric_types.md
 	 * https://docs.datadoghq.com/developers/dogstatsd/datagram_shell/?tab=metrics
-	 *
-	 * @var string
 	 */
 	private const TYPE_INDICATOR = "g";
 

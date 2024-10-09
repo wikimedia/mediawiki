@@ -267,8 +267,6 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 * and constants are also overkill...
 	 *
 	 * @see docs/pageupdater.md for documentation of the life cycle.
-	 *
-	 * @var array[]
 	 */
 	private const TRANSITIONS = [
 		'new' => [

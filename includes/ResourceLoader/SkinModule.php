@@ -223,8 +223,6 @@ class SkinModule extends LessVarFileModule {
 	 * Defaults for when a 'features' parameter is specified.
 	 *
 	 * When these apply, they are the merged into the specified options.
-	 *
-	 * @var array<string,bool>
 	 */
 	private const DEFAULT_FEATURES_SPECIFIED = [
 		'accessibility' => true,
@@ -238,8 +236,6 @@ class SkinModule extends LessVarFileModule {
 	 *
 	 * For backward-compatibility, when the parameter is not declared
 	 * only 'logo' styles are loaded.
-	 *
-	 * @var string[]
 	 */
 	private const DEFAULT_FEATURES_ABSENT = [
 		'logo',

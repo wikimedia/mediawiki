@@ -66,8 +66,6 @@ class TrackingCategories {
 
 	/**
 	 * Tracking categories that exist in core
-	 *
-	 * @var array
 	 */
 	private const CORE_TRACKING_CATEGORIES = [
 		'broken-file-category',

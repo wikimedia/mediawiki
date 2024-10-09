@@ -41,7 +41,6 @@ use Wikimedia\Rdbms\LikeValue;
  */
 class UserNamePrefixSearch {
 
-	/** @var string */
 	public const AUDIENCE_PUBLIC = 'public';
 
 	private IConnectionProvider $dbProvider;

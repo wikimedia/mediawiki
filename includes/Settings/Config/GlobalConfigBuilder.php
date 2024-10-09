@@ -8,7 +8,6 @@ use function array_key_exists;
 
 class GlobalConfigBuilder extends ConfigBuilderBase {
 
-	/** @var string */
 	public const DEFAULT_PREFIX = 'wg';
 
 	/** @var string */

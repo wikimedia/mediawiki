@@ -42,7 +42,6 @@ use Wikimedia\Minify\CSSMin;
 class Image {
 	/**
 	 * Map of allowed file extensions to their MIME types.
-	 * @var array
 	 */
 	private const FILE_TYPES = [
 		'svg' => 'image/svg+xml',

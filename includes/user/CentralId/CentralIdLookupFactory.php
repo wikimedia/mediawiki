@@ -35,7 +35,6 @@ class CentralIdLookupFactory {
 
 	/**
 	 * @internal
-	 * @var string[]
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::CentralIdLookupProviders,

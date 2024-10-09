@@ -194,8 +194,6 @@ abstract class Installer {
 	 * MediaWiki configuration globals that will eventually be passed through
 	 * to LocalSettings.php. The names only are given here, the defaults
 	 * typically come from config-schema.yaml.
-	 *
-	 * @var array
 	 */
 	private const DEFAULT_VAR_NAMES = [
 		MainConfigNames::Sitename,

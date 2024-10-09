@@ -35,10 +35,7 @@ use Wikimedia\Stats\Exceptions\InvalidConfigurationException;
  */
 class StatsUtils {
 
-	/** @var string */
 	public const RE_VALID_NAME_AND_LABEL_NAME = "/^[a-zA-Z_][a-zA-Z0-9_]*$/";
-
-	/** @var float */
 	public const DEFAULT_SAMPLE_RATE = 1.0;
 
 	/**

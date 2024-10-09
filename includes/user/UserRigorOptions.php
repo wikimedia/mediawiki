@@ -30,30 +30,22 @@ namespace MediaWiki\User;
 interface UserRigorOptions {
 
 	/**
-	 * @var string
-	 *
 	 * Check that a user name is valid for batch processes, login and account
 	 * creation. This does not allow auto-created temporary user patterns.
 	 */
 	public const RIGOR_CREATABLE = 'creatable';
 
 	/**
-	 * @var string
-	 *
 	 * Check that a user name is valid for batch processes and login
 	 */
 	public const RIGOR_USABLE = 'usable';
 
 	/**
-	 * @var string
-	 *
 	 * Check that a user name is valid for batch processes
 	 */
 	public const RIGOR_VALID = 'valid';
 
 	/**
-	 * @var string
-	 *
 	 * No validation at all
 	 */
 	public const RIGOR_NONE = 'none';

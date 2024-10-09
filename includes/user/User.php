@@ -96,13 +96,11 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	use WikiAwareEntityTrait;
 
 	/**
-	 * @var int
 	 * @see IDBAccessObject::READ_EXCLUSIVE
 	 */
 	public const READ_EXCLUSIVE = IDBAccessObject::READ_EXCLUSIVE;
 
 	/**
-	 * @var int
 	 * @see IDBAccessObject::READ_LOCKING
 	 */
 	public const READ_LOCKING = IDBAccessObject::READ_LOCKING;

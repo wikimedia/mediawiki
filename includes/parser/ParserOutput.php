@@ -332,7 +332,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 */
 	private $mFlags = [];
 
-	/** @var string[] */
 	private const SPECULATIVE_FIELDS = [
 		'speculativePageIdUsed',
 		'mSpeculativeRevId',
