@@ -38,7 +38,7 @@ class TestSetup {
 		global $wgScriptPath, $wgScript, $wgResourceBasePath, $wgStylePath, $wgExtensionAssetsPath;
 		global $wgArticlePath, $wgActionPaths, $wgVariantArticlePath, $wgUploadNavigationUrl;
 		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgSessionCacheType;
-		global $wgMainStash, $wgChronologyProtectorStash;
+		global $wgMainStash;
 		global $wgLanguageConverterCacheType, $wgUseDatabaseMessages;
 		global $wgLocaltimezone, $wgLocalTZoffset, $wgLocalisationCacheConf;
 		global $wgSearchType;
@@ -82,7 +82,6 @@ class TestSetup {
 		$wgLanguageConverterCacheType = 'hash';
 		// Uses db-replicated by default in MainConfigSchema
 		$wgMainStash = 'hash';
-		$wgChronologyProtectorStash = 'hash';
 		// Use memory job queue
 		$wgJobTypeConf = [
 			'default' => [ 'class' => JobQueueMemory::class, 'order' => 'fifo' ],

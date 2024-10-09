@@ -501,19 +501,12 @@ return [
 
 	'ChronologyProtector' => static function ( MediaWikiServices $services ): ChronologyProtector {
 		$mainConfig = $services->getMainConfig();
-		$cpStashType = $mainConfig->get( MainConfigNames::ChronologyProtectorStash );
-		$isMainCacheBad = $services->getObjectCacheFactory()->isDatabaseId(
-			$mainConfig->get( MainConfigNames::MainCacheType )
+		$microStashIsDatabase = $services->getObjectCacheFactory()->isDatabaseId(
+			$mainConfig->get( MainConfigNames::MicroStashType )
 		);
-
-		$objectCacheFactory = $services->getObjectCacheFactory();
-		if ( is_string( $cpStashType ) ) {
-			$cpStash = $objectCacheFactory->getInstance( $cpStashType );
-		} elseif ( $isMainCacheBad ) {
-			$cpStash = new EmptyBagOStuff();
-		} else {
-			$cpStash = $objectCacheFactory->getLocalClusterInstance();
-		}
+		$cpStash = $microStashIsDatabase
+			? new EmptyBagOStuff()
+			: $services->getMicroStash();
 
 		$chronologyProtector = new ChronologyProtector(
 			$cpStash,

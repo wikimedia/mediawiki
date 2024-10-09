@@ -2469,14 +2469,22 @@ config-schema:
             This store should be optimized for ephemeral data, and should be able to handle
             a high volume of writes and reads. The dataset access scope should be across
             all servers that serve the application.
-            Note that the TTL of the data written to the store must be respected completely
+            Note that the TTL of the data written to this store must be respected completely
             before the data gets evicted from the store (whether the data is used or not).
-            Thus, the store should not evict data before the TTL expires.
-            Properties of the backend should be:
-            1.) the data written to the store should be short-lived,
-            2.) it should be evicted ONLY after the TTL elapses (reliably persist),
-            3.) should be accessed by all servers that serve the application,
-            4.) should be able to handle a high volume of writes and reads.
+            The store must not evict data based on LRU or popularity before the TTL expires.
+            Expectations for sysadmins:
+            1. The data written to this store is generally short-lived (seconds/minutes),
+            2. This store must reliably persist and should not evict data until the TTL expires,
+            3. The same store must be accessed by all application servers (i.e. no visible lag or
+               split reality),
+            4. This store should handle a high volume of both writes and reads,
+               with reads completing with consistently low latencies.
+            Examples users:
+            - {@link MediaWiki::Permissions::RateLimiter RateLimiter} (via RStatsFactory)
+            - {@link Wikimedia::Rdbms::ChronologyProtector ChronologyProtector}
+               See also [ChronologyProtector requirements](@ref ChronologyProtector-storage-requirements),
+               for more detailed system administrator requirements for multi-DC operations.
+            Valid options are the keys of {@link $wgObjectCaches}, e.g. CACHE_* constants.
             @see \Wikimedia\ObjectCache\BagOStuff
             @since 1.42
     MainStash:
@@ -2559,21 +2567,6 @@ config-schema:
             If no filter options are defined for a given namespace, the filter options
             under the "default" key will be used for pages in that namespace.
             @since 1.42
-    ChronologyProtectorStash:
-        default: null
-        type:
-            - string
-            - 'null'
-        description: |-
-            The object store type for the
-            {@link Wikimedia::Rdbms::ChronologyProtector ChronologyProtector} store.
-            This should be a fast storage system optimized for lightweight ephemeral data.
-            Data stored should be readable by all application servers in the local datacenter.
-            See [ChronologyProtector requirements](@ref ChronologyProtector-storage-requirements)
-            for more detailed system administrator requirements (especially for multi-dc operations).
-            Valid options are the keys of {@link $wgObjectCaches}, e.g. CACHE_* constants.
-            Defaults to {@link $wgMainCacheType} (in ServiceWiring.php).
-            @since 1.36
     ChronologyProtectorSecret:
         default: ''
         type: string

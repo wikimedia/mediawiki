@@ -1521,12 +1521,6 @@ $wgParsoidSelectiveUpdateSampleRate = null;
 $wgParserCacheFilterConfig = null;
 
 /**
- * Config variable stub for the ChronologyProtectorStash setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::ChronologyProtectorStash
- */
-$wgChronologyProtectorStash = null;
-
-/**
  * Config variable stub for the ChronologyProtectorSecret setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ChronologyProtectorSecret
  */

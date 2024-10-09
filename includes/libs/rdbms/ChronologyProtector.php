@@ -87,7 +87,7 @@ use Wikimedia\ObjectCache\EmptyBagOStuff;
  *
  * ### Storage requirements
  *
- * The store used by ChronologyProtector, as configured via {@link $wgChronologyProtectorStash},
+ * The store used by ChronologyProtector, as configured via {@link $wgMicroStashType},
  * should meet the following requirements:
  *
  * - Low latencies. Nearly all web requests that involve a database connection will
