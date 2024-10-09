@@ -55,6 +55,13 @@
 				</span>
 			</template>
 		</cdx-table>
+		<div v-if="moreblocks" class="mw-block-fulllog">
+			<a
+				:href="mw.util.getUrl( 'Special:Log', { page: targetUser, type: 'block' } )"
+			>
+				{{ $i18n( 'log-fulllog' ).text() }}
+			</a>
+		</div>
 	</cdx-accordion>
 </template>
 
@@ -91,7 +98,8 @@ module.exports = exports = defineComponent( {
 	},
 	data() {
 		return {
-			data: []
+			data: [],
+			moreblocks: false
 		};
 	},
 	methods: {
@@ -103,14 +111,14 @@ module.exports = exports = defineComponent( {
 				format: 'json',
 				formatversion: 2,
 				list: 'logevents',
-				aulimit: '10',
+				lelimit: '10',
 				letype: 'block',
 				leprop: 'ids|title|type|user|timestamp|comment|details',
 				letitle: 'User:' + searchTerm
 			};
 
 			return api.get( params )
-				.then( ( response ) => response.query );
+				.then( ( response ) => response );
 		}
 	},
 	watch: {
@@ -120,6 +128,8 @@ module.exports = exports = defineComponent( {
 					this.data = [];
 					// Look up the block(s) for the target user in the log
 					this.getUserBlocks( newValue ).then( ( data ) => {
+						this.moreblocks = !!data.continue;
+						data = data.query;
 						// The fallback is only necessary for Jest tests.
 						data = data || { logevents: [] };
 						for ( let i = 0; i < data.logevents.length; i++ ) {
@@ -157,5 +167,9 @@ module.exports = exports = defineComponent( {
 
 .mw-block-params-hyphen {
 	padding-left: @spacing-75;
+}
+
+.mw-block-fulllog {
+	margin-top: @spacing-50;
 }
 </style>

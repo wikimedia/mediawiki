@@ -121,6 +121,183 @@ function mockMwApiGet( additionalMocks = [] ) {
 				}
 			}
 		},
+		{
+			params: {
+				list: 'logevents',
+				letype: 'block',
+				letitle: 'User:BlockedALot'
+			},
+			response: {
+				continue: {
+					lecontinue: '20240909144407|979',
+					continue: '-||'
+				},
+				query: {
+					logevents: [
+						{
+							logid: 980,
+							title: 'User:BlockedALot',
+							params: {
+								duration: '1 year',
+								flags: [
+									'noautoblock'
+								],
+								sitewide: true,
+								expiry: '2029-09-17T14:30:51Z'
+							},
+							type: 'block',
+							user: 'Admin',
+							timestamp: '2024-09-17T14:30:51Z',
+							comment: 'A reason'
+						},
+						{
+							logid: 981,
+							title: 'User:BlockedALot',
+							params: {
+								duration: '1 year',
+								flags: [
+									'noautoblock'
+								],
+								sitewide: true,
+								expiry: '2029-09-18T14:30:51Z'
+							},
+							type: 'block',
+							user: 'Admin',
+							timestamp: '2024-09-18T14:30:51Z',
+							comment: 'A reason'
+						},
+						{
+							logid: 982,
+							title: 'User:BlockedALot',
+							params: {
+								duration: '1 year',
+								flags: [
+									'noautoblock'
+								],
+								sitewide: true,
+								expiry: '2029-09-19T14:30:51Z'
+							},
+							type: 'block',
+							user: 'Admin',
+							timestamp: '2024-09-19T14:30:51Z',
+							comment: 'A reason'
+						},
+						{
+							logid: 983,
+							title: 'User:BlockedALot',
+							params: {
+								duration: '1 year',
+								flags: [
+									'noautoblock'
+								],
+								sitewide: true,
+								expiry: '2029-09-20T14:30:51Z'
+							},
+							type: 'block',
+							user: 'Admin',
+							timestamp: '2024-09-20T14:30:51Z',
+							comment: 'A reason'
+						},
+						{
+							logid: 984,
+							title: 'User:BlockedALot',
+							params: {
+								duration: '1 year',
+								flags: [
+									'noautoblock'
+								],
+								sitewide: true,
+								expiry: '2029-09-21T14:30:51Z'
+							},
+							type: 'block',
+							user: 'Admin',
+							timestamp: '2024-09-21T14:30:51Z',
+							comment: 'A reason'
+						},
+						{
+							logid: 985,
+							title: 'User:BlockedALot',
+							params: {
+								duration: '1 year',
+								flags: [
+									'noautoblock'
+								],
+								sitewide: true,
+								expiry: '2029-09-22T14:30:51Z'
+							},
+							type: 'block',
+							user: 'Admin',
+							timestamp: '2024-09-22T14:30:51Z',
+							comment: 'A reason'
+						},
+						{
+							logid: 986,
+							title: 'User:BlockedALot',
+							params: {
+								duration: '1 year',
+								flags: [
+									'noautoblock'
+								],
+								sitewide: true,
+								expiry: '2029-09-23T14:30:51Z'
+							},
+							type: 'block',
+							user: 'Admin',
+							timestamp: '2024-09-23T14:30:51Z',
+							comment: 'A reason'
+						},
+						{
+							logid: 987,
+							title: 'User:BlockedALot',
+							params: {
+								duration: '1 year',
+								flags: [
+									'noautoblock'
+								],
+								sitewide: true,
+								expiry: '2029-09-24T14:30:51Z'
+							},
+							type: 'block',
+							user: 'Admin',
+							timestamp: '2024-09-24T14:30:51Z',
+							comment: 'A reason'
+						},
+						{
+							logid: 988,
+							title: 'User:BlockedALot',
+							params: {
+								duration: '1 year',
+								flags: [
+									'noautoblock'
+								],
+								sitewide: true,
+								expiry: '2029-09-25T14:30:51Z'
+							},
+							type: 'block',
+							user: 'Admin',
+							timestamp: '2024-09-25T14:30:51Z',
+							comment: 'A reason'
+						},
+						{
+							logid: 989,
+							title: 'User:BlockedALot',
+							params: {
+								duration: '1 year',
+								flags: [
+									'noautoblock'
+								],
+								sitewide: true,
+								expiry: '2029-09-26T14:30:51Z'
+							},
+							type: 'block',
+							user: 'Admin',
+							timestamp: '2024-09-26T14:30:51Z',
+							comment: 'A reason'
+						}
+					]
+				}
+			}
+		},
 		// Used in UserLookup
 		{
 			params: {
