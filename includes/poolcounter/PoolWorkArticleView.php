@@ -26,7 +26,9 @@ use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
+use MediaWiki\WikiMap\WikiMap;
 use ParserOptions;
 
 /**
@@ -105,15 +107,18 @@ class PoolWorkArticleView extends PoolCounterWork {
 
 		if ( $doSample ) {
 			$stats = MediaWikiServices::getInstance()->getStatsFactory();
+			$content = $this->revision->getContent( SlotRecord::MAIN );
 			$labels = [
 				'source' => $sourceLabel,
 				'type' => $previousOutput === null ? 'full' : 'selective',
 				'reason' => $this->parserOptions->getRenderReason(),
 				'parser' => $this->parserOptions->getUseParsoid() ? 'parsoid' : 'legacy',
 				'opportunistic' => 'false',
+				'wiki' => WikiMap::getCurrentWikiId(),
+				'model' => $content ? $content->getModel() : 'unknown',
 			];
-			$totalStat = $stats->getCounter( 'parsercache_selective_total' );
-			$timeStat = $stats->getCounter( 'parsercache_selective_cpu_seconds' );
+			$totalStat = $stats->getCounter( 'ParserCache_selective_total' );
+			$timeStat = $stats->getCounter( 'ParserCache_selective_cpu_seconds' );
 			foreach ( $labels as $key => $value ) {
 				$totalStat->setLabel( $key, $value );
 				$timeStat->setLabel( $key, $value );

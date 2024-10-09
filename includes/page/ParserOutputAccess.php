@@ -35,8 +35,10 @@ use MediaWiki\PoolCounter\PoolWorkArticleViewOld;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\TitleFormatter;
+use MediaWiki\WikiMap\WikiMap;
 use ParserCache;
 use ParserOptions;
 use Wikimedia\Assert\Assert;
@@ -452,15 +454,18 @@ class ParserOutputAccess {
 		$output = $renderedRev->getRevisionParserOutput();
 
 		if ( $doSample ) {
+			$content = $revision->getContent( SlotRecord::MAIN );
 			$labels = [
 				'source' => 'ParserOutputAccess',
 				'type' => $previousOutput === null ? 'full' : 'selective',
 				'reason' => $parserOptions->getRenderReason(),
 				'parser' => $parserOptions->getUseParsoid() ? 'parsoid' : 'legacy',
 				'opportunistic' => 'false',
+				'wiki' => WikiMap::getCurrentWikiId(),
+				'model' => $content ? $content->getModel() : 'unknown',
 			];
-			$totalStat = $this->statsFactory->getCounter( 'parsercache_selective_total' );
-			$timeStat = $this->statsFactory->getCounter( 'parsercache_selective_cpu_seconds' );
+			$totalStat = $this->statsFactory->getCounter( 'ParserCache_selective_total' );
+			$timeStat = $this->statsFactory->getCounter( 'ParserCache_selective_cpu_seconds' );
 			foreach ( $labels as $key => $value ) {
 				$totalStat->setLabel( $key, $value );
 				$timeStat->setLabel( $key, $value );
