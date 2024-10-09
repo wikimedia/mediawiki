@@ -632,6 +632,11 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 			) {
 				$languageObj = $this->languageFactory->getLanguage( $this->pageLanguage );
 				$parserOptions->setTargetLanguage( $languageObj );
+				// Ensure target language splits the parser cache, when
+				// non-default; targetLangauge is not in
+				// ParserOptions::$cacheVaryingOptionsHash for the legacy
+				// parser.
+				$parserOptions->addExtraKey( 'target=' . $languageObj->getCode() );
 			}
 
 			try {
