@@ -32,8 +32,6 @@ class MediaHandlerFactory {
 
 	/**
 	 * Default, MediaWiki core media handlers
-	 *
-	 * @var array
 	 */
 	private const CORE_HANDLERS = [
 		'image/jpeg' => JpegHandler::class,

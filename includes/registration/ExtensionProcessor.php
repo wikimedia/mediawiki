@@ -78,8 +78,6 @@ class ExtensionProcessor implements Processor {
 
 	/**
 	 * Top-level attributes that come from MW core
-	 *
-	 * @var string[]
 	 */
 	protected const CORE_ATTRIBS = [
 		'ParsoidModules',
@@ -100,7 +98,6 @@ class ExtensionProcessor implements Processor {
 	 *
 	 * @see ExtensionRegistry::exportExtractedData
 	 * @see getExtractedInfo
-	 * @var array
 	 */
 	protected const MERGE_STRATEGIES = [
 		'wgAuthManagerAutoConfig' => 'array_plus_2d',
@@ -119,8 +116,6 @@ class ExtensionProcessor implements Processor {
 
 	/**
 	 * Keys that are part of the extension credits
-	 *
-	 * @var array
 	 */
 	protected const CREDIT_ATTRIBS = [
 		'type',
@@ -137,8 +132,6 @@ class ExtensionProcessor implements Processor {
 	/**
 	 * Things that are not 'attributes', and are not in
 	 * $globalSettings or CREDIT_ATTRIBS.
-	 *
-	 * @var array
 	 */
 	protected const NOT_ATTRIBS = [
 		'callback',

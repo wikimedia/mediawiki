@@ -9,7 +9,6 @@ use Wikimedia\Mime\XmlTypeCheck;
  */
 class UploadBaseTest extends MediaWikiIntegrationTestCase {
 
-	/** @var string */
 	protected const UPLOAD_PATH = "/tests/phpunit/data/upload/";
 
 	/** @var UploadTestHandler */

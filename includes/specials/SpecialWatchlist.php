@@ -63,7 +63,7 @@ use Wikimedia\Rdbms\RawSQLValue;
  * @ingroup Watchlist
  */
 class SpecialWatchlist extends ChangesListSpecialPage {
-	/** @var array */
+
 	public const WATCHLIST_TAB_PATHS = [
 		'Special:Watchlist',
 		'Special:EditWatchlist',

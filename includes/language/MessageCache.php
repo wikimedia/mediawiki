@@ -95,7 +95,6 @@ class MessageCache implements LoggerAwareInterface {
 
 	/**
 	 * Lifetime for cache, for keys stored in $wanCache, in seconds.
-	 * @var int
 	 */
 	private const WAN_TTL = ExpirationAwareness::TTL_DAY;
 

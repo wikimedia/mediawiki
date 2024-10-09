@@ -7,22 +7,11 @@ use function array_key_exists;
 
 class MergeStrategy {
 
-	/** @var string */
 	public const ARRAY_MERGE_RECURSIVE = 'array_merge_recursive';
-
-	/** @var string */
 	public const ARRAY_REPLACE_RECURSIVE = 'array_replace_recursive';
-
-	/** @var string */
 	public const ARRAY_PLUS_2D = 'array_plus_2d';
-
-	/** @var string */
 	public const ARRAY_PLUS = 'array_plus';
-
-	/** @var string */
 	public const ARRAY_MERGE = 'array_merge';
-
-	/** @var string */
 	public const REPLACE = 'replace';
 
 	/** @var string */

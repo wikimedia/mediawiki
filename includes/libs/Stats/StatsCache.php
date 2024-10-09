@@ -35,7 +35,7 @@ use Wikimedia\Stats\Metrics\NullMetric;
  * @since 1.41
  */
 class StatsCache {
-	/** @var string */
+
 	public const DELIMITER = '.';
 
 	/** @var MetricInterface[] */

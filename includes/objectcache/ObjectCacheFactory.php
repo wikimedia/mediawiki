@@ -74,7 +74,6 @@ use Wikimedia\Stats\StatsFactory;
 class ObjectCacheFactory {
 	/**
 	 * @internal For use by ServiceWiring.php
-	 * @var array
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::SQLiteDataDir,

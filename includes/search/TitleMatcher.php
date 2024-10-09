@@ -23,7 +23,6 @@ use SearchNearMatchResultSet;
 class TitleMatcher {
 	/**
 	 * @internal For use by ServiceWiring.
-	 * @var string[]
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::EnableSearchContributorsByIP,

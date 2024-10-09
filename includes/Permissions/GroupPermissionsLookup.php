@@ -41,7 +41,6 @@ class GroupPermissionsLookup {
 
 	/**
 	 * @internal
-	 * @var string[]
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::GroupInheritsPermissions,

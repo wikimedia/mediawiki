@@ -35,7 +35,7 @@ use Wikimedia\FileBackend\HTTPFileStreamer;
  * Functions related to the output of file content
  */
 class StreamFile {
-	/** @var string */
+
 	private const UNKNOWN_CONTENT_TYPE = 'unknown/unknown';
 
 	/**

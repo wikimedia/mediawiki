@@ -47,7 +47,6 @@ use Wikimedia\Rdbms\IConnectionProvider;
 class ClassicInterwikiLookup implements InterwikiLookup {
 	/**
 	 * @internal For use by ServiceWiring
-	 * @var string[]
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::InterwikiExpiry,

@@ -25,12 +25,12 @@ define( 'MW_USE_CONFIG_SCHEMA_CLASS', 1 );
  */
 class GenerateConfigSchema extends Maintenance {
 
-	/** @var string */
 	private const DEFAULT_NAMES_PATH = __DIR__ . '/../includes/MainConfigNames.php';
 	private const DEFAULT_VARS_PATH = __DIR__ . '/../docs/config-vars.php';
 	private const DEFAULT_ARRAY_PATH = __DIR__ . '/../includes/config-schema.php';
 	private const DEFAULT_SCHEMA_PATH = __DIR__ . '/../docs/config-schema.yaml';
 	private const STDOUT = 'php://stdout';
+
 	/** @var array */
 	private $settingsArray;
 

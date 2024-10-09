@@ -28,8 +28,9 @@ use ThumbnailImage;
  *  5 KiB (651 words) - 12:40, 6 Aug 2016
  */
 class FullSearchResultWidget implements SearchResultWidget {
-	/** @var int */
+
 	public const THUMBNAIL_SIZE = 90;
+
 	/** @var SpecialSearch */
 	protected $specialPage;
 	/** @var LinkRenderer */
