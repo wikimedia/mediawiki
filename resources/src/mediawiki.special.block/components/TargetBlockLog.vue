@@ -15,7 +15,11 @@
 				{{ $i18n( 'block-user-no-previous-blocks' ).text() }}
 			</template>
 			<template #item-timestamp="{ item }">
-				{{ util.formatTimestamp( item ) }}
+				<a
+					:href="mw.util.getUrl( 'Special:Log', { logid: item.logid } )"
+				>
+					{{ util.formatTimestamp( item.timestamp ) }}
+				</a>
 			</template>
 			<template #item-type="{ item }">
 				{{ util.getBlockActionMessage( item ) }}
@@ -81,7 +85,8 @@ module.exports = exports = defineComponent( {
 
 		return {
 			columns,
-			util
+			util,
+			mw
 		};
 	},
 	data() {
@@ -119,7 +124,10 @@ module.exports = exports = defineComponent( {
 						data = data || { logevents: [] };
 						for ( let i = 0; i < data.logevents.length; i++ ) {
 							this.data.push( {
-								timestamp: data.logevents[ i ].timestamp,
+								timestamp: {
+									timestamp: data.logevents[ i ].timestamp,
+									logid: data.logevents[ i ].logid
+								},
 								type: data.logevents[ i ].action,
 								expiry: {
 									expires: data.logevents[ i ].params.expiry,
