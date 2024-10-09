@@ -259,15 +259,17 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	private function getExistingPageWithRevisions( $name ) {
+	private function getExistingPageWithRevisions(
+		$name, $wikitext = self::WIKITEXT, $wikitextOld = self::WIKITEXT_OLD
+	) {
 		$page = $this->getNonexistingTestPage( $name );
 
 		MWTimestamp::setFakeTime( self::TIMESTAMP_OLD );
-		$this->editPage( $page, self::WIKITEXT_OLD );
+		$this->editPage( $page, $wikitextOld );
 		$revisions['first'] = $page->getRevisionRecord();
 
 		MWTimestamp::setFakeTime( self::TIMESTAMP );
-		$this->editPage( $page, self::WIKITEXT );
+		$this->editPage( $page, $wikitext );
 		$revisions['latest'] = $page->getRevisionRecord();
 
 		MWTimestamp::setFakeTime( self::TIMESTAMP_LATER );
@@ -349,6 +351,8 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			$mockHandler
 		);
 
+		// Ensure that the ParserOutputAccess isn't holding cached html.
+		$this->resetServices();
 		// Use the real ParserOutputAccess, so we use the real hook container.
 		$access = $this->getServiceContainer()->getParserOutputAccess();
 
@@ -1028,9 +1032,13 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetParserOutputWithLanguageOverride() {
-		[ $page, $revision ] = $this->getNonExistingPageWithFakeRevision( __METHOD__ );
+		[ $page, [ 'latest' => $revision ] ] = $this->getExistingPageWithRevisions( __METHOD__, '{{PAGELANGUAGE}}' );
 
-		$helper = $this->newHelper( [], $page, [], $this->newAuthority(), $revision );
+		$options = [
+			# use real ParserOutputAccess to exercise caching
+			'ParserOutputAccess' => $this->getServiceContainer()->getParserOutputAccess(),
+		];
+		$helper = $this->newHelper( $options, $page, [], $this->newAuthority(), $revision );
 		$helper->setPageLanguage( 'ar' );
 
 		// check nominal content language
@@ -1040,6 +1048,16 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$output = $helper->getHtml();
 		$html = $output->getRawText();
 		$this->assertStringContainsString( 'lang="ar"', $html );
+		$this->assertStringContainsString( '>ar<', $html ); # {{PAGELANGUAGE}}
+
+		// Check that cache is properly split on page language (T376783)
+		$helper = $this->newHelper( $options, $page, [], $this->newAuthority(), $revision );
+		$helper->setPageLanguage( 'en' );
+		$this->assertSame( 'en', $helper->getHtmlOutputContentLanguage()->toBcp47Code() );
+		$output = $helper->getHtml();
+		$html = $output->getRawText();
+		$this->assertStringContainsString( 'lang="en"', $html );
+		$this->assertStringContainsString( '>en<', $html ); # {{PAGELANGUAGE}}
 	}
 
 	public function testGetParserOutputWithRedundantPageLanguage() {

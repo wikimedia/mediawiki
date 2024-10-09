@@ -171,6 +171,7 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 		$slotRoleHandler = $this->slotRoleRegistry->getRoleHandler( SlotRecord::MAIN );
 		if ( $pageLanguageOverride ) {
 			$pageLanguage = $this->languageFactory->getLanguage( $pageLanguageOverride );
+			$parserOptions->setTargetLanguage( $pageLanguage );
 		} else {
 			$pageLanguage = $title->getPageLanguage();
 		}
