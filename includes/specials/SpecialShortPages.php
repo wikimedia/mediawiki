@@ -195,7 +195,12 @@ class SpecialShortPages extends QueryPage {
 			$plink = $linkRenderer->makeKnownLink( $title );
 			$exists = true;
 		}
-		$plink = Html::rawElement( 'bdi', [ 'dir' => $this->getLanguage()->getDir() ], $plink );
+		$contentLanguage = $this->getContentLanguage();
+		$bdiAttrs = [
+			'dir' => $contentLanguage->getDir(),
+			'lang' => $contentLanguage->getHtmlCode(),
+		];
+		$plink = Html::rawElement( 'bdi', $bdiAttrs, $plink );
 		$size = $this->msg( 'nbytes' )->numParams( $result->value )->escaped();
 		$result = "{$hlinkInParentheses} {$plink} [{$size}]";
 
