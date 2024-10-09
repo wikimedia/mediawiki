@@ -11190,7 +11190,7 @@ class MainConfigSchema {
 	 * **Simple example**: extension.json
 	 * ```
 	 * "TranslationAliasesDirs": {
-	 *   "TranslationNotificationsAlias": "i18n/aliases/"
+	 *   "TranslationNotificationsAlias": "i18n/aliases"
 	 * }
 	 * ```
 	 * **Complex example**: extension.json
