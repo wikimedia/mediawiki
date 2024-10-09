@@ -80,8 +80,7 @@ class RenameUsersMatchingPattern extends Maintenance {
 			$performer = $this->userFactory->newFromName( $this->getOption( 'performer' ) );
 		}
 		if ( !$performer ) {
-			$this->error( "Unable to get performer account" );
-			return false;
+			$this->fatalError( "Unable to get performer account" );
 		}
 		$this->performer = $performer;
 
