@@ -705,7 +705,7 @@
 	"contentmodelediterror": "Túto revíziu nemôžete upraviť, pretože model jej obsahu je <code>$1</code>, čo sa líši od aktuálneho modelu obsahu tejto stránky, ktorým je <code>$2</code>.",
 	"recreate-moveddeleted-warn": "'''Upozornenie: Opätovne vytvárate stránku, ktorá bola predtým zmazaná.'''\n\nMali by ste zvážiť, či je vhodné pokračovať v úpravách tejto stránky.\nĎalšie informácie si môžete pozrieť v zázname zmazaní a presunutí:",
 	"moveddeleted-notice": "Táto stránka neexistuje.\nĎalšie informácie si môžete pozrieť v zázname zmazaní, zamknutí a presunutí.",
-	"moveddeleted-notice-recent": "Ospravedlňujeme sa, ale táto stránka bola zmazaná (počas posledným 24 hodín).\nĎalšie informácie si môžete pozrieť v zázname zmazaní, zamknutí a presunutí.",
+	"moveddeleted-notice-recent": "Ospravedlňujeme sa, ale táto stránka bola zmazaná (počas posledných 24 hodín).\nĎalšie informácie si môžete pozrieť v zázname zmazaní, zamknutí a presunutí.",
 	"log-fulllog": "Zobraziť úplný záznam",
 	"edit-hook-aborted": "Úpravu zrušila prídavná funkcia (prípojný bod syntaktického analyzátora).\nNeudala vysvetlenie.",
 	"edit-gone-missing": "Nebolo možné aktualizovať stránku.\nZdá sa, že bola zmazaná.",

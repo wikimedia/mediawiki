@@ -2497,7 +2497,7 @@
 	"blocklist-editing-action": "кылдыныглар",
 	"ipblocklist-empty": "Блоктаашкыннар даңзызы куруг.",
 	"ipblocklist-no-results": "Айыттынган IP-адреске азы киржикчиниң адынга дүгджүр блоктаашкыннар тывылбаан.",
-	"blocklink": "Блоктаар",
+	"blocklink": "блоктаар",
 	"unblocklink": "блоктан үндүрер",
 	"change-blocklink": "блоктаашкынны өскертир",
 	"empty-username": "(киржикчиниң адынче доступ чок)",

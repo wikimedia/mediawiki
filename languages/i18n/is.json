@@ -730,6 +730,7 @@
 	"unstrip-depth-category-desc": "Síðan fer út fyrir dýptartakmörk afstrípunar.",
 	"unstrip-size-category": "Síður þar sem farið er út fyrir stærðartakmörk afstrípunar",
 	"unstrip-size-category-desc": "Síðan fer út fyrir stærðartakmörk afstrípunar.",
+	"double-px-category": "Síður með myndastærðum sem innihalda aukalegt px",
 	"converter-manual-rule-error": "Villa greindist í handvirkri tungumálaumbreytingarreglu",
 	"undo-success": "Það er hægt að afturkalla breytinguna.\nAthugaðu vel samanburðinn hér fyrir neðan til að sannreyna að það sé það sem þú vilt gera, gefðu út svo breytingarnar hér fyrir neðan til að ljúka afturköllun breytinganna.",
 	"undo-failure": "Breytinguna var ekki hægt að taka tilbaka vegna breytinga í millitíðinni.",

@@ -26,7 +26,7 @@
 	"prefs-back-title": "ਤਰਜੀਹਾਂ 'ਤੇ ਵਾਪਸ ਜਾਓ",
 	"prefs-personal": "ਵਰਤੋਂਕਾਰ ਪ੍ਰੋਫ਼ਾਈਲ",
 	"prefs-description-personal": "ਇਸ ਗੱਲ ਨੂੰ ਨਿਯੰਤਰਿਤ ਕਰੋ ਕਿ ਤੁਸੀਂ ਕਿਵੇਂ ਦਿਖਾਈ ਦਿੰਦੇ ਹੋ, ਜੁੜਦੇ ਹੋ ਅਤੇ ਗੱਲਬਾਤ ਕਰਦੇ ਹੋ।",
-	"prefs-info": "ਮੁਢਲੀ ਜਾਣਕਾਰੀ",
+	"prefs-info": "ਮੁੱਢਲੀ ਜਾਣਕਾਰੀ",
 	"username": "{{GENDER:$1|ਵਰਤੋਂਕਾਰ ਦਾ ਨਾਂ}}:",
 	"prefs-memberingroups": "{{PLURAL:$1|ਢਾਣੀ|ਢਾਣੀਆਂ}} ਦਾ {{GENDER:$2|ਮੈਂਬਰ}}:",
 	"group-membership-link-with-expiry": "$1 ($2 ਤੱਕ)",
