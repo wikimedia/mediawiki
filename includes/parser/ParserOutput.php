@@ -195,7 +195,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * @var array<string,int> External link URLs, in the key only.
 	 */
-	private $mExternalLinks = [];
+	private array $mExternalLinks = [];
 
 	/**
 	 * @var array<string,array<string,int>> 2-D map of prefix/DBK (in keys only)
@@ -798,7 +798,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return $this->mFileSearchOptions;
 	}
 
-	public function &getExternalLinks() {
+	public function &getExternalLinks(): array {
 		return $this->mExternalLinks;
 	}
 
