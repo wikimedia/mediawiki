@@ -1652,7 +1652,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		// Display the installed skin the user has specifically requested via useskin=….
 		$useSkin = $context->getRequest()->getRawVal( 'useskin' );
-		if ( isset( $allInstalledSkins[$useSkin] )
+		if ( $useSkin !== null && isset( $allInstalledSkins[$useSkin] )
 			&& $context->msg( "skinname-$useSkin" )->exists()
 		) {
 			$validSkinNames[$useSkin] = $useSkin;

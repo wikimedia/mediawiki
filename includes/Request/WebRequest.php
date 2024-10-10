@@ -496,7 +496,7 @@ class WebRequest {
 	 * @return string|null The value, or $default if none set
 	 * @return-taint tainted
 	 */
-	public function getRawVal( $name, $default = null ) {
+	public function getRawVal( $name, $default = null ): ?string {
 		$name = strtr( $name, '.', '_' ); // See comment in self::getGPCVal()
 		if ( isset( $this->data[$name] ) && !is_array( $this->data[$name] ) ) {
 			$val = $this->data[$name];

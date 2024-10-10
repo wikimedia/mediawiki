@@ -43,7 +43,7 @@ use Wikimedia\Rdbms\IConnectionProvider;
  * @ingroup SpecialPage
  */
 class SpecialMergeHistory extends SpecialPage {
-	/** @var string */
+	/** @var string|null */
 	protected $mAction;
 
 	/** @var string */
