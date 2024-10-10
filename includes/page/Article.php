@@ -1767,6 +1767,7 @@ class Article implements Page {
 
 		$outputPage = $context->getOutput();
 		$outputPage->addModuleStyles( [
+			'mediawiki.codex.messagebox.styles',
 			'mediawiki.action.styles',
 			'mediawiki.interface.helpers.styles'
 		] );
