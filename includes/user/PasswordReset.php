@@ -22,6 +22,7 @@
 
 namespace MediaWiki\User;
 
+use Iterator;
 use LogicException;
 use MapCacheLRU;
 use MediaWiki\Auth\AuthManager;
@@ -61,9 +62,8 @@ class PasswordReset implements LoggerAwareInterface {
 	/**
 	 * In-process cache for isAllowed lookups, by username.
 	 * Contains a StatusValue object
-	 * @var MapCacheLRU
 	 */
-	private $permissionCache;
+	private MapCacheLRU $permissionCache;
 
 	/**
 	 * @internal For use by ServiceWiring
@@ -165,7 +165,7 @@ class PasswordReset implements LoggerAwareInterface {
 		}
 		if ( $this->isBlocked( $user ) ) {
 			// Maybe the user is blocked (check this here rather than relying on the parent
-			// method as we have a more specific error message to use here and we want to
+			// method as we have a more specific error message to use here, and we want to
 			// ignore some types of blocks)
 			return StatusValue::newFatal( 'blocked-mailpassword' );
 		}
@@ -175,8 +175,10 @@ class PasswordReset implements LoggerAwareInterface {
 	/**
 	 * Do a password reset. Authorization is the caller's responsibility.
 	 *
-	 * Process the form.  At this point we know that the user passes all the criteria in
-	 * userCanExecute(), and if the data array contains 'Username', etc, then Username
+	 * Process the form.
+	 *
+	 * At this point, we know that the user passes all the criteria in
+	 * userCanExecute(), and if the data array contains 'Username', etc., then Username
 	 * resets are allowed.
 	 *
 	 * @since 1.29 Fourth argument for displayPassword removed.
@@ -243,7 +245,7 @@ class PasswordReset implements LoggerAwareInterface {
 
 		} elseif ( $email !== null ) {
 			foreach ( $this->getUsersByEmail( $email ) as $userIdent ) {
-				// Skip users whose preference 'requireemail' is on since username was not submitted
+				// Skip users whose preference 'requireemail' is on since the username was not submitted
 				if ( $this->userOptionsLookup->getBoolOption( $userIdent, 'requireemail' ) ) {
 					continue;
 				}
@@ -255,7 +257,7 @@ class PasswordReset implements LoggerAwareInterface {
 			return StatusValue::newFatal( 'passwordreset-nodata' );
 		}
 
-		// Check for hooks (captcha etc), and allow them to modify the users list
+		// Check for hooks (captcha etc.), and allow them to modify the list of users
 		$data = [
 			'Username' => $username,
 			'Email' => $email,
@@ -267,7 +269,7 @@ class PasswordReset implements LoggerAwareInterface {
 		}
 
 		if ( !$users ) {
-			// Don't reveal whether or not a username or email address is in use
+			// Don't reveal whether a username or email address is in use
 			return StatusValue::newGood();
 		}
 
@@ -286,7 +288,7 @@ class PasswordReset implements LoggerAwareInterface {
 			$req->caller = $performingUser->getName();
 
 			$status = $this->authManager->allowsAuthenticationDataChange( $req, true );
-			// If status is good and the value is 'throttled-mailpassword', we want to pretend
+			// If the status is good and the value is 'throttled-mailpassword', we want to pretend
 			// that the request was good to avoid displaying an error message and disclose
 			// if a reset password was previously sent.
 			if ( $status->isGood() && $status->getValue() === 'throttled-mailpassword' ) {
@@ -344,7 +346,8 @@ class PasswordReset implements LoggerAwareInterface {
 	 * @note This is protected to allow configuring in tests. This class is not stable to extend.
 	 *
 	 * @param string $email
-	 * @return iterable<UserIdentity>
+	 *
+	 * @return Iterator<UserIdentity>
 	 */
 	protected function getUsersByEmail( $email ) {
 		return $this->userIdentityLookup->newSelectQueryBuilder()
