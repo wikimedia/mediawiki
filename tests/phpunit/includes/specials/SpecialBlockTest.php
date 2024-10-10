@@ -188,6 +188,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @covers ::processForm
 	 */
 	public function testProcessForm() {
+		$this->hideDeprecated( SpecialBlock::class . '::processForm' );
 		$badActor = $this->getTestUser()->getUserIdentity();
 		$context = RequestContext::getMain();
 		$context->setUser( $this->getTestSysop()->getUser() );
@@ -223,6 +224,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @covers ::processForm
 	 */
 	public function testProcessFormExisting() {
+		$this->hideDeprecated( SpecialBlock::class . '::processForm' );
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 		$context = RequestContext::getMain();
@@ -270,6 +272,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @covers ::processForm
 	 */
 	public function testProcessFormRestrictions() {
+		$this->hideDeprecated( SpecialBlock::class . '::processForm' );
 		$this->overrideConfigValue( MainConfigNames::EnablePartialActionBlocks, true );
 
 		$badActor = $this->getTestUser()->getUser();
@@ -326,6 +329,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @covers ::processForm
 	 */
 	public function testProcessFormRestrictionsChange() {
+		$this->hideDeprecated( SpecialBlock::class . '::processForm' );
 		$badActor = $this->getTestUser()->getUser();
 		$context = RequestContext::getMain();
 		$context->setUser( $this->getTestSysop()->getUser() );
@@ -430,6 +434,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @covers ::processForm
 	 */
 	public function testProcessFormUserTalkEditFlag( $options, $expected ) {
+		$this->hideDeprecated( SpecialBlock::class . '::processForm' );
 		$this->overrideConfigValue( MainConfigNames::BlockAllowsUTEdit, $options['configAllowsUserTalkEdit'] );
 
 		$performer = $this->getTestSysop()->getUser();
@@ -537,6 +542,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @covers ::processForm
 	 */
 	public function testProcessFormErrors( $data, $expected, $options = [] ) {
+		$this->hideDeprecated( SpecialBlock::class . '::processForm' );
 		$this->overrideConfigValue( MainConfigNames::BlockAllowsUTEdit, true );
 
 		$performer = $this->getTestSysop()->getUser();
@@ -645,6 +651,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @covers ::processForm
 	 */
 	public function testProcessFormErrorsReblock( $data, $permissions, $expected ) {
+		$this->hideDeprecated( SpecialBlock::class . '::processForm' );
 		$this->overrideConfigValue( MainConfigNames::BlockAllowsUTEdit, true );
 
 		$performer = $this->getTestSysop()->getUser();
@@ -728,6 +735,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @covers ::processForm
 	 */
 	public function testProcessFormErrorsHideUser( $data, $permissions, $expected ) {
+		$this->hideDeprecated( SpecialBlock::class . '::processForm' );
 		$performer = $this->getTestSysop()->getUser();
 		$this->overrideUserPermissions( $performer, array_merge( $permissions, [ 'block' ] ) );
 
@@ -789,6 +797,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @covers ::processForm
 	 */
 	public function testProcessFormErrorsHideUserProlific() {
+		$this->hideDeprecated( SpecialBlock::class . '::processForm' );
 		$this->overrideConfigValue( MainConfigNames::HideUserContribLimit, 0 );
 
 		$performer = $this->mockRegisteredUltimateAuthority();
