@@ -40,6 +40,11 @@ module.exports = exports = defineComponent( {
 		const reasonOptions = mw.config.get( 'blockReasonOptions' );
 		const wrappedSelected = useModelWrapper( toRef( props, 'selected' ), emit, 'update:selected' );
 		const wrappedOther = useModelWrapper( toRef( props, 'other' ), emit, 'update:other' );
+		const reasonPreset = mw.config.get( 'blockReasonPreset' );
+
+		if ( reasonPreset !== 'other' && reasonOptions.some( ( option ) => option.value === reasonPreset ) ) {
+			emit( 'update:selected', reasonPreset );
+		}
 
 		return {
 			reasonOptions,

@@ -219,6 +219,13 @@ class SpecialBlock extends FormSpecialPage {
 				// Absolute expiry, formatted for <input type="datetime-local">
 				$this->formatExpiryForHtml( $request->getVal( 'wpExpiry', '' ) );
 
+			$this->codexFormData[ 'blockTypePreset' ] =
+				$request->getVal( 'wpEditingRestriction' ) === 'sitewide' ||
+				$request->getVal( 'wpEditingRestriction' ) === 'partial' ?
+				$request->getVal( 'wpEditingRestriction' ) :
+				'sitewide';
+			$this->codexFormData[ 'blockReasonPreset' ] = $request->getVal( 'wpReason' );
+			$this->codexFormData[ 'blockReasonOtherPreset' ] = $request->getVal( 'wpReason-other' );
 			$blockAdditionalDetailsPreset = $blockDetailsPreset = [];
 
 			if ( $request->getBool( 'wpCreateAccount' ) ) {
@@ -239,6 +246,10 @@ class SpecialBlock extends FormSpecialPage {
 
 			if ( $request->getBool( 'wpWatch' ) ) {
 				$blockAdditionalDetailsPreset[] = 'wpWatch';
+			}
+
+			if ( $request->getBool( 'wpHideName' ) ) {
+				$blockAdditionalDetailsPreset[] = 'wpHideName';
 			}
 
 			if ( $request->getBool( 'wpHardBlock' ) ) {
