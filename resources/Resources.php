@@ -2354,6 +2354,7 @@ return [
 			'log-action-filter-block-block',
 			'log-action-filter-block-reblock',
 			'log-action-filter-block-unblock',
+			'log-fulllog',
 		],
 	],
 	'mediawiki.protectionIndicators.styles' => [

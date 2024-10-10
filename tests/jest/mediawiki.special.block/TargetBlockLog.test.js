@@ -31,5 +31,17 @@ describe( 'TargetBlockLog', () => {
 		// Test: The row should contain the no-previous-blocks message
 		expect( rows[ 0 ].text() ).toContain( 'block-user-no-previous-blocks' );
 	} );
-	// TODO: Add test for the "show more" button when blocks > 10
+	it( 'should show a table with ten rows, and a show more link, when given a user with more than ten blocks', async () => {
+		const wrapper = mount( TargetBlockLog, {
+			propsData: { targetUser: 'BlockedALot' }
+		} );
+		await flushPromises();
+		// Test: The table should exist
+		expect( wrapper.find( '.cdx-table__table' ).exists() ).toBeTruthy();
+		const rows = wrapper.findAll( '.cdx-table__table tbody tr' );
+		// Test: The table tbody should have ten rows
+		expect( rows ).toHaveLength( 10 );
+		// Test: The show more link should exist
+		expect( wrapper.find( '.mw-block-fulllog' ).exists() ).toBeTruthy();
+	} );
 } );
