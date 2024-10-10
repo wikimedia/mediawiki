@@ -20,10 +20,27 @@ const util = {
 	 * Format a timestamp
 	 *
 	 * @param {string} timestamp
+	 * @param {string} duration
 	 * @return {string}
 	 */
-	formatTimestamp: function ( timestamp ) {
+	formatTimestamp: function ( timestamp, duration ) {
+		if ( mw.util.isInfinity( duration ) ) {
+			return mw.msg( 'infiniteblock' );
+		}
 		return new Date( timestamp ).toLocaleString();
+	},
+	/**
+	 * Get the message for a given block action
+	 *
+	 * @param {string} action
+	 * @return {string}
+	 */
+	getBlockActionMessage: function ( action ) {
+		// Potential messages:
+		// * log-action-filter-block-block
+		// * log-action-filter-block-reblock
+		// * log-action-filter-block-unblock
+		return mw.message( 'log-action-filter-block-' + action ).text();
 	}
 };
 

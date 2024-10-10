@@ -2303,6 +2303,7 @@ return [
 			'blocklist-by',
 			'blocklist-params',
 			'blocklist-reason',
+			'blocklist-type-header',
 			'block-user-description',
 			'block-user-label',
 			'block-user-active-blocks',
@@ -2348,7 +2349,11 @@ return [
 			'block-user-no-reason-given',
 			'blockipsuccesssub',
 			'block-success',
-			'ipb_expiry_invalid'
+			'ipb_expiry_invalid',
+			'infiniteblock',
+			'log-action-filter-block-block',
+			'log-action-filter-block-reblock',
+			'log-action-filter-block-unblock',
 		],
 	],
 	'mediawiki.protectionIndicators.styles' => [
