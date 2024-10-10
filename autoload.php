@@ -2707,6 +2707,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\User\\LoggedOutEditToken' => __DIR__ . '/includes/user/LoggedOutEditToken.php',
 	'MediaWiki\\User\\Options\\ConditionalDefaultsLookup' => __DIR__ . '/includes/user/Options/ConditionalDefaultsLookup.php',
 	'MediaWiki\\User\\Options\\DefaultOptionsLookup' => __DIR__ . '/includes/user/Options/DefaultOptionsLookup.php',
+	'MediaWiki\\User\\Options\\Hook\\ConditionalDefaultOptionsAddConditionHook' => __DIR__ . '/includes/user/Options/Hook/ConditionalDefaultOptionsAddConditionHook.php',
 	'MediaWiki\\User\\Options\\Hook\\LoadUserOptionsHook' => __DIR__ . '/includes/user/Options/Hook/LoadUserOptionsHook.php',
 	'MediaWiki\\User\\Options\\Hook\\SaveUserOptionsHook' => __DIR__ . '/includes/user/Options/Hook/SaveUserOptionsHook.php',
 	'MediaWiki\\User\\Options\\LocalUserOptionsStore' => __DIR__ . '/includes/user/Options/LocalUserOptionsStore.php',
