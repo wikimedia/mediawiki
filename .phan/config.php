@@ -117,6 +117,8 @@ $indirectDeps = [
 	'pear/net_url2',
 	'pear/pear-core-minimal',
 	'phpunit/phpunit',
+	'psr/http-client',
+	'psr/http-factory',
 	'psr/http-message',
 	'seld/jsonlint',
 	'wikimedia/testing-access-wrapper',

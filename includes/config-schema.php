@@ -1916,6 +1916,7 @@ return [
 			'StatsTarget' => null,
 			'StatsFormat' => null,
 			'StatsPrefix' => 'mediawiki',
+			'OpenTelemetryConfig' => null,
 			'PageInfoTransclusionLimit' => 50,
 			'EnableJavaScriptTest' => false,
 			'CachePrefix' => false,
@@ -2899,6 +2900,10 @@ return [
 				'null',
 			],
 			'StatsPrefix' => 'string',
+			'OpenTelemetryConfig' => [
+				'object',
+				'null',
+			],
 			'OpenSearchTemplates' => 'object',
 			'NamespacesToBeSearchedDefault' => 'object',
 			'SitemapNamespaces' => [

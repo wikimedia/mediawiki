@@ -224,6 +224,7 @@ use Wikimedia\Services\SalvageableService;
 use Wikimedia\Services\ServiceContainer;
 use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
+use Wikimedia\Telemetry\TracerInterface;
 use Wikimedia\UUID\GlobalIdGenerator;
 use Wikimedia\WRStats\WRStatsFactory;
 
@@ -1976,6 +1977,10 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getTitleParser(): TitleParser {
 		return $this->getService( 'TitleParser' );
+	}
+
+	public function getTracer(): TracerInterface {
+		return $this->getService( 'Tracer' );
 	}
 
 	/**

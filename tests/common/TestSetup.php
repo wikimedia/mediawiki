@@ -49,6 +49,7 @@ class TestSetup {
 		global $wgAuthManagerConfig;
 		global $wgShowExceptionDetails, $wgShowHostnames;
 		global $wgDBStrictWarnings, $wgUsePigLatinVariant;
+		global $wgOpenTelemetryConfig;
 
 		$wgShowExceptionDetails = true;
 		$wgShowHostnames = true;
@@ -150,6 +151,9 @@ class TestSetup {
 
 		// This is often used for variant testing
 		$wgUsePigLatinVariant = true;
+
+		// Disable tracing in tests.
+		$wgOpenTelemetryConfig = null;
 
 		// xdebug's default of 100 is too low for MediaWiki
 		ini_set( 'xdebug.max_nesting_level', 1000 );
