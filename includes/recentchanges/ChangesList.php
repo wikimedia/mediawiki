@@ -434,7 +434,9 @@ class ChangesList extends ContextSource {
 
 		return Html::element( $tag,
 			[ 'dir' => 'ltr', 'class' => $formattedSizeClass, 'title' => $formattedTotalSize ],
-			$formattedSize );
+			$formattedSize ) .
+			# There should be some character here otherwise mobile watchlist breaks, T376814
+			$lang->getDirMark();
 	}
 
 	/**
@@ -633,10 +635,11 @@ class ChangesList extends ContextSource {
 			}
 			$articlelink = '<span class="' . $class . '">' . $articlelink . '</span>';
 		}
-		# To allow for boldening pages watched by this user
-		$articlelink = "<span class=\"mw-title\">{$articlelink}</span>";
 		$dir = $this->getLanguage()->getDir();
 		$articlelink = Html::rawElement( 'bdi', [ 'dir' => $dir ], $articlelink );
+		# To allow for boldening pages watched by this user
+		# Don't wrap result of this with another tag, see T376814
+		$articlelink = "<span class=\"mw-title\">{$articlelink}</span>";
 
 		# TODO: Deprecate the $s argument, it seems happily unused.
 		$s = '';
@@ -737,8 +740,8 @@ class ChangesList extends ContextSource {
 			$s .= ' <span class="' . $deletedClass . '">' .
 				$this->msg( 'rev-deleted-user' )->escaped() . '</span>';
 		} else {
-			$dir = $this->getLanguage()->getDir();
-			$s .= Html::rawElement( 'bdi', [ 'dir' => $dir ], $this->userLinkCache->getWithSetCallback(
+			# Don't wrap result of this with another tag, see T376814
+			$s .= $this->userLinkCache->getWithSetCallback(
 				$this->userLinkCache->makeKey(
 					$rc->mAttribs['rc_user_text'],
 					$this->getUser()->getName(),
@@ -756,7 +759,7 @@ class ChangesList extends ContextSource {
 						false
 					);
 				}
-			) );
+			);
 		}
 	}
 
