@@ -4,6 +4,8 @@ namespace MediaWiki\Tests\Maintenance;
 
 use CreateAndPromote;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Password\PasswordFactory;
+use MediaWiki\SiteStats\SiteStats;
 use MediaWiki\User\User;
 
 /**
@@ -70,6 +72,27 @@ class CreateAndPromoteTest extends MaintenanceBaseTestCase {
 		];
 	}
 
+	public function testExecuteToSetPasswordForExistingUser() {
+		$password = PasswordFactory::generateRandomPasswordString( 128 );
+		$testUser = $this->getMutableTestUser()->getUser();
+		// Set the username as our existing test user and set the password option.
+		$this->maintenance->setArg( 'username', $testUser );
+		$this->maintenance->setArg( 'password', $password );
+		$this->maintenance->setOption( 'force', true );
+		$this->maintenance->execute();
+		$this->expectOutputRegex( '/Password set/' );
+		// Check that the password for the $testUser matches the password we set
+		$actualPasswordHash = $this->newSelectQueryBuilder()
+			->select( 'user_password' )
+			->from( 'user' )
+			->where( [ 'user_name' => $testUser->getName() ] )
+			->fetchField();
+		$this->assertTrue(
+			$this->getServiceContainer()->getPasswordFactory()
+				->newFromCiphertext( $actualPasswordHash )->verify( $password )
+		);
+	}
+
 	public function testExecuteForInvalidUsername() {
 		// Call the maintenance script with a username that is more than wgMaxNameChars, and so shouldn't be valid.
 		$this->overrideConfigValue( MainConfigNames::MaxNameChars, 2 );
@@ -84,5 +107,56 @@ class CreateAndPromoteTest extends MaintenanceBaseTestCase {
 		$this->expectOutputRegex( '/Account exists.*--force/' );
 		$this->maintenance->setArg( 'username', $this->getTestUser()->getUserIdentity()->getName() );
 		$this->maintenance->execute();
+	}
+
+	public function testExecuteWhenUserDoesNotExistAndNoPasswordSpecified() {
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( '/Argument <password> required/' );
+		$this->maintenance->setName( 'createAndPromote.php' );
+		$this->maintenance->setArg( 'username', 'NonExistingTestUser1234' );
+		$this->maintenance->execute();
+	}
+
+	public function testExecuteForNewAccountButPasswordDoesNotMeetRequirements() {
+		$this->maintenance->setArg( 'username', 'NewTestUser1234' );
+		// Use a very commonly used password "abc" and check that it rejects this
+		$this->maintenance->setArg( 'password', 'abc' );
+		$this->expectCallToFatalError();
+		$this->expectOutputRegex( '/password entered is in a list of very commonly used passwords/' );
+		$this->maintenance->execute();
+	}
+
+	public function testExecuteForNewAccountWhenReadOnly() {
+		$this->getServiceContainer()->getReadOnlyMode()->setReason( 'test' );
+		$this->maintenance->setArg( 'username', 'NewTestUser1234' );
+		$this->maintenance->setArg( 'password', PasswordFactory::generateRandomPasswordString( 128 ) );
+		$this->expectCallToFatalError();
+		// Assert that the "readonlytext" message is displayed.
+		$this->expectOutputRegex( '/database is currently locked/' );
+		$this->maintenance->execute();
+	}
+
+	public function testExecuteForNewAccount() {
+		$this->assertSame( 0, SiteStats::users() );
+		$password = PasswordFactory::generateRandomPasswordString( 128 );
+		// Run the maintenance script
+		$this->maintenance->setArg( 'username', 'NewTestUser1234' );
+		$this->maintenance->setArg( 'password', $password );
+		$this->maintenance->setOption( 'sysop', 1 );
+		$this->maintenance->execute();
+		$this->expectOutputRegex( '/Creating and promoting User:NewTestUser1234[\s\S]*done/' );
+		// Check that the new user exists and that the password matches
+		$actualPasswordHash = $this->newSelectQueryBuilder()
+			->select( 'user_password' )
+			->from( 'user' )
+			->where( [ 'user_name' => 'NewTestUser1234' ] )
+			->fetchField();
+		$this->assertTrue(
+			$this->getServiceContainer()->getPasswordFactory()
+				->newFromCiphertext( $actualPasswordHash )->verify( $password )
+		);
+		// Check that the number of users has increased to 2, one for the new user and the other for the maintenance
+		// script user.
+		$this->assertSame( 2, SiteStats::users() );
 	}
 }
