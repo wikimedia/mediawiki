@@ -1898,9 +1898,8 @@ MESSAGE;
 
 			$resourceLoaderDebug = MediaWikiServices::getInstance()->getMainConfig()->get(
 				MainConfigNames::ResourceLoaderDebug );
-			$str = $wgRequest->getRawVal( 'debug',
-				$wgRequest->getCookie( 'resourceLoaderDebug', '', $resourceLoaderDebug ? 'true' : '' )
-			);
+			$str = $wgRequest->getRawVal( 'debug' ) ??
+				$wgRequest->getCookie( 'resourceLoaderDebug', '', $resourceLoaderDebug ? 'true' : '' );
 			self::$debugMode = Context::debugFromString( $str );
 		}
 		return self::$debugMode;

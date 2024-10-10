@@ -948,6 +948,8 @@ because of Phabricator reports.
 * (T374314) The 'mw.Uri' module has been deprecated in favour of the browser-
   native URL interface, which is now provided in all supported user agents. For
   details, see <https://developer.mozilla.org/en-US/docs/Web/API/URL>.
+* The parameter $default in WebRequest::getRawVal() is deprecated. Use ??
+  instead.
 * …
 
 === Other changes in 1.43 ===

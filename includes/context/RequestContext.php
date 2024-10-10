@@ -472,7 +472,7 @@ class RequestContext implements IContextSource, MutableContext {
 				$services = MediaWikiServices::getInstance();
 
 				// Optimisation: Avoid slow getVal(), this isn't user-generated content.
-				$code = $request->getRawVal( 'uselang', 'user' );
+				$code = $request->getRawVal( 'uselang' ) ?? 'user';
 				if ( $code === 'user' ) {
 					$userOptionsLookup = $services->getUserOptionsLookup();
 					$code = $userOptionsLookup->getOption( $user, 'language' );
@@ -557,7 +557,7 @@ class RequestContext implements IContextSource, MutableContext {
 			$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 			$userSkin = $userOptionsLookup->getOption( $this->getUser(), 'skin' );
 			// Optimisation: Avoid slow getVal(), this isn't user-generated content.
-			$skinName = $this->getRequest()->getRawVal( 'useskin', $userSkin );
+			$skinName = $this->getRequest()->getRawVal( 'useskin' ) ?? $userSkin;
 		} else {
 			// User preference disabled
 			$skinName = $this->getConfig()->get( MainConfigNames::DefaultSkin );

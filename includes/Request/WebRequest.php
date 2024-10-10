@@ -492,7 +492,7 @@ class WebRequest {
 	 *
 	 * @since 1.28
 	 * @param string $name
-	 * @param string|null $default
+	 * @param string|null $default Deprecated since 1.43. Use ?? $default instead.
 	 * @return string|null The value, or $default if none set
 	 * @return-taint tainted
 	 */
@@ -635,8 +635,7 @@ class WebRequest {
 	 * @return int
 	 */
 	public function getInt( $name, $default = 0 ): int {
-		// @phan-suppress-next-line PhanTypeMismatchArgument getRawVal does not return null here
-		return intval( $this->getRawVal( $name, $default ) );
+		return intval( $this->getRawVal( $name ) ?? $default );
 	}
 
 	/**
@@ -663,8 +662,7 @@ class WebRequest {
 	 * @return float
 	 */
 	public function getFloat( $name, $default = 0.0 ): float {
-		// @phan-suppress-next-line PhanTypeMismatchArgument getRawVal does not return null here
-		return floatval( $this->getRawVal( $name, $default ) );
+		return floatval( $this->getRawVal( $name ) ?? $default );
 	}
 
 	/**
@@ -677,8 +675,7 @@ class WebRequest {
 	 * @return bool
 	 */
 	public function getBool( $name, $default = false ): bool {
-		// @phan-suppress-next-line PhanTypeMismatchArgument getRawVal does not return null here
-		return (bool)$this->getRawVal( $name, $default );
+		return (bool)( $this->getRawVal( $name ) ?? $default );
 	}
 
 	/**
@@ -712,7 +709,7 @@ class WebRequest {
 	public function getCheck( $name ): bool {
 		# Checkboxes and buttons are only present when clicked
 		# Presence connotes truth, absence false
-		return $this->getRawVal( $name, null ) !== null;
+		return $this->getRawVal( $name ) !== null;
 	}
 
 	/**
