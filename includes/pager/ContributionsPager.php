@@ -628,8 +628,6 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			$page = Title::makeTitle( $row->{$this->pageNamespaceField}, $row->{$this->pageTitleField} );
 		}
 
-		$dir = $language->getDir();
-
 		// Flow overrides the ContribsPager::reallyDoQuery hook, causing this
 		// function to be called with a special object for $row. It expects us
 		// skip formatting so that the row can be formatted by the
@@ -640,12 +638,12 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			$revRecord = $this->createRevisionRecord( $row, $page );
 			$attribs['data-mw-revid'] = $revRecord->getId();
 
-			$link = Html::rawElement( 'bdi', [ 'dir' => $dir ], $linkRenderer->makeLink(
+			$link = $linkRenderer->makeLink(
 				$page,
 				$page->getPrefixedText(),
 				[ 'class' => 'mw-contributions-title' ],
 				$page->isRedirect() ? [ 'redirect' => 'no' ] : []
-			) );
+			);
 			# Mark current revisions
 			$topmarktext = '';
 
@@ -806,7 +804,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 				$comment = "<span class=\"comment mw-comment-none\">$defaultComment</span>";
 			}
 
-			$comment = Html::rawElement( 'bdi', [ 'dir' => $dir ], $comment );
+			$comment = $language->getDirMark() . $comment;
 
 			// When the author is different from the target, always show user and user talk links
 			$userlink = '';
@@ -815,8 +813,8 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			$revUserText = $revUser ? $revUser->getName() : '';
 			if ( $this->target !== $revUserText ) {
 				$userlink = ' <span class="mw-changeslist-separator"></span> '
-					. Html::rawElement( 'bdi', [ 'dir' => $dir ],
-						Linker::userLink( $revUserId, $revUserText ) );
+					. $language->getDirMark()
+					. Linker::userLink( $revUserId, $revUserText );
 				$userlink .= ' ' . $this->msg( 'parentheses' )->rawParams(
 					Linker::userTalkLink( $revUserId, $revUserText ) )->escaped() . ' ';
 			}

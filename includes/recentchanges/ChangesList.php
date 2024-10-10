@@ -434,7 +434,7 @@ class ChangesList extends ContextSource {
 
 		return Html::element( $tag,
 			[ 'dir' => 'ltr', 'class' => $formattedSizeClass, 'title' => $formattedTotalSize ],
-			$formattedSize );
+			$formattedSize ) . $lang->getDirMark();
 	}
 
 	/**
@@ -496,13 +496,11 @@ class ChangesList extends ContextSource {
 		$date = $lang->userTimeAndDate( $ts, $performer->getUser() );
 		$class = trim( 'mw-changeslist-date ' . $className );
 		if ( $rev->userCan( RevisionRecord::DELETED_TEXT, $performer ) ) {
-			$link = Html::rawElement( 'bdi', [ 'dir' => $lang->getDir() ],
-				MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
-					$title ?? $rev->getPageAsLinkTarget(),
-					$date,
-					[ 'class' => $class ],
-					[ 'oldid' => $rev->getId() ]
-				)
+			$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
+				$title ?? $rev->getPageAsLinkTarget(),
+				$date,
+				[ 'class' => $class ],
+				[ 'oldid' => $rev->getId() ]
 			);
 		} else {
 			$link = htmlspecialchars( $date );
@@ -635,8 +633,8 @@ class ChangesList extends ContextSource {
 		}
 		# To allow for boldening pages watched by this user
 		$articlelink = "<span class=\"mw-title\">{$articlelink}</span>";
-		$dir = $this->getLanguage()->getDir();
-		$articlelink = Html::rawElement( 'bdi', [ 'dir' => $dir ], $articlelink );
+		# RTL/LTR marker
+		$articlelink .= $this->getLanguage()->getDirMark();
 
 		# TODO: Deprecate the $s argument, it seems happily unused.
 		$s = '';
@@ -737,8 +735,8 @@ class ChangesList extends ContextSource {
 			$s .= ' <span class="' . $deletedClass . '">' .
 				$this->msg( 'rev-deleted-user' )->escaped() . '</span>';
 		} else {
-			$dir = $this->getLanguage()->getDir();
-			$s .= Html::rawElement( 'bdi', [ 'dir' => $dir ], $this->userLinkCache->getWithSetCallback(
+			$s .= $this->getLanguage()->getDirMark();
+			$s .= $this->userLinkCache->getWithSetCallback(
 				$this->userLinkCache->makeKey(
 					$rc->mAttribs['rc_user_text'],
 					$this->getUser()->getName(),
@@ -756,7 +754,7 @@ class ChangesList extends ContextSource {
 						false
 					);
 				}
-			) );
+			);
 		}
 	}
 
@@ -770,16 +768,12 @@ class ChangesList extends ContextSource {
 		$formatter = $this->logFormatterFactory->newFromRow( $rc->mAttribs );
 		$formatter->setContext( $this->getContext() );
 		$formatter->setShowUserToolLinks( true );
-
-		$comment = $formatter->getComment();
-		if ( $comment !== '' ) {
-			$dir = $this->getLanguage()->getDir();
-			$comment = Html::rawElement( 'bdi', [ 'dir' => $dir ], $comment );
-		}
+		$mark = $this->getLanguage()->getDirMark();
 
 		return Html::openElement( 'span', [ 'class' => 'mw-changeslist-log-entry' ] )
 			. $formatter->getActionText()
-			. $comment
+			. " $mark"
+			. $formatter->getComment()
 			. $this->message['word-separator']
 			. $formatter->getActionLinks()
 			. Html::closeElement( 'span' );
