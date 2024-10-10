@@ -684,8 +684,11 @@
 	"preview": "Previzualizare",
 	"showpreview": "Previzualizare",
 	"showdiff": "Afișare diferențe",
-	"temp-user-banner-description": "Foloseşti un cont temporar",
+	"temp-user-banner-description": "Folosiți un cont temporar",
+	"temp-user-banner-tooltip-label": "Mai multe informații despre conturile temporare",
 	"temp-user-banner-tooltip-title": "Cont temporar",
+	"temp-user-banner-tooltip-description-learn-more": "Acest cont temporar a fost creat după ce a fost efectuată o modificare fără un cont de pe cest browser și dispozitiv. [[mw:Help:Temporary_accounts|Aflați mai mult]].",
+	"temp-user-banner-tooltip-description-login": "[[Special:UserLogin|Autentificați-vă]] sau [[Special:CreateAccount|creați un cont]] pentru a primi credit pentru modificări ulterioare și accesa alte funcții.",
 	"blankarticle": "<strong>Atenție:</strong> Pagina pe care o creați este goală.\nDacă faceți din nou clic pe „$1”, pagina va fi creată fără niciun conținut.",
 	"anoneditwarning": "<strong>Atenție:</strong> Nu v-ați autentificat. Adresa dumneavoastră IP va fi vizibilă în mod public dacă efectuați modificări. Dacă vă <strong>[$1 autentificați]</strong> sau vă <strong>[$2 creați un cont]</strong>, modificările dumneavoastră vor fi asociate numelui de utilizator, pe lângă alte beneficii.",
 	"anonpreviewwarning": "<em>Nu v-ați autentificat. Dacă salvați pagina adresa dumneavoastră IP va fi înregistrată în istoric.</em>",
@@ -4169,5 +4172,6 @@
 	"renameuser-move-log": "Pagină mutată automat la redenumirea {{GENDER:$2|utilizatorului|utilizatoarei|utilizatorului}} „[[User:$1|$1]]” în „[[User:$2|$2]]”",
 	"action-renameuser": "redenumește utilizatori",
 	"right-renameuser": "Redenumește utilizatori",
-	"renameuser-renamed-notice": "Acestui utilizator i-a fost schimbat numele.\nJurnalul redenumirilor este furnizat mai jos pentru referință."
+	"renameuser-renamed-notice": "Acestui utilizator i-a fost schimbat numele.\nJurnalul redenumirilor este furnizat mai jos pentru referință.",
+	"temp-user-unable-to-acquire": "Nu se poate face rost de un nume de utilizator de cont temporar. Vă rugăm să încercați din nou."
 }

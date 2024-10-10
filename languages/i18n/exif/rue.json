@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Gazeb"
+			"Gazeb",
+			"Constraque"
 		]
 	},
 	"exif-imagewidth": "Шырька",
@@ -82,7 +83,7 @@
 	"exif-contrast": "Контраст",
 	"exif-saturation": "Насыченость",
 	"exif-sharpness": "Острость",
-	"exif-devicesettingdescription": "Попис наштелёваня заряджіня",
+	"exif-devicesettingdescription": "Попис наставлїня заряджіня",
 	"exif-subjectdistancerange": "Далеко ку обєкту",
 	"exif-imageuniqueid": "Унікатне ID образка",
 	"exif-gpsversionid": "Верзія блоку GPS-інформації",
@@ -257,10 +258,10 @@
 	"exif-customrendered-0": "Нормалне спрацованя",
 	"exif-customrendered-1": "Нештандартне спрацованя",
 	"exif-exposuremode-0": "Автоматічна експозіція",
-	"exif-exposuremode-1": "Ручне наштелёваня експозіції",
+	"exif-exposuremode-1": "Ручне наставлїня експозіції",
 	"exif-exposuremode-2": "Брекетинґ",
 	"exif-whitebalance-0": "Автоматічный баланс білого",
-	"exif-whitebalance-1": "Ручне наштелёваня балансу білого",
+	"exif-whitebalance-1": "Ручне наставлїня балансу білого",
 	"exif-scenecapturetype-0": "Штандартный",
 	"exif-scenecapturetype-1": "На шырку",
 	"exif-scenecapturetype-2": "На вышку",

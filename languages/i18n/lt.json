@@ -1025,6 +1025,8 @@
 	"diff-paragraph-moved-toold": "Pastraipa perkelta. Paspauskite, kad persikeltumėte į seną vietą.",
 	"diff-inline-tooltip-ins": "Pridėtas turinys",
 	"diff-inline-tooltip-del": "Ištrintas turinys",
+	"diff-inline-format-label": "Paeiliui",
+	"diff-inline-switch-desc": "Perjungiama tarp eilučių formato ir dviejų stulpelių formato",
 	"diff-line-deleted": "⟵ ištrinti",
 	"diff-newline": "↲ nauja eilutė",
 	"difference-missing-revision": "{{PLURAL:$2|Vienas pakeitimas|$2 pakeitimai}} šio skirtumo ($1) {{PLURAL:$2|nebuvo}} rasti.\n\nTai paprastai atsitinka kai nuoroda veda į puslapį, kuris buvo ištrintas.\nInformacija gali būti rasta [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",

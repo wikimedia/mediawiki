@@ -20,7 +20,8 @@
 			"Stephanecbisson",
 			"Teferra",
 			"Yeniesil",
-			"아라"
+			"아라",
+			"Dagmawi-M"
 		]
 	},
 	"tog-underline": "በመያያዣ ስር አስምር",
@@ -132,9 +133,10 @@
 	"newwindow": "(ባዲስ መስኮት ውስጥ ይከፈታል።)",
 	"cancel": "ሰርዝ",
 	"moredotdotdot": "ተጨማሪ...",
-	"mypage": "የኔ ገጽ",
+	"morenotlisted": "ይህ ዝርዝር ያልተሟላ ሊሆን ይችላል።",
+	"mypage": "ገጽ",
 	"mytalk": "የኔ ውይይት",
-	"anontalk": "ውይይት ለዚሁ ቁ. አድራሻ",
+	"anontalk": "የኔ ውይይት",
 	"navigation": "መቃኘት",
 	"and": "&#32;እና",
 	"faq": "ብጊየጥ (ብዙ ጊዜ የሚጠየቁ ጥያቀዎች)",
@@ -144,6 +146,7 @@
 	"returnto": "(ወደ $1 ለመመለስ)",
 	"tagline": "ከ{{SITENAME}}",
 	"help": "እርዳታ",
+	"help-mediawiki": "ስለ ሚዲያዊኪ እርዳታ",
 	"search": "ፈልግ",
 	"searchbutton": "ፈልግ",
 	"go": "ሂድ",
@@ -151,6 +154,7 @@
 	"skin-view-history": "ታሪኩን አሳይ",
 	"history": "የገጽ ታሪክ",
 	"history_short": "ታሪክ",
+	"history_small": "ታሪክ",
 	"updatedmarker": "ከመጨረሻው ጉብኝቴ በኋላ የተሻሻለ",
 	"printableversion": "ለህትመት የተዘጋጀ",
 	"permalink": "ቋሚ መያያዣ",

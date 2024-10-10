@@ -2741,7 +2741,7 @@
 	"ipb-namespaces-label": "מרחבי שם",
 	"badipaddress": "כתובת IP שגויה",
 	"blockipsuccesssub": "החסימה הושלמה בהצלחה",
-	"blockipsuccesstext": "{{GENDER:$1|המשתמש|המשתמשת}} [[Special:Contributions/$1|$1]] {{GENDER:$1|נחסם|נחסמה}}.<br />\nניתן לעיין ב[[Special:BlockList|רשימת החסומים]] כדי לצפות בחסימות.",
+	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] {{GENDER:$1|נחסם|נחסמה}}.<br />\nר' את [[Special:BlockList|רשימת החסימות]] כדי לסקור חסימות.",
 	"ipb-empty-block": "בחסימה שנשלחה לא מופעלות שום הגבלות.",
 	"ipb-block-not-found": "לא היה אפשרלעשות את החסימה, אבל לא נמצאה חסימה קיימת עבור \"$1\". אם הבעיה הזאת ממשיכה, נא [https://www.mediawiki.org/wiki/Special:MyLanguage/Help_talk:Blocking_users לדווח את זה].",
 	"ipb-blockingself": "החשבון שלך ייחסם! האם ברצונך לעשות זאת?",

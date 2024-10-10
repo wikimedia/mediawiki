@@ -67,7 +67,8 @@
 			"Александр Сигачёв",
 			"לערי ריינהארט",
 			"נדב ס",
-			"아라"
+			"아라",
+			"Stefangrotz"
 		]
 	},
 	"tog-underline": "Substrekado de ligiloj:",
@@ -317,7 +318,11 @@
 	"showtoc": "montri",
 	"hidetoc": "kaŝi",
 	"collapsible-collapse": "kaŝi",
+	"collapsible-collapse-all-text": "Kolapsi ĉion",
+	"collapsible-collapse-all-tooltip": "Kolapsu ĉiujn faldeblajn elementojn sur la nuna paĝo",
 	"collapsible-expand": "Etendi",
+	"collapsible-expand-all-text": "Etendu ĉiujn",
+	"collapsible-expand-all-tooltip": "Etendu ĉiujn faldeblajn elementojn sur la nuna paĝo",
 	"confirmable-confirm": "Ĉu {{GENDER:$1|vi}} certas?",
 	"confirmable-yes": "Jes",
 	"confirmable-no": "Ne",
@@ -672,6 +677,7 @@
 	"edit-recovery-nojs-placeholder": "JavaScript estas bezonata por la Redakti Reakiro funkcion.",
 	"edit-recovery-special-intro": "Vi havas nekonservitajn ŝanĝojn al la {{PLURAL:$1| sekva paĝo aŭ sekcio|sekvaj paĝoj kaj/aŭ sekcioj}}:",
 	"edit-recovery-special-intro-empty": "Vi ne havas nekonservitajn ŝanĝojn.",
+	"edit-recovery-special-edit": "redakti",
 	"edit-recovery-loaded-title": "Ŝanĝoj retroviĝis",
 	"edit-recovery-loaded-message": "Viaj nekonservitaj ŝanĝoj estis aŭtomate restaŭritaj.",
 	"edit-recovery-loaded-show": "Montri ŝanĝojn",

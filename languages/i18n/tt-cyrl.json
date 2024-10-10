@@ -39,7 +39,8 @@
 			"Рашат Якупов",
 			"Умар",
 			"Эндже",
-			"아라"
+			"아라",
+			"Stjn"
 		]
 	},
 	"tog-underline": "Сылтамаларны ассызыклау:",
@@ -146,7 +147,7 @@
 	"dec": "дек",
 	"period-am": "ТК",
 	"period-pm": "ТС",
-	"pagecategories": "{{PLURAL:$1|төркем}}",
+	"pagecategories": "{{PLURAL:$1|1=Төркем|Төркемнәр}}",
 	"category_header": "«$1» төркемендәге битләр",
 	"subcategories": "Төркемчәләр",
 	"category-media-header": "«$1» төркемендәге медиа",
