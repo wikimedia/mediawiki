@@ -25,7 +25,7 @@
 				{{ util.getBlockActionMessage( item ) }}
 			</template>
 			<template #item-expiry="{ item }">
-				<div v-if="item.type === 'unblock'">
+				<div v-if="item.type === 'unblock'" class="mw-block-nodata">
 					—
 				</div>
 				<span v-else>
@@ -37,7 +37,7 @@
 				<span v-html="$i18n( 'userlink-with-contribs', item ).parse()"></span>
 			</template>
 			<template #item-parameters="{ item }">
-				<div v-if="!item" class="mw-block-params-hyphen">
+				<div v-if="!item" class="mw-block-nodata mw-block-params-hyphen">
 					—
 				</div>
 				<ul v-else>
@@ -47,8 +47,12 @@
 				</ul>
 			</template>
 			<template #item-reason="{ item }">
-				<div v-if="!item">
-					—
+				<div
+					v-if="!item"
+					class="mw-block-nodata"
+					:aria-label="$i18n( 'block-user-no-reason-given-aria-details' ).text()"
+				>
+					{{ $i18n( 'block-user-no-reason-given' ).text() }}
 				</div>
 				<span v-else>
 					{{ item }}
@@ -171,5 +175,10 @@ module.exports = exports = defineComponent( {
 
 .mw-block-fulllog {
 	margin-top: @spacing-50;
+}
+
+.mw-block-nodata {
+	color: @color-subtle;
+	font-style: italic;
 }
 </style>

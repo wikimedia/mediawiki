@@ -2698,6 +2698,7 @@
 	"block-user-previous-blocks": "Block log",
 	"block-user-no-previous-blocks": "No previous blocks found",
 	"block-user-no-reason-given": "No reason given",
+	"block-user-no-reason-given-aria-details": "No reason was given for this log entry",
 	"block-user-description": "A user can be a username, IP address, or an IP range.",
 	"block-user-placeholder": "Start typing a user...",
 	"block-target": "Username, IP address, or IP range:",

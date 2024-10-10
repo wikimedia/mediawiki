@@ -2961,6 +2961,7 @@
 	"block-user-previous-blocks": "Header for the previous blocks table",
 	"block-user-no-previous-blocks": "Message shown when there are no previous blocks for the user",
 	"block-user-no-reason-given": "Message shown when no reason is given for a block",
+	"block-user-no-reason-given-aria-details": "aria-details message, used to clarify to screen readers that no reason was given for a log entry",
 	"block-user-description": "Description for the input for specifying the user of a block on [[Special:Block]]",
 	"block-user-placeholder": "Placeholder text for the input specifying the user of a block on [[Special:Block]]",
 	"block-target": "Label for the input for specifying the target of a block on [[Special:Block]]",

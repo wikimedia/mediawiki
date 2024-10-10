@@ -2347,6 +2347,7 @@ return [
 			'block-log-flags-angry-autoblock',
 			'block-log-flags-hiddenname',
 			'block-user-no-reason-given',
+			'block-user-no-reason-given-aria-details',
 			'blockipsuccesssub',
 			'block-success',
 			'ipb_expiry_invalid',
