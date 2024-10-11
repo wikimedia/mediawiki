@@ -30,6 +30,7 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Session\SessionManager;
 use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
@@ -977,10 +978,7 @@ class DatabaseBlockStore {
 				$targetUserIdentity = $block->getTargetUserIdentity();
 				if ( $targetUserIdentity ) {
 					$targetUser = $this->userFactory->newFromUserIdentity( $targetUserIdentity );
-					// TODO: respect the wiki the block belongs to here
-					// Change user login token to force them to be logged out.
-					$targetUser->setToken();
-					$targetUser->saveSettings();
+					SessionManager::singleton()->invalidateSessionsForUser( $targetUser );
 				}
 			}
 
