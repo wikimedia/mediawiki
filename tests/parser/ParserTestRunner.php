@@ -1710,9 +1710,13 @@ class ParserTestRunner {
 		} else {
 			$expectedFailure = $test->knownFailures["$mode"] ?? null;
 		}
+		if ( $expectedFailure !== null ) {
+			$expectedFailure = $test->normalizeKnownFailure( $expectedFailure );
+		}
+		$rawActualFailure = $test->normalizeKnownFailure( $rawActual );
 
 		$expectedToFail = $expectedFailure !== null;
-		$knownFailureChanged = $expectedToFail && $expectedFailure !== $rawActual;
+		$knownFailureChanged = $expectedToFail && $expectedFailure !== $rawActualFailure;
 
 		if ( is_callable( $rawExpected ) ) {
 			$rawExpected = $rawExpected();
@@ -1725,6 +1729,8 @@ class ParserTestRunner {
 
 		if ( $unexpectedPass ) {
 			$this->recorder->warning( "{$test->testName}: $mode: EXPECTED TO FAIL, BUT PASSED!" );
+		} elseif ( $knownFailureChanged ) {
+			$this->recorder->warning( "{$test->testName}: $mode: UNEXPECTED CHANGE TO KNOWN FAILURE OUTPUT" );
 		}
 
 		if ( $this->options['updateKnownFailures'] && (
@@ -1733,10 +1739,7 @@ class ParserTestRunner {
 			if ( $unexpectedPass ) {
 				unset( $test->knownFailures["$mode"] );
 			} else {
-				if ( $knownFailureChanged ) {
-					$this->recorder->warning( "{$test->testName}: $mode: KNOWN FAILURE CHANGED!" );
-				}
-				$test->knownFailures["$mode"] = $rawActual;
+				$test->knownFailures["$mode"] = $rawActualFailure;
 			}
 		}
 
@@ -1748,10 +1751,10 @@ class ParserTestRunner {
 			if ( !$this->options['updateKnownFailures'] ) {
 				$this->unexpectedTestPasses = true;
 			}
-		} elseif ( $expectedToFail && !$knownFailureChanged ) {
-			// Don't flag failures noisily when nothing really changed
+		} elseif ( $expectedToFail ) {
+			'@phan-var string $expectedFailure'; // non-null implied by $expectedToFail
 			$expected = $expectedFailure;
-			$actual = $rawActual;
+			$actual = $rawActualFailure;
 		}
 
 		return new ParserTestResult( $test, $mode, $expected, $actual );
