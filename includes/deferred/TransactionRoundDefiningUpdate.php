@@ -19,7 +19,7 @@ class TransactionRoundDefiningUpdate
 
 	/**
 	 * @param callable $callback
-	 * @param string $fname Calling method
+	 * @param string $fname Calling method @phan-mandatory-param
 	 */
 	public function __construct( callable $callback, $fname = ISQLPlatform::CALLER_UNKNOWN ) {
 		$this->callback = $callback;
