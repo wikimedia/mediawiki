@@ -157,7 +157,7 @@ class UserFactory implements UserRigorOptions {
 	}
 
 	/**
-	 * Factory method for creation fom a given UserIdentity, replacing User::newFromIdentity
+	 * Factory method for creation from a given UserIdentity, replacing User::newFromIdentity
 	 *
 	 * @since 1.35
 	 *
@@ -179,6 +179,7 @@ class UserFactory implements UserRigorOptions {
 			$this->lastUserFromIdentity
 			&& $this->lastUserFromIdentity->getId() === $id
 			&& $this->lastUserFromIdentity->getName() === $name
+			&& $this->lastUserFromIdentity->getWikiId() === $userIdentity->getWikiId()
 		) {
 			return $this->lastUserFromIdentity;
 		}
@@ -186,7 +187,8 @@ class UserFactory implements UserRigorOptions {
 		$this->lastUserFromIdentity = $this->newFromAnyId(
 			$id === 0 ? null : $id,
 			$name === '' ? null : $name,
-			null
+			null,
+			$userIdentity->getWikiId()
 		);
 
 		return $this->lastUserFromIdentity;
