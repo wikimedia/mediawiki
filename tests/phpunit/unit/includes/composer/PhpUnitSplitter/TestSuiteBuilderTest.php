@@ -14,33 +14,33 @@ use PHPUnit\Framework\TestCase;
  */
 class TestSuiteBuilderTest extends TestCase {
 
-	public function testBuildSuites() {
+	public function testBuildSuitesInAlphabeticalOrder() {
 		$testList = [
-			new TestDescriptor( "ATest", [ "MediaWiki" ], "MediaWiki/ATest.php" ),
-			new TestDescriptor( "BTest", [ "MediaWiki" ], "MediaWiki/BTest.php" ),
-			new TestDescriptor( "CTest", [ "MediaWiki" ], "MediaWiki/CTest.php" ),
-			new TestDescriptor( "DTest", [ "MediaWiki" ], "MediaWiki/DTest.php" ),
-			new TestDescriptor( "ETest", [ "MediaWiki" ], "MediaWiki/ETest.php" ),
+			new TestDescriptor( "ZTest", [ "MediaWiki" ], "MediaWiki/ZTest.php" ),
+			new TestDescriptor( "YTest", [ "MediaWiki" ], "MediaWiki/YTest.php" ),
+			new TestDescriptor( "XTest", [ "MediaWiki" ], "MediaWiki/XTest.php" ),
+			new TestDescriptor( "WTest", [ "MediaWiki" ], "MediaWiki/WTest.php" ),
+			new TestDescriptor( "VTest", [ "MediaWiki" ], "MediaWiki/VTest.php" ),
 		];
 		$suites = ( new TestSuiteBuilder() )->buildSuites( $testList, 3 );
 		$expected = [
 			[
 				"list" => [
-					"MediaWiki/ATest.php",
-					"MediaWiki/DTest.php",
+					"MediaWiki/VTest.php",
+					"MediaWiki/YTest.php",
 				],
 				"time" => 0
 			],
 			[
 				"list" => [
-					"MediaWiki/BTest.php",
-					"MediaWiki/ETest.php",
+					"MediaWiki/WTest.php",
+					"MediaWiki/ZTest.php",
 				],
 				"time" => 0
 			],
 			[
 				"list" => [
-					"MediaWiki/CTest.php",
+					"MediaWiki/XTest.php",
 				],
 				"time" => 0
 			]

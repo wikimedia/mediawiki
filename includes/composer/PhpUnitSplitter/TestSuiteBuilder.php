@@ -9,9 +9,12 @@ namespace MediaWiki\Composer\PhpUnitSplitter;
  */
 class TestSuiteBuilder {
 
-	private static function sortByTimeDescending( TestDescriptor $a, TestDescriptor $b ): int {
+	private static function sortByTimeDescendingAndNameAscending( TestDescriptor $a, TestDescriptor $b ): int {
 		if ( $a->getDuration() === $b->getDuration() ) {
-			return 0;
+			if ( $b->getFilename() === $a->getFilename() ) {
+				return 0;
+			}
+			return ( $b->getFilename() > $a->getFilename() ? -1 : 1 );
 		}
 		return ( $a->getDuration() > $b->getDuration() ? -1 : 1 );
 	}
@@ -32,7 +35,7 @@ class TestSuiteBuilder {
 	public function buildSuites( array $testDescriptors, int $groups ): array {
 		$suites = array_fill( 0, $groups, [ "list" => [], "time" => 0 ] );
 		$roundRobin = 0;
-		usort( $testDescriptors, [ self::class, "sortByTimeDescending" ] );
+		usort( $testDescriptors, [ self::class, "sortByTimeDescendingAndNameAscending" ] );
 		foreach ( $testDescriptors as $testDescriptor ) {
 			if ( !$testDescriptor->getFilename() ) {
 				// We didn't resolve a matching file for this test, so we skip it
