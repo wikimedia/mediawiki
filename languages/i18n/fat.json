@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
+			"Assilidjoe",
 			"Ebenoffen1",
 			"Gregorynelsonmensah1",
 			"Leonard Nketsia",
@@ -459,7 +460,7 @@
 	"speciallogtitlelabel": "Ɔgyefo (dwumadzinyi abɔdzin anaa {{ns:user}}:dwumadzinyidzin):",
 	"log": "Logs",
 	"logeventslist-submit": "Da no edzi",
-	"all-logs-page": "Amansuon nkɔrmu nyina",
+	"all-logs-page": "Amansuon nhɛnmu nyina",
 	"alllogstext": "{{SITENAME}} nhɛnmu abakɔsɛm nyinara mbɔmu ahwɛe.\nIbotum eyi nhɛnmu ahorow no kor dze atsew ahwɛe no dodow no do, dwumadzinyidzin no (dɛ akyerɛwamba yɛ akɛse anaa nkakramba ho hia), anaa krataafa a ɔfa ho no (no so dɛ akyerɛwamba yɛ akɛse anaa nkakramba ho hia).",
 	"logempty": "Lɔɔgo mu adze biara nye no mmfa.",
 	"checkbox-all": "Nyina",
