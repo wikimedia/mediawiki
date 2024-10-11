@@ -24,8 +24,10 @@ namespace MediaWiki\User;
 
 use InvalidArgumentException;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
+use RuntimeException;
 use stdClass;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IDBAccessObject;
@@ -218,7 +220,13 @@ class UserFactory implements UserRigorOptions {
 		// Stop-gap solution for the problem described in T222212.
 		// Force the User ID and Actor ID to zero for users loaded from the database
 		// of another wiki, to prevent subtle data corruption and confusing failure modes.
+		// FIXME this assumes the same username belongs to the same user on all wikis
 		if ( $dbDomain !== false ) {
+			LoggerFactory::getInstance( 'user' )->warning(
+				'UserFactory::newFromAnyId called with cross-wiki user data',
+				[ 'userId' => $userId, 'userName' => $userName, 'actorId' => $actorId,
+				  'dbDomain' => $dbDomain, 'exception' => new RuntimeException() ]
+			);
 			$userId = 0;
 			$actorId = 0;
 		}
