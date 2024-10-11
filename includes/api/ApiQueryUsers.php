@@ -208,6 +208,10 @@ class ApiQueryUsers extends ApiQueryBase {
 				$data[$key]['userid'] = $user->getId();
 				$data[$key]['name'] = $user->getName();
 
+				if ( $user->isSystemUser() ) {
+					$data[$key]['systemuser'] = true;
+				}
+
 				if ( isset( $this->prop['editcount'] ) ) {
 					$data[$key]['editcount'] = $user->getEditCount();
 				}
