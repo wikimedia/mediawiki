@@ -56,7 +56,8 @@ function mockMwConfigGet( config = {} ) {
 			{ label: 'block-reason-1', value: 'block-reason-1' },
 			{ label: 'block-reason-2', value: 'block-reason-2' }
 		],
-		blockSuccessMsg: '[[Special:Contributions/ExampleUser|ExampleUser]] has been blocked.'
+		blockSuccessMsg: '[[Special:Contributions/ExampleUser|ExampleUser]] has been blocked.',
+		blockTypePreset: 'sitewide'
 	}, config );
 	mw.config.get.mockImplementation( ( key ) => mockConfig[ key ] );
 }
