@@ -194,7 +194,8 @@
 	 * @return {jQuery.Promise}
 	 */
 	function addItemToTemplateList( $list, template ) {
-		const canEdit = template.apiData.actions.edit !== undefined;
+		const editable = template.apiData.ns >= 0;
+		const canEdit = editable && template.apiData.actions.edit !== undefined;
 		const linkClasses = template.apiData.linkclasses || [];
 		if ( template.apiData.missing !== undefined && template.apiData.known === undefined ) {
 			linkClasses.push( 'new' );
@@ -209,17 +210,24 @@
 		const $link = $baseLink.clone()
 			.attr( 'href', template.title.getUrl() )
 			.text( template.title.getPrefixedText() );
-		const $editLink = $baseLink.clone()
-			.attr( 'href', template.title.getUrl( { action: 'edit' } ) )
-			.append( mw.msg( canEdit ? 'editlink' : 'viewsourcelink' ) );
-		const wordSep = mw.message( 'word-separator' ).escaped();
-		return getRestrictionsText( template.apiData.protection || [] )
-			.then( ( restrictionsList ) => {
-				// restrictionsList is a comma-separated parentheses-wrapped localized list of restriction level names.
-				const editLinkParens = parenthesesWrap( $editLink[ 0 ].outerHTML );
-				const $li = $( '<li>' ).append( $link, wordSep, editLinkParens, wordSep, restrictionsList );
-				$list.append( $li );
-			} );
+
+		if ( editable ) {
+			const $editLink = $baseLink.clone()
+				.attr( 'href', template.title.getUrl( { action: 'edit' } ) )
+				.append( mw.msg( canEdit ? 'editlink' : 'viewsourcelink' ) );
+
+			const wordSep = mw.message( 'word-separator' ).escaped();
+			return getRestrictionsText( template.apiData.protection || [] )
+				.then( ( restrictionsList ) => {
+					// restrictionsList is a comma-separated parentheses-wrapped localized list of restriction level names.
+					const editLinkParens = parenthesesWrap( $editLink[ 0 ].outerHTML );
+					const $li = $( '<li>' ).append( $link, wordSep, editLinkParens, wordSep, restrictionsList );
+					$list.append( $li );
+				} );
+		} else {
+			$list.append( $( '<li>' ).append( $link ) );
+			return $.Deferred().resolve( '' );
+		}
 	}
 
 	/**
