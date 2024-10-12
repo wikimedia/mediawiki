@@ -376,6 +376,11 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * @return array (server index, table name)
 	 */
 	private function getKeyLocation( $key ) {
+		// Pick the same shard for sister keys
+		// Using the same hash stop as mc-router for consistency
+		if ( str_contains( $key, '|#|' ) ) {
+			$key = explode( '|#|', $key )[0];
+		}
 		if ( $this->useLB ) {
 			// LoadBalancer based configuration
 			$shardIndex = 0;
