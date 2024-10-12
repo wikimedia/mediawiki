@@ -150,7 +150,8 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 			'outputContentVersion' => Parsoid::defaultHTMLVersion(),
 			'previousOutput' => $oldPageBundle,
 			'previousInput' => $oldPageConfig,
-			'sample_stats' => $doSample,
+			'sampleStats' => $doSample,
+			'renderReason' => $options->getRenderReason(),
 		];
 
 		$parserOutput->resetParseStartTime();
