@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\Rest\Handler;
 
 use JsonSchemaAssertionTrait;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\Handler;
@@ -36,11 +35,10 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 		$specFile
 	): Router {
 		$services = $this->getServiceContainer();
-		$context = RequestContext::getMain();
 
 		$conf = $services->getMainConfig();
 
-		$authority = $context->getAuthority();
+		$authority = $this->mockRegisteredUltimateAuthority();
 		$authorizer = new StaticBasicAuthorizer();
 
 		$objectFactory = $services->getObjectFactory();
@@ -72,7 +70,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 			$restValidator,
 			new MWErrorReporter(),
 			$services->getHookContainer(),
-			$context->getRequest()->getSession()
+			$this->getSession( true )
 		) );
 	}
 
