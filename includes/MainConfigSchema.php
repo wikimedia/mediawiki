@@ -4188,6 +4188,21 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Ratio for use of new parser cache key schema.
+	 *
+	 * For example, 100 means only 1% of entries will be using the new schema.
+	 * And 5 means 20% of entries and so on.
+	 *
+	 * @note this is temporary and will be removed soon.
+	 *
+	 * @unstable
+	 */
+	public const ParserCacheNewKeySchemaRatio = [
+		'default' => 0,
+		'type' => 'integer',
+	];
+
+	/**
 	 * The expiry time for the parser cache for old revisions, in seconds.
 	 *
 	 * The default is 3600 (cache disabled).

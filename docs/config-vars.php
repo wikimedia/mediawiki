@@ -1533,6 +1533,12 @@ $wgChronologyProtectorSecret = null;
 $wgParserCacheExpireTime = null;
 
 /**
+ * Config variable stub for the ParserCacheNewKeySchemaRatio setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ParserCacheNewKeySchemaRatio
+ */
+$wgParserCacheNewKeySchemaRatio = null;
+
+/**
  * Config variable stub for the OldRevisionParserCacheExpireTime setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::OldRevisionParserCacheExpireTime
  */
