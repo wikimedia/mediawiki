@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
@@ -139,11 +138,23 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function getTestRouter(): Router {
 		if ( !$this->router ) {
-			$context = new DerivativeContext( RequestContext::getMain() );
-			$context->setLanguage( 'en' );
-			$context->setTitle(
-				Title::makeTitle( NS_SPECIAL, 'Badtitle/dummy title for RestStructureTest' )
+			$language = $this->createNoOpMock( Language::class, [ 'getCode' ] );
+			$language->method( 'getCode' )->willReturn( 'en' );
+
+			$title = Title::makeTitle( NS_SPECIAL, 'Badtitle/dummy title for RestStructureTest' );
+			$authority = new SimpleAuthority( new UserIdentityValue( 0, 'Testor' ), [] );
+
+			$request = $this->createNoOpMock( WebRequest::class, [ 'getSession' ] );
+			$request->method( 'getSession' )->willReturn( $this->createNoOpMock( Session::class ) );
+
+			$context = $this->createNoOpMock(
+				RequestContext::class,
+				[ 'getLanguage', 'getTitle', 'getAuthority', 'getRequest' ]
 			);
+			$context->method( 'getLanguage' )->willReturn( $language );
+			$context->method( 'getTitle' )->willReturn( $title );
+			$context->method( 'getAuthority' )->willReturn( $authority );
+			$context->method( 'getRequest' )->willReturn( $request );
 
 			$responseFactory = $this->createNoOpMock( ResponseFactory::class );
 			$cors = $this->createNoOpMock( CorsUtils::class );
