@@ -665,6 +665,7 @@
 	"edit-recovery-loaded-message-different-rev": "<em>دقت کنید که ممکن است صفحه از زمان آغاز ویرایش شما تغییر کرده باشد.</em>",
 	"edit-recovery-loaded-message-different-rev-publish": "<em>لطفاً تغییرات خود را پیش از ذخیره‌سازی بازبینی کنید.</em>",
 	"edit-recovery-loaded-message-different-rev-save": "<em>لطفاً تغییرات خود را پیش از ذخیره‌سازی بازبینی کنید.</em>",
+	"edit-recovery-loaded-recover": "بازیابی",
 	"edit-recovery-loaded-discard": "دور ریختن تغییرات",
 	"summary": "خلاصه:",
 	"subject": "عنوان:",

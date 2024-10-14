@@ -2538,6 +2538,7 @@
 	"block-user-previous-blocks": "Registro de blocadas",
 	"block-user-no-previous-blocks": "Necun blocada precedente trovate",
 	"block-user-no-reason-given": "Necun motivo fornite",
+	"block-user-no-reason-given-aria-details": "Necun motivo ha essite date pro iste entrata de registro",
 	"block-user-description": "Un usator pote esser un nomine de usator, adresse IP, o intervallo de adresses IP.",
 	"block-user-placeholder": "Comencia a scriber un usator…",
 	"block-target": "Nomine de usator, adresse IP o gamma de adresses IP:",

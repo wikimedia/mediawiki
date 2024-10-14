@@ -1757,6 +1757,7 @@
 	"blocklist-indefblocks": "غیرنتعین پابندیاں لکاؤ",
 	"blocklist-addressblocks": "کلہی آئی پی پبندی لکاؤ",
 	"blocklist-type": "قسم:",
+	"blocklist-type-header": "قسم",
 	"blocklist-type-opt-all": "یکے",
 	"blocklist-type-opt-sitewide": "پوری سائٹ وچ",
 	"blocklist-type-opt-partial": "جزوی",

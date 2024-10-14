@@ -5,6 +5,7 @@
 			"Aishik Rehman",
 			"Bodhisattwa",
 			"Elias Ahmmad",
+			"San1joy23",
 			"ZI Jony",
 			"আজিজ",
 			"আফতাবুজ্জামান"
@@ -33,6 +34,8 @@
 	"apihelp-login-param-password": "পাসওয়ার্ড।",
 	"apihelp-login-param-domain": "ডোমেন (ঐচ্ছিক)।",
 	"apihelp-login-example-login": "প্রবেশ করুন।",
+	"apihelp-query+allusers-param-excludenamed": "নামযুক্ত অ্যাকাউন্টের ব্যবহারকারীদের বাদ দিন।",
+	"apihelp-query+allusers-param-excludetemp": "অস্থায়ী অ্যাকাউন্ট ব্যবহারকারীদের বাদ দিন।",
 	"apihelp-query+search-paramvalue-prop-score": "উপেক্ষিত।",
 	"apihelp-query+search-paramvalue-prop-hasrelated": "উপেক্ষিত।",
 	"apihelp-setpagelanguage-summary": "একটি পৃষ্ঠার ভাষা পরিবর্তন করুন।",

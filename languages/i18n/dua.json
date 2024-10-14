@@ -343,7 +343,7 @@
 	"editundo": "Dimse̱",
 	"diff-empty": "diwengisan tó dio",
 	"diff-multi-sameuser": "({{PLURAL:$1|Une|$1}}  patí{{PLURAL:$1||s}} tongwea{{PLURAL:$1||s}} ná l{{GENDER:$3|e|a}} mulemlem mwa diná lá muɓolánɛ lambo{{GENDER:$3}} di ma le ɛlɛ{{PLURAL:$1||s}})",
-	"diff-multi-otherusers": "({{PLURAL:$1|Une|$1}}  patí{{PLURAL:$1||s}} tongwea{{PLURAL:$1||s}} ná l{{GENDER:$3|e|a}} mulemlem mwa diná lá muɓolánɛ lambo{{GENDER:$3}} di ma le ɛlɛ{{PLURAL:$1||s}})",
+	"diff-multi-otherusers": "({{PLURAL:$1|Pó|$1}} \npatí{{PLURAL:$1||s}} \ntongwea{{PLURAL:$1||s}} \nná l{{GENDER:$3|e|a}} \nmulemlem mwa diná lá muɓolánɛ lambo{{GENDER:$3}} di ma le ɛlɛ{{PLURAL:$1||s}})",
 	"searchresults": "Mbáko á muwaso",
 	"searchresults-title": "Mbáko á muwaso \"$1\"",
 	"prevn": "{{PLURAL:$1|dí sɛlɛ |$1 má sɛlɛ}}",

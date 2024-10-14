@@ -261,6 +261,7 @@
 	"apihelp-feedrecentchanges-param-hideminor": "Masquer les modifications mineures.",
 	"apihelp-feedrecentchanges-param-hidebots": "Masquer les modifications effectuées par des robots.",
 	"apihelp-feedrecentchanges-param-hideanons": "Masquer les modifications effectuées par les utilisateurs anonymes.",
+	"apihelp-feedrecentchanges-param-hideanons-temp": "Masquer les modifications effectuées par les utilisateurs anonymes et les comptes temporaires.",
 	"apihelp-feedrecentchanges-param-hideliu": "Masquer les modifications effectuées par les utilisateurs enregistrés.",
 	"apihelp-feedrecentchanges-param-hidepatrolled": "Masquer les modifications contrôlées.",
 	"apihelp-feedrecentchanges-param-hidemyself": "Masquer les modifications effectuées par l’utilisateur actuel.",
