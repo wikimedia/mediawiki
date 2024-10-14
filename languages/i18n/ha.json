@@ -27,7 +27,8 @@
 			"Hamza DK",
 			"Juguson",
 			"Yusuf Sa'adu",
-			"Muhammad Idriss Criteria"
+			"Muhammad Idriss Criteria",
+			"Umar2z"
 		]
 	},
 	"tog-underline": "Zana layin mahaɗa:",
@@ -350,9 +351,9 @@
 	"mailmypassword": "Sake lambarsirri",
 	"emailconfirmlink": "Tabbata adireshinka i-mel",
 	"loginlanguagelabel": "Harshe: $1",
-	"pt-login": "Shiga",
+	"pt-login": "Login",
 	"pt-login-button": "Shiga",
-	"pt-createaccount": "Ƙirƙira asusu",
+	"pt-createaccount": "Ƙirƙiri account",
 	"pt-userlogout": "Fita",
 	"changepassword": "Canji kalmar sirri",
 	"oldpassword": "Tsohon kalmar sirri",
@@ -676,7 +677,7 @@
 	"block-details": "Bayanan kullewa",
 	"ipblocklist": "Kulle ma'aikaci",
 	"ipblocklist-submit": "Nema",
-	"blocklink": "Hanawa",
+	"blocklink": "hanawa",
 	"unblocklink": "karɓa",
 	"change-blocklink": "Canza hanawa",
 	"contribslink": "gudummuwa",

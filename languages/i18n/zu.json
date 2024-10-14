@@ -379,7 +379,7 @@
 	"createaccountblock": "Ukudala kwekhawundi kuvimbelwa",
 	"ipblocklist-empty": "Lolu hlu block ayinalutho.",
 	"ipblocklist-no-results": "I eceliwe Ikheli le-IP noma igama lomsebenzisi is hhayi ivinjiwe.",
-	"blocklink": "Vimba",
+	"blocklink": "vimba",
 	"change-blocklink": "ushintsho block",
 	"contribslink": "iminikelo",
 	"autoblocker": "Autoblocked ngoba ikheli lakho le-IP isanda ezisetshenziswa yilo \"[[User:$1|$1]]\".\nIsizathu esinikeziwe for $1 sika block kuyinto \"$2\"",

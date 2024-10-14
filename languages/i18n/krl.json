@@ -8,7 +8,8 @@
 			"Matma Rex",
 			"Ontoi",
 			"Theunitedstatesofme",
-			"Varvana"
+			"Varvana",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Linkilöin alleviivauš:",
@@ -505,7 +506,7 @@
 	"ipboptions": "2 tuntie:2 hours,1 päivä:1 day,3 päivyä:3 days,1 netäli:1 week,2 netälie:2 weeks,1 kuukauši:1 month,3 kuukautta:3 months,6 kuukautta:6 months,1 vuoši:1 year,ikuini:infinite",
 	"ipblocklist-submit": "Ečindy",
 	"infiniteblock": "ikuini",
-	"blocklink": "Lukiče",
+	"blocklink": "lukiče",
 	"contribslink": "kohennukšet",
 	"blocklogpage": "Eštoloki",
 	"block-log-flags-nocreate": "tunnuksen luonti eššetty",

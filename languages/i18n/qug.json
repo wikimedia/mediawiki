@@ -504,7 +504,7 @@
 	"blockip": "Rurakta wichkana",
 	"ipboptions": "2 pacha:2 hours, 1 puncha:1 day, 3 puncha:3 days, 1 simana:1 week, 2 simana:2 weeks, 1 killa:1 month, 3 killa:3 months, 6 killa:6 months,1 pacha:1 year,Tukuy kawsayman:infinite",
 	"ipblocklist": "Wichkashka rurakkuna",
-	"blocklink": "Wichkana",
+	"blocklink": "wichkana",
 	"unblocklink": "Ñamana wichkana",
 	"change-blocklink": "Wichkayta shukchisna",
 	"contribslink": "llankaykuna",

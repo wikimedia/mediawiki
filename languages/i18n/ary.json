@@ -1026,6 +1026,7 @@
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (شوف حتى [[Special:NewPages|قائمة الصفحات الجديدة]])",
 	"recentchanges-submit": "وري",
 	"rcfilters-tag-remove": "حيّد '$1'",
+	"rcfilters-legend-heading": "<strong>لائحة د الاختصارات:</strong>",
 	"rcfilters-other-review-tools": "أدوات خرين ديال لمراجعة",
 	"rcfilters-activefilters-hide": "خبي",
 	"rcfilters-activefilters-show": "وري",

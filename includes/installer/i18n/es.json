@@ -266,6 +266,7 @@
 	"config-upload-deleted": "Directorio para los archivos eliminados:",
 	"config-upload-deleted-help": "Elige un directorio en el que guardar los archivos eliminados.\nLo ideal es una carpeta no accesible desde la red.",
 	"config-personalization-settings": "Personalización",
+	"config-logo-summary": "Para cada uno de estos campos, deberás subir una imagen del tamaño apropiado e introducir la URL en las casillas a continuación. Puedes usar <code>$wgStylePath</code> o <code>$wgScriptPath</code> si tu logotipo es relativo a esas rutas. Puedes dejar en blanco cualquiera de estas casillas.",
 	"config-logo-preview-main": "Página principal",
 	"config-logo-icon": "Logotipo (icono)",
 	"config-logo-icon-help": "El icono de tu logotipo debe ser cuadrado e, idealmente, de más de 50px, o un SVG.",

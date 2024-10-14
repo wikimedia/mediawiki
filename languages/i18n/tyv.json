@@ -16,7 +16,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Karak-Kyzyl",
-			"Mongush Salim"
+			"Mongush Salim",
+			"Matma Rex"
 		]
 	},
 	"tog-underline": "Шөлүлгени ылгап шыяры:",
@@ -2616,7 +2617,7 @@
 	"blocklist-editing-action": "кылдыныглар",
 	"ipblocklist-empty": "Блоктаашкыннар даңзызы куруг.",
 	"ipblocklist-no-results": "Айыттынган IP-адреске азы киржикчиниң адынга дүгджүр блоктаашкыннар тывылбаан.",
-	"blocklink": "Блоктаар",
+	"blocklink": "блоктаар",
 	"unblocklink": "блоктан үндүрер",
 	"change-blocklink": "блоктаашкынны өскертир",
 	"empty-username": "(киржикчиниң адынче доступ чок)",
