@@ -123,23 +123,17 @@ class MetricTest extends TestCase {
 		switch ( $type ) {
 			case 'counter':
 				$metric = $statsFactory->getCounter( $config['config']['name'] );
-				foreach ( $config['labels'] as $key => $value ) {
-					$metric->setLabel( $key, $value );
-				}
+				$metric->setLabels( $config['labels'] );
 				$metric->incrementBy( $config['value'] );
 				break;
 			case 'gauge':
 				$metric = $statsFactory->getGauge( $config['config']['name'] );
-				foreach ( $config['labels'] as $key => $value ) {
-					$metric->setLabel( $key, $value );
-				}
+				$metric->setLabels( $config['labels'] );
 				$metric->set( $config['value'] );
 				break;
 			case 'timing':
 				$metric = $statsFactory->getTiming( $config['config']['name'] );
-				foreach ( $config['labels'] as $key => $value ) {
-					$metric->setLabel( $key, $value );
-				}
+				$metric->setLabels( $config['labels'] );
 				$metric->observe( $config['value'] );
 				break;
 			case 'default':
