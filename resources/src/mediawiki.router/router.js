@@ -31,6 +31,7 @@ class Router extends OO.Registry {
 		this.enabled = true;
 		this.oldHash = this.getPath();
 
+		// Events
 		window.addEventListener( 'popstate', () => {
 			this.emit( 'popstate' );
 		} );
@@ -39,28 +40,7 @@ class Router extends OO.Registry {
 			this.emit( 'hashchange' );
 		} );
 
-		this.on( 'hashchange', () => {
-			// event.originalEvent.newURL is undefined on Android 2.x
-			if ( this.enabled ) {
-				const routeEvent = $.Event( 'route', {
-					path: this.getPath()
-				} );
-				this.emit( 'route', routeEvent );
-
-				if ( !routeEvent.isDefaultPrevented() ) {
-					this.checkRoute();
-				} else {
-					// if route was prevented, ignore the next hash change and revert the
-					// hash to its old value
-					this.enabled = false;
-					this.navigate( this.oldHash );
-				}
-			} else {
-				this.enabled = true;
-			}
-
-			this.oldHash = this.getPath();
-		} );
+		this.connect( this, { hashchange: 'onRouterHashChange' } );
 	}
 
 	/* Events */
@@ -74,11 +54,41 @@ class Router extends OO.Registry {
 	 */
 
 	/**
+	 * Event fired whenever the hash changes.
+	 *
 	 * @event module:mediawiki.router#route
 	 * @param {jQuery.Event} routeEvent
 	 */
 
 	/* Methods */
+
+	/**
+	 * Handle hashchange events emitted by ourselves
+	 *
+	 * @param {HashChangeEvent} event Hash change event
+	 */
+	onRouterHashChange() {
+		if ( this.enabled ) {
+			// event.originalEvent.newURL is undefined on Android 2.x
+			const routeEvent = $.Event( 'route', {
+				path: this.getPath()
+			} );
+			this.emit( 'route', routeEvent );
+
+			if ( !routeEvent.isDefaultPrevented() ) {
+				this.checkRoute();
+			} else {
+				// if route was prevented, ignore the next hash change and revert the
+				// hash to its old value
+				this.enabled = false;
+				this.navigate( this.oldHash );
+			}
+		} else {
+			this.enabled = true;
+		}
+
+		this.oldHash = this.getPath();
+	}
 
 	/**
 	 * Check the current route and run appropriate callback if it matches.
@@ -132,7 +142,7 @@ class Router extends OO.Registry {
 	/**
 	 * Navigate to a specific route.
 	 *
-	 * @param {string} title of new page
+	 * @param {string} title Title of new page
 	 * @param {Object} options
 	 * @param {string} options.path e.g. '/path/' or '/path/#foo'
 	 * @param {boolean} options.useReplaceState Set replaceStateState to use pushState when you want to
