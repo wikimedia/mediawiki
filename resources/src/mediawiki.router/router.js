@@ -65,7 +65,7 @@ class Router extends OO.Registry {
 	/**
 	 * Handle hashchange events emitted by ourselves
 	 *
-	 * @param {HashChangeEvent} event Hash change event
+	 * @param {HashChangeEvent} [event] Hash change event, if triggered by native event
 	 */
 	onRouterHashChange() {
 		if ( this.enabled ) {
@@ -81,7 +81,7 @@ class Router extends OO.Registry {
 				// if route was prevented, ignore the next hash change and revert the
 				// hash to its old value
 				this.enabled = false;
-				this.navigate( this.oldHash );
+				this.navigate( this.oldHash, true );
 			}
 		} else {
 			this.enabled = true;
@@ -154,6 +154,8 @@ class Router extends OO.Registry {
 		} else {
 			history.pushState( null, title, options.path );
 		}
+		// history.replaceState/pushState doesn't trigger a hashchange event
+		this.onRouterHashChange();
 	}
 
 	/**
@@ -161,8 +163,10 @@ class Router extends OO.Registry {
 	 *
 	 * @deprecated Use {@link module:mediawiki.router#navigateTo} instead
 	 * @param {string} path String with a route (hash without #).
+	 * @param {boolean} [fromHashchange] (Internal) The navigate call originated
+	 * form a hashchange event, so don't emit another one.
 	 */
-	navigate( path ) {
+	navigate( path, fromHashchange ) {
 		// Take advantage of `pushState` when available, to clear the hash and
 		// not leave `#` in the history. An entry with `#` in the history has
 		// the side-effect of resetting the scroll position when navigating the
@@ -171,7 +175,12 @@ class Router extends OO.Registry {
 			// To clear the hash we need to cut the hash from the URL.
 			path = window.location.href.replace( /#.*$/, '' );
 			history.pushState( null, document.title, path );
-			this.checkRoute();
+			if ( !fromHashchange ) {
+				// history.pushState doesn't trigger a hashchange event
+				this.onRouterHashChange();
+			} else {
+				this.checkRoute();
+			}
 		} else {
 			window.location.hash = path;
 		}
