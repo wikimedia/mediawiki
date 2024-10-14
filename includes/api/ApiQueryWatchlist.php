@@ -59,21 +59,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	private TempUserConfig $tempUserConfig;
 	private LogFormatterFactory $logFormatterFactory;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param CommentStore $commentStore
-	 * @param WatchedItemQueryService $watchedItemQueryService
-	 * @param Language $contentLanguage
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param GenderCache $genderCache
-	 * @param CommentFormatter $commentFormatter
-	 * @param TempUserConfig $tempUserConfig
-	 * @param LogFormatterFactory $logFormatterFactory
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		CommentStore $commentStore,
 		WatchedItemQueryService $watchedItemQueryService,
 		Language $contentLanguage,

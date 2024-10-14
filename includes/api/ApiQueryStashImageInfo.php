@@ -38,16 +38,9 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 
 	private RepoGroup $repoGroup;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param RepoGroup $repoGroup
-	 * @param Language $contentLanguage
-	 * @param BadFileLookup $badFileLookup
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		RepoGroup $repoGroup,
 		Language $contentLanguage,
 		BadFileLookup $badFileLookup

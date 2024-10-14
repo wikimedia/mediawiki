@@ -36,14 +36,9 @@ class ApiQueryAuthManagerInfo extends ApiQueryBase {
 
 	private AuthManager $authManager;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param AuthManager $authManager
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		AuthManager $authManager
 	) {
 		parent::__construct( $query, $moduleName, 'ami' );

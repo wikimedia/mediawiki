@@ -42,15 +42,9 @@ class ApiSetPageLanguage extends ApiBase {
 	private IConnectionProvider $dbProvider;
 	private LanguageNameUtils $languageNameUtils;
 
-	/**
-	 * @param ApiMain $mainModule
-	 * @param string $moduleName
-	 * @param IConnectionProvider $dbProvider
-	 * @param LanguageNameUtils $languageNameUtils
-	 */
 	public function __construct(
 		ApiMain $mainModule,
-		$moduleName,
+		string $moduleName,
 		IConnectionProvider $dbProvider,
 		LanguageNameUtils $languageNameUtils
 	) {

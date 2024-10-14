@@ -52,17 +52,9 @@ class ApiUserrights extends ApiBase {
 	private UserGroupManager $userGroupManager;
 	private WatchedItemStoreInterface $watchedItemStore;
 
-	/**
-	 * @param ApiMain $mainModule
-	 * @param string $moduleName
-	 * @param UserGroupManager $userGroupManager
-	 * @param WatchedItemStoreInterface $watchedItemStore
-	 * @param WatchlistManager $watchlistManager
-	 * @param UserOptionsLookup $userOptionsLookup
-	 */
 	public function __construct(
 		ApiMain $mainModule,
-		$moduleName,
+		string $moduleName,
 		UserGroupManager $userGroupManager,
 		WatchedItemStoreInterface $watchedItemStore,
 		WatchlistManager $watchlistManager,

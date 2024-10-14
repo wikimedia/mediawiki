@@ -45,7 +45,7 @@ class ApiRollback extends ApiBase {
 
 	public function __construct(
 		ApiMain $mainModule,
-		$moduleName,
+		string $moduleName,
 		RollbackPageFactory $rollbackPageFactory,
 		WatchlistManager $watchlistManager,
 		UserOptionsLookup $userOptionsLookup

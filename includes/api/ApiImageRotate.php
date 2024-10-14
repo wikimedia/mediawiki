@@ -38,16 +38,9 @@ class ApiImageRotate extends ApiBase {
 	private TempFSFileFactory $tempFSFileFactory;
 	private TitleFactory $titleFactory;
 
-	/**
-	 * @param ApiMain $mainModule
-	 * @param string $moduleName
-	 * @param RepoGroup $repoGroup
-	 * @param TempFSFileFactory $tempFSFileFactory
-	 * @param TitleFactory $titleFactory
-	 */
 	public function __construct(
 		ApiMain $mainModule,
-		$moduleName,
+		string $moduleName,
 		RepoGroup $repoGroup,
 		TempFSFileFactory $tempFSFileFactory,
 		TitleFactory $titleFactory

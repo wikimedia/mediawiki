@@ -49,17 +49,9 @@ class ApiOpenSearch extends ApiBase {
 	private LinkBatchFactory $linkBatchFactory;
 	private UrlUtils $urlUtils;
 
-	/**
-	 * @param ApiMain $mainModule
-	 * @param string $moduleName
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param SearchEngineConfig $searchEngineConfig
-	 * @param SearchEngineFactory $searchEngineFactory
-	 * @param UrlUtils $urlUtils
-	 */
 	public function __construct(
 		ApiMain $mainModule,
-		$moduleName,
+		string $moduleName,
 		LinkBatchFactory $linkBatchFactory,
 		SearchEngineConfig $searchEngineConfig,
 		SearchEngineFactory $searchEngineFactory,

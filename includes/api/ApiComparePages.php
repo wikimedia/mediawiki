@@ -62,21 +62,9 @@ class ApiComparePages extends ApiBase {
 	private UserFactory $userFactory;
 	private DifferenceEngine $differenceEngine;
 
-	/**
-	 * @param ApiMain $mainModule
-	 * @param string $moduleName
-	 * @param RevisionStore $revisionStore
-	 * @param ArchivedRevisionLookup $archivedRevisionLookup
-	 * @param SlotRoleRegistry $slotRoleRegistry
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param ContentTransformer $contentTransformer
-	 * @param CommentFormatter $commentFormatter
-	 * @param TempUserCreator $tempUserCreator
-	 * @param UserFactory $userFactory
-	 */
 	public function __construct(
 		ApiMain $mainModule,
-		$moduleName,
+		string $moduleName,
 		RevisionStore $revisionStore,
 		ArchivedRevisionLookup $archivedRevisionLookup,
 		SlotRoleRegistry $slotRoleRegistry,

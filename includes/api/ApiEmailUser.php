@@ -37,7 +37,7 @@ class ApiEmailUser extends ApiBase {
 	private EmailUserFactory $emailUserFactory;
 	private UserFactory $userFactory;
 
-	public function __construct( ApiMain $mainModule, $moduleName,
+	public function __construct( ApiMain $mainModule, string $moduleName,
 		EmailUserFactory $emailUserFactory, UserFactory $userFactory ) {
 		parent::__construct( $mainModule, $moduleName );
 

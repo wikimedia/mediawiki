@@ -52,24 +52,9 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 	private ActorMigration $actorMigration;
 	private NamespaceInfo $namespaceInfo;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param RevisionStore $revisionStore
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param ParserFactory $parserFactory
-	 * @param SlotRoleRegistry $slotRoleRegistry
-	 * @param ActorMigration $actorMigration
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param ContentRenderer $contentRenderer
-	 * @param ContentTransformer $contentTransformer
-	 * @param CommentFormatter $commentFormatter
-	 * @param TempUserCreator $tempUserCreator
-	 * @param UserFactory $userFactory
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		RevisionStore $revisionStore,
 		IContentHandlerFactory $contentHandlerFactory,
 		ParserFactory $parserFactory,

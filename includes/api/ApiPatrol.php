@@ -36,14 +36,9 @@ use Wikimedia\ParamValidator\ParamValidator;
 class ApiPatrol extends ApiBase {
 	private RevisionStore $revisionStore;
 
-	/**
-	 * @param ApiMain $main
-	 * @param string $action
-	 * @param RevisionStore $revisionStore
-	 */
 	public function __construct(
 		ApiMain $main,
-		$action,
+		string $action,
 		RevisionStore $revisionStore
 	) {
 		parent::__construct( $main, $action );

@@ -60,21 +60,9 @@ class ApiFeedContributions extends ApiBase {
 	private CommentFormatter $commentFormatter;
 	private ApiHookRunner $hookRunner;
 
-	/**
-	 * @param ApiMain $main
-	 * @param string $action
-	 * @param RevisionStore $revisionStore
-	 * @param LinkRenderer $linkRenderer
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param HookContainer $hookContainer
-	 * @param IConnectionProvider $dbProvider
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param UserFactory $userFactory
-	 * @param CommentFormatter $commentFormatter
-	 */
 	public function __construct(
 		ApiMain $main,
-		$action,
+		string $action,
 		RevisionStore $revisionStore,
 		LinkRenderer $linkRenderer,
 		LinkBatchFactory $linkBatchFactory,

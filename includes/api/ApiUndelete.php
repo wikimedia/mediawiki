@@ -42,17 +42,9 @@ class ApiUndelete extends ApiBase {
 	private UndeletePageFactory $undeletePageFactory;
 	private WikiPageFactory $wikiPageFactory;
 
-	/**
-	 * @param ApiMain $mainModule
-	 * @param string $moduleName
-	 * @param WatchlistManager $watchlistManager
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param UndeletePageFactory $undeletePageFactory
-	 * @param WikiPageFactory $wikiPageFactory
-	 */
 	public function __construct(
 		ApiMain $mainModule,
-		$moduleName,
+		string $moduleName,
 		WatchlistManager $watchlistManager,
 		UserOptionsLookup $userOptionsLookup,
 		UndeletePageFactory $undeletePageFactory,

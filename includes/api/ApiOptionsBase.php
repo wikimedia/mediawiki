@@ -56,15 +56,9 @@ abstract class ApiOptionsBase extends ApiBase {
 	/** @var array */
 	private $params;
 
-	/**
-	 * @param ApiMain $main
-	 * @param string $action
-	 * @param UserOptionsManager $userOptionsManager
-	 * @param PreferencesFactory $preferencesFactory
-	 */
 	public function __construct(
 		ApiMain $main,
-		$action,
+		string $action,
 		UserOptionsManager $userOptionsManager,
 		PreferencesFactory $preferencesFactory
 	) {

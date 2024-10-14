@@ -43,7 +43,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		LanguageNameUtils $languageNameUtils,
 		Language $contentLanguage,
 		UrlUtils $urlUtils

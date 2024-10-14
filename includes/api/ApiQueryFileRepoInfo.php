@@ -38,14 +38,9 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 
 	private RepoGroup $repoGroup;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param RepoGroup $repoGroup
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		RepoGroup $repoGroup
 	) {
 		parent::__construct( $query, $moduleName, 'fri' );

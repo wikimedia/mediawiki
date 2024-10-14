@@ -174,28 +174,9 @@ class ApiQueryInfo extends ApiQueryBase {
 	/** @var int */
 	private $countTestedActions = 0;
 
-	/**
-	 * @param ApiQuery $queryModule
-	 * @param string $moduleName
-	 * @param Language $contentLanguage
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param TitleFactory $titleFactory
-	 * @param TitleFormatter $titleFormatter
-	 * @param WatchedItemStore $watchedItemStore
-	 * @param LanguageConverterFactory $languageConverterFactory
-	 * @param RestrictionStore $restrictionStore
-	 * @param LinksMigration $linksMigration
-	 * @param TempUserCreator $tempUserCreator
-	 * @param UserFactory $userFactory
-	 * @param IntroMessageBuilder $introMessageBuilder
-	 * @param PreloadedContentBuilder $preloadedContentBuilder
-	 * @param RevisionLookup $revisionLookup
-	 * @param UrlUtils $urlUtils
-	 */
 	public function __construct(
 		ApiQuery $queryModule,
-		$moduleName,
+		string $moduleName,
 		Language $contentLanguage,
 		LinkBatchFactory $linkBatchFactory,
 		NamespaceInfo $namespaceInfo,

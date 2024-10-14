@@ -34,15 +34,9 @@ use Wikimedia\ParamValidator\ParamValidator;
  * @ingroup API
  */
 class ApiOptions extends ApiOptionsBase {
-	/**
-	 * @param ApiMain $main
-	 * @param string $action
-	 * @param UserOptionsManager|null $userOptionsManager
-	 * @param PreferencesFactory|null $preferencesFactory
-	 */
 	public function __construct(
 		ApiMain $main,
-		$action,
+		string $action,
 		?UserOptionsManager $userOptionsManager = null,
 		?PreferencesFactory $preferencesFactory = null
 	) {

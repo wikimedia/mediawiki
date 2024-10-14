@@ -47,15 +47,9 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 	private LinkBatchFactory $linkBatchFactory;
 	private LinksMigration $linksMigration;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param LinksMigration $linksMigration
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		LinkBatchFactory $linkBatchFactory,
 		LinksMigration $linksMigration
 	) {

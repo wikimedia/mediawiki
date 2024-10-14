@@ -54,20 +54,9 @@ class ApiStashEdit extends ApiBase {
 	private TempUserCreator $tempUserCreator;
 	private UserFactory $userFactory;
 
-	/**
-	 * @param ApiMain $main
-	 * @param string $action
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param PageEditStash $pageEditStash
-	 * @param RevisionLookup $revisionLookup
-	 * @param StatsFactory $statsFactory
-	 * @param WikiPageFactory $wikiPageFactory
-	 * @param TempUserCreator $tempUserCreator
-	 * @param UserFactory $userFactory
-	 */
 	public function __construct(
 		ApiMain $main,
-		$action,
+		string $action,
 		IContentHandlerFactory $contentHandlerFactory,
 		PageEditStash $pageEditStash,
 		RevisionLookup $revisionLookup,

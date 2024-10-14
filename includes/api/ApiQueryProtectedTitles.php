@@ -39,15 +39,9 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 	private CommentStore $commentStore;
 	private RowCommentFormatter $commentFormatter;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param CommentStore $commentStore
-	 * @param RowCommentFormatter $commentFormatter
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		CommentStore $commentStore,
 		RowCommentFormatter $commentFormatter
 	) {

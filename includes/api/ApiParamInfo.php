@@ -44,14 +44,9 @@ class ApiParamInfo extends ApiBase {
 	/** @var UserFactory */
 	private $userFactory;
 
-	/**
-	 * @param ApiMain $main
-	 * @param string $action
-	 * @param UserFactory $userFactory
-	 */
 	public function __construct(
 		ApiMain $main,
-		$action,
+		string $action,
 		UserFactory $userFactory
 	) {
 		parent::__construct( $main, $action );

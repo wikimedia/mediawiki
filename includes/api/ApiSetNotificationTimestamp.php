@@ -49,18 +49,9 @@ class ApiSetNotificationTimestamp extends ApiBase {
 	private TitleFormatter $titleFormatter;
 	private TitleFactory $titleFactory;
 
-	/**
-	 * @param ApiMain $main
-	 * @param string $action
-	 * @param IConnectionProvider $dbProvider
-	 * @param RevisionStore $revisionStore
-	 * @param WatchedItemStoreInterface $watchedItemStore
-	 * @param TitleFormatter $titleFormatter
-	 * @param TitleFactory $titleFactory
-	 */
 	public function __construct(
 		ApiMain $main,
-		$action,
+		string $action,
 		IConnectionProvider $dbProvider,
 		RevisionStore $revisionStore,
 		WatchedItemStoreInterface $watchedItemStore,

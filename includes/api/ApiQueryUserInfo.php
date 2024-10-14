@@ -59,18 +59,9 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	private UserOptionsLookup $userOptionsLookup;
 	private UserGroupManager $userGroupManager;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param TalkPageNotificationManager $talkPageNotificationManager
-	 * @param WatchedItemStore $watchedItemStore
-	 * @param UserEditTracker $userEditTracker
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param UserGroupManager $userGroupManager
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		TalkPageNotificationManager $talkPageNotificationManager,
 		WatchedItemStore $watchedItemStore,
 		UserEditTracker $userEditTracker,

@@ -27,7 +27,7 @@ namespace MediaWiki\Api;
  * @ingroup API
  */
 class ApiFormatXmlRsd extends ApiFormatXml {
-	public function __construct( ApiMain $main, $format ) {
+	public function __construct( ApiMain $main, string $format ) {
 		parent::__construct( $main, $format );
 		$this->setRootElement( 'rsd' );
 	}

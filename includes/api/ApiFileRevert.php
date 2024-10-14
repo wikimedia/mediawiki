@@ -43,14 +43,9 @@ class ApiFileRevert extends ApiBase {
 	/** @var RepoGroup */
 	private $repoGroup;
 
-	/**
-	 * @param ApiMain $main
-	 * @param string $action
-	 * @param RepoGroup $repoGroup
-	 */
 	public function __construct(
 		ApiMain $main,
-		$action,
+		string $action,
 		RepoGroup $repoGroup
 	) {
 		parent::__construct( $main, $action );

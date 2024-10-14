@@ -50,17 +50,9 @@ class ApiDelete extends ApiBase {
 	private RepoGroup $repoGroup;
 	private DeletePageFactory $deletePageFactory;
 
-	/**
-	 * @param ApiMain $mainModule
-	 * @param string $moduleName
-	 * @param RepoGroup $repoGroup
-	 * @param WatchlistManager $watchlistManager
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param DeletePageFactory $deletePageFactory
-	 */
 	public function __construct(
 		ApiMain $mainModule,
-		$moduleName,
+		string $moduleName,
 		RepoGroup $repoGroup,
 		WatchlistManager $watchlistManager,
 		UserOptionsLookup $userOptionsLookup,

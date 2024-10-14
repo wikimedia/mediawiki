@@ -36,7 +36,7 @@ class ApiQueryTags extends ApiQueryBase {
 
 	private ChangeTagsStore $changeTagsStore;
 
-	public function __construct( ApiQuery $query, $moduleName, ChangeTagsStore $changeTagsStore ) {
+	public function __construct( ApiQuery $query, string $moduleName, ChangeTagsStore $changeTagsStore ) {
 		parent::__construct( $query, $moduleName, 'tg' );
 		$this->changeTagsStore = $changeTagsStore;
 	}

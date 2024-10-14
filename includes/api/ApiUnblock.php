@@ -53,7 +53,7 @@ class ApiUnblock extends ApiBase {
 
 	public function __construct(
 		ApiMain $main,
-		$action,
+		string $action,
 		BlockPermissionCheckerFactory $permissionCheckerFactory,
 		UnblockUserFactory $unblockUserFactory,
 		UserIdentityLookup $userIdentityLookup,

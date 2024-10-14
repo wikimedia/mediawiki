@@ -54,18 +54,9 @@ class ApiQueryContributors extends ApiQueryBase {
 	private GroupPermissionsLookup $groupPermissionsLookup;
 	private TempUserConfig $tempUserConfig;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param RevisionStore $revisionStore
-	 * @param ActorMigration $actorMigration
-	 * @param UserGroupManager $userGroupManager
-	 * @param GroupPermissionsLookup $groupPermissionsLookup
-	 * @param TempUserConfig $tempUserConfig
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		RevisionStore $revisionStore,
 		ActorMigration $actorMigration,
 		UserGroupManager $userGroupManager,

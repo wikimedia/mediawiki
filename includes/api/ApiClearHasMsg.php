@@ -33,14 +33,9 @@ class ApiClearHasMsg extends ApiBase {
 
 	private TalkPageNotificationManager $talkPageNotificationManager;
 
-	/**
-	 * @param ApiMain $main
-	 * @param string $action
-	 * @param TalkPageNotificationManager $talkPageNotificationManager
-	 */
 	public function __construct(
 		ApiMain $main,
-		$action,
+		string $action,
 		TalkPageNotificationManager $talkPageNotificationManager
 	) {
 		parent::__construct( $main, $action );

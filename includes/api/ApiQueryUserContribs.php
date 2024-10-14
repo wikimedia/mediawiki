@@ -60,20 +60,9 @@ class ApiQueryUserContribs extends ApiQueryBase {
 	private ActorMigration $actorMigration;
 	private CommentFormatter $commentFormatter;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param CommentStore $commentStore
-	 * @param UserIdentityLookup $userIdentityLookup
-	 * @param UserNameUtils $userNameUtils
-	 * @param RevisionStore $revisionStore
-	 * @param NameTableStore $changeTagDefStore
-	 * @param ActorMigration $actorMigration
-	 * @param CommentFormatter $commentFormatter
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		CommentStore $commentStore,
 		UserIdentityLookup $userIdentityLookup,
 		UserNameUtils $userNameUtils,

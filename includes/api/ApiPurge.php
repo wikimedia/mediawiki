@@ -39,15 +39,9 @@ class ApiPurge extends ApiBase {
 	private WikiPageFactory $wikiPageFactory;
 	private TitleFormatter $titleFormatter;
 
-	/**
-	 * @param ApiMain $mainModule
-	 * @param string $moduleName
-	 * @param WikiPageFactory $wikiPageFactory
-	 * @param TitleFormatter $titleFormatter
-	 */
 	public function __construct(
 		ApiMain $mainModule,
-		$moduleName,
+		string $moduleName,
 		WikiPageFactory $wikiPageFactory,
 		TitleFormatter $titleFormatter
 	) {

@@ -96,28 +96,9 @@ class ApiParse extends ApiBase {
 	private UrlUtils $urlUtils;
 	private TitleFormatter $titleFormatter;
 
-	/**
-	 * @param ApiMain $main
-	 * @param string $action
-	 * @param RevisionLookup $revisionLookup
-	 * @param SkinFactory $skinFactory
-	 * @param LanguageNameUtils $languageNameUtils
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param LinkCache $linkCache
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param ParserFactory $parserFactory
-	 * @param WikiPageFactory $wikiPageFactory
-	 * @param ContentRenderer $contentRenderer
-	 * @param ContentTransformer $contentTransformer
-	 * @param CommentFormatter $commentFormatter
-	 * @param TempUserCreator $tempUserCreator
-	 * @param UserFactory $userFactory
-	 * @param UrlUtils $urlUtils
-	 * @param TitleFormatter $titleFormatter
-	 */
 	public function __construct(
 		ApiMain $main,
-		$action,
+		string $action,
 		RevisionLookup $revisionLookup,
 		SkinFactory $skinFactory,
 		LanguageNameUtils $languageNameUtils,

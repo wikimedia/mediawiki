@@ -58,18 +58,9 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	/** @var string[]|null */
 	private $formattedComments;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param CommentStore $commentStore
-	 * @param RowCommentFormatter $commentFormatter
-	 * @param NameTableStore $changeTagDefStore
-	 * @param UserNameUtils $userNameUtils
-	 * @param LogFormatterFactory $logFormatterFactory
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		CommentStore $commentStore,
 		RowCommentFormatter $commentFormatter,
 		NameTableStore $changeTagDefStore,

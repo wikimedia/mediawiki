@@ -33,14 +33,9 @@ use MediaWiki\MainConfigNames;
 class ApiChangeAuthenticationData extends ApiBase {
 	private AuthManager $authManager;
 
-	/**
-	 * @param ApiMain $main
-	 * @param string $action
-	 * @param AuthManager $authManager
-	 */
 	public function __construct(
 		ApiMain $main,
-		$action,
+		string $action,
 		AuthManager $authManager
 	) {
 		parent::__construct( $main, $action, 'changeauth' );

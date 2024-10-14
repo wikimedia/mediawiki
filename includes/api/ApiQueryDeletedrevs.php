@@ -53,18 +53,9 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 	private NameTableStore $changeTagDefStore;
 	private LinkBatchFactory $linkBatchFactory;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param CommentStore $commentStore
-	 * @param RowCommentFormatter $commentFormatter
-	 * @param RevisionStore $revisionStore
-	 * @param NameTableStore $changeTagDefStore
-	 * @param LinkBatchFactory $linkBatchFactory
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		CommentStore $commentStore,
 		RowCommentFormatter $commentFormatter,
 		RevisionStore $revisionStore,

@@ -47,18 +47,9 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	private Language $contentLanguage;
 	private TempUserConfig $tempUserConfig;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param UserFactory $userFactory
-	 * @param UserGroupManager $userGroupManager
-	 * @param GroupPermissionsLookup $groupPermissionsLookup
-	 * @param Language $contentLanguage
-	 * @param TempUserConfig $tempUserConfig
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		UserFactory $userFactory,
 		UserGroupManager $userGroupManager,
 		GroupPermissionsLookup $groupPermissionsLookup,

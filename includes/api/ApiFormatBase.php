@@ -55,7 +55,7 @@ abstract class ApiFormatBase extends ApiBase {
 	 * @param ApiMain $main
 	 * @param string $format Format name
 	 */
-	public function __construct( ApiMain $main, $format ) {
+	public function __construct( ApiMain $main, string $format ) {
 		parent::__construct( $main, $format );
 
 		$this->mIsHtml = str_ends_with( $format, 'fm' );
