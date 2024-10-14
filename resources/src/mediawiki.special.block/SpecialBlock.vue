@@ -27,8 +27,8 @@
 		</div>
 		<user-lookup
 			v-model="targetUser"
-			@input="alreadyBlocked = false"
 			:form-submitted="formSubmitted"
+			@input="alreadyBlocked = false"
 		></user-lookup>
 		<target-active-blocks
 			v-if="blockEnableMultiblocks"
