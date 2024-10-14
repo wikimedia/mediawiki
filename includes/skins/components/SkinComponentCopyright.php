@@ -56,13 +56,6 @@ class SkinComponentCopyright implements SkinComponent {
 		$config = $this->config;
 		$localizer = $this->localizer;
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-		if ( !$isRevisionCurrent
-			&& !$localizer->msg( 'history_copyright' )->inContentLanguage()->isDisabled()
-		) {
-			$type = 'history';
-		} else {
-			$type = 'normal';
-		}
 
 		if ( $config->get( MainConfigNames::RightsPage ) ) {
 			$title = Title::newFromText( $config->get( MainConfigNames::RightsPage ) );
@@ -83,8 +76,15 @@ class SkinComponentCopyright implements SkinComponent {
 		}
 
 		if ( $config->get( MainConfigNames::AllowRawHtmlCopyrightMessages ) ) {
-			// First check whether the old, raw HTML message exists (if not disallowed by wiki config),
+			// First check whether the old, raw HTML messages exist (if not disallowed by wiki config),
 			// for compatibility with on-wiki message overrides.
+
+			if ( !$isRevisionCurrent && !$localizer->msg( 'history_copyright' )->isDisabled() ) {
+				$type = 'history';
+			} else {
+				$type = 'normal';
+			}
+
 			$msgKey = $type === 'history' ? 'history_copyright' : 'copyright';
 
 			// Allow for site and per-namespace customization of copyright notice.
@@ -94,6 +94,15 @@ class SkinComponentCopyright implements SkinComponent {
 			if ( !$msg->isDisabled() ) {
 				return $msg->text();
 			}
+		}
+
+		// TODO: The hook should probably be called with $type === 'history' even if this message
+		// is disabled, to allow customization, but then we'd probably have to call it again with
+		// $type === 'normal' if it turns out it's not customized?
+		if ( !$isRevisionCurrent && !$localizer->msg( 'copyright-footer-history' )->isDisabled() ) {
+			$type = 'history';
+		} else {
+			$type = 'normal';
 		}
 
 		// If it does not exist or disabled, use the new, safer wikitext message.
