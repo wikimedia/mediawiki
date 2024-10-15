@@ -53,7 +53,7 @@
 		"symfony/polyfill-php83": "1.28.0",
 		"symfony/yaml": "5.4.23",
 		"wikimedia/assert": "0.5.1",
-		"wikimedia/at-ease": "2.1.0",
+		"wikimedia/at-ease": "3.0.0",
 		"wikimedia/base-convert": "2.0.2",
 		"wikimedia/bcp-47-code": "2.0.0",
 		"wikimedia/cdb": "3.0.0",
