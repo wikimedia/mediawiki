@@ -16,6 +16,23 @@ oldest supported upgrading version, MediaWiki 1.35.
 Some specific notes for MediaWiki 1.43 upgrades are below:
 
 * It is now necessary that the OpenSSL PHP extension is installed.
+* update.php updates the Linter database table with two migration scripts that
+  can take a long time to run: with the provided settings, each migration
+  script update roughly 500 rows per second. If at all possible, it is
+  highly recommended to let update.php run these migration scripts.
+
+  If this is deemed too long a maintenance operation (depending on the number
+  of rows in the Linter database table), it is possible, for a upgrade from
+  1.40 onwards, to run the migration scripts before updating the MediaWiki
+  and extensions files to 1.43. Set $wgLinterWriteNamespaceColumnStage and
+  $wgLinterWriteTagAndTemplateColumnsStage to true, and run the
+  extensions/Linter/maintenance/migrateNamespace.php and
+  extensions/Linter/maintenance/migrateTagTemplate.php migration scripts
+  before proceeding with any other code update.
+  When upgrading from a version <= 1.39, a multi-step update is necessary to
+  be able to run the migration scripts independently from update.php: first
+  update to 1.42, then proceed as indicated.
+
 * …
 
 For notes on 1.42.x and older releases, see HISTORY.
@@ -81,6 +98,14 @@ For notes on 1.42.x and older releases, see HISTORY.
   instrument very hot code even with built-in sampling.
 * (T294397) The 'writeapi' userright, which controlled access to some API
   modules, has been removed.
+* (T331883) The variables $wgLinterWriteTagAndTemplateColumnsStage,
+  $wgLinterUserInterfaceTagAndTemplateStage, $wgLinterWriteNamespaceColumnStage,
+  and $wgLinterUseNamespaceColumnStage have been removed. The namespace,
+  tag and template column of the Linter database table are now written and used.
+  The existing data from the Linter database is migrated to the new columns
+  by extensions/Linter/maintenance/migrateNamespace.php and
+  extensions/Linter/maintenance/migrateTagTemplate.php, which are both called
+  by the update script (T367207).
 * …
 
 === New user-facing features in 1.43 ===
