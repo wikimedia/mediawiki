@@ -582,7 +582,6 @@ class Router {
 	 */
 	public function getRestbaseCompatErrorData( RequestInterface $request, LocalizedHttpException $e ): array {
 		$msg = $e->getMessageValue();
-		$fm = $this->responseFactory->formatMessage( $msg );
 
 		// Match error fields emitted by the RESTBase endpoints.
 		// EntryPoint::getTextFormatters() ensures 'en' is always available.
@@ -591,7 +590,7 @@ class Router {
 				str_replace( ' ', '_', HttpStatus::getMessage( $e->getCode() ) ),
 			'title' => $msg->getKey(),
 			'method' => strtolower( $request->getMethod() ),
-			'detail' => $fm['messageTranslations']['en'] ?? $msg->getKey(),
+			'detail' => $this->responseFactory->getFormattedMessage( $msg, 'en' ),
 			'uri' => (string)$request->getUri()
 		];
 	}

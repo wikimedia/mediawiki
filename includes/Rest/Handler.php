@@ -633,6 +633,16 @@ abstract class Handler {
 				continue;
 			}
 
+			if ( array_key_exists( Validator::PARAM_DESCRIPTION, $paramSetting ) &&
+				$paramSetting[ Validator::PARAM_DESCRIPTION ] instanceof MessageValue
+			) {
+				// TODO: consider if we want to request a specific preferred language
+				$translation = $this->responseFactory->getFormattedMessage(
+					$paramSetting[ Validator::PARAM_DESCRIPTION ]
+				);
+				$paramSetting[ Validator::PARAM_DESCRIPTION ] = $translation;
+			}
+
 			$param = Validator::getParameterSpec(
 				$name,
 				$paramSetting

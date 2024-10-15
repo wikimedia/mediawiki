@@ -85,5 +85,6 @@
 	"rest-target-variant-required": "Target variant is required.",
 	"rest-unsupported-language-conversion": "Unsupported language conversion: $1 to $2",
 	"rest-unknown-content-model": "Unknown content model: $1",
-	"rest-page-bundle-validation-error": "PageBundle does not match contentVersion: $1"
+	"rest-page-bundle-validation-error": "PageBundle does not match contentVersion: $1",
+	"rest-param-desc-revision-id": "Revision id"
 }
