@@ -601,6 +601,318 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	}
 
 	/**
+	 * Format a link to an article.
+	 *
+	 * @param mixed $row
+	 * @param Title|null $page
+	 * @return string
+	 */
+	protected function formatArticleLink( $row, $page ) {
+		$dir = $this->getLanguage()->getDir();
+		return Html::rawElement( 'bdi', [ 'dir' => $dir ], $this->getLinkRenderer()->makeLink(
+			$page,
+			$page->getPrefixedText(),
+			[ 'class' => 'mw-contributions-title' ],
+			$page->isRedirect() ? [ 'redirect' => 'no' ] : []
+		) );
+	}
+
+	/**
+	 * Format diff and history links.
+	 *
+	 * @param mixed $row
+	 * @param RevisionRecord $revRecord
+	 * @param Title|null $page
+	 * @return string
+	 */
+	protected function formatDiffHistLinks( $row, $revRecord, $page ) {
+		if ( $this->isArchive ) {
+			// Add the same links as DeletedContribsPager::formatRevisionRow
+			$undelete = SpecialPage::getTitleFor( 'Undelete' );
+			if ( $this->getAuthority()->isAllowed( 'deletedtext' ) ) {
+				$last = $this->getLinkRenderer()->makeKnownLink(
+					$undelete,
+					new HtmlArmor( $this->messages['diff'] ),
+					[],
+					[
+						'target' => $page->getPrefixedText(),
+						'timestamp' => $revRecord->getTimestamp(),
+						'diff' => 'prev'
+					]
+				);
+			} else {
+				$last = $this->messages['diff'];
+			}
+
+			$logs = SpecialPage::getTitleFor( 'Log' );
+			$dellog = $this->getLinkRenderer()->makeKnownLink(
+				$logs,
+				new HtmlArmor( $this->messages['deletionlog'] ),
+				[],
+				[
+					'type' => 'delete',
+					'page' => $page->getPrefixedText()
+				]
+			);
+
+			$reviewlink = $this->getLinkRenderer()->makeKnownLink(
+				SpecialPage::getTitleFor( 'Undelete', $page->getPrefixedDBkey() ),
+				new HtmlArmor( $this->messages['undeleteviewlink'] )
+			);
+
+			return Html::rawElement(
+				'span',
+				[ 'class' => 'mw-deletedcontribs-tools' ],
+				$this->msg( 'parentheses' )->rawParams( $this->getLanguage()->pipeList(
+					[ $last, $dellog, $reviewlink ] ) )->escaped()
+			);
+		} else {
+			# Is there a visible previous revision?
+			if ( $revRecord->getParentId() !== 0 &&
+				$revRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() )
+			) {
+				$difftext = $this->getLinkRenderer()->makeKnownLink(
+					$page,
+					new HtmlArmor( $this->messages['diff'] ),
+					[ 'class' => 'mw-changeslist-diff' ],
+					[
+						'diff' => 'prev',
+						'oldid' => $row->{$this->revisionIdField},
+					]
+				);
+			} else {
+				$difftext = $this->messages['diff'];
+			}
+			$histlink = $this->getLinkRenderer()->makeKnownLink(
+				$page,
+				new HtmlArmor( $this->messages['hist'] ),
+				[ 'class' => 'mw-changeslist-history' ],
+				[ 'action' => 'history' ]
+			);
+
+			// While it might be tempting to use a list here
+			// this would result in clutter and slows down navigating the content
+			// in assistive technology.
+			// See https://phabricator.wikimedia.org/T205581#4734812
+			return Html::rawElement( 'span',
+				[ 'class' => 'mw-changeslist-links' ],
+				// The spans are needed to ensure the dividing '|' elements are not
+				// themselves styled as links.
+				Html::rawElement( 'span', [], $difftext ) .
+				' ' . // Space needed for separating two words.
+				Html::rawElement( 'span', [], $histlink )
+			);
+		}
+	}
+
+	/**
+	 * Format a date link.
+	 *
+	 * @param mixed $row
+	 * @param RevisionRecord $revRecord
+	 * @param Title|null $page
+	 * @return string
+	 */
+	protected function formatDateLink( $row, $revRecord, $page ) {
+		if ( $this->isArchive ) {
+			$date = $this->getLanguage()->userTimeAndDate(
+				$revRecord->getTimestamp(),
+				$this->getUser()
+			);
+
+			if ( $this->getAuthority()->isAllowed( 'undelete' ) &&
+				$revRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() )
+			) {
+				$dateLink = $this->getLinkRenderer()->makeKnownLink(
+					SpecialPage::getTitleFor( 'Undelete' ),
+					$date,
+					[ 'class' => 'mw-changeslist-date' ],
+					[
+						'target' => $page->getPrefixedText(),
+						'timestamp' => $revRecord->getTimestamp()
+					]
+				);
+			} else {
+				$dateLink = htmlspecialchars( $date );
+			}
+			if ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
+				$class = Linker::getRevisionDeletedClass( $revRecord );
+				$dateLink = Html::rawElement(
+					'span',
+					[ 'class' => $class ],
+					$dateLink
+				);
+			}
+		} else {
+			$dateLink = ChangesList::revDateLink( $revRecord, $this->getAuthority(), $this->getLanguage(), $page );
+		}
+		return $dateLink;
+	}
+
+	/**
+	 * Format annotation and add extra class if a row represents a latest revision.
+	 *
+	 * @param mixed $row
+	 * @param RevisionRecord $revRecord
+	 * @param Title|null $page
+	 * @param string[] &$classes
+	 * @return string
+	 */
+	protected function formatTopMarkText( $row, $revRecord, $page, &$classes ) {
+		$topmarktext = '';
+		if ( !$this->isArchive ) {
+			$pagerTools = new PagerTools(
+				$revRecord,
+				null,
+				$row->{$this->revisionIdField} === $row->page_latest && !$row->page_is_new,
+				$this->hookRunner,
+				$page,
+				$this->getContext(),
+				$this->getLinkRenderer()
+			);
+			if ( $row->{$this->revisionIdField} === $row->page_latest ) {
+				$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
+				$classes[] = 'mw-contributions-current';
+			}
+			if ( $pagerTools->shouldPreventClickjacking() ) {
+				$this->setPreventClickjacking( true );
+			}
+			$topmarktext .= $pagerTools->toHTML();
+		}
+		return $topmarktext;
+	}
+
+	/**
+	 * Format annotation to show the size of a diff.
+	 *
+	 * @param mixed $row
+	 * @return string
+	 */
+	protected function formatCharDiff( $row ) {
+		if ( $row->{$this->revisionParentIdField} === null ) {
+			// For some reason rev_parent_id isn't populated for this row.
+			// Its rumoured this is true on wikipedia for some revisions (T36922).
+			// Next best thing is to have the total number of bytes.
+			$chardiff = ' <span class="mw-changeslist-separator"></span> ';
+			$chardiff .= Linker::formatRevisionSize( $row->{$this->revisionLengthField} );
+			$chardiff .= ' <span class="mw-changeslist-separator"></span> ';
+		} else {
+			$parentLen = 0;
+			if ( isset( $this->mParentLens[$row->{$this->revisionParentIdField}] ) ) {
+				$parentLen = $this->mParentLens[$row->{$this->revisionParentIdField}];
+			}
+
+			$chardiff = ' <span class="mw-changeslist-separator"></span> ';
+			$chardiff .= ChangesList::showCharacterDifference(
+				$parentLen,
+				$row->{$this->revisionLengthField},
+				$this->getContext()
+			);
+			$chardiff .= ' <span class="mw-changeslist-separator"></span> ';
+		}
+		return $chardiff;
+	}
+
+	/**
+	 * Format a comment for a revision.
+	 *
+	 * @param mixed $row
+	 * @return string
+	 */
+	protected function formatComment( $row ) {
+		$dir = $this->getLanguage()->getDir();
+		$comment = $this->formattedComments[$row->{$this->revisionIdField}];
+
+		if ( $comment === '' ) {
+			$defaultComment = $this->messages['changeslist-nocomment'];
+			$comment = "<span class=\"comment mw-comment-none\">$defaultComment</span>";
+		}
+
+		$comment = Html::rawElement( 'bdi', [ 'dir' => $dir ], $comment );
+
+		return $comment;
+	}
+
+	/**
+	 * Format a user link.
+	 *
+	 * @param mixed $row
+	 * @param RevisionRecord $revRecord
+	 * @return string
+	 */
+	protected function formatUserLink( $row, $revRecord ) {
+		$dir = $this->getLanguage()->getDir();
+
+		// When the author is different from the target, always show user and user talk links
+		$userlink = '';
+		$revUser = $revRecord->getUser();
+		$revUserId = $revUser ? $revUser->getId() : 0;
+		$revUserText = $revUser ? $revUser->getName() : '';
+		if ( $this->target !== $revUserText ) {
+			$userlink = ' <span class="mw-changeslist-separator"></span> '
+				. Html::rawElement( 'bdi', [ 'dir' => $dir ],
+					Linker::userLink( $revUserId, $revUserText ) );
+			$userlink .= ' ' . $this->msg( 'parentheses' )->rawParams(
+				Linker::userTalkLink( $revUserId, $revUserText ) )->escaped() . ' ';
+		}
+		return $userlink;
+	}
+
+	/**
+	 * @param RevisionRecord $revRecord
+	 * @return string[]
+	 */
+	protected function formatFlags( $revRecord ) {
+		$flags = [];
+		if ( $revRecord->getParentId() === 0 ) {
+			$flags[] = ChangesList::flag( 'newpage' );
+		}
+
+		if ( $revRecord->isMinor() ) {
+			$flags[] = ChangesList::flag( 'minor' );
+		}
+		return $flags;
+	}
+
+	/**
+	 * Format link for changing visibility.
+	 *
+	 * @param RevisionRecord $revRecord
+	 * @param Title|null $page
+	 * @return string
+	 */
+	protected function formatVisibilityLink( $revRecord, $page ) {
+		$del = Linker::getRevDeleteLink( $this->getAuthority(), $revRecord, $page );
+		if ( $del !== '' ) {
+			$del .= ' ';
+		}
+		return $del;
+	}
+
+	/**
+	 * @param mixed $row
+	 * @param string[] &$classes
+	 * @return string
+	 */
+	protected function formatTags( $row, &$classes ) {
+		# Tags, if any. Save some time using a cache.
+		[ $tagSummary, $newClasses ] = $this->tagsCache->getWithSetCallback(
+			$this->tagsCache->makeKey(
+				$row->ts_tags ?? '',
+				$this->getUser()->getName(),
+				$this->getLanguage()->getCode()
+			),
+			fn () => ChangeTags::formatSummaryRow(
+				$row->ts_tags,
+				null,
+				$this->getContext()
+			)
+		);
+		$classes = array_merge( $classes, $newClasses );
+		return $tagSummary;
+	}
+
+	/**
 	 * Generates each row in the contributions list.
 	 *
 	 * Contributions which are marked "top" are currently on top of the history.
@@ -616,10 +928,6 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		$ret = '';
 		$classes = [];
 		$attribs = [];
-		$authority = $this->getAuthority();
-		$language = $this->getLanguage();
-
-		$linkRenderer = $this->getLinkRenderer();
 
 		$page = null;
 		// Create a title for the revision if possible
@@ -627,8 +935,6 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		if ( isset( $row->{$this->pageNamespaceField} ) && isset( $row->{$this->pageTitleField} ) ) {
 			$page = Title::makeTitle( $row->{$this->pageNamespaceField}, $row->{$this->pageTitleField} );
 		}
-
-		$dir = $language->getDir();
 
 		// Flow overrides the ContribsPager::reallyDoQuery hook, causing this
 		// function to be called with a special object for $row. It expects us
@@ -640,215 +946,25 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			$revRecord = $this->createRevisionRecord( $row, $page );
 			$attribs['data-mw-revid'] = $revRecord->getId();
 
-			$link = Html::rawElement( 'bdi', [ 'dir' => $dir ], $linkRenderer->makeLink(
-				$page,
-				$page->getPrefixedText(),
-				[ 'class' => 'mw-contributions-title' ],
-				$page->isRedirect() ? [ 'redirect' => 'no' ] : []
-			) );
-			# Mark current revisions
-			$topmarktext = '';
+			$link = $this->formatArticleLink( $row, $page );
 
-			// Add links for seeing history, diff, etc.
-			if ( $this->isArchive ) {
-				// Add the same links as DeletedContribsPager::formatRevisionRow
-				$undelete = SpecialPage::getTitleFor( 'Undelete' );
-				if ( $authority->isAllowed( 'deletedtext' ) ) {
-					$last = $linkRenderer->makeKnownLink(
-						$undelete,
-						new HtmlArmor( $this->messages['diff'] ),
-						[],
-						[
-							'target' => $page->getPrefixedText(),
-							'timestamp' => $revRecord->getTimestamp(),
-							'diff' => 'prev'
-						]
-					);
-				} else {
-					$last = $this->messages['diff'];
-				}
+			$topmarktext = $this->formatTopMarkText( $row, $revRecord, $page, $classes );
 
-				$logs = SpecialPage::getTitleFor( 'Log' );
-				$dellog = $linkRenderer->makeKnownLink(
-					$logs,
-					new HtmlArmor( $this->messages['deletionlog'] ),
-					[],
-					[
-						'type' => 'delete',
-						'page' => $page->getPrefixedText()
-					]
-				);
+			$diffHistLinks = $this->formatDiffHistLinks( $row, $revRecord, $page );
 
-				$reviewlink = $linkRenderer->makeKnownLink(
-					SpecialPage::getTitleFor( 'Undelete', $page->getPrefixedDBkey() ),
-					new HtmlArmor( $this->messages['undeleteviewlink'] )
-				);
+			$dateLink = $this->formatDateLink( $row, $revRecord, $page );
 
-				$diffHistLinks = Html::rawElement(
-					'span',
-					[ 'class' => 'mw-deletedcontribs-tools' ],
-					$this->msg( 'parentheses' )->rawParams( $language->pipeList(
-						[ $last, $dellog, $reviewlink ] ) )->escaped()
-				);
+			$chardiff = $this->formatCharDiff( $row );
 
-				$date = $language->userTimeAndDate(
-					$revRecord->getTimestamp(),
-					$this->getUser()
-				);
+			$comment = $this->formatComment( $row );
 
-				if ( $authority->isAllowed( 'undelete' ) &&
-					$revRecord->userCan( RevisionRecord::DELETED_TEXT, $authority )
-				) {
-					$dateLink = $linkRenderer->makeKnownLink(
-						SpecialPage::getTitleFor( 'Undelete' ),
-						$date,
-						[ 'class' => 'mw-changeslist-date' ],
-						[
-							'target' => $page->getPrefixedText(),
-							'timestamp' => $revRecord->getTimestamp()
-						]
-					);
-				} else {
-					$dateLink = htmlspecialchars( $date );
-				}
-				if ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
-					$class = Linker::getRevisionDeletedClass( $revRecord );
-					$dateLink = Html::rawElement(
-						'span',
-						[ 'class' => $class ],
-						$dateLink
-					);
-				}
+			$userlink = $this->formatUserLink( $row, $revRecord );
 
-			} else {
-				$pagerTools = new PagerTools(
-					$revRecord,
-					null,
-					$row->{$this->revisionIdField} === $row->page_latest && !$row->page_is_new,
-					$this->hookRunner,
-					$page,
-					$this->getContext(),
-					$this->getLinkRenderer()
-				);
-				if ( $row->{$this->revisionIdField} === $row->page_latest ) {
-					$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
-					$classes[] = 'mw-contributions-current';
-				}
-				if ( $pagerTools->shouldPreventClickjacking() ) {
-					$this->setPreventClickjacking( true );
-				}
-				$topmarktext .= $pagerTools->toHTML();
-				# Is there a visible previous revision?
-				if ( $revRecord->getParentId() !== 0 &&
-					$revRecord->userCan( RevisionRecord::DELETED_TEXT, $authority )
-				) {
-					$difftext = $linkRenderer->makeKnownLink(
-						$page,
-						new HtmlArmor( $this->messages['diff'] ),
-						[ 'class' => 'mw-changeslist-diff' ],
-						[
-							'diff' => 'prev',
-							'oldid' => $row->{$this->revisionIdField},
-						]
-					);
-				} else {
-					$difftext = $this->messages['diff'];
-				}
-				$histlink = $linkRenderer->makeKnownLink(
-					$page,
-					new HtmlArmor( $this->messages['hist'] ),
-					[ 'class' => 'mw-changeslist-history' ],
-					[ 'action' => 'history' ]
-				);
+			$flags = $this->formatFlags( $revRecord );
 
-				// While it might be tempting to use a list here
-				// this would result in clutter and slows down navigating the content
-				// in assistive technology.
-				// See https://phabricator.wikimedia.org/T205581#4734812
-				$diffHistLinks = Html::rawElement( 'span',
-					[ 'class' => 'mw-changeslist-links' ],
-					// The spans are needed to ensure the dividing '|' elements are not
-					// themselves styled as links.
-					Html::rawElement( 'span', [], $difftext ) .
-					' ' . // Space needed for separating two words.
-					Html::rawElement( 'span', [], $histlink )
-				);
+			$del = $this->formatVisibilityLink( $revRecord, $page );
 
-				$dateLink = ChangesList::revDateLink( $revRecord, $authority, $language, $page );
-			}
-
-			if ( $row->{$this->revisionParentIdField} === null ) {
-				// For some reason rev_parent_id isn't populated for this row.
-				// Its rumoured this is true on wikipedia for some revisions (T36922).
-				// Next best thing is to have the total number of bytes.
-				$chardiff = ' <span class="mw-changeslist-separator"></span> ';
-				$chardiff .= Linker::formatRevisionSize( $row->{$this->revisionLengthField} );
-				$chardiff .= ' <span class="mw-changeslist-separator"></span> ';
-			} else {
-				$parentLen = 0;
-				if ( isset( $this->mParentLens[$row->{$this->revisionParentIdField}] ) ) {
-					$parentLen = $this->mParentLens[$row->{$this->revisionParentIdField}];
-				}
-
-				$chardiff = ' <span class="mw-changeslist-separator"></span> ';
-				$chardiff .= ChangesList::showCharacterDifference(
-					$parentLen,
-					$row->{$this->revisionLengthField},
-					$this->getContext()
-				);
-				$chardiff .= ' <span class="mw-changeslist-separator"></span> ';
-			}
-
-			$comment = $this->formattedComments[$row->{$this->revisionIdField}];
-
-			if ( $comment === '' ) {
-				$defaultComment = $this->messages['changeslist-nocomment'];
-				$comment = "<span class=\"comment mw-comment-none\">$defaultComment</span>";
-			}
-
-			$comment = Html::rawElement( 'bdi', [ 'dir' => $dir ], $comment );
-
-			// When the author is different from the target, always show user and user talk links
-			$userlink = '';
-			$revUser = $revRecord->getUser();
-			$revUserId = $revUser ? $revUser->getId() : 0;
-			$revUserText = $revUser ? $revUser->getName() : '';
-			if ( $this->target !== $revUserText ) {
-				$userlink = ' <span class="mw-changeslist-separator"></span> '
-					. Html::rawElement( 'bdi', [ 'dir' => $dir ],
-						Linker::userLink( $revUserId, $revUserText ) );
-				$userlink .= ' ' . $this->msg( 'parentheses' )->rawParams(
-					Linker::userTalkLink( $revUserId, $revUserText ) )->escaped() . ' ';
-			}
-
-			$flags = [];
-			if ( $revRecord->getParentId() === 0 ) {
-				$flags[] = ChangesList::flag( 'newpage' );
-			}
-
-			if ( $revRecord->isMinor() ) {
-				$flags[] = ChangesList::flag( 'minor' );
-			}
-
-			$del = Linker::getRevDeleteLink( $authority, $revRecord, $page );
-			if ( $del !== '' ) {
-				$del .= ' ';
-			}
-
-			# Tags, if any. Save some time using a cache.
-			[ $tagSummary, $newClasses ] = $this->tagsCache->getWithSetCallback(
-				$this->tagsCache->makeKey(
-					$row->ts_tags ?? '',
-					$this->getUser()->getName(),
-					$language->getCode()
-				),
-				fn () => ChangeTags::formatSummaryRow(
-					$row->ts_tags,
-					null,
-					$this->getContext()
-				)
-			);
-			$classes = array_merge( $classes, $newClasses );
+			$tagSummary = $this->formatTags( $row, $classes );
 
 			if ( !$this->isArchive ) {
 				$this->hookRunner->onSpecialContributions__formatRow__flags(
