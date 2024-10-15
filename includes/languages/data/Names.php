@@ -297,10 +297,11 @@ class Names {
 		'kl' => 'kalaallisut', # Inuktitut, Greenlandic/Greenlandic/Kalaallisut (kal)
 		'km' => 'ភាសាខ្មែរ', # Khmer, Central
 		'kn' => 'ಕನ್ನಡ', # Kannada
+		'knc' => 'Yerwa Kanuri', # Central Kanuri
 		'ko' => '한국어', # Korean
 		'ko-kp' => '조선말', # Korean (DPRK), T190324
 		'koi' => 'перем коми', # Komi-Permyak
-		'kr' => 'kanuri', # Kanuri
+		'kr' => 'kanuri', # Kanuri; deprecated, falls back to Central Kanuri (knc)
 		'krc' => 'къарачай-малкъар', # Karachay-Balkar
 		'kri' => 'Krio', # Krio
 		'krj' => 'Kinaray-a', # Kinaray-a

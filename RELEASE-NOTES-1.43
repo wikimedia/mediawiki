@@ -255,6 +255,9 @@ because of Phabricator reports.
   This is done experimentally, with only a Names.php entry and
   namespace translations, before we have actual localized strings.
   For details, see https://www.mediawiki.org/wiki/Future_of_Language_Incubation.
+* (T356144) Deprecated the Kanuri language (kr) and replaced it
+  with Central Kanuri (knc). The language code kr is kept for
+  backwards compatibility and falls back to knc.
 * …
 
 === Breaking changes in 1.43 ===
