@@ -4806,5 +4806,7 @@
 	"benefit-1-description": "The text for the first benefit shown on signup for temporary users.",
 	"benefit-2-description": "The text for the second benefit shown on signup for temporary users.",
 	"benefit-3-description": "The text for the third benefit shown on signup for temporary users.",
-	"temp-user-unable-to-acquire": "The error message shown when the server was unable to acquire a temporary account username for the user."
+	"temp-user-unable-to-acquire": "The error message shown when the server was unable to acquire a temporary account username for the user.",
+	"table-of-contents-show-button-aria-label": "ARIA label for the table of contents show toggle button",
+	"table-of-contents-hide-button-aria-label": "ARIA label for the table of contents hide toggle button"
 }
