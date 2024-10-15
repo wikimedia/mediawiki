@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Storage;
 
-use ChangeTags;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\WikitextContent;
@@ -332,7 +331,7 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 
 		return new EditResultBuilder(
 			$this->getServiceContainer()->getRevisionStore(),
-			ChangeTags::listSoftwareDefinedTags(),
+			$this->getServiceContainer()->getChangeTagsStore()->listSoftwareDefinedTags(),
 			$options
 		);
 	}

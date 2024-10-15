@@ -36,6 +36,7 @@ use MediaWiki\Html\TemplateParser;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Sanitizer;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -409,7 +410,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			$queryInfo['fields'][] = $indexField;
 		}
 
-		ChangeTags::modifyDisplayQuery(
+		MediaWikiServices::getInstance()->getChangeTagsStore()->modifyDisplayQuery(
 			$queryInfo['tables'],
 			$queryInfo['fields'],
 			$queryInfo['conds'],

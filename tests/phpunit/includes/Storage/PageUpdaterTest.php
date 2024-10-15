@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Storage;
 
-use ChangeTags;
 use LogicException;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\Content;
@@ -1022,7 +1021,12 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			->addTag( 'foo' )
 			->setFlags( EDIT_SUPPRESS_RC )
 			->saveRevision( CommentStoreComment::newUnsavedComment( 'Comment' ) );
-		$this->assertArrayEquals( [ 'foo' ], ChangeTags::getTags( $this->getDb(), null, $revision->getId() ) );
+		$this->assertArrayEquals(
+			[ 'foo' ],
+			$this->getServiceContainer()->getChangeTagsStore()->getTags(
+				$this->getDb(), null, $revision->getId()
+			)
+		);
 
 		$revision2 = $this->getServiceContainer()
 			->getPageUpdaterFactory()
@@ -1034,7 +1038,12 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			->addTag( 'bar' )
 			->setFlags( EDIT_SUPPRESS_RC )
 			->saveRevision( CommentStoreComment::newUnsavedComment( 'Comment' ) );
-		$this->assertArrayEquals( [ 'bar' ], ChangeTags::getTags( $this->getDb(), null, $revision2->getId() ) );
+		$this->assertArrayEquals(
+			[ 'bar' ],
+			$this->getServiceContainer()->getChangeTagsStore()->getTags(
+				$this->getDb(), null, $revision2->getId()
+			)
+		);
 	}
 
 	/**

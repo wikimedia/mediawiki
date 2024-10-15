@@ -40,7 +40,7 @@ class ChangeTagsConstraintTest extends MediaWikiIntegrationTestCase {
 
 	public function testPass() {
 		$tagName = 'tag-for-constraint-test-pass';
-		ChangeTags::defineTag( $tagName );
+		$this->getServiceContainer()->getChangeTagsStore()->defineTag( $tagName );
 
 		$constraint = new ChangeTagsConstraint(
 			$this->mockRegisteredUltimateAuthority(),
@@ -60,7 +60,7 @@ class ChangeTagsConstraintTest extends MediaWikiIntegrationTestCase {
 
 	public function testFailure() {
 		$tagName = 'tag-for-constraint-test-fail';
-		ChangeTags::defineTag( $tagName );
+		$this->getServiceContainer()->getChangeTagsStore()->defineTag( $tagName );
 
 		$constraint = new ChangeTagsConstraint(
 			$this->mockRegisteredAuthorityWithoutPermissions( [ 'applychangetags' ] ),

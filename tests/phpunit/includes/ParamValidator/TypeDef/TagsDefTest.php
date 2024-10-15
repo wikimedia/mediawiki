@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\ParamValidator\TypeDef;
 
-use ChangeTags;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\ParamValidator\TypeDef\TagsDef;
 use MediaWikiIntegrationTestCase;
@@ -20,8 +19,8 @@ class TagsDefTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		ChangeTags::defineTag( 'tag1' );
-		ChangeTags::defineTag( 'tag2' );
+		$this->getServiceContainer()->getChangeTagsStore()->defineTag( 'tag1' );
+		$this->getServiceContainer()->getChangeTagsStore()->defineTag( 'tag2' );
 
 		// Since the type def shouldn't care about the specific user,
 		// remove the right from relevant groups to ensure that it's not

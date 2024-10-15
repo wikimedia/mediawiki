@@ -187,7 +187,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 
 		$tags = $importableRevision->getTags();
 		if ( $tags !== [] ) {
-			ChangeTags::addTags( $tags, null, $inserted->getId() );
+			MediaWikiServices::getInstance()->getChangeTagsStore()->addTags( $tags, null, $inserted->getId() );
 		}
 
 		if ( $changed !== false && $this->doUpdates ) {

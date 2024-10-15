@@ -222,7 +222,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testCannotApplyTags() {
-		ChangeTags::defineTag( 'edit content model tag' );
+		$this->getServiceContainer()->getChangeTagsStore()->defineTag( 'edit content model tag' );
 
 		$change = $this->newContentModelChange(
 			$this->mockRegisteredAuthorityWithoutPermissions( [ 'applychangetags' ] ),

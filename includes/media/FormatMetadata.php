@@ -25,6 +25,7 @@
  * @file
  */
 
+use MediaWiki\Api\ApiResult;
 use MediaWiki\Context\ContextSource;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;

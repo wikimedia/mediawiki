@@ -14,7 +14,7 @@ use RecentChange;
  */
 interface ChangeTagsAfterUpdateTagsHook {
 	/**
-	 * This hook is called after tags have been updated with the ChangeTags::updateTags function.
+	 * This hook is called after tags have been updated with the ChangeTagsStore->updateTags function.
 	 *
 	 * @since 1.35
 	 *

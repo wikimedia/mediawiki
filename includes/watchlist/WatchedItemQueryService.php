@@ -2,13 +2,13 @@
 
 namespace MediaWiki\Watchlist;
 
-use ChangeTags;
 use LogPage;
 use MediaWiki\Api\ApiUsageException;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\TitleValue;
@@ -455,7 +455,8 @@ class WatchedItemQueryService {
 		}
 		if ( in_array( self::INCLUDE_TAGS, $options['includeFields'] ) ) {
 			// prefixed with rc_ to include the field in getRecentChangeFieldsFromRow
-			$fields['rc_tags'] = ChangeTags::makeTagSummarySubquery( 'recentchanges' );
+			$fields['rc_tags'] = MediaWikiServices::getInstance()->getChangeTagsStore()
+				->makeTagSummarySubquery( 'recentchanges' );
 		}
 
 		return $fields;

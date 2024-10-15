@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Page;
 
-use ChangeTags;
 use DatabaseLogEntry;
 use MediaWiki\Content\JsonContent;
 use MediaWiki\Content\WikitextContent;
@@ -249,7 +248,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testRollbackTagging() {
-		if ( !in_array( 'mw-rollback', ChangeTags::getSoftwareTags() ) ) {
+		if ( !in_array( 'mw-rollback', $this->getServiceContainer()->getChangeTagsStore()->getSoftwareTags() ) ) {
 			$this->markTestSkipped( 'Rollback tag deactivated, skipped the test.' );
 		}
 
