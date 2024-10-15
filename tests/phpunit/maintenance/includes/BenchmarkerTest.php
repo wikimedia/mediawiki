@@ -2,13 +2,13 @@
 
 namespace MediaWiki\Tests\Maintenance\Includes;
 
-use Benchmarker;
+use MediaWiki\Maintenance\Benchmarker;
 use MediaWikiCoversValidator;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \Benchmarker
+ * @covers \MediaWiki\Maintenance\Benchmarker
  */
 class BenchmarkerTest extends TestCase {
 

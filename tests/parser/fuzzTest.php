@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;

@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+namespace MediaWiki\Maintenance;
+
 /**
  * Doxygen filter to show correct member variable types in documentation.
  *
@@ -139,3 +141,6 @@ class MWDoxygenFilter {
 		return $output;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( MWDoxygenFilter::class, 'MWDoxygenFilter' );

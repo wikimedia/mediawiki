@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Installer\DatabaseUpdater;
+use MediaWiki\Maintenance\FakeMaintenance;
 use Psr\Log\NullLogger;
 use Wikimedia\ObjectCache\HashBagOStuff;
 use Wikimedia\Rdbms\Database;

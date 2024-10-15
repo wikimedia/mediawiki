@@ -26,6 +26,8 @@
  * @ingroup Benchmark
  */
 
+namespace MediaWiki\Maintenance;
+
 use Wikimedia\RunningStat;
 
 // @codeCoverageIgnoreStart
@@ -232,3 +234,6 @@ abstract class Benchmarker extends Maintenance {
 		return $content;
 	}
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( Benchmarker::class, 'Benchmarker' );

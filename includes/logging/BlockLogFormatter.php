@@ -22,6 +22,7 @@
  * @since 1.25
  */
 
+use MediaWiki\Language\Language;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;

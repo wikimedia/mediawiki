@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Maintenance;
+
 /**
  * Class for scripts that perform database maintenance and want to log the
  * update in `updatelog` so we can later skip it
@@ -90,3 +92,6 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 	 */
 	abstract protected function getUpdateKey();
 }
+
+/** @deprecated class alias since 1.43 */
+class_alias( LoggedUpdateMaintenance::class, 'LoggedUpdateMaintenance' );

@@ -1,6 +1,9 @@
 <?php
 
-use MediaWiki\Tests\Maintenance\DumpTestCase;
+namespace MediaWiki\Tests\Maintenance;
+
+use DOMDocument;
+use WikiExporter;
 
 /**
  * Test making sure the demo export xml is valid.

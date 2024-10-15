@@ -3,10 +3,10 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use BaseDump;
+use MediaWiki\Maintenance\TextPassDumper;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWikiLangTestCase;
-use TextPassDumper;
 use WikiExporter;
 use XmlDumpWriter;
 
@@ -20,7 +20,7 @@ use XmlDumpWriter;
  *
  * @group Database
  * @group Dump
- * @covers \TextPassDumper
+ * @covers \MediaWiki\Maintenance\TextPassDumper
  */
 class TextPassDumperDatabaseTest extends DumpTestCase {
 
@@ -479,7 +479,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
  * cannot bring this test case's tests into the above main test case.)
  *
  * @group Dump
- * @covers \TextPassDumper
+ * @covers \MediaWiki\Maintenance\TextPassDumper
  */
 class TextPassDumperDatabaselessTest extends MediaWikiLangTestCase {
 	/**
