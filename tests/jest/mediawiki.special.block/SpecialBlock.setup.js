@@ -1,6 +1,8 @@
 'use strict';
 
 const { mount, VueWrapper } = require( '@vue/test-utils' );
+const { createTestingPinia } = require( '@pinia/testing' );
+
 const SpecialBlock = require( '../../../resources/src/mediawiki.special.block/SpecialBlock.vue' );
 
 /**
@@ -25,7 +27,12 @@ function getSpecialBlock( config = {}, apiMocks = [] ) {
 	document.body.appendChild( form );
 
 	// Mount the SpecialBlock component inside the form element.
-	return mount( SpecialBlock, { attachTo: form } );
+	return mount( SpecialBlock, {
+		global: {
+			plugins: [ createTestingPinia( { stubActions: false } ) ]
+		},
+		attachTo: form
+	} );
 }
 
 /**

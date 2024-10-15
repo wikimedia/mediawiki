@@ -2,7 +2,6 @@
 	<cdx-field
 		class="mw-block-expiry-field"
 		:is-fieldset="true"
-		:disabled="disabled"
 	>
 		<template #label>
 			{{ $i18n( 'block-expiry' ).text() }}
@@ -97,7 +96,9 @@
 <script>
 const { defineComponent, ref, computed, watch } = require( 'vue' );
 const { CdxField, CdxRadio, CdxSelect } = require( '@wikimedia/codex' );
+const { storeToRefs } = require( 'pinia' );
 const ValidatingTextInput = require( './ValidatingTextInput.js' );
+const useBlockStore = require( '../stores/block.js' );
 
 module.exports = exports = defineComponent( {
 	name: 'ExpiryField',
@@ -108,11 +109,6 @@ module.exports = exports = defineComponent( {
 		ValidatingTextInput
 	},
 	props: {
-		// This is an object of the form { value: String, type: String }
-		modelValue: {
-			type: Object,
-			required: true
-		},
 		/**
 		 * Whether the form has been submitted yet. This is used to show
 		 * validation messages only after the form has been submitted.
@@ -120,19 +116,10 @@ module.exports = exports = defineComponent( {
 		formSubmitted: {
 			type: Boolean,
 			default: false
-		},
-		/**
-		 * Whether the field is disabled
-		 */
-		disabled: {
-			type: Boolean,
-			default: false
 		}
 	},
-	emits: [
-		'update:modelValue'
-	],
-	setup( props, { emit } ) {
+	setup( props ) {
+		const store = useBlockStore();
 		const blockExpiryOptions = mw.config.get( 'blockExpiryOptions' );
 		const presetDurationOptions = Object.keys( blockExpiryOptions )
 			.map( ( key ) => ( { label: key, value: blockExpiryOptions[ key ] } ) )
@@ -161,36 +148,19 @@ module.exports = exports = defineComponent( {
 		const expiryType = ref( 'preset-duration' );
 
 		const computedModelValue = computed( () => {
-			let value;
 			if ( expiryType.value === 'preset-duration' ) {
-				value = presetDuration.value;
+				return presetDuration.value;
 			} else if ( expiryType.value === 'custom-duration' ) {
-				value = `${ Number( customDurationNumber.value ) } ${ customDurationUnit.value }`;
+				return `${ Number( customDurationNumber.value ) } ${ customDurationUnit.value }`;
 			} else {
-				value = datetime.value;
+				return datetime.value;
 			}
-			return {
-				type: expiryType.value,
-				value
-			};
 		} );
 
 		watch( computedModelValue, ( newValue ) => {
-			emit( 'update:modelValue', newValue );
+			const { expiry } = storeToRefs( store );
+			expiry.value = newValue;
 		} );
-
-		watch( () => props.modelValue, ( newValue ) => {
-			expiryType.value = newValue.type || 'preset-duration';
-			if ( newValue.type === 'preset-duration' ) {
-				presetDuration.value = newValue.value;
-			} else if ( newValue.type === 'custom-duration' ) {
-				const [ num, unit ] = newValue.value.split( ' ' );
-				customDurationNumber.value = num;
-				customDurationUnit.value = unit;
-			} else if ( newValue.type === 'datetime' ) {
-				datetime.value = newValue.value;
-			}
-		}, { deep: true, immediate: true } );
 
 		/**
 		 * Set the form fields according to the given expiry.

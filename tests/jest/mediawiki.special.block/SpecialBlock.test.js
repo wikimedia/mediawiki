@@ -35,7 +35,7 @@ describe( 'SpecialBlock', () => {
 		wrapper = getSpecialBlock();
 		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
 		await wrapper.find( '.cdx-radio__input[value=datetime]' ).setValue( true );
-		await wrapper.find( '[name=wpExpiry-other]' ).setValue( '2030-01-23T12:34:56' );
+		await wrapper.find( '[name=wpExpiry-other]' ).setValue( '2999-01-23T12:34:56' );
 		await wrapper.find( '[name=wpReason-other]' ).setValue( 'This is a test' );
 		const spy = jest.spyOn( mw.Api.prototype, 'postWithEditToken' );
 		const submitButton = wrapper.find( '.mw-block-submit' );
@@ -44,7 +44,7 @@ describe( 'SpecialBlock', () => {
 		expect( spy ).toHaveBeenCalledWith( {
 			action: 'block',
 			user: 'ExampleUser',
-			expiry: '2030-01-23T12:34:56',
+			expiry: '2999-01-23T12:34:56',
 			reason: 'This is a test',
 			reblock: 0,
 			autoblock: 1,

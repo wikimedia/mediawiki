@@ -2,6 +2,7 @@
 
 const { mount, flushPromises } = require( '@vue/test-utils' );
 const { mockMwApiGet } = require( './SpecialBlock.setup.js' );
+const { createTestingPinia } = require( '@pinia/testing' );
 const UserLookup = require( '../../../resources/src/mediawiki.special.block/components/UserLookup.vue' );
 
 beforeAll( () => mockMwApiGet() );
@@ -9,7 +10,10 @@ beforeAll( () => mockMwApiGet() );
 describe( 'UserLookup', () => {
 	it( 'should update menu items based on the API response', async () => {
 		const wrapper = mount( UserLookup, {
-			props: { modelValue: 'UserLookup' }
+			props: { modelValue: 'UserLookup' },
+			global: {
+				plugins: [ createTestingPinia( { stubActions: false } ) ]
+			}
 		} );
 		// Ensure that the initial search string matches the initial prop value.
 		const input = wrapper.find( '.cdx-text-input__input' );
