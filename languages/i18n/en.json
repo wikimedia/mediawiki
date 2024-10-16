@@ -2703,6 +2703,8 @@
 	"block-user-placeholder": "Start typing a user...",
 	"block-target": "Username, IP address, or IP range:",
 	"block-target-placeholder": "UserName, 1.1.1.42, or 1.1.1.42/16",
+	"block-pages-placeholder": "Add more pages...",
+	"block-namespaces-placeholder": "Add more namespaces...",
 	"unblockip": "Unblock user",
 	"unblockiptext": "Use the form below to restore write access to a previously blocked IP address or username.",
 	"ipusubmit": "Remove this block",

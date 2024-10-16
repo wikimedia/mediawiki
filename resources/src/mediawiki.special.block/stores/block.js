@@ -9,6 +9,17 @@ module.exports = exports = defineStore( 'block', () => {
 	const type = ref( mw.config.get( 'blockTypePreset' ) || 'sitewide' );
 	const expiry = ref( '' );
 	const partialOptions = ref( [ 'ipb-action-create' ] );
+	const pages = ref(
+		( mw.config.get( 'blockPageRestrictions' ) || '' )
+			.split( '\n' )
+			.filter( Boolean )
+	);
+	const namespaces = ref(
+		( mw.config.get( 'blockNamespaceRestrictions' ) || '' )
+			.split( '\n' )
+			.filter( Boolean )
+			.map( Number )
+	);
 	const reason = ref( 'other' );
 	const reasonOther = ref( mw.config.get( 'blockReasonOtherPreset' ) || '' );
 	const details = ref( mw.config.get( 'blockDetailsPreset' ) || [] );
@@ -69,7 +80,14 @@ module.exports = exports = defineStore( 'block', () => {
 			if ( partialOptions.value.indexOf( 'ipb-action-create' ) !== -1 ) {
 				actionRestrictions.push( 'create' );
 			}
-			params.actionRestrictions = actionRestrictions.join( '|' );
+			params.actionrestrictions = actionRestrictions.join( '|' );
+
+			if ( pages.value.length ) {
+				params.pagerestrictions = pages.value.join( '|' );
+			}
+			if ( namespaces.value.length ) {
+				params.namespacerestrictions = namespaces.value.join( '|' );
+			}
 		}
 
 		if ( details.value.indexOf( 'wpCreateAccount' ) !== -1 ) {
@@ -113,6 +131,8 @@ module.exports = exports = defineStore( 'block', () => {
 		type,
 		expiry,
 		partialOptions,
+		pages,
+		namespaces,
 		reason,
 		reasonOther,
 		details,

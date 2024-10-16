@@ -257,6 +257,8 @@ class SpecialBlock extends FormSpecialPage {
 
 			$this->codexFormData[ 'blockDetailsPreset' ] = $blockDetailsPreset;
 			$this->codexFormData[ 'blockAdditionalDetailsPreset' ] = $blockAdditionalDetailsPreset;
+			$this->codexFormData[ 'blockPageRestrictions' ] = $request->getVal( 'wpPageRestrictions' );
+			$this->codexFormData[ 'blockNamespaceRestrictions' ] = $request->getVal( 'wpNamespaceRestrictions' );
 		}
 	}
 
@@ -628,7 +630,8 @@ class SpecialBlock extends FormSpecialPage {
 			}
 
 			if ( !$block->isSitewide() ) {
-				$fields['EditingRestriction']['default'] = 'partial';
+				$fields['EditingRestriction']['default'] =
+					$this->codexFormData[ 'blockTypePreset' ] = 'partial';
 
 				$pageRestrictions = [];
 				$namespaceRestrictions = [];
@@ -644,9 +647,11 @@ class SpecialBlock extends FormSpecialPage {
 
 				// Sort the restrictions so they are in alphabetical order.
 				sort( $pageRestrictions );
-				$fields['PageRestrictions']['default'] = implode( "\n", $pageRestrictions );
+				$fields['PageRestrictions']['default'] =
+					$this->codexFormData[ 'blockPageRestrictions' ] = implode( "\n", $pageRestrictions );
 				sort( $namespaceRestrictions );
-				$fields['NamespaceRestrictions']['default'] = implode( "\n", $namespaceRestrictions );
+				$fields['NamespaceRestrictions']['default'] =
+					$this->codexFormData[ 'blockNamespaceRestrictions' ] = implode( "\n", $namespaceRestrictions );
 
 				if ( $this->getConfig()->get( MainConfigNames::EnablePartialActionBlocks ) ) {
 					$actionRestrictions = [];
