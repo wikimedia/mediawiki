@@ -341,6 +341,27 @@
       "CdxMessage-rtl.css"
     ]
   },
+  "src/components/multiselect-lookup/MultiselectLookup.vue": {
+    "file": "CdxMultiselectLookup.cjs",
+    "name": "CdxMultiselectLookup",
+    "src": "src/components/multiselect-lookup/MultiselectLookup.vue",
+    "isEntry": true,
+    "imports": [
+      "src/components/chip-input/ChipInput.vue",
+      "src/components/menu/Menu.vue",
+      "src/composables/useFieldData.ts",
+      "src/composables/useFloatingMenu.ts",
+      "src/composables/useGeneratedId.ts",
+      "src/composables/useModelWrapper.ts",
+      "_useOptionalModelWrapper.js",
+      "src/composables/useSplitAttributes.ts",
+      "_constants.js",
+      "__plugin-vue_export-helper.js"
+    ],
+    "css": [
+      "CdxMultiselectLookup-rtl.css"
+    ]
+  },
   "src/components/progress-bar/ProgressBar.vue": {
     "file": "CdxProgressBar.cjs",
     "name": "CdxProgressBar",
