@@ -1639,7 +1639,7 @@ class DatabaseBlockStore {
 	 * @param string|null $parentExpiry
 	 * @return string
 	 */
-	public function getAutoblockExpiry( $timestamp, string $parentExpiry = null ) {
+	public function getAutoblockExpiry( $timestamp, ?string $parentExpiry = null ) {
 		$maxDuration = $this->options->get( MainConfigNames::AutoblockExpiry );
 		$expiry = wfTimestamp( TS_MW, (int)wfTimestamp( TS_UNIX, $timestamp ) + $maxDuration );
 		if ( $parentExpiry !== null && $parentExpiry !== 'infinity' ) {

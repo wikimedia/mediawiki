@@ -58,7 +58,7 @@ class BadFileLookup {
 	 * @param LinkTarget|null $contextTitle The page on which the file occurs, if known
 	 * @return bool
 	 */
-	public function isBadFile( $name, LinkTarget $contextTitle = null ) {
+	public function isBadFile( $name, ?LinkTarget $contextTitle = null ) {
 		// Handle redirects; callers almost always hit RepoGroup::findFile() anyway,
 		// so just use that method because it has a fast process cache.
 		$file = $this->repoGroup->findFile( $name );

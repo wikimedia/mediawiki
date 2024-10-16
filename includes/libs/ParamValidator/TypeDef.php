@@ -153,7 +153,7 @@ abstract class TypeDef {
 	 * @param string|null $suffix Suffix to append when producing the message key
 	 * @return DataMessageValue
 	 */
-	protected function failureMessage( $code, array $data = null, $suffix = null ): DataMessageValue {
+	protected function failureMessage( $code, ?array $data = null, $suffix = null ): DataMessageValue {
 		return DataMessageValue::new(
 			"paramvalidator-$code" . ( $suffix !== null ? "-$suffix" : '' ),
 			[], $code, $data

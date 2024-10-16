@@ -48,7 +48,7 @@ class ApiBlockTest extends ApiTestCase {
 	 * @param Authority|null $blocker User to do the blocking, null to pick arbitrarily
 	 * @return array result of doApiRequest
 	 */
-	private function doBlock( array $extraParams = [], Authority $blocker = null ) {
+	private function doBlock( array $extraParams = [], ?Authority $blocker = null ) {
 		$this->assertNotNull( $this->mUser );
 
 		$params = [

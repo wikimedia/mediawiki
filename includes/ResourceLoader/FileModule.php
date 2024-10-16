@@ -170,8 +170,8 @@ class FileModule extends Module {
 	 */
 	public function __construct(
 		array $options = [],
-		string $localBasePath = null,
-		string $remoteBasePath = null
+		?string $localBasePath = null,
+		?string $remoteBasePath = null
 	) {
 		// Flag to decide whether to automagically add the mediawiki.template module
 		$hasTemplates = false;
@@ -482,7 +482,7 @@ class FileModule extends Module {
 	 * @param Context|null $context
 	 * @return string[] List of module names
 	 */
-	public function getDependencies( Context $context = null ) {
+	public function getDependencies( ?Context $context = null ) {
 		return $this->dependencies;
 	}
 

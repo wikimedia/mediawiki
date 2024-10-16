@@ -55,7 +55,7 @@ class RevisionSlotsUpdate {
 	 */
 	public static function newFromRevisionSlots(
 		RevisionSlots $newSlots,
-		RevisionSlots $parentSlots = null
+		?RevisionSlots $parentSlots = null
 	) {
 		$modified = $newSlots->getSlots();
 		$removed = [];
@@ -88,7 +88,7 @@ class RevisionSlotsUpdate {
 	 *
 	 * @return RevisionSlotsUpdate
 	 */
-	public static function newFromContent( array $newContent, RevisionSlots $parentSlots = null ) {
+	public static function newFromContent( array $newContent, ?RevisionSlots $parentSlots = null ) {
 		$modified = [];
 
 		foreach ( $newContent as $role => $content ) {

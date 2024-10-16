@@ -160,7 +160,7 @@ class EditResultBuilder {
 	public function markAsRevert(
 		int $revertMethod,
 		int $newestRevertedRevId,
-		int $revertAfterRevId = null
+		?int $revertAfterRevId = null
 	) {
 		Assert::parameter(
 			in_array(

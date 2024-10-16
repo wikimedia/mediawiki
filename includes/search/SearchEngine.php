@@ -515,7 +515,7 @@ abstract class SearchEngine {
 	 * @return string
 	 * @deprecated since 1.34 use Content::getTextForSearchIndex directly
 	 */
-	public function getTextFromContent( Title $t, Content $c = null ) {
+	public function getTextFromContent( Title $t, ?Content $c = null ) {
 		return $c ? $c->getTextForSearchIndex() : '';
 	}
 
@@ -772,7 +772,7 @@ abstract class SearchEngine {
 	 * @return array|null the list of profiles or null if none available
 	 * @phan-return null|array{name:string,desc-message:string,default?:bool}
 	 */
-	public function getProfiles( $profileType, User $user = null ) {
+	public function getProfiles( $profileType, ?User $user = null ) {
 		return null;
 	}
 

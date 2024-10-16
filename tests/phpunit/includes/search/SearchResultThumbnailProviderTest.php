@@ -134,7 +134,7 @@ class SearchResultThumbnailProviderTest extends MediaWikiIntegrationTestCase {
 	 * @param int[] $thumbnailIds
 	 * @param int|null $size
 	 */
-	public function testGetThumbnails( array $pageIds, array $thumbnailIds, int $size = null ) {
+	public function testGetThumbnails( array $pageIds, array $thumbnailIds, ?int $size = null ) {
 		$pageIdentities = array_intersect_key( $this->titles, array_fill_keys( $pageIds, null ) );
 
 		$thumbnails = $this->thumbnailProvider->getThumbnails( $pageIdentities, $size );

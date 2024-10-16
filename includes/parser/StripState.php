@@ -59,7 +59,7 @@ class StripState {
 	 * @param Parser|null $parser
 	 * @param array $options
 	 */
-	public function __construct( Parser $parser = null, $options = [] ) {
+	public function __construct( ?Parser $parser = null, $options = [] ) {
 		$this->data = [
 			'nowiki' => [],
 			'general' => []

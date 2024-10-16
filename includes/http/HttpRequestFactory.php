@@ -57,7 +57,7 @@ class HttpRequestFactory {
 	public function __construct(
 		ServiceOptions $options,
 		LoggerInterface $logger,
-		Telemetry $telemetry = null
+		?Telemetry $telemetry = null
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;

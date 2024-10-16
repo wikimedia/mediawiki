@@ -27,7 +27,7 @@ class LimitOperation {
 	 */
 	public function __construct(
 		string $condName,
-		EntityKey $entityKey = null,
+		?EntityKey $entityKey = null,
 		$amount = 1
 	) {
 		$this->condName = $condName;

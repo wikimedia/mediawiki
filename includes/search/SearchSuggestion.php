@@ -59,7 +59,7 @@ class SearchSuggestion {
 	 * @param Title|null $suggestedTitle
 	 * @param int|null $suggestedTitleID
 	 */
-	public function __construct( $score, $text = null, Title $suggestedTitle = null,
+	public function __construct( $score, $text = null, ?Title $suggestedTitle = null,
 			$suggestedTitleID = null ) {
 		$this->score = $score;
 		$this->text = $text;
@@ -101,7 +101,7 @@ class SearchSuggestion {
 	/**
 	 * @param Title|null $title
 	 */
-	public function setSuggestedTitle( Title $title = null ) {
+	public function setSuggestedTitle( ?Title $title = null ) {
 		$this->suggestedTitle = $title;
 		if ( $title !== null ) {
 			$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();

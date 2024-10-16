@@ -37,7 +37,7 @@ class MultiUsernameFilter implements Filter {
 	 * @param Authority|int $authorityOrAudience
 	 */
 	public function __construct(
-		CentralIdLookup $lookup = null,
+		?CentralIdLookup $lookup = null,
 		$authorityOrAudience = CentralIdLookup::AUDIENCE_PUBLIC
 	) {
 		$this->lookup = $lookup;

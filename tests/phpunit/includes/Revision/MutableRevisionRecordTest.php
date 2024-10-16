@@ -44,7 +44,7 @@ class MutableRevisionRecordTest extends MediaWikiIntegrationTestCase {
 	public function testConstructorAndGetters(
 		PageIdentity $page,
 		$wikiId = RevisionRecord::LOCAL,
-		string $expectedException = null
+		?string $expectedException = null
 	) {
 		$rec = new MutableRevisionRecord( $page, $wikiId );
 

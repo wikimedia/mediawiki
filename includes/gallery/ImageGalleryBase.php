@@ -120,7 +120,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @return ImageGalleryBase
 	 * @throws ImageGalleryClassNotFoundException
 	 */
-	public static function factory( $mode = false, IContextSource $context = null ) {
+	public static function factory( $mode = false, ?IContextSource $context = null ) {
 		self::loadModes();
 		if ( !$context ) {
 			$context = RequestContext::getMainAndWarn( __METHOD__ );
@@ -169,7 +169,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param string $mode
 	 * @param IContextSource|null $context
 	 */
-	public function __construct( $mode = 'traditional', IContextSource $context = null ) {
+	public function __construct( $mode = 'traditional', ?IContextSource $context = null ) {
 		if ( $context ) {
 			$this->setContext( $context );
 		}

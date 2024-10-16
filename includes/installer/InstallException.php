@@ -40,7 +40,7 @@ class InstallException extends \MWException {
 	 * @param Throwable|null $previous The previous throwable used for the exception chaining
 	 */
 	public function __construct( Status $status, $message = '', $code = 0,
-		Throwable $previous = null ) {
+		?Throwable $previous = null ) {
 		parent::__construct( $message, $code, $previous );
 		$this->status = $status;
 	}

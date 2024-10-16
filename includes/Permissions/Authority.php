@@ -85,7 +85,7 @@ interface Authority {
 	 *
 	 * @see probablyCan
 	 */
-	public function isAllowed( string $permission, PermissionStatus $status = null ): bool;
+	public function isAllowed( string $permission, ?PermissionStatus $status = null ): bool;
 
 	/**
 	 * Checks whether this authority has any of the given permissions in general.
@@ -133,7 +133,7 @@ interface Authority {
 	public function probablyCan(
 		string $action,
 		PageIdentity $target,
-		PermissionStatus $status = null
+		?PermissionStatus $status = null
 	): bool;
 
 	/**
@@ -158,7 +158,7 @@ interface Authority {
 	public function definitelyCan(
 		string $action,
 		PageIdentity $target,
-		PermissionStatus $status = null
+		?PermissionStatus $status = null
 	): bool;
 
 	/**
@@ -183,7 +183,7 @@ interface Authority {
 	 */
 	public function isDefinitelyAllowed(
 		string $action,
-		PermissionStatus $status = null
+		?PermissionStatus $status = null
 	): bool;
 
 	/**
@@ -205,7 +205,7 @@ interface Authority {
 	 */
 	public function authorizeAction(
 		string $action,
-		PermissionStatus $status = null
+		?PermissionStatus $status = null
 	): bool;
 
 	/**
@@ -228,7 +228,7 @@ interface Authority {
 	public function authorizeRead(
 		string $action,
 		PageIdentity $target,
-		PermissionStatus $status = null
+		?PermissionStatus $status = null
 	): bool;
 
 	/**
@@ -251,7 +251,7 @@ interface Authority {
 	public function authorizeWrite(
 		string $action,
 		PageIdentity $target,
-		PermissionStatus $status = null
+		?PermissionStatus $status = null
 	): bool;
 
 	/**

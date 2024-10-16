@@ -41,7 +41,7 @@ class UserBlockedError extends ErrorPageError {
 	 */
 	public function __construct(
 		Block $block,
-		UserIdentity $user = null,
+		?UserIdentity $user = null,
 		$language = null,
 		$ip = null
 	) {

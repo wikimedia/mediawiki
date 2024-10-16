@@ -187,11 +187,11 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		LanguageNameUtils $languageNameUtils,
 		HookContainer $hookContainer,
 		UserOptionsLookup $userOptionsLookup,
-		LanguageConverterFactory $languageConverterFactory = null,
-		ParserFactory $parserFactory = null,
-		SkinFactory $skinFactory = null,
-		UserGroupManager $userGroupManager = null,
-		SignatureValidatorFactory $signatureValidatorFactory = null
+		?LanguageConverterFactory $languageConverterFactory = null,
+		?ParserFactory $parserFactory = null,
+		?SkinFactory $skinFactory = null,
+		?UserGroupManager $userGroupManager = null,
+		?SignatureValidatorFactory $signatureValidatorFactory = null
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 

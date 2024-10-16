@@ -529,8 +529,8 @@ class ChangeTagsStore {
 	 * revision or log entry before any changes were made
 	 */
 	public function updateTags( $tagsToAdd, $tagsToRemove, &$rc_id = null,
-		&$rev_id = null, &$log_id = null, $params = null, RecentChange $rc = null,
-		UserIdentity $user = null
+		&$rev_id = null, &$log_id = null, $params = null, ?RecentChange $rc = null,
+		?UserIdentity $user = null
 	) {
 		$tagsToAdd = array_filter(
 			(array)$tagsToAdd, // Make sure we're submitting all tags...
@@ -723,7 +723,7 @@ class ChangeTagsStore {
 	 * @return bool False if no changes are made, otherwise true
 	 */
 	public function addTags( $tags, $rc_id = null, $rev_id = null,
-		$log_id = null, $params = null, RecentChange $rc = null
+		$log_id = null, $params = null, ?RecentChange $rc = null
 	) {
 		$result = $this->updateTags( $tags, null, $rc_id, $rev_id, $log_id, $params, $rc );
 		return (bool)$result[0];

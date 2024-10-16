@@ -1690,7 +1690,7 @@ class Linker {
 	 */
 	public static function generateRollback(
 		RevisionRecord $revRecord,
-		IContextSource $context = null,
+		?IContextSource $context = null,
 		$options = []
 	) {
 		$context ??= RequestContext::getMain();
@@ -1813,7 +1813,7 @@ class Linker {
 	 */
 	public static function buildRollbackLink(
 		RevisionRecord $revRecord,
-		IContextSource $context = null,
+		?IContextSource $context = null,
 		$editCount = false
 	) {
 		$config = MediaWikiServices::getInstance()->getMainConfig();

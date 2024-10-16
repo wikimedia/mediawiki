@@ -613,7 +613,7 @@ class FSFileBackend extends FileBackendStore {
 		return $hadError ? self::RES_ERROR : self::RES_ABSENT;
 	}
 
-	protected function doClearCache( array $paths = null ) {
+	protected function doClearCache( ?array $paths = null ) {
 		if ( is_array( $paths ) ) {
 			foreach ( $paths as $path ) {
 				$fsPath = $this->resolveToFSPath( $path );

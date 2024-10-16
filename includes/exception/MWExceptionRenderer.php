@@ -72,7 +72,7 @@ class MWExceptionRenderer {
 	 * @param int $mode MWExceptionExposer::AS_* constant
 	 * @param Throwable|null $eNew New throwable from attempting to show the first
 	 */
-	public static function output( Throwable $e, $mode, Throwable $eNew = null ) {
+	public static function output( Throwable $e, $mode, ?Throwable $eNew = null ) {
 		$showExceptionDetails = self::shouldShowExceptionDetails();
 		if ( $e instanceof RequestTimeoutException && headers_sent() ) {
 			// Excimer's flag check happens on function return, so, a timeout

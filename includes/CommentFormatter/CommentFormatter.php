@@ -48,7 +48,7 @@ class CommentFormatter {
 	 *   wiki), as used by WikiMap.
 	 * @return string
 	 */
-	public function format( string $comment, LinkTarget $selfLinkTarget = null,
+	public function format( string $comment, ?LinkTarget $selfLinkTarget = null,
 		$samePage = false, $wikiId = false
 	) {
 		return $this->formatInternal( $comment, true, false, false,
@@ -69,7 +69,7 @@ class CommentFormatter {
 	 * @param bool $useParentheses
 	 * @return string
 	 */
-	public function formatBlock( string $comment, LinkTarget $selfLinkTarget = null,
+	public function formatBlock( string $comment, ?LinkTarget $selfLinkTarget = null,
 		$samePage = false, $wikiId = false, $useParentheses = true
 	) {
 		return $this->formatInternal( $comment, true, true, $useParentheses,
@@ -94,7 +94,7 @@ class CommentFormatter {
 	 *   wiki), as used by WikiMap.
 	 * @return string
 	 */
-	public function formatLinksUnsafe( string $comment, LinkTarget $selfLinkTarget = null,
+	public function formatLinksUnsafe( string $comment, ?LinkTarget $selfLinkTarget = null,
 		$samePage = false, $wikiId = false
 	) {
 		$parser = $this->parserFactory->create();
@@ -115,7 +115,7 @@ class CommentFormatter {
 	 *   wiki), as used by WikiMap.
 	 * @return string
 	 */
-	public function formatLinks( string $comment, LinkTarget $selfLinkTarget = null,
+	public function formatLinks( string $comment, ?LinkTarget $selfLinkTarget = null,
 		$samePage = false, $wikiId = false
 	) {
 		return $this->formatInternal( $comment, false, false, false,
@@ -165,7 +165,7 @@ class CommentFormatter {
 	 *   wiki), as used by WikiMap.
 	 * @return string[]
 	 */
-	public function formatStrings( $strings, LinkTarget $selfLinkTarget = null,
+	public function formatStrings( $strings, ?LinkTarget $selfLinkTarget = null,
 		$samePage = false, $wikiId = false
 	) {
 		$parser = $this->parserFactory->create();

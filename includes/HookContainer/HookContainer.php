@@ -642,7 +642,7 @@ class HookContainer implements SalvageableService {
 	 *
 	 * @return void
 	 */
-	private function checkDeprecation( string $hook, $handler, array $deprecationInfo = null ): void {
+	private function checkDeprecation( string $hook, $handler, ?array $deprecationInfo = null ): void {
 		if ( !$deprecationInfo ) {
 			$deprecatedHooks = $this->registry->getDeprecatedHooks();
 			$deprecationInfo = $deprecatedHooks->getDeprecationInfo( $hook );

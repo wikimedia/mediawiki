@@ -1227,7 +1227,7 @@ class SpecialVersion extends SpecialPage {
 		return implode( "\n", $ret );
 	}
 
-	private function openExtType( string $text = null, string $name = null ) {
+	private function openExtType( ?string $text = null, ?string $name = null ) {
 		$out = '';
 
 		$opt = [ 'class' => 'wikitable plainlinks mw-installed-software' ];

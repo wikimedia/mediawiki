@@ -255,7 +255,7 @@ class SessionManager implements SessionManagerInterface {
 		return $session;
 	}
 
-	public function getSessionById( $id, $create = false, WebRequest $request = null ) {
+	public function getSessionById( $id, $create = false, ?WebRequest $request = null ) {
 		if ( !self::validateSessionId( $id ) ) {
 			throw new InvalidArgumentException( 'Invalid session ID' );
 		}
@@ -296,7 +296,7 @@ class SessionManager implements SessionManagerInterface {
 		return $session;
 	}
 
-	public function getEmptySession( WebRequest $request = null ) {
+	public function getEmptySession( ?WebRequest $request = null ) {
 		return $this->getEmptySessionInternal( $request );
 	}
 
@@ -306,7 +306,7 @@ class SessionManager implements SessionManagerInterface {
 	 * @param string|null $id ID to force on the new session
 	 * @return Session
 	 */
-	private function getEmptySessionInternal( WebRequest $request = null, $id = null ) {
+	private function getEmptySessionInternal( ?WebRequest $request = null, $id = null ) {
 		if ( $id !== null ) {
 			if ( !self::validateSessionId( $id ) ) {
 				throw new InvalidArgumentException( 'Invalid session ID' );
@@ -376,7 +376,7 @@ class SessionManager implements SessionManagerInterface {
 	 *  session associated with this WebRequest object will be overwritten.
 	 * @return Session
 	 */
-	private function getInitialSession( WebRequest $request = null ) {
+	private function getInitialSession( ?WebRequest $request = null ) {
 		$session = $this->getEmptySession( $request );
 		$session->getToken();
 		return $session;
@@ -1060,7 +1060,7 @@ class SessionManager implements SessionManagerInterface {
 	 * @private For use in Setup.php only
 	 * @param Session|null $session For testing only
 	 */
-	public function logPotentialSessionLeakage( Session $session = null ) {
+	public function logPotentialSessionLeakage( ?Session $session = null ) {
 		$proxyLookup = MediaWikiServices::getInstance()->getProxyLookup();
 		$session = $session ?: self::getGlobalSession();
 		$suspiciousIpExpiry = $this->config->get( MainConfigNames::SuspiciousIpExpiry );

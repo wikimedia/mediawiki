@@ -166,7 +166,7 @@ class AllMessagesTablePager extends TablePager {
 		$messageNames,
 		$langcode = 'en',
 		$foreign = false,
-		IReadableDatabase $dbr = null
+		?IReadableDatabase $dbr = null
 	) {
 		// FIXME: This function should be moved to Language:: or something.
 		// Fallback to global state, if not provided

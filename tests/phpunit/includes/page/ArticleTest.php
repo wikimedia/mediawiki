@@ -21,7 +21,7 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 	 *
 	 * @return Article
 	 */
-	private function newArticle( Title $title, User $user = null ): Article {
+	private function newArticle( Title $title, ?User $user = null ): Article {
 		if ( !$user ) {
 			$user = $this->getTestUser()->getUser();
 		}

@@ -3768,7 +3768,7 @@ class EditPage implements IEditObject {
 	 * @param ParserOutput|null $output ParserOutput object from the parse
 	 * @return string HTML
 	 */
-	public static function getPreviewLimitReport( ParserOutput $output = null ) {
+	public static function getPreviewLimitReport( ?ParserOutput $output = null ) {
 		if ( !$output || !$output->getLimitReportData() ) {
 			return '';
 		}

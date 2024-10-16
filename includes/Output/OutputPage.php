@@ -2156,7 +2156,7 @@ class OutputPage extends ContextSource {
 	 * @since 1.32
 	 */
 	public function addWikiTextAsInterface(
-		$text, $linestart = true, PageReference $title = null
+		$text, $linestart = true, ?PageReference $title = null
 	) {
 		$title ??= $this->getTitle();
 		if ( $title === null ) {
@@ -2206,7 +2206,7 @@ class OutputPage extends ContextSource {
 	 * @since 1.32
 	 */
 	public function addWikiTextAsContent(
-		$text, $linestart = true, PageReference $title = null
+		$text, $linestart = true, ?PageReference $title = null
 	) {
 		$title ??= $this->getTitle();
 		if ( !$title ) {
@@ -3407,7 +3407,7 @@ class OutputPage extends ContextSource {
 	 * @return string
 	 * @return-taint tainted
 	 */
-	public function formatPermissionStatus( PermissionStatus $status, string $action = null ): string {
+	public function formatPermissionStatus( PermissionStatus $status, ?string $action = null ): string {
 		if ( $status->isGood() ) {
 			return '';
 		}

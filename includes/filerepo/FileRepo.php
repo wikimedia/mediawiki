@@ -172,7 +172,7 @@ class FileRepo {
 	 * @param array|null $info
 	 * @phan-assert array $info
 	 */
-	public function __construct( array $info = null ) {
+	public function __construct( ?array $info = null ) {
 		// Verify required settings presence
 		if (
 			$info === null
@@ -1948,7 +1948,7 @@ class FileRepo {
 	 * @param UserIdentity|null $user
 	 * @return UploadStash
 	 */
-	public function getUploadStash( UserIdentity $user = null ) {
+	public function getUploadStash( ?UserIdentity $user = null ) {
 		return new UploadStash( $this, $user );
 	}
 

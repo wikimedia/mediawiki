@@ -75,12 +75,12 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @param TempUserConfig|null $tempUserConfig
 	 */
 	public function __construct(
-		WatchedItemStoreInterface $watchedItemStore = null,
-		MessageCache $messageCache = null,
-		UserOptionsLookup $userOptionsLookup = null,
-		ChangeTagsStore $changeTagsStore = null,
-		UserIdentityUtils $userIdentityUtils = null,
-		TempUserConfig $tempUserConfig = null
+		?WatchedItemStoreInterface $watchedItemStore = null,
+		?MessageCache $messageCache = null,
+		?UserOptionsLookup $userOptionsLookup = null,
+		?ChangeTagsStore $changeTagsStore = null,
+		?UserIdentityUtils $userIdentityUtils = null,
+		?TempUserConfig $tempUserConfig = null
 	) {
 		// This class is extended and therefor fallback to global state - T265310
 		$services = MediaWikiServices::getInstance();

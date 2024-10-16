@@ -228,7 +228,7 @@ abstract class LBFactory implements ILBFactory {
 
 	public function shutdown(
 		$flags = self::SHUTDOWN_NORMAL,
-		callable $workCallback = null,
+		?callable $workCallback = null,
 		&$cpIndex = null,
 		&$cpClientId = null
 	) {
@@ -498,7 +498,7 @@ abstract class LBFactory implements ILBFactory {
 		return !$failed;
 	}
 
-	public function setWaitForReplicationListener( $name, callable $callback = null ) {
+	public function setWaitForReplicationListener( $name, ?callable $callback = null ) {
 		if ( $callback ) {
 			$this->replicationWaitCallbacks[$name] = $callback;
 		} else {

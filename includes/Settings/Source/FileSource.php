@@ -85,7 +85,7 @@ class FileSource implements Stringable, CacheableSource, SettingsIncludeLocator 
 	 * @param string $path
 	 * @param SettingsFormat|null $format
 	 */
-	public function __construct( string $path, SettingsFormat $format = null ) {
+	public function __construct( string $path, ?SettingsFormat $format = null ) {
 		$this->path = $path;
 		$this->format = $format;
 	}

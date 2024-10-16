@@ -56,7 +56,7 @@ abstract class SpecialRedirectWithAction extends RedirectSpecialPage {
 		$name,
 		$action,
 		$msgPrefix,
-		SearchEngineFactory $searchEngineFactory = null
+		?SearchEngineFactory $searchEngineFactory = null
 	) {
 		parent::__construct( $name );
 		$this->action = $action;

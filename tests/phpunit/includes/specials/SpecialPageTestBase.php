@@ -67,9 +67,9 @@ abstract class SpecialPageTestBase extends MediaWikiIntegrationTestCase {
 	 */
 	protected function executeSpecialPage(
 		$subPage = '',
-		WebRequest $request = null,
+		?WebRequest $request = null,
 		$language = null,
-		Authority $performer = null,
+		?Authority $performer = null,
 		$fullHtml = false
 	) {
 		return ( new SpecialPageExecutor() )->executeSpecialPage(

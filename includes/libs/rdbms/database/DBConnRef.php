@@ -637,7 +637,7 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function setTransactionListener( $name, callable $callback = null ) {
+	public function setTransactionListener( $name, ?callable $callback = null ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
@@ -653,7 +653,7 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function cancelAtomic( $fname = __METHOD__, AtomicSectionIdentifier $sectionId = null ) {
+	public function cancelAtomic( $fname = __METHOD__, ?AtomicSectionIdentifier $sectionId = null ) {
 		// Don't call assertRoleAllowsWrites(); caller might want a REPEATABLE-READ snapshot
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
@@ -789,10 +789,10 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 
 	public function sourceFile(
 		$filename,
-		callable $lineCallback = null,
-		callable $resultCallback = null,
+		?callable $lineCallback = null,
+		?callable $resultCallback = null,
 		$fname = false,
-		callable $inputCallback = null
+		?callable $inputCallback = null
 	) {
 		$this->assertRoleAllowsWrites();
 
@@ -801,10 +801,10 @@ class DBConnRef implements Stringable, IMaintainableDatabase, IDatabaseForOwner 
 
 	public function sourceStream(
 		$fp,
-		callable $lineCallback = null,
-		callable $resultCallback = null,
+		?callable $lineCallback = null,
+		?callable $resultCallback = null,
 		$fname = __METHOD__,
-		callable $inputCallback = null
+		?callable $inputCallback = null
 	) {
 		$this->assertRoleAllowsWrites();
 

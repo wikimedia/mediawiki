@@ -43,8 +43,8 @@ class ApiOptions extends ApiOptionsBase {
 	public function __construct(
 		ApiMain $main,
 		$action,
-		UserOptionsManager $userOptionsManager = null,
-		PreferencesFactory $preferencesFactory = null
+		?UserOptionsManager $userOptionsManager = null,
+		?PreferencesFactory $preferencesFactory = null
 	) {
 		/**
 		 * This class is extended by GlobalPreferences extension.

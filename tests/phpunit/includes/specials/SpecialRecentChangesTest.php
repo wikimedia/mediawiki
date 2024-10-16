@@ -227,9 +227,9 @@ class SpecialRecentChangesTest extends AbstractChangesListSpecialPageTestCase {
 
 			public function __construct(
 				$dense,
-				WatchedItemStoreInterface $watchedItemStore = null,
-				MessageCache $messageCache = null,
-				\MediaWiki\User\Options\UserOptionsLookup $userOptionsLookup = null
+				?WatchedItemStoreInterface $watchedItemStore = null,
+				?MessageCache $messageCache = null,
+				?\MediaWiki\User\Options\UserOptionsLookup $userOptionsLookup = null
 			) {
 				parent::__construct( $watchedItemStore, $messageCache, $userOptionsLookup );
 				$this->dense = $dense;

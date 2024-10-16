@@ -341,7 +341,7 @@ class ParserCache {
 	public function makeParserOutputKey(
 		PageRecord $page,
 		ParserOptions $options,
-		array $usedOptions = null
+		?array $usedOptions = null
 	): string {
 		$usedOptions ??= ParserOptions::allCacheVaryingOptions();
 		// idhash seem to mean 'page id' + 'rendering hash' (r3710)

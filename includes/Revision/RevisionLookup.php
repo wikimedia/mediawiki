@@ -52,7 +52,7 @@ interface RevisionLookup {
 	 *
 	 * @return RevisionRecord|null
 	 */
-	public function getRevisionById( $id, $flags = 0, PageIdentity $page = null );
+	public function getRevisionById( $id, $flags = 0, ?PageIdentity $page = null );
 
 	/**
 	 * Load either the current, or a specified, revision

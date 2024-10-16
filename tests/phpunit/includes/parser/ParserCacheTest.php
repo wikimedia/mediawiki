@@ -79,10 +79,10 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * @return ParserCache
 	 */
 	private function createParserCache(
-		HookContainer $hookContainer = null,
-		BagOStuff $storage = null,
-		LoggerInterface $logger = null,
-		WikiPageFactory $wikiPageFactory = null
+		?HookContainer $hookContainer = null,
+		?BagOStuff $storage = null,
+		?LoggerInterface $logger = null,
+		?WikiPageFactory $wikiPageFactory = null
 	): ParserCache {
 		if ( !$wikiPageFactory ) {
 			$wikiPageMock = $this->createMock( WikiPage::class );

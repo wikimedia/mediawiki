@@ -9,7 +9,7 @@ use Wikimedia\Rdbms\Database;
  * @internal
  */
 class ConnectionStatus extends Status {
-	public function __construct( Database $db = null ) {
+	public function __construct( ?Database $db = null ) {
 		$this->value = $db;
 	}
 

@@ -1092,7 +1092,7 @@ class Article implements Page {
 	 * @return string[] The policy that should be set
 	 * @todo actions other than 'view'
 	 */
-	public function getRobotPolicy( $action, ParserOutput $pOutput = null ) {
+	public function getRobotPolicy( $action, ?ParserOutput $pOutput = null ) {
 		$context = $this->getContext();
 		$mainConfig = $context->getConfig();
 		$articleRobotPolicies = $mainConfig->get( MainConfigNames::ArticleRobotPolicies );
@@ -2011,7 +2011,7 @@ class Article implements Page {
 	 * @param UserIdentity|null $user The relevant user
 	 * @return ParserOutput|false ParserOutput or false if the given revision ID is not found
 	 */
-	public function getParserOutput( $oldid = null, UserIdentity $user = null ) {
+	public function getParserOutput( $oldid = null, ?UserIdentity $user = null ) {
 		if ( $user === null ) {
 			$parserOptions = $this->getParserOptions();
 		} else {

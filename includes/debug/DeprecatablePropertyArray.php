@@ -40,7 +40,7 @@ class DeprecatablePropertyArray implements ArrayAccess {
 		array $initializer,
 		array $deprecatedProperties,
 		string $name,
-		string $component = null
+		?string $component = null
 	) {
 		$this->container = $initializer;
 		$this->deprecatedProperties = $deprecatedProperties;

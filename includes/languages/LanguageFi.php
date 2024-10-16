@@ -83,7 +83,7 @@ class LanguageFi extends Language {
 	 * @param int $now Current timestamp, for formatting relative block durations
 	 * @return string
 	 */
-	public function translateBlockExpiry( $str, UserIdentity $user = null, $now = 0 ) {
+	public function translateBlockExpiry( $str, ?UserIdentity $user = null, $now = 0 ) {
 		/*
 			'ago', 'now', 'today', 'this', 'next',
 			'first', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth',

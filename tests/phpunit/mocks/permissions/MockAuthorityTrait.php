@@ -269,7 +269,7 @@ trait MockAuthorityTrait {
 	private function mockAuthority(
 		UserIdentity $user,
 		callable $permissionCallback,
-		Block $block = null,
+		?Block $block = null,
 		bool $isTemp = false
 	): Authority {
 		$mock = $this->createMock( Authority::class );
@@ -428,7 +428,7 @@ trait MockAuthorityTrait {
 		return $permissionManager;
 	}
 
-	private function newUser( Block $block = null, bool $isTemp = false ): User {
+	private function newUser( ?Block $block = null, bool $isTemp = false ): User {
 		/** @var User&MockObject $actor */
 		$actor = $this->createNoOpMock( User::class, [ 'getBlock', 'isNewbie', 'toRateLimitSubject' ] );
 		$actor->method( 'getBlock' )->willReturn( $block );

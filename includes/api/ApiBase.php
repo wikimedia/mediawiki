@@ -754,7 +754,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * @param ApiContinuationManager|null $manager
 	 */
-	public function setContinuationManager( ApiContinuationManager $manager = null ) {
+	public function setContinuationManager( ?ApiContinuationManager $manager = null ) {
 		// The Main module has this method overridden, avoid infinite loops
 		$this->dieIfMain( __METHOD__ );
 
@@ -1323,7 +1323,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param array|null $params
 	 * @return Message|null
 	 */
-	public static function makeMessage( $msg, IContextSource $context, array $params = null ) {
+	public static function makeMessage( $msg, IContextSource $context, ?array $params = null ) {
 		wfDeprecated( __METHOD__, '1.43' );
 		if ( is_string( $msg ) ) {
 			$msg = wfMessage( $msg );
@@ -1356,7 +1356,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param Authority|null $performer
 	 * @return Status
 	 */
-	public function errorArrayToStatus( array $errors, Authority $performer = null ) {
+	public function errorArrayToStatus( array $errors, ?Authority $performer = null ) {
 		wfDeprecated( __METHOD__, '1.43' );
 
 		$performer ??= $this->getAuthority();
@@ -1395,7 +1395,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param StatusValue $status
 	 * @param Authority|null $user
 	 */
-	public function addBlockInfoToStatus( StatusValue $status, Authority $user = null ) {
+	public function addBlockInfoToStatus( StatusValue $status, ?Authority $user = null ) {
 		if ( $status instanceof PermissionStatus ) {
 			$block = $status->getBlock();
 		} else {

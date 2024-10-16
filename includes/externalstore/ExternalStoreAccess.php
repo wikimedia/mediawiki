@@ -50,7 +50,7 @@ class ExternalStoreAccess implements LoggerAwareInterface {
 	 * @param ExternalStoreFactory $factory
 	 * @param LoggerInterface|null $logger
 	 */
-	public function __construct( ExternalStoreFactory $factory, LoggerInterface $logger = null ) {
+	public function __construct( ExternalStoreFactory $factory, ?LoggerInterface $logger = null ) {
 		$this->storeFactory = $factory;
 		$this->logger = $logger ?: new NullLogger();
 	}
@@ -114,7 +114,7 @@ class ExternalStoreAccess implements LoggerAwareInterface {
 	 * @return string|false The URL of the stored data item, or false on error
 	 * @throws ExternalStoreException
 	 */
-	public function insert( $data, array $params = [], array $tryStores = null ) {
+	public function insert( $data, array $params = [], ?array $tryStores = null ) {
 		$tryStores ??= $this->storeFactory->getWriteBaseUrls();
 		if ( !$tryStores ) {
 			throw new ExternalStoreException( "List of external stores provided is empty." );

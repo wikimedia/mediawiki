@@ -246,7 +246,7 @@ abstract class AbstractContent implements Content {
 	 *
 	 * @see Content::equals
 	 */
-	public function equals( Content $that = null ) {
+	public function equals( ?Content $that = null ) {
 		if ( $that === null ) {
 			return false;
 		}

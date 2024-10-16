@@ -66,7 +66,7 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	private function createHtmlToContentTransformWithOriginalData( $html = '', array $options = null ) {
+	private function createHtmlToContentTransformWithOriginalData( $html = '', ?array $options = null ) {
 		$transform = $this->createHtmlToContentTransform( $html );
 
 		$options ??= [

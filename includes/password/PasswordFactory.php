@@ -204,7 +204,7 @@ final class PasswordFactory {
 	 * @param Password|null $existing Optional existing hash to get options from
 	 * @return Password
 	 */
-	public function newFromPlaintext( ?string $password, Password $existing = null ): Password {
+	public function newFromPlaintext( ?string $password, ?Password $existing = null ): Password {
 		if ( $password === null ) {
 			return new InvalidPassword( $this, [ 'type' => '' ], null );
 		}

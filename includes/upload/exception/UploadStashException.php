@@ -36,7 +36,7 @@ class UploadStashException extends RuntimeException implements ILocalizedExcepti
 	 * @param Throwable|null $previous The previous exception used for the exception
 	 *  chaining.
 	 */
-	public function __construct( $messageSpec, $code = 0, Throwable $previous = null ) {
+	public function __construct( $messageSpec, $code = 0, ?Throwable $previous = null ) {
 		$this->messageSpec = $messageSpec;
 
 		$msg = $this->getMessageObject()->text();

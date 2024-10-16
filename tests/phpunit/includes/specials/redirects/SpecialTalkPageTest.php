@@ -18,7 +18,7 @@ class SpecialTalkPageTest extends MediaWikiIntegrationTestCase {
 
 	private function executeSpecialPageAndGetOutput(
 		string $subpage = '',
-		string $target = null
+		?string $target = null
 	): OutputPage {
 		$services = $this->getServiceContainer();
 		$context = new RequestContext();

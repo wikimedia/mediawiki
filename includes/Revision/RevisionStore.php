@@ -1262,7 +1262,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 *
 	 * @return RevisionRecord|null
 	 */
-	public function getRevisionById( $id, $flags = 0, PageIdentity $page = null ) {
+	public function getRevisionById( $id, $flags = 0, ?PageIdentity $page = null ) {
 		return $this->newRevisionFromConds( [ 'rev_id' => intval( $id ) ], $flags, $page );
 	}
 
@@ -1601,7 +1601,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	public function newRevisionFromArchiveRow(
 		$row,
 		$queryFlags = 0,
-		PageIdentity $page = null,
+		?PageIdentity $page = null,
 		array $overrides = []
 	) {
 		return $this->newRevisionFromArchiveRowAndSlots( $row, null, $queryFlags, $page, $overrides );
@@ -1622,7 +1622,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	public function newRevisionFromRow(
 		$row,
 		$queryFlags = 0,
-		PageIdentity $page = null,
+		?PageIdentity $page = null,
 		$fromCache = false
 	) {
 		return $this->newRevisionFromRowAndSlots( $row, null, $queryFlags, $page, $fromCache );
@@ -1936,7 +1936,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		$rows,
 		array $options = [],
 		$queryFlags = 0,
-		PageIdentity $page = null
+		?PageIdentity $page = null
 	) {
 		$result = new StatusValue();
 		$archiveMode = $options['archive'] ?? false;
@@ -2318,7 +2318,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	private function newRevisionFromConds(
 		array $conditions,
 		int $flags = IDBAccessObject::READ_NORMAL,
-		PageIdentity $page = null,
+		?PageIdentity $page = null,
 		array $options = []
 	) {
 		$db = $this->getDBConnectionRefForQueryFlags( $flags );
@@ -2357,7 +2357,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 		IReadableDatabase $db,
 		array $conditions,
 		int $flags = IDBAccessObject::READ_NORMAL,
-		PageIdentity $page = null,
+		?PageIdentity $page = null,
 		array $options = []
 	) {
 		$row = $this->fetchRevisionRowFromConds( $db, $conditions, $flags, $options );
@@ -3076,7 +3076,7 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 * @param int $pageId
 	 * @param RevisionRecord|null $rev
 	 */
-	private function assertRevisionParameter( $paramName, $pageId, RevisionRecord $rev = null ) {
+	private function assertRevisionParameter( $paramName, $pageId, ?RevisionRecord $rev = null ) {
 		if ( $rev ) {
 			if ( $rev->getId( $this->wikiId ) === null ) {
 				throw new InvalidArgumentException( "Unsaved {$paramName} revision passed" );
@@ -3105,8 +3105,8 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 */
 	private function getRevisionLimitConditions(
 		ISQLPlatform $dbr,
-		RevisionRecord $old = null,
-		RevisionRecord $new = null,
+		?RevisionRecord $old = null,
+		?RevisionRecord $new = null,
 		$options = []
 	) {
 		$options = (array)$options;
@@ -3165,8 +3165,8 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 */
 	public function getRevisionIdsBetween(
 		int $pageId,
-		RevisionRecord $old = null,
-		RevisionRecord $new = null,
+		?RevisionRecord $old = null,
+		?RevisionRecord $new = null,
 		?int $max = null,
 		$options = [],
 		?string $order = null,
@@ -3234,9 +3234,9 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 */
 	public function getAuthorsBetween(
 		$pageId,
-		RevisionRecord $old = null,
-		RevisionRecord $new = null,
-		Authority $performer = null,
+		?RevisionRecord $old = null,
+		?RevisionRecord $new = null,
+		?Authority $performer = null,
 		$max = null,
 		$options = []
 	) {
@@ -3313,9 +3313,9 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 */
 	public function countAuthorsBetween(
 		$pageId,
-		RevisionRecord $old = null,
-		RevisionRecord $new = null,
-		Authority $performer = null,
+		?RevisionRecord $old = null,
+		?RevisionRecord $new = null,
+		?Authority $performer = null,
 		$max = null,
 		$options = []
 	) {
@@ -3346,8 +3346,8 @@ class RevisionStore implements RevisionFactory, RevisionLookup, LoggerAwareInter
 	 */
 	public function countRevisionsBetween(
 		$pageId,
-		RevisionRecord $old = null,
-		RevisionRecord $new = null,
+		?RevisionRecord $old = null,
+		?RevisionRecord $new = null,
 		$max = null,
 		$options = []
 	) {

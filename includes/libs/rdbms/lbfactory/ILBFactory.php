@@ -237,7 +237,7 @@ interface ILBFactory extends IConnectionProvider {
 	 */
 	public function shutdown(
 		$flags = self::SHUTDOWN_NORMAL,
-		callable $workCallback = null,
+		?callable $workCallback = null,
 		&$cpIndex = null,
 		&$cpClientId = null
 	);
@@ -383,7 +383,7 @@ interface ILBFactory extends IConnectionProvider {
 	 * @param string $name Callback name
 	 * @param callable|null $callback Use null to unset a callback
 	 */
-	public function setWaitForReplicationListener( $name, callable $callback = null );
+	public function setWaitForReplicationListener( $name, ?callable $callback = null );
 
 	/**
 	 * Disable the ChronologyProtector on all instantiated tracked load balancer instances

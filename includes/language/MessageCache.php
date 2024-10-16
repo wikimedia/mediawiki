@@ -1458,7 +1458,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param PageReference|null $page
 	 * @return string
 	 */
-	public function transform( $message, $interface = false, $language = null, PageReference $page = null ) {
+	public function transform( $message, $interface = false, $language = null, ?PageReference $page = null ) {
 		// Avoid creating parser if nothing to transform
 		if ( $this->inParser || !str_contains( $message, '{{' ) ) {
 			return $message;
@@ -1497,7 +1497,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param Language|StubUserLang|string|null $language Language code
 	 * @return ParserOutput|string
 	 */
-	public function parse( $text, PageReference $page = null, $linestart = true,
+	public function parse( $text, ?PageReference $page = null, $linestart = true,
 		$interface = false, $language = null
 	) {
 		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle
@@ -1636,7 +1636,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param Content|null $content New content for edit/create, null on deletion
 	 * @since 1.29
 	 */
-	public function updateMessageOverride( LinkTarget $linkTarget, Content $content = null ) {
+	public function updateMessageOverride( LinkTarget $linkTarget, ?Content $content = null ) {
 		// treat null as not existing
 		$msgText = $this->getMessageTextFromContent( $content ) ?? false;
 
@@ -1659,7 +1659,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param Content|null $content Content or null if the message page does not exist
 	 * @return string|false|null Returns false if $content is null and null on error
 	 */
-	private function getMessageTextFromContent( Content $content = null ) {
+	private function getMessageTextFromContent( ?Content $content = null ) {
 		// @TODO: could skip pseudo-messages like js/css here, based on content model
 		if ( $content && $content->isRedirect() ) {
 			// Treat redirects as not existing (T376398)

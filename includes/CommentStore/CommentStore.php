@@ -277,7 +277,7 @@ class CommentStore {
 	 *  Ignored if $comment is a CommentStoreComment.
 	 * @return CommentStoreComment
 	 */
-	public function createComment( IDatabase $dbw, $comment, array $data = null ) {
+	public function createComment( IDatabase $dbw, $comment, ?array $data = null ) {
 		$comment = CommentStoreComment::newUnsavedComment( $comment, $data );
 
 		# Truncate comment in a Unicode-sensitive manner

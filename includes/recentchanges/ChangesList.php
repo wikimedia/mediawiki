@@ -315,7 +315,7 @@ class ChangesList extends ContextSource {
 	 * @param IContextSource|null $context
 	 * @return string HTML
 	 */
-	public static function flag( $flag, IContextSource $context = null ) {
+	public static function flag( $flag, ?IContextSource $context = null ) {
 		static $map = [ 'minoredit' => 'minor', 'botedit' => 'bot' ];
 		static $flagInfos = null;
 
@@ -390,7 +390,7 @@ class ChangesList extends ContextSource {
 	 * @param IContextSource|null $context
 	 * @return string
 	 */
-	public static function showCharacterDifference( $old, $new, IContextSource $context = null ) {
+	public static function showCharacterDifference( $old, $new, ?IContextSource $context = null ) {
 		if ( !$context ) {
 			$context = RequestContext::getMain();
 		}
@@ -446,7 +446,7 @@ class ChangesList extends ContextSource {
 	 * @param RecentChange|null $new Last change to use, if not provided, $old will be used
 	 * @return string HTML fragment
 	 */
-	public function formatCharacterDifference( RecentChange $old, RecentChange $new = null ) {
+	public function formatCharacterDifference( RecentChange $old, ?RecentChange $new = null ) {
 		$oldlen = $old->mAttribs['rc_old_len'];
 
 		if ( $new ) {
@@ -862,7 +862,7 @@ class ChangesList extends ContextSource {
 	 * User is assumed instead.
 	 * @return bool
 	 */
-	public static function userCan( $rc, $field, Authority $performer = null ) {
+	public static function userCan( $rc, $field, ?Authority $performer = null ) {
 		$performer ??= RequestContext::getMain()->getAuthority();
 
 		if ( $rc->mAttribs['rc_type'] == RC_LOG ) {

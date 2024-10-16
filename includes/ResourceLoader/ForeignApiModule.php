@@ -28,7 +28,7 @@ namespace MediaWiki\ResourceLoader;
  * @internal
  */
 class ForeignApiModule extends FileModule {
-	public function getDependencies( Context $context = null ) {
+	public function getDependencies( ?Context $context = null ) {
 		$dependencies = $this->dependencies;
 		$this->getHookRunner()->onResourceLoaderForeignApiModules( $dependencies, $context );
 		return $dependencies;

@@ -110,7 +110,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		$this->titleFormatter = $titleFormatter;
 	}
 
-	protected function run( ApiPageSet $resultPageSet = null ) {
+	protected function run( ?ApiPageSet $resultPageSet = null ) {
 		$params = $this->extractRequestParams( false );
 
 		// If any of those parameters are used, work in 'enumeration' mode.

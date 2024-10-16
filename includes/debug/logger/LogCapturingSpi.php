@@ -97,7 +97,7 @@ class LogCapturingSpi implements Spi {
 	 * @param LoggerInterface|null $logger
 	 * @return LoggerInterface|null
 	 */
-	public function setLoggerForTest( $channel, LoggerInterface $logger = null ) {
+	public function setLoggerForTest( $channel, ?LoggerInterface $logger = null ) {
 		$ret = $this->singletons[$channel] ?? null;
 		$this->singletons[$channel] = $logger;
 		return $ret;

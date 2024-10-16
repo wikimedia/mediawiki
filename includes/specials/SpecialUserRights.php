@@ -93,13 +93,13 @@ class SpecialUserRights extends SpecialPage {
 	 * @param TempUserConfig|null $tempUserConfig
 	 */
 	public function __construct(
-		UserGroupManagerFactory $userGroupManagerFactory = null,
-		UserNameUtils $userNameUtils = null,
-		UserNamePrefixSearch $userNamePrefixSearch = null,
-		UserFactory $userFactory = null,
-		ActorStoreFactory $actorStoreFactory = null,
-		WatchlistManager $watchlistManager = null,
-		TempUserConfig $tempUserConfig = null
+		?UserGroupManagerFactory $userGroupManagerFactory = null,
+		?UserNameUtils $userNameUtils = null,
+		?UserNamePrefixSearch $userNamePrefixSearch = null,
+		?UserFactory $userFactory = null,
+		?ActorStoreFactory $actorStoreFactory = null,
+		?WatchlistManager $watchlistManager = null,
+		?TempUserConfig $tempUserConfig = null
 	) {
 		parent::__construct( 'Userrights' );
 		$services = MediaWikiServices::getInstance();

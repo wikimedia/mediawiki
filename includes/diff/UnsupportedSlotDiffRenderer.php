@@ -45,7 +45,7 @@ class UnsupportedSlotDiffRenderer extends SlotDiffRenderer {
 	}
 
 	/** @inheritDoc */
-	public function getDiff( Content $oldContent = null, Content $newContent = null ) {
+	public function getDiff( ?Content $oldContent = null, ?Content $newContent = null ) {
 		$this->normalizeContents( $oldContent, $newContent );
 
 		$oldModel = $oldContent->getModel();

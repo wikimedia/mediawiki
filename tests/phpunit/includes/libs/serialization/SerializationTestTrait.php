@@ -198,7 +198,7 @@ trait SerializationTestTrait {
 	private function validateObjectEquality(
 		object $expected,
 		object $actual,
-		ReflectionClass $class = null
+		?ReflectionClass $class = null
 	) {
 		if ( !$class ) {
 			$class = new ReflectionClass( $expected );

@@ -46,7 +46,7 @@ class ApiMessage extends Message implements IApiMessage {
 	 * @return IApiMessage
 	 * @param-taint $msg tainted
 	 */
-	public static function create( $msg, $code = null, array $data = null ) {
+	public static function create( $msg, $code = null, ?array $data = null ) {
 		if ( is_array( $msg ) ) {
 			// From StatusValue
 			if ( isset( $msg['message'] ) ) {
@@ -76,7 +76,7 @@ class ApiMessage extends Message implements IApiMessage {
 	 * @param string|null $code
 	 * @param array|null $data
 	 */
-	public function __construct( $msg, $code = null, array $data = null ) {
+	public function __construct( $msg, $code = null, ?array $data = null ) {
 		if ( $msg instanceof Message ) {
 			foreach ( get_class_vars( get_class( $this ) ) as $key => $value ) {
 				if ( isset( $msg->$key ) ) {

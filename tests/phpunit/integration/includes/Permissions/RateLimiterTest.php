@@ -370,7 +370,7 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 	protected function newRateLimiter(
 		array $limits,
 		array $excludedIPs,
-		WRStatsFactory $statsFactory = null
+		?WRStatsFactory $statsFactory = null
 	): RateLimiter {
 		$statsFactory ??= new WRStatsFactory( new BagOStuffStatsStore( new HashBagOStuff() ) );
 

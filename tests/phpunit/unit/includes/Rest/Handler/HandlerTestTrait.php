@@ -52,8 +52,8 @@ trait HandlerTestTrait {
 		RequestInterface $request,
 		$config = [],
 		$hooks = [],
-		Authority $authority = null,
-		Session $session = null,
+		?Authority $authority = null,
+		?Session $session = null,
 		$routerOrModule = null
 	) {
 		$formatter = $this->getDummyTextFormatter( true );
@@ -153,7 +153,7 @@ trait HandlerTestTrait {
 	 */
 	private function validateHandler(
 		Handler $handler,
-		Validator $validator = null
+		?Validator $validator = null
 	) {
 		if ( !$validator ) {
 			$serviceContainer = $this->getServiceContainer();
@@ -209,8 +209,8 @@ trait HandlerTestTrait {
 		$hooks = [],
 		$validatedParams = [],
 		$validatedBody = [],
-		Authority $authority = null,
-		Session $session = null,
+		?Authority $authority = null,
+		?Session $session = null,
 		$routerOrModule = null
 	): ResponseInterface {
 		// supply defaults for required fields in $config
@@ -262,8 +262,8 @@ trait HandlerTestTrait {
 		$hooks = [],
 		$validatedParams = [],
 		$validatedBody = [],
-		Authority $authority = null,
-		Session $session = null
+		?Authority $authority = null,
+		?Session $session = null
 	): array {
 		$response = $this->executeHandler( $handler, $request, $config, $hooks,
 			$validatedParams, $validatedBody, $authority, $session );

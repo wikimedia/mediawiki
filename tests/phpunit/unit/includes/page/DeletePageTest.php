@@ -79,11 +79,11 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 
 	private function getDeletePage(
 		ProperPageIdentity $page,
-		Authority $deleter = null,
-		ServiceOptions $options = null,
-		RevisionStore $revStore = null,
-		WikiPageFactory $wpFactory = null,
-		NamespaceInfo $nsInfo = null
+		?Authority $deleter = null,
+		?ServiceOptions $options = null,
+		?RevisionStore $revStore = null,
+		?WikiPageFactory $wpFactory = null,
+		?NamespaceInfo $nsInfo = null
 	): DeletePage {
 		if ( !$wpFactory ) {
 			$wpFactory = $this->createMock( WikiPageFactory::class );
@@ -131,9 +131,9 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 	public function testPermissions(
 		Authority $authority,
 		bool $expectedGood,
-		string $expectedMessage = null,
-		ServiceOptions $options = null,
-		RevisionStore $revStore = null
+		?string $expectedMessage = null,
+		?ServiceOptions $options = null,
+		?RevisionStore $revStore = null
 	) {
 		$dp = $this->getDeletePage(
 			$this->getMockPage(),

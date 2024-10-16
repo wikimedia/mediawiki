@@ -307,9 +307,9 @@ class MultiWriteBagOStuff extends BagOStuff {
 
 	public function deleteObjectsExpiringBefore(
 		$timestamp,
-		callable $progress = null,
+		?callable $progress = null,
 		$limit = INF,
-		string $tag = null
+		?string $tag = null
 	) {
 		$ret = false;
 		foreach ( $this->caches as $cache ) {

@@ -208,7 +208,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider dataEquals
 	 */
-	public function testEquals( Content $a, Content $b = null, $equal = false ) {
+	public function testEquals( Content $a, ?Content $b = null, $equal = false ) {
 		$this->assertEquals( $equal, $a->equals( $b ) );
 	}
 

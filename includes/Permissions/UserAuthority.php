@@ -140,7 +140,7 @@ class UserAuthority implements Authority {
 	}
 
 	/** @inheritDoc */
-	public function isAllowed( string $permission, PermissionStatus $status = null ): bool {
+	public function isAllowed( string $permission, ?PermissionStatus $status = null ): bool {
 		return $this->internalAllowed( $permission, $status, false, null );
 	}
 
@@ -166,7 +166,7 @@ class UserAuthority implements Authority {
 	public function probablyCan(
 		string $action,
 		PageIdentity $target,
-		PermissionStatus $status = null
+		?PermissionStatus $status = null
 	): bool {
 		return $this->internalCan(
 			PermissionManager::RIGOR_QUICK,
@@ -181,7 +181,7 @@ class UserAuthority implements Authority {
 	public function definitelyCan(
 		string $action,
 		PageIdentity $target,
-		PermissionStatus $status = null
+		?PermissionStatus $status = null
 	): bool {
 		// Note that we do not use RIGOR_SECURE to avoid hitting the primary
 		// database for read operations. RIGOR_FULL performs the same checks,
@@ -196,7 +196,7 @@ class UserAuthority implements Authority {
 	}
 
 	/** @inheritDoc */
-	public function isDefinitelyAllowed( string $action, PermissionStatus $status = null ): bool {
+	public function isDefinitelyAllowed( string $action, ?PermissionStatus $status = null ): bool {
 		$userBlock = $this->getApplicableBlock( PermissionManager::RIGOR_FULL, $action );
 		return $this->internalAllowed( $action, $status, 0, $userBlock );
 	}
@@ -204,7 +204,7 @@ class UserAuthority implements Authority {
 	/** @inheritDoc */
 	public function authorizeAction(
 		string $action,
-		PermissionStatus $status = null
+		?PermissionStatus $status = null
 	): bool {
 		// Any side-effects can be added here.
 
@@ -222,7 +222,7 @@ class UserAuthority implements Authority {
 	public function authorizeRead(
 		string $action,
 		PageIdentity $target,
-		PermissionStatus $status = null
+		?PermissionStatus $status = null
 	): bool {
 		// Any side-effects can be added here.
 
@@ -242,7 +242,7 @@ class UserAuthority implements Authority {
 	public function authorizeWrite(
 		string $action,
 		PageIdentity $target,
-		PermissionStatus $status = null
+		?PermissionStatus $status = null
 	): bool {
 		// Any side-effects can be added here.
 

@@ -89,9 +89,9 @@ class NameTableStore {
 		$table,
 		$idField,
 		$nameField,
-		callable $normalizationCallback = null,
+		?callable $normalizationCallback = null,
 		$dbDomain = false,
-		callable $insertCallback = null
+		?callable $insertCallback = null
 	) {
 		$this->loadBalancer = $dbLoadBalancer;
 		$this->cache = $cache;

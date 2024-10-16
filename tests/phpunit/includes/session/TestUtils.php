@@ -23,7 +23,7 @@ class TestUtils {
 	 * @param SessionManager|null $manager
 	 * @return ScopedCallback|null
 	 */
-	public static function setSessionManagerSingleton( SessionManager $manager = null ) {
+	public static function setSessionManagerSingleton( ?SessionManager $manager = null ) {
 		session_write_close();
 
 		$staticAccess = TestingAccessWrapper::newFromClass( SessionManager::class );

@@ -300,7 +300,7 @@ class SpecialUndelete extends SpecialPage {
 	 * @param User|null $user
 	 * @return bool
 	 */
-	protected function isAllowed( $permission, User $user = null ) {
+	protected function isAllowed( $permission, ?User $user = null ) {
 		$user ??= $this->getUser();
 		$block = $user->getBlock();
 

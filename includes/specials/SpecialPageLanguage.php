@@ -220,7 +220,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 	 * @return Status
 	 */
 	public static function changePageLanguage( IContextSource $context, Title $title,
-		$newLanguage, $reason = "", array $tags = [], IDatabase $dbw = null ) {
+		$newLanguage, $reason = "", array $tags = [], ?IDatabase $dbw = null ) {
 		// Get the default language for the wiki
 		$defLang = $context->getConfig()->get( MainConfigNames::LanguageCode );
 

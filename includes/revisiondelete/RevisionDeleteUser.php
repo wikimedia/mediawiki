@@ -46,7 +46,7 @@ class RevisionDeleteUser {
 	 * @param null|IDatabase $dbw If you happen to have one lying around
 	 * @return bool True on success, false on failure (e.g. invalid user ID)
 	 */
-	private static function setUsernameBitfields( $name, $userId, $op, IDatabase $dbw = null ) {
+	private static function setUsernameBitfields( $name, $userId, $op, ?IDatabase $dbw = null ) {
 		if ( !$userId || ( $op !== '|' && $op !== '&' ) ) {
 			return false;
 		}
@@ -153,7 +153,7 @@ class RevisionDeleteUser {
 	 * @param IDatabase|null $dbw If you happen to have one lying around
 	 * @return bool True on success, false on failure (e.g. invalid user ID)
 	 */
-	public static function suppressUserName( $name, $userId, IDatabase $dbw = null ) {
+	public static function suppressUserName( $name, $userId, ?IDatabase $dbw = null ) {
 		return self::setUsernameBitfields( $name, $userId, '|', $dbw );
 	}
 
@@ -163,7 +163,7 @@ class RevisionDeleteUser {
 	 * @param IDatabase|null $dbw If you happen to have one lying around
 	 * @return bool True on success, false on failure (e.g. invalid user ID)
 	 */
-	public static function unsuppressUserName( $name, $userId, IDatabase $dbw = null ) {
+	public static function unsuppressUserName( $name, $userId, ?IDatabase $dbw = null ) {
 		return self::setUsernameBitfields( $name, $userId, '&', $dbw );
 	}
 }

@@ -20,7 +20,7 @@ interface ConfigBuilder {
 	 * @param MergeStrategy|null $mergeStrategy strategy for merging array config values.
 	 * @return ConfigBuilder
 	 */
-	public function set( string $key, $value, MergeStrategy $mergeStrategy = null ): ConfigBuilder;
+	public function set( string $key, $value, ?MergeStrategy $mergeStrategy = null ): ConfigBuilder;
 
 	/**
 	 * Set all values in the array.
@@ -43,7 +43,7 @@ interface ConfigBuilder {
 	 * @param MergeStrategy|null $mergeStrategy strategy for merging array config values.
 	 * @return ConfigBuilder
 	 */
-	public function setDefault( string $key, $defaultValue, MergeStrategy $mergeStrategy = null ): ConfigBuilder;
+	public function setDefault( string $key, $defaultValue, ?MergeStrategy $mergeStrategy = null ): ConfigBuilder;
 
 	/**
 	 * Set defaults in a batch.

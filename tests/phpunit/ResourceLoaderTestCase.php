@@ -32,7 +32,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 	 * @param ResourceLoader|null $rl
 	 * @return Context
 	 */
-	protected function getResourceLoaderContext( $options = [], ResourceLoader $rl = null ) {
+	protected function getResourceLoaderContext( $options = [], ?ResourceLoader $rl = null ) {
 		if ( is_string( $options ) ) {
 			// Back-compat for extension tests
 			$options = [ 'lang' => $options ];
@@ -172,7 +172,7 @@ class ResourceLoaderTestModule extends Module {
 		return $this->messages;
 	}
 
-	public function getDependencies( Context $context = null ) {
+	public function getDependencies( ?Context $context = null ) {
 		return $this->dependencies;
 	}
 
@@ -242,7 +242,7 @@ class ResourceLoaderFileModuleTestingSubclass extends FileModule {
 }
 
 class EmptyResourceLoader extends ResourceLoader {
-	public function __construct( Config $config = null, LoggerInterface $logger = null ) {
+	public function __construct( ?Config $config = null, ?LoggerInterface $logger = null ) {
 		parent::__construct( $config ?: ResourceLoaderTestCase::getMinimalConfig(), $logger );
 	}
 }

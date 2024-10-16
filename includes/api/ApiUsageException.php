@@ -53,7 +53,7 @@ class ApiUsageException extends MWException implements Stringable, ILocalizedExc
 	 * @param Throwable|null $previous Previous exception
 	 */
 	public function __construct(
-		?ApiBase $module, StatusValue $status, $httpCode = 0, Throwable $previous = null
+		?ApiBase $module, StatusValue $status, $httpCode = 0, ?Throwable $previous = null
 	) {
 		if ( $status->isOK() ) {
 			throw new InvalidArgumentException( __METHOD__ . ' requires a fatal Status' );
@@ -79,7 +79,7 @@ class ApiUsageException extends MWException implements Stringable, ILocalizedExc
 	 * @return static
 	 */
 	public static function newWithMessage(
-		?ApiBase $module, $msg, $code = null, $data = null, $httpCode = 0, Throwable $previous = null
+		?ApiBase $module, $msg, $code = null, $data = null, $httpCode = 0, ?Throwable $previous = null
 	) {
 		return new static(
 			$module,

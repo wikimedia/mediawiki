@@ -1388,7 +1388,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *
 	 * @param array|null $paths Storage paths (optional)
 	 */
-	abstract public function clearCache( array $paths = null );
+	abstract public function clearCache( ?array $paths = null );
 
 	/**
 	 * Preload file stat information (concurrently if possible) into in-process cache.

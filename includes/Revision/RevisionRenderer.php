@@ -115,8 +115,8 @@ class RevisionRenderer {
 	// phpcs:enable Generic.Files.LineLength.TooLong
 	public function getRenderedRevision(
 		RevisionRecord $rev,
-		ParserOptions $options = null,
-		Authority $forPerformer = null,
+		?ParserOptions $options = null,
+		?Authority $forPerformer = null,
 		array $hints = []
 	) {
 		if ( $rev->getWikiId() !== $this->dbDomain ) {

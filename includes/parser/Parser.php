@@ -1001,7 +1001,7 @@ class Parser {
 	 * @param Title|null $t
 	 * @since 1.12
 	 */
-	public function setTitle( Title $t = null ) {
+	public function setTitle( ?Title $t = null ) {
 		$this->setPage( $t );
 	}
 
@@ -2251,7 +2251,7 @@ class Parser {
 	 * @param LinkTarget|null $title Optional LinkTarget, for wgNoFollowNsExceptions lookups
 	 * @return string|null Rel attribute for $url
 	 */
-	public static function getExternalLinkRel( $url = false, LinkTarget $title = null ) {
+	public static function getExternalLinkRel( $url = false, ?LinkTarget $title = null ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
 		$noFollowLinks = $mainConfig->get( MainConfigNames::NoFollowLinks );
 		$noFollowNsExceptions = $mainConfig->get( MainConfigNames::NoFollowNsExceptions );

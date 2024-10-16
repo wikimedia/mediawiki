@@ -100,15 +100,15 @@ class ApiEditPage extends ApiBase {
 	public function __construct(
 		ApiMain $mainModule,
 		$moduleName,
-		IContentHandlerFactory $contentHandlerFactory = null,
-		RevisionLookup $revisionLookup = null,
-		WatchedItemStoreInterface $watchedItemStore = null,
-		WikiPageFactory $wikiPageFactory = null,
-		WatchlistManager $watchlistManager = null,
-		UserOptionsLookup $userOptionsLookup = null,
-		RedirectLookup $redirectLookup = null,
-		TempUserCreator $tempUserCreator = null,
-		UserFactory $userFactory = null
+		?IContentHandlerFactory $contentHandlerFactory = null,
+		?RevisionLookup $revisionLookup = null,
+		?WatchedItemStoreInterface $watchedItemStore = null,
+		?WikiPageFactory $wikiPageFactory = null,
+		?WatchlistManager $watchlistManager = null,
+		?UserOptionsLookup $userOptionsLookup = null,
+		?RedirectLookup $redirectLookup = null,
+		?TempUserCreator $tempUserCreator = null,
+		?UserFactory $userFactory = null
 	) {
 		parent::__construct( $mainModule, $moduleName );
 

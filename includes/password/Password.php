@@ -96,7 +96,7 @@ abstract class Password {
 	 * @param array $config Array of engine configuration options for hashing
 	 * @param string|null $hash The raw hash, including the type
 	 */
-	final public function __construct( PasswordFactory $factory, array $config, string $hash = null ) {
+	final public function __construct( PasswordFactory $factory, array $config, ?string $hash = null ) {
 		if ( !$this->isSupported() ) {
 			throw new RuntimeException( 'PHP support not found for ' . get_class( $this ) );
 		}

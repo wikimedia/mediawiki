@@ -96,7 +96,7 @@ class OutputFormats {
 		string $prefix,
 		StatsCache $cache,
 		FormatterInterface $formatter,
-		string $target = null
+		?string $target = null
 	): EmitterInterface {
 		switch ( get_class( $formatter ) ) {
 			case StatsdFormatter::class:

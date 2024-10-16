@@ -106,9 +106,9 @@ class LogPager extends ReverseChronologicalPager {
 	public function __construct( $list, $types = [], $performer = '', $page = '',
 		$pattern = false, $conds = [], $year = false, $month = false, $day = false,
 		$tagFilter = '', $action = '', $logId = 0,
-		LinkBatchFactory $linkBatchFactory = null,
-		ActorNormalization $actorNormalization = null,
-		LogFormatterFactory $logFormatterFactory = null,
+		?LinkBatchFactory $linkBatchFactory = null,
+		?ActorNormalization $actorNormalization = null,
+		?LogFormatterFactory $logFormatterFactory = null,
 		$tagInvert = false
 	) {
 		parent::__construct( $list->getContext() );

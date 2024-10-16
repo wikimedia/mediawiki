@@ -651,7 +651,12 @@ class SpecialPage implements MessageLocalizer {
 	 * @param SearchEngineFactory|null $searchEngineFactory Provide the service
 	 * @return string[] Matching subpages
 	 */
-	protected function prefixSearchString( $search, $limit, $offset, SearchEngineFactory $searchEngineFactory = null ) {
+	protected function prefixSearchString(
+		$search,
+		$limit,
+		$offset,
+		?SearchEngineFactory $searchEngineFactory = null
+	) {
 		$title = Title::newFromText( $search );
 		if ( !$title || !$title->canExist() ) {
 			// No prefix suggestion in special and media namespace

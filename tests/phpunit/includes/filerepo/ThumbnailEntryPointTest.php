@@ -109,7 +109,7 @@ class ThumbnailEntryPointTest extends MediaWikiIntegrationTestCase {
 	 * @return ThumbnailEntryPoint
 	 */
 	private function getEntryPoint(
-		MockEnvironment $environment = null,
+		?MockEnvironment $environment = null,
 		$request = null
 	) {
 		if ( !$request && $environment ) {

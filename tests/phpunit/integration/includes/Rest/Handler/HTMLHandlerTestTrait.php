@@ -58,7 +58,7 @@ trait HTMLHandlerTestTrait {
 		WikiPage $page,
 		array $queryParams = [],
 		array $config = [],
-		Authority $authority = null
+		?Authority $authority = null
 	): array {
 		$handler = $this->newHandler();
 		$request = new RequestData( [
@@ -92,7 +92,7 @@ trait HTMLHandlerTestTrait {
 		int $revId,
 		array $queryParams = [],
 		array $config = [],
-		Authority $authority = null
+		?Authority $authority = null
 	): array {
 		$handler = $this->newHandler();
 		$request = new RequestData( [

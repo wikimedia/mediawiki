@@ -45,7 +45,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 	 */
 	private function newService(
 		IDatabase $mockDb,
-		UserOptionsLookup $userOptionsLookup = null
+		?UserOptionsLookup $userOptionsLookup = null
 	) {
 		return new WatchedItemQueryService(
 			$this->getMockDbProvider( $mockDb ),

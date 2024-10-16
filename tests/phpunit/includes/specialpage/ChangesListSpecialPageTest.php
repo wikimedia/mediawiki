@@ -69,7 +69,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 	private function buildQuery(
 		array $requestOptions,
-		User $user = null
+		?User $user = null
 	): array {
 		$context = new RequestContext;
 		$context->setRequest( new FauxRequest( $requestOptions ) );
@@ -122,7 +122,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		array $expected,
 		array $requestOptions,
 		string $message,
-		User $user = null
+		?User $user = null
 	) {
 		$queryConditions = $this->buildQuery( $requestOptions, $user );
 

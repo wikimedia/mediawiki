@@ -50,7 +50,7 @@ class ParserIntegrationTest extends PHPUnit\Framework\TestCase {
 		string $fileName,
 		ParserTest $test,
 		ParserTestMode $mode,
-		string $skipMessage = null
+		?string $skipMessage = null
 	) {
 		parent::__construct(
 			'testParse',

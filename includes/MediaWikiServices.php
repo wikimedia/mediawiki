@@ -415,7 +415,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * @param string $quick Set this to "quick" to allow expensive resources to be re-used.
 	 * See SalvageableService for details.
 	 */
-	public static function resetGlobalInstance( Config $bootstrapConfig = null, $quick = '' ) {
+	public static function resetGlobalInstance( ?Config $bootstrapConfig = null, $quick = '' ) {
 		if ( self::$instance === null ) {
 			// no global instance yet, nothing to reset
 			return;

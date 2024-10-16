@@ -136,7 +136,7 @@ class ServerInfo {
 		return $newIndexByServerIndex;
 	}
 
-	public function normalizeServerMaps( array $servers, array &$indexBySrvName = null ) {
+	public function normalizeServerMaps( array $servers, ?array &$indexBySrvName = null ) {
 		if ( !$servers ) {
 			throw new InvalidArgumentException( 'Missing or empty "servers" parameter' );
 		}

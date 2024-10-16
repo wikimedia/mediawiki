@@ -75,7 +75,7 @@ class SearchHandlerTest extends MediaWikiUnitTestCase {
 		$redirectLookup = null,
 		$pageStore = null,
 		$mockTitleFormatter = null,
-		HookContainer $hookContainer = null
+		?HookContainer $hookContainer = null
 	) {
 		$sources = [
 			MainConfigNames::SearchType => 'test',

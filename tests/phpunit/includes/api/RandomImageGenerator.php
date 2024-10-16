@@ -51,7 +51,7 @@ class RandomImageGenerator {
 	 * @param string|null $dir Directory, optional (will default to current working directory)
 	 * @return string[] Filenames we just wrote
 	 */
-	public function writeImages( int $number, string $format = 'svg', string $dir = null ): array {
+	public function writeImages( int $number, string $format = 'svg', ?string $dir = null ): array {
 		$filenames = $this->getRandomFilenames( $number, $format, $dir ?? getcwd() );
 		$imageWriteMethod = $this->getImageWriteMethod( $format );
 		foreach ( $filenames as $filename ) {

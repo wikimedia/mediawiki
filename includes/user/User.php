@@ -711,7 +711,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 * @param WebRequest|null $request Object to use; the global request will be used if omitted.
 	 * @return User
 	 */
-	public static function newFromSession( WebRequest $request = null ) {
+	public static function newFromSession( ?WebRequest $request = null ) {
 		$user = new User;
 		$user->mFrom = 'session';
 		$user->mRequest = $request;
@@ -2168,7 +2168,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 		return $this->getThisAsAuthority()->isAllowedAll( ...$permissions );
 	}
 
-	public function isAllowed( string $permission, PermissionStatus $status = null ): bool {
+	public function isAllowed( string $permission, ?PermissionStatus $status = null ): bool {
 		return $this->getThisAsAuthority()->isAllowed( $permission, $status );
 	}
 
@@ -3249,7 +3249,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	public function probablyCan(
 		string $action,
 		PageIdentity $target,
-		PermissionStatus $status = null
+		?PermissionStatus $status = null
 	): bool {
 		return $this->getThisAsAuthority()->probablyCan( $action, $target, $status );
 	}
@@ -3264,7 +3264,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	public function definitelyCan(
 		string $action,
 		PageIdentity $target,
-		PermissionStatus $status = null
+		?PermissionStatus $status = null
 	): bool {
 		return $this->getThisAsAuthority()->definitelyCan( $action, $target, $status );
 	}
@@ -3277,7 +3277,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 * @param PermissionStatus|null $status
 	 * @return bool
 	 */
-	public function isDefinitelyAllowed( string $action, PermissionStatus $status = null ): bool {
+	public function isDefinitelyAllowed( string $action, ?PermissionStatus $status = null ): bool {
 		return $this->getThisAsAuthority()->isDefinitelyAllowed( $action, $status );
 	}
 
@@ -3289,7 +3289,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 * @param PermissionStatus|null $status
 	 * @return bool
 	 */
-	public function authorizeAction( string $action, PermissionStatus $status = null ): bool {
+	public function authorizeAction( string $action, ?PermissionStatus $status = null ): bool {
 		return $this->getThisAsAuthority()->authorizeAction( $action, $status );
 	}
 
@@ -3303,7 +3303,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	public function authorizeRead(
 		string $action,
 		PageIdentity $target,
-		PermissionStatus $status = null
+		?PermissionStatus $status = null
 	): bool {
 		return $this->getThisAsAuthority()->authorizeRead( $action, $target, $status );
 	}
@@ -3317,7 +3317,7 @@ class User implements Stringable, Authority, UserIdentity, UserEmailContact {
 	 */
 	public function authorizeWrite(
 		string $action, PageIdentity $target,
-		PermissionStatus $status = null
+		?PermissionStatus $status = null
 	): bool {
 		return $this->getThisAsAuthority()->authorizeWrite( $action, $target, $status );
 	}

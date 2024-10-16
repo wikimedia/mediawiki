@@ -84,7 +84,7 @@ class RevisionContentHelper extends PageContentHelper {
 		return (bool)$this->getTargetRevision();
 	}
 
-	public function setCacheControl( ResponseInterface $response, int $expiry = null ) {
+	public function setCacheControl( ResponseInterface $response, ?int $expiry = null ) {
 		$revision = $this->getTargetRevision();
 
 		if ( $revision && $revision->getVisibility() !== 0 ) {

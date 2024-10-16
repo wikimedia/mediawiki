@@ -23,8 +23,8 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNewFromId( $id,
 		array $selectFields,
-		array $row = null,
-		array $expectedFields = null
+		?array $row = null,
+		?array $expectedFields = null
 	) {
 		$row = $row ? (object)$row : null;
 		$db = $this->createMock( IReadableDatabase::class );

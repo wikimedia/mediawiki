@@ -49,7 +49,7 @@ class RevisionAccessException extends RuntimeException implements INormalizedExc
 		string $normalizedMessage = '',
 		array $messageContext = [],
 		int $code = 0,
-		Throwable $previous = null
+		?Throwable $previous = null
 	) {
 		$this->normalizedMessage = $normalizedMessage;
 		$this->messageContext = $messageContext;

@@ -123,7 +123,7 @@ class TransactionManager {
 	/** @var TransactionProfiler */
 	private $profiler;
 
-	public function __construct( LoggerInterface $logger = null, $profiler = null ) {
+	public function __construct( ?LoggerInterface $logger = null, $profiler = null ) {
 		$this->logger = $logger ?? new NullLogger();
 		$this->profiler = $profiler ?? new TransactionProfiler();
 	}
@@ -474,7 +474,7 @@ class TransactionManager {
 		return [ $savepointId, $sectionId ];
 	}
 
-	public function getPositionFromSectionId( AtomicSectionIdentifier $sectionId = null ): ?int {
+	public function getPositionFromSectionId( ?AtomicSectionIdentifier $sectionId = null ): ?int {
 		if ( $sectionId !== null ) {
 			// Find the (last) section with the given $sectionId
 			$pos = -1;
@@ -622,7 +622,7 @@ class TransactionManager {
 		];
 	}
 
-	public function setTransactionListener( $name, callable $callback = null ) {
+	public function setTransactionListener( $name, ?callable $callback = null ) {
 		if ( $callback ) {
 			$this->trxRecurringCallbacks[$name] = $callback;
 		} else {
@@ -691,7 +691,7 @@ class TransactionManager {
 	 */
 	public function modifyCallbacksForCancel(
 		array $excisedSectionsId,
-		AtomicSectionIdentifier $newSectionId = null
+		?AtomicSectionIdentifier $newSectionId = null
 	) {
 		// Cancel the "on commit" callbacks owned by this savepoint
 		$this->trxPostCommitOrIdleCallbacks = array_filter(

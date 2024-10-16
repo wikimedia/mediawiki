@@ -766,7 +766,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 *
 	 * @since 1.21
 	 */
-	public function getContent( $audience = RevisionRecord::FOR_PUBLIC, Authority $performer = null ) {
+	public function getContent( $audience = RevisionRecord::FOR_PUBLIC, ?Authority $performer = null ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
 			return $this->mLastRevision->getContent( SlotRecord::MAIN, $audience, $performer );
@@ -805,7 +805,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 *   a user no fallback is provided and the RevisionRecord method will throw an error)
 	 * @return int User ID for the user that made the last article revision
 	 */
-	public function getUser( $audience = RevisionRecord::FOR_PUBLIC, Authority $performer = null ) {
+	public function getUser( $audience = RevisionRecord::FOR_PUBLIC, ?Authority $performer = null ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
 			$revUser = $this->mLastRevision->getUser( $audience, $performer );
@@ -826,7 +826,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 *   a user no fallback is provided and the RevisionRecord method will throw an error)
 	 * @return UserIdentity|null
 	 */
-	public function getCreator( $audience = RevisionRecord::FOR_PUBLIC, Authority $performer = null ) {
+	public function getCreator( $audience = RevisionRecord::FOR_PUBLIC, ?Authority $performer = null ) {
 		$revRecord = $this->getRevisionStore()->getFirstRevision( $this->getTitle() );
 		if ( $revRecord ) {
 			return $revRecord->getUser( $audience, $performer );
@@ -845,7 +845,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 *   a user no fallback is provided and the RevisionRecord method will throw an error)
 	 * @return string Username of the user that made the last article revision
 	 */
-	public function getUserText( $audience = RevisionRecord::FOR_PUBLIC, Authority $performer = null ) {
+	public function getUserText( $audience = RevisionRecord::FOR_PUBLIC, ?Authority $performer = null ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
 			$revUser = $this->mLastRevision->getUser( $audience, $performer );
@@ -866,7 +866,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 * @return string|null Comment stored for the last article revision, or null if the specified
 	 *  audience does not have access to the comment.
 	 */
-	public function getComment( $audience = RevisionRecord::FOR_PUBLIC, Authority $performer = null ) {
+	public function getComment( $audience = RevisionRecord::FOR_PUBLIC, ?Authority $performer = null ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
 			$revComment = $this->mLastRevision->getComment( $audience, $performer );
@@ -1139,7 +1139,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	public function doViewUpdates(
 		Authority $performer,
 		$oldid = 0,
-		RevisionRecord $oldRev = null
+		?RevisionRecord $oldRev = null
 	) {
 		if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
 			return;
@@ -1501,9 +1501,9 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 * @return DerivedPageDataUpdater
 	 */
 	private function getDerivedDataUpdater(
-		UserIdentity $forUser = null,
-		RevisionRecord $forRevision = null,
-		RevisionSlotsUpdate $forUpdate = null,
+		?UserIdentity $forUser = null,
+		?RevisionRecord $forRevision = null,
+		?RevisionSlotsUpdate $forUpdate = null,
 		$forEdit = false
 	) {
 		if ( !$forRevision && !$forUpdate ) {
@@ -1562,7 +1562,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 *
 	 * @return PageUpdater
 	 */
-	public function newPageUpdater( $performer, RevisionSlotsUpdate $forUpdate = null ) {
+	public function newPageUpdater( $performer, ?RevisionSlotsUpdate $forUpdate = null ) {
 		if ( $performer instanceof Authority ) {
 			// TODO: Deprecate this. But better get rid of this method entirely.
 			$performer = $performer->getUser();
@@ -2562,7 +2562,7 @@ class WikiPage implements Stringable, Page, PageRecord {
 	 */
 	public static function onArticleEdit(
 		Title $title,
-		RevisionRecord $revRecord = null,
+		?RevisionRecord $revRecord = null,
 		$slotsChanged = null,
 		$maybeRedirectChanged = true
 	) {

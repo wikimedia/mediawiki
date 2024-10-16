@@ -2415,7 +2415,7 @@ class AuthManager implements LoggerAwareInterface {
 	 * @param UserIdentity|null $user User being acted on, instead of the current user.
 	 * @return AuthenticationRequest[]
 	 */
-	public function getAuthenticationRequests( $action, UserIdentity $user = null ) {
+	public function getAuthenticationRequests( $action, ?UserIdentity $user = null ) {
 		$options = [];
 		$providerAction = $action;
 
@@ -2486,7 +2486,7 @@ class AuthManager implements LoggerAwareInterface {
 	 * @return AuthenticationRequest[]
 	 */
 	private function getAuthenticationRequestsInternal(
-		$providerAction, array $options, array $providers, UserIdentity $user = null
+		$providerAction, array $options, array $providers, ?UserIdentity $user = null
 	) {
 		$user = $user ?: RequestContext::getMain()->getUser();
 		$options['username'] = $user->isRegistered() ? $user->getName() : null;

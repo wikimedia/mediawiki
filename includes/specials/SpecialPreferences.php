@@ -48,8 +48,8 @@ class SpecialPreferences extends SpecialPage {
 	 * @param UserOptionsManager|null $userOptionsManager
 	 */
 	public function __construct(
-		PreferencesFactory $preferencesFactory = null,
-		UserOptionsManager $userOptionsManager = null
+		?PreferencesFactory $preferencesFactory = null,
+		?UserOptionsManager $userOptionsManager = null
 	) {
 		parent::__construct( 'Preferences' );
 		// This class is extended and therefore falls back to global state - T265924

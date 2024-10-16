@@ -1234,7 +1234,7 @@ abstract class UploadBase {
 	 * @param User|null $user
 	 * @return UploadStashFile Stashed file
 	 */
-	protected function doStashFile( User $user = null ) {
+	protected function doStashFile( ?User $user = null ) {
 		$stash = MediaWikiServices::getInstance()->getRepoGroup()
 			->getLocalRepo()->getUploadStash( $user );
 		$file = $stash->stashFile( $this->mTempPath, $this->getSourceType(), $this->mFileProps );

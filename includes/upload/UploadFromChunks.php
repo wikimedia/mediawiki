@@ -104,7 +104,7 @@ class UploadFromChunks extends UploadFromFile {
 	 * @param User|null $user
 	 * @return UploadStashFile Stashed file
 	 */
-	protected function doStashFile( User $user = null ) {
+	protected function doStashFile( ?User $user = null ) {
 		// Stash file is the called on creating a new chunk session:
 		$this->mChunkIndex = 0;
 		$this->mOffset = 0;

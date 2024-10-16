@@ -243,7 +243,7 @@ class Message implements Stringable, MessageSpecifier, Serializable {
 	 * @param array $params Message parameters
 	 * @param Language|null $language [optional] Language to use (defaults to current user language).
 	 */
-	public function __construct( $key, $params = [], Language $language = null ) {
+	public function __construct( $key, $params = [], ?Language $language = null ) {
 		if ( $key instanceof MessageSpecifier ) {
 			if ( $params ) {
 				throw new InvalidArgumentException(

@@ -66,7 +66,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 		self::$revUser = self::$pageRev->getUser( RevisionRecord::RAW );
 	}
 
-	private function newChange( RevisionRecord $revision = null ) {
+	private function newChange( ?RevisionRecord $revision = null ) {
 		$title = Title::makeTitle( NS_MAIN, self::$pageName );
 		$blcFactory = $this->getServiceContainer()->getBacklinkCacheFactory();
 		$change = new CategoryMembershipChange(

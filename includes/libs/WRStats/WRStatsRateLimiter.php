@@ -74,7 +74,7 @@ class WRStatsRateLimiter {
 	 */
 	public function peek(
 		string $condName,
-		EntityKey $entityKey = null,
+		?EntityKey $entityKey = null,
 		$amount = 1
 	): LimitOperationResult {
 		$actions = [ new LimitOperation( $condName, $entityKey, $amount ) ];
@@ -136,7 +136,7 @@ class WRStatsRateLimiter {
 	 */
 	public function tryIncr(
 		string $condName,
-		EntityKey $entityKey = null,
+		?EntityKey $entityKey = null,
 		$amount = 1
 	): LimitOperationResult {
 		$actions = [ new LimitOperation( $condName, $entityKey, $amount ) ];
@@ -169,7 +169,7 @@ class WRStatsRateLimiter {
 	 */
 	public function incr(
 		string $condName,
-		EntityKey $entityKey = null,
+		?EntityKey $entityKey = null,
 		$amount = 1
 	) {
 		$actions = [ new LimitOperation( $condName, $entityKey, $amount ) ];

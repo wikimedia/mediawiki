@@ -47,7 +47,7 @@ interface IDatabaseForOwner extends IDatabase {
 	 * @param callable|null $callback Use null to unset a listener
 	 * @since 1.28
 	 */
-	public function setTransactionListener( $name, callable $callback = null );
+	public function setTransactionListener( $name, ?callable $callback = null );
 
 	/**
 	 * @return bool Whether this DB server is running in server-side read-only mode

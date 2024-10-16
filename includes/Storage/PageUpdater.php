@@ -636,7 +636,7 @@ class PageUpdater {
 	public function markAsRevert(
 		int $revertMethod,
 		int $newestRevertedRevId,
-		int $revertAfterRevId = null
+		?int $revertAfterRevId = null
 	) {
 		$this->editResultBuilder->markAsRevert(
 			$revertMethod, $newestRevertedRevId, $revertAfterRevId

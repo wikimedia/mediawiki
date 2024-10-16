@@ -39,7 +39,7 @@ class CodexHTMLForm extends HTMLForm {
 	protected $displayFormat = 'codex';
 
 	public static function loadInputFromParameters( $fieldname, $descriptor,
-		HTMLForm $parent = null
+		?HTMLForm $parent = null
 	) {
 		$field = parent::loadInputFromParameters( $fieldname, $descriptor, $parent );
 		$field->setShowEmptyLabel( false );

@@ -664,7 +664,7 @@ class SkinModule extends LessVarFileModule {
 	 *      height fields defined in pixels, which are converted to ems based on 16px font-size.
 	 *  - icon (string): a square logo similar to 1x, but without the wordmark. SVG recommended.
 	 */
-	public static function getAvailableLogos( Config $conf, string $lang = null ): array {
+	public static function getAvailableLogos( Config $conf, ?string $lang = null ): array {
 		$logos = $conf->get( MainConfigNames::Logos );
 		if ( $logos === false ) {
 			// no logos were defined... this will either
@@ -706,7 +706,7 @@ class SkinModule extends LessVarFileModule {
 	 *  Key "1x" is always defined. Key "svg" may also be defined,
 	 *  in which case variants other than "1x" are omitted.
 	 */
-	protected function getLogoData( Config $conf, string $lang = null ) {
+	protected function getLogoData( Config $conf, ?string $lang = null ) {
 		$logoHD = self::getAvailableLogos( $conf, $lang );
 		$logo = $logoHD['1x'];
 

@@ -93,9 +93,9 @@ class MWTimestamp extends ConvertibleTimestamp {
 	 * @return string Relative timestamp
 	 */
 	public function getRelativeTimestamp(
-		MWTimestamp $relativeTo = null,
-		UserIdentity $user = null,
-		Language $lang = null,
+		?MWTimestamp $relativeTo = null,
+		?UserIdentity $user = null,
+		?Language $lang = null,
 		array $chosenIntervals = []
 	) {
 		$relativeTo ??= new self();

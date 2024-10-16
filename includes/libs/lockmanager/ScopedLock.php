@@ -83,7 +83,7 @@ class ScopedLock {
 	 * @param ScopedLock|null &$lock
 	 * @since 1.21
 	 */
-	public static function release( ScopedLock &$lock = null ) {
+	public static function release( ?ScopedLock &$lock = null ) {
 		$lock = null;
 	}
 

@@ -65,14 +65,14 @@ class ContribsPager extends ContributionsPager {
 	public function __construct(
 		IContextSource $context,
 		array $options,
-		LinkRenderer $linkRenderer = null,
-		LinkBatchFactory $linkBatchFactory = null,
-		HookContainer $hookContainer = null,
-		IConnectionProvider $dbProvider = null,
-		RevisionStore $revisionStore = null,
-		NamespaceInfo $namespaceInfo = null,
-		UserIdentity $targetUser = null,
-		CommentFormatter $commentFormatter = null
+		?LinkRenderer $linkRenderer = null,
+		?LinkBatchFactory $linkBatchFactory = null,
+		?HookContainer $hookContainer = null,
+		?IConnectionProvider $dbProvider = null,
+		?RevisionStore $revisionStore = null,
+		?NamespaceInfo $namespaceInfo = null,
+		?UserIdentity $targetUser = null,
+		?CommentFormatter $commentFormatter = null
 	) {
 		// Class is used directly in extensions - T266484
 		$services = MediaWikiServices::getInstance();

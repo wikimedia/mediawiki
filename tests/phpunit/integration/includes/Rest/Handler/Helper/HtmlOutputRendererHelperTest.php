@@ -152,7 +152,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		string $html,
 		$rev,
 		PageIdentity $page,
-		string $version = null
+		?string $version = null
 	): ParserOutput {
 		static $counter = 0;
 		$lang = $parserOpts->getTargetLanguage();

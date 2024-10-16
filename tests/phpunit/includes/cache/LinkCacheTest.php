@@ -18,7 +18,7 @@ use Wikimedia\Rdbms\IDBAccessObject;
 class LinkCacheTest extends MediaWikiIntegrationTestCase {
 	use LinkCacheTestTrait;
 
-	private function newLinkCache( WANObjectCache $wanCache = null ) {
+	private function newLinkCache( ?WANObjectCache $wanCache = null ) {
 		if ( !$wanCache ) {
 			$wanCache = new WANObjectCache( [ 'cache' => new EmptyBagOStuff() ] );
 		}

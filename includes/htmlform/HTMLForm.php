@@ -631,7 +631,7 @@ class HTMLForm extends ContextSource {
 	 * @return HTMLFormField Instance of a subclass of HTMLFormField
 	 */
 	public static function loadInputFromParameters( $fieldname, $descriptor,
-		HTMLForm $parent = null
+		?HTMLForm $parent = null
 	) {
 		$class = static::getClassFromDescriptor( $fieldname, $descriptor );
 

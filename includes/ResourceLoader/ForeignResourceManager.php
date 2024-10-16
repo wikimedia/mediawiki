@@ -94,9 +94,9 @@ class ForeignResourceManager {
 	public function __construct(
 		$registryFile,
 		$libDir,
-		callable $infoPrinter = null,
-		callable $errorPrinter = null,
-		callable $verbosePrinter = null
+		?callable $infoPrinter = null,
+		?callable $errorPrinter = null,
+		?callable $verbosePrinter = null
 	) {
 		$this->globalIdGenerator = MediaWikiServices::getInstance()->getGlobalIdGenerator();
 		$this->registryFile = $registryFile;

@@ -260,7 +260,7 @@ class BotPassword {
 	 * @return Status
 	 * @throws UnexpectedValueException
 	 */
-	public function save( $operation, Password $password = null ) {
+	public function save( $operation, ?Password $password = null ) {
 		// Ensure operation is valid
 		if ( $operation !== 'insert' && $operation !== 'update' ) {
 			throw new UnexpectedValueException(

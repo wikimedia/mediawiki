@@ -346,7 +346,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 	 * @param SearchResultThumbnail|null $thumbnail
 	 * @return string|null
 	 */
-	private function generateThumbnailHtml( SearchResult $result, SearchResultThumbnail $thumbnail = null ): ?string {
+	private function generateThumbnailHtml( SearchResult $result, ?SearchResultThumbnail $thumbnail = null ): ?string {
 		$title = $result->getTitle();
 		// don't assume that result is a valid title; e.g. could be an interwiki link target
 		if ( $title === null || !$title->canExist() ) {

@@ -35,7 +35,7 @@ trait ActionModuleBasedHandlerTestTrait {
 		ApiMain $main,
 		$name,
 		$resultData,
-		Exception $throwException = null
+		?Exception $throwException = null
 	) {
 		/** @var ApiBase|MockObject $module */
 		$module = $this->getMockBuilder( ApiBase::class )

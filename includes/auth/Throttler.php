@@ -62,7 +62,7 @@ class Throttler implements LoggerAwareInterface {
 	 *   - warningLimit: the log level will be raised to warning when rejecting an attempt after
 	 *     no less than this many failures.
 	 */
-	public function __construct( array $conditions = null, array $params = [] ) {
+	public function __construct( ?array $conditions = null, array $params = [] ) {
 		$invalidParams = array_diff_key( $params,
 			array_fill_keys( [ 'type', 'cache', 'warningLimit' ], true ) );
 		if ( $invalidParams ) {

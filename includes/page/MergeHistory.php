@@ -228,7 +228,7 @@ class MergeHistory {
 	 * @param string|null $reason
 	 * @return PermissionStatus
 	 */
-	public function probablyCanMerge( Authority $performer, string $reason = null ): PermissionStatus {
+	public function probablyCanMerge( Authority $performer, ?string $reason = null ): PermissionStatus {
 		return $this->authorizeInternal(
 			static function ( string $action, PageIdentity $target, PermissionStatus $status ) use ( $performer ) {
 				return $performer->probablyCan( $action, $target, $status );
@@ -249,7 +249,7 @@ class MergeHistory {
 	 * @param string|null $reason
 	 * @return PermissionStatus
 	 */
-	public function authorizeMerge( Authority $performer, string $reason = null ): PermissionStatus {
+	public function authorizeMerge( Authority $performer, ?string $reason = null ): PermissionStatus {
 		return $this->authorizeInternal(
 			static function ( string $action, PageIdentity $target, PermissionStatus $status ) use ( $performer ) {
 				return $performer->authorizeWrite( $action, $target, $status );

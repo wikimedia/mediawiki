@@ -113,7 +113,7 @@ class CommentParser {
 	 * @param bool $enableSectionLinks
 	 * @return string
 	 */
-	public function preprocess( string $comment, LinkTarget $selfLinkTarget = null,
+	public function preprocess( string $comment, ?LinkTarget $selfLinkTarget = null,
 		$samePage = false, $wikiId = false, $enableSectionLinks = true
 	) {
 		return $this->preprocessInternal( $comment, false, $selfLinkTarget,
@@ -130,7 +130,7 @@ class CommentParser {
 	 * @param bool $enableSectionLinks
 	 * @return string
 	 */
-	public function preprocessUnsafe( $comment, LinkTarget $selfLinkTarget = null,
+	public function preprocessUnsafe( $comment, ?LinkTarget $selfLinkTarget = null,
 		$samePage = false, $wikiId = false, $enableSectionLinks = true
 	) {
 		return $this->preprocessInternal( $comment, true, $selfLinkTarget,

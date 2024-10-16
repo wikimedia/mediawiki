@@ -109,7 +109,7 @@ class SearchUpdate implements DeferrableUpdate {
 	 * @param SearchEngine|null $se Search engine
 	 * @return string
 	 */
-	public function updateText( $text, SearchEngine $se = null ) {
+	public function updateText( $text, ?SearchEngine $se = null ) {
 		$services = MediaWikiServices::getInstance();
 		$contLang = $services->getContentLanguage();
 		# Language-specific strip/conversion

@@ -62,7 +62,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 *
 	 * @return WikiPage
 	 */
-	protected function createPage( $page, $content, $model = null, Authority $performer = null ) {
+	protected function createPage( $page, $content, $model = null, ?Authority $performer = null ) {
 		if ( is_string( $page ) || $page instanceof Title ) {
 			$page = $this->newPage( $page, $model );
 		}

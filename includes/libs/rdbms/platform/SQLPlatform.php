@@ -62,8 +62,8 @@ class SQLPlatform implements ISQLPlatform {
 
 	public function __construct(
 		DbQuoter $quoter,
-		LoggerInterface $logger = null,
-		DatabaseDomain $currentDomain = null,
+		?LoggerInterface $logger = null,
+		?DatabaseDomain $currentDomain = null,
 		$errorLogger = null
 
 	) {

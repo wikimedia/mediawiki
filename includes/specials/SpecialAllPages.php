@@ -60,9 +60,9 @@ class SpecialAllPages extends IncludableSpecialPage {
 	private PageStore $pageStore;
 
 	public function __construct(
-		IConnectionProvider $dbProvider = null,
-		SearchEngineFactory $searchEngineFactory = null,
-		PageStore $pageStore = null
+		?IConnectionProvider $dbProvider = null,
+		?SearchEngineFactory $searchEngineFactory = null,
+		?PageStore $pageStore = null
 	) {
 		parent::__construct( 'Allpages' );
 		// This class is extended and therefore falls back to global state - T265309

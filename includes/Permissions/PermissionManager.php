@@ -1736,7 +1736,7 @@ class PermissionManager {
 	 * @param UserIdentity|null $user User to check
 	 * @return string[]
 	 */
-	public function getNamespaceRestrictionLevels( $index, UserIdentity $user = null ): array {
+	public function getNamespaceRestrictionLevels( $index, ?UserIdentity $user = null ): array {
 		if ( !isset( $this->options->get( MainConfigNames::NamespaceProtection )[$index] ) ) {
 			// All levels are valid if there's no namespace restriction.
 			// But still filter by user, if necessary

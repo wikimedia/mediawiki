@@ -1970,7 +1970,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 		$this->transactionManager->onAtomicSectionCancel( $this, $callback, $fname );
 	}
 
-	final public function setTransactionListener( $name, callable $callback = null ) {
+	final public function setTransactionListener( $name, ?callable $callback = null ) {
 		$this->transactionManager->setTransactionListener( $name, $callback );
 	}
 
@@ -2196,7 +2196,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 
 	final public function cancelAtomic(
 		$fname = __METHOD__,
-		AtomicSectionIdentifier $sectionId = null
+		?AtomicSectionIdentifier $sectionId = null
 	) {
 		$this->transactionManager->onCancelAtomicBeforeCriticalSection( $this, $fname );
 		$pos = $this->transactionManager->getPositionFromSectionId( $sectionId );
@@ -2708,10 +2708,10 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 
 	public function sourceFile(
 		$filename,
-		callable $lineCallback = null,
-		callable $resultCallback = null,
+		?callable $lineCallback = null,
+		?callable $resultCallback = null,
 		$fname = false,
-		callable $inputCallback = null
+		?callable $inputCallback = null
 	) {
 		AtEase::suppressWarnings();
 		$fp = fopen( $filename, 'r' );
@@ -2740,10 +2740,10 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 
 	public function sourceStream(
 		$fp,
-		callable $lineCallback = null,
-		callable $resultCallback = null,
+		?callable $lineCallback = null,
+		?callable $resultCallback = null,
 		$fname = __METHOD__,
-		callable $inputCallback = null
+		?callable $inputCallback = null
 	) {
 		$delimiterReset = new ScopedCallback(
 			function ( $delimiter ) {
@@ -3116,7 +3116,7 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 	protected function completeCriticalSection(
 		string $fname,
 		?CriticalSectionScope $csm,
-		Throwable $trxError = null
+		?Throwable $trxError = null
 	) {
 		if ( $csm !== null ) {
 			if ( $this->csmId === null ) {

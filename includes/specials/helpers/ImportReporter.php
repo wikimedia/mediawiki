@@ -60,7 +60,7 @@ class ImportReporter extends ContextSource {
 	 * @param string|bool $reason
 	 * @param IContextSource|null $context
 	 */
-	public function __construct( $importer, $upload, $interwiki, $reason = "", IContextSource $context = null ) {
+	public function __construct( $importer, $upload, $interwiki, $reason = "", ?IContextSource $context = null ) {
 		if ( $context ) {
 			$this->setContext( $context );
 		} else {

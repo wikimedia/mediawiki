@@ -102,7 +102,7 @@ class CentralIdLookupFactory {
 	 * @return CentralIdLookup
 	 * @throws InvalidArgumentException if $providerId is not properly configured
 	 */
-	public function getLookup( string $providerId = null ): CentralIdLookup {
+	public function getLookup( ?string $providerId = null ): CentralIdLookup {
 		$providerId ??= $this->defaultProvider;
 
 		if ( !array_key_exists( $providerId, $this->instanceCache ) ) {
@@ -134,7 +134,7 @@ class CentralIdLookupFactory {
 	 * @return ?CentralIdLookup
 	 * @throws InvalidArgumentException if $providerId is not properly configured
 	 */
-	public function getNonLocalLookup( string $providerID = null ): ?CentralIdLookup {
+	public function getNonLocalLookup( ?string $providerID = null ): ?CentralIdLookup {
 		$centralIdLookup = $this->getLookup( $providerID );
 		if ( $centralIdLookup instanceof LocalIdLookup ) {
 			/*

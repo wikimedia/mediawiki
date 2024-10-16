@@ -372,7 +372,7 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Title\NamespaceInfo::hasSubpages
 	 * @dataProvider provideHasSubpages
 	 */
-	public function testHasSubpages( $ns, $expected, array $namespacesWithSubpages = null ) {
+	public function testHasSubpages( $ns, $expected, ?array $namespacesWithSubpages = null ) {
 		$obj = $this->newObj( $namespacesWithSubpages
 			? [ MainConfigNames::NamespacesWithSubpages => $namespacesWithSubpages ]
 			: [] );

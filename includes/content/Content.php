@@ -225,7 +225,7 @@ interface Content {
 	 *
 	 * @return bool True if this Content object is equal to $that, false otherwise.
 	 */
-	public function equals( Content $that = null );
+	public function equals( ?Content $that = null );
 
 	/**
 	 * Return a copy of this Content object. The following must be true for the

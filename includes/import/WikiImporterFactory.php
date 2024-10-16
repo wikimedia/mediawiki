@@ -78,7 +78,7 @@ class WikiImporterFactory {
 	 *     If you want to also log the import actions, see ImportReporter.
 	 * @return WikiImporter
 	 */
-	public function getWikiImporter( ImportSource $source, Authority $performer = null ): WikiImporter {
+	public function getWikiImporter( ImportSource $source, ?Authority $performer = null ): WikiImporter {
 		if ( !$performer ) {
 			wfDeprecated( __METHOD__ . ' without $performer', '1.42' );
 			$performer = RequestContext::getMain()->getAuthority();

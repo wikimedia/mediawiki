@@ -52,7 +52,7 @@ class CloneDatabase {
 		IMaintainableDatabase $db,
 		array $tablesToClone,
 		string $newTablePrefix,
-		string $oldTablePrefix = null,
+		?string $oldTablePrefix = null,
 		bool $dropCurrentTables = true
 	) {
 		if ( !$tablesToClone ) {

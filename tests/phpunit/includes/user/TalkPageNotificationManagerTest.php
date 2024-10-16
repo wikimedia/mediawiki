@@ -40,7 +40,7 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 	private function getManager(
 		bool $disableAnonTalk = false,
 		bool $isReadOnly = false,
-		RevisionLookup $revisionLookup = null
+		?RevisionLookup $revisionLookup = null
 	) {
 		$services = $this->getServiceContainer();
 		return new TalkPageNotificationManager(

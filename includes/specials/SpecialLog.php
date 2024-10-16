@@ -206,7 +206,7 @@ class SpecialLog extends SpecialPage {
 	 * @param HookRunner|null $runner
 	 * @return array
 	 */
-	public static function getLogTypesOnUser( HookRunner $runner = null ) {
+	public static function getLogTypesOnUser( ?HookRunner $runner = null ) {
 		static $types = null;
 		if ( $types !== null ) {
 			return $types;

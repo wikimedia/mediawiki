@@ -52,7 +52,7 @@ class SiteModule extends WikiModule {
 	 * @param Context|null $context
 	 * @return array
 	 */
-	public function getDependencies( Context $context = null ) {
+	public function getDependencies( ?Context $context = null ) {
 		return [ 'site.styles' ];
 	}
 }

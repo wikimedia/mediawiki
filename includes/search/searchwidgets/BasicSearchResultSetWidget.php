@@ -40,8 +40,8 @@ class BasicSearchResultSetWidget {
 	public function render(
 		$term,
 		$offset,
-		ISearchResultSet $titleResultSet = null,
-		ISearchResultSet $textResultSet = null
+		?ISearchResultSet $titleResultSet = null,
+		?ISearchResultSet $textResultSet = null
 	) {
 		$hasTitle = $titleResultSet && $titleResultSet->numRows() > 0;
 		$hasText = $textResultSet && $textResultSet->numRows() > 0;

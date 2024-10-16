@@ -822,7 +822,7 @@ class UserGroupManager {
 	public function addUserToGroup(
 		UserIdentity $user,
 		string $group,
-		string $expiry = null,
+		?string $expiry = null,
 		bool $allowUpdate = false
 	): bool {
 		$user->assertWiki( $this->wikiId );
@@ -947,7 +947,7 @@ class UserGroupManager {
 	public function addUserToMultipleGroups(
 		UserIdentity $user,
 		array $groups,
-		string $expiry = null,
+		?string $expiry = null,
 		bool $allowUpdate = false
 	) {
 		foreach ( $groups as $group ) {

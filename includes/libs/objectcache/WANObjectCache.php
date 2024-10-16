@@ -1908,7 +1908,7 @@ class WANObjectCache implements
 	 * @param string|null $route Routing prefix (optional)
 	 * @return string[] Order-corresponding list of sister keys
 	 */
-	private function makeSisterKeys( array $baseKeys, string $type, string $route = null ) {
+	private function makeSisterKeys( array $baseKeys, string $type, ?string $route = null ) {
 		$sisterKeys = [];
 		foreach ( $baseKeys as $baseKey ) {
 			$sisterKeys[] = $this->makeSisterKey( $baseKey, $type, $route );
@@ -1927,7 +1927,7 @@ class WANObjectCache implements
 	 * @param string|null $route Routing prefix (optional)
 	 * @return string Sister key
 	 */
-	private function makeSisterKey( string $baseKey, string $typeChar, string $route = null ) {
+	private function makeSisterKey( string $baseKey, string $typeChar, ?string $route = null ) {
 		if ( $this->coalesceScheme === self::SCHEME_HASH_STOP ) {
 			// Key style: "WANCache:<base key>|#|<character>"
 			$sisterKey = 'WANCache:' . $baseKey . '|#|' . $typeChar;
@@ -3013,7 +3013,7 @@ class WANObjectCache implements
 	 * @param array|null &$purge Unwrapped purge value array [returned]
 	 * @return string Wrapped purge value; format is "PURGED:<timestamp>:<holdoff>"
 	 */
-	private function makeCheckPurgeValue( float $timestamp, int $holdoff, array &$purge = null ) {
+	private function makeCheckPurgeValue( float $timestamp, int $holdoff, ?array &$purge = null ) {
 		$normalizedTime = (int)$timestamp;
 		// Purge array that matches what parsePurgeValue() would have returned
 		$purge = [ self::PURGE_TIME => (float)$normalizedTime, self::PURGE_HOLDOFF => $holdoff ];

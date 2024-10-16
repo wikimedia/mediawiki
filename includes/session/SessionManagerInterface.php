@@ -61,7 +61,7 @@ interface SessionManagerInterface extends LoggerAwareInterface {
 	 *  session associated with this WebRequest object will be overwritten.
 	 * @return Session|null
 	 */
-	public function getSessionById( $id, $create = false, WebRequest $request = null );
+	public function getSessionById( $id, $create = false, ?WebRequest $request = null );
 
 	/**
 	 * Create a new, empty session
@@ -73,7 +73,7 @@ interface SessionManagerInterface extends LoggerAwareInterface {
 	 *  session associated with this WebRequest object will be overwritten.
 	 * @return Session
 	 */
-	public function getEmptySession( WebRequest $request = null );
+	public function getEmptySession( ?WebRequest $request = null );
 
 	/**
 	 * Invalidate sessions for a user

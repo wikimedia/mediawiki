@@ -33,7 +33,7 @@ class ExternalStoreFactory implements LoggerAwareInterface {
 		array $externalStores,
 		array $defaultStores,
 		string $localDomainId,
-		LoggerInterface $logger = null
+		?LoggerInterface $logger = null
 	) {
 		$this->protocols = array_map( 'strtolower', $externalStores );
 		$this->writeBaseUrls = $defaultStores;

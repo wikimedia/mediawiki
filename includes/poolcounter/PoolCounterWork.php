@@ -39,7 +39,7 @@ abstract class PoolCounterWork {
 	 * @param string $key Key that identifies the queue this work is placed on
 	 * @param PoolCounter|null $poolCounter
 	 */
-	public function __construct( string $type, string $key, PoolCounter $poolCounter = null ) {
+	public function __construct( string $type, string $key, ?PoolCounter $poolCounter = null ) {
 		$this->type = $type;
 		// MW >= 1.35
 		$this->poolCounter = $poolCounter ??
