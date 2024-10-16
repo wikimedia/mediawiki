@@ -86,11 +86,9 @@ class Router extends OO.Registry {
 	checkRoute() {
 		const hash = this.getPath();
 
-		let id, entry, match;
-
-		for ( id in this.registry ) {
-			entry = this.registry[ id ];
-			match = hash.match( entry.path );
+		for ( const id in this.registry ) {
+			const entry = this.registry[ id ];
+			const match = hash.match( entry.path );
 			if ( match ) {
 				entry.callback.apply( this, match.slice( 1 ) );
 				return;
