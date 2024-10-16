@@ -1276,6 +1276,23 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 			"The following global settings are not documented in docs/extension.schema.json" );
 	}
 
+	/**
+	 * Verify that extension.schema.v1.json is unchanged
+	 *
+	 * Frozen since MediaWiki 1.43; see T258668 for details.
+	 *
+	 * @coversNothing
+	 */
+	public function testVersion1SchemaIsFrozen() {
+		global $IP;
+
+		$schemaFileHash = md5_file( "$IP/docs/extension.schema.v1.json", false );
+
+		$this->assertTrue(
+			$schemaFileHash === '197fc9db288765d17a76a826e879ac6b',
+			"Manifest_version 1 is frozen and should not be changed or given new features" );
+	}
+
 	public function testGetCoreAttribsMerging() {
 		$processor = new ExtensionProcessor();
 
