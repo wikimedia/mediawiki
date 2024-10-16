@@ -22,7 +22,6 @@
 
 namespace MediaWiki\Api;
 
-use ChangeTags;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\TextContent;
@@ -30,6 +29,7 @@ use MediaWiki\Feed\FeedItem;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Pager\ContribsPager;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionAccessException;
@@ -296,7 +296,9 @@ class ApiFeedContributions extends ApiBase {
 			],
 			'tagfilter' => [
 				ParamValidator::PARAM_ISMULTI => true,
-				ParamValidator::PARAM_TYPE => array_values( ChangeTags::listDefinedTags() ),
+				ParamValidator::PARAM_TYPE => array_values( MediaWikiServices::getInstance()
+					->getChangeTagsStore()->listDefinedTags()
+				),
 				ParamValidator::PARAM_DEFAULT => '',
 			],
 			'deletedonly' => false,

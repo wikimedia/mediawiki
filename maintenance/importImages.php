@@ -204,7 +204,10 @@ class ImportImages extends Maintenance {
 		$license = $this->getOption( 'license', '' );
 		$sourceWikiUrl = $this->getOption( 'source-wiki-url' );
 
-		$tags = in_array( ChangeTags::TAG_SERVER_SIDE_UPLOAD, ChangeTags::getSoftwareTags() )
+		$tags = in_array(
+			ChangeTags::TAG_SERVER_SIDE_UPLOAD,
+			$this->getServiceContainer()->getChangeTagsStore()->getSoftwareTags()
+		)
 			? [ ChangeTags::TAG_SERVER_SIDE_UPLOAD ]
 			: [];
 

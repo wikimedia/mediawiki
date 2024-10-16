@@ -1555,7 +1555,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$fields = array_merge( $rcQuery['fields'], $fields );
 		$join_conds = array_merge( $join_conds, $rcQuery['joins'] );
 
-		ChangeTags::modifyDisplayQuery(
+		MediaWikiServices::getInstance()->getChangeTagsStore()->modifyDisplayQuery(
 			$tables,
 			$fields,
 			$conds,

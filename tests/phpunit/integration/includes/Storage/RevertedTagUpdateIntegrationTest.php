@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Storage;
 
-use ChangeTags;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MainConfigNames;
@@ -353,8 +352,8 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		foreach ( $revisionIds as $revisionId ) {
 			$this->assertNotContains(
 				'mw-reverted',
-				ChangeTags::getTags( $dbw, null, $revisionId ),
-				'ChangeTags::getTags()'
+				$this->getServiceContainer()->getChangeTagsStore()->getTags( $dbw, null, $revisionId ),
+				'ChangeTagsStore->getTags()'
 			);
 		}
 	}
@@ -374,8 +373,8 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		foreach ( $revisionIds as $revisionId ) {
 			$this->assertContains(
 				'mw-reverted',
-				ChangeTags::getTags( $dbw, null, $revisionId ),
-				'ChangeTags::getTags()'
+				$this->getServiceContainer()->getChangeTagsStore()->getTags( $dbw, null, $revisionId ),
+				'ChangeTagsStore->getTags()'
 			);
 
 			// do basic checks for the ct_params field

@@ -29,7 +29,6 @@
 namespace MediaWiki\Content;
 
 use Action;
-use ChangeTags;
 use DifferenceEngine;
 use DifferenceEngineSlotDiffRenderer;
 use InvalidArgumentException;
@@ -1038,7 +1037,7 @@ abstract class ContentHandler {
 		$tag = 'mw-' . $changeType;
 
 		// Not all change types are tagged, so we check against the list of defined tags.
-		if ( in_array( $tag, ChangeTags::getSoftwareTags() ) ) {
+		if ( in_array( $tag, MediaWikiServices::getInstance()->getChangeTagsStore()->getSoftwareTags() ) ) {
 			return $tag;
 		}
 

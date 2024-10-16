@@ -22,10 +22,10 @@
 
 namespace MediaWiki\Api;
 
-use ChangeTags;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -522,7 +522,10 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		$this->addFieldsIf( 'rc_patrolled', $this->fld_patrolled );
 
 		if ( $this->fld_tags ) {
-			$this->addFields( [ 'ts_tags' => ChangeTags::makeTagSummarySubquery( 'revision' ) ] );
+			$this->addFields( [
+				'ts_tags' => MediaWikiServices::getInstance()->getChangeTagsStore()
+					->makeTagSummarySubquery( 'revision' )
+			] );
 		}
 
 		if ( isset( $this->params['tag'] ) ) {

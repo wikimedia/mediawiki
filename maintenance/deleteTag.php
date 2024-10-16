@@ -48,7 +48,7 @@ class DeleteTag extends Maintenance {
 			] )
 			->where( [ 'ctd_id' => $tagId ] )
 			->caller( __METHOD__ )->execute();
-		ChangeTags::purgeTagCacheAll();
+		$this->getServiceContainer()->getChangeTagsStore()->purgeTagCacheAll();
 
 		// Iterate over change_tag, deleting rows in batches
 		$count = 0;
@@ -74,7 +74,7 @@ class DeleteTag extends Maintenance {
 		} while ( true );
 		$this->output( "The tag has been removed from $count revisions, deleting the tag itself...\n" );
 
-		ChangeTags::deleteTagEverywhere( $tag );
+		$this->getServiceContainer()->getChangeTagsStore()->deleteTagEverywhere( $tag );
 		$this->output( "Done.\n" );
 	}
 }

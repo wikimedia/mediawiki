@@ -15,7 +15,7 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		ChangeTags::defineTag( 'tag1' );
+		$this->getServiceContainer()->getChangeTagsStore()->defineTag( 'tag1' );
 	}
 
 	public static function provideTestCases() {
@@ -49,7 +49,7 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 		$result = $importer->import( $revision );
 		$this->assertTrue( $result );
 
-		$tags = ChangeTags::getTags(
+		$tags = $this->getServiceContainer()->getChangeTagsStore()->getTags(
 			$this->getDb(),
 			null,
 			$title->getLatestRevID()

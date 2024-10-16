@@ -23,7 +23,6 @@
 namespace MediaWiki\Api;
 
 use ChangesList;
-use ChangeTags;
 use Exception;
 use LogEventsList;
 use LogFormatterFactory;
@@ -31,6 +30,7 @@ use LogPage;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
@@ -347,7 +347,10 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$resultPageSet && $params['generaterevisions'] );
 
 		if ( $this->fld_tags ) {
-			$this->addFields( [ 'ts_tags' => ChangeTags::makeTagSummarySubquery( 'recentchanges' ) ] );
+			$this->addFields( [
+				'ts_tags' => MediaWikiServices::getInstance()->getChangeTagsStore()
+					->makeTagSummarySubquery( 'recentchanges' )
+			] );
 		}
 
 		if ( $this->fld_sha1 ) {
