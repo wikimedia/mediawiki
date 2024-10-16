@@ -117,7 +117,7 @@ class SpecialMute extends FormSpecialPage {
 	 * @param HTMLForm|null $form
 	 * @return bool
 	 */
-	public function onSubmit( array $data, HTMLForm $form = null ) {
+	public function onSubmit( array $data, ?HTMLForm $form = null ) {
 		foreach ( $data as $userOption => $value ) {
 			if ( $value ) {
 				$this->muteTarget( $userOption );

@@ -209,7 +209,7 @@ class MovePage {
 	 * @param string|null $reason
 	 * @return PermissionStatus
 	 */
-	public function probablyCanMove( Authority $performer, string $reason = null ): PermissionStatus {
+	public function probablyCanMove( Authority $performer, ?string $reason = null ): PermissionStatus {
 		return $this->authorizeInternal(
 			static function ( string $action, PageIdentity $target, PermissionStatus $status ) use ( $performer ) {
 				return $performer->probablyCan( $action, $target, $status );
@@ -230,7 +230,7 @@ class MovePage {
 	 * @param string|null $reason
 	 * @return PermissionStatus
 	 */
-	public function authorizeMove( Authority $performer, string $reason = null ): PermissionStatus {
+	public function authorizeMove( Authority $performer, ?string $reason = null ): PermissionStatus {
 		return $this->authorizeInternal(
 			static function ( string $action, PageIdentity $target, PermissionStatus $status ) use ( $performer ) {
 				return $performer->authorizeWrite( $action, $target, $status );

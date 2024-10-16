@@ -26,7 +26,7 @@ class BlockUtilsTest extends MediaWikiUnitTestCase {
 	 */
 	private function getUtils(
 		array $options = [],
-		UserIdentityLookup $userIdentityLookup = null
+		?UserIdentityLookup $userIdentityLookup = null
 	) {
 		$baseOptions = [
 			MainConfigNames::BlockCIDRLimit => [

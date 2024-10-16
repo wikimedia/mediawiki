@@ -54,7 +54,7 @@ class OOUIHTMLForm extends HTMLForm {
 	protected $displayFormat = 'ooui';
 
 	public static function loadInputFromParameters( $fieldname, $descriptor,
-		HTMLForm $parent = null
+		?HTMLForm $parent = null
 	) {
 		$field = parent::loadInputFromParameters( $fieldname, $descriptor, $parent );
 		$field->setShowEmptyLabel( false );

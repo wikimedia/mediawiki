@@ -27,8 +27,8 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 	 * @return SqlBlobStore
 	 */
 	public function getBlobStore(
-		WANObjectCache $cache = null,
-		ExternalStoreAccess $extStore = null
+		?WANObjectCache $cache = null,
+		?ExternalStoreAccess $extStore = null
 	) {
 		$services = $this->getServiceContainer();
 

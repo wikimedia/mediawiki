@@ -60,7 +60,7 @@ class TrivialLanguageConverter implements ILanguageConverter {
 	 */
 	public function __construct(
 		$langobj,
-		TitleFormatter $titleFormatter = null
+		?TitleFormatter $titleFormatter = null
 	) {
 		$this->language = $langobj;
 		$this->titleFormatter = $titleFormatter ?? MediaWikiServices::getInstance()->getTitleFormatter();

@@ -123,11 +123,11 @@ class HistoryPager extends ReverseChronologicalPager {
 		$tagFilter = '',
 		$tagInvert = false,
 		array $conds = [],
-		LinkBatchFactory $linkBatchFactory = null,
-		WatchlistManager $watchlistManager = null,
-		CommentFormatter $commentFormatter = null,
-		HookContainer $hookContainer = null,
-		ChangeTagsStore $changeTagsStore = null
+		?LinkBatchFactory $linkBatchFactory = null,
+		?WatchlistManager $watchlistManager = null,
+		?CommentFormatter $commentFormatter = null,
+		?HookContainer $hookContainer = null,
+		?ChangeTagsStore $changeTagsStore = null
 	) {
 		parent::__construct( $historyPage->getContext() );
 		$this->historyPage = $historyPage;

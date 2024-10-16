@@ -30,7 +30,7 @@ class SlotRoleRegistryTest extends MediaWikiUnitTestCase {
 		return $mock;
 	}
 
-	private function newSlotRoleRegistry( NameTableStore $roleNameStore = null ) {
+	private function newSlotRoleRegistry( ?NameTableStore $roleNameStore = null ) {
 		if ( !$roleNameStore ) {
 			$roleNameStore = $this->makeNameTableStore();
 		}

@@ -52,7 +52,7 @@ class Telemetry implements TelemetryHeadersInterface {
 	/**
 	 * @param array $server Server and execution environment information, most likely the $_SERVER variable
 	 */
-	public function __construct( array $server, bool $allowExternalReqID = null ) {
+	public function __construct( array $server, ?bool $allowExternalReqID = null ) {
 		$this->server = $server;
 		$this->allowExternalReqID = $allowExternalReqID;
 	}

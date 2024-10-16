@@ -78,7 +78,7 @@ class UserTimeCorrection implements Stringable {
 	 */
 	public function __construct(
 		string $timeCorrection,
-		DateTime $relativeToDate = null,
+		?DateTime $relativeToDate = null,
 		int $systemOffset = 0
 	) {
 		$this->date = $relativeToDate ?? new DateTime( '@' . MWTimestamp::time() );

@@ -50,7 +50,7 @@ class UploadFromStash extends UploadBase {
 	 * @param UploadStash|false $stash Default: false
 	 * @param FileRepo|false $repo Default: false
 	 */
-	public function __construct( UserIdentity $user = null, $stash = false, $repo = false ) {
+	public function __construct( ?UserIdentity $user = null, $stash = false, $repo = false ) {
 		if ( $repo ) {
 			$this->repo = $repo;
 		} else {

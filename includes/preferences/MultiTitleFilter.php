@@ -44,7 +44,7 @@ class MultiTitleFilter implements Filter {
 	 * @param TitleFormatter|null $titleFormatter
 	 */
 	public function __construct(
-		TitleFactory $titleFactory = null, PageStore $pageStore = null, TitleFormatter $titleFormatter = null ) {
+		?TitleFactory $titleFactory = null, ?PageStore $pageStore = null, ?TitleFormatter $titleFormatter = null ) {
 		$this->pageStore = $pageStore;
 		$this->titleFormatter = $titleFormatter;
 	}

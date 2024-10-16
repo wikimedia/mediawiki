@@ -419,8 +419,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @return array Config overrides
 	 */
 	public static function getConfigOverrides(
-		Config $customOverrides = null,
-		Config $baseConfig = null
+		?Config $customOverrides = null,
+		?Config $baseConfig = null
 	): array {
 		$overrides = [];
 
@@ -1218,7 +1218,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @since 1.27
 	 */
 	protected function overrideMwServices(
-		Config $customOverrides = null, array $services = []
+		?Config $customOverrides = null, array $services = []
 	) {
 		if ( $this->overriddenServices ) {
 			throw new LogicException(
@@ -1624,7 +1624,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$title,
 		$text = 'Sample page for unit test.',
 		$namespace = null,
-		User $user = null
+		?User $user = null
 	) {
 		if ( !self::needsDB() ) {
 			throw new RuntimeException( 'When testing with pages, the test must use @group Database.' );
@@ -2128,7 +2128,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		self::truncateTables( $tablesUsed, $db );
 	}
 
-	protected function truncateTable( $table, IDatabase $db = null ) {
+	protected function truncateTable( $table, ?IDatabase $db = null ) {
 		self::truncateTables( [ $table ], $db );
 	}
 
@@ -2140,7 +2140,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param string[] $tables
 	 * @param IDatabase|null $db
 	 */
-	protected static function truncateTables( array $tables, IDatabase $db = null ) {
+	protected static function truncateTables( array $tables, ?IDatabase $db = null ) {
 		$dbw = $db ?: MediaWikiServices::getInstance()->getConnectionProvider()->getPrimaryDatabase();
 		foreach ( $tables as $table ) {
 			$dbw->truncateTable( $table, __METHOD__ );
@@ -2597,7 +2597,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$content,
 		$summary = '',
 		$defaultNs = NS_MAIN,
-		Authority $performer = null
+		?Authority $performer = null
 	) {
 		if ( !self::needsDB() ) {
 			throw new LogicException( 'When testing with pages, the test must use @group Database.' );
@@ -2635,7 +2635,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param string $summary
 	 * @param Authority|null $deleter
 	 */
-	protected function deletePage( ProperPageIdentity $page, string $summary = '', Authority $deleter = null ): void {
+	protected function deletePage( ProperPageIdentity $page, string $summary = '', ?Authority $deleter = null ): void {
 		$deleter ??= new UltimateAuthority( new UserIdentityValue( 0, 'MediaWiki default' ) );
 		MediaWikiServices::getInstance()->getDeletePageFactory()
 			->newDeletePage( $page, $deleter )

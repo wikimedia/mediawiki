@@ -202,7 +202,7 @@ class SettingsBuilder {
 		ExtensionRegistry $extensionRegistry,
 		ConfigBuilder $configSink,
 		PhpIniSink $phpIniSink,
-		BagOStuff $cache = null
+		?BagOStuff $cache = null
 	) {
 		$this->baseDir = $baseDir;
 		$this->extensionRegistry = $extensionRegistry;

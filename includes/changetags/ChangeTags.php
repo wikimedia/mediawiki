@@ -164,7 +164,7 @@ class ChangeTags {
 	 *   - classes: Array of strings: CSS classes used in the generated html, one class for each tag
 	 * @return-taint onlysafefor_htmlnoent
 	 */
-	public static function formatSummaryRow( $tags, $unused, MessageLocalizer $localizer = null ) {
+	public static function formatSummaryRow( $tags, $unused, ?MessageLocalizer $localizer = null ) {
 		if ( $tags === '' || $tags === null ) {
 			return [ '', [] ];
 		}
@@ -329,7 +329,7 @@ class ChangeTags {
 	 * @return bool False if no changes are made, otherwise true
 	 */
 	public static function addTags( $tags, $rc_id = null, $rev_id = null,
-		$log_id = null, $params = null, RecentChange $rc = null
+		$log_id = null, $params = null, ?RecentChange $rc = null
 	) {
 		return MediaWikiServices::getInstance()->getChangeTagsStore()->addTags(
 			$tags, $rc_id, $rev_id, $log_id, $params, $rc
@@ -367,8 +367,8 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function updateTags( $tagsToAdd, $tagsToRemove, &$rc_id = null,
-		&$rev_id = null, &$log_id = null, $params = null, RecentChange $rc = null,
-		UserIdentity $user = null
+		&$rev_id = null, &$log_id = null, $params = null, ?RecentChange $rc = null,
+		?UserIdentity $user = null
 	) {
 		return MediaWikiServices::getInstance()->getChangeTagsStore()->updateTags(
 			$tagsToAdd, $tagsToRemove, $rc_id, $rev_id, $log_id, $params, $rc, $user
@@ -444,7 +444,7 @@ class ChangeTags {
 	 */
 	public static function canAddTagsAccompanyingChange(
 		array $tags,
-		Authority $performer = null,
+		?Authority $performer = null,
 		$checkBlock = true
 	) {
 		$user = null;
@@ -494,7 +494,7 @@ class ChangeTags {
 	public static function canUpdateTags(
 		array $tagsToAdd,
 		array $tagsToRemove,
-		Authority $performer = null
+		?Authority $performer = null
 	) {
 		if ( $performer !== null ) {
 			if ( !$performer->isDefinitelyAllowed( 'changetags' ) ) {
@@ -728,7 +728,7 @@ class ChangeTags {
 	 * @return array an array of (label, selector)
 	 */
 	public static function buildTagFilterSelector(
-		$selected = '', $ooui = false, IContextSource $context = null
+		$selected = '', $ooui = false, ?IContextSource $context = null
 	) {
 		if ( !$context ) {
 			$context = RequestContext::getMain();
@@ -808,7 +808,7 @@ class ChangeTags {
 	 * @return Status
 	 * @since 1.25
 	 */
-	public static function canActivateTag( $tag, Authority $performer = null ) {
+	public static function canActivateTag( $tag, ?Authority $performer = null ) {
 		if ( $performer !== null ) {
 			if ( !$performer->isAllowed( 'managechangetags' ) ) {
 				return Status::newFatal( 'tags-manage-no-permission' );
@@ -883,7 +883,7 @@ class ChangeTags {
 	 * @return Status
 	 * @since 1.25
 	 */
-	public static function canDeactivateTag( $tag, Authority $performer = null ) {
+	public static function canDeactivateTag( $tag, ?Authority $performer = null ) {
 		if ( $performer !== null ) {
 			if ( !$performer->isAllowed( 'managechangetags' ) ) {
 				return Status::newFatal( 'tags-manage-no-permission' );
@@ -983,7 +983,7 @@ class ChangeTags {
 	 * @return Status
 	 * @since 1.25
 	 */
-	public static function canCreateTag( $tag, Authority $performer = null ) {
+	public static function canCreateTag( $tag, ?Authority $performer = null ) {
 		$user = null;
 		$services = MediaWikiServices::getInstance();
 		if ( $performer !== null ) {
@@ -1086,7 +1086,7 @@ class ChangeTags {
 	 * @return Status
 	 * @since 1.25
 	 */
-	public static function canDeleteTag( $tag, Authority $performer = null, int $flags = 0 ) {
+	public static function canDeleteTag( $tag, ?Authority $performer = null, int $flags = 0 ) {
 		$user = null;
 		$services = MediaWikiServices::getInstance();
 		if ( $performer !== null ) {

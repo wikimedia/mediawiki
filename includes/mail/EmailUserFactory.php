@@ -105,7 +105,7 @@ class EmailUserFactory {
 	 * @param Config|null $config
 	 * @return EmailUser
 	 */
-	public function newEmailUserBC( Authority $sender, Config $config = null ): EmailUser {
+	public function newEmailUserBC( Authority $sender, ?Config $config = null ): EmailUser {
 		$options = $config ? new ServiceOptions( EmailUser::CONSTRUCTOR_OPTIONS, $config ) : $this->options;
 		return new EmailUser(
 			$options,

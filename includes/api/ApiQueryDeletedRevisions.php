@@ -103,7 +103,7 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
-	protected function run( ApiPageSet $resultPageSet = null ) {
+	protected function run( ?ApiPageSet $resultPageSet = null ) {
 		$pageSet = $this->getPageSet();
 		$pageMap = $pageSet->getGoodAndMissingTitlesByNamespace();
 		$pageCount = count( $pageSet->getGoodAndMissingPages() );

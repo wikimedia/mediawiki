@@ -137,7 +137,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideEquals
 	 */
-	public function testEquals( Content $a, Content $b = null, $equal = false ) {
+	public function testEquals( Content $a, ?Content $b = null, $equal = false ) {
 		$this->assertEquals( $equal, $a->equals( $b ) );
 	}
 

@@ -65,8 +65,8 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function getManager(
 		array $configOverrides = [],
-		UserEditTracker $userEditTrackerOverride = null,
-		callable $callback = null
+		?UserEditTracker $userEditTrackerOverride = null,
+		?callable $callback = null
 	): UserGroupManager {
 		$services = $this->getServiceContainer();
 		return new UserGroupManager(
@@ -145,7 +145,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		UserGroupManager $manager,
 		UserIdentity $user,
 		string $group,
-		string $expiry = null
+		?string $expiry = null
 	) {
 		$this->assertContains( $group, $manager->getUserGroups( $user ) );
 		$memberships = $manager->getUserGroupMemberships( $user );

@@ -183,7 +183,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	 * @return RedisConnRef|Redis|false Returns false on failure
 	 * @throws InvalidArgumentException
 	 */
-	public function getConnection( $server, LoggerInterface $logger = null ) {
+	public function getConnection( $server, ?LoggerInterface $logger = null ) {
 		// The above @return also documents 'Redis' for convenience with IDEs.
 		// RedisConnRef uses PHP magic methods, which wouldn't be recognised.
 

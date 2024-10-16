@@ -60,7 +60,7 @@ class Preprocessor_Hash extends Preprocessor {
 	 */
 	public function __construct(
 		Parser $parser,
-		WANObjectCache $wanCache = null,
+		?WANObjectCache $wanCache = null,
 		array $options = []
 	) {
 		parent::__construct( $parser, $wanCache, $options );

@@ -89,7 +89,7 @@ abstract class Action implements MessageLocalizer {
 	final public static function factory(
 		string $action,
 		Article $article,
-		IContextSource $context = null
+		?IContextSource $context = null
 	) {
 		return MediaWikiServices::getInstance()
 			->getActionFactory()

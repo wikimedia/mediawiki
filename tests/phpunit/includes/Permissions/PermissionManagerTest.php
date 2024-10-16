@@ -1274,7 +1274,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideGetRestrictionLevels
 	 */
-	public function testGetRestrictionLevels( array $expected, $ns, array $userGroups = null ) {
+	public function testGetRestrictionLevels( array $expected, $ns, ?array $userGroups = null ) {
 		$this->overrideConfigValues( [
 			MainConfigNames::GroupPermissions => [
 				'*' => [ 'edit' => true ],

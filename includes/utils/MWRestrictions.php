@@ -43,7 +43,7 @@ class MWRestrictions implements Stringable {
 	 * @param array|null $restrictions
 	 * @throws InvalidArgumentException
 	 */
-	protected function __construct( array $restrictions = null ) {
+	protected function __construct( ?array $restrictions = null ) {
 		$this->validity = StatusValue::newGood();
 		if ( $restrictions !== null ) {
 			$this->loadFromArray( $restrictions );

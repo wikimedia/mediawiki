@@ -464,9 +464,9 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 * @return bool
 	 */
 	public function isReusableFor(
-		UserIdentity $user = null,
-		RevisionRecord $revision = null,
-		RevisionSlotsUpdate $slotsUpdate = null,
+		?UserIdentity $user = null,
+		?RevisionRecord $revision = null,
+		?RevisionSlotsUpdate $slotsUpdate = null,
 		$parentId = null
 	) {
 		if ( $revision

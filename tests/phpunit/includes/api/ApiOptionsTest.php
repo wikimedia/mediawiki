@@ -382,7 +382,7 @@ class ApiOptionsTest extends ApiTestCase {
 	/**
 	 * @dataProvider provideOptionManupulation
 	 */
-	public function testOptionManupulation( array $params, array $setOptions, array $result = null,
+	public function testOptionManupulation( array $params, array $setOptions, ?array $result = null,
 		$message = ''
 	) {
 		$this->mUserMock->method( 'isRegistered' )->willReturn( true );

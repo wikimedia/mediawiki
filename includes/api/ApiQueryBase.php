@@ -388,7 +388,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 *  ApiQueryBaseProcessRow hook will be expected.
 	 * @return IResultWrapper
 	 */
-	protected function select( $method, $extraQuery = [], array &$hookData = null ) {
+	protected function select( $method, $extraQuery = [], ?array &$hookData = null ) {
 		$queryBuilder = clone $this->getQueryBuilder();
 		if ( isset( $extraQuery['tables'] ) ) {
 			$queryBuilder->rawTables( (array)$extraQuery['tables'] );

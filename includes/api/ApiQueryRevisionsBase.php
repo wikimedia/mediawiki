@@ -152,16 +152,16 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		ApiQuery $queryModule,
 		$moduleName,
 		$paramPrefix = '',
-		RevisionStore $revisionStore = null,
-		IContentHandlerFactory $contentHandlerFactory = null,
-		ParserFactory $parserFactory = null,
-		SlotRoleRegistry $slotRoleRegistry = null,
-		ContentRenderer $contentRenderer = null,
-		ContentTransformer $contentTransformer = null,
-		CommentFormatter $commentFormatter = null,
-		TempUserCreator $tempUserCreator = null,
-		UserFactory $userFactory = null,
-		UserNameUtils $userNameUtils = null
+		?RevisionStore $revisionStore = null,
+		?IContentHandlerFactory $contentHandlerFactory = null,
+		?ParserFactory $parserFactory = null,
+		?SlotRoleRegistry $slotRoleRegistry = null,
+		?ContentRenderer $contentRenderer = null,
+		?ContentTransformer $contentTransformer = null,
+		?CommentFormatter $commentFormatter = null,
+		?TempUserCreator $tempUserCreator = null,
+		?UserFactory $userFactory = null,
+		?UserNameUtils $userNameUtils = null
 	) {
 		parent::__construct( $queryModule, $moduleName, $paramPrefix );
 		// This class is part of the stable interface and
@@ -191,7 +191,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	 * @param ApiPageSet|null $resultPageSet
 	 * @return void
 	 */
-	abstract protected function run( ApiPageSet $resultPageSet = null );
+	abstract protected function run( ?ApiPageSet $resultPageSet = null );
 
 	/**
 	 * Parse the parameters into the various instance fields.

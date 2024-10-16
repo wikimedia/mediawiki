@@ -81,7 +81,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @return DerivedPageDataUpdater
 	 */
 	private function getDerivedPageDataUpdater(
-		$page, RevisionRecord $rec = null, User $user = null
+		$page, ?RevisionRecord $rec = null, ?User $user = null
 	) {
 		if ( is_string( $page ) || $page instanceof Title ) {
 			$page = $this->getPage( $page );
@@ -781,7 +781,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	private function makeRevision(
 		PageIdentity $title,
 		$update,
-		UserIdentity $user = null,
+		?UserIdentity $user = null,
 		$comment = "testing",
 		$id = 0,
 		$parentId = 0

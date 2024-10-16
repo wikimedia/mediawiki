@@ -446,7 +446,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @param RevisionRecord|null $fromRev
 	 * @return int the count
 	 */
-	protected function getAnonCount( $pageId, RevisionRecord $fromRev = null ) {
+	protected function getAnonCount( $pageId, ?RevisionRecord $fromRev = null ) {
 		$dbr = $this->dbProvider->getReplicaDatabase();
 		$queryBuilder = $dbr->newSelectQueryBuilder()
 			->select( '1' )
@@ -475,7 +475,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @param RevisionRecord|null $fromRev
 	 * @return int the count
 	 */
-	protected function getTempCount( $pageId, RevisionRecord $fromRev = null ) {
+	protected function getTempCount( $pageId, ?RevisionRecord $fromRev = null ) {
 		if ( !$this->tempUserConfig->isKnown() ) {
 			return 0;
 		}
@@ -516,7 +516,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @param RevisionRecord|null $fromRev
 	 * @return int the count
 	 */
-	protected function getBotCount( $pageId, RevisionRecord $fromRev = null ) {
+	protected function getBotCount( $pageId, ?RevisionRecord $fromRev = null ) {
 		$dbr = $this->dbProvider->getReplicaDatabase();
 
 		$queryBuilder = $dbr->newSelectQueryBuilder()
@@ -558,8 +558,8 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @return int the count
 	 */
 	protected function getEditorsCount( $pageId,
-		RevisionRecord $fromRev = null,
-		RevisionRecord $toRev = null
+		?RevisionRecord $fromRev = null,
+		?RevisionRecord $toRev = null
 	) {
 		[ $fromRev, $toRev ] = $this->orderRevisions( $fromRev, $toRev );
 		return $this->revisionStore->countAuthorsBetween( $pageId, $fromRev,
@@ -571,7 +571,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @param RevisionRecord|null $fromRev
 	 * @return int the count
 	 */
-	protected function getRevertedCount( $pageId, RevisionRecord $fromRev = null ) {
+	protected function getRevertedCount( $pageId, ?RevisionRecord $fromRev = null ) {
 		$tagIds = [];
 
 		foreach ( ChangeTags::REVERT_TAGS as $tagName ) {
@@ -613,7 +613,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @param RevisionRecord|null $fromRev
 	 * @return int the count
 	 */
-	protected function getMinorCount( $pageId, RevisionRecord $fromRev = null ) {
+	protected function getMinorCount( $pageId, ?RevisionRecord $fromRev = null ) {
 		$dbr = $this->dbProvider->getReplicaDatabase();
 		$queryBuilder = $dbr->newSelectQueryBuilder()
 			->select( '1' )
@@ -643,8 +643,8 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 */
 	protected function getEditsCount(
 		$pageId,
-		RevisionRecord $fromRev = null,
-		RevisionRecord $toRev = null
+		?RevisionRecord $fromRev = null,
+		?RevisionRecord $toRev = null
 	) {
 		[ $fromRev, $toRev ] = $this->orderRevisions( $fromRev, $toRev );
 		return $this->revisionStore->countRevisionsBetween(
@@ -679,8 +679,8 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @phan-return array{0:RevisionRecord|null,1:RevisionRecord|null}
 	 */
 	private function orderRevisions(
-		RevisionRecord $fromRev = null,
-		RevisionRecord $toRev = null
+		?RevisionRecord $fromRev = null,
+		?RevisionRecord $toRev = null
 	) {
 		if ( $fromRev && $toRev && ( $fromRev->getTimestamp() > $toRev->getTimestamp() ||
 				( $fromRev->getTimestamp() === $toRev->getTimestamp()

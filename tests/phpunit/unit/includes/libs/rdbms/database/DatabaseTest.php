@@ -129,7 +129,7 @@ class DatabaseTest extends TestCase {
 	/**
 	 * @dataProvider provideTableName
 	 */
-	public function testTableName( $expected, $table, $format, array $alias = null ) {
+	public function testTableName( $expected, $table, $format, ?array $alias = null ) {
 		// Use MockDatabase to avoid useless stub SQLPlatformTestHelper::addIdentifierQuotes
 		$db = new MockDatabase();
 		if ( $alias ) {

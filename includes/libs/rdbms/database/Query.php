@@ -67,7 +67,7 @@ class Query {
 		string $sql,
 		$flags,
 		$queryVerb,
-		string $writeTable = null,
+		?string $writeTable = null,
 		$cleanedSql = ''
 	) {
 		$this->sql = $sql;

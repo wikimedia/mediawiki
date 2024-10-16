@@ -61,7 +61,7 @@ class ApiStashEditTest extends ApiTestCase {
 	 * @return array
 	 */
 	protected function doStash(
-		array $params = [], User $user = null, $expectedResult = 'stashed'
+		array $params = [], ?User $user = null, $expectedResult = 'stashed'
 	) {
 		$params = array_merge( [
 			'action' => 'stashedit',
@@ -134,7 +134,7 @@ class ApiStashEditTest extends ApiTestCase {
 	 * @param User|null $user User who made edit
 	 * @return string
 	 */
-	protected function getStashKey( $title = self::CLASS_NAME, $text = 'Content', User $user = null ) {
+	protected function getStashKey( $title = self::CLASS_NAME, $text = 'Content', ?User $user = null ) {
 		$titleObj = Title::newFromText( $title );
 		$content = new WikitextContent( $text );
 		if ( !$user ) {

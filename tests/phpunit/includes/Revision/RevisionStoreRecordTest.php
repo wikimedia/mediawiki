@@ -152,7 +152,7 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 		$row,
 		RevisionSlots $slots,
 		$wikiId = RevisionRecord::LOCAL,
-		string $expectedException = null
+		?string $expectedException = null
 	) {
 		$rec = new RevisionStoreRecord( $page, $user, $comment, $row, $slots, $wikiId );
 

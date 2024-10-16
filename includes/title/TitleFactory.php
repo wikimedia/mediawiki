@@ -185,7 +185,7 @@ class TitleFactory {
 	 * @param MessageLocalizer|null $localizer
 	 * @return Title
 	 */
-	public function newMainPage( MessageLocalizer $localizer = null ): Title {
+	public function newMainPage( ?MessageLocalizer $localizer = null ): Title {
 		return Title::newMainPage( $localizer );
 	}
 

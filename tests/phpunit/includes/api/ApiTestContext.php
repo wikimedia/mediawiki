@@ -16,7 +16,7 @@ class ApiTestContext extends RequestContext {
 	 * @param Authority|null $performer
 	 * @return DerivativeContext
 	 */
-	public function newTestContext( WebRequest $request, Authority $performer = null ) {
+	public function newTestContext( WebRequest $request, ?Authority $performer = null ) {
 		$context = new DerivativeContext( $this );
 		$context->setRequest( $request );
 		if ( $performer !== null ) {

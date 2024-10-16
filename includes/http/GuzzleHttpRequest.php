@@ -63,7 +63,7 @@ class GuzzleHttpRequest extends MWHttpRequest {
 	 * @throws Exception
 	 */
 	public function __construct(
-		$url, array $options = [], $caller = __METHOD__, Profiler $profiler = null
+		$url, array $options = [], $caller = __METHOD__, ?Profiler $profiler = null
 	) {
 		parent::__construct( $url, $options, $caller, $profiler );
 

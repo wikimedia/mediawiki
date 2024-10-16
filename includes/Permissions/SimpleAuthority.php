@@ -73,7 +73,7 @@ class SimpleAuthority implements Authority {
 	}
 
 	/** @inheritDoc */
-	public function isAllowed( string $permission, PermissionStatus $status = null ): bool {
+	public function isAllowed( string $permission, ?PermissionStatus $status = null ): bool {
 		return isset( $this->permissions[ $permission ] );
 	}
 
@@ -123,7 +123,7 @@ class SimpleAuthority implements Authority {
 	public function probablyCan(
 		string $action,
 		PageIdentity $target,
-		PermissionStatus $status = null
+		?PermissionStatus $status = null
 	): bool {
 		return $this->checkPermission( $action, $status );
 	}
@@ -132,18 +132,18 @@ class SimpleAuthority implements Authority {
 	public function definitelyCan(
 		string $action,
 		PageIdentity $target,
-		PermissionStatus $status = null
+		?PermissionStatus $status = null
 	): bool {
 		return $this->checkPermission( $action, $status );
 	}
 
 	/** @inheritDoc */
-	public function isDefinitelyAllowed( string $action, PermissionStatus $status = null ): bool {
+	public function isDefinitelyAllowed( string $action, ?PermissionStatus $status = null ): bool {
 		return $this->checkPermission( $action, $status );
 	}
 
 	/** @inheritDoc */
-	public function authorizeAction( string $action, PermissionStatus $status = null ): bool {
+	public function authorizeAction( string $action, ?PermissionStatus $status = null ): bool {
 		return $this->checkPermission( $action, $status );
 	}
 
@@ -151,7 +151,7 @@ class SimpleAuthority implements Authority {
 	public function authorizeRead(
 		string $action,
 		PageIdentity $target,
-		PermissionStatus $status = null
+		?PermissionStatus $status = null
 	): bool {
 		return $this->checkPermission( $action, $status );
 	}
@@ -160,7 +160,7 @@ class SimpleAuthority implements Authority {
 	public function authorizeWrite(
 		string $action,
 		PageIdentity $target,
-		PermissionStatus $status = null
+		?PermissionStatus $status = null
 	): bool {
 		return $this->checkPermission( $action, $status );
 	}

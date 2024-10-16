@@ -1304,7 +1304,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function setupCategoryTests(
-		array $fakeResults, callable $variantLinkCallback = null
+		array $fakeResults, ?callable $variantLinkCallback = null
 	): OutputPage {
 		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, true );
 
@@ -3348,9 +3348,9 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	private function newInstance(
 		array $config = [],
-		WebRequest $request = null,
+		?WebRequest $request = null,
 		$option = null,
-		Authority $performer = null
+		?Authority $performer = null
 	): OutputPage {
 		$this->overrideConfigValues( [
 			// Avoid configured skin affecting the headings

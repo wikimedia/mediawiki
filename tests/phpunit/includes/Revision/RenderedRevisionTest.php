@@ -102,7 +102,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$page,
 		$id = null,
 		$visibility = 0,
-		array $content = null
+		?array $content = null
 	) {
 		$frank = new UserIdentityValue( 9, 'Frank' );
 

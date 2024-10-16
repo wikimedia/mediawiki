@@ -1641,7 +1641,7 @@ function wfMerge(
 	string $mine,
 	string $yours,
 	?string &$simplisticMergeAttempt,
-	string &$mergeLeftovers = null
+	?string &$mergeLeftovers = null
 ): bool {
 	global $wgDiff3;
 

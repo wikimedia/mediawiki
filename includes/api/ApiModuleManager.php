@@ -64,7 +64,7 @@ class ApiModuleManager extends ContextSource {
 	 * @param ApiBase $parentModule Parent module instance will be used during instantiation
 	 * @param ObjectFactory|null $objectFactory Object factory to use when instantiating modules
 	 */
-	public function __construct( ApiBase $parentModule, ObjectFactory $objectFactory = null ) {
+	public function __construct( ApiBase $parentModule, ?ObjectFactory $objectFactory = null ) {
 		$this->mParent = $parentModule;
 		$this->objectFactory = $objectFactory ?? MediaWikiServices::getInstance()->getObjectFactory();
 	}

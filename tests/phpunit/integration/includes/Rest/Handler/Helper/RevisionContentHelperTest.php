@@ -33,7 +33,7 @@ class RevisionContentHelperTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function newHelper(
 		array $params = [],
-		Authority $authority = null
+		?Authority $authority = null
 	): RevisionContentHelper {
 		$helper = new RevisionContentHelper(
 			new ServiceOptions(

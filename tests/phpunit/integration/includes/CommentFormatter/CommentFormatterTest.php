@@ -33,7 +33,7 @@ class CommentFormatterTest extends MediaWikiIntegrationTestCase {
 			}
 
 			public function preprocess(
-				string $comment, LinkTarget $selfLinkTarget = null, $samePage = false,
+				string $comment, ?LinkTarget $selfLinkTarget = null, $samePage = false,
 				$wikiId = null, $enableSectionLinks = true
 			) {
 				if ( $comment === '' || $comment === '*' ) {
@@ -49,7 +49,7 @@ class CommentFormatterTest extends MediaWikiIntegrationTestCase {
 			}
 
 			public function preprocessUnsafe(
-				$comment, LinkTarget $selfLinkTarget = null, $samePage = false, $wikiId = null,
+				$comment, ?LinkTarget $selfLinkTarget = null, $samePage = false, $wikiId = null,
 				$enableSectionLinks = true
 			) {
 				return CommentFormatterTestUtils::dumpArray( [

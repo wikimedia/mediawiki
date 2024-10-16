@@ -120,7 +120,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @throws Exception
 	 */
 	public function __construct(
-		$url, array $options, $caller = __METHOD__, Profiler $profiler = null
+		$url, array $options, $caller = __METHOD__, ?Profiler $profiler = null
 	) {
 		$this->urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
 		if ( !array_key_exists( 'timeout', $options )

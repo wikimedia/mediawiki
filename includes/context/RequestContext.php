@@ -198,7 +198,7 @@ class RequestContext implements IContextSource, MutableContext {
 	/**
 	 * @param Title|null $title
 	 */
-	public function setTitle( Title $title = null ) {
+	public function setTitle( ?Title $title = null ) {
 		$this->title = $title;
 		// Clear cache of derived getters
 		$this->wikipage = null;

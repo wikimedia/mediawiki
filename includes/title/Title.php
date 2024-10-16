@@ -678,7 +678,7 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 	 * @param MessageLocalizer|null $localizer An optional context to use (since 1.34)
 	 * @return Title
 	 */
-	public static function newMainPage( MessageLocalizer $localizer = null ) {
+	public static function newMainPage( ?MessageLocalizer $localizer = null ) {
 		static $recursionGuard = false;
 
 		$title = null;

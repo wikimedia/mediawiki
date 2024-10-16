@@ -47,14 +47,14 @@ interface JsonDeserializer {
 	 * @throws InvalidArgumentException if the passed $json can't be deserialized.
 	 * @return mixed
 	 */
-	public function deserialize( $json, string $expectedClass = null );
+	public function deserialize( $json, ?string $expectedClass = null );
 
 	/**
 	 * Backwards-compatibility alias for deserialize()
 	 *
 	 * @deprecated since 1.43
 	 */
-	public function unserialize( $json, string $expectedClass = null );
+	public function unserialize( $json, ?string $expectedClass = null );
 
 	/**
 	 * Helper to deserialize an array of JsonDeserializable instances or simple types.

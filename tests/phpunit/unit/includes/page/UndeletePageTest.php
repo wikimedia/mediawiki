@@ -38,10 +38,10 @@ class UndeletePageTest extends MediaWikiUnitTestCase {
 	 * @return UndeletePage
 	 */
 	private function getUndeletePage(
-		ProperPageIdentity $page = null,
-		WikiPageFactory $wpFactory = null,
-		NamespaceInfo $namespaceInfo = null,
-		ArchivedRevisionLookup $archivedRevisionLookup = null
+		?ProperPageIdentity $page = null,
+		?WikiPageFactory $wpFactory = null,
+		?NamespaceInfo $namespaceInfo = null,
+		?ArchivedRevisionLookup $archivedRevisionLookup = null
 	): UndeletePage {
 		return new UndeletePage(
 			$this->createHookContainer(),

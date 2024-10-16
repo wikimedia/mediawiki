@@ -39,7 +39,7 @@ class DataMessageValue extends MessageValue {
 	 * @param array|null $data Structured data representing the concept
 	 *  behind this message.
 	 */
-	public function __construct( $key, $params = [], $code = null, array $data = null ) {
+	public function __construct( $key, $params = [], $code = null, ?array $data = null ) {
 		parent::__construct( $key, $params );
 
 		$this->code = $code ?? $key;
@@ -54,7 +54,7 @@ class DataMessageValue extends MessageValue {
 	 * @param array|null $data
 	 * @return DataMessageValue
 	 */
-	public static function new( $key, $params = [], $code = null, array $data = null ) {
+	public static function new( $key, $params = [], $code = null, ?array $data = null ) {
 		return new DataMessageValue( $key, $params, $code, $data );
 	}
 

@@ -54,7 +54,7 @@ class ApiAuthManagerHelper {
 	 * @param ApiBase $module API module, for context and parameters
 	 * @param AuthManager|null $authManager
 	 */
-	public function __construct( ApiBase $module, AuthManager $authManager = null ) {
+	public function __construct( ApiBase $module, ?AuthManager $authManager = null ) {
 		$this->module = $module;
 
 		$params = $module->extractRequestParams();
@@ -68,7 +68,7 @@ class ApiAuthManagerHelper {
 	 * @param AuthManager|null $authManager
 	 * @return ApiAuthManagerHelper
 	 */
-	public static function newForModule( ApiBase $module, AuthManager $authManager = null ) {
+	public static function newForModule( ApiBase $module, ?AuthManager $authManager = null ) {
 		return new self( $module, $authManager );
 	}
 

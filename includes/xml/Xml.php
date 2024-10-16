@@ -225,7 +225,7 @@ class Xml {
 	 * @deprecated since 1.42
 	 */
 	public static function languageSelector( $selected, $customisedOnly = true,
-		$inLanguage = null, $overrideAttrs = [], Message $msg = null
+		$inLanguage = null, $overrideAttrs = [], ?Message $msg = null
 	) {
 		wfDeprecated( __METHOD__, '1.42' );
 		$languageCode = MediaWikiServices::getInstance()->getMainConfig()

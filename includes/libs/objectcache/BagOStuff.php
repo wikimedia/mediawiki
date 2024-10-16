@@ -394,9 +394,9 @@ abstract class BagOStuff implements
 	 */
 	abstract public function deleteObjectsExpiringBefore(
 		$timestamp,
-		callable $progress = null,
+		?callable $progress = null,
 		$limit = INF,
-		string $tag = null
+		?string $tag = null
 	);
 
 	/**

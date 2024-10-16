@@ -595,7 +595,7 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	public static function formatRaw(
-		$num, $raw, $language, MagicWordFactory $magicWordFactory = null
+		$num, $raw, $language, ?MagicWordFactory $magicWordFactory = null
 	) {
 		if ( $raw !== null && $raw !== '' ) {
 			if ( !$magicWordFactory ) {

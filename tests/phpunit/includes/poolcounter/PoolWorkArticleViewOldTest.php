@@ -30,7 +30,7 @@ class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {
 	 */
 	protected function newPoolWorkArticleView(
 		WikiPage $page,
-		RevisionRecord $rev = null,
+		?RevisionRecord $rev = null,
 		$options = null
 	) {
 		if ( !$options ) {

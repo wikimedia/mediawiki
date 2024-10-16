@@ -1212,7 +1212,7 @@ class ApiMainTest extends ApiTestCase {
 		?string $expectedVary,
 		string $expectedCacheControl,
 		array $requestData = [],
-		Config $config = null
+		?Config $config = null
 	) {
 		$req = new FauxRequest( $requestData );
 		$ctx = new RequestContext();

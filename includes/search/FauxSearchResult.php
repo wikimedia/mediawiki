@@ -12,8 +12,8 @@ class FauxSearchResult extends SearchResult {
 
 	public function __construct(
 		Title $title,
-		RevisionRecord $revRecord = null,
-		File $image = null,
+		?RevisionRecord $revRecord = null,
+		?File $image = null,
 		$text = ''
 	) {
 		parent::__construct();

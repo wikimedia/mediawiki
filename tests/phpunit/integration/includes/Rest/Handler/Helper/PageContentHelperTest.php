@@ -38,7 +38,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function newHelper(
 		array $params = [],
-		Authority $authority = null
+		?Authority $authority = null
 	): PageContentHelper {
 		$helper = new PageContentHelper(
 			new ServiceOptions(

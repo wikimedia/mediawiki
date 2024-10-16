@@ -1091,7 +1091,7 @@ class SpecialBlock extends FormSpecialPage {
 	 *     suggestions
 	 * @return string[]
 	 */
-	public static function getSuggestedDurations( Language $lang = null, $includeOther = true ) {
+	public static function getSuggestedDurations( ?Language $lang = null, $includeOther = true ) {
 		wfDeprecated( __METHOD__, '1.42' );
 		$lang ??= MediaWikiServices::getInstance()->getContentLanguage();
 		return $lang->getBlockDurations( $includeOther );
@@ -1134,7 +1134,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * @param HTMLForm|null $form
 	 * @return bool|string|array|Status As documented for HTMLForm::trySubmit.
 	 */
-	public function onSubmit( array $data, HTMLForm $form = null ) {
+	public function onSubmit( array $data, ?HTMLForm $form = null ) {
 		return self::processFormInternal(
 			$data,
 			$this->getAuthority(),

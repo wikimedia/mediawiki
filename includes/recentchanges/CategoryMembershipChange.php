@@ -80,7 +80,7 @@ class CategoryMembershipChange {
 	 * @param bool $forImport Whether this was caused by a import
 	 */
 	public function __construct(
-		Title $pageTitle, BacklinkCache $backlinkCache, RevisionRecord $revision = null, bool $forImport = false
+		Title $pageTitle, BacklinkCache $backlinkCache, ?RevisionRecord $revision = null, bool $forImport = false
 	) {
 		// TODO: Update callers of this method to pass for import
 		$this->pageTitle = $pageTitle;

@@ -24,5 +24,5 @@ interface SearchResultProvideThumbnailHook {
 	 *   is pageId and value is either a valid SearchResultThumbnail for given page or null
 	 * @param int|null $size size of thumbnail height and width in points
 	 */
-	public function onSearchResultProvideThumbnail( array $pageIdentities, &$thumbnails, int $size = null );
+	public function onSearchResultProvideThumbnail( array $pageIdentities, &$thumbnails, ?int $size = null );
 }

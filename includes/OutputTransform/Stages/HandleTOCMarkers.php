@@ -148,7 +148,7 @@ class HandleTOCMarkers extends ContentTextTransformStage {
 	 * @param Language|null $lang Language for the toc title, defaults to user language
 	 * @return string Full html of the TOC
 	 */
-	private static function tocList( $toc, Language $lang = null ) {
+	private static function tocList( $toc, ?Language $lang = null ) {
 		$lang ??= RequestContext::getMain()->getLanguage();
 
 		$title = wfMessage( 'toc' )->inLanguage( $lang )->escaped();
@@ -186,7 +186,7 @@ class HandleTOCMarkers extends ContentTextTransformStage {
 	 *   - 'maxtoclevel' Max TOC level to generate
 	 * @return string HTML fragment
 	 */
-	private static function generateTOC( ?TOCData $tocData, Language $lang = null, array $options = [] ): string {
+	private static function generateTOC( ?TOCData $tocData, ?Language $lang = null, array $options = [] ): string {
 		$toc = '';
 		$lastLevel = 0;
 		$maxTocLevel = $options['maxtoclevel'] ?? null;

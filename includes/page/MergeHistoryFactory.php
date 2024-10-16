@@ -39,6 +39,6 @@ interface MergeHistoryFactory {
 	public function newMergeHistory(
 		PageIdentity $source,
 		PageIdentity $destination,
-		string $timestamp = null
+		?string $timestamp = null
 	): MergeHistory;
 }

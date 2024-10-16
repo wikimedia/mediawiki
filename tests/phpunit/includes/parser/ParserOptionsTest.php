@@ -169,7 +169,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 	 * @param array $options Options to set
 	 * @param array|null $usedOptions
 	 */
-	public function testIsSafeToCache( bool $expect, array $options, array $usedOptions = null ) {
+	public function testIsSafeToCache( bool $expect, array $options, ?array $usedOptions = null ) {
 		$popt = ParserOptions::newFromAnon();
 		foreach ( $options as $name => $value ) {
 			$popt->setOption( $name, $value );

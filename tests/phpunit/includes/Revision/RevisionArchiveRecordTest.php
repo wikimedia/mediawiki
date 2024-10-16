@@ -140,7 +140,7 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 		$row,
 		RevisionSlots $slots,
 		$wikiId = RevisionRecord::LOCAL,
-		string $expectedException = null
+		?string $expectedException = null
 	) {
 		$rec = new RevisionArchiveRecord( $page, $user, $comment, $row, $slots, $wikiId );
 

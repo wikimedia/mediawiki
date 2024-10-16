@@ -84,7 +84,7 @@ class LocalRepo extends FileRepo {
 	/** @var bool */
 	protected $reserializeMetadata = false;
 
-	public function __construct( array $info = null ) {
+	public function __construct( ?array $info = null ) {
 		parent::__construct( $info );
 
 		$this->dbDomain = WikiMap::getCurrentWikiDbDomain();

@@ -84,7 +84,7 @@ class SkinFactory {
 	 * @param true|null $skippable Whether the skin is skippable and should be hidden
 	 *   from user preferences. By default, this is determined based by $wgSkipSkins.
 	 */
-	public function register( $name, $displayName, $spec, bool $skippable = null ) {
+	public function register( $name, $displayName, $spec, ?bool $skippable = null ) {
 		if ( !is_callable( $spec ) ) {
 			if ( is_array( $spec ) ) {
 				if ( !isset( $spec['args'] ) ) {

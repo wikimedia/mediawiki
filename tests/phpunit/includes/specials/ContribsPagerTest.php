@@ -70,7 +70,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 		] );
 	}
 
-	private function getContribsPager( array $options, UserIdentity $targetUser = null ) {
+	private function getContribsPager( array $options, ?UserIdentity $targetUser = null ) {
 		return new ContribsPager(
 			new RequestContext(),
 			$options,

@@ -346,7 +346,7 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 	/**
 	 * @dataProvider provideGetContent
 	 */
-	public function testGetContent( $expected, $title, Content $contentObj = null ) {
+	public function testGetContent( $expected, $title, ?Content $contentObj = null ) {
 		$context = $this->getResourceLoaderContext( [], new EmptyResourceLoader );
 		$module = $this->getMockBuilder( WikiModule::class )
 			->onlyMethods( [ 'getContentObj' ] )->getMock();

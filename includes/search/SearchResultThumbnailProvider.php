@@ -64,7 +64,7 @@ class SearchResultThumbnailProvider {
 	 * @param int|null $size
 	 * @return SearchResultThumbnail|null
 	 */
-	public function buildSearchResultThumbnailFromFile( File $file, int $size = null ): ?SearchResultThumbnail {
+	public function buildSearchResultThumbnailFromFile( File $file, ?int $size = null ): ?SearchResultThumbnail {
 		$size ??= self::THUMBNAIL_SIZE;
 
 		$thumb = $file->transform( [ 'width' => $size ] );

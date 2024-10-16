@@ -57,9 +57,9 @@ class GenderCache {
 	private UserOptionsLookup $userOptionsLookup;
 
 	public function __construct(
-		NamespaceInfo $nsInfo = null,
-		IConnectionProvider $dbProvider = null,
-		UserOptionsLookup $userOptionsLookup = null
+		?NamespaceInfo $nsInfo = null,
+		?IConnectionProvider $dbProvider = null,
+		?UserOptionsLookup $userOptionsLookup = null
 	) {
 		$this->nsInfo = $nsInfo ?? MediaWikiServices::getInstance()->getNamespaceInfo();
 		$this->dbProvider = $dbProvider;

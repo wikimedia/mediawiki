@@ -54,7 +54,7 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function getAction(
 		string $requestedAction,
-		WikiPage $wikiPage = null
+		?WikiPage $wikiPage = null
 	) {
 		$context = $this->getContext( $requestedAction );
 
@@ -71,8 +71,8 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 	 * @return Article
 	 */
 	private function getArticle(
-		WikiPage $wikiPage = null,
-		IContextSource $context = null
+		?WikiPage $wikiPage = null,
+		?IContextSource $context = null
 	): Article {
 		$context ??= $this->getContext();
 		if ( $wikiPage !== null ) {
@@ -95,7 +95,7 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 	 * @return IContextSource
 	 */
 	private function getContext(
-		string $requestedAction = null
+		?string $requestedAction = null
 	): IContextSource {
 		$request = new FauxRequest( [ 'action' => $requestedAction ] );
 

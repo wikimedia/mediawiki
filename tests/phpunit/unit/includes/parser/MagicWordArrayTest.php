@@ -119,7 +119,7 @@ class MagicWordArrayTest extends MediaWikiUnitTestCase {
 	public function testMatchStartAndRemove(
 		string $input,
 		$expectedMatches,
-		string $expectedText = null
+		?string $expectedText = null
 	) {
 		$array = new MagicWordArray( [ 'ID' ], $this->getFactory() );
 		$text = $input;
@@ -143,7 +143,7 @@ class MagicWordArrayTest extends MediaWikiUnitTestCase {
 	public function testMatchAndRemove(
 		string $input,
 		array $expectedMatches = [],
-		string $expectedText = null
+		?string $expectedText = null
 	) {
 		$array = new MagicWordArray( [ 'ID' ], $this->getFactory() );
 		$text = $input;
@@ -167,7 +167,7 @@ class MagicWordArrayTest extends MediaWikiUnitTestCase {
 	public function testMatchAndRemoveMultiple(
 		string $input,
 		array $expectedMatches = [],
-		string $expectedText = null
+		?string $expectedText = null
 	) {
 		$array = new MagicWordArray( array_keys( self::MAGIC_WORDS ), $this->getFactory() );
 		$text = $input;

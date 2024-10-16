@@ -246,7 +246,7 @@ class FileBackendDBRepoWrapper extends FileBackend {
 		return $this->backend->getFeatures();
 	}
 
-	public function clearCache( array $paths = null ) {
+	public function clearCache( ?array $paths = null ) {
 		$this->backend->clearCache( null ); // clear all
 	}
 

@@ -125,7 +125,7 @@ trait ApiMessageTrait {
 		return $this->apiCode;
 	}
 
-	public function setApiCode( $code, array $data = null ) {
+	public function setApiCode( $code, ?array $data = null ) {
 		if ( $code !== null && !ApiErrorFormatter::isValidApiCode( $code ) ) {
 			throw new InvalidArgumentException( "Invalid code \"$code\"" );
 		}

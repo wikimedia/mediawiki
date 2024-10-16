@@ -62,7 +62,7 @@ class UltimateAuthority implements Authority {
 	}
 
 	/** @inheritDoc */
-	public function isAllowed( string $permission, PermissionStatus $status = null ): bool {
+	public function isAllowed( string $permission, ?PermissionStatus $status = null ): bool {
 		return true;
 	}
 
@@ -88,7 +88,7 @@ class UltimateAuthority implements Authority {
 	public function probablyCan(
 		string $action,
 		PageIdentity $target,
-		PermissionStatus $status = null
+		?PermissionStatus $status = null
 	): bool {
 		return true;
 	}
@@ -97,18 +97,18 @@ class UltimateAuthority implements Authority {
 	public function definitelyCan(
 		string $action,
 		PageIdentity $target,
-		PermissionStatus $status = null
+		?PermissionStatus $status = null
 	): bool {
 		return true;
 	}
 
 	/** @inheritDoc */
-	public function isDefinitelyAllowed( string $action, PermissionStatus $status = null ): bool {
+	public function isDefinitelyAllowed( string $action, ?PermissionStatus $status = null ): bool {
 		return true;
 	}
 
 	/** @inheritDoc */
-	public function authorizeAction( string $action, PermissionStatus $status = null ): bool {
+	public function authorizeAction( string $action, ?PermissionStatus $status = null ): bool {
 		return true;
 	}
 
@@ -116,7 +116,7 @@ class UltimateAuthority implements Authority {
 	public function authorizeRead(
 		string $action,
 		PageIdentity $target,
-		PermissionStatus $status = null
+		?PermissionStatus $status = null
 	): bool {
 		return true;
 	}
@@ -125,7 +125,7 @@ class UltimateAuthority implements Authority {
 	public function authorizeWrite(
 		string $action,
 		PageIdentity $target,
-		PermissionStatus $status = null
+		?PermissionStatus $status = null
 	): bool {
 		return true;
 	}

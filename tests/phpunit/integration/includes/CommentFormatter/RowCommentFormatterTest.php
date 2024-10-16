@@ -21,7 +21,7 @@ class RowCommentFormatterTest extends \MediaWikiIntegrationTestCase {
 			}
 
 			public function preprocess(
-				string $comment, LinkTarget $selfLinkTarget = null, $samePage = false,
+				string $comment, ?LinkTarget $selfLinkTarget = null, $samePage = false,
 				$wikiId = null, $enableSectionLinks = true
 			) {
 				if ( $comment === '' || $comment === '*' ) {

@@ -232,7 +232,7 @@ class CategoryMembershipChangeJob extends Job {
 	}
 
 	private function getExplicitCategoriesChanges(
-		WikiPage $page, RevisionRecord $newRev, RevisionRecord $oldRev = null
+		WikiPage $page, RevisionRecord $newRev, ?RevisionRecord $oldRev = null
 	) {
 		// Inject the same timestamp for both revision parses to avoid seeing category changes
 		// due to time-based parser functions. Inject the same page title for the parses too.

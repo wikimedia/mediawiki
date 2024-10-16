@@ -39,7 +39,7 @@ class DBTransactionError extends DBExpectedError implements INormalizedException
 	 * @param array $errorParams PSR-3 message context
 	 */
 	public function __construct(
-		?IDatabase $db, $error, array $params = [], \Throwable $prev = null, $errorParams = []
+		?IDatabase $db, $error, array $params = [], ?\Throwable $prev = null, $errorParams = []
 	) {
 		$this->normalizedMessage = $error;
 		$this->messageContext = $errorParams;

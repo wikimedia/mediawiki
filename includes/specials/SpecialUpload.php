@@ -78,10 +78,10 @@ class SpecialUpload extends SpecialPage {
 	 * @param WatchlistManager|null $watchlistManager
 	 */
 	public function __construct(
-		RepoGroup $repoGroup = null,
-		UserOptionsLookup $userOptionsLookup = null,
-		NamespaceInfo $nsInfo = null,
-		WatchlistManager $watchlistManager = null
+		?RepoGroup $repoGroup = null,
+		?UserOptionsLookup $userOptionsLookup = null,
+		?NamespaceInfo $nsInfo = null,
+		?WatchlistManager $watchlistManager = null
 	) {
 		parent::__construct( 'Upload', 'upload' );
 		// This class is extended and therefor fallback to global state - T265300
@@ -919,7 +919,7 @@ class SpecialUpload extends SpecialPage {
 	 * @return string
 	 */
 	public static function getInitialPageText( $comment = '', $license = '',
-		$copyStatus = '', $source = '', Config $config = null
+		$copyStatus = '', $source = '', ?Config $config = null
 	) {
 		if ( $config === null ) {
 			wfDebug( __METHOD__ . ' called without a Config instance passed to it' );

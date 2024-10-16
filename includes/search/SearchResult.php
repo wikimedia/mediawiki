@@ -54,7 +54,7 @@ class SearchResult {
 	 * @param ISearchResultSet|null $parentSet
 	 * @return SearchResult
 	 */
-	public static function newFromTitle( $title, ISearchResultSet $parentSet = null ) {
+	public static function newFromTitle( $title, ?ISearchResultSet $parentSet = null ) {
 		$result = new RevisionSearchResult( $title );
 		if ( $parentSet ) {
 			$parentSet->augmentResult( $result );

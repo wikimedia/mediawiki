@@ -172,8 +172,8 @@ class ResourceLoader implements LoggerAwareInterface {
 	 */
 	public function __construct(
 		Config $config,
-		LoggerInterface $logger = null,
-		DependencyStore $tracker = null,
+		?LoggerInterface $logger = null,
+		?DependencyStore $tracker = null,
 		array $params = []
 	) {
 		$this->maxageVersioned = $params['maxageVersioned'] ?? 30 * 24 * 60 * 60;
@@ -268,7 +268,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @throws InvalidArgumentException If a module name contains illegal characters (pipes or commas)
 	 * @throws InvalidArgumentException If the module info is not an array
 	 */
-	public function register( $name, array $info = null ) {
+	public function register( $name, ?array $info = null ) {
 		// Allow multiple modules to be registered in one call
 		$registrations = is_array( $name ) ? $name : [ $name => $info ];
 		foreach ( $registrations as $name => $info ) {

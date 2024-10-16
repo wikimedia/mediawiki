@@ -1366,9 +1366,9 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 	public function deleteObjectsExpiringBefore(
 		$timestamp,
-		callable $progress = null,
+		?callable $progress = null,
 		$limit = INF,
-		string $tag = null
+		?string $tag = null
 	) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
@@ -1439,7 +1439,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$timestamp,
 		$limit,
 		&$keysDeletedCount = 0,
-		array $progress = null
+		?array $progress = null
 	) {
 		$cutoffUnix = ConvertibleTimestamp::convert( TS_UNIX, $timestamp );
 		if ( $this->multiPrimaryMode ) {

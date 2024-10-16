@@ -175,7 +175,7 @@ class RevisionStoreRecord extends RevisionRecord {
 	 *
 	 * @return UserIdentity The identity of the revision author, null if access is forbidden.
 	 */
-	public function getUser( $audience = self::FOR_PUBLIC, Authority $performer = null ) {
+	public function getUser( $audience = self::FOR_PUBLIC, ?Authority $performer = null ) {
 		// overwritten just to add a guarantee to the contract
 		return parent::getUser( $audience, $performer );
 	}
@@ -186,7 +186,7 @@ class RevisionStoreRecord extends RevisionRecord {
 	 *
 	 * @return CommentStoreComment The revision comment, null if access is forbidden.
 	 */
-	public function getComment( $audience = self::FOR_PUBLIC, Authority $performer = null ) {
+	public function getComment( $audience = self::FOR_PUBLIC, ?Authority $performer = null ) {
 		// overwritten just to add a guarantee to the contract
 		return parent::getComment( $audience, $performer );
 	}

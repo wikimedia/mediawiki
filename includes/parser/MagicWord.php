@@ -84,7 +84,7 @@ class MagicWord {
 	 * @param bool $cs If magic word is case sensitive
 	 * @param Language|null $contentLanguage
 	 */
-	public function __construct( $id = null, $syn = [], $cs = false, Language $contentLanguage = null ) {
+	public function __construct( $id = null, $syn = [], $cs = false, ?Language $contentLanguage = null ) {
 		$this->mId = $id;
 		$this->mSynonyms = (array)$syn;
 		$this->mCaseSensitive = $cs;

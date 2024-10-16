@@ -178,7 +178,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @param IContextSource|null $context
 	 * @param LinkRenderer|null $linkRenderer
 	 */
-	public function __construct( IContextSource $context = null, LinkRenderer $linkRenderer = null ) {
+	public function __construct( ?IContextSource $context = null, ?LinkRenderer $linkRenderer = null ) {
 		if ( $context ) {
 			$this->setContext( $context );
 		}
@@ -642,7 +642,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 *  "title". Valid values (non-exhaustive list): 'first', 'last', 'prev', 'next', 'asc', 'desc'.
 	 * @return string HTML fragment
 	 */
-	protected function makeLink( $text, array $query = null, $type = null ) {
+	protected function makeLink( $text, ?array $query = null, $type = null ) {
 		$attrs = [];
 		if ( $query !== null && in_array( $type, [ 'prev', 'next' ] ) ) {
 			$attrs['rel'] = $type;

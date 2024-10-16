@@ -214,7 +214,7 @@ class WikitextContent extends TextContent {
 	 *
 	 * @return bool
 	 */
-	public function isCountable( $hasLinks = null, Title $title = null ) {
+	public function isCountable( $hasLinks = null, ?Title $title = null ) {
 		$articleCountMethod = MediaWikiServices::getInstance()->getMainConfig()
 			->get( MainConfigNames::ArticleCountMethod );
 

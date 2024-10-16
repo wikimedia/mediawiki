@@ -115,8 +115,8 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * - if $appendModule is true, the Api module $module
 	 * @throws ApiUsageException
 	 */
-	protected function doApiRequest( array $params, array $session = null,
-		$appendModule = false, Authority $performer = null, $tokenType = null,
+	protected function doApiRequest( array $params, ?array $session = null,
+		$appendModule = false, ?Authority $performer = null, $tokenType = null,
 		$paramPrefix = null
 	) {
 		global $wgRequest;
@@ -220,8 +220,8 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * @param string|null $paramPrefix Prefix to prepend to parameters
 	 * @return array Result of the API call
 	 */
-	protected function doApiRequestWithToken( array $params, array $session = null,
-		Authority $performer = null, $tokenType = 'auto', $paramPrefix = null
+	protected function doApiRequestWithToken( array $params, ?array $session = null,
+		?Authority $performer = null, $tokenType = 'auto', $paramPrefix = null
 	) {
 		return $this->doApiRequest( $params, $session, false, $performer, $tokenType, $paramPrefix );
 	}
@@ -257,7 +257,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * @param int $httpCode
 	 */
 	protected function setExpectedApiException(
-		$msg, $code = null, array $data = null, $httpCode = 0
+		$msg, $code = null, ?array $data = null, $httpCode = 0
 	) {
 		$expected = ApiUsageException::newWithMessage( null, $msg, $code, $data, $httpCode );
 		$this->expectException( ApiUsageException::class );

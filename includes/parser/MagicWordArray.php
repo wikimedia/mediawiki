@@ -51,7 +51,7 @@ class MagicWordArray {
 	 * @param string[] $names
 	 * @param MagicWordFactory|null $factory
 	 */
-	public function __construct( $names = [], MagicWordFactory $factory = null ) {
+	public function __construct( $names = [], ?MagicWordFactory $factory = null ) {
 		$this->names = $names;
 		$this->factory = $factory ?: MediaWikiServices::getInstance()->getMagicWordFactory();
 	}

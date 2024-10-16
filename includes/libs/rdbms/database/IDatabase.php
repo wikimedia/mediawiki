@@ -774,7 +774,7 @@ interface IDatabase extends IReadableDatabase {
 	 *   passing this enables cancellation of unclosed nested sections [optional]
 	 * @throws DBError If an error occurs, {@see query}
 	 */
-	public function cancelAtomic( $fname = __METHOD__, AtomicSectionIdentifier $sectionId = null );
+	public function cancelAtomic( $fname = __METHOD__, ?AtomicSectionIdentifier $sectionId = null );
 
 	/**
 	 * Perform an atomic section of reversible SQL statements from a callback

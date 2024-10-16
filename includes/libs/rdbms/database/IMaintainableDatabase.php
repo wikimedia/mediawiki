@@ -50,10 +50,10 @@ interface IMaintainableDatabase extends IDatabase {
 	 */
 	public function sourceFile(
 		$filename,
-		callable $lineCallback = null,
-		callable $resultCallback = null,
+		?callable $lineCallback = null,
+		?callable $resultCallback = null,
 		$fname = false,
-		callable $inputCallback = null
+		?callable $inputCallback = null
 	);
 
 	/**
@@ -71,10 +71,10 @@ interface IMaintainableDatabase extends IDatabase {
 	 */
 	public function sourceStream(
 		$fp,
-		callable $lineCallback = null,
-		callable $resultCallback = null,
+		?callable $lineCallback = null,
+		?callable $resultCallback = null,
 		$fname = __METHOD__,
-		callable $inputCallback = null
+		?callable $inputCallback = null
 	);
 
 	/**

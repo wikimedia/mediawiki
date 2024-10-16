@@ -1505,7 +1505,7 @@ class ParserOptions {
 	 * @return bool
 	 * @since 1.30
 	 */
-	public function isSafeToCache( array $usedOptions = null ) {
+	public function isSafeToCache( ?array $usedOptions = null ) {
 		$defaults = self::getDefaults();
 		$inCacheKey = self::getCacheVaryingOptionsHash();
 		$usedOptions ??= array_keys( $this->options );

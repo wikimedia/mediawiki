@@ -1483,7 +1483,7 @@ abstract class Maintenance {
 	 *
 	 * @since 1.43
 	 */
-	protected function prompt( string $prompt, string $default = null ): ?string {
+	protected function prompt( string $prompt, ?string $default = null ): ?string {
 		$defaultText = $default === null ? ' > ' : " [{$default}] > ";
 		$promptWithDefault = $prompt . $defaultText;
 		$line = self::readconsole( $promptWithDefault );

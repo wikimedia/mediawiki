@@ -133,7 +133,7 @@ abstract class DatabaseUpdater {
 	protected function __construct(
 		IMaintainableDatabase &$db,
 		$shared,
-		Maintenance $maintenance = null
+		?Maintenance $maintenance = null
 	) {
 		$this->db = $db;
 		$this->db->setFlag( DBO_DDLMODE );
@@ -229,7 +229,7 @@ abstract class DatabaseUpdater {
 	public static function newForDB(
 		IMaintainableDatabase $db,
 		$shared = false,
-		Maintenance $maintenance = null
+		?Maintenance $maintenance = null
 	) {
 		$type = $db->getType();
 		if ( in_array( $type, Installer::getDBTypes() ) ) {

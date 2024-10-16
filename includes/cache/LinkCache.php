@@ -81,7 +81,7 @@ class LinkCache implements LoggerAwareInterface {
 		TitleFormatter $titleFormatter,
 		WANObjectCache $cache,
 		NamespaceInfo $nsInfo,
-		ILoadBalancer $loadBalancer = null
+		?ILoadBalancer $loadBalancer = null
 	) {
 		$this->entries = new MapCacheLRU( self::MAX_SIZE );
 		$this->wanCache = $cache;
@@ -402,7 +402,7 @@ class LinkCache implements LoggerAwareInterface {
 	 */
 	private function getGoodLinkRowInternal(
 		TitleValue $link,
-		callable $fetchCallback = null,
+		?callable $fetchCallback = null,
 		int $queryFlags = IDBAccessObject::READ_NORMAL
 	): array {
 		$callerShouldAddGoodLink = false;
@@ -479,7 +479,7 @@ class LinkCache implements LoggerAwareInterface {
 	public function getGoodLinkRow(
 		int $ns,
 		string $dbkey,
-		callable $fetchCallback = null,
+		?callable $fetchCallback = null,
 		int $queryFlags = IDBAccessObject::READ_NORMAL
 	): ?stdClass {
 		$link = TitleValue::tryNew( $ns, $dbkey );

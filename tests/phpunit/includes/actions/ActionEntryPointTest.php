@@ -58,7 +58,7 @@ class ActionEntryPointTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @return ActionEntryPoint
 	 */
-	private function getEntryPoint( $environment = null, RequestContext $context = null ) {
+	private function getEntryPoint( $environment = null, ?RequestContext $context = null ) {
 		if ( !$environment ) {
 			$environment = new MockEnvironment();
 		}

@@ -1655,7 +1655,7 @@ class SpecialPageFactory {
 	 * @return bool|Title
 	 */
 	public function executePath( $path, IContextSource $context, $including = false,
-		LinkRenderer $linkRenderer = null
+		?LinkRenderer $linkRenderer = null
 	) {
 		if ( $path instanceof PageReference ) {
 			$path = $path->getDBkey();
@@ -1742,7 +1742,7 @@ class SpecialPageFactory {
 	 * @return bool|Title
 	 */
 	public function capturePath(
-		PageReference $page, IContextSource $context, LinkRenderer $linkRenderer = null
+		PageReference $page, IContextSource $context, ?LinkRenderer $linkRenderer = null
 	) {
 		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgUser,MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle
 		global $wgTitle, $wgOut, $wgRequest, $wgUser, $wgLang;

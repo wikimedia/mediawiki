@@ -81,7 +81,7 @@ class Thumbnail404EntryPointTest extends MediaWikiIntegrationTestCase {
 	 * @return Thumbnail404EntryPoint
 	 */
 	private function getEntryPoint(
-		MockEnvironment $environment = null,
+		?MockEnvironment $environment = null,
 		$request = null
 	) {
 		if ( !$request && $environment ) {

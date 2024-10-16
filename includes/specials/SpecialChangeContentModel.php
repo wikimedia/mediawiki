@@ -204,7 +204,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 	 * correspond to the human readable text in the drop-down list. The array values
 	 * correspond to the <option value="">.
 	 */
-	private function getOptionsForTitle( Title $title = null ) {
+	private function getOptionsForTitle( ?Title $title = null ) {
 		$models = $this->contentHandlerFactory->getContentModels();
 		$options = [];
 		foreach ( $models as $model ) {

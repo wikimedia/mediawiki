@@ -215,7 +215,7 @@ class BotPasswordStore {
 	 */
 	public function insertBotPassword(
 		BotPassword $botPassword,
-		Password $password = null
+		?Password $password = null
 	): StatusValue {
 		$res = $this->validateBotPassword( $botPassword );
 		if ( !$res->isGood() ) {
@@ -261,7 +261,7 @@ class BotPasswordStore {
 	 */
 	public function updateBotPassword(
 		BotPassword $botPassword,
-		Password $password = null
+		?Password $password = null
 	): StatusValue {
 		$res = $this->validateBotPassword( $botPassword );
 		if ( !$res->isGood() ) {

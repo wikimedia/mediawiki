@@ -472,7 +472,7 @@ interface ILoadBalancer {
 	 * @param string $name Callback name
 	 * @param callable|null $callback
 	 */
-	public function setTransactionListener( $name, callable $callback = null );
+	public function setTransactionListener( $name, ?callable $callback = null );
 
 	/**
 	 * Make certain table names use their own database, schema, and table prefix

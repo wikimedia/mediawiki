@@ -141,7 +141,7 @@ class JsonCodec
 		return $this->deserialize( $json, $expectedClass );
 	}
 
-	public function deserialize( $json, string $expectedClass = null ) {
+	public function deserialize( $json, ?string $expectedClass = null ) {
 		Assert::parameterType( [ 'stdClass', 'array', 'string' ], $json, '$json' );
 		Assert::precondition(
 			!$expectedClass ||

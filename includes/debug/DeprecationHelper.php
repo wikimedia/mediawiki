@@ -161,8 +161,8 @@ trait DeprecationHelper {
 	 */
 	protected function deprecateDynamicPropertiesAccess(
 		string $version,
-		string $class = null,
-		string $component = null
+		?string $class = null,
+		?string $component = null
 	) {
 		$this->dynamicPropertiesAccessDeprecated = [ $version, $class ?: __CLASS__, $component ];
 	}

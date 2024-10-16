@@ -489,7 +489,7 @@ abstract class Module implements LoggerAwareInterface {
 	 * @param Context|null $context
 	 * @return string[] List of module names as strings
 	 */
-	public function getDependencies( Context $context = null ) {
+	public function getDependencies( ?Context $context = null ) {
 		// Stub, override expected
 		return [];
 	}

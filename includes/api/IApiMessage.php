@@ -63,7 +63,7 @@ interface IApiMessage extends MessageSpecifier {
 	 * @param string|null $code If null, uses the default (see self::getApiCode())
 	 * @param array|null $data If non-null, passed to self::setApiData()
 	 */
-	public function setApiCode( $code, array $data = null );
+	public function setApiCode( $code, ?array $data = null );
 
 	/**
 	 * Sets additional machine-readable data about the error condition

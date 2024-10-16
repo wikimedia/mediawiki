@@ -67,7 +67,7 @@ class TypeDefTest extends TestCase {
 	}
 
 	/** @dataProvider provideFailureMessage */
-	public function testFailureMessage( $expect, $code, array $data = null, $suffix = null ) {
+	public function testFailureMessage( $expect, $code, ?array $data = null, $suffix = null ) {
 		$typeDef = $this->getMockBuilder( TypeDef::class )
 			->setConstructorArgs( [ new SimpleCallbacks( [] ) ] )
 			->getMockForAbstractClass();

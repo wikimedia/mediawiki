@@ -100,8 +100,8 @@ STR;
 	 * @param bool $appendModule
 	 * @param User|null $user
 	 */
-	protected function check( $values, array $session = null,
-		$appendModule = false, User $user = null
+	protected function check( $values, ?array $session = null,
+		$appendModule = false, ?User $user = null
 	) {
 		[ $req, $exp ] = $this->validateRequestExpectedPair( $values );
 		$req['action'] ??= 'query';

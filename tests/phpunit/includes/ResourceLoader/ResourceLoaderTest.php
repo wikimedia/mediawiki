@@ -1198,7 +1198,7 @@ END
 		$rl->respond( $context );
 	}
 
-	private function getResourceLoaderWithTestModules( Config $config = null ) {
+	private function getResourceLoaderWithTestModules( ?Config $config = null ) {
 		$localBasePath = __DIR__ . '/../../data/resourceloader';
 		$remoteBasePath = '/w';
 		$rl = new EmptyResourceLoader( $config );

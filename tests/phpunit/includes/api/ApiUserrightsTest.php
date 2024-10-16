@@ -67,7 +67,7 @@ class ApiUserrightsTest extends ApiTestCase {
 	 *   or 'userid' is specified in $params.
 	 */
 	protected function doSuccessfulRightsChange(
-		$expectedGroups = 'sysop', array $params = [], User $user = null
+		$expectedGroups = 'sysop', array $params = [], ?User $user = null
 	) {
 		$expectedGroups = (array)$expectedGroups;
 		$params['action'] = 'userrights';
@@ -107,7 +107,7 @@ class ApiUserrightsTest extends ApiTestCase {
 	 *   provided in $params), pass null.
 	 */
 	private function doFailedRightsChange(
-		$expectedCode, array $params = [], User $user = null
+		$expectedCode, array $params = [], ?User $user = null
 	) {
 		$params['action'] = 'userrights';
 		$userGroupManager = $this->getServiceContainer()->getUserGroupManager();

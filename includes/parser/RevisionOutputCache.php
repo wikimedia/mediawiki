@@ -107,7 +107,7 @@ class RevisionOutputCache {
 	 * @param string $status e.g. hit, miss etc.
 	 * @param string|null $reason
 	 */
-	private function incrementStats( string $status, string $reason = null ) {
+	private function incrementStats( string $status, ?string $reason = null ) {
 		$metricSuffix = $reason ? "{$status}_{$reason}" : $status;
 
 		$this->stats->getCounter( 'RevisionOutputCache_operation_total' )
@@ -139,7 +139,7 @@ class RevisionOutputCache {
 	public function makeParserOutputKey(
 		RevisionRecord $revision,
 		ParserOptions $options,
-		array $usedOptions = null
+		?array $usedOptions = null
 	): string {
 		$usedOptions = ParserOptions::allCacheVaryingOptions();
 
@@ -172,7 +172,7 @@ class RevisionOutputCache {
 	public function makeParserOutputKeyOptionalRevId(
 		RevisionRecord $revision,
 		ParserOptions $options,
-		array $usedOptions = null
+		?array $usedOptions = null
 	): string {
 		$usedOptions = ParserOptions::allCacheVaryingOptions();
 
@@ -240,7 +240,7 @@ class RevisionOutputCache {
 		ParserOutput $output,
 		RevisionRecord $revision,
 		ParserOptions $parserOptions,
-		string $cacheTime = null
+		?string $cacheTime = null
 	) {
 		if ( !$output->hasText() ) {
 			throw new InvalidArgumentException( 'Attempt to cache a ParserOutput with no text set!' );

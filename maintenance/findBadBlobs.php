@@ -427,7 +427,7 @@ class FindBadBlobs extends Maintenance {
 	 *
 	 * @return false|string
 	 */
-	private function markBlob( SlotRecord $slot, string $error = null ) {
+	private function markBlob( SlotRecord $slot, ?string $error = null ) {
 		$args = [];
 
 		if ( $this->hasOption( 'mark' ) ) {

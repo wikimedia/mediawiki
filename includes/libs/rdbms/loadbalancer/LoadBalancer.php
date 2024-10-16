@@ -1754,7 +1754,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 * @param IDatabaseForOwner|null $conn Recently acquired primary connection; null if not applicable
 	 * @return bool Whether the entire primary DB server or the local domain DB is read-only
 	 */
-	private function isPrimaryRunningReadOnly( IDatabaseForOwner $conn = null ) {
+	private function isPrimaryRunningReadOnly( ?IDatabaseForOwner $conn = null ) {
 		// Context will often be HTTP GET/HEAD; heavily cache the results
 		return (bool)$this->wanCache->getWithSetCallback(
 			// Note that table prefixes are not related to server-side read-only mode
@@ -1921,7 +1921,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		return $ok;
 	}
 
-	public function setTransactionListener( $name, callable $callback = null ) {
+	public function setTransactionListener( $name, ?callable $callback = null ) {
 		if ( $callback ) {
 			$this->trxRecurringCallbacks[$name] = $callback;
 		} else {

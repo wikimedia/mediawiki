@@ -345,7 +345,7 @@ class PageContentHelper {
 	 * @param ResponseInterface $response
 	 * @param int|null $expiry
 	 */
-	public function setCacheControl( ResponseInterface $response, int $expiry = null ) {
+	public function setCacheControl( ResponseInterface $response, ?int $expiry = null ) {
 		if ( $expiry === null ) {
 			$maxAge = self::MAX_AGE_200;
 		} else {

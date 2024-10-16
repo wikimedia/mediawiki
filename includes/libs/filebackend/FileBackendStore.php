@@ -1486,7 +1486,7 @@ abstract class FileBackendStore extends FileBackend {
 		$this->primeFileCache( $paths );
 	}
 
-	final public function clearCache( array $paths = null ) {
+	final public function clearCache( ?array $paths = null ) {
 		if ( is_array( $paths ) ) {
 			$paths = array_map( [ FileBackend::class, 'normalizeStoragePath' ], $paths );
 			$paths = array_filter( $paths, 'strlen' ); // remove nulls
@@ -1511,7 +1511,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *
 	 * @param string[]|null $paths Storage paths (optional)
 	 */
-	protected function doClearCache( array $paths = null ) {
+	protected function doClearCache( ?array $paths = null ) {
 	}
 
 	final public function preloadFileStat( array $params ) {

@@ -333,13 +333,13 @@ class Language implements Bcp47Code {
 	 */
 	public function __construct(
 		$code = null,
-		NamespaceInfo $namespaceInfo = null,
-		LocalisationCache $localisationCache = null,
-		LanguageNameUtils $langNameUtils = null,
-		LanguageFallback $langFallback = null,
-		LanguageConverterFactory $converterFactory = null,
-		HookContainer $hookContainer = null,
-		Config $config = null
+		?NamespaceInfo $namespaceInfo = null,
+		?LocalisationCache $localisationCache = null,
+		?LanguageNameUtils $langNameUtils = null,
+		?LanguageFallback $langFallback = null,
+		?LanguageConverterFactory $converterFactory = null,
+		?HookContainer $hookContainer = null,
+		?Config $config = null
 	) {
 		if ( !func_num_args() ) {
 			// Old calling convention, deprecated
@@ -899,7 +899,7 @@ class Language implements Bcp47Code {
 	 * @return string
 	 * @return-taint tainted
 	 */
-	public function sprintfDate( $format, $ts, DateTimeZone $zone = null, &$ttl = 'unused' ) {
+	public function sprintfDate( $format, $ts, ?DateTimeZone $zone = null, &$ttl = 'unused' ) {
 		// @phan-suppress-previous-line PhanTypeMismatchDefault Type mismatch on pass-by-ref args
 		$s = '';
 		$raw = false;
@@ -2404,7 +2404,7 @@ class Language implements Bcp47Code {
 	 * @return string Formatted timestamp
 	 */
 	public function getHumanTimestamp(
-		MWTimestamp $time, MWTimestamp $relativeTo = null, UserIdentity $user = null
+		MWTimestamp $time, ?MWTimestamp $relativeTo = null, ?UserIdentity $user = null
 	) {
 		$relativeTo ??= new MWTimestamp();
 		if ( $user === null ) {
@@ -4040,7 +4040,7 @@ class Language implements Bcp47Code {
 	 * @return string Somehow translated block duration
 	 * @see LanguageFi.php file for an implementation example
 	 */
-	public function translateBlockExpiry( $str, UserIdentity $user = null, $now = 0 ) {
+	public function translateBlockExpiry( $str, ?UserIdentity $user = null, $now = 0 ) {
 		$duration = $this->getBlockDurations();
 		$show = array_search( $str, $duration, true );
 		if ( $show !== false ) {

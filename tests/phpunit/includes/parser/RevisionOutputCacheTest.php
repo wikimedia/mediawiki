@@ -69,8 +69,8 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 	 * @return RevisionOutputCache
 	 */
 	private function createRevisionOutputCache(
-		BagOStuff $storage = null,
-		LoggerInterface $logger = null,
+		?BagOStuff $storage = null,
+		?LoggerInterface $logger = null,
 		$expiry = 3600,
 		$epoch = '19900220000000'
 	): RevisionOutputCache {

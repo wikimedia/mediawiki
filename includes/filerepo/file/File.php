@@ -2229,7 +2229,7 @@ abstract class File implements MediaHandlerState {
 	 * @return string|false HTML
 	 * @return-taint escaped
 	 */
-	public function getDescriptionText( Language $lang = null ) {
+	public function getDescriptionText( ?Language $lang = null ) {
 		global $wgLang;
 
 		if ( !$this->repo || !$this->repo->fetchDescription ) {
@@ -2282,7 +2282,7 @@ abstract class File implements MediaHandlerState {
 	 *   passed to the $audience parameter
 	 * @return UserIdentity|null
 	 */
-	public function getUploader( int $audience = self::FOR_PUBLIC, Authority $performer = null ): ?UserIdentity {
+	public function getUploader( int $audience = self::FOR_PUBLIC, ?Authority $performer = null ): ?UserIdentity {
 		return null;
 	}
 
@@ -2299,7 +2299,7 @@ abstract class File implements MediaHandlerState {
 	 *   passed to the $audience parameter
 	 * @return null|string
 	 */
-	public function getDescription( $audience = self::FOR_PUBLIC, Authority $performer = null ) {
+	public function getDescription( $audience = self::FOR_PUBLIC, ?Authority $performer = null ) {
 		return null;
 	}
 

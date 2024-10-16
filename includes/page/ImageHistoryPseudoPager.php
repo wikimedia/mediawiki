@@ -65,7 +65,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 	 * @param ImagePage $imagePage
 	 * @param LinkBatchFactory|null $linkBatchFactory
 	 */
-	public function __construct( $imagePage, LinkBatchFactory $linkBatchFactory = null ) {
+	public function __construct( $imagePage, ?LinkBatchFactory $linkBatchFactory = null ) {
 		parent::__construct( $imagePage->getContext() );
 		$this->mImagePage = $imagePage;
 		$this->mTitle = $imagePage->getTitle()->createFragmentTarget( 'filehistory' );

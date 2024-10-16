@@ -114,7 +114,7 @@ abstract class ContentHandler {
 	 * @param Content|null $content
 	 * @return string|null Textual form of the content, if available.
 	 */
-	public static function getContentText( Content $content = null ) {
+	public static function getContentText( ?Content $content = null ) {
 		wfDeprecated( __METHOD__, '1.37' );
 		if ( $content === null ) {
 			return '';
@@ -151,7 +151,7 @@ abstract class ContentHandler {
 	 * @throws MWUnknownContentModelException
 	 * @return Content A Content object representing the text.
 	 */
-	public static function makeContent( $text, Title $title = null,
+	public static function makeContent( $text, ?Title $title = null,
 		$modelId = null, $format = null ) {
 		if ( !$title && !$modelId ) {
 			throw new InvalidArgumentException( "Must provide a Title object or a content model ID." );
@@ -274,7 +274,7 @@ abstract class ContentHandler {
 	 *
 	 * @return string The content model's localized name.
 	 */
-	public static function getLocalizedName( $name, Language $lang = null ) {
+	public static function getLocalizedName( $name, ?Language $lang = null ) {
 		// Messages: content-model-wikitext, content-model-text,
 		// content-model-javascript, content-model-css
 		// Lowercase the name as message keys need to be in lowercase, T358341
@@ -725,7 +725,7 @@ abstract class ContentHandler {
 	 *
 	 * @return Language
 	 */
-	public function getPageLanguage( Title $title, Content $content = null ) {
+	public function getPageLanguage( Title $title, ?Content $content = null ) {
 		$services = MediaWikiServices::getInstance();
 		$pageLang = $services->getContentLanguage();
 
@@ -766,7 +766,7 @@ abstract class ContentHandler {
 	 * @param Content|null $content The page's content, if you have it handy, to avoid reloading it.
 	 * @return Language The page's language for viewing
 	 */
-	public function getPageViewLanguage( Title $title, Content $content = null ) {
+	public function getPageViewLanguage( Title $title, ?Content $content = null ) {
 		$pageLang = $this->getPageLanguage( $title, $content );
 
 		if ( $title->getNamespace() !== NS_MEDIAWIKI ) {
@@ -864,8 +864,8 @@ abstract class ContentHandler {
 	 * @return string|null String key representing type of change, or null.
 	 */
 	private function getChangeType(
-		Content $oldContent = null,
-		Content $newContent = null,
+		?Content $oldContent = null,
+		?Content $newContent = null,
 		$flags = 0
 	) {
 		$oldTarget = $oldContent !== null ? $oldContent->getRedirectTarget() : null;
@@ -932,8 +932,8 @@ abstract class ContentHandler {
 	 * @return string An appropriate auto-summary, or an empty string.
 	 */
 	public function getAutosummary(
-		Content $oldContent = null,
-		Content $newContent = null,
+		?Content $oldContent = null,
+		?Content $newContent = null,
 		$flags = 0
 	) {
 		$changeType = $this->getChangeType( $oldContent, $newContent, $flags );
@@ -1020,8 +1020,8 @@ abstract class ContentHandler {
 	 * @return string|null An appropriate tag, or null.
 	 */
 	public function getChangeTag(
-		Content $oldContent = null,
-		Content $newContent = null,
+		?Content $oldContent = null,
+		?Content $newContent = null,
 		$flags = 0
 	) {
 		$changeType = $this->getChangeType( $oldContent, $newContent, $flags );
@@ -1394,7 +1394,7 @@ abstract class ContentHandler {
 		WikiPage $page,
 		ParserOutput $output,
 		SearchEngine $engine,
-		RevisionRecord $revision = null
+		?RevisionRecord $revision = null
 	) {
 		$revision ??= $page->getRevisionRecord();
 		if ( $revision === null ) {
@@ -1454,8 +1454,8 @@ abstract class ContentHandler {
 	 */
 	public function getParserOutputForIndexing(
 		WikiPage $page,
-		ParserCache $cache = null,
-		RevisionRecord $revision = null
+		?ParserCache $cache = null,
+		?RevisionRecord $revision = null
 	) {
 		// TODO: MCR: ContentHandler should be called per slot, not for the whole page.
 		// See T190066.

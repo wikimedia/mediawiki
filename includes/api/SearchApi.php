@@ -179,7 +179,7 @@ trait SearchApi {
 	 * ApiBase::extractRequestParams() before)
 	 * @return SearchEngine
 	 */
-	public function buildSearchEngine( array $params = null ) {
+	public function buildSearchEngine( ?array $params = null ) {
 		$this->checkDependenciesSet();
 
 		if ( $params == null ) {

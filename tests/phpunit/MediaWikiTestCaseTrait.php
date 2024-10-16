@@ -514,7 +514,7 @@ trait MediaWikiTestCaseTrait {
 	protected function expectPHPError(
 		int $errorLevel,
 		callable $callback,
-		string $msg = null
+		?string $msg = null
 	): void {
 		try {
 			$errorEmitted = false;

@@ -762,7 +762,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * @param ApiContinuationManager|null $manager
 	 */
-	public function setContinuationManager( ApiContinuationManager $manager = null ) {
+	public function setContinuationManager( ?ApiContinuationManager $manager = null ) {
 		if ( $manager !== null && $this->mContinuationManager !== null ) {
 			throw new UnexpectedValueException(
 				__METHOD__ . ': tried to set manager from ' . $manager->getSource() .
@@ -1999,7 +1999,7 @@ class ApiMain extends ApiBase {
 	 * @param float $time Time in seconds
 	 * @param Throwable|null $e Throwable caught while processing the request
 	 */
-	protected function logRequest( $time, Throwable $e = null ) {
+	protected function logRequest( $time, ?Throwable $e = null ) {
 		$request = $this->getRequest();
 
 		$user = $this->getUser();

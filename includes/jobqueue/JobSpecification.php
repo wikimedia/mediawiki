@@ -61,7 +61,7 @@ class JobSpecification implements IJobSpecification {
 	 * @param PageReference|null $page
 	 */
 	public function __construct(
-		$type, array $params, array $opts = [], PageReference $page = null
+		$type, array $params, array $opts = [], ?PageReference $page = null
 	) {
 		$params += [
 			'requestId' => Telemetry::getInstance()->getRequestId(),

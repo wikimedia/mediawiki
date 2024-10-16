@@ -207,7 +207,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 		$width,
 		$height,
 		array $params,
-		array $paramsExpected = null
+		?array $paramsExpected = null
 	) {
 		$this->overrideConfigValue( MainConfigNames::SVGMaxSize, 1000 );
 

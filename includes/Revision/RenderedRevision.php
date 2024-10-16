@@ -112,7 +112,7 @@ class RenderedRevision implements SlotRenderingProvider {
 		ContentRenderer $contentRenderer,
 		callable $combineOutput,
 		$audience = RevisionRecord::FOR_PUBLIC,
-		Authority $performer = null
+		?Authority $performer = null
 	) {
 		$this->options = $options;
 

@@ -140,7 +140,7 @@ class AuthenticatedFileEntryPointTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @return AuthenticatedFileEntryPoint
 	 */
-	private function getEntryPoint( MockEnvironment $environment = null, $request = null ) {
+	private function getEntryPoint( ?MockEnvironment $environment = null, $request = null ) {
 		if ( !$request && $environment ) {
 			$request = $environment->getFauxRequest();
 		}

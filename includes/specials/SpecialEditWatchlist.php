@@ -100,13 +100,13 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @param WatchlistManager|null $watchlistManager
 	 */
 	public function __construct(
-		WatchedItemStoreInterface $watchedItemStore = null,
-		TitleParser $titleParser = null,
-		GenderCache $genderCache = null,
-		LinkBatchFactory $linkBatchFactory = null,
-		NamespaceInfo $nsInfo = null,
-		WikiPageFactory $wikiPageFactory = null,
-		WatchlistManager $watchlistManager = null
+		?WatchedItemStoreInterface $watchedItemStore = null,
+		?TitleParser $titleParser = null,
+		?GenderCache $genderCache = null,
+		?LinkBatchFactory $linkBatchFactory = null,
+		?NamespaceInfo $nsInfo = null,
+		?WikiPageFactory $wikiPageFactory = null,
+		?WatchlistManager $watchlistManager = null
 	) {
 		parent::__construct( 'EditWatchlist', 'editmywatchlist' );
 		// This class is extended and therefor fallback to global state - T266065
@@ -914,7 +914,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @param int|false $selectedMode result of self::getMode
 	 * @return string
 	 */
-	public static function buildTools( $unused, LinkRenderer $linkRenderer = null, $selectedMode = false ) {
+	public static function buildTools( $unused, ?LinkRenderer $linkRenderer = null, $selectedMode = false ) {
 		if ( !$linkRenderer ) {
 			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		}

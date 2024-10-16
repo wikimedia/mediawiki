@@ -27,7 +27,7 @@ class ContentParseParams {
 
 	public function __construct(
 		PageReference $page,
-		int $revId = null,
+		?int $revId = null,
 		?ParserOptions $parserOptions = null,
 		bool $generateHtml = true,
 		?ParserOutput $previousOutput = null

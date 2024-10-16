@@ -952,7 +952,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	 * @param string|null $mime MIME type. If null it will be guessed using guessMimeType.
 	 * @return string A value to be used with the MEDIATYPE_xxx constants.
 	 */
-	public function getMediaType( string $path = null, string $mime = null ): string {
+	public function getMediaType( ?string $path = null, ?string $mime = null ): string {
 		if ( !$mime && !$path ) {
 			return MEDIATYPE_UNKNOWN;
 		}

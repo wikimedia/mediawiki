@@ -1619,7 +1619,7 @@ class LocalFile extends File {
 	 *     archive name, or an empty string if it was a new file.
 	 */
 	public function upload( $src, $comment, $pageText, $flags = 0, $props = false,
-		$timestamp = false, Authority $uploader = null, $tags = [],
+		$timestamp = false, ?Authority $uploader = null, $tags = [],
 		$createNullRevision = true, $revert = false
 	) {
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
@@ -2387,7 +2387,7 @@ class LocalFile extends File {
 	 * @param Language|null $lang What language to get description in (Optional)
 	 * @return string|false
 	 */
-	public function getDescriptionText( Language $lang = null ) {
+	public function getDescriptionText( ?Language $lang = null ) {
 		if ( !$this->title ) {
 			return false; // Avoid hard failure when the file does not exist. T221812
 		}
@@ -2424,7 +2424,7 @@ class LocalFile extends File {
 	 * @param Authority|null $performer
 	 * @return UserIdentity|null
 	 */
-	public function getUploader( int $audience = self::FOR_PUBLIC, Authority $performer = null ): ?UserIdentity {
+	public function getUploader( int $audience = self::FOR_PUBLIC, ?Authority $performer = null ): ?UserIdentity {
 		$this->load();
 		if ( $audience === self::FOR_PUBLIC && $this->isDeleted( self::DELETED_USER ) ) {
 			return null;
@@ -2441,7 +2441,7 @@ class LocalFile extends File {
 	 * @param Authority|null $performer
 	 * @return string
 	 */
-	public function getDescription( $audience = self::FOR_PUBLIC, Authority $performer = null ) {
+	public function getDescription( $audience = self::FOR_PUBLIC, ?Authority $performer = null ) {
 		$this->load();
 		if ( $audience == self::FOR_PUBLIC && $this->isDeleted( self::DELETED_COMMENT ) ) {
 			return '';

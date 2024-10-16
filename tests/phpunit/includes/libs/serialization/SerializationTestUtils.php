@@ -206,7 +206,7 @@ class SerializationTestUtils {
 	public function getStoredSerializedInstance(
 		string $class,
 		string $testCaseName,
-		string $version = null
+		?string $version = null
 	) {
 		$classFile = self::classToFile( $class );
 		$curPath = "$this->serializedDataPath/{$this->getCurrentVersion()}-$classFile-$testCaseName.$this->ext";

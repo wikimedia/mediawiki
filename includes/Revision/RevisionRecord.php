@@ -154,7 +154,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * @return Content|null The content of the given slot, or null on error
 	 * @throws RevisionAccessException
 	 */
-	public function getContent( $role, $audience = self::FOR_PUBLIC, Authority $performer = null ): ?Content {
+	public function getContent( $role, $audience = self::FOR_PUBLIC, ?Authority $performer = null ): ?Content {
 		try {
 			$content = $this->getSlot( $role, $audience, $performer )->getContent();
 		} catch ( BadRevisionException | SuppressedDataException $e ) {
@@ -175,7 +175,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * @throws BadRevisionException if the content is missing or corrupted
 	 * @throws RevisionAccessException
 	 */
-	public function getContentOrThrow( $role, $audience = self::FOR_PUBLIC, Authority $performer = null ): Content {
+	public function getContentOrThrow( $role, $audience = self::FOR_PUBLIC, ?Authority $performer = null ): Content {
 		if ( !$this->audienceCan( self::DELETED_TEXT, $audience, $performer ) ) {
 			throw new SuppressedDataException(
 				'Access to the content has been suppressed for this audience' );
@@ -197,7 +197,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * @return SlotRecord The slot meta-data. If access to the slot's content is forbidden,
 	 *         calling getContent() on the SlotRecord will throw an exception.
 	 */
-	public function getSlot( $role, $audience = self::FOR_PUBLIC, Authority $performer = null ): SlotRecord {
+	public function getSlot( $role, $audience = self::FOR_PUBLIC, ?Authority $performer = null ): SlotRecord {
 		$slot = $this->mSlots->getSlot( $role );
 
 		if ( !$this->audienceCan( self::DELETED_TEXT, $audience, $performer ) ) {
@@ -406,7 +406,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * @param Authority|null $performer user on whose behalf to check
 	 * @return UserIdentity|null
 	 */
-	public function getUser( $audience = self::FOR_PUBLIC, Authority $performer = null ) {
+	public function getUser( $audience = self::FOR_PUBLIC, ?Authority $performer = null ) {
 		if ( !$this->audienceCan( self::DELETED_USER, $audience, $performer ) ) {
 			return null;
 		} else {
@@ -430,7 +430,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *
 	 * @return CommentStoreComment|null
 	 */
-	public function getComment( $audience = self::FOR_PUBLIC, Authority $performer = null ) {
+	public function getComment( $audience = self::FOR_PUBLIC, ?Authority $performer = null ) {
 		if ( !$this->audienceCan( self::DELETED_COMMENT, $audience, $performer ) ) {
 			return null;
 		} else {
@@ -496,7 +496,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *
 	 * @return bool
 	 */
-	public function audienceCan( $field, $audience, Authority $performer = null ) {
+	public function audienceCan( $field, $audience, ?Authority $performer = null ) {
 		if ( $audience == self::FOR_PUBLIC && $this->isDeleted( $field ) ) {
 			return false;
 		} elseif ( $audience == self::FOR_THIS_USER ) {
@@ -546,7 +546,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *                          instead of just plain user rights
 	 * @return bool
 	 */
-	public static function userCanBitfield( $bitfield, $field, Authority $performer, PageIdentity $page = null ) {
+	public static function userCanBitfield( $bitfield, $field, Authority $performer, ?PageIdentity $page = null ) {
 		if ( $bitfield & $field ) { // aspect is deleted
 			if ( $bitfield & self::DELETED_RESTRICTED ) {
 				$permissions = [ 'suppressrevision', 'viewsuppressed' ];

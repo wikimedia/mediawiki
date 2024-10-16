@@ -108,7 +108,7 @@ class TalkPageNotificationManager {
 	 */
 	public function clearForPageView(
 		UserIdentity $user,
-		RevisionRecord $oldRev = null
+		?RevisionRecord $oldRev = null
 	) {
 		// Abort if the hook says so. (Echo doesn't abort, it just queues its own update)
 		if ( !$this->hookRunner->onUserClearNewTalkNotification(
@@ -166,7 +166,7 @@ class TalkPageNotificationManager {
 	 */
 	public function setUserHasNewMessages(
 		UserIdentity $user,
-		RevisionRecord $curRev = null
+		?RevisionRecord $curRev = null
 	): void {
 		if ( $this->isTalkDisabled( $user ) ) {
 			return;
@@ -269,7 +269,7 @@ class TalkPageNotificationManager {
 	 */
 	private function dbUpdateNewUserMessages(
 		UserIdentity $user,
-		RevisionRecord $curRev = null
+		?RevisionRecord $curRev = null
 	): bool {
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			return false;

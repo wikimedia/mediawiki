@@ -65,7 +65,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 	 * @param string|null $id
 	 * @return SessionBackend
 	 */
-	protected function getBackend( User $user = null, $id = null ) {
+	protected function getBackend( ?User $user = null, $id = null ) {
 		if ( !$this->config ) {
 			$this->config = new HashConfig();
 			$this->manager = null;

@@ -3429,7 +3429,7 @@ class HookRunner implements
 		);
 	}
 
-	public function onSearchResultProvideThumbnail( array $pageIdentities, &$thumbnails, int $size = null ) {
+	public function onSearchResultProvideThumbnail( array $pageIdentities, &$thumbnails, ?int $size = null ) {
 		return $this->container->run(
 			'SearchResultProvideThumbnail',
 			[ $pageIdentities, &$thumbnails, $size ]

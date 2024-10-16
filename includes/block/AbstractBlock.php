@@ -435,7 +435,7 @@ abstract class AbstractBlock implements Block {
 	 *  and if the target is a User, the target's userpage is used
 	 * @return bool The user can edit their talk page
 	 */
-	public function appliesToUsertalk( Title $usertalk = null ) {
+	public function appliesToUsertalk( ?Title $usertalk = null ) {
 		if ( !$usertalk ) {
 			if ( $this->target instanceof UserIdentity ) {
 				$usertalk = Title::makeTitle(

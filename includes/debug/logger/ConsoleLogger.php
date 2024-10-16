@@ -42,8 +42,8 @@ class ConsoleLogger extends AbstractLogger {
 	 */
 	public function __construct(
 		string $channel,
-		string $minLevel = null,
-		LoggerInterface $forwardTo = null
+		?string $minLevel = null,
+		?LoggerInterface $forwardTo = null
 	) {
 		Assert::parameter( $minLevel === null || isset( self::LEVELS[$minLevel] ), '$minLevel',
 			'must be a valid, lowercase PSR-3 log level' );

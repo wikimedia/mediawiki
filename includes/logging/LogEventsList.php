@@ -759,7 +759,7 @@ class LogEventsList extends ContextSource {
 	 * @return string|false String on success, false on failure.
 	 * @throws InvalidArgumentException
 	 */
-	public static function getExcludeClause( $db, $audience = 'public', Authority $performer = null ) {
+	public static function getExcludeClause( $db, $audience = 'public', ?Authority $performer = null ) {
 		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::LogRestrictions );
 
 		if ( $audience != 'public' && $performer === null ) {

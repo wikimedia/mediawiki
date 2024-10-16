@@ -28,12 +28,12 @@ use Wikimedia\Message\ITextFormatter;
 class EmailUserTest extends MediaWikiUnitTestCase {
 	private function getEmailUser(
 		Authority $sender,
-		UserOptionsLookup $userOptionsLookup = null,
-		CentralIdLookup $centralIdLookup = null,
-		UserFactory $userFactory = null,
+		?UserOptionsLookup $userOptionsLookup = null,
+		?CentralIdLookup $centralIdLookup = null,
+		?UserFactory $userFactory = null,
 		array $configOverrides = [],
 		array $hooks = [],
-		IEmailer $emailer = null
+		?IEmailer $emailer = null
 	): EmailUser {
 		$options = new ServiceOptions(
 			EmailUser::CONSTRUCTOR_OPTIONS,
@@ -66,8 +66,8 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 		User $target,
 		User $sender,
 		StatusValue $expected,
-		UserOptionsLookup $userOptionsLookup = null,
-		CentralIdLookup $centralIdLookup = null
+		?UserOptionsLookup $userOptionsLookup = null,
+		?CentralIdLookup $centralIdLookup = null
 	) {
 		$userFactory = $this->createMock( UserFactory::class );
 		$userFactory->method( 'newFromAuthority' )->willReturn( $sender );
@@ -350,7 +350,7 @@ class EmailUserTest extends MediaWikiUnitTestCase {
 		Authority $sender,
 		StatusValue $expected,
 		array $hooks = [],
-		IEmailer $emailer = null
+		?IEmailer $emailer = null
 	) {
 		$userFactory = $this->createMock( UserFactory::class );
 		$userFactory->method( 'newFromUserIdentity' )

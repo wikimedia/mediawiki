@@ -759,7 +759,7 @@ class LogFormatter {
 	 * @return string wikitext or html
 	 * @return-taint onlysafefor_html
 	 */
-	protected function makePageLink( Title $title = null, $parameters = [], $html = null ) {
+	protected function makePageLink( ?Title $title = null, $parameters = [], $html = null ) {
 		if ( !$title instanceof Title ) {
 			$msg = $this->msg( 'invalidtitle' )->text();
 			if ( $this->plaintext ) {

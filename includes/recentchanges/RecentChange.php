@@ -576,7 +576,7 @@ class RecentChange implements Taggable {
 	 * Notify all the feeds about the change.
 	 * @param array|null $feeds Optional feeds to send to, defaults to $wgRCFeeds
 	 */
-	public function notifyRCFeeds( array $feeds = null ) {
+	public function notifyRCFeeds( ?array $feeds = null ) {
 		$feeds ??=
 			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::RCFeeds );
 
@@ -767,7 +767,7 @@ class RecentChange implements Taggable {
 	public static function notifyEdit(
 		$timestamp, $page, $minor, $user, $comment, $oldId, $lastTimestamp,
 		$bot, $ip = '', $oldSize = 0, $newSize = 0, $newId = 0, $patrol = 0,
-		$tags = [], EditResult $editResult = null
+		$tags = [], ?EditResult $editResult = null
 	) {
 		Assert::parameter( $page->exists(), '$page', 'must represent an existing page' );
 

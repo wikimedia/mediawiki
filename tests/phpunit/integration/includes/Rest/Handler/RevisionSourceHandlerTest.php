@@ -39,7 +39,7 @@ class RevisionSourceHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @return RevisionSourceHandler
 	 * @throws Exception
 	 */
-	private function newHandler( BagOStuff $cache = null ): RevisionSourceHandler {
+	private function newHandler( ?BagOStuff $cache = null ): RevisionSourceHandler {
 		$handler = new RevisionSourceHandler(
 			$this->getServiceContainer()->getPageRestHelperFactory()
 		);

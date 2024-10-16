@@ -191,7 +191,7 @@ class WatchlistManager {
 		$performer,
 		$title,
 		int $oldid = 0,
-		RevisionRecord $oldRev = null
+		?RevisionRecord $oldRev = null
 	) {
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			// Cannot change anything in read only
@@ -487,7 +487,7 @@ class WatchlistManager {
 		bool $watch,
 		Authority $performer,
 		PageIdentity $target,
-		string $expiry = null
+		?string $expiry = null
 	): StatusValue {
 		// User must be registered, and (T371091) not a temp user
 		if ( !$performer->getUser()->isRegistered() || $performer->isTemp() ) {

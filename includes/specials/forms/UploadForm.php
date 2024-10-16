@@ -77,12 +77,12 @@ class UploadForm extends HTMLForm {
 	 */
 	public function __construct(
 		array $options = [],
-		IContextSource $context = null,
-		LinkRenderer $linkRenderer = null,
-		LocalRepo $localRepo = null,
-		Language $contentLanguage = null,
-		NamespaceInfo $nsInfo = null,
-		HookContainer $hookContainer = null
+		?IContextSource $context = null,
+		?LinkRenderer $linkRenderer = null,
+		?LocalRepo $localRepo = null,
+		?Language $contentLanguage = null,
+		?NamespaceInfo $nsInfo = null,
+		?HookContainer $hookContainer = null
 	) {
 		if ( $context instanceof IContextSource ) {
 			$this->setContext( $context );

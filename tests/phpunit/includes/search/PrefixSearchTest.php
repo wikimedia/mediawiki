@@ -63,7 +63,7 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 		] );
 	}
 
-	protected function searchProvision( array $results = null ) {
+	protected function searchProvision( ?array $results = null ) {
 		if ( $results === null ) {
 			$this->overrideConfigValue( MainConfigNames::Hooks, [] );
 		} else {

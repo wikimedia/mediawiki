@@ -36,7 +36,7 @@ class ValidationException extends UnexpectedValueException {
 	 * @param Throwable|null $previous Previous throwable causing this failure
 	 */
 	public function __construct(
-		DataMessageValue $failureMessage, $name, $value, $settings, Throwable $previous = null
+		DataMessageValue $failureMessage, $name, $value, $settings, ?Throwable $previous = null
 	) {
 		$this->failureMessage = $failureMessage;
 		$this->paramName = $name;

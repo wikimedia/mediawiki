@@ -100,7 +100,7 @@ class WikiModule extends Module {
 	 * @param array|null $options For back-compat, this can be omitted in favour of overwriting
 	 *  getPages.
 	 */
-	public function __construct( array $options = null ) {
+	public function __construct( ?array $options = null ) {
 		if ( $options === null ) {
 			return;
 		}

@@ -34,7 +34,7 @@ use MediaWiki\WikiMap\WikiMap;
  * @since 1.21
  */
 class RightsLogFormatter extends LogFormatter {
-	protected function makePageLink( Title $title = null, $parameters = [], $html = null ) {
+	protected function makePageLink( ?Title $title = null, $parameters = [], $html = null ) {
 		$userrightsInterwikiDelimiter = $this->context->getConfig()
 			->get( MainConfigNames::UserrightsInterwikiDelimiter );
 
