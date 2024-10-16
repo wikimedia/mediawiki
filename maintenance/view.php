@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Content\TextContent;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 

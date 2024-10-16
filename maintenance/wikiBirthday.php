@@ -24,6 +24,7 @@
  * @since 1.39
  */
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Utils\MWTimestamp;
 
 // @codeCoverageIgnoreStart

@@ -28,6 +28,8 @@
 require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
+use MediaWiki\Maintenance\Maintenance;
+
 /**
  * Maintenance script to change the password of a given user.
  *

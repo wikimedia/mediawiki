@@ -28,6 +28,7 @@ require_once __DIR__ . '/../Maintenance.php';
 
 use MediaWiki\Cache\LinkCache;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
