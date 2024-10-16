@@ -1,5 +1,5 @@
 const { defineStore } = require( 'pinia' );
-const { ref } = require( 'vue' );
+const { computed, ref } = require( 'vue' );
 const api = new mw.Api();
 
 module.exports = exports = defineStore( 'block', () => {
@@ -12,7 +12,22 @@ module.exports = exports = defineStore( 'block', () => {
 	const reason = ref( 'other' );
 	const reasonOther = ref( mw.config.get( 'blockReasonOtherPreset' ) || '' );
 	const details = ref( mw.config.get( 'blockDetailsPreset' ) || [] );
+	// Disable the 'Hide username' checkbox if the block type is not sitewide with an 'infinite' expiry.
+	// eslint-disable-next-line arrow-body-style
+	const hideNameDisabled = computed( () => {
+		return type.value !== 'sitewide' || !mw.util.isInfinity( expiry.value );
+	} );
 	const additionalDetails = ref( mw.config.get( 'blockAdditionalDetailsPreset' ) || [] );
+	// Show confirm checkbox if 'Hide username' is selected or if the target user is the current user.
+	// eslint-disable-next-line arrow-body-style
+	const confirmationRequired = computed( () => {
+		return targetUser.value === mw.config.get( 'wgUserName' ) || (
+			type.value === 'sitewide' &&
+			additionalDetails.value.indexOf( 'wpHideName' ) !== -1 &&
+			!hideNameDisabled.value
+		);
+	} );
+	const confirmationChecked = ref( false );
 
 	/**
 	 * Execute the block.
@@ -101,7 +116,10 @@ module.exports = exports = defineStore( 'block', () => {
 		reason,
 		reasonOther,
 		details,
+		hideNameDisabled,
 		additionalDetails,
+		confirmationRequired,
+		confirmationChecked,
 		doBlock
 	};
 } );
