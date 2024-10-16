@@ -113,6 +113,13 @@ because of Phabricator reports.
 
 === Deprecations in 1.44 ===
 
+* Various static methods on ChangeTags, deprecated since 1.41, each now emit
+  deprecation warnings. Use service access to the ChangeTagsStore instead:
+  addTags(), defineTag(), deleteTagEverywhere(), getDisplayTableName(),
+  getSoftwareTags(), getTags(), getTagsWithData(), listDefinedTags(),
+  listExplicitlyDefinedTags(), listSoftwareActivatedTags(),
+  listSoftwareDefinedTags(), makeTagSummarySubquery(), modifyDisplayQuery(),
+  purgeTagCacheAll(), tagUsageStatistics(), and updateTags().
 * PageUpdater::setUsePageCreationLog() is deprecated and emitting warnings.
   Use setFlags( EDIT_SUPPRESS_RC ) instead.
 * ...
