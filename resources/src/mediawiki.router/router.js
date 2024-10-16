@@ -31,38 +31,35 @@ class Router extends OO.Registry {
 		this.enabled = true;
 		this.oldHash = this.getPath();
 
-		const router = this;
 		window.addEventListener( 'popstate', () => {
-			router.emit( 'popstate' );
+			this.emit( 'popstate' );
 		} );
 
 		window.addEventListener( 'hashchange', () => {
-			router.emit( 'hashchange' );
+			this.emit( 'hashchange' );
 		} );
 
 		this.on( 'hashchange', () => {
 			// event.originalEvent.newURL is undefined on Android 2.x
-			let routeEvent;
-
-			if ( router.enabled ) {
-				routeEvent = $.Event( 'route', {
-					path: router.getPath()
+			if ( this.enabled ) {
+				const routeEvent = $.Event( 'route', {
+					path: this.getPath()
 				} );
-				router.emit( 'route', routeEvent );
+				this.emit( 'route', routeEvent );
 
 				if ( !routeEvent.isDefaultPrevented() ) {
-					router.checkRoute();
+					this.checkRoute();
 				} else {
 					// if route was prevented, ignore the next hash change and revert the
 					// hash to its old value
-					router.enabled = false;
-					router.navigate( router.oldHash );
+					this.enabled = false;
+					this.navigate( this.oldHash );
 				}
 			} else {
-				router.enabled = true;
+				this.enabled = true;
 			}
 
-			router.oldHash = router.getPath();
+			this.oldHash = this.getPath();
 		} );
 	}
 
@@ -178,7 +175,6 @@ class Router extends OO.Registry {
 	 * @return {jQuery.Promise} Promise which resolves when the back navigation is complete
 	 */
 	back() {
-		const router = this;
 		// eslint-disable-next-line prefer-const
 		let timeoutID;
 		const deferred = $.Deferred();
@@ -197,7 +193,7 @@ class Router extends OO.Registry {
 		// See https://connect.microsoft.com/IE/feedback/details/793618/history-back-popstate-not-working-as-expected-in-webview-control
 		// Give browser a few ms to update its history.
 		timeoutID = setTimeout( () => {
-			router.off( 'popstate' );
+			this.off( 'popstate' );
 			deferred.resolve();
 		}, 50 );
 
