@@ -14,9 +14,10 @@ class LanguageCodeTest extends MediaWikiUnitTestCase {
 	use DummyServicesTrait;
 
 	public function testConstructor() {
-		$instance = new LanguageCode();
+		$instance = new LanguageCode( 'fa' );
 
 		$this->assertInstanceOf( LanguageCode::class, $instance );
+		$this->assertSame( 'fa', $instance->toString() );
 	}
 
 	public function testGetDeprecatedCodeMapping() {

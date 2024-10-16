@@ -85,6 +85,7 @@ use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Language\FormatterFactory;
 use MediaWiki\Language\Language;
+use MediaWiki\Language\LanguageCode;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;
@@ -971,6 +972,13 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getContentLanguage(): Language {
 		return $this->getService( 'ContentLanguage' );
+	}
+
+	/**
+	 * @since 1.43
+	 */
+	public function getContentLanguageCode(): LanguageCode {
+		return $this->getService( 'ContentLanguageCode' );
 	}
 
 	/**
