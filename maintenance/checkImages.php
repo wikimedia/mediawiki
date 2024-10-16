@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
+use MediaWiki\Maintenance\Maintenance;
 
 // @codeCoverageIgnoreStart
 require_once __DIR__ . '/Maintenance.php';

@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Password\LayeredParameterizedPassword;
 use MediaWiki\Password\ParameterizedPassword;
 use MediaWiki\User\User;

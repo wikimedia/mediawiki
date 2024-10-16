@@ -25,7 +25,6 @@
 
 namespace MediaWiki\Maintenance;
 
-use Maintenance;
 use MediaWiki\Utils\GitInfo;
 
 // @codeCoverageIgnoreStart

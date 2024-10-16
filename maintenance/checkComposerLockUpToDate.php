@@ -5,6 +5,7 @@ require_once __DIR__ . '/Maintenance.php';
 // @codeCoverageIgnoreEnd
 
 use MediaWiki\Composer\LockFileChecker;
+use MediaWiki\Maintenance\Maintenance;
 use Wikimedia\Composer\ComposerJson;
 use Wikimedia\Composer\ComposerLock;
 
