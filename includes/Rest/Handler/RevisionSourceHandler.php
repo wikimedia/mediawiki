@@ -54,7 +54,7 @@ class RevisionSourceHandler extends SimpleHandler {
 		$outputMode = $this->getOutputMode();
 		switch ( $outputMode ) {
 			case 'restbase': // compatibility for restbase migration
-				$body = $this->contentHelper->constructRestbaseCompatibleMetadata();
+				$body = [ 'items' => [ $this->contentHelper->constructRestbaseCompatibleMetadata() ] ];
 				break;
 			case 'bare':
 				$revisionRecord = $this->contentHelper->getTargetRevision();

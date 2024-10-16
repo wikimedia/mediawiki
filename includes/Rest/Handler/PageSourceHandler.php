@@ -98,7 +98,7 @@ class PageSourceHandler extends SimpleHandler {
 		$outputMode = $this->getOutputMode();
 		switch ( $outputMode ) {
 			case 'restbase': // compatibility for restbase migration
-				$body = $this->contentHelper->constructRestbaseCompatibleMetadata();
+				$body = [ 'items' => [ $this->contentHelper->constructRestbaseCompatibleMetadata() ] ];
 				break;
 			case 'bare':
 				$body = $this->contentHelper->constructMetadata();
