@@ -1134,6 +1134,10 @@ return [
 		'dependencies' => [
 			'mediawiki.cookie',
 		],
+		'messages' => [
+			'table-of-contents-show-button-aria-label',
+			'table-of-contents-hide-button-aria-label'
+		],
 	],
 	'mediawiki.Uri' => [
 		'localBasePath' => MW_INSTALL_PATH . '/resources/src/mediawiki.Uri',

@@ -13,6 +13,10 @@
 		toggleNode.addEventListener( 'change', () => {
 			hidden = !hidden;
 			mw.cookie.set( 'hidetoc', hidden ? '1' : null );
+			toggleNode.setAttribute( 'aria-label', hidden ?
+				mw.message( 'table-of-contents-show-button-aria-label' ).plain() :
+				mw.message( 'table-of-contents-hide-button-aria-label' ).plain()
+			);
 		} );
 
 		// Initial state
@@ -20,6 +24,10 @@
 			toggleNode.checked = true;
 			hidden = true;
 		}
+		toggleNode.setAttribute( 'aria-label', hidden ?
+			mw.message( 'table-of-contents-show-button-aria-label' ).plain() :
+			mw.message( 'table-of-contents-hide-button-aria-label' ).plain()
+		);
 	}
 
 	mw.hook( 'wikipage.content' ).add( ( $content ) => {
