@@ -28,12 +28,14 @@ class ConditionalDefaultsLookup {
 	 * @var callable
 	 */
 	private $userGroupManagerCallback;
+	private array $extraConditions;
 
 	public function __construct(
 		ServiceOptions $options,
 		UserRegistrationLookup $userRegistrationLookup,
 		UserIdentityUtils $userIdentityUtils,
-		callable $userGroupManagerCallback
+		callable $userGroupManagerCallback,
+		array $extraConditions = []
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -41,6 +43,7 @@ class ConditionalDefaultsLookup {
 		$this->userRegistrationLookup = $userRegistrationLookup;
 		$this->userIdentityUtils = $userIdentityUtils;
 		$this->userGroupManagerCallback = $userGroupManagerCallback;
+		$this->extraConditions = $extraConditions;
 	}
 
 	/**
@@ -149,6 +152,9 @@ class ConditionalDefaultsLookup {
 				$userGroupManager = $userGroupManagerCallback();
 				return in_array( $cond[0], $userGroupManager->getUserEffectiveGroups( $userIdentity ) );
 			default:
+				if ( array_key_exists( $condName, $this->extraConditions ) ) {
+					return call_user_func( $this->extraConditions[$condName], $userIdentity, $cond );
+				}
 				throw new InvalidArgumentException( 'Unsupported condition ' . $condName );
 		}
 	}

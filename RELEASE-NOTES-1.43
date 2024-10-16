@@ -143,6 +143,7 @@ For notes on 1.42.x and older releases, see HISTORY.
   files live in `tests/jest/`. See https://www.mediawiki.org/wiki/Jest
   for more information.
 * The SpreadAnyEditBlock hook was added.
+* The ConditionalDefaultOptionsAddCondition hook was added.
 * …
 
 === External library changes in 1.43 ===

@@ -579,7 +579,8 @@ class HookRunner implements
 	\MediaWiki\User\Hook\UserSetEmailHook,
 	\MediaWiki\User\Hook\User__mailPasswordInternalHook,
 	\MediaWiki\User\Options\Hook\LoadUserOptionsHook,
-	\MediaWiki\User\Options\Hook\SaveUserOptionsHook
+	\MediaWiki\User\Options\Hook\SaveUserOptionsHook,
+	\MediaWiki\User\Options\Hook\ConditionalDefaultOptionsAddConditionHook
 {
 	/** @var HookContainer */
 	private $container;
@@ -4279,6 +4280,14 @@ class HookRunner implements
 		return $this->container->run(
 			'UserGetDefaultOptions',
 			[ &$defaultOptions ]
+		);
+	}
+
+	public function onConditionalDefaultOptionsAddCondition( &$extraConditions ): void {
+		$this->container->run(
+			'ConditionalDefaultOptionsAddCondition',
+			[ &$extraConditions ],
+			[ 'abortable' => false ]
 		);
 	}
 

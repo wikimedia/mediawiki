@@ -286,4 +286,62 @@ class ConditionalDefaultsLookupTest extends MediaWikiUnitTestCase {
 			[ [ 'user' ], null ],
 		];
 	}
+
+	/**
+	 * @covers ::getOptionDefaultForUser
+	 * @covers ::checkConditionsForUser
+	 * @covers ::checkConditionForUser
+	 * @dataProvider provideGetOptionDefaultForUser__extraCondition
+	 * @param array $configConditions An array of condition descriptors as described for $wgConditionalUserOptions
+	 * @param array $extraConditions Key is the condition name and value is a callable
+	 * @param string|null $expected the default option or null if none apply
+	 */
+	public function testGetOptionDefaultForUser__extraCondition( array $configConditions, array $extraConditions, ?string $expected ) {
+		$userIdentity = new UserIdentityValue( 1, 'test user' );
+
+		$options = $this->getServiceOptions( [
+			MainConfigNames::ConditionalUserOptions => [
+				'test-option' => $configConditions
+			]
+		] );
+		$registrationLookup = $this->createNoOpMock( UserRegistrationLookup::class );
+		$userIdentityUtils = $this->createMock( UserIdentityUtils::class );
+
+		$lookup = new ConditionalDefaultsLookup( $options, $registrationLookup, $userIdentityUtils,
+			static function () {
+			},
+			$extraConditions
+		);
+
+		$this->assertSame( $expected, $lookup->getOptionDefaultForUser( 'test-option', $userIdentity ) );
+	}
+
+	public static function provideGetOptionDefaultForUser__extraCondition(): array {
+		return [
+			[
+				[
+					[ 'No', [ 'if-condition', false ] ],
+					[ 'Yes', [ 'if-condition', true ] ],
+				],
+				[
+					'if-condition' => static function ( $userIdentity, $args ) {
+						return (bool)$args[0];
+					},
+				],
+				'Yes'
+			],
+			[
+				[
+					[ 'Yes', [ 'if-condition', true ] ],
+					[ 'No', [ 'if-condition', false ] ],
+				],
+				[
+					'if-condition' => static function ( $userIdentity, $args ) {
+						return !(bool)$args[0];
+					},
+				],
+				'No'
+			]
+		];
+	}
 }
