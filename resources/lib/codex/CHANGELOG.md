@@ -1,3 +1,34 @@
+# 1.14.0 / 2024-10-16
+
+## Features
+- Menu: disable Tab keynav selection from multi-select menus (lwatson)
+- Lookup: Add ARIA `role` to no result Lookup item (Arthur Taylor)
+- LookupMultiselect, ChipInput: Improve floating menu UX (Anne Tomasevich)
+- LookupMultiselect: Clear the input on selection (Anne Tomasevich)
+- ChipInput: On chip click, show chip label or value (Anne Tomasevich)
+- MultiselectLookup: Rename component (Anne Tomasevich)
+- MultiselectLookup: Export component for use (Anne Tomasevich)
+- Button: trigger actual click on key interaction (Anne Tomasevich)
+
+## Styles
+- styles, ChipInput: fix separate input's disabled state (lwatson)
+- tokens: Amend focus colors for dark mode (Volker E.)
+- ChipInput: Make input background transparent (Anne Tomasevich)
+
+## Code
+- Menu: minor update test file (lwatson)
+- MultiselectLookup: Handle race condition when editing chip (Anne Tomasevich)
+
+## Docs
+- Lookup, LookupMultiselect: Refactor demo pages (Anne Tomasevich)
+- docs: include MultiselectLookup guidelines (bmartinezcalvo)
+- docs: update Lookup guidelines (bmartinezcalvo)
+- docs: Fix typo in Menu keyboard nav docs (Anne Tomasevich)
+- docs: Add error and warning messages to LookupField (Anne Tomasevich)
+- docs: Fix style class name in Developing Components guide (Volker E.)
+- docs: Add error and warning messages to MultiselectLookupField (Anne Tomasevich)
+- docs: Fix typo in MultiselectLookup field demo (Anne Tomasevich)
+
 # 1.13.1 / 2024-10-01
 
 ## Features
