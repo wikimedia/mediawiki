@@ -158,12 +158,14 @@ For notes on 1.42.x and older releases, see HISTORY.
 
 * (T251790) Some development-only external libraries have been added for the new
   testing tools for front-end Vue components:
- * Added jest and jest-environment-jsdom at v29.7.0.
- * Added @vue/test-utils v2.4.6.
- * Added @vue/vue3-jest v29.2.6.
- * Added @babel/preset-env v7.25.4.
- * Codex, already available via ResourceLoader, now has the npm versions, i.e.
-   @wikimedia/codex and @wikimedia/codex-icons, also installed for this testing.
+  * Added jest and jest-environment-jsdom at v29.7.0.
+  * Added @vue/test-utils v2.4.6.
+  * Added @vue/vue3-jest v29.2.6.
+  * Added @babel/preset-env v7.25.4.
+  * Added pinia v2.0.16 (already available via ResourceLoader).
+  * Added @pinia/testing v0.0.12.
+  * Codex, already available via ResourceLoader, now has the npm versions, i.e.
+    @wikimedia/codex and @wikimedia/codex-icons, also installed for testing.
 * …
 
 ==== Changed external libraries ====
