@@ -2677,7 +2677,7 @@ return [
 	'_DefaultOptionsLookup' => static function ( MediaWikiServices $services ): DefaultOptionsLookup {
 		return new DefaultOptionsLookup(
 			new ServiceOptions( DefaultOptionsLookup::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
-			$services->getContentLanguage(),
+			$services->getContentLanguageCode(),
 			$services->getHookContainer(),
 			$services->getNamespaceInfo(),
 			$services->get( '_ConditionalDefaultsLookup' )

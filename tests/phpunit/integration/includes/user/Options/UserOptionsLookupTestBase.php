@@ -71,8 +71,7 @@ abstract class UserOptionsLookupTestBase extends MediaWikiIntegrationTestCase {
 		string $langCode = 'qqq',
 		array $defaultOptionsOverrides = []
 	): DefaultOptionsLookup {
-		$lang = $this->createMock( Language::class );
-		$lang->method( 'getCode' )->willReturn( $langCode );
+		$lang = new LanguageCode( $langCode );
 		return new DefaultOptionsLookup(
 			new ServiceOptions(
 				DefaultOptionsLookup::CONSTRUCTOR_OPTIONS,

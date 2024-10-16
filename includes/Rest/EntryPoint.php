@@ -134,7 +134,7 @@ class EntryPoint extends MediaWikiEntryPoint {
 	private function getTextFormatters() {
 		$services = $this->getServiceContainer();
 
-		$code = $services->getContentLanguage()->getCode();
+		$code = $services->getContentLanguageCode()->toString();
 		$langs = array_unique( [ $code, 'en' ] );
 		$textFormatters = [];
 		$factory = $services->getMessageFormatterFactory();
