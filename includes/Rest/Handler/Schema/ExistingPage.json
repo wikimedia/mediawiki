@@ -1,0 +1,61 @@
+{
+	"description": "Schema for wiki pages.",
+	"required": [
+		"id",
+		"key",
+		"title",
+		"latest",
+		"content_model",
+		"license"
+	],
+	"properties": {
+		"id": {
+			"type": "integer",
+			"description": "Page identifier."
+		},
+		"key": {
+			"type": "string",
+			"description": "Page title in URL-friendly format"
+		},
+		"title": {
+			"type": "string",
+			"description": "Page title"
+		},
+		"latest": {
+			"type": "object",
+			"description": "Information about the latest revision",
+			"properties": {
+				"id": {
+					"type": "integer",
+					"description": "Revision identifier for the latest revision"
+				},
+				"timestamp": {
+					"type": "string",
+					"description": " Timestamp of the latest revision"
+				}
+			}
+		},
+		"content_model": {
+			"type": "string",
+			"description": "Page content type"
+		},
+		"license": {
+			"type": "string",
+			"description": "Information about the wiki's license",
+			"properties": {
+				"url": {
+					"type": "string",
+					"description": "URL of the applicable license"
+				},
+				"title": {
+					"type": "string",
+					"description": "Name of the applicable license"
+				}
+			}
+		},
+		"source": {
+			"type": "string",
+			"description": "Latest page content in the format specified by the content_model property"
+		}
+	}
+}

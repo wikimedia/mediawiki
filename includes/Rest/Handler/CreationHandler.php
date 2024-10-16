@@ -110,4 +110,13 @@ class CreationHandler extends EditHandler {
 		$response->setHeader( 'Location', $url );
 	}
 
+	/**
+	 * This method specifies the JSON schema file for the response
+	 * body when creating a new page.
+	 *
+	 * @return ?string The file path to the NewPage JSON schema.
+	 */
+	public function getResponseBodySchemaFileName( string $method ): ?string {
+		return 'includes/Rest/Handler/Schema/NewPage.json';
+	}
 }

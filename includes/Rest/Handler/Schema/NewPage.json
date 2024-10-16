@@ -1,0 +1,34 @@
+{
+	"description": "Schema for wiki pages.",
+	"required": [
+		"source",
+		"title",
+		"comment",
+		"content_model",
+		"token"
+	],
+	"properties": {
+		"source": {
+			"type": "string",
+			"description": "Page content in the format specified by the content_model property"
+		},
+		"title": {
+			"type": "string",
+			"description": "Page title"
+		},
+		"comment": {
+			"type": "string",
+			"description": "Reason for creating the page."
+		},
+		"content_model": {
+			"type": "string",
+			"nullable": true,
+			"description": "Page content type"
+		},
+		"token": {
+			"type": "string",
+			"nullable": true,
+			"description": "CSRF token required when using cookie-based authentication."
+		}
+	}
+}
