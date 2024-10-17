@@ -1539,13 +1539,15 @@ class EditPage implements IEditObject {
 				$out = $this->context->getOutput();
 				// Messages: undo-success, undo-failure, undo-main-slot-only, undo-norev,
 				// undo-nochange.
-				$class = ( $undoMsg === 'success' ? '' : 'error ' ) . "mw-undo-{$undoMsg}";
+				$class = "mw-undo-{$undoMsg}";
+				$html = $this->context->msg( 'undo-' . $undoMsg )->parse();
+				if ( $undoMsg !== 'success' ) {
+					$html = Html::errorBox( $html );
+				}
 				$this->editFormPageTop .= Html::rawElement(
 					'div',
 					[ 'class' => $class ],
-					$out->parseAsInterface(
-						$this->context->msg( 'undo-' . $undoMsg )->plain()
-					)
+					$html
 				);
 			}
 
@@ -1868,9 +1870,11 @@ class EditPage implements IEditObject {
 			case self::AS_PARSE_ERROR:
 			case self::AS_UNICODE_NOT_SUPPORTED:
 			case self::AS_UNABLE_TO_ACQUIRE_TEMP_ACCOUNT:
-				$out->wrapWikiTextAsInterface( 'error',
-					$status->getWikiText( false, false, $this->context->getLanguage() )
-				);
+				foreach ( $status->getMessages() as $msg ) {
+					$out->addHTML( Html::errorBox(
+						$this->context->msg( $msg )->parse()
+					) );
+				}
 				return true;
 
 			case self::AS_SUCCESS_NEW_ARTICLE:
@@ -1930,9 +1934,9 @@ class EditPage implements IEditObject {
 				throw new ReadOnlyError;
 
 			case self::AS_RATE_LIMITED:
-				$out->wrapWikiTextAsInterface( 'error',
-					wfMessage( 'actionthrottledtext' )->plain()
-				);
+				$out->addHTML( Html::errorBox(
+					$this->context->msg( 'actionthrottledtext' )->parse()
+				) );
 				return true;
 
 			case self::AS_NO_CREATE_PERMISSION:
@@ -3226,13 +3230,14 @@ class EditPage implements IEditObject {
 				$this->showConflict();
 			} catch ( MWContentSerializationException $ex ) {
 				// this can't really happen, but be nice if it does.
-				$msg = $this->context->msg(
-					'content-failed-to-parse',
-					$this->contentModel,
-					$this->contentFormat,
-					$ex->getMessage()
-				);
-				$out->wrapWikiTextAsInterface( 'error', $msg->plain() );
+				$out->addHTML( Html::errorBox(
+					$this->context->msg(
+						'content-failed-to-parse',
+						$this->contentModel,
+						$this->contentFormat,
+						$ex->getMessage()
+					)->parse()
+				) );
 			}
 		}
 
@@ -3602,13 +3607,14 @@ class EditPage implements IEditObject {
 			try {
 				$this->showDiff();
 			} catch ( MWContentSerializationException $ex ) {
-				$msg = $this->context->msg(
-					'content-failed-to-parse',
-					$this->contentModel,
-					$this->contentFormat,
-					$ex->getMessage()
-				);
-				$out->wrapWikiTextAsInterface( 'error', $msg->plain() );
+				$out->addHTML( Html::errorBox(
+					$this->context->msg(
+						'content-failed-to-parse',
+						$this->contentModel,
+						$this->contentFormat,
+						$ex->getMessage()
+					)->parse()
+				) );
 			}
 		}
 	}
@@ -4579,22 +4585,19 @@ class EditPage implements IEditObject {
 		$out = $this->context->getOutput();
 		$maxArticleSize = $this->context->getConfig()->get( MainConfigNames::MaxArticleSize );
 		if ( $this->tooBig || $this->contentLength > $maxArticleSize * 1024 ) {
-			$lang = $this->context->getLanguage();
-			$out->wrapWikiMsg( "<div class='error' id='mw-edit-longpageerror'>\n$1\n</div>",
-				[
-					'longpageerror',
-					$lang->formatNum( round( $this->contentLength / 1024, 3 ) ),
-					$lang->formatNum( $maxArticleSize )
-				]
-			);
+			$out->addHTML( "<div id='mw-edit-longpageerror'>" . Html::errorBox(
+				$this->context->msg( 'longpageerror' )
+					->numParams( round( $this->contentLength / 1024, 3 ), $maxArticleSize )
+					->parse()
+			) . "</div>" );
 		} else {
 			$longPageHint = $this->context->msg( 'longpage-hint' );
 			if ( !$longPageHint->isDisabled() ) {
 				$msgText = trim( $longPageHint->sizeParams( $this->contentLength )
 					->params( $this->contentLength ) // Keep this unformatted for math inside message
-					->text() );
+					->parse() );
 				if ( $msgText !== '' && $msgText !== '-' ) {
-					$out->addWikiTextAsInterface( "<div id='mw-edit-longpage-hint'>\n$msgText\n</div>" );
+					$out->addHTML( "<div id='mw-edit-longpage-hint'>\n$msgText\n</div>" );
 				}
 			}
 		}

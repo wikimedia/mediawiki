@@ -26,6 +26,7 @@ use ErrorPageError;
 use File;
 use LocalFile;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\File\FileDeleteForm;
@@ -131,10 +132,15 @@ class FileDeleteAction extends DeleteAction {
 		);
 
 		if ( !$status->isGood() ) {
-			$outputPage->wrapWikiTextAsInterface(
-				'error',
-				$status->getWikiText( 'filedeleteerror-short', 'filedeleteerror-long' )
+			$outputPage->setPageTitleMsg(
+				$this->msg( 'cannotdelete-title' )->plaintextParams( $title->getPrefixedText() )
 			);
+			$outputPage->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
+			foreach ( $status->getMessages() as $msg ) {
+				$outputPage->addHTML( Html::errorBox(
+					$context->msg( $msg )->parse()
+				) );
+			}
 		}
 		if ( $status->isOK() ) {
 			$outputPage->setPageTitleMsg( $context->msg( 'actioncomplete' ) );

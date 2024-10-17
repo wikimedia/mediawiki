@@ -52,7 +52,6 @@ use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\SpecialPage\SpecialPage;
-use MediaWiki\Status\Status;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Title\Title;
@@ -1644,14 +1643,12 @@ class SpecialUndelete extends SpecialPage {
 
 		if ( !$status->isGood() ) {
 			$out->setPageTitleMsg( $this->msg( 'undelete-error' ) );
-			$out->wrapWikiTextAsInterface(
-				'error',
-				Status::wrap( $status )->getWikiText(
-					'cannotundelete',
-					'cannotundelete',
-					$this->getLanguage()
-				)
-			);
+			$out->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
+			foreach ( $status->getMessages() as $msg ) {
+				$out->addHTML( Html::errorBox(
+					$this->msg( $msg )->parse()
+				) );
+			}
 			return;
 		}
 

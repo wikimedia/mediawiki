@@ -23,6 +23,7 @@ namespace MediaWiki\Specials;
 use ChangeTags;
 use MediaWiki\ChangeTags\ChangeTagsStore;
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPage;
@@ -61,6 +62,7 @@ class SpecialTags extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->addHelpLink( 'Manual:Tags' );
+		$this->getOutput()->addModuleStyles( 'mediawiki.codex.messagebox.styles' );
 
 		$request = $this->getRequest();
 		switch ( $par ) {
@@ -337,7 +339,11 @@ class SpecialTags extends SpecialPage {
 			$out->addBacklinkSubtitle( $this->getPageTitle() );
 			return false;
 		} else {
-			$out->wrapWikiTextAsInterface( 'error', $status->getWikiText() );
+			foreach ( $status->getMessages() as $msg ) {
+				$out->addHTML( Html::errorBox(
+					$this->msg( $msg )->parse()
+				) );
+			}
 			return false;
 		}
 	}
@@ -355,7 +361,11 @@ class SpecialTags extends SpecialPage {
 		// is the tag actually able to be deleted?
 		$canDeleteResult = ChangeTags::canDeleteTag( $tag, $authority );
 		if ( !$canDeleteResult->isGood() ) {
-			$out->wrapWikiTextAsInterface( 'error', $canDeleteResult->getWikiText() );
+			foreach ( $canDeleteResult->getMessages() as $msg ) {
+				$out->addHTML( Html::errorBox(
+					$this->msg( $msg )->parse()
+				) );
+			}
 			if ( !$canDeleteResult->isOK() ) {
 				return;
 			}
@@ -420,7 +430,11 @@ class SpecialTags extends SpecialPage {
 			$result = ChangeTags::canDeactivateTag( $tag, $authority );
 		}
 		if ( !$result->isGood() ) {
-			$out->wrapWikiTextAsInterface( 'error', $result->getWikiText() );
+			foreach ( $result->getMessages() as $msg ) {
+				$out->addHTML( Html::errorBox(
+					$this->msg( $msg )->parse()
+				) );
+			}
 			if ( !$result->isOK() ) {
 				return;
 			}
@@ -480,7 +494,11 @@ class SpecialTags extends SpecialPage {
 			$out->addReturnTo( $this->getPageTitle() );
 			return true;
 		} else {
-			$out->wrapWikiTextAsInterface( 'error', $status->getWikitext() );
+			foreach ( $status->getMessages() as $msg ) {
+				$out->addHTML( Html::errorBox(
+					$this->msg( $msg )->parse()
+				) );
+			}
 			return false;
 		}
 	}
