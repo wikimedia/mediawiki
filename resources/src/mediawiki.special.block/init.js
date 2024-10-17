@@ -9,7 +9,7 @@ if ( outer ) {
 
 	// Load any extension-provided messages added by the PHP GetAllBlockActions hook.
 	( new mw.Api() ).loadMessagesIfMissing(
-		Object.keys( mw.config.get( 'partialBlockActionOptions' ) )
+		Object.keys( mw.config.get( 'partialBlockActionOptions' ) || {} )
 	).then( () => {
 		Vue.createMwApp( App )
 			.use( createPinia() )
