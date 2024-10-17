@@ -152,7 +152,7 @@ class ThumbnailRenderJob extends Job {
 			( $this->params['enqueueNextPage'] ?? false ) &&
 			( $transformParams['page'] ?? 0 ) < ( $this->params['pageLimit'] ?? 0 )
 		) {
-			$transformParams['page'] += 1;
+			$transformParams['page']++;
 			$job = new ThumbnailRenderJob(
 				$this->getTitle(),
 				[

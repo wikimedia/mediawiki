@@ -38,7 +38,7 @@ class UpdateExtensionJsonSchema extends Maintenance {
 		}
 
 		while ( $json['manifest_version'] !== ExtensionRegistry::MANIFEST_VERSION ) {
-			$json['manifest_version'] += 1;
+			$json['manifest_version']++;
 			$func = "updateTo{$json['manifest_version']}";
 			$this->$func( $json );
 		}

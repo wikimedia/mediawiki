@@ -32,7 +32,7 @@ class RemexCompatBuilder extends TreeBuilder {
 				}
 				break;
 			}
-			$len -= 1;
+			$len--;
 		}
 		parent::reconstructAFE( $sourceStart );
 	}

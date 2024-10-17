@@ -229,7 +229,7 @@ class PathRouter {
 		foreach ( $path as $piece ) {
 			if ( preg_match( '/^\$(\d+|key)$/u', $piece ) ) {
 				# For a piece that is only a $1 variable add 1 points of weight
-				$weight += 1;
+				$weight++;
 			} elseif ( preg_match( '/\$(\d+|key)/u', $piece ) ) {
 				# For a piece that simply contains a $1 variable add 2 points of weight
 				$weight += 2;

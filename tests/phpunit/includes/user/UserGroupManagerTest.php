@@ -504,7 +504,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$calledCount = 0;
 		$callback = function ( UserIdentity $callbackUser ) use ( $user, &$calledCount ) {
 			$this->assertTrue( $callbackUser->equals( $user ) );
-			$calledCount += 1;
+			$calledCount++;
 		};
 		$manager = $this->getManager( [], null, $callback );
 		$this->assertTrue( $manager->removeUserFromGroup( $user, 'test' ) );

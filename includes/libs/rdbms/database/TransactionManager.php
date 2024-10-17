@@ -294,11 +294,11 @@ class TransactionManager {
 		}
 
 		$this->trxWriteDuration += $runtime;
-		$this->trxWriteQueryCount += 1;
+		$this->trxWriteQueryCount++;
 		$this->trxWriteAffectedRows += $affected;
 		if ( $indicativeOfReplicaRuntime ) {
 			$this->trxWriteAdjDuration += $runtime;
-			$this->trxWriteAdjQueryCount += 1;
+			$this->trxWriteAdjQueryCount++;
 		}
 
 		$this->trxWriteCallers[] = $fname;
