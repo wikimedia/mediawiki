@@ -631,6 +631,12 @@ abstract class DatabaseUpdater {
 	 * @return bool
 	 */
 	public function updateRowExists( $key ) {
+		// Return false if the updatelog table does not exist. This can occur if performing schema changes for tables
+		// that are on a virtual database domain.
+		if ( !$this->db->tableExists( 'updatelog', __METHOD__ ) ) {
+			return false;
+		}
+
 		$row = $this->db->newSelectQueryBuilder()
 			->select( '1 AS X' ) // T67813
 			->from( 'updatelog' )
@@ -651,6 +657,12 @@ abstract class DatabaseUpdater {
 	 * @param string|null $val [optional] Value to insert along with the key
 	 */
 	public function insertUpdateRow( $key, $val = null ) {
+		// We cannot insert anything to the updatelog table if it does not exist. This can occur for schema changes
+		// on tables that are on a virtual database domain.
+		if ( !$this->db->tableExists( 'updatelog', __METHOD__ ) ) {
+			return;
+		}
+
 		$this->db->clearFlag( DBO_DDLMODE );
 		$values = [ 'ul_key' => $key ];
 		if ( $val ) {
