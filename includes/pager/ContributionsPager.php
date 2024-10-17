@@ -62,7 +62,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	/**
 	 * @var string[] Local cache for escaped messages
 	 */
-	private $messages;
+	protected $messages;
 
 	/**
 	 * @var bool Get revisions from the archive table (if true) or the revision table (if false)
