@@ -27,9 +27,11 @@
 </template>
 
 <script>
-const { defineComponent, toRef, ref, watch } = require( 'vue' );
-const { CdxLookup, CdxField, useModelWrapper } = require( '@wikimedia/codex' );
+const { defineComponent, ref, watch } = require( 'vue' );
+const { CdxLookup, CdxField } = require( '@wikimedia/codex' );
+const { storeToRefs } = require( 'pinia' );
 const { cdxIconSearch } = require( '../icons.json' );
+const useBlockStore = require( '../stores/block.js' );
 const api = new mw.Api();
 
 module.exports = exports = defineComponent( {
@@ -49,17 +51,27 @@ module.exports = exports = defineComponent( {
 	emits: [
 		'update:modelValue'
 	],
-	setup( props, { emit } ) {
+	setup( props ) {
+		const { targetUser } = storeToRefs( useBlockStore() );
+
 		// Set a flag to keep track of pending API requests, so we can abort if
 		// the target string changes
 		let pending = false;
 
-		const menuItems = ref( [] );
+		// Codex Lookup component requires a v-modeled `selected` prop.
+		// Until a selection is made, the value may be set to null.
+		// We instead want to only update the targetUser for non-null values
+		// (made either via selection, or the 'change' event).
+		const selection = ref( props.modelValue || '' );
+		// This handles changes via selection, while onChange() handles changes via input.
+		watch( selection, ( newValue ) => {
+			if ( newValue !== null ) {
+				targetUser.value = newValue;
+			}
+		} );
+
 		const currentSearchTerm = ref( props.modelValue || '' );
-		const selection = useModelWrapper(
-			toRef( props, 'modelValue' ),
-			emit
-		);
+		const menuItems = ref( [] );
 		const status = ref( 'default' );
 		const messages = ref( {} );
 
@@ -153,7 +165,7 @@ module.exports = exports = defineComponent( {
 		 */
 		function onChange( event ) {
 			validate( event.target );
-			emit( 'update:modelValue', event.target.value );
+			targetUser.value = event.target.value;
 		}
 
 		// Validate the input when the form is submitted.

@@ -13,7 +13,7 @@
 			>
 				<p><strong>{{ $i18n( 'blockipsuccesssub' ) }}</strong></p>
 				<!-- eslint-disable-next-line vue/no-v-html -->
-				<p v-html="$i18n( 'block-success', targetUser ).parse()"></p>
+				<p v-html="$i18n( 'block-success', store.targetUser ).parse()"></p>
 			</cdx-message>
 			<cdx-message
 				v-for="( formError, index ) in formErrors"
@@ -26,38 +26,35 @@
 			</cdx-message>
 		</div>
 		<user-lookup
-			v-model="targetUser"
+			v-model="store.targetUser"
 			:form-submitted="formSubmitted"
-			@input="alreadyBlocked = false"
+			@input="store.alreadyBlocked = false"
 		></user-lookup>
 		<target-active-blocks
 			v-if="blockEnableMultiblocks"
-			:target-user="targetUser"
+			:target-user="store.targetUser"
 		></target-active-blocks>
 		<target-block-log
-			:target-user="targetUser"
+			:target-user="store.targetUser"
 		></target-block-log>
 		<block-type-field
-			v-model="blockPartialOptionsSelected"
-			v-model:block-type-value="blockType"
+			v-model="store.partialOptions"
+			v-model:block-type-value="store.type"
 			:partial-block-options="blockPartialOptions"
 		></block-type-field>
-		<expiry-field
-			v-model="expiry"
-			:form-submitted="formSubmitted"
-		></expiry-field>
+		<expiry-field :form-submitted="formSubmitted"></expiry-field>
 		<reason-field
-			v-model:selected="reasonSelected"
-			v-model:other="reasonOther"
+			v-model:selected="store.reason"
+			v-model:other="store.reasonOther"
 		></reason-field>
 		<block-details-field
-			v-model="blockDetailsSelected"
+			v-model="store.details"
 			:checkboxes="blockDetailsOptions"
 			:label="$i18n( 'block-details' ).text()"
 			:description="$i18n( 'block-details-description' ).text()"
 		></block-details-field>
 		<block-details-field
-			v-model="blockAdditionalDetailsSelected"
+			v-model="store.additionalDetails"
 			:checkboxes="additionalDetailsOptions"
 			:label="$i18n( 'block-options' ).text()"
 			:description="$i18n( 'block-options-description' ).text()"
@@ -77,6 +74,8 @@
 <script>
 const { computed, defineComponent, nextTick, ref, Ref } = require( 'vue' );
 const { CdxButton, CdxField, CdxMessage } = require( '@wikimedia/codex' );
+const { storeToRefs } = require( 'pinia' );
+const useBlockStore = require( './stores/block.js' );
 const UserLookup = require( './components/UserLookup.vue' );
 const TargetActiveBlocks = require( './components/TargetActiveBlocks.vue' );
 const TargetBlockLog = require( './components/TargetBlockLog.vue' );
@@ -84,7 +83,6 @@ const BlockTypeField = require( './components/BlockTypeField.vue' );
 const ExpiryField = require( './components/ExpiryField.vue' );
 const ReasonField = require( './components/ReasonField.vue' );
 const BlockDetailsField = require( './components/BlockDetailsOptions.vue' );
-const api = new mw.Api();
 
 module.exports = exports = defineComponent( {
 	name: 'SpecialBlock',
@@ -101,8 +99,7 @@ module.exports = exports = defineComponent( {
 		CdxMessage
 	},
 	setup() {
-		const targetUser = ref( mw.config.get( 'blockTargetUser', '' ) );
-		const alreadyBlocked = ref( mw.config.get( 'blockAlreadyBlocked' ) );
+		const store = useBlockStore();
 		const blockEnableMultiblocks = mw.config.get( 'blockEnableMultiblocks' ) || false;
 		const success = ref( false );
 		/**
@@ -114,13 +111,11 @@ module.exports = exports = defineComponent( {
 		const formSubmitted = ref( false );
 		const formDisabled = ref( false );
 		const messagesContainer = ref();
-		const formErrors = ref( mw.config.get( 'blockPreErrors' ) );
+		const { formErrors } = storeToRefs( store );
 		// eslint-disable-next-line arrow-body-style
 		const submitButtonMessage = computed( () => {
-			return mw.message( alreadyBlocked.value ? 'ipb-change-block' : 'ipbsubmit' ).text();
+			return mw.message( store.alreadyBlocked ? 'ipb-change-block' : 'ipbsubmit' ).text();
 		} );
-		const blockType = ref( mw.config.get( 'blockTypePreset' ) );
-		const expiry = ref( {} );
 		const blockPartialOptions = mw.config.get( 'partialBlockActionOptions' ) ?
 			Object.keys( mw.config.get( 'partialBlockActionOptions' ) ).map(
 				// Messages that can be used here:
@@ -129,14 +124,10 @@ module.exports = exports = defineComponent( {
 				// * ipb-action-create
 				( key ) => Object( { label: mw.message( key ).text(), value: key } ) ) :
 			[];
-		const blockPartialOptionsSelected = ref( [ 'ipb-action-create' ] );
-		const reasonSelected = ref( 'other' );
-		const reasonOther = ref( mw.config.get( 'blockReasonOtherPreset' ) );
 		const blockAllowsUTEdit = mw.config.get( 'blockAllowsUTEdit' ) || false;
 		const blockEmailBan = mw.config.get( 'blockAllowsEmailBan' ) || false;
 		const blockAutoblockExpiry = mw.config.get( 'blockAutoblockExpiry' );
 		const blockHideUser = mw.config.get( 'blockHideUser' ) || false;
-		const blockDetailsSelected = ref( mw.config.get( 'blockDetailsPreset' ) );
 		const blockDetailsOptions = [
 			{
 				label: mw.message( 'ipbcreateaccount' ),
@@ -158,7 +149,6 @@ module.exports = exports = defineComponent( {
 			} );
 		}
 
-		const blockAdditionalDetailsSelected = ref( mw.config.get( 'blockAdditionalDetailsPreset' ) );
 		const additionalDetailsOptions = [ {
 			label: mw.message( 'ipbenableautoblock', blockAutoblockExpiry ),
 			value: 'wpAutoBlock',
@@ -197,11 +187,23 @@ module.exports = exports = defineComponent( {
 		function handleSubmit( event ) {
 			event.preventDefault();
 			formSubmitted.value = true;
+			success.value = false;
 
 			// checkValidity() executes browser form validation, which triggers automatic
 			// validation states on applicable components (e.g. fields with `required` attr).
-			if ( event.target.form.checkValidity() && expiry.value.value ) {
-				block();
+			if ( event.target.form.checkValidity() && store.expiry ) {
+				store.doBlock()
+					.done( () => {
+						success.value = true;
+					} )
+					.fail( ( _, errorObj ) => {
+						formErrors.value = [ errorObj.error.info ];
+						success.value = false;
+					} )
+					.always( () => {
+						formDisabled.value = false;
+						messagesContainer.value.scrollIntoView( { behavior: 'smooth' } );
+					} );
 			} else {
 				// nextTick() needed to ensure error messages are rendered before scrolling.
 				nextTick( () => {
@@ -216,117 +218,18 @@ module.exports = exports = defineComponent( {
 			}
 		}
 
-		/**
-		 * Send block.
-		 *
-		 * @return {jQuery.Promise}
-		 */
-		function block() {
-			formDisabled.value = true;
-
-			const params = {
-				action: 'block',
-				reblock: alreadyBlocked.value ? 1 : 0,
-				format: 'json',
-				user: targetUser.value,
-				// Remove browser-specific milliseconds for consistency.
-				expiry: expiry.value.value.replace( /\.000$/, '' ),
-				// Localize errors
-				uselang: mw.config.get( 'wgUserLanguage' ),
-				errorlang: mw.config.get( 'wgUserLanguage' ),
-				errorsuselocal: true
-			};
-
-			// Reason selected concatenated with 'Other' field
-			if ( reasonSelected.value === 'other' ) {
-				params.reason = reasonOther.value;
-			} else {
-				params.reason = reasonSelected.value + (
-					reasonOther.value ? mw.msg( 'colon-separator' ) + reasonOther.value : ''
-				);
-			}
-
-			if ( blockType.value === 'partial' ) {
-				const actionRestrictions = [];
-				params.partial = 1;
-				if ( blockPartialOptionsSelected.value.indexOf( 'ipb-action-upload' ) !== -1 ) {
-					actionRestrictions.push( 'upload' );
-				}
-				if ( blockPartialOptionsSelected.value.indexOf( 'ipb-action-move' ) !== -1 ) {
-					actionRestrictions.push( 'move' );
-				}
-				if ( blockPartialOptionsSelected.value.indexOf( 'ipb-action-create' ) !== -1 ) {
-					actionRestrictions.push( 'create' );
-				}
-				params.actionRestrictions = actionRestrictions.join( '|' );
-			}
-
-			if ( blockDetailsSelected.value.indexOf( 'wpCreateAccount' ) !== -1 ) {
-				params.nocreate = 1;
-			}
-
-			if ( blockDetailsSelected.value.indexOf( 'wpDisableEmail' ) !== -1 ) {
-				params.noemail = 1;
-			}
-
-			if ( blockDetailsSelected.value.indexOf( 'wpDisableUTEdit' ) !== -1 ) {
-				params.allowusertalk = 1;
-			}
-
-			if ( blockAdditionalDetailsSelected.value.indexOf( 'wpAutoBlock' ) !== -1 ) {
-				params.autoblock = 1;
-			}
-
-			if ( blockAdditionalDetailsSelected.value.indexOf( 'wpHideName' ) !== -1 ) {
-				params.hidename = 1;
-			}
-
-			if ( blockAdditionalDetailsSelected.value.indexOf( 'wpWatch' ) !== -1 ) {
-				params.watchuser = 1;
-			}
-
-			if ( blockAdditionalDetailsSelected.value.indexOf( 'wpHardBlock' ) !== -1 ) {
-				params.nocreate = 1;
-			}
-
-			// Clear messages.
-			success.value = false;
-			formErrors.value = [];
-
-			return api.postWithEditToken( params )
-				.done( () => {
-					success.value = true;
-				} )
-				.fail( ( _code, errorObj ) => {
-					success.value = false;
-					formErrors.value = [ errorObj.error.info ];
-				} )
-				.always( () => {
-					formDisabled.value = false;
-					messagesContainer.value.scrollIntoView( { behavior: 'smooth' } );
-				} );
-		}
-
 		return {
+			store,
 			formSubmitted,
 			formDisabled,
 			messagesContainer,
 			formErrors,
 			success,
-			targetUser,
-			blockType,
-			expiry,
-			alreadyBlocked,
 			submitButtonMessage,
 			handleSubmit,
 			blockDetailsOptions,
-			blockDetailsSelected,
-			reasonOther,
-			reasonSelected,
 			additionalDetailsOptions,
-			blockAdditionalDetailsSelected,
 			blockPartialOptions,
-			blockPartialOptionsSelected,
 			blockEnableMultiblocks
 		};
 	}
