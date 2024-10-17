@@ -900,7 +900,7 @@
 	"mergehistory-fail-invalid-source": "Gáldosiidu lea feaillalaš.",
 	"mergehistory-fail-invalid-dest": "Ulbmil-siidu ii gusto.",
 	"mergehistory-fail-no-change": "Historjábárgideapmi ii bárgidan ovttage siidoveršuvnna. Dárkkis siiddu ja áigeparamehteriid fas.",
-	"mergehistory-fail-permission": "Váilu vuoigatvuohta bárgidit historihka.",
+	"mergehistory-fail-permission": "Váilu vuoigatvuohta bárgidit siidohistorjjáid.",
 	"mergehistory-fail-self-merge": "Gáldo- ja ulbmil-siidu lea dat seamma.",
 	"mergehistory-fail-timestamps-overlap": "Gáldoveršuvnnat badjálastojit dahje leat ulbmilveršuvnnaid maŋŋelis.",
 	"mergehistory-fail-toobig": "Ii leat vejolaš čađahit historihkka-bárgideami dan sivas go eanet go {{PLURAL:$1|dat lobálaš okta siidoveršuvdna|ldat lobalaš $1 siidoveršuvnna}} livčče šaddan de sirdojuvvot.",

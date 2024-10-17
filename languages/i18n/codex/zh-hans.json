@@ -1,10 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"Lakejason0",
 			"LittlePaw365",
 			"沈澄心"
 		]
 	},
+	"cdx-chip-input-chip-added": "已添加标签$1。",
+	"cdx-chip-input-chip-removed": "已移除标签$1。",
 	"cdx-input-chip-aria-description": "按Enter键可编辑，按Delete键可删除。",
 	"cdx-dialog-close-button-label": "关闭",
 	"cdx-label-optional-flag": "（可选）",
