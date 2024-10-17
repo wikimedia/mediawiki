@@ -251,7 +251,8 @@
 			"Luke Davidson",
 			"Qwrop",
 			"Rafael.minuesa",
-			"Adamw"
+			"Adamw",
+			"Codename Noreste"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -4089,7 +4090,7 @@
 	"mediastatistics-summary": "Estadísticas sobre los tipos de archivos cargados. Solo se tiene en cuenta la versión más reciente de cada archivo. Los archivos antiguos o eliminados están excluidos.",
 	"mediastatistics-nfiles": "$1 ($2 %)",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 ''byte''|$1 ''bytes''}} ($2; $3 %)",
-	"mediastatistics-bytespertype": "Tamaño de archivo total para esta sección de {{PLURAL:$4|$4 archivo|$4 archivos}} ($5%): {{PLURAL|$1|$1 byte|$1 bytes}} ($2; $3).",
+	"mediastatistics-bytespertype": "Tamaño de archivo total para esta sección de {{PLURAL:$4|$4 archivo|$4 archivos}} ($5%): {{PLURAL:$1|$1 byte|$1 bytes}} ($2; $3).",
 	"mediastatistics-allbytes": "Tamaño de archivo total para {{PLURAL|$3|el archivo|los $3 archivos}}: {{PLURAL:$1|$1 byte|$1 bytes}} ($2)",
 	"mediastatistics-table-mimetype": "Tipo MIME",
 	"mediastatistics-table-extensions": "Extensiones posibles",

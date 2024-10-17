@@ -614,7 +614,7 @@
 	"anoneditwarning": "<strong>Niŋmi zaɣa:</strong> Anabi kpe. A IP namber maa kuyan dola poloni diyi niŋ ka a niŋ taɣibu shɛli. Di yi niŋ ka a <strong>[$1 log in]</strong> bee <strong>[$2 create an account]</strong>, taɣabu kam ani niŋ yan bela a yuli ni ni aliheri shɛŋa din kam pahi.",
 	"autocreate-edit-warning": "<strong>Warning:</strong> You are not logged in. Once you make an edit, a temporary account will be created for you. [[{{MediaWiki:tempuser-helppage}}|Learn more]]. <strong>[$1 Log in]</strong> or <strong>[$2 create an account]</strong> di yi niŋ ka a na bɔri ni nyari niŋsim ŋan niŋda di yi niŋ ka a daa akaunti maa saha yi gari, ni a yi bɔri ni a nyari nahiŋgbana shɛŋa.",
 	"anonpreviewwarning": "<em>A bi kpɛna. Zaŋ wuhi salo soli maa nyɛla ŋan yɛn zaŋ a IP addrɛɛsi maa pahi maliniŋ taarihi maa ni.</em>",
-	"autocreate-preview-warning": "<em>A bi kpɛna. Din Dee yi niŋ ka a niŋ maliniŋ, akaunti shɛli din bee n yuui nyɛla din yɛn nam ti a.[[{{MediaWiki:tempuser-helpage}}|Learn more]].</em>",
+	"autocreate-preview-warning": "<em>A bi kpɛna. Din Dee yi niŋ ka a niŋ maliniŋ, akaunti shɛli din bee n yuui nyɛla din yɛn nam ti a.[[{{MediaWiki:tempuser-helpage}}|bɔhimi pam]].</em>",
 	"missingsummary": "<strong>Teesim:</strong> a nabi wuhi wuhi a maliniŋ kɔlivaai.\nA yi dihi \"$1\" yaha, a ni nya ka maliniŋ yina zaŋ wuhi salo.",
 	"missingcommenttext": "Kpɛhimi pahagu",
 	"summary-preview": "Yulimi a maliniŋ kɔlivaai",

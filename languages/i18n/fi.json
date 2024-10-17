@@ -1120,7 +1120,7 @@
 	"search-showingresults": "{{PLURAL:$4|Tulos <strong>$1</strong> enimmäismäärästä <strong>$3</strong>|Tulokset <strong>$1 – $2</strong> enimmäismäärästä <strong>$3</strong>}}",
 	"search-nonefound": "Hakusi ei tuottanut tulosta.",
 	"search-nonefound-thiswiki": "Hakusi ei tuottanut tulosta tällä sivustolla.",
-	"powersearch-legend": "Tarkempi haku",
+	"powersearch-legend": "Tarkennettu haku",
 	"powersearch-ns": "Hae nimiavaruuksista:",
 	"powersearch-togglelabel": "Muuta valintaa",
 	"powersearch-toggleall": "Valitse kaikki",

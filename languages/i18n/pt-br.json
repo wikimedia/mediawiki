@@ -153,7 +153,8 @@
 			"Mellogabi03",
 			"Qwrop",
 			"Flaviane da Silva",
-			"CamiloCBranco"
+			"CamiloCBranco",
+			"Juliana Reboucas de Oliveira"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -686,7 +687,7 @@
 	"botpasswords-label-delete": "Apagar",
 	"botpasswords-label-resetpassword": "Redefinir a sua senha",
 	"botpasswords-label-grants": "Permissões aplicáveis",
-	"botpasswords-help-grants": "As concessões de permissões permitem acesso a permissões já detidas pela sua conta de usuário. Fazer uma concessão aqui não fornece acesso a quaisquer permissões que a usa conta de usuário não possua. Consulte a [[Special:ListGrants|tabela de concessões]] para mais informação.",
+	"botpasswords-help-grants": "As concessões de permissões permitem acesso a permissões já detidas pela sua conta de usuário. Fazer uma concessão aqui, não fornece acesso a quaisquer permissões que a sua conta não possua. Consulte a [[Special:ListGrants|tabela de concessões]] para mais informação.\n\nAs concessões de risco estão selecionadas. As concessões que não estão selecionadas são, geralmente, difíceis de usar de forma abusiva, quando o sistema é invadido por alguém com intenções maliciosas. Concessões com riscos de vandalismo (<span class=\"mw-grantriskgroup-vandalism\">{{int:grantriskgroup-vandalism}}</span>) podem ser usadas para causar perturbações que exigem muito esforço para reparar. Concessões com riscos de segurança (<span class=\"mw-grantriskgroup-security\">{{int:grantriskgroup-security}}</span>) podem causar danos a longo prazo (como o roubo de dados privados). Concessões internas (<span class=\"mw-grantriskgroup-internal\">{{int:grantriskgroup-internal}}</span>) só são normalmente usadas pelo operador do ''site''. Não peça concessões de risco se não tiver verdadeira necessidade das mesmas por favor.",
 	"botpasswords-label-grants-column": "Concedido",
 	"botpasswords-bad-appid": "O nome de robô \"$1\" não é válido.",
 	"botpasswords-toolong-restrictions": "Existem muitos endereços IP ou intervalos inseridos.",
@@ -2717,6 +2718,8 @@
 	"undeletecomment": "Motivo:",
 	"undeleteothercomment": "Outro motivo/motivo adicional:",
 	"undeletecommentotherlist": "Outro motivo",
+	"undelete-comment-dropdown": "* Motivos comuns para restaurar\n** Pedido do autor",
+	"undelete-edit-commentlist": "Editar motivos de eliminação",
 	"cannotundelete": "Algumas ou todas as restaurações falharam:\n$1",
 	"undeletedpage": "<strong>$1 foi restaurada</strong>\n\nConsulte o [[Special:Log/delete|registo de eliminações]] para um registo das eliminações e restaurações mais recentes.",
 	"undelete-header": "Veja o [[Special:Log/delete|registro de deleções]] para as páginas recentemente eliminadas.",
