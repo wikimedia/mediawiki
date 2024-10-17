@@ -198,7 +198,7 @@ abstract class QuickTemplate {
 	/**
 	 * Get the Skin object related to this object
 	 *
-	 * @return Skin
+	 * @return SkinTemplate
 	 */
 	public function getSkin() {
 		return $this->data['skin'];

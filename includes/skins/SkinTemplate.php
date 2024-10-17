@@ -1457,16 +1457,6 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * Wrapper for private buildContentNavigationUrlsInternal
-	 * @deprecated since 1.38 skins can use runOnSkinTemplateNavigationHooks instead.
-	 * @return array
-	 */
-	protected function buildContentNavigationUrls() {
-		wfDeprecated( __METHOD__, '1.38' );
-		return $this->buildContentNavigationUrlsInternal();
-	}
-
-	/**
 	 * an array of edit links by default used for the tabs
 	 * @param array $content_navigation
 	 * @return array
@@ -1583,31 +1573,11 @@ class SkinTemplate extends Skin {
 		// Skin::makeSearchInput. To avoid infinite recursion create a
 		// new instance of the search component here.
 		$searchBox = $this->getComponent( 'search-box' );
-		$data = $searchBox->getTemplateData();
+		$searchData = $searchBox->getTemplateData();
 
-		return self::makeSearchButtonInternal(
-			$mode,
-			$data,
-			$attrs
-		);
-	}
-
-	/**
-	 * @deprecated since 1.38; see @internal note.
-	 * @param string $mode representing the type of button wanted
-	 *  either `go`, `fulltext` or `image`
-	 * @param array $searchData Skin data returned by Skin::getTemplateData()['data-search-box']
-	 * @param array $attrs (optional)
-	 * @internal Please use SkinTemplate::makeSearchButton.
-	 *  For usage only inside Skin class to support deprecated Skin::makeSearchButton method.
-	 *  This should be merged with SkinTemplate::makeSearchButton when
-	 *  Skin::makeSearchButton method is removed.
-	 * @return string of HTML button
-	 */
-	public static function makeSearchButtonInternal( $mode, $searchData, $attrs = [] ) {
 		switch ( $mode ) {
 			case 'go':
-				$attrs['value'] ??= wfMessage( 'searcharticle' )->text();
+				$attrs['value'] ??= $this->msg( 'searcharticle' )->text();
 				return Html::element(
 					'input',
 					array_merge(
@@ -1615,7 +1585,7 @@ class SkinTemplate extends Skin {
 					)
 				);
 			case 'fulltext':
-				$attrs['value'] ??= wfMessage( 'searchbutton' )->text();
+				$attrs['value'] ??= $this->msg( 'searchbutton' )->text();
 				return Html::element(
 					'input',
 					array_merge(
@@ -1638,7 +1608,7 @@ class SkinTemplate extends Skin {
 				unset( $buttonAttrs['height'] );
 				$imgAttrs = [
 					'src' => $attrs['src'],
-					'alt' => $attrs['alt'] ?? wfMessage( 'searchbutton' )->text(),
+					'alt' => $attrs['alt'] ?? $this->msg( 'searchbutton' )->text(),
 					'width' => $attrs['width'] ?? null,
 					'height' => $attrs['height'] ?? null,
 				];
