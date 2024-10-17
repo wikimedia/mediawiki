@@ -52,6 +52,7 @@ use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * REST helper for converting HTML to page content source (e.g. wikitext).
@@ -81,7 +82,7 @@ class HtmlInputTransformHelper {
 	 */
 	private $envOptions;
 
-	private StatsdDataFactoryInterface $stats;
+	private StatsFactory $statsFactory;
 	private HtmlTransformFactory $htmlTransformFactory;
 	private ParsoidOutputStash $parsoidOutputStash;
 	private ParserOutputAccess $parserOutputAccess;
@@ -89,7 +90,7 @@ class HtmlInputTransformHelper {
 	private RevisionLookup $revisionLookup;
 
 	/**
-	 * @param StatsdDataFactoryInterface $statsDataFactory
+	 * @param StatsFactory $statsFactory
 	 * @param HtmlTransformFactory $htmlTransformFactory
 	 * @param ParsoidOutputStash $parsoidOutputStash
 	 * @param ParserOutputAccess $parserOutputAccess
@@ -103,7 +104,7 @@ class HtmlInputTransformHelper {
 	 * @param Bcp47Code|null $pageLanguage
 	 */
 	public function __construct(
-		StatsdDataFactoryInterface $statsDataFactory,
+		StatsFactory $statsFactory,
 		HtmlTransformFactory $htmlTransformFactory,
 		ParsoidOutputStash $parsoidOutputStash,
 		ParserOutputAccess $parserOutputAccess,
@@ -116,7 +117,7 @@ class HtmlInputTransformHelper {
 		?RevisionRecord $originalRevision = null,
 		?Bcp47Code $pageLanguage = null
 	) {
-		$this->stats = $statsDataFactory;
+		$this->statsFactory = $statsFactory;
 		$this->htmlTransformFactory = $htmlTransformFactory;
 		$this->parsoidOutputStash = $parsoidOutputStash;
 		$this->envOptions = $envOptions + [
@@ -346,7 +347,7 @@ class HtmlInputTransformHelper {
 			$this->page
 		);
 
-		$this->transform->setMetrics( $this->stats );
+		$this->transform->setMetrics( $this->statsFactory );
 
 		// NOTE: Env::getContentModel will fall back to the page's recorded content model
 		//       if none is set here.
@@ -389,9 +390,21 @@ class HtmlInputTransformHelper {
 			$this->setOriginal( $originalRevision, $originalRendering );
 		} else {
 			if ( $this->page->exists() ) {
-				$this->stats->increment( 'html_input_transform.original_html.not_given.page_exists' );
+				$this->statsFactory
+					->getCounter( 'html_input_transform_total' )
+					->setLabel( 'original_html_given', 'false' )
+					->setLabel( 'page_exists', 'true' )
+					->setLabel( 'status', 'unknown' )
+					->copyToStatsdAt( 'html_input_transform.original_html.not_given.page_exists' )
+					->increment();
 			} else {
-				$this->stats->increment( 'html_input_transform.original_html.not_given.page_not_exist' );
+				$this->statsFactory
+					->getCounter( 'html_input_transform_total' )
+					->setLabel( 'original_html_given', 'false' )
+					->setLabel( 'page_exists', 'false' )
+					->setLabel( 'status', 'unknown' )
+					->copyToStatsdAt( 'html_input_transform.original_html.not_given.page_not_exist' )
+					->increment();
 			}
 		}
 
@@ -425,13 +438,19 @@ class HtmlInputTransformHelper {
 	/**
 	 * Set metrics sink.
 	 *
-	 * @param StatsdDataFactoryInterface $stats
+	 * @param StatsFactory|StatsdDataFactoryInterface $statsFactory
 	 */
-	public function setMetrics( StatsdDataFactoryInterface $stats ) {
-		$this->stats = $stats;
+	public function setMetrics( $statsFactory ) {
+		if ( $statsFactory instanceof StatsdDataFactoryInterface ) {
+			// Uncomment this once all WMF code has been transitioned, but
+			// leave it in for the 1.43 release.
+			// wfDeprecated( __METHOD__ . ' with StatsdDataFactoryInterface' );
+			return;
+		}
+		$this->statsFactory = $statsFactory;
 
 		if ( $this->transform ) {
-			$this->transform->setMetrics( $stats );
+			$this->transform->setMetrics( $statsFactory );
 		}
 	}
 
@@ -450,7 +469,13 @@ class HtmlInputTransformHelper {
 			try {
 				$selserContext = $this->fetchSelserContextFromStash( $renderId );
 			} catch ( InvalidArgumentException $ex ) {
-				$this->stats->increment( 'html_input_transform.original_html.given.as_renderid.bad' );
+				$this->statsFactory
+					->getCounter( 'html_input_transform_total' )
+					->setLabel( 'original_html_given', 'as_renderid' )
+					->setLabel( 'page_exists', 'unknown' )
+					->setLabel( 'status', 'bad_renderid' )
+					->copyToStatsdAt( 'html_input_transform.original_html.given.as_renderid.bad' )
+					->increment();
 				throw new LocalizedHttpException( new MessageValue( "rest-bad-stash-key" ),
 					400,
 					[
@@ -494,12 +519,27 @@ class HtmlInputTransformHelper {
 			$originalRendering = $this->fetchParserOutputFromParsoid( $this->page, $rev, true );
 
 			if ( $originalRendering ) {
-				$this->stats->increment( 'html_input_transform.original_html.given.as_revid.found' );
+				$this->statsFactory->getCounter( 'html_input_transform_total' )
+					->setLabel( 'original_html_given', 'as_revid' )
+					->setLabel( 'page_exists', 'unknown' )
+					->setLabel( 'status', 'found' )
+					->copyToStatsdAt( 'html_input_transform.original_html.given.as_revid.found' )
+					->increment();
 			} else {
-				$this->stats->increment( 'html_input_transform.original_html.given.as_revid.not_found' );
+				$this->statsFactory->getCounter( 'html_input_transform_total' )
+					->setLabel( 'original_html_given', 'as_revid' )
+					->setLabel( 'page_exists', 'unknown' )
+					->setLabel( 'status', 'not_found' )
+					->copyToStatsdAt( 'html_input_transform.original_html.given.as_revid.not_found' )
+					->increment();
 			}
 		} elseif ( $originalRendering ) {
-			$this->stats->increment( 'html_input_transform.original_html.given.verbatim' );
+			$this->statsFactory->getCounter( 'html_input_transform_total' )
+				->setLabel( 'original_html_given', 'true' )
+				->setLabel( 'page_exists', 'unknown' )
+				->setLabel( 'status', 'verbatim' )
+				->copyToStatsdAt( 'html_input_transform.original_html.given.verbatim' )
+				->increment();
 		}
 
 		if ( $originalRendering instanceof ParserOutput ) {
@@ -681,11 +721,16 @@ class HtmlInputTransformHelper {
 	 */
 	private function fetchSelserContextFromStash( $renderID ): ?SelserContext {
 		$selserContext = $this->parsoidOutputStash->get( $renderID );
-
+		$labels = [
+			'original_html_given' => 'as_renderid',
+			'page_exists' => 'unknown',
+			'status' => 'hit-stashed'
+		];
+		$counter = $this->statsFactory->getCounter( 'html_input_transform_total' );
 		if ( $selserContext ) {
-			$this->stats->increment( 'html_input_transform.original_html.given.as_renderid.' .
-				'stash_hit.found.hit' );
-
+			$counter->setLabels( $labels )
+				->copyToStatsdAt( 'html_input_transform.original_html.given.as_renderid.stash_hit.found.hit' )
+				->increment();
 			return $selserContext;
 		} else {
 			// Looks like the rendering is gone from stash (or the client send us a bogus key).
@@ -695,28 +740,44 @@ class HtmlInputTransformHelper {
 				$parserOutput = $this->fetchParserOutputFromParsoid( $this->page, $renderID->getRevisionID(), false );
 
 				if ( !$parserOutput ) {
-					$this->stats->increment( 'html_input_transform.original_html.given.as_renderid.' .
-						'stash_miss_pc_fallback.not_found.miss' );
+					$labels[ 'status' ] = 'miss-fallback_not_found';
+					$counter->setLabels( $labels )->copyToStatsdAt(
+						'html_input_transform.original_html.given.as_renderid.stash_miss_pc_fallback.not_found.miss'
+					)->increment();
 					return null;
 				}
 
 				$cachedRenderID = ParsoidRenderID::newFromParserOutput( $parserOutput );
 				if ( $cachedRenderID->getKey() !== $renderID->getKey() ) {
-					$this->stats->increment( 'html_input_transform.original_html.given.as_renderid.' .
-						'stash_miss_pc_fallback.not_found.mismatch' );
+					$labels[ 'status' ] = 'mismatch-fallback_not_found';
+					$counter->setLabels( $labels )
+						->copyToStatsdAt(
+							'html_input_transform.original_html.given.as_renderid.' .
+							'stash_miss_pc_fallback.not_found.mismatch'
+						)
+						->increment();
 
 					// It's not the correct rendering.
 					return null;
 				}
-
-				$this->stats->increment( 'html_input_transform.original_html.given.as_renderid.' .
-					'stash_miss_pc_fallback.found.hit' );
+				$labels[ 'status' ] = 'hit-fallback_found';
+				$counter->setLabels( $labels )
+					->copyToStatsdAt(
+						'html_input_transform.original_html.given.as_renderid.' .
+						'stash_miss_pc_fallback.found.hit'
+					)
+					->increment();
 
 				$pb = PageBundleParserOutputConverter::pageBundleFromParserOutput( $parserOutput );
 				return new SelserContext( $pb, $renderID->getRevisionID() );
 			} catch ( HttpException $e ) {
-				$this->stats->increment( 'html_input_transform.original_html.given.as_renderid.' .
-					'stash_miss_pc_fallback.not_found.failed' );
+				$labels[ 'status' ] = 'failed-fallback_not_found';
+				$counter->setLabels( $labels )
+					->copyToStatsdAt(
+						'html_input_transform.original_html.given.as_renderid.' .
+						'stash_miss_pc_fallback.not_found.failed'
+					)
+					->increment();
 
 				// If the revision isn't found, don't trigger a 404. Return null to trigger a 412.
 				return null;

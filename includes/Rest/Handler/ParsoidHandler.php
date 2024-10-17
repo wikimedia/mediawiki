@@ -32,6 +32,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\Parsoid\Config\SiteConfig;
 use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\Handler\Helper\HtmlInputTransformHelper;
@@ -55,7 +56,6 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Config\DataAccess;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Config\PageConfigFactory;
-use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
@@ -412,10 +412,9 @@ abstract class ParsoidHandler extends Handler {
 			$parameters
 		);
 
-		$metrics = $this->siteConfig->metrics();
-
-		if ( $metrics ) {
-			$helper->setMetrics( $metrics );
+		$stats = $this->siteConfig->prefixedStatsFactory();
+		if ( $stats ) {
+			$helper->setMetrics( $stats );
 		}
 
 		return $helper;

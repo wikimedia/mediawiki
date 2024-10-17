@@ -29,7 +29,7 @@ use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
-use Wikimedia\Parsoid\Utils\Timing;
+use Wikimedia\Stats\StatsFactory;
 
 /**
  * This class allows HTML to be transformed to a page content source format such as wikitext.
@@ -50,7 +50,7 @@ class HtmlToContentTransform {
 	private bool $docHasBeenProcessed = false;
 	private ?Document $doc = null;
 	private ?Element $originalBody = null;
-	protected ?StatsdDataFactoryInterface $metrics = null;
+	protected ?StatsFactory $metrics = null;
 	private PageBundle $modifiedPageBundle;
 	private PageBundle $originalPageBundle;
 	private ?PageConfig $pageConfig = null;
@@ -86,15 +86,24 @@ class HtmlToContentTransform {
 	}
 
 	/**
-	 * @param StatsdDataFactoryInterface $metrics
+	 * @param StatsFactory|StatsdDataFactoryInterface $metrics
 	 */
-	public function setMetrics( StatsdDataFactoryInterface $metrics ): void {
+	public function setMetrics( $metrics ): void {
+		if ( $metrics instanceof StatsdDataFactoryInterface ) {
+			// Uncomment this once all WMF code has been transitioned
+			// wfDeprecated( __METHOD__ . ' with StatsdDataFactoryInterface' );
+			return;
+		}
 		$this->metrics = $metrics;
 	}
 
-	private function incrementMetrics( string $key ) {
+	private function incrementMetrics( string $key, array $labels, ?string $statsdKey ) {
 		if ( $this->metrics ) {
-			$this->metrics->increment( $key );
+			$counter = $this->metrics->getCounter( $key )->setLabels( $labels );
+			if ( $statsdKey ) {
+				$counter = $counter->copyToStatsdAt( $statsdKey );
+			}
+			$counter->increment();
 		}
 	}
 
@@ -440,7 +449,11 @@ class HtmlToContentTransform {
 		$inputContentVersion = $this->modifiedPageBundle->version;
 
 		if ( !$inputContentVersion ) {
-			$this->incrementMetrics( 'html2wt.original.version.notinline' );
+			$this->incrementMetrics(
+				'html2wt_original_version_total',
+				[ 'input_content_version' => 'none' ],
+				'html2wt.original.version.notinline'
+			);
 			$inputContentVersion = $this->originalPageBundle->version ?: Parsoid::defaultHTMLVersion();
 		}
 
@@ -506,12 +519,19 @@ class HtmlToContentTransform {
 		}
 
 		$this->incrementMetrics(
+			"downgrade_total",
+			[ 'from' => $downgrade['from'], 'to' => $downgrade['to'] ],
 			"downgrade.from.{$downgrade['from']}.to.{$downgrade['to']}"
 		);
-		$downgradeTiming = Timing::start( $this->metrics );
-		Parsoid::downgrade( $downgrade, $pb );
-		$downgradeTiming->end( 'downgrade.time' );
 
+		$downgradeTime = microtime( true );
+		Parsoid::downgrade( $downgrade, $pb );
+		if ( $this->metrics ) {
+			$this->metrics
+				->getTiming( 'downgrade_time_ms' )
+				->copyToStatsdAt( 'downgrade.time' )
+				->observe( ( microtime( true ) - $downgradeTime ) * 1000 );
+		}
 		// NOTE: Set $this->originalBody to null so getOriginalBody() will re-generate it.
 		// XXX: Parsoid::downgrade operates on the parsed Document, would be nice
 		//      if we could get that instead of getting back HTML which we have to

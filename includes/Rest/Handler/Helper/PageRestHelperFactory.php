@@ -198,7 +198,7 @@ class PageRestHelperFactory {
 			wfDeprecated( __METHOD__ . ' without $page or $body' );
 		}
 		return new HtmlInputTransformHelper(
-			$this->stats,
+			$this->statsFactory,
 			$this->htmlTransformFactory,
 			$this->parsoidOutputStash,
 			$this->parserOutputAccess,
