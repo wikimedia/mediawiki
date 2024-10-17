@@ -95,7 +95,7 @@ use Wikimedia\WrappedString;
 class ResourceLoader implements LoggerAwareInterface {
 	/** @var int */
 	public const CACHE_VERSION = 9;
-	/** @var string JavaScript / CSS pragma to disable minification. * */
+	/** @var string Pragma to disable minification in JavaScript or CSS. */
 	public const FILTER_NOMIN = '/*@nomin*/';
 
 	/** @var string */
@@ -1219,6 +1219,17 @@ MESSAGE;
 				return [ $minifier->getMinifiedOutput(), null ];
 			}
 		};
+
+		// The below is based on ResourceLoader::filter. Keep together to ease review/maintenance:
+		// * Handle FILTER_NOMIN, skip minify entirely if set.
+		// * Handle $shouldCache, skip cache and minify directly if set.
+		// * Use minify cache, minify on-demand and populate cache as needed.
+		// * Emit resourceloader_cache_total stats.
+
+		if ( strpos( $plainContent, self::FILTER_NOMIN ) !== false ) {
+			// FILTER_NOMIN should work for JavaScript, too. T373990
+			return [ $plainContent, null ];
+		}
 
 		if ( $shouldCache ) {
 			[ $response, $offsetArray ] = $this->srvCache->getWithSetCallback(
