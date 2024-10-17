@@ -2362,6 +2362,9 @@ return [
 			'log-action-filter-block-reblock',
 			'log-action-filter-block-unblock',
 			'log-fulllog',
+			'ipb-confirm',
+			'ipb-blockingself',
+			'ipb-confirmaction',
 		],
 	],
 	'mediawiki.protectionIndicators.styles' => [

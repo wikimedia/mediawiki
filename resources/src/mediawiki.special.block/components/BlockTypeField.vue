@@ -4,9 +4,9 @@
 			{{ $i18n( 'block-actions' ).text() }}
 		</template>
 		<cdx-radio
-			v-for="radio in blockTypeOptions"
+			v-for="radio in typeCheckboxes"
 			:key="'radio-' + radio.value"
-			v-model="wrappedBlockTypeValue"
+			v-model="type"
 			name="radio-group-descriptions"
 			:input-value="radio.value"
 		>
@@ -16,7 +16,7 @@
 			</template>
 		</cdx-radio>
 		<div
-			v-if="wrappedBlockTypeValue === 'partial'"
+			v-if="type === 'partial'"
 			class="mw-block-partial-options"
 		>
 			<div>
@@ -26,9 +26,9 @@
 				Namespaces Placeholder
 			</div>
 			<cdx-checkbox
-				v-for="checkbox in partialBlockOptions"
+				v-for="checkbox in partialBlockCheckboxes"
 				:key="'checkbox-' + checkbox.value"
-				v-model="wrappedModel"
+				v-model="partialOptions"
 				:input-value="checkbox.value"
 			>
 				{{ checkbox.label }}
@@ -38,47 +38,18 @@
 </template>
 
 <script>
-const { defineComponent, toRef } = require( 'vue' );
-const { CdxCheckbox, CdxRadio, CdxField, useModelWrapper } = require( '@wikimedia/codex' );
+const { defineComponent } = require( 'vue' );
+const { CdxCheckbox, CdxRadio, CdxField } = require( '@wikimedia/codex' );
+const { storeToRefs } = require( 'pinia' );
+const useBlockStore = require( '../stores/block.js' );
 
-// @vue/component
 module.exports = exports = defineComponent( {
 	name: 'BlockTypeField',
 	components: { CdxCheckbox, CdxRadio, CdxField },
-	props: {
-		/**
-		 * The list of checkboxes to display for partial block
-		 */
-		partialBlockOptions: {
-			type: Array,
-			required: true
-		},
-		// eslint-disable-next-line vue/no-unused-properties
-		modelValue: {
-			type: Array,
-			required: true
-		},
-		// eslint-disable-next-line vue/no-unused-properties
-		blockTypeValue: {
-			type: String,
-			required: true
-		}
-	},
-	emits: [
-		'update:modelValue',
-		'update:blockTypeValue'
-	],
-	setup( props, { emit } ) {
-		const wrappedModel = useModelWrapper(
-			toRef( props, 'modelValue' ),
-			emit
-		);
-		const wrappedBlockTypeValue = useModelWrapper(
-			toRef( props, 'blockTypeValue' ),
-			emit,
-			'update:blockTypeValue'
-		);
-		const blockTypeOptions = [
+	setup() {
+		const { type, partialOptions } = storeToRefs( useBlockStore() );
+
+		const typeCheckboxes = [
 			{
 				label: mw.message( 'blocklist-type-opt-sitewide' ),
 				descriptionMsg: 'ipb-sitewide-help',
@@ -91,10 +62,20 @@ module.exports = exports = defineComponent( {
 			}
 		];
 
+		const partialBlockCheckboxes = mw.config.get( 'partialBlockActionOptions' ) ?
+			Object.keys( mw.config.get( 'partialBlockActionOptions' ) ).map(
+				// Messages that can be used here:
+				// * ipb-action-upload
+				// * ipb-action-move
+				// * ipb-action-create
+				( key ) => Object( { label: mw.message( key ).text(), value: key } ) ) :
+			[];
+
 		return {
-			blockTypeOptions,
-			wrappedModel,
-			wrappedBlockTypeValue
+			type,
+			typeCheckboxes,
+			partialOptions,
+			partialBlockCheckboxes
 		};
 	}
 } );

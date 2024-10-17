@@ -37,11 +37,7 @@
 		<target-block-log
 			:target-user="store.targetUser"
 		></target-block-log>
-		<block-type-field
-			v-model="store.partialOptions"
-			v-model:block-type-value="store.type"
-			:partial-block-options="blockPartialOptions"
-		></block-type-field>
+		<block-type-field></block-type-field>
 		<expiry-field :form-submitted="formSubmitted"></expiry-field>
 		<reason-field
 			v-model:selected="store.reason"
@@ -59,11 +55,20 @@
 			:label="$i18n( 'block-options' ).text()"
 			:description="$i18n( 'block-options-description' ).text()"
 		></block-details-field>
+		<cdx-field v-if="store.confirmationRequired">
+			<cdx-checkbox
+				v-model="store.confirmationChecked"
+				class="mw-block-confirm"
+			>
+				{{ $i18n( 'ipb-confirm' ).text() }}
+			</cdx-checkbox>
+		</cdx-field>
 		<hr class="mw-block-hr">
 		<cdx-button
 			action="destructive"
 			weight="primary"
 			class="mw-block-submit"
+			:disabled="formDisabled || ( store.confirmationRequired && !store.confirmationChecked )"
 			@click="handleSubmit"
 		>
 			{{ submitButtonMessage }}
@@ -72,9 +77,9 @@
 </template>
 
 <script>
-const { computed, defineComponent, nextTick, ref, Ref } = require( 'vue' );
-const { CdxButton, CdxField, CdxMessage } = require( '@wikimedia/codex' );
+const { computed, defineComponent, nextTick, ref, Ref, watch } = require( 'vue' );
 const { storeToRefs } = require( 'pinia' );
+const { CdxButton, CdxCheckbox, CdxField, CdxMessage } = require( '@wikimedia/codex' );
 const useBlockStore = require( './stores/block.js' );
 const UserLookup = require( './components/UserLookup.vue' );
 const TargetActiveBlocks = require( './components/TargetActiveBlocks.vue' );
@@ -95,6 +100,7 @@ module.exports = exports = defineComponent( {
 		ReasonField,
 		BlockDetailsField,
 		CdxButton,
+		CdxCheckbox,
 		CdxField,
 		CdxMessage
 	},
@@ -111,19 +117,10 @@ module.exports = exports = defineComponent( {
 		const formSubmitted = ref( false );
 		const formDisabled = ref( false );
 		const messagesContainer = ref();
-		const { formErrors } = storeToRefs( store );
 		// eslint-disable-next-line arrow-body-style
 		const submitButtonMessage = computed( () => {
 			return mw.message( store.alreadyBlocked ? 'ipb-change-block' : 'ipbsubmit' ).text();
 		} );
-		const blockPartialOptions = mw.config.get( 'partialBlockActionOptions' ) ?
-			Object.keys( mw.config.get( 'partialBlockActionOptions' ) ).map(
-				// Messages that can be used here:
-				// * ipb-action-upload
-				// * ipb-action-move
-				// * ipb-action-create
-				( key ) => Object( { label: mw.message( key ).text(), value: key } ) ) :
-			[];
 		const blockAllowsUTEdit = mw.config.get( 'blockAllowsUTEdit' ) || false;
 		const blockEmailBan = mw.config.get( 'blockAllowsEmailBan' ) || false;
 		const blockAutoblockExpiry = mw.config.get( 'blockAutoblockExpiry' );
@@ -158,9 +155,20 @@ module.exports = exports = defineComponent( {
 		if ( blockHideUser ) {
 			additionalDetailsOptions.push( {
 				label: mw.message( 'ipbhidename' ),
-				value: 'wpHideName'
+				value: 'wpHideName',
+				class: 'mw-block-hideuser'
 			} );
 		}
+
+		// Show an error message if the target user is the current user.
+		const { formErrors, targetUser } = storeToRefs( store );
+		watch( targetUser, ( newValue ) => {
+			if ( newValue === mw.config.get( 'wgUserName' ) ) {
+				formErrors.value.push( mw.msg( 'ipb-blockingself', 'ipb-confirmaction' ) );
+			} else {
+				formErrors.value = [];
+			}
+		} );
 
 		additionalDetailsOptions.push( {
 			label: mw.message( 'ipbwatchuser' ),
@@ -229,7 +237,6 @@ module.exports = exports = defineComponent( {
 			handleSubmit,
 			blockDetailsOptions,
 			additionalDetailsOptions,
-			blockPartialOptions,
 			blockEnableMultiblocks
 		};
 	}
@@ -247,6 +254,13 @@ module.exports = exports = defineComponent( {
 // HACK: Set the max-width of the fields back to what they should be.
 .cdx-field:not( .mw-block-fieldset ) {
 	max-width: @size-4000;
+}
+
+.mw-block-hideuser,
+.mw-block-confirm {
+	.cdx-checkbox__label .cdx-label__label__text {
+		font-weight: @font-weight-bold;
+	}
 }
 
 .mw-block-hr {

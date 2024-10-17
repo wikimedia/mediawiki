@@ -152,7 +152,6 @@ class SpecialBlock extends FormSpecialPage {
 		parent::execute( $par );
 
 		if ( $this->useCodex ) {
-			$this->codexFormData[ 'blockAlreadyBlocked' ] = $this->alreadyBlocked;
 			$this->codexFormData[ 'blockTargetUser' ] = $this->target instanceof UserIdentity ?
 				$this->target->getName() :
 				$this->target ?? null;
@@ -661,6 +660,7 @@ class SpecialBlock extends FormSpecialPage {
 			}
 
 			$this->alreadyBlocked = true;
+			$this->codexFormData[ 'blockAlreadyBlocked' ] = $this->alreadyBlocked;
 			$this->preErrors[] = $this->msg( 'ipb-needreblock', wfEscapeWikiText( $block->getTargetName() ) );
 		}
 
