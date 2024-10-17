@@ -203,7 +203,7 @@ describe( 'PUT /page/{title}', () => {
 			const { status: editStatus, body: editBody, header: editHeader } =
 				await client.put( `/page/${ title }`, reqBody );
 
-			assert.equal( editStatus, 400 );
+			assert.equal( editStatus, 403 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 		} );
@@ -247,7 +247,8 @@ describe( 'PUT /page/{title}', () => {
 			const reqBody = {
 				source: 'Lörem Ipsüm',
 				comment: 'tästing',
-				content_model: 'wikitext'
+				content_model: 'wikitext',
+				token: mindyToken
 			};
 			const { status: editStatus, body: editBody, header: editHeader } =
 				await client.put( `/page/${ title }`, reqBody );
@@ -261,7 +262,8 @@ describe( 'PUT /page/{title}', () => {
 			const reqBody = {
 				source: 'Lörem Ipsüm',
 				comment: 'tästing',
-				content_model: 'wikitext'
+				content_model: 'wikitext',
+				token: mindyToken
 			};
 			const { status: editStatus, body: editBody, header: editHeader } =
 				await client.put( '/page/', reqBody );

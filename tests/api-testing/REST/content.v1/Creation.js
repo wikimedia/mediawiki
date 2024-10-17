@@ -151,7 +151,7 @@ describe( 'POST /page', () => {
 			const { status: editStatus, body: editBody, header: editHeader } =
 				await client.post( '/page', reqBody );
 
-			assert.equal( editStatus, 400 );
+			assert.equal( editStatus, 403 );
 			assert.match( editHeader[ 'content-type' ], /^application\/json/ );
 			assert.nestedProperty( editBody, 'messageTranslations' );
 		} );

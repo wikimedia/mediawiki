@@ -20,6 +20,7 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Session\Token;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\Title;
@@ -111,6 +112,8 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideExecute() {
+		$token = strval( new Token( 'TOKEN', '' ) );
+
 		yield "create with token" => [
 			[ // Request data received by UpdateHandler
 				'method' => 'PUT',
@@ -119,7 +122,7 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 					'Content-Type' => 'application/json',
 				],
 				'bodyContents' => json_encode( [
-					'token' => 'TOKEN',
+					'token' => $token,
 					'source' => 'Lorem Ipsum',
 					'comment' => 'Testing'
 				] ),
@@ -129,7 +132,7 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 				'text' => 'Lorem Ipsum',
 				'summary' => 'Testing',
 				'createonly' => '1',
-				'token' => 'TOKEN',
+				'token' => $token,
 			],
 			[ // Mock response returned by ApiEditPage
 				"edit" => [
@@ -158,7 +161,8 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 				],
 				'source' => 'Content of revision 371707'
 			],
-			false
+			false,
+			true,
 		];
 
 		yield "create with model" => [
@@ -169,7 +173,7 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 					'Content-Type' => 'application/json',
 				],
 				'bodyContents' => json_encode( [
-					'token' => 'TOKEN',
+					'token' => $token,
 					'source' => 'Lorem Ipsum',
 					'comment' => 'Testing',
 					'content_model' => CONTENT_MODEL_WIKITEXT,
@@ -181,7 +185,7 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 				'summary' => 'Testing',
 				'contentmodel' => 'wikitext',
 				'createonly' => '1',
-				'token' => 'TOKEN',
+				'token' => $token,
 			],
 			[ // Mock response returned by ApiEditPage
 				"edit" => [
@@ -210,7 +214,8 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 				],
 				'source' => 'Content of revision 371707'
 			],
-			false
+			false,
+			true,
 		];
 
 		yield "update with token" => [
@@ -221,7 +226,7 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 					'Content-Type' => 'application/json',
 				],
 				'bodyContents' => json_encode( [
-					'token' => 'TOKEN',
+					'token' => $token,
 					'source' => 'Lorem Ipsum',
 					'comment' => 'Testing',
 					'latest' => [ 'id' => 789123 ],
@@ -233,7 +238,7 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 				'summary' => 'Testing',
 				'nocreate' => '1',
 				'baserevid' => '789123',
-				'token' => 'TOKEN',
+				'token' => $token,
 			],
 			[ // Mock response returned by ApiEditPage
 				"edit" => [
@@ -261,7 +266,8 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 				],
 				'source' => 'Content of revision 371707'
 			],
-			false
+			false,
+			true,
 		];
 
 		yield "update with model" => [
@@ -313,7 +319,8 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 				],
 				'source' => 'Content of revision 371707'
 			],
-			true
+			true,
+			false,
 		];
 
 		yield "update without token" => [
@@ -362,7 +369,8 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 					'title' => 'CC-BY-SA 4.0'
 				],
 			],
-			true
+			true,
+			false,
 		];
 
 		yield "null-edit (unchanged)" => [
@@ -409,7 +417,8 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 					'title' => 'CC-BY-SA 4.0'
 				],
 			],
-			true
+			true,
+			false,
 		];
 	}
 
@@ -421,14 +430,21 @@ class UpdateHandlerTest extends MediaWikiLangTestCase {
 		$expectedActionParams,
 		$actionResult,
 		$expectedResponse,
-		$csrfSafe
+		$csrfSafe,
+		$hasToken
 	) {
 		$request = new RequestData( $requestData );
 
 		$handler = $this->newHandler( $actionResult, null, $csrfSafe );
 
+		$session = $this->getSession( $csrfSafe );
+
+		$session->method( 'hasToken' )->willReturn( $hasToken );
+
+		$session->method( 'getToken' )->willReturn( new Token( 'TOKEN', '' ) );
+
 		$responseData = $this->executeHandlerAndGetBodyData(
-			$handler, $request, [], [], [], [], null, $this->getSession( $csrfSafe )
+			$handler, $request, [], [], [], [], null, $session
 		);
 
 		// Check parameters passed to ApiEditPage by UpdateHandler based on $requestData

@@ -13,6 +13,7 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Session\Token;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWikiIntegrationTestCase;
@@ -81,6 +82,7 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 	public static function provideExecute() {
 		// NOTE: Prefix hard coded in a fake for Router::getRouteUrl() in HandlerTestTrait
 		$baseUrl = 'https://wiki.example.com/rest/v1/page/';
+		$token = strval( new Token( 'TOKEN', '' ) );
 
 		yield "create with token" => [
 			[ // Request data received by CreationHandler
@@ -89,7 +91,7 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 					'Content-Type' => 'application/json',
 				],
 				'bodyContents' => json_encode( [
-					'token' => 'TOKEN',
+					'token' => $token,
 					'title' => 'Foo',
 					'source' => 'Lorem Ipsum',
 					'comment' => 'Testing'
@@ -129,7 +131,8 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 				'source' => 'Content of revision 371707'
 			],
 			$baseUrl . 'Foo',
-			false
+			false,
+			true,
 		];
 
 		yield "create with model" => [
@@ -181,7 +184,8 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 				'source' => 'Content of revision 371707'
 			],
 			$baseUrl . 'Talk:Foo',
-			true
+			true,
+			false,
 		];
 
 		yield "create without token" => [
@@ -233,7 +237,8 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 				'source' => 'Content of revision 371707'
 			],
 			$baseUrl . 'Foo%2Fbar',
-			true
+			true,
+			false,
 		];
 
 		yield "create with space" => [
@@ -283,7 +288,8 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 				'source' => 'Content of revision 371707'
 			],
 			$baseUrl . 'Foo_(ba%2Br)',
-			true
+			true,
+			false
 		];
 	}
 
@@ -296,13 +302,20 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 		$actionResult,
 		$expectedResponse,
 		$expectedRedirect,
-		$csrfSafe
+		$csrfSafe,
+		$hasToken
 	) {
 		$request = new RequestData( $requestData );
 
 		$handler = $this->newHandler( $actionResult, null, $csrfSafe );
 
-		$response = $this->executeHandler( $handler, $request, [], [], [], [], null, $this->getSession( $csrfSafe ) );
+		$session = $this->getSession( $csrfSafe );
+
+		$session->method( 'hasToken' )->willReturn( $hasToken );
+
+		$session->method( 'getToken' )->willReturn( new Token( 'TOKEN', '' ) );
+
+		$response = $this->executeHandler( $handler, $request, [], [], [], [], null, $session );
 
 		$this->assertSame( 201, $response->getStatusCode() );
 		$this->assertSame(

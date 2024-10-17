@@ -10,6 +10,7 @@ use MediaWiki\Request\WebResponse;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\TokenAwareHandlerTrait;
+use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\TitleFormatter;
@@ -53,6 +54,14 @@ abstract class EditHandler extends ActionModuleBasedHandler {
 	 * @return string
 	 */
 	abstract protected function getTitleParameter();
+
+	/**
+	 * @inheritDoc
+	 */
+	public function validate( Validator $restValidator ) {
+			parent::validate( $restValidator );
+			$this->validateToken( true );
+	}
 
 	/**
 	 * @inheritDoc
