@@ -1153,6 +1153,7 @@ abstract class Skin extends ContextSource {
 	 * @return string
 	 */
 	public static function makeSpecialUrl( $name, $urlaction = '', $proto = null ) {
+		wfDeprecated( __METHOD__, '1.39' );
 		return SkinComponentUtils::makeSpecialUrl( $name, $urlaction, $proto );
 	}
 
@@ -1164,6 +1165,7 @@ abstract class Skin extends ContextSource {
 	 * @return string
 	 */
 	public static function makeSpecialUrlSubpage( $name, $subpage, $urlaction = '' ) {
+		wfDeprecated( __METHOD__, '1.39' );
 		return SkinComponentUtils::makeSpecialUrlSubpage( $name, $subpage, $urlaction );
 	}
 
