@@ -607,6 +607,16 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	}
 
 	/**
+	 * Populate the HTML attributes.
+	 *
+	 * @param mixed $row
+	 * @param string[] &$attributes
+	 */
+	protected function populateAttributes( $row, &$attributes ) {
+		$attributes['data-mw-revid'] = $this->currentRevRecord->getId();
+	}
+
+	/**
 	 * Format a link to an article.
 	 *
 	 * @param mixed $row
@@ -972,7 +982,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		// FIXME: have some better way for extensions to provide formatted rows.
 		$this->currentRevRecord = $this->tryCreatingRevisionRecord( $row, $this->currentPage );
 		if ( $this->revisionsOnly || ( $this->currentRevRecord && $this->currentPage ) ) {
-			$attribs['data-mw-revid'] = $this->currentRevRecord->getId();
+			$this->populateAttributes( $row, $attribs );
 
 			$link = $this->formatArticleLink( $row );
 
