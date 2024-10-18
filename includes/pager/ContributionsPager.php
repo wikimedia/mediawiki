@@ -969,7 +969,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		// ContributionsLineEnding hook below.
 		// FIXME: have some better way for extensions to provide formatted rows.
 		$this->currentRevRecord = $this->tryCreatingRevisionRecord( $row, $this->currentPage );
-		if ( $this->currentRevRecord && $this->currentPage ) {
+		if ( $this->revisionsOnly || ( $this->currentRevRecord && $this->currentPage ) ) {
 			$attribs['data-mw-revid'] = $this->currentRevRecord->getId();
 
 			$link = $this->formatArticleLink( $row );
