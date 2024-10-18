@@ -278,4 +278,4 @@ $separatorTransformTable = [ ',' => '.', '.' => ',' ];
 
 $fallback8bitEncoding = 'iso-8859-2';
 
-$linkTrail = '/^([čšžćđßa-z]+)(.*)$/sDu';
+$linkTrail = '/^(\p{L}+)(.*)$/sDu';
