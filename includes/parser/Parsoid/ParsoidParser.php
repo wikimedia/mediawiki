@@ -16,6 +16,7 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
+use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Parsoid;
@@ -185,15 +186,18 @@ class ParsoidParser /* eventually this will extend \Parser */ {
 		// T371713: Collect statistics on parsing time -vs- presence of
 		// $previousOutput
 		$stats = MediaWikiServices::getInstance()->getStatsFactory();
+		$labels = [
+			'type' => $previousOutput === null ? 'full' : 'selective',
+			'wiki' => WikiMap::getCurrentWikiId(),
+			'reason' => $options->getRenderReason() ?: 'unknown',
+		];
 		$stats
 			->getCounter( 'Parsoid_parse_cpu_seconds' )
-			->setLabel( 'type', $previousOutput === null ? 'full' : 'selective' )
-			->setLabel( 'reason', $options->getRenderReason() ?: 'unknown' )
+			->setLabels( $labels )
 			->incrementBy( $parserOutput->getTimeProfile( 'cpu' ) );
 		$stats
 			->getCounter( 'Parsoid_parse_total' )
-			->setLabel( 'type', $previousOutput === null ? 'full' : 'selective' )
-			->setLabel( 'reason', $options->getRenderReason() ?: 'unknown' )
+			->setLabels( $labels )
 			->increment();
 
 		// Add Parsoid skinning module
