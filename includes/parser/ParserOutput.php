@@ -971,6 +971,19 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return $oldValue;
 	}
 
+	/**
+	 * Update the index policy of the robots meta tag.
+	 *
+	 * Note that calling this method does not guarantee
+	 * that {@link self::getIndexPolicy()} will return the given policy –
+	 * if different calls set the index policy to 'index' and 'noindex',
+	 * then 'noindex' always wins (T16899), even if the 'index' call happened later.
+	 * If this is not what you want,
+	 * you can reset {@link ParserOutputFlags::NO_INDEX_POLICY} with {@link self::setOutputFlag()}.
+	 *
+	 * @param string $policy 'index' or 'noindex'.
+	 * @return string The previous policy.
+	 */
 	public function setIndexPolicy( $policy ): string {
 		$old = $this->getIndexPolicy();
 		if ( $policy === 'noindex' ) {
