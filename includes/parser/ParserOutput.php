@@ -307,6 +307,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 	/**
 	 * @var bool Whether to emit X-Frame-Options: DENY.
+	 * This controls if anti-clickjacking / frame-breaking headers will
+	 * be sent. This should be done for pages where edit actions are possible.
 	 */
 	private $mPreventClickjacking = false;
 
@@ -1393,6 +1395,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	public function addOutputPageMetadata( OutputPage $out ): void {
 		// This should eventually use the same merge mechanism used
 		// internally to merge ParserOutputs together.
+		// (ie: $this->mergeHtmlMetaDataFrom( $out->getMetadata() )
+		// once preventClickjacking, moduleStyles, modules, jsconfigvars,
+		// and head items are moved to OutputPage::$metadata)
 
 		// Take the strictest click-jacking policy. This is to ensure any one-click features
 		// such as patrol or rollback on the transcluded special page will result in the wiki page
@@ -2232,7 +2237,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @param bool $flag New flag value
 	 * @since 1.38
 	 */
-	public function setPreventClickjacking( bool $flag ) {
+	public function setPreventClickjacking( bool $flag ): void {
 		$this->mPreventClickjacking = $flag;
 	}
 
