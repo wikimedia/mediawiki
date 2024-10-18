@@ -142,7 +142,7 @@ FeedbackDialog.prototype.getBodyHeight = function () {
  */
 FeedbackDialog.prototype.getSetupProcess = function ( data ) {
 	return FeedbackDialog.super.prototype.getSetupProcess.call( this, data )
-		.next( function () {
+		.next( () => {
 			// Get the URL of the target page, we want to use that in links in the intro
 			// and in the success dialog
 			const dialog = this;
@@ -159,8 +159,8 @@ FeedbackDialog.prototype.getSetupProcess = function ( data ) {
 			} else {
 				this.feedbackPageUrl = data.settings.title.getUrl();
 			}
-		}, this )
-		.next( function () {
+		} )
+		.next( () => {
 			const settings = data.settings;
 			data.contents = data.contents || {};
 
@@ -191,7 +191,7 @@ FeedbackDialog.prototype.getSetupProcess = function ( data ) {
 			);
 
 			this.validateFeedbackForm();
-		}, this );
+		} );
 };
 
 /**
@@ -200,9 +200,9 @@ FeedbackDialog.prototype.getSetupProcess = function ( data ) {
  */
 FeedbackDialog.prototype.getReadyProcess = function ( data ) {
 	return FeedbackDialog.super.prototype.getReadyProcess.call( this, data )
-		.next( function () {
+		.next( () => {
 			this.feedbackSubjectInput.focus();
-		}, this );
+		} );
 };
 
 /**
@@ -211,18 +211,18 @@ FeedbackDialog.prototype.getReadyProcess = function ( data ) {
  */
 FeedbackDialog.prototype.getActionProcess = function ( action ) {
 	if ( action === 'cancel' ) {
-		return new OO.ui.Process( function () {
+		return new OO.ui.Process( () => {
 			this.close( { action: action } );
-		}, this );
+		} );
 	} else if ( action === 'external' ) {
-		return new OO.ui.Process( function () {
+		return new OO.ui.Process( () => {
 			// Open in a new window
 			window.open( this.getBugReportLink(), '_blank' );
 			// Close the dialog
 			this.close();
-		}, this );
+		} );
 	} else if ( action === 'submit' ) {
-		return new OO.ui.Process( function () {
+		return new OO.ui.Process( () => {
 			const fb = this,
 				userAgentMessage = ':' +
 					'<small>' +
@@ -245,7 +245,7 @@ FeedbackDialog.prototype.getActionProcess = function ( action ) {
 			} ).then( () => {
 				fb.close();
 			}, () => fb.getErrorMessage() );
-		}, this );
+		} );
 	}
 	// Fallback to parent handler
 	return FeedbackDialog.super.prototype.getActionProcess.call( this, action );
@@ -309,7 +309,7 @@ FeedbackDialog.prototype.postMessage = function ( poster, subject, message ) {
  */
 FeedbackDialog.prototype.getTeardownProcess = function ( data ) {
 	return FeedbackDialog.super.prototype.getTeardownProcess.call( this, data )
-		.first( function () {
+		.first( () => {
 			this.emit( 'submit', this.status, this.feedbackPageName, this.feedbackPageUrl );
 			// Cleanup
 			this.status = '';
@@ -317,7 +317,7 @@ FeedbackDialog.prototype.getTeardownProcess = function ( data ) {
 			this.feedbackSubjectInput.setValue( '' );
 			this.feedbackMessageInput.setValue( '' );
 			this.useragentCheckbox.setSelected( false );
-		}, this );
+		} );
 };
 
 /**
