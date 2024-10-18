@@ -37,11 +37,9 @@
 		}
 		// There is no equivalent to rawParams
 		return mw.message( 'parentheses' ).escaped()
-			// .replace() use $ as start of a pattern.
-			// $$ is the pattern for '$'.
-			// The inner .replace() duplicates any $ and
-			// the outer .replace() simplifies the $$.
-			.replace( '$1', str.replace( /\$/g, '$$$$' ) );
+			// Specify a function as the replacement,
+			// so that "$" characters in str are not interpreted.
+			.replace( '$1', () => str );
 	}
 
 	/**
