@@ -264,16 +264,14 @@ class SiteConfig extends ISiteConfig {
 	/**
 	 * Record a timing metric
 	 * @param string $name
-	 * @param float $value
+	 * @param float $value A time value in milliseconds
 	 * @param array $labels
 	 * @return void
 	 */
 	public function observeTiming( string $name, float $value, array $labels ) {
-		$metric = $this->prefixedStatsFactory()->getTiming( $name );
-		foreach ( $labels as $labelKey => $labelValue ) {
-			$metric->setLabel( $labelKey, $labelValue );
-		}
-		$metric->observe( $value );
+		$this->prefixedStatsFactory()->getTiming( $name )
+			->setLabels( $labels )
+			->observe( $value );
 	}
 
 	/**
@@ -284,11 +282,9 @@ class SiteConfig extends ISiteConfig {
 	 * @return void
 	 */
 	public function incrementCounter( string $name, array $labels, float $amount = 1 ) {
-		$metric = $this->prefixedStatsFactory()->getCounter( $name );
-		foreach ( $labels as $labelKey => $labelValue ) {
-			$metric->setLabel( $labelKey, $labelValue );
-		}
-		$metric->incrementBy( $amount );
+		$this->prefixedStatsFactory()->getCounter( $name )
+			->setLabels( $labels )
+			->incrementBy( $amount );
 	}
 
 	public function galleryOptions(): array {
