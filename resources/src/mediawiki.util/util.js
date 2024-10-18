@@ -304,8 +304,10 @@ const util = {
 				util.wikiScript() + '?title=' + util.wikiUrlencode( title ) + '&' + query :
 				util.wikiScript() + '?' + query;
 		} else {
+			// Specify a function as the replacement,
+			// so that "$" characters in title are not interpreted.
 			url = mw.config.get( 'wgArticlePath' )
-				.replace( '$1', util.wikiUrlencode( title ).replace( /\$/g, '$$$$' ) );
+				.replace( '$1', () => util.wikiUrlencode( title ) );
 		}
 
 		// Append the encoded fragment
