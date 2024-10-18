@@ -821,7 +821,6 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	 * @return string
 	 */
 	protected function formatComment( $row ) {
-		$dir = $this->getLanguage()->getDir();
 		$comment = $this->formattedComments[$row->{$this->revisionIdField}];
 
 		if ( $comment === '' ) {
@@ -829,8 +828,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			$comment = "<span class=\"comment mw-comment-none\">$defaultComment</span>";
 		}
 
-		$comment = Html::rawElement( 'bdi', [ 'dir' => $dir ], $comment );
-
+		// Don't wrap result of this with <bdi> or any other element, see T377555
 		return $comment;
 	}
 
