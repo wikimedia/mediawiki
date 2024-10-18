@@ -2653,7 +2653,7 @@
 	"blocklist-rangeblocks": "Nascondi blocchi di range",
 	"blocklist-timestamp": "Data e ora",
 	"blocklist-target": "Destinazione",
-	"blocklist-expiry": "Scade",
+	"blocklist-expiry": "Scadenza",
 	"blocklist-by": "Amministratore che ha bloccato",
 	"blocklist-params": "Parametri di blocco",
 	"blocklist-reason": "Motivo",
@@ -4069,5 +4069,7 @@
 	"right-renameuser": "Rinomina gli utenti",
 	"renameuser-renamed-notice": "Questo utente è stato rinominato.\nIl registro delle rinomine è riportato di seguito per informazione.",
 	"log-unknown-action": "ha eseguito l'azione sconosciuta \"$2\" su [[$1]]",
-	"benefit-2-description": "Elenco permanente dei contributi che hai apportato al progetto."
+	"benefit-2-description": "Elenco permanente dei contributi che hai apportato al progetto.",
+	"table-of-contents-show-button-aria-label": "Mostra l'indice",
+	"table-of-contents-hide-button-aria-label": "Nascondi l'indice"
 }

@@ -4188,5 +4188,7 @@
 	"benefit-1-description": "Lista obserwowanych, pozwalająca śledzić interesujące cię strony.",
 	"benefit-2-description": "Trwała lista edycji, które zostały przez Ciebie wniesione do projektu.",
 	"benefit-3-description": "Preferencje pozwalające dostosować twoje korzystanie z projektu.",
-	"temp-user-unable-to-acquire": "Nie udało się uzyskać nazwy tymczasowego konta użytkownika. Spróbuj ponownie."
+	"temp-user-unable-to-acquire": "Nie udało się uzyskać nazwy tymczasowego konta użytkownika. Spróbuj ponownie.",
+	"table-of-contents-show-button-aria-label": "Pokaż spis treści",
+	"table-of-contents-hide-button-aria-label": "Ukryj spis treści"
 }

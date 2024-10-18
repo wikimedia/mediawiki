@@ -84,6 +84,7 @@
 			"Rapsar",
 			"Reedy",
 			"Rhinestorm",
+			"RoseloveDoodles",
 			"Runningfridgesrule",
 			"RuzDD",
 			"Sadrettin",
@@ -1521,7 +1522,7 @@
 	"rcfilters-filter-watchlist-watched-label": "İzleme Listesinde",
 	"rcfilters-filter-watchlist-watched-description": "İzleme Listenizdeki sayfalarda değişiklikler.",
 	"rcfilters-filter-watchlist-watchednew-label": "Yeni İzleme Listesi değişiklikleri",
-	"rcfilters-filter-watchlist-watchednew-description": "Değişiklikler gerçekleştiğinden beri ziyaret etmediğiniz Lzleme Listenizdeki sayfalarda yapılan değişiklikler.",
+	"rcfilters-filter-watchlist-watchednew-description": "Değişiklikler gerçekleştiğinden beri ziyaret etmediğiniz İzleme Listenizdeki sayfalarda yapılan değişiklikler.",
 	"rcfilters-filter-watchlist-notwatched-label": "İzleme Listesinde değil",
 	"rcfilters-filter-watchlist-notwatched-description": "İzleme listenizdeki sayfalardaki değişiklikler hariç her şey.",
 	"rcfilters-filtergroup-watchlistactivity": "İzleme listesi faaliyetleri",
@@ -4199,5 +4200,7 @@
 	"benefit-1-description": "İlgilendiğiniz sayfaları takip etmenize olanak tanıyan izleme listeleri.",
 	"benefit-2-description": "Projeye yaptığınız katkıların kalıcı listesi.",
 	"benefit-3-description": "Deneyiminizi özelleştirmenize olanak tanıyan seçenekler.",
-	"temp-user-unable-to-acquire": "Geçici bir hesap kullanıcı adı alınamıyor. Lütfen tekrar deneyin."
+	"temp-user-unable-to-acquire": "Geçici bir hesap kullanıcı adı alınamıyor. Lütfen tekrar deneyin.",
+	"table-of-contents-show-button-aria-label": "İçindekiler tablosunu göster",
+	"table-of-contents-hide-button-aria-label": "İçindekiler tablosunu gizle"
 }

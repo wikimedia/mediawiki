@@ -4092,5 +4092,7 @@
 	"benefit-1-description": "Figyelőlisták, amelyek segítségével nyomon követheted a téged érdeklő lapokat.",
 	"benefit-2-description": "A projekthez nyújtott közreműködéseid állandó listája.",
 	"benefit-3-description": "Beállítások, amelyek lehetővé teszik a felhasználói élmény testreszabását.",
-	"temp-user-unable-to-acquire": "Nem sikerült az ideiglenes felhasználói fiókhoz felhasználói nevet szerezni. Kérlek próbáld újra."
+	"temp-user-unable-to-acquire": "Nem sikerült az ideiglenes felhasználói fiókhoz felhasználói nevet szerezni. Kérlek próbáld újra.",
+	"table-of-contents-show-button-aria-label": "Tartalomjegyzék megjelenítése",
+	"table-of-contents-hide-button-aria-label": "Tartalomjegyzék elrejtése"
 }

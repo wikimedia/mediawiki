@@ -4164,5 +4164,7 @@
 	"benefit-1-description": "רשימות מעקב שמאפשרות לך לעקוב אחרי דפים שמעניינים אותך.",
 	"benefit-2-description": "רשימה קבועה של תרומות שלך למיזם.",
 	"benefit-3-description": "העדפות שמאפשרות לך להתאים אישית את החוויה שלך.",
-	"temp-user-unable-to-acquire": "לא ניתן לקבל שם חשבון חולף. נא לנסות שוב."
+	"temp-user-unable-to-acquire": "לא ניתן לקבל שם חשבון חולף. נא לנסות שוב.",
+	"table-of-contents-show-button-aria-label": "להציג את תוכן העניינים",
+	"table-of-contents-hide-button-aria-label": "להסתיר את תוכן העניינים"
 }

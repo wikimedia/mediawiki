@@ -4193,5 +4193,7 @@
 	"benefit-1-description": "監視列表，可讓您監視您感興趣的頁面。",
 	"benefit-2-description": "您對該專案所做貢獻的永久記錄。",
 	"benefit-3-description": "參數設置，讓您自訂使用體驗。",
-	"temp-user-unable-to-acquire": "無法取得臨時帳號的使用者名稱，請再試一次。"
+	"temp-user-unable-to-acquire": "無法取得臨時帳號的使用者名稱，請再試一次。",
+	"table-of-contents-show-button-aria-label": "顯示目次",
+	"table-of-contents-hide-button-aria-label": "隱藏目次"
 }

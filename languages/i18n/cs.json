@@ -2593,7 +2593,8 @@
 	"block-user-active-blocks": "Aktivní blokování",
 	"block-user-previous-blocks": "Kniha blokování",
 	"block-user-no-previous-blocks": "Nebyly nalezeny žádné předchozí blokování",
-	"block-user-no-reason-given": "Důvod blokování nebyl uveden",
+	"block-user-no-reason-given": "Důvod nebyl uveden",
+	"block-user-no-reason-given-aria-details": "Pro tuto položku protokolu nebyl uveden žádný důvod",
 	"block-user-description": "Uživatelem může být uživatelské jméno, IP adresa nebo rozsah IP adres.",
 	"block-user-placeholder": "Začněte psát uživatele…",
 	"block-target": "Uživatelské jméno, IP adresa nebo rozsah:",
@@ -2620,6 +2621,7 @@
 	"blocklist-indefblocks": "Skrýt zablokování do odvolání",
 	"blocklist-addressblocks": "Skrýt blokování jedné IP adresy",
 	"blocklist-type": "Typ:",
+	"blocklist-type-header": "Typ",
 	"blocklist-type-opt-all": "Vše",
 	"blocklist-type-opt-sitewide": "Na celém projektu",
 	"blocklist-type-opt-partial": "Částečný",
@@ -4155,5 +4157,7 @@
 	"benefit-1-description": "Seznamy sledovaných stránek, které vám umožňují sledovat změny stránek, které vás zajímají.",
 	"benefit-2-description": "Trvalý seznam vašich příspěvků tomuto projektu.",
 	"benefit-3-description": "Nastavení, které vám umožní přizpůsobit si prožitek.",
-	"temp-user-unable-to-acquire": "Nebylo vám možné přidělit dočasný uživatelský účet. Zkuste to prosím znovu později."
+	"temp-user-unable-to-acquire": "Nebylo vám možné přidělit dočasný uživatelský účet. Zkuste to prosím znovu později.",
+	"table-of-contents-show-button-aria-label": "Zobrazit obsah",
+	"table-of-contents-hide-button-aria-label": "Skrýt obsah"
 }

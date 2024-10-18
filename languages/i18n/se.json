@@ -2598,7 +2598,7 @@
 	"sorbsreason": "Du IP-čujuhus lea listejuvvon rabas proxy:n DNSBL:s maid {{SITENAME}} geavaha.",
 	"sorbs_create_account_reason": "Du IP-čujuhus čállojuvvo rabas proxy:n DNSBL:s maid {{SITENAME}} geavaha. Geavaheaddjidovddaldaga ásahuvvon ii lihkostuvvan",
 	"softblockrangesreason": "Ii leat lobálaš rievdadit čálitkeahttá sisa du IP-čujuhusas ($1). Čálit sisa.",
-	"xffblockreason": "IP-čujuhus mii lea X-Forwarded-For-headeris, juogo du iežat dahje mii gullá muhtun proxyserverii maid don geavahat, lea hehttejuvvon. Álgovuolggalaš blokkerenágga lei: $1",
+	"xffblockreason": "IP-čujuhus mii lea X-Forwarded-For-headeris, juogo du iežat dahje dat mii gullá muhtun proxyserverii maid don geavahat, lea hehttejuvvon. Álgovuolggalaš hehttenágga lei: $1",
 	"cant-see-hidden-user": "Geavaheaddji man geahččalat hehttet lea juo hehttejuvvon ja čihkkojuvvon.\nDanne go dus eai leat vuoigatvuođat čiehkat geavaheddjiid (hideuser-vuoigatvuođat), de it sáhte oaidnit itge rievdadit geavaheaddji hehttema.",
 	"cant-block-nonexistent-page": "Don it sáhte hehttet geavaheaddji $1:s, danne go siidu ii gávdno",
 	"ipbblocked": "It sáhte hehttet eará geavaheddjiid dahje fámuhuhttit sin hehttemiid, daningo don leat dál hehttejuvvon.",

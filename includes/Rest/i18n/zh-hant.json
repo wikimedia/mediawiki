@@ -3,6 +3,7 @@
 		"authors": [
 			"Kly",
 			"Xiplus",
+			"列维劳德",
 			"捍粵者"
 		]
 	},
@@ -86,5 +87,6 @@
 	"rest-target-variant-required": "需要目標變體。",
 	"rest-unsupported-language-conversion": "不支援的語言轉換：從$1到$2",
 	"rest-unknown-content-model": "未知的內容模型：$1",
-	"rest-page-bundle-validation-error": "PageBundle 與 contentVersion 不相符：$1"
+	"rest-page-bundle-validation-error": "PageBundle 與 contentVersion 不相符：$1",
+	"rest-param-desc-revision-id": "修訂版本 ID"
 }

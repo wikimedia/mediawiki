@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Prem4826"
+		]
+	},
+	"cdx-chip-input-chip-added": "ชิป $1 ถูกเพิ่มแล้ว",
+	"cdx-chip-input-chip-removed": "ชิป $1 ถูกนำออกแล้ว",
+	"cdx-input-chip-aria-description": "กด Enter เพื่อแก้ไข หรือ Delete เพื่อลบ",
+	"cdx-dialog-close-button-label": "ปิด",
+	"cdx-label-optional-flag": "(ไม่บังคับ)",
+	"cdx-message-dismiss-button-label": "ปิด",
+	"cdx-search-input-search-button-label": "ค้นหา",
+	"cdx-table-select-all-label": "เลือกแถวทั้งหมด",
+	"cdx-table-select-row-label": "เลือกแถว $1 จาก $2",
+	"cdx-table-sort-caption": "$1 ส่วนหัวคอลัมน์พร้อมปุ่มสามารถเรียงลำดับได้",
+	"cdx-typeahead-search-search-results-label": "ผลการค้นหา",
+	"cdx-table-pager-button-first-page": "หน้าแรก",
+	"cdx-table-pager-button-last-page": "หน้าสุดท้าย",
+	"cdx-table-pager-button-next-page": "หน้าถัดไป",
+	"cdx-table-pager-button-prev-page": "หน้าก่อนหน้า",
+	"cdx-table-pager-items-per-page-current": "{{PLURAL:$1|$1 แถว}}",
+	"cdx-table-pager-items-per-page-default": "ผลลัพธ์ต่อหน้า",
+	"cdx-table-pagination-status-message-determinate-long": "แสดงผล $1–$2 จาก $3",
+	"cdx-table-pagination-status-message-determinate-short": "$1–$2 จาก $3",
+	"cdx-table-pagination-status-message-indeterminate-long": "แสดงผลลัพธ์ $1–$2 จากหลายรายการ",
+	"cdx-table-pagination-status-message-indeterminate-short": "$1–$2 จากหลายรายการ",
+	"cdx-table-pagination-status-message-indeterminate-final": "กำลังแสดง {{PLURAL:$1|$1 ผลลัพธ์}}ล่าสุด",
+	"cdx-table-pagination-status-message-pending": "กำลังโหลดผลลัพธ์..."
+}

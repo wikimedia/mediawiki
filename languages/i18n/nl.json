@@ -4159,5 +4159,7 @@
 	"benefit-1-description": "Volglijsten, waarmee u pagina’s kunt bijhouden waarin u geïnteresseerd bent.",
 	"benefit-2-description": "Permanente lijst met bijdragen die u aan het project hebt geleverd.",
 	"benefit-3-description": "Voorkeuren, waarmee u uw account naar uw hand kunt zetten.",
-	"temp-user-unable-to-acquire": "Het is niet gelukt een gebruikersnaam voor het tijdelijke account te verkrijgen. Probeer het opnieuw."
+	"temp-user-unable-to-acquire": "Het is niet gelukt een gebruikersnaam voor het tijdelijke account te verkrijgen. Probeer het opnieuw.",
+	"table-of-contents-show-button-aria-label": "Inhoudsopgave weergeven",
+	"table-of-contents-hide-button-aria-label": "Inhoudsopgave verbergen"
 }

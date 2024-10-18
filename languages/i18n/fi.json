@@ -4143,5 +4143,7 @@
 	"benefit-1-description": "Tarkkailulistat, joiden avulla voit seurata sinua kiinnostavia sivuja.",
 	"benefit-2-description": "Pysyvä lista tekemistäsi muokkauksista hankkeessa.",
 	"benefit-3-description": "Asetukset, joiden avulla voit mukauttaa kokemustasi.",
-	"temp-user-unable-to-acquire": "Tilapäisen tunnuksen käyttäjänimen hankkiminen ei onnistu. Yritä uudelleen."
+	"temp-user-unable-to-acquire": "Tilapäisen tunnuksen käyttäjänimen hankkiminen ei onnistu. Yritä uudelleen.",
+	"table-of-contents-show-button-aria-label": "Näytä sisällysluettelo",
+	"table-of-contents-hide-button-aria-label": "Piilota sisällysluettelo"
 }

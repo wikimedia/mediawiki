@@ -84,5 +84,6 @@
 	"rest-target-variant-required": "Се бара целна варијанта.",
 	"rest-unsupported-language-conversion": "Неподдржано јазично претворање: $1 во $2",
 	"rest-unknown-content-model": "Непознат содржински модел: $1",
-	"rest-page-bundle-validation-error": "PageBundle не одговара на contentVersion: $1"
+	"rest-page-bundle-validation-error": "PageBundle не одговара на contentVersion: $1",
+	"rest-param-desc-revision-id": "Назнака на преработката"
 }

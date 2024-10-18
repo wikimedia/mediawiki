@@ -85,5 +85,6 @@
 	"rest-target-variant-required": "Cómpre a variante de destino.",
 	"rest-unsupported-language-conversion": "Conversión de lingua non compatible: $1 a $2",
 	"rest-unknown-content-model": "Modelo de contido descoñecido: $1",
-	"rest-page-bundle-validation-error": "PageBundle non coincide con contentVersion: $1"
+	"rest-page-bundle-validation-error": "PageBundle non coincide con contentVersion: $1",
+	"rest-param-desc-revision-id": "ID da revisión"
 }
