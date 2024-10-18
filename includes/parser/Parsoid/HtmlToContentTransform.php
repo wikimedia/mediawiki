@@ -86,12 +86,16 @@ class HtmlToContentTransform {
 	}
 
 	/**
+	 * Set metrics sink.
+	 *
+	 * @note Passing a StatsdDataFactoryInterface here has been deprecated
+	 * since 1.43.
+	 *
 	 * @param StatsFactory|StatsdDataFactoryInterface $metrics
 	 */
 	public function setMetrics( $metrics ): void {
 		if ( $metrics instanceof StatsdDataFactoryInterface ) {
-			// Uncomment this once all WMF code has been transitioned
-			// wfDeprecated( __METHOD__ . ' with StatsdDataFactoryInterface' );
+			wfDeprecated( __METHOD__ . ' with StatsdDataFactoryInterface', '1.43' );
 			return;
 		}
 		$this->metrics = $metrics;
