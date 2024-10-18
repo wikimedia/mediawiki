@@ -983,6 +983,12 @@ because of Phabricator reports.
   - mNewSectionLink      - Get with showNewSectionLink()
   - mHideNewSectionLink  - Set with forceHideNewSectionLink()
   - mNoGallery           - getNoGallery()
+* The following methods from the OutputPage class were deprecated; use
+  corresponding methods on the ParserOutput returned from
+  OutputPage::getMetadata() instead. (For example, instead of
+  $output->setIndexPolicy() use $output->getMetadata()->setIndexPolicy().)
+   - ::getIndexPolicy()
+   - ::setIndexPolicy()  (setting 'index' after 'noindex' is deprecated)
 * mw.cookie.getCrossSite() has been deprecated due to the removal of
   $wgUseSameSiteLegacyCookies in MW 1.42. Use mw.cookie.get().
 * The 'help' key in HTMLForm descriptors is deprecated. Use the 'help-raw'

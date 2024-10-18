@@ -895,7 +895,7 @@ class Article implements Page {
 
 		# Check for any __NOINDEX__ tags on the page using $pOutput
 		$policy = $this->getRobotPolicy( 'view', $pOutput ?: null );
-		$outputPage->setIndexPolicy( $policy['index'] );
+		$outputPage->getMetadata()->setIndexPolicy( $policy['index'] );
 		$outputPage->setFollowPolicy( $policy['follow'] ); // FIXME: test this
 
 		$this->mParserOutput = $pOutput;
@@ -1612,7 +1612,7 @@ class Article implements Page {
 
 		// Also apply the robot policy for nonexisting pages (even if a 404 was used)
 		$policy = $this->getRobotPolicy( 'view' );
-		$outputPage->setIndexPolicy( $policy['index'] );
+		$outputPage->getMetadata()->setIndexPolicy( $policy['index'] );
 		$outputPage->setFollowPolicy( $policy['follow'] );
 
 		$hookResult = $this->getHookRunner()->onBeforeDisplayNoArticleText( $this );
