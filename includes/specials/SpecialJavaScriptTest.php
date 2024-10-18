@@ -93,7 +93,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 
 		// Allow framing (disabling wgBreakFrames). Otherwise, mediawiki.page.ready
 		// will close this tab when running from CLI using karma-qunit.
-		$out->setPreventClickjacking( false );
+		$out->getMetadata()->setPreventClickjacking( false );
 
 		$query = [
 			'lang' => 'qqx',

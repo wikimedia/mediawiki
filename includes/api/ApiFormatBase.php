@@ -345,7 +345,7 @@ abstract class ApiFormatBase extends ApiBase {
 			} else {
 				// API handles its own clickjacking protection.
 				// Note: $wgBreakFrames will still override $wgApiFrameOptions for format mode.
-				$out->setPreventClickjacking( false );
+				$out->getMetadata()->setPreventClickjacking( false );
 				$out->output();
 			}
 		} else {

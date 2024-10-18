@@ -57,7 +57,7 @@ class SpecialTrackingCategories extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->addHelpLink( 'Help:Tracking categories' );
-		$this->getOutput()->setPreventClickjacking( false );
+		$this->getOutput()->getMetadata()->setPreventClickjacking( false );
 		$this->getOutput()->addModuleStyles( [
 			'jquery.tablesorter.styles',
 			'mediawiki.pager.styles'

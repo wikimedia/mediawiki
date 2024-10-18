@@ -852,7 +852,7 @@ EOT
 			MediaWikiServices::getInstance()->getLinkBatchFactory()
 		);
 		$out->addHTML( $pager->getBody() );
-		$out->setPreventClickjacking( $pager->getPreventClickjacking() );
+		$out->getMetadata()->setPreventClickjacking( $pager->getPreventClickjacking() );
 
 		$this->getFile()->resetHistory(); // free db resources
 
