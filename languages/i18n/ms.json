@@ -1599,7 +1599,7 @@
 	"rcfilters-filter-user-experience-level-unregistered-label": "Tidak terdaftar",
 	"rcfilters-filter-user-experience-level-unregistered-description": "Penyunting yang tidak log masuk.",
 	"rcfilters-filter-user-experience-level-unregistered-description-temp": "Penyunting yang tidak log masuk dan penyunting yang menggunakan akaun sementara.",
-	"rcfilters-filter-user-experience-level-newcomer-label": "Pendatang baru",
+	"rcfilters-filter-user-experience-level-newcomer-label": "Pengguna baharu",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Penyunting berdaftar yang mempunyai kurang dari 10 suntingan atau aktiviti selama 4 hari.",
 	"rcfilters-filter-user-experience-level-learner-label": "Pelajar",
 	"rcfilters-filter-user-experience-level-learner-description": "Penyunting berdaftar yang pengalamannya berada di antara \"pengguna baru\" dan \"Pengguna berpengalaman.\"",

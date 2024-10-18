@@ -21,7 +21,8 @@
 			"아라",
 			"Anzx",
 			"Pragathi. BH",
-			"Vinoda mamatharai"
+			"Vinoda mamatharai",
+			"Kavitha G. Kana"
 		]
 	},
 	"tog-underline": "ಕೊಂಡಿಲೆಗ್ ಅಡಿಗೀಟ್ ಪಾಡುನು:",
@@ -271,7 +272,11 @@
 	"showtoc": "ತೊಜ್ಪಾವು",
 	"hidetoc": "ದೆಂಗಾವು",
 	"collapsible-collapse": "ಎಲ್ಯ ಮಲ್ಪುಲೆ",
+	"collapsible-collapse-all-text": "ಮಾತಾ ದೆತ್ತ್ ಪಾಡ್ಲೆ",
+	"collapsible-collapse-all-tooltip": "ಇತ್ತೆದ ಪುಟೊಟು ಉಪ್ಪುನ ಮಾತಾ ಬೊರ್ಚಾಂದಿನ ಅಂಶೊಲೆನ್ ದೆತ್ತ್‌ಪಾಡ್ಲೆ",
 	"collapsible-expand": "ವಿಸ್ತಾರ ಮಲ್ಪುಲೆ",
+	"collapsible-expand-all-text": "ಮಾತ ವಿಸ್ತಾರ ಮಲ್ಪುಲೆ",
+	"collapsible-expand-all-tooltip": "ಇತ್ತೆದ ಪುಟೊಟು ಉಪ್ಪುನ ಮಾತಾ ದೆತ್ತ್‌ಪಾಡುನ  ಅಂಶೊಲೆನ್ ವಿಸ್ತಾರ ಮಲ್ಪುಲೆ",
 	"confirmable-confirm": "{{GENDER:$1|ಈರ್}} ನಿಗಂಟ್ ಮಲ್ತೊಂಡರೆ?",
 	"confirmable-yes": "ಅಂದ್",
 	"confirmable-no": "ಅತ್ತ್",

@@ -36,6 +36,7 @@
 	"config-env-php": "PHP $1 ਜੜਿਆ ਗਿਆ।",
 	"config-db-wiki-settings": "ਇਸ ਵਿਕੀ ਦੀ ਪਛਾਣ ਕਰਾਉ",
 	"config-db-name": "ਤੱਥ-ਅਧਾਰ ਦਾ ਨਾਂ:",
-	"config-logo-preview-main": "ਮੁੱਢਲਾ ਵਰਕਾ",
+	"config-logo-preview-main": "ਮੁੱਖ ਸਫ਼ਾ",
+	"config-ext-skins-more-info": "ਹੋਰ ਜਾਣਕਾਰੀ",
 	"mainpagetext": "<strong>ਮੀਡੀਆਵਿਕੀ ਨੂੰ ਸਥਾਪਿਤ ਕੀਤਾ ਗਿਆ ਹੈ।</strong>"
 }

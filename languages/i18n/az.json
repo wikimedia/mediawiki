@@ -3449,7 +3449,7 @@
 	"invalid-indicator-name": "<strong>Xəta:</strong> Səhifə indikatorlarının <code>name</code> atributu boş olmamalıdır.",
 	"invalid-langconvert-attrs": "<strong>Xəta:</strong> Langconvert teqinin <code>from</code> və <code>to</code> atributları boş olmamalıdır və eyni dilin konvertasiya edilə bilən variantları üçün BCP 47 kodlarını ehtiva etməlidir.",
 	"version": "Versiya",
-	"version-extensions": "NIzamlanmış genişlənmələr",
+	"version-extensions": "Yüklənmiş uzantılar",
 	"version-extensions-no-ext": "Hazırda quraşdırılmış genişləndirmə yoxdur.",
 	"version-skins": "Yüklənmiş üzlüklər",
 	"version-skins-no-skin": "Hazırda quraşdırılmış dizayn yoxdur.",

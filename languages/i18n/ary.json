@@ -2053,7 +2053,7 @@
 	"skin-action-undelete": "لغي الحدف",
 	"skin-action-delete": "محي",
 	"skin-action-move": "حوّل",
-	"blockedtext-made-by": "$1 لي {{GENDER:$1|دار|دارت}} لبلوك.",
+	"blockedtext-made-by": "$1 لي دار لبلوك.",
 	"blockedtext-start-time": "بدا لمنع: $1",
 	"blockedtext-expiration-time": "أيسالي لمنع: $1",
 	"blockedtext-intended-blockee": "لخدايمي لممنوع: $1",

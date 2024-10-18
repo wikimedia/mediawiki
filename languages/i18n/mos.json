@@ -2426,7 +2426,7 @@
 	"whatlinkshere-title": "Nense tõke ni \"$1\"",
 	"whatlinkshere-page": "Seb-vão:",
 	"linkshere": "Nense kadse tokda ni <strong>$2/strong>:",
-	"nolinkshere": "Nense pa toke ni <strong>$2/strong>.",
+	"nolinkshere": "Nense pa toke ni <strong>$2</strong>.",
 	"isredirect": "lebe tʋgle nenga",
 	"istemplate": "seb-tika",
 	"isimage": "fisiye tõkre",
