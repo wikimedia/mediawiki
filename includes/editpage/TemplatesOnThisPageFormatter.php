@@ -142,6 +142,10 @@ class TemplatesOnThisPageFormatter {
 	 * @return string
 	 */
 	private function formatTemplate( PageIdentity $target ) {
+		if ( !$target->canExist() ) {
+			return Html::rawElement( 'li', [], $this->linkRenderer->makeLink( $target ) );
+		}
+
 		$protected = $this->getRestrictionsText(
 			$this->restrictionStore->getRestrictions( $target, 'edit' )
 		);
