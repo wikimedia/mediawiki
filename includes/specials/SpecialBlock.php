@@ -107,7 +107,7 @@ class SpecialBlock extends FormSpecialPage {
 	/**
 	 * @var array <mixed,mixed> An associative array used to pass vars to Codex form
 	 */
-	protected $codexFormData = [];
+	protected array $codexFormData = [];
 
 	private NamespaceInfo $namespaceInfo;
 
@@ -211,12 +211,18 @@ class SpecialBlock extends FormSpecialPage {
 		$this->requestedHideUser = $request->getBool( 'wpHideUser' );
 
 		if ( $this->useCodex ) {
-			$expiry = date_parse( $request->getVal( 'wpExpiry', '' ) );
-			$this->codexFormData[ 'blockExpiryPreset' ] = isset( $expiry[ 'relative' ] ) ?
-				// Relative expiry (e.g. '1 week')
-				$expiry :
-				// Absolute expiry, formatted for <input type="datetime-local">
-				$this->formatExpiryForHtml( $request->getVal( 'wpExpiry', '' ) );
+			// Parse wpExpiry param
+			$givenExpiry = $request->getVal( 'wpExpiry', '' );
+			if ( wfIsInfinity( $givenExpiry ) ) {
+				$this->codexFormData[ 'blockExpiryPreset' ] = 'infinite';
+			} else {
+				$expiry = date_parse( $givenExpiry );
+				$this->codexFormData[ 'blockExpiryPreset' ] = isset( $expiry[ 'relative' ] ) ?
+					// Relative expiry (e.g. '1 week')
+					$givenExpiry :
+					// Absolute expiry, formatted for <input type="datetime-local">
+					$this->formatExpiryForHtml( $request->getVal( 'wpExpiry', '' ) );
+			}
 
 			$this->codexFormData[ 'blockTypePreset' ] =
 				$request->getVal( 'wpEditingRestriction' ) === 'sitewide' ||
