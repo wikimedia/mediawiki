@@ -948,6 +948,16 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	}
 
 	/**
+	 * Check whether the revision author is deleted
+	 *
+	 * @param mixed $row
+	 * @return bool
+	 */
+	public function revisionUserIsDeleted( $row ) {
+		return $this->currentRevRecord->isDeleted( RevisionRecord::DELETED_USER );
+	}
+
+	/**
 	 * Generates each row in the contributions list.
 	 *
 	 * Contributions which are marked "top" are currently on top of the history.
@@ -1021,7 +1031,7 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 			];
 
 			# Denote if username is redacted for this edit
-			if ( $this->currentRevRecord->isDeleted( RevisionRecord::DELETED_USER ) ) {
+			if ( $this->revisionUserIsDeleted( $row ) ) {
 				$templateParams['rev-deleted-user-contribs'] =
 					$this->msg( 'rev-deleted-user-contribs' )->escaped();
 			}
