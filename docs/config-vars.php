@@ -3558,6 +3558,12 @@ $wgGitBin = null;
 $wgGitRepositoryViewers = null;
 
 /**
+ * Config variable stub for the InstallerInitialPages setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::InstallerInitialPages
+ */
+$wgInstallerInitialPages = null;
+
+/**
  * Config variable stub for the RCMaxAge setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::RCMaxAge
  */

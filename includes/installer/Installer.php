@@ -200,6 +200,7 @@ abstract class Installer {
 		MainConfigNames::UpgradeKey,
 		MainConfigNames::DefaultSkin,
 		MainConfigNames::Pingback,
+		MainConfigNames::InstallerInitialPages,
 	];
 
 	/**
