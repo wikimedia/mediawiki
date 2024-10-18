@@ -488,18 +488,20 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		$linkBatch = $this->linkBatchFactory->newLinkBatch();
 		# Give some pointers to make (last) links
 		foreach ( $this->mResult as $row ) {
+			$revisionRecord = $this->tryCreatingRevisionRecord( $row );
+			if ( !$revisionRecord ) {
+				continue;
+			}
 			if ( isset( $row->{$this->revisionParentIdField} ) && $row->{$this->revisionParentIdField} ) {
 				$parentRevIds[] = (int)$row->{$this->revisionParentIdField};
 			}
-			if ( $this->revisionStore->isRevisionRow( $row, $this->isArchive ? 'archive' : 'revision' ) ) {
-				$this->mParentLens[(int)$row->{$this->revisionIdField}] = $row->{$this->revisionLengthField};
-				if ( $this->target !== $row->{$this->userNameField} ) {
-					// If the target does not match the author, batch the author's talk page
-					$linkBatch->add( NS_USER_TALK, $row->{$this->userNameField} );
-				}
-				$linkBatch->add( $row->{$this->pageNamespaceField}, $row->{$this->pageTitleField} );
-				$revisions[$row->{$this->revisionIdField}] = $this->createRevisionRecord( $row );
+			$this->mParentLens[(int)$row->{$this->revisionIdField}] = $row->{$this->revisionLengthField};
+			if ( $this->target !== $row->{$this->userNameField} ) {
+				// If the target does not match the author, batch the author's talk page
+				$linkBatch->add( NS_USER_TALK, $row->{$this->userNameField} );
 			}
+			$linkBatch->add( $row->{$this->pageNamespaceField}, $row->{$this->pageTitleField} );
+			$revisions[$row->{$this->revisionIdField}] = $this->createRevisionRecord( $row );
 		}
 		// Fetch rev_len/ar_len for revisions not already scanned above
 		// TODO: is it possible to make this fully abstract?
