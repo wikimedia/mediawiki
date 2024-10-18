@@ -1005,7 +1005,7 @@ class OutputPage extends ContextSource {
 		$policy = Article::formatRobotPolicy( $policy );
 
 		if ( isset( $policy['index'] ) ) {
-			$this->metadata->setIndexPolicy( $policy['index'] );
+			$this->setIndexPolicy( $policy['index'] );
 		}
 		if ( isset( $policy['follow'] ) ) {
 			$this->setFollowPolicy( $policy['follow'] );
