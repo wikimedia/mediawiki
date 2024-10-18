@@ -81,20 +81,62 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	}
 
 	/**
+	 * @dataProvider provideGetFormFieldsCodex
 	 * @covers ::getFormFields
+	 * @covers ::execute
 	 */
-	public function testGetFormFieldsCodex(): void {
+	public function testCodexFormData( array $params, array $expected, bool $preErrors = false ): void {
 		$this->overrideConfigValues( [
 			MainConfigNames::BlockAllowsUTEdit => true,
 			MainConfigNames::EnablePartialActionBlocks => true,
 			MainConfigNames::UseCodexSpecialBlock => true,
 		] );
+		$context = RequestContext::getMain();
+		$context->setRequest( new FauxRequest( array_merge( $params, [ 'uselang' => 'qqx' ] ) ) );
+		$context->setTitle( Title::newFromText( 'Block', NS_SPECIAL ) );
+		$context->setUser( $this->getTestSysop()->getUser() );
 		$page = $this->newSpecialPage();
 		$wrappedPage = TestingAccessWrapper::newFromObject( $page );
-		$fields = $wrappedPage->getFormFields();
-		$this->assertIsArray( $fields );
-		$this->assertArrayHasKey( 'options-messages', $fields[ 'EditingRestriction' ] );
-		$this->assertArrayHasKey( 'option-descriptions-messages', $fields[ 'EditingRestriction' ] );
+		$wrappedPage->execute( null );
+		$actualJsConfigVars = $wrappedPage->getOutput()->getJsConfigVars();
+		$this->assertArrayContains( $expected, $actualJsConfigVars );
+		if ( $preErrors ) {
+			$this->assertArrayHasKey( 'blockPreErrors', $actualJsConfigVars );
+		} else {
+			$this->assertArrayNotHasKey( 'blockPreErrors', $actualJsConfigVars );
+		}
+	}
+
+	public static function provideGetFormFieldsCodex(): Generator {
+		yield 'wpExpiry 3 hours' => [
+			[ 'wpExpiry' => '3 hours' ],
+			[ 'blockExpiryPreset' => '3 hours' ],
+		];
+		yield 'wpExpiry indefinite' => [
+			[ 'wpExpiry' => 'indefinite' ],
+			[ 'blockExpiryPreset' => 'infinite' ],
+		];
+		yield 'wpExpiry YYYY-MM-DDTHH:mm:SS' => [
+			[ 'wpExpiry' => '2999-01-01T12:59:59' ],
+			[ 'blockExpiryPreset' => '2999-01-01T12:59' ],
+		];
+		yield 'wpExpiry YYYY-MM-DD HH:mm:SS' => [
+			[ 'wpExpiry' => '2999-01-01 12:59:59' ],
+			[ 'blockExpiryPreset' => '2999-01-01T12:59' ],
+		];
+		yield 'wpExpiry YYYYMMDDHHmmSS' => [
+			[ 'wpExpiry' => '29990101125959' ],
+			[ 'blockExpiryPreset' => '2999-01-01T12:59' ],
+		];
+		yield 'wpExpiry YYYY-MM-DDTHH:mm' => [
+			[ 'wpExpiry' => '2999-01-01T12:59' ],
+			[ 'blockExpiryPreset' => '2999-01-01T12:59' ],
+		];
+		yield 'wpTarget NonexistentUser' => [
+			[ 'wpTarget' => 'NonexistentUser' ],
+			[ 'blockTargetUser' => 'NonexistentUser' ],
+			true,
+		];
 	}
 
 	/**
