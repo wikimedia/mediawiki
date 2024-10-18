@@ -44,16 +44,13 @@ class WebInstallerInstall extends WebInstallerPage {
 		} elseif ( $this->parent->request->wasPosted() ) {
 			$this->startForm();
 			$this->addHTML( "<ul>" );
-			$results = $this->parent->performInstallation(
+			$status = $this->parent->performInstallation(
 				[ $this, 'startStage' ],
 				[ $this, 'endStage' ]
 			);
 			$this->addHTML( "</ul>" );
-			// PerformInstallation bails on a fatal, so make sure the last item
-			// completed before giving 'next.' Likewise, only provide back on failure
-			$lastStep = end( $results );
-			$continue = $lastStep->isOK() ? 'continue' : false;
-			$back = $lastStep->isOK() ? false : 'back';
+			$continue = $status->isOK() ? 'continue' : false;
+			$back = $status->isOK() ? false : 'back';
 			$this->endForm( $continue, $back );
 		} else {
 			$this->startForm();

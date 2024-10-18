@@ -21,11 +21,11 @@ class PostgresCreateUserTask extends Task {
 		return 'database';
 	}
 
-	public function execute(): Status {
-		if ( !$this->getOption( 'CreateDBAccount' ) ) {
-			return Status::newGood();
-		}
+	public function isSkipped(): bool {
+		return !$this->getOption( 'CreateDBAccount' );
+	}
 
+	public function execute(): Status {
 		$status = $this->getConnection( ITaskContext::CONN_CREATE_DATABASE );
 		if ( !$status->isOK() ) {
 			return $status;
