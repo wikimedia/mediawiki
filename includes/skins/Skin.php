@@ -2287,54 +2287,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @since 1.35
-	 * @param array $attrs (optional) will be passed to tooltipAndAccesskeyAttribs
-	 *  and decorate the resulting input
-	 * @deprecated since 1.39; use $this->getTemplateData()['data-search-box'] instead.
-	 * @return string of HTML input
-	 */
-	public function makeSearchInput( $attrs = [] ) {
-		wfDeprecated( __METHOD__,
-			'[1.39] use $this->getTemplateData()["data-search-box"] or SkinTemplate::makeSearchInput'
-		);
-
-		// It's possible that getTemplateData might be calling
-		// Skin::makeSearchInput. To avoid infinite recursion create a
-		// new instance of the search component here.
-		$searchBox = $this->getComponent( 'search-box' );
-		$data = $searchBox->getTemplateData();
-
-		return Html::element( 'input',
-			$data[ 'array-input-attributes' ] + $attrs
-		);
-	}
-
-	/**
-	 * @param string $mode representing the type of button wanted
-	 *  either `go`, `fulltext` or `image`
-	 * @param array $attrs (optional)
-	 * @deprecated since 1.39; use $this->getTemplateData()['data-search-box'] instead.
-	 *   Note: When removing this function please merge SkinTemplate::makeSearchButtonInternal
-	 *   with SkinTemplate::makeSearchButton.
-	 * @return string of HTML button
-	 */
-	public function makeSearchButton( $mode, $attrs = [] ) {
-		wfDeprecated( __METHOD__,
-			'[1.39] use $this->getTemplateData()["data-search-box"] or SkinTemplate::makeSearchButton'
-		);
-
-		// It's possible that getTemplateData might be calling
-		// Skin::makeSearchInput. To avoid infinite recursion create a
-		// new instance of the search component here.
-		$searchBox = $this->getComponent( 'search-box' );
-		$data = $searchBox->getTemplateData();
-
-		return SkinTemplate::makeSearchButtonInternal(
-			$mode, $data, $attrs
-		);
-	}
-
-	/**
 	 * Allows extensions to hook into known portlets and add stuff to them.
 	 * Unlike its BaseTemplate counterpart, this method does not wrap the html
 	 * provided by the hook in a div.
