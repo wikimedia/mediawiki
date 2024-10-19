@@ -426,8 +426,8 @@ because of Phabricator reports.
 * Support was dropped for skins with paths relative to core which has been
   sending deprecation notices since 1.37. The skin `templateDirectory` key
   should now always be relative to the skin.
-* The Skin public thisquery property was removed without deprecation. Only
-  one skin was known to use it and that has been patched accordingly.
+* The SkinTemplate public thisquery property was removed without deprecation.
+  Only one skin was known to use it and that has been patched accordingly.
 * The jquery.tipsy module, deprecated since 1.28, has now been removed.
 * NamespaceInfo::getRestrictionLevels(), deprecated in 1.34, has been removed.
   Use PermissionManager::getNamespaceRestrictionLevels() instead.
