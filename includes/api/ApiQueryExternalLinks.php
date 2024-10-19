@@ -40,12 +40,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 
 	private UrlUtils $urlUtils;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param UrlUtils $urlUtils
-	 */
-	public function __construct( ApiQuery $query, $moduleName, UrlUtils $urlUtils ) {
+	public function __construct( ApiQuery $query, string $moduleName, UrlUtils $urlUtils ) {
 		parent::__construct( $query, $moduleName, 'el' );
 
 		$this->urlUtils = $urlUtils;

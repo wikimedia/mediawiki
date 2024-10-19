@@ -59,7 +59,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param string $moduleName
 	 * @param string $paramPrefix
 	 */
-	public function __construct( ApiQuery $queryModule, $moduleName, $paramPrefix = '' ) {
+	public function __construct( ApiQuery $queryModule, string $moduleName, $paramPrefix = '' ) {
 		parent::__construct( $queryModule->getMain(), $moduleName, $paramPrefix );
 		$this->mQueryModule = $queryModule;
 		$this->mDb = null;

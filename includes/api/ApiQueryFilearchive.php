@@ -49,15 +49,9 @@ class ApiQueryFilearchive extends ApiQueryBase {
 	private CommentStore $commentStore;
 	private CommentFormatter $commentFormatter;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param CommentStore $commentStore
-	 * @param CommentFormatter $commentFormatter
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		CommentStore $commentStore,
 		CommentFormatter $commentFormatter
 	) {

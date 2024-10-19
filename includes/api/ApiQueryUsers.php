@@ -67,18 +67,9 @@ class ApiQueryUsers extends ApiQueryBase {
 		'cancreate',
 	];
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param UserNameUtils $userNameUtils
-	 * @param UserFactory $userFactory
-	 * @param UserGroupManager $userGroupManager
-	 * @param GenderCache $genderCache
-	 * @param AuthManager $authManager
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		UserNameUtils $userNameUtils,
 		UserFactory $userFactory,
 		UserGroupManager $userGroupManager,

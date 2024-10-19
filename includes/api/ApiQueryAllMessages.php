@@ -44,18 +44,9 @@ class ApiQueryAllMessages extends ApiQueryBase {
 	private LocalisationCache $localisationCache;
 	private MessageCache $messageCache;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param Language $contentLanguage
-	 * @param LanguageFactory $languageFactory
-	 * @param LanguageNameUtils $languageNameUtils
-	 * @param LocalisationCache $localisationCache
-	 * @param MessageCache $messageCache
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		Language $contentLanguage,
 		LanguageFactory $languageFactory,
 		LanguageNameUtils $languageNameUtils,

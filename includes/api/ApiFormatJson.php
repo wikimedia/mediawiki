@@ -34,7 +34,7 @@ class ApiFormatJson extends ApiFormatBase {
 	/** @var bool */
 	private $isRaw;
 
-	public function __construct( ApiMain $main, $format ) {
+	public function __construct( ApiMain $main, string $format ) {
 		parent::__construct( $main, $format );
 		$this->isRaw = ( $format === 'rawfm' );
 

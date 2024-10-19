@@ -32,15 +32,9 @@ use SearchEngineFactory;
 class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 	use \MediaWiki\Api\SearchApi;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param SearchEngineConfig $searchEngineConfig
-	 * @param SearchEngineFactory $searchEngineFactory
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		SearchEngineConfig $searchEngineConfig,
 		SearchEngineFactory $searchEngineFactory
 	) {

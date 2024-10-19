@@ -41,15 +41,9 @@ class ApiExpandTemplates extends ApiBase {
 	private RevisionStore $revisionStore;
 	private ParserFactory $parserFactory;
 
-	/**
-	 * @param ApiMain $main
-	 * @param string $action
-	 * @param RevisionStore $revisionStore
-	 * @param ParserFactory $parserFactory
-	 */
 	public function __construct(
 		ApiMain $main,
-		$action,
+		string $action,
 		RevisionStore $revisionStore,
 		ParserFactory $parserFactory
 	) {

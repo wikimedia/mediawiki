@@ -41,16 +41,9 @@ class ApiTag extends ApiBase {
 	private RevisionStore $revisionStore;
 	private ChangeTagsStore $changeTagsStore;
 
-	/**
-	 * @param ApiMain $main
-	 * @param string $action
-	 * @param IConnectionProvider $dbProvider
-	 * @param RevisionStore $revisionStore
-	 * @param ChangeTagsStore $changeTagsStore
-	 */
 	public function __construct(
 		ApiMain $main,
-		$action,
+		string $action,
 		IConnectionProvider $dbProvider,
 		RevisionStore $revisionStore,
 		ChangeTagsStore $changeTagsStore

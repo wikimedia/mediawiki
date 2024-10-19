@@ -36,14 +36,9 @@ class ApiMergeHistory extends ApiBase {
 
 	private MergeHistoryFactory $mergeHistoryFactory;
 
-	/**
-	 * @param ApiMain $mainModule
-	 * @param string $moduleName
-	 * @param MergeHistoryFactory $mergeHistoryFactory
-	 */
 	public function __construct(
 		ApiMain $mainModule,
-		$moduleName,
+		string $moduleName,
 		MergeHistoryFactory $mergeHistoryFactory
 	) {
 		parent::__construct( $mainModule, $moduleName );

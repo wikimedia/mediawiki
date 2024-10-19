@@ -52,17 +52,9 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 	private LanguageFallback $languageFallback;
 	private LanguageConverterFactory $languageConverterFactory;
 
-	/**
-	 * @param ApiQuery $queryModule
-	 * @param string $moduleName
-	 * @param LanguageFactory $languageFactory
-	 * @param LanguageNameUtils $languageNameUtils
-	 * @param LanguageFallback $languageFallback
-	 * @param LanguageConverterFactory $languageConverterFactory
-	 */
 	public function __construct(
 		ApiQuery $queryModule,
-		$moduleName,
+		string $moduleName,
 		LanguageFactory $languageFactory,
 		LanguageNameUtils $languageNameUtils,
 		LanguageFallback $languageFallback,

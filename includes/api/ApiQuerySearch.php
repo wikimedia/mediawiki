@@ -43,16 +43,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 	private TitleMatcher $titleMatcher;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param SearchEngineConfig $searchEngineConfig
-	 * @param SearchEngineFactory $searchEngineFactory
-	 * @param TitleMatcher $titleMatcher
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		SearchEngineConfig $searchEngineConfig,
 		SearchEngineFactory $searchEngineFactory,
 		TitleMatcher $titleMatcher

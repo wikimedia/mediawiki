@@ -84,22 +84,9 @@ class ApiEditPage extends ApiBase {
 		\MediaWiki\Session\SessionManager::getGlobalSession()->persist();
 	}
 
-	/**
-	 * @param ApiMain $mainModule
-	 * @param string $moduleName
-	 * @param IContentHandlerFactory|null $contentHandlerFactory
-	 * @param RevisionLookup|null $revisionLookup
-	 * @param WatchedItemStoreInterface|null $watchedItemStore
-	 * @param WikiPageFactory|null $wikiPageFactory
-	 * @param WatchlistManager|null $watchlistManager
-	 * @param UserOptionsLookup|null $userOptionsLookup
-	 * @param RedirectLookup|null $redirectLookup
-	 * @param TempUserCreator|null $tempUserCreator
-	 * @param UserFactory|null $userFactory
-	 */
 	public function __construct(
 		ApiMain $mainModule,
-		$moduleName,
+		string $moduleName,
 		?IContentHandlerFactory $contentHandlerFactory = null,
 		?RevisionLookup $revisionLookup = null,
 		?WatchedItemStoreInterface $watchedItemStore = null,

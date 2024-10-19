@@ -38,14 +38,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 	private Collation $collation;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param CollationFactory $collationFactory
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		CollationFactory $collationFactory
 	) {
 		parent::__construct( $query, $moduleName, 'cm' );

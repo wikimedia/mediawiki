@@ -134,24 +134,11 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	/**
 	 * @since 1.37 Support injection of services
 	 * @stable to call
-	 * @param ApiQuery $queryModule
-	 * @param string $moduleName
-	 * @param string $paramPrefix
-	 * @param RevisionStore|null $revisionStore
-	 * @param IContentHandlerFactory|null $contentHandlerFactory
-	 * @param ParserFactory|null $parserFactory
-	 * @param SlotRoleRegistry|null $slotRoleRegistry
-	 * @param ContentRenderer|null $contentRenderer
-	 * @param ContentTransformer|null $contentTransformer
-	 * @param CommentFormatter|null $commentFormatter
-	 * @param TempUserCreator|null $tempUserCreator
-	 * @param UserFactory|null $userFactory
-	 * @param UserNameUtils|null $userNameUtils
 	 */
 	public function __construct(
 		ApiQuery $queryModule,
-		$moduleName,
-		$paramPrefix = '',
+		string $moduleName,
+		string $paramPrefix = '',
 		?RevisionStore $revisionStore = null,
 		?IContentHandlerFactory $contentHandlerFactory = null,
 		?ParserFactory $parserFactory = null,

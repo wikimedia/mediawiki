@@ -312,7 +312,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param string $moduleName Name of this module
 	 * @param string $modulePrefix Prefix to use for parameter names
 	 */
-	public function __construct( ApiMain $mainModule, $moduleName, $modulePrefix = '' ) {
+	public function __construct( ApiMain $mainModule, string $moduleName, string $modulePrefix = '' ) {
 		$this->mMainModule = $mainModule;
 		$this->mModuleName = $moduleName;
 		$this->mModulePrefix = $modulePrefix;

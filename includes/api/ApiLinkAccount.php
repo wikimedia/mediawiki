@@ -36,15 +36,9 @@ class ApiLinkAccount extends ApiBase {
 	private AuthManager $authManager;
 	private UrlUtils $urlUtils;
 
-	/**
-	 * @param ApiMain $main
-	 * @param string $action
-	 * @param AuthManager $authManager
-	 * @param UrlUtils $urlUtils
-	 */
 	public function __construct(
 		ApiMain $main,
-		$action,
+		string $action,
 		AuthManager $authManager,
 		UrlUtils $urlUtils
 	) {

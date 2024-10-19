@@ -80,29 +80,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	private UrlUtils $urlUtils;
 	private TempUserConfig $tempUserConfig;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param UserGroupManager $userGroupManager
-	 * @param LanguageConverterFactory $languageConverterFactory
-	 * @param LanguageFactory $languageFactory
-	 * @param LanguageNameUtils $languageNameUtils
-	 * @param Language $contentLanguage
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param InterwikiLookup $interwikiLookup
-	 * @param ParserFactory $parserFactory
-	 * @param MagicWordFactory $magicWordFactory
-	 * @param SpecialPageFactory $specialPageFactory
-	 * @param SkinFactory $skinFactory
-	 * @param ILoadBalancer $loadBalancer
-	 * @param ReadOnlyMode $readOnlyMode
-	 * @param UrlUtils $urlUtils
-	 * @param TempUserConfig $tempUserConfig
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		UserOptionsLookup $userOptionsLookup,
 		UserGroupManager $userGroupManager,
 		LanguageConverterFactory $languageConverterFactory,

@@ -39,16 +39,9 @@ class ApiProtect extends ApiBase {
 
 	private RestrictionStore $restrictionStore;
 
-	/**
-	 * @param ApiMain $mainModule
-	 * @param string $moduleName
-	 * @param WatchlistManager $watchlistManager
-	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param RestrictionStore $restrictionStore
-	 */
 	public function __construct(
 		ApiMain $mainModule,
-		$moduleName,
+		string $moduleName,
 		WatchlistManager $watchlistManager,
 		UserOptionsLookup $userOptionsLookup,
 		RestrictionStore $restrictionStore

@@ -78,16 +78,9 @@ class ApiUpload extends ApiBase {
 
 	private LoggerInterface $log;
 
-	/**
-	 * @param ApiMain $mainModule
-	 * @param string $moduleName
-	 * @param JobQueueGroup $jobQueueGroup
-	 * @param WatchlistManager $watchlistManager
-	 * @param UserOptionsLookup $userOptionsLookup
-	 */
 	public function __construct(
 		ApiMain $mainModule,
-		$moduleName,
+		string $moduleName,
 		JobQueueGroup $jobQueueGroup,
 		WatchlistManager $watchlistManager,
 		UserOptionsLookup $userOptionsLookup

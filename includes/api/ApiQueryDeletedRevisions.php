@@ -54,24 +54,9 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 	private NameTableStore $changeTagDefStore;
 	private LinkBatchFactory $linkBatchFactory;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param RevisionStore $revisionStore
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param ParserFactory $parserFactory
-	 * @param SlotRoleRegistry $slotRoleRegistry
-	 * @param NameTableStore $changeTagDefStore
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param ContentRenderer $contentRenderer
-	 * @param ContentTransformer $contentTransformer
-	 * @param CommentFormatter $commentFormatter
-	 * @param TempUserCreator $tempUserCreator
-	 * @param UserFactory $userFactory
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		RevisionStore $revisionStore,
 		IContentHandlerFactory $contentHandlerFactory,
 		ParserFactory $parserFactory,

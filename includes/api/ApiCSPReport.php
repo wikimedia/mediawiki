@@ -46,14 +46,9 @@ class ApiCSPReport extends ApiBase {
 
 	private UrlUtils $urlUtils;
 
-	/**
-	 * @param ApiMain $main
-	 * @param string $action
-	 * @param UrlUtils $urlUtils
-	 */
 	public function __construct(
 		ApiMain $main,
-		$action,
+		string $action,
 		UrlUtils $urlUtils
 	) {
 		parent::__construct( $main, $action );

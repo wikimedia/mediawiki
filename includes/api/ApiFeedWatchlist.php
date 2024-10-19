@@ -48,14 +48,9 @@ class ApiFeedWatchlist extends ApiBase {
 
 	private ParserFactory $parserFactory;
 
-	/**
-	 * @param ApiMain $main
-	 * @param string $action
-	 * @param ParserFactory $parserFactory
-	 */
 	public function __construct(
 		ApiMain $main,
-		$action,
+		string $action,
 		ParserFactory $parserFactory
 	) {
 		parent::__construct( $main, $action );

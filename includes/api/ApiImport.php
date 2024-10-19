@@ -38,14 +38,9 @@ class ApiImport extends ApiBase {
 
 	private WikiImporterFactory $wikiImporterFactory;
 
-	/**
-	 * @param ApiMain $main
-	 * @param string $action
-	 * @param WikiImporterFactory $wikiImporterFactory
-	 */
 	public function __construct(
 		ApiMain $main,
-		$action,
+		string $action,
 		WikiImporterFactory $wikiImporterFactory
 	) {
 		parent::__construct( $main, $action );

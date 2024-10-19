@@ -63,22 +63,9 @@ class ApiBlock extends ApiBase {
 	private BlockUtils $blockUtils;
 	private BlockActionInfo $blockActionInfo;
 
-	/**
-	 * @param ApiMain $main
-	 * @param string $action
-	 * @param BlockPermissionCheckerFactory $blockPermissionCheckerFactory
-	 * @param BlockUserFactory $blockUserFactory
-	 * @param TitleFactory $titleFactory
-	 * @param UserIdentityLookup $userIdentityLookup
-	 * @param WatchedItemStoreInterface $watchedItemStore
-	 * @param BlockUtils $blockUtils
-	 * @param BlockActionInfo $blockActionInfo
-	 * @param WatchlistManager $watchlistManager
-	 * @param UserOptionsLookup $userOptionsLookup
-	 */
 	public function __construct(
 		ApiMain $main,
-		$action,
+		string $action,
 		BlockPermissionCheckerFactory $blockPermissionCheckerFactory,
 		BlockUserFactory $blockUserFactory,
 		TitleFactory $titleFactory,

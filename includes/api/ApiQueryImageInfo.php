@@ -62,7 +62,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		$prefixOrRepoGroup = null,
 		$repoGroupOrContentLanguage = null,
 		$contentLanguageOrBadFileLookup = null,

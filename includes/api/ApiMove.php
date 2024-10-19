@@ -45,7 +45,7 @@ class ApiMove extends ApiBase {
 
 	public function __construct(
 		ApiMain $mainModule,
-		$moduleName,
+		string $moduleName,
 		MovePageFactory $movePageFactory,
 		RepoGroup $repoGroup,
 		WatchlistManager $watchlistManager,

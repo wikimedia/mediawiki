@@ -43,14 +43,9 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 
 	private SpecialPageFactory $specialPageFactory;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param SpecialPageFactory $specialPageFactory
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		SpecialPageFactory $specialPageFactory
 	) {
 		parent::__construct( $query, $moduleName, 'qp' );

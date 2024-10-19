@@ -46,17 +46,9 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 	private NamespaceInfo $namespaceInfo;
 	private GenderCache $genderCache;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param WatchedItemQueryService $watchedItemQueryService
-	 * @param Language $contentLanguage
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param GenderCache $genderCache
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		WatchedItemQueryService $watchedItemQueryService,
 		Language $contentLanguage,
 		NamespaceInfo $namespaceInfo,

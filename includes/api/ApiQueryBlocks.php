@@ -49,18 +49,9 @@ class ApiQueryBlocks extends ApiQueryBase {
 	private CommentStore $commentStore;
 	private HideUserUtils $hideUserUtils;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param DatabaseBlockStore $blockStore
-	 * @param BlockActionInfo $blockActionInfo
-	 * @param BlockRestrictionStore $blockRestrictionStore
-	 * @param CommentStore $commentStore
-	 * @param HideUserUtils $hideUserUtils
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		DatabaseBlockStore $blockStore,
 		BlockActionInfo $blockActionInfo,
 		BlockRestrictionStore $blockRestrictionStore,

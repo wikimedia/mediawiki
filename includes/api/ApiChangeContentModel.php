@@ -21,15 +21,9 @@ class ApiChangeContentModel extends ApiBase {
 	private IContentHandlerFactory $contentHandlerFactory;
 	private ContentModelChangeFactory $contentModelChangeFactory;
 
-	/**
-	 * @param ApiMain $main
-	 * @param string $action
-	 * @param IContentHandlerFactory $contentHandlerFactory
-	 * @param ContentModelChangeFactory $contentModelChangeFactory
-	 */
 	public function __construct(
 		ApiMain $main,
-		$action,
+		string $action,
 		IContentHandlerFactory $contentHandlerFactory,
 		ContentModelChangeFactory $contentModelChangeFactory
 	) {

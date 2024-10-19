@@ -16,12 +16,6 @@ class ApiValidatePassword extends ApiBase {
 	private AuthManager $authManager;
 	private UserFactory $userFactory;
 
-	/**
-	 * @param ApiMain $mainModule
-	 * @param string $moduleName
-	 * @param AuthManager $authManager
-	 * @param UserFactory $userFactory
-	 */
 	public function __construct(
 		ApiMain $mainModule,
 		string $moduleName,

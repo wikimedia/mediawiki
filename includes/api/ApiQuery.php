@@ -582,17 +582,9 @@ class ApiQuery extends ApiBase {
 	private TitleFormatter $titleFormatter;
 	private TitleFactory $titleFactory;
 
-	/**
-	 * @param ApiMain $main
-	 * @param string $action
-	 * @param ObjectFactory $objectFactory
-	 * @param WikiExporterFactory $wikiExporterFactory
-	 * @param TitleFormatter $titleFormatter
-	 * @param TitleFactory $titleFactory
-	 */
 	public function __construct(
 		ApiMain $main,
-		$action,
+		string $action,
 		ObjectFactory $objectFactory,
 		WikiExporterFactory $wikiExporterFactory,
 		TitleFormatter $titleFormatter,

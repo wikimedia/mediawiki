@@ -51,7 +51,7 @@ class ApiWatch extends ApiBase {
 
 	public function __construct(
 		ApiMain $mainModule,
-		$moduleName,
+		string $moduleName,
 		WatchlistManager $watchlistManager,
 		TitleFormatter $titleFormatter
 	) {

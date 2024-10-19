@@ -37,14 +37,9 @@ class ApiResetPassword extends ApiBase {
 
 	private PasswordReset $passwordReset;
 
-	/**
-	 * @param ApiMain $main
-	 * @param string $action
-	 * @param PasswordReset $passwordReset
-	 */
 	public function __construct(
 		ApiMain $main,
-		$action,
+		string $action,
 		PasswordReset $passwordReset
 	) {
 		parent::__construct( $main, $action );

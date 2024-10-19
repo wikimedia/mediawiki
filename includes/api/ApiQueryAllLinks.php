@@ -57,16 +57,9 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 	private GenderCache $genderCache;
 	private LinksMigration $linksMigration;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param GenderCache $genderCache
-	 * @param LinksMigration $linksMigration
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		NamespaceInfo $namespaceInfo,
 		GenderCache $genderCache,
 		LinksMigration $linksMigration

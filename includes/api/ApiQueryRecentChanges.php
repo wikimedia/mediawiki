@@ -68,21 +68,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	/** @var string[] */
 	private $formattedComments = [];
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param CommentStore $commentStore
-	 * @param RowCommentFormatter $commentFormatter
-	 * @param NameTableStore $changeTagDefStore
-	 * @param NameTableStore $slotRoleStore
-	 * @param SlotRoleRegistry $slotRoleRegistry
-	 * @param UserNameUtils $userNameUtils
-	 * @param TempUserConfig $tempUserConfig
-	 * @param LogFormatterFactory $logFormatterFactory
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		CommentStore $commentStore,
 		RowCommentFormatter $commentFormatter,
 		NameTableStore $changeTagDefStore,

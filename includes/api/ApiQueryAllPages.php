@@ -43,16 +43,9 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 	private GenderCache $genderCache;
 	private RestrictionStore $restrictionStore;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param NamespaceInfo $namespaceInfo
-	 * @param GenderCache $genderCache
-	 * @param RestrictionStore $restrictionStore
-	 */
 	public function __construct(
 		ApiQuery $query,
-		$moduleName,
+		string $moduleName,
 		NamespaceInfo $namespaceInfo,
 		GenderCache $genderCache,
 		RestrictionStore $restrictionStore
