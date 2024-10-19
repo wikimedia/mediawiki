@@ -31,17 +31,10 @@ use MediaWiki\MediaWikiServices;
  * A License class for use on Special:Upload
  */
 class Licenses extends HTMLFormField {
-	/** @var string */
-	protected $msg;
-
-	/** @var array */
-	protected $lines = [];
-
-	/** @var string */
-	protected $html;
-
-	/** @var string|null */
-	protected $selected;
+	protected string $msg;
+	protected array $lines = [];
+	protected string $html;
+	protected ?string $selected;
 
 	/**
 	 * @param array $params
