@@ -111,11 +111,13 @@ function wfLoadSkins( array $skins ) {
 
 /**
  * Like array_diff( $arr1, $arr2 ) except that it works with two-dimensional arrays.
+ * @deprecated since 1.43 Use StatusValue::merge() instead
  * @param string[]|array[] $arr1
  * @param string[]|array[] $arr2
  * @return array
  */
 function wfArrayDiff2( $arr1, $arr2 ) {
+	wfDeprecated( __FUNCTION__, '1.43' );
 	/**
 	 * @param string|array $a
 	 * @param string|array $b
