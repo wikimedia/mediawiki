@@ -636,12 +636,10 @@ class WANObjectCache implements
 		}
 
 		// Unwrap and validate any value found for each base key (under the value sister key)
-		reset( $keys );
-		foreach ( $valueSisterKeys as $valueSisterKey ) {
-			// Get the corresponding base key for this value sister key
-			$key = current( $keys );
-			next( $keys );
-
+		foreach (
+			array_map( null, $valueSisterKeys, $keys )
+				as [ $valueSisterKey, $key ]
+		) {
 			if ( array_key_exists( $valueSisterKey, $wrappedBySisterKey ) ) {
 				// Key exists as either a live value or tombstone value
 				$wrapped = $wrappedBySisterKey[$valueSisterKey];

@@ -128,17 +128,16 @@ class RightsLogFormatter extends LogFormatter {
 		// separate arrays of temporary and permanent memberships
 		$tempList = $permList = [];
 
-		reset( $groups );
-		reset( $serializedUGMs );
-		while ( current( $groups ) ) {
-			$group = current( $groups );
-
-			if ( current( $serializedUGMs ) &&
-				isset( current( $serializedUGMs )['expiry'] ) &&
-				current( $serializedUGMs )['expiry']
+		foreach (
+			array_map( null, $groups, $serializedUGMs )
+				as [ $group, $serializedUGM ]
+		) {
+			if ( $serializedUGM &&
+				isset( $serializedUGM['expiry'] ) &&
+				$serializedUGM['expiry']
 			) {
 				// there is an expiry date; format the group and expiry into a friendly string
-				$expiry = current( $serializedUGMs )['expiry'];
+				$expiry = $serializedUGM['expiry'];
 				$expiryFormatted = $uiLanguage->userTimeAndDate( $expiry, $uiUser );
 				$expiryFormattedD = $uiLanguage->userDate( $expiry, $uiUser );
 				$expiryFormattedT = $uiLanguage->userTime( $expiry, $uiUser );
@@ -148,9 +147,6 @@ class RightsLogFormatter extends LogFormatter {
 				// the right does not expire; just insert the group name
 				$permList[] = htmlspecialchars( $group );
 			}
-
-			next( $groups );
-			next( $serializedUGMs );
 		}
 
 		// place all temporary memberships first, to avoid the ambiguity of
