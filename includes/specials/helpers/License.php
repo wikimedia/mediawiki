@@ -28,11 +28,8 @@
  * A License class for use on Special:Upload (represents a single type of license).
  */
 class License {
-	/** @var string */
-	public $template;
-
-	/** @var string */
-	public $text;
+	public string $template;
+	public string $text;
 
 	/**
 	 * @param string $str
