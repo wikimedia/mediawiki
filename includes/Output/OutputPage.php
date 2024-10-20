@@ -3842,15 +3842,6 @@ class OutputPage extends ContextSource {
 		// (this used to be built as a string and hooks likely still expect that).
 		$bodyAttrs['class'] = implode( ' ', $bodyClasses );
 
-		// Allow skins and extensions to add body attributes they need
-		// Get ones from deprecated method
-		if ( method_exists( $sk, 'addToBodyAttributes' ) ) {
-			/** @phan-suppress-next-line PhanUndeclaredMethod */
-			$sk->addToBodyAttributes( $this, $bodyAttrs );
-			wfDeprecated( 'Skin::addToBodyAttributes method to add body attributes', '1.35' );
-		}
-
-		// Then run the hook, the recommended way of adding body attributes now
 		$this->getHookRunner()->onOutputPageBodyAttributes( $this, $sk, $bodyAttrs );
 
 		$pieces[] = Html::openElement( 'body', $bodyAttrs );

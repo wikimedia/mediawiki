@@ -444,6 +444,8 @@ because of Phabricator reports.
   manually sourcing SQL files, but if you are doing this, run
   `update.php --initial` instead of sourcing update-keys.sql.
 * MediaWikiVersionFetcher, deprecated since 1.42 has been removed.
+* Support for using Skin::addToBodyAttributes() method, which was deprecated
+  in 1.35, has been removed. Use OutputPageBodyAttributesHook instead.
 * …
 
 === Deprecations in 1.43 ===
