@@ -548,7 +548,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'includeDebugInfo' => false,
 			'isParsoidContent' => PageBundleParserOutputConverter::hasPageBundle( $this ),
 		];
-		return $pipeline->run( $this, null, $options );
+		return $pipeline->run( $this, $popts, $options );
 	}
 
 	/**
