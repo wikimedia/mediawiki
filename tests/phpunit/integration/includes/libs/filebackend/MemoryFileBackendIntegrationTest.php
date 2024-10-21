@@ -1,11 +1,12 @@
 <?php
 
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\FileBackend\MemoryFileBackend;
 
 /**
  * @group FileBackend
- * @covers MemoryFileBackend
- * @covers FileBackendStore
+ * @covers \Wikimedia\FileBackend\MemoryFileBackend
+ * @covers \Wikimedia\FileBackend\FileBackendStore
  * @covers NullLockManager
  */
 class MemoryFileBackendIntegrationTest extends FileBackendIntegrationTestBase {

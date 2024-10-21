@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use Wikimedia\FileBackend\MemoryFileBackend;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\LoadBalancer;
 

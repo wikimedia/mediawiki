@@ -1,12 +1,14 @@
 <?php
 
+use MediaWiki\Language\Language;
+use MediaWiki\Language\LanguageCode;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 
 /**
  * @group Language
- * @covers \LanguageCode
+ * @covers \MediaWiki\Language\LanguageCode
  *
  * @author Thiemo Kreuz
  */

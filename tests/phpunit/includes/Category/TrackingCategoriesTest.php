@@ -8,7 +8,7 @@ use MediaWiki\Parser\ParserOutput;
 
 /**
  * @covers \MediaWiki\Parser\ParserOutput
- * @covers \CacheTime
+ * @covers \MediaWiki\Parser\CacheTime
  * @group Database
  *        ^--- trigger DB shadowing because we are using Title magic
  */

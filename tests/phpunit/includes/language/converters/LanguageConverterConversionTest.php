@@ -6,7 +6,7 @@ use MediaWikiIntegrationTestCase;
 
 /**
  * @group Language
- * @covers \LanguageConverter
+ * @covers \MediaWiki\Language\LanguageConverter
  */
 class LanguageConverterConversionTest extends MediaWikiIntegrationTestCase {
 

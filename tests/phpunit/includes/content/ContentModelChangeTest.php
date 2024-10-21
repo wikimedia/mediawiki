@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Content\ContentModelChange;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Page\PageIdentity;

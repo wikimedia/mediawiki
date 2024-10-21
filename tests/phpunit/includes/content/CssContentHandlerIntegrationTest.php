@@ -4,7 +4,7 @@
  * @group ContentHandler
  * @group Database
  *        ^--- needed, because we do need the database to test link updates
- * @covers CssContentHandler
+ * @covers \MediaWiki\Content\CssContentHandler
  */
 class CssContentHandlerIntegrationTest extends TextContentHandlerIntegrationTest {
 	public static function provideGetParserOutput() {

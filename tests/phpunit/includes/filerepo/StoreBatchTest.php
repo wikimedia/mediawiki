@@ -2,6 +2,7 @@
 
 use MediaWiki\Status\Status;
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\FileBackend\FSFileBackend;
 
 /**
  * @group FileRepo

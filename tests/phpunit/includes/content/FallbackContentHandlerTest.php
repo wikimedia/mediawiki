@@ -4,6 +4,7 @@ use MediaWiki\Content\FallbackContent;
 use MediaWiki\Content\FallbackContentHandler;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Parser\ParserObserver;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
 
@@ -12,7 +13,7 @@ use MediaWiki\Title\Title;
  *
  * @group ContentHandler
  * @covers \MediaWiki\Content\FallbackContentHandler
- * @covers \ContentHandler
+ * @covers \MediaWiki\Content\ContentHandler
  */
 class FallbackContentHandlerTest extends MediaWikiLangTestCase {
 

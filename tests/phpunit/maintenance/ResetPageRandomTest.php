@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Tests\Maintenance\MaintenanceBaseTestCase;
+use MediaWiki\Title\Title;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**

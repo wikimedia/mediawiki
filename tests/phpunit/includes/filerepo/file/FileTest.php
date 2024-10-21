@@ -4,6 +4,9 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\FileBackend\FSFile\FSFile;
+use Wikimedia\FileBackend\FSFile\TempFSFile;
+use Wikimedia\FileBackend\FSFileBackend;
 
 class FileTest extends MediaWikiMediaTestCase {
 

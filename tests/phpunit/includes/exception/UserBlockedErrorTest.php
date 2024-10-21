@@ -4,6 +4,7 @@ use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Language\FormatterFactory;
+use MediaWiki\Language\Language;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\User\UserIdentity;
 

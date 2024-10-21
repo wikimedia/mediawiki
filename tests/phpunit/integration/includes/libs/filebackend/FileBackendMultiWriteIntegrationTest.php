@@ -1,12 +1,14 @@
 <?php
 
 use MediaWiki\Logger\LoggerFactory;
+use Wikimedia\FileBackend\FileBackendMultiWrite;
+use Wikimedia\FileBackend\FSFileBackend;
 
 /**
  * @group FileRepo
  * @group FileBackend
  * @group medium
- * @covers FileBackendMultiWrite
+ * @covers \Wikimedia\FileBackend\FileBackendMultiWrite
  */
 class FileBackendMultiWriteIntegrationTest extends FileBackendIntegrationTestBase {
 	protected function getBackend() {

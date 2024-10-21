@@ -5,6 +5,7 @@ use MediaWiki\Content\TextContent;
 use MediaWiki\Content\WikitextContent;
 use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
 use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Title\Title;
 
 /**
@@ -263,7 +264,7 @@ just a test"
 	}
 
 	/**
-	 * @covers \ParserOptions
+	 * @covers \MediaWiki\Parser\ParserOptions
 	 */
 	public function testRedirectParserOption() {
 		$title = Title::makeTitle( NS_MAIN, 'TestRedirectParserOption' );

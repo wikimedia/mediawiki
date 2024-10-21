@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
-use MediaWiki\User\StaticUserOptionsLookup;
+use MediaWiki\User\Options\StaticUserOptionsLookup;
 use UserOptionsMaintenance;
 
 /**

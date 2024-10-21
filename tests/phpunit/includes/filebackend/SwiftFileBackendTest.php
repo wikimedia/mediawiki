@@ -12,9 +12,9 @@ use Wikimedia\TestingAccessWrapper;
  * @group medium
  *
  * @covers \Wikimedia\FileBackend\SwiftFileBackend
- * @covers \SwiftFileBackendDirList
- * @covers \SwiftFileBackendFileList
- * @covers \SwiftFileBackendList
+ * @covers \Wikimedia\FileBackend\FileIteration\SwiftFileBackendDirList
+ * @covers \Wikimedia\FileBackend\FileIteration\SwiftFileBackendFileList
+ * @covers \Wikimedia\FileBackend\FileIteration\SwiftFileBackendList
  */
 class SwiftFileBackendTest extends MediaWikiIntegrationTestCase {
 	/** @var TestingAccessWrapper|SwiftFileBackend */

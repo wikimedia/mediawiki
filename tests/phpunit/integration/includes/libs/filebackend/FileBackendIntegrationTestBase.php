@@ -2,6 +2,9 @@
 
 use MediaWiki\Status\Status;
 use Wikimedia\FileBackend\FileBackend;
+use Wikimedia\FileBackend\FSFile\FSFile;
+use Wikimedia\FileBackend\FSFile\TempFSFile;
+use Wikimedia\FileBackend\FSFileBackend;
 
 abstract class FileBackendIntegrationTestBase extends MediaWikiIntegrationTestCase {
 

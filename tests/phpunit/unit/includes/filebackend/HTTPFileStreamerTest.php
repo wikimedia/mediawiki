@@ -2,9 +2,10 @@
 
 use MediaWiki\Utils\MWTimestamp;
 use PHPUnit\Framework\TestCase;
+use Wikimedia\FileBackend\HTTPFileStreamer;
 
 /**
- * @covers HTTPFileStreamer
+ * @covers \Wikimedia\FileBackend\HTTPFileStreamer
  */
 class HTTPFileStreamerTest extends TestCase {
 

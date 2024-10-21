@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Maintenance\MWDoxygenFilter;
+
 /**
  * @covers \MediaWiki\Namespace\MWDoxygenFilter
  */

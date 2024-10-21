@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Content\ContentHandler;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Title\Title;
 use Wikimedia\Parsoid\ParserTests\TestUtils;
 

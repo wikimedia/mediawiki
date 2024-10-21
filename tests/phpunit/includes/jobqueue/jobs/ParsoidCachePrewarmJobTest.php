@@ -6,6 +6,7 @@ use MediaWiki\OutputTransform\Stages\RenderDebugInfo;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageRecord;
+use MediaWiki\Parser\ParserOptions;
 use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;
 

@@ -19,8 +19,8 @@ use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWikiIntegrationTestCase;
-use MessageSpecifier;
 use StatusValue;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 

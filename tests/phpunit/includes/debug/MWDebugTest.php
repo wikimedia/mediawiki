@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Api\ApiFormatXml;
+use MediaWiki\Api\ApiResult;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Debug\MWDebug;
 use MediaWiki\Logger\LoggerFactory;

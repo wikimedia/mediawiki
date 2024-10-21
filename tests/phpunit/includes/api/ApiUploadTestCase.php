@@ -3,10 +3,10 @@
 namespace MediaWiki\Tests\Api;
 
 use Exception;
-use FSFile;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\File\FileDeleteForm;
 use MediaWiki\Title\Title;
+use Wikimedia\FileBackend\FSFile\FSFile;
 use Wikimedia\Rdbms\IDBAccessObject;
 
 /**

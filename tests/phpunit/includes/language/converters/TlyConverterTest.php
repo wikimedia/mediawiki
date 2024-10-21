@@ -10,7 +10,7 @@
 
 /**
  * @group Language
- * @covers \LanguageConverter
+ * @covers \MediaWiki\Language\LanguageConverter
  * @covers \TlyConverter
  */
 class TlyConverterTest extends MediaWikiIntegrationTestCase {
