@@ -19,6 +19,7 @@
  * @ingroup Benchmark
  */
 
+use Wikimedia\ObjectCache\BagOStuff;
 use Wikimedia\ObjectCache\HashBagOStuff;
 
 // @codeCoverageIgnoreStart

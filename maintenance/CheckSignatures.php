@@ -19,6 +19,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Parser\ParserOptions;
+
 /**
  * Maintenance script to list users with invalid signatures.
  *

@@ -26,6 +26,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Revision\SlotRecord;

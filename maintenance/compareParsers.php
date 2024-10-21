@@ -29,6 +29,7 @@
  */
 
 use MediaWiki\Content\WikitextContent;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\User\User;
 use Wikimedia\Diff\Diff;
 use Wikimedia\Diff\UnifiedDiffFormatter;

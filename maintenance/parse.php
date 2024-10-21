@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\Parsoid\ParsoidParser;
 use MediaWiki\Title\Title;
 

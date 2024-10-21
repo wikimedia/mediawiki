@@ -25,6 +25,7 @@
  */
 
 use MediaWiki\Json\FormatJson;
+use MediaWiki\Language\LanguageConverter;
 
 // @codeCoverageIgnoreStart
 require_once dirname( __DIR__ ) . '/Maintenance.php';
