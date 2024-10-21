@@ -51,6 +51,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Container\ContainerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\Message\ITextFormatter;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
@@ -474,8 +475,8 @@ trait DummyServicesTrait {
 				return 'qqx';
 			}
 
-			public function format( MessageValue $message ) {
-				if ( $this->dumpMessages ) {
+			public function format( MessageSpecifier $message ): string {
+				if ( $this->dumpMessages && $message instanceof MessageValue ) {
 					return $message->dump();
 				}
 				return $message->getKey();

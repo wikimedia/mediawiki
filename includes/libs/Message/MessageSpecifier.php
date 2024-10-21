@@ -38,7 +38,7 @@ interface MessageSpecifier {
 	/**
 	 * Returns the message parameters
 	 *
-	 * @return array
+	 * @return (MessageParam|MessageSpecifier|string|int|float)[]
 	 */
 	public function getParams();
 }

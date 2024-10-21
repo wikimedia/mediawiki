@@ -260,7 +260,6 @@ class StatusTest extends MediaWikiLangTestCase {
 		$this->expectDeprecationAndContinue( '/Passing MessageSpecifier/' );
 		$this->assertTrue( $status->hasMessage( wfMessage( 'bad-msg' ) ) );
 		$this->assertTrue( $status->hasMessage( wfMessage( 'bad-msg-value' ) ) );
-		$this->expectDeprecationAndContinue( '/Passing MessageValue/' );
 		$this->assertTrue( $status->hasMessage( new MessageValue( 'bad-msg' ) ) );
 		$this->assertTrue( $status->hasMessage( new MessageValue( 'bad-msg-value' ) ) );
 		$this->assertFalse( $status->hasMessage( 'good' ) );
@@ -278,7 +277,6 @@ class StatusTest extends MediaWikiLangTestCase {
 		$this->assertFalse( $status->hasMessagesExcept(
 			'good', 'bad', 'bad-msg', 'bad-msg-value' ) );
 		$this->expectDeprecationAndContinue( '/Passing MessageSpecifier/' );
-		$this->expectDeprecationAndContinue( '/Passing MessageValue/' );
 		$this->assertFalse( $status->hasMessagesExcept(
 			wfMessage( 'bad' ), new MessageValue( 'bad-msg' ), 'bad-msg-value' ) );
 	}
@@ -630,7 +628,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	}
 
 	public function testReplaceMessageValue() {
-		$this->expectDeprecationAndContinue( '/Passing MessageValue/' );
+		$this->expectDeprecationAndContinue( '/Passing MessageSpecifier/' );
 
 		$status = new Status();
 		$messageVal = new MessageValue( 'key1', [ 'foo1', 'bar1' ] );
@@ -639,10 +637,8 @@ class StatusTest extends MediaWikiLangTestCase {
 
 		$status->replaceMessage( $messageVal, $newMessageVal );
 
-		// Replacing by searching for a MessageValue DOES NOT WORK at all
-		// (that's why this is deprecated)
 		$conv = new \MediaWiki\Message\Converter;
-		$this->assertEquals( $messageVal, $conv->convertMessage( $status->errors[0]['message'] ) );
+		$this->assertEquals( $newMessageVal, $conv->convertMessage( $status->errors[0]['message'] ) );
 	}
 
 	public function testReplaceMessageByKey() {

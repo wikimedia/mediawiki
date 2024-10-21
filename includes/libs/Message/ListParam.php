@@ -20,7 +20,7 @@ class ListParam extends MessageParam {
 	 * @stable to call.
 	 *
 	 * @param string $listType One of the ListType constants.
-	 * @param (MessageParam|MessageValue|string|int|float)[] $elements Values in the list.
+	 * @param (MessageParam|MessageSpecifier|string|int|float)[] $elements Values in the list.
 	 *  Values that are not instances of MessageParam are wrapped using ParamType::TEXT.
 	 */
 	public function __construct( $listType, array $elements ) {

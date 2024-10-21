@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Unit\Message;
 
-use InvalidArgumentException;
 use MediaWiki\Language\Language;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Message\Converter;
@@ -15,14 +14,6 @@ use Wikimedia\Message\MessageValue;
  * @covers \MediaWiki\Message\Converter
  */
 class ConverterTest extends MediaWikiUnitTestCase {
-
-	public function testCreateMessage() {
-		$converter = new Converter();
-		$m = $converter->createMessage( 'foobar' );
-		$this->assertInstanceOf( Message::class, $m );
-		$this->assertSame( 'foobar', $m->getKey() );
-		$this->assertSame( [], $m->getParams() );
-	}
 
 	/** @dataProvider provideConversions */
 	public function testConvertMessage( Message $m, MessageValue $mv ) {
@@ -111,13 +102,6 @@ class ConverterTest extends MediaWikiUnitTestCase {
 				->pipeListParams( [ 7, 8, 9 ] )
 				->textListParams( [ 10, 11, 12 ] ),
 		];
-	}
-
-	public function testConvertMessage_invalidParam() {
-		$m = Message::newFromKey( 'foobar', [ 'foo' => 'bar' ] );
-		$converter = new Converter();
-		$this->expectException( InvalidArgumentException::class );
-		$converter->convertMessage( $m );
 	}
 
 	public static function provideConversions_RawMessage() {

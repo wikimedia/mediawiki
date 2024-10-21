@@ -25,7 +25,7 @@ class ScalarParam extends MessageParam {
 	 *
 	 * @param string $type One of the ParamType constants.
 	 *   Using ParamType::OBJECT is deprecated since 1.43.
-	 * @param string|int|float|MessageValue|Stringable $value
+	 * @param string|int|float|MessageSpecifier|Stringable $value
 	 */
 	public function __construct( $type, $value ) {
 		if ( !in_array( $type, ParamType::cases() ) ) {
@@ -38,15 +38,17 @@ class ScalarParam extends MessageParam {
 		}
 		if ( $type === ParamType::OBJECT ) {
 			wfDeprecatedMsg( 'Using ParamType::OBJECT was deprecated in MediaWiki 1.43', '1.43' );
-		} elseif ( $value instanceof Stringable ) {
-			// Stringify the stringable to ensure that $this->value is JSON-serializable
+		} elseif ( $value instanceof MessageSpecifier ) {
+			// Ensure that $this->value is JSON-serializable, even if $value is not
 			// (but don't do it when using ParamType::OBJECT, since those objects may not expect it)
+			$value = MessageValue::newFromSpecifier( $value );
+		} elseif ( $value instanceof Stringable || is_callable( [ $value, '__toString' ] ) ) {
+			// TODO: Remove separate '__toString' check above once we drop PHP 7.4
 			$value = (string)$value;
-		} elseif ( !is_string( $value ) && !is_numeric( $value ) &&
-			!$value instanceof MessageValue ) {
+		} elseif ( !is_string( $value ) && !is_numeric( $value ) ) {
 			$type = get_debug_type( $value );
 			throw new InvalidArgumentException(
-				"Scalar parameter must be a string, number, or MessageValue; got $type"
+				"Scalar parameter must be a string, number, Stringable, or MessageSpecifier; got $type"
 			);
 		}
 

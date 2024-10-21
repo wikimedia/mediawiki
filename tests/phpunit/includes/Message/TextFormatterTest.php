@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Message;
 
-use MediaWiki\Message\Converter;
 use MediaWiki\Message\Message;
 use MediaWiki\Message\TextFormatter;
 use MediaWiki\Message\UserGroupMembershipParam;
@@ -24,13 +23,14 @@ class TextFormatterTest extends MediaWikiIntegrationTestCase {
 		$includeWikitext = false,
 		$format = Message::FORMAT_TEXT
 	) {
-		$converter = $this->getMockBuilder( Converter::class )
+		$formatter = $this->getMockBuilder( TextFormatter::class )
 			->onlyMethods( [ 'createMessage' ] )
+			->setConstructorArgs( [ $langCode, $format ] )
 			->getMock();
-		$converter->method( 'createMessage' )
-			->willReturnCallback( function ( $key ) use ( $includeWikitext ) {
+		$formatter->method( 'createMessage' )
+			->willReturnCallback( function ( $spec ) use ( $includeWikitext ) {
 				$message = $this->getMockBuilder( Message::class )
-					->setConstructorArgs( [ $key ] )
+					->setConstructorArgs( [ $spec ] )
 					->onlyMethods( [ 'fetchMessage' ] )
 					->getMock();
 
@@ -47,11 +47,11 @@ class TextFormatterTest extends MediaWikiIntegrationTestCase {
 				return $message;
 			} );
 
-		return new TextFormatter( $langCode, $converter, $format );
+		return $formatter;
 	}
 
 	public function testGetLangCode() {
-		$formatter = new TextFormatter( 'fr', new Converter );
+		$formatter = new TextFormatter( 'fr' );
 		$this->assertSame( 'fr', $formatter->getLangCode() );
 	}
 
@@ -87,7 +87,7 @@ class TextFormatterTest extends MediaWikiIntegrationTestCase {
 				new ScalarParam( ParamType::BITRATE, 100 ),
 				new MessageValue( 'test3', [ 'c', new MessageValue( 'test4', [ 'd', 'e' ] ) ] )
 			] ),
-			'test test2 a b x(comma-separator)(bitrate-bits)(comma-separator)test3 c test4 d e'
+			'test (test2: a, b) x(comma-separator)(bitrate-bits)(comma-separator)(test3: c, (test4: d, e))'
 		];
 
 		yield [ ( new MessageValue( 'test' ) )

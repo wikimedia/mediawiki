@@ -33,7 +33,7 @@ class MessageFormatterFactory implements IMessageFormatterFactory {
 	public function getTextFormatter( $langCode ): ITextFormatter {
 		if ( !isset( $this->textFormatters[$langCode] ) ) {
 			$this->textFormatters[$langCode] = new TextFormatter(
-				$langCode, new Converter(), $this->format );
+				$langCode, $this->format );
 		}
 		return $this->textFormatters[$langCode];
 	}

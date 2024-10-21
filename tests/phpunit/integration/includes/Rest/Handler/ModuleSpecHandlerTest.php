@@ -18,7 +18,7 @@ use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\Constraint\Constraint;
 use Wikimedia\Message\ITextFormatter;
-use Wikimedia\Message\MessageValue;
+use Wikimedia\Message\MessageSpecifier;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -52,7 +52,7 @@ class ModuleSpecHandlerTest extends MediaWikiIntegrationTestCase {
 				return 'qqx';
 			}
 
-			public function format( MessageValue $message ) {
+			public function format( MessageSpecifier $message ): string {
 				return $message->dump();
 			}
 		};
