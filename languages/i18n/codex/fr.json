@@ -10,6 +10,7 @@
 	"cdx-message-dismiss-button-label": "Fermer",
 	"cdx-search-input-search-button-label": "Rechercher",
 	"cdx-table-select-all-label": "Sélectionner toutes les lignes",
+	"cdx-typeahead-search-search-results-label": "Résultats de la recherche",
 	"cdx-table-pager-button-first-page": "Première page",
 	"cdx-table-pager-button-last-page": "Dernière page",
 	"cdx-table-pager-button-next-page": "Page suivante",

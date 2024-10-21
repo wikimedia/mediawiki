@@ -1,11 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"IJzeren Jan"
+			"IJzeren Jan",
+			"Polda18"
 		]
 	},
 	"preferences": "Nastavjenja",
 	"prefsnologintext2": "Prosimo, prijavite se, da byste mogli izměniti svoje nastavjenja.",
+	"prefsnologintext2-for-temp-user": "Prosimo izdělajte si konto, ako hočete izměnit nastavjenja.",
 	"searchprefs": "Iskati nastavjenja",
 	"searchprefs-noresults": "Ničto ne najdeno",
 	"searchprefs-results": "$1 {{PLURAL:$1|rezultat|rezultaty|rezultatov}}",

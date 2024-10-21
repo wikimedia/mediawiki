@@ -1477,6 +1477,7 @@
 	"apierror-contentmodel-mismatch": "Der von dir angegebene Inhalt hat das Inhaltsmodell <kbd>$1</kbd>, das sich vom aktuellen Inhaltsmodell der Seite <kbd>$2</kbd> unterscheidet.",
 	"apierror-emptypage": "Das Erstellen neuer leerer Seiten ist nicht erlaubt.",
 	"apierror-filedoesnotexist": "Die Datei ist nicht vorhanden.",
+	"apierror-http-contenttoolarge": "Der Inhalt der HTTP-Anforderung ist zu groß. Maximale Länge: $1.",
 	"apierror-import-unknownerror": "Unbekannter Fehler beim Importieren: $1.",
 	"apierror-invalid-file-key": "Kein gültiger Dateischlüssel.",
 	"apierror-invalidiprange": "Ungültiger CIDR-Bereich „$1“.",

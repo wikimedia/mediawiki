@@ -20,7 +20,7 @@
 	},
 	"preferences": "পছন্দসমূহ",
 	"prefsnologintext2": "আপনার পছন্দগুলি পরিবর্তন করতে অনুগ্রহ করে অ্যাকাউন্টে প্রবেশ করুন।",
-	"prefsnologintext2-for-temp-user": "পছন্দ পরিবর্তন করতে একটি অ্যাকাউন্ট তৈরি করুন .",
+	"prefsnologintext2-for-temp-user": "পছন্দ পরিবর্তন করতে একটি অ্যাকাউন্ট তৈরি করুন।",
 	"searchprefs": "পছন্দ অনুসন্ধান করুন",
 	"searchprefs-noresults": "কোনও ফলাফল নেই",
 	"searchprefs-results": "$1টি {{PLURAL:$1|ফলাফল}}",

@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joao Xavier"
+		]
+	},
+	"paramvalidator-badbool": "Nevalida valoro \"$2\" por booleana parametro \"$1\". Informez $3 se vera, o $5 se falsa.",
+	"paramvalidator-badbool-type": "Nevalida valoro \"$2\" por parametro booleana \"$1\". Informesis valoro $3, nekorekta.",
+	"paramvalidator-badfloat": "Nevalida valoro \"$2\" por flotacanta parametro \"$1\".",
+	"paramvalidator-help-default": "Normala: $1",
+	"paramvalidator-help-default-empty": "Normala: (vakua)",
+	"paramvalidator-help-deprecated": "L'uzo di ca parametro esas deskonsilata.",
+	"paramvalidator-help-multi-separate": "Separez valori per \"|\", o informez prefixo por la listo uzanta U+001F, e separanta ol per U+001F.",
+	"paramvalidator-help-required": "On bezonas ca parametro.",
+	"paramvalidator-help-type-boolean": "Tipo: {{PLURAL:$1|1=booleano*|2=listo pri booleani*}}",
+	"paramvalidator-help-type-enum-can-be-empty": "{{PLURAL:$2|0=Mustas vakuesar|Povas vakuesar, o $1}}",
+	"paramvalidator-help-type-enum": "{{PLURAL:$1|1=Un ek la sequanta valori|2=Valori (separita per U+007C \"|\", o informez prefixo por la listo U+001F, e separez ol per U+001F)}}: $2",
+	"paramvalidator-help-type-limit": "Tipo: integro, o \"max\" (maximo)",
+	"paramvalidator-help-type-number-max": "{{PLURAL:$1|1=Valoro|2=Valori}} mustas esar min granda kam $3.",
+	"paramvalidator-help-type-presenceboolean": "Tipo: *booleana (Vera/Falsa)"
+}
