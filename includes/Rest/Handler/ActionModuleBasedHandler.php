@@ -209,7 +209,7 @@ abstract class ActionModuleBasedHandler extends Handler {
 		// override to supply mappings
 
 		throw new LocalizedHttpException(
-			$this->makeMessageValue( $msg ),
+			MessageValue::newFromSpecifier( $msg ),
 			$statusCode,
 			// Include the original error code in the response.
 			// This makes it easier to track down the original cause of the error,
@@ -218,17 +218,6 @@ abstract class ActionModuleBasedHandler extends Handler {
 			// subclasses
 			[ 'actionModuleErrorCode' => $msg->getApiCode() ]
 		);
-	}
-
-	/**
-	 * Constructs a MessageValue from an IApiMessage.
-	 *
-	 * @param IApiMessage $msg
-	 *
-	 * @return MessageValue
-	 */
-	protected function makeMessageValue( IApiMessage $msg ) {
-		return $this->getMessageValueConverter()->convertMessage( $msg );
 	}
 
 }

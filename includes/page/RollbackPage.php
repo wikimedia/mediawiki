@@ -27,7 +27,6 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Message\Converter;
 use MediaWiki\Message\Message;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
@@ -494,8 +493,7 @@ class RollbackPage {
 			$revisionsBetween,
 		];
 		if ( $summary instanceof MessageValue ) {
-			$summary = ( new Converter() )->convertMessageValue( $summary );
-			$summary = $summary->params( $args )->inContentLanguage()->text();
+			$summary = Message::newFromSpecifier( $summary )->params( $args )->inContentLanguage()->text();
 		} else {
 			$summary = ( new RawMessage( $summary, $args ) )->inContentLanguage()->plain();
 		}

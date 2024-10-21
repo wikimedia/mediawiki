@@ -4,27 +4,25 @@ namespace MediaWiki\Tests\Unit\Message;
 
 use MediaWiki\Language\Language;
 use MediaWiki\Language\RawMessage;
-use MediaWiki\Message\Converter;
 use MediaWiki\Message\Message;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use Wikimedia\Message\MessageValue;
 
 /**
- * @covers \MediaWiki\Message\Converter
+ * @covers \MediaWiki\Message\Message::newFromSpecifier
+ * @covers \Wikimedia\Message\MessageValue::newFromSpecifier
  */
-class ConverterTest extends MediaWikiUnitTestCase {
+class NewFromSpecifierTest extends MediaWikiUnitTestCase {
 
 	/** @dataProvider provideConversions */
 	public function testConvertMessage( Message $m, MessageValue $mv ) {
-		$converter = new Converter();
-		$this->assertEquals( $mv, $converter->convertMessage( $m ) );
+		$this->assertEquals( $mv, MessageValue::newFromSpecifier( $m ) );
 	}
 
 	/** @dataProvider provideConversions */
 	public function testConvertMessageValue( Message $m, MessageValue $mv ) {
-		$converter = new Converter();
-		$this->assertEquals( $m, $converter->convertMessageValue( $mv ) );
+		$this->assertEquals( $m, Message::newFromSpecifier( $mv ) );
 	}
 
 	public static function provideConversions() {
@@ -125,11 +123,10 @@ class ConverterTest extends MediaWikiUnitTestCase {
 	public function testConvertMessage_RawMessage( RawMessage $m, MessageValue $mv ) {
 		// Tests for unidirectional conversion from RawMessage.
 		// The result doesn't roundtrip, but it at least renders the same output.
-		$converter = new Converter();
 		// Avoid service container access in the multiple param case
 		$lang = $this->createMock( Language::class );
 		$m->inLanguage( $lang );
-		$this->assertEquals( $mv, $converter->convertMessage( $m ) );
+		$this->assertEquals( $mv, MessageValue::newFromSpecifier( $m ) );
 	}
 
 }

@@ -7,7 +7,6 @@ use MediaWiki\Api\ApiBase;
 use MediaWiki\Api\ApiMain;
 use MediaWiki\Api\ApiMessage;
 use MediaWiki\Api\ApiUsageException;
-use MediaWiki\Message\Converter as MessageConverter;
 use MediaWiki\Message\Message;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
 use MediaWiki\ParamValidator\TypeDef\TagsDef;
@@ -41,9 +40,6 @@ class ApiParamValidator {
 
 	/** @var ParamValidator */
 	private $paramValidator;
-
-	/** @var MessageConverter */
-	private $messageConverter;
 
 	/** Type defs for ParamValidator */
 	private const TYPE_DEFS = [
@@ -104,7 +100,6 @@ class ApiParamValidator {
 				'ismultiLimits' => [ ApiBase::LIMIT_SML1, ApiBase::LIMIT_SML2 ],
 			]
 		);
-		$this->messageConverter = new MessageConverter();
 	}
 
 	/**
@@ -130,7 +125,7 @@ class ApiParamValidator {
 				// Convert the message specification to a DataMessageValue. Flag in the data
 				// that it was so converted, so ApiParamValidatorCallbacks::recordCondition() can
 				// take that into account.
-				$msg = $this->messageConverter->convertMessage( ApiMessage::create( $v ) );
+				$msg = ApiMessage::create( $v );
 				$v = DataMessageValue::new(
 					$msg->getKey(),
 					$msg->getParams(),
@@ -175,7 +170,7 @@ class ApiParamValidator {
 	private function checkSettingsMessage( ApiBase $module, string $key, $value, array &$ret ): void {
 		try {
 			$msg = Message::newFromSpecifier( $value );
-			$ret['messages'][] = $this->messageConverter->convertMessage( $msg );
+			$ret['messages'][] = MessageValue::newFromSpecifier( $msg );
 		} catch ( TimeoutException $e ) {
 			throw $e;
 		} catch ( Exception $e ) {
@@ -349,7 +344,7 @@ class ApiParamValidator {
 		$mv = $ex->getFailureMessage();
 		throw ApiUsageException::newWithMessage(
 			$module,
-			$this->messageConverter->convertMessageValue( $mv ),
+			$mv,
 			$mv->getCode(),
 			$mv->getData(),
 			0,
@@ -436,7 +431,7 @@ class ApiParamValidator {
 		$ret = $this->paramValidator->getHelpInfo( $name, $settings, $options );
 		foreach ( $ret as &$m ) {
 			$k = $m->getKey();
-			$m = $this->messageConverter->convertMessageValue( $m );
+			$m = Message::newFromSpecifier( $m );
 			if ( str_starts_with( $k, 'paramvalidator-help-' ) ) {
 				$m = new Message(
 					[ 'api-help-param-' . substr( $k, 20 ), $k ],
