@@ -2780,7 +2780,7 @@
 	"blocklist-rangeblocks": "Nascondi blocchi di range",
 	"blocklist-timestamp": "Data e ora",
 	"blocklist-target": "Destinazione",
-	"blocklist-expiry": "Scade",
+	"blocklist-expiry": "Scadenza",
 	"blocklist-by": "Amministratore che ha bloccato",
 	"blocklist-params": "Parametri di blocco",
 	"blocklist-reason": "Motivo",

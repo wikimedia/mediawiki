@@ -615,7 +615,7 @@
 	"template-protected": "(tingoligan)",
 	"template-semiprotected": "(noumoligan)",
 	"hiddencategories": "Bolikan nopo diti nga haro id suang {{PLURAL:$1|1 kategori poinlisok|$1 kategori poinlisok}}:",
-	"nocreatetext": "{{SITENAME}} tinagal kasagaan momonsoi bobolikon kawawagu.\nMilo ko do gumuli om mongidit di bolikon poinsuang, toi ko [[Special:UserLogin|sumuang log toi momonsoi do takaun.]].",
+	"nocreatetext": "{{SITENAME}} tinagal kasagaan momonsoi bobolikon kawawagu.\nMilo ko do gumuli om mongidit di bolikon poinsuang, toi ko [[Special:UserLogin|sumuang log toi momonsoi do takaun]].",
 	"nocreate-loggedin": "Ingaa kasagaannu do momonsoi bobolikon wagu.",
 	"sectioneditnotsupported-title": "Boogian mongidit awu nosokodung",
 	"permissionserrors": "Ralat papasaga",
