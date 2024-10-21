@@ -230,6 +230,7 @@ MediaWiki supports over 350 languages. Many localisations are updated regularly.
 Below only new and removed languages are listed, as well as changes to languages
 because of Phabricator reports.
 
+* (T375891) Updated the autonym for Kadazan Dusun (dtp)
 * (T357853) Added unidirectional script conversion for Meitei to Bengali script.
 * (T367377) Updated the autonym for Tai Nuea (tdd)
 * (T375947) Updated the autonym for Komering (kge)
