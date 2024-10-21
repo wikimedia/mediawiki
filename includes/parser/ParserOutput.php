@@ -901,6 +901,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return $this->mFileSearchOptions;
 	}
 
+	/**
+	 * @note Use of the reference returned by this method has been
+	 *  deprecated since 1.43.  In a future release this will return a
+	 *  normal array.  Use ::addExternalLink() to modify the set of
+	 *  external links stored in this ParserOutput.
+	 */
 	public function &getExternalLinks(): array {
 		return $this->mExternalLinks;
 	}
