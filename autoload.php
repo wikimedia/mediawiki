@@ -2033,6 +2033,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Parser\\ParserOptions' => __DIR__ . '/includes/parser/ParserOptions.php',
 	'MediaWiki\\Parser\\ParserOutput' => __DIR__ . '/includes/parser/ParserOutput.php',
 	'MediaWiki\\Parser\\ParserOutputFlags' => __DIR__ . '/includes/parser/ParserOutputFlags.php',
+	'MediaWiki\\Parser\\ParserOutputLinkTypes' => __DIR__ . '/includes/parser/ParserOutputLinkTypes.php',
 	'MediaWiki\\Parser\\ParserOutputStringSets' => __DIR__ . '/includes/parser/ParserOutputStringSets.php',
 	'MediaWiki\\Parser\\Parsoid\\Config\\DataAccess' => __DIR__ . '/includes/parser/Parsoid/Config/DataAccess.php',
 	'MediaWiki\\Parser\\Parsoid\\Config\\PageConfig' => __DIR__ . '/includes/parser/Parsoid/Config/PageConfig.php',

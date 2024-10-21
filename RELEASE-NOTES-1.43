@@ -960,6 +960,18 @@ because of Phabricator reports.
   ParserOutputAccess with ParserOptions::setUseParsoid() instead.
 * ParserOutput::addJsConfigVars(), deprecated since 1.38, now emits deprecation
   warnings. Use ParserOutput::setJsConfigVar() instead.
+* The following methods of ParserOutput, most of which used to return an
+  array by reference, have been deprecated.  Use the
+  ParserOutput::getLinkList(...) method with an appropriate link type
+  instead:
+  * ParserOutput::getFileSearchOptions() - ParserOutputLinkTypes::MEDIA
+  * ParserOutput::getImages()            - ParserOutputLinkTypes::MEDIA
+  * ParserOutput::getInterwikiLinks()    - ParserOutputLinkTypes::INTERWIKI
+  * ParserOutput::getLanguageLinks()     - ParserOutputLinkTypes::LANGUAGE
+  * ParserOutput::getLinks()             - ParserOutputLinkTypes::LOCAL
+  * ParserOutput::getLinksSpecial()      - ParserOutputLinkTypes::SPECIAL
+  * ParserOutput::getTemplates()         - ParserOutputLinkTypes::TEMPLATE
+  * ParserOutput::getTemplateIds()       - ParserOutputLinkTypes::TEMPLATE
 * ParserOutput::setLanguageLinks(null) now emits deprecation warnings.  Use
   an empty array as an argument, not `null`.
 * ParserOutput::setPageProperty() now emits deprecation warnings when called
@@ -1016,6 +1028,8 @@ because of Phabricator reports.
    - ::setIndexPolicy()  (setting 'index' after 'noindex' is deprecated)
    - ::getPreventClickjacking()
    - ::setPreventClickjacking()
+* The hook OutputPageMakeCategoryLinks is deprecated. Use the new hook
+  OutputPageRenderCategoryLink instead.
 * mw.cookie.getCrossSite() has been deprecated due to the removal of
   $wgUseSameSiteLegacyCookies in MW 1.42. Use mw.cookie.get().
 * The 'help' key in HTMLForm descriptors is deprecated. Use the 'help-raw'
@@ -1023,8 +1037,6 @@ because of Phabricator reports.
 * ImageGalleryBase::setWidths() and ::setHeights() will now emit a deprecation
   warning if they are called without ImageGalleryBase::setParser() having been
   called.  Please set the parser appropriately when using the image gallery.
-* The hook OutputPageMakeCategoryLinks is deprecated. Use the new hook
-  OutputPageRenderCategoryLink instead.
 * (T45646) The localisation messages 'copyright' and 'history_copyright' are
   deprecated in favor of 'copyright-footer' and 'copyright-footer-history'.
   The new messages are parsed as wikitext instead of being treated as raw HTML.

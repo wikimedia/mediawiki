@@ -666,6 +666,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * @return string[]
 	 * @note Before 1.43, this function returned an array reference.
+	 * @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::LANGUAGE)
 	 */
 	public function getLanguageLinks() {
 		$result = [];
@@ -676,6 +677,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return $result;
 	}
 
+	/** @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::INTERWIKI) */
 	public function getInterwikiLinks() {
 		return $this->mInterwikiLinks;
 	}
@@ -769,6 +771,103 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return [];
 	}
 
+	/**
+	 * Get a list of links of the given type.
+	 *
+	 * Provides a uniform interface to various lists of links stored in
+	 * the metadata.
+	 *
+	 * Each element of the returned array has a LinkTarget as the 'link'
+	 * property.  Local and template links also have 'pageid' set.
+	 * Template links have 'revid' set.  Category links have 'sort' set.
+	 * Media links optionally have 'time' and 'sha1' set.
+	 *
+	 * @param string $linkType A link type, which should be a constant from
+	 *  ParserOutputLinkTypes.
+	 * @return list<array{link:ParsoidLinkTarget,pageid?:int,revid?:int,sort?:string,time?:string|false,sha1?:string|false}>
+	 */
+	public function getLinkList( string $linkType ): array {
+		# Note that fragments are dropped for everything except language links
+		$result = [];
+		switch ( $linkType ) {
+			case ParserOutputLinkTypes::CATEGORY:
+				foreach ( $this->mCategories as $dbkey => $sort ) {
+					$result[] = [
+						'link' => new TitleValue( NS_CATEGORY, (string)$dbkey ),
+						'sort' => $sort,
+					];
+				}
+				break;
+
+			case ParserOutputLinkTypes::INTERWIKI:
+				foreach ( $this->mInterwikiLinks as $prefix => $arr ) {
+					foreach ( $arr as $dbkey => $ignore ) {
+						$result[] = [
+							'link' => new TitleValue( NS_MAIN, (string)$dbkey, '', (string)$prefix ),
+						];
+					}
+				}
+				break;
+
+			case ParserOutputLinkTypes::LANGUAGE:
+				foreach ( $this->mLanguageLinkMap as $lang => $title ) {
+					if ( $title === '|' ) {
+						continue; // T374736
+					}
+					# language links can have fragments!
+					[ $title, $frag ] = array_pad( explode( '#', $title, 2 ), 2, '' );
+					$result[]  = [
+						'link' => new TitleValue( NS_MAIN, $title, $frag, (string)$lang ),
+					];
+				}
+				break;
+
+			case ParserOutputLinkTypes::LOCAL:
+				foreach ( $this->mLinks as $ns => $arr ) {
+					foreach ( $arr as $dbkey => $id ) {
+						$result[] = [
+							'link' => new TitleValue( $ns, (string)$dbkey ),
+							'pageid' => $id,
+						];
+					}
+				}
+				break;
+
+			case ParserOutputLinkTypes::MEDIA:
+				foreach ( $this->mImages as $dbkey => $ignore ) {
+					$extra = $this->mFileSearchOptions[$dbkey] ?? [];
+					$extra['link'] = new TitleValue( NS_FILE, (string)$dbkey );
+					$result[] = $extra;
+				}
+				break;
+
+			case ParserOutputLinkTypes::SPECIAL:
+				foreach ( $this->mLinksSpecial as $dbkey => $ignore ) {
+					$result[] = [
+						'link' => new TitleValue( NS_SPECIAL, (string)$dbkey ),
+					];
+				}
+				break;
+
+			case ParserOutputLinkTypes::TEMPLATE:
+				foreach ( $this->mTemplates as $ns => $arr ) {
+					foreach ( $arr as $dbkey => $pageid ) {
+						$result[] = [
+							'link' => new TitleValue( $ns, (string)$dbkey ),
+							'pageid' => $pageid,
+							'revid' => $this->mTemplateIds[$ns][$dbkey],
+						];
+					}
+				}
+				break;
+
+			default:
+				throw new UnexpectedValueException( "Unknown link type $linkType" );
+		}
+		return $result;
+	}
+
+	/** @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::LOCAL) */
 	public function &getLinks() {
 		return $this->mLinks;
 	}
@@ -776,23 +875,28 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * @return array Keys are DBKs for the links to special pages in the document
 	 * @since 1.35
+	 * @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::SPECIAL)
 	 */
 	public function &getLinksSpecial() {
 		return $this->mLinksSpecial;
 	}
 
+	/** @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::TEMPLATE) */
 	public function &getTemplates() {
 		return $this->mTemplates;
 	}
 
+	/** @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::TEMPLATE) */
 	public function &getTemplateIds() {
 		return $this->mTemplateIds;
 	}
 
+	/** @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::MEDIA) */
 	public function &getImages() {
 		return $this->mImages;
 	}
 
+	/** @deprecated since 1.43, use ::getLinkList(ParserOutputLinkTypes::MEDIA) */
 	public function &getFileSearchOptions() {
 		return $this->mFileSearchOptions;
 	}
