@@ -782,6 +782,7 @@ class ChangesList extends ContextSource {
 
 		return Html::openElement( 'span', [ 'class' => 'mw-changeslist-log-entry' ] )
 			. $formatter->getActionText()
+			. ' '
 			. $comment
 			. $this->message['word-separator']
 			. $formatter->getActionLinks()
