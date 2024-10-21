@@ -194,12 +194,12 @@ describe( 'Page Source', () => {
 			assert.deepEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.match( headers.vary, /\bx-restbase-compat\b/ );
-			assert.containsAllKeys( body, [ 'title', 'page_id', 'rev', 'tid', 'namespace', 'user_id',
+			assert.containsAllKeys( body.items[ 0 ], [ 'title', 'page_id', 'rev', 'tid', 'namespace', 'user_id',
 				'user_text', 'timestamp', 'comment', 'tags', 'restrictions', 'page_language', 'redirect' ] );
 
-			assert.deepEqual( body.title, utils.dbkey( page ) );
-			assert.isAbove( body.page_id, 0 );
-			assert.isAbove( body.rev, 0 );
+			assert.deepEqual( body.items[ 0 ].title, utils.dbkey( page ) );
+			assert.isAbove( body.items[ 0 ].page_id, 0 );
+			assert.isAbove( body.items[ 0 ].rev, 0 );
 		} );
 
 		it( 'Should successfully return restbase-compatible errors', async () => {

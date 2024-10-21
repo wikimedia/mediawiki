@@ -161,24 +161,25 @@ class PageSourceHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @param array $data
 	 */
 	private function assertRestbaseCompatibleResponseData( WikiPage $page, array $data ): void {
-		$this->assertSame( $page->getTitle()->getPrefixedDBkey(), $data['title'] );
-		$this->assertSame( $page->getId(), $data['page_id'] );
-		$this->assertSame( $page->getLatest(), $data['rev'] );
-		$this->assertSame( $page->getNamespace(), $data['namespace'] );
-		$this->assertSame( $page->getUser(), $data['user_id'] );
-		$this->assertSame( $page->getUserText(), $data['user_text'] );
+		$this->assertArrayHasKey( 'items', $data );
+		$this->assertSame( $page->getTitle()->getPrefixedDBkey(), $data['items'][0]['title'] );
+		$this->assertSame( $page->getId(), $data['items'][0]['page_id'] );
+		$this->assertSame( $page->getLatest(), $data['items'][0]['rev'] );
+		$this->assertSame( $page->getNamespace(), $data['items'][0]['namespace'] );
+		$this->assertSame( $page->getUser(), $data['items'][0]['user_id'] );
+		$this->assertSame( $page->getUserText(), $data['items'][0]['user_text'] );
 		$this->assertSame(
 			wfTimestampOrNull( TS_ISO_8601, $page->getTimestamp() ),
-			$data['timestamp']
+			$data['items'][0]['timestamp']
 		);
-		$this->assertSame( $page->getComment(), $data['comment'] );
-		$this->assertSame( [], $data['tags'] );
-		$this->assertSame( [], $data['restrictions'] );
+		$this->assertSame( $page->getComment(), $data['items'][0]['comment'] );
+		$this->assertSame( [], $data['items'][0]['tags'] );
+		$this->assertSame( [], $data['items'][0]['restrictions'] );
 		$this->assertSame(
 			$page->getTitle()->getPageLanguage()->getCode(),
-			$data['page_language']
+			$data['items'][0]['page_language']
 		);
-		$this->assertSame( $page->isRedirect(), $data['redirect'] );
+		$this->assertSame( $page->isRedirect(), $data['items'][0]['redirect'] );
 	}
 
 }

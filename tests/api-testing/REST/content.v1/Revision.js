@@ -79,12 +79,12 @@ describe( 'Revision', () => {
 			assert.deepEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^application\/json/ );
 			assert.match( headers.vary, /\bx-restbase-compat\b/ );
-			assert.containsAllKeys( body, [ 'title', 'page_id', 'rev', 'tid', 'namespace', 'user_id',
+			assert.containsAllKeys( body.items[ 0 ], [ 'title', 'page_id', 'rev', 'tid', 'namespace', 'user_id',
 				'user_text', 'timestamp', 'comment', 'tags', 'restrictions', 'page_language', 'redirect' ] );
 
-			assert.deepEqual( body.title, utils.dbkey( page ) );
-			assert.deepEqual( body.page_id, pageid );
-			assert.deepEqual( body.rev, newrevid );
+			assert.deepEqual( body.items[ 0 ].title, utils.dbkey( page ) );
+			assert.deepEqual( body.items[ 0 ].page_id, pageid );
+			assert.deepEqual( body.items[ 0 ].rev, newrevid );
 		} );
 
 		it( 'Should successfully return restbase-compatible errors', async () => {
