@@ -412,10 +412,7 @@ abstract class ParsoidHandler extends Handler {
 			$parameters
 		);
 
-		$stats = $this->siteConfig->prefixedStatsFactory();
-		if ( $stats ) {
-			$helper->setMetrics( $stats );
-		}
+		$helper->setMetrics( $this->siteConfig->prefixedStatsFactory() );
 
 		return $helper;
 	}

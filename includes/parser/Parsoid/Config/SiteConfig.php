@@ -254,9 +254,9 @@ class SiteConfig extends ISiteConfig {
 
 	/**
 	 * Create a prefixed StatsFactory for parsoid stats
-	 * @return StatsFactory|null
+	 * @return StatsFactory
 	 */
-	public function prefixedStatsFactory(): ?StatsFactory {
+	public function prefixedStatsFactory(): StatsFactory {
 		$component = $this->getStatsPrefix( true );
 		return $this->statsFactory->withComponent( $component );
 	}
