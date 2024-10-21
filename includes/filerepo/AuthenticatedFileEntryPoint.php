@@ -26,12 +26,12 @@
 namespace MediaWiki\FileRepo;
 
 use File;
-use HTTPFileStreamer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\TemplateParser;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiEntryPoint;
 use MediaWiki\Title\Title;
+use Wikimedia\FileBackend\HTTPFileStreamer;
 
 class AuthenticatedFileEntryPoint extends MediaWikiEntryPoint {
 

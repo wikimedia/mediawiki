@@ -21,6 +21,7 @@
  * @ingroup DifferenceEngine
  */
 
+use MediaWiki\Content\Content;
 use MediaWiki\Html\Html;
 
 /**

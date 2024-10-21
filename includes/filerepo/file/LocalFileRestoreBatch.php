@@ -21,6 +21,7 @@
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\SiteStatsUpdate;
 use MediaWiki\FileRepo\File\FileSelectQueryBuilder;
+use MediaWiki\Language\Language;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Status\Status;
 use Wikimedia\Rdbms\SelectQueryBuilder;

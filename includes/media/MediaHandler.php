@@ -23,6 +23,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Status\Status;
+use Wikimedia\FileBackend\FSFile\FSFile;
 
 /**
  * @defgroup Media Media

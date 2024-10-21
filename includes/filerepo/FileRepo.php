@@ -19,6 +19,8 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\Utils\MWTimestamp;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\FileBackend\FileBackend;
+use Wikimedia\FileBackend\FSFile\FSFile;
+use Wikimedia\FileBackend\FSFile\TempFSFile;
 use Wikimedia\ObjectCache\WANObjectCache;
 use Wikimedia\Rdbms\IDBAccessObject;
 

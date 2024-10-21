@@ -30,6 +30,7 @@ use MediaWiki\Language\Language;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;

@@ -23,6 +23,7 @@
  * @since 1.22
  */
 
+use MediaWiki\Api\ApiResult;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Title\Title;

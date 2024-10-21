@@ -40,8 +40,8 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use ScopedLock;
 use StatusValue;
-use TempFSFile;
 use Wikimedia\FileBackend\FSFile\FSFile;
+use Wikimedia\FileBackend\FSFile\TempFSFile;
 use Wikimedia\ScopedCallback;
 
 /**

@@ -20,6 +20,7 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\Html\TemplateParser;
+use MediaWiki\Language\Language;
 use MediaWiki\Skin\SkinComponentTempUserBanner;
 use MediaWiki\Skin\SkinComponentUtils;
 use MediaWiki\Title\Title;

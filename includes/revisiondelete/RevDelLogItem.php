@@ -19,7 +19,9 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\Api\ApiResult;
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\Html\Html;
 use MediaWiki\RevisionList\RevisionListBase;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;

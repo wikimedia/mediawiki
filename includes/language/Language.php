@@ -60,7 +60,6 @@ use MediaWiki\User\UserTimeCorrection;
 use MediaWiki\Utils\MWTimestamp;
 use MediaWiki\Xml\XmlSelect;
 use NumberFormatter;
-use ReplacementArray;
 use RuntimeException;
 use StringUtils;
 use UtfNormal\Validator as UtfNormalValidator;

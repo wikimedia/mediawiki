@@ -4,6 +4,7 @@ namespace MediaWiki\Deferred\LinksUpdate;
 
 use Collation;
 use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\Language\ILanguageConverter;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Page\WikiPageFactory;
@@ -42,7 +43,7 @@ class CategoryLinksTable extends TitleLinksTable {
 	 */
 	private $savedTimestamps = null;
 
-	/** @var \ILanguageConverter */
+	/** @var ILanguageConverter */
 	private $languageConverter;
 
 	/** @var \Collation */
