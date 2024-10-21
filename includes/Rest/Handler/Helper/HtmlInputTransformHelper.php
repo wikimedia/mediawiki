@@ -438,13 +438,16 @@ class HtmlInputTransformHelper {
 	/**
 	 * Set metrics sink.
 	 *
+	 * @note Passing a StatsdDataFactoryInterface here has been deprecated
+	 * since 1.43.
+	 *
 	 * @param StatsFactory|StatsdDataFactoryInterface $statsFactory
 	 */
 	public function setMetrics( $statsFactory ) {
 		if ( $statsFactory instanceof StatsdDataFactoryInterface ) {
 			// Uncomment this once all WMF code has been transitioned, but
 			// leave it in for the 1.43 release.
-			// wfDeprecated( __METHOD__ . ' with StatsdDataFactoryInterface' );
+			wfDeprecated( __METHOD__ . ' with StatsdDataFactoryInterface', '1.43' );
 			return;
 		}
 		$this->statsFactory = $statsFactory;

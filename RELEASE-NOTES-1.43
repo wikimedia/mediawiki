@@ -978,6 +978,9 @@ because of Phabricator reports.
   * HtmlInputTransformHelper::init()
   Similarly, calling the constructor method in PageRestHelperFactory
   without the appropriate initialization arguments is now deprecated.
+* Calling HtmlToContentTransform::setMetrics() and
+  HtmlInputTransformHelper::setMetrics() with a StatsdDataFactoryInterface
+  is deprecated and emits warnings. Pass a StatsFactory instead.
 * HTMLForm methods getPreText, setPreText, addPreText, getPostText,
   setPostText, addPostText, getHeaderText, setHeaderText, addHeaderText,
   getFooterText, setFooterText and addFooterText, deprecated since 1.38, now
