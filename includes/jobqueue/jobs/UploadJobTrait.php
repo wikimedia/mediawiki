@@ -19,6 +19,7 @@
  * @defgroup JobQueue JobQueue
  */
 
+use MediaWiki\Api\ApiUpload;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Status\Status;

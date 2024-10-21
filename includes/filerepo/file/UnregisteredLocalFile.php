@@ -20,6 +20,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
+use Wikimedia\FileBackend\FSFile\FSFile;
 
 /**
  * File without associated database record.

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\SpecialPage\SpecialPage;
 
 class ContentModelLogFormatter extends LogFormatter {

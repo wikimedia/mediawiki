@@ -26,6 +26,7 @@
 
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Config\Config;
+use MediaWiki\Content\Content;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\SiteStatsUpdate;

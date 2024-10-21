@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Api\Validator;
 
+use MediaWiki\Api\ApiBase;
 use MediaWiki\Api\ApiMain;
 use MediaWiki\Message\Converter as MessageConverter;
 use Wikimedia\Message\DataMessageValue;
@@ -81,7 +82,7 @@ class ApiParamValidatorCallbacks implements Callbacks {
 	public function recordCondition(
 		DataMessageValue $message, $name, $value, array $settings, array $options
 	) {
-		/** @var \ApiBase $module */
+		/** @var ApiBase $module */
 		$module = $options['module'];
 
 		$code = $message->getCode();

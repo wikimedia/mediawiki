@@ -21,6 +21,7 @@
  * @ingroup Upload
  */
 
+use MediaWiki\Api\ApiResult;
 use MediaWiki\Api\ApiUpload;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\HookContainer\HookRunner;

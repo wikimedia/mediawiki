@@ -21,6 +21,8 @@
  * @ingroup DifferenceEngine
  */
 
+use MediaWiki\Content\ContentHandler;
+
 /**
  * Exception thrown when trying to render a diff between two content types
  * which cannot be compared (this is typically the case for all content types

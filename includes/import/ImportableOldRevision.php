@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Content\Content;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;

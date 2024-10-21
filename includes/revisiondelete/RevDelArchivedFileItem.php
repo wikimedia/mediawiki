@@ -19,6 +19,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\Api\ApiResult;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\RevisionList\RevisionListBase;
 use MediaWiki\SpecialPage\SpecialPage;

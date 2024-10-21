@@ -57,6 +57,7 @@ use MediaWiki\Debug\MWDebug;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\HookContainer\FauxGlobalHookArray;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Language\Language;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;

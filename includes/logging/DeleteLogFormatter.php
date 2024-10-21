@@ -23,6 +23,7 @@
  * @since 1.22
  */
 
+use MediaWiki\Api\ApiResult;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SpecialPage\SpecialPage;
 

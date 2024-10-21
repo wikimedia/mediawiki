@@ -22,6 +22,7 @@ use MediaWiki\FileBackend\FileBackendGroup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\FileBackend\FileBackend;
+use Wikimedia\FileBackend\FSFileBackend;
 
 /**
  * External storage in a FileBackend.

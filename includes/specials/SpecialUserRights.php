@@ -20,13 +20,13 @@
 
 namespace MediaWiki\Specials;
 
-use HTMLForm;
-use HTMLUserTextField;
 use LogEventsList;
 use LogPage;
 use ManualLogEntry;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Html\Html;
+use MediaWiki\HTMLForm\Field\HTMLUserTextField;
+use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

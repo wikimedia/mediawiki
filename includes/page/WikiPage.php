@@ -21,6 +21,7 @@
 use MediaWiki\Category\Category;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\Content;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Deferred\DeferredUpdates;
@@ -37,6 +38,7 @@ use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Page\ParserOutputAccess;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
