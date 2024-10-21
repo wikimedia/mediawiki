@@ -198,7 +198,8 @@ class FileBackendGroup {
 			$config = $this->config( $name );
 
 			$class = $config['class'];
-			if ( $class === FileBackendMultiWrite::class ) {
+			// Checking old alias for compatibility with unchanged config
+			if ( $class === FileBackendMultiWrite::class || $class === \FileBackendMultiWrite::class ) {
 				// @todo How can we test this? What's the intended use-case?
 				foreach ( $config['backends'] as $index => $beConfig ) {
 					if ( isset( $beConfig['template'] ) ) {
