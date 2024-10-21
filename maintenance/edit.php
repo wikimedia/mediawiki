@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Content\ContentHandler;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\StubObject\StubGlobalUser;

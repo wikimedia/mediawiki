@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\Shell\Shell;
+use Wikimedia\FileBackend\FSFile\TempFSFile;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\ServerInfo;
 

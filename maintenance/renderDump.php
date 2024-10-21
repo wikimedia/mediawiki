@@ -28,6 +28,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\User\User;
