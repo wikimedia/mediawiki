@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\Json\JsonCodec;
+use MediaWiki\Parser\ParserCache;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\PoolCounter\PoolWorkArticleViewCurrent;
 use MediaWiki\Revision\RevisionRecord;

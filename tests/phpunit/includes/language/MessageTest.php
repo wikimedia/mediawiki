@@ -1,11 +1,13 @@
 <?php
 
+use MediaWiki\Api\ApiMessage;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Message\UserGroupMembershipParam;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Assert\ParameterTypeException;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
@@ -425,7 +427,7 @@ class MessageTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers \MediaWiki\Language\RawMessage
-	 * @covers \CoreTagHooks::html
+	 * @covers \MediaWiki\Parser\CoreTagHooks::html
 	 */
 	public function testRawHtmlInMsg() {
 		$this->overrideConfigValue( MainConfigNames::RawHtml, true );

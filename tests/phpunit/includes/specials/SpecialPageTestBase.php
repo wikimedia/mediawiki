@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Language\Language;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPage;

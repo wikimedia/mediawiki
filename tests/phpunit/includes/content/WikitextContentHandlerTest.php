@@ -5,6 +5,7 @@ use MediaWiki\Content\WikitextContent;
 use MediaWiki\Content\WikitextContentHandler;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Title\Title;
@@ -18,8 +19,8 @@ use Wikimedia\TestingAccessWrapper;
  *
  * @group ContentHandler
  * @covers \MediaWiki\Content\WikitextContentHandler
- * @covers \TextContentHandler
- * @covers \ContentHandler
+ * @covers \MediaWiki\Content\TextContentHandler
+ * @covers \MediaWiki\Content\ContentHandler
  */
 class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	private WikitextContentHandler $handler;

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Language\Language;
+
 /**
  * Validate the Messages*.php files
  * @coversNothing -- no way to cover non-class files

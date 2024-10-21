@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use Wikimedia\FileBackend\FSFileBackend;
 
 /**
  * @covers \FileRepo

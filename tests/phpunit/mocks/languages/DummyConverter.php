@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Language\LanguageConverter;
+use MediaWiki\Language\ReplacementArray;
+
 /**
  * Test converter (from Tajiki to latin orthography)
  */

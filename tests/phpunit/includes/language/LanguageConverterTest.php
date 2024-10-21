@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Language\Language;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReference;
@@ -12,7 +13,7 @@ use MediaWiki\User\User;
 
 /**
  * @group Language
- * @covers \LanguageConverter
+ * @covers \MediaWiki\Language\LanguageConverter
  */
 class LanguageConverterTest extends MediaWikiLangTestCase {
 

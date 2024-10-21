@@ -1,8 +1,10 @@
 <?php
 
+use MediaWiki\Language\ConverterRule;
+
 /**
  * @group Language
- * @covers \ConverterRule
+ * @covers \MediaWiki\Language\ConverterRule
  */
 class ConverterRuleTest extends MediaWikiIntegrationTestCase {
 

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Api\ApiResult;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Linker\Linker;

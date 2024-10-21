@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiQueryGeneratorBase;
 use MediaWiki\Request\FauxRequest;
 
 /**

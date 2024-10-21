@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\FileBackend\FSFileBackend;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 

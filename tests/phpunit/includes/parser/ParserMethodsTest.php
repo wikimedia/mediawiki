@@ -22,7 +22,7 @@ use MockTitleTrait;
 /**
  * @group Database
  * @covers \MediaWiki\Parser\Parser
- * @covers \BlockLevelPass
+ * @covers \MediaWiki\Parser\BlockLevelPass
  */
 class ParserMethodsTest extends MediaWikiLangTestCase {
 	use MockTitleTrait;

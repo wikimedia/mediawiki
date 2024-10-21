@@ -2,12 +2,14 @@
 
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\WikiMap\WikiMap;
+use Wikimedia\FileBackend\FileBackendMultiWrite;
+use Wikimedia\FileBackend\MemoryFileBackend;
 use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group FileRepo
  * @group FileBackend
- * @covers FileBackendMultiWrite
+ * @covers \Wikimedia\FileBackend\FileBackendMultiWrite
  */
 class FileBackendMultiWriteTest extends MediaWikiIntegrationTestCase {
 	public function testReadAffinity() {

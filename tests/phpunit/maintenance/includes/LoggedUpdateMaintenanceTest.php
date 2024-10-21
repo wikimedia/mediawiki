@@ -2,19 +2,19 @@
 
 namespace MediaWiki\Tests\Maintenance\Includes;
 
-use LoggedUpdateMaintenance;
+use MediaWiki\Maintenance\LoggedUpdateMaintenance;
 use MediaWiki\Tests\Maintenance\MaintenanceBaseTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \LoggedUpdateMaintenance
+ * @covers \MediaWiki\Maintenance\LoggedUpdateMaintenance
  * @author Dreamy Jazz
  * @group Database
  */
 class LoggedUpdateMaintenanceTest extends MaintenanceBaseTestCase {
 
-	/** @var \LoggedUpdateMaintenance|MockObject */
+	/** @var LoggedUpdateMaintenance|MockObject */
 	protected $maintenance;
 
 	protected function getMaintenanceClass() {

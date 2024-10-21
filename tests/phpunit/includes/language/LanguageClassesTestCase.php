@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Language\Language;
+
 /**
  * Helping class to run tests using a clean language instance.
  *

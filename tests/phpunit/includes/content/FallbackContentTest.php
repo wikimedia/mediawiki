@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Content\Content;
 use MediaWiki\Content\FallbackContent;
 use MediaWiki\Content\FallbackContentHandler;
 use MediaWiki\Content\JavaScriptContent;

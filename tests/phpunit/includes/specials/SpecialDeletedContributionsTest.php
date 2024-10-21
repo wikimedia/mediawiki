@@ -1,7 +1,10 @@
 <?php
 
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Specials\SpecialDeletedContributions;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
+use MediaWiki\Title\Title;
+use MediaWiki\User\User;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 

@@ -2,7 +2,7 @@
 
 /**
  * @group Language
- * @covers \LanguageConverter
+ * @covers \MediaWiki\Language\LanguageConverter
  */
 class LanguageConverterIntegrationTest extends MediaWikiIntegrationTestCase {
 

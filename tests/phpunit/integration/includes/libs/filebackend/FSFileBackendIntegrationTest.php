@@ -15,29 +15,29 @@ use Wikimedia\FileBackend\FSFileBackend;
  * @covers \Wikimedia\FileBackend\FileOps\CreateFileOp
  * @covers \Wikimedia\FileBackend\FileOps\DeleteFileOp
  * @covers \Wikimedia\FileBackend\FileOps\DescribeFileOp
- * @covers \FSFile
+ * @covers \Wikimedia\FileBackend\FSFile\FSFile
  * @covers \Wikimedia\FileBackend\FSFileBackend
- * @covers \FSFileBackendDirList
- * @covers \FSFileBackendFileList
- * @covers \FSFileBackendList
- * @covers \FSFileOpHandle
+ * @covers \Wikimedia\FileBackend\FileIteration\FSFileBackendDirList
+ * @covers \Wikimedia\FileBackend\FileIteration\FSFileBackendFileList
+ * @covers \Wikimedia\FileBackend\FileIteration\FSFileBackendList
+ * @covers \Wikimedia\FileBackend\FileOpHandle\FSFileOpHandle
  * @covers \FileBackendDBRepoWrapper
  * @covers \Wikimedia\FileBackend\FileBackendError
  * @covers \MediaWiki\FileBackend\FileBackendGroup
- * @covers \FileBackendMultiWrite
- * @covers \FileBackendStore
- * @covers \FileBackendStoreOpHandle
- * @covers \FileBackendStoreShardDirIterator
- * @covers \FileBackendStoreShardFileIterator
- * @covers \FileBackendStoreShardListIterator
+ * @covers \Wikimedia\FileBackend\FileBackendMultiWrite
+ * @covers \Wikimedia\FileBackend\FileBackendStore
+ * @covers \Wikimedia\FileBackend\FileOpHandle\FileBackendStoreOpHandle
+ * @covers \Wikimedia\FileBackend\FileIteration\FileBackendStoreShardDirIterator
+ * @covers \Wikimedia\FileBackend\FileIteration\FileBackendStoreShardFileIterator
+ * @covers \Wikimedia\FileBackend\FileIteration\FileBackendStoreShardListIterator
  * @covers \Wikimedia\FileBackend\FileOps\FileOp
- * @covers \FileOpBatch
- * @covers \HTTPFileStreamer
+ * @covers \Wikimedia\FileBackend\FileOpBatch
+ * @covers \Wikimedia\FileBackend\HTTPFileStreamer
  * @covers \LockManagerGroup
  * @covers \Wikimedia\FileBackend\FileOps\MoveFileOp
  * @covers \Wikimedia\FileBackend\FileOps\NullFileOp
  * @covers \Wikimedia\FileBackend\FileOps\StoreFileOp
- * @covers \TempFSFile
+ * @covers \Wikimedia\FileBackend\FSFile\TempFSFile
  *
  * @covers \FSLockManager
  * @covers \LockManager

@@ -19,7 +19,7 @@
 /**
  * @group Language
  * @covers \UzConverter
- * @covers \LanguageConverter
+ * @covers \MediaWiki\Language\LanguageConverter
  */
 class UzConverterTest extends MediaWikiIntegrationTestCase {
 

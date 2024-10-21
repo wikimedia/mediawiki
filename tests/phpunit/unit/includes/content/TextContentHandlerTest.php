@@ -5,7 +5,7 @@ use MediaWiki\Content\TextContentHandler;
 /**
  * @group ContentHandler
  * @covers \MediaWiki\Content\TextContentHandler
- * @covers \ContentHandler
+ * @covers \MediaWiki\Content\ContentHandler
  */
 class TextContentHandlerTest extends MediaWikiUnitTestCase {
 

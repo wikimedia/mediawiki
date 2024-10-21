@@ -16,7 +16,7 @@ class MniConverterTest extends MediaWikiIntegrationTestCase {
 	use LanguageConverterTestTrait;
 
 	/**
-	 * @covers \LanguageConverter::convertTo
+	 * @covers \MediaWiki\Language\LanguageConverter::convertTo
 	 */
 	public function testConversionToBengali() {
 		// A conversion of Meitei to Bengali

@@ -3,8 +3,8 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use EditCLI;
-use Maintenance;
 use MediaWiki\Context\RequestContext;
+use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;

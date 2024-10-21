@@ -1,5 +1,6 @@
 <?php
 
+use Wikimedia\FileBackend\FSFile\TempFSFile;
 use Wikimedia\Rdbms\ConfiguredReadOnlyMode;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ILoadBalancer;

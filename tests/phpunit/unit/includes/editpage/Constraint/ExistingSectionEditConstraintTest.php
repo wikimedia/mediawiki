@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Content\Content;
 use MediaWiki\EditPage\Constraint\ExistingSectionEditConstraint;
 use MediaWiki\EditPage\Constraint\IEditConstraint;
 

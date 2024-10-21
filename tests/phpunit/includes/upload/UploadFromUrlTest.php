@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Api\ApiUsageException;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\File\FileDeleteForm;
 use MediaWiki\Tests\Api\ApiTestCase;

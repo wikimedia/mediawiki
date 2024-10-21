@@ -1,5 +1,10 @@
 <?php
 
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiDisabled;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Api\ApiModuleManager;
+use MediaWiki\Api\ApiQueryDisabled;
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;

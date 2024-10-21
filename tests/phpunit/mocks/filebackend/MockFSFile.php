@@ -21,6 +21,8 @@
  * @ingroup FileBackend
  */
 
+use Wikimedia\FileBackend\FSFile\FSFile;
+
 /**
  * Class representing an in-memory fake file.
  * This is intended for unit testing / development when you do not want

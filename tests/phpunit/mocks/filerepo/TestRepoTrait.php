@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\FileRepo;
 
-use FSFileBackend;
 use InvalidArgumentException;
 use LocalRepo;
 use LogicException;
@@ -12,6 +11,7 @@ use MediaWiki\Title\Title;
 use PHPUnit\Framework\Assert;
 use RepoGroup;
 use Wikimedia\FileBackend\FileBackend;
+use Wikimedia\FileBackend\FSFileBackend;
 
 trait TestRepoTrait {
 

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Language\LanguageCode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Registration\ExtensionRegistry;

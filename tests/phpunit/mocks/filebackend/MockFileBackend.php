@@ -22,6 +22,8 @@
  * @author Antoine Musso <hashar@free.fr>
  */
 
+use Wikimedia\FileBackend\MemoryFileBackend;
+
 /**
  * Class simulating a backend store.
  *

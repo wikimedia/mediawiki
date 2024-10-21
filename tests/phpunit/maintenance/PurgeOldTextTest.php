@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
+use MediaWiki\Maintenance\Maintenance;
 use PHPUnit\Framework\MockObject\MockObject;
 use PurgeOldText;
 use Wikimedia\TestingAccessWrapper;
@@ -12,7 +13,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class PurgeOldTextTest extends MaintenanceBaseTestCase {
 
-	/** @var \Maintenance|MockObject */
+	/** @var Maintenance|MockObject */
 	protected $maintenance;
 
 	public function getMaintenanceClass() {
