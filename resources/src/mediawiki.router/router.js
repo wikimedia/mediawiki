@@ -149,13 +149,16 @@ class Router extends OO.Registry {
 	 *  avoid long history queues.
 	 */
 	navigateTo( title, options ) {
+		const oldHash = this.getPath();
 		if ( options.useReplaceState ) {
 			history.replaceState( null, title, options.path );
 		} else {
 			history.pushState( null, title, options.path );
 		}
-		// history.replaceState/pushState doesn't trigger a hashchange event
-		this.onRouterHashChange();
+		if ( this.getPath() !== oldHash ) {
+			// history.replaceState/pushState doesn't trigger a hashchange event
+			this.onRouterHashChange();
+		}
 	}
 
 	/**
