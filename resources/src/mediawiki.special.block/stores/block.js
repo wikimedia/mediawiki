@@ -98,7 +98,7 @@ module.exports = exports = defineStore( 'block', () => {
 			params.noemail = 1;
 		}
 
-		if ( details.value.indexOf( 'wpDisableUTEdit' ) !== -1 ) {
+		if ( details.value.indexOf( 'wpDisableUTEdit' ) === -1 ) {
 			params.allowusertalk = 1;
 		}
 

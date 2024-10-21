@@ -56,6 +56,7 @@ describe( 'SpecialBlock', () => {
 			reason: 'This is a test',
 			reblock: 0,
 			autoblock: 1,
+			allowusertalk: 1,
 			errorlang: 'en',
 			errorsuselocal: true,
 			uselang: 'en',
