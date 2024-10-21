@@ -78,6 +78,8 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use Psr\Log\LoggerInterface;
 use Wikimedia\RequestTimeout\RequestTimeout;
+use Wikimedia\Telemetry\SpanInterface;
+use Wikimedia\Telemetry\TracerState;
 
 /**
  * Environment checks
@@ -337,6 +339,35 @@ if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
 	MWExceptionHandler::installHandler( $wgLogExceptionBacktrace, $wgPropagateErrors );
 }
 Profiler::init( $wgProfiler );
+
+// Initialize the root span for distributed tracing if we're in a web request context (T340552).
+// Do this here since subsequent setup code, e.g. session initialization or post-setup hooks,
+// may themselves create spans, so the root span needs to have been initialized by then.
+call_user_func( static function (): void {
+	if ( wfIsCLI() ) {
+		return;
+	}
+
+	$tracer = MediaWikiServices::getInstance()->getTracer();
+	$request = RequestContext::getMain()->getRequest();
+	// Backdate the start of the root span to the timestamp where PHP actually started working on this operation.
+	$startTimeNanos = (int)( 1e9 * $_SERVER['REQUEST_TIME_FLOAT'] );
+	// Avoid high cardinality URL path as root span name, instead safely use the HTTP method.
+	// Per OTEL Semantic Conventions, https://opentelemetry.io/docs/specs/semconv/http/http-spans/
+	$spanName = $request->getMethod();
+	$rootSpan =
+		$tracer->createRootSpan( $spanName )
+			->setSpanKind( SpanInterface::SPAN_KIND_SERVER )
+			->setAttributes( array_filter( [
+				'http.request.method' => $request->getMethod(),
+				'url.path' => $request->getRequestURL(),
+				'server.name' => $_SERVER['SERVER_NAME'] ?? null,
+			] ) )
+			->start( $startTimeNanos );
+	$rootSpan->activate();
+
+	TracerState::getInstance()->setRootSpan( $rootSpan );
+} );
 
 // Non-trivial validation of: $wgServer
 // The FatalError page only renders cleanly after MWExceptionHandler is installed.

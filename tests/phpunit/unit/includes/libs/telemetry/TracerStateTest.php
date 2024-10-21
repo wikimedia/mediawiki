@@ -3,6 +3,7 @@ namespace Wikimedia\Tests\Telemetry;
 
 use MediaWikiUnitTestCase;
 use Wikimedia\Assert\InvariantException;
+use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Telemetry\SpanContext;
 use Wikimedia\Telemetry\SpanInterface;
 use Wikimedia\Telemetry\TracerState;
@@ -117,5 +118,23 @@ class TracerStateTest extends MediaWikiUnitTestCase {
 		$this->tracerState->clearSpanContexts();
 
 		$this->assertSame( [], $this->tracerState->getSpanContexts() );
+	}
+
+	public function testSetAndEndRootSpan(): void {
+		$rootSpan = $this->createMock( SpanInterface::class );
+		$rootSpan->expects( $this->once() )
+			->method( 'end' );
+
+		$this->tracerState->setRootSpan( $rootSpan );
+		$this->tracerState->endRootSpan();
+	}
+
+	public function testCannotSetRootSpanAgain(): void {
+		$this->expectException( PreconditionException::class );
+
+		$rootSpan = $this->createMock( SpanInterface::class );
+
+		$this->tracerState->setRootSpan( $rootSpan );
+		$this->tracerState->setRootSpan( $rootSpan );
 	}
 }

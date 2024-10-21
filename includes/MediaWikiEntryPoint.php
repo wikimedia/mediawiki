@@ -55,6 +55,7 @@ use Wikimedia\Rdbms\ReadOnlyMode;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Stats\IBufferingStatsdDataFactory;
 use Wikimedia\Stats\StatsFactory;
+use Wikimedia\Telemetry\TracerState;
 
 /**
  * @defgroup entrypoint Entry points
@@ -688,6 +689,10 @@ abstract class MediaWikiEntryPoint {
 		// Commit and close up!
 		$lbFactory->commitPrimaryChanges( __METHOD__ );
 		$lbFactory->shutdown( $lbFactory::SHUTDOWN_NO_CHRONPROT );
+
+		// End the root span of this request or process and export trace data.
+		TracerState::getInstance()->endRootSpan();
+		$this->mediaWikiServices->getTracer()->shutdown();
 
 		wfDebug( "Request ended normally" );
 	}

@@ -2,6 +2,7 @@
 namespace Wikimedia\Telemetry;
 
 use Wikimedia\Assert\Assert;
+use Wikimedia\Assert\PreconditionException;
 
 /**
  * Holds shared telemetry state, such as finished span data buffered for export.
@@ -30,6 +31,12 @@ class TracerState {
 	 * @var SpanContext[]
 	 */
 	private array $activeSpanContextStack = [];
+
+	/**
+	 * The root span of this process, or `null` if not initialized yet.
+	 * @var SpanInterface|null
+	 */
+	private ?SpanInterface $rootSpan = null;
 
 	/**
 	 * Get or initialize the shared tracer state for the current process or web request.
@@ -108,5 +115,30 @@ class TracerState {
 	 */
 	public function getActiveSpanContext(): ?SpanContext {
 		return $this->activeSpanContextStack[count( $this->activeSpanContextStack ) - 1] ?? null;
+	}
+
+	/**
+	 * Set the root span associated with the current request or process.
+	 *
+	 * @since 1.44
+	 * @param SpanInterface $rootSpan The root span to set.
+	 * @throws PreconditionException If a root span was already initialized for this request or process.
+	 */
+	public function setRootSpan( SpanInterface $rootSpan ): void {
+		Assert::precondition(
+			$this->rootSpan === null,
+			'Attempted to set a new root span while one was already initialized.'
+		);
+		$this->rootSpan = $rootSpan;
+	}
+
+	/**
+	 * End the root span associated with the current request or process.
+	 * @since 1.44
+	 */
+	public function endRootSpan(): void {
+		if ( $this->rootSpan !== null ) {
+			$this->rootSpan->end();
+		}
 	}
 }
