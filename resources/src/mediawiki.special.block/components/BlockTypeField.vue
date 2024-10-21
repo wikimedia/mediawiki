@@ -7,7 +7,7 @@
 			v-for="radio in typeCheckboxes"
 			:key="'radio-' + radio.value"
 			v-model="type"
-			name="radio-group-descriptions"
+			name="wpEditingRestriction"
 			:input-value="radio.value"
 		>
 			{{ radio.label }}
@@ -19,20 +19,19 @@
 			v-if="type === 'partial'"
 			class="mw-block-partial-options"
 		>
-			<div>
-				Pages Placeholder
-			</div>
-			<div>
-				Namespaces Placeholder
-			</div>
-			<cdx-checkbox
-				v-for="checkbox in partialBlockCheckboxes"
-				:key="'checkbox-' + checkbox.value"
-				v-model="partialOptions"
-				:input-value="checkbox.value"
-			>
-				{{ checkbox.label }}
-			</cdx-checkbox>
+			<pages-field></pages-field>
+			<namespaces-field></namespaces-field>
+
+			<cdx-field :is-fieldset="true">
+				<cdx-checkbox
+					v-for="checkbox in partialBlockCheckboxes"
+					:key="'checkbox-' + checkbox.value"
+					v-model="partialOptions"
+					:input-value="checkbox.value"
+				>
+					{{ checkbox.label }}
+				</cdx-checkbox>
+			</cdx-field>
 		</div>
 	</cdx-field>
 </template>
@@ -42,10 +41,18 @@ const { defineComponent } = require( 'vue' );
 const { CdxCheckbox, CdxRadio, CdxField } = require( '@wikimedia/codex' );
 const { storeToRefs } = require( 'pinia' );
 const useBlockStore = require( '../stores/block.js' );
+const PagesField = require( './PagesField.vue' );
+const NamespacesField = require( './NamespacesField.vue' );
 
 module.exports = exports = defineComponent( {
 	name: 'BlockTypeField',
-	components: { CdxCheckbox, CdxRadio, CdxField },
+	components: {
+		CdxCheckbox,
+		CdxRadio,
+		CdxField,
+		NamespacesField,
+		PagesField
+	},
 	setup() {
 		const { type, partialOptions } = storeToRefs( useBlockStore() );
 
@@ -90,5 +97,9 @@ module.exports = exports = defineComponent( {
 
 .mw-block-partial-options {
 	padding-left: calc( @size-125 + @spacing-50 );
+
+	.cdx-label__label__text {
+		font-weight: @font-weight-normal;
+	}
 }
 </style>

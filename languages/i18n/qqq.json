@@ -2966,6 +2966,8 @@
 	"block-user-placeholder": "Placeholder text for the input specifying the user of a block on [[Special:Block]]",
 	"block-target": "Label for the input for specifying the target of a block on [[Special:Block]]",
 	"block-target-placeholder": "Placeholder text for the input specifying the target of a block on [[Special:Block]]",
+	"block-pages-placeholder": "Placeholder text for the input specifying the pages the user is blocked from editing on [[Special:Block]]",
+	"block-namespaces-placeholder": "Placeholder text for the input specifying the namespaces the user is blocked from editing on [[Special:Block]]",
 	"unblockip": "Used as title and legend for the form in [[Special:Unblock]].",
 	"unblockiptext": "Used in the {{msg-mw|Unblockip}} form on [[Special:Unblock]].",
 	"ipusubmit": "Used as button text on [{{canonicalurl:Special:BlockList|action=unblock}} Special:BlockList?action=unblock]. To see the message:\n* Go to [[Special:BlockList]]\n* Click \"unblock\" for any block (but you can only see \"unblock\" if you have administrator rights)\n* It is now the button below the form",

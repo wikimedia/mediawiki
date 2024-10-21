@@ -43,6 +43,12 @@ function getSpecialBlock( config = {}, apiMocks = [] ) {
  */
 function mockMwConfigGet( config = {} ) {
 	const mockConfig = Object.assign( {
+		wgFormattedNamespaces: {
+			0: '(Main)',
+			1: 'Talk',
+			2: 'User',
+			3: 'User talk'
+		},
 		wgUserLanguage: 'en',
 		blockAlreadyBlocked: false,
 		blockTargetUser: null,
@@ -58,6 +64,8 @@ function mockMwConfigGet( config = {} ) {
 			infinite: 'infinite',
 			'31 horas': '31 hours'
 		},
+		blockNamespaceRestrictions: '',
+		blockPageRestrictions: '',
 		blockPreErrors: [],
 		blockReasonOptions: [
 			{ label: 'block-reason-1', value: 'block-reason-1' },

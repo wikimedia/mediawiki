@@ -2264,6 +2264,8 @@ return [
 			'resources/src/mediawiki.special.block/components/BlockDetailsOptions.vue',
 			'resources/src/mediawiki.special.block/components/BlockTypeField.vue',
 			'resources/src/mediawiki.special.block/components/ExpiryField.vue',
+			'resources/src/mediawiki.special.block/components/NamespacesField.vue',
+			'resources/src/mediawiki.special.block/components/PagesField.vue',
 			'resources/src/mediawiki.special.block/components/ReasonField.vue',
 			'resources/src/mediawiki.special.block/components/TargetActiveBlocks.vue',
 			'resources/src/mediawiki.special.block/components/TargetBlockLog.vue',
@@ -2282,6 +2284,7 @@ return [
 			'vue',
 			'@wikimedia/codex',
 			'pinia',
+			'mediawiki.api',
 			'mediawiki.jqueryMsg',
 		],
 		'messages' => [
@@ -2365,6 +2368,11 @@ return [
 			'ipb-confirm',
 			'ipb-blockingself',
 			'ipb-confirmaction',
+			'ipb-pages-label',
+			'ipb-namespaces-label',
+			'block-pages-placeholder',
+			'block-namespaces-placeholder',
+			'blanknamespace',
 		],
 	],
 	'mediawiki.protectionIndicators.styles' => [
