@@ -762,20 +762,16 @@ abstract class Database implements Stringable, IDatabaseForOwner, IMaintainableD
 			$this->sessionTempTables
 		);
 		// Get the transaction-aware SQL string used for profiling
-		$prefix = (
-			$this->replicationReporter->getTopologyRole() === self::ROLE_STREAMING_MASTER
-		) ? 'role-primary: ' : '';
-
-		// Start profile section
-		if ( $sql->getCleanedSql() ) {
-			$generalizedSql = $sql;
-			$ps = $this->profiler ? ( $this->profiler )( $sql->getCleanedSql() ) : null;
-		} else {
-			$generalizedSql = new GeneralizedSql( $sql->getSQL(), $prefix );
-			$ps = $this->profiler ? ( $this->profiler )( $generalizedSql->stringify() ) : null;
-		}
+		$generalizedSql = GeneralizedSql::newFromQuery(
+			$sql,
+			( $this->replicationReporter->getTopologyRole() === self::ROLE_STREAMING_MASTER )
+				? 'role-primary: '
+				: ''
+		);
 		// Add agent and calling method comments to the SQL
 		$cStatement = $this->makeCommentedSql( $sql->getSQL(), $fname );
+		// Start profile section
+		$ps = $this->profiler ? ( $this->profiler )( $generalizedSql->stringify() ) : null;
 		$startTime = microtime( true );
 
 		// Clear any overrides from a prior "query method". Note that this does not affect

@@ -58,7 +58,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 
 	/**
 	 * @var array[][] Map of (trx ID => list of (query name, start time, end time))
-	 * @phan-var array<string,array<int,array{0:string,1:float,2:float}>>
+	 * @phan-var array<string,array<int,array{0:string|GeneralizedSQL,1:float,2:float}>>
 	 */
 	private $dbTrxMethodTimes;
 
@@ -303,7 +303,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 	 *
 	 * This assumes that all queries are synchronous (non-overlapping)
 	 *
-	 * @param string|GeneralizedSql|Query $query Function name or generalized SQL
+	 * @param string|GeneralizedSql $query Function name or generalized SQL
 	 * @param float $sTime Starting UNIX wall time
 	 * @param bool $isWrite Whether this is a write query
 	 * @param int|null $rowCount Number of affected/read rows
@@ -491,7 +491,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 
 	/**
 	 * @param string $event
-	 * @param string|GeneralizedSql|Query $query
+	 * @param string|GeneralizedSql $query
 	 * @param float|int $actual
 	 * @param string|null $trxId Transaction id
 	 * @param string|null $serverName db host name like db1234
@@ -541,24 +541,18 @@ class TransactionProfiler implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @param GeneralizedSql|string|Query $query
+	 * @param GeneralizedSql|string $query
 	 * @return string
 	 */
 	private function getGeneralizedSql( $query ) {
-		if ( $query instanceof Query ) {
-			return $query->getCleanedSql();
-		}
 		return $query instanceof GeneralizedSql ? $query->stringify() : $query;
 	}
 
 	/**
-	 * @param GeneralizedSql|string|Query $query
+	 * @param GeneralizedSql|string $query
 	 * @return string
 	 */
 	private function getRawSql( $query ) {
-		if ( $query instanceof Query ) {
-			return $query->getSQL();
-		}
 		return $query instanceof GeneralizedSql ? $query->getRawSql() : $query;
 	}
 
