@@ -1,15 +1,17 @@
 'use strict';
 
 const { mount, flushPromises } = require( '@vue/test-utils' );
-const { mockMwApiGet } = require( './SpecialBlock.setup.js' );
+const { createTestingPinia } = require( '@pinia/testing' );
+const { mockMwConfigGet, mockMwApiGet } = require( './SpecialBlock.setup.js' );
 const TargetBlockLog = require( '../../../resources/src/mediawiki.special.block/components/TargetBlockLog.vue' );
 
 beforeAll( () => mockMwApiGet() );
 
 describe( 'TargetBlockLog', () => {
 	it( 'should show a table with one row when given a user with one block', async () => {
+		mockMwConfigGet( { blockTargetUser: 'ExampleUser' } );
 		const wrapper = mount( TargetBlockLog, {
-			propsData: { targetUser: 'ExampleUser' }
+			global: { plugins: [ createTestingPinia() ] }
 		} );
 		await flushPromises();
 		// Test: The table should exist
@@ -19,8 +21,9 @@ describe( 'TargetBlockLog', () => {
 		expect( rows ).toHaveLength( 1 );
 	} );
 	it( 'should show a table with the no-previous-blocks message when given a user with no blocks', async () => {
+		mockMwConfigGet( { blockTargetUser: 'NeverBlocked' } );
 		const wrapper = mount( TargetBlockLog, {
-			propsData: { targetUser: 'NeverBlocked' }
+			global: { plugins: [ createTestingPinia() ] }
 		} );
 		await flushPromises();
 		// Test: The table should exist
@@ -32,8 +35,9 @@ describe( 'TargetBlockLog', () => {
 		expect( rows[ 0 ].text() ).toContain( 'block-user-no-previous-blocks' );
 	} );
 	it( 'should show a table with ten rows, and a show more link, when given a user with more than ten blocks', async () => {
+		mockMwConfigGet( { blockTargetUser: 'BlockedALot' } );
 		const wrapper = mount( TargetBlockLog, {
-			propsData: { targetUser: 'BlockedALot' }
+			global: { plugins: [ createTestingPinia() ] }
 		} );
 		await flushPromises();
 		// Test: The table should exist

@@ -6,8 +6,8 @@
 		<cdx-table
 			class="mw-block-previous-blocks"
 			:caption="$i18n( 'block-user-previous-blocks' ).text()"
-			:columns="columns"
-			:data="data"
+			:columns="!!logEntries.length ? columns : []"
+			:data="logEntries"
 			:use-row-headers="true"
 			:hide-caption="true"
 		>
@@ -59,7 +59,7 @@
 				</span>
 			</template>
 		</cdx-table>
-		<div v-if="moreblocks" class="mw-block-fulllog">
+		<div v-if="moreBlocks" class="mw-block-fulllog">
 			<a
 				:href="mw.util.getUrl( 'Special:Log', { page: targetUser, type: 'block' } )"
 			>
@@ -71,20 +71,16 @@
 
 <script>
 const util = require( '../util.js' );
-const { defineComponent } = require( 'vue' );
+const { defineComponent, ref, watch } = require( 'vue' );
 const { CdxAccordion, CdxTable } = require( '@wikimedia/codex' );
+const { storeToRefs } = require( 'pinia' );
+const useBlockStore = require( '../stores/block.js' );
 
-// @vue/component
 module.exports = exports = defineComponent( {
 	name: 'TargetBlockLog',
 	components: { CdxAccordion, CdxTable },
-	props: {
-		targetUser: {
-			type: [ Number, String, null ],
-			required: true
-		}
-	},
 	setup() {
+		const { targetUser } = storeToRefs( useBlockStore() );
 		const columns = [
 			{ id: 'timestamp', label: mw.message( 'blocklist-timestamp' ).text(), minWidth: '112px' },
 			{ id: 'type', label: mw.message( 'blocklist-type-header' ).text(), minWidth: '112px' },
@@ -93,23 +89,11 @@ module.exports = exports = defineComponent( {
 			{ id: 'parameters', label: mw.message( 'blocklist-params' ).text(), minWidth: '160px' },
 			{ id: 'reason', label: mw.message( 'blocklist-reason' ).text(), minWidth: '160px' }
 		];
+		const logEntries = ref( [] );
+		const moreBlocks = ref( false );
 
-		return {
-			columns,
-			util,
-			mw
-		};
-	},
-	data() {
-		return {
-			data: [],
-			moreblocks: false
-		};
-	},
-	methods: {
-		getUserBlocks( searchTerm ) {
+		function getUserBlocks( searchTerm ) {
 			const api = new mw.Api();
-
 			const params = {
 				action: 'query',
 				format: 'json',
@@ -120,44 +104,52 @@ module.exports = exports = defineComponent( {
 				leprop: 'ids|title|type|user|timestamp|comment|details',
 				letitle: 'User:' + searchTerm
 			};
-
 			return api.get( params )
 				.then( ( response ) => response );
 		}
-	},
-	watch: {
-		targetUser: {
-			handler( newValue ) {
-				if ( newValue ) {
-					this.data = [];
-					// Look up the block(s) for the target user in the log
-					this.getUserBlocks( newValue ).then( ( data ) => {
-						this.moreblocks = !!data.continue;
-						data = data.query;
-						// The fallback is only necessary for Jest tests.
-						data = data || { logevents: [] };
-						for ( let i = 0; i < data.logevents.length; i++ ) {
-							this.data.push( {
-								timestamp: {
-									timestamp: data.logevents[ i ].timestamp,
-									logid: data.logevents[ i ].logid
-								},
-								type: data.logevents[ i ].action,
-								expiry: {
-									expires: data.logevents[ i ].params.expiry,
-									duration: data.logevents[ i ].params.duration,
-									type: data.logevents[ i ].action
-								},
-								blockedby: data.logevents[ i ].user,
-								parameters: data.logevents[ i ].params.flags,
-								reason: data.logevents[ i ].comment
-							} );
-						}
-					} );
-				}
-			},
-			immediate: true
-		}
+
+		watch( targetUser, ( newValue ) => {
+			if ( newValue ) {
+				const newData = [];
+				// Look up the block(s) for the target user in the log
+				getUserBlocks( newValue ).then( ( data ) => {
+					moreBlocks.value = !!data.continue;
+					data = data.query;
+					// The fallback is only necessary for Jest tests.
+					data = data || { logevents: [] };
+					for ( let i = 0; i < data.logevents.length; i++ ) {
+						newData.push( {
+							timestamp: {
+								timestamp: data.logevents[ i ].timestamp,
+								logid: data.logevents[ i ].logid
+							},
+							type: data.logevents[ i ].action,
+							expiry: {
+								expires: data.logevents[ i ].params.expiry,
+								duration: data.logevents[ i ].params.duration,
+								type: data.logevents[ i ].action
+							},
+							blockedby: data.logevents[ i ].user,
+							parameters: data.logevents[ i ].params.flags,
+							reason: data.logevents[ i ].comment
+						} );
+					}
+					logEntries.value = newData;
+				} );
+			} else {
+				moreBlocks.value = false;
+				logEntries.value = [];
+			}
+		}, { immediate: true } );
+
+		return {
+			mw,
+			util,
+			columns,
+			logEntries,
+			moreBlocks,
+			targetUser
+		};
 	}
 } );
 </script>
