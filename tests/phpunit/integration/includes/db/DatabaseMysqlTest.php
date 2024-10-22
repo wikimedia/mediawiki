@@ -197,7 +197,7 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 
 		// Get a lock outside of any transaction
 		$unlocker = $this->conn->getScopedLockAndFlush( 'testing-key', __METHOD__, 0 );
-		// Start transaction *after* getting the lock
+		// Start transaction after getting the lock
 		$this->conn->begin( __METHOD__, IDatabase::TRANSACTION_INTERNAL );
 
 		$row = $this->conn->query( 'SELECT connection_id() AS id', __METHOD__ )->fetchObject();

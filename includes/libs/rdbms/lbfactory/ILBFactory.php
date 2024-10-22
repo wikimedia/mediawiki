@@ -243,22 +243,33 @@ interface ILBFactory extends IConnectionProvider {
 	);
 
 	/**
-	 * Commit all replica database server transactions, clearing any REPEATABLE-READ/SSI snapshots
+	 * Commit all replica database server transactions, clearing any point-in-time view snapshots
 	 *
 	 * This only applies to the instantiated tracked load balancer instances.
 	 *
 	 * This is useful for getting rid of stale data from an implicit transaction round
 	 *
 	 * @param string $fname Caller name @phan-mandatory-param
+	 * @deprecated Since 1.43
 	 */
 	public function flushReplicaSnapshots( $fname = __METHOD__ );
 
 	/**
-	 * Flush any primary transaction snapshots and set DBO_TRX (if DBO_DEFAULT is set)
+	 * Wrap subsequent queries for all transaction round aware primary connections in a transaction
 	 *
-	 * The DBO_TRX setting will be reverted to the default in each of these methods:
-	 *   - commitPrimaryChanges()
-	 *   - rollbackPrimaryChanges()
+	 * Each of these transactions will be owned by this ILBFactory instance such that direct
+	 * calls to {@link IDatabase::commit()} or {@link IDatabase::rollback()} will be disabled.
+	 * These transactions get resolved by a single call to either {@link commitPrimaryChanges()}
+	 * or {@link rollbackPrimaryChanges()}, after which, the transaction wrapping and ownership
+	 * behavior revert back to the default. When there are multiple connections involved, these
+	 * methods perform best-effort distributed transactions. When using distributed transactions,
+	 * the RDBMS should be configured to used pessimistic concurrency control such that the commit
+	 * step of each transaction is unlikely to fail.
+	 *
+	 * Transactions on replication connections are flushed so that future reads will not keep
+	 * using the same point-in-time view snapshots (e.g. from MySQL REPEATABLE-READ). However,
+	 * this does not wait for replication to catch up, so subsequent reads from replicas might
+	 * not reflect recently committed changes.
 	 *
 	 * This only applies to the tracked load balancer instances.
 	 *
@@ -271,7 +282,12 @@ interface ILBFactory extends IConnectionProvider {
 	public function beginPrimaryChanges( $fname = __METHOD__ );
 
 	/**
-	 * Commit changes and clear view snapshots on all primary connections
+	 * Commit all primary connection transactions and flush all replica connection transactions
+	 *
+	 * Transactions on replication connections are flushed so that future reads will not keep
+	 * using the same point-in-time view snapshots (e.g. from MySQL REPEATABLE-READ). However,
+	 * this does not wait for replication to catch up, so subsequent reads from replicas might
+	 * not reflect the committed changes.
 	 *
 	 * This only applies to the instantiated tracked load balancer instances.
 	 *
@@ -283,7 +299,7 @@ interface ILBFactory extends IConnectionProvider {
 	public function commitPrimaryChanges( $fname = __METHOD__, int $maxWriteDuration = 0 );
 
 	/**
-	 * Rollback changes on all primary connections
+	 * Rollback all primary connection transactions and flush all replica connection transactions
 	 *
 	 * This only applies to the instantiated tracked load balancer instances.
 	 *

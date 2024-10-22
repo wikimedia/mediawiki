@@ -283,6 +283,10 @@ abstract class LBFactory implements ILBFactory {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = ScopedCallback::newScopedIgnoreUserAbort();
 
+		foreach ( $this->getLBsForOwner() as $lb ) {
+			$lb->flushReplicaSnapshots( $fname );
+		}
+
 		$this->trxRoundStage = self::ROUND_BEGINNING;
 		if ( $this->trxRoundId !== false ) {
 			throw new DBTransactionError(
@@ -291,7 +295,7 @@ abstract class LBFactory implements ILBFactory {
 			);
 		}
 		$this->trxRoundId = $fname;
-		// Set DBO_TRX flags on all appropriate DBs
+		// Flush snapshots and appropriately set DBO_TRX on primary connections
 		foreach ( $this->getLBsForOwner() as $lb ) {
 			$lb->beginPrimaryChanges( $fname );
 		}
@@ -336,6 +340,10 @@ abstract class LBFactory implements ILBFactory {
 		if ( $e instanceof Exception ) {
 			throw $e;
 		}
+
+		foreach ( $this->getLBsForOwner() as $lb ) {
+			$lb->flushReplicaSnapshots( $fname );
+		}
 	}
 
 	final public function rollbackPrimaryChanges( $fname = __METHOD__ ) {
@@ -352,6 +360,10 @@ abstract class LBFactory implements ILBFactory {
 		$this->trxRoundStage = self::ROUND_ROLLBACK_CALLBACKS;
 		$this->executePostTransactionCallbacks();
 		$this->trxRoundStage = self::ROUND_CURSORY;
+
+		foreach ( $this->getLBsForOwner() as $lb ) {
+			$lb->flushReplicaSnapshots( $fname );
+		}
 	}
 
 	final public function flushPrimarySessions( $fname = __METHOD__ ) {
