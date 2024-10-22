@@ -42,4 +42,19 @@ class UserIdentityUtils {
 		return $user->isRegistered()
 			&& !$this->tempUserConfig->isTempName( $user->getName() );
 	}
+
+	/**
+	 * Get user identity type, used for internal logic like tracking statistics per account type.
+	 * Only for internal use like tracking statistics and meet DRY
+	 *
+	 * @internal
+	 * @param UserIdentity $user
+	 * @return string
+	 */
+	public function getShortUserTypeInternal( UserIdentity $user ): string {
+		if ( !$user->isRegistered() ) {
+			return 'anon';
+		}
+		return $this->isTemp( $user ) ? 'temp' : 'named';
+	}
 }
