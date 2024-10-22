@@ -205,12 +205,13 @@
 		margin-bottom: 0.5em;
 	}
 
-	.checkbox-container {
+	.checkbox-wrapper {
 		columns: 13em;
-		margin-bottom: 1em;
 
 		> * {
 			.column-break-inside-avoid;
+			/* padding because margin triggers a Safari bug on columns, see T377900 */
+			padding-bottom: 1.5em;
 		}
 	}
 }
