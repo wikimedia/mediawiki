@@ -93,7 +93,7 @@ class SpecialInterwiki extends SpecialPage {
 
 		$out->addModuleStyles( 'mediawiki.special.interwiki' );
 
-		$action = $par ?: $request->getRawVal( 'action', $par );
+		$action = $par ?? $request->getRawVal( 'action' );
 
 		if ( in_array( $action, [ 'add', 'edit', 'delete' ] ) && $this->canModify( $out ) ) {
 			$this->showForm( $action );
