@@ -469,7 +469,25 @@ abstract class Installer {
 		// set to something that is a valid timezone.
 		$ret['wgLocaltimezone'] = $wgLocaltimezone;
 
-		return $ret;
+		return $this->generateKeys() + $ret;
+	}
+
+	/**
+	 * Generate $wgSecretKey and $wgUpgradeKey.
+	 *
+	 * @return string[]
+	 */
+	private function generateKeys() {
+		$keyLengths = [
+			'wgSecretKey' => 64,
+			'wgUpgradeKey' => 16,
+		];
+
+		$keys = [];
+		foreach ( $keyLengths as $name => $length ) {
+			$keys[$name] = MWCryptRand::generateHex( $length );
+		}
+		return $keys;
 	}
 
 	/**
@@ -1682,7 +1700,6 @@ abstract class Installer {
 			[ 'name' => 'tables', 'callback' => [ $installer, 'createTables' ] ],
 			[ 'name' => 'interwiki', 'callback' => [ $installer, 'populateInterwikiTable' ] ],
 			[ 'name' => 'stats', 'callback' => [ $this, 'populateSiteStats' ] ],
-			[ 'name' => 'keys', 'callback' => [ $this, 'generateKeys' ] ],
 			[ 'name' => 'updates', 'callback' => [ $installer, 'insertUpdateKeys' ] ],
 			[ 'name' => 'restore-services', 'callback' => [ $this, 'restoreServices' ] ],
 			[ 'name' => 'sysop', 'callback' => [ $this, 'createSysop' ] ],
@@ -1766,20 +1783,6 @@ abstract class Installer {
 	}
 
 	/**
-	 * Generate $wgSecretKey. Will warn if we had to use an insecure random source.
-	 *
-	 * @return Status
-	 */
-	public function generateKeys() {
-		$keys = [ 'wgSecretKey' => 64 ];
-		if ( strval( $this->getVar( 'wgUpgradeKey' ) ) === '' ) {
-			$keys['wgUpgradeKey'] = 16;
-		}
-
-		return $this->doGenerateKeys( $keys );
-	}
-
-	/**
 	 * Restore services that have been redefined in the early stage of installation
 	 * @return Status
 	 */
@@ -1810,20 +1813,6 @@ abstract class Installer {
 				return $services->get( 'UserOptionsManager' );
 			},
 		] );
-		return Status::newGood();
-	}
-
-	/**
-	 * Generate a secret value for variables using a secure generator.
-	 *
-	 * @param array $keys
-	 * @return Status
-	 */
-	protected function doGenerateKeys( $keys ) {
-		foreach ( $keys as $name => $length ) {
-			$secretKey = MWCryptRand::generateHex( $length );
-			$this->setVar( $name, $secretKey );
-		}
 		return Status::newGood();
 	}
 

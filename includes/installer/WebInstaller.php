@@ -1284,11 +1284,6 @@ class WebInstaller extends Installer {
 			$up->doUpdates();
 			$up->purgeCache();
 
-			// If they're going to possibly regenerate LocalSettings, we
-			// need to create the upgrade/secret keys. T28481
-			if ( !$this->getVar( '_ExistingDBSettings' ) ) {
-				$this->generateKeys();
-			}
 			$this->setVar( '_UpgradeDone', true );
 		} catch ( Exception $e ) {
 			// TODO: Should this use MWExceptionRenderer?
