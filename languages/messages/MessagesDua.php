@@ -7,4 +7,8 @@
  * @author Amir E. Aharoni
  */
 
+$fallback = 'fr';
+
+$namespaceGenderAliases = [];
+
 $linkTrail = '/^([ɓɗɛŋɲɔƁƊƐŊƝƆa-zÁáÀàÂâǍǎÉéÈèÊêĚěÍíÌìÎîǏǐÓóÒòÔôǑǒÚúÙùÛûǓǔ]+)(.*)$/sDu';
