@@ -140,7 +140,11 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 	/** @var UserIdentity */
 	protected $targetUser;
 
-	private TemplateParser $templateParser;
+	/**
+	 * Set to protected to allow subclasses access for overrides
+	 */
+	protected TemplateParser $templateParser;
+
 	private CommentFormatter $commentFormatter;
 	private HookRunner $hookRunner;
 	private LinkBatchFactory $linkBatchFactory;
@@ -992,54 +996,8 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		if ( $this->revisionsOnly || ( $this->currentRevRecord && $this->currentPage ) ) {
 			$this->populateAttributes( $row, $attribs );
 
-			$link = $this->formatArticleLink( $row );
-
-			$topmarktext = $this->formatTopMarkText( $row, $classes );
-
-			$diffHistLinks = $this->formatDiffHistLinks( $row );
-
-			$dateLink = $this->formatDateLink( $row );
-
-			$chardiff = $this->formatCharDiff( $row );
-
-			$comment = $this->formatComment( $row );
-
-			$userlink = $this->formatUserLink( $row );
-
-			$flags = $this->formatFlags( $row );
-
-			$del = $this->formatVisibilityLink( $row );
-
-			$tagSummary = $this->formatTags( $row, $classes );
-
-			if ( !$this->isArchive ) {
-				$this->hookRunner->onSpecialContributions__formatRow__flags(
-					$this->getContext(), $row, $flags );
-			}
-
-			$templateParams = [
-				'del' => $del,
-				'timestamp' => $dateLink,
-				'diffHistLinks' => $diffHistLinks,
-				'charDifference' => $chardiff,
-				'flags' => $flags,
-				'articleLink' => $link,
-				'userlink' => $userlink,
-				'logText' => $comment,
-				'topmarktext' => $topmarktext,
-				'tagSummary' => $tagSummary,
-			];
-
-			# Denote if username is redacted for this edit
-			if ( $this->revisionUserIsDeleted( $row ) ) {
-				$templateParams['rev-deleted-user-contribs'] =
-					$this->msg( 'rev-deleted-user-contribs' )->escaped();
-			}
-
-			$ret = $this->templateParser->processTemplate(
-				'SpecialContributionsLine',
-				$templateParams
-			);
+			$templateParams = $this->getTemplateParams( $row, $classes );
+			$ret = $this->getProcessedTemplate( $templateParams );
 		}
 
 		// Let extensions add data
@@ -1064,6 +1022,71 @@ abstract class ContributionsPager extends RangeChronologicalPager {
 		// FIXME: The signature of the ContributionsLineEnding hook makes it
 		// very awkward to move this LI wrapper into the template.
 		return Html::rawElement( 'li', $attribs, $ret ) . "\n";
+	}
+
+	/**
+	 * Generate array of template parameters to pass to the template for rendering.
+	 * Function can be overriden by classes to add/remove their own parameters.
+	 *
+	 * @since 1.43
+	 *
+	 * @param stdClass|mixed $row
+	 * @param string[] $classes
+	 * @return mixed[]
+	 */
+	public function getTemplateParams( $row, $classes ) {
+		$link = $this->formatArticleLink( $row );
+		$topmarktext = $this->formatTopMarkText( $row, $classes );
+		$diffHistLinks = $this->formatDiffHistLinks( $row );
+		$dateLink = $this->formatDateLink( $row );
+		$chardiff = $this->formatCharDiff( $row );
+		$comment = $this->formatComment( $row );
+		$userlink = $this->formatUserLink( $row );
+		$flags = $this->formatFlags( $row );
+		$del = $this->formatVisibilityLink( $row );
+		$tagSummary = $this->formatTags( $row, $classes );
+
+		if ( !$this->isArchive ) {
+			$this->hookRunner->onSpecialContributions__formatRow__flags(
+				$this->getContext(), $row, $flags );
+		}
+
+		$templateParams = [
+			'del' => $del,
+			'timestamp' => $dateLink,
+			'diffHistLinks' => $diffHistLinks,
+			'charDifference' => $chardiff,
+			'flags' => $flags,
+			'articleLink' => $link,
+			'userlink' => $userlink,
+			'logText' => $comment,
+			'topmarktext' => $topmarktext,
+			'tagSummary' => $tagSummary,
+		];
+
+		# Denote if username is redacted for this edit
+		if ( $this->revisionUserIsDeleted( $row ) ) {
+			$templateParams['rev-deleted-user-contribs'] =
+				$this->msg( 'rev-deleted-user-contribs' )->escaped();
+		}
+
+		return $templateParams;
+	}
+
+	/**
+	 * Return the processed template. Function can be overriden by classes
+	 * to provide their own template parser.
+	 *
+	 * @since 1.43
+	 *
+	 * @param string[] $templateParams
+	 * @return string
+	 */
+	public function getProcessedTemplate( $templateParams ) {
+		return $this->templateParser->processTemplate(
+			'SpecialContributionsLine',
+			$templateParams
+		);
 	}
 
 	/**
