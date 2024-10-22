@@ -27,7 +27,6 @@ use Wikimedia\Bcp47Code\Bcp47CodeValue;
  * Methods for dealing with language codes.
  *
  * @since 1.29
- * @newable
  * @ingroup Language
  */
 class LanguageCode {
@@ -36,6 +35,7 @@ class LanguageCode {
 
 	/**
 	 * @param string $code
+	 * @unstable
 	 * @since 1.43
 	 */
 	public function __construct( string $code ) {
