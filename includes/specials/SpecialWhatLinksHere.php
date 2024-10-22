@@ -188,6 +188,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 	) {
 		$out = $this->getOutput();
 		$dbr = $this->dbProvider->getReplicaDatabase();
+		$hookRunner = $this->getHookRunner();
 
 		$hidelinks = $this->formData['hidelinks'];
 		$hideredirs = $this->formData['hideredirs'];
@@ -261,8 +262,8 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 		$sortDirection = $dir === 'prev' ? SelectQueryBuilder::SORT_DESC : SelectQueryBuilder::SORT_ASC;
 
 		$fname = __METHOD__;
-		$queryFunc = static function ( IReadableDatabase $dbr, $table, $fromCol ) use (
-			$conds, $target, $limit, $sortDirection, $fname
+		$queryFunc = function ( IReadableDatabase $dbr, $table, $fromCol ) use (
+			$conds, $target, $limit, $sortDirection, $fname, $hookRunner
 		) {
 			// Read an extra row as an at-end check
 			$queryLimit = $limit + 1;
@@ -281,27 +282,31 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 				->limit( 2 * $queryLimit )
 				->leftJoin( 'redirect', 'redirect', $on );
 
-			return $dbr->newSelectQueryBuilder()
+			$queryBuilder = $dbr->newSelectQueryBuilder()
 				->table( $subQuery, 'temp_backlink_range' )
 				->join( 'page', 'page', "$fromCol = page_id" )
 				->fields( [ 'page_id', 'page_namespace', 'page_title',
 					'rd_from', 'rd_fragment', 'page_is_redirect' ] )
 				->orderBy( [ 'page_namespace', 'page_id' ], $sortDirection )
-				->limit( $queryLimit )
-				->caller( $fname )
-				->fetchResultSet();
+				->limit( $queryLimit );
+
+			$hookRunner->onSpecialWhatLinksHereQuery( $table, $this->formData, $queryBuilder );
+
+			return $queryBuilder->caller( $fname )->fetchResultSet();
 		};
 
 		if ( $fetchredirs ) {
-			$rdRes = $dbr->newSelectQueryBuilder()
+			$queryBuilder = $dbr->newSelectQueryBuilder()
 				->table( 'redirect' )
 				->fields( [ 'page_id', 'page_namespace', 'page_title', 'rd_from', 'rd_fragment', 'page_is_redirect' ] )
 				->conds( $conds['redirect'] )
 				->orderBy( 'rd_from', $sortDirection )
 				->limit( $limit + 1 )
-				->join( 'page', 'page', 'rd_from = page_id' )
-				->caller( __METHOD__ )
-				->fetchResultSet();
+				->join( 'page', 'page', 'rd_from = page_id' );
+
+			$hookRunner->onSpecialWhatLinksHereQuery( 'redirect', $this->formData, $queryBuilder );
+
+			$rdRes = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 		}
 
 		if ( !$hidelinks ) {

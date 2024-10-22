@@ -1642,6 +1642,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\SpecialUploadCompleteHook' => __DIR__ . '/includes/specials/Hook/SpecialUploadCompleteHook.php',
 	'MediaWiki\\Hook\\SpecialVersionVersionUrlHook' => __DIR__ . '/includes/specials/Hook/SpecialVersionVersionUrlHook.php',
 	'MediaWiki\\Hook\\SpecialWatchlistGetNonRevisionTypesHook' => __DIR__ . '/includes/specials/Hook/SpecialWatchlistGetNonRevisionTypesHook.php',
+	'MediaWiki\\Hook\\SpecialWhatLinksHereQueryHook' => __DIR__ . '/includes/specials/Hook/SpecialWhatLinksHereQueryHook.php',
 	'MediaWiki\\Hook\\TempUserCreatedRedirectHook' => __DIR__ . '/includes/Hook/TempUserCreatedRedirectHook.php',
 	'MediaWiki\\Hook\\TestCanonicalRedirectHook' => __DIR__ . '/includes/Hook/TestCanonicalRedirectHook.php',
 	'MediaWiki\\Hook\\ThumbnailBeforeProduceHTMLHook' => __DIR__ . '/includes/media/Hook/ThumbnailBeforeProduceHTMLHook.php',
