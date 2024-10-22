@@ -157,9 +157,10 @@ abstract class Installer {
 	 * These may output warnings using showMessage(), and/or abort the
 	 * installation process by returning false.
 	 *
-	 * For the WebInstaller these are only called on the Welcome page,
-	 * if these methods have side-effects that should affect later page loads
-	 * (as well as the generated stylesheet), use envPreps instead.
+	 * In the WebInstaller, variables set here will be saved to the session and
+	 * will be available to later pages in the same session. But if you need
+	 * dynamic defaults to be available before the welcome page completes, say
+	 * in the initial CSS request, add something to getDefaultSettings().
 	 *
 	 * @var array
 	 */
@@ -178,16 +179,6 @@ abstract class Installer {
 		'envCheckUploadsDirectory',
 		'envCheckUploadsServerResponse',
 		'envCheck64Bit',
-	];
-
-	/**
-	 * A list of environment preparation methods called by doEnvironmentPreps().
-	 *
-	 * @var array
-	 */
-	protected $envPreps = [
-		'envPrepServer',
-		'envPrepPath',
 	];
 
 	/**
@@ -437,8 +428,6 @@ abstract class Installer {
 
 		$this->settings = $this->getDefaultSettings();
 
-		$this->doEnvironmentPreps();
-
 		$this->compiledDBs = [];
 		foreach ( self::getDBTypes() as $type ) {
 			$installer = $this->getDBInstaller( $type );
@@ -469,7 +458,38 @@ abstract class Installer {
 		// set to something that is a valid timezone.
 		$ret['wgLocaltimezone'] = $wgLocaltimezone;
 
-		return $this->generateKeys() + $ret;
+		// Detect $wgServer
+		$server = $this->envGetDefaultServer();
+		if ( $server !== null ) {
+			$ret['wgServer'] = $server;
+		}
+
+		// Detect $IP
+		$ret['IP'] = MW_INSTALL_PATH;
+
+		return $this->getDefaultSettingsOverrides()
+			+ $this->generateKeys()
+			+ $this->detectWebPaths()
+			+ $ret;
+	}
+
+	/**
+	 * This is overridden by the web installer to provide the detected wgScriptPath
+	 *
+	 * @return array
+	 */
+	protected function detectWebPaths() {
+		return [];
+	}
+
+	/**
+	 * Override this in a subclass to override the default settings
+	 *
+	 * @since 1.44
+	 * @return array
+	 */
+	protected function getDefaultSettingsOverrides() {
+		return [];
 	}
 
 	/**
@@ -620,12 +640,6 @@ abstract class Installer {
 		$this->setVar( '_Environment', $good );
 
 		return $good ? Status::newGood() : Status::newFatal( 'config-env-bad' );
-	}
-
-	public function doEnvironmentPreps() {
-		foreach ( $this->envPreps as $prep ) {
-			$this->$prep();
-		}
 	}
 
 	/**
@@ -1182,29 +1196,10 @@ abstract class Installer {
 	}
 
 	/**
-	 * Environment prep for the server hostname.
-	 */
-	protected function envPrepServer() {
-		$server = $this->envGetDefaultServer();
-		if ( $server !== null ) {
-			$this->setVar( 'wgServer', $server );
-		}
-	}
-
-	/**
-	 * Helper function to be called from envPrepServer()
+	 * Helper function to be called from getDefaultSettings()
 	 * @return string
 	 */
 	abstract protected function envGetDefaultServer();
-
-	/**
-	 * Environment prep for setting $IP and $wgScriptPath.
-	 */
-	protected function envPrepPath() {
-		global $IP;
-		$IP = dirname( dirname( __DIR__ ) );
-		$this->setVar( 'IP', $IP );
-	}
 
 	/**
 	 * Checks if scripts located in the given directory can be executed via the given URL.
