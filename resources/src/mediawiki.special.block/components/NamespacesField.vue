@@ -56,7 +56,7 @@ module.exports = exports = defineComponent( {
 					return item.label.toLowerCase().indexOf( value.toLowerCase() ) !== -1;
 				} );
 			} else {
-				menuItems.value = [];
+				menuItems.value = initialMenuItems;
 			}
 		}
 
