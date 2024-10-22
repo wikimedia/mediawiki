@@ -199,7 +199,7 @@ class FindDeprecated extends Maintenance {
 		}
 
 		// Colorize output if STDOUT is an interactive terminal.
-		if ( posix_isatty( STDOUT ) ) {
+		if ( parent::posix_isatty( STDOUT ) ) {
 			$versionFmt = "\n* Deprecated since \033[37;1m%s\033[0m:\n";
 			$entryFmt = "  %s \033[33;1m%s\033[0m (%s:%d)\n";
 		} else {
