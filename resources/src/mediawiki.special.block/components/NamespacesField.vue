@@ -34,10 +34,13 @@ module.exports = exports = defineComponent( {
 		const selection = ref( [] );
 		const mwNamespaces = mw.config.get( 'wgFormattedNamespaces' );
 		mwNamespaces[ '0' ] = mw.msg( 'blanknamespace' );
-		const initialMenuItems = Object.keys( mwNamespaces ).map( ( id ) => ( {
-			value: Number( id ),
-			label: mwNamespaces[ id ]
-		} ) );
+		const initialMenuItems = Object.keys( mwNamespaces )
+			// Exclude virtual namespaces
+			.filter( ( id ) => Number( id ) >= 0 )
+			.map( ( id ) => ( {
+				value: Number( id ),
+				label: mwNamespaces[ id ]
+			} ) );
 		const chips = ref(
 			namespaces.value.map( ( nsId ) => ( { value: nsId, label: mwNamespaces[ nsId ] } ) )
 		);
