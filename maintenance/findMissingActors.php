@@ -136,7 +136,6 @@ class FindMissingActors extends Maintenance {
 		$this->userFactory = $services->getUserFactory();
 		$this->userNameUtils = $services->getUserNameUtils();
 		$this->actorNormalization = $services->getActorNormalization();
-		$this->setDBProvider( $services->getConnectionProvider() );
 
 		$field = $this->getOption( 'field' );
 		if ( !$this->getTableInfo( $field ) ) {

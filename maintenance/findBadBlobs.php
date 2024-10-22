@@ -101,7 +101,6 @@ class FindBadBlobs extends Maintenance {
 		$services = $this->getServiceContainer();
 		$this->revisionStore = $services->getRevisionStore();
 		$this->blobStore = $services->getBlobStore();
-		$this->setDBProvider( $services->getConnectionProvider() );
 
 		if ( $this->hasOption( 'revisions' ) ) {
 			if ( $this->hasOption( 'scan-from' ) ) {
