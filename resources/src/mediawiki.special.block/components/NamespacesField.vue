@@ -31,7 +31,7 @@ module.exports = exports = defineComponent( {
 	},
 	setup() {
 		const { namespaces } = storeToRefs( useBlockStore() );
-		const selection = ref( [] );
+		const selection = ref( namespaces.value );
 		const mwNamespaces = mw.config.get( 'wgFormattedNamespaces' );
 		mwNamespaces[ '0' ] = mw.msg( 'blanknamespace' );
 		const initialMenuItems = Object.keys( mwNamespaces ).map( ( id ) => ( {

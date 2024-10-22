@@ -36,7 +36,7 @@ module.exports = exports = defineComponent( {
 		const chips = ref(
 			pages.value.map( ( page ) => ( { value: page, label: page } ) )
 		);
-		const selection = ref( [] );
+		const selection = ref( pages.value );
 		const inputValue = ref( '' );
 		const menuItems = ref( [] );
 		const menuConfig = { visibleItemLimit: 10 };
