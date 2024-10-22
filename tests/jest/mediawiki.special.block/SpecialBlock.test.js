@@ -83,8 +83,8 @@ describe( 'SpecialBlock', () => {
 	it( 'should require confirmation for the hide-user option', async () => {
 		withSubmission( { blockHideUser: true } );
 		await wrapper.find( '[name=wpTarget]' ).setValue( 'ExampleUser' );
-		// Assert 'hide username' is not yet clickable.
-		expect( wrapper.find( '.mw-block-hideuser input' ).attributes().disabled ).toStrictEqual( '' );
+		// Assert 'hide username' is not yet visible.
+		expect( wrapper.find( '.mw-block-hideuser input' ).exists() ).toBeFalsy();
 		// Set the expiry to 'infinite' to enable the hide-user option.
 		wrapper.vm.store.expiry = 'infinite';
 		mw.util.isInfinity = jest.fn().mockReturnValue( true );

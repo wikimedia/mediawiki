@@ -75,6 +75,7 @@ const mw = {
 	Title: TitleMock,
 	util: {
 		getUrl: jest.fn(),
+		isIPAddress: jest.fn(),
 		isInfinity: jest.fn()
 	},
 	Rest: RestMock

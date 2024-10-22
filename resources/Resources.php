@@ -2261,6 +2261,7 @@ return [
 			'resources/src/mediawiki.special.block/init.js',
 			'resources/src/mediawiki.special.block/util.js',
 			'resources/src/mediawiki.special.block/stores/block.js',
+			'resources/src/mediawiki.special.block/components/AdditionalDetailsField.vue',
 			'resources/src/mediawiki.special.block/components/BlockDetailsOptions.vue',
 			'resources/src/mediawiki.special.block/components/BlockTypeField.vue',
 			'resources/src/mediawiki.special.block/components/ExpiryField.vue',
@@ -2285,6 +2286,7 @@ return [
 			'@wikimedia/codex',
 			'pinia',
 			'mediawiki.api',
+			'mediawiki.util',
 			'mediawiki.jqueryMsg',
 		],
 		'messages' => [

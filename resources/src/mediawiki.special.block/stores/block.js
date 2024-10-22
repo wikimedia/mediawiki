@@ -23,21 +23,44 @@ module.exports = exports = defineStore( 'block', () => {
 	const reason = ref( 'other' );
 	const reasonOther = ref( mw.config.get( 'blockReasonOtherPreset' ) || '' );
 	const details = ref( mw.config.get( 'blockDetailsPreset' ) || [] );
-	// Disable the 'Hide username' checkbox if the block type is not sitewide with an 'infinite' expiry.
-	// eslint-disable-next-line arrow-body-style
-	const hideNameDisabled = computed( () => {
-		return type.value !== 'sitewide' || !mw.util.isInfinity( expiry.value );
-	} );
+
 	const additionalDetails = ref( mw.config.get( 'blockAdditionalDetailsPreset' ) || [] );
-	// Show confirm checkbox if 'Hide username' is selected or if the target user is the current user.
+
+	const autoBlock = ref( additionalDetails.value.indexOf( 'wpAutoBlock' ) !== -1 );
+	const autoBlockExpiry = mw.config.get( 'blockAutoblockExpiry' ) || '';
+	// eslint-disable-next-line arrow-body-style
+	const autoBlockVisible = computed( () => {
+		return !mw.util.isIPAddress( targetUser.value, true );
+	} );
+
+	const hideName = ref( additionalDetails.value.indexOf( 'wpHideName' ) !== -1 );
+	// Hide the 'Hide username' checkbox if the user doesn't have the hideuser right (this is passed from PHP),
+	// and the block is not sitewide and infinite.
+	const hideNameVisible = computed( () => {
+		const typeVal = type.value;
+		return mw.config.get( 'blockHideUser' ) &&
+			typeVal === 'sitewide' &&
+			mw.util.isInfinity( expiry.value );
+	} );
+
+	const watch = ref( additionalDetails.value.indexOf( 'wpWatch' ) !== -1 );
+
+	const hardBlock = ref( additionalDetails.value.indexOf( 'wpHardBlock' ) !== -1 );
+	// eslint-disable-next-line arrow-body-style
+	const hardBlockVisible = computed( () => {
+		return mw.util.isIPAddress( targetUser.value, true ) || false;
+	} );
+
+	// Show confirm checkbox if 'Hide username' is visible and selected, or if the target user is the current user.
 	// eslint-disable-next-line arrow-body-style
 	const confirmationRequired = computed( () => {
 		return targetUser.value === mw.config.get( 'wgUserName' ) || (
 			type.value === 'sitewide' &&
-			additionalDetails.value.indexOf( 'wpHideName' ) !== -1 &&
-			!hideNameDisabled.value
+			hideNameVisible.value &&
+			hideName.value
 		);
 	} );
+
 	const confirmationChecked = ref( false );
 
 	/**
@@ -102,19 +125,19 @@ module.exports = exports = defineStore( 'block', () => {
 			params.allowusertalk = 1;
 		}
 
-		if ( additionalDetails.value.indexOf( 'wpAutoBlock' ) !== -1 ) {
+		if ( autoBlock.value ) {
 			params.autoblock = 1;
 		}
 
-		if ( additionalDetails.value.indexOf( 'wpHideName' ) !== -1 ) {
+		if ( hideName.value ) {
 			params.hidename = 1;
 		}
 
-		if ( additionalDetails.value.indexOf( 'wpWatch' ) !== -1 ) {
+		if ( watch.value ) {
 			params.watchuser = 1;
 		}
 
-		if ( additionalDetails.value.indexOf( 'wpHardBlock' ) !== -1 ) {
+		if ( hardBlock.value ) {
 			params.nocreate = 1;
 		}
 
@@ -136,8 +159,14 @@ module.exports = exports = defineStore( 'block', () => {
 		reason,
 		reasonOther,
 		details,
-		hideNameDisabled,
-		additionalDetails,
+		autoBlock,
+		autoBlockExpiry,
+		autoBlockVisible,
+		hideName,
+		hideNameVisible,
+		watch,
+		hardBlock,
+		hardBlockVisible,
 		confirmationRequired,
 		confirmationChecked,
 		doBlock

@@ -14,35 +14,55 @@ describe( 'Block store', () => {
 
 	it( 'should require confirmation if the target user is the current user', () => {
 		const store = useBlockStore();
-		expect( store.confirmationRequired ).toBe( false );
+		mw.util.isInfinity.mockReturnValue( true );
 		mockMwConfigGet( { wgUserName: 'ExampleUser' } );
+		store.targetUser = 'ExampleUserOther';
+		expect( store.confirmationRequired ).toBe( false );
 		store.targetUser = 'ExampleUser';
 		expect( store.confirmationRequired ).toBe( true );
 	} );
 
 	it( 'should require confirmation for hide user', () => {
 		const store = useBlockStore();
+		mw.util.isInfinity.mockReturnValue( true );
 		expect( store.confirmationRequired ).toBe( false );
 		store.type = 'sitewide';
-		store.additionalDetails = [ 'wpHideName' ];
-		mw.util.isInfinity = jest.fn().mockReturnValue( true );
+		store.hideName = true;
 		expect( store.confirmationRequired ).toBe( true );
 	} );
 
-	it( 'should set hideNameDisabled for blocks that aren\'t sitewide with an infinite expiry', () => {
+	it( 'should set hideNameVisible only for blocks that are sitewide and with an infinite expiry', () => {
+		mockMwConfigGet( { blockHideUser: false } );
 		const store = useBlockStore();
-		expect( store.hideNameDisabled ).toBe( false );
+		// Don't have the right.
+		expect( store.hideNameVisible ).toBe( false );
+		mockMwConfigGet( { blockHideUser: true } );
+		// Partial infinite.
 		store.type = 'partial';
 		store.expiry = 'infinite';
-		mw.util.isInfinity = jest.fn().mockReturnValue( true );
-		expect( store.hideNameDisabled ).toBe( true );
+		mw.util.isInfinity.mockReturnValue( true );
+		expect( store.hideNameVisible ).toBe( false );
+		// Sitewide time-limited.
 		store.type = 'sitewide';
 		store.expiry = '3 hours';
-		mw.util.isInfinity = jest.fn().mockReturnValue( false );
-		expect( store.hideNameDisabled ).toBe( true );
+		mw.util.isInfinity.mockReturnValue( false );
+		expect( store.hideNameVisible ).toBe( false );
+		// Sitewide infinite.
 		store.type = 'sitewide';
 		store.expiry = 'infinite';
-		mw.util.isInfinity = jest.fn().mockReturnValue( true );
-		expect( store.hideNameDisabled ).toBe( false );
+		mw.util.isInfinity.mockReturnValue( true );
+		expect( store.hideNameVisible ).toBe( true );
+	} );
+
+	it( 'should set hardBlockVisible when blocking an IP address', () => {
+		const store = useBlockStore();
+		// A username should not have the hardBlock option shown.
+		store.targetUser = 'ExampleUser';
+		mw.util.isIPAddress.mockReturnValue( false );
+		expect( store.hardBlockVisible ).toBe( false );
+		// An IP address should have hardBlock shown.
+		store.targetUser = '192.0.2.34';
+		mw.util.isIPAddress.mockReturnValue( true );
+		expect( store.hardBlockVisible ).toBe( true );
 	} );
 } );
