@@ -1010,6 +1010,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Auth\\Hook\\AuthManagerLoginAuthenticateAuditHook' => __DIR__ . '/includes/auth/Hook/AuthManagerLoginAuthenticateAuditHook.php',
 	'MediaWiki\\Auth\\Hook\\AuthManagerVerifyAuthenticationHook' => __DIR__ . '/includes/auth/Hook/AuthManagerVerifyAuthenticationHook.php',
 	'MediaWiki\\Auth\\Hook\\AuthPreserveQueryParamsHook' => __DIR__ . '/includes/auth/Hook/AuthPreserveQueryParamsHook.php',
+	'MediaWiki\\Auth\\Hook\\AuthenticationAttemptThrottledHook' => __DIR__ . '/includes/auth/Hook/AuthenticationAttemptThrottledHook.php',
 	'MediaWiki\\Auth\\Hook\\ExemptFromAccountCreationThrottleHook' => __DIR__ . '/includes/auth/Hook/ExemptFromAccountCreationThrottleHook.php',
 	'MediaWiki\\Auth\\Hook\\LocalUserCreatedHook' => __DIR__ . '/includes/auth/Hook/LocalUserCreatedHook.php',
 	'MediaWiki\\Auth\\Hook\\ResetPasswordExpirationHook' => __DIR__ . '/includes/auth/Hook/ResetPasswordExpirationHook.php',

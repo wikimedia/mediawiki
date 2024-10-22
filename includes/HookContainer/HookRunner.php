@@ -49,6 +49,7 @@ use WikiPage;
  */
 class HookRunner implements
 	\MediaWiki\Actions\Hook\GetActionNameHook,
+	\MediaWiki\Auth\Hook\AuthenticationAttemptThrottledHook,
 	\MediaWiki\Auth\Hook\AuthManagerFilterProvidersHook,
 	\MediaWiki\Auth\Hook\AuthManagerLoginAuthenticateAuditHook,
 	\MediaWiki\Auth\Hook\AuthManagerVerifyAuthenticationHook,
@@ -931,6 +932,12 @@ class HookRunner implements
 	public function onAuthPreserveQueryParams( &$params, $options ) {
 		return $this->container->run(
 			'AuthPreserveQueryParams', [ &$params, $options ]
+		);
+	}
+
+	public function onAuthenticationAttemptThrottled( string $type, ?string $username, ?string $ip ) {
+		return $this->container->run(
+			'AuthenticationAttemptThrottled', [ $type, $username, $ip ]
 		);
 	}
 

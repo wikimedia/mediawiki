@@ -18,6 +18,14 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \MediaWiki\Auth\Throttler
  */
 class ThrottlerTest extends MediaWikiIntegrationTestCase {
+
+	public function setUp(): void {
+		parent::setUp();
+		// Avoid issues where extensions attempt to interact with the DB when handling this hook then causing these
+		// tests to fail.
+		$this->clearHook( 'AuthenticationAttemptThrottled' );
+	}
+
 	public function testConstructor() {
 		$cache = new HashBagOStuff();
 		$logger = $this->getMockBuilder( AbstractLogger::class )
@@ -189,18 +197,40 @@ class ThrottlerTest extends MediaWikiIntegrationTestCase {
 		$throttler->increase();
 	}
 
-	public function testLog() {
+	public function testLogAndHook() {
+		// Add a implementation of the AuthenticationAttemptThrottled hook that expects no calls.
+		$this->setTemporaryHook(
+			'AuthenticationAttemptThrottled',
+			function () {
+				$this->fail( 'Did not expect the AuthenticationAttemptThrottled hook to be run.' );
+			}
+		);
 		$cache = new HashBagOStuff();
 		$throttler = new Throttler( [ [ 'count' => 1, 'seconds' => 10 ] ], [ 'cache' => $cache ] );
 
+		// Make the logger expect no calls
 		$logger = $this->getMockBuilder( AbstractLogger::class )
 			->onlyMethods( [ 'log' ] )
 			->getMockForAbstractClass();
 		$logger->expects( $this->never() )->method( 'log' );
 		$throttler->setLogger( $logger );
+		// Call the increase method and expect that the throttling did not occur.
 		$result = $throttler->increase( 'SomeUser', '1.2.3.4' );
 		$this->assertFalse( $result, 'should not throttle' );
 
+		// Replace the implementation of the AuthenticationAttemptThrottled hook which one that tests that it is called
+		// with the correct data.
+		$hookCalled = false;
+		$this->setTemporaryHook(
+			'AuthenticationAttemptThrottled',
+			function ( $type, $username, $ip ) use ( &$hookCalled ) {
+				$hookCalled = true;
+				$this->assertSame( 'custom', $type );
+				$this->assertSame( 'SomeUser', $username );
+				$this->assertSame( '1.2.3.4', $ip );
+			}
+		);
+		// Create a mock logger that expects a call.
 		$logger = $this->getMockBuilder( AbstractLogger::class )
 			->onlyMethods( [ 'log' ] )
 			->getMockForAbstractClass();
@@ -214,8 +244,10 @@ class ThrottlerTest extends MediaWikiIntegrationTestCase {
 			'method' => 'foo',
 		] );
 		$throttler->setLogger( $logger );
+		// Call the increase method and expect that the throttling occurred.
 		$result = $throttler->increase( 'SomeUser', '1.2.3.4', 'foo' );
 		$this->assertSame( [ 'throttleIndex' => 0, 'count' => 1, 'wait' => 10 ], $result );
+		$this->assertTrue( $hookCalled );
 	}
 
 	public function testClear() {

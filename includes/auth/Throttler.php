@@ -22,6 +22,7 @@
 namespace MediaWiki\Auth;
 
 use InvalidArgumentException;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -53,6 +54,8 @@ class Throttler implements LoggerAwareInterface {
 	/** @var int|float */
 	protected $warningLimit;
 
+	private HookRunner $hookRunner;
+
 	/**
 	 * @param array|null $conditions An array of arrays describing throttling conditions.
 	 *     Defaults to $wgPasswordAttemptThrottle. See documentation of that variable for format.
@@ -71,6 +74,8 @@ class Throttler implements LoggerAwareInterface {
 		}
 
 		$services = MediaWikiServices::getInstance();
+		$this->hookRunner = new HookRunner( $services->getHookContainer() );
+
 		$objectCacheFactory = $services->getObjectCacheFactory();
 
 		if ( $conditions === null ) {
@@ -147,6 +152,9 @@ class Throttler implements LoggerAwareInterface {
 					'method' => $caller ?: __METHOD__,
 					// @codeCoverageIgnoreEnd
 				] );
+
+				// Allow extensions to perform actions when a throttle causes throttling.
+				$this->hookRunner->onAuthenticationAttemptThrottled( $this->type, $username, $ip );
 
 				return [ 'throttleIndex' => $index, 'count' => $count, 'wait' => $expiry ];
 			} else {
