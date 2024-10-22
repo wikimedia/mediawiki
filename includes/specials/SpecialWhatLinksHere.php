@@ -22,7 +22,6 @@ namespace MediaWiki\Specials;
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\LinksMigration;
@@ -48,12 +47,16 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  * @ingroup SpecialPage
  */
 class SpecialWhatLinksHere extends FormSpecialPage {
-	/** @var FormOptions */
-	protected $opts;
-
 	/** @var Title */
 	protected $target;
 
+	/**
+	 * Submitted parameters as processed by `HTMLForm`,
+	 * including those for any fields added in the
+	 * `SpecialPageBeforeFormDisplay` hook; unset until
+	 * the form is processed (or if no form was submitted).
+	 */
+	private array $formData;
 	private IConnectionProvider $dbProvider;
 	private LinkBatchFactory $linkBatchFactory;
 	private IContentHandlerFactory $contentHandlerFactory;
@@ -109,29 +112,6 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 	 * We want the result displayed after the form, so we use this instead of onSubmit()
 	 */
 	public function onSuccess() {
-		$opts = new FormOptions();
-
-		$opts->add( 'namespace', null, FormOptions::INTNULL );
-		$opts->add( 'limit', null, FormOptions::INTNULL );
-		$opts->add( 'offset', '' );
-		$opts->add( 'from', 0 );
-		$opts->add( 'dir', 'next' );
-		$opts->add( 'hideredirs', false );
-		$opts->add( 'hidetrans', false );
-		$opts->add( 'hidelinks', false );
-		$opts->add( 'hideimages', false );
-		$opts->add( 'invert', false );
-
-		$opts->fetchValuesFromRequest( $this->getRequest() );
-
-		if ( $opts->getValue( 'limit' ) === null ) {
-			$opts->setValue( 'limit', $this->getConfig()->get( MainConfigNames::QueryPageDefaultLimit ) );
-		}
-		$opts->validateIntBounds( 'limit', 0, 5000 );
-
-		// Bind to member variable
-		$this->opts = $opts;
-
 		$this->getSkin()->setRelevantTitle( $this->target );
 
 		$out = $this->getOutput();
@@ -140,12 +120,12 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 		);
 		$out->addBacklinkSubtitle( $this->target );
 
-		[ $offsetNamespace, $offsetPageID, $dir ] = $this->parseOffsetAndDir( $opts );
+		[ $offsetNamespace, $offsetPageID, $dir ] = $this->parseOffsetAndDir();
 
 		$this->showIndirectLinks(
 			0,
 			$this->target,
-			$opts->getValue( 'limit' ),
+			$this->formData['limit'],
 			$offsetNamespace,
 			$offsetPageID,
 			$dir
@@ -160,22 +140,20 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 	 * * offset=123&dir=next/prev (legacy), where page ID 123 is the last excluded one
 	 * * offset=0|123&dir=next/prev (current), where namespace 0 page ID 123 is the last excluded one
 	 *
-	 * @param FormOptions $opts
 	 * @return array
 	 */
-	private function parseOffsetAndDir( FormOptions $opts ): array {
-		$from = $opts->getValue( 'from' );
-		$opts->reset( 'from' );
+	private function parseOffsetAndDir(): array {
+		$from = $this->formData['from'];
 
 		if ( $from ) {
 			$dir = 'next';
 			$offsetNamespace = null;
 			$offsetPageID = $from - 1;
 		} else {
-			$dir = $opts->getValue( 'dir' );
+			$dir = $this->formData['dir'] ?? 'next';
 			[ $offsetNamespaceString, $offsetPageIDString ] = explode(
 				'|',
-				$opts->getValue( 'offset' ) . '|'
+				$this->formData['offset'] . '|'
 			);
 			if ( !$offsetPageIDString ) {
 				$offsetPageIDString = $offsetNamespaceString;
@@ -211,10 +189,10 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 		$out = $this->getOutput();
 		$dbr = $this->dbProvider->getReplicaDatabase();
 
-		$hidelinks = $this->opts->getValue( 'hidelinks' );
-		$hideredirs = $this->opts->getValue( 'hideredirs' );
-		$hidetrans = $this->opts->getValue( 'hidetrans' );
-		$hideimages = $target->getNamespace() !== NS_FILE || $this->opts->getValue( 'hideimages' );
+		$hidelinks = $this->formData['hidelinks'];
+		$hideredirs = $this->formData['hideredirs'];
+		$hidetrans = $this->formData['hidetrans'];
+		$hideimages = $target->getNamespace() !== NS_FILE || ( $this->formData['hideimages'] ?? false );
 
 		// For historical reasons `pagelinks` always contains an entry for the redirect target.
 		// So we only need to query `redirect` if `pagelinks` isn't being queried.
@@ -233,9 +211,9 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 			'il_to' => $target->getDBkey(),
 		];
 
-		$namespace = $this->opts->getValue( 'namespace' );
-		if ( is_int( $namespace ) ) {
-			$invert = $this->opts->getValue( 'invert' );
+		if ( $this->formData['namespace'] !== '' ) {
+			$namespace = intval( $this->formData['namespace'] );
+			$invert = $this->formData['invert'];
 			if ( $invert ) {
 				// Select all namespaces except for the specified one.
 				// This allows the database to use the *_from_namespace index. (T241837)
@@ -625,10 +603,18 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 		$navBuilder
 			->setPage( $this->getPageTitle( $this->target->getPrefixedDBkey() ) )
 			// Remove 'target', already included in the request title
-			->setLinkQuery( array_diff_key( $this->opts->getChangedValues(), [ 'target' => null ] ) )
+			->setLinkQuery(
+				array_diff_key(
+					array_filter(
+						$this->formData,
+						fn ( $value ) => $value !== null && $value !== '' && $value !== false
+					),
+					[ 'target' => null, 'from' => null ]
+				)
+			)
 			->setLimits( self::LIMITS )
 			->setLimitLinkQueryParam( 'limit' )
-			->setCurrentLimit( $this->opts->getValue( 'limit' ) )
+			->setCurrentLimit( $this->formData['limit'] )
 			->setPrevMsg( 'whatlinkshere-prev' )
 			->setNextMsg( 'whatlinkshere-next' );
 
@@ -661,6 +647,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 				'id' => 'namespace',
 				'label-message' => 'namespace',
 				'all' => '',
+				'default' => '',
 				'in-user-lang' => true,
 				'section' => 'whatlinkshere-ns',
 			],
@@ -672,8 +659,28 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 				'label-message' => 'invert',
 				'help-message' => 'tooltip-whatlinkshere-invert',
 				'help-inline' => false,
-				'section' => 'whatlinkshere-ns',
+				'section' => 'whatlinkshere-ns'
 			],
+			'limit' => [
+				'type' => 'hidden',
+				'name' => 'limit',
+				'default' => $this->getConfig()->get( MainConfigNames::QueryPageDefaultLimit ),
+				'filter-callback' => static fn ( $value ) => max( 0, min( intval( $value ), 5000 ) ),
+			],
+			'offset' => [
+				'type' => 'api',
+				'name' => 'offset',
+				'default' => '',
+			],
+			'dir' => [
+				'type' => 'api',
+				'name' => 'dir',
+			],
+			'from' => [
+				'type' => 'api',
+				'name' => 'from',
+				'default' => 0,
+			]
 		];
 
 		$filters = [ 'hidetrans', 'hidelinks', 'hideredirs' ];
@@ -729,6 +736,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 	}
 
 	public function onSubmit( array $data ) {
+		$this->formData = $data;
 		return true;
 	}
 
