@@ -1697,7 +1697,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	public function lastPrimaryChangeTimestamp() {
-		$lastTime = false;
+		$lastTime = null;
 		foreach ( $this->getOpenPrimaryConnections() as $conn ) {
 			$lastTime = max( $lastTime, $conn->lastDoneWrites() );
 		}

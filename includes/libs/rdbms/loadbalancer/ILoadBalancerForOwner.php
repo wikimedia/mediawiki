@@ -247,8 +247,11 @@ interface ILoadBalancerForOwner extends ILoadBalancer {
 	public function setIndexAliases( array $aliases );
 
 	/**
-	 * Get the timestamp of the latest write query done by this thread
-	 * @return float|false UNIX timestamp or false
+	 * Get the last time that a tracked connection was used to commit a write
+	 *
+	 * @internal Should only be called from the rdbms library.
+	 *
+	 * @return float|null UNIX timestamp, or, false (if no writes were committed)
 	 * @since 1.37
 	 */
 	public function lastPrimaryChangeTimestamp();

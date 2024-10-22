@@ -120,9 +120,11 @@ interface IDatabaseForOwner extends IDatabase {
 	public function flushSession( $fname = __METHOD__, $flush = self::FLUSHING_ONE );
 
 	/**
-	 * Get the last time the connection may have been used for a write query
+	 * Get the last time that the connection was used to commit a write
 	 *
-	 * @return int|float|false UNIX timestamp or false
+	 * @internal Should only be called from the rdbms library.
+	 *
+	 * @return float|null UNIX timestamp; null if no writes were committed
 	 * @since 1.24
 	 */
 	public function lastDoneWrites();
