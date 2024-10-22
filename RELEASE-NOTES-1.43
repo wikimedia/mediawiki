@@ -1002,6 +1002,9 @@ because of Phabricator reports.
   an empty array as an argument, not `null`.
 * ParserOutput::setPageProperty() now emits deprecation warnings when called
   with non-string values, which has been deprecated since 1.42.
+* Use of the reference to the internal array returned by
+  ParserOutput::getExternalLinks() has been deprecated.  In a future release
+  it will return a copy of the array.
 * To support a future change allowing serializing of MessageValue objects
   as JSON, the methods MessageValue::objectParams(), Message::objectParams()
   and Message::objectParam() are deprecated. The UserGroupMembershipParam
