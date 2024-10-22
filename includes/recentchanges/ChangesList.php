@@ -435,9 +435,7 @@ class ChangesList extends ContextSource {
 
 		return Html::element( $tag,
 			[ 'dir' => 'ltr', 'class' => $formattedSizeClass, 'title' => $formattedTotalSize ],
-			$formattedSize ) .
-			# There should be some character here otherwise mobile watchlist breaks, T376814
-			$lang->getDirMark();
+			$formattedSize );
 	}
 
 	/**
