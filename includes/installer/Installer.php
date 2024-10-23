@@ -532,8 +532,8 @@ abstract class Installer {
 		global $wgObjectCaches, $wgLang;
 
 		// Reset all services and inject config overrides.
-		// NOTE: This will reset existing instances, but not previous wiring overrides!
-		MediaWikiServices::resetGlobalInstance( $installerConfig );
+		// Reload to re-enable Rdbms, in case of any prior MediaWikiServices::disableStorage()
+		MediaWikiServices::resetGlobalInstance( $installerConfig, 'reload' );
 
 		$mwServices = MediaWikiServices::getInstance();
 
@@ -554,11 +554,6 @@ abstract class Installer {
 						[],
 						$services->getMainConfig()->get( MainConfigNames::DefaultUserOptions )
 					);
-				},
-
-				// Restore to default wiring, in case it was overwritten by disableStorage()
-				'DBLoadBalancer' => static function ( MediaWikiServices $services ) {
-					return $services->getDBLoadBalancerFactory()->getMainLB();
 				},
 			];
 		}
