@@ -326,3 +326,5 @@ class CacheTime implements ParserCacheMetadata, JsonDeserializable {
 		}
 	}
 }
+
+class_alias( CacheTime::class, 'MediaWiki\\Parser\\CacheTime' );

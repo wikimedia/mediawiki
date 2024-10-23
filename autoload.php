@@ -1987,6 +1987,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\ParamValidator\\TypeDef\\TagsDef' => __DIR__ . '/includes/ParamValidator/TypeDef/TagsDef.php',
 	'MediaWiki\\ParamValidator\\TypeDef\\TitleDef' => __DIR__ . '/includes/ParamValidator/TypeDef/TitleDef.php',
 	'MediaWiki\\ParamValidator\\TypeDef\\UserDef' => __DIR__ . '/includes/ParamValidator/TypeDef/UserDef.php',
+	'MediaWiki\\Parser\\CacheTime' => __DIR__ . '/includes/parser/CacheTime.php',
 	'MediaWiki\\Parser\\MagicWord' => __DIR__ . '/includes/parser/MagicWord.php',
 	'MediaWiki\\Parser\\MagicWordArray' => __DIR__ . '/includes/parser/MagicWordArray.php',
 	'MediaWiki\\Parser\\MagicWordFactory' => __DIR__ . '/includes/parser/MagicWordFactory.php',
