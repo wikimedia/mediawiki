@@ -1855,7 +1855,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Maintenance\\Version' => __DIR__ . '/maintenance/Version.php',
 	'MediaWiki\\MediaWikiEntryPoint' => __DIR__ . '/includes/MediaWikiEntryPoint.php',
 	'MediaWiki\\MediaWikiServices' => __DIR__ . '/includes/MediaWikiServices.php',
-	'MediaWiki\\Message\\Converter' => __DIR__ . '/includes/Message/Converter.php',
 	'MediaWiki\\Message\\Message' => __DIR__ . '/includes/Message/Message.php',
 	'MediaWiki\\Message\\MessageFormatterFactory' => __DIR__ . '/includes/Message/MessageFormatterFactory.php',
 	'MediaWiki\\Message\\TextFormatter' => __DIR__ . '/includes/Message/TextFormatter.php',
