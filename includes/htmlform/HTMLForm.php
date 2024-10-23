@@ -79,6 +79,7 @@ use MediaWiki\Title\TitleValue;
 use MediaWiki\Xml\Xml;
 use StatusValue;
 use Stringable;
+use Wikimedia\Message\MessageParam;
 use Wikimedia\Message\MessageSpecifier;
 
 /**
@@ -361,7 +362,7 @@ class HTMLForm extends ContextSource {
 	protected $mHiddenFields = [];
 	/**
 	 * @var array[]
-	 * @phan-var array<array{name:string,value:string,label-message?:string|string[]|MessageSpecifier,label?:string,label-raw?:string,id?:string,attribs?:array,flags?:string|string[],framed?:bool}>
+	 * @phan-var array<array{name:string,value:string,label-message?:string|array<string|MessageParam>|MessageSpecifier,label?:string,label-raw?:string,id?:string,attribs?:array,flags?:string|string[],framed?:bool}>
 	 */
 	protected $mButtons = [];
 
@@ -1298,7 +1299,7 @@ class HTMLForm extends ContextSource {
 	 *  - flags: (string|string[], optional) OOUI flags.
 	 *  - framed: (boolean=true, optional) OOUI framed attribute.
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array{name:string,value:string,label-message?:string|array<string|array>|MessageSpecifier,label?:string,label-raw?:string,id?:string,attribs?:array,flags?:string|string[],framed?:bool} $data
+	 * @phan-param array{name:string,value:string,label-message?:string|array<string|MessageParam>|MessageSpecifier,label?:string,label-raw?:string,id?:string,attribs?:array,flags?:string|string[],framed?:bool} $data
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	public function addButton( $data ) {
