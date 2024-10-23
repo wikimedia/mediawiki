@@ -7,6 +7,11 @@ use Wikimedia\Message\MessageSpecifier;
 
 /**
  * The MediaWiki-specific implementation of ITextFormatter
+ *
+ * To obtain an instance, use \MediaWiki\MediaWikiServices::getMessageFormatterFactory()
+ * and call MessageFormatterFactory::getTextFormatter.
+ *
+ * @ingroup Language
  */
 class TextFormatter implements ITextFormatter {
 	/** @var string */
@@ -16,13 +21,7 @@ class TextFormatter implements ITextFormatter {
 	private $format;
 
 	/**
-	 * Construct a TextFormatter.
-	 *
-	 * The type signature may change without notice as dependencies are added
-	 * to the constructor. External callers should use
-	 * MediaWikiServices::getMessageFormatterFactory()
-	 *
-	 * @internal
+	 * @internal For use by ServiceWiring only
 	 * @param string $langCode
 	 * @param string $format
 	 */
