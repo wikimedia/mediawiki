@@ -4,7 +4,6 @@ namespace MediaWiki\ParamValidator\TypeDef;
 
 use ChangeTags;
 use MediaWiki\ChangeTags\ChangeTagsStore;
-use MediaWiki\Message\Converter as MessageConverter;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\Callbacks;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
@@ -25,13 +24,9 @@ class TagsDef extends EnumDef {
 
 	private ChangeTagsStore $changeTagsStore;
 
-	/** @var MessageConverter */
-	private $messageConverter;
-
 	public function __construct( Callbacks $callbacks, ChangeTagsStore $changeTagsStore ) {
 		parent::__construct( $callbacks );
 		$this->changeTagsStore = $changeTagsStore;
-		$this->messageConverter = new MessageConverter();
 	}
 
 	public function validate( $name, $value, array $settings, array $options ) {
@@ -49,7 +44,7 @@ class TagsDef extends EnumDef {
 		}
 
 		if ( !$tagsStatus->isGood() ) {
-			$msg = $this->messageConverter->convertMessage( $tagsStatus->getMessage() );
+			$msg = $tagsStatus->getMessage();
 			$data = [];
 			if ( $tagsStatus->value ) {
 				// Specific tags are not allowed.

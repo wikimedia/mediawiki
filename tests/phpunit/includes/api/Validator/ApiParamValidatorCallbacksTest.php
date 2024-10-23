@@ -200,7 +200,7 @@ class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 			$this->assertNotCount( 0, $warnings );
 			$this->assertSame(
 				$expect->inLanguage( 'qqx' )->plain(),
-				$warnings[0][0]->inLanguage( 'qqx' )->plain()
+				wfMessage( $warnings[0][0] )->inLanguage( 'qqx' )->plain()
 			);
 			$this->assertSame( $expect->getApiCode(), $warnings[0][1] );
 			$this->assertSame( $expect->getApiData(), $warnings[0][2] );

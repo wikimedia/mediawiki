@@ -28,7 +28,6 @@ use MediaWiki\Json\JsonDeserializableTrait;
 use MediaWiki\Json\JsonDeserializer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Message\Converter;
 use MediaWiki\Output\OutputPage;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Title\TitleValue;
@@ -1206,9 +1205,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @since 1.43
 	 */
 	public function addWarningMsgVal( MessageValue $mv ) {
-		$m = ( new Converter() )->convertMessageValue( $mv );
-		// These can eventually be stored as MessageValue instead of converting to Message.
-		$this->addWarningMsg( $m->getKey(), ...$m->getParams() );
+		// These can eventually be stored as MessageValue directly.
+		$this->addWarningMsg( $mv->getKey(), ...$mv->getParams() );
 	}
 
 	/**

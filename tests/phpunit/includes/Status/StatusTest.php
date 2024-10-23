@@ -637,8 +637,7 @@ class StatusTest extends MediaWikiLangTestCase {
 
 		$status->replaceMessage( $messageVal, $newMessageVal );
 
-		$conv = new \MediaWiki\Message\Converter;
-		$this->assertEquals( $newMessageVal, $conv->convertMessage( $status->errors[0]['message'] ) );
+		$this->assertEquals( $newMessageVal, MessageValue::newFromSpecifier( $status->errors[0]['message'] ) );
 	}
 
 	public function testReplaceMessageByKey() {
