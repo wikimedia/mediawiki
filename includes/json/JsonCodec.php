@@ -27,6 +27,7 @@ use JsonSerializable;
 use Psr\Container\ContainerInterface;
 use ReflectionClass;
 use stdClass;
+use Throwable;
 use Wikimedia\Assert\Assert;
 use Wikimedia\JsonCodec\JsonClassCodec;
 use Wikimedia\JsonCodec\JsonCodecable;
@@ -129,7 +130,7 @@ class JsonCodec
 		}
 		// @phan-suppress-next-line PhanUndeclaredClassReference 'array'
 		$className = parent::unmarkArray( $value, $classHint );
-		// Remove the temporarily-added COMPLEX_ANNOTATION
+		// Remove the temporarily added COMPLEX_ANNOTATION
 		if ( $this->backCompat ) {
 			unset( $value[JsonConstants::COMPLEX_ANNOTATION] );
 		}
@@ -168,9 +169,7 @@ class JsonCodec
 				$got = $this->unmarkArray( $jsonCopy, $expectedClass );
 				// Compare $got to $expectedClass in a way that works in the
 				// presence of aliases
-				if ( is_a( $got, $expectedClass, true ) ) {
-					// Everything ok!
-				} else {
+				if ( !is_a( $got, $expectedClass, true ) ) {
 					throw new JsonException( "Expected {$expectedClass} got {$got}" );
 				}
 			} else {
@@ -218,7 +217,7 @@ class JsonCodec
 			try {
 				// Try to collect more information on the failure.
 				$details = $this->detectNonSerializableData( $value );
-			} catch ( \Throwable $t ) {
+			} catch ( Throwable $t ) {
 				$details = $t->getMessage();
 			}
 			throw new JsonException(
@@ -236,14 +235,14 @@ class JsonCodec
 	// debugging information in the event of a serialization failure.
 
 	/**
-	 * Recursive check for ability to serialize $value to JSON via FormatJson::encode().
+	 * Recursive check for the ability to serialize $value to JSON via FormatJson::encode().
 	 *
 	 * @param mixed $value
 	 * @param bool $expectDeserialize
 	 * @param string $accumulatedPath
 	 * @param bool $exhaustive Whether to (slowly) completely traverse the
 	 *  $value in order to find the precise location of a problem
-	 * @return string|null JSON path to first encountered non-serializable property or null.
+	 * @return string|null JSON path to the first encountered non-serializable property or null.
 	 */
 	private function detectNonSerializableDataInternal(
 		$value,
@@ -293,7 +292,7 @@ class JsonCodec
 					return null;
 				}
 			} else {
-				// Instances of classes other the \stdClass or JsonSerializable can not be serialized to JSON.
+				// Instances of classes other the \stdClass or JsonSerializable cannot be serialized to JSON.
 				return $accumulatedPath . ': ' . get_debug_type( $value );
 			}
 		}
@@ -321,7 +320,7 @@ class JsonCodec
 	 *
 	 * @param mixed $value
 	 * @param bool $expectDeserialize whether to expect the $value to be deserializable with JsonDeserializer.
-	 * @return string|null JSON path to first encountered non-serializable property or null.
+	 * @return string|null JSON path to the first encountered non-serializable property or null.
 	 * @see JsonDeserializer
 	 * @since 1.36
 	 */
