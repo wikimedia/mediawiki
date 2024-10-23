@@ -135,11 +135,11 @@ class SearchHighlighter {
 								break;
 							} else {
 								// end of nested element
-								$level -= 1;
+								$level--;
 							}
 						} else {
 							// nested
-							$level += 1;
+							$level++;
 						}
 						$offset = $endMatches[0][1] + strlen( $endMatches[0][0] );
 					}

@@ -92,11 +92,11 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 		$args = $this->createConstructorArguments();
 
 		// Fool Parser into thinking we are constructing via a ParserFactory
-		ParserFactory::$inParserFactory += 1;
+		ParserFactory::$inParserFactory++;
 		try {
 			$parser = new Parser( ...$args );
 		} finally {
-			ParserFactory::$inParserFactory -= 1;
+			ParserFactory::$inParserFactory--;
 		}
 
 		$refObject = new ReflectionObject( $parser );
@@ -130,11 +130,11 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function newParser() {
 		$args = $this->createConstructorArguments();
-		ParserFactory::$inParserFactory += 1;
+		ParserFactory::$inParserFactory++;
 		try {
 			return new Parser( ...$args );
 		} finally {
-			ParserFactory::$inParserFactory -= 1;
+			ParserFactory::$inParserFactory--;
 		}
 	}
 

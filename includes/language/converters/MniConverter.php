@@ -167,7 +167,7 @@ class MniConverter extends LanguageConverterSpecific {
 				 * Others are just extension from "a" by mixing with diacritics
 				 */
 				yield self::CONJUGATE_WITH_O[$char . $chars[ $i + 1 ]];
-				$i += 1;
+				$i++;
 			} elseif (
 				$char === self::HALANTA &&
 				$i > 0 &&
@@ -211,7 +211,7 @@ class MniConverter extends LanguageConverterSpecific {
 				 * Any consonant + ্ + ন = maybe ok
 				 */
 				yield self::MTEI_TO_BENG_MAP[self::NA];
-				$i += 1;
+				$i++;
 				continue;
 			} elseif ( $char === self::U && !$this->isBeginning( $i, $text ) ) {
 				// উ/ঊ in the middle of words are often replaced by ও
@@ -240,7 +240,7 @@ class MniConverter extends LanguageConverterSpecific {
 					self::MTEI_TO_BENG_MAP[$char] : $char
 				);
 			}
-			$i += 1;
+			$i++;
 		}
 	}
 

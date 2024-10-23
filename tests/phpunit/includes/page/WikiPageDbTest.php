@@ -1159,7 +1159,7 @@ more stuff
 
 			$page->doUserEditContent( $content, $user, "test edit $c", $c < 2 ? EDIT_NEW : 0 );
 
-			$c += 1;
+			$c++;
 		}
 
 		$this->hideDeprecated( 'WikiPage::getAutoDeleteReason:' );

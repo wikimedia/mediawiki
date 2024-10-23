@@ -45,7 +45,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 
 	public static function newForCategorizationCallback( ...$args ) {
 		self::$lastNotifyArgs = $args;
-		self::$notifyCallCounter += 1;
+		self::$notifyCallCounter++;
 		return self::$mockRecentChange;
 	}
 

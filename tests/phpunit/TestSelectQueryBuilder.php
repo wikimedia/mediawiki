@@ -31,7 +31,7 @@ class TestSelectQueryBuilder extends SelectQueryBuilder {
 			$r = $res->fetchRow();
 			MediaWikiIntegrationTestCase::stripStringKeys( $r );
 
-			$i += 1;
+			$i++;
 			Assert::assertNotFalse( $r, "row #$i missing" );
 
 			Assert::assertEquals( $expected, $r, "row #$i mismatches" );

@@ -138,7 +138,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 			// easy filtering with array_filter() later.
 			$this->duplicateKeyLookups[$key] = 0;
 		} else {
-			$this->duplicateKeyLookups[$key] += 1;
+			$this->duplicateKeyLookups[$key]++;
 
 			if ( $this->dupeTrackScheduled === false ) {
 				$this->dupeTrackScheduled = true;

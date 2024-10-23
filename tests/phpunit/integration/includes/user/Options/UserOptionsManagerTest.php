@@ -267,7 +267,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTestBase {
 			'hookContainer' => $this->createHookContainer( [
 				'LoadUserOptions' => function ( UserIdentity $hookUser ) use ( $user, &$manager, &$recursionCounter ) {
 					if ( $hookUser->equals( $user ) ) {
-						$recursionCounter += 1;
+						$recursionCounter++;
 						$this->assertSame( 1, $recursionCounter );
 						$manager->loadUserOptions( $hookUser );
 					}

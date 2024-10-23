@@ -492,7 +492,7 @@ class ImportImages extends Maintenance {
 			}
 
 			$n = substr( $n, 0, $idx );
-			$maxStrip -= 1;
+			$maxStrip--;
 		}
 
 		return false;
