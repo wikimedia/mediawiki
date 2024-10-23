@@ -791,7 +791,7 @@ namespace MediaWiki\HookContainer {
 					[ 'abortable' => false ]
 				],
 				'callable referencing a class that extends an unknown class' => [
-					[ 'MediaWiki\\Tests\\BrokenClass', 'aMethod' ],
+					[ 'MediaWiki\\Tests\\BrokenClass2', 'aMethod' ],
 					[],
 					Error::class
 				],
@@ -1012,7 +1012,7 @@ namespace MediaWiki\HookContainer {
 				'MediaWiki\HookContainer\FooClass::fooStaticMethod',
 			];
 			yield 'callable referencing a class that extends an unknown class' => [
-				[ 'MediaWiki\Tests\BrokenClass', 'aMethod' ],
+				[ 'MediaWiki\Tests\BrokenClass3', 'aMethod' ],
 			];
 		}
 
