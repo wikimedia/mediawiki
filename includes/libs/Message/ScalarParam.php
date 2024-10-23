@@ -42,7 +42,9 @@ class ScalarParam extends MessageParam {
 			// Ensure that $this->value is JSON-serializable, even if $value is not
 			// (but don't do it when using ParamType::OBJECT, since those objects may not expect it)
 			$value = MessageValue::newFromSpecifier( $value );
-		} elseif ( $value instanceof Stringable || is_callable( [ $value, '__toString' ] ) ) {
+		} elseif ( is_object( $value ) && (
+			$value instanceof Stringable || is_callable( [ $value, '__toString' ] )
+		) ) {
 			// TODO: Remove separate '__toString' check above once we drop PHP 7.4
 			$value = (string)$value;
 		} elseif ( !is_string( $value ) && !is_numeric( $value ) ) {

@@ -309,6 +309,7 @@ $wgAutoloadClasses += [
 	'Wikimedia\\Tests\\Message\\MessageSerializationTestTrait' => "$testDir/phpunit/unit/includes/libs/Message/MessageSerializationTestTrait.php",
 	'Wikimedia\\Tests\\Message\\MessageValueTest' => "$testDir/phpunit/unit/includes/libs/Message/MessageValueTest.php",
 	'Wikimedia\\Tests\\Message\\ScalarParamTest' => "$testDir/phpunit/unit/includes/libs/Message/ScalarParamTest.php",
+	'Wikimedia\\Tests\\Message\\T377912TestCase' => "$testDir/phpunit/unit/includes/libs/Message/T377912TestCase.php",
 
 	# tests/phpunit/unit/includes/utils
 	'UrlUtilsProviders' => "$testDir/phpunit/unit/includes/utils/UrlUtilsProviders.php",
