@@ -346,7 +346,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 			);
 		}
 
-		$this->outputHTMLForm( $namespace, $from, $to, $hideredirects );
+		$this->outputHTMLForm( $namespace, $from ?? '', $to ?? '', $hideredirects );
 
 		if ( count( $navLinks ) ) {
 			// Add pagination links
