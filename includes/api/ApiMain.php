@@ -94,6 +94,7 @@ class ApiMain extends ApiBase {
 			'class' => ApiLogin::class,
 			'services' => [
 				'AuthManager',
+				'UserIdentityUtils'
 			],
 		],
 		'clientlogin' => [

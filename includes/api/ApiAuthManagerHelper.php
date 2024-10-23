@@ -31,6 +31,8 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\Message;
 use MediaWiki\Parser\Parser;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityUtils;
 use UnexpectedValueException;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -50,16 +52,25 @@ class ApiAuthManagerHelper {
 
 	private AuthManager $authManager;
 
+	private UserIdentityUtils $identityUtils;
+
 	/**
 	 * @param ApiBase $module API module, for context and parameters
 	 * @param AuthManager|null $authManager
+	 * @param UserIdentityUtils|null $identityUtils
 	 */
-	public function __construct( ApiBase $module, ?AuthManager $authManager = null ) {
+	public function __construct(
+		ApiBase $module,
+		?AuthManager $authManager = null,
+		?UserIdentityUtils $identityUtils = null
+	) {
 		$this->module = $module;
 
 		$params = $module->extractRequestParams();
 		$this->messageFormat = $params['messageformat'] ?? 'wikitext';
 		$this->authManager = $authManager ?: MediaWikiServices::getInstance()->getAuthManager();
+		// TODO: inject this as currently it's always taken from container
+		$this->identityUtils = $identityUtils ?: MediaWikiServices::getInstance()->getUserIdentityUtils();
 	}
 
 	/**
@@ -247,18 +258,21 @@ class ApiAuthManagerHelper {
 	/**
 	 * Logs successful or failed authentication.
 	 * @param string $event Event type (e.g. 'accountcreation')
+	 * @param UserIdentity $performer
 	 * @param AuthenticationResponse $result Response or error message
 	 */
-	public function logAuthenticationResult( $event, AuthenticationResponse $result ) {
+	public function logAuthenticationResult( $event, UserIdentity $performer, AuthenticationResponse $result ) {
 		if ( !in_array( $result->status, [ AuthenticationResponse::PASS, AuthenticationResponse::FAIL ] ) ) {
 			return;
 		}
+		$accountType = $this->identityUtils->getShortUserTypeInternal( $performer );
 
 		$module = $this->module->getModuleName();
 		LoggerFactory::getInstance( 'authevents' )->info( "$module API attempt", [
 			'event' => $event,
 			'successful' => $result->status === AuthenticationResponse::PASS,
 			'status' => $result->message ? $result->message->getKey() : '-',
+			'accountType' => $accountType,
 			'module' => $module,
 		] );
 	}

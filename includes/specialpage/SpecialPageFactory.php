@@ -455,6 +455,7 @@ class SpecialPageFactory {
 			'class' => SpecialUserLogin::class,
 			'services' => [
 				'AuthManager',
+				'UserIdentityUtils',
 			]
 		],
 		'Userlogout' => [
@@ -468,6 +469,7 @@ class SpecialPageFactory {
 			'services' => [
 				'AuthManager',
 				'FormatterFactory',
+				'UserIdentityUtils',
 			]
 		],
 		'LinkAccounts' => [

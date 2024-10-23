@@ -47,6 +47,7 @@ use MediaWiki\Session\SessionManager;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
+use MediaWiki\User\UserIdentity;
 use PermissionsError;
 use ReadOnlyError;
 use Skin;
@@ -135,9 +136,10 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	/**
 	 * Logs to the authmanager-stats channel.
 	 * @param bool $success
+	 * @param UserIdentity $performer The performer
 	 * @param string|null $status Error message key
 	 */
-	abstract protected function logAuthResult( $success, $status = null );
+	abstract protected function logAuthResult( $success, UserIdentity $performer, $status = null );
 
 	protected function setRequest( array $data, $wasPosted = null ) {
 		parent::setRequest( $data, $wasPosted );
@@ -399,7 +401,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				$this->getRequest()->setVal( $button_name, true );
 			}
 		}
-
+		$performer = $this->getUser();
 		$status = $this->trySubmit();
 
 		if ( !$status || !$status->isGood() ) {
@@ -414,7 +416,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			->getFullURL( $this->getPreservedParams( [ 'withToken' => true ] ), false, PROTO_HTTPS );
 		switch ( $response->status ) {
 			case AuthenticationResponse::PASS:
-				$this->logAuthResult( true );
+				$this->logAuthResult( true, $performer );
 				$this->proxyAccountCreation = $this->isSignup() && $this->getUser()->isNamed();
 				$this->targetUser = User::newFromName( $response->username );
 
@@ -458,7 +460,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					$action = $this->getContinueAction( $this->authAction );
 					$messageType = 'warning';
 				}
-				$this->logAuthResult( false, $response->message ? $response->message->getKey() : '-' );
+				$this->logAuthResult( false, $performer, $response->message ? $response->message->getKey() : '-' );
 				$this->loadAuth( $subPage, $action, true );
 				$this->mainLoginForm( $this->authRequests, $response->message, $messageType );
 				break;
