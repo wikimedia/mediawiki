@@ -209,21 +209,21 @@ class PageHistoryCountHandler extends SimpleHandler {
 		switch ( $type ) {
 			case 'anonymous':
 				return $this->getCachedCount( $type,
-					function ( RevisionRecord $fromRev = null ) use ( $pageId ) {
+					function ( ?RevisionRecord $fromRev = null ) use ( $pageId ) {
 						return $this->getAnonCount( $pageId, $fromRev );
 					}
 				);
 
 			case 'temporary':
 				return $this->getCachedCount( $type,
-					function ( RevisionRecord $fromRev = null ) use ( $pageId ) {
+					function ( ?RevisionRecord $fromRev = null ) use ( $pageId ) {
 						return $this->getTempCount( $pageId, $fromRev );
 					}
 				);
 
 			case 'bot':
 				return $this->getCachedCount( $type,
-					function ( RevisionRecord $fromRev = null ) use ( $pageId ) {
+					function ( ?RevisionRecord $fromRev = null ) use ( $pageId ) {
 						return $this->getBotCount( $pageId, $fromRev );
 					}
 				);
@@ -239,7 +239,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 					);
 				} else {
 					return $this->getCachedCount( $type,
-						function ( RevisionRecord $fromRev = null ) use ( $pageId ) {
+						function ( ?RevisionRecord $fromRev = null ) use ( $pageId ) {
 							return $this->getEditorsCount( $pageId, $fromRev );
 						} );
 				}
@@ -255,7 +255,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 					);
 				} else {
 					return $this->getCachedCount( $type,
-						function ( RevisionRecord $fromRev = null ) use ( $pageId ) {
+						function ( ?RevisionRecord $fromRev = null ) use ( $pageId ) {
 							return $this->getEditsCount( $pageId, $fromRev );
 						}
 					);
@@ -263,7 +263,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 
 			case 'reverted':
 				return $this->getCachedCount( $type,
-					function ( RevisionRecord $fromRev = null ) use ( $pageId ) {
+					function ( ?RevisionRecord $fromRev = null ) use ( $pageId ) {
 						return $this->getRevertedCount( $pageId, $fromRev );
 					}
 				);
@@ -272,7 +272,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 				// The query for minor counts is inefficient for the database for pages with many revisions.
 				// If the specified title contains more revisions than allowed, we will return an error.
 				$editsCount = $this->getCachedCount( 'edits',
-					function ( RevisionRecord $fromRev = null ) use ( $pageId ) {
+					function ( ?RevisionRecord $fromRev = null ) use ( $pageId ) {
 						return $this->getEditsCount( $pageId, $fromRev );
 					}
 				);
@@ -283,7 +283,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 					);
 				}
 				return $this->getCachedCount( $type,
-					function ( RevisionRecord $fromRev = null ) use ( $pageId ) {
+					function ( ?RevisionRecord $fromRev = null ) use ( $pageId ) {
 						return $this->getMinorCount( $pageId, $fromRev );
 					}
 				);

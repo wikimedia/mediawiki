@@ -153,8 +153,8 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 		$cannotDeleteAuthority = $this->mockAnonAuthority(
 			static function (
 				string $permission,
-				PageIdentity $page = null,
-				PermissionStatus $status = null
+				?PageIdentity $page = null,
+				?PermissionStatus $status = null
 			) use ( $cannotDeleteMsg ): bool {
 				if ( $permission === 'delete' ) {
 					if ( $status ) {
@@ -171,8 +171,8 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 		$cannotBigDeleteAuthority = $this->mockAnonAuthority(
 			static function (
 				string $permission,
-				PageIdentity $page = null,
-				PermissionStatus $status = null
+				?PageIdentity $page = null,
+				?PermissionStatus $status = null
 			) use ( $cannotBigDeleteMsg ): bool {
 				if ( $permission === 'bigdelete' ) {
 					if ( $status ) {

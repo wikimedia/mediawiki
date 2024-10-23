@@ -558,7 +558,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 		$mockContentRenderer->method( 'getParserOutput' )
 			->willReturnCallback( function ( Content $content, PageReference $page, $revId = null,
-				ParserOptions $options = null, $hints = []
+				?ParserOptions $options = null, $hints = []
 			) {
 				if ( is_bool( $hints ) ) {
 					$hints = [ 'generate-html' => $hints ];
