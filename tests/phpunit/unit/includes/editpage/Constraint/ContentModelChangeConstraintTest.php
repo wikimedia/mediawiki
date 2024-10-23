@@ -88,7 +88,7 @@ class ContentModelChangeConstraintTest extends MediaWikiUnitTestCase {
 
 		$performer = $this->mockRegisteredAuthority( function (
 			string $permission,
-			PageIdentity $page = null
+			?PageIdentity $page = null
 		) use ( $title ) {
 			if ( $permission === 'editcontentmodel' ) {
 				if ( $page ) {
