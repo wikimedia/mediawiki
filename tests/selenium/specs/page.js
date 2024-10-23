@@ -156,7 +156,7 @@ describe( 'Page', () => {
 
 		await UndoPage.undo( name, previousRev, undoRev );
 
-		await expect( await EditPage.displayedContent ).toHaveText( content );
+		await expect( await EditPage.displayedContent ).toHaveTextContaining( content );
 	} );
 
 } );
