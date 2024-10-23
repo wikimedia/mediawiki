@@ -241,7 +241,7 @@ class AutoLoader {
 		$filename = self::find( $className );
 
 		if ( $filename !== null ) {
-			require $filename;
+			require_once $filename;
 		}
 	}
 
