@@ -85,7 +85,12 @@ class CategoryMembershipChange {
 		// TODO: Update callers of this method to pass for import
 		$this->pageTitle = $pageTitle;
 		$this->revision = $revision;
-		if ( $revision === null ) {
+
+		// Use the current timestamp for creating the RC entry when dealing with imported revisions,
+		// since their timestamp may be significantly older than the current time.
+		// This ensures the resulting RC entry won't be immediately reaped by probabilistic RC purging if
+		// the imported revision is older than $wgRCMaxAge (T377392).
+		if ( $revision === null || $forImport ) {
 			$this->timestamp = wfTimestampNow();
 		} else {
 			$this->timestamp = $revision->getTimestamp();

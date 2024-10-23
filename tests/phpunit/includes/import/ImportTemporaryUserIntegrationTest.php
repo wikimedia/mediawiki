@@ -3,6 +3,7 @@
 use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\User\TempUser\TempUserTestTrait;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @group Database
@@ -19,6 +20,9 @@ class ImportTemporaryUserIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->enableAutoCreateTempUser();
 		$this->overrideConfigValue( MainConfigNames::RCWatchCategoryMembership, true );
 
+		$referenceTime = wfTimestampNow();
+		ConvertibleTimestamp::setFakeTime( $referenceTime );
+
 		$this->importTestData();
 		$this->runJobs();
 
@@ -29,6 +33,7 @@ class ImportTemporaryUserIntegrationTest extends MediaWikiIntegrationTestCase {
 		], __METHOD__ );
 
 		$this->assertSame( '192.0.2.14', $rc->getPerformerIdentity()->getName() );
+		$this->assertSame( $referenceTime, $rc->getAttribute( 'rc_timestamp' ) );
 	}
 
 	private function importTestData(): void {
