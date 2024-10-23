@@ -1038,8 +1038,11 @@ class SessionManager implements SessionManagerInterface {
 			'id' => $info->getId(),
 			'provider' => get_class( $info->getProvider() ),
 			'user' => '<anon>',
+			'supposedUser' => $info->getUserInfo() ? $info->getUserInfo()->getName() : null,
 			'clientip' => $request->getIP(),
 			'userAgent' => $request->getHeader( 'user-agent' ),
+			// FIXME extra debugging for T373270; revert once not needed
+			'cookieArray' => $_COOKIE,
 		];
 		if ( $info->getUserInfo() ) {
 			if ( !$info->getUserInfo()->isAnon() ) {
